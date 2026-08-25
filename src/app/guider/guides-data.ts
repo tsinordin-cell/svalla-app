@@ -820,7 +820,7 @@ export const GUIDES: GuideMeta[] = [
     excerpt: "Ingmarsö är en bilfri ö med vandringsleder, badplatser och ett riktigt skärgårdsliv. Transport, aktiviteter och praktisk info.",
     category: "Region", emoji: "🌿", readTime: "6 min", fullContent: true,
     faqs: [
-      { q: 'Hur tar man sig till Ingmarsö?', a: 'Med Waxholmsbolaget från Strömkajen i Stockholm – resan tar ca 2–2,5 timmar via Vaxholm. Ingmarsö ligger i norra Stockholms skärgård och nås årsrunt, men trafiken är glesare på vintern.' },
+      { q: 'Hur tar man sig till Ingmarsö?', a: 'Med Waxholmsbolaget från Strömkajen i Stockholm – resan tar 2 tim 40 min till knappt 4 timmar via Vaxholm, beroende på tur och brygga. Ingmarsö ligger i norra Stockholms skärgård och nås årsrunt, men trafiken är glesare på vintern.' },
       { q: 'Är Ingmarsö bilfri?', a: 'Ingmarsö är bilfri för besökare. Ön nås inte med bilfärja. Du lämnar bilen hemma och tar dig runt till fots eller med cykel. Det är en av anledningarna till att ön känns genuint skärgårdsig och ostörd.' },
       { q: 'Vad kan man göra på Ingmarsö?', a: 'Vandra längs öns leder med havsutsikt, bada i naturhamnarna, fika vid bystugan och uppleva det stilla skärgårdslivet. Ön är inte en turistdestination i vanlig mening – det är en ö med riktiga bofasta och genuint liv.' },
     ],
@@ -899,7 +899,8 @@ export const GUIDES: GuideMeta[] = [
     excerpt: "Möja har butik, krog, cyklar och natur. Så tar du dig dit, vad du gör och varför Möja är mitt i skärgårdslivet.",
     category: "Region", emoji: "🏝", readTime: "7 min", fullContent: true,
     faqs: [
-      { q: 'Hur tar man sig till Möja?', a: 'Med Waxholmsbolaget från Strömkajen – resan tar ca 2–2,5 timmar via Vaxholm. Möja är en av skärgårdens folkrikaste öar med ca 500 bofasta och daglig båtförbindelse. Du kan också ta buss till Stavsnäs och korta resan.' },
+      // KÄLLA: Waxholmsbolagets tabell 14A Stockholm-Vaxholm-Sollenkroka-Möja och 12A/13A till Ingmarsö. Snabbaste direktbåt Strömkajen-Möja (Berg) i hösttabellen är 3 tim 05, de flesta 3 tim 55 - 4 tim 30, långsammaste 5 tim 50. Ingmarsö: snabbast 2 tim 37, i dag 3 tim 15 - 3 tim 25. Ingen tur i någon tabell ligger på 2 tim eller 1 tim 45. Snabbast till Möja är buss 434 Slussen-Sollenkroka och båt därifrån, ca 2 tim 10 totalt. Läst 2026-08-25.
+      { q: 'Hur tar man sig till Möja?', a: 'Snabbast är buss 434 från Slussen till Sollenkroka brygga och båt därifrån – drygt två timmar totalt. Direktbåten från Strömkajen via Vaxholm tar betydligt längre, från 3 timmar och uppåt beroende på tur. Möja är en av skärgårdens folkrikaste öar med ca 500 bofasta och daglig båtförbindelse. Du kan också ta buss till Stavsnäs och korta resan.' },
       { q: 'Vad kan man göra på Möja?', a: 'Möja är en av de få öar i skärgården med riktig service: Systembolaget (öppet sommartid), matbutik, restaurang och cykelhyra. Cykla runt ön, bada i naturhamnarna och se solnedgången från Möjatorget.' },
       { q: 'Kan man övernatta på Möja?', a: 'Ja, det finns vandrarhem, stugor och gästhamn. Möja är en av de bästa öarna för övernattning i Stockholms skärgård – lagom avlägsen men med ordentlig service. Boka i god tid för juli.' },
       { q: 'Är Möja bilfri?', a: 'Möja är inte helt bilfri – bofasta har bilar, men turister tar sig dit med båt och cyklar på ön. Det finns cykelhyra vid bryggan. Öns vägar lämpar sig utmärkt för cykling.' },

@@ -1283,7 +1283,7 @@ Här är sex konkreta rutter du kan boka idag.
 
 ## 5. [Utö](/o/uto) – 2,5 timmar, södra skärgårdens kronjuvel
 
-**Avresa:** Nynäshamn (pendeltåg från Stockholm) + bilfärja. Avgångar 3–4 gånger per dag.
+**Avresa:** Årsta brygga, som nås med pendeltåg till Västerhaninge och buss 846 (16 min). Överfarten till Utö tar 40–55 min. Det finns ingen bilfärja till Utö — Nynäshamnsbåten går till grannön Ålö, inte till Utö by.
 **Restid:** Totalt 2–2,5 timmar.
 **Vad du gör:** Cykelleder, gruvmuseum, havsbastu, Utö Värdshus. En av de öar som ger mest upplevelse per besök.
 **Bäst för:** De som vill ha en rik heldagsupplevelse och kan starta tidigt.
@@ -1313,7 +1313,7 @@ Skärgården är närmre än du tror. Börja med ett av förslagen ovan – och 
    faqs: [
      { q: 'Kostar det något att åka med Waxholmsbolaget?', a: 'Ja, Waxholmsbolaget är ett separat biljettsystem från SL. SL-kortet gäller inte. Köp biljetter via appen Waxholmsbolaget eller på bryggan. Priser varierar med destination.' },
      { q: 'Vilken är den kortaste dagsturen till skärgården?', a: 'Fjäderholmarna – 25 minuter med båt från Strömkajen eller Nybroplan. Öppet under sommarsäsongen med avgångar var 30:e minut.' },
-     { q: 'Kan man göra dagstur till Utö?', a: 'Ja, men det kräver tidig start. Ta pendeltåget till Nynäshamn och sedan bilfärjan till Utö. Totalt cirka 2,5 timme. Ta morgonbåten för att få maximalt med tid på ön.' },
+     { q: 'Kan man göra dagstur till Utö?', a: 'Ja. Enklaste vägen året runt är pendeltåg till Västerhaninge, buss 846 till Årsta brygga (16 min) och sedan båt till Gruvbryggan, 40–55 min. Räkna med drygt två timmar från stan. Någon bilfärja till Utö finns inte, och Nynäshamnsbåten går till grannön Ålö. Ta morgonbåten för att få maximalt med tid på ön.' },
    ],
  },
 
@@ -1450,7 +1450,7 @@ Vi har gått igenom alternativen och rangordnat dem – inte efter vad som är v
 ## 5. [Utö](/o/uto) – bäst för aktiva familjer med äldre barn (barn 8+)
 
 **Varför:** Cykelleder, gruvmuseum, havsbastu, sandstränder (Barnens bad, Stora Sand), heldagsupplevelse.
-**Hur tar man sig dit:** Pendeltåg till Nynäshamn + bilfärja till Utö. Totalt ca 2,5 timme.
+**Hur tar man sig dit:** Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och båt därifrån, 40–55 min. Totalt drygt två timmar. Det finns ingen bilfärja till Utö.
 **Badmöjligheter:** Utö har flera riktiga sandstränder — Barnens bad nära Gruvbryggan, Stora Sand på södra ön och Ålö Storsand på grannön. Värda resan i sig.
 **Att göra:** Gruvmuseum, cykling, sandstrand, havsbastu (Utö Värdshus), vandring.
 **Bra att veta:** Utö är stor – det finns matbutik, restauranger och alla bekvämligheter. Planera att stanna minst en dag.
@@ -2003,7 +2003,7 @@ Den kortaste och lättaste. [Fjäderholmarna](/o/fjaderholmarna) är bara 25 min
 
 ## 4. Möja – bilfri ö med äkta karaktär
 
-[Möja](/o/moja) är annorlunda. Bilfri, kuperad och med tre byar sammanbundna av byvägar som knappt finns på Google Maps. Waxholmsbåten dit (ca 1h 45 min), ett café och en dag av genuint skärgårdsliv.
+[Möja](/o/moja) är annorlunda. Bilfri, kuperad och med tre byar sammanbundna av byvägar som knappt finns på Google Maps. Waxholmsbåten dit tar från tre timmar och uppåt från Strömkajen — snabbast är buss 434 till Sollenkroka och båt därifrån, ett café och en dag av genuint skärgårdsliv.
 
 ## 5. Sandhamn – seglarnas ö
 

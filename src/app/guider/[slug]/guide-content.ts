@@ -30,7 +30,8 @@ export function getGuideContent(slug: string): string {
 <p><strong>Insider-tips:</strong> Sov i en av Grinda Wärdshus stugor för en komplett skärgårdsmidsommar. Ön har också gratis tältplatser vid södra stranden.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">4. Utö – söderut med historia</h4>
-<p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget från Nynäshamn (nås med Pendeltåg från Stockholm Central, ca 55 min), sedan färja ca 1 h 15 min. Alternativt direktbåt från Strömkajen på midsommaraftonen.</p>
+<!-- KÄLLA: Waxholmsbolagets tabell 21 Årsta-Utö (Årsta brygga 08.25 -> Gruvbryggan 09.05 = 40 min; 10.25 -> 11.20 = 55 min; -> Spränga 55-60 min), gäller 2 april-18 juni och 17 augusti-12 december 2026. Tabell 22 heter "NYNÄSHAMN - NÅTTARÖ - ÅLÖ" och slutar på Ålö, en egen ö söder om Utö med broförbindelse - inte på Utö by; restiden dit är 55-60 min och linjen går inte måndag eller tisdag i höst. Buss 846 Västerhaninge station-Årsta brygga: 16 min. Läst 2026-08-25. -->
+<p><strong>Hur du tar dig dit:</strong> Året runt via Årsta brygga: pendeltåg till Västerhaninge, buss 846 (16 min) och sedan båt till Gruvbryggan, 40–55 min. Nynäshamnsbåten går till grannön Ålö, inte till Utö by, och går inte måndag eller tisdag i höst. Alternativt direktbåt från Strömkajen på midsommaraftonen.</p>
 <p><strong>Upplev:</strong> Utö är en av skärgårdens vackraste öar med gruvruin och unika naturlandskap. Midsommarfirandet sker traditionsenligt vid gruvorna med dans och musik. Hyra cykel och utforska ön är ett självklart midsommarprogram.</p>
 <p><strong>Var du äter:</strong> Utö Värdshus är öns kronjuvel – reservera månader i förväg. Bakfickan serverar enklare rätter för spontanbesökare. Vandrarhemsköket är tillgängligt för de som självhushållar.</p>
 <p><strong>Insider-tips:</strong> Utö Havsbastu på midsommarnatten är en oförglömlig upplevelse om du lyckas få en plats.</p>
@@ -304,7 +305,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Avgångsplatser i Stockholm</h3>
 <p><strong>Strömkajen (Strömkajen, City):</strong> Waxholmsbolagets huvudterminal. Avgångar till de flesta destinationer inkl. Vaxholm, Grinda, Sandhamn och Arholma. T-bana Kungsträdgården, 5 min promenad.</p>
 <p><strong>Stavsnäs Vinterhamn (Stavsnäs):</strong> Terminal för södra och mellersta skärgården inkl. Sandhamn, Möja, Gällnö och Blidö. Nås med SL-buss 433 från Slussen. Ca 50 min med buss. Gratis parkering för dagsturister.</p>
-<p><strong>Nynäshamn:</strong> Avgångspunkt för Utö och Landsort. Nås med Pendeltåg (Pendeltåg linje 36/37 från Stockholm Central, ca 55 min). Nynäshamn har bra parkeringsmöjligheter.</p>
+<p><strong>Nynäshamn:</strong> Avgångspunkt för Utö och Landsort. Nås med pendeltåg linje 43 från Stockholm City, ca 65 min. Nynäshamn har bra parkeringsmöjligheter.</p>
 <p><strong>Furusund:</strong> Liten terminal för norra skärgårdens linjer. Nås med buss från Norrtälje eller bil.</p>
 <p><strong>Kapellskär:</strong> Norra ytterskärgårdens terminal. Buss från Norrtälje.</p>
 
@@ -394,7 +395,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">5. Utö – södra skärgårdens höjdpunkt</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
-<p><strong>Transport:</strong> Pendeltåg från Stockholm Central till Nynäshamn (55 min), sedan Waxholmsbolaget till Utö (ca 1 h 15 min). Totalt ca 2 h 15 min. Pendeltåg ingår i SL-abonnemanget.</p>
+<p><strong>Transport:</strong> Pendeltåg linje 43 från Stockholm City till Västerhaninge, buss 846 till Årsta brygga (16 min) och sedan Waxholmsbolagets båt till Gruvbryggan, 40–55 min. Totalt drygt två timmar. Pendeltåg och buss ingår i SL-taxan.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p><strong>Pris:</strong> Pendeltåg gratis med SL-kort, Waxholmsbåt ca 210 kr enkel resa.</p>
 <p><strong>Upplev:</strong> Utö har det mesta: gruvruin, cykelleder, havsbastu och en av skärgårdens bästa restauranger (Utö Värdshus). Ön kräver minst ett dygn för att göra den rättvisa.</p>
@@ -402,7 +403,8 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Ornö – söder om Stockholm, bortom turisterna</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
-<p><strong>Transport:</strong> SL-buss 839 från Handen T (40 min), sedan bilfärja till Ornö från Dalarö (20 min). Totalt ca 1 h 15 min. Bussen ingår i SL-abonnemanget.</p>
+<!-- KÄLLA: Waxholmsbolagets tabell 20 (fartyg ORNÖ BILFÄRJA, Dalarö 06.30 -> Hässelmara 06.55 = 25 min, anm. O: "Avgången körs av Ornö Bilfärja, särskild taxa gäller") + ornosjotrafik.se ("Överfarten tar ca 30 minuter", personbil 120 kr t/r, passagerare 60 kr enkel, turlista 27 april-13 september 2026). Färjan drivs av Ornö Sjötrafik AB och finns inte bland Trafikverkets 43 leder - den är alltså inte avgiftsfri. Läst 2026-08-25. -->
+<p><strong>Transport:</strong> SL-buss 839 från Handens station (36–39 min), sedan Ornö Sjötrafiks bilfärja från Dalarö, 25–30 min. Totalt drygt 1 h 30 min. Bussen ingår i SL-taxan, men färjan har egen taxa — 60 kr per person enkel resa, 120 kr tur och retur för personbil. Turlistan gäller 27 april–13 september.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p><strong>Pris:</strong> Buss gratis med SL-kort, bilfärja ca 60 kr per person, ca 120 kr med cykel.</p>
 <p><strong>Upplev:</strong> Ornö är stor, skogsrik och har knappt några turister. Perfekt för vandring och att hyra cykel för att utforska öns skogar och klippor.</p>
@@ -487,7 +489,7 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad SL-kortet GÄLLER för</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Pendeltåg till Nynäshamn</strong> (linje 36/37) – nå Utö och Landsort med SL-kort</li>
+<li><strong>Pendeltåg till Nynäshamn</strong> (linje 43) – nå Utö och Landsort med SL-kort</li>
 <li><strong>SL-buss 670/671</strong> till Vaxholm – alternativ till båten</li>
 <li><strong>SL-buss 433</strong> till Stavsnäs Vinterhamn – utgångspunkt för Sandhamn, Möja, Gällnö</li>
 <li><strong>SL-buss 839</strong> till Dalarö – utgångspunkt för bilfärja till Ornö</li>
@@ -1145,7 +1147,7 @@ export function getGuideContent(slug: string): string {
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Exempelschema – en helg på Utö</h3>
-<p><strong>Fredag:</strong> Pendeltåg till Nynäshamn (55 min), Waxholmsbolaget till Utö (1h15min). Incheckning, promenad längs gruvstigarna, middag på Utö Värdshus.</p>
+<p><strong>Fredag:</strong> Pendeltåg till Nynäshamn (ca 65 min), Waxholmsbolaget till Utö (1h15min). Incheckning, promenad längs gruvstigarna, middag på Utö Värdshus.</p>
 <p><strong>Lördag:</strong> Frukost på värdshuset, hyr cykel och utforska ön (ca 2 h), bad vid Utö klippstrand, havsbastu på eftermiddagen, räkfest på bryggan till middag.</p>
 <p><strong>Söndag:</strong> Morgonkaffe vid havet, promenad till Utö sydspets, lunch innan returbåten avgår.</p>
 
@@ -1240,7 +1242,7 @@ export function getGuideContent(slug: string): string {
 <p>Landsort på ön Öja är Sveriges sydligaste bebodda plats och en av skärgårdens mest unika destinationer. Fyren, det speciella klimatet och den absoluta stillheten gör Landsort till ett kapitel för sig.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du tar dig dit</h3>
-<p>Landsort är avlägset – planera för en hel dag. Pendeltåg från Stockholm Central till Nynäshamn (55 min, ingår i SL), sedan Waxholmsbolaget till Öja/Landsort (ca 2,5 h). Totalt ca 4 h tur. Kontrollera tidtabeller på förhand – avgångarna är begränsade.</p>
+<p>Landsort är avlägset – planera för en hel dag. Pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min, ingår i SL), sedan Waxholmsbolaget till Öja/Landsort (ca 2,5 h). Totalt ca 4 h tur. Kontrollera tidtabeller på förhand – avgångarna är begränsade.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Landsorts fyr</h3>
 <p>Fyren byggdes på 1600-talet och är en av Östersjöns äldsta. Kustbevakningen driver fyren och delar av den är öppen för besök under sommaren. Utsikten från fyrtornet är oöverträffad – Östersjön åt alla håll. Vid klart väder syns till och med Gotland i fjärran.</p>
@@ -1752,14 +1754,15 @@ export function getGuideContent(slug: string): string {
 `,
 
     'uto-komplett-guide': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Pendeltåget till Nynäshamn tar 55 minuter från Stockholm Central. Färjan därifrån tar 35 minuter till Utö. Det är värt att veta redan när du planerar, för det innebär att en av södra skärgårdens bästa öar faktiskt är tillgänglig på en dag utan bil, utan krångel och utan att man behöver oroa sig för parkeringen.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Pendeltåget, linje 43, tar ca 65 minuter från Stockholm City till Nynäshamn. Färjan därifrån tar 35 minuter till Utö. Det är värt att veta redan när du planerar, för det innebär att en av södra skärgårdens bästa öar faktiskt är tillgänglig på en dag utan bil, utan krångel och utan att man behöver oroa sig för parkeringen.</p>
 
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö är inte det enklaste valet — men det är nästan alltid det rätta. Järngruvorna från 1100-talet, Utö Runt-leden som går runt hela ön, den långa sandstranden på Ålö och en havsbastu som folk åker dit specifikt för. Det finns öar med fler restauranger. Det finns öar med kortare restid. Men det finns ingen ö i södra skärgården som ger mer tillbaka per timme nedlagd.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig dit</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enklast: pendeltåg linje 36 från Stockholm Central till Nynäshamn (55 min), sedan Waxholmsbolagets pendelbåt till Utö (35–50 min). Det går avgångar hela dagen. Under sommaren finns också direktbåt från Strömkajen — längre restid men bekvämt om du är i city. Tar du bil till Årsta brygga nära Nynäshamn kan du ta med cyklar och mer utrustning.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><!-- KÄLLA: SL:s tryckta tidtabell för pendeltågslinje 43 Bålsta-Nynäshamn (kund.printhuset-sthlm.se/sl/s43.pdf): Stockholm City 07.06 -> Nynäshamn 08.11 och 08.06 -> 09.11, alltså 65 min. Stationslistan går Odenplan-Stockholm City; Stockholm Central är inte längre en pendeltågsstation sedan Citybanan öppnade 2017. Linjenumren 36/37 hör till numreringen före Citybanan; dagens nät använder 40-48. Länsstyrelsen Stockholm anger oberoende "pendeltåg från Stockholm till Nynäshamn (1 timme)". Läst 2026-08-25. -->
+Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), sedan Waxholmsbolagets båt — men observera att Nynäshamnslinjen slutar på grannön Ålö, inte på Utö by, och inte går måndag eller tisdag i höst. Till Utö by (Gruvbryggan) går båten från Årsta brygga på 40–55 min. Det går avgångar hela dagen. Under sommaren finns också direktbåt från Strömkajen — längre restid men bekvämt om du är i city. Tar du bil till Årsta brygga nära Nynäshamn kan du ta med cyklar och mer utrustning.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Via Nynäshamn (rekommenderas):</strong> Pendeltåg linje 36 från Stockholm Central till Nynäshamn (ca 55 min), sedan Waxholmsbolagets pendelbåt till Utö (ca 35–50 min beroende på linje). Avgångar hela dagen.</li>
+<li><strong>Via Nynäshamn (rekommenderas):</strong> Pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), sedan Waxholmsbolagets pendelbåt till Utö (ca 35–50 min beroende på linje). Avgångar hela dagen.</li>
 <li><strong>Via Strömkajen (sommar):</strong> Direktbåt med Waxholmsbolaget under sommarsäsongen. Längre restid (~2,5 h) men bekvämare om du är i stan. Kontrollera aktuell tidtabell – direktlinjen avgår inte hela säsongen.</li>
 <li><strong>Med bil till Årsta brygga:</strong> Bil söderut till Årsta brygga vid Nynäshamn, sedan pendelbåt. Möjliggör transport av cyklar och utrustning.</li>
 </ul>
@@ -2130,9 +2133,9 @@ export function getGuideContent(slug: string): string {
 <p>Nåttarö är en av de mest omtyckta tältöarna i Stockholms skärgård – och en av de vackraste. Ön har ett av skärgårdens finaste campingområden, långa sandstränder, tallskogar och en naturskönhet som slår de flesta mer kända öarna. Nåttarö är för den som vill sova under bar himmel och vakna med havsluft.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Nåttarö</h3>
-<p>Nåttarö ligger i södra Stockholms skärgård och nås via Nynäshamn. Ta pendeltåget till Nynäshamn (ca 55 min från Stockholm Central, ingår i SL), sedan Waxholmsbolagets båt till Nåttarö.</p>
+<p>Nåttarö ligger i södra Stockholms skärgård och nås via Nynäshamn. Ta pendeltåget till Nynäshamn (ca 65 min från Stockholm City, ingår i SL), sedan Waxholmsbolagets båt till Nåttarö.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Pendeltåg Stockholm Central–Nynäshamn: ca 55 min (SL)</li>
+<li>Pendeltåg linje 43 Stockholm City–Nynäshamn: ca 65 min (SL)</li>
 <li>Waxholmsbolaget Nynäshamn–Nåttarö: ca 45 min</li>
 <li>Total restid: ca 1 h 45 min från Stockholm</li>
 <li>Sommar: 2–4 avgångar per dag. Kontrollera tidtabell.</li>
@@ -2529,7 +2532,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur tar du dig till Gotland?</h3>
 <p>Gotland nås med färja från Nynäshamn (söder om Stockholm) eller Oskarshamn (Småland). Destination Gotland trafikerar båda linjerna.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Nynäshamn–Visby:</strong> Snabbfärja ca 3 h 15 min, vanlig färja ca 3 h. Nynäshamn nås med pendeltåg (SL) ca 55 min från Stockholm C.</li>
+<li><strong>Nynäshamn–Visby:</strong> Snabbfärja ca 3 h 15 min, vanlig färja ca 3 h. Nynäshamn nås med pendeltåg linje 43 (SL) ca 65 min från Stockholm City.</li>
 <li><strong>Oskarshamn–Visby:</strong> Ca 4 h. Bra alternativ söderifrån.</li>
 <li><strong>Flyg:</strong> Gotlandsflyg och SAS flyger Stockholm–Visby, ca 45 min. Dyrare men snabbt.</li>
 <li><strong>Bil ombord:</strong> Möjligt men kostar extra. Reservera tidigt – sommarbilplatser är besvärliga att boka.</li>

@@ -191,7 +191,7 @@ export default function GotlandPage() {
  <strong>Destination Gotland</strong> kör färja året runt. Nynäshamn–Visby tar ca 3h15min. Oskarshamnslinjen trafikeras också hela året — med lägre frekvens vintertid. Boka tidigt — sommartid är populära avgångar slutsålda veckor i förväg.
  </p>
  <p>
- Ta pendeltåg (linje 36) till <strong>Nynäshamn</strong> från Stockholm Central, ca 1 h. Därifrån är det gång till färjeterminalen. Biljetter bokas på <a href="https://www.destinationgotland.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal, #1e5c82)' }}>destinationgotland.se</a>.
+ Ta pendeltåg (linje 43) till <strong>Nynäshamn</strong> från Stockholm City, ca 1 h. Därifrån är det gång till färjeterminalen. Biljetter bokas på <a href="https://www.destinationgotland.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal, #1e5c82)' }}>destinationgotland.se</a>.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
