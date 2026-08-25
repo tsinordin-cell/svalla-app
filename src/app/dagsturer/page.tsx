@@ -38,7 +38,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'building',
   title: 'Vaxholm',
- description: 'Historisk stad med Vaxholms kastell — första fästningen 1548, nuvarande byggnad 1833–1863. Cirka 1 timme från Strömkajen — restauranger, butiker och gästhamn. Lätt att fylla en hel dag.',
+ description: 'Historisk stad med Vaxholms kastell — platsen befästes redan i början av 1500-talet, Gustav Vasas kraftigare fästning kom 1548 och nuvarande byggnad 1833–1863. Cirka 1 timme från Strömkajen — restauranger, butiker och gästhamn. Lätt att fylla en hel dag.',
  href: '/o/vaxholm',
  meta: '~1 tim med Waxholmsbåten',
  },

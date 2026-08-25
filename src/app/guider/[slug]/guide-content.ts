@@ -11,8 +11,8 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">OSTKUSTEN: 8 alternativ</h3>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">1. Vaxholm – skärgårdens klassiker</h4>
-{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets tryckta tidtabell för linje 4A Stockholm-Vaxholm-Ramsösund-Ålstäket, giltig 2 april-18 juni och 17 augusti-12 december 2026. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
-<p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets båt (linje 4A) från Strömkajen, ungefär en timme — restiden varierar med antal angöringar. Alla SL-biljetter gäller sedan 30 april 2025. Buss 670 från Tekniska Högskolan T, ca 50 min. Med bil via E18 och Vaxholmsvägen, ca 40 min från Stockholm — bussen och bilen är alltså snabbare än båten.</p>
+{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets egen linjeförteckning (waxholmsbolaget.linjetidtabeller.se, läst 2026-08-25) listar linjen som 4 Stockholm-Vaxholm-Ramsösund-Ålstäket - suffixet A i tidtabellshuvudet är en tabellbeteckning, inte ett linjenummer, och sträckan Strömkajen-Vaxholm trafikeras av flera linjer. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
+<p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets båt från Strömkajen, ungefär en timme — restiden varierar med antal angöringar. Alla SL-biljetter gäller sedan 30 april 2025. Buss 670 från Tekniska Högskolan T, ca 50 min. Med bil via E18 och Vaxholmsvägen, ca 40 min från Stockholm — bussen och bilen är alltså snabbare än båten.</p>
 <p><strong>Upplev:</strong> Vaxholm arrangerar en av skärgårdens finaste midsommarfiranden med majstång på Rådhustrappan. Stadens gator fylls av folk i folkdräkt, lokalt hantverk säljs och stämningen är genuint gammalsvensk utan att kännas kitschig. Klättra upp på Vaxholms fästning för en fantastisk utsikt över Mysingen.</p>
 <p><strong>Var du äter:</strong> Vaxholms Hembygdsgård serverar traditionell midsommarbuffé med sill, potatis och jordgubbar. Boka minst två veckor i förväg. Hemma hos Josephine på Fiskaregatan är ett intimt alternativ med husmanskost. Waxholms Hotell erbjuder en fullmatad midsommarbuffé med havsvy direkt mot fästningen.</p>
 <p><strong>Insider-tips:</strong> Ta kvällsbåten tillbaka till Stockholm – solnedgången längs Vaxholmsleden är värd hela resan. Om du stannar natten, boka på Waxholms Hotell – det är det enda riktiga hotellet i stan.</p>
@@ -255,7 +255,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Toalettavfall på båt</h3>
 <p>Det här är ett område där många gör fel utan att veta om det.</p>
 <!-- KÄLLA: Transportstyrelsen, Toalettavfall från fritidsbåtar (transportstyrelsen.se/sv/sjofart/fritidsbatar/batliv-miljo/avfall-fran-fritidsbat/toalettavfall/, läst 2026-08-16): sedan 1 april 2015 är det förbjudet att släppa ut toalettavfall från fritidsbåtar i HELA Sveriges sjöterritorium, som sträcker sig 12 sjömil ut. Gäller oavsett båtens ålder och storlek, även utländska båtar. Enda undantaget är K-märkta båtar byggda före 1965. -->
-<p><strong>I hela Sveriges sjöterritorium — ut till 12 sjömil från baslinjen:</strong> Det är <em>förbjudet</em> att släppa ut toalettavfall från fritidsbåtar, sedan 1 april 2015. Det gäller alltså inte bara skärgården utan även öppet hav långt från land, så länge du är i svenskt vatten. Regler:</p>
+<p><strong>I hela Sveriges sjöterritorium — upp till 12 sjömil från baslinjen:</strong> Det är <em>förbjudet</em> att släppa ut toalettavfall från fritidsbåtar, sedan 1 april 2015. Det gäller alltså inte bara skärgården utan även öppet hav långt från land, så länge du är i svenskt vatten. Regler:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Använd alltid sugtömningsstationen i gästhamnar – dessa är gratis på de flesta ställen</li>
 <li>Kemisk toalett: töm i hamnarnas bränslestationer, aldrig direkt i havet</li>
@@ -346,8 +346,8 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Populäraste linjerna och restider</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets tryckta tidtabell för linje 4A Stockholm-Vaxholm-Ramsösund-Ålstäket, giltig 2 april-18 juni och 17 augusti-12 december 2026. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
-<li><strong>Strömkajen → Vaxholm</strong>: Waxholmsbolagets linje 4A, ungefär en timme — tätast trafik i skärgården. SL-biljetter gäller.</li>
+{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets egen linjeförteckning (waxholmsbolaget.linjetidtabeller.se, läst 2026-08-25) listar linjen som 4 Stockholm-Vaxholm-Ramsösund-Ålstäket - suffixet A i tidtabellshuvudet är en tabellbeteckning, inte ett linjenummer, och sträckan Strömkajen-Vaxholm trafikeras av flera linjer. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
+<li><strong>Strömkajen → Vaxholm</strong>: Waxholmsbolaget, ungefär en timme — tätast trafik i skärgården. SL-biljetter gäller.</li>
 <li><strong>Strömkajen → Sandhamn</strong> via Vaxholm och Grinda: ca 3,5 h med Waxholmsbolaget.</li>
 <li><strong>Stavsnäs → Sandhamn</strong>: ca 1 h överfart (SL-buss 433/434 från Slussen till Stavsnäs).</li>
 <li><strong>Stavsnäs → Möja</strong>: ca 1 h 15 min till Möja Söderhamn.</li>
@@ -1217,8 +1217,8 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vaxholms fästning</h3>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-{/* KÄLLA: SFV + vaxholmsfastning.se — anlagd 1548, nuvarande kastell 1833–1863 (2026-08-23) */}
-<p>Fästningen anlades 1548 under Gustav Vasa och fick sin nuvarande form 1833–1863 — i dag ett av Stockholms läns mest välbevarade historiska monument. Läget mitt i farleden gav den strategisk betydelse i flera sekler. Öppen maj–september, guidade turer på svenska och engelska. Nås med en kort båtresa från Vaxholms hamn (en liten roddbåt tar dig dit, ca 20 kr).</p>
+{/* KÄLLA: vaxholmsfastning.se/historik (2026-08-25) + SFV — blockhus i början av 1500-talet, Gustav Vasas nya och kraftigare fästning 1548, kastellet 1833–1863 */}
+<p>Vaxholmen befästes i början av 1500-talet, och den kraftigare fästningen anlades 1548 under Gustav Vasa och fick sin nuvarande form 1833–1863 — i dag ett av Stockholms läns mest välbevarade historiska monument. Läget mitt i farleden gav den strategisk betydelse i flera sekler. Öppen maj–september, guidade turer på svenska och engelska. Nås med en kort båtresa från Vaxholms hamn (en liten roddbåt tar dig dit, ca 20 kr).</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Restauranger och mat</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -1309,8 +1309,8 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Waxholmsbolagets linjer – översikt</h3>
 <p>Waxholmsbolaget driver ca 50 linjer med tät trafik inomskärs under rushningstid. Dessa linjer fungerar som pendlingalternativ för boende i skärgårdssamhällen:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets tryckta tidtabell för linje 4A Stockholm-Vaxholm-Ramsösund-Ålstäket, giltig 2 april-18 juni och 17 augusti-12 december 2026. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
-<li><strong>Strömkajen – Vaxholm:</strong> Waxholmsbolagets linje 4A — alla SL-biljetter gäller sedan 30 april 2025 — ungefär en timme</li>
+{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets egen linjeförteckning (waxholmsbolaget.linjetidtabeller.se, läst 2026-08-25) listar linjen som 4 Stockholm-Vaxholm-Ramsösund-Ålstäket - suffixet A i tidtabellshuvudet är en tabellbeteckning, inte ett linjenummer, och sträckan Strömkajen-Vaxholm trafikeras av flera linjer. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
+<li><strong>Strömkajen – Vaxholm:</strong> Waxholmsbolaget — alla SL-biljetter gäller sedan 30 april 2025 — ungefär en timme</li>
 <li><strong>Strömkajen – mellanskärgården:</strong> Waxholmsbolaget mot Grinda, Svartsö och Finnhamn</li>
 <li><strong>Stavsnäs – Sandhamn och Möja:</strong> Waxholmsbolagets båtar, ca 1–1,5 h</li>
 <li><strong>Norrtälje/Simpnäs – Arholma:</strong> kort överfart till norra skärgårdens utpost</li>
@@ -7467,8 +7467,8 @@ export function getGuideContent(slug: string): string {
 <p>Vaxholm är skärgårdens mest pålitliga allsäsongs-destination. Kök, café och restauranger håller öppet. Fästningsmuseet kör höstöppettider. Och båten från Stockholm är under en timme.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Hur du tar dig dit</h4>
-{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets tryckta tidtabell för linje 4A Stockholm-Vaxholm-Ramsösund-Ålstäket, giltig 2 april-18 juni och 17 augusti-12 december 2026. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
-<p>Waxholmsbolagets linje 4A från Strömkajen, ungefär en timme — restiden varierar med antal angöringar. Avgångarna ligger ungefär varannan timme – kolla tidtabellen. Buss 670 från Tekniska Högskolan T går hela året och tar ca 50 min.</p>
+{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets egen linjeförteckning (waxholmsbolaget.linjetidtabeller.se, läst 2026-08-25) listar linjen som 4 Stockholm-Vaxholm-Ramsösund-Ålstäket - suffixet A i tidtabellshuvudet är en tabellbeteckning, inte ett linjenummer, och sträckan Strömkajen-Vaxholm trafikeras av flera linjer. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
+<p>Waxholmsbolaget från Strömkajen, ungefär en timme — restiden varierar med antal angöringar. Avgångarna ligger ungefär varannan timme – kolla tidtabellen. Buss 670 från Tekniska Högskolan T går hela året och tar ca 50 min.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vad du gör</h4>
 <p>Vaxholms fästning är värd ett besök i sig – museet visar Stockholms försvarshistoria och utsikten mot Vaxholmsleden är fantastisk på hösten med klara, skarpa dagar. Promenera Rådhusgatan och de gamla träkvarteren. Köp räkor direkt från fiskebåtar vid hamnen.</p>
