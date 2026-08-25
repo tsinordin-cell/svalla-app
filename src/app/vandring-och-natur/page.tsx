@@ -91,7 +91,7 @@ export default function VandringOchNaturPage() {
             Fågelskyddet under våren
           </h2>
           <p>
-            Från <strong>1 april till 15 juli</strong> är många öar, kobbar och vikar skyddade för häckande fåglar. Du får inte landstiga, ankra för nära eller paddla in i skyddszonen. Svalla markerar alla fågelskyddsområden på kartan och varje platssida har aktuell status.
+            Under häckningstid — <strong>perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti</strong> — är många öar, kobbar och vikar skyddade för häckande fåglar. Exakta datum står på skyltarna och i länsstyrelsens föreskrifter. Du får inte landstiga, ankra för nära eller paddla in i skyddszonen. Svalla markerar alla fågelskyddsområden på kartan och varje platssida har aktuell status.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Packa smart för skärgård
