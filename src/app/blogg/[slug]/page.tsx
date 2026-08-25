@@ -60,7 +60,7 @@ För frukost eller fika är Bryggcafé 7an oöverträffat. Nybakat bröd, smör 
 
 ## Praktisk info
 
-Sandhamn nås med Waxholmsbåten från Strömkajen (ca 2,5 timmar) eller med snabbgående båt från Stavsnäs (ca 40 min). Under sommarsäsongen är det kö vid populäraste restaurangerna – boka i förväg när det går.
+Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara 19 juni–16 augusti, och då tar det 3 tim 45 min lördag och söndag, 4 tim 55 min med byte i Finnhamn övriga dagar. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (ca 30–35 min) och därifrån Waxholmsbolagets linje 16 på 40–65 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong 30 april–27 september. Under sommarsäsongen är det kö vid populäraste restaurangerna – boka i förväg när det går.
  `,
  },
 
@@ -141,7 +141,7 @@ Möja är Stockholms skärgårds näst folkrikaste ö, men stämningen är allt 
 
 ## Komma dit
 
-Waxholmsbåten från Strömkajen tar ca 2,5 timmar. Alternativet är att ta bilen till Stavsnäs och ta Waxholmsbåten därifrån – då tar det ca 1 timme. Under högsäsong går det fler avgångar, men kolla tidtabellen noga på waxholmsbolaget.se.
+Waxholmsbåten går direkt från Strömkajen bara under sommartabellen 19 juni–16 augusti, och tar då 3 tim 45 min (lör–sön) eller 4 tim 55 min med byte i Finnhamn. Alternativet, som fungerar året runt, är att ta sig till Stavsnäs vinterhamn och ta båten därifrån – Waxholmsbolagets linje 16 tar 40–65 min, Stavsnäs Båttaxis Sandhamnslinje 30 min. Under högsäsong går det fler avgångar, men kolla tidtabellen noga på waxholmsbolaget.se.
 
 ## Vad du ska göra
 
@@ -1291,10 +1291,10 @@ Här är sex konkreta rutter du kan boka idag.
 
 ---
 
-## 6. [Sandhamn](/o/sandhamn) – 2,5 timmar, seglingsikonen
+## 6. [Sandhamn](/o/sandhamn) – 1,5–2,5 timmar via Stavsnäs, seglingsikonen
 
 **Avresa:** Strömkajen (lång tur) eller Stavsnäs (snabbgående, ca 40 min).
-**Restid:** 40 min (Stavsnäs) eller 2,5 timmar (Strömkajen).
+**Restid:** 30 min med Sandhamnslinjen eller 40–65 min med Waxholmsbolagets linje 16 från Stavsnäs vinterhamn. Direkt från Strömkajen går båten bara 19 juni–16 augusti, och tar då 3 tim 45 min eller mer.
 **Vad du gör:** Sandhamn är det klassiska skärgårdsnamnet. Segelbåtshamn, vita trävillor, goda restauranger och en atmosfär som är svår att replikera.
 **Bäst för:** De som vill ha "ikonen". Inte den lugnaste ön men en av de vackraste.
 **Tips:** Från Stavsnäs nås Sandhamn med snabbgående båt på 40 minuter. Enklare och snabbare än du tror.
@@ -1584,7 +1584,7 @@ Under sommarsäsongen (juni–aug) är populära öar som Sandhamn och Grinda fu
 
 **Snabbaste vägen:** Waxholmsbåtens snabba linjer från Stavsnäs (nås med bil/buss från Slussen) — ca 40 minuter. Stavsnäs är enklast med bil; parkering kostar 80–100 kr/dygn.
 
-**Direkt från Stockholm city:** Waxholmsbåten från Strömkajen — ca 2,5 timmar. Längre men stämningsfull; passa på att se skärgårdens karaktär förändras längs vägen.
+**Direkt från Stockholm city:** Waxholmsbåten från Strömkajen — bara 19 juni–16 augusti, och då 3 tim 45 min lör–sön, 4 tim 55 min med byte i Finnhamn övriga dagar. Cinderella från Strandvägen tar 2 tim 30 min under säsongen 30 april–27 september. Längre men stämningsfull; passa på att se skärgårdens karaktär förändras längs vägen.
 
 **Snabbaste linjen sommartid:** Cinderella Boats kör expresser i sommarperioden.
 
@@ -1627,7 +1627,8 @@ Sandhamn är bilfri. Allt du behöver ta med är det du bär på. Det finns en l
 Hög- vs lågsäsong: juli är turisternas månad. Maj och september är skärgårdens bäst bevarade hemlighet — all skönhet, utan köerna.
    `,
    faqs: [
-     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Från Strömkajen med Waxholmsbåten tar det ca 2,5 timmar. Från Stavsnäs med snabbåt ca 40 minuter. Stavsnäs nås enklast med bil.' },
+     // KÄLLA: Waxholmsbolagets tidtabell 15A Stockholm-Vaxholm-Sandhamn, GÄLLER 19 JUNI 2026 - 16 AUGUSTI 2026 (lör/sön Strömkajen 10.00 -> Sandhamn 13.45 = 3 tim 45; mån-fre 08.30 -> 13.25 med byte i Finnhamn = 4 tim 55). Ingen v15-tabell finns för 17 aug-12 dec, alltså ingen direktbåt utanför sommaren. Tabell 16A Stavsnäs-Sandhamn (gäller nu): 38-65 min. Stavsnäs Båttaxis Sandhamnslinje: 30 min. Strömma: Cinderella från Strandvägen kajplats 14, 2 tim 30 min, säsong 30 april-27 september 2026. Läst 2026-08-25.
+     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Det beror helt på årstid och kaj. Waxholmsbåten går direkt från Strömkajen bara 19 juni–16 augusti och tar då 3 tim 45 min (lör–sön) eller 4 tim 55 min med byte i Finnhamn. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min, säsong 30 april–27 september. Året runt är snabbaste vägen buss 433 eller 434 från Slussen till Stavsnäs vinterhamn och sedan båt: Sandhamnslinjen 30 min eller Waxholmsbolagets linje 16 på 40–65 min.' },
      { q: 'Finns det strand på Sandhamn?', a: 'Ja. Trouville-stranden är den mest kända – vit sand och klart vatten, ca 15 min promenad från hamnen. Flaskbrottet är ett mer undanskymt alternativ med klippor.' },
      { q: 'Är det bilfritt på Sandhamn?', a: 'Ja, Sandhamn är bilfri. Det finns inga bilar på ön. Allt nås till fots.' },
    ],
@@ -1952,7 +1953,8 @@ Grinda är ett naturreservat. Det innebär att du inte får tälta utanför anvi
 Grinda med barn: barnvänlig, plana gångvägar, varm och lugn vattenyta vid södra bryggan. Perfekt för familjer med barn under tio år.
    `,
    faqs: [
-     { q: 'Hur lång är båtresan till Grinda från Stockholm?', a: 'Direktbåten från Strömkajen med Waxholmsbåten tar ca 1 timme 20 minuter. Sommartid går det flera avgångar per dag.' },
+     // KÄLLA: Waxholmsbolagets tidtabell 11A Stockholm-Vaxholm-Grinda-Boda-Sollenkroka. Vinter/höst (17 aug-12 dec 2026): snabbaste turen Strömkajen 12.45 -> Södra Grinda 14.20 = 1 tim 35. Sommar (19 juni-16 aug): snabbast 07.45 -> 09.15 = 1 tim 30. Ingen tur går på 1 tim 20. Strömma: Cinderella Strandvägen -> Södra Grinda 1 tim 30. Läst 2026-08-25.
+     { q: 'Hur lång är båtresan till Grinda från Stockholm?', a: 'Waxholmsbolagets linje 11 från Strömkajen tar som snabbast 1 timme 35 minuter, sommartid 1 timme 30 — de flesta turer tar 1 tim 45 till 2 tim 20 beroende på antal angöringar. Cinderella från Strandvägen tar 1 timme 30 minuter. Sommartid går det flera avgångar per dag.' },
      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
      { q: 'Kan man övernatta på Grinda?', a: 'Ja. Grinda Wärdshus har rum från ~1 400 kr/natt. Gästhamnen tar emot båtar till ~200 kr/natt. Boka i god tid — högsäsong är det fullbokat fort.' },
      { q: 'Är Grinda lämplig för barnfamiljer?', a: 'Absolut. Grinda är bilfri, har lugna badplatser, plana gångvägar och ett barnvänligt värdshus. En av de bästa öarna i Stockholms skärgård för familjer med barn.' },

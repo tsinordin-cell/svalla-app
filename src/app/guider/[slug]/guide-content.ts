@@ -3110,7 +3110,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Grinda och Finnhamn är två av Waxholmsbolagets mest populära resmål i Stockholms skärgård – men de är fundamentalt olika. Den här guiden hjälper dig välja rätt beroende på vad du söker.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grinda – den välordnade familjeön</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda ligger i Värmdö skärgård och tar ungefär 2,5 timme från Strömkajen med Waxholmsbolaget. Ön drivs av Grinda Wärdshus som erbjuder alltifrån hotellrum och stugbyar till camping. Det finns en sandstrand vid Lövudden, restaurang med skärgårdsmat, kajak- och kanothyrning samt välmarkerade vandringsstigar.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda ligger i Värmdö skärgård och nås från Strömkajen med Waxholmsbolagets linje 11 på 1 tim 35 min till drygt 2 timmar beroende på tur. Ön drivs av Grinda Wärdshus som erbjuder alltifrån hotellrum och stugbyar till camping. Det finns en sandstrand vid Lövudden, restaurang med skärgårdsmat, kajak- och kanothyrning samt välmarkerade vandringsstigar.</p>
 
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda passar perfekt för barnfamiljer och par som vill ha komfort utan att köra bil. Det finns sängplatser, mat och aktiviteter på plats – du behöver i princip bara ta med dig själv. Nackdelen är att det kan bli ganska fullsatt under högsäsong, framför allt i juli.</p>
 
