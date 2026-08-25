@@ -212,8 +212,8 @@ export const TRIPS: Trip[] = [
       {
         name: 'Vaxholms fästning',
         type: 'kultur',
-        // KÄLLA: SFV + vaxholmsfastning.se — forsta fastningen 1548, nuvarande kastell 1833-1863 (2026-08-23)
-        desc: 'Fästningsö med museum — första fästningen restes 1548, dagens kastell byggdes 1833–1863. Nås med liten färja från hamnen.',
+        // KÄLLA: vaxholmsfastning.se/historik (2026-08-25) + SFV — blockhus i borjan av 1500-talet, Gustav Vasas nya och kraftigare fastning 1548, kastellet 1833-1863
+        desc: 'Fästningsö med museum — platsen befästes i början av 1500-talet, Gustav Vasas kraftigare fästning kom 1548 och dagens kastell byggdes 1833–1863. Nås med liten färja från hamnen.',
         tip: 'Guidad tur tar 45 min och är väl värd pengarna.',
         bookingUrl: 'https://www.vaxholmsfastning.se',
       },
