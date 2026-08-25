@@ -34,10 +34,11 @@ const SECTIONS = [
     border: 'rgba(30,92,130,0.18)',
     stats: [
       { label: 'Antal öar, holmar och skär', value: 'ca 30 000', note: 'Varav ca 1 000 bebodda året runt', source: 'Länsstyrelsen Stockholm' },
-      { label: 'Utbredning österut', value: 'ca 150 km', note: 'Från Stockholms innerstad till ytterskärgårdens gräns', source: 'Sjöfartsverket' },
-      { label: 'Nord–sydlig bredd', value: 'ca 80 km', note: 'Från Arholma i norr till Landsort i söder', source: 'Lantmäteriet' },
+      // KÄLLA: uppmätt storcirkel — Stockholm–Svenska Högarna 82 km (österut), Arholma–Landsort 141 km (nord–syd). Tidigare siffror var omkastade.
+      { label: 'Utbredning österut', value: 'ca 80 km', note: 'Från Stockholms innerstad till ytterskärgården (Svenska Högarna)', source: 'Uppmätt (storcirkel)' },
+      { label: 'Nord–sydlig längd', value: 'ca 140 km', note: 'Från Arholma i norr till Landsort i söder', source: 'Uppmätt (storcirkel)' },
       { label: 'Total vattenarea', value: 'ca 6 000 km²', note: 'Inklusive fjärdar, sund och öppna havsområden', source: 'SCB' },
-      { label: 'Djupaste punkt', value: 'ca 246 m', note: 'I Landsortssdjupet, Östersjöns djupaste punkt', source: 'SMHI' },
+      { label: 'Djupaste punkt', value: 'ca 459 m', note: 'I Landsortsdjupet, Östersjöns djupaste punkt', source: 'SMHI' },
     ],
   },
   {
@@ -99,7 +100,7 @@ const faqSchema = {
       name: 'Hur stor är Stockholms skärgård?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Skärgården sträcker sig ca 150 km österut från Stockholm och ca 80 km i nord–sydlig riktning (från Arholma i norr till Landsort i söder). Den totala vattenarealen är ca 6 000 km².',
+        text: 'Skärgården sträcker sig ca 140 km i nord–sydlig riktning (från Arholma i norr till Landsort i söder) och ca 80 km österut från Stockholm till ytterskärgården. Den totala vattenarealen är ca 6 000 km².',
       },
     },
     {
@@ -107,7 +108,7 @@ const faqSchema = {
       name: 'Hur djupt är Östersjön i Stockholms skärgård?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Östersjöns djupaste punkt, Landsortssdjupet, ligger i skärgårdens södra del och mäter ca 246 meter. I innerskärgårdens sund och fjärdar är djupet betydligt lägre, ofta 5–30 meter.',
+        text: 'Östersjöns djupaste punkt, Landsortsdjupet, ligger i skärgårdens södra ytterkant och mäter ca 459 meter (SMHI). I innerskärgårdens sund och fjärdar är djupet betydligt lägre, ofta 5–30 meter.',
       },
     },
     {
@@ -181,7 +182,7 @@ export default function StatistikPage() {
             Statistik om Stockholms skärgård
           </h1>
           <p id="statistik-intro" style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', lineHeight: 1.65, maxWidth: 620, margin: '0 0 24px' }}>
-            Stockholms skärgård omfattar ca 30 000 öar, holmar och skär och sträcker sig 150 km österut från Stockholm. Här samlar vi verifierade fakta och siffror om geografi, kollektivtrafik, natur och säsong — med källhänvisningar.
+            Stockholms skärgård omfattar ca 30 000 öar, holmar och skär och sträcker sig ca 140 km från Arholma i norr till Landsort i söder. Här samlar vi verifierade fakta och siffror om geografi, kollektivtrafik, natur och säsong — med källhänvisningar.
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {[
@@ -244,8 +245,8 @@ export default function StatistikPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
               { q: 'Hur många öar finns det i Stockholms skärgård?', a: 'Ca 30 000 öar, holmar och skär enligt Länsstyrelsen Stockholm. Av dessa är ca 1 000 bebodda året runt. Resten är allt från klippor knappt synliga ovan ytan till stora öar med skog och jordbruksmark.' },
-              { q: 'Hur stor är Stockholms skärgård?', a: 'Skärgården sträcker sig ca 150 km österut från Stockholm och ca 80 km i nord–sydlig riktning (från Arholma i norr till Landsort i söder). Den totala vattenarealen är ca 6 000 km².' },
-              { q: 'Hur djupt är vattnet i skärgården?', a: 'Östersjöns djupaste punkt, Landsortssdjupet, ligger i skärgårdens södra ytterkant och mäter ca 246 meter. I innerskärgårdens sund och fjärdar är djupet ofta 5–30 meter.' },
+              { q: 'Hur stor är Stockholms skärgård?', a: 'Skärgården sträcker sig ca 140 km i nord–sydlig riktning (från Arholma i norr till Landsort i söder) och ca 80 km österut från Stockholm till ytterskärgården. Den totala vattenarealen är ca 6 000 km².' },
+              { q: 'Hur djupt är vattnet i skärgården?', a: 'Östersjöns djupaste punkt, Landsortsdjupet, ligger i skärgårdens södra ytterkant och mäter ca 459 meter. I innerskärgårdens sund och fjärdar är djupet ofta 5–30 meter.' },
               { q: 'Hur salt är vattnet i Stockholms skärgård?', a: 'Bräckt vatten med ca 6–7 promille salt i ytterskärgården — betydligt lägre än Nordsjöns ca 35 promille. Salthalten minskar ju längre in mot Stockholm man kommer.' },
             ].map((faq, i) => (
               <div key={i} style={{ background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 14, padding: '18px 20px' }}>
@@ -265,7 +266,7 @@ export default function StatistikPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
               { name: 'Länsstyrelsen Stockholm', url: 'https://www.lansstyrelsen.se/stockholm', desc: 'Antal öar, naturreservat' },
-              { name: 'SMHI', url: 'https://www.smhi.se', desc: 'Vattentemperatur, salthalt, Landsortssdjupet' },
+              { name: 'SMHI', url: 'https://www.smhi.se', desc: 'Vattentemperatur, salthalt, Landsortsdjupet' },
               { name: 'Waxholmsbolaget', url: 'https://www.waxholmsbolaget.se', desc: 'Antal bryggor och linjer' },
               { name: 'Skärgårdsstiftelsen', url: 'https://skargardsstiftelsen.se', desc: 'Förvaltad mark, naturreservat' },
               { name: 'SCB — Statistikmyndigheten', url: 'https://www.scb.se', desc: 'Areal och administrativa data' },

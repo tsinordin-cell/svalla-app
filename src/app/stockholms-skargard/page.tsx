@@ -89,7 +89,7 @@ export default function StockholmsSkargardPage() {
  {
  '@type': 'Question',
  name: 'Behöver man båtlicens för att segla i Stockholms skärgård?',
- acceptedAnswer: { '@type': 'Answer', text: 'Nej. I Sverige krävs inget obligatoriskt körkort eller licens för fritidsbåtar under 10 meter. Det finns dock inga ursäkter för att inte vidareutbilda dig — Svalla rekommenderar starkt någon form av segelutbildning eller att åka med en erfaren seglare innan du ger dig ut på egen hand.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Nej. I Sverige krävs inget obligatoriskt körkort eller licens för fritidsbåtar under 12 meters längd och 4 meters bredd. Det finns dock inga ursäkter för att inte vidareutbilda dig — Svalla rekommenderar starkt någon form av segelutbildning eller att åka med en erfaren seglare innan du ger dig ut på egen hand.' },
  },
  {
  '@type': 'Question',
@@ -210,7 +210,7 @@ export default function StockholmsSkargardPage() {
  Behöver man båtlicens för att segla i Stockholms skärgård?
  </h3>
  <p>
- Nej. I Sverige krävs inget obligatoriskt körkort eller licens för fritidsbåtar under 10 meter. Det finns dock inga ursäkter för att inte vidareutbilda dig — Svalla rekommenderar starkt någon form av segelutbildning eller att åka med en erfaren seglare innan du ger dig ut på egen hand. En grund i sjörätt, väderintolkning och navigation kan spara ditt liv.
+ Nej. I Sverige krävs inget obligatoriskt körkort eller licens för fritidsbåtar under 12 meters längd och 4 meters bredd. Det finns dock inga ursäkter för att inte vidareutbilda dig — Svalla rekommenderar starkt någon form av segelutbildning eller att åka med en erfaren seglare innan du ger dig ut på egen hand. En grund i sjörätt, väderintolkning och navigation kan spara ditt liv.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
