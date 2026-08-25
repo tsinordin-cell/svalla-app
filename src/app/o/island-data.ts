@@ -79,6 +79,14 @@ export type Island = {
   lng?: number
   description: string[]
   facts: Record<string, string>
+  /**
+   * Källproveniens per faktvärde i facts{}. Nyckeln matchar facts-nyckeln
+   * (travel_time, season, character, best_for). 'matt' = källbelagt mot
+   * myndighet/operatör, visas med ✓ 'Källbelagd'. 'bedomning' = vår egen
+   * redaktionella bedömning, visas med ≈ 'Vår bedömning'. Fält som saknas
+   * här visas utan märkning (nuläget). Infört varv 53 (2026-08-25).
+   */
+  facts_provenance?: Record<string, 'matt' | 'bedomning'>
   activities: IslandActivity[]
   accommodation: IslandAccommodation[]
   getting_there: IslandTransport[]
@@ -210,11 +218,13 @@ export const ISLANDS: Island[] = [
     
     ],
     facts: {
-      travel_time: '2,5 h med Waxholmsbåt från Strömkajen / 40 min snabbåt från Stavsnäs',
+      // KÄLLA: Waxholmsbolagets tabell 15A/16 + Stavsnäs Båttaxi. Sommarbåt Strömkajen 19 juni–16 aug, 3 tim 45+; året runt via Stavsnäs, Sandhamnslinjen 30 min. Tidigare stod "2,5 h" — fel, se varv 49.
+      travel_time: 'Via Stavsnäs 30 min (Sandhamnslinjen) · sommarbåt Strömkajen 3 tim 45 (19 juni–16 aug)',
       character: 'Livlig, seglartät, festlig sommardestination',
       season: 'Maj–September (Seglarhotellet: helår)',
       best_for: 'Seglare, restaurangälskare, sommarturer',
     },
+    facts_provenance: { travel_time: 'matt', season: 'bedomning', character: 'bedomning', best_for: 'bedomning' },
     activities: [
       { icon: '⛵', name: 'Segling', desc: 'KSSS-hamnen är en av Östersjöns mest besökta gästhamnar med plats för hundratals båtar. Sandhamn är start- och målgång för flera klassiska kappseglingar, däribland Gotland Runt (ÅF Offshore Race).' },
       { icon: '🏊', name: 'Sandstranden Trouville', desc: 'Öns vackraste sandstrand på södra sidan. Sällsynt i skärgårdssammanhang — sand istället för klippor.' },
@@ -349,11 +359,13 @@ export const ISLANDS: Island[] = [
     
     ],
     facts: {
-      travel_time: '1,5 h med färja från Nynäshamn / 30 min med snabbåt',
+      // KÄLLA: Waxholmsbolagets tabell 21 Årsta–Utö. Nynäshamnslinjen (tabell 22) slutar på Ålö, inte Utö by. Årsta brygga nås med buss 846 (14–17 min). Se varv 51–52.
+      travel_time: 'Buss 846 till Årsta brygga + båt 35–75 min (Gruvbryggan förbokas)',
       character: 'Lugnt, naturnära, perfekt för familjer och cyklister',
       season: 'April–Oktober (Värdshuset öppet helår)',
       best_for: 'Cykling, havsbastu, naturupplevelser, familjer',
     },
+    facts_provenance: { travel_time: 'matt', season: 'bedomning', character: 'bedomning', best_for: 'bedomning' },
     activities: [
       { icon: '🚲', name: 'Cykling', desc: '350 hyrcyklar (Skeppshult) vid Cykelboden. Klassiska rutten Gruvbyn–Ålö är ca 13 km enkel väg längs grusvägar genom skog och ängar till Ålö storsand med klappstrandsbad och krogen Båtshaket.' },
       { icon: '🧖', name: 'Havsbastu', desc: 'En av skärgårdens mest omtalade havsbastur. Dörren går ut mot havet — basta, hoppa i, basta igen.' },
