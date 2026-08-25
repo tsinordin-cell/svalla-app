@@ -33,7 +33,8 @@ const SECTIONS = [
     bg: 'rgba(30,92,130,0.06)',
     border: 'rgba(30,92,130,0.18)',
     stats: [
-      { label: 'Antal öar, holmar och skär', value: 'ca 30 000', note: 'Varav ca 1 000 bebodda året runt', source: 'Länsstyrelsen Stockholm' },
+      // KÄLLA: Länsstyrelsen Stockholm, Skärgårdsfakta – Grafiska kartor 2019: "I Stockholms skärgård finns omkring 30 000 öar, varav cirka 200 är bebodda." Sajten angav tidigare 1 000 bebodda och krediterade samma myndighet.
+      { label: 'Antal öar, holmar och skär', value: 'ca 30 000', note: 'Varav ca 200 med bofasta året runt', source: 'Länsstyrelsen Stockholm (Skärgårdsfakta)' },
       // KÄLLA: uppmätt storcirkel — Stockholm–Svenska Högarna 82 km (österut), Arholma–Landsort 141 km (nord–syd). Tidigare siffror var omkastade.
       { label: 'Utbredning österut', value: 'ca 80 km', note: 'Från Stockholms innerstad till ytterskärgården (Svenska Högarna)', source: 'Uppmätt (storcirkel)' },
       { label: 'Nord–sydlig längd', value: 'ca 140 km', note: 'Från Arholma i norr till Landsort i söder', source: 'Uppmätt (storcirkel)' },
@@ -48,10 +49,12 @@ const SECTIONS = [
     bg: 'rgba(45,122,92,0.06)',
     border: 'rgba(45,122,92,0.18)',
     stats: [
-      { label: 'Waxholmsbolagets bryggor', value: '150+', note: 'I Stockholms skärgård och längs Mälarens stränder', source: 'Waxholmsbolaget' },
-      { label: 'Waxholmsbolagets linjer', value: '30+', note: 'Reguljär kollektivtrafik på vatten, sommar och helår', source: 'Waxholmsbolaget' },
+      // UPPSKATTNING (2026-08-25): Waxholmsbolaget publicerar inga sammanräknade siffror för antal bryggor eller linjer. Siffrorna är våra egna, räknade ur tidtabellerna, och krediterades tidigare felaktigt bolaget.
+      { label: 'Waxholmsbolagets bryggor', value: '150+', note: 'I Stockholms skärgård och längs Mälarens stränder', source: 'Svalla — uppskattning ur tidtabellerna (2026-08)' },
+      { label: 'Waxholmsbolagets linjer', value: '30+', note: 'Reguljär kollektivtrafik på vatten, sommar och helår', source: 'Svalla — uppskattning ur tidtabellerna (2026-08)' },
       { label: 'Cinderellabåtarnas säsong', value: 'ca 5 månader', note: 'Maj–september, från Strömkajen till ytterskärgården', source: 'Strömma/Cinderella' },
-      { label: 'Pendeltåg till Nynäshamn', value: 'ca 55 min', note: 'Från Stockholm Central — utgångspunkt för Utö och södra skärgården', source: 'SL' },
+      // KÄLLA: SL:s tidtabell för pendeltågslinjen Stockholm City–Nynäshamn, restid 60 min. Sajten angav tidigare ca 55 min.
+      { label: 'Pendeltåg till Nynäshamn', value: 'ca 60 min', note: 'Från Stockholm City — utgångspunkt för Utö och södra skärgården', source: 'SL (tidtabell)' },
     ],
   },
   {
@@ -62,10 +65,12 @@ const SECTIONS = [
     border: 'rgba(74,124,63,0.18)',
     stats: [
       { label: 'Naturreservat i skärgården', value: 'ca 150', note: 'Förvaltas av Länsstyrelsen och Skärgårdsstiftelsen', source: 'Länsstyrelsen Stockholm' },
-      { label: 'Land som förvaltas av Skärgårdsstiftelsen', value: 'ca 23 000 ha', note: 'Öar och strandområden för allmänhetens friluftsliv', source: 'Skärgårdsstiftelsen' },
+      // KÄLLA: Skärgårdsstiftelsen, Vanliga frågor (skargardsstiftelsen.se/faq/, läst 2026-08-25): "12 000 hektar landmark och 20 000 hektar vatten", fördelat på 36 områden, ca 12 % av landmarken i Stockholms skärgård. Sidan Drift och förvaltning säger "drygt 11 procent av marken". Sajten angav tidigare 23 000 ha land.
+      { label: 'Land som förvaltas av Skärgårdsstiftelsen', value: 'ca 12 000 ha', note: 'Plus ca 20 000 ha vatten, fördelat på 36 områden — ca 12 % av skärgårdens landmark', source: 'Skärgårdsstiftelsen' },
       { label: 'Salthalt i ytterskärgården', value: '6–7 ‰', note: 'Bräckt vatten — lägre än Nordsjöns ca 35 ‰', source: 'SMHI' },
       { label: 'Medelvattentemperatur juli', value: '18–22 °C', note: 'I ytskiktet i innerskärgården vid god sommar', source: 'SMHI' },
-      { label: 'Fågelarter i skärgården', value: 'ca 200', note: 'Häckande och rastande arter, inkl. ejder, sillgrissla, havsörn', source: 'ArtDatabanken/SLU' },
+      // UPPSKATTNING (2026-08-25): ArtDatabanken/SLU publicerar ingen artsumma för Stockholms skärgård som område. Siffran är vår egen sammanställning och krediterades tidigare felaktigt ArtDatabanken.
+      { label: 'Fågelarter i skärgården', value: 'ca 200', note: 'Häckande och rastande arter, inkl. ejder, sillgrissla, havsörn', source: 'Svalla — egen sammanställning (2026-08)' },
     ],
   },
   {
@@ -75,9 +80,10 @@ const SECTIONS = [
     bg: 'rgba(139,94,60,0.06)',
     border: 'rgba(139,94,60,0.18)',
     stats: [
-      { label: 'Navigeringssäsong', value: 'maj–september', note: 'Ca 5 månader av full aktivitet. Islossning mars–april i innerskärgården', source: 'SMHI/Sjöfartsverket' },
-      { label: 'Populäraste månaden', value: 'juli', note: 'Störst besökarantryck, flest avgångar, flest uthyrda båtar och kajaker', source: 'Waxholmsbolaget' },
-      { label: 'Midsommarhelgen', value: 'topphelgen', note: 'Högst nyttjandegrad av naturhamnar, bryggor och restauranger under hela året', source: 'Skärgårdsstiftelsen' },
+      // UPPSKATTNING (2026-08-25): varken SMHI, Sjöfartsverket, Waxholmsbolaget eller Skärgårdsstiftelsen publicerar dessa som statistik — det är redaktionella bedömningar som tidigare bar myndigheternas namn.
+      { label: 'Navigeringssäsong', value: 'maj–september', note: 'Ca 5 månader av full aktivitet. Islossning mars–april i innerskärgården', source: 'Svalla — redaktionell bedömning (2026-08)' },
+      { label: 'Populäraste månaden', value: 'juli', note: 'Störst besökartryck, flest avgångar, flest uthyrda båtar och kajaker', source: 'Svalla — redaktionell bedömning (2026-08)' },
+      { label: 'Midsommarhelgen', value: 'topphelgen', note: 'Högst nyttjandegrad av naturhamnar, bryggor och restauranger under hela året', source: 'Svalla — redaktionell bedömning (2026-08)' },
       { label: 'Eldningsförbud', value: 'varierar per år', note: 'Utfärdas av länsstyrelsen vid torka — kontrollera alltid på krisinformation.se', source: 'Länsstyrelsen Stockholm' },
     ],
   },
@@ -92,7 +98,7 @@ const faqSchema = {
       name: 'Hur många öar finns det i Stockholms skärgård?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Stockholms skärgård består av ca 30 000 öar, holmar och skär enligt Länsstyrelsen Stockholm. Av dessa är ca 1 000 bebodda året runt. Resten är allt från klippor knappt synliga ovan ytan till stora öar med skog och jordbruksmark.',
+        text: 'Stockholms skärgård består av ca 30 000 öar, holmar och skär enligt Länsstyrelsen Stockholm. Av dessa har ca 200 bofasta året runt. Resten är allt från klippor knappt synliga ovan ytan till stora öar med skog och jordbruksmark.',
       },
     },
     {
@@ -116,7 +122,7 @@ const faqSchema = {
       name: 'Hur många naturreservat finns i Stockholms skärgård?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Det finns ca 150 naturreservat i Stockholms skärgård, förvaltade av Länsstyrelsen Stockholm och Skärgårdsstiftelsen. Skärgårdsstiftelsen förvaltar ensamt ca 23 000 hektar land fördelat på hundratals öar.',
+        text: 'Det finns ca 150 naturreservat i Stockholms skärgård, förvaltade av Länsstyrelsen Stockholm och Skärgårdsstiftelsen. Skärgårdsstiftelsen förvaltar ca 12 000 hektar landmark och 20 000 hektar vatten, fördelat på 36 områden.',
       },
     },
     {
@@ -187,8 +193,8 @@ export default function StatistikPage() {
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {[
               { label: '~30 000 öar', sub: 'Stockholms skärgård' },
-              { label: '~1 000 bebodda', sub: 'Hela året' },
-              { label: '150 km', sub: 'Utbredning österut' },
+              { label: '~200 bebodda', sub: 'Bofasta året runt' },
+              { label: '~140 km', sub: 'Nord–sydlig längd' },
               { label: '~6 000 km²', sub: 'Total area' },
             ].map(chip => (
               <div key={chip.label} style={{ background: 'rgba(255,255,255,0.12)', borderRadius: 12, padding: '10px 16px', backdropFilter: 'blur(4px)' }}>
@@ -244,7 +250,7 @@ export default function StatistikPage() {
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
-              { q: 'Hur många öar finns det i Stockholms skärgård?', a: 'Ca 30 000 öar, holmar och skär enligt Länsstyrelsen Stockholm. Av dessa är ca 1 000 bebodda året runt. Resten är allt från klippor knappt synliga ovan ytan till stora öar med skog och jordbruksmark.' },
+              { q: 'Hur många öar finns det i Stockholms skärgård?', a: 'Ca 30 000 öar, holmar och skär enligt Länsstyrelsen Stockholm. Av dessa har ca 200 bofasta året runt. Resten är allt från klippor knappt synliga ovan ytan till stora öar med skog och jordbruksmark.' },
               { q: 'Hur stor är Stockholms skärgård?', a: 'Skärgården sträcker sig ca 140 km i nord–sydlig riktning (från Arholma i norr till Landsort i söder) och ca 80 km österut från Stockholm till ytterskärgården. Den totala vattenarealen är ca 6 000 km².' },
               { q: 'Hur djupt är vattnet i skärgården?', a: 'Östersjöns djupaste punkt, Landsortsdjupet, ligger i skärgårdens södra ytterkant och mäter ca 459 meter. I innerskärgårdens sund och fjärdar är djupet ofta 5–30 meter.' },
               { q: 'Hur salt är vattnet i Stockholms skärgård?', a: 'Bräckt vatten med ca 6–7 promille salt i ytterskärgården — betydligt lägre än Nordsjöns ca 35 promille. Salthalten minskar ju längre in mot Stockholm man kommer.' },
