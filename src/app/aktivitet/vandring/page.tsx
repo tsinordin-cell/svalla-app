@@ -109,7 +109,7 @@ const GUIDES = [
   },
   {
     title: 'Kan man vandra utan bil?',
-    body: 'Ja — och för Stockholms skärgård är det faktiskt enklare utan bil. Waxholmsbolaget har linjer till de flesta öar i mellersta och norra skärgården. Till södra öar (Utö, Nåttarö, Landsort) tar du pendeltåg linje 36 till Nynäshamn och sedan pendelbåt. Bohuslän: Västtrafik har båtlinjer till södra skärgårdens öar (Vrångö, Styrsö, Donsö). Till Marstrand tar du buss 302/312 från Göteborg. Gotland: Destination Gotland kör färja Nynäshamn–Visby (~3h15). Höga kusten: SJ/Norrtåg till Härnösand och Kramfors — lokal busstrafik finns men är gles. Till Trysunda och Ulvön krävs sommarbåt.',
+    body: 'Ja — och för Stockholms skärgård är det faktiskt enklare utan bil. Waxholmsbolaget har linjer till de flesta öar i mellersta och norra skärgården. Till södra öar (Utö, Nåttarö, Landsort) tar du pendeltåg linje 43 från Stockholm City till Nynäshamn, ca 65 min, och sedan pendelbåt. Bohuslän: Västtrafik har båtlinjer till södra skärgårdens öar (Vrångö, Styrsö, Donsö). Till Marstrand tar du buss 302/312 från Göteborg. Gotland: Destination Gotland kör färja Nynäshamn–Visby (~3h15). Höga kusten: SJ/Norrtåg till Härnösand och Kramfors — lokal busstrafik finns men är gles. Till Trysunda och Ulvön krävs sommarbåt.',
   },
   {
     title: 'Vilka vandringar passar barn?',
