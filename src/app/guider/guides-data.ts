@@ -882,7 +882,8 @@ export const GUIDES: GuideMeta[] = [
     excerpt: "Historisk fortstäning, levande hamnmiljö och startpunkt för Ornö- och Utö-turer. Guide till Dalarö.",
     category: "Region", emoji: "⚓", readTime: "5 min", fullContent: true,
     faqs: [
-      { q: 'Hur tar man sig till Dalarö?', a: 'Med SL-buss 834 från Slussen — en vanlig SL-busslinje, inte Waxholmsbolagets, och den ingår i SL-taxan. Eller med Waxholmsbolagets båt från Strömkajen. Med bil via Nynäsvägen och Dalarövägen, ca 45 km söder om Stockholm.' },
+      // KÄLLA: alltomdalaro.se ("Byt till buss 839, mot Smadalaro" från Handenterminalen; "Buss 869 går direkt från Gullmarsplan till Dalarö") + SL. Linje 834 går Rudsjöterrassen-Haninge centrum-Brandbergen-Svartbäcken och passerar varken Slussen eller Dalarö. Läst 2026-08-25.
+      { q: 'Hur tar man sig till Dalarö?', a: 'Med SL-buss 839 från Handens station, eller buss 869 direkt från Gullmarsplan — båda vanliga SL-linjer som ingår i SL-taxan. Räkna med ungefär en timme från centrala Stockholm. Eller med Waxholmsbolagets båt från Strömkajen. Med bil via Nynäsvägen och Dalarövägen, ca 45 km söder om Stockholm.' },
       { q: 'Vad är Dalarö känt för?', a: 'Dalarö har en av södra skärgårdens bästa hamnmiljöer med gamla trävillor och ett genuint fiskeläge. Dalaröskansen (1600-talets fästningsverk) och det kulturhistoriska centrumet gör Dalarö till ett av södra skärgårdens mest välbevarade samhällen.' },
       { q: 'Kan man ta båt till Utö och Ornö från Dalarö?', a: 'Ja, Dalarö är en av startpunkterna för båttrafik söderut i skärgården. Waxholmsbolaget kör till Ornö och Utö via Dalarö. Bra alternativ till Nynäshamn om du bor i Nacka eller Haninge.' },
     ],
