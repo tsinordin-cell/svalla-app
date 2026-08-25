@@ -1591,7 +1591,7 @@ export const ISLANDS: Island[] = [
     tags: ['fyr', 'ytterst', 'dramatiskt', 'hav', 'fåglar'],
     did_you_know: 'Landsorts fyr är Sveriges äldsta bevarade fyr — Johan van der Hagen fick kungligt privilegium 1669, den första fyrlyktan tändes 1671 och nuvarande stenfyr restes 1672. Landsort är Stockholms skärgårds sydligaste bebodda utpost (Sveriges sydligaste fastlandspunkt är Smygehuk i Skåne).',
     insiderTips: [
-      'Landsort har en av Sveriges äldsta fyrar i aktiv drift. Platsen har markerats med fyr sedan 1669, om än i olika former.',
+      'Landsort har Sveriges äldsta bevarade fyrtorn i aktiv drift. Platsen har markerats med fyr sedan 1600-talets mitt, om än i olika former.',
       'Landsort nås med Waxholmsbåten från Nynäshamn och är den sydligaste bebodda platsen i Stockholms skärgård.',
       'Ön räknas som ett av de bästa fågelskådningsställena i regionen, framförallt under fågelsträcket i maj och september.',
       'Det bor ett fåtal fastboende på Landsort åretrunt. Ön är en av de mest avskilda i skärgården trots reguljär båttrafik.',
