@@ -2127,7 +2127,7 @@ export const ISLANDS: Island[] = [
         { item: 'Proviant Lanthandeln', price: '50–100 kr' },
       ],
       tips: [
-        'Nämdö ingår i SL-zonen — ta med SL-kort och sänk transportkostnaden markant.',
+        'Nämdö ligger utanför det område där SL-biljetten gäller (Strömkajen–Vaxholm med omnejd, 44 bryggor) — räkna med Waxholmsbolagets egen biljett. Undantag: 14 september–29 april gäller SL:s periodbiljetter på 30 dagar eller längre i hela trafiken.',
         'Ta med matsäck som backup — krogen har begränsade öppettider.',
         'Bra halvdagsstopp kombinerat med Gällnö eller Möja.',
       ],

@@ -41,7 +41,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Kan man vandra i skärgården utan bil?',
-    a: 'Ja — de flesta välkända vandringsöarna i Stockholms skärgård nås med Waxholmsbolaget (ingår i SL-zonerna) eller pendelbåt från Nynäshamn. Det är en av de stora fördelarna med Stockholms skärgård jämfört med t.ex. Bohuslän och Höga kusten.',
+    a: 'Ja — de flesta välkända vandringsöarna i Stockholms skärgård nås med Waxholmsbolaget eller pendelbåt från Nynäshamn. Räkna med Waxholmsbolagets egen biljett: SL-biljetten gäller bara mellan Strömkajen och Vaxholm med omnejd (44 bryggor), utom 14 september–29 april då SL:s periodbiljetter på 30 dagar eller längre gäller i hela trafiken. Det är en av de stora fördelarna med Stockholms skärgård jämfört med t.ex. Bohuslän och Höga kusten.',
   },
   {
     q: 'Vilka skärgårdsöar har markerade vandringsleder?',

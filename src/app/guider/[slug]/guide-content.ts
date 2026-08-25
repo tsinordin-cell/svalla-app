@@ -293,7 +293,8 @@ export function getGuideContent(slug: string): string {
 <p>Waxholmsbolaget är Stockholms läns landstings skärgårdstrafik och driver en av Skandinaviens mest komplexa och vackraste båtlinjenät. Här är allt du behöver veta för att navigera systemet effektivt.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur systemet fungerar</h3>
-<p>Waxholmsbolaget driver ca 50 linjer med ca 60 fartyg och trafikerar över 100 bryggor i Stockholms skärgård. Trafiken är uppdelad i tre zoner:</p>
+<!-- KÄLLA: Waxholmsbolaget, "Alla SL-biljetter gäller mellan 44 bryggor" och "SL-området: Strömkajen–Vaxholm med omnejd" (waxholmsbolaget.se, läst 2026-08-25): "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd ... året runt ... för alla sorters SL-biljetter." Samt "Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april" (SL:s periodbiljetter på 30 dagar eller längre). SL avskaffade zonsystemet A/B/C den 9 januari 2017 — sajten byggde på ett niotal år gammalt regelverk. -->
+<p>Waxholmsbolaget trafikerar hela Stockholms skärgård från Arholma i norr till Landsort i söder. Den enda officiella siffran bolaget publicerar är att alla SL-biljetter gäller mellan 44 bryggor i området Strömkajen–Vaxholm med omnejd; antalet linjer och fartyg räknar vi själva ur tidtabellerna till drygt 30 linjer och över 150 bryggor totalt. Geografiskt brukar trafiken delas i tre delar:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Innerskärgård</strong>: Vaxholm, Grinda, Ljusterö – kortare turer, tätare avgångar</li>
 <li><strong>Mellaskärgård</strong>: Sandhamn, Utö, Dalarö – ca 2–3 timmar från Stockholm</li>
@@ -1382,7 +1383,8 @@ export function getGuideContent(slug: string): string {
 <p>Waxholmsbolagets båtar tar dig till de flesta öarna i Stockholms skärgård. Priserna varierar med hur långt du åker och om du har SL-kort.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<li><strong>SL-kort (månadsbiljett):</strong> Gäller på Waxholmsbolaget i SL-zonerna. Tilläggsbiljett krävs för öar i zon C och längre ut. Tillägg kostar ca 40–80 kr enkel resa beroende på zon.</li>
+<!-- KÄLLA: Waxholmsbolaget, "Alla SL-biljetter gäller mellan 44 bryggor" och "SL-området: Strömkajen–Vaxholm med omnejd" (waxholmsbolaget.se, läst 2026-08-25): "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd ... året runt ... för alla sorters SL-biljetter." Samt "Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april" (SL:s periodbiljetter på 30 dagar eller längre). SL avskaffade zonsystemet A/B/C den 9 januari 2017 — sajten byggde på ett niotal år gammalt regelverk. -->
+<li><strong>SL-biljett (alla sorter):</strong> Gäller året runt i skärgårdstrafiken mellan Strömkajen och Vaxholm med omnejd — 44 bryggor. Längre ut gäller Waxholmsbolagets egna biljetter. Undantag: 14 september–29 april gäller SL:s periodbiljetter på 30 dagar eller längre i HELA Waxholmsbolagets trafik. SL har inga zoner sedan 2017, så någon tilläggsbiljett per zon finns inte.</li>
 <li><strong>Waxholmsbolaget utan SL-kort:</strong> Ca 80–200 kr enkel resa beroende på destination. Köp i appen – ca 10% billigare än ombord.</li>
 <li><strong>Cinderellabåten till Sandhamn:</strong> Ca 200–280 kr enkel resa. Tur-retur ca 400–550 kr.</li>
 <li><strong>Pendelbåt Nynäshamn–Utö:</strong> Pendeltåg till Nynäshamn (ingår i SL) + pendelbåt ca 130–160 kr enkel resa.</li>
@@ -1545,7 +1547,7 @@ export function getGuideContent(slug: string): string {
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <li><strong>Pris:</strong> Kontrollera aktuellt pris på waxholmsbolaget.se – brukar ligga runt 1 500–2 000 kr för 30 dagar. Köps i Waxholmsbolagets app eller vid Strömkajen.</li>
 <li><strong>Åldersgränser:</strong> Ungdomskort och seniorkort kan finnas – kontrollera vid köp.</li>
-<li><strong>SL-kortet:</strong> Ingår INTE i luffarkortet. SL-zoner gäller separat för landtransport till avgångspunkterna.</li>
+<li><strong>SL-biljetten:</strong> Ingår INTE i luffarkortet. Den betalas separat för landtransporten till avgångspunkterna — SL har enhetstaxa för hela länet sedan 2017, inga zoner.</li>
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Planera din ruttstruktur</h3>
@@ -2015,7 +2017,7 @@ export function getGuideContent(slug: string): string {
 <li>SL-buss 433 från Slussen till Stavsnäs: ca 55 min</li>
 <li>Waxholmsbolaget, Stavsnäs–Möja Söderhamn: ca 1 h 15 min</li>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<li>Biljett: SL-kort + tilläggsbiljett (zon C), eller Waxholmsbolaget-biljett ca 140–160 kr enkel resa</li>
+<li>Biljett: Waxholmsbolagets egen biljett, ca 140–160 kr enkel resa. SL-biljetten räcker inte hit — den gäller bara mellan Strömkajen och Vaxholm med omnejd (44 bryggor). Undantag: 14 september–29 april gäller SL:s periodbiljetter på 30 dagar eller längre i hela trafiken.</li>
 <li>Sommar: avgångar 3–5 ggr/dag. Kolla tidtabellen i Waxholmsbolagets app.</li>
 </ul>
 
@@ -2969,7 +2971,7 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Dalarö</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Buss:</strong> SL-buss 839 från Handen T-bana (röda linjen) till Dalarö brygga. Ca 40 min. Ingår i SL-zoner.</li>
+<li><strong>Buss:</strong> SL-buss 839 från Handen T-bana (röda linjen) till Dalarö brygga. Ca 40 min. Ingår i SL-taxan (enhetstaxa för hela länet).</li>
 <li><strong>Bil:</strong> Motorväg 73 söderut mot Nynäshamn, av vid Haninge mot Dalarö. Ca 45–55 min från Stockholm.</li>
 </ul>
 
