@@ -47,7 +47,7 @@ Kapellskär→Märket/Örskär: Erfarna seglare, havsseglingsstämning, 2+ dagar
 
 === INGARÖ & VÄRMDÖ (MELLANSKÄRGÅRD) ===
 Ingarö→Sandhamn: Seglare, heldag/2 dagar, klassisk sträcka via Baggensfjärden och ut, Sandhamn Seglarhotell, 25-30 NM. Bra vindförhållanden.
-Ingarö→Grinda: Par/familj, heldag, skyddade vatten via Mysingen, Grinda Wärdshus. ~20 NM.
+Ingarö→Grinda: Par/familj, heldag, skyddade vatten via Kanholmsfjärden, Grinda Wärdshus. ~20 NM.
 Ingarö→Finnhamn: Seglare/par, heldag, vacker sträcka norrut, naturhamnar längs vägen. ~28 NM.
 Ingarö→Möja: Seglare/lugn-sökare, heldag, genuin skärgård, Möja Värdshus. ~22 NM.
 Ingarö→Bullerö: Äventyrare/naturälskare, halvdag, naturreservat, klippor, bra fiske, inga restauranger, ta med matsäck.

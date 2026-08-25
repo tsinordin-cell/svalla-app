@@ -661,7 +661,8 @@ export const GUIDES: GuideMeta[] = [
       { q: 'Är SL-kortet giltigt till Vaxholm?', a: 'SL-kortet gäller för bussresan (linje 670), men INTE på Waxholmsbolagets pendelbåt. Pendelbåten kräver separat biljett via Waxholmsbolagets app eller hemsida.' },
       { q: 'Vad gör man i Vaxholm på en dag?', a: 'Besök Vaxholms fästning (museum, guidade turer), promenera längs Hamngatan med sina trävillor, ät lunch på Waxholms Hotell med havsvy och utforska de lokala butikerna. Räkna med 4–6 timmar för en bekväm dagstur.' },
       // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
-      { q: 'Är Vaxholms fästning värd ett besök?', a: 'Ja. Fästningen är ett av Stockholms läns bäst bevarade historiska monument från 1500-talet och har fantastisk utsikt över Mysingen. Nås med en liten roddbåt från hamnen (ca 20 kr). Öppen maj–september.' },
+      // KÄLLA: vaxholmsfastning.se/historik + SFV — första fästningen 1548, nuvarande kastell 1833–1863. Mysingen ligger i SÖDRA skärgården (mellan Muskö, Utö och Ornö, NE) — Vaxholms kastell blickar ut över Kodjupet och Oxdjupet.
+      { q: 'Är Vaxholms fästning värd ett besök?', a: 'Ja. Kastellet är ett av Stockholms läns bäst bevarade historiska monument — anlagt 1548 på Gustav Vasas order, i nuvarande form byggt 1833–1863 — och vaktar det smala Kodjupet in mot Stockholm. Nås med en liten roddbåt från hamnen. Öppen maj–september.' },
       { q: 'Kan man äta gott i Vaxholm?', a: 'Ja. Waxholms Hotell har en av skärgårdens bästa restauranger med havsvy. Hembygdsgårdens café serverar traditionell skärgårdsmat. Det finns även flera bagerier och caféer längs Hamngatan.' },
     ],
   },
@@ -672,7 +673,8 @@ export const GUIDES: GuideMeta[] = [
     category: "Region", emoji: "🏮", readTime: "6 min", fullContent: true,
     faqs: [
       { q: 'Hur tar man sig till Landsort?', a: 'Med Waxholmsbolaget från Nynäshamn – resan tar ca 1,5 timmar. Landsort är den sydligaste punkten i Stockholms skärgård och kräver planering då avgångarna är begränsade, speciellt utanför högsäsong.' },
-      { q: 'Vad är Landsort känt för?', a: 'Landsort har ett av Sveriges äldsta fyrtorn (1669), ett unikt mikroklimat med mildare vintrar än fastlandet och en dramatisk ytterskärgårdsnatur. Ön är bilfri och har ett genuint fiskeläge.' },
+      // KÄLLA: Sjöfartsverket (äldsta svenskbyggda fyren) + landsort.com:s kronologi — fyrbåk 1651, van der Hagens privilegium 1669, nuvarande torn 1680-talet.
+      { q: 'Vad är Landsort känt för?', a: 'Landsort har Sveriges äldsta bevarade fyrtorn — fyrplatsen går tillbaka till 1600-talets mitt och nuvarande torn restes på 1680-talet. Dessutom ett unikt mikroklimat med mildare vintrar än fastlandet och en dramatisk ytterskärgårdsnatur. Ön är bilfri och har ett genuint fiskeläge.' },
       { q: 'Kan man övernatta på Landsort?', a: 'Ja, det finns ett vandrarhem på ön och möjlighet att hyra stugor. Tältning är möjlig men ön är liten – planera var du slår upp tältet. Boka boende i god tid under sommaren.' },
       { q: 'Är Landsort värt resan?', a: 'Absolut om du söker verklig ytterskärgård med vildmark och historisk atmosfär. Landsort är inte en turistdestination med utbud – det är en ö för dem som vill ha stillhet, havsöppning och natur utan folkmassor.' },
     ],
