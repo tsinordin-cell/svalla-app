@@ -233,7 +233,8 @@ export function getGuideContent(slug: string): string {
 <p>Att ta sig i land och tälta på en öde klippa är tillåtet under allemansrätten – men:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>1–2 nätter</strong> är tumregeln – längre kräver markägarens tillstånd</li>
-<li>Tält ska stå 150–200 meter från närmaste permanentboende (inte sommarstuga)</li>
+<!-- KÄLLA: Naturvårdsverket, Hemfridszon och allemansrätten — ingen fast meterangivelse finns; avstånd, terräng och växtlighet avgör, och vid tältning gäller ännu längre avstånd än vid enkel vistelse. -->
+<li>Tältet ska stå utom synhåll och hörhåll från boningshus — någon exakt meteruppgift finns inte, terräng och växtlighet avgör (vid tältning gäller längre avstånd än vid en kort rast)</li>
 <li>Naturreservat har egna regler – läs alltid skiltarna vid landningsplatsen</li>
 <li>Du får INTE tälta på privat tomt – skogsmark och klippor är OK, trädgård är aldrig OK</li>
 <li>Lämna platsen som du fann den: ta med alla sopor, lämna ingen eld och ingen toalettavfall</li>
@@ -258,7 +259,7 @@ export function getGuideContent(slug: string): string {
 <li>Använd alltid sugtömningsstationen i gästhamnar – dessa är gratis på de flesta ställen</li>
 <li>Kemisk toalett: töm i hamnarnas bränslestationer, aldrig direkt i havet</li>
 <li>Komposttoa och eltoalett: töm i anvisade tömningsstationer</li>
-<li>Vid grov nöd i frihamn: gå till land och använd toalett eller gräv ner (minst 30 cm djupt, minst 50 m från vatten)</li>
+<li>Vid grov nöd i frihamn: gå till land och använd toalett eller gräv ner ett par decimeter djupt, minst 50 m från vatten</li>
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Motorbuller och hastighet</h3>
@@ -1630,7 +1631,7 @@ export function getGuideContent(slug: string): string {
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Toalettfrågan – det du måste veta</h3>
-<p>På öar utan toaletter gäller: gå minst 50–100 meter från strandlinjen och vattendrag. Gräv ett litet hål, 15–20 cm djupt. Ta med toalettpapper i en återförslutningsbar påse och ta det med dig hem eller bränn det (när eldförbud inte gäller). Lämna inga spår. Det är din insats för att bevara skärgårdens unika miljö.</p>
+<p>På öar utan toaletter gäller: gå minst 50–100 meter från strandlinjen och vattendrag. Gräv ett hål ett par decimeter djupt (ca 20–30 cm). Ta med toalettpapper i en återförslutningsbar påse och ta det med dig hem eller bränn det (när eldförbud inte gäller). Lämna inga spår. Det är din insats för att bevara skärgårdens unika miljö.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Packlista för skärgårdscamping</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -2801,7 +2802,7 @@ export function getGuideContent(slug: string): string {
 
     'arholma-guide': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Arholma – norra ytterskärgårdens utpost</h2>
-<p>Arholma är Stockholms skärgårds nordligaste punkt och startpunkten för Stockholm Archipelago Trail. Ön ligger ca 90 km nordost om Stockholm och är känd bland vandrare, kajakpaddlare och segelentusiaster som söker äkta ytterskärgård. Det är en lång resa att ta sig hit – och det är exakt det som gör det värt det.</p>
+<p>Arholma är Stockholms skärgårds nordligaste punkt och startpunkten för Stockholm Archipelago Trail. Ön ligger drygt 80 km nordost om Stockholm och är känd bland vandrare, kajakpaddlare och segelentusiaster som söker äkta ytterskärgård. Det är en lång resa att ta sig hit – och det är exakt det som gör det värt det.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Arholma</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
