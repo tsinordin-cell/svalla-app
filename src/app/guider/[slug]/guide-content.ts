@@ -18,7 +18,7 @@ export function getGuideContent(slug: string): string {
 <p><strong>Insider-tips:</strong> Ta kvällsbåten tillbaka till Stockholm – solnedgången längs Vaxholmsleden är värd hela resan. Om du stannar natten, boka på Waxholms Hotell – det är det enda riktiga hotellet i stan.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">2. Sandhamn – seglarnas midsommar</h4>
-<p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets båt från Stavsnäs (nås med SL-buss från Slussen eller Gullmarsplan), ca 1 h 30 min. Alternativt Cinderellabåten från Strandvägen på midsommaraftonen – bokningsbiljett krävs.</p>
+<p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets båt från Stavsnäs (nås med SL-buss 433 eller 434 från Slussen, knappt 50 min), ca 1 h 30 min. Alternativt Cinderellabåten från Strandvägen på midsommaraftonen – bokningsbiljett krävs.</p>
 <p><strong>Upplev:</strong> Sandhamn är seglarklubbars huvudkvarter. Under midsommar fylls Sandhamns naturhamn av hundratals segelbåtar, och festligheterna pågår nonstop. Sandhamns segelsällskap arrangerar dans och musik vid bryggan. Badplatsen Trouville är lysande midsommardag.</p>
 <p><strong>Var du äter:</strong> Sandhamns Värdshus är det självklara valet – välkänt för sin midsommarbuffé med lokalt rökta räkor. Boka bord minst en månad i förväg för midsommaraftonen. Seglarhotellet erbjuder också fullspäckad midsommarlunch.</p>
 <p><strong>Insider-tips:</strong> Kom gärna kvällen innan (midsommarafton minus ett) och inta de bästa bryggplatserna. Ta med tält om du planerar övernattning – alla boenden är fullbokade månader i förväg.</p>
@@ -6538,7 +6538,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ön är känd för sin stora andel sommarvillor och en sommarmarknad som lockar besökare från hela södra skärgården. Havet runt är lättillgängligt och badorterna varierande.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Runmarö</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Waxholmsbolaget via Stavsnäs:</strong> Ta SL-buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, ca 30–35 min. Sedan Waxholmsbåt till Runmarö, ytterligare ca 30–45 min. Kolla aktuell tidtabell på waxholmsbolaget.se – sommar- och vinterdrift skiljer sig markant.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Waxholmsbolaget via Stavsnäs:</strong> Ta SL-buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, knappt 50 min. Sedan Waxholmsbåt till Runmarö, ytterligare ca 30–45 min. Kolla aktuell tidtabell på waxholmsbolaget.se – sommar- och vinterdrift skiljer sig markant.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bil till Stavsnäs: Parkering finns i Stavsnäs. Med bil till Stavsnäs tar du SL-buss till Slussen om du vill undvika extra kostnader – alternativt kör dit och betala parkering.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På ön</h2>
@@ -6611,7 +6611,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Budget-transport i Stockholms skärgård</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>SL-pendelbåtar:</strong> Ingår i SL-kortet. Avgår till Fjäderholmarna, Nacka Strand och längs Mälaren. Billigaste sättet att komma ut på vattnet.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Waxholmsbolaget månadskort:</strong> Om du åker ofta – Waxholmsbolagets perioder- och månadskort ger bättre pris per resa.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stavsnäs-pendeln:</strong> Buss 433 eller 434 från Slussen (SL) till Stavsnäs vinterhamn, ca 30–35 min, sedan Waxholmsbåt till Möja, Runmarö och omgivande öar. Kombinationen SL + Waxholm ger avsevärt lägre kostnad än att köra bil.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stavsnäs-pendeln:</strong> Buss 433 eller 434 från Slussen (SL) till Stavsnäs vinterhamn, knappt 50 min, sedan Waxholmsbåt till Möja, Runmarö och omgivande öar. Kombinationen SL + Waxholm ger avsevärt lägre kostnad än att köra bil.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Budget-boende</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Tältning via allemansrätten:</strong> Gratis på de flesta öar och kuststränder. Ta med eget tält, sovsäck och mat – kostnaden är noll. Lämna inga spår.</p>
@@ -6866,7 +6866,7 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Värmdö</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med bil:</strong> Värmdöleden (väg 222) från Stockholm direkt ut till Gustavsberg och vidare söderut. Ca 30 min till Gustavsberg, 40–50 min till Stavsnäs i söder.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kollektivt:</strong> Buss 474 och 433 från Slussen mot Gustavsberg och Hemmesta. Buss 433 och 434 fortsätter från Slussen till Stavsnäs vinterhamn, ca 30–35 min – härifrån avgår Waxholmsbåtar till Runmarö, Sandhamn och Möja.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kollektivt:</strong> Buss 474 och 433 från Slussen mot Gustavsberg och Hemmesta. Buss 433 och 434 fortsätter från Slussen till Stavsnäs vinterhamn, knappt 50 min – härifrån avgår Waxholmsbåtar till Runmarö, Sandhamn och Möja.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Höjdpunkter</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Baggensfjärden:</strong> Vindlande fjärd med klippor, strandängar och kajakuthyrning vid Baggensudde. Nås med buss 474 eller bil.</p>
@@ -7453,8 +7453,8 @@ export function getGuideContent(slug: string): string {
 <p>Sandhamn i september och oktober är en annan ö än Sandhamn i juli. Hamnen är halvtom, gatorna går att gå på och Sandhamns Värdshus serverar samma utmärkta mat utan tre veckors förbokning.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Hur du tar dig dit</h4>
-<!-- KÄLLA: SL:s tidtabell för linje 433/434 (kund.printhuset-sthlm.se/sl/s433434.pdf): Slussen–Djurö respektive Slussen–Vindö, båda via Stavsnäs vinterhamn, restid Slussen–Stavsnäs ca 28–36 min. Linje 834 går Rudsjöterrassen–Haninge centrum–Brandbergen–Svartbäcken och passerar varken Slussen, Stavsnäs eller Dalarö. Till Dalarö går buss 839 från Handens station och 869 direkt från Gullmarsplan (alltomdalaro.se + SL). Läst 2026-08-25. -->
-<p>Waxholmsbolaget från Stavsnäs (buss 433 eller 434 från Slussen, ca 30–35 min till Stavsnäs vinterhamn, sedan båt ca 1 h). Kontrollera hösttidtabell – avgångarna är färre men fortfarande dagliga. Alternativt ta bil till Stavsnäs och ta båten därifrån.</p>
+<!-- KÄLLA: SL:s tidtabell för linje 433/434 (kund.printhuset-sthlm.se/sl/s433434.pdf): Slussen–Djurö respektive Slussen–Vindö, båda via Stavsnäs vinterhamn, restid Slussen–Stavsnäs knappt 50 min (uppmätt i två oberoende läsningar av kolumnen: 09.18→10.06 och 10.18→11.05; en tidigare läsning gav 28–36 min och var fel). Linje 834 går Rudsjöterrassen–Haninge centrum–Brandbergen–Svartbäcken och passerar varken Slussen, Stavsnäs eller Dalarö. Till Dalarö går buss 839 från Handens station och 869 direkt från Gullmarsplan (alltomdalaro.se + SL). Läst 2026-08-25. -->
+<p>Waxholmsbolaget från Stavsnäs (buss 433 eller 434 från Slussen, knappt 50 min till Stavsnäs vinterhamn, sedan båt ca 1 h). Kontrollera hösttidtabell – avgångarna är färre men fortfarande dagliga. Alternativt ta bil till Stavsnäs och ta båten därifrån.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vad du gör</h4>
 <p>Promenera ut till Trouville och Koben – ytterskärgårdens stränder som på sommaren är fullpackade men på hösten är folktoma. Vandra Sandhamns gamla strandväg. Ta en öl på Sandhamns Värdshus bar och titta ut mot den nu lugnare hamnen.</p>
