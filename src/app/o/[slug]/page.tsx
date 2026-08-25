@@ -425,11 +425,11 @@ export default async function IslandPage({ params }: Props) {
  marginTop: 22,
  }}>
  {([
- { label: 'Restid', value: island.facts.travel_time, icon: 'compass' as const },
- { label: 'Karaktär', value: island.facts.character, icon: 'leaf' as const },
- { label: 'Säsong', value: island.facts.season, icon: 'sun' as const },
- { label: 'Perfekt för', value: island.facts.best_for, icon: 'star' as const },
- ]).map(f => (
+ { label: 'Restid', value: island.facts.travel_time, icon: 'compass' as const, pk: 'travel_time' },
+ { label: 'Karaktär', value: island.facts.character, icon: 'leaf' as const, pk: 'character' },
+ { label: 'Säsong', value: island.facts.season, icon: 'sun' as const, pk: 'season' },
+ { label: 'Perfekt för', value: island.facts.best_for, icon: 'star' as const, pk: 'best_for' },
+ ]).map(f => { const prov = island.facts_provenance?.[f.pk]; return (
  <div key={f.label} style={{
  background: 'rgba(255,255,255,0.12)',
  borderRadius: 12,
@@ -441,8 +441,14 @@ export default async function IslandPage({ params }: Props) {
  <span>{f.label}</span>
  </div>
  <div style={{ fontSize: 13, fontWeight: 600, color: '#fff', lineHeight: 1.4 }}>{f.value}</div>
+						{prov && (
+							<div style={{ marginTop: 6, fontSize: 10, fontWeight: 500, letterSpacing: 0.2, display: 'inline-flex', alignItems: 'center', gap: 4, color: prov === 'matt' ? 'rgba(190,236,208,0.82)' : 'rgba(255,255,255,0.62)' }}>
+								<span aria-hidden="true">{prov === 'matt' ? '✓' : '≈'}</span>
+								<span>{prov === 'matt' ? 'Källbelagd' : 'Vår bedömning'}</span>
+							</div>
+						)}
  </div>
- ))}
+ )})}
  </div>
  </div>
  </div>
