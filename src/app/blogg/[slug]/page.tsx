@@ -60,7 +60,7 @@ För frukost eller fika är Bryggcafé 7an oöverträffat. Nybakat bröd, smör 
 
 ## Praktisk info
 
-Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara 19 juni–16 augusti, och då tar det 3 tim 45 min lördag och söndag, 4 tim 55 min med byte i Finnhamn övriga dagar. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (ca 30–35 min) och därifrån Waxholmsbolagets linje 16 på 40–65 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong 30 april–27 september. Under sommarsäsongen är det kö vid populäraste restaurangerna – boka i förväg när det går.
+Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara 19 juni–16 augusti, och då tar turen mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (knappt 50 min) och därifrån Waxholmsbolagets linje 16 på 40–65 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong 30 april–27 september. Under sommarsäsongen är det kö vid populäraste restaurangerna – boka i förväg när det går.
  `,
  },
 
@@ -141,7 +141,7 @@ Möja är Stockholms skärgårds näst folkrikaste ö, men stämningen är allt 
 
 ## Komma dit
 
-Waxholmsbåten går direkt från Strömkajen bara under sommartabellen 19 juni–16 augusti, och tar då 3 tim 45 min (lör–sön) eller 4 tim 55 min med byte i Finnhamn. Alternativet, som fungerar året runt, är att ta sig till Stavsnäs vinterhamn och ta båten därifrån – Waxholmsbolagets linje 16 tar 40–65 min, Stavsnäs Båttaxis Sandhamnslinje 30 min. Under högsäsong går det fler avgångar, men kolla tidtabellen noga på waxholmsbolaget.se.
+Waxholmsbåten går direkt från Strömkajen bara under sommartabellen 19 juni–16 augusti, och tar då mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Alternativet, som fungerar året runt, är att ta sig till Stavsnäs vinterhamn och ta båten därifrån – Waxholmsbolagets linje 16 tar 40–65 min, Stavsnäs Båttaxis Sandhamnslinje 30 min. Under högsäsong går det fler avgångar, men kolla tidtabellen noga på waxholmsbolaget.se.
 
 ## Vad du ska göra
 
@@ -482,7 +482,7 @@ Segla varsamt och njut. Skärgården från en segelbåt är en helt annan upplev
    { q: 'Vilka är de bästa badplatserna i Stockholms skärgård?', a: 'Trouville på Sandhamn är den mest kända sandstranden. Stora Sand på Utö är bäst för barnfamiljer med grunt vatten. Fejan naturreservat norr om Furusund har kristallklart vatten och vita klipphällar. Kymmendö (Strindbergs ö) är en av de mest stämningsfulla platserna att bada på i hela skärgården.' },
    { q: 'Kan man bada gratis i Stockholms skärgård?', a: 'Ja — naturliga badplatser, klippbad och stränder i Stockholms skärgård är gratis tack vare allemansrätten (anlagda friluftsbad och kallbadhus kan ta inträde). Du har rätt att bada och vistas på land som inte är privattomt, vilket täcker de allra flesta klippor och stränder i skärgårdslandskapet.' },
    { q: 'Vilken badplats i skärgården är bäst för barn?', a: 'Stora Sand på Utö har grunt, sandigt vatten och är ett av de säkraste badfamiljealternativen. Dalarö klapperstensstrand nås med bil och passar för barn. Fjäderholmarna (25 min från Stockholm) har klippbad som är tryggt och lättillgängligt utan lång resväg.' },
-   { q: 'Hur tar man sig till badplatser i skärgården utan båt?', a: 'Waxholmsbolaget kör till Sandhamn, Utö, Möja, Ingmarsö och många fler. Dalarö nås med buss 839 från Handens station, eller 869 direkt från Gullmarsplan. Fjäderholmarna nås med båt från Strandvägen på 25 minuter. Västerudd på Värmdö nås med buss och promenad från Gustavsberg.' },
+   { q: 'Hur tar man sig till badplatser i skärgården utan båt?', a: 'Waxholmsbolaget kör till Sandhamn, Utö, Möja, Ingmarsö och många fler. Dalarö nås med buss 839 från Handens station, eller 869 från Slakthuset vid Globen. Fjäderholmarna nås med båt från Strandvägen på 25 minuter. Västerudd på Värmdö nås med buss och promenad från Gustavsberg.' },
  ],
  content: `
 Stockholms skärgård har hundratals badplatser. De flesta är dolda klippor nåbara bara med båt. Några är klassiker. Naturbaden är gratis tack vare allemansrätten. Här är våra tolv favoriter.
@@ -1294,7 +1294,7 @@ Här är sex konkreta rutter du kan boka idag.
 ## 6. [Sandhamn](/o/sandhamn) – 1,5–2,5 timmar via Stavsnäs, seglingsikonen
 
 **Avresa:** Strömkajen (lång tur) eller Stavsnäs (snabbgående, ca 40 min).
-**Restid:** 30 min med Sandhamnslinjen eller 40–65 min med Waxholmsbolagets linje 16 från Stavsnäs vinterhamn. Direkt från Strömkajen går båten bara 19 juni–16 augusti, och tar då 3 tim 45 min eller mer.
+**Restid:** 30 min med Sandhamnslinjen eller 30–70 min med Waxholmsbolagets linje 16 från Stavsnäs vinterhamn, beroende på antal angöringar. Direkt från Strömkajen går båten bara 19 juni–16 augusti, och tar då 3 tim 45 min eller mer.
 **Vad du gör:** Sandhamn är det klassiska skärgårdsnamnet. Segelbåtshamn, vita trävillor, goda restauranger och en atmosfär som är svår att replikera.
 **Bäst för:** De som vill ha "ikonen". Inte den lugnaste ön men en av de vackraste.
 **Tips:** Från Stavsnäs nås Sandhamn med snabbgående båt på 40 minuter. Enklare och snabbare än du tror.
@@ -1584,7 +1584,7 @@ Under sommarsäsongen (juni–aug) är populära öar som Sandhamn och Grinda fu
 
 **Snabbaste vägen:** Waxholmsbåtens snabba linjer från Stavsnäs (nås med bil/buss från Slussen) — ca 40 minuter. Stavsnäs är enklast med bil; parkering kostar 80–100 kr/dygn.
 
-**Direkt från Stockholm city:** Waxholmsbåten från Strömkajen — bara 19 juni–16 augusti, och då 3 tim 45 min lör–sön, 4 tim 55 min med byte i Finnhamn övriga dagar. Cinderella från Strandvägen tar 2 tim 30 min under säsongen 30 april–27 september. Längre men stämningsfull; passa på att se skärgårdens karaktär förändras längs vägen.
+**Direkt från Stockholm city:** Waxholmsbåten från Strömkajen — bara 19 juni–16 augusti, och då 3 tim 45 min till knappt 5 timmar beroende på avgång. Cinderella från Strandvägen tar 2 tim 30 min under säsongen 30 april–27 september. Längre men stämningsfull; passa på att se skärgårdens karaktär förändras längs vägen.
 
 **Snabbaste linjen sommartid:** Cinderella Boats kör expresser i sommarperioden.
 
@@ -1627,8 +1627,8 @@ Sandhamn är bilfri. Allt du behöver ta med är det du bär på. Det finns en l
 Hög- vs lågsäsong: juli är turisternas månad. Maj och september är skärgårdens bäst bevarade hemlighet — all skönhet, utan köerna.
    `,
    faqs: [
-     // KÄLLA: Waxholmsbolagets tidtabell 15A Stockholm-Vaxholm-Sandhamn, GÄLLER 19 JUNI 2026 - 16 AUGUSTI 2026 (lör/sön Strömkajen 10.00 -> Sandhamn 13.45 = 3 tim 45; mån-fre 08.30 -> 13.25 med byte i Finnhamn = 4 tim 55). Ingen v15-tabell finns för 17 aug-12 dec, alltså ingen direktbåt utanför sommaren. Tabell 16A Stavsnäs-Sandhamn (gäller nu): 38-65 min. Stavsnäs Båttaxis Sandhamnslinje: 30 min. Strömma: Cinderella från Strandvägen kajplats 14, 2 tim 30 min, säsong 30 april-27 september 2026. Läst 2026-08-25.
-     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Det beror helt på årstid och kaj. Waxholmsbåten går direkt från Strömkajen bara 19 juni–16 augusti och tar då 3 tim 45 min (lör–sön) eller 4 tim 55 min med byte i Finnhamn. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min, säsong 30 april–27 september. Året runt är snabbaste vägen buss 433 eller 434 från Slussen till Stavsnäs vinterhamn och sedan båt: Sandhamnslinjen 30 min eller Waxholmsbolagets linje 16 på 40–65 min.' },
+     // KÄLLA: Waxholmsbolagets tidtabell 15A Stockholm-Vaxholm-Sandhamn, GÄLLER 19 JUNI 2026 - 16 AUGUSTI 2026 (Strömkajen 10.00 -> Sandhamn 13.45 = 3 tim 45 utan byte; 08.30 -> 13.25 med byte i Finnhamn = 4 tim 55. Vilka veckodagar respektive tur gar har inte kunnat lasas tillforlitligt ur kolumnerna - darfor anges bara spannet). Ingen v15-tabell finns för 17 aug-12 dec, alltså ingen direktbåt utanför sommaren. Tabell 16A Stavsnäs-Sandhamn (gäller nu): 38-65 min. Stavsnäs Båttaxis Sandhamnslinje: 30 min. Strömma: Cinderella från Strandvägen kajplats 14, 2 tim 30 min, säsong 30 april-27 september 2026. Läst 2026-08-25.
+     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Det beror helt på årstid och kaj. Waxholmsbåten går direkt från Strömkajen bara 19 juni–16 augusti och tar då 3 tim 45 min till knappt 5 timmar beroende på avgång och byte i Finnhamn. Cinderella från Strandvägen kajplats 14 går längre säsong, 30 april–27 september, och tar 2 tim 30 min — den går alltså även nu i slutet av augusti. Snabbast året runt är buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, knappt 50 min, och sedan båt: Sandhamnslinjen 30 min eller Waxholmsbolagets linje 16 på 30–70 min.' },
      { q: 'Finns det strand på Sandhamn?', a: 'Ja. Trouville-stranden är den mest kända – vit sand och klart vatten, ca 15 min promenad från hamnen. Flaskbrottet är ett mer undanskymt alternativ med klippor.' },
      { q: 'Är det bilfritt på Sandhamn?', a: 'Ja, Sandhamn är bilfri. Det finns inga bilar på ön. Allt nås till fots.' },
    ],
