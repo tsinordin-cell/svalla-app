@@ -51,7 +51,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🏰',
  title: 'Vaxholm',
- description: 'Skärgårdens infartsport — 30 min från Stockholm med Waxholmsbolaget eller 20 sjömil med segelbåt. Vaxholms fästning (1500-tal), charmig trästad, gästhamn och restauranger. Perfekt för en dagsutflykt eller stopphav på väg ut.',
+ description: 'Skärgårdens infartsport — 30 min från Stockholm med Waxholmsbolaget eller 20 sjömil med segelbåt. Vaxholms kastell (nuvarande byggnad 1833–1863, första fästningen 1548), charmig trästad, gästhamn och restauranger. Perfekt för en dagsutflykt eller stopphav på väg ut.',
  href: '/vaxholm',
  meta: 'Innerskärgården · 30 min med båt',
  },

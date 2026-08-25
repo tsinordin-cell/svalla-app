@@ -269,7 +269,7 @@ export default function AktiviteterPage() {
             Allemansrätten i skärgården
           </h2>
           <p>
-            Allemansrätten gäller men med lokala variationer — vissa öar har landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter) och naturreservat kan ha egna regler. Du får bygga läger överallt men du måste hålla minst 150 meter från närmaste bostad och inte lägga tält på samma plats mer än två nätter.
+            Allemansrätten gäller men med lokala variationer — vissa öar har landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter) och naturreservat kan ha egna regler. Du får tälta i naturen, men tältet ska stå utom syn- och hörhåll från boningshus — någon fast meteruppgift finns inte, det är terrängen och växtligheten som avgör hur långt bort det blir — och inte stå på samma plats mer än något eller några dygn.
           </p>
           <p>
             Många öar längs kusten är naturreservat — dessa är ofta helt avstängda för beträdande under våren för att inte störa fågelkolonierna. Kontrollera alltid innan du paddlar långt bort.
@@ -332,7 +332,7 @@ export default function AktiviteterPage() {
             <strong>5. Ha en mobil eller VHF med batteri.</strong> Många skärgårdsöar har svag täckning men en VHF radiomottagare kan rädda livet.
           </p>
           <p>
-            <strong>6. Respektera allemansrätten och naturreservaten.</strong> Lämna ingen skräp, gräv ned ditt toalettavfall minst 50 meter från vattnet, och läs före du paddlar långt bort.
+            <strong>6. Respektera allemansrätten och naturreservaten.</strong> Ta med allt skräp hem, gräv ned toalettavfallet en bra bit in på land — bort från strandlinjen, vattendrag, stigar och hus — och läs på om reglerna innan du paddlar långt bort.
           </p>
         </>
       }

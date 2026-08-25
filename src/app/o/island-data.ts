@@ -200,7 +200,7 @@ export const ISLANDS: Island[] = [
       'Sandhamn har en historia som lotsstation som sträcker sig flera hundra år tillbaka. Piloter var stationerade här för att guida handelsfartyg genom de smala ytterskärgårdspassagerna in mot Stockholm. Den praktiska sjömansmiljön formade byns karaktär: de gamla lotskojiorna och de trånga gränderna speglar en arbetskultur kopplad till havet som lever kvar i stadsbilden än i dag.',
       'Kungliga Svenska Segel Sällskapet, känt som KSSS, grundades 1830 och valde Sandhamn som sin hemmahavn. Det vita klubbhuset vid hamnen är ett av de mest fotograferade byggnaderna i skärgården. KSSS är en av de större segelsällskapen i Europa, och den status det ger Sandhamn märks i allt: gästhamnskapaciteten, utrustningsnivån och den specifika energin hos de som besöker ön.',
       'Varje sommar, normalt i slutet av juni eller början av juli, startar och slutar ÅF Offshore Race vid Sandhamn. Det är ett av världens större offshore-segeltävlingar med hundratals deltagande båtar. Tävlingsveckan förvandlar ön helt: hamnen fylls till kapacitet, restaurangerna vänder bord tre gånger per kväll och den sociala energin når en nivå som inget annat skärgårdsevenemang kan matcha.',
-      'Läget spelar roll. Sandhamn ligger ungefär 90 kilometer från centrala Stockholm, långt ut i ytterskärgården där vattnet är saltare och klipporna lägre och jämnare. Havet beter sig annorlunda här än vid innerskärgårdsplatser: svallvågorna är längre, vindarna mer stabila och horisonten bredare. På en klar dag från de östra klipporna ser du ingenting utom öppet Östersjövatten.',
+      'Läget spelar roll. Sandhamn ligger knappt 50 kilometer fågelvägen från centrala Stockholm — cirka 31 sjömil, drygt 55 km, sjövägen — långt ut i ytterskärgården där vattnet är saltare och klipporna lägre och jämnare. Havet beter sig annorlunda här än vid innerskärgårdsplatser: svallvågorna är längre, vindarna mer stabila och horisonten bredare. På en klar dag från de östra klipporna ser du ingenting utom öppet Östersjövatten.',
       'Byn samlas i öns västra del, nära hamnen. Men hundra meter öster om hamnarens livlighet smalnar stigarna till spår mellan gamla trästaket och köksträdgårdar. Hus från 1700- och 1800-talen, målade i rött och gult, kantar dessa gränder. Kontrasten med hamnenerginen är omedelbar och fullständig, vilket är en av Sandhamns bästa hemligheter.',
       'Ön har blivit internationellt känd genom Viveca Stens kriminalromanserie med Sandhamn som miljö. Böckerna, översatta till ett flertal språk, lockar en stadig ström av läsare som besöker ön specifikt för att promenera i de gator och vid de hamnar som beskrivs i berättelserna. Det är en ovanlig form av litterär turism som når besökare utan något specifikt intresse för segling.',
       'Östra kusten är till för dem som vill bort från hamnen. Klipporna här är jämnare än på västsidan, havet öppet och tystnaden bara bruten av sjöfåglar. På vardagar i axelsäsongen kan du promenera runt ön och möta nästan ingen. Det tar ungefär två timmar i lugnt tempo.',
@@ -431,7 +431,7 @@ export const ISLANDS: Island[] = [
     },
     amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
     dog_friendly: true,
-    dog_notes: 'Hundar välkomna. Naturreservat i södra delen har koppeltvång under häckningssäsong (april–juli). Värdshuset tillåter hundar i uteserveringen.',
+    dog_notes: 'Hundar välkomna. Naturreservat i södra delen har koppeltvång under häckningssäsong; enligt lag ska hundar dessutom hindras från att springa lösa i marker med vilt 1 mars–20 augusti, och reservatet kan ha egna perioder. Värdshuset tillåter hundar i uteserveringen.',
     insiderTips: [
       // KÄLLA: Stockholms läns museum — brytning möjligen redan på 1100-talet, nedlagd 1879 (2026-08-24)
       'Järngruvan på Utö var i drift från medeltiden — möjligen redan på 1100-talet — till 1879 och räknas till Sveriges äldsta kända järngruvor. Gruvsystemet kan besökas.',
@@ -3472,7 +3472,7 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Egen båt', from: 'Möja/Sandhamn', time: '5–7 h', desc: 'Inga reguljära förbindelser. Kräver erfaren besättning och stabil väderprognos.', icon: '⛵' }],
     harbors: [{ name: 'Svenska Högarnas naturhamn', desc: 'Liten skyddad vik på Storön. Endast i gott väder.' }],
     restaurants: [],
-    tips: ['Kontrollera SMHI noggrant — vid sydväst eller ostlig kuling är hamnen svår att lämna.', 'Fulltanka i Sandhamn eller Möja innan avfärd.', 'Naturreservatets regler gäller — respektera fågelhäckning april–juli.'],
+    tips: ['Kontrollera SMHI noggrant — vid sydväst eller ostlig kuling är hamnen svår att lämna.', 'Fulltanka i Sandhamn eller Möja innan avfärd.', 'Naturreservatets regler gäller — respektera fågelhäckningen; perioderna varierar, vanligen någon gång mellan 1 februari och 31 augusti enligt skyltar och föreskrifter.'],
     related: ['sandhamn', 'rodloga', 'huvudskar'],
     tags: ['ytterskärgård', 'heidenstam', 'fyr', 'naturreservat', 'segling'],
     did_you_know: 'Svenska Högarna är den enda platsen i Stockholms skärgård där det står en Heidenstam-fyr — Gustaf von Heidenstams banbrytande öppna järntornkonstruktion (samma typ som Pater Noster utanför Marstrand). Fyren restes 1874 och tillverkades på Ludvigsbergs Verkstad i Stockholm.',
@@ -3653,10 +3653,10 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Egen båt/kajak', from: 'Stavsnäs / Möja', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
     harbors: [{ name: 'Norrpada naturhamn', desc: 'Liten skyddad ankringsplats.' }],
     restaurants: [],
-    tips: ['Respektera fågelhäckning april–juli.', 'Ta med all proviant.'],
+    tips: ['Respektera fågelhäckningen; perioderna varierar, vanligen någon gång mellan 1 februari och 31 augusti enligt skyltar och föreskrifter.', 'Ta med all proviant.'],
     related: ['gallno', 'bullero'],
     tags: ['fågelliv', 'kajak', 'naturhamn', 'mellersta'],
-    did_you_know: 'Stockholms skärgård har över 25 000 öar, kobbar och skär — varav många mindre fågelrika öar som Norrpada. Många är skyddade som naturreservat med tillträdesförbud under fågelhäckningssäsongen april–juli.',
+    did_you_know: 'Stockholms skärgård har över 25 000 öar, kobbar och skär — varav många mindre fågelrika öar som Norrpada. Många är skyddade som naturreservat med tillträdesförbud under fågelhäckningen — perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti.',
   },
 
   {
@@ -4151,7 +4151,7 @@ export const ISLANDS: Island[] = [
     facts: {
       travel_time: '45–55 min med Styrsöbolaget från Saltholmen',
       character: 'Vilt, stilla, natur, ytterst',
-      season: 'Maj–September (fågelskydd: undvik klippreservatet april–juli)',
+      season: 'Maj–September (fågelskydd: undvik klippreservatet under häckningen — datumen står på skyltarna)',
       best_for: 'Naturälskare, fågelskådare, de som söker verkligt lugn',
     },
     activities: [
@@ -4171,7 +4171,7 @@ export const ISLANDS: Island[] = [
     ],
     tips: [
       'Gå hela vägen till sydspetsen — utsikten mot Nordsjön och de yttre skären är enastående.',
-      'Fågelskyddsperioden gäller i reservatets klippzoner april–juli: håll dig till stigen.',
+      'Fågelskyddsperioden gäller i reservatets klippzoner — datumen står på skyltarna och i föreskrifterna, vanligen någon gång mellan 1 februari och 31 augusti: håll dig till stigen.',
       'Ta med egen mat — utbudet är mycket begränsat på ön.',
     ],
     related: ['branno', 'styrso', 'asperon'],
@@ -4182,7 +4182,7 @@ export const ISLANDS: Island[] = [
       peak: 'Juli',
       best: 'Juni eller September',
       bestReason: 'Juni: reservatets fågelskyddsperiod börjar avta, havet är tyst och naturupplevelsen är ostörd. September: klart höstljus, inga turistmassorna och den vilda klippkusten på sitt bästa.',
-      warning: 'Fågelskyddsperiod i klippreservatet gäller april–juli — håll dig till markerade stigar. Cafét är bara öppet sommartid; ta med egen mat.',
+      warning: 'Fågelskyddsperiod i klippreservatet — datumen står på skyltarna och i länsstyrelsens föreskrifter, vanligen någon gång mellan 1 februari och 31 augusti; håll dig till markerade stigar. Cafét är bara öppet sommartid; ta med egen mat.',
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
   },
@@ -4607,7 +4607,7 @@ export const ISLANDS: Island[] = [
     emoji: '🏝',
     tagline: 'Östersjöns ensliga nationalpark — sanddyner, tallar och absolut avskildhet.',
     description: [
-      'Gotska Sandön är en av Sveriges mest avlägsna öar — och en av de mest fascinerande. Nationalparken i öppet Östersjövatten, ca 90 km norr om Fårö, har inga vägar, inga butiker och ingen fast bebyggelse utöver fyrvaktarbostaden och ett antal stugor.',
+      'Gotska Sandön är en av Sveriges mest avlägsna öar — och en av de mest fascinerande. Nationalparken i öppet Östersjövatten, cirka 37 km norr om Fårö, har inga vägar, inga butiker och ingen fast bebyggelse utöver fyrvaktarbostaden och ett antal stugor.',
       'Ön är ett geologiskt unikum: ett sandrevlande landskap format av Östersjöns vindar, med vandringsdyner, tallskogar som växer på sand och stränder som skiftar form varje år. Det är en ö som inte alls liknar någon annan i Sverige.',
       'Hit tar man sig med sommarbåt från Nynäshamn eller Fårösund under juni–september. Turen är lång, platserna begränsade och upplevelsen nästintill ogreppbar. Det är därför Gotska Sandön är en av de svenska bucket-list-destinationerna.',
     ],
@@ -5148,7 +5148,7 @@ export const ISLANDS: Island[] = [
       'Den engelska kyrkogårdens stenar är vittrade men läsliga. Sjömanens namn, skeppets namn, dödsdatum — det finns berättelser i varje sten.',
     ],
     dog_friendly: true,
-    dog_notes: 'Hund tillåten i naturreservatet. Håll koppel nära fågelhäcknings­områden (april–juli).',
+    dog_notes: 'Hund tillåten i naturreservatet. Håll koppel nära fågelhäcknings­områden — perioderna varierar, vanligen någon gång mellan 1 februari och 31 augusti enligt skyltarna.',
     did_you_know: 'Under Napoleonkrigen blockerade brittiska flottan Napoleons allierades hamnar i Östersjön. Hanö valdes som bas för sin strategiska position och naturliga hamn. Mer än 200 brittiska sjömän avled och begravdes på ön under åren 1810–1812.',
     amenities: {
       restaurant: false,

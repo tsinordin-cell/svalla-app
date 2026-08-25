@@ -1676,7 +1676,7 @@ Privatpersoner hyr ut allt från sjöbodar till villor i skärgården – och de
 Allemansrätten i Sverige ger rätt att tälta i naturen – även i skärgården. Det innebär att du faktiskt kan ta Waxholmsbåten ut, paddla till en öde ö och sova under stjärnorna gratis.
 
 **Regler att känna till:**
-- Tälta inte närmre än 70 meter från bebyggelse
+- Tältet ska stå utom syn- och hörhåll från boningshus — någon fast meteruppgift finns inte, terrängen avgör
 - Stör inte djurlivet (häckande fåglar, etc)
 - Ta med allt du tagit med dig hem
 - Elda inte på klipporna (brandrisk)
@@ -1706,7 +1706,7 @@ Om du har egen båt är gästhamnarna skärgårdens hotell. Flertalet öar med b
 Skärgårdsövernattning handlar inte nödvändigtvis om pengar. Med tält och rätt planering kan du ha en av sommarens bästa nätter — helt gratis.
    `,
    faqs: [
-     { q: 'Kan man tälta fritt i skärgården?', a: 'Ja, allemansrätten ger rätt att tälta 1–2 nätter på de flesta platser i naturen. Håll avstånd till bebyggelse (minst 70 m), ta med allt hem och elda inte på klipporna.' },
+     { q: 'Kan man tälta fritt i skärgården?', a: 'Ja, allemansrätten ger rätt att tälta 1–2 nätter på de flesta platser i naturen. Håll dig utom syn- och hörhåll från boningshus — någon fast meteruppgift finns inte — ta med allt hem och elda inte på klipporna.' },
      { q: 'Var hittar man stuguthyrning i skärgården?', a: 'Blocket.se har störst utbud av sommarstugor. Airbnb och Sverigestugor.se är kompletterande alternativ. Boka sommarveckor senast i mars.' },
      { q: 'Finns det vandrarhem i skärgården?', a: 'Ja. Vaxholms Kastell är ett unikt alternativ i en historisk fästningsmiljö. STF driver vandrarhem på flera öar, bland annat Utö.' },
    ],
