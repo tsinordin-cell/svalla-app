@@ -658,7 +658,8 @@ export const GUIDES: GuideMeta[] = [
     readTime: "8 min",
     fullContent: true,
     faqs: [
-      { q: 'Hur tar man sig till Vaxholm?', a: 'Pendelbåt 83/83X från Strömkajen tar ca 55 min. SL-buss 670 från Tekniska Högskolan T-bana tar ca 50 min och ingår i SL-abonnemanget. Med bil via E18 och Vaxholmsvägen tar det ca 40 min.' },
+      // KÄLLA: SL 2025 (pendelbåt 83 upphörde som SL-linje 29 april 2025, trafiken drivs av Waxholmsbolaget, alla SL-biljetter gäller) + Waxholmsbolagets tidtabell linje 4A, giltig 2026. Läst 2026-08-25.
+      { q: 'Hur tar man sig till Vaxholm?', a: 'Waxholmsbolagets båt (linje 4A) från Strömkajen tar ungefär en timme — restiden varierar med antal angöringar. Alla SL-biljetter gäller sedan 30 april 2025, då pendelbåt 83 lades ned som SL-linje. SL-buss 670 från Tekniska Högskolan T-bana tar ca 50 min. Med bil via E18 och Vaxholmsvägen tar det ca 40 min.' },
       { q: 'Är SL-kortet giltigt till Vaxholm?', a: 'SL-kortet gäller för bussresan (linje 670), men INTE på Waxholmsbolagets pendelbåt. Pendelbåten kräver separat biljett via Waxholmsbolagets app eller hemsida.' },
       { q: 'Vad gör man i Vaxholm på en dag?', a: 'Besök Vaxholms fästning (museum, guidade turer), promenera längs Hamngatan med sina trävillor, ät lunch på Waxholms Hotell med havsvy och utforska de lokala butikerna. Räkna med 4–6 timmar för en bekväm dagstur.' },
       // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
@@ -708,7 +709,7 @@ export const GUIDES: GuideMeta[] = [
     faqs: [
       { q: 'Vilka pendelbåtslinjer finns i Stockholm?', a: 'Waxholmsbolaget driver flest linjer – till Vaxholm (83/83X), Lidingö, Djurgården, Nacka Strand och ytterskärgården. Strömma trafikerar Djurgården, Fjäderholmarna och turistlinjerna. SL-zonen täcker pendelbåtarna närmast stan.' },
       { q: 'Gäller SL-kortet på Waxholmsbolaget?', a: 'SL-kortet gäller på Waxholmsbolagets linjer inom SL-zonen A+B. Det inkluderar bl.a. trafiken till Vaxholm och närmaste öar. För yttre skärgården (Grinda, Sandhamn, Utö) behövs Waxholmsbolagets egna biljetter.' },
-      { q: 'Hur lång tid tar båten till Vaxholm?', a: 'Pendelbåt 83 från Strömkajen i centrala Stockholm tar ca 55 minuter till Vaxholm. Det är den snabbaste vägen och går året om.' },
+      { q: 'Hur lång tid tar båten till Vaxholm?', a: 'Waxholmsbolagets båt från Strömkajen tar ungefär en timme till Vaxholm och går året om. Snabbast är den inte — buss 670 tar ca 50 minuter och bil via E18 ca 40 — men den är den trevligaste vägen ut.' },
       { q: 'Hur bokar man biljett till Waxholmsbolaget?', a: 'Biljetter köps i appen Waxholmsbolaget, på waxholmsbolaget.se eller direkt ombord med kort. Årskortet "Skärgårdskortet" är lönsamt om du gör fler resor per säsong.' },
     ],
   },

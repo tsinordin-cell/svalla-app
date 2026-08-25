@@ -11,7 +11,8 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">OSTKUSTEN: 8 alternativ</h3>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">1. Vaxholm – skärgårdens klassiker</h4>
-<p><strong>Hur du tar dig dit:</strong> Pendelbåt 83/83X från Strömkajen, ca 55 min. Buss 670 från Tekniska Högskolan T, ca 50 min. Med bil via E18 och Vaxholmsvägen, ca 40 min från Stockholm.</p>
+{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets tryckta tidtabell för linje 4A Stockholm-Vaxholm-Ramsösund-Ålstäket, giltig 2 april-18 juni och 17 augusti-12 december 2026. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
+<p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets båt (linje 4A) från Strömkajen, ungefär en timme — restiden varierar med antal angöringar. Alla SL-biljetter gäller sedan 30 april 2025. Buss 670 från Tekniska Högskolan T, ca 50 min. Med bil via E18 och Vaxholmsvägen, ca 40 min från Stockholm — bussen och bilen är alltså snabbare än båten.</p>
 <p><strong>Upplev:</strong> Vaxholm arrangerar en av skärgårdens finaste midsommarfiranden med majstång på Rådhustrappan. Stadens gator fylls av folk i folkdräkt, lokalt hantverk säljs och stämningen är genuint gammalsvensk utan att kännas kitschig. Klättra upp på Vaxholms fästning för en fantastisk utsikt över Mysingen.</p>
 <p><strong>Var du äter:</strong> Vaxholms Hembygdsgård serverar traditionell midsommarbuffé med sill, potatis och jordgubbar. Boka minst två veckor i förväg. Hemma hos Josephine på Fiskaregatan är ett intimt alternativ med husmanskost. Waxholms Hotell erbjuder en fullmatad midsommarbuffé med havsvy direkt mot fästningen.</p>
 <p><strong>Insider-tips:</strong> Ta kvällsbåten tillbaka till Stockholm – solnedgången längs Vaxholmsleden är värd hela resan. Om du stannar natten, boka på Waxholms Hotell – det är det enda riktiga hotellet i stan.</p>
@@ -344,8 +345,8 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Populäraste linjerna och restider</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-{/* KÄLLA: Waxholmsbolagets GTFS-linjelista (2-40-serien) + sl.se (pendelbåt 83 Strömkajen-Vaxholm) 2026-08-23. Tidigare linjenummer 80/350/444/670-671 fanns inte - beskriv rutter, hänvisa till SL-appen for nummer. */}
-<li><strong>Strömkajen → Vaxholm</strong>: pendelbåt 83, ca 55 min — tätast trafik i skärgården.</li>
+{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets tryckta tidtabell för linje 4A Stockholm-Vaxholm-Ramsösund-Ålstäket, giltig 2 april-18 juni och 17 augusti-12 december 2026. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
+<li><strong>Strömkajen → Vaxholm</strong>: Waxholmsbolagets linje 4A, ungefär en timme — tätast trafik i skärgården. SL-biljetter gäller.</li>
 <li><strong>Strömkajen → Sandhamn</strong> via Vaxholm och Grinda: ca 3,5 h med Waxholmsbolaget.</li>
 <li><strong>Stavsnäs → Sandhamn</strong>: ca 1 h överfart (SL-buss 433/434 från Slussen till Stavsnäs).</li>
 <li><strong>Stavsnäs → Möja</strong>: ca 1 h 15 min till Möja Söderhamn.</li>
@@ -1307,8 +1308,8 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Waxholmsbolagets linjer – översikt</h3>
 <p>Waxholmsbolaget driver ca 50 linjer med tät trafik inomskärs under rushningstid. Dessa linjer fungerar som pendlingalternativ för boende i skärgårdssamhällen:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-{/* KÄLLA: sl.se (pendelbåt 83) + Waxholmsbolagets GTFS-linjelista 2026-08-23. Fabricerade linjenummer ersatta med rutter. */}
-<li><strong>Strömkajen – Vaxholm:</strong> pendelbåt 83 (ingår i SL-taxan), ca 55 min</li>
+{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets tryckta tidtabell för linje 4A Stockholm-Vaxholm-Ramsösund-Ålstäket, giltig 2 april-18 juni och 17 augusti-12 december 2026. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
+<li><strong>Strömkajen – Vaxholm:</strong> Waxholmsbolagets linje 4A — alla SL-biljetter gäller sedan 30 april 2025 — ungefär en timme</li>
 <li><strong>Strömkajen – mellanskärgården:</strong> Waxholmsbolaget mot Grinda, Svartsö och Finnhamn</li>
 <li><strong>Stavsnäs – Sandhamn och Möja:</strong> Waxholmsbolagets båtar, ca 1–1,5 h</li>
 <li><strong>Norrtälje/Simpnäs – Arholma:</strong> kort överfart till norra skärgårdens utpost</li>
@@ -3581,7 +3582,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det här itinerariet utgår från Stockholm och använder Waxholmsbolagets reguljärtrafik. Det är designat för ett par eller en liten grupp utan barn (barnvänlig variant finns i slutet). Du behöver: Waxholmsbolagets sommarkort (995 kr), boende förbeställt, stövlar och regnkläder, och förmågan att ta det lugnt.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dag 1 – Vaxholm: Introduktionen</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Börja med det enkla. Ta pendelbåten till Vaxholm (45 min), promenera längs hamnpromenaden, besök Vaxholms fästning och ät lunch vid vattnet. Tillbaka för övernattning i Stockholm om du ännu inte åkt ut. Vaxholm ger dig känslan av skärgård utan att kräva planering – perfekt dag ett.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Börja med det enkla. Ta Waxholmsbolagets båt till Vaxholm (ungefär en timme), promenera längs hamnpromenaden, besök Vaxholms fästning och ät lunch vid vattnet. Tillbaka för övernattning i Stockholm om du ännu inte åkt ut. Vaxholm ger dig känslan av skärgård utan att kräva planering – perfekt dag ett.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dag 2 – Grinda: Familje-favoriten</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Morgonbåten till Grinda (ca 2,5 h). Checka in på Grinda Wärdshus eller tältplatsen. Eftermiddag: sandstranden vid Lövudden, kajakhyrning och vandring runt ön. Kväll: middag på wärdshuset. Sov på Grinda.</p>
@@ -3856,7 +3857,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Nybrokajen–Fjäderholmarna (25 min)</h3>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den kortaste och barnvänligaste turen. 25 minuter med Strömma och barnen hinner njuta av utsikten utan att tröttna. På Fjäderholmarna finns piratlekar, djur och restauranger. Perfekt för barn 2–8 år.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Strömkajen–Vaxholm (45 min)</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Strömkajen–Vaxholm (ungefär en timme)</h3>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Pendelbåten till Vaxholm är en av skärgårdens mest trafikerade linjer och Waxholmsbolagets moderna fartyg har stora salonger med bra insyn. Barnen ser fästningar, fyrar och öar längs vägen. Vid Vaxholm finns glass, museum och fästning att besöka.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Cinderellabåten – dagskryssning</h3>
@@ -7463,7 +7464,8 @@ export function getGuideContent(slug: string): string {
 <p>Vaxholm är skärgårdens mest pålitliga allsäsongs-destination. Kök, café och restauranger håller öppet. Fästningsmuseet kör höstöppettider. Och båten från Stockholm är under en timme.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Hur du tar dig dit</h4>
-<p>Pendelbåt 83/83X från Strömkajen, ca 55 minuter. Avgårnar varannan timme ungefär – kolla tidtabellen. Buss 670 från Tekniska Högskolan T går hela året.</p>
+{/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets tryckta tidtabell för linje 4A Stockholm-Vaxholm-Ramsösund-Ålstäket, giltig 2 april-18 juni och 17 augusti-12 december 2026. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
+<p>Waxholmsbolagets linje 4A från Strömkajen, ungefär en timme — restiden varierar med antal angöringar. Avgångarna ligger ungefär varannan timme – kolla tidtabellen. Buss 670 från Tekniska Högskolan T går hela året och tar ca 50 min.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vad du gör</h4>
 <p>Vaxholms fästning är värd ett besök i sig – museet visar Stockholms försvarshistoria och utsikten mot Vaxholmsleden är fantastisk på hösten med klara, skarpa dagar. Promenera Rådhusgatan och de gamla träkvarteren. Köp räkor direkt från fiskebåtar vid hamnen.</p>
