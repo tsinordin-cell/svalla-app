@@ -178,7 +178,7 @@ export default function NaturhamnarPage() {
             Vilken naturhamn passar dig? Det beror på <strong>djup, vindkvartal och tid på året</strong>. En bra naturhamn skyddar mot vinden från det håll prognosen säger, har gott djup och en botten där ankaret håller — typiskt sand eller lera. Östersjön har ingen tidvattendynamik att tala om (vattenståndet styrs av vind och lufttryck och varierar oftast bara några decimeter), så &quot;djup vid lågvattnet&quot; är inte samma sak som på västkusten.
           </p>
           <p>
-            Allemansrätten ger dig rätt att tillfälligt ankra och vistas i skärgården, men också skyldigheter. Ta hand om miljön. Lämna inget efter dig. Respektera fågelskyddsområden (landstigningsförbud 1 april–15 juli i många reservat) och privatägd mark. En naturhamn är en förmån — behandla den så.
+            Allemansrätten ger dig rätt att tillfälligt ankra och vistas i skärgården, men också skyldigheter. Ta hand om miljön. Lämna inget efter dig. Respektera fågelskyddsområden (landstigningsförbud under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter) i många reservat) och privatägd mark. En naturhamn är en förmån — behandla den så.
           </p>
         </>
       }

@@ -273,7 +273,7 @@ export function getGuideContent(slug: string): string {
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Känsliga naturområden</h3>
-<p>Vissa platser i skärgården är särskilt skyddade under häckningstid (1 april–31 juli):</p>
+<p>Vissa platser i skärgården är särskilt skyddade under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter):</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Skär med häckande fågelkolonier: håll 100 meter avstånd – se skyltar</li>
 <li>Sälinventeringsområden: motorbåtar får inte komma nära vilande sälar</li>
@@ -1602,7 +1602,7 @@ export function getGuideContent(slug: string): string {
 <li><strong>1–2 nätter på samma plats:</strong> Du får slå läger kortare tid på samma ställe. Längre vistelse räknas som camping och kan kräva markägarens tillstånd.</li>
 <li><strong>Avstånd från bebyggelse:</strong> Respektera privata tomter och boende. Håll tillräckligt avstånd – riktmärket är att du inte ska störa eller synas direkt från huset.</li>
 <li><strong>Naturreservat:</strong> Naturreservat har egna regler som ibland förbjuder tältning helt, eller begränsar den till anvisade platser. Kontrollera Länsstyrelsens information för varje specifikt reservat.</li>
-<li><strong>Fågelskyddsområden:</strong> Beträd inte fågelskyddsområden under häckningstid (generellt 1 april – 15 juli).</li>
+<li><strong>Fågelskyddsområden:</strong> Beträd inte fågelskyddsområden under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter).</li>
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa tältöarna i Stockholms skärgård</h3>
@@ -5865,7 +5865,7 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tänk på i juni</h2>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Fågelskyddsområden: 1 april–31 juli gäller tillträdesförbud till kobbar och skär</li>
+  <li>Fågelskyddsområden: tillträdesförbud till kobbar och skär under häckningstid — perioderna varierar, vanligen mellan 1 februari och 31 augusti (se skyltar)</li>
   <li>Myggor tidigt på morgon och kväll i inre skärgården – ta med myggmedel</li>
   <li>Kolla att restaurangen du planerar besöka faktiskt är öppen i just din vecka</li>
   <li>Tidtabeller för Waxholmsbolaget skiftar – sommartidtabellen gäller från mitten av juni</li>
@@ -6901,7 +6901,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa arterna att se</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Havsörn:</strong> Återetablerad i skärgården sedan 1980-talet. Ses längs hela skärgården – håll utkik vid Landsort och Utö i söder. Sitter gärna vid vatten och klippor i väntan på fisk.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Ejder:</strong> Skärgårdens vanligaste sjöfågel. Hanarna är spektakulärt svartvita. Ruggar i juli–aug och familjegrupper med ungar är charmiga i juni. Syns längs alla skärgårdsöar.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Skräntärna och fisktärna:</strong> Sommargäster som häckar på kobbar. Aggressiva försvarare av bon – håll avstånd 1 april–31 juli. Ser ut som levande pilar över vattnet.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Skräntärna och fisktärna:</strong> Sommargäster som häckar på kobbar. Aggressiva försvarare av bon – håll avstånd under häckningstid (perioderna varierar, vanligen 1 februari–31 augusti). Ser ut som levande pilar över vattnet.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Groddar och lunnefåglar:</strong> I ytterskärgården. Landsorts groddar och Arholma är bra platser för mer sällsynta arter.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa platserna</h2>
@@ -7032,7 +7032,7 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Naturhänsyn</h2>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Respektera fågelskyddsförbud 1 april–31 juli på kobbar och skär</li>
+  <li>Respektera fågelskyddsförbuden på kobbar och skär — perioderna varierar mellan områden, vanligen mellan 1 februari och 31 augusti (se skyltar)</li>
   <li>Lämna inga spår – ta med allt skräp, även organiskt</li>
   <li>Ankra inte på känsliga bottentyper – sand och gräs skadas av ankare</li>
   <li>Välj miljömärkt solkräm – korallsäker kräm skonar det marina livet</li>
@@ -7237,7 +7237,7 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tänk på</h2>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Fågelskyddsförbud 1 april–31 juli – håll avstånd till kobbar och skär</li>
+  <li>Fågelskyddsförbud under häckningstid (perioderna varierar, vanligen 1 februari–31 augusti) – håll avstånd till kobbar och skär</li>
   <li>Myggor börjar i slutet av maj i inre skärgård – ta med myggmedel</li>
   <li>Havsvattnet är 8–12°C i maj – paddling och simning kräver våtdräkt</li>
   <li>Restauranger öppnar gradvis – kolla i förväg om du planerar lunch på ön</li>
