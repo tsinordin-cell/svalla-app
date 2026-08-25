@@ -1307,7 +1307,7 @@ export const TRIPS: Trip[] = [
         name: 'Vandring på Bullerö',
         type: 'natur',
         desc: 'Öppna hällmarker, gammal skog och fågelkolonier. Markerade leder runt reservatet.',
-        tip: 'Håll dig till lederna under häckningstid (april–juli) för att inte störa fåglarna.',
+        tip: 'Håll dig till lederna under häckningstiden för att inte störa fåglarna — perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti.',
       },
       {
         name: 'Fågelskådning',
