@@ -1257,7 +1257,7 @@ export const ISLANDS: Island[] = [
     ],
     getting_there: [
       { method: 'Bil', from: 'Stockholm', time: '45 min', desc: 'Kör E4 söderut och följ skyltning mot Haninge och Dalarö.', icon: '🚗' },
-      { method: 'Pendeltåg + Buss', from: 'Stockholm Central', time: '90 min', desc: 'Pendeltåg till Handen, sedan buss 834 till Dalarö.', icon: '🚌' },
+      { method: 'Pendeltåg + Buss', from: 'Stockholm Central', time: '90 min', desc: 'Pendeltåg till Handen, sedan buss 839 till Dalarö. Buss 869 går också direkt från Gullmarsplan.', icon: '🚌' },
     ],
     harbors: [
       { name: 'Dalarö Gästhamn', desc: 'Välskött hamn med full service. Bra utgångspunkt för vidare segling söderut.', fuel: false, service: ['el', 'vatten', 'dusch', 'toilet'] },
