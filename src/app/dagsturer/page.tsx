@@ -80,7 +80,7 @@ export default function DagsturerPage() {
  {
  '@type': 'Question',
  name: 'Hur länge tar dagstur till Sandhamn från Stockholm?',
- acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbåten går direkt från Strömkajen bara 19 juni–16 augusti och tar då 3 tim 45 min till knappt 5 timmar. Cinderella från Strandvägen går 30 april–27 september på 2 tim 30 min. Snabbast året runt: buss 433 eller 434 till Stavsnäs vinterhamn, knappt 50 min, och sedan båt, 30–70 min. Tillsammans med 2–3 timmar på ön blir det en komplett dagstur.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbåten går direkt från Strömkajen bara 19 juni–16 augusti och tar då 3 tim 45 min till knappt 5 timmar. Cinderella från Strandvägen går 30 april–27 september på 2 tim 30 min. Snabbast året runt: buss 433 eller 434 till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnet, och sedan båt, 30–70 min. Tillsammans med 2–3 timmar på ön blir det en komplett dagstur.' },
  },
  {
  '@type': 'Question',
@@ -149,7 +149,7 @@ export default function DagsturerPage() {
  Hur länge tar dagstur till Sandhamn?
  </h3>
  <p>
- Direktbåten från Strömkajen (Waxholmsbolaget) går bara 19 juni–16 augusti och tar 3 tim 45 min till knappt 5 timmar beroende på avgång och byte i Finnhamn. Snabbare är <strong>Cinderellabåtarna</strong> från Strandvägen kajplats 14 på 2 tim 30 min, med längre säsong (30 april–27 september) — eller, året runt, buss 433/434 till Stavsnäs vinterhamn, knappt 50 minuter, och därifrån båt: Sandhamnslinjen 30 minuter, Waxholmsbolagets linje 16 30–70 minuter. Med 2–3 timmar på ön blir det en fin dag, men många väljer att stanna en natt på vandrarhem eller pensionat.
+ Direktbåten från Strömkajen (Waxholmsbolaget) går bara 19 juni–16 augusti och tar 3 tim 45 min till knappt 5 timmar beroende på avgång och byte i Finnhamn. Snabbare är <strong>Cinderellabåtarna</strong> från Strandvägen kajplats 14 på 2 tim 30 min, med längre säsong (30 april–27 september) — eller, året runt, buss 433/434 till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnetuter, och därifrån båt: Sandhamnslinjen 30 minuter, Waxholmsbolagets linje 16 30–70 minuter. Med 2–3 timmar på ön blir det en fin dag, men många väljer att stanna en natt på vandrarhem eller pensionat.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

@@ -18,7 +18,7 @@ export function getGuideContent(slug: string): string {
 <p><strong>Insider-tips:</strong> Ta kvällsbåten tillbaka till Stockholm – solnedgången längs Vaxholmsleden är värd hela resan. Om du stannar natten, boka på Waxholms Hotell – det är det enda riktiga hotellet i stan.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">2. Sandhamn – seglarnas midsommar</h4>
-<p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets båt från Stavsnäs (nås med SL-buss 433 eller 434 från Slussen, knappt 50 min), ca 1 h 30 min. Alternativt Cinderellabåten från Strandvägen på midsommaraftonen – bokningsbiljett krävs.</p>
+<p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets båt från Stavsnäs (nås med SL-buss 433 från Slussen, 48–59 min — buss 434 vänder tidigare på eftermiddagen och går då inte hela vägen), ca 1 h 30 min. Alternativt Cinderellabåten från Strandvägen på midsommaraftonen – bokningsbiljett krävs.</p>
 <p><strong>Upplev:</strong> Sandhamn är seglarklubbars huvudkvarter. Under midsommar fylls Sandhamns naturhamn av hundratals segelbåtar, och festligheterna pågår nonstop. Sandhamns segelsällskap arrangerar dans och musik vid bryggan. Badplatsen Trouville är lysande midsommardag.</p>
 <p><strong>Var du äter:</strong> Sandhamns Värdshus är det självklara valet – välkänt för sin midsommarbuffé med lokalt rökta räkor. Boka bord minst en månad i förväg för midsommaraftonen. Seglarhotellet erbjuder också fullspäckad midsommarlunch.</p>
 <p><strong>Insider-tips:</strong> Kom gärna kvällen innan (midsommarafton minus ett) och inta de bästa bryggplatserna. Ta med tält om du planerar övernattning – alla boenden är fullbokade månader i förväg.</p>
@@ -31,7 +31,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">4. Utö – söderut med historia</h4>
 <!-- KÄLLA: Waxholmsbolagets tabell 21 Årsta-Utö (Årsta brygga 08.25 -> Gruvbryggan 09.05 = 40 min; 10.25 -> 11.20 = 55 min; -> Spränga 55-60 min), gäller 2 april-18 juni och 17 augusti-12 december 2026. Tabell 22 heter "NYNÄSHAMN - NÅTTARÖ - ÅLÖ" och slutar på Ålö, en egen ö söder om Utö med broförbindelse - inte på Utö by; restiden dit är 55-60 min och linjen går inte måndag eller tisdag i höst. Buss 846 Västerhaninge station-Årsta brygga: 16 min. Läst 2026-08-25. -->
-<p><strong>Hur du tar dig dit:</strong> Året runt via Årsta brygga: pendeltåg till Västerhaninge, buss 846 (16 min) och sedan båt till Gruvbryggan, 40–55 min. Nynäshamnsbåten går till grannön Ålö, inte till Utö by, och går inte måndag eller tisdag i höst. Alternativt direktbåt från Strömkajen på midsommaraftonen.</p>
+<p><strong>Hur du tar dig dit:</strong> Året runt via Årsta brygga: pendeltåg till Västerhaninge, buss 846 (16 min) och sedan båt till Gruvbryggan, 35–75 min (beställningsbrygga på de flesta turer). Nynäshamnsbåten går till grannön Ålö, inte till Utö by, och går inte måndag eller tisdag i höst. Alternativt direktbåt från Strömkajen på midsommaraftonen.</p>
 <p><strong>Upplev:</strong> Utö är en av skärgårdens vackraste öar med gruvruin och unika naturlandskap. Midsommarfirandet sker traditionsenligt vid gruvorna med dans och musik. Hyra cykel och utforska ön är ett självklart midsommarprogram.</p>
 <p><strong>Var du äter:</strong> Utö Värdshus är öns kronjuvel – reservera månader i förväg. Bakfickan serverar enklare rätter för spontanbesökare. Vandrarhemsköket är tillgängligt för de som självhushållar.</p>
 <p><strong>Insider-tips:</strong> Utö Havsbastu på midsommarnatten är en oförglömlig upplevelse om du lyckas få en plats.</p>
@@ -395,7 +395,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">5. Utö – södra skärgårdens höjdpunkt</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
-<p><strong>Transport:</strong> Pendeltåg linje 43 från Stockholm City till Västerhaninge, buss 846 till Årsta brygga (16 min) och sedan Waxholmsbolagets båt till Gruvbryggan, 40–55 min. Totalt drygt två timmar. Pendeltåg och buss ingår i SL-taxan.</p>
+<p><strong>Transport:</strong> Pendeltåg linje 43 från Stockholm City till Västerhaninge, buss 846 till Årsta brygga (16 min) och sedan Waxholmsbolagets båt till Gruvbryggan, 35–75 min — Gruvbryggan är beställningsbrygga på de flesta turer. Totalt drygt två timmar. Pendeltåg och buss ingår i SL-taxan.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p><strong>Pris:</strong> Pendeltåg gratis med SL-kort, Waxholmsbåt ca 210 kr enkel resa.</p>
 <p><strong>Upplev:</strong> Utö har det mesta: gruvruin, cykelleder, havsbastu och en av skärgårdens bästa restauranger (Utö Värdshus). Ön kräver minst ett dygn för att göra den rättvisa.</p>
@@ -404,9 +404,9 @@ export function getGuideContent(slug: string): string {
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Ornö – söder om Stockholm, bortom turisterna</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
 <!-- KÄLLA: Waxholmsbolagets tabell 20 (fartyg ORNÖ BILFÄRJA, Dalarö 06.30 -> Hässelmara 06.55 = 25 min, anm. O: "Avgången körs av Ornö Bilfärja, särskild taxa gäller") + ornosjotrafik.se ("Överfarten tar ca 30 minuter", personbil 120 kr t/r, passagerare 60 kr enkel, turlista 27 april-13 september 2026). Färjan drivs av Ornö Sjötrafik AB och finns inte bland Trafikverkets 43 leder - den är alltså inte avgiftsfri. Läst 2026-08-25. -->
-<p><strong>Transport:</strong> SL-buss 839 från Handens station (36–39 min), sedan Ornö Sjötrafiks bilfärja från Dalarö, 25–30 min. Totalt drygt 1 h 30 min. Bussen ingår i SL-taxan, men färjan har egen taxa — 60 kr per person enkel resa, 120 kr tur och retur för personbil. Turlistan gäller 27 april–13 september.</p>
+<p><strong>Transport:</strong> SL-buss 839 från Handens station (36–39 min), sedan Ornö Sjötrafiks bilfärja från Dalarö, ca 30 min enligt rederiet. Totalt drygt 1 h 30 min. Bussen ingår i SL-taxan, men färjan har egen taxa. Rederiet säljer bara tur- och returbiljetter: 60 kr per person och 120 kr för personbil, båda tur och retur. Prislistan är daterad 2022-09-19. Turlistan gäller 27 april–13 september och någon vintertabell är ännu inte publicerad.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p><strong>Pris:</strong> Buss gratis med SL-kort, bilfärja ca 60 kr per person, ca 120 kr med cykel.</p>
+<p><strong>Pris:</strong> Buss ingår i SL-taxan. Ornöfärjan har egen taxa och säljer bara tur- och returbiljetter: 60 kr per person, 120 kr för personbil — tur och retur i båda fallen (prislista daterad 2022-09-19).</p>
 <p><strong>Upplev:</strong> Ornö är stor, skogsrik och har knappt några turister. Perfekt för vandring och att hyra cykel för att utforska öns skogar och klippor.</p>
 <p><strong>Praktisk info:</strong> Ornö har begränsat med restauranger – ta med matsäck. Tältning möjlig i naturreservatet.</p>
 
@@ -1760,7 +1760,7 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig dit</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><!-- KÄLLA: SL:s tryckta tidtabell för pendeltågslinje 43 Bålsta-Nynäshamn (kund.printhuset-sthlm.se/sl/s43.pdf): Stockholm City 07.06 -> Nynäshamn 08.11 och 08.06 -> 09.11, alltså 65 min. Stationslistan går Odenplan-Stockholm City; Stockholm Central är inte längre en pendeltågsstation sedan Citybanan öppnade 2017. Linjenumren 36/37 hör till numreringen före Citybanan; dagens nät använder 40-48. Länsstyrelsen Stockholm anger oberoende "pendeltåg från Stockholm till Nynäshamn (1 timme)". Läst 2026-08-25. -->
-Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), sedan Waxholmsbolagets båt — men observera att Nynäshamnslinjen slutar på grannön Ålö, inte på Utö by, och inte går måndag eller tisdag i höst. Till Utö by (Gruvbryggan) går båten från Årsta brygga på 40–55 min. Det går avgångar hela dagen. Under sommaren finns också direktbåt från Strömkajen — längre restid men bekvämt om du är i city. Tar du bil till Årsta brygga nära Nynäshamn kan du ta med cyklar och mer utrustning.</p>
+Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), sedan Waxholmsbolagets båt — men observera att Nynäshamnslinjen slutar på grannön Ålö, inte på Utö by, och inte går måndag eller tisdag i höst. Till Utö by (Gruvbryggan) går båten från Årsta brygga på 35–75 min, och Gruvbryggan är beställningsbrygga på de flesta turer. Det går avgångar hela dagen. Under sommaren finns också direktbåt från Strömkajen — längre restid men bekvämt om du är i city. Tar du bil till Årsta brygga nära Nynäshamn kan du ta med cyklar och mer utrustning.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Via Nynäshamn (rekommenderas):</strong> Pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), sedan Waxholmsbolagets pendelbåt till Utö (ca 35–50 min beroende på linje). Avgångar hela dagen.</li>
 <li><strong>Via Strömkajen (sommar):</strong> Direktbåt med Waxholmsbolaget under sommarsäsongen. Längre restid (~2,5 h) men bekvämare om du är i stan. Kontrollera aktuell tidtabell – direktlinjen avgår inte hela säsongen.</li>
@@ -6541,7 +6541,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ön är känd för sin stora andel sommarvillor och en sommarmarknad som lockar besökare från hela södra skärgården. Havet runt är lättillgängligt och badorterna varierande.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Runmarö</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Waxholmsbolaget via Stavsnäs:</strong> Ta SL-buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, knappt 50 min. Sedan Waxholmsbåt till Runmarö, ytterligare ca 30–45 min. Kolla aktuell tidtabell på waxholmsbolaget.se – sommar- och vinterdrift skiljer sig markant.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Waxholmsbolaget via Stavsnäs:</strong> Ta SL-buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnet. Sedan Waxholmsbåt till Runmarö, ytterligare ca 30–45 min. Kolla aktuell tidtabell på waxholmsbolaget.se – sommar- och vinterdrift skiljer sig markant.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bil till Stavsnäs: Parkering finns i Stavsnäs. Med bil till Stavsnäs tar du SL-buss till Slussen om du vill undvika extra kostnader – alternativt kör dit och betala parkering.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På ön</h2>
@@ -6614,7 +6614,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Budget-transport i Stockholms skärgård</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>SL-pendelbåtar:</strong> Ingår i SL-kortet. Avgår till Fjäderholmarna, Nacka Strand och längs Mälaren. Billigaste sättet att komma ut på vattnet.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Waxholmsbolaget månadskort:</strong> Om du åker ofta – Waxholmsbolagets perioder- och månadskort ger bättre pris per resa.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stavsnäs-pendeln:</strong> Buss 433 eller 434 från Slussen (SL) till Stavsnäs vinterhamn, knappt 50 min, sedan Waxholmsbåt till Möja, Runmarö och omgivande öar. Kombinationen SL + Waxholm ger avsevärt lägre kostnad än att köra bil.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stavsnäs-pendeln:</strong> Buss 433 eller 434 från Slussen (SL) till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnet, sedan Waxholmsbåt till Möja, Runmarö och omgivande öar. Kombinationen SL + Waxholm ger avsevärt lägre kostnad än att köra bil.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Budget-boende</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Tältning via allemansrätten:</strong> Gratis på de flesta öar och kuststränder. Ta med eget tält, sovsäck och mat – kostnaden är noll. Lämna inga spår.</p>
@@ -6869,7 +6869,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Värmdö</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med bil:</strong> Värmdöleden (väg 222) från Stockholm direkt ut till Gustavsberg och vidare söderut. Ca 30 min till Gustavsberg, 40–50 min till Stavsnäs i söder.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kollektivt:</strong> Buss 474 och 433 från Slussen mot Gustavsberg och Hemmesta. Buss 433 och 434 fortsätter från Slussen till Stavsnäs vinterhamn, knappt 50 min – härifrån avgår Waxholmsbåtar till Runmarö, Sandhamn och Möja.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kollektivt:</strong> Buss 474 och 433 från Slussen mot Gustavsberg och Hemmesta. Buss 433 och 434 fortsätter från Slussen till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnet – härifrån avgår Waxholmsbåtar till Runmarö, Sandhamn och Möja.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Höjdpunkter</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Baggensfjärden:</strong> Vindlande fjärd med klippor, strandängar och kajakuthyrning vid Baggensudde. Nås med buss 474 eller bil.</p>
@@ -7457,7 +7457,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Hur du tar dig dit</h4>
 <!-- KÄLLA: SL:s tidtabell för linje 433/434 (kund.printhuset-sthlm.se/sl/s433434.pdf): Slussen–Djurö respektive Slussen–Vindö, båda via Stavsnäs vinterhamn, restid Slussen–Stavsnäs knappt 50 min (uppmätt i två oberoende läsningar av kolumnen: 09.18→10.06 och 10.18→11.05; en tidigare läsning gav 28–36 min och var fel). Linje 834 går Rudsjöterrassen–Haninge centrum–Brandbergen–Svartbäcken och passerar varken Slussen, Stavsnäs eller Dalarö. Till Dalarö går buss 839 från Handens station och 869 direkt från Gullmarsplan (alltomdalaro.se + SL). Läst 2026-08-25. -->
-<p>Waxholmsbolaget från Stavsnäs (buss 433 eller 434 från Slussen, knappt 50 min till Stavsnäs vinterhamn, sedan båt ca 1 h). Kontrollera hösttidtabell – avgångarna är färre men fortfarande dagliga. Alternativt ta bil till Stavsnäs och ta båten därifrån.</p>
+<p>Waxholmsbolaget från Stavsnäs (buss 433 eller 434 från Slussen, 48–59 min till Stavsnäs vinterhamn beroende på tid på dygnet, sedan båt ca 1 h). Kontrollera hösttidtabell – avgångarna är färre men fortfarande dagliga. Alternativt ta bil till Stavsnäs och ta båten därifrån.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vad du gör</h4>
 <p>Promenera ut till Trouville och Koben – ytterskärgårdens stränder som på sommaren är fullpackade men på hösten är folktoma. Vandra Sandhamns gamla strandväg. Ta en öl på Sandhamns Värdshus bar och titta ut mot den nu lugnare hamnen.</p>
