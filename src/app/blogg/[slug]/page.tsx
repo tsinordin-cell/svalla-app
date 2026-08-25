@@ -60,7 +60,7 @@ För frukost eller fika är Bryggcafé 7an oöverträffat. Nybakat bröd, smör 
 
 ## Praktisk info
 
-Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara 19 juni–16 augusti, och då tar turen mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (knappt 50 min) och därifrån Waxholmsbolagets linje 16 på 40–65 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong 30 april–27 september. Under sommarsäsongen är det kö vid populäraste restaurangerna – boka i förväg när det går.
+Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara 19 juni–16 augusti, och då tar turen mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48–59 min) och därifrån Waxholmsbolagets linje 16 på 40–65 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong 30 april–27 september. Under sommarsäsongen är det kö vid populäraste restaurangerna – boka i förväg när det går.
  `,
  },
 
@@ -1283,7 +1283,7 @@ Här är sex konkreta rutter du kan boka idag.
 
 ## 5. [Utö](/o/uto) – 2,5 timmar, södra skärgårdens kronjuvel
 
-**Avresa:** Årsta brygga, som nås med pendeltåg till Västerhaninge och buss 846 (16 min). Överfarten till Utö tar 40–55 min. Det finns ingen bilfärja till Utö — Nynäshamnsbåten går till grannön Ålö, inte till Utö by.
+**Avresa:** Årsta brygga, som nås med pendeltåg till Västerhaninge och buss 846 (16 min). Överfarten till Utö tar 35–75 min beroende på tur, och Gruvbryggan är beställningsbrygga på de flesta avgångar — boka minst en timme före avgång. Waxholmsbolagets reguljära båtar tar inga bilar. Vill du ha bilen med går det via Utö Sjötransporters fraktfärja M/S Renskär, som tar gods och förbokade bilar — inte med den vanliga skärgårdsbåten. Nynäshamnslinjen går dessutom till grannön Ålö, inte till Utö by; därifrån är det ca 10 km grusväg.
 **Restid:** Totalt 2–2,5 timmar.
 **Vad du gör:** Cykelleder, gruvmuseum, havsbastu, Utö Värdshus. En av de öar som ger mest upplevelse per besök.
 **Bäst för:** De som vill ha en rik heldagsupplevelse och kan starta tidigt.
@@ -1313,7 +1313,7 @@ Skärgården är närmre än du tror. Börja med ett av förslagen ovan – och 
    faqs: [
      { q: 'Kostar det något att åka med Waxholmsbolaget?', a: 'Ja, Waxholmsbolaget är ett separat biljettsystem från SL. SL-kortet gäller inte. Köp biljetter via appen Waxholmsbolaget eller på bryggan. Priser varierar med destination.' },
      { q: 'Vilken är den kortaste dagsturen till skärgården?', a: 'Fjäderholmarna – 25 minuter med båt från Strömkajen eller Nybroplan. Öppet under sommarsäsongen med avgångar var 30:e minut.' },
-     { q: 'Kan man göra dagstur till Utö?', a: 'Ja. Enklaste vägen året runt är pendeltåg till Västerhaninge, buss 846 till Årsta brygga (16 min) och sedan båt till Gruvbryggan, 40–55 min. Räkna med drygt två timmar från stan. Någon bilfärja till Utö finns inte, och Nynäshamnsbåten går till grannön Ålö. Ta morgonbåten för att få maximalt med tid på ön.' },
+     { q: 'Kan man göra dagstur till Utö?', a: 'Ja. Enklaste vägen året runt är pendeltåg till Västerhaninge, buss 846 till Årsta brygga (14–17 min) och sedan båt till Gruvbryggan, 35–75 min beroende på tur — och observera att Gruvbryggan är beställningsbrygga på de flesta avgångar, resan måste bokas minst en timme i förväg i SL-appen eller hos Waxholmsbolaget. Räkna med drygt två timmar från stan. Waxholmsbolagets båtar tar inga bilar; fordonstransport går via Utö Sjötransporters fraktfärja M/S Renskär och måste förbokas. Nynäshamnsbåten går till grannön Ålö, ca 10 km grusväg från Utö by. Ta morgonbåten för att få maximalt med tid på ön.' },
    ],
  },
 
@@ -1450,7 +1450,7 @@ Vi har gått igenom alternativen och rangordnat dem – inte efter vad som är v
 ## 5. [Utö](/o/uto) – bäst för aktiva familjer med äldre barn (barn 8+)
 
 **Varför:** Cykelleder, gruvmuseum, havsbastu, sandstränder (Barnens bad, Stora Sand), heldagsupplevelse.
-**Hur tar man sig dit:** Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och båt därifrån, 40–55 min. Totalt drygt två timmar. Det finns ingen bilfärja till Utö.
+**Hur tar man sig dit:** Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och båt därifrån, 35–75 min beroende på tur (Gruvbryggan är beställningsbrygga på de flesta avgångar). Totalt drygt två timmar. Waxholmsbolagets båtar tar inga bilar — fordon går med Utö Sjötransporters fraktfärja M/S Renskär och måste förbokas.
 **Badmöjligheter:** Utö har flera riktiga sandstränder — Barnens bad nära Gruvbryggan, Stora Sand på södra ön och Ålö Storsand på grannön. Värda resan i sig.
 **Att göra:** Gruvmuseum, cykling, sandstrand, havsbastu (Utö Värdshus), vandring.
 **Bra att veta:** Utö är stor – det finns matbutik, restauranger och alla bekvämligheter. Planera att stanna minst en dag.
@@ -1628,7 +1628,7 @@ Hög- vs lågsäsong: juli är turisternas månad. Maj och september är skärg�
    `,
    faqs: [
      // KÄLLA: Waxholmsbolagets tidtabell 15A Stockholm-Vaxholm-Sandhamn, GÄLLER 19 JUNI 2026 - 16 AUGUSTI 2026 (Strömkajen 10.00 -> Sandhamn 13.45 = 3 tim 45 utan byte; 08.30 -> 13.25 med byte i Finnhamn = 4 tim 55. Vilka veckodagar respektive tur gar har inte kunnat lasas tillforlitligt ur kolumnerna - darfor anges bara spannet). Ingen v15-tabell finns för 17 aug-12 dec, alltså ingen direktbåt utanför sommaren. Tabell 16A Stavsnäs-Sandhamn (gäller nu): 38-65 min. Stavsnäs Båttaxis Sandhamnslinje: 30 min. Strömma: Cinderella från Strandvägen kajplats 14, 2 tim 30 min, säsong 30 april-27 september 2026. Läst 2026-08-25.
-     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Det beror helt på årstid och kaj. Waxholmsbåten går direkt från Strömkajen bara 19 juni–16 augusti och tar då 3 tim 45 min till knappt 5 timmar beroende på avgång och byte i Finnhamn. Cinderella från Strandvägen kajplats 14 går längre säsong, 30 april–27 september, och tar 2 tim 30 min — den går alltså även nu i slutet av augusti. Snabbast året runt är buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, knappt 50 min, och sedan båt: Sandhamnslinjen 30 min eller Waxholmsbolagets linje 16 på 30–70 min.' },
+     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Det beror helt på årstid och kaj. Waxholmsbåten går direkt från Strömkajen bara 19 juni–16 augusti och tar då 3 tim 45 min till knappt 5 timmar beroende på avgång och byte i Finnhamn. Cinderella från Strandvägen kajplats 14 går längre säsong, 30 april–27 september, och tar 2 tim 30 min — den går alltså även nu i slutet av augusti. Snabbast året runt är buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnet, och sedan båt: Sandhamnslinjen 30 min eller Waxholmsbolagets linje 16 på 30–70 min.' },
      { q: 'Finns det strand på Sandhamn?', a: 'Ja. Trouville-stranden är den mest kända – vit sand och klart vatten, ca 15 min promenad från hamnen. Flaskbrottet är ett mer undanskymt alternativ med klippor.' },
      { q: 'Är det bilfritt på Sandhamn?', a: 'Ja, Sandhamn är bilfri. Det finns inga bilar på ön. Allt nås till fots.' },
    ],
@@ -2003,7 +2003,7 @@ Den kortaste och lättaste. [Fjäderholmarna](/o/fjaderholmarna) är bara 25 min
 
 ## 4. Möja – bilfri ö med äkta karaktär
 
-[Möja](/o/moja) är annorlunda. Bilfri, kuperad och med tre byar sammanbundna av byvägar som knappt finns på Google Maps. Waxholmsbåten dit tar från tre timmar och uppåt från Strömkajen — snabbast är buss 434 till Sollenkroka och båt därifrån, ett café och en dag av genuint skärgårdsliv.
+[Möja](/o/moja) är annorlunda. Bilfri, kuperad och med tre byar sammanbundna av byvägar som knappt finns på Google Maps. Waxholmsbåten dit tar 3 tim 05 och uppåt från Strömkajen i höst- och vårtabellen, 2 tim 35 med sommartidtabellens snabbaste tur — snabbast året runt är buss 434 till Sollenkroka och båt därifrån, ett café och en dag av genuint skärgårdsliv.
 
 ## 5. Sandhamn – seglarnas ö
 

@@ -242,7 +242,7 @@ export default function StockholmsSkargardPage() {
  <strong>Till Fjäderholmarna</strong> avgår båtar med både Strömma (Cinderella) och <strong>Waxholmsbolaget</strong> från Slussen, ca 25 min. Waxholmsbolagets tur ingår i SL-kortet — ett billigare alternativ för den som redan har månadskort.
  </p>
  <p>
- <strong>Till Utö</strong> tar du Waxholmsbolagets båt från Årsta brygga, 40–55 min — Nynäshamnslinjen slutar på grannön Ålö, inte på Utö by. Nynäshamn nås med <strong>pendeltåg linje 43</strong> från Stockholm City, ca 1 timme.
+ <strong>Till Utö</strong> tar du Waxholmsbolagets båt från Årsta brygga, 35–75 min beroende på tur och med beställningsplikt på Gruvbryggan — Nynäshamnslinjen slutar på grannön Ålö, inte på Utö by. Nynäshamn nås med <strong>pendeltåg linje 43</strong> från Stockholm City, ca 1 timme.
  </p>
  </>
  }
