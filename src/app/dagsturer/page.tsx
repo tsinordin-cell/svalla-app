@@ -52,7 +52,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'sailboat',
   title: 'Sandhamn',
- description: 'Skärgårdens klassiska destination och sommarnöje. Från Strömkajen 2,5–3 timmar; från Stavsnäs ca 40 min med snabbåt. Sandhamns Värdshus är legendariskt.',
+ description: 'Skärgårdens klassiska destination och sommarnöje. Direktbåt från Strömkajen går bara 19 juni–16 augusti och tar då 3 tim 45 min eller mer; året runt via Stavsnäs vinterhamn på 30–65 min. Sandhamns Värdshus är legendariskt.',
  href: '/o/sandhamn',
  meta: '2,5–3 tim från Strömkajen',
  },
@@ -80,7 +80,7 @@ export default function DagsturerPage() {
  {
  '@type': 'Question',
  name: 'Hur länge tar dagstur till Sandhamn från Stockholm?',
- acceptedAnswer: { '@type': 'Answer', text: 'Från Strömkajen tar det 2,5–3 timmar med Waxholmsbåten. Snabbare via buss till Stavsnäs + snabbåt (~40 min). Tillsammans med 2–3 timmar på ön blir det en komplett dagstur.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbåten går direkt från Strömkajen bara 19 juni–16 augusti och tar då 3 tim 45 min (lör–sön) eller 4 tim 55 min med byte. Snabbare året runt: buss 433 eller 434 till Stavsnäs vinterhamn och sedan båt, 30–65 min. Tillsammans med 2–3 timmar på ön blir det en komplett dagstur.' },
  },
  {
  '@type': 'Question',
@@ -126,7 +126,7 @@ export default function DagsturerPage() {
  intro={
  <>
  <p>
- Stockholms skärgård är gjord för dagsturer. Med Waxholmsbåten eller egen båt tar det cirka 25 minuter till Fjäderholmarna, ungefär en timme till Vaxholm och 2,5–3 timmar till Sandhamn från Strömkajen — <strong>allt går att göra på en dag</strong>. Lämna Stockholm på morgonen, ät räkor vid havet och var hemma till kvällen.
+ Stockholms skärgård är gjord för dagsturer. Med Waxholmsbåten eller egen båt tar det cirka 25 minuter till Fjäderholmarna, ungefär en timme till Vaxholm och — sommartid, när direktbåten går — 3 tim 45 min till Sandhamn från Strömkajen — <strong>allt går att göra på en dag</strong>. Lämna Stockholm på morgonen, ät räkor vid havet och var hemma till kvällen.
  </p>
  <p>
  Olika ambitionsnivåer passar olika dagsturer. Nybörjare börjar ofta på <strong>Fjäderholmarna</strong> — kort resa, restauranger, lugnt vatten. Nästa steg är <strong>Vaxholm</strong> eller <strong>Grinda</strong>. De som vill längre ut packar för <strong>Sandhamn</strong>, <strong>Utö</strong> eller <strong>Finnhamn</strong>. Färjan från Strömkajen (Waxholmsbåten) är populäraste vägen, men för sydskärgården (Utö, Ornö) går det snabbare via <strong>Årsta brygga</strong>. Cykel kan oftast tas ombord mot en mindre avgift.
@@ -149,7 +149,7 @@ export default function DagsturerPage() {
  Hur länge tar dagstur till Sandhamn?
  </h3>
  <p>
- Från Strömkajen (Waxholmsbolaget) tar det 2,5–3 timmar med båt direkt till Sandhamn. Snabbare alternativ är <strong>Cinderellabåtarna</strong> eller att åka buss till Stavsnäs och därifrån snabbåt — då är du på ön på cirka 40 minuter. Med 2–3 timmar på ön blir det en fin dag, men många väljer att stanna en natt på vandrarhem eller pensionat.
+ Direktbåten från Strömkajen (Waxholmsbolaget) går bara 19 juni–16 augusti och tar 3 tim 45 min lördag och söndag, 4 tim 55 min med byte i Finnhamn övriga dagar. Snabbare är <strong>Cinderellabåtarna</strong> från Strandvägen kajplats 14 på 2 tim 30 min, eller — året runt — buss 433/434 till Stavsnäs vinterhamn och därifrån båt: Sandhamnslinjen 30 minuter, Waxholmsbolagets linje 16 40–65 minuter. Med 2–3 timmar på ön blir det en fin dag, men många väljer att stanna en natt på vandrarhem eller pensionat.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

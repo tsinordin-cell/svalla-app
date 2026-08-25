@@ -300,7 +300,7 @@ export const TRIPS: Trip[] = [
       {
         name: 'Waxholmsbåten till Finnhamn',
         type: 'transport',
-        desc: 'Ca 2,5 timmar från Strömkajen. Fantastisk utsikt längs hela rutten.',
+        desc: 'Direktbåten från Strömkajen går bara 19 juni–16 augusti och tar då 3 tim 45 min. Fantastisk utsikt längs hela rutten.',
         tip: 'Kolla tidtabellen noga — begränsat med avgångar på vardagar.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },

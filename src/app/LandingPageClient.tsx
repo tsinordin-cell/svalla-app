@@ -1313,7 +1313,7 @@ const LANDING_HTML = `
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Hur lång tid tar båten till Sandhamn?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Från Strömkajen i Stockholm tar Cinderellabåten ca 2,5 timmar (med stopp längs vägen). Snabbare alternativ: buss 428 från Slussen till Stavsnäs (ca 1 timme) och sedan Pendelbåten till Sandhamn på 30 minuter. Totalt ca 1 timme 45 minuter.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Cinderellabåten går från Strandvägen kajplats 14 — inte Strömkajen, som är Waxholmsbolagets kaj — och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april–27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (ca 30–35 minuter) och sedan Sandhamnslinjen på 30 minuter. Totalt drygt 1 timme 20 minuter.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Kan man tälta i skärgården?<span class="faq-icon">+</span></button>
@@ -1439,7 +1439,7 @@ const LANDING_HTML = `
   "@type": "FAQPage",
   "mainEntity": [
     {"@type":"Question","name":"Vilken ö passar barnfamiljer bäst?","acceptedAnswer":{"@type":"Answer","text":"Grinda och Vaxholm är toppalternativen — sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen."}},
-    {"@type":"Question","name":"Hur lång tid tar båten till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Från Strömkajen i Stockholm tar Cinderellabåten ca 2,5 timmar. Snabbare alternativ: buss till Stavsnäs och Pendelbåten, totalt ca 1 timme 45 minuter."}},
+    {"@type":"Question","name":"Hur lång tid tar båten till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Cinderellabåten går från Strandvägen kajplats 14, inte Strömkajen, och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april-27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn och sedan Sandhamnslinjen på 30 minuter, totalt drygt 1 timme 20 minuter."}},
     {"@type":"Question","name":"Kan man tälta i skärgården?","acceptedAnswer":{"@type":"Answer","text":"Ja — allemansrätten ger rätt att tälta i naturen i upp till 1–2 nätter. Håll minst 150 meter avstånd från närmaste bostad."}},
     {"@type":"Question","name":"Vad är det bästa alternativet till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Grinda är det populäraste alternativet — kortare båttid, lika vacker och utan turisttrycket. Utö i söder är perfekt för mer natur och cykling."}},
     {"@type":"Question","name":"Vilken månad är bäst att besöka skärgården?","acceptedAnswer":{"@type":"Answer","text":"Juli är peak-säsong med varmast vatten men mest folk. September–oktober är bäst för vandrare — höstfärger och inga köer."}},
