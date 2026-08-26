@@ -412,7 +412,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">7. Ljusterö – norra skärgårdens hemlighet</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
-<p><strong>Transport:</strong> SL-buss 676 från Tekniska Högskolan T till Ljusterö-bryggan, ca 1 h 20 min. Bussen inkluderar bilfärja och ingår i SL-abonnemanget.</p>
+<p><strong>Transport:</strong> SL-buss 626 från Danderyds sjukhus till Ljusterö-bryggan, ca 1 h 20 min. Bussen inkluderar bilfärja och ingår i SL-abonnemanget.</p>
 <p><strong>Pris:</strong> Gratis med SL-kort.</p>
 <p><strong>Upplev:</strong> Ljusterö är en av de få öarna i skärgården som är bilburen (buss med bil) och ändå har en äkta öatmosfär. Vandringsleder, stränder och sommarcaféer.</p>
 <p><strong>Praktisk info:</strong> Sommartid finns fler avgångar. Kolla SL:s tidtabell på sl.se.</p>
@@ -493,7 +493,7 @@ export function getGuideContent(slug: string): string {
 <li><strong>SL-buss 670/671</strong> till Vaxholm – alternativ till båten</li>
 <li><strong>SL-buss 433</strong> till Stavsnäs Vinterhamn – utgångspunkt för Sandhamn, Möja, Gällnö</li>
 <li><strong>SL-buss 839</strong> till Dalarö – utgångspunkt för bilfärja till Ornö</li>
-<li><strong>SL-buss 676</strong> till Ljusterö – inklusive bilfärjan över till ön (ingår i SL!)</li>
+<li><strong>SL-buss 626</strong> till Ljusterö – inklusive bilfärjan över till ön (ingår i SL!)</li>
 <li><strong>Pendeltåg till Bålsta</strong> och anslutningsbussar till Mälaren-öar</li>
 </ul>
 
@@ -506,7 +506,7 @@ export function getGuideContent(slug: string): string {
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Undantaget: Ljusteröbussen med färja</h3>
-<p>Ljusterö är ett specialfall. SL-buss 676 från Tekniska Högskolan kör ner till bilfärjan och <em>inklusive färjan</em> över till Ljusterö ingår i SL-abonnemanget. Det är den enda skärgårdsö där du når ön helt och hållet med SL-kort.</p>
+<p>Ljusterö är ett specialfall. SL-buss 626 från Danderyds sjukhus kör ner till bilfärjan och <em>inklusive färjan</em> över till Ljusterö ingår i SL-abonnemanget. Det är den enda skärgårdsö där du når ön helt och hållet med SL-kort.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Waxholmsbolagets eget biljettsystem</h3>
 <p>Waxholmsbolaget har fyra biljettyper:</p>
@@ -6527,7 +6527,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Ljusterö</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med bil:</strong> E18 norrut, avfart mot Åkersberga och sedan mot Ljusterö. Bilfärja från Östanå – gratis (Trafikverkets vägfärja). Kör av på Ljusterö och utforska fritt. Bilfärjan avgår tätt under dagtid.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med SL:</strong> Buss 676 från Tekniska Högskolan (T-bana) till Östanå, sedan passagerarfärjan till Ljusterö. Kolla SL:s tidtabell för aktuella avgångstider.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med SL:</strong> Buss 626 från Danderyds sjukhus (T-bana) till Östanå, sedan passagerarfärjan till Ljusterö. Kolla SL:s tidtabell för aktuella avgångstider.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Höjdpunkter</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Vandringsleder:</strong> Ljusterö har tydligt markerade stigar längs kusten och genom skogsmark. Inte lika dramatiska som yttre skärgård men lugna och vackra.</p>
