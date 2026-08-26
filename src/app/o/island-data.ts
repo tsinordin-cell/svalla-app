@@ -499,7 +499,7 @@ export const ISLANDS: Island[] = [
     ],
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Vaxholm, ~55–70 min (08.15→09.17, 08.20→09.17, 12.45→13.42). Tidigare "75 min" var i överkant.
-      travel_time: '~1 tim (55–70 min) med Waxholmsbåt från Strömkajen',
+      travel_time: '~1 tim (55 min–1 tim 20) med Waxholmsbåt från Strömkajen',
       character: 'Stad med skärgårdskänsla, historia, helårsdestination',
       season: 'Helår — Vaxholm är en aktiv stad tolv månader om året',
       best_for: 'Dagsturer, historia, familjer, första skärgårdsbesök',
@@ -870,7 +870,7 @@ export const ISLANDS: Island[] = [
     description: [
       'Möja är en av Stockholms skärgårds mest autentiska öar. Bilfri, lugn och med en genuint lantlig karaktär som saknar motstycke. Här bor ett par hundra permanentbor och sommartid dubbleras befolkningen, men det är inget som stör den stilla stämningen.',
       'Ön är tillräckligt stor för att ha en varierad geografi: skog, öppna fält, klippor och flera hamnar. Roland Svensson-museet och den vackra kyrkan är kulturella pärlor. Fisket är utmärkt och havsutsikterna ovanliga.',
-      'Möja nås lättast från Stavsnäs och är ett naturligt stopp på en seglingstur mot Sandhamn eller Gällnö. Krogar och kaféer täcker grundbehoven utan att bli turistiga.',
+      'Möja nås med Waxholmsbolagets linje 14 från Sollenkroka (buss 434 från Slussen dit) eller direkt från Strömkajen via Vaxholm, och är ett naturligt stopp på en seglingstur mot Sandhamn eller Gällnö. Krogar och kaféer täcker grundbehoven utan att bli turistiga.',
       'Möja är egentligen tre öar sammanbundna av smala permar: Norra, Mellersta och Södra Möja. Det gör att man kan cykla eller vandra längs öns hela längd och uppleva tre olika karaktärer. Norra änden är öppen och stormig, mitten mer skogig och lantlig, södra änden har de bästa klipporna och den klaraste horisonten.',
       'Roland Svensson-museet är litet men oväntat gripande. Svensson var konstnär och levde hela sitt liv på Möja, och hans akvareller av skärgårdslandskapet har en precision och ett ljus som säger mer om platsen än de flesta vykort. Museet är öppet sommartid och tar ungefär en timme.',
       'Matstoppet på Möja är inte spektakulärt och det är en del av charmen. Lanthandeln säljer det man behöver, krogen lagar husmanskost med råvaror från öns egna odlingar och fiskebacken. Man äter gott, men det är inte hit man åker för gastronomin. Det är hit man åker för att äta räkor på en klippa med utsikt mot ingenting alls.',
@@ -913,7 +913,7 @@ export const ISLANDS: Island[] = [
       { name: 'Privat stuguthyrning', type: 'Stugor', desc: 'Flera privatpersoner hyr ut sommarstugor på Möja via Airbnb och liknande plattformar. Boka i god tid inför sommarsäsongen.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '~1 h', desc: 'Linje från Stavsnäs vinterhamn — flera bryggor på Möja, bland annat Berg, Ramsmora och Långvik.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Sollenkroka', time: '~40 min', desc: 'Waxholmsbolagets linje 14 från Sollenkroka brygga (buss 434 från Slussen dit) — flera bryggor på Möja: Berg, Ramsmora, Långvik. Även direktbåt från Strömkajen, ~3,5 h.', icon: '⛴' },
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Förtöj vid någon av öns gästhamnar (Berg och Långvik är huvudalternativen).', icon: '⛵' },
     ],
     harbors: [
@@ -935,13 +935,13 @@ export const ISLANDS: Island[] = [
     transport_meta: {
       from_city_min: 195,
       from_nearest_hub_min: 60,
-      nearest_hub: 'Stavsnäs',
+      nearest_hub: 'Sollenkroka',
       operator: 'Waxholmsbolaget',
-      line: 'Möjalinjen',
+      line: 'Linje 14 (Sollenkroka–Möja); buss 434 Slussen–Sollenkroka',
       frequency: '2–4 avgångar/dag sommartid, glesare vinter',
       booking_url: 'https://waxholmsbolaget.se',
       // KÄLLA: Värmdö kommun — https://www.varmdo.se/varmdohamnar/parkera.4.6e5e3cc318a8d4dc3f6361bf.html (hämtad 2026-08-06)
-      car_parking: 'Parkering vid Stavsnäs vinterhamn: 3 timmar fritt med p-skiva, därefter avgift som betalas i app (operatör Parkit). Cirka 1 300 platser, varav omkring hälften för besökare. Pendelbuss 428 från Slussen till Stavsnäs (ca 60 min med SL-kort).',
+      car_parking: 'Parkering vid Sollenkroka brygga (avfärdshamn för Möja). Vid Stavsnäs vinterhamn finns ca 1 300 platser men den hamnen gäller Sandhamn/Nämdö-trafiken, inte Möja. Pendelbuss 428 från Slussen till Stavsnäs (ca 60 min med SL-kort).',
     },
     activity_meta: {
       kajak: { difficulty: 'lätt', rental: true, notes: 'Paddla söderut mot Gällnö och Svartsö. Uthyrning vid Berg.' },
@@ -1042,11 +1042,13 @@ export const ISLANDS: Island[] = [
       // Cinderellabåtarna från Strandvägen". Restiden var ungefär rätt, men
       // operatören och kajen var fel: Strömmas Cinderella-linje går till
       // Sandhamn, Grinda, Gällnö och Vaxholm — inte till Fjäderholmarna.
-      travel_time: '19 min med skärgårdsbåt från Strömkajen',
+      // KÄLLA: Fjäderholmslinjen (fjaderholmslinjen.se, Slussen ~15 min) + Strömma (stromma.com, Strandvägen kajpl 13 ~30 min). Säsong maj–sep. EJ från Strömkajen.
+      travel_time: '~15 min från Slussen (Fjäderholmslinjen) el. 30 min från Strandvägen (maj–sep)',
       character: 'Nära stad, lättillgänglig, hög kvalitet',
       season: 'Maj–September',
       best_for: 'Dagstur, lunch, barnfamiljer, seglare på väg in mot stan',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🍺', name: 'Fjäderholmarnas Bryggeri', desc: 'Hantverksöl direkt från tanken med Stockholms siluett i bakgrunden. En av stadens bästa uteserveringar.' },
       { icon: '🐟', name: 'Rökeriet', desc: 'Klassiskt rökeriet sedan 1980-talet. Rökt lax, sill och skaldjur av toppklass.' },
@@ -1260,11 +1262,13 @@ export const ISLANDS: Island[] = [
     
     ],
     facts: {
-      travel_time: '45 min med bil / 90 min med kollektivtrafik',
+      // KÄLLA: SL buss 869 Slakthuset(Globen)–Dalarö ~47 min; med t-baneanslutning ~60 min. Tidigare '90 min' överskattade snabbaste vägen.
+      travel_time: '45 min med bil / ~60 min koll (buss 869 från Slakthuset)',
       character: 'Historisk hamnort, utgångspunkt, välskött',
       season: 'April–Oktober',
       best_for: 'Dagsturer, hamnliv, utgångspunkt mot Utö och södern',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🏰', name: 'Dalarö skans', desc: 'Fortifikation påbörjad 1656 under Karl X Gustav. Statligt byggnadsminne sedan 1935 — idag festvåning och visningsplats.' },
       { icon: '⛵', name: 'Utgångspunkt mot Utö', desc: 'Ta pendelbåt till Utö och de södra öarna direkt från Dalarö hamn.' },
@@ -1782,14 +1786,15 @@ export const ISLANDS: Island[] = [
       // 2024. Skyddet finns kvar och är större än förut. Kontrollerad 2026-08-21.
       'Gällnö är en bilfri ö i mellersta skärgården, klassificerad som naturreservat för att bevara dess orörda karaktär. Ön är känd för sin lägerverksamhet, ungdomsgrupper och naturskolor nyttjar öns större öppna arealer under sommaren.',
       'Landskap på Gällnö varierar från skogspartier till öppna ljunghedar. Här finns inga stora restauranger eller hotell, bara en enkel bar och handelsbod. Det är just detta som gör Gällnö attraktiv för naturälskare som söker lugn och orördhet.',
-      'Ön nås via Waxholmsbåt från Stavsnäs och är ett naturligt stopp på väg mot Möja eller Svartsö. Många seglare gör Gällnö till sitt favoritdestination.',
+      'Ön nås via Waxholmsbolagets linje 14 från Strömkajen (via Vaxholm) eller Sollenkroka, EJ från Stavsnäs, och är ett naturligt stopp på väg mot Möja eller Svartsö. Många seglare gör Gällnö till sitt favoritdestination.',
       'Gällnö är en av de öar i skärgården som inte försöker imponera. Ingen stor krog, inget spa, inga bryggbarer. Det finns en hamn, lite service och ett naturreservat som täcker merparten av ytan. Det är avsiktligt, och det är exakt vad Gällnö behöver vara.',
       'Naturreservatets ljunghedar är vackrast i sensommaren när ljungen blommar lila och utsikten över det omgivande vattnet är klar. Fågellivet är rikt, havsörn häckar i reservatets yttre delar och syns regelbundet ovan hamnen under tidiga morgontimmar. Ta med kikare.',
       'Gällnö fungerar utmärkt som ett dygn på vägen, ankra för natten, gå en vandring på morgonen och fortsätt mot Möja eller Sandhamn. Det är den typen av ö som man inte åker till som slutdestination men alltid minns som ett av resans bästa ögonblick.',
     ],
 
     facts: {
-      travel_time: '2 h från Stavsnäs med Waxholmsbåt',
+      // KÄLLA: Waxholmsbolagets tabell 14 (STOCKHOLM–VAXHOLM–SOLLENKROKA–MÖJA). Gällnö ligger på linje 14, EJ på Stavsnäslinjerna. Två läsningar oense om exakt tid — ingen ✓.
+      travel_time: 'Waxholmsbåt via Vaxholm (linje 14) från Strömkajen — gles trafik',
       character: 'Bilfri, naturreservat, lugnt',
       season: 'Juni–Augusti',
       best_for: 'Natur, läger, orördhet',
@@ -1801,7 +1806,7 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Tältplatser', type: 'Camping', desc: 'Enkla tältmöjligheter på ön.' },
     ],
-    getting_there: [{ method: 'Waxholmsbåt', from: 'Stavsnäs', time: '2 h', desc: 'Linje via Möja och Nämdö.', icon: '⛴' }],
+    getting_there: [{ method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 2 h', desc: 'Waxholmsbolagets linje 14 via Vaxholm; även från Sollenkroka. Ej från Stavsnäs.', icon: '⛴' }],
     harbors: [{ name: 'Gällnö Hamn', desc: 'Liten naturhamn.', fuel: false }],
     restaurants: [
       { name: 'Gällnö Bar', type: 'Bar', desc: 'Enkel bar vid hamnen.', slug: 'gallno-bar', price_example: 'Öl 65–85 kr, vin 85–115 kr, enkel mat 95–135 kr', open_season: 'Juni–Mitten av Augusti', open_hours: '12–22' },
@@ -1812,7 +1817,7 @@ export const ISLANDS: Island[] = [
       includes: 'Waxholmsbåt t/r från Stavsnäs, dryck på baren, medhavd matsäck',
       breakdown: [
         { item: 'Pendeltåg + buss till Stavsnäs (SL)', price: '~50 kr' },
-        { item: 'Waxholmsbåt t/r Stavsnäs–Gällnö', price: '~160 kr' },
+        { item: 'Waxholmsbåt t/r Strömkajen–Gällnö (linje 14)', price: '~160 kr' },
         { item: 'Dryck på Gällnö Bar (2 öl)', price: '130–170 kr' },
         { item: 'Medhavd matsäck (lunch + snacks)', price: '100–150 kr' },
       ],
@@ -2015,11 +2020,13 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '2,5 h med Waxholmsbåt från Strömkajen',
+      // KÄLLA: Waxholmsbolagets tabell 12/13. Nu: Strömkajen 09.00→N. Ingmarsö 12.15 = 3 h 15. Sommar: 08.30→11.05 = 2 h 35. Tidigare '2,5 h' var sommarsiffran.
+      travel_time: '~3 h från Strömkajen med Waxholmsbåt (2,5 h sommartid)',
       character: 'Bilfri, vandringsmål, helårsverksamhet',
       season: 'Maj–September (lanthandeln öppen helår)',
       best_for: 'Båtluffare, vandrare, dagsutflykter, lugn skärgård',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🥾', name: 'Båtluffarleden mot Finnhamn', desc: 'Markerad blå led via Kålgårdsön — egen roddbåt över sundet till Finnhamn. En av Stockholm Archipelago Trails mest unika etapper.' },
       { icon: '🍞', name: 'Ingmarsö Bageri', desc: 'Öns bageri vid bryggan — nybakat bröd och kaffe.' },
@@ -2083,7 +2090,7 @@ export const ISLANDS: Island[] = [
     emoji: '🌿',
     tagline: 'Gles, bilfri ö på Stavsnäsleden — ett genuint skärgårdssamhälle.',
     description: [
-      'Nämdö är en bilfri ö på Waxholmsbåtens linje från Stavsnäs mot Möja. Ön har haft fast befolkning sedan tidig medeltid, på 1870-talet var befolkningen som störst med 321 personer skrivna i församlingen. Idag är ön ett genuint litet skärgårdssamhälle med kyrka, lanthandel och båtbrygga.',
+      'Nämdö är en bilfri ö på Waxholmsbolagets linje 17 från Stavsnäs (som går vidare mot Saltsjöbaden och Stockholm, inte till Möja). Ön har haft fast befolkning sedan tidig medeltid, på 1870-talet var befolkningen som störst med 321 personer skrivna i församlingen. Idag är ön ett genuint litet skärgårdssamhälle med kyrka, lanthandel och båtbrygga.',
       'Nämdö kyrka är en av skärgårdens mest karakteristiska — den nuvarande vita träkyrkan i nygotisk stil invigdes hösten 1876 och ersatte tidigare kapell. Det äldsta kända kapellet på ön var från omkring 1630.',
       'Naturen är varierad med klippbad, vandringsstigar och fina naturhamnar på öns södra sida. Nämdö passar som stopp på en längre seglingstur mot Sandhamn, eller som dagsdestination för den som söker autentiskt skärgårdsliv.',
       'Nämdö kyrka är en av de mest karakteristiska kyrkorna i Stockholms skärgård, en vit träkyrka i nygotisk stil invigd 1876, stående ensam på en liten höjd mitt på ön. Den byggdes för den bofasta skärgårdsbefolkningens skull, som inte kunde ta sig till fastlandets kyrkor på vintern. Inuti är den enkel och välbevarad, med en stillhet som känns ovanlig.',
@@ -2130,7 +2137,7 @@ export const ISLANDS: Island[] = [
       { name: 'Nämdö Camping', type: 'Camping', desc: 'Enkel campingplats nära hamnen.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '90 min', desc: 'Linjen mot Möja och Gällnö stannar vid Nämdö.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '~35 min till Östanvik', desc: 'Waxholmsbolagets linje 17 från Stavsnäs vinterhamn. Linjen går mot Saltsjöbaden/Stockholm, inte till Möja.', icon: '⛴' },
     ],
     harbors: [
       { name: 'Nämdö Hamn', desc: 'Liten gästhamn. Begränsat antal platser.', fuel: false, service: ['vatten'] },
@@ -2213,7 +2220,7 @@ export const ISLANDS: Island[] = [
 
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 13 Strömkajen–Alsvik (Svartsö), snabbast ~2 tim 15, typiskt 2 tim 20–35.
-      travel_time: '~2 tim 15 min med Waxholmsbåt från Strömkajen (linje 13)',
+      travel_time: '~2 tim 15–35 min med Waxholmsbåt från Strömkajen (linje 13)',
       character: 'Bilfri, ekologisk, lugnt, mat i fokus',
       season: 'Maj–September',
       best_for: 'Matälskare, naturälskare, de som söker unikt',
@@ -2229,7 +2236,7 @@ export const ISLANDS: Island[] = [
       { name: 'STF Svartsö Skärgårdshotell & Vandrarhem', type: 'Vandrarhem', desc: 'Hotell- och vandrarhemsboende med konferensmöjligheter, drivet av Svenska Turistföreningen.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Strömkajen / Stavsnäs', time: '2 h', desc: 'Skärgårdslinjen mellan Stavsnäs och Möja stannar vid Svartsö.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '~5–20 min', desc: 'Waxholmsbolagets linje 16/17 från Stavsnäs, Styrsvik ~5 min. (Runmarö nås ej från Strömkajen.) Skärgårdslinjen stannar vid Svartsö.', icon: '⛴' },
     ],
     harbors: [
       { name: 'Svartsö gästhamn', desc: 'Liten gästhamn nära krogen och lanthandeln.', fuel: false, service: ['vatten'] },
@@ -2312,7 +2319,7 @@ export const ISLANDS: Island[] = [
 
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 16/17. Runmarö nås från STAVSNÄS (ej Strömkajen), Styrsvik ~11 min, Långvik ~15–20 min.
-      travel_time: '~10–20 min från Stavsnäs med Waxholmsbåt (linje 16/17)',
+      travel_time: '~5–20 min från Stavsnäs med Waxholmsbåt (linje 16/17)',
       character: 'Lugnt, naturnära, knutpunkt för seglare',
       season: 'Maj–September',
       best_for: 'Seglare, naturhamnsankring, de som söker lugnet nära Sandhamn',
@@ -2672,7 +2679,8 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '3 h med Waxholmsbåt från Strömkajen / 2 h med bil + färja',
+      // KÄLLA: Waxholmsbolagets tabell 31 (RÄFSNÄS–TJOCKÖ–LIDÖ–FEJAN). Lidö nås från Räfsnäs ~25 min (06.40→07.05), EJ från Strömkajen. Ingen bilfärja till ön.
+      travel_time: 'Bil till Räfsnäs, sedan Waxholmsbåt linje 31 (~25 min)',
       character: 'Naturhotell, välvårdat gods, lugnt',
       season: 'April–Oktober (konferens helår)',
       best_for: 'Par, konferens, naturälskare, golfare',
@@ -3137,7 +3145,7 @@ export const ISLANDS: Island[] = [
       'Kymmendö passar bäst för litteratur- och historieintresserade som vill se "det riktiga Hemsö", eller för den som söker en lugn sidoväg i mellersta skärgården.'
     ],
 
-    facts: { travel_time: '2,5–3 h med Waxholmsbåt från Strömkajen / 1 h från Dalarö', character: 'Bilfri, historisk, litterär', season: 'Juni–september', best_for: 'Litteraturintresserade, Strindberg-fans, naturälskare' },
+    facts: { travel_time: '2,5–3 h från Strömkajen · ca 15 min från Dalarö (linje 19)', character: 'Bilfri, historisk, litterär', season: 'Juni–september', best_for: 'Litteraturintresserade, Strindberg-fans, naturälskare' },
     activities: [
       { icon: '✍️', name: 'Strindbergsstugan', desc: 'Stugan där Strindberg bodde och hämtade inspiration till "Hemsöborna" (1887).' },
       { icon: '🥾', name: 'Vandring', desc: 'Korta men stämningsfulla stigar runt ön med klippvyer.' },
