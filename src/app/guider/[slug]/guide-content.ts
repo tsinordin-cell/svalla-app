@@ -3082,7 +3082,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa naturhamnarna i Stockholms skärgård</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Bullerö:</strong> Naturreservat i mellanskärgård. Sandlera, vindskydd från sydväst.</li>
+<li><strong>Bullerö:</strong> Del av Nämdöskärgårdens nationalpark, i mellanskärgård. Sandlera, vindskydd från sydväst.</li>
 <li><strong>Rödlöga:</strong> Populär naturhamn i norra skärgård. God svängrum och vindskydd från väst.</li>
 <li><strong>Björkskär:</strong> Liten ö i södra ytterskärgård med naturlig hamn i det nordliga sundet.</li>
 <li><strong>Mälsten:</strong> Traditionell naturhamn i sydöstra skärgård, populär bland seglare.</li>
@@ -5073,7 +5073,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Egentligen är båtcamping det naturliga sättet att uppleva Stockholms skärgård. Hyra en liten motorbåt (kan göras utan körkort upp till 12 hk), paddla kajak eller hyra en segelbåt och välj själv var du ankrar. Kajak och SUP-uthyrning finns i Vaxholm, Gustavsberg och Stavsnäs. Kajak är smidigt för att ta sig till öar som inte har Waxholmsångare. Populär kajakrutt: Stavsnäs → Bullerö i Nämdöskärgårdens nationalpark → Kymmendö (1–3 dagars paddling beroende på tempo).</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bullerö i Nämdöskärgårdens nationalpark</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bullerö i yttre skärgården (södra delen) är ett populärt mål för båtfolk och kajakpaddlare. Naturreservat med fina tältplatser och en gammal fiskestation. Nås enklast med kajak från Stavsnäs eller egen båt — ingen reguljär Waxholmslinje. Gott om gömda vikar och klippbad.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bullerö i yttre skärgården (södra delen) är ett populärt mål för båtfolk och kajakpaddlare. Del av Nämdöskärgårdens nationalpark (sedan 2025) med en gammal fiskestation; nationalparkens föreskrifter gäller. Nås enklast med kajak från Stavsnäs eller egen båt — ingen reguljär Waxholmslinje. Gott om gömda vikar och klippbad.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Praktisk info för skärgårdscamping:</strong>

@@ -1200,7 +1200,7 @@ Lövens första antydning av höstfärger börjar synas i ytterskärgårdens lö
 
 **Nämndö** – Litet, stilla, naturhamnarna är tomma. Perfekt för segling utan att stressa om bryggor.
 
-**Bullerö** – Naturreservat i ytterskärgården. Vandringsled runt ön, inga restauranger – men en av de vackraste naturupplevelserna i skärgården.
+**Bullerö** – Del av Nämdöskärgårdens nationalpark (sedan 2025), i ytterskärgården. Vandringsled runt ön, inga restauranger – men en av de vackraste naturupplevelserna i skärgården.
 
 ## Vad du behöver tänka på
 
@@ -1541,7 +1541,7 @@ Det kortaste och enklaste alternativet. [Fjäderholmarna](/o/fjaderholmarna) lig
 
 ## 6. Kajak och tält på Bullerö (2–3 dagar, äventyr)
 
-[Bullerö](/o/bullero) är ett naturreservat utan fast boende – du ankrar eller paddlar dit och tältar under allemansrätten. Ett av Stockholms skärgårds vackraste öar att övernatta på. Kombinera med kajakuthyrning från Dalarö eller charter.
+[Bullerö](/o/bullero) ingår sedan 2025 i Nämdöskärgårdens nationalpark och har ingen fast befolkning – du ankrar eller paddlar dit, men nationalparkens föreskrifter gäller (kolla vad som är tillåtet kring tält och eld innan du åker). Ett av Stockholms skärgårds vackraste öar att övernatta på. Kombinera med kajakuthyrning från Dalarö eller charter.
 
 **Bäst för:** Äventyrare, kajakpaddlare, de som vill ha riktig vildmark.
 
@@ -1798,7 +1798,7 @@ Skärgårdens vandringsleder är sällan markerade på samma sätt som fjällede
 Gällnö är ett naturreservat i Värmdö skärgård med markerade leder och vacker urbergsterräng. Enklare och kortare — perfekt för familjer med barn som kan gå.
 
 ### 5. Bullerö, Nämdöskärgårdens nationalpark (ca 5 km)
-[Bullerö](/o/bullero) är en av skärgårdens vackraste öar och ett naturreservat utan fast boende. Kort slingled med utsiktsplatser. Nås med charter- eller privatbåt.
+[Bullerö](/o/bullero) är en av skärgårdens vackraste öar och ingår sedan 2025 i Nämdöskärgårdens nationalpark, utan fast boende. Kort slingled med utsiktsplatser. Nås med charter- eller privatbåt.
 
 ### 6. Grinda – Runt ön (ca 4 km)
 [Grinda](/o/grinda) är liten nog att gå runt på en förmiddag. Välskötta stigar, utsiktsplatser och möjlighet att bada när du känner för det. Perfekt familjevandring.
@@ -1852,7 +1852,7 @@ Här är de naturhamnar i Stockholms skärgård som erfarna seglare återkommer 
 ## De bästa naturhamnarna
 
 ### Bullerskär / Bullerö
-[Bullerö](/o/bullero) och de omgivande skären är ett av Stockholms skärgårds finaste ankringsområden. Naturreservat utan bofast befolkning, med klippor som sträcker sig ner i vattnet. Välskyddat från sydväst. Använd sjökortet noggrant — det är grunt på flera ställen.
+[Bullerö](/o/bullero) och de omgivande skären är ett av Stockholms skärgårds finaste ankringsområden. Del av Nämdöskärgårdens nationalpark (sedan 2025), utan bofast befolkning, med klippor som sträcker sig ner i vattnet. Välskyddat från sydväst. Använd sjökortet noggrant — det är grunt på flera ställen.
 
 ### Möja – Östersundet
 Ostlunden på [Möjas](/o/moja) östsida erbjuder ett välskyddat ankringsläge med bra vindskydd. Flera naturhamnar längs sundet. Populärt och kan vara trångt i juli — kom innan kl 15.
@@ -1880,7 +1880,7 @@ Söder om Ornö, ett av de mer avlägset belägna ankringsalternativen. Yttre sk
 
 **Ta en lina till land.** De flesta naturhamnar kräver att du sätter fast en baklina i klippan — för att hålla båten stabil och minska svaj.
 
-**Respektera naturreservaten.** Bullerö och många av de finaste naturhamnarna är naturreservat. Elda inte (eldförbud råder vid torr väderlek), plocka inte blommor och ta med all sopor hem.
+**Respektera skyddad natur.** Bullerö ingår i Nämdöskärgårdens nationalpark och många av de finaste naturhamnarna är naturreservat. Elda inte (eldförbud råder vid torr väderlek), plocka inte blommor och ta med all sopor hem.
 
 Naturhamnens framtid beror på att vi som seglare behandlar dem rätt. Med respekt för reglerna och havsmiljön förblir de tillgängliga för generationer av seglare.
    `,

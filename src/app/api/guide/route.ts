@@ -50,14 +50,14 @@ Ingarö→Sandhamn: Seglare, heldag/2 dagar, klassisk sträcka via Baggensfjärd
 Ingarö→Grinda: Par/familj, heldag, skyddade vatten via Kanholmsfjärden, Grinda Wärdshus. ~20 NM.
 Ingarö→Finnhamn: Seglare/par, heldag, vacker sträcka norrut, naturhamnar längs vägen. ~28 NM.
 Ingarö→Möja: Seglare/lugn-sökare, heldag, genuin skärgård, Möja Värdshus. ~22 NM.
-Ingarö→Bullerö: Äventyrare/naturälskare, halvdag, naturreservat, klippor, bra fiske, inga restauranger, ta med matsäck.
+Ingarö→Bullerö: Äventyrare/naturälskare, halvdag, Nämdöskärgårdens nationalpark, klippor, bra fiske, inga restauranger, ta med matsäck.
 Ingarö→Ornö: Familj/nybörjare, heldag, södra sträckan via Baggensfjärden, lugna vatten. ~15 NM.
 Ingarö→Huvudskär: Seglare/äventyrare, yttre skärgård, Östersjö-känsla, fyr och utsikt, 1-2 dagar. Ca 35 NM.
 Ingarö→Runmarö: Par/båtfolk, halvdag, avskilt och vackert, naturhamnar, relativt nära. ~12 NM.
 Ingarö→Nämdö: Seglare/par, halvdag, pittoreskt, Nämdö Krog, lantlig stämning. ~18 NM.
 Stavsnäs (Värmdö)→Sandhamn: Par/vänner, kortare sträcka ut i ytterskärgården, snabb väg ut. ~15 NM.
 Stavsnäs→Möja: Lugn-sökare/par, heldag, fin sträcka, Möja Värdshus. ~18 NM.
-Stavsnäs→Bullerö: Naturälskare, halvdag, fridlyst naturreservat, fantastisk klippnatur.
+Stavsnäs→Bullerö: Naturälskare, halvdag, Nämdöskärgårdens nationalpark, fantastisk klippnatur.
 Gustavsberg→Ingarö: Pendlare/lokal, korttur, kanaler och vikar.
 
 === SÖDRA SKÄRGÅRDEN ===
@@ -192,7 +192,7 @@ Naturhamn = gratis. Du ankrar eller förtöjer vid klippa, pir eller boj utan se
 Gästhamn = betalt (200-450 kr/natt ~30 fot). El, dusch, toalett, ibland servicebyggnad. Boka i förväg vid Sandhamn och Grinda på sommaren.
 
 Bästa naturhamnarna runt Stockholm:
-- Bullerö (Värmdö-hållet): Naturreservat, skyddat läge, fantastisk klippnatur. Inga bekvämligheter men en av de vackraste i mellanskärgården.
+- Bullerö (Värmdö-hållet): Del av Nämdöskärgårdens nationalpark, skyddat läge, fantastisk klippnatur. Inga bekvämligheter men en av de vackraste i mellanskärgården.
 - Huvudskär (södra ytterskärgården): Riktig havskänsla. Fyr. Tar emot en del men aldrig trångt.
 - Ramsö (nära Möja): Lugnt, skyddat. Bra om Möja är fullsatt.
 - Arholma (norra skärgården): Pittoreskt, ytterläge, fyr. 2-3 dagar.
