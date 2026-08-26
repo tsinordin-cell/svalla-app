@@ -224,7 +224,7 @@ export const ISLANDS: Island[] = [
       season: 'Maj–September (Seglarhotellet: helår)',
       best_for: 'Seglare, restaurangälskare, sommarturer',
     },
-    facts_provenance: { travel_time: 'matt', season: 'bedomning', character: 'bedomning', best_for: 'bedomning' },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '⛵', name: 'Segling', desc: 'KSSS-hamnen är en av Östersjöns mest besökta gästhamnar med plats för hundratals båtar. Sandhamn är start- och målgång för flera klassiska kappseglingar, däribland Gotland Runt (ÅF Offshore Race).' },
       { icon: '🏊', name: 'Sandstranden Trouville', desc: 'Öns vackraste sandstrand på södra sidan. Sällsynt i skärgårdssammanhang — sand istället för klippor.' },
@@ -365,7 +365,7 @@ export const ISLANDS: Island[] = [
       season: 'April–Oktober (Värdshuset öppet helår)',
       best_for: 'Cykling, havsbastu, naturupplevelser, familjer',
     },
-    facts_provenance: { travel_time: 'matt', season: 'bedomning', character: 'bedomning', best_for: 'bedomning' },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🚲', name: 'Cykling', desc: '350 hyrcyklar (Skeppshult) vid Cykelboden. Klassiska rutten Gruvbyn–Ålö är ca 13 km enkel väg längs grusvägar genom skog och ängar till Ålö storsand med klappstrandsbad och krogen Båtshaket.' },
       { icon: '🧖', name: 'Havsbastu', desc: 'En av skärgårdens mest omtalade havsbastur. Dörren går ut mot havet — basta, hoppa i, basta igen.' },
@@ -498,11 +498,13 @@ export const ISLANDS: Island[] = [
     
     ],
     facts: {
-      travel_time: '75 min med Waxholmsbåt från Strömkajen',
+      // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Vaxholm, ~55–70 min (08.15→09.17, 08.20→09.17, 12.45→13.42). Tidigare "75 min" var i överkant.
+      travel_time: '~1 tim (55–70 min) med Waxholmsbåt från Strömkajen',
       character: 'Stad med skärgårdskänsla, historia, helårsdestination',
       season: 'Helår — Vaxholm är en aktiv stad tolv månader om året',
       best_for: 'Dagsturer, historia, familjer, första skärgårdsbesök',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🏰', name: 'Vaxholms Kastell', desc: 'Fästningsmuseum med 500 år av skärgårdsförsvar. Guidade turer sommartid. Lägg 2 timmar här.' },
       { icon: '🛍', name: 'Stadspromenaden', desc: 'Vandra längs kajen, titta in i de gamla trähusen och fika i de lokala caféerna.' },
@@ -636,11 +638,13 @@ export const ISLANDS: Island[] = [
     
     ],
     facts: {
-      travel_time: '2 h med Waxholmsbåt från Strömkajen',
+      // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Södra Grinda, snabbast 1 tim 35, de flesta 1 tim 50–2 tim 15.
+      travel_time: '~2 h med Waxholmsbåt från Strömkajen (snabbast 1 tim 35)',
       character: 'Naturskönt, välskött, bra mat, populär gästhamn',
       season: 'Maj–September',
       best_for: 'Seglare, vandring, romantiska par, familjer',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🚶', name: 'Vandring', desc: 'Markerade stigar runt hela ön. Klipporna i norr ger panoramautsikt mot skärgården.' },
       { icon: '🛶', name: 'Kajak & SUP', desc: 'Uthyrning vid Wärdshuset. Paddla söder om ön mot de omgivande grunden.' },
@@ -770,11 +774,13 @@ export const ISLANDS: Island[] = [
     
     ],
     facts: {
-      travel_time: '~3 h med Waxholmsbåt från Strömkajen',
+      // KÄLLA: Waxholmsbolagets tabell 12/13 Strömkajen–Finnhamn, snabbast 3 tim 05 (08.30→11.35), typiskt ~3 tim 30.
+      travel_time: '~3 h med Waxholmsbåt från Strömkajen (linje 12/13)',
       character: 'Naturnärt, lugnt, genuint, bra för vandring',
       season: 'Maj–September (vandrarhem delvis öppet helår)',
       best_for: 'Vandring, naturupplevelse, seglare, budget-resenärer',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🚶', name: 'Vandring', desc: 'Välmarkerade stigar på ön och de omgivande holmarna. Söder Långholm är ett must.' },
       { icon: '🛶', name: 'Kajak', desc: 'Paddla till omgivande öar och naturhamnar. Uthyrning finns vid vandrarhemet.' },
@@ -887,11 +893,13 @@ export const ISLANDS: Island[] = [
     
     ],
     facts: {
-      travel_time: '~1 h från Stavsnäs med Waxholmsbåt, drygt 3 h från Strömkajen',
+      // KÄLLA: Waxholmsbolagets tabell 14. Möja nås från SOLLENKROKA (ej Stavsnäs), ~40 min–1 tim till byns bryggor. Strömkajen–Berg ~3,5 tim (08.50→12.30).
+      travel_time: '~40 min–1 tim från Sollenkroka · ~3,5 h från Strömkajen',
       character: 'Bilfri, lantlig, genuint, lugnt',
       season: 'Maj–September',
       best_for: 'De som söker äkta skärgårdsliv utan turister',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🎨', name: 'Roland Svensson-museet', desc: 'Museum tillägnat skärgårdskonstnären Roland Svensson (1910–2003). Öppnade 2014 vid Ramsmora ångbåtsbrygga — Roland Svenssons gamla ateljé från Tornö är bevarad och flyttad in i museet.' },
       { icon: '🚶', name: 'Vandring', desc: 'Promenera mellan hamnarna och genom lantliga bymiljöer. Ingen brådska, inga turiststigar.' },
@@ -2104,11 +2112,13 @@ export const ISLANDS: Island[] = [
       // KÄLLA: uppmätt mot ResRobot 2026-08-05 — färja 17-1 Stavsnäs vinterhamn
       // 07:37 → Östanvik (Nämdö) 08:10, utan byten. Stod tidigare "90 min",
       // nästan tre gånger för långt.
-      travel_time: '33 min med Waxholmsbåt från Stavsnäs vinterhamn',
+      // KÄLLA: Waxholmsbolagets tabell 17 Stavsnäs–Nämdö. ~35 min till Östanvik; andra bryggor 25–60 min.
+      travel_time: '~35 min till Östanvik (Nämdö) från Stavsnäs (linje 17)',
       character: 'Bilfri, genuint, litet samhälle, välskyddat',
       season: 'Maj–September',
       best_for: 'Seglare, naturälskare, genuint skärgårdsliv',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       // KÄLLA: Svenska kyrkan (Djurö, Möja och Nämdö församling) + RAÄ bebyggelseregistret — nygotisk träkyrka, invigd hösten 1876; tidigare uppgifter om åttakantig gustaviansk kyrka 1768/1798 var fel.
       { icon: '⛪', name: 'Nämdö kyrka', desc: 'Vit träkyrka i nygotisk stil, invigd 1876 — en av skärgårdens mest distinkta kyrkobyggnader. Öppen sommartid.' },
@@ -2202,11 +2212,13 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '2 h med Waxholmsbåt från Strömkajen',
+      // KÄLLA: Waxholmsbolagets tabell 13 Strömkajen–Alsvik (Svartsö), snabbast ~2 tim 15, typiskt 2 tim 20–35.
+      travel_time: '~2 tim 15 min med Waxholmsbåt från Strömkajen (linje 13)',
       character: 'Bilfri, ekologisk, lugnt, mat i fokus',
       season: 'Maj–September',
       best_for: 'Matälskare, naturälskare, de som söker unikt',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🛒', name: 'Svartsö Lanthandel', desc: 'Skärgårdens kanske mest välsorterade lanthandel — med apotekombud och Systembolagets utlämning. Lokalbornas vardagsliv händer här.' },
       { icon: '🏛', name: 'Säby herrgård', desc: 'Stenhus uppfört 1732 av bankiren Johan Söderling — bevarad miljö från tiden efter ryssarnas härjningar 1719.' },
@@ -2299,11 +2311,13 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '2 h med Waxholmsbåt från Strömkajen',
+      // KÄLLA: Waxholmsbolagets tabell 16/17. Runmarö nås från STAVSNÄS (ej Strömkajen), Styrsvik ~11 min, Långvik ~15–20 min.
+      travel_time: '~10–20 min från Stavsnäs med Waxholmsbåt (linje 16/17)',
       character: 'Lugnt, naturnära, knutpunkt för seglare',
       season: 'Maj–September',
       best_for: 'Seglare, naturhamnsankring, de som söker lugnet nära Sandhamn',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '✍️', name: 'Tranströmer-spåret', desc: 'Promenera till "Gatan" där Tomas Tranströmer tillbringade somrarna i morfaderns lotshus — miljön bakom diktcykeln "Östersjöar".' },
       { icon: '🚲', name: 'Cykling', desc: 'En av skärgårdens mest cykelvänliga öar. Platta, öppna grusvägar med skog emellan gör alla bryggor lättillgängliga. Cykla till "Gatan" — Nobelpristagaren Tranströmers sommarmiljö och miljön bakom diktcykeln Östersjöar.' },
@@ -2433,11 +2447,13 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '2,5 h med Waxholmsbåt från Strömkajen',
+      // KÄLLA: Waxholmsbolagets tabell 12/13 Strömkajen–Husarö, snabbast ~3 tim 15 (08.30→11.45), typiskt ~3 tim 30.
+      travel_time: '~3 tim 15 min med Waxholmsbåt från Strömkajen (linje 12/13)',
       character: 'Bilfri, lugnt, genuint, norra mellersta',
       season: 'Maj–September',
       best_for: 'Seglare, de som söker lugn och orördhet',
     },
+    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🚲', name: 'Cykling', desc: 'Plana kustvägar runt öns odlingslandskap. Bra etappdestination för cykel- eller seglingsresor i mellersta skärgården — kombinera med Arholmaleden.' },
       { icon: '🚶', name: 'Vandring till norra udden', desc: 'Ca 3 km vandring till panoramautsikten norrut. Rekommenderas starkt.' },
