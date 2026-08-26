@@ -1152,7 +1152,7 @@ export const ISLANDS: Island[] = [
       'Ljusterö har också en funktion som förklaring för stockholmare som undrar hur det faktiskt fungerar att bo i skärgården under vinterhalvåret. Öns permanenta population, med sin skola, sina butiker och sin vardag bortom sommarsäsongen, är ett levande svar på den frågan.',
     ],
     facts: {
-      travel_time: '60 min med buss och bilfärja från Stockholm',
+      travel_time: '~1 tim från Danderyds sjukhus (buss 626 + bilfärja Ljusteröleden)',
       character: 'Bred och mångfacetterad, bilfärja, cykling',
       season: 'April–Oktober',
       best_for: 'Cykling, kajakpaddling, bilburna besökare, naturupplevelse',
@@ -1721,7 +1721,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '2 h med bil och bilfärja',
+      travel_time: '~2 h: bil + två bilfärjor via Yxlan (Furusundsleden + Blidöleden)',
       character: 'Lugnt, lantligt, äkta norrskärgård',
       season: 'Maj–September',
       best_for: 'Lugn, cykling, naturskönt',
@@ -1734,7 +1734,7 @@ export const ISLANDS: Island[] = [
       { name: 'Stugor & privat', type: 'Stugor', desc: 'Privatuthyrning på ön. Sök online.' },
     ],
     getting_there: [
-      { method: 'Bil + Bilfärja', from: 'Norrtälje', time: '45 min', desc: 'Kör till Vätö, ta bilfärja till Blidö.', icon: '🚗' },
+      { method: 'Bil + två bilfärjor', from: 'Furusund', time: '~2 h', desc: 'Kör mot Furusund, bilfärja till Yxlan (Furusundsleden), sedan bilfärja Yxlan–Blidö (Blidöleden). Båda avgiftsfria.', icon: '🚗' },
     ],
     harbors: [{ name: 'Blidö Brygga', desc: 'Enkel gästbrygga vid bistron.', fuel: false }],
     restaurants: [
