@@ -2568,7 +2568,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '3–4 h med Waxholmsbåt från Norrtälje / privat båt',
+      travel_time: 'ca 4 tim med Waxholmsbåt från Strömkajen (linje 26)',
       character: 'Ytterskärgård, välskyddat ankare, äventyrligt',
       season: 'Juni–Augusti',
       best_for: 'Erfarna seglare, ytterskärgårdsälskare',
@@ -2582,7 +2582,7 @@ export const ISLANDS: Island[] = [
       { name: 'Stugor vid hamnen', type: 'Stugor', desc: 'Enkla stugor för övernattning.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Norrtälje', time: '3–4 h', desc: 'Norra linjen längst ut.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 4 tim', desc: 'Waxholmsbolagets linje 26 (Strömkajen–Norröra–Söderöra–Svartlöga–Rödlöga), yttersta stoppet. Ej från Norrtälje.', icon: '⛴' },
       { method: 'Privat båt', from: 'Furusund / Arholma', time: '1–2 h', desc: 'Naturlig etapp på en längre norrlands-seglingstur.', icon: '⛵' },
     ],
     harbors: [
@@ -3067,7 +3067,7 @@ export const ISLANDS: Island[] = [
       'KA 1 lades ned 30 juni 2000 och ersattes av Vaxholms Amfibieregemente (Amf 1) som 2006 flyttade till Berga örlogsbas. Sedan dess har Vasallen omvandlat kasernområdet till ett växande bostadsområde. Rindö är idag i första hand en bostadsö för Vaxholms-pendlare, med kvarvarande militärhistoriska byggnader och fortifikationer.',
       'Rindö passar för dagsbesök från Vaxholm, för promenader bland kasernerna och Oscar-Fredriksborgs fortifikationer, eller som boendeort för dem som vill kombinera skärgårdsläge med Stockholms-pendling.',
     ],
-    facts: { travel_time: '10 min med bilfärja från Vaxholm', character: 'Militärhistoria, bostadsö, broförbunden', season: 'Helår', best_for: 'Militärhistoria, vandring, dagsutflykt från Vaxholm' },
+    facts: { travel_time: '6 min med bilfärja från Vaxholm (Vaxholmsleden)', character: 'Militärhistoria, bostadsö, broförbunden', season: 'Helår', best_for: 'Militärhistoria, vandring, dagsutflykt från Vaxholm' },
     activities: [
       { icon: '🏛', name: 'KA 1-området', desc: 'Promenera bland Erik Josephsons kasernbyggnader från 1906 — idag bostäder och kulturmiljö.' },
       { icon: '🏰', name: 'Oscar-Fredriksborgs fästning', desc: 'Bevarad kustartillerifästning från sent 1800-tal/tidigt 1900-tal.' },
@@ -3075,7 +3075,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [
-      { method: 'Bilfärja', from: 'Vaxholm', time: '10 min', desc: 'Reguljär bilfärja från Vaxholm centrum till Rindö (Trafikverkets vägfärja, avgiftsfri).', icon: '⛴' },
+      { method: 'Bilfärja', from: 'Vaxholm', time: '6 min', desc: 'Reguljär bilfärja Vaxholm–Rindö (Vaxholmsleden, 970 m, Trafikverkets vägfärja, avgiftsfri).', icon: '⛴' },
     ],
     harbors: [{ name: 'Rindö hamn', desc: 'Liten gästbrygga med begränsat antal platser.' }],
     restaurants: [],
@@ -5216,7 +5216,7 @@ export const ISLANDS: Island[] = [
       known_for: 'Ytterskärgård, bilfritt, havsörn, absolut avskildhet',
       season: 'Juni–Augusti',
     
-      travel_time: 'ca 6–7 tim',
+      travel_time: 'ca 4 tim från Strömkajen (linje 26)',
       character: 'Vild ytterskärgård',
       best_for: 'Seglare, naturentusiaster, havsörn',
     },
@@ -5229,7 +5229,7 @@ export const ISLANDS: Island[] = [
       { name: 'Tältning på klipporna', type: 'Camping', desc: 'Inga bokningsbara boenden. Ta med tält och allt du behöver.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbolaget', from: 'Stockholm (Strömkajen)', time: 'ca 6–7 h', desc: 'Lång båtresa via norra skärgårdens öar. Kolla aktuell tidtabell på waxholmsbolaget.se — avgångarna är sällsynta.', icon: '⛴' },
+      { method: 'Waxholmsbolaget', from: 'Stockholm (Strömkajen)', time: 'ca 4 tim', desc: 'Waxholmsbolagets linje 26 via norra skärgårdens öar; Svartlöga ligger ett stopp före Rödlöga. Kolla aktuell tidtabell på waxholmsbolaget.se — avgångarna är sällsynta.', icon: '⛴' },
       { method: 'Privat båt', from: 'Furusund / Norrtälje', time: 'ca 45–60 min', desc: 'Från Furusund eller Norrtälje är det kortare båtväg. Det naturliga sättet att besöka ön om du har tillgång till båt.', icon: '⛵' },
     ],
     transport_meta: {
