@@ -4075,7 +4075,7 @@ export const ISLANDS: Island[] = [
       'Brännö nås med Styrsöbolaget från Saltholmen (spårvagn 11 från centrum). Restid ca 30 minuter. En fullständigt annan värld, 8 km från Göteborg.',
     ],
     facts: {
-      travel_time: '30 min med färja från Saltholmen (spårvagn 11 från Göteborg C)',
+      travel_time: '~20 min till Brännö Rödsten (linje 283) från Saltholmen — spårvagn 11 dit',
       character: 'Autentiskt, folkligt, levande, bilfritt',
       season: 'Maj–September (folkdansen: juni–aug)',
       best_for: 'Göteborgare som vill komma bort, dansintresserade, naturälskare',
@@ -4090,7 +4090,7 @@ export const ISLANDS: Island[] = [
       { name: 'Brännö Värdshus & Pensionat', type: 'Pensionat', desc: 'Öns enda övernattning — enkelt, genuint och fullt sommartid. Boka långt i förväg.' },
     ],
     getting_there: [
-      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50 min totalt', desc: 'Spårvagn linje 11 till Saltholmen (25 min), sedan Styrsöbolagets linje 281/283 till Brännö (25–30 min). Avgår ofta sommartid.', icon: '🚋' },
+      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50 min totalt', desc: 'Spårvagn linje 11 till Saltholmen (25 min), sedan Styrsöbolagets linje 283 till Brännö Rödsten (~20 min). Avgår ofta sommartid.', icon: '🚋' },
       { method: 'Bil + färja', from: 'Göteborg', time: '40 min', desc: 'Kör till Saltholmen (parkering finns), ta färjan. Bilar får ej tas med till ön.', icon: '🚗' },
     ],
     harbors: [
@@ -4288,7 +4288,7 @@ export const ISLANDS: Island[] = [
       'Klipporna på östra sidan med utsikten mot Vrångö och ytterhavet är Asperöns bästa sida.',
     ],
     facts: {
-      travel_time: '25 min med Styrsöbolaget från Saltholmen',
+      travel_time: '~10 min med Styrsöbolaget från Saltholmen (linje 282, Asperö Östra)',
       character: 'Stilla, litet, okommersiellt, bilfritt',
       season: 'Maj–September',
       best_for: 'De som söker lugn, dagsturer i kombination med Brännö/Styrsö',
@@ -4299,7 +4299,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [
-      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 282 till Asperön (ca 25 min).', icon: '🚋' },
+      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 282 till Asperö Östra (~6–10 min) eller linje 283 till Asperö Norra (~14 min).', icon: '🚋' },
     ],
     harbors: [],
     restaurants: [],
