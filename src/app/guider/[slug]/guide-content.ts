@@ -2210,9 +2210,9 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p>Att ta med hunden till skärgården är en fantastisk upplevelse – men det kräver lite förberedelse. Reglerna varierar beroende på ö, tid på året och om du befinner dig i naturreservat. Här är vad du faktiskt behöver veta.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Grundregler: hund och allemansrätten</h3>
-<p>Allemansrätten ger dig rätt att röra dig i naturen – men med hund gäller extra regler. Under häckningstid (1 mars–20 juli) ska hunden hållas kopplad i naturreservat och i känsliga naturmiljöer. Utanför reservat gäller normal aktsam koppelhantering.</p>
+<p>Allemansrätten ger dig rätt att röra dig i naturen – men med hund gäller extra regler. Under häckningstid (1 mars–20 augusti) ska hunden hållas kopplad i naturreservat och i känsliga naturmiljöer. Utanför reservat gäller normal aktsam koppelhantering.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>1 mars–20 juli:</strong> Koppeltvång i naturreservat – skyddar häckande fåglar</li>
+<li><strong>1 mars–20 augusti:</strong> Koppeltvång i naturreservat – skyddar häckande fåglar</li>
 <li><strong>21 juli–28 februari:</strong> Hund i koppel rekommenderas starkt men krävs inte utanför reservat</li>
 <li><strong>Alltid:</strong> Hunden ska inte störa andra besökare, husdjur eller vilda djur</li>
 <li><strong>Alltid:</strong> Plocka upp hundbajs – ta med påsar</li>
