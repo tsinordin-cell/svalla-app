@@ -1814,9 +1814,8 @@ export const ISLANDS: Island[] = [
     ],
     day_cost: {
       budget_per_person: '350–600 kr',
-      includes: 'Waxholmsbåt t/r från Stavsnäs, dryck på baren, medhavd matsäck',
+      includes: 'Waxholmsbåt t/r från Strömkajen, dryck på baren, medhavd matsäck',
       breakdown: [
-        { item: 'Pendeltåg + buss till Stavsnäs (SL)', price: '~50 kr' },
         { item: 'Waxholmsbåt t/r Strömkajen–Gällnö (linje 14)', price: '~160 kr' },
         { item: 'Dryck på Gällnö Bar (2 öl)', price: '130–170 kr' },
         { item: 'Medhavd matsäck (lunch + snacks)', price: '100–150 kr' },
@@ -2349,7 +2348,7 @@ export const ISLANDS: Island[] = [
       budget_per_person: '350–650 kr',
       includes: 'Båtbiljett t/r (240 kr), lunch på krogen, cykeltur och proviant',
       breakdown: [
-        { item: 'Waxholmsbåt t/r från Strömkajen/Stavsnäs', price: '240 kr' },
+        { item: 'Waxholmsbåt t/r från Stavsnäs', price: '240 kr' },
         { item: 'Lunch Runmarö Krog', price: '135–175 kr' },
         { item: 'Kaffe + bulle', price: '65–80 kr' },
         { item: 'Proviant Lanthandeln', price: '50–100 kr' },
