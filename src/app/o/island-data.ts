@@ -1944,7 +1944,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '~30 min med Utö Express från Nynäshamn (sommar)',
+      travel_time: '~30 min med Utö Express från Nynäshamns fiskehamn (sommar)',
       character: 'Vilt, naturreservat, orört',
       season: 'Juni–Augusti',
       best_for: 'Seglare, naturupplevelse, dagsutflykt med båt',
@@ -3304,7 +3304,7 @@ export const ISLANDS: Island[] = [
       'Mörkö passar för den som redan är ute i södra skärgården och letar efter ett lugnt ankringsläge.'
     ],
 
-    facts: { travel_time: '1 h 45 min från Stockholm', character: 'Rå, genuin, fiskartradition', season: 'Maj–oktober', best_for: 'Fiske, natur, äkta skärgård' },
+    facts: { travel_time: '~1 tim från Stockholm (Mörköbron via Hölö/E4)', character: 'Rå, genuin, fiskartradition', season: 'Maj–oktober', best_for: 'Fiske, natur, äkta skärgård' },
     activities: [
       { icon: '🎣', name: 'Fiske', desc: 'Abborre och gädda i vikarna, havsöring längs ytterkusten.' },
       { icon: '🥾', name: 'Vandring', desc: 'Omarkerade stigar längs kusten med vyer mot Östersjön.' },
@@ -3343,7 +3343,7 @@ export const ISLANDS: Island[] = [
       'Muskö passar för familjer som söker ett lugnt alternativ till de populäraste södra öarna.'
     ],
 
-    facts: { travel_time: '1 h 30 min från Stockholm', character: 'Industrihistoria, klippor, halvö', season: 'Maj–oktober', best_for: 'Historia, klippbad, natur' },
+    facts: { travel_time: '~1 tim från Stockholm via Muskötunneln', character: 'Industrihistoria, klippor, halvö', season: 'Maj–oktober', best_for: 'Historia, klippbad, natur' },
     activities: [
       { icon: '🚲', name: 'Cykling', desc: 'Kuperat landskap med kustängar och höga klippor mot Mysingen. Cykla längs öns strandvägar och utforska det öppna beteslandskapet. Tillgänglig med bil via bro — ingen båt behövs.' },
       { icon: '🏛', name: 'Marinbasens museum', desc: 'Guidade turer i den underjordiska berganläggningen (bokningsbar).' },
