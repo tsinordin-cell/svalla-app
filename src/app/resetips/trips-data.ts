@@ -1285,7 +1285,7 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'bullero-naturreservat',
-    title: 'Bullerö — orört naturreservat i ytterskärgården',
+    title: 'Bullerö — orörd nationalparksö i ytterskärgården',
     tagline: 'Ett av Stockholms skärgårds bäst bevarade naturreservat — vild natur och nästan inga turister.',
     duration: 'Heldag',
     startPoint: 'Stavsnäs, Värmdö (bil)',
