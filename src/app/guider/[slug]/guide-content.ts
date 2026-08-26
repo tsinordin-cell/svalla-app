@@ -7292,7 +7292,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p>Möja på hösten är bilfri tystnad med svamprik skog. Ta med korgen – karljohansvamp och kantareller i september, trattkantareller i oktober. Möja Krog är öppen september. Waxholmsbolaget via Stavsnäs, ca 2,5 timmar.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vaxholm – allsäsong</h4>
-<p>Vaxholm fungerar hela året som en liten stad. Kaféer och restauranger håller öppet, fästningsmuseet kör höstöppettider. En enkel dagsturs-skärgård utan planering. Pendelbåt 83/83X från Strömkajen, 55 minuter.</p>
+<p>Vaxholm fungerar hela året som en liten stad. Kaféer och restauranger håller öppet, fästningsmuseet kör höstöppettider. En enkel dagsturs-skärgård utan planering. Waxholmsbåt från Strömkajen, ungefär en timme (alla SL-biljetter gäller).</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Grinda – höstens lugn</h4>
 <!-- KÄLLA: Länsstyrelsen Stockholm, besöksmål naturreservat/Grinda (läst 2026-08-23) -->
@@ -7730,7 +7730,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Perfekt för den som vill få en bild av skärgården utan att boka boende. Startpunkt Strömkajen eller Strandvägen i Stockholm.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Fjäderholmarna → Vaxholm → Grinda</h3>
-<p><strong>Fjäderholmarna</strong> är närmast – ca 25 min från Strandvägen. Ta den tidiga båten, hantverksgallerier, räkfrukost vid bryggan, sedan vidare till Vaxholm med pendelbåt 83/83X (ca 55 min från Strömkajen) eller Waxholmsbolaget. Vaxholm är en riktig stad med fästning, fiskeläge och restauranger. Avsluta med en stund på Grinda – barnvänlig sandvik och tyst natur – innan sista båten hem.</p>
+<p><strong>Fjäderholmarna</strong> är närmast – ca 25 min från Strandvägen. Ta den tidiga båten, hantverksgallerier, räkfrukost vid bryggan, sedan vidare till Vaxholm med Waxholmsbåt från Strömkajen (ungefär en timme, alla SL-biljetter gäller). Vaxholm är en riktig stad med fästning, fiskeläge och restauranger. Avsluta med en stund på Grinda – barnvänlig sandvik och tyst natur – innan sista båten hem.</p>
 <p><em>Tips: Planera tidtabellen på waxholmsbolaget.se innan du åker – mellanstoppstiderna varierar per dag och säsong.</em></p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Helgrutten – två öar och övernattning</h2>
@@ -7799,7 +7799,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p><em>Bäst för:</em> Dagstur, yngre barn, de som vill testa skärgården utan lång resa.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">2. Vaxholm – skärgårdsstad med service</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm är en riktig stad – glassbutiker, restauranger, toaletter och Waxholms fästning att utforska. Pendelbåt 83/83X från Strömkajen, ca 55 min. Barnen kan utforska fästningen (öppen sommartid) och bada vid de grunda vikarna norr om stan. Ingen känsla av "fastna på en ö" – alltid nästa båt hem.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm är en riktig stad – glassbutiker, restauranger, toaletter och Waxholms fästning att utforska. Waxholmsbåt från Strömkajen, ungefär en timme. Barnen kan utforska fästningen (öppen sommartid) och bada vid de grunda vikarna norr om stan. Ingen känsla av "fastna på en ö" – alltid nästa båt hem.</p>
 <p><em>Bäst för:</em> Dagsutflykt, barn som vill ha lite mer att göra, familjer som vill ha mat och glass säkrat.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">3. Grinda – sandstrand och övernattning</h3>
