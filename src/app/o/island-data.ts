@@ -402,7 +402,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['nattaro', 'dalaro', 'orno'],
     tags: ['cykling', 'havsbastu', 'gruva', 'naturreservat', 'familj'],
-    did_you_know: 'Utö har en av Sveriges äldsta järngruvor — drift från 1100-talet fram till 1879. Sveriges första rälsväg byggdes på Utö 1835 (700 meter, för malmtransport från gruvan till lastkajen).',
+    did_you_know: 'Utö har en av Sveriges äldsta järngruvor — drift från 1100-talet fram till 1879. En av Sveriges äldsta rälsvägar byggdes på Utö 1836 (700 meter, för malmtransport från gruvan till lastkajen).',
     transport_meta: {
       from_city_min: 120,
       from_nearest_hub_min: 30,
@@ -3981,7 +3981,7 @@ export const ISLANDS: Island[] = [
       cykel: { rental: true, notes: 'Gotland är Sveriges bästa cykelö med välskyltade leder och relativt plant landskap.' },
       bad: { beaches: ['Tofta strand', 'Ljugarn', 'Sudersand (Fårö)'] },
     },
-    did_you_know: 'Gotlands ringmur runt Visby är en av världens bäst bevarade medeltida stadsmurar. Den är nästan 3,4 km lång, har 44 torn och är i det närmaste komplett sedan 1100-talet.',
+    did_you_know: 'Gotlands ringmur runt Visby är en av världens bäst bevarade medeltida stadsmurar. Den är cirka 3,6 km lång, har 27 bevarade torn och är i det närmaste komplett sedan 1200-talet.',
     seasonal: {
       open: 'April–Oktober',
       peak: 'Juli–mitten av Augusti',

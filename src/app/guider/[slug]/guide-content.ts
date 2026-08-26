@@ -1239,7 +1239,7 @@ export function getGuideContent(slug: string): string {
 
     'landsort-guide': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Landsort – skärgårdens sydligaste utpost</h2>
-<p>Landsort på ön Öja är Sveriges sydligaste bebodda plats och en av skärgårdens mest unika destinationer. Fyren, det speciella klimatet och den absoluta stillheten gör Landsort till ett kapitel för sig.</p>
+<p>Landsort på ön Öja är Stockholms skärgårds sydligaste bebodda plats och en av skärgårdens mest unika destinationer. Fyren, det speciella klimatet och den absoluta stillheten gör Landsort till ett kapitel för sig.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du tar dig dit</h3>
 <p>Landsort är avlägset – planera för en hel dag. Pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min, ingår i SL), sedan Waxholmsbolaget till Öja/Landsort (ca 2,5 h). Totalt ca 4 h tur. Kontrollera tidtabeller på förhand – avgångarna är begränsade.</p>
