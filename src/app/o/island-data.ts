@@ -4130,7 +4130,7 @@ export const ISLANDS: Island[] = [
       'Styrsö södra spets, Tången, är ett naturreservat med fri utsikt över Kattegatt. Att sitta där i solnedgången är en av Göteborgstraktens finest.',
     ],
     facts: {
-      travel_time: '25–35 min med Styrsöbolaget från Saltholmen',
+      travel_time: '~15–25 min med Styrsöbolaget från Saltholmen (linje 281/282)',
       character: 'Levande, naturskön, gastronomisk, bilfritt',
       season: 'Hela året (topprestaurang öppen sommarsäsongen)',
       best_for: 'Matälskare, barnfamiljer, de som vill bo kvar i skärgården',
@@ -4184,7 +4184,7 @@ export const ISLANDS: Island[] = [
       'Inga bilar. Ingen kommersiell turism att tala om. En liten mataffär, ett kafé och naturens egna ljud.',
     ],
     facts: {
-      travel_time: '45–55 min med Styrsöbolaget från Saltholmen',
+      travel_time: '~35–50 min med Styrsöbolaget från Saltholmen (linje 281, yttersta ön)',
       character: 'Vilt, stilla, natur, ytterst',
       season: 'Maj–September (fågelskydd: undvik klippreservatet under häckningen — datumen står på skyltarna)',
       best_for: 'Naturälskare, fågelskådare, de som söker verkligt lugn',
@@ -4235,7 +4235,7 @@ export const ISLANDS: Island[] = [
       'Ön är bilfri (för besökare). Invånarna kör moped och elcykel. Det ger ett lugn som gör det lätt att förstå varför folk väljer att bo här.',
     ],
     facts: {
-      travel_time: '35–40 min med Styrsöbolaget från Saltholmen',
+      travel_time: '~25–38 min med Styrsöbolaget från Saltholmen (linje 281)',
       character: 'Välordnat, maritim historia, praktisk, bilfritt',
       season: 'Hela året (gästhamnen: maj–sept)',
       best_for: 'Seglare, maritimintresserade, barnfamiljer',
