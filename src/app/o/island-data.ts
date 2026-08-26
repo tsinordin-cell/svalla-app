@@ -2235,7 +2235,7 @@ export const ISLANDS: Island[] = [
       { name: 'STF Svartsö Skärgårdshotell & Vandrarhem', type: 'Vandrarhem', desc: 'Hotell- och vandrarhemsboende med konferensmöjligheter, drivet av Svenska Turistföreningen.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '~5–20 min', desc: 'Waxholmsbolagets linje 16/17 från Stavsnäs, Styrsvik ~5 min. (Runmarö nås ej från Strömkajen.) Skärgårdslinjen stannar vid Svartsö.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '~2 tim 15–35 min', desc: 'Waxholmsbolagets linje 13 från Strömkajen via Vaxholm; bryggor Alsvik och Skälvik.', icon: '⛴' },
     ],
     harbors: [
       { name: 'Svartsö gästhamn', desc: 'Liten gästhamn nära krogen och lanthandeln.', fuel: false, service: ['vatten'] },
@@ -2318,7 +2318,7 @@ export const ISLANDS: Island[] = [
 
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 16/17. Runmarö nås från STAVSNÄS (ej Strömkajen), Styrsvik ~11 min, Långvik ~15–20 min.
-      travel_time: '~5–20 min från Stavsnäs med Waxholmsbåt (linje 16/17)',
+      travel_time: '~11–20 min från Stavsnäs med Waxholmsbåt (linje 16/17)',
       character: 'Lugnt, naturnära, knutpunkt för seglare',
       season: 'Maj–September',
       best_for: 'Seglare, naturhamnsankring, de som söker lugnet nära Sandhamn',
@@ -2334,8 +2334,8 @@ export const ISLANDS: Island[] = [
       { name: 'Runmarö Gästhamn', type: 'Gästhamn', desc: 'Förtöj på gästplatser — enkelt och bra.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Strömkajen / Stavsnäs', time: '2 h', desc: 'Direktlinje. Ingår i SL-kort.', icon: '⛴' },
-      { method: 'Eigen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Populärt segelstopp.', icon: '⛵' },
+      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '~11–20 min', desc: 'Waxholmsbolagets linje 16/17 från Stavsnäs; Styrsvik närmast. Runmarö nås ej från Strömkajen.', icon: '⛴' },
+      { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Populärt segelstopp.', icon: '⛵' },
     ],
     harbors: [
       { name: 'Runmarö Hamn', desc: 'Bränsle, el och vatten. Populärt stopp på Stockholmsleden.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
