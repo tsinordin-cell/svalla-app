@@ -2623,7 +2623,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '90 min med bil + bilfärja från Norrtälje',
+      travel_time: '~1,5 tim med bil från Stockholm / SL-buss 637 — Singö är landfast via bro',
       character: 'Genuint, okänt, bilfärja, norra Uppland',
       season: 'Juni–Augusti',
       best_for: 'De som söker äkta orördhet, kulturhistoria',
@@ -2638,7 +2638,7 @@ export const ISLANDS: Island[] = [
       { name: 'Stugor', type: 'Stugor', desc: 'Privatuthyrning av sommarstugor på ön.' },
     ],
     getting_there: [
-      { method: 'Bil + Bilfärja', from: 'Norrtälje', time: '45 min', desc: 'Kör norrut från Norrtälje mot Singöfärjan.', icon: '🚗' },
+      { method: 'Bil / buss', from: 'Norrtälje', time: 'ca 45 min', desc: 'Singö är landfast via bro (Väddö–Fogdö–Singö, 1955). SL-buss 637 eller bil hela vägen — ingen bilfärja.', icon: '🚗' },
     ],
     harbors: [
       { name: 'Singö Fiskehamn', desc: 'Liten fiskehamn med begränsad gästbrygga.', fuel: false },
@@ -2848,7 +2848,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '3 h med privat båt från Nynäshamn',
+      travel_time: 'Båt från Trosa — Askö ligger i Trosa-skärgården',
       character: 'Naturreservat, forskning, ytterskärgård',
       season: 'Juni–Augusti (begränsad tillgänglighet)',
       best_for: 'Marinbiologiintresserade, erfarna seglare, naturälskare',
@@ -2862,7 +2862,7 @@ export const ISLANDS: Island[] = [
       { name: 'Askölaboratoriets stugor', type: 'Stugor', desc: 'Begränsat antal stugor för kursdeltagare och allmänheten under sommaren. Boka via SU.' },
     ],
     getting_there: [
-      { method: 'Privat båt', from: 'Nynäshamn', time: '3 h', desc: 'Nynäshamn är närmaste startpunkt. Öppet hav — planera vädret noga.', icon: '⛵' },
+      { method: 'Båt', from: 'Trosa', time: 'Varierar', desc: 'Askö ligger i Trosa-skärgården i Sörmland — nås med skärgårdsbåt sommartid eller egen båt från Trosa, inte från Nynäshamn.', icon: '⛵' },
     ],
     harbors: [
       { name: 'Askö Hamn', desc: 'Liten hamn vid laboratoriet. Begränsat antal platser för besökare.', fuel: false },
@@ -3012,7 +3012,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '2–3 h med privat båt från Dalarö eller Utö',
+      travel_time: '1–1,5 h med Waxholmsbåt från Dalarö (linje 19)',
       character: 'Naturreservat, inga permanentbor, orört',
       season: 'Juni–Augusti',
       best_for: 'Seglare, naturälskare, stillhet',
