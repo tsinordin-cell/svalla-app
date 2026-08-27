@@ -1,41 +1,47 @@
 ---
 trigger: cron 1 oktober kl 09:00
+layout: fullt
 subject_options:
-  - "🍂 Säsongen är slut — du besökte {{visited_count}} öar"
-  - "Tack för en fin sommar, {{first_name}}"
+  - "Din skärgårdssommar i siffror, {{first_name}}"
+  - "Tack för säsongen — {{visited_count}} öar blev det"
   - "Din Svalla-sammanfattning 2026"
-preheader: Din skärgårdssommar i siffror — och vad som väntar nästa år.
-from: "Svalla <hello@svalla.se>"
+preheader: Din sommar i siffror — och vad Svalla gör över vintern.
+from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Tack för säsongen, {{first_name}}
+# Tack för säsongen, {{first_name}}.
 
-Det blev en sommar. Här är din skärgård 2026 i siffror:
+Det blev en sommar. Innan vi drar in landgången, här är din skärgård 2026 — bara dina egna turer, ingenting påhittat.
 
-- **{{visited_count}} öar** besökta
-- **{{saved_count}} öar** sparade att besöka nästa år
-- **{{trips_count}} turer** loggade
-- **{{distance_km}} km** seglat
+:::panel
+### Din sommar i siffror
+**{{visited_count}} öar** besökta · **{{trip_count}} turer** loggade · **{{distance_nm}} distansminuter** på vattnet · **{{saved_count}} öar** sparade till nästa år
+:::
 
-Du är **{{rank}}** av Svallas användare i antal besökta öar i år.
+:::kort
+### Se hela sammanställningen
+Din rutt-historik, dina sparade öar och din statistik ligger kvar i profilen — och nollställs inte till våren.
 
-[👉 Se din fullständiga sammanställning](https://svalla.se/min-skargard)
+[Öppna Min skärgård →](https://svalla.se/min-skargard)
+:::
 
----
+## Vi stänger inte
 
-## Vad händer nu
-
-Vi stänger inte. Vinterversionen av Svalla har:
-
-- **Live väder & vind** — för dig som tar varje fönster
+:::ruta
+### Vintern på Svalla
+- **Live väder och vind** — för dig som tar varje fönster som dyker upp
 - **Vinterhamnar** — vilka som har plats för båten på land
-- **Planera 2027** — börja redan nu spara öar för nästa sommar
+- **Planera 2027** — spara öar redan nu, så är listan klar när säsongen vänder
+:::
 
-Vi hörs i april igen med säsongsstart-mailet.
+Vi hörs i april igen med säsongsstarten. Tills dess ligger allt du samlat kvar precis som du lämnade det.
 
-— Svalla
+:::knapp
+[Börja spara inför nästa sommar](https://svalla.se/oar)
+:::
 
----
-
-PS: Hälsa gärna en seglarvän som inte är med oss än.
-[👉 Bjud in via länken](https://svalla.se/bjud-in)
+:::signatur
+Tack för i år — vi ses på vattnet 2027.
+— Team Svalla
+*Känner du en seglarvän som borde vara med? Vidarebefordra gärna det här.*
+:::

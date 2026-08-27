@@ -1,41 +1,52 @@
 ---
 trigger: user_created
+layout: fullt
 subject_options:
   - "Välkommen till Svalla"
   - "Din skärgård är samlad — börja här"
   - "Ombord, {{first_name}} — fem öar att börja med"
-preheader: Fem öar att börja med och allt du kan göra på Svalla.
-from: "Svalla <hej@mail.svalla.se>"
+preheader: Fem öar att börja med och tre saker du kan göra direkt.
+from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
 # Välkommen ombord, {{first_name}}.
 
-Svalla är skärgården samlad på ett ställe — guider till öarna, levande färjetider, rutter och en plats att logga dina egna turer.
+Svalla är Stockholms skärgård samlad på ett ställe — guider till öarna, levande färjetider, rutter och en plats att logga dina egna turer. Inga annonser, ingen utfyllnad. Här är hur du kommer igång.
 
-## Fem öar att börja med
+:::panel
+### Fem öar att börja med
+Vill du ha en trygg första helg, sikta på **Sandhamn** eller **Grinda**. Vill du längre ut, testa **Möja** eller **Finnhamn**. Vill du söderut, ta **Utö**. Fem olika känslor av samma skärgård.
+:::
 
-[**Sandhamn**](https://svalla.se/o/sandhamn) — seglarnas huvudstad. Bra för första riktiga skärgårdshelgen.
+:::ruta
+### Sandhamn & Grinda — de enkla
+Sandhamn är seglarnas huvudstad, Grinda ligger närmare och lugnare. Båda funkar utmärkt som första riktiga skärgårdshelg.
 
-[**Grinda**](https://svalla.se/o/grinda) — närmare än Sandhamn. Lugnare. Perfekt för dagstur.
+[Sandhamn →](https://svalla.se/o/sandhamn) · [Grinda →](https://svalla.se/o/grinda)
+:::
 
-[**Möja**](https://svalla.se/o/moja) — autentisk skärgård. Wikströms räkmacka är legendarisk.
+:::ruta
+### Möja & Finnhamn — de äkta
+Möja är genuin skärgård — hit åker man för att äta räkor på en klippa med utsikt mot ingenting. Finnhamn är för dig som vill övernatta på STF:s vandrarhem.
 
-[**Utö**](https://svalla.se/o/uto) — söder om stan. Cykelparadis och historisk gruvort.
-
-[**Finnhamn**](https://svalla.se/o/finnhamn) — för dig som vill övernatta i Skärgårdsstiftelsens klassiska värdshus.
+[Möja →](https://svalla.se/o/moja) · [Finnhamn →](https://svalla.se/o/finnhamn)
+:::
 
 ## Tre saker du kan göra direkt
 
-**Spara öar** du vill besöka — hjärtknappen finns på varje sida och fyller i din profil med tiden.
+:::kort
+### Gör Svalla till din
+- **Spara öar** — tryck hjärtat på en ö så hamnar den i *Min skärgård*
+- **Logga turer med GPS** — appen ritar rutten på sjökortet och summerar distans, tid och fart. Som Strava, fast på vatten
+- **Hitta krogar och hamnar** — med live-färjetider och väderlager bredvid kartan
+:::
 
-**Logga turer** med GPS — appen ritar din rutt på sjökortet och summerar distans, tid och hastighet. Som Strava, fast på vatten.
+:::knapp
+[Öppna din profil](https://svalla.se/min-skargard)
+:::
 
-**Hitta krogar och hamnar** med live-färjetider och väderlager bredvid kartan.
-
-[**Öppna din profil →**](https://svalla.se/min-skargard)
-
----
-
+:::signatur
 Glad sommar — vi syns på vattnet.
-
-— Svalla
+— Team Svalla
+*Vi skriver breven själva. Ingen algoritm har valt öarna åt dig.*
+:::
