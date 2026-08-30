@@ -2,14 +2,14 @@
 trigger: cron 1 april kl 09:00
 layout: fullt
 subject_options:
-  - "Värdshusen vet inte att du kommer än, {{first_name}} 🌸"
+  - "{{first_name}} — värdshusen vet inte att du kommer än 🌸"
   - "En månad till säsongsstart — tre saker att fixa nu"
   - "Skärgårdssommaren bokar inte sig själv"
 preheader: De som planerar i april får de bästa platserna. Resten får restplatserna.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Värdshusen vet inte att du kommer än, {{first_name}}.
+# {{first_name}}, värdshusen vet inte att du kommer än.
 
 En månad kvar till säsongen. Just nu är borden lediga, rummen bokningsbara och gästhamnarna tomma. Det varar inte. De som planerar i april får de bästa platserna — resten får det som blev över. Tre saker är värda en kvart av din vecka — redan nu.
 

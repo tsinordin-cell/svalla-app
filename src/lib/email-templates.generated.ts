@@ -11,14 +11,14 @@ export const MAIL_MALLAR: Record<EmailTemplate, string> = {
 trigger: user_created
 layout: fullt
 subject_options:
-  - "Välkommen ombord, {{first_name}} ⚓"
+  - "{{first_name}} — välkommen ombord ⚓"
   - "Fjorton flikar blev en. Välkommen till Svalla."
   - "Din skärgård börjar här"
 preheader: Fem öar att börja med — och tre saker som gör dig till proffs direkt.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Välkommen ombord, {{first_name}}.
+# {{first_name}}, välkommen ombord.
 
 Du vet känslan: fjorton flikar, tre tidtabeller och en gnagande misstanke om att sista båten hem går tidigare än man tror. Det var därför vi byggde Svalla. Guider till öarna, levande färjetider, rutter och en plats att logga dina egna turer — på ett ställe. Inga annonser. Inget "du kanske också gillar". Bara skärgård.
 
@@ -64,14 +64,14 @@ Glad sommar — vi syns på vattnet.
 trigger: user_created + 7 days
 layout: fullt
 subject_options:
-  - "Alla åker till Sandhamn. Du är inte alla, {{first_name}}."
+  - "{{first_name}}, alla åker till Sandhamn. Du är inte alla."
   - "Fem öar som flyger under radarn 🌊"
   - "Skärgårdens bäst bevarade hemligheter"
 preheader: Öarna turistbåtarna missar — och varför det är hela poängen.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Alla åker till Sandhamn. Du är inte alla, {{first_name}}.
+# {{first_name}}, alla åker till Sandhamn. Du är inte alla.
 
 Samma resa, varje år: Sandhamn, Grinda, Vaxholm. Inget ont om klassikerna — men skärgården är större än så, och de finaste öarna är ofta de som kräver ett byte till och en halvtimme extra på däck. Det är inte ett hinder. Det är entréavgiften.
 
@@ -115,14 +115,14 @@ Ses därute — förhoppningsvis inte på Sandhamn.
 trigger: cron 1 april kl 09:00
 layout: fullt
 subject_options:
-  - "Värdshusen vet inte att du kommer än, {{first_name}} 🌸"
+  - "{{first_name}} — värdshusen vet inte att du kommer än 🌸"
   - "En månad till säsongsstart — tre saker att fixa nu"
   - "Skärgårdssommaren bokar inte sig själv"
 preheader: De som planerar i april får de bästa platserna. Resten får restplatserna.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Värdshusen vet inte att du kommer än, {{first_name}}.
+# {{first_name}}, värdshusen vet inte att du kommer än.
 
 En månad kvar till säsongen. Just nu är borden lediga, rummen bokningsbara och gästhamnarna tomma. Det varar inte. De som planerar i april får de bästa platserna — resten får det som blev över. Tre saker är värda en kvart av din vecka — redan nu.
 
@@ -166,14 +166,14 @@ Vi hörs när vädret vänder.
 trigger: cron 1 oktober kl 09:00
 layout: fullt
 subject_options:
-  - "{{visited_count}} öar. Vi har räknat, {{first_name}} 🍂"
+  - "{{first_name}} — {{visited_count}} öar. Vi har räknat 🍂"
   - "Din skärgårdssommar i siffror"
   - "Tack för i år — här är kvittot"
 preheader: Din sommar i siffror — och varför vintern är skärgårdens hemliga säsong.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# {{visited_count}} öar. Vi har räknat, {{first_name}}.
+# {{first_name}}: {{visited_count}} öar. Vi har räknat.
 
 Säsongen är slut, båtarna glesar ut och skärgården byter till vinterläge. Innan vi drar in landgången: här är din sommar, svart på vitt. Inga uppskattningar, inga påhitt — bara dina egna loggade turer.
 
@@ -216,12 +216,12 @@ layout: fullt
 subject_options:
   - "☀️ {{temp}}° på {{best_day}} — det här är inte en övning"
   - "Skärgårdsväder i helgen: {{temp}}° och nästan ingen vind"
-  - "Prognosen du väntat på, {{first_name}}"
+  - "{{first_name}}, här är prognosen du väntat på"
 preheader: Sånt här väder kommer inte på beställning. Tre öar, tre humör.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Släpp vad du har för händer, {{first_name}}.
+# {{first_name}}, släpp vad du har för händer.
 
 Prognosen för **{{best_day}}**: **{{temp}}°** och bara **{{wind}} m/s**. Det är inte väder — det är en inbjudan. Soffan finns kvar på söndag kväll, det här vädret gör det inte. Tre öar, tre olika humör:
 

@@ -2,14 +2,14 @@
 trigger: user_created
 layout: fullt
 subject_options:
-  - "Välkommen ombord, {{first_name}} ⚓"
+  - "{{first_name}} — välkommen ombord ⚓"
   - "Fjorton flikar blev en. Välkommen till Svalla."
   - "Din skärgård börjar här"
 preheader: Fem öar att börja med — och tre saker som gör dig till proffs direkt.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Välkommen ombord, {{first_name}}.
+# {{first_name}}, välkommen ombord.
 
 Du vet känslan: fjorton flikar, tre tidtabeller och en gnagande misstanke om att sista båten hem går tidigare än man tror. Det var därför vi byggde Svalla. Guider till öarna, levande färjetider, rutter och en plats att logga dina egna turer — på ett ställe. Inga annonser. Inget "du kanske också gillar". Bara skärgård.
 

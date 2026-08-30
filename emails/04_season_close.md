@@ -2,14 +2,14 @@
 trigger: cron 1 oktober kl 09:00
 layout: fullt
 subject_options:
-  - "{{visited_count}} öar. Vi har räknat, {{first_name}} 🍂"
+  - "{{first_name}} — {{visited_count}} öar. Vi har räknat 🍂"
   - "Din skärgårdssommar i siffror"
   - "Tack för i år — här är kvittot"
 preheader: Din sommar i siffror — och varför vintern är skärgårdens hemliga säsong.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# {{visited_count}} öar. Vi har räknat, {{first_name}}.
+# {{first_name}}: {{visited_count}} öar. Vi har räknat.
 
 Säsongen är slut, båtarna glesar ut och skärgården byter till vinterläge. Innan vi drar in landgången: här är din sommar, svart på vitt. Inga uppskattningar, inga påhitt — bara dina egna loggade turer.
 
