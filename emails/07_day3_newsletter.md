@@ -11,7 +11,7 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 # Har du träffat Thorkel?
 
-Tre dagar sedan du klev ombord — dags att presentera dig för besättningens stolthet.
+Tre dagar sedan du klev ombord — dags att du får träffa besättningens stolthet.
 
 :::panel
 ### Din skärgårdsguide, dygnet runt

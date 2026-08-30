@@ -9,7 +9,7 @@ preheader: Sånt här väder kommer inte på beställning. Tre öar, tre humör.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Släpp det du har för händerna, {{first_name}}.
+# Släpp vad du har för händer, {{first_name}}.
 
 Prognosen för **{{best_day}}**: **{{temp}}°** och bara **{{wind}} m/s**. Det är inte väder — det är en inbjudan. Soffan finns kvar på söndag kväll, det här vädret gör det inte. Tre öar, tre olika humör:
 

@@ -15,12 +15,12 @@ Du vet känslan: fjorton flikar, tre tidtabeller och en gnagande misstanke om at
 
 :::panel
 ### Fem öar, fem humör
-Trygg första helg? **Sandhamn** eller **Grinda**. Sugen på det äkta? **Möja** eller **Finnhamn**. Dragen söderut? **Utö**. Samma skärgård — fem helt olika känslor.
+Trygg första helg? **Sandhamn** eller **Grinda**. Sugen på det äkta? **Möja** eller **Finnhamn**. Vill du söderut? **Utö**. Samma skärgård — fem helt olika känslor.
 :::
 
 :::ruta
 ### Sandhamn & Grinda — de enkla
-Sandhamn är seglarnas huvudstad, Grinda ligger närmare och andas lugnare. Båda är perfekta som första riktiga skärgårdshelg — svårt att misslyckas, lätt att längta tillbaka.
+Sandhamn är seglarnas huvudstad, Grinda ligger närmare och andas lugnare. Båda är perfekta för en första riktig skärgårdshelg — svårt att misslyckas, lätt att längta tillbaka.
 
 [Sandhamn →](https://svalla.se/o/sandhamn) · [Grinda →](https://svalla.se/o/grinda)
 :::

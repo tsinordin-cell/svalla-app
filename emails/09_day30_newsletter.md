@@ -11,7 +11,7 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 # En månad ombord — har du hunnit ut än?
 
-Ingen skugga om inte. Kalendrar är fulla och båtar går när de går. Men vi vill dela det vanligaste vi hör från folk som just gjort sin första tur:
+Helt okej om inte — kalendrar är fulla och båtar går när de går. Men en sak är värd att skicka vidare:
 
 :::citat
 ### "Det var enklare än jag trodde."

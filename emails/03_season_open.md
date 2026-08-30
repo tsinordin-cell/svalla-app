@@ -11,7 +11,7 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 # Värdshusen vet inte att du kommer än, {{first_name}}.
 
-En månad kvar till säsongen. Just nu är borden lediga, rummen bokningsbara och gästhamnarna tomma. Det varar inte. De som planerar i april får de bästa platserna — resten får det som blev över. Tre saker är värda en kvart av din vecka, redan nu.
+En månad kvar till säsongen. Just nu är borden lediga, rummen bokningsbara och gästhamnarna tomma. Det varar inte. De som planerar i april får de bästa platserna — resten får det som blev över. Tre saker är värda en kvart av din vecka — redan nu.
 
 :::panel
 ### Tumregeln
@@ -27,7 +27,7 @@ Värdshus och pensionat på Sandhamn, Grinda och Finnhamn fyller juli långt inn
 
 :::ruta
 ### 2. Borden
-Sandhamns Värdshus och de andra krogarna öppnar normalt bokningarna i april. Ett bokat bord i solnedgång slår varje medhavd matlåda.
+Sandhamns Värdshus och de andra krogarna öppnar normalt bokningarna i april. Ett bokat bord i solnedgången slår varje medhavd matlåda.
 
 [Se öarnas krogar →](https://svalla.se/oar)
 :::

@@ -24,12 +24,12 @@ Du vet känslan: fjorton flikar, tre tidtabeller och en gnagande misstanke om at
 
 :::panel
 ### Fem öar, fem humör
-Trygg första helg? **Sandhamn** eller **Grinda**. Sugen på det äkta? **Möja** eller **Finnhamn**. Dragen söderut? **Utö**. Samma skärgård — fem helt olika känslor.
+Trygg första helg? **Sandhamn** eller **Grinda**. Sugen på det äkta? **Möja** eller **Finnhamn**. Vill du söderut? **Utö**. Samma skärgård — fem helt olika känslor.
 :::
 
 :::ruta
 ### Sandhamn & Grinda — de enkla
-Sandhamn är seglarnas huvudstad, Grinda ligger närmare och andas lugnare. Båda är perfekta som första riktiga skärgårdshelg — svårt att misslyckas, lätt att längta tillbaka.
+Sandhamn är seglarnas huvudstad, Grinda ligger närmare och andas lugnare. Båda är perfekta för en första riktig skärgårdshelg — svårt att misslyckas, lätt att längta tillbaka.
 
 [Sandhamn →](https://svalla.se/o/sandhamn) · [Grinda →](https://svalla.se/o/grinda)
 :::
@@ -99,7 +99,7 @@ Bullerö blev 2025 huvudentré till Nämdöskärgårdens nationalpark — Sverig
 [Bullerö-guiden →](https://svalla.se/o/bullero)
 :::
 
-Tryck hjärtat på dem som lockar, så ligger de samlade i *Min skärgård* den dag du bestämmer dig. Framtida du säger tack.
+Tryck hjärtat på dem som lockar, så ligger de samlade i *Min skärgård* den dag du bestämmer dig. Ditt framtida jag säger tack.
 
 :::knapp
 [Bläddra bland alla 84 guider](https://svalla.se/oar)
@@ -124,7 +124,7 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 # Värdshusen vet inte att du kommer än, {{first_name}}.
 
-En månad kvar till säsongen. Just nu är borden lediga, rummen bokningsbara och gästhamnarna tomma. Det varar inte. De som planerar i april får de bästa platserna — resten får det som blev över. Tre saker är värda en kvart av din vecka, redan nu.
+En månad kvar till säsongen. Just nu är borden lediga, rummen bokningsbara och gästhamnarna tomma. Det varar inte. De som planerar i april får de bästa platserna — resten får det som blev över. Tre saker är värda en kvart av din vecka — redan nu.
 
 :::panel
 ### Tumregeln
@@ -140,7 +140,7 @@ Värdshus och pensionat på Sandhamn, Grinda och Finnhamn fyller juli långt inn
 
 :::ruta
 ### 2. Borden
-Sandhamns Värdshus och de andra krogarna öppnar normalt bokningarna i april. Ett bokat bord i solnedgång slår varje medhavd matlåda.
+Sandhamns Värdshus och de andra krogarna öppnar normalt bokningarna i april. Ett bokat bord i solnedgången slår varje medhavd matlåda.
 
 [Se öarnas krogar →](https://svalla.se/oar)
 :::
@@ -184,7 +184,7 @@ Säsongen är slut, båtarna glesar ut och skärgården byter till vinterläge. 
 
 :::kort
 ### Hela historien finns kvar
-Rutterna på sjökortet, statistiken, dina sparade öar — allt ligger i profilen och nollställs aldrig. I februari, när mörkret är som mest kompakt, är det här du öppnar.
+Rutterna på sjökortet, statistiken, dina sparade öar — allt ligger i profilen och nollställs aldrig. I februari, när mörkret är som tätast, är det här du öppnar.
 
 [Öppna Min skärgård →](https://svalla.se/min-skargard)
 :::
@@ -221,7 +221,7 @@ preheader: Sånt här väder kommer inte på beställning. Tre öar, tre humör.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Släpp det du har för händerna, {{first_name}}.
+# Släpp vad du har för händer, {{first_name}}.
 
 Prognosen för **{{best_day}}**: **{{temp}}°** och bara **{{wind}} m/s**. Det är inte väder — det är en inbjudan. Soffan finns kvar på söndag kväll, det här vädret gör det inte. Tre öar, tre olika humör:
 
@@ -329,7 +329,7 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 # Har du träffat Thorkel?
 
-Tre dagar sedan du klev ombord — dags att presentera dig för besättningens stolthet.
+Tre dagar sedan du klev ombord — dags att du får träffa besättningens stolthet.
 
 :::panel
 ### Din skärgårdsguide, dygnet runt
@@ -363,10 +363,10 @@ Ses därute.
 trigger: newsletter_subscribe + 14 days
 layout: fullt
 subject_options:
-  - "Var det Grinda eller Gällnö crewet gillade? 🤔"
+  - "Var det Grinda eller Gällnö som crewet gillade? 🤔"
   - "Tre öar att spara — och stället att spara dem på"
   - "Min skärgård: listan du delar med crewet"
-preheader: Spara öarna du vill till, dela listan med crewet inför helgen.
+preheader: Spara öarna du vill åka till och dela listan med crewet inför helgen.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
@@ -399,7 +399,7 @@ Naturreservat med sandstrand vid gästhamnen och klippbad på norra sidan. Nära
 
 :::ruta
 ### Utö
-Söder om det mesta. Gammal gruvö med långgrund sandstrand vid Ålö och cykelvägar som gör att man ser hela ön på en dag.
+Söder om det mesta. Gammal gruvö med cykelvägar som visar hela ön på en dag — och Ålö Storsand på broförbundna grannön, en av Sveriges finaste sandstränder.
 
 [Guiden →](https://svalla.se/o/uto)
 :::
@@ -429,7 +429,7 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 # En månad ombord — har du hunnit ut än?
 
-Ingen skugga om inte. Kalendrar är fulla och båtar går när de går. Men vi vill dela det vanligaste vi hör från folk som just gjort sin första tur:
+Helt okej om inte — kalendrar är fulla och båtar går när de går. Men en sak är värd att skicka vidare:
 
 :::citat
 ### "Det var enklare än jag trodde."

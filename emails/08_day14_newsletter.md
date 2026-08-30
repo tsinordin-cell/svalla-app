@@ -2,10 +2,10 @@
 trigger: newsletter_subscribe + 14 days
 layout: fullt
 subject_options:
-  - "Var det Grinda eller Gällnö crewet gillade? 🤔"
+  - "Var det Grinda eller Gällnö som crewet gillade? 🤔"
   - "Tre öar att spara — och stället att spara dem på"
   - "Min skärgård: listan du delar med crewet"
-preheader: Spara öarna du vill till, dela listan med crewet inför helgen.
+preheader: Spara öarna du vill åka till och dela listan med crewet inför helgen.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
@@ -38,7 +38,7 @@ Naturreservat med sandstrand vid gästhamnen och klippbad på norra sidan. Nära
 
 :::ruta
 ### Utö
-Söder om det mesta. Gammal gruvö med långgrund sandstrand vid Ålö och cykelvägar som gör att man ser hela ön på en dag.
+Söder om det mesta. Gammal gruvö med cykelvägar som visar hela ön på en dag — och Ålö Storsand på broförbundna grannön, en av Sveriges finaste sandstränder.
 
 [Guiden →](https://svalla.se/o/uto)
 :::

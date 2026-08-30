@@ -20,7 +20,7 @@ Säsongen är slut, båtarna glesar ut och skärgården byter till vinterläge. 
 
 :::kort
 ### Hela historien finns kvar
-Rutterna på sjökortet, statistiken, dina sparade öar — allt ligger i profilen och nollställs aldrig. I februari, när mörkret är som mest kompakt, är det här du öppnar.
+Rutterna på sjökortet, statistiken, dina sparade öar — allt ligger i profilen och nollställs aldrig. I februari, när mörkret är som tätast, är det här du öppnar.
 
 [Öppna Min skärgård →](https://svalla.se/min-skargard)
 :::
