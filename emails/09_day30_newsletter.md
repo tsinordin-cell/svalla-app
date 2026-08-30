@@ -2,16 +2,16 @@
 trigger: newsletter_subscribe + 30 days
 layout: fullt
 subject_options:
-  - "En månad sedan du prenumererade — har du hunnit ut?"
-  - "Planera en dagstur på tio minuter"
+  - "Ärlig fråga: har du hunnit ut än? 🛥️"
+  - "En dagstur, tre steg, noll ursäkter"
   - "Det svåra är att bestämma sig"
 preheader: Tre steg till en dagstur. Resten löser sig därute.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# En månad sedan du prenumererade.
+# En månad ombord — har du hunnit ut än?
 
-Har du hunnit ut på vattnet? Oavsett svar skickar vi det här, för att dela en sak vi hör ofta.
+Helt okej om inte — kalendrar är fulla och båtar går när de går. Men en sak är värd att skicka vidare:
 
 :::citat
 ### "Det var enklare än jag trodde."

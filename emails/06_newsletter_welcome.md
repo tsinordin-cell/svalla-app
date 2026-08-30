@@ -2,16 +2,16 @@
 trigger: newsletter_subscribe
 layout: fullt
 subject_options:
-  - "Välkommen till Svallanyheter"
+  - "Välkommen — nu har du en insider i skärgården 🌊"
+  - "Varannan tisdag: det som faktiskt händer därute"
   - "Din första öinsider är på väg"
-  - "Varannan tisdag, rakt i inkorgen"
-preheader: Varannan tisdag. Öppna öar, hamnar, krogar och väderfönster.
+preheader: Varannan tisdag. Det som är öppet, det som ändrats, och det ingen karta visar.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Välkommen till Svallanyheter.
+# Nu har du en insider i skärgården.
 
-Varannan tisdag i inkorgen. Vad som är öppet just nu, vad som ändrats och var det är värt att åka. Inga annonser, ingen utfyllnad.
+Varannan tisdag i inkorgen: vad som är öppet just nu, vad som ändrats och var det är värt att åka. Inga annonser, ingen utfyllnad, inga "5 tips du INTE får missa". Bara sånt vi själva hade velat veta.
 
 :::kort
 ### Det här kommer i brevet
@@ -45,7 +45,7 @@ Vad som är bäst när. Inklusive de veckor då turisterna åkt hem och öarna �
 [svalla.se/sasong →](https://svalla.se/sasong)
 :::
 
-Nästa nummer kommer om två veckor. Har du en fråga om en specifik ö innan dess — svara på det här mailet. Vi läser allt.
+Nästa nummer kommer om två veckor. Undrar du något om en specifik ö innan dess — svara på det här mejlet. Vi läser allt, och vi svarar som folk.
 
 :::knapp
 [Se vad som är öppet nu](https://svalla.se/oppet-nu)

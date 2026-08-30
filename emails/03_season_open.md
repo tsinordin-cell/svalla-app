@@ -1,40 +1,50 @@
 ---
 trigger: cron 1 april kl 09:00
+layout: fullt
 subject_options:
-  - "🌸 Säsongen öppnar om en månad — boka nu"
-  - "Skärgårdssäsongen 2026 startar — börja planera"
-  - "{{first_name}}, dags att boka skärgårdssommaren"
-preheader: 30 dagar till säsongsstart. Här är de tre saker du måste boka nu.
-from: "Svalla <hello@svalla.se>"
+  - "{{first_name}} — värdshusen vet inte att du kommer än 🌸"
+  - "En månad till säsongsstart — tre saker att fixa nu"
+  - "Skärgårdssommaren bokar inte sig själv"
+preheader: De som planerar i april får de bästa platserna. Resten får restplatserna.
+from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Skärgårdssäsongen öppnar om 30 dagar
+# {{first_name}}, värdshusen vet inte att du kommer än.
 
-Hej {{first_name}}! Säsongen 2026 är runt hörnet. De som planerar i april får de bästa platserna — så här är vad du borde göra denna vecka:
+En månad kvar till säsongen. Just nu är borden lediga, rummen bokningsbara och gästhamnarna tomma. Det varar inte. De som planerar i april får de bästa platserna — resten får det som blev över. Tre saker är värda en kvart av din vecka — redan nu.
 
-## 1. Boka boende
+:::panel
+### Tumregeln
+Boka boende och bord tidigt, kolla färjorna sent. Det första tar slut. Det andra ändras in i det sista.
+:::
 
-Värdshus och pensionat på populära öar (Sandhamn, Grinda, Finnhamn) bokar slut för juli redan i april. Vänta inte.
+:::ruta
+### 1. Boende — börja här
+Värdshus och pensionat på Sandhamn, Grinda och Finnhamn fyller juli långt innan juli. Välj helg, boka, klart. Ledigheten känns dubbelt så nära när rummet är säkrat.
 
-- [Sandhamn — boende](https://svalla.se/o/sandhamn/boende)
-- [Grinda — boende](https://svalla.se/o/grinda/boende)
-- [Finnhamn — boende](https://svalla.se/o/finnhamn/boende)
+[Sandhamn →](https://svalla.se/o/sandhamn) · [Grinda →](https://svalla.se/o/grinda) · [Finnhamn →](https://svalla.se/o/finnhamn)
+:::
 
-## 2. Boka bord
+:::ruta
+### 2. Borden
+Sandhamns Värdshus och de andra krogarna öppnar normalt bokningarna i april. Ett bokat bord i solnedgången slår varje medhavd matlåda.
 
-Seglarrestaurangen på Sandhamn, Wikströms Fisk på Möja, Wärdshusen — bokningar öppnar normalt i april.
+[Se öarnas krogar →](https://svalla.se/oar)
+:::
 
-## 3. Kolla färjetider
+:::ruta
+### 3. Färjorna — bokmärk nu, kolla sen
+Sommartabellen släpps i april. Vår färjesida visar avgångarna live, så du aldrig behöver skärmdumpa en tidtabell igen.
 
-Sommartabellen släpps i april. Bokmärk vår live-färjesida nu så missar du ingen avgång:
-👉 [svalla.se/farjor](https://svalla.se/farjor)
+[svalla.se/farjor →](https://svalla.se/farjor)
+:::
 
----
+:::knapp
+[Börja planera säsongen](https://svalla.se/oar)
+:::
 
-## Din skärgård
-
-Du har sparat **{{saved_count}} öar** att besöka. Gå till [Min skärgård](https://svalla.se/min-skargard) för att se dem.
-
-Glad sommar.
-
-— Svalla
+:::signatur
+Vi hörs när vädret vänder.
+— Team Svalla
+*Har du redan en ö i kikaren? Svara på mejlet så hjälper vi dig med resan dit.*
+:::
