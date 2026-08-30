@@ -9,7 +9,7 @@ preheader: Spara öarna du vill till, dela listan med crewet inför helgen.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Var det Grinda eller Gällnö som var fina?
+# Var det Grinda eller Gällnö som var finast?
 
 Det vanligaste problemet i skärgårdsplanering är inte att välja fel ö. Det är att man hade en idé i mars, ett tips från en kollega i maj, en skärmdump någonstans — och i juli är allt borta. Idéer man inte samlar ihop blir aldrig turer.
 
