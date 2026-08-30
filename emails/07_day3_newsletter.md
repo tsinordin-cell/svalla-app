@@ -2,8 +2,8 @@
 trigger: newsletter_subscribe + 3 days
 layout: fullt
 subject_options:
-  - "Har du träffat Thorkel?"
-  - "Fråga vår skärgårdsguide vad du vill"
+  - "Har du träffat Thorkel? ⚓"
+  - "Ställ en omöjlig skärgårdsfråga. Vi väntar."
   - "Den snabbaste vägen till ett svar"
 preheader: Vår guide svarar på skärgårdsfrågor — med riktiga turer och tider.
 from: "Team Svalla <hej@mail.svalla.se>"
@@ -11,7 +11,7 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 # Har du träffat Thorkel?
 
-Du prenumererade för tre dagar sedan. Det här mailet finns för att tipsa om det vi är mest stolta över.
+Tre dagar sedan du klev ombord — dags att presentera dig för besättningens stolthet.
 
 :::panel
 ### Din skärgårdsguide, dygnet runt
@@ -29,7 +29,7 @@ Han slår upp riktiga turer och tider när frågan handlar om att ta sig någons
 
 ## Varför det är bättre än att googla
 
-En sökmotor ger dig listor att bearbeta. Thorkel ger dig ett svar att agera på — och länkar till guiden om du vill läsa vidare.
+En sökmotor ger dig tio blå länkar och lycka till. Thorkel ger dig ett svar att agera på — och länken till guiden om du vill gräva vidare.
 
 :::knapp
 [Prata med Thorkel](https://svalla.se/guide)

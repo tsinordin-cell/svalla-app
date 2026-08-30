@@ -11,43 +11,43 @@ export const MAIL_MALLAR: Record<EmailTemplate, string> = {
 trigger: user_created
 layout: fullt
 subject_options:
-  - "Välkommen till Svalla"
-  - "Din skärgård är samlad — börja här"
-  - "Ombord, {{first_name}} — fem öar att börja med"
-preheader: Fem öar att börja med och tre saker du kan göra direkt.
+  - "Välkommen ombord, {{first_name}} ⚓"
+  - "Fjorton flikar blev en. Välkommen till Svalla."
+  - "Din skärgård börjar här"
+preheader: Fem öar att börja med — och tre saker som gör dig till proffs direkt.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
 # Välkommen ombord, {{first_name}}.
 
-Svalla är Stockholms skärgård samlad på ett ställe — guider till öarna, levande färjetider, rutter och en plats att logga dina egna turer. Inga annonser, ingen utfyllnad. Här är hur du kommer igång.
+Du vet känslan: fjorton flikar, tre tidtabeller och en gnagande misstanke om att sista båten hem går tidigare än man tror. Det var därför vi byggde Svalla. Guider till öarna, levande färjetider, rutter och en plats att logga dina egna turer — på ett ställe. Inga annonser. Inget "du kanske också gillar". Bara skärgård.
 
 :::panel
-### Fem öar att börja med
-Vill du ha en trygg första helg, sikta på **Sandhamn** eller **Grinda**. Vill du längre ut, testa **Möja** eller **Finnhamn**. Vill du söderut, ta **Utö**. Fem olika känslor av samma skärgård.
+### Fem öar, fem humör
+Trygg första helg? **Sandhamn** eller **Grinda**. Sugen på det äkta? **Möja** eller **Finnhamn**. Dragen söderut? **Utö**. Samma skärgård — fem helt olika känslor.
 :::
 
 :::ruta
 ### Sandhamn & Grinda — de enkla
-Sandhamn är seglarnas huvudstad, Grinda ligger närmare och lugnare. Båda funkar utmärkt som första riktiga skärgårdshelg.
+Sandhamn är seglarnas huvudstad, Grinda ligger närmare och andas lugnare. Båda är perfekta som första riktiga skärgårdshelg — svårt att misslyckas, lätt att längta tillbaka.
 
 [Sandhamn →](https://svalla.se/o/sandhamn) · [Grinda →](https://svalla.se/o/grinda)
 :::
 
 :::ruta
 ### Möja & Finnhamn — de äkta
-Möja är genuin skärgård — hit åker man för att äta räkor på en klippa med utsikt mot ingenting. Finnhamn är för dig som vill övernatta på STF:s vandrarhem.
+Möja är ön dit man åker för att äta räkor på en klippa med utsikt mot ingenting alls. Finnhamn är STF:s vandrarhem mitt i ett naturreservat — enkelt, välskött och svårslaget en stilla kväll.
 
 [Möja →](https://svalla.se/o/moja) · [Finnhamn →](https://svalla.se/o/finnhamn)
 :::
 
-## Tre saker du kan göra direkt
+## Tre saker som gör dig till proffs direkt
 
 :::kort
-### Gör Svalla till din
-- **Spara öar** — tryck hjärtat på en ö så hamnar den i *Min skärgård*
-- **Logga turer med GPS** — appen ritar rutten på sjökortet och summerar distans, tid och fart. Som Strava, fast på vatten
-- **Hitta krogar och hamnar** — med live-färjetider och väderlager bredvid kartan
+### Kom igång på fem minuter
+- **Spara öar** — tryck hjärtat på en ö så hamnar den i *Min skärgård*. Din framtida sommar, samlad
+- **Logga turer med GPS** — appen ritar rutten på sjökortet och räknar distans, tid och fart. Som Strava, fast med bättre utsikt
+- **Hitta krogar och hamnar** — med live-färjetider och väder bredvid kartan, så du slipper gissa
 :::
 
 :::knapp
@@ -57,97 +57,97 @@ Möja är genuin skärgård — hit åker man för att äta räkor på en klippa
 :::signatur
 Glad sommar — vi syns på vattnet.
 — Team Svalla
-*Vi skriver breven själva. Ingen algoritm har valt öarna åt dig.*
+*Vi skriver breven själva, med kaffet i handen. Ingen algoritm har valt öarna åt dig.*
 :::
 `,
   day7: `---
 trigger: user_created + 7 days
 layout: fullt
 subject_options:
-  - "Fem öar de flesta missar"
-  - "{{first_name}}, din skärgård är större än du tror"
-  - "Bortom Sandhamn, Grinda och Vaxholm"
-preheader: Öarna som flyger under radarn — och varför de är värda resan.
+  - "Alla åker till Sandhamn. Du är inte alla, {{first_name}}."
+  - "Fem öar som flyger under radarn 🌊"
+  - "Skärgårdens bäst bevarade hemligheter"
+preheader: Öarna turistbåtarna missar — och varför det är hela poängen.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Fem öar de flesta missar, {{first_name}}.
+# Alla åker till Sandhamn. Du är inte alla, {{first_name}}.
 
-De flesta gör samma resa varje år: Sandhamn, Grinda, Vaxholm. Inget fel med det — men skärgården är större än så, och de finaste öarna är ofta de som kräver en extra byte eller en halvtimme till på båten.
+Samma resa, varje år: Sandhamn, Grinda, Vaxholm. Inget ont om klassikerna — men skärgården är större än så, och de finaste öarna är ofta de som kräver ett byte till och en halvtimme extra på däck. Det är inte ett hinder. Det är entréavgiften.
 
 :::kort
 ### Fem under radarn
-- **Rödlöga** — en av skärgårdens mest oförändrade öar. Ingen bilväg, ingen el, bara stigar och klippor
-- **Husarö** — bilfritt med stark seglartradition, ett av Skärgårdsstiftelsens skyddade områden
-- **Nämdö** — bilfritt, lugnt och vilt. Bäst sent i augusti när sommartoppen passerat
-- **Bullerö** — huvudentré till Nämdöskärgårdens nationalpark och Bruno Liljefors konstnärsö
-- **Landsort** — Stockholms sydligaste utpost, med en av Sveriges äldsta fyrar
+- **Rödlöga** — ingen bilväg, ingen el, bara stigar och klippor. En av skärgårdens mest oförändrade öar
+- **Husarö** — bilfri seglarö, ett av Skärgårdsstiftelsens skyddade områden. Lugnet sitter i väggarna
+- **Nämdö** — bilfri, lugn och vild. Bäst sent i augusti, när alla andra åkt hem
+- **Bullerö** — huvudentré till Nämdöskärgårdens nationalpark och Bruno Liljefors gamla konstnärsö
+- **Landsort** — Stockholms sydligaste utpost, med en av Sveriges äldsta fyrar och öppet hav åt tre håll
 :::
 
-## Varför de här, och inte de vanliga
+## Varför just de här?
 
 :::ruta
 ### Restiden är själva filtret
-Öarna längst ut kräver planering — färre avgångar, någon extra timme. Just det håller dem lugna. Den som kommer fram till Rödlöga eller Landsort har valt att vara där, och det märks på stämningen.
+Öarna längst ut kräver planering — färre avgångar, längre resa. Precis det håller dem lugna. Den som klivit i land på Rödlöga eller Landsort har *valt* att vara där. Det märks på stämningen, och det är den du åker för.
 :::
 
 :::ruta
 ### En helt egen nationalpark
 <!-- KÄLLA: src/app/o/island-data.ts (bullero) — Nämdöskärgårdens nationalpark invigd sep 2025, Sveriges 31:a och första marina nationalpark -->
-Bullerö blev 2025 huvudentré till Nämdöskärgårdens nationalpark — Sveriges första marina nationalpark. Konstnären Bruno Liljefors köpte ön 1908; hans jaktstuga rymmer i dag parkens utställning.
+Bullerö blev 2025 huvudentré till Nämdöskärgårdens nationalpark — Sveriges första marina. Konstnären Bruno Liljefors köpte ön 1908, och hans jaktstuga rymmer i dag parkens utställning. Konsthistoria och ytterskärgård på samma klippa.
 
 [Bullerö-guiden →](https://svalla.se/o/bullero)
 :::
 
-Spara dem du vill åka till via hjärtknappen, så ligger de samlade i *Min skärgård* när du väl bestämmer dig.
+Tryck hjärtat på dem som lockar, så ligger de samlade i *Min skärgård* den dag du bestämmer dig. Framtida du säger tack.
 
 :::knapp
 [Bläddra bland alla 84 guider](https://svalla.se/oar)
 :::
 
 :::signatur
-Ses därute.
+Ses därute — förhoppningsvis inte på Sandhamn.
 — Team Svalla
-*Filtrera på bilfritt, barnvänligt eller segling — listan blir kortare direkt.*
+*Filtrera på bilfritt, barnvänligt eller segling, så blir listan kortare direkt.*
 :::
 `,
   season_open: `---
 trigger: cron 1 april kl 09:00
 layout: fullt
 subject_options:
-  - "Säsongen öppnar om en månad — börja planera"
-  - "Skärgårdssäsongen 2026 startar snart"
-  - "{{first_name}}, dags att boka skärgårdssommaren"
-preheader: 30 dagar till säsongsstart. Tre saker att fixa den här veckan.
+  - "Värdshusen vet inte att du kommer än, {{first_name}} 🌸"
+  - "En månad till säsongsstart — tre saker att fixa nu"
+  - "Skärgårdssommaren bokar inte sig själv"
+preheader: De som planerar i april får de bästa platserna. Resten får restplatserna.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Säsongen öppnar om en månad, {{first_name}}.
+# Värdshusen vet inte att du kommer än, {{first_name}}.
 
-De som planerar i april får de bästa platserna. Värdshus, bord och boenden på de populära öarna bokar slut för juli långt innan sommaren börjar. Tre saker är värda att fixa redan den här veckan.
+En månad kvar till säsongen. Just nu är borden lediga, rummen bokningsbara och gästhamnarna tomma. Det varar inte. De som planerar i april får de bästa platserna — resten får det som blev över. Tre saker är värda en kvart av din vecka, redan nu.
 
 :::panel
-### Regeln är enkel
-Boka boende och bord tidigt, kolla färjorna sent. Det första tar slut, det andra ändras in i det sista.
+### Tumregeln
+Boka boende och bord tidigt, kolla färjorna sent. Det första tar slut. Det andra ändras in i det sista.
 :::
 
 :::ruta
-### 1. Boka boende
-Värdshus och pensionat på Sandhamn, Grinda och Finnhamn fyller juli redan i april. Vänta inte med de populära öarna.
+### 1. Boende — börja här
+Värdshus och pensionat på Sandhamn, Grinda och Finnhamn fyller juli långt innan juli. Välj helg, boka, klart. Ledigheten känns dubbelt så nära när rummet är säkrat.
 
 [Sandhamn →](https://svalla.se/o/sandhamn) · [Grinda →](https://svalla.se/o/grinda) · [Finnhamn →](https://svalla.se/o/finnhamn)
 :::
 
 :::ruta
-### 2. Boka bord
-Sandhamns Värdshus och de andra krogarna öppnar normalt sina bokningar i april. Lägg in helgen innan borden är tagna.
+### 2. Borden
+Sandhamns Värdshus och de andra krogarna öppnar normalt bokningarna i april. Ett bokat bord i solnedgång slår varje medhavd matlåda.
 
 [Se öarnas krogar →](https://svalla.se/oar)
 :::
 
 :::ruta
-### 3. Bokmärk färjorna
-Sommartabellen släpps i april. Vår färjesida visar avgångarna live — bokmärk den nu så missar du ingen båt i sommar.
+### 3. Färjorna — bokmärk nu, kolla sen
+Sommartabellen släpps i april. Vår färjesida visar avgångarna live, så du aldrig behöver skärmdumpa en tidtabell igen.
 
 [svalla.se/farjor →](https://svalla.se/farjor)
 :::
@@ -159,89 +159,90 @@ Sommartabellen släpps i april. Vår färjesida visar avgångarna live — bokm�
 :::signatur
 Vi hörs när vädret vänder.
 — Team Svalla
-*Har du redan en ö i kikaren? Svara på mailet så hjälper vi dig med resan dit.*
+*Har du redan en ö i kikaren? Svara på mejlet så hjälper vi dig med resan dit.*
 :::
 `,
   season_close: `---
 trigger: cron 1 oktober kl 09:00
 layout: fullt
 subject_options:
-  - "Din skärgårdssommar i siffror, {{first_name}}"
-  - "Tack för säsongen — {{visited_count}} öar blev det"
-  - "Din Svalla-sammanfattning 2026"
-preheader: Din sommar i siffror — och vad Svalla gör över vintern.
+  - "{{visited_count}} öar. Vi har räknat, {{first_name}} 🍂"
+  - "Din skärgårdssommar i siffror"
+  - "Tack för i år — här är kvittot"
+preheader: Din sommar i siffror — och varför vintern är skärgårdens hemliga säsong.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Tack för säsongen, {{first_name}}.
+# {{visited_count}} öar. Vi har räknat, {{first_name}}.
 
-Det blev en sommar. Innan vi drar in landgången, här är din skärgård 2026 — bara dina egna turer, ingenting påhittat.
+Säsongen är slut, båtarna glesar ut och skärgården byter till vinterläge. Innan vi drar in landgången: här är din sommar, svart på vitt. Inga uppskattningar, inga påhitt — bara dina egna loggade turer.
 
 :::panel
-### Din sommar i siffror
-**{{visited_count}} öar** besökta · **{{trip_count}} turer** loggade · **{{distance_nm}} distansminuter** på vattnet · **{{saved_count}} öar** sparade till nästa år
+### Ditt år på vattnet
+**{{visited_count}} öar** besökta · **{{trip_count}} turer** loggade · **{{distance_nm}} distansminuter** i kölvattnet · **{{saved_count}} öar** sparade till nästa år
 :::
 
 :::kort
-### Se hela sammanställningen
-Din rutt-historik, dina sparade öar och din statistik ligger kvar i profilen — och nollställs inte till våren.
+### Hela historien finns kvar
+Rutterna på sjökortet, statistiken, dina sparade öar — allt ligger i profilen och nollställs aldrig. I februari, när mörkret är som mest kompakt, är det här du öppnar.
 
 [Öppna Min skärgård →](https://svalla.se/min-skargard)
 :::
 
-## Vi stänger inte
+## Vintern är skärgårdens hemliga säsong
 
 :::ruta
-### Vintern på Svalla
-- **Live väder och vind** — för dig som tar varje fönster som dyker upp
+### Vi stänger inte — vi växlar ner
+- **Live väder och vind** — för dig som tar varje fönster som ges
 - **Vinterhamnar** — vilka som har plats för båten på land
-- **Planera 2027** — spara öar redan nu, så är listan klar när säsongen vänder
+- **Planera nästa år** — spara öar nu, så ligger listan färdig när isarna släpper
 :::
 
-Vi hörs i april igen med säsongsstarten. Tills dess ligger allt du samlat kvar precis som du lämnade det.
+Vi hörs i april när säsongen vänder. Tills dess ligger allt kvar precis där du lämnade det.
 
 :::knapp
 [Börja spara inför nästa sommar](https://svalla.se/oar)
 :::
 
 :::signatur
-Tack för i år — vi ses på vattnet 2027.
+Tack för i år — det var ett nöje att ha dig ombord.
 — Team Svalla
-*Känner du en seglarvän som borde vara med? Vidarebefordra gärna det här.*
+*Känner du någon som borde varit med i somras? Vidarebefordra gärna. Vi lovar att vara lika trevliga mot dem.*
 :::
 `,
   weather_tip: `---
 trigger: cron torsdagar morgon (UTC), maj–september, om helgprognos ≥18°C och ≤40% regn och ≤9 m/s vind
 layout: fullt
 subject_options:
-  - "{{temp}}° i skärgården i helgen — dags att planera"
-  - "Skärgårdsväder {{best_day}} — {{temp}}° och lite vind"
-preheader: Prognosen ser bra ut. Tre öar att fundera på.
+  - "☀️ {{temp}}° på {{best_day}} — det här är inte en övning"
+  - "Skärgårdsväder i helgen: {{temp}}° och nästan ingen vind"
+  - "Prognosen du väntat på, {{first_name}}"
+preheader: Sånt här väder kommer inte på beställning. Tre öar, tre humör.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Skärgårdsväder i helgen, {{first_name}}.
+# Släpp det du har för händerna, {{first_name}}.
 
-Prognosen för **{{best_day}}** ser bra ut: **{{temp}}°** och bara **{{wind}} m/s vind**. Det är skärgårdsväder — och den här sortens helg bokar inte sig själv. Tre öar värda att fundera på, en för varje humör.
+Prognosen för **{{best_day}}**: **{{temp}}°** och bara **{{wind}} m/s**. Det är inte väder — det är en inbjudan. Soffan finns kvar på söndag kväll, det här vädret gör det inte. Tre öar, tre olika humör:
 
 :::ruta
 ### Grinda — den enkla
 <!-- KÄLLA: src/app/o/island-data.ts (grinda) — Waxholmsbolagets tabell 11, snabbast 1 tim 35, de flesta ~2 h -->
-Naturreservat mitt i skärgården med vandringsleder, klippbad och ett av skärgårdens bästa värdshus. Cirka 2 timmar med Waxholmsbåten från Strömkajen (snabbast 1 tim 35), och den ingår i SL-kortet.
+Naturreservat mitt i skärgården: vandringsleder, klippbad och ett av skärgårdens bästa värdshus. Cirka 2 timmar med Waxholmsbåten från Strömkajen (snabbast 1 tim 35) — och den ingår i SL-kortet. Lägre tröskel finns inte.
 
 [Grinda-guiden →](https://svalla.se/o/grinda)
 :::
 
 :::ruta
 ### Sandhamn — den klassiska
-Seglarcentrum med bageri, klippor mot öppet hav och Sandhamns Värdshus. Boka bord innan du åker om du vill äta lunch ute.
+Seglarcentrum med bageri, klippor mot öppet hav och Sandhamns Värdshus. Vill du äta lunch ute: boka bordet innan du kliver på båten, inte efter.
 
 [Sandhamn-guiden →](https://svalla.se/o/sandhamn)
 :::
 
 :::ruta
 ### Finnhamn — den lugna
-STF:s vandrarhem och krog i ett naturreservat, med bra kajaktillgång. Lugnt, välskött och sällan trångt.
+STF:s vandrarhem och krog i ett naturreservat, med bra kajaktillgång. Lugnt, välskött och sällan trångt — även när prognosen ser ut så här.
 
 [Finnhamn-guiden →](https://svalla.se/o/finnhamn)
 :::
@@ -251,25 +252,25 @@ STF:s vandrarhem och krog i ett naturreservat, med bra kajaktillgång. Lugnt, v�
 :::
 
 :::signatur
-Passa på — såna här helger är inte många.
+Passa på — såna här helger går att räkna på ena handens fingrar.
 — Team Svalla
-*Osäker på sista båten hem? Fråga Thorkel innan du åker.*
+*Osäker på sista båten hem? Fråga Thorkel innan du åker, inte från bryggan.*
 :::
 `,
   newsletter_welcome: `---
 trigger: newsletter_subscribe
 layout: fullt
 subject_options:
-  - "Välkommen till Svallanyheter"
+  - "Välkommen — nu har du en insider i skärgården 🌊"
+  - "Varannan tisdag: det som faktiskt händer därute"
   - "Din första öinsider är på väg"
-  - "Varannan tisdag, rakt i inkorgen"
-preheader: Varannan tisdag. Öppna öar, hamnar, krogar och väderfönster.
+preheader: Varannan tisdag. Det som är öppet, det som ändrats, och det ingen karta visar.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Välkommen till Svallanyheter.
+# Nu har du en insider i skärgården.
 
-Varannan tisdag i inkorgen. Vad som är öppet just nu, vad som ändrats och var det är värt att åka. Inga annonser, ingen utfyllnad.
+Varannan tisdag i inkorgen: vad som är öppet just nu, vad som ändrats och var det är värt att åka. Inga annonser, ingen utfyllnad, inga "5 tips du INTE får missa". Bara sånt vi själva hade velat veta.
 
 :::kort
 ### Det här kommer i brevet
@@ -303,7 +304,7 @@ Vad som är bäst när. Inklusive de veckor då turisterna åkt hem och öarna �
 [svalla.se/sasong →](https://svalla.se/sasong)
 :::
 
-Nästa nummer kommer om två veckor. Har du en fråga om en specifik ö innan dess — svara på det här mailet. Vi läser allt.
+Nästa nummer kommer om två veckor. Undrar du något om en specifik ö innan dess — svara på det här mejlet. Vi läser allt, och vi svarar som folk.
 
 :::knapp
 [Se vad som är öppet nu](https://svalla.se/oppet-nu)
@@ -319,8 +320,8 @@ Ses därute.
 trigger: newsletter_subscribe + 3 days
 layout: fullt
 subject_options:
-  - "Har du träffat Thorkel?"
-  - "Fråga vår skärgårdsguide vad du vill"
+  - "Har du träffat Thorkel? ⚓"
+  - "Ställ en omöjlig skärgårdsfråga. Vi väntar."
   - "Den snabbaste vägen till ett svar"
 preheader: Vår guide svarar på skärgårdsfrågor — med riktiga turer och tider.
 from: "Team Svalla <hej@mail.svalla.se>"
@@ -328,7 +329,7 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 # Har du träffat Thorkel?
 
-Du prenumererade för tre dagar sedan. Det här mailet finns för att tipsa om det vi är mest stolta över.
+Tre dagar sedan du klev ombord — dags att presentera dig för besättningens stolthet.
 
 :::panel
 ### Din skärgårdsguide, dygnet runt
@@ -346,7 +347,7 @@ Han slår upp riktiga turer och tider när frågan handlar om att ta sig någons
 
 ## Varför det är bättre än att googla
 
-En sökmotor ger dig listor att bearbeta. Thorkel ger dig ett svar att agera på — och länkar till guiden om du vill läsa vidare.
+En sökmotor ger dig tio blå länkar och lycka till. Thorkel ger dig ett svar att agera på — och länken till guiden om du vill gräva vidare.
 
 :::knapp
 [Prata med Thorkel](https://svalla.se/guide)
@@ -362,16 +363,16 @@ Ses därute.
 trigger: newsletter_subscribe + 14 days
 layout: fullt
 subject_options:
-  - "Tre öar att spara — och en funktion du kanske missat"
-  - "Har du samlat ihop dina öar?"
+  - "Var det Grinda eller Gällnö crewet gillade? 🤔"
+  - "Tre öar att spara — och stället att spara dem på"
   - "Min skärgård: listan du delar med crewet"
 preheader: Spara öarna du vill till, dela listan med crewet inför helgen.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Har du samlat ihop dina öar?
+# Var det Grinda eller Gällnö som var fina?
 
-Det vanligaste problemet i skärgårdsplanering är inte att man väljer fel ö. Det är att man hade en idé om vart man ville, men aldrig samlade ihop den.
+Det vanligaste problemet i skärgårdsplanering är inte att välja fel ö. Det är att man hade en idé i mars, ett tips från en kollega i maj, en skärmdump någonstans — och i juli är allt borta. Idéer man inte samlar ihop blir aldrig turer.
 
 :::kort
 ### Min skärgård — din privata lista
@@ -419,16 +420,16 @@ Ses därute.
 trigger: newsletter_subscribe + 30 days
 layout: fullt
 subject_options:
-  - "En månad sedan du prenumererade — har du hunnit ut?"
-  - "Planera en dagstur på tio minuter"
+  - "Ärlig fråga: har du hunnit ut än? 🛥️"
+  - "En dagstur, tre steg, noll ursäkter"
   - "Det svåra är att bestämma sig"
 preheader: Tre steg till en dagstur. Resten löser sig därute.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# En månad sedan du prenumererade.
+# En månad ombord — har du hunnit ut än?
 
-Har du hunnit ut på vattnet? Oavsett svar skickar vi det här, för att dela en sak vi hör ofta.
+Ingen skugga om inte. Kalendrar är fulla och båtar går när de går. Men vi vill dela det vanligaste vi hör från folk som just gjort sin första tur:
 
 :::citat
 ### "Det var enklare än jag trodde."

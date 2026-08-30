@@ -2,16 +2,16 @@
 trigger: newsletter_subscribe + 14 days
 layout: fullt
 subject_options:
-  - "Tre öar att spara — och en funktion du kanske missat"
-  - "Har du samlat ihop dina öar?"
+  - "Var det Grinda eller Gällnö crewet gillade? 🤔"
+  - "Tre öar att spara — och stället att spara dem på"
   - "Min skärgård: listan du delar med crewet"
 preheader: Spara öarna du vill till, dela listan med crewet inför helgen.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Har du samlat ihop dina öar?
+# Var det Grinda eller Gällnö som var fina?
 
-Det vanligaste problemet i skärgårdsplanering är inte att man väljer fel ö. Det är att man hade en idé om vart man ville, men aldrig samlade ihop den.
+Det vanligaste problemet i skärgårdsplanering är inte att välja fel ö. Det är att man hade en idé i mars, ett tips från en kollega i maj, en skärmdump någonstans — och i juli är allt borta. Idéer man inte samlar ihop blir aldrig turer.
 
 :::kort
 ### Min skärgård — din privata lista

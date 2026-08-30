@@ -117,13 +117,16 @@ function renderMarkdown(md: string): string {
     const b = raw.trim()
     if (!b) continue
     if (b === '---') {
-      out.push(`<hr style="border:0;border-top:1px solid #e4edf1;margin:28px 0">`)
+      // Levande avdelare: kort gradientvåg i stället för grå streck
+      out.push(`<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:26px 0"><tr><td align="center"><div style="width:56px;height:3px;border-radius:2px;background-color:${TEAL};background-image:linear-gradient(90deg,${SEA},${TEAL})"></div></td></tr></table>`)
     } else if (/^###\s/.test(b)) {
       out.push(`<h3 style="font-family:${SERIF};font-size:17px;font-weight:700;color:${INK};margin:0 0 8px;line-height:1.3">${inline(b.replace(/^###\s/, ''))}</h3>`)
     } else if (/^##\s/.test(b)) {
       out.push(`<h2 style="font-family:${SERIF};font-size:20px;font-weight:700;color:${INK};margin:6px 0 14px;letter-spacing:-0.01em;line-height:1.25">${inline(b.replace(/^##\s/, ''))}</h2>`)
     } else if (/^#\s/.test(b)) {
-      out.push(`<h1 style="font-family:${SERIF};font-size:27px;font-weight:700;color:${INK};margin:0 0 16px;letter-spacing:-0.015em;line-height:1.2">${inline(b.replace(/^#\s/, ''))}</h1>`)
+      // Accentstreck ovanför huvudrubriken ger breven en egen signatur
+      out.push(`<div style="width:44px;height:4px;border-radius:2px;background-color:${TEAL};background-image:linear-gradient(90deg,${SEA},${TEAL});margin:0 0 14px"></div>
+<h1 style="font-family:${SERIF};font-size:28px;font-weight:700;color:${INK};margin:0 0 16px;letter-spacing:-0.015em;line-height:1.2">${inline(b.replace(/^#\s/, ''))}</h1>`)
     } else if (/^(\d+)\.\s/m.test(b) && b.split('\n').every(l => /^\s*(\d+)\.\s/.test(l) || /^\s+/.test(l))) {
       const items = b.split(/\n(?=\d+\.\s)/).map(li =>
         `<li style="margin:0 0 8px;padding-left:4px">${inline(li.replace(/^\s*\d+\.\s/, '').replace(/\n\s+/g, ' '))}</li>`).join('')
@@ -173,22 +176,30 @@ function renderBlock(name: string, inner: string): string {
     return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 26px;background-color:#f1f7f9;background-image:linear-gradient(135deg,#f4f9fb 0%,#edf4f7 100%);border-radius:16px">
       <tr><td style="padding:24px 26px;border-left:4px solid ${TEAL}">${renderMarkdown(body)}</td></tr></table>`
   }
-  // kort = mjuk accentbox · ruta = vit kantad box
+  // kort = mjuk accentbox · ruta = vit kantad box med teal-kant upptill
   const boxStyle = name === 'kort'
-    ? `background:#f4f9fb;border-radius:14px;border-left:3px solid ${SEA}`
-    : `background:#ffffff;border-radius:12px;border:1px solid #e4edf1`
+    ? `background:#eaf5f8;border-radius:14px;border-left:4px solid ${TEAL}`
+    : `background:#ffffff;border-radius:12px;border:1px solid #dcebf1;border-top:3px solid ${TEAL}`
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px"><tr>
     <td class="card" style="padding:18px 20px;${boxStyle}">${renderMarkdown(body)}</td></tr></table>`
 }
 
 /** Panel-innehåll på mörk botten (ljus text) */
+/** Inline-formattering på MÖRK botten — fet stil och länkar måste vara ljusa */
+function inlineOnDark(t: string): string {
+  return t
+    .replace(/\*\*([^*]+)\*\*/g, `<strong style="color:#ffffff;font-weight:700">$1</strong>`)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, `<a href="$2" style="color:#aee3ee;font-weight:600;text-decoration:underline">$1</a>`)
+    .replace(/(^|[^*])\*([^*]+)\*/g, '$1<em>$2</em>')
+}
+
 function renderMarkdownOnDark(md: string): string {
   return toBlocks(md).map(raw => {
     const b = raw.trim()
     if (!b) return ''
-    if (/^###\s/.test(b)) return `<div style="font-family:${SERIF};font-size:19px;font-weight:700;color:#fff;margin:0 0 10px;line-height:1.3">${inline(b.replace(/^###\s/, ''))}</div>`
-    if (/^-\s/m.test(b)) return b.split('\n').map(li => `<div style="font-size:13.5px;color:rgba(255,255,255,0.92);margin:0 0 7px;line-height:1.5;padding-left:14px;text-indent:-14px">•&nbsp;&nbsp;${inline(li.replace(/^-\s/, ''))}</div>`).join('')
-    return `<p style="font-size:14px;line-height:1.6;margin:0 0 14px;color:rgba(255,255,255,0.88)">${inline(b.replace(/\n/g, ' '))}</p>`
+    if (/^###\s/.test(b)) return `<div style="font-family:${SERIF};font-size:19px;font-weight:700;color:#fff;margin:0 0 10px;line-height:1.3">${inlineOnDark(b.replace(/^###\s/, ''))}</div>`
+    if (/^-\s/m.test(b)) return b.split('\n').map(li => `<div style="font-size:13.5px;color:rgba(255,255,255,0.92);margin:0 0 7px;line-height:1.5;padding-left:14px;text-indent:-14px">•&nbsp;&nbsp;${inlineOnDark(li.replace(/^-\s/, ''))}</div>`).join('')
+    return `<p style="font-size:14px;line-height:1.6;margin:0 0 14px;color:rgba(255,255,255,0.9)">${inlineOnDark(b.replace(/\n/g, ' '))}</p>`
   }).join('')}
 
 /** Markdown + block (:::namn) → e-postsäker HTML */

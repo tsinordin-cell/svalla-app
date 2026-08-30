@@ -2,43 +2,43 @@
 trigger: user_created
 layout: fullt
 subject_options:
-  - "Välkommen till Svalla"
-  - "Din skärgård är samlad — börja här"
-  - "Ombord, {{first_name}} — fem öar att börja med"
-preheader: Fem öar att börja med och tre saker du kan göra direkt.
+  - "Välkommen ombord, {{first_name}} ⚓"
+  - "Fjorton flikar blev en. Välkommen till Svalla."
+  - "Din skärgård börjar här"
+preheader: Fem öar att börja med — och tre saker som gör dig till proffs direkt.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
 # Välkommen ombord, {{first_name}}.
 
-Svalla är Stockholms skärgård samlad på ett ställe — guider till öarna, levande färjetider, rutter och en plats att logga dina egna turer. Inga annonser, ingen utfyllnad. Här är hur du kommer igång.
+Du vet känslan: fjorton flikar, tre tidtabeller och en gnagande misstanke om att sista båten hem går tidigare än man tror. Det var därför vi byggde Svalla. Guider till öarna, levande färjetider, rutter och en plats att logga dina egna turer — på ett ställe. Inga annonser. Inget "du kanske också gillar". Bara skärgård.
 
 :::panel
-### Fem öar att börja med
-Vill du ha en trygg första helg, sikta på **Sandhamn** eller **Grinda**. Vill du längre ut, testa **Möja** eller **Finnhamn**. Vill du söderut, ta **Utö**. Fem olika känslor av samma skärgård.
+### Fem öar, fem humör
+Trygg första helg? **Sandhamn** eller **Grinda**. Sugen på det äkta? **Möja** eller **Finnhamn**. Dragen söderut? **Utö**. Samma skärgård — fem helt olika känslor.
 :::
 
 :::ruta
 ### Sandhamn & Grinda — de enkla
-Sandhamn är seglarnas huvudstad, Grinda ligger närmare och lugnare. Båda funkar utmärkt som första riktiga skärgårdshelg.
+Sandhamn är seglarnas huvudstad, Grinda ligger närmare och andas lugnare. Båda är perfekta som första riktiga skärgårdshelg — svårt att misslyckas, lätt att längta tillbaka.
 
 [Sandhamn →](https://svalla.se/o/sandhamn) · [Grinda →](https://svalla.se/o/grinda)
 :::
 
 :::ruta
 ### Möja & Finnhamn — de äkta
-Möja är genuin skärgård — hit åker man för att äta räkor på en klippa med utsikt mot ingenting. Finnhamn är för dig som vill övernatta på STF:s vandrarhem.
+Möja är ön dit man åker för att äta räkor på en klippa med utsikt mot ingenting alls. Finnhamn är STF:s vandrarhem mitt i ett naturreservat — enkelt, välskött och svårslaget en stilla kväll.
 
 [Möja →](https://svalla.se/o/moja) · [Finnhamn →](https://svalla.se/o/finnhamn)
 :::
 
-## Tre saker du kan göra direkt
+## Tre saker som gör dig till proffs direkt
 
 :::kort
-### Gör Svalla till din
-- **Spara öar** — tryck hjärtat på en ö så hamnar den i *Min skärgård*
-- **Logga turer med GPS** — appen ritar rutten på sjökortet och summerar distans, tid och fart. Som Strava, fast på vatten
-- **Hitta krogar och hamnar** — med live-färjetider och väderlager bredvid kartan
+### Kom igång på fem minuter
+- **Spara öar** — tryck hjärtat på en ö så hamnar den i *Min skärgård*. Din framtida sommar, samlad
+- **Logga turer med GPS** — appen ritar rutten på sjökortet och räknar distans, tid och fart. Som Strava, fast med bättre utsikt
+- **Hitta krogar och hamnar** — med live-färjetider och väder bredvid kartan, så du slipper gissa
 :::
 
 :::knapp
@@ -48,5 +48,5 @@ Möja är genuin skärgård — hit åker man för att äta räkor på en klippa
 :::signatur
 Glad sommar — vi syns på vattnet.
 — Team Svalla
-*Vi skriver breven själva. Ingen algoritm har valt öarna åt dig.*
+*Vi skriver breven själva, med kaffet i handen. Ingen algoritm har valt öarna åt dig.*
 :::
