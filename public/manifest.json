@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Svalla – Skärgårdslivet, loggat",
+  "name": "Svalla – Sveriges samlade skärgårdssida",
   "short_name": "Svalla",
-  "description": "Logga dina båtturer, hitta restauranger längs kusten och följ andra seglare i den svenska skärgården.",
+  "description": "Hela den svenska skärgården på en sida. Öar, krogar, hamnar och färjetider — från Bohuslän till Höga Kusten.",
   "start_url": "/",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "browser"],
