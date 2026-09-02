@@ -2445,9 +2445,9 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '🌿',
-    tagline: 'Bilfri och lugn — ett av de bättre hållen hemligheterna i mellersta skärgården.',
+    tagline: 'Bilfri och lugn — en av de bättre bevarade hemligheterna i mellersta skärgården.',
     description: [
-      'Husarö är en bilfärjebetjänad ö i mellersta skärgården som erbjuder lugn och möjligheter för längre vistelse. Ön är mindre känd än sina närliggande grannar.',
+      'Husarö är en bilfri ö i mellersta skärgården som erbjuder lugn och möjligheter för längre vistelse. Ön är mindre känd än sina närliggande grannar.',
       'Naturmässigt är Husarö varierad med skogspartier och badplatser längs kusten. Det finns en gästhamn och grundläggande service. Cykelvägar löper längs vägnätet.',
       'Husarö passar för familjer som söker lugn och naturupplevelse, eller som del av längre cykel- eller seglingsresor.'
     ],
@@ -2470,7 +2470,7 @@ export const ISLANDS: Island[] = [
       { name: 'Husarö Gästhamn', type: 'Gästhamn', desc: 'Välskött med plats för ett tiotal båtar.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2,5 h', desc: 'Norra linjen. Ingår i SL-kort.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '~3 tim 15 min', desc: 'Linje 12/13. Ingår i SL-kort.', icon: '⛴' }, // KÄLLA: Waxholmsbolagets tabell 12/13 Strömkajen–Husarö, snabbast ~3 tim 15 (samma källa som travel_time ovan).
     ],
     harbors: [
       { name: 'Husarö Hamn', desc: 'Liten välskött gästhamn.', fuel: false, service: ['el', 'vatten'] },
