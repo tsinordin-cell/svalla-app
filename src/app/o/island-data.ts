@@ -2448,8 +2448,9 @@ export const ISLANDS: Island[] = [
     tagline: 'Bilfri och lugn — en av de bättre bevarade hemligheterna i mellersta skärgården.',
     description: [
       'Husarö är en bilfri ö i mellersta skärgården som erbjuder lugn och möjligheter för längre vistelse. Ön är mindre känd än sina närliggande grannar.',
-      'Naturmässigt är Husarö varierad med skogspartier och badplatser längs kusten. Det finns en gästhamn och grundläggande service. Cykelvägar löper längs vägnätet.',
-      'Husarö passar för familjer som söker lugn och naturupplevelse, eller som del av längre cykel- eller seglingsresor.'
+      // KÄLLA: husaro.se ("ungefär 2,5 km lång"; kulturlandskap med ängar och lövträd → tallskog och släta klippor), visitskargarden.se (Husarö Handel: lanthandel, sjömack, gästhamn vid ångbåtsbryggan)
+      'Naturmässigt är Husarö varierad: kulturlandskap med ängar och lövträd i byn, tallskog och släta klippor längre ut. Ön är ungefär 2,5 km lång — allt nås till fots. Vid ångbåtsbryggan ligger Husarö Handel med lanthandel, sjömack och gästhamn.',
+      'Husarö passar för familjer som söker lugn och naturupplevelse, eller som ett stopp på en längre seglingsresa.'
     ],
 
     facts: {
@@ -2461,30 +2462,35 @@ export const ISLANDS: Island[] = [
     },
     facts_provenance: { travel_time: 'matt' },
     activities: [
-      { icon: '🚲', name: 'Cykling', desc: 'Plana kustvägar runt öns odlingslandskap. Bra etappdestination för cykel- eller seglingsresor i mellersta skärgården — kombinera med Arholmaleden.' },
-      { icon: '🚶', name: 'Vandring till norra udden', desc: 'Ca 3 km vandring till panoramautsikten norrut. Rekommenderas starkt.' },
-      { icon: '🏊', name: 'Klippbad', desc: 'Fina klippbadplatser på öns västra sida.' },
-      { icon: '⛵', name: 'Segling', desc: 'Husarö är ett populärt ankringsstopp på norra Stockholmsleden.' },
+      // KÄLLA: husaro.se ("Vandra, bada, fiska"), visitroslagen.se (badplatser Sandholmen, Badviken, Bockholmen, Kallviken), stockholmslansmuseum.se (lotsplats 1740–1912, fiske och säljakt), explorearchipelago.com (pontonbrygga med Y-bommar)
+      { icon: '🚶', name: 'Vandring', desc: 'Ön är bara 2,5 km lång men skiftar från ängar och lövträd i byn till tallskog och släta klippor. Hela ön går att gå runt på en eftermiddag.' },
+      { icon: '🏊', name: 'Bad', desc: 'Sandholmen, Badviken, Bockholmen och Kallviken är öns badplatser.' },
+      { icon: '🎣', name: 'Fiske', desc: 'Husaröborna levde av lotsning, fiske och säljakt — fiske från klipporna är fortfarande en av öns självklara sysselsättningar.' },
+      { icon: '⛵', name: 'Segling', desc: 'Gästhamn med Y-bommar vid ångbåtsbryggan och sjömack intill. Officiell lotsplats 1740–1912 — sjöfolk har lagt till här i sekler.' },
     ],
     accommodation: [
-      { name: 'Husarö Gästhamn', type: 'Gästhamn', desc: 'Välskött med plats för ett tiotal båtar.' },
+      // KÄLLA: visitroslagen.se ("småstugor", "stugbyn"), husaro.se ("Hyr stuga")
+      { name: 'Stugor på Husarö', type: 'Stugor', desc: 'Småstugor och stugby att hyra på ön. Litet utbud — boka i god tid.' },
     ],
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Strömkajen', time: '~3 tim 15 min', desc: 'Linje 12/13. Ingår i SL-kort.', icon: '⛴' }, // KÄLLA: Waxholmsbolagets tabell 12/13 Strömkajen–Husarö, snabbast ~3 tim 15 (samma källa som travel_time ovan).
     ],
     harbors: [
-      { name: 'Husarö Hamn', desc: 'Liten välskött gästhamn.', fuel: false, service: ['el', 'vatten'] },
+      // KÄLLA: explorearchipelago.com (pontonbrygga med Y-bommar, el mot avgift, nya toaletter, miljöstation, inget färskvatten), visitskargarden.se (Husarö Handel-Sjömack)
+      { name: 'Husarö Handel gästhamn', desc: 'Pontonbrygga med Y-bommar vid ångbåtsbryggan. El mot avgift, nya toaletter och miljöstation — men inget färskvatten. Sjömack intill.', fuel: true, service: ['el', 'toalett'] },
     ],
     restaurants: [
-      { name: 'Husarö Krog', type: 'Restaurang', desc: 'Öns krog med husmanskost och trevlig stämning.' },
+      // KÄLLA: osteraker.se (lanthandel drivs av Henkan och Kattis, enklare mat och dryck sommartid), gasthamnsguide.se ("öppet alla dagar under sommarlovet 10.00-19.00"), visitroslagen.se (begränsade öppettider)
+      { name: 'Husarö Handel', type: 'Café', desc: 'Öns lanthandel vid ångbåtsbryggan — enklare mat, fika och proviant sommartid. Öppet alla dagar under sommarlovet 10–19, begränsat utanför säsong.' },
     ],
     tips: [
-      'Vandra till norra udden — det är det bästa man kan göra på Husarö.',
+      'Lanthandeln har begränsade öppettider utanför sommarlovet — kommer du i maj eller september, ta med proviant.',
       'Husarö är mindre känt än grannarna, vilket ger ett lugnare hamnläge.',
     ],
     related: ['finnhamn', 'ingmarso', 'ljustero'],
     tags: ['bilfri', 'orört', 'segling', 'vandring', 'lugnt'],
-    did_you_know: 'Husarö är bilfri och har stark seglartradition — namnet är gammalt och kommer troligen från fornsvenskt "husa" (gård) plus "ö", inte från husarregementet. Ön är ett av Skärgårdsstiftelsens naturskyddade områden.',
+    // KÄLLA: stockholmslansmuseum.se ("Husarn" i kung Valdemars jordebok från 1200-talet; officiell lotsplats 1740–1912; ett 20-tal lotsar), osteraker.se (Elsa Beskow, riksintresse för kulturmiljövården). OBS: Skärgårdsstiftelsens "Lilla Husarn" är en annan ö vid Nämdö.
+    did_you_know: 'Husarö finns med redan i kung Valdemars jordebok från 1200-talet, då som "Husarn". Ön var officiell lotsplats 1740–1912 med ett tjugotal lotsar när segelsjöfarten var som störst. Elsa Beskow hade sitt sommarhus här, och byn är i dag riksintresse för kulturmiljövården.',
     seasonal: {
       open: 'Maj–September',
       peak: 'Juli',
