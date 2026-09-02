@@ -61,7 +61,14 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline'",
       // img-src: tillåt egna bilder, data:URI (avatars, ikoner), Supabase Storage (publika buckets) och Unsplash.
       // Tidigare 'https:' tillät vilken HTTPS-bild som helst — exfiltrationskanal för session-cookies via <img onerror>.
-      "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://upload.wikimedia.org https://commons.wikimedia.org https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://tiles.openseamap.org",
+      //
+      // thumb.wikimedia.org tillagd 2026-09-02: commons.wikimedia.org/wiki/Special:FilePath
+      // är en OMDIRIGERING, och CSP prövas mot den slutliga adressen — inte den vi skrev.
+      // Special:FilePath med ?width= landar på thumb.wikimedia.org, vilket blockerades.
+      // Följden var att "Redaktionens val"-kortet på /guider (GuiderClient.tsx:230) saknade
+      // bild för varje besökare. Lägger man till en ny wikimedia-URL: kontrollera var den
+      // faktiskt hamnar, inte var den pekar.
+      "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://upload.wikimedia.org https://commons.wikimedia.org https://thumb.wikimedia.org https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://tiles.openseamap.org",
       "font-src 'self' data:",
       "media-src 'self' blob: https://*.supabase.co",
       "worker-src 'self' blob:", // service worker + Capacitor
