@@ -4,10 +4,10 @@
  */
 import { describe, it, expect } from 'vitest'
 import {
-  cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints,
+  cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, mergeRecoveredStops,
   SPEED_CEILING_KNOTS, type ServerGpsRow,
 } from './tracking'
-import type { GpsPoint } from './gps'
+import type { GpsPoint, StopEvent } from './gps'
 
 function pt(recordedAt: string, lat = 59.3): GpsPoint {
   return { lat, lng: 18.1, speedKnots: 5, heading: null, accuracy: 5, recordedAt }
@@ -71,5 +71,27 @@ describe('mergeRecoveredPoints — recovery får inte ge stympat spår', () => {
   })
   it('tom buffert + tom server ger tom lista', () => {
     expect(mergeRecoveredPoints([], [])).toEqual([])
+  })
+})
+
+// ── Kort "Pauser överlever inte en krasch — snapshoten sparar inte stops" ────
+describe('mergeRecoveredStops — pauser överlever recovery', () => {
+  const pause: StopEvent = { lat: 59.3, lng: 18.1, type: 'pause', startedAt: '2026-08-19T10:00:00Z', endedAt: '2026-08-19T10:05:00Z', durationSeconds: 300 }
+  const autoStop: StopEvent = { lat: 59.31, lng: 18.12, type: 'stop', startedAt: '2026-08-19T10:20:00Z', durationSeconds: 180 }
+
+  it('pausposter ur snapshoten behålls före de omdetekterade stoppen', () => {
+    const out = mergeRecoveredStops([pause], [autoStop])
+    expect(out).toEqual([pause, autoStop])
+  })
+
+  it('bara type=pause tas ur snapshoten — gamla auto-stopp där ersätts av omdetekteringen', () => {
+    const staleStop: StopEvent = { ...autoStop, durationSeconds: 1 }
+    const out = mergeRecoveredStops([pause, staleStop], [autoStop])
+    expect(out).toEqual([pause, autoStop])
+  })
+
+  it('snapshot utan stops (äldre version) ger enbart omdetekterade stopp', () => {
+    expect(mergeRecoveredStops(undefined, [autoStop])).toEqual([autoStop])
+    expect(mergeRecoveredStops([], [])).toEqual([])
   })
 })

@@ -7,7 +7,7 @@
  * testbara, och testerna nedanför låser fälttestbuggarna från 19/8 så de
  * inte kan komma tillbaka.
  */
-import type { GpsPoint } from './gps'
+import type { GpsPoint, StopEvent } from './gps'
 
 /**
  * En gräns för orimlig fart, använd överallt (fälttest 19/8): tidigare
@@ -89,4 +89,20 @@ export function mergeRecoveredPoints(
     }))
   return [...fromServer, ...buffer]
     .sort((a, b) => a.recordedAt.localeCompare(b.recordedAt))
+}
+
+/**
+ * Återställ stopp-listan efter krasch (kort "Pauser överlever inte en
+ * krasch", 2026-08-19). detectStops ger BARA auto-stopp — pausposterna
+ * (type 'pause') finns bara i state och måste tas ur snapshoten, annars
+ * försvinner varje paus vid recovery. Samma regel som punkthanteraren
+ * (#166): pauser från snapshoten först, sedan omdetekterade stopp.
+ * Ren funktion — inga klockor, ingen React.
+ */
+export function mergeRecoveredStops(
+  snapshotStops: StopEvent[] | undefined,
+  detected: StopEvent[],
+): StopEvent[] {
+  const pauses = (snapshotStops ?? []).filter(s => s.type === 'pause')
+  return [...pauses, ...detected]
 }

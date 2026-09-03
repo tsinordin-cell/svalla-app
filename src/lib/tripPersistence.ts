@@ -3,6 +3,8 @@
 // If the app crashes or reloads mid-trip, the user is offered to continue.
 // GPS points already in Supabase are preserved; only the tracking state is lost.
 
+import type { StopEvent } from './gps'
+
 export interface TripSnapshot {
   v: 3
   savedAt: string        // ISO — used to expire after 8h
@@ -11,6 +13,13 @@ export interface TripSnapshot {
   phase: 'tracking' | 'paused'
   elapsed: number        // seconds tracked at save time
   tripId: string | null  // Supabase trip ID if already created
+  /**
+   * Pausposter (type 'pause') — de finns bara i React-state och kan inte
+   * omdetekteras ur GPS-punkterna. Utan dem försvinner varje paus vid
+   * krasch-recovery (fälttest 19/8). Valfritt fält: äldre snapshots utan
+   * stops läses fortfarande (v hålls på 3).
+   */
+  stops?: StopEvent[]
 }
 
 const KEY = 'svalla_active_trip'
