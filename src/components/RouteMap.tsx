@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react'
 import type { TourWaypoint } from '@/lib/supabase'
 import type { Map as LeafletMap, Polyline } from 'leaflet'
+import { CARTO_TILE_DARK, CARTO_TILE_LIGHT, CARTO_ATTR } from '@/lib/map-tiles'
 
 interface Props {
  waypoints: TourWaypoint[]
@@ -38,10 +39,9 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
 
  // Tile layer
  const isDark = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark'
- const tileUrl = isDark
- ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
- : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
- const tileAttr = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+ // Se src/lib/map-tiles.ts — CARTO kräver API-nyckel sedan 2026, OSM används i båda teman.
+ const tileUrl = isDark ? CARTO_TILE_DARK : CARTO_TILE_LIGHT
+ const tileAttr = CARTO_ATTR
  L.tileLayer(tileUrl, {
  attribution: tileAttr,
  maxZoom: 18,
