@@ -379,7 +379,8 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Skuleskogen är Höga kustens hjärta och ett av de mest dramatiska naturreservaten i Skandinavien. UNESCO-klassade bergsidor reser sig direkt ur havet — ett landskap format av landisens avsmältning och landets fortsatta landhöjning. Spårnätet på 30 km rymmer allt från korta utflykter till flerdagsvandringar.',
     tips: [
       'SJ/Norrtåg → Härnösand eller Kramfors, sedan lokal buss eller bil.',
-      'Slåttdalsskrevan — en 200 m lång klippspricka — är ett måste.',
+      // KÄLLA: SVT Västernorrland 2023-05-22 "Vandringsled genom Slåttdalsskrevan stängs av säkerhetsskäl" (Länsstyrelsen Västernorrland: risk för fallande sten, leden omdragen) + sverigesnationalparker.se (200 m lång, 30 m djup)
+      'Slåttdalsskrevan — en 200 m lång och 30 m djup klippspricka — är ett måste, men leden GENOM skrevan är stängd sedan 2023 av säkerhetsskäl. Den ses från norra och södra änden.',
       'Planera minst en heldag; etapperna längs Höga kustenleden är krävande.',
       'Ta med övernattningsutrustning för ett autentiskt naturupplevelse.',
     ],

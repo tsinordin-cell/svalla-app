@@ -51,7 +51,8 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🏰',
  title: 'Vaxholm',
- description: 'Skärgårdens infartsport — ungefär en timme från Strömkajen med Waxholmsbolaget, 50 min med buss 670, eller 20 sjömil med segelbåt. Vaxholms kastell (nuvarande byggnad 1833–1863; platsen befästes redan i början av 1500-talet och Gustav Vasas kraftigare fästning kom 1548), charmig trästad, gästhamn och restauranger. Perfekt för en dagsutflykt eller stopphav på väg ut.',
+  // KÄLLA: src/lib/data/precomputed-routes.json (validated=true) stromkajen_to_vaxholm 20,3 km = 11,0 sjömil; går i öppet vatten (Lilla Värtan) och berörs inte av vattenmask-buggen i Skurusundet. Tidigare stod 20 sjömil — km lästa som sjömil.
+ description: 'Skärgårdens infartsport — ungefär en timme från Strömkajen med Waxholmsbolaget, 50 min med buss 670, eller ca 11 sjömil med segelbåt. Vaxholms kastell (nuvarande byggnad 1833–1863; platsen befästes redan i början av 1500-talet och Gustav Vasas kraftigare fästning kom 1548), charmig trästad, gästhamn och restauranger. Perfekt för en dagsutflykt eller stopphav på väg ut.',
  href: '/vaxholm',
  meta: 'Innerskärgården · 30 min med båt',
  },
