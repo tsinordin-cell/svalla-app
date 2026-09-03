@@ -118,6 +118,13 @@ export default function SparaPage() {
   const fileRef          = useRef<HTMLInputElement>(null)
   const startTimeRef     = useRef<Date | null>(null)
   const lastGpsPtRef     = useRef<{ lat: number; lng: number; ts: number } | null>(null)
+  // FALTTEST 2026-09-03 (Tom, bil): anomaligrinden och fartberakningen jamforde
+  // FORRA punktens UTJAMNADE lage mot NYA punktens RA lage. Kalman-gain ar ~0.044,
+  // sa det utjamnade laget slapar ~23 sampel efter -> implicerad fart ~23x sann fart
+  // -> over 60-knopsgrinden -> punkten kastades. Uppmatt i simulering mot exakt denna
+  // kod: bat i 6,5 kn tappade 89 % av punkterna och fick 40 % av sann distans.
+  // Grind och fart maste jamfora RATT mot RATT. Utjamningen ar enbart for visning/lagring.
+  const lastRawPtRef     = useRef<{ lat: number; lng: number; ts: number } | null>(null)
   const kalmanRef        = useRef<GpsKalmanFilter | null>(null)
   const anomalyCountRef  = useRef(0)
   const syncOfflineRef   = useRef<() => void>(() => {})
@@ -362,9 +369,9 @@ export default function SparaPage() {
         const now = point.timestamp
 
         // Anomaly detection
-        if (lastGpsPtRef.current) {
+        if (lastRawPtRef.current) {
           if (isGpsAnomaly(
-            lastGpsPtRef.current.lat, lastGpsPtRef.current.lng, lastGpsPtRef.current.ts,
+            lastRawPtRef.current.lat, lastRawPtRef.current.lng, lastRawPtRef.current.ts,
             point.lat, point.lng, now, SPEED_CEILING_KNOTS)) {
             anomalyCountRef.current += 1
             setAnomalyCount(anomalyCountRef.current)
@@ -375,14 +382,17 @@ export default function SparaPage() {
         // Speed calculation — prefer position-delta (consistent across devices),
         // fall back to device-reported speed only on the very first point.
         let speedKnots = 0
-        if (lastGpsPtRef.current) {
-          const dtHours = (now - lastGpsPtRef.current.ts) / 3_600_000
-          if (dtHours > 0.0005) {
+        if (lastRawPtRef.current) {
+          const dtHours = (now - lastRawPtRef.current.ts) / 3_600_000
+          // FALTTEST 2026-09-03: garden lag pa 0,0005 h = 1,8 s. GPS levererar 1 Hz,
+          // sa VARJE fart blev 0 och snittfarten visades som 0 kn. 0.00005 h = 0,18 s
+          // ar samma undre grans som isGpsAnomaly redan anvander.
+          if (dtHours > 0.00005) {
             const R = 3440.065
-            const lat1 = lastGpsPtRef.current.lat * Math.PI / 180
+            const lat1 = lastRawPtRef.current.lat * Math.PI / 180
             const lat2 = point.lat * Math.PI / 180
-            const dLat = (point.lat - lastGpsPtRef.current.lat) * Math.PI / 180
-            const dLng = (point.lng - lastGpsPtRef.current.lng) * Math.PI / 180
+            const dLat = (point.lat - lastRawPtRef.current.lat) * Math.PI / 180
+            const dLng = (point.lng - lastRawPtRef.current.lng) * Math.PI / 180
             const a = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2
             speedKnots = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)) / dtHours
           }
@@ -406,6 +416,7 @@ export default function SparaPage() {
         }
 
         lastGpsPtRef.current = { lat: smoothed.lat, lng: smoothed.lng, ts: now }
+        lastRawPtRef.current = { lat: point.lat, lng: point.lng, ts: now }
 
         // Hastighets-rensning — logiken bor i cleanGpsSpeed (@/lib/tracking)
         // och är låst av tracking.test.ts (tak 60, accuracy>30 -> 0, median-3).
@@ -504,6 +515,7 @@ export default function SparaPage() {
       watchRef.current = null
     }
     lastGpsPtRef.current = null
+    lastRawPtRef.current = null
   }, [])
 
   // ── Phase transitions ──────────────────────────────────────────────────────
@@ -518,6 +530,7 @@ export default function SparaPage() {
       .catch(() => {})
     startTimeRef.current = new Date()
     lastGpsPtRef.current = null
+    lastRawPtRef.current = null
     anomalyCountRef.current = 0
     kalmanRef.current = new GpsKalmanFilter()
     setBoatType(boat)
