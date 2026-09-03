@@ -28,7 +28,7 @@ import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
-import { cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, SPEED_CEILING_KNOTS } from '@/lib/tracking'
+import { cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, SPEED_CEILING_KNOTS, mergeRecoveredStops } from '@/lib/tracking'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -123,6 +123,7 @@ export default function SparaPage() {
   const syncOfflineRef   = useRef<() => void>(() => {})
   const pointsRef        = useRef<GpsPoint[]>([])  // mirror for GPS callback
   const elapsedRef       = useRef(0)               // mirror for GPS callback (aldrig stale)
+  const stopsRef         = useRef<StopEvent[]>([]) // mirror for heartbeat-snapshoten (pauser)
   const wakeLockRef      = useRef<{ released: boolean; release(): Promise<void> } | null>(null)
 
   // ── Auth gate — render nothing until check completes ─────────────────────
@@ -193,6 +194,7 @@ export default function SparaPage() {
 
   useEffect(() => { pointsRef.current = points }, [points])
   useEffect(() => { elapsedRef.current = elapsed }, [elapsed])
+  useEffect(() => { stopsRef.current = stops }, [stops])
 
   // ── Check for crash recovery on mount ─────────────────────────────────────
   useEffect(() => {
@@ -335,6 +337,9 @@ export default function SparaPage() {
         startedAt: startTimeRef.current?.toISOString() ?? new Date().toISOString(),
         elapsed,
         tripId,
+        // Pauser kan inte omdetekteras ur punkterna — de måste följa med
+        // snapshoten, annars är de borta efter en krasch (kort 19/8).
+        stops: stopsRef.current.filter(s => s.type === 'pause'),
       })
       // Stromning steg 2 (beslut A): skjut upp buffrade punkter till servern
       // var 30:e sekund. Dor telefonen ar hogst en halvminut av sparet borta.
@@ -585,7 +590,10 @@ export default function SparaPage() {
       if (restored.length > 0) {
         setPoints(restored)
         pointsRef.current = restored
-        setStops(detectStops(restored))
+        // Pausposter ur snapshoten + omdetekterade stopp (mergeRecoveredStops
+        // i @/lib/tracking, testad). Tidigare ersatte detectStops allt och
+        // raderade varje paus - samma bugg som #166, fast i recovery-vägen.
+        setStops(mergeRecoveredStops(snap.stops, detectStops(restored)))
         const last = restored[restored.length - 1]
         if (last) setCurrentPos({ lat: last.lat, lng: last.lng })
       }
