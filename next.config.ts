@@ -220,6 +220,15 @@ const nextConfig: NextConfig = {
 
       // Möja: ö-sidor ligger under /o/<slug>.
       { source: '/moja', destination: '/o/moja', permanent: true },
+      // LÄNKKONTROLL 2026-09-03: /stockholms-skargard länkar fem öar med korta
+      // slugs, men bara Möja hade en redirect — de andra fyra gav 404.
+      { source: '/vaxholm',  destination: '/o/vaxholm',  permanent: true },
+      { source: '/grinda',   destination: '/o/grinda',   permanent: true },
+      { source: '/sandhamn', destination: '/o/sandhamn', permanent: true },
+      { source: '/uto',      destination: '/o/uto',      permanent: true },
+      // LÄNKKONTROLL 2026-09-03: /thorkel fanns aldrig som route men länkades
+      // från 116 sidor (10 filer). AI-guiden bor på /guide.
+      { source: '/thorkel', destination: '/guide', permanent: true },
 
       // Regionen heter /hoga-kusten med bindestreck.
       { source: '/hogakusten', destination: '/hoga-kusten', permanent: true },

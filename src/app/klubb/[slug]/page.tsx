@@ -98,6 +98,7 @@ export default function KlubbPage() {
  const { data: ts } = await supabase
  .from('trips')
  .select('id, user_id, created_at, image, caption, location_name, distance')
+ .is('deleted_at', null) // mjukraderade turer ska inte listas (länkkontroll 2026-09-03)
  .in('user_id', memberIds)
  .order('created_at', { ascending: false })
  .limit(20)
