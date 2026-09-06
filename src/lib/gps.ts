@@ -7,6 +7,15 @@ export type GpsPoint = {
  heading: number | null
  accuracy: number
  recordedAt: string // ISO
+ // Rådata (beslut 2026-09-06): lat/lng är det UTJÄMNADE läget ur Kalman-
+ // filtret. rawLat/rawLng är telefonens fix exakt som den kom, och
+ // deviceSpeedKnots är enhetens egen Doppler-fart (null om den saknas).
+ // Utan rådatan går en tur inte att räkna om när filtret ändras — det är
+ // därför fälttesterna inte kunde utvärderas i efterhand. Valfria så att
+ // äldre snapshots/buffertar och GPX-import fortfarande typar.
+ rawLat?: number
+ rawLng?: number
+ deviceSpeedKnots?: number | null
 }
 
 export type StopEvent = {
