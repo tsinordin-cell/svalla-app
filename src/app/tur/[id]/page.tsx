@@ -30,12 +30,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  const bundle = await resolveTripBundle(id)
  const trip = bundle?.trip ?? null
 
- // SOFT-404-SKYDD: notFound() måste kastas HÄR, inte bara i sidkroppen.
-  // loading.tsx gör att svaret streamas — 200-statusen flushas med skalet
-  // innan sidkroppen hunnit köra, så ett notFound() där ger 404-INNEHÅLL
-  // med STATUS 200 (soft 404, uppmätt live 2026-08-12 på samtliga rutter
-  // med loading.tsx). generateMetadata körs före headers och är därför
-  // enda stället som kan sätta riktig 404-status.
+ // 404-STATUS: uppmätt 2026-09-05 — med loading.tsx på routen gav en
+ // okänd tur STATUS 200 med 404-innehåll (soft 404) trots notFound() här,
+ // eftersom skalet streamas innan metadata är klar (Next 15 streamar
+ // metadata på dynamiska routes). Därför finns ingen loading.tsx för
+ // /tur/[id] längre: sidan svarar först när turen är löst. Den publika
+ // datan kommer ur Data Cache, så väntetiden är försumbar.
  if (!trip || trip.deleted_at) notFound()
 
  const metaUser = bundle!.userRow
