@@ -1019,7 +1019,7 @@ export default function SparaPage() {
       has_photos: mediaFiles.length > 0,
       duration_seconds: elapsed,
     })
-    fetch('/api/revalidate-feed', { method: 'POST' }).catch(() => {})
+    fetch('/api/revalidate-feed', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tripId: tid }) }).catch(() => {})
     // Navigera direkt om inga achievements — annars hanteras navigation
     // av "Fortsätt →"-knappen i celebration-overlayn.
     if (!achievementUnlocked) {

@@ -1,4 +1,5 @@
-import { createPublicSupabaseClient } from '@/lib/supabase-server'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { getCachedPublicTripBundle, loadTripBundle, type TripBundle } from '@/lib/trip-cache'
 import Icon from '@/components/Icon'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
@@ -24,23 +25,20 @@ import TripSignupCta from '@/components/TripSignupCta'
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
  const { id } = await params
- const supabase = createPublicSupabaseClient()
- const { data: trip } = await supabase
- .from('trips')
- .select('user_id, location_name, distance, boat_type, image, deleted_at')
- .eq('id', id)
- .single()
+ // Viewer-medveten läsning (se trip-cache.ts): publik tur ur cachen,
+ // annars ägarens egen privata tur via cookies, annars 404.
+ const bundle = await resolveTripBundle(id)
+ const trip = bundle?.trip ?? null
 
- // SOFT-404-SKYDD: notFound() måste kastas HÄR, inte bara i sidkroppen.
-  // loading.tsx gör att svaret streamas — 200-statusen flushas med skalet
-  // innan sidkroppen hunnit köra, så ett notFound() där ger 404-INNEHÅLL
-  // med STATUS 200 (soft 404, uppmätt live 2026-08-12 på samtliga rutter
-  // med loading.tsx). generateMetadata körs före headers och är därför
-  // enda stället som kan sätta riktig 404-status.
+ // 404-STATUS: uppmätt 2026-09-05 — med loading.tsx på routen gav en
+ // okänd tur STATUS 200 med 404-innehåll (soft 404) trots notFound() här,
+ // eftersom skalet streamas innan metadata är klar (Next 15 streamar
+ // metadata på dynamiska routes). Därför finns ingen loading.tsx för
+ // /tur/[id] längre: sidan svarar först när turen är löst. Den publika
+ // datan kommer ur Data Cache, så väntetiden är försumbar.
  if (!trip || trip.deleted_at) notFound()
 
- const { data: metaUser } = await supabase
- .from('users').select('username').eq('id', trip.user_id).single()
+ const metaUser = bundle!.userRow
 
  const distStr = trip.distance != null && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)} NM` : null
  const title = trip.location_name
@@ -74,97 +72,30 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 }
 
 /**
- * Statisk med ISR — samma mönster som /u/[username], /o/[slug] och
- * /upptack/[id] (CLAUDE.md p18/p26). revalidate hålls kort (60 s) för att en
- * ägare som redigerar sin tur ska se ändringen snabbt.
+ * DYNAMISK, viewer-medveten (beslut 2026-09-04, se src/lib/trip-cache.ts).
+ * Tidigare: statisk med ISR (60 s) och anon-klient. Det gav 404 för ägaren
+ * på privata turer, eftersom sidan aldrig skickade med besökarens session.
  *
- * Nya turer täcks av on-demand-rendering (dynamicParams är på som standard):
- * direkt efter /spara eller /logga/manuell renderas sidan vid första besöket
- * och cachas därefter. Datat är läsbart med anon-nyckeln, så det fungerar
- * även utan besökarens session.
+ * Nu: sidan renderas per request, men den PUBLIKA datan hämtas ur Next
+ * Data Cache (tagg trip:<id>, töms vid varje skrivning). Publika turer
+ * kostar alltså inga databasläsningar per visning. Privata turer läses
+ * med besökarens cookies; RLS avgör om hen får se dem.
  */
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
-export async function generateStaticParams() {
-  try {
-    const supabase = createPublicSupabaseClient()
-    // Förgenerera de senaste — resten byggs on-demand vid första besöket.
-    const { data } = await supabase
-      .from('trips')
-      .select('id')
-      .is('deleted_at', null)
-      .order('created_at', { ascending: false })
-      .limit(500)
-    return (data ?? []).map((t: { id: string }) => ({ id: t.id }))
-  } catch {
-    // Hellre on-demand-rendering än ett trasigt bygge (t.ex. lokal maskin
-    // utan .env.local — samma skydd som /upptack/[id] och /u/[username]).
-    return []
-  }
+/** Publik (cachad) först, sedan ägarens egen privata tur, annars null. */
+async function resolveTripBundle(id: string): Promise<TripBundle | null> {
+  const pub = await getCachedPublicTripBundle(id)
+  if (pub) return pub
+  const supabase = await createServerSupabaseClient()
+  return loadTripBundle(id, supabase)
 }
 
 export default async function TurPage({ params }: { params: Promise<{ id: string }> }) {
  const { id } = await params
- // Publik klient — ingen cookies(). Kommentaren som stod här sa att
- // server-clienten behövdes för RLS ("nysparade turer efter redirect ger
- // 404 med browser-client"). Det gällde browser-clientens session-miss,
- // inte RLS: trips, gps_points, stops, trip_highlights, tours och
- // trip_tags är alla verifierade läsbara med enbart anon-nyckeln mot
- // produktionsdatabasen (2026-08-02). En nysparad tur är därför läsbar
- // direkt, även vid on-demand-rendering av en helt fräsch sida.
- //
- // Ingen auth här: vem som tittar avgör bara vad som SYNS (ägar-prompt,
- // annonser, signup-banner) och det sköts av ViewerGate/TripSignupCta i
- // klienten. Se ViewerGate.tsx.
- const supabase = createPublicSupabaseClient()
-
- // fetch trip (utan users-join — FK pekar på auth.users, ej public.users)
- const { data: trip, error } = await supabase
- .from('trips')
- .select(`*, routes(name), ai_summary`)
- .eq('id', id)
- .is('deleted_at', null)
- .single()
- if (error || !trip) notFound()
-
- // ── Parallell fetch av alla trip-relaterade data ──────────────────────────
- const [
- { data: userRow },
- { data: tripTagsRaw },
- { data: rawPoints },
- { data: rawStops },
- { data: toursData },
- { data: allRestaurants },
- ] = await Promise.all([
- supabase.from('users').select('username, avatar').eq('id', trip.user_id).single(),
- supabase.from('trip_tags').select('tagged_user_id').eq('trip_id', id),
- supabase
- .from('gps_points')
- .select('latitude,longitude,speed_knots,heading,recorded_at')
- .eq('trip_id', id)
- .order('recorded_at', { ascending: true }),
- supabase
- .from('stops')
- .select('latitude,longitude,stop_type,started_at,ended_at,duration_seconds,place_name')
- .eq('trip_id', id)
- .order('started_at', { ascending: true }),
- supabase.from('tours').select('id,title,start_location,destination,waypoints').limit(100),
- supabase.from('restaurants').select('id,name,latitude,longitude').limit(1000),
- ])
-
- // hämta taggade användare (beror på tripTagsRaw ovan)
- const taggedUserIds = (tripTagsRaw ?? []).map((t: { tagged_user_id: string }) => t.tagged_user_id)
- const { data: taggedUsersRaw } = taggedUserIds.length
- ? await supabase.from('users').select('id, username').in('id', taggedUserIds)
- : { data: [] }
- const taggedUsers = taggedUsersRaw ?? []
-
- // Existerande höjdpunkt (prompten för ägaren styrs av ViewerGate)
- const { data: existingHighlight } = await supabase
-   .from('trip_highlights')
-   .select('id, place_slug, place_name')
-   .eq('trip_id', id)
-   .maybeSingle()
+ const bundle = await resolveTripBundle(id)
+ if (!bundle) notFound()
+ const { trip, userRow, taggedUsers, rawPoints, rawStops, toursData, allRestaurants, existingHighlight } = bundle
 
  const points = (rawPoints ?? []).map(p => ({
  lat: p?.latitude ?? 0,

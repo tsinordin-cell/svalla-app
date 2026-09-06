@@ -3,6 +3,7 @@ import { useState, useEffect, type CSSProperties, type ReactNode, type MouseEven
 import { useRouter } from 'next/navigation'
 import { Pencil, MapPin, Trash2, MessageCircle, Flag } from '@/components/icons/LucideIcons'
 import { createClient, BOAT_TYPES, getViewer } from '@/lib/supabase'
+import { revalidateTrip } from '@/lib/revalidate-trip'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
 import { IconAnchor, IconMotorboat } from '@/components/icons/SvallaIcons'
@@ -101,6 +102,9 @@ export default function TripActions({
     if (error) { toast('Kunde inte spara ändringar. Försök igen.', 'error'); return }
     toast('Turen uppdaterad')
     setEditing(false)
+    // Töm tursidans datacache innan refresh — annars visar refresh den gamla
+    // cachade versionen (se src/lib/trip-cache.ts).
+    await revalidateTrip(tripId)
     router.refresh()
   }
 
@@ -112,6 +116,7 @@ export default function TripActions({
     const supabase = createClient()
     const { error } = await supabase.rpc('soft_delete_trip', { p_trip_id: tripId })
     if (error) { toast('Kunde inte ta bort turen. Försök igen.', 'error'); setDeleting(false); setConfirm(false); return }
+    await revalidateTrip(tripId)
     router.push('/feed')
   }
 
