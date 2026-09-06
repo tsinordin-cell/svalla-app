@@ -18,6 +18,7 @@ import { CvGpsKalmanFilter } from '@/lib/kalman'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
 import { startTracking } from '@/lib/tracker'
 import { toGpsRow, insertGpsRows } from '@/lib/gpsRows'
+import { computeGpsQuality } from '@/lib/gpsQuality'
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
 import { detectVisitedIslands } from '@/lib/islandCoords'
 import { computeUnlocked, type TripForAch } from '@/lib/achievements'
@@ -129,6 +130,11 @@ export default function SparaPage() {
   const rawSpeedHistRef  = useRef<number[]>([]) // de senaste RÅA farterna, till medianfiltret
   const kalmanRef        = useRef<CvGpsKalmanFilter | null>(null)
   const anomalyCountRef  = useRef(0)
+  // Kvalitetssiffror (beslut 2026-09-06): räknar kastade fixar och
+  // Kalman-omstarter så att trips.gps_quality kan skrivas vid Spara.
+  const lowAccCountRef   = useRef(0)
+  const kalmanResetsRef  = useRef(0)
+  const lastAcceptedTsRef = useRef<number | null>(null)
   const syncOfflineRef   = useRef<() => void>(() => {})
   const pointsRef        = useRef<GpsPoint[]>([])  // mirror for GPS callback
   const elapsedRef       = useRef(0)               // mirror for GPS callback (aldrig stale)
@@ -362,7 +368,7 @@ export default function SparaPage() {
       (point) => {
         setGpsError('')
         setCurrentAccuracy(point.accuracy)
-        if (point.accuracy > 80) return
+        if (point.accuracy > 80) { lowAccCountRef.current += 1; return }
 
         const now = point.timestamp
 
@@ -382,6 +388,9 @@ export default function SparaPage() {
         // distansen i kurvor — se kommentaren i src/lib/kalman.ts.
         // Telefonens accuracy styr hur mycket varje fix får väga.
         if (!kalmanRef.current) kalmanRef.current = new CvGpsKalmanFilter()
+        // Räknar filtrets omstarter (lucka > 30 s) — bara statistik, ingen logik.
+        if (lastAcceptedTsRef.current != null && (now - lastAcceptedTsRef.current) / 1000 > 30) kalmanResetsRef.current += 1
+        lastAcceptedTsRef.current = now
         const smoothed = kalmanRef.current.update(point.lat, point.lng, point.accuracy, now)
 
         // FART: ur filtrets hastighetstillstånd, inte ur positionsdeltan.
@@ -533,6 +542,9 @@ export default function SparaPage() {
     lastRawPtRef.current = null
     rawSpeedHistRef.current = []
     anomalyCountRef.current = 0
+    lowAccCountRef.current = 0
+    kalmanResetsRef.current = 0
+    lastAcceptedTsRef.current = null
     kalmanRef.current = new CvGpsKalmanFilter()
     setBoatType(boat)
     setPhase('tracking')
@@ -624,6 +636,9 @@ export default function SparaPage() {
     setBoatType(snap.boatType)
     startTimeRef.current = new Date(snap.startedAt)
     anomalyCountRef.current = 0
+    lowAccCountRef.current = 0
+    kalmanResetsRef.current = 0
+    lastAcceptedTsRef.current = null
     kalmanRef.current = new CvGpsKalmanFilter()
     haptic(150)
     setPhase('tracking')
@@ -882,6 +897,21 @@ export default function SparaPage() {
     // Sparet ar verifierat pa servern — forst NU ar det sakert att rensa
     // aterstallningsdatat.
     clearTripSnapshot()
+
+    // Kvalitetssiffror (src/lib/gpsQuality.ts, testad) → trips.gps_quality.
+    // Best-effort: turen är redan sparad; saknas kolumnen (migration
+    // 20260906000002 inte körd) loggas det bara.
+    void (async () => {
+      try {
+        const gps_quality = computeGpsQuality(points, {
+          rejectedAccuracy: lowAccCountRef.current,
+          rejectedAnomaly: anomalyCountRef.current,
+          kalmanResets: kalmanResetsRef.current,
+        })
+        const { error } = await supabase.from('trips').update({ gps_quality }).eq('id', tid)
+        if (error) console.warn('[spara] gps_quality skrevs inte:', error.message)
+      } catch (e) { console.warn('[spara] gps_quality:', e) }
+    })()
     getPendingPoints().then(pending => {
       if (pending.length > 0) clearPoints(pending.map(p => p.key)).then(() => setOfflineBuffered(0))
     }).catch(() => {})
