@@ -14,7 +14,7 @@ import {
   calculateBearing, bearingLabel,
   type LiveInsight, getLiveInsights,
 } from '@/lib/gps'
-import { GpsKalmanFilter } from '@/lib/kalman'
+import { CvGpsKalmanFilter } from '@/lib/kalman'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
 import { startTracking } from '@/lib/tracker'
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
@@ -125,7 +125,8 @@ export default function SparaPage() {
   // kod: bat i 6,5 kn tappade 89 % av punkterna och fick 40 % av sann distans.
   // Grind och fart maste jamfora RATT mot RATT. Utjamningen ar enbart for visning/lagring.
   const lastRawPtRef     = useRef<{ lat: number; lng: number; ts: number } | null>(null)
-  const kalmanRef        = useRef<GpsKalmanFilter | null>(null)
+  const rawSpeedHistRef  = useRef<number[]>([]) // de senaste RÅA farterna, till medianfiltret
+  const kalmanRef        = useRef<CvGpsKalmanFilter | null>(null)
   const anomalyCountRef  = useRef(0)
   const syncOfflineRef   = useRef<() => void>(() => {})
   const pointsRef        = useRef<GpsPoint[]>([])  // mirror for GPS callback
@@ -379,31 +380,24 @@ export default function SparaPage() {
           }
         }
 
-        // Speed calculation — prefer position-delta (consistent across devices),
-        // fall back to device-reported speed only on the very first point.
+        // Utjämning: konstant-hastighets-Kalman i 2D (beslut 2026-09-05).
+        // Det gamla 1D-filtret släpade ~23 sampel och kapade 16–23 % av
+        // distansen i kurvor — se kommentaren i src/lib/kalman.ts.
+        // Telefonens accuracy styr hur mycket varje fix får väga.
+        if (!kalmanRef.current) kalmanRef.current = new CvGpsKalmanFilter()
+        const smoothed = kalmanRef.current.update(point.lat, point.lng, point.accuracy, now)
+
+        // FART: ur filtrets hastighetstillstånd, inte ur positionsdeltan.
+        // Uppmätt 2026-09-05 (rak kurs, 1 Hz, GPS-brus ±5 m): positionsdelta
+        // gav 10,6 kn vid sann fart 3 kn och 11,5 vid 6 kn — bruset per sekund
+        // är i samma storleksordning som förflyttningen. Filtrets hastighet gav
+        // 3,2 respektive 6,1 (±0,9). Första fixen: enhetens Doppler-fart.
         let speedKnots = 0
         if (lastRawPtRef.current) {
-          const dtHours = (now - lastRawPtRef.current.ts) / 3_600_000
-          // FALTTEST 2026-09-03: garden lag pa 0,0005 h = 1,8 s. GPS levererar 1 Hz,
-          // sa VARJE fart blev 0 och snittfarten visades som 0 kn. 0.00005 h = 0,18 s
-          // ar samma undre grans som isGpsAnomaly redan anvander.
-          if (dtHours > 0.00005) {
-            const R = 3440.065
-            const lat1 = lastRawPtRef.current.lat * Math.PI / 180
-            const lat2 = point.lat * Math.PI / 180
-            const dLat = (point.lat - lastRawPtRef.current.lat) * Math.PI / 180
-            const dLng = (point.lng - lastRawPtRef.current.lng) * Math.PI / 180
-            const a = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2
-            speedKnots = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)) / dtHours
-          }
+          speedKnots = msToKnots(smoothed.speedMs)
         } else if (point.speed != null && point.speed >= 0) {
-          // First point — no delta yet, use device-reported speed (m/s → knots)
           speedKnots = msToKnots(point.speed)
         }
-
-        // Kalman smoothing
-        if (!kalmanRef.current) kalmanRef.current = new GpsKalmanFilter()
-        const smoothed = kalmanRef.current.update(point.lat, point.lng)
 
         setCurrentPos({ lat: smoothed.lat, lng: smoothed.lng })
 
@@ -420,9 +414,14 @@ export default function SparaPage() {
 
         // Hastighets-rensning — logiken bor i cleanGpsSpeed (@/lib/tracking)
         // och är låst av tracking.test.ts (tak 60, accuracy>30 -> 0, median-3).
+        // OBS: medianfönstret ska matas med RÅA farter. Uppmätt 2026-09-05:
+        // matas det med sina egna rensade utdata låser det sig så fort två
+        // utdata i rad är lika (median av [a, a, x] är alltid a) — vid 12 kn
+        // fastnade visningen på 7,8 kn för resten av turen.
         const cleanSpeed = cleanGpsSpeed(
           speedKnots, point.accuracy,
-          pointsRef.current.slice(-2).map(p => p.speedKnots))
+          rawSpeedHistRef.current.slice(-2))
+        rawSpeedHistRef.current = [...rawSpeedHistRef.current.slice(-1), Math.min(Math.max(speedKnots, 0), SPEED_CEILING_KNOTS)]
         setCurrentSpeed(cleanSpeed)
 
         const pt: GpsPoint = {
@@ -516,6 +515,7 @@ export default function SparaPage() {
     }
     lastGpsPtRef.current = null
     lastRawPtRef.current = null
+    rawSpeedHistRef.current = []
   }, [])
 
   // ── Phase transitions ──────────────────────────────────────────────────────
@@ -531,8 +531,9 @@ export default function SparaPage() {
     startTimeRef.current = new Date()
     lastGpsPtRef.current = null
     lastRawPtRef.current = null
+    rawSpeedHistRef.current = []
     anomalyCountRef.current = 0
-    kalmanRef.current = new GpsKalmanFilter()
+    kalmanRef.current = new CvGpsKalmanFilter()
     setBoatType(boat)
     setPhase('tracking')
     setAnomalyCount(0)
@@ -623,7 +624,7 @@ export default function SparaPage() {
     setBoatType(snap.boatType)
     startTimeRef.current = new Date(snap.startedAt)
     anomalyCountRef.current = 0
-    kalmanRef.current = new GpsKalmanFilter()
+    kalmanRef.current = new CvGpsKalmanFilter()
     haptic(150)
     setPhase('tracking')
     startGPS()
