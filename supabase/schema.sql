@@ -78,7 +78,11 @@ create table if not exists public.gps_points (
   speed_knots  float default 0,
   heading      float,                            -- degrees 0-360
   accuracy     float,                            -- meters
-  recorded_at  timestamptz not null default now()
+  recorded_at  timestamptz not null default now(),
+  -- rådata (2026-09-06): telefonens fix + enhetens fart; latitude/longitude är utjämnade
+  raw_latitude       double precision,
+  raw_longitude      double precision,
+  device_speed_knots real
 );
 alter table public.gps_points enable row level security;
 create policy "Anyone can read gps points"

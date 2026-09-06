@@ -17,6 +17,7 @@ import {
 import { CvGpsKalmanFilter } from '@/lib/kalman'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
 import { startTracking } from '@/lib/tracker'
+import { toGpsRow, insertGpsRows } from '@/lib/gpsRows'
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
 import { detectVisitedIslands } from '@/lib/islandCoords'
 import { computeUnlocked, type TripForAch } from '@/lib/achievements'
@@ -303,16 +304,12 @@ export default function SparaPage() {
       if (pending.length === 0 || !tripId) return
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
-      const batch = pending.map(p => ({
-        trip_id: tripId,
-        latitude:    p.point.lat,
-        longitude:   p.point.lng,
-        speed_knots: parseFloat(p.point.speedKnots.toFixed(2)),
-        heading:     p.point.heading,
-        accuracy:    p.point.accuracy,
-        recorded_at: p.point.recordedAt,
-      }))
-      const { error } = await supabase.from('gps_points').insert(batch)
+      // Radformatet bor i @/lib/gpsRows (testat). Saknas rådata-kolumnerna
+      // i databasen skrivs raderna om utan dem — spåret går inte förlorat.
+      const batch = pending.map(p => toGpsRow(tripId, p.point))
+      const { error, rawDropped } = await insertGpsRows(
+        rows => supabase.from('gps_points').insert(rows), batch)
+      if (rawDropped) console.warn('[spara] gps_points saknar rådata-kolumnerna — migration 20260906000001 inte körd')
       if (!error) {
         await clearPoints(pending.map(p => p.key))
         setOfflineBuffered(0)
@@ -424,13 +421,23 @@ export default function SparaPage() {
         rawSpeedHistRef.current = [...rawSpeedHistRef.current.slice(-1), Math.min(Math.max(speedKnots, 0), SPEED_CEILING_KNOTS)]
         setCurrentSpeed(cleanSpeed)
 
+        // Rådata vid sidan av det utjämnade (beslut 2026-09-06): telefonens
+        // fix som den kom + enhetens Doppler-fart. Utan den kunde inte
+        // fälttesterna räknas om när filtret ändrades. Lagras i gps_points
+        // (raw_latitude/raw_longitude/device_speed_knots), visas ingenstans.
+        const recordedAt = new Date().toISOString()
+        const deviceSpeedKnots =
+          point.speed != null && point.speed >= 0 ? msToKnots(point.speed) : null
         const pt: GpsPoint = {
           lat:        smoothed.lat,
           lng:        smoothed.lng,
           speedKnots: cleanSpeed,
           heading:    point.heading,
           accuracy:   point.accuracy,
-          recordedAt: new Date().toISOString(),
+          recordedAt,
+          rawLat:     point.lat,
+          rawLng:     point.lng,
+          deviceSpeedKnots,
         }
 
         setPoints(prev => {
@@ -477,14 +484,7 @@ export default function SparaPage() {
         })
 
         // Buffer to IndexedDB for offline sync
-        bufferPoint({
-          lat:        smoothed.lat,
-          lng:        smoothed.lng,
-          speedKnots: cleanSpeed,
-          heading:    point.heading,
-          accuracy:   point.accuracy,
-          recordedAt: new Date().toISOString(),
-        })
+        bufferPoint(pt)
           .then(() => getPendingCount().then(setOfflineBuffered))
           .catch(() => {})
       },
@@ -850,18 +850,12 @@ export default function SparaPage() {
     // Batch insert GPS points (500 at a time) med error-check och retry
     let sparFel: string | null = null
     for (let i = 0; i < points.length; i += 500) {
-      const batch = points.slice(i, i + 500).map(p => ({
-        trip_id:     tid,
-        latitude:    p.lat,
-        longitude:   p.lng,
-        speed_knots: parseFloat(p.speedKnots.toFixed(2)),
-        heading:     p.heading,
-        accuracy:    p.accuracy,
-        recorded_at: p.recordedAt,
-      }))
+      const batch = points.slice(i, i + 500).map(p => toGpsRow(tid, p))
       let batchErr = null
       for (let attempt = 0; attempt < 3; attempt++) {
-        const { error } = await supabase.from('gps_points').insert(batch)
+        const { error, rawDropped } = await insertGpsRows(
+          rows => supabase.from('gps_points').insert(rows), batch)
+        if (rawDropped) console.warn('[spara] gps_points saknar rådata-kolumnerna — migration 20260906000001 inte körd')
         if (!error) { batchErr = null; break }
         batchErr = error
         if (attempt < 2) await new Promise(r => setTimeout(r, 1000 * (attempt + 1)))
