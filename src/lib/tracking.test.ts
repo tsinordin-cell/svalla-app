@@ -126,3 +126,19 @@ describe('impliedSpeedKnots — fart raknas pa matningar, inte pa utjamnade lage
     expect(impliedSpeedKnots(59.30, 18.10, t0, 59.31, 18.10, t0 + 100)).toBe(0)
   })
 })
+
+describe('cleanGpsSpeed — medianfönstret måste matas med RÅA farter', () => {
+  // Uppmätt 2026-09-05: /spara matade fönstret med sina egna rensade utdata.
+  // Median av [a, a, x] är a oavsett x, så visningen låste sig så fort två
+  // utdata i rad blev lika — vid 12 kn fastnade den på 7,8 kn.
+  it('självmatat fönster låser sig; råmatat följer farten', () => {
+    const raw = [5, 5, 6, 7, 8, 9, 10, 11, 12, 12, 12, 12]
+    const selfFed: number[] = [], rawFed: number[] = []
+    raw.forEach((r, i) => {
+      selfFed.push(cleanGpsSpeed(r, 5, selfFed.slice(-2)))
+      rawFed.push(cleanGpsSpeed(r, 5, raw.slice(Math.max(0, i - 2), i)))
+    })
+    expect(selfFed.at(-1)).toBe(5)   // låst på första värdet
+    expect(rawFed.at(-1)).toBe(12)   // följer med
+  })
+})
