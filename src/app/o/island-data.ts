@@ -3795,7 +3795,7 @@ export const ISLANDS: Island[] = [
 
   {
     slug: 'langviksskaret',
-    name: 'Långvikssk​äret',
+    name: 'Långviksskäret',
     region: 'södra',
     regionLabel: 'Södra skärgården',
     emoji: '🌅',
