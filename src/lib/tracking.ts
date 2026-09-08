@@ -7,7 +7,7 @@
  * testbara, och testerna nedanför låser fälttestbuggarna från 19/8 så de
  * inte kan komma tillbaka.
  */
-import type { GpsPoint } from './gps'
+import type { GpsPoint, StopEvent } from './gps'
 
 /**
  * En gräns för orimlig fart, använd överallt (fälttest 19/8): tidigare
@@ -89,4 +89,55 @@ export function mergeRecoveredPoints(
     }))
   return [...fromServer, ...buffer]
     .sort((a, b) => a.recordedAt.localeCompare(b.recordedAt))
+}
+
+/**
+ * Återställ stopp-listan efter krasch (kort "Pauser överlever inte en
+ * krasch", 2026-08-19). detectStops ger BARA auto-stopp — pausposterna
+ * (type 'pause') finns bara i state och måste tas ur snapshoten, annars
+ * försvinner varje paus vid recovery. Samma regel som punkthanteraren
+ * (#166): pauser från snapshoten först, sedan omdetekterade stopp.
+ * Ren funktion — inga klockor, ingen React.
+ */
+export function mergeRecoveredStops(
+  snapshotStops: StopEvent[] | undefined,
+  detected: StopEvent[],
+): StopEvent[] {
+  const pauses = (snapshotStops ?? []).filter(s => s.type === 'pause')
+  return [...pauses, ...detected]
+}
+
+/**
+ * Implicerad fart mellan tva GPS-fixar, i knop.
+ *
+ * FALTTEST 2026-09-03 (Tom korde en tur i bil: bade distans och fart fel).
+ * Orsaken var att /spara jamforde forra punktens UTJAMNADE lage mot nya
+ * punktens RA lage. Kalman-filtret har gain ~0,044, sa det utjamnade laget
+ * slapar ungefar 23 sampel efter det verkliga. Avstandet mellan dem blir da
+ * ~23 ganger ett sampelsteg, vilket ger en implicerad fart pa ~23x sann fart.
+ * Med anomaligrinden pa 60 kn kastades darfor nastan varje punkt.
+ *
+ * Uppmatt mot exakt den koden, rak kurs, 1 Hz, 10 minuter:
+ *   bat  6,5 kn -> 534 av 600 punkter kastade, 40 % av sann distans
+ *   bat 13,5 kn -> 570 av 600 kastade, 20 % av sann distans
+ *   bil 48,6 kn -> 594 av 600 kastade,  9 % av sann distans
+ * Med ra-mot-ra jamforelse: 0 kastade, 96 % av sann distans i alla tre fallen.
+ *
+ * Funktionen finns for att lasa regeln i ett test: grind och fart raknas pa
+ * MATNINGARNA. Utjamning ar till for visning och lagring, aldrig for att
+ * doma ut en matning.
+ */
+export function impliedSpeedKnots(
+  prevLat: number, prevLng: number, prevTs: number,
+  lat: number, lng: number, ts: number,
+): number {
+  const dtHours = (ts - prevTs) / 3_600_000
+  if (dtHours <= 0.00005) return 0
+  const R = 3440.065
+  const p1 = prevLat * Math.PI / 180
+  const p2 = lat * Math.PI / 180
+  const dLat = (lat - prevLat) * Math.PI / 180
+  const dLng = (lng - prevLng) * Math.PI / 180
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dLng / 2) ** 2
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)) / dtHours
 }

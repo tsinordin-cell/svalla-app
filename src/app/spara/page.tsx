@@ -14,9 +14,11 @@ import {
   calculateBearing, bearingLabel,
   type LiveInsight, getLiveInsights,
 } from '@/lib/gps'
-import { GpsKalmanFilter } from '@/lib/kalman'
+import { CvGpsKalmanFilter } from '@/lib/kalman'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
 import { startTracking } from '@/lib/tracker'
+import { toGpsRow, insertGpsRows } from '@/lib/gpsRows'
+import { computeGpsQuality } from '@/lib/gpsQuality'
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
 import { detectVisitedIslands } from '@/lib/islandCoords'
 import { computeUnlocked, type TripForAch } from '@/lib/achievements'
@@ -28,7 +30,7 @@ import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
-import { cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, SPEED_CEILING_KNOTS } from '@/lib/tracking'
+import { cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, SPEED_CEILING_KNOTS, mergeRecoveredStops } from '@/lib/tracking'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -118,11 +120,25 @@ export default function SparaPage() {
   const fileRef          = useRef<HTMLInputElement>(null)
   const startTimeRef     = useRef<Date | null>(null)
   const lastGpsPtRef     = useRef<{ lat: number; lng: number; ts: number } | null>(null)
-  const kalmanRef        = useRef<GpsKalmanFilter | null>(null)
+  // FALTTEST 2026-09-03 (Tom, bil): anomaligrinden och fartberakningen jamforde
+  // FORRA punktens UTJAMNADE lage mot NYA punktens RA lage. Kalman-gain ar ~0.044,
+  // sa det utjamnade laget slapar ~23 sampel efter -> implicerad fart ~23x sann fart
+  // -> over 60-knopsgrinden -> punkten kastades. Uppmatt i simulering mot exakt denna
+  // kod: bat i 6,5 kn tappade 89 % av punkterna och fick 40 % av sann distans.
+  // Grind och fart maste jamfora RATT mot RATT. Utjamningen ar enbart for visning/lagring.
+  const lastRawPtRef     = useRef<{ lat: number; lng: number; ts: number } | null>(null)
+  const rawSpeedHistRef  = useRef<number[]>([]) // de senaste RÅA farterna, till medianfiltret
+  const kalmanRef        = useRef<CvGpsKalmanFilter | null>(null)
   const anomalyCountRef  = useRef(0)
+  // Kvalitetssiffror (beslut 2026-09-06): räknar kastade fixar och
+  // Kalman-omstarter så att trips.gps_quality kan skrivas vid Spara.
+  const lowAccCountRef   = useRef(0)
+  const kalmanResetsRef  = useRef(0)
+  const lastAcceptedTsRef = useRef<number | null>(null)
   const syncOfflineRef   = useRef<() => void>(() => {})
   const pointsRef        = useRef<GpsPoint[]>([])  // mirror for GPS callback
   const elapsedRef       = useRef(0)               // mirror for GPS callback (aldrig stale)
+  const stopsRef         = useRef<StopEvent[]>([]) // mirror for heartbeat-snapshoten (pauser)
   const wakeLockRef      = useRef<{ released: boolean; release(): Promise<void> } | null>(null)
 
   // ── Auth gate — render nothing until check completes ─────────────────────
@@ -193,6 +209,7 @@ export default function SparaPage() {
 
   useEffect(() => { pointsRef.current = points }, [points])
   useEffect(() => { elapsedRef.current = elapsed }, [elapsed])
+  useEffect(() => { stopsRef.current = stops }, [stops])
 
   // ── Check for crash recovery on mount ─────────────────────────────────────
   useEffect(() => {
@@ -293,16 +310,12 @@ export default function SparaPage() {
       if (pending.length === 0 || !tripId) return
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
-      const batch = pending.map(p => ({
-        trip_id: tripId,
-        latitude:    p.point.lat,
-        longitude:   p.point.lng,
-        speed_knots: parseFloat(p.point.speedKnots.toFixed(2)),
-        heading:     p.point.heading,
-        accuracy:    p.point.accuracy,
-        recorded_at: p.point.recordedAt,
-      }))
-      const { error } = await supabase.from('gps_points').insert(batch)
+      // Radformatet bor i @/lib/gpsRows (testat). Saknas rådata-kolumnerna
+      // i databasen skrivs raderna om utan dem — spåret går inte förlorat.
+      const batch = pending.map(p => toGpsRow(tripId, p.point))
+      const { error, rawDropped } = await insertGpsRows(
+        rows => supabase.from('gps_points').insert(rows), batch)
+      if (rawDropped) console.warn('[spara] gps_points saknar rådata-kolumnerna — migration 20260906000001 inte körd')
       if (!error) {
         await clearPoints(pending.map(p => p.key))
         setOfflineBuffered(0)
@@ -335,6 +348,9 @@ export default function SparaPage() {
         startedAt: startTimeRef.current?.toISOString() ?? new Date().toISOString(),
         elapsed,
         tripId,
+        // Pauser kan inte omdetekteras ur punkterna — de måste följa med
+        // snapshoten, annars är de borta efter en krasch (kort 19/8).
+        stops: stopsRef.current.filter(s => s.type === 'pause'),
       })
       // Stromning steg 2 (beslut A): skjut upp buffrade punkter till servern
       // var 30:e sekund. Dor telefonen ar hogst en halvminut av sparet borta.
@@ -352,14 +368,14 @@ export default function SparaPage() {
       (point) => {
         setGpsError('')
         setCurrentAccuracy(point.accuracy)
-        if (point.accuracy > 80) return
+        if (point.accuracy > 80) { lowAccCountRef.current += 1; return }
 
         const now = point.timestamp
 
         // Anomaly detection
-        if (lastGpsPtRef.current) {
+        if (lastRawPtRef.current) {
           if (isGpsAnomaly(
-            lastGpsPtRef.current.lat, lastGpsPtRef.current.lng, lastGpsPtRef.current.ts,
+            lastRawPtRef.current.lat, lastRawPtRef.current.lng, lastRawPtRef.current.ts,
             point.lat, point.lng, now, SPEED_CEILING_KNOTS)) {
             anomalyCountRef.current += 1
             setAnomalyCount(anomalyCountRef.current)
@@ -367,28 +383,27 @@ export default function SparaPage() {
           }
         }
 
-        // Speed calculation — prefer position-delta (consistent across devices),
-        // fall back to device-reported speed only on the very first point.
+        // Utjämning: konstant-hastighets-Kalman i 2D (beslut 2026-09-05).
+        // Det gamla 1D-filtret släpade ~23 sampel och kapade 16–23 % av
+        // distansen i kurvor — se kommentaren i src/lib/kalman.ts.
+        // Telefonens accuracy styr hur mycket varje fix får väga.
+        if (!kalmanRef.current) kalmanRef.current = new CvGpsKalmanFilter()
+        // Räknar filtrets omstarter (lucka > 30 s) — bara statistik, ingen logik.
+        if (lastAcceptedTsRef.current != null && (now - lastAcceptedTsRef.current) / 1000 > 30) kalmanResetsRef.current += 1
+        lastAcceptedTsRef.current = now
+        const smoothed = kalmanRef.current.update(point.lat, point.lng, point.accuracy, now)
+
+        // FART: ur filtrets hastighetstillstånd, inte ur positionsdeltan.
+        // Uppmätt 2026-09-05 (rak kurs, 1 Hz, GPS-brus ±5 m): positionsdelta
+        // gav 10,6 kn vid sann fart 3 kn och 11,5 vid 6 kn — bruset per sekund
+        // är i samma storleksordning som förflyttningen. Filtrets hastighet gav
+        // 3,2 respektive 6,1 (±0,9). Första fixen: enhetens Doppler-fart.
         let speedKnots = 0
-        if (lastGpsPtRef.current) {
-          const dtHours = (now - lastGpsPtRef.current.ts) / 3_600_000
-          if (dtHours > 0.0005) {
-            const R = 3440.065
-            const lat1 = lastGpsPtRef.current.lat * Math.PI / 180
-            const lat2 = point.lat * Math.PI / 180
-            const dLat = (point.lat - lastGpsPtRef.current.lat) * Math.PI / 180
-            const dLng = (point.lng - lastGpsPtRef.current.lng) * Math.PI / 180
-            const a = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2
-            speedKnots = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)) / dtHours
-          }
+        if (lastRawPtRef.current) {
+          speedKnots = msToKnots(smoothed.speedMs)
         } else if (point.speed != null && point.speed >= 0) {
-          // First point — no delta yet, use device-reported speed (m/s → knots)
           speedKnots = msToKnots(point.speed)
         }
-
-        // Kalman smoothing
-        if (!kalmanRef.current) kalmanRef.current = new GpsKalmanFilter()
-        const smoothed = kalmanRef.current.update(point.lat, point.lng)
 
         setCurrentPos({ lat: smoothed.lat, lng: smoothed.lng })
 
@@ -401,21 +416,37 @@ export default function SparaPage() {
         }
 
         lastGpsPtRef.current = { lat: smoothed.lat, lng: smoothed.lng, ts: now }
+        lastRawPtRef.current = { lat: point.lat, lng: point.lng, ts: now }
 
         // Hastighets-rensning — logiken bor i cleanGpsSpeed (@/lib/tracking)
         // och är låst av tracking.test.ts (tak 60, accuracy>30 -> 0, median-3).
+        // OBS: medianfönstret ska matas med RÅA farter. Uppmätt 2026-09-05:
+        // matas det med sina egna rensade utdata låser det sig så fort två
+        // utdata i rad är lika (median av [a, a, x] är alltid a) — vid 12 kn
+        // fastnade visningen på 7,8 kn för resten av turen.
         const cleanSpeed = cleanGpsSpeed(
           speedKnots, point.accuracy,
-          pointsRef.current.slice(-2).map(p => p.speedKnots))
+          rawSpeedHistRef.current.slice(-2))
+        rawSpeedHistRef.current = [...rawSpeedHistRef.current.slice(-1), Math.min(Math.max(speedKnots, 0), SPEED_CEILING_KNOTS)]
         setCurrentSpeed(cleanSpeed)
 
+        // Rådata vid sidan av det utjämnade (beslut 2026-09-06): telefonens
+        // fix som den kom + enhetens Doppler-fart. Utan den kunde inte
+        // fälttesterna räknas om när filtret ändrades. Lagras i gps_points
+        // (raw_latitude/raw_longitude/device_speed_knots), visas ingenstans.
+        const recordedAt = new Date().toISOString()
+        const deviceSpeedKnots =
+          point.speed != null && point.speed >= 0 ? msToKnots(point.speed) : null
         const pt: GpsPoint = {
           lat:        smoothed.lat,
           lng:        smoothed.lng,
           speedKnots: cleanSpeed,
           heading:    point.heading,
           accuracy:   point.accuracy,
-          recordedAt: new Date().toISOString(),
+          recordedAt,
+          rawLat:     point.lat,
+          rawLng:     point.lng,
+          deviceSpeedKnots,
         }
 
         setPoints(prev => {
@@ -462,14 +493,7 @@ export default function SparaPage() {
         })
 
         // Buffer to IndexedDB for offline sync
-        bufferPoint({
-          lat:        smoothed.lat,
-          lng:        smoothed.lng,
-          speedKnots: cleanSpeed,
-          heading:    point.heading,
-          accuracy:   point.accuracy,
-          recordedAt: new Date().toISOString(),
-        })
+        bufferPoint(pt)
           .then(() => getPendingCount().then(setOfflineBuffered))
           .catch(() => {})
       },
@@ -499,6 +523,8 @@ export default function SparaPage() {
       watchRef.current = null
     }
     lastGpsPtRef.current = null
+    lastRawPtRef.current = null
+    rawSpeedHistRef.current = []
   }, [])
 
   // ── Phase transitions ──────────────────────────────────────────────────────
@@ -513,8 +539,13 @@ export default function SparaPage() {
       .catch(() => {})
     startTimeRef.current = new Date()
     lastGpsPtRef.current = null
+    lastRawPtRef.current = null
+    rawSpeedHistRef.current = []
     anomalyCountRef.current = 0
-    kalmanRef.current = new GpsKalmanFilter()
+    lowAccCountRef.current = 0
+    kalmanResetsRef.current = 0
+    lastAcceptedTsRef.current = null
+    kalmanRef.current = new CvGpsKalmanFilter()
     setBoatType(boat)
     setPhase('tracking')
     setAnomalyCount(0)
@@ -585,7 +616,10 @@ export default function SparaPage() {
       if (restored.length > 0) {
         setPoints(restored)
         pointsRef.current = restored
-        setStops(detectStops(restored))
+        // Pausposter ur snapshoten + omdetekterade stopp (mergeRecoveredStops
+        // i @/lib/tracking, testad). Tidigare ersatte detectStops allt och
+        // raderade varje paus - samma bugg som #166, fast i recovery-vägen.
+        setStops(mergeRecoveredStops(snap.stops, detectStops(restored)))
         const last = restored[restored.length - 1]
         if (last) setCurrentPos({ lat: last.lat, lng: last.lng })
       }
@@ -602,7 +636,10 @@ export default function SparaPage() {
     setBoatType(snap.boatType)
     startTimeRef.current = new Date(snap.startedAt)
     anomalyCountRef.current = 0
-    kalmanRef.current = new GpsKalmanFilter()
+    lowAccCountRef.current = 0
+    kalmanResetsRef.current = 0
+    lastAcceptedTsRef.current = null
+    kalmanRef.current = new CvGpsKalmanFilter()
     haptic(150)
     setPhase('tracking')
     startGPS()
@@ -828,18 +865,12 @@ export default function SparaPage() {
     // Batch insert GPS points (500 at a time) med error-check och retry
     let sparFel: string | null = null
     for (let i = 0; i < points.length; i += 500) {
-      const batch = points.slice(i, i + 500).map(p => ({
-        trip_id:     tid,
-        latitude:    p.lat,
-        longitude:   p.lng,
-        speed_knots: parseFloat(p.speedKnots.toFixed(2)),
-        heading:     p.heading,
-        accuracy:    p.accuracy,
-        recorded_at: p.recordedAt,
-      }))
+      const batch = points.slice(i, i + 500).map(p => toGpsRow(tid, p))
       let batchErr = null
       for (let attempt = 0; attempt < 3; attempt++) {
-        const { error } = await supabase.from('gps_points').insert(batch)
+        const { error, rawDropped } = await insertGpsRows(
+          rows => supabase.from('gps_points').insert(rows), batch)
+        if (rawDropped) console.warn('[spara] gps_points saknar rådata-kolumnerna — migration 20260906000001 inte körd')
         if (!error) { batchErr = null; break }
         batchErr = error
         if (attempt < 2) await new Promise(r => setTimeout(r, 1000 * (attempt + 1)))
@@ -866,6 +897,21 @@ export default function SparaPage() {
     // Sparet ar verifierat pa servern — forst NU ar det sakert att rensa
     // aterstallningsdatat.
     clearTripSnapshot()
+
+    // Kvalitetssiffror (src/lib/gpsQuality.ts, testad) → trips.gps_quality.
+    // Best-effort: turen är redan sparad; saknas kolumnen (migration
+    // 20260906000002 inte körd) loggas det bara.
+    void (async () => {
+      try {
+        const gps_quality = computeGpsQuality(points, {
+          rejectedAccuracy: lowAccCountRef.current,
+          rejectedAnomaly: anomalyCountRef.current,
+          kalmanResets: kalmanResetsRef.current,
+        })
+        const { error } = await supabase.from('trips').update({ gps_quality }).eq('id', tid)
+        if (error) console.warn('[spara] gps_quality skrevs inte:', error.message)
+      } catch (e) { console.warn('[spara] gps_quality:', e) }
+    })()
     getPendingPoints().then(pending => {
       if (pending.length > 0) clearPoints(pending.map(p => p.key)).then(() => setOfflineBuffered(0))
     }).catch(() => {})
@@ -998,7 +1044,7 @@ export default function SparaPage() {
       has_photos: mediaFiles.length > 0,
       duration_seconds: elapsed,
     })
-    fetch('/api/revalidate-feed', { method: 'POST' }).catch(() => {})
+    fetch('/api/revalidate-feed', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tripId: tid }) }).catch(() => {})
     // Navigera direkt om inga achievements — annars hanteras navigation
     // av "Fortsätt →"-knappen i celebration-overlayn.
     if (!achievementUnlocked) {

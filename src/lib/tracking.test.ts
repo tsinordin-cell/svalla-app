@@ -4,10 +4,11 @@
  */
 import { describe, it, expect } from 'vitest'
 import {
-  cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints,
+  cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, mergeRecoveredStops,
+  impliedSpeedKnots,
   SPEED_CEILING_KNOTS, type ServerGpsRow,
 } from './tracking'
-import type { GpsPoint } from './gps'
+import type { GpsPoint, StopEvent } from './gps'
 
 function pt(recordedAt: string, lat = 59.3): GpsPoint {
   return { lat, lng: 18.1, speedKnots: 5, heading: null, accuracy: 5, recordedAt }
@@ -71,5 +72,73 @@ describe('mergeRecoveredPoints — recovery får inte ge stympat spår', () => {
   })
   it('tom buffert + tom server ger tom lista', () => {
     expect(mergeRecoveredPoints([], [])).toEqual([])
+  })
+})
+
+// ── Kort "Pauser överlever inte en krasch — snapshoten sparar inte stops" ────
+describe('mergeRecoveredStops — pauser överlever recovery', () => {
+  const pause: StopEvent = { lat: 59.3, lng: 18.1, type: 'pause', startedAt: '2026-08-19T10:00:00Z', endedAt: '2026-08-19T10:05:00Z', durationSeconds: 300 }
+  const autoStop: StopEvent = { lat: 59.31, lng: 18.12, type: 'stop', startedAt: '2026-08-19T10:20:00Z', durationSeconds: 180 }
+
+  it('pausposter ur snapshoten behålls före de omdetekterade stoppen', () => {
+    const out = mergeRecoveredStops([pause], [autoStop])
+    expect(out).toEqual([pause, autoStop])
+  })
+
+  it('bara type=pause tas ur snapshoten — gamla auto-stopp där ersätts av omdetekteringen', () => {
+    const staleStop: StopEvent = { ...autoStop, durationSeconds: 1 }
+    const out = mergeRecoveredStops([pause, staleStop], [autoStop])
+    expect(out).toEqual([pause, autoStop])
+  })
+
+  it('snapshot utan stops (äldre version) ger enbart omdetekterade stopp', () => {
+    expect(mergeRecoveredStops(undefined, [autoStop])).toEqual([autoStop])
+    expect(mergeRecoveredStops([], [])).toEqual([])
+  })
+})
+
+describe('impliedSpeedKnots — fart raknas pa matningar, inte pa utjamnade lagen', () => {
+  const degPerM = 1 / 111320
+  const t0 = 1_700_000_000_000
+
+  it('ger sann fart mellan tva ra fixar (bat 6,5 kn, 1 Hz)', () => {
+    const v = 12 / 3.6 // m/s
+    const got = impliedSpeedKnots(59.30, 18.10, t0, 59.30 + v * degPerM, 18.10, t0 + 1000)
+    expect(got).toBeGreaterThan(6.0)
+    expect(got).toBeLessThan(7.0)
+  })
+
+  it('1 Hz ger INTE 0 — den gamla garden pa 1,8 s nollade varje fart', () => {
+    const v = 25 / 3.6
+    expect(impliedSpeedKnots(59.30, 18.10, t0, 59.30 + v * degPerM, 18.10, t0 + 1000))
+      .toBeGreaterThan(1)
+  })
+
+  it('ett utjamnat lage som slapar efter ger orimlig fart — darfor far det inte anvandas', () => {
+    // Kalman-gain ~0,044 => slapet ar ~23 sampel. Bat i 6,5 kn, 1 Hz.
+    const v = 12 / 3.6
+    const lagg = v * 23 * degPerM
+    const got = impliedSpeedKnots(59.30 - lagg, 18.10, t0, 59.30 + v * degPerM, 18.10, t0 + 1000)
+    expect(got).toBeGreaterThan(SPEED_CEILING_KNOTS) // hade kastats som anomali
+  })
+
+  it('for tatt i tiden ger 0 (samma undre grans som isGpsAnomaly)', () => {
+    expect(impliedSpeedKnots(59.30, 18.10, t0, 59.31, 18.10, t0 + 100)).toBe(0)
+  })
+})
+
+describe('cleanGpsSpeed — medianfönstret måste matas med RÅA farter', () => {
+  // Uppmätt 2026-09-05: /spara matade fönstret med sina egna rensade utdata.
+  // Median av [a, a, x] är a oavsett x, så visningen låste sig så fort två
+  // utdata i rad blev lika — vid 12 kn fastnade den på 7,8 kn.
+  it('självmatat fönster låser sig; råmatat följer farten', () => {
+    const raw = [5, 5, 6, 7, 8, 9, 10, 11, 12, 12, 12, 12]
+    const selfFed: number[] = [], rawFed: number[] = []
+    raw.forEach((r, i) => {
+      selfFed.push(cleanGpsSpeed(r, 5, selfFed.slice(-2)))
+      rawFed.push(cleanGpsSpeed(r, 5, raw.slice(Math.max(0, i - 2), i)))
+    })
+    expect(selfFed.at(-1)).toBe(5)   // låst på första värdet
+    expect(rawFed.at(-1)).toBe(12)   // följer med
   })
 })

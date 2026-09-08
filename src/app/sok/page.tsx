@@ -157,6 +157,7 @@ function SokPageInner() {
  const tripsPromise = supabase
  .from('trips')
  .select('id, location_name, caption, boat_type, image, created_at')
+ .is('deleted_at', null) // mjukraderade turer ska inte hittas (länkkontroll 2026-09-03)
  .or(
  hashtagPattern
  ? `caption.ilike.${hashtagPattern}`

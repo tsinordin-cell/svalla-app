@@ -15,8 +15,19 @@ import path from 'path'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const SUPABASE_URL = 'https://oiklttwylndesewauytj.supabase.co'
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9pa2x0dHd5bG5kZXNld2F1eXRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyNTIwNjgsImV4cCI6MjA5MTgyODA2OH0.rFt1VOaV9QVSKTbt3E_64krTtpmOIiU5fonxnb7Ml4g'
+// Nycklar läses ur miljön, aldrig ur filen. Anon-nyckeln är visserligen
+// publik till sin natur (den ligger i webbläsarpaketet och skyddas av RLS),
+// men hårdkodning gör att scriptet tyst slutar fungera vid nyckelrotation
+// och gör det lättare att en dag klistra in en service_role-nyckel på
+// samma rad. Övriga 24 script i mappen läser redan ur env.
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+  console.error('Saknar NEXT_PUBLIC_SUPABASE_URL eller NEXT_PUBLIC_SUPABASE_ANON_KEY.')
+  console.error('Kör med: node -r dotenv/config scripts/fix-coordinates.mjs')
+  process.exit(1)
+}
 
 // Kända ö-koordinater — fallback om Nominatim inte hittar ön
 const ISLAND_COORDS = {
