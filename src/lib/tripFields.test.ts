@@ -25,6 +25,10 @@ describe('buildTripFields', () => {
   it('ett enda foto: images null, inte tom array', () => {
     expect(buildTripFields({ ...bas, uploadedUrls: ['a.jpg'] }).images).toBeNull()
   })
+  it('duration_seconds är SEKUNDER, oavrundade', () => {
+    expect(buildTripFields({ ...bas, elapsedSeconds: 1054 }).duration_seconds).toBe(1054)
+    expect(buildTripFields({ ...bas, elapsedSeconds: 1054 }).duration).toBe(18)
+  })
   it('duration är MINUTER, avrundat', () => {
     expect(buildTripFields({ ...bas, elapsedSeconds: 3600 }).duration).toBe(60)
     expect(buildTripFields({ ...bas, elapsedSeconds: 89 }).duration).toBe(1)
