@@ -9,7 +9,7 @@ import { deriveUsername } from '@/lib/username'
 import {
   type GpsPoint, type StopEvent,
   msToKnots, totalDistanceNM, avgSpeedKnots, maxSpeedKnots,
-  detectStops, formatDuration, isGpsAnomaly, reverseGeocode,
+  detectStops, formatDuration, reverseGeocode,
   type MovementState, computeMovementState,
   calculateBearing, bearingLabel,
   type LiveInsight, getLiveInsights,
@@ -30,7 +30,7 @@ import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
-import { cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, SPEED_CEILING_KNOTS, mergeRecoveredStops } from '@/lib/tracking'
+import { cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, SPEED_CEILING_KNOTS, mergeRecoveredStops, shouldRejectAsAnomaly } from '@/lib/tracking'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -130,6 +130,7 @@ export default function SparaPage() {
   const rawSpeedHistRef  = useRef<number[]>([]) // de senaste RÅA farterna, till medianfiltret
   const kalmanRef        = useRef<CvGpsKalmanFilter | null>(null)
   const anomalyCountRef  = useRef(0)
+  const anomalyStreakRef = useRef(0)
   // Kvalitetssiffror (beslut 2026-09-06): räknar kastade fixar och
   // Kalman-omstarter så att trips.gps_quality kan skrivas vid Spara.
   const lowAccCountRef   = useRef(0)
@@ -372,15 +373,24 @@ export default function SparaPage() {
 
         const now = point.timestamp
 
-        // Anomaly detection
-        if (lastRawPtRef.current) {
-          if (isGpsAnomaly(
-            lastRawPtRef.current.lat, lastRawPtRef.current.lng, lastRawPtRef.current.ts,
-            point.lat, point.lng, now, SPEED_CEILING_KNOTS)) {
-            anomalyCountRef.current += 1
-            setAnomalyCount(anomalyCountRef.current)
-            return
-          }
+        // Anomaligrind med återförankring (shouldRejectAsAnomaly i
+        // @/lib/tracking, testad). Fälttest 2026-09-10: taket 60 kn + ingen
+        // återförankring låste ute varje fix så länge bilen höll > 60 kn —
+        // 26 minuters lucka, rak linje. Nu: tak 150, och efter tre avvisade
+        // i rad accepteras fixen och filtret startar om.
+        const gate = shouldRejectAsAnomaly(
+          lastRawPtRef.current, point.lat, point.lng, now, anomalyStreakRef.current, SPEED_CEILING_KNOTS)
+        anomalyStreakRef.current = gate.streak
+        if (gate.reject) {
+          anomalyCountRef.current += 1
+          setAnomalyCount(anomalyCountRef.current)
+          return
+        }
+        if (gate.reanchored) {
+          kalmanRef.current = new CvGpsKalmanFilter()
+          kalmanResetsRef.current += 1
+          rawSpeedHistRef.current = []
+          lastRawPtRef.current = null   // första fixen efter omstart: enhetens fart
         }
 
         // Utjämning: konstant-hastighets-Kalman i 2D (beslut 2026-09-05).
@@ -525,6 +535,7 @@ export default function SparaPage() {
     lastGpsPtRef.current = null
     lastRawPtRef.current = null
     rawSpeedHistRef.current = []
+    anomalyStreakRef.current = 0
   }, [])
 
   // ── Phase transitions ──────────────────────────────────────────────────────
@@ -542,6 +553,7 @@ export default function SparaPage() {
     lastRawPtRef.current = null
     rawSpeedHistRef.current = []
     anomalyCountRef.current = 0
+    anomalyStreakRef.current = 0
     lowAccCountRef.current = 0
     kalmanResetsRef.current = 0
     lastAcceptedTsRef.current = null
@@ -636,6 +648,7 @@ export default function SparaPage() {
     setBoatType(snap.boatType)
     startTimeRef.current = new Date(snap.startedAt)
     anomalyCountRef.current = 0
+    anomalyStreakRef.current = 0
     lowAccCountRef.current = 0
     kalmanResetsRef.current = 0
     lastAcceptedTsRef.current = null
@@ -774,7 +787,7 @@ export default function SparaPage() {
     // Nollställ hastigheterna om rutten saknar mätbar förflyttning —
     // GPS Doppler kan rapportera hög hastighet utan att koordinaterna ändras (brus).
     let avgSpd  = dist >= 0.01 ? avgSpeedKnots(points) : 0
-    let maxSpd  = dist >= 0.01 ? maxSpeedKnots(points) : 0
+    const maxSpd = dist >= 0.01 ? maxSpeedKnots(points) : 0
     // Fallback: om GPS-enhetens noggranhet var dålig (>30m) sätts alla speedKnots=0
     // men distans och tid är korrekt uppmätta — beräkna snittfart geometriskt istället.
     // elapsed raknas i SEKUNDER (setInterval 1000 ms) - dela med 3 600, inte
@@ -784,10 +797,11 @@ export default function SparaPage() {
     if (avgSpd < 0.5 && dist >= 0.1 && elapsedHours > 0) {
       avgSpd = parseFloat((dist / elapsedHours).toFixed(1))
     }
-    // Toppfart: om alla per-punkt-hastigheter är 0, sätt topp = 1.5× snitt som rimlig uppskattning
-    if (maxSpd < 0.5 && avgSpd >= 0.5) {
-      maxSpd = parseFloat((avgSpd * 1.5).toFixed(1))
-    }
+    // Toppfart: tidigare sattes topp = 1,5 × snitt "som rimlig uppskattning"
+    // när alla punktfarter var 0. Det är en påhittad siffra som visades som
+    // Toppfart på /tur (upptäckt 2026-09-06, regel 7). Borttaget: saknas
+    // mätt toppfart sparas 0 och /tur visar inget (val >= 0.1-gränsen).
+    // Snittfarten ovan är däremot MÄTT (distans/tid) och får stå kvar.
     const startedAt = startTimeRef.current?.toISOString() ?? new Date().toISOString()
     const endedAt   = new Date().toISOString()
 
