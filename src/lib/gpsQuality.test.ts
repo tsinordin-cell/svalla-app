@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { computeGpsQuality, bestWindowSpeedKn, metersBetween } from './gpsQuality'
+import { computeGpsQuality, bestWindowSpeedKn, metersBetween, topSpeedKnots } from './gpsQuality'
 import type { GpsPoint } from './gps'
 
 const T0 = Date.parse('2026-09-06T10:00:00.000Z')
@@ -79,6 +79,14 @@ describe('computeGpsQuality — allt räknas ur punkterna', () => {
     expect(q.maxSpeed1pKn).toBe(40)
     expect(q.maxSpeed10sKn).toBeLessThan(10)
     expect(q.maxSpeed10sKn).toBeGreaterThanOrEqual(5)
+  })
+})
+
+describe('topSpeedKnots — det som sparas som toppfart', () => {
+  it('en ensam spik räknas inte', () => {
+    const pts = track(60, 5); pts[30]!.speedKnots = 40
+    expect(topSpeedKnots(pts)).toBeLessThan(10)
+    expect(topSpeedKnots(track(30, 7))).toBe(7)
   })
 })
 

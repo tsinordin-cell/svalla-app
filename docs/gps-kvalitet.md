@@ -63,8 +63,15 @@ låg fart. Riktigt GPS-brus är korrelerat, så verkliga tal är lägre —
 fälttestet avgör. Låst i `gpsReplay.test.ts` ("KÄND SVAGHET") så att en
 ändring syns.
 
-## Vad som INTE är delad kod
+## Delad kod och facit
 
-`replayTrack` speglar /spara:s GPS-callback steg för steg men är inte samma
-kod (beslut: /spara rörs inte före fälttestet). Efter fälttestet: bryt ut
-kedjan till en `GpsPipeline` som båda använder.
+Sedan 2026-09-10 kör /spara och `replayTrack` samma klass, `GpsPipeline`
+(`src/lib/gpsPipeline.ts`). Toms biltest samma dag ligger som fixtur i
+`src/lib/__fixtures__/trip-15b47ab2.txt` (887 råa fixar), och
+`gpsPipeline.test.ts` låser kedjan mot det som sparades: 15,03 NM, 49,1 kn
+snitt, 75,6 kn topp (bästa 10 s; 76,7 som ensam punkt). Ändras kedjan så
+att siffrorna flyttar sig, faller testet — inget nytt fälttest behövs för
+att upptäcka det.
+
+Toppfart som sparas och visas är sedan samma dag bästa rullande
+10-sekundersmedel (`topSpeedKnots`), inte max av enskilda punkter.

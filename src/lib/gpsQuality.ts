@@ -96,6 +96,15 @@ export function bestWindowSpeedKn(points: GpsPoint[], windowS: number): number {
   return best
 }
 
+/**
+ * Toppfart att SPARA och VISA: bästa rullande 10 s-medel. En ensam
+ * punktspik (t.ex. 76,7 mot 75,6 på tur 15b47ab2) räknas inte som topp.
+ * maxSpeedKnots i ./gps finns kvar för 1-punktsvärdet (kvalitetssiffrorna).
+ */
+export function topSpeedKnots(points: GpsPoint[]): number {
+  return Math.round(bestWindowSpeedKn(points, 10) * 10) / 10
+}
+
 export function computeGpsQuality(points: GpsPoint[], input: GpsQualityInput = {}): GpsQuality {
   const rejectedAccuracy = input.rejectedAccuracy ?? 0
   const rejectedAnomaly = input.rejectedAnomaly ?? 0

@@ -6,35 +6,17 @@
 // spåret. Varje filterändring blir därmed en jämförelse på befintliga
 // turer i stället för ett nytt fälttest.
 //
-// OBS — SPEGLING, INTE DELAD KOD (beslut 2026-09-06): /spara kör kedjan i
-// sin GPS-callback (src/app/spara/page.tsx, startGPS). Den koden rörs inte
-// före Toms fälttest. replayTrack nedan speglar den steg för steg:
-//   1. accuracy > 80 m          → kastas (rejectedAccuracy)
-//   2. shouldRejectAsAnomaly rå→rå, tak SPEED_CEILING_KNOTS, återförankring
-//      efter 3 avvisade i rad → kastas (rejectedAnomaly) / omstart av filtret
-//   3. CvGpsKalmanFilter.update → utjämnat läge + fart
-//   4. fart: ur filtret; första fixen efter (om)start: enhetens fart
-//   5. cleanGpsSpeed med RÅ farthistorik (två senaste)
-// Kort på teamsidan: slå ihop till en delad GpsPipeline efter fälttestet,
-// så att speglingen inte kan glida isär.
+// Sedan 2026-09-10 är kedjan DELAD: /spara och replayTrack kör samma
+// GpsPipeline (src/lib/gpsPipeline.ts). Före det speglades den här och
+// speglingen bevisades stämma på tur 15b47ab2 (se gpsPipeline.test.ts).
 
 import type { GpsPoint } from './gps'
-import { msToKnots, totalDistanceNM, avgSpeedKnots, maxSpeedKnots } from './gps'
-import { CvGpsKalmanFilter, type CvKalmanOptions } from './kalman'
-import { cleanGpsSpeed, SPEED_CEILING_KNOTS, shouldRejectAsAnomaly } from './tracking'
-import { computeGpsQuality, type GpsQuality } from './gpsQuality'
+import { totalDistanceNM, avgSpeedKnots } from './gps'
+import type { CvKalmanOptions } from './kalman'
+import { GpsPipeline, type RawFix } from './gpsPipeline'
+import { computeGpsQuality, topSpeedKnots, type GpsQuality } from './gpsQuality'
 
-/** En rå fix som den kom från telefonen (= gps_points.raw_* + accuracy + recorded_at). */
-export type RawFix = {
-  lat: number
-  lng: number
-  accuracyM: number
-  /** ms sedan epoch */
-  ts: number
-  /** enhetens fart i knop, null om saknas */
-  deviceSpeedKn: number | null
-  heading: number | null
-}
+export type { RawFix } from './gpsPipeline'
 
 export type ReplayOptions = {
   /** Kastar fixar med sämre accuracy än så här (m). /spara: 80. */
@@ -69,56 +51,34 @@ export function rowToRawFix(row: {
   }
 }
 
+/**
+ * Läser fixturformatet i src/lib/__fixtures__ (rader som börjar med # är
+ * kommentarer; sedan "ms,lat*1e6,lng*1e6,kn*100,kurs,accuracy" skilda med ';').
+ */
+export function parseFixture(text: string, t0Ms: number): RawFix[] {
+  const body = text.split('\n').filter(l => l && !l.startsWith('#')).join('')
+  return body.split(';').filter(Boolean).map(r => {
+    const [dt, la, lo, sp, hd, ac] = r.split(',').map(Number)
+    return { ts: t0Ms + dt!, lat: la! / 1e6, lng: lo! / 1e6, deviceSpeedKn: sp! / 100, heading: hd!, accuracyM: ac! }
+  })
+}
+
 export function replayTrack(fixes: RawFix[], opts: ReplayOptions = {}): ReplayResult {
-  const maxAcc = opts.maxAccuracyM ?? 80
-  const ceiling = opts.anomalyCeilingKn ?? SPEED_CEILING_KNOTS
-  const resetAfterSeconds = opts.kalman?.resetAfterSeconds ?? 30
-  const kalman = new CvGpsKalmanFilter(opts.kalman)
-
+  const pipeline = new GpsPipeline({
+    maxAccuracyM: opts.maxAccuracyM, ceilingKn: opts.anomalyCeilingKn, kalman: opts.kalman,
+  })
   const out: GpsPoint[] = []
-  let rejectedAccuracy = 0, rejectedAnomaly = 0, kalmanResets = 0
-  let lastRaw: { lat: number; lng: number; ts: number } | null = null
-  let rawSpeedHist: number[] = []
-  let lastAcceptedTs: number | null = null
-  let streak = 0
-
   for (const f of fixes) {
-    if (f.accuracyM > maxAcc) { rejectedAccuracy++; continue }
-    const gate = shouldRejectAsAnomaly(lastRaw, f.lat, f.lng, f.ts, streak, ceiling)
-    streak = gate.streak
-    if (gate.reject) { rejectedAnomaly++; continue }
-    if (gate.reanchored) {
-      kalman.reset(); kalmanResets++; rawSpeedHist = []
-      lastRaw = null   // första fixen efter omstart: enhetens fart
-    }
-    // Filtret startar om självt vid lucka > resetAfterSeconds; vi räknar det här.
-    if (lastAcceptedTs != null && (f.ts - lastAcceptedTs) / 1000 > resetAfterSeconds) kalmanResets++
-
-    const smoothed = kalman.update(f.lat, f.lng, f.accuracyM, f.ts)
-    let speedKn = 0
-    if (lastRaw) speedKn = msToKnots(smoothed.speedMs)
-    else if (f.deviceSpeedKn != null && f.deviceSpeedKn >= 0) speedKn = f.deviceSpeedKn
-
-    lastRaw = { lat: f.lat, lng: f.lng, ts: f.ts }
-    lastAcceptedTs = f.ts
-
-    const clean = cleanGpsSpeed(speedKn, f.accuracyM, rawSpeedHist.slice(-2), ceiling)
-    rawSpeedHist = [...rawSpeedHist.slice(-1), Math.min(Math.max(speedKn, 0), ceiling)]
-
-    out.push({
-      lat: smoothed.lat, lng: smoothed.lng, speedKnots: clean,
-      heading: f.heading, accuracy: f.accuracyM,
-      recordedAt: new Date(f.ts).toISOString(),
-      rawLat: f.lat, rawLng: f.lng, deviceSpeedKnots: f.deviceSpeedKn,
-    })
+    const p = pipeline.push(f)
+    if (p) out.push(p)
   }
-
+  const s = pipeline.stats
   return {
     points: out,
-    rejectedAccuracy, rejectedAnomaly, kalmanResets,
+    rejectedAccuracy: s.rejectedAccuracy, rejectedAnomaly: s.rejectedAnomaly, kalmanResets: s.kalmanResets,
     distanceNM: totalDistanceNM(out),
     avgSpeedKn: avgSpeedKnots(out),
-    maxSpeedKn: maxSpeedKnots(out),
-    quality: computeGpsQuality(out, { rejectedAccuracy, rejectedAnomaly, kalmanResets }),
+    maxSpeedKn: topSpeedKnots(out),   // samma definition som /spara sparar: bästa 10 s
+    quality: computeGpsQuality(out, { rejectedAccuracy: s.rejectedAccuracy, rejectedAnomaly: s.rejectedAnomaly, kalmanResets: s.kalmanResets }),
   }
 }
