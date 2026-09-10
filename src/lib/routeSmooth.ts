@@ -10,6 +10,7 @@
  * Used in /spara/page.tsx before persisting route_points to the DB.
  * Used in RouteMapSVG for display-time segment break detection.
  */
+import { SPEED_CEILING_KNOTS } from './tracking'
 
 // ── Haversine distance in nautical miles ──────────────────────────────────────
 function distNM(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number {
@@ -58,13 +59,15 @@ export function filterByAccuracy<T extends { accuracy?: number }>(
  * Remove GPS points that would imply an impossible vessel speed between
  * consecutive accepted points.  Uses recordedAt timestamps.
  *
- * maxKnots: 30 kn is well above any real sailboat or motorboat top speed
- * in Swedish coastal waters and catches teleport ghosts that slip past
- * the live isGpsAnomaly check (45 kn threshold).
+ * maxKnots: standard = SPEED_CEILING_KNOTS (samma gräns som anomaligrinden i
+ * /spara). Tidigare 30 kn hårdkodat här — en TREDJE sanning vid sidan av
+ * grindens 45/60. Fälttest 2026-09-10 (tur 15b47ab2, bil, snitt 49 kn):
+ * varje punkt "för snabb" → route_points = null → ingen karta i flödet,
+ * trots att spåret i databasen var komplett (887 punkter).
  */
 export function removeSpeedOutliers<T extends { lat: number; lng: number; recordedAt: string }>(
   points: T[],
-  maxKnots = 30,
+  maxKnots: number = SPEED_CEILING_KNOTS,
 ): T[] {
   if (points.length < 2) return points
   const result: T[] = [points[0]!]
@@ -143,8 +146,8 @@ export function buildRoutePoints(
   const accurate = filterByAccuracy(raw, 40)
   if (accurate.length < 2) return null
 
-  // 1. Remove speed outliers (30 kn threshold)
-  const cleaned = removeSpeedOutliers(accurate, 30)
+  // 1. Remove speed outliers — samma tak som anomaligrinden, inte 30
+  const cleaned = removeSpeedOutliers(accurate, SPEED_CEILING_KNOTS)
   if (cleaned.length < 2) return null
 
   // 2. Douglas-Peucker — thin the route while preserving shape
