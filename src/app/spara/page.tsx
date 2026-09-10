@@ -319,13 +319,26 @@ export default function SparaPage() {
   useEffect(() => { syncOfflineRef.current = syncOfflinePoints }, [syncOfflinePoints])
 
   // ── Elapsed timer ──────────────────────────────────────────────────────────
+  // Klockbaserad, inte tick-baserad. Fälttest 10/9 (tur 15b47ab2): Safari
+  // stoppar setInterval när fliken ligger i bakgrunden, så "e + 1 per tick"
+  // tappade ~170 s och turen sparades som 15 min fast den var 17 min 51 s
+  // (ended_at − started_at). Nu räknas elapsed från klockan sedan senaste
+  // start/fortsättning; luckan hämtas in vid nästa tick och när fliken syns.
+  // elapsedRef speglas i effekten ovan (deklarerad före denna) och bär
+  // recovery-värdet (snap.elapsed + extraSec) in som bas.
   useEffect(() => {
-    if (phase === 'tracking') {
-      timerRef.current = setInterval(() => setElapsed(e => e + 1), 1000)
-    } else {
+    if (phase !== 'tracking') {
       if (timerRef.current) clearInterval(timerRef.current)
+      return
     }
-    return () => { if (timerRef.current) clearInterval(timerRef.current) }
+    const anchor = { base: elapsedRef.current, at: Date.now() }
+    const tick = () => setElapsed(anchor.base + Math.floor((Date.now() - anchor.at) / 1000))
+    timerRef.current = setInterval(tick, 1000)
+    document.addEventListener('visibilitychange', tick)
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current)
+      document.removeEventListener('visibilitychange', tick)
+    }
   }, [phase])
 
   // ── Heartbeat save every 30s (crash recovery) ─────────────────────────────

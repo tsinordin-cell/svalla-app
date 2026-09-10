@@ -32,6 +32,9 @@ export function buildTripFields(i: TripSaveInput) {
     // OBS: trips.duration är MINUTER (låst av test — 19/8-buggen där
     // 1127 min lästes som något annat började i otydlighet kring detta).
     duration:             Math.round(i.elapsedSeconds / 60),
+    // Sekunder sedan 2026-09-10 (migration 20260910000001) — tursidan visar
+    // "17min 34s" i stället för "18min".
+    duration_seconds:     Math.max(0, Math.round(i.elapsedSeconds)),
     average_speed_knots:  parseFloat(i.avgKnots.toFixed(1)),
     max_speed_knots:      parseFloat(i.maxKnots.toFixed(1)),
     // null = ingen bild — kolumnen nullbar sedan 21/8, kortet visar kartan.
