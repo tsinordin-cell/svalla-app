@@ -4,7 +4,7 @@ import Icon from '@/components/Icon'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { ReactNode } from 'react'
+import { cache, type ReactNode } from 'react'
 import TripDetailMap from '@/components/TripDetailMapClient'
 import SpeedChart from '@/components/SpeedChart'
 import { computeSplits, speedSeries, movingSeconds, resolveDurationSeconds } from '@/lib/tripSplits'
@@ -85,13 +85,25 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  */
 export const dynamic = 'force-dynamic'
 
-/** Publik (cachad) först, sedan ägarens egen privata tur, annars null. */
-async function resolveTripBundle(id: string): Promise<TripBundle | null> {
+/**
+ * Publik (cachad) först, sedan ägarens egen privata tur, annars null.
+ *
+ * Ägaren läser alltid per request med sin session (2026-09-10). Den
+ * cachade publika bilden byggs med anon-klienten, och gps_points släpps
+ * bara till ägaren (RLS gps_select_own) — så på en PUBLIK tur fick ägaren
+ * bara route_points: karta, men ingen fartkurva och inga delsträckor på
+ * sin egen tur. Upptäckt när #255 gick live på tur 15b47ab2. Kostnaden är
+ * en databasläsning per visning, bara för ägarens egna visningar.
+ */
+const resolveTripBundle = cache(async (id: string): Promise<TripBundle | null> => {
   const pub = await getCachedPublicTripBundle(id)
-  if (pub) return pub
   const supabase = await createServerSupabaseClient()
+  if (pub) {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user?.id !== pub.trip.user_id) return pub
+  }
   return loadTripBundle(id, supabase)
-}
+})   // react cache: generateMetadata + sidan delar en läsning per request
 
 export default async function TurPage({ params }: { params: Promise<{ id: string }> }) {
  const { id } = await params
