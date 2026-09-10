@@ -38,7 +38,7 @@ Parametrar i URL:en, alla valfria — utan dem körs exakt /spara:s inställning
 
 ```
 ?maxAccuracyM=80        kasta fixar sämre än så
-&anomalyCeilingKn=60    tak för anomaligrinden
+&anomalyCeilingKn=150   tak för anomaligrinden (återförankring efter 3 avvisade i rad)
 &accelSigma=1           Kalman: hur mycket fart får ändras per sekund (m/s²)
 &minAccuracyM=3         Kalman: golv för mätbrus
 &resetAfterSeconds=30   Kalman: omstart efter lucka
