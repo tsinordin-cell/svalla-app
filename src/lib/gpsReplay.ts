@@ -10,7 +10,8 @@
 // sin GPS-callback (src/app/spara/page.tsx, startGPS). Den koden rörs inte
 // före Toms fälttest. replayTrack nedan speglar den steg för steg:
 //   1. accuracy > 80 m          → kastas (rejectedAccuracy)
-//   2. isGpsAnomaly rå→rå, tak SPEED_CEILING_KNOTS → kastas (rejectedAnomaly)
+//   2. shouldRejectAsAnomaly rå→rå, tak SPEED_CEILING_KNOTS, återförankring
+//      efter 3 avvisade i rad → kastas (rejectedAnomaly) / omstart av filtret
 //   3. CvGpsKalmanFilter.update → utjämnat läge + fart
 //   4. fart: ur filtret; första fixen efter (om)start: enhetens fart
 //   5. cleanGpsSpeed med RÅ farthistorik (två senaste)
@@ -18,9 +19,9 @@
 // så att speglingen inte kan glida isär.
 
 import type { GpsPoint } from './gps'
-import { isGpsAnomaly, msToKnots, totalDistanceNM, avgSpeedKnots, maxSpeedKnots } from './gps'
+import { msToKnots, totalDistanceNM, avgSpeedKnots, maxSpeedKnots } from './gps'
 import { CvGpsKalmanFilter, type CvKalmanOptions } from './kalman'
-import { cleanGpsSpeed, SPEED_CEILING_KNOTS } from './tracking'
+import { cleanGpsSpeed, SPEED_CEILING_KNOTS, shouldRejectAsAnomaly } from './tracking'
 import { computeGpsQuality, type GpsQuality } from './gpsQuality'
 
 /** En rå fix som den kom från telefonen (= gps_points.raw_* + accuracy + recorded_at). */
@@ -79,11 +80,16 @@ export function replayTrack(fixes: RawFix[], opts: ReplayOptions = {}): ReplayRe
   let lastRaw: { lat: number; lng: number; ts: number } | null = null
   let rawSpeedHist: number[] = []
   let lastAcceptedTs: number | null = null
+  let streak = 0
 
   for (const f of fixes) {
     if (f.accuracyM > maxAcc) { rejectedAccuracy++; continue }
-    if (lastRaw && isGpsAnomaly(lastRaw.lat, lastRaw.lng, lastRaw.ts, f.lat, f.lng, f.ts, ceiling)) {
-      rejectedAnomaly++; continue
+    const gate = shouldRejectAsAnomaly(lastRaw, f.lat, f.lng, f.ts, streak, ceiling)
+    streak = gate.streak
+    if (gate.reject) { rejectedAnomaly++; continue }
+    if (gate.reanchored) {
+      kalman.reset(); kalmanResets++; rawSpeedHist = []
+      lastRaw = null   // första fixen efter omstart: enhetens fart
     }
     // Filtret startar om självt vid lucka > resetAfterSeconds; vi räknar det här.
     if (lastAcceptedTs != null && (f.ts - lastAcceptedTs) / 1000 > resetAfterSeconds) kalmanResets++

@@ -6,7 +6,7 @@ import { describe, it, expect } from 'vitest'
 import {
   cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, mergeRecoveredStops,
   impliedSpeedKnots,
-  SPEED_CEILING_KNOTS, type ServerGpsRow,
+  SPEED_CEILING_KNOTS, ANOMALY_REANCHOR_AFTER, shouldRejectAsAnomaly, type ServerGpsRow,
 } from './tracking'
 import type { GpsPoint, StopEvent } from './gps'
 
@@ -15,11 +15,13 @@ function pt(recordedAt: string, lat = 59.3): GpsPoint {
 }
 
 describe('cleanGpsSpeed — fälttestbugg 3: snitt = topp = exakt 30,00', () => {
-  it('klipper vid taket, inte vid gamla 30', () => {
-    expect(SPEED_CEILING_KNOTS).toBe(60)
-    expect(cleanGpsSpeed(82, 5, [])).toBe(60)
-    // bil pa motorvag (~58 kn) ska INTE klippas — det var karnfelet
+  it('klipper vid taket, inte vid gamla 30 (eller 60)', () => {
+    // 60 → 150, fälttest 2026-09-10: bil i 70 mph (61 kn) klipptes till 60
+    // och kastades av grinden. Taket ska skilja glitch från fordon.
+    expect(SPEED_CEILING_KNOTS).toBe(150)
+    expect(cleanGpsSpeed(400, 5, [])).toBe(150)
     expect(cleanGpsSpeed(58, 5, [])).toBe(58)
+    expect(cleanGpsSpeed(61, 5, [])).toBe(61)   // 70 mph i bil
   })
   it('negativ fart golvas till 0', () => {
     expect(cleanGpsSpeed(-3, 5, [])).toBe(0)
@@ -119,7 +121,7 @@ describe('impliedSpeedKnots — fart raknas pa matningar, inte pa utjamnade lage
     const v = 12 / 3.6
     const lagg = v * 23 * degPerM
     const got = impliedSpeedKnots(59.30 - lagg, 18.10, t0, 59.30 + v * degPerM, 18.10, t0 + 1000)
-    expect(got).toBeGreaterThan(SPEED_CEILING_KNOTS) // hade kastats som anomali
+    expect(got).toBeGreaterThan(100) // hade kastats som anomali med gamla taket
   })
 
   it('for tatt i tiden ger 0 (samma undre grans som isGpsAnomaly)', () => {
@@ -140,5 +142,56 @@ describe('cleanGpsSpeed — medianfönstret måste matas med RÅA farter', () =>
     })
     expect(selfFed.at(-1)).toBe(5)   // låst på första värdet
     expect(rawFed.at(-1)).toBe(12)   // följer med
+  })
+})
+
+describe('shouldRejectAsAnomaly — fälttest 2026-09-10 (tur ee7ef62f, MÄTT: 131 punkter på 56 min, luckor 18 + 26 min)', () => {
+  const t0 = Date.parse('2026-09-10T15:11:00.000Z')
+  const degPerM = 1 / 111_320
+  /** Rak kurs norrut i given fart, 1 Hz, n fixar. */
+  const run = (speedKn: number, n: number) =>
+    Array.from({ length: n }, (_, i) => ({ lat: 59.3 + i * speedKn * 0.514444 * degPerM, lng: 18.1, ts: t0 + i * 1000 }))
+
+  it('70 mph i bil (61 kn) passerar grinden — det var vad som låste ute allt', () => {
+    const fixes = run(61, 30)
+    let prev: { lat: number; lng: number; ts: number } | null = null
+    let streak = 0, rejected = 0
+    for (const f of fixes) {
+      const g = shouldRejectAsAnomaly(prev, f.lat, f.lng, f.ts, streak)
+      streak = g.streak
+      if (g.reject) { rejected++; continue }
+      prev = f
+    }
+    expect(rejected).toBe(0)
+  })
+
+  it('en riktig glitch (1 km på 1 s ≈ 1 900 kn) kastas och referensen står kvar', () => {
+    const prev = { lat: 59.3, lng: 18.1, ts: t0 }
+    const g = shouldRejectAsAnomaly(prev, 59.3 + 1000 * degPerM, 18.1, t0 + 1000, 0)
+    expect(g).toEqual({ reject: true, streak: 1, reanchored: false })
+  })
+
+  it('efter ANOMALY_REANCHOR_AFTER avvisade i rad accepteras fixen (återförankring) — ingen evig lucka', () => {
+    // Referens: gammal punkt. Bilen är 5 km bort och kör vidare i 61 kn.
+    const prev = { lat: 59.3, lng: 18.1, ts: t0 }
+    let streak = 0
+    const results = []
+    for (let i = 1; i <= ANOMALY_REANCHOR_AFTER; i++) {
+      const g = shouldRejectAsAnomaly(prev, 59.3 + (5000 + i * 31) * degPerM, 18.1, t0 + i * 1000, streak)
+      streak = g.streak
+      results.push(g)
+    }
+    expect(results.slice(0, -1).every(r => r.reject)).toBe(true)
+    expect(results.at(-1)).toEqual({ reject: false, streak: 0, reanchored: true })
+  })
+
+  it('utan referens accepteras första fixen', () => {
+    expect(shouldRejectAsAnomaly(null, 59.3, 18.1, t0, 0)).toEqual({ reject: false, streak: 0, reanchored: false })
+  })
+
+  it('en godkänd fix nollar räknaren', () => {
+    const prev = { lat: 59.3, lng: 18.1, ts: t0 }
+    const g = shouldRejectAsAnomaly(prev, 59.3 + 10 * degPerM, 18.1, t0 + 1000, 2)
+    expect(g).toEqual({ reject: false, streak: 0, reanchored: false })
   })
 })

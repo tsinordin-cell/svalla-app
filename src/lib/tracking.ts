@@ -8,13 +8,54 @@
  * inte kan komma tillbaka.
  */
 import type { GpsPoint, StopEvent } from './gps'
+import { isGpsAnomaly } from './gps'
 
 /**
  * En gräns för orimlig fart, använd överallt (fälttest 19/8): tidigare
  * kastade isGpsAnomaly punkter över 45 kn medan visningen klippte vid 30 —
- * två olika sanningar. 60 täcker RIB och racerbåt med marginal.
+ * två olika sanningar.
+ *
+ * 60 → 150 (fälttest 2026-09-10, MÄTT i gps_points för tur ee7ef62f):
+ * Tom körde bil i ~70 mph = 61 kn. Grinden kastade varje fix med implicerad
+ * fart > 60, och eftersom en kastad fix inte flyttar referenspunkten stod
+ * "föregående" kvar medan bilen körde vidare — så nästa fix var också > 60,
+ * och nästa. 131 punkter på 56 minuter, 124 av dem i fyra korta 1 Hz-skurar
+ * vid låg fart (av- och påfarter), luckor på 18 och 26 minuter däremellan.
+ * Spåret blev en rak linje. En riktig GPS-glitch är hundratals knop (ett
+ * hopp på 1 km på en sekund = 1 900 kn); 150 skiljer glitch från fordon.
+ * Dessutom: återförankring efter ANOMALY_REANCHOR_AFTER avvisade i rad,
+ * se shouldRejectAsAnomaly — samma sak kan inte vara en anomali tre gånger.
  */
-export const SPEED_CEILING_KNOTS = 60
+export const SPEED_CEILING_KNOTS = 150
+
+/**
+ * Efter så här många avvisade fixar i rad accepteras nästa ändå: om tre
+ * fixar i följd ligger "orimligt" långt från referensen är det referensen
+ * som är fel (t.ex. en gammal punkt före ett hopp), inte fixarna.
+ */
+export const ANOMALY_REANCHOR_AFTER = 3
+
+/**
+ * Anomaligrinden med återförankring. Ren funktion — /spara och gpsReplay
+ * använder samma. `streak` = antal avvisade i rad hittills (0 från start).
+ *
+ * @returns reject: kasta fixen. streak: nytt värde att spara.
+ *          reanchored: fixen accepterades trots anomali (starta om filtret).
+ */
+export function shouldRejectAsAnomaly(
+  prev: { lat: number; lng: number; ts: number } | null,
+  lat: number, lng: number, ts: number,
+  streak: number,
+  ceilingKnots: number = SPEED_CEILING_KNOTS,
+): { reject: boolean; streak: number; reanchored: boolean } {
+  if (!prev) return { reject: false, streak: 0, reanchored: false }
+  if (!isGpsAnomaly(prev.lat, prev.lng, prev.ts, lat, lng, ts, ceilingKnots)) {
+    return { reject: false, streak: 0, reanchored: false }
+  }
+  const next = streak + 1
+  if (next >= ANOMALY_REANCHOR_AFTER) return { reject: false, streak: 0, reanchored: true }
+  return { reject: true, streak: next, reanchored: false }
+}
 
 /**
  * Hastighets-rensning — GPS Doppler ger ofta skräp i kall start och tätort.
