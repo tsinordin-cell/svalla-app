@@ -6,6 +6,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import TripDetailMap from '@/components/TripDetailMapClient'
+import SpeedChart from '@/components/SpeedChart'
+import { computeSplits, speedSeries, movingSeconds, resolveDurationSeconds } from '@/lib/tripSplits'
 import TripHeroCarousel from '@/components/TripHeroCarousel'
 import LikeButton from '@/components/LikeButton'
 import Comments from '@/components/Comments'
@@ -204,7 +206,19 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  const username = userRow?.username ?? 'Seglare'
  const routeName = (trip.routes as { name: string } | null)?.name
 
- const durationSecs = (trip.duration ?? 0) * 60
+ // Sekunder (duration_seconds sedan 2026-09-10) med fallback för äldre turer.
+ const durationSecs = resolveDurationSeconds({
+   duration_seconds: trip.duration_seconds ?? null, duration: trip.duration ?? null,
+   started_at: trip.started_at ?? null, ended_at: trip.ended_at ?? null,
+ })
+
+ // Fartkurva + delsträckor ur sparade punkter ("det synliga", 2026-09-10).
+ // Bara när sidan har riktiga gps_points med fart — route_points-fallbacken
+ // (anonyma läsare) har speedKnots 0 och ska inte ritas som en platt kurva.
+ const hasSpeedData = points.length >= 2 && points.some(p => p.speedKnots > 0)
+ const speedSamples = hasSpeedData ? speedSeries(points) : []
+ const splits = hasSpeedData ? computeSplits(points) : []
+ const movingS = hasSpeedData ? movingSeconds(points) : 0
 
  // Fusionerad tidslinje: start + alla pauses/stopp (med plats + varaktighet) + end
  type TimelineEvent = {
@@ -613,6 +627,61 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  </div>
  )}
 
+ {/* Fart över tid — en serie, luckor bryter kurvan. Toppfart = bästa 10 s (samma som kortet). */}
+ {speedSamples.filter(Boolean).length >= 2 && (
+ <div style={{ marginBottom: 18 }}>
+ <SectionTitle>Fart</SectionTitle>
+ <SpeedChart
+ series={speedSamples}
+ topKn={trip.max_speed_knots >= 0.1 ? trip.max_speed_knots : undefined}
+ avgKn={trip.average_speed_knots >= 0.1 ? trip.average_speed_knots : undefined}
+ />
+ {movingS > 0 && durationSecs > 0 && movingS < durationSecs - 30 && (
+ <div style={{ fontSize: 11.5, color: 'var(--txt3)', marginTop: 6, paddingLeft: 4 }}>
+ I rörelse {formatDuration(movingS)} av {formatDuration(durationSecs)} (fart över 0,5 kn)
+ </div>
+ )}
+ </div>
+ )}
+
+ {/* Delsträckor per sjömil — sträcka / tid, inget annat */}
+ {splits.length >= 2 && (
+ <div style={{ marginBottom: 18 }}>
+ <SectionTitle>Delsträckor</SectionTitle>
+ <div style={{ background: 'var(--white)', borderRadius: 20, padding: '10px 14px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)' }}>
+ {(() => {
+ const maxAvg = Math.max(...splits.map(x => x.avgKnots), 0.1)
+ return (
+ <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12.5, fontVariantNumeric: 'tabular-nums' }}>
+ <thead>
+ <tr style={{ color: 'var(--txt3)', fontSize: 10.5, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+ <th scope="col" style={{ textAlign: 'left', padding: '4px 0', fontWeight: 600 }}>NM</th>
+ <th scope="col" style={{ textAlign: 'right', padding: '4px 8px', fontWeight: 600 }}>Tid</th>
+ <th scope="col" style={{ textAlign: 'right', padding: '4px 8px', fontWeight: 600 }}>Snitt</th>
+ <th scope="col" style={{ width: '38%', padding: '4px 0' }}><span style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>Snittfart som stapel</span></th>
+ </tr>
+ </thead>
+ <tbody>
+ {splits.map(sp => (
+ <tr key={sp.index} style={{ borderTop: '1px solid var(--sea-06)' }}>
+ <td style={{ padding: '6px 0', color: 'var(--txt2)' }}>{sp.distanceNM === 1 ? sp.index : `${sp.index} (${sp.distanceNM.toFixed(2).replace('.', ',')})`}</td>
+ <td style={{ padding: '6px 8px', textAlign: 'right', color: 'var(--txt2)' }}>{fmtMinSec(sp.seconds)}</td>
+ <td style={{ padding: '6px 8px', textAlign: 'right', color: 'var(--txt)', fontWeight: 600 }}>{sp.avgKnots.toFixed(1)} kn</td>
+ <td style={{ padding: '6px 0' }}>
+ <div style={{ height: 8, borderRadius: 4, background: 'var(--sea-06)', overflow: 'hidden' }}>
+ <div style={{ width: `${Math.max(2, (sp.avgKnots / maxAvg) * 100)}%`, height: '100%', borderRadius: 4, background: 'var(--sea)', opacity: 0.85 }} />
+ </div>
+ </td>
+ </tr>
+ ))}
+ </tbody>
+ </table>
+ )
+ })()}
+ </div>
+ </div>
+ )}
+
  {/* Tidslinje — samlar start, pauses, stopp och ankomst med plats + varaktighet */}
  {timeline.length > 1 && (
  <div style={{ marginBottom: 18 }}>
@@ -700,6 +769,12 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  />
  </div>
  )
+}
+
+/** m:ss för delsträckor — sekunderna är poängen här. */
+function fmtMinSec(sec: number): string {
+ const m = Math.floor(sec / 60), r = Math.round(sec % 60)
+ return `${m}:${String(r).padStart(2, '0')}`
 }
 
 function SectionTitle({ children }: { children: ReactNode }) {
