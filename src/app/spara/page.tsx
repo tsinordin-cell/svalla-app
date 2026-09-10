@@ -8,17 +8,17 @@ import { buildRoutePoints } from '@/lib/routeSmooth'
 import { deriveUsername } from '@/lib/username'
 import {
   type GpsPoint, type StopEvent,
-  msToKnots, totalDistanceNM, avgSpeedKnots, maxSpeedKnots,
+  msToKnots, totalDistanceNM, avgSpeedKnots,
   detectStops, formatDuration, reverseGeocode,
   type MovementState, computeMovementState,
   calculateBearing, bearingLabel,
   type LiveInsight, getLiveInsights,
 } from '@/lib/gps'
-import { CvGpsKalmanFilter } from '@/lib/kalman'
+import { GpsPipeline } from '@/lib/gpsPipeline'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
 import { startTracking } from '@/lib/tracker'
 import { toGpsRow, insertGpsRows } from '@/lib/gpsRows'
-import { computeGpsQuality } from '@/lib/gpsQuality'
+import { computeGpsQuality, topSpeedKnots } from '@/lib/gpsQuality'
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
 import { detectVisitedIslands } from '@/lib/islandCoords'
 import { computeUnlocked, type TripForAch } from '@/lib/achievements'
@@ -30,7 +30,7 @@ import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
-import { cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, SPEED_CEILING_KNOTS, mergeRecoveredStops, shouldRejectAsAnomaly } from '@/lib/tracking'
+import { recoveryExtraSeconds, mergeRecoveredPoints, mergeRecoveredStops } from '@/lib/tracking'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -82,7 +82,7 @@ export default function SparaPage() {
   const [offlineBuffered, setOfflineBuffered] = useState(0)
   const [currentPos,    setCurrentPos]    = useState<{ lat: number; lng: number } | null>(null)
   const [currentAccuracy, setCurrentAccuracy] = useState<number | null>(null)
-  const [, setAnomalyCount]               = useState(0) // value bara via anomalyCountRef
+  const [, setAnomalyCount]               = useState(0) // värdet bor i pipelineRef.current.stats
 
   // ── New GPS intelligence state ──
   const [movementState,  setMovementState]  = useState<MovementState>('STILLA')
@@ -126,16 +126,8 @@ export default function SparaPage() {
   // -> over 60-knopsgrinden -> punkten kastades. Uppmatt i simulering mot exakt denna
   // kod: bat i 6,5 kn tappade 89 % av punkterna och fick 40 % av sann distans.
   // Grind och fart maste jamfora RATT mot RATT. Utjamningen ar enbart for visning/lagring.
-  const lastRawPtRef     = useRef<{ lat: number; lng: number; ts: number } | null>(null)
-  const rawSpeedHistRef  = useRef<number[]>([]) // de senaste RÅA farterna, till medianfiltret
-  const kalmanRef        = useRef<CvGpsKalmanFilter | null>(null)
-  const anomalyCountRef  = useRef(0)
-  const anomalyStreakRef = useRef(0)
-  // Kvalitetssiffror (beslut 2026-09-06): räknar kastade fixar och
-  // Kalman-omstarter så att trips.gps_quality kan skrivas vid Spara.
-  const lowAccCountRef   = useRef(0)
-  const kalmanResetsRef  = useRef(0)
-  const lastAcceptedTsRef = useRef<number | null>(null)
+  // GPS-kedjan (grind, Kalman, fart) — en instans per tur, se startGPS.
+  const pipelineRef      = useRef<GpsPipeline | null>(null)
   const syncOfflineRef   = useRef<() => void>(() => {})
   const pointsRef        = useRef<GpsPoint[]>([])  // mirror for GPS callback
   const elapsedRef       = useRef(0)               // mirror for GPS callback (aldrig stale)
@@ -369,95 +361,34 @@ export default function SparaPage() {
       (point) => {
         setGpsError('')
         setCurrentAccuracy(point.accuracy)
-        if (point.accuracy > 80) { lowAccCountRef.current += 1; return }
-
-        const now = point.timestamp
-
-        // Anomaligrind med återförankring (shouldRejectAsAnomaly i
-        // @/lib/tracking, testad). Fälttest 2026-09-10: taket 60 kn + ingen
-        // återförankring låste ute varje fix så länge bilen höll > 60 kn —
-        // 26 minuters lucka, rak linje. Nu: tak 150, och efter tre avvisade
-        // i rad accepteras fixen och filtret startar om.
-        const gate = shouldRejectAsAnomaly(
-          lastRawPtRef.current, point.lat, point.lng, now, anomalyStreakRef.current, SPEED_CEILING_KNOTS)
-        anomalyStreakRef.current = gate.streak
-        if (gate.reject) {
-          anomalyCountRef.current += 1
-          setAnomalyCount(anomalyCountRef.current)
+        // HELA GPS-KEDJAN bor i GpsPipeline (@/lib/gpsPipeline): accuracy-
+        // gräns → anomaligrind med återförankring → CV-Kalman → fart ur
+        // filtret → medianfilter med rå farthistorik. Samma klass kör
+        // uppspelningen i gpsReplay, och gpsPipeline.test.ts låser den mot
+        // Toms fälttest 2026-09-10 (15,03 NM / 49,1 kn / 76,7 kn). Historiken
+        // bakom varje steg står i klassens kommentarer och i tracking.ts.
+        if (!pipelineRef.current) pipelineRef.current = new GpsPipeline()
+        const pt = pipelineRef.current.push({
+          lat: point.lat, lng: point.lng, accuracyM: point.accuracy, ts: point.timestamp,
+          deviceSpeedKn: point.speed != null && point.speed >= 0 ? msToKnots(point.speed) : null,
+          heading: point.heading,
+        })
+        if (!pt) {
+          setAnomalyCount(pipelineRef.current.stats.rejectedAnomaly)
           return
         }
-        if (gate.reanchored) {
-          kalmanRef.current = new CvGpsKalmanFilter()
-          kalmanResetsRef.current += 1
-          rawSpeedHistRef.current = []
-          lastRawPtRef.current = null   // första fixen efter omstart: enhetens fart
-        }
 
-        // Utjämning: konstant-hastighets-Kalman i 2D (beslut 2026-09-05).
-        // Det gamla 1D-filtret släpade ~23 sampel och kapade 16–23 % av
-        // distansen i kurvor — se kommentaren i src/lib/kalman.ts.
-        // Telefonens accuracy styr hur mycket varje fix får väga.
-        if (!kalmanRef.current) kalmanRef.current = new CvGpsKalmanFilter()
-        // Räknar filtrets omstarter (lucka > 30 s) — bara statistik, ingen logik.
-        if (lastAcceptedTsRef.current != null && (now - lastAcceptedTsRef.current) / 1000 > 30) kalmanResetsRef.current += 1
-        lastAcceptedTsRef.current = now
-        const smoothed = kalmanRef.current.update(point.lat, point.lng, point.accuracy, now)
-
-        // FART: ur filtrets hastighetstillstånd, inte ur positionsdeltan.
-        // Uppmätt 2026-09-05 (rak kurs, 1 Hz, GPS-brus ±5 m): positionsdelta
-        // gav 10,6 kn vid sann fart 3 kn och 11,5 vid 6 kn — bruset per sekund
-        // är i samma storleksordning som förflyttningen. Filtrets hastighet gav
-        // 3,2 respektive 6,1 (±0,9). Första fixen: enhetens Doppler-fart.
-        let speedKnots = 0
-        if (lastRawPtRef.current) {
-          speedKnots = msToKnots(smoothed.speedMs)
-        } else if (point.speed != null && point.speed >= 0) {
-          speedKnots = msToKnots(point.speed)
-        }
-
-        setCurrentPos({ lat: smoothed.lat, lng: smoothed.lng })
+        setCurrentPos({ lat: pt.lat, lng: pt.lng })
 
         // Bearing — only update when meaningfully moving
-        if (lastGpsPtRef.current && speedKnots > 0.5) {
+        if (lastGpsPtRef.current && pt.speedKnots > 0.5) {
           setBearing(calculateBearing(
             lastGpsPtRef.current.lat, lastGpsPtRef.current.lng,
-            smoothed.lat, smoothed.lng
+            pt.lat, pt.lng
           ))
         }
-
-        lastGpsPtRef.current = { lat: smoothed.lat, lng: smoothed.lng, ts: now }
-        lastRawPtRef.current = { lat: point.lat, lng: point.lng, ts: now }
-
-        // Hastighets-rensning — logiken bor i cleanGpsSpeed (@/lib/tracking)
-        // och är låst av tracking.test.ts (tak 60, accuracy>30 -> 0, median-3).
-        // OBS: medianfönstret ska matas med RÅA farter. Uppmätt 2026-09-05:
-        // matas det med sina egna rensade utdata låser det sig så fort två
-        // utdata i rad är lika (median av [a, a, x] är alltid a) — vid 12 kn
-        // fastnade visningen på 7,8 kn för resten av turen.
-        const cleanSpeed = cleanGpsSpeed(
-          speedKnots, point.accuracy,
-          rawSpeedHistRef.current.slice(-2))
-        rawSpeedHistRef.current = [...rawSpeedHistRef.current.slice(-1), Math.min(Math.max(speedKnots, 0), SPEED_CEILING_KNOTS)]
-        setCurrentSpeed(cleanSpeed)
-
-        // Rådata vid sidan av det utjämnade (beslut 2026-09-06): telefonens
-        // fix som den kom + enhetens Doppler-fart. Utan den kunde inte
-        // fälttesterna räknas om när filtret ändrades. Lagras i gps_points
-        // (raw_latitude/raw_longitude/device_speed_knots), visas ingenstans.
-        const recordedAt = new Date().toISOString()
-        const deviceSpeedKnots =
-          point.speed != null && point.speed >= 0 ? msToKnots(point.speed) : null
-        const pt: GpsPoint = {
-          lat:        smoothed.lat,
-          lng:        smoothed.lng,
-          speedKnots: cleanSpeed,
-          heading:    point.heading,
-          accuracy:   point.accuracy,
-          recordedAt,
-          rawLat:     point.lat,
-          rawLng:     point.lng,
-          deviceSpeedKnots,
-        }
+        lastGpsPtRef.current = { lat: pt.lat, lng: pt.lng, ts: point.timestamp }
+        setCurrentSpeed(pt.speedKnots)
 
         setPoints(prev => {
           const next = [...prev, pt]
@@ -533,9 +464,8 @@ export default function SparaPage() {
       watchRef.current = null
     }
     lastGpsPtRef.current = null
-    lastRawPtRef.current = null
-    rawSpeedHistRef.current = []
-    anomalyStreakRef.current = 0
+    // Paus: glöm referenspunkt och farthistorik, behåll räknarna.
+    pipelineRef.current?.softReset()
   }, [])
 
   // ── Phase transitions ──────────────────────────────────────────────────────
@@ -550,14 +480,7 @@ export default function SparaPage() {
       .catch(() => {})
     startTimeRef.current = new Date()
     lastGpsPtRef.current = null
-    lastRawPtRef.current = null
-    rawSpeedHistRef.current = []
-    anomalyCountRef.current = 0
-    anomalyStreakRef.current = 0
-    lowAccCountRef.current = 0
-    kalmanResetsRef.current = 0
-    lastAcceptedTsRef.current = null
-    kalmanRef.current = new CvGpsKalmanFilter()
+    pipelineRef.current = new GpsPipeline()
     setBoatType(boat)
     setPhase('tracking')
     setAnomalyCount(0)
@@ -647,12 +570,7 @@ export default function SparaPage() {
     setTripId(snap.tripId)
     setBoatType(snap.boatType)
     startTimeRef.current = new Date(snap.startedAt)
-    anomalyCountRef.current = 0
-    anomalyStreakRef.current = 0
-    lowAccCountRef.current = 0
-    kalmanResetsRef.current = 0
-    lastAcceptedTsRef.current = null
-    kalmanRef.current = new CvGpsKalmanFilter()
+    pipelineRef.current = new GpsPipeline()
     haptic(150)
     setPhase('tracking')
     startGPS()
@@ -685,7 +603,6 @@ export default function SparaPage() {
     pauseStartRef.current = new Date()
     stopGPS()
     releaseWakeLock()
-    kalmanRef.current?.reset()
     setPhase('paused')
     if (points.length > 0) {
       const last = points[points.length - 1]!
@@ -710,7 +627,6 @@ export default function SparaPage() {
         return updated
       })
     }
-    kalmanRef.current?.reset()
     setPhase('tracking')
     startGPS()
     void acquireWakeLock()
@@ -720,7 +636,6 @@ export default function SparaPage() {
     haptic([50, 50, 100, 50, 200])
     stopGPS()
     releaseWakeLock()
-    kalmanRef.current?.reset()
     clearTripSnapshot()
     // Slutlig stoppdetektering pa hela sparet - 5-punktsthrottlingen i
     // punkthanteraren kan ligga nagra sekunder efter.
@@ -738,7 +653,7 @@ export default function SparaPage() {
     try {
       const dist   = totalDistanceNM(points)
       const avgSpd = avgSpeedKnots(points)
-      const maxSpd = maxSpeedKnots(points)
+      const maxSpd = topSpeedKnots(points)
       const res = await fetch('/api/trip-summary', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -787,7 +702,9 @@ export default function SparaPage() {
     // Nollställ hastigheterna om rutten saknar mätbar förflyttning —
     // GPS Doppler kan rapportera hög hastighet utan att koordinaterna ändras (brus).
     let avgSpd  = dist >= 0.01 ? avgSpeedKnots(points) : 0
-    const maxSpd = dist >= 0.01 ? maxSpeedKnots(points) : 0
+    // Toppfart = bästa rullande 10 s-medel (det Strava/Garmin visar), inte
+    // en ensam punkt. Fälttest 2026-09-10: 76,7 (1 punkt) vs 75,6 (10 s).
+    const maxSpd = dist >= 0.01 ? topSpeedKnots(points) : 0
     // Fallback: om GPS-enhetens noggranhet var dålig (>30m) sätts alla speedKnots=0
     // men distans och tid är korrekt uppmätta — beräkna snittfart geometriskt istället.
     // elapsed raknas i SEKUNDER (setInterval 1000 ms) - dela med 3 600, inte
@@ -917,10 +834,11 @@ export default function SparaPage() {
     // 20260906000002 inte körd) loggas det bara.
     void (async () => {
       try {
+        const st = pipelineRef.current?.stats
         const gps_quality = computeGpsQuality(points, {
-          rejectedAccuracy: lowAccCountRef.current,
-          rejectedAnomaly: anomalyCountRef.current,
-          kalmanResets: kalmanResetsRef.current,
+          rejectedAccuracy: st?.rejectedAccuracy ?? 0,
+          rejectedAnomaly: st?.rejectedAnomaly ?? 0,
+          kalmanResets: st?.kalmanResets ?? 0,
         })
         const { error } = await supabase.from('trips').update({ gps_quality }).eq('id', tid)
         if (error) console.warn('[spara] gps_quality skrevs inte:', error.message)
@@ -1034,7 +952,7 @@ export default function SparaPage() {
           nearbyPlaces: [],
           startTime:   startedAt,
           endTime:     endedAt,
-          anomalyCount: anomalyCountRef.current > 0 ? anomalyCountRef.current : undefined,
+          anomalyCount: (pipelineRef.current?.stats.rejectedAnomaly ?? 0) > 0 ? pipelineRef.current!.stats.rejectedAnomaly : undefined,
         }),
       })
         .then(r => r.json())
@@ -1068,7 +986,7 @@ export default function SparaPage() {
 
   const dist   = totalDistanceNM(points)
   const avgSpd = avgSpeedKnots(points)
-  const maxSpd = maxSpeedKnots(points)
+  const maxSpd = topSpeedKnots(points)
 
   // ── Block render until auth resolved ─────────────────────────────────────
   if (authLoading) return null
