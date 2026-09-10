@@ -75,3 +75,19 @@ att upptäcka det.
 
 Toppfart som sparas och visas är sedan samma dag bästa rullande
 10-sekundersmedel (`topSpeedKnots`), inte max av enskilda punkter.
+
+## Det synliga på /tur (2026-09-10)
+
+`src/lib/tripSplits.ts` räknar ur sparade punkter: fartserie (medel per
+5 s, luckor > 60 s bryter kurvan), delsträckor per NM (sträcka/tid, tiden
+interpoleras linjärt inom det segment som korsar NM-gränsen — ett segment
+som spänner flera NM, t.ex. en lucka, ger flera delsträckor) och
+rörelsetid (fart > 0,5 kn). `SpeedChart` ritar serien utan bibliotek.
+Låst mot fixturen: 15 delsträckor, snabbaste ~71 kn, luckan bryter en gång.
+
+**Tid i sekunder.** `trips.duration_seconds` (migration
+20260910000001) skrivs från /spara. Fynd i samma veva: `elapsed` räknades
+med `setInterval(e + 1)`, som Safari stoppar i bakgrunden — tur 15b47ab2
+sparades som 15 min men var 17 min 51 s (`ended_at − started_at`). Nu
+räknas elapsed från klockan. Äldre turer: `resolveDurationSeconds` tar
+klockspannet när det stämmer med minuten ±90 s, annars minuten × 60.
