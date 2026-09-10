@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic'
 
-// GET /api/gps-replay/<tripId>?maxAccuracyM=80&anomalyCeilingKn=60&accelSigma=1&minAccuracyM=3&resetAfterSeconds=30
+// GET /api/gps-replay/<tripId>?maxAccuracyM=80&anomalyCeilingKn=150&accelSigma=1&minAccuracyM=3&resetAfterSeconds=30
 //
 // Spelar upp en tur genom GPS-kedjan från rådatan (gps_points.raw_*) med
 // valfria parametrar och jämför med det sparade spåret. Bara ägaren
@@ -15,6 +15,7 @@ import { NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { computeGpsQuality } from '@/lib/gpsQuality'
 import { replayTrack, rowToRawFix, type RawFix, type ReplayOptions } from '@/lib/gpsReplay'
+import { SPEED_CEILING_KNOTS } from '@/lib/tracking'
 import type { GpsPoint } from '@/lib/gps'
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
@@ -92,7 +93,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
       quality: replay.quality,
       track: q.get('track') === '1' ? replay.points.map(p => [p.lat, p.lng, p.speedKnots]) : undefined,
     },
-    params: { maxAccuracyM: opts.maxAccuracyM ?? 80, anomalyCeilingKn: opts.anomalyCeilingKn ?? 60, kalman: { accelSigma: kalman.accelSigma ?? 1, minAccuracyM: kalman.minAccuracyM ?? 3, resetAfterSeconds: kalman.resetAfterSeconds ?? 30 } },
+    params: { maxAccuracyM: opts.maxAccuracyM ?? 80, anomalyCeilingKn: opts.anomalyCeilingKn ?? SPEED_CEILING_KNOTS, kalman: { accelSigma: kalman.accelSigma ?? 1, minAccuracyM: kalman.minAccuracyM ?? 3, resetAfterSeconds: kalman.resetAfterSeconds ?? 30 } },
     rawAvailable: fixes.length,
   })
 }

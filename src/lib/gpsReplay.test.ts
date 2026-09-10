@@ -48,12 +48,32 @@ describe('replayTrack — samma kedja som /spara, körd i efterhand', () => {
     expect(res.quality.rejectedAccuracy).toBe(2)
   })
 
-  it('anomali (hopp som kräver > 60 kn rå→rå) kastas och nästa fix jämförs mot föregående GODKÄNDA', () => {
+  it('en ensam glitch (1,1 km hopp på 1 s ≈ 2 100 kn) kastas; nästa fix jämförs mot föregående GODKÄNDA', () => {
     const f = fixes(50, 5)
-    f[25]!.lat += 0.01  // ~1,1 km hopp på 1 s
+    f[25]!.lat += 0.01
     const res = replayTrack(f)
     expect(res.rejectedAnomaly).toBe(1)
     expect(res.points.length).toBe(49)
+  })
+
+  it('FÄLTTEST 2026-09-10: bil i 70 mph (61 kn) i 5 min — inga punkter kastas, ingen lucka', () => {
+    const res = replayTrack(fixes(300, 61))
+    expect(res.rejectedAnomaly).toBe(0)
+    expect(res.points.length).toBe(300)
+    expect(res.quality.gapMaxS).toBe(1)
+    const tail = res.points.slice(-100)
+    const mean = tail.reduce((s, p) => s + p.speedKnots, 0) / tail.length
+    expect(Math.abs(mean - 61)).toBeLessThan(0.5)
+  })
+
+  it('ihållande hopp (referensen är fel) ger återförankring efter 3 — inte en evig lucka', () => {
+    const f = fixes(60, 5)
+    // från fix 20 flyttar hela spåret 5 km norrut och fortsätter
+    for (let i = 20; i < 60; i++) f[i]!.lat += 5000 / 111_320
+    const res = replayTrack(f)
+    expect(res.rejectedAnomaly).toBe(2)       // två kastas, tredje accepteras
+    expect(res.kalmanResets).toBe(1)
+    expect(res.points.length).toBe(58)
   })
 
   it('lucka > 30 s räknas som Kalman-omstart', () => {
