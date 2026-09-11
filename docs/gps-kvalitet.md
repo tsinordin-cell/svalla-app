@@ -116,3 +116,16 @@ fixar. Turer sparade före 11/9 räknas inte om. `gps_quality` bär alla tre
 jämförelsen kan göras igen på varje ny tur. Fixturer för alla tre turer
 ligger i `src/lib/__fixtures__/`; `tripDistance.test.ts` låser
 2,30 ≤ ∫Doppler ≤ 2,39 på 2,7 mi-turen.
+
+## 1 000-radersgränsen (fynd 2026-09-11)
+
+PostgREST svarar med högst 1 000 rader per fråga, utan fel. Alla läsningar
+av gps_points saknade sidindelning, så turer längre än ~17 minuter vid 1 Hz
+stympades tyst: tursidan (kurva, delsträckor, rörelsetid), GPX-exporten
+(som dessutom hade `.limit(5000)`), uppspelningen, route_points-backfillen
+och — värst — kraschåterställningen i /spara, som då räknade distansen på
+ett stympat spår. Upptäckt på tur 828d8cbc: 1 081 punkter i databasen,
+1 000 på sidan. Nu går alla läsningar via `fetchAllGpsPoints`
+(`src/lib/gpsRows.ts`): sida för sida, ordnat på recorded_at + id, hård
+gräns 100 000 rader (≈ 28 h). Testad med 1 081, 1 000, 14 400 och 0 rader
+samt databasfel mitt i.
