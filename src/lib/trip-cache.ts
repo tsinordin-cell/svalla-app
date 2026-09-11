@@ -24,6 +24,7 @@
 import { unstable_cache } from 'next/cache'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { createPublicSupabaseClient } from './supabase-server'
+import { fetchAllGpsPoints } from './gpsRows'
 
 export const tripCacheTag = (id: string) => `trip:${id}`
 
@@ -66,11 +67,10 @@ export async function loadTripBundle(id: string, supabase: SupabaseClient): Prom
   ] = await Promise.all([
     supabase.from('users').select('username, avatar').eq('id', trip.user_id).single(),
     supabase.from('trip_tags').select('tagged_user_id').eq('trip_id', id),
-    supabase
-      .from('gps_points')
-      .select('latitude,longitude,speed_knots,heading,recorded_at')
-      .eq('trip_id', id)
-      .order('recorded_at', { ascending: true }),
+    // Sidindelad: PostgREST ger max 1 000 rader per fråga (fynd 2026-09-11,
+    // turer > 17 min stympades tyst). Fel → tom lista, som förr.
+    fetchAllGpsPoints(supabase, id, 'latitude,longitude,speed_knots,heading,recorded_at')
+      .then(rows => ({ data: rows }), () => ({ data: null })),
     supabase
       .from('stops')
       .select('latitude,longitude,stop_type,started_at,ended_at,duration_seconds,place_name')
