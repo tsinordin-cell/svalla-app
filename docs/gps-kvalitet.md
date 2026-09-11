@@ -129,3 +129,18 @@ ett stympat spår. Upptäckt på tur 828d8cbc: 1 081 punkter i databasen,
 (`src/lib/gpsRows.ts`): sida för sida, ordnat på recorded_at + id, hård
 gräns 100 000 rader (≈ 28 h). Testad med 1 081, 1 000, 14 400 och 0 rader
 samt databasfel mitt i.
+
+## Snittfart, rörelsetid och fartfärg (2026-09-11)
+
+**Snittfart = distans / rörelsetid** (`avgSpeedKnots`), som Strava och
+Garmin. Före: medel av punktfarter över 0,3 kn — gav 30,3 där delsträckorna
+sa 29,5 på samma tur. Rörelsetid (`movingSeconds`, nu i gps.ts) räknar
+sekunder med fart > 0,5 kn; en lucka > 60 s räknas som rörelse om sträckan
+mellan fixarna ger fart över tröskeln. Därmed: sträcka som räknas har alltid
+tid som räknas. 10/9-turen: 14,81 NM / 1 054 s = 50,6 kn (sparat: 49,1).
+
+**Fartfärg** delas av tursidan och live-kartan (`src/lib/speedColor.ts`).
+`speedRuns` slår ihop punkter med samma färg till ett segment — tursidan
+ritade förut ett Leaflet-lager per punkt (14 400 för fyra timmar), och
+live-kartan läckte ett lager per ny punkt. Live-kartan har nu fartfärg och
+startmarkör som den färdiga turen.

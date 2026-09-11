@@ -5,6 +5,7 @@ import type { Map as LeafletMap, LayerGroup } from 'leaflet'
 import type { WindArrowSample } from '@/lib/weather'
 import { windColor, windDirectionLabel } from '@/lib/weather'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import { speedRuns } from '@/lib/speedColor'
 
 type LeafletNS = typeof import('leaflet')
 
@@ -21,12 +22,6 @@ type Props = {
 }
 
 // Färgkoda polyline:n efter fart (behåll befintligt beteende).
-function speedColor(knots: number): string {
- if (knots < 2) return 'var(--txt3)'
- if (knots < 8) return '#1e5c82'
- if (knots < 15) return '#0f9e64'
- return '#c96e2a'
-}
 
 /**
  * HTML för en vind-pil-markör. Pilen pekar åt vindriktningen
@@ -113,15 +108,10 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
  // Sjökort-overlay (OpenSeaMap) — Svallas visuella signatur
  L.tileLayer(SEAMARK_TILE, { maxZoom: 18, opacity: 0.85, crossOrigin: '' }).addTo(map)
 
- // Färgade polyline-segment efter fart
- for (let i = 1; i < points.length; i++) {
- const a = points[i - 1]!
- const b = points[i]!
- const spd = ((a.speedKnots ?? 0) + (b.speedKnots ?? 0)) / 2
- L.polyline(
- [[a.lat, a.lng], [b.lat, b.lng]],
- { color: speedColor(spd), weight: 4, opacity: 0.85 }
- ).addTo(map)
+ // Färgade segment efter fart — ett lager per sammanhängande färg, inte per
+ // punkt (14 400 lager för en fyratimmarstur fick telefonen på knä).
+ for (const run of speedRuns(points)) {
+ L.polyline(run.latlngs, { color: run.color, weight: 4, opacity: 0.85 }).addTo(map)
  }
 
  // START
