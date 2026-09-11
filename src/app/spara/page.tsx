@@ -1291,7 +1291,7 @@ export default function SparaPage() {
         {/* Full-screen map — isolation:isolate creates a stacking context that bounds Leaflet's z-indexes */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0, isolation: 'isolate' }}>
           <LiveTrackMap
-            points={points.map(p => ({ lat: p.lat, lng: p.lng }))}
+            points={points.map(p => ({ lat: p.lat, lng: p.lng, speedKnots: p.speedKnots }))}
             currentPos={currentPos}
             speed={currentSpeed}
             bearing={bearing}
