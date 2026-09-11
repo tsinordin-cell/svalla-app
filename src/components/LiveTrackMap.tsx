@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import { speedRuns } from '@/lib/speedColor'
 // Leaflet CSS — bundled by Next.js, served from same origin (no CDN dependency, no CSP issues)
 import 'leaflet/dist/leaflet.css'
 
@@ -13,7 +14,7 @@ interface StopMarker {
 }
 
 interface LiveTrackMapProps {
-  points: { lat: number; lng: number }[]
+  points: { lat: number; lng: number; speedKnots?: number }[]
   currentPos: { lat: number; lng: number } | null
   speed: number       // knots
   bearing?: number | null   // degrees from north (calculated from movement)
@@ -42,7 +43,8 @@ export default function LiveTrackMap({
   const [followOff, setFollowOff] = useState(false)
   const mapContainer       = useRef<HTMLDivElement>(null)
   const mapInstance        = useRef<import('leaflet').Map | null>(null)
-  const polylineRef        = useRef<import('leaflet').Polyline | null>(null)
+  const trackLayerRef      = useRef<import('leaflet').LayerGroup | null>(null)
+  const startMarkerRef     = useRef<import('leaflet').Marker | null>(null)
   const markerRef          = useRef<import('leaflet').Marker | null>(null)
   const accuracyCircleRef  = useRef<import('leaflet').Circle | null>(null)
   const stopMarkersRef     = useRef<import('leaflet').Marker[]>([])
@@ -116,46 +118,50 @@ export default function LiveTrackMap({
       if (mapInstance.current) {
         mapInstance.current.remove()
         mapInstance.current = null
-        polylineRef.current = null
         markerRef.current = null
         accuracyCircleRef.current = null
         stopMarkersRef.current = []
+        trackLayerRef.current = null
+        startMarkerRef.current = null
       }
     }
   }, [])
 
   // ── Update route track ───────────────────────────────────────────────────
+  // Fartfärgat som på tursidan (delad speedRuns), startmarkör, och ETT
+  // lagergrupp som töms varje gång — före 2026-09-11 lades "äldre spår"-
+  // lagret till på nytt vid varje punkt utan att tas bort (läckte lager
+  // hela turen), och spåret var enfärgat.
   useEffect(() => {
     const L = LRef.current
     const map = mapInstance.current
     if (!L || !map) return
 
-    if (polylineRef.current) map.removeLayer(polylineRef.current)
+    if (!trackLayerRef.current) trackLayerRef.current = L.layerGroup().addTo(map)
+    const group = trackLayerRef.current
+    group.clearLayers()
 
     if (points.length >= 2) {
-      // Split track into recent (brighter) and older (dimmer) segments
-      const cutoff = Math.max(0, points.length - 40)
-      const olderPts = points.slice(0, cutoff + 1)
-      const recentPts = points.slice(cutoff)
-
-      if (olderPts.length >= 2) {
-        L.polyline(olderPts.map(p => [p.lat, p.lng]), {
-          color: 'rgba(30,92,130,0.35)',
-          weight: 2,
-          lineCap: 'round',
-          lineJoin: 'round',
-        }).addTo(map)
+      for (const run of speedRuns(points)) {
+        L.polyline(run.latlngs, {
+          color: run.color, weight: 3.5, opacity: 0.85, lineCap: 'round', lineJoin: 'round',
+        }).addTo(group)
       }
+    }
 
-      polylineRef.current = L.polyline(recentPts.map(p => [p.lat, p.lng]), {
-        color: 'var(--sea)',
-        weight: 3.5,
-        opacity: 0.9,
-        lineCap: 'round',
-        lineJoin: 'round',
+    if (points.length >= 1 && !startMarkerRef.current) {
+      const p0 = points[0]!
+      startMarkerRef.current = L.marker([p0.lat, p0.lng], {
+        icon: L.divIcon({
+          html: `<div style="width:12px;height:12px;border-radius:50%;background:#0f9e64;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.3)"></div>`,
+          iconSize: [12, 12], iconAnchor: [6, 6], className: '',
+        }),
+        interactive: false, zIndexOffset: -100,
       }).addTo(map)
-    } else {
-      polylineRef.current = null
+    }
+    if (points.length === 0 && startMarkerRef.current) {
+      map.removeLayer(startMarkerRef.current)
+      startMarkerRef.current = null
     }
   }, [points])
 
