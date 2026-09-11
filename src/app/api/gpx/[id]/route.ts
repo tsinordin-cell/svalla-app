@@ -4,6 +4,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { buildGpx } from '@/lib/gpx'
+import { fetchAllGpsPoints } from '@/lib/gpsRows'
 import { isPro, isProEnabled } from '@/lib/pro'
 
 export async function GET(
@@ -46,12 +47,11 @@ export async function GET(
 
   const routePts = Array.isArray(trip.route_points) ? trip.route_points as { lat: number; lng: number }[] : []
 
-  const { data: gpsPts } = await supabase
-    .from('gps_points')
-    .select('latitude, longitude, recorded_at')
-    .eq('trip_id', id)
-    .order('recorded_at', { ascending: true })
-    .limit(5000)
+  // Alla punkter, sidindelat. Före 2026-09-11: .limit(5000) OCH PostgREST-taket
+  // 1 000 → exporten var stympad för allt över 17 minuter.
+  const gpsPts = await fetchAllGpsPoints<{ latitude: number; longitude: number; recorded_at: string | null }>(
+    supabase, id, 'latitude, longitude, recorded_at',
+  ).catch(() => null)
 
   const rawPts = gpsPts && gpsPts.length > 0
     ? gpsPts.map(p => ({ lat: p.latitude, lng: p.longitude, time: p.recorded_at ?? undefined }))
