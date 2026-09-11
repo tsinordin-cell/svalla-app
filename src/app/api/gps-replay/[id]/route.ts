@@ -17,6 +17,12 @@ import { computeGpsQuality } from '@/lib/gpsQuality'
 import { replayTrack, rowToRawFix, type RawFix, type ReplayOptions } from '@/lib/gpsReplay'
 import { SPEED_CEILING_KNOTS } from '@/lib/tracking'
 import type { GpsPoint } from '@/lib/gps'
+import { fetchAllGpsPoints } from '@/lib/gpsRows'
+
+type GpsPointRow = {
+  latitude: number; longitude: number; speed_knots: number | null; heading: number | null; accuracy: number | null
+  recorded_at: string; raw_latitude: number | null; raw_longitude: number | null; device_speed_knots: number | null
+}
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
@@ -44,14 +50,15 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
     .single()
   if (!trip || trip.user_id !== user.id) return NextResponse.json({ error: 'Not found' }, { status: 404 })
 
-  const { data: rows, error } = await supabase
-    .from('gps_points')
-    .select('*')   // raw_* finns först efter migration 20260906000001
-    .eq('trip_id', id)
-    .order('recorded_at', { ascending: true })
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  // Sidindelad — utan det stympade PostgREST allt över 1 000 punkter (fynd 2026-09-11).
+  let rows: GpsPointRow[]
+  try {
+    rows = await fetchAllGpsPoints<GpsPointRow>(supabase, id, '*')   // raw_* finns först efter migration 20260906000001
+  } catch (e) {
+    return NextResponse.json({ error: e instanceof Error ? e.message : String(e) }, { status: 500 })
+  }
 
-  const stored: GpsPoint[] = (rows ?? []).map(r => ({
+  const stored: GpsPoint[] = rows.map(r => ({
     lat: r.latitude, lng: r.longitude, speedKnots: r.speed_knots ?? 0,
     heading: r.heading ?? null, accuracy: r.accuracy ?? 0, recordedAt: r.recorded_at,
     rawLat: r.raw_latitude ?? undefined, rawLng: r.raw_longitude ?? undefined,
