@@ -56,8 +56,7 @@ This project uses Supabase CLI for managing database migrations.
 
 ### CI/CD
 
-- GitHub Actions automatically runs `supabase db lint` on pull requests that modify files in `supabase/migrations/`
-- Requires `SUPABASE_PROJECT_ID` and `SUPABASE_ACCESS_TOKEN` secrets to be configured in GitHub
+- `.github/workflows/db-lint.yml` är **avstängd** (Actions → DB Lint → Disabled, 2026-09-11). Den fungerade aldrig: `supabase db lint --project-id` finns inte i CLI:t, och alla 7 körningar var röda. Migrationer appliceras via Supabase MCP och verifieras i `information_schema` (se docs/gps-kvalitet.md för exempel). Filen kan raderas när någon med rättigheter vill.
 
 ### Migration Files
 
