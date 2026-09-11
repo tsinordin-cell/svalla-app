@@ -102,20 +102,46 @@ Fyra sätt att räkna, tre turer:
 | 5fa4cf65 (2,7 mi) | 2,30–2,39 NM | 2,415 | 2,380 | 2,370 | **2,341** |
 | 828d8cbc (12 NM) | ogiltigt foto | 12,41 | 12,30 | 12,20 | 12,14 |
 | 15b47ab2 (10/9) | — | 15,03 | 14,93 | 14,92* | 14,81* |
+| 06c13078 (20,5 mi, 1 305 fixar) | 17,77–17,86 NM | 17,77 | 17,61 | — | 17,45 |
 
 \* luckorna (158 s) räknade som sträcka mellan fixar.
 
-Samma ordning på alla tre; 2–3 % mellan ytterligheterna; bara ∫Doppler
-träffar bilens intervall. Doppler-farten mäts på satellitsignalens
+Samma ordning på alla fyra; 2–3 % mellan ytterligheterna. På 2,7 mi-turen
+träffar bara ∫Doppler bilens intervall; på 20,5 mi-turen träffar bara
+positionssumman (∫Doppler −2,0 %, råa −1,1 %). Det ser motsägelsefullt ut
+tills man tar med att bilens vägmätare har ett eget, okänt men konstant fel
+k = bil/sant. En metod som mäter rätt måste ge samma k på båda turerna:
+
+| Metod | k på 2,7 mi | k på 20,5 mi | Överlapp |
+|---|---|---|---|
+| ∫ Doppler | 0,982–1,021 | 1,018–1,023 | **ja, k ≈ 1,02** |
+| Σ råa pos. | 0,966–1,004 | 1,009–1,014 | nej |
+| Σ utjämnade pos. | 0,952–0,989 | 1,000–1,005 | nej |
+
+Mätt: de fyra bilavläsningarna och GPS-siffrorna. Resonerat: att bilens fel
+är konstant (samma bil, samma däck) och att ~2 % för hög vägmätare är
+normalt. Slutsats: ∫Doppler står kvar; positionssumman kan inte vara rätt
+på båda turerna. `tripDistance.test.ts` låser överlappstestet så att en
+ändrad metod måste klara samma prövning. Doppler-farten mäts på satellitsignalens
 frekvensskift och påverkas inte av positionsbrus — det är därför
 positionssumman blåses upp vid låg fart (synteset: 1,4–1,8× vid 3 kn,
 ∫Doppler 1,00×). `trips.distance` sparas nu som `tripDistanceNM`
 (`src/lib/gps.ts`): ∫Doppler över par ≤ 10 s, annars sträcka mellan råa
 fixar. Turer sparade före 11/9 räknas inte om. `gps_quality` bär alla tre
 (`distanceSmoothedNM`, `distanceRawNM`, `distanceIntegratedNM`) så att
-jämförelsen kan göras igen på varje ny tur. Fixturer för alla tre turer
-ligger i `src/lib/__fixtures__/`; `tripDistance.test.ts` låser
-2,30 ≤ ∫Doppler ≤ 2,39 på 2,7 mi-turen.
+jämförelsen kan göras igen på varje ny tur. Fixturer för alla fyra turer
+ligger i `src/lib/__fixtures__/` (rådata ur gps_points, kan spelas upp
+igen med `replayTrack`); `tripDistance.test.ts` låser
+2,30 ≤ ∫Doppler ≤ 2,39 på 2,7 mi-turen och de tre värdena på 20,5 mi-turen.
+
+Sett i samma fixtur (06c13078), inte åtgärdat än: den filtrerade farten
+släpar vid stopp. Vid inbromsningen 1 177–1 182 s går enhetens Doppler
+18,8 → 0 kn på 5 s; den visade farten ligger kvar på 15,6 kn när Doppler
+redan är 0, når under 1 kn först 5 s senare och stiger sedan till 1,5 kn
+i 4 s medan bilen står stilla. Vid slutstoppet planar den ut på 0,19 kn i
+stället för 0. Doppler säger 0 hela tiden. Det är Kalmanfiltrets
+hastighetstillstånd (konstant fart-modell) som ger eftersläpningen —
+nästa steg i GPS-listan ("fart vid stillastående").
 
 ## 1 000-radersgränsen (fynd 2026-09-11)
 
