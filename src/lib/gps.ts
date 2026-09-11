@@ -54,6 +54,41 @@ export function totalDistanceNM(points: GpsPoint[]): number {
  return d
 }
 
+/** Luckor längre än så här (s) räknas som sträcka mellan fixar, inte som fart × tid. */
+export const DISTANCE_GAP_S = 10
+
+/**
+ * Turens distans = ∫ telefonens Doppler-fart över tid (beslut 2026-09-11).
+ *
+ * Varför inte summa av positioner: varje liten svängning i mätningen adderar
+ * sträcka, och det blir värre ju långsammare man går. Doppler-farten mäts på
+ * satellitsignalens frekvensskift och påverkas inte av positionsbrus alls —
+ * det är så Garmin och Strava räknar. Mätt på Toms tre bilturer 10–11/9
+ * (mot bilens trippmätare, 2,7 mi = 2,30–2,39 NM):
+ *   summa utjämnade positioner 2,415 · råa 2,380 · ∫filterfart 2,370 ·
+ *   ∫Doppler 2,341 — bara den sista träffar bilens intervall. Samma ordning
+ *   på alla tre turer, 2–3 % mellan ytterligheterna.
+ * Reserv: över luckor (> DISTANCE_GAP_S) och där Doppler saknas räknas
+ * sträckan mellan råa fixar (utjämnade om rådata saknas, t.ex. GPX-import).
+ * Testad mot fixturerna i src/lib/__fixtures__.
+ */
+export function tripDistanceNM(points: GpsPoint[], gapS = DISTANCE_GAP_S): number {
+ let d = 0
+ for (let i = 1; i < points.length; i++) {
+ const a = points[i - 1]!, b = points[i]!
+ const dt = (Date.parse(b.recordedAt) - Date.parse(a.recordedAt)) / 1000
+ const va = a.deviceSpeedKnots, vb = b.deviceSpeedKnots
+ if (dt > 0 && dt <= gapS && va != null && vb != null && va >= 0 && vb >= 0) {
+ d += ((va + vb) / 2) * (dt / 3600)
+ } else {
+ const la = a.rawLat ?? a.lat, lo = a.rawLng ?? a.lng
+ const lb = b.rawLat ?? b.lat, lob = b.rawLng ?? b.lng
+ d += distanceNM(la, lo, lb, lob)
+ }
+ }
+ return d
+}
+
 // Average speed from points
 export function avgSpeedKnots(points: GpsPoint[]): number {
  if (points.length === 0) return 0
@@ -262,7 +297,7 @@ export function getLiveInsights(
 ): LiveInsight[] {
  if (points.length < 10) return []
  const out: LiveInsight[] = []
- const dist = totalDistanceNM(points)
+ const dist = tripDistanceNM(points)
  const maxSpd = maxSpeedKnots(points)
 
  if (dist >= 5 && dist < 5.3) out.push({ key: '5nm', iconKey: 'target', text: '5 NM avklarade!' })
@@ -299,7 +334,7 @@ export function computeRouteStats(
  ? calculateBearing(points[0]!.lat, points[0]!.lng, points[points.length - 1]!.lat, points[points.length - 1]!.lng)
  : null
  return {
- distanceNM: totalDistanceNM(points),
+ distanceNM: tripDistanceNM(points),
  avgSpeedKnots: avgSpeedKnots(points),
  maxSpeedKnots: maxSpeedKnots(points),
  movingTimeSec: Math.max(0, elapsedSec - stoppedSec),
