@@ -11,7 +11,7 @@
 // speglingen bevisades stämma på tur 15b47ab2 (se gpsPipeline.test.ts).
 
 import type { GpsPoint } from './gps'
-import { totalDistanceNM, avgSpeedKnots } from './gps'
+import { tripDistanceNM, avgSpeedKnots } from './gps'
 import type { CvKalmanOptions } from './kalman'
 import { GpsPipeline, type RawFix } from './gpsPipeline'
 import { computeGpsQuality, topSpeedKnots, type GpsQuality } from './gpsQuality'
@@ -76,7 +76,7 @@ export function replayTrack(fixes: RawFix[], opts: ReplayOptions = {}): ReplayRe
   return {
     points: out,
     rejectedAccuracy: s.rejectedAccuracy, rejectedAnomaly: s.rejectedAnomaly, kalmanResets: s.kalmanResets,
-    distanceNM: totalDistanceNM(out),
+    distanceNM: tripDistanceNM(out),   // ∫Doppler-fart — samma som /spara sparar (beslut 2026-09-11)
     avgSpeedKn: avgSpeedKnots(out),
     maxSpeedKn: topSpeedKnots(out),   // samma definition som /spara sparar: bästa 10 s
     quality: computeGpsQuality(out, { rejectedAccuracy: s.rejectedAccuracy, rejectedAnomaly: s.rejectedAnomaly, kalmanResets: s.kalmanResets }),

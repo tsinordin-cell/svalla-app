@@ -11,7 +11,7 @@
 // gpsQuality.test.ts. Allt är mätt ur punkterna — inget är tolkning.
 
 import type { GpsPoint } from './gps'
-import { distanceNM } from './gps'
+import { distanceNM, tripDistanceNM } from './gps'
 
 export type GpsQuality = {
   /** Version av beräkningen — höj när fält byter betydelse. */
@@ -52,6 +52,8 @@ export type GpsQuality = {
   distanceSmoothedNM: number
   /** Distans längs råspåret, NM. null utan rådata. */
   distanceRawNM: number | null
+  /** ∫ Doppler-fart dt, NM — det trips.distance sparas som sedan 2026-09-11. Saknas i äldre rader. */
+  distanceIntegratedNM?: number
 }
 
 export type GpsQualityInput = {
@@ -163,5 +165,6 @@ export function computeGpsQuality(points: GpsPoint[], input: GpsQualityInput = {
     maxSpeed10sKn: r1(bestWindowSpeedKn(points, 10)),
     distanceSmoothedNM: r2(distSmoothed),
     distanceRawNM: distanceRaw == null ? null : r2(distanceRaw),
+    distanceIntegratedNM: r2(tripDistanceNM(points)),
   }
 }

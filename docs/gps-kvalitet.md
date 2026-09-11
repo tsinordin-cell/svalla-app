@@ -91,3 +91,28 @@ med `setInterval(e + 1)`, som Safari stoppar i bakgrunden — tur 15b47ab2
 sparades som 15 min men var 17 min 51 s (`ended_at − started_at`). Nu
 räknas elapsed från klockan. Äldre turer: `resolveDurationSeconds` tar
 klockspannet när det stämmer med minuten ±90 s, annars minuten × 60.
+
+## Distans = ∫ Doppler-fart (beslut 2026-09-11)
+
+Facit: Toms bil, trippmätaren nollställd vid start (foto före och efter).
+Fyra sätt att räkna, tre turer:
+
+| Tur | Bil | Σ utjämnade pos. | Σ råa pos. | ∫ filterfart | ∫ Doppler |
+|---|---|---|---|---|---|
+| 5fa4cf65 (2,7 mi) | 2,30–2,39 NM | 2,415 | 2,380 | 2,370 | **2,341** |
+| 828d8cbc (12 NM) | ogiltigt foto | 12,41 | 12,30 | 12,20 | 12,14 |
+| 15b47ab2 (10/9) | — | 15,03 | 14,93 | 14,92* | 14,81* |
+
+\* luckorna (158 s) räknade som sträcka mellan fixar.
+
+Samma ordning på alla tre; 2–3 % mellan ytterligheterna; bara ∫Doppler
+träffar bilens intervall. Doppler-farten mäts på satellitsignalens
+frekvensskift och påverkas inte av positionsbrus — det är därför
+positionssumman blåses upp vid låg fart (synteset: 1,4–1,8× vid 3 kn,
+∫Doppler 1,00×). `trips.distance` sparas nu som `tripDistanceNM`
+(`src/lib/gps.ts`): ∫Doppler över par ≤ 10 s, annars sträcka mellan råa
+fixar. Turer sparade före 11/9 räknas inte om. `gps_quality` bär alla tre
+(`distanceSmoothedNM`, `distanceRawNM`, `distanceIntegratedNM`) så att
+jämförelsen kan göras igen på varje ny tur. Fixturer för alla tre turer
+ligger i `src/lib/__fixtures__/`; `tripDistance.test.ts` låser
+2,30 ≤ ∫Doppler ≤ 2,39 på 2,7 mi-turen.

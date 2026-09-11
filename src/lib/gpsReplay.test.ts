@@ -110,17 +110,21 @@ describe('replayTrack — samma kedja som /spara, körd i efterhand', () => {
   // summa av utjämnade positioner blåses upp vid låg fart — bruset per
   // sekund är större än förflyttningen. Riktigt GPS-brus är korrelerat
   // (mindre hopp än vitt brus), så verkliga tal är lägre — fälttestet
-  // avgör. Testet LÅSER dagens beteende så att en fix syns som en ändring
-  // här, inte bara i ett fälttest. Kandidat: integrera filterfarten över
-  // tid i stället för att summera positioner.
-  it('KÄND SVAGHET: brus ±5 m vid 3 kn — filterfarten stämmer, distansen blåses upp', () => {
+  // avgör. 2026-09-11: fälttestet avgjorde — ∫Doppler-fart träffade bilens
+  // trippmätare (2,341 mot 2,30–2,39 NM) där positionssumman låg 3 % över.
+  // trips.distance är nu tripDistanceNM; testet nedan låser den fixen.
+  it('brus ±5 m vid 3 kn — FIXAT 2026-09-11: ∫Doppler ger rätt distans, positionssumman blåses upp 1,4–1,8×', () => {
     const res = replayTrack(fixes(300, 3, 5))
     const trueNM = 299 * 3 * 0.514444 / 1852
     const tail = res.points.slice(-100)
     const mean = tail.reduce((s, p) => s + p.speedKnots, 0) / tail.length
     expect(Math.abs(mean - 3)).toBeLessThan(0.5)
-    expect(res.distanceNM / trueNM).toBeGreaterThan(1.4)
-    expect(res.distanceNM / trueNM).toBeLessThan(1.8)
+    // Det som sparas nu: ∫Doppler-fart — bruset adderar ingen sträcka
+    expect(res.distanceNM / trueNM).toBeGreaterThan(0.98)
+    expect(res.distanceNM / trueNM).toBeLessThan(1.02)
+    // Den gamla svagheten finns kvar i kvalitetssiffrorna, som jämförelse
+    expect(res.quality.distanceSmoothedNM / trueNM).toBeGreaterThan(1.4)
+    expect(res.quality.distanceSmoothedNM / trueNM).toBeLessThan(1.8)
     expect(res.quality.distanceRawNM! / trueNM).toBeGreaterThan(3)
   })
 

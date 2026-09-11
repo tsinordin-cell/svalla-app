@@ -19,13 +19,17 @@ describe('GpsPipeline — Toms fälttest 2026-09-10 som facit', () => {
     expect((fixture.at(-1)!.ts - fixture[0]!.ts) / 1000).toBeCloseTo(1054.1, 0)
   })
 
-  it('uppspelning ger exakt det som sparades: 15,03 NM, 49,1 kn snitt; topp 75,6 (10 s) där 76,7 var en ensam punkt', () => {
+  it('uppspelning ger exakt det som sparades: 15,03 NM längs spåret (nu 14,81 som ∫Doppler), 49,1 kn snitt; topp 75,6 (10 s) där 76,7 var en ensam punkt', () => {
     const res = replayTrack(fixture)
     expect(res.points.length).toBe(883)
     expect(res.rejectedAccuracy).toBe(0)
     expect(res.rejectedAnomaly).toBe(4)
     expect(res.kalmanResets).toBe(1)
-    expect(res.distanceNM).toBeCloseTo(15.03, 2)
+    // Sedan 2026-09-11 är distansen ∫Doppler-fart (tripDistanceNM); det som
+    // sparades 10/9 var summan av utjämnade positioner = distanceSmoothedNM.
+    expect(res.distanceNM).toBeCloseTo(14.81, 1)
+    expect(res.quality.distanceSmoothedNM).toBeCloseTo(15.03, 2)
+    expect(res.quality.distanceIntegratedNM).toBeCloseTo(14.81, 1)
     expect(res.avgSpeedKn).toBeCloseTo(49.1, 1)
     expect(res.maxSpeedKn).toBe(75.6)
     expect(res.quality.maxSpeed1pKn).toBe(76.7)
