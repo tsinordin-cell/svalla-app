@@ -89,10 +89,46 @@ export function tripDistanceNM(points: GpsPoint[], gapS = DISTANCE_GAP_S): numbe
  return d
 }
 
-// Average speed from points
+/** Fart under så här (kn) räknas som stilla — samma gräns i rörelsetid och snittfart. */
+export const MOVING_THRESHOLD_KNOTS = 0.5
+/** Par längre isär än så här (s) är en lucka; räknas som rörelse bara om man faktiskt flyttat sig. */
+export const MOVING_GAP_S = 60
+
+/**
+ * Rörelsetid i sekunder — den tid farten var över MOVING_THRESHOLD_KNOTS.
+ * En lucka (> gapS utan fixar) räknas som rörelse om sträckan mellan fixarna
+ * ger en fart över tröskeln (t.ex. 158 s i bakgrunden i 63 kn på 10/9-turen),
+ * annars som stilla. Det gör rörelsetid och tripDistanceNM konsekventa:
+ * sträcka som räknas har alltid tid som räknas.
+ */
+export function movingSeconds(points: GpsPoint[], thresholdKn = MOVING_THRESHOLD_KNOTS, gapS = MOVING_GAP_S): number {
+ let s = 0
+ for (let i = 1; i < points.length; i++) {
+ const a = points[i - 1]!, b = points[i]!
+ const dt = (Date.parse(b.recordedAt) - Date.parse(a.recordedAt)) / 1000
+ if (dt <= 0) continue
+ if (dt > gapS) {
+ const d = distanceNM(a.rawLat ?? a.lat, a.rawLng ?? a.lng, b.rawLat ?? b.lat, b.rawLng ?? b.lng)
+ if (d / (dt / 3600) > thresholdKn) s += dt
+ continue
+ }
+ if (b.speedKnots > thresholdKn) s += dt
+ }
+ return Math.round(s)
+}
+
+/**
+ * Snittfart = distans / rörelsetid (beslut 2026-09-11) — det Strava och
+ * Garmin visar, och samma tal som delsträckorna ger. Före: medel av
+ * punktfarter över 0,3 kn, vilket gav 30,3 kn där distans/tid gav 29,5 på
+ * samma tur; två definitioner på samma sida. Reserv utan tidsstämplar
+ * (rörelsetid 0): medel av punktfarter, som förr.
+ */
 export function avgSpeedKnots(points: GpsPoint[]): number {
  if (points.length === 0) return 0
- const moving = points.filter(p => p.speedKnots > 0.3)
+ const secs = movingSeconds(points)
+ if (secs > 0) return tripDistanceNM(points) / (secs / 3600)
+ const moving = points.filter(p => p.speedKnots > MOVING_THRESHOLD_KNOTS)
  if (moving.length === 0) return 0
  return moving.reduce((a, p) => a + p.speedKnots, 0) / moving.length
 }

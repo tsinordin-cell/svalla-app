@@ -103,16 +103,8 @@ export function speedSeries(points: GpsPoint[], bucketS = 5, gapS = 60): (SpeedS
   return out
 }
 
-/** Sekunder där farten är över `thresholdKn` — "rörelsetid" som Strava visar. */
-export function movingSeconds(points: GpsPoint[], thresholdKn = 0.5, gapS = 60): number {
-  let s = 0
-  for (let i = 1; i < points.length; i++) {
-    const dt = (Date.parse(points[i]!.recordedAt) - Date.parse(points[i - 1]!.recordedAt)) / 1000
-    if (dt <= 0 || dt > gapS) continue
-    if (points[i]!.speedKnots > thresholdKn) s += dt
-  }
-  return Math.round(s)
-}
+/** Rörelsetid bor i gps.ts sedan 2026-09-11 (delas med snittfarten). */
+export { movingSeconds } from './gps'
 
 function round1(n: number) { return Math.round(n * 10) / 10 }
 function round2(n: number) { return Math.round(n * 100) / 100 }

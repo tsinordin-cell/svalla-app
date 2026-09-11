@@ -89,10 +89,9 @@ describe('Toms biltest som facit', () => {
     expect(s.filter(x => x === null).length).toBe(1)
     expect(s.at(-1)!.t).toBe(1050)
   })
-  it('rörelsetid ≈ 15 min (turen sparades som 15 min)', () => {
-    const m = movingSeconds(points)
-    expect(m).toBeGreaterThan(14 * 60)
-    expect(m).toBeLessThan(16 * 60)
+  it('rörelsetid = hela spannet 1 054 s — bilen rullade även under 158 s-luckan (5 km i 63 kn)', () => {
+    // "15 min" som sparades 10/9 var tick-räknaren som stannat i bakgrunden, inte rörelsetiden.
+    expect(movingSeconds(points)).toBe(1054)
   })
 })
 
