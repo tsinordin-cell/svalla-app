@@ -88,3 +88,55 @@ export async function insertGpsRows(
   const second = await insert(withoutRawColumns(rows))
   return { error: second.error, rawDropped: true }
 }
+
+// ── Läsning: ALLA punkter för en tur ──────────────────────────────────────────
+//
+// Fynd 2026-09-11 (Toms 12 NM-tur, 1 081 punkter): PostgREST svarar med högst
+// 1 000 rader per fråga, tyst. Varje läsning av gps_points utan sidindelning
+// (tursidan, GPX, uppspelning, kraschåterställning) stympade alltså turer
+// längre än ~17 minuter vid 1 Hz — utan fel. En fyratimmarssegling är
+// 14 400 rader. Därför EN läsfunktion som hämtar sida för sida.
+
+export const GPS_PAGE_SIZE = 1000
+/** Hård gräns: 100 000 rader ≈ 28 timmar vid 1 Hz. Längre än så är ett fel, inte en tur. */
+export const GPS_MAX_ROWS = 100_000
+
+/** Det lilla av Supabase-klienten som behövs — så funktionen går att testa utan nätverk. */
+export type GpsPointsQuery = {
+  from(table: 'gps_points'): {
+    select(columns: string): {
+      eq(col: 'trip_id', v: string): {
+        order(col: 'recorded_at', o: { ascending: boolean }): {
+          order(col: 'id', o: { ascending: boolean }): {
+            range(from: number, to: number): PromiseLike<{ data: unknown[] | null; error: { message: string } | null }>
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Hämtar alla gps_points för en tur, i tidsordning (id som tiebreak så att
+ * två punkter med samma recorded_at inte kan hamna på två sidor i fel ordning).
+ * Kastar vid databasfel. Stannar vid GPS_MAX_ROWS.
+ */
+export async function fetchAllGpsPoints<Row>(
+  // `object`, inte GpsPointsQuery: Supabase typade klienter ger "Type
+  // instantiation is excessively deep" vid strukturell jämförelse. Castas här.
+  supabaseClient: object, tripId: string, columns: string, pageSize = GPS_PAGE_SIZE,
+): Promise<Row[]> {
+  const client = supabaseClient as GpsPointsQuery
+  const out: Row[] = []
+  for (let from = 0; from < GPS_MAX_ROWS; from += pageSize) {
+    const { data, error } = await client
+      .from('gps_points').select(columns).eq('trip_id', tripId)
+      .order('recorded_at', { ascending: true }).order('id', { ascending: true })
+      .range(from, from + pageSize - 1)
+    if (error) throw new Error(error.message)
+    const rows = (data ?? []) as Row[]
+    out.push(...rows)
+    if (rows.length < pageSize) break
+  }
+  return out
+}

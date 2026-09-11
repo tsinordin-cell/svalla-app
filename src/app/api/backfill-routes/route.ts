@@ -17,6 +17,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { buildRoutePoints }          from '@/lib/routeSmooth'
 import { checkRateLimit }            from '@/lib/rateLimit'
+import { fetchAllGpsPoints } from '@/lib/gpsRows'
 
 const PAGE = 50 // process N trips per call
 
@@ -51,13 +52,10 @@ export async function POST(req: NextRequest) {
 
   for (const trip of trips) {
     // 2. Fetch GPS points for this trip
-    const { data: pts, error: ptsErr } = await supabase
-      .from('gps_points')
-      .select('latitude, longitude, recorded_at')
-      .eq('trip_id', trip.id)
-      .order('recorded_at', { ascending: true })
-
-    if (ptsErr) { errors.push(`${trip.id}: ${ptsErr.message}`); continue }
+    let pts: { latitude: number; longitude: number; recorded_at: string }[]
+    try {
+      pts = await fetchAllGpsPoints<{ latitude: number; longitude: number; recorded_at: string }>(supabase, trip.id, 'latitude, longitude, recorded_at')   // sidindelat (1 000-taket)
+    } catch (e) { errors.push(`${trip.id}: ${e instanceof Error ? e.message : String(e)}`); continue }
     if (!pts || pts.length < 2) { skipped++; continue }
 
     // 3. Map to { lat, lng, recordedAt } shape expected by buildRoutePoints

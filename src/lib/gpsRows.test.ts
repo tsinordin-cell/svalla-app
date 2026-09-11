@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { toGpsRow, withoutRawColumns, isMissingRawColumnError, insertGpsRows, type GpsRow } from './gpsRows'
+import { toGpsRow, withoutRawColumns, isMissingRawColumnError, insertGpsRows, fetchAllGpsPoints, type GpsRow } from './gpsRows'
 import type { GpsPoint } from './gps'
 
 const pt: GpsPoint = {
@@ -80,5 +80,44 @@ describe('insertGpsRows — turen får aldrig gå förlorad för att migrationen
     const res = await insertGpsRows(insert, rows)
     expect(res).toEqual({ error: rls, rawDropped: false })
     expect(insert).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('fetchAllGpsPoints — sidindelning förbi PostgREST-taket på 1 000', () => {
+  function fakeClient(total: number, pageSize: number, failAt?: number) {
+    const calls: [number, number][] = []
+    const client = { from: () => ({ select: () => ({ eq: () => ({ order: () => ({ order: () => ({
+      range: async (from: number, to: number) => {
+        calls.push([from, to])
+        if (failAt != null && from >= failAt) return { data: null, error: { message: 'boom' } }
+        const rows = []
+        for (let i = from; i <= Math.min(to, total - 1); i++) rows.push({ i })
+        return { data: rows, error: null }
+      },
+    }) }) }) }) }) }
+    return { client, calls, pageSize }
+  }
+  it('1 081 rader hämtas i två sidor (det som stympades på tur 828d8cbc)', async () => {
+    const { client, calls } = fakeClient(1081, 1000)
+    const rows = await fetchAllGpsPoints(client, 't', '*', 1000)
+    expect(rows.length).toBe(1081)
+    expect(calls).toEqual([[0, 999], [1000, 1999]])
+  })
+  it('exakt en full sida ger en extra tom fråga och stannar', async () => {
+    const { client, calls } = fakeClient(1000, 1000)
+    expect((await fetchAllGpsPoints(client, 't', '*', 1000)).length).toBe(1000)
+    expect(calls.length).toBe(2)
+  })
+  it('14 400 rader (fyra timmar vid 1 Hz) hämtas komplett', async () => {
+    const { client } = fakeClient(14_400, 1000)
+    expect((await fetchAllGpsPoints(client, 't', '*', 1000)).length).toBe(14_400)
+  })
+  it('tom tur ger tom lista', async () => {
+    const { client } = fakeClient(0, 1000)
+    expect(await fetchAllGpsPoints(client, 't', '*', 1000)).toEqual([])
+  })
+  it('databasfel kastas — inte en tyst stympad lista', async () => {
+    const { client } = fakeClient(5000, 1000, 2000)
+    await expect(fetchAllGpsPoints(client, 't', '*', 1000)).rejects.toThrow('boom')
   })
 })
