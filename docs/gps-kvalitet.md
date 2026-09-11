@@ -134,14 +134,28 @@ ligger i `src/lib/__fixtures__/` (rådata ur gps_points, kan spelas upp
 igen med `replayTrack`); `tripDistance.test.ts` låser
 2,30 ≤ ∫Doppler ≤ 2,39 på 2,7 mi-turen och de tre värdena på 20,5 mi-turen.
 
-Sett i samma fixtur (06c13078), inte åtgärdat än: den filtrerade farten
-släpar vid stopp. Vid inbromsningen 1 177–1 182 s går enhetens Doppler
-18,8 → 0 kn på 5 s; den visade farten ligger kvar på 15,6 kn när Doppler
-redan är 0, når under 1 kn först 5 s senare och stiger sedan till 1,5 kn
-i 4 s medan bilen står stilla. Vid slutstoppet planar den ut på 0,19 kn i
-stället för 0. Doppler säger 0 hela tiden. Det är Kalmanfiltrets
-hastighetstillstånd (konstant fart-modell) som ger eftersläpningen —
-nästa steg i GPS-listan ("fart vid stillastående").
+## Fart = enhetens Doppler (beslut 2026-09-11)
+
+Sett i fixturen 06c13078: den filtrerade farten släpade vid stopp. Vid
+inbromsningen 1 177–1 182 s går enhetens Doppler 18,8 → 0 kn på 5 s; den
+visade farten låg kvar på 15,6 kn när Doppler redan var 0, kom under 1 kn
+först 5 s senare och steg sedan till 1,5 kn i 4 s medan bilen stod stilla.
+Vid slutstoppet planade den ut på 0,19 kn i stället för 0.
+
+Mätt på alla fyra bilturer (RMS mellan filterfart och Doppler vid olika
+tidsförskjutning): filtrets fart släpar 4–5 s efter Doppler; utan
+förskjutning skiljer de 4–7 kn RMS. Under sekunder då Doppler sa 0 visade
+filtret > 0,5 kn i 24 av 47 (06c13078) och 16 av 29 (828d8cbc). Toppfart
+(bästa 10 s) skiljer < 1 kn mellan metoderna på alla fyra turer.
+
+Sedan 11/9 är `speedKnots` enhetens Doppler-fart så snart den visat sig
+leva (> 1 kn någon gång under passet, `DOPPLER_TRUST_KN`); tills dess, och
+för telefoner som rapporterar null eller alltid 0, används filtrets fart
+som förut. Medianen av tre (cleanGpsSpeed) ligger kvar och ger högst 1 s
+släp. Kalmanfiltret utjämnar fortfarande positionerna. Turer sparade före
+11/9 räknas inte om. Låst i `gpsPipeline.test.ts`: 0 kn under hela
+stoppet 1 183–1 202 s, 0 vid slutet, toppfart 82,5 → 83,1 på 06c13078 och
+75,6 → 75,8 på 15b47ab2.
 
 ## 1 000-radersgränsen (fynd 2026-09-11)
 
