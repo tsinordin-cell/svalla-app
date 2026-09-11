@@ -95,6 +95,19 @@ describe('Toms biltest som facit', () => {
   })
 })
 
+describe('20,5 mi-turen (1 305 fixar) — det som verifierades i produktion 11/9', () => {
+  const points = replayTrack(parseFixture(readFileSync(__dirname + '/__fixtures__/trip-06c13078.txt', 'utf8'), Date.parse('2026-09-11T14:58:19.643Z'))).points
+  it('18 delsträckor vars tid summerar till hela spannet — inte 1 000 punkter avhuggna', () => {
+    const s = computeSplits(points)
+    expect(s.length).toBe(18)
+    expect(s.reduce((a, x) => a + x.seconds, 0)).toBe(1314)
+    expect(s.at(-1)!.endOffsetS).toBe(1315)
+  })
+  it('rörelsetid 1 282 s av 1 315: stilla ~12 s vid start, ~20 s mitt i, ~5 s på slutet', () => {
+    expect(movingSeconds(points)).toBe(1282)
+  })
+})
+
 describe('resolveDurationSeconds', () => {
   const s = '2026-09-10T19:07:20.000Z'
   it('duration_seconds vinner', () => {
