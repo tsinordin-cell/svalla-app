@@ -17,7 +17,7 @@ import {
 import { GpsPipeline } from '@/lib/gpsPipeline'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
 import { startTracking } from '@/lib/tracker'
-import { toGpsRow, insertGpsRows } from '@/lib/gpsRows'
+import { toGpsRow, insertGpsRows, fetchAllGpsPoints } from '@/lib/gpsRows'
 import { computeGpsQuality, topSpeedKnots } from '@/lib/gpsQuality'
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
 import { detectVisitedIslands } from '@/lib/islandCoords'
@@ -30,7 +30,7 @@ import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
-import { recoveryExtraSeconds, mergeRecoveredPoints, mergeRecoveredStops } from '@/lib/tracking'
+import { recoveryExtraSeconds, mergeRecoveredPoints, mergeRecoveredStops, type ServerGpsRow } from '@/lib/tracking'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -552,14 +552,15 @@ export default function SparaPage() {
       const pending = await getPendingPoints()
       let restored: GpsPoint[] = pending.map(p => p.point)
       if (snap.tripId) {
-        const { data: serverPts } = await supabase
-          .from('gps_points')
-          .select('latitude,longitude,speed_knots,heading,accuracy,recorded_at')
-          .eq('trip_id', snap.tripId)
-          .order('recorded_at', { ascending: true })
+        // Sidindelat: PostgREST ger max 1 000 rader — utan det återställdes
+        // bara de första 17 minuterna av en lång tur, och distansen vid Spara
+        // räknades på det stympade spåret (fynd 2026-09-11).
+        const serverPts = await fetchAllGpsPoints<ServerGpsRow>(
+          supabase, snap.tripId, 'latitude,longitude,speed_knots,heading,accuracy,recorded_at',
+        ).catch((): ServerGpsRow[] => [])
         // Ihopslagningen bor i mergeRecoveredPoints (@/lib/tracking):
         // dedupe på recordedAt (bufferten vinner), sorterad på tid, testad.
-        restored = mergeRecoveredPoints(restored, serverPts ?? [])
+        restored = mergeRecoveredPoints(restored, serverPts)
       }
       if (restored.length > 0) {
         setPoints(restored)
