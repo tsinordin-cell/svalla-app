@@ -8,7 +8,7 @@ import { buildRoutePoints } from '@/lib/routeSmooth'
 import { deriveUsername } from '@/lib/username'
 import {
   type GpsPoint, type StopEvent,
-  msToKnots, totalDistanceNM, avgSpeedKnots,
+  msToKnots, tripDistanceNM, avgSpeedKnots,
   detectStops, formatDuration, reverseGeocode,
   type MovementState, computeMovementState,
   calculateBearing, bearingLabel,
@@ -664,7 +664,7 @@ export default function SparaPage() {
     setAiVariants([])
     analytics.aiAnalysisRequested({ source: 'spara' })
     try {
-      const dist   = totalDistanceNM(points)
+      const dist   = tripDistanceNM(points)
       const avgSpd = avgSpeedKnots(points)
       const maxSpd = topSpeedKnots(points)
       const res = await fetch('/api/trip-summary', {
@@ -711,7 +711,7 @@ export default function SparaPage() {
       email: user.email ?? '',
     }, { onConflict: 'id', ignoreDuplicates: true })
 
-    const dist    = totalDistanceNM(points)
+    const dist    = tripDistanceNM(points)
     // Nollställ hastigheterna om rutten saknar mätbar förflyttning —
     // GPS Doppler kan rapportera hög hastighet utan att koordinaterna ändras (brus).
     let avgSpd  = dist >= 0.01 ? avgSpeedKnots(points) : 0
@@ -997,7 +997,7 @@ export default function SparaPage() {
     }
   }
 
-  const dist   = totalDistanceNM(points)
+  const dist   = tripDistanceNM(points)
   const avgSpd = avgSpeedKnots(points)
   const maxSpd = topSpeedKnots(points)
 
