@@ -103,8 +103,10 @@ describe('20,5 mi-turen (1 305 fixar) — det som verifierades i produktion 11/9
     expect(s.reduce((a, x) => a + x.seconds, 0)).toBe(1314)
     expect(s.at(-1)!.endOffsetS).toBe(1315)
   })
-  it('rörelsetid 1 282 s av 1 315: stilla ~12 s vid start, ~20 s mitt i, ~5 s på slutet', () => {
-    expect(movingSeconds(points)).toBe(1282)
+  it('rörelsetid 1 260 s av 1 315: stilla 12 s vid start, 21 s mitt i, ~20 s vid slutet', () => {
+    // Med filterfart (före 11/9) blev det 1 282 — filtret visade > 0,5 kn under
+    // 24 av de 47 sekunder då Doppler sa 0 (spökfart vid stopp).
+    expect(movingSeconds(points)).toBe(1260)
   })
 })
 

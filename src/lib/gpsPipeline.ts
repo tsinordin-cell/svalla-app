@@ -9,9 +9,20 @@
 //   1. accuracy > maxAccuracyM         → kastas (rejectedAccuracy)
 //   2. shouldRejectAsAnomaly rå→rå, tak SPEED_CEILING_KNOTS, återförankring
 //      efter ANOMALY_REANCHOR_AFTER avvisade i rad → kastas / omstart
-//   3. CvGpsKalmanFilter.update        → utjämnat läge + fart
-//   4. fart: ur filtret; första fixen efter (om)start: enhetens fart
+//   3. CvGpsKalmanFilter.update        → utjämnat läge (+ fart som reserv)
+//   4. fart: enhetens Doppler-fart så snart den visat sig leva (> 1 kn någon
+//      gång under passet); annars filtrets fart. Första fixen: enhetens fart.
 //   5. cleanGpsSpeed med RÅ farthistorik (två senaste)
+//
+// Varför Doppler (beslut 2026-09-11, mätt på fyra av Toms bilturer): filtrets
+// fart räknas ur positioner och släpar 4–5 s efter verkligheten (RMS mot
+// Doppler minimal vid 4–5 s förskjutning; 4–7 kn fel utan förskjutning). Vid
+// hårt stopp visade den 15,6 kn när Doppler redan var 0, och > 0,5 kn under
+// hälften av alla stillastående sekunder. Doppler mäts på satellitsignalens
+// frekvensskift, oberoende av positionsbrus, och är det varje plotter visar
+// som SOG. Toppfart (bästa 10 s) skiljer < 1 kn mellan metoderna.
+// Reserven finns för telefoner som inte rapporterar fart (null) eller alltid
+// rapporterar 0 — de får aldrig Doppler betrodd och kör som förut.
 //
 // Ren klass: inga klockor, ingen React, ingen Supabase. Tid kommer med
 // fixen (ts = telefonens tidsstämpel). Testad mot riktig data.
@@ -42,6 +53,9 @@ export type PipelineOptions = {
   kalman?: CvKalmanOptions
 }
 
+/** Doppler-farten betros för resten av passet när den en gång överstigit detta (kn). */
+export const DOPPLER_TRUST_KN = 1
+
 export type PipelineStats = {
   accepted: number
   rejectedAccuracy: number
@@ -59,6 +73,8 @@ export class GpsPipeline {
   private lastAcceptedTs: number | null = null
   private rawSpeedHist: number[] = []
   private streak = 0
+  /** Sant när enhetens Doppler-fart någon gång varit > DOPPLER_TRUST_KN. */
+  private dopplerTrusted = false
   private _stats: PipelineStats = { accepted: 0, rejectedAccuracy: 0, rejectedAnomaly: 0, kalmanResets: 0 }
 
   constructor(opts: PipelineOptions = {}) {
@@ -101,9 +117,11 @@ export class GpsPipeline {
     }
 
     const smoothed = this.kalman.update(f.lat, f.lng, f.accuracyM, f.ts)
+    const doppler = f.deviceSpeedKn != null && f.deviceSpeedKn >= 0 ? f.deviceSpeedKn : null
+    if (doppler != null && doppler > DOPPLER_TRUST_KN) this.dopplerTrusted = true
     let speedKn = 0
-    if (this.lastRaw) speedKn = msToKnots(smoothed.speedMs)
-    else if (f.deviceSpeedKn != null && f.deviceSpeedKn >= 0) speedKn = f.deviceSpeedKn
+    if (doppler != null && (this.dopplerTrusted || !this.lastRaw)) speedKn = doppler
+    else if (this.lastRaw) speedKn = msToKnots(smoothed.speedMs)
 
     this.lastRaw = { lat: f.lat, lng: f.lng, ts: f.ts }
     this.lastAcceptedTs = f.ts
