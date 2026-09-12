@@ -49,12 +49,13 @@ export async function GET(
 
   // Alla punkter, sidindelat. Före 2026-09-11: .limit(5000) OCH PostgREST-taket
   // 1 000 → exporten var stympad för allt över 17 minuter.
-  const gpsPts = await fetchAllGpsPoints<{ latitude: number; longitude: number; recorded_at: string | null }>(
-    supabase, id, 'latitude, longitude, recorded_at',
+  // Fart och kurs sedan 2026-09-11 som Garmin TrackPointExtension (se gpx.ts).
+  const gpsPts = await fetchAllGpsPoints<{ latitude: number; longitude: number; recorded_at: string | null; speed_knots: number | null; heading: number | null }>(
+    supabase, id, 'latitude, longitude, recorded_at, speed_knots, heading',
   ).catch(() => null)
 
   const rawPts = gpsPts && gpsPts.length > 0
-    ? gpsPts.map(p => ({ lat: p.latitude, lng: p.longitude, time: p.recorded_at ?? undefined }))
+    ? gpsPts.map(p => ({ lat: p.latitude, lng: p.longitude, time: p.recorded_at ?? undefined, speedKnots: p.speed_knots ?? undefined, heading: p.heading }))
     : routePts.map(p => ({ lat: p.lat, lng: p.lng }))
 
   const name = trip.location_name ?? trip.caption ?? `Tur ${id.slice(0, 8)}`
