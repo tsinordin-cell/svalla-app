@@ -3796,12 +3796,17 @@ export const ISLANDS: Island[] = [
   {
     slug: 'langviksskaret',
     name: 'Långviksskäret',
-    region: 'södra',
-    regionLabel: 'Södra skärgården',
+    // KÄLLA (2026-09-13): Länsstyrelsen Stockholm, lansstyrelsen.se/stockholm/besoksmal/naturreservat/langviksskar.html —
+    // Värmdö kommun, ytterskärgård, naturreservat sedan 1983, ca 300 öar, 3 897 ha varav 302 ha land; tre större öar
+    // med sammanhängande vegetation: Långviksskär, Söderö, Hummelskär. Sverigesnationalparker.se: "Ett mindre område på
+    // Långviksskär är kvar som naturreservat, omgivet av nationalparken" (Nämdöskärgården, 2025). Stod 'södra' med
+    // Landsort/Nåttarö som grannar — det är Nämdö/Bullerö-området, inte Landsortsområdet. Inte samma plats som Långskär.
+    region: 'mellersta',
+    regionLabel: 'Mellersta ytterskärgården',
     emoji: '🌅',
     tagline: 'Övernattningsö med solnedgångsvyer mot Östersjön',
     description: [
-      'Långviksskäret i södra skärgården är ett populärt övernattningsalternativ för seglare. Utsikten mot öppet hav och solnedgångarna är svåra att slå.',
+      'Långviksskäret i Nämdöskärgårdens yttre havsband är ett populärt övernattningsalternativ för seglare. Utsikten mot öppet hav och solnedgångarna är svåra att slå.',
       'Långviksskäret kombinerar naturvärdena på ett exponerat läge med möjligheter för enkel ankring. Badplatser och möjligheter för naturupplevelse erbjuds.',
       'Långviksskäret passar för erfarna seglare som letar efter dramatisk natur och spektakulära solnedgångar på väg söderut.'
     ],
@@ -3815,8 +3820,8 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Privat båt', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
     harbors: [{ name: 'Långviksskärets naturhamn', desc: 'Skyddad vik.' }],
     restaurants: [],
-    tips: ['Perfekt för midsommar-firande.'],
-    related: ['fjardlang', 'nattaro', 'landsort'],
+    tips: ['Naturreservat sedan 1983 — respektera föreskrifterna och fågelkolonierna.'],
+    related: ['bullero', 'namdo', 'langskar'],
     tags: ['solnedgång', 'segling', 'södra', 'naturhamn'],
     did_you_know: 'Stockholms södra ytterskärgård kännetecknas av små klippiga skär — många, som Långviksskäret, fungerar som naturhamnar för seglare och kajakpaddlare som söker en lugn övernattning utanför de större öarna.',
   },
@@ -3868,10 +3873,13 @@ export const ISLANDS: Island[] = [
     emoji: '🌅',
     tagline: 'Naturreservat med ett 50-tal öar i Bulleröskärgården',
     description: [
-      // OSÄKERT — ATT VERIFIERA: officiella källan (sverigesnationalparker.se) nämner "Långviksskärs naturreservat",
-      // inte "Långskärs". Kan vara samma plats eller två olika. Skyddsstatusen här är därför medvetet
-      // öppet formulerad tills den är bekräftad med Länsstyrelsen/nationalparken.
-      'Långskär omfattar ungefär femtio öar i Stockholms mellersta skärgård, i området kring Bullerö. Sedan 2025 ingår stora delar av den omgivande skärgården i Nämdöskärgårdens nationalpark — kontrollera vad som gäller för just Långskär innan besök.',
+      // KÄLLA (verifierat 2026-09-13): Länsstyrelsen Stockholm, lansstyrelsen.se/stockholm/besoksmal/naturreservat/langskar.html —
+      // "ett femtiotal öar", 854 ha varav 33 ha land, skyddat sedan 1967, Värmdö kommun, Bulleröskärgården,
+      // fågelskyddsområde med tillträdesförbud 1 mars–15 augusti. Långskär och Långviksskär är TVÅ OLIKA reservat:
+      // Länsstyrelsen har separata sidor (Långviksskär: 1983, ~300 öar, 3 897 ha). Naturvårdsverkets skötselplan
+      // (978-91-620-7202-5, s. 12) säger att Långviksskärs reservat kvarstår omgivet av nationalparken; om Långskärs
+      // reservat formellt uppgått i parken framgår inte av Länsstyrelsens sida — därför "kontrollera" nedan.
+      'Långskär är ett naturreservat sedan 1967 med ett femtiotal öar i Bulleröskärgården, Värmdö kommun — 854 hektar, varav bara 33 hektar land. Sedan 2025 omges området av Nämdöskärgårdens nationalpark; kontrollera aktuella föreskrifter innan besök.',
       'Området nås lättast med egen båt. Långskär finns bland de fiskehamnar/fiskeskär som omnämns i historiska källor från 1744. Klippig kust och stilla vatten i lä-läge präglar miljön.',
       'Långskär passar för seglare och naturvänner som söker ett ostört område utanför de stora destinationerna i Bullerö-arkipelagen.',
     ],
@@ -3884,7 +3892,8 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Egen båt', from: 'Stavsnäs / Möja', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
     harbors: [{ name: 'Långskärs naturhamn', desc: 'Skyddad ankringsplats i lä-läge.' }],
     restaurants: [],
-    tips: ['Naturreservat — respektera reservatsreglerna och fågelskyddstiden.', 'Ta med all proviant och färskvatten.'],
+    // KÄLLA: Länsstyrelsen (samma sida) — tillträdesförbud i utpekat fågelskyddsområde 1 mars–15 augusti
+    tips: ['Utpekat fågelskyddsområde får inte beträdas 1 mars–15 augusti — se Länsstyrelsens karta.', 'Ta med all proviant och färskvatten.'],
     related: ['bullero', 'norrpada', 'moja'],
     tags: ['naturreservat', 'bulleröskärgården', 'mellersta', 'segling'],
     did_you_know: 'Långskär var en av de fiskehamnar som omnämns i historiska källor från 1744 — ett vittnesbörd om skärgårdsfiskets långa tradition i området.',
