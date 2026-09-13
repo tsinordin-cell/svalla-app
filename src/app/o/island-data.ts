@@ -1532,20 +1532,6 @@ export const ISLANDS: Island[] = [
     ],
     restaurants: [
     ],
-    day_cost: {
-      budget_per_person: '300–600 kr',
-      includes: 'Bilfärja från Dalarö samt egen matsäck',
-      breakdown: [
-        // KÄLLA: uppskattning utifrån SL:s zonprissystem — kunde inte verifieras direkt (sl.se kräver JavaScript för prisuppslag och gick ej att hämta vid granskning).
-        { item: 'Pendeltåg + buss till Dalarö', price: 'ca 50 kr (uppskattning, kontrollera i SL-appen)' },
-        { item: 'Ornö Sjötrafik bilfärja t/r (passagerare)', price: '~120 kr' },
-        { item: 'Proviant medhavt', price: '50–100 kr' },
-      ],
-      tips: [
-        'Ornö Sjötrafik tar bil — kom med cykel och utforska öns vägar.',
-        'Kombinera Ornö med Utö (tar båt mellan öarna) för ett naturupplevelse-fokuserat veckoslut.',
-      ],
-    },
     tips: [
       'Vandringen i naturreservatet i öns centrala del är bättre än man förväntar sig.',
       'Ta med matkasse — utbudet av restauranger är begränsat.',
@@ -1633,22 +1619,6 @@ export const ISLANDS: Island[] = [
     ],
     restaurants: [
     ],
-    day_cost: {
-      budget_per_person: '400–750 kr',
-      includes: 'Buss + båt från Nynäshamn, lunch på Saltboden, ev. fyrtursguide',
-      breakdown: [
-        { item: 'SL-pendeltåg till Nynäshamn + buss 852', price: '~50–80 kr' },
-        { item: 'Skärgårdsbåt Ankarudden–Landsort t/r', price: '~160 kr' },
-        { item: 'Lunch Saltboden', price: '145–185 kr' },
-        { item: 'Kaffe + smörgås Hamncafé', price: '85–115 kr' },
-        { item: 'Guidad fyrturstur (om tillgänglig)', price: '0–100 kr' },
-      ],
-      tips: [
-        'Landsort är en av de dyrare dagstursöarna p.g.a. lång restid — planera en heldag.',
-        'Ta med matsäck som backup — servicen på ön har kort säsong.',
-        'Fågelstationen vid fyren går att besöka under sträcktider.',
-      ],
-    },
     tips: [
       'Kolla väderprognosen NOGGRANT — Landsort är exponerat för öppet hav.',
       'Fågelstationen vid fyren går att besöka under sträcktider (april–maj och aug–okt).',
@@ -1718,10 +1688,8 @@ export const ISLANDS: Island[] = [
       budget_per_person: '450–800 kr',
       includes: 'Bil/buss till Furusund, lunch + middag på Värdshuset, parkering',
       breakdown: [
-        { item: 'Bil från Stockholm (bensin/parkeringsbidrag)', price: '~150–200 kr' },
         { item: 'Lunch Furusund Värdshus', price: '175–290 kr' }, // KÄLLA: hotellfurusund.se, lunchmeny hösten 2026 (PDF): förrätt 175 kr, huvudrätt 225–290 kr
         { item: 'Middag Furusund Värdshus', price: '175–390 kr' }, // KÄLLA: hotellfurusund.se, kvällsmeny hösten 2026 (PDF): förrätt 175–195 kr, huvudrätt 225–390 kr
-        { item: 'Kaffe + dryck', price: '60–100 kr' },
       ],
       tips: [
         'Boka bord på Värdshuset i förväg — högsäsong är ofta fullbokat.',
@@ -2407,24 +2375,9 @@ export const ISLANDS: Island[] = [
       { name: 'Runmarö Hamn', desc: 'Bränsle, el och vatten. Populärt stopp på Stockholmsleden.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
     ],
     restaurants: [
-      { name: 'Runmarö Krog', type: 'Restaurang', desc: 'Öns krog med enkel skärgårdsmat.', price_example: 'Lunch 135–175 kr, kvällsmeny 185–255 kr', open_season: 'Juni–Augusti', open_hours: '12–21', book_required: false },
+      { name: 'Runmarö Krog', type: 'Restaurang', desc: 'Öns krog med enkel skärgårdsmat.', open_season: 'Juni–Augusti', open_hours: '12–21', book_required: false },
       { name: 'Runmarö Lanthandel', type: 'Handel', desc: 'Proviant och dagligvaror.', open_season: 'Juli–Mitten av Augusti', open_hours: '09–18' },
     ],
-    day_cost: {
-      budget_per_person: '350–650 kr',
-      includes: 'Båtbiljett t/r (240 kr), lunch på krogen, cykeltur och proviant',
-      breakdown: [
-        { item: 'Waxholmsbåt t/r från Stavsnäs', price: '240 kr' },
-        { item: 'Lunch Runmarö Krog', price: '135–175 kr' },
-        { item: 'Kaffe + bulle', price: '65–80 kr' },
-        { item: 'Proviant Lanthandeln', price: '50–100 kr' },
-      ],
-      tips: [
-        'Ta cykel med på båten och cykla till Tranströmer-platsen vid "Gatan".',
-        'Krogen och lanthandeln håller kort säsong — ring i förväg utanför juli.',
-        'Lugnare och billigare alternativ till Sandhamn för övernattning med direktbåt hem.',
-      ],
-    },
     tips: [
       'Runmarösund är en av mellersta skärgårdens finaste naturhamnar — anlöp tidigt.',
       'Runmarö är ett lugnare alternativ till Sandhamn för övernattning med direktbåt till stan nästa dag.',
