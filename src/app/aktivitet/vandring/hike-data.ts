@@ -369,7 +369,7 @@ export const HIKES: Hike[] = [
     tagline: '"Sillön" — välbevarat fiskebysamhälle med kustpromenad och frisk bohuslänsatmosfär.',
   },
   {
-    slug: 'mollösund',
+    slug: 'mollosund',
     name: 'Mollösund (Orust)',
     region: 'bohuslan',
     distanceKm: 3,
@@ -504,7 +504,7 @@ export const HIKES: Hike[] = [
     tagline: 'Bohusläns fiskehamn par excellence — rökeri, bystigmar och äkta skärgårdsatmosfär.',
   },
   {
-    slug: 'asperö',
+    slug: 'aspero',
     name: 'Asperö',
     region: 'goteborg-skargard',
     distanceKm: 2,
@@ -580,7 +580,7 @@ export const HIKES: Hike[] = [
     tagline: 'Skulpturpark möter kustled — Bohusläns konstiga och vackra kombination.',
   },
   {
-    slug: 'orust-mollösund-goteborg',
+    slug: 'orust-mollosund-goteborg',
     name: 'Orust / Mollösund',
     region: 'goteborg-skargard',
     distanceKm: 3,
@@ -2202,7 +2202,7 @@ export const HIKES: Hike[] = [
     tagline: 'Hallands bästa dynlandskap — sandstränder, tallskog och havsluft hela vägen.',
   },
   {
-    slug: 'tjolöholm',
+    slug: 'tjoloholm',
     name: 'Tjolöholm slottspark',
     region: 'halland',
     distanceKm: 4,
