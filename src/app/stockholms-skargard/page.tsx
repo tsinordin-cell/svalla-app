@@ -149,6 +149,7 @@ export default function StockholmsSkargardPage() {
  </>
  }
  itemsTitle="Populära destinationer i Stockholms skärgård"
+ // UPPMÄTT: precomputed-routes stromkajen_to_sandhamn 58,9 km = 31,8 NM, validated (2026-09-13)
  itemsDescription="Sex klassiska öar — från Fjäderholmarna 25 minuter från Slussen till Sandhamn 31 sjömil ut i ytterskärgården."
  items={ITEMS}
  deeperContent={
