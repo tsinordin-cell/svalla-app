@@ -213,6 +213,21 @@ const nextConfig: NextConfig = {
       // Kontaktuppgifterna ligger under /om. Sidfoten länkade till /kontakt
       // på varje sida i sajten och gav 404 för riktiga besökare.
       { source: '/kontakt', destination: '/om#kontakt', permanent: true },
+      // "Kom igång gratis →" på 25 sidor (hyra-bat, segelkurs, teambuilding,
+      // guider) pekade på /registrera som aldrig funnits (länkkontroll 3/9).
+      // 301 här täcker de 7 filerna med länken, inbound och index.
+      { source: '/registrera', destination: '/kom-igang', permanent: true },
+      // Vandringsleder med ö i slugen gav 404 på Vercel edge (samma orsak som
+      // nybörjare-redirectsen ovan). Slugsen är ASCII-tvättade sedan 2026-09-13.
+      { source: '/aktivitet/vandring/moll%C3%B6sund', destination: '/aktivitet/vandring/mollosund', permanent: true },
+      { source: '/aktivitet/vandring/mollösund', destination: '/aktivitet/vandring/mollosund', permanent: true },
+      { source: '/aktivitet/vandring/asper%C3%B6', destination: '/aktivitet/vandring/aspero', permanent: true },
+      { source: '/aktivitet/vandring/asperö', destination: '/aktivitet/vandring/aspero', permanent: true },
+      { source: '/aktivitet/vandring/orust-moll%C3%B6sund-goteborg', destination: '/aktivitet/vandring/orust-mollosund-goteborg', permanent: true },
+      { source: '/aktivitet/vandring/orust-mollösund-goteborg', destination: '/aktivitet/vandring/orust-mollosund-goteborg', permanent: true },
+      { source: '/aktivitet/vandring/tjol%C3%B6holm', destination: '/aktivitet/vandring/tjoloholm', permanent: true },
+      { source: '/aktivitet/vandring/tjolöholm', destination: '/aktivitet/vandring/tjoloholm', permanent: true },
+      { source: '/aktivitet/vandring/hano-blekinge', destination: '/aktivitet/vandring/hano', permanent: true },
 
       // Cookie-bannern och /kom-igang länkade till /integritet. Sidan heter
       // /integritetspolicy — dvs en 404 mitt i samtyckesflödet.
