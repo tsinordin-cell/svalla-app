@@ -19,47 +19,50 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://svalla.se/populara-turer' },
 }
 
+// Länkarna pekar på målöns sida (/o/<slug>), samma mönster som /dagsturer.
+// Före 2026-09-13 pekade de på /tur/<slug> som aldrig funnits (10 × 404,
+// länkkontroll 3/9).
 const ITEMS: LandingItem[] = [
   {
     icon: '',
     title: 'Dagstur: Vaxholm–Grinda',
     description: 'Lunch på Grinda Wärdshus, bad och åter samma dag. Klassisk förstatur för nya seglare.',
-    href: '/tur/vaxholm-grinda',
+    href: '/o/grinda',
     meta: '6–8 timmar',
   },
   {
-    icon: '🌇',
+    icon: '',
     title: 'Helgtur: Stockholm–Sandhamn',
     description: 'Två dagar, en övernattning, full skärgårdsupplevelse. Perfekt för lördag-söndag.',
-    href: '/tur/stockholm-sandhamn',
+    href: '/o/sandhamn',
     meta: '2 dagar',
   },
   {
-    icon: '🧭',
+    icon: '',
     title: 'Mellanskärgården-rundan',
     description: 'Finnhamn, Möja, Svartsö — 3–4 dagar genom mellanskärgårdens vackraste vatten.',
-    href: '/tur/mellanskargarden',
+    href: '/o/finnhamn',
     meta: '3–4 dagar',
   },
   {
     icon: '',
     title: 'Ytterskärgården (vindröst)',
     description: 'Huvudskär, Sandhamn, Rödlöga — kräver erfarenhet, ger evighetsminnen.',
-    href: '/tur/ytterskargarden',
+    href: '/o/huvudskar',
     meta: '5–7 dagar',
   },
   {
     icon: '',
     title: 'Kajaktur: Möja runt',
     description: 'En dag i kajak runt Möja med bryggstopp för fika och bad. Paddelbart året runt.',
-    href: '/tur/moja-kajak',
+    href: '/o/moja',
     meta: '1 dag',
   },
   {
     icon: '',
     title: 'Dalarö–Utö–Dalarö',
     description: 'Snabb motorbåtstur söderöver — lunch på Utö, hem innan solnedgång.',
-    href: '/tur/dalaro-uto',
+    href: '/o/uto',
     meta: '5–7 timmar',
   },
 ]
@@ -69,8 +72,8 @@ export default function PopularaTurerPage() {
     <CategoryLanding
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Populära turer"
-      title="Kurerade rutter att kopiera"
-      tagline="Dagsturer, helgturer och fleradagsrutter — testade av Svalla-användare, med tider, stopp och praktisk info."
+      title="Kurerade rutter"
+      tagline="Dagsturer, helgturer och fleradagsrutter i Stockholms skärgård — varje tur leder till målöns sida med hamnar, restauranger och praktisk info."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <circle cx="12" cy="12" r="10" />
