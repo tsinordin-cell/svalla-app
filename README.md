@@ -57,6 +57,7 @@ This project uses Supabase CLI for managing database migrations.
 ### CI/CD
 
 - `.github/workflows/db-lint.yml` är **avstängd** (Actions → DB Lint → Disabled, 2026-09-11). Den fungerade aldrig: `supabase db lint --project-id` finns inte i CLI:t, och alla 7 körningar var röda. Migrationer appliceras via Supabase MCP och verifieras i `information_schema` (se docs/gps-kvalitet.md för exempel). Filen kan raderas när någon med rättigheter vill.
+- `.github/workflows/weekly-digest 2.yml` (Weekly Digest Push) är **avstängd** (Actions → Weekly Digest Push → Disable workflow, 2026-09-13, Toms beslut). Den fungerade aldrig: alla 19 måndagskörningar sedan maj fick 401 från `/api/push/weekly-digest` — GitHub-secreten `CRON_SECRET` matchar inte Vercels. Tre push-prenumeranter fanns; ingen hade någonsin fått utskicket. Slås på igen först när secreten stämmer (sätts i respektive UI, aldrig i chatt eller commit) och innehållet är granskat.
 
 ### Migration Files
 
