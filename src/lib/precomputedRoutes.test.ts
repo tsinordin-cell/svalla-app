@@ -39,6 +39,7 @@ describe('precomputed-routes', () => {
     expect(by['stromkajen_to_ingaro']!.distanceKm).toBeLessThan(33)       // var 72,1
     expect(by['stromkajen_to_uto']!.distanceKm).toBeLessThan(70)          // var 101,0
     expect(by['stromkajen_to_nynashamn']!.distanceKm).toBeLessThan(85)    // var 116,8
+    expect(by['stromkajen_to_gustavsberg']!.distanceKm).toBeLessThan(25)  // var 87,1 → 56,5 → 22,6 (Farstaviken öppnad)
     // Öppet vatten, orörda — sidorna citerar dem som källa (KÄLLA-kommentarer).
     expect(by['stromkajen_to_vaxholm']!.distanceKm).toBe(20.3)
     expect(by['stromkajen_to_sandhamn']!.distanceKm).toBe(58.9)
@@ -46,19 +47,16 @@ describe('precomputed-routes', () => {
   })
 
   it('kända omvägar > 2,5× fågelvägen — listan ska bara krympa', () => {
-    // Gustavsberg: planner-punkten 59.3144,18.3985 ligger på land och
-    // snappar till vatten öster om orten, eftersom Farstavikens mynning
-    // (59.3229–59.3240, 18.3563–18.3581, fem celler ≈ 125 m) är stängd i
-    // rastret. Öppnas den (farbara-passager.json, kräver bekräftelse av
-    // någon som känner vattnen) försvinner alla åtta.
+    // 2026-09-13 kväll: Farstavikens inlopp öppnat (farbara-passager.json, Tom),
+    // Gustavsberg snappar nu till gästhamnen. Strömkajen–Gustavsberg 56,5 → 22,6.
+    // Kvar: Gustavsberg–Grinda 39 km mot 14 fågelvägen — rutten går ut via
+    // Baggensfjärden och Skurusundet. Om det finns en kortare väg österut
+    // (Kolström/Torsbyfjärden) är den inte undersökt; ingen passage får läggas
+    // till utan att någon som känner vattnen bekräftat den.
     const kvar = ROUTES
       .filter(r => gcKm(r.from, r.to) > 0.5 && r.distanceKm / gcKm(r.from, r.to) > 2.5)
       .map(r => r.id)
       .sort()
-    expect(kvar).toEqual([
-      'grinda_to_gustavsberg', 'gustavsberg_to_grinda',
-      'gustavsberg_to_nacka-strand', 'gustavsberg_to_stromkajen', 'gustavsberg_to_vaxholm',
-      'nacka-strand_to_gustavsberg', 'stromkajen_to_gustavsberg', 'vaxholm_to_gustavsberg',
-    ])
+    expect(kvar).toEqual(['grinda_to_gustavsberg', 'gustavsberg_to_grinda'])
   })
 })
