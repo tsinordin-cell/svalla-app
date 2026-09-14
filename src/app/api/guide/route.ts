@@ -434,6 +434,13 @@ sl.se eller waxholmsbolaget.se. Hitta inte på tider.`
  * kontextfönstret — det här räcker för att han ska veta vad som finns, kunna
  * länka rätt, och veta när han INTE vet.
  */
+/**
+ * Slugs som faktiskt finns. Används av sanitizeLinks för att släppa igenom
+ * länkar till ösidor — men bara till öar vi har. Länkar Thorkel till en ö som
+ * inte finns strippas länken och bara texten blir kvar, precis som förut.
+ */
+const VALID_ISLAND_SLUGS = new Set(ALL_ISLANDS.map(i => i.slug.toLowerCase()))
+
 const ISLAND_INDEX = `
 
 === ÖAR SVALLA TÄCKER (${ALL_ISLANDS.length} st) ===
@@ -869,6 +876,15 @@ export async function POST(req: NextRequest) {
       if (validBookingUrls.has(url)) return full
       if (/^https?:\/\/svalla\.se\/(planera|karta|resmal|populara-turer|segelrutter|kom-igang|logga-in)(\/|$|\?)/i.test(url)) return full
       if (/^\/(planera|karta|resmal|populara-turer|segelrutter|kom-igang|logga-in)(\/|$|\?)/i.test(url)) return full
+      // Ösidor. Tillagt 2026-09-14: /o/ saknades i listan, så VARJE länk Thorkel
+      // skrev till en ösida ströks tyst och blev vanlig text. Instruktionen i
+      // systemprompten om att länka var alltså verkningslös, och Svalla tappade
+      // all intern länkning från guiden. Slugen kontrolleras mot island-data —
+      // en ö som inte finns får fortfarande ingen länk.
+      // Undersidorna motsvarar mapparna i src/app/o/[slug]/ — läggs en ny till
+      // där måste den läggas till här också, annars strippas länken tyst.
+      const oMatch = /^(?:https?:\/\/svalla\.se)?\/o\/([a-z0-9-]+)(?:\/(bad|boende|hamnar|komma-dit|restauranger|aktiviteter|med-barn))?\/?$/i.exec(url)
+      if (oMatch && VALID_ISLAND_SLUGS.has(oMatch[1]!.toLowerCase())) return full
       return label
     })
   }
