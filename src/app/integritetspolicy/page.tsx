@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import PublicFooter from '@/components/PublicFooter'
 import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function IntegritetspolicyPage() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <div style={{
         background: 'var(--grad-sea-hero)',
         padding: '60px 20px 32px',
@@ -76,6 +77,7 @@ export default function IntegritetspolicyPage() {
 
         </article>
       </div>
+      <PublicFooter />
     </div>
   )
 }

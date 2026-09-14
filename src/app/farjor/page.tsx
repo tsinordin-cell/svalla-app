@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import PublicFooter from '@/components/PublicFooter'
 import SvallaLogo from '@/components/SvallaLogo'
 import { SEED_FERRY_ROUTES, fetchDepartures, type FerryDeparture } from '@/lib/ferries'
 
@@ -135,7 +136,7 @@ export default async function FarjorPage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 96 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableJsonLd) }} />
       {ferryTripsJsonLd.map((schema, i) => (
@@ -442,6 +443,7 @@ export default async function FarjorPage() {
           </div>
         </div>
       </div>
+      <PublicFooter />
     </div>
   )
 }
