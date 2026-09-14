@@ -2352,7 +2352,7 @@ export const ISLANDS: Island[] = [
 
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 16/17. Runmarö nås från STAVSNÄS (ej Strömkajen), Styrsvik ~11 min, Långvik ~15–20 min.
-      travel_time: '~11–20 min från Stavsnäs med Waxholmsbåt (linje 16/17)',
+      travel_time: 'ca 5 min från Stavsnäs med Waxholmsbåt (linje 16/17)',
       character: 'Lugnt, naturnära, knutpunkt för seglare',
       season: 'Maj–September',
       best_for: 'Seglare, naturhamnsankring, de som söker lugnet nära Sandhamn',
@@ -2367,9 +2367,10 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Runmarö Gästhamn', type: 'Gästhamn', desc: 'Förtöj på gästplatser — enkelt och bra.' },
     ],
+    // KÄLLA: Waxholmsbolagets tidtabeller linje 16 och 17 (kund.printhuset-sthlm.se/wa/v16.pdf, v17.pdf, gäller 2 apr–18 jun och 17 aug–12 dec 2026): Stavsnäs–Styrsvik ca 5 min; 17 fortsätter Nämdö–Saltsjöbaden–Stockholm (läst 2026-09-14). Stod 11–20 min och "nås ej från Strömkajen" — fel.
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '~11–20 min', desc: 'Waxholmsbolagets linje 16/17 från Stavsnäs; Styrsvik närmast. Runmarö nås ej från Strömkajen.', icon: '⛴' },
-      { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Populärt segelstopp.', icon: '⛵' },
+      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: 'ca 5 min', desc: 'Waxholmsbolagets linje 16 och 17 från Stavsnäs; Styrsvik är huvudbryggan (Gatan och Långvik angörs på beställning). Linje 17 fortsätter till Strömkajen via Nämdö och Saltsjöbaden, ca 2–2,5 h.', icon: '⛴' },
+      { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamn i Styrsvik.', icon: '⛵' },
     ],
     harbors: [
       { name: 'Runmarö Hamn', desc: 'Bränsle, el och vatten. Populärt stopp på Stockholmsleden.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
@@ -2416,7 +2417,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '50 min med buss från Stockholm / 10 min med bil från Vaxholm',
+      travel_time: 'Buss 670 + 682 från Stockholm / 10 min med bil från Vaxholm',
       character: 'Lättillgänglig, villa-ö, badvänlig',
       season: 'April–Oktober',
       best_for: 'Dagstur, bad, familjer, bilanpassad',
@@ -2429,9 +2430,10 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Sommarstugor', type: 'Stugor', desc: 'Privatuthyrning sommartid.' },
     ],
+    // KÄLLA: SL buss 682 Engarn–Resarö (kund.printhuset-sthlm.se/sl/h682.pdf, gäller 17 aug–12 dec 2026); buss 670 Tekniska högskolan–Vaxholm passerar Engarn (läst 2026-09-14). Stod "buss 676 till Resarö" — 676 går Tekniska högskolan–Norrtälje. "50 min" obelagt, borttaget.
     getting_there: [
-      { method: 'Bil', from: 'Vaxholm', time: '10 min', desc: 'Direktväg från Vaxholm via Eriksberg.', icon: '🚗' },
-      { method: 'Buss', from: 'Stockholm', time: '50 min', desc: 'SL-buss 670 till Vaxholm, sedan buss 676 till Resarö.', icon: '🚌' },
+      { method: 'Bil', from: 'Vaxholm', time: '10 min', desc: 'Resarö är landfast — bilväg från Vaxholm.', icon: '🚗' },
+      { method: 'Buss', from: 'Stockholm', desc: 'SL-buss 670 (Tekniska högskolan/Danderyds sjukhus–Vaxholm) till Engarn, byte till buss 682 Engarn–Resarö (Ytterby, Överby).', icon: '🚌' },
     ],
     harbors: [
       { name: 'Resarö Brygga', desc: 'Gästbrygga vid krogsbryggan.', fuel: false, service: ['vatten'] },
@@ -2606,6 +2608,7 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Stugor vid hamnen', type: 'Stugor', desc: 'Enkla stugor för övernattning.' },
     ],
+    // KÄLLA: Waxholmsbolaget linje 26 (kund.printhuset-sthlm.se/wa/v26.pdf, gäller 2 apr–18 jun, 17 aug–1 nov 2026): Strömkajen–Rödlöga ca 4 h 15 min, Rödlöga är ändbrygga (läst 2026-09-14)
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 4 tim', desc: 'Waxholmsbolagets linje 26 (Strömkajen–Norröra–Söderöra–Svartlöga–Rödlöga), yttersta stoppet. Ej från Norrtälje.', icon: '⛴' },
       { method: 'Privat båt', from: 'Furusund / Arholma', time: '1–2 h', desc: 'Naturlig etapp på en längre norrlands-seglingstur.', icon: '⛵' },
@@ -2648,7 +2651,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '~1,5 tim med bil från Stockholm / SL-buss 637 — Singö är landfast via bro',
+      travel_time: '~1,5 tim med bil från Stockholm / SL-buss 637 från Norrtälje — Singö är landfast via bro',
       character: 'Genuint, okänt, bilfärja, norra Uppland',
       season: 'Juni–Augusti',
       best_for: 'De som söker äkta orördhet, kulturhistoria',
@@ -2662,8 +2665,9 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Stugor', type: 'Stugor', desc: 'Privatuthyrning av sommarstugor på ön.' },
     ],
+    // KÄLLA: SL buss 637 Norrtälje busstation–Ellans vändplan (kund.printhuset-sthlm.se/sl/h637.pdf, gäller 17 aug–12 dec 2026) (läst 2026-09-14). Broåret 1955 obelagt — borttaget.
     getting_there: [
-      { method: 'Bil / buss', from: 'Norrtälje', time: 'ca 45 min', desc: 'Singö är landfast via bro (Väddö–Fogdö–Singö, 1955). SL-buss 637 eller bil hela vägen — ingen bilfärja.', icon: '🚗' },
+      { method: 'Bil / buss', from: 'Norrtälje', time: 'ca 45 min', desc: 'Singö är landfast via broar (Väddö–Fogdö–Singö). SL-buss 637 från Norrtälje busstation (hållplatser Singöbron södra, Singö kyrka, Singö camping) eller bil hela vägen — ingen bilfärja.', icon: '🚗' },
     ],
     harbors: [
       { name: 'Singö Fiskehamn', desc: 'Liten fiskehamn med begränsad gästbrygga.', fuel: false },
@@ -2704,7 +2708,7 @@ export const ISLANDS: Island[] = [
 
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 31 (RÄFSNÄS–TJOCKÖ–LIDÖ–FEJAN). Lidö nås från Räfsnäs ~25 min (06.40→07.05), EJ från Strömkajen. Ingen bilfärja till ön.
-      travel_time: 'Bil till Räfsnäs, sedan Waxholmsbåt linje 31 (~25 min)',
+      travel_time: 'Bil till Räfsnäs, sedan Waxholmsbåt linje 31 (ca 10–15 min)',
       character: 'Naturhotell, välvårdat gods, lugnt',
       season: 'April–Oktober (konferens helår)',
       best_for: 'Par, konferens, naturälskare, golfare',
@@ -2718,9 +2722,9 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Lidö Naturhotell', type: 'Hotell', desc: 'Hotellrum i historiska herrgårdsbyggnader. Full frukost och middag ingår i vissa paket.' },
     ],
+    // KÄLLA: Waxholmsbolaget linje 31 (kund.printhuset-sthlm.se/wa/v31.pdf): Räfsnäs–Lidö ca 10–15 min (läst 2026-09-14). Stod ~25 min, "Norra linjen från Strömkajen 3 h" och "bilfärja till ön" — inget av det belagt (Lidö finns inte bland Trafikverkets färjeleder), borttaget.
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '3 h', desc: 'Norra linjen. Ingår i SL-kort.', icon: '⛴' },
-      { method: 'Bil + Färja', from: 'Stockholm via E18', time: '2 h', desc: 'Kör mot Norrtälje, bilfärja till ön.', icon: '🚗' },
+      { method: 'Bil + Waxholmsbåt', from: 'Räfsnäs', time: 'ca 10–15 min båt', desc: 'E18 mot Norrtälje och vidare till Räfsnäs brygga. Därifrån Waxholmsbolagets linje 31 (Räfsnäs–Tjockö–Lidö–…–Fejan), året runt.', icon: '⛴' },
     ],
     harbors: [
       { name: 'Lidö Gästhamn', desc: 'Välskött gästhamn vid herrgårdsbryggan.', fuel: false, service: ['el', 'vatten', 'dusch'] },
@@ -2816,7 +2820,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '90 min med bil från Stockholm / 2 h med buss',
+      travel_time: 'ca 90 min med bil från Stockholm / buss 676 + 637 via Norrtälje',
       character: 'Bred halvö, landsbygd och skärgård, Roslagens hjärta',
       season: 'April–Oktober',
       best_for: 'Lindy hop-festival, kanalkryssning, cyklister, Roslagen-turism',
@@ -2830,9 +2834,10 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Hallsta Gård', type: 'B&B', desc: 'Bondgårdsboende med frukost och Roslagsatmosfär.' },
     ],
+    // KÄLLA: SL buss 637 Norrtälje–Ellans vändplan via Väddö kyrka, Älmsta, Grisslehamn (kund.printhuset-sthlm.se/sl/h637.pdf, 2026); 676 Tekniska högskolan–Norrtälje (läst 2026-09-14). Stod "637 från T-centralen, 2 h" — 637 utgår från Norrtälje.
     getting_there: [
-      { method: 'Bil', from: 'Stockholm via E18', time: '90 min', desc: 'E18 mot Norrtälje, sedan norrut mot Väddö.', icon: '🚗' },
-      { method: 'Buss', from: 'Stockholm T-centralen', time: '2 h', desc: 'SL-buss 637 mot Norrtälje och vidare till Väddö.', icon: '🚌' },
+      { method: 'Bil', from: 'Stockholm via E18', time: 'ca 90 min', desc: 'E18 mot Norrtälje, sedan norrut mot Väddö.', icon: '🚗' },
+      { method: 'Buss', from: 'Stockholm', desc: 'SL-buss 676 från Tekniska högskolan till Norrtälje busstation, byte till buss 637 som går genom Väddö (Väddö kyrka, Älmsta, Grisslehamn).', icon: '🚌' },
     ],
     harbors: [
       { name: 'Väddö Kanalhus', desc: 'Sluss och kanalkryssning. Enkel gästbrygga.', fuel: false },
@@ -2874,7 +2879,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: 'Båt från Trosa — Askö ligger i Trosa-skärgården',
+      travel_time: 'Egen båt från Trosa — ingen reguljär båttrafik belagd',
       character: 'Naturreservat, forskning, ytterskärgård',
       season: 'Juni–Augusti (begränsad tillgänglighet)',
       best_for: 'Marinbiologiintresserade, erfarna seglare, naturälskare',
@@ -2887,8 +2892,9 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Askölaboratoriets stugor', type: 'Stugor', desc: 'Begränsat antal stugor för kursdeltagare och allmänheten under sommaren. Boka via SU.' },
     ],
+    // Ingen reguljär skärgårdsbåt till Askö belagd hos Trosa kommun (sökt 2026-09-14) — "skärgårdsbåt sommartid" borttaget. KÄLLA reservat: Länsstyrelsen Södermanland, naturreservat Askö.
     getting_there: [
-      { method: 'Båt', from: 'Trosa', time: 'Varierar', desc: 'Askö ligger i Trosa-skärgården i Sörmland — nås med skärgårdsbåt sommartid eller egen båt från Trosa, inte från Nynäshamn.', icon: '⛵' },
+      { method: 'Egen båt', from: 'Trosa', time: 'Varierar', desc: 'Askö ligger i Trosa skärgård i Sörmland. Ingen reguljär båtlinje är belagd — egen båt från Trosa. Stora delar av ön är naturreservat med Askölaboratoriet; respektera föreskrifterna.', icon: '⛵' },
     ],
     harbors: [
       { name: 'Askö Hamn', desc: 'Liten hamn vid laboratoriet. Begränsat antal platser för besökare.', fuel: false },
@@ -2927,7 +2933,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '40 min med bil från Stockholm / 75 min med buss',
+      travel_time: 'ca 40 min med bil från Stockholm / buss 839 från Handen',
       character: 'Lättillgänglig, sandstrand, naturreservat',
       season: 'April–Oktober',
       best_for: 'Sandstrand, bad, barnfamiljer, dagsturister',
@@ -2942,9 +2948,10 @@ export const ISLANDS: Island[] = [
       { name: 'Gålö Havsbad Camping', type: 'Camping', desc: 'Stor campingplats med alla bekvämligheter. Populär — boka i god tid.' },
       { name: 'Stugby Gålö', type: 'Stugor', desc: 'Stugor nära stranden.' },
     ],
+    // KÄLLA: SL buss 839 Handens station–Dalarö (kund.printhuset-sthlm.se/sl/v839.pdf, gäller 2026): Handen–Gålövägen ca 18 min (läst 2026-09-14). Stod "buss 843, 30 min" — fel linje.
     getting_there: [
-      { method: 'Bil', from: 'Stockholm', time: '40 min', desc: 'E4 söderut mot Handen, sedan skylt mot Gålö.', icon: '🚗' },
-      { method: 'Buss', from: 'Handen station', time: '30 min', desc: 'Buss 843 från Handen till Gålö.', icon: '🚌' },
+      { method: 'Bil', from: 'Stockholm', time: 'ca 40 min', desc: 'Väg 73 söderut mot Handen, sedan skylt mot Gålö.', icon: '🚗' },
+      { method: 'Buss', from: 'Handens station', time: 'ca 18 min', desc: 'SL-buss 839 (Handen–Dalarö/Smådalarö) till hållplats Gålövägen.', icon: '🚌' },
     ],
     harbors: [
       { name: 'Gålö Brygga', desc: 'Liten gästbrygga. Begränsad service.', fuel: false },
@@ -2984,7 +2991,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '60 min med bil från Stockholm',
+      travel_time: 'ca 60 min med bil från Stockholm / buss 852 från Nynäshamn',
       character: 'Naturreservat, dramatisk kust, surf',
       season: 'April–Oktober',
       best_for: 'Vandring, surf, fotografi, naturälskare',
@@ -2998,8 +3005,10 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Torö Marinstaden', type: 'Camping', desc: 'Campingplats och stugor nära stranden.' },
     ],
+    // KÄLLA: Nynäshamns kommun (nynashamn.se/uppleva/skargard--batliv/toro): "Till Tottnäs, Oxnö, Svärdsö och Torö går SL:s buss nummer 852. Resan tar cirka 40 minuter från Nynäshamns station till Ankarudden"; Tottnäsbron; SL buss 852 (kund.printhuset-sthlm.se/sl/v852.pdf, 2026) (läst 2026-09-14).
     getting_there: [
-      { method: 'Bil', from: 'Stockholm', time: '60 min', desc: 'E4 söderut mot Nynäshamn, sedan skylt mot Torö.', icon: '🚗' },
+      { method: 'Bil', from: 'Stockholm', time: 'ca 60 min', desc: 'Väg 73 mot Nynäshamn, sedan skylt mot Torö. Ön är landfast via den öppningsbara Tottnäsbron.', icon: '🚗' },
+      { method: 'Buss', from: 'Nynäshamns station', time: 'ca 40 min', desc: 'SL-buss 852 Nynäshamn–Torö via Ankarudden.', icon: '🚌' },
     ],
     harbors: [
       { name: 'Torö Marinstaden', desc: 'Marinstation och gästhamn.', fuel: true, service: ['el', 'vatten', 'bränsle'] },
@@ -3053,6 +3062,7 @@ export const ISLANDS: Island[] = [
       { name: 'Fjärdlångs Vandrarhem', type: 'Vandrarhem', desc: '32 bäddar, öppet maj till mitten av september. Drivs i Skärgårdsstiftelsens regi.' },
       { name: 'Norrötorpet', type: 'Stugor', desc: 'Liten 33 m² stuga utan el — vatten från pump, utedass, bastu vid egen brygga. Ta med egen mat.' },
     ],
+    // KÄLLA: Waxholmsbolaget linje 19 (kund.printhuset-sthlm.se/wa/v19.pdf): Dalarö–Fjärdlång ca 1 h 10 min, året runt, flera turer kräver förbeställning (läst 2026-09-14)
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Dalarö', time: '1–1,5 h', desc: 'Reguljär skärgårdslinje under säsong. Kontrollera Waxholmsbolagets tidtabell.', icon: '⛴' },
       { method: 'Egen båt', from: 'Dalarö / Utö', time: '1–2 h', desc: 'Fjärdlångsviken är en klassisk naturhamn för seglare.', icon: '⛵' },
@@ -3101,8 +3111,10 @@ export const ISLANDS: Island[] = [
       { icon: '🚶', name: 'Promenader', desc: 'Stigar längs öns klippkust och genom de gamla militärområdena.' },
     ],
     accommodation: [],
+    // KÄLLA: Trafikverket, Vaxholmsleden (970 m, 6 min, avgiftsfri) och Oxdjupsleden (500 m, 3 min, avgiftsfri) (läst 2026-09-14)
     getting_there: [
-      { method: 'Bilfärja', from: 'Vaxholm', time: '6 min', desc: 'Reguljär bilfärja Vaxholm–Rindö (Vaxholmsleden, 970 m, Trafikverkets vägfärja, avgiftsfri).', icon: '⛴' },
+      { method: 'Bilfärja', from: 'Vaxholm', time: '6 min', desc: 'Trafikverkets vägfärja Vaxholmsleden Vaxholm–Rindö, 970 m, avgiftsfri.', icon: '⛴' },
+      { method: 'Bilfärja', from: 'Stenslätten (Värmdö)', time: '3 min', desc: 'Trafikverkets vägfärja Oxdjupsleden Rindö–Stenslätten, 500 m, avgiftsfri — vägen österut mot Värmdö.', icon: '⛴' },
     ],
     harbors: [{ name: 'Rindö hamn', desc: 'Liten gästbrygga med begränsat antal platser.' }],
     restaurants: [],
@@ -3138,10 +3150,9 @@ export const ISLANDS: Island[] = [
       { icon: '⛵', name: 'Hamnliv i Köpmanholm', desc: 'Öns huvudort med gästhamn, restauranger och småbåtsservice.' },
     ],
     accommodation: [{ name: 'Yxlans Vandrarhem', type: 'Vandrarhem', desc: 'Enkelt boende med självhushåll, perfekt för naturälskare.' }],
+    // KÄLLA: Trafikverket, Furusundsleden Furusund–Yxlan (Köpmanholm), 600 m, 4 min, avgiftsfri (läst 2026-09-14). Tidigare rader om Waxholmsbolaget ("åtta bryggor", 3–4 h) och Cinderellabåtarna till Köpmanholm gick inte att belägga — borttagna tills linje och tid är kontrollerade.
     getting_there: [
-      { method: 'Bil + bilfärja', from: 'Stockholm via Furusund', time: '1,5 h', desc: 'E18 mot Norrtälje, sen väg 276 till Furusund. Furusundsleden (avgiftsfri vägfärja, 4 min) över till Yxlan.', icon: '🚗' },
-      { method: 'Skärgårdsbåt', from: 'Strömkajen', time: '3–4 h', desc: 'Waxholmsbolaget angör åtta bryggor på ön — Köpmanholm är huvudbryggan.', icon: '⛴' },
-      { method: 'Cinderellabåtarna', from: 'Strandvägen', time: '3 h', desc: 'Sommartrafik till Köpmanholm.', icon: '⛴' },
+      { method: 'Bil + bilfärja', from: 'Stockholm via Furusund', time: '1,5 h', desc: 'E18 mot Norrtälje, sen väg 276 till Furusund. Furusundsleden (Trafikverkets vägfärja, 600 m, 4 min, avgiftsfri) över till Köpmanholm på Yxlan.', icon: '🚗' },
     ],
     harbors: [{ name: 'Köpmanholms Gästhamn', desc: 'Yxlans huvudhamn vid Köpmanholm — full service.', service: ['El', 'Vatten', 'Dusch'] }],
     restaurants: [{ name: 'Yxlans Café', type: 'Kafé', desc: 'Hemlagad mat och kaffe i lantlig miljö vid hamnen.' }],
@@ -3177,6 +3188,7 @@ export const ISLANDS: Island[] = [
       { icon: '🥾', name: 'Vandring', desc: 'Korta men stämningsfulla stigar runt ön med klippvyer.' },
     ],
     accommodation: [],
+    // KÄLLA: Waxholmsbolaget linje 19 (kund.printhuset-sthlm.se/wa/v19.pdf): Dalarö–Kymmendö ca 13–17 min, Strömkajen–Kymmendö ca 2 h 45 min–3 h; vissa turer utan fast tid/förbeställning (läst 2026-09-14)
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Strömkajen / Dalarö', time: '2,5–3 h / 1 h', desc: 'Reguljär skärgårdslinje — kontrollera Waxholmsbolagets tidtabell.', icon: '⛴' },
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Naturhamnen på södra sidan tar emot ett fåtal båtar.', icon: '⛵' },
@@ -3260,9 +3272,10 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Klipp- och sandbad', desc: 'Mindre badplatser längs kusten — ofta lugnare än Värmdöns inre öar.' },
     ],
     accommodation: [{ name: 'Vindö Camping', type: 'Camping', desc: 'Välskött campingplats nära havet.' }],
+    // KÄLLA: SL buss 434 (kund.printhuset-sthlm.se/sl/v433_434.pdf): Slussen 09.45 → Sollenkroka brygga 10.58; Överby ca 135 min (läst 2026-09-14). "Fast broförbindelse" är inte belagd med namn/år hos Trafikverket — bussen går dock utan färja.
     getting_there: [
-      { method: 'Bil', from: 'Stockholm via Värmdö', time: '1 h', desc: 'Väg 222 till Värmdö, sedan över Djurö och vidare till Vindö via fast brobindelse.', icon: '🚗' },
-      { method: 'Buss', from: 'Slussen', time: '1 h 15 min', desc: 'SL-buss via Värmdö och Djurö till Vindö.', icon: '🚌' },
+      { method: 'Bil', from: 'Stockholm via Värmdö', time: '1 h', desc: 'Väg 222 till Värmdö, vidare över Djurö till Vindö — bussen går hela vägen utan färja.', icon: '🚗' },
+      { method: 'Buss', from: 'Slussen', time: 'ca 1 h 15 min', desc: 'SL-buss 434 Slussen–Vindö: ca 73 min till Sollenkroka brygga, betydligt längre till Överby brygga.', icon: '🚌' },
     ],
     harbors: [{ name: 'Vindö brygga', desc: 'Gästbrygga med vattenservice.' }],
     restaurants: [{ name: 'Vindö Hamnkafé', type: 'Kafé', desc: 'Fika och enkel mat vid bryggan, öppet sommarsäsong.' }],
@@ -3332,15 +3345,16 @@ export const ISLANDS: Island[] = [
       'Mörkö passar för den som redan är ute i södra skärgården och letar efter ett lugnt ankringsläge.'
     ],
 
-    facts: { travel_time: '~1 tim från Stockholm (Mörköbron via Hölö/E4)', character: 'Rå, genuin, fiskartradition', season: 'Maj–oktober', best_for: 'Fiske, natur, äkta skärgård' },
+    facts: { travel_time: '~1 tim från Stockholm (Mörköbron via Hölö/E4) eller Skanssundsleden från Södertörn', character: 'Rå, genuin, fiskartradition', season: 'Maj–oktober', best_for: 'Fiske, natur, äkta skärgård' },
     activities: [
       { icon: '🎣', name: 'Fiske', desc: 'Abborre och gädda i vikarna, havsöring längs ytterkusten.' },
       { icon: '🥾', name: 'Vandring', desc: 'Omarkerade stigar längs kusten med vyer mot Östersjön.' },
     ],
     accommodation: [{ name: 'Mörkö Stugor', type: 'Stugor', desc: 'Enkla stugor att hyra, boka via ön.' }],
+    // KÄLLA: Trafikverket, Skanssundsleden Hörningsnäs–Mörkö, 330 m, 3 min, avgiftsfri (läst 2026-09-14). Broåret 1972 obelagt — borttaget.
     getting_there: [
-      { method: 'Bil', from: 'Stockholm via E4/Hölö', time: '1 h', desc: 'Mörköbron från Hölö-sidan (avtag från E4) — fast broförbindelse sedan 1972.', icon: '🚗' },
-      { method: 'Bil + bilfärja', from: 'Sorunda/Grödinge', time: '1 h 15 min', desc: 'Trafikverkets avgiftsfria färja Skanssund från Sorunda-sidan, två turer i timmen.', icon: '⛴' },
+      { method: 'Bil', from: 'Stockholm via E4/Hölö', time: 'ca 1 h', desc: 'Mörköbron från Hölö-sidan (avfart från E4).', icon: '🚗' },
+      { method: 'Bil + bilfärja', from: 'Hörningsnäs (Södertörn)', time: '3 min överfart', desc: 'Trafikverkets vägfärja Skanssundsleden Hörningsnäs–Mörkö, 330 m, avgiftsfri.', icon: '⛴' },
     ],
     harbors: [{ name: 'Mörkö hamn', desc: 'Enkel gästbrygga med begränsat antal platser.' }],
     restaurants: [],
@@ -3378,7 +3392,11 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Klippbad', desc: 'Fina badplatser längs sydkusten med klara vatten.' },
     ],
     accommodation: [],
-    getting_there: [{ method: 'Bil via tunnel', from: 'Stockholm via Haninge', time: '1 h', desc: 'Muskötunneln (3 km, max 65 m under havsytan, invigd 1964) — Sveriges första undervattenstunnel för bilar, byggd för örlogsbasen.', icon: '🚗' }],
+    // KÄLLA: Trafikverket (Muskötunneln 2 910 m, allmän trafik sedan mars 1964); SL buss 849 Ösmo centrum–Muskö (kund.printhuset-sthlm.se/sl/v849.pdf, gäller 2026), Ösmo–Hyttan ca 35–40 min (läst 2026-09-14)
+    getting_there: [
+      { method: 'Bil', from: 'Stockholm', time: 'ca 1 h', desc: 'Väg 73 mot Nynäshamn, avfart mot Muskö, genom Muskötunneln (2 910 m, öppen för allmän trafik sedan 1964).', icon: '🚗' },
+      { method: 'Buss', from: 'Ösmo centrum', time: 'ca 35–40 min', desc: 'SL-buss 849 Ösmo–Muskö (ändhållplats Hyttan). Pendeltåg till Ösmo.', icon: '🚌' },
+    ],
     harbors: [{ name: 'Muskö gästbrygga', desc: 'Enkel brygga nära gamla marininfarten.' }],
     restaurants: [],
     tips: ['Boka marinbas-tur i god tid, populärt sommartid.', 'Ta med fika och grillmat.'],
@@ -3403,18 +3421,21 @@ export const ISLANDS: Island[] = [
     emoji: '⚔️',
     tagline: 'Vikingastaden Birka — UNESCO-världsarv i Mälaren',
     description: [
-      'Björkö är en historisk ö i mellersta skärgården som erbjuder ett fascinererande samband mellan vikingatid och modernt skärgårdsliv. Ön är populär bland historieintresserade och familjer.',
+      'Björkö är en historisk ö i Mälaren som erbjuder ett fascinererande samband mellan vikingatid och modernt skärgårdsliv. Ön är populär bland historieintresserade och familjer.',
       'Arkäologiska utgrävningar och museet på Björkö berättar om vikingasamhället som blomstrade här för över tusen år sedan. Naturmässigt är ön varierad med skog och badplatser.',
       'Björkö nås enkelt från Stockholm och passar perfekt som dagsdestination för familjer med intresse för historia. Kombinationen av arkeologi och skärgårdsnatur gör den unik.'
     ],
 
-    facts: { travel_time: '3 h t/r från Stockholm med båt', character: 'UNESCO, viking, Mälaren', season: 'Maj–september', best_for: 'Historia, arkeologi, kultur' },
+    facts: { travel_time: 'ca 2 h med Strömmas Birkabåt från Klara Mälarstrand', character: 'UNESCO, viking, Mälaren', season: 'Maj–september', best_for: 'Historia, arkeologi, kultur' },
     activities: [
       { icon: '⚔️', name: 'Birkas museum', desc: 'Utställning om vikingatidens handel och samhälle.' },
       { icon: '⛏', name: 'Arkeologisk visning', desc: 'Guidade turer till gravhögar och vallgravar (på engelska och svenska).' },
     ],
     accommodation: [],
-    getting_there: [{ method: 'Båt (M/S Birka)', from: 'Stockholm Stadshuskajen', time: '3 h', desc: 'Reguljär daglig trafik maj–september.', icon: '⛴' }],
+    // KÄLLA: birkavikingastaden.se/how-to-get-here (Strömma, Klara Mälarstrand 2; stopp Nya Kungshatt, Jungfrusund, Vårby, Hovgården/Adelsö; lågsäsong nov–apr stängt) (läst 2026-09-14). Stod "3 h t/r med båt" utan operatör.
+    getting_there: [
+      { method: 'Turbåt (Strömma)', from: 'Klara Mälarstrand, Stockholm', time: 'ca 2 h', desc: 'Strömmas Birkabåt från Klara Mälarstrand vid Stadshuset, med stopp bl.a. vid Hovgården (Adelsö). Museet och restaurangen är stängda november–april. Waxholmsbolaget trafikerar inte Björkö i Mälaren.', icon: '⛴' },
+    ],
     harbors: [{ name: 'Björkö brygga', desc: 'Turistbåtsbrygga med gästmöjligheter.' }],
     restaurants: [{ name: 'Birka Bistro', type: 'Restaurang', desc: 'Enkel mat och fika nära museet.' }],
     tips: ['Boka biljett online — populärt sommartid.', 'Kombinera med Adelsö på samma dagstur.', 'Ta solkräm — lite träd på ön.'],
@@ -3444,14 +3465,18 @@ export const ISLANDS: Island[] = [
       'Adelsö passar för familjer som söker en balanserad blandning av historia, natur och service.'
     ],
 
-    facts: { travel_time: '30 min från Björkö', character: 'Kungsgård, medeltida, lugn', season: 'Maj–september', best_for: 'Historia, cykling, kulturlandskap' },
+    facts: { travel_time: 'Bil via Ekerö och Munsö, Adelsöleden 6 min (gratis)', character: 'Kungsgård, medeltida, lugn', season: 'Maj–september', best_for: 'Historia, cykling, kulturlandskap' },
     activities: [
       { icon: '🚲', name: 'Cykling', desc: 'Cykla runt Adelsö ringväg och besök världsarvet Hovgården med utsikt mot Birka. Hyrcyklar på ön via Adelsö Rent-A-Bike. Nås med bilfärja från Sjöängen, Munsö.' },
       { icon: '👑', name: 'Hovgårdens kungsgård', desc: 'Gamla kungsgården med utsikt mot Birka och Mälaren.' },
       { icon: '⛪', name: 'Adelsö kyrka', desc: 'Romansk medeltidskyrka från slutet av 1100-talet, byggd som sockenkyrka och husfromskyrka för kungsgården Alsnö hus.' },
     ],
     accommodation: [],
-    getting_there: [{ method: 'Bilfärja', from: 'Munsö', time: '10 min', desc: 'Kort bilfärjeöverfart till Adelsö.', icon: '⛴' }],
+    // KÄLLA: Trafikverket, Adelsöleden Munsö–Adelsö ca 1 000 m, 6 min, avgiftsfri; birkavikingastaden.se: Strömma stannar vid Hovgården (Adelsö) (läst 2026-09-14). Stod "30 min från Björkö".
+    getting_there: [
+      { method: 'Bil + bilfärja', from: 'Ekerö via Munsö', time: '6 min överfart', desc: 'Trafikverkets vägfärja Adelsöleden Munsö–Adelsö, ca 1 000 m, avgiftsfri, året runt.', icon: '🚗' },
+      { method: 'Turbåt (Strömma)', from: 'Klara Mälarstrand, Stockholm', desc: 'Strömmas Birkabåt angör Hovgården på Adelsö under säsong.', icon: '⛴' },
+    ],
     harbors: [{ name: 'Adelsö gästbrygga', desc: 'Enkel brygga med plats för ett dussin båtar.' }],
     restaurants: [],
     tips: ['Kombinera med Björkö/Birka på samma dag.', 'Hyr cykel för att utforska hela ön.'],
@@ -3736,7 +3761,7 @@ export const ISLANDS: Island[] = [
       'Ön omtalas första gången i skriftliga handlingar 1405. Huvudbyn på ön kallas Gräsken och inkluderar några mindre öar runt omkring som Rågören, Lilla Gåsö, Gåsö och Mäskören.',
       'Gräskö passar både som dagsbesök och övernattning för seglare som söker en levande skärgårdsö med historisk prägel.',
     ],
-    facts: { travel_time: 'Färja från Räfsnäs/Furusund', character: 'Bebodd ö, sommarstugor, historiska anor', season: 'Året runt med begränsad trafik vintertid', best_for: 'Skärgårdsboende, segling, ankring' },
+    facts: { travel_time: 'Egen båt — ingen reguljär båttrafik belagd', character: 'Bebodd ö, sommarstugor, historiska anor', season: 'Året runt med begränsad trafik vintertid', best_for: 'Skärgårdsboende, segling, ankring' },
     activities: [
       { icon: '🚶', name: 'Naturpromenader', desc: 'Stigar längs öns kustlinje.' },
       { icon: '⛵', name: 'Ankring', desc: 'Skyddade vikar runt ön.' },
@@ -3769,7 +3794,7 @@ export const ISLANDS: Island[] = [
       'Långviksskäret passar för erfarna seglare som letar efter dramatisk natur och spektakulära solnedgångar på väg söderut.'
     ],
 
-    facts: { travel_time: '3 h från Stockholm', character: 'Naturhamn, utsikt, södra', season: 'Juni–september', best_for: 'Segling, övernattning, solnedgång' },
+    facts: { travel_time: 'Egen båt eller båttaxi — inga reguljära turer', character: 'Naturhamn, utsikt, södra', season: 'Juni–september', best_for: 'Segling, övernattning, solnedgång' },
     activities: [
       { icon: '🌅', name: 'Solnedgångsvyer', desc: 'Dramatisk horisont mot öppet hav.' },
       { icon: '⛵', name: 'Ankring', desc: 'Naturlig ankringsplats med bra skydd.' },
@@ -3790,13 +3815,13 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Innerskärgården',
     emoji: '🌳',
-    tagline: 'Lättillgänglig skärgårdsö med restaurang, vandringsleder och havsbad — 40 minuter från Stockholm',
+    tagline: 'Lättillgänglig skärgårdsö med restaurang, vandringsleder och havsbad — en halvtimme med pendelbåt från Ropsten',
     description: [
       'Storholmen är en av Lidingös mest omtyckta skärgårdsöar — bebodd, grön och lättillgänglig med reguljär skärgårdsbåt. Ön ligger i innerskärgården och är ett perfekt alternativ för stockholmare som vill ha äkta skärgårdskänsla utan lång restid.',
       'Ön har en varierad natur med lövskog, klipphällar längs kusterna och välmarkerade vandringsleder. En runda runt ön tar ca 2 timmar. Badplatserna på östra och södra sidan är populära sommartid med klart och skyddat vatten.',
       'Historiskt intressant: ön tillhörde Frösviks gård från 1780-talet och har en lång historia av fiske och kustbruk. Fram till 2011 tillhörde ön Vaxholms kommun — en ovanlig kommungränsändring i Stockholms län.',
     ],
-    facts: { travel_time: 'Ca 40 min med skärgårdsbåt från Stockholm', character: 'Bebodd ö, grön och lättillgänglig, vandring och bad', season: 'Maj–september', best_for: 'Dagsutflykt, restaurangbesök, vandring, klippbad' },
+    facts: { travel_time: 'ca 25–30 min med SL:s pendelbåt 80 från Ropsten', character: 'Bebodd ö, grön och lättillgänglig, vandring och bad', season: 'Maj–september', best_for: 'Dagsutflykt, restaurangbesök, vandring, klippbad' },
     activities: [
       { icon: '🚶', name: 'Vandring', desc: 'Markerade stigar runt ön, ca 2 timmar för hela rundan.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Populära badplatser på östra och södra sidan med skyddat vatten.' },
@@ -3804,8 +3829,9 @@ export const ISLANDS: Island[] = [
       { icon: '🐦', name: 'Fågelskådning', desc: 'Lövskogen och strandlinjen lockar sjöfåglar och häckande fåglar.' },
     ],
     accommodation: [],
+    // KÄLLA: SL pendelbåt linje 80 (kund.printhuset-sthlm.se/sl/h80.pdf, gäller 17 aug–12 dec 2026): Ropsten–Storholmen södra ca 28 min; Lidingö stad (lidingo.se, båtpendla): trafik året runt utom vid is (läst 2026-09-14). Stod "Waxholmsbolaget från Strömkajen/Nybrokajen sommartid, 40 min" — fel avgångsplats och säsong.
     getting_there: [
-      { method: 'Waxholmsbolaget', from: 'Stockholm (Strömkajen / Nybrokajen)', desc: 'Reguljär skärgårdsbåt sommartid. Kontrollera tidtabell på waxholmsbolaget.se.', icon: '⛴' },
+      { method: 'SL pendelbåt linje 80', from: 'Ropsten', time: 'ca 25–30 min', desc: 'Pendelbåt 80 (Nybroplan–Ropsten) fortsätter Ropsten–Storholmen med bryggorna Storholmen södra, östra och norra. Går året runt utom vid is. Ingår i SL-biljetten.', icon: '⛴' },
       { method: 'Fritidsbåt', from: 'Lidingö eller valfri brygga', desc: 'Nås enkelt med egen båt. Gästbrygga finns vid huvudbryggan.', icon: '⚓' },
     ],
     harbors: [{ name: 'Storholmens brygga', desc: 'Huvudbrygga med plats för gästande båtar.' }],
@@ -4447,7 +4473,7 @@ export const ISLANDS: Island[] = [
       known_for: 'Bilfritt, nära Vaxholm, klippor och bad',
       season: 'Juni–Augusti',
     
-      travel_time: 'ca 1–1,5 tim',
+      travel_time: 'ca 1–1,25 h med Waxholmsbåt (linje 83) från Strömkajen; bilfärja från Lagnö',
       character: 'Bilfritt, sommarstugeö',
       best_for: 'Bad, barnfamiljer, skärgårdsro',
     },
@@ -4459,8 +4485,10 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Sommarstugor Tynningö', type: 'Stugor', desc: 'Privata stuguthyrningar via Airbnb och lokala uthyrare. Boka tidigt.' },
     ],
+    // KÄLLA: Waxholmsbolaget linje 83 (kund.printhuset-sthlm.se/sl/h83.pdf — senast hämtade version gäller 2024, rutten kontrollerad, tiderna bör dubbelkollas mot 2026); Trafikverket, Tynningöleden Lagnö–Tynningö ca 1 000 m, avgiftsfri (läst 2026-09-14)
     getting_there: [
-      { method: 'Waxholmsbolaget', from: 'Stockholm / Vaxholm', time: 'ca 60–75 min från Stockholm', desc: 'Waxholmsbolaget trafikerar Tynningö via Vaxholm. Kolla aktuell tidtabell på waxholmsbolaget.se.', icon: '⛴' },
+      { method: 'Waxholmsbolaget linje 83', from: 'Strömkajen via Vaxholm', time: 'ca 1–1,25 h', desc: 'Linje 83 (Strömkajen–Vaxholm–Rindö) angör Norra Tynningö; Vaxholm–Norra Tynningö ca 7–8 min. Kolla aktuell tidtabell på waxholmsbolaget.se.', icon: '⛴' },
+      { method: 'Bilfärja', from: 'Lagnö (Värmdö)', time: 'några minuter', desc: 'Trafikverkets vägfärja Tynningöleden Lagnö–Tynningö, ca 1 000 m, avgiftsfri.', icon: '🚗' },
     ],
     transport_meta: {
       from_city_min: 70,
@@ -5287,6 +5315,7 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Tältning på klipporna', type: 'Camping', desc: 'Inga bokningsbara boenden. Ta med tält och allt du behöver.' },
     ],
+    // KÄLLA: Waxholmsbolaget linje 26 (kund.printhuset-sthlm.se/wa/v26.pdf): Svartlöga är näst sista bryggan före Rödlöga, ca 3,5–4 h från Strömkajen (läst 2026-09-14)
     getting_there: [
       { method: 'Waxholmsbolaget', from: 'Stockholm (Strömkajen)', time: 'ca 4 tim', desc: 'Waxholmsbolagets linje 26 via norra skärgårdens öar; Svartlöga ligger ett stopp före Rödlöga. Kolla aktuell tidtabell på waxholmsbolaget.se — avgångarna är sällsynta.', icon: '⛴' },
       { method: 'Privat båt', from: 'Furusund / Norrtälje', time: 'ca 45–60 min', desc: 'Från Furusund eller Norrtälje är det kortare båtväg. Det naturliga sättet att besöka ön om du har tillgång till båt.', icon: '⛵' },
