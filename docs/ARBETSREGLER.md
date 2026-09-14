@@ -64,3 +64,31 @@ Bevis kontrolleras i den ordning som gäller för sakens natur, tyngst sist:
 - **Data:** kör frågan mot databasen och läs resultatet.
 - **Externa system:** läs det faktiska värdet i Vercel, GitHub, Google.
 - **Produktion:** ladda sidan eller kör funktionen på svalla.se. Väger tyngst.
+
+## Källor i datafilerna (MÄTT 2026-09-14, PR #280–#287)
+
+Konventionen är en `// KÄLLA:`-kommentar inom fem rader ovanför påståendet, med
+namngiven källa och citat. I mallsträngar med HTML: `<!-- KÄLLA: … -->`.
+
+**En KÄLLA-rad är inte ett bevis förrän någon läst den.** Under genomgången av
+ösidorna hittades fyra befintliga KÄLLA-rader som pekade på `en.wikipedia.org`,
+och en som citerade en mening som inte finns på den angivna sidan
+(hotellfurusund.se nämner inte Erik XIV). Granska gamla källrader, inte bara
+omärkta stycken.
+
+Tillåtna källor: myndighet (Länsstyrelsen, Naturvårdsverket,
+sverigesnationalparker.se, Riksantikvarieämbetet, Statens fastighetsverk,
+Sjöfartsverket, Trafikverket), operatör (SL, Waxholmsbolaget, Strömma för egna
+linjer), kommunen, Skärgårdsstiftelsen, STF, visitskargarden.se, kommunala
+destinationsbolag, och verksamhetens egen webbplats. Som reservkälla för
+gästhamnar: gasthamnsguide.se — märk den som reservkälla.
+
+Förbjudna: Wikipedia, bloggar, TripAdvisor, Booking/Airbnb, ruttdirekt,
+rome2rio, moovit, restaurangguider, bokningsplattformar som ensam källa,
+nyhetsartiklar som ensam källa.
+
+Aldrig i datafilerna: priser utan publicerad prislista, öppettider,
+avgångstider. Superlativ ("bäst", "finast", "mest hyllade") kräver att en
+myndighet eller operatör säger det — annars bort.
+
+TOMT ÄR ALLTID TILLÅTET. Går påståendet inte att belägga, ta bort det.
