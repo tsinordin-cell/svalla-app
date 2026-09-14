@@ -656,7 +656,8 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'stenshuvud': {
-    body: 'Stenshuvud nationalpark i sydöstra Skåne kombinerar ett av Skånes få bergslandskap med kustnatur. Klättringen upp till toppen (~97 m) belönar med vy över Hanöbukten och östersjölandskapet.',
+    // KÄLLA: sverigesnationalparker.se — Stenshuvuds nationalpark bildad 1986 (läst 2026-09-14)
+    body: 'Stenshuvuds nationalpark i sydöstra Skåne kombinerar ett av Skånes få bergslandskap med kustnatur. Klättringen upp till toppen (~97 m) belönar med vy över Hanöbukten och östersjölandskapet.',
     tips: [
       'Buss från Simrishamn.',
       'Nationalparkscentrum vid ingången ger information om flora och fauna.',
@@ -771,7 +772,8 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'halluden-sormland': {
-    body: 'Hålludden naturreservat i Sörmland är ett öppet kustlandskap med havsvy och hedsmark som är lite känt men genuint fint. En lagom halvdagsvandring för den som är i Norrköpingstrakten.',
+    // Inget naturreservat "Hålludden" gick att belägga hos Länsstyrelsen Södermanland eller Östergötland (sökt 2026-09-14) — ordet borttaget, hela vandringen ifrågasatt (se kort på tavlan).
+    body: 'Hålludden är ett öppet kustlandskap med havsvy och hedsmark som är lite känt men genuint fint. En lagom halvdagsvandring för den som är i Norrköpingstrakten.',
     tips: [
       'Tåg → Norrköping, sedan buss.',
     ],
@@ -851,7 +853,8 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'kattilö': {
-    body: 'Kättilö naturreservat i Östgötaskärgården är ett välhållet reservat med kustleder och havsvy som ger äkta skärgårdskaraktär.',
+    // Inget naturreservat "Kättilö" gick att belägga hos Länsstyrelsen Östergötland (sökt 2026-09-14); närmaste belagda är Gryts naturreservat (1963). Ordet borttaget.
+    body: 'Kättilö i Östgötaskärgården (Gryts skärgård) är en ö med kustleder och havsvy som ger äkta skärgårdskaraktär.',
     tips: [
       'Bil eller sommarbåt.',
     ],
@@ -930,6 +933,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'oskarshamn-kust': {
+    // KÄLLA: sverigesnationalparker.se + Länsstyrelsen Kalmar — Blå Jungfrun nationalpark sedan 1926 (läst 2026-09-14)
     body: 'Oskarshamn är porten till Blå Jungfrun nationalpark och har kustleder runt hamnen som ger havsutsikt och en tydlig känsla av Kalmarsunds karaktär.',
     tips: [
       'Tåg → Oskarshamn.',
@@ -938,6 +942,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'blå-jungfrun': {
+    // KÄLLA: sverigesnationalparker.se — Blå Jungfrun nationalpark sedan 1926 (läst 2026-09-14)
     body: 'Blå Jungfrun nationalpark i Kalmarsund är en magisk granit-ö med forntida labyrint och dramatiska berghällar. Nås med sommarbåt och ger en stark naturupplevelse i ett unikt ölandskap.',
     tips: [
       'Sommarbåt från Oskarshamn eller Byxelkrok på Öland.',
