@@ -280,6 +280,7 @@ export function getGuideContent(slug: string): string {
 <li>Skär med häckande fågelkolonier: håll 100 meter avstånd – se skyltar</li>
 <li>Sälinventeringsområden: motorbåtar får inte komma nära vilande sälar</li>
 <li>Eelgrässängar och korallrev (Bohuslän): ankra aldrig på grunt vatten i sådana miljöer</li>
+<!-- KÄLLA: Länsstyrelsen Stockholm, naturreservat i Stockholms skärgård (t.ex. Svenska Högarna, Nåttarö, Utö) — föreskrifter per reservat; tillträdesförbud i fågelskyddsområden anges per område (läst 2026-09-14) -->
 <li>Ytterskärgårdens naturreservat: många har landningsförbud under häckningstid</li>
 </ul>
 
@@ -796,6 +797,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">3. Kosteröarna – nationalpark och midsommar</h4>
 <p><strong>Transport:</strong> Tåg till Strömstad, färja till Sydkoster eller Nordkoster. Boka båtbiljett i förväg.</p>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <p><strong>Upplev:</strong> Bilfria öar i Kosterhavets nationalpark. Enkel och genuint stämningsfull midsommar – majstång, dans och öppet hav.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">4. Tjörn – folkpark och havsvy</h4>
@@ -879,6 +881,7 @@ export function getGuideContent(slug: string): string {
 <li><strong>Karaktär:</strong> Alvarets UNESCO-landskap, väderkvarnar, Borgholm slott, Solliden</li>
 <li><strong>Bäst för:</strong> Barnfamiljer, cyklister, naturälskare, de med bil</li>
 <li><strong>Högsäsong:</strong> Juli–aug. Skördefesten i september är ett fantastiskt alternativ</li>
+<!-- KÄLLA: Länsstyrelsen Kalmar — naturreservat Ottenby, beslut 1970 (läst 2026-09-14) -->
 <li><strong>Måste göra:</strong> Cykla längs östra kusten, besök Eketorp fornborg, Ottenby naturreservat</li>
 <li><strong>Prisläge:</strong> Måttligt – campingplatser och stugor i alla prisklasser</li>
 </ul>
@@ -1031,7 +1034,8 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Destinationer norr till söder</h3>
 
 <h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Kosteröarna och Strömstad (längst norrut)</h4>
-<p>Bilfria Kosteröarna i Kosterhavets nationalpark – Europas artrikaste marina nationalpark. Snorkling, paddling och vandring. Strömstad är basstaden med färjeförbindelser till Koster och Norge.</p>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
+<p>Bilfria Kosteröarna i Kosterhavets nationalpark – med omkring 6 000 marina arter. Snorkling, paddling och vandring. Strömstad är basstaden med färjeförbindelser till Koster och Norge.</p>
 
 <h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Grebbestad och Fjällbacka</h4>
 <p>Hummerpremiärens hemstad och Astrid Lindgrens Bullerbykust. Fjällbacka är känt från Camilla Läckmans deckare och har Bohusläns charmigaste gränder.</p>
@@ -2158,6 +2162,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <li><strong>Strand:</strong> Nåttarö har en av skärgårdens längsta sandstränder. Grunt och barnvänligt vatten på södra sidan.</li>
 <li><strong>Vandring:</strong> Markerade leder genom tallskogen och längs kusten. Ca 8 km sammanlagt.</li>
 <li><strong>Bad:</strong> Sandstrand och klippbad. Södra ytterskärgården – vattnet är klart men kyligare.</li>
+<!-- KÄLLA: Länsstyrelsen Stockholm — naturreservat Nåttarö, sedan 2008, förvaltas av Skärgårdsstiftelsen (läst 2026-09-14) -->
 <li><strong>Naturupplevelse:</strong> Nåttarö ingår i naturreservat. Rik fågellivet, speciellt ejder och havstrut.</li>
 <li><strong>Fiske:</strong> Bra abborre och gäddafiske i grunda vikar.</li>
 </ul>
@@ -2191,7 +2196,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <li><strong>Vandring:</strong> Stockholm Archipelago Trail passerar Ornö. Leden sträcker sig längs kusten och genom naturreservat.</li>
 <li><strong>Cykling:</strong> Ornö har landsvägar – ta med cykeln på bilfärjan och cykla runt ön (ca 40 km)</li>
 <li><strong>Bad:</strong> Flera fina badplatser längs östra kusten, bl.a. Ornöbadet</li>
-<li><strong>Naturreservat:</strong> Ornö naturreservat täcker stora delar av ön med primärskog och gammelskog</li>
+<!-- KÄLLA: Länsstyrelsen Stockholm — naturreservat Norra skogen, Ornö, beslut 2024, ca 389 ha (läst 2026-09-14). Stod "Ornö naturreservat täcker stora delar av ön" — finns inte. -->
+<li><strong>Naturreservat:</strong> På norra Ornö ligger naturreservatet Norra skogen (bildat 2024, ca 389 ha) med skog som länge lämnats oskött</li>
 <li><strong>Fiske:</strong> Ornö är känt för bra havsöringsfiske längs klippkusten</li>
 </ul>
 
@@ -2633,6 +2639,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
     'kosterarna-guide': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Kosteröarna – Sveriges första marina nationalpark</h2>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <p>Kosteröarna – Nordkoster och Sydkoster – är två av Sveriges mest unika öar. De ligger vid den norska gränsen i Bohuslän, och vattnet runt dem (Kosterfjorden) är Sveriges djupaste fjord och hyser ett marint liv som inte finns någon annanstans i landet. 2009 bildades Kosterhavets nationalpark – Sveriges första marina nationalpark – och sedan dess är Kosteröarna ett av Skandinaviens viktigaste naturarv.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Kosteröarna</h3>
@@ -2651,6 +2658,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <li><strong>Nordkoster:</strong> Liten, helt bilfri ö med ca 70 bofasta. Vildare natur, färre besökare, mer isolerad känsla. Välj Nordkoster för vildmark, Sydkoster för bekvämlighet.</li>
 </ul>
 
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Kosterhavets nationalpark</h3>
 <p>Kosterfjorden är ett av de biologiskt rikaste havsområdena i Sverige. Djupet (upp till 247 m) skapar unika förutsättningar för liv som annars bara finns djupt i Atlanten: sjöfjädrar, havsfans (Paramuricera placomus), sjöpungar och en mångfald av bottendjur som inte finns i Östersjön eller längs svenska Atlantkusten.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -2793,7 +2801,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Vandring:</strong> Rund vandring längs kusten, ca 8–10 km. Passerar klippstränder och skogspartier med vyer mot öppet hav</li>
 <li><strong>Bad:</strong> Klippbad längs östra sidan. Vattnet är kallare i norra skärgården men kristallklart</li>
-<li><strong>Naturupplevelse:</strong> Ön ingår i naturreservat. Rik fågellivet – havsörn ses regelbundet</li>
+<!-- KÄLLA: Länsstyrelsen Stockholm — Brottö kulturreservat (2004); inget naturreservat på Ingmarsö enligt Österåkers kommun (läst 2026-09-14). Havsörn-uppgiften obelagd, borttagen. -->
+<li><strong>Naturupplevelse:</strong> Grannön Brottö är kulturreservat sedan 2004. Rikt fågelliv</li>
 <li><strong>Stiltje:</strong> Inga bilar, inga köer. Ingmarsö ger en känsla av verklig avskilning som de mer kända öarna inte kan matcha</li>
 </ul>
 
@@ -2853,7 +2862,9 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <li><strong>Flyg:</strong> Flyg till Sundsvall-Timrå (45 min från Stockholm), sedan bil ca 1 h.</li>
 </ul>
 
+<!-- KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14) -->
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Skuleskogen nationalpark</h3>
+<!-- KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14) -->
 <p>Skuleskogen är Höga Kustens nationalpark och en av Skandinaviens vackraste vandringsdestinationer. Urskog klättrar längs landhöjda klippor med utsikter mot fjärdar och öar.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <!-- KÄLLA: sverigesnationalparker.se, Skuleskogens nationalpark, Slåttdalsberget med Slåttdalsskrevan (läst 2026-08-15): 200 m lång, 30 m djup, 7 m bred -->
@@ -3082,6 +3093,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa naturhamnarna i Stockholms skärgård</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö ingår i Nämdöskärgårdens nationalpark (invigd sept 2025), reservatet Bullerö upphävt 01FS 2026:01 (läst 2026-09-14) -->
 <li><strong>Bullerö:</strong> Del av Nämdöskärgårdens nationalpark, i mellanskärgård. Sandlera, vindskydd från sydväst.</li>
 <li><strong>Rödlöga:</strong> Populär naturhamn i norra skärgård. God svängrum och vindskydd från väst.</li>
 <li><strong>Björkskär:</strong> Liten ö i södra ytterskärgård med naturlig hamn i det nordliga sundet.</li>
@@ -3093,6 +3105,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <li>Toalettavfall får INTE tömmas i Stockholms skärgård – använd gästhamnens pumpstationer</li>
 <li>Ankarlykta är obligatorisk vid ankring</li>
 <li>Max 2 nätter på samma plats utan tillstånd</li>
+<!-- KÄLLA: Länsstyrelsen Stockholm, naturreservat i Stockholms skärgård (t.ex. Svenska Högarna, Nåttarö, Utö) — föreskrifter per reservat; tillträdesförbud i fågelskyddsområden anges per område (läst 2026-09-14) -->
 <li>Kontrollera naturreservatsregler för specifika hamnar</li>
 </ul>
 
@@ -3757,6 +3770,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marstrands bilfria miljö gör det tryggt för barn att springa fritt. Carlstens fästning med guidade turer är fascinerande för barn 6+. Bryggan och Kungsbackafärjan tillbaka är en del av upplevelsen. Badplatser finns på öns västra sida.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">4. Kosteröarna – Europas rikaste hav</h2>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nordkoster och Sydkoster är bilfria och barnvänliga. Kosterhavets nationalpark erbjuder snorkling med sjöstjärnor och krabbor som fascinerar barn. Cykeluthyrning finns och öarna är lagom stora för en familj att utforska på en dag. Nås med färja från Strömstad.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">5. Fjällbacka – kulturupplevelse</h2>
@@ -4747,6 +4761,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusläns skärgård har en unik kombination av skyddat innervattnen och öppet hav. De korta avstånden mellan öarna gör det möjligt att paddla från ö till ö utan långa öppna havspassager. Vattnet är klart och salthaltigt, vilket gör det enklare att se djur och natur under ytan.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa kajakrutter</h2>
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kosteröarna</h3>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kosterhavets nationalpark är Bohusläns klaraste vatten och ett kajakdröm. Paddla runt Sydkoster och Nordkoster med stopp vid klipphällar och naturhamnar. Guidade kajaktur arrangeras av lokala aktörer från Strömstad.</p>
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Marstrandsfjorden</h3>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Paddla runt Marstrands fästning och utforska de mindre öarna i Marstrandsfjorden. Skyddat vatten med vackra miljöer och möjlighet att landa på obebodda kobbar för picknick.</p>
@@ -4822,7 +4837,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 `,
 
   'snorkling-kosterhavet': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kosterhavets nationalpark hyser Europas artrikaste marina miljö utanför tropikerna. Under ytan väntar ett landskap av korallrev, sjöborrar, kräftdjur och hundratals fiskarter i kristallklart Västerhavsvatten. Guide till snorkling och dykning i Kosterhavet.</p>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kosterhavets nationalpark hyser omkring 6 000 marina arter, närmare 300 av dem finns bara här i Sverige. Under ytan väntar ett landskap av korallrev, sjöborrar, kräftdjur och hundratals fiskarter i kristallklart Västerhavsvatten. Guide till snorkling och dykning i Kosterhavet.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Kosterhavet är unikt</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kosterfjorden är en av få fjordar i världen med vatten djupare än 240 meter. Det djupa, kalla och syrerika vattnet skapar förutsättningar för en marin artrikedom som saknar motstycke i Europa norr om Biscayabukten. Norska ström-vatten för med sig arktiska arter söderifrån och skapar en unik blandning.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Snorkling – vad du ser</h2>
@@ -4834,6 +4850,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
 <li>Neoprendräkt rekommenderas – Västerhavet är 18–20°C i juli</li>
 <li>Kosteröarna nås med färja från Strömstad (ca 45 min)</li>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <li>Nationalparksregler gäller – ta inte med djur eller växter</li>
 <li>Bästa snorkeltid: lugna dagar med svag vind, god sikt</li>
 </ul>
@@ -4979,13 +4996,15 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohuslän är ett av Sveriges populäraste campingmål — dramatiska klipphällar, varmt Västerhavet och campingplatser från enkel tältplats på klippan till fullserviceanläggningar med stugor och pool. Guide till de bästa campingarna längs Bohusläns kust.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Havstenssund Stugby & Camping</h2>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — naturreservat Väderöarna, Tanums kommun, beslut 2011, ca 18 300 ha (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">En av Bohusläns vackraste campingplatser — direkt vid Havstenssundet utanför Fjällbacka med utsikt mot öar och klippor. Blandning av tältplatser, husvagnsplatser och stugor. Nära Fjällbacka, Hamburgsund och Väderöarnas naturreservat. Kajakuthyrning finns i anslutning. Familjevänlig med lugnt vatten och klippbad.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grebbestads Camping</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Välskött camping i Grebbestad med nära till fjord, fiskebåtar och det mest genuina fiskesamhällslivet i Bohuslän. Stugor och platser för tält och husvagn. Utsikt mot Grebbestadsfjorden. Grebbestad är känt för kräftor och ostron — campinggästerna kan köpa direkt från fiskarna. Populärt bland barnfamiljer och skaldjursentusiaster.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kosteröarnas Camping, Sydkoster</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Camping på bilfria Sydkoster — Kosterhavets nationalpark och ett av Sveriges artrikaste hav. Tältplatser och enkla stugor. Nås med färja från Strömstad (ca 45 min). Ingen bil behövs på ön — cykla eller gå. Snorkling, kajakpaddling och vandring i nationalparken är höjdpunkterna. Unik upplevelse för den som vill vara omgiven av natur.</p>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Camping på bilfria Sydkoster — Kosterhavets nationalpark och omkring 6 000 marina arter. Tältplatser och enkla stugor. Nås med färja från Strömstad (ca 45 min). Ingen bil behövs på ön — cykla eller gå. Snorkling, kajakpaddling och vandring i nationalparken är höjdpunkterna. Unik upplevelse för den som vill vara omgiven av natur.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Camping nära Smögen och Kungshamn</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögenbryggan och Kungshamn är centrum för Bohusläns sommarliv. Flera campingar i området erbjuder enklare husvagns- och tältplatser nära allt. Passa på att besöka Smögenbryggan på morgonen för nyfångad räka direkt från båten. Snabbmat, glassbarer och aktiviteter finns inom gångavstånd.</p>
@@ -5070,9 +5089,12 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdens absoluta höjdpunkt för friluftsmänniskan är att campa fritt via Allemansrätten. Du får tälta 1–2 nätter på de flesta öar och klipphällar. Välj platser i naturreservat — Stockholms skärgårds nationalpark och de många naturreservaten har gott om mark utan byggförbud. Viktiga regler: tältet utom syn- och hörhåll från boningshus (ingen fast meteruppgift finns — terrängen avgör), elda bara i grillplats och aldrig direkt på klipphäll (det missfärgar permanent), ta med allt skräp. Många öar har STF-rastkojor och tältplatser att boka via STF.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Båtcamping — skärgårdens bästa sätt</h2>
+<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö i Nämdöskärgårdens nationalpark (2025) (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Egentligen är båtcamping det naturliga sättet att uppleva Stockholms skärgård. Hyra en liten motorbåt (kan göras utan körkort upp till 12 hk), paddla kajak eller hyra en segelbåt och välj själv var du ankrar. Kajak och SUP-uthyrning finns i Vaxholm, Gustavsberg och Stavsnäs. Kajak är smidigt för att ta sig till öar som inte har Waxholmsångare. Populär kajakrutt: Stavsnäs → Bullerö i Nämdöskärgårdens nationalpark → Kymmendö (1–3 dagars paddling beroende på tempo).</p>
 
+<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö ingår i Nämdöskärgårdens nationalpark (invigd sept 2025), reservatet Bullerö upphävt 01FS 2026:01 (läst 2026-09-14) -->
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bullerö i Nämdöskärgårdens nationalpark</h2>
+<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö ingår i Nämdöskärgårdens nationalpark (invigd sept 2025), reservatet Bullerö upphävt 01FS 2026:01 (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bullerö i yttre skärgården (södra delen) är ett populärt mål för båtfolk och kajakpaddlare. Del av Nämdöskärgårdens nationalpark (sedan 2025) med en gammal fiskestation; nationalparkens föreskrifter gäller. Nås enklast med kajak från Stavsnäs eller egen båt — ingen reguljär Waxholmslinje. Gott om gömda vikar och klippbad.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
@@ -5095,6 +5117,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögen är Bohusläns mest besökta plats och med rätta — den långa bryggan (Smögenbryggan) kantad av färgglada bodar och restauranger är unik i Sverige. Gå upp tidigt på morgonen och köp nyfångad räka och skaldjur direkt från fiskebåtarna vid bryggan. Smögen är trångt i juli men fantastiskt vackert utanför högsäsong. Nås med bro från Kungshamn på fastlandet.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fjällbacka — Camilla Läckbergs hemstad</h2>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — naturreservat Väderöarna, Tanums kommun, beslut 2011, ca 18 300 ha (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjällbacka är ett av Bohusläns vackraste fiskelägen — kompakt, dramatiskt inramat av klippväggar och med en centralt placerad torg bredvid vattnet. Känt som Camilla Läckbergs hemstad och decor för Fjällbackamorden. Väderöarna naturreservat nås med båt från hamnen. Ingrid Bergman tillbringade somrar här — torget är uppkallat efter henne. Enklare att andas i än Smögen, med mer genuint fiskesamhällskänsla.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grebbestad — skaldjurshuvudstaden</h2>
@@ -5150,10 +5173,12 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 `,
 
   'stromstad-guide': `
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Strömstad är Sveriges nordligaste kuststad och porten till Kosterhavets nationalpark och norska skärgårdsön Hvaler. En levande hamnstad med stark sjömatkultur och enkel åtkomst till Bohuslän norrra yttersta.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Strömstad och hummern</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Strömstad är landets hummercentrum. Hummerpremiären i september (16 sep 2026) firas med fanfar i Strömstads hamn och fiskeflottan kommer in med årets första fångst. Restaurangerna längs Norra Hamngatan är fyllda med hummerfirare. Boka bord nu för premiärkvällen.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kosteröarna – porten till nationalparkerna</h2>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från Strömstad tar färjan ut till Sydkoster (ca 45 min) och Nordkoster (ca 1 h). Kosteröarna är bilfria och del av Kosterhavets nationalpark. Kajakpaddling, snorkling och vandring på bilfria öar är Strömstads stora utflyktsmål.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport och läge</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Strömstad nås med tåg från Göteborg (1,5 timme, Bohusbanan) eller bil längs E6. Norska gränsen är bara 8 km norrut. Möjlighet att kombinera med ett besök i norska Halden eller Oslofjorden.</p>
@@ -5943,6 +5968,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
   'host-hoga-kusten-2026': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Höga Kusten på hösten är ett av Sveriges vackraste naturscenerier. Fjällen och skogarna som möter havet bränner i rött och orange, och du har vandringslederna nästan för dig själv. Det är norra Sveriges svar på Skottland – utan turisterna.</p>
+<!-- KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Höga Kustens dramatiska topografi – med berg som sticker upp direkt ur havet – är om möjligt ännu mer imponerande när höstfärgerna sätter in i september och oktober. Skuleskogens nationalpark är ett av rikets absoluta naturscener under lövfärgernas veckor.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Höga Kusten på hösten</h2>
@@ -5950,6 +5976,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med tåg:</strong> SJ norrpilen (Sundsvall–Härnösand) eller tåg till Härnösand med buss vidare. Kollektivt fungerar för Härnösand men bil ger mer frihet i naturen.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Höstens höjdpunkter</h2>
+<!-- KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Skuleskogen nationalpark:</strong> Vandringsleder med fantastisk höstfärg. Skuleborgsstigen och leden till Slåttdalsskrevan är klassikerna. Ta med karta – mobiltäckning är begränsad inne i nationalparken.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Omneberget:</strong> Utsiktspunkt med vy över Ångermanälvens mynning och havet. Perfekt höstpanorama utan lång vandring.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Naturum Höga Kusten:</strong> Vid Skuleberget, öppet in i höst. Bra startpunkt för att förstå världsarvet och planera leder.</p>
@@ -6189,6 +6216,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera kajakuthyrare finns längs kusten med havskajaker, paddlar och säkerhetsutrustning. Fråga om guidade dagsturer och flerdagarspaket med fältövernattning. Nordingrå Kajakuthyrning och Höga Kusten Kajak är lokala aktörer – kolla aktuell öppethållande och priser på deras respektive webbplatser.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Klassiska rutter</h2>
+<!-- KÄLLA: Länsstyrelsen Västernorrland — naturreservat Trysunda, beslut 1987 (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bönhamn–Trysunda (en dag):</strong> Kör till Bönhamn, paddla ut till Trysunda naturreservat, luncha på ön och paddla hem. Ca 12 km totalt i skyddad vattenväg.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Rundtur Nordingrå (2 dagar):</strong> Bönhamn–Barstaviksfjärden–Skuleskogen kust–retur. Övernatta i tält vid stranden. Kräver viss havskajak-erfarenhet.</p>
 
@@ -6561,11 +6589,13 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Norrtälje skärgård – som Blidö tillhör – är en annan värld jämfört med de mer kända södra skärgårdsöarna. Här ser du mer skog, fler orörda stränder och inga kaféer med kö ut på bryggan.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Blidö</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med bil:</strong> E18 norrut, sedan via Norrtälje mot Simpnäs. Trafikverkets bilfärja från Simpnäs till Blidö – gratis. Avgångar tätt dagtid. Kör sedan fritt på ön.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Utan bil:</strong> SL buss 631 från Tekniska Högskolan mot Norrtälje, byte till lokalbuss mot Simpnäs. Färja därifrån. Tidskrävande men möjligt.</p>
+<!-- KÄLLA: Trafikverket Färjerederiet — Blidöleden Yxlan–Blidö (ca 530 m, ca 4 min, avgiftsfri); Simpnäs är Waxholmsbolagets brygga mot Arholma, ingen bilfärja till Blidö (läst 2026-09-14). Stod "bilfärja från Simpnäs till Blidö" — fel. -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med bil:</strong> E18 norrut, via Norrtälje mot Furusund. Trafikverkets gratis bilfärjor Furusundsleden (Furusund–Yxlan) och Blidöleden (Yxlan–Blidö, ca 4 min). Avgångar tätt dagtid. Kör sedan fritt på ön.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Utan bil:</strong> SL buss 631 från Tekniska Högskolan mot Norrtälje, byte till buss mot Furusund/Yxlan och vidare med bilfärjorna som passagerare. Tidskrävande men möjligt.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Höjdpunkter</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Ramsö naturreservat:</strong> Del av Blidö-arkipelagen, orört med klippkust och fågelrika stränder. Kajak eller båt dit.</p>
+<!-- Inget "Ramsö naturreservat" belagt hos Länsstyrelsen Stockholm/Norrtälje kommun (sökt 2026-09-14) — ordet borttaget. -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Ramsö:</strong> Del av Blidö-arkipelagen, klippkust och fågelrika stränder. Kajak eller båt dit.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Badplatser:</strong> Spridda längs ön – oftast utan folk. Kristallklart vatten och sten/sandstränder.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Vandring:</strong> Skogsleder och kuststigar med naturupplevelse utan guide och utan skylt var femte meter.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fiske:</strong> Abborrefiske och gäddfiske i havsvikar och inre vattenvägar. Ta med spö.</p>
@@ -6852,6 +6882,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bäst för:</strong> Havsmat, segling, Bohusläns karaktär, barnfamiljer med serviceönskemål.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Höga Kusten</h2>
+<!-- KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Karaktär:</strong> Nordlig, dramatisk och vild. Berg som reser sig direkt ur havet, urskog och Skuleskogens nationalpark. Liten service, stor natur.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Klimat:</strong> Svalare vatten (14–18°C i juli), mer variabelt väder. Höst och vår ger extra dramatik.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Transport:</strong> Bil via E4, ca 4,5 h från Stockholm. Tåg till Härnösand möjligt men begränsar rörligheten.</p>
@@ -6878,7 +6909,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Brunn och Vindö:</strong> Inre skärgårdsöar nåbara med bilfärja och kajak. Lugnare och mer naturnära än de yttre destinationerna.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vandring</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingaröleden och Svartsöleden ger vandring med havsutsikt. Vindö naturreservat erbjuder kortare slingor med klippkust och gammal skog. Cykling längs Värmdöleden är ett populärt alternativ.</p>
+<!-- Inget reservat på Vindö finns hos Länsstyrelsen Stockholm (sökt 2026-09-14; Vindalsö är en annan ö) — meningen om det borttagen. -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingaröleden och Svartsöleden ger vandring med havsutsikt. Cykling längs Värmdöleden är ett populärt alternativ.</p>
 `,
 
   'vinterbastu-isbastu': `
@@ -7341,7 +7373,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA PLATSERNA FÖR HUMMERFISKE</h3>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kosterfjorden och yttre Koster</h4>
-<p>Ett av Europas artrikaste havsområden och en utmärkt hummerlokal. Branta klippbottnar. Bäst från Strömstad och med lokal fiskeguide. Kosterhavets nationalpark: kontrollera restriktioner.</p>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
+<p>Omkring 6 000 marina arter och en utmärkt hummerlokal. Branta klippbottnar. Bäst från Strömstad och med lokal fiskeguide. Kosterhavets nationalpark: kontrollera restriktioner.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Smögenskäret och Pater Noster</h4>
 <p>Trakterna kring Smögen och Väderöarna är klassisk hummerfiskevattne. Klippbottnar på 5–25 meters djup. Hyr båt i Smögen, sätt bурarna kvällen innan premiären.</p>
@@ -7504,8 +7537,9 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BÄSTA PLATSERNA FÖR HÖSTCAMPING</h3>
 
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Sandön naturreservat</h4>
-<p>En av Stockholms skärgårds vackraste camping-öar. Sandstrand, naturreservat och gratis tältplatser längs öns södra kust. Nås med Waxholmsbolaget via Stavsnäs. September och oktober är perfekta månader – folktom och klart vatten.</p>
+<!-- Inget reservat på Sandön/Sandhamn belagt hos Länsstyrelsen Stockholm eller Värmdö kommun (sökt 2026-09-14) — skyddsordet och "gratis tältplatser" borttagna. -->
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Sandön (Sandhamn)</h4>
+<p>En av Stockholms skärgårds vackraste camping-öar. Sandstrand och tältmöjligheter enligt allemansrätten på öns södra del. Nås med Waxholmsbolaget via Stavsnäs. September och oktober är perfekta månader – folktom och klart vatten.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kobbar runt Möja</h4>
 <p>Möja och omgivande kobbar och holmar är klassisk friluftsskärgård. Tälta på kobbar med allemansrätt – 1–2 nätter per plats. Ta mat och vatten för hela perioden. Waxholmsbolaget till Möja, sedan kajak eller simbåt till omgivande kobbar.</p>
@@ -7676,6 +7710,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
   <li>Klarare vatten – Östersjön är grundare och klarare här än i norra Stockholm</li>
   <li>Inga köer – inga Cinderellabåtar, inga fullbokade bryggor i juli</li>
   <li>Beställningstrafik i stället för regelbundna linjer – kräver planering men ger mer kontroll</li>
+<!-- KÄLLA: Länsstyrelsen Stockholm, naturreservat i Stockholms skärgård (t.ex. Svenska Högarna, Nåttarö, Utö) — föreskrifter per reservat; tillträdesförbud i fågelskyddsområden anges per område (läst 2026-09-14) -->
   <li>Fler naturreservat och friluftsöar utan kommersiell service</li>
   <li>Längre resa från Stockholm (ca 2,5 tim med bil till Arkösund)</li>
 </ul>

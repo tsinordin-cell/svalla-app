@@ -126,9 +126,11 @@ const GUIDES = [
 ]
 
 const TOP_10 = [
-  { rank: 1, name: 'Skuleskogen, Höga kusten', region: 'Höga kusten', desc: 'UNESCO-reservat med dramatiska bergssidor och urskogsstämning — Höga kustens hjärta och ett av Sveriges mest dramatiska naturreservat.', slug: '/aktivitet/vandring/skuleskogen' },
+  // KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark 1984; Länsstyrelsen Västernorrland — Höga Kusten är UNESCO-världsarv (2000), inte "reservat" (läst 2026-09-14)
+  { rank: 1, name: 'Skuleskogen, Höga kusten', region: 'Höga kusten', desc: 'Nationalpark i UNESCO-världsarvet Höga kusten — dramatiska bergssidor och urskogsstämning.', slug: '/aktivitet/vandring/skuleskogen' },
   { rank: 2, name: 'Utö, Stockholms skärgård', region: 'Stockholms skärgård', desc: 'Skärgårdens längsta led på ~8 km. Passerar gruvor, gammal kvarn, naturreservat och havsklippor. Nås utan bil.', slug: '/aktivitet/vandring/uto' },
   { rank: 3, name: 'Digerhuvud, Fårö', region: 'Gotland', desc: 'Raukarna är surrealistiska — klippformationer mot öppet hav som ser ut som en annan planet. En halvdag som sitter kvar länge.', slug: '/aktivitet/vandring/digerhuvud-faro' },
+  // KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark 2009, Kosteröarna naturreservat (läst 2026-09-14)
   { rank: 4, name: 'Nordkoster, Kosterhavet', region: 'Bohuslän', desc: 'Sveriges första marina nationalpark. Dramatiska klippor och Västerhavet i alla riktningar. Bilfri ö med välmarkerade leder.', slug: '/aktivitet/vandring/nordkoster' },
   { rank: 5, name: 'Kullaberg, Skåne', region: 'Nordvästra Skåne', desc: '70 meter höga klippavsatser, fyrar och sällsynt flora. Naturreservat med Sverige-unik geologi och välskött lednat.', slug: '/aktivitet/vandring/kullaberg' },
   { rank: 6, name: 'Finnhamn, Stockholms skärgård', region: 'Stockholms skärgård', desc: 'Det perfekta skärgårdsintrot: kompakt, vacker, utan bil och med STF-vandrarhem om du vill stanna kvar.', slug: '/aktivitet/vandring/finnhamn' },

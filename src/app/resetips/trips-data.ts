@@ -596,7 +596,8 @@ export const TRIPS: Trip[] = [
       {
         name: 'Hemmesta sjöäng',
         type: 'natur',
-        desc: 'Vackert naturreservat med vandringsleder och badmöjligheter. Ca 3 km buss/promenad från centrum.',
+        // Hemmesta sjöäng är INTE naturreservat — kommunalt skött våtmarks-/rekreationsområde (KÄLLA: Värmdö kommun, naturreservat, läst 2026-09-14). Ordet borttaget.
+        desc: 'Vackert våtmarksområde med vandringsleder och badmöjligheter. Ca 3 km buss/promenad från centrum.',
         tip: 'Bra för barnfamiljer — grunt och barnvänligt bad.',
       },
     ],
@@ -1267,7 +1268,8 @@ export const TRIPS: Trip[] = [
         desc: 'Välbearbetade klippbad längs öns östra och södra kust.',
       },
       {
-        name: 'Vandring i Mörkös naturreservat',
+        // Inget naturreservat på Mörkö gick att belägga (Södertälje kommun, sökt 2026-09-14) — ordet borttaget.
+        name: 'Vandring på Mörkö',
         type: 'natur',
         desc: 'Leder genom gammal ädellövskog och ut mot klippkusten.',
       },

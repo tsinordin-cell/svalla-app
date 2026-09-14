@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
+// KÄLLA: Länsstyrelsen Västernorrland — Höga Kusten världsarv (UNESCO) sedan 2000, utvidgat 2006 med Kvarken; sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14)
 export const metadata: Metadata = {
   title: 'Höga Kusten — Norrlands dramatiska klippkust',
   description: 'Höga Kusten: Unescos världsarv, Skuleskogens nationalpark, Ulvön, Härnösand och dramatiska klippor. Utforska Norrlandskusten med Svalla.',
@@ -51,6 +52,7 @@ const ITEMS: LandingItem[] = [
   },
   {
     icon: '🌲',
+    // KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14)
     title: 'Skuleskogens nationalpark',
     description: 'Världsarvet till havs — kombinera vandring i urskogen med ankring utanför klipporna. En upplevelse utanför det vanliga.',
     href: '/vandring-och-natur',
