@@ -771,11 +771,13 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'halluden-sormland': {
-    // Inget naturreservat "Hålludden" gick att belägga hos Länsstyrelsen Södermanland eller Östergötland (sökt 2026-09-14) — ordet borttaget, hela vandringen ifrågasatt (se kort på tavlan).
-    body: 'Hålludden är ett öppet kustlandskap med havsvy och hedsmark som är lite känt men genuint fint. En lagom halvdagsvandring för den som är i Norrköpingstrakten.',
+  'bravikenbranten': {
+    // KÄLLA: Länsstyrelsen Östergötland, Bråvikenbranten naturreservat (2007, 181,6 ha), läst 2026-09-14
+    body: 'Bråvikenbranten är Bråvikens branta nordsida i Norrköpings kommun, naturreservat sedan 2007. Här står grova tallar och knotiga torrträd på klippängar med kalkgynnad flora, och två grottor — Rövargrottan och Kopparbogrottan — ligger längs leden. Sörmlandsleden går genom området; leden från parkeringen till Kopparbo är 5,5 km och beskrivs av Länsstyrelsen som särskilt krävande, med branta stigningar. Utsiktsplats med vindskydd och grillplats på vägen.',
     tips: [
-      'Tåg → Norrköping, sedan buss.',
+      'Parkering Skvättan har bara sju platser — kom tidigt eller ta bussen Krokek–Kvarsebo (600 m promenad).',
+      'Kopparbogrottan har djupa sprickor och trånga passager — gå inte in ensam.',
+      'Ca 6 km från Kolmårdens djurpark via väg 903.',
     ],
   },
 
@@ -851,15 +853,6 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
       'Bil rekommenderas.',
     ],
   },
-
-  'kattilö': {
-    // Inget naturreservat "Kättilö" gick att belägga hos Länsstyrelsen Östergötland (sökt 2026-09-14); närmaste belagda är Gryts naturreservat (1963). Ordet borttaget.
-    body: 'Kättilö i Östgötaskärgården (Gryts skärgård) är en ö med kustleder och havsvy som ger äkta skärgårdskaraktär.',
-    tips: [
-      'Bil eller sommarbåt.',
-    ],
-  },
-
   'oxelosund-kust': {
     body: 'Oxelösund på Sörmlandskusten har ett unikt industriellt kustlandskap med järnverkets siluett som kontrast mot havet och en välmarkerad kuststig runt den industriella halvön.',
     tips: [

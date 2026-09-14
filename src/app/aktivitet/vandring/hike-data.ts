@@ -1727,24 +1727,29 @@ export const HIKES: Hike[] = [
     tagline: 'Sörmlandsleden längs kusten — välkarterade etapper med natur och tystnad.',
   },
   {
-    slug: 'halluden-sormland',
-    // Inget naturreservat "Hålludden" belagt hos Länsstyrelsen Södermanland/Östergötland (sökt 2026-09-14). Hela posten ifrågasatt — se kort på tavlan.
-    name: 'Hålludden',
-    region: 'sormland',
-    distanceKm: 3,
-    durationMin: 1,
-    durationMax: 2,
-    difficulty: 'lätt',
-    transport: 'Tåg → Norrköping, sedan buss',
+    slug: 'bravikenbranten',
+    // OMSKRIVEN 2026-09-14: posten hette "Hålludden naturreservat" — ingen sådan plats finns hos
+    // Länsstyrelsen Östergötland/Södermanland eller Norrköpings kommun. Ersatt med ett verkligt reservat.
+    // KÄLLA: Länsstyrelsen Östergötland, Bråvikenbranten naturreservat — Norrköpings kommun, skyddat 2007,
+    // 181,6 ha; Sörmlandsleden genom området (ca 5 km Säter–Gerhardsberg); led parkeringen–Kopparbo 5,5 km
+    // "särskilt krävande och svår"; Rövargrottan och Kopparbogrottan; parkering Skvättan (7 platser);
+    // buss Krokek–Kvarsebo, 600 m promenad från hållplatsen (läst 2026-09-14).
+    name: 'Bråvikenbranten',
+    region: 'ostgota',
+    distanceKm: 5.5,
+    durationMin: 2,
+    durationMax: 4,
+    difficulty: 'krävande',
+    transport: 'Buss Krokek–Kvarsebo, 600 m till parkeringen Skvättan',
     carRequired: false,
     ferryRequired: false,
-    hasBathing: true,
+    hasBathing: false,
     hasRestaurant: false,
     hasCafe: false,
-    suitableForChildren: true,
+    suitableForChildren: false,
     suitableForDogs: true,
     bestSeason: 'Maj–oktober',
-    tagline: 'Sörmlandskusthedens öppna marker med havsvy — lite känt men genuint fint.',
+    tagline: 'Bråvikens branta nordsida — grova tallar, två grottor och en etapp av Sörmlandsleden.',
   },
   {
     slug: 'braviken-sormland',
