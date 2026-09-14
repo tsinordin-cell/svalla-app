@@ -237,11 +237,11 @@ export const ISLANDS: Island[] = [
       { icon: '🛶', name: 'Kajak & SUP', desc: 'Uthyrning finns vid hamnen. Paddla runt ön eller ut mot de omgivande grunden.' },
     ],
     accommodationIntro: 'Sandhamn har ett koncentrerat och välkvalitativt boendeutbud kring hamnen. Seglarhotellet är flaggskeppet och håller öppet hela året med modernt spa — boka månader i förväg inför juli och Gotland Runt-helgen. Sandhamns Värdshus och Sands Hotell ger kompletterande alternativ med mer personlig prägel.',
+    // KÄLLA: sandhamn.com, sandhamns-vardshus.se, sandshotell.se — egna webbplatser; visitskargarden.se listar samma tre, inget STF-boende på Sandhamn (läst 2026-09-14)
     accommodation: [
-      { name: 'Seglarhotellet', type: 'Hotell', desc: 'Det ikoniska hotellet vid hamnen — modernt spa, utsiktsrum och öppet helår. Boka långt i förväg.', websiteUrl: 'https://www.sandhamn.com' },
-      { name: 'Sandhamns Värdshus', type: 'B&B', desc: 'Boende i historisk miljö med frukost. Öppet hela sommaren.', websiteUrl: 'https://sandhamns-vardshus.se' },
-      // KÄLLA: sandshotell.se (Sands Hotells egen webbplats, skild från Seglarhotellets sandhamn.com)
-      { name: 'Sands Hotell', type: 'Hotell', desc: 'Modernt lägenhetshotell med hotellservice nära hamnen. Öppet året om.', websiteUrl: 'https://sandshotell.se' },
+      { name: 'Sandhamn Seglarhotell', type: 'Hotell', desc: 'Hotell vid hamnen med spa, restaurang, gym och pool. Öppet året runt. Boka långt i förväg.', websiteUrl: 'https://www.sandhamn.com' },
+      { name: 'Sandhamns Värdshus', type: 'B&B', desc: 'Gästgiveri i Missionshuset med fem dubbelrum och en stuga, frukost ingår.', websiteUrl: 'https://sandhamns-vardshus.se' },
+      { name: 'Sands Hotell', type: 'Hotell', desc: 'Lägenhetshotell med hotellservice nära hamnen, 15 dubbelrum och 3 enkelrum. Öppet året om.', websiteUrl: 'https://sandshotell.se' },
     ],
     getting_there: [
       // KÄLLA: sandhamn.com/en/hitta-hit — Waxholmsbåt linje 15 Strömkajen–Sandhamn "2–3 hours"
@@ -389,11 +389,11 @@ export const ISLANDS: Island[] = [
       { icon: '🎣', name: 'Fiske', desc: 'Ytterskärgården runt Utö är utmärkt för havsöring och abborre.' },
     ],
     accommodationIntro: 'Utö erbjuder skärgårdens bredaste boendeutbud utanför de mer centrala öarna — från välrenommerade Utö Värdshus med spa, restaurang och havsutsikt till stugor och campingplatser i naturreservat. Ön passar allt från par på weekend till barnfamiljer med tält.',
+    // KÄLLA: utovardshus.se/boende (Kvarnvillan, Stenhotellet, hotellstugor, vandrarhemmet); uto.se/camping; STF:s lista över vandrarhem i Stockholms skärgård nämner INTE Utö — "STF-ansluten" borttaget (läst 2026-09-14)
     accommodation: [
-      { name: 'Utö Värdshus', type: 'Hotell', desc: 'Välkänt värdshus med restaurang och havsutsikt. Öppet hela året.', websiteUrl: 'https://www.utovardshus.se', bookingUrl: 'https://www.utovardshus.se/boka/' },
-      { name: 'Utö Camping & Stugor', type: 'Camping', desc: 'Tältplats och stugor i naturreservat. Bokningsbart online.', websiteUrl: 'https://www.uto.se' },
-      // KÄLLA: utovardshus.se/boende/vandrarhemmet/ samt vandrarhemskartan.se ("STF Utö Vandrarhem, Skärgården, Utö Värdshus") — STF-ansluten vandrarhemsdel av Utö Värdshus, bokningsbar online
-      { name: 'Vandrarhemmet, Utö Värdshus', type: 'Vandrarhem', desc: 'STF-ansluten vandrarhemsdel av Utö Värdshus. Enkelt och prisvärt boende, bokningsbart online.', websiteUrl: 'https://www.utovardshus.se/boende/vandrarhemmet/' },
+      { name: 'Utö Värdshus', type: 'Hotell', desc: 'Värdshus med restaurang och havsutsikt — rum i Kvarnvillan, Stenhotellet och hotellstugor. Öppet hela året.', websiteUrl: 'https://www.utovardshus.se' },
+      { name: 'Utö Vandrarhem Skärgården', type: 'Vandrarhem', desc: 'Vandrarhemsdelen av Utö Värdshus. Enkelt boende, bokningsbart online.', websiteUrl: 'https://www.utovardshus.se/boende/vandrarhemmet/' },
+      { name: 'Utö campingplats', type: 'Camping', desc: 'Tältplats nära Gruvbryggan, sköts av Hamnboden/Utö gästhamn.', websiteUrl: 'https://www.uto.se/camping/' },
     ],
     getting_there: [
       { method: 'Skärgårdsbåt', from: 'Årsta brygga, Nynäshamn', time: '1,5 h', desc: 'Waxholmsbolagets skärgårdslinje från Årsta brygga i Nynäshamn (kommunal- och SL-kort gäller ej — separat biljett).', icon: '⛴' },
@@ -530,10 +530,13 @@ export const ISLANDS: Island[] = [
       { icon: '🚢', name: 'Båtutflykter', desc: 'Ta Waxholmsbåten vidare ut i skärgården — Grinda, Finnhamn och Sandhamn är alla tillgängliga.' },
     ],
     accommodationIntro: 'Vaxholm har skärgårdens mest tillgängliga boendeutbud — det historiska Waxholms Hotell vid hamnen nås med bil, buss och direktbåt från Stockholm. Till skillnad från de yttre öarna kan man boka med relativt kort varsel och checka in utan att logistiken behöver planeras i förväg.',
+    // KÄLLA: waxholmshotell.se; kastelletvaxholm.se + STF (STF Kastellet Bed & Breakfast, 27 rum, året runt); vaxholmsbedandbreakfast.se; svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem; waxholmscamping.com (läst 2026-09-14)
     accommodation: [
-      { name: 'Waxholms Hotell', type: 'Hotell', desc: 'Historiskt hotell precis vid hamnen med matsal och havsutsikt. Öppet hela året.', websiteUrl: 'https://www.waxholmshotell.se' },
-      { name: 'B&B i Vaxholm', type: 'B&B', desc: 'Mindre B&B och pensionat i stadskärnan. Sök på Booking.com eller Airbnb för aktuella alternativ och lediga rum.' },
-      { name: 'Waxholms Camping', type: 'Camping', desc: 'Campingplats med stugor, perfekt för barnfamiljer som kör till Vaxholm. Nås enkelt med bil.' },
+      { name: 'Waxholms Hotell', type: 'Hotell', desc: 'Historiskt hotell vid hamnen med matsal och havsutsikt. Öppet hela året.', websiteUrl: 'https://www.waxholmshotell.se' },
+      { name: 'Kastellet Bed & Breakfast', type: 'B&B', desc: 'STF-anslutet B&B i Vaxholms kastell, 27 rum, öppet året runt; bistro och café sommartid.', websiteUrl: 'https://kastelletvaxholm.se' },
+      { name: 'Vaxholms Bed & Breakfast', type: 'B&B', desc: 'Litet B&B i privat hem i Vaxholm.', websiteUrl: 'https://vaxholmsbedandbreakfast.se' },
+      { name: 'STF Bogesunds Vandrarhem', type: 'Vandrarhem', desc: 'Vandrarhem vid Bogesunds slott utanför Vaxholm.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem/' },
+      { name: 'Waxholms Camping', type: 'Camping', desc: 'Campingplats med stugor på Eriksö — nås med bil.', websiteUrl: 'https://waxholmscamping.com' },
     ],
     getting_there: [
       // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Vaxholm, ~55–70 min (se facts_provenance ovan i filen)
@@ -665,10 +668,11 @@ export const ISLANDS: Island[] = [
       { icon: '🌅', name: 'Solnedgångspromenaden', desc: 'Promenera till öns västra sida på kvällen för att se solnedgången över vattnet.' },
     ],
     accommodationIntro: 'Grinda Wärdshus driver öns hela boende och håller hög standard i alla kategorier — hotellrum med frukost i fyra hus, enkla Sea Lodge-stugor nära vattnet och en campingplats för friluftsentusiaster. Wärdshuset håller öppet maj–september och tar emot gäster utan bil.',
+    // KÄLLA: grinda.se/en/accommodation (hotels, sea-lodge, camping: "No reservation is needed"); svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge (läst 2026-09-14)
     accommodation: [
-      { name: 'Grinda Wärdshus Hotell', type: 'Hotell', desc: 'Hotellrum i fyra hus nära wärdshuset. Frukost ingår. Boka i förväg sommartid.', websiteUrl: 'https://grinda.se' },
-      { name: 'Grinda Sea Lodge', type: 'Stugor', desc: 'Enkelt boende på öns södra sida. Luncher, fika och middagar lagas av personal och äts gemensamt; frukost med nybakat bröd ingår.', websiteUrl: 'https://grinda.se' }, // KÄLLA: swedishtouristassociation.com/facilities/stf-grinda-hotel-sea-logde/accommodation/ (måltider serveras gemensamt, inget självhushåll)
-      { name: 'Grinda Camping', type: 'Camping', desc: 'Tältplats på ön i naturskön miljö. Ingen förbokning krävs — kom som du är.' },
+      { name: 'Grinda Wärdshus Hotell', type: 'Hotell', desc: 'Hotellrum i hus nära wärdshuset, frukost ingår. STF-anslutet (STF Grinda Hotell & Sea Lodge). Boka i förväg sommartid.', websiteUrl: 'https://grinda.se' },
+      { name: 'Grinda Sea Lodge', type: 'Stugor', desc: 'Enkelt boende på öns södra sida; måltider lagas av personal och äts gemensamt, frukost ingår.', websiteUrl: 'https://grinda.se/en/accommodation/sea-lodge/' },
+      { name: 'Grinda Camping', type: 'Camping', desc: 'Tältplats i naturskön miljö. Ingen förbokning krävs — välj plats när du kommer.', websiteUrl: 'https://grinda.se/en/accommodation/camping/' },
     ],
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2 h', desc: 'Direktlinje. Ordinarie Waxholmsbolagsbiljett krävs — SL-kort gäller inte på reguljär skärgårdstrafik under högsäsong.', icon: '⛴' }, // KÄLLA: svalla.se/guider/waxholmsbolaget-guide ("SL-kortet gäller INTE på Waxholmsbolagets reguljära skärgårdstrafik"); SL-biljett gäller samtliga linjer endast 14 sep–29 apr (mynewsdesk.com/se/sl)
@@ -800,12 +804,11 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Klippbad', desc: 'Klara och kalla vatten runt ön. Hoppa från klipporna norr om hamnen.' },
       { icon: '⛵', name: 'Segling', desc: 'Paradisviken och Söder Långholm är klassikerhamnar. Välskyddade och natursköna.' },
     ],
+    // KÄLLA: svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem; finnhamn.se/en/accommodation; boka.finnhamn.se; skargardsstiftelsen.se/omraden/finnhamn — tältning på två anvisade platser i reservatet; "fråga i lanthandeln" obelagt, borttaget (läst 2026-09-14)
     accommodation: [
-      // KÄLLA: roslagen.se/en/eagle/finnhamn-a-living-skargardso-with-nature-and-history/ (villan byggd 1915 av kolgrosshandlaren Wilhelm Rönström).
-      { name: 'Finnhamns Vandrarhem', type: 'Vandrarhem', desc: 'Bo i grosshandlarvilla från 1915. Flerbädds och tvåbäddsrum. Prisvärt.' },
-      // KÄLLA: boka.finnhamn.se bokningssidor ("2-bädds stuga", "4-bädds stuga") — ingen 6-bäddsstuga hittad i stugbyn.
-      { name: 'Stugby Finnhamn', type: 'Stugor', desc: 'Pittoreska stugor vid vattnet för 2–4 personer. Boka tidigt.' },
-      { name: 'Tältplats', type: 'Camping', desc: 'Enkla tältmöjligheter på ön. Fråga i lanthandeln.' },
+      { name: 'STF Finnhamns Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem i grosshandlarvillan från 1915, flerbädds- och tvåbäddsrum.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/' },
+      { name: 'Stugby Finnhamn', type: 'Stugor', desc: 'Stugby på Idholmen med ett trettiotal stugor för 2–4 personer samt sjöstugor. Boka tidigt.', websiteUrl: 'https://boka.finnhamn.se' },
+      { name: 'Tältplatser', type: 'Camping', desc: 'Tältning bara på två anvisade platser — Finnhamn är naturreservat.', websiteUrl: 'https://skargardsstiftelsen.se/omraden/finnhamn/' },
     ],
     getting_there: [
       // KÄLLA: sl.se/aktuellt/nyheter/sl-biljetter-i-en-del-av-waxholmsbolagets-trafik (SL-biljett/reskassa gäller bara Strömkajen–Vaxholm med omnejd); regionstockholm.se (SL-periodkort 30 dagar+ gäller alla linjer men bara lågsäsong 14/9–29/4).
@@ -936,10 +939,10 @@ export const ISLANDS: Island[] = [
       { icon: '🛶', name: 'Kajak', desc: 'Paddla runt öns södra sida mot Gällnö och Svartsö.' },
     ],
     accommodationIntro: 'Möjas boende är mer sporadiskt och lokalt organiserat än på de mer turistade öarna — uthyrning sker delvis via lokalbor och digitala plattformar snarare än via hotellkomplex. Det är en del av charmen: du bor genuint, nära det verkliga ölivet och de fastboende som gör Möja till vad det är.',
+    // KÄLLA: svenskaturistforeningen.se/boende/stf-moja-vandrarhem (öppet april–december); mojavardshusochbageri.se. Wikströms Fisk stängde 13 juni 2024 (wikstromsfisk.com) — inget boende där (läst 2026-09-14)
     accommodation: [
-      // KÄLLA: visitmoja.se/boende-på-möja (Möja Vandrarhem, STF-vandrarhem, självhushåll i 2–4-bäddsrum)
-      { name: 'Möja Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem med självhushåll, rum för 2–4 personer. Boka i god tid inför sommarsäsongen.' },
-      { name: 'Privat stuguthyrning', type: 'Stugor', desc: 'Flera privatpersoner hyr ut sommarstugor på Möja via Airbnb och liknande plattformar. Boka i god tid inför sommarsäsongen.' },
+      { name: 'STF Möja Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem med självhushåll, rum för 2–4 personer. Öppet april–december. Boka i god tid inför sommaren.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/' },
+      { name: 'Möja Värdshus & Bageri', type: 'B&B', desc: 'Värdshus och bageri med B&B-boende under förlängd sommarsäsong.', websiteUrl: 'https://mojavardshusochbageri.se' },
     ],
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Sollenkroka', time: '~40 min', desc: 'Waxholmsbolagets linje 14 från Sollenkroka brygga (buss 434 från Slussen dit) — flera bryggor på Möja: Berg, Ramsmora, Långvik. Även direktbåt från Strömkajen, ~3,5 h.', icon: '⛴' },
@@ -1215,8 +1218,10 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Bad', desc: 'Flera badplatser, varav Linanäsbadet vid Dyviksrundan är mest känd.' },
       { icon: '⛽', name: 'Sjömack', desc: 'Klintan har sjömack — ett av skärgårdens välplacerade bränslestopp.' },
     ],
+    // KÄLLA: visitskargarden.se/boende/vandrarhem/gaasviks-vandrarhem (18 bäddar, året runt); ljusterologi.se. Åsättra är båtplatser/parkering, inte boende (asattra.com) (läst 2026-09-14)
     accommodation: [
-      { name: 'Stugor & B&B', type: 'Stugor', desc: 'Flera privata uthyrare längs öns vägar. Sök online.' },
+      { name: 'Gåsviks Vandrarhem', type: 'Vandrarhem', desc: 'Vandrarhem med 18 bäddar i sex rum, öppet året runt.', websiteUrl: 'https://visitskargarden.se/boende/vandrarhem/gaasviks-vandrarhem.aspx' },
+      { name: 'Ljusterö Logi', type: 'B&B', desc: 'Boende med anor från 1910-talet, även konferens och event.', websiteUrl: 'https://ljusterologi.se' },
     ],
     getting_there: [
       // KÄLLA: SL:s tidtabell linje 626 Danderyds sjukhus–Ljusterö (giltig dec 2025–juni 2026); linje 621 går Åkersberga–Norrtälje. Färjan avgiftsfri enligt Trafikverket (Ljusteröleden).
@@ -1327,8 +1332,10 @@ export const ISLANDS: Island[] = [
       { icon: '🎣', name: 'Fiske', desc: 'Fiske i vattnen kring Dalarö och södra skärgården.' },
       { icon: '🚶', name: 'Dalarö Museum', desc: 'Liten men intressant utställning om ortens maritima historia.' },
     ],
+    // KÄLLA: smadalarogard.se; visitskargarden.se/boende/vandrarhem/vandrarhemmet-lotsen (12 bäddar, året runt, inte STF). "Dalarö Strand Hotell" gick inte att belägga; Dalarö Skans är evenemangsplats (SFV), inget boende (läst 2026-09-14)
     accommodation: [
-      { name: 'Smådalarö Gård', type: 'Hotell', desc: 'Spa-hotell utanför orten — pool och naturläge.' },
+      { name: 'Smådalarö Gård', type: 'Hotell', desc: 'Spa-hotell utanför samhället med pool och naturläge.', websiteUrl: 'https://smadalarogard.se' },
+      { name: 'Vandrarhemmet Lotsen', type: 'Vandrarhem', desc: 'Litet vandrarhem i Dalarö med 12 bäddar i fyra rum, öppet året runt.', websiteUrl: 'https://visitskargarden.se/boende/vandrarhem/vandrarhemmet-lotsen.aspx' },
     ],
     getting_there: [
       { method: 'Bil', from: 'Stockholm', time: '45 min', desc: 'Kör E4 söderut och följ skyltning mot Haninge och Dalarö.', icon: '🚗' },
@@ -1429,8 +1436,11 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://arholmahandel.se/cykeluthyrning/ (hämtad 2026-08-06)
       { icon: '🚲', name: 'Cykling', desc: 'Arholma Handel hyr ut cyklar: 100 kr halvdag (4 h), 150 kr heldag (8 h), 200 kr per dygn. Hämtas direkt på bryggan — boka i förväg, trycket är högt. Kort, avkopplande tur till Arholma Båk och fyren längs öns grusvägar.' },
     ],
+    // KÄLLA: svenskaturistforeningen.se/boende/stf-arholma-bull-august-gard (14 rum, 32 bäddar, huvudbyggnaden året runt; bullaugust.com); visitskargarden.se — Arholma Handel-Stuguthyrning maj–september; roslagen.se — Arholma Nord (läst 2026-09-14)
     accommodation: [
-      { name: 'Arholma Handel Stugor', type: 'Stugor', desc: 'Enkla stugor uthyrda av handelsboden.' },
+      { name: 'STF Arholma Bull-August gård', type: 'Vandrarhem', desc: 'STF-vandrarhem på gammal skärgårdsgård, 14 rum och 32 bäddar. Huvudbyggnaden öppen året runt.', websiteUrl: 'https://bullaugust.com' },
+      { name: 'Arholma Nord', type: 'Stugor', desc: 'Stugor och rum i egen vik, sommardrift.', websiteUrl: 'https://roslagen.se/en/boende/arholma-nord/' },
+      { name: 'Arholma Handel — stuguthyrning', type: 'Stugor', desc: 'Stuga (Källarstugan) som hyrs ut av handelsboden, maj–september.', websiteUrl: 'https://visitskargarden.se/boende/vandrarhem/arholma-handel-stuguthyrning.aspx' },
     ],
     getting_there: [
       { method: 'Buss + färja', from: 'Norrtälje (via Simpnäs)', time: '1 tim 36 min', desc: 'Buss 636 till Simpnäs på Björkö, sedan kort färja till Arholma. Ingen Waxholmsbåt går direkt från Norrtälje.', icon: '🚌' }, // KÄLLA: se facts.travel_time (ResRobot 2026-08-05)
@@ -1519,8 +1529,11 @@ export const ISLANDS: Island[] = [
       { icon: '🐦', name: 'Fågelskådning', desc: 'Ornö är känt för sitt rika fågelliv, särskilt under vår- och höstflytt.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Rent vatten och fina klippor längs kusten.' },
     ],
+    // KÄLLA: ornoskargardshotell.se (året runt); sundbyorno.se (5 dubbelrum); orno.se/ata-bo/boende — Ornö Båtvarv 6 stugor, 18 bäddar; visitskargarden.se — stuga i Brunnsviken. Kyrkvikens vandrarhem och camping gick inte att belägga (läst 2026-09-14)
     accommodation: [
-      { name: 'Stugor privat', type: 'Stugor', desc: 'Privatpersoner hyr ut stugor sommartid. Sök online.' },
+      { name: 'Ornö Skärgårdshotell', type: 'Hotell', desc: 'Hotell med dubbelrum och lägenheter vid vattnet i Brunnsviken, frukost ingår. Öppet året runt.', websiteUrl: 'https://ornoskargardshotell.se' },
+      { name: 'Sundby gård', type: 'B&B', desc: 'B&B med fem dubbelrum i herrgårdsflygel.', websiteUrl: 'https://sundbyorno.se' },
+      { name: 'Stugor på Ornö Båtvarv', type: 'Stugor', desc: 'Sex stugor med sammanlagt 18 bäddar vid båtvarvet.', websiteUrl: 'https://ornobatvarv.se' },
     ],
     getting_there: [
       // KÄLLA: ornosjotrafik.se — "Överfarten tar ca 30 minuter" mellan Hässelmara brygga och Hotellbryggan på Dalarö. Publicerad turlista gäller 27/4–13/9 2026; ingen vintertidtabell hittades vid granskning, så "året runt" är borttaget.
@@ -1607,8 +1620,11 @@ export const ISLANDS: Island[] = [
       { icon: '🌊', name: 'Havsutsikter', desc: 'Stå på klipporna och titta österut — ingen ö skymmer horisonten. Omöjligt att fotografera dåligt.' },
       { icon: '🐦', name: 'Fågelstation', desc: 'Landsort är en av de viktigaste observationsplatserna för sträckande fåglar i Sverige.' },
     ],
+    // KÄLLA: visitskargarden.se — Landsorts Stugor AB (1–4 pers, året runt; landsortsstuguthyrning.se), Landsorts Vandrarhem (4 hus, 26 bäddar, året runt; landsortsvandrarhem.se), Lotstornet (6 dubbelrum, restaurang Svedtiljas; g-mo.se) (läst 2026-09-14)
     accommodation: [
-      { name: 'Landsort Stugor', type: 'Stugor', desc: 'Stugor för 1–4 personer nära fyren.' }, // KÄLLA: visitskargarden.se – Öja/Landsort, "Landsort Stugor" (2026-09-03)
+      { name: 'Landsorts Stugor', type: 'Stugor', desc: 'Stugor för 1–4 personer nära fyren, öppet året runt.', websiteUrl: 'https://landsortsstuguthyrning.se' },
+      { name: 'Landsorts Vandrarhem', type: 'Vandrarhem', desc: 'Fyra hus med 26 bäddar nedanför fyren, öppet året runt.', websiteUrl: 'https://landsortsvandrarhem.se' },
+      { name: 'Lotstornet', type: 'Hotell', desc: 'Sex dubbelrum i den ombyggda lotsutkiken, med restaurang Svedtiljas.', websiteUrl: 'https://g-mo.se' },
     ],
     getting_there: [
       { method: 'Buss + båt', from: 'Nynäshamn → Ankarudden (Torö) → Landsort', time: 'Beror på anslutning, se tidtabell', desc: 'SL-buss 852 från Nynäshamn till Ankarudden, sedan skärgårdsbåt ca 30 min till Landsort.', icon: '⛴' }, // KÄLLA: ResRobot 2026-08-05, färja 29-1 Ankarudden 07:20 → Landsort 07:50 (se facts.travel_time i denna fil)
@@ -1672,8 +1688,9 @@ export const ISLANDS: Island[] = [
       { icon: '📚', name: 'Strindbergs-turism', desc: 'August Strindberg bodde och skrev här. Platsen bär hans historia.' },
       { icon: '🏊', name: 'Bad', desc: 'Klippbad längs sundet och på de omgivande holmarna.' },
     ],
+    // KÄLLA: hotellfurusund.se (furusundvardshus.se omdirigerar dit) — boutiquehotell med 16 rum, restaurang, året runt; visitskargarden.se/boende/hotell/hotell-furusund (läst 2026-09-14)
     accommodation: [
-      { name: 'Furusund Värdshus', type: 'Hotell', desc: 'Anrikt värdshus med restaurang och havsutsikt.' },
+      { name: 'Hotell Furusund', type: 'Hotell', desc: 'Anrikt värdshus, i dag boutiquehotell med 16 rum och restaurang. Öppet året runt.', websiteUrl: 'https://hotellfurusund.se' },
     ],
     getting_there: [
       { method: 'Bil', from: 'Stockholm via Norrtälje', time: '2 h', desc: 'Kör E18 mot Norrtälje och följ skylt mot Furusund.', icon: '🚗' },
@@ -1741,8 +1758,9 @@ export const ISLANDS: Island[] = [
       { icon: '🚲', name: 'Cykling', desc: 'Kuperade kustvägar längs en lång, skogig kustlinje med öppna åkrar och klippor. Räkna med en heldagstur för att nå öns norra och södra delar.' },
       { icon: '🏊', name: 'Bad', desc: 'Fina badplatser längs kusten.' },
     ],
+    // KÄLLA: visitskargarden.se — Blidö Brygga och Bistro, vandrarhem med 27 bäddar + stuga, restaurang, vedeldad bastu (blidobryggabistro.se) (läst 2026-09-14)
     accommodation: [
-      { name: 'Stugor & privat', type: 'Stugor', desc: 'Privatuthyrning på ön. Sök online.' },
+      { name: 'Blidö Brygga och Bistro', type: 'Vandrarhem', desc: 'Vandrarhem med 27 bäddar och en stuga vid bryggan, restaurang och vedeldad bastu.', websiteUrl: 'https://blidobryggabistro.se' },
     ],
     getting_there: [
       // KÄLLA: sv.wikipedia.org/wiki/Blidö ("färjeförbindelse från Furusund via trafikfärjelederna Furusundsleden och Blidöleden... mellan Furusund... och Köpmanholm (Yxlan) samt mellan Larshamn (Yxlan) och Norrsund (Blidö)")
@@ -1802,8 +1820,10 @@ export const ISLANDS: Island[] = [
       { icon: '🚴', name: 'Cykel och kajak', desc: 'Cykel och kajak går att hyra på ön under sommaren.' },
       { icon: '🚶', name: 'Vandring', desc: 'Välmarkerade leder i naturreservat.' },
     ],
+    // KÄLLA: svenskaturistforeningen.se/boende/stf-gallno-vandrarhem + gallno.se (rum i gamla skolan och stugor, café sommartid, året runt); skargardsstiftelsen.se/omraden/gallno-karklo — tältplats vid Torsviken (läst 2026-09-14)
     accommodation: [
-      { name: 'Tältplatser', type: 'Camping', desc: 'Enkla tältmöjligheter på ön.' },
+      { name: 'STF Gällnö Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem i gamla skolan med rum och stugor, café och bar sommartid. Öppet året runt.', websiteUrl: 'https://gallno.se' },
+      { name: 'Tältplats Torsviken', type: 'Camping', desc: 'Skärgårdsstiftelsens tältplats och naturhamn vid Torsviken.', websiteUrl: 'https://skargardsstiftelsen.se/omraden/gallno-karklo/' },
     ],
     getting_there: [{ method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 2 h', desc: 'Waxholmsbolaget eller Strömma/Cinderellabåtarna från Strömkajen eller Strandvägen.', icon: '⛴' }], // KÄLLA: gallno.se ("tar mellan 1,5–2 timmar ... trafikeras av både Waxholmsbolaget och Strömma/Cinderella-båtarna")
     harbors: [{ name: 'Gällnö brygga', desc: 'Brygga vid Gällnö by, nära krog, café och handelsbod.', fuel: false }], // KÄLLA: gallno.se (nämner "Gällnö brygga" och "Gällnö by"); namnet "Gällnö Hamn" hittades inte i primärkällor
@@ -1971,10 +1991,11 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Klippbad', desc: 'Rent vatten och fina klippor.' },
     ],
     // KÄLLA: nattaro.se/vandrarhemmet (fyra hus, 32 bäddar); nattaro.se (stugor, bokning via hemsidan); nattaro.se/gasthamn (gästhamn Kvarnviken)
+    // KÄLLA: nattaro.se/boende — vandrarhemmet fyra hus (Röda Villan, Annexet, Västan, Östan) 32 bäddar, ca 50 stugor, dygnscamping på anvisad plats; skargardsstiftelsen.se/omraden/nattaro (läst 2026-09-14)
     accommodation: [
-      { name: 'Nåttarö Vandrarhem', type: 'Vandrarhem', desc: 'Fyra hus med sammanlagt 32 bäddar.' },
-      { name: 'Stugor på Nåttarö', type: 'Stuga', desc: 'Uthyrningsstugor på ön, bokas via nattaro.se.' },
-      { name: 'Nåttarö gästhamn', type: 'Gästhamn', desc: 'Båtplatser och ankring vid Kvarnviken.' },
+      { name: 'Nåttarö Vandrarhem', type: 'Vandrarhem', desc: 'Fyra hus — Röda Villan, Annexet, Västan och Östan — med sammanlagt 32 bäddar.', websiteUrl: 'https://nattaro.se/boende/vandrarhemmet/' },
+      { name: 'Stugor på Nåttarö', type: 'Stugor', desc: 'Ett femtiotal uthyrningsstugor på ön, bokas via nattaro.se.', websiteUrl: 'https://nattaro.se/boende/' },
+      { name: 'Camping', type: 'Camping', desc: 'Dygnscamping och tältning på anvisad plats.', websiteUrl: 'https://nattaro.se/boende/' },
     ],
     getting_there: [
       // KÄLLA: nattaro.se ("turbåten från Nynäshamn"); exakt linjenamn och trafikperiod kunde inte beläggas hos Waxholmsbolaget (tidtabellen kräver JavaScript och gick inte att hämta)
@@ -2072,10 +2093,9 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Badplatser', desc: 'Femsundsviken har brygga och sandstrand; Badberget ligger vid norra bryggan.' },
       { icon: '🚶', name: 'Vandring', desc: 'Stigar genom öppet betesmarkslandskap och blandskog. Stockholm Archipelago Trail-etappen är väl markerad.' },
     ],
+    // KÄLLA: ingmarsobnb.se + roslagen.se — B&B på Norrgården (1600-talsgård), rum med frukost. Ingmarsö Krog är restaurang utan rum (ingmarsokrog.com) (läst 2026-09-14)
     accommodation: [
-      // KÄLLA: ingmarsobnb.se: B&B på Norrgården, en gård från 1800-talet, med svit, familjerum eller dubbelrum
-      { name: 'Ingmarsö B&B', type: 'B&B', desc: 'B&B på Norrgården, en gård från 1800-talet — svit, familjerum eller dubbelrum, frukost ingår.' },
-      { name: 'Privatstugor', type: 'Stugor', desc: 'Sommarstugor uthyrda av lokalbor. Sök via Blocket eller Airbnb.' },
+      { name: 'Ingmarsö B&B', type: 'B&B', desc: 'B&B på Norrgården, en gård från 1600-talet — svit, familjerum eller dubbelrum, frukost ingår.', websiteUrl: 'https://ingmarsobnb.se' },
     ],
     getting_there: [
       // KÄLLA: se facts.travel_time ovan (Waxholmsbolagets tabell 12/13): 2,5 h sommartid, ca 3 h 15 min övrig tid; ingmarso.se/hittahit: angörs via Åsättra (Ljusterö), Vaxholm eller buss 438 till Boda på Värmdö
@@ -2165,7 +2185,9 @@ export const ISLANDS: Island[] = [
       { icon: '🚶', name: 'Vandring', desc: 'Promenera runt ön och utforska de gamla fiskelägena.' },
       { icon: '⛵', name: 'Segling', desc: 'Naturhamnen på södsidan är ett populärt seglarankar.' },
     ],
+    // KÄLLA: skargardsstiftelsen.se/omraden/namdo — Solvik har boende sommartid, bl.a. glamping, samt tältplatser; visitskargarden.se — Nämdö Solviks Gästhamn (läst 2026-09-14)
     accommodation: [
+      { name: 'Solvik — glamping och gästhamn', type: 'Camping', desc: 'Skärgårdsstiftelsens område Solvik har boende sommartid, bland annat glamping, samt gästhamn och tältplatser.', websiteUrl: 'https://skargardsstiftelsen.se/omraden/namdo/' },
     ],
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '~35 min till Östanvik', desc: 'Waxholmsbolagets linje 17 från Stavsnäs vinterhamn. Linjen går mot Saltsjöbaden/Stockholm, inte till Möja.', icon: '⛴' },
@@ -2256,8 +2278,10 @@ export const ISLANDS: Island[] = [
       { icon: '🚶', name: 'Vandring', desc: 'Stockholm Archipelago Trail-etapp leder över Svartsö med markerade stigar genom öppet odlingslandskap och skog.' },
       { icon: '🚲', name: 'Cykling', desc: 'Bilfri ö med totalt 14 km grusvägar — ideal för en hel dag på cykel. Hyr cykel hos Svartsö Lanthandel vid Ahlsviks brygga. Inga bilar, bara kor, betesängar och stilla skärgårdslandskap.' },
     ],
+    // KÄLLA: svenskaturistforeningen.se/boende/stf-svartso-skargardshotell-vandrarhem — STF-anslutet, ägs och drivs av fyra Svartsöfamiljer (inte av STF); svartsolanthandel.se/sjobodarna — 4 stugor, 8 bäddar vid Alsviks brygga (läst 2026-09-14)
     accommodation: [
-      { name: 'STF Svartsö Skärgårdshotell & Vandrarhem', type: 'Vandrarhem', desc: 'Hotell- och vandrarhemsboende med konferensmöjligheter, drivet av Svenska Turistföreningen.' },
+      { name: 'STF Svartsö Skärgårdshotell & Vandrarhem', type: 'Vandrarhem', desc: 'Hotell- och vandrarhemsboende med konferens. STF-anslutet, ägs och drivs av fyra Svartsöfamiljer.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-svartso-skargardshotell-vandrarhem/' },
+      { name: 'Sjöbodarna, Svartsö Lanthandel', type: 'Stugor', desc: 'Fyra stugor med åtta bäddar vid Alsviks brygga intill lanthandeln.', websiteUrl: 'https://www.svartsolanthandel.se/sjobodarna' },
     ],
     getting_there: [
       // KÄLLA: svartsokrog.se/hitta-hit ("Resan tar ca 1,5-2,5h beroende på avgång"; "Stig av vid Alsviks brygga")
@@ -2364,8 +2388,9 @@ export const ISLANDS: Island[] = [
       { icon: '⛵', name: 'Segling', desc: 'Klassisk passage och stopp på Stavsnäs-leden mot Sandhamn.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Klippbad längs öns kustlinje.' },
     ],
+    // KÄLLA: runmarobatvarv.se — gästbrygga med båtplatser, inga stugor; runmaro.se: Runmarö Krog är nedlagd ("F.d. Runmarö Krog") (läst 2026-09-14)
     accommodation: [
-      { name: 'Runmarö Gästhamn', type: 'Gästhamn', desc: 'Förtöj på gästplatser — enkelt och bra.' },
+      { name: 'Runmarö Båtvarv — gästbrygga', type: 'Gästhamn', desc: 'Gästplatser för båtar vid Runmarö Båtvarv. Inget boende på land är belagt på ön.', websiteUrl: 'https://runmarobatvarv.se' },
     ],
     // KÄLLA: Waxholmsbolagets tidtabeller linje 16 och 17 (kund.printhuset-sthlm.se/wa/v16.pdf, v17.pdf, gäller 2 apr–18 jun och 17 aug–12 dec 2026): Stavsnäs–Styrsvik ca 5 min; 17 fortsätter Nämdö–Saltsjöbaden–Stockholm (läst 2026-09-14). Stod 11–20 min och "nås ej från Strömkajen" — fel.
     getting_there: [
