@@ -1713,7 +1713,11 @@ export default function LandingPageClient({ photoMap }: { photoMap?: Record<stri
  zIndex: 0,
  overflow: 'hidden',
  pointerEvents: 'none',
- background: 'linear-gradient(to bottom, #0a1f2b 0%, #0d2440 100%)',
+ /* Platshållare tills canvasen målat: samma färgstopp som dagtemat (variant 1)
+    i HeroAnimation — himmel #3d94d4→#b0dcf2 ned till vattenlinjen på 58 %,
+    vatten #2488c0→#0a2e5a under. Var tidigare en mörkblå gradient, vilket gav
+    en mörk blixt första sekunden innan animationen tog över (kort 1780a7c6). */
+ background: 'linear-gradient(to bottom, #3d94d4 0%, #60aee0 20%, #92c8f0 44%, #b0dcf2 58%, #2488c0 58%, #186aa8 72%, #104e84 86%, #0a2e5a 100%)',
  } as React.CSSProperties}>
  {/* Wrapping HeroAnimation i Suspense förhindrar att Next.js stämplar
      BAILOUT_TO_CLIENT_SIDE_RENDERING på resten av sidan när komponenten
