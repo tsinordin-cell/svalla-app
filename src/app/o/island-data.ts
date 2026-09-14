@@ -2559,7 +2559,7 @@ export const ISLANDS: Island[] = [
     tips: [
       'Anlöp tidigt — Fejan är populär och naturhamnen fylls kvällar i juli.',
       'Ta med allt du behöver — ingen service finns på ön.',
-      'Naturreservatsregler: elden bara i anvisade eldplatser, inga lösa fyrverkerier.',
+      // Fejan är INTE naturreservat (KÄLLA: Norrtälje kommuns lista över skyddad natur, läst 2026-09-14 — Fejan finns inte med). Tidigare tips om "naturreservatsregler" borttaget.
     ],
     related: ['furusund', 'arholma', 'graddo'],
     tags: ['naturreservat', 'klippor', 'segling', 'snorkling', 'norra'],
@@ -2865,6 +2865,7 @@ export const ISLANDS: Island[] = [
     region: 'södra',
     regionLabel: 'Södra skärgården',
     emoji: '🔬',
+    // KÄLLA: Länsstyrelsen Södermanland, naturreservat Askö — bildat 2001, utökat 2007, 5 849 ha varav 624 ha land (läst 2026-09-14)
     tagline: 'Marinbiologisk forskning och naturskönt naturreservat i södra ytterskärgården.',
     description: [
       'Askö ligger i Trosa-skärgården i södra Sörmland (formellt utanför Stockholms län), och är hem för Stockholms universitets marina forskningsstation Askölaboratoriet, en av Sveriges viktigaste forskningsplattformar för Östersjön. Ön är obebodd förutom forskningsstationen.',
@@ -3029,6 +3030,7 @@ export const ISLANDS: Island[] = [
     region: 'södra',
     regionLabel: 'Södra skärgården',
     emoji: '🪨',
+    // KÄLLA: Länsstyrelsen Stockholm, naturreservat Fjärdlång — skyddat sedan 1986, förvaltas av Skärgårdsstiftelsen och USF-Ö Fastighet AB (läst 2026-09-14)
     tagline: 'Orört naturreservat i södra ytterskärgården — här åker man hit, inte förbi.',
     description: [
       'Fjärdlång är en större ö i Stockholms södra skärgård öster om Dalarö och Ornö. Ön är skyddad som naturreservat och förvaltas av Skärgårdsstiftelsen, ett tag av Stockholms läns finaste oexploaterade skärgårdsmiljöer med klippkust, blandskog och rikt fågelliv.',
@@ -3201,6 +3203,7 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta ytterskärgården',
     emoji: '🎨',
+    // KÄLLA: Länsstyrelsen Stockholm, Nämdöskärgårdens nationalpark (invigd sept 2025): "Bullerö är nationalparkens entré" (läst 2026-09-14)
     tagline: 'Huvudentré till Nämdöskärgårdens nationalpark — Bruno Liljefors ö',
     description: [
       // KÄLLA: sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark — "Huvudentrén finns på ön Bullerö", bildades 2025 (hämtad 2026-08-19)
@@ -3490,7 +3493,7 @@ export const ISLANDS: Island[] = [
     tips: [
       'Populärt utflyktsmål för stockholmare — undvik högsommarhelger i juli om du vill ha lugn och ro.',
       'Buss 428 från Slussen (via Gustavsberg) når Ingarö — bra alternativ utan bil och ganska snabbt.',
-      'Velamsunds naturreservat på Ingarö har markerade leder med fina utsiktspunkter — besök tidigt på dagen.',
+      // Tidigare tips om "Velamsunds naturreservat på Ingarö" borttaget: Velamsund ligger i Nacka kommun (östra Boo), inte på Ingarö. KÄLLA: Länsstyrelsen Stockholm + Nacka kommun, naturreservat Velamsund (läst 2026-09-14).
     ],
     related: ['vindo', 'gallno', 'moja'],
     tags: ['tillgänglig', 'skog', 'segling', 'bad', 'mellersta'],
@@ -3511,6 +3514,7 @@ export const ISLANDS: Island[] = [
     region: 'norra',
     regionLabel: 'Norra ytterskärgården',
     emoji: '🪨',
+    // KÄLLA: Länsstyrelsen Stockholm, naturreservat Svenska Högarna — reservat sedan 1976, utökat med stort havsområde 2020, Sveriges största marina naturreservat (läst 2026-09-14)
     tagline: 'Norra ytterskärgårdens ostligaste utpost — Heidenstam-fyr och naturreservat',
     description: [
       'Svenska Högarna är en ögrupp i Norrtälje kommun, längst österut i Stockholms ytterskärgård, ca 18 distansminuter rakt öster om Möjas nordspets. Ön nämns redan 1488 i skrifter från Julita kloster, då som kronohamnsfiske där munkar bytte till sig saltad strömming mot avlat.',
@@ -3642,26 +3646,27 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '⛵',
+    // KÄLLA: Naturvårdsverket, skötselplan Nämdöskärgårdens nationalpark (ISBN 978-91-620-7202-5): "Grunda hårdbottnar och rev finns bland annat kring Långviksskär och Koskären-Ormskär" — Ormskär ligger inom parken (läst 2026-09-14). Uppgiften "norra delen av ön" gick inte att belägga och är borttagen.
     tagline: 'Klippig ö söder om Nämdö — i Nämdöskärgårdens nationalpark',
     description: [
-      // KÄLLA: sverigesnationalparker.se — Bullerö naturreservat uppgick i Nämdöskärgårdens nationalpark när den bildades 2025 (hämtad 2026-08-19)
-      'Ormskär ligger i Skoboraden söder om Nämdö i Stockholms mellersta skärgård. Den norra delen av ön ingår i Nämdöskärgårdens nationalpark och är därmed skyddad. Ön höjer sig oväntat högt ur havet, namnet kommer av huggormarna som funnits på ön.',
+      'Ormskär ligger söder om Nämdö i Stockholms mellersta skärgård och ingår tillsammans med Koskären i Nämdöskärgårdens nationalpark, invigd 2025. Ön höjer sig oväntat högt ur havet, namnet kommer av huggormarna som funnits på ön.',
       'Klippig kust och stilla vatten i lä-läge präglar miljön. Ön är obebodd och saknar service. Inga reguljära turistförbindelser går hit.',
-      'Ormskär passar för seglare som söker en lugn ankringsplats i Bullerö-området. Notera att naturreservatets regler gäller för delar av ön.',
+      'Ormskär passar för seglare som söker en lugn ankringsplats i Bullerö-området. Nationalparkens föreskrifter gäller.',
     ],
     facts: { travel_time: 'Cirka 3–4 h med segelbåt från Stavsnäs', character: 'Klippig ö, naturreservat, ankring', season: 'Juni–augusti', best_for: 'Segling, ankring, naturvistelse' },
     activities: [
       { icon: '⛵', name: 'Ankring', desc: 'Naturhamn med skydd i lämpliga vindar.' },
-      { icon: '🚶', name: 'Klippvandring', desc: 'Korta promenader längs öns klippkust (utanför reservatets skyddade del).' },
+      { icon: '🚶', name: 'Klippvandring', desc: 'Korta promenader längs öns klippkust — nationalparkens föreskrifter gäller.' },
     ],
     accommodation: [],
     getting_there: [{ method: 'Egen båt', from: 'Stavsnäs / Möja', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
     harbors: [{ name: 'Ormskärs naturhamn', desc: 'Skyddad ankringsplats.' }],
     restaurants: [],
-    tips: ['Norra delen ligger i Nämdöskärgårdens nationalpark — respektera nationalparkens föreskrifter.', 'Ta med all proviant.'],
+    // KÄLLA: se skötselplanen ovan (Koskären-Ormskär inom nationalparken)
+    tips: ['Ön ligger i Nämdöskärgårdens nationalpark — respektera nationalparkens föreskrifter.', 'Ta med all proviant.'],
     related: ['bullero', 'namdo', 'moja'],
-    tags: ['naturreservat', 'naturhamn', 'mellersta', 'segling'],
-    did_you_know: 'Ormskär är en av flera öar i Skoboraden söder om Nämdö som ingår i Nämdöskärgårdens nationalpark, invigd 2025. Namnet kommer av att det fanns gott om huggormar på ön.',
+    tags: ['nationalpark', 'naturhamn', 'mellersta', 'segling'],
+    did_you_know: 'Ormskär ingår tillsammans med Koskären i Nämdöskärgårdens nationalpark, invigd 2025. Namnet kommer av att det fanns gott om huggormar på ön.',
   },
 
   {
@@ -3873,6 +3878,7 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Egen båt', from: 'Möja / Stavsnäs', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
     harbors: [{ name: 'Storskärs naturhamn', desc: 'Skyddad ankringsplats.' }],
     restaurants: [],
+    // KÄLLA: Länsstyrelsen Stockholm, naturreservat Storskär — södra delen av ön, 8,9 ha, skyddat sedan 1968, förvaltas av Länsstyrelsen; ön ligger i Svartlögafjärden ca 4 km norr om Möja, Österåkers kommun (läst 2026-09-14)
     tips: ['Södra delen av ön är naturreservat — respektera reservatsreglerna.', 'Ta med all proviant.'],
     related: ['moja', 'kanholmen', 'norrora'],
     tags: ['naturreservat', 'naturhamn', 'mellersta', 'segling'],
@@ -4161,7 +4167,8 @@ export const ISLANDS: Island[] = [
     description: [
       'Styrsö är den folkrikaste ön i södra skärgården med cirka 1 500 fast bosatta och den naturliga knutpunkten i arkipelagen. Ön har skola, bibliotek, mataffär och samhällsservice — ett komplett ösamhälle utan bilar.',
       'Restaurang Styrsö Bratten är en av Göteborgs mest hyllade — trots (eller tack vare) läget ute i skärgården. Hit reser göteborgare enbart för maten: nordisk mat gjord på råvaror från havet och trädgården.',
-      'Styrsö södra spets, Tången, är ett naturreservat med fri utsikt över Kattegatt. Att sitta där i solnedgången är en av Göteborgstraktens finest.',
+      // Tången är gästhamn/turbåtsbrygga, inte naturreservat — inget reservat på Styrsö hos Länsstyrelsen Västra Götaland eller Göteborgs Stad (sökt 2026-09-14). Ordet borttaget.
+      'Styrsö södra spets, Tången, har fri utsikt över Kattegatt. Att sitta där i solnedgången är en av Göteborgstraktens finest.',
     ],
     facts: {
       travel_time: '~15–25 min med Styrsöbolaget från Saltholmen (linje 281/282)',
@@ -4171,7 +4178,7 @@ export const ISLANDS: Island[] = [
     },
     activities: [
       { icon: '🍽', name: 'Styrsö Bratten', desc: 'En av Göteborgs bästa restauranger. Nordisk mat, lokala råvaror, fantastisk utsikt. Boka månader i förväg.' },
-      { icon: '🌿', name: 'Tångens naturreservat', desc: 'Södra spetsen med fri havsutsikt. Vandring genom ljunghed och klippor.' },
+      { icon: '🌿', name: 'Tången', desc: 'Södra spetsen med fri havsutsikt. Vandring genom ljunghed och klippor.' },
       { icon: '🏖', name: 'Bad', desc: 'Badklippor runt hela ön. Brevik på östra sidan populärast.' },
       { icon: '⛵', name: 'Gästhamn', desc: 'Gästhamn i Styrsö Tången med service sommartid.' },
     ],
@@ -4189,7 +4196,7 @@ export const ISLANDS: Island[] = [
     ],
     tips: [
       'Styrsö Bratten bokar upp månader i förväg under sommaren — gå in på deras hemsida direkt.',
-      'Tångens naturreservat är gratis och öppet dygnet runt — ta med termos och se solnedgången.',
+      'Tången kostar inget och är öppet dygnet runt — ta med termos och se solnedgången.',
       'Mataffären på Styrsö håller rimliga tider sommartid — handla proviant för dagen.',
     ],
     related: ['branno', 'vrango', 'donso'],
@@ -4643,13 +4650,14 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [
-      { method: 'Guidad tur från Klintehamn', from: 'Klintehamn (Gotland)', time: 'ca 25 min båt', desc: 'Boka tur via Lilla Karlsö Naturreservat. Alla besök är guidade — det är inte tillåtet att besöka ön på egen hand. Kolla bokningssystem och tidtabell på lillakarlso.se.', icon: '⛴' },
+      // KÄLLA: Länsstyrelsen Gotland, naturreservat Lilla Karlsö (sedan 1955, ägs av Naturskyddsföreningen): båt från Klintehamn; landstigning bara vid bryggan på östra sidan; 1 mars–31 aug krävs tillstånd för att vistas på ön (läst 2026-09-14). Arrangör enligt Naturskyddsföreningen Gotland: Gotland Sea Guides.
+      { method: 'Guidad tur från Klintehamn', from: 'Klintehamn (Gotland)', time: 'ca 25 min båt', desc: 'Boka tur via Naturskyddsföreningen Gotland (Gotland Sea Guides). Under 1 mars–31 augusti krävs tillstånd för att vistas på ön och landstigning får bara ske vid bryggan — i praktiken går man med guidad tur.', icon: '⛴' },
     ],
     transport_meta: {
       from_city_min: 240,
       nearest_hub: 'Klintehamn (Gotland)',
       from_nearest_hub_min: 25,
-      operator: 'Lilla Karlsö Naturreservat',
+      operator: 'Naturskyddsföreningen Gotland / Gotland Sea Guides',
       frequency: 'Guidade turer dagligen maj–aug, boka i förväg',
     },
     harbors: [],
@@ -4674,6 +4682,7 @@ export const ISLANDS: Island[] = [
     region: 'ovriga',
     regionLabel: 'Gotland',
     emoji: '🏝',
+    // KÄLLA: Länsstyrelsen Gotland, Gotska Sandöns nationalpark — bildad 1910, utvidgad 1963 och 1988 (läst 2026-09-14)
     tagline: 'Östersjöns ensliga nationalpark — sanddyner, tallar och absolut avskildhet.',
     description: [
       'Gotska Sandön är en av Sveriges mest avlägsna öar — och en av de mest fascinerande. Nationalparken i öppet Östersjövatten, cirka 37 km norr om Fårö, har inga vägar, inga butiker och ingen fast bebyggelse utöver fyrvaktarbostaden och ett antal stugor.',
@@ -4683,6 +4692,7 @@ export const ISLANDS: Island[] = [
     facts: {
       area: 'ca 37 km²',
       population: '0 (nationalparkspersonal sommartid)',
+      // KÄLLA: se ovan (nationalpark sedan 1910)
       known_for: 'Avlägsen nationalpark, sanddyner, unika ekosystem',
       season: 'Juni–September (sommartrafik)',
     
@@ -4750,11 +4760,12 @@ export const ISLANDS: Island[] = [
     facts: {
       area: 'ca 9 km²',
       population: 'ca 100 (helårsboende)',
-      known_for: 'Naturreservat, klipplandskap, Karlskrona-skärgård',
+      // Inget naturreservat på Aspö i Karlskrona kommun gick att belägga hos Länsstyrelsen Blekinge (sökt 2026-09-14) — ordet borttaget.
+      known_for: 'Klipplandskap, Karlskrona-skärgård',
       season: 'Maj–September',
     
       travel_time: 'ca 4 tim',
-      character: 'Blekinges naturreservat',
+      character: 'Skärgårdsö i Blekinge',
       best_for: 'Kajakpaddlare, badare, naturliv',
     },
     activities: [
@@ -4875,6 +4886,7 @@ export const ISLANDS: Island[] = [
     region: 'ovriga',
     regionLabel: 'Kalmarsund',
     emoji: '🪄',
+    // KÄLLA: sverigesnationalparker.se + Länsstyrelsen Kalmar — Blå Jungfrun nationalpark sedan 1926 (läst 2026-09-14)
     tagline: 'Förtrollad nationalpark i Kalmarsund — häxor, labyrinter och urberg.',
     description: [
       'Blå Jungfrun är en av Sveriges märkligaste platser — en rund granitö mitt i Kalmarsund som i folklig tradition ansågs vara samlings­platsen för svenska häxor varje Skärtorsdag (Blåkulla-legenden). I verkligheten är ön ett geologiskt unikum: en rundad granitklump formad av inlandsisen med stenlabyrinten Trollebo som dess mest kända inslag.',
@@ -5443,6 +5455,7 @@ export const ISLANDS: Island[] = [
     region: 'ovriga',
     regionLabel: 'Blekinge',
     emoji: '🏕',
+    // KÄLLA: Länsstyrelsen Blekinge, naturreservat Tjärö — skyddat 1976, förvaltas av Länsstyrelsen (läst 2026-09-14)
     tagline: 'Blekinges naturreservat med sandstränder — camping och urskogar vid Östersjön.',
     description: [
       // KÄLLA: Länsstyrelsen Blekinge, besöksmål naturreservat/Tjärö (läst 2026-08-23)
@@ -5500,6 +5513,7 @@ export const ISLANDS: Island[] = [
       open: 'Maj–September',
       peak: 'Juli',
       best: 'Juni eller mitten av augusti',
+      // KÄLLA: Länsstyrelsen Blekinge, naturreservat Tjärö (1976)
       bestReason: 'Tjärö naturreservat med sandstrand och camping i Blekinge. I juni: tomt och mysigt. Mitten av aug: varmt hav utan juli-trängseln.',
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
@@ -5643,7 +5657,8 @@ export const ISLANDS: Island[] = [
       season: 'Juni–Augusti',
     
       travel_time: 'ca 1 tim',
-      character: 'Norrlands naturreservat',
+      // KÄLLA: Länsstyrelsen Västerbotten, naturreservat Holmöarna — bildat 1980 och 1995, ca 25 000 ha (läst 2026-09-14)
+      character: 'Holmöarnas naturreservat',
       best_for: 'Sälskådare, fågelskådare, naturentusiaster',
     },
     activities: [

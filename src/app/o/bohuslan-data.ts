@@ -149,6 +149,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     },
     activities: [
       { icon: '🐠', name: 'Havets Hus', desc: 'Akvarium med svenska Västkust-arter — populärt med barn.' },
+      // KÄLLA: Länsstyrelsen Västra Götaland, naturreservat Stångehuvud — ca 48 ha, ägs av Kungl. Vetenskapsakademien, förvaltas med Lysekils kommun (läst 2026-09-14)
       { icon: '🥾', name: 'Stångehuvud naturreservat', desc: 'Klippvandring längs Gullmarsfjorden, soluppgång eller solnedgång.' },
       { icon: '🦐', name: 'Räkfiske-utflykt', desc: 'Boka räkfiskartur — drag upp egna räkor och få dem ångkokta ombord.' },
       { icon: '🏊', name: 'Pinnviks bad', desc: 'Sandstrand i centralt Lysekil, populär bland familjer.' },
@@ -190,6 +191,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
     emoji: '🐟',
+    // KÄLLA: Länsstyrelsen Västra Götaland, Kosterhavets nationalpark — bildad 2009, Sveriges första marina nationalpark; öarna Nord-/Sydkoster är naturreservat (Kosteröarna), parken är till största delen hav (läst 2026-09-14)
     tagline: 'Sveriges första marina nationalpark — vild natur, sälar och dykning i världsklass.',
     description: [
       // KÄLLA: sverigesnationalparker.se — Kosterhavet bildades 2009; Nämdöskärgården blev
@@ -261,6 +263,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     },
     activities: [
       { icon: '🦪', name: 'Ostron-safari', desc: 'Båt + ostronöppning + provsmakning. Boka via Everts Sjöbod eller Ostronakademien.' },
+      // KÄLLA: Länsstyrelsen Västra Götaland, Tjurpanneområdet (Tjurpannans naturreservat) — bildat 1968, ca 499 ha, förvaltas av Västkuststiftelsen (läst 2026-09-14)
       { icon: '🥾', name: 'Tjurpannans naturreservat', desc: 'Spektakulära klippvandringar med utsikt över havet.' },
       { icon: '⛵', name: 'Segling', desc: 'Skyddade vatten, perfekt för nybörjare.' },
       { icon: '🏊', name: 'Edsviksbadet', desc: 'Familjevänlig sandstrand strax utanför Grebbestad.' },
