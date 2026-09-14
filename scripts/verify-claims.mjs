@@ -426,10 +426,12 @@ function skrivVarningar() {
   console.log(`\n! ${varningar.length} påståenden att granska (varning, fäller inte bygget):`)
   for (const [typ, lista] of Object.entries(grupper).sort((a, b) => b[1].length - a[1].length)) {
     console.log(`\n  ── ${typ} (${lista.length}) ──`)
-    for (const v of lista.slice(0, 6)) {
+    // --alla skriver hela listan (för att beta av en kategori); annars sex per grupp.
+    const visa = process.argv.includes('--alla') ? lista : lista.slice(0, 6)
+    for (const v of visa) {
       console.log(`    ${v.fil}:${v.rad}  ${v.text.replace(/\s+/g, ' ').slice(0, 88)}`)
     }
-    if (lista.length > 6) console.log(`    … och ${lista.length - 6} till`)
+    if (lista.length > visa.length) console.log(`    … och ${lista.length - visa.length} till (--alla visar allt)`)
   }
   console.log(`
   Att beta av, i prioritetsordning:
