@@ -2226,7 +2226,7 @@ const REGION_LINKS: Record<string, { href: string; label: string }[]> = {
  'fjaderholmarna-dagstur': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
  'vaxholm-guide': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
  'uto-guide': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
- 'segling-nyborjare-guide': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/nyborjarguider', label: 'Nybörjarguider' }, { href: '/segelrutter', label: 'Segelrutter' }],
+ 'segling-nyborjare-guide': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/nyborjare-segling', label: 'Börja segla — nybörjarguide' }, { href: '/segelrutter', label: 'Segelrutter' }],
  'basta-badplatserna': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
  'vandring-orno-uto': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
  'cykling-moja-gallno': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
