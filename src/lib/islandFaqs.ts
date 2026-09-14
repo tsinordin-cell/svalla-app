@@ -223,8 +223,9 @@ const UNIQUE_BOHUSLAN: Record<string, FAQ[]> = {
       a: 'Kosterbåtarna från Strömstad gästhamn — 30–45 min till Sydkoster eller Nordkoster. Tätare turer på sommaren. Från Göteborg till Strömstad: 2 h med bil eller tåg. Kostervägfärjan trafikerar bara mellan Sydkoster och Nordkoster (5 min).' },
     { q: 'Vilken Koster-ö ska jag åka till?',
       a: 'Sydkoster är större (8 km²) med mer service — gästhamn, restauranger, cykeluthyrning, naturum. Nordkoster är mindre och vildare med klippor och fyr. Båda öarna är bilfria och förbundna med vägfärja.' },
+    // KÄLLA: Länsstyrelsen Västra Götaland / kosterhavet.se — nationalpark 2009; "ett av Sveriges två kända levande korallrev" (läst 2026-09-14). Stod "Sveriges enda korallrev" — fel.
     { q: 'Vad är Kosterhavets nationalpark?',
-      a: 'Sveriges första marina nationalpark (2009). Skyddar Sveriges enda korallrev, säldjur, makrillstim och ett unikt undervattenslandskap. Naturum Kosterhavet på Sydkoster har utställningar och guidning.' },
+      a: 'Sveriges första marina nationalpark (2009). Skyddar ett av Sveriges två kända levande korallrev, säldjur, makrillstim och ett unikt undervattenslandskap. Naturum Kosterhavet på Sydkoster har utställningar och guidning.' },
     { q: 'Var äter man i Kosterhavet?',
       a: 'På Sydkoster: Ekenäs Sjökrog (skaldjur med havsutsikt), Långegärde Kafé och Kosters Trädgårdar (lokal mat). På Nordkoster: Kafé Lyngnor och Mor Kerstins Kök. Begränsat utbud — boka i förväg sommartid.' },
     { q: 'Kan man cykla på Koster?',
