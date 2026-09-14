@@ -24,6 +24,24 @@ Regeln gäller åt båda håll: att stänga ett kort genom ett **dokumenterat
 beslut att inte göra det** är legitimt ("BESLUT: skyddet behålls" — inte
 "gjort").
 
+## Läget — läs innan du bedömer siffror (Tom 2026-09-14)
+
+Svalla är **inte lanserat** och ingen marknadsföring har börjat. Lansering
+planeras till **sommaren 2027**. Alla besök, sidvisningar och registreringar
+fram till dess är bonus — inte ett mått på vad sajten är värd eller vad
+användarna vill ha.
+
+Vad det betyder i praktiken:
+
+- Argumentera aldrig "ingen använder X" utifrån trafik före lansering. Det
+  säger inget. Frågan är i stället: ska X finnas och fungera vid lansering?
+- Mätningar (analytics_events, Vercel Analytics, aktiva användare per vecka)
+  är byggverktyg och baslinjer, inte betyg.
+- Det som ska bort ska bort för att det inte håller vid lansering — trasigt,
+  okällat, halvfärdigt — inte för att det saknar besökare i dag.
+- Tidshorisonten är lång: ett beslut som "vänta tills det finns användare"
+  betyder i praktiken "vänta till efter sommaren 2027".
+
 ## Genomgångens åtta regler
 
 1. Fråga innan du raderar något. Alltid. Kort, filer, databasrader.
