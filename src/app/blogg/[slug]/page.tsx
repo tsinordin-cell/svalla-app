@@ -1541,6 +1541,7 @@ Det kortaste och enklaste alternativet. [Fjäderholmarna](/o/fjaderholmarna) lig
 
 ## 6. Kajak och tält på Bullerö (2–3 dagar, äventyr)
 
+<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö ingår i Nämdöskärgårdens nationalpark (invigd sept 2025), reservatet Bullerö upphävt 01FS 2026:01 (läst 2026-09-14) -->
 [Bullerö](/o/bullero) ingår sedan 2025 i Nämdöskärgårdens nationalpark och har ingen fast befolkning – du ankrar eller paddlar dit, men nationalparkens föreskrifter gäller (kolla vad som är tillåtet kring tält och eld innan du åker). Ett av Stockholms skärgårds vackraste öar att övernatta på. Kombinera med kajakuthyrning från Dalarö eller charter.
 
 **Bäst för:** Äventyrare, kajakpaddlare, de som vill ha riktig vildmark.
@@ -1794,10 +1795,13 @@ Skärgårdens vandringsleder är sällan markerade på samma sätt som fjällede
 ### 3. Möja – Byvandring (ca 8 km)
 [Möja](/o/moja) är bilfri och perfekt för en dagstur med vandring. Vandra mellan de tre byarna längs byvägar och skogstigar. Kuperat, charmigt och med café-paus på vägen.
 
+<!-- KÄLLA: Länsstyrelsen Stockholm — naturreservat Gällnö (med Karklö), sedan 1978, utvidgat 2017/2024, ca 270 ha, förvaltas av Skärgårdsstiftelsen (läst 2026-09-14) -->
 ### 4. Gällnö naturreservat (ca 6 km)
 Gällnö är ett naturreservat i Värmdö skärgård med markerade leder och vacker urbergsterräng. Enklare och kortare — perfekt för familjer med barn som kan gå.
 
+<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö ingår i Nämdöskärgårdens nationalpark (invigd sept 2025), reservatet Bullerö upphävt 01FS 2026:01 (läst 2026-09-14) -->
 ### 5. Bullerö, Nämdöskärgårdens nationalpark (ca 5 km)
+<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö ingår i Nämdöskärgårdens nationalpark (invigd sept 2025), reservatet Bullerö upphävt 01FS 2026:01 (läst 2026-09-14) -->
 [Bullerö](/o/bullero) är en av skärgårdens vackraste öar och ingår sedan 2025 i Nämdöskärgårdens nationalpark, utan fast boende. Kort slingled med utsiktsplatser. Nås med charter- eller privatbåt.
 
 ### 6. Grinda – Runt ön (ca 4 km)
@@ -1823,6 +1827,7 @@ Skärgårdens vandringsleder kräver respekt och planering men ger enormt tillba
    faqs: [
      { q: 'Vilken är den bästa vandringen i Stockholms skärgård?', a: 'Utö-etappen av Stockholm Archipelago Trail (18,4 km, start Gruvbryggan eller Spränga) och Ornö-etappen (34,1 km) är de mest kompletta vandringarna. För kortare dagsvandringar är Grinda och Möja utmärkta.' },
      { q: 'Behöver man bil för att vandra i skärgården?', a: 'Nej. De flesta vandringsleder nås med Waxholmsbåten direkt från Stockholm. Utö nås med båt från Nynäshamn (pendeltåg + byte).' },
+     // KÄLLA: Länsstyrelsen Stockholm — naturreservat Gällnö (1978), Skärgårdsstiftelsen förvaltar (läst 2026-09-14)
      { q: 'Är det markerade vandringsleder i skärgården?', a: 'Delvis. Gällnö naturreservat och Grinda har markerade leder. Utö och Ornö har skyltade leder men ladda ner kartappen Komoot med offline-karta som säkerhetsnet.' },
    ],
  },
@@ -1852,6 +1857,7 @@ Här är de naturhamnar i Stockholms skärgård som erfarna seglare återkommer 
 ## De bästa naturhamnarna
 
 ### Bullerskär / Bullerö
+<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö ingår i Nämdöskärgårdens nationalpark (invigd sept 2025), reservatet Bullerö upphävt 01FS 2026:01 (läst 2026-09-14) -->
 [Bullerö](/o/bullero) och de omgivande skären är ett av Stockholms skärgårds finaste ankringsområden. Del av Nämdöskärgårdens nationalpark (sedan 2025), utan bofast befolkning, med klippor som sträcker sig ner i vattnet. Välskyddat från sydväst. Använd sjökortet noggrant — det är grunt på flera ställen.
 
 ### Möja – Östersundet
@@ -2019,6 +2025,7 @@ Den kortaste och lättaste. [Fjäderholmarna](/o/fjaderholmarna) är bara 25 min
 
 [Ornö](/o/orno) är för den som vill ha riktig natur. Bil krävs (vägfärja från Nynäshamn), men belöningen är en av skärgårdens bäst bevarade öar med runt-öled och fullständigt lugn.
 
+<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö ingår i Nämdöskärgårdens nationalpark (invigd sept 2025), reservatet Bullerö upphävt 01FS 2026:01 (läst 2026-09-14) -->
 ## 8. Bullerö i Nämdöskärgårdens nationalpark – klippor och frihet
 
 [Bullerö](/o/bullero) nås bara med båt och har ingen fast service. Charter eller privat båt, med tält och matsäck. En av Stockholms skärgårds vackraste öar för den som vill vara ifred.
@@ -2027,6 +2034,7 @@ Den kortaste och lättaste. [Fjäderholmarna](/o/fjaderholmarna) är bara 25 min
 
 En av de öar i yttre skärgården som fortfarande är relativt okänd. Charter- eller privat båt. Nakna klippor, havsluft och utsikt mot Östersjön.
 
+<!-- KÄLLA: Länsstyrelsen Stockholm — naturreservat Gällnö (med Karklö), sedan 1978, utvidgat 2017/2024, ca 270 ha, förvaltas av Skärgårdsstiftelsen (läst 2026-09-14) -->
 ## 10. Gällnö naturreservat – vandring och paddling
 
 Norra Stockholms skärgård med markerade vandringsleder och möjlighet att hyra kajak i närheten. Kombinera vandring och paddling för en aktiv dag.
