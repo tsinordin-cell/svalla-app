@@ -228,6 +228,8 @@ const nextConfig: NextConfig = {
       { source: '/aktivitet/vandring/tjol%C3%B6holm', destination: '/aktivitet/vandring/tjoloholm', permanent: true },
       { source: '/aktivitet/vandring/tjolöholm', destination: '/aktivitet/vandring/tjoloholm', permanent: true },
       { source: '/aktivitet/vandring/hano-blekinge', destination: '/aktivitet/vandring/hano', permanent: true },
+      // 2026-09-14: "Hålludden naturreservat" fanns inte — vandringen ersatt av Bråvikenbranten (Länsstyrelsen Östergötland). Gamla URL:en låg i sitemapen.
+      { source: '/aktivitet/vandring/halluden-sormland', destination: '/aktivitet/vandring/bravikenbranten', permanent: true },
 
       // Cookie-bannern och /kom-igang länkade till /integritet. Sidan heter
       // /integritetspolicy — dvs en 404 mitt i samtyckesflödet.
