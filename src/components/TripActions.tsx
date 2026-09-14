@@ -3,6 +3,7 @@ import { useState, useEffect, type CSSProperties, type ReactNode, type MouseEven
 import { useRouter } from 'next/navigation'
 import { Pencil, MapPin, Trash2, MessageCircle, Flag } from '@/components/icons/LucideIcons'
 import { createClient, BOAT_TYPES, getViewer } from '@/lib/supabase'
+import { revalidateTrip } from '@/lib/revalidate-trip'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
 import { IconAnchor, IconMotorboat } from '@/components/icons/SvallaIcons'
@@ -20,6 +21,7 @@ interface TripData {
   location_name: string | null
   pinnar_rating: number | null
   boat_type: string
+  visibility: 'public' | 'private' | null
 }
 
 export default function TripActions({
@@ -42,6 +44,10 @@ export default function TripActions({
   const [location, setLocation] = useState('')
   const [pinnar,   setPinnar]   = useState<number | null>(null)
   const [boatType, setBoatType] = useState('')
+  // Synlighet i efterhand (2026-09-12): tidigare gick det bara att göra en
+  // privat tur synlig (delningsmodalen), aldrig tvärtom. RLS-policyn
+  // trips_select_visible döljer privata turer för alla utom ägaren.
+  const [isPrivate, setIsPrivate] = useState(false)
   const [saving,   setSaving]   = useState(false)
 
   const router = useRouter()
@@ -71,7 +77,7 @@ export default function TripActions({
     const supabase = createClient()
     const { data } = await supabase
       .from('trips')
-      .select('caption, location_name, pinnar_rating, boat_type')
+      .select('caption, location_name, pinnar_rating, boat_type, visibility')
       .eq('id', tripId)
       .single()
     if (data) {
@@ -80,6 +86,7 @@ export default function TripActions({
       setLocation(d.location_name ?? '')
       setPinnar(d.pinnar_rating)
       setBoatType(d.boat_type ?? '')
+      setIsPrivate(d.visibility === 'private')
     }
     setEditing(true)
   }
@@ -95,12 +102,16 @@ export default function TripActions({
         location_name: location.trim() || null,
         pinnar_rating: pinnar,
         boat_type:     boatType || 'Annat',
+        visibility:    isPrivate ? 'private' : 'public',
       })
       .eq('id', tripId)
     setSaving(false)
     if (error) { toast('Kunde inte spara ändringar. Försök igen.', 'error'); return }
     toast('Turen uppdaterad')
     setEditing(false)
+    // Töm tursidans datacache innan refresh — annars visar refresh den gamla
+    // cachade versionen (se src/lib/trip-cache.ts).
+    await revalidateTrip(tripId)
     router.refresh()
   }
 
@@ -112,6 +123,7 @@ export default function TripActions({
     const supabase = createClient()
     const { error } = await supabase.rpc('soft_delete_trip', { p_trip_id: tripId })
     if (error) { toast('Kunde inte ta bort turen. Försök igen.', 'error'); setDeleting(false); setConfirm(false); return }
+    await revalidateTrip(tripId)
     router.push('/feed')
   }
 
@@ -291,6 +303,44 @@ export default function TripActions({
                 ))}
               </div>
             </div>
+
+            {/* Synlighet — samma växel som på /spara */}
+            <button
+              type="button"
+              onClick={() => setIsPrivate(v => !v)}
+              aria-pressed={isPrivate}
+              className="press-feedback"
+              style={{
+                width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                gap: 12, padding: '12px 14px', cursor: 'pointer', textAlign: 'left', marginBottom: 18,
+                background: 'var(--bg)', border: '1.5px solid rgba(10,123,140,0.15)', borderRadius: 14,
+              }}
+            >
+              <span style={{ minWidth: 0 }}>
+                <span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>
+                  {isPrivate ? 'Privat tur' : 'Synlig för alla'}
+                </span>
+                <span style={{ display: 'block', fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
+                  {isPrivate
+                    ? 'Bara du ser turen — den visas inte i flödet eller på din profil för andra.'
+                    : 'Turen visas i flödet och på din profil. Växla för att hålla den privat.'}
+                </span>
+              </span>
+              <span
+                aria-hidden="true"
+                style={{
+                  flexShrink: 0, width: 46, height: 26, borderRadius: 13, position: 'relative',
+                  background: isPrivate ? 'var(--sea)' : 'rgba(10,123,140,0.18)',
+                  transition: 'background 0.15s ease',
+                }}
+              >
+                <span style={{
+                  position: 'absolute', top: 3, left: isPrivate ? 23 : 3,
+                  width: 20, height: 20, borderRadius: '50%', background: '#fff',
+                  boxShadow: '0 1px 3px rgba(0,20,35,0.25)', transition: 'left 0.15s ease',
+                }} />
+              </span>
+            </button>
 
             {/* Save */}
             <button

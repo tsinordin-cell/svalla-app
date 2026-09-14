@@ -7,6 +7,15 @@ export type GpsPoint = {
  heading: number | null
  accuracy: number
  recordedAt: string // ISO
+ // Rådata (beslut 2026-09-06): lat/lng är det UTJÄMNADE läget ur Kalman-
+ // filtret. rawLat/rawLng är telefonens fix exakt som den kom, och
+ // deviceSpeedKnots är enhetens egen Doppler-fart (null om den saknas).
+ // Utan rådatan går en tur inte att räkna om när filtret ändras — det är
+ // därför fälttesterna inte kunde utvärderas i efterhand. Valfria så att
+ // äldre snapshots/buffertar och GPX-import fortfarande typar.
+ rawLat?: number
+ rawLng?: number
+ deviceSpeedKnots?: number | null
 }
 
 export type StopEvent = {
@@ -45,10 +54,81 @@ export function totalDistanceNM(points: GpsPoint[]): number {
  return d
 }
 
-// Average speed from points
+/** Luckor längre än så här (s) räknas som sträcka mellan fixar, inte som fart × tid. */
+export const DISTANCE_GAP_S = 10
+
+/**
+ * Turens distans = ∫ telefonens Doppler-fart över tid (beslut 2026-09-11).
+ *
+ * Varför inte summa av positioner: varje liten svängning i mätningen adderar
+ * sträcka, och det blir värre ju långsammare man går. Doppler-farten mäts på
+ * satellitsignalens frekvensskift och påverkas inte av positionsbrus alls —
+ * det är så Garmin och Strava räknar. Mätt på Toms tre bilturer 10–11/9
+ * (mot bilens trippmätare, 2,7 mi = 2,30–2,39 NM):
+ *   summa utjämnade positioner 2,415 · råa 2,380 · ∫filterfart 2,370 ·
+ *   ∫Doppler 2,341 — bara den sista träffar bilens intervall. Samma ordning
+ *   på alla tre turer, 2–3 % mellan ytterligheterna.
+ * Reserv: över luckor (> DISTANCE_GAP_S) och där Doppler saknas räknas
+ * sträckan mellan råa fixar (utjämnade om rådata saknas, t.ex. GPX-import).
+ * Testad mot fixturerna i src/lib/__fixtures__.
+ */
+export function tripDistanceNM(points: GpsPoint[], gapS = DISTANCE_GAP_S): number {
+ let d = 0
+ for (let i = 1; i < points.length; i++) {
+ const a = points[i - 1]!, b = points[i]!
+ const dt = (Date.parse(b.recordedAt) - Date.parse(a.recordedAt)) / 1000
+ const va = a.deviceSpeedKnots, vb = b.deviceSpeedKnots
+ if (dt > 0 && dt <= gapS && va != null && vb != null && va >= 0 && vb >= 0) {
+ d += ((va + vb) / 2) * (dt / 3600)
+ } else {
+ const la = a.rawLat ?? a.lat, lo = a.rawLng ?? a.lng
+ const lb = b.rawLat ?? b.lat, lob = b.rawLng ?? b.lng
+ d += distanceNM(la, lo, lb, lob)
+ }
+ }
+ return d
+}
+
+/** Fart under så här (kn) räknas som stilla — samma gräns i rörelsetid och snittfart. */
+export const MOVING_THRESHOLD_KNOTS = 0.5
+/** Par längre isär än så här (s) är en lucka; räknas som rörelse bara om man faktiskt flyttat sig. */
+export const MOVING_GAP_S = 60
+
+/**
+ * Rörelsetid i sekunder — den tid farten var över MOVING_THRESHOLD_KNOTS.
+ * En lucka (> gapS utan fixar) räknas som rörelse om sträckan mellan fixarna
+ * ger en fart över tröskeln (t.ex. 158 s i bakgrunden i 63 kn på 10/9-turen),
+ * annars som stilla. Det gör rörelsetid och tripDistanceNM konsekventa:
+ * sträcka som räknas har alltid tid som räknas.
+ */
+export function movingSeconds(points: GpsPoint[], thresholdKn = MOVING_THRESHOLD_KNOTS, gapS = MOVING_GAP_S): number {
+ let s = 0
+ for (let i = 1; i < points.length; i++) {
+ const a = points[i - 1]!, b = points[i]!
+ const dt = (Date.parse(b.recordedAt) - Date.parse(a.recordedAt)) / 1000
+ if (dt <= 0) continue
+ if (dt > gapS) {
+ const d = distanceNM(a.rawLat ?? a.lat, a.rawLng ?? a.lng, b.rawLat ?? b.lat, b.rawLng ?? b.lng)
+ if (d / (dt / 3600) > thresholdKn) s += dt
+ continue
+ }
+ if (b.speedKnots > thresholdKn) s += dt
+ }
+ return Math.round(s)
+}
+
+/**
+ * Snittfart = distans / rörelsetid (beslut 2026-09-11) — det Strava och
+ * Garmin visar, och samma tal som delsträckorna ger. Före: medel av
+ * punktfarter över 0,3 kn, vilket gav 30,3 kn där distans/tid gav 29,5 på
+ * samma tur; två definitioner på samma sida. Reserv utan tidsstämplar
+ * (rörelsetid 0): medel av punktfarter, som förr.
+ */
 export function avgSpeedKnots(points: GpsPoint[]): number {
  if (points.length === 0) return 0
- const moving = points.filter(p => p.speedKnots > 0.3)
+ const secs = movingSeconds(points)
+ if (secs > 0) return tripDistanceNM(points) / (secs / 3600)
+ const moving = points.filter(p => p.speedKnots > MOVING_THRESHOLD_KNOTS)
  if (moving.length === 0) return 0
  return moving.reduce((a, p) => a + p.speedKnots, 0) / moving.length
 }
@@ -253,7 +333,7 @@ export function getLiveInsights(
 ): LiveInsight[] {
  if (points.length < 10) return []
  const out: LiveInsight[] = []
- const dist = totalDistanceNM(points)
+ const dist = tripDistanceNM(points)
  const maxSpd = maxSpeedKnots(points)
 
  if (dist >= 5 && dist < 5.3) out.push({ key: '5nm', iconKey: 'target', text: '5 NM avklarade!' })
@@ -290,7 +370,7 @@ export function computeRouteStats(
  ? calculateBearing(points[0]!.lat, points[0]!.lng, points[points.length - 1]!.lat, points[points.length - 1]!.lng)
  : null
  return {
- distanceNM: totalDistanceNM(points),
+ distanceNM: tripDistanceNM(points),
  avgSpeedKnots: avgSpeedKnots(points),
  maxSpeedKnots: maxSpeedKnots(points),
  movingTimeSec: Math.max(0, elapsedSec - stoppedSec),

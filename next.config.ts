@@ -61,7 +61,14 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline'",
       // img-src: tillåt egna bilder, data:URI (avatars, ikoner), Supabase Storage (publika buckets) och Unsplash.
       // Tidigare 'https:' tillät vilken HTTPS-bild som helst — exfiltrationskanal för session-cookies via <img onerror>.
-      "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://upload.wikimedia.org https://commons.wikimedia.org https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://tiles.openseamap.org",
+      //
+      // thumb.wikimedia.org tillagd 2026-09-02: commons.wikimedia.org/wiki/Special:FilePath
+      // är en OMDIRIGERING, och CSP prövas mot den slutliga adressen — inte den vi skrev.
+      // Special:FilePath med ?width= landar på thumb.wikimedia.org, vilket blockerades.
+      // Följden var att "Redaktionens val"-kortet på /guider (GuiderClient.tsx:230) saknade
+      // bild för varje besökare. Lägger man till en ny wikimedia-URL: kontrollera var den
+      // faktiskt hamnar, inte var den pekar.
+      "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://upload.wikimedia.org https://commons.wikimedia.org https://thumb.wikimedia.org https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://tiles.openseamap.org",
       "font-src 'self' data:",
       "media-src 'self' blob: https://*.supabase.co",
       "worker-src 'self' blob:", // service worker + Capacitor
@@ -206,6 +213,23 @@ const nextConfig: NextConfig = {
       // Kontaktuppgifterna ligger under /om. Sidfoten länkade till /kontakt
       // på varje sida i sajten och gav 404 för riktiga besökare.
       { source: '/kontakt', destination: '/om#kontakt', permanent: true },
+      // "Kom igång gratis →" på 25 sidor (hyra-bat, segelkurs, teambuilding,
+      // guider) pekade på /registrera som aldrig funnits (länkkontroll 3/9).
+      // 301 här täcker de 7 filerna med länken, inbound och index.
+      { source: '/registrera', destination: '/kom-igang', permanent: true },
+      // Vandringsleder med ö i slugen gav 404 på Vercel edge (samma orsak som
+      // nybörjare-redirectsen ovan). Slugsen är ASCII-tvättade sedan 2026-09-13.
+      { source: '/aktivitet/vandring/moll%C3%B6sund', destination: '/aktivitet/vandring/mollosund', permanent: true },
+      { source: '/aktivitet/vandring/mollösund', destination: '/aktivitet/vandring/mollosund', permanent: true },
+      { source: '/aktivitet/vandring/asper%C3%B6', destination: '/aktivitet/vandring/aspero', permanent: true },
+      { source: '/aktivitet/vandring/asperö', destination: '/aktivitet/vandring/aspero', permanent: true },
+      { source: '/aktivitet/vandring/orust-moll%C3%B6sund-goteborg', destination: '/aktivitet/vandring/orust-mollosund-goteborg', permanent: true },
+      { source: '/aktivitet/vandring/orust-mollösund-goteborg', destination: '/aktivitet/vandring/orust-mollosund-goteborg', permanent: true },
+      { source: '/aktivitet/vandring/tjol%C3%B6holm', destination: '/aktivitet/vandring/tjoloholm', permanent: true },
+      { source: '/aktivitet/vandring/tjolöholm', destination: '/aktivitet/vandring/tjoloholm', permanent: true },
+      { source: '/aktivitet/vandring/hano-blekinge', destination: '/aktivitet/vandring/hano', permanent: true },
+      // 2026-09-14: "Hålludden naturreservat" fanns inte — vandringen ersatt av Bråvikenbranten (Länsstyrelsen Östergötland). Gamla URL:en låg i sitemapen.
+      { source: '/aktivitet/vandring/halluden-sormland', destination: '/aktivitet/vandring/bravikenbranten', permanent: true },
 
       // Cookie-bannern och /kom-igang länkade till /integritet. Sidan heter
       // /integritetspolicy — dvs en 404 mitt i samtyckesflödet.
@@ -213,6 +237,15 @@ const nextConfig: NextConfig = {
 
       // Möja: ö-sidor ligger under /o/<slug>.
       { source: '/moja', destination: '/o/moja', permanent: true },
+      // LÄNKKONTROLL 2026-09-03: /stockholms-skargard länkar fem öar med korta
+      // slugs, men bara Möja hade en redirect — de andra fyra gav 404.
+      { source: '/vaxholm',  destination: '/o/vaxholm',  permanent: true },
+      { source: '/grinda',   destination: '/o/grinda',   permanent: true },
+      { source: '/sandhamn', destination: '/o/sandhamn', permanent: true },
+      { source: '/uto',      destination: '/o/uto',      permanent: true },
+      // LÄNKKONTROLL 2026-09-03: /thorkel fanns aldrig som route men länkades
+      // från 116 sidor (10 filer). AI-guiden bor på /guide.
+      { source: '/thorkel', destination: '/guide', permanent: true },
 
       // Regionen heter /hoga-kusten med bindestreck.
       { source: '/hogakusten', destination: '/hoga-kusten', permanent: true },

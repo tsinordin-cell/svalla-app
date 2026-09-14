@@ -90,6 +90,16 @@ describe('removeSpeedOutliers', () => {
     expect(removeSpeedOutliers(pts)).toHaveLength(1)
   })
 
+  it('FÄLTTEST 2026-09-10: bil i 49 kn snitt behålls — 30-kn-taket gav route_points=null och ingen karta i flödet', () => {
+    // 60 kn rakt norrut, 1 Hz, 30 punkter
+    const t0 = Date.parse('2026-09-10T19:07:20Z')
+    const pts = Array.from({ length: 30 }, (_, i) => ({
+      lat: 59.3 + i * 60 * 0.514444 / 111_320, lng: 18.0, recordedAt: new Date(t0 + i * 1000).toISOString(), accuracy: 5 as number | undefined,
+    }))
+    expect(removeSpeedOutliers(pts)).toHaveLength(30)
+    expect(buildRoutePoints(pts)?.length ?? 0).toBeGreaterThanOrEqual(2)
+  })
+
   it('drops duplicate timestamps (dt=0)', () => {
     const pts = [
       ptAt(59.3, 18.0, 0),

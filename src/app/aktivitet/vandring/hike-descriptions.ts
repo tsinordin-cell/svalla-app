@@ -156,7 +156,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  mollösund: {
+  'mollosund': {
     body: 'Mollösund på Orust är en av Bohusläns bäst bevarade gamla fiskehamnar. De snävt packade trä-husen, de målade sjöbodarna och den lugna hamnen ger en autentisk känsla som är sällsynt längs den annars turistifierade kusten. Vandringen följer kustlinjen med omväxlande vy.',
     tips: [
       'Bil eller lokal buss från Stenungsund.',
@@ -221,7 +221,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'asperö': {
+  'aspero': {
     body: 'Asperö är den lugna grannen i södra skärgården — bilfri, enkel och med välvalda badklippor längs den korta leden. Perfekt för en halvdag när du vill ha skärgårdskaraktär utan att planera för en hel dag.',
     tips: [
       'Spårvagn linje 11 → Saltholmen, båt linje 282.',
@@ -257,7 +257,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'orust-mollösund-goteborg': {
+  'orust-mollosund-goteborg': {
     body: 'Mollösund på Orust är en välbevarad gammal fiskebyatmosfär längs Bohusläns inre kustled med charm i varje detalj. Vandringen längs kustlinjen ger en inblick i ett bohuslänskt fiskeliv som annars är svårt att hitta.',
     tips: [
       'Buss eller bil från Göteborg.',
@@ -379,7 +379,8 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Skuleskogen är Höga kustens hjärta och ett av de mest dramatiska naturreservaten i Skandinavien. UNESCO-klassade bergsidor reser sig direkt ur havet — ett landskap format av landisens avsmältning och landets fortsatta landhöjning. Spårnätet på 30 km rymmer allt från korta utflykter till flerdagsvandringar.',
     tips: [
       'SJ/Norrtåg → Härnösand eller Kramfors, sedan lokal buss eller bil.',
-      'Slåttdalsskrevan — en 200 m lång klippspricka — är ett måste.',
+      // KÄLLA: SVT Västernorrland 2023-05-22 "Vandringsled genom Slåttdalsskrevan stängs av säkerhetsskäl" (Länsstyrelsen Västernorrland: risk för fallande sten, leden omdragen) + sverigesnationalparker.se (200 m lång, 30 m djup)
+      'Slåttdalsskrevan — en 200 m lång och 30 m djup klippspricka — är ett måste, men leden GENOM skrevan är stängd sedan 2023 av säkerhetsskäl. Den ses från norra och södra änden.',
       'Planera minst en heldag; etapperna längs Höga kustenleden är krävande.',
       'Ta med övernattningsutrustning för ett autentiskt naturupplevelse.',
     ],
@@ -413,7 +414,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'hoga-kusten-leden': {
+  'hogakustenleden': {
     body: 'Höga kustenleden (130 km, UNESCO) är ett av Sveriges mest kompletta vandringsäventyr längs havslinjen. Leden sträcker sig från Härnösand till Örnsköldsvik längs dramatisk kustterräng med extrema höjdskillnader och urskogssektioner.',
     tips: [
       'Dela upp i etapper — de flesta vandrar 2–5 dagar.',
@@ -430,7 +431,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'bönhamn-hoga-kusten': {
+  'bonhamn': {
     body: 'Bönhamn är ett välbevarat fiskeläge vid Höga kustenleden med karaktäristiska röda bodar längs klippbrynet. Vandringen runt halvön är kort men dramatisk med havsutsikt åt båda håll.',
     tips: [
       'Bil rekommenderas eller del av längre etappvandring längs Höga kustenleden.',
@@ -456,7 +457,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
 
   // ── BLEKINGE ──────────────────────────────────────────────────────────
 
-  'hano-blekinge': {
+  'hano': {
     body: 'Hanö är Blekinges mest mytomspunna ö — en unik engelsk kyrkogård från Napoleonskrigen, fågelrika strandängar och råa ankringsplatser längs en orörd kustlinje. Nås med sommarbåt från Nogersund och ger en känsla av att ha kommit till en annan tid.',
     tips: [
       'Sommarbåt från Nogersund — kontrollera aktuell tidtabell.',
@@ -465,7 +466,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'aspö-blekinge': {
+  'aspo-blekinge': {
     body: 'Aspö är en välbevarad skärgårdsö nära Karlskrona med gästbrygga och byatmosfär som är annorlunda mot Stockholms skärgård. Pendelbåten tar dig dit på kort tid och leden (~4 km) ger en fin genomgång av öns kustlandskap.',
     tips: [
       'Blekingetrafiken pendelbåt från Karlskrona.',
@@ -569,7 +570,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'alvar-oland': {
+  'stora-alvaret': {
     body: 'Ölands alvar är UNESCO-klassat och ett av Europas mest unika öppna landskap — ett kalkstensflak utan träd som sträcker sig mil efter mil med vidsträckt himmel och en natur som saknar motstycke i Sverige. Midsommarblomstringen är legendarisk.',
     tips: [
       'Bil rekommenderas för att nå de bästa alvarpartierna.',
@@ -619,7 +620,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'köpingsvik-oland': {
+  'kopingsvik-oland': {
     body: 'Köpingsvik på nordvästra Öland erbjuder en enkel kustpromenad med havsvy och tillgång till den norra alvarnaturen. Bra för en kortare halvdag.',
     tips: [
       'Tåg → Kalmar, sedan buss KLT norrut.',
@@ -637,7 +638,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'hovs-hallar-skane': {
+  'hovs-hallar': {
     body: 'Hovs Hallar i nordvästra Skåne är ett dramatiskt klipplandskap längs Skåneleden med klippformationer och havsklippor som ger en oväntad vildmarkskänsla i södra Sverige.',
     tips: [
       'Bil rekommenderas.',
@@ -654,8 +655,9 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'stenshuvud-skane': {
-    body: 'Stenshuvud nationalpark i sydöstra Skåne kombinerar ett av Skånes få bergslandskap med kustnatur. Klättringen upp till toppen (~97 m) belönar med vy över Hanöbukten och östersjölandskapet.',
+  'stenshuvud': {
+    // KÄLLA: sverigesnationalparker.se — Stenshuvuds nationalpark bildad 1986 (läst 2026-09-14)
+    body: 'Stenshuvuds nationalpark i sydöstra Skåne kombinerar ett av Skånes få bergslandskap med kustnatur. Klättringen upp till toppen (~97 m) belönar med vy över Hanöbukten och östersjölandskapet.',
     tips: [
       'Buss från Simrishamn.',
       'Nationalparkscentrum vid ingången ger information om flora och fauna.',
@@ -663,7 +665,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'ales-stenar-skane': {
+  'ales-stenar': {
     body: 'Ales stenar på sydkusten av Skåne är ett av de mest imponerande forntidsminnena i Sverige — ett stenskepp om 67 meter längs krönet av en klippa med panorama mot Östersjön. Kortvandringen dit är enkel men upplevelsen är stark.',
     tips: [
       'Buss från Ystad eller Simrishamn.',
@@ -672,7 +674,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'österlen-skane': {
+  'osterlen-kust': {
     body: 'Österlen i sydöstra Skåne är ett kulturlandskap med välmarkerade kustleder, rapsfält och ett oändligt öppet landskap mot Östersjön. Skåneleden Österlen-rutten tar dig längs kustlinjen med regelbundna stopp i charmerande fiskebyar.',
     tips: [
       'Bil rekommenderas för att nå olika startpunkter.',
@@ -690,7 +692,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'falsterbo-skane': {
+  'falsterbo': {
     body: 'Falsterbo halvö i sydvästra Skåne är en av Europas viktigaste fågelstationer under höstmigration. Vandringen längs strandlinjen kombineras naturligt med ett besök vid fågelstationen för den som är intresserad av natur.',
     tips: [
       'Buss från Malmö (~50 min) — linje 100 eller SkåneExpressen 15.',
@@ -769,10 +771,13 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'halluden-sormland': {
-    body: 'Hålludden naturreservat i Sörmland är ett öppet kustlandskap med havsvy och hedsmark som är lite känt men genuint fint. En lagom halvdagsvandring för den som är i Norrköpingstrakten.',
+  'bravikenbranten': {
+    // KÄLLA: Länsstyrelsen Östergötland, Bråvikenbranten naturreservat (2007, 181,6 ha), läst 2026-09-14
+    body: 'Bråvikenbranten är Bråvikens branta nordsida i Norrköpings kommun, naturreservat sedan 2007. Här står grova tallar och knotiga torrträd på klippängar med kalkgynnad flora, och två grottor — Rövargrottan och Kopparbogrottan — ligger längs leden. Sörmlandsleden går genom området; leden från parkeringen till Kopparbo är 5,5 km och beskrivs av Länsstyrelsen som särskilt krävande, med branta stigningar. Utsiktsplats med vindskydd och grillplats på vägen.',
     tips: [
-      'Tåg → Norrköping, sedan buss.',
+      'Parkering Skvättan har bara sju platser — kom tidigt eller ta bussen Krokek–Kvarsebo (600 m promenad).',
+      'Kopparbogrottan har djupa sprickor och trånga passager — gå inte in ensam.',
+      'Ca 6 km från Kolmårdens djurpark via väg 903.',
     ],
   },
 
@@ -785,7 +790,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
 
   // ── ÖSTERGÖTLAND ──────────────────────────────────────────────────────
 
-  'st-anna-skargard': {
+  'sant-anna-kust': {
     body: 'S:t Anna skärgård är en av Sveriges vackraste — 6 000 öar och kobbar i ett öppet, vindpinat landskap utan motorvägar och massolyckor. Vandringen längs kusten och på de tillgängliga öarna ger en känsla av äkta skärgård långt från turistflöden.',
     tips: [
       'Bil eller buss till S:t Anna-hållet, sedan sommarbåt.',
@@ -794,7 +799,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'gryt-skargard': {
+  'gryt-fyrudden': {
     body: 'Gryts skärgård söder om Valdemarsvik är ett genuint och relativt okänt skärgårdslandskap i Östergötland med välhållen kustterräng och sommarbåtar till de yttersta öarna.',
     tips: [
       'Bil rekommenderas till utgångspunkten.',
@@ -810,7 +815,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'arkösund': {
+  'arko': {
     body: 'Arkösund vid Bråvikens mynning är en av Östergötlands mest välbesökta kustpunkter med en pittoresk hamnmiljö och vandring längs klippkusten ut mot havet.',
     tips: [
       'Bil rekommenderas.',
@@ -848,15 +853,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
       'Bil rekommenderas.',
     ],
   },
-
-  'kattilö': {
-    body: 'Kättilö naturreservat i Östgötaskärgården är ett välhållet reservat med kustleder och havsvy som ger äkta skärgårdskaraktär.',
-    tips: [
-      'Bil eller sommarbåt.',
-    ],
-  },
-
-  'oxelösund-kust': {
+  'oxelosund-kust': {
     body: 'Oxelösund på Sörmlandskusten har ett unikt industriellt kustlandskap med järnverkets siluett som kontrast mot havet och en välmarkerad kuststig runt den industriella halvön.',
     tips: [
       'Tåg → Oxelösund.',
@@ -866,7 +863,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
 
   // ── SMÅLAND ───────────────────────────────────────────────────────────
 
-  'västervik-skargard': {
+  'vastervik-hasselo': {
     body: 'Västervik har ett av Sveriges bäst outforskade skärgårdsarkipelag med tusentals öar och kobbar i ett landskap som är lika dramatiskt som Stockholms skärgård men med en bråkdel av besökarantalet. Vandringslederna kring Västervik och på de närmaste öarna ger en äkta skärgårdsupplevelse.',
     tips: [
       'Tåg → Västervik.',
@@ -875,7 +872,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'kvaedoefjarden': {
+  'kvadofjarden': {
     body: 'Kvädöfjärden i norra Småland är ett stilla och bortglömt kustlandskap med välhållen natur och liten turistaktivitet. En bra halvdag för den som vill utforska Smålandskusten bortom de välkända destinationerna.',
     tips: [
       'Bil rekommenderas.',
@@ -883,7 +880,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'figeholm-skargard': {
+  'figeholm': {
     body: 'Figeholm vid Kalmarsund erbjuder skärgårdslandskap med utsikt mot Öland och en kustled som kombinerar skog och kust i ett lättgånget, välmarkerat spår.',
     tips: [
       'Bil rekommenderas.',
@@ -891,7 +888,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'kalmarsund-kust': {
+  'kalmarsund-kustled': {
     body: 'Kalmarsundkusten ger havsutsikt mot Öland med varje steg längs leden. Bra markerade leder norrut och söderut från Kalmar kombineras med tillgängligheten av en av Sveriges starkaste kulturstäder.',
     tips: [
       'Tåg → Kalmar.',
@@ -914,7 +911,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'fårbo-kust': {
+  'oskarshamn-farbo': {
     body: 'Fårbo på norra Smålandskusten är ett litet fiskesamhälle med kustpromenad och naturmark längs Östersjön. En enkel, trivsam halvdag.',
     tips: [
       'Bil rekommenderas.',
@@ -929,6 +926,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'oskarshamn-kust': {
+    // KÄLLA: sverigesnationalparker.se + Länsstyrelsen Kalmar — Blå Jungfrun nationalpark sedan 1926 (läst 2026-09-14)
     body: 'Oskarshamn är porten till Blå Jungfrun nationalpark och har kustleder runt hamnen som ger havsutsikt och en tydlig känsla av Kalmarsunds karaktär.',
     tips: [
       'Tåg → Oskarshamn.',
@@ -937,6 +935,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'blå-jungfrun': {
+    // KÄLLA: sverigesnationalparker.se — Blå Jungfrun nationalpark sedan 1926 (läst 2026-09-14)
     body: 'Blå Jungfrun nationalpark i Kalmarsund är en magisk granit-ö med forntida labyrint och dramatiska berghällar. Nås med sommarbåt och ger en stark naturupplevelse i ett unikt ölandskap.',
     tips: [
       'Sommarbåt från Oskarshamn eller Byxelkrok på Öland.',
@@ -947,7 +946,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
 
   // ── HALLAND ───────────────────────────────────────────────────────────
 
-  'haverdal-halland': {
+  'haverdal': {
     body: 'Haverdal naturreservat norr om Halmstad är ett dramatiskt dynlandskap längs Kattegatts kust med vandringsleder genom dynerna och längs den exponerade sandstranden. En av Hallands bästa naturupplevelser.',
     tips: [
       'Tåg → Halmstad, sedan buss norrut (~30 min).',
@@ -956,7 +955,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'tylösand-halland': {
+  'tylosand-halmstad': {
     body: 'Tylösand väster om Halmstad är en av Sveriges mest kända sandstränder med kustpromenad längs dynlandskapet och havsvy mot Kattegatt. En välbesökt men vacker halvdag.',
     tips: [
       'Buss från Halmstad (~20 min).',
@@ -965,7 +964,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'kungsbacka-kust': {
+  'kungsbackafjord-halland': {
     body: 'Kungsbackakusten söder om Göteborg har en varierad kustlinje med klippstränder och leder som ansluter till Kattegattleden — en av Sveriges nyare kustleder längs hela Hallands kuststräcka.',
     tips: [
       'Pendeltåg Göteborg → Kungsbacka.',
@@ -981,7 +980,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'varberg-kust': {
+  'varberg-fastning': {
     body: 'Varberg har en av Sveriges bäst bevarade kustsoldater i Varbergs fästning och en kustpromenad längs Kattegatt med stråk mot naturreservaten söder om staden.',
     tips: [
       'Tåg → Varberg.',
@@ -1021,7 +1020,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     ],
   },
 
-  'tjolöholm-halland': {
+  'tjoloholm': {
     body: 'Tjolöholms slottspark söder om Kungsbacka kombinerar ett engelskt-gotiskt slott med kustvy mot Kattegatt och välskött parkmark med naturstigar.',
     tips: [
       'Bil eller pendeltåg → Kungsbacka, sedan buss.',

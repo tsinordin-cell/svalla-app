@@ -48,6 +48,24 @@ describe('buildGpx', () => {
     expect(gpx).toContain('<ele>5.0</ele>')
   })
 
+  it('fart och kurs som Garmin TrackPointExtension: knop → m/s, grader 0–359', () => {
+    const t: GpxTrack = { name: 'Fart', points: [
+      { lat: 59.3, lng: 18.0, time: '2026-09-11T14:58:19.643Z', speedKnots: 10, heading: 359.6 },
+      { lat: 59.3, lng: 18.0, speedKnots: 0, heading: null },
+    ] }
+    const gpx = buildGpx([t])
+    expect(gpx).toContain('xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v2"')
+    expect(gpx).toContain('<gpxtpx:speed>5.14</gpxtpx:speed>')   // 10 kn = 5,144 m/s
+    expect(gpx).toContain('<gpxtpx:course>0</gpxtpx:course>')     // 359,6 avrundas till 360 → 0
+    expect(gpx).toContain('<gpxtpx:speed>0.00</gpxtpx:speed>')    // stillastående är ett värde, inte saknat
+    expect((gpx.match(/<gpxtpx:course>/g) ?? []).length).toBe(1)  // null kurs utelämnas
+    expect((gpx.match(/<extensions>/g) ?? []).length).toBe(2)
+  })
+
+  it('utan fart och kurs: inga extensions alls (importerade och gamla spår)', () => {
+    expect(buildGpx([track])).not.toContain('<extensions>')
+  })
+
   it('escapes XML special chars in name', () => {
     const t: GpxTrack = { name: 'A & B <test>', points: [{ lat: 59.3, lng: 18.0 }] }
     const gpx = buildGpx([t])

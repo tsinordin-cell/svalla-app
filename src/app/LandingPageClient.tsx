@@ -226,8 +226,7 @@ section{padding:100px 40px}
 .testimonial-section{background:var(--sand)}
 .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .testimonial{background:var(--white);border-radius:var(--r);padding:32px 28px;box-shadow:var(--shadow);position:relative;}
-.testimonial::before{content:'"';font-family:'Playfair Display',serif;font-size:72px;color:rgba(45,125,138,.1);position:absolute;top:12px;left:20px;line-height:1;}
-.testimonial-text{font-size:15px;color:var(--ink);line-height:1.7;margin-bottom:20px;position:relative}
+.testimonial-text{font-size:15px;color:var(--ink);line-height:1.7;margin:0;position:relative}
 .testimonial-footer{display:flex;align-items:center;gap:12px}
 .testimonial-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--white);flex-shrink:0;}
 .testimonial-name{font-size:14px;font-weight:700;color:var(--ink)}
@@ -1382,33 +1381,19 @@ const LANDING_HTML = `
 <section class="testimonial-section">
  <div class="section-inner">
  <div class="section-header reveal">
- <div class="section-label">Vad folk säger</div>
- <h2 class="section-title">Skärgårdsälskare gillar Svalla</h2>
+ <div class="section-label">Varför Svalla</div>
+ <h2 class="section-title">Det Svalla gör som ingen annan sida</h2>
  </div>
+ <!-- Inga omdömen förrän riktiga användare skrivit riktiga (beslut 2026-09-13). -->
  <div class="testimonials">
  <div class="testimonial reveal reveal-delay-1">
- <div class="testimonial-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
- <p class="testimonial-text">Planerade hela sommarens segling med Thorkel på 10 minuter. Fick förslag på krogar och bastun längs hela rutten — inga överraskningar när man väl är ute.</p>
- <div class="testimonial-footer">
- <div class="testimonial-avatar" style="background:var(--teal)">MK</div>
- <div><div class="testimonial-name">Marcus K.</div><div class="testimonial-role">Seglare · Segelbåt 36 fot · Nacka</div></div>
- </div>
+ <p class="testimonial-text"><strong>Hela skärgården på en karta.</strong> Öar, hamnar, krogar och bastur från Bohuslän till Stockholms skärgård — med praktisk info per plats, inte bara en nål.</p>
  </div>
  <div class="testimonial reveal reveal-delay-2">
- <div class="testimonial-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
- <p class="testimonial-text">Äntligen en app som förstår att vi är ute på vattnet, inte på stan. Feeden är full av äkta turer och hitta nya ställen har blivit en del av varje tur.</p>
- <div class="testimonial-footer">
- <div class="testimonial-avatar" style="background:var(--accent)">SL</div>
- <div><div class="testimonial-name">Sofia L.</div><div class="testimonial-role">Kajakpaddlare · Värmdö</div></div>
- </div>
+ <p class="testimonial-text"><strong>Turen loggas med GPS.</strong> Distans, fart och rutt sparas automatiskt när du är ute. Dela turen med andra eller håll den privat — du väljer.</p>
  </div>
  <div class="testimonial reveal reveal-delay-3">
- <div class="testimonial-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
- <p class="testimonial-text">Vi registrerade bastun på Svalla i somras — fler och fler båtfolk hittar hit direkt via appen. Bättre marknadsföring än vi kunde köpa oss till.</p>
- <div class="testimonial-footer">
- <div class="testimonial-avatar" style="background:var(--green)">AH</div>
- <div><div class="testimonial-name">Anders H.</div><div class="testimonial-role">Ägare, Gräddö Sjösauna · Norrtälje</div></div>
- </div>
+ <p class="testimonial-text"><strong>Thorkel planerar stoppen.</strong> Berätta vart du vill och hur länge du har på dig — AI-skepparen föreslår rutt, hamnar och krogar längs vägen.</p>
  </div>
  </div>
  </div>
@@ -1728,7 +1713,11 @@ export default function LandingPageClient({ photoMap }: { photoMap?: Record<stri
  zIndex: 0,
  overflow: 'hidden',
  pointerEvents: 'none',
- background: 'linear-gradient(to bottom, #0a1f2b 0%, #0d2440 100%)',
+ /* Platshållare tills canvasen målat: samma färgstopp som dagtemat (variant 1)
+    i HeroAnimation — himmel #3d94d4→#b0dcf2 ned till vattenlinjen på 58 %,
+    vatten #2488c0→#0a2e5a under. Var tidigare en mörkblå gradient, vilket gav
+    en mörk blixt första sekunden innan animationen tog över (kort 1780a7c6). */
+ background: 'linear-gradient(to bottom, #3d94d4 0%, #60aee0 20%, #92c8f0 44%, #b0dcf2 58%, #2488c0 58%, #186aa8 72%, #104e84 86%, #0a2e5a 100%)',
  } as React.CSSProperties}>
  {/* Wrapping HeroAnimation i Suspense förhindrar att Next.js stämplar
      BAILOUT_TO_CLIENT_SIDE_RENDERING på resten av sidan när komponenten

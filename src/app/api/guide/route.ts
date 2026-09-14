@@ -9,6 +9,7 @@ import { resolvePlaceName, listSupportedPlaces } from '@/lib/placeResolver'
 import { logger } from '@/lib/logger'
 import { fetchTripsResult, type TripSummary } from '@/lib/trafiklab'
 import { getIslandTransit, ISLAND_TRANSIT } from '@/lib/transit-stops'
+import { ALL_ISLANDS } from '@/app/o/island-data'
 
 /**
  * Turlista för kontext — sträckor med EGEN BÅT eller charter, mätta i distansminuter (NM).
@@ -416,6 +417,36 @@ Tillgängliga öar med transit-data: ${Object.keys(ISLAND_TRANSIT).sort().join('
 OBS — om användaren frågar om transit till en ö som INTE finns i listan: säg
 ärligt att du inte har tabelldata för just den ön och föreslå att de söker
 sl.se eller waxholmsbolaget.se. Hitta inte på tider.`
+
+/**
+ * ISLAND_INDEX — Thorkels förteckning över vilka öar Svalla faktiskt täcker.
+ *
+ * Bakgrund (2026-09-14): Thorkels kunskap var handskriven och kände bara 26 av
+ * 103 öar. Frågade någon om Ljusterö, Styrsö eller Ornö hade han ingen grund
+ * att stå på — och en språkmodell utan grund gissar. Det är exakt den sortens
+ * fel vi byggt hela källhierarkin för att slippa.
+ *
+ * Listan genereras nu ur island-data.ts vid modulladdning. Läggs en ö till i
+ * datan känner Thorkel till den automatiskt. Den kan alltså inte glida isär
+ * igen, vilket var hela problemet.
+ *
+ * Medvetet kompakt: namn, region och tagline. Full ö-data skulle äta upp
+ * kontextfönstret — det här räcker för att han ska veta vad som finns, kunna
+ * länka rätt, och veta när han INTE vet.
+ */
+const ISLAND_INDEX = `
+
+=== ÖAR SVALLA TÄCKER (${ALL_ISLANDS.length} st) ===
+${ALL_ISLANDS.map(i => `${i.name} (${i.regionLabel ?? 'Sverige'}) — ${i.tagline} → https://svalla.se/o/${i.slug}`).join('\n')}
+
+REGLER FÖR ÖLISTAN:
+- Nämner du en ö ovan, länka till dess sida på Svalla.
+- Frågar någon om en ö som INTE står i listan: säg att vi inte har någon sida
+  om den ännu, och att du därför inte vill gå i god för detaljerna. Hitta
+  aldrig på öppettider, färjetider, djup eller skyddsstatus för en ö vi inte
+  täcker. Hellre "det vet jag inte" än en gissning som låter säker.
+- Taglinen är vår egen beskrivning, inte en faktauppgift. Använd den som
+  känsla, inte som belägg.`
 
 const TOOLS = [
   {
@@ -846,7 +877,7 @@ export async function POST(req: NextRequest) {
 
   const dynamicSystem = (placeLinks
     ? `${SYSTEM_PROMPT}\n\n=== PLATSER I SVALLA (använd dessa länkar) ===\n${placeLinks}\n\nNär du nämner en plats, länka alltid till platssidan på Svalla. Om bokning finns, visa bokningslänken tydligt.`
-    : SYSTEM_PROMPT) + tripCtx + followUpProtocol
+    : SYSTEM_PROMPT) + ISLAND_INDEX + tripCtx + followUpProtocol
 
   async function callClaude(msgs: unknown[]): Promise<Response> {
     return fetch('https://api.anthropic.com/v1/messages', {

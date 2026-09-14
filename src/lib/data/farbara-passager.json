@@ -52,6 +52,17 @@
         [59.47075, 17.79203], [59.47041, 17.79292], [59.46996, 17.79381],
         [59.46951, 17.7947], [59.46906, 17.79558], [59.4685, 17.79602]
       ]
+    },
+    {
+      "namn": "Farstaviken, inloppet",
+      "kalla": "Farbarhet: Tom Nordin 2026-09-13 (\"ser ingen anledning till nej\"). Gästhamnsguiden (gasthamnsguiden.se/sv/hamn/gustavsbergs-gasthamn, läst 2026-09-13): Gustavsbergs gästhamn vid Kattholmen, 45 platser, djup 3–12 m, sjökort 6142. Gustavsbergs båtklubb (gustavsbergsbatklubb.se): ca 250 småbåtplatser och sjösättningsramp i norra Farstaviken. MITTLINJEN ÄR HÄRLEDD UR RASTRET (kortaste vattenväg Baggensfjärden→Farstaviken med 50 m tolerans, 2026-09-13), inte ur sjökort. Rastret hade exakt fem landceller (ca 125 m) i inloppsrännan; med dem stängda snappade Gustavsbergs planner-punkt till vatten öster om orten och rutterna gick 30 km söder om Ingarö. Ingen bro i inloppet enligt källorna; ej kontrollerat mot sjökort 6142.",
+      "breddM": 30,
+      "maxDjupM": null,
+      "segelfriHojdM": null,
+      "mittlinje": [
+        [59.32264, 18.3563], [59.32287, 18.3565], [59.32309, 18.3574],
+        [59.32354, 18.3577], [59.32399, 18.3583], [59.32466, 18.3594]
+      ]
     }
   ]
 }

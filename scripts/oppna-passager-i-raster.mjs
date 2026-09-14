@@ -123,6 +123,9 @@ const SANITY = [
   ['Stäketsundet södra proppen', 59.46951, 17.79470, false],
   ['Land väster om Stäket', 59.47050, 17.78800, true],
   ['Land öster om Stäket', 59.47050, 17.79750, true],
+  ['Farstaviken inloppet', 59.32354, 18.35765, false],   // 2026-09-13: en av de fem cellerna som stängde viken
+  ['Farstaviken inne', 59.32650, 18.36800, false],
+  ['Land norr om inloppet', 59.32650, 18.35300, true],
 ]
 let fel = 0
 for (const [namn, la, ln, vill] of SANITY) {
@@ -146,6 +149,11 @@ const KOPPLADE = [
   ['Riddarfjärden', 59.3240, 18.0350],
   ['Skarven', 59.4800, 17.7600],
 ]
+// 2026-09-13: Farstaviken ska hänga ihop med havet, inte bara vara vatten.
+const HAV = komponent(59.3238, 18.0776)   // Strömmen
+const [fr, fc] = rc(59.3265, 18.3680)
+if (!HAV || !HAV.has(fr * COLS + fc)) { console.error('FARSTAVIKEN ÄR INTE IHOP MED HAVET — skriver INGET'); process.exit(1) }
+console.log('  Farstaviken                 ihop med havet OK')
 let saknas = 0
 for (const [namn, la, ln] of KOPPLADE) {
   const [r, c] = rc(la, ln)

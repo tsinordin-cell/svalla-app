@@ -1,10 +1,13 @@
-import { createPublicSupabaseClient } from '@/lib/supabase-server'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { getCachedPublicTripBundle, loadTripBundle, type TripBundle } from '@/lib/trip-cache'
 import Icon from '@/components/Icon'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { ReactNode } from 'react'
+import { cache, type ReactNode } from 'react'
 import TripDetailMap from '@/components/TripDetailMapClient'
+import SpeedChart from '@/components/SpeedChart'
+import { computeSplits, speedSeries, movingSeconds, resolveDurationSeconds } from '@/lib/tripSplits'
 import TripHeroCarousel from '@/components/TripHeroCarousel'
 import LikeButton from '@/components/LikeButton'
 import Comments from '@/components/Comments'
@@ -24,23 +27,20 @@ import TripSignupCta from '@/components/TripSignupCta'
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
  const { id } = await params
- const supabase = createPublicSupabaseClient()
- const { data: trip } = await supabase
- .from('trips')
- .select('user_id, location_name, distance, boat_type, image, deleted_at')
- .eq('id', id)
- .single()
+ // Viewer-medveten läsning (se trip-cache.ts): publik tur ur cachen,
+ // annars ägarens egen privata tur via cookies, annars 404.
+ const bundle = await resolveTripBundle(id)
+ const trip = bundle?.trip ?? null
 
- // SOFT-404-SKYDD: notFound() måste kastas HÄR, inte bara i sidkroppen.
-  // loading.tsx gör att svaret streamas — 200-statusen flushas med skalet
-  // innan sidkroppen hunnit köra, så ett notFound() där ger 404-INNEHÅLL
-  // med STATUS 200 (soft 404, uppmätt live 2026-08-12 på samtliga rutter
-  // med loading.tsx). generateMetadata körs före headers och är därför
-  // enda stället som kan sätta riktig 404-status.
+ // 404-STATUS: uppmätt 2026-09-05 — med loading.tsx på routen gav en
+ // okänd tur STATUS 200 med 404-innehåll (soft 404) trots notFound() här,
+ // eftersom skalet streamas innan metadata är klar (Next 15 streamar
+ // metadata på dynamiska routes). Därför finns ingen loading.tsx för
+ // /tur/[id] längre: sidan svarar först när turen är löst. Den publika
+ // datan kommer ur Data Cache, så väntetiden är försumbar.
  if (!trip || trip.deleted_at) notFound()
 
- const { data: metaUser } = await supabase
- .from('users').select('username').eq('id', trip.user_id).single()
+ const metaUser = bundle!.userRow
 
  const distStr = trip.distance != null && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)} NM` : null
  const title = trip.location_name
@@ -74,97 +74,42 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 }
 
 /**
- * Statisk med ISR — samma mönster som /u/[username], /o/[slug] och
- * /upptack/[id] (CLAUDE.md p18/p26). revalidate hålls kort (60 s) för att en
- * ägare som redigerar sin tur ska se ändringen snabbt.
+ * DYNAMISK, viewer-medveten (beslut 2026-09-04, se src/lib/trip-cache.ts).
+ * Tidigare: statisk med ISR (60 s) och anon-klient. Det gav 404 för ägaren
+ * på privata turer, eftersom sidan aldrig skickade med besökarens session.
  *
- * Nya turer täcks av on-demand-rendering (dynamicParams är på som standard):
- * direkt efter /spara eller /logga/manuell renderas sidan vid första besöket
- * och cachas därefter. Datat är läsbart med anon-nyckeln, så det fungerar
- * även utan besökarens session.
+ * Nu: sidan renderas per request, men den PUBLIKA datan hämtas ur Next
+ * Data Cache (tagg trip:<id>, töms vid varje skrivning). Publika turer
+ * kostar alltså inga databasläsningar per visning. Privata turer läses
+ * med besökarens cookies; RLS avgör om hen får se dem.
  */
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
-export async function generateStaticParams() {
-  try {
-    const supabase = createPublicSupabaseClient()
-    // Förgenerera de senaste — resten byggs on-demand vid första besöket.
-    const { data } = await supabase
-      .from('trips')
-      .select('id')
-      .is('deleted_at', null)
-      .order('created_at', { ascending: false })
-      .limit(500)
-    return (data ?? []).map((t: { id: string }) => ({ id: t.id }))
-  } catch {
-    // Hellre on-demand-rendering än ett trasigt bygge (t.ex. lokal maskin
-    // utan .env.local — samma skydd som /upptack/[id] och /u/[username]).
-    return []
+/**
+ * Publik (cachad) först, sedan ägarens egen privata tur, annars null.
+ *
+ * Ägaren läser alltid per request med sin session (2026-09-10). Den
+ * cachade publika bilden byggs med anon-klienten, och gps_points släpps
+ * bara till ägaren (RLS gps_select_own) — så på en PUBLIK tur fick ägaren
+ * bara route_points: karta, men ingen fartkurva och inga delsträckor på
+ * sin egen tur. Upptäckt när #255 gick live på tur 15b47ab2. Kostnaden är
+ * en databasläsning per visning, bara för ägarens egna visningar.
+ */
+const resolveTripBundle = cache(async (id: string): Promise<TripBundle | null> => {
+  const pub = await getCachedPublicTripBundle(id)
+  const supabase = await createServerSupabaseClient()
+  if (pub) {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user?.id !== pub.trip.user_id) return pub
   }
-}
+  return loadTripBundle(id, supabase)
+})   // react cache: generateMetadata + sidan delar en läsning per request
 
 export default async function TurPage({ params }: { params: Promise<{ id: string }> }) {
  const { id } = await params
- // Publik klient — ingen cookies(). Kommentaren som stod här sa att
- // server-clienten behövdes för RLS ("nysparade turer efter redirect ger
- // 404 med browser-client"). Det gällde browser-clientens session-miss,
- // inte RLS: trips, gps_points, stops, trip_highlights, tours och
- // trip_tags är alla verifierade läsbara med enbart anon-nyckeln mot
- // produktionsdatabasen (2026-08-02). En nysparad tur är därför läsbar
- // direkt, även vid on-demand-rendering av en helt fräsch sida.
- //
- // Ingen auth här: vem som tittar avgör bara vad som SYNS (ägar-prompt,
- // annonser, signup-banner) och det sköts av ViewerGate/TripSignupCta i
- // klienten. Se ViewerGate.tsx.
- const supabase = createPublicSupabaseClient()
-
- // fetch trip (utan users-join — FK pekar på auth.users, ej public.users)
- const { data: trip, error } = await supabase
- .from('trips')
- .select(`*, routes(name), ai_summary`)
- .eq('id', id)
- .is('deleted_at', null)
- .single()
- if (error || !trip) notFound()
-
- // ── Parallell fetch av alla trip-relaterade data ──────────────────────────
- const [
- { data: userRow },
- { data: tripTagsRaw },
- { data: rawPoints },
- { data: rawStops },
- { data: toursData },
- { data: allRestaurants },
- ] = await Promise.all([
- supabase.from('users').select('username, avatar').eq('id', trip.user_id).single(),
- supabase.from('trip_tags').select('tagged_user_id').eq('trip_id', id),
- supabase
- .from('gps_points')
- .select('latitude,longitude,speed_knots,heading,recorded_at')
- .eq('trip_id', id)
- .order('recorded_at', { ascending: true }),
- supabase
- .from('stops')
- .select('latitude,longitude,stop_type,started_at,ended_at,duration_seconds,place_name')
- .eq('trip_id', id)
- .order('started_at', { ascending: true }),
- supabase.from('tours').select('id,title,start_location,destination,waypoints').limit(100),
- supabase.from('restaurants').select('id,name,latitude,longitude').limit(1000),
- ])
-
- // hämta taggade användare (beror på tripTagsRaw ovan)
- const taggedUserIds = (tripTagsRaw ?? []).map((t: { tagged_user_id: string }) => t.tagged_user_id)
- const { data: taggedUsersRaw } = taggedUserIds.length
- ? await supabase.from('users').select('id, username').in('id', taggedUserIds)
- : { data: [] }
- const taggedUsers = taggedUsersRaw ?? []
-
- // Existerande höjdpunkt (prompten för ägaren styrs av ViewerGate)
- const { data: existingHighlight } = await supabase
-   .from('trip_highlights')
-   .select('id, place_slug, place_name')
-   .eq('trip_id', id)
-   .maybeSingle()
+ const bundle = await resolveTripBundle(id)
+ if (!bundle) notFound()
+ const { trip, userRow, taggedUsers, rawPoints, rawStops, toursData, allRestaurants, existingHighlight } = bundle
 
  const points = (rawPoints ?? []).map(p => ({
  lat: p?.latitude ?? 0,
@@ -273,7 +218,19 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  const username = userRow?.username ?? 'Seglare'
  const routeName = (trip.routes as { name: string } | null)?.name
 
- const durationSecs = (trip.duration ?? 0) * 60
+ // Sekunder (duration_seconds sedan 2026-09-10) med fallback för äldre turer.
+ const durationSecs = resolveDurationSeconds({
+   duration_seconds: trip.duration_seconds ?? null, duration: trip.duration ?? null,
+   started_at: trip.started_at ?? null, ended_at: trip.ended_at ?? null,
+ })
+
+ // Fartkurva + delsträckor ur sparade punkter ("det synliga", 2026-09-10).
+ // Bara när sidan har riktiga gps_points med fart — route_points-fallbacken
+ // (anonyma läsare) har speedKnots 0 och ska inte ritas som en platt kurva.
+ const hasSpeedData = points.length >= 2 && points.some(p => p.speedKnots > 0)
+ const speedSamples = hasSpeedData ? speedSeries(points) : []
+ const splits = hasSpeedData ? computeSplits(points) : []
+ const movingS = hasSpeedData ? movingSeconds(points) : 0
 
  // Fusionerad tidslinje: start + alla pauses/stopp (med plats + varaktighet) + end
  type TimelineEvent = {
@@ -682,6 +639,61 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  </div>
  )}
 
+ {/* Fart över tid — en serie, luckor bryter kurvan. Toppfart = bästa 10 s (samma som kortet). */}
+ {speedSamples.filter(Boolean).length >= 2 && (
+ <div style={{ marginBottom: 18 }}>
+ <SectionTitle>Fart</SectionTitle>
+ <SpeedChart
+ series={speedSamples}
+ topKn={trip.max_speed_knots >= 0.1 ? trip.max_speed_knots : undefined}
+ avgKn={trip.average_speed_knots >= 0.1 ? trip.average_speed_knots : undefined}
+ />
+ {movingS > 0 && durationSecs > 0 && movingS < durationSecs - 30 && (
+ <div style={{ fontSize: 11.5, color: 'var(--txt3)', marginTop: 6, paddingLeft: 4 }}>
+ I rörelse {formatDuration(movingS)} av {formatDuration(durationSecs)} (fart över 0,5 kn)
+ </div>
+ )}
+ </div>
+ )}
+
+ {/* Delsträckor per sjömil — sträcka / tid, inget annat */}
+ {splits.length >= 2 && (
+ <div style={{ marginBottom: 18 }}>
+ <SectionTitle>Delsträckor</SectionTitle>
+ <div style={{ background: 'var(--white)', borderRadius: 20, padding: '10px 14px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)' }}>
+ {(() => {
+ const maxAvg = Math.max(...splits.map(x => x.avgKnots), 0.1)
+ return (
+ <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12.5, fontVariantNumeric: 'tabular-nums' }}>
+ <thead>
+ <tr style={{ color: 'var(--txt3)', fontSize: 10.5, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+ <th scope="col" style={{ textAlign: 'left', padding: '4px 0', fontWeight: 600 }}>NM</th>
+ <th scope="col" style={{ textAlign: 'right', padding: '4px 8px', fontWeight: 600 }}>Tid</th>
+ <th scope="col" style={{ textAlign: 'right', padding: '4px 8px', fontWeight: 600 }}>Snitt</th>
+ <th scope="col" style={{ width: '38%', padding: '4px 0' }}><span style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>Snittfart som stapel</span></th>
+ </tr>
+ </thead>
+ <tbody>
+ {splits.map(sp => (
+ <tr key={sp.index} style={{ borderTop: '1px solid var(--sea-06)' }}>
+ <td style={{ padding: '6px 0', color: 'var(--txt2)' }}>{sp.distanceNM === 1 ? sp.index : `${sp.index} (${sp.distanceNM.toFixed(2).replace('.', ',')})`}</td>
+ <td style={{ padding: '6px 8px', textAlign: 'right', color: 'var(--txt2)' }}>{fmtMinSec(sp.seconds)}</td>
+ <td style={{ padding: '6px 8px', textAlign: 'right', color: 'var(--txt)', fontWeight: 600 }}>{sp.avgKnots.toFixed(1)} kn</td>
+ <td style={{ padding: '6px 0' }}>
+ <div style={{ height: 8, borderRadius: 4, background: 'var(--sea-06)', overflow: 'hidden' }}>
+ <div style={{ width: `${Math.max(2, (sp.avgKnots / maxAvg) * 100)}%`, height: '100%', borderRadius: 4, background: 'var(--sea)', opacity: 0.85 }} />
+ </div>
+ </td>
+ </tr>
+ ))}
+ </tbody>
+ </table>
+ )
+ })()}
+ </div>
+ </div>
+ )}
+
  {/* Tidslinje — samlar start, pauses, stopp och ankomst med plats + varaktighet */}
  {timeline.length > 1 && (
  <div style={{ marginBottom: 18 }}>
@@ -769,6 +781,12 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  />
  </div>
  )
+}
+
+/** m:ss för delsträckor — sekunderna är poängen här. */
+function fmtMinSec(sec: number): string {
+ const m = Math.floor(sec / 60), r = Math.round(sec % 60)
+ return `${m}:${String(r).padStart(2, '0')}`
 }
 
 function SectionTitle({ children }: { children: ReactNode }) {

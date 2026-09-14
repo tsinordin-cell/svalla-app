@@ -4,6 +4,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { buildGpx } from '@/lib/gpx'
+import { fetchAllGpsPoints } from '@/lib/gpsRows'
 import { isPro, isProEnabled } from '@/lib/pro'
 
 export async function GET(
@@ -46,15 +47,15 @@ export async function GET(
 
   const routePts = Array.isArray(trip.route_points) ? trip.route_points as { lat: number; lng: number }[] : []
 
-  const { data: gpsPts } = await supabase
-    .from('gps_points')
-    .select('latitude, longitude, recorded_at')
-    .eq('trip_id', id)
-    .order('recorded_at', { ascending: true })
-    .limit(5000)
+  // Alla punkter, sidindelat. Före 2026-09-11: .limit(5000) OCH PostgREST-taket
+  // 1 000 → exporten var stympad för allt över 17 minuter.
+  // Fart och kurs sedan 2026-09-11 som Garmin TrackPointExtension (se gpx.ts).
+  const gpsPts = await fetchAllGpsPoints<{ latitude: number; longitude: number; recorded_at: string | null; speed_knots: number | null; heading: number | null }>(
+    supabase, id, 'latitude, longitude, recorded_at, speed_knots, heading',
+  ).catch(() => null)
 
   const rawPts = gpsPts && gpsPts.length > 0
-    ? gpsPts.map(p => ({ lat: p.latitude, lng: p.longitude, time: p.recorded_at ?? undefined }))
+    ? gpsPts.map(p => ({ lat: p.latitude, lng: p.longitude, time: p.recorded_at ?? undefined, speedKnots: p.speed_knots ?? undefined, heading: p.heading }))
     : routePts.map(p => ({ lat: p.lat, lng: p.lng }))
 
   const name = trip.location_name ?? trip.caption ?? `Tur ${id.slice(0, 8)}`

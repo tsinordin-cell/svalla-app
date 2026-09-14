@@ -8,6 +8,10 @@ export interface BufferedPoint {
   heading: number | null
   accuracy: number
   recordedAt: string
+  // Rådata — se GpsPoint i ./gps. Valfria: äldre poster i IndexedDB saknar dem.
+  rawLat?: number
+  rawLng?: number
+  deviceSpeedKnots?: number | null
 }
 
 const DB_NAME = 'svalla-gps'

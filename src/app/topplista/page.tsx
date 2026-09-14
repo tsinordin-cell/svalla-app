@@ -40,6 +40,7 @@ export default async function ToplistaPage() {
   const { data: allTrips } = await supabase
     .from('trips')
     .select('id, user_id, distance, created_at, average_speed_knots, max_speed_knots, pinnar_rating')
+    .is('deleted_at', null) // mjukraderade turer ska inte räknas (länkkontroll 2026-09-03)
     .order('created_at', { ascending: false })
     .limit(1000)
 
