@@ -1243,7 +1243,8 @@ export const ISLANDS: Island[] = [
       { name: 'Pizzeria Ljusterö', type: 'Restaurang', desc: 'Lokalbefolkningens val — avslappnat och bra. Pizza, kebab och hamburgare.', slug: 'pizzeria-ljustero', price_example: 'Aktuella priser anslås på plats', open_season: 'Helår', open_hours: 'Mån–Sön 10–20' },
     ],
     day_cost: {
-      budget_per_person: '150–420 kr',
+      // Ingen totalsumma: cafépriser publiceras inte, och summan blev en gissning. Posterna nedan är belagda var för sig.
+      budget_per_person: 'Färja och buss är avgiftsfria — resten beror på mat och ev. kajakhyra',
       includes: 'Avgiftsfri bilfärja, lunch eller pizza, kaffe vid Klintsundet',
       breakdown: [
         // KÄLLA: SL:s tidtabell linje 626 Danderyds sjukhus–Ljusterö + Trafikverket, Ljusteröleden avgiftsfri (hämtad 2026-08-24)
@@ -1253,8 +1254,8 @@ export const ISLANDS: Island[] = [
         { item: 'Lunch Linanäsbryggan', price: '255–285 kr (2026)' },
         // KÄLLA: restaurangljusterotorg.se (Restaurang Turquoise, Ljusterö torg 8) — priser publiceras inte online, därför ingen siffra
         { item: 'Alternativ: pizza, Restaurang Turquoise vid Ljusterö torg', price: 'Se meny på plats' },
-        // UPPSKATTNING: cafépriser publiceras inte av klintsundetmarina.se, normalt caféspann (2026-08)
-        { item: 'Kaffe + bulle, Klintsundets café', price: '55–70 kr' },
+        // KÄLLA: klintsundetmarina.se — cafépriser publiceras inte, därför ingen siffra
+        { item: 'Kaffe + bulle, Klintsundets café', price: 'Se pris på plats' },
         // KÄLLA: klintsundetmarina.se — enmanskajak 370 kr halvdag, 530 kr heldag (hämtad 2026-08-24)
         { item: 'Kajakhyra Klintsundet Marina (halvdag)', price: 'från 370 kr (2026)' },
       ],
@@ -1703,11 +1704,12 @@ export const ISLANDS: Island[] = [
       { name: 'Hotell Furusund, restaurangen', type: 'Restaurang', desc: 'Det gamla värdshuset — mat i historisk miljö.', slug: 'furusund-vardshus', price_example: 'Förrätt 175–195 kr, huvudrätt 225–390 kr', open_season: 'Maj–Oktober', open_hours: 'Varierar med säsong, kortare öppettider utanför juni–augusti', book_required: true, phone: '0176-803 44', child_menu: true }, // KÄLLA: hotellfurusund.se/kontakt/ (telefon +46 (0)176-803 44; öppettider publicerade per månad, t.ex. september); hotellfurusund.se/menyer/, PDF-menyer hösten 2026 (förrätter 175–195 kr, huvudrätter 225–390 kr)
     ],
     day_cost: {
-      budget_per_person: '450–800 kr',
-      includes: 'Bil/buss till Furusund, lunch + middag på Värdshuset, parkering',
+      // Ingen totalsumma: parkering och resa saknar belagt pris. Menypriserna nedan är belagda.
+      budget_per_person: 'Lunch och middag enligt hotellets menyer — resa och parkering tillkommer',
+      includes: 'Bil/buss till Furusund, lunch + middag på hotellets restaurang, parkering',
       breakdown: [
-        { item: 'Lunch Furusund Värdshus', price: '175–290 kr' }, // KÄLLA: hotellfurusund.se, lunchmeny hösten 2026 (PDF): förrätt 175 kr, huvudrätt 225–290 kr
-        { item: 'Middag Furusund Värdshus', price: '175–390 kr' }, // KÄLLA: hotellfurusund.se, kvällsmeny hösten 2026 (PDF): förrätt 175–195 kr, huvudrätt 225–390 kr
+        { item: 'Lunch, Hotell Furusund', price: '175–290 kr' }, // KÄLLA: hotellfurusund.se, lunchmeny hösten 2026 (PDF): förrätt 175 kr, huvudrätt 225–290 kr
+        { item: 'Middag, Hotell Furusund', price: '175–390 kr' }, // KÄLLA: hotellfurusund.se, kvällsmeny hösten 2026 (PDF): förrätt 175–195 kr, huvudrätt 225–390 kr
       ],
       tips: [
         'Boka bord på Värdshuset i förväg — högsäsong är ofta fullbokat.',
@@ -1835,14 +1837,14 @@ export const ISLANDS: Island[] = [
       { name: 'Gällnö Handelsbod', type: 'Handel', desc: 'Bred handelsbod med livsmedel, färskt bröd dagligen, kött, fisk och grönsaker.', open_season: 'Mitten av maj–slutet av augusti', open_hours: 'Ca 09–20 i högsäsong (juli), kortare tider i maj, juni och augusti' },
     ],
     day_cost: {
-      budget_per_person: '350–600 kr',
-      includes: 'Waxholmsbåt t/r från Strömkajen, dryck på baren, medhavd matsäck',
+      // Inga belopp: varken båtbiljett eller krogens priser gick att belägga mot publicerad prislista (2026-09-14). Siffror borttagna på Toms beslut.
+      budget_per_person: 'Beror på båtbiljett och mat — se waxholmsbolaget.se och gallno.se',
+      includes: 'Waxholmsbåt t/r från Strömkajen, dryck på krogen, medhavd matsäck',
       breakdown: [
-        // KÄLLA: linjenummer kunde inte verifieras (waxholmsbolaget.se kräver Javascript, ingen sökmotor gav användbara träffar). Priset kunde inte beläggas mot en aktuell prislista och bör kontrolleras. Kontrollerad 2026-09-03.
-        { item: 'Waxholmsbåt t/r Strömkajen–Gällnö', price: '~160 kr' },
-        // KÄLLA: gallno.se/mat-dryck/gallno-krog — verksamheten heter Gällnö krog (bar ingår). Priset kunde inte beläggas mot en publicerad prislista. Kontrollerad 2026-09-03.
-        { item: 'Dryck på Gällnö krog (2 öl)', price: '130–170 kr' },
-        { item: 'Medhavd matsäck (lunch + snacks)', price: '100–150 kr' },
+        // KÄLLA: waxholmsbolaget.se — prislistan renderas med JavaScript och kunde inte hämtas; inget belopp
+        { item: 'Waxholmsbåt t/r Strömkajen–Gällnö', price: 'Se waxholmsbolaget.se för aktuellt pris' },
+        // KÄLLA: gallno.se/mat-dryck/gallno-krog — verksamheten heter Gällnö krog (bar ingår); ingen publicerad prislista. Kontrollerad 2026-09-03.
+        { item: 'Dryck på Gällnö krog', price: 'Se prislista på plats' },
       ],
       // KÄLLA: gallno.se/mat-dryck/gallno-krog och /mat-dryck/oppettider — krogen serverar lagad mat men öppettiderna varierar kraftigt under säsong. Uppgifter om havsörn och ankringsförhållanden hittades inte i primärkällor och togs bort. Kontrollerad 2026-09-03.
       tips: [
@@ -2010,7 +2012,8 @@ export const ISLANDS: Island[] = [
       { name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Restaurang vid ångbåtsbryggan och gästhamnen. Öppettider varierar under säsongen.', open_season: 'Del av sommarsäsongen, kontrollera aktuella tider på nattaro.se', book_required: false },
     ],
     day_cost: {
-      budget_per_person: '350–650 kr',
+      // Inga belopp: varken resa eller krog har belagt pris (se raderna nedan). Siffror borttagna på Toms beslut 2026-09-14.
+      budget_per_person: 'Beror på tåg/buss, båtbiljett och mat — inga belagda priser',
       // KÄLLA: nattaro.se ("turbåten från Nynäshamn"); exakt biljettpris kunde inte beläggas
       includes: 'Turbåt + ev. buss från Nynäshamn, lunch på krogen, medhavd picknick',
       breakdown: [
@@ -2020,7 +2023,6 @@ export const ISLANDS: Island[] = [
         { item: 'Turbåt Nynäshamn–Nåttarö t/r', price: 'Enligt Waxholmsbolagets aktuella taxa' },
         // KÄLLA: pris kunde inte beläggas på nattaro.se
         { item: 'Lunch Nåttarö Krog', price: 'Se aktuell meny på plats' },
-        { item: 'Medhavd picknick vid sandstranden', price: '50–100 kr' },
       ],
       tips: [
         'Nåttarö är ett naturreservat — ta med allt du behöver, krogen är enda matplatsen.',
@@ -2309,7 +2311,6 @@ export const ISLANDS: Island[] = [
         { item: 'Varmrätt Svartsö Krog', price: '310–355 kr' },
         // KÄLLA: svartsolanthandel.se/cykeluthyrning ("200kr / dag")
         { item: 'Cykeluthyrning (heldag)', price: '200 kr' },
-        { item: 'Proviant Lanthandeln', price: '50–100 kr' },
       ],
       tips: [
         'Boka bord på krogen i förväg — högsäsong kan vara fullbokat.',
