@@ -202,7 +202,7 @@ export const ISLANDS: Island[] = [
       'Sandhamn besöks bäst juni–september men ön har verksamhet nästan hela året tack vare Seglarhotellet. Högsäsong är juli. Boka allt i förväg.',
       'Det är lätt att glömma att Sandhamn faktiskt är ett gammalt fiskesamhälle. Gränd efter gränd kantas av röda och gula trähus, odlingsland och gamla sjöbodar. Bort från hamnen, bara hundra meter in i byn, är det tyst nog att höra fåglarna. Den kontrasten är en av Sandhamns bästa hemligheter: feststämning i hamnen och stillhet trettio sekunder bort.',
       'Trouville-stranden på öns södra sida är sällsynt i skärgårdssammanhang. Sand istället för klippor, och ett grunt strandparti som fungerar utmärkt för barn. Bäst att ta sig dit tidigt på morgonen. Efter tio börjar det bli trångt under högsäsongen. Klipporna öster om stranden är en bra plan B: utsikt mot öppet hav och ofta bara ett par personer.',
-      'Matutbudet är ovanligt brett för en skärgårdsö. Dagen börjar på bageriet med nybakt och kaffe, lunchen kan bli räkor på värdshuset, kvällen på Seglarrestaurangen om du bokat bord eller en öl på Dykarbaren om du inte gjort det. Sandhamn är en av få öar där man kan äta riktigt bra utan att ha planerat i förväg, åtminstone på vardagar.',
+      'Matutbudet är ovanligt brett för en skärgårdsö. Dagen börjar på bageriet med nybakt och kaffe, lunchen kan bli räkor på värdshuset, kvällen i Segelsalen på Seglarhotellet om du bokat bord eller en öl på Dykarbaren om du inte gjort det. Sandhamn är en av få öar där man kan äta riktigt bra utan att ha planerat i förväg, åtminstone på vardagar.',
       'För den som inte seglar kan Sandhamn vid första anblick verka som "en hamn full med seglare". Men ön är minst lika intressant för den som inte har en båt. Promenaden runt ön tar ungefär två timmar i lagom tempo. Kombinera med ett bad på Trouville, lunch och en eftermiddagspromenad ut till östudden. Det räcker gott som en hel dag.',
       'September är Sandhamns dolda guldmånad. Turisttrycket är borta, vattnet fortfarande badbart, restaurangerna öppna och utan kö. Det är i september man förstår varför folk som bott i Stockholms skärgård hela livet väljer att komma just hit, inte i juli.',
       'Sandhamn har en historia som lotsstation som sträcker sig flera hundra år tillbaka. Piloter var stationerade här för att guida handelsfartyg genom de smala ytterskärgårdspassagerna in mot Stockholm. Den praktiska sjömansmiljön formade byns karaktär: de gamla lotskojiorna och de trånga gränderna speglar en arbetskultur kopplad till havet som lever kvar i stadsbilden än i dag.',
@@ -251,16 +251,21 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Segelbåt eller motorbåt till KSSS-hamnen. Förboka gästplats under högsäsong.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'KSSS Sandhamn', desc: 'Huvudhamnen med bränsle, el och servicebyggnad. Boka i förväg juli–aug.', fuel: true, service: ['el', 'vatten', 'dusch', 'tvätt', 'bränsle'] },
-      { name: 'Sandhamns Sjöstation', desc: 'Drivmedel och service vid inloppet.', fuel: true, service: ['bränsle', 'olja'] },
+      // KÄLLA: ksss.se/hamnar/sandhamn — "ca 150 gästplatser", "20 st bokningsbara platser … dockspot.com", el på brygga B och C, "Vatten på bryggorna och servicehusen med dusch, toalett och tvättstuga … maj till september". Bränsle nämns inte av KSSS.
+      { name: 'KSSS Sandhamn', desc: 'KSSS gästhamn framför Seglarhotellet, ca 150 platser. 20 bokningsbara platser via Dockspot. Servicehus maj–september.', fuel: false, service: ['el', 'vatten', 'dusch', 'tvätt'] },
     ],
     restaurants: [
-      { name: 'Seglarrestaurangen', type: 'Restaurang', desc: 'Seglarhotellets krog — en av skärgårdens finaste. Boka i förväg.', bookingUrl: 'https://www.bokabord.se/restaurang/sandhamn-seglarhotell', websiteUrl: 'https://www.sandhamn.com' },
-      { name: 'Sandhamns Värdshus', type: 'Restaurang', desc: 'Historisk krog vid färjebryggan. Enkel husmanskost och räkor.', bookingUrl: 'https://www.bokabord.se/restaurang/sandhamns-vardshus', websiteUrl: 'https://sandhamns-vardshus.se' },
+      // KÄLLA: sandhamn.com/sv/restauranger-och-barer/segelsalen — "Segelsalen på Seglarhotellet … meny med fokus på säsongens råvaror"; hotellets restaurangsida listar Bistro, Segelsalen, Seglarbaren, Orangeriet, Terassen, Hamnbaren
+      { name: 'Segelsalen, Sandhamn Seglarhotell', type: 'Restaurang', desc: 'Seglarhotellets matsal med säsongsmeny. Boka bord i förväg.', websiteUrl: 'https://www.sandhamn.com/sv/restauranger-och-barer/segelsalen' },
+      // KÄLLA: sandhamns-vardshus.se — "Sandhamns Värdshus anno 1672", "Puben … Öppet året runt", "Restaurangen Med en magisk utsikt över hamnen"
+      { name: 'Sandhamns Värdshus', type: 'Restaurang', desc: 'Värdshus anno 1672 med pub öppen året runt och restaurang med utsikt över hamnen.', websiteUrl: 'https://sandhamns-vardshus.se' },
       // OBELAGT: sandshotell.se/restaurang/ gick inte att hämta (robots.txt/timeout). Sekundärkällor (hotels.com, travelocity) kallar anläggningen "Sands Hotell & Bistro" — namnet bör verifieras direkt mot sandshotell.se innan publicering.
-      { name: 'Bistro Sands', type: 'Bistro', desc: 'Avslappnad bistro med havsutsikt och säsongsrätter.', slug: 'bistro-sands' },
-      { name: 'Dykarbaren', type: 'Bar', desc: 'Bryggbar med hamburgare och öl. Populär för sundowner.', slug: 'dykarbaren' },
-      { name: 'Sandhamns Bageriet', type: 'Bageri', desc: 'Nybakat varje morgon. Kö tidigt i juli.', slug: 'sandhamns-bageriet' },
+      // KÄLLA: visitskargarden.se/boende/hotell/sands-hotell.aspx — "Sands Hotell & Bistro"; sandshotell.se — "restaurangen med uteterassen"
+      { name: 'Sands Bistro', type: 'Bistro', desc: 'Hotellbistro på Sands Hotell med mat lagad från grunden och uteterrass.', websiteUrl: 'https://sandshotell.se' },
+      // KÄLLA: dykarbaren.se — "DYKARBAREN SANDHAMN", inne- och uteservering, säsongsöppettider 2026
+      { name: 'Dykarbaren', type: 'Bar', desc: 'Bar och restaurang i Sandhamn med inne- och uteservering. Säsongsöppen.', websiteUrl: 'https://dykarbaren.se' },
+      // KÄLLA: sandhamnsbageriet.com — vetesurdegsbröd, kanelbulle, kardemummabulle, "Seglarbulle"; säsongsöppet (sista helgen sept 2026)
+      { name: 'Sandhamnsbageriet', type: 'Bageri', desc: 'Bageri i Sandhamn med surdegsbröd, bullar, tårtor och smörgåsar. Säsongsöppet.', websiteUrl: 'https://www.sandhamnsbageriet.com' },
     ],
     tips: [
       'Boka restaurang och hotell minst 4–6 veckor i förväg under juli.',
@@ -401,12 +406,16 @@ export const ISLANDS: Island[] = [
       { method: 'Pendel + buss + båt', from: 'Stockholm City', time: '2 h totalt', desc: 'Pendeltåg linje 43 till Västerhaninge, buss 846 till Årsta brygga (16 min), sedan båt till Gruvbryggan 35–75 min, beställningsbrygga på de flesta turer.', icon: '🚆' },
     ],
     harbors: [
-      { name: 'Utö Gästhamn', desc: 'Välutrustad gästhamn med bränsle, el och service. Boka i förväg sommartid.', fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt'] },
+      // KÄLLA: utogasthamn.se/gasthamnen — "plats för ca 300 fritidsbåtar med eluttag … på samtliga platser", "dusch, bastu och toaletter", "tvättstuga att hyra", "fylla på färskvatten", "I den norra hamnen finns sjömacken"
+      { name: 'Utö Gästhamn', desc: 'Gästhamn i Gruvbyn med ca 300 platser. El på alla platser, dusch, bastu, tvättstuga och sjömack i norra hamnen.', fuel: true, service: ['el', 'vatten', 'dusch', 'tvätt', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Utö Värdshus', type: 'Restaurang', desc: 'Öns flaggskepp — vällagad mat med havsutsikt. Boka i förväg.', bookingUrl: 'https://www.utovardshus.se/restaurang/boka-bord-vardshuset/', websiteUrl: 'https://www.utovardshus.se' },
-      { name: 'Seglarbaren', type: 'Bar', desc: 'Avslappnad hamn­bar för seglare och besökare.', slug: 'seglarbaren-uto' },
-      { name: 'Hamnboden', type: 'Kiosk', desc: 'Enkel mat och dryck direkt vid hamnen.', slug: 'hamnboden-uto' },
+      // KÄLLA: utovardshus.se/restaurang/uto-vardshus — "I det gamla gruvkontoret finns Utö Värdshus bar och matsalar … à la carte både lunch och middag … verandan öppen" på sommaren
+      { name: 'Utö Värdshus', type: 'Restaurang', desc: 'Bar och matsalar i det gamla gruvkontoret. À la carte lunch och middag, veranda sommartid.', bookingUrl: 'https://www.utovardshus.se/restaurang/boka-bord-vardshuset/', websiteUrl: 'https://www.utovardshus.se' },
+      // KÄLLA: utovardshus.se/restaurang/seglarbaren — "BAREN MITT I HAMNEN", veranda mot hamninloppet, "enklare rätter till lunch … kolgrillade rätter till kvällen"
+      { name: 'Seglarbaren', type: 'Bar', desc: 'Utö Värdshus bar mitt i hamnen. Veranda mot hamninloppet, enklare lunch och kolgrillat till kvällen.', websiteUrl: 'https://www.utovardshus.se/restaurang/seglarbaren/' },
+      // KÄLLA: utogasthamn.se/kiosk-cafe — "Hamnboden … kiosk, café och restaurang i samma byggnad … glass, godis, korv och toast men även sushi samt en bar"
+      { name: 'Hamnboden', type: 'Kiosk/Café', desc: 'Kiosk, café och restaurang i Utö gästhamn: glass, korv, toast, sushi och bar.', websiteUrl: 'https://www.utogasthamn.se/kiosk-cafe/' },
       // KÄLLA: visitskargarden.se/mat-dryck/restaurang/bakfickan.aspx — "Utös vattenhål och nattklubb", bar/nattklubb i anslutning till Utö Värdshus
       { name: 'Bakfickan Utö', type: 'Bar', desc: 'Bar och nattklubb vid Gruvbryggan, del av Utö Värdshus. Livemusik och DJ sommarhelger.', slug: 'bakfickan-uto' },
     ],
@@ -549,10 +558,12 @@ export const ISLANDS: Island[] = [
       { name: 'Vaxholms Gästhamn', desc: 'Centralt belägen gästhamn med god service. Gångavstånd till all service.', fuel: true, service: ['el', 'vatten', 'dusch', 'toilet'] },
     ],
     restaurants: [
-      { name: 'Hamnkrogen Vaxholm', type: 'Restaurang', desc: 'Klassisk bryggkrog med räkor och husmanskost.' },
-      { name: 'Winbergs Kök & Bar', type: 'Restaurang', desc: 'Enkel och bra mat i avslappnad miljö.', slug: 'winbergs-kok-bar' },
-      { name: 'Getfoten Sjökrog', type: 'Restaurang', desc: 'Populär sjökrog söder om stan.', slug: 'getfoten-sjokrog' },
-      { name: 'Mathantverkstan', type: 'Delikatess', desc: 'Hantverksostar, bröd, sylt och andra lokalt producerade skafferivaror.' },
+      // KÄLLA: hamnkrogenvaxholm.com — "vaxholmarnas kvarterskrog sedan 1950-talet … ser ut över båtlivet i gästhamnen", Söderhamnen 10, "Våra klassiker samsas med husmanskost"
+      { name: 'Hamnkrogen', type: 'Restaurang', desc: 'Kvarterskrog vid gästhamnen sedan 1950-talet. Lunch, middag och husmanskost.', websiteUrl: 'https://www.hamnkrogenvaxholm.com' },
+      // KÄLLA: winbergs.se — "WINBERGS KÖK & BAR PÅ KAJEN I VAXHOLM … sommarkrog … Krogen är grundad 1961"
+      { name: 'Winbergs Kök & Bar', type: 'Restaurang', desc: 'Sommarkrog och grill på kajen i Vaxholm, grundad 1961.', websiteUrl: 'https://www.winbergs.se' },
+      // KÄLLA: ostmakeriet.se/aterforsaljare — "Mathantverkstan i Skärgården"; destinationvaxholm.se (Vaxholms turistbyrå) — "artisan cheeses, bread, jams, kombucha, coffee, ice cream", Söderhamnsplan 1
+      { name: 'Mathantverkstan i Skärgården', type: 'Delikatess/Café', desc: 'Butik och café vid Söderhamnsplan med hantverksostar, bröd, sylt, kombucha och kaffe.' },
     ],
     tips: [
       'Kastell-museet är bäst att besöka på förmiddagen innan turistbåtarna anländer.',
@@ -679,12 +690,16 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamnen tar emot alla. Boka el-plats i förväg.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Grinda Gästhamn (Hemviken)', desc: 'Välutrustad hamn med bränsle och full service.', fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt', 'wifi'] },
+      // KÄLLA: grinda.se/hamn-mack/gasthamn — "gästhamn för 100 båtar", el, dusch, toalett, "28 st bokningsbara platser"; /sakerhet-service — "Färskvatten … i dunk"; /sjomack — "Bensin 98, Diesel, Gasol"; skargardsstiftelsen.se — "Gästhamn finns i Hemviken". Tvätt/wifi nämns inte.
+      { name: 'Grinda Gästhamn (Hemviken)', desc: 'Gästhamn för ca 100 båtar med el, dusch, toalett, färskvatten och sjömack. 28 bokningsbara platser.', fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Grinda Wärdshus Restaurang', type: 'Restaurang', desc: 'Klassisk skärgårdsmat med sjöutsikt. Boka bord i förväg.', bookingUrl: 'https://www.bokabord.se/restaurang/grinda-wardshus', websiteUrl: 'https://grinda.se' },
-      { name: 'Framfickan', type: 'Bistro', desc: 'Bryggbistro nedanför wärdshuset. Lunch i solen.', slug: 'framfickan-grinda' },
-      { name: 'Grinda Lanthandel & Café', type: 'Café', desc: 'Frukost, fika och proviant vid nedre hamnen.', slug: 'grinda-lanthandel-cafe' },
+      // KÄLLA: grinda.se/mat-fest/wardshuset — "Grinda Wärdshus klassisk skärgårdsmat & stämning sedan 1906", "blickat ut över Saxarfjärden"; skargardsstiftelsen.se/omraden/grinda — "Mitt på ön ligger Grinda Wärdshus"
+      { name: 'Grinda Wärdshus', type: 'Restaurang', desc: 'Wärdshus från 1906 med klassisk skärgårdsmat och utsikt över Saxarfjärden. Boka bord.', bookingUrl: 'https://grinda.se/boka-bord/', websiteUrl: 'https://grinda.se/mat-fest/wardshuset/' },
+      // KÄLLA: grinda.se/mat-fest/framfickan — "hamnkrog, pizza & lättare rätter", "Gästhamnen ligger bara tio simtag bort", "endast drop-in"
+      { name: 'Framfickan', type: 'Bistro', desc: 'Hamnkrog vid gästhamnen med pizza och lättare rätter. Endast drop-in.', websiteUrl: 'https://grinda.se/mat-fest/framfickan/' },
+      // KÄLLA: grinda.se/mat-fest/lanthandel-cafe — "Nedanför Grinda Wärdshus ligger vår … Lanthandel med tillhörande cafédel … frukost och enklare luncher"
+      { name: 'Grinda Lanthandel & Café', type: 'Café', desc: 'Lanthandel med café nedanför Wärdshuset. Frukost, enklare luncher och glass.', websiteUrl: 'https://grinda.se/mat-fest/lanthandel-cafe/' },
     ],
     tips: [
       'Framfickan på klipporna är bäst för lunch — boka bord från kl 10.',
@@ -821,8 +836,10 @@ export const ISLANDS: Island[] = [
       { name: 'Vandrarhemsviken', desc: 'Hamn vid vandrarhemet med service.', fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
-      { name: 'Finnhamns Krog', type: 'Restaurang', desc: 'Samlingsplatsen vid hamnen. Enkel och bra mat.', bookingUrl: 'https://www.bokabord.se/restaurang/finnhamns-krog', websiteUrl: 'https://finnhamn.se' },
-      { name: 'Takbaren', type: 'Bar', desc: 'Bar med panoramautsikt från vandrarhemsbyggnadens tak.' },
+      // KÄLLA: finnhamn.se/ata — "Finnhamns krog är belägen nere vid ångbåtsbryggan … klassisk inriktning på lunchen och en á la carte meny som varierar under säsongen"
+      { name: 'Finnhamns krog', type: 'Restaurang', desc: 'Krog vid ångbåtsbryggan med klassisk lunch och säsongsvarierad à la carte.', websiteUrl: 'https://finnhamn.se/ata/' },
+      // KÄLLA: finnhamn.se/ata — "Uppe på krogens tak ligger … Takbaren … nästan 150 sittplatser", öppen "Vid midsommar … till mitten augusti"
+      { name: 'Takbaren', type: 'Bar', desc: 'Bar på krogens tak med ca 150 sittplatser. Öppen midsommar till mitten av augusti.', websiteUrl: 'https://finnhamn.se/ata/' },
       // KÄLLA: finnhamn.se/en/eat/ ("Ragnar's Kiosk, located at Paradise Bay beach").
       { name: 'Ragnars kiosk', type: 'Kiosk', desc: 'Glassbod och enkla tilltugg vid Paradisviken.', slug: 'ragnars-kiosk-finnhamn' },
       { name: 'Lanthandeln', type: 'Handel', desc: 'Proviant, kaffe och metmask. Allt du behöver.' },
@@ -954,7 +971,8 @@ export const ISLANDS: Island[] = [
       { name: 'Långvik gästhamn', desc: 'Mindre gästhamn i Långvik, lugnare och mer naturnära.', service: ['el', 'vatten'] },
     ],
     restaurants: [
-      { name: 'Möja Värdshus & Bageri', type: 'Värdshus/Bageri', desc: 'Öns hjärta i Kyrkviken sedan 1951. Nybakt bröd på morgonen och restaurang med utsikt. Öppet sommarsäsongen.', websiteUrl: 'https://mojavardshusochbageri.se' },
+      // KÄLLA: mojavardshusochbageri.se — "genuin och hemtrevlig skärgårdsrestaurang med fullskaligt bageri", "Möja bageris historia tar sin början 1951", Bergs by
+      { name: 'Möja Värdshus & Bageri', type: 'Värdshus/Bageri', desc: 'Skärgårdsrestaurang med eget bageri i Bergs by. Bagerihistoria sedan 1951. Säsongsöppet.', websiteUrl: 'https://mojavardshusochbageri.se' },
     ],
     tips: [
       'Möja är inte en plats att hasta igenom — stanna minst en natt för att förstå charmen.',
@@ -1124,7 +1142,8 @@ export const ISLANDS: Island[] = [
       { name: 'Fjäderholmarnas Gästhamn & Sjömack', desc: 'Gästplatser i krogviken och vid sjömacken, bojar och långsides. Dag 100 kr, natt 300 kr. Ingen landström. Säsong maj–september.', fuel: true, service: ['toilet', 'shower'] },
     ],
     restaurants: [
-      { name: 'Fjäderholmarnas Krog', type: 'Restaurang', desc: 'Stor terrass, vällagad mat, direktbåt från stan. Boka i förväg.' },
+      // KÄLLA: fjaderholmarnaskrog.se — "STOCKHOLMS NÄRMASTE SKÄRGÅRDSKROG", à la carte-meny 2026, öppettider 2026 19 juni–13 september, festvåning Magasinet
+      { name: 'Fjäderholmarnas Krog', type: 'Restaurang', desc: 'Skärgårdskrog på Fjäderholmarna med à la carte, hamnbar och festvåning. Säsongsöppen.', websiteUrl: 'https://www.fjaderholmarnaskrog.se' },
       { name: 'Rökeriet Fjäderholmarna', type: 'Restaurang', desc: 'Rökta produkter tillagade på plats, bordsservering och deli för take-away. Öppet maj–september, julbord i november–december.' }, // KÄLLA: rokeriet-fjaderholmarna.se
       { name: 'Fjäderholmarnas Bryggeri', type: 'Bar', desc: 'Hantverksöl med Stockholms siluett. Kväll och solnedgång.', slug: 'fjaderholmarna-bryggeri' },
     ],
@@ -2400,7 +2419,8 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamn i Styrsvik.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Runmarö Hamn', desc: 'Bränsle, el och vatten. Populärt stopp på Stockholmsleden.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
+      // KÄLLA: runmarobatvarv.se/tjänster/gästhamn-marina — "Gästbrygga … Anslutning Landström", Solberga. Ingen källa för bränsle, vatten eller dusch.
+      { name: 'Runmarö Båtvarv gästbrygga (Solberga)', desc: 'Gästbrygga vid Runmarö Båtvarv i Solberga med landström.', fuel: false, service: ['el'] },
     ],
     restaurants: [
       // KÄLLA: runmaro.se (öns egen sida) — "F.d. Runmarö Krog" är nedlagd; aktiva: "Svängen, Krog och restaurang" och "Tempo Runmarö". Inga öppettider anges där.
@@ -2464,11 +2484,8 @@ export const ISLANDS: Island[] = [
       { method: 'Buss', from: 'Stockholm', desc: 'SL-buss 670 (Tekniska högskolan/Danderyds sjukhus–Vaxholm) till Engarn, byte till buss 682 Engarn–Resarö (Ytterby, Överby).', icon: '🚌' },
     ],
     harbors: [
-      { name: 'Resarö Brygga', desc: 'Gästbrygga vid krogsbryggan.', fuel: false, service: ['vatten'] },
     ],
     restaurants: [
-      { name: 'Resarö Brygga Krog', type: 'Restaurang', desc: 'Sommarkrog vid bryggan. Räkor och husmanskost.' },
-      { name: 'Resarö Café', type: 'Café', desc: 'Fika och lätt lunch.' },
     ],
     tips: [
       'Resarö är ett utmärkt val för den som vill till skärgården utan att ta båt.',
@@ -2583,7 +2600,8 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Furusund', time: '30–60 min', desc: 'Naturligt stopp på Furusundsleden norrut.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Fejan Naturhamn', desc: 'Skyddad och välbesökt naturhamn. Fyrsektioner och eldplatser finns.', fuel: false, service: [] },
+      // KÄLLA: skargardsstiftelsen.se/omraden/fejan — "Fejans gästhamn … Hamnavgiften inkluderar tillgång till dusch, toalett och bastu"; fejan.com/gasthamn — "ligger ni på mooringlinor", el/dusch/WC
+      { name: 'Fejans gästhamn', desc: 'Gästhamn vid Fejan Sjökrog med mooringlinor. Hamnavgiften inkluderar dusch, toalett och bastu. Säsongsöppen.', fuel: false, service: ['el', 'dusch'] },
     ],
     restaurants: [],
     tips: [
@@ -2642,10 +2660,12 @@ export const ISLANDS: Island[] = [
       { method: 'Privat båt', from: 'Furusund / Arholma', time: '1–2 h', desc: 'Naturlig etapp på en längre norrlands-seglingstur.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Rödlöga Hamn', desc: 'Välskyddad inhamn — en av norra skärgårdens bästa.', fuel: false, service: ['vatten'] },
+      // KÄLLA: rodlogaboden.se — naturhamn "i alla vindar"; "ny gästbrygga … inne i byviken … Ej nattförtöjning … max 3 ton"; /om-oss — "sjömack med bensin, diesel, fotogen och gasol", "På ön finns ingen fast el"
+      { name: 'Rödlöga naturhamn och Rödlögabodens dagbrygga', desc: 'Naturhamn i alla vindar. Dagbrygga (ej nattförtöjning, max 3 ton) vid Rödlögaboden. Sjömack finns.', fuel: true, service: ['bränsle'] },
     ],
     restaurants: [
-      { name: 'Rödlöga Krog', type: 'Restaurang', desc: 'Samlingsplatsen för seglare. Husmanskost och hamnstämning.' },
+      // KÄLLA: rodlogaboden.se/pages/cafe-truten — "kaffe eller the … hembakade pajer och kakor, en god smörgås - eller kanske en hamburgare som du grillar själv"; öppnar midsommardagen. Ingen "Rödlöga Krog" hos tillåten källa.
+      { name: 'Café Truten', type: 'Café', desc: 'Café i byn vid Rödlögaboden: kaffe, hembakat, smörgåsar och grilla-själv-hamburgare. Öppet från midsommar.', websiteUrl: 'https://rodlogaboden.se/pages/cafe-truten' },
     ],
     tips: [
       'Rödlöga kräver god navigeringskunskap — ytterskärgård med grunder.',
@@ -2698,10 +2718,8 @@ export const ISLANDS: Island[] = [
       { method: 'Bil / buss', from: 'Norrtälje', time: 'ca 45 min', desc: 'Singö är landfast via broar (Väddö–Fogdö–Singö). SL-buss 637 från Norrtälje busstation (hållplatser Singöbron södra, Singö kyrka, Singö camping) eller bil hela vägen — ingen bilfärja.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Singö Fiskehamn', desc: 'Liten fiskehamn med begränsad gästbrygga.', fuel: false },
     ],
     restaurants: [
-      { name: 'Singö Krog', type: 'Restaurang', desc: 'Liten sommarkrog med lokal fisk.' },
     ],
     tips: [
       'Singö kapell är öns absoluta höjdpunkt — ta med kameran.',
@@ -2755,10 +2773,12 @@ export const ISLANDS: Island[] = [
       { method: 'Bil + Waxholmsbåt', from: 'Räfsnäs', time: 'ca 10–15 min båt', desc: 'E18 mot Norrtälje och vidare till Räfsnäs brygga. Därifrån Waxholmsbolagets linje 31 (Räfsnäs–Tjockö–Lidö–…–Fejan), året runt.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Lidö Gästhamn', desc: 'Välskött gästhamn vid herrgårdsbryggan.', fuel: false, service: ['el', 'vatten', 'dusch'] },
+      // KÄLLA: lidovardshus.com/gsthamnen — "Eluttag finns på bryggan", "vid separat brygga finns station att fylla dricksvatten", "Vid Oasen finns toaletter, dusch"
+      { name: 'Lidö Värdshus gästhamn', desc: 'Gästhamn vid Lidö Värdshus. El på bryggan, dricksvatten vid separat brygga, toalett och dusch vid Oasen.', fuel: false, service: ['el', 'vatten', 'dusch'] },
     ],
     restaurants: [
-      { name: 'Lidö Herrgårdsrestaurang', type: 'Restaurang', desc: 'Säsongsbaserad mat med lokala råvaror. Middag för hotelgäster och dagsgäster med bokning.' },
+      // KÄLLA: lidovardshus.com/restaurangen — "klassisk och skärgårdsinspirerad mat med tydliga, svenska smaker där lokala råvaror står i fokus"
+      { name: 'Lidö Värdshus, restaurangen', type: 'Restaurang', desc: 'Restaurang på Lidö Värdshus med klassisk, skärgårdsinspirerad mat med lokala råvaror.', websiteUrl: 'https://lidovardshus.com/restaurangen' },
     ],
     tips: [
       'Lidö Värdshus är populärt för weekendpaket — boka i god tid, helst flera veckor i förväg.',
@@ -2810,10 +2830,10 @@ export const ISLANDS: Island[] = [
       { method: 'Bil', from: 'Stockholm', time: '75 min', desc: 'E18 mot Norrtälje, sedan väg 76 mot Gräddö.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Gräddö Hamn', desc: 'Liten gästhamn. Enkelt men fungerande.', fuel: false, service: ['vatten'] },
+      // KÄLLA: graddosjomack.se — "Gräddö Sjömack och Gästhamn", gästplatser med el, färskvatten, dusch; sjömack med bensin och diesel
+      { name: 'Gräddö Sjömack och Gästhamn', desc: 'Gästhamn med sjömack på Gräddö. Gästplatser med el, färskvatten och dusch; bensin och diesel.', fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Gräddö Gård Restaurang', type: 'Restaurang', desc: 'Säsongsbaserad mat på gårdshotellet.' },
     ],
     tips: [
       'Gräddöbadet är bäst tidig morgon — sandstranden fylls snabbt på varma dagar.',
@@ -2868,11 +2888,8 @@ export const ISLANDS: Island[] = [
       { method: 'Buss', from: 'Stockholm', desc: 'SL-buss 676 från Tekniska högskolan till Norrtälje busstation, byte till buss 637 som går genom Väddö (Väddö kyrka, Älmsta, Grisslehamn).', icon: '🚌' },
     ],
     harbors: [
-      { name: 'Väddö Kanalhus', desc: 'Sluss och kanalkryssning. Enkel gästbrygga.', fuel: false },
     ],
     restaurants: [
-      { name: 'Kanalhuset Väddö', type: 'Restaurang', desc: 'Mat och fika vid kanalen. Sommarstämning.' },
-      { name: 'Herrängs Danscafé', type: 'Café', desc: 'Öppet under festivalen i juli. Mysigt och unikt.' },
     ],
     tips: [
       'Herrängs Dansbana (juli) är en upplevelse utöver det vanliga — boka boende i god tid.',
@@ -2925,7 +2942,6 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Trosa', time: 'Varierar', desc: 'Askö ligger i Trosa skärgård i Sörmland. Ingen reguljär båtlinje är belagd — egen båt från Trosa. Stora delar av ön är naturreservat med Askölaboratoriet; respektera föreskrifterna.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Askö Hamn', desc: 'Liten hamn vid laboratoriet. Begränsat antal platser för besökare.', fuel: false },
     ],
     restaurants: [],
     tips: [
@@ -2982,10 +2998,10 @@ export const ISLANDS: Island[] = [
       { method: 'Buss', from: 'Handens station', time: 'ca 18 min', desc: 'SL-buss 839 (Handen–Dalarö/Smådalarö) till hållplats Gålövägen.', icon: '🚌' },
     ],
     harbors: [
-      { name: 'Gålö Brygga', desc: 'Liten gästbrygga. Begränsad service.', fuel: false },
     ],
     restaurants: [
-      { name: 'Gålö Havsbad Restaurang', type: 'Restaurang', desc: 'Strandbistro med hamburgare, räkor och glass.', slug: 'galo-havsbad-restaurang' },
+      // KÄLLA: galohavsbad.se/ata — "vår charmiga Bistro", "matbit, fika, smarriga smörgåsar"; skargardsstiftelsen.se/omraden/galo — "Vid Gålö havsbad finns restaurang, café och camping med stugor"
+      { name: 'Gålö Havsbad Bistro', type: 'Restaurang', desc: 'Bistro vid Gålö havsbad med mat, fika och smörgåsar. Minilivs och camping intill.', websiteUrl: 'https://galohavsbad.se/ata/' },
     ],
     tips: [
       'Kom tidigt på sommardagar — Gålö Havsbad är populärt och parkeringen fylls snabbt.',
@@ -3039,10 +3055,10 @@ export const ISLANDS: Island[] = [
       { method: 'Buss', from: 'Nynäshamns station', time: 'ca 40 min', desc: 'SL-buss 852 Nynäshamn–Torö via Ankarudden.', icon: '🚌' },
     ],
     harbors: [
-      { name: 'Torö Marinstaden', desc: 'Marinstation och gästhamn.', fuel: true, service: ['el', 'vatten', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Torö Krog', type: 'Restaurang', desc: 'Strandbistro vid marinsstaden.' },
+      // KÄLLA: nynashamn.se/uppleva/skargard--batliv/toro — "Restaurang Sjöboden", sommaröppen vid Ankarudden; sjobodentoro.se — "Restaurang Sjöboden Torö Ankarudden", à la carte
+      { name: 'Restaurang Sjöboden Torö', type: 'Restaurang', desc: 'Sommaröppen sjökrog vid Ankarudden på Torö med à la carte.', websiteUrl: 'https://sjobodentoro.se/' },
     ],
     tips: [
       'Kustvandringsleden är bäst vid solnedgång — dramatiska vyer mot Östersjön.',
@@ -3082,7 +3098,8 @@ export const ISLANDS: Island[] = [
       best_for: 'Seglare, naturälskare, stillhet',
     },
     activities: [
-      { icon: '⛵', name: 'Naturhamnssankring', desc: 'Norra Fjärdlångsviken — en av södra skärgårdens finaste ankringsplatser.' },
+      // KÄLLA: skargardsstiftelsen.se/omraden/fjardlang — "gott om fina naturhamnar i naturreservatet"
+      { icon: '⛵', name: 'Naturhamnar', desc: 'Gott om naturhamnar i naturreservatet, enligt Skärgårdsstiftelsen.' },
       { icon: '🚶', name: 'Klippvandring', desc: 'Vandra längs östkusten för dramatiska havsvyer.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Rent klart vatten i ytterskärgårdsläge.' },
     ],
@@ -3093,10 +3110,11 @@ export const ISLANDS: Island[] = [
     // KÄLLA: Waxholmsbolaget linje 19 (kund.printhuset-sthlm.se/wa/v19.pdf): Dalarö–Fjärdlång ca 1 h 10 min, året runt, flera turer kräver förbeställning (läst 2026-09-14)
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Dalarö', time: '1–1,5 h', desc: 'Reguljär skärgårdslinje under säsong. Kontrollera Waxholmsbolagets tidtabell.', icon: '⛴' },
-      { method: 'Egen båt', from: 'Dalarö / Utö', time: '1–2 h', desc: 'Fjärdlångsviken är en klassisk naturhamn för seglare.', icon: '⛵' },
+      { method: 'Egen båt', from: 'Dalarö / Utö', time: '1–2 h', desc: 'Naturhamnar och en liten gästhamn i reservatet.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Norra Fjärdlångsviken', desc: 'En av södra skärgårdens finaste naturhamnar — Skärgårdsstiftelsen-förvaltad.', fuel: false },
+      // KÄLLA: skargardsstiftelsen.se/omraden/fjardlang — "Det finns en liten gästhamn samt gott om fina naturhamnar i naturreservatet". Ingen service nämnd.
+      { name: 'Fjärdlångs gästhamn', desc: 'Liten gästhamn och gott om naturhamnar i naturreservatet. Förvaltas av Skärgårdsstiftelsen.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -3864,7 +3882,8 @@ export const ISLANDS: Island[] = [
     ],
     harbors: [{ name: 'Storholmens brygga', desc: 'Huvudbrygga med plats för gästande båtar.' }],
     restaurants: [
-      { name: 'Storholmens Restaurang', type: 'Skärgårdsmat', desc: 'Säsongsöppen restaurang med skärgårdsmat och utsikt. Populär — boka i förväg under högsäsong.' },
+      // KÄLLA: storholmensjokrog.se — "skärgårdsrestaurang på ön Storholmen utanför Lidingö. Njut av nyfångad fisk och klassisk skärgårdsmat vid vattnet", © 2026
+      { name: 'Storholmen Sjökrog', type: 'Restaurang', desc: 'Skärgårdsrestaurang på Storholmen utanför Lidingö med nyfångad fisk och klassisk skärgårdsmat vid vattnet.', websiteUrl: 'https://www.storholmensjokrog.se/' },
     ],
     tips: [
       'Ta morgonbåten och hinn med lunch på restaurangen — kvällstider är fullbokade i juli.',
@@ -3975,10 +3994,12 @@ export const ISLANDS: Island[] = [
       { method: 'Bil + färja', from: 'Stockholm', time: '5–6 h', desc: 'Kör E4 norrut till Docksta (ca 470 km), parkera och ta färjan till Ulvön.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Ulvöhamns Gästhamn', desc: 'Välskyddad hamn med full service. Populär etapp för seglare längs norrlandskusten.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
+      // KÄLLA: hogakusten.com/sv/gasthamn-ulvo-hotell — "Gästhamn Ulvö Hotell", "färskvatten och el", "toaletter, duschar, kök och tvättstuga", "diesel, och bensin"
+      { name: 'Gästhamn Ulvö Hotell', desc: 'Gästhamn i Ulvöhamn vid Ulvö Hotell. Färskvatten och el, toaletter, duschar, kök, tvättstuga och bastu. Diesel och bensin.', fuel: true, service: ['el', 'vatten', 'dusch', 'tvätt', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Ulvö Hotell Restaurant', type: 'Restaurang', desc: 'Husmanskost och lokala råvaror i hamnmiljö. Surströmming serveras förstås på menyn.', slug: 'ulvo-hotell-restaurant' },
+      // KÄLLA: ulvohotell.se/restaurang — "förkärlek till det lokala … twist på redan klassiska rätter", "Surströmmingens mekka", höstmeny 2026; hogakusten.com — "Ulvö Hotell Restaurang"
+      { name: 'Ulvö Hotell Restaurang', type: 'Restaurang', desc: 'Restaurang på Ulvö Hotell med lokala råvaror och egen twist på klassiska rätter. Surströmming på menyn.', websiteUrl: 'https://ulvohotell.se/restaurang' },
     ],
     tips: [
       'Boka färja och boende tidigt — sommarsäsongen på Ulvön är kort och populär.',
@@ -4049,13 +4070,16 @@ export const ISLANDS: Island[] = [
       car_parking: 'Parkering finns vid Nynäshamns färjeterminal (avgift). I Visby — planera för trängsel i juli.',
     },
     harbors: [
-      { name: 'Visby Gästhamn', desc: 'Stor välutrustad gästhamn direkt i Visby. Bränsle, service och gångavstånd till allt. Boka plats i förväg under högsäsong.', fuel: true, service: ['el', 'vatten', 'bränsle', 'pump-out', 'dusch', 'wi-fi'] },
-      { name: 'Klintehamns Gästhamn', desc: 'Lugn hamn på Gotlands västkust. Bra alternativ till Visby om du vill undvika folkvimlet.', fuel: false, service: ['el', 'vatten'] },
+      // KÄLLA: gotland.com/companies/visby-gasthamn — "Platser finns både i inre hamnen, i fiskehamnen samt på norra vågbrytaren … 250 platser … hamndjupet är 3-6 m"; gotland.se listar "Visby gästhamn". Service anges inte av Region Gotland.
+      { name: 'Visby Gästhamn', desc: 'Gästhamn i centrala Visby med 250 platser i inre hamnen, fiskehamnen och på norra vågbrytaren. Hamndjup 3–6 m.', fuel: false, service: [] },
+      // KÄLLA: gotland.com/companies/klintehamn-gasthamn — 10 gästplatser, djup 1,8–2,5 m; gotland.se (hamnar för fritidsbåt) — "tillgång till toalett, dusch och tvättstuga", "Hamncaféet ligger i anslutning"
+      { name: 'Klintehamn Gästhamn', desc: 'Gästhamn på Gotlands västkust med tio gästplatser, hamndjup 1,8–2,5 m. Toalett, dusch och tvättstuga; hamncafé intill.', fuel: false, service: ['dusch', 'tvätt'] },
     ],
     restaurants: [
-      { name: 'Gutekällaren', type: 'Restaurang', desc: 'Inne i Visby ringmur. Gotlandslamm, rödspätta och lokalt hantverk­söl i medeltida valvmiljö.', slug: 'gutekallaren-gotland' },
-      { name: 'Bakfickan', type: 'Bistro', desc: 'Enkel bistro i Visby med lokala råvaror och sommarvibb. Populär för lunch.', slug: 'bakfickan-gotland' },
-      { name: 'Krakas Krog', type: 'Restaurang', desc: 'Landsbygdskrog utanför Visby. Starka lokala råvaror — bokningsbar sommarupplevelse.', slug: 'krakas-krog-gotland' },
+      // KÄLLA: gotland.com/companies/bakfickan — "en fisk- och skaldjursrestaurang", Stora Torget 1, "Året runt"; bakfickanvisby.se
+      { name: 'Bakfickan Visby', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang vid Stora Torget i Visby. Lunch och middag. Öppet året runt.', websiteUrl: 'https://www.bakfickanvisby.se/' },
+      // KÄLLA: gotland.com/companies/krakas-krog — "Restaurang i gamla bankhuset i Kräklingbo", "Fine dining", "menyn följer … säsongerna"; krakas.se — säsong 2026
+      { name: 'Krakas Krog', type: 'Restaurang', desc: 'Säsongsbaserad fine dining i gamla bankhuset i Kräklingbo på östra Gotland. Sommaröppen.', websiteUrl: 'https://www.krakas.se/' },
     ],
     tips: [
       'Boka Destination Gotland-färjan minst 2–3 månader i förväg om du reser i juli med bil.',
@@ -4123,12 +4147,12 @@ export const ISLANDS: Island[] = [
       { method: 'Flyg till Kalmar', from: 'Stockholm Arlanda', time: '3 h totalt', desc: 'BRA flyger Stockholm–Kalmar (55 min), sedan hyrbil eller taxi över bron (15 min).', icon: '✈️' },
     ],
     harbors: [
-      { name: 'Borgholms Gästhamn', desc: 'Välutrustad gästhamn i Borgholm med el, vatten och service. Nära centrum och slottsruinen.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
-      { name: 'Köpingsvik Gästhamn', desc: 'Lugn hamn på nordvästra Öland. Populär bland seglare på väg norrut längs kusten.', fuel: false, service: ['el', 'vatten'] },
+      // KÄLLA: borgholm.se/borgholms-hamn — "Drivs av: Strand Öland", "Duschar: 3", "Tvättstuga: Ja", "Tanka: Diesel och bensin", "Wifi: Ja", "El: Ja" (redigerad 2026-06-29)
+      { name: 'Borgholms Gästhamn', desc: 'Gästhamn nedanför Borgholms slott, drivs av Strand Öland. El, vatten, dusch, tvättstuga, wifi och tankning.', fuel: true, service: ['el', 'vatten', 'dusch', 'tvätt', 'wifi', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Hamnkrogen Borgholm', type: 'Restaurang', desc: 'Klassisk hamnkrog med lokala råvaror — ölandslamm, abborre och rödspätta.', slug: 'hamnkrogen-borgholm' },
-      { name: 'Källarporten', type: 'Restaurang', desc: 'Inne i Borgholms slottsruin. Unik atmosfär med historisk inramning.', slug: 'kallarporten-borgholm' },
+      // KÄLLA: borgholmsslott.se/slottscafe — "Slottscafé", pannkakor, bullar, kakor och glass. Namnet Källarporten finns inte.
+      { name: 'Slottscafé, Borgholms slott', type: 'Café', desc: 'Café i slottsruinen med pannkakor, bullar, kakor och glass.', websiteUrl: 'https://www.borgholmsslott.se/slottscafe/' },
     ],
     tips: [
       'Boka camping och hotell i god tid — Öland är fullbokat i juli och första halvan av augusti.',
@@ -4188,10 +4212,10 @@ export const ISLANDS: Island[] = [
       { method: 'Bil + färja', from: 'Göteborg', time: '40 min', desc: 'Kör till Saltholmen (parkering finns), ta färjan. Bilar får ej tas med till ön.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Rödstens Gästhamn', desc: 'Skyddad gästhamn på östra sidan. El och vatten. Populär sommarhamn.', fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
-      { name: 'Brännö Värdshus', type: 'Krog', desc: 'Klassisk ömat — räkor, sill och husmanskost i ösamhällets mitt.', slug: 'branno-vardshus' },
+      // KÄLLA: goteborg.com/platser/branno-vardshus-pensionat-baggen — "mitt på den södra ön Brännö", "Mat med inspiration från havet", byggt 1900; brannovardshus.se — säsong 2026
+      { name: 'Brännö Värdshus & Pensionat Baggen', type: 'Värdshus', desc: 'Värdshus och pensionat mitt på Brännö, byggt år 1900. Mat med inspiration från havet. Sommaröppet.', websiteUrl: 'https://brannovardshus.se/' },
     ],
     tips: [
       'Folkdansen på fredag kväll är gratis — men kom 30 min tidigt för att få plats vid bryggan.',
@@ -4220,7 +4244,8 @@ export const ISLANDS: Island[] = [
     tagline: 'Göteborgs södra skärgårds hjärta — vacker natur, topprankad restaurang och tyst ölivstempo.',
     description: [
       'Styrsö är den folkrikaste ön i södra skärgården med cirka 1 500 fast bosatta och den naturliga knutpunkten i arkipelagen. Ön har skola, bibliotek, mataffär och samhällsservice — ett komplett ösamhälle utan bilar.',
-      'Restaurang Styrsö Bratten är en av Göteborgs mest hyllade — trots (eller tack vare) läget ute i skärgården. Hit reser göteborgare enbart för maten: nordisk mat gjord på råvaror från havet och trädgården.',
+      // KÄLLA: goteborg.com — "Brattens Wärdshus – vid färjelägret Styrsö Bratten". Tidigare text om "en av Göteborgs mest hyllade" saknade källa och togs bort 2026-09-14.
+      'Vid färjeläget Styrsö Bratten ligger Bratten\'s Wärdshus, restaurang och kafé.',
       // Tången är gästhamn/turbåtsbrygga, inte naturreservat — inget reservat på Styrsö hos Länsstyrelsen Västra Götaland eller Göteborgs Stad (sökt 2026-09-14). Ordet borttaget.
       'Styrsö södra spets, Tången, har fri utsikt över Kattegatt. Att sitta där i solnedgången är en av Göteborgstraktens finest.',
     ],
@@ -4231,7 +4256,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Matälskare, barnfamiljer, de som vill bo kvar i skärgården',
     },
     activities: [
-      { icon: '🍽', name: 'Styrsö Bratten', desc: 'En av Göteborgs bästa restauranger. Nordisk mat, lokala råvaror, fantastisk utsikt. Boka månader i förväg.' },
+      { icon: '🍽', name: 'Bratten\'s Wärdshus', desc: 'Restaurang och kafé vid färjeläget Bratten.' },
       { icon: '🌿', name: 'Tången', desc: 'Södra spetsen med fri havsutsikt. Vandring genom ljunghed och klippor.' },
       { icon: '🏖', name: 'Bad', desc: 'Badklippor runt hela ön. Brevik på östra sidan populärast.' },
       { icon: '⛵', name: 'Gästhamn', desc: 'Gästhamn i Styrsö Tången med service sommartid.' },
@@ -4243,13 +4268,14 @@ export const ISLANDS: Island[] = [
       { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50–60 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281/282/283. Avgångstider på styrsöbolaget.se.', icon: '🚋' },
     ],
     harbors: [
-      { name: 'Styrsö Tångens Gästhamn', desc: 'Gästhamn vid södra spetsen. Bra utgångspunkt för segling längs kusten.', fuel: false, service: ['el', 'vatten'] },
+      // KÄLLA: (reservkälla) gasthamnsguide.se/…/styrso-gasthamn — "Styrsö Gästhamn - Sandvikshamnen", "bra tilläggsplats speciellt för lite större båtar", el, färskvatten, dusch, drivmedel. Ingen operatörssida hittad.
+      { name: 'Styrsö Gästhamn (Sandvikshamnen)', desc: 'Gästhamn vid Styrsö Tången, lämplig även för större båtar.', fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Styrsö Bratten', type: 'Topprestaurang', desc: 'Nordens kök i skärgårdsidyll. Säsongsmeny, lokala råvaror, en av Göteborgs bästa. Boka tidigt.', slug: 'styrso-bratten' },
+      // KÄLLA: goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — "Brattens Wärdshus – vid färjelägret Styrsö Bratten"; brattenswardshus.se
+      { name: 'Bratten\'s Wärdshus', type: 'Restaurang', desc: 'Restaurang och kafé vid färjeläget Styrsö Bratten. Fisk och skaldjur samt pizza och klassiska rätter.', websiteUrl: 'https://www.brattenswardshus.se/' },
     ],
     tips: [
-      'Styrsö Bratten bokar upp månader i förväg under sommaren — gå in på deras hemsida direkt.',
       'Tången kostar inget och är öppet dygnet runt — ta med termos och se solnedgången.',
       'Mataffären på Styrsö håller rimliga tider sommartid — handla proviant för dagen.',
     ],
@@ -4294,10 +4320,13 @@ export const ISLANDS: Island[] = [
       { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '70–80 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281/283 via Brännö och Styrsö till Vrångö. Kontrollera tidtabell på styrsöbolaget.se.', icon: '🚋' },
     ],
     harbors: [
-      { name: 'Vrångö Gästhamn', desc: 'Liten gästhamn på norra sidan. Enkelt men välskyddat läge.', fuel: false, service: ['el'] },
+      // KÄLLA: goteborg.com/platser/vrango — "en stor modern gästhamn med fiskekaj", "tvärs över ön, en knapp kilometer från båtens tilläggsplats", "livsmedelsbutiken Tempo vid hamnen". Service ej belagd (vrangogasthamn.se svarade inte).
+      { name: 'Vrångö Gästhamn', desc: 'Stor modern gästhamn med fiskekaj, tvärs över ön från färjeläget. Livsmedelsbutik vid hamnen.', fuel: false, service: [] },
     ],
     restaurants: [
-      { name: 'Vrångö Café & Kiosk', type: 'Kafé', desc: 'Enkelt sommarcafé med glass, kaffe och enklare mat. Öppet sommartid.', slug: 'vrango-cafe' },
+      // KÄLLA: goteborg.com/platser/vrango — namnger "Restaurang Ternan" (vid Mittvik) och "Fiskeboa Vrångö Hamnkrogen Lotsen" (vid hamnen)
+      { name: 'Restaurang Ternan', type: 'Restaurang', desc: 'Restaurang vid Mittvik på Vrångö.' },
+      { name: 'Fiskeboa Vrångö Hamnkrogen Lotsen', type: 'Restaurang', desc: 'Hamnkrog vid Vrångö hamn.' },
     ],
     tips: [
       'Gå hela vägen till sydspetsen — utsikten mot Nordsjön och de yttre skären är enastående.',
@@ -4347,10 +4376,12 @@ export const ISLANDS: Island[] = [
       { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '60 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281 via Köpstadsö till Donsö (35–40 min).', icon: '🚋' },
     ],
     harbors: [
-      { name: 'Donsö Gästhamn', desc: 'Fullservicehamn med bränsle, el, vatten och servicebyggnader. En av södra skärgårdens bästa.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch', 'wi-fi'] },
+      // KÄLLA: donsohamn.se — "inklusive el, vatten, dusch och toalett", "internet via hamnens wifi", tvättmaskin, "Istappen, sjömack", "Restaurang Isbolaget", säsong 1 maj–30 sept
+      { name: 'Donsö Gästhamn', desc: 'Gästhamn i Donsö fiskehamn. El, vatten, dusch, wifi, tvättmaskin och sjömack. Restaurang Isbolaget i hamnen.', fuel: true, service: ['el', 'vatten', 'dusch', 'wifi', 'tvätt', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Donsö Hamnkrog', type: 'Restaurang', desc: 'Klassisk hamnkrog med räkor och säsongsmat. Populär bland seglare.', slug: 'donso-hamnkrog' },
+      // KÄLLA: goteborg.com/platser/isbolaget-donso — "längst ut på piren i Donsö hamn", gammalt ismagasin; isbolaget.com — öppettider v 37–38 2026
+      { name: 'Isbolaget', type: 'Restaurang', desc: 'Restaurang och hotell i det gamla ismagasinet längst ut på piren i Donsö hamn.', websiteUrl: 'https://isbolaget.com/' },
     ],
     tips: [
       'Donsö hamn har bränsle — ovanligt i södra skärgården. Planera bunkringen hit om du seglar söderut.',
@@ -4526,7 +4557,6 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommartid dagligen, vinter mer sällan',
     },
     harbors: [
-      { name: 'Tynningö Gästbrygga', desc: 'Enkel brygga på öns södra sida. Lämplig för mindre båtar.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -4601,10 +4631,12 @@ export const ISLANDS: Island[] = [
       frequency: 'Regelbundet dagtid — se sl.se',
     },
     harbors: [
-      { name: 'Djurönäsets gästhamn', desc: 'Hotellets egen gästhamn i Djurhamn, för hotellgäster. Kommunens hamn i Djurhamn är inte öppen för gästande båtar.', fuel: false, service: [] },
+      // KÄLLA: djuronaset.com/hotell/gasthamn — "Djurönäset Gästhamn Folkparken", "wc, laddström 10A, wi-fi, vatten", ca 25 gästplatser, bokning via dockspot.com
+      { name: 'Djurönäset Gästhamn (Folkparken)', desc: 'Hotellets gästhamn i Djurhamn, ca 25 gästplatser, bokas via Dockspot. Vatten, el, wifi och wc.', fuel: false, service: ['el', 'vatten', 'wifi'] },
     ],
     restaurants: [
-      { name: 'Djurönäset restaurang & bar', type: 'Restaurang', desc: 'Hotellets restaurang och bar i Djurhamn.' },
+      // KÄLLA: djuronaset.com/restaurang-bar — "Matsalen" (middag, lunch, brunch), "Sjöboden – Skärgårdskrog öppet sommartid", © 2026
+      { name: 'Djurönäset: Matsalen och Sjöboden', type: 'Restaurang', desc: 'Hotellets restauranger i Djurhamn: Matsalen (lunch, middag, brunch) och Sjöboden, skärgårdskrog öppen sommartid.', websiteUrl: 'https://www.djuronaset.com/restaurang-bar/' },
     ],
     tips: [
       'ICA Nära Djurö i Djurhamn har det mesta — proviantera här om du fortsätter ut i skärgården från Stavsnäs.',
@@ -4669,10 +4701,12 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong dagligen',
     },
     harbors: [
-      { name: 'Björkö Gästbrygga', desc: 'Brygga för båtar. Smalt inlopp — kliv av och bese Birka.', fuel: false, service: [] },
+      // KÄLLA: birkavikingastaden.se/sevardheter/gasthamnen — "Birkas gästhamn", vatten ja, "Toalett/Dusch: Ja/Ja", el vid platsen nej men "Tillgång till el" mot avgift, bränsle nej (uppdaterad 2026-06-16)
+      { name: 'Birkas gästhamn', desc: 'Gästhamn vid Birka Vikingastaden på Björkö. Vatten, toalett och dusch; el mot avgift.', fuel: false, service: ['vatten', 'dusch'] },
     ],
     restaurants: [
-      { name: 'Birka Vikingastad Café', type: 'Café', desc: 'Enkel servering i anslutning till museet. Sommaröppen.' },
+      // KÄLLA: birkavikingastaden.se/en/attraction/restaurant-cafe — "Café Eldrimner", "Coffee, ice cream and light lunch", "sandwiches and freshly baked pastries", säsong 22 juni–9 augusti 2026
+      { name: 'Café Eldrimner', type: 'Café', desc: 'Café på Birka Vikingastaden med kaffe, smörgåsar, bakverk och glass. Sommaröppet.', websiteUrl: 'https://www.birkavikingastaden.se/' },
     ],
     tips: [
       'Boka dagstur med guide — det ger sammanhanget som krävs för att förstå vad man ser på gravfälten.',
@@ -4791,7 +4825,6 @@ export const ISLANDS: Island[] = [
       frequency: 'Begränsade avgångsdagar juni–sept — kolla aktuell tidtabell',
     },
     harbors: [
-      { name: 'Bränn­vigeln', desc: 'Öns enda angörings­plats. Ogästvänlig vid hög sjö — tur­operatörerna avgör om landstigning är möjlig.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -4856,7 +4889,8 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong — kolla aktuell tidtabell',
     },
     harbors: [
-      { name: 'Aspö Gästhamn', desc: 'Liten gästhamn i öns nordvästra del. Relativt skyddad sommartid.', fuel: false, service: ['Vatten'] },
+      // KÄLLA: karlskrona.se (gästhamnar, 2026-02-20) — "Aspö, Lökanabben"; visitkarlskrona.se — "just beside the citadel of Drottningskär", "Shower/wc", 6 gästplatser; aspobatklubb.se — dusch, wifi, tvättmaskin
+      { name: 'Lökanabben gästhamn, Aspö', desc: 'Gästhamn vid Drottningskärs kastell, drivs av Aspö Båtklubb. Sex gästplatser. Dusch/wc, wifi och tvättmaskin.', fuel: false, service: ['dusch', 'wifi', 'tvätt'] },
     ],
     restaurants: [],
     tips: [
@@ -4924,10 +4958,12 @@ export const ISLANDS: Island[] = [
       frequency: 'Tillgänglig med bil hela året',
     },
     harbors: [
-      { name: 'Sturkö Gästhamn', desc: 'Gästhamn med grundläggande service. Populär bland seglare i Blekinges skärgård.', fuel: false, service: ['Vatten', 'El'] },
+      // KÄLLA: karlskrona.se (gästhamnar) — "Sturkö, Ekenabben", "eluttag på gästbryggan"; visitkarlskrona.se — "Guest harbour/Fishing harbor at Djupasund on the west side of Sturkö to the south of Tjurkö bridge"
+      { name: 'Ekenabben gästhamn, Sturkö', desc: 'Kommunal gästhamn och fiskehamn vid Djupasund på Sturkös västra sida, söder om Tjurköbron. El på gästbryggan.', fuel: false, service: ['el'] },
     ],
     restaurants: [
-      { name: 'Sturkö Krog', type: 'Krog', desc: 'Lokal krog med husmanskost. Sommaröppen — kolla aktuella öppettider.' },
+      // KÄLLA: visitblekinge.se/en/sturko-a-picturesque-island — "Kvarnmagasinet" (pizza i kvarntornet); visitkarlskrona.se/en/sturko-kvarncafe-kvarnmagasinets-pizzeria
+      { name: 'Sturkö Kvarncafé och Kvarnmagasinets pizzeria', type: 'Café/Pizzeria', desc: 'Café och pizzeria i kvarnen på Sturkö.', websiteUrl: 'https://www.visitkarlskrona.se/en/sturko-kvarncafe-kvarnmagasinets-pizzeria' },
     ],
     tips: [
       'Sturkö är bra om du vill ha skärgård men inte vill vara beroende av båtturer — ta bilen dit.',
@@ -5049,7 +5085,8 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong — kolla aktuell tidtabell',
     },
     harbors: [
-      { name: 'Hemsö Gästhamn', desc: 'Gästhamn på öns norra del. Populär bland seglare som utforskar Höga Kusten.', fuel: false, service: ['Vatten', 'El'] },
+      // KÄLLA: mittharnosand.se (Härnösands kommun) — "Hultoms brygga … northern Hemsön … a jetty … a toilet and sauna". Ingen "Hemsö Gästhamn" hos kommunen.
+      { name: 'Hultoms brygga', desc: 'Brygga på norra Hemsön med toalett och bastu.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -5111,12 +5148,12 @@ export const ISLANDS: Island[] = [
       frequency: 'Dygnet runt, tät trafik',
     },
     harbors: [
-      { name: 'Fårösund Gästhamn', desc: 'Hamnen ligger på Gotlands sida av sundet, strax söder om färjeläget. Bra utgångspunkt för seglare som vill utforska Fårö.', fuel: false, service: ['Vatten', 'El', 'Dusch'] },
     ],
     restaurants: [
-      { name: 'Kuttersmöjan', type: 'Krog', desc: 'Öns klassiska krog i Fårösund. Husmanskost, fisk och havsutsikt. Sommaröppen.' },
-      { name: 'Sudersand Strandbar', type: 'Bar/Café', desc: 'Strandbar vid campingen. Hamburgare, glass och drinkar med havsutsikt.' },
-      { name: 'Broas Handelsbod', type: 'Café/Handel', desc: 'Öns enda affär och café. Öppnar tidigt, viktig knutpunkt för ön.' },
+      // KÄLLA: gotland.com/companies/faro-strandcafe — "frukost, lunch, afterbeach och middag … Pizza, pasta, sallad, smårätter samt … kött & fiskrätter", säsong 2026; farostrandcafe.se — "Vid Sudersand resort"
+      { name: 'Fårö Strandcafé', type: 'Restaurang/Bar', desc: 'Restaurang och bar vid Sudersand Resort. Frukost, lunch, afterbeach och middag; pizza, pasta, kött och fisk.', websiteUrl: 'https://farostrandcafe.se/' },
+      // KÄLLA: verktygsladan.gotland.com/companies/broa-kiosken-faro — "Broa Kiosken Fårö", "glass, take away-kaffe, kylda drycker, snabbmat"
+      { name: 'Broa Kiosken Fårö', type: 'Café/Kiosk', desc: 'Kiosk och café vid färjeläget i Broa. Glass, kaffe, kylda drycker och snabbmat.', websiteUrl: 'https://verktygsladan.gotland.com/companies/broa-kiosken-faro/' },
     ],
     tips: [
       'Boka boende senast mars om du åker midsommar–juli. Fårö är litet och fyllbokat.',
@@ -5203,10 +5240,12 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong — begränsade avgångar, kolla tidtabell',
     },
     harbors: [
-      { name: 'Trysunda Gästhamn', desc: 'Liten gästhamn i fiskeläget. Grundare inlopp — lämpligt för mindre kölbåtar och jollar.', fuel: false, service: ['Vatten'] },
+      // KÄLLA: hogakusten.com/en/trysunda-guest-harbour — "Trysunda guest harbour", "Hamndjup: 3-7 m", bastu/dusch/toalett, bojförtöjning ca 25 platser
+      { name: 'Trysunda gästhamn', desc: 'Gästhamn i fiskeläget med bojförtöjning, ca 25 platser. Bastu, dusch och toalett. Hamndjup 3–7 m.', fuel: false, service: ['dusch'] },
     ],
     restaurants: [
-      { name: 'Trysunda Värdshus', type: 'Värdshus', desc: 'Öns enda servering med husmanskost och lokal fisk. Sommaröppen — begränsade platser.' },
+      // KÄLLA: hogakusten.com/en/trysunda-vandrarhem-skargardscafe — "homemade refreshments (fika) and meals, and a small grocery store"
+      { name: 'Trysunda Vandrarhem & Skärgårdscafé', type: 'Café', desc: 'Vandrarhem och skärgårdscafé med hemlagad fika och mat samt liten livsmedelsbutik.', websiteUrl: 'https://www.hogakusten.com/en/trysunda-vandrarhem-skargardscafe' },
     ],
     tips: [
       'Boka färjebiljett och boende i god tid — Trysunda är liten och söks av många.',
@@ -5282,7 +5321,8 @@ export const ISLANDS: Island[] = [
       frequency: 'Begränsade avgångar, kolla tidtabell',
     },
     harbors: [
-      { name: 'Hanö Gästhamn', desc: 'Liten naturhamn på öns skyddade sida. Smalare inlopp — ankra i skälet utanför om hamnen är full.', fuel: false, service: [] },
+      // KÄLLA: hano.nu/hamnen — "drivs av Hanö Hamn- och Byalag … Servicebyggnad med bastu, duschar, toaletter och tvättmaskin … Ingen försäljning av bensin eller diesel … Gästplatser: 75"; visitblekinge.se — vatten, el, wifi
+      { name: 'Hanö gästhamn', desc: 'Gästhamn med 75 gästplatser, drivs av Hanö Hamn- och Byalag. Bastu, dusch, toalett, tvättmaskin och wifi. Inget drivmedel.', fuel: false, service: ['el', 'vatten', 'dusch', 'tvätt', 'wifi'] },
     ],
     restaurants: [],
     tips: [
@@ -5356,7 +5396,6 @@ export const ISLANDS: Island[] = [
       frequency: 'Sällsynta avgångar — kolla tidtabell noggrant',
     },
     harbors: [
-      { name: 'Svartlöga naturhamn', desc: 'Naturliga ankringslägen på öns västra sida. Populärt bland seglare.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -5430,10 +5469,10 @@ export const ISLANDS: Island[] = [
       frequency: 'Dagligen, sommarsäsong täta avgångar',
     },
     harbors: [
-      { name: 'Visingsö Hamn', desc: 'Gästhamn på öns norra del. Populär bland seglare som kryssar i Vättern.', fuel: true, service: ['Vatten', 'El', 'Dusch'] },
+      // KÄLLA: jonkoping.se (båtplatser, hamnar och gästhamnar) — "Gästhamn på Visingsö … Färskvatten, Toalett, Dusch, Eluttag, Latrintömning … Från 0,6 m till 1 m"; jkpg.com/gasthamnar — "nedanför Visingsborgs slottsruin"
+      { name: 'Visingsö gästhamn', desc: 'Gästhamn nedanför Visingsborgs slottsruin. Färskvatten, el, dusch, toalett och latrintömning. Djup vid gästplatserna 0,6–1 m.', fuel: false, service: ['el', 'vatten', 'dusch'] },
     ],
     restaurants: [
-      { name: 'Visingsö Krögeri', type: 'Restaurang', desc: 'Lokal matservering med Vätternfisk och husmanskost. Sommarsäsong.' },
     ],
     tips: [
       'Ta häst­skjuts direkt när du kliver av färjan — det är en del av Visingsöupplevelsen.',
@@ -5495,10 +5534,8 @@ export const ISLANDS: Island[] = [
       frequency: 'Dagligen, sommartid täta avgångar',
     },
     harbors: [
-      { name: 'Bäckviken gästhamn', desc: 'Välkänd gästhamn för seglare korsandes Öresund. Bra service och skyddat läge.', fuel: true, service: ['Vatten', 'El', 'Dusch', 'Restaurang'] },
     ],
     restaurants: [
-      { name: 'Sankt Ibb Krog', type: 'Krog', desc: 'Lokal krog på Ven med säsongsbetonad mat och havsutsikt. Populär — boka.' },
     ],
     tips: [
       'Hyr cykel direkt vid färjeläget i Kyrkbacken — det är det naturliga sättet att se hela ön.',
@@ -5562,10 +5599,12 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong — kolla aktuell tidtabell',
     },
     harbors: [
-      { name: 'Tjärö brygga', desc: 'Enkel brygga vid campingplatsen.', fuel: false, service: [] },
+      // KÄLLA: visitblekinge.se/gasthamn-tjaro — "Cirka 70 stycken båtplatser totalt … Maren vid restaurangen … Seglarbryggan", el och vatten vid gästplatser
+      { name: 'Gästhamn Tjärö', desc: 'Gästhamn med ca 70 platser vid två bryggor: Maren vid restaurangen och Seglarbryggan. El och vatten vid gästplatserna.', fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
-      { name: 'Tjärö Café', type: 'Café', desc: 'Enkelt café vid campingen. Sommarsäsong.' },
+      // KÄLLA: visitblekinge.se/en/tjaro-cafe — "Tjärö Cafe"; tjaro.com/restaurant-cafe — "sandwiches, salads, Tjärös räksmörgås, Tjärö waffle, soft ice cream", säsong 2026
+      { name: 'Tjärö Café', type: 'Café', desc: 'Café vid restaurangen med smörgåsar, räksmörgås, våffla, glass och fika. Säsongsöppet.', websiteUrl: 'https://tjaro.com/' },
     ],
     tips: [
       'Boka campingplats/stuga tidigt — Tjärö är ett populärt Blekingemål och tar slut i juli.',
@@ -5632,10 +5671,10 @@ export const ISLANDS: Island[] = [
       frequency: 'Tät trafik hela dagen med SL-liknande turtäthet',
     },
     harbors: [
-      { name: 'Öckerö Gästhamn', desc: 'Gästhamn i öns södra del. Fullgod service.', fuel: true, service: ['Vatten', 'El', 'Dusch'] },
+      // KÄLLA: ockerohamn.se/gasthamn-o-camping — "sydvästra delen av fiskehamnen", "moderna duschar och toaletter … inkluderat", "Trådlös bredbandsuppkoppling", diesel, tvättmaskiner, öppen 30 april–30 september
+      { name: 'Öckerö gästhamn', desc: 'Gästhamn i sydvästra delen av fiskehamnen, drivs av Öckerö Hamn & Fiskareförening. El, dusch, bastu, tvättmaskin, wifi och diesel.', fuel: true, service: ['el', 'dusch', 'tvätt', 'wifi', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Fiskehamnsrestauranger', type: 'Restaurang', desc: 'Lokala restauranger i fiskehamnen med färsk sjömat. Räkor och skaldjur direkt från fiskebåtarna.' },
     ],
     tips: [
       'Räkor direkt från fiskebåtarna i hamnen — billigare och färskare än någon restaurang.',
@@ -5690,10 +5729,12 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommartid regelbundna avgångar',
     },
     harbors: [
-      { name: 'Rörö Gästhamn', desc: 'Liten gästhamn med grundläggande service.', fuel: false, service: ['Vatten'] },
+      // KÄLLA: vastsverige.com/visitockero/produkter/gasthamn-roro (Öckerö kommun) — "vid farleden Göteborg och Marstrand … Serviceanläggning och spolplatta och septitankstömning". Drivmedel nämns inte av kommunen.
+      { name: 'Rörö gästhamn', desc: 'Gästhamn vid farleden Göteborg–Marstrand. Serviceanläggning, spolplatta och septitankstömning.', fuel: false, service: [] },
     ],
     restaurants: [
-      { name: 'Rörö Fisk & Kök', type: 'Restaurang', desc: 'Lokal sjömatstservering vid hamnen. Räkor, musslor och fisk. Sommarsäsong.' },
+      // KÄLLA: goteborg.com/platser/roro — "Rörö Fiskeboa & Krog … rätter med tydlig förankring i havet"; rorofiskeboakrog.se — "nykokta kräftor, räkor och fisk", "fish & chips"
+      { name: 'Rörö Fiskeboa & Krog', type: 'Restaurang', desc: 'Krog och fiskbod vid hamnen. Nykokta kräftor, räkor och fisk samt fish & chips.', websiteUrl: 'https://rorofiskeboakrog.se/' },
     ],
     tips: [
       'Dagstur från Göteborg är perfekt — ut med morgonfärjan, lunch vid hamnen, hem till kvällen.',
@@ -5751,10 +5792,12 @@ export const ISLANDS: Island[] = [
       frequency: 'Dagligen, sommarsäsong täta avgångar',
     },
     harbors: [
-      { name: 'Holmöns hamn', desc: 'Liten gästhamn vid öns södra del.', fuel: false, service: ['Vatten'] },
+      // KÄLLA: holmon.se/hamnforeningen/gasthamn — "Gästhamn … Byviken … Hamnföreningen Byviken Holmön Ekonomisk förening … boj-förtöjning … en flytbrygga"
+      { name: 'Byvikens gästhamn', desc: 'Gästhamn i Byviken, drivs av Hamnföreningen Byviken Holmön. Bojförtöjning och flytbrygga.', fuel: false, service: [] },
     ],
     restaurants: [
-      { name: 'Holmöns Wärdshus', type: 'Wärdshus', desc: 'Sommarsäsongens krog med lokalt tillagad mat. Meny varierar med säsongens råvaror.' },
+      // KÄLLA: visitumea.se/en/novas-holmon — "Novas Holmön … directly adjacent to where the ferry docks … BBQ, meat, fish, seafood and vegetarian food"
+      { name: 'Novas Holmön', type: 'Restaurang', desc: 'Restaurang, bar och café intill färjeläget i Byviken. BBQ, kött, fisk, skaldjur och vegetariskt.', websiteUrl: 'https://visitumea.se/en/novas-holmon' },
     ],
     tips: [
       'Hyr cykel på ön direkt när du landar — du hinner runt hela ön på en dag.',
