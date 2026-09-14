@@ -22,6 +22,7 @@ import { getThreadsByIsland, formatForumDate } from '@/lib/forum'
 import { GUIDES } from '../../guider/guides-data'
 import { getGuidesForIsland } from '../../guider/guide-island-map'
 import IslandB2BCTA from '@/components/IslandB2BCTA'
+import IslandHantverkare from '@/components/IslandHantverkare'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -801,6 +802,11 @@ export default async function IslandPage({ params }: Props) {
  </div>
  </section>
  )}
+
+ {/* Hantverkare — renderar sig själv till null om inga VERIFIERADE poster finns
+     för ön, vilket är normalfallet tills registret ringts igenom. Se
+     hantverkare-data.ts för varför spärren ligger i datalagret och inte här. */}
+ <IslandHantverkare islandSlug={slug} />
 
  {/* Boende */}
  {island.accommodation.length > 0 && (
