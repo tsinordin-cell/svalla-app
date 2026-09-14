@@ -19,43 +19,46 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://svalla.se/snabbaste-vagen' },
 }
 
+// Länkarna pekar på målöns sida (/o/<slug>), samma mönster som /dagsturer.
+// Före 2026-09-13 pekade de på /tur/<slug> som aldrig funnits (10 × 404,
+// länkkontroll 3/9).
 const ITEMS: LandingItem[] = [
   {
-    icon: '🏁',
+    icon: '',
     title: 'Stockholm → Sandhamn',
     description: 'Via Kanholmsfjärden — ca 45 min med RIB, 1,5 h med förträngare. Tankning i Stavsnäs.',
-    href: '/tur/stockholm-sandhamn-snabb',
+    href: '/o/sandhamn',
     meta: '~ 45 min',
   },
   {
     icon: '',
     title: 'Stockholm → Grinda',
     description: 'Via Vaxholm och Tynningö — 30 min på rätt båt. Populär lunchutflykt.',
-    href: '/tur/stockholm-grinda-snabb',
+    href: '/o/grinda',
     meta: '~ 30 min',
   },
   {
     icon: '',
     title: 'Stockholm → Utö',
     description: 'Söderut genom Jungfrufjärden — 50 min med RIB. Tankning i Dalarö.',
-    href: '/tur/stockholm-uto-snabb',
+    href: '/o/uto',
     meta: '~ 50 min',
   },
   {
     icon: '',
     title: 'Stockholm → Finnhamn',
     description: 'Nordöstra farleden via Möja — 55 min. Populär helgdestination.',
-    href: '/tur/stockholm-finnhamn-snabb',
+    href: '/o/finnhamn',
     meta: '~ 55 min',
   },
   {
-    icon: '⛽',
+    icon: '',
     title: 'Tankställen på vägen',
     description: 'Alla sjöbensin-mackar längs populära rutter med öppettider och priser.',
     href: '/hamnar-och-bryggor',
   },
   {
-    icon: '🚫',
+    icon: '',
     title: 'Hastighetsbegränsningar',
     description: 'Var du måste sakta ner — skyltade fartbegränsningar, hamnar, badplatser.',
     href: '/tips?kategori=hastighet',
@@ -68,7 +71,7 @@ export default function SnabbasteVagenPage() {
       heroGradient={['#c96e2a', '#d98246']}
       eyebrow="Snabbaste vägen"
       title="Kortaste rutten, utan strul"
-      tagline="För motorbåt, RIB och vattenskoter. Snabbaste farlederna till skärgårdens populäraste destinationer — med tankställen och fartgränser."
+      tagline="För motorbåt, RIB och vattenskoter. De populäraste destinationerna från Stockholm — varje tur leder till målöns sida med hamnar och praktisk info."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />

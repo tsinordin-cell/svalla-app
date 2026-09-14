@@ -3,6 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
  title: 'Segelrutter i Sverige — ostkusten, Gotland Runt, Bohuslän',
+ // KÄLLA: KSSS (ksss.se/en/gotlandrunt), läst 2026-09-13: 'The race course is about 350 NM long'
  description: 'Kompletta segelrutter i Sverige: Stockholm–Malmö (östkust-segling), Gotland Runt (klassiker cirka 350 sjömil), Bohusleden, Mälaren och Stockholms skärgård. Nivåer 1–3, sjökort, vindanpassningar.',
  keywords: [
  'segelrutter sverige',
@@ -175,7 +176,7 @@ export default function SegelrutterPage() {
  Östkusten — från Stockholms skärgård söderut längs Sveriges östkust — är en klassisk segeltur för den som vill utforska kusten över längre tid. Vanlig rutt går genom Stockholms skärgård, ut till Sandhamn, vidare över Östersjön till Gotland, ner längs Smålandskusten och Blekinge till Karlskrona, och slutligen till Skånes ostkust och vidare till Öresund. Sommaren är populärast för sin stabilare vind och milda väder.
  </p>
  <p>
- {/* UPPMÄTT: stromkajen_to_sandhamn 58,9 km = 31,8 NM (precomputed-routes, validated); Sandhamn–Visby storcirkel 187,6 km = 101 NM (2026-08-23) */}
+ {/* UPPMÄTT: stromkajen_to_sandhamn 58,9 km = 31,8 NM (precomputed-routes, validated); Sandhamn–Visby storcirkel 187,6 km = 101 NM (2026-08-23); Visby–Hoburgen–Karlskrona 44+96 = 140 NM, Karlskrona–Falsterbo–Malmö 105+15 = 120 NM storcirkel (2026-09-13) — sjövägen längs kust något längre */}
  Klassiska etapper är Stockholm–Sandhamn (cirka 30 sjömil, en dag), Sandhamn–Visby (cirka 100 sjömil — vanligen seglas över natten eller på en lång dag), Visby–Karlskrona (cirka 130–140 sjömil, två dagar med stopp), och Karlskrona–Malmö (cirka 130 sjömil längs Skånes ostkust och runt Falsterbo, två till tre dagar). Många seglare gör detta som ett tvåveckors sommaräventyr, andra delar upp över flera somrar. De flesta väljer juli–augusti för stabilast väder.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -206,7 +207,8 @@ export default function SegelrutterPage() {
  Gotland Runt är den mest berömda kappseglingsklassikern i Sverige — en rutt som varje allvarlig seglare drömmer om att färdas på något tillfälle. Rundan går cirka 350 sjömil runt hela Gotland och startar traditionellt från Sandhamn i Stockholms skärgård.
  </p>
  <p>
- Under den officiella Gotland Runt-regattan varje sommar deltar hundratals båtar av alla slag. Regattat är notoriskt för sitt impulsiva väder — ibland får du svag vind och behöver motorkraft, ibland möter du kraftiga östvindar som driver dig från vägen. En typisk segling tar mellan 30 timmar för snabba racingbåtar och 2–3 dygn för långsammare båtar. För privatseglare som inte tävlar rekommenderas ofta två etapper: Sandhamn–Visby (över Östersjön, cirka 120 sjömil) och sedan hela vägen runt Gotland (cirka 180 sjömil).
+ {/* UPPMÄTT: Sandhamn–Visby storcirkel 101 NM (2026-09-13) — stod 120, motsade etapplistan ovan. UPPSKATTNING: runt Gotland = storcirkelsumma Visby–Fårö–Östergarn–Hoburgen–Visby 160 NM + sjövägens tillägg ≈ 180 (2026-09) */}
+ Under den officiella Gotland Runt-regattan varje sommar deltar hundratals båtar av alla slag. Regattat är notoriskt för sitt impulsiva väder — ibland får du svag vind och behöver motorkraft, ibland möter du kraftiga östvindar som driver dig från vägen. En typisk segling tar mellan 30 timmar för snabba racingbåtar och 2–3 dygn för långsammare båtar. För privatseglare som inte tävlar rekommenderas ofta två etapper: Sandhamn–Visby (över Östersjön, cirka 100 sjömil) och sedan hela vägen runt Gotland (cirka 160–180 sjömil).
  </p>
  <p>
  Klassiska ankarplatser: Visby hamn (medeltidsstaden), Fårö norrut, Östergarn österut, Hallshuk södersyd och Hemse västerut innan du återvänder till Sandhamn. Denna tur kräver god navigation, läsning av väder och en erfaren besättning — den klassificeras som Nivå 3.
@@ -296,8 +298,8 @@ export default function SegelrutterPage() {
  <strong>Hur lång tid tar det att segla Stockholm–Malmö?</strong>
  </h3>
  <p>
- {/* UPPSKATTNING: summering av etappexemplen ovan, ej verifierad mot ruttdata; faktagranskning 2026-08-23 tog bort tidigare pastaende om en markt 800-sjomilsled som ingen kalla kanner till */}
- Det finns ingen officiellt märkt led — sträckan längs kusten via Gotland och Blekinge är i storleksordningen 350–400 sjömil beroende på vägval. Många gör den som ett par veckors sommaräventyr, andra delar upp den över flera somrar och seglar en del i taget.
+ {/* UPPSKATTNING: summering av etappexemplen ovan (2026-09); storcirkelsumma Strömkajen–Sandhamn–Visby–Hoburgen–Karlskrona–Falsterbo–Malmö = 32+101+44+96+105+15 = 393 NM, så 350 var under golvet. Faktagranskning 2026-08-23 tog bort tidigare påstående om en märkt 800-sjömilsled som ingen källa känner till */}
+ Det finns ingen officiellt märkt led — sträckan längs kusten via Gotland och Blekinge är i storleksordningen 380–420 sjömil beroende på vägval. Många gör den som ett par veckors sommaräventyr, andra delar upp den över flera somrar och seglar en del i taget.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  <strong>Vad är bästa månaden att segla i Sverige?</strong>

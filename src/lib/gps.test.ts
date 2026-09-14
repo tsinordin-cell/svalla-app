@@ -4,6 +4,7 @@ import {
   distanceNM,
   totalDistanceNM,
   avgSpeedKnots,
+  movingSeconds,
   maxSpeedKnots,
   detectStops,
   formatDuration,
@@ -441,5 +442,37 @@ describe('restaurantsAlongRoute', () => {
 
   it('returns empty for empty restaurants list', () => {
     expect(restaurantsAlongRoute(pts, [], 0.5)).toHaveLength(0)
+  })
+})
+
+// ── avgSpeedKnots = distans / rörelsetid (2026-09-11) ─────────────────────────
+
+describe('avgSpeedKnots = distans / rörelsetid', () => {
+  const T0 = Date.parse('2026-09-11T10:00:00Z')
+  const M = 111_320
+  const seq = (n: number, kn: number, startS = 0, lat0 = 59.3) => Array.from({ length: n }, (_, i) => ({
+    lat: lat0 + (i * kn * 0.514444) / M, lng: 18, speedKnots: kn, heading: 0, accuracy: 5,
+    recordedAt: new Date(T0 + (startS + i) * 1000).toISOString(), deviceSpeedKnots: kn,
+  }))
+  it('10 kn i 60 s = 10,0 kn', () => {
+    expect(avgSpeedKnots(seq(61, 10))).toBeCloseTo(10, 1)
+  })
+  it('stilla-tid räknas inte: 10 kn i 60 s + 60 s stilla = fortfarande 10 kn (medel av punkter hade gett 5)', () => {
+    const a = seq(61, 10)
+    const still = Array.from({ length: 60 }, (_, i) => ({ ...a[60]!, speedKnots: 0, deviceSpeedKnots: 0, recordedAt: new Date(T0 + (61 + i) * 1000).toISOString() }))
+    expect(avgSpeedKnots([...a, ...still])).toBeCloseTo(10, 0)   // 10,08: övergångssekunden 10→0 bär lite sträcka
+  })
+  it('lucka där man flyttat sig räknas som rörelsetid', () => {
+    // 60 s i 10 kn, sedan 120 s lucka och punkten 1/3 NM bort (= 10 kn), sedan 60 s i 10 kn
+    const a = seq(61, 10)
+    const jump = (120 * 10 * 0.514444) / M
+    const b = seq(61, 10, 60 + 120, a[60]!.lat + jump)
+    expect(movingSeconds([...a, ...b])).toBe(240)
+    expect(avgSpeedKnots([...a, ...b])).toBeCloseTo(10, 0)
+  })
+  it('lucka där man låg stilla räknas inte', () => {
+    const a = seq(61, 10)
+    const b = seq(61, 10, 60 + 600, a[60]!.lat)
+    expect(movingSeconds([...a, ...b])).toBe(120)
   })
 })

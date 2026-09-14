@@ -353,7 +353,7 @@ function ManuellForm() {
       }
 
       setPosted(true)
-      fetch('/api/revalidate-feed', { method: 'POST' }).catch(() => {})
+      fetch('/api/revalidate-feed', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tripId: trip.id }) }).catch(() => {})
       setTimeout(() => router.push(`/tur/${trip.id}`), 800)
     } catch {
       setErr('Något gick oväntat fel. Kontrollera anslutningen och försök igen.')

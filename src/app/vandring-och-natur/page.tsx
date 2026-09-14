@@ -30,7 +30,8 @@ const ITEMS: LandingItem[] = [
   {
     icon: '',
     title: 'Sörmlandsleden (skärgårdsdelar)',
-    description: 'Tyresta nationalpark och kuststräckorna söderut — vildmark 40 minuter från city.',
+    // KÄLLA: Länsstyrelsen Stockholm — Tyresta nationalpark bildad 1993, "ett par mil söder om Stockholms centrum" (läst 2026-09-14). "40 minuter" är ingen myndighetssiffra, borttagen.
+    description: 'Tyresta nationalpark och kuststräckorna söderut — vildmark ett par mil från city.',
     href: '/platser?kategori=sormlandsleden',
   },
   {

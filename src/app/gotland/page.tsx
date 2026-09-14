@@ -205,7 +205,8 @@ export default function GotlandPage() {
  Passagen till Gotland — med egen båt
  </h2>
  <p>
- Från Sandhamn eller Landsort tar passagen typiskt <strong>24–36 timmar</strong> och är cirka <strong>120 sjömil</strong>. Från Öland är vägen kortare. Vädern i Östersjön kan vara opålitligt — ofta svag och variabel vind, ibland helt lugnt. Planera med MeteoGroup eller SMHI någon dag innan du går ut. Många erfarna seglare bygger in en marginal på passagen och räknar med att det kan dra längre än optimistiska beräkningar antyder.
+ {/* UPPMÄTT: storcirkel Sandhamn–Visby 101 NM, Landsort–Visby 67 NM (2026-09-13) — stod 120 för båda. UPPSKATTNING: restid vid 4–5 knop (2026-09) */}
+ Från Sandhamn är passagen cirka <strong>100 sjömil</strong> — typiskt <strong>20–25 timmar</strong> i 4–5 knop — och från Landsort knappt <strong>70 sjömil</strong>. Från Öland är vägen kortare. Vädern i Östersjön kan vara opålitligt — ofta svag och variabel vind, ibland helt lugnt. Planera med MeteoGroup eller SMHI någon dag innan du går ut. Många erfarna seglare bygger in en marginal på passagen och räknar med att det kan dra längre än optimistiska beräkningar antyder.
  </p>
  <p>
  <strong>GPS-loggning i Svalla är ovärderlig.</strong> Du ser exakt vilken väg du seglades, varje vindskift och kursbyte, och du kan titta tillbaka på turen för alltid. Det hjälper också nästa gång du planerar samma passage — du vet exakt hur många timmar det tog för din båt under liknande förhållanden.

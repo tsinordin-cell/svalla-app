@@ -36,6 +36,7 @@ export const REGIONS = {
   },
   hogakusten: {
     label: 'Höga Kusten',
+    // KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14)
     description: 'Härnösand, Ulvön, Kramfors, Höga Kusten-leden och Skuleskogens nationalpark — Norrlands dramatiska klippkust.',
     archipelago_region: 'hogakusten',
   },

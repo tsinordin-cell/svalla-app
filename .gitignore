@@ -36,3 +36,7 @@ supabase/.temp/
 .fuse_hidden*
 tsconfig.check.json
 tsconfig.check.tsbuildinfo
+
+# scripts/lankkontroll.mjs skriver rapporten i repots rot om --ut inte anges
+lankkontroll-*.md
+lankkontroll-*.json

@@ -194,6 +194,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    supabase
      .from('trips')
      .select('id, image, location_name, created_at, user_id')
+     // LÄNKKONTROLL 2026-09-03: en mjukraderad tur (deleted_at satt) låg kvar
+     // här och länkades från 835 sidor till en 404. Raderat är raderat.
+     .is('deleted_at', null)
      .not('image', 'is', null)
      .order('created_at', { ascending: false })
      .limit(6),

@@ -6,9 +6,15 @@
 import type { Map as LeafletMap } from 'leaflet'
 type LeafletNS = typeof import('leaflet')
 
-// CARTO tiles — ingen API-nyckel krävs, snabb CDN, OpenSeaMap-vänlig
-export const CARTO_TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-export const CARTO_TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+// UPPMÄTT 2026-09-03: CARTO:s basemaps kräver numera API-nyckel — varje tile
+// från basemaps.cartocdn.com levereras med vattenstämpeln "API KEY REQUIRED"
+// (carto.com/basemaps/apikey), vilket syntes på alla kartor i produktion.
+// Bas-lagret är därför OpenStreetMaps standardtiles (ingen nyckel, kräver
+// attribution — se OSM_ATTR nedan). OSM har ingen mörk variant; mörkt tema
+// använder samma tiles. Vill vi ha tillbaka CARTO:s mörka stil krävs en
+// nyckel i miljön — Toms beslut.
+export const CARTO_TILE_LIGHT = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+export const CARTO_TILE_DARK  = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
 // Bakåtkompatibilitet — gamla importer slutar fungera annars
 /** @deprecated Använd CARTO_TILE_LIGHT */
@@ -18,7 +24,7 @@ export const OSM_TILE_DARK  = CARTO_TILE_DARK
 /** OpenSeaMap sjömärken, grynnor, fyrar etc. — transparent PNG, läggs ovanpå bas-lagret. */
 export const SEAMARK_TILE = 'https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png'
 
-export const CARTO_ATTR    = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+export const CARTO_ATTR    = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bidragsgivare'
 export const SEAMARK_ATTR  = '&copy; <a href="https://www.openseamap.org">OpenSeaMap</a>'
 
 // Bakåtkompatibilitet

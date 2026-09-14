@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 const regions = [
   { key: 'norra', label: 'Norra skärgården', desc: 'Vilda och orörda öar längre ut i skärgården', accent: '#0a7b8c' },
   { key: 'mellersta', label: 'Mellersta skärgården', desc: 'Det klassiska skärgårdslivet — Sandhamn, Möja och öarna däremellan', accent: '#0a7b8c' },
+  // KÄLLA: Länsstyrelsen Stockholm — Utö (1974), Nåttarö (2008), Fjärdlång (1986) är naturreservat, Skärgårdsstiftelsen förvaltar (läst 2026-09-14)
   { key: 'södra', label: 'Södra skärgården', desc: 'Bilfria naturreservat och lugna vikar söder om Stockholm', accent: '#0a7b8c' },
   { key: 'bohuslan', label: 'Bohuslän', desc: 'Västkustens skärgård — räkor, klippor och Sveriges mest fotograferade fiskelägen', accent: '#a8381e' },
   { key: 'goteborg', label: 'Göteborgs södra skärgård', desc: 'Styrsöbolaget från Saltholmen — Brännö, Styrsö, Vrångö och Donsö', accent: '#a8381e' },

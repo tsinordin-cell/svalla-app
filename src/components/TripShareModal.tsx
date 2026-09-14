@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
+import { revalidateTrip } from '@/lib/revalidate-trip'
 import { toast } from '@/components/Toast'
 
 interface Props {
@@ -47,6 +48,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  .update({ visibility: 'public' }).eq('id', tripId)
  if (error) { toast('Kunde inte ändra synligheten.', 'error'); return }
  setVisibility('public')
+ void revalidateTrip(tripId)
  toast('Turen är nu synlig för alla.', 'success')
  }
 

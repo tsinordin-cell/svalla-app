@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
+import { revalidateTrip } from '@/lib/revalidate-trip'
 import { findOrCreateDM } from '@/lib/dm'
 import { avatarGradient, initialsOf } from '@/lib/utils'
 import { toast } from '@/components/Toast'
@@ -156,6 +157,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
      .update({ visibility: 'public' }).eq('id', trip.id)
    if (error) { toast('Kunde inte andra synligheten.', 'error'); return }
    setVisibility('public')
+   void revalidateTrip(trip.id)
    toast('Turen ar nu synlig for alla.', 'success')
  }
 

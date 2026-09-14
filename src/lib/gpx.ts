@@ -3,7 +3,17 @@ export interface GpxPoint {
   lng: number
   ele?: number
   time?: string
+  /** Fart i knop (sparad speedKnots). Exporteras som gpxtpx:speed i m/s. */
+  speedKnots?: number
+  /** Kurs i grader. Exporteras som gpxtpx:course. */
+  heading?: number | null
 }
+
+/** GPX 1.1 har ingen <speed> i trkpt (det hade 1.0). Garmins
+ *  TrackPointExtension v2 är det som Garmin, GPXSee, gpx.studio m.fl. läser:
+ *  <gpxtpx:speed> i m/s och <gpxtpx:course> i grader. */
+export const GPXTPX_NS = 'http://www.garmin.com/xmlschemas/TrackPointExtension/v2'
+const KN_TO_MS = 0.514444
 
 export interface GpxTrack {
   name: string
@@ -15,7 +25,8 @@ export function buildGpx(tracks: GpxTrack[]): string {
     points.map(p => {
       const ele = p.ele != null ? `\n        <ele>${p.ele.toFixed(1)}</ele>` : ''
       const time = p.time ? `\n        <time>${p.time}</time>` : ''
-      return `      <trkpt lat="${p.lat.toFixed(6)}" lon="${p.lng.toFixed(6)}">${ele}${time}\n      </trkpt>`
+      const ext = extensions(p)
+      return `      <trkpt lat="${p.lat.toFixed(6)}" lon="${p.lng.toFixed(6)}">${ele}${time}${ext}\n      </trkpt>`
     }).join('\n')
 
   const trks = tracks.map(t =>
@@ -23,9 +34,18 @@ export function buildGpx(tracks: GpxTrack[]): string {
   ).join('\n')
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="Svalla" xmlns="http://www.topografix.com/GPX/1/1">
+<gpx version="1.1" creator="Svalla" xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxtpx="${GPXTPX_NS}">
 ${trks}
 </gpx>`
+}
+
+function extensions(p: GpxPoint): string {
+  const hasSpeed = p.speedKnots != null && Number.isFinite(p.speedKnots) && p.speedKnots >= 0
+  const hasCourse = p.heading != null && Number.isFinite(p.heading)
+  if (!hasSpeed && !hasCourse) return ''
+  const speed = hasSpeed ? `\n            <gpxtpx:speed>${(p.speedKnots! * KN_TO_MS).toFixed(2)}</gpxtpx:speed>` : ''
+  const course = hasCourse ? `\n            <gpxtpx:course>${((Math.round(p.heading!) % 360) + 360) % 360}</gpxtpx:course>` : ''
+  return `\n        <extensions>\n          <gpxtpx:TrackPointExtension>${speed}${course}\n          </gpxtpx:TrackPointExtension>\n        </extensions>`
 }
 
 function escXml(s: string): string {

@@ -117,6 +117,15 @@ function getContextualSuggestions(): string[] {
     'Bästa ön att besöka i januari eller februari?',
   ]
   // Veckodagar — mer praktiska, kortare turer
+  //
+  // De fem sista tillagda 2026-09-14. Urvalet är inte slumpmässigt: de speglar
+  // frågor där Svallas egen data är bättre än konkurrenternas — färjetider,
+  // dagskostnad, bilfria öar, havsbastu och badplatser. Havsbastu är dessutom
+  // den enda sökterm där vi ligger på plats 1 i Google.
+  //
+  // Lägg inte till frågor vi inte kan svara bra på. En exempelfråga är ett
+  // löfte, och ett tomt svar på en fråga vi själva föreslagit är värre än
+  // ingen fråga alls.
   return [
     'Vad passar för en familj med barn under 10 år?',
     'Romantisk helgtur för oss två — budget?',
@@ -128,8 +137,13 @@ function getContextualSuggestions(): string[] {
     'Äventyrlig tur med flera stopp och matrestopp?',
     'Hur planerar man sin första skärgårdsresa?',
     'Vad kostar det att hyra båt för en dag?',
-    'Hur anmäler man man överbord?',
+    'Vad gör man vid man överbord?',
     'Vad behöver man ha ombord för säkerhets skull?',
+    'Vilken ö når jag med Waxholmsbåten på under en timme?',
+    'Vad kostar en dagstur till en ö, ungefär?',
+    'Vilka öar är bilfria?',
+    'Var finns havsbastu i skärgården?',
+    'Vilken ö passar om jag aldrig varit i skärgården?',
   ]
 }
 

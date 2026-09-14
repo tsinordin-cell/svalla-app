@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, Suspense } from 'react'
+import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient, getViewer } from '@/lib/supabase'
 import { isProEnabled } from '@/lib/pro'
@@ -102,9 +103,30 @@ function ProPageInner() {
   }
 
   if (!isProEnabled()) {
+    // Länkkontroll 2026-09-03: /pro var den enda sidan av 3 063 utan väg
+    // vidare — bara en rad text, noll länkar, länkad från 41 sidor. Nu en
+    // riktig "kommer"-sida med det vi bygger och två vägar tillbaka.
     return (
-      <main style={{ maxWidth: 480, margin: '0 auto', padding: '80px 20px', textAlign: 'center' }}>
-        <p style={{ color: 'var(--txt3)', fontSize: 15 }}>Svalla Pro är inte aktiverat än.</p>
+      <main style={{ maxWidth: 480, margin: '0 auto', padding: '60px 20px 100px' }}>
+        <div style={{ textAlign: 'center', marginBottom: 28 }}>
+          <h1 style={{ fontSize: 26, fontWeight: 800, color: 'var(--txt)', margin: '0 0 8px' }}>Svalla Pro kommer</h1>
+          <p style={{ fontSize: 15, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>
+            Pro är inte igång än. Allt du kan göra på Svalla i dag är gratis — logga turer, spara öar, planera rutter.
+          </p>
+        </div>
+        <div style={{ background: 'var(--white)', borderRadius: 20, padding: '20px 18px', marginBottom: 20, boxShadow: '0 2px 16px rgba(0,45,60,0.08)' }}>
+          <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 6px' }}>Det vi bygger</p>
+          {PRO_FEATURES.map(f => (
+            <div key={f.label} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderBottom: '1px solid rgba(10,123,140,0.08)' }}>
+              <ProIcon name={f.icon} />
+              <span style={{ fontSize: 14, color: 'var(--txt)', fontWeight: 500 }}>{f.label}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <Link href="/feed" style={{ flex: 1, textAlign: 'center', padding: '13px 16px', borderRadius: 14, background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Till flödet</Link>
+          <Link href="/oar" style={{ flex: 1, textAlign: 'center', padding: '13px 16px', borderRadius: 14, background: 'rgba(10,123,140,0.08)', color: 'var(--sea)', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Utforska öar</Link>
+        </div>
       </main>
     )
   }

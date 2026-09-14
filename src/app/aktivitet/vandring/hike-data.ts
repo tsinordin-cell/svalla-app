@@ -290,7 +290,8 @@ export const HIKES: Hike[] = [
     suitableForChildren: true,
     suitableForDogs: true,
     bestSeason: 'Maj–september',
-    tagline: 'Bilfri ö i Kosterhavet nationalpark med välmarkerade leder och kvällsdoppsplatser.',
+    // KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark (2009) omger Kosteröarna, som själva är naturreservat (Kosteröarna); motorfordon förbjudna utanför väg (läst 2026-09-14)
+    tagline: 'Bilfri ö vid Kosterhavets nationalpark med välmarkerade leder och kvällsdoppsplatser.',
   },
   {
     slug: 'fjallbacka',
@@ -369,7 +370,7 @@ export const HIKES: Hike[] = [
     tagline: '"Sillön" — välbevarat fiskebysamhälle med kustpromenad och frisk bohuslänsatmosfär.',
   },
   {
-    slug: 'mollösund',
+    slug: 'mollosund',
     name: 'Mollösund (Orust)',
     region: 'bohuslan',
     distanceKm: 3,
@@ -504,7 +505,7 @@ export const HIKES: Hike[] = [
     tagline: 'Bohusläns fiskehamn par excellence — rökeri, bystigmar och äkta skärgårdsatmosfär.',
   },
   {
-    slug: 'asperö',
+    slug: 'aspero',
     name: 'Asperö',
     region: 'goteborg-skargard',
     distanceKm: 2,
@@ -580,7 +581,7 @@ export const HIKES: Hike[] = [
     tagline: 'Skulpturpark möter kustled — Bohusläns konstiga och vackra kombination.',
   },
   {
-    slug: 'orust-mollösund-goteborg',
+    slug: 'orust-mollosund-goteborg',
     name: 'Orust / Mollösund',
     region: 'goteborg-skargard',
     distanceKm: 3,
@@ -1187,7 +1188,7 @@ export const HIKES: Hike[] = [
     durationMin: 1,
     durationMax: 2,
     difficulty: 'lätt',
-    transport: 'SJ → Karlskrona, sedan bil',
+    transport: 'SJ → Ronneby/Karlskrona, sedan bil',
     carRequired: false,
     ferryRequired: false,
     hasBathing: true,
@@ -1196,6 +1197,7 @@ export const HIKES: Hike[] = [
     suitableForChildren: true,
     suitableForDogs: true,
     bestSeason: 'Maj–september',
+    // KÄLLA: Länsstyrelsen Blekinge, naturreservat Tromtö — Ronneby kommun (inte Karlskrona), skyddat 1982, utökat 2011, 1 290 ha (läst 2026-09-14)
     tagline: 'Lugnt läge i Blekinge skärgård med hamnmiljö och naturreservat.',
   },
   {
@@ -1241,6 +1243,7 @@ export const HIKES: Hike[] = [
   },
   {
     slug: 'ottenby-oland',
+    // KÄLLA: Länsstyrelsen Kalmar, naturreservat Ottenby — beslut 1970, Mörbylånga kommun, 995 ha (läst 2026-09-14)
     name: 'Ottenby naturreservat',
     region: 'oland',
     distanceKm: 5,
@@ -1279,7 +1282,8 @@ export const HIKES: Hike[] = [
   },
   {
     slug: 'horns-naturreservat',
-    name: 'Horns naturreservat',
+    // KÄLLA: Länsstyrelsen Kalmar — reservatet heter Horns kungsgård, beslut 1979, Borgholms kommun, 829,9 ha (läst 2026-09-14)
+    name: 'Horns kungsgård (naturreservat)',
     region: 'oland',
     distanceKm: 4,
     durationMin: 1.5,
@@ -1473,7 +1477,8 @@ export const HIKES: Hike[] = [
   },
   {
     slug: 'stenshuvud',
-    name: 'Stenshuvud nationalpark',
+    // KÄLLA: sverigesnationalparker.se — Stenshuvuds nationalpark bildad 1986 (läst 2026-09-14)
+    name: 'Stenshuvuds nationalpark',
     region: 'skane',
     distanceKm: 5,
     durationMin: 2,
@@ -1608,6 +1613,7 @@ export const HIKES: Hike[] = [
   // ─── SÖRMLAND ────────────────────────────────────────────────────────────
   {
     slug: 'stendorren',
+    // KÄLLA: Länsstyrelsen Södermanland, naturreservat Stendörren — skyddat 1972, Nyköpings kommun, 923 ha, förvaltas av Länsstyrelsen (läst 2026-09-14)
     name: 'Stendörren naturreservat',
     region: 'sormland',
     distanceKm: 6,
@@ -1721,23 +1727,29 @@ export const HIKES: Hike[] = [
     tagline: 'Sörmlandsleden längs kusten — välkarterade etapper med natur och tystnad.',
   },
   {
-    slug: 'halluden-sormland',
-    name: 'Hålludden naturreservat',
-    region: 'sormland',
-    distanceKm: 3,
-    durationMin: 1,
-    durationMax: 2,
-    difficulty: 'lätt',
-    transport: 'Tåg → Norrköping, sedan buss',
+    slug: 'bravikenbranten',
+    // OMSKRIVEN 2026-09-14: posten hette "Hålludden naturreservat" — ingen sådan plats finns hos
+    // Länsstyrelsen Östergötland/Södermanland eller Norrköpings kommun. Ersatt med ett verkligt reservat.
+    // KÄLLA: Länsstyrelsen Östergötland, Bråvikenbranten naturreservat — Norrköpings kommun, skyddat 2007,
+    // 181,6 ha; Sörmlandsleden genom området (ca 5 km Säter–Gerhardsberg); led parkeringen–Kopparbo 5,5 km
+    // "särskilt krävande och svår"; Rövargrottan och Kopparbogrottan; parkering Skvättan (7 platser);
+    // buss Krokek–Kvarsebo, 600 m promenad från hållplatsen (läst 2026-09-14).
+    name: 'Bråvikenbranten',
+    region: 'ostgota',
+    distanceKm: 5.5,
+    durationMin: 2,
+    durationMax: 4,
+    difficulty: 'krävande',
+    transport: 'Buss Krokek–Kvarsebo, 600 m till parkeringen Skvättan',
     carRequired: false,
     ferryRequired: false,
-    hasBathing: true,
+    hasBathing: false,
     hasRestaurant: false,
     hasCafe: false,
-    suitableForChildren: true,
+    suitableForChildren: false,
     suitableForDogs: true,
     bestSeason: 'Maj–oktober',
-    tagline: 'Sörmlandskusthedens öppna marker med havsvy — lite känt men genuint fint.',
+    tagline: 'Bråvikens branta nordsida — grova tallar, två grottor och en etapp av Sörmlandsleden.',
   },
   {
     slug: 'braviken-sormland',
@@ -2184,6 +2196,7 @@ export const HIKES: Hike[] = [
   // ─── HALLAND ─────────────────────────────────────────────────────────────
   {
     slug: 'haverdal',
+    // KÄLLA: Länsstyrelsen Halland, naturreservat Haverdal — skyddat 1942, reviderat 2013, Halmstads kommun, 632 ha (läst 2026-09-14)
     name: 'Haverdal naturreservat',
     region: 'halland',
     distanceKm: 5,
@@ -2202,7 +2215,7 @@ export const HIKES: Hike[] = [
     tagline: 'Hallands bästa dynlandskap — sandstränder, tallskog och havsluft hela vägen.',
   },
   {
-    slug: 'tjolöholm',
+    slug: 'tjoloholm',
     name: 'Tjolöholm slottspark',
     region: 'halland',
     distanceKm: 4,
@@ -2391,7 +2404,8 @@ export const REGIONS: RegionMeta[] = [
   {
     id: 'bohuslan',
     name: 'Bohuslän',
-    shortDesc: 'Klipphallar, smala sund och Kosterhavet nationalpark — Bohusläns leder varierar från bilfria öar till atlantexponerade klippkanter.',
+    // KÄLLA: Länsstyrelsen Västra Götaland, Kosterhavets nationalpark (2009) (läst 2026-09-14)
+    shortDesc: 'Klipphallar, smala sund och Kosterhavets nationalpark — Bohusläns leder varierar från bilfria öar till atlantexponerade klippkanter.',
     relatedUrl: '/bohuslan',
   },
   {
@@ -2432,6 +2446,7 @@ export const REGIONS: RegionMeta[] = [
   {
     id: 'sormland',
     name: 'Sörmlands skärgård',
+    // KÄLLA: Länsstyrelsen Södermanland, naturreservat Stendörren (1972) (läst 2026-09-14)
     shortDesc: 'Stendörren naturreservat och Trosa skärgård — välhållen hemlighet längs Östersjöns västra kust.',
   },
   {
@@ -2447,6 +2462,7 @@ export const REGIONS: RegionMeta[] = [
   {
     id: 'halland',
     name: 'Hallandskusten',
+    // KÄLLA: Länsstyrelsen Halland, naturreservat Haverdal (1942) (läst 2026-09-14)
     shortDesc: 'Sandstränder, dynlandskap och Haverdal naturreservat — Halland är inte skärgård men har kustleder av hög klass.',
   },
 ]
