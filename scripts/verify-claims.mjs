@@ -110,16 +110,21 @@ const KRAVER_STARK_KALLA = new Set(['djup', 'segelfri höjd', 'knop', 'skyddssta
  * fram gissningar, vilket är exakt fel medicin.
  */
 const SKYDD_ORD = '(?:naturreservat|nationalpark|fågelskyddsområde|sälskyddsområde|Natura\\s*2000)'
-const SKYDDSSTATUS = new RegExp(
-  // "Bullerö naturreservat" — namngiven plats + skyddsform = statuspåstående
-  `\\b[A-ZÅÄÖ][a-zåäöé]{2,}(?:s|ns)?\\s+${SKYDD_ORD}\\b` +
+// "Bullerö naturreservat" — namngiven plats + skyddsform = statuspåstående.
+// SKIFTLÄGESKÄNSLIG med flit (2026-09-14): med i-flaggan matchade även "kustnära
+// naturreservat", "tomma naturreservat", "spektakulära naturreservat" — generiska
+// ord utan någon plats att kontrollera. 25 av 132 varningar var sådana. Ett
+// namn börjar med versal; det är det vi vill åt.
+const SKYDDSSTATUS_NAMN = new RegExp(`\\b[A-ZÅÄÖ][a-zåäöé]{2,}(?:s|ns)?\\s+${SKYDD_ORD}\\b`)
+const SKYDDSSTATUS_REST = new RegExp(
   // "är ett naturreservat", "ingår i nationalparken", "förvaltas av"
-  `|\\b(?:är|ingår\\s+i|del\\s+av|utgör|bildades|förvaltas\\s+av|skyddas\\s+som)\\s+` +
+  `\\b(?:är|ingår\\s+i|del\\s+av|utgör|bildades|förvaltas\\s+av|skyddas\\s+som)\\s+` +
   `(?:ett\\s+|en\\s+|den\\s+|delar\\s+av\\s+)?${SKYDD_ORD}` +
   // "naturreservatets föreskrifter/regler" — påstår att regelverk gäller
   `|${SKYDD_ORD}s(?:\\s+|)(?:föreskrifter|regler|bestämmelser)`,
   'i'
 )
+const SKYDDSSTATUS = { test: (t) => SKYDDSSTATUS_NAMN.test(t) || SKYDDSSTATUS_REST.test(t) }
 
 /**
  * FÄLTPÅSTÅENDEN — ny kategori 2026-08-19.
