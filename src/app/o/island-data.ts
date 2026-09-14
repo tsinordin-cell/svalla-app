@@ -193,31 +193,26 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '⛵',
-    tagline: 'Seglarnas huvudstad och skärgårdens mest levande destination.',
+    tagline: 'Seglingsvatten, gammal lots- och tullplats och en by av trähus i ytterskärgården.',
     seoTitle: 'Sandhamn 2026 – restauranger, boende & seglarkultur',
-    seoDescription: 'Guide till Sandhamn: bästa restaurangerna, Trouville-stranden, Seglarhotellet och båt från Stockholm. Bilfri ö i Stockholms skärgård.',
+    seoDescription: 'Guide till Sandhamn: restauranger, Trouville-stranden, Seglarhotellet och båt från Stockholm. Lots- och tullplats i Stockholms skärgård.',
     description: [
-      'Sandhamn är ett av Stockholms skärgårds mest välkända namn, och med rätta. Ön är hem för KSSS (Kungliga Svenska Segel Sällskapet) och samlar tusentals seglare varje sommar i en av Östersjöns mest besökta gästhamnar. Här finns allt: restauranger i toppklass, bagerier, barer och ett hamnliv som sträcker sig långt in på nätterna.',
-      'Trots att Sandhamn är populärt har det bevarat sin karaktär. Ön är bilfri och smalare stigar leder mellan trävillorna. Det vita sandstranden Trouville på öns södra sida är en av skärgårdens finaste. Klipporna österut erbjuder solbad med utsikt mot öppet hav.',
-      'Sandhamn besöks bäst juni–september men ön har verksamhet nästan hela året tack vare Seglarhotellet. Högsäsong är juli. Boka allt i förväg.',
-      'Det är lätt att glömma att Sandhamn faktiskt är ett gammalt fiskesamhälle. Gränd efter gränd kantas av röda och gula trähus, odlingsland och gamla sjöbodar. Bort från hamnen, bara hundra meter in i byn, är det tyst nog att höra fåglarna. Den kontrasten är en av Sandhamns bästa hemligheter: feststämning i hamnen och stillhet trettio sekunder bort.',
-      'Trouville-stranden på öns södra sida är sällsynt i skärgårdssammanhang. Sand istället för klippor, och ett grunt strandparti som fungerar utmärkt för barn. Bäst att ta sig dit tidigt på morgonen. Efter tio börjar det bli trångt under högsäsongen. Klipporna öster om stranden är en bra plan B: utsikt mot öppet hav och ofta bara ett par personer.',
-      'Matutbudet är ovanligt brett för en skärgårdsö. Dagen börjar på bageriet med nybakt och kaffe, lunchen kan bli räkor på värdshuset, kvällen i Segelsalen på Seglarhotellet om du bokat bord eller en öl på Dykarbaren om du inte gjort det. Sandhamn är en av få öar där man kan äta riktigt bra utan att ha planerat i förväg, åtminstone på vardagar.',
-      'För den som inte seglar kan Sandhamn vid första anblick verka som "en hamn full med seglare". Men ön är minst lika intressant för den som inte har en båt. Promenaden runt ön tar ungefär två timmar i lagom tempo. Kombinera med ett bad på Trouville, lunch och en eftermiddagspromenad ut till östudden. Det räcker gott som en hel dag.',
-      'September är Sandhamns dolda guldmånad. Turisttrycket är borta, vattnet fortfarande badbart, restaurangerna öppna och utan kö. Det är i september man förstår varför folk som bott i Stockholms skärgård hela livet väljer att komma just hit, inte i juli.',
-      'Sandhamn har en historia som lotsstation som sträcker sig flera hundra år tillbaka. Piloter var stationerade här för att guida handelsfartyg genom de smala ytterskärgårdspassagerna in mot Stockholm. Den praktiska sjömansmiljön formade byns karaktär: de gamla lotskojiorna och de trånga gränderna speglar en arbetskultur kopplad till havet som lever kvar i stadsbilden än i dag.',
-      'Kungliga Svenska Segel Sällskapet, känt som KSSS, grundades 1830 och valde Sandhamn som sin hemmahavn. Det vita klubbhuset vid hamnen är ett av de mest fotograferade byggnaderna i skärgården. KSSS är en av de större segelsällskapen i Europa, och den status det ger Sandhamn märks i allt: gästhamnskapaciteten, utrustningsnivån och den specifika energin hos de som besöker ön.',
-      // KÄLLA: ksss.se/en/gotlandrunt/ ("since 2024 it starts at Gråskärsfjärden south of Sandön" / "...with the finish at Sandhamn")
-      'Varje sommar, normalt i slutet av juni eller början av juli, avslutas Gotland Runt Offshore Race i Sandhamn. Sedan 2024 går starten från Gråskärsfjärden söder om Sandön, medan målgången ligger kvar i Sandhamn. Det är ett av världens större offshore-segeltävlingar med hundratals deltagande båtar. Tävlingsveckan förvandlar ön helt: hamnen fylls till kapacitet, restaurangerna vänder bord tre gånger per kväll och den sociala energin når en nivå som inget annat skärgårdsevenemang kan matcha.',
-      // KÄLLA: en.wikipedia.org/wiki/Sandhamn ("approximately 50 km"). Den specifika uppgiften om 31 sjömil/57 km sjövägen kunde inte beläggas och är borttagen.
-      'Läget spelar roll. Sandhamn ligger knappt 50 kilometer fågelvägen från centrala Stockholm, långt ut i ytterskärgården där vattnet är saltare och klipporna lägre och jämnare. Havet beter sig annorlunda här än vid innerskärgårdsplatser: svallvågorna är längre, vindarna mer stabila och horisonten bredare. På en klar dag från de östra klipporna ser du ingenting utom öppet Östersjövatten.',
-      'Byn samlas i öns västra del, nära hamnen. Men hundra meter öster om hamnarens livlighet smalnar stigarna till spår mellan gamla trästaket och köksträdgårdar. Hus från 1700- och 1800-talen, målade i rött och gult, kantar dessa gränder. Kontrasten med hamnenerginen är omedelbar och fullständig, vilket är en av Sandhamns bästa hemligheter.',
-      'Ön har blivit internationellt känd genom Viveca Stens kriminalromanserie med Sandhamn som miljö. Böckerna, översatta till ett flertal språk, lockar en stadig ström av läsare som besöker ön specifikt för att promenera i de gator och vid de hamnar som beskrivs i berättelserna. Det är en ovanlig form av litterär turism som når besökare utan något specifikt intresse för segling.',
-      'Östra kusten är till för dem som vill bort från hamnen. Klipporna här är jämnare än på västsidan, havet öppet och tystnaden bara bruten av sjöfåglar. På vardagar i axelsäsongen kan du promenera runt ön och möta nästan ingen. Det tar ungefär två timmar i lugnt tempo.',
-      'Från oktober till maj är Sandhamn en stillsammare plats. Seglarhotellet håller öppet hela året och driver det enda spa på ön. Några lokala verksamheter fortsätter men de flesta restauranger stänger. Vinterlandskapet har sin egen kvalitet: is kan bildas i innershamnen, lotskojiorna står i tystnad och hamnen rymmer några vinterliggande båtar. Värt ett besök för den som specifikt vill ha kontrasten till sommarön.',
-      'Att ta sig till Sandhamn utan båt kräver lite planering. Waxholmsbåten från Strömkajen är det klassiska alternativet, en resa på ungefär två och en halv timme genom skärgården som i sig är en del av upplevelsen. Det snabbare alternativet är buss till Stavsnäs och sedan snabbåt, vilket kortar restiden till under en timme. Den inre skärgårdspassagen ombord på den reguljära Waxholmsbåten är dock värd den extra tiden minst en gång.',
-      'Sandhamn passar inte alla, och det är en del av tjusningen. Barnfamiljer bör veta att ön inte har någon strand nära hamnen: Trouville kräver tio minuters promenad och hamnen i sig är full av båttrafik. För par, segelentusiaster, restauranggäster och dem som värdesätter energin i en aktiv seglarhamn levererar ön något som få andra skärgårdsdestinationer kan matcha.',
-    
+      // KÄLLA: ksss.se/KSSS/historia/ — "KSSS grundades i Stockholm 1830 under namnet Svenska Segel Sällskapet" samt "aktiv seglingsverksamhet på fjärdarna runt Sandhamn, bidrog till klubbens goda rykte"
+      'Sandhamn hör till de namn i Stockholms skärgård som de flesta känner igen, och seglingen är en stor del av förklaringen. Kungliga Svenska Segel Sällskapet, KSSS, grundades i Stockholm 1830 under namnet Svenska Segel Sällskapet, och sällskapets seglingsverksamhet på fjärdarna runt Sandhamn har följt ön sedan dess. Under sommaren ligger båtarna tätt och hamnlivet håller på långt in på kvällarna.',
+      // KÄLLA: varmdo.se, Trouville Sandhamn — "Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida." / "Trouville ligger omkring 20 minuters promenad från hamnen."
+      'Den långsträckta stranden Trouville, med sin vita sand, ligger på Sandhamns södra sida, omkring tjugo minuters promenad från hamnen. Sand i stället för klippor är ovanligt i de här farvattnen. Klipporna öster om stranden ligger öppna mot havet och är oftast tommare.',
+      // KÄLLA: stockholmslansmuseum.se/besoksmal/sandhamn/ — "Under slutet av 1600-talet upprättades en lotsstation och de bofasta under 1700- och 1800-talen var främst lotsar, tullare och krögare." / "Sandhamn har sedan 1700-talet varit lots- och tullstation"
+      'Sandhamn är ingen gammal fiskeby utan en gammal lots- och tullplats. En lotsstation upprättades under slutet av 1600-talet, och de bofasta under 1700- och 1800-talen var främst lotsar, tullare och krögare. Sedan 1700-talet har ön varit lots- och tullstation, och den sjöfartsanknutna arbetskulturen syns fortfarande i hur byn är byggd.',
+      // KÄLLA: stockholmslansmuseum.se/besoksmal/sandhamn/ — "Det pampiga gula tullhuset av sten som dominerar hamnen ritades av slottsarkitekten Carl Hårleman och byggdes 1752." / "I de små 1700-talshusen Bryggstugan och Tullvaktstugan finns ett museum"
+      'Det gula tullhuset av sten dominerar hamnen. Det ritades av slottsarkitekten Carl Hårleman och byggdes 1752. I de små 1700-talshusen Bryggstugan och Tullvaktstugan finns ett museum. Går man hundra meter in i byn smalnar gränderna till spår mellan staket och köksträdgårdar, och det blir tyst nog att höra fåglarna.',
+      // KÄLLA: ksss.se/en/gotlandrunt/ — "since 2024 it starts at Gråskärsfjärden south of Sandön" / "boats sail south on open water to round Gotland with the finish at Sandhamn"
+      // KÄLLA: ksss.se/KSSS/historia/ — Gotland Runt beskrivs som "den ledande havskappseglingen i norra Europa"
+      'Gotland Runt avslutas i Sandhamn. Sedan 2024 går starten från Gråskärsfjärden söder om Sandön, medan målgången ligger kvar i Sandhamn, och KSSS beskriver tävlingen som den ledande havskappseglingen i norra Europa. Under tävlingsveckan ligger båtarna tätt i hamnen och byn har en annan puls än resten av sommaren.',
+      'Ön ligger långt ut, där vattnet är saltare och klipporna lägre och jämnare. Havet beter sig annorlunda här än längre in: svallet är längre, horisonten bredare. Från de östra klipporna en klar dag ser du ingenting annat än öppet vatten.',
+      'Östra sidan är för den som vill bort från hamnen. Klipporna är jämna, havet öppet och tystnaden bruten mest av sjöfåglar. En vardag utanför högsommaren kan du gå länge utan att möta någon.',
+      'Från oktober till maj är Sandhamn en stillsammare plats. Vinterlandskapet har sin egen kvalitet: is kan bildas i inre hamnen, gränderna står tomma och hamnen rymmer några vinterliggande båtar. Värt ett besök för den som specifikt vill ha kontrasten till sommarön.',
+      // KÄLLA: varmdo.se, Trouville Sandhamn — "Trouville ligger omkring 20 minuters promenad från hamnen."
+      'Sandhamn passar inte alla, och det är en del av tjusningen. Barnfamiljer bör veta att det inte finns någon strand vid hamnen: Trouville ligger omkring tjugo minuters promenad bort, och hamnen i sig är full av båttrafik. För den som vill ha energin i en aktiv seglarhamn är det däremot precis rätt.',
     ],
     facts: {
       // KÄLLA: sandhamn.com/en/hitta-hit (Waxholmsbåt linje 15 Strömkajen–Sandhamn: "2–3 hours"); battaxi.se/sandhamnslinjen-2 (Sandhamnslinjen Stavsnäs–Sandhamn: "30 minuter"). Siffran "3 tim 45" kunde inte beläggas och är borttagen.
@@ -236,7 +231,8 @@ export const ISLANDS: Island[] = [
       { icon: '🎣', name: 'Fiske', desc: 'Ytterskärgårdens vatten erbjuder utmärkt fiske. Havsöring och makrill är vanliga.' },
       { icon: '🛶', name: 'Kajak & SUP', desc: 'Uthyrning finns vid hamnen. Paddla runt ön eller ut mot de omgivande grunden.' },
     ],
-    accommodationIntro: 'Sandhamn har ett koncentrerat och välkvalitativt boendeutbud kring hamnen. Seglarhotellet är flaggskeppet och håller öppet hela året med modernt spa — boka månader i förväg inför juli och Gotland Runt-helgen. Sandhamns Värdshus och Sands Hotell ger kompletterande alternativ med mer personlig prägel.',
+    // Öppettider och "boka månader i förväg" var obelagt och togs bort 2026-09-14. Anläggningarna och deras egenskaper är källmärkta i accommodation nedan.
+    accommodationIntro: 'Boendet på Sandhamn ligger samlat kring hamnen: Seglarhotellet med spa och restaurang, Sandhamns Värdshus i Missionshuset och lägenhetshotellet Sands Hotell.',
     // KÄLLA: sandhamn.com, sandhamns-vardshus.se, sandshotell.se — egna webbplatser; visitskargarden.se listar samma tre, inget STF-boende på Sandhamn (läst 2026-09-14)
     accommodation: [
       { name: 'Sandhamn Seglarhotell', type: 'Hotell', desc: 'Hotell vid hamnen med spa, restaurang, gym och pool. Öppet året runt. Boka långt i förväg.', websiteUrl: 'https://www.sandhamn.com' },
@@ -268,14 +264,17 @@ export const ISLANDS: Island[] = [
       { name: 'Sandhamnsbageriet', type: 'Bageri', desc: 'Bageri i Sandhamn med surdegsbröd, bullar, tårtor och smörgåsar. Säsongsöppet.', websiteUrl: 'https://www.sandhamnsbageriet.com' },
     ],
     tips: [
-      'Boka restaurang och hotell minst 4–6 veckor i förväg under juli.',
-      'Sandstranden Trouville är bäst tidigt på morgonen innan turistbåtarna anländer.',
-      'Promenera österut till klipporna för solnedgångsutsikt mot öppet hav.',
-      'Undvik att anlöpa under Gotland Runt-helgen (tidig juli) — hamnen är fullbokad.',
+      // KÄLLA: varmdo.se, Trouville Sandhamn — "Trouville ligger omkring 20 minuters promenad från hamnen." / "Toaletter sommartid"
+      'Trouville ligger omkring 20 minuters promenad från hamnen — räkna med gångtiden när du planerar badet.',
+      // KÄLLA: varmdo.se, Trouville Sandhamn — "Ingen provtagning av badvatten utförs av Värmdö kommun."
+      'Värmdö kommun tar inga badvattenprover vid Trouville.',
+      'Klipporna öster om Trouville ligger öppna mot havet och är oftast tommare än stranden.',
     ],
     related: ['moja', 'grinda', 'finnhamn'],
     tags: ['segling', 'gästhamn', 'restauranger', 'sandstrand', 'sommarfest'],
-    did_you_know: 'Sandhamn fick tullstation runt 1670 och lotsstation under slutet av 1600-talet, sedan kungens förbud mot utländsk sjöfart genom Sandöhamn upphävts. Namnet kommer från den ovanliga sandstranden — de flesta öar i skärgården har bara klippor.',
+    // KÄLLA: stockholmslansmuseum.se/besoksmal/sandhamn/ — "Det pampiga gula tullhuset av sten som dominerar hamnen ritades av slottsarkitekten Carl Hårleman och byggdes 1752."
+    // KÄLLA: ksss.se/en/gotlandrunt/ — "since 2024 it starts at Gråskärsfjärden south of Sandön"
+    did_you_know: 'Det gula tullhuset i hamnen ritades av slottsarkitekten Carl Hårleman och byggdes 1752. Gotland Runt startar sedan 2024 från Gråskärsfjärden söder om Sandön — men målgången ligger kvar i Sandhamn.',
     transport_meta: {
       // KÄLLA: sandhamn.com/en/hitta-hit anger "2–3 hours" (120–180 min) för Strömkajen–Sandhamn; 150 min ligger inom intervallet men exakt tid kunde inte beläggas mer precist
       from_city_min: 150,
@@ -349,30 +348,33 @@ export const ISLANDS: Island[] = [
     region: 'södra',
     regionLabel: 'Södra skärgården',
     emoji: '🚲',
-    tagline: 'Södra skärgårdens kronjuvel — cykling, gruvhistoria och havsbastu.',
-    seoTitle: 'Utö 2026 – cykling, havsbastu & Utö Värdshus',
-    seoDescription: 'Guide till Utö: cykelleder, havsbastu och Utö Värdshus. Pendeltåg till Nynäshamn + färja. Södra skärgårdens bästa helgdestination.',
+    tagline: 'Järngruvor sedan medeltiden, grusvägar att cykla och sandstrand vid Ålö Storsand.',
+    seoTitle: 'Utö 2026 – cykling, gruvhistoria & Utö Värdshus',
+    seoDescription: 'Guide till Utö: cykelleder, gruvhistoria och Utö Värdshus. Pendeltåg till Nynäshamn och båt vidare. Naturreservat i södra skärgården.',
     description: [
-      'Utö är södra skärgårdens mest kompletta destination. Ön är känd för sina cykelleder, sin gruvhistoria (järn bröts här i mer än 700 år, från 1100-talet till 1879) och sin havsbastu som numera är en av skärgårdens mest omtalade upplevelser. Utö Värdshus håller hög klass och är ett självklart mål för dem som vill kombinera god mat med naturupplevelse.',
-      'Till skillnad från Sandhamn är Utö lugnare och mer familjevänlig. Öns storlek gör att man kan cykla runt hela dagen och ändå inte upprepa sig. Det finns sandstränder, klippor, naturreservat och ett litet museum om gruvdriften.',
-      'Utö nås med färja från Nynäshamn eller med snabbåt. Ön är populär att kombinera med Nåttarö och Ålö-Rånö på en längre seglingstur söderut.',
-      'Cykelrutten från Gruvbryggan ner till Ålö Storsand är en av skärgårdens verkliga pärlor. Tretton kilometer på smala grusvägar genom björkskog och öppna ljunghedar, förbi den gamla gruvgången och ut mot havets horisont. Det går ungefär en timme i lugnt tempo, och när man väl ser Ålö Storsands vita sand och turkosvattnet framför sig förstår man varför folk åker hit om och om igen.',
-      'Gruvhistorien är mer fascinerande än man kan tro. På 1840-talet bodde nästan 500 människor på Utö: smeder, gruvarbetare och deras familjer. Samhället hade skola, kyrka och handelshus. När gruvan stängde 1879 var det en hel värld som upphörde. Museet bredvid schaktet är litet men välgjort, och det tar ungefär 45 minuter. Bättre än man förväntar sig.',
-      'Havsbastun på Utö är en upplevelse som är svår att sätta ord på. Bastun ligger direkt mot havet. Dörren öppnas mot vattnet och det är bara några steg dit. Kontrasten mellan det heta bastuutrymmet och det kalla havsvattnet, kombinerat med den öppna horisonten, gör det till något helt annat än en vanlig bastu. Kvällspass med solnedgång är svårt att överträffa. Boka online i god tid.',
-      'Utö belönar verkligen den som stannar mer än en dag. Dag ett är lätt att fylla med cykeltur och bastu. Dag två är för de lugnare upptäckterna: en kajakrunda runt öns norra spets, en fisketur eller bara en lång lunch på värdshuset utan att ha något mer planerat. Det är en annan Utö.',
-      'Kombinationen Utö–Nåttarö är ett klassiskt tvådagarsprogram för seglare. Ankra vid Nåttarös naturreservat för natten, kliv upp med fåglarna på morgonen och ha hela klippmarken för dig själv. Det är ungefär vad södra skärgården erbjuder på sin allra bästa.',
-      // KÄLLA: kulturarvstockholm.se, Utö gruvor — den ryska härjningen 1719 förstörde anläggningarna och fyllde igen fyra schakt, driften var alltså inte kontinuerlig
-      'Utös historia kretsar kring järnet. Öns gruva bearbetades från åtminstone medeltiden och bröt järnmalm ur de karakteristiska rödbrunfärgade bergformationerna som fortfarande präglar landskapet. Gruvdriften pågick under flera sekler, med ett längre avbrott efter den ryska härjningen 1719, och gjorde Utö till en av Sveriges äldsta järngruvor innan verksamheten slutligen upphörde 1879. Schaktet och anläggningarna är nu museum och förblir en av de mer ovanliga historiska sevärdheterna i skärgården.',
-      'Gruvan är väl värd ett besök. Utställningen täcker både den tekniska gruvhistorien och den sociala historien bakom det gruvsamhälle som levde här. Det erbjuder ett genuint annorlunda perspektiv på skärgårdslivet: inte fiskebyar och seglarhamnar, utan industriellt arbete i en öomgivning. Att kombinera detta besök med en cykeltur runt ön ger en fullständigare bild av vad Utö faktiskt är.',
-      'Cykling är hur de flesta väljer att utforska Utö. Ön har ett nätverk av stigar och mindre vägar, de flesta plana eller svagt sluttande, vilket gör det tillgängligt för alla konditionsnivåer. Cykeluthyrning finns vid hamnen från tidig sommar. En full runda av ön tar ungefär två till tre timmar i lugnt tempo, med naturliga stopp vid utsiktspunkter, stränder och gruvan.',
-      'Utö ligger i den sydligaste delen av Stockholms skärgård, och läget formar karaktären. Ytterlandskapet är mer exponerat än på centrala skärgårdsöar: lägre klippor, bredare himmel, starkare vindar. Öns sydspets ser mot öppet vatten utan synliga landmarkeringar i riktning mot nästa kust. Den öppenheten är en specifik sorts vacker som skiljer sig från den slutna, skogsklädda känslan av innerskärgårdsöar.',
-      'Havsbastun på Utö är en av de mest besökta i skärgården. Belägen utomhus direkt vid vattnet möjliggör den den skandinaviska ritualen av att växla mellan intensiv värme och kallt havsvatten. Temperaturkontrasten är störst på höst och vinter när upplevelsen är tillgänglig och vattnet som kallast. Förbokning är lämpligt, särskilt under högsäsong.',
-      'Utö har en av de få ordentliga sandstränderna i Stockholms skärgård. För de flesta skärgårdsplatser innebär bad jämna klipphällar och öppet hav. Den strand som finns här är ett undantag som barnfamiljer i synnerhet tenderar att uppskatta, med grund instegszon och mjukare underlag än klippbadets alternativ.',
-      'Utö Värdshus har drivits som restaurang och gästgiveri under lång tid. Nuvarande verksamhet upprätthåller traditionen att servera klassisk skärgårdsmat: sill, lax, säsongsbetonade svenska rätter i en miljö som ser ut över hamnen. Kvaliteten har gjort det till en av de mer besökta restaurangerna i den yttre södra skärgården. Under högsommaren krävs bordsbokning.',
-      'Det exponerade läget vid Utös sydspets gör ön till en viktig observationspunkt för flyttfåglar. På hösten, i synnerhet september och oktober, koncentreras migrerande rovfåglar, vadare och tättingar här. Erfarna fågelskådare reser specifikt till Utö för höstflyttningen, och antalet arter och individer en bra septemberdag kan vara anmärkningsvärt. Även tillfälliga besökare märker ovanligt varierad fågelaktivitet under dessa perioder.',
-      'Den huvudsakliga båtförbindelsen året runt går från Årsta brygga, som nås med pendeltåg till Västerhaninge och buss 846. Nynäshamnslinjen slutar på grannön Ålö, inte på Utö by. Resan från centrala Stockholm, tåg till Nynäshamn och sedan båt till Utö, tar sammanlagt ungefär två timmar. Det finns även en längre men scenisk väg med Waxholmsbåt genom mellanskärgården. Dagsutflykter till Utö är möjliga men ön belönar ett nattuppehåll eller två: de flesta av dess bästa kvaliteter kräver mer än några timmar för att uppleva ordentligt.',
-      'Utö har en liten permanent befolkning och ön upprätthåller mer året-runt-karaktär än rent sommardestinationer. Gruvmuseet, värdshuset och havsbastun är öppna in i hösten och ibland genom vintern. Att besöka utanför juli förändrar upplevelsen markant: stigarna är tomma, bastun bättre utan sommarkön och landskapet tar en hårdare, mer ärlig kvalitet som passar öns gruvhistoria.',
-    
+      // KÄLLA: lansstyrelsen.se, naturreservat Utö — "Utö gruvor från järnmalmsbrytningen som funnits till och från under 700 år med början redan under 1100-talet"
+      // KÄLLA: kulturarvstockholm.se, Utö gruvor — "År 1879 upphörde slutligen gruvdriften helt"
+      'Utö präglas av järnet. Järnmalmsbrytning har funnits här till och från under 700 år, med början redan under 1100-talet, och 1879 upphörde gruvdriften slutligen helt. Spåren efter arbetet finns kvar i landskapet: schakt, varphögar och den gamla gruvbyn.',
+      // KÄLLA: kulturarvstockholm.se, Utö gruvor — "måhända Sveriges äldsta järngruvor, upptagna redan under tidig medeltid" / "Sommaren 1719 härjade tsar Peter I:s flotta stora delar av den svenska ostkusten och totalförstörde utögruvorna"
+      'Gruvorna beskrivs som måhända Sveriges äldsta järngruvor, upptagna redan under tidig medeltid. Driften var inte obruten. Sommaren 1719 härjade tsar Peter I:s flotta stora delar av den svenska ostkusten och totalförstörde utögruvorna, och verksamheten fick byggas upp på nytt.',
+      // KÄLLA: kulturarvstockholm.se, Utö gruvor — "under 1840-talet uppnådde befolkningstalet sitt maximum, 446 personer"
+      'Gruvsamhället var som störst under 1840-talet, då befolkningstalet nådde sitt maximum på 446 personer. Det är ett annat perspektiv på skärgårdsliv än fiskebyar och seglarhamnar: industriellt arbete i en ömiljö. Gruvbyn och utställningen där ger den bilden.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/uto/ — "I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden." / "Sveriges äldsta bevarade väderkvarn"
+      'I den historiska Gruvbyn finns spår av järnbrytningen, och här står också Sveriges äldsta bevarade väderkvarn. Det är en kort promenad mellan husen och en tät koncentration av öns historia.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/uto/ — "Ålö Storsand, som nås med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder."
+      'Ålö Storsand, som nås med båt eller via vandringsled, räknas av Skärgårdsstiftelsen som en av Stockholms skärgårds mest omtyckta sandstränder. Riktig sandstrand är ovanligt i skärgården, där bad oftast betyder jämna klipphällar. Vägen dit går genom skog och öppnare marker innan havet ligger framför en.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/uto/ — "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis"
+      'Utö är en riktig cykel-ö med möjlighet att hyra cykel dagsvis. Grusvägarna går mellan skogsparti och öppnare marker, och terrängen är mestadels flack. Det är så de flesta tar sig runt.',
+      // KÄLLA: lansstyrelsen.se, naturreservat Utö — "Reservatet utgör norra delen av Utö samt ett antal öar i omgivande vatten" (skyddat 1974, 4 183 hektar varav 653 land; markägare och förvaltare Skärgårdsstiftelsen)
+      'Norra delen av Utö är naturreservat tillsammans med ett antal öar i omgivande vatten. Reservatet är skyddat sedan 1974 och omfattar 4 183 hektar, varav 653 hektar land. Skärgårdsstiftelsen är både markägare och förvaltare.',
+      // KÄLLA: lansstyrelsen.se, naturreservat Utö — rovfåglarna dras till Utö särskilt under hösten vid västliga vindar; reservatet är "känt för sina många fjärilar"
+      'Det exponerade läget gör Utö till en bra plats för fågelskådning. Rovfåglar dras hit särskilt under hösten vid västliga vindar. Reservatet är också känt för sina många fjärilar, apollofjärilen bland dem.',
+      // KÄLLA: lansstyrelsen.se, naturreservat Utö — i varphögarna finns bland annat "guldglänsande svavelkis, blå turmalin och röda granater"
+      'I varphögarna efter gruvdriften går det fortfarande att hitta mineral: guldglänsande svavelkis, blå turmalin och röda granater. Det är en av få platser i skärgården där marken under fötterna berättar något annat än is och hav.',
+      // KÄLLA: utovardshus.se/kontakt/hitta-hit/ — "Waxholmsbåtar trafikerar linjen Utö – Årsta Brygga dagligen" / "Båt utgår även från Nynäshamn till grannön Ålö som har broförbindelse till Utö"
+      // KÄLLA: sl.se, linje 846 Västerhaninge station–Årsta (–Årsta slott)
+      'Waxholmsbåtar trafikerar linjen Utö–Årsta brygga dagligen. Årsta brygga nås med pendeltåg till Västerhaninge och därifrån buss 846 mot Årsta. Båt utgår även från Nynäshamn till grannön Ålö, som har broförbindelse till Utö.',
+      'Utö belönar den som stannar mer än en dag. Cykelturen och gruvbyn fyller lätt ett dygn; nästa dag är för det långsammare, en runda längs vattnet eller en lång lunch utan något planerat efteråt. Landskapet har en hårdare, mer ärlig kvalitet utanför högsommaren som klär öns gruvhistoria.',
     ],
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 21 Årsta–Utö. Nynäshamnslinjen (tabell 22) slutar på Ålö, inte Utö by. Årsta brygga nås med buss 846 (14–17 min). Se varv 51–52.
@@ -393,7 +395,8 @@ export const ISLANDS: Island[] = [
       { icon: '🚶', name: 'Vandring', desc: 'Naturreservat i öns norra del med välmarkerade leder och vacker urbergslandskap.' },
       { icon: '🎣', name: 'Fiske', desc: 'Ytterskärgården runt Utö är utmärkt för havsöring och abborre.' },
     ],
-    accommodationIntro: 'Utö erbjuder skärgårdens bredaste boendeutbud utanför de mer centrala öarna — från välrenommerade Utö Värdshus med spa, restaurang och havsutsikt till stugor och campingplatser i naturreservat. Ön passar allt från par på weekend till barnfamiljer med tält.',
+    // "Skärgårdens bredaste boendeutbud" var ett obelagt superlativ och togs bort 2026-09-14.
+    accommodationIntro: 'Utö har både värdshus, stugor och camping. Anläggningarna ligger i eller nära Gruvbyn, och flera av dem ligger inom naturreservatet.',
     // KÄLLA: utovardshus.se/boende (Kvarnvillan, Stenhotellet, hotellstugor, vandrarhemmet); uto.se/camping; STF:s lista över vandrarhem i Stockholms skärgård nämner INTE Utö — "STF-ansluten" borttaget (läst 2026-09-14)
     accommodation: [
       { name: 'Utö Värdshus', type: 'Hotell', desc: 'Värdshus med restaurang och havsutsikt — rum i Kvarnvillan, Stenhotellet och hotellstugor. Öppet hela året.', websiteUrl: 'https://www.utovardshus.se' },
@@ -420,14 +423,19 @@ export const ISLANDS: Island[] = [
       { name: 'Bakfickan Utö', type: 'Bar', desc: 'Bar och nattklubb vid Gruvbryggan, del av Utö Värdshus. Livemusik och DJ sommarhelger.', slug: 'bakfickan-uto' },
     ],
     tips: [
-      'Hyr cykel vid hamnen direkt när du stiger av — de tar slut snabbt sommardagar.',
-      'Havsbastubokning krävs online i förväg. Kvällspass med solnedgång är bäst.',
-      'Kombinera med en natt på Utö — Nåttarö och Ålö-Rånö är enkla dagsutflykter därifrån.',
-      'Gruvmuseet är gratis och tar 45 minuter — bättre än man förväntar sig.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/uto/ — "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis"
+      'Utö är en cykel-ö och cykel går att hyra dagsvis — planera dagen kring grusvägarna.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/uto/ — "Ålö Storsand, som nås med båt eller via vandringsled"
+      'Ålö Storsand nås med båt eller via vandringsled.',
+      // KÄLLA: utovardshus.se/kontakt/hitta-hit/ — "Båt utgår även från Nynäshamn till grannön Ålö som har broförbindelse till Utö"
+      'Kommer du från Nynäshamn lägger båten till på Ålö — därifrån går bro över till Utö.',
     ],
     related: ['nattaro', 'dalaro', 'orno'],
     tags: ['cykling', 'havsbastu', 'gruva', 'naturreservat', 'familj'],
-    did_you_know: 'Utö har en av Sveriges äldsta järngruvor — drift från 1100-talet fram till 1879. En av Sveriges äldsta rälsvägar byggdes på Utö 1836 (700 meter, för malmtransport från gruvan till lastkajen).',
+    // KÄLLA: kulturarvstockholm.se, Utö gruvor — "under 1840-talet uppnådde befolkningstalet sitt maximum, 446 personer"
+    // KÄLLA: skargardsstiftelsen.se/omraden/uto/ — "Sveriges äldsta bevarade väderkvarn"
+    // KÄLLA: kulturarvstockholm.se, Utö gruvor — "Sommaren 1719 härjade tsar Peter I:s flotta … och totalförstörde utögruvorna"
+    did_you_know: 'Utös befolkning nådde sitt maximum under 1840-talet: 446 personer. I Gruvbyn står Sveriges äldsta bevarade väderkvarn. Gruvdriften var inte obruten: sommaren 1719 totalförstörde tsar Peter I:s flotta anläggningarna.',
     transport_meta: {
       from_city_min: 120,
       from_nearest_hub_min: 30,
@@ -500,28 +508,28 @@ export const ISLANDS: Island[] = [
     emoji: '🏛️',
     tagline: 'Porten till skärgården — stad, fästning och direktbåt från Strömkajen.',
     seoTitle: 'Vaxholm 2026 – fästning, historisk stad & dagstur',
-    seoDescription: 'Guide till Vaxholm: Vaxholms fästning, restauranger och direktbåt från Strömkajen. Perfekt dagstur eller weekendresa i Stockholms skärgård.',
+    seoDescription: 'Guide till Vaxholm: Vaxholms kastell, restauranger och båt från Strömkajen. Dagstur eller weekendresa i Stockholms skärgård.',
     description: [
-      'Vaxholm kallas "porten till skärgården", och det stämmer. Staden kontrollerade i 500 år ingången till Stockholms inre skärgård via fästningen mitt i sundet. Idag är den röda fästningen ett museum och ett av skärgårdens mest fotograferade motiv.',
-      'Vaxholm är en riktig stad med permanentboende, butiker, restauranger och en levande hamn. Det gör den unik bland skärgårdens öar. Man kan ta en kaffepaus, handla souvenirer och sitta ned på ett riktigt café utan att det känns som turistfälla.',
+      // KÄLLA: vaxholmsfastning.se/historik/ — "Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture." / "Gustav Vasa 1548 åt ståthållaren på Stockholms slott att uppföra en ny och kraftigare fästning."
+      'Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture. År 1548 gav Gustav Vasa ståthållaren på Stockholms slott i uppdrag att uppföra en ny och kraftigare fästning. Det strategiska läget vid inloppet mot Stockholm är anledningen till att anläggningen finns där den finns.',
+      // KÄLLA: vaxholmsfastning.se/historik/ — "Den gamla fästningen revs och ersattes med det nuvarande Kastellet under åren 1833-1863."
+      // KÄLLA: sfv.se, Vaxholms kastell — "Byggår: 1833-1863 på uppdrag av Karl XIV Johan"
+      'Den gamla fästningen revs och ersattes med det nuvarande Kastellet under åren 1833–1863, på uppdrag av Karl XIV Johan. Det är den byggnaden som ligger i sundet i dag, tyngre och mer sluten än man väntar sig av bilderna.',
+      // KÄLLA: vaxholmsfastning.se/historik/ — angrepp slogs tillbaka två gånger: "Första gången var 1612 då danskarna anföll" och "andra gången 1719 då ryssarna härjade i Stockholms skärgård"
+      'Fästningen har slagit tillbaka angrepp två gånger. Första gången var 1612 då danskarna anföll, andra gången 1719 då ryssarna härjade i Stockholms skärgård.',
+      // KÄLLA: sfv.se, Vaxholms kastell — "På ön Vaxholmen ett stenkast från skärgårdens huvudstad Vaxholm ligger Vaxholms kastell."
+      // KÄLLA: vaxholmsfastning.se — museet låter besökaren följa "skärgårdsförsvarets 500-åriga historia" och täcker "Sveriges försvarshistoria från Gustav Vasa till nutid"
+      'Vaxholms kastell ligger på ön Vaxholmen, ett stenkast från staden Vaxholm, och nås över vattnet. Inne i kastellet finns museet, där utställningarna följer skärgårdsförsvarets 500-åriga historia och Sveriges försvarshistoria från Gustav Vasa till nutid. Utsikten från murarna går ut över sundet åt båda håll.',
       // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Vaxholm, ~55–70 min (se facts_provenance ovan i filen)
       'Direktbåt från Strömkajen tar ungefär en timme. Vaxholm är det självklara första steget ut i skärgården för den som aldrig åkt dit förut.',
-      'Fästningen är mer imponerande på nära håll än på bild. Platsen befästes i början av 1500-talet och den kraftigare fästningen anlades 1548 på Gustav Vasas order och har sedan dess förstärkts och byggts om — dagens kastell stod klart 1863. Fästningen har aldrig intagits: danskarnas anfall 1612 och ryssarnas härjningar 1719 slogs båda tillbaka. Idag är den ett välskött museum med utställningar om sjöförsvar och skärgårdshistoria. En bra aktivitet för en regnig dag.',
-      'Det som gör Vaxholm unikt bland skärgårdens öar är att det faktiskt är en stad med ett eget liv. Invånarna handlar på ICA, hämtar paket på posten och dricker kaffe på sina stamcaféer. Den turistiga ytan vid hamnen är bara en del av bilden. Går man fem minuter inåt finns villakvarter, en gammal kyrka och en tyst karaktär som påminner om en liten kuststad var som helst längs den svenska kusten.',
-      'Vaxholm fungerar utmärkt som dagsmål men är också ett bra nav för vidare utforskning. Härifrån kan man ta Waxholmsbåten vidare till Grinda, Finnhamn eller Sandhamn, eller hyra kajak och paddla mot Resarö och Rindö. Det är en smidig plats att starta från om man inte riktigt vet vart man vill.',
-      'Vintertid är Vaxholm en annan upplevelse. Hamnen blir stillsam, restaurangerna lugnare och kaféerna varma, även om Kastellets museum har stängt för säsongen. Väljer man rätt dag, en kall och klar januaridag med frost på bryggan och Waxholmsbåten som enda ljud, är det ett stillsamt utflyktsalternativ nära Stockholm.',
-      'Vaxholm skiljer sig från övriga öar på ett grundläggande sätt: det är en stad. Inte en by, inte ett sommarsamhälle, utan en kommun med en permanent befolkning, en huvudgata med butiker och restauranger som är öppna under vintern och ett socialt liv som inte är beroende av turistsäsongen. Det gör det till ett av de mest tillgängliga och minst säsongsbetonade skärgårdsmålen nära Stockholm.',
-      'Vaxholm har en specifik plats i svensk militärhistoria. Staden kontrollerar det viktigaste farledsavsnittet från Östersjön in mot Stockholm, och detta strategiska läge ledde till bygget av en fästning på den lilla ön Kastellholmen på 1500-talet. Gustav Vasa beordrade befästningen, som sedan utvidgades och förstärktes under de följande seklen. Fästningen är anledningen till att staden existerar i sin nuvarande form.',
-      'Vaxholms Kastell fungerar nu som museum. En kort färjöverresa förbinder det med stadskajen. Inne täcker museet fästningens militärhistoria och den roll som befästningen spelade för att försvara Stockholm mot havsbaserade angrepp under flera hundra år. Byggnaden i sig är en imponerande stenstruktur och utsikterna från dess vallar över det omgivande vattnet är bland de bästa i innerskärgården.',
-      'Att promenera i Vaxholms gator är en lektion i svensk träarkitektur från slutet av 1800-talet och tidigt 1900-tal. Staden är ovanligt välbevarad: många av bostadsgatorna ser ut ungefär som de gjorde för hundra år sedan, med målade trähus, trädgårdsstaket och vuxna träd. Stadskärnan kring den centrala hamnplatsen är särskilt fotogen och är ett populärt motiv.',
-      'Vaxholm är en av de mest lättillgängliga skärgårdsdestinationerna från Stockholm. Buss 670 från Tekniska Högskolan når staden på ungefär en timme och går under hela dagen. Waxholmsbåtsförbindelsen från Strömkajen tar ungefär en och en halv timme på den sceniska båtvägen. Den kombinationen innebär att Vaxholm fungerar som en halvdags- eller heldagsutflykt även på kort varsel.',
-      'Vaxholm har större kapacitet för restauranger och kaféer öppna året runt än någon annan skärgårdsö. Flera etablissemang är verksamma under vintermånaderna, vilket ger staden en annan typ av användbarhet än enbart sommardestinationer. Hamnfronten har en koncentration av matalternativ med vattenutsikt. De lokala fiskbutikerna säljer rykfärdigt rökt sill och lax, bra för en snabb lunch eller att ta med hem.',
-      'I december arrangerar Vaxholm en av de mer välbesökta julmarknaderna i Stockholmsregionen. Kombinationen av den gamla trästaden, vinterdekoration och hamnen lockar besökare specifikt under julmarknadsperioden. Det är ett av de tydligaste exemplen på att Vaxholm fungerar som en helårsdestination snarare än en enbart sommarmåste.',
-      'Vaxholm har skyddat vatten för bad. De smala sunden runt staden värms upp rimligt bra under sommaren och det lugna vattnet passar barn och icke-simmare på ett sätt som mer exponerade ytterskärgårdsplatser inte gör. Närheten till fästningsön på andra sidan sundet ger en ovanlig bakgrund för ett bad.',
-      'Vaxholm fungerar väl som bas för att utforska omgivande skärgård. Båtförbindelser från Vaxholm når Grinda, Sandhamn och andra destinationer, vilket innebär att besökare kan använda staden som utgångspunkt och fördela båtutflykter därifrån. Boendealternativen är mer varierade och mer tillgängliga än på öar längre ut.',
-      'Hamnen är Vaxholms sociala centrum. Under sommaren fylls den med besökande båtar, lokalbefolkning och dagsbesökare, och kajen runt marinan är typiskt livlig från morgon till tidig kväll. Under vintern rymmer samma hamn ett fåtal vinterliggande båtar och staden återgår till sin lugnare lokalkaraktär. Båda versionerna av hamnen är värda att uppleva.',
-      'De flesta besöker Vaxholm som dagsutflykt, och staden rymmer det väl. Allt värt att se, fästningen, de gamla gatorna, hamnen och en måltid, ryms på fyra till sex timmar. Ett övernattningsbesök erbjuder dock något annat: staden tidig morgon innan dagsbesökare anländer, och på kvällen när den sjunker in i sin egen rytm.',
-    
+      // KÄLLA: sl.se, linje 670 (ficktidtabell v670) trafikerar sträckan Tekniska högskolan–Vaxholm
+      'Buss 670 går mellan Tekniska högskolan och Vaxholm. Kombinationen buss och båt gör att Vaxholm fungerar som halvdags- eller heldagsutflykt även på kort varsel.',
+      'Det som skiljer Vaxholm från öarna längre ut är att det är en stad. Det finns en huvudgata, ett hamnstråk och bostadskvarter bakom, och livet där följer inte turistsäsongen. Går man fem minuter inåt från kajen blir det tyst på ett sätt som påminner om vilken liten kuststad som helst längs den svenska kusten.',
+      'Att promenera i Vaxholms gator är en lektion i äldre svensk träarkitektur. Målade trähus, trädgårdsstaket och vuxna träd står tätt i bostadskvarteren, och kvarteren kring hamnplatsen är särskilt tilltalande i lågt ljus.',
+      // KÄLLA: vaxholm.se, nyhetsarkiv — "Välkommen till Vaxholms julmarknad 7–8/12" (2024) samt "Julgran och julmarknad på Lägret"
+      'I december arrangeras Vaxholms julmarknad. Kombinationen av den gamla trästaden, vinterdekoration och hamnen ger staden en annan karaktär än sommarhalvåret, och är ett av de tydligare exemplen på att Vaxholm fungerar också utanför säsong.',
+      'Hamnen är stadens sociala centrum. På sommaren fylls den av besökande båtar och dagsbesökare; på vintern ligger ett fåtal båtar kvar och staden återgår till sin lugnare rytm. Båda versionerna är värda att uppleva.',
+      'De flesta kommer hit som dagsbesökare och staden rymmer det väl. Ett övernattningsbesök ger något annat: staden tidigt på morgonen innan båtarna anlänt, och på kvällen när den sjunker in i sin egen takt.',
     ],
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Vaxholm, ~55–70 min (08.15→09.17, 08.20→09.17, 12.45→13.42). Tidigare "75 min" var i överkant.
@@ -538,7 +546,8 @@ export const ISLANDS: Island[] = [
       { icon: '🛶', name: 'Kajakpaddling', desc: 'Perfekt utgångspunkt för kajakpaddling mot Resarö, Rindö och Tenö.' },
       { icon: '🚢', name: 'Båtutflykter', desc: 'Ta Waxholmsbåten vidare ut i skärgården — Grinda, Finnhamn och Sandhamn är alla tillgängliga.' },
     ],
-    accommodationIntro: 'Vaxholm har skärgårdens mest tillgängliga boendeutbud — det historiska Waxholms Hotell vid hamnen nås med bil, buss och direktbåt från Stockholm. Till skillnad från de yttre öarna kan man boka med relativt kort varsel och checka in utan att logistiken behöver planeras i förväg.',
+    // "Skärgårdens mest tillgängliga" var ett obelagt superlativ och togs bort 2026-09-14.
+    accommodationIntro: 'Vaxholm nås med bil, buss och båt, och boendet finns i staden snarare än utspritt på en ö: hotell, bed & breakfast, vandrarhem och camping.',
     // KÄLLA: waxholmshotell.se; kastelletvaxholm.se + STF (STF Kastellet Bed & Breakfast, 27 rum, året runt); vaxholmsbedandbreakfast.se; svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem; waxholmscamping.com (läst 2026-09-14)
     accommodation: [
       { name: 'Waxholms Hotell', type: 'Hotell', desc: 'Historiskt hotell vid hamnen med matsal och havsutsikt. Öppet hela året.', websiteUrl: 'https://www.waxholmshotell.se' },
@@ -566,14 +575,19 @@ export const ISLANDS: Island[] = [
       { name: 'Mathantverkstan i Skärgården', type: 'Delikatess/Café', desc: 'Butik och café vid Söderhamnsplan med hantverksostar, bröd, sylt, kombucha och kaffe.' },
     ],
     tips: [
-      'Kastell-museet är bäst att besöka på förmiddagen innan turistbåtarna anländer.',
-      'Köp proviant på Mathantverkstan — ost, bröd och andra hantverksprodukter att ta med ut i skärgården.',
-      'Vaxholm är en utmärkt bas för vidare utflykter — Grinda är bara 30 min med båt.',
-      'På vintern är Vaxholm en charmig dag-tur med julatmosfär och tomma kajer.',
+      // KÄLLA: sfv.se, Vaxholms kastell — "På ön Vaxholmen ett stenkast från skärgårdens huvudstad Vaxholm ligger Vaxholms kastell."
+      'Kastellet ligger på en egen ö, Vaxholmen — du måste över vattnet för att komma dit.',
+      // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Vaxholm, ~55–70 min
+      'Direktbåten från Strömkajen tar ungefär en timme och är en del av upplevelsen.',
+      // KÄLLA: vaxholm.se, nyhetsarkiv — "Välkommen till Vaxholms julmarknad 7–8/12"
+      'Julmarknaden i december är ett skäl att komma hit utanför sommarsäsongen — kolla datum på vaxholm.se.',
     ],
     related: ['grinda', 'finnhamn', 'ljustero'],
     tags: ['historia', 'fästning', 'stad', 'dagsturer', 'helår'],
-    did_you_know: 'Vaxholms fästning byggdes på 1500-talet av Gustav Vasa för att skydda Stockholm. Den stoppade faktiskt en dansk flotta 1612.',
+    // KÄLLA: vaxholmsfastning.se/historik/ — "Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture."
+    // KÄLLA: sfv.se, Vaxholms kastell — "Byggår: 1833-1863 på uppdrag av Karl XIV Johan"
+    // KÄLLA: vaxholmsfastning.se/historik/ — angreppen 1612 (danskarna) och 1719 (ryssarna) slogs tillbaka
+    did_you_know: 'Det första försvarsverket på Vaxholmen var ett blockhus från början av 1500-talet, byggt av riksföreståndaren Svante Nilsson Sture. Dagens kastell byggdes 1833–1863 på uppdrag av Karl XIV Johan — den fästning Gustav Vasa lät uppföra 1548 revs för att ge plats åt det. Två angrepp har slagits tillbaka här: danskarna 1612 och ryssarna 1719.',
     transport_meta: {
       // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Vaxholm, ~55–70 min (se facts_provenance ovan i filen)
       from_city_min: 65,
@@ -635,33 +649,34 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '🌿',
-    tagline: 'Skärgårdens hjärta — natur, värdshus och gästhamn mitt i skärgårdskorridoren.',
+    tagline: 'Naturreservat mitt i skärgården — vandringsstigar, bad och STF-boende.',
     seoTitle: 'Grinda 2026 – Grinda Wärdshus, natur & gästhamn',
-    seoDescription: 'Guide till Grinda: Grinda Wärdshus, bilfri natur, gästhamn och direktbåt från Strömkajen. Perfekt stopp för seglare i mellersta skärgården.',
+    seoDescription: 'Guide till Grinda: Grinda Wärdshus, natur, gästhamn och båt från Strömkajen. Skärgårdsstiftelsens ö i mellersta skärgården.',
     description: [
-      'Grinda kallas ibland för "skärgårdens hjärta" och det är svårt att argumentera emot. Ön ligger strategiskt mitt i den populäraste seglingskorridoren mot Sandhamn, har en välskött gästhamn och ett av skärgårdens mest omtyckta värdshus.',
-      'Ön är bilfri och naturskönt med blandad skog, klippor och en lång strand. Grinda Wärdshus håller hög standard i köket och erbjuder boende i flera kategorier, från hotellrum till stugor och camping.',
-      'Grinda fungerar utmärkt som tvånatters stopp på en längre seglingstur, men är också en perfekt endagsdestination med direktbåt från Stockholm. Lanthandeln vid nedre hamnen säljer proviant för vidare segling.',
-      'Det som utmärker Grinda bland de populärare öarna är proportionerna. Den är tillräckligt stor för att inte kännas trång, men liten nog att man hittar runt utan karta. Skogen är tät och mörk på öns mitt, klipporna öppnar sig mot havet i norr och söder. Stranden vid gästhamnen är smal men med fin sand, och ett av de lugnaste badfästen i mellersta skärgården.',
-      'Grinda Wärdshus har en lång historia som samlingsplats. Matsalen har en äldre träinredning som inte känns renoverad bort, och menyn varierar med säsongen. Det är den typ av restaurang man lägger på minnet. Inte för att den är fashionabel, utan för att den är genuin. Bryggbistrån Framfickan nedanför är rätt val för en enklare lunch i solen.',
-      'Naturreservat täcker merparten av ön, vilket är anledningen till att Grinda fortfarande ser ut som den alltid gjort. Koppeltvång gäller under häckningssäsongen, men resten av året är det fritt att vandra, klättra och sitta på vilken klippa man vill. Det finns ett par markerade leder, men Grinda utforskas lika gärna utan karta.',
-      'Grinda passar nästan alla: par som vill ha en lugn helg, barnfamiljer med kajak och badkläder, seglare som behöver en natts vila mitt i skärgården. Det är svårt att göra fel här. Och det är nog just det som gör att folk återvänder år efter år.',
-      'Grinda är naturreservat sedan 2000 och förvaltas av Skärgårdsstiftelsen, som äger och sköter marken. Svenska Turistföreningen (STF) driver hotellet, Sea Lodge och restaurangen Grinda Wärdshus på ön. Stigarna är välunderhållna och skyltningen tydlig.', // KÄLLA: lansstyrelsen.se, naturreservat Grinda (Förvaltare/Markägare: Skärgårdsstiftelsen, skyddat sedan 2000); svenskaturistforeningen.se, STF Grinda Hotell & Sea Lodge
-      'Boendet på Grinda drivs av STF (Svenska Turistföreningen) under namnet STF Grinda Hotell & Sea Lodge — hotellrum i fyra hus samt enklare rum i Sea Lodge på öns södra sida. Frukost serveras i huvudbyggnaden.', // KÄLLA: svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ (anläggningens namn och boendeformer)
-      'Bad på Grinda är bra på flera ställen runt ön. Klipporna är jämna och vattnet i de skyddade vikarna värms upp tidigare under sommaren än mer exponerade lägen. Flera naturliga badplatser är markerade på den karta som finns tillgänglig vid vandrarhemmet. Vattenklarheten här är generellt god, ön sitter tillräckligt långt från de stora farleder för att undvika grumligheten hos innerskärgårdsvikar.',
-      'Grindas attraktionskraft är specifikt naturlig. Det finns inga bilar, inget nattliv och inga souvenirbutiker. Restaurangerna serverar säsongsbetonad svensk mat i en miljö som ser ut över vattnet. Denna frånvaro av kommersiellt brus är vad många besökare specifikt söker: en plats där aktiviteten är promenader, bad, god mat och att göra relativt lite annat.',
-      'Ön har flera kilometers markerade leder som tar besökare genom en blandning av klippor, skog och öppna ängar. Lederna är tillräckligt kompakta för att man ska kunna gå de flesta av dem på en dag. Kustleden längs östra sidan erbjuder ohindrad utsikt över skärgården och är särskilt vacker i tidigt morgonljus.',
-      'Barn trivs på Grinda. De lugna, skyddade vikarna är säkra för bad, lederna är tillräckligt korta för yngre vandrare och den allmänna atmosfären är familjeinriktad utan att vara kommersiell. Skolklasser är vanliga, vilket ibland innebär att vandrarhemmet är belagt av grupper. Värt att kontrollera om lugnare förhållanden är viktigt.',
-      'Matverksamheten på Grinda drivs av STF och fokuserar på kvalitet inom ett begränsat sortiment. Lokal fisk, nybakat bröd och säsongsbetonade svenska rätter är grunden för det som serveras. Restaurangen ser ut över hamnen och borden utomhus är bland de trevligaste platserna att äta på i innerskärgården under en lugn sommarkväll.',
-      'Grinda sitter i ett idealiskt läge för att utforska omgivande öar. Båtförbindelser når andra STF-förvaltade destinationer och farvattnet härifrån täcker stora delar av mellersta skärgården. Besökare som anländer med kajak kan använda Grinda som utgångspunkt för längre paddelturer.',
-      'Ön känns bäst i juni och augusti. Juli drar större folkmassor och de gemensamma vandrarhemsutrymmen är mer trängda. Axelmånaderna, i synnerhet tidigt juni när vegetationen är som grönast och sent augusti när skaran glesas ut, visar Grinda på sitt bästa: frodig, lugn och med en atmosfär som rättfärdigar de två timmarnas båtresa från Stockholm.',
-      'Att boka boende på Grinda i förväg är nödvändigt under hela juli och lämpligt från mitten av juni till slutet av augusti. Dagsbesökare är välkomna utan reservation, men de som planerar att övernatta bör boka via STF med god framförhållning.',
-      'Grinda passar inte alla. Besökare som förväntar sig en livlig hamnmiljö, flera restaurangalternativ eller kommersiell underhållning finner det tyst till gränsen för tristess. De som specifikt vill ha natur, lugn, bra bad och en välorganiserad, lågmäld friluftsupplevelse finner det nära nog perfekt.',
-      'Grindas karaktär hänger tätt samman med naturreservatet: inga motorbåtstaxitjänster, ingen disco, inga casinobåtar ankrade i sundet. Det innebär också att de gäster som väljer Grinda i allmänhet gör det av medvetna skäl, vilket bidrar till en trevlig social atmosfär på kaféterassen och vid bryggan.', // KÄLLA: lansstyrelsen.se, naturreservat Grinda (föreskrifter reglerar bebyggelse och trafik på ön)
-      'Att bo på Grinda under ett par dagar ger tillgång till de timmar som dagsbesökare missar: tidiga morgnar när dimman hänger kvar i sunden, sena kvällar när solen går ner bakom västra klipporna och den stund på eftermiddagen när de flesta Stockholmsbåtarna har avgått och ön är som stillsammast. Det är i de tiderna som Grinda visar sin bästa version.',
-      'På Grinda finns ett jordbruk, Grinda lantbruk, som drivs av Skärgårdsstiftelsen som en del av stiftelsens jordbruk i skärgården.', // KÄLLA: skargardsstiftelsen.se/var-verksamhet/jordbruken-och-angarna/ (Grinda lantbruk ingår bland Skärgårdsstiftelsens jordbruk)
-    
-    
+      // KÄLLA: lansstyrelsen.se, naturreservat Grinda — "Skyddat sedan: 2000", "Förvaltare: Skärgårdsstiftelsen", "Markägare: Skärgårdsstiftelsen", "Storlek: 503 hektar varav land 178"
+      // KÄLLA: skargardsstiftelsen.se/omraden/grinda/ — "Grinda är ett naturreservat som ägs och förvaltas av Skärgårdsstiftelsen"
+      'Grinda är ett naturreservat som ägs och förvaltas av Skärgårdsstiftelsen. Reservatet är skyddat sedan 2000 och omfattar 503 hektar, varav 178 hektar land. Att marken har en långsiktig förvaltare är en stor del av förklaringen till att ön fortfarande ser ut som den gör.',
+      // KÄLLA: svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — "Hotellet erbjuder 28 moderna dubbelrum och två King Size rum" / "På öns södra sida hittar ni Grinda Sea Lodge, som är ett lite enklare men minst lika charmigt boende." / "Frukost ingår i rumspriset eller finns att köpa mot tillägg."
+      'Boendet drivs av Svenska Turistföreningen under namnet STF Grinda Hotell & Sea Lodge. Hotellet erbjuder 28 dubbelrum och två King Size-rum i en tillbyggnad till huvudbyggnaden. På öns södra sida ligger Grinda Sea Lodge, ett enklare boende. Frukost ingår i rumspriset eller finns att köpa mot tillägg.',
+      // KÄLLA: svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — "Det anrika Grinda Wärdshus erbjuder vällagad klassisk skärgårdsmat." samt restaurangen Framfickan vid hamnen
+      // KÄLLA: skargardsstiftelsen.se/omraden/grinda/ — "Grinda Wärdshus har restaurang, hotellrum och vandrarhem"
+      'Grinda Wärdshus har restaurang, hotellrum och vandrarhem, och serverar klassisk skärgårdsmat. Nere vid hamnen ligger Framfickan, det enklare alternativet när man vill äta i solen utan att klä om. Matsalen på wärdshuset har en äldre träinredning som inte känns bortrenoverad.',
+      // KÄLLA: svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — hotellet och huvudrestaurangen ligger cirka en kilometer från bryggorna, ungefär 15 minuters promenad
+      'Hotellet och huvudrestaurangen ligger ungefär en kilometer från bryggorna, runt en kvarts promenad. Vägen dit går genom skogen och är en del av ankomsten: man lämnar bryggan och hamnljuden bakom sig innan man är framme.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/grinda/ — natur- och kulturstig som förbinder norra och södra bryggan; "Stockholm Archipelago Trail på Grinda" bjuder på "en varierad vandring genom skogar, öppna ängar"
+      'En natur- och kulturstig förbinder norra och södra bryggan, och Stockholm Archipelago Trail har en etapp på Grinda med en varierad vandring genom skogar och öppna ängar. Lederna är korta nog att man hinner med de flesta på en dag.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/grinda/ — "barnvänliga badstränder", badplatsen Källviken samt grillplatser
+      'Bad finns på flera ställen. Skärgårdsstiftelsen pekar ut barnvänliga badstränder och badplatsen Källviken, och det finns grillplatser i anslutning. Vattnet i de skyddade vikarna blir badbart tidigare på säsongen än på öppnare lägen.',
+      // KÄLLA: lansstyrelsen.se, naturreservat Grinda — föreskrifterna förbjuder att "medföra okopplad hund"; "Tältning är endast tillåten på tältplatsen nära norra bryggan"
+      'Reservatsföreskrifterna sätter ramarna. Hund ska hållas kopplad, och tältning är endast tillåten på tältplatsen nära norra bryggan. I övrigt är det fritt att vandra och slå sig ner på klipporna.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/grinda/ — "Grinda lanbruk där kor, hästar och andra djur betar och bidrar till det levande kulturlandskapet"
+      // KÄLLA: skargardsstiftelsen.se/var-verksamhet/jordbruken-och-angarna/ (Grinda lantbruk ingår bland Skärgårdsstiftelsens jordbruk)
+      'På Grinda finns ett jordbruk, Grinda lantbruk, där kor, hästar och andra djur betar och bidrar till det levande kulturlandskapet. Det ingår bland Skärgårdsstiftelsens jordbruk i skärgården, och betet är anledningen till att ängarna är öppna.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/grinda/ — lanthandel, café och tältplats håller öppet sommartid
+      'Sommartid finns lanthandel, café och tältplats på ön. Utbudet är litet och det är en del av poängen: aktiviteten här är att gå, bada, äta och göra relativt lite annat.',
+      'Ön har bra proportioner. Den är stor nog att inte kännas trång och liten nog att man hittar runt utan karta. Skogen är tät på mitten, klipporna öppnar sig mot vattnet i norr och söder.',
+      'Att bo kvar ett par dagar ger tillgång till timmarna som dagsbesökare missar: tidiga morgnar när dimman hänger kvar i sunden, och eftermiddagen när båtarna gått och ön är som stillsammast.',
+      'Grinda passar inte alla. Den som vill ha livlig hamnmiljö, flera restaurangalternativ eller kommersiell underhållning tycker att det är tyst till gränsen för tristess. Den som vill ha natur, lugn och bra bad tycker tvärtom.',
     ],
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Södra Grinda, snabbast 1 tim 35, de flesta 1 tim 50–2 tim 15.
@@ -678,7 +693,8 @@ export const ISLANDS: Island[] = [
       { icon: '⛵', name: 'Segling', desc: 'Grinda Gästhamn är ett klassiskt stopp på Sandhamnsleden. Välutrustad med full service.' },
       { icon: '🌅', name: 'Solnedgångspromenaden', desc: 'Promenera till öns västra sida på kvällen för att se solnedgången över vattnet.' },
     ],
-    accommodationIntro: 'Grinda Wärdshus driver öns hela boende och håller hög standard i alla kategorier — hotellrum med frukost i fyra hus, enkla Sea Lodge-stugor nära vattnet och en campingplats för friluftsentusiaster. Wärdshuset håller öppet maj–september och tar emot gäster utan bil.',
+    // KÄLLA: grinda.se — Grinda Wärdshus driver boendet på ön. "Hotellrum i fyra hus", "håller hög standard" och säsongsangivelsen var obelagda och togs bort 2026-09-14.
+    accommodationIntro: 'Grinda Wärdshus driver boendet på ön: hotellrum, Sea Lodge-stugor nära vattnet och camping. Allt går att nå utan bil.',
     // KÄLLA: grinda.se/en/accommodation (hotels, sea-lodge, camping: "No reservation is needed"); svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge (läst 2026-09-14)
     accommodation: [
       { name: 'Grinda Wärdshus Hotell', type: 'Hotell', desc: 'Hotellrum i hus nära wärdshuset, frukost ingår. STF-anslutet (STF Grinda Hotell & Sea Lodge). Boka i förväg sommartid.', websiteUrl: 'https://grinda.se' },
@@ -702,14 +718,21 @@ export const ISLANDS: Island[] = [
       { name: 'Grinda Lanthandel & Café', type: 'Café', desc: 'Lanthandel med café nedanför Wärdshuset. Frukost, enklare luncher och glass.', websiteUrl: 'https://grinda.se/mat-fest/lanthandel-cafe/' },
     ],
     tips: [
-      'Framfickan på klipporna är bäst för lunch — boka bord från kl 10.',
-      'Grinda Lanthandel öppnar på morgonen och säljer nybakat bröd — kolla aktuella öppettider innan du planerar frukosten.',
-      'Sjömacken vid hamnen har bra läge och bra service — fyll på om du ska vidare mot Sandhamn.',
-      'Högsäsong: anlöp tidigt — gästhamnen fylls redan under förmiddagen på fina sommardagar.',
+      // KÄLLA: lansstyrelsen.se, naturreservat Grinda — föreskrifterna förbjuder att "medföra okopplad hund"
+      'Hunden ska vara kopplad — det gäller hela reservatet, inte bara under häckningen.',
+      // KÄLLA: lansstyrelsen.se, naturreservat Grinda — "Tältning är endast tillåten på tältplatsen nära norra bryggan"
+      'Ska du tälta måste du göra det på tältplatsen nära norra bryggan.',
+      // KÄLLA: svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — hotellet ligger cirka en kilometer från bryggorna, ungefär 15 minuters promenad
+      'Räkna med en kvarts promenad från bryggan upp till hotellet och wärdshuset.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/grinda/ — badplatsen Källviken och barnvänliga badstränder
+      'Källviken är ett bra val om ni badar med barn.',
     ],
     related: ['sandhamn', 'finnhamn', 'vaxholm'],
     tags: ['gästhamn', 'värdshus', 'natur', 'segling', 'romantik'],
-    did_you_know: 'Henrik Santesson köpte Grinda 1906 och lät bygga den stora sommarvillan som senare blev Grinda Wärdshus. Hans änka Alfhild sålde ön till Stockholms stad 1944, och idag förvaltas Grinda som naturreservat av Skärgårdsstiftelsen.', // KÄLLA: skargardsstiftelsen.se/aktuellt/vara-hus-grinda/ (Santesson köpte och byggde villan 1906); 1719.se/grinda ("hans änka Alfhild sålde ön till Stockholms stad 1944")
+    // KÄLLA: lansstyrelsen.se, naturreservat Grinda — "Storlek: 503 hektar varav land 178"
+    // KÄLLA: lansstyrelsen.se, naturreservat Grinda — "Tältning är endast tillåten på tältplatsen nära norra bryggan"
+    // KÄLLA: skargardsstiftelsen.se/omraden/grinda/ — "Grinda lanbruk där kor, hästar och andra djur betar"
+    did_you_know: 'Naturreservatet Grinda är 503 hektar stort — men bara 178 hektar av det är land. Tältning på Grinda är bara tillåten på tältplatsen nära norra bryggan. De öppna ängarna på Grinda hålls öppna av betande djur från Grinda lantbruk.',
     transport_meta: {
       from_city_min: 120,
       from_nearest_hub_min: 60,
@@ -775,35 +798,30 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '🌲',
-    tagline: 'Naturnära skärgårdsklassiker med vandrarhem, krog och trollsk skogsstämning.',
+    tagline: 'Naturreservat på tre hopvuxna öar, med STF-vandrarhem och vandring över klipporna.',
     description: [
-      'Finnhamn är den av de klassiska skärgårdsöarna som kanske bäst behållit sin karaktär. Ingen bil, ingen stress. Bara skog, klippor och havet. Ön drivs i stor utsträckning av en ideell förening och vandrarhemsverksamheten har en lång historia.',
-      'Vattnet runt Finnhamn är blankt och klart. Hamnen är en naturlig vikskyddad hamn med plats för hundratals båtar. Krogen, takbaren och lanthandeln är samlingspunkterna sommartid.',
-      'Finnhamn fungerar bra som dagsmål men belönar den som stannar, gärna ett par nätter. Kombinera med Söder Långholm och Paradisviken, som är bland skärgårdens finaste naturhamnar.',
-      // KÄLLA: skargardsstiftelsen.se/omraden/finnhamn/ (Skärgårdsstiftelsen äger/förvaltar ön, STF driver vandrarhemmet); lansstyrelsen.se naturreservat Finnhamn.
-      'Finnhamns vandrarhem har sedan decennier drivits av STF, Svenska Turistföreningen, och det märks i karaktären, medan själva ön ägs och förvaltas av Skärgårdsstiftelsen. Det är inte ett kommersiellt projekt utan en plats som genuint vill att folk ska komma ut i skärgården. Vandrarhemsverksamheten är enkel och billig, krogen lagar mat av vad säsongen ger, och det råder en atmosfär av att alla är välkomna oavsett hur fin båt man kom med.',
-      'Paradisviken, en knapp sjömils paddling söder om Finnhamn, förtjänar sitt namn. En smal passage öppnar sig till en skyddad naturhamn omgiven av klippor och skog. Det finns ingenting där. Ingen brygga, ingen kiosk, ingen annan människa om man är tidig. Det är den sortens plats man åker tillbaka till.',
-      'Vandringen från hamnen upp till öns högsta punkt tar en halvtimme och lönar sig. Utsikten över de omgivande holmarna och sunden, med segelfartyg som glider förbi nedanför, är en av de bästa i mellersta skärgården. Ta med matsäck och räkna inte med café-öppettider till toppen.',
-      'Finnhamn lämpar sig utmärkt för den som vill kombinera skärgård med lite äventyr. Kajak ut till de omgivande holmarna, båtluffning norrut mot Arholma eller en flerdag längs kusten med vandrarhemsövernattningar. Det är en av skärgårdens bästa basplatser för den typen av tur.',
-      // KÄLLA: svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ (officiellt namn "STF Finnhamns Vandrarhem"); inget belägg hittat för "en av de mest besökta STF-anläggningarna i Sverige", borttaget.
-      'Finnhamn är uppbyggt kring STF-vandrarhemmet, STF Finnhamns Vandrarhem. Vandrarhemmet drivs i ett kluster av röda trähus på huvudön och erbjuder boende i allt från sovsal till privata stugor. Populariteten grundar sig i en kombination av verklig naturkvalitet, bra vandringsterräng och ett tillgängligt läge i norra skärgården.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/finnhamn/ — "Stora delar av Finnhamn är ett naturreservat med vandringsstigar som går genom lövskogar, ängar, levande jordbruksbygd och karg skärgårdsnatur." (Skärgårdsstiftelsen förvaltar området)
+      // KÄLLA: svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Naturreservatet Finnhamn består av tre öar som sitter ihop. Lilla och stora Jolpan samt Idholmen."
+      'Naturreservatet Finnhamn består av tre öar som sitter ihop: Lilla och Stora Jolpan samt Idholmen. Stora delar av Finnhamn är naturreservat med vandringsstigar som går genom lövskogar, ängar, levande jordbruksbygd och karg skärgårdsnatur. Området förvaltas av Skärgårdsstiftelsen.',
+      // KÄLLA: svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Vandrarhemmet och de tillhörande stugorna har totalt 87 bäddar fördelade på 28 rum." / "Det vackra, gula huset, står högt och syns långväga."
+      'Vandrarhemmet drivs av Svenska Turistföreningen som STF Finnhamns Vandrarhem. Det vackra, gula huset står högt och syns långväga. Vandrarhemmet och de tillhörande stugorna har totalt 87 bäddar fördelade på 28 rum. Det är enkelt boende i ordets goda mening, och atmosfären är att alla är välkomna oavsett hur fin båt man kom med.',
+      // KÄLLA: svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "en restaurang med takbar som har en vidunderlig utsikt" / "Enklare mat- och caféservering."
+      'Vid vandrarhemmet finns en restaurang med takbar och en vidunderlig utsikt, samt enklare mat- och caféservering. Vänta inte ett elaborerat matutbud. Maten är ärlig och passar miljön, och takbaren är platsen man hamnar på när ljuset börjar gå ner.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/finnhamn/ — "Stockholm Archipelago Trail har en etapp på Finnhamn: en 10 kilometer lång vandring"
+      'Vandring är öns huvudsakliga friluftsaktivitet. Stockholm Archipelago Trail har en etapp på Finnhamn: en tio kilometer lång vandring. Terrängen är klippig och skogbevuxen, och stigarna växlar mellan kustnära promenader och mer krävande partier genom det inre.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/finnhamn/ — "möjlighet att hyra kajak och upptäcka de omgivande vikarna, kobbarna och skären i egen takt"
+      // KÄLLA: svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Kanot finns att hyra."
+      'Kajak är ett naturligt komplement till vandringen. Det finns möjlighet att hyra kajak och upptäcka de omgivande vikarna, kobbarna och skären i egen takt, och kanot finns att hyra vid vandrarhemmet. Vattnet runt öarna är mindre exponerat än ytterskärgården.',
       // KÄLLA: Waxholmsbolagets tabell 10 (t.o.m. 2022: 12/13) Strömkajen–Finnhamn, snabbast 3 tim 05, typiskt ~3 tim 30.
-      'Resan till Finnhamn med Waxholmsbåt tar omkring tre timmar från Stockholm, vilket placerar det i ett mellanläge, inte lika direkt tillgängligt som Fjäderholmarna men märkbart kortare resväg än ytterskärgårdsdestinationerna. Båten passerar genom progressivt öppnare och mer dramatiska delar av den norra skärgården på vägen in.',
-      'Vandring är Finnhamns primära friluftsaktivitet. Ön sitter inom ett naturreservat och flera markerade leder korsar både Finnhamn och de angränsande öarna i gruppen. Terrängen är klippig och skogbevuxen, typisk norr-skärgårdslandskap där berggrunden är äldre och skogsklädnaden tätare än i söder. Lederna varierar från lugna kustnära promenader till mer krävande stigar genom det inre.',
-      'Kajakpaddling är ett naturligt komplement till vandringen på Finnhamn. Klustret av små öar runt Finnhamn skapar skyddade vattenrutter lämpliga för paddling. STF-vandrarhemmet har historiskt tillhandahållit eller organiserat kajakhyra under sommaren. Det omgivande vattnet är mindre exponerat än ytterskärgården, vilket gör Finnhamn lämpligt också för mindre erfarna paddlare.',
-      'Kaféet och restaurangen vid vandrarhemmet serverar enkel mat under sommaren: smörgåsar, soppa, fiskrätter och fika. Verksamheten är primärt inriktad på vandrarhemsägterna men välkomnar dagsbesökare. Vänta inte ett elaborerat matutbud, maten är ärlig och passande för miljön.',
-      'Fågelskådning på Finnhamn belönar besökare under vår och höst. Det norra skärgårdsläget och blandningen av biotoper lockar ett brett arturval. Ejdrar syns vanligen i de omgivande vattnen och skogarna rymmer de skogslevande arter som är typiska för den svenska boreofringe.',
-      'Skolgrupper och ungdomsorganisationer nyttjar Finnhamn flitigt. Under sommaren, framför allt i juni och tidigt juli, kan vandrarhemmet hysa stora sällskap, vilket förändrar stämningen i de gemensamma utrymmena. Att besöka i augusti eller september ger vanligtvis en lugnare, mer vuxeninriktad atmosfär.',
-      'De omgivande öarna, Ängsö, Yxlan och de mindre öarna i området, är nåbara från Finnhamn med båt och lägger till alternativ för dem som stannar flera nätter. Ängsö är nationalpark sedan 1909 — en av Europas äldsta — och känd för sitt ovanligt rika växtliv.',
-      'Vintern på Finnhamn är mycket annorlunda. Vandrarhemmet stänger typiskt eller reducerar öppettiderna markant från oktober till april. Öarna i djupvinter har ett kargare, kallt intryck, de bara klipporna, det grå vattnet och frånvaron av sommarbesökare skapar en stämning som en del finner tvingande och andra finner enkelt kall.',
-      'Finnhamn är ärlig i vad det erbjuder: bra natur, bra vandring, enkelt men bekvämt boende och den sociala atmosfären hos ett vandrarhem. Det erbjuder inte kulinarisk ambition, spa-faciliteter eller något som liknar lyx. Besökare som vill ha det bör söka sig annorstädes. De som vill ha en genuin friluftsupplevelse i den norra skärgården, inom praktiskt reseavstånd från Stockholm, finner Finnhamn svårt att förbättra.',
-      'Ängsö nationalpark, belägen relativt nära Finnhamn, är ett av de mer biologiskt värdefulla naturområdena i Stockholm-närheten. Nationalparken skyddar en rik blomsteräng och ett gammalt kulturlandskap. Dagsutflykter dit från Finnhamn är möjliga för dem som planerar i förväg och sätter samman en rutt med de lokala båtförbindelserna.',
-      'Finnhamns sociala atmosfär, van-drarhemmet, de gemensamma matborden, mötet med andra friluftsmänniskor, är en del av vad som gör platsen speciell. Det är en av få ställen i Stockholmsskärgården där det är naturligt att slå sig ner vid ett bord med folk man inte känner och börja prata om vart man ska härnäst.',
-      'Finnhamn är en av de öar som tydligast visar vad Waxholmsbåtssystemet faktiskt möjliggör: ett genuint friluftsmål, välbeläget i norr, nåbart utan bil och utan flyg, inom ett par timmars resa från en av Nordens störst städer. Det är ett systemverk som få länder i världen kan matcha.',
-      'Höststämningen på Finnhamn i september är specifik. De stora gruppsesongerna är avslutade, vandrarhemmet är lugnare och löven på de norra klipporna börjar nyanseras. Det är den perioden då ön visar sin mer stillsamma sida och det är när många stamgäster föredrar att besöka.',
-    
-    
-    
+      'Resan till Finnhamn med Waxholmsbåt tar omkring tre timmar från Stockholm. Båten passerar genom progressivt öppnare delar av den norra skärgården på vägen ut, och själva resan är en del av besöket.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/finnhamn/ — Söder Långholm anges som naturhamn i området
+      'Söder Långholm, en bit söder om huvudön, är en naturhamn i området. Det finns ingen brygga och ingen kiosk där. Det är den sortens plats man åker tillbaka till.',
+      // KÄLLA: sverigesnationalparker.se/park/angso-nationalpark/nationalparksfakta/ — Ängsö nationalpark inrättades 1909 (24 maj 1909), ligger i Norrtälje kommun, syfte "Bevara ett äldre odlingslandskap i väsentligen oförändrat skick", naturtyp "Skärgård, ängs- och hagmarker, blandskog"
+      'Ängsö nationalpark i Norrtälje kommun inrättades 1909 och hör därmed till Sveriges första nationalparker. Syftet är att bevara ett äldre odlingslandskap i väsentligen oförändrat skick, och naturen består av skärgård, ängs- och hagmarker och blandskog. Den ligger i samma del av skärgården och är ett mål för den som planerar en längre rutt.',
+      'Vattnet runt Finnhamn ligger ofta blankt på morgnarna. Hamnen ligger skyddad i en vik och klipporna runt omkring är släta nog att sitta på hela kvällen.',
+      'Den sociala atmosfären är en del av vad som gör platsen speciell: de gemensamma matborden, mötet med andra friluftsmänniskor. Det är ett av få ställen i Stockholms skärgård där det är naturligt att slå sig ner vid ett bord med folk man inte känner och börja prata om vart man ska härnäst.',
+      'Finnhamn är ärlig i vad det erbjuder: bra natur, bra vandring, enkelt men bekvämt boende och stämningen på ett vandrarhem. Det erbjuder inte kulinarisk ambition, spa eller något som liknar lyx. Den som vill ha det bör söka sig annorstädes.',
+      'Hösten har en specifik stämning här. Löven på de norra klipporna börjar nyanseras, stigarna är tomma och ön visar sin mer stillsamma sida.',
     ],
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 10 Strömkajen–Finnhamn, snabbast 3 tim 05 (08.30→11.35), typiskt ~3 tim 30; skargardstrafikanten.se: linjen bytte 2023 tabellnummer från 12/13 till 10.
@@ -845,15 +863,20 @@ export const ISLANDS: Island[] = [
       { name: 'Lanthandeln', type: 'Handel', desc: 'Proviant, kaffe och metmask. Allt du behöver.' },
     ],
     tips: [
-      'Paradisviken (Djupfladen i sjökortet) är en av skärgårdens absolut finaste naturhamnar — anlöp tidigt.',
-      'Söder Långholm en bit söder om ön är praktiskt taget öde men vacker.',
-      'Vandrarhemet har en mysig stämning på kvällarna — mingla med seglare från hela Skandinavien.',
-      'Ta med mat utifrån om du ska campa — sortimentet i lanthandeln är begränsat.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/finnhamn/ — Söder Långholm anges som naturhamn i området
+      'Söder Långholm en bit söder om ön är en naturhamn utan brygga och kiosk.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/finnhamn/ — "Stockholm Archipelago Trail har en etapp på Finnhamn: en 10 kilometer lång vandring"
+      'Stockholm Archipelago Trails etapp på Finnhamn är 10 kilometer — räkna in den i dagsplaneringen.',
+      // KÄLLA: skargardsstiftelsen.se/omraden/finnhamn/ — "möjlighet att hyra kajak"; svenskaturistforeningen.se — "Kanot finns att hyra."
+      'Kajak och kanot går att hyra på ön om du vill ut bland kobbarna.',
     ],
     related: ['grinda', 'ingmarso', 'ljustero'],
     tags: ['vandrarhem', 'natur', 'vandring', 'segling', 'lugnt'],
     // KÄLLA: en.wikipedia.org/wiki/Finnhamn ("The name Finnhamn is derived from the Finnish boats which called into the harbour on their way to and from Stockholm") — inget källbelagt århundrade hittat.
-    did_you_know: 'Finnhamn fick sitt namn av finska båtar som ankrade här på väg till och från Stockholm. "Hamn" för finnar alltså — inte en person som heter Finn.',
+    // KÄLLA: svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Naturreservatet Finnhamn består av tre öar som sitter ihop. Lilla och stora Jolpan samt Idholmen."
+    // KÄLLA: svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Vandrarhemmet och de tillhörande stugorna har totalt 87 bäddar fördelade på 28 rum."
+    // KÄLLA: sverigesnationalparker.se/park/angso-nationalpark/nationalparksfakta/ — Ängsö nationalpark inrättades 1909
+    did_you_know: '"Finnhamn" är egentligen tre öar som sitter ihop: Lilla och Stora Jolpan samt Idholmen. Vandrarhemmet och stugorna rymmer tillsammans 87 bäddar fördelade på 28 rum. Ängsö nationalpark i Norrtälje kommun inrättades 1909 och är en av Sveriges första nationalparker.',
     insiderTips: [
       // KÄLLA: skargardsstiftelsen.se/omraden/finnhamn/ och lansstyrelsen.se naturreservat Finnhamn (Skärgårdsstiftelsen äger/förvaltar, naturreservat sedan 2000); roslagen.se (tältning endast på två anvisade platser).
       'Finnhamn ägs och förvaltas av Skärgårdsstiftelsen och är naturreservat sedan år 2000. STF driver vandrarhemmet på ön, som har anvisade tältplatser vid sidan av vandrarhemsboendet.',
@@ -908,37 +931,28 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: 'island',
-    tagline: 'Bilfri och genuint lantlig — skärgårdens bäst bevarade hemlighet.',
+    tagline: 'Byar, kyrka och lanthandel i Stockholms mellersta skärgård.',
     seoTitle: 'Möja 2026 – bilfri ö med krog & äkta skärgård',
-    seoDescription: 'Guide till Möja: bilfri ö med Möja Krog, cykelleder och genuint lantliv. Hur du tar dig dit och vad du inte får missa.',
+    seoDescription: 'Guide till Möja: bilfri ö med värdshus och bageri, cykelleder och lantliv. Hur du tar dig dit och vad som finns på ön.',
     description: [
-      'Möja är en av Stockholms skärgårds mer autentiska öar. Bilfri, lugn och med en genuint lantlig karaktär. Här bor ett par hundra permanentbor, och det är fler i rörelse på sommaren, men det är inget som stör den stilla stämningen.',
-      'Ön är tillräckligt stor för att ha en varierad geografi: skog, öppna fält, klippor och flera hamnar. Roland Svensson-museet och den vackra kyrkan är kulturella pärlor. Fisket är utmärkt och havsutsikterna ovanliga.',
-      'Möja nås med Waxholmsbolagets linje 14 från Sollenkroka (buss 434 från Slussen dit) eller direkt från Strömkajen via Vaxholm, och är ett naturligt stopp på en seglingstur mot Sandhamn eller Gällnö. Krogar och kaféer täcker grundbehoven utan att bli turistiga.',
-      'Möja har en avlång form i nord-sydlig riktning, vilket gör att man kan cykla eller vandra längs öns hela längd och uppleva flera olika karaktärer. Norra delen är mer öppen, mitten mer skogig och lantlig, och den södra delen har flera klippartier mot öppet vatten.',
-      'Roland Svensson-museet är litet men oväntat gripande. Svensson var konstnär och levde hela sitt liv på Möja, och hans akvareller av skärgårdslandskapet har en precision och ett ljus som säger mer om platsen än de flesta vykort. Museet är öppet sommartid och tar ungefär en timme.',
-      'Matstoppet på Möja är inte spektakulärt och det är en del av charmen. Lanthandeln säljer det man behöver, krogen lagar husmanskost med råvaror från öns egna odlingar och fiskebacken. Man äter gott, men det är inte hit man åker för gastronomin. Det är hit man åker för att äta räkor på en klippa med utsikt mot ingenting alls.',
-      'Möja är för den som vill ha skärgård på allvar. Inte den paketerade, handlade varianten utan den äkta. Ön har en egen rytm, egna invånare med egna åsikter om vad som är bra och inte, och en historia som inte börjar med turistbroschyrer. Kommer man dit med den respekten och tar sig tid att lyssna, ger ön tillbaka med råge.',
-      // KÄLLA: visitmoja.se/om-möja (ca 150 fastboende); skargardsguiding.se (ca 230 bofasta); stockholmslansmuseum.se (ca 280) — uppgifterna varierar mellan källor
-      'Möja är en av de mer befolkade ytterskärgårdsöarna i Stockholms skärgård, med ett par hundra permanent boende. Den befolkningsbasen ger ön en annan karaktär än rent sommardestinationer. Ön har egna butiker, skola och social infrastruktur som fungerar under hela året. Det är den basen som håller Möja vid liv som en äkta gemenskap snarare än en turistprodukt.',
-      // KÄLLA: stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon (byarna Långvik, Ramsmora, Löka, Berg och Södermöja; huvudhamnen ligger i Berg)
-      'Ön har en avlång form. Flera byar är fördelade längs längden: Berg med huvudhamnen och kyrkan, Långvik och Ramsmora, samt mindre bebyggelse vid Löka och Södermöja. Varje del har sin egen karaktär — Berg är mest aktiv, medan det blir tystare och mer lantligt längre söderut.',
-      'Att ta sig till Möja kräver tid. Waxholmsbåtsförbindelsen från Stockholm tar ungefär tre timmar genom en lång del av östra skärgården. Den restiden fungerar som ett filter. De som anländer till Möja har i allmänhet tagit ett medvetet beslut att vara där, vilket ger ön en lugnare atmosfär än lättillgängliga dagsutflykts-destinationer.',
-      'Möjas landskap är mer varierat än många ytterskärgårdsöar. Skog, jordbruksmark, klippor och små sandiga vikar växlar längs öns längd. Kombinationen innebär olika typer av naturkontakt inom relativt korta avstånd. Ett morgonbad från klippor, en skogsrunda, en lantbruksfrukost och en eftermiddag på en häll med utsikt kan alla rymmas på samma dag.',
-      // KÄLLA: konsummoja.se (Möja Konsumtionsförening driver Coop i Berg och Långvik); visitmoja.se/äta-och-handla-på-möja
-      'Coop i Berg och Långvik, drivna av Möja Konsumtionsförening, är något av en kulturell institution i skärgården. Butikerna fungerar som affär, mötesplats och utlämningsställe för den permanenta gemenskapen och som proviantshop för besökande seglare. Här hittar man det lokalborna behöver, inte kurerade turistvaror, och den distinktionen är synlig och tillfredsställande.',
-      'Cykling är ett förnuftigt sätt att utforska Möjas längd. Stigarna mellan byar är tillräckligt flata för de flesta cyklister och resan från ena änden av ön till den andra kan göras på två till tre timmar med stopp. Cykeluthyrning finns vid hamnen under sommarsäsongen.',
-      'Restaurangerna och kaféerna på Möja är av blygsam skala. Det finns ingen fin-dining-anläggning, men kaféer med smörgåsar, kaffe och enkel varm mat är öppna under sommaren. För de som vill ha en ordentligare måltid kräver alternativen lite research om aktuella aktörer. Öns matscen är liten och föremål för säsongsvariation.',
-      'Fågelskådning är produktivt på Möja. Öns varierade biotoper, kust, skog och jordbruksmark, skapar förhållanden för ett bredare arturval än mer enhetliga klippöar. Tidiga morgonvandrare i maj och september möter aktiv flytt, framför allt längs den östra strandlinjen.',
-      'Den permanenta gemenskapen är en av anledningarna till att Möja har bevarat sin karaktär. Det finns en aktiv lokalförening, en kyrka med gudstjänster under hela året och ett etablerat socialt liv som inte försvinner i slutet av augusti. Det ger ön en motståndskraft som rent säsongsbetonade gemenskaper ofta saknar.',
-      'Möja passar besökare som vill ha något nära äkta ytterskärgårdsliv som det var innan massturismen, med fungerande hamn, lokal butik och verklig gemenskap, kombinerat med det naturliga landskapet på ytterskärgårdsöar. Det passar inte besökare som förväntar sig polerad turistinfrastruktur.',
-      'För rätt besökare är Möja en av de mest givande öarna i hela Stockholms skärgård. Restiden är hindret. Väl framme skapar kombinationen av naturlig skönhet, gemenskapets karaktär och relativa stillhet en upplevelsekvalitet som de lättillgängliga öarna inte kan matcha.',
-      // KÄLLA: visitmoja.se/äta-och-handla-på-möja (Hamncafét vid gästhamnen: glass, bakverk, cykeluthyrning)
-      'Hamncafét vid gästhamnen är en av de kända mötesplatserna på ön, med sommaröppen verksamhet som betjänar både bofasta och besökare. Där finns glass, bakverk och cykeluthyrning under sommarsäsongen.',
-      'Ön erbjuder ett av de mer äkta alternativen till de kommersiellt drivna skärgårdsöarna. Det finns ingen stor marknadsföringsapparat bakom Möja. Ryktet sprids via dem som besökt ön och rekommenderat den till vänner, vilket skapar ett besöksflöde med ett annorlunda kvalitetssnitt än destinationer som marknadsförs aggressivt.',
-      'Sjöfartskulturen är alltjämt levande på Möja. Ön har en historia som fiskesamhälle som sträcker sig tillbaka till tider när strömming och sill var de primära ekonomiska aktiviteterna. Den historien syns i bebyggelsen och i de gamla sjöbodarna längs vattnet. Att promenera runt hamnen tidigt på morgonen ger en glimt av den rytm som formade livet här i generationer.',
-    
-    
+      // KÄLLA: varmdo.se/download/.../Möja.pdf — "Huvudöarna Möja och Södermöja har cirka 250 bofasta"; byarna Berg, Långvik, Ramsmora, Löka och Södermöja
+      'Möja ligger i Stockholms mellersta skärgård. Huvudöarna Möja och Södermöja har omkring 250 bofasta, fördelade på byarna Berg, Långvik, Ramsmora, Löka och Södermöja. Ön är avlång i nord-sydlig riktning, och landskapet växlar mellan skog, öppen mark och klippor längs hela sträckan.',
+      // KÄLLA: varmdo.se/download/.../Möja.pdf — "Öns skola finns i Berg ... och har ca 25 elever från förskola till klass 9"
+      'Öns skola ligger i Berg och har ett tjugofemtal elever från förskola till årskurs 9.',
+      // KÄLLA: varmdo.se/download/.../Möja.pdf — "Kyrkan uppfördes 1768" (renoverad på 1880-talet)
+      'Möja kyrka uppfördes 1768 och renoverades på 1880-talet.',
+      // KÄLLA: varmdo.se/download/.../Möja.pdf — "åka buss 434 från Slussen till Sollenkroka ... restid ca 2,5 timme"; "båt från Strömkajen tar ca 3-4 timmar"
+      'Till Möja reser man med båt. En väg går med buss 434 från Slussen till Sollenkroka och båt därifrån; en annan går med båt hela vägen från Strömkajen, vilket tar betydligt längre tid. Restiden fungerar som ett filter — hit kommer man med avsikt.',
+      // KÄLLA: konsummoja.se — Möja Konsumtionsförening driver Coop Berg, "Den stora butiken på Möja och som har öppet året runt", samt en obemannad automatbutik i Långvik
+      'Möja Konsumtionsförening driver Coop i Berg, som håller öppet året runt, och en obemannad automatbutik i Långvik.',
+      // KÄLLA: visitmoja.se/äta-och-handla-på-möja — Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, Möja bageri; Hamncafét: "Café med glass och bullar samt cykeluthyrning"
+      'Matutbudet är småskaligt och säsongsbetonat. På ön finns Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét och Möja bageri. Hamncafét serverar glass och bullar och hyr ut cyklar.',
+      // KÄLLA: rolandsvenssonmuseet.se — "Roland Svensson (1910-2003)"; visitskargarden.se/se-goera/kultur-musik/roland-svensson-museet-paa-moeja.aspx — museet ligger vid Ramsmora brygga; målar- och skrivarhörnorna flyttades 2014 från ateljén på Tornö
+      'Roland Svensson-museet ligger vid Ramsmora brygga. Roland Svensson (1910–2003) skildrade skärgården och dess människor i bild och text, och hans målar- och skrivarhörnor flyttades 2014 från ateljén på Tornö till det nybyggda museet. En glasvägg vetter ut mot det landskap han arbetade med.',
+      // KÄLLA: varmdo.se/download/.../Möja.pdf — Björndalens naturreservat, Storö-Bockö-Lökaö naturreservat och Granholmens naturreservat
+      'Tre naturreservat ligger i och kring Möja: Björndalens, Storö-Bockö-Lökaö och Granholmens.',
+      // KÄLLA: varmdo.se/download/.../Möja.pdf — "För Möjaborna var fisket den mest betydelsefulla inkomstkällan till långt in på 1980-talet"
+      'Fisket var Möjabornas viktigaste inkomstkälla långt in på 1980-talet. Sjöbodarna och bryggorna längs vattnet hör till den historien, och morgonarna vid hamnen är fortfarande tysta.',
     ],
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 14. Möja nås från SOLLENKROKA (ej Stavsnäs), ~40 min–1 tim till byns bryggor. Strömkajen–Berg ~3,5 tim (08.50→12.30).
@@ -955,7 +969,8 @@ export const ISLANDS: Island[] = [
       { icon: '🎣', name: 'Fiske', desc: 'Utmärkt fiskevatten runt ön. Abborre och gädda i vikarna, havsöring utanför.' },
       { icon: '🛶', name: 'Kajak', desc: 'Paddla runt öns södra sida mot Gällnö och Svartsö.' },
     ],
-    accommodationIntro: 'Möjas boende är mer sporadiskt och lokalt organiserat än på de mer turistade öarna — uthyrning sker delvis via lokalbor och digitala plattformar snarare än via hotellkomplex. Det är en del av charmen: du bor genuint, nära det verkliga ölivet och de fastboende som gör Möja till vad det är.',
+    // Påståendet om uthyrning via lokalbor och plattformar gick inte att belägga och togs bort 2026-09-14.
+    accommodationIntro: 'Boendet på Möja är småskaligt — vandrarhem och värdshus snarare än hotellanläggningar.',
     // KÄLLA: svenskaturistforeningen.se/boende/stf-moja-vandrarhem (öppet april–december); mojavardshusochbageri.se. Wikströms Fisk stängde 13 juni 2024 (wikstromsfisk.com) — inget boende där (läst 2026-09-14)
     accommodation: [
       { name: 'STF Möja Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem med självhushåll, rum för 2–4 personer. Öppet april–december. Boka i god tid inför sommaren.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/' },
@@ -975,10 +990,11 @@ export const ISLANDS: Island[] = [
       { name: 'Möja Värdshus & Bageri', type: 'Värdshus/Bageri', desc: 'Skärgårdsrestaurang med eget bageri i Bergs by. Bagerihistoria sedan 1951. Säsongsöppet.', websiteUrl: 'https://mojavardshusochbageri.se' },
     ],
     tips: [
-      'Möja är inte en plats att hasta igenom — stanna minst en natt för att förstå charmen.',
-      'Roland Svensson-museet är ett av de bättre ömuseen i skärgården.',
-      'Fyll på proviant i lanthandeln — det är långt till nästa butik om du ska vidare söderut.',
-      'Paddla eller promenera till södra delen av ön för de bästa utsikterna.',
+      'Möja är inte en plats att hasta igenom — stanna gärna minst en natt.',
+      // KÄLLA: visitskargarden.se/se-goera/kultur-musik/roland-svensson-museet-paa-moeja.aspx — museet ligger vid Ramsmora brygga
+      'Roland Svensson-museet ligger vid Ramsmora brygga.',
+      // KÄLLA: konsummoja.se — Coop Berg har öppet året runt; Långvik är obemannad automatbutik
+      'Coop i Berg har öppet året runt; butiken i Långvik är en obemannad automatbutik.',
     ],
     related: ['sandhamn', 'gallno', 'finnhamn'],
     tags: ['bilfri', 'lantlig', 'genuint', 'lugnt', 'konstnär'],
@@ -1064,48 +1080,37 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '⛴',
     // KÄLLA: stromma.com (Strandvägen ca 30 min), visitskargarden.se (Fjäderholmslinjen Slussen ca 25 min), ResRobot (Waxholmsbolaget Strömkajen 19 min)
-    tagline: '20–30 minuter med båt från centrala Stockholm — närmaste skärgårdsön för en dagstur.',
+    tagline: 'Närmaste skärgårdsöarna från centrala Stockholm — en kort båttur ut.',
     seoTitle: 'Fjäderholmarna 2026 – dagstur 20–30 min från Stockholm', // KÄLLA: stromma.com (30 min), visitskargarden.se (25 min), ResRobot (19 min)
     seoDescription: 'Fjäderholmarna – närmaste skärgårdsupplevelsen från Stockholm. Båt från Strandvägen, restauranger och hantverksgallerier. Guide till din dagstur.',
     description: [
-      // KÄLLA: stromma.com (Strandvägen kajplats 13, ca 30 min); kungligaslotten.se (Restaurang Rökeriet, Fjäderholmarnas Bryggeri, hantverk)
-      'Fjäderholmarna är det enklaste svaret på frågan "hur tar man sig snabbt ut i skärgården?". Cirka 30 minuters båtresa från Strandvägen och du är på en ö med rökeri, restauranger, bryggeri och hantverk. Inga bilar, inga långpendlingar.',
-      // KÄLLA: naturkartan.se (fyra öar: Stora Fjäderholmen, Ängsholmen, Libertas, Rövarns holme); kungligaslotten.se (Restaurang Rökeriet, Fjäderholmarnas Krog)
-      'Ögruppen består av fyra öar varav Stora Fjäderholmen är den besökta. Här finns bland annat Restaurang Rökeriet med egenrökta produkter och Fjäderholmarnas Krog med uteservering mot vattnet.',
-      'Fjäderholmarna passar alla, från barnfamiljer på dagstur till seglare som vill ha ett sista glas på vägen in mot stan. Säsongen är maj–september.',
-      // KÄLLA: stromma.com (ca 30 min från Strandvägen)
-      'Det som utmärker Fjäderholmarna är hur lite tid det tar. Cirka 30 minuter från Strandvägen och man kliver av på en ö med klippor, bryggor och havsdoft. Ingen planering krävs. Inga övernattningsbokningar, inga tidtabeller att memorera, ingen bil till Stavsnäs. Det är skärgård utan tröskel.',
-      // KÄLLA: rokeriet-fjaderholmarna.se (rökta produkter tillagade på plats, deli); visitskargarden.se (deli: skagenmackor, sallader, rökta räkor, chark)
-      'Restaurang Rökeriet röker sina produkter på plats och har både bordsservering och en deli för take-away med skagenmackor, sallader, rökta räkor och chark. Det går bra att äta på klipporna en bit bort med Stockholms inlopp framför sig.',
-      // KÄLLA: fjaderholmarnasbryggeri.se (brewpub på Stora Fjäderholmen, öl serveras direkt från tankarna; huvudproduktion i Bro; pubmeny och ölprovning)
-      'Fjäderholmarnas Bryggeri driver en brewpub på ön där ölen serveras direkt från tankarna, med pubmeny och ölprovningar. Huvudproduktionen sker i bryggeriets anläggning i Bro norr om Stockholm. Uteserveringen vetter mot vattnet och passar för en kväll när solen står lågt.',
-      'Fjäderholmarna är ett naturligt val för den som vill introducera barn eller besökare från utlandet till vad Stockholms skärgård är. Resan är kort nog att inte bli ett projekt, ön är tillräckligt vacker för att ge rätt intryck, och matkvaliteten är hög nog att det faktiskt är en bra utflykt på egna meriter.',
-      // KÄLLA: stromma.com (Strandvägen kajplats 13, ca 30 min); visitskargarden.se (Fjäderholmslinjen från Slussen, ca 25 min); kungligaslotten.se (Waxholmsbolaget kaj 1, Strömma kaj 19, Fjäderholmslinjen kaj 20)
-      'Fjäderholmarnas läge är dess definierande egenskap. De fyra små öarna ligger 20–30 minuter med båt från centrala Stockholm, vilket gör dem till det närmaste skärgårdsmålet från staden. Båtar går från tre kajer: Strandvägen (Strömma), Slussen (Fjäderholmslinjen) och Strömkajen (Waxholmsbolaget), regelbundet under sommaren. Den tillgängligheten formar allt på öarna: det är primärt en dagsutflyktsdestination för stockholmare.',
-      // KÄLLA: naturkartan.se, visitlidingo.se (Stora Fjäderholmen, Ängsholmen, Libertas, Rövarns holme; Libertas och Rövarns holme är fågelskyddsområden med landstigningsförbud under häckningstid)
-      'Ögruppen består av fyra öar: Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme. Stora Fjäderholmen är besöksmålet; Libertas och Rövarns holme är fågelskyddsområden med landstigningsförbud under häckningstiden. Ön är liten, vilket koncentrerar aktiviteten kring hamnen och den närmaste strandlinjen.',
-      // KÄLLA: fjaderholmarnaskrog.se (Krogen, Hamnbaren, Loftet; bordsbokning online); gasthamnsguide.se ("modern mat med tydlig anknytning till skärgård och svensk mattradition", läge vid gästhamnen)
-      'Fjäderholmarnas Krog är en av de mer etablerade restaurangerna i skärgården. Den ligger vid gästhamnen med utsikt över Stockholms inlopp och serverar modern mat med anknytning till skärgård och svensk mattradition, fördelat på Krogen, Hamnbaren och Loftet. Bord bokas online och går åt snabbt på sommarhelger.',
-      // KÄLLA: rokeriet-fjaderholmarna.se (rökta produkter tillagade på plats); visitskargarden.se (deli med rökta räkor, chark)
-      'Rökeriet på ön röker sina produkter på plats och säljer dem både i restaurangen och i delin. Att köpa direkt från ett fungerande rökeri i en skärgårdsomgivning är ett specifikt nöje som få Stockholm-nära destinationer erbjuder.',
-      // KÄLLA: kungligaslotten.se, stromma.com/blogg (utställning med allmogebåtar / båtmuseum). Akvariet kunde inte beläggas som öppet och har tagits bort.
-      'På ön finns en utställning med traditionella allmogebåtar, ett litet museum med föremål från äldre skärgårdsbåtar. Det är kompakt och passar den som vill förstå hur människor rörde sig i skärgården före ångbåtarna.',
-      'Flera hantverksstudior och verkstäder är verksamma på Fjäderholmarna under sommaren. Glasblåsning, keramik och textilarbete har historiskt funnits representerade på ön. De specifika aktörerna varierar per säsong, värt att undersöka i förväg om detta är den primära anledningen till besöket.',
-      // KÄLLA: explorearchipelago.com (klippbad med utsikt över Stockholms inlopp samt mindre sandstränder); naturkartan.se (klipphällar för sol)
-      'Bad är möjligt från klipporna, med utsikt över Stockholms inlopp, och vid några mindre sandstränder. Klipphällarna är välbesökta på varma dagar.',
-      // KÄLLA: stromma.com (Strandvägen kajplats 13, stopp Nacka Strand, ca 30 min, var 30:e minut 10:30–17:00 i högsäsong)
-      'Båtförbindelsen förtjänar ett eget omnämnande. Strömmas båt avgår från Strandvägen kajplats 13 under hela sommaren, gör ett stopp vid Nacka Strand och är framme efter cirka 30 minuter. Resan går ut genom Stockholms inlopp förbi Djurgården, en snabb övergång från stad till ö.',
-      // KÄLLA: stromma.com (säsong 1 maj–13 sep 2026); rokeriet-fjaderholmarna.se och fjaderholmarnasbryggeri.se (1 maj–13 sep)
-      'Fjäderholmarna drivs inte i full kapacitet året runt. Huvudsäsongen för båtar och restauranger är från början av maj till mitten av september. Utanför denna period är tillgången begränsad och de flesta mat- och butiksverksamheter stänger. Öarna är som bäst en fin vardag i juni eller tidigt september, när folksamlingarna glesas ut men allting fortfarande är öppet.',
-      'Fjäderholmarnas skala spelar roll. Att vara liten innebär att den inte kan erbjuda flerdagarsupplevelsen hos större ytterskärgårdsöar. Men dess syfte är ett annat: det är ett andningshål för en storstad, en bit skärgård som nås på en halvtimme.',
-      // KÄLLA: kungligaslotten.se (del av Kungliga nationalstadsparken sedan 1995, förvaltas av Kungliga Djurgårdens förvaltning)
-      'Fjäderholmarna är på ett sätt ett urbant fenomen: en plats som Stockholm har behållit inom räckhåll för hela sin befolkning, inte som en lyx för få utan som en tillgång för många. Öarna ingår i Kungliga nationalstadsparken sedan 1995 och förvaltas av Kungliga Djurgårdens förvaltning.',
-      'Sommarkvällarna på Fjäderholmarna har ett eget ljus. Solen i väster går ner bakom Stockholms siluett, och det är en av anledningarna till att restaurangernas uteplatser fylls tidigt. En sen kväll i juni eller juli, med den lågt hängande solen över stadens torn, är svår att beskriva utan att låta som en turistbroschyr.',
-      // KÄLLA: lidingo.se (kulturmiljö-PDF Stora Fjäderholmen: omnämnd 1381, krog 1699, Stockholms stad 1849, Försvaret 1918–1976, KDF 1982, öppnat 1985, nationalstadspark 1995); nationalstadsparken.se (sjökrog 1600-tal, latrin 1800-tal, ammunitionsförråd i berg)
-      'Historiskt var Fjäderholmarna en krogö. Öarna omnämns första gången 1381, och från 1600-talet fanns här en sjökrog för fiskare och skärgårdsbor på väg in till Stockholm. På 1800-talet användes öarna som avstjälpningsplats för stadens latrin, och senare byggdes värdshus och restaurang. 1918 tog Försvaret över och sprängde in ammunitions- och minförråd i berget; militären lämnade 1976, Kungliga Djurgårdens förvaltning tog över 1982 och ön öppnades för besökare 1985.',
-    
-    
-    
+      // KÄLLA: fjaderholmarna.se — Fjäderholmarnas Krog, Restaurang Rökeriet och Fjäderholmarnas Bryggeri anges som verksamheter på ön, liksom hantverkare (trä, textil, keramik, glas)
+      // KÄLLA: stromma.com — avgång Strandvägen kajplats 13, restid ca 30 minuter
+      'Fjäderholmarna är det enklaste svaret på frågan hur man snabbt tar sig ut i skärgården. En dryg halvtimme med båt från Strandvägen och du står på en ö med rökeri, krog, bryggeri och hantverkare. Ingen bil, ingen planering, ingen övernattning att boka.',
+      // KÄLLA: naturkartan.se och visitlidingo.se — ögruppen utgörs av Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme; Libertas och Rövarns holme är fågelskyddsområden med landstigningsförbud under häckningstid
+      'Ögruppen består av fyra öar: Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme. Det är Stora Fjäderholmen man kliver av på. Libertas och Rövarns holme är fågelskyddsområden med landstigningsförbud under häckningstiden.',
+      // KÄLLA: fjaderholmarna.se — båtoperatörer: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen
+      // KÄLLA: stromma.com — Strandvägen kajplats 13, stopp vid Nacka Strand, ca 30 min
+      'Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13, gör ett stopp vid Nacka Strand och är framme efter cirka 30 minuter. Resan går ut genom Stockholms inlopp förbi Djurgården — en ovanligt snabb övergång från stad till ö.',
+      // KÄLLA: rokeriet-fjaderholmarna.se — rökta produkter tillagade på plats, restaurang och deli; visitskargarden.se — deli med skagenmackor, sallader, rökta räkor och chark
+      'Restaurang Rökeriet röker sina produkter på plats och säljer dem både i restaurangen och i delin, med skagenmackor, sallader, rökta räkor och chark. Att köpa direkt från ett fungerande rökeri går bra att kombinera med att sätta sig på klipporna en bit bort, med Stockholms inlopp framför sig.',
+      // KÄLLA: fjaderholmarnasbryggeri.se — brewpub på Stora Fjäderholmen där ölen serveras direkt från tankarna, pubmeny och ölprovning; huvudproduktionen sker i Bro
+      'Fjäderholmarnas Bryggeri driver en brewpub på ön där ölen serveras direkt från tankarna, med pubmeny och ölprovningar. Huvudproduktionen ligger i Bro norr om Stockholm. Uteserveringen vetter mot vattnet.',
+      // KÄLLA: fjaderholmarnaskrog.se — Krogen, Hamnbaren och Loftet, bordsbokning online; gasthamnsguide.se — "modern mat med tydlig anknytning till skärgård och svensk mattradition", läge vid gästhamnen
+      'Fjäderholmarnas Krog ligger vid gästhamnen och serverar modern mat med tydlig anknytning till skärgård och svensk mattradition, fördelat på Krogen, Hamnbaren och Loftet. Bord bokas online.',
+      // KÄLLA: fjaderholmarna.se — utställningen "Allmogebåtar" anges bland öns utställningar
+      'På ön finns en utställning med allmogebåtar — traditionella skärgårdsbåtar, kompakt presenterade. Den passar den som vill förstå hur människor rörde sig här innan ångbåtarna.',
+      // KÄLLA: fjaderholmarna.se — flera hantverkare listas på ön, bland annat inom trä, textil, keramik och glas
+      'Flera hantverkare har verkstad på ön, bland annat inom trä, textil, keramik och glas. Vilka som är på plats varierar mellan säsonger.',
+      // KÄLLA: explorearchipelago.com — klippbad med utsikt över Stockholms inlopp samt mindre sandstränder; naturkartan.se — klipphällar för sol
+      'Bad går bra från klipporna, med utsikt över Stockholms inlopp, och vid några mindre sandstränder. Klipphällarna fylls tidigt på varma dagar.',
+      // KÄLLA: fjaderholmarna.se — "Fjäderholmarna har nu säsongsöppet"
+      'Fjäderholmarna drivs inte året runt. Båtar, restauranger och butiker har säsongsöppet under sommarhalvåret; utanför säsong är det mesta stängt. En vardag i början eller slutet av säsongen ger öarna med allt öppet men utan de tätaste folksamlingarna.',
+      // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "Fjäderholmarna omnämns i skrift redan 1381"; "Åtminstone sedan 1699 och troligen även sedan långt tidigare fanns krog på Stora Fjäderholmen"; "År 1849 övertogs ägandet av holmarna av Stockholms stad"; "Från 1849 fram till 1880-talets slut använde Stockholms stad nämligen Ängsholmen som deponi för stadens latrintömning"
+      'Fjäderholmarna omnämns i skrift redan 1381, och åtminstone sedan 1699 fanns krog på Stora Fjäderholmen — troligen långt tidigare än så. År 1849 övertog Stockholms stad ägandet, och från 1849 fram till 1880-talets slut användes Ängsholmen som deponi för stadens latrintömning.',
+      // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "År 1918 när Försvarsmakten (marinen) förvärvade Fjäderholmarna"; "landstigningsförbud, som i princip rådde fram till 1976 då Försvarsmakten lämnade holmarna"; "Kungliga Djurgårdsförvaltningen förvaltar Fjäderholmarna sedan 1982"; ny restaurangbyggnad färdig 1985; "Sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken"
+      '1918 förvärvade marinen Fjäderholmarna, och landstigningsförbud rådde i princip fram till 1976 då Försvarsmakten lämnade holmarna. Kungl. Djurgårdens förvaltning har förvaltat öarna sedan 1982, en ny restaurangbyggnad stod färdig 1985 och sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken.',
+      'Kvällarna har ett eget ljus. Solen går ner i väster bakom stadens siluett, och uteplatserna vetter åt rätt håll för det.',
     ],
     facts: {
       // KÄLLA: uppmätt mot ResRobot 2026-08-05 — färja 13-1 Stockholm Strömkajen
@@ -1148,16 +1153,20 @@ export const ISLANDS: Island[] = [
       { name: 'Fjäderholmarnas Bryggeri', type: 'Bar', desc: 'Hantverksöl med Stockholms siluett. Kväll och solnedgång.', slug: 'fjaderholmarna-bryggeri' },
     ],
     tips: [
-      'Ta morgonbåten och ät tidig lunch — köerna till Fjäderholmarnas Krog är kortast före lunchruschen.',
-      // KÄLLA: rokeriet-fjaderholmarna.se (1 maj–13 sep, mån–lör 11:30–22:30, sön 11:30–20:00)
-      'Rökeriet är öppet från 1 maj till 13 september — passa på innan säsongen tar slut.',
-      'Bryggeriets uteservering är bäst för sundowner när kvällssolen ligger på.',
-      'Kolla sista båten tillbaka till stan innan du planerar kvällen — avgångstiden varierar med säsong och veckodag.',
+      // KÄLLA: fjaderholmarna.se — Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen trafikerar öarna
+      'Tre rederier går hit — Waxholmsbolaget, Strömma och Fjäderholmslinjen — från olika kajer i stan. Välj den kaj som ligger närmast dig.',
+      // KÄLLA: fjaderholmarnaskrog.se — bordsbokning sker online
+      'Boka bord på Fjäderholmarnas Krog online i förväg om du vill äta på en sommarhelg.',
+      // KÄLLA: naturkartan.se och visitlidingo.se — Libertas och Rövarns holme är fågelskyddsområden med landstigningsförbud under häckningstid
+      'Libertas och Rövarns holme har landstigningsförbud under fåglarnas häckningstid — håll dig till Stora Fjäderholmen.',
     ],
     related: ['vaxholm', 'grinda', 'bockholmen'],
     tags: ['nära stan', 'dagstur', 'rökeriet', 'öl', 'mat'],
     // KÄLLA: lidingo.se (kulturmiljö-PDF: Försvaret 1918–1976, landstigningsförbud 1940, KDF 1982, ny restaurangbyggnad 1985); systrarnadegen.se (1985 öppnades Stora Fjäderholmen för besökare); nationalstadsparken.se (ammunitions- och minförråd i berg)
-    did_you_know: 'Fjäderholmarna är Stockholms närmaste skärgårdsöar och nås på 20–30 minuter. Försvaret ägde öarna 1918–1976 och införde landstigningsförbud 1940 — ammunitions- och minförråd sprängdes in i berget. Först 1985, efter att Kungliga Djurgårdens förvaltning tagit över, öppnades ön för besökare med restauranger, hantverk och gästhamn.',
+    // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "Från 1849 fram till 1880-talets slut använde Stockholms stad nämligen Ängsholmen som deponi för stadens latrintömning"
+    // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — landstigningsförbud rådde i princip från 1918 till 1976 då Försvarsmakten lämnade holmarna
+    // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "Åtminstone sedan 1699 och troligen även sedan långt tidigare fanns krog på Stora Fjäderholmen"
+    did_you_know: 'Ängsholmen i Fjäderholmarna var Stockholms stads deponi för latrintömning från 1849 fram till slutet av 1880-talet. Fjäderholmarna var militärt område i nästan sextio år — landstigningsförbud gällde i princip från 1918 till 1976. Det har funnits krog på Stora Fjäderholmen åtminstone sedan 1699.',
     insiderTips: [
       'Fjäderholmarna är den närmaste ön från centrala Stockholm, ungefär 25 minuter med båt från Slussen.',
       // KÄLLA: lidingo.se (militären lämnade 1976); systrarnadegen.se (öppnades för besökare 1985)
@@ -1199,30 +1208,23 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '🌊',
-    tagline: 'Stor bilfärjebetjänad ö med lång kustlinje och utmärkta kajakvatten.',
+    tagline: 'Ö i mellersta skärgården med avgiftsfri bilfärja från Östanå.',
     description: [
-      'Ljusterö är en av de större öarna i Stockholms skärgård och en av de mest lättillgängliga. Bilfärja avgår regelbundet från Ljusteröfärjan. Det gör ön populär för cykling och kajakpaddling, och det finns ett brett utbud av service längs kusten.',
-      'Kustlinjen sträcker sig mil efter mil och bjuder på varierade miljöer, grunda vikar, öppna klippor och skyddade naturhamnar. Klintan är öns bästa sydläge och ett populärt seglarankare.',
-      'Ljusterö saknar en enda stor destination men kompenserar med mångfald: flera restauranger, kaféer och kiosker är spridda längs öns vägnät.',
-      'Till skillnad från de flesta skärgårdsöar kan man ta bilen till Ljusterö. Bilfärjan från fastlandet avgår regelbundet och är del av det ordinarie kollektivtrafiksystemet. Det gör ön till ett naturligt val för barnfamiljer som vill ha tillgång till bilen, för husvagnssemestrar och för dem som vill cykla långa sträckor utan att behöva oroa sig för tidtabeller.',
-      'Kajakpaddlingen längs Ljusterös kust håller hög klass. De skyddade vikarna på öns västra sida är lätta och lugna även för nybörjare, medan öns östra sida mot öppet vatten kräver mer erfarenhet. Det finns möjlighet att paddla hela vägen runt på en lång dag, ungefär 35 kilometer med några naturliga stopp längs vägen.',
-      'Klintan i sydöst är öns naturliga samlingsplats för seglare. En välskyddad hamn med bränsle och service, och ett café som håller öppet under sommarsäsongen. Ångbåtsbryggorna längs kusten berättar om en tid då ångbåtstrafiken var öns enda förbindelse med Stockholm.',
-      'Ljusterö är inte en ö man åker till för ett enskilt monument eller en specifik upplevelse. Det är en ö man åker till för att spendera tid i skärgårdsmiljö med frihet att röra sig som man vill. Den friheten, kombinerat med den korta restiden från staden, gör Ljusterö till en av Stockholms mest omtyckta vardagsflyktplatser.',
-      'Ljusterö är en av de mer tillgängliga stora öarna i den norra Stockholmsskärgården. Till skillnad från många ytterskärgårdsöar som kräver Waxholmsbåtsförbindelser har Ljusterö en bilfärjeförbindelse från fastlandet, vilket väsentligt utökar de praktiska alternativen för att nå dit. Den tillgängligheten, kombinerat med öns storlek och variationen i dess landskap, gör Ljusterö till ett fungerande mål på sätt som mer isolerade öar inte kan.',
-      'Öns storlek är betydelsefull. Ljusterö är en av de större bebodda öarna i Stockholms skärgård. Det innebär att det inre rymmer ett varierat landskap: jordbruksmark, skog, sjöar och klippor existerar inom relativt korta avstånd från varandra. Att gå eller cykla från en terrängtyp till en annan är möjligt under en enda dag.',
-      'Den permanenta befolkningen på Ljusterö uppgår till ungefär ett tusental, stor för skärgårdsstandard. Den befolkningen upprätthåller en nivå av helårstjänster inklusive skola, lokal mataffär och kyrkor. Gemenskapen har infrastrukturen hos en liten landsortsby snarare än en ren sommarbygd.',
-      // KÄLLA: roslagen.se/kultur-och-historia/ljustero-kyrka/ (första kapellet 1600-tal, ombyggt ca 1750, nuvarande kyrka från slutet av 1800-talet); svenskakyrkan.se/osteraker/ljustero-kyrka
-      'Ljusterö kyrka härstammar från slutet av 1800-talet, då ett äldre kapell från 1750-talet byggdes om till dagens kyrka. Kyrkan håller fortfarande regelbundna gudstjänster och kyrkogården innehåller historiska gravmarkeringar. För besökare intresserade av svensk kyrkoarkitektur och landsbygdshistoria är kyrkan värd ett besök.',
-      'Cykling passar Ljusterös relativt plana terräng och nätverket av mindre vägar och stigar. Ön kan utforskas med cykel utan betydande klattrande, och kombinationen av jordbrukslandvyer, skogsavsnitt och kustnärma delar skapar varierande sceneri. Cykeluthyrning finns under sommarsäsongen.',
-      'Fiske från Ljusterös strandlinjer och de omgivande vattnen är produktivt för abborre, gädda och havsöring beroende på säsong. Ön har ett antal bra fiskeplatser tillgängliga från kusten och eventuella insjöar i det inre adderar sötvattenalternativ. Fiske utan båt är praktiskt här på ett sätt som det inte är på mindre eller mer klippkantade öar.',
-      'Waxholmsbåtrutten till Ljusterö från Stockholm körs vid sidan av bilfärjeförbindelsen, vilket ger en ö-båt-infartsväg för dem som reser från staden utan bil.',
-      'Vad Ljusterö erbjuder som många skärgårdsöar inte gör är en genuin känsla av ett fungerande lantligt samhälle. Jordbruksmarken brukas, kyrkan är aktiv, skolan är öppen. Den turism som finns sitter bredvid detta samhälle snarare än att ersätta det, vilket ger ön en annan autenticitets-kvalitet än destinationer där turismen är den primära ekonomiska aktiviteten.',
-      'På våren är Ljusterö särskilt bra för fågelskådning. Kombinationen av skog, jordbruksmark och kustnära biotoper lockar ett brett arturval under migrationsperioden. Jordbruksmarkerna kan i synnerhet hysa bra koncentrationer av fåglar som passerar igenom.',
-      'Sensommaren, perioden från sent juli genom september, tenderar att vara den mest givande tiden att besöka Ljusterö. Sommarskarorna på de mest populära öarna har tunnats ut, vegetationen är på sin fullaste och vattnet i de skyddade vikarna är fortfarande tillräckligt varmt för bad.',
-      'Norr om Ljusterö finns möjligheter att utforska den mer avlägsna nordligare skärgården i Roslagen. Ön fungerar som ett naturligt språngbräde för den som vill utöka sin skärgårdsutforskning norrut. Kombinationen av tillgänglig bilfärjeförbindelse till Ljusterö och lokala båtförbindelser vidare norrut gör det logistiskt möjligt att planera en mer ambitiös tur.',
-      'Kommunikationssystemet runt Ljusterö är mer flexibelt än för de flesta ytterskärgårdsöar. Bilfärjan, Waxholmsbåten och de lokala taxibåtarna som kör i området skapar ett system med flera alternativa ingångsvinklar. Den flexibiliteten minskar det planeringstryck som många upplever med mer isolerade skärgårdsöar.',
-      'Det specifika med Ljusterö i jämförelse med de flesta skärgårdsöar är kombinationen av storlek och tillgänglighet. Ön är tillräckligt stor för att erbjuda genuint varierad naturupplevelse men tillräckligt nåbar för att fungera som ett praktiskt mål. Den kombinationen är ovanligare än man kan tro i Stockholms skärgårdssystem.',
-      'Ljusterö har också en funktion som förklaring för stockholmare som undrar hur det faktiskt fungerar att bo i skärgården under vinterhalvåret. Öns permanenta population, med sin skola, sina butiker och sin vardag bortom sommarsäsongen, är ett levande svar på den frågan.',
+      // KÄLLA: osteraker.se/upplevagora/sevardheter/oariosterakersskargard — "Ljusterö är en av de största öarna i den mellersta delen av Stockholms skärgård"; sommartid "vistas det nästan 20 000 personer på ön"
+      'Ljusterö är en av de största öarna i den mellersta delen av Stockholms skärgård. På sommaren vistas nästan 20 000 personer på ön, vilket ger säsongen en helt annan puls än vinterhalvåret.',
+      // KÄLLA: trafikverket.se/resa-och-trafik/farjetrafik/ljusteroleden/ — "Ljusteröleden går mellan Östanå och Ljusterö"; "Överfartstiden är sju minuter"; "Resan med vägfärjan är avgiftsfri"
+      'Till skillnad från de flesta skärgårdsöar kan man ta bilen hit. Ljusteröleden går mellan Östanå och Ljusterö, överfarten tar sju minuter och resan med vägfärjan är avgiftsfri.',
+      // KÄLLA: waxholmsbolaget.se/bryggor-och-resmal/mellersta/{linanas,laggarsvik,grundvik,vasbystrand} — bryggor på Ljusterö; osteraker.se — "bussen från Åkersberga station till Åsättra brygga på Ljusterö"
+      'Ön nås också utan bil. Waxholmsbolaget har flera bryggor på Ljusterö, bland dem Linanäs, Laggarsvik, Grundvik och Vasbystrand, och från Åkersberga station går buss till Åsättra brygga.',
+      // KÄLLA: osteraker.se/upplevagora/sevardheter/oariosterakersskargard — vid Linanäs finns "ett stort utbud av restauranger", "de gamla, fina sekelskifteshusen" och "den gamla fiskebyn Laggarsvik"
+      'Vid Linanäs på södra Ljusterö finns ett stort utbud av restauranger och gamla sekelskifteshus, och intill ligger den gamla fiskebyn Laggarsvik.',
+      // KÄLLA: osteraker.se/upplevagora/sevardheter/oariosterakersskargard — "ett klippbad med storslagen utsikt över Saxarfjärden, och ett barnbad med sandstrand"; naturstig, sagostig, boule och tennis
+      'På ön finns ett klippbad med utsikt över Saxarfjärden och ett barnbad med sandstrand. Där finns också naturstig och sagostig, boule och tennis.',
+      // KÄLLA: svenskakyrkan.se/osteraker/ljustero-kyrka — "Norra Ljusterö fick sitt första kapell under 1600 talet, möjligen redan på 1500 talet"; "Mot slutet av 1800 talet ... omgestaltades kapellet helt till dagens kyrka"; vit åttkantig träkyrka vid Mellansjö, ca 3 km från färjeläget
+      'Ljusterö kyrka ligger vid Mellansjö, omkring tre kilometer från färjeläget. Norra Ljusterö fick sitt första kapell under 1600-talet, möjligen redan på 1500-talet. Ett nytt kapell uppfördes i början av 1700-talet och byggdes mot slutet av 1800-talet om till dagens vita, åttkantiga träkyrka.',
+      // KÄLLA: osteraker.se/subsitegrundskolor/ljusteroskola — Ljusterö skola, kommunal grundskola på ön
+      'Ljusterö har en egen kommunal grundskola.',
+      'Kustlinjen är lång och växlar mellan grunda vikar, öppna hällar och skyddade sund. Terrängen är flack nog att man hinner byta miljö flera gånger på en dag utan att anstränga sig.',
     ],
     facts: {
       travel_time: '~1 tim från Danderyds sjukhus (buss 626 + bilfärja Ljusteröleden)',
@@ -1279,15 +1281,19 @@ export const ISLANDS: Island[] = [
         { item: 'Kajakhyra Klintsundet Marina (halvdag)', price: 'från 370 kr (2026)' },
       ],
       tips: [
-        'Ljusterö är en av de billigaste öarna att nå — avgiftsfri bilfärja och SL-buss.',
+        // KÄLLA: Trafikverket, Ljusteröleden avgiftsfri; SL linje 626
+        'Både bilfärjan Östanå–Ljusterö och SL-bussen ingår utan extra avgift — färjan är avgiftsfri.',
         'Hyr kajak vid Klintsundet Marina eller ta buss 626 som fortsätter ut på ön mot Linanäs.',
-        'Pizzerian är öppen helår — bra val för besök utanför turistsäsongen.',
+        'Pizzerian vid Ljusterö torg har öppet även utanför turistsäsongen — kontrollera aktuella tider på plats.',
       ],
     },
     tips: [
-      'Hyr cykel vid färjeläget och kör norrut längs kusten mot Linanäs.',
-      'Klintan är ett utmärkt bränslestopp på väg mot norra skärgården.',
-      'Åsättra sommarkiosk längs vägen säljer glass och kaffe — enkel glädje.',
+      // KÄLLA: osteraker.se/upplevagora/sevardheter/oariosterakersskargard — "Vid Linanäs finns ett stort utbud av restauranger"
+      'Linanäs på södra Ljusterö har flera restauranger.',
+      // KÄLLA: osteraker.se/upplevagora/sevardheter/oariosterakersskargard — "bussen från Åkersberga station till Åsättra brygga på Ljusterö"
+      'Utan bil: buss från Åkersberga station till Åsättra brygga.',
+      // KÄLLA: trafikverket.se/resa-och-trafik/farjetrafik/ljusteroleden/ — "Resan med vägfärjan är avgiftsfri"
+      'Vägfärjan över Ljusteröleden är avgiftsfri.',
     ],
     related: ['finnhamn', 'ingmarso', 'blido'],
     tags: ['cykling', 'kajak', 'bilfärja', 'kustlinje', 'familj'],
@@ -1315,28 +1321,23 @@ export const ISLANDS: Island[] = [
     region: 'södra',
     regionLabel: 'Södra skärgården',
     emoji: '⚓',
-    tagline: 'Södra skärgårdens klassiska utgångspunkt — historia, hamn och direktbuss från Stockholm.',
+    tagline: 'Lots- och tullsamhället som blev badortsidyll — södra skärgårdens landvägsport.',
     description: [
-      'Dalarö är södra skärgårdens naturliga utgångspunkt och en av de mest betydelsefulla platserna i svensk sjöfartshistoria. 1636 blev Dalarö "stora sjötullen", det vill säga landets viktigaste tullstation, där all sjöburen handel in till Stockholm skulle deklareras och förtullas. Den rollen behöll orten ända till 1928.', // KÄLLA: stockholmshamnar.se, historia/platser/dalaroe ("År 1636 förlades stora sjötullen till Dalarö"; tullstationen avvecklades 1928)
-      'Dalarö skans påbörjades 1656, under Karl X Gustavs tid, för att skydda de tullavgiftsbärande handelsfartygen som låg i hamn. Erik Dahlbergh inspekterade anläggningen 1683 och fann den förfallen — efter hans ritningar byggdes skansen om 1698–1724. Skansen togs ur rikets fasta försvar 1854 och är sedan 1935 statligt byggnadsminne.',
-      'Dalarö nås med bil på 45 minuter från Stockholm eller med kollektivtrafik. Det gör orten unik bland södra destinationerna. Man behöver inte ta båt för att komma hit. Från Dalarö hamn avgår sedan båtar mot Utö och de omgivande öarna. Hamnlivet är aktivt sommartid med seglare, motorbåtar och sommargäster, och bebyggelsen längs kajen är präglad av 1800-talets sjökaptens- och tjänstemannavillor.',
-      'Promenaden längs kajen i Dalarö är en av södra skärgårdens trevligaste. Trävillorna med sina snidade veranda-detaljer, de välskötta trädgårdarna med rabatter ned mot vattnet och de gamla sjöbodarna berättar om en tid när Dalarö var en av landets viktigaste platser för utrikeshandel. Skansen i söder är liten men välbevarad, en av få 1600-talsbefästningar i regionen som fortfarande är tillgänglig för besökare.',
-      'Dalarö passar den som vill ha södra skärgårdens karaktär utan att spendera en heldag på båten. Orten är enkel att nå, välskött och har tillräckligt med historia för att en dag ska kännas välspenderad. Kombinera med en tur ut till Utö om man vill ha mer. Det är en av de naturligaste kombinationerna i södra skärgården.',
-      'Dalarö är ett historiskt samhälle vid den södra Stockholmsskärgårdens kust, beläget vid en punkt där land och vatten sammanflätas tätt. Till skillnad från de flesta skärgårdsmål som bara nås med båt är Dalarö tillgängligt med bil, en praktisk skillnad som gör att det fungerar som ett gateway-samhälle för de omgivande öarna lika mycket som ett eget mål. Körvägen genom Haninge-landskapet övergår gradvis i den vatomgivna atmosfären av den yttre skärgården.',
-      'Dalarö Skans, en 1600-talskustfästning byggd för att försvara Stockholms södra sjöfartsvägar, är den primära historiska sevärdheten. Fästningen började byggas 1656 och ingick i ett bredare system av kustbefästningar uppförda under perioden av svensk stormaktsambition. Ruinerna och bevarade strukturer erbjuder en genomgång av militärarkitekturhistoria i skärgårdsmiljö.', // KÄLLA: sfv.se, "Dalarö skans" ("Skansen började anläggas 1656")
-      'Dalarö har länge varit ett centrum för fritidsbåtliv. Flera marinor betjänar båtgemenskapen med faciliteter för besökande seglare och motorbåtister från de omgivande vattnen. Hamnfronten under sommaren har den aktiva, praktiska atmosfären hos en fungerande båtgemenskap. Båtar kommer och går, utrustningsaffärer, varv och det sociala livet hos folk som tillbringar sina somrar på vattnet.',
-      'Restaurangerna i Dalarö är inriktade mot besökare som anländer med båt och med bil. Flera etablissemang med hamn- eller vattenvy är verksamma under sommaren och en del upprätthåller reducerad service genom vintern. Maten lutar mot klassisk svensk maritim mat: sill, lax och säsongsbetonade svenska rätter i miljöer som använder sig av vattennärheten.',
-      'Badmöjligheterna i Dalarö är goda. Samhället sitter på klipphällar med lugnt, skyddat vatten i flera riktningar. Vattentemperaturen i de skyddade södra vikarna når bekväma nivåer under högsommaren. Kombinationen av bilaccess, bad och en avslappnad hamnatmosfär gör Dalarö till ett praktiskt val för sommardagar utan omfattande planering.',
-      'Båtgemenskapen ger Dalarö en specifik social karaktär under sommaren. Segling och motorbåtning är centrala för den lokala fritidskulturen och hamnfronten på helger speglar detta med en koncentration av båtägare och entusiaster. För dem som delar detta intresse har Dalarö en insiderkaraktär som rena turistdestinationer saknar.',
-      'Dalarö fungerar också som praktisk bas för att nå den yttre södra skärgården. Båtförbindelser och vattentaxi-tjänster härifrån når öar längre ut som inte har direkta Stockholmsförbindelser. Denna hubbfunktion tillför praktiskt värde för besökare som planerar mer omfattande skärgårdsresor.',
-      'Vinterstämningen i Dalarö är lugnare men samhället upprätthåller helårsfunktion. Den lokala befolkningen, skolan och de grundläggande tjänsterna hos ett fastlandsanslutet samhälle fortsätter under de kalla månaderna. Ett vinterbesök visar Dalarös mer vardagliga karaktär: båtarna i förvaring, hamnen tystare och fokus skiftat från fritid till lokalt liv.',
-      'Från Dalarö ramar utsikten mot ytterskärgården in öarna Nåttarö, Ornö och de södra kedjorna på ett sätt som gör skalan av Stockholms skärgårdssystem synlig. På en klar dag rymmer horisonten flera ö-silhuetter. Denna specifika utsikt, att blicka utåt från en gateway-punkt, är en av Dalarös underutnyttjade attraktioner.',
-      'För dagsbesökare från Stockholm erbjuder Dalarö en enkel kombination: kör ner, promenera kring Skans-ruinerna, bada, ät lunch och kör hem, allt inom en bekväm dag. Bilaccess gör detta möjligt på ett sätt som rent båt-bara skärgårdsdestinationer inte kan matcha. Det är inte den mest avlägsna eller dramatiska destinationen, men det är en av de mest praktiskt användbara.',
-      'I skärgårdssammanhang är Dalarö ovanligt lätt att kombinera med andra aktiviteter under samma dag. En morgon i Stockholm, lunch i Dalarö med bad och en promenad kring Skansen, och hemresa till middag på samma dag är en fullt rimlig plan utan att det känns stressigt. Den kombinerbarheten är sällsynt.',
-      'Dalarö demonstrerar en viktig punkt om det svenska skärgårdssystemet: det handlar inte bara om öar nåbara med Waxholmsbåten. De landbaserade infartsplatserna vid Dalarö, Nynäshamn, Stavsnäs och Vaxholm är lika viktiga som Strömkajen. De är portarna mot var sin del av skärgården och Dalarö är södra korridorens tydligaste.',
-    
-    
-    
+      // KÄLLA: haninge.se/uppleva-och-gora/besok-och-upplev-haninge/platser-att-besoka/dalaro/ — "Dalarö är lots- och tullsamhället som sedan blev badortsidyll"; "snirkliga gator, gränder och villor med snickarglädje i schweizisk anda"; Strindberg kallade det "porten till paradiset"
+      'Dalarö är lots- och tullsamhället som sedan blev badortsidyll. Här möts snirkliga gator och gränder och villor med snickarglädje i schweizisk anda. August Strindberg kallade platsen "porten till paradiset".',
+      // KÄLLA: sfv.se/vara-fastigheter/sverige/stockholms-lan/oevrigt/dalaro-tullhus — 1636 räknas som grundläggningsår för samhället Dalarö; "I samband med att systemet avskaffades 1928 drogs även tullstationen in"
+      'År 1636 blev Dalarö inloppsstation för Stockholm, och 1636 räknas som grundläggningsår för samhället. Tullstationen drogs in när systemet avskaffades 1928.',
+      // KÄLLA: sfv.se/vara-fastigheter/sverige/stockholms-lan/oevrigt/dalaro-tullhus — uppfört "under åren 1787–88" efter Erik Palmstedts ritningar; "ett av en handfull tullhus som är statligt byggnadsminne"; Haninge kommun använder det som turistbyrå och skärgårdsmuseum
+      'Dalarö tullhus uppfördes 1787–88 efter Erik Palmstedts ritningar och är ett av en handfull tullhus som är statligt byggnadsminne. Haninge kommun använder byggnaden som turistbyrå och skärgårdsmuseum.',
+      // KÄLLA: sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/dalaro-skans — "man beslöt 1656 att på Stockskäret anlägga en skans"; "1683 ritade generalkvartermästaren Erik Dahlbergh ett förslag"; "Först 1698 påbörjades arbeten ... ända till 1724 innan skansen var försvarsduglig"; "1854 upphörde den att räknas till rikets fasta försvar"
+      'Dalarö skans går tillbaka till 1656, då man beslöt att på Stockskäret anlägga en skans. 1683 ritade generalkvartermästaren Erik Dahlbergh ett förslag till förbättring och förstärkning, men först 1698 påbörjades arbetena, och det dröjde till 1724 innan skansen var försvarsduglig. 1854 upphörde den att räknas till rikets fasta försvar. Skansen är statligt byggnadsminne.',
+      // KÄLLA: haninge.se/.../dalaro/ — "Dalarö når du enkelt med bil eller buss från Haninge och Stockholm"; orten är "en populär utgångspunkt för att upptäcka Haninges öar"
+      'Dalarö når man enkelt med bil eller buss från Haninge och Stockholm. Det gör orten ovanlig bland skärgårdsmålen — man behöver ingen båt för att komma hit — och den fungerar som utgångspunkt för att upptäcka Haninges öar.',
+      // KÄLLA: haninge.se/.../dalaro/ — bada "på olika badplatser (till exempel Schweizerbadet)"; "paddla kajak, segla, kitesurfning och SUP-bräda"; "dyka vid Dalarös unika skeppsvraksområde"
+      'Det finns flera badplatser, till exempel Schweizerbadet. Runt Dalarö går det att paddla kajak, segla, kitesurfa och paddla SUP, och utanför orten ligger ett skeppsvraksområde som går att dyka vid.',
+      // KÄLLA: haninge.se/.../dalaro/ — "naturhamnar och gästhamn för fritidsbåtar"; "små butiker, bageri och museum att besöka"; "pittoreska caféer och restauranger"
+      'I Dalarö finns naturhamnar och gästhamn för fritidsbåtar, små butiker, bageri och museum, och kaféer och restauranger.',
+      'Kajen är stilla på morgonen och livligare när båtarna kommer in på eftermiddagen. Husen ligger tätt mot vattnet och gatorna är smala nog att man går långsamt av sig själv.',
     ],
     facts: {
       // KÄLLA: SL buss 869 Slakthuset(Globen)–Dalarö ~47 min; med t-baneanslutning ~60 min. Tidigare '90 min' överskattade snabbaste vägen.
@@ -1369,9 +1370,12 @@ export const ISLANDS: Island[] = [
       { name: 'Dalarö Bageri', type: 'Bageri', desc: 'Morgonkaffet och nybakade bullar.' }, // KÄLLA: dalaro.se, branschsidan "Fika, äta, bo på Dalarö" och Dalarö Guiden 2025 (Odinsvägen 15)
     ],
     tips: [
-      'Dalarö Skans är ett underskattat besök — lägg 1 timme och du lär dig södra skärgårdens historia.',
-      'Parkera vid hamnen tidigt på sommaren — det tar slut snabbt.',
-      'Ta pendelbåten vidare till Utö om du vill kombinera.',
+      // KÄLLA: sfv.se/.../dalaro-skans — skansen anlades från 1656 och är statligt byggnadsminne
+      'Dalarö skans går tillbaka till 1656 och är statligt byggnadsminne.',
+      // KÄLLA: haninge.se/.../dalaro/ — "dyka vid Dalarös unika skeppsvraksområde"
+      'Skeppsvraksområdet utanför Dalarö går att dyka vid.',
+      // KÄLLA: haninge.se/.../dalaro/ — "en populär utgångspunkt för att upptäcka Haninges öar"
+      'Dalarö är en utgångspunkt för att ta sig vidare till Haninges öar.',
     ],
     related: ['uto', 'nattaro', 'orno'],
     tags: ['historia', 'hamn', 'utgångspunkt', 'södern', 'fortet'],
@@ -1413,31 +1417,21 @@ export const ISLANDS: Island[] = [
     region: 'norra',
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
-    tagline: 'Norra skärgårdens yttersta förpost — orört, vidsträckt och riktigt långt bort.',
+    tagline: 'Yttersta Roslagen — båk från 1768 och naturreservat mot öppet hav.',
     description: [
-      'Arholma är nästan längst norrut man kan komma i Stockholms skärgård. Dit åker man med en intention. Man är inte på väg förbi. Ön är vild, öppen och vidsträckt med starka vindar och havsutsikt som tar andan ur en.',
-      'Arholma sjömack och krog är samlingsplatsen för seglare på väg norrut eller sydöst. Ön är en klassisk stopplats på Roslagsbåtarnas linjer och har haft fast befolkning sedan urminnes tider.',
-      'Naturen är extrem på ett positivt sätt: klippor som möter öppet hav, ingen annan ö att skymma vyn österut. Det är norra skärgårdens Landsort.',
-      'Resan dit är en del av upplevelsen. Den vanliga vägen norrut går med buss till Simpnäs och sedan en kort färja över till Arholma — det går ingen Waxholmsbåt direkt från Norrtälje. När man väl kliver av vid Arholmas brygga är man mentalt borta från vardagen på ett sätt som kortare öresor sällan ger.', // KÄLLA: se facts.travel_time (ResRobot 2026-08-05); blidosundsbolaget.se/norra-batlinjen (Norrtälje–Arholma är en annan operatörs säsongslinje, ej Waxholmsbolaget)
-      'Fyren på öns norra udde är ett av norra skärgårdens mest fotogena motiv. Den gamla lotsstationen bredvid är välbevarad och vittnar om en tid när Arholma var ett viktigt navigationsmärke för fartyg på väg in mot Stockholm. Klipporna runt fyren är flacka och lätta att nå, en naturlig plats att sitta och se fartyg gå förbi mot horisonten.',
-      'Arholma är en seglarö i grunden. Ön har gästhamnar dels vid Arholma Handel på västsidan, dels vid Österhamn/Ahlmansviken på sydöstsidan, med bränsle och viss service. Värdshuset och sjömacken är samlingspunkterna. Det är inte ovanligt att träffa seglare som rest norrut ända från Gotland eller Åland och väljer just Arholma som sista stopp innan de vänder mot Stockholm.', // KÄLLA: gasthamnsguide.se (Arholma Gästhamn; Arholma Gästhamn - Österhamn), svenskagasthamnar.se (Arholma - Ahlmansviken; Arholma - Österhamn)
-      'Det är inte för alla, och det är precis vad som gör det rätt för dem det är för. Väljer man Arholma vet man att man vill ha det vilda, det avlägsna och det äkta. Den övertygelsen belönas.',
-      'Arholma intar ett extremläge i Stockholms skärgård, långt norrut, och sitter vid gränsen där skärgården övergår till öppet hav. Det läget definierar allt: klipporna är lägre, vegetationen glesare, vinden starkare och horisonten vidare än någonstans i de mer skyddade delarna av systemet.',
-      'Resan till Arholma är lång oavsett väg: med buss och färja via Simpnäs tar det omkring 1 tim 36 min från Norrtälje, medan sommarens utflyktsbåt "Norra båtlinjen" tar cirka 2 tim 15 min från Norrtälje hamn. Ju längre norrut resan går, desto mer klippigt och glesbefolkat blir landskapet. När Arholma dyker upp har landskapets karaktär förändrats fullständigt.', // KÄLLA: se facts.travel_time (ResRobot 2026-08-05); blidosundsbolaget.se/norra-batlinjen (avgång Norrtälje 09:30, ankomst Arholma 11:45, drivs av Blidösundsbolaget, ej Waxholmsbolaget)
-      'Arholma fyr och den äldre båken är historiska sjömärken i den norra skärgården som väglett sjötrafiken genom kustsnittet under lång tid. Kombinationen av historisk funktion och dramatisk havsvy gör dem till några av öns mest fotograferade platser.', // KÄLLA: en.wikipedia.org/wiki/Arholma (fyren/båken beskrivs som konstgalleri sommartid, inget om gästboende hittat)
-      'Landskapet på Arholma skiljer sig från vad de flesta besökare förväntar sig av Stockholms skärgård. Trädlinjen är låg, granitklipporna mer avrundade och urholkade, och den öppna havskänslan är mycket mer påtaglig än på öar i inner- eller mellansk ärgården. Att promenera runt öns periferi för besökare från skyddade östra vikar till helt exponerade västpunkter där Östersjön sträcker sig ohindrat till horisonten.',
-      'Fisket är genuint produktivt runt Arholma. Det yttre läget och blandningen av vatten från öppet hav och skärgårdssystem skapar goda förhållanden för havsöring, torsk och makrill vid olika tider på året. Lokala fiskebåtar är fortfarande verksamma från ön, och fisketraditionen här har en kontinuitet sällan funnen i mer turistpräglade destinationer.',
-      'Den permanenta gemenskapen på Arholma är liten, ett fåtal tiotal boende året runt, och ön har känslan av en plats som bebotts och brukats under lång tid. Gamla båtskjul, närtorkningsstationer och den praktiska arkitekturen hos ett fiskesamhälle sitter sida vid sida med de få sommarverksamheterna. Denna lagerning av arbetshistoria och nutida användning ger Arholma en historisk textur som rent säsongsbetonade gemenskaper saknar.',
-      'Arholma passar en specifik typ av besökare: en som specifikt vill ha ett avlägset, exponerat och genuint ytterskärgårdsintryck, som är bekväm med begränsade tjänster och som är beredd på en lång resa för att komma dit. Dagsutflykter är teoretiskt möjliga men ger lite tid. En övernattning gör ön rättvisa.', // KÄLLA: se facts.travel_time (ResRobot 2026-08-05) — faktisk restid 1 tim 36 min, ej fyra timmar
-      'Det kommersiella utbudet på Arholma är minimalt. Ett litet kafé eller restaurant är öppet under sommaren och fyrgästhuset erbjuder boende. Utöver detta tillgodoser ön inte besökare med höga förväntningar. Proviant bör tas med från Stockholm eller tas på en av de större mellanöarna under båtresan.',
-      'Det norra läget ger Arholma specifika säsongskvaliteter. I början av sommaren är midnattssolseffekten mer uttalad här än i den södra skärgården: kvällarna är ljusare längre och himlen håller färg långt efter klockan 23. På hösten når stormarna ön med full kraft från öppet hav, och ön är som mest dramatisk men även mest krävande. Septemberfönstret, efter högsommaren men före höststormarna, räknas av många som den bästa besökstiden.',
-      'Arholma fungerar också som inkörsport till den nordligaste delen av Roslagskusten. Båtförbindelser härifrån kan nå öar längre norrut som inte är direkt tillgängliga från Stockholm. För dem som bygger mer ambitiösa skärgårdsitinerarium är Arholma mindre ett slutmål och mer en vändpunkt.',
-      'Arholma Värdshus är sommarens samlingspunkt på ön. Enkelt och platsanpassat, det erbjuder mat och dryck i en miljö som ser ut över hamnen. Det är inte stans finaste matkrog, men dess funktion som gemenskapens centrum för de som anländer till Arholma ger det en dignitet utöver menyn.',
-      'Arholma är en av de öar som kräver ett medvetet beslut att besöka. Det ger den en specifik grupp av besökare: folk som verkligen vill dit, som planerat resan och som sätter värde på vad avlägsenheten ger. Den selektionen märks i stämningen vid bryggan. Ingen hamnar på Arholma av misstag.',
-      'Ljuset vid Arholma på sensommarkvällar, det specifika ljuset från ett hav utan hinder mot horisonten, är en av de naturupplevelser som är svåra att förutse men enkla att minnas. Det är den typen av sak man berättar om när man söker förklara varför man reste fyra timmar för att vara på en klippa i Östersjön.',
-    
-    
-    
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/arholma-ido.html — reservatet i Norrtälje kommun; relativt flack terräng; "skärgård, marina miljöer och odlingslandskap"
+      'Arholma ligger längst ut i Roslagens skärgård i Norrtälje kommun, där skärgården övergår i öppet hav. Terrängen är relativt flack, vinden ofta märkbar och horisonten öppen österut.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/arholma-ido.html — "Arholma och öarna öster därom samt Idö, Idskär och några mindre öar"; bildat 1965; 1 866 ha varav 538 ha land; Natura 2000
+      'Naturreservatet Arholma-Idö bildades 1965 och omfattar Arholma och öarna öster därom samt Idö, Idskär och några mindre öar. Reservatet är 1 866 hektar, varav 538 hektar land, och ingår i Natura 2000. Landskapet är skärgård, marina miljöer och odlingslandskap, med åkrar, strandängar och betesmarker.',
+      // KÄLLA: sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/arholma-bak/ — "byggdes 1768 av hovjunkaren Pehr Ridderstad från Rådmansö"; "Den är en så kallad känningsbåk och har aldrig haft fyrljus"; "fungerade också som lotsutkik fram till 1875"; statligt byggnadsminne sedan 1935
+      'Arholma båk byggdes 1768 av hovjunkaren Pehr Ridderstad från Rådmansö. Det är en så kallad känningsbåk som aldrig haft fyrljus, och den fungerade också som lotsutkik fram till 1875. Sedan 1935 är båken statligt byggnadsminne.',
+      // KÄLLA: arholmahandel.se — "åretruntöppen butik"; "livsmedel, nybakat bröd och produkter från lokala producenter"; "bensin, diesel, gasol och kemtekniska varor"; ombud för apotek och Systembolaget, postservice, cykeluthyrning, stuguthyrning; bryggcafé sommartid
+      'Arholma Handel är en åretruntöppen butik med livsmedel, nybakat bröd och produkter från lokala producenter. Där finns också bensin, diesel och gasol, ombud för apotek och Systembolaget, postservice, cykeluthyrning och stuguthyrning. Sommartid driver de ett bryggcafé.',
+      // KÄLLA: arholmanord.se — "Vandrarhem, restaurang, guidade turer och aktiviteter i egen havsvik på Arholma i Stockholms norra skärgård"
+      'Arholma Nord erbjuder vandrarhem, restaurang, guidade turer och aktiviteter i en egen havsvik.',
+      // KÄLLA: blidosundsbolaget.se/norra-batlinjen/ — avgång från "Norrtälje hamn, längst bort på Norrtälje hamnpromenad, vid bron Havslänken"; destinationer Lidö och Arholma; fartyget M/S Rex; sommarsäsong
+      'På sommaren går Blidösundsbolagets Norra båtlinjen från Norrtälje hamn till Lidö och Arholma med M/S Rex. Resan hit tar tid oavsett väg, och det märks på stämningen vid bryggan — få hamnar på Arholma av en slump.',
+      'Hällarna är slipade och låga, och ljuset från ett hav utan hinder mot horisonten byter karaktär flera gånger under en kväll. Vädret känns tydligare här än längre in i skärgården.',
     ],
     facts: {
       // KÄLLA: uppmätt mot ResRobot 2026-08-05 — buss 636 Norrtälje busstation
@@ -1474,9 +1468,11 @@ export const ISLANDS: Island[] = [
       { name: 'Arholma Nord', type: 'Restaurang & vandrarhem', desc: 'Restaurang och bar vid egen vik, mat från eget rökeri, med tillhörande vandrarhem.' }, // KÄLLA: arholmanord.se; arholma.nu/mat-dryck/arholmanord; svenskaturistforeningen.se/boende/stf-arholma-nord
     ],
     tips: [
-      'Planera resan i förväg — Arholma är inget man bara åker till på en dag utan planering.',
-      'Vädret kan vara hårt — kolla prognosen noggrant om du tar ut en liten båt.',
-      'Arholma Handel är öns livlina — de säljer allt du behöver för segling och övernattning.',
+      'Planera resan i förväg — Arholma ligger långt ut och kräver mer än ett infall.',
+      // KÄLLA: SMHI (smhi.se) — kontrollera prognos före sjöresa
+      'Kolla väderprognosen noggrant om du tar ut en liten båt.',
+      // KÄLLA: arholmahandel.se — åretruntöppen butik med livsmedel, bensin, diesel, gasol och cykeluthyrning
+      'Arholma Handel har öppet året runt och säljer livsmedel, bensin, diesel och gasol, och hyr ut cyklar.',
     ],
     related: ['blido', 'furusund', 'norrora'],
     tags: ['ytterst', 'orört', 'norra', 'vilt', 'segling'],
@@ -1505,38 +1501,22 @@ export const ISLANDS: Island[] = [
     region: 'södra',
     regionLabel: 'Södra skärgården',
     emoji: '🌲',
-    tagline: 'Södra skärgårdens största skogsö — vandring, naturreservat och genuint ösliv.',
+    tagline: 'Södra skärgårdens största ö — bilfärja från Dalarö och skogsreservat i norr.',
     description: [
-      // KÄLLA: Länsstyrelsen Stockholm 2024-10-02 — nytt naturreservat "Norra skogen" på Ornö
-      // (Haninge kommun) bildat 2024. Skyddet UTÖKADES alltså; formuleringen "stora delar
-      // skyddas" är fortsatt korrekt. Kontrollerad 2026-08-21.
-      'Ornö är en av Stockholms skärgårds största öar och en av de mest naturrika. Stora delar av ön skyddas som naturreservat med gammal skog, bäckar och ett rikt fågelliv. Befolkningen är liten men permanent, och ön har behållit sin lantliga karaktär.',
-      'Till skillnad från de mer turistifierade öarna i mellersta skärgården har Ornö ett lite tystare tempo. Här åker man för naturens skull, inte för nöjeslivet. Vandringsstigarna är välmarkerade och tar dig genom skog och längs kustlinje.',
-      // KÄLLA: Haninge kommun, "Ornö" (haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/orno/) — Kyrkviken beskrivs som öns nav med museum, bibliotek, gästbryggor och cykeluthyrning; ingen krog omnämns där.
-      'Kyrkviken är öns naturliga samlingsplats, med museum, bibliotek, gästbryggor och cykeluthyrning. Från Ornö är Utö och Nåttarö enkla dagsutflykter med båt.',
-      'Ornö är en av södra skärgårdens bäst bevarade hemligheter. Bilfärjan från Dalarö tar trettio minuter och tar med sig bilar, cyklar och fotgängare, det gör ön tillgänglig på ett sätt som de yttre öarna aldrig kan bli. Ändå är det få som åker hit, vilket innebär att vandringsstigarna sällan är fullsatta och naturreservaten kan upplevas i relativ ensamhet.',
-      'Skogen på Ornö är gammal och tät på ett sätt man sällan ser i Stockholmstrakten. Gammelgranar och björkar bildar ett tak över de smala stigarna, och om man är tyst kan man höra korsnäbb och stjärtmes i kronorna. Reservatets bäckar är klara och kalla, och på rätt ställen kan man se öring stå still i strömmen.',
-      // KÄLLA: Svenska kyrkan i Haninge, "Ornö kyrka" (svenskakyrkan.se/haninge/orno-kyrka) — "Det första kapellet på ön uppfördes troligen redan vid 1300-talets slut. En större kyrka uppfördes 1652."
-      'Ornö kyrka uppfördes 1652 och är liten och enkel, men läget på en höjd med utsikt över fjärden gör den till en av skärgårdens mer stämningsfulla. Sommargudstjänsterna samlar en blandning av bofasta och sommargäster och har en genuinitet som de mer besökta öarnas service sällan matchar.',
-      'Väljer man Ornö väljer man att ta skärgården på allvar. Det är en ö för dem som förstår att det bästa ofta inte skyltas med turistbroschyrer.',
-      'Ornö är en stor ö i den södra Stockholmsskärgården. Stor är det operativa ordet: ön sträcker sig över en betydande yta, vilket ger den kapaciteten för varierat landskap, flera samhällen och en mångfald av upplevelser ovanlig hos mindre öar. Det finns inga vägbroar till Ornö, den enda tillgången är med båt, vilket bevarar öns separerade karaktär trots dess storlek.',
-      'Öns samhällen är fördelade över ön, med huvudhamnen typiskt tjänstgörande som primär ankomstpunkt. Ornö kyrka är en av de märkvärdiga historiska byggnaderna i den södra skärgården och upptar ett läge som kombinerar utsikt över vattnet med det typiska svenska landsortskyrkolandskapet.',
-      'Cykling är det föredragna sättet att utforska Ornös längd. Stigarna och de mindre vägarna är relativt plana i öns centrala delar, vilket gör cykling tillgängligt för de flesta besökare. En fullständig runda eller en nord-till-söd-rutt kan ta en hel dag med stopp. Cykeluthyrning finns vid huvudhamnen under sommaren.',
-      'Öns skogar är tätare och större än de på många mindre öar. Att promenera i Ornös inre känns mer som en fastlandsskogspromenad än typisk klippig-skärgårds-natur: träden är högre, undervegetationen rikare och inslutningskänslan mer fullständig. Den skogkaraktären kombineras med kustnära avsnitt för en varierad landskapsupplevelse inom en ö.',
-      'Ornö är mindre besökt än grannöarna Utö eller de centrala skärgårdsöarna, vilket ger det en lugnare atmosfär under högsäsong. Turistinfrastrukturen är mer blygsam, färre restauranger, färre kommersiella attraktioner, men naturkvaliteten är lika hög. Besökare som specifikt söker stillhet och äkta yttre-södra skärgårdskaraktär finner Ornö ett av de bättre valen.',
-      'Vattnet runt Ornös södra och östra kuster är det renare, mer öppna Östersjö-påverkade vattnet från ytterskärgården. Bad från klipphällar är bra på flera ställen runt ön. Vattentemperaturen i juli och tidigt augusti når det område där bad är bekvämt för de flesta.',
-      'Fisket runt Ornö är produktivt. Öns läge i den södra skärgården, kombinerat med djupet och kvaliteten på det omgivande vattnet, gör det bra för havsöring och abborre. Fisketraditionen här har historiskt djup, samhällena på Ornö och de omgivande öarna var fiskesamhällen i sekler innan turismen ankom.',
-      // KÄLLA: ornosjotrafik.se — huvudvägen till Ornö är bilfärjan Dalarö–Hässelmara. Ingen direkt Waxholmsbolagslinje från centrala Stockholm till Ornö kunde beläggas (waxholmsbolaget.se kräver JavaScript, gick ej att verifiera).
-      'Från Stockholm tar man sig till Ornö via buss och bilfärja från Dalarö, eller sommartid med båt från Nynäshamn. Dagsutflykter är möjliga men knappa. Öns storlek innebär att se en meningsfull del av den kräver det mesta av en dag.',
-      'Den permanenta befolkningen ger Ornö en helårskaraktär bortom vad rent säsongsbetonade öar kan erbjuda. Ett litet lokalt samhälle upprätthåller öns infrastruktur under vintern. Vissa grundläggande tjänster är i drift under hela året, men den fulla sommarsäsongsöppningen är koncentrerad mellan juni och september.',
-      'Ornö belönar besökare som anländer utan specifika förväntningar och helt enkelt utforskar. Kombinationen av skog, kust, historisk kyrka, samhällsliv och genuint ytterskärgårdsläge skapar en hel dags innehåll för dem som vandrar eller cyklar systematiskt. Det är inte en ändamålsinriktad ö utan en varierad, vilket är dess specifika styrka.',
-      'Brevikshamnens läge på Ornös södra sida ger en annan ingång till ön än huvudhamnen och ett annorlunda perspektiv på öns landskap. Besökare som cirkulerar runt ön under sin vistelse och kombinerar de två hamnarna som orienteingspunkter får en bättre förståelse för öns geografiska skala.',
-      'Ornö har spelat en roll som inspirationsmiljö för svenska konstnärer och fotografer under det tidiga 1900-talet, en tradition som hänger ihop med den specifika ljuskvaliteten i den södra skärgården och öns relativa avskildhet. Den historien är inte lika känd som öns naturgeografi men ger ytterligare ett skäl att ta ön seriöst som besöksmål.',
-      'Det södra skärgårdsljuset på Ornö under hösten är något seglare och friluftsfolk specifikt talar om. Vinkeln och kvaliteten på oktoberljuset när det träffar havsytorna runt öns södra uddar ger en visuell upplevelse som sommargästerna sällan ser.',
-      'Ornö är ett av de tydligaste exemplen på att skärgårdens mest givande upplevelser inte alltid finns på de mest kända öarna. Att hitta Ornö, planera resan dit och ta sig ut är en aktiv handling som belönas med en ö som ger tillbaka mer än förväntat.',
-    
-    
-    
+      // KÄLLA: haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/orno/ — Ornö beskrivs som "södra skärgårdens största ö"
+      'Ornö är södra skärgårdens största ö. Storleken märks: skog, sjöar och kust ryms inom samma ö, och avstånden är långa nog att en dag går åt om man vill se en meningsfull del av den.',
+      // KÄLLA: ornosjotrafik.se — "Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö"; "Överfarten tar ca 30 minuter"; alla fordon måste bokas
+      'Bilfärjan drivs av Ornö Sjötrafik och går mellan Hotellbryggan på Dalarö och Hässelmara brygga på Ornö. Överfarten tar ungefär 30 minuter, och fordon måste bokas i förväg.',
+      // KÄLLA: haninge.se/.../orno/ — Kyrkviken är "Ornös nav" med "museum, bibliotek, gästbryggor och cykeluthyrning"; utställning i Sockenstugan; cykeluthyrning även i Brunnsviken
+      'Kyrkviken är Ornös nav, med museum, bibliotek, gästbryggor och cykeluthyrning. Hit hör också utställningen i Sockenstugan. Cykel går att hyra både i Kyrkviken och i Brunnsviken.',
+      // KÄLLA: svenskakyrkan.se/haninge/orno-kyrka — "Det första kapellet på ön uppfördes troligen redan vid 1300-talets slut"; "En större kyrka uppfördes 1652" i "för dåtiden modern stil"; "en vacker träkyrka med spännande historia"
+      'Ornö kyrka är en träkyrka som uppfördes 1652, i för dåtiden modern stil. Det första kapellet på ön uppfördes troligen redan vid 1300-talets slut.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/norra-skogen.html — reservatet på norra Ornö i Haninge kommun, skyddat 2024, 389 ha varav 360 ha land; "långsamväxande hällmarkstallskog, kala bergspartier, grövre barrblandskog, sumpskogar och våtmarkspartier"; "Stor del av Nybysjön med god vattenkvalitet ligger i reservatet"
+      'Naturreservatet Norra skogen på norra Ornö skyddades 2024 och omfattar 389 hektar, varav 360 hektar land. Här finns långsamväxande hällmarkstallskog, kala bergspartier, grövre barrblandskog, sumpskogar och våtmarkspartier. En stor del av Nybysjön, som är omkring 31 hektar och rymmer ett tiotal småöar, ligger inom reservatet.',
+      'Att gå i Ornös inre liknar mer en fastlandsskog än den klippiga skärgård många väntar sig. Träden står tätt, undervegetationen är rik och ljudet av vatten försvinner en stund.',
+      // KÄLLA: haninge.se/.../orno/ — "cykling, vandring" anges som aktiviteter; cykeluthyrning i Kyrkviken och Brunnsviken
+      'Cykel är ett rimligt sätt att ta sig runt på ön, och vandring hör till det kommunen lyfter fram.',
+      'Ornö skyltas inte högt. Den som ger ön en hel dag får utrymme att röra sig utan att ha bråttom.',
     ],
     facts: {
       travel_time: '~30 min med bilfärja från Dalarö',
@@ -1566,9 +1546,12 @@ export const ISLANDS: Island[] = [
     restaurants: [
     ],
     tips: [
-      'Vandringen i naturreservatet i öns centrala del är bättre än man förväntar sig.',
-      'Ta med matkasse — utbudet av restauranger är begränsat.',
-      'Kombination med Utö fungerar bra — ta dagen på Ornö och kvällen på Utö.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/norra-skogen.html — reservatet ligger på norra Ornö och skyddades 2024
+      'Naturreservatet Norra skogen ligger på norra Ornö och skyddades 2024.',
+      // KÄLLA: ornosjotrafik.se — alla fordon måste bokas
+      'Boka fordonsplats på bilfärjan i förväg.',
+      // KÄLLA: haninge.se/.../orno/ — cykeluthyrning i Kyrkviken och Brunnsviken
+      'Cykeluthyrning finns i Kyrkviken och i Brunnsviken.',
     ],
     related: ['uto', 'nattaro', 'dalaro'],
     tags: ['natur', 'vandring', 'skog', 'fåglar', 'lugnt'],
@@ -1599,33 +1582,27 @@ export const ISLANDS: Island[] = [
     region: 'södra',
     regionLabel: 'Södra skärgården',
     emoji: '🪨',
-    tagline: 'Skärgårdens sydligaste punkt — fyr, klippor och havet på alla sidor.',
+    tagline: 'Fyrplats längst söderut i Stockholms skärgård — klippor och öppet hav.',
     description: [
-      'Landsort är Stockholms skärgårds sydligaste bebodda utpost och en av de mest dramatiska öarna. Öja (öns officiella namn) och Landsort längst söderut är omgivna av öppet hav på tre sidor, utsikterna mot Östersjön är oöverträffade.',
-      'Fyren på Landsort är en av de äldsta i Sverige och är det naturliga målet för alla som besöker ön. Saltboden säljer skafferivaror och mat för de som ankrar. Det är en plats som belönar den som tar sig dit.',
-      'Landsort är inte för den hastvärksresenären. Det är en destination i sig, man planerar en tur hit, inte förbi. Vattnet är öppet och vindarna kan vara kraftiga.',
-      // KÄLLA: Sjöfartsverket (stentorn 1686, äldsta svenskbyggda fyrplatsen) + fyr.org (nuvarande form 1870: överdel i järn + linsapparat) (2026-08-23)
-      'Fyren på Landsort är Sveriges äldsta svenskbyggda fyrplats och klassificeras som byggnadsminne. Stentornet restes i slutet av 1600-talet och fick sin nuvarande form 1870, då överdelen ersattes med en järnkonstruktion och spegelapparaten byttes mot lins. Lotsbostäderna runt fyren är välbevarade och bildar en liten by som levde av att pilota fartyg säkert in mot Stockholm. Det är enkelt att spendera en hel förmiddag i det området utan att tröttna.',
-      // KÄLLA: sv.wikipedia.org, "Landsort" ("600 meter som bredast och drygt 4 kilometer lång") (2026-09-03)
-      'Ön är smal, ca 600 meter bred på bredaste stället, men klipporna på östra sidan öppnar sig mot ett Östersjöhav utan land i sikte. På klara dagar ser man fartyg på väg mot Finland och de baltiska staterna. Det är ett av de få ställen längs Stockholms kust där man verkligen förstår att Sverige är ett sjöfartsland.',
-      'Landsort är en av de klassiska destinationerna för de seglare som kallar sig seriösa. Man har inte gjort Stockholms skärgård förrän man ankar vid Öja på en sommarkväll med solen i väst och ingenting utanför relingen. Det är en rituell resa som folk gör om och om igen.',
-      'För den som inte seglar krävs lite mer planering, buss och skärgårdsbåt, men det är görbart och lönar sig. Saltboden vid hamnen säljer mat och dryck och har öppet under besökssäsongen. Ta med mer proviant än du tror att du behöver.',
-      'Landsort är egentligen inte en ö i strikt bemärkelse utan det namn som används för samhället på Öja, en lång smal ö vid den sydligaste bebodda punkten i Stockholms skärgård. Läget är geografiskt specifikt och historiskt betydelsefullt: fartyg som passerar in mot Stockholm eller ut i Östersjön har använt Landsort som navigeringsreferens i flera hundra år.',
-      'Fågelskådningspotentialen vid Landsort är exceptionell. Den sydligaste punkten av skärgården fungerar som ett tratt-läge för fåglar som migrerar längs den svenska kusten. På hösten, i synnerhet september och oktober, kan koncentrationen av migrerande rovfåglar, vadare och tättingar vara mycket hög. Erfarna fågelskådare reser specifikt till Landsort för höstflyttningen.',
-      'Vattnet runt Landsort förändrar karaktär jämfört med resten av Stockholms skärgård. Det är djupare, strömmarna starkare och den marina miljön mer besläktad med öppna Östersjön än med den skyddade innerskärgården. Det gör fisket produktivt för arter som inte förekommer i inre skärgårdsvatten.',
-      'Ön har ett litet permanent samhälle, några tiotal boende under hela året, i ett kluster av hus nära fyren och den lilla hamnen. Gemenskapens skala och det avlägsna läget ger ön en känsla som är klart annorlunda än mer välbesökta destinationer. Det kommersiella utbudet är begränsat och besökare bör vara förberedda på en självförsörjande upplevelse.',
-      // KÄLLA: landsortsvandrarhem.se + Waxholmsbolaget — båten går från Ankarudden på Torö (buss 852 från Nynäshamn), överfart ca 30 min, trafik året runt (2026-08-23)
-      'Att ta sig till Landsort kräver planering. Den primära förbindelsen är Waxholmsbolagets båt från Ankarudden längst ut på Torö — dit tar du dig med buss 852 från Nynäshamn, som i sin tur nås med pendeltåg från Stockholm. Själva överfarten tar bara runt en halvtimme, men avgångarna är få, så kontrollera tidtabellen i förväg.',
-      'Vattnet runt Landsort är bra för dykning. Kombinationen av klart vatten, djup och de relativt öppna havsförhållandena skapar intressanta undervattenmiljöer med klippväggar och varierat havsliv. Dykarorganisationer anordnar ibland turer specifikt till den här platsen.',
-      'Landsort passar besökare med specifika intressen: fågelskådning, maritim historia, fiske, dykning eller helt enkelt upplevelsen av att befinna sig vid en genuint avlägsen och historiskt betydelsefull punkt. Det är inte en familjestrands-destination eller en restaurang-hoppande ö, men inom sin specifika nisch levererar det upplevelser otillgängliga på annat håll i skärgårdssystemet.',
-      'Det södra läget innebär att havsvyerna här skiljer sig från alla andra punkter i skärgården. Att stå vid sydspetsen är att se öppet vatten i tre riktningar utan land synligt. På en klar dag har ljuset en specifik kvalitet, bredare och hårdare och med mer saltkant, som är den visuella motsvararigheten till ytterhavsbranten. Det är vad ytterskärgårdsbesökare i grunden söker, och Landsort levererar det så fullt som någon punkt i systemet.',
-      'Lotshistorien är ett återkommande tema i Stockholms ytterskärgård, men Landsort är en av de platser där den historien är som mest konkret. Lotsar stationerade vid Landsort var ansvariga för en av de viktigaste navigationspunkterna i hela Östersjöinloppet. Det ansvaret formade samhällets karaktär och arkitektur på ett sätt som fortfarande märks i bebyggelsestrukturen.',
-      'Båtförbindelserna till Landsort koordineras bäst via Waxholmsbolagets tidtabell för Ankarudden–Landsort. Att planera en tur dit kräver en halvtimmes research men resulterar typiskt i en resplan som fungerar utan problem. Det är den typen av planering som öns karaktär faktiskt belönar.',
-      'Landsorts fyrs historia som aktiv navigeringspunkt i Östersjötrafiken ger platsen en dimension som går utöver vanlig skärgårdsturism. Att övernatta i fyren är att bo i ett verktyg som sjömän litat på under sekler. Det är en av de upplevelser som har en historisk tyngd som inte går att fejka.',
-      'Kombinationen av biologisk mångfald och historisk närvaro gör Landsort till ett av de mer sammansatta besöksmålen i systemet. En dag här kan innehålla fågelskådning på morgonen, en promenad förbi historiska militärinstallationer på förmiddagen och ett besök i fyren på eftermiddagen. Det är täthet av innehåll ovanlig för en ö av denna storlek.',
-    
-    
-    
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/oja-landsort.html — "omfattar den kända ön Öja med fyrplatsen Landsort"; naturreservat sedan 1985, 570 ha varav 178 ha land (2026-09-14)
+      // KÄLLA: waxholmsbolaget.se/reseplanering/resmal/landsort — "Landsort är Waxholmsbolagets sydligaste destination. Här hittar du vacker natur, badklippor och Sveriges allra äldsta fyr." (2026-09-14)
+      'Landsort är namnet på fyrplatsen och samhället längst söderut på ön Öja, Waxholmsbolagets sydligaste destination. Ön och vattnen runt den ingår i naturreservatet Öja-Landsort, som omfattar 570 hektar varav 178 hektar är land. Klipporna är släta och slitna, och havet hörs överallt.',
+      // KÄLLA: sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/landsortoeja-stockholms-skargard — grunden lades på 1680-talet, fyren fick "sitt nuvarande utseende 1869-70", statligt byggnadsminne 1935, obemannad sedan 1963 (2026-09-14)
+      // KÄLLA: sjofartsverket.se/en/about-us/fyrar-och-kulturfastigheter/visningsfyrar/landsort--the-oldest-swedish-built-lighthouse/ — "the oldest Swedish-built lighthouse"; "Electrified in 1938"; "Automated and demanned in 1963" (2026-09-14)
+      'Fyren på Landsort är Sveriges äldsta svenskbyggda fyr. Grunden lades på 1680-talet och tornet fick sitt nuvarande utseende 1869–70. Fyren elektrifierades 1938, blev statligt byggnadsminne 1935 och är obemannad sedan 1963. Bebyggelsen omkring den hänger ihop till en liten by, och det går att gå omkring där en hel förmiddag utan att tröttna.',
+      // KÄLLA: sfv.se/.../landsortoeja-stockholms-skargard — lotsningen har "gamla anor och kan vara en av de äldsta i landet"; Gustav Vasa lär ha anlitat lotsen Anders Bertilsson på 1530-talet; de flesta yrkesverksamma var "lotsar, fyrtjänstemän, tullare och telegrafister" (2026-09-14)
+      'Lotsningen vid Landsort har gamla anor och kan vara en av de äldsta i landet — Gustav Vasa ska ha anlitat lotsen Anders Bertilsson här redan på 1530-talet. Under lång tid var de flesta yrkesverksamma på ön lotsar, fyrtjänstemän, tullare och telegrafister. Det präglar fortfarande hur husen står och vad de är byggda för.',
+      // KÄLLA: sfv.se/.../landsortoeja-stockholms-skargard — kustartilleribatteri anlades på 1930-talet; ERSTA-batteriet byggdes 1974–78 som "fyravåningshus av stål inuti berget" och blev statligt byggnadsminne 2018 (2026-09-14)
+      'Militärhistorien ligger kvar i berget. Ett kustartilleribatteri anlades på 1930-talet, och 1974–78 byggdes ERSTA-batteriet som ett fyravåningshus av stål inne i klippan, dimensionerat mot kärnvapenangrepp. Anläggningen är statligt byggnadsminne sedan 2018.',
+      // KÄLLA: lansstyrelsen.se/.../oja-landsort.html — Öja är "en av länets förnämsta sträckfågellokaler", med starkt sträck både vår och höst (2026-09-14)
+      // KÄLLA: landsort-birds.se/pages/skada-pa-landsort.php — över 300 fågelarter noterade; sibiriska felflyttare som tajgasångare och kungsfågelsångare; "Nuförtiden besöks ön nästan dagligen av fågelskådare" (2026-09-14)
+      'Öja är en av länets förnämsta sträckfågellokaler, med starkt sträck både vår och höst. Fler än 300 arter har noterats, inklusive sibiriska felflyttare som tajgasångare och kungsfågelsångare, och ön besöks numera nästan dagligen av fågelskådare.',
+      // KÄLLA: sfv.se/.../landsortoeja-stockholms-skargard — omkring 30 personer bor på ön året runt, betydligt fler på sommaren (2026-09-14)
+      'Ungefär trettio personer bor på ön året runt, betydligt fler under sommaren. Skalan märks: det kommersiella utbudet är litet och besökare bör räkna med att i hög grad klara sig själva.',
+      // KÄLLA: landsort.com/saltboden/ — "Här kan du handla livsmedel, ta en kopp kaffe med dopp, äta en god bit mat eller dricka något svalkande från vår mysiga pub"; ligger i den södra delen av Landsort, mitt i byn (2026-09-14)
+      'Saltboden ligger mitt i byn i den södra delen av Landsort och säljer livsmedel, kaffe och mat, och har pub. Det är i praktiken öns service, så ta med mer proviant än du tror att du behöver.',
+      // KÄLLA: lansstyrelsen.se/.../oja-landsort.html — reservatet ligger ca 2 km söder om Torö; ta SL-buss till Ankarudden på Torö och därifrån "reguljär turtrafik med Waxholmsbolagets fartyg till Öja-Landsort" (2026-09-14)
+      'Att ta sig hit kräver planering. Reservatet ligger ungefär två kilometer söder om Torö: du åker SL-buss till Ankarudden på Torö och därifrån går Waxholmsbolagets reguljära turtrafik till Öja-Landsort. Kontrollera tidtabellen i förväg.',
     ],
     facts: {
       // KÄLLA: uppmätt mot ResRobot 2026-08-05 — färja 29-1 Ankarudden 07:20 →
@@ -1656,9 +1633,11 @@ export const ISLANDS: Island[] = [
     restaurants: [
     ],
     tips: [
-      'Kolla väderprognosen NOGGRANT — Landsort är exponerat för öppet hav.',
-      'Fågelstationen vid fyren går att besöka under sträcktider (april–maj och aug–okt).',
-      'Ta med mat — Saltboden stänger tidigt och variationen är begränsad.',
+      'Kolla väderprognosen noggrant — Landsort är en exponerad ytterskärgårdsö.',
+      // KÄLLA: landsort-birds.se/pages/foreningen.php + /pages/skada-pa-landsort.php — fågelstationen bedriver ringmärkning och har guidningar och program för besökare (2026-09-14)
+      'Landsorts fågelstation bedriver ringmärkning och tar emot besökare — se fågelstationens egen sida för guidningar och aktuella program.',
+      // KÄLLA: landsort.com/saltboden/ — Saltboden är öns livsmedels- och matställe (2026-09-14)
+      'Utbudet på ön är begränsat — kontrollera Saltbodens aktuella öppettider innan du åker, och ta med mat.',
     ],
     related: ['uto', 'dalaro', 'nattaro'],
     tags: ['fyr', 'ytterst', 'dramatiskt', 'hav', 'fåglar'],
@@ -1687,14 +1666,15 @@ export const ISLANDS: Island[] = [
     region: 'norra',
     regionLabel: 'Norra skärgården',
     emoji: '🌲',
-    tagline: 'Klassisk seglingspassage i norra skärgården med värdshus och sjömack.',
+    tagline: 'Klassisk passage i norra skärgården med värdshus och gästhamn.',
     description: [
-      'Furusund är en klassisk seglingspassage i norra skärgården, känd för smalt sund med stark strömning och rik kulturhistoria. Sundet är nästan obligatoriskt för alla som seglar norrut längs Furusundsleden.',
-      'Furusund Värdshus (idag Hotel Furusund) är det naturliga stoppet, byggnaden var ursprungligen tullhus från 1800-talet och blev värdshus efter att den dåvarande restaurangbyggnaden brann 1950. August Strindberg kom till Furusund sommaren 1899 och vistades här återkommande somrar under sitt äktenskap med Harriet Bosse (1901–1904), och här arbetade han bland annat med dramat Erik XIV. I diktsamlingen "Fagervik och Skamsund" (1902) blev Furusund "Fagervik" och Köpmanholm på Yxlan "Skamsund".', // KÄLLA: hotellfurusund.se/historia/ ("1811 bygger man så en tullstation... Det hus man uppför är just det hus som vi i dag kallar Furusunds värdshus"; "restaurangen brann 1950. Dock, blev det starten för värdshusverksamheten i det gamla tullhuset"; "kom till Furusund sommaren 1899"; "dramat Erik XIV"; "dikt Fagervik och Skamsund (1902)"); sv.wikipedia.org/wiki/August_Strindberg (äktenskap med Harriet Bosse "varade till 1904"; "novellsamlingen Fagervik och Skamsund från 1902")
-      'Furusund passar perfekt för seglare på väg norrut, eller för någon som söker en blandning av seglingsäventyr och historisk kultur i norra skärgården.',
-      'Sundet vid Furusund är smalt och strömmen stark, en av de mer krävande passagerna i norra skärgården för den som seglar. Det märks i stämningen: seglare som ankrat har klarat något, och det skapar en kamratskap vid Värdshuset och på bryggorna som är svår att hitta vid mer lättillgängliga destinationer.',
-      'Hotel Furusund, det gamla tullhuset från 1800-talet, är välbevarat och har en historia som berättar om en tid när Furusund var officiell in- och utfartsled för handelsfartygen till och från Stockholm. Byggnaden är vacker i sig och matsalen har ett äldre hantverk som inte renoverades bort. En bra destination även för den som inte seglar.',
-      'Furusund är också utgångspunkten för utflykt mot Blidö och de omgivande öarna i norra skärgården. Tar man sig hit med bil (och det är möjligt, till skillnad från många andra öar) öppnas en hel världsdel av norra skärgårdens öar och sund. Kajakuthyrning finns vid hamnen under sommarsäsongen.',
+      // KÄLLA: trafikverket.se/furusundsleden — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård", 600 meter, fyra minuters överfart, avgiftsfri (2026-09-14)
+      // KÄLLA: furusund.se/hamnen/ — "I vår gästhamn finns plats för upp till hundra båtar", med toaletter, duschar, bastu, el, vatten och tvätt (2026-09-14)
+      'Furusund ligger vid ett smalt sund i norra skärgården som länge varit en av farlederna in mot Stockholm. Vägfärjan Furusundsleden korsar sundet på 600 meter och fyra minuter, och i gästhamnen finns plats för upp till hundra båtar, med toaletter, duschar, bastu, el, vatten och tvätt. Bryggorna fylls på kvällarna och tömms tidigt på morgnarna.',
+      // KÄLLA: hotellfurusund.se/historia/ — "1811 bygger man så en tullstation med arrest på Furusund"; "den stora restaurangen brann 1950", vilket blev starten för värdshusverksamheten i det gamla tullhuset; juveleraren Christian Hammer utvecklade Furusund till badort efter 1882 (2026-09-14)
+      'Värdshuset har sin kärna i den tullstation med arrest som byggdes 1811. Efter 1882 utvecklade juveleraren Christian Hammer Furusund till badort, och när den stora restaurangbyggnaden brann 1950 flyttade värdshusverksamheten in i det gamla tullhuset — där den finns kvar. Huset är välbevarat och matsalen bär ett äldre hantverk.',
+      // KÄLLA: hotellfurusund.se/historia/ — "August Strindberg kom till Furusund sommaren 1899, hitlockad av sin syster och svåger"; "På Furusund kom Strindberg även att vistas med tid med Harriet Bosse i villan Isola Bella"; Strindbergs verk från 1902 kallade Furusund "Fagervik" och grannön Köpmanholm "Skamsund" (2026-09-14)
+      'August Strindberg kom till Furusund sommaren 1899, hitlockad av sin syster och svåger, och vistades senare här med Harriet Bosse i villan Isola Bella. I verket "Fagervik och Skamsund" (1902) blev Furusund "Fagervik" och grannön Köpmanholm "Skamsund".',
     ],
 
     facts: {
@@ -1731,14 +1711,15 @@ export const ISLANDS: Island[] = [
         { item: 'Middag, Hotell Furusund', price: '175–390 kr' }, // KÄLLA: hotellfurusund.se, kvällsmeny hösten 2026 (PDF): förrätt 175–195 kr, huvudrätt 225–390 kr
       ],
       tips: [
-        'Boka bord på Värdshuset i förväg — högsäsong är ofta fullbokat.',
+        'Boka bord på hotellets restaurang i förväg under högsäsong.',
         'Kom med bil — det är det snabbaste sättet att ta sig till Furusund. Alternativet är SL-buss via Norrtälje.', // KÄLLA: hotellfurusund.se/kontakt/ ("Här hittar du hur SL-bussarna går till och från Furusund")
-        'Strömmen i sundet gör att seglare ofta stannar kvällen — Värdshuset är bäst som middagsplats.',
+        'Strömmen i sundet gör att seglare ofta stannar över kvällen.',
       ],
     },
     tips: [
-      'Strömmen i Furusund kan vara stark — gå igenom med god marginal och håll noggrann uppsikt på trafik (smal led).',
-      'Värdshuset är bäst för middag — boka i förväg under högsäsong.',
+      // KÄLLA: trafikverket.se/furusundsleden — vägfärja mellan Furusund och Yxlan, 600 meter (2026-09-14)
+      'Vägfärjan Furusund–Yxlan korsar sundet — håll uppsikt på färjetrafiken när du passerar.',
+      'Boka bord på värdshuset i förväg under sommaren.',
     ],
     related: ['blido', 'arholma', 'norrora'],
     tags: ['segling', 'Strindberg', 'norra', 'passage', 'historia'],
@@ -1763,10 +1744,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌿',
     tagline: 'Lugn ö i norra skärgården med äkta landsbygdskänsla.',
     description: [
-      // KÄLLA: sv.wikipedia.org/wiki/Blidö ("färjeförbindelse från Furusund via trafikfärjelederna Furusundsleden och Blidöleden"; ingen färjeförbindelse till/från Vätö)
-      'Blidö är en av de större öarna i norra skärgården och ett populärt resmål för dem som söker lugn och naturupplevelse. Ön nås med bil och bilfärjor via Furusund och Yxlan, och erbjuder en blandning av permanentboende och sommargäster som skapar en levande men inte överbelastad miljö.',
-      'Naturmässigt är Blidö varierad med skog, öppna åkrar och en lång, kuperad kustlinje, med cykelvägar längs vägar och stränder.',
-      'Blidö passar perfekt som del av en längre norra skärgårdstur eller som destination för den som söker autentisk skärgård utan chaos. Många återvändande sommargäster hyr stugor årligt och bidrar till öns lugnare karaktär.'
+      // KÄLLA: trafikverket.se/furusundsleden — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård", 600 meter, fyra minuter, avgiftsfri (2026-09-14)
+      // KÄLLA: trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/ — färjeleden går "mellan Yxlan och Blidö i Stockholms skärgård", 530 meter, fyra minuter, "Resan med vägfärjan är avgiftsfri" (2026-09-14)
+      'Blidö nås med bil hela vägen, via två avgiftsfria vägfärjor: Furusundsleden mellan Furusund och Yxlan, 600 meter och fyra minuter, och därefter Blidöleden mellan Yxlan och Blidö, 530 meter och lika kort överfart. Det är en resa som slutar utan att man riktigt märker att man kommit fram.',
     ],
 
     facts: {
@@ -1792,8 +1772,6 @@ export const ISLANDS: Island[] = [
     restaurants: [
     ],
     tips: [
-      'Blidö passar bäst som del av en längre norra skärgårdstur — kombinera gärna med Arholma eller Räfsnäs.',
-      'Hyr cykel vid Blidö brygga för att utforska hela ön — vägarna är nästan bilfria och landskapet varierar från skog till kust.',
     ],
     related: ['furusund', 'arholma', 'norrora'],
     tags: ['lugnt', 'norra', 'bilfärja', 'lantligt'],
@@ -1817,16 +1795,15 @@ export const ISLANDS: Island[] = [
     emoji: '🌿',
     tagline: 'Bilfri naturreservatsö med kulturlandskap, krog och handelsbod.',
     description: [
-      // KÄLLA: Länsstyrelsen Stockholm, naturreservat Gällnö (lansstyrelsen.se) — reservatet finns sedan 1978 och skyddar "ett kulturpräglat, för regionen representativt skärgårdslandskap". Uppgift om lägerverksamhet/naturskolor hittades inte i primärkällor. Kontrollerad 2026-09-03.
-      'Gällnö är en bilfri ö i mellersta skärgården och naturreservat sedan 1978, med syfte att bevara det kulturpräglade skärgårdslandskapet med aktivt jordbruk och betesdjur.',
-      // KÄLLA: Länsstyrelsen Stockholm, naturreservat Gällnö — hagmarker med rik flora, lövskog (lind, ask, alm, ek) på Västerholmen. KÄLLA: gallno.se — på ön finns Gällnö krog (med café), Handelsboden, Vandrarhemmet och Hotell Frans August. Kontrollerad 2026-09-03.
-      'Landskapet på Gällnö växlar mellan skogspartier och öppna hagmarker som hävdas med betesdjur. På ön finns en sommaröppen krog med café, en handelsbod, ett vandrarhem och ett litet hotell, men ingen storskalig turistinfrastruktur.',
-      // KÄLLA: gallno.se ("Båten från Strömkajen eller Strandvägen tar mellan 1,5–2 timmar. Gällnö trafikeras av både Waxholmsbolaget och Strömma/Cinderella-båtarna."). Linjenummer kunde inte verifieras. Kontrollerad 2026-09-03.
-      'Ön nås med Waxholmsbolaget eller Strömma/Cinderellabåtarna från Strömkajen eller Strandvägen.',
-      'Gällnö är en av de öar i skärgården som inte försöker imponera. Ingen stor krog, inget spa, inga bryggbarer. Det finns en hamn, lite service och ett naturreservat som täcker merparten av ytan. Det är avsiktligt, och det är exakt vad Gällnö behöver vara.',
-      // KÄLLA: Länsstyrelsen Stockholm, naturreservat Gällnö — hagmarker med rik flora, lövskog med lind, ask, alm och ek på Västerholmen. Uppgifter om ljunghed och havsörnshäckning hittades inte i primärkällor. Kontrollerad 2026-09-03.
-      'Reservatets hagmarker har en rik flora, och på Västerholmen finns lövskog med bland annat lind, ask, alm och ek.',
-      'Gällnö fungerar utmärkt som ett dygn på vägen, ankra för natten, gå en vandring på morgonen och fortsätt mot Möja eller Sandhamn. Det är den typen av ö som man inte åker till som slutdestination men alltid minns som ett av resans bästa ögonblick.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/gallno.html — "Skyddat sedan: 1978, utvidgat 2017 och 2024"; syftet är att bevara ett skärgårdsområde "av stor betydelse för allmänhetens friluftsliv" med ett "skyddsvärt, kulturpräglat skärgårdslandskap"; "genuin skärgårdsmiljö med levande jordbruk" (2026-09-14)
+      // KÄLLA: gallno.se — ön är bilfri och nås med skärgårdsbåt (2026-09-14)
+      'Gällnö är en bilfri ö i mellersta skärgården och naturreservat sedan 1978, utvidgat 2017 och 2024. Syftet är att bevara ett skärgårdsområde av stor betydelse för friluftslivet, med ett skyddsvärt, kulturpräglat skärgårdslandskap och levande jordbruk.',
+      // KÄLLA: lansstyrelsen.se/.../gallno.html — "hagmarker med en artrik flora"; på Västerholmen "växer bland annat lind, ask, alm och ek", många gamla och grova med rikligt med död ved (2026-09-14)
+      'Reservatets hagmarker har en artrik flora, och på Västerholmen står lövskog med bland annat lind, ask, alm och ek — många av träden gamla och grova, med rikligt med död ved.',
+      // KÄLLA: gallno.se — på ön finns Gällnö krog ("Till vår sommaröppna krog kommer man för att äta en bit mat, sippa på ett glas vin"), Handelsboden, vandrarhem (STF) och Hotell Frans August (2026-09-14)
+      'På ön finns en sommaröppen krog, Handelsboden, ett vandrarhem och Hotell Frans August — men ingen storskalig turistinfrastruktur. Landskapet växlar mellan skogspartier och öppna hagmarker.',
+      // KÄLLA: waxholmsbolaget.se/reseplanering/resmal/gallno — Gällnö är ett av Waxholmsbolagets resmål med egen bryggsida (2026-09-14)
+      'Ön trafikeras av Waxholmsbolaget.',
     ],
 
     facts: {
@@ -1872,7 +1849,7 @@ export const ISLANDS: Island[] = [
     },
     // KÄLLA: gallno.se/mat-dryck/gallno-krog och /handelsboden — krogen serverar lagad mat och Handelsboden har brett sortiment, men öppettiderna varierar under säsong. Uppgifter om ljunghed och havsörn hittades inte i primärkällor och togs bort. Kontrollerad 2026-09-03.
     tips: [
-      'Öppettiderna för Gällnö krog och Handelsboden varierar kraftigt under säsongen — kontrollera aktuella tider innan besök.',
+      'Öppettiderna för krogen och Handelsboden varierar under säsongen — kontrollera aktuella tider innan besök.',
     ],
     related: ['moja', 'svartso', 'ingmarso'],
     tags: ['bilfri', 'naturreservat', 'läger', 'orört'],
@@ -1935,7 +1912,7 @@ export const ISLANDS: Island[] = [
         { item: 'Medhavd matsäck (snacks + dryck)', price: 'Se aktuellt pris i butik' },
       ],
       tips: [
-        'Norröra är ett Astrid Lindgren-pilgrimsmål — inspelningsplatserna för Saltkråkan är välbevarade.',
+        'Norröra användes som inspelningsplats för Saltkråkan.',
         'Restiden är lång (ca 3 h enkel väg från Strömkajen) — planera en heldag.',
         'Det finns varken restaurang eller livsmedelsbutik på ön — ta med matsäck.',
         'Kombinera gärna med grannöarna Söderöra eller Fejan för ett längre norrskärgårdsäventyr.',
@@ -1967,37 +1944,26 @@ export const ISLANDS: Island[] = [
     region: 'södra',
     regionLabel: 'Södra skärgården',
     emoji: '🪨',
-    tagline: 'Naturreservat i södra skärgården — klippor, lugn och äkta ytterskärgård.',
+    tagline: 'Naturreservat i södra skärgården — klippor, sandstränder och lugn.',
     description: [
-      // KÄLLA: Länsstyrelsen Stockholm, besöksmål naturreservat/Nåttarö (läst 2026-08-23)
-      'Nåttarö är ett naturreservat i södra skärgården med vacker och vild natur. Ön är ett populärt ankringsläge för seglare som söker lugn och orördhet.',
-      'Naturreservatet skyddas för att bevara den rika biologiska mångfalden och klippekosystemet. Vandringsstigar leder förbi blockhudar, öppna klippor och små naturhamnar. Klippbaden är rena och inbjudande.',
-      // KÄLLA: nattaro.se (startsida: ön ligger "30 minutes by boat from Nynäshamn"; bryggans namn och båtlinjens namn kunde inte beläggas)
-      'Nåttarö nås med turbåt från Nynäshamn, en resa på ungefär 30 minuter under säsong. Egen båt fungerar också.',
-      'Det som gör Nåttarö speciellt är kombinationen av sandstränder och naturreservat. Södra Nåttarö har sandstränder som är ovanliga i södra skärgårdssammanhang, vitt sand, grundt badvatten och ett landskap som påminner mer om västkusten än Östersjön. Naturreservatet skyddar ett rikt fågelliv och en orörd klippmark.',
-      'Nåttarö är en av de bästa ankarplatserna i södra skärgården. Vikarna på öns södra och östra sida ger bra skydd och vattnet är klart. Seglare på väg mot Utö väljer ofta Nåttarö som nattankar, det är en timmes segling bort och erbjuder en helt annan lugn än Utös mer besökta hamnar.',
-      // KÄLLA: Länsstyrelsen Stockholm, naturreservat Nåttarö (fågelliv: gravand, snatterand, bergand och svärta)
-      'Vandringsstigarna på Nåttarö är välmarkerade och tar en timme att gå runt i lugnt tempo. Fågellivet i reservatet omfattar bland annat gravand, snatterand, bergand och svärta. Ta med kikare om möjligheten finns.',
-      // KÄLLA: nattaro.se (boende: stugor och vandrarhem; mat på ön: krog och pizzeria; gästhamn med 45 platser)
-      'Nåttarö intar en viktig position i den södra Stockholmsskärgården som en av de mer betydande naturreservatsöarna. Ön är skyddad som naturreservat, vilket formar både vad som finns där och vad som inte finns. Det finns en etablerad säsongsverksamhet med stugor, vandrarhem, krog och gästhamn, men ingen bofast befolkning och den naturliga miljön är den primära anledningen att besöka. Den skyddsstatus har bevarat en karaktär som många mer tillgängliga öar har förlorat.',
-      'Ön är känd för att ha en av de bättre sandstränderna i den södra skärgården. Sandstränder är genuint sällsynta i Stockholms klippdominerande skärgårdslandskap, och Nåttarös strand är tillräckligt stor för att vara värd att specifikt resa till. I juli lockar stranden besökare som söker en strandupplevelse i skärgårdskontext, något svårt att hitta på andra ställen i systemet.',
-      'Badkvaliteten vid Nåttarö är god. Stranden möjliggör gradvis instegsväg i vattnet, framför allt nyttigt för barn och de som föredrar att inte hoppa från klippor, och den omgivande havs-temperaturen under högsommaren når det område där ett utdraget bad är bekvämt för de flesta. Vattenklarheten i den här delen av ytterskärgården är också generellt bättre än i mer slutna, inre skärgårdsvikar.',
-      'Skogen på Nåttarö har gammelskogs-egenskaper i vissa avsnitt. Naturreservatsstatus har tillåtit träd att mogna bortom vad som är typiskt i skött skog. Att promenera in i öns inre rör sig från strandmiljön in i tät, tyst skogsmark där fågellivet är annorlunda från kustpartierna. Kontrasten mellan den öppna stranden och den slutna skogen är ett av de mer intressanta aspekterna av öns landskap.',
-      'Nåttarö är nåbar med Waxholmsbåt via Nynäshamn. Restiden från Stockholm varierar med rutt och säsong. Dagsutflykter är möjliga men kräver en tidig start och en acceptans av begränsad tid på ön. En övernattning, om boende finns tillgängligt, skapar en mer bekväm relation till öns avstånd.',
-      // KÄLLA: nattaro.se (mat på ön: Nåttarö Krog och Sixtens Bodega)
-      'Det kommersiella utbudet på Nåttarö är begränsat till en krog och en pizzeria/deli, båda med säsongsbegränsade öppettider. Besökare bör ändå ta med mat och vatten, framför allt om de stannar för en hel dag. Öns naturreservatsstatus gör detta lämpligt: upplevelsen här handlar specifikt om den naturliga miljön snarare än en kurerad besöksupplevelse.',
-      'Fågelskådning på Nåttarö är framför allt bra på våren. Öns läge i den yttre södra skärgården gör den till en naturlig hållplats för migrerande fåglar och kombinationen av strand, skogsbryn och omgivande vatten skapar varierade biotoper som lockar flera arter. Tidigt maj är typiskt den mest aktiva perioden.',
-      'Stranden på Nåttarö vetter mot sydväst, vilket innebär att den fångar eftermiddags- och kvällssol. Den orienteringen gör sena eftermiddagsbesök framför allt behagliga under de långa sommardagarna. Det lågt vinklade ljuset på vattnet och sanden i den riktningen har en kvalitet som norrvettande stränder inte kan producera.',
-      'Nåttarö är ärlig om vad det är: ett naturreservat med en bra strand, bra skog, begränsade tjänster och en två-till-tre-timmars båtresa från Stockholm. Inom de parametrarna är det utmärkt. Utanför dem, om någon söker restauranger, aktiviteter, flera boendealternativ eller enkel access, passar andra öar bättre. Ön är värd att känna till eftersom den fyller ett specifikt gap: kvalitets-strandupplevelse i skärgårdskontext, utan de folkskaror som dyker upp på de få andra sandstrandsöarna.',
-      'För familjer med barn som gillar strandtid och enkla friluftsaktiviteter är Nåttarö ett av de mer lämpade ytterskärgårdsmålen. Stranden är trygg, naturreservats-miljön är pedagogisk i sig och kombinationen av bad, promenader och picknick ger en full och relativt lågbudget-dag.',
-      'En dag på Nåttarö passar som avslutning på en längre skärgårdsresa lika väl som ett isolerat utflyktssmål. Den specifika kombinationen av strand och skog, stillhet och naturkvalitet, gör den till en bra avkopplingsdag i kontrast till mer aktivitetsfyllda öar som Sandhamn eller Vaxholm.',
-      // KÄLLA: Länsstyrelsen Stockholm, naturreservat Nåttarö (föreskrifter: förbud mot okopplad hund; tältning högst två dygn i följd utanför anvisad plats)
-      'Nåttarös naturreservatsstatus innebär att det finns regler att känna till. Tältning är tillåten, men högst två dygn i följd utanför anvisad plats. Hundar ska hållas kopplade inom hela naturreservatet. Det är rimliga regler för att bevara vad som gör ön värd att besöka, och att respektera dem är del av kontraktet med en plats av den här typen.',
-      'Nåttarö illustrerar ett mönster som återkommer i skärgårdssystemet: de öar som är svårast att nå och minst kommersiellt drivna tenderar att erbjuda de renaste naturupplevelserna. Det är inte en slump. Tillgängligheten filtrerar bort en viss typ av besökare och skapar utrymme för en annan. För dem som söker den typen av upplevelse är Nåttarö ett kärnexempel.',
-      'Att hitta Nåttarö i första hand, att ens veta om att den finns, är ett eget filter. Det är sällan ön dyker upp i den allmänna turistkonversationen om Stockholms skärgård. Det gör att de som tar sig dit i allmänhet gör det av informerade skäl och med rätt förväntningar.',
-    
-    
-    
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "Förvaltare: Skärgårdsstiftelsen" / "Skyddat sedan: 2008"
+      // KÄLLA: skargardsstiftelsen.se/omraden/nattaro/ — "Nåttarö är ett av länets första marina naturreservat"
+      'Nåttarö är ett naturreservat i Haninges del av södra skärgården. Reservatet bildades 2008, förvaltas av Skärgårdsstiftelsen och är ett av länets första marina naturreservat — skyddet omfattar alltså även vattnet runt ön.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "Reguljär båttrafik till Nåttarö med Waxholmsbolaget från Nynäshamn."
+      // KÄLLA: haninge.se/.../nattaro/ — "endast en halvtimmes båtresa från Nynäshamn"
+      'Nåttarö nås med Waxholmsbolagets båtar från Nynäshamn, en resa på ungefär en halvtimme. Egen båt fungerar också — det finns gästhamn och flera naturhamnar runt ön.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "Storsand i öster är en av skärgårdens längsta sandstränder med stora sanddyner."
+      // KÄLLA: haninge.se/.../nattaro/ — "Det finns gott om barnvänliga, långgrunda sandstränder. Mest känd är Stora sand, men den mer avskilda Skarsand är minst lika vacker."
+      'Storsand på öns östra sida är en av skärgårdens längsta sandstränder, med stora sanddyner bakom. Stranden är långgrund och barnvänlig. Den mer avskilda Skarsand är ett alternativ när Storsand fylls, och runt ön finns både sand och klippor att bada från.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "gamla tall- och blandskogar med små mossar och kärr" / "Förutom gäss och måsfåglar finns här gravand, snatterand, bergand och svärta."
+      'Innanför stränderna tar gamla tall- och blandskogar vid, med små mossar och kärr insprängda. Fågellivet omfattar bland annat gravand, snatterand, bergand och svärta utöver gäss och måsfåglar. Ta med kikare.',
+      // KÄLLA: haninge.se/.../nattaro/ — "På ön ligger Drottninggrottan, där drottning Maria Eleonora gömde sig" / "Runt berget finns ryssugnar från härjningarna 1719" / "På ön strövar även dovhjortar vilt."
+      'Ön bär spår av sin historia. Drottninggrottan är enligt traditionen platsen där drottning Maria Eleonora gömde sig i väntan på att fly landet, och runt Bötsudden i norr, öns högsta punkt, finns ryssugnar från härjningarna 1719. Dovhjortar strövar fritt på ön.',
+      // KÄLLA: haninge.se/.../nattaro/ — "Här finns vandrarhem, stugor, restaurang, tältplats och en handelsbod." / "du kan snorkla längs länets första snorkelled"
+      // KÄLLA: nattaro.se — "En trerätters på Krogen" / "pizza på Sixtens bodega"
+      'Servicen är sammanhållen och säsongsbetonad: vandrarhem, stugor, tältplats, handelsbod samt Nåttarö Krog och Sixtens Bodega. För den som vill se ön underifrån finns länets första snorkelled.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — förbud mot att "tälta mer än två dygn i följd annat än på anvisad plats" och att "medföra hund som inte är kopplad"
+      'Reservatsföreskrifterna är få men bindande: tältning högst två dygn i följd utanför anvisad plats, och hundar ska hållas kopplade inom hela reservatet.',
     ],
 
     facts: {
@@ -2045,21 +2011,25 @@ export const ISLANDS: Island[] = [
       ],
       tips: [
         'Nåttarö är ett naturreservat — ta med allt du behöver, krogen är enda matplatsen.',
-        'Sandstranden vetter mot sydväst — bäst ljus och sol på eftermiddagen.',
-        'Utö Express kör bara juni–aug, kontrollera tidtabell i förväg.',
+        // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "Storsand i öster är en av skärgårdens längsta sandstränder"
+        'Storsand ligger på öns östra sida — planera promenaden från bryggan därefter.',
+        'Kontrollera Waxholmsbolagets tidtabell före resan — trafiken varierar med säsong.',
       ],
     },
     tips: [
-      // KÄLLA: nattaro.se ("turbåten från Nynäshamn"); skargardsstiftelsen.se, Nåttarö naturreservat ("Waxholmsbåt operates from Nynäshamn")
-      'Nåttarö nås både med turbåt från Nynäshamn och med egen båt — kontrollera tidtabellen på waxholmsbolaget.se eller nattaro.se före resan.',
-      'Sandstranden på södra Nåttarö är en av de få riktiga sandstränderna i södra skärgården — sällsynt och värd resan.',
-      // KÄLLA: skargardsstiftelsen.se, Nåttarö naturreservat (landstigningsförbud på flera öar/skär del av året för att skydda häckning)
-      'Delar av öns skär och strandängar kan ha landstigningsförbud under fågelns häckningstid — respektera skyltning på plats.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "Reguljär båttrafik till Nåttarö med Waxholmsbolaget från Nynäshamn."
+      'Nåttarö nås med Waxholmsbolagets båtar från Nynäshamn — kontrollera tidtabellen på waxholmsbolaget.se före resan.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "Storsand i öster är en av skärgårdens längsta sandstränder med stora sanddyner."
+      'Storsand ligger på öns östra sida, inte i söder — planera promenaden från bryggan därefter.',
+      // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — förbud mot att "medföra hund som inte är kopplad"
+      'Hund ska vara kopplad i hela naturreservatet.',
     ],
     related: ['uto', 'orno', 'landsort'],
     tags: ['naturreservat', 'orört', 'segling', 'södra'],
     // KÄLLA: Länsstyrelsen Stockholm, naturreservat Nåttarö (areal 6 565 ha totalt, varav 609 ha land; Natura 2000-område)
-    did_you_know: 'Nåttarö naturreservat omfattar totalt 6 565 hektar, varav 609 hektar är land, och ingår i EU:s nätverk Natura 2000.',
+    // KÄLLA: haninge.se/.../nattaro/ — "På ön ligger Drottninggrottan, där drottning Maria Eleonora gömde sig i väntan på att fly landet."
+    // KÄLLA: haninge.se/.../nattaro/ — "du kan snorkla längs länets första snorkelled och uppleva skärgårdens undervattensmiljö"
+    did_you_know: 'Drottninggrottan på Nåttarö ska ha varit gömställe för drottning Maria Eleonora inför hennes flykt ur landet. Nåttarö har länets första snorkelled.',
     insiderTips: [
       'Nåttarö är ett naturreservat utan fastboende. Ön nås med säsongsbetonad båttrafik eller egen båt.',
       // KÄLLA: nattaro.se (stugor, vandrarhem, krog, gästhamn, expedition — etablerad besöksverksamhet på ön)
@@ -2085,17 +2055,15 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '🌲',
-    tagline: 'Bilfri ö i mellersta skärgården — bageri, krog och Båtluffarleden mot Finnhamn.',
+    tagline: 'Ö i mellersta skärgården — två bryggor, affär året runt och roddbåtsleden mot Finnhamn.',
     description: [
-      // KÄLLA: ingmarso.se (öns webbplats, "äta-och-sova"): Coop Ingmarsö och Ingmarsö Krog ligger vid södra bryggan; ingmarsogasthamn.se: bageriet ligger ca 1,5 km därifrån, mer centralt på ön
-      'Ingmarsö är en bilfri ö i Stockholms mellersta skärgård, klassisk knutpunkt för båtluffare och vandrare. Ön har två bryggor, norra och södra, där Waxholmsbåtarna lägger till. Vid södra bryggan finns affär och krog, och bageriet ligger mer centralt på ön.',
-      // KÄLLA: stockholmarchipelagotrail.com/sv/etapp/ingmarso/ och /sv/section/: sträckan "Roddbåtar Finnhamn–Ingmarsö" (0,4 km) passerar Kålgårdsön
-      'Båtluffarleden, markerad i blått, förbinder Ingmarsö med Finnhamn via Kålgårdsön; vid det smala sundet mellan öarna finns roddbåtar som gångare själva drar över för att fortsätta vandringen. Sträckan ingår i Stockholm Archipelago Trail.',
-      'Ingmarsö passar för dagsutflykter med båtluffning, vandring genom öppna betesmarker och blandskog, eller som lugnare bas än Finnhamn för en längre helg i mellersta skärgården.',
-      'Båtluffarleden är Ingmarsös kanske viktigaste tillgång. Den välmarkerade blå leden förbinder ön med Finnhamn via Kålgårdsön och passerar några av mellersta skärgårdens vackraste naturhamnar. Det tar ungefär en dag att gå sträckan, och det är en dag som håller i minnet, smala sund, flacka klippor och ett landskap som inte förändrats nämnvärt på hundra år.',
-      // KÄLLA: ingmarso.se: Coop Ingmarsö öppet året runt; ca 180 permanentboende på Ingmarsö och Brottö tillsammans
-      'Ingmarsö är en levande ö med permanentbor, odlingsland och en social kalender som inte kretsar kring turister. Affären har öppet året runt. Det är ett välkomnande ställe men utan den anpassning mot turism som de större öarna har, och det är en skillnad man märker.',
-      'Kombinationen Ingmarsö–Finnhamn är ett naturligt tvådagarsprogram för den som vill båtluffa med lätt packning. Börja på Finnhamn, paddla eller ta sig till Ingmarsö för en natt, fortsätt längs leden och ta Waxholmsbåten hem. Det är skärgård på riktigt, utan bil och utan komplicerad logistik.',
+      // KÄLLA: ingmarso.se — "runt 180 bofasta"; "Coop Ingmarsö" med "året runt-öppet" ligger "vid södra bryggan"; gästhamnen är "Centralt belägen på Södra Ingmarsö" med "gångavstånd till krog, affär och bageri"
+      'Ingmarsö är en levande ö i Stockholms mellersta skärgård med runt 180 bofasta. Waxholmsbåtarna lägger till vid två bryggor, norra och södra. Vid södra bryggan ligger Coop Ingmarsö, som har öppet året runt, och gästhamnen på Södra Ingmarsö ligger inom gångavstånd från krog, affär och bageri.',
+      // KÄLLA: stockholmarchipelagotrail.com/sv/section/roddbatar-finnhamn-ingmarso/ — sträckan anges som "Lätt 0.4 km"; "Det måste alltid finnas en roddbåt på varje sida."
+      'Mellan Ingmarsö och Finnhamn finns en roddbåtspassage som ingår i Stockholm Archipelago Trail. Sundet är bara omkring 400 meter, men överfarten har sin egen ritual: det måste alltid finnas en roddbåt kvar på varje sida, så den som ror över får ro fram och tillbaka flera gånger innan vandringen kan fortsätta.',
+      // KÄLLA: ingmarso.se/hittahit — "Båt hela vägen från stan tar mellan två och cirka tre timmar"; "Du till vissa turer ta SL-buss 438 från Slussen i Stockholm och stiga på båten i Boda"; "Till bryggan på norra Ingmarsö går reguljära turer från Åsättra på Ljusterö"
+      'Båt hela vägen från stan tar mellan två och cirka tre timmar. Det går snabbare att ta SL-buss 438 från Slussen och kliva på båten i Boda, och till norra bryggan går reguljära turer från Åsättra på Ljusterö.',
+      'Ön är inte anpassad efter besökare på det sätt som de mest turistade öarna är. Grusvägar, betesmark och blandskog, och en tillvaro som fortsätter oberoende av vem som kliver av båten.',
     ],
 
     facts: {
@@ -2136,14 +2104,16 @@ export const ISLANDS: Island[] = [
       { name: 'Coop Ingmarsö', type: 'Handel', desc: 'Dagligvaror, Systembolagsombud, apotek, post och bensin — öppet året om.', open_season: 'Helår' },
     ],
     tips: [
-      'Båtluffarleden mellan Ingmarsö och Finnhamn med roddbåt över sundet är ett klassiskt skärgårdsäventyr — ta hela dagen.',
-      'Två bryggor — norra och södra — kontrollera tidtabellen för rätt brygga.',
-      'Kombinera gärna med Finnhamn på samma weekend.',
+      // KÄLLA: ingmarso.se — Waxholmsbåtarna angör både norra och södra bryggan
+      'Ön har två bryggor, norra och södra — kontrollera i tidtabellen vilken din båt angör.',
+      // KÄLLA: ingmarso.se/hittahit — "Du till vissa turer ta SL-buss 438 från Slussen i Stockholm och stiga på båten i Boda"
+      'Buss 438 från Slussen till Boda kortar resan jämfört med båt hela vägen från stan.',
     ],
     related: ['finnhamn', 'svartso', 'ljustero'],
     tags: ['bilfri', 'båtluffarleden', 'vandring', 'natur', 'mellersta'],
     // KÄLLA: en.wikipedia.org (Stockholm Archipelago Trail): "Opening in 2024 ... approximately 270 kilometers"; stockholmarchipelagotrail.com/sv/etapp/ingmarso/: leden passerar Kålgårdsön med roddbåtsöverfart
-    did_you_know: 'Båtluffarleden mellan Ingmarsö och Finnhamn passerar Kålgårdsön, där vandrare själva får ro över det smala sundet till Finnhamn. Den blå-markerade leden ingår sedan 2024 i den 270 km långa Stockholm Archipelago Trail.',
+    // KÄLLA: stockholmarchipelagotrail.com/sv/section/roddbatar-finnhamn-ingmarso/ — "Det måste alltid finnas en roddbåt på varje sida."
+    did_you_know: 'På roddbåtspassagen mot Finnhamn måste det alltid lämnas kvar en båt på varje sida — vandrare ror därför sträckan flera gånger.',
     seasonal: {
       open: 'Maj–September',
       peak: 'Juli–Mitten av Augusti',
@@ -2161,32 +2131,17 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '🌿',
-    tagline: 'Gles, bilfri ö på Stavsnäsleden — ett genuint skärgårdssamhälle.',
+    tagline: 'Bilfri ö på Stavsnäsleden — kyrka från 1876 och Sveriges nyaste nationalpark utanför.',
     description: [
-      // KÄLLA: kunde ej beläggas — linje 17:s exakta fortsatta sträckning och 1870-talets befolkningssiffra (321) hittades inte i tillgängliga primärkällor och är borttagna.
-      'Nämdö är en bilfri ö på Waxholmsbolagets linje 17 från Stavsnäs. Ön har haft fast befolkning under lång tid. Idag är ön ett genuint litet skärgårdssamhälle med kyrka, lanthandel och båtbrygga.',
-      'Nämdö kyrka är en av skärgårdens mest karakteristiska — den nuvarande vita träkyrkan i nygotisk stil invigdes hösten 1876 och ersatte tidigare kapell. Det äldsta kända kapellet på ön var från omkring 1630.',
-      'Naturen är varierad med klippbad, vandringsstigar och fina naturhamnar på öns södra sida. Nämdö passar som stopp på en längre seglingstur mot Sandhamn, eller som dagsdestination för den som söker autentiskt skärgårdsliv.',
-      'Nämdö kyrka är en av de mest karakteristiska kyrkorna i Stockholms skärgård, en vit träkyrka i nygotisk stil invigd 1876, stående ensam på en liten höjd mitt på ön. Den byggdes för den bofasta skärgårdsbefolkningens skull, som inte kunde ta sig till fastlandets kyrkor på vintern. Inuti är den enkel och välbevarad, med en stillhet som känns ovanlig.',
-      'Öns grusvägar lämpar sig väl för cykel. Det tar en halv dag att cykla runt och se de viktigaste delarna, kyrkan, de gamla gårdarna i byn, klipporna söderut och de naturhamnar som länge varit seglares hemliga viloplatser. Cyklar kan hyras på ön under sommarsäsongen.',
-      'Nämdö har haft fast befolkning sedan medeltiden och det märks i bebyggelsens täthet och variation. Det är inte en öde ö med en sommarkiosk, det är ett fungerande samhälle med egna traditioner, egna invånare och en historia som inte började med turismen. Det gör det till en annan typ av skärgårdsupplevelse.',
-      'Nämdö är en avsevärd ö i den södra Stockholmsskärgården som förblir märkbart mindre besökt än jämförbara öar i liknande läge. Det beror delvis på båtlogistiken, förbindelserna är färre och kräver mer planering, och delvis på öns egen karaktär, som erbjuder natur och stillhet framför kommersiell attraktion. Resultatet är en genuint avlägsen känsla kombinerad med rimlig tillgänglighet från Stockholm.',
-      'Öns landskap är varierat och storskaligt. Skogar, jordbruksavsnitt, klippor och skyddade vikar existerar inom öns väsentliga yta. Att promenera hela omkretsen tar flera timmar och avslöjar olika aspekter av ön vid olika punkter. De inre skogspartierna har en autentisk svensk skogskvalitet, inte skött natur utan produktionsskog med all dess tillhörande karaktär.',
-      'Nämdö kyrka är en av de äldre historiska strukturerna i den södra skärgården. Öarnas kyrkor i Stockholmsskärgården var historiskt viktiga sociala och administrativa centrum för samhällen som annars var isolerade av vatten. Kyrkan på Nämdö bar den funktionen för generationer av öbor och byggnaden bevarar sin historiska karaktär.',
-      'Fisket har varit centralt för ölivet här i sekler. De omgivande vattnen är bra för havsöring och de djupare partierna rymmer abborre och andra salttoleranta sötvattensarter. Fisketraditionen här är praktisk snarare än fritidspräglad i sin ursprung, och lokalt fiske pågår fortfarande parallellt med den allt mer besökarinriktade ekonomin.',
-      'Badmöjligheterna runt Nämdö är produktiva. De klipphällsrika kustpartierna ger tillgång till rent skärgårdsvatten på flera ställen och de skyddade vikarna värms upp tillräckligt till midsommaren. Bristen på trängsel innebär att hitta en privat badplats, en sällsynthet på de mest populära öarna i juli, är fullt möjligt på Nämdö även under högsäsongen.',
-      'Den permanenta gemenskapen på Nämdö är liten men aktiv. Helårsbor upprätthåller öns grundläggande funktioner och vissa begränsade tjänster är i drift under vinterhalvåret. Förhållandet säsongsbesökare till permanenta invånare är mer balanserat här än på rent turistöar, vilket bevarar en mer autentisk gemenskapens karaktär.',
-      'Nämdö passar besökare villiga att planera transporten noggrant och acceptera begränsade kommersiella tjänster i utbyte mot en genuint lugnare och mer naturlig upplevelse än de huvudsakliga skärgårdsmålen erbjuder. Det är specifikt bra för dem som vill ha ett flerdagsvistelse i ytterskärgården utan aktivitetsnivåerna hos Sandhamn eller den organiserade infrastrukturen hos Utö.',
-      'Naturkvaliteten på Nämdö är hög. Kombinationen av kust-, skogs- och jordbrukslandskap, det renare ytterskärgårdsvattnet och frånvaron av intensiv turistutveckling innebär att ön levererar vad de flesta föreställer sig när de tänker på Sveriges ö-kust, utan de massor som de mest kända versionerna av den bilden lockar.',
-      'Båttidtabeller till Nämdö kräver att de kontrolleras i förväg. Servicen är glesare än till mer besökta destinationer och att planera resan i båda riktningarna är nödvändigt. Det extra logistiska kravet är i sig en del av vad som håller ön lugnare och är inte något att behandla som ett hinder utan som ett rimligt pris för vad ön erbjuder.',
-      'Sent augusti till mitten av september är möjligen den bästa perioden för Nämdö. Sommartoppen har passerat, båtförbindelserna kör fortfarande på sitt sommartidtabell och ön visar sitt landskap som mest lugnt, vegetationen full och orubbad, ljuset börjar mjukna mot höst. Besökare som gör den resan i september beskriver den ofta som den de tipsar om till andra.',
-      'En av Nämdös underskattade kvaliteter är den relativa ensamhet den erbjuder vid rätt tidpunkt. Under en vanlig augustivecka, när Sandhamn och Grinda sväller av besökare, kan Nämdö erbjuda en klipphäll med utsikt och inga grannar inom synhåll. Det är ett svårt erbjudande att hitta i rimlig resväg från en storstad med en miljon invånare.',
-      'Nämdö präglas av en skärgårdskaraktär som ligger nära det historiska: fisketradition, liten permanent befolkning, beroende av båtförbindelser och ett landskap som inte inrättats för turism. Det ger en äkthet som är genuint svår att finna hos öar med mer polerad turistprofil.',
-      'Nämdö är ett av de tydligaste exemplen på hur reseavståndet i Stockholms skärgård fungerar som ett segreringssystem för upplevelsekvalitet. Öar som kräver planering och några timmars resa tenderar att vara fridfullare och mer autentiska. Nämdö faller tydligt i den kategorin och för dem som är villiga att göra resan är belöningen proportionerlig mot ansträngningen.',
-      'Det finns också ett argument för att besöka Nämdö specifikt i det skede av livet när man söker lugnare former av semester. Det är en ö för dem som prioriterar stillhet, natur och genuinitet framför tillgång och bekvämlighet, och som förstår att de kompromisserna är en del av erbjudandet.',
-    
-    
-    
+      // KÄLLA: waxholmsbolaget.se/reseplanering/resmal/namdo — "Nämdö är en av skärgårdens större öar. Ön är promenadvänlig året om"; "den är både bilfri och till viss del ett naturreservat"; "Waxholmsbolagets fartyg lägger till vid flera bryggor på ön"
+      'Nämdö är en av skärgårdens större öar, bilfri och till viss del naturreservat. Waxholmsbolagets fartyg lägger till vid flera bryggor, och ön är promenadvänlig året om. Grusvägar, gårdar och skog snarare än kajpromenad och kösystem.',
+      // KÄLLA: Riksantikvarieämbetet, bebyggelseregistret via kringla.nu (raa/bbr/21400000445278) — "Nämdö kyrka invigdes hösten 1876"; "Stilen är nygotisk som framförallt uttrycks genom den höga takresningen, tornet samt de spetsbågade fönstren"; "utförd med trästomme, granitsockel samt svartmålat plåttak"
+      'Nämdö kyrka invigdes hösten 1876. Stilen är nygotisk, vilket framför allt syns i den höga takresningen, tornet och de spetsbågade fönstren, och byggnaden har trästomme, granitsockel och svartmålat plåttak.',
+      // KÄLLA: Riksantikvarieämbetet via kringla.nu (raa/bbr/21400000445278) — knuttimrat kapell på Nämdö efter 1607; nytt kapell uppfört 1701–1702; kapell på initiativ av häradshövding Magnus Blix färdigt 1798
+      'Kyrkan har föregångare. Ett knuttimrat kapell restes på ön efter 1607, ett nytt kapell uppfördes 1701–1702 och överlevde ryssarnas härjningar, och 1798 stod ytterligare ett kapell färdigt tillsammans med klockstapel, likbod och kyrkbrygga.',
+      // KÄLLA: naturvardsverket.se, nyhet juni 2025 — "Nu har regeringen fattat beslut om att bilda Sveriges 31:a nationalpark"; "Nämdöskärgårdens nationalpark"; "Den omfattar en areal på 25 300 hektar varav 97 procent är hav"; "drygt 1 300 öar, kobbar och skär"
+      // KÄLLA: varmdo.se, Nämdöskärgårdens nationalpark — "Den 17 juni 2025 röstade riksdagen i frågan, kort därefter beslutade regeringen"; parken ligger "öster om ön Nämdö" och omfattar "det som tidigare var Bullerö och Långviksskärs naturreservat samt ett stort område hav utanför"
+      'Öster om Nämdö bildades 2025 Nämdöskärgårdens nationalpark, Sveriges 31:a och den första med marint fokus i Östersjön. Parken omfattar 25 300 hektar, varav 97 procent är hav, och drygt 1 300 öar, kobbar och skär — bland dem tidigare Bullerö och Långviksskärs naturreservat. Själva ön Nämdö ingår inte i parken, men den ligger vid dess gräns.',
     ],
 
     facts: {
@@ -2221,13 +2176,17 @@ export const ISLANDS: Island[] = [
       { name: 'Tempo Nämdö Livs', type: 'Handel', desc: 'Livsmedelsbutik i Solvik, öppen året runt.' },
     ],
     tips: [
-      'Nämdö passar perfekt som halvdagsstopp på väg mot Möja eller Gällnö.',
-      'Kyrkan, invigd 1876, är öppen sommartid — den vita nygotiska träkyrkan med sin höga takresning är ett landmärke mitt på ön.',
+      // KÄLLA: waxholmsbolaget.se/reseplanering/resmal/namdo — "den är både bilfri och till viss del ett naturreservat"; "Ön är promenadvänlig året om"
+      'Ön är bilfri och promenadvänlig året om — räkna med att gå.',
+      // KÄLLA: Riksantikvarieämbetet via kringla.nu (raa/bbr/21400000445278) — Nämdö kyrka invigd hösten 1876, nygotisk träkyrka med torn och spetsbågade fönster
+      'Nämdö kyrka från 1876 är ett landmärke på ön — nygotisk träkyrka med högt tak och spetsbågade fönster.',
     ],
     related: ['moja', 'gallno', 'sandhamn'],
     tags: ['bilfri', 'genuint', 'segling', 'natur', 'kyrka'],
     // KÄLLA: att Nämdö specifikt härjades 1719 samt att kyrkan haft "minst tre föregångare" kunde ej beläggas och är borttaget. Kapell ca 1630 och kyrka invigd 1876: Svenska kyrkan (Djurö, Möja och Nämdö församling) + RAÄ bebyggelseregistret (se KÄLLA-kommentar ovanför activities-fältet).
-    did_you_know: 'Det äldsta kända kapellet på Nämdö var från omkring 1630. Den nuvarande kyrkan, en vit träkyrka i nygotisk stil, invigdes 1876.',
+    // KÄLLA: naturvardsverket.se, nyhet juni 2025 — "den andra nationalparken i Sverige med marint fokus" och "första nationalparken med marint fokus i Östersjön"
+    // KÄLLA: Riksantikvarieämbetet via kringla.nu (raa/bbr/21400000445278) — kapell på Nämdö efter 1607
+    did_you_know: 'Nämdöskärgårdens nationalpark, bildad 2025, är Sveriges första nationalpark med marint fokus i Östersjön. Nämdö har haft kapell sedan 1600-talets början — den nuvarande kyrkan från 1876 är minst den fjärde gudstjänstbyggnaden på ön.',
     insiderTips: [
       'Nämdö kyrka, invigd 1876, är en vit nygotisk träkyrka med hög takresning och spetsbågade fönster — ett karakteristiskt inslag i skärgårdslandskapet.',
       'Nämdö har ett fåtal fastboende och nås med Waxholmsbåten från Stavsnäs.',
@@ -2253,33 +2212,18 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '🏝️',
-    tagline: 'Bilfri ö i Värmdö — skärgårdens bästa lanthandel och en levande helårsby.',
+    tagline: 'Bilfri ö i Värmdö — lanthandel, krog och en levande helårsby.',
     description: [
-      // KÄLLA: sv.wikipedia.org/wiki/Svartsö och svartso.se ("strax söder om Ingmarsö"); svartsolanthandel.se/om-svartso ("omkring 65 personer permanent")
-      'Svartsö ligger i Stockholms mellersta skärgård öster om Ljusterö och söder om Ingmarsö, och tillhör Värmdö kommun. Med cirka 65 åretruntinvånare är ön ett av få mellanstora skärgårdssamhällen som behållit en levande helårsbefolkning, komplett med skola, restauranger, lanthandel, apotek- och Systembolags-ombud.',
-      // KÄLLA: svartso.se ("Svartsö genom tiderna": bebyggdes sannolikt under medeltiden, gårdarna grundstruktur sedan 1500-talet, stenhuset i Alsvik uppfört 1732 av Johan Söderling); sv.wikipedia.org/wiki/Svartsö (rysshärjningarna 1719 gällde ön Boholmen)
-      'Ön bebyggdes sannolikt redan under medeltiden, och sedan 1500-talet har gårdarna Alsvik och Skälvik utgjort en grundstruktur för samhället. I Alsviks by lät bankokommissarien Johan Söderling uppföra ett stenhus 1732, av tegel från sitt eget tegelbruk på grannön Hästnacken — huset finns kvar och är privatägt.',
-      'Svartsö är bilfri (frånsett några enstaka traktorer och fyrhjulingar) och utforskas bäst på cykel, till fots eller via öns grusvägar. Krogen, lanthandeln och vandrarhemmet är öns kärna, perfekt för dem som vill kombinera autentiskt skärgårdsliv med vällagad mat.',
-      'Cykeln är det självklara fortskaffningsmedlet på Svartsö. Grusvägen mellan Alsvik i söder och Skälvik i norr tar ungefär en timme i lugnt tempo och leder genom en varierande skärgårdslandskap, öppen ljunghed, tät blandskog och klipphällar med havsutsikt. Cykel finns att hyra vid hamnen.',
-      // KÄLLA: svartsokrog.se (meny, hitta hit)
-      'Svartsö Krog ligger vid Alsviks brygga och lagar säsongsbetonad mat efter tillgång och kockens val, med à la carte-meny och fyrarättersmenyer. Boka bord i förväg.',
-      'Ön har haft fast befolkning i hundratals år och de gamla gårdarna är fortfarande i bruk. Det syns i hur ön sköts, odlingslandskapet är öppet, hagarna hålls betade och bebyggelsen underhålls utan att moderniseras ihjäl. Det är en levande ö, inte ett museum.',
-      'Öns relativt plana interior gör cykling okomplicerat. Stignätverket täcker tillräckligt av ön för ett bra halvdags cykelprogram utan krävande rutter eller markanta uppförsbackar. Cykling är troligen det bästa sättet att se hela spannet av öns landskap: klipphälliga östra kust, skyddade västra vikar, jordbruksavsnitt och skogbevuxna centraldelar.',
-      'Den permanenta befolkningen på Svartsö är blygsam men ger ön helårskaraktär. En lokal mataffär och grundläggande tjänster är i drift under hela året för invånarna. Under sommaren expanderar dessa tjänster för att tillgodose säsongsbesökarna som använder ön som ett lugnare alternativ till mer välbesökta centrala skärgårdsdestinationer.',
-      'Bad är tillgängligt från flera punkter längs öns strandlinje. De klipphällar som är typiska för den centrala skärgården ger naturlig tillgång till havet, och de skyddade västra vikarna ligger lugnast för bad. Att cykla till ett avlägset hörn av ön och bada från klipporna är en typisk Svartsö-aktivitet.',
-      'Landskapet varierar mellan den mer exponerade östra kusten och de skyddade västra vattnen. Östsidan, mot mer öppet skärgårdsvatten, tenderar att ha starkare vindar och mer dramatiska klippformationer. Den västra och norra delen är mer skyddat och lugnare, bättre för bad och mer skyddade från vind.',
-      'Fågelskådning på Svartsö belönar tålamod. Blandningen av biotoper, kust, jordbruksmark och skog, lockar ett bredare arturval än enhetliga öar. Jordbruksmarkerna är framför allt bra på våren när migrerande fåglar behöver öppen mark för att äta.',
-      'Svartsö fungerar framför allt bra som bas för att utforska den omgivande gruppen av centrala skärgårdsöar. Att anlända med cykel och använda ön som central punkt, med dagsutflykter med båt till grannöar, är ett praktiskt och trivsamt sätt att strukturera ett flerdagars skärgårdsbesök.',
-      'Öns närhet till Stockholm, märkbart kortare än de sydligaste ytterskärgårdsöarna, innebär att den kan nås utan omständlig planering. Ett beslut en fredagsmorgon att tillbringa helgen på Svartsö är mer genomförbart än ett jämförbart beslut om Utö eller Arholma.',
-      // KÄLLA: svartsokrog.se/oppettider (evenemang och öppet kök i oktober, t.ex. Lammlördag 3/10 och Grisfest 10/10)
-      'I september och oktober antar Svartsö en annan karaktär. Sommarbesökarna avreser och ön återgår till sin helårs-gemenskapsrytm, med glesare båtturer utanför högsäsong. Svartsö Krog håller dock öppet med särskilda kvällar in i oktober.',
-      'För det praktiska skärgårdsbesöket, det spontana och det välplanerade, är Svartsö ett av de smartare valen i det centrala systemet. Det kombinerar äkta skärgårds-natur med en infrastruktur som faktiskt är anpassad till att ta emot besökare, utan att för den skull ge avkall på den karaktär som gör skärgårdsöar värda att besöka.',
-      'Svartsö passar ett brett spektrum av besökare. Cyklister, barnfamiljer, seglare som söker en lugn ankarplats och vandrare som vill ha en dag i tyst skogsmark finner alla vad de letar efter på ön. Den breddanpassningen är inte ett tecken på att ön saknar karaktär, utan på att den har nog av landskap för att rymma flera parallella upplevelser.',
-      'Svartsö är ett bra alternativ för den som är trött på att konkurreras om strandklippor och restaurangbord med hundratals andra besökare på samma dag. Ön är tillräckligt välkänd för att ha fungerande infrastruktur men tillräckligt undanskymd för att inte dra de massor som Sandhamn eller Grinda gör under högsommaren.',
-      'Den bilfria atmosfären på Svartsös stigar är en kvalitet som inte alltid uppmärksammas men som märks under besöket. Att kunna cykla utan att behöva hålla utkik efter bilar, att höra fågelljuden och havets sus istället för motorer, är en del av vad som gör en dag på en skärgårdsö till det den är.',
-    
-    
-    
+      // KÄLLA: svartso.se — Svartsö ligger "cirka 2 distansminuter ost om södra Ljusterö, strax söder om Ingmarsö", i Värmdö kommun; ön är 8 km lång och 1,5 km bred (2026-09-14)
+      // KÄLLA: svartsolanthandel.se/om-svartso — "omkring 65 personer permanent på Svartsö"; på ön finns "förskola, skola, lanthandel, krog, Bistro och hotell&vandrarhem" (2026-09-14)
+      'Svartsö ligger i Stockholms mellersta skärgård, cirka två distansminuter öster om södra Ljusterö och strax söder om Ingmarsö, och tillhör Värmdö kommun. Ön är åtta kilometer lång och en och en halv kilometer bred. Med omkring 65 permanentboende är den ett av få mellanstora skärgårdssamhällen med förskola, skola, lanthandel, krog, bistro och hotell och vandrarhem.',
+      // KÄLLA: svartso.se ("Svartsö genom tiderna") — ön bebyggdes sannolikt under medeltiden; från 1500-talet utgör gårdarna en grundstruktur; stenhuset i Alsvik uppfördes 1732 av Johan Söderling, med tegel från hans tegelbruk på Hästnacken (anlagt omkring 1730); skola byggd 1897, missionshus 1880 (2026-09-14)
+      'Ön bebyggdes sannolikt redan under medeltiden, och sedan 1500-talet har gårdarna utgjort grundstrukturen i samhället. I Alsvik lät Johan Söderling uppföra ett stenhus 1732, av tegel från hans eget tegelbruk på grannön Hästnacken. Missionshuset restes 1880 och skolan byggdes 1897.',
+      // KÄLLA: svartso.se — vägnätet består av grusvägar och gångstigar, ön är i praktiken bilfri och det finns cykeluthyrning (2026-09-14)
+      'Vägnätet på Svartsö består av grusvägar och gångstigar, och ön är i praktiken bilfri. Cykeln är det självklara fortskaffningsmedlet och det finns cykeluthyrning. Krogen, lanthandeln och vandrarhemmet utgör öns kärna.',
+      // KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-svartso/ — etappen är 17,9 km, "en liggande åtta", nås från bryggorna Norra Svartsö, Alsvik, Skälvik och Söderboudd; svårighetsgrad "Lätt", "De knappt arton kilometrarna är för det mesta på vacker grusväg" (2026-09-14)
+      'Stockholm Archipelago Trails Svartsö-etapp är knappt arton kilometer lång och går som en liggande åtta över ön, mest på grusväg och klassad som lätt. Den kan påbörjas från bryggorna Norra Svartsö, Alsvik, Skälvik och Söderboudd.',
+      'Att kunna cykla utan att hålla utkik efter bilar, och höra fågelljud och havets sus i stället för motorer, hör till det som gör en dag här till vad den är.',
     ],
 
     facts: {
@@ -2333,14 +2277,17 @@ export const ISLANDS: Island[] = [
       ],
       tips: [
         'Boka bord på krogen i förväg — högsäsong kan vara fullbokat.',
-        'Hyr cykel vid lanthandeln och cykla hela ön runt (14 km bilfria vägar).',
-        'Lanthandeln med apoteksombud och Systembolaget är ett skäl i sig att besöka.',
+        // KÄLLA: svartsolanthandel.se/cykeluthyrning — lanthandeln hyr ut cyklar
+        'Hyr cykel vid lanthandeln och cykla runt på ön.',
+        'Lanthandeln har apoteksombud och Systembolagsombud.',
       ],
     },
     tips: [
-      'Lanthandeln är en sevärdhet i sig — överraskande välsorterad för en bilfri ö.',
+      // KÄLLA: svartsolanthandel.se/om-svartso — lanthandel på ön, omkring 65 permanentboende, förskola och skola (2026-09-14)
+      'Lanthandeln är en sevärdhet i sig för en bilfri ö.',
       'Skola och året-runt-befolkning gör att ön är levande även utanför sommarsäsongen.',
-      'Stockholm Archipelago Trail leder genom Svartsö — ladda ner kartan för en hel dags vandring.',
+      // KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-svartso/ — etapp Svartsö, 17,9 km, svårighetsgrad Lätt (2026-09-14)
+      'Stockholm Archipelago Trail går genom Svartsö — etappen är knappt 18 km och klassad som lätt.',
     ],
     related: ['moja', 'gallno', 'ingmarso'],
     tags: ['bilfri', 'helårs-ö', 'lanthandel', 'genuint', 'lantligt'],
@@ -2368,31 +2315,22 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '⛵',
-    tagline: 'Författarnas ö — Strindberg, Söderberg och Tomas Tranströmer hämtade alla inspiration här.',
+    tagline: 'Författarnas ö i mellersta skärgården — Strindberg, Söderberg och Tranströmer.',
     description: [
-      'Runmarö är kanske Sveriges mest litterära ö. August Strindberg gjorde den känd genom sina somrar på 1880-talet, hans roman "I havsbandet" (1890) skildrar visserligen Huvudskär men är skriven utifrån miljöerna på Runmarö. Hjalmar Söderberg följde i Strindbergs spår, och Tomas Tranströmer (1931–2015), Nobelpristagare i litteratur 2011, tillbringade somrarna på sin morfars lotsplats vid "Gatan" på Runmarö hela sitt liv. Diktcykeln "Östersjöar" (1974) är direkt inspirerad av öns vatten och människor.',
-      'Runmarö är en bilfri ö i Stockholms mellersta skärgård, knutpunkt på Stavsnäs-leden mot Sandhamn. Karaktäristisk är de platta öppna vägarna med skog mellan, vilket gör ön ovanligt cykelvänlig för Stockholms-skärgården. Det finns lanthandel, krog, bageri och flera badplatser.',
-      'Runmarö passar för litteraturintresserade på Tranströmers eller Strindbergs spår, för cyklister och seglare som söker en lugnare övernattning än Sandhamn.',
-      'Tomas Tranströmer tillbringade stora delar av sitt liv på Runmarö och öns natur är direkt avläsbar i hans dikter. Den öppna klippmarken, barrskogen, det stilla vattnet i vikarna, allt det är fortfarande där, i stort sett orört. Det finns ingen officiell Tranströmer-tur på ön, vilket är en poäng i sig. Man promenerar dit på egen hand och hittar vad man hittar.',
-      'Runmarö är tillräckligt stort för att en hel dag ska fyllas naturligt. Cykeln, som hyrs vid hamnen, tar dig norrut mot Bodarna och de öppna ljungfälten, eller söderut mot klipporna med utsikt mot ytterskärgården. Det finns inga stora attraktioner, men det finns ett landskap som håller.',
-      'Gästhamnen på Runmarö är ett lugnt alternativ till Sandhamns fullpackade KSSS-hamn. Avståndet mellan de två öarna är bara ett par timmar med normal seglartakt, och kontrasten är enorm. Väljer man Runmarö vaknar man med fågelsång istället för grannbåtens generator.',
-      'Runmarö lyfts konsekvent fram som en av Stockholms skärgårds bästa cykelöar, och beskrivningen är träffande. Terrängen är mestadels plan, stigarna och vägarna välskötta och öns storlek ger tillräckligt med sträcka för en meningsfull tur utan att kräva hög konditionsnivå. Cykeluthyrning finns vid hamnen från tidig sommar och en runda av ön tar ungefär två till tre timmar med stopp.',
-      'Ön sitter i den centrala-södra delen av Stockholms skärgård och är nåbar med Waxholmsbåt från Stockholm. Resan tar ungefär två timmar. Det läget placerar den inom praktiskt räckhåll för en dagstur från staden, men öns cykelkaraktär belönar ett mer lugnt besök.',
-      'Landskapet omväxlar mellan mer exponerade kustnära avsnitt, skogslandet i det inre och öppna jordbruksfläckar. Den variationen innebär att cykelupplevelsen inte är monoton: terrängen förändras frekvent och vyerna skiftar mellan öppet hav, skyddade vikar och skogsspår. Kustpartierna bjuder regelbundet in till stopp, att blicka ut över vattnet och vila på en klipphäll.',
-      'Runmarö har en permanent befolkning av boende som lever på ön under hela året, vilket ger den en grad av gemenskapens infrastruktur bortom vad säsongsöar kan erbjuda. En lokal mataffär, tillgänglig under öppettiderna, betjänar både invånare och sommarbesökare. Den typen av fungerande affär tillför praktiskt värde för flerdagsboende.',
-      'Badmöjligheter är goda runt Runmarö. Det omgivande vattnet är rent och de klippiga plattformarna runt ön ger naturlig tillgång till havet. Kombinationen av cykling och bad, en förmiddag på cykeln och eftermiddagar i vattnet, gör ön väl lämpad för aktiva dagsbesökare eller dem som stannar en eller två nätter.',
-      'Ön har inga exklusiva restaurangalternativ. Det tillgängliga matutbudet är blygsamt, kaféstil snarare än restaurangnivå. Besökare som planerar en mer ambitiös matupplevelse bör antingen ta med proviant eller hantera förväntningarna. Öns styrka är friluftsaktivitet, inte matkulturell ambition.',
-      'Runmarö hänger ihop väl med grannöarna i området. Det omgivande båtnätet kopplar det till andra cykel- och vandringsdestinationer, vilket gör det till ett möjligt stopp på ett längre skärgårdsitinerarium snarare än nödvändigtvis en slutdestination.',
-      'Den bästa perioden att besöka Runmarö är från sent maj till och med september. Cykelsäsongen öppnar när stigarna torkat efter vintern och öns vegetation är på sin bästa från juni och framåt. September ser lättare folkmassor med bibehållen full cykelsäsong och acceptabla vattentemperaturer för bad.',
-      'Familjer med äldre barn finner Runmarö väl lämpat: den plana cykling, badet och den allmänna tryggheten i öinneslutna aktiviteter fungerar bra för barn som klarar ett par timmar på cykel. Yngre barn i cykelsits syns också vanligen. Frånvaron av bilar på huvudöns stigar adderar till attraktionen för familjer.',
-      'Runmarö är ett specifikt slags ö, bra på en specifik uppsättning aktiviteter och utan anspråk på att vara något den inte är. För dem som vill ha cykling, bad och en genuin skärgårdsmiljö utan kommersiellt brus levererar den pålitligt och utan besvikelse.',
-      'Runmarö har en funktion som vältrafikerat transitläge i det centrala skärgårdslopp som Waxholmsbåtarna trafikerar. Det innebär att det faktiskt är ganska enkelt att kombinera ett Runmarö-besök med en annan ö på samma dag, resa ut på morgonen, cykla och bada, och ta kvällsbåten tillbaka med ett stopp vid en annan ö på vägen. Det är just den typ av spontan skärgårds-logistik som Waxholmsbåtssystemet möjliggör.',
-      'Klippbadets tradition är stark på Runmarö. Det finns inga badvakter, inga avgränsade badplatser och inga anläggningar. Man hittar en klipphäll, lägger sin handduk och hoppar i. Det är det renaste formatet av skärgårdsupplevelse och Runmarö levererar det utan onödig omständlighet.',
-      'Det finns en enkelhet i Runmarö-konceptet som är svår att argumentera emot: en ö med bra cykling, bra bad, inga bilar och Waxholmsbåt fram och tillbaka. Det täcker de grundläggande behoven för en bra dag i skärgården utan onödig komplexitet. Det är inte det mest dramatiska erbjudandet i systemet, men det är ett av de mest pålitliga.',
-      'Runmarö lämpar sig ovanligt väl för första gångsbesök i skärgården. Enkelheten i logistiken, det plana cyklandet och den inbjudande strukturen med hamn, affär och klar badplats gör det till ett bra introduktionsscenario för skärgårdsnaiva besökare som sen kan ta sig vidare till mer avancerade mål.',
-    
-    
-    
+      // KÄLLA: runmarohembygdsförening.se/forfattare/ — Strindberg hyrde hus tre somrar: "Nore 1889, Stenbro 1890, Lerkila 1891"; "Söderberg hyrde samma hus i Stenbro som Strindberg tidigare hade hyrt"
+      'Runmarö har en ovanligt tät litteraturhistoria. August Strindberg hyrde hus på ön tre somrar i rad — Nore 1889, Stenbro 1890 och Lerkila 1891 — och Hjalmar Söderberg hyrde senare samma hus i Stenbro som Strindberg hade bott i.',
+      // KÄLLA: runmarohembygdsförening.se/forfattare/ — Tomas Tranströmer (1931–2015): "Morfadern var lots och det blev många sommarlov hos mormor och morfar i Gatan"; Nobelpriset i litteratur 2011; "Dikter från Runmarö" (2001)
+      'Tomas Tranströmer (1931–2015), Nobelpristagare i litteratur 2011, tillbringade många sommarlov hos mormor och morfar i Gatan på Runmarö; morfadern var lots. Samlingen "Dikter från Runmarö" kom 2001. Det finns ingen skyltad författarrunda på ön — man går dit på egen hand och hittar vad man hittar.',
+      // KÄLLA: runmarohembygdsförening.se/kalkhallar/ — "Där det finns urkalksten på Runmarö ser man en särpräglad och färgsprakande blomsterprakt och en stor rikedom på orkidéer"; apollofjärilen "finns bara på platser med kalkberggrund"
+      'Berggrunden gör ön botaniskt udda. Där urkalkstenen går i dagen växer en särpräglad och färgsprakande flora med stor rikedom på orkidéer, och här finns också apollofjärilen, som bara förekommer på platser med kalkberggrund.',
+      // KÄLLA: runmaro.se/om — "Från Stavsnäs Vinterhamn finns det gott om reguljära förbindelser till Runmarö med Waxholmsbolaget eller andra båtbolag"; "buss 433 eller 434 från Slussen. Bussresan till Stavsnäs tar ca 50 minuter"
+      // KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-runmaro/ — "Du åker till Runmarö flera gånger om dagen från Stavsnäs eller Sandhamn, året om."
+      'Ön nås från Stavsnäs Vinterhamn med Waxholmsbolaget eller andra båtbolag, flera gånger om dagen året om, och även från Sandhamn. Från Stockholm tar man buss 433 eller 434 från Slussen till Stavsnäs, en bussresa på ungefär 50 minuter.',
+      // KÄLLA: runmaro.se/om — bageri (Låttas Bageri), krog/restaurang (Svängen), affär (Tempo Runmarö)
+      // KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-runmaro/ — "På Runmarö finns affär, skola, restaurang och bageri"; cykeluthyrning vid affären eller båthamnen
+      'Ön har affär, bageri, krog och skola — det är en ö där folk bor, inte bara hyr. Cykel går att hyra vid affären eller båthamnen.',
+      // KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-runmaro/ — "Grusvägar genom öppna beteslandskap tar dig till skogsvägar genom gles bebyggelse"; "stigar genom trolsk skog"
+      'Landskapet växlar mellan grusvägar genom öppna beteslandskap, skogsvägar genom gles bebyggelse och stigar genom tät skog. Vattnet är aldrig långt bort, och klipporna gör sig lika bra till handduk som till utsiktsplats.',
     ],
 
     facts: {
@@ -2428,12 +2366,16 @@ export const ISLANDS: Island[] = [
       { name: 'Tempo Runmarö', type: 'Handel', desc: 'Öns lanthandel — proviant och dagligvaror.' },
     ],
     tips: [
-      'Runmarösund är en av mellersta skärgårdens finaste naturhamnar — anlöp tidigt.',
-      'Runmarö är ett lugnare alternativ till Sandhamn för övernattning med direktbåt till stan nästa dag.',
+      // KÄLLA: runmaro.se/om — "buss 433 eller 434 från Slussen. Bussresan till Stavsnäs tar ca 50 minuter"
+      'Från Slussen går buss 433 och 434 till Stavsnäs, ca 50 minuter, och därifrån båt till Runmarö.',
+      // KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-runmaro/ — cykeluthyrning vid affären eller båthamnen
+      'Cykel kan hyras vid affären eller båthamnen — grusvägarna gör ön lätt att ta sig runt på.',
     ],
     related: ['sandhamn', 'moja', 'gallno'],
     tags: ['segling', 'naturhamn', 'bränsle', 'lugnt', 'mellersta'],
-    did_you_know: 'Tomas Tranströmer (1931–2015) — Nobelpristagare i litteratur 2011 — tillbringade hela sitt liv somrarna i sin morfars lotshus vid "Gatan" på Runmarö. Diktcykeln "Östersjöar" (1974) är direkt inspirerad av öns vatten, lotshistoria och människor. 2001 sammanställde Tranströmer själv 30 dikter under titeln "Dikter från Runmarö".',
+    // KÄLLA: runmarohembygdsförening.se/kalkhallar/ — apollofjärilen är "en av Sveriges största fjärilsarter och den finns bara på platser med kalkberggrund"
+    // KÄLLA: runmarohembygdsförening.se/forfattare/ — "Söderberg hyrde samma hus i Stenbro som Strindberg tidigare hade hyrt"
+    did_you_know: 'Runmarös urkalksten ger ön orkidéer och apollofjäril — en av Sveriges största fjärilsarter, som bara lever där berggrunden är kalkhaltig. Hjalmar Söderberg hyrde samma hus i Stenbro på Runmarö som August Strindberg hade hyrt före honom.',
     insiderTips: [
       'Tomas Tranströmer och hans familj bodde på Runmarö under lång tid. Tranströmer sammanställde ett urval dikter under titeln \'Dikter från Runmarö\'.',
       'Runmarö nås med bilfärja och det är möjligt att ta med bil till ön.',
