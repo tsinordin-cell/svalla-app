@@ -71,6 +71,25 @@ const MEM_TTL = 5 * 60 * 1000
 const DB_KEY = 'landing_photos'
 const DB_TTL = 7 * 24 * 60 * 60 * 1000
 
+/**
+ * Negativ cache i DATABASEN, inte bara i minnet.
+ *
+ * MÄTT 2026-09-16: raden landing_photos fanns inte alls i app_kv. Den skrivs
+ * bara vid lyckad hämtning, och Google har svarat 403 på fotomedia sedan minst
+ * 13 sep. Följden: lasDbCache() gav null, minnescachen lever bara 5 minuter per
+ * lambda-instans, och VARJE kall instans sköt iväg alla 19 Text Search-anropen
+ * på nytt. Vercel-loggen 13 sep: 74 st RESOURCE_EXHAUSTED "SearchTextRequest
+ * per day" på tre timmar. Dagskvoten brändes alltså av försök som ändå inte
+ * kunde lyckas.
+ *
+ * Nu skrivs ett misslyckande ner. En kall instans läser markeringen och avstår
+ * i sex timmar i stället för att fråga igen. När Google börjar svara löper
+ * spärren ut av sig själv och markeringen raderas vid första lyckade hämtning —
+ * ingen manuell åtgärd behövs.
+ */
+const FEL_KEY = 'landing_photos_fel'
+const FEL_BACKOFF_MS = 6 * 60 * 60 * 1000
+
 async function lasDbCache(): Promise<{ data: Record<string, string>; ageMs: number } | null> {
   try {
     const admin = getAdminClient()
@@ -97,6 +116,36 @@ async function skrivDbCache(data: Record<string, string>): Promise<void> {
   } catch (e) {
     console.error('[landing-photos] kunde inte skriva app_kv:', String(e).slice(0, 200))
   }
+}
+
+/** Hur länge sedan senaste totalmisslyckandet skrevs, eller null. */
+async function lasFelMarkering(): Promise<number | null> {
+  try {
+    const admin = getAdminClient()
+    const { data: row, error } = await admin
+      .from('app_kv').select('updated_at').eq('key', FEL_KEY).maybeSingle()
+    if (error || !row?.updated_at) return null
+    return Date.now() - new Date(row.updated_at as string).getTime()
+  } catch {
+    return null
+  }
+}
+
+async function skrivFelMarkering(): Promise<void> {
+  try {
+    const admin = getAdminClient()
+    await admin.from('app_kv').upsert({
+      key: FEL_KEY,
+      value: { senaste_fel: new Date().toISOString() },
+      updated_at: new Date().toISOString(),
+    })
+  } catch { /* inte kritiskt — spärren är en besparing, inte en funktion */ }
+}
+
+async function rensaFelMarkering(): Promise<void> {
+  try {
+    await getAdminClient().from('app_kv').delete().eq('key', FEL_KEY)
+  } catch { /* inte kritiskt */ }
 }
 
 async function fetchPhotoRef(query: string, lat: number, lng: number, r: number): Promise<string | null> {
@@ -151,6 +200,19 @@ export async function getLandingPhotos(): Promise<Record<string, string>> {
     return db?.data ?? {}
   }
 
+  // Spärr: sköt inte iväg 19 anrop om det nyss misslyckades totalt. Se FEL_KEY.
+  const felAlder = await lasFelMarkering()
+  if (felAlder !== null && felAlder < FEL_BACKOFF_MS) {
+    const kvar = Math.round((FEL_BACKOFF_MS - felAlder) / 60000)
+    console.warn(
+      `[landing-photos] hoppar over Google — senaste forsoket misslyckades totalt, ` +
+      `sparren slapper om ${kvar} min. Anvander ${db ? 'gammal karta ur app_kv' : 'tom karta'}.`
+    )
+    const fallback = db?.data ?? {}
+    memCache = { ts: Date.now(), data: fallback }
+    return fallback
+  }
+
   const results = await Promise.allSettled(
     PLACES_TO_FETCH.map(({ query, lat, lng, r }) => fetchPhotoRef(query, lat, lng, r))
   )
@@ -170,6 +232,7 @@ export async function getLandingPhotos(): Promise<Record<string, string>> {
     // memCache — varje request pa instansen gjorde da om alla 19 anropen.
     // Nu negativ-cachas felet (5 min) och en utgangen DB-karta ar battre
     // an en tom startsida.
+    await skrivFelMarkering()
     const fallback = db?.data ?? photoMap
     memCache = { ts: Date.now(), data: fallback }
     return fallback
@@ -177,5 +240,6 @@ export async function getLandingPhotos(): Promise<Record<string, string>> {
 
   memCache = { ts: Date.now(), data: photoMap }
   await skrivDbCache(photoMap)
+  await rensaFelMarkering()
   return photoMap
 }
