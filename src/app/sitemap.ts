@@ -446,8 +446,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly' as const,
       priority: 0.65,
     }))
-  } catch {
-    // Om Supabase inte svarar — returnera ändå resten av sitemap
+  } catch (err) {
+    // Om Supabase inte svarar returnerar vi ändå resten av sitemapen — men tyst
+    // gjorde det mer skada än nytta. 14–16 sep 2026 var projektet strypt
+    // (exceed_egress_quota) och sitemapen krympte från 2 492 till 1 728 URL:er
+    // utan att något larmade: 774 sidor försvann ur Google och det upptäcktes
+    // först vid en manuell länkkontroll två dygn senare.
+    console.error('[sitemap] Supabase svarade inte — dynamiska sidor utelämnade:', err)
   }
 
   return [
