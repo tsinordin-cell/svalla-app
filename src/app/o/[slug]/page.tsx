@@ -23,6 +23,7 @@ import { GUIDES } from '../../guider/guides-data'
 import { getGuidesForIsland } from '../../guider/guide-island-map'
 import IslandB2BCTA from '@/components/IslandB2BCTA'
 import IslandHantverkare from '@/components/IslandHantverkare'
+import IslandKallor from '@/components/IslandKallor'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -1174,6 +1175,10 @@ export default async function IslandPage({ params }: Props) {
  </div>
  </section>
  )}
+
+ {/* Källorna bakom sidan — synliga för besökaren, inte bara i kodkommentarer.
+     Genereras av scripts/generera-kallor.mjs ur KÄLLA-raderna i datafilerna. */}
+ <IslandKallor slug={island.slug} islandName={island.name} />
 
  {/* Guider om ön — intern länkning till /guider/[slug] (220 artiklar) */}
  {guideLinks.length > 0 && (
