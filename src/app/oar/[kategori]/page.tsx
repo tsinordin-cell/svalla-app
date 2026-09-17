@@ -6,6 +6,7 @@ import EmailSignup from '@/components/EmailSignup'
 import PublicFooter from '@/components/PublicFooter'
 import { OAR_CATEGORIES, getOarCategory, islandsForCategory } from '../oar-categories'
 import IslandThumb from '@/components/IslandThumb'
+import { OBILDER } from '@/app/o/obilder.generated'
 
 type Props = { params: Promise<{ kategori: string }> }
 
@@ -150,11 +151,11 @@ export default async function OarCategoryPage({ params }: Props) {
                         display: 'flex', alignItems: 'center', gap: 14,
                       }}
                     >
-                      {i.coverImage ? (
+                      {(OBILDER[i.slug]?.url ?? i.coverImage) ? (
                         <div style={{
                           width: 84, height: 64, flexShrink: 0,
                           borderRadius: 8, overflow: 'hidden',
-                          background: `url('${i.coverImage}') center/cover, linear-gradient(135deg, var(--sea)`,
+                          background: `url('${OBILDER[i.slug]?.url ?? i.coverImage}') center/cover, linear-gradient(135deg, var(--sea)`,
                         }} aria-hidden />
                       ) : (
                         <IslandThumb slug={i.slug} region={i.region} width={84} height={64} />
