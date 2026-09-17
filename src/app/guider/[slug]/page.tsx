@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { GUIDES } from '../guides-data'
 import { getGuideContent } from './guide-content'
+import GuideUppskattning from '@/components/GuideUppskattning'
 import { getIsland } from '../../o/island-data'
 import { GUIDE_ISLAND_MAP } from '../guide-island-map'
 import RegionGuides, { REGION_META } from './RegionGuides'
@@ -252,6 +253,10 @@ export default async function GuidePage({ params }: Props) {
 
       {/* Content */}
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '8px 20px 80px' }}>
+        {/* Är prisnivåerna i guiden uppskattade säger vi det innan läsaren
+            hinner budgetera på dem. Genereras av scripts/generera-uppskattningar.mjs. */}
+        <GuideUppskattning slug={slug} />
+
         <div
           style={{
             background: 'var(--white)',

@@ -5038,7 +5038,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kneippbyn strax söder om Visby är Gotlands roligaste barnfamiljsdestination. Vattenpark med rutschbanor, utomhuspool och barnpool. Minigolf, aktivitetsytor och restauranger. Kneippbyn är ett heldag-ställe — kom tidigt och stanna till kvällen. Boende finns också på området för den som vill ha allt under ett tak. Populärt redan från kl. 10, så kom inte efter lunch i juli.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">3. Tofta strand</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands bästa familjestrand — bred sandstrand, grunt och långsamt inströmmande vatten som gör det tryggt för yngre barn att bada. Servicehuset har toaletter, café och glass. Parkeringen är stor men fylls ändå på högsommaren — kom senast 9:30 på morgonen. Tofta Strand Camping ligger intill, bra om ni vill campa nära stranden.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands bästa familjestrand — bred sandstrand, grunt och långsamt inströmmande vatten som gör det tryggt för yngre barn att bada. Servicehuset har toaletter, café och glass. Parkeringen är stor men fylls ändå på högsommaren — kom tidigt på morgonen. Tofta Strand Camping ligger intill, bra om ni vill campa nära stranden.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">4. Visby ringmur och medeltidsstaden</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visby ringmur från 1200-talet är ett av Nordens bäst bevarade medeltida stadsmurssystem. Barn förvandlas ofta till riddare och prinsessor när de kliver in genom portarna. Promenera längs murens insida, utforska kyrkoruinerna (S:ta Katarina-ruinen är mest imponerande) och bli vilse i kullerstensgatornas labyrint. Gotlands Museum inne i Visby har en bra sektion om medeltiden med föremål och berättelser som engagerar barn.</p>
@@ -5345,6 +5345,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tre typer av AW på båt</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marknaden för charter-AW i Stockholm delas grovt i tre segment:</p>
+<!-- UPPSKATTNING: spann över flera charteroperatörer, ej hämtat per aktör (2026-09). Sägs ut för läsaren i stycket nedan. -->
+<p style="font-size:14px;line-height:1.7;color:var(--txt3);margin:0 0 10px">Prisnivåerna nedan är vår marknadsöversikt över flera operatörer, inte hämtade prislistor. Kontrollera alltid hos operatören innan ni bokar.</p>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
   <li><strong>Öppen charter (turbåt)</strong> – du köper platser på en gemensam tur. 20–200 pers. Operatörer som Strömma och Djurgårdslinjen kör detta. Ca 300–600 kr/pers inkl. en drink.</li>
   <li><strong>Privat charter (exklusiv)</strong> – ni hyr hela båten. 10–300 pers beroende på fartyg. Pris från 8 000 kr/timme. Full kontroll på gästlista, mat och musik.</li>
@@ -5354,7 +5356,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa operatörerna 2026</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Strömma Kanalbolaget</strong>
-  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Störst i Stockholm med flest fartyg. Öppna AW-turer maj–sept från Strömkajen. Priser runt 395 kr/pers för 2-timmarskryssning inkl. välkomstdrink. Privatbokning möjlig för 30–400 pers.</p>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Störst i Stockholm med flest fartyg. Öppna AW-turer maj–sept från Strömkajen. Priset varierar med avgång och sätts av Strömma — se stromma.com för din dag. Privatbokning möjlig för 30–400 pers.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Stockholm Archipelago Events</strong>
