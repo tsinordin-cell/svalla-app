@@ -185,7 +185,6 @@ export type Island = {
 }
 
 export const ISLANDS: Island[] = [
-
   // ─── SANDHAMN ────────────────────────────────────────────────
   {
     slug: 'sandhamn',
@@ -253,7 +252,7 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Sandhamn Seglarhotell', type: 'Hotell', desc: 'Hotell vid hamnen med spa, restaurang, gym och pool. Öppet året runt. Boka långt i förväg.', websiteUrl: 'https://www.sandhamn.com' },
       { name: 'Sandhamns Värdshus', type: 'B&B', desc: 'Gästgiveri i Missionshuset med fem dubbelrum och en stuga, frukost ingår.', websiteUrl: 'https://sandhamns-vardshus.se' },
-      { name: 'Sands Hotell', type: 'Hotell', desc: 'Lägenhetshotell med hotellservice nära hamnen, 15 dubbelrum och 3 enkelrum. Öppet året om.', websiteUrl: 'https://sandshotell.se' },
+      { name: 'Sands Hotell', type: 'Hotell', desc: 'Lägenhetshotell med hotellservice nära hamnen, 15 dubbelrum och 3 enkelrum, totalt 33 bäddar.', websiteUrl: 'https://sandshotell.se' },
     ],
     getting_there: [
       // KÄLLA: sandhamn.com/en/hitta-hit — Waxholmsbåt linje 15 Strömkajen–Sandhamn "2–3 hours"
@@ -362,7 +361,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','limited','limited','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ─── UTÖ ─────────────────────────────────────────────────────
   {
     slug: 'uto',
@@ -419,7 +417,7 @@ export const ISLANDS: Island[] = [
     ],
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 21 Årsta–Utö. Nynäshamnslinjen (tabell 22) slutar på Ålö, inte Utö by. Årsta brygga nås med buss 846 (14–17 min). Se varv 51–52.
-      travel_time: 'Buss 846 till Årsta brygga + båt 35–75 min (Gruvbryggan förbokas)',
+      travel_time: 'Buss 846 till Årsta brygga + båt 40–75 min (Gruvbryggan förbokas minst 1 tim före avgång)',
       character: 'Lugnt, naturnära, perfekt för familjer och cyklister',
       season: 'April–Oktober (Värdshuset öppet helår)',
       best_for: 'Cykling, havsbastu, naturupplevelser, familjer',
@@ -431,7 +429,7 @@ export const ISLANDS: Island[] = [
       { icon: '🧖', name: 'Havsbastu', desc: 'En av skärgårdens mest omtalade havsbastur. Dörren går ut mot havet — basta, hoppa i, basta igen.' },
       { icon: '⛏', name: 'Gruvan & museet', desc: 'Järnmalm bröts på Utö i mer än 700 år, från 1100-talet till 1879. Gruvdriften var som störst på 1840-talet med 16 000 ton/år och cirka 500 invånare på ön. Gruvmuseet berättar historien — fascinerande för både barn och vuxna.' },
       // KÄLLA: marinwiki.se/port/661 — "Stranden ligger på militärens område drygt 7 kilometer från Gruvbyn"
-      { icon: '🏊', name: 'Bad & stränder', desc: 'Stora Sand på Utö (drygt 7 km från Gruvbryggan, ligger inom skjutfältet — kontrollera tillgänglighet) och Ålö Storsand på grannön Ålö (broförbunden) hör till Sveriges finaste sandstränder.' },
+      { icon: '🏊', name: 'Bad & stränder', desc: 'Stora Sand på Utö (drygt 7 km från Gruvbyn, ligger inom skjutfältet — kontrollera tillgänglighet) och Ålö Storsand på grannön Ålö (broförbunden) hör till Sveriges finaste sandstränder.' },
       // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — reservatet omfattar "norra delen av Utö samt ett antal öar i omgivande vatten"; södra delen är militärt övningsområde
       { icon: '🚶', name: 'Vandring', desc: 'Naturreservat i öns norra del med välmarkerade leder och vacker urbergslandskap.' },
       { icon: '🎣', name: 'Fiske', desc: 'Ytterskärgården runt Utö är utmärkt för havsöring och abborre.' },
@@ -547,7 +545,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ─── VAXHOLM ─────────────────────────────────────────────────
   {
     slug: 'vaxholm',
@@ -594,12 +591,11 @@ export const ISLANDS: Island[] = [
       'Oscar-Fredriksborg vid Oxdjupet byggdes 1867–1877, sedan en farled öppnats genom sundet efter århundraden av stenblockering. Det var ett modernt bergfort för sin tid, med tunnlar sprängda med nitroglycerin, betong och pansar, och med en låg profil i stället för kastellets höga murar. Anläggningen blev byggnadsminne 2002 och området är öppet för besök.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — bildat 2015; "4341 hektar varav 2 891 hektar land"; Vaxholms kommun; förvaltare Statens fastighetsverk; naturtyper "barrskog, ädellövskog, odlingslandskap"; "många gamla grova ekar som växer i området, såväl i betesmark som i skogsmiljö"; Natura 2000-området "Damstakärret SE0110132 ligger inom området"
       'Bogesundslandets naturreservat bildades 2015 och är 4 341 hektar, varav 2 891 hektar land — en av de största skyddade ytorna så nära Stockholm. Statens fastighetsverk förvaltar det, och naturtyperna är barrskog, ädellövskog och odlingslandskap. Det som gör området särskilt är mängden gamla grova ekar, både i betesmark och i skogsmiljö. Natura 2000-området Damstakärret ligger inom reservatet.',
-      // KÄLLA: https://www.lansstyrelsen.se/.../bogesundslandet.html — Bogesunds slott från mitten av 1600-talet är statligt byggnadsminne och rymmer vandrarhem; anordningar: markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd, campingplatser, golfbana; förbjudet att medföra okopplad hund, tälta utan anvisning, cykla utanför anvisade stigar och rida annat än på vägar
-      'Mitt i reservatet ligger Bogesunds slott från mitten av 1600-talet, statligt byggnadsminne och i dag vandrarhem. Runt omkring finns markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd, campingplatser och en golfbana. Reglerna är värda att känna till: koppel på hunden, tältning bara där det anvisas, cykling bara på anvisade stigar och ridning bara på vägar.',
+      // KÄLLA: https://www.lansstyrelsen.se/.../bogesundslandet.html — Bogesunds slott från mitten av 1600-talet är statligt byggnadsminne och rymmer vandrarhem; anordningar: markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd, campingplatser, golfbana; föreskrifterna förbjuder att medföra okopplad hund, att "tälta mer än två dygn i följd annat än på anvisad plats", att cykla utanför anvisade stigar och att "rida annat än på vägar och på anvisade ridstigar"
+      'Mitt i reservatet ligger Bogesunds slott från mitten av 1600-talet, statligt byggnadsminne och i dag vandrarhem. Runt omkring finns markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd, campingplatser och en golfbana. Reglerna är värda att känna till: koppel på hunden, tältning högst två dygn i följd utanför anvisad plats, cykling bara på anvisade stigar och ridning bara på vägar och anvisade ridstigar.',
     ],
     facts: {
-      // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Vaxholm, ~55–70 min (08.15→09.17, 08.20→09.17, 12.45→13.42). Tidigare "75 min" var i överkant.
-      travel_time: '~1 tim (55 min–1 tim 20) med Waxholmsbåt från Strömkajen',
+      travel_time: 'Waxholmsbåt från Strömkajen',
       character: 'Stad med skärgårdskänsla, historia, helårsdestination',
       season: 'Helår — Vaxholm är en aktiv stad tolv månader om året',
       best_for: 'Dagsturer, historia, familjer, första skärgårdsbesök',
@@ -614,10 +610,10 @@ export const ISLANDS: Island[] = [
     ],
     // "Skärgårdens mest tillgängliga" var ett obelagt superlativ och togs bort 2026-09-14.
     accommodationIntro: 'Vaxholm nås med bil, buss och båt, och boendet finns i staden snarare än utspritt på en ö: hotell, bed & breakfast, vandrarhem och camping.',
-    // KÄLLA: waxholmshotell.se; kastelletvaxholm.se + STF (STF Kastellet Bed & Breakfast, 27 rum, året runt); vaxholmsbedandbreakfast.se; svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem; waxholmscamping.com (läst 2026-09-14)
+    // KÄLLA: waxholmshotell.se; kastelletvaxholm.se + STF (STF Kastellet Bed & Breakfast, 27 rum, 81 bäddplatser); vaxholmsbedandbreakfast.se; svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem; waxholmscamping.com (läst 2026-09-14). "Året runt" på källsidorna gäller båttrafiken respektive Sjövillan, inte B&B:et, och är struket.
     accommodation: [
       { name: 'Waxholms Hotell', type: 'Hotell', desc: 'Historiskt hotell vid hamnen med matsal och havsutsikt. Öppet hela året.', websiteUrl: 'https://www.waxholmshotell.se' },
-      { name: 'Kastellet Bed & Breakfast', type: 'B&B', desc: 'STF-anslutet B&B i Vaxholms kastell, 27 rum, öppet året runt; bistro och café sommartid.', websiteUrl: 'https://kastelletvaxholm.se' },
+      { name: 'Kastellet Bed & Breakfast', type: 'B&B', desc: 'STF-anslutet B&B i Vaxholms kastell, 27 rum och totalt 81 bäddplatser; bistro och café sommartid.', websiteUrl: 'https://kastelletvaxholm.se' },
       { name: 'Vaxholms Bed & Breakfast', type: 'B&B', desc: 'Litet B&B i privat hem i Vaxholm.', websiteUrl: 'https://vaxholmsbedandbreakfast.se' },
       { name: 'STF Bogesunds Vandrarhem', type: 'Vandrarhem', desc: 'Vandrarhem vid Bogesunds slott utanför Vaxholm.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem/' },
       { name: 'Waxholms Camping', type: 'Camping', desc: 'Campingplats med stugor på Eriksö — nås med bil.', websiteUrl: 'https://waxholmscamping.com' },
@@ -625,8 +621,9 @@ export const ISLANDS: Island[] = [
     getting_there: [
       // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Vaxholm, ~55–70 min (se facts_provenance ovan i filen)
       { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', time: '~1 tim', desc: 'Direktlinje med Waxholmsbolaget. Ingår i SL-kort.', icon: '⛴' },
-      { method: 'Bil', from: 'Stockholm', time: '45 min', desc: 'Vaxholm nås med bil via E18. Det finns parkeringar i staden.', icon: '🚗' },
-      { method: 'Buss', from: 'Tekniska Högskolan', time: '60 min', desc: 'SL-buss 670 från T-banan.', icon: '🚌' },
+      { method: 'Bil', from: 'Stockholm', time: '', desc: 'Vaxholm har fast landsförbindelse och nås med bil. Det finns parkeringar i staden.', icon: '🚗' },
+      // KÄLLA: moovitapp.com, linje 670 — "The first stop of the 670 bus route is Tekniska Högskolan T-Bana and the last stop is Vaxholm Västerhamnsplan", "approximately 52 minutes" för hela sträckan
+      { method: 'Buss', from: 'Tekniska Högskolan', time: '~52 min', desc: 'SL-buss 670 från T-banan.', icon: '🚌' },
     ],
     harbors: [
       // KÄLLA: gasthamnsguide.se/omradesindelat/stockholms-mellersta-skargard/item/vaxholms-gasthamn + svenskagasthamnar.se/stockholms-skargard/waxholm-vaxholm/ — drivmedel (diesel/bensin/gasol) via Sjömackarna/Gulf
@@ -670,7 +667,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Buss varje timme. Båt flera gånger/dag.',
       booking_url: 'https://sl.se',
       // KÄLLA: Vaxholms stad, taxa antagen av kommunfullmäktige 2025 — https://www.vaxholm.se/trafik--infrastruktur/trafik-gator-och-parkering/parkering/taxor-och-avgifter (hämtad 2026-08-06)
-      car_parking: 'Parkering i centrala Vaxholm: 40 kr/timme 1 maj–31 augusti (8–18 vardagar, 8–15 helger), avgiftsfritt 1 september–30 april. Pendling rekommenderas — buss 670 från Tekniska Högskolan tar 60 min med SL-kort.',
+      car_parking: 'Parkering i centrala Vaxholm (zon 1595 och 1596): 40 kr/timme 1 maj–31 augusti, 8–18 vardagar och 8–15 helger. Avgiftsfritt 1 september–30 april gäller halva Kronängsskolans parkeringsområde (zon 1606), där det är parkeringsförbud tisdagar 00–08.',
     },
     activity_meta: {
       kajak: { difficulty: 'lätt', rental: true, notes: 'Perfekt utgångspunkt för kajaktur mot Resarö och Rindö. Uthyrning vid hamnen.' },
@@ -697,7 +694,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: OpenStreetMap ("Buss 670: Tekniska högskolan – Vaxholm"), moovitapp.com, rome2rio.com — linjenumret är 670, inte 676
       'Vaxholm nås med SL-buss 670 från Tekniska Högskolan (tunnelbana röd linje), ett billigare alternativ till båt och ofta lika snabbt.',
       // KÄLLA: vaxholmsfastning.se/historik (läst 2026-08-25) + SFV — blockhus på Vaxholmen i början av 1500-talet (Svante Nilsson Sture), Gustav Vasas nya och kraftigare fästning 1548, nuvarande kastell 1833–1863. Tidigare stod här att 1548 var den FÖRSTA fästningen.
-      'Vaxholmen befästes redan i början av 1500-talet med ett blockhus, och 1548 lät Gustav Vasa uppföra en ny och kraftigare fästning som avvisade både danska och ryska anfall. Det kastell som står här i dag byggdes 1833–1863, sedan den gamla fästningen rivits. Kastellet kan besökas sommartid.',
+      'Vaxholmen befästes redan i början av 1500-talet med ett blockhus, och 1548 lät Gustav Vasa uppföra en ny och kraftigare fästning som avvisade både danska och ryska anfall. Det kastell som står här i dag byggdes 1833–1863, sedan den gamla fästningen rivits.',
       'Vaxholm är en av få skärgårdsdestinationer med apotek, post och ett brett serviceutbud öppet hela året.',
       'Innerstan i Vaxholm har välbevarad trähusmiljö med byggnader från 1800-talets slut, en av de mer intakta trästadsmiljöerna i Stockholmsregionen.',
     ],
@@ -713,7 +710,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
     },
   },
-
   // ─── GRINDA ──────────────────────────────────────────────────
   {
     slug: 'grinda',
@@ -764,8 +760,7 @@ export const ISLANDS: Island[] = [
       'Förvaltaren har en egen historia. Stiftelsen Stockholms skärgård bildades den 20 mars 1959, och 1998 fördubblades markinnehavet när Stockholms stad skänkte sina skärgårdsmarker — från omkring 7 000 till omkring 14 000 hektar. Stiftelsen beskriver sig i dag som Stockholms läns tredje största markägare, och äger cirka tvåtusen byggnader i skärgården.',
     ],
     facts: {
-      // KÄLLA: Waxholmsbolagets tabell 11 Strömkajen–Södra Grinda, snabbast 1 tim 35, de flesta 1 tim 50–2 tim 15.
-      travel_time: '~2 h med Waxholmsbåt från Strömkajen (snabbast 1 tim 35)',
+      travel_time: 'Waxholmsbåt från Strömkajen',
       character: 'Naturskönt, välskött, bra mat, populär gästhamn',
       season: 'Maj–September',
       best_for: 'Seglare, vandring, romantiska par, familjer',
@@ -881,7 +876,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ─── FINNHAMN ────────────────────────────────────────────────
   {
     slug: 'finnhamn',
@@ -931,8 +925,8 @@ export const ISLANDS: Island[] = [
       'Skärgårdsstiftelsen beskriver Finnhamn som ett av de mest välbesökta utflyktsmålen i Stockholms skärgård, och ön nås året runt med reguljär skärgårdstrafik. Utöver vandrarhem och stugby finns tältplatser, flera gästhamnar, bastu, badstrand och kafé. Bastun är värd att veta om i förväg — den ändrar vad en kall kväll i september är värd.',
     ],
     facts: {
-      // KÄLLA: Waxholmsbolagets tabell 10 Strömkajen–Finnhamn, snabbast 3 tim 05 (08.30→11.35), typiskt ~3 tim 30; skargardstrafikanten.se: linjen bytte 2023 tabellnummer från 12/13 till 10.
-      travel_time: '~3 h med Waxholmsbåt från Strömkajen (linje 10, tidigare 12/13)',
+      // KÄLLA: skargardstrafikanten.se — "Traden från Åsättra till bl.a. Finnhamn, Husarö och Möja har tidigare haft tabellnummer 12 C och D men fick vid vårturlistan 2023 ett eget separat nummer; 10." Waxholmsbolagets tabeller går inte att läsa utan JavaScript, så restiden är obelagd.
+      travel_time: 'Waxholmsbåt från Strömkajen (tabell 10 avser traden Åsättra–Finnhamn, tidigare 12 C och D)',
       character: 'Naturnärt, lugnt, genuint, bra för vandring',
       season: 'Maj–September (vandrarhem delvis öppet helår)',
       best_for: 'Vandring, naturupplevelse, seglare, budget-resenärer',
@@ -1038,7 +1032,6 @@ export const ISLANDS: Island[] = [
       vandring: { trails: 4, max_km: 10 },
     },
   },
-
   // ─── MÖJA ────────────────────────────────────────────────────
   {
     slug: 'moja',
@@ -1082,8 +1075,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/moja-bjorndalen.html — skyddat sedan 1992, utvidgat 1998; 143 hektar; Värmdö; förvaltare Skärgårdsstiftelsen; syfte "bevara och vårda ett för faunan värdefullt skogsområde samt att låta delar av skogsmarken utvecklas mot naturskog"; hällmarkstallskog, barr- och blandskog, myrmarker; anordningar rast-/övernattningsstuga och torrdass; tältning och eldning förbjuden
       'Möja-Björndalens naturreservat på öns norra del är 143 hektar, skyddat sedan 1992 och utvidgat 1998. Syftet är att bevara ett för faunan värdefullt skogsområde och att låta delar av skogsmarken utvecklas mot naturskog, och terrängen växlar mellan hällmarkstallskog, barr- och blandskog och myrmarker. Här finns rast- och övernattningsstuga och torrdass, men tältning och eldning är förbjudet.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/granholmen.html — "Skyddat sedan: 1978, utvidgat 2018"; "Storlek: 39 hektar varav land 18 hektar"; Värmdö; Skärgårdsstiftelsen; arter "blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad"; naturhamnen Munkhamnen; tältning högst två dygn per plats
-      // KÄLLA: https://www.varmdo.se/download/.../Möja.pdf — Granholmens naturreservat ligger 2,5 km sydöst om Möja
-      'Granholmens naturreservat ligger ungefär 2,5 kilometer sydöst om Möja och är litet: 39 hektar, varav 18 hektar land, skyddat sedan 1978 och utvidgat 2018. Det som gör det värt besväret är floran i de öppna betesmarkerna — blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad. Naturhamnen Munkhamnen ligger i området, och tältning är begränsad till två dygn per plats.',
+      'Granholmens naturreservat är litet: 39 hektar, varav 18 hektar land, skyddat sedan 1978 och utvidgat 2018. Det som gör det värt besväret är floran i de öppna betesmarkerna — blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad. Naturhamnen Munkhamnen ligger i området, och tältning är begränsad till två dygn per plats.',
       // KÄLLA: https://www.varmdo.se/download/.../Möja.pdf — hembygdsmuseet består av Bergstugan, Lökastugan och Sjöboden; dansbanan från 1940-talet är "skärgårdens äldsta"; vårdkase på Vårdkasberget bakom skolan; Berg hade 1630 fem gårdar och 50 invånare; Berg har "karaktär av en skärgårdsby från sekelskiftet 1900"
       // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — "Möja hembygdsmuseum, invigt 1922, finns i Berg"
       'Möja hembygdsmuseum invigdes 1922 och ligger i Berg. Det består av tre byggnader — Bergstugan, Lökastugan och Sjöboden. Berg är öns största by, med karaktär av en skärgårdsby från sekelskiftet 1900, men var 1630 bara fem gårdar och femtio invånare. Bakom skolan ligger Vårdkasberget med sin vårdkase, och dansbanan från 1940-talet beskrivs av kommunen som skärgårdens äldsta.',
@@ -1091,8 +1083,8 @@ export const ISLANDS: Island[] = [
       'Det finns klippbad i Långvik, Ramsmora, Löka och Berg, och vid Saltvik både badklippor och sandstrand — men inga anlagda badplatser. Gästhamnar finns i Långvik, Ramsmora, Löka och Kyrkviken. Kommunen beskriver möjaborna som mångsysslare: på ön finns omkring sextio företag.',
     ],
     facts: {
-      // KÄLLA: Waxholmsbolagets tabell 14. Möja nås från SOLLENKROKA (ej Stavsnäs), ~40 min–1 tim till byns bryggor. Strömkajen–Berg ~3,5 tim (08.50→12.30).
-      travel_time: '~40 min–1 tim från Sollenkroka · ~3,5 h från Strömkajen',
+      // KÄLLA: varmdo.se, Möja-foldern — "Båt från Strömkajen tar ca 3-4 timmar. Det går också att åka buss 434 från Slussen till Sollenkroka och därifrån båt, restid ca 2,5 timme, varav båt drygt 1 timme." Waxholmsbolagets tabell 14 gick inte att öppna.
+      travel_time: 'Drygt 1 tim med båt från Sollenkroka (ca 2,5 tim från Slussen med buss 434) · ca 3–4 tim med båt från Strömkajen',
       character: 'Bilfri, lantlig, genuint, lugnt',
       season: 'Maj–September',
       best_for: 'De som söker äkta skärgårdsliv utan turister',
@@ -1151,7 +1143,7 @@ export const ISLANDS: Island[] = [
       frequency: '2–4 avgångar/dag sommartid, glesare vinter',
       booking_url: 'https://waxholmsbolaget.se',
       // KÄLLA: Värmdö kommun — https://www.varmdo.se/varmdohamnar/parkera.4.6e5e3cc318a8d4dc3f6361bf.html (hämtad 2026-08-06)
-      car_parking: 'Parkering vid Sollenkroka brygga (avfärdshamn för Möja). Vid Stavsnäs vinterhamn finns ca 1 300 platser men den hamnen gäller Sandhamn/Nämdö-trafiken, inte Möja. Pendelbuss 428 från Slussen till Stavsnäs (ca 60 min med SL-kort).',
+      car_parking: 'Parkering vid Sollenkroka brygga (avfärdshamn för Möja) — Värmdö kommun anger att Parkit Sweden AB sköter parkeringen i Stavsnäs, Sollenkroka och Boda. Vid Stavsnäs vinterhamn finns cirka 1 300 platser, men den hamnen gäller Sandhamn/Nämdö-trafiken, inte Möja.',
     },
     activity_meta: {
       kajak: { difficulty: 'lätt', rental: true, notes: 'Paddla söderut mot Gällnö och Svartsö. Uthyrning vid Berg.' },
@@ -1213,7 +1205,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','open','open','limited','off','off'],
     },
   },
-
   // ─── FJÄDERHOLMARNA ──────────────────────────────────────────
   {
     slug: 'fjaderholmarna',
@@ -1232,8 +1223,8 @@ export const ISLANDS: Island[] = [
       // KÄLLA: naturkartan.se och visitlidingo.se — ögruppen utgörs av Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme; Libertas och Rövarns holme är fågelskyddsområden med landstigningsförbud under häckningstid
       'Ögruppen består av fyra öar: Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme. Det är Stora Fjäderholmen man kliver av på. Libertas och Rövarns holme är fågelskyddsområden med landstigningsförbud under häckningstiden.',
       // KÄLLA: fjaderholmarna.se — båtoperatörer: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen
-      // KÄLLA: stromma.com — Strandvägen kajplats 13, stopp vid Nacka Strand, ca 30 min
-      'Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13, gör ett stopp vid Nacka Strand och är framme efter cirka 30 minuter. Resan går ut genom Stockholms inlopp förbi Djurgården — en ovanligt snabb övergång från stad till ö.',
+      // KÄLLA: stromma.com — Strandvägen kajplats 13, "Some departures also stop at Nacka Strand", ca 30 min
+      'Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13, och vissa avgångar stannar vid Nacka Strand. Resan tar cirka 30 minuter och går ut genom Stockholms inlopp förbi Djurgården — en ovanligt snabb övergång från stad till ö.',
       // KÄLLA: rokeriet-fjaderholmarna.se — rökta produkter tillagade på plats, restaurang och deli; visitskargarden.se — deli med skagenmackor, sallader, rökta räkor och chark
       'Restaurang Rökeriet röker sina produkter på plats och säljer dem både i restaurangen och i delin, med skagenmackor, sallader, rökta räkor och chark. Att köpa direkt från ett fungerande rökeri går bra att kombinera med att sätta sig på klipporna en bit bort, med Stockholms inlopp framför sig.',
       // KÄLLA: fjaderholmarnasbryggeri.se — brewpub på Stora Fjäderholmen där ölen serveras direkt från tankarna, pubmeny och ölprovning; huvudproduktionen sker i Bro
@@ -1274,8 +1265,8 @@ export const ISLANDS: Island[] = [
       // Cinderellabåtarna från Strandvägen". Restiden var ungefär rätt, men
       // operatören och kajen var fel: Strömmas Cinderella-linje går till
       // Sandhamn, Grinda, Gällnö och Vaxholm — inte till Fjäderholmarna.
-      // KÄLLA: visitskargarden.se/fjaederholmslinjen (Slussen ca 25 min) + stromma.com (Strandvägen kajpl 13 ca 30 min) + kungligaslotten.se (Waxholmsbolaget angör, kaj 1; ResRobot 19 min från Strömkajen). Säsong maj–sep.
-      travel_time: '~20 min från Strömkajen (Waxholmsbolaget), ~25 min från Slussen (Fjäderholmslinjen), ~30 min från Strandvägen (Strömma), maj–sep',
+      // KÄLLA: stromma.com — Strandvägen kajplats 13, "30 min", tidtabellsperiod 1 maj–13 sep. Restiderna från Slussen (visitskargarden.se svarar inte) och från Strömkajen (ResRobot utan URL) gick inte att kontrollera och är strukna.
+      travel_time: '~30 min från Strandvägen (Strömma, 1 maj–13 sep)',
       character: 'Nära stad, lättillgänglig, hög kvalitet',
       season: 'Maj–September',
       best_for: 'Dagstur, lunch, barnfamiljer, seglare på väg in mot stan',
@@ -1291,16 +1282,14 @@ export const ISLANDS: Island[] = [
     accommodation: [],
     getting_there: [
       // KÄLLA: stromma.com (Strandvägen kajplats 13, ca 30 min, var 30:e min 10:30–17:00 i högsäsong, 170 kr enkel / 205 kr t/r, säsong 1 maj–13 sep)
-      { method: 'Strömma', from: 'Strandvägen kajplats 13', time: '30 min', desc: 'Var 30:e minut dagtid i högsäsong, stopp vid Nacka Strand. 170 kr enkel, 205 kr tur och retur.', icon: '⛴' },
-      // KÄLLA: visitskargarden.se/fjaederholmslinjen (Slussen, ca 25 min, timmestrafik); tripadvisor-forum (bryggan vid Skeppsbron, ej SL)
-      { method: 'Fjäderholmslinjen', from: 'Slussen (Skeppsbron)', time: '25 min', desc: 'Avgår varje timme sommartid. Biljett köps ombord, ej SL.', icon: '⛴' },
+      { method: 'Strömma', from: 'Strandvägen kajplats 13', time: '30 min', desc: 'Var 30:e minut dagtid i högsäsong. Vissa avgångar stannar vid Nacka Strand. 170 kr enkel, 205 kr tur och retur.', icon: '⛴' },
       // KÄLLA: ResRobot 2026-08-05 (Strömkajen 08:45 → Fjäderholmarna 09:04, 19 min); kungligaslotten.se (Waxholmsbolaget kaj 1); sl.se (SL-biljetter gäller Strömkajen–Vaxholm med omnejd)
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '20 min', desc: 'SL-biljetter gäller på Waxholmsbolagets båtar mellan Strömkajen och Vaxholm med omnejd.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '', desc: 'SL-biljetter gäller på Waxholmsbolagets båtar mellan Strömkajen och Vaxholm med omnejd — sl.se nämner inte Fjäderholmarna, så kontrollera biljettreglerna före avfärd.', icon: '⛴' },
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästplatser i krogviken på östra sidan och vid sjömacken på västra sidan.', icon: '⛵' }, // KÄLLA: maringuiden.se, gasthamnsguide.se
     ],
     harbors: [
-      // KÄLLA: svenskagasthamnar.se (35 platser, bojar, dag 100 kr, natt 300 kr, dusch, toalett, 1 maj–30 sep); gasthamnsguide.se ("Dusch | Färskvatten | Restaurang | Lokaltrafik | Drivmedel"); kungligaslotten.se (Sjömacken & Gästhamnskontor)
-      { name: 'Fjäderholmarnas Gästhamn & Sjömack', desc: 'Gästplatser i krogviken och vid sjömacken, bojar och långsides. Dag 100 kr, natt 300 kr. Ingen landström. Säsong maj–september.', fuel: true, service: ['toilet', 'shower'] },
+      // KÄLLA: svenskagasthamnar.se ("Gästplatser 35 (1/5-31/9) | Förtöjning boj", dag 100 kr, natt 300 kr; endast "Dusch ingår" och "Restaurang flera" är markerade — toalett, eluttag och färskvatten är obockade); gasthamnsguide.se ("Dusch | Färskvatten | Restaurang | Lokaltrafik | Drivmedel", utan WC); kungligaslotten.se (Sjömacken & Gästhamnskontor)
+      { name: 'Fjäderholmarnas Gästhamn & Sjömack', desc: 'Gästplatser i krogviken och vid sjömacken, förtöjning vid boj. 35 platser, dag 100 kr, natt 300 kr. Ingen landström. Säsong 1 maj–30 september.', fuel: true, service: ['shower'] },
     ],
     restaurants: [
       // KÄLLA: fjaderholmarnaskrog.se — "STOCKHOLMS NÄRMASTE SKÄRGÅRDSKROG", à la carte-meny 2026, öppettider 2026 19 juni–13 september, festvåning Magasinet
@@ -1326,11 +1315,10 @@ export const ISLANDS: Island[] = [
     tags: ['nära stan', 'dagstur', 'rökeriet', 'öl', 'mat'],
     // KÄLLA: lidingo.se (kulturmiljö-PDF: Försvaret 1918–1976, landstigningsförbud 1940, KDF 1982, ny restaurangbyggnad 1985); systrarnadegen.se (1985 öppnades Stora Fjäderholmen för besökare); nationalstadsparken.se (ammunitions- och minförråd i berg)
     // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "Från 1849 fram till 1880-talets slut använde Stockholms stad nämligen Ängsholmen som deponi för stadens latrintömning"
-    // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — landstigningsförbud rådde i princip från 1918 till 1976 då Försvarsmakten lämnade holmarna
-    // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "Åtminstone sedan 1699 och troligen även sedan långt tidigare fanns krog på Stora Fjäderholmen"
-    did_you_know: 'Ängsholmen i Fjäderholmarna var Stockholms stads deponi för latrintömning från 1849 fram till slutet av 1880-talet. Fjäderholmarna var militärt område i nästan sextio år — landstigningsförbud gällde i princip från 1918 till 1976. Det har funnits krog på Stora Fjäderholmen åtminstone sedan 1699.',
+      // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "1940 utfärdades ett landstigningsförbud, som i princip rådde fram till 1976 då Försvarsmakten lämnade holmarna"; 1918 är året då marinen förvärvade öarna
+      // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "Åtminstone sedan 1699 och troligen även sedan långt tidigare fanns krog på Stora Fjäderholmen"
+    did_you_know: 'Ängsholmen i Fjäderholmarna var Stockholms stads deponi för latrintömning från 1849 fram till slutet av 1880-talet. Fjäderholmarna var militärt område 1918–1976, och landstigningsförbudet gällde i princip från 1940 fram till att Försvarsmakten lämnade holmarna. Det har funnits krog på Stora Fjäderholmen åtminstone sedan 1699.',
     insiderTips: [
-      'Fjäderholmarna är den närmaste ön från centrala Stockholm, ungefär 25 minuter med båt från Slussen.',
       // KÄLLA: lidingo.se (militären lämnade 1976); systrarnadegen.se (öppnades för besökare 1985)
       'Ön var militärområde fram till 1976 och öppnades för besökare först 1985, vilket är anledningen till att restauranger och rökeriet öppnade relativt sent.',
       'Rökeriet på Fjäderholmarna säljer rökt fisk och skaldjur och är öppet under sommarsäsongen.',
@@ -1362,7 +1350,6 @@ export const ISLANDS: Island[] = [
       },
     },
   },
-
   // ─── LJUSTERÖ ─────────────────────────────────────────────────
   {
     slug: 'ljustero',
@@ -1411,7 +1398,8 @@ export const ISLANDS: Island[] = [
       'Ljusteröleden är 1 100 meter lång. Sju minuter är alltså inte en avrundning — det är hela sträckan.',
     ],
     facts: {
-      travel_time: '~1 tim från Danderyds sjukhus (buss 626 + bilfärja Ljusteröleden)',
+      // KÄLLA: SL:s tidtabell linje 626 Danderyds sjukhus–Ljusterö (giltig 14 december 2025–18 juni 2026) — Danderyds sjukhus 09.25 → Östanå färjeläge 10.25 → Ljusterö färjeläge 10.37, alltså ~72 min (snabbast 66 min, lördag 07.31→08.37); Trafikverket: färjan är avgiftsfri
+      travel_time: '~72 min från Danderyds sjukhus (buss 626 + avgiftsfri bilfärja Ljusteröleden)',
       character: 'Bred och mångfacetterad, bilfärja, cykling',
       season: 'April–Oktober',
       best_for: 'Cykling, kajakpaddling, bilburna besökare, naturupplevelse',
@@ -1423,15 +1411,15 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Bad', desc: 'Flera badplatser, varav Linanäsbadet vid Dyviksrundan är mest känd.' },
       { icon: '⛽', name: 'Sjömack', desc: 'Klintan har sjömack — ett av skärgårdens välplacerade bränslestopp.' },
     ],
-    // KÄLLA: visitskargarden.se/boende/vandrarhem/gaasviks-vandrarhem (18 bäddar, året runt); ljusterologi.se. Åsättra är båtplatser/parkering, inte boende (asattra.com) (läst 2026-09-14)
+    // KÄLLA: vandrarhemskartan.se — "Här finns 18 sängplatser fördelade på tre rum med fyra sängar och tre med två" (den angivna visitskargarden.se-sidan svarar med serverfel); ljusterologi.se. Åsättra är båtplatser/parkering, inte boende (asattra.com). "Öppet året runt" gick inte att belägga någonstans och är struket.
     accommodation: [
-      { name: 'Gåsviks Vandrarhem', type: 'Vandrarhem', desc: 'Vandrarhem med 18 bäddar i sex rum, öppet året runt.', websiteUrl: 'https://visitskargarden.se/boende/vandrarhem/gaasviks-vandrarhem.aspx' },
+      { name: 'Gåsviks Vandrarhem', type: 'Vandrarhem', desc: 'Vandrarhem med 18 bäddar i sex rum.', websiteUrl: 'https://visitskargarden.se/boende/vandrarhem/gaasviks-vandrarhem.aspx' },
       { name: 'Ljusterö Logi', type: 'B&B', desc: 'Boende med anor från 1910-talet, även konferens och event.', websiteUrl: 'https://ljusterologi.se' },
     ],
     getting_there: [
       // KÄLLA: SL:s tidtabell linje 626 Danderyds sjukhus–Ljusterö (giltig dec 2025–juni 2026); linje 621 går Åkersberga–Norrtälje. Färjan avgiftsfri enligt Trafikverket (Ljusteröleden).
-      { method: 'Buss + Bilfärja', from: 'Danderyds sjukhus', time: '60 min', desc: 'Buss 626 från Danderyds sjukhus till Östanå färjeläge, sedan avgiftsfri bilfärja Östanå–Ljusterö (7 min). Samma linje fortsätter ut på ön.', icon: '🚌' },
-      { method: 'Bil + Färja', from: 'Stockholm', time: '50 min', desc: 'Kör till Östanå färjeläge norr om Åkersberga, ta avgiftsfri bilfärja över till Ljusterö (Ljusteröleden, ca 7 min).', icon: '🚗' },
+      { method: 'Buss + Bilfärja', from: 'Danderyds sjukhus', time: '~72 min', desc: 'Buss 626 från Danderyds sjukhus till Östanå färjeläge tar ca 60 min, sedan avgiftsfri bilfärja Östanå–Ljusterö (7 min). Hela resan till Ljusterö färjeläge tar ~72 min (snabbast 66). Samma linje fortsätter ut på ön.', icon: '🚌' },
+      { method: 'Bil + Färja', from: 'Stockholm', time: '', desc: 'Kör till Östanå färjeläge norr om Åkersberga, ta avgiftsfri bilfärja över till Ljusterö (Ljusteröleden, ca 7 min).', icon: '🚗' },
       { method: 'Waxholmsbåt', from: 'Strömkajen / Vaxholm', time: 'Varierar', desc: 'Skärgårdsbåtar trafikerar bryggor som Linanäs, Grundvik, Åsättra m.fl.', icon: '⛴' },
     ],
     harbors: [
@@ -1440,12 +1428,12 @@ export const ISLANDS: Island[] = [
       { name: 'Linanäsbryggan', desc: 'Naturskönt läge, populärt ankare.', fuel: false },
     ],
     restaurants: [
-      // KÄLLA: linanasbryggan.se/meny — varmrätter 255–285 kr (2026), öppet dagligen 11–21.
-      { name: 'Linanäsbryggan', type: 'Restaurang', desc: 'Klassisk brygga med mat och utsikt.', price_example: 'Varmrätter ca 255–285 kr (2026)', open_season: 'Juni–Augusti', open_hours: '11–21' },
-      // KÄLLA: klintsundetmarina.se (hämtad 2026-09) — juni & juli dagligen 10–18, augusti dagligen 11–16. Kajak från 370 kr/halvdag (2026).
-      { name: 'Klintsundet Marina', type: 'Service/Café', desc: 'Sjömack, lanthandel och café vid Klintsundet — hyr även ut kajaker.', slug: 'klintan-sjostation', price_example: 'Kajak från 370 kr/halvdag (2026)', open_season: 'Juni–Augusti', open_hours: '10–18 (juni–juli), 11–16 (augusti)' },
-      // KÄLLA: explorearchipelago.com (Fnaych Pizzabagaren KB, Långsjöängen 20) — öppet dagligen 10–20; priser publiceras inte, därför ingen siffra.
-      { name: 'Pizzeria Ljusterö', type: 'Restaurang', desc: 'Lokalbefolkningens val — avslappnat och bra. Pizza, kebab och hamburgare.', slug: 'pizzeria-ljustero', price_example: 'Aktuella priser anslås på plats', open_season: 'Helår', open_hours: 'Mån–Sön 10–20' },
+      // KÄLLA: linanasbryggan.se — varmrätter 255–285 kr (2026); "RESTAURANGEN … Open everyday from 11.00-21.00"; "Vi kommer hålla öppet fredag till söndag fram till 29e september. Kom och var med oss till slutet. Så ses vi igen i april."; huvudmenyn har "Julbord 2026".
+      { name: 'Linanäsbryggan', type: 'Restaurang', desc: 'Klassisk brygga med mat och utsikt.', price_example: 'Varmrätter ca 255–285 kr (2026)', open_season: 'April–29 september (fre–sön mot slutet av säsongen), därtill julbord i december', open_hours: '11–21' },
+      // KÄLLA: klintsundetmarina.se (hämtad 2026-09) — juni "Alla dagar 10 - 18", juli "Alla dagar 10 - 18", augusti "alla dagar 11 - 16", september helger 11–16. Kajak från 370 kr/halvdag (2026).
+      { name: 'Klintsundet Marina', type: 'Service/Café', desc: 'Sjömack, lanthandel och café vid Klintsundet — hyr även ut kajaker.', slug: 'klintan-sjostation', price_example: 'Kajak från 370 kr/halvdag (2026)', open_season: 'Juni–September', open_hours: '10–18 (juni–juli), 11–16 (augusti), helger 11–16 (september)' },
+      // KÄLLA: explorearchipelago.com (Fnaych Pizzabagaren KB) renderar bara "Loading…" bakom JS-/cookie-vägg — varken öppettider eller säsong gick att läsa. Adressen Långsjöängen 20 bekräftas av lunchfindr.se; priser publiceras inte.
+      { name: 'Pizzeria Ljusterö', type: 'Restaurang', desc: 'Lokalbefolkningens val — avslappnat och bra. Pizza, kebab och hamburgare. Adress Långsjöängen 20.', slug: 'pizzeria-ljustero', price_example: 'Aktuella priser anslås på plats', open_season: '', open_hours: '' },
     ],
     day_cost: {
       // Ingen totalsumma: cafépriser publiceras inte, och summan blev en gissning. Posterna nedan är belagda var för sig.
@@ -1503,7 +1491,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
     },
   },
-
   // ─── DALARÖ ──────────────────────────────────────────────────
   {
     slug: 'dalaro',
@@ -1545,8 +1532,8 @@ export const ISLANDS: Island[] = [
       'Den bebyggelse som möter en i dag är i huvudsak från 1800-talets senare del, och Stockholms läns museum beskriver Dalarö som ett fortfarande levande skärgårdssamhälle. Det är en viktig skillnad mot många andra skärgårdsmiljöer: här bor folk året om, och husen är inte en kuliss.',
     ],
     facts: {
-      // KÄLLA: SL buss 869 Slakthuset(Globen)–Dalarö ~47 min; med t-baneanslutning ~60 min. Tidigare '90 min' överskattade snabbaste vägen.
-      travel_time: '45 min med bil / ~60 min koll (buss 869 från Slakthuset)',
+      // KÄLLA: SL:s tryckta tidtabell för linje 869 Slakthuset (Globen)–Dalarö (giltig 14 dec 2025–18 jun 2026 och 17 aug–12 dec 2026): fyra avgångar per riktning måndag–fredag, 15.35→16.22, 16.35→17.25, 17.35→18.22, 18.35→19.21 (46–50 min); "Lördag, söndag och helgdag: Ingen trafik". Med t-baneanslutning ~60 min. Uppgiften "45 min med bil" saknade källa och är borttagen.
+      travel_time: '~60 min koll (buss 869 från Slakthuset — endast vardagar, fyra turer per riktning, sista turen 18.35 från Globen)',
       character: 'Historisk hamnort, utgångspunkt, välskött',
       season: 'April–Oktober',
       best_for: 'Dagsturer, hamnliv, utgångspunkt mot Utö och södern',
@@ -1618,7 +1605,6 @@ export const ISLANDS: Island[] = [
       },
     },
   },
-
   // ─── ARHOLMA ─────────────────────────────────────────────────
   {
     slug: 'arholma',
@@ -1657,12 +1643,8 @@ export const ISLANDS: Island[] = [
       'Vatten är den begränsande resursen här ute. Efter vattenbristen 2018 byggdes en anläggning i bergrummen som tar vatten direkt från Östersjön och filtrerar, avsaltar, renar och mineraliserar det. Arholma Nord har totalt 75 bäddar fördelade på sex hus, större delen av ön är naturreservat, och ungefär femtio personer bor här permanent.',
     ],
     facts: {
-      // KÄLLA: uppmätt mot ResRobot 2026-08-05 — buss 636 Norrtälje busstation
-      // 10:19 → Simpnäs brygga 11:32, sedan färja 30 till Arholma 11:55. Totalt
-      // 1 tim 36 min. Stod tidigare "3,5–4 h med Waxholmsbåt från Norrtälje",
-      // vilket var fel om BÅDE tiden och färdsättet: det går ingen båt från
-      // Norrtälje, man tar buss till Simpnäs och en kort färja därifrån.
-      travel_time: '1 tim 36 min: buss till Simpnäs från Norrtälje, sedan färja',
+      // KÄLLA: arholma.nu/resa-hit — resan går via Simpnäs på Björkö, därifrån passagerarfärja till Arholma ("Med bil från Stockholm tar det drygt två timmar"). Tidigare stod "1 tim 36 min", en ResRobot-mätning utan URL som inte går att verifiera i efterhand; siffran är borttagen. Buss 636 Norrtälje–Simpnäs saknar läsbar tidtabell.
+      travel_time: 'Buss till Simpnäs från Norrtälje, sedan färja — restiden är inte belagd',
       character: 'Vilt, orört, ytterst, äventyrligt',
       season: 'Maj–September',
       best_for: 'Äventyrliga seglare, naturälskare, de som söker ensamt',
@@ -1722,7 +1704,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ─── ORNÖ ─────────────────────────────────────────────────────
   {
     slug: 'orno',
@@ -1786,8 +1767,8 @@ export const ISLANDS: Island[] = [
       { name: 'Stugor på Ornö Båtvarv', type: 'Stugor', desc: 'Sex stugor med sammanlagt 18 bäddar vid båtvarvet.', websiteUrl: 'https://ornobatvarv.se' },
     ],
     getting_there: [
-      // KÄLLA: ornosjotrafik.se — "Överfarten tar ca 30 minuter" mellan Hässelmara brygga och Hotellbryggan på Dalarö. Publicerad turlista gäller 27/4–13/9 2026; ingen vintertidtabell hittades vid granskning, så "året runt" är borttaget.
-      { method: 'Bilfärja', from: 'Dalarö (Hotellbryggan) → Hässelmara brygga', time: '~30 min', desc: 'Ornö Sjötrafik kör bilfärjan mellan Dalarö och Hässelmara och tar både bil och passagerare. Det är huvudvägen till Ornö.', icon: '⛴' },
+      // KÄLLA: ornosjotrafik.se — "Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö", "Överfarten tar ca 30 minuter"; publicerad turlista gäller 27/4–13/9 2026 och ingen vintertidtabell hittades vid granskningen. KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-orno — "Du åker till Hässelmara på Ornö från Dalarö året om".
+      { method: 'Bilfärja', from: 'Dalarö (Hotellbryggan) → Hässelmara brygga', time: '~30 min', desc: 'Ornö Sjötrafik kör bilfärjan mellan Dalarö och Hässelmara och tar både bil och passagerare. Det är huvudvägen till Ornö. Stockholm Archipelago Trail anger att turen går året om, men Ornö Sjötrafiks publicerade turlista täcker bara 27 april–13 september — kontrollera turlistan innan du planerar en vinterresa.', icon: '⛴' },
     ],
     harbors: [
       // KÄLLA: Haninge kommun, "Ornö" (haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/orno/) — Kyrkviken har museum, bibliotek, gästbryggor och cykeluthyrning.
@@ -1833,7 +1814,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
     },
   },
-
   // ─── LANDSORT ────────────────────────────────────────────────
   {
     slug: 'landsort',
@@ -1938,7 +1918,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
     },
   },
-
   // ─── FURUSUND ────────────────────────────────────────────────
   {
     slug: 'furusund',
@@ -2036,7 +2015,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── BLIDÖ ────────────────────────────────────────────────────
   {
     slug: 'blido',
@@ -2083,9 +2061,9 @@ export const ISLANDS: Island[] = [
       { icon: '🚲', name: 'Cykling', desc: 'Kuperade kustvägar längs en lång, skogig kustlinje med öppna åkrar och klippor. Räkna med en heldagstur för att nå öns norra och södra delar.' },
       { icon: '🏊', name: 'Bad', desc: 'Fina badplatser längs kusten.' },
     ],
-    // KÄLLA: visitskargarden.se — Blidö Brygga och Bistro, vandrarhem med 27 bäddar + stuga, restaurang, vedeldad bastu (blidobryggabistro.se) (läst 2026-09-14)
+    // KÄLLA saknas: visitskargarden.se-sidan svarar HTTP 500, blidobryggabistro.se går inte att nå (utgående anslutning nekad) och spegelsidan explorearchipelago.com renderar bara "Laddar…". Uppgifterna om 27 bäddar, stuga, restaurang och vedeldad bastu gick inte att belägga och är borttagna (kontrollerat 2026-09-17).
     accommodation: [
-      { name: 'Blidö Brygga och Bistro', type: 'Vandrarhem', desc: 'Vandrarhem med 27 bäddar och en stuga vid bryggan, restaurang och vedeldad bastu.', websiteUrl: 'https://blidobryggabistro.se' },
+      { name: 'Blidö Brygga och Bistro', type: 'Vandrarhem', desc: 'Vandrarhem vid bryggan. Antal bäddar och övrig service är inte belagt — kontrollera med verksamheten före besök.', websiteUrl: 'https://blidobryggabistro.se' },
     ],
     getting_there: [
       // KÄLLA: sv.wikipedia.org/wiki/Blidö ("färjeförbindelse från Furusund via trafikfärjelederna Furusundsleden och Blidöleden... mellan Furusund... och Köpmanholm (Yxlan) samt mellan Larshamn (Yxlan) och Norrsund (Blidö)")
@@ -2112,7 +2090,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
     },
   },
-
   // ─── GÄLLNÖ ──────────────────────────────────────────────────
   {
     slug: 'gallno',
@@ -2172,8 +2149,8 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: gallno.se/mat-dryck/gallno-krog (namn, meny) och gallno.se/mat-dryck/oppettider (2026: begränsat öppet från 14 maj, fullt öppet 27 juni–9 aug ti–lö 11–22, sö 12–16, må stängt; nedtrappning 11–23 aug). Prisexempel hittades inte i primärkällor och togs bort. Kontrollerad 2026-09-03.
       { name: 'Gällnö krog', type: 'Restaurang & bar', desc: 'Sommaröppen krog med bar och café, medelhavsinspirerad meny.', slug: 'gallno-bar', open_season: 'Mitten av maj–slutet av augusti (fullt öppethållande slutet av juni–början av augusti)', open_hours: 'Tisdag–lördag ca 11–22, söndag 12–16, måndag stängt (kortare tider i maj och augusti)' },
-      // KÄLLA: gallno.se/mat-dryck/handelsboden ("omfattande sortiment av kolonialvaror, mejeriprodukter, frysvaror, färsk frukt, kött, fisk... färskt bröd från bageri Vivels") och gallno.se/mat-dryck/oppettider (2026: högsäsong 13 juli–9 aug ti–lö 09–20, sö–må 10–17; kortare tider i maj, juni och augusti). Kontrollerad 2026-09-03.
-      { name: 'Gällnö Handelsbod', type: 'Handel', desc: 'Bred handelsbod med livsmedel, färskt bröd dagligen, kött, fisk och grönsaker.', open_season: 'Mitten av maj–slutet av augusti', open_hours: 'Ca 09–20 i högsäsong (juli), kortare tider i maj, juni och augusti' },
+      // KÄLLA: gallno.se/mat-dryck/handelsboden ("omfattande sortiment av kolonialvaror, mejeriprodukter, frysvaror, färsk frukt, kött, fisk, konfektyr och dryck"; "Varje vardag levereras färskt bröd från bageri Vivels i Stockholm") och gallno.se/mat-dryck/oppettider (2026: högsäsong 13 juli–9 aug ti–lö 09–20, sö–må 10–17; kortare tider i maj, juni och augusti). Kontrollerad 2026-09-03.
+      { name: 'Gällnö Handelsbod', type: 'Handel', desc: 'Bred handelsbod med livsmedel, kött, fisk och grönsaker. Färskt bröd levereras varje vardag — alltså inte lördag och söndag.', open_season: 'Mitten av maj–slutet av augusti', open_hours: 'Ca 09–20 i högsäsong (juli), kortare tider i maj, juni och augusti' },
     ],
     day_cost: {
       // Inga belopp: varken båtbiljett eller krogens priser gick att belägga mot publicerad prislista (2026-09-14). Siffror borttagna på Toms beslut.
@@ -2214,7 +2191,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ─── NORRÖRA ─────────────────────────────────────────────────
   {
     slug: 'norrora',
@@ -2241,8 +2217,8 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [
-      // KÄLLA: waxholmsbolaget.se, reseplanering/resmal/norrora-och-soderora ("...åka från Strömkajen. Turerna går via Vaxholm..."; vintertid från Köpmanholm, Yxlan); reseplanerare Strömkajen–Norröra 3 tim 10 min (linje 26)
-      { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', time: '3 h', desc: 'Via Vaxholm (linje 26), vår/sommar/höst. Vintertid från Köpmanholm, Yxlan.', icon: '⛴' },
+      // KÄLLA: waxholmsbolaget.se, reseplanering/resmal/norrora-och-soderora ("…åka från Strömkajen. Turerna går via Vaxholm…"; "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan"). Ordet "linje" förekommer inte på sidan och ingen restid står där; 3 tim 10 min kommer från Waxholmsbolagets reseplanerare, som är JavaScript-driven och inte gick att läsa vid kontrollen.
+      { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', time: 'ca 3 h 10 min', desc: 'Via Vaxholm, vår/sommar/höst. Vintertid från Köpmanholm på Yxlan.', icon: '⛴' },
     ],
     harbors: [
       // KÄLLA: norrora.se/gronomraden/ ("...ångbåts-bryggan..."); waxholmsbolaget.se ("Det finns varken livsmedelsbutiker eller restauranger på öarna") — ingen gästhamn med service belagd
@@ -2283,7 +2259,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── NÅTTARÖ ─────────────────────────────────────────────────
   {
     slug: 'nattaro',
@@ -2421,7 +2396,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','off','open','peak','open','limited','off','off','off'],
     },
   },
-
   // ─── INGMARSÖ ────────────────────────────────────────────────
   {
     slug: 'ingmarso',
@@ -2473,13 +2447,13 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Badplatser', desc: 'Femsundsviken har brygga och sandstrand; Badberget ligger vid norra bryggan.' },
       { icon: '🚶', name: 'Vandring', desc: 'Stigar genom öppet betesmarkslandskap och blandskog. Stockholm Archipelago Trail-etappen är väl markerad.' },
     ],
-    // KÄLLA: ingmarsobnb.se + roslagen.se — B&B på Norrgården (1600-talsgård), rum med frukost. Ingmarsö Krog är restaurang utan rum (ingmarsokrog.com) (läst 2026-09-14)
+    // KÄLLA: ingmarsobnb.se + roslagen.se — B&B på Norrgården, "Svit, familjerum eller enklare dubbelrum, du väljer." Sidan beskriver frukosten men anger ingenstans att den ingår i priset, så "frukost ingår" är borttaget. Ingmarsö Krog är restaurang utan rum (ingmarsokrog.com) (läst 2026-09-14)
     accommodation: [
-      { name: 'Ingmarsö B&B', type: 'B&B', desc: 'B&B på Norrgården, en gård från 1600-talet — svit, familjerum eller dubbelrum, frukost ingår.', websiteUrl: 'https://ingmarsobnb.se' },
+      { name: 'Ingmarsö B&B', type: 'B&B', desc: 'B&B på Norrgården, en gård från 1600-talet — svit, familjerum eller enklare dubbelrum.', websiteUrl: 'https://ingmarsobnb.se' },
     ],
     getting_there: [
-      // KÄLLA: se facts.travel_time ovan (Waxholmsbolagets tabell 12/13): 2,5 h sommartid, ca 3 h 15 min övrig tid; ingmarso.se/hittahit: angörs via Åsättra (Ljusterö), Vaxholm eller buss 438 till Boda på Värmdö
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2,5–3 h', desc: 'Angör norra och södra Ingmarsö, via Åsättra (Ljusterö), Vaxholm eller buss 438 till Boda på Värmdö.', icon: '⛴' },
+      // KÄLLA: ingmarso.se/hittahit — restiden anges som "mellan två och cirka tre timmar"; man "kan som regel stiga ombord i Åsättra på Ljusterö, Stockholm eller Vaxholm", och med "SL-buss 438 från Slussen… stiga på båten i Boda på Värmdö". Waxholmsbolagets tabell 12/13 gick inte att läsa, så det snävare "2,5–3 h" är borttaget.
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2–3 h', desc: 'Angör norra och södra Ingmarsö, via Åsättra (Ljusterö), Vaxholm eller buss 438 till Boda på Värmdö.', icon: '⛴' },
     ],
     harbors: [
       // KÄLLA: ingmarsogasthamn.se: ca 30 platser, landström, färskvatten, dusch/wc, bränsle (bensinmack + sjömack året runt, kortbetalning)
@@ -2517,7 +2491,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
     },
   },
-
   // ─── NÄMDÖ ───────────────────────────────────────────────────
   {
     slug: 'namdo',
@@ -2556,19 +2529,15 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      // KÄLLA: uppmätt mot ResRobot 2026-08-05 — färja 17-1 Stavsnäs vinterhamn
-      // 07:37 → Östanvik (Nämdö) 08:10, utan byten. Stod tidigare "90 min",
-      // nästan tre gånger för långt.
-      // KÄLLA: Waxholmsbolagets tabell 17 Stavsnäs–Nämdö. ~35 min till Östanvik; andra bryggor 25–60 min.
-      travel_time: '~35 min till Östanvik (Nämdö) från Stavsnäs (linje 17)',
+      // KÄLLA: skargardsstiftelsen.se/omraden/namdo — "Reguljär båttrafik går året runt från Stavsnäs med Waxholmsbolaget. Under sommaren finns även förbindelser från Stockholm och Saltsjöbaden." Restiden gick inte att belägga: Waxholmsbolagets tabell 17 angavs utan URL och bolagets tidtabellssidor svarar bara "Javascript must be enabled"; även ResRobot-mätningen saknade URL. Siffran ~35 min är därför borttagen.
+      travel_time: 'Reguljär Waxholmsbåt från Stavsnäs året runt — restiden är inte belagd',
       character: 'Bilfri, genuint, litet samhälle, välskyddat',
       season: 'Maj–September',
       best_for: 'Seglare, naturälskare, genuint skärgårdsliv',
     },
-    facts_provenance: { travel_time: 'matt' },
     activities: [
       // KÄLLA: Svenska kyrkan (Djurö, Möja och Nämdö församling) + RAÄ bebyggelseregistret — nygotisk träkyrka, invigd hösten 1876; tidigare uppgifter om åttakantig gustaviansk kyrka 1768/1798 var fel.
-      { icon: '⛪', name: 'Nämdö kyrka', desc: 'Vit träkyrka i nygotisk stil, invigd 1876 — en av skärgårdens mest distinkta kyrkobyggnader. Öppen sommartid.' },
+      { icon: '⛪', name: 'Nämdö kyrka', desc: 'Vit träkyrka i nygotisk stil, invigd 1876 — en av skärgårdens mest distinkta kyrkobyggnader.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Klara vatten och fina klippor längs södra kustlinjen.' },
       { icon: '🚶', name: 'Vandring', desc: 'Promenera runt ön och utforska de gamla fiskelägena.' },
       { icon: '⛵', name: 'Segling', desc: 'Naturhamnen på södsidan är ett populärt seglarankar.' },
@@ -2578,7 +2547,8 @@ export const ISLANDS: Island[] = [
       { name: 'Solvik — glamping och gästhamn', type: 'Camping', desc: 'Skärgårdsstiftelsens område Solvik har boende sommartid, bland annat glamping, samt gästhamn och tältplatser.', websiteUrl: 'https://skargardsstiftelsen.se/omraden/namdo/' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '~35 min till Östanvik', desc: 'Waxholmsbolagets linje 17 från Stavsnäs vinterhamn. Linjen går mot Saltsjöbaden/Stockholm, inte till Möja.', icon: '⛴' },
+      // KÄLLA: skargardsstiftelsen.se/omraden/namdo — "Reguljär båttrafik går året runt från Stavsnäs med Waxholmsbolaget. Under sommaren finns även förbindelser från Stockholm och Saltsjöbaden." Sidan nämner varken linjenummer, restid eller Möja.
+      { method: 'Waxholmsbåt', from: 'Stavsnäs', desc: 'Reguljär båttrafik året runt från Stavsnäs med Waxholmsbolaget. Sommartid finns även förbindelser från Stockholm och Saltsjöbaden.', icon: '⛴' },
     ],
     harbors: [
     ],
@@ -2621,7 +2591,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
     },
   },
-
   // ─── SVARTSÖ ─────────────────────────────────────────────────
   {
     slug: 'svartso',
@@ -2664,16 +2633,14 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      // KÄLLA: svartsokrog.se/hitta-hit ("Resan tar ca 1,5-2,5h beroende på avgång" med Waxholmsbolaget från Strömkajen)
-      // KÄLLA: Waxholmsbolagets tabell 13 Strömkajen–Alsvik (Svartsö), snabbast ~2 tim 15, typiskt 2 tim 20–35.
-      travel_time: '~2 tim 15–35 min med Waxholmsbåt från Strömkajen (linje 13)',
+      // KÄLLA: svartsokrog.se/hitta-hit ("Till Svartsö åker du med Waxholmsbolaget från Strömkajen i Stockholm. Resan tar ca 1,5-2,5h beroende på avgång.") Waxholmsbolagets tabell 13 angavs utan URL och bolagets tidtabellssidor går inte att läsa, så det snävare "~2 tim 15–35 min" och linjenumret är borttagna.
+      travel_time: 'ca 1,5–2,5 tim med Waxholmsbåt från Strömkajen, beroende på avgång',
       // KÄLLA: sv.wikipedia.org/wiki/Svartsö ("Det finns inget jordbruk på ön") — "ekologisk" obelagt/missvisande
       character: 'Bilfri, lugnt, mat i fokus',
       // KÄLLA: svartsokrog.se/oppettider (öppet in i oktober); seasonal.open i samma objekt anger April–Oktober
       season: 'Maj–Oktober',
       best_for: 'Matälskare, naturälskare, cyklister',
     },
-    facts_provenance: { travel_time: 'matt' },
     activities: [
       { icon: '🛒', name: 'Svartsö Lanthandel', desc: 'Skärgårdens kanske mest välsorterade lanthandel — med apotekombud och Systembolagets utlämning. Lokalbornas vardagsliv händer här.' },
       // KÄLLA: svartso.se ("Svartsö genom tiderna": stenhuset i Alsvik, uppfört 1732 av bankokommissarie Johan Söderling, finns kvar och är privatägt)
@@ -2687,16 +2654,16 @@ export const ISLANDS: Island[] = [
       { name: 'Sjöbodarna, Svartsö Lanthandel', type: 'Stugor', desc: 'Fyra stugor med åtta bäddar vid Alsviks brygga intill lanthandeln.', websiteUrl: 'https://www.svartsolanthandel.se/sjobodarna' },
     ],
     getting_there: [
-      // KÄLLA: svartsokrog.se/hitta-hit ("Resan tar ca 1,5-2,5h beroende på avgång"; "Stig av vid Alsviks brygga")
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '~2 tim 15–35 min', desc: 'Waxholmsbolagets linje 13 från Strömkajen via Vaxholm; bryggor Alsvik och Skälvik.', icon: '⛴' },
+      // KÄLLA: svartsokrog.se/hitta-hit ("Till Svartsö åker du med Waxholmsbolaget från Strömkajen i Stockholm. Resan tar ca 1,5-2,5h beroende på avgång. Stig av vid Alsviks brygga och gå ca 200 meter österut längs grusvägen.") Sidan nämner varken linje 13, Vaxholm eller bryggan Skälvik.
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 1,5–2,5 tim', desc: 'Waxholmsbolaget från Strömkajen — stig av vid Alsviks brygga. Restiden varierar med avgången.', icon: '⛴' },
     ],
     harbors: [
       // KÄLLA: svartsolanthandel.se/gasthamn (El 80 kr/dygn; servicehus med toalett & dusch; ingen uppgift om bränsle eller vatten)
       { name: 'Svartsö gästhamn', desc: 'Gästhamn i Alsvik, driven av Svartsö Lanthandel, med servicehus (toalett och dusch).', fuel: false, service: ['el', 'dusch'] },
     ],
     restaurants: [
-      // KÄLLA: svartsokrog.se (meny, öppettider, kontaktuppgifter, hämtat sep 2026)
-      { name: 'Svartsö Krog', type: 'Restaurang', desc: 'Öns krog vid bryggan — säsongsbaserad meny.', slug: 'svartso-krog', price_example: 'Varmrätt 310–355 kr, fyrarättersmeny 655–795 kr', open_season: 'Maj–Oktober', open_hours: 'Varierar per dag, oftast 11.30–15 och 17–21.30', book_required: true, phone: '08-542 472 55', child_menu: true },
+      // KÄLLA: svartsokrog.se (meny, öppettider, kontaktuppgifter, hämtat sep 2026; sidan går bara att nå över HTTP — certifikatet är utställt för annan domän). Öppettidssidan listar bara september och oktober, så säsongsangivelsen "Maj–Oktober" är borttagen; menysidan har ingen barnmeny, så child_menu är borttagen.
+      { name: 'Svartsö Krog', type: 'Restaurang', desc: 'Öns krog vid bryggan — säsongsbaserad meny.', slug: 'svartso-krog', price_example: 'Varmrätt 310–355 kr, fyrarättersmeny 655–795 kr', open_hours: 'Varierar per dag, oftast 11.30–15 och 17–21.30', book_required: true, phone: '08-542 472 55' },
       // KÄLLA: svartsolanthandel.se ("Öppettider butik")
       { name: 'Svartsö Lanthandel', type: 'Handel', desc: 'Skärgårdens kanske bäst sorterade lanthandel — apotek- och Systembolagsombud.', open_season: 'Helår', open_hours: 'Mån–Ons 9–13, Tor–Fre 9–17, Lör 10–13, Sön stängt' },
     ],
@@ -2750,7 +2717,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
     },
   },
-
   // ─── RUNMARÖ ─────────────────────────────────────────────────
   {
     slug: 'runmaro',
@@ -2762,8 +2728,9 @@ export const ISLANDS: Island[] = [
     description: [
       // KÄLLA: runmarohembygdsförening.se/forfattare/ — Strindberg hyrde hus tre somrar: "Nore 1889, Stenbro 1890, Lerkila 1891"; "Söderberg hyrde samma hus i Stenbro som Strindberg tidigare hade hyrt"
       'Runmarö har en ovanligt tät litteraturhistoria. August Strindberg hyrde hus på ön tre somrar i rad — Nore 1889, Stenbro 1890 och Lerkila 1891 — och Hjalmar Söderberg hyrde senare samma hus i Stenbro som Strindberg hade bott i.',
-      // KÄLLA: runmarohembygdsförening.se/forfattare/ — Tomas Tranströmer (1931–2015): "Morfadern var lots och det blev många sommarlov hos mormor och morfar i Gatan"; Nobelpriset i litteratur 2011; "Dikter från Runmarö" (2001)
-      'Tomas Tranströmer (1931–2015), Nobelpristagare i litteratur 2011, tillbringade många sommarlov hos mormor och morfar i Gatan på Runmarö; morfadern var lots. Samlingen "Dikter från Runmarö" kom 2001. Det finns ingen skyltad författarrunda på ön — man går dit på egen hand och hittar vad man hittar.',
+      // KÄLLA: runmarohembygdsförening.se/forfattare/ — Tomas Tranströmer (1931–2015): "Morfadern var lots och det blev många sommarlov hos mormor och morfar i Gatan"; Nobelpriset i litteratur 2011; "Dikter från Runmarö" (2001); sidan avslutas "Vänligen respektera att här nämnda boenden ej är utflyktsmål!"
+      // KÄLLA: runmarohembygdsförening.se/kulturstigar/ — "Vi har gjort en karta som visar intressanta stigar och platser på Runmarö. … Kartans röda stigar är märkta med hänvisningsskyltar av trä på plats. På några ställen finns informationsskyltar om kultur och natur." Etapperna har litterära stopp, bl.a. "Vägen mot Silverträsk — August Strindberg" och "Bemärkta sommargäster i Långvik".
+      'Tomas Tranströmer (1931–2015), Nobelpristagare i litteratur 2011, tillbringade många sommarlov hos mormor och morfar i Gatan på Runmarö; morfadern var lots. Samlingen "Dikter från Runmarö" kom 2001. Hembygdsföreningen har märkt ut kulturstigar över ön: de röda stigarna på föreningens karta är skyltade med hänvisningsskyltar av trä, på några ställen med informationsskyltar om kultur och natur, och etapperna har litterära stopp som Strindberg vid Silverträsk och sommargästerna i Långvik. Husen som nämns är privatbostäder — föreningen ber uttryckligen att de inte uppsöks som utflyktsmål.',
       // KÄLLA: runmarohembygdsförening.se/kalkhallar/ — "Där det finns urkalksten på Runmarö ser man en särpräglad och färgsprakande blomsterprakt och en stor rikedom på orkidéer"; apollofjärilen "finns bara på platser med kalkberggrund"
       'Berggrunden gör ön botaniskt udda. Där urkalkstenen går i dagen växer en särpräglad och färgsprakande flora med stor rikedom på orkidéer, och här finns också apollofjärilen, som bara förekommer på platser med kalkberggrund.',
       // KÄLLA: runmaro.se/om — "Från Stavsnäs Vinterhamn finns det gott om reguljära förbindelser till Runmarö med Waxholmsbolaget eller andra båtbolag"; "buss 433 eller 434 från Slussen. Bussresan till Stavsnäs tar ca 50 minuter"
@@ -2816,9 +2783,9 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Runmarö Båtvarv — gästbrygga', type: 'Gästhamn', desc: 'Gästplatser för båtar vid Runmarö Båtvarv. Inget boende på land är belagt på ön.', websiteUrl: 'https://runmarobatvarv.se' },
     ],
-    // KÄLLA: Waxholmsbolagets tidtabeller linje 16 och 17 (kund.printhuset-sthlm.se/wa/v16.pdf, v17.pdf, gäller 2 apr–18 jun och 17 aug–12 dec 2026): Stavsnäs–Styrsvik ca 5 min; 17 fortsätter Nämdö–Saltsjöbaden–Stockholm (läst 2026-09-14). Stod 11–20 min och "nås ej från Strömkajen" — fel.
+    // KÄLLA: Waxholmsbolagets tidtabeller linje 16 och 17 (kund.printhuset-sthlm.se/wa/v16.pdf, v17.pdf, gäller 2 apr–18 jun och 17 aug–12 dec 2026): Stavsnäs–Styrsvik ca 5 min. Gatan är märkt X, "Bryggorna trafikeras utan fast avgångstid" (beställs enligt anmärkning C), medan Långvik har fasta klockslag i varje kolumn. Genomgående turer Strömkajen 10.00 → Styrsvik 13.55 och Strömkajen 16.25 → Styrsvik 20.20, alltså ca 3 tim 55 min (läst 2026-09-14). Stod 11–20 min, "nås ej från Strömkajen", Långvik som beställningsbrygga och 2–2,5 h — allt fel.
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: 'ca 5 min', desc: 'Waxholmsbolagets linje 16 och 17 från Stavsnäs; Styrsvik är huvudbryggan (Gatan och Långvik angörs på beställning). Linje 17 fortsätter till Strömkajen via Nämdö och Saltsjöbaden, ca 2–2,5 h.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: 'ca 5 min', desc: 'Waxholmsbolagets linje 16 och 17 från Stavsnäs; Styrsvik är huvudbryggan. Gatan angörs på beställning (utan fast avgångstid), medan Långvik har fasta klockslag. Linje 17 går också hela vägen till Strömkajen via Nämdö och Saltsjöbaden, ca 3 tim 55 min.', icon: '⛴' },
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamn i Styrsvik.', icon: '⛵' },
     ],
     harbors: [
@@ -2862,7 +2829,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
     },
   },
-
   // ─── RESARÖ ──────────────────────────────────────────────────
   {
     slug: 'resaro',
@@ -2891,9 +2857,8 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Sommarstugor', type: 'Stugor', desc: 'Privatuthyrning sommartid.' },
     ],
-    // KÄLLA: SL buss 682 Engarn–Resarö (kund.printhuset-sthlm.se/sl/h682.pdf, gäller 17 aug–12 dec 2026); buss 670 Tekniska högskolan–Vaxholm passerar Engarn (läst 2026-09-14). Stod "buss 676 till Resarö" — 676 går Tekniska högskolan–Norrtälje. "50 min" obelagt, borttaget.
+    // KÄLLA: SL buss 682 Engarn–Resarö (kund.printhuset-sthlm.se/sl/h682.pdf, gäller 17 aug–12 dec 2026); buss 670 Tekniska högskolan–Vaxholm passerar Engarn (läst 2026-09-14). Stod "buss 676 till Resarö" — 676 går Tekniska högskolan–Norrtälje. "50 min" obelagt, borttaget. Bilpunkten ("Resarö är landfast — bilväg från Vaxholm", 10 min) är också borttagen: tidtabellerna säger ingenting om landfasthet, bilväg eller körtid, och ingen annan källa angavs.
     getting_there: [
-      { method: 'Bil', from: 'Vaxholm', time: '10 min', desc: 'Resarö är landfast — bilväg från Vaxholm.', icon: '🚗' },
       { method: 'Buss', from: 'Stockholm', desc: 'SL-buss 670 (Tekniska högskolan/Danderyds sjukhus–Vaxholm) till Engarn, byte till buss 682 Engarn–Resarö (Ytterby, Överby).', icon: '🚌' },
     ],
     harbors: [
@@ -2916,7 +2881,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── HUSARÖ ──────────────────────────────────────────────────
   {
     slug: 'husaro',
@@ -2927,8 +2891,8 @@ export const ISLANDS: Island[] = [
     tagline: 'Bilfri och lugn — en av de bättre bevarade hemligheterna i mellersta skärgården.',
     description: [
       'Husarö är en bilfri ö i mellersta skärgården som erbjuder lugn och möjligheter för längre vistelse. Ön är mindre känd än sina närliggande grannar.',
-      // KÄLLA: husaro.se ("ungefär 2,5 km lång"; kulturlandskap med ängar och lövträd → tallskog och släta klippor), visitskargarden.se (Husarö Handel: lanthandel, sjömack, gästhamn vid ångbåtsbryggan)
-      'Naturmässigt är Husarö varierad: kulturlandskap med ängar och lövträd i byn, tallskog och släta klippor längre ut. Ön är ungefär 2,5 km lång — allt nås till fots. Vid ångbåtsbryggan ligger Husarö Handel med lanthandel, sjömack och gästhamn.',
+      // KÄLLA: husaro.se ("ungefär 2,5 km lång"; kulturlandskap med ängar och lövträd → tallskog och släta klippor); husarohandel.se — "Ca 300 m från gästhamnen finns Husarö Lanthandel som har övriga livsmedel, fika och enklare förtäring", "Macken är S T Ä N G D … Macken är stängd då vi väntar på tillstånd", "Gästhamnen är obemannad för tillfället då macken för närvarande är stängd". (visitskargarden.se svarade inte vid kontrollen — HTTP 500.)
+      'Naturmässigt är Husarö varierad: kulturlandskap med ängar och lövträd i byn, tallskog och släta klippor längre ut. Ön är ungefär 2,5 km lång — allt nås till fots. Vid ångbåtsbryggan ligger Husarö Handels gästhamn, och cirka 300 meter därifrån ligger lanthandeln. Sjömacken är stängd i väntan på tillstånd, och gästhamnen är därför obemannad.',
       'Husarö passar för familjer som söker lugn och naturupplevelse, eller som ett stopp på en längre seglingsresa.'
     ],
 
@@ -2945,7 +2909,7 @@ export const ISLANDS: Island[] = [
       { icon: '🚶', name: 'Vandring', desc: 'Ön är bara 2,5 km lång men skiftar från ängar och lövträd i byn till tallskog och släta klippor. Hela ön går att gå runt på en eftermiddag.' },
       { icon: '🏊', name: 'Bad', desc: 'Sandholmen, Badviken, Bockholmen och Kallviken är öns badplatser.' },
       { icon: '🎣', name: 'Fiske', desc: 'Husaröborna levde av lotsning, fiske och säljakt — fiske från klipporna är fortfarande en av öns självklara sysselsättningar.' },
-      { icon: '⛵', name: 'Segling', desc: 'Gästhamn med Y-bommar vid ångbåtsbryggan och sjömack intill. Officiell lotsplats 1740–1912 — sjöfolk har lagt till här i sekler.' },
+      { icon: '⛵', name: 'Segling', desc: 'Gästhamn med Y-bommar vid ångbåtsbryggan. Sjömacken är stängd i väntan på tillstånd och gästhamnen är därför obemannad. Officiell lotsplats 1740–1912 — sjöfolk har lagt till här i sekler.' },
     ],
     accommodation: [
       // KÄLLA: visitroslagen.se ("småstugor", "stugbyn"), husaro.se ("Hyr stuga")
@@ -2959,8 +2923,8 @@ export const ISLANDS: Island[] = [
       { name: 'Husarö Handel gästhamn', desc: 'Pontonbrygga med Y-bommar vid ångbåtsbryggan. El mot avgift, nya toaletter och miljöstation — men inget färskvatten. Sjömack intill.', fuel: true, service: ['el', 'toalett'] },
     ],
     restaurants: [
-      // KÄLLA: osteraker.se (lanthandel drivs av Henkan och Kattis, enklare mat och dryck sommartid), gasthamnsguide.se ("öppet alla dagar under sommarlovet 10.00-19.00"), visitroslagen.se (begränsade öppettider)
-      { name: 'Husarö Handel', type: 'Café', desc: 'Öns lanthandel vid ångbåtsbryggan — enklare mat, fika och proviant sommartid. Öppet alla dagar under sommarlovet 10–19, begränsat utanför säsong.' },
+      // KÄLLA: osteraker.se (lanthandel drivs av Henkan och Kattis, enklare mat och dryck sommartid), gasthamnsguide.se ("Husarö Handel, Gästhamn & Sjömack har öppet alla dagar under sommarlovet 10.00-19.00")
+      { name: 'Husarö Handel', type: 'Café', desc: 'Öns lanthandel vid ångbåtsbryggan — enklare mat, fika och proviant sommartid. Öppet alla dagar under sommarlovet 10–19.' },
     ],
     tips: [
       'Lanthandeln har begränsade öppettider utanför sommarlovet — kommer du i maj eller september, ta med proviant.',
@@ -2979,7 +2943,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── FEJAN ───────────────────────────────────────────────────
   {
     slug: 'fejan',
@@ -3035,7 +2998,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── RÖDLÖGA ─────────────────────────────────────────────────
   {
     slug: 'rodloga',
@@ -3069,7 +3031,7 @@ export const ISLANDS: Island[] = [
     ],
     // KÄLLA: Waxholmsbolaget linje 26 (kund.printhuset-sthlm.se/wa/v26.pdf, gäller 2 apr–18 jun, 17 aug–1 nov 2026): Strömkajen–Rödlöga ca 4 h 15 min, Rödlöga är ändbrygga (läst 2026-09-14)
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 4 tim', desc: 'Waxholmsbolagets linje 26 (Strömkajen–Norröra–Söderöra–Svartlöga–Rödlöga), yttersta stoppet. Ej från Norrtälje.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 4 tim 15 min', desc: 'Waxholmsbolagets linje 26 (Strömkajen–Norröra–Söderöra–Svartlöga–Rödlöga), yttersta stoppet. Vardagsturen tar 4 tim 15 min (08.45→13.00), söndagsturen 4 tim (10.00→14.00). Ej från Norrtälje.', icon: '⛴' },
       { method: 'Privat båt', from: 'Furusund / Arholma', time: '1–2 h', desc: 'Naturlig etapp på en längre norrlands-seglingstur.', icon: '⛵' },
     ],
     harbors: [
@@ -3096,7 +3058,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','off','open','peak','open','limited','off','off','off'],
     },
   },
-
   // ─── SINGÖ ───────────────────────────────────────────────────
   {
     slug: 'singo',
@@ -3128,7 +3089,7 @@ export const ISLANDS: Island[] = [
     ],
     // KÄLLA: SL buss 637 Norrtälje busstation–Ellans vändplan (kund.printhuset-sthlm.se/sl/h637.pdf, gäller 17 aug–12 dec 2026) (läst 2026-09-14). Broåret 1955 obelagt — borttaget.
     getting_there: [
-      { method: 'Bil / buss', from: 'Norrtälje', time: 'ca 45 min', desc: 'Singö är landfast via broar (Väddö–Fogdö–Singö). SL-buss 637 från Norrtälje busstation (hållplatser Singöbron södra, Singö kyrka, Singö camping) eller bil hela vägen — ingen bilfärja.', icon: '🚗' },
+      { method: 'Bil / buss', from: 'Norrtälje', time: 'ca 65–70 min med buss', desc: 'SL-buss 637 från Norrtälje busstation: ca 65–70 min till Singö kyrka och ca 80 min till ändhållplatsen Ellans vändplan (hållplatser Singöbron södra, Singö kyrka, Singö camping).', icon: '🚗' },
     ],
     harbors: [
     ],
@@ -3150,7 +3111,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── LIDÖ ────────────────────────────────────────────────────
   {
     slug: 'lido',
@@ -3181,9 +3141,9 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Lidö Naturhotell', type: 'Hotell', desc: 'Hotellrum i historiska herrgårdsbyggnader. Full frukost och middag ingår i vissa paket.' },
     ],
-    // KÄLLA: Waxholmsbolaget linje 31 (kund.printhuset-sthlm.se/wa/v31.pdf): Räfsnäs–Lidö ca 10–15 min (läst 2026-09-14). Stod ~25 min, "Norra linjen från Strömkajen 3 h" och "bilfärja till ön" — inget av det belagt (Lidö finns inte bland Trafikverkets färjeleder), borttaget.
+      // KÄLLA: Waxholmsbolaget linje 31 (kund.printhuset-sthlm.se/wa/v31.pdf, "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"), rubrik "31A RÄFSNÄS – TJOCKÖ – FEJAN": Räfsnäs–Lidö ca 10–15 min. Samtliga Lidö-anlöp är märkta "b" — "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00." (läst 2026-09-14). Stod ~25 min, "Norra linjen från Strömkajen 3 h", "bilfärja till ön" och "året runt" — inget av det belagt, borttaget.
     getting_there: [
-      { method: 'Bil + Waxholmsbåt', from: 'Räfsnäs', time: 'ca 10–15 min båt', desc: 'E18 mot Norrtälje och vidare till Räfsnäs brygga. Därifrån Waxholmsbolagets linje 31 (Räfsnäs–Tjockö–Lidö–…–Fejan), året runt.', icon: '⛴' },
+      { method: 'Bil + Waxholmsbåt', from: 'Räfsnäs', time: 'ca 10–15 min båt', desc: 'E18 mot Norrtälje och vidare till Räfsnäs brygga. Därifrån Waxholmsbolagets linje 31 (31A Räfsnäs–Tjockö–Fejan). Samtliga anlöp vid Lidö är beställningstrafik: resan måste beställas i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme före avgång från aktuell brygga, dock senast kl. 17.00. Tidtabellen gäller 2 april–18 juni och 17 augusti–12 december.', icon: '⛴' },
     ],
     harbors: [
       // KÄLLA: lidovardshus.com/gsthamnen — "Eluttag finns på bryggan", "vid separat brygga finns station att fylla dricksvatten", "Vid Oasen finns toaletter, dusch"
@@ -3209,7 +3169,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── GRÄDDÖ ──────────────────────────────────────────────────
   {
     slug: 'graddo',
@@ -3265,7 +3224,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── VÄDDÖ ───────────────────────────────────────────────────
   {
     slug: 'vaddo',
@@ -3297,7 +3255,6 @@ export const ISLANDS: Island[] = [
     ],
     // KÄLLA: SL buss 637 Norrtälje–Ellans vändplan via Väddö kyrka, Älmsta, Grisslehamn (kund.printhuset-sthlm.se/sl/h637.pdf, 2026); 676 Tekniska högskolan–Norrtälje (läst 2026-09-14). Stod "637 från T-centralen, 2 h" — 637 utgår från Norrtälje.
     getting_there: [
-      { method: 'Bil', from: 'Stockholm via E18', time: 'ca 90 min', desc: 'E18 mot Norrtälje, sedan norrut mot Väddö.', icon: '🚗' },
       { method: 'Buss', from: 'Stockholm', desc: 'SL-buss 676 från Tekniska högskolan till Norrtälje busstation, byte till buss 637 som går genom Väddö (Väddö kyrka, Älmsta, Grisslehamn).', icon: '🚌' },
     ],
     harbors: [
@@ -3320,7 +3277,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','limited','open','open','peak','open','open','open','limited','limited'],
     },
   },
-
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',
@@ -3332,7 +3288,7 @@ export const ISLANDS: Island[] = [
     tagline: 'Marinbiologisk forskning och naturskönt naturreservat i södra ytterskärgården.',
     description: [
       'Askö ligger i Trosa-skärgården i södra Sörmland (formellt utanför Stockholms län), och är hem för Stockholms universitets marina forskningsstation Askölaboratoriet, en av Sveriges viktigaste forskningsplattformar för Östersjön. Ön är obebodd förutom forskningsstationen.',
-      'Askölaboratoriet grundades 1961 och fungerar som bas för forskning kring Östersjöns ekosystem, övergödning, klimateffekter och marin biodiversitet. Sommartid arrangerar Stockholms universitet öppna visningsdagar då allmänheten kan besöka stationen och få guidning av forskarna.',
+      'På Askö ligger Askölaboratoriet, som är knutet till Stockholms universitet. Tack vare laboratoriet är öns undervattensmiljöer väl dokumenterade.',
       'Askö passar för marinbiologi-intresserade som vill se Östersjöforskning på nära håll, och för seglare som söker en ovanlig anhalt i Trosa-skärgården.',
     ],
 
@@ -3374,7 +3330,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── GÅLÖ ────────────────────────────────────────────────────
   {
     slug: 'galo',
@@ -3407,7 +3362,6 @@ export const ISLANDS: Island[] = [
     ],
     // KÄLLA: SL buss 839 Handens station–Dalarö (kund.printhuset-sthlm.se/sl/v839.pdf, gäller 2026): Handen–Gålövägen ca 18 min (läst 2026-09-14). Stod "buss 843, 30 min" — fel linje.
     getting_there: [
-      { method: 'Bil', from: 'Stockholm', time: 'ca 40 min', desc: 'Väg 73 söderut mot Handen, sedan skylt mot Gålö.', icon: '🚗' },
       { method: 'Buss', from: 'Handens station', time: 'ca 18 min', desc: 'SL-buss 839 (Handen–Dalarö/Smådalarö) till hållplats Gålövägen.', icon: '🚌' },
     ],
     harbors: [
@@ -3432,7 +3386,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ─── TORÖ ────────────────────────────────────────────────────
   {
     slug: 'toro',
@@ -3462,9 +3415,9 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Torö Marinstaden', type: 'Camping', desc: 'Campingplats och stugor nära stranden.' },
     ],
-    // KÄLLA: Nynäshamns kommun (nynashamn.se/uppleva/skargard--batliv/toro): "Till Tottnäs, Oxnö, Svärdsö och Torö går SL:s buss nummer 852. Resan tar cirka 40 minuter från Nynäshamns station till Ankarudden"; Tottnäsbron; SL buss 852 (kund.printhuset-sthlm.se/sl/v852.pdf, 2026) (läst 2026-09-14).
+      // KÄLLA: SL buss 852 Nynäshamns station–Torö (kund.printhuset-sthlm.se/sl/v852.pdf, 2026): Nynäshamns station–Ankarudden ca 40 min, Ankarudden är ändhållplats; Trafikverket om bron — "Tottnäsbron är en vridbro över Tottnässundet på väg 528 mellan Södertörn och Oxnö där vägtrafiken går i en riktning i taget" (läst 2026-09-14). nynashamn.se/uppleva/skargard--batliv/toro svarade inte vid kontrollen; bilrestiden ca 60 min var obelagd och är borttagen.
     getting_there: [
-      { method: 'Bil', from: 'Stockholm', time: 'ca 60 min', desc: 'Väg 73 mot Nynäshamn, sedan skylt mot Torö. Ön är landfast via den öppningsbara Tottnäsbron.', icon: '🚗' },
+      { method: 'Bil', from: 'Stockholm', desc: 'Väg 73 mot Nynäshamn, sedan skylt mot Torö. Vägen passerar Tottnäsbron, en vridbro på väg 528 mellan Södertörn och Oxnö där trafiken går i en riktning i taget.', icon: '🚗' },
       { method: 'Buss', from: 'Nynäshamns station', time: 'ca 40 min', desc: 'SL-buss 852 Nynäshamn–Torö via Ankarudden.', icon: '🚌' },
     ],
     harbors: [
@@ -3488,7 +3441,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ─── FJÄRDLÅNG ───────────────────────────────────────────────
   {
     slug: 'fjardlang',
@@ -3500,7 +3452,7 @@ export const ISLANDS: Island[] = [
     tagline: 'Orört naturreservat i södra ytterskärgården — här åker man hit, inte förbi.',
     description: [
       'Fjärdlång är en större ö i Stockholms södra skärgård öster om Dalarö och Ornö. Ön är skyddad som naturreservat och förvaltas av Skärgårdsstiftelsen, ett tag av Stockholms läns finaste oexploaterade skärgårdsmiljöer med klippkust, blandskog och rikt fågelliv.',
-      'På ön finns Fjärdlångs vandrarhem (32 bäddar, öppet maj till mitten av september) och Norrötorpet, en liten 33 m² stuga med ett rum, kök och sovloft, utan el, med vatten från egen pump och utedass plus bastu vid den egna bryggan.',
+      'På ön finns vandrarhem, stuguthyrning och campingplats.',
       'Fjärdlång nås med Waxholmsbåt eller egen båt från Dalarö. Markerade vandringsleder av varierande längd och svårighetsgrad gör ön till en av södra skärgårdens bästa platser för en längre dagsutflykt eller weekend.',
     ],
 
@@ -3531,7 +3483,6 @@ export const ISLANDS: Island[] = [
     ],
     restaurants: [],
     tips: [
-      'Boka vandrarhem 2–3 månader i förväg för juli — populärt med 32 bäddar.',
       'Norrötorpet är el-fritt — perfekt för digital detox men kräver planering.',
       'Markerade vandringsleder av olika längd — bra för både dagsutflykt och längre vistelse.',
     ],
@@ -3548,7 +3499,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ── BATCH 3: Ytterligare öar för full konkurrenskraft ───────────────────
 
   {
@@ -3589,7 +3539,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
     },
   },
-
   {
     slug: 'yxlan',
     name: 'Yxlan',
@@ -3627,7 +3576,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','open','open','peak','peak','open','limited','off','off'],
     },
   },
-
   {
     slug: 'kymmendo',
     name: 'Kymmendö',
@@ -3667,7 +3615,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   {
     slug: 'bullero',
     name: 'Bullerö',
@@ -3711,7 +3658,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','limited','open','open','peak','open','open','limited','limited','limited'],
     },
   },
-
   {
     slug: 'vindo',
     name: 'Vindö',
@@ -3731,10 +3677,10 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Klipp- och sandbad', desc: 'Mindre badplatser längs kusten — ofta lugnare än Värmdöns inre öar.' },
     ],
     accommodation: [{ name: 'Vindö Camping', type: 'Camping', desc: 'Välskött campingplats nära havet.' }],
-    // KÄLLA: SL buss 434 (kund.printhuset-sthlm.se/sl/v433_434.pdf): Slussen 09.45 → Sollenkroka brygga 10.58; Överby ca 135 min (läst 2026-09-14). "Fast broförbindelse" är inte belagd med namn/år hos Trafikverket — bussen går dock utan färja.
+      // KÄLLA: SL buss 434 (kund.printhuset-sthlm.se/sl/v433_434.pdf): Slussen 09.45 → Sollenkroka brygga 10.58 (ca 73 min); Överby brygga ca 85 min (vardag 07.03 → 08.29) (läst 2026-09-14). "Fast broförbindelse", väg 222 och bilrestiden 1 h är inte belagda och borttagna — bussen går dock hela vägen utan färja.
     getting_there: [
-      { method: 'Bil', from: 'Stockholm via Värmdö', time: '1 h', desc: 'Väg 222 till Värmdö, vidare över Djurö till Vindö — bussen går hela vägen utan färja.', icon: '🚗' },
-      { method: 'Buss', from: 'Slussen', time: 'ca 1 h 15 min', desc: 'SL-buss 434 Slussen–Vindö: ca 73 min till Sollenkroka brygga, betydligt längre till Överby brygga.', icon: '🚌' },
+      { method: 'Bil', from: 'Stockholm via Värmdö', desc: 'Vägen fram går utan färja — buss 434 trafikerar sträckan hela vägen.', icon: '🚗' },
+      { method: 'Buss', from: 'Slussen', time: 'ca 1 h 15 min', desc: 'SL-buss 434 Slussen–Vindö: ca 73 min till Sollenkroka brygga och ca 85 min till Överby brygga.', icon: '🚌' },
     ],
     harbors: [{ name: 'Vindö brygga', desc: 'Gästbrygga med vattenservice.' }],
     restaurants: [{ name: 'Vindö Hamnkafé', type: 'Kafé', desc: 'Fika och enkel mat vid bryggan, öppet sommarsäsong.' }],
@@ -3750,7 +3696,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
     },
   },
-
   {
     slug: 'smaadalaro',
     name: 'Smådalarö',
@@ -3790,7 +3735,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
     },
   },
-
   {
     slug: 'morko',
     name: 'Mörkö',
@@ -3830,7 +3774,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   {
     slug: 'musko',
     name: 'Muskö',
@@ -3853,7 +3796,7 @@ export const ISLANDS: Island[] = [
     accommodation: [],
     // KÄLLA: Trafikverket (Muskötunneln 2 910 m, allmän trafik sedan mars 1964); SL buss 849 Ösmo centrum–Muskö (kund.printhuset-sthlm.se/sl/v849.pdf, gäller 2026), Ösmo–Hyttan ca 35–40 min (läst 2026-09-14)
     getting_there: [
-      { method: 'Bil', from: 'Stockholm', time: 'ca 1 h', desc: 'Väg 73 mot Nynäshamn, avfart mot Muskö, genom Muskötunneln (2 910 m, öppen för allmän trafik sedan 1964).', icon: '🚗' },
+      { method: 'Bil', from: 'Stockholm', desc: 'Väg 73 mot Nynäshamn, avfart mot Muskö, genom Muskötunneln (2 910 m, öppen för allmän trafik sedan 1964).', icon: '🚗' },
       { method: 'Buss', from: 'Ösmo centrum', time: 'ca 35–40 min', desc: 'SL-buss 849 Ösmo–Muskö (ändhållplats Hyttan). Pendeltåg till Ösmo.', icon: '🚌' },
     ],
     harbors: [{ name: 'Muskö gästbrygga', desc: 'Enkel brygga nära gamla marininfarten.' }],
@@ -3871,7 +3814,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   {
     slug: 'bjorko',
     name: 'Björkö (Birka)',
@@ -3910,7 +3852,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','open','open','peak','peak','open','limited','off','off'],
     },
   },
-
   {
     slug: 'adelsjo',
     name: 'Adelsö',
@@ -3933,7 +3874,7 @@ export const ISLANDS: Island[] = [
     accommodation: [],
     // KÄLLA: Trafikverket, Adelsöleden Munsö–Adelsö ca 1 000 m, 6 min, avgiftsfri; birkavikingastaden.se: Strömma stannar vid Hovgården (Adelsö) (läst 2026-09-14). Stod "30 min från Björkö".
     getting_there: [
-      { method: 'Bil + bilfärja', from: 'Ekerö via Munsö', time: '6 min överfart', desc: 'Trafikverkets vägfärja Adelsöleden Munsö–Adelsö, ca 1 000 m, avgiftsfri, året runt.', icon: '🚗' },
+      { method: 'Bil + bilfärja', from: 'Ekerö via Munsö', time: '6 min överfart', desc: 'Trafikverkets vägfärja Adelsöleden Munsö–Adelsö, ca 1 000 m, avgiftsfri.', icon: '🚗' },
       { method: 'Turbåt (Strömma)', from: 'Klara Mälarstrand, Stockholm', desc: 'Strömmas Birkabåt angör Hovgården på Adelsö under säsong.', icon: '⛴' },
     ],
     harbors: [{ name: 'Adelsö gästbrygga', desc: 'Enkel brygga med plats för ett dussin båtar.' }],
@@ -3950,7 +3891,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','open','open','peak','peak','open','limited','off','off'],
     },
   },
-
   {
     slug: 'ingaro',
     name: 'Ingarö',
@@ -3991,7 +3931,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   {
     slug: 'svenska-hogarna',
     name: 'Svenska Högarna',
@@ -4034,7 +3973,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   {
     slug: 'huvudskar',
     name: 'Huvudskär',
@@ -4067,7 +4005,6 @@ export const ISLANDS: Island[] = [
     tags: ['ytterskärgård', 'lotsplats', 'naturhamn', 'segling', 'södra'],
     did_you_know: 'Huvudskär var självständig lotsplats med tre fast anställda lotsar från 1881 till 1939 — anlagd för att möta de engelska ångare och segelfartyg som ökade trafiken till Stockholm under sent 1800-tal.',
   },
-
   {
     slug: 'ekno',
     name: 'Eknö',
@@ -4094,7 +4031,6 @@ export const ISLANDS: Island[] = [
     tags: ['liten ö', 'bilfri', 'sommarstugor', 'mellersta'],
     did_you_know: 'Sommaren 1719 brände den ryska galärflottan ner alla sex gårdarna på Eknö under det som kallas Rysshärjningarna — en serie övergrepp i Stockholms skärgård under stora nordiska kriget.',
   },
-
   {
     slug: 'hasselo',
     name: 'Hasselö',
@@ -4123,7 +4059,6 @@ export const ISLANDS: Island[] = [
     tags: ['liten ö', 'naturhamn', 'södra', 'segling'],
     did_you_know: 'Stockholms södra skärgård innehåller mer än 7 000 öar, kobbar och skär — varav många mindre öar som Hasselö huvudsakligen besöks av seglare som söker ostörda naturhamnar mellan Dalarö, Utö och Landsort.',
   },
-
   {
     slug: 'ormsko',
     name: 'Ormskär',
@@ -4152,7 +4087,6 @@ export const ISLANDS: Island[] = [
     tags: ['nationalpark', 'naturhamn', 'mellersta', 'segling'],
     did_you_know: 'Ormskär ingår tillsammans med Koskären i Nämdöskärgårdens nationalpark, invigd 2025. Namnet kommer av att det fanns gott om huggormar på ön.',
   },
-
   {
     slug: 'kanholmen',
     name: 'Kanholmen',
@@ -4179,7 +4113,6 @@ export const ISLANDS: Island[] = [
     tags: ['naturhamn', 'ankring', 'mellersta', 'segling'],
     did_you_know: 'Kanholmsfjärden, där Kanholmen ligger, är en av Stockholms skärgårds mest trafikerade vatten under sommaren — den fungerar som huvudled för seglare och motorbåtar mellan Värmdö och Sandhamn.',
   },
-
   {
     slug: 'norrpada',
     name: 'Norrpada',
@@ -4207,7 +4140,6 @@ export const ISLANDS: Island[] = [
     tags: ['fågelliv', 'kajak', 'naturhamn', 'mellersta'],
     did_you_know: 'Stockholms skärgård har över 25 000 öar, kobbar och skär — varav många mindre fågelrika öar som Norrpada. Många är skyddade som naturreservat med tillträdesförbud under fågelhäckningen — perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti.',
   },
-
   {
     slug: 'graskar',
     name: 'Gräskö',
@@ -4234,7 +4166,6 @@ export const ISLANDS: Island[] = [
     tags: ['bebodd', 'historisk', 'norra', 'roslagen'],
     did_you_know: 'Gräskö omtalas första gången i skriftliga handlingar 1405 — en av de äldsta dokumenterade skärgårdsöarna i Norrtälje.',
   },
-
   {
     slug: 'langviksskaret',
     name: 'Långviksskäret',
@@ -4267,7 +4198,6 @@ export const ISLANDS: Island[] = [
     tags: ['solnedgång', 'segling', 'södra', 'naturhamn'],
     did_you_know: 'Stockholms södra ytterskärgård kännetecknas av små klippiga skär — många, som Långviksskäret, fungerar som naturhamnar för seglare och kajakpaddlare som söker en lugn övernattning utanför de större öarna.',
   },
-
   {
     slug: 'storholmen',
     name: 'Storholmen',
@@ -4288,9 +4218,9 @@ export const ISLANDS: Island[] = [
       { icon: '🐦', name: 'Fågelskådning', desc: 'Lövskogen och strandlinjen lockar sjöfåglar och häckande fåglar.' },
     ],
     accommodation: [],
-    // KÄLLA: SL pendelbåt linje 80 (kund.printhuset-sthlm.se/sl/h80.pdf, gäller 17 aug–12 dec 2026): Ropsten–Storholmen södra ca 28 min; Lidingö stad (lidingo.se, båtpendla): trafik året runt utom vid is (läst 2026-09-14). Stod "Waxholmsbolaget från Strömkajen/Nybrokajen sommartid, 40 min" — fel avgångsplats och säsong.
+      // KÄLLA: SL pendelbåt linje 80 (kund.printhuset-sthlm.se/sl/h80.pdf, gäller 17 aug–12 dec 2026): Ropsten–Storholmen södra ca 28 min; Lidingö stad (lidingo.se, Båtpendla) — "Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is" (läst 2026-09-14). Stod "Waxholmsbolaget från Strömkajen/Nybrokajen sommartid, 40 min" — fel avgångsplats och säsong. "Året runt" är inte belagt och borttaget.
     getting_there: [
-      { method: 'SL pendelbåt linje 80', from: 'Ropsten', time: 'ca 25–30 min', desc: 'Pendelbåt 80 (Nybroplan–Ropsten) fortsätter Ropsten–Storholmen med bryggorna Storholmen södra, östra och norra. Går året runt utom vid is. Ingår i SL-biljetten.', icon: '⛴' },
+      { method: 'SL pendelbåt linje 80', from: 'Ropsten', time: 'ca 25–30 min', desc: 'Pendelbåt 80 (Nybroplan–Ropsten) fortsätter Ropsten–Storholmen med bryggorna Storholmen södra, östra och norra. Vintertid, när det ligger is, trafikeras inte Storholmen östra, Frösvik och Storholmen norra. Ingår i SL-biljetten.', icon: '⛴' },
       { method: 'Fritidsbåt', from: 'Lidingö eller valfri brygga', desc: 'Nås enkelt med egen båt. Gästbrygga finns vid huvudbryggan.', icon: '⚓' },
     ],
     harbors: [{ name: 'Storholmens brygga', desc: 'Huvudbrygga med plats för gästande båtar.' }],
@@ -4308,7 +4238,6 @@ export const ISLANDS: Island[] = [
     tags: ['bebodd', 'lidingö', 'innerskärgård', 'dagstur', 'restaurang', 'vandring', 'bad'],
     did_you_know: 'Storholmen tillhörde Vaxholms kommun fram till 2011 då ön överfördes till Lidingö stad — en av de få kommungränsändringar i Stockholms skärgård under 2000-talet.',
   },
-
   {
     slug: 'langskar',
     name: 'Långskär',
@@ -4319,7 +4248,7 @@ export const ISLANDS: Island[] = [
     description: [
       // KÄLLA (verifierat 2026-09-13): Länsstyrelsen Stockholm, lansstyrelsen.se/stockholm/besoksmal/naturreservat/langskar.html —
       // "ett femtiotal öar", 854 ha varav 33 ha land, skyddat sedan 1967, Värmdö kommun, Bulleröskärgården,
-      // fågelskyddsområde med tillträdesförbud 1 mars–15 augusti. Långskär och Långviksskär är TVÅ OLIKA reservat:
+      // fågelskyddsområde med tillträdesförbud 1 februari–15 augusti. Långskär och Långviksskär är TVÅ OLIKA reservat:
       // Länsstyrelsen har separata sidor (Långviksskär: 1983, ~300 öar, 3 897 ha). Naturvårdsverkets skötselplan
       // (978-91-620-7202-5, s. 12) säger att Långviksskärs reservat kvarstår omgivet av nationalparken; om Långskärs
       // reservat formellt uppgått i parken framgår inte av Länsstyrelsens sida — därför "kontrollera" nedan.
@@ -4336,13 +4265,12 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Egen båt', from: 'Stavsnäs / Möja', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
     harbors: [{ name: 'Långskärs naturhamn', desc: 'Skyddad ankringsplats i lä-läge.' }],
     restaurants: [],
-    // KÄLLA: Länsstyrelsen (samma sida) — tillträdesförbud i utpekat fågelskyddsområde 1 mars–15 augusti
-    tips: ['Utpekat fågelskyddsområde får inte beträdas 1 mars–15 augusti — se Länsstyrelsens karta.', 'Ta med all proviant och färskvatten.'],
+      // KÄLLA: Länsstyrelsen (samma sida) — förbjudet att "Under tiden 1 februari–15 augusti beträda utpekat fågelskyddsområde"
+    tips: ['Utpekat fågelskyddsområde får inte beträdas 1 februari–15 augusti — se Länsstyrelsens karta.', 'Ta med all proviant och färskvatten.'],
     related: ['bullero', 'norrpada', 'moja'],
     tags: ['naturreservat', 'bulleröskärgården', 'mellersta', 'segling'],
-    did_you_know: 'Långskär var en av de fiskehamnar som omnämns i historiska källor från 1744 — ett vittnesbörd om skärgårdsfiskets långa tradition i området.',
+    did_you_know: 'Långskärs naturreservat omfattar ett femtiotal öar och 854 hektar — men bara 33 hektar av dem är land. Resten är hav.',
   },
-
   {
     slug: 'storskar',
     name: 'Storskär',
@@ -4370,7 +4298,6 @@ export const ISLANDS: Island[] = [
     tags: ['naturreservat', 'naturhamn', 'mellersta', 'segling'],
     did_you_know: 'Naturen i Storskärs naturreservat är representativ för mellanskärgården och förvaltas av Länsstyrelsen i Stockholms län.',
   },
-
   // ── Övriga Sverige — Höga Kusten, Gotland m.fl. ────────────────────────────
 
   {
@@ -4437,7 +4364,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','off','limited','peak','peak','open','limited','off','off'],
     },
   },
-
   {
     slug: 'gotland',
     name: 'Gotland',
@@ -4522,7 +4448,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
     },
   },
-
   {
     slug: 'oland',
     name: 'Öland',
@@ -4590,7 +4515,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ── Göteborgs södra skärgård (Styrsöbolaget) ─────────────────────────────
 
   {
@@ -4627,11 +4551,10 @@ export const ISLANDS: Island[] = [
     harbors: [
     ],
     restaurants: [
-      // KÄLLA: goteborg.com/platser/branno-vardshus-pensionat-baggen — "mitt på den södra ön Brännö", "Mat med inspiration från havet", byggt 1900; brannovardshus.se — säsong 2026
-      { name: 'Brännö Värdshus & Pensionat Baggen', type: 'Värdshus', desc: 'Värdshus och pensionat mitt på Brännö, byggt år 1900. Mat med inspiration från havet. Sommaröppet.', websiteUrl: 'https://brannovardshus.se/' },
+      // KÄLLA: goteborg.com/platser/branno-vardshus-pensionat-baggen — "mitt på den södra ön Brännö", "Mat med inspiration från havet", byggt 1900; brannovardshus.se/oppettider — 14 februari–31 maj och 10 augusti–13 december torsdag–söndag, 24 juni–9 augusti "Öppet alla dagar 12.00-23.00", "Rumsuthyrning på Pensionat Baggen och Värdshusets Gästrum är möjlig året runt"
+      { name: 'Brännö Värdshus & Pensionat Baggen', type: 'Värdshus', desc: 'Värdshus och pensionat mitt på Brännö, byggt år 1900. Mat med inspiration från havet. Öppet 14 februari–13 december: torsdag–söndag utanför högsäsongen och alla dagar 12–23 mellan 24 juni och 9 augusti. Rumsuthyrning året runt.', websiteUrl: 'https://brannovardshus.se/' },
     ],
     tips: [
-      'Folkdansen på fredag kväll är gratis — men kom 30 min tidigt för att få plats vid bryggan.',
       'Inga bilar på ön: lämna bilen i Saltholmens parkeringshus och njut av bilfrihetens lugn.',
       'Ta med picnic — det finns begränsad matservice utanför värdshuset.',
     ],
@@ -4647,7 +4570,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   {
     slug: 'styrso',
     name: 'Styrsö',
@@ -4704,7 +4626,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   {
     slug: 'vrango',
     name: 'Vrångö',
@@ -4758,7 +4679,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
   },
-
   {
     slug: 'donso',
     name: 'Donsö',
@@ -4813,7 +4733,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
     },
   },
-
   {
     slug: 'asperon',
     name: 'Asperön',
@@ -4851,7 +4770,6 @@ export const ISLANDS: Island[] = [
     tags: ['göteborg', 'södra skärgård', 'bilfritt', 'lugnt', 'styrsöbolaget', 'klippbad'],
     did_you_know: 'Asperön är en av de öar som historiskt hörde till Styrsö socken och ingick i det fiskelägessystem som försörjde Göteborg med fisk under 1700- och 1800-talen.',
   },
-
   // ─── YTTRE GÅRDEN ────────────────────────────────────────────
   {
     slug: 'yttre-garden',
@@ -4868,7 +4786,6 @@ export const ISLANDS: Island[] = [
       // KÄLLA: Naturvårdsverkets objektlista skyddsvärd statlig skog, objekt 3706 Yttre Gården, Nynäshamn 56 ha (läst 2026-08-23). Faktagranskning s.d.: inget bildat naturreservat och inga publicerade förbud hittades hos Länsstyrelsen eller kommunen.
       'Yttre Gården är utpekad av Naturvårdsverket som skyddsvärd statlig skog, men ön är i dag inte ett bildat naturreservat och några särskilda förbud finns inte publicerade. Kontrollera Länsstyrelsens karta över skyddad natur inför besök och visa samma hänsyn som i ett reservat inom reservatets gränser. Däremot är bad tillåtet och ön är fritt tillgänglig för besök under den tid fågelskyddsbestämmelserna tillåter.',
       'Öns östsida döljer en av södra skärgårdens mest ovanliga hemligheter: en stor sandstrand med varmt, grunt vatten. Här kan man gå barfota i sanden och bada bekymmersfritt — långt från turiststråken. Södra sidan bjuder på dramatiska klipphällar och djupare vatten för dem som föredrar att kliva i från kanten. Vattenklarheten i Gårdsfjärden är bland de bästa i södra skärgården.',
-      'Yttre Gården nås enklast med kajak eller egen liten motorbåt från Nynäshamns fiskehamn eller från Lövhagen och Segersäng. Det är ingen reguljär båttrafik till ön, vilket bidrar till dess stillhet. Räkna med 30–60 minuters paddling från närmaste kajakhyrning eller startpunkt.',
     ],
     facts: {
       travel_time: '30–60 min med kajak från Nynäshamns fiskehamn',
@@ -4990,7 +4907,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ─── DJURÖ ───────────────────────────────────────────────────────────────
   {
     slug: 'djuro',
@@ -5010,9 +4926,8 @@ export const ISLANDS: Island[] = [
     // KÄLLA: djuronaset.com — hotell, spa och konferens i Djurhamn, 273 rum, egen gästhamn för hotellgäster.
     tagline: 'Landfast skärgård över Djuröbron — Vasatidens örlogshamn, träkyrka från 1683 och Djurönäset.',
     description: [
-      'Djurö ligger i Värmdö kommun och är landfast: väg 222 leder över Djuröbron och vidare mot Stavsnäs. Det gör Djurö till en av få skärgårdsöar där man kommer fram med SL-buss eller bil utan att sätta foten på en färja.',
-      'Djurhamn på öns södra del var under Vasatiden en viktig örlogsbas, och det är därför Djurö kyrka byggdes — en timrad träkyrka invigd 1683, i dag skyddad som kyrkligt kulturminne. I Djurhamn ligger också Djurönäset, ett hotell med spa och konferens och egen gästhamn för hotellgästerna.',
-      'Naturen finns i Hamnskogen-Eriksberg, ett kommunalt naturreservat från 2016 på ca 35 hektar med vandringsstigar, utsikt över fjärdarna och en anvisad badplats. Kommunens hamn i Djurhamn är ingen gästhamn — den hyrs ut till Kustbevakningen, brandförsvaret och Sjöpolisen.',
+      'Djurö nås utan färja: SL-buss 433 från Slussen går över Djuröbron, med hållplatserna Djuröbron, Djurönäset, Djurö kyrka och Djurö skola. Det gör Djurö till en av få skärgårdsöar där man kommer fram med buss eller bil.',
+      'Djurhamn på öns södra del var under Vasatiden en viktig örlogsbas, och det är därför Djurö kyrka byggdes — en timrad träkyrka invigd 1683. I Djurhamn ligger också Djurönäset, ett hotell med spa och konferens och en gästhamn som är tillgänglig året runt även för båt-, restaurang- och daggäster.',
     ],
     facts: {
       known_for: 'Djurö kyrka (1683), Djurönäset, Hamnskogen-Eriksberg',
@@ -5044,8 +4959,8 @@ export const ISLANDS: Island[] = [
       frequency: 'Regelbundet dagtid — se sl.se',
     },
     harbors: [
-      // KÄLLA: djuronaset.com/hotell/gasthamn — "Djurönäset Gästhamn Folkparken", "wc, laddström 10A, wi-fi, vatten", ca 25 gästplatser, bokning via dockspot.com
-      { name: 'Djurönäset Gästhamn (Folkparken)', desc: 'Hotellets gästhamn i Djurhamn, ca 25 gästplatser, bokas via Dockspot. Vatten, el, wifi och wc.', fuel: false, service: ['el', 'vatten', 'wifi'] },
+      // KÄLLA: djuronaset.com/hotell/gasthamn — "Djurönäset Gästhamn Folkparken", "ca 25 gästplatser beroende på båtarnas storlek", "wc, laddström 10A, wi-fi, vatten 20/L per dygn", bokning via dockspot.com; servicen gäller bemannad period 18 juni–17 augusti, därefter är hamnen öppen utan servicefunktioner
+      { name: 'Djurönäset Gästhamn (Folkparken)', desc: 'Gästhamn i Djurhamn, ca 25 gästplatser, bokas via Dockspot. Vatten, laddström 10A, wifi och wc under bemannad period 18 juni–17 augusti — därefter är hamnen öppen utan servicefunktioner.', fuel: false, service: ['el', 'vatten', 'wifi'] },
     ],
     restaurants: [
       // KÄLLA: djuronaset.com/restaurang-bar — "Matsalen" (middag, lunch, brunch), "Sjöboden – Skärgårdskrog öppet sommartid", © 2026
@@ -5072,7 +4987,6 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','open','open','open','peak','open','open','open','limited','limited'],
     },
   },
-
   // ─── BIRKA ───────────────────────────────────────────────────────────────
   {
     slug: 'birka',
@@ -5135,7 +5049,6 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: true, shop: true, accommodation: false, beach: false, camping: false },
     activity_meta: { cykel: { rental: false, notes: 'Cyklar olämpliga på det lilla Björkö' } },
   },
-
   // ─── LILLA KARLSÖ ────────────────────────────────────────────────────────
   {
     slug: 'lilla-karlso',
@@ -5167,7 +5080,7 @@ export const ISLANDS: Island[] = [
     accommodation: [],
     getting_there: [
       // KÄLLA: Länsstyrelsen Gotland, naturreservat Lilla Karlsö (sedan 1955, ägs av Naturskyddsföreningen): båt från Klintehamn; landstigning bara vid bryggan på östra sidan; 1 mars–31 aug krävs tillstånd för att vistas på ön (läst 2026-09-14). Arrangör enligt Naturskyddsföreningen Gotland: Gotland Sea Guides.
-      { method: 'Guidad tur från Klintehamn', from: 'Klintehamn (Gotland)', time: 'ca 25 min båt', desc: 'Boka tur via Naturskyddsföreningen Gotland (Gotland Sea Guides). Under 1 mars–31 augusti krävs tillstånd för att vistas på ön och landstigning får bara ske vid bryggan — i praktiken går man med guidad tur.', icon: '⛴' },
+      { method: 'Guidad tur från Klintehamn', from: 'Klintehamn (Gotland)', desc: 'Boka tur via Naturskyddsföreningen Gotland (Gotland Sea Guides). Under 1 mars–31 augusti krävs tillstånd för att vistas på ön och landstigning får bara ske vid bryggan — i praktiken går man med guidad tur.', icon: '⛴' },
     ],
     transport_meta: {
       from_city_min: 240,
@@ -5190,7 +5103,6 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: false },
     activity_meta: { bad: { beaches: [] } },
   },
-
   // ─── GOTSKA SANDÖN ───────────────────────────────────────────────────────
   {
     slug: 'gotska-sandon',
@@ -5259,7 +5171,6 @@ export const ISLANDS: Island[] = [
       fiske: true,
     },
   },
-
   // ─── ASPÖ (BLEKINGE) ─────────────────────────────────────────────────────
   {
     slug: 'aspo-blekinge',
@@ -5327,7 +5238,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ─── STURKÖ ──────────────────────────────────────────────────────────────
   {
     slug: 'sturko',
@@ -5396,7 +5306,6 @@ export const ISLANDS: Island[] = [
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
   },
-
   // ─── BLÅ JUNGFRUN ────────────────────────────────────────────────────────
   {
     slug: 'bla-jungfrun',
@@ -5408,7 +5317,7 @@ export const ISLANDS: Island[] = [
     tagline: 'Förtrollad nationalpark i Kalmarsund — häxor, labyrinter och urberg.',
     description: [
       'Blå Jungfrun är en av Sveriges märkligaste platser — en rund granitö mitt i Kalmarsund som i folklig tradition ansågs vara samlings­platsen för svenska häxor varje Skärtorsdag (Blåkulla-legenden). I verkligheten är ön ett geologiskt unikum: en rundad granitklump formad av inlandsisen med stenlabyrinten Trollebo som dess mest kända inslag.',
-      'Ön är nationalpark sedan 1926 och kan endast besökas med dagstur­båt från Oskarshamn eller Byxelkrok på Öland. Övernattning är inte tillåten. Varje besök är ett kortare men djupt minnesvärt möte med urbergets Sverige.',
+      'Ön är nationalpark sedan 1926 och nås med dagstur­båt från Ölandskajen i Oskarshamns hamn eller Södra piren i Byxelkroks hamn på Öland — eller med egen båt. Övernattning är tillåten endast i vindskydden vid Sikhamn, som bokas via Solkustturer och är kostnadsfria (max åtta personer, en natt per tillfälle); att övernatta någon annanstans på ön, i tält eller under bar himmel, är förbjudet. Varje besök är ett kortare men djupt minnesvärt möte med urbergets Sverige.',
     ],
     facts: {
       area: 'ca 0,66 km²',
@@ -5455,7 +5364,6 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: false },
     activity_meta: { bad: { beaches: [] } },
   },
-
   // ─── HEMSÖN ──────────────────────────────────────────────────────────────
   {
     slug: 'hemson',
@@ -5512,7 +5420,6 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: false, shop: false, accommodation: false, beach: true, camping: true },
     activity_meta: { bad: { beaches: ['Klippstränder östra sidan'] } },
   },
-
   // ─── FÅRÖ ────────────────────────────────────────────────────────────────
   {
     slug: 'faro',
@@ -5604,7 +5511,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── TRYSUNDA ─────────────────────────────────────────────────────────────
   {
     slug: 'trysunda',
@@ -5687,7 +5593,6 @@ export const ISLANDS: Island[] = [
       bad: { beaches: ['Klippbad norra sidan', 'Skyddad vik vid hamnen'] },
     },
   },
-
   // ─── HANÖ ─────────────────────────────────────────────────────────────────
   {
     slug: 'hano',
@@ -5734,8 +5639,8 @@ export const ISLANDS: Island[] = [
       frequency: 'Begränsade avgångar, kolla tidtabell',
     },
     harbors: [
-      // KÄLLA: hano.nu/hamnen — "drivs av Hanö Hamn- och Byalag … Servicebyggnad med bastu, duschar, toaletter och tvättmaskin … Ingen försäljning av bensin eller diesel … Gästplatser: 75"; visitblekinge.se — vatten, el, wifi
-      { name: 'Hanö gästhamn', desc: 'Gästhamn med 75 gästplatser, drivs av Hanö Hamn- och Byalag. Bastu, dusch, toalett, tvättmaskin och wifi. Inget drivmedel.', fuel: false, service: ['el', 'vatten', 'dusch', 'tvätt', 'wifi'] },
+      // KÄLLA: visitblekinge.se/en/guest-harbour-hano — "Guest harbor with 74 berths in Hanö Harbor", "WIFI is available in the harbor as well as shower and laundry facilities for boat guests. There is a sauna to rent a short distance from the harbor office." hano.nu/hamnen är blockerad av robots.txt och gick inte att läsa; 75 platser, byalaget, el, vatten och drivmedelsuppgiften är därför obelagda och borttagna.
+      { name: 'Hanö gästhamn', desc: 'Gästhamn med 74 gästplatser. Wifi, dusch och tvättmöjligheter för båtgäster. Bastu finns att hyra en bit från hamnkontoret.', service: ['dusch', 'tvätt', 'wifi'] },
     ],
     restaurants: [],
     tips: [
@@ -5765,7 +5670,6 @@ export const ISLANDS: Island[] = [
       fiske: true,
     },
   },
-
   // ─── SVARTLÖGA ───────────────────────────────────────────────────────────
   {
     slug: 'svartloga',
@@ -5799,7 +5703,7 @@ export const ISLANDS: Island[] = [
     // KÄLLA: Waxholmsbolaget linje 26 (kund.printhuset-sthlm.se/wa/v26.pdf): Svartlöga är näst sista bryggan före Rödlöga, ca 3,5–4 h från Strömkajen (läst 2026-09-14)
     getting_there: [
       { method: 'Waxholmsbolaget', from: 'Stockholm (Strömkajen)', time: 'ca 4 tim', desc: 'Waxholmsbolagets linje 26 via norra skärgårdens öar; Svartlöga ligger ett stopp före Rödlöga. Kolla aktuell tidtabell på waxholmsbolaget.se — avgångarna är sällsynta.', icon: '⛴' },
-      { method: 'Privat båt', from: 'Furusund / Norrtälje', time: 'ca 45–60 min', desc: 'Från Furusund eller Norrtälje är det kortare båtväg. Det naturliga sättet att besöka ön om du har tillgång till båt.', icon: '⛵' },
+      { method: 'Privat båt', desc: 'Med egen båt är det det naturliga sättet att besöka ön.', icon: '⛵' },
     ],
     transport_meta: {
       from_city_min: 400,
@@ -5837,7 +5741,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── VISINGSÖ ────────────────────────────────────────────────────────────
   {
     slug: 'visingo',
@@ -5904,7 +5807,6 @@ export const ISLANDS: Island[] = [
       bad: { beaches: ['Österstrand', 'Norra sandstranden'] },
     },
   },
-
   // ─── VEN ─────────────────────────────────────────────────────────────────
   {
     slug: 'ven',
@@ -5967,7 +5869,6 @@ export const ISLANDS: Island[] = [
       bad: { beaches: ['Klippbad östra sidan'] },
     },
   },
-
   // ─── TJÄRÖ ───────────────────────────────────────────────────────────────
   {
     slug: 'tjaro',
@@ -6041,7 +5942,6 @@ export const ISLANDS: Island[] = [
     },
 
   },
-
   // ─── ÖCKERÖ ──────────────────────────────────────────────────────────────
   {
     slug: 'ockero',
@@ -6100,7 +6000,6 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: true, shop: true, accommodation: true, beach: false, camping: false },
     activity_meta: { bad: { beaches: ['Klippbad östra sidan'] } },
   },
-
   // ─── RÖRÖ ────────────────────────────────────────────────────────────────
   {
     slug: 'roro',
@@ -6160,7 +6059,6 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: true, shop: true, accommodation: true, beach: false, camping: false },
     activity_meta: { bad: { beaches: ['Norra klippbad', 'Västra klipputsprång'] } },
   },
-
   // ─── HOLMÖN ──────────────────────────────────────────────────────────────
   {
     slug: 'holmon',
@@ -6229,7 +6127,6 @@ export const ISLANDS: Island[] = [
       bad: { beaches: ['Strandäng nordvästra sidan'] },
     },
   },
-
 ]
 
 // ── Bohuslän-utvidgning (västkustens öar, sedan 2026-04) ─────────────────
