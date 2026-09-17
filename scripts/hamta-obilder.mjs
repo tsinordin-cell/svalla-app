@@ -30,6 +30,8 @@
  *   node scripts/hamta-obilder.mjs              # hämtar och skriver filen
  *   node scripts/hamta-obilder.mjs --kontroll   # ändrar inget, faller om inaktuell
  *   node scripts/hamta-obilder.mjs --o=uto      # bara en ö, för felsökning
+ *   node scripts/hamta-obilder.mjs --stada     # inga nätanrop: kör om spärrarna
+ *                                                mot filen som redan finns
  */
 
 import { readFileSync, writeFileSync } from 'node:fs'
@@ -39,6 +41,7 @@ import { fileURLToPath } from 'node:url'
 const ROT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const KONTROLL = process.argv.includes('--kontroll')
 const ENDAST = (process.argv.find(a => a.startsWith('--o=')) || '').slice(4)
+const STADA = process.argv.includes('--stada')
 
 const UTFIL = 'src/app/o/obilder.generated.ts'
 
@@ -160,6 +163,66 @@ async function filinfo(filnamn) {
  * Kandidatnamn för artikeln. Ösidans `name` räcker sällan — "Utö" är en
  * grenordssida — så vi provar med kommun och region som förtydligande.
  */
+/**
+ * Manuellt avvisade träffar.
+ *
+ * Bakgrunden: hämtaren kördes, 91 öar fick ett foto, och allt såg rätt ut i
+ * loggen — fri licens, namngiven fotograf, modernt årtal. Först när alla 91
+ * bilderna lades bredvid varandra och någon faktiskt tittade på dem syntes
+ * att fem av dem inte föreställde det de påstod. En spärr som bara läser
+ * metadata kan inte se vad bilden visar. Därför finns den här listan, och
+ * därför ska ett nytt urval alltid granskas med ögonen innan det publiceras.
+ *
+ * Varje rad säger vad som var fel. Raderna får inte tas bort utan att någon
+ * har tittat på den nya bilden.
+ */
+const AVVISADE = {
+  vaddo: 'Väddö och Häverö skeppslag.jpg är en konturkarta, inte ett foto',
+  morko: 'Mörkö location.png är en lägeskarta, inte ett foto',
+  graddo: 'närbild på blommor; filnamnet anger dessutom Fejan, inte Gräddö',
+  galo: 'svartvitt arkivfoto — Commons saknar datum, så årtalsspärren släppte igenom det',
+  langskar: 'samma fil som storskar (D810 0321); vilken ö bilden visar går inte att avgöra',
+  storskar: 'samma fil som langskar (D810 0321); vilken ö bilden visar går inte att avgöra',
+}
+
+/**
+ * Kör spärrarna mot ett färdigt urval. Samma funktion används både efter en
+ * hämtning och av --stada, så regeln finns på ett ställe.
+ *
+ * Dubblettspärren: två öar får aldrig dela bild. Då är minst en av dem fel,
+ * och vi vet inte vilken — alltså bort med båda. Tomt är alltid tillåtet.
+ */
+function sallaBort(urval) {
+  const kvar = {}
+  const bort = []
+
+  for (const [slug, b] of Object.entries(urval)) {
+    if (AVVISADE[slug]) { bort.push([slug, AVVISADE[slug]]); continue }
+    /**
+     * Commons API:et hänger på sina egna kampanjparametrar
+     * (?utm_source=commons.wikimedia.org&utm_campaign=imageinfo) på varje
+     * thumburl. Bilden svarar likadant utan dem. Vi skickar inte någon annans
+     * spårningsparametrar från våra sidor.
+     */
+    kvar[slug] = { ...b, url: (b.url || '').split('?')[0] }
+  }
+
+  const perUrl = {}
+  for (const [slug, b] of Object.entries(kvar)) {
+    const nyckel = (b.url || '').split('?')[0]
+    ;(perUrl[nyckel] = perUrl[nyckel] || []).push(slug)
+  }
+  for (const [nyckel, slugs] of Object.entries(perUrl)) {
+    if (slugs.length < 2) continue
+    for (const slug of slugs) {
+      delete kvar[slug]
+      bort.push([slug, `delade bild med ${slugs.filter(s => s !== slug).join(', ')} (${nyckel.split('/').pop()})`])
+    }
+  }
+
+  return { kvar, bort }
+}
+
 function kandidater(o) {
   const n = o.name
   const ut = [n]
@@ -188,13 +251,28 @@ function lasOar() {
 }
 
 const oar = lasOar().filter(o => !ENDAST || o.slug === ENDAST)
-console.log(`Söker foto för ${oar.length} öar. Wikidata P18 först, Commons-kategori som reserv.\n`)
 
 const resultat = {}
 const utan = []
 let avvisadLicens = 0
 
-for (const o of oar) {
+/**
+ * --stada gör inga nätanrop. Den läser urvalet som redan ligger i filen och
+ * kör bara spärrarna mot det. Skälet: en omhämtning är ~100 anrop mot
+ * Wikimedia och kan ge ett helt annat urval, vilket gör det omöjligt att se
+ * vad just spärren ändrade.
+ */
+if (STADA) {
+  const nu = readFileSync(resolve(ROT, UTFIL), 'utf8')
+  const i = nu.indexOf('Obild> = ') + 'Obild> = '.length
+  const j = nu.indexOf('\n\n/** Öar med')
+  Object.assign(resultat, JSON.parse(nu.slice(i, j)))
+  console.log(`--stada: läste ${Object.keys(resultat).length} öar ur ${UTFIL}, inga nätanrop.\n`)
+}
+
+if (!STADA) console.log(`Söker foto för ${oar.length} öar. Wikidata P18 först, Commons-kategori som reserv.\n`)
+
+for (const o of (STADA ? [] : oar)) {
   let bild = null
   let via = null
 
@@ -260,6 +338,12 @@ for (const o of oar) {
   await paus(400)
 }
 
+const { kvar: godkanda, bort: avvisade } = sallaBort(resultat)
+for (const [slug, skal] of avvisade) {
+  if (!utan.includes(slug)) utan.push(slug)
+  console.log(`  ✗  ${slug.padEnd(20)} spärrad: ${skal}`)
+}
+
 const innehall = `// GENERERAD AV scripts/hamta-obilder.mjs — REDIGERA INTE FÖR HAND.
 //
 // Ett representativt foto per ö från Wikimedia Commons, valt via Wikidatas
@@ -284,10 +368,10 @@ export type Obild = {
   kalla: string
 }
 
-export const OBILDER: Record<string, Obild> = ${JSON.stringify(resultat, null, 2)}
+export const OBILDER: Record<string, Obild> = ${JSON.stringify(godkanda, null, 2)}
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = ${Object.keys(resultat).length}
+export const OAR_MED_BILD = ${Object.keys(godkanda).length}
 `
 
 const utvag = resolve(ROT, UTFIL)
@@ -296,7 +380,12 @@ if (KONTROLL) {
   let nuvarande = ''
   try { nuvarande = readFileSync(utvag, 'utf8') } catch { /* saknas */ }
   if (nuvarande !== innehall) {
-    console.error('\n✗ obilder.generated.ts är inaktuell. Kör: node scripts/hamta-obilder.mjs')
+    console.error(
+      STADA
+        ? '\n✗ obilder.generated.ts innehåller något spärrarna avvisar.'
+          + '\n  Kör: npm run obilder:stada  (inga nätanrop)'
+        : '\n✗ obilder.generated.ts är inaktuell. Kör: node scripts/hamta-obilder.mjs',
+    )
     process.exit(1)
   }
 } else if (!ENDAST) {
@@ -304,7 +393,7 @@ if (KONTROLL) {
   console.log(`\n✓ skrev ${UTFIL}`)
 }
 
-console.log(`\n  öar med foto:  ${Object.keys(resultat).length} av ${oar.length}`)
-console.log(`  utan foto:     ${utan.length}`)
+console.log(`\n  öar med foto:  ${Object.keys(godkanda).length} av ${oar.length}`)
+console.log(`  utan foto:     ${oar.length - Object.keys(godkanda).length}`)
 if (avvisadLicens) console.log(`  avvisade pga licens: ${avvisadLicens}`)
-if (utan.length) console.log(`\n  utan: ${utan.join(', ')}`)
+if (utan.length) console.log(`\n  denna körning tog bort: ${utan.join(', ')}`)
