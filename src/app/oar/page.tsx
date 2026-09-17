@@ -7,6 +7,7 @@ import Icon, { type IconName } from '@/components/Icon'
 import { ALL_ISLANDS, type Island } from '../o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from './oar-categories'
 import IslandThumb from '@/components/IslandThumb'
+import { OBILDER } from '@/app/o/obilder.generated'
 
 export const metadata: Metadata = {
   title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer | Svalla',
@@ -325,11 +326,11 @@ export default function OarIndexPage() {
                         display: 'flex', gap: 14, alignItems: 'center',
                       }}
                     >
-                      {i.coverImage ? (
+                      {(OBILDER[i.slug]?.url ?? i.coverImage) ? (
                         <div style={{
                           width: 64, height: 48, flexShrink: 0,
                           borderRadius: 8, overflow: 'hidden',
-                          background: `url('${i.coverImage}') center/cover, linear-gradient(135deg, #1e5c82, #2d7d8a)`,
+                          background: `url('${OBILDER[i.slug]?.url ?? i.coverImage}') center/cover, linear-gradient(135deg, #1e5c82, #2d7d8a)`,
                         }} aria-hidden />
                       ) : (
                         <IslandThumb slug={i.slug} region={i.region} width={64} height={48} />
