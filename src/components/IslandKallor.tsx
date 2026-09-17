@@ -71,7 +71,17 @@ function Kort({ grupp, visaDatum }: { grupp: Grupp; visaDatum: boolean }) {
               href={s.url}
               target="_blank"
               rel="noopener noreferrer nofollow"
-              style={{ fontSize: 12, color: 'var(--txt2)', lineHeight: 1.45, textDecoration: 'none' }}
+              /*
+                overflowWrap: en källa utan `vad` visas som sin egen adress, och
+                en adress är ett enda obrutet ord. Utan brytning sköt
+                varmdo.se/varmdohamnar/parkera.4.6e5e3cc318a8… ut 59 px utanför
+                skärmen på mobil och gav hela ösidan horisontell scroll.
+                `anywhere` bryter bara när ordet inte får plats.
+              */
+              style={{
+                fontSize: 12, color: 'var(--txt2)', lineHeight: 1.45, textDecoration: 'none',
+                display: 'inline-block', maxWidth: '100%', overflowWrap: 'anywhere',
+              }}
             >
               {s.vad || s.url.replace(/^https?:\/\/(www\.)?/, '')}
               <span aria-hidden style={{ color: 'var(--txt3)', marginLeft: 5, fontSize: 11 }}>&#8599;</span>
