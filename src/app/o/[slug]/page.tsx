@@ -24,6 +24,7 @@ import { getGuidesForIsland } from '../../guider/guide-island-map'
 import IslandB2BCTA from '@/components/IslandB2BCTA'
 import IslandHantverkare from '@/components/IslandHantverkare'
 import IslandKallor from '@/components/IslandKallor'
+import IslandFoto from '@/components/IslandFoto'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -457,6 +458,10 @@ export default async function IslandPage({ params }: Props) {
 
  {/* ── MAIN CONTENT ────────────────────────────────────────── */}
  <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 24px 80px' }}>
+ 	{/* Fotot av ön. Fotograf och licens står under bilden — villkoret för
+ 	    att vi får använda den. Genereras av scripts/hamta-obilder.mjs. */}
+ 	<IslandFoto slug={island.slug} islandName={island.name} />
+
 
  {/* Visste du att */}
  {island.did_you_know && (
