@@ -252,8 +252,16 @@ export default function OarIndexPage() {
                 <div style={{ fontSize: 11, color: 'var(--acc)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 6 }}>
                   {c.count} öar
                 </div>
+                {/*
+                  Kortrubriken kortas eftersom "Skärgårdsöar" redan står i
+                  sidans egen rubrik. Men ordet måste BYTAS, inte strippas:
+                  ströks det utan ersättning blev fem av tio rubriker
+                  meningsfragment — "för cykling", "utan bil — kollektivt och
+                  med båt", "med havsbastu". Samma ersättning används på
+                  /oar/[kategori].
+                */}
                 <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)', marginBottom: 4, fontFamily: "'Playfair Display', Georgia, serif" }}>
-                  {c.title.replace(' i skärgården', '').replace('Skärgårdsöar — ', '').replace('Skärgårdsöar ', '')}
+                  {c.title.replace('Skärgårdsöar', 'Öar').replace(' i skärgården', '')}
                 </div>
                 <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
                   {c.hero.split(' — ')[0]}
