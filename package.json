@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/build-email-templates.mjs && node scripts/guard-cache-regler.mjs && node scripts/verify-claims.mjs && node scripts/generera-kallor.mjs --kontroll && node scripts/generera-uppskattningar.mjs --kontroll && vitest run src/lib",
+    "prebuild": "node scripts/build-email-templates.mjs && node scripts/guard-cache-regler.mjs && node scripts/verify-claims.mjs && node scripts/generera-kallor.mjs --kontroll && node scripts/generera-uppskattningar.mjs --kontroll && vitest run src/lib && node scripts/hamta-obilder.mjs --stada --kontroll",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -25,7 +25,8 @@
     "uppskattningar": "node scripts/generera-uppskattningar.mjs",
     "uppskattningar:kontroll": "node scripts/generera-uppskattningar.mjs --kontroll",
     "obilder": "node scripts/hamta-obilder.mjs",
-    "obilder:kontroll": "node scripts/hamta-obilder.mjs --kontroll",
+    "obilder:stada": "node scripts/hamta-obilder.mjs --stada",
+    "obilder:kontroll": "node scripts/hamta-obilder.mjs --stada --kontroll",
     "verify-claims:baslinje": "node scripts/verify-claims.mjs --uppdatera-baslinje",
     "tasks": "node -r dotenv/config scripts/update-tasks.mjs dotenv_config_path=.env.local",
     "tasks:torrkor": "node -r dotenv/config scripts/update-tasks.mjs --torrkor dotenv_config_path=.env.local",
