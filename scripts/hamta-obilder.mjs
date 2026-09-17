@@ -32,6 +32,8 @@
  *   node scripts/hamta-obilder.mjs --o=uto      # bara en ö, för felsökning
  *   node scripts/hamta-obilder.mjs --stada     # inga nätanrop: kör om spärrarna
  *                                                mot filen som redan finns
+ *   node scripts/hamta-obilder.mjs --handplock # hämtar bara de handplockade
+ *                                                bilderna och skriver in dem
  */
 
 import { readFileSync, writeFileSync } from 'node:fs'
@@ -42,6 +44,7 @@ const ROT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const KONTROLL = process.argv.includes('--kontroll')
 const ENDAST = (process.argv.find(a => a.startsWith('--o=')) || '').slice(4)
 const STADA = process.argv.includes('--stada')
+const HANDPLOCK = process.argv.includes('--handplock')
 
 const UTFIL = 'src/app/o/obilder.generated.ts'
 
@@ -164,6 +167,37 @@ async function filinfo(filnamn) {
  * grenordssida — så vi provar med kommun och region som förtydligande.
  */
 /**
+ * Handplockade bilder.
+ *
+ * P18 och kategorins första träff ger en bild som *stämmer*, men inte alltid
+ * en bild någon vill resa efter. Utö fick en närbild på kvarnmaskineri, Singö
+ * ett kalt vinterfält, Marstrand ett ankare framför en modern byggnad,
+ * Smådalarö en hund i förgrunden. Inget av det är fel — det är bara trist, och
+ * på en sida där folk väljer resmål genom att titta på bilden är trist ett
+ * sämre resultat än det behöver vara.
+ *
+ * Varje rad här är vald genom att faktiskt titta på hela kategorin: alla fria,
+ * daterade liggande bilder lades i ett kontaktark och en valdes. Licensen och
+ * fotografen hämtas som vanligt från Commons — bara *vilken* fil det är står
+ * här.
+ *
+ * Spärrarna i AVVISADE gäller fortfarande. En handplockad bild som visar sig
+ * vara fel hör hemma där, inte här.
+ */
+const HANDPLOCKADE = {
+  arholma: '1076 Arholma August 2014 - panoramio.jpg',
+  ingaro: 'Ingarö varv.jpg',
+  ingmarso: 'Ingsmarsö2.jpg',
+  kymmendo: 'Kymmendö2010b.jpg',
+  marstrand: 'Marstrand 32-1 RA 10157700320001 IMG 9631.jpg',
+  'pater-noster': '150810-1 Pater Noster Marstrand.JPG',
+  rindo: 'Oskar Fredrikson - panoramio.jpg',
+  singo: 'NZ7 0575 (52270337265).jpg',
+  smaadalaro: 'Smådalarö, 2016z.jpg',
+  uto: 'Utö Rävstaviken September 2012 02.jpg',
+}
+
+/**
  * Manuellt avvisade träffar.
  *
  * Bakgrunden: hämtaren kördes, 91 öar fick ett foto, och allt såg rätt ut i
@@ -262,21 +296,51 @@ let avvisadLicens = 0
  * Wikimedia och kan ge ett helt annat urval, vilket gör det omöjligt att se
  * vad just spärren ändrade.
  */
-if (STADA) {
+if (STADA || HANDPLOCK) {
   const nu = readFileSync(resolve(ROT, UTFIL), 'utf8')
   const i = nu.indexOf('Obild> = ') + 'Obild> = '.length
   const j = nu.indexOf('\n\n/** Öar med')
   Object.assign(resultat, JSON.parse(nu.slice(i, j)))
-  console.log(`--stada: läste ${Object.keys(resultat).length} öar ur ${UTFIL}, inga nätanrop.\n`)
+  console.log(`läste ${Object.keys(resultat).length} öar ur ${UTFIL}.\n`)
 }
 
-if (!STADA) console.log(`Söker foto för ${oar.length} öar. Wikidata P18 först, Commons-kategori som reserv.\n`)
+/**
+ * --handplock hämtar bara de filer som står i HANDPLOCKADE. Ett anrop per fil,
+ * inte hundra: resten av urvalet ligger redan i filen och ska inte röras.
+ */
+if (HANDPLOCK) {
+  for (const [slug, fil] of Object.entries(HANDPLOCKADE)) {
+    try {
+      const b = await filinfo(fil)
+      if (!b) { console.log(`  !  ${slug.padEnd(20)} hittade inte "${fil}"`); continue }
+      if (!arFri(b.licens)) { console.log(`  ✗  ${slug.padEnd(20)} avvisad licens: ${b.licens || '(okänd)'}`); continue }
+      if (!b.fotograf) { console.log(`  ✗  ${slug.padEnd(20)} fotograf saknas — publiceras inte`); continue }
+      resultat[slug] = {
+        url: b.url, bredd: b.bredd, hojd: b.hojd, ar: b.ar ?? null,
+        fotograf: b.fotograf, licens: b.licens, licensUrl: b.licensUrl,
+        kalla: b.beskrivningssida,
+      }
+      console.log(`  ✓  ${slug.padEnd(20)} ${b.licens.padEnd(14)} ${b.fotograf.slice(0, 28).padEnd(30)} handplockad`)
+    } catch (e) {
+      console.warn(`  !  ${slug}: ${e.message}`)
+    }
+    await paus(500)
+  }
+}
 
-for (const o of (STADA ? [] : oar)) {
+if (!STADA && !HANDPLOCK) console.log(`Söker foto för ${oar.length} öar. Wikidata P18 först, Commons-kategori som reserv.\n`)
+
+for (const o of ((STADA || HANDPLOCK) ? [] : oar)) {
   let bild = null
   let via = null
 
-  for (const titel of kandidater(o)) {
+  // Handplockad bild vinner over bade P18 och kategorin. Se HANDPLOCKADE.
+  if (HANDPLOCKADE[o.slug]) {
+    try { bild = await filinfo(HANDPLOCKADE[o.slug]); via = 'handplockad' }
+    catch (e) { console.warn(`  ! ${o.slug}: handplockad bild gick inte att hämta — ${e.message}`) }
+  }
+
+  for (const titel of (bild ? [] : kandidater(o))) {
     try {
       const qid = await wikidataId(titel)
       if (!qid) continue
