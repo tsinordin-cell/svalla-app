@@ -249,10 +249,47 @@ function harUppskattningNara(rader, i) {
   return false
 }
 
+/**
+ * BLINDFLÄCK, lagad 2026-09-17.
+ *
+ * Ett operatörsnamn i BRÖDTEXT är inte en källhänvisning. Markörerna nedan
+ * lades in för att fånga rader som `// KÄLLA: Waxholmsbolagets tabell 11`.
+ * Men harKallaNara läste hela raden oavsett om den var kod, kommentar eller
+ * text — och guiderna skriver "Waxholmsbolagets båt från Strömkajen" i
+ * löpande text i nästan varje transportstycke.
+ *
+ * Följden: varje pris och klockslag inom fem rader från den meningen räknades
+ * som belagt. Mätt 2026-09-17 i guide-content.ts: av 190 priser och klockslag
+ * som spärren faktiskt såg, godkändes 37 av ordet "waxholmsbolaget" och 5 av
+ * "strömma". Bara 13 hade en riktig KÄLLA-rad. Spärren rapporterade noll fynd
+ * i en fil med 178 obelagda priser.
+ *
+ * Det är precis den blindfläck kommentaren högst upp i filen varnar för:
+ * "En spärr med blindfläck ger falsk trygghet."
+ *
+ * Reglen nu: namn som bara identifierar en avsändare gäller i kommentar.
+ * 'källa:', 'http://' och de andra explicita markörerna gäller överallt —
+ * de går inte att råka skriva i brödtext.
+ */
+const BARA_I_KOMMENTAR = [
+  'resrobot', 'trafiklab', 'strömma', 'stromma', 'waxholmsbolaget',
+  'openstreetmap', 'osm ', 'open-meteo', 'google places', 'mätt ', 'matt ',
+]
+
+/** Kommentar i JS, JSX, HTML eller en mallsträng med HTML i sig. */
+const ÄR_KOMMENTARSRAD = (rad) =>
+  /^\s*(\/\/|\*|\/\*)/.test(rad.trim()) || /<!--|\{\/\*/.test(rad)
+
 function harKallaNara(rader, i) {
   for (let k = Math.max(0, i - 5); k <= i; k++) {
-    const l = (rader[k] || '').toLowerCase()
-    if (KALLMARKORER.some(m => l.includes(m))) return true
+    const rad = rader[k] || ''
+    const l = rad.toLowerCase()
+    const iKommentar = ÄR_KOMMENTARSRAD(rad)
+    for (const m of KALLMARKORER) {
+      if (!l.includes(m)) continue
+      if (BARA_I_KOMMENTAR.includes(m) && !iKommentar) continue
+      return true
+    }
   }
   return false
 }

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/build-email-templates.mjs && node scripts/guard-cache-regler.mjs && node scripts/verify-claims.mjs && node scripts/generera-kallor.mjs --kontroll && vitest run src/lib",
+    "prebuild": "node scripts/build-email-templates.mjs && node scripts/guard-cache-regler.mjs && node scripts/verify-claims.mjs && node scripts/generera-kallor.mjs --kontroll && node scripts/generera-uppskattningar.mjs --kontroll && vitest run src/lib",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -22,6 +22,8 @@
     "verify-claims": "node scripts/verify-claims.mjs",
     "kallor": "node scripts/generera-kallor.mjs",
     "kallor:kontroll": "node scripts/generera-kallor.mjs --kontroll",
+    "uppskattningar": "node scripts/generera-uppskattningar.mjs",
+    "uppskattningar:kontroll": "node scripts/generera-uppskattningar.mjs --kontroll",
     "verify-claims:baslinje": "node scripts/verify-claims.mjs --uppdatera-baslinje",
     "tasks": "node -r dotenv/config scripts/update-tasks.mjs dotenv_config_path=.env.local",
     "tasks:torrkor": "node -r dotenv/config scripts/update-tasks.mjs --torrkor dotenv_config_path=.env.local",
