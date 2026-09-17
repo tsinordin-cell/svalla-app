@@ -45,7 +45,7 @@ export function getGuideContent(slug: string): string {
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Möja – bilfri midsommarstämning</h4>
 <p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget via Stavsnäs, ca 2 h 30 min. SL-buss 433 till Stavsnäs från Slussen.</p>
 <p><strong>Upplev:</strong> Möja är en av skärgårdens bäst bevarade hemligheter – bilfri, lugn och autentisk. Midsommarfirandet samlar hela ön vid majstången på Möja Handelsträdgård. Det är folkfest i ordets rätta bemärkelse: grannar, turister och sommargäster sida vid sida.</p>
-<p><strong>Var du äter:</strong> Möja Krog vid södra Möja serverar säsongsbetonad mat. Söndagsbrunch med räkor och jordgubbar är deras midsommarspecialitet.</p>
+<p><strong>Var du äter:</strong> På Möja finns Möja Värdshus & Bageri, Hamnbaren, Les Poissonniers de Möja, Jeppes och Hamncafét.</p>
 <p><strong>Insider-tips:</strong> Ta med cykeln på båten – ön är perfekt att utforska under midsommardagen. Ingen bil på ön, vilket gör det lugnt och barnvänligt.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">7. Svenska Högarna – för den äventyrlige</h4>
@@ -78,31 +78,31 @@ export function getGuideContent(slug: string): string {
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">11. Kosteröarna – Sveriges västerligaste</h4>
 <p><strong>Hur du tar dig dit:</strong> Tåg till Strömstad, sedan färja till Sydkoster eller Nordkoster. Ca 3 h från Göteborg. Boka båtbiljett i förväg under midsommarhelgen.</p>
 <p><strong>Upplev:</strong> Kosteröarna är bilfria och ingår i Kosterhavets nationalpark – en av Europas finaste. Midsommarfirandet är enkelt och genuint: majstång, dans och natur. Snorkling och paddling i nationalparken under midsommarnatten är en upplevelse för sig.</p>
-<p><strong>Var du äter:</strong> Kosterfjordens Fisk & Skaldjur på Sydkoster. Nordkoster Värdshus för en fullständig midsommarmiddag med nordkosters egna räkor.</p>
+<p><strong>Var du äter:</strong> Kosterfjordens Fisk & Skaldjur på Sydkoster. På Nordkoster finns Restaurang Strandkanten, Kosterhavets Ekobod och Hotell Kosterbaden.</p>
 <p><strong>Insider-tips:</strong> Boka boende minst 3 månader i förväg. Kosteröarna är extremt populära under midsommar.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">12. Tjörn – broförbunden men genuint</h4>
 <p><strong>Hur du tar dig dit:</strong> Tåg till Stenungsund, sedan buss via Tjörnbron. Eller med bil, ca 50 min från Göteborg. Tjörn nås med bil över Tjörnbron (gratis).</p>
 <p><strong>Upplev:</strong> Tjörn är Bohusläns folkrikaste ö och har ett rikt utbud av midsommarfiranden. Skärhamns folkpark arrangerar stor midsommarfest med artistuppträdanden. Nordiska Akvarellmuseet vid Skärhamn håller öppet med specialutställning.</p>
-<p><strong>Var du äter:</strong> Restaurang Bryggan i Skärhamn med utsikt mot Tjörns norra skärgård. Krogen vid Rönnäng hamn för klassisk husmanskost.</p>
+<p><strong>Var du äter:</strong> Krogen vid Rönnäng hamn för klassisk husmanskost.</p>
 <p><strong>Insider-tips:</strong> Tjörn är perfekt om du vill kombinera skärgård med bil – du kan utforska hela ön under midsommardagen utan att binda dig till tidtabeller.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">13. Gullholmen – den pittoreska fiskebyn</h4>
 <p><strong>Hur du tar dig dit:</strong> Bil till Ellös på Orust, sedan bilbåt till Gullholmen, ca 5 min. Ca 1 h 30 min från Göteborg med bil.</p>
 <p><strong>Upplev:</strong> Gullholmen är en av Bohusläns vackraste byar – tätt packade hus i rött och vitt längs klipporna. Midsommarfirandet är genuint lokalt med majstång vid hamnen. Ön är liten och lätt att promenera runt på en timme.</p>
-<p><strong>Var du äter:</strong> Gullholmen Krog är öns enda restaurang och fulltecknad under midsommar. Alternativt: ta med picknick och ät på klipporna.</p>
+<p><strong>Var du äter:</strong> Gullholmens Hamnkrog ligger på ön. Alternativt: ta med picknick och ät på klipporna.</p>
 <p><strong>Insider-tips:</strong> Ta bilbåten på kvällen och ha bilen på fastlandet. Ön är liten och ingen bil behövs.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">14. Orust – Bohusläns största ö</h4>
 <p><strong>Hur du tar dig dit:</strong> Bil via broar från Stenungsund, ca 1 h från Göteborg. Buss 302 från Göteborg Centralstationen, ca 1 h 30 min.</p>
 <p><strong>Upplev:</strong> Orust är Bohusläns mest mångsidiga ö. Ellös, Mollösund och Höviksnäs har var sina karaktärer och midsommarfiranden. Mollösunds fiskeby är en av kustens vackraste med husen pressade mot klippan.</p>
-<p><strong>Var du äter:</strong> Mollösunds Krog med havsvy. Höviksnäs Stenugnsbageri för bröd och fika längs havet.</p>
+<p><strong>Var du äter:</strong> Höviksnäs Stenugnsbageri för bröd och fika längs havet.</p>
 <p><strong>Insider-tips:</strong> Hyr cykel och ta dig från Ellös till Mollösund längs kustvägarna – det är en av Bohusläns finaste cykelleder.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">15. Donsö – Göteborgsskärgårdens pärla</h4>
 <p><strong>Hur du tar dig dit:</strong> Saltholmen T-bana (Göteborgs spårvagn) sedan Styrsöbolagets båt till Donsö, ca 30 min. Avgångarna är täta.</p>
 <p><strong>Upplev:</strong> Donsö är Göteborgs sydskärgårds mysigaste ö. Midsommarfirandet vid hamnplanen är genuint och välskött. Öns fiskeindustri är fortfarande aktiv och ger ett annorlunda skärgårdsintryck.</p>
-<p><strong>Var du äter:</strong> Donsö Krog med färsk fisk direkt från hamnen. Sommarcaféet vid bryggan för kaffe och räksmörgås.</p>
+<p><strong>Var du äter:</strong> Sommarcaféet vid bryggan för kaffe och räksmörgås.</p>
 <p><strong>Insider-tips:</strong> Styrsöbolaget ingår i Göteborgs kollektivtrafik – SL-kortet gäller INTE, men Västtrafik-kortet gäller. Biljett köps ombord eller i Västtrafik-appen.</p>
 `,
 
@@ -391,7 +391,7 @@ export function getGuideContent(slug: string): string {
 <p><strong>Transport:</strong> SL-buss 433 till Stavsnäs Vinterhamn, sedan Waxholmsbolaget till Möja. Totalt ca 2 h 30 min. SL-bussen ingår i SL-abonnemanget.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p><strong>Pris:</strong> Buss gratis med SL-kort, Waxholmsbåt ca 190 kr enkel resa.</p>
-<p><strong>Upplev:</strong> Möja är bilfri och den klassiska "autentiska" skärgårdsön. Hyr cykel vid bryggan och utforska hela ön på en förmiddag. Möja Krog och Möja Handelsträdgård är must-visits.</p>
+<p><strong>Upplev:</strong> Möja är bilfri och den klassiska "autentiska" skärgårdsön. Hyr cykel vid bryggan och utforska hela ön på en förmiddag. Möja Värdshus & Bageri och Möja Handelsträdgård är must-visits.</p>
 <p><strong>Praktisk info:</strong> Boende finns på Möja Vandrarhem och i privata stugor. Tältning möjligt i anvisade områden.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">5. Utö – södra skärgårdens höjdpunkt</h4>
@@ -626,7 +626,7 @@ export function getGuideContent(slug: string): string {
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p>Utö Värdshus levererar konsekvent hög kvalitet med fokus på lokala råvaror och säsong. Havsbastupaket + middag är deras signaturupplevelse. Prisläge: 280–450 kr/person.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Finnhamns Café & Krog, Finnhamn</h4>
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Finnhamns Sjökrog, Finnhamn</h4>
 <p>Intim krog i naturskön miljö. Fokus på fisk och skaldjur från Roslagskusten. Prisläge: 180–320 kr/person.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bohuslän – västkustens bästa</h3>
@@ -634,9 +634,6 @@ export function getGuideContent(slug: string): string {
 <h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Smögens Fisk & Skaldjursrestaurang, Smögen</h4>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p>Räksmörgåsen här är nationellt känd och välförtjänt. Räkan fångad samma dag, brödet bakat på morgonen. Kö bildas sommartid men det är värt väntan. Prisläge: 150–280 kr.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Restaurang Bryggan, Skärhamn (Tjörn)</h4>
-<p>Välskött restaurang med utsikt mot Tjörns norra skärgård. Skaldjursplattan är husets stolthet. Prisläge: 280–450 kr/person.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Kosterfjordens Fisk & Skaldjur, Sydkoster</h4>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
@@ -1092,7 +1089,7 @@ export function getGuideContent(slug: string): string {
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende</h3>
-<p>Norrtälje Vandrarhem, Norrtälje Hotell och ett antal B&B i omgivningarna. Campingplatser längs Norrtelje ån och vid kusten norr om staden.</p>
+<p>Vandrarhemmet Hvilan och ett antal B&B i omgivningarna. Campingplatser längs Norrtelje ån och vid kusten norr om staden.</p>
 `,
 
     'fjaderholmarna-guide': `
@@ -1258,7 +1255,7 @@ export function getGuideContent(slug: string): string {
 <p>Landsort har ett märkbart annorlunda klimat jämfört med fastlandet. Havstemperaturen modererar extremerna – vintrarna är mildare och somrarna svalare. Ön kan ta emot dimma och lockar in moln som fastlandet inte ser. Denna "maritima" karaktär gör naturupplevelsen unik.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende och mat</h3>
-<p>Landsort Wärdshus erbjuder enkelt boende och mat under sommaren. Boka i god tid – kapaciteten är liten. Tältning möjlig i anvisade områden – ta med allt du behöver, ingen affär finns på ön.</p>
+<p>På Landsort finns enkelt boende och mat under sommaren. Boka i god tid – kapaciteten är liten. Tältning möjlig i anvisade områden – ta med allt du behöver, ingen affär finns på ön.</p>
 `,
 
     'hyrbat-guide': `
@@ -1966,7 +1963,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Öar att cykla på – rankat</h3>
 
 <h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Möja – bästa cykelön</h4>
-<p>Möja är en av de bäst lämpade öarna för cykling i hela Stockholms skärgård. Ön är i princip bilfri, platt till lätt kuperad, och har grus- och asfaltsvägar som binder ihop byarna. Hyrcyklar finns vid hamnen. Runt hela ön tar ca 3–4 timmar med pauser. Glassbaren och Möja Krog är givna stopp. Nås med Waxholmsbolaget via Stavsnäs.</p>
+<p>Möja är en av de bäst lämpade öarna för cykling i hela Stockholms skärgård. Ön är i princip bilfri, platt till lätt kuperad, och har grus- och asfaltsvägar som binder ihop byarna. Hyrcyklar finns vid hamnen. Runt hela ön tar ca 3–4 timmar med pauser. Glassbaren och Möja Värdshus & Bageri är givna stopp. Nås med Waxholmsbolaget via Stavsnäs.</p>
 
 <h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Utö – längsta turen</h4>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
@@ -2009,7 +2006,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Bästa endagskombon:</strong>
-<p style="margin:8px 0 0;font-size:14px">Ta morgonbåten till Möja med din cykel, cykla runt hela ön (ca 3 h med stopp), lunch på Möja Krog, glass vid hamnen och kvällsbåten hem. Perfekt skärgårdsdag utan att stressa. Möja är litet nog att hinna allt – stort nog att det alltid finns något nytt att hitta.</p>
+<p style="margin:8px 0 0;font-size:14px">Ta morgonbåten till Möja med din cykel, cykla runt hela ön (ca 3 h med stopp), lunch på Möja Värdshus & Bageri, glass vid hamnen och kvällsbåten hem. Perfekt skärgårdsdag utan att stressa. Möja är litet nog att hinna allt – stort nog att det alltid finns något nytt att hitta.</p>
 </div>
 `,
 
@@ -2041,7 +2038,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Var äter du på Möja?</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Möja Krog:</strong> Klassisk skärgårdskrog med husmanskost, räkor och lokal fisk. Lunchservering under sommarsäsongen. Boka bord vid längre middagar.</li>
+<li><strong>Möja Värdshus & Bageri:</strong> Öns värdshus och bageri.</li>
 <li><strong>Möja Pizzeria:</strong> Ja, det finns pizza på Möja. Sommartid, populärt bland bofasta och besökare.</li>
 <li><strong>Picknick:</strong> Köp räkor och bröd i affären och ät vid hamnen. Det enkla valet.</li>
 </ul>
@@ -2148,7 +2145,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Camping på Nåttarö</h3>
-<p>Nåttarö Camping drivs av Skärgårdsstiftelsen och erbjuder tältplatser i tallskogen nära stranden. Det är enkelt och naturligt – toaletter, vatten och grillplatser finns. Ingen el eller avancerade faciliteter.</p>
+<p>Dygnscamping hos Nåttarö Gård & Resort erbjuder tältplatser i tallskogen nära stranden. Det är enkelt och naturligt – toaletter, vatten och grillplatser finns. Ingen el eller avancerade faciliteter.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <li>Tältplats: ca 150–200 kr/natt per tält</li>
@@ -2238,7 +2235,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hundvänliga restauranger i skärgården</h3>
-<p>Många skärgårdsrestauranger tillåter hundar på uteserveringen men inte inomhus. Fråga alltid när du anländer. Grinda Wärdshus, Möja Krog och flera restauranger i Vaxholm tar emot hundar utomhus. Sandhamns Värdshus är mer restriktivt under högsäsong.</p>
+<p>Många skärgårdsrestauranger tillåter hundar på uteserveringen men inte inomhus. Fråga alltid när du anländer. Grinda Wärdshus och flera restauranger i Vaxholm tar emot hundar utomhus. Sandhamns Värdshus är mer restriktivt under högsäsong.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Packlista för hund</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -2670,7 +2667,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat och boende</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Sydkoster: Kosters Trädgårdar (restaurang, inriktad på lokala råvaror), Kosteröarnas Värdshus</li>
+<li>Sydkoster: Kosters Trädgårdar (restaurang, inriktad på lokala råvaror)</li>
 <li>Nordkoster: Enklare kiosk och café. Självhushåll rekommenderas.</li>
 <li>Boende: Vandrarhem och stugor på Sydkoster. Tältning med allemansrätten på Nordkoster (utom i kärnzoner)</li>
 <li>Ta med tillräckligt med mat och kontanter – service är begränsad</li>
@@ -2843,7 +2840,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende</h3>
-<p>Arholma Vandrarhem (STF) erbjuder boende för vandrare och besökare. Boka via stf.se. En liten kiosk och sommaröppet café finns vid bryggan. Ta med det mesta hemifrån.</p>
+<p>Arholma Nord erbjuder boende för vandrare och besökare. En liten kiosk och sommaröppet café finns vid bryggan. Ta med det mesta hemifrån.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Reseplaneringstips:</strong>
@@ -2906,7 +2903,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat och sjömat</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Räkbåtarna vid hamnen:</strong> Köp nyfångad räka direkt från fiskebåtarna sommartid</li>
-<li><strong>Fjällbacka Värdshus:</strong> Klassisk krog vid hamnen med sjömat och husmanskost</li>
+
 <li><strong>Hummerpremiären i september:</strong> Fjällbacka är ett av de bästa ställena att fira hummerpremiär</li>
 </ul>
 
@@ -3642,7 +3639,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vecka 1 – Inre skärgårdens trygghet</h2>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Dag 1–2: Vaxholm</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Perfekt introduktion. Pendelbåt dit (45 min), Vaxholms fästning (barn älskar det), glassbutiken vid hamnen och övernattning på Vaxholms Hotell eller Hembygdsgårdens stugor. Lugnt och tryggt.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Perfekt introduktion. Pendelbåt dit (45 min), Vaxholms fästning (barn älskar det), glassbutiken vid hamnen och övernattning på Waxholms Hotell eller Hembygdsgårdens stugor. Lugnt och tryggt.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Dag 3–5: Grinda</h3>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda är den barnvänligaste ön i skärgården. Sandstrand, djur att titta på (höns, kor), kajaker anpassade för barn, havsbastu och ett wärdshus med full service. Perfekt bas för 2–3 nätter. Prova kvällsnaturen när solen går ned runt 10-tiden.</p>
@@ -4939,7 +4936,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö har inga restauranger i traditionell mening — det är en liten ö med begränsad service. Café Sudersand vid Sudersandsstranden är det självklara matstellät — enkel mat, glass, fika och kaffe i strandsand. Öppet i stort sett hela sommarsäsongen. Handla med dig mat från Fårösund eller Visby för längre utflykter. En väl packad kylväska är mer användbar än en restaurangguide på Fårö.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende på och nära Fårö</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sudersands Camping vid Sudersandstranden är det enklaste sättet att övernatta — tältplatser och stugor direkt vid havet. Boka tidigt för juli. Privatuthyrda stugor och lägenheter på Fårö hittas via Airbnb och semesterboende.se. Fårösund på fastlandssidan har fler hotellalternativ om du hellre bor kvar på Gotland och åker dagstur till Fårö. Visby med sina hotell är 60 km söderut.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sudersand Resort vid Sudersandstranden är det enklaste sättet att övernatta — tältplatser och stugor direkt vid havet. Boka tidigt för juli. Privatuthyrda stugor och lägenheter på Fårö hittas via Airbnb och semesterboende.se. Fårösund på fastlandssidan har fler hotellalternativ om du hellre bor kvar på Gotland och åker dagstur till Fårö. Visby med sina hotell är 60 km söderut.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Norra Gotland – utforska mer</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårösund och norra Gotland erbjuder mer än färjeläget. Bunge friluftsmuseum norr om Bunge samhälle är ett av Gotlands bästa friluftsmuser med historiska byggnader, forntida bilstenar och medeltida kalk. Fårösunds hamn har ett par restauranger. Lummelundagrottan — Gotlands mest besökta attraktion — ligger ca 20 km söder om Fårösund på vägen mot Visby.</p>
@@ -4960,17 +4957,16 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
   'camping-gotland': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland är ett av Sveriges bästa campingmål — långa sandstränder, milt klimat med fler soltimmar än fastlandet och campingplatser från enkelt tältäventyr till resort-standard. Guide till de bästa campingarna och vad du behöver veta.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tofta Strand Camping</h2>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tofta Camping</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tofta Strand söder om Visby är Gotlands mest populära familjecamping — och med rätta. Campingen ligger direkt vid Tofta strand, en av öns finaste sandstränder med grunt och varmt vatten. Välskött anläggning med stugor, husvagnsplatser och tältplatser, service­hus, matbutik och restaurang. Perfekt bas för dagsutflykter till Visby (15 min med bil) och raukar. Boka i november–december för juli — campingen är fullbelagd.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sudersands Camping, Fårö</h2>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sudersand Resort, Fårö</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Direkt vid Sudersands världsklassstrand på Fårö — en av Gotlands absolutt vackraste campingplatser. Tält, husvagn och enkla stugor. Servicenivån är enklare än Tofta men läget är oöverträffat. Nära Langhammars och Gamla Hamn raukar för dagsutflykter. Kom tidigt i juli — campingen fylls snabbt och har begränsad kapacitet. Fårö nås med gratisfärja från Fårösund.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kneippbyn Resort & Camping</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kneippbyn strax söder om Visby är mer resort än traditionell camping — med vattenpark, minigolf, restauranger och ett brett utbud av stugor och lägenheter utöver tält- och husvagnsplatser. Passar barnfamiljer perfekt som bas i Visby. Prisbild: högre än övriga campingar, men ingår mer service och aktiviteter.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Lummelunda Camping</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturnära camping norr om Visby, perfekt kombinerad med besök på Lummelundagrottan (100 m bort). Lugn och rofylld utan den stora campingens folkmassor. Stugor och tältplatser. Bra bas för norra Gotland — nära Bro kyrka, Fårösunds färjeläge och Lickershamn raukar.</p>
+
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Friluftscamping och övernattning i tält</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Allemansrätten gäller på Gotland, men med en viktig skillnad mot fastlandet: mycket av Gotlands mark är privatägd och det finns gott om "Privat ägor" och "Camping förbjuden"-skyltar. Fria övernattningar är möjliga längs kustens naturreservat och på utpekade platser längs vandringsleder. Kolla alltid Länsstyrelsen Gotlands karta för aktuella reservat och regler. Tältet ska stå utom syn- och hörhåll från boningshus — någon fast meteruppgift finns inte, terrängen och växtligheten avgör — och närmare än så krävs markägarens tillstånd.</p>
@@ -4995,16 +4991,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
   'camping-bohuslan': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohuslän är ett av Sveriges populäraste campingmål — dramatiska klipphällar, varmt Västerhavet och campingplatser från enkel tältplats på klippan till fullserviceanläggningar med stugor och pool. Guide till de bästa campingarna längs Bohusläns kust.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Havstenssund Stugby & Camping</h2>
-<!-- KÄLLA: Länsstyrelsen Västra Götaland — naturreservat Väderöarna, Tanums kommun, beslut 2011, ca 18 300 ha (läst 2026-09-14) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En av Bohusläns vackraste campingplatser — direkt vid Havstenssundet utanför Fjällbacka med utsikt mot öar och klippor. Blandning av tältplatser, husvagnsplatser och stugor. Nära Fjällbacka, Hamburgsund och Väderöarnas naturreservat. Kajakuthyrning finns i anslutning. Familjevänlig med lugnt vatten och klippbad.</p>
-
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grebbestads Camping</h2>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">GrebbestadFjorden</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Välskött camping i Grebbestad med nära till fjord, fiskebåtar och det mest genuina fiskesamhällslivet i Bohuslän. Stugor och platser för tält och husvagn. Utsikt mot Grebbestadsfjorden. Grebbestad är känt för kräftor och ostron — campinggästerna kan köpa direkt från fiskarna. Populärt bland barnfamiljer och skaldjursentusiaster.</p>
-
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kosteröarnas Camping, Sydkoster</h2>
-<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Camping på bilfria Sydkoster — Kosterhavets nationalpark och omkring 6 000 marina arter. Tältplatser och enkla stugor. Nås med färja från Strömstad (ca 45 min). Ingen bil behövs på ön — cykla eller gå. Snorkling, kajakpaddling och vandring i nationalparken är höjdpunkterna. Unik upplevelse för den som vill vara omgiven av natur.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Camping nära Smögen och Kungshamn</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögenbryggan och Kungshamn är centrum för Bohusläns sommarliv. Flera campingar i området erbjuder enklare husvagns- och tältplatser nära allt. Passa på att besöka Smögenbryggan på morgonen för nyfångad räka direkt från båten. Snabbmat, glassbarer och aktiviteter finns inom gångavstånd.</p>
@@ -5038,7 +5026,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kneippbyn strax söder om Visby är Gotlands roligaste barnfamiljsdestination. Vattenpark med rutschbanor, utomhuspool och barnpool. Minigolf, aktivitetsytor och restauranger. Kneippbyn är ett heldag-ställe — kom tidigt och stanna till kvällen. Boende finns också på området för den som vill ha allt under ett tak. Populärt redan från kl. 10, så kom inte efter lunch i juli.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">3. Tofta strand</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands bästa familjestrand — bred sandstrand, grunt och långsamt inströmmande vatten som gör det tryggt för yngre barn att bada. Servicehuset har toaletter, café och glass. Parkeringen är stor men fylls ändå på högsommaren — kom tidigt på morgonen. Tofta Strand Camping ligger intill, bra om ni vill campa nära stranden.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands bästa familjestrand — bred sandstrand, grunt och långsamt inströmmande vatten som gör det tryggt för yngre barn att bada. Servicehuset har toaletter, café och glass. Parkeringen är stor men fylls ändå på högsommaren — kom tidigt på morgonen. Tofta Camping ligger intill, bra om ni vill campa nära stranden.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">4. Visby ringmur och medeltidsstaden</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visby ringmur från 1200-talet är ett av Nordens bäst bevarade medeltida stadsmurssystem. Barn förvandlas ofta till riddare och prinsessor när de kliver in genom portarna. Promenera längs murens insida, utforska kyrkoruinerna (S:ta Katarina-ruinen är mest imponerande) och bli vilse i kullerstensgatornas labyrint. Gotlands Museum inne i Visby har en bra sektion om medeltiden med föremål och berättelser som engagerar barn.</p>
@@ -5627,7 +5615,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Fullständig kursgård på Finnhamn i norra skärgården. Möjlighet att boka hela anläggningen för 15–100 pers. Enkelt boende, bra lokaler, naturreservat direkt utanför dörren. Från 1 200 kr/pers dygn.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
-  <strong style="color:var(--sea)">Arholma Krog & Konferens</strong>
+  <strong style="color:var(--sea)">Skärgårdskrogen på Arholma Nord</strong>
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Ytterskärgårdens kursgård på Arholma. Liten och intim, max 30 pers. Exklusivt läge och riktig skärgårdskänsla. Nås med båt från Simpnäs eller Furusund.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5985,7 +5973,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kayak och paddling:</strong> Höst är en underbar paddeltid längs Höga Kusten – lugnt vatten, inga motorbåtar, dramatisk natur. Kolla Nordingrå Kajakuthyrning för höstöppettider.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende och tips</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">High Coast Hotel i Härnösand håller öppet hela hösten. Vandrarhem och stugor längs kusten – boka via höstens webbplats. Svamp är riklig i skogsmarkerna runt Skuleskogen – ta med korg.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hotell Höga Kusten vid Hornöberget håller öppet hela hösten. Vandrarhem och stugor längs kusten – boka via höstens webbplats. Svamp är riklig i skogsmarkerna runt Skuleskogen – ta med korg.</p>
 `,
 
   'vinter-gotland-2026': `
@@ -6135,7 +6123,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var hittar du stugor?</h2>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>SVIF (Svenska Vandrarhem i Fokus) – prisvärd variant med delade utrymmen</li>
+  <li>SVIF (Sveriges Vandrarhem i Förening) – prisvärd variant med delade utrymmen</li>
   <li>Airbnb och Blocketannonser – många privata uthyrare med bra priser</li>
   <li>Ölands Stuguthyrning – lokalt bolag med bra urval</li>
   <li>First Camp Böda Sand – campingkomplex med stugor, centralt beläget</li>
@@ -6197,7 +6185,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa restaurangerna på Öland</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Restaurang Hamnkrogen, Borgholm:</strong> Klassisk hamnrestaurang med lokala råvaror och havsutsikt. Boka bord i förväg under juli.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Köpingsvik Wärdshus:</strong> Norra Öland, husmansmat i gammalt värdshus. Husmanskost som görs rätt med lokala ingredienser.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Strandbaden Kök & Bar, Köpingsvik:</strong> Norra Öland, en av restaurangerna i Köpingsvik.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Café Borgholm Slott:</strong> Picknick och fika vid slottsruinen. Unik miljö och lokalbakat.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Naturbryggeriet Öland:</strong> Lokalt bryggeri i Löttorp med öppet provningsrum. Hantverksöl med öländska råvaror.</p>
 
@@ -6272,7 +6260,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fiskelycka:</strong> Abborre och gädda i de många havsvik-mynningarna längs kusten. Enkelt fiske från strand eller brygga.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende för familjer</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">High Coast Hotel i Härnösand och stugor runt om kusten. Camping finns vid Norrfällsviken och Hafsmon. Boka i förväg under juli – Höga Kusten är eftersökt av barnfamiljer.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hotell Höga Kusten vid Hornöberget och stugor runt om kusten. Camping finns vid Norrfällsviken och Hafsmon. Boka i förväg under juli – Höga Kusten är eftersökt av barnfamiljer.</p>
 `,
 
   'camping-hoga-kusten': `
@@ -6283,7 +6271,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa campingplatserna</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Norrfällsviken Camping:</strong> Direkt vid havet med lång sandstrand. Familjevänlig med bra faciliteter. En av kustens mest populära. Boka i förväg för juli.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Härnön Camping, Härnösand:</strong> Nära stan men med ökaraktär. Bra för de som vill ha service i kombination med campingkänsla.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sälstens Camping, Härnösand:</strong> Nära stan men med ökaraktär. Bra för de som vill ha service i kombination med campingkänsla.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bönhamn:</strong> Liten hamn med begränsad men charmig camping. Perfekt startpunkt för kajakturer ut i skärgården.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Friluftscamping via Höga Kustenleden</h2>
@@ -6575,7 +6563,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bil till Stavsnäs: Parkering finns i Stavsnäs. Med bil till Stavsnäs tar du SL-buss till Slussen om du vill undvika extra kostnader – alternativt kör dit och betala parkering.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På ön</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Runmarö Café och ett par serviceverksamheter håller öppet sommartid. Vandringsleder längs kusten och till öns höjdpunkter. Bra klippbad längs östsidan och sandstrand på södra delen.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Låttas Bageri i Södersunda och ett par serviceverksamheter håller öppet sommartid. Vandringsleder längs kusten och till öns höjdpunkter. Bra klippbad längs östsidan och sandstrand på södra delen.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sommarmarknaden i juli är en händelse som drar folk från hela skärgården – mat, hantverk och stämning.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktiskt</h2>
@@ -6613,7 +6601,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På Käringön</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Klippbad:</strong> Öns västsida har fantastiska klippor och kristallklart hav. Ta med handduk och dyk i – det är Bohusläns bästa doppkänsla.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Café och havsmat:</strong> Käringöns Café och ett par andra serveringar serverar färsk räka, kräfta och fisk. Ingen förbokning – men kom tidigt i juli för att inte vänta.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Café och havsmat:</strong> Simons Café och ett par andra serveringar serverar färsk räka, kräfta och fisk. Ingen förbokning – men kom tidigt i juli för att inte vänta.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Promenad runt ön:</strong> Spatsera längs klippkusten och genom den gamla fiskebyns gränder. Gammalt och genuint på ett sätt som inte är arrangerat för turister.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende</h2>
@@ -7087,7 +7075,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa kustregioner för husbil</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bohuslän:</strong> E6 längs kusten med avfarter till fiskbyar och klippplatåer. Husbilar är välkomna på de flesta campingplatser och vid många hamnar. Smögen, Fjällbacka och Hamburgsund är klassiska stopp.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Öland:</strong> Platt och lättkörd. Böda Sand, Neptuni Åkrar och Mörbylånga camping är stora anläggningar med full service för husbil. Bil via Ölandsbron (gratis).</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotland:</strong> Ta husbilen med på Destination Gotland-färjan (boka fordonsbiljett i förväg). Gotland är perfekt för husbilar med inga berg och breda kustvägar. Tofta och Klintehamn camping är favoriter.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotland:</strong> Ta husbilen med på Destination Gotland-färjan (boka fordonsbiljett i förväg). Gotland är perfekt för husbilar med inga berg och breda kustvägar. Tofta camping är en favorit.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Höga Kusten:</strong> E4 norrut med dramatisk kustlinje. Norrfällsviken camping är bäst placerad. Mer utmanande terräng men häpnadsväckande natur.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
@@ -7129,8 +7117,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa campingplatser för husbil</h2>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
   <li><strong>Tofta Strand:</strong> Direkt vid havet, stor och välorganiserad med full service</li>
-  <li><strong>Klintehamn Camping:</strong> Nära klintebys raukfält, bra läge för sydgotländsk utflykt</li>
-  <li><strong>Visby Camping:</strong> Centralt för stadbesök, buss till Visby centrum</li>
+
+  <li><strong>Visby Strandby – Norderstrands Camping:</strong> Centralt för stadbesök, buss till Visby centrum</li>
   <li><strong>Fårösund:</strong> Utgångspunkt för Fårö – ta bilfärjan till Ingmar Bergmans ö</li>
 </ul>
 
@@ -7323,7 +7311,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p>Utö är vackrast när björkarna gulnat och gruvparken är folktom. Cykla runt ön på en timme. Utö Värdshus erbjuder höstmeny med lokalt viltkött. Havsbastuplatser längs öns södra kust är perfekta – boka i förväg. Nås med Waxholmsbolaget från Nynäshamn (pendeltåg + ca 1h15 min båt).</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Möja – bilfri och tyst</h4>
-<p>Möja på hösten är bilfri tystnad med svamprik skog. Ta med korgen – karljohansvamp och kantareller i september, trattkantareller i oktober. Möja Krog är öppen september. Waxholmsbolaget via Stavsnäs, ca 2,5 timmar.</p>
+<p>Möja på hösten är bilfri tystnad med svamprik skog. Ta med korgen – karljohansvamp och kantareller i september, trattkantareller i oktober. Waxholmsbolaget via Stavsnäs, ca 2,5 timmar.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vaxholm – allsäsong</h4>
 <p>Vaxholm fungerar hela året som en liten stad. Kaféer och restauranger håller öppet, fästningsmuseet kör höstöppettider. En enkel dagsturs-skärgård utan planering. Waxholmsbåt från Strömkajen, ungefär en timme (alla SL-biljetter gäller).</p>
@@ -7390,7 +7378,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p>Koka hummern i välsaltat vatten (1 msk salt per liter) i 12–15 minuter beroende på storlek. Servera med aioli, gott bröd och ett glas Chablis. Inget krångligare än så.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Restauranger som firar premiären</h4>
-<p>Smögen Fisk & Skaldjur, Krog+Bar i Lysekil och Restaurang Bryggan i Strömstad brukar ha specialmeny på premiärhelgen. Boka i god tid – premiärhelgen är fullbokad längs hela kusten.</p>
+<p>Smögen Fisk & Skaldjur och Krog+Bar i Lysekil brukar ha specialmeny på premiärhelgen. Boka i god tid – premiärhelgen är fullbokad längs hela kusten.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR TAR DU DIG DIT?</h3>
 <p><strong>Till Smögen:</strong> Tåg från Göteborg till Munkedal (ca 1h), sedan buss 840 till Smögen (ca 45 min). Med bil: E6 norrut mot Munkedal, sedan väg 174 till Smögen.</p>
@@ -7630,8 +7618,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">11. Utö Värdshus — havsbastu vid Östersjön</h4>
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)">Utös havsbastu är legendar i skärgårdssammanhang. Värdshuset på södra skärgårdens kronjuvel har bastu med direkt tillgång till havet och plats att ta ett svalkande dopp. Bastun är tillgänglig för gäster som övernatt&shy;ar — kombinera med en cykelrunda på ön och middag på värdshuset för ett fullständigt Utö-program. Boka via utovardshus.se.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">12. Grinda Vandrarhem — bastu mitt i mellersta skärgården</h4>
-<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Grinda är en av de mest familjevänliga öarna i Stockholms skärgård, och vandrarhemsboendets bastu är ett välkommet tillskott. Nås med Waxholmsbolaget på ca 1h 45 min från Strömkajen. Bastun används av övernattande gäster — boka i god tid, Grinda är välbokad i juli. Besök grindavardshus.se.</p>
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">12. Grinda Sea Lodge — bastu mitt i mellersta skärgården</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Grinda är en av de mest familjevänliga öarna i Stockholms skärgård, och Sea Lodge-boendets bastu är ett välkommet tillskott. Nås med Waxholmsbolaget på ca 1h 45 min från Strömkajen. Bastun används av övernattande gäster — boka i god tid, Grinda är välbokad i juli. Besök grindavardshus.se.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">13. Lidö Värdshus — bastu och badtunnor på norra ön</h4>
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)">Lidö i norra skärgården är en av de mest pittoreska öarna norrut, och Lidö Värdshus har bastu, badtunnor och möjlighet att hyra havskajak. En kombination av bastu och paddling är svårslagen. Lidö är ganska avlägset — räkna med ca 2–2,5h från Stockholm med Waxholmsbolaget. Besök lidovardshus.se för bokning.</p>
@@ -7808,7 +7796,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm är den enklaste hundvänliga öen – det är en stad med gator, restauranger och hundvänliga kaféer. Du kan gå promenad längs kajen, utforska det gamla stadskärnan och äta lunch med hunden vid ett uteservering. Nästan inga restriktioner utanför naturreservaten i närheten.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Möja – bilfri och lugn</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Möja är bilfri, vilket gör den perfekt för hundar. Inga bilar, öppna marker och lantliga vägar att promenera på. Möja Krog är hundsympatisk med uteservering. Planera för en halvdags- eller heldagstur – resan dit tar ca 2,5 timmar från Strömkajen.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Möja är bilfri, vilket gör den perfekt för hundar. Inga bilar, öppna marker och lantliga vägar att promenera på. Planera för en halvdags- eller heldagstur – resan dit tar ca 2,5 timmar från Strömkajen.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Arholma – norra skärgårdens pärlor</h3>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma i norra Roslagen har sandstrand, STF-vandrarhem och öppna marker. Det är en av skärgårdens mest genuina öar – långt från turisttrycket. Kontrollera reservatsreglerna för specifika delar av ön.</p>
