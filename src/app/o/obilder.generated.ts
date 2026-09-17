@@ -34,14 +34,14 @@ export const OBILDER: Record<string, Obild> = {
     "kalla": "https://commons.wikimedia.org/wiki/File:Sandhamn_Island_-_typical_street_view_with_a_midsommarst%C3%A5ng_or_Midsummer_Pole..jpg"
   },
   "uto": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/SPM_A0857.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Ut%C3%B6_R%C3%A4vstaviken_September_2012_02.jpg/1280px-Ut%C3%B6_R%C3%A4vstaviken_September_2012_02.jpg",
     "bredd": 1200,
-    "hojd": 1600,
-    "ar": 2009,
-    "fotograf": "Pewee",
-    "licens": "Public domain",
-    "licensUrl": null,
-    "kalla": "https://commons.wikimedia.org/wiki/File:SPM_A0857.jpg"
+    "hojd": 795,
+    "ar": 2012,
+    "fotograf": "Arild Vågen",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Ut%C3%B6_R%C3%A4vstaviken_September_2012_02.jpg"
   },
   "vaxholm": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Vaxholm_february_2013.jpg/1280px-Vaxholm_february_2013.jpg",
@@ -114,14 +114,14 @@ export const OBILDER: Record<string, Obild> = {
     "kalla": "https://commons.wikimedia.org/wiki/File:Dalar%C3%B6.jpg"
   },
   "arholma": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Batteri_Arholma_topp_panorama.jpg/1280px-Batteri_Arholma_topp_panorama.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/1076_Arholma_August_2014_-_panoramio.jpg/1280px-1076_Arholma_August_2014_-_panoramio.jpg",
     "bredd": 1200,
-    "hojd": 315,
-    "ar": 2010,
-    "fotograf": "Arvid Rudling",
-    "licens": "CC BY-SA 3.0",
-    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "kalla": "https://commons.wikimedia.org/wiki/File:Batteri_Arholma_topp_panorama.jpg"
+    "hojd": 600,
+    "ar": 2014,
+    "fotograf": "Bengt Nyman",
+    "licens": "CC BY 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:1076_Arholma_August_2014_-_panoramio.jpg"
   },
   "orno": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Orn%C3%B6_kyrka.jpg/1280px-Orn%C3%B6_kyrka.jpg",
@@ -194,14 +194,14 @@ export const OBILDER: Record<string, Obild> = {
     "kalla": "https://commons.wikimedia.org/wiki/File:%C3%96stra_N%C3%A5ttar%C3%B6_juli_2009.png"
   },
   "ingmarso": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/S%C3%B6draIngmars%C3%B62010.JPG/1280px-S%C3%B6draIngmars%C3%B62010.JPG",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Ingsmars%C3%B62.jpg/1280px-Ingsmars%C3%B62.jpg",
     "bredd": 1200,
-    "hojd": 900,
-    "ar": 2010,
+    "hojd": 803,
+    "ar": 2011,
     "fotograf": "Ankara",
-    "licens": "CC BY-SA 3.0",
-    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "kalla": "https://commons.wikimedia.org/wiki/File:S%C3%B6draIngmars%C3%B62010.JPG"
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Ingsmars%C3%B62.jpg"
   },
   "namdo": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Wikipedia_namdobote.jpg",
@@ -274,14 +274,14 @@ export const OBILDER: Record<string, Obild> = {
     "kalla": "https://commons.wikimedia.org/wiki/File:D810_0351_(14725125812).jpg"
   },
   "singo": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Dalviken_December_2012.JPG/1280px-Dalviken_December_2012.JPG",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/NZ7_0575_%2852270337265%29.jpg/1280px-NZ7_0575_%2852270337265%29.jpg",
     "bredd": 1200,
-    "hojd": 900,
-    "ar": 2012,
-    "fotograf": "Djursholmsbladet123",
-    "licens": "CC BY-SA 4.0",
-    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "kalla": "https://commons.wikimedia.org/wiki/File:Dalviken_December_2012.JPG"
+    "hojd": 622,
+    "ar": 2022,
+    "fotograf": "Bengt Nyman from Vaxholm, Sweden",
+    "licens": "CC BY-SA 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:NZ7_0575_(52270337265).jpg"
   },
   "lido": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Lid%C3%B6_kvarn.JPG/1280px-Lid%C3%B6_kvarn.JPG",
@@ -324,14 +324,14 @@ export const OBILDER: Record<string, Obild> = {
     "kalla": "https://commons.wikimedia.org/wiki/File:Fjardlang_P9230090_(52103910).jpg"
   },
   "rindo": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Rind%C3%B6_redutt_2011d.jpg/1280px-Rind%C3%B6_redutt_2011d.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Oskar_Fredrikson_-_panoramio.jpg/1280px-Oskar_Fredrikson_-_panoramio.jpg",
     "bredd": 1200,
-    "hojd": 900,
-    "ar": 2011,
-    "fotograf": "Holger.Ellgaard",
+    "hojd": 800,
+    "ar": 2008,
+    "fotograf": "Carlo Pelagalli",
     "licens": "CC BY-SA 3.0",
     "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "kalla": "https://commons.wikimedia.org/wiki/File:Rind%C3%B6_redutt_2011d.jpg"
+    "kalla": "https://commons.wikimedia.org/wiki/File:Oskar_Fredrikson_-_panoramio.jpg"
   },
   "yxlan": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/108_Duvn%C3%A4s_brygga_Yxlan.jpg/1280px-108_Duvn%C3%A4s_brygga_Yxlan.jpg",
@@ -344,14 +344,14 @@ export const OBILDER: Record<string, Obild> = {
     "kalla": "https://commons.wikimedia.org/wiki/File:108_Duvn%C3%A4s_brygga_Yxlan.jpg"
   },
   "kymmendo": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Kymmend%C3%B62010c.jpg/1280px-Kymmend%C3%B62010c.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Kymmend%C3%B62010b.jpg/1280px-Kymmend%C3%B62010b.jpg",
     "bredd": 1200,
     "hojd": 900,
     "ar": 2010,
     "fotograf": "Ankara",
     "licens": "CC BY 3.0",
     "licensUrl": "https://creativecommons.org/licenses/by/3.0",
-    "kalla": "https://commons.wikimedia.org/wiki/File:Kymmend%C3%B62010c.jpg"
+    "kalla": "https://commons.wikimedia.org/wiki/File:Kymmend%C3%B62010b.jpg"
   },
   "bullero": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Bulleron_house.jpg/1280px-Bulleron_house.jpg",
@@ -374,14 +374,14 @@ export const OBILDER: Record<string, Obild> = {
     "kalla": "https://commons.wikimedia.org/wiki/File:Vind%C3%B6_hamn_01.jpg"
   },
   "smaadalaro": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Sm%C3%A5dalar%C3%B6_2016.jpg/1280px-Sm%C3%A5dalar%C3%B6_2016.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Sm%C3%A5dalar%C3%B6%2C_2016z.jpg/1280px-Sm%C3%A5dalar%C3%B6%2C_2016z.jpg",
     "bredd": 1200,
     "hojd": 872,
     "ar": 2016,
     "fotograf": "Holger.Ellgaard",
     "licens": "CC BY-SA 4.0",
     "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "kalla": "https://commons.wikimedia.org/wiki/File:Sm%C3%A5dalar%C3%B6_2016.jpg"
+    "kalla": "https://commons.wikimedia.org/wiki/File:Sm%C3%A5dalar%C3%B6,_2016z.jpg"
   },
   "musko": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Arbottna%2C_Bruksholmen%2C_2017.jpg/1280px-Arbottna%2C_Bruksholmen%2C_2017.jpg",
@@ -404,14 +404,14 @@ export const OBILDER: Record<string, Obild> = {
     "kalla": "https://commons.wikimedia.org/wiki/File:Kungsh%C3%B6garna_Adels%C3%B6_48_4_September_2013_04.jpg"
   },
   "ingaro": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Bj%C3%B6rkvik_Ingar%C3%B6_Stockholm_archipelago.JPG/1280px-Bj%C3%B6rkvik_Ingar%C3%B6_Stockholm_archipelago.JPG",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Ingar%C3%B6_varv.jpg/1280px-Ingar%C3%B6_varv.jpg",
     "bredd": 1200,
-    "hojd": 838,
-    "ar": 2009,
-    "fotograf": "Pererikjohan",
-    "licens": "Public domain",
-    "licensUrl": null,
-    "kalla": "https://commons.wikimedia.org/wiki/File:Bj%C3%B6rkvik_Ingar%C3%B6_Stockholm_archipelago.JPG"
+    "hojd": 750,
+    "ar": 2012,
+    "fotograf": "Esquilo",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Ingar%C3%B6_varv.jpg"
   },
   "svenska-hogarna": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Svenska_H%C3%B6garna_June_2014_03.jpg/1280px-Svenska_H%C3%B6garna_June_2014_03.jpg",
@@ -694,14 +694,14 @@ export const OBILDER: Record<string, Obild> = {
     "kalla": "https://commons.wikimedia.org/wiki/File:Holm%C3%B6n_01.JPG"
   },
   "marstrand": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Ankaret_p%C3%A5_Marstrand.jpg/1280px-Ankaret_p%C3%A5_Marstrand.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Marstrand_32-1_RA_10157700320001_IMG_9631.jpg/1280px-Marstrand_32-1_RA_10157700320001_IMG_9631.jpg",
     "bredd": 1200,
-    "hojd": 799,
-    "ar": 2014,
-    "fotograf": "Averater",
-    "licens": "CC BY-SA 3.0",
-    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "kalla": "https://commons.wikimedia.org/wiki/File:Ankaret_p%C3%A5_Marstrand.jpg"
+    "hojd": 900,
+    "ar": 2016,
+    "fotograf": "Bjoertvedt",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Marstrand_32-1_RA_10157700320001_IMG_9631.jpg"
   },
   "smogen": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Sm%C3%B6genbryggan_2016.jpg/1280px-Sm%C3%B6genbryggan_2016.jpg",
@@ -814,14 +814,14 @@ export const OBILDER: Record<string, Obild> = {
     "kalla": "https://commons.wikimedia.org/wiki/File:Kungshamn_sm%C3%B6gen.jpg"
   },
   "pater-noster": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Pater_Noster.jpg/1280px-Pater_Noster.jpg",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/150810-1_Pater_Noster_Marstrand.JPG/1280px-150810-1_Pater_Noster_Marstrand.JPG",
     "bredd": 1200,
-    "hojd": 900,
-    "ar": 2012,
-    "fotograf": "Ingwik",
-    "licens": "CC BY-SA 3.0",
-    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "kalla": "https://commons.wikimedia.org/wiki/File:Pater_Noster.jpg"
+    "hojd": 675,
+    "ar": 2015,
+    "fotograf": "HasBS",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:150810-1_Pater_Noster_Marstrand.JPG"
   },
   "vinga": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Vinga.jpg",
