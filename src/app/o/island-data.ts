@@ -476,7 +476,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: utovardshus.se/kontakt/hitta-hit/ — "Båt utgår även från Nynäshamn till grannön Ålö som har broförbindelse till Utö"
       'Kommer du från Nynäshamn lägger båten till på Ålö — därifrån går bro över till Utö.',
       // KÄLLA: lansstyrelsen.se, naturreservat Utö — hundar kopplade, undantag Persholmen utanför 1 mars–20 augusti
-      'Hunden ska vara kopplad i reservatet. Undantaget är Persholmen utanför perioden 1 mars–20 augusti.',
+      'Hunden ska vara kopplad i reservatet. Undantaget är Persholmen utanför perioden 1 mars–20 augusti, då hunden i stället ska hållas under uppsikt.',
       // KÄLLA: lansstyrelsen.se, naturreservat Utö — tältning endast på anvisade platser, eldning endast på iordningställda platser, båt högst två dygn vid samma strand
       'Tälta bara på anvisade platser och elda bara på iordningställda. Kommer du med egen båt får du ligga högst två dygn vid samma strand.',
       // KÄLLA: skargardsstiftelsen.se/omraden/uto/ — badplatserna Rävstavik och Barnens bad
@@ -590,7 +590,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm — cirka 12 000 fastboende (2024); "Kommunen omfattar cirka 70 öar, varav 57 bebodda samt den stora gröna halvön Bogesundslandet"
       'Att Vaxholm går att nå med buss beror på Pålsundsbron, som gav landförbindelse 1926. Kommunen slogs ihop med Österåker 1974 och blev åter egen 1983, då Bogesundslandet och Resarö tillkom. I dag har kommunen ungefär 12 000 fastboende och omfattar cirka 70 öar, varav 57 bebodda, plus halvön Bogesundslandet.',
       // KÄLLA: https://www.svenskakyrkan.se/vaxholm/vaxholms-kyrka — "År 1760 lades grunden till den nuvarande kyrkan", färdig 1803 och kallad Gustav Adolfkyrkan efter Gustav III och Gustav IV Adolf; ritad av C F Adelcrantz och Olof Tempelman; det planerade tornet byggdes aldrig utan ersattes av en klockstapel i trä med tre klockor; dopfunt i gotländsk sandsten från slutet av 1300-talet, ursprungligen i Riddarholmskyrkan, överförd omkring 1677; modeller av roslagsbåtar i sidokapellen
-      'Vaxholms kyrka tog fyrtiotre år att bygga: grunden lades 1760 och kyrkan stod färdig 1803, med namnet Gustav Adolfkyrkan efter de två kungar som regerade under byggtiden. C F Adelcrantz och Olof Tempelman ritade den, men det planerade tornet blev aldrig byggt — i stället restes en klockstapel av trä med tre klockor. Inne i kyrkan står en dopfunt av gotländsk sandsten från slutet av 1300-talet, ursprungligen i Riddarholmskyrkan och överförd hit omkring 1677, och i sidokapellen hänger modeller av roslagsbåtar.',
+      'Vaxholms kyrka tog fyrtiotre år att bygga: grunden lades 1760 och kyrkan stod färdig 1803, med namnet Gustav Adolfkyrkan efter de två kungar som regerade under byggtiden. C F Adelcrantz och Olof Tempelman ritade den, men det planerade tornet blev aldrig byggt — i stället restes en klockstapel av trä med tre klockor. Inne i kyrkan står en dopfunt av gotländsk sandsten från slutet av 1300-talet, ursprungligen i Riddarholmskyrkan och överförd hit omkring 1677, och i sidoskeppen står modeller av roslagsbåtar i glasmontrar.',
       // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell — arkitekter "Erik Dahlberg, C M Stuart, C F Meijer"; "Efter första världskriget flyttades försvarslinjen längre ut i skärgården och Vaxholm förlorade då återigen sin militära betydelse"; "1964 invigdes kastellets museum"; i dag finns "restaurang, konsertlokaler och en uppskattad äventyrsverksamhet"
       'Bakom kastellets utformning står namnen Erik Dahlberg, C M Stuart och C F Meijer. Dess militära roll tog slut efter första världskriget, när försvarslinjen flyttades längre ut i skärgården. Museet i kastellet invigdes 1964, och i byggnaden finns i dag också restaurang och konsertlokaler.',
       // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/rindo-redutt — byggd "1859–1864" för att komplettera Vaxholms kastell i försvaret av Stockholms inlopp; domineras av en donjon omgiven av vallar, djup grav och fältvall; innehöll två kaponjärer, "de första som byggdes i landet"; sten och tegel; statligt byggnadsminne; "går att besöka på egen hand"
@@ -702,7 +702,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: OpenStreetMap ("Buss 670: Tekniska högskolan – Vaxholm"), moovitapp.com, rome2rio.com — linjenumret är 670, inte 676
       'Vaxholm nås med SL-buss 670 från Tekniska Högskolan (tunnelbana röd linje), ett billigare alternativ till båt och ofta lika snabbt.',
       // KÄLLA: vaxholmsfastning.se/historik (läst 2026-08-25) + SFV — blockhus på Vaxholmen i början av 1500-talet (Svante Nilsson Sture), Gustav Vasas nya och kraftigare fästning 1548, nuvarande kastell 1833–1863. Tidigare stod här att 1548 var den FÖRSTA fästningen.
-      'Vaxholmen befästes redan i början av 1500-talet med ett blockhus, och 1548 lät Gustav Vasa uppföra en ny och kraftigare fästning som avvisade både danska och ryska anfall. Det kastell som står här i dag byggdes 1833–1863, sedan den gamla fästningen rivits.',
+      'Vaxholmen befästes redan i början av 1500-talet med ett blockhus, och 1548 lät Gustav Vasa uppföra en ny och kraftigare fästning som avvisade både danska och ryska anfall. Det kastell som står här i dag byggdes 1833–1863, sedan stora delar av den gamla fästningen rivits.',
       'Vaxholm är en av få skärgårdsdestinationer med apotek, post och ett brett serviceutbud öppet hela året.',
       'Innerstan i Vaxholm har välbevarad trähusmiljö med byggnader från 1800-talets slut, en av de mer intakta trästadsmiljöerna i Stockholmsregionen.',
     ],
@@ -733,7 +733,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: skargardsstiftelsen.se/omraden/grinda/ — "Grinda är ett naturreservat som ägs och förvaltas av Skärgårdsstiftelsen"
       'Grinda är ett naturreservat som ägs och förvaltas av Skärgårdsstiftelsen. Reservatet är skyddat sedan 2000 och omfattar 503 hektar, varav 178 hektar land. Att marken har en långsiktig förvaltare är en stor del av förklaringen till att ön fortfarande ser ut som den gör.',
       // KÄLLA: svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — "Hotellet erbjuder 28 moderna dubbelrum och två King Size rum" / "På öns södra sida hittar ni Grinda Sea Lodge, som är ett lite enklare men minst lika charmigt boende." / "Frukost ingår i rumspriset eller finns att köpa mot tillägg."
-      'Boendet drivs av Svenska Turistföreningen under namnet STF Grinda Hotell & Sea Lodge. Hotellet erbjuder 28 dubbelrum och två King Size-rum i en tillbyggnad till huvudbyggnaden. På öns södra sida ligger Grinda Sea Lodge, ett enklare boende. Frukost ingår i rumspriset eller finns att köpa mot tillägg.',
+      'Boendet drivs av Svenska Turistföreningen under namnet STF Grinda Hotell & Sea Lodge. Hotellet erbjuder 28 dubbelrum och två King Size-rum i ett annex till Wärdshuset. På öns södra sida ligger Grinda Sea Lodge, ett enklare boende. Frukost ingår i rumspriset eller finns att köpa mot tillägg.',
       // KÄLLA: svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — "Det anrika Grinda Wärdshus erbjuder vällagad klassisk skärgårdsmat." samt restaurangen Framfickan vid hamnen
       // KÄLLA: skargardsstiftelsen.se/omraden/grinda/ — "Grinda Wärdshus har restaurang, hotellrum och vandrarhem"
       'Grinda Wärdshus har restaurang, hotellrum och vandrarhem, och serverar klassisk skärgårdsmat. Nere vid hamnen ligger Framfickan, det enklare alternativet när man vill äta i solen utan att klä om. Matsalen på wärdshuset har en äldre träinredning som inte känns bortrenoverad.',
@@ -950,7 +950,7 @@ export const ISLANDS: Island[] = [
     ],
     // KÄLLA: svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem; finnhamn.se/en/accommodation; boka.finnhamn.se; skargardsstiftelsen.se/omraden/finnhamn — tältning på två anvisade platser i reservatet; "fråga i lanthandeln" obelagt, borttaget (läst 2026-09-14)
     accommodation: [
-      { name: 'STF Finnhamns Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem i grosshandlarvillan från 1915, flerbädds- och tvåbäddsrum.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/' },
+      { name: 'STF Finnhamns Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem i kolhandlarvillan från 1910-talet, flerbädds- och tvåbäddsrum.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/' },
       { name: 'Stugby Finnhamn', type: 'Stugor', desc: 'Stugby på Idholmen med ett trettiotal stugor för 2–4 personer samt sjöstugor. Boka tidigt.', websiteUrl: 'https://boka.finnhamn.se' },
       { name: 'Tältplatser', type: 'Camping', desc: 'Tältning bara på två anvisade platser — Finnhamn är naturreservat.', websiteUrl: 'https://skargardsstiftelsen.se/omraden/finnhamn/' },
     ],
@@ -1055,7 +1055,7 @@ export const ISLANDS: Island[] = [
     seoDescription: 'Guide till Möja: bilfri ö med värdshus och bageri, cykelleder och lantliv. Hur du tar dig dit och vad som finns på ön.',
     description: [
       // KÄLLA: varmdo.se/download/.../Möja.pdf — "Huvudöarna Möja och Södermöja har cirka 250 bofasta"; byarna Berg, Långvik, Ramsmora, Löka och Södermöja
-      'Möja ligger i Stockholms mellersta skärgård. Huvudöarna Möja och Södermöja har omkring 250 bofasta, fördelade på byarna Berg, Långvik, Ramsmora, Löka och Södermöja. Ön är avlång i nord-sydlig riktning, och landskapet växlar mellan skog, öppen mark och klippor längs hela sträckan.',
+      'Möja ligger i Stockholms mellersta skärgård. Huvudöarna Möja och Södermöja har omkring 250 bofasta. Ön är avlång i nord-sydlig riktning, och landskapet växlar mellan skog, öppen mark och klippor längs hela sträckan.',
       // KÄLLA: varmdo.se/download/.../Möja.pdf — "Öns skola finns i Berg ... och har ca 25 elever från förskola till klass 9"
       'Öns skola ligger i Berg och har ett tjugofemtal elever från förskola till årskurs 9.',
       // KÄLLA: varmdo.se/download/.../Möja.pdf — "Kyrkan uppfördes 1768" (renoverad på 1880-talet)
@@ -1073,7 +1073,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: varmdo.se/download/.../Möja.pdf — "För Möjaborna var fisket den mest betydelsefulla inkomstkällan till långt in på 1980-talet"
       'Fisket var Möjabornas viktigaste inkomstkälla långt in på 1980-talet. Sjöbodarna och bryggorna längs vattnet hör till den historien, och morgonarna vid hamnen är fortfarande tysta.',
       // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Möja.pdf — "Det var troligen under vikingatiden som Möja fick bofast befolkning"; Möja nämns som "Myghi" i Kung Valdemars seglingsbeskrivning från 1200-talet; ön är "cirka 6 km lång och 4 km bred"; "Här finns tre insjöar"; landhöjningen "30 - 40 centimeter per hundra år"
-      'Möja fick troligen bofast befolkning redan under vikingatiden, och ön nämns som Myghi i Kung Valdemars seglingsbeskrivning från 1200-talet. Själva ön är ungefär sex kilometer lång och fyra kilometer bred och rymmer tre insjöar. Landhöjningen ligger på 30–40 centimeter per hundra år, så strandlinjen du ser är en färskvara i geologisk mening.',
+      'Möja fick troligen bofast befolkning redan under vikingatiden, och ön nämns som Myghi i Kung Valdemars seglingsbeskrivning från 1200-talet. Själva ön är ungefär sex kilometer lång och fyra kilometer bred och rymmer tre insjöar. Landhöjningen i Stockholms skärgård ligger på 30–40 centimeter per hundra år, så strandlinjen du ser är en färskvara i geologisk mening.',
       // KÄLLA: https://www.varmdo.se/download/.../Möja.pdf — år 1719 anföll den ryska flottan kusten; "all bebyggelse blev nedbränd förutom det lilla kapellet i Berg"
       // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — "Ryssugnarna som ryska soldater lagade mat i under sina härjningar i skärgården 1719" återstår fortfarande
       'När den ryska flottan härjade kusten 1719 brändes all bebyggelse på Möja utom det lilla kapellet i Berg. Spåren finns kvar i landskapet i form av ryssugnar — de eldstäder där de ryska soldaterna lagade mat.',
@@ -1089,7 +1089,7 @@ export const ISLANDS: Island[] = [
       'Granholmens naturreservat är litet: 39 hektar, varav 18 hektar land, skyddat sedan 1978 och utvidgat 2018. Det som gör det värt besväret är floran i de öppna betesmarkerna — blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad. Naturhamnen Munkhamnen ligger i området, och tältning är begränsad till två dygn per plats.',
       // KÄLLA: https://www.varmdo.se/download/.../Möja.pdf — hembygdsmuseet består av Bergstugan, Lökastugan och Sjöboden; dansbanan från 1940-talet är "skärgårdens äldsta"; vårdkase på Vårdkasberget bakom skolan; Berg hade 1630 fem gårdar och 50 invånare; Berg har "karaktär av en skärgårdsby från sekelskiftet 1900"
       // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — "Möja hembygdsmuseum, invigt 1922, finns i Berg"
-      'Möja hembygdsmuseum invigdes 1922 och ligger i Berg. Det består av tre byggnader — Bergstugan, Lökastugan och Sjöboden. Berg är öns största by, med karaktär av en skärgårdsby från sekelskiftet 1900, men var 1630 bara fem gårdar och femtio invånare. Bakom skolan ligger Vårdkasberget med sin vårdkase, och dansbanan från 1940-talet beskrivs av kommunen som skärgårdens äldsta.',
+      'Möja hembygdsmuseum invigdes 1922 och ligger i Berg.',
       // KÄLLA: https://www.varmdo.se/download/.../Möja.pdf — klippbad i Långvik, Ramsmora, Löka och Berg; vid Saltvik finns "både badklippor och sandstrand"; "Det finns ett fåtal badplatser... men inga anlagda badplatser"; gästhamnar i Långvik, Ramsmora, Löka och Kyrkviken; "Möjaborna är mångsysslare, här finns runt 60 företag"
       'Det finns klippbad i Långvik, Ramsmora, Löka och Berg, och vid Saltvik både badklippor och sandstrand — men inga anlagda badplatser. Gästhamnar finns i Långvik, Ramsmora, Löka och Kyrkviken. Kommunen beskriver möjaborna som mångsysslare: på ön finns omkring sextio företag.',
     ],
@@ -1198,7 +1198,6 @@ export const ISLANDS: Island[] = [
     dog_friendly: true,
     dog_notes: 'Hundvänlig ö med gott om utrymme. Koppeltvång i hamnområden och på några naturreservatsdelar.',
     insiderTips: [
-      'Möja har ungefär 200 fastboende och en fungerande byskola, en av de mer välbefolkade yttre öarna i Stockholms mellersta skärgård.',
       'Wikströms på Möja säljer färsk fisk och räkor direkt från fiskaren. Öppet under sommarsäsongen vid hamnen.',
       // KÄLLA: konsummoja.se; visitmoja.se/äta-och-handla-på-möja
       'Det finns Coop-butiker på Möja (Berg och Långvik) med ett gott utbud för en ö utan fast vägförbindelse.',
@@ -1254,12 +1253,12 @@ export const ISLANDS: Island[] = [
       // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "Fjäderholmarna omnämns i skrift redan 1381"; "Åtminstone sedan 1699 och troligen även sedan långt tidigare fanns krog på Stora Fjäderholmen"; "År 1849 övertogs ägandet av holmarna av Stockholms stad"; "Från 1849 fram till 1880-talets slut använde Stockholms stad nämligen Ängsholmen som deponi för stadens latrintömning"
       'Fjäderholmarna omnämns i skrift redan 1381, och åtminstone sedan 1699 fanns krog på Stora Fjäderholmen — troligen långt tidigare än så. År 1849 övertog Stockholms stad ägandet, och från 1849 fram till 1880-talets slut användes Ängsholmen som deponi för stadens latrintömning.',
       // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "År 1918 när Försvarsmakten (marinen) förvärvade Fjäderholmarna"; "landstigningsförbud, som i princip rådde fram till 1976 då Försvarsmakten lämnade holmarna"; "Kungliga Djurgårdsförvaltningen förvaltar Fjäderholmarna sedan 1982"; ny restaurangbyggnad färdig 1985; "Sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken"
-      '1918 förvärvade marinen Fjäderholmarna, och landstigningsförbud rådde i princip fram till 1976 då Försvarsmakten lämnade holmarna. Kungl. Djurgårdens förvaltning har förvaltat öarna sedan 1982, en ny restaurangbyggnad stod färdig 1985 och sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken.',
+      '1918 förvärvade marinen Fjäderholmarna, och 1940 utfärdades ett landstigningsförbud som i princip rådde fram till 1976 då Försvarsmakten lämnade holmarna. Kungl. Djurgårdens förvaltning har förvaltat öarna sedan 1982, en ny restaurangbyggnad stod färdig 1985 och sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken.',
       'Kvällarna har ett eget ljus. Solen går ner i väster bakom stadens siluett, och uteplatserna vetter åt rätt håll för det.',
       // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/kungliga-nationalstadsparken.html — parken inrättades 1995, omfattar 27 kvadratkilometer, sträcker sig "från Sörentorp och Ulriksdal i norr till Djurgården och Fjäderholmarna i söder" och "spänner över tre kommuner: Solna, Stockholm och Lidingö"; "Länsstyrelsen samordnar arbetet med parkens förvaltning och utveckling. Kungliga Djurgårdens förvaltning sköter runt 80 procent av marken."
       'Att Fjäderholmarna ingår i Kungliga nationalstadsparken är mer än en etikett. Parken inrättades 1995, omfattar 27 kvadratkilometer och sträcker sig från Sörentorp och Ulriksdal i norr till Djurgården och Fjäderholmarna i söder, över tre kommuner: Solna, Stockholm och Lidingö. Länsstyrelsen samordnar förvaltningen och Kungliga Djurgårdens förvaltning sköter runt 80 procent av marken. Öarna är alltså den yttersta sydspetsen av ett skyddat landskap som börjar långt inne i staden.',
       // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "Redan 1884 hade ett utsiktstorn uppförts, kallat Belvederen. År 1894 byggdes detta om till restaurangpaviljong för 500–600 personer." / "År 1905 ombyggdes restaurangpaviljongen till en större anläggning, som fick namnet 'Grand Restaurant Bellevue' och 1910 tillkom en utedansbana."
-      'Nöjesön är inte en nutida uppfinning. Redan 1884 uppfördes ett utsiktstorn på Stora Fjäderholmen, kallat Belvederen, och 1894 byggdes det om till restaurangpaviljong för 500–600 personer. 1905 blev paviljongen en ännu större anläggning under namnet Grand Restaurant Bellevue, och 1910 tillkom en utedansbana. Samma år byggdes också badhus och kägelbana på ön.',
+      'Nöjesön är inte en nutida uppfinning. Redan 1884 uppfördes ett utsiktstorn på Stora Fjäderholmen, kallat Belvederen, och 1894 byggdes det om till restaurangpaviljong för 500–600 personer. 1905 blev paviljongen en ännu större anläggning under namnet Grand Restaurant Bellevue, och 1910 tillkom en utedansbana. Badhus och kägelbana hade byggts redan 1894, samma år som ombyggnaden till restaurangpaviljong.',
       // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — "Röda stugan (förr kallad Grå stugan) från 1700-talet. Det är den enda återstående byggnaden från Stora Fjäderholmens äldre sjöfartsepok." / "Det faluröda panelade lilla timmerhuset har bland annat fyrspröjsade fönster och karaktäristiska korta taksprång." / "I väster ligger Röda villan, förr kallad Gröna villan, i dag den enda återstående av de byggnader som uppförts på 1890-talet."
       'Två hus bär hela den äldre historien. Röda stugan, förr kallad Grå stugan, är från 1700-talet och den enda återstående byggnaden från öns äldre sjöfartsepok — ett falurött panelat timmerhus med fyrspröjsade fönster och korta taksprång. I väster ligger Röda villan, förr Gröna villan, byggd 1894 och i dag den enda kvarvarande från 1890-talets sommarnöjesepok. Resten av den tiden finns bara som grundmurar och terrassmurar.',
       // KÄLLA: lidingo.se, kulturmiljöunderlag Stora Fjäderholmen — om Jenny Linds ek: "Den berömda sångerskan från 1800-talet sägs ha rott över till Stora Fjäderholmen för att sitta och läsa eller meditera under eken under några somrar på 1860-talet då hon bodde i Nyckelviken."
@@ -1382,7 +1381,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: osteraker.se/upplevagora/sevardheter/oariosterakersskargard — "ett klippbad med storslagen utsikt över Saxarfjärden, och ett barnbad med sandstrand"; naturstig, sagostig, boule och tennis
       'På ön finns ett klippbad med utsikt över Saxarfjärden och ett barnbad med sandstrand. Där finns också naturstig och sagostig, boule och tennis.',
       // KÄLLA: svenskakyrkan.se/osteraker/ljustero-kyrka — "Norra Ljusterö fick sitt första kapell under 1600 talet, möjligen redan på 1500 talet"; "Mot slutet av 1800 talet ... omgestaltades kapellet helt till dagens kyrka"; vit åttkantig träkyrka vid Mellansjö, ca 3 km från färjeläget
-      'Ljusterö kyrka ligger vid Mellansjö, omkring tre kilometer från färjeläget. Norra Ljusterö fick sitt första kapell under 1600-talet, möjligen redan på 1500-talet. Ett nytt kapell uppfördes i början av 1700-talet och byggdes mot slutet av 1800-talet om till dagens vita, åttkantiga träkyrka.',
+      'Ljusterö kyrka ligger vid Mellansjö, omkring tre kilometer från färjeläget. Norra Ljusterö fick sitt första kapell under 1600-talet, möjligen redan på 1500-talet. Ett nytt kapell uppfördes under 1750-talet och byggdes mot slutet av 1800-talet om till dagens vita, åttkantiga träkyrka.',
       // KÄLLA: osteraker.se/subsitegrundskolor/ljusteroskola — Ljusterö skola, kommunal grundskola på ön
       'Ljusterö har en egen kommunal grundskola.',
       'Kustlinjen är lång och växlar mellan grunda vikar, öppna hällar och skyddade sund. Terrängen är flack nog att man hinner byta miljö flera gånger på en dag utan att anstränga sig.',
@@ -1453,7 +1452,7 @@ export const ISLANDS: Island[] = [
       includes: 'Avgiftsfri bilfärja, lunch eller pizza, kaffe vid Klintsundet',
       breakdown: [
         // KÄLLA: SL:s tidtabell linje 626 Danderyds sjukhus–Ljusterö + Trafikverket, Ljusteröleden avgiftsfri (hämtad 2026-08-24)
-        { item: 'Buss 626 från Danderyds sjukhus (SL-kort)', price: '0 kr' },
+        { item: 'Buss 626 från Danderyds sjukhus', price: '0 kr med giltigt SL-kort' },
         { item: 'Bilfärja Östanå–Ljusterö (avgiftsfri)', price: '0 kr' },
         // KÄLLA: linanasbryggan.se/meny-4 — varmrätter 255–285 kr (hämtad 2026-08-24)
         { item: 'Lunch Linanäsbryggan', price: '255–285 kr (2026)' },
@@ -1528,7 +1527,7 @@ export const ISLANDS: Island[] = [
       'I Dalarö finns naturhamnar och gästhamn för fritidsbåtar, små butiker, bageri och museum, och kaféer och restauranger.',
       'Kajen är stilla på morgonen och livligare när båtarna kommer in på eftermiddagen. Husen ligger tätt mot vattnet och gatorna är smala nog att man går långsamt av sig själv.',
       // KÄLLA: https://www.svenskakyrkan.se/haninge/historik-dalaro-kyrka — kyrkan uppfördes 1649–1652 som kapell; "Fram till 1780-talet behöll kapellet sin form, en rektangulär knuttimrad byggnad med sadeltak och sakristia i norr"; ombyggnad 1786–1787 då "väggarna höjdes och brädfodrades, taket fick sin brutna form"; restaurering 1936 av arkitekt Einar Lundberg; kyrkan och Sandemar var de enda byggnader som inte brändes av ryssarna 1719
-      'Dalarö kyrka byggdes 1649–1652 som kapell och var fram till 1780-talet en rektangulär knuttimrad byggnad med sadeltak och sakristia i norr. Vid ombyggnaden 1786–87 höjdes och brädfodrades väggarna och taket fick sin brutna form. 1936 restaurerades kyrkan av arkitekten Einar Lundberg, som ville stärka 1780-talets gestaltning. Kyrkan var en av få byggnader som ryssarna inte brände ned 1719.',
+      'Dalarö kyrka byggdes 1649–1652 som kapell och var fram till 1780-talet en rektangulär knuttimrad byggnad med sadeltak och sakristia i norr. Vid ombyggnaden 1786–87 höjdes och brädfodrades väggarna och taket fick sin brutna form. 1936 restaurerades kyrkan av arkitekten Einar Lundberg, som ville stärka 1780-talets gestaltning. Kapellet och Sandemar slott var de enda två byggnader som ryssarna inte brände ned 1719.',
       // KÄLLA: https://www.dalarohembygd.se/Aretvarx/Aret%20var%20kronologi.pdf — "1719 Ryska galärflottan bränner de flesta husen i Dalarö som ligger kustnära"; "1890 En brand förstör 27 hus i centrala Dalarö den 30 september"
       'Dalarö har brunnit två gånger på allvar. 1719 brände den ryska galärflottan de flesta av de kustnära husen, och den 30 september 1890 förstörde en brand 27 hus i centrala Dalarö. Att träbebyggelsen ändå står kvar i den form den gör beror på att den byggdes upp igen efteråt.',
       // KÄLLA: https://www.dalarohembygd.se/Aretvarx/Aret%20var%20kronologi.pdf — "1675 Per Eriksson utses till Sveriges första lotsåldersman, med placering på Dalarö"; "1770 Kungligt postkontor, med egen postmästare, Lars Filéen inrättas på Dalarö den 14 mars"; "1858 Elektrisk telegraflinje mellan Stockholm - Dalarö invigs"; "1844 Inrättades den första skolan i hyrd lokal"
@@ -1744,7 +1743,7 @@ export const ISLANDS: Island[] = [
       'Cykel är ett rimligt sätt att ta sig runt på ön, och vandring hör till det kommunen lyfter fram.',
       'Ornö skyltas inte högt. Den som ger ön en hel dag får utrymme att röra sig utan att ha bråttom.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sundby.html — "Sundby naturreservat omfattar södra delen av Ornö och närmare 30-talet mindre öar." / "Skyddat sedan: 1965, Storlek: 5 175 hektar varav land 929 hektar ... Kommun: Haninge Markägare: privat Förvaltare: Länsstyrelsen ... Övrigt: Natura 2000-område Varnöfladen SE0110199"
-      'Ornös andra och äldre reservat är Sundby, som omfattar hela södra delen av ön plus ett trettiotal mindre öar. Det skyddades redan 1965 och är 5 175 hektar stort, varav 929 hektar land. Länsstyrelsen förvaltar det, och området rymmer Natura 2000-området Varnöfladen.',
+      'Ornös andra och äldre reservat är Sundby, som omfattar södra delen av ön plus ett trettiotal mindre öar. Det skyddades redan 1965 och är 5 175 hektar stort, varav 929 hektar land. Länsstyrelsen förvaltar det, och området rymmer Natura 2000-området Varnöfladen.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sundby.html — "Med start vid Sundby gård finns en drygt sex kilometer lång, lättvandrad rundslinga. På grusvägar och stigar går du igenom naturreservatets uråldriga odlingslandskap. Slingan är till stora delar tillgänglig för barnvagn eller rullstol, men tyvärr inte hela vägen runt. Här har marken brukats sedan 1400-talet."
       'Från Sundby gård går en drygt sex kilometer lång, lättvandrad rundslinga på grusvägar och stigar genom ett odlingslandskap som brukats sedan 1400-talet. Slingan är till stora delar framkomlig med barnvagn eller rullstol, men inte hela vägen runt.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sundby.html — "Leden tar dig också ... till spännande sevärdheter och platser, däribland Stenhuset, ruinen efter Sundbys första säteri som brändes av ryssarna 1719. Ta dig lite extra tid att utforska det gamla eklandskapet vid Mane äng."
@@ -1757,7 +1756,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/Förorenade områden - inventering av gruvbranschen i Stockholms län.pdf — "Utömalm bearbetades bland annat vid Penningby masugn i Norrtälje kommun, vid Lättinge bruk på Ornö och Vitså masugn nära Årsta havsbad"
       'Vid Lättinge på Ornö låg ett bruk där järnmalm från Utö bearbetades. Malmen fraktades sjövägen till hyttor och masugnar runt om i regionen, och Ornö var alltså en länk i Stockholms skärgårds järnhantering, inte bara en jordbruks- och fiskeö.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/norra-skogen.html — "Vid Kvarnbacken mellan Nybysjön och Hemträsket låg på 1700-talet en vattenkvarn. I dag finns inga spår kvar."
-      'I Norra skogen finns också ett kulturspår som inte längre syns: vid Kvarnbacken mellan Nybysjön och Hemträsket låg på 1700-talet en vattenkvarn. I dag finns inga spår kvar av den.',
+      'Strax utanför Norra skogen finns ett kulturspår som inte längre syns: vid Kvarnbacken mellan Nybysjön och Hemträsket låg vid 1700-talets början en skvaltkvarn. I dag finns inga spår kvar av den.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/stora-och-lilla-sandbote.html — "Skyddat sedan: 1938 Storlek: 21 hektar ... Markägare: Skärgårdsstiftelsen" / "En av de gamla stugorna är ett fiskartorp från 1700-talet som byggts upp efter en brand 2001 efter originalritningar och med gamla metoder och ställts i ordning som museum. Invid hamnen visas även ett båtbyggarmuseum." / "Öarna donerades till Naturskyddsföreningen 1941 av Anna Lindhagen ... Anna hade fått området naturminnesförklarat redan 1938."
       'Öster om Ornö ligger Stora och Lilla Sandbötes naturreservat, 21 hektar som naturminnesförklarades redan 1938. Anna Lindhagen — profil inom freds- och rösträttsrörelsen och pionjär bakom Stockholms koloniträdgårdar — donerade öarna 1941, och de förvaltas nu av Skärgårdsstiftelsen. På Stora Sandböte står ett fiskartorp från 1700-talet, återuppbyggt efter en brand 2001 med originalritningar och gamla metoder, och intill hamnen finns ett båtbyggarmuseum.',
       // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-orno/ — "Etapp Ornö ... Medel ... 34.1 km"; "Ornö är den längsta etappen på Stockholm Archipelago Trail."; etappen kan börja vid Hässelmara, Ornöboda, Lättinge brygga eller Ornö Kyrka
@@ -1780,7 +1779,7 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Ornö Skärgårdshotell', type: 'Hotell', desc: 'Hotell med dubbelrum och lägenheter vid vattnet i Brunnsviken, frukost ingår. Öppet året runt.', websiteUrl: 'https://ornoskargardshotell.se' },
       { name: 'Sundby gård', type: 'B&B', desc: 'B&B med fem dubbelrum i herrgårdsflygel.', websiteUrl: 'https://sundbyorno.se' },
-      { name: 'Stugor på Ornö Båtvarv', type: 'Stugor', desc: 'Sex stugor med sammanlagt 18 bäddar vid båtvarvet.', websiteUrl: 'https://ornobatvarv.se' },
+      { name: 'Stugor på Ornö Båtvarv', type: 'Stugor', desc: 'Sju stugor med sammanlagt 18 bäddar vid båtvarvet.', websiteUrl: 'https://ornobatvarv.se' },
     ],
     getting_there: [
       // KÄLLA: ornosjotrafik.se — "Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö", "Överfarten tar ca 30 minuter"; publicerad turlista gäller 27/4–13/9 2026 och ingen vintertidtabell hittades vid granskningen. KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-orno — "Du åker till Hässelmara på Ornö från Dalarö året om".
@@ -1850,7 +1849,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: sjofartsverket.se/en/about-us/fyrar-och-kulturfastigheter/visningsfyrar/landsort--the-oldest-swedish-built-lighthouse/ — "the oldest Swedish-built lighthouse"; "Electrified in 1938"; "Automated and demanned in 1963" (2026-09-14)
       'Fyren på Landsort är Sveriges äldsta svenskbyggda fyr. Grunden lades på 1680-talet och tornet fick sitt nuvarande utseende 1869–70. Fyren elektrifierades 1938, blev statligt byggnadsminne 1935 och är obemannad sedan 1963. Bebyggelsen omkring den hänger ihop till en liten by, och det går att gå omkring där en hel förmiddag utan att tröttna.',
       // KÄLLA: sfv.se/.../landsortoeja-stockholms-skargard — lotsningen har "gamla anor och kan vara en av de äldsta i landet"; Gustav Vasa lär ha anlitat lotsen Anders Bertilsson på 1530-talet; de flesta yrkesverksamma var "lotsar, fyrtjänstemän, tullare och telegrafister" (2026-09-14)
-      'Lotsningen vid Landsort har gamla anor och kan vara en av de äldsta i landet — Gustav Vasa ska ha anlitat lotsen Anders Bertilsson här redan på 1530-talet. Under lång tid var de flesta yrkesverksamma på ön lotsar, fyrtjänstemän, tullare och telegrafister. Det präglar fortfarande hur husen står och vad de är byggda för.',
+      'Lotsningen vid Landsort har gamla anor och kan vara en av de äldsta i landet — Gustav Vasa ska ha anlitat lotsen Anders Bertilsson här. Under lång tid var de flesta yrkesverksamma på ön lotsar, fyrtjänstemän, tullare och telegrafister. Det präglar fortfarande hur husen står och vad de är byggda för.',
       // KÄLLA: sfv.se/.../landsortoeja-stockholms-skargard — kustartilleribatteri anlades på 1930-talet; ERSTA-batteriet byggdes 1974–78 som "fyravåningshus av stål inuti berget" och blev statligt byggnadsminne 2018 (2026-09-14)
       'Militärhistorien ligger kvar i berget. Ett kustartilleribatteri anlades på 1930-talet, och 1974–78 byggdes ERSTA-batteriet som ett fyravåningshus av stål inne i klippan, dimensionerat mot kärnvapenangrepp. Anläggningen är statligt byggnadsminne sedan 2018.',
       // KÄLLA: lansstyrelsen.se/.../oja-landsort.html — Öja är "en av länets förnämsta sträckfågellokaler", med starkt sträck både vår och höst (2026-09-14)
@@ -1867,7 +1866,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/.../oja-landsort.html — "Bybebyggelsen som äger betydande kulturhistoriska och miljömässiga värden är koncentrerad till Storhamn på öns södra del, där även lotsplatsen och fyren ligger"; förbjudet med okopplad hund, att "tälta och elda annat än på anvisade platser", att skada fasta naturföremål och att plocka blomman nattviol; anordningar: informationstavla, rast-/övernattningsstuga, stig, toalett, tältplats och vandringsled
       'Bybebyggelsen, som Länsstyrelsen tillskriver betydande kulturhistoriska och miljömässiga värden, är koncentrerad till Storhamn på öns södra del, där också lotsplatsen och fyren ligger. I området finns vandringsled, stig, tältplats, toalett och en rast- och övernattningsstuga. Reglerna är tydliga: hunden ska vara kopplad, tältning och eldning bara på anvisade platser — och nattviol är uttryckligen fridlyst från plockning här.',
       // KÄLLA: http://www.landsort.com/?page_id=138 — 1820 övergång till rovoljelampor med försilvrade speglar; 1839 staten inlöser fyren och Mauritz Enegren blir första fyrmästare; 1844 antas Sofia Charlotta Löfström som kvinnligt biträde; 1870 påbörjas ombyggnad med konisk fyr ovanpå stenfyren; 1909 monteras Lux-brännare
-      'Fyrens tekniska historia är en kedja av uppgraderingar. 1820 gick man över till rovoljelampor med försilvrade speglar, 1839 löste staten in fyren och Mauritz Enegren blev dess förste fyrmästare, och 1844 antogs Sofia Charlotta Löfström som kvinnligt biträde. 1870 påbörjades ombyggnaden då ett koniskt torn restes ovanpå den gamla stenfyren, och 1909 monterades Lux-brännare.',
+      'Fyrens tekniska historia är en kedja av uppgraderingar. 1820 gick man över till rovoljelampor med försilvrade speglar, 1839 löste staten in fyren och Mauritz Enegren blev dess förste statlige fyrmästare, och 1844 antogs Sofia Charlotta Löfström som kvinnligt biträde. 1870 påbörjades ombyggnaden då ett koniskt torn restes ovanpå den gamla stenfyren, och omkring 1909 monterades Lux-brännare.',
       // KÄLLA: http://www.landsort.com/?page_id=138 — 1535 utfärdar Gustav Vasa brev till Anders Bertilsson om Öja kronohemman; 1678 stadgar sjölag lotsningsplikt; 1695 fanns 9 lotsar och fyra drängar på Landsort; 1831 som mest 29 lotsar i tjänst; 1997 blir Landsort lotsstation under Mälarens Sjötrafikområde
       'Lotsningen går att följa i siffror. 1678 stadgade sjölagen lotsningsplikt; 1695 fanns nio lotsar och fyra drängar på Landsort, och som mest var 29 lotsar i tjänst år 1831. Så sent som 1997 blev Landsort lotsstation under Mälarens sjötrafikområde. Det förklarar varför bebyggelsen ser ut som den gör — det här var en arbetsplats, inte en sommarby.',
       // KÄLLA: https://www.sjofartsverket.se/en/about-us/fyrar-och-kulturfastigheter/visningsfyrar/landsort--the-oldest-swedish-built-lighthouse/ — "The present lighthouse was built in 1686"; "metre-thick walls"; "The Russians turned up in 1719 and set fire to Landsort"; "Landsort is located on the island of Öja, some 90 km south of Stockholm"; beskrivs som "one of the most substantial lighthouses that we have in Sweden"
@@ -1926,9 +1925,9 @@ export const ISLANDS: Island[] = [
     related: ['uto', 'dalaro', 'nattaro'],
     tags: ['fyr', 'ytterst', 'dramatiskt', 'hav', 'fåglar'],
     // KÄLLA: Sjöfartsverket (äldsta svenskbyggda fyren, fyrbål 1651) + landsort.com:s kronologi (van der Hagens koncession 1658, privilegium 1669) + Hans Högmans fyrhistoria (fyren tänd 1678, tornet brann 1686, nytt torn klart 1687).
-    did_you_know: 'Landsorts fyr är Sveriges äldsta bevarade fyr — ett fyrbål tändes redan 1651, Johan van der Hagen fick kungligt privilegium 1669 och det nuvarande stentornet restes efter branden 1686. Landsort är Stockholms skärgårds sydligaste bebodda utpost (Sveriges sydligaste fastlandspunkt är Smygehuk i Skåne).',
+    did_you_know: 'Landsorts fyr är Sveriges äldsta bevarade svenskbyggda fyr — ett fyrbål tändes redan 1651, Johan van der Hagen fick kungligt privilegium 1669 och det nuvarande stentornet restes 1686. Landsort är Stockholms skärgårds sydligaste bebodda utpost (Sveriges sydligaste fastlandspunkt är Smygehuk i Skåne).',
     insiderTips: [
-      'Landsort har Sveriges äldsta bevarade fyrtorn i aktiv drift. Platsen har markerats med fyr sedan 1600-talets mitt, om än i olika former.',
+      'Landsort har Sveriges äldsta bevarade svenskbyggda fyrtorn i aktiv drift. Platsen har markerats med fyr sedan 1600-talets mitt, om än i olika former.',
       'Landsort nås med Waxholmsbåten från Nynäshamn och är den sydligaste bebodda platsen i Stockholms skärgård.',
       'Ön räknas som ett av de bästa fågelskådningsställena i regionen, framförallt under fågelsträcket i maj och september.',
       'Det bor ett fåtal fastboende på Landsort åretrunt. Ön är en av de mest avskilda i skärgården trots reguljär båttrafik.',
@@ -2068,7 +2067,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: Riksantikvarieämbetet, bebyggelseregistret via kringla.nu (raa/bbr/21400000444777) — ett tidigare kapell på platsen stod färdigt 1660; vid mitten av 1800-talet var "kapellet starkt förfallet och beslut fattades om ett nytt kyrkobygge"; interiören är hållen "enkla i nyklassisk anda med brutet vita, slätputsade väggar"; restaurering 1937 under E. Lundberg med konstnären Gunnar Torhamn (2026-09-14)
       'Kyrkan har en föregångare: ett kapell som stod färdigt 1660 och som vid mitten av 1800-talet var starkt förfallet, vilket ledde till beslutet om ett nytt kyrkobygge. Interiören är hållen i nyklassisk anda med brutet vita, slätputsade väggar. 1937 restaurerades byggnaden under E. Lundberg, med konstnären Gunnar Torhamn ansvarig för ny konst och nya färgsättningar.',
       // KÄLLA: hembygd.se/blido/about (Blidö sockens hembygdsförening) — socknen bildades före 1650; "Socknen övergick till att kallas Blidö kommun" 1862; "Den uppgick i Norrtälje kommun" 1971; området omfattar huvudöarna Blidö och Yxlan samt ett tjugotal mindre öar och skär, beläget "sydost om Norrtälje i skärgården vid Svartlögafjärden" (2026-09-14)
-      'Blidö socken bildades före 1650 och omfattar mer än huvudön: Yxlan och ett tjugotal mindre öar och skär vid Svartlögafjärden hör dit. 1862 övergick socknen till att kallas Blidö kommun, och 1971 uppgick den i Norrtälje kommun. Gränsen är alltså äldre än kommunindelningen, och det märks i hur folk på öarna fortfarande talar om socknen.',
+      'Blidö socken bildades före 1650 och omfattar mer än en ö: huvudöarna är Blidö och Yxlan, och till socknen hör också mindre öar och skär vid Svartlögafjärden. 1862 övergick socknen till att kallas Blidö kommun, och 1971 uppgick den i Norrtälje kommun. Gränsen är alltså äldre än kommunindelningen, och det märks i hur folk på öarna fortfarande talar om socknen.',
       // KÄLLA: norrtalje.se, Båtsmanstorpet – Blidö sockens hembygdsförening — torpet dateras från 1730-talet, inrett som under den siste båtsmannens tid, beläget Bromskärsvägen 2, Oxhalsö, Blidö; hösten 2021 öppnades bagarstuga och "Silversmedens hus" med utställningar kopplade till konstnären Yngve Bergers arbeten; "Sommartid arrangeras aktiviteter som byavandringar, utställningar m m." (2026-09-14)
       // KÄLLA: hembygd.se/blido/about — hembygdsgården består av fyra byggnader: Båtsmanstorpet, Fähuset — "en så kallad \'en ko-ladugård\', som var avsedd just för en ko" — Silversmedens hus med sidokammarstuga samt Bagarstugan (2026-09-14)
       'I Oxhalsö står ett båtsmanstorp från 1730-talet, inrett som under den siste båtsmannens tid. Runt det har Blidö sockens hembygdsförening samlat fyra byggnader: torpet, ett fähus som kallas en ko-ladugård eftersom det var avsett just för en ko, Silversmedens hus med sidokammarstuga, och en bagarstuga. Sedan 2021 visas här också utställningar kopplade till konstnären Yngve Bergers arbeten, och sommartid arrangeras byavandringar.',
@@ -2129,7 +2128,7 @@ export const ISLANDS: Island[] = [
     description: [
       // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/gallno.html — "Skyddat sedan: 1978, utvidgat 2017 och 2024"; syftet är att bevara ett skärgårdsområde "av stor betydelse för allmänhetens friluftsliv" med ett "skyddsvärt, kulturpräglat skärgårdslandskap"; "genuin skärgårdsmiljö med levande jordbruk" (2026-09-14)
       // KÄLLA: gallno.se — ön är bilfri och nås med skärgårdsbåt (2026-09-14)
-      'Gällnö är en bilfri ö i mellersta skärgården och naturreservat sedan 1978, utvidgat 2017 och 2024. Syftet är att bevara ett skärgårdsområde av stor betydelse för friluftslivet, med ett skyddsvärt, kulturpräglat skärgårdslandskap och levande jordbruk.',
+      'Gällnö är en ö i mellersta skärgården där grusvägarna är bilfria, och naturreservat sedan 1978, utvidgat 2017 och 2024. Syftet är att bevara ett skärgårdsområde av stor betydelse för friluftslivet, med ett skyddsvärt, kulturpräglat skärgårdslandskap.',
       // KÄLLA: lansstyrelsen.se/.../gallno.html — "hagmarker med en artrik flora"; på Västerholmen "växer bland annat lind, ask, alm och ek", många gamla och grova med rikligt med död ved (2026-09-14)
       'Reservatets hagmarker har en artrik flora, och på Västerholmen står lövskog med bland annat lind, ask, alm och ek — många av träden gamla och grova, med rikligt med död ved.',
       // KÄLLA: gallno.se — på ön finns Gällnö krog ("Till vår sommaröppna krog kommer man för att äta en bit mat, sippa på ett glas vin"), Handelsboden, vandrarhem (STF) och Hotell Frans August (2026-09-14)
@@ -2147,11 +2146,11 @@ export const ISLANDS: Island[] = [
       // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/gallno.html — föreskrifterna förbjuder bland annat att ta stenar, skada vegetation eller träd, föra lös hund och tälta längre än två dygn på samma plats (2026-09-14)
       'Reglerna följer reservatets logik: hunden ska vara kopplad, tältet får stå högst två dygn på samma plats, och det är förbjudet att ta stenar eller skada träd och vegetation.',
       // KÄLLA: skargardsstiftelsen.se/omraden/gallno/ — vid Torsviken finns "sandstrand och tältplats" samt "en välbevarad jättegryta som bildades av inlandsisen för omkring 10 000 år sedan" (2026-09-14)
-      'Vid Torsviken finns sandstrand och tältplats — och en välbevarad jättegryta, urholkad av inlandsisens smältvatten för omkring 10 000 år sedan. Det är ett av de få stället på ön där geologin talar högre än jordbrukslandskapet.',
+      'Vid Torsviken finns sandstrand och tältplats — och en välbevarad jättegryta, bildad av inlandsisen för omkring 10 000 år sedan. Det är ett av de få stället på ön där geologin talar högre än jordbrukslandskapet.',
       // KÄLLA: skargardsstiftelsen.se/omraden/gallno/ — Gällnö by beskrivs med "rödmålade hus, båthus och bodar under knotiga äppelträd, med utsikt över Hemfladen"; ön ligger i mellersta skärgården mellan Värmdö och Möja (2026-09-14)
       'Gällnö by är öns kärna, och Skärgårdsstiftelsen beskriver den som rödmålade hus, båthus och bodar under knotiga äppelträd, med utsikt över Hemfladen. Ön ligger i mellanskärgården mellan Värmdö och Möja, med badstränder och skyddade naturhamnar på flera håll.',
       // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/karklo.html — Karklö naturreservat bildat 2017, "123 hektar varav land 59 hektar", förvaltare Skärgårdsstiftelsen; "Vid Vambö och Kolfatet gränsar reservatet till Gällnö naturreservat i sydost"; i reservatet står "en grov döende ek, troligen upp emot 300 år gammal"; anordningar: bad/badplats och stig (2026-09-14)
-      'Grannön Karklö, skild från Gällnö av ett smalt sund, blev eget naturreservat 2017 — 123 hektar varav 59 land, också det förvaltat av Skärgårdsstiftelsen. Vid Vambö och Kolfatet gränsar de två reservaten till varandra. På Karklö står en grov döende ek som troligen är upp emot 300 år gammal, och där finns badplats och stig.',
+      'Grannön Karklö, skild från Gällnö av ett smalt sund, blev eget naturreservat 2017 — 123 hektar varav 59 land, också det förvaltat av Skärgårdsstiftelsen. Vid Vambö och Kolfatet gränsar de två reservaten till varandra. På Karklö står en grov döende ek som troligen är upp emot 300 år gammal, och genom reservatet går en stig. Badplatsen ligger utanför reservatet, i närheten av ångbåtsbryggan.',
     ],
 
     facts: {
@@ -2455,7 +2454,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: ingmarso.se/kultur — Ingmarsö Brottö Hembygdsmuseum presenterar en tidslinje från vikingatiden till nutid, inklusive skola, missionshus, jordgubbsodlingar och pensionat; jordbrukslandskapet präglas av "små, flikiga betesmarkerna och vallarna" (2026-09-14)
       'På Ingmarsö Brottö Hembygdsmuseum löper en tidslinje från vikingatid till nutid, med skolan, missionshuset, jordgubbsodlingarna och pensionaten som hållpunkter. Utanför museet fortsätter samma historia i landskapet: de små, flikiga betesmarkerna och vallarna som fortfarande hålls öppna.',
       // KÄLLA: ingmarso.se/vi-på-ön — "Ingmarsö skytteförening bildades år 1890 och är därmed en av öns äldsta föreningar"; bygdegården Lurkan är samfällighet sedan 1961; vägföreningen grundades 1977; Norrgårdsstiftelsen bildades 2006 och förvaltar kulturmiljöer (2026-09-14)
-      'Föreningslivet är öns infrastruktur. Skytteföreningen bildades 1890 och är en av de äldsta, bygdegården Lurkan har varit samfällighet sedan 1961, vägföreningen grundades 1977 och Norrgårdsstiftelsen, som förvaltar kulturmiljöer, tillkom 2006. Ett byalag håller ihop de allmänna frågorna.',
+      'Föreningslivet är öns infrastruktur. Skytteföreningen bildades 1890 och är en av de äldsta, Lurkan har varit öns bygdegård sedan 1961, vägföreningen grundades 1977 och Norrgårdsstiftelsen, som förvaltar kulturmiljöer, tillkom 2006. Ett byalag håller ihop de allmänna frågorna.',
       // KÄLLA: ingmarso.se/vi-på-ön — "Ingmarsö har ett väl fungerande räddningsvärn med 9 frivilliga brandmän"; skolverksamhet har bedrivits på ön i över hundra år, skolan är för närvarande inte i full drift medan förskolan tar omkring fem barn och äldre elever går på Svartsö och Ljusterö (2026-09-14)
       'Ön har ett räddningsvärn med nio frivilliga brandmän — när något händer är det grannarna som kommer. Skolverksamhet har bedrivits här i över hundra år, men skolan är för närvarande inte i full drift: förskolan tar omkring fem barn och de äldre eleverna reser till Svartsö och Ljusterö.',
       // KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-ingmarso/ — etappen anges som "Medel 9.8 km" och förbinder bryggorna Ingmarsö Norra och Ingmarsö Södra via stigar och grusvägar, genom öppna ängar och skog och förbi flera insjöar samt Femsundsbadet; delar av leden beskrivs som tekniska och rekommenderas inte för den med begränsad rörlighet (2026-09-14)
@@ -2481,7 +2480,7 @@ export const ISLANDS: Island[] = [
     ],
     // KÄLLA: ingmarsobnb.se + roslagen.se — B&B på Norrgården, "Svit, familjerum eller enklare dubbelrum, du väljer." Sidan beskriver frukosten men anger ingenstans att den ingår i priset, så "frukost ingår" är borttaget. Ingmarsö Krog är restaurang utan rum (ingmarsokrog.com) (läst 2026-09-14)
     accommodation: [
-      { name: 'Ingmarsö B&B', type: 'B&B', desc: 'B&B på Norrgården, en gård från 1600-talet — svit, familjerum eller enklare dubbelrum.', websiteUrl: 'https://ingmarsobnb.se' },
+      { name: 'Ingmarsö B&B', type: 'B&B', desc: 'B&B på Norrgården, en gård från mitten av 1800-talet — svit, familjerum eller enklare dubbelrum.', websiteUrl: 'https://ingmarsobnb.se' },
     ],
     getting_there: [
       // KÄLLA: ingmarso.se/hittahit — restiden anges som "mellan två och cirka tre timmar"; man "kan som regel stiga ombord i Åsättra på Ljusterö, Stockholm eller Vaxholm", och med "SL-buss 438 från Slussen… stiga på båten i Boda på Värmdö". Waxholmsbolagets tabell 12/13 gick inte att läsa, så det snävare "2,5–3 h" är borttaget.
@@ -2489,7 +2488,7 @@ export const ISLANDS: Island[] = [
     ],
     harbors: [
       // KÄLLA: ingmarsogasthamn.se: ca 30 platser, landström, färskvatten, dusch/wc, bränsle (bensinmack + sjömack året runt, kortbetalning)
-      { name: 'Ingmarsö Gästhamn', desc: 'Gästhamn vid södra bryggan med drygt 30 platser, dusch/wc och bränsleförsäljning.', fuel: true, service: ['el', 'vatten', 'dusch'] },
+      { name: 'Ingmarsö Gästhamn', desc: 'Gästhamn vid södra bryggan med cirka 30 platser, dusch/wc och bränsleförsäljning.', fuel: true, service: ['el', 'vatten', 'dusch'] },
     ],
     restaurants: [
       // KÄLLA: ingmarsokrog.com: krog vid södra bryggan med brygga/badplats intill. Exakta öppettider, säsong, priser, bokningskrav och barnmeny anges endast som bild på sajten och kunde inte beläggas i text.
@@ -2550,7 +2549,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/naturreservat/namdo.html — ön ligger i "södra skärgårdens urkalkstensbälte", vilket ger en flora rik på ormbunkar och orkidéer; kalkbergen vid Östanvik och skogarna på Nämdö Böte och Skabban är botaniskt värdefulla och hyser signalarter och rödlistade arter (2026-09-14)
       'Nämdö ligger i södra skärgårdens urkalkstensbälte, och det syns i floran: ovanligt rik på ormbunkar och orkidéer. Kalkbergen vid Östanvik och skogarna på Nämdö Böte och Skabban pekas ut som botaniskt särskilt värdefulla, med signalarter och rödlistade arter som visar på höga naturvärden. Det är berggrunden som avgör vad som växer, och här är den annorlunda än i resten av skärgården.',
       // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — "I nationalparken finns 1 353 öar, kobbar och skär och ett större havsområde längst österut"; förvaltare "Länsstyrelsen i Stockholms län"; markägare "Staten genom Naturvårdsverket"; tre större bebyggda öar — Bullerö, Rågskär och Långviksskär — har vandringsleder, rastplatser och tältplatser (2026-09-14)
-      'Nationalparken öster om ön rymmer 1 353 öar, kobbar och skär plus ett större havsområde längst österut. Länsstyrelsen i Stockholms län förvaltar den, och staten äger marken genom Naturvårdsverket. Tre av öarna är bebyggda — Bullerö, Rågskär och Långviksskär — och där finns vandringsleder, rastplatser och tältplatser.',
+      'Nationalparken öster om ön rymmer 1 353 öar, kobbar och skär plus ett större havsområde längst österut. Länsstyrelsen i Stockholms län förvaltar den, och staten äger marken genom Naturvårdsverket. På de tre största öarna — Bullerö, Rågskär och Långviksskär — finns den äldre bebyggelsen bevarad, liksom vandringsleder, rastplatser och tältplatser.',
       // KÄLLA: lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — i parken förekommer havsörn och andra sjöfåglar liksom älg, rådjur, räv, hare, mink och bäver; tallen dominerar näringsfattiga hällmarker på de inre öarna medan de yttersta skären bär låg växtlighet och lavar (2026-09-14)
       'Djurlivet i parken sträcker sig från havsörn och sjöfågel till älg, rådjur, räv, hare, mink och bäver. Landskapet trappas ned utåt: tall på näringsfattiga hällmarker på de inre öarna, och längst ut bara låg växtlighet och lavar på skären.',
       // KÄLLA: xn--nmdhbf-bua0m.se/hembygdsgard-bibliotek/ (Nämdö hembygdsförening) — Sigfrid Jonsson (1895–1983) var föreningens grundare; "1977 gav Sigfrid sina två fastigheter till Nämdö Hembygdsförening vilket ledde till att Nämdö hembygdsgård kunde börja byggas"; hembygdsgården har "en sal med plats för upp till 80 personer plus ett professionellt utrustat kök" (2026-09-14)
@@ -2651,7 +2650,7 @@ export const ISLANDS: Island[] = [
       'Stockholm Archipelago Trails Svartsö-etapp är knappt arton kilometer lång och går som en liggande åtta över ön, mest på grusväg och klassad som lätt. Den kan påbörjas från bryggorna Norra Svartsö, Alsvik, Skälvik och Söderboudd.',
       'Att kunna cykla utan att hålla utkik efter bilar, och höra fågelljud och havets sus i stället för motorer, hör till det som gör en dag här till vad den är.',
       // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f79/1649062024749/Svartsö.pdf (Värmdö kommun, "Svartsö – en levande skärgårdsö") — "Kvarnen uppfördes 1749 och är en av två bevarade kvarnar i det en gång så kvarnrika Värmdö. Kvarnens invändiga maskineri är bibehållna i sitt original ... Kvarnen är en så kallad holländare med vridbart tak."
-      'Träskö kvarn står på en egen holme strax söder om Svartsö och uppfördes 1749. Värmdö kommun beskriver den som en av bara två bevarade kvarnar i ett landskap som en gång var kvarnrikt. Det är en så kallad holländare med vridbart tak, och det invändiga maskineriet finns kvar i original.',
+      'Träskö kvarn står på en egen holme strax söder om Svartsö och uppfördes 1749. Värmdö kommun beskriver den som en av bara två bevarade kvarnar i det en gång så kvarnrika Värmdö. Det är en så kallad holländare med vridbart tak, och det invändiga maskineriet finns kvar i original.',
       // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f79/1649062024749/Svartsö.pdf — "I juli 1719 anföll den ryska flottan den svenska östkusten i ett försök att inta Stockholm. Även Svartsö drabbades och öborna tog sin tillflykt till en holme i den största insjön Storträsk."
       // KÄLLA: samma sida, punkt 14 — "Hit flydde öborna under rysshärjningarna 1719 och här grävde de ner sina ägodelar för att gömma dem för ryssen. Enligt sägnen kommer en förbannelse att drabba den som försöker leta efter de gömda ägodelarna."
       'I juli 1719 gick den ryska flottan längs östkusten för att ta Stockholm, och Svartsö drabbades. Öborna flydde ut till Boholmen i Storträsk, öns största insjö, och grävde ner sina ägodelar där. Enligt sägnen drabbas den som försöker leta upp dem av en förbannelse.',
@@ -2788,9 +2787,9 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f78/1649062024310/Runmarö.pdf (Värmdö kommun, "Runmarö – en oas i havet"), punkt 7 "Kalkbruket" — "På Runmarö har det brutits kalk sedan 1200-talet. Bland annat har slottet Tre Kronor och Riddarholmskyrkan byggts av Runmarökalk."
       'Kalken har inte bara gett ön blommor. På Runmarö har kalk brutits sedan 1200-talet, och Värmdö kommun uppger att både slottet Tre Kronor och Riddarholmskyrkan byggts med Runmarökalk. Kalkbrottet finns kvar som en plats att gå till.',
       // KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/Förorenade områden - inventering av gruvbranschen i Stockholms län.pdf (Länsstyrelsen Stockholm) — "Sulfidmineralen zinkblände och blyglans bröts på Runmarö i Stockholms skärgård. En mängd av 4 771 ton zinkmalm utvanns i början av 1900-talet." / "Värmdös gruvor är med få undantag belägna på Runmarö. Här finns cirka sju sulfidmalmsbrott eller större skärpningar. De tre gruvorna Kilagruvorna, Söderbygruvorna och Vånögruvorna, alla belägna på Runmarö"
-      'Ön har också varit gruvö. Länsstyrelsen räknar ett sjuttiotal år tillbaka cirka sju sulfidmalmsbrott eller större skärpningar på Runmarö — Kilagruvorna, Söderbygruvorna och Vånögruvorna — där zinkblände och blyglans bröts. I början av 1900-talet utvanns 4 771 ton zinkmalm. Gruvhålen står kvar i skogen; gå inte ner i dem.',
+      'Ön har också varit gruvö. Länsstyrelsen räknar cirka sju sulfidmalmsbrott eller större skärpningar på Runmarö — Kilagruvorna, Söderbygruvorna och Vånögruvorna — där zinkblände och blyglans bröts. I början av 1900-talet utvanns 4 771 ton zinkmalm. Gruvhålen står kvar i skogen; gå inte ner i dem.',
       // KÄLLA: https://xn--runmarhembygdsfrening-mecj.se/lotsbyar/ (Runmarö Hembygdsförening) — år 1703 kom "nio av nitton Stockholmslotsar" från Runmarö; år 1797 var "49 av 68 Stockholmslotsar" bosatta på ön; lotsstationen Berghamn mellan Värmdö och Runmarö etablerades 1741 och upphörde i början av 1900-talet; då byggdes "den lilla lotsutkiken på berget i Styrsvik"
-      'Lotsningen präglade ön i sekler. År 1703 kom nio av nitton Stockholmslotsar från Runmarö, och 1797 bodde 49 av 68 Stockholmslotsar här. Lotsstationen Berghamn mellan Värmdö och Runmarö kom till 1741 och lades ner i början av 1900-talet — då byggdes den lilla lotsutkiken på berget i Styrsvik, som fortfarande går att gå upp till.',
+      'Lotsningen präglade ön i sekler. År 1703 kom nio av nitton Stockholmslotsar från Runmarö, och 1797 bodde 49 av 68 Stockholmslotsar här. Lotsstationen Berghamn mellan Värmdö och Runmarö hade lotsar anställda sedan 1741 och lades ner i början av 1900-talet — då byggdes den lilla lotsutkiken på berget i Styrsvik, som fortfarande går att gå upp till.',
       // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f78/1649062024310/Runmarö.pdf, punkt 4 "Långvik" — "Här låg också Runmarös första lotshemman och när laga skifte genomfördes 1849 bodde inte mindre än fem lotsar här." / punkt 20 — byarna Norrsunda och Södersunda är "sannolikt öns äldsta byar ... Dessa byar har varit boplatser för generationer av lotsar."
       'Långvik i norr är öns nordligaste by och platsen för Runmarös första lotshemman; vid laga skiftet 1849 bodde fem lotsar där. Norrsunda och Södersunda vid sundet mot Storön är sannolikt öns äldsta byar och har varit boplatser för generationer av lotsar.',
       // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f78/1649062024310/Runmarö.pdf, punkt 2 "Gatan" — "Strax sydväst om Gatan finns ett område som kallas Ryssflykten efter att ryska soldater slagit läger här under rysshärjningarna sommaren 1719 ... Ett hundratal fartyg och tusentals man övernattade ett par nätter på Runmarö i sluttningen mot fjärden. Här finns än i dag ett tiotal ryssugnar"
@@ -2806,7 +2805,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: samma PDF, punkt 12 — "Kyrkogården med klockstapel invigdes sommaren 1958. kapellet invigdes 1973." / punkt 11 — hembygdsgården "byggd på 1880-talet var fram till 1953 öns skolhus"
       'Runmarö har omkring 250 bofasta och flera verksamma båtvarv. Kapellet i Uppeby invigdes 1973, medan kyrkogården med klockstapel togs i bruk redan 1958. Hembygdsgården intill är byggd på 1880-talet och var öns skolhus fram till 1953.',
       // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f78/1649062024310/Runmarö.pdf, Historia — "De första Runmaröborna slog sig vid medeltiden ned vid de många havsvikarna som gav lä och skydd ... Vid slutet av 1800-talet började stockholmare komma som sommargäster till ön. De hyrde in sig hos ortsbefolkningen och i något av öns tolv pensionat"
-      'De första Runmaröborna slog sig ner vid medeltiden i de skyddade havsvikarna, där fisket och senare lotsningen bar upp gårdarna. Vid slutet av 1800-talet kom stockholmarna som sommargäster — ön hade som mest tolv pensionat innan de så småningom byggde egna hus.',
+      'De första Runmaröborna slog sig ner vid medeltiden i de skyddade havsvikarna, där fisket och senare lotsningen bar upp gårdarna. Vid slutet av 1800-talet kom stockholmarna som sommargäster — ön hade tolv pensionat innan de så småningom byggde egna hus.',
     ],
 
     facts: {
@@ -3174,7 +3173,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      // KÄLLA: Waxholmsbolagets tabell 31 (RÄFSNÄS–TJOCKÖ–LIDÖ–FEJAN). Lidö nås från Räfsnäs ~25 min (06.40→07.05), EJ från Strömkajen. Ingen bilfärja till ön.
+      // KÄLLA: Waxholmsbolagets tabell 31 (31A RÄFSNÄS–TJOCKÖ–FEJAN). Lidö nås från Räfsnäs ~25 min (06.40→07.05), EJ från Strömkajen. Ingen bilfärja till ön.
       travel_time: 'Bil till Räfsnäs, sedan Waxholmsbåt linje 31 (ca 10–15 min)',
       character: 'Naturhotell, välvårdat gods, lugnt',
       season: 'April–Oktober (konferens helår)',
@@ -3470,7 +3469,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: SL buss 852 Nynäshamns station–Torö (kund.printhuset-sthlm.se/sl/v852.pdf, 2026): Nynäshamns station–Ankarudden ca 40 min, Ankarudden är ändhållplats; Trafikverket om bron — "Tottnäsbron är en vridbro över Tottnässundet på väg 528 mellan Södertörn och Oxnö där vägtrafiken går i en riktning i taget" (läst 2026-09-14). nynashamn.se/uppleva/skargard--batliv/toro svarade inte vid kontrollen; bilrestiden ca 60 min var obelagd och är borttagen.
     getting_there: [
       { method: 'Bil', from: 'Stockholm', desc: 'Väg 73 mot Nynäshamn, sedan skylt mot Torö. Vägen passerar Tottnäsbron, en vridbro på väg 528 mellan Södertörn och Oxnö där trafiken går i en riktning i taget.', icon: '🚗' },
-      { method: 'Buss', from: 'Nynäshamns station', time: 'ca 40 min', desc: 'SL-buss 852 Nynäshamn–Torö via Ankarudden.', icon: '🚌' },
+      { method: 'Buss', from: 'Nynäshamns station', time: 'ca 40 min', desc: 'SL-buss 852 Nynäshamn–Torö till ändhållplatsen Ankarudden.', icon: '🚌' },
     ],
     harbors: [
     ],
@@ -3785,7 +3784,7 @@ export const ISLANDS: Island[] = [
     related: ['dalaro', 'orno', 'toro'],
     tags: ['spa-hotell', 'herrgård', 'broförbunden', 'södra', 'sabis'],
     // KÄLLA: smadalarogard.se — sjökaptenen Carl Peter Blom, köp 1802 (Brita Bonde), klart 1810; hotellets egen sida: 110 rum, 2 000 m² spa (2026-08-24)
-    did_you_know: 'Smådalarö Gård byggdes 1802–1810 av sjökaptenen Carl Peter Blom efter att han 1802 köpt hela "Tyresö skärgården" från grevinnan Brita Bonde för 12 000 riksdaler. Efter renoveringen 2021 är Gården ett av Sveriges mest påkostade spa-hotell med 110 rum och 2 000 m² spa.',
+    did_you_know: 'Smådalarö Gård byggdes 1802–1810 av sjökaptenen Carl Peter Blom efter att han 1802 köpt hela "Tyresö skärgården" från grevinnan Brita Bonde för 12 000 riksdaler. Efter renoveringen 2021 har Gården 110 rum och 2 000 m² spa.',
     seasonal: {
       open: 'Helår',
       peak: 'Juli–Augusti',
@@ -4002,7 +4001,7 @@ export const ISLANDS: Island[] = [
     description: [
       'Svenska Högarna är en ögrupp i Norrtälje kommun, längst österut i Stockholms ytterskärgård, ca 18 distansminuter rakt öster om Möjas nordspets. Ön nämns redan 1488 i skrifter från Julita kloster, då som kronohamnsfiske där munkar bytte till sig saltad strömming mot avlat.',
       'På Storön byggdes 1855 en träbåk som 1874 ersattes av en järnfyr ritad av Gustaf von Heidenstam, den enda Heidenstam-fyren i Stockholms skärgård. Fyrtornet tillverkades på Ludvigsbergs Verkstad i Stockholm. Fyren automatiserades 1966 och avbemannades 1968.',
-      'Området är naturreservat sedan 1976. Ön är inte bebodd permanent men besöks av seglare som söker den yttre skärgårdens orörda klipplandskap.',
+      'Området är naturreservat sedan 1976. Ön besöks av seglare som söker den yttre skärgårdens orörda klipplandskap.',
     ],
     facts: {
       travel_time: '5–7 h med segelbåt från Möja/Sandhamn',
@@ -4128,7 +4127,7 @@ export const ISLANDS: Island[] = [
     // KÄLLA: Naturvårdsverket, skötselplan Nämdöskärgårdens nationalpark (ISBN 978-91-620-7202-5): "Grunda hårdbottnar och rev finns bland annat kring Långviksskär och Koskären-Ormskär" — Ormskär ligger inom parken (läst 2026-09-14). Uppgiften "norra delen av ön" gick inte att belägga och är borttagen.
     tagline: 'Klippig ö söder om Nämdö — i Nämdöskärgårdens nationalpark',
     description: [
-      'Ormskär ligger söder om Nämdö i Stockholms mellersta skärgård och ingår tillsammans med Koskären i Nämdöskärgårdens nationalpark, invigd 2025. Ön höjer sig oväntat högt ur havet, namnet kommer av huggormarna som funnits på ön.',
+      'Ormskär ligger i Stockholms mellersta skärgård och ingår tillsammans med Koskären i Nämdöskärgårdens nationalpark, invigd 2025.',
       'Klippig kust och stilla vatten i lä-läge präglar miljön. Ön är obebodd och saknar service. Inga reguljära turistförbindelser går hit.',
       'Ormskär passar för seglare som söker en lugn ankringsplats i Bullerö-området. Nationalparkens föreskrifter gäller.',
     ],
@@ -4145,7 +4144,7 @@ export const ISLANDS: Island[] = [
     tips: ['Ön ligger i Nämdöskärgårdens nationalpark — respektera nationalparkens föreskrifter.', 'Ta med all proviant.'],
     related: ['bullero', 'namdo', 'moja'],
     tags: ['nationalpark', 'naturhamn', 'mellersta', 'segling'],
-    did_you_know: 'Ormskär ingår tillsammans med Koskären i Nämdöskärgårdens nationalpark, invigd 2025. Namnet kommer av att det fanns gott om huggormar på ön.',
+    did_you_know: 'Ormskär ingår tillsammans med Koskären i Nämdöskärgårdens nationalpark, invigd 2025.',
   },
   {
     slug: 'kanholmen',
@@ -4313,7 +4312,7 @@ export const ISLANDS: Island[] = [
       // (978-91-620-7202-5, s. 12) säger att Långviksskärs reservat kvarstår omgivet av nationalparken; om Långskärs
       // reservat formellt uppgått i parken framgår inte av Länsstyrelsens sida — därför "kontrollera" nedan.
       'Långskär är ett naturreservat sedan 1967 med ett femtiotal öar i Bulleröskärgården, Värmdö kommun — 854 hektar, varav bara 33 hektar land. Sedan 2025 omges området av Nämdöskärgårdens nationalpark; kontrollera aktuella föreskrifter innan besök.',
-      'Området nås lättast med egen båt. Långskär finns bland de fiskehamnar/fiskeskär som omnämns i historiska källor från 1744. Klippig kust och stilla vatten i lä-läge präglar miljön.',
+      'Området nås lättast med egen båt. Klippig kust och stilla vatten i lä-läge präglar miljön.',
       'Långskär passar för seglare och naturvänner som söker ett ostört område utanför de stora destinationerna i Bullerö-arkipelagen.',
     ],
     facts: { travel_time: 'Cirka 3 h med segelbåt från Stavsnäs', character: 'Naturreservat, ankring, ytterskärgård', season: 'Juni–augusti', best_for: 'Segling, ankring, naturvistelse' },
@@ -5173,7 +5172,7 @@ export const ISLANDS: Island[] = [
     // KÄLLA: Länsstyrelsen Gotland, Gotska Sandöns nationalpark — bildad 1910, utvidgad 1963 och 1988 (läst 2026-09-14)
     tagline: 'Östersjöns ensliga nationalpark — sanddyner, tallar och absolut avskildhet.',
     description: [
-      'Gotska Sandön är en av Sveriges mest avlägsna öar — och en av de mest fascinerande. Nationalparken i öppet Östersjövatten, cirka 37 km norr om Fårö, har inga vägar, inga butiker och ingen fast bebyggelse utöver fyrvaktarbostaden och ett antal stugor.',
+      'Gotska Sandön är en av Sveriges mest avlägsna öar — och en av de mest fascinerande. Nationalparken i öppet Östersjövatten, cirka 37 km norr om Fårö, har inga vägar och inga butiker. Bebyggelsen omfattar bland annat Fyrbyn med fyrmästarbostaden, Gamla gården, skolhuset/museet, ett kapell från 1950 och ett antal stugor.',
       'Ön är ett geologiskt unikum: ett sandrevlande landskap format av Östersjöns vindar, med vandringsdyner, tallskogar som växer på sand och stränder som skiftar form varje år. Det är en ö som inte alls liknar någon annan i Sverige.',
       'Hit tar man sig med sommarbåt från Nynäshamn eller Fårösund under juni–september. Turen är lång, platserna begränsade och upplevelsen nästintill ogreppbar. Det är därför Gotska Sandön är en av de svenska bucket-list-destinationerna.',
     ],
@@ -5669,7 +5668,7 @@ export const ISLANDS: Island[] = [
     facts: {
       area: '2,8 km²',
       // KÄLLA: Länsstyrelsen Blekinge — naturreservat 2017 (192 ha land), bofast befolkning sedan 1830-talet, båt från Nogersund (2026-08-23)
-      population: 'Litet antal bofasta (fiskeläge sedan 1830-talet)',
+      population: 'Litet antal bofasta (fast befolkning sedan 1830-talet)',
       known_for: 'Engelsk kyrkogård, naturreservat, klipplandskap',
       season: 'Maj–September',
     
@@ -5813,7 +5812,7 @@ export const ISLANDS: Island[] = [
       'Visingsö är en långsmal ö i södra Vättern, ett par kilometer utanför Gränna i Jönköpings län. Ön är 14 km lång och känd för sin dramatiska historia, märkliga natur och det faktum att man tar sig runt med häst och vagn — en tradition som lockar hundratusentals besökare varje år.',
       'Ruinerna av Brahehus (1600-tal) och Näs slott (medeltid) ger historisk tyngd, och ekskogen som planterades på 1800-talet för att ge virke till den svenska flottan täcker idag delar av ön med en urgammal karaktär.',
       // KÄLLA: Vätternvårdsförbundet (vattern.org) — näringsfattig klarvattensjö, siktdjup 15–16 m.
-      'Vättern är en näringsfattig klarvattensjö med siktdjup på hela 15–16 meter, och vattnet runt Visingsö är kristallklart. Bad och fiske hör sommaren till.',
+      'Vättern är en näringsfattig klarvattensjö med siktdjup på hela 15–16 meter. Bad och fiske hör sommaren till.',
     ],
     facts: {
       area: 'ca 24 km²',
