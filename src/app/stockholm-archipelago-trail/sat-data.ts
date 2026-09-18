@@ -22,7 +22,20 @@ export type SatSection = {
   note?: string
 }
 
+/**
+ * Ledens officiellt angivna totallängd.
+ *
+ * OBS: summan av de 22 etapplängderna nedan blir 273,2 km. Skillnaden mot 270
+ * är sannolikt avrundning i ledens egen marknadsföring, alternativt att
+ * förbindelseetapperna (roddbåtarna och Utö–Ålö) inte räknas in i huvudsiffran.
+ * Vi anger 270 km eftersom det är vad huvudmannen själv säger, och redovisar
+ * avvikelsen öppet på sidan i stället för att räkna om åt dem.
+ *
+ * Kontrollerat 2026-09-18: samtliga 22 etapper stämde mot respektive etapps
+ * EGEN sida på stockholmarchipelagotrail.com, inte bara mot översiktslistan.
+ */
 export const SAT_TOTAL_KM = 270
+export const SAT_SUM_KM = 273.2
 export const SAT_ISLANDS = 20
 export const SAT_URL = 'https://stockholmarchipelagotrail.com'
 

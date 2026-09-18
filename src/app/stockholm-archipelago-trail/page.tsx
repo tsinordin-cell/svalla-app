@@ -5,7 +5,7 @@ import Script from 'next/script'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import Icon from '@/components/Icon'
-import { SAT_SECTIONS, SAT_TOTAL_KM, SAT_ISLANDS, SAT_URL, type SatDifficulty } from './sat-data'
+import { SAT_SECTIONS, SAT_TOTAL_KM, SAT_SUM_KM, SAT_ISLANDS, SAT_URL, type SatDifficulty } from './sat-data'
 
 export const metadata: Metadata = {
   title: 'Stockholm Archipelago Trail — alla 22 etapper, längd och svårighet | Svalla',
@@ -382,13 +382,23 @@ export default function StockholmArchipelagoTrailPage() {
             background: 'var(--surface-2)', border: '1px solid var(--surface-3)',
             borderRadius: 12, padding: '14px 18px', marginBottom: 24,
           }}>
-            <p style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.6, margin: 0 }}>
+            <p style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.6, margin: '0 0 8px' }}>
               Etapplängder och svårighetsgrader kommer från ledens officiella webbplats,{' '}
               <a href={SAT_URL} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>
                 stockholmarchipelagotrail.com
               </a>
-              , läst 17 september 2026. Leden drivs inte av Svalla. Kontrollera alltid aktuella
-              avstängningar och tidtabeller före avfärd.
+              . Vi har kontrollerat samtliga 22 etapper mot respektive etapps egen sida den
+              18 september 2026 — alla stämde.
+            </p>
+            <p style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.6, margin: '0 0 8px' }}>
+              En detalj värd att nämna: lägger man ihop de 22 etapperna blir summan {SAT_SUM_KM} km,
+              inte {SAT_TOTAL_KM}. Vi anger {SAT_TOTAL_KM} km eftersom det är ledens egen siffra.
+              Skillnaden beror sannolikt på avrundning, eller på att förbindelseetapperna inte
+              räknas in i huvudsiffran.
+            </p>
+            <p style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.6, margin: 0 }}>
+              Leden drivs inte av Svalla. Kontrollera alltid aktuella avstängningar och
+              tidtabeller före avfärd.
             </p>
           </div>
 
