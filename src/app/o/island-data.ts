@@ -132,7 +132,12 @@ export type Island = {
     kajak?: { difficulty: string, rental: boolean, notes?: string }
     cykel?: { rental: boolean, km_track?: number, notes?: string }
     bad?: { beaches: (string | IslandBeach)[] }
-    vandring?: { trails: number, max_km?: number }
+    vandring?: {
+      trails: number
+      max_km?: number
+      /** Etapp av Stockholm Archipelago Trail på denna ö. 270 km över 20 öar, invigd 2024. */
+      sat?: { km: number, difficulty: 'Lätt' | 'Medel' | 'Krävande' }
+    }
     fiske?: boolean
   }
   /** Praktisk serviceinformation på ön — för schema och filter */
@@ -310,6 +315,8 @@ export const ISLANDS: Island[] = [
       car_parking: 'Parkering vid Stavsnäs vinterhamn: 3 timmar fritt med p-skiva, därefter avgift som betalas i app (operatör Parkit). Cirka 1 300 platser, varav omkring hälften för besökare.',
     },
     activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 8.1, sat: { km: 8.1, difficulty: 'Lätt' } },
       kajak: { difficulty: 'lätt', rental: true, notes: 'Uthyrning vid hamnen. Paddla runt ön eller ut mot omgivande grund.' },
       bad: {
         beaches: [
@@ -519,7 +526,8 @@ export const ISLANDS: Island[] = [
           },
         ],
       },
-      vandring: { trails: 4, max_km: 12 },
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 4, max_km: 18.4, sat: { km: 18.4, difficulty: 'Krävande' } },
       fiske: true,
     },
     amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
@@ -830,6 +838,8 @@ export const ISLANDS: Island[] = [
       car_parking: 'Inget bilalternativ till Grinda — ta båt från Strömkajen eller Vaxholm. Parkering vid Vaxholms hamn om du kör till Vaxholm.',
     },
     activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 9.8, sat: { km: 9.8, difficulty: 'Medel' } },
       kajak: { difficulty: 'lätt', rental: true, notes: 'Uthyrning vid Wärdshuset. Lugna vatten söder om ön.' },
       bad: {
         beaches: [
@@ -1029,7 +1039,8 @@ export const ISLANDS: Island[] = [
         ],
       },
       // KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-finnhamn/ (medelslinga 10,1 km; tre slingor plus Båtluffarleden) — ingen källa för exakt 12 km, justerat till belagd slinglängd.
-      vandring: { trails: 4, max_km: 10 },
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 4, max_km: 10.1, sat: { km: 10.1, difficulty: 'Medel' } },
     },
   },
   // ─── MÖJA ────────────────────────────────────────────────────
@@ -1178,7 +1189,8 @@ export const ISLANDS: Island[] = [
         ],
       },
       // KÄLLA: visitmoja.se/vandra (Stockholm Archipelago Trail-sektionen Långvik–Berg–Hamn med gren till Ulvik, samt Naturstigen Hamn–Ramsmora)
-      vandring: { trails: 2 },
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 2, max_km: 13.8, sat: { km: 13.8, difficulty: 'Lätt' } },
       fiske: true,
     },
     // KÄLLA: gasthamnsguide.se (Kyrkviken gästhamn, Berg: "Dusch | WC | El | Färskvatten...")
@@ -1685,6 +1697,10 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-arholma/ — etappen "Medel 13.4 km", start vid kajen, "utmanande stigar" och "teknisk stig"
       'Vandringsetappen på Arholma är drygt 13 kilometer och innehåller partier med teknisk stig — ha skor som tål berg.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 13.4, sat: { km: 13.4, difficulty: 'Medel' } },
+    },
     related: ['blido', 'furusund', 'norrora'],
     tags: ['ytterst', 'orört', 'norra', 'vilt', 'segling'],
     did_you_know: 'Arholma omtalas i skriftliga handlingar redan 1547 (Gustav Vasas räkenskaper). Ön fick sin första fasta lots 1724. Ön har ingen bilfärja — en passbåt går mellan Simpnäs på fastlandet och Arholma, en resa på ca 15 minuter; vilket fartyg som trafikerar linjen växlar med säsong.', // KÄLLA: stockholmslansmuseum.se/besoksmal/arholma (1547); Norrtälje kommuns kulturmiljöutredning om Arholma ("Arholma fick sin första fasta lots 1724"); ressel.se tidtabell Simpnäs–Arholma (M/S Monsun isfri period, M/S Ridö sommarsäsong)
@@ -1793,6 +1809,10 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-orno/ — "Bussen på Ornö går mellan Lättinge, Sundby, Ornö Kyrka, Hässelmara och Skinnardal ... du kan använda ditt SL-kort eller lösa enkelbiljett."
       'Det går buss på Ornö mellan Lättinge, Sundby, Ornö kyrka, Hässelmara och Skinnardal, och SL-kortet gäller — praktiskt om cykelbenen tar slut.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 34.1, sat: { km: 34.1, difficulty: 'Medel' } },
+    },
     related: ['uto', 'nattaro', 'dalaro'],
     tags: ['natur', 'vandring', 'skog', 'fåglar', 'lugnt'],
     // KÄLLA: Haninge kommun, "Ornö" (haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/orno/) — "Ornö, södra skärgårdens största ö". Postbåtens turtäthet kunde inte beläggas och är borttagen.
@@ -1899,6 +1919,10 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/.../oja-landsort.html — anordningar: rast-/övernattningsstuga, tältplats, toalett, vandringsled och stig
       'Det finns vandringsled, tältplats, toalett och en rast- och övernattningsstuga i området.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 10.7, sat: { km: 10.7, difficulty: 'Medel' } },
+    },
     related: ['uto', 'dalaro', 'nattaro'],
     tags: ['fyr', 'ytterst', 'dramatiskt', 'hav', 'fåglar'],
     // KÄLLA: Sjöfartsverket (äldsta svenskbyggda fyren, fyrbål 1651) + landsort.com:s kronologi (van der Hagens koncession 1658, privilegium 1669) + Hans Högmans fyrhistoria (fyren tänd 1678, tornet brann 1686, nytt torn klart 1687).
@@ -2002,6 +2026,10 @@ export const ISLANDS: Island[] = [
       // KÄLLA: furusund.se/hamnen/ — gästhamnen har "Gästplatser: 100" och grunddjupet anges till 2–3 meter enligt sjökort 111 SW; elanslutningen är 10 ampere (2026-09-14)
       'Grunddjupet i gästhamnen anges till 2–3 meter och eluttagen ger 10 ampere — värt att veta för den som kommer med djupgående båt eller kylskåpsladdning.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 7.2, sat: { km: 7.2, difficulty: 'Medel' } },
+    },
     related: ['blido', 'arholma', 'norrora'],
     tags: ['segling', 'Strindberg', 'norra', 'passage', 'historia'],
     did_you_know: 'Furusund var på 1800-talet ett av Stockholms läns mest populära sommarutflyktsställen. August Strindberg tillbringade flera somrar här och lät sig inspireras av ön.',
@@ -2373,6 +2401,10 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — förbud mot att "under tiden 1 februari–15 augusti landstiga på följande öar i Nåttaröfladen ... eller befara vattenområdet inom 100 meter från ovannämnda öar"
       'Paddlar du i Nåttaröfladen mellan 1 februari och 15 augusti: håll 100 meter från fågelskären. Förbudet gäller vattnet, inte bara land.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 9.5, sat: { km: 9.5, difficulty: 'Krävande' } },
+    },
     related: ['uto', 'orno', 'landsort'],
     tags: ['naturreservat', 'orört', 'segling', 'södra'],
     // KÄLLA: Länsstyrelsen Stockholm, naturreservat Nåttarö (areal 6 565 ha totalt, varav 609 ha land; Natura 2000-område)
@@ -2477,6 +2509,10 @@ export const ISLANDS: Island[] = [
       // KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-ingmarso/ — delar av leden beskrivs som tekniska och rekommenderas undvikas av personer med begränsad rörlighet (2026-09-14)
       'Delar av vandringsleden mellan norra och södra bryggan är tekniska — räkna med stig snarare än väg om du går hela sträckan.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 9.8, sat: { km: 9.8, difficulty: 'Medel' } },
+    },
     related: ['finnhamn', 'svartso', 'ljustero'],
     tags: ['bilfri', 'båtluffarleden', 'vandring', 'natur', 'mellersta'],
     // KÄLLA: en.wikipedia.org (Stockholm Archipelago Trail): "Opening in 2024 ... approximately 270 kilometers"; stockholmarchipelagotrail.com/sv/etapp/ingmarso/: leden passerar Kålgårdsön med roddbåtsöverfart
@@ -2568,6 +2604,10 @@ export const ISLANDS: Island[] = [
       // KÄLLA: xn--nmdhbf-bua0m.se/service-information/ — Handlarn i Solvik är "Livsmedelsaffär, bensinstation" (2026-09-14)
       'Handlarn i Solvik är både livsmedelsaffär och bensinstation — öns enda av båda slagen.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 13.1, sat: { km: 13.1, difficulty: 'Medel' } },
+    },
     related: ['moja', 'gallno', 'sandhamn'],
     tags: ['bilfri', 'genuint', 'segling', 'natur', 'kyrka'],
     // KÄLLA: att Nämdö specifikt härjades 1719 samt att kyrkan haft "minst tre föregångare" kunde ej beläggas och är borttaget. Kapell ca 1630 och kyrka invigd 1876: Svenska kyrkan (Djurö, Möja och Nämdö församling) + RAÄ bebyggelseregistret (se KÄLLA-kommentar ovanför activities-fältet).
@@ -2699,6 +2739,10 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f79/1649062024749/Svartsö.pdf — "Storträsk ... Den största av Svartsös fem insjöar och härifrån tar en del av de boende sitt dricksvatten."
       'Storträsk är öns största av fem insjöar och dricksvattentäkt för en del av de boende — respektera det.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 17.9, sat: { km: 17.9, difficulty: 'Lätt' } },
+    },
     related: ['moja', 'gallno', 'ingmarso'],
     tags: ['bilfri', 'helårs-ö', 'lanthandel', 'genuint', 'lantligt'],
     did_you_know: 'Svartsö har omkring 65 åretruntinvånare och är en av få mellanstora skärgårdsöar med levande helårsverksamhet — ön har egen skola, krog, vandrarhem och en lanthandel som även fungerar som apotekombud och Systembolagets utlämningsställe.',
@@ -2809,6 +2853,10 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f78/1649062024310/Runmarö.pdf — "Det finns ingen campingplats, men möjlighet att tälta någon natt." / "Du får tälta en natt. Vill du tälta längre tid måste du fråga den som äger marken."
       'Det finns ingen campingplats på Runmarö. Allemansrätten räcker till en natt — längre kräver markägarens tillstånd.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 18.5, sat: { km: 18.5, difficulty: 'Medel' } },
+    },
     related: ['sandhamn', 'moja', 'gallno'],
     tags: ['segling', 'naturhamn', 'bränsle', 'lugnt', 'mellersta'],
     // KÄLLA: runmarohembygdsförening.se/kalkhallar/ — apollofjärilen är "en av Sveriges största fjärilsarter och den finns bara på platser med kalkberggrund"
@@ -3157,6 +3205,10 @@ export const ISLANDS: Island[] = [
       'Lidö Värdshus är populärt för weekendpaket — boka i god tid, helst flera veckor i förväg.',
       'Skärgårdsstiftelsens vandringsleder mellan Lidö och de mindre öarna runt om är fina i juni–juli.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 11.9, sat: { km: 11.9, difficulty: 'Medel' } },
+    },
     related: ['furusund', 'blido', 'arholma'],
     tags: ['naturhotell', 'värdshus', 'norra', 'herrgård'],
     did_you_know: 'Lidö herrgård har medeltida rötter och nuvarande huvudbyggnad är från 1769. Sedan 1998 ägs ön av Skärgårdsstiftelsen, som arrenderar ut värdshuset till externa entreprenörer.',
@@ -3486,6 +3538,10 @@ export const ISLANDS: Island[] = [
       'Norrötorpet är el-fritt — perfekt för digital detox men kräver planering.',
       'Markerade vandringsleder av olika längd — bra för både dagsutflykt och längre vistelse.',
     ],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 11.7, sat: { km: 11.7, difficulty: 'Medel' } },
+    },
     related: ['uto', 'nattaro', 'landsort'],
     tags: ['naturreservat', 'skärgårdsstiftelsen', 'vandrarhem', 'södra'],
     did_you_know: 'Fjärdlång förvaltas av Skärgårdsstiftelsen och vandrarhemmet med 32 bäddar är öppet maj till mitten av september. Stugan Norrötorpet — 33 m² utan el — är en av få platser i Stockholms skärgård där man fortfarande hämtar vatten med handpump och bastubadar vid egen brygga.',
@@ -3565,6 +3621,10 @@ export const ISLANDS: Island[] = [
     harbors: [{ name: 'Köpmanholms Gästhamn', desc: 'Yxlans huvudhamn vid Köpmanholm — full service.', service: ['El', 'Vatten', 'Dusch'] }],
     restaurants: [{ name: 'Yxlans Café', type: 'Kafé', desc: 'Hemlagad mat och kaffe i lantlig miljö vid hamnen.' }],
     tips: ['Båda bilfärjorna (Furusund-Yxlan och Yxlan-Blidö) är avgiftsfria.', 'Cykla mellan bryggor — varje brygga har sin egen karaktär.', 'Köpmanholm är livligast under hummerveckan i september.'],
+    activity_meta: {
+      // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com/section (2026-09-17)
+      vandring: { trails: 1, max_km: 24, sat: { km: 24, difficulty: 'Medel' } },
+    },
     related: ['blido', 'furusund', 'graddo'],
     tags: ['stor ö', 'bilfärja', 'cykling', 'norra', 'köpmanholm'],
     did_you_know: 'Yxlan är broförbunden med både Furusund och Blidö via två avgiftsfria bilfärjor — Furusundsleden (600 m) i väster och Blidöleden (530 m) i öster. Tillsammans gör de Yxlan till en av de mest lättillgängliga större öarna i Roslagens skärgård, trots att den saknar fast brobindelse till fastlandet.',
