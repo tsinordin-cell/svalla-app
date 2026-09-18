@@ -47,10 +47,28 @@ export default function Nav() {
   }, [])
 
   // Visa bara bottom nav på app-sidor — INTE på informationssidor, ö-sidor eller öar-listan
-  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide/', '/forum', '/loppis']
+  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sparade', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide/', '/forum', '/loppis']
   const EXACT_PATHS = ['/logga', '/meddelanden']
+
+  /**
+   * Matchningen går på segmentgräns, inte på ren teckenprefix.
+   *
+   * Med `path.startsWith(p)` räckte det att en helt annan sida råkade börja på
+   * samma bokstäver för att den skulle få app-skalet. `/planera-tur` — en
+   * marknadssida vars egen kod säger "markerar sidan som hemsida, inte app" —
+   * fick app-navigationen ovanpå sin egen, med två SVALLA-loggor och två menyer
+   * på samma skärm, enbart för att den börjar på `/planera`. `/sparade` fick
+   * den av samma slump; den hör hemma här, så den står nu utskriven i listan
+   * i stället för att komma in bakvägen via `/spara`.
+   *
+   * Poster som slutar på `/` är avsiktliga prefix (`/tur/`, `/u/`, `/tagg/`,
+   * `/guide/`) och matchas som förut.
+   */
+  const matchar = (p: string) =>
+    p.endsWith('/') ? path.startsWith(p) : path === p || path.startsWith(p + '/')
+
   // Dölj nav i enskilda chattrum (/meddelanden/[id]) — input-fältet tar hela skärmen
-  const showNav = (APP_PATHS.some(p => path.startsWith(p)) || EXACT_PATHS.includes(path)) &&
+  const showNav = (APP_PATHS.some(matchar) || EXACT_PATHS.includes(path)) &&
     !path.match(/^\/meddelanden\/.+/)
 
   // Lägg till/ta bort body-klass för desktop sidebar-offset
@@ -139,7 +157,7 @@ export default function Nav() {
   // /upptack har fullskärms-karta + BookmarkButton i top-right — klockorna krockar
   const PAGES_WITH_OWN_BELLS = ['/feed', '/rutter', '/platser', '/profil', '/forum', '/u/', '/sok', '/upptack']
   const showGlobalBell = username !== null
-    && !PAGES_WITH_OWN_BELLS.some(p => path.startsWith(p))
+    && !PAGES_WITH_OWN_BELLS.some(matchar)
     && !path.match(/^\/meddelanden/)
 
   return (

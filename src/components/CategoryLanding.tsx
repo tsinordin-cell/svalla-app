@@ -94,6 +94,9 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  related,
  } = props
 
+ // Se kommentaren vid HIGHLIGHTS GRID nedan.
+ const nagonHarIkon = items.some(it => resolveIcon(it.icon) !== null)
+
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 0 }}>
  {/* WEBBPLATS-NAV — markerar sidan som "hemsida", inte app */}
@@ -106,12 +109,19 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  >
  <div style={{
  maxWidth: 1040, margin: '0 auto',
- display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16,
+ display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+ gap: 12, flexWrap: 'wrap', rowGap: 10,
  }}>
  <Link href="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
  <SvallaLogo height={22} color="#ffffff" />
  </Link>
- <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+ {/*
+   flexWrap: lankraden Karta/Resmal/Turer/Logga in/Kom igang ar 434 px
+   bred. I en 390 px-vy lag "Kom igang" — sidans primara knapp — utanfor
+   hogerkanten, och hela sidan fick horisontell scroll. Nu lagger sig
+   lankarna pa egen rad under loggan i stallet.
+ */}
+ <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexWrap: 'wrap', rowGap: 6, justifyContent: 'flex-end', flex: '1 1 auto' }}>
  <Link href="/karta" style={siteNavLinkStyle}>Karta</Link>
  <Link href="/resmal" style={siteNavLinkStyle}>Resmål</Link>
  <Link href="/populara-turer" style={siteNavLinkStyle}>Turer</Link>
@@ -214,9 +224,24 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  {intro}
  </section>
 
+ {/*
+   Antingen har alla kort i rutnatet en ikonruta eller inget kort har en.
+   Tidigare saknade enstaka kort ikon medan grannarna hade en, och da lag
+   rubrikerna i samma rad olika langt in — raden sag sned ut. Korten utan
+   ikon far nu en tom ruta av samma bredd i stallet for en pahittad symbol:
+   utrymmet ar det som ska matcha, inte att varje kort maste ha en bild.
+ */}
  {/* HIGHLIGHTS GRID */}
  <section style={{ maxWidth: 1040, margin: '0 auto', padding: '24px 20px 8px' }}>
- <div style={{ maxWidth: 760, margin: '0 auto 20px' }}>
+ {/*
+   720, inte 760: sidans ovriga textblock ligger i egna 760-sektioner med
+   20 px padding och borjar darfor pa 240 px i en 1200-vy. Den har rubriken
+   ligger i stallet centrerad inuti den bredare 1040-sektionen, och med 760
+   hamnade den pa 220 — tjugo pixlar vid sidan av allt annat i samma spalt.
+   720 ger samma vanster- och hogerkant som resten. Kortrutnatet under ar
+   avsiktligt bredare an textspalten.
+ */}
+ <div style={{ maxWidth: 720, margin: '0 auto 20px' }}>
  <h2
  style={{
  fontSize: 22,
@@ -246,7 +271,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  Googlebot plockade upp "/krogar-och-matMiddags-paket" som en riktig
  länk, vilket gav 404 i Search Console. Separator mellan delarna. */}
  {items.map(it => (
- <LandingCard key={`${it.href}|${it.title}`} item={it} accent={heroGradient[0]} />
+ <LandingCard key={`${it.href}|${it.title}`} item={it} accent={heroGradient[0]} reservera={nagonHarIkon} />
  ))}
  </div>
  </section>
@@ -429,7 +454,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  )
 }
 
-function LandingCard({ item, accent }: { item: LandingItem; accent: string }) {
+function LandingCard({ item, accent, reservera }: { item: LandingItem; accent: string; reservera?: boolean }) {
  const cardStyle = {
  display: 'flex',
  flexDirection: 'column' as const,
@@ -446,12 +471,7 @@ function LandingCard({ item, accent }: { item: LandingItem; accent: string }) {
  <>
  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
  {(() => {
- const iconName = resolveIcon(item.icon)
- if (!iconName) return null
- return (
- <span
- aria-hidden
- style={{
+ const ruta: CSSProperties = {
  width: 34,
  height: 34,
  borderRadius: 10,
@@ -461,8 +481,31 @@ function LandingCard({ item, accent }: { item: LandingItem; accent: string }) {
  alignItems: 'center',
  justifyContent: 'center',
  flexShrink: 0,
- }}
- >
+ }
+
+ /*
+   Siffra som ikon = stegnummer.
+
+   /planera-tur skickar '1'...'6' till sina sex kort under rubriken
+   "Planeringen i sex steg". Siffror finns varken i emoji-tabellen eller
+   bland ikonnamnen, sa emojiToIcon foll tillbaka pa 'compass' — och alla
+   sex korten fick samma kompass. Avsikten var uppenbart numrering.
+   Numret ar sant om innehallet (sidan kallar dem steg), kompassen var
+   bara vad tabellen rakade svara.
+ */
+ const siffra = item.icon?.trim()
+ if (siffra && /^\d{1,2}$/.test(siffra)) {
+ return (
+ <span style={{ ...ruta, fontSize: 15, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
+ {siffra}
+ </span>
+ )
+ }
+
+ const iconName = resolveIcon(item.icon)
+ if (!iconName) return reservera ? <span aria-hidden style={{ width: 34, flexShrink: 0 }} /> : null
+ return (
+ <span aria-hidden style={ruta}>
  <Icon name={iconName} size={18} stroke={2} />
  </span>
  )

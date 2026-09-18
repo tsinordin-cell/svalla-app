@@ -7,6 +7,7 @@ import Icon, { type IconName } from '@/components/Icon'
 import { ALL_ISLANDS, type Island } from '../o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from './oar-categories'
 import IslandThumb from '@/components/IslandThumb'
+import { OBILDER } from '@/app/o/obilder.generated'
 
 export const metadata: Metadata = {
   title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer | Svalla',
@@ -251,8 +252,16 @@ export default function OarIndexPage() {
                 <div style={{ fontSize: 11, color: 'var(--acc)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 6 }}>
                   {c.count} öar
                 </div>
+                {/*
+                  Kortrubriken kortas eftersom "Skärgårdsöar" redan står i
+                  sidans egen rubrik. Men ordet måste BYTAS, inte strippas:
+                  ströks det utan ersättning blev fem av tio rubriker
+                  meningsfragment — "för cykling", "utan bil — kollektivt och
+                  med båt", "med havsbastu". Samma ersättning används på
+                  /oar/[kategori].
+                */}
                 <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)', marginBottom: 4, fontFamily: "'Playfair Display', Georgia, serif" }}>
-                  {c.title.replace(' i skärgården', '').replace('Skärgårdsöar — ', '').replace('Skärgårdsöar ', '')}
+                  {c.title.replace('Skärgårdsöar', 'Öar').replace(' i skärgården', '')}
                 </div>
                 <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
                   {c.hero.split(' — ')[0]}
@@ -325,11 +334,11 @@ export default function OarIndexPage() {
                         display: 'flex', gap: 14, alignItems: 'center',
                       }}
                     >
-                      {i.coverImage ? (
+                      {(OBILDER[i.slug]?.url ?? i.coverImage) ? (
                         <div style={{
                           width: 64, height: 48, flexShrink: 0,
                           borderRadius: 8, overflow: 'hidden',
-                          background: `url('${i.coverImage}') center/cover, linear-gradient(135deg, #1e5c82, #2d7d8a)`,
+                          background: `url('${OBILDER[i.slug]?.url ?? i.coverImage}') center/cover, linear-gradient(135deg, #1e5c82, #2d7d8a)`,
                         }} aria-hidden />
                       ) : (
                         <IslandThumb slug={i.slug} region={i.region} width={64} height={48} />

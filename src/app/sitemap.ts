@@ -164,6 +164,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // med canonical-URL:erna och förvirrar Google's crawl-prioritering.
     { url: `${base}/farjor`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/statistik`,              lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
+    // Stockholm Archipelago Trail — pelarsida för hela leden, 22 etapper
+    { url: `${base}/stockholm-archipelago-trail`, lastModified: now, priority: 0.9, changeFrequency: 'monthly' as const },
     // Region-landningssidor — SEO-marknadsföring, driver till signup
     { url: `${base}/stockholms-skargard`,    lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     { url: `${base}/bohuslan`,               lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
@@ -394,14 +396,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const supabase = createClient()
 
-    const [{ data: restaurants }, { data: tours }, { data: articles }, { data: plannedRoutes }, { data: forumCats }, { data: forumThreads }] = await Promise.all([
+    // Varje fråga returnerar { data, error } — den kastar INTE. En trasig fråga ger
+    // alltså data: null och resten av sitemapen byggs som vanligt. Det doldes ett
+    // fel i två år: tours har ingen kolumn updated_at (den heter created_at), så
+    // frågan svarade 42703 och samtliga 13 rutt-sidor har aldrig funnits i
+    // sitemapen. MÄTT 2026-09-16. Därför loggas nu varje enskilt fel nedan.
+    const [
+      { data: restaurants, error: restaurantsErr },
+      { data: tours, error: toursErr },
+      { data: articles, error: articlesErr },
+      { data: plannedRoutes, error: plannedRoutesErr },
+      { data: forumCats, error: forumCatsErr },
+      { data: forumThreads, error: forumThreadsErr },
+    ] = await Promise.all([
       supabase.from('restaurants').select('id, slug, updated_at').order('id'),
-      supabase.from('tours').select('id, updated_at').order('id'),
+      supabase.from('tours').select('id, created_at').order('id'),
       supabase.from('articles').select('slug, updated_at, published').eq('published', true),
       supabase.from('planned_routes').select('id, updated_at').eq('status', 'published'),
       supabase.from('forum_categories').select('id'),
       supabase.from('forum_threads').select('id, category_id, last_reply_at').eq('in_spam_queue', false).order('last_reply_at', { ascending: false }).limit(500),
     ])
+
+    for (const [namn, err] of [
+      ['restaurants', restaurantsErr], ['tours', toursErr], ['articles', articlesErr],
+      ['planned_routes', plannedRoutesErr], ['forum_categories', forumCatsErr],
+      ['forum_threads', forumThreadsErr],
+    ] as const) {
+      if (err) console.error(`[sitemap] frågan mot ${namn} misslyckades — de sidorna utelämnas:`, err)
+    }
 
     platsPages = (restaurants ?? []).map((r: { id: string; slug?: string; updated_at?: string }) => ({
       // Föredra slug-URL (snyggare + mer SEO-värde) men fallback till UUID
@@ -412,9 +434,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.75,
     }))
 
-    rutterPages = (tours ?? []).map((t: { id: string; updated_at?: string }) => ({
+    rutterPages = (tours ?? []).map((t: { id: string; created_at?: string }) => ({
+      // Rutt-sidan slår upp på UUID (.eq('id', id)); slug ger 404. Därför id, inte slug.
       url: `${base}/rutter/${t.id}`,
-      lastModified: t.updated_at ? new Date(t.updated_at) : now,
+      lastModified: t.created_at ? new Date(t.created_at) : now,
       changeFrequency: 'monthly' as const,
       priority: 0.75,
     }))
@@ -446,8 +469,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly' as const,
       priority: 0.65,
     }))
-  } catch {
-    // Om Supabase inte svarar — returnera ändå resten av sitemap
+  } catch (err) {
+    // Om Supabase inte svarar returnerar vi ändå resten av sitemapen — men tyst
+    // gjorde det mer skada än nytta. 14–16 sep 2026 var projektet strypt
+    // (exceed_egress_quota) och sitemapen krympte från 2 492 till 1 728 URL:er
+    // utan att något larmade: 774 sidor försvann ur Google och det upptäcktes
+    // först vid en manuell länkkontroll två dygn senare.
+    console.error('[sitemap] Supabase svarade inte — dynamiska sidor utelämnade:', err)
   }
 
   return [

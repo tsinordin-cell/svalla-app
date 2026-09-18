@@ -65,10 +65,11 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   arholma: {
-    body: 'Arholma är norra skärgårdens yttersta ö och en hel dag i sig. Fyren, det gamla lotshuset och havsklipporna mot öppet hav skapar en stämning som är svår att hitta närmre Stockholm. Mot öster möter havet ingen land förrän i Finland.',
+    // KÄLLA: sjofartsverket.se, Arholma båk — känningsbåk från 1768 som aldrig haft fyrljus och som tjänade som lotsutkik fram till 1875. Ön har ingen fyr.
+    body: 'Arholma är norra skärgårdens yttersta ö och en hel dag i sig. Båken från 1768 — en känningsbåk utan fyrljus, som tjänade som lotsutkik fram till 1875 — och havsklipporna mot öppet hav skapar en stämning som är svår att hitta närmre Stockholm.',
     tips: [
       'Räkna med 3–4 timmars restid vardera väg — planera för en tidig start.',
-      'Arholma Café håller öppet sommartid — men ta med extra mat.',
+      'Ta med extra mat — utbudet på ön är begränsat.',
       'Kontrollera aktuella reservatsregler för hundar.',
     ],
   },
