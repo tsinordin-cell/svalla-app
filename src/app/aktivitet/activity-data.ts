@@ -1,6 +1,6 @@
 import { ALL_ISLANDS, type Island } from '../o/island-data'
 
-export type ActivityType = 'segling' | 'cykla' | 'bada' | 'vandring' | 'mat'
+export type ActivityType = 'segling' | 'cykla' | 'bada' | 'vandring' | 'mat' | 'fiske'
 
 export type ActivityMeta = {
   slug: ActivityType
@@ -73,6 +73,30 @@ export const ACTIVITIES: Record<ActivityType, ActivityMeta> = {
     bestSeason: 'Juni–augusti är de flesta krogar öppna. Sandhamn, Vaxholm och Marstrand håller öppet året runt.',
     level: 'Inga krav.',
     matchers: ['restaurang', 'krog', 'värdshus', 'bistro', 'kafé', 'cafe', 'bageri', 'mat'],
+  },
+  fiske: {
+    slug: 'fiske',
+    name: 'Fiske',
+    shortName: 'Fiske',
+    hero: 'Fiska i skärgården — fritt längs kusten, men inte överallt',
+    // KÄLLA: Havs- och vattenmyndigheten — handredskapsfiske är fritt på allmänt vatten
+    // längs kusten och i de fem stora sjöarna (läst 2026-09-18).
+    // KÄLLA: Länsstyrelsen Stockholm, lansstyrelsen.se/stockholm/djur/fiske — 60
+    // fredningsområden med fiskeförbud 1 april–15 juni, varav 7 året runt, plus 13
+    // fredningsområden vid åmynningar med fiskeförbud på hösten (läst 2026-09-18).
+    description: 'Handredskapsfiske är fritt på allmänt vatten längs kusten — du behöver inget fiskekort för att meta eller kasta från en klippa i Stockholms skärgård. Men friheten har gränser: i skärgården finns 60 fredningsområden med fiskeförbud 1 april–15 juni, varav sju gäller året runt. Kontrollera alltid kartan på svenskafiskeregler.se innan du börjar — förbudsområdena syns inte i naturen.',
+    whatToBring: [
+      'Kontrollerad position mot svenskafiskeregler.se — fredningsområdena är inte utmärkta på plats',
+      'Spö och rulle anpassade för kustfiske',
+      'Måttband — det finns minimimått och fångstbegränsningar',
+      'Avbitare och peang för kroklossning',
+      'Solglasögon med polariserat glas',
+    ],
+    // KÄLLA: Länsstyrelsen Stockholm — vårfredning 1 april–15 juni, höstfredning vid
+    // åmynningar när havsöringen går upp för att leka (läst 2026-09-18).
+    bestSeason: 'Sensommar och höst är enklast — vårfredningen 1 april–15 juni stänger 60 vikar i Stockholms skärgård, och på hösten är 13 åmynningar fredade när havsöringen leker.',
+    level: 'Alla nivåer. Ansvaret för att känna till reglerna ligger dock på dig som fiskar.',
+    matchers: ['sportfiske', 'fisketur', 'fiskeguide', 'abborre', 'gädda', 'havsöring', 'spinnfiske', 'fiskevatten'],
   },
 }
 
