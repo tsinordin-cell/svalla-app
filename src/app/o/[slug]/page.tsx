@@ -330,7 +330,9 @@ export default async function IslandPage({ params }: Props) {
  <div>
  <h1 style={{ fontSize: 42, fontWeight: 700, margin: '0 0 6px', letterSpacing: -0.5, fontFamily: "'Playfair Display', Georgia, serif" }}>{island.name}</h1>
  <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', margin: 0, lineHeight: 1.5, maxWidth: 560, fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic' }}>{island.tagline}</p>
- {(visitorCount ?? 0) > 0 && (
+ {/* "1 seglare har besökt" säger mindre än ingenting. Visas först från tio.
+     Toms ja 2026-09-19. */}
+ {(visitorCount ?? 0) >= 10 && (
  <div style={{
  display: 'inline-flex', alignItems: 'center', gap: 8,
  marginTop: 14, padding: '8px 16px', borderRadius: 999,
@@ -361,7 +363,8 @@ export default async function IslandPage({ params }: Props) {
  </div>
  </div>
 
- {/* Spara ön + logga besök + dela + forum CTA */}
+ {/* Spara + dela. Besökt, Forum och Nyhetsbrev låg också här — fem knappar
+     innan första innehållet på mobil. Flyttade till "Mer om X" 2026-09-19 (Toms ja). */}
  <div style={{ display: 'flex', gap: 10, marginTop: 22, flexWrap: 'wrap' }}>
  <SaveIslandButton islandSlug={island.slug} islandName={island.name} variant="pill" />
  <ShareButton
@@ -371,54 +374,6 @@ export default async function IslandPage({ params }: Props) {
    surface="island-page"
    entityId={island.slug}
  />
- <MarkVisitedButton islandSlug={island.slug} islandName={island.name} />
- <Link
-  href={`/forum/o/${island.slug}`}
-  style={{
-   display: 'inline-flex',
-   alignItems: 'center',
-   gap: 7,
-   padding: '9px 16px',
-   background: 'rgba(255,255,255,0.15)',
-   color: '#fff',
-   borderRadius: 50,
-   textDecoration: 'none',
-   fontSize: 13,
-   fontWeight: 600,
-   border: '1px solid rgba(255,255,255,0.25)',
-   backdropFilter: 'blur(4px)',
-   whiteSpace: 'nowrap',
-  }}
- >
-  <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-   <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z" />
-  </svg>
-  Forum
- </Link>
- <Link
-  href="/nyhetsbrev"
-  style={{
-   display: 'inline-flex',
-   alignItems: 'center',
-   gap: 7,
-   padding: '9px 16px',
-   background: 'rgba(255,255,255,0.92)',
-   color: '#0d3f5a',
-   borderRadius: 50,
-   textDecoration: 'none',
-   fontSize: 13,
-   fontWeight: 700,
-   border: '1px solid rgba(255,255,255,0.6)',
-   backdropFilter: 'blur(4px)',
-   whiteSpace: 'nowrap',
-  }}
- >
-  <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-   <rect x="2" y="4" width="20" height="16" rx="2"/>
-   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-  </svg>
-  Nyhetsbrev
- </Link>
  </div>
 
  {/* Quick facts */}
@@ -1106,6 +1061,26 @@ export default async function IslandPage({ params }: Props) {
        </div>
        <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
       </div>
+     </Link>
+    </div>
+    {/* Flyttat hit från heron 2026-09-19: logga besök, forum, nyhetsbrev. */}
+    <div style={{ display: 'flex', gap: 10, marginTop: 14, flexWrap: 'wrap' }}>
+     <MarkVisitedButton islandSlug={island.slug} islandName={island.name} variant="sektion" />
+     <Link href={`/forum/o/${island.slug}`} style={{
+       display: 'inline-flex', alignItems: 'center', gap: 8,
+       padding: '10px 18px', borderRadius: 999,
+       border: '1px solid var(--surface-3)', background: 'var(--white)',
+       color: 'var(--sea)', fontSize: 13.5, fontWeight: 700, textDecoration: 'none',
+      }}>
+      <Icon name="messageCircle" size={15} stroke={2} /> Forum om {island.name}
+     </Link>
+     <Link href="/nyhetsbrev" style={{
+       display: 'inline-flex', alignItems: 'center', gap: 8,
+       padding: '10px 18px', borderRadius: 999,
+       border: '1px solid var(--surface-3)', background: 'var(--white)',
+       color: 'var(--sea)', fontSize: 13.5, fontWeight: 700, textDecoration: 'none',
+      }}>
+      <Icon name="mail" size={15} stroke={2} /> Nyhetsbrev
      </Link>
     </div>
    </section>
