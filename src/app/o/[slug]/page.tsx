@@ -1096,47 +1096,11 @@ export default async function IslandPage({ params }: Props) {
    </section>
 
    {/*
-     FAQ — synlig för besökare sedan 2026-08-21.
-
-     Innehållet fanns redan och publicerades till Google via FAQPage-schemat
-     högre upp i filen, men renderades aldrig för människor. Sjutton öar hade
-     alltså handskrivna svar som bara sökmotorn kunde läsa.
-
-     Ingen ny faktarisk: exakt samma text som redan låg i JSON-LD.
-     <details> ger hopfällbarhet utan JavaScript.
+     Vanliga frågor renderas av <FAQSection> högre upp (synlig sedan april 2026,
+     med FAQPage-schema). Ett andra, identiskt block lades till 2026-08-21 på
+     felaktig grund ("renderades aldrig för människor") och gav två h2
+     "Vanliga frågor om X" på varje ö-sida. Borttaget 2026-09-19.
    */}
-   {(() => {
-     const faqs = getFaqsForIsland(island)
-     if (faqs.length === 0) return null
-     return (
-       <section style={{ marginBottom: 52 }}>
-         <SectionHeader icon="lightbulb" title={`Vanliga frågor om ${island.name}`} />
-         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-           {faqs.map(faq => (
-             <details key={faq.q} style={{
-               background: 'var(--white)',
-               border: '1px solid var(--surface-3)',
-               borderRadius: 12,
-               padding: '14px 18px',
-             }}>
-               <summary style={{
-                 fontSize: 14, fontWeight: 600, color: 'var(--txt)',
-                 cursor: 'pointer', listStyle: 'none',
-               }}>
-                 {faq.q}
-               </summary>
-               <p style={{
-                 fontSize: 13, color: 'var(--txt2)', lineHeight: 1.7,
-                 margin: '10px 0 0',
-               }}>
-                 {faq.a}
-               </p>
-             </details>
-           ))}
-         </div>
-       </section>
-     )
-   })()}
 
    {/* Related islands */}
  {relatedIslands.length > 0 && (
@@ -1185,14 +1149,17 @@ export default async function IslandPage({ params }: Props) {
      Genereras av scripts/generera-kallor.mjs ur KÄLLA-raderna i datafilerna. */}
  <IslandKallor slug={island.slug} islandName={island.name} />
 
- {/* Guider om ön — intern länkning till /guider/[slug] (220 artiklar) */}
- {guideLinks.length > 0 && (
+ {/* Guider om ön — /guider/[slug] (220 artiklar) och bloggartiklar i EN sektion.
+     Tidigare två sektioner med samma rubrik "Guider om X" efter varandra. */}
+ {(guideLinks.length > 0 || (island.blogLinks && island.blogLinks.length > 0)) && (
   <section style={{ marginBottom: 36 }}>
    <SectionHeader icon="book" title={`Guider om ${island.name}`} />
+   {guideLinks.length > 0 && (
    <div style={{
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
     gap: 10,
+    marginBottom: island.blogLinks && island.blogLinks.length > 0 ? 10 : 0,
    }}>
     {guideLinks.map(g => (
      <Link
@@ -1216,13 +1183,8 @@ export default async function IslandPage({ params }: Props) {
      </Link>
     ))}
    </div>
-  </section>
- )}
-
- {/* Guider om ön — intern länkning till bloggartiklar */}
- {island.blogLinks && island.blogLinks.length > 0 && (
-  <section style={{ marginBottom: 36 }}>
-   <SectionHeader icon="book" title={`Guider om ${island.name}`} />
+   )}
+   {island.blogLinks && island.blogLinks.length > 0 && (
    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
     {island.blogLinks.map(link => (
      <Link
@@ -1244,6 +1206,7 @@ export default async function IslandPage({ params }: Props) {
      </Link>
     ))}
    </div>
+   )}
   </section>
  )}
 
