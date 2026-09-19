@@ -22,11 +22,6 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "waxholmsbolaget-guide": {
-    "antal": 1,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "skargard-utan-bat": {
     "antal": 9,
     "datum": "2026-08",
@@ -290,4 +285,4 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
 }
 
 /** Antal guider som innehåller minst en uppskattad prisnivå. */
-export const GUIDER_MED_UPPSKATTNING = 54
+export const GUIDER_MED_UPPSKATTNING = 53

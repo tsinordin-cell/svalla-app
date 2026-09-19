@@ -76,7 +76,7 @@ const faqJsonLd = {
     {
       '@type': 'Question',
       name: 'Kan man ta SL-kortet med Waxholmsbolaget?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Ja. SL-kortet och SL Access gäller på Waxholmsbolagets linjer inom SL:s trafikområde. Vissa yttre linjer kan kräva tillägg — kolla aktuell info på sl.se.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolaget-biljett 30 april–13 september; 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.' }, // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19
     },
     {
       '@type': 'Question',
@@ -424,11 +424,12 @@ export default async function FarjorPage() {
               },
               {
                 q: 'Kan man ta SL-kortet med Waxholmsbolaget?',
-                a: 'Ja. SL-kortet och SL Access gäller på Waxholmsbolagets linjer inom SL:s trafikområde. Observera att vissa yttre linjer (t.ex. till Utö via Nynäshamn) kan kräva tillägg eller separat biljett — kolla aktuell info på sl.se.',
+                // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19. "SL Access" finns inte längre som namn; Utö går från Årsta brygga, inte Nynäshamn.
+                a: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolaget-biljett 30 april–13 september; 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.',
               },
               {
                 q: 'Vad skiljer Cinderella från Waxholmsbolaget?',
-                a: 'Waxholmsbolaget är skärgårdens kollektivtrafik — många linjer, fler avgångar, SL-kort gäller. Cinderella är mer turistinriktad med längre dagsrutter, bar ombord och mer festlig stämning. Cinderella passar bäst för dagstur eller helgresa; Waxholmsbolaget passar bättre för att pendla till sommarstugan.',
+                a: 'Waxholmsbolaget är skärgårdens kollektivtrafik — många linjer, fler avgångar, SL-biljett gäller i SL-området runt Vaxholm. Cinderella är mer turistinriktad med längre dagsrutter, bar ombord och mer festlig stämning. Cinderella passar bäst för dagstur eller helgresa; Waxholmsbolaget passar bättre för att pendla till sommarstugan.',
               },
               {
                 q: 'När börjar och slutar Cinderellabåtarnas säsong?',
