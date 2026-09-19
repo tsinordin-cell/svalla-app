@@ -769,7 +769,8 @@ export const ISLANDS: Island[] = [
       'Förvaltaren har en egen historia. Stiftelsen Stockholms skärgård bildades den 20 mars 1959, och 1998 fördubblades markinnehavet när Stockholms stad skänkte sina skärgårdsmarker — från omkring 7 000 till omkring 14 000 hektar. Stiftelsen beskriver sig i dag som Stockholms läns tredje största markägare, och äger cirka tvåtusen byggnader i skärgården.',
     ],
     facts: {
-      travel_time: 'Waxholmsbåt från Strömkajen',
+      // KÄLLA: waxholmsbolaget.se reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: linje 13 Strömkajen–Södra Grinda 1 tim 50 min, linje 14 1 tim 45 min, linje 11 2 tim 35 min
+      travel_time: 'ca 1 h 45 min–1 h 50 min med Waxholmsbåt från Strömkajen (linje 13/14)',
       character: 'Naturskönt, välskött, bra mat, populär gästhamn',
       season: 'Maj–September',
       best_for: 'Seglare, vandring, romantiska par, familjer',
