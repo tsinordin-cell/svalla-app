@@ -203,8 +203,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
             Praktiska tips
           </h3>
           <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
-            <li>Barn under 7 år åker gratis med Waxholmsbolaget. Barn 7–19 år betalar halvpris.</li>
-            <li>SL-periodbiljett och SL Access-kort gäller på vissa Waxholmsbolaget-linjer (kontrollera aktuell info)</li>
+            {/* KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19. "Halvpris" var fel: 39–114 kr mot 61–186 kr. */}
+            <li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen. 7–19 år betalar rabatterat pris (39–114 kr i stället för 61–186 kr).</li>
+            <li>Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd. Längre ut krävs Waxholmsbolaget-biljett 30 april–13 september; 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken.</li>
             <li>Boka sittplats i förväg på populära rutter under högsäsong (juli)</li>
             <li>Kom i god tid — båtarna avgår exakt på utsatt tid</li>
             {island.transport_meta && island.transport_meta.car_parking && (
