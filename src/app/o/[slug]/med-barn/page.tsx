@@ -265,6 +265,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
               Thorkel hittar rätt båt, bästa lunchrestaurangen och ett badtips anpassat för barn.
             </div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver gratis konto — tar 30 sekunder.</div>
           </div>
           <Link href="/planera" style={{
             display: 'inline-block', background: '#e8924a', color: '#fff',
