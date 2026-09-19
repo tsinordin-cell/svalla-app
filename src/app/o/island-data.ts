@@ -451,8 +451,8 @@ export const ISLANDS: Island[] = [
       { name: 'Utö campingplats', type: 'Camping', desc: 'Tältplats nära Gruvbryggan, sköts av Hamnboden/Utö gästhamn.', websiteUrl: 'https://www.uto.se/camping/' },
     ],
     getting_there: [
-      { method: 'Skärgårdsbåt', from: 'Årsta brygga, Nynäshamn', time: '1,5 h', desc: 'Waxholmsbolagets skärgårdslinje från Årsta brygga i Nynäshamn (kommunal- och SL-kort gäller ej — separat biljett).', icon: '⛴' },
-      { method: 'Snabbåt', from: 'Årsta brygga, Nynäshamn', time: '30 min', desc: 'Snabbare alternativ sommartid — körs som expresslinje av Waxholmsbolaget.', icon: '🚤' },
+      { method: 'Skärgårdsbåt', from: 'Årsta brygga, Haninge', time: '40 min', desc: 'Waxholmsbolagets linje 21 från Årsta brygga i Haninge, 40 min till Gruvbryggan. Waxholmsbolaget-biljett krävs (104 kr vuxen, 64 kr 7–19 år) utom 14 september–29 april för den som har SL-periodbiljett på 30 dagar eller mer.', icon: '⛴' }, // KÄLLA: waxholmsbolaget.se reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: linje 21 Årsta brygga–Gruvbryggan 40 min, taxa 3 = 104/64 kr; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar. Årsta brygga ligger i Haninge kommun, inte Nynäshamn.,
+      { method: 'Snabbåt', from: 'Årsta brygga, Haninge', time: '30 min', desc: 'Snabbare alternativ sommartid — körs som expresslinje av Waxholmsbolaget.', icon: '🚤' },
       { method: 'Pendel + buss + båt', from: 'Stockholm City', time: '2 h totalt', desc: 'Pendeltåg linje 43 till Västerhaninge, buss 846 till Årsta brygga (16 min), sedan båt till Gruvbryggan 35–75 min, beställningsbrygga på de flesta turer.', icon: '🚆' },
     ],
     harbors: [
@@ -791,7 +791,7 @@ export const ISLANDS: Island[] = [
       { name: 'Grinda Camping', type: 'Camping', desc: 'Tältplats i naturskön miljö. Ingen förbokning krävs — välj plats när du kommer.', websiteUrl: 'https://grinda.se/en/accommodation/camping/' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2 h', desc: 'Direktlinje. Ordinarie Waxholmsbolagsbiljett krävs — SL-kort gäller inte på reguljär skärgårdstrafik under högsäsong.', icon: '⛴' }, // KÄLLA: svalla.se/guider/waxholmsbolaget-guide ("SL-kortet gäller INTE på Waxholmsbolagets reguljära skärgårdstrafik"); SL-biljett gäller samtliga linjer endast 14 sep–29 apr (mynewsdesk.com/se/sl)
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '1 h 50 min', desc: 'Linje 13 via Vaxholm till Södra Grinda. SL-biljett gäller till Vaxholm; sträckan Vaxholm–Grinda kräver Waxholmsbolaget-biljett 30 april–13 september (125 kr vuxen, 79 kr 7–19 år från Strömkajen). 14 september–29 april gäller SL-periodbiljett på 30 dagar eller mer hela vägen.', icon: '⛴' }, // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor (exemplet Strömkajen–Grinda står på sidan); sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; waxholmsbolaget.se reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: linje 13, 1 h 50 min, taxa 4 = 125/79 kr. Tidigare KÄLLA pekade på svalla.se:s egen guide — en självcitering, borttagen.
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamnen tar emot alla. Boka el-plats i förväg.', icon: '⛵' },
     ],
     harbors: [
@@ -957,7 +957,7 @@ export const ISLANDS: Island[] = [
     ],
     getting_there: [
       // KÄLLA: sl.se/aktuellt/nyheter/sl-biljetter-i-en-del-av-waxholmsbolagets-trafik (SL-biljett/reskassa gäller bara Strömkajen–Vaxholm med omnejd); regionstockholm.se (SL-periodkort 30 dagar+ gäller alla linjer men bara lågsäsong 14/9–29/4).
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '~3 h', desc: 'SL-biljett gäller inte hela sträckan; SL-periodkort gäller endast under lågsäsong.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '~3 h', desc: 'SL-biljett gäller till Vaxholm; resten kräver Waxholmsbolaget-biljett 30 april–13 september. 14 september–29 april gäller SL-periodbiljett på 30 dagar eller mer hela vägen.', icon: '⛴' }, // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Ankra i Paradisviken (Djupfladen) eller förtöj i gästhamnen.', icon: '⛵' },
     ],
     harbors: [
