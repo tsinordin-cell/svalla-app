@@ -680,7 +680,7 @@ export const GUIDES: GuideMeta[] = [
     faqs: [
       { q: 'Hur tar man sig till Landsort?', a: 'Med Waxholmsbolaget från Nynäshamn – resan tar ca 1,5 timmar. Landsort är den sydligaste punkten i Stockholms skärgård och kräver planering då avgångarna är begränsade, speciellt utanför högsäsong.' },
       // KÄLLA: Sjöfartsverket (äldsta svenskbyggda fyren) + landsort.com:s kronologi — fyrbåk 1651, van der Hagens privilegium 1669, nuvarande torn 1680-talet.
-      { q: 'Vad är Landsort känt för?', a: 'Landsort har Sveriges äldsta bevarade fyrtorn — fyrplatsen går tillbaka till 1600-talets mitt och nuvarande torn restes på 1680-talet. Dessutom ett unikt mikroklimat med mildare vintrar än fastlandet och en dramatisk ytterskärgårdsnatur. Ön är bilfri och har ett genuint fiskeläge.' },
+      { q: 'Vad är Landsort känt för?', a: 'Landsort har Sveriges äldsta bevarade svenskbyggda fyrtorn — fyrplatsen går tillbaka till 1600-talets mitt och nuvarande torn restes på 1680-talet. Nidingen, Kullen och Falsterbo är äldre men danskbyggda. Dessutom ett unikt mikroklimat med mildare vintrar än fastlandet och en dramatisk ytterskärgårdsnatur. Ön är bilfri och har ett genuint fiskeläge.' },
       { q: 'Kan man övernatta på Landsort?', a: 'Ja, det finns ett vandrarhem på ön och möjlighet att hyra stugor. Tältning är möjlig men ön är liten – planera var du slår upp tältet. Boka boende i god tid under sommaren.' },
       { q: 'Är Landsort värt resan?', a: 'Absolut om du söker verklig ytterskärgård med vildmark och historisk atmosfär. Landsort är inte en turistdestination med utbud – det är en ö för dem som vill ha stillhet, havsöppning och natur utan folkmassor.' },
     ],
