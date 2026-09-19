@@ -24,6 +24,7 @@ import { getGuidesForIsland } from '../../guider/guide-island-map'
 import IslandB2BCTA from '@/components/IslandB2BCTA'
 import IslandHantverkare from '@/components/IslandHantverkare'
 import IslandKallor from '@/components/IslandKallor'
+import Hopfallbart from '@/components/Hopfallbart'
 import IslandFoto from '@/components/IslandFoto'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -630,10 +631,24 @@ export default async function IslandPage({ params }: Props) {
  {/* Om ön */}
  <section style={{ marginBottom: 36 }}>
  <SectionHeader icon="book" title={`Om ${island.name}`} />
+ {/* Fyra stycken syns, resten bakom "Läs hela texten". Mätt 2026-09-19: 18 stycken
+     / 3 435 px på Grinda i telefonbredd. Inget innehåll tas bort — se Hopfallbart. */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
- {island.description.map((para, i) => (
+ {(() => {
+ const stycke = (para: string, i: number) => (
  <p key={i} style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.75, margin: 0 }}>{para}</p>
- ))}
+ )
+ const SYNLIGA = 4
+ if (island.description.length <= SYNLIGA + 1) return island.description.map(stycke)
+ const dolda = island.description.length - SYNLIGA
+ return (
+ <Hopfallbart
+ synligt={island.description.slice(0, SYNLIGA).map(stycke)}
+ dolt={island.description.slice(SYNLIGA).map((p, i) => stycke(p, i + SYNLIGA))}
+ etikett={`Läs hela texten om ${island.name} (${dolda} stycken till)`}
+ />
+ )
+ })()}
  </div>
  </section>
 
@@ -1161,7 +1176,9 @@ export default async function IslandPage({ params }: Props) {
     gap: 10,
     marginBottom: island.blogLinks && island.blogLinks.length > 0 ? 10 : 0,
    }}>
-    {guideLinks.map(g => (
+    {/* Sex guider syns, resten bakom knappen. Mätt 2026-09-19: 20 länkar / 3 051 px på Grinda. */}
+    {(() => {
+     const kort = (g: typeof guideLinks[number]) => (
      <Link
       key={g.slug}
       href={`/guider/${g.slug}`}
@@ -1181,7 +1198,18 @@ export default async function IslandPage({ params }: Props) {
       </div>
       <span style={{ color: 'var(--sea)', fontWeight: 700, flexShrink: 0 }}>→</span>
      </Link>
-    ))}
+     )
+     const SYNLIGA = 6
+     if (guideLinks.length <= SYNLIGA + 1) return guideLinks.map(kort)
+     return (
+      <Hopfallbart
+       synligt={guideLinks.slice(0, SYNLIGA).map(kort)}
+       dolt={guideLinks.slice(SYNLIGA).map(kort)}
+       etikett={`Visa alla ${guideLinks.length} guider`}
+      />
+     )
+    })()}
+
    </div>
    )}
    {island.blogLinks && island.blogLinks.length > 0 && (
