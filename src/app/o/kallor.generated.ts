@@ -278,6 +278,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/arholma-bak/",
+      "org": "sjofartsverket.se",
+      "vad": "byggdes 1768 av hovjunkaren Pehr Ridderstad från Rådmansö; ett runt, 12,5 meter högt stentorn med koniskt tak; ritad av Carl Johan Cronstedt (1709–1777), som även konstruerade den svenska kakelugnen; Den är en så kallad känningsbåk och har aldrig haft fyrljus. Sjömärket syns cirka 15 nautiska mil; fungerade också som lotsutkik fram till 1875; Under kriget mot Ryssland 1809 fungerade båken som en av många optiska telegrafstationer; Under andra världskriget 1939-45 inrymde båken också en signalstation med en underliggande stridsledningscentral; statligt byggnadsminne sedan 1935",
+      "last": "2026-09-19",
+      "myndighet": true
+    },
+    {
       "url": "https://arholmahandel.se/cykeluthyrning/",
       "org": "(hämtad 2026-08-06)",
       "vad": "",
@@ -417,9 +424,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://stockholmarchipelagotrail.com/section/section-furusund/",
-      "org": "stockholmarchipelagotrail.com",
-      "vad": "Since the mid-19th century, Furusund has grown into a popular—and originally exclusive—vacation spot; struken.",
+      "url": "https://stockholmslansmuseum.se/besoksmal/furusund/",
+      "org": "stockholmslansmuseum.se",
+      "vad": "Furusund blev på 1800-talet en populär badort som lockade dåtidens kändisar; Den förmögne juveleraren Christian Hammer köpte Furusund 1883. Här skapade han en modern badort. Han lät bygga sommarvillor som fick romantiska namn och ett varmbadhus; Kanske förknippas Furusund mest med August Strindberg. Han hyrde en villa här under sitt äktenskap med Harriet Bosse. Strindberg hämtade många motiv från Furusund. I 'Fagervik och Skamsund' stod Fagervik för Furusund och Skamsund för grannorten Köpmanholm på Yxlan; Telegrafstationen från 1837 är den enda bevarade i Sverige",
       "last": "2026-09-19",
       "myndighet": false
     }
@@ -576,6 +583,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "fejan": [
     {
+      "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
+      "org": "skargardsstiftelsen.se",
+      "vad": "När koleran svepte över Europa 1892 uppfördes i en hast en karantänstation på ön Fejan. Ett monteringsfärdigt trähus som skulle skeppas till Kongo som missionsstation exproprierades vid utskeppningskajen och sattes upp som doktorsvilla på Fejan",
+      "last": "2026-09-19",
+      "myndighet": false
+    },
+    {
       "url": "https://skargardsstiftelsen.se/omraden/fejan/",
       "org": "Skärgårdsstiftelsen",
       "vad": "I slutet av 1800-talet anlades här en karantänstation för fartyg som misstänktes bära smittsamma sjukdomar, och de välbevarade byggnaderna berättar än idag om öns unika förflutna; Under 2026 håller vandrarhemmet stängt; Fejan är inte naturreservat: ön finns inte med i Norrtälje kommuns lista över skyddad natur (kontrollerat 2026-09-14) och tidigare tips om naturreservatsregler är borttaget",
@@ -617,11 +631,27 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     }
   ],
+  "bullero": [
+    {
+      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html",
+      "org": "lansstyrelsen.se",
+      "vad": "en varm raststuga och vedeldad bastu som är öppna året om. På ön finns vandringsleder av olika svårighetsgrad, en informationsplats, en badstrand, en tältplats och ett litet museum i konstnären Bruno Liljefors före detta jaktstuga. Delar av ön är tillgänglighetsanpassade så att det går att ta sig runt med rullstol, barnvagn eller rullator",
+      "last": "2026-09-19",
+      "myndighet": true
+    }
+  ],
   "svenska-hogarna": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/svenska-hogarna.html",
       "org": "lansstyrelsen.se",
       "vad": "cirka 35 kilometer (cirka 19 nautiska mil) öster om Möja / sedan gammalt en fyrplats. På Storön finns flera stigar runt Ytterhamnen, Innerhamnen, fyren och öns anläggningar . Heidenstam, 1855, 1874, 1966, 1968 står inte på sidan; strukna.",
+      "last": "2026-09-19",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.kringla.nu/kringla/objekt?referens=raa/bbra/21320000029574",
+      "org": "Riksantikvarieämbetet",
+      "vad": "På Svenska Högarna (Storön) i den yttersta delen av Stockholms norra skärgård uppsattes på 1700-talet tre stenkummel. År 1855 byggdes där en cirka 12 meter hög träbåk, ritad av Carl Sandell. Planerna på en fyr på Svenska Högarna aktualiserades på 1860-talet men resulterade istället i att ett fyrfartyg, Svenska Björn, lades ut i farvattnen år 1868. Men mot bakgrund av att sjöfarten genom Ålands hav hela tiden ökade föreslog Lotsstyrelsen att en fyr ändå måste uppföras",
       "last": "2026-09-19",
       "myndighet": true
     }
@@ -2447,4 +2477,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 41
+export const OAR_MED_KALLOR = 42
