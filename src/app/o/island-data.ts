@@ -1925,7 +1925,7 @@ export const ISLANDS: Island[] = [
     related: ['uto', 'dalaro', 'nattaro'],
     tags: ['fyr', 'ytterst', 'dramatiskt', 'hav', 'fåglar'],
     // KÄLLA: Sjöfartsverket (äldsta svenskbyggda fyren, fyrbål 1651) + landsort.com:s kronologi (van der Hagens koncession 1658, privilegium 1669) + Hans Högmans fyrhistoria (fyren tänd 1678, tornet brann 1686, nytt torn klart 1687).
-    did_you_know: 'Landsorts fyr är Sveriges äldsta bevarade svenskbyggda fyr — ett fyrbål tändes redan 1651, Johan van der Hagen fick kungligt privilegium 1669 och det nuvarande stentornet restes 1686. Landsort är Stockholms skärgårds sydligaste bebodda utpost (Sveriges sydligaste fastlandspunkt är Smygehuk i Skåne).',
+    did_you_know: 'Landsorts fyr är Sveriges äldsta bevarade svenskbyggda fyr — ett fyrbål tändes redan 1651, Johan van der Hagen fick kungligt privilegium 1669. Det gamla tornet brann 1686 och det nuvarande stentornet stod klart 1687. Landsort är Stockholms skärgårds sydligaste bebodda utpost (Sveriges sydligaste fastlandspunkt är Smygehuk i Skåne).',
     insiderTips: [
       'Landsort har Sveriges äldsta bevarade svenskbyggda fyrtorn i aktiv drift. Platsen har markerats med fyr sedan 1600-talets mitt, om än i olika former.',
       'Landsort nås med Waxholmsbåten från Nynäshamn och är den sydligaste bebodda platsen i Stockholms skärgård.',
