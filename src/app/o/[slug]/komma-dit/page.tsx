@@ -230,6 +230,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
               Berätta när du vill åka — Thorkel fixar hela planen.
             </div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver gratis konto — tar 30 sekunder.</div>
           </div>
           <Link href="/planera" style={{
             display: 'inline-block', background: '#e8924a', color: '#fff',
