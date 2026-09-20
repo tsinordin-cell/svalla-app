@@ -196,11 +196,11 @@ export default function StockholmArchipelagoTrailPage() {
           {/* ── Aktuellt ── */}
           {/* KÄLLA: stockholmarchipelagotrail.com/news/the-north-end-of-rano-closed-until-2027 (2026-08-18) */}
           <div style={{
-            background: '#fff7ed', border: '1px solid #fed7aa',
+            background: 'var(--acc-l)', border: '1px solid var(--acc-15)',
             borderRadius: 12, padding: '14px 18px', marginBottom: 28,
             display: 'flex', gap: 12, alignItems: 'flex-start',
           }}>
-            <span style={{ flexShrink: 0, marginTop: 2 }} aria-hidden>
+            <span style={{ flexShrink: 0, marginTop: 2, color: 'var(--acc)' }} aria-hidden>
               <Icon name="warning" size={16} stroke={2} />
             </span>
             <div>
