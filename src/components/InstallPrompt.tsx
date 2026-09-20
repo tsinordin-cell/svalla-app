@@ -10,6 +10,49 @@ interface BeforeInstallPromptEvent extends Event {
 // Visa bara install-prompten på app-sidor
 const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
 
+const BESOK = 'svalla-besok'
+const RAKNAD_I_SESSIONEN = 'svalla-besok-raknad'
+const AVBOJT = 'svalla-install-avbojt'
+/** Äldre nyckel, bara i sessionStorage. Läses fortfarande så att den som
+ *  redan tryckt "Inte nu" i den här sessionen inte får rutan igen direkt. */
+const AVBOJT_GAMMAL = 'svalla-install-dismissed'
+
+/**
+ * Rutan visas först vid andra besöket.
+ *
+ * Skälet: den låg fast i underkanten och täckte fotot på ösidan efter fem
+ * sekunder — för en förstagångsbesökare innan de sett något av vad Svalla är.
+ * Att be någon installera en app de inte hunnit titta på är att fråga för
+ * tidigt. Andra besöket betyder att de kom tillbaka, och då är frågan rimlig.
+ *
+ * Besöket räknas en gång per session i localStorage. sessionStorage räcker
+ * inte: det nollställs när fliken stängs, och då vore varje besök det första.
+ *
+ * Allt går genom try/catch. I privat läge kastar både localStorage och
+ * sessionStorage, och en install-ruta får aldrig vara det som kraschar sidan.
+ */
+function raknaBesok(): number {
+  try {
+    const nu = Number(window.localStorage.getItem(BESOK)) || 0
+    if (window.sessionStorage.getItem(RAKNAD_I_SESSIONEN)) return nu
+    const nytt = nu + 1
+    window.localStorage.setItem(BESOK, String(nytt))
+    window.sessionStorage.setItem(RAKNAD_I_SESSIONEN, '1')
+    return nytt
+  } catch {
+    // Kan inte räkna — då visar vi ingen ruta hellre än en i tid och otid.
+    return 0
+  }
+}
+
+function harAvbojt(): boolean {
+  try {
+    return !!(window.localStorage.getItem(AVBOJT) || window.sessionStorage.getItem(AVBOJT_GAMMAL))
+  } catch {
+    return false
+  }
+}
+
 export default function InstallPrompt() {
   const [show, setShow] = useState(false)
   const [isIOS, setIsIOS] = useState(false)
@@ -18,8 +61,10 @@ export default function InstallPrompt() {
 
   useEffect(() => {
     const standalone = window.matchMedia('(display-mode: standalone)').matches
-    const dismissed = sessionStorage.getItem('svalla-install-dismissed')
-    if (standalone || dismissed) return
+    if (standalone || harAvbojt()) return
+
+    // Andra besöket, inte det första. Se raknaBesok().
+    if (raknaBesok() < 2) return
 
     const ios = /iphone|ipad|ipod/i.test(navigator.userAgent)
 
@@ -43,7 +88,12 @@ export default function InstallPrompt() {
   }, [])
 
   function dismiss() {
-    sessionStorage.setItem('svalla-install-dismissed', '1')
+    /*
+      localStorage, inte sessionStorage: ett "Inte nu" som kommer tillbaka
+      nästa gång fliken öppnas är inte ett svar, det är en påminnelse. Den
+      som tackat nej ska slippa frågan.
+    */
+    try { window.localStorage.setItem(AVBOJT, '1') } catch { /* privat läge */ }
     setShow(false)
   }
 
@@ -51,7 +101,7 @@ export default function InstallPrompt() {
     if (!deferredPrompt) return
     deferredPrompt.prompt()
     const { outcome } = await deferredPrompt.userChoice
-    if (outcome === 'accepted') sessionStorage.setItem('svalla-install-dismissed', '1')
+    if (outcome === 'accepted') { try { window.localStorage.setItem(AVBOJT, '1') } catch { /* privat läge */ } }
     setShow(false)
     setDeferredPrompt(null)
   }
@@ -113,7 +163,7 @@ export default function InstallPrompt() {
 
       {/* Stäng (iOS) */}
       {isIOS && (
-        <button onClick={dismiss} style={{
+        <button onClick={dismiss} aria-label="Stäng" style={{
           background: 'rgba(255,255,255,0.12)', border: 'none', borderRadius: '50%',
           width: 28, height: 28, cursor: 'pointer', color: 'rgba(255,255,255,0.7)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',

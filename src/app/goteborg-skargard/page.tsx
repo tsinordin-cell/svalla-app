@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import RegionOar from '@/components/RegionOar'
 
 export const metadata: Metadata = {
   title: 'Göteborgs skärgård — Logga turer, hitta platser',
@@ -32,9 +33,9 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
   {
     icon: 'map',
-    title: 'Karta över Göteborg',
-    description: 'Verifierade platser i Göteborgs skärgård — naturhamnar, bryggor, krogar och sjömackar.',
-    href: '/upptack',
+    title: 'Öarna här',
+    description: 'Ö-sidor med hamnar, aktiviteter och källor — listan finns längre ner på sidan.',
+    href: '/goteborg-skargard#oar',
     meta: 'Gratis',
   },
   {
@@ -152,6 +153,9 @@ export default function GoteborgSkargardPage() {
         items={ITEMS}
         deeperContent={
           <>
+ {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
+ <RegionOar rubrik="Öar i Göteborgs skärgård" etiketter={['Göteborgs södra skärgård', 'Göteborgs norra skärgård']} />
+
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
               Ta dig dit — kollektivtrafik
             </h2>

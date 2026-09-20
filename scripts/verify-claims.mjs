@@ -141,6 +141,25 @@ const SKYDDSSTATUS = { test: (t) => SKYDDSSTATUS_NAMN.test(t) || SKYDDSSTATUS_RE
  * TOMT ÄR ALLTID TILLÅTET. Ett utelämnat fält påstår ingenting och ska aldrig
  * varna. Hellre kort text än fel text.
  */
+/**
+ * SJÄLVCITERING. En KÄLLA-rad som pekar på svalla.se bevisar ingenting — det är
+ * vi som citerar oss själva. Hittad 2026-09-19: Grindas biljettpåstående hade
+ * "KÄLLA: svalla.se/guider/waxholmsbolaget-guide", och den guiden var själv fel.
+ * Gäller kommentarsrader också, för det är där KÄLLA-raderna bor.
+ */
+const SJALVCITERING = /KÄLLA:[^\n]*\bsvalla\.se\//i
+
+/**
+ * PRODUKTLÖFTEN. Text som påstår att Svalla HAR något — "alla verifierade platser",
+ * "varje platssida visar", "Svalla markerar … på kartan" — är ett påstående om
+ * produkten, inte om skärgården, och lika lätt att hitta på. 2026-09-20 fanns
+ * tjugo sådana på landningssidorna; utforskaren hade 0 platser i fem av de sex
+ * regionerna som lovade "alla verifierade platser". Lås: frasen kräver en
+ * kommentar inom fem rader som börjar med FUNKTION: och säger var funktionen finns.
+ */
+const PRODUKTLOFTE = /\b(?:alla|samtliga)\s+verifierade\b|\bverifierade\s+platser\b|\bvarje\s+platssida\b|\bSvalla\s+(?:markerar|karterar|samlar\s+alla|visar\s+alla)\b|\bkarterade\s+här\b|\bvåra\s+redaktörer\b/i
+const FUNKTION = /FUNKTION:/
+
 const FALTPASTAENDEN = /^\s*(spots|depth_m|height_m|area_km2|population|beds|capacity|length_m|elevation_m)\s*:\s*\d/
 
 /**
@@ -231,7 +250,7 @@ const iOmfang = (f) =>
   OMFANG.some(r => r.test(f)) && !UNDANTAG.some(r => r.test(f))
 
 /** Är raden en kommentar? Då är siffran dokumentation, inte ett påstående. */
-const ärKommentar = (rad) => /^\s*(\/\/|\*|\/\*)/.test(rad.trim())
+const ärKommentar = (rad) => /^\s*(\/\/|\*|\/\*|\{\/\*)/.test(rad.trim())
 
 /**
  * En marknadsuppskattning är INTE en källa — men den är heller inte en osanning,
@@ -328,7 +347,13 @@ for (const f of filer(ROT)) {
   rader.forEach((rad, i) => {
     const borjadeIMallstrang = iMallstrang
     if (((rad.match(/`/g) || []).length) % 2 === 1) iMallstrang = !iMallstrang
+    if (SJALVCITERING.test(rad)) {
+      fynd.push({ fil: f, rad: i + 1, typ: 'självcitering', text: rad.trim().slice(0, 90) })
+    }
     if (ärKommentar(rad)) return
+    if (PRODUKTLOFTE.test(rad) && !rader.slice(Math.max(0, i - 5), i + 1).some(r => FUNKTION.test(r))) {
+      fynd.push({ fil: f, rad: i + 1, typ: 'produktlöfte', text: (rad.match(PRODUKTLOFTE)?.[0] ?? '') + ' — ' + rad.trim().slice(0, 70) })
+    }
 
     /**
      * FÄLTPÅSTÅENDEN granskas på RADEN, inte i strängar — `spots: 150` har

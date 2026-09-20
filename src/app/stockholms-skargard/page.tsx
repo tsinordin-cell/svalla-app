@@ -141,7 +141,7 @@ export default function StockholmsSkargardPage() {
  Att hålla koll på allt var omöjligt förr. Var ligger den bästa restaurangen? Vilka naturhamnar är egna för en skärgårdsmiddag? Hur gick det för dina vänner på deras senaste segeltur? Svalla samlar allt på ett ställe — en app skapad av seglare för seglare.
  </p>
  <p>
- Logga dina turer med GPS och spara varje minne. Hitta testade restauranger, bryggor och ankringsplatser på en detaljerad karta. Följ andra seglare i realtid och dela dina bästa tips med ett community som förstår skärgårdslivet. Med Svalla blir varje säsong längre, varje tur mer minnesvärd.
+ Logga dina turer med GPS och spara varje minne. Hitta restauranger och bryggor på kartan, läs ö-sidorna med källor och dela dina bästa tips med andra som seglar här. Med Svalla blir varje säsong längre, varje tur mer minnesvärd.
  </p>
  <p>
  Oavsett om du är nybörjare som vill utforska Innerskärgården eller erfaren seglare på väg till Utö eller Sandhamn — Svalla är din guide genom Sveriges skönaste vatten.

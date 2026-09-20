@@ -292,7 +292,7 @@ export function getGuideContent(slug: string): string {
 
     'waxholmsbolaget-guide': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Waxholmsbolaget – komplett guide</h2>
-<p>Waxholmsbolaget är Stockholms läns landstings skärgårdstrafik och driver en av Skandinaviens mest komplexa och vackraste båtlinjenät. Här är allt du behöver veta för att navigera systemet effektivt.</p>
+<p>Waxholmsbolaget är en del av kollektivtrafiken i Stockholms län och driver en av Skandinaviens mest komplexa och vackraste båtlinjenät. Här är allt du behöver veta för att navigera systemet effektivt.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur systemet fungerar</h3>
 <!-- KÄLLA: Waxholmsbolaget, "Alla SL-biljetter gäller mellan 44 bryggor" och "SL-området: Strömkajen–Vaxholm med omnejd" (waxholmsbolaget.se, läst 2026-08-25): "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd ... året runt ... för alla sorters SL-biljetter." Samt "Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april" (SL:s periodbiljetter på 30 dagar eller längre). SL avskaffade zonsystemet A/B/C den 9 januari 2017 — sajten byggde på ett niotal år gammalt regelverk. -->
@@ -306,33 +306,37 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Avgångsplatser i Stockholm</h3>
 <p><strong>Strömkajen (Strömkajen, City):</strong> Waxholmsbolagets huvudterminal. Avgångar till de flesta destinationer inkl. Vaxholm, Grinda, Sandhamn och Arholma. T-bana Kungsträdgården, 5 min promenad.</p>
 <p><strong>Stavsnäs Vinterhamn (Stavsnäs):</strong> Terminal för södra och mellersta skärgården inkl. Sandhamn, Möja, Gällnö och Blidö. Nås med SL-buss 433 från Slussen. Ca 50 min med buss. Gratis parkering för dagsturister.</p>
-<p><strong>Nynäshamn:</strong> Avgångspunkt för Utö och Landsort. Nås med pendeltåg linje 43 från Stockholm City, ca 65 min. Nynäshamn har bra parkeringsmöjligheter.</p>
+<!-- KÄLLA: waxholmsbolaget.se reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: linje 21 Årsta brygga–Gruvbryggan (Utö) 40 min. Tidigare stod Nynäshamn som avgångspunkt för Utö. -->
+<p><strong>Årsta brygga (Haninge):</strong> Avgångspunkt för Utö – linje 21 till Gruvbryggan tar 40 minuter.</p>
 <p><strong>Furusund:</strong> Liten terminal för norra skärgårdens linjer. Nås med buss från Norrtälje eller bil.</p>
 <p><strong>Kapellskär:</strong> Norra ytterskärgårdens terminal. Buss från Norrtälje.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">SL-kortets giltighet</h3>
-<p>Det här är den vanligaste frågan – och svaret är nyanserat:</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">SL-biljettens giltighet</h3>
+<!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor och sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar, läst 2026-09-19. Tidigare stod här "SL-kortet gäller INTE" — det motsade både operatören och stycket ovan. -->
+<p>Det här är den vanligaste frågan – och svaret beror på var och när du reser:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>SL-kortet gäller INTE</strong> på Waxholmsbolagets reguljära skärgårstrafik</li>
-<li><strong>SL-30-dagars och SL-årskort gäller</strong> på SL-bussarna till hamnterminaler (ex. bus till Stavsnäs)</li>
-<li>Waxholmsbolaget har eget biljettsystem och egna priser</li>
-<li>Waxholmskortet (abonnemang) ger rabatt för frekvent resande</li>
+<li><strong>Alla SL-biljetter gäller året runt</strong> mellan Strömkajen och Vaxholm med omnejd – 44 bryggor som Waxholmsbolaget kallar "SL-området".</li>
+<li><strong>Utanför SL-området</strong> (Grinda, Sandhamn, Utö, Möja …) behöver du en Waxholmsbolaget-biljett för den delen av resan under högsäsong, 30 april–13 september. Exempel från operatören: Strömkajen–Grinda = SL-biljett till Vaxholm + Waxholmsbolaget-biljett Vaxholm–Grinda.</li>
+<li><strong>Lågsäsong 14 september–29 april</strong>: alla SL-periodbiljetter som gäller 30 dagar eller längre gäller i hela Waxholmsbolagets trafik.</li>
+<li><strong>Linje 17, 18 och 19</strong> (södra skärgården via Baggensstäket, t.ex. mot Utö och Nämdö) – där gäller SL-biljett inte alls.</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Biljettköp</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Biljetter och priser</h3>
+<!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter, waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor, waxholmsbolaget.se/nyheter-och-trafikinfo/ny-kombinationsbiljett-waxholmsbolaget-och-sl, waxholmsbolaget.se/biljetter-och-priser/periodbiljetter, läst 2026-09-19. Tidigare stod här en "app Waxholmsbolaget", "kortautomat" och ett "destinationskort" som operatören inte nämner. -->
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Appen Waxholmsbolaget</strong>: Enklaste sättet. Köp biljett direkt i appen, visar digitalt ombord.</li>
-<li><strong>Kortautomat på Strömkajen</strong>: Köp vid avgångspunkten.</li>
-<li><strong>Ombord på fartyget</strong>: Möjligt men dyrare på vissa linjer och inte alltid tillgängligt.</li>
-<li><strong>Destinationskortet</strong>: Rabattkort för flertalet resor, lönar sig om du reser ofta.</li>
+<li><strong>Enkelbiljett</strong>: sex taxegrupper efter hur långt du åker – 61, 84, 104, 125, 154 eller 186 kr för vuxen; 39, 52, 64, 79, 95 eller 114 kr rabatterat. Gäller 180 minuter. Priset för din sträcka visas när du söker resan på waxholmsbolaget.se.</li>
+<li><strong>Rabatterat pris</strong> gäller barn och unga 7–19 år, studenter med SL-märkt studentlegitimation och den som fyllt 65. <strong>Barn under 7 år</strong> reser utan avgift i sällskap med betalande resenär.</li>
+<li><strong>Tur och retur</strong> kostar som två enkelbiljetter; returen gäller i 90 dagar.</li>
+<li><strong>Köp</strong> i SL-appen eller ombord med Visa/Mastercard. Oavsett hur du köper: se till att få en pappersbiljett ombord och lämna den till personalen när du går av.</li>
+<li><strong>Kombinationsbiljett SL + Waxholmsbolaget</strong> finns i SL-appen sedan juni 2026 – ett köp för buss/tunnelbana och båt, giltig 180 minuter. Samma pris som två separata biljetter.</li>
+<li><strong>Periodbiljetter</strong>: 5-dagarsbiljett (båtluffarbiljett), 30-dagarsbiljett och ungdomsbiljett 6 månader. Laddas på ett SL-kort ombord.</li>
 </ul>
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p>Priser varierar beroende på zon och destination. Räkna med ca 80–220 kr enkel resa beroende på hur långt du åker.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Cykel och barnvagn ombord</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Cykel</strong>: Tillåtet på de flesta fartyg mot cykelkorttillägg (ca 40–60 kr). Under högsäsong kan kapaciteten vara begränsad – kom tidigt till bryggan.</li>
-<li><strong>Barnvagn</strong>: Är gratis och alltid tillåtet. Personalen hjälper alltid till med påstigning och avstigning.</li>
+<!-- KÄLLA: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med, läst 2026-09-19: "Att ta med cykeln kostar inget extra", i mån av plats, personalen avgör; cykelkärra/lådcykel 120 kr; barnvagn gratis med barn under 7, annars 65 kr; hund gratis. Tidigare stod "cykelkorttillägg ca 40–60 kr" — påhittat. -->
+<li><strong>Cykel</strong>: Vanlig cykel följer med utan extra kostnad, i mån av plats – personalen ombord avgör och kan neka när det är fullt. Cykelkärra, lådcykel och tandem räknas som gods och kostar 120 kr. Elcyklar ställs utomhus på däck.</li>
+<li><strong>Barnvagn</strong>: Gratis när du reser med barn under 7 år. Utan barn, eller med äldre barn, kostar barnvagnen 65 kr enligt frakttaxan.</li>
 <li><strong>Hund</strong>: Tillåtet mot hundbiljett. Hundar ska hållas i koppel ombord.</li>
 <li><strong>Rullstol</strong>: De flesta moderna fartyg är handikappanpassade, men kontrollera din specifika linje i förväg.</li>
 </ul>
@@ -374,7 +378,8 @@ export function getGuideContent(slug: string): string {
 <p><strong>Tillgänglighet:</strong> ★★★★★</p>
 <p><strong>Transport:</strong> SL-buss 670 från Tekniska Högskolan T, ca 50 min. Alternativt Waxholmsbolaget/pendelbåt från Strömkajen, ca 55 min. Buss ingår i SL-abonnemanget.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p><strong>Pris:</strong> SL-buss gratis med månadskort. Waxholmsbåt ca 140 kr enkel resa.</p>
+<!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor (alla SL-biljetter gäller Strömkajen–Vaxholm); waxholmsbolaget.se reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: Strömkajen–Vaxholm taxa 3, 104 kr vuxen / 64 kr rabatterat. -->
+<p><strong>Pris:</strong> Buss och båt Strömkajen–Vaxholm ingår i alla SL-biljetter. Waxholmsbolagets egen enkelbiljett på sträckan kostar 104 kr (64 kr för 7–19 år).</p>
 <p><strong>Upplev:</strong> Vaxholm är en riktig stad – historia, handel, restauranger och fästning. Perfekt dagstur med familj eller vänner. Vaxholms fästning är ett museum man inte bör missa.</p>
 <p><strong>Praktisk info:</strong> Buss och båt kör hela året. Sommarens avgångstätheter är bäst, men Vaxholm fungerar som utflyktsmål nästan hela året.</p>
 
@@ -390,7 +395,8 @@ export function getGuideContent(slug: string): string {
 <p><strong>Tillgänglighet:</strong> ★★★★☆</p>
 <p><strong>Transport:</strong> SL-buss 433 till Stavsnäs Vinterhamn, sedan Waxholmsbolaget till Möja. Totalt ca 2 h 30 min. SL-bussen ingår i SL-abonnemanget.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p><strong>Pris:</strong> Buss gratis med SL-kort, Waxholmsbåt ca 190 kr enkel resa.</p>
+<!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter: enkelbiljett 61–186 kr vuxen / 39–114 kr rabatterat beroende på taxegrupp. Exakt taxa Stavsnäs–Möja ej slagen upp. -->
+<p><strong>Pris:</strong> Bussen ingår i SL-biljetten. Waxholmsbolagets enkelbiljett kostar 61–186 kr beroende på taxegrupp – exakt pris visas när du söker resan på waxholmsbolaget.se.</p>
 <p><strong>Upplev:</strong> Möja är bilfri och den klassiska "autentiska" skärgårdsön. Hyr cykel vid bryggan och utforska hela ön på en förmiddag. Möja Värdshus & Bageri och Möja Handelsträdgård är must-visits.</p>
 <p><strong>Praktisk info:</strong> Boende finns på Möja Vandrarhem och i privata stugor. Tältning möjligt i anvisade områden.</p>
 
@@ -398,7 +404,8 @@ export function getGuideContent(slug: string): string {
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
 <p><strong>Transport:</strong> Pendeltåg linje 43 från Stockholm City till Västerhaninge, buss 846 till Årsta brygga (16 min) och sedan Waxholmsbolagets båt till Gruvbryggan, 35–75 min — Gruvbryggan är beställningsbrygga på de flesta turer. Totalt drygt två timmar. Pendeltåg och buss ingår i SL-taxan.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p><strong>Pris:</strong> Pendeltåg gratis med SL-kort, Waxholmsbåt ca 210 kr enkel resa.</p>
+<!-- KÄLLA: waxholmsbolaget.se reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: Årsta brygga–Gruvbryggan taxa 3, 104 kr vuxen / 64 kr rabatterat. -->
+<p><strong>Pris:</strong> Pendeltåg och buss ingår i SL-biljetten. Båten Årsta brygga–Gruvbryggan kostar 104 kr (64 kr för 7–19 år).</p>
 <p><strong>Upplev:</strong> Utö har det mesta: gruvruin, cykelleder, havsbastu och en av skärgårdens bästa restauranger (Utö Värdshus). Ön kräver minst ett dygn för att göra den rättvisa.</p>
 <p><strong>Praktisk info:</strong> Utö Värdshus har rum, stugor och vandrarhem. Boka i förväg under högsäsong.</p>
 
@@ -422,7 +429,8 @@ export function getGuideContent(slug: string): string {
 <p><strong>Tillgänglighet:</strong> ★★☆☆☆</p>
 <p><strong>Transport:</strong> SL-buss 433 till Stavsnäs, sedan Waxholmsbolagets båt till Sandhamn (ca 1 h). Totalt ca 2 h 30 min.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p><strong>Pris:</strong> Buss gratis med SL-kort, Waxholmsbåt ca 220 kr enkel resa.</p>
+<!-- KÄLLA: waxholmsbolaget.se reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: Stavsnäs–Sandhamn taxa 3, 104 kr vuxen / 64 kr rabatterat. -->
+<p><strong>Pris:</strong> Bussen ingår i SL-biljetten. Båten Stavsnäs–Sandhamn kostar 104 kr (64 kr för 7–19 år).</p>
 <p><strong>Upplev:</strong> Sandhamn är skärgårdslivet i koncentrat – seglarbåtar, klassiska restauranger och klippbad vid Trouville. Under sommarveckan (Juni KSSS) är det ett evenemang av rang.</p>
 <p><strong>Praktisk info:</strong> Boende bör bokas månader i förväg. Sandhamns Seglarhotell och Sandhamns Värdshus är de bästa alternativen.</p>
 
@@ -486,11 +494,13 @@ export function getGuideContent(slug: string): string {
 
     'sl-kort-skargarden': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">SL-kortet i skärgården – vad gäller?</h2>
-<p>Det råder stor förvirring om var SL-kortet faktiskt är giltigt i skärgården. Kort svar: SL-kortet gäller på SL:s bussar, tunnelbana och pendeltåg till hamnterminaler – men INTE på Waxholmsbolagets fartyg. Här är den fullständiga bilden.</p>
+<!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor och sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar, läst 2026-09-19. Guiden sa tidigare "INTE på Waxholmsbolagets fartyg" — fel enligt båda operatörerna. -->
+<p>Det råder stor förvirring om var SL-biljetten faktiskt gäller i skärgården. Kort svar: den gäller på SL:s bussar, tunnelbana och pendeltåg till hamnarna, på Waxholmsbolagets båtar mellan Strömkajen och Vaxholm med omnejd året runt – och under lågsäsong i hela Waxholmsbolagets trafik om du har en periodbiljett på 30 dagar eller mer. Här är den fullständiga bilden.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad SL-kortet GÄLLER för</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Pendeltåg till Nynäshamn</strong> (linje 43) – nå Utö och Landsort med SL-kort</li>
+<li><strong>Waxholmsbolagets båtar i "SL-området"</strong> – 44 bryggor mellan Strömkajen och Vaxholm med omnejd, alla SL-biljetter, året runt</li>
+<li><strong>Hela Waxholmsbolagets trafik 14 september–29 april</strong> – med SL-periodbiljett som gäller 30 dagar eller längre</li>
 <li><strong>SL-buss 670/671</strong> till Vaxholm – alternativ till båten</li>
 <li><strong>SL-buss 433</strong> till Stavsnäs Vinterhamn – utgångspunkt för Sandhamn, Möja, Gällnö</li>
 <li><strong>SL-buss 839</strong> till Dalarö – utgångspunkt för bilfärja till Ornö</li>
@@ -500,27 +510,27 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad SL-kortet INTE gäller för</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Waxholmsbolagets reguljära båttrafik</strong> – alla skärgårdsbåtar</li>
-<li><strong>Cinderellabåtarna</strong> (privat operatör)</li>
-<li><strong>Strömma Kanalbolaget</strong></li>
-<li><strong>Bilfärjor utanför SL-systemet</strong> (t.ex. Dalarö–Ornö, Nynäshamn–Utö)</li>
+<li><strong>Waxholmsbolagets båtar utanför SL-området</strong> under högsäsong 30 april–13 september (t.ex. Vaxholm–Grinda, Stavsnäs–Sandhamn, Årsta brygga–Utö) – där behövs Waxholmsbolaget-biljett för den delen av resan</li>
+<li><strong>Linje 17, 18 och 19</strong> via Baggensstäket mot södra skärgården – SL-biljett gäller inte, oavsett säsong</li>
+<li><strong>Cinderellabåtarna</strong> och <strong>Strömma</strong> – privata operatörer med egna biljetter</li>
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Undantaget: Ljusteröbussen med färja</h3>
-<p>Ljusterö är ett specialfall. SL-buss 626 från Danderyds sjukhus kör ner till bilfärjan och <em>inklusive färjan</em> över till Ljusterö ingår i SL-abonnemanget. Det är den enda skärgårdsö där du når ön helt och hållet med SL-kort.</p>
+<p>Ljusterö är ett specialfall. SL-buss 626 från Danderyds sjukhus kör ner till bilfärjan och <em>inklusive färjan</em> över till Ljusterö ingår i SL-biljetten.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Waxholmsbolagets eget biljettsystem</h3>
-<p>Waxholmsbolaget har fyra biljettyper:</p>
+<!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter, waxholmsbolaget.se/biljetter-och-priser/periodbiljetter, waxholmsbolaget.se/nyheter-och-trafikinfo/ny-kombinationsbiljett-waxholmsbolaget-och-sl, läst 2026-09-19. Tidigare listades "Archipelago Card", "Destinationskort" och "Waxholmskortet" — inget av dem finns hos operatören. -->
+<p>Waxholmsbolagets biljetter:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Enkelbiljett</strong>: Köps i appen, vid automat eller ombord (dyrare ombord)</li>
-<li><strong>Waxholmskortet</strong>: 30-dagarskort för frekvent resande, lönar sig vid fler än 15–20 resor/månad</li>
-<li><strong>Archipelago Card</strong>: Dagskort för obegränsade resor, bra för gruppresor</li>
-<li><strong>Destinationskort</strong>: Klippkort för specifika linjer</li>
+<li><strong>Enkelbiljett</strong>: 61–186 kr vuxen, 39–114 kr för 7–19 år, studenter och 65+, i sex taxegrupper efter avstånd. Gäller 180 minuter. Köps i SL-appen eller ombord med Visa/Mastercard – ta alltid en pappersbiljett ombord.</li>
+<li><strong>Barn under 7 år</strong> reser utan avgift i sällskap med betalande resenär.</li>
+<li><strong>Kombinationsbiljett SL + Waxholmsbolaget</strong>: ett köp i SL-appen för buss/tunnelbana och båt, 180 minuter, samma pris som två biljetter.</li>
+<li><strong>Periodbiljetter</strong>: 5-dagarsbiljett (båtluffarbiljett), 30-dagarsbiljett och ungdomsbiljett 6 månader – laddas på ett SL-kort ombord.</li>
 </ul>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Planera resan smart:</strong>
-<p style="margin:8px 0 0;font-size:14px">Kombinera SL-buss (gratis med abonnemang) till hamnterminalen med Waxholmsbolaget-biljett för båtturen. Den kombinationen ger ofta den snabbaste och billigaste resan till de flesta öar. Använd Waxholmsbolagets app för tidtabeller och biljetter.</p>
+<p style="margin:8px 0 0;font-size:14px">Kombinera SL-buss till hamnen med Waxholmsbolaget-biljett för båtturen – eller köp kombinationsbiljetten i SL-appen. Reser du 14 september–29 april med en SL-periodbiljett på 30 dagar eller mer behöver du ingen båtbiljett alls.</p>
 </div>
 `,
 
@@ -1337,7 +1347,8 @@ export function getGuideContent(slug: string): string {
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Viktigt att veta:</strong>
-<p style="margin:8px 0 0;font-size:14px">SL-abonnemanget gäller INTE på Waxholmsbolagets båtar. Köp biljett i Waxholmsbolagets app, vid automaterna på Strömkajen eller ombord (något dyrare). Kontrollera tidtabellen i förväg – avgångarna kan vara glesa och varierar kraftigt mellan vardag och helg.</p>
+<!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor, sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar, läst 2026-09-19 -->
+<p style="margin:8px 0 0;font-size:14px">SL-biljetten gäller på Waxholmsbolagets båtar mellan Strömkajen och Vaxholm med omnejd; längre ut behövs Waxholmsbolaget-biljett under högsäsong (30 april–13 september). Köp i SL-appen eller ombord med kort. Kontrollera tidtabellen i förväg – avgångarna kan vara glesa och varierar kraftigt mellan vardag och helg.</p>
 </div>
 `,
 
@@ -1981,10 +1992,11 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta med cykel på Waxholmsbolaget</h3>
 <p>Waxholmsbolaget tillåter cyklar på de flesta linjer med vissa villkor:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Cyklar placeras i fören (bogserbåten) eller på däck om plats finns</li>
-<li>Extra avgift för cykel tillkommer (kontrollera aktuell taxa i appen)</li>
-<li>Under högsäsong kan utrymme för cyklar vara begränsat – kom tidigt till bryggan</li>
-<li>Elcyklar (tyngre) kan ha begränsningar – kontakta Waxholmsbolaget i förväg</li>
+<!-- KÄLLA: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med, läst 2026-09-19: "Att ta med cykeln kostar inget extra", i mån av plats, personalen avgör; cykelkärra/lådcykel 120 kr; barnvagn gratis med barn under 7, annars 65 kr; hund gratis -->
+<li>Vanlig cykel kostar inget extra – du tar med den i mån av plats och på egen risk</li>
+<li>Personalen ombord avgör om det finns plats och kan neka cykeln; är det fullt får du lämna den vid bryggan – kom i god tid</li>
+<li>Cykelkärra, lådcykel och tandem räknas som gods och kostar 120 kr</li>
+<li>Elcyklar och elsparkcyklar ska stå utomhus på däck</li>
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hyr cykel på öarna</h3>
@@ -3661,8 +3673,9 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
 <strong style="color:var(--sea)">Barnvänlighets-checklista:</strong>
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>Gratis öluffarkort för barn under 7 år (Waxholmsbolaget)</li>
-<li>Halv avgift 7–19 år</li>
+<!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter, waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor: under 7 utan avgift med betalande resenär; 7–19 rabatterat 39–114 kr mot 61–186 kr vuxen (inte "halva") -->
+<li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen</li>
+<li>Rabatterat pris 7–19 år (39–114 kr i stället för 61–186 kr)</li>
 <li>Ta med simväst för barn under 8 år</li>
 <li>Solkräm, myggolja och plåster är svårt att hitta på öarna</li>
 <li>Ta med simbälte – öppet hav har inga flytare</li>
@@ -3885,8 +3898,9 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Praktiska tips för båtresa med barn:</strong>
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>Barn under 7 år åker gratis med Waxholmsbolaget</li>
-<li>7–19 år betalar halv taxa</li>
+<!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter, waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor -->
+<li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen</li>
+<li>7–19 år betalar rabatterat pris (39–114 kr i stället för 61–186 kr)</li>
 <li>Ta med sjösjukemedicin för känsliga barn (eller vuxna)</li>
 <li>Sola inte på övre däck utan solskydd – solen reflekterar från vattnet</li>
 <li>Åk tur och retur samma dag för yngre barn – övernattning är krävande</li>
@@ -5088,7 +5102,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Praktisk info för skärgårdscamping:</strong>
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>SL-kortet gäller INTE på Waxholmsbåtarna — köp separat Waxholmsbolagets biljett</li>
+<li>SL-biljetten gäller på Waxholmsbåtarna bara mellan Strömkajen och Vaxholm med omnejd (och i hela trafiken 14 sep–29 apr med periodbiljett på 30 dagar eller mer) — annars köp Waxholmsbolaget-biljett i SL-appen eller ombord</li>
 <li>Waxholmsbolaget kör till ca 100 öar i Stockholms skärgård</li>
 <li>Ta med alla sopor — det finns sällan sopkärl på öarna</li>
 <li>Sötvatten finns inte på alla öar — ha med extra</li>
@@ -7772,8 +7786,9 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk info</h2>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Waxholmsbolaget ingår i SL – SL Access-kort fungerar för innerskärgårdens linjer</li>
-  <li>Yttre skärgården (Sandhamn, Utö) kräver Waxholmsbolagets egna biljetter</li>
+  <!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor, sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar -->
+  <li>Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor)</li>
+  <li>Längre ut (Grinda, Sandhamn, Utö) krävs Waxholmsbolaget-biljett 30 april–13 september – köp i SL-appen eller ombord</li>
   <li>Boka boende i förväg – Grinda Wärdshus och Sandhamns Värdshus fyller snabbt sommartid</li>
   <li>Ta med matsäck för mellanstopparna – båtrestaurangerna är begränsade</li>
   <li>Kolla alltid aktuell tidtabell på waxholmsbolaget.se – tider varierar säsong</li>

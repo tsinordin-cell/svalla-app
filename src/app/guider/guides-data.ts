@@ -420,10 +420,12 @@ export const GUIDES: GuideMeta[] = [
     readTime: "9 min",
     fullContent: true,
     faqs: [
-      { q: 'Är SL-kortet giltigt på Waxholmsbolaget?', a: 'SL-kortet (månadskort, reskassa) gäller INTE på Waxholmsbolagets båtlinjer. Du behöver köpa separat biljett via Waxholmsbolagets app, hemsida eller ombord. Biljetten är prisvärd men du kan inte använda SL-appen.' },
-      { q: 'Hur köper man biljett till Waxholmsbolaget?', a: 'Enklast via Waxholmsbolagets app (iOS/Android) eller på waxholmsbolaget.se. Du kan också köpa biljett ombord på båten — kontant eller kort. Ombordköp är något dyrare för sällsynta linjer.' },
+      // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; läst 2026-09-19. Tidigare svar ("gäller INTE", "Waxholmsbolagets app", "kontant") motsade operatören.
+      { q: 'Är SL-biljetten giltig på Waxholmsbolaget?', a: 'Delvis. Alla SL-biljetter gäller året runt mellan Strömkajen och Vaxholm med omnejd (44 bryggor). Längre ut behöver du Waxholmsbolaget-biljett för den delen av resan 30 april–13 september. Under lågsäsong 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik. På linje 17, 18 och 19 mot södra skärgården gäller SL-biljett inte.' },
+      { q: 'Hur köper man biljett till Waxholmsbolaget?', a: 'I SL-appen (enkelbiljett, gruppbiljett och kombinationsbiljett SL + båt) eller ombord med Visa/Mastercard. Enkelbiljetten kostar 61–186 kr för vuxen och 39–114 kr rabatterat beroende på avstånd och gäller 180 minuter. Se till att få en pappersbiljett ombord — du lämnar den när du går av.' },
       // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
-      { q: 'Kan man ta med cykel på Waxholmsbolaget?', a: 'Ja, cyklar är välkomna på Waxholmsbolagets båtar. Det kostar en liten extra avgift (ca 50–80 kr beroende på linje och säsong). Cyklar lastas i fören — kontrollera kapaciteten för din specifika linje.' },
+      // KÄLLA: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med, läst 2026-09-19: "Att ta med cykeln kostar inget extra", i mån av plats, personalen avgör; cykelkärra/lådcykel 120 kr; barnvagn gratis med barn under 7, annars 65 kr; hund gratis
+      { q: 'Kan man ta med cykel på Waxholmsbolaget?', a: 'Ja. En vanlig cykel följer med utan extra kostnad, i mån av plats — personalen ombord avgör och kan neka när det är fullt, så kom i god tid. Cykelkärra, lådcykel och tandem räknas som gods och kostar 120 kr. Elcyklar ställs utomhus på däck.' },
       { q: 'Hur tidigt bör man vara vid bryggan?', a: 'Räkna med att vara vid bryggan 5–10 minuter före avgång. På populära linjer under högsäsong (juli) kan båtarna bli fulla. Förboka biljett digitalt — det garanterar inte plats på alla linjer men möjliggör smidig ombordstigning.' },
       { q: 'Kör Waxholmsbolaget hela året?', a: 'Ja, men med reducerad tidtabell utanför sommarsäsongen (maj–september). Vissa linjer kör dagligen hela året, andra bara under sommarsäsongen. Kontrollera aktuell tidtabell på waxholmsbolaget.se för din linje.' },
     ],
@@ -441,7 +443,8 @@ export const GUIDES: GuideMeta[] = [
       { q: 'Vilken ö är enklast att nå utan bil och båt?', a: 'Fjäderholmarna är enklast – 25 minuter med Strömma från Nybroplan/Slussen, avgångarna är täta och öppen hela sommarsäsongen. Vaxholm är näst enklast: Waxholmsbolaget och SL-buss 670 direkt från Stockholm.' },
       // KÄLLA: waxholmsbolaget.se, "Alla SL-biljetter gäller mellan 44 bryggor" + "Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september-29 april" (periodbiljetter 30 dagar eller längre), läst 2026-08-25. SL avskaffade zonerna A/B/C 9 januari 2017.
       { q: 'Gäller SL-kortet på båtarna i skärgården?', a: 'Alla sorters SL-biljetter gäller året runt mellan Strömkajen och Vaxholm med omnejd — 44 bryggor — men INTE på de yttre öarna som Grinda, Sandhamn och Utö, där Waxholmsbolagets egna biljetter krävs. Ett undantag är värt att känna till: 14 september–29 april gäller SL:s periodbiljetter på 30 dagar eller längre i hela Waxholmsbolagets trafik. Zonerna A/B/C försvann 2017.' },
-      { q: 'Kan man ta med cykel på Waxholmsbolagets båtar?', a: 'Ja, cykel tillåts på de flesta linjer mot en avgift på ca 60 kr tur/retur. Det är ett utmärkt sätt att utforska öar som Utö, Möja och Ingmarsö utan bil.' },
+      // KÄLLA: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med, läst 2026-09-19: "Att ta med cykeln kostar inget extra", i mån av plats, personalen avgör; cykelkärra/lådcykel 120 kr; barnvagn gratis med barn under 7, annars 65 kr; hund gratis
+      { q: 'Kan man ta med cykel på Waxholmsbolagets båtar?', a: 'Ja, en vanlig cykel kostar inget extra och tas med i mån av plats (personalen avgör). Det är ett utmärkt sätt att utforska öar som Utö, Möja och Ingmarsö utan bil.' },
     ],
   },
   {
@@ -470,10 +473,11 @@ export const GUIDES: GuideMeta[] = [
     readTime: "4 min",
     fullContent: true,
     faqs: [
-      { q: 'Gäller SL-kortet till skärgårdsöarna?', a: 'SL-kortet gäller på SL-bussarna till hamnterminaler (t.ex. buss 433 till Stavsnäs, buss 670 till Vaxholm) men INTE på Waxholmsbolagets båtlinjer ut till öarna. Du behöver separat biljett för båtresan.' },
-      // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
-      { q: 'Hur mycket kostar Waxholmsbolaget utöver SL-kortet?', a: 'Beroende på destination: Vaxholm ca 140 kr enkel resa, Grinda ca 200 kr, Sandhamn ca 220 kr, Utö ca 210 kr. Barn under 7 år åker gratis, 7–19 år betalar halv taxa. Köp biljett via Waxholmsbolagets app.' },
-      { q: 'Finns det ett kombinerat kort för SL och Waxholmsbolaget?', a: 'Nej, det finns inget kombinerat kort. SL och Waxholmsbolaget har separata biljettsystem. Waxholmskortet (månadsabonnemang) kan vara lönsamt om du åker ofta, men är inte integrerat med SL-appen.' },
+      // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19
+      { q: 'Gäller SL-biljetten till skärgårdsöarna?', a: 'Till Vaxholm och de 44 bryggorna i "SL-området" — ja, alla SL-biljetter, året runt. Till öar längre ut (Grinda, Sandhamn, Utö) behövs Waxholmsbolaget-biljett för sträckan utanför området under högsäsong 30 april–13 september. Har du en SL-periodbiljett på 30 dagar eller mer gäller den i hela Waxholmsbolagets trafik 14 september–29 april.' },
+      // KÄLLA: waxholmsbolaget.se reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: Strömkajen–Vaxholm taxa 3 (104/64 kr), Strömkajen–Södra Grinda taxa 4 (125/79 kr), Stavsnäs–Sandhamn taxa 3 (104/64 kr), Årsta brygga–Gruvbryggan taxa 3 (104/64 kr). Operatören: "Priset kan variera beroende på vilken rutt båten tar." Barnregler: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor.
+      { q: 'Hur mycket kostar Waxholmsbolaget utöver SL-biljetten?', a: 'Enkelbiljetten har sex taxegrupper, 61–186 kr för vuxen. Exempel ur Waxholmsbolagets reseplanerare (september 2026): Strömkajen–Grinda 125 kr, Stavsnäs–Sandhamn 104 kr, Årsta brygga–Utö 104 kr; rabatterat pris för 7–19 år är 79 respektive 64 kr. Barn under 7 år åker gratis med betalande vuxen. Priset kan variera med rutten — det exakta visas när du söker resan.' },
+      { q: 'Finns det ett kombinerat kort för SL och Waxholmsbolaget?', a: 'Sedan juni 2026 finns en kombinationsbiljett i SL-appen: ett köp för SL-resan och båten, giltig 180 minuter. Den kostar samma som två separata biljetter — vinsten är enkelheten. Waxholmsbolagets periodbiljetter (5 dagar, 30 dagar, ungdom 6 månader) laddas på ett SL-kort ombord.' },
       { q: 'Gäller SL-kortet på Styrsöbolaget i Göteborg?', a: 'Styrsöbolaget i Göteborg är en del av Västtrafik, inte SL. Västtrafik-kortet gäller på Styrsöbolagets båtar till sydskärgården. SL-kortet gäller inte i Göteborg.' },
     ],
   },
@@ -680,7 +684,7 @@ export const GUIDES: GuideMeta[] = [
     faqs: [
       { q: 'Hur tar man sig till Landsort?', a: 'Med Waxholmsbolaget från Nynäshamn – resan tar ca 1,5 timmar. Landsort är den sydligaste punkten i Stockholms skärgård och kräver planering då avgångarna är begränsade, speciellt utanför högsäsong.' },
       // KÄLLA: Sjöfartsverket (äldsta svenskbyggda fyren) + landsort.com:s kronologi — fyrbåk 1651, van der Hagens privilegium 1669, nuvarande torn 1680-talet.
-      { q: 'Vad är Landsort känt för?', a: 'Landsort har Sveriges äldsta bevarade fyrtorn — fyrplatsen går tillbaka till 1600-talets mitt och nuvarande torn restes på 1680-talet. Dessutom ett unikt mikroklimat med mildare vintrar än fastlandet och en dramatisk ytterskärgårdsnatur. Ön är bilfri och har ett genuint fiskeläge.' },
+      { q: 'Vad är Landsort känt för?', a: 'Landsort har Sveriges äldsta bevarade svenskbyggda fyrtorn — fyrplatsen går tillbaka till 1600-talets mitt och nuvarande torn restes på 1680-talet. Nidingen, Kullen och Falsterbo är äldre men danskbyggda. Dessutom ett unikt mikroklimat med mildare vintrar än fastlandet och en dramatisk ytterskärgårdsnatur. Ön är bilfri och har ett genuint fiskeläge.' },
       { q: 'Kan man övernatta på Landsort?', a: 'Ja, det finns ett vandrarhem på ön och möjlighet att hyra stugor. Tältning är möjlig men ön är liten – planera var du slår upp tältet. Boka boende i god tid under sommaren.' },
       { q: 'Är Landsort värt resan?', a: 'Absolut om du söker verklig ytterskärgård med vildmark och historisk atmosfär. Landsort är inte en turistdestination med utbud – det är en ö för dem som vill ha stillhet, havsöppning och natur utan folkmassor.' },
     ],
@@ -920,7 +924,8 @@ export const GUIDES: GuideMeta[] = [
     fullContent: true,
     faqs: [
       // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
-      { q: 'Hur lång är resan till Grinda?', a: 'Ca 1h 45min med Waxholmsbolaget linje 11 från Strömkajen. Cinderellabåten tar ca 1h 20min under sommarsäsongen. Biljett kostar ca 200 kr enkel resa med Waxholmsbolaget.' },
+      // KÄLLA: waxholmsbolaget.se reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: Strömkajen–Södra Grinda linje 13 1 h 50 min, taxa 4 = 125 kr vuxen / 79 kr rabatterat. Cinderella ej kontrollerad här.
+      { q: 'Hur lång är resan till Grinda?', a: 'Knappt två timmar med Waxholmsbolaget från Strömkajen (linje 13 tar 1 h 50 min till Södra Grinda). Cinderellabåten tar ca 1h 20min under sommarsäsongen. Waxholmsbolagets enkelbiljett Strömkajen–Grinda kostar 125 kr för vuxen och 79 kr för 7–19 år.' },
       { q: 'Kan man övernatta på Grinda?', a: 'Ja. Grinda Wärdshus erbjuder rum och stugor. Det finns också ett vandrarhem och möjlighet att tälta på södra sidan av ön. Boende bör bokas långt i förväg – Grinda är fullbokat under hela sommarsäsongen.' },
       { q: 'Är Grinda bra för barnfamiljer?', a: 'Grinda är ett av skärgårdens allra bästa val för barnfamiljer. Ön har sandstrand med grunt vatten, kajakhyrning anpassad för barn, ett trevligt värdshus och är liten nog att utforska på en dag. Båtresan är lagom lång för de flesta barn.' },
       { q: 'Kan man bada på Grinda?', a: 'Ja, Grinda har sandstrand med grunt och varmt vatten på södra sidan. Det är en av de bättre badstränderna i Stockholms skärgård. Vattnet brukar hålla 20–22°C i juli och tidigt augusti.' },
@@ -1100,7 +1105,7 @@ export const GUIDES: GuideMeta[] = [
   {
     slug: "20-bastustallen-skargarden-boka",
     title: "20 bastuställen i Stockholms skärgård att boka 2026",
-    excerpt: "Vedeldade bastubåtar, Skärgårdsstiftelsens öppna klippbastus, värdshus och privata ö-bastus — alla 20 verifierade platser med bokningsinfo och Swish-nummer.",
+    excerpt: "Vedeldade bastubåtar, Skärgårdsstiftelsens öppna klippbastus, värdshus och privata ö-bastus — 20 platser med länk till bokning där verksamheten publicerar den.",
     category: "Aktivitet", emoji: "🧖", readTime: "12 min", fullContent: true, featured: true,
     faqs: [
       // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
@@ -1203,7 +1208,8 @@ export const GUIDES: GuideMeta[] = [
     faqs: [
       { q: 'Vilka öar i skärgården är bäst för cykling?', a: 'Utö är nummer ett med sin 12 km cirkelrunda och välmarerade leder. Möja och Gällnö är kompakta och cykelvänliga. Ingmarsö har bra cykelleder i skogsmiljö. Öland och Gotland (utanför skärgården) är bäst för längre cykelturer.' },
       // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
-      { q: 'Kan man ta med cykel på Waxholmsbolaget?', a: 'Ja, cyklar är tillåtna ombord på de flesta Waxholmsbolagets linjer. Det tillkommer en avgift om ca 50–80 kr. Under högsäsong kan det vara trångt – kom i god tid till bryggan.' },
+      // KÄLLA: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med, läst 2026-09-19: "Att ta med cykeln kostar inget extra", i mån av plats, personalen avgör; cykelkärra/lådcykel 120 kr; barnvagn gratis med barn under 7, annars 65 kr; hund gratis
+      { q: 'Kan man ta med cykel på Waxholmsbolaget?', a: 'Ja, en vanlig cykel följer med utan extra kostnad, i mån av plats. Personalen ombord avgör och kan neka när det är fullt – kom i god tid till bryggan. Cykelkärra och lådcykel kostar 120 kr som gods.' },
       { q: 'Kan man hyra cykel på öarna?', a: 'Cykelhyrning finns på Utö, Möja, Gällnö och Grinda. Priser: ca 100–200 kr/dag. Boka i förväg under juli – cyklarna tar slut tidigt på populära öar.' },
     ],
   },

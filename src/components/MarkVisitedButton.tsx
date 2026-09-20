@@ -7,9 +7,12 @@ import { analytics } from '@/lib/analytics'
 interface Props {
   islandSlug: string
   islandName: string
+  /** 'hero' = vit på mörk bakgrund (standard). 'sektion' = på ljus sidbakgrund. */
+  variant?: 'hero' | 'sektion'
 }
 
-export default function MarkVisitedButton({ islandSlug, islandName }: Props) {
+export default function MarkVisitedButton({ islandSlug, islandName, variant = 'hero' }: Props) {
+  const sektion = variant === 'sektion'
   const supabase = useRef(createClient()).current
   const router = useRouter()
   const [visited, setVisited] = useState(false)
@@ -72,9 +75,9 @@ export default function MarkVisitedButton({ islandSlug, islandName }: Props) {
           display: 'inline-flex', alignItems: 'center', gap: 8,
           padding: '10px 18px',
           borderRadius: 999,
-          border: visited ? '1.5px solid rgba(34,197,94,0.6)' : '1.5px solid rgba(255,255,255,0.4)',
-          background: visited ? 'rgba(34,197,94,0.15)' : 'rgba(255,255,255,0.18)',
-          color: visited ? 'rgba(34,197,94,0.9)' : '#fff',
+          border: visited ? '1.5px solid rgba(34,197,94,0.6)' : sektion ? '1px solid var(--surface-3)' : '1.5px solid rgba(255,255,255,0.4)',
+          background: visited ? 'rgba(34,197,94,0.15)' : sektion ? 'var(--white)' : 'rgba(255,255,255,0.18)',
+          color: visited ? 'rgba(34,197,94,0.9)' : sektion ? 'var(--sea)' : '#fff',
           fontSize: 13.5, fontWeight: 700,
           cursor: loading ? 'wait' : visited ? 'default' : 'pointer',
           transition: 'all .15s',
@@ -93,7 +96,7 @@ export default function MarkVisitedButton({ islandSlug, islandName }: Props) {
             <circle cx="12" cy="8" r="2.4" />
           </svg>
         )}
-        {visited ? 'Besökt' : loading ? 'Sparar…' : 'Jag har besökt denna ö'}
+        {visited ? 'Besökt' : loading ? 'Sparar…' : 'Jag har varit här'}
       </button>
 
       {showToast && (

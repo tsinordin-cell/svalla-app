@@ -92,3 +92,31 @@ avgångstider. Superlativ ("bäst", "finast", "mest hyllade") kräver att en
 myndighet eller operatör säger det — annars bort.
 
 TOMT ÄR ALLTID TILLÅTET. Går påståendet inte att belägga, ta bort det.
+
+### Kontrollsteget — så läser man KÄLLA-raderna (MÄTT i Bohuslän 2026-09-16)
+
+Att en KÄLLA-rad finns betyder inte att någon läst källan. I Bohuslän-jobbet
+gav ett stickprov på 32 rader 6 fel; den fulla kontrollen gav 52 fel av 187
+(28 %). Utan steg 4–7 nedan hade alla 52 gått till produktion med en källrad
+ovanför sig. Därför är detta ordningen, inte ett tillval:
+
+1. Research-pass som producerar KÄLLA-rader med URL och citat.
+2. Applicera i datafilen.
+3. Extrahera varje påstående med årtal, siffra, areal eller pris — plus
+   KÄLLA-raden ovanför — till en lista.
+4. Stickprov på ~30 mot en oberoende kontrollant som öppnar varje URL i en
+   riktig webbläsare och svarar OK / FEL / SAKNAS med citat från sidan.
+   Instruera kontrollanten: "Ditt jobb är att hitta fel, inte att bekräfta."
+   Den formuleringen gav mätbart fler fynd än en neutral.
+5. Mer än ett par fynd på 30 betyder full kontroll av alla rader.
+6. Rätta fynden, kör om kontrollen på de rättade.
+7. HTTP-kontroll på samtliga URL:er sist (döda länkar, 404, omdirigeringar).
+
+Ett fynd som säger "källan säger inte det" är inte ett fynd förrän någon läst
+sidan i en riktig webbläsare — hämtningsbaserade kontroller misslyckas på
+JavaScript-tunga sidor (sl.se, waxholmsbolaget.se, naturvardsverket.se) och
+raderar då sant innehåll. 2026-09-18 var en fjärdedel av "saknas"-fynden fel
+av just det skälet.
+
+En KÄLLA-rad får aldrig peka på svalla.se — det är självcitering, och
+verify-claims fäller bygget på det sedan PR #316.

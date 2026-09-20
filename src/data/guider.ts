@@ -290,13 +290,14 @@ Det finns inte en avgångshamn utan flera, och vilken du använder beror på var
 
 ## SL-kortet — gäller det?
 
-Här är förvirringen störst. Svar: SL-kortet gäller på Waxholmsbolaget endast på vissa korta sträckor — främst pendelbåtarna runt centrala Stockholm och Vaxholm. Den långa skärgårdstrafiken är inte SL — den har egen biljett.
+Här är förvirringen störst. Svar: alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolaget-biljett 30 april–13 september; under lågsäsong 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. (KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19)
 
 Konkret:
 - Pendelbåten 80 från Slussen till Ropsten och Lidingö — SL-kort gäller
 - Pendelbåten 89 mellan Klara mälarstrand och Ekerö — SL-kort gäller
-- Vaxholms-trafiken (kortare turer kring Vaxholm) — SL-kort gäller på vissa avgångar
-- Trafiken ut i skärgården — egen biljett krävs
+- Waxholmsbolaget Strömkajen–Vaxholm med omnejd — alla SL-biljetter gäller
+- Waxholmsbolaget längre ut — Waxholmsbolaget-biljett 30 april–13 september; SL-periodbiljett ≥30 dagar gäller 14 september–29 april
+- Linje 17, 18, 19 mot södra skärgården — SL-biljett gäller aldrig
 
 Är du osäker, kolla Waxholmsbolagets eller SL:s reseplanerare. De säger tydligt om "SL-kort gäller" för en specifik tur.
 
@@ -314,7 +315,7 @@ För längre resor (Strömkajen-Sandhamn till exempel) är biljetten betydligt d
 
 ## Cykel och barnvagn
 
-Cykel är tillåten på de flesta båtar — med en cykelavgift utöver passagerarbiljetten. Antalet platser är begränsat och kan ta slut på populära turer på fredag eftermiddag och söndag kväll. Boka via appen i förväg.
+Vanlig cykel följer med utan extra kostnad, i mån av plats — personalen ombord avgör och kan neka när det är fullt. Cykelkärra och lådcykel räknas som gods (120 kr). Barnvagn är gratis när du reser med barn under 7 år. (KÄLLA: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med, läst 2026-09-19: "Att ta med cykeln kostar inget extra", i mån av plats, personalen avgör; cykelkärra/lådcykel 120 kr; barnvagn gratis med barn under 7, annars 65 kr; hund gratis)
 
 Barnvagn går ombord utan extra avgift. Hopfällbara modeller är enklast.
 

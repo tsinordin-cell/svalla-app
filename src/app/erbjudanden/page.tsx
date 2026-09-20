@@ -78,7 +78,7 @@ export default function ErbjudandenPage() {
  intro={
  <>
  <p>
- Skärgårdens operatörer lägger upp säsongspaket, weekend-deals och lågsäsongsrabatter löpande. Svalla samlar de relevanta på ett ställe — inga spam-erbjudanden, bara sådant våra redaktörer själva skulle boka.
+ Skärgårdens operatörer lägger upp säsongspaket, weekend-deals och lågsäsongsrabatter löpande. Här listar vi de erbjudanden operatörerna själva publicerat, med länk till källan. Pris och villkor gäller hos operatören.
  </p>
  <p>
  Vi tar ingen kickback — vi länkar direkt till operatörens bokningssida. Priser och villkor gäller som angivet av operatören.

@@ -226,7 +226,8 @@ export default async function IslandMedBarnPage({ params }: Props) {
             </div>
             <p style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 12, display: 'flex', alignItems: 'flex-start', gap: 6 }}>
               <Icon name="star" size={14} stroke={2} style={{ marginTop: 3 }} />
-              <span>Barn under 7 år åker gratis med Waxholmsbolaget. Barn 7–19 år betalar halvpris.</span>
+              {/* KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; läst 2026-09-19 */}
+              <span>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen. 7–19 år betalar rabatterat pris (39–114 kr i stället för 61–186 kr).</span>
             </p>
           </div>
         )}
@@ -264,6 +265,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
               Thorkel hittar rätt båt, bästa lunchrestaurangen och ett badtips anpassat för barn.
             </div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver gratis konto — tar 30 sekunder.</div>
           </div>
           <Link href="/planera" style={{
             display: 'inline-block', background: '#e8924a', color: '#fff',
