@@ -5,6 +5,7 @@ import { GUIDES } from '@/app/guider/guides-data'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import { TRAFFIC_OVERRIDE } from './config'
 import MaletClient from './MaletClient'
+import { baraManniskor } from '@/lib/analytics-filter'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,12 +25,14 @@ export default async function MaletPage() {
     service.from('email_subscribers').select('*', { count: 'exact', head: true }).eq('unsubscribed', false),
     service.from('partner_inquiries').select('*', { count: 'exact', head: true }).eq('status', 'active'),
     // Trafik: unika sessioner + sidvisningar senaste 30 dygnen.
-    service.from('analytics_events').select('session_id, event_name').gte('created_at', since30d).limit(50_000),
+    service.from('analytics_events').select('session_id, event_name, country_code, user_agent').gte('created_at', since30d).limit(50_000),
     // Antal företagssidor vi redan har — underlag för anspråkskampanjen.
     service.from('restaurants').select('*', { count: 'exact', head: true }),
   ])
 
-  const rows = events.data ?? []
+  // Agentsessioner (Claudes webbläsare, egna kontroller) räknas bort —
+  // annars ~70 % för många sidvisningar. Se src/lib/analytics-filter.ts.
+  const rows = baraManniskor(events.data ?? [])
   const sessions = new Set(rows.map(r => r.session_id).filter(Boolean)).size
   const pageviews = rows.filter(r => r.event_name === 'page_viewed').length
 
