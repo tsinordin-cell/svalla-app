@@ -197,6 +197,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
   },
   {
     slug: 'lysekil',
+    slag: 'ort',
     name: 'Lysekil',
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
@@ -279,6 +280,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
   },
   {
     slug: 'kosterhavet',
+    slag: 'nationalpark',
     name: 'Kosterhavet',
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
@@ -301,7 +303,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     facts: {
       // KÄLLA: Västtrafik, Kosterbåtarna — bekräftar linje 899 mellan Strömstad och Kosteröarna — https://www.vasttrafik.se/info/kosterbatarna/ ; avgång från Strömstads norra hamn intill torget och turistinformationen samt restid ca 30–60 min beroende på brygga och årstid enligt Turistrådet Västsverige — https://www.vastsverige.com/en/stromstad/articles/faq-koster/ (läst 2026-09-16)
       travel_time: 'Kosterbåtarna (Västtrafik linje 899) från Strömstads norra hamn; ca 30–60 min beroende på brygga och årstid enligt Turistrådet Västsverige',
-      character: 'Vild natur, marinbiologi, bilfri ö-trio',
+      character: 'Vild natur, marinbiologi, bilfria Nord- och Sydkoster', // Kosteröarna är två (se beskrivningen), inte en trio
       season: 'Juni–september, vintertid begränsat',
       best_for: 'Cykling på Sydkoster, bad, naturupplevelse',
     },
@@ -368,6 +370,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
   },
   {
     slug: 'grebbestad',
+    slag: 'ort',
     name: 'Grebbestad',
     region: 'bohuslan',
     regionLabel: 'Bohuslän',

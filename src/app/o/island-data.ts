@@ -73,6 +73,12 @@ export type Island = {
   coverImage?: string
   region: 'norra' | 'mellersta' | 'södra' | 'bohuslan' | 'ovriga' | 'goteborg'
   regionLabel?: string
+  /**
+   * Vad posten är. Utelämnad = ö. Lysekil och Grebbestad är fastlandsorter och
+   * Kosterhavet en nationalpark — de ligger under /o/ för att sidmallen passar,
+   * men ska inte kallas ö för besökaren (Toms delegation 2026-09-20).
+   */
+  slag?: 'ö' | 'ort' | 'nationalpark'
   emoji: string
   tagline: string
   lat?: number   // approx center coordinate
@@ -153,7 +159,12 @@ export type Island = {
     beach?: boolean
     camping?: boolean
   }
-  /** Hundvänlighet — för /oar/hundvanliga och ö-sida */
+  /**
+   * Hundvänlighet. Satt på 8 öar, bara Grinda har dog_notes med KÄLLA. Ingen
+   * /oar/hundvanliga-rutt byggs förrän varje ö som flaggas har koppelregler
+   * från länsstyrelsens reservatsföreskrifter i dog_notes — en hundsida med
+   * sju obelagda öar vore samma fel som barnvänliga-filtret var (2026-09-20).
+   */
   dog_friendly?: boolean
   dog_notes?: string
   /**
