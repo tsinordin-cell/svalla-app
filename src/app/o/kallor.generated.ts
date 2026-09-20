@@ -340,7 +340,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html",
       "org": "lansstyrelsen.se",
-      "vad": "bildat 2015; \"4341 hektar varav 2 891 hektar land\"; Vaxholms kommun; förvaltare Statens fastighetsverk; naturtyper \"barrskog, ädellövskog, odlingslandskap\"; \"många gamla grova ekar som växer i området, såväl i betesmark som i skogsmiljö\"; Natura 2000-området \"Damstakärret SE0110132 ligger inom området\"",
+      "vad": "Bogesunds slott från mitten av 1600-talet är statligt byggnadsminne och rymmer vandrarhem; anordningar: markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd, campingplatser, golfbana; föreskrifterna förbjuder att medföra okopplad hund, att \"tälta mer än två dygn i följd annat än på anvisad plats\", att cykla utanför anvisade stigar och att \"rida annat än på vägar och på anvisade ridstigar\"",
       "last": null,
       "myndighet": true
     },
@@ -355,7 +355,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/rindo-redutt",
       "org": "sfv.se",
       "vad": "byggd \"1859–1864\" för att komplettera Vaxholms kastell i försvaret av Stockholms inlopp; domineras av en donjon omgiven av vallar, djup grav och fältvall; innehöll två kaponjärer, \"de första som byggdes i landet\"; sten och tegel; statligt byggnadsminne; \"går att besöka på egen hand\"",
-      "last": null,
+      "last": "2026-09-20",
       "myndighet": true
     },
     {
@@ -1043,6 +1043,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/sevardheter/dalaro-skeppsvraksomrade/",
+      "org": "(läst 2026-09-20)",
+      "vad": "all dykning ska ske från båt, tillstånd krävs före varje dyk, dykguide håller kulturhistorisk genomgång, förbjudet att dyka över skrovet",
+      "last": "2026-09-20",
+      "myndighet": false
+    },
+    {
       "url": "https://www.dalaro.se/",
       "org": "branschsidan \"Fika",
       "vad": "",
@@ -1188,7 +1195,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.norrtalje.se/info/kultur-och-fritid/kultur-och-konst/norrtalje-museerkulturarv-och-stadsarkiv/museer-hembygds--och-kulturforeningar/batteri-arholma--upplevelsemuseum/",
       "org": "norrtalje.se",
       "vad": "Anläggningen byggdes för Kalla kriget och stod klar 1968; På ön Arholmas norra spets och gömd i berget; Den visas av säkerhetsskäl endast genom guidade turer",
-      "last": null,
+      "last": "2026-09-20",
       "myndighet": false
     },
     {
@@ -1310,7 +1317,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/oja-landsort.html",
       "org": "lansstyrelsen.se",
-      "vad": "skyddsform \"naturvårdsområde\"; förvaltare Länsstyrelsen; markägare staten; karaktär \"skärgård, lövskog, kulturmiljö\"; björk och al dominerar, begränsad tallskog; arter vitoxel, åkerbär och idegran; ejder dominerar sträcket, även sädgås, prutgås och sångsvan",
+      "vad": "Bybebyggelsen som äger betydande kulturhistoriska och miljömässiga värden är koncentrerad till Storhamn på öns södra del, där även lotsplatsen och fyren ligger; förbjudet med okopplad hund, att tälta och elda annat än på anvisade platser, att skada fasta naturföremål och att plocka blomman nattviol; anordningar: informationstavla, rast-/övernattningsstuga, stig, toalett, tältplats och vandringsled",
       "last": null,
       "myndighet": true
     },
