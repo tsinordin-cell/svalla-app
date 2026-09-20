@@ -142,7 +142,7 @@ export default function BohuslanPage() {
  Bohuslän är legendariskt bland seglare världen över. Här finns Marstrand med Carlstens fästning, där svenska seglare har mötts sedan 1700-talet. Här ligger Smögen och Fjällbacka med sina traditionella bryggor, och här öppnas världens bästa hummerkrogar varje september. Tidvattnet och vinden är förutsägbara, och naturhamnarna räcker till för både en veckas äventyr och tioåriga återkommande.
  </p>
  <p>
- Med Svalla loggar du alla etapper från Göteborg till norska gränsen, hittar hummerkrogar och gästhamnar på kartan, navigerar med korrekta tidvattenupplysningar och kan följa andra seglares turer längs samma ikoniska kust. Dela dina äventyr, hitta nya ankringsplatser och bygg en gemenskap av västkustsseglare.
+ Med Svalla loggar du dina etapper från Göteborg till norska gränsen, läser ö-sidorna med hamnar och källor, och delar dina turer med andra som seglar samma kust. Svalla visar inga tidvatten- eller djupuppgifter — det gör sjökortet.
  </p>
  <p>
  Oavsett om du seglar en helg eller en hel månad, är Bohuslän destinationen som aldrig blir gammal.
@@ -260,18 +260,12 @@ export default function BohuslanPage() {
  September är även Bohusläns mest stabila väderperiod för segling. Vädret är oftast stadigt med nordväst eller sydväst vind, temperaturen är behaglig (15–20°C i luften, 13–15°C i vattnet), och trycket på gästhamnarna börjar släppa efter semesterkaos.
  </p>
 
+ {/* Sektionen "Tidvatten och navigering" togs bort 2026-09-20 (Toms delegation): 20–40 cm
+     tidvatten och råd om att "planera passering mot tidvattnets riktning" saknade källa
+     och var resonerat, inte mätt. Kvar: det som inte behöver en siffra. */}
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '32px 0 12px' }}>
- Tidvatten och navigering längs Bohuslän
+ Navigering längs Bohuslän
  </h2>
- <p>
- Västkusten har betydligt mindre tidvattenvariaton än södra Västersjön — på Bohuslän ligger tidvattnet på bara <strong>20–40 centimeter</strong>. Men detta betyder inte att du kan ignorera strömmar. I vissa trångare passager, särskilt runt Marstrand och mellan små öar, kan strömmen bli märkbar och kan påverka din färdriktning.
- </p>
- <p>
- Planera dina passering mot tidvattenets riktning. Om du seglar mot norr (norrut), är det bäst att ta passa genom trånga delar när strömmen går norrut. Böljorna blir mindre kaotiska och du får finare framfart.
- </p>
- <p>
- Vinden längs Bohuslän är ofta från sydväst — en riktning som är perfekt om du vill segla norrut längs kusten. Du får god framfart över babord och kan låta vinden driva dig norrut vecka efter vecka utan större förändring av segelställning.
- </p>
  <p>
  <strong>Navigering är kritisk här.</strong> Bohuslän är fyllt av klippor och grund. Många passager är endast lämpliga för seglare med god sjökortskompetens. Svalla är inget sjökort och visar inga djup. Navigera efter sjökortet och använd GPS som stöd, inte som enda guide.
  </p>

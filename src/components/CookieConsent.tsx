@@ -112,11 +112,13 @@ export default function CookieConsent() {
           style={{
             flex: '1 1 160px',
             padding: '11px 18px',
-            background: 'rgba(10,123,140,0.06)',
+            /* 2026-09-20: samma vikt som "Acceptera alla" — synlig ram och fet text,
+               så valet inte lutar. Tidigare en blek spökknapp (Toms delegation). */
+            background: 'var(--card-bg, #fff)',
             color: 'var(--sea)',
             borderRadius: 10,
-            border: 'none',
-            fontSize: 13, fontWeight: 600,
+            border: '1.5px solid var(--sea)',
+            fontSize: 13, fontWeight: 700,
             cursor: 'pointer',
             letterSpacing: '0.02em',
             fontFamily: 'inherit',

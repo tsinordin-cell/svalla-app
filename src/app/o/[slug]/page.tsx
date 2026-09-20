@@ -304,7 +304,7 @@ export default async function IslandPage({ params }: Props) {
  padding: '4px 12px',
  borderRadius: 20,
  color: 'rgba(255,255,255,0.9)',
- }}>{island.regionLabel}</span>
+ }}>{island.regionLabel}{island.slag === 'ort' ? ' · ort' : island.slag === 'nationalpark' ? ' · nationalpark' : ''}</span>
  {island.tags.slice(0, 3).map(tag => (
  <span key={tag} style={{
  fontSize: 11,
