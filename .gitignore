@@ -36,6 +36,9 @@ supabase/.temp/
 .fuse_hidden*
 tsconfig.check.json
 tsconfig.check.tsbuildinfo
+# Byggartefakt från tsc. Skrivs om vid varje typkontroll och ska inte spåras —
+# den fick git pull att avbryta mitt i en push 2026-09-18.
+tsconfig.tsbuildinfo
 
 # scripts/lankkontroll.mjs skriver rapporten i repots rot om --ut inte anges
 lankkontroll-*.md
