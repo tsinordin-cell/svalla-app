@@ -611,7 +611,7 @@ export const ISLANDS: Island[] = [
       'Oscar-Fredriksborg vid Oxdjupet byggdes 1867–1877, sedan en farled öppnats genom sundet efter århundraden av stenblockering. Det var ett modernt bergfort för sin tid, med tunnlar sprängda med nitroglycerin, betong och pansar, och med en låg profil i stället för kastellets höga murar. Anläggningen blev byggnadsminne 2002 och området är öppet för besök.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — bildat 2015; "4341 hektar varav 2 891 hektar land"; Vaxholms kommun; förvaltare Statens fastighetsverk; naturtyper "barrskog, ädellövskog, odlingslandskap"; "många gamla grova ekar som växer i området, såväl i betesmark som i skogsmiljö"; Natura 2000-området "Damstakärret SE0110132 ligger inom området"
       'Bogesundslandets naturreservat bildades 2015 och är 4 341 hektar, varav 2 891 hektar land — en av de största skyddade ytorna så nära Stockholm. Statens fastighetsverk förvaltar det, och naturtyperna är barrskog, ädellövskog och odlingslandskap. Det som gör området särskilt är mängden gamla grova ekar, både i betesmark och i skogsmiljö. Natura 2000-området Damstakärret ligger inom reservatet.',
-      // KÄLLA: https://www.lansstyrelsen.se/.../bogesundslandet.html — Bogesunds slott från mitten av 1600-talet är statligt byggnadsminne och rymmer vandrarhem; anordningar: markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd, campingplatser, golfbana; föreskrifterna förbjuder att medföra okopplad hund, att "tälta mer än två dygn i följd annat än på anvisad plats", att cykla utanför anvisade stigar och att "rida annat än på vägar och på anvisade ridstigar"
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — Bogesunds slott från mitten av 1600-talet är statligt byggnadsminne och rymmer vandrarhem; anordningar: markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd, campingplatser, golfbana; föreskrifterna förbjuder att medföra okopplad hund, att "tälta mer än två dygn i följd annat än på anvisad plats", att cykla utanför anvisade stigar och att "rida annat än på vägar och på anvisade ridstigar"
       'Mitt i reservatet ligger Bogesunds slott från mitten av 1600-talet, statligt byggnadsminne och i dag vandrarhem. Runt omkring finns markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd, campingplatser och en golfbana. Reglerna är värda att känna till: koppel på hunden, tältning högst två dygn i följd utanför anvisad plats, cykling bara på anvisade stigar och ridning bara på vägar och anvisade ridstigar.',
     ],
     facts: {
@@ -664,11 +664,11 @@ export const ISLANDS: Island[] = [
       'Direktbåten från Strömkajen tar ungefär en timme och är en del av upplevelsen.',
       // KÄLLA: https://www.vaxholm.se/, nyhetsarkiv — "Välkommen till Vaxholms julmarknad 7–8/12"
       'Julmarknaden i december är ett skäl att komma hit utanför sommarsäsongen — kolla datum på vaxholm.se.',
-      // KÄLLA: https://www.lansstyrelsen.se/.../bogesundslandet.html — reservatet är 4 341 hektar varav 2 891 land; markerade vandringsleder, badplatser, vindskydd och eldstäder; nås "med främst bil, buss eller båt"
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — reservatet är 4 341 hektar varav 2 891 land; markerade vandringsleder, badplatser, vindskydd och eldstäder; nås "med främst bil, buss eller båt"
       'Bogesundslandet på fastlandssidan av kommunen är ett stort vandringsområde med markerade leder, badplatser och vindskydd — och nås med buss.',
-      // KÄLLA: https://www.sfv.se/.../rindo-redutt — Rindö redutt är statligt byggnadsminne och "går att besöka på egen hand"
+      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/rindo-redutt (läst 2026-09-20) — Rindö redutt är statligt byggnadsminne och "går att besöka på egen hand"
       'Rindö redutt går att besöka på egen hand, till skillnad från många andra militära anläggningar i skärgården.',
-      // KÄLLA: https://www.lansstyrelsen.se/.../bogesundslandet.html — förbjudet att cykla utanför anvisade stigar och att rida annat än på vägar; okopplad hund förbjuden
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — förbjudet att cykla utanför anvisade stigar och att rida annat än på vägar; okopplad hund förbjuden
       'I Bogesundslandets naturreservat får du bara cykla på anvisade stigar och rida på vägarna, och hunden ska vara kopplad.',
     ],
     related: ['grinda', 'finnhamn', 'ljustero'],
@@ -1592,7 +1592,7 @@ export const ISLANDS: Island[] = [
       'Skeppsvraksområdet utanför Dalarö går att dyka vid.',
       // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/dalaro/ — "en populär utgångspunkt för att upptäcka Haninges öar"
       'Dalarö är en utgångspunkt för att ta sig vidare till Haninges öar.',
-      // KÄLLA: https://www.haninge.se/.../dalaro-skeppsvraksomrade/ — all dykning ska ske från båt, tillstånd krävs före varje dyk, dykguide håller kulturhistorisk genomgång, förbjudet att dyka över skrovet
+      // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/sevardheter/dalaro-skeppsvraksomrade/ (läst 2026-09-20) — all dykning ska ske från båt, tillstånd krävs före varje dyk, dykguide håller kulturhistorisk genomgång, förbjudet att dyka över skrovet
       'Vrakdykningen är reglerad: dyk sker från båt, kräver tillstånd i förväg och sker med guide — man kan inte bara hoppa i från land.',
       // KÄLLA: https://www.svenskakyrkan.se/haninge/historik-dalaro-kyrka — kyrkan från 1649–1652, ombyggd 1786–87, en av få byggnader som klarade 1719
       'Dalarö kyrka från 1649–52 är en av få byggnader på platsen som klarade ryssarnas härjningar 1719.',
@@ -1704,7 +1704,7 @@ export const ISLANDS: Island[] = [
       'Arholma Handel har öppet året runt och säljer livsmedel, bensin, diesel och gasol, och hyr ut cyklar.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/arholma-ido.html — landstigningsförbud på Rödkobben och Nollekobb 1 april–31 juli; förtöjning och tältning högst två dygn i följd
       'I reservatet gäller landstigningsförbud på Rödkobben och Nollekobb 1 april–31 juli, och båt får ligga förtöjd högst två dygn i följd.',
-      // KÄLLA: https://www.norrtalje.se/.../batteri-arholma--upplevelsemuseum/ — "Den visas av säkerhetsskäl endast genom guidade turer"
+      // KÄLLA: https://www.norrtalje.se/info/kultur-och-fritid/kultur-och-konst/norrtalje-museerkulturarv-och-stadsarkiv/museer-hembygds--och-kulturforeningar/batteri-arholma--upplevelsemuseum/ (läst 2026-09-20) — "Den visas av säkerhetsskäl endast genom guidade turer"
       'Batteri Arholma visas bara med guide — planera in den turen i förväg om du vill se anläggningen inifrån.',
       // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-arholma/ — etappen "Medel 13.4 km", start vid kajen, "utmanande stigar" och "teknisk stig"
       'Vandringsetappen på Arholma är drygt 13 kilometer och innehåller partier med teknisk stig — ha skor som tål berg.',
@@ -1877,7 +1877,7 @@ export const ISLANDS: Island[] = [
       'Att ta sig hit kräver planering. Reservatet ligger ungefär två kilometer söder om Torö: du åker SL-buss till Ankarudden på Torö och därifrån går Waxholmsbolagets reguljära turtrafik till Öja-Landsort. Kontrollera tidtabellen i förväg.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/oja-landsort.html — skyddsform "naturvårdsområde"; förvaltare Länsstyrelsen; markägare staten; karaktär "skärgård, lövskog, kulturmiljö"; björk och al dominerar, begränsad tallskog; arter vitoxel, åkerbär och idegran; ejder dominerar sträcket, även sädgås, prutgås och sångsvan
       'Skyddet på Öja är av den äldre formen naturvårdsområde, med Länsstyrelsen som förvaltare och staten som markägare. Karaktären anges som skärgård, lövskog och kulturmiljö — det är björk och al som dominerar, inte tall som man kan vänta sig så här långt ut. Bland växterna nämns vitoxel, åkerbär och idegran, och i fågelsträcket dominerar ejder, med sädgås, prutgås och sångsvan bland de arter som passerar.',
-      // KÄLLA: https://www.lansstyrelsen.se/.../oja-landsort.html — "Bybebyggelsen som äger betydande kulturhistoriska och miljömässiga värden är koncentrerad till Storhamn på öns södra del, där även lotsplatsen och fyren ligger"; förbjudet med okopplad hund, att "tälta och elda annat än på anvisade platser", att skada fasta naturföremål och att plocka blomman nattviol; anordningar: informationstavla, rast-/övernattningsstuga, stig, toalett, tältplats och vandringsled
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/oja-landsort.html — "Bybebyggelsen som äger betydande kulturhistoriska och miljömässiga värden är koncentrerad till Storhamn på öns södra del, där även lotsplatsen och fyren ligger"; förbjudet med okopplad hund, att "tälta och elda annat än på anvisade platser", att skada fasta naturföremål och att plocka blomman nattviol; anordningar: informationstavla, rast-/övernattningsstuga, stig, toalett, tältplats och vandringsled
       'Bybebyggelsen, som Länsstyrelsen tillskriver betydande kulturhistoriska och miljömässiga värden, är koncentrerad till Storhamn på öns södra del, där också lotsplatsen och fyren ligger. I området finns vandringsled, stig, tältplats, toalett och en rast- och övernattningsstuga. Reglerna är tydliga: hunden ska vara kopplad, tältning och eldning bara på anvisade platser — och nattviol är uttryckligen fridlyst från plockning här.',
       // KÄLLA: http://www.landsort.com/?page_id=138 — 1820 övergång till rovoljelampor med försilvrade speglar; 1839 staten inlöser fyren och Mauritz Enegren blir första fyrmästare; 1844 antas Sofia Charlotta Löfström som kvinnligt biträde; 1870 påbörjas ombyggnad med konisk fyr ovanpå stenfyren; 1909 monteras Lux-brännare
       'Fyrens tekniska historia är en kedja av uppgraderingar. 1820 gick man över till rovoljelampor med försilvrade speglar, 1839 löste staten in fyren och Mauritz Enegren blev dess förste statlige fyrmästare, och 1844 antogs Sofia Charlotta Löfström som kvinnligt biträde. 1870 påbörjades ombyggnaden då ett koniskt torn restes ovanpå den gamla stenfyren, och omkring 1909 monterades Lux-brännare.',
@@ -1924,11 +1924,11 @@ export const ISLANDS: Island[] = [
       'Landsorts fågelstation bedriver ringmärkning och tar emot besökare — se fågelstationens egen sida för guidningar och aktuella program.',
       // KÄLLA: https://landsort.com/saltboden/ — Saltboden är öns livsmedels- och matställe (2026-09-14)
       'Utbudet på ön är begränsat — kontrollera Saltbodens aktuella öppettider innan du åker, och ta med mat.',
-      // KÄLLA: https://www.lansstyrelsen.se/.../oja-landsort.html — förbjudet med okopplad hund samt att tälta och elda annat än på anvisade platser; blomman nattviol får inte plockas
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/oja-landsort.html — förbjudet med okopplad hund samt att tälta och elda annat än på anvisade platser; blomman nattviol får inte plockas
       'I naturvårdsområdet gäller kopplingstvång, tältning och eldning bara på anvisade platser — och nattviol får inte plockas.',
       // KÄLLA: https://nynashamn.se/uppleva/skargard--batliv/landsort — ön har tre hamnar: Österhamn, Västerhamn och Norrhamn; minibussar via Landsorttrafiken om färjan ankommer vid Norrhamn
       'Ön har tre hamnar — Österhamn, Västerhamn och Norrhamn — och vilken båten går till avgör hur långt du har kvar att gå.',
-      // KÄLLA: https://www.lansstyrelsen.se/.../oja-landsort.html — anordningar: rast-/övernattningsstuga, tältplats, toalett, vandringsled och stig
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/oja-landsort.html — anordningar: rast-/övernattningsstuga, tältplats, toalett, vandringsled och stig
       'Det finns vandringsled, tältplats, toalett och en rast- och övernattningsstuga i området.',
     ],
     activity_meta: {
