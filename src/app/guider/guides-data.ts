@@ -1105,7 +1105,7 @@ export const GUIDES: GuideMeta[] = [
   {
     slug: "20-bastustallen-skargarden-boka",
     title: "20 bastuställen i Stockholms skärgård att boka 2026",
-    excerpt: "Vedeldade bastubåtar, Skärgårdsstiftelsens öppna klippbastus, värdshus och privata ö-bastus — alla 20 verifierade platser med bokningsinfo och Swish-nummer.",
+    excerpt: "Vedeldade bastubåtar, Skärgårdsstiftelsens öppna klippbastus, värdshus och privata ö-bastus — 20 platser med länk till bokning där verksamheten publicerar den.",
     category: "Aktivitet", emoji: "🧖", readTime: "12 min", fullContent: true, featured: true,
     faqs: [
       // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
