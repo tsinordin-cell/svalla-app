@@ -26,6 +26,10 @@ type Project = {
 // Matchar hur uppgifter faktiskt rör sig här — de flesta är "Claude-uppdrag",
 // inte ett generiskt kanban-flöde.
 type TaskStatus = 'todo' | 'working' | 'review' | 'done'
+// En rutin byter ALDRIG status till 'done'. Den räknas som gjord så länge
+// last_done_at ligger inom innevarande period, och blir förfallen av sig själv
+// när perioden vänder. Ingen cron, inget som kan sluta ticka.
+type Recurrence = 'weekly' | 'monthly' | 'quarterly' | null
 type TaskPriority = 'low' | 'normal' | 'high'
 
 type TeamSupabase = ReturnType<typeof createClient>
@@ -55,6 +59,8 @@ type Task = {
   prompt: string | null
   images: TaskImage[]
   color: string | null
+  recurrence: Recurrence
+  last_done_at: string | null
   created_at: string
   updated_at: string
 }
@@ -83,7 +89,7 @@ type Activity = {
   created_at: string
 }
 
-type Tab = 'tasks' | 'prompts' | 'activity'
+type Tab = 'tasks' | 'routines' | 'prompts' | 'activity'
 
 const STATUS_LABEL: Record<TaskStatus, string> = {
   todo: 'Att göra',
@@ -101,6 +107,32 @@ const STATUS_ACCENT: Record<TaskStatus, string> = {
   working: 'var(--amber)',
   review: REVIEW_COLOR,
   done: 'var(--green)',
+}
+
+type RecurrenceKey = Exclude<Recurrence, null>
+const RECURRENCE_ORDER: RecurrenceKey[] = ['weekly', 'monthly', 'quarterly']
+const RECURRENCE_LABEL: Record<RecurrenceKey, string> = {
+  weekly: 'Varje vecka', monthly: 'Varje månad', quarterly: 'Varje kvartal',
+}
+const RECURRENCE_KORT: Record<RecurrenceKey, string> = {
+  weekly: 'denna vecka', monthly: 'denna månad', quarterly: 'detta kvartal',
+}
+
+/** Början på innevarande period, i webbläsarens tidszon. Veckan börjar på
+ *  måndag — svensk kalender, inte JS förvalda söndag. */
+function periodStart(r: RecurrenceKey, now: Date): Date {
+  const d = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  if (r === 'weekly') {
+    d.setDate(d.getDate() - ((d.getDay() + 6) % 7))
+    return d
+  }
+  if (r === 'monthly') return new Date(d.getFullYear(), d.getMonth(), 1)
+  return new Date(d.getFullYear(), Math.floor(d.getMonth() / 3) * 3, 1)
+}
+
+function gjordDennaPeriod(t: Task, now: Date): boolean {
+  if (!t.recurrence || !t.last_done_at) return false
+  return new Date(t.last_done_at).getTime() >= periodStart(t.recurrence, now).getTime()
 }
 
 const PRIORITY_LABEL: Record<TaskPriority, string> = { low: 'Låg', normal: 'Normal', high: 'Hög' }
@@ -171,6 +203,15 @@ function hostFromUrl(url: string): string {
 }
 
 // ── Ikoner (linje-stil, matchar admin-panelens SVG-ikoner) ──────────────────
+
+function IcoRoutine({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12a9 9 0 1 1-2.64-6.36" /><path d="M21 3v5h-5" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  )
+}
 
 function IcoTasks({ color = 'currentColor' }: { color?: string }) {
   return (
@@ -756,7 +797,7 @@ export default function TeamDashboardClient({
   const createTask = useCallback(async (input: {
     title: string; description: string | null; project_id: string | null; assignee_id: string | null
     priority: TaskPriority; due_date: string | null; pr_url: string | null; prompt: string | null
-    color: string | null
+    color: string | null; recurrence: Recurrence
   }): Promise<string | null> => {
     const { data, error } = await supabase
       .from('team_tasks')
@@ -776,6 +817,14 @@ export default function TeamDashboardClient({
   const updateTaskStatus = useCallback(async (id: string, status: TaskStatus) => {
     setTasks(prev => prev.map(t => t.id === id ? { ...t, status } : t))
     await supabase.from('team_tasks').update({ status }).eq('id', id)
+  }, [supabase])
+
+  // Rutiner bockas av, de blir inte klara. Vi skriver bara tidpunkten —
+  // status lämnas orörd så kortet finns kvar till nästa period.
+  const setRoutineDone = useCallback(async (id: string, done: boolean) => {
+    const last_done_at = done ? new Date().toISOString() : null
+    setTasks(prev => prev.map(t => t.id === id ? { ...t, last_done_at } : t))
+    await supabase.from('team_tasks').update({ last_done_at }).eq('id', id)
   }, [supabase])
 
   const updateTaskAssignee = useCallback(async (id: string, assignee_id: string | null) => {
@@ -902,17 +951,24 @@ export default function TeamDashboardClient({
     setNewProjectName(''); setShowNewProject(false)
   }
 
-  const filteredTasks = projectFilter ? tasks.filter(t => t.project_id === projectFilter) : tasks
+  // Rutiner har en helt annan rytm än engångsarbete och hörde inte hemma i
+  // samma kolumner — de trängde undan det som faktiskt skulle bli klart.
+  const boardTasks = useMemo(() => tasks.filter(t => !t.recurrence), [tasks])
+  const routineTasks = useMemo(() => tasks.filter(t => !!t.recurrence), [tasks])
+
+  const filteredTasks = projectFilter ? boardTasks.filter(t => t.project_id === projectFilter) : boardTasks
+  const filteredRoutines = projectFilter ? routineTasks.filter(t => t.project_id === projectFilter) : routineTasks
   const filteredPrompts = projectFilter ? prompts.filter(p => p.project_id === projectFilter) : prompts
 
   function taskCountForProject(projectId: string) {
-    return tasks.filter(t => t.project_id === projectId).length
+    return boardTasks.filter(t => t.project_id === projectId).length
   }
 
-  const TAB_TITLE: Record<Tab, string> = { tasks: 'Uppgifter', prompts: 'Promptbibliotek', activity: 'Aktivitet' }
+  const TAB_TITLE: Record<Tab, string> = { tasks: 'Uppgifter', routines: 'Rutiner', prompts: 'Promptbibliotek', activity: 'Aktivitet' }
 
   const navItems: Array<{ key: Tab; label: string; icon: React.ReactNode }> = [
     { key: 'tasks', label: 'Uppgifter', icon: <IcoTasks /> },
+    { key: 'routines', label: 'Rutiner', icon: <IcoRoutine /> },
     { key: 'prompts', label: 'Promptbibliotek', icon: <IcoPrompt /> },
     { key: 'activity', label: 'Aktivitet', icon: <IcoActivity /> },
   ]
@@ -961,7 +1017,7 @@ export default function TeamDashboardClient({
             <button className={`svt-projrow${projectFilter === null ? ' active' : ''}`} onClick={() => setProjectFilter(null)}>
               <IcoFolder color="rgba(255,255,255,0.55)" />
               <span style={{ flex: 1 }}>Alla projekt</span>
-              <span style={{ fontSize: 11, opacity: 0.6 }}>{tasks.length}</span>
+              <span style={{ fontSize: 11, opacity: 0.6 }}>{boardTasks.length}</span>
             </button>
             {projects.map(p => (
               editProjectId === p.id ? (
@@ -1088,7 +1144,7 @@ export default function TeamDashboardClient({
                 enda vägen att filtrera/skapa projekt på mobil. */}
             <div className="svt-mobile-projectbar">
               <button className={`svt-chip${projectFilter === null ? ' active' : ''}`} onClick={() => setProjectFilter(null)}>
-                Alla <span style={{ opacity: 0.7 }}>{tasks.length}</span>
+                Alla <span style={{ opacity: 0.7 }}>{boardTasks.length}</span>
               </button>
               {projects.map(p => (
                 <button key={p.id} className={`svt-chip${projectFilter === p.id ? ' active' : ''}`} onClick={() => setProjectFilter(projectFilter === p.id ? null : p.id)}>
@@ -1127,6 +1183,16 @@ export default function TeamDashboardClient({
                 onRemoveImage={removeTaskImage}
                 onUpdate={updateTask}
                 supabase={supabase}
+              />
+            )}
+
+            {tab === 'routines' && (
+              <RoutinesPanel
+                routines={filteredRoutines}
+                projectById={projectById}
+                memberById={memberById}
+                onToggleDone={setRoutineDone}
+                onDelete={deleteTask}
               />
             )}
 
@@ -1315,7 +1381,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
   onCreate: (input: {
     title: string; description: string | null; project_id: string | null; assignee_id: string | null
     priority: TaskPriority; due_date: string | null; pr_url: string | null; prompt: string | null
-    color: string | null
+    color: string | null; recurrence: Recurrence
   }) => Promise<string | null>
   onStatusChange: (id: string, status: TaskStatus) => void
   onAssigneeChange: (id: string, assignee_id: string | null) => void
@@ -1337,6 +1403,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
   const [prUrl, setPrUrl] = useState('')
   const [prompt, setPrompt] = useState('')
   const [color, setColor] = useState<string | null>(null)
+  const [recurrence, setRecurrence] = useState<Recurrence>(null)
   const [assigneeFilter, setAssigneeFilter] = useState<AssigneeFilter>('all')
   // Klart är ihopfälld som standard. Läses ur localStorage EFTER montering —
   // läser man den direkt i useState blir serverns HTML och klientens första
@@ -1357,7 +1424,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
   const [dragNew, setDragNew] = useState(false)
 
   function resetForm() {
-    setTitle(''); setNotes(''); setProjectId(''); setAssigneeId(null); setPriority('normal')
+    setTitle(''); setNotes(''); setProjectId(''); setAssigneeId(null); setPriority('normal'); setRecurrence(null)
     setDueDate(''); setPrUrl(''); setPrompt(''); setColor(null); setPendingFiles([])
     setShowDetails(false); setShowForm(false)
   }
@@ -1384,6 +1451,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
       pr_url: prUrl.trim() || null,
       prompt: prompt.trim() || null,
       color,
+      recurrence,
     })
     if (newId && pendingFiles.length) await onAddImages(newId, pendingFiles)
     setSaving(false)
@@ -1487,6 +1555,15 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
               <option value="high">Hög prioritet</option>
             </select>
             <input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }} />
+            <select
+              value={recurrence ?? ''}
+              onChange={e => setRecurrence((e.target.value || null) as Recurrence)}
+              title="Återkommande rutiner hamnar under Rutiner, inte på tavlan"
+              style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }}
+            >
+              <option value="">Engångsuppgift</option>
+              {RECURRENCE_ORDER.map(r => <option key={r} value={r}>{RECURRENCE_LABEL[r]}</option>)}
+            </select>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
@@ -2256,6 +2333,152 @@ function TaskDetail({
 }
 
 // ── Promptbibliotek ──────────────────────────────────────────────────────────
+
+// ── Rutiner ─────────────────────────────────────────────────────────────────
+// Egen flik, medvetet inte en kolumn på tavlan. En rutin är aldrig "klar" —
+// den är gjord för den här perioden eller så är den förfallen. Att blanda in
+// dem bland engångskorten gjorde tavlan oläslig: 15 av 73 kort kom tillbaka
+// varje vecka och gick aldrig att beta av.
+
+function RoutinesPanel({ routines, projectById, memberById, onToggleDone, onDelete }: {
+  routines: Task[]
+  projectById: Map<string, Project>
+  memberById: Map<string, TeamMember>
+  onToggleDone: (id: string, done: boolean) => void
+  onDelete: (id: string) => void
+}) {
+  // "Gjord denna period" beror på vad klockan är nu, och servern kör UTC medan
+  // webbläsaren kör svensk tid. Räknas det under serverrenderingen blir HTML:en
+  // en annan än klientens och React kastar hydreringsfel — samma fälla som i
+  // Pulse. Därför räknas det först efter montering.
+  const [nu, setNu] = useState<Date | null>(null)
+  useEffect(() => { setNu(new Date()) }, [])
+
+  const grupper = useMemo(() => RECURRENCE_ORDER
+    .map(r => ({ nyckel: r, kort: routines.filter(t => t.recurrence === r) }))
+    .filter(g => g.kort.length > 0), [routines])
+
+  if (!routines.length) {
+    return (
+      <div className="svt-card" style={{ padding: 28, textAlign: 'center', color: 'var(--txt3)', fontSize: 13 }}>
+        Inga rutiner ännu. Skapa en uppgift och välj <b>Varje vecka</b>, <b>Varje månad</b> eller
+        <b> Varje kvartal</b> i formuläret — då hamnar den här i stället för på tavlan.
+      </div>
+    )
+  }
+
+  const kvar = nu ? routines.filter(t => !gjordDennaPeriod(t, nu)).length : routines.length
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+      <div className="svt-pulse">
+        <span className="svt-pulse-item">
+          <span style={{ width: 7, height: 7, borderRadius: '50%', background: kvar ? 'var(--amber)' : 'var(--green)' }} />
+          {kvar ? <>kvar att göra <b>{kvar}</b></> : <>allt gjort den här perioden</>}
+        </span>
+        <span className="svt-pulse-sep" />
+        <span className="svt-pulse-item" style={{ color: 'var(--txt3)' }}>
+          rutiner nollställs av sig själva när perioden vänder
+        </span>
+      </div>
+
+      {grupper.map(({ nyckel, kort }) => {
+        // Förfallna först — det är de som kräver något av dig.
+        const sorterade = nu
+          ? [...kort].sort((a, b) => Number(gjordDennaPeriod(a, nu)) - Number(gjordDennaPeriod(b, nu)))
+          : kort
+        return (
+          <section key={nyckel}>
+            <div style={{
+              display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 8,
+              fontSize: 11, fontWeight: 700, letterSpacing: 0.6,
+              textTransform: 'uppercase', color: 'var(--txt3)',
+            }}>
+              {RECURRENCE_LABEL[nyckel]}
+              <span style={{ fontWeight: 600, opacity: 0.7 }}>{kort.length}</span>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              {sorterade.map(t => {
+                const gjord = nu ? gjordDennaPeriod(t, nu) : false
+                const projekt = t.project_id ? projectById.get(t.project_id) : undefined
+                const ansvarig = t.assignee_id ? memberById.get(t.assignee_id) : undefined
+                return (
+                  <div
+                    key={t.id}
+                    className="svt-card"
+                    style={{
+                      display: 'flex', alignItems: 'flex-start', gap: 11, padding: '11px 13px',
+                      opacity: gjord ? 0.55 : 1,
+                      borderLeft: `3px solid ${gjord ? 'var(--green)' : 'var(--amber)'}`,
+                    }}
+                  >
+                    <button
+                      onClick={() => onToggleDone(t.id, !gjord)}
+                      aria-pressed={gjord}
+                      title={gjord ? 'Ångra avbockningen' : `Bocka av för ${RECURRENCE_KORT[t.recurrence as RecurrenceKey]}`}
+                      style={{
+                        flexShrink: 0, width: 20, height: 20, marginTop: 1, borderRadius: '50%',
+                        border: `1.8px solid ${gjord ? 'var(--green)' : 'var(--svt-border-strong)'}`,
+                        background: gjord ? 'var(--green)' : 'transparent',
+                        cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0,
+                      }}
+                    >
+                      {gjord && (
+                        <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={3.4} strokeLinecap="round" strokeLinejoin="round">
+                          <path d="m5 12 5 5L20 7" />
+                        </svg>
+                      )}
+                    </button>
+
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{
+                        fontSize: 13.5, fontWeight: 600, color: 'var(--txt)',
+                        textDecoration: gjord ? 'line-through' : 'none',
+                      }}>
+                        {t.title}
+                      </div>
+                      {t.description && (
+                        <div style={{
+                          fontSize: 12, color: 'var(--txt3)', marginTop: 2,
+                          overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                        }}>
+                          {t.description}
+                        </div>
+                      )}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginTop: 5, flexWrap: 'wrap', fontSize: 11.5, color: 'var(--txt3)' }}>
+                        <span style={{ color: gjord ? 'var(--green)' : 'var(--amber)', fontWeight: 600 }}>
+                          {nu
+                            ? (gjord ? `Gjord ${RECURRENCE_KORT[t.recurrence as RecurrenceKey]}` : 'Väntar')
+                            : '\u00a0'}
+                        </span>
+                        {projekt && (
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                            <span style={{ width: 7, height: 7, borderRadius: '50%', background: projekt.color }} />
+                            {projekt.name}
+                          </span>
+                        )}
+                        {ansvarig && <span>{ansvarig.username}</span>}
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => { if (confirm(`Ta bort rutinen "${t.title}"?`)) onDelete(t.id) }}
+                      title="Ta bort rutinen"
+                      style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--txt3)', padding: 4, display: 'flex', flexShrink: 0 }}
+                    >
+                      <Icon name="trash" size={13} stroke={2} />
+                    </button>
+                  </div>
+                )
+              })}
+            </div>
+          </section>
+        )
+      })}
+    </div>
+  )
+}
 
 function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
   prompts: Prompt[]
