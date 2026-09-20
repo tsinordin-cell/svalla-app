@@ -135,6 +135,54 @@ function gjordDennaPeriod(t: Task, now: Date): boolean {
   return new Date(t.last_done_at).getTime() >= periodStart(t.recurrence, now).getTime()
 }
 
+// Tom och Max kan sitta var som helst; tavlan ska ändå visa samma tid för
+// båda. Därför låses formateringen till svensk tid i stället för att följa
+// webbläsarens tidszon.
+const SV_TID = 'Europe/Stockholm'
+const fmtDatumSv = new Intl.DateTimeFormat('sv-SE', { timeZone: SV_TID, year: 'numeric', month: '2-digit', day: '2-digit' })
+const fmtKlockanSv = new Intl.DateTimeFormat('sv-SE', { timeZone: SV_TID, hour: '2-digit', minute: '2-digit' })
+const fmtKortSv = new Intl.DateTimeFormat('sv-SE', { timeZone: SV_TID, day: 'numeric', month: 'short' })
+const fmtKortArSv = new Intl.DateTimeFormat('sv-SE', { timeZone: SV_TID, day: 'numeric', month: 'short', year: 'numeric' })
+const fmtFulltSv = new Intl.DateTimeFormat('sv-SE', { timeZone: SV_TID, dateStyle: 'long', timeStyle: 'short' })
+
+/** Kalenderdygnet i svensk tid, som 2026-09-19. Att jämföra tidsstämplar rakt
+ *  av ger fel svar nära midnatt: 23:50 och 00:10 är två dygn men två timmar. */
+function svensktDygn(d: Date): string {
+  return fmtDatumSv.format(d)
+}
+
+function dygnMellan(fran: string, till: string): number {
+  return Math.round((Date.parse(`${till}T00:00:00Z`) - Date.parse(`${fran}T00:00:00Z`)) / 86400000)
+}
+
+/** Diskret text i fotraden. Relativt så länge det är färskt — det är det man
+ *  vill veta på en blick — och absolut datum när det gått mer än en vecka,
+ *  då "37 dagar sedan" inte säger någon någonting. */
+function skapadKort(iso: string, nu: Date): string {
+  const d = new Date(iso)
+  const diff = dygnMellan(svensktDygn(d), svensktDygn(nu))
+  if (diff <= 0) return `I dag ${fmtKlockanSv.format(d)}`
+  if (diff === 1) return `I går ${fmtKlockanSv.format(d)}`
+  if (diff < 7) return `${diff} dagar sedan`
+  const sammaAr = fmtDatumSv.format(d).slice(0, 4) === fmtDatumSv.format(nu).slice(0, 4)
+  // Intl ger "13 sep." med punkt men "30 juli" utan — punkten bort, så alla
+  // kort ser likadana ut.
+  return (sammaAr ? fmtKortSv : fmtKortArSv).format(d).replace('.', '')
+}
+
+function skapadFullt(iso: string): string {
+  return `Skapad ${fmtFulltSv.format(new Date(iso))} (svensk tid)`
+}
+
+/** "Nu" finns inte under serverrenderingen — servern kör UTC och skulle kunna
+ *  räkna fram en annan text än klienten, vilket ger hydreringsfel. Samma fälla
+ *  som redan är hanterad i Pulse och i rutinerna. */
+function useNu(): Date | null {
+  const [nu, setNu] = useState<Date | null>(null)
+  useEffect(() => { setNu(new Date()) }, [])
+  return nu
+}
+
 const PRIORITY_LABEL: Record<TaskPriority, string> = { low: 'Låg', normal: 'Normal', high: 'Hög' }
 const PRIORITY_COLOR: Record<TaskPriority, string> = {
   low: 'var(--txt3)',
@@ -1813,6 +1861,7 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
   onDelete: (id: string) => void
   onOpen: () => void
 }) {
+  const nu = useNu()
   const [showPrompt, setShowPrompt] = useState(false)
   const [copied, setCopied] = useState(false)
   // Radering är oåterkallelig och tar bilagorna med sig — kräver två klick.
@@ -1929,10 +1978,24 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
       )}
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12, paddingTop: 10, borderTop: '1px solid var(--svt-divider)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }} onClick={stop}>
-          <span style={{ fontSize: 10.5, color: 'var(--txt3)', fontWeight: 600 }}>Delegera:</span>
-          <AssigneePicker teamMembers={teamMembers} value={task.assignee_id} onChange={id => onAssigneeChange(task.id, id)} />
-        </div>
+        {/* Skapad-tidpunkten till vänster i fotraden: långt från rubriken, på
+            en rad som redan har en avdelare och tål ett element till. Etiketten
+            "Delegera:" är borttagen — korten är bara ~220 px breda i fyra
+            kolumner, och avatarerna säger redan vad de gör via sin title. */}
+        <span
+          title={skapadFullt(task.created_at)}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 10.5, color: 'var(--txt3)', flexShrink: 0, minWidth: 0 }}
+        >
+          <Icon name="clock" size={12} stroke={2} />
+          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {nu ? skapadKort(task.created_at, nu) : '\u00a0'}
+          </span>
+        </span>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+          <div onClick={stop} style={{ display: 'flex', alignItems: 'center' }}>
+            <AssigneePicker teamMembers={teamMembers} value={task.assignee_id} onChange={id => onAssigneeChange(task.id, id)} />
+          </div>
 
         <div style={{ display: 'flex', gap: 4 }}>
           {idx > 0 && (
@@ -1950,6 +2013,7 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
               <IcoChevron dir="right" color="currentColor" />
             </button>
           )}
+        </div>
         </div>
       </div>
     </div>
