@@ -96,7 +96,7 @@ export default function MarkVisitedButton({ islandSlug, islandName, variant = 'h
             <circle cx="12" cy="8" r="2.4" />
           </svg>
         )}
-        {visited ? 'Besökt' : loading ? 'Sparar…' : 'Jag har besökt denna ö'}
+        {visited ? 'Besökt' : loading ? 'Sparar…' : 'Jag har varit här'}
       </button>
 
       {showToast && (
