@@ -34,6 +34,15 @@ const FILER = [
 const UTFIL = 'src/app/o/kallor.generated.ts'
 
 /**
+ * Domäner som aldrig får bli en publicerad källa. Regeln i docs/ARBETSREGLER.md:
+ * bara myndigheter, operatörer och verksamhetens egen webbplats. En KÄLLA-rad
+ * som pekar hit är en anteckning om att belägg SAKNAS — inte ett belägg — och
+ * skriptet faller hellre än släpper igenom den. (Lärdom 2026-09-20: fyra
+ * Wikipedia-adresser hann ut på ösidorna när radadresser kompletterades maskinellt.)
+ */
+const FORBJUDNA_DOMANER = /(^|\.)(wikipedia\.org|wikimedia\.org|moovitapp\.com|rome2rio\.com|tripadvisor\.[a-z.]+|booking\.com)$/i
+
+/**
  * Domäner vi räknar som myndighet. Skillnaden syns för besökaren: en uppgift
  * från Länsstyrelsen väger tyngre än en från verksamhetens egen webbplats, och
  * det ska gå att se vilket som är vilket utan att klicka.
@@ -112,6 +121,11 @@ function laisFil(relPath) {
       if (!urlM) { nuvarande.utanUrl++; continue }
       const url = urlM[0].replace(/[.,;]+$/, '')
       if (url.includes('/.../')) { nuvarande.utanUrl++; continue } // utelämnad sökväg
+      if (FORBJUDNA_DOMANER.test(new URL(url).hostname)) {
+        console.error(`✗ förbjuden källa på ${nuvarande.slug}: ${url}`)
+        console.error('  Wikipedia, Moovit, rome2rio, TripAdvisor och Booking är inte belägg. Skriv adressen utan https:// om raden ska stå kvar som anteckning.')
+        process.exit(1)
+      }
       // Fältordningen är inte kosmetisk: url MÅSTE stå före vad. verify-claims
       // letar efter ett källmärke inom fem rader ovanför ett påstående, och
       // med den här ordningen belägger den genererade filen sig själv i stället

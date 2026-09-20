@@ -98,7 +98,7 @@ export default function PlaneraTurPage() {
             Utan konto
           </h2>
           <p>
-            Alla kurerade sidor (krogar, hamnar, öar, turer) är fria att läsa utan inloggning. Det är bara när du vill <strong>spara</strong>, <strong>logga</strong> och <strong>dela</strong> som du behöver konto — då är det gratis och tar 30 sekunder.
+            Alla kurerade sidor (krogar, hamnar, öar, turer) är fria att läsa utan inloggning. Konto behöver du för att <strong>planera med Thorkel</strong>, <strong>spara</strong>, <strong>logga</strong> och <strong>dela</strong> — det är gratis och tar 30 sekunder.
           </p>
         </>
       }

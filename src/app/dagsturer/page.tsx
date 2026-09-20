@@ -90,7 +90,7 @@ export default function DagsturerPage() {
  {
  '@type': 'Question',
  name: 'Kan man ta med cykel på Waxholmsbåten?',
- acceptedAnswer: { '@type': 'Answer', text: 'Ja. De flesta Waxholmsbåtar tillåter cyklar — ofta gratis eller för en liten avgift. Det är praktiskt för längre öar som Utö, Möja och Sandhamn, där cykling är ett vanligt sätt att utforska.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Ja. En vanlig cykel följer med Waxholmsbolaget utan extra kostnad, i mån av plats — personalen ombord avgör. Det är praktiskt för längre öar som Utö, Möja och Sandhamn, där cykling är ett vanligt sätt att utforska.' },
  },
  {
  '@type': 'Question',
@@ -163,7 +163,8 @@ export default function DagsturerPage() {
  Kan man ta med cykel på Waxholmsbåten?
  </h3>
  <p>
- Ja. De flesta Waxholmsbåtar tillåter cyklar — ofta gratis eller för en liten avgift. Det är praktiskt för längre öar som <strong>Utö</strong>, <strong>Möja</strong> och <strong>Sandhamn</strong>, där cykling är ett vanligt sätt att utforska. Kontrollera båtens specifika regler på Waxholmsbåtens webbplats innan du åker.
+ {/* KÄLLA: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med, läst 2026-09-19: "Att ta med cykeln kostar inget extra", i mån av plats, personalen avgör; cykelkärra/lådcykel 120 kr; barnvagn gratis med barn under 7, annars 65 kr; hund gratis */}
+ Ja. En vanlig cykel följer med Waxholmsbolaget utan extra kostnad, i mån av plats — personalen ombord avgör och kan neka när det är fullt. Det är praktiskt för längre öar som <strong>Utö</strong>, <strong>Möja</strong> och <strong>Sandhamn</strong>, där cykling är ett vanligt sätt att utforska. Cykelkärra och lådcykel räknas som gods och kostar 120 kr.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

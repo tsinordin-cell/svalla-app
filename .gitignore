@@ -43,3 +43,8 @@ tsconfig.tsbuildinfo
 # scripts/lankkontroll.mjs skriver rapporten i repots rot om --ut inte anges
 lankkontroll-*.md
 lankkontroll-*.json
+
+# Säkerhetskopior hör inte hemma i repot — git är säkerhetskopian.
+# island-data.ts.bak låg publikt i fyra månader med 132 verksamheter som
+# tagits bort för att de inte fanns, och noll källrader (borttagen 2026-09-19).
+*.bak

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import RegionOar from '@/components/RegionOar'
 
 export const metadata: Metadata = {
  title: 'Mälaren — Segla Sveriges tredje största sjö',
@@ -37,9 +38,9 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
  {
  icon: '🗺️',
- title: 'Karta över Mälaren',
- description: 'Alla gästbryggor, kaféer, naturhamnar och sevärdheter runt Mälaren — verifierade och uppdaterade.',
- href: '/upptack',
+ title: 'Öarna här',
+ description: 'Ö-sidor med hamnar, aktiviteter och källor — listan finns längre ner på sidan.',
+ href: '/malaren#oar',
  meta: 'Gratis',
  },
  {
@@ -87,7 +88,7 @@ export default function MalarenPage() {
  {
  '@type': 'Question',
  name: 'Vilka är de bästa kafébryggorpå Mälaren?',
- acceptedAnswer: { '@type': 'Answer', text: 'Mariefred, Kärnbo, Björnö och bryggor längs Ekerö-öarna är kända för sin välkomstkultur och goda fika. Svalla-kartan visar alla verifierade kafébryggor med öppettider, så du kan planera dina stopp i förväg.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Mariefred, Kärnbo, Björnö och bryggor längs Ekerö-öarna är kända för sin välkomstkultur och goda fika. Öppettider och service står på respektive bryggas eller kafés egen sida — vi länkar dit där vi har källa.' },
  },
  {
  '@type': 'Question',
@@ -145,6 +146,9 @@ export default function MalarenPage() {
  items={ITEMS}
  deeperContent={
  <>
+ {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
+ <RegionOar rubrik="Öar i Mälaren" etiketter={['Mälaren']} />
+
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
  Östra Mälaren — från Stockholm mot Ekerö
  </h2>
@@ -203,7 +207,7 @@ export default function MalarenPage() {
  </p>
  <p>
  <strong>Vilka är de bästa kafébryggorpå Mälaren?</strong><br />
- Mariefred, Kärnbo, Björnö och bryggor längs Ekerö-öarna är kända för sin välkomstkultur och goda fika. Svalla-kartan visar alla verifierade kafébryggor med öppettider, så du kan planera dina stopp i förväg.
+ Mariefred, Kärnbo, Björnö och bryggor längs Ekerö-öarna är kända för sin välkomstkultur och goda fika. Öppettider och service står på respektive bryggas eller kafés egen sida — vi länkar dit där vi har källa.
  </p>
  <p>
  <strong>Är Mälaren bra för nybörjarseglare?</strong><br />

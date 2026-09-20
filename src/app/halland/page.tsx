@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import RegionOar from '@/components/RegionOar'
 
 export const metadata: Metadata = {
   title: 'Halland — Västkustens sandstränder och fästningsstäder',
@@ -32,9 +33,9 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
   {
     icon: '🗺️',
-    title: 'Karta över Halland',
-    description: 'Alla verifierade platser längs Hallands kust — gästhamnar, stränder, krogar och sjömackar.',
-    href: '/upptack',
+    title: 'Öarna här',
+    description: 'Ö-sidor med hamnar, aktiviteter och källor — listan finns längre ner på sidan.',
+    href: '/halland#oar',
     meta: 'Gratis',
   },
   {
@@ -141,6 +142,9 @@ export default function HallandPage() {
         items={ITEMS}
         deeperContent={
           <>
+ {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
+ <RegionOar rubrik="Öar och kust i Halland" etiketter={['Halland']} />
+
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
               Varberg — fästningsstaden vid havet
             </h2>
