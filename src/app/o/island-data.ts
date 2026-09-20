@@ -1004,7 +1004,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['grinda', 'ingmarso', 'ljustero'],
     tags: ['vandrarhem', 'natur', 'vandring', 'segling', 'lugnt'],
-    // KÄLLA: https://en.wikipedia.org/wiki/Finnhamn ("The name Finnhamn is derived from the Finnish boats which called into the harbour on their way to and from Stockholm") — inget källbelagt århundrade hittat.
+    // KÄLLA: en.wikipedia.org/wiki/Finnhamn ("The name Finnhamn is derived from the Finnish boats which called into the harbour on their way to and from Stockholm") — inget källbelagt århundrade hittat.
     // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Naturreservatet Finnhamn består av tre öar som sitter ihop. Lilla och stora Jolpan samt Idholmen."
     // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Vandrarhemmet och de tillhörande stugorna har totalt 87 bäddar fördelade på 28 rum."
     // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/angso-nationalpark/fakta-om-parken — Ängsö nationalpark inrättades 1909
@@ -1012,7 +1012,7 @@ export const ISLANDS: Island[] = [
     insiderTips: [
       // KÄLLA: https://skargardsstiftelsen.se/omraden/finnhamn/ och lansstyrelsen.se naturreservat Finnhamn (Skärgårdsstiftelsen äger/förvaltar, naturreservat sedan 2000); roslagen.se (tältning endast på två anvisade platser).
       'Finnhamn ägs och förvaltas av Skärgårdsstiftelsen och är naturreservat sedan år 2000. STF driver vandrarhemmet på ön, som har anvisade tältplatser vid sidan av vandrarhemsboendet.',
-      // KÄLLA: https://en.wikipedia.org/wiki/Finnhamn — inget källbelagt århundrade hittat.
+      // KÄLLA: en.wikipedia.org/wiki/Finnhamn — inget källbelagt århundrade hittat.
       'Namnet Finnhamn kommer av att finska båtar använde hamnen som tillfällig anhalt på väg till och från Stockholm. Det är inte en person vid namn Finn.',
       'Kajakuthyrning finns på Finnhamn under sommarsäsongen. Ön är ett av de bättre utgångspunkterna för kajakpaddling i mellersta skärgården.',
       'Caféet och kiosken på Finnhamn stänger relativt tidigt under kvällen. Ta med proviant om du planerar en sen ankomst.',
@@ -1601,7 +1601,7 @@ export const ISLANDS: Island[] = [
     tags: ['historia', 'hamn', 'utgångspunkt', 'södern', 'fortet'],
     did_you_know: 'Dalarö blev 1636 platsen för "stora sjötullen" — landets viktigaste tullstation under stormaktstiden. Alla handelsfartyg på väg in till Stockholm var tvungna att förtullas här. Tullhuset från 1788 står fortfarande kvar vid hamnen.',
     insiderTips: [
-      'Dalarö nås med bil via väg 227 (Dalarövägen) och är tekniskt sett en halvö med vägförbindelse till fastlandet.', // KÄLLA: https://sv.wikipedia.org/wiki/Länsväg_227; trafiken.nu, vägarbetsposter "Väg 227 på Dalarövägen vid Dalarö brygga"
+      'Dalarö nås med bil via väg 227 (Dalarövägen) och är tekniskt sett en halvö med vägförbindelse till fastlandet.', // KÄLLA: sv.wikipedia.org/wiki/Länsväg_227; trafiken.nu, vägarbetsposter "Väg 227 på Dalarövägen vid Dalarö brygga"
       'Tullhuset i Dalarö byggdes 1787–1788 efter ritningar av Erik Palmstedt. Alla fartyg som passerade mot Stockholm var tvungna att förtullas här.', // KÄLLA: https://www.sfv.se/, "Dalarö tullhus" (byggår 1787–1788, arkitekt Erik Palmstedt)
       'Dalarö är ett känt mål för sportdykare med flera intressanta vrakplatser i närheten.',
       'Gästhamnen i Dalarö är en av de mer välservade i södra skärgården med dusch, el och servicebyggnad.',
@@ -2092,7 +2092,7 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      // KÄLLA: https://sv.wikipedia.org/wiki/Blidö (färjerutt Furusund–Yxlan–Blidö via Furusundsleden och Blidöleden; exakt restid ej verifierad)
+      // KÄLLA: sv.wikipedia.org/wiki/Blidö (färjerutt Furusund–Yxlan–Blidö via Furusundsleden och Blidöleden; exakt restid ej verifierad)
       travel_time: 'Bil + två bilfärjor via Yxlan (Furusundsleden + Blidöleden)',
       character: 'Lugnt, lantligt, äkta norrskärgård',
       season: 'Maj–September',
@@ -2107,7 +2107,7 @@ export const ISLANDS: Island[] = [
       { name: 'Blidö Brygga och Bistro', type: 'Vandrarhem', desc: 'Vandrarhem vid bryggan. Antal bäddar och övrig service är inte belagt — kontrollera med verksamheten före besök.', websiteUrl: 'https://blidobryggabistro.se' },
     ],
     getting_there: [
-      // KÄLLA: https://sv.wikipedia.org/wiki/Blidö ("färjeförbindelse från Furusund via trafikfärjelederna Furusundsleden och Blidöleden... mellan Furusund... och Köpmanholm (Yxlan) samt mellan Larshamn (Yxlan) och Norrsund (Blidö)")
+      // KÄLLA: sv.wikipedia.org/wiki/Blidö ("färjeförbindelse från Furusund via trafikfärjelederna Furusundsleden och Blidöleden... mellan Furusund... och Köpmanholm (Yxlan) samt mellan Larshamn (Yxlan) och Norrsund (Blidö)")
       { method: 'Bil + två bilfärjor', from: 'Furusund', desc: 'Kör mot Furusund, bilfärja till Yxlan (Furusundsleden), sedan bilfärja Yxlan–Blidö (Blidöleden). Båda avgiftsfria.', icon: '🚗' },
     ],
     harbors: [], // KÄLLA: inget hittat efter sökning (https://www.gasthamnsguide.se/, https://skargardsstiftelsen.se/, https://waxholmsbolaget.se/, https://www.norrtalje.se/) — gästhamnen kunde inte bekräftas
@@ -2121,7 +2121,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['furusund', 'arholma', 'norrora'],
     tags: ['lugnt', 'norra', 'bilfärja', 'lantligt'],
-    // KÄLLA: https://sv.wikipedia.org/wiki/Blidö ("Konstnären Rune Jansson föddes här 1918... Tove Jansson tillbringade sin barndoms somrar på ön.")
+    // KÄLLA: sv.wikipedia.org/wiki/Blidö ("Konstnären Rune Jansson föddes här 1918... Tove Jansson tillbringade sin barndoms somrar på ön.")
     did_you_know: 'Tove Jansson tillbringade sina barndomssomrar på Blidö, och konstnären Rune Jansson föddes på ön 1918.',
     seasonal: {
       open: 'Maj–September',
@@ -2688,7 +2688,7 @@ export const ISLANDS: Island[] = [
     facts: {
       // KÄLLA: http://svartsokrog.se/hitta-hit/ ("Till Svartsö åker du med Waxholmsbolaget från Strömkajen i Stockholm. Resan tar ca 1,5-2,5h beroende på avgång.") Waxholmsbolagets tabell 13 angavs utan URL och bolagets tidtabellssidor går inte att läsa, så det snävare "~2 tim 15–35 min" och linjenumret är borttagna.
       travel_time: 'ca 1,5–2,5 tim med Waxholmsbåt från Strömkajen, beroende på avgång',
-      // KÄLLA: https://sv.wikipedia.org/wiki/Svartsö ("Det finns inget jordbruk på ön") — "ekologisk" obelagt/missvisande
+      // KÄLLA: sv.wikipedia.org/wiki/Svartsö ("Det finns inget jordbruk på ön") — "ekologisk" obelagt/missvisande
       character: 'Bilfri, lugnt, mat i fokus',
       // KÄLLA: http://svartsokrog.se/oppettider/ (öppet in i oktober); seasonal.open i samma objekt anger April–Oktober
       season: 'Maj–Oktober',
@@ -2763,7 +2763,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: http://svartsokrog.se/hitta-hit/ ("stiger av vid Boda brygga... Därifrån tar du Waxholmsbåten sista biten till Svartsö")
       'Boda brygga på Värmdö är en vanlig omstigningspunkt: ta SL-buss från Slussen till Boda och Waxholmsbåten sista biten till Svartsö.',
       'Lanthandeln på Svartsö fungerar även som apoteksombud och utlämningsställe för Systembolaget.',
-      // KÄLLA: https://sv.wikipedia.org/wiki/Svartsö (SCB, 66 inv. 2020); svartso.se ("cirka 60 bofasta"); svartsolanthandel.se/om-svartso ("omkring 65 personer permanent")
+      // KÄLLA: sv.wikipedia.org/wiki/Svartsö (SCB, 66 inv. 2020); svartso.se ("cirka 60 bofasta"); svartsolanthandel.se/om-svartso ("omkring 65 personer permanent")
       'Svartsö har omkring 65 fastboende året runt.',
     ],
     seasonal: {

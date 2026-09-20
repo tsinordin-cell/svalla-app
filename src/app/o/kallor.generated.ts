@@ -643,13 +643,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://en.wikipedia.org/wiki/Finnhamn",
-      "org": "en.wikipedia.org",
-      "vad": "inget källbelagt århundrade hittat.",
-      "last": null,
-      "myndighet": false
-    },
-    {
       "url": "https://finnhamn.se/ata/",
       "org": "finnhamn.se",
       "vad": "Finnhamns krog är belägen nere vid ångbåtsbryggan … klassisk inriktning på lunchen och en á la carte meny som varierar under säsongen",
@@ -1095,13 +1088,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.svenskakyrkan.se/haninge/historik-dalaro-kyrka",
       "org": "svenskakyrkan.se",
       "vad": "kyrkan uppfördes 1649–1652 som kapell; \"Fram till 1780-talet behöll kapellet sin form, en rektangulär knuttimrad byggnad med sadeltak och sakristia i norr\"; ombyggnad 1786–1787 då \"väggarna höjdes och brädfodrades, taket fick sin brutna form\"; restaurering 1936 av arkitekt Einar Lundberg; kyrkan och Sandemar var de enda byggnader som inte brändes av ryssarna 1719",
-      "last": null,
-      "myndighet": false
-    },
-    {
-      "url": "https://sv.wikipedia.org/wiki/Länsväg_227",
-      "org": "trafiken.nu",
-      "vad": "",
       "last": null,
       "myndighet": false
     },
@@ -1564,13 +1550,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://sv.wikipedia.org/wiki/Blidö",
-      "org": "(färjerutt Furusund–Yxlan–Blidö via Furusundsleden och Blidöleden; exakt restid ej verifierad)",
-      "vad": "",
-      "last": null,
-      "myndighet": false
-    },
-    {
       "url": "https://www.havochvatten.se/",
       "org": "badplatsen Blidö",
       "vad": "EU-bad; \"Sandstrand samt långgrunt badvatten\"; \"Dass på badplatsen, Lekutrustning samt grillplats\"; två flytbryggor; badvattenklassificering 2025 \"Utmärkt kvalitet\" (2026-09-14)",
@@ -1992,13 +1971,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://svartsolanthandel.se/gasthamn",
       "org": "(El 80 kr/dygn; servicehus med toalett & dusch; ingen uppgift om bränsle eller vatten)",
       "vad": "",
-      "last": null,
-      "myndighet": false
-    },
-    {
-      "url": "https://sv.wikipedia.org/wiki/Svartsö",
-      "org": "(SCB",
-      "vad": "ekologisk obelagt/missvisande",
       "last": null,
       "myndighet": false
     },
