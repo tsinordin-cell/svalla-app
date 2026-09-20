@@ -273,7 +273,7 @@ export default function BohuslanPage() {
  Vinden längs Bohuslän är ofta från sydväst — en riktning som är perfekt om du vill segla norrut längs kusten. Du får god framfart över babord och kan låta vinden driva dig norrut vecka efter vecka utan större förändring av segelställning.
  </p>
  <p>
- <strong>Navitering är kritisk här.</strong> Bohuslän är fyllt av klippor och grund. Många passager är endast lämpliga för seglare med god sjökortskompetens. Med Svalla på telefonen kan du se djupkort och ankringsplatsers bästa lägen i realtid. Håll alltid ett öga på sjökortet och använd GPS som ett navigationsstöd, inte som din enda guide.
+ <strong>Navigering är kritisk här.</strong> Bohuslän är fyllt av klippor och grund. Många passager är endast lämpliga för seglare med god sjökortskompetens. Svalla är inget sjökort och visar inga djup. Navigera efter sjökortet och använd GPS som stöd, inte som enda guide.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '32px 0 12px' }}>
