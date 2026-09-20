@@ -1,9 +1,23 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+
+/*
+ * Omskriven 2026-09-20 efter besökargenomgången "seglare med egen båt, naturhamn i
+ * Bohuslän i helgen". Sidan påstod bl.a. att Svalla "samlar alla seriösa
+ * förtöjningsalternativ i Sverige", att "varje platssida visar restriktioner" och att
+ * "Svalla markerar vind- och böljeriktningar på varje plats" — inget av det finns.
+ * Den hade gästhamnspriser utan prislista, hänvisade till "Skärgårdshamnar.se" och
+ * "Svenska Segelföreningen" (finns inte), sa att Smögenbryggan är 600 m (Turistrådet:
+ * 1 km) och kallade Tingstäde träsk en naturhamn i ett stycke och en insjö i nästa.
+ * MÄTT: utforskaren hade 0 naturhamnar och 0 platser i Bohuslän.
+ *
+ * Nu står här bara det vi har källa för. Priser: inga utan prislista.
+ */
 
 export const metadata: Metadata = {
   title: 'Svenska gästhamnar och naturhamnar — Hamnar & bryggor',
-  description: 'Guide till svenska gästhamnar och naturhamnar. Från Stockholms skärgård till Bohuslän, Gotland, Blekinge och Östersjön. VHF-kommunikation, priser 2026, bokning och allemansrätt.',
+  description: 'Gästhamnar och naturhamnar i Sverige: vad allemansrätten säger om att ankra och låna brygga, hur VHF-kanal 16 och kustradion fungerar, och fem gästhamnar vi kan stå för — Sandhamn, Marstrand, Smögen, Visby och Karlskrona.',
   keywords: [
     'gästhamnar sverige',
     'naturhamnar sverige',
@@ -14,13 +28,11 @@ export const metadata: Metadata = {
     'smögen brygga bohuslän',
     'sandhamn stockholm',
     'vhf kanal 16',
-    'båtförtöjning sverige',
-    'besöksbryggor',
     'allemansrätt ankring',
   ],
   openGraph: {
     title: 'Svenska gästhamnar och naturhamnar — Svalla',
-    description: 'Komplett guide till gästhamnar, naturhamnar och besöksbryggor i Sverige med VHF-tips, priser och bokning.',
+    description: 'Allemansrätten på vatten, VHF och kustradio, och fem gästhamnar med källa.',
     url: 'https://svalla.se/hamnar-och-bryggor',
   },
   alternates: { canonical: 'https://svalla.se/hamnar-och-bryggor' },
@@ -29,43 +41,38 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
   {
     icon: '',
-    title: 'Gästhamnar',
-    description: 'Servicehamnar med el, vatten, dusch och toalett — från Stockholms skärgård till Visby, Marstrand och Karlskrona. Bokning oftast nödvändig i högsäsong.',
-    href: '/platser?kategori=gasthamn',
+    title: 'Gästhamnar på öarna',
+    description: 'Varje ö-sida har hamnarna med service och, där kommunen publicerar det, djup och antal platser. Bohuslän: 19 öar, 25 namngivna gästhamnar.',
+    href: '/bohuslan#oar',
   },
   {
     icon: '',
-    title: 'Naturhamnar',
-    description: 'Skyddade vikar och ankringsplatser där du ankrar eller lägger tamp i berget — helt gratis och ofta helt själv enligt allemansrätten.',
-    href: '/platser?kategori=naturhamn',
+    title: 'Gästhamnar i kartan',
+    description: 'De gästhamnar vi hittills lagt in i utforskaren, som kartvy. I dag mest Stockholms skärgård — Bohuslän saknas ännu.',
+    href: '/upptack?typ=hamn',
   },
   {
-    icon: '🛥️',
-    title: 'Besöksbryggor',
-    description: 'Snabba stopp utan övernattning — mat, shopping, växling på bryggor från Stockholms skärgård till Smögen och Visby.',
-    href: '/platser?kategori=besoksbrygga',
+    icon: '',
+    title: 'Naturhamnar och allemansrätten',
+    description: 'Vad Naturvårdsverket säger om att ankra, låna brygga och ligga över natten — och var du inte får gå i land.',
+    href: '/hamnar-och-bryggor#naturhamnar',
   },
   {
-    icon: '⛽',
-    title: 'Bensinmackar (båt)',
-    description: 'Sjöbensin, diesel och septiktömning på svenska hamnar — växlande öppettider mellan säsonger.',
-    href: '/platser?kategori=bensin',
+    icon: '',
+    title: 'Sjömackar',
+    description: 'Bränsle och septiktömning i utforskaren. Öppettider varierar med säsong — ring innan du räknar med dem.',
+    href: '/upptack?typ=bensin',
   },
   {
-    icon: '🛠️',
-    title: 'Service & varv',
-    description: 'Båtslip, reparation och beställningstjänster — från Stockholm till Blekinge när något behöver fixas.',
-    href: '/platser?kategori=varv',
-  },
-  {
-    icon: '🚧',
-    title: 'Naturreservat — restriktioner',
-    description: 'Öar och vikar med landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter) i skärgårdarna.',
+    icon: '',
+    title: 'Fågelskyddsområden',
+    description: 'Öar och vikar med tillträdesförbud under häckningstid. Datumen står på skyltarna och i länsstyrelsens föreskrifter — de varierar mellan områden.',
     href: '/vandring-och-natur',
   },
 ]
 
 export default function HamnarOchBryggorPage() {
+  // Samma fyra svar som i den synliga FAQ:n nedan. KÄLLA: se kommentarerna där.
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -73,22 +80,22 @@ export default function HamnarOchBryggorPage() {
       {
         '@type': 'Question',
         name: 'Måste man boka gästhamn i förväg?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Nej, men det rekommenderas starkt under juli–augusti. Populära hamnar som Sandhamn kan vara fulla redan 15:00 samma dag. Boka via Skärgårdshamnar.se eller ring via VHF på förmiddagen för att säkra en plats.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Det beror på hamnen. Många kommunala gästhamnar tar inte emot bokningar alls utan fyller på i ankomstordning, andra bokas via hamnens egen sida. Kontrollera hamnens webbplats — vi länkar till den där ö-sidan har en källa.' },
       },
       {
         '@type': 'Question',
         name: 'Vad innebär VHF-kanal 16?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Kanal 16 är världens sjöradionödkanal. Alla båtar med VHF måste övervaka den. Den används för nödrop och för att etablera kontakt — aldrig för längre samtal. Så fort du har kontakt med en hamn skiftar du till arbetkanal (oftast 9–12).' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Kanal 16 är den internationella nödkanalen. Sjöfartsverkets sjö- och flygräddningscentral JRCC passar den dygnet runt. Kustradions basstationer sänder också väder och navigationsvarningar; vilka kanaler som används står i Sjöfartsverkets Ufs A.' },
       },
       {
         '@type': 'Question',
-        name: 'Är naturhamnar alltid gratis?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Ja, enligt allemansrätten. Du får ankra i vilken vika som helst för kortare tid utan tillstånd. Men många naturhamnar ligger i fågelskyddsområden med landstigningsförbud under häckningstid (perioderna varierar, vanligen 1 februari–31 augusti). Svalla visar dessa restriktioner på varje plats.' },
+        name: 'Är naturhamnar gratis?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Att ankra i en vik eller låna en brygga ett tag ingår i allemansrätten, utanför hemfridszon och för kortare tid — Naturvårdsverkets tumregel för att stanna på samma plats är något enstaka dygn. I fågelskyddsområden får du inte gå i land eller vistas under den tid skyddet gäller.' },
       },
       {
         '@type': 'Question',
-        name: 'Vilka faciliteter finns vanligtvis i en gästhamn?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Standard: Vatten, el (230V), dusch, toalett. Vanligt: Tvättmaskin, septiktömning, bensinstation, krog eller café. Ibland: Proviantbutik, reparationsservice, båtslip. Läs beskrivningen för varje hamn på Svalla för att veta vad den erbjuder.' },
+        name: 'Vad kostar en gästhamn?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Priset sätts av varje hamn och beror oftast på båtens längd. Vi publicerar inga hamnpriser utan prislista — där en ö-sida har kommunens eller hamnens prislista som källa står priset där.' },
       },
     ],
   }
@@ -108,7 +115,7 @@ export default function HamnarOchBryggorPage() {
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Hamnar & bryggor"
       title="Hitta rätt förtöjningsplats i Sverige"
-      tagline="Gästhamnar, naturhamnar, besöksbryggor och bensinmackar — från Stockholms skärgård till Gotland, Bohuslän och Östersjön. Med VHF-tips, priser och bokning."
+      tagline="Gästhamnar och naturhamnar i Sverige — vad allemansrätten säger, hur VHF och kustradion fungerar, och fem hamnar vi kan stå för."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <circle cx="12" cy="5" r="3" />
@@ -119,173 +126,140 @@ export default function HamnarOchBryggorPage() {
       intro={
         <>
           <p>
-            Att välja rätt hamn är halva resan. Storm från öst? Sök västligt läge. Fullt i Sandhamn? Det finns alltid en tom naturhamn inom 20 minuter. Svalla samlar alla seriösa förtöjningsalternativ i Sverige — från <strong>Stockholms skärgård</strong> till <strong>Visby, Marstrand, Karlskrona och Smögen</strong> — med <strong>djup, faciliteter, vindskyddsriktning och aktuella priser 2026</strong>.
+            Att välja rätt hamn är halva resan. Storm från väst? Sök lä i öst. Fullt i Sandhamn? Det finns oftast en vik i närheten. Här samlar vi det vi faktiskt kan belägga: vad <strong>allemansrätten</strong> säger om att ankra och låna brygga, hur <strong>VHF-kanal 16</strong> och kustradion fungerar, och fem gästhamnar där uppgifterna kommer från hamnen, kommunen eller destinationsbolaget.
           </p>
           <p>
-            <strong>Gästhamnar</strong> erbjuder serviceplatser med el, vatten, dusch, toalett och ofta restaurang eller butik. <strong>Naturhamnar</strong> är fria ankringsplatser i skyddade vikar — gratis men utan faciliteter. Båda är viktiga delar av seglingen och motorbåtslivet, och båda finns karterade här.
+            <strong>Gästhamnar</strong> har serviceplatser med el, vatten, dusch och toalett och ofta krog eller butik. <strong>Naturhamnar</strong> är vikar där du ankrar eller lägger tamp i berget — utan service, men också utan avgift. Hamnarna på varje ö hittar du på ö-sidorna; Bohusläns öar är samlade på <Link href="/bohuslan#oar">Bohuslän-sidan</Link>.
           </p>
           <p>
-            Data kommer från hamnoperatörer, Waxholmsbolagets depåkartor, Svenska Segelföreningens rutter, och framförallt från seglare och motorbåtsfolk som loggat sina egna turer i Svalla. Om du ser en hamn, brygga eller naturhamn som saknas, lägg till den. <strong>VHF-kanal 16</strong> är nödkanalen; använd <strong>kanal 9–12</strong> för att anropa en hamnradio innan du kommer in.
-          </p>
-          <p>
-            Allemansrätten ger dig rätt att ankra utanför oinöjd mark för kortare tid. Observera dock lokala förbud — många vikar är <strong>fågelskyddsområden</strong> med landstigningsförbud under häckningstid (perioderna varierar, vanligen 1 februari–31 augusti). Varje platssida visar aktuella restriktioner. Ankra alltid tryggt och respektera miljön.
+            Vi skriver inga hamnpriser utan prislista och inga öppettider utan källa. Saknas något — säg till, vi lägger till det med källa.
           </p>
         </>
       }
-      itemsTitle="Typ av förtöjningsplats"
+      itemsTitle="Hitta rätt"
       items={ITEMS}
       deeperContent={
         <>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
-            Sveriges bästa gästhamnar
+            Fem gästhamnar vi kan stå för
           </h2>
           <p>
-            Här är fem klassiska gästhamnar från Sveriges bästa segelregioner — från Stockholms skärgård till Blekinge. Alla är välbesökta i högsäsong; boka i förväg juli–augusti.
+            Uppgifterna nedan kommer från hamnens ägare, kommunen, Statens fastighetsverk, Riksantikvarieämbetet eller destinationsbolaget. Inga priser — de står, där vi har prislista, på respektive ö-sida.
           </p>
 
+          {/* KÄLLA: ksss.se/KSSS/historia/ ("KSSS grundades i Stockholm 1830 under namnet Svenska Segel Sällskapet"); stockholmslansmuseum.se/besoksmal/sandhamn/ ("Det pampiga gula tullhuset av sten som dominerar hamnen ritades av slottsarkitekten Carl Hårleman och byggdes 1752"); ksss.se/en/gotlandrunt/ (målgång Sandhamn). Lästa 2026-09-19. Tidigare stod här "Sandö skans 1623" och "bottendjup 3–4 m" utan källa — borttaget. */}
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-            Sandhamn, Stockholms skärgård
+            <Link href="/o/sandhamn">Sandhamn, Stockholms skärgård</Link>
           </h3>
           <p>
-            Sandhamn ligger på <strong>Sandön</strong> i Stockholms yttre skärgård och är en klassisk seglardestination. <strong>Sandhamn Seglarhotell</strong> drivs av Kungliga Svenska Segel Sällskapet (KSSS) och hamnen är värd för bland annat ÅF Offshore Race. Bottendjup 3–4 m. På Sandön finns lämningar av <strong>Sandö skans</strong> — en jordskans uppförd 1623 på order av Gustav II Adolf — och det pampiga tullhuset från 1752 ritat av Carl Hårleman. Priser cirka 500–700 kr/natt i högsäsong.
+            Sandhamn ligger på Sandön i Stockholms ytterskärgård och är hemmahamn för KSSS, grundat 1830 som Svenska Segel Sällskapet. Gotland Runt går i mål här. Det gula tullhuset som dominerar hamnen ritades av slottsarkitekten Carl Hårleman och byggdes 1752.
           </p>
 
+          {/* KÄLLA: sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (stenfästning från 1660, statligt byggnadsminne); vastsverige.com/en/kungalv/products/marstrand/ ("Sveriges största gästhamn", Match Cup Sweden första veckan i juli); kungalv.se (färjan Koön–Marstrand drivs av kommunen). Lästa 2026-09-19. Tidigare stod "Karl X Gustav" och "sedan 1994" utan källa — borttaget. */}
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-            Marstrand, Bohuslän
+            <Link href="/o/marstrand">Marstrand, Bohuslän</Link>
           </h3>
           <p>
-            Marstrandsön är bilfri och nås med liten passagerarfärja från Koön — det är en del av charmen. <strong>Carlstens fästning</strong> tronar på öns högsta punkt och uppfördes från 1660-talet under Karl X Gustav. Gästhamnen är välorganiserad med modern service. Marstrand är också hem för <strong>GKSS Match Cup Sweden</strong>, en av världens största match race-tävlingar i segling, som hållits årligen sedan 1994 och är del av World Match Racing Tour. Priser cirka 350–500 kr/natt.
+            Marstrandsön är bilfri och nås med kommunens färja från Koön. Carlstens fästning på öns högsta punkt har anor från en stenfästning 1660 och är statligt byggnadsminne. Turistrådet Västsverige kallar gästhamnen Sveriges största, och Match Cup Sweden avgörs första veckan i juli.
           </p>
 
+          {/* KÄLLA: vastsverige.com/sotenas/produkter/smogenbryggan/ ("1 km långt", "Sveriges mest besökta brygga"); sotenas.se, Smögens gästhamn (kommunal drift, ca 120 gästplatser, vattendjup 3–5 m, WC, färskvatten, el, wifi, tvätt, dusch). Lästa 2026-09-19. Tidigare stod "drygt 600 meter" — fel. */}
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-            Visby, Gotland
+            <Link href="/o/smogen">Smögen, Bohuslän</Link>
           </h3>
           <p>
-            <strong>UNESCO-världsarv sedan 1995.</strong> Hansestaden Visby har anor från 1100-talet och blev huvudcentrum för Hansan i Östersjön under 1200–1400-talet. Den medeltida ringmuren från 1200-talet omger staden, och gästhamnen ligger direkt under murverket — en spektakulär ankomst från öppet hav. Bokning är nästan obligatorisk juli–augusti (många båtar, begränsade platser). Priser 400–600 kr/natt. Omgivande Gotland erbjuder naturhamnar — <strong>Kyllaj</strong> i nordost och <strong>Gnisvärd</strong> väster om Visby är klassiker. (OBS: Tingstäde är en insjö inåt land — ej en vik att ankra i.)
+            Smögenbryggan är omkring en kilometer lång och enligt Turistrådet Västsverige Sveriges mest besökta brygga. Gästhamnen drivs av Sotenäs kommun med ungefär 120 gästplatser, vattendjup 3–5 meter och el, vatten, dusch, WC, tvätt och wifi.
           </p>
 
+          {/* KÄLLA: raa.se, Hansestaden Visby — världsarv 1995; "En stadsmur av kalksten, Visby ringmur ... Den är 3,6 kilometer lång och utgör Nordeuropas bäst bevarade stadsmur", byggd under 1200-talet. Läst 2026-09-20. */}
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-            Karlskrona, Blekinge
+            <Link href="/gotland">Visby, Gotland</Link>
           </h3>
           <p>
-            <strong>Örlogsstaden Karlskrona</strong> är UNESCO-världsarv sedan 1998 — världens enda barockstad som byggts för örlogsändamål och fortfarande används till det. Grundad 1680 av Karl XI. Karlskrona ligger strategiskt vid Östersjön och har gott om naturhamnar i ögruppen runt staden. Gästhamnen kostar cirka 250–400 kr/natt. Här möter du båtar från Tyskland, Polen och Baltikum.
+            Hansestaden Visby är världsarv sedan 1995. Ringmuren av kalksten byggdes under 1200-talet, är 3,6 kilometer lång och enligt Riksantikvarieämbetet Nordeuropas bäst bevarade stadsmur — gästhamnen ligger direkt nedanför.
           </p>
 
+          {/* KÄLLA: raa.se, Örlogsstaden Karlskrona — världsarv 1998, grundad 1680, Erik Dahlbergh ledde anläggandet; kommitténs motivering "ett utomordentligt väl bevarat exempel på en europeiskt planerad örlogsstad". Läst 2026-09-20. */}
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-            Smögen, Bohuslän
+            <Link href="/blekinge-skargard">Karlskrona, Blekinge</Link>
           </h3>
           <p>
-            <strong>Smögenbryggan</strong> är drygt 600 meter lång (träbryggan) och en av Sveriges mest kända bryggor under sommaren. Fiskebåtar, segelbåtar och turister står tätt. Populär för restaurangbesök och flanering. I juli–augusti kan det vara mycket fullt — besök i juni eller september för lugnare dagar. Priser cirka 300–450 kr/natt för kortare stopp.
+            Örlogsstaden Karlskrona grundades 1680, med Erik Dahlbergh som ledare för anläggandet, och är världsarv sedan 1998 som ett utomordentligt väl bevarat exempel på en europeiskt planerad örlogsstad. Härifrån är Blekinges skärgård och Östersjön nära.
+          </p>
+
+          {/* KÄLLA: Naturvårdsverket, "Det är lätt att göra allemansrätt — din handbok i naturen" (naturvardsverket.se, pdf): "Lägg till med kajaken, bada vid en strand och låna en brygga ett tag"; "På bryggor och stränder inom hemfridszonen får du inte vara utan lov"; "I ett fågelskyddsområde får du inte gå i land eller vistas under den tid skyddet gäller"; tumregel "något enstaka dygn". Samt naturvardsverket.se/.../pa-vatten/: "Lämna bryggan om ägaren vill använda den", "Håll koll på fågel- och sälskyddsområden". Lästa 2026-09-20. */}
+          <h2 id="naturhamnar" style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
+            Naturhamnar och allemansrätten
+          </h2>
+          <p>
+            En naturhamn är en skyddad vik utan service. Att ankra där, eller låna en brygga ett tag, ingår i allemansrätten så länge du är utanför någons hemfridszon — på bryggor och stränder inom hemfridszonen får du inte vara utan lov, och du lämnar bryggan om ägaren vill använda den. Naturvårdsverkets tumregel för hur länge du får stanna på samma plats är något enstaka dygn.
+          </p>
+          <p>
+            Håll koll på fågel- och sälskyddsområden: i ett fågelskyddsområde får du inte gå i land eller vistas under den tid skyddet gäller. Datumen står på skyltarna och i länsstyrelsens föreskrifter och varierar mellan områden. Saknar båten toalett med tank: använd hink med tättslutande lock, och ta med skräpet hem.
+          </p>
+          <p>
+            Vi har ännu ingen egen förteckning över naturhamnar. Ö-sidorna beskriver vikar och bryggor där vi har källa; resten hittar du i sjökortet.
+          </p>
+
+          {/* KÄLLA: sjofartsverket.se, Svensk kustradio — "Sjöfartsverkets nationella Sjö- och flygräddningscentral JRCC" passar "den internationella nödkanalen CH16 dygnet runt"; basstationerna sänder "väder och navigationsvarningar"; kanalförteckning i Ufs A. Läst 2026-09-20. Tidigare stod "arbetskanal oftast 9–12" och "SMHI väderradio 00–23 var tredje timme" utan källa — borttaget. */}
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
+            VHF och kustradio
+          </h2>
+          <p>
+            <strong>Kanal 16 är den internationella nödkanalen.</strong> Sjöfartsverkets sjö- och flygräddningscentral JRCC passar den dygnet runt. Använd den för nödanrop och för att få kontakt — inte för samtal. Kustradions basstationer längs kusten sänder också väder och navigationsvarningar; vilka kanaler som gäller var står i Sjöfartsverkets Ufs A.
+          </p>
+          <p>
+            Många gästhamnar vill att du anropar på VHF eller ringer innan du går in, och en del tar inte emot bokning alls utan fyller på i ankomstordning. Vilket som gäller står på hamnens egen sida — vi länkar dit från ö-sidorna.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
-            Naturhamnar — fri övernattning
+            Pris och bokning
           </h2>
           <p>
-            Naturhamnar är ankringsplatser i skyddade vikar — många helt gratis enligt <strong>allemansrätten</strong>. En naturhamn är ofta bara ett namn på en vika där tusentals seglare över åren har lagt sig — ingen marin, ingen el, inget vatten, men ofta underbar ro.
-          </p>
-          <p>
-            <strong>Sådan ankrar du tryggt:</strong> Välj botten av lerslick eller sand (inte sten — ankaret glider). Lägg ut dubbel ankarlina (älska din ankare — det är ofta det enda mellan dig och rev). Lämna minst 2–3 båtslängders avstånd till närmaste båt. Kontrollera ankringen var 10:e minut första timmen. Håll VHF-mottagare på (kanal 16) för nödsignaler. Respektera tysta timmar från 22–08.
-          </p>
-          <p>
-            <strong>Vilket väder håller naturhamnen?</strong> Läs vind- och böljedata innan du ankrar. En nordvästlig vika skyddar mot östlig vind men inte västra. Många naturhamnar är bara säkra i svag vind (knop). Svalla markerar vind- och böljeriktningar på varje plats — läs dem noggrant.
-          </p>
-
-          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
-            VHF och hamnkommunikation
-          </h2>
-          <p>
-            <strong>VHF-radio är nästan obligatorisk</strong> när du ankrar eller går in i en hamnkanal. Många gästhamnar förväntar sig att du anropar per VHF innan du kommer in.
-          </p>
-          <p>
-            <strong>Kanal 16</strong> är <strong>nödkanalen</strong> — används endast för nödrop och initial kontakt. När du har kontakt med någon, flyttar du omedelbar till en arbetkanal.
-          </p>
-          <p>
-            <strong>Kanaler 9, 10, 11, 12</strong> är klassiska <strong>hamnradiokanaler</strong>. De flesta svenska gästhamnar övervakar en av dessa. Exempel: &quot;Sandhamn Gästhamn, detta är segelyacht Västra vinden på kanal 10, vi närmar oss från väster, kan du bekräfta?&quot; Hamnmästare svarar sedan med instruktioner — vilken kaj, vilket djup, samt priset.
-          </p>
-          <p>
-            <strong>Hur anropar du på VHF?</strong> Säg namnet på hamnen två gånger, sedan ditt båtnamn två gånger, därefter din position eller riktning. Var tydlig och långsam. Många båtförarar är inte modersmålstalare — använd enkel svenska eller engelska. Exempel: &quot;Visby hamn, Visby hamn, detta är segelbåten Solglint, Solglint, vi är två sjömil väster om hamnen, kan du bekräfta mottagning?&quot;
-          </p>
-
-          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
-            Priser och bokning 2026
-          </h2>
-          <p>
-            <strong>Gästhamnar</strong> kostar typiskt <strong>250–700 kr/natt</strong> beroende på region, säsong och båtstorlek:
-          </p>
-          <ul style={{ marginLeft: '20px', lineHeight: '1.6' }}>
-            <li><strong>Inlandet & små hamnar:</strong> 200–300 kr/natt</li>
-            <li><strong>Stockholms skärgård, Bohuslän:</strong> 350–500 kr/natt</li>
-            <li><strong>Populära hamnar (Sandhamn, Visby, Marstrand):</strong> 500–700 kr/natt i högsäsong</li>
-            <li><strong>Naturhamnar:</strong> Alltid gratis</li>
-          </ul>
-          <p>
-            <strong>Bokning:</strong> Använd <strong>Skärgårdshamnar.se</strong> för många svenska gästhamnar. Många större hamnar tillåter också VHF-bokning — anropa på lämplig kanal när du är på väg in. Rekommendation: Boka i förväg juli–augusti; juni och september är lugnare.
+            Hamnavgiften sätts av varje hamn och beror oftast på båtens längd. Vi publicerar inga priser utan prislista. Där en ö-sida har kommunens eller hamnens prislista som källa står priset där — annars står det inget, hellre än en gissning.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Vanliga frågor om gästhamnar och naturhamnar
           </h2>
-
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Måste man boka gästhamn i förväg?
           </h3>
           <p>
-            <strong>Nej, men det rekommenderas starkt.</strong> Juni, september och början av oktober är ofta fina utan bokning. Juli–augusti är högsäsong; många populära hamnar är fullt redan 15:00 samma dag. Några hamnar (som Sandhamn) har så få platser att de nästan alltid är fulla från 14:00 framåt. Boka eller ring och bekräfta på förmiddagen.
+            Det beror på hamnen. Många kommunala gästhamnar tar inte emot bokningar utan fyller på i ankomstordning; andra bokas via hamnens egen sida. Kontrollera hamnens webbplats.
           </p>
-
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Vad innebär VHF-kanal 16?
           </h3>
           <p>
-            <strong>Kanal 16 är världens sjöradionödkanal.</strong> Alla båtar med VHF måste övervaka den. Den används för nödrop och för att etablera kontakt — aldrig för längre samtal. Så fort du har kontakt med en hamn skiftar du till arbetkanal (oftast 9–12). Missbruk av kanal 16 kan resultera i böter.
+            Den internationella nödkanalen, passad dygnet runt av JRCC. Nödanrop och kontakt — inte samtal.
           </p>
-
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-            Är naturhamnar alltid gratis?
+            Är naturhamnar gratis?
           </h3>
           <p>
-            <strong>Ja, enligt allemansrätten.</strong> Du får ankra i vilken vika som helst för kortare tid (upp till några dagar) utan tillstånd. Men många naturhamnar ligger i <strong>fågelskyddsområden</strong> eller andra naturreservat med restriktioner — landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter). Du kan ofta ankra (ej stiga av båten), men vissa områden förbjuder även det. Svalla visar dessa restriktioner på varje plats.
+            Att ankra i en vik eller låna en brygga ett tag ingår i allemansrätten, utanför hemfridszon och för kortare tid — tumregeln är något enstaka dygn. I fågelskyddsområden får du inte gå i land under skyddstiden.
           </p>
-
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-            Vilka faciliteter finns vanligtvis i en gästhamn?
+            Vad kostar en gästhamn?
           </h3>
           <p>
-            <strong>Standard:</strong> Vatten, el (230V, 16A eller 32A), dusch, toalett. <strong>Vanligt:</strong> Tvättmaskin, septiktömning, bensinstation, krog eller café. <strong>Ibland:</strong> Proviantbutik, reparationsservice, båtslip, internetåtkomst. Små hemåhamnar kan bara ha vatten och toalett. Läs beskrivningen för varje hamn på Svalla för att veta vad den erbjuder.
+            Det bestämmer hamnen, oftast efter båtlängd. Vi skriver bara ut priser som kommer från en prislista.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
-            Allemansrätt och ankring
+            Regionerna
           </h2>
           <p>
-            Allemansrätten tillåter ankring utanför tomt, utan störning och för kortare tid. Observera dock lokala förbud — många vikar i skärgårdarna är <strong>fågelskyddsområden</strong> med landstigningsförbud under häckningstid (perioderna varierar, vanligen 1 februari–31 augusti). Varje platssida visar aktuella restriktioner. Ankra alltid tryggt: välj botten av lerslick eller sand, lägg dubbel ankarlina, lämna avstånd till grannar, och kontrollera ankringen regelbundet.
+            <Link href="/stockholms-skargard">Stockholms skärgård</Link> — närmast för flest, med gästhamnar på de flesta större öarna. <Link href="/bohuslan">Bohuslän</Link> — Marstrand, Smögen och Koster, 19 öar med hamnar på Svalla. <Link href="/gotland">Gotland</Link> — Visby som nav. <Link href="/blekinge-skargard">Blekinge</Link> — Karlskrona och skärgården utanför.
           </p>
 
-          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
-            Seglingsregioner och populära rutter
-          </h2>
-          <p>
-            <strong>Stockholms skärgård:</strong> Närmast för många, djupt inom många vikar, hundratals naturhamnar. Segling året runt. Huvudrutter: Stockholm — Dalarö — Sandhamn — Landsort.
-          </p>
-          <p>
-            <strong>Bohuslän:</strong> Marstrand, Smögen, Koster — klassiska västkusteregioner med blandning av gästhamnar och naturhamnar. Kraftig väst- och sydvind. Huvudrutter: Göteborg — Marstrand — Koster — Strömstad.
-          </p>
-          <p>
-            <strong>Gotland:</strong> Visby som nav — Östersjöns viktigaste segelstation. Omgiven av naturhamnar — Tingstäde, Kyllaj, Gnisvärd. Längre segling. Huvudrutter: Visby — Estland (Tallinn) eller Visby — Stockholm.
-          </p>
-          <p>
-            <strong>Blekinge (Karlskrona):</strong> Örlogsmässan, Stumholmen, utmärkta naturhamnar. Väg in till Östersjön. Huvudrutter: Karlskrona — Bornholm (Danmark) eller Karlskrona — Greifswald (Tyskland).
-          </p>
-
+          {/* KÄLLA: sjofartsverket.se, Svensk kustradio (väder och navigationsvarningar via kustradion). SMHI:s sjörapport är SMHI:s egen tjänst. */}
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Säkerhet och väder
           </h2>
           <p>
-            Ankra aldrig utan väderprognos. Svenska Meteorologiska och Hydrologiska Institutet (SMHI) ger uppdaterad väder- och vindinformation. Wind- och våghöjdkort är tillgängliga online och via VHF. Många gästhamnar hörs på SMHI väderradio på VHF mellan 00–23 varje tredje timme.
-          </p>
-          <p>
-            En väl vald naturhamn med tryggt ankar är ofta säkrare än en full gästhamn där båtar ligger tätt. Läs vind- och böljeriktningar på Svalla före ankring.
+            Ankra aldrig utan prognos. SMHI ger sjöväder för kustområdena, och kustradion sänder väder och navigationsvarningar över VHF. En väl vald vik med bra ankarbotten och lä för den vind som väntas är ofta lugnare än en full gästhamn där båtarna ligger tätt.
           </p>
         </>
       }

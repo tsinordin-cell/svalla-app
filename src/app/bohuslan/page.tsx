@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { BOHUSLAN_ISLANDS } from '@/app/o/bohuslan-data'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
  title: 'Bohuslän — Segla västkusten, logga turer',
@@ -31,13 +35,20 @@ export const metadata: Metadata = {
  alternates: { canonical: 'https://svalla.se/bohuslan' },
 }
 
+/*
+ * 2026-09-20: fyra av sex kort ledde fel. "Karta över Bohuslän" lovade "alla
+ * verifierade platser längs västkusten" — MÄTT: utforskaren har 0 platser i
+ * Bohuslän. "Naturhamnar & ankring" gick till /platser?kategori=naturhamn som
+ * redirectar till samma utforskare (0 naturhamnar). "Marstrand & Bohus Fästning"
+ * gick till /logga-in — och Bohus fästning ligger i Kungälv; Marstrands är
+ * Carlstens. Nu pekar korten på det som finns: 19 ö-sidor med hamnar.
+ */
 const ITEMS: LandingItem[] = [
  {
  icon: 'map',
- title: 'Karta över Bohuslän',
- description: 'Alla verifierade platser längs västkusten — gästhamnar, naturhamnar, hummerkrogar och sjömackar.',
- href: '/upptack',
- meta: 'Gratis',
+ title: 'Öarna — 19 sidor med hamnar',
+ description: 'Marstrand, Smögen, Koster, Käringön, Gullholmen, Åstol … varje ö med gästhamn, service och källa. Listan finns längre ner på sidan.',
+ href: '/bohuslan#oar',
  },
  {
  icon: '🦞',
@@ -48,26 +59,26 @@ const ITEMS: LandingItem[] = [
  {
  icon: '',
  title: 'Segelrutter längs kusten',
- description: 'Från Göteborgs skärgård norrut — klassiska leder med vindinfo, djupdata och ankringstips för varje etapp.',
+ description: 'Från Göteborgs skärgård norrut — de klassiska lederna etapp för etapp.',
  href: '/segelrutter',
  },
  {
- icon: '🏕️',
- title: 'Naturhamnar & ankring',
- description: 'Bohusläns granitklippor bjuder på unika ankringsplatser — från skyddade vikar till öppna fjordar.',
- href: '/platser?kategori=naturhamn',
+ icon: '',
+ title: 'Naturhamnar och allemansrätten',
+ description: 'Vad som gäller när du ankrar i en vik eller lånar en brygga — och var du inte får gå i land under häckningstiden.',
+ href: '/hamnar-och-bryggor#naturhamnar',
  },
  {
  icon: '',
  title: 'Logga dina turer',
- description: 'Spåra din färd längs kusten med GPS, lägg till bilder och dela med vänner som också seglar Bohuslän.',
+ description: 'Spara din färd längs kusten med bilder och dela med vänner som också seglar Bohuslän. Kräver gratis konto.',
  href: '/logga-in',
  },
  {
  icon: '',
- title: 'Marstrand & Bohus Fästning',
- description: 'Sommarsäsongens mötesplats för seglare — logga din tur hit och se vem mer som besökt ön.',
- href: '/logga-in',
+ title: 'Marstrand & Carlstens fästning',
+ description: 'Sommarens seglarmötesplats — Sveriges största gästhamn enligt Turistrådet Västsverige, och fästningen från 1660 ovanför.',
+ href: '/o/marstrand',
  },
 ]
 
@@ -143,6 +154,33 @@ export default function BohuslanPage() {
  items={ITEMS}
  deeperContent={
  <>
+ {/* Öarna med hamnar — renderas ur BOHUSLAN_ISLANDS så listan följer datan. */}
+ <h2 id="oar" style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
+ Öar och hamnar i Bohuslän
+ </h2>
+ <p>
+ {BOHUSLAN_ISLANDS.length} sidor, var och en med hamnar, service och källor. Antalet gästhamnar per ö är det vi hittills lagt in — inte allt som finns.
+ </p>
+ <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 10, margin: '12px 0 28px' }}>
+ {BOHUSLAN_ISLANDS.map(o => (
+ <Link key={o.slug} href={`/o/${o.slug}`} style={{
+ display: 'flex', alignItems: 'center', gap: 12,
+ padding: '12px 14px', borderRadius: 12,
+ background: 'var(--white)', border: '1px solid var(--surface-3)',
+ textDecoration: 'none', boxShadow: '0 1px 6px rgba(0,0,0,0.04)',
+ }}>
+ <span style={{ flexShrink: 0, color: 'var(--sea)' }} aria-hidden><Icon name={emojiToIcon(o.emoji)} size={20} /></span>
+ <div style={{ flex: 1, minWidth: 0 }}>
+ <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>{o.name}</div>
+ <div style={{ fontSize: 12, color: 'var(--txt3)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+ {o.harbors.length > 0 ? o.harbors.map(h => h.name).join(' · ') : 'Ingen hamn inlagd ännu'}
+ </div>
+ </div>
+ <span style={{ color: 'var(--sea)', fontWeight: 700, flexShrink: 0 }}>→</span>
+ </Link>
+ ))}
+ </div>
+
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
  Ta dig dit — kollektivtrafik
  </h2>
