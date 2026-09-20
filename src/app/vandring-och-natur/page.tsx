@@ -92,7 +92,7 @@ export default function VandringOchNaturPage() {
             Fågelskyddet under våren
           </h2>
           <p>
-            Under häckningstid — <strong>perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti</strong> — är många öar, kobbar och vikar skyddade för häckande fåglar. Exakta datum står på skyltarna och i länsstyrelsens föreskrifter. Du får inte landstiga, ankra för nära eller paddla in i skyddszonen. Svalla markerar alla fågelskyddsområden på kartan och varje platssida har aktuell status.
+            Under häckningstid — <strong>perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti</strong> — är många öar, kobbar och vikar skyddade för häckande fåglar. Exakta datum står på skyltarna och i länsstyrelsens föreskrifter. Du får inte landstiga, ankra för nära eller paddla in i skyddszonen. Vi har ingen egen karta över fågelskyddsområden — länsstyrelsens kartor och skyltarna på plats gäller.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Packa smart för skärgård
