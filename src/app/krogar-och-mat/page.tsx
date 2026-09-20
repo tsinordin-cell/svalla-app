@@ -69,7 +69,7 @@ export default function KrogarOchMatPage() {
  Skärgårdskrogen är sommarens sanna mötespunkt — en plats där båtfolk, fastboende och stockholmare samlas kring samma bord. De flesta klassikerna har öppet <strong>maj–september</strong>, men ett växande antal ställen håller öppet året runt.
  </p>
  <p>
- Svalla samlar alla seriösa skärgårdskrogar på ett ställe, med öppettider, bokningslänkar och aktuella omdömen från användare som faktiskt ätit där den här säsongen. Vi sorterar efter typ, område och båtbarhet (finns brygga? hur djupt?).
+ Här samlar vi skärgårdskrogar med källa — krogens egen sida för meny och bokning, ö-sidan för hur du tar dig dit. Vi skriver inga öppettider utan källa; de ändras för ofta för att gissa.
  </p>
  </>
  }
