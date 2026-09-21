@@ -10,7 +10,7 @@ import IslandThumb from '@/components/IslandThumb'
 import { OBILDER } from '@/app/o/obilder.generated'
 
 export const metadata: Metadata = {
-  title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer | Svalla',
+  title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer',
   description: 'Utforska svenska öar: Sandhamn, Grinda, Utö, Marstrand, Gotland, Ulvön och mer. Guider, restauranger, hamnar och färjetider för hela Sverige.',
   keywords: [
     'alla öar stockholms skärgård',
