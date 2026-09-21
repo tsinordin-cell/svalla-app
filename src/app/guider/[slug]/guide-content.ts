@@ -2604,50 +2604,28 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
     'oland-guide': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Öland – guide till solens och vindarnas ö</h2>
-<p>Öland är unikt i Sverige: en lång, smal ö (16 km bred på bredaste stället, 137 km lång) som är sammankopplad med fastlandet via en av Europas längsta broar. Ölandsbron gör ön unik – du kan köra hit med bil utan färja – och det kombinerat med Sveriges solrikaste klimat gör Öland till ett av landets mest besökta sommarmål.</p>
+<!-- KÄLLA: Riksantikvarieämbetet, Södra Ölands odlingslandskap (https://www.raa.se/kulturarv/varldsarv/varldsarv-i-sverige/sodra-olands-odlingslandskap/, läst 2026-09-21): "fördes in på världsarvslistan år 2000", "drygt 56000 hektar", "Stora Alvaret dominerar". Länsstyrelsen Kalmar, Trollskogen (https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/trollskogen.html, läst 2026-09-21): "gammal tallskog med stormvridna träd", "mäktiga ekar klädda i murgröna", Trolleken 800–900 år, 266 hektar, beslutsår 1998, "Ölands nordostligaste udde", naturum vid parkeringen. Länsstyrelsen Kalmar, Bödakustens östra (https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/bodakustens-ostra.html): "Bödabuktens sandstränder som inåt land övergår i sanddyner och flygsandfält", 1020,6 hektar, 1998. Tidigare version (borttagen 2026-09-21) påstod utan källa: "Sveriges solrikaste klimat", "Böda sand Sveriges längsta sandstrand 20 km", "ca 400 vindmöllor", "Trollskogen ekskog", "Naturum Öland vid Mörbylånga", "Solliden ca 80 kr", "EuroVelo 10 passerar Öland", restider med bil. -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Öland är en lång, smal ö med bro till fastlandet – du kör hit utan färja. Söderut breder Stora Alvaret ut sig i ett världsarv, norrut ligger Bödabuktens sandstränder och Trollskogens vindvridna tallar. Här är det vi kan belägga.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Öland</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Bil via Ölandsbron:</strong> Bron är 6,07 km lång och binder Kalmar med Mörbylånga. Gratis passage. Från Stockholm ca 4 h, från Malmö ca 2 h 30 min, från Göteborg ca 3 h 30 min.</li>
-<li><strong>Buss:</strong> Länstrafiken Kalmar kör bussar till Öland men utbudet är begränsat. Bil rekommenderas för att se mer än Borgholm.</li>
-<li><strong>Tåg + buss:</strong> Tåg till Kalmar (ca 3 h från Stockholm), sedan buss över Ölandsbron till Borgholm.</li>
-</ul>
+<p><strong>Bil:</strong> Ölandsbron går mellan Kalmar och Färjestaden på Öland. <strong>Kollektivt:</strong> tåg till Kalmar och därefter buss över bron med Kalmar länstrafik – sök resan i deras reseplanerare. Utan bil är Borgholm och bussnätet ramen; med bil når du alvaret, norra udden och de små byarna.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Borgholm – Ölands centralort</h3>
-<p>Borgholm är öns enda stad och ett populärt sommarnav med restauranger, butiker och caféer längs strandpromenaden. Sommarkalendern är fullspäckad – Borgholm Music Festival i juli samlar stora artister till Borgholms slottsträdgård.</p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Borgholms slottsruin:</strong> En av Skandinaviens mest imponerande slottsruiner. Fribiljett vid solnedgång för en magisk upplevelse.</li>
-<li><strong>Borgholm Musik:</strong> Storslagen utomhuskonsert varje sommar i slottsparken</li>
-<li><strong>Strandpromenaden:</strong> Caféer, glass och souvenirishop längs hamnkanten</li>
-</ul>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Södra Öland – världsarvet</h3>
+<p>Södra Ölands odlingslandskap fördes in på Unescos världsarvslista år 2000. Området omfattar drygt 56 000 hektar med åkerjord, betade marker, byar, fornborgar och vattenområden. Stora Alvaret dominerar – ett flackt kalkstenslandskap med "mycket speciella klimatförhållanden", som Riksantikvarieämbetet skriver – och intill den odlade jorden ligger sjömarkerna. Håll dig på stigar och vägar; alvarets vegetation är känslig.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Solliden – kungafamiljens sommarpalats</h3>
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p>Solliden är den svenska kungafamiljens sommarresidens och ligger strax söder om Borgholm. Parken är öppen för allmänheten under sommarmånaderna (ca 80 kr entré). Parken är välskött och erbjuder fina utsikter mot Kalmarsund.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Norra Öland – Böda och Trollskogen</h3>
+<p><strong>Bödakusten:</strong> Bödabuktens sandstränder övergår inåt land i sanddyner och flygsandfält. Naturreservatet Bödakustens östra bildades 1998 och omfattar 1 020 hektar.</p>
+<p><strong>Trollskogen</strong> på Ölands nordostligaste udde är ett naturreservat sedan 1998, 266 hektar, med gammal tallskog med stormvridna träd och mäktiga ekar klädda i murgröna. Trolleken är Ölands äldsta ek, 800–900 år. Naturum Trollskogen ligger vid parkeringen, med utställningar, kafé och aktiviteter.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Alvaret – UNESCO-världsarvet</h3>
-<p>Alvaret är ett av Europas mest unika landskap: ett flackt, stenigt kalkstenshav som sträcker sig längs hela södra Öland. Landskapet är ett UNESCO-världsarv sedan 2000 (tillsammans med omgivande jordbrukslandskap) och hyser ett unikt växt- och djurliv.</p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Bäst att uppleva i maj–juni när Alvaret blommar</li>
-<li>Promenera på markerade stigar – kliv inte utanför, vegetationen är extremt känslig</li>
-<li>Naturum Öland vid Mörbylånga erbjuder info om Alvaret och Ölands natur</li>
-<li>Storslagna solnedgångar med horisont i alla riktningar</li>
-</ul>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Norra Öland – Böda sands och vindmöllor</h3>
-<p>Norra Öland är mer skogigt och grönare än söder. Böda sand är Sveriges längsta sandstrand och ett sommarmål i sig – ca 20 km ljus sand med camping, restauranger och familjevänligt vatten.</p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Böda sand:</strong> Sveriges längsta sandstrand — ca två mil längs Bödabukten i norra Öland. Grunt och barnvänligt.</li>
-<li><strong>Historiska vindmöllor:</strong> Öland har fler bevarade traditionella vindmöllor än något annat landskap i Sverige – ca 400 st</li>
-<li><strong>Trollskogen:</strong> Gammal vresig ekskog vid Böda – unik naturupplevelse</li>
-</ul>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Borgholm och Solliden</h3>
+<p>Borgholm är öns stad, med slottsruinen ovanför. Strax söder om Borgholm ligger Solliden, kungafamiljens sommarresidens, vars park är öppen för besökare under sommaren – öppettider och entré står på Sollidens egen webbplats.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Cykla Öland</h3>
-<p>Öland är perfekt för cykling: platt, vindskyddat längs ostkusten och med utmärkta cykelvägar längs hela ön. EuroVelo 10 (Östersjöleden) passerar Öland. Hyrcyklar finns i Borgholm och vid de flesta campingplatser.</p>
+<p>Ön är flack och lämpar sig för cykel. Cykeluthyrning finns i Borgholm och vid campingplatser – kontrollera hos uthyraren. Vinden är den faktor som avgör dagsetappen; planera med den, inte mot den.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Bästa tips:</strong>
-<p style="margin:8px 0 0;font-size:14px">Besök Öland i maj eller september. Klimatet är bra, Alvaret blommar (maj) eller är guldgult (september), och turistmassorna är borta. Juli är fullt av barnfamiljer och priserna är höga. Ölandsbron under solnedgång är en upplevelse oavsett årstid.</p>
+<p style="margin:8px 0 0;font-size:14px">Maj–juni för alvarets blomning, september för lugnet. Juli är högsäsong med barnfamiljer och fulla boenden.</p>
 </div>
 `,
 
@@ -3022,7 +3000,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
     'barplockning-skargarden': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Bärplockning i skärgården – blåbär, lingon och hallon</h2>
-<p>Skärgårdens öar är en av de bäst bevarade bärplockningsplatserna i Stockholmsregionen. Täta bosättningar och stadsbruset har inte nått ut till de yttre öarna, och tallskogarna och ljunghedarna är fullproppade med blåbär, lingon, hallon och smultron under rätt säsong.</p>
+<p>Skärgårdens tallskogar och hedar ger blåbär, lingon, hallon och smultron i rätt säsong – och färre plockare än fastlandets skogar. Här är säsongerna, reglerna och några öar där skogen är stor nog att leta i.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Säsong för respektive bär</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -3030,10 +3008,11 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <li><strong>Hallon:</strong> Juli–september. Öppna hyggen, skogsbryn och klippsidor med sol.</li>
 <li><strong>Blåbär:</strong> Juli–september. Tallskogar med mossig mark. Högsäsong mitten av juli–mitten av augusti.</li>
 <li><strong>Lingon:</strong> Augusti–oktober. Tallmark och hedar. Mognar lite senare och håller sig längre.</li>
-<li><strong>Nypon:</strong> September–november. Häggbuskar längs strandkanter – goda för te och sylt.</li>
+<li><strong>Nypon:</strong> September–november. Nyponrosens buskar, ofta i strandnära buskage och vid gamla tomter – goda till te och soppa.</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa öarna</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Öar med skog att leta i</h3>
+<!-- UPPSKATTNING: vilka öar som ger bäst bär är vår redaktionella bedömning, ingen har mätt det (2026-09) -->
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Möja:</strong> Tallskogar längs norra och östra sidan. Bra blåbär och lingon.</li>
 <li><strong>Ornö:</strong> Stor ö med varierad skog och lite besökstryck. Rik på alla vanliga bär.</li>
@@ -3043,8 +3022,9 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Regler och etik</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Bärplockning är alltid tillåtet med allemansrätten – på alla marker, även privat</li>
-<li>I naturreservat kan det finnas begränsningar – kontrollera lokala regler</li>
+<!-- KÄLLA: Naturvårdsverket, Plocka blommor, bär och svamp (https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/plocka-blommor-bar-och-svamp/, läst 2026-09-21): "Plocka vilda blommor, bär och svamp som inte är fridlysta."; "I nationalparker och naturreservat och även i fornminnesområden gäller särskilda regler."; "Du får ta förvildade äpplen, körsbär, hallon, krusbär och liknande på ödetomter utan byggnader." -->
+<li>Allemansrätten låter dig plocka vilda bär, svamp och blommor som inte är fridlysta – men inte på någons tomt eller i planteringar. Förvildade hallon och fruktträd får du ta på ödetomter utan byggnader, säger Naturvårdsverket.</li>
+<li>I nationalparker, naturreservat och fornminnesområden gäller särskilda regler – där kan bärplockning vara begränsad. Läs föreskrifterna hos Länsstyrelsen innan du plockar.</li>
 <li>Använd korg, inte plastpåse – bären behöver andas</li>
 <li>Ta med fästingspray och kontrollera kroppen efteråt</li>
 </ul>
@@ -3249,7 +3229,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kräftpremiären 2026 infaller onsdagen den 5 augusti. Det är startskottet för Sveriges mest älskade sensommartradition – och i skärgården firas den med extra stil. Här är allt du behöver veta för att planera en oförglömlig kräftskiva ute på öarna.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad är kräftskiva egentligen?</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivan är en svensk tradition med rötter från 1930-talet då kräftorna fridlystes och man bara fick fiska under kräftpremiären. I dag är restriktionerna borta men traditionen lever starkare än någonsin. Lyktor i papper, snapsvisor, kräfthattar och högar av kokta kräftor på ett stort fat mitt på bordet – det är kärnan i festen.</p>
+<!-- KÄLLA: Institutet för språk och folkminnen, Kräftskiva, ${KALLA_KRAFTOR} (läst 2026-09-21): "Från slutet av 1800-talet fram till år 1994 rådde förbud mot kräftfiske från november till början av augusti … 1982 ändrades det till klockan 17 den första onsdagen i augusti" -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivan har sina rötter i ett fiskeförbud: från slutet av 1800-talet fram till 1994 var kräftfiske förbjudet från november till början av augusti, så när fisket öppnade i augusti blev det fest. Förbudet är borta sedan 1994, men traditionen lever. Lyktor i papper, snapsvisor, kräfthattar och högar av kokta kräftor på ett stort fat mitt på bordet – det är kärnan i festen.</p>
 
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">I skärgården tar traditionen en extra dimension. Att sitta vid vattnet, med lyktorna hängandes i björkarna och doften av dill och hav, är en upplevelse som är svår att toppa. Många familjer har gjort kräftskivan till en årlig höjdpunkt och bokar sina bryggor och stugor redan i januari.</p>
 
@@ -3260,9 +3241,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
 <strong style="color:var(--sea)">Viktiga datum 2026:</strong>
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>Kräftpremiär: <strong>onsdag 5 augusti</strong></li>
-<li>Populäraste kräftskivehelgen: <strong>8–9 augusti</strong></li>
-<li>Säsong: <strong>5 aug – slutet av september</strong></li>
+<li>Kräftpremiär: <strong>${kraftpremiar(2026).text.replace(/ 2026$/, '')}</strong> (av tradition, se ovan)</li>
 <li>Boka restauranger i skärgården: <strong>nu, helst redan gjort</strong></li>
 </ul>
 </div>
@@ -3270,16 +3249,18 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var håller du kräftskiva i skärgården?</h2>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">1. Fjäderholmarna</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarna är det enklaste alternativet – bara 25 minuter med båt från Nybrokajen. Restaurangerna på ön arrangerar kräftskivor under hela premiärperioden med kräftor, snaps och lyktfärgad stämning direkt vid vattnet. Boka tidigt, det är fullt.</p>
+<!-- KÄLLA: Strömma (https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/) — Strandvägen kajplats 13, ca 30 min; https://www.fjaderholmarna.se/ — Fjäderholmarnas Krog och Restaurang Rökeriet på ön. Om krogarna ordnar kräftskivor 2026 står inte på deras sidor — därför "se krogens egen sida" -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarna är det enklaste alternativet – omkring en halvtimme med Strömmas båt från Strandvägen, eller med Waxholmsbolaget från Strömkajen. På ön ligger Fjäderholmarnas Krog och Restaurang Rökeriet; om de ordnar kräftskiva i år står på respektive krogs egen sida. Boka i förväg.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">2. Vaxholm</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm har flera restauranger med uteservering vid vattnet. Åk dit med pendelbåten och avnjut kräftor med utsikt mot fästningen. Charming och lättillgängligt – perfekt för de som inte vill åka till yttre skärgården.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm har restauranger vid vattnet och nås med Waxholmsbolaget från Strömkajen – lättillgängligt för den som inte vill ut i ytterskärgården. Vilka krogar som serverar kräftor i augusti framgår av krogarnas egna sidor.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">3. Grinda eller Utö</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus och Utö Värdshus arrangerar båda kräftskivor med övernattning. Det är den ultimata upplevelsen – kräftor, snaps och sensommarnatt utan att behöva ta en båt hem. Boka boende och kräftskiva som ett paket, de säljer ut månader i förväg.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du slippa sista båten hem: Grinda Wärdshus och Utö Värdshus har både restaurang och boende. Om de ordnar kräftskiva med övernattning 2026 har vi inte kunnat belägga – kontrollera på värdshusets egen sida innan du bokar.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">4. Egen kräftskiva på ön</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det mest folkliga alternativet är att köpa kräftor på ICA eller Lidl, ta ut till din favoritö med Waxholmsbolaget och duka upp på klipphällarna. Ta med: kylbox med kräftor, dill, bröd och smör, lyktor, snapsvisor, servetter och sopptunna för skalen. Allemansrätten tillåter brasa på hårdare mark – kontrollera brandrisk.</p>
+<!-- KÄLLA: Naturvårdsverket, Allemansrätten – eldning (https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/eldning/, läst 2026-09-21): "Undvik även att elda på berghällar och större stenblock. De kan nämligen spricka och skadas permanent."; "Du gör allemansrätt när du använder en fast grillplats, eller väljer grus eller sand som underlag."; eldningsförbud: "Du hittar information om vad som gäller på länsstyrelsens eller kommunens webbplats." -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det mest folkliga alternativet är att köpa kräftor på ICA eller Lidl, ta ut till din favoritö med Waxholmsbolaget och duka upp på klipphällarna. Ta med: kylbox med kräftor, dill, bröd och smör, lyktor, snapsvisor, servetter och sopptunna för skalen. Ska du elda: använd fast grillplats eller grus/sand som underlag – aldrig klipphällar, de spricker – och kontrollera eldningsförbud hos länsstyrelsen eller kommunen först.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Klassisk kräftskivemeny</h2>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
@@ -3293,7 +3274,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 </ul>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dekorationer och stämning</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivans färgschema är rött, vitt och gult – sedan 1930-talet. Du behöver: papperslyktor att hänga i träden, servetter med kräftmotiv, kräfthattar och haklappar, en vit duk och gärna en girlang. Handla på Åhlens, Clas Ohlson eller välsorterade livsmedelsbutiker i veckan innan premiären – hyllorna töms fort.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivans färger är rött, vitt och gult. Du behöver: papperslyktor att hänga i träden, servetter med kräftmotiv, kräfthattar och haklappar, en vit duk och gärna en girlang. Handla på Åhlens, Clas Ohlson eller välsorterade livsmedelsbutiker i veckan innan premiären – hyllorna töms fort.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Snapsvisor – måste du kunna</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingen kräftskiva utan snapsvisor. De klassiska är "Helan går" (obligatorisk som första snapsvisa), "Gubben i lådan" och "Hej tomtegubbar". Ta med en snapsvisebok eller ladda ner appen Snapsvisor inför festen – det är alltid uppskattad med en som kan leda vissångerna.</p>

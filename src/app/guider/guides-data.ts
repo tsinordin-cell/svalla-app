@@ -772,17 +772,17 @@ export const GUIDES: GuideMeta[] = [
   {
     slug: "oland-guide",
     title: "Öland – guide till solens och vindarnas ö",
-    excerpt: "Alvaret, Borgholm slott, Böda sand och cykelleder. Komplett guide till Öland – broförbindelsen och allt på ön.",
+    excerpt: "Stora Alvaret och världsarvet, Trollskogen, Bödakusten, Borgholm och Solliden. Det vi kan belägga om Öland – med källor.",
     category: "Region",
     emoji: "🌾",
-    readTime: "9 min",
+    readTime: "6 min",
     fullContent: true,
+    // KÄLLA: Riksantikvarieämbetet (https://www.raa.se/kulturarv/varldsarv/varldsarv-i-sverige/sodra-olands-odlingslandskap/) — världsarv år 2000, drygt 56 000 hektar; Länsstyrelsen Kalmar, Trollskogen (https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/trollskogen.html) — gammal tallskog med stormvridna träd, naturum vid parkeringen (läst 2026-09-21). Tidigare FAQ (borttagen 2026-09-21) påstod "fågelsjön Hornborga" på Öland — Hornborgasjön ligger i Västergötland — samt "buss 101", "Sveriges längsta sandstrand 20 km", "bron 6 km, norra Öland vid Färjestaden" utan källa.
     faqs: [
-      { q: 'Hur tar man sig till Öland?', a: 'Med bil eller buss via Ölandsbron från Kalmar – bron är gratis. Med tåg till Kalmar (ca 4h från Stockholm) och sedan buss 101 eller taxi till Borgholm. Ingen färja behövs – bron är öppen dygnet runt.' },
-      { q: 'Behöver man hyra bil på Öland?', a: 'Bil är starkt rekommenderat. Öland är 137 km lång och kollektivtrafiken täcker inte hela ön. Hyrbil i Kalmar är billigast, alternativt i Borgholm. Cykel fungerar utmärkt i närheten av Borgholm och längs kustleder.' },
-      { q: 'Är Ölandsbron gratis?', a: 'Ja, Ölandsbron är helt gratis för alla fordon. Den är 6 km lång och förbinder Kalmar med norra Öland vid Färjestaden.' },
-      { q: 'Vad är Alvaret?', a: 'Alvaret är ett flackt kalkstenslandskap som täcker södra Öland och är UNESCO-världsarv sedan 2000. Det är ett unikt ekosystem med orkidéer, lavar och beteslandskap som inte finns någon annanstans i världen. Bäst att besöka maj–juni när blommorna blommar.' },
-      { q: 'Vad är bäst att göra på Öland?', a: 'Cykla längs kusten, bada på Böda sand (Sveriges längsta sandstrand, 20 km), besöka Borgholms slottsruin och se Solliden (kungafamiljens sommarslott). Alvaret och fågelsjön Hornborga är höjdpunkter för naturintresserade.' },
+      { q: 'Hur tar man sig till Öland?', a: 'Med bil över Ölandsbron mellan Kalmar och Färjestaden. Kollektivt: tåg till Kalmar och sedan buss över bron med Kalmar länstrafik – sök resan i deras reseplanerare.' },
+      { q: 'Behöver man bil på Öland?', a: 'Ön är lång och smal och kollektivtrafiken täcker inte allt. Utan bil är Borgholm och busslinjerna ramen; med bil eller cykel når du alvaret, Trollskogen och byarna.' },
+      { q: 'Vad är Alvaret?', a: 'Stora Alvaret är ett flackt kalkstenslandskap som dominerar världsarvet Södra Ölands odlingslandskap, uppfört på Unescos lista år 2000. Området omfattar drygt 56 000 hektar med åkerjord, betade marker, byar, fornborgar och vattenområden. Håll dig på stigarna – vegetationen är känslig.' },
+      { q: 'Vad är Trollskogen?', a: 'Ett naturreservat på Ölands nordostligaste udde med gammal tallskog med stormvridna träd och mäktiga ekar. Trolleken är Ölands äldsta ek, 800–900 år. Naturum Trollskogen ligger vid parkeringen.' },
     ],
   },
   {
@@ -897,7 +897,7 @@ export const GUIDES: GuideMeta[] = [
       { q: 'Kan man ta båt till Utö och Ornö från Dalarö?', a: 'Ja, Dalarö är en av startpunkterna för båttrafik söderut i skärgården. Waxholmsbolaget kör till Ornö och Utö via Dalarö. Bra alternativ till Nynäshamn om du bor i Nacka eller Haninge.' },
     ],
   },
-  { slug: "barplockning-skargarden", title: "Bärplockning i skärgården – blåbär, lingon och hallon", excerpt: "Skärgårdens öar är fullspäckade med bär. Säsong, bästa öar och allt om bärplockning med allemansrätten.", category: "Aktivitet", emoji: "🫐", readTime: "5 min", fullContent: true, faqs: [{ q: 'Vilka bär kan man plocka i Stockholms skärgård?', a: 'Blåbär (jul–aug), lingon (aug–sept), hallon (jul–aug) och smultron (jun–jul) finns i rikliga mängder. Hjortron finns i norr (Höga Kusten, norrland). Speciellt Oxelösund och Möja är bärrika.' }, { q: 'Gäller allemansrätten för bärplockning på privata öar?', a: 'Ja – allemansrätten tillåter bärplockning på alla marker inklusive privat mark. Plocka inte direkt vid bostäder och ta inte mer än du kan använda. Inte tillåtet i planterade trädgårdar.' }] },
+  { slug: "barplockning-skargarden", title: "Bärplockning i skärgården – blåbär, lingon och hallon", excerpt: "Skärgårdens öar är fullspäckade med bär. Säsong, bästa öar och allt om bärplockning med allemansrätten.", category: "Aktivitet", emoji: "🫐", readTime: "5 min", fullContent: true, faqs: [{ q: 'Vilka bär kan man plocka i Stockholms skärgård?', a: 'Blåbär och hallon i juli–augusti, lingon från augusti, smultron i juli och nypon på hösten – i tallskog, hyggen och strandnära buskage. Hur rikligt det är varierar år från år.' }, { q: 'Gäller allemansrätten för bärplockning på privata öar?', a: 'Ja – du får plocka vilda bär som inte är fridlysta även på privat mark, men inte på någons tomt eller i planteringar. I nationalparker, naturreservat och fornminnesområden gäller särskilda regler, enligt Naturvårdsverket.' }] }, // KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/plocka-blommor-bar-och-svamp/ (läst 2026-09-21)
   // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
   { slug: "solnedgang-skargarden", title: "Bästa solnedgångarna i Stockholms skärgård", excerpt: "De vackraste platserna för solnedgång – vilka öar, vilken sida och vid vilken tid. En guide för fotografer och romantiker.", category: "Aktivitet", emoji: "🌅", readTime: "5 min", fullContent: true, faqs: [{ q: 'Vilka öar är bäst för solnedgång i Stockholms skärgård?', a: 'Sandhamns västsida, Möja och Arholmas klipputsikter ger spektakulära solnedgångar i juli. Utblick mot väster behövs – öar öster om Waxholm har ofta fel väderstreck.' }, { q: 'Vilken tid på dygnet är solnedgången i skärgården i juli?', a: 'I juli: solnedgång ca 21:30–22:00. I juni kring midsommar: solnedgång sent, men nästan ingen "mörk" natt. Bäst ljus: 30 min innan solnedgång (golden hour).' }] },
   { slug: "ankra-sova-bat", title: "Ankra och övernatta på båt i skärgården", excerpt: "Bästa naturhamnarna, ankringstekniker, regler och hur du sover gott ute i öarna på din båt.", category: "Praktisk", emoji: "⚓", readTime: "7 min", fullContent: true, faqs: [{ q: 'Vilka är de bästa naturhamnarna i Stockholms skärgård?', a: 'Käbblo, Grönskär, Märsgarn (Möja), Sandnäs (Sandhamn) och Ingaröfjärden är populära naturhamnar. Bluechart-appen och Navionics visar djup och vindskydd.' }, { q: 'Vad gäller för ankring i Stockholms skärgård?', a: 'Allemansrätten gäller på vatten – fri ankring utom i naturreservat med förbud. Håll 300 m avstånd från bebodda fastigheter. Ankra ej i sjöfartsleder. Naturhamnar utan brygga är fria att använda.' }] },
@@ -1221,8 +1221,8 @@ export const GUIDES: GuideMeta[] = [
     excerpt: "Kräftpremiären är 5 augusti 2026. Var du håller kräftskiva i skärgården, vad du äter, hur du dekorerar och vilka restauranger som bokar fullt.",
     category: "Säsong", emoji: "🦀", readTime: "8 min", fullContent: true,
     faqs: [
-      { q: 'När är kräftpremiären 2026?', a: 'Kräftpremiären 2026 är den 5 augusti. Från detta datum är det tillåtet att fiska och sälja kräftor i Sverige. De bästa restaurangerna är fullbokade veckor i förväg – boka tidigt.' },
-      { q: 'Var håller man kräftskiva i Stockholms skärgård?', a: 'Sandhamns Värdshus, Grinda Wärdshus och Utö Värdshus är klassiska kräftskivescener. Många håller egna fester på klippor och bryggor med bukökat. Anmäl dig till traditionen: lyktor, snapsar och kräftor under stjärnorna.' },
+      { q: 'När är kräftpremiären 2026?', a: 'Av tradition första onsdagen i augusti – 2026 den 5 augusti. Något fastställt datum finns inte sedan fiskeförbudet upphävdes 1994 (Institutet för språk och folkminnen); det är handeln och vanan som håller dagen. Boka restaurang i förväg.' },
+      { q: 'Var håller man kräftskiva i Stockholms skärgård?', a: 'På en klipphäll med egen kylbox, eller på en skärgårdskrog med restaurang och boende – Grinda Wärdshus, Utö Värdshus och krogarna på Fjäderholmarna är exempel. Om de ordnar kräftskiva just i år står på krogens egen sida.' },
       { q: 'Hur dekorerar man kräftskiva?', a: 'Traditionellt: lyktor (kikkalykta), pappersservietter med kräftmotiv och kransar i blå och gult. Lägg ett vitt duk på bordet och sätt upp lyktor runtom. Snapsvisor ska finnas tillhands – ladda ner Snapsvisor-appen.' },
     ],
   },
