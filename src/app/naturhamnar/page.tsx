@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     'allemansrätten segling',
   ],
   openGraph: {
-    title: 'Naturhamnar i Stockholms skärgård — Ankringsguide | Svalla',
+    title: 'Naturhamnar i Stockholms skärgård — Ankringsguide',
     description: 'Hitta de bästa naturhamnarna i Stockholms skärgård. Gratis ankring och skyddade vikar för seglare.',
     url: 'https://svalla.se/naturhamnar',
   },
