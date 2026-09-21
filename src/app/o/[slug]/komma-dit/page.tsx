@@ -57,6 +57,20 @@ export default async function IslandKommaDitPage({ params }: Props) {
   const island = getIsland(slug)
   if (!island) notFound()
 
+  // Påståenden som bara är sanna för vissa öar ska inte stå på alla 103.
+  // "Ingen egen båt krävs" var hårdkodat även för öar utan reguljärtrafik, och
+  // Waxholmsbolagets biljettregler visades på Bohusläns öar (2026-09-21).
+  const kollektivt = island.getting_there.some(t => !/egen båt|segelbåt|kajak|charter/i.test(t.method))
+  const stockholm = island.region === 'norra' || island.region === 'mellersta' || island.region === 'södra'
+  const lankFor = (method: string, desc: string, url?: string) => {
+    if (url) return url
+    const tm = island.transport_meta
+    if (!tm?.booking_url) return null
+    const op = tm.operator.toLowerCase()
+    const m = `${method} ${desc}`.toLowerCase()
+    return m.includes(op) || (op.includes('waxholm') && m.includes('waxholm')) ? tm.booking_url : null
+  }
+
   const transportSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -76,7 +90,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
         name: `Behöver man en egen båt för att komma till ${island.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Nej, ingen egen båt krävs. ${island.name} nås med reguljärfärja. ${island.transport_meta ? `Restid från Stockholm: ca ${island.transport_meta.from_city_min} minuter med ${island.transport_meta.operator}.` : `Restid: ${island.facts.travel_time}.`}`,
+          text: kollektivt
+            ? `Nej. ${island.getting_there.filter(t => !/egen båt|segelbåt|kajak|charter/i.test(t.method)).map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}${t.time ? ` (${t.time})` : ''}`).join(', ')}.`
+            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}. Restid: ${island.facts.travel_time}.`,
         },
       },
       {
@@ -97,7 +113,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
       <IslandSubPageHeader
         island={island}
         tab="komma-dit"
-        subtitle={`Restid: ${island.facts.travel_time}. Ingen egen båt krävs.`}
+        subtitle={`Restid: ${island.facts.travel_time}.${kollektivt ? ' Ingen egen båt krävs.' : ''}`}
       />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
@@ -160,8 +176,8 @@ export default async function IslandKommaDitPage({ params }: Props) {
                       <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2, marginBottom: 6 }}>Från: {t.from}</div>
                     )}
                     <div style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.65 }}>{t.desc}</div>
-                    {island.transport_meta?.booking_url ? (
-                      <a href={island.transport_meta.booking_url} target="_blank" rel="noopener noreferrer" style={{
+                    {lankFor(t.method, t.desc, t.url) ? (
+                      <a href={lankFor(t.method, t.desc, t.url)!} target="_blank" rel="noopener noreferrer" style={{
                         display: 'inline-block', marginTop: 10, fontSize: 13, fontWeight: 700,
                         color: 'var(--sea)', textDecoration: 'none',
                       }}>
@@ -183,16 +199,17 @@ export default async function IslandKommaDitPage({ params }: Props) {
             marginBottom: 28,
           }}>
             <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
-              {island.name} nås med reguljärbåt från Stockholm. Restid: {island.facts.travel_time}. Se{' '}
+              Restid: {island.facts.travel_time}.{stockholm ? (<>{' '}Se{' '}
               <a href="https://waxholmsbolaget.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>
                 Waxholmsbolagets tidtabell
               </a>{' '}
-              för aktuella avgångstider.
+              för aktuella avgångstider.</>) : null}
             </p>
           </div>
         )}
 
-        {/* Praktisk info */}
+        {/* Praktisk info — visas bara när det finns något som gäller den här ön */}
+        {(stockholm || island.transport_meta?.car_parking) && (
         <div style={{
           background: 'linear-gradient(135deg, rgba(10,123,140,0.06) 0%, rgba(26,74,107,0.04) 100%)',
           borderRadius: 16, padding: '22px 20px',
@@ -204,15 +221,18 @@ export default async function IslandKommaDitPage({ params }: Props) {
           </h3>
           <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
             {/* KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19. "Halvpris" var fel: 39–114 kr mot 61–186 kr. */}
-            <li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen. 7–19 år betalar rabatterat pris (39–114 kr i stället för 61–186 kr).</li>
-            <li>Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd. Längre ut krävs Waxholmsbolaget-biljett 30 april–13 september; 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken.</li>
-            <li>Boka sittplats i förväg på populära rutter under högsäsong (juli)</li>
-            <li>Kom i god tid — båtarna avgår exakt på utsatt tid</li>
+            {stockholm && (<>
+              <li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen. 7–19 år betalar rabatterat pris (39–114 kr i stället för 61–186 kr).</li>
+              <li>Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd. Längre ut krävs Waxholmsbolaget-biljett 30 april–13 september; 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken.</li>
+              {/* KÄLLA: Waxholmsbolaget linje 24, https://kund.printhuset-sthlm.se/wa/h24.pdf, anmärkning b: "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00" (läst 2026-09-21). Ersätter "Boka sittplats i förväg" – Waxholmsbolaget säljer inga platsbiljetter. */}
+              <li>Vissa bryggor och turer är beställningstrafik. Beställ resan i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00 minst en timme före avgång – annars kan båten gå förbi bryggan.</li>
+            </>)}
             {island.transport_meta && island.transport_meta.car_parking && (
               <li>Parkering: {island.transport_meta.car_parking}</li>
             )}
           </ul>
         </div>
+        )}
 
         {/* Planera tur med Thorkel */}
         <div style={{
