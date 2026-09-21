@@ -4288,37 +4288,38 @@ export const ISLANDS: Island[] = [
     emoji: '🌳',
     tagline: 'Lättillgänglig skärgårdsö med restaurang, vandringsleder och havsbad — en halvtimme med pendelbåt från Ropsten',
     description: [
-      'Storholmen är en av Lidingös mest omtyckta skärgårdsöar — bebodd, grön och lättillgänglig med reguljär skärgårdsbåt. Ön ligger i innerskärgården och är ett perfekt alternativ för stockholmare som vill ha äkta skärgårdskänsla utan lång restid.',
-      'Ön har en varierad natur med lövskog, klipphällar längs kusterna och välmarkerade vandringsleder. En runda runt ön tar ca 2 timmar. Badplatserna på östra och södra sidan är populära sommartid med klart och skyddat vatten.',
-      'Historiskt intressant: ön tillhörde Frösviks gård från 1780-talet och har en lång historia av fiske och kustbruk. Fram till 2011 tillhörde ön Vaxholms kommun — en ovanlig kommungränsändring i Stockholms län.',
+      // KÄLLA: Lidingö stad, Lidingö skärgård (https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/), läst i webbläsare 2026-09-21 — "Med skärgårdsbåt tar du dig lätt till Storholmen eller Fjäderholmarna … Bägge två är bebyggda, har restaurang och stigar att promenera på"; "dagsverkstorp under Frösviks säteri från 1780-talet"; Villa Kassman ("Slottet") 1917; "cirka 250 fastigheter för sommarboende" 1925–1935; "i dag finns cirka 80 permanenta hushåll"; "överflyttades från Vaxholm kommun till Lidingö stad 2011"
+      'Storholmen är en bebyggd ö i Lidingös skärgård med restaurang och stigar att promenera på, som nås med SL:s pendelbåt från Ropsten. Ön ligger i innerskärgården, nära nog för en dagstur utan lång restid.',
+      'Historien enligt Lidingö stad: ett dagsverkstorp under Frösviks säteri från 1780-talet, sommarvillor från 1800-talets slut, och bankir Kassmans "Slottet" från 1917. Efter Kassmans konkurs styckades ön i cirka 250 sommartomter under 1925–1935. I dag bor omkring 80 hushåll här året runt.',
+      'Storholmen tillhörde Vaxholms kommun fram till 2011, då ön överfördes till Lidingö stad.',
     ],
-    facts: { travel_time: 'ca 25–30 min med SL:s pendelbåt 80 från Ropsten', character: 'Bebodd ö, grön och lättillgänglig, vandring och bad', season: 'Maj–september', best_for: 'Dagsutflykt, restaurangbesök, vandring, klippbad' },
+    facts: { travel_time: 'ca 25–30 min med SL:s pendelbåt 80 från Ropsten', character: 'Bebodd ö, restaurang och promenadstigar, nära stan', season: 'Maj–september', best_for: 'Dagsutflykt, restaurangbesök, promenad' },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
-      { icon: '🚶', name: 'Vandring', desc: 'Markerade stigar runt ön, ca 2 timmar för hela rundan.' },
-      { icon: '🏊', name: 'Klippbad', desc: 'Populära badplatser på östra och södra sidan med skyddat vatten.' },
-      { icon: '🍽', name: 'Restaurang', desc: 'Säsongsöppen skärgårdsrestaurang — boka bord i förväg i juli.' },
-      { icon: '🐦', name: 'Fågelskådning', desc: 'Lövskogen och strandlinjen lockar sjöfåglar och häckande fåglar.' },
+      // KÄLLA: Lidingö stad (samma sida) — "stigar att promenera på" och restaurang; längd på rundan, badplatser och fågelliv har vi ingen källa för och skriver därför inte
+      { icon: '🚶', name: 'Promenad', desc: 'Stigar att promenera på över ön, enligt Lidingö stad.' },
+      { icon: '🍽', name: 'Restaurang', desc: 'Storholmen Sjökrog vid vattnet — se restaurangens egen sida för säsong och bokning.' },
     ],
     accommodation: [],
       // KÄLLA: SL pendelbåt linje 80 (https://kund.printhuset-sthlm.se/sl/h80.pdf, gäller 17 aug–12 dec 2026): Ropsten–Storholmen södra ca 28 min; Lidingö stad (https://lidingo.se/bygga-bo/bygglov/kulturmiljoprogram/ (Stora Fjäderholmen, pdf), Båtpendla) — "Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is" (läst 2026-09-14). Stod "Waxholmsbolaget från Strömkajen/Nybrokajen sommartid, 40 min" — fel avgångsplats och säsong. "Året runt" är inte belagt och borttaget.
     getting_there: [
       { method: 'SL pendelbåt linje 80', from: 'Ropsten', time: 'ca 25–30 min', desc: 'Pendelbåt 80 (Nybroplan–Ropsten) fortsätter Ropsten–Storholmen med bryggorna Storholmen södra, östra och norra. Vintertid, när det ligger is, trafikeras inte Storholmen östra, Frösvik och Storholmen norra. Ingår i SL-biljetten.', icon: '⛴' },
-      { method: 'Fritidsbåt', from: 'Lidingö eller valfri brygga', desc: 'Nås enkelt med egen båt. Gästbrygga finns vid huvudbryggan.', icon: '⚓' },
+      { method: 'Fritidsbåt', from: 'Lidingö eller valfri brygga', desc: 'Nås med egen båt. Om det finns gästplatser vid bryggorna har vi inte kunnat belägga — fråga på plats.', icon: '⚓' },
     ],
-    harbors: [{ name: 'Storholmens brygga', desc: 'Huvudbrygga med plats för gästande båtar.' }],
+    harbors: [],
     restaurants: [
       // KÄLLA: https://storholmensjokrog.se/ — "skärgårdsrestaurang på ön Storholmen utanför Lidingö. Njut av nyfångad fisk och klassisk skärgårdsmat vid vattnet", © 2026
       { name: 'Storholmen Sjökrog', type: 'Restaurang', desc: 'Skärgårdsrestaurang på Storholmen utanför Lidingö med nyfångad fisk och klassisk skärgårdsmat vid vattnet.', websiteUrl: 'https://www.storholmensjokrog.se/' },
     ],
     tips: [
-      'Ta morgonbåten och hinn med lunch på restaurangen — kvällstider är fullbokade i juli.',
-      'Vandringen runt ön tar ca 2 timmar — ta med matsäck och bada halvvägs på södra sidan.',
-      'Bra alternativ när Fjäderholmarna är överfulla — kortare restid än Vaxholm, färre turister.',
-      'Kontrollera aktuell tidtabell på waxholmsbolaget.se — turtätheten varierar under säsongen.',
+      'Båten hit är SL:s pendelbåt 80 från Ropsten, inte Waxholmsbolaget — den ingår i SL-biljetten. Kontrollera tidtabellen på sl.se; vintertid trafikeras inte alla bryggor.',
+      'Boka bord på Storholmen Sjökrog i förväg — se restaurangens egen sida för säsong.',
+      'Kortare restid än Vaxholm och Fjäderholmarna ligger runt hörnet — Storholmen är ett lugnare alternativ nära stan.',
     ],
     related: ['vaxholm', 'fjaderholmarna', 'moja'],
     tags: ['bebodd', 'lidingö', 'innerskärgård', 'dagstur', 'restaurang', 'vandring', 'bad'],
-    did_you_know: 'Storholmen tillhörde Vaxholms kommun fram till 2011 då ön överfördes till Lidingö stad — en av de få kommungränsändringar i Stockholms skärgård under 2000-talet.',
+    // KÄLLA: Lidingö stad (samma sida) — "Storholmen överflyttades från Vaxholm kommun till Lidingö stad 2011"; att det skulle vara en av få ändringar under 2000-talet har vi ingen källa för
+    did_you_know: 'Storholmen tillhörde Vaxholms kommun fram till 2011, då ön överfördes till Lidingö stad. I mitten av 1980-talet bodde tolv hushåll här året runt — i dag omkring 80.',
   },
   {
     slug: 'langskar',

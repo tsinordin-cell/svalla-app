@@ -2508,6 +2508,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "storholmen": [
     {
+      "url": "https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/",
+      "org": "Lidingö stad",
+      "vad": "Med skärgårdsbåt tar du dig lätt till Storholmen eller Fjäderholmarna … Bägge två är bebyggda, har restaurang och stigar att promenera på; dagsverkstorp under Frösviks säteri från 1780-talet; Villa Kassman (Slottet) 1917; cirka 250 fastigheter för sommarboende 1925–1935; i dag finns cirka 80 permanenta hushåll; överflyttades från Vaxholm kommun till Lidingö stad 2011",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://kund.printhuset-sthlm.se/sl/h80.pdf",
       "org": "SL pendelbåt linje 80 ( gäller 17 aug–12 dec 2026): Ropsten–Storholmen södra ca 28 min; Lidingö stad ( (Stora Fjäderholmen",
       "vad": "Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is . Stod Waxholmsbolaget från Strömkajen/Nybrokajen sommartid, 40 min — fel avgångsplats och säsong. Året runt är inte belagt och borttaget.",
