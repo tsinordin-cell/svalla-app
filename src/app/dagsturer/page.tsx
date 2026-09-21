@@ -1,9 +1,21 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
+// KÄLLOR för restider och priser på den här sidan (alla lästa 2026-09-21 om inget annat anges):
+// - Strömma, Båt till Fjäderholmarna, https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — 30 min från Strandvägen kajplats 13 / Nacka Strand, 170 kr enkel, 205 kr t/r, "ÅTER MAJ 2027"
+// - Waxholmsbolaget linje 2, https://kund.printhuset-sthlm.se/wa/h2.pdf — Fjäderholmarna angörs på vissa turer utan fast tid, 2 april–18 juni och 17 augusti–12 december 2026
+// - Waxholmsbolaget, Vaxholm, https://waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Båtresan från Strömkajen tar bara en timme"; SL-bussar från Vaxholm till Tekniska högskolan
+// - Waxholmsbolaget, Grinda, https://waxholmsbolaget.se/reseplanering/resmal/grinda — "Resan från Strömkajen tar ungefär en och en halv timme"; "Grinda har trafik året om"
+// - Waxholmsbolaget linje 15 (sommar), https://kund.printhuset-sthlm.se/wa/s15.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026"; Strömkajen 10.00 → Sandhamn 13.45 (3 h 45), 08.30 → 13.25 (4 h 55); Strömkajen 08.30 → Finnhamn 11.35 (3 h 05)
+// - Strömma, Cinderellabåtarna Stockholm–Sandhamn 2026, https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — 30/4–27/9, Strandvägen kajplats 14 10:00 → Sandhamn 12:30; Södra Grinda 11:30. Priser "från SEK 190/235/255" till Vaxholm/Grinda/Sandhamn, https://www.stromma.com/en-se/stockholm/cinderella-boats/timetables/
+// - Waxholmsbolaget linje 16, https://kund.printhuset-sthlm.se/wa/h16.pdf — Stavsnäs–Sandhamn 40–65 min; Stavsnäs Båttaxi, https://battaxi.se/sandhamnslinjen-2/ — 30 min; Sandhamn Seglarhotell, https://www.sandhamn.com/en/hitta-hit — "Take bus 433 from Slussen … Approx. 1 hour by bus"
+// - Waxholmsbolaget linje 21, https://kund.printhuset-sthlm.se/wa/h21.pdf — Årsta brygga → Gruvbryggan (Utö) 35–75 min
+// - Waxholmsbolaget enkelbiljett (läst 2026-09-19, se o/[slug]/komma-dit) — 61–186 kr vuxen, 39–114 kr 7–19 år, barn under 7 gratis
+// - Waxholmsbolaget, Vad du får ta med (läst 2026-09-19) — "Att ta med cykeln kostar inget extra", i mån av plats; cykelkärra/lådcykel 120 kr
+
 export const metadata: Metadata = {
- title: 'Dagsturer i Stockholms skärgård — Bästa dagsutflykterna med båt',
- description: 'De bästa dagsturerna från Stockholm till skärgården. Fjäderholmarna, Vaxholm, Sandhamn, Grinda och fler — restider, färjor och vad som väntar. Planera din dagstur 2026.',
+ title: 'Dagstur i Stockholms skärgård – sex öar med båt',
+ description: 'Sex öar du hinner fram och tillbaka till på en dag från Stockholm – restid, båt och biljettpris från Waxholmsbolagets och Strömmas tidtabeller.',
  keywords: [
  'dagsturer stockholm skärgård',
  'dagsutflykt skärgård',
@@ -20,8 +32,8 @@ export const metadata: Metadata = {
  'dagsturer stockholms skärgård',
  ],
  openGraph: {
- title: 'Dagsturer i Stockholms skärgård — Bästa dagsutflykterna med båt',
- description: 'De bästa dagsturerna från Stockholm till skärgården. Fjäderholmarna, Vaxholm, Sandhamn, Grinda och fler — planera din dagstur.',
+ title: 'Dagstur i Stockholms skärgård – sex öar med båt',
+ description: 'Fjäderholmarna, Vaxholm, Grinda, Sandhamn, Utö och Finnhamn – restid, båt och biljett för en dagstur från Stockholm.',
  url: 'https://svalla.se/dagsturer',
  },
  alternates: { canonical: 'https://svalla.se/dagsturer' },
@@ -31,42 +43,42 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'ship',
   title: 'Fjäderholmarna',
- description: 'Närmaste öarna från Stockholm — ca 25 minuter med Strömma/Waxholmsbåt från Strömkajen/Slussen. Restauranger, hantverk och bad. Perfekt första skärgårdstur.',
+ description: 'Närmast city. Strömmas båt från Strandvägen tar 30 minuter maj–september; vår och höst lägger Waxholmsbolagets linje 2 till här på vissa turer. Restauranger, hantverk och bad.',
  href: '/o/fjaderholmarna',
- meta: '~25 min från city',
+ meta: '30 min från Strandvägen',
  },
  {
  icon: 'building',
   title: 'Vaxholm',
- description: 'Historisk stad med Vaxholms kastell — platsen befästes redan i början av 1500-talet, Gustav Vasas kraftigare fästning kom 1548 och nuvarande byggnad 1833–1863. Cirka 1 timme från Strömkajen — restauranger, butiker och gästhamn. Lätt att fylla en hel dag.',
+ description: 'Historisk stad med Vaxholms kastell — platsen befästes redan i början av 1500-talet, Gustav Vasas kraftigare fästning kom 1548 och nuvarande byggnad 1833–1863. En timme med Waxholmsbåt från Strömkajen, turer året runt – och SL-buss hem om båten inte passar.',
  href: '/o/vaxholm',
  meta: '~1 tim med Waxholmsbåten',
  },
  {
  icon: 'waves',
   title: 'Grinda',
- description: 'Lugn ö med fin sandstrand och familjevänlig miljö. Cirka 1h 45min ut — perfekt för en längre dagstur med bad och picknick.',
+ description: 'Ungefär en och en halv timme från Strömkajen med Waxholmsbolaget, trafik året om. Sommartid stannar även Cinderellabåten vid Södra Grinda.',
  href: '/o/grinda',
- meta: '~1h 45 min',
+ meta: '~1,5 tim från Strömkajen',
  },
  {
  icon: 'sailboat',
   title: 'Sandhamn',
- description: 'Skärgårdens klassiska destination och sommarnöje. Waxholmsbåtens direktbåt från Strömkajen går bara 19 juni–16 augusti och tar då 3 tim 45 min eller mer; Cinderella från Strandvägen går till 27 september. Året runt: via Stavsnäs vinterhamn på 30–70 min. Sandhamns Värdshus är legendariskt.',
+ description: 'Längst ut av de sex. Året runt: buss 433 från Slussen till Stavsnäs, ungefär en timme, sedan båt på 30–65 minuter. Sommartid direkt från city: Cinderellabåten från Strandvägen på 2 tim 30 min (30 april–27 september) eller Waxholmsbåten från Strömkajen på 3 tim 45 min eller mer (19 juni–16 augusti).',
  href: '/o/sandhamn',
- meta: '2,5–3 tim från Strömkajen',
+ meta: '1,5 tim via Stavsnäs',
  },
  {
  icon: 'navigation',
   title: 'Utö',
- description: 'Klassisk ö i södra skärgården — cykling, Utö Värdshus och spår efter järngruvan. Smidigast via Årsta brygga (~40 min). Från Strömkajen tar det betydligt längre.',
+ description: 'Södra skärgården — cykling, Utö Värdshus och spår efter järngruvan. Pendeltåg till Västerhaninge, buss till Årsta brygga och Waxholmsbåt på 35–75 minuter till Gruvbryggan, året runt.',
  href: '/o/uto',
- meta: '~40 min från Årsta brygga',
+ meta: '35–75 min från Årsta brygga',
  },
  {
  icon: 'leaf',
   title: 'Finnhamn',
- description: 'Naturparadis med vandringsleder och STF-vandrarhem. Cirka 3 timmar från Strömkajen — mindre kommersiellt än Sandhamn, mer avskilt.',
+ description: 'Vandringsleder och STF-vandrarhem. Drygt tre timmar med Waxholmsbåten från Strömkajen sommartid – en lång dag, eller en natt.',
  href: '/o/finnhamn',
  meta: '~3 tim från Strömkajen',
  },
@@ -80,12 +92,12 @@ export default function DagsturerPage() {
  {
  '@type': 'Question',
  name: 'Hur länge tar dagstur till Sandhamn från Stockholm?',
- acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbåten går direkt från Strömkajen bara 19 juni–16 augusti och tar då 3 tim 45 min till knappt 5 timmar. Cinderella från Strandvägen går 30 april–27 september på 2 tim 30 min. Snabbast året runt: buss 433 eller 434 till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnet, och sedan båt, 30–70 min. Tillsammans med 2–3 timmar på ön blir det en komplett dagstur.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Året runt: buss 433 från Slussen till Stavsnäs vinterhamn, ungefär en timme, och sedan båt – Sandhamnslinjen på 30 minuter eller Waxholmsbolagets linje 16 på 40–65. Sommartid direkt från city: Cinderellabåten från Strandvägen på 2 tim 30 min (30 april–27 september) eller Waxholmsbåten från Strömkajen på 3 tim 45 min till knappt 5 timmar (19 juni–16 augusti).' },
  },
  {
  '@type': 'Question',
  name: 'Vilken ö passar för en kort dagstur från Stockholm?',
- acceptedAnswer: { '@type': 'Answer', text: 'Fjäderholmarna är bästa valet för en kort dagstur — cirka 25 minuter från Strömkajen/Slussen. Vaxholm är nästa steg upp, drygt en timme bort, med fästning och restauranger.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Fjäderholmarna – 30 minuter med Strömmas båt från Strandvägen maj–september. Vaxholm tar en timme med Waxholmsbåt från Strömkajen och har turer året runt.' },
  },
  {
  '@type': 'Question',
@@ -95,8 +107,7 @@ export default function DagsturerPage() {
  {
  '@type': 'Question',
  name: 'Vad kostar dagstur till skärgården från Stockholm?',
- // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
- acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbåten kostar 50–150 kr per resa beroende på destination. Sammantaget kan en dagstur för två kosta från 300 kr (bara färja + eget kaffe) till 1 000+ kr (båt och restaurang).' },
+ acceptedAnswer: { '@type': 'Answer', text: 'En enkelbiljett med Waxholmsbolaget kostar 61–186 kr för vuxen beroende på sträcka, 39–114 kr för 7–19 år, och barn under 7 åker gratis med betalande vuxen. Strömmas båt till Fjäderholmarna kostar 170 kr enkel och 205 kr tur och retur; Cinderellabåten från 190 kr till Vaxholm och 255 kr till Sandhamn.' },
  },
  ],
  }
@@ -116,7 +127,7 @@ export default function DagsturerPage() {
  heroGradient={['#1e3a5f', '#1e5c82']}
  eyebrow="Dagsturer"
  title="Dagstur till skärgården"
- tagline="Lämna Stockholm på morgonen, äta räkor vid havet, hem till kvällen — de bästa dagsturerna."
+ tagline="Lämna Stockholm på morgonen och var hemma till kvällen – sex öar med båt, restid och biljett."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M3 17l4-8 4 4 3-6 4 10" />
@@ -126,18 +137,18 @@ export default function DagsturerPage() {
  intro={
  <>
  <p>
- Stockholms skärgård är gjord för dagsturer. Med Waxholmsbåten eller egen båt tar det cirka 25 minuter till Fjäderholmarna, ungefär en timme till Vaxholm och — sommartid, när direktbåten går — 3 tim 45 min till Sandhamn från Strömkajen — <strong>allt går att göra på en dag</strong>. Lämna Stockholm på morgonen, ät räkor vid havet och var hemma till kvällen.
+ Stockholms skärgård är gjord för dagsturer. Fjäderholmarna ligger 30 minuter från Strandvägen, Vaxholm en timme från Strömkajen och Grinda ungefär en och en halv. Till Sandhamn tar du dig året runt på ungefär en och en halv timme via Stavsnäs, eller sommartid direkt från city med Cinderellabåten. Lämna stan på morgonen och var hemma till kvällen.
  </p>
  <p>
- Olika ambitionsnivåer passar olika dagsturer. Nybörjare börjar ofta på <strong>Fjäderholmarna</strong> — kort resa, restauranger, lugnt vatten. Nästa steg är <strong>Vaxholm</strong> eller <strong>Grinda</strong>. De som vill längre ut packar för <strong>Sandhamn</strong>, <strong>Utö</strong> eller <strong>Finnhamn</strong>. Färjan från Strömkajen (Waxholmsbåten) är populäraste vägen, men för sydskärgården (Utö, Ornö) går det snabbare via <strong>Årsta brygga</strong>. Cykel kan oftast tas ombord mot en mindre avgift.
+ Välj efter hur lång dag du vill ha. <strong>Fjäderholmarna</strong> och <strong>Vaxholm</strong> passar en halvdag. <strong>Grinda</strong> ger en hel dag med bad. <strong>Sandhamn</strong>, <strong>Utö</strong> och <strong>Finnhamn</strong> ligger längre ut – till Utö åker du snabbast via <strong>Årsta brygga</strong>, inte från Strömkajen. Cykeln följer med Waxholmsbåten utan extra kostnad, i mån av plats.
  </p>
  <p>
- Kolla aktuella avgångar i Waxholmsbolagets app eller på <a href="https://waxholmsbolaget.se">waxholmsbolaget.se</a>, ta med solskydd och matsäck. Säsongen är primärt maj–september då restauranger är öppna och vattnet är skönt att bada i. Med Svalla kan du spara favoritöar, hitta naturhamnar och läsa tips från andra dagsutflykter.
+ Kolla avgångarna i SL-appen eller på <a href="https://waxholmsbolaget.se">waxholmsbolaget.se</a> samma dag – flera bryggor är beställningstrafik utanför sommaren. Ta med matsäck till öar utan restaurang.
  </p>
  </>
  }
- itemsTitle="De bästa dagsturerna från Stockholm"
- itemsDescription="Från klassiska Fjäderholmarna till äventyret Sandhamn — alla är nåbara på en dag."
+ itemsTitle="Sex dagsturer från Stockholm"
+ itemsDescription="Från Fjäderholmarna, 30 minuter bort, till Sandhamn längst ut – alla går att göra fram och tillbaka på en dag."
  items={ITEMS}
  deeperContent={
  <>
@@ -149,14 +160,14 @@ export default function DagsturerPage() {
  Hur länge tar dagstur till Sandhamn?
  </h3>
  <p>
- Direktbåten från Strömkajen (Waxholmsbolaget) går bara 19 juni–16 augusti och tar 3 tim 45 min till knappt 5 timmar beroende på avgång och byte i Finnhamn. Snabbare är <strong>Cinderellabåtarna</strong> från Strandvägen kajplats 14 på 2 tim 30 min, med längre säsong (30 april–27 september) — eller, året runt, buss 433/434 till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnetuter, och därifrån båt: Sandhamnslinjen 30 minuter, Waxholmsbolagets linje 16 30–70 minuter. Med 2–3 timmar på ön blir det en fin dag, men många väljer att stanna en natt på vandrarhem eller pensionat.
+ Året runt tar du buss 433 från Slussen till Stavsnäs vinterhamn, ungefär en timme, och sedan båt: <strong>Sandhamnslinjen</strong> på 30 minuter eller Waxholmsbolagets <strong>linje 16</strong> på 40–65 minuter beroende på antal bryggor. Sommartid går det direkt från city: <strong>Cinderellabåten</strong> från Strandvägen kajplats 14 på 2 tim 30 min, 30 april–27 september, eller Waxholmsbåtens <strong>linje 15</strong> från Strömkajen på 3 tim 45 min till knappt 5 timmar, 19 juni–16 augusti. Med två–tre timmar på ön blir det en hel dag; många stannar en natt.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Vilken ö passar för en kort dagstur?
  </h3>
  <p>
- <strong>Fjäderholmarna</strong> är bästa valet för en kort dagstur — cirka 25 minuter från Strömkajen/Slussen. Du hinner fika, äta lunch och bada utan långa restider. <strong>Vaxholm</strong> är nästa steg upp — drygt en timme — med fästningen, butiker och restauranger. Med 3–4 timmar att spendera passar <strong>Grinda</strong> perfekt.
+ <strong>Fjäderholmarna</strong> – 30 minuter med Strömmas båt från Strandvägen, maj–september. <strong>Vaxholm</strong> är en timme bort med Waxholmsbåt och har turer året runt, med fästningen, butiker och restauranger. Vill du bada och ha en hel dag passar <strong>Grinda</strong>, ungefär en och en halv timme från Strömkajen.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -171,7 +182,7 @@ export default function DagsturerPage() {
  Vad kostar dagstur till skärgården?
  </h3>
  <p>
- <strong>Färjebiljett</strong> för Waxholmsbåten kostar mellan 50–150 kronor per resa beroende på destination — Fjäderholmarna är billigast, Sandhamn dyrast. En dagskort eller helårsabonnemang kan spara pengar om du åker ofta. <strong>Mat och dryck</strong> på restauranger varierar från ca 100 kronor för kaffe till 200–400 kronor för en räksmörgås. Du kan också ta matsäck och spara pengar. Sammantaget kan en dagstur att två personer kosta från 300 kronor (bara färja + eget kaffe) till 1000+ kronor (båt och restaurang).
+ En <strong>enkelbiljett</strong> med Waxholmsbolaget kostar 61–186 kr för vuxen beroende på sträcka och 39–114 kr för 7–19 år; barn under 7 åker gratis med betalande vuxen. Mellan Strömkajen och Vaxholm med omnejd gäller alla SL-biljetter. Strömmas båt till Fjäderholmarna kostar 170 kr enkel och 205 kr tur och retur, och Cinderellabåten från 190 kr till Vaxholm och 255 kr till Sandhamn. Maten på ön kommer ovanpå – eller ta med matsäck.
  </p>
  </>
  }

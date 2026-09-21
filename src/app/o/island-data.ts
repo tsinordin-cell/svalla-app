@@ -20,6 +20,8 @@ export type IslandTransport = {
   time?: string
   desc: string
   icon: string
+  /** Operatörens egen sida för just det här färdsättet. Saknas den visas transport_meta.booking_url bara om färdsättet körs av transport_meta.operator. */
+  url?: string
 }
 
 export type IslandHarbor = {
@@ -247,7 +249,7 @@ export const ISLANDS: Island[] = [
     ],
     facts: {
       // KÄLLA: https://www.sandhamn.com/en/hitta-hit (Waxholmsbåt linje 15 Strömkajen–Sandhamn: "2–3 hours"); battaxi.se/sandhamnslinjen-2 (Sandhamnslinjen Stavsnäs–Sandhamn: "30 minuter"). Siffran "3 tim 45" kunde inte beläggas och är borttagen.
-      travel_time: 'Via Stavsnäs 30 min (Sandhamnslinjen) · Waxholmsbåt Strömkajen (linje 15) ca 2–3 tim',
+      travel_time: 'Från Stavsnäs 30 min–1 h året runt · 2 tim 30 min med Cinderella från Strandvägen sommartid',
       character: 'Livlig, seglartät, festlig sommardestination',
       season: 'Maj–September (Seglarhotellet: helår)',
       best_for: 'Seglare, restaurangälskare, sommarturer',
@@ -271,11 +273,14 @@ export const ISLANDS: Island[] = [
       { name: 'Sands Hotell', type: 'Hotell', desc: 'Lägenhetshotell med hotellservice nära hamnen, 15 dubbelrum och 3 enkelrum, totalt 33 bäddar.', websiteUrl: 'https://sandshotell.se' },
     ],
     getting_there: [
-      // KÄLLA: https://www.sandhamn.com/en/hitta-hit — Waxholmsbåt linje 15 Strömkajen–Sandhamn "2–3 hours"
-      { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', time: '2–3 h', desc: 'Klassikalternativet — ta med sig mat och njut av resan.', icon: '⛴' },
-      // KÄLLA: https://battaxi.se/sandhamnslinjen-2/ — Sandhamnslinjen Stavsnäs–Sandhamn "30 minuter"
-      { method: 'Snabbåt', from: 'Stavsnäs', time: '30 min', desc: 'Snabbaste alternativet. Buss/bil till Stavsnäs, sedan båt.', icon: '🚤' },
-      { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Segelbåt eller motorbåt till KSSS-hamnen. Förboka gästplats under högsäsong.', icon: '⛵' },
+      // KÄLLA: Waxholmsbolaget, Sandhamn, https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt"; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme. Under sommaren så kan du också åka till Sandhamn från Strömkajen"; "tabell 15 (endast sommartid) och tabell 16. Nord/Sydlinjens tider hittar du i tabell 40" (läst 2026-09-21). Waxholmsbolaget linje 16, https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", gäller 2 april–18 juni och 17 augusti–12 december 2026: Stavsnäs 10.40 → Sandhamn 11.20 (40 min), 06.05 → 06.55 (50 min), 09.45 → 10.45 (60 min) (läst 2026-09-21). Sandhamn Seglarhotell, https://www.sandhamn.com/en/hitta-hit — "Take bus 433 from Slussen … Approx. 1 hour by bus"; "Board line 15 to Sandhamn … Summer — June to September … The journey takes 2–3 hours"; avgång "Strandvägskajen / Strömkajen, berth 3 at Nybroviken" (läst 2026-09-21). SL buss 433 Slussen–Djurö, https://kund.printhuset-sthlm.se/sl/h433.pdf — hållplats Stavsnäs vinterhamn (läst 2026-09-21)
+      { method: 'Waxholmsbåt från Stavsnäs', from: 'Stavsnäs vinterhamn', time: '40–65 min', desc: 'Året runt med Waxholmsbolagets linje 16, flera turer om dagen. Till Stavsnäs tar du SL-buss 433 från Slussen, ungefär en timme, eller bil.', icon: '⛴' },
+      // KÄLLA: Stavsnäs Båttaxi, Sandhamnslinjen, https://battaxi.se/sandhamnslinjen-2/ — "Sandhamnslinjen är en direkt reguljär tur som tar dig mellan Stavsnäs och Sandhamn på endast 30 minuter"; "Bokade biljetter har alltid förtur, men det går även bra att köpa biljett direkt på båten"; hösttidtabeller 17/8–20/9 och 21/9–20/12 2026 (läst 2026-09-21)
+      { method: 'Sandhamnslinjen (Stavsnäs Båttaxi)', from: 'Stavsnäs', time: '30 min', desc: 'Snabbast. Direktbåt från Stavsnäs, egen biljett – förbokade resenärer har förtur, men du kan också köpa ombord.', icon: '🚤', url: 'https://battaxi.se/sandhamnslinjen-2/' },
+      // KÄLLA: Strömma, Cinderellabåtarna Stockholm–Sandhamn 2026, https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — 30/4–27/9, "Strandvägen - kajplats 14" 10:00 → Sandhamn 12:30 (läst 2026-09-21). Waxholmsbolaget linje 15, https://kund.printhuset-sthlm.se/wa/s15.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026"; Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 (läst 2026-09-21). Seglarhotellets "2–3 hours" för linje 15 stämmer inte med Waxholmsbolagets tidtabell och används inte.
+      { method: 'Cinderellabåten från Strandvägen', from: 'Strandvägen kajplats 14, Stockholm', time: '2 h 30 min', desc: 'Strömmas sommarbåt via Vaxholm och Grinda, 30 april–27 september (helger mot slutet av säsongen).', icon: '⛴', url: 'https://www.stromma.com/en-se/stockholm/cinderella-boats/timetables/' },
+      { method: 'Waxholmsbåt från Strömkajen', from: 'Strömkajen, Stockholm', time: '3 h 45 min–4 h 55 min', desc: 'Linje 15, bara 19 juni–16 augusti. Lång resa rakt ut genom skärgården.', icon: '⛴' },
+      { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamnen i Sandhamn – se hamnavsnittet för service och bokning.', icon: '⛵' },
     ],
     harbors: [
       // KÄLLA: https://www.ksss.se/hamnar/sandhamn — "Det finns ca 150 gästplatser på Sandhamn", "Gästhamnen har 20 st bokningsbara platser som bokas via www.dockspot.com"; https://www.ksss.se/hamnar/sandhamn/aktuellt — el på brygga B och C, "Vatten på bryggorna och servicehusen med dusch, toalett och tvättstuga är endast öppna maj till september". Bränsle nämns inte av KSSS. (läst 2026-09-19)
@@ -313,14 +318,15 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://ksss.se/en/gotlandrunt/ — "since 2024 it starts at Gråskärsfjärden south of Sandön"
     did_you_know: 'Det gula tullhuset i hamnen ritades av slottsarkitekten Carl Hårleman och byggdes 1752. Gotland Runt startar sedan 2024 från Gråskärsfjärden söder om Sandön — men målgången ligger kvar i Sandhamn.',
     transport_meta: {
-      // KÄLLA: https://www.sandhamn.com/en/hitta-hit anger "2–3 hours" (120–180 min) för Strömkajen–Sandhamn; 150 min ligger inom intervallet men exakt tid kunde inte beläggas mer precist
-      from_city_min: 150,
+      // KÄLLA: Sandhamn Seglarhotell, https://www.sandhamn.com/en/hitta-hit — "Total travel time from Stockholm: approx. 1.5 hours" via buss 433 och båt från Stavsnäs (läst 2026-09-21). Tidigare 150 min avsåg den längre sommarbåten från Strömkajen.
+      from_city_min: 90,
       // KÄLLA: https://battaxi.se/sandhamnslinjen-2/ — Sandhamnslinjen Stavsnäs–Sandhamn 30 minuter
       from_nearest_hub_min: 30,
       nearest_hub: 'Stavsnäs',
       operator: 'Waxholmsbolaget',
       // KÄLLA: linjenummer "444" kunde inte beläggas (https://waxholmsbolaget.se/, skargardstrafikanten.se). Waxholmsbåten Strömkajen–Sandhamn anges som "linje 15" på sandhamn.com/en/hitta-hit; Sandhamnslinjen Stavsnäs–Sandhamn drivs av Stavsnäs Båttaxi, inte Waxholmsbolaget.
-      frequency: 'Flera avgångar/dag sommartid, glesare vinter',
+      line: '16 (året runt), 15 (sommar)',
+      frequency: 'Flera turer om dagen från Stavsnäs året runt',
       booking_url: 'https://waxholmsbolaget.se',
       // KÄLLA: Värmdö kommun — https://www.varmdo.se/varmdohamnar/parkera.4.6e5e3cc318a8d4dc3f6361bf.html (hämtad 2026-08-06)
       car_parking: 'Parkering vid Stavsnäs vinterhamn: 3 timmar fritt med p-skiva, därefter avgift som betalas i app (operatör Parkit). Cirka 1 300 platser, varav omkring hälften för besökare.',
@@ -463,7 +469,7 @@ export const ISLANDS: Island[] = [
     ],
     getting_there: [
       { method: 'Skärgårdsbåt', from: 'Årsta brygga, Haninge', time: '40 min', desc: 'Waxholmsbolagets linje 21 från Årsta brygga i Haninge, 40 min till Gruvbryggan. Waxholmsbolaget-biljett krävs (104 kr vuxen, 64 kr 7–19 år) utom 14 september–29 april för den som har SL-periodbiljett på 30 dagar eller mer.', icon: '⛴' }, // KÄLLA: https://waxholmsbolaget.se/ reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: linje 21 Årsta brygga–Gruvbryggan 40 min, taxa 3 = 104/64 kr; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar. Årsta brygga ligger i Haninge kommun, inte Nynäshamn.,
-      { method: 'Snabbåt', from: 'Årsta brygga, Haninge', time: '30 min', desc: 'Snabbare alternativ sommartid — körs som expresslinje av Waxholmsbolaget.', icon: '🚤' },
+      // Raden "Snabbåt 30 min, expresslinje av Waxholmsbolaget" struken 2026-09-21: linje 21 (https://kund.printhuset-sthlm.se/wa/h21.pdf, läst 2026-09-21) har ingen separat expresslinje; snabbaste tur Årsta brygga 20.35 → Gruvbryggan 21.10 = 35 min.
       { method: 'Pendel + buss + båt', from: 'Stockholm City', time: '2 h totalt', desc: 'Pendeltåg linje 43 till Västerhaninge, buss 846 till Årsta brygga (16 min), sedan båt till Gruvbryggan 35–75 min, beställningsbrygga på de flesta turer.', icon: '🚆' },
     ],
     harbors: [
@@ -505,12 +511,13 @@ export const ISLANDS: Island[] = [
     transport_meta: {
       from_city_min: 120,
       from_nearest_hub_min: 30,
-      nearest_hub: 'Nynäshamn (Årsta brygga)',
+      // KÄLLA: Länsstyrelsen Stockholm, Utö, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan" (läst 2026-09-21); Waxholmsbolaget linje 21, https://kund.printhuset-sthlm.se/wa/h21.pdf — "21A ÅRSTA – UTÖ". Tidigare stod "Nynäshamn (Årsta brygga)" och pendeltåg till Nynäshamn — Årsta brygga ligger i Haninge och nås via Västerhaninge.
+      nearest_hub: 'Årsta brygga (Haninge)',
       operator: 'Waxholmsbolaget',
-      line: 'Utölinje',
-      frequency: 'Flera avgångar/dag sommartid, 2–3 ggr/dag vinter',
+      line: '21',
+      frequency: 'Året runt',
       booking_url: 'https://waxholmsbolaget.se',
-      car_parking: 'Pendeltåg till Nynäshamn (SL), sedan 5 min buss/gång till Årsta brygga. Parkering vid Nynäshamns station eller Årsta brygga.',
+      car_parking: 'Utan bil: pendeltåg till Västerhaninge och buss till Årsta brygga. Med bil: väg 73 söderut, skyltat mot Årsta brygga.',
     },
     activity_meta: {
       kajak: { difficulty: 'lätt', rental: true, notes: 'Kajakuthyrning vid hamnen. Lugnt vatten på öns västra sida, mer öppet i söder.' },
@@ -1290,7 +1297,7 @@ export const ISLANDS: Island[] = [
       // operatören och kajen var fel: Strömmas Cinderella-linje går till
       // Sandhamn, Grinda, Gällnö och Vaxholm — inte till Fjäderholmarna.
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — Strandvägen kajplats 13, "30 min", tidtabellsperiod 1 maj–13 sep. Restiderna från Slussen (visitskargarden.se svarar inte) och från Strömkajen (ResRobot utan URL) gick inte att kontrollera och är strukna.
-      travel_time: '~30 min från Strandvägen (Strömma, 1 maj–13 sep)',
+      travel_time: '30 min med Strömma från Strandvägen (maj–sep) · Waxholmsbåt linje 2 vår och höst',
       character: 'Nära stad, lättillgänglig, hög kvalitet',
       season: 'Maj–September',
       best_for: 'Dagstur, lunch, barnfamiljer, seglare på väg in mot stan',
@@ -1305,10 +1312,10 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ (Strandvägen kajplats 13, ca 30 min, var 30:e min 10:30–17:00 i högsäsong, 170 kr enkel / 205 kr t/r, säsong 1 maj–13 sep)
-      { method: 'Strömma', from: 'Strandvägen kajplats 13', time: '30 min', desc: 'Var 30:e minut dagtid i högsäsong. Vissa avgångar stannar vid Nacka Strand. 170 kr enkel, 205 kr tur och retur.', icon: '⛴' },
-      // KÄLLA: ResRobot 2026-08-05 (Strömkajen 08:45 → Fjäderholmarna 09:04, 19 min); https://www.kungligaslotten.se/ (Waxholmsbolaget kaj 1); https://sl.se/ (SL-biljetter gäller Strömkajen–Vaxholm med omnejd)
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '', desc: 'SL-biljetter gäller på Waxholmsbolagets båtar mellan Strömkajen och Vaxholm med omnejd — sl.se nämner inte Fjäderholmarna, så kontrollera biljettreglerna före avfärd.', icon: '⛴' },
+      // KÄLLA: Strömma, Båt till Fjäderholmarna, https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Avgår från: Strandvägen & Nacka Strand"; "Strandvägen - Kajplatsområde 13"; "Enkel resa: 170 kr | Tur och retur: 205 kr"; "Endast 30 minuters båtresa från city"; "ÅTER MAJ 2027"; "När du har bokat en viss avgång har du förtur på den"; hundar "måste hållas kopplade … enligt Lidingö kommuns lokala ordningsföreskrifter" (läst 2026-09-21)
+      { method: 'Strömma', from: 'Strandvägen kajplats 13 eller Nacka Strand', time: '30 min', desc: 'Sommarbåten, maj–september (åter maj 2027). 170 kr enkel, 205 kr tur och retur. Bokad avgång ger förtur.', icon: '⛴', url: 'https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/' },
+      // KÄLLA: Waxholmsbolaget linje 2, https://kund.printhuset-sthlm.se/wa/h2.pdf — "2A STOCKHOLM – HÖGANÄS – VAXHOLM", gäller 2 april–18 juni och 17 augusti–12 december 2026; Fjäderholmarna angörs på vissa turer med X = "trafikeras utan fast avgångstid" (läst 2026-09-21). Waxholmsbolaget, Alla SL-biljetter gäller mellan 44 bryggor, https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd"; "SL-biljetter gäller endast på de linjer som går via Vaxholm" (läst 2026-09-21). Tidigare källa ResRobot är ingen operatör och är struken.
+      { method: 'Waxholmsbolaget linje 2', from: 'Strömkajen eller Nacka strand', time: '', desc: 'När Strömma inte går. Linje 2 mot Vaxholm lägger till vid Fjäderholmarna på vissa turer, utan fast tid – sök resan i SL-appen. Linjen går via Vaxholm, där SL-biljetten gäller enligt Waxholmsbolaget.', icon: '⛴' },
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästplatser i krogviken på östra sidan och vid sjömacken på västra sidan.', icon: '⛵' }, // KÄLLA: maringuiden.se, https://www.gasthamnsguide.se/
     ],
     harbors: [
@@ -2239,64 +2246,76 @@ export const ISLANDS: Island[] = [
     region: 'norra',
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
-    tagline: 'Familjens skärgård — känd som "Saltkråkan" i Astrid Lindgrens TV-serie och Tjorven-filmerna.',
+    tagline: 'Ön som blev Saltkråkan – Snickargården, sju kilometer stigar och Waxholmsbåt från Strömkajen.',
+    seoTitle: 'Norröra – Saltkråkans ö: båt, Snickargården & stigar',
+    seoDescription: 'Norröra är ön där Vi på Saltkråkan spelades in 1963. Så tar du dig dit med Waxholmsbåt från Strömkajen eller Furusund, vad du ser på ön och vad du ska ta med.',
+    // OMSKRIVEN 2026-09-21 (topp-30 i GSC). Tidigare text hade en KÄLLA-rad till Wikipedia (förbjuden källa), "klippklättring", "Saltkråkans hus och bryggan känns igen direkt" och påståendet att serien är den enda Astrid Lindgren-berättelsen skriven för TV — inget av det belagt. Allt nedan är läst i webbläsare 2026-09-21.
     description: [
-      'Norröra är en liten, lugn ö i norra skärgården, mest känd som inspelningsplats för Astrid Lindgrens "Vi på Saltkråkan" (inspelad sommaren 1963, TV-premiär 18 januari 1964) och de fyra Tjorven-filmerna som följde. Inspelningarna gjordes huvudsakligen på Norröra och grannön Söderöra. Många generationer svenska barnfamiljer har växt upp med bilderna från ön.',
-      'Ön är perfekt för barnfamiljer, tillräckligt stor för att erbjuda något för var smak men inte så stor att barnen tröttnar. Naturliga badplatser längs kusten och möjligheter till klippklättring gör det enkelt att tillbringa en heldag här.',
-      'Norröra passar ofta bäst som kombination med en tur till närliggande öar som Fejan eller Arholma, men kan också fungera som självständig destination för ett lugnt övernattningsäventyr.'
+      // KÄLLA: Waxholmsbolaget, Norröra och Söderöra, https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "ligger i den vackra Svartlögafjärden, precis utanför Furusund"; "Saltkråkan är framför allt inspelat på Norröra. Där ligger till exempel det bostadshus som i tv-serien kallades Snickargården, det hus som farbror Melker först hyrde och sedan köpte"; "Från Norröra kan du även enkelt ta dig över till Söderöra – båtturen tar bara 10 minuter … Framför allt vinterscenerna spelades in på ön" (läst 2026-09-21)
+      'Norröra ligger i Svartlögafjärden strax utanför Furusund, och det är här Vi på Saltkråkan framför allt spelades in. På ön står Snickargården – huset som farbror Melker först hyrde och sedan köpte i tv-serien. Grannön Söderöra, tio minuter bort med båt, syns mest i vinterscenerna.',
+      // KÄLLA: Norröra samfällighetsförening, Saltkråkan, https://www.norrora.se/saltkrakan/ — "Sommaren 1963 förverkligades Astrid Lindgrens manuskript för TV"; "Det var Artfilms producent Olle Nordemar och regissör Olle Hellbom som fann att Norröra och Söderöra bäst motsvarade idén om Saltkråkan"; ångbåten "hette egentligen 'Valkyrian' och var byggd 1909 och skulle just huggas upp"; filmfolket "bodde på 'Panget', klippte film i 'Stallet'"; "de 6 timmar och 15 minuter som de 13 avsnitten kom att ta i TV"; "fick 7 000 svar"; "Premiären var i januari 1964" (läst 2026-09-21)
+      'Sommaren 1963 kom filmteamet ut. Producenten Olle Nordemar och regissören Olle Hellbom hade letat efter en ö som passade Astrid Lindgrens manus, och Norröra och Söderöra blev svaret. Teamet bodde på gården Panget, klippte film i Stallet och tog sig fram med en ångbåt från 1909 som egentligen skulle ha huggits upp. Serien blev tretton avsnitt och hade premiär i januari 1964.',
+      // KÄLLA: Norröra samfällighetsförening, Historia, https://www.norrora.se/historia/ — "Numera finns cirka 130 hushåll på ön sommartid, men endast ett par familjer bor här året runt"; byn brändes "den 11 juli 1719 när ryssarna härjade Roslagen" (läst 2026-09-21). Norröra samfällighetsförening, Grönområden, vägar och brygga, https://www.norrora.se/gronomraden/ — "Syftet är också att stränderna ska vara allmänt tillgängliga"; "4 km grusvägar … totalt på ön ca 7 km stigar som är röjda … (för gående, ej rullstolar eller barnvagnar)" (läst 2026-09-21). Waxholmsbolaget: "Det finns varken livsmedelsbutiker eller restauranger på öarna"
+      'I dag har ön omkring 130 hushåll på sommaren och bara ett par familjer året runt. Stränderna är enligt öns byggnadsplan allmän parkmark, och samfälligheten har röjt ungefär sju kilometer stigar utöver fyra kilometer grusväg. Det finns ingen affär och ingen restaurang – ta med matsäcken.',
     ],
 
     facts: {
-      travel_time: '3 h med Waxholmsbåt',
-      character: 'Lugnt, familjevänligt, litet',
-      season: 'Juni–Augusti',
-      best_for: 'Barnfamiljer, Astrid Lindgren-fans',
+      travel_time: 'ca 3 h 10–3 h 30 min med Waxholmsbåt från Strömkajen · ca 40 min från Furusund',
+      character: 'Saltkråkans inspelningsö, stigar och grusvägar, ingen service',
+      season: 'Maj–September',
+      best_for: 'Saltkråkan-fans, barnfamiljer, dagstur med matsäck',
     },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
-      { icon: '📚', name: 'Saltkråkan-platser', desc: 'Se inspelningsplatserna för "Vi på Saltkråkan" och Tjorven-filmerna.' },
-      { icon: '🏊', name: 'Bad', desc: 'Badplatser längs kusten.' },
+      // KÄLLA: Waxholmsbolaget (Snickargården, Söderöra 10 min); norrora.se/saltkrakan (Panget, Stallet) — lästa 2026-09-21
+      { icon: '📚', name: 'Saltkråkans Norröra', desc: 'Snickargården – Melkerssons hus i serien – står på Norröra. Teamet bodde på gården Panget och klippte film i Stallet sommaren 1963. Husen är privata: titta från vägen.' },
+      // KÄLLA: norrora.se/gronomraden — "ca 7 km stigar som är röjda och iordningjorda med god framkomlighet (för gående, ej rullstolar eller barnvagnar)"; röjda 2020–2021 efter stormen Alfrida (läst 2026-09-21)
+      { icon: '🚶', name: 'Stigarna', desc: 'Omkring sju kilometer röjda stigar och fyra kilometer grusväg. Stigarna fungerar för gående men inte för barnvagn eller rullstol.' },
+      // KÄLLA: norrora.se/kapellet — "Det drygt 100-åriga Kapellet"; förvärvat av Norröraborna 2009 från Blidö missionsförsamling; restaurerat 2012–2014 med råd från Stockholms läns museum (läst 2026-09-21)
+      { icon: '⛪', name: 'Kapellet', desc: 'Det drygt hundra år gamla missionskapellet köptes av öborna 2009 och har restaurerats med råd från Stockholms läns museum.' },
+      // KÄLLA: Waxholmsbolaget — "Från Norröra kan du även enkelt ta dig över till Söderöra – båtturen tar bara 10 minuter"; h26/h28: Norröra 12.15 → Söderöra 12.25 (läst 2026-09-21)
+      { icon: '⛴', name: 'Söderöra', desc: 'Grannön, tio minuter bort med samma båt. Här spelades framför allt vinterscenerna in.' },
     ],
     accommodation: [],
     getting_there: [
-      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora ("…åka från Strömkajen. Turerna går via Vaxholm…"; "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan"). Ordet "linje" förekommer inte på sidan och ingen restid står där; 3 tim 10 min kommer från Waxholmsbolagets reseplanerare, som är JavaScript-driven och inte gick att läsa vid kontrollen.
-      { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', time: 'ca 3 h 10 min', desc: 'Via Vaxholm, vår/sommar/höst. Vintertid från Köpmanholm på Yxlan.', icon: '⛴' },
+      // KÄLLA: Waxholmsbolaget linje 26, https://kund.printhuset-sthlm.se/wa/h26.pdf — "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", gäller 2 april–18 juni och 17 augusti–1 november 2026; Strömkajen 08.45 → Norröra 12.15 (3 h 30), 10.00 → 13.10 (3 h 10) (läst 2026-09-21). Waxholmsbolaget: "Under våren, sommaren och hösten kommer du till Norröra och Söderöra genom att åka från Strömkajen … Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan"
+      { method: 'Waxholmsbolaget linje 26', from: 'Strömkajen via Vaxholm', time: 'ca 3 h 10–3 h 30 min', desc: 'Linje 26 Stockholm–Vaxholm–Norrsund–Rödlöga angör Norröra och Söderöra. Gäller 2 april–18 juni och 17 augusti–1 november; sommartabellen har egna tider. Vintertid åker du i stället från Köpmanholm.', icon: '⛴' },
+      // KÄLLA: Waxholmsbolaget linje 28, https://kund.printhuset-sthlm.se/wa/h28.pdf — "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – BROMSKÄR / RÖDLÖGA", gäller 2 april–18 juni och 17 augusti–30 september 2026; Furusund 10.05 → Köpmanholm (Yxlan) 10.07 → Norröra 10.45 (b = beställs) (läst 2026-09-21). SL buss 632 Norrtälje–Yxlan, https://kund.printhuset-sthlm.se/sl/h632.pdf — hållplatser Furusunds färjeläge och Köpmanholm (läst 2026-09-21)
+      { method: 'Waxholmsbolaget linje 28', from: 'Furusund eller Köpmanholm (Yxlan)', time: 'ca 40 min', desc: 'Kortaste vägen: linje 28 från Furusund och Köpmanholm. Vissa turer och bryggor är beställningstrafik – boka i SL-appen. Till Furusund och Köpmanholm går SL-buss 632 från Norrtälje.', icon: '⛴' },
     ],
+    transport_meta: {
+      from_city_min: 190,
+      nearest_hub: 'Furusund',
+      from_nearest_hub_min: 40,
+      operator: 'Waxholmsbolaget',
+      line: '26 / 28',
+      frequency: 'Ofta två turer om dagen från Strömkajen vår–höst',
+    },
     harbors: [
-      // KÄLLA: https://www.norrora.se/gronomraden/ ("...ångbåts-bryggan..."); waxholmsbolaget.se ("Det finns varken livsmedelsbutiker eller restauranger på öarna") — ingen gästhamn med service belagd
-      { name: 'Norröra brygga', desc: 'Waxholmsbolagets brygga för reguljärtrafik. Ingen gästhamn eller service (bränsle, el, vatten) är belagd.', fuel: false },
+      // KÄLLA: norrora.se/gronomraden — ångbåtsbryggan byggd 1987–88; "Den lilla gästbryggan i trä byggdes först 1997"; "de soptunnor och den torrtoalett som finns där för turister och gästande båtar" (läst 2026-09-21). Ingen gästhamn med el, vatten eller bränsle belagd.
+      { name: 'Norröra ångbåtsbrygga', desc: 'Waxholmsbolagets brygga med en liten gästbrygga i trä bredvid. Torrtoalett och soptunnor för besökare och gästande båtar. El, vatten och bränsle nämns inte – räkna inte med det.', fuel: false },
     ],
     // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora ("Det finns varken livsmedelsbutiker eller restauranger på öarna, så se till att ta med dig picknickkorgen...")
     restaurants: [],
-    day_cost: {
-      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora (avgång Strömkajen ej Norrtälje; ingen restaurang/livsmedelsbutik på ön; reseplanerare visar ca 3 tim enkel resa, linje 26)
-      budget_per_person: 'Se aktuellt pris på waxholmsbolaget.se (ca 3 h enkel resa från Strömkajen)',
-      includes: 'Waxholmsbåt t/r Strömkajen–Norröra (ca 3 h enkel väg), medhavd matsäck',
-      breakdown: [
-        { item: 'Waxholmsbåt t/r Strömkajen–Norröra', price: 'Se aktuellt pris på waxholmsbolaget.se' },
-        { item: 'Medhavd matsäck (snacks + dryck)', price: 'Se aktuellt pris i butik' },
-      ],
-      tips: [
-        'Norröra användes som inspelningsplats för Saltkråkan.',
-        'Restiden är lång (ca 3 h enkel väg från Strömkajen) — planera en heldag.',
-        'Det finns varken restaurang eller livsmedelsbutik på ön — ta med matsäck.',
-        'Kombinera gärna med grannöarna Söderöra eller Fejan för ett längre norrskärgårdsäventyr.',
-      ],
-    },
     tips: [
-      'Norröra är bäst kombinerat med en tur till Fejan eller Arholma för en längre norrskärgårdsdag.',
-      'Inspelningsplatserna från "Vi på Saltkråkan" är utmärkta på ön — Saltkråkans hus och bryggan känns igen direkt om du vuxit upp med TV-serien.',
+      'Ta med mat och dryck – det finns varken affär eller restaurang på Norröra eller Söderöra. Kolla i reseplaneraren om båten har kafeteria ombord.',
+      'Från Strömkajen tar båten över tre timmar enkel väg. Med bil kan du i stället köra till Furusund och ta linje 28 – ungefär 40 minuter över.',
+      // KÄLLA: norrora.se/regler — "Hundar ska vara kopplade vilket gäller alla öar utan vägförbindelse" (läst 2026-09-21)
+      'Hund ska vara kopplad på ön, enligt samfällighetens regler.',
+      'Snickargården och de andra husen från inspelningen är privata hem – titta från vägen.',
     ],
-    related: ['arholma', 'blido', 'furusund'],
-    tags: ['familj', 'Saltkråkan', 'norra', 'lugnt'],
-    did_you_know: '"Vi på Saltkråkan" är den enda av Astrid Lindgrens berättelser som skrevs direkt för TV — TV-serien spelades in på Norröra och Söderöra sommaren 1963 och hade premiär 18 januari 1964. Boken kom samma år och är skriven utifrån manuset, inte tvärtom.',
+    related: ['yxlan', 'furusund', 'blido'],
+    tags: ['familj', 'Saltkråkan', 'norra', 'lugnt', 'stigar'],
+    // KÄLLA: norrora.se/saltkrakan — "Med filmens egen ångbåt – SALTKRÅKAN – kom man till ön. Den hette egentligen 'Valkyrian' och var byggd 1909 och skulle just huggas upp, men fick leva en extra härlig sommar tack vare inspelningsarbetet" (läst 2026-09-21)
+    did_you_know: 'Ångbåten Saltkråkan i serien hette egentligen Valkyrian. Den byggdes 1909 och skulle just huggas upp när filmteamet räddade den för en sista sommar 1963.',
+    amenities: { restaurant: false, shop: false, accommodation: false, toilets: true },
     seasonal: {
-      open: 'Juni–September',
+      open: 'Maj–September',
       peak: 'Juli',
-      best: 'Mitten av juni',
-      bestReason: 'Midsommarveckan med ljusa nätter, lite folk och ännu inte högsommarträngseln.',
-      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora; sv.wikipedia.org/wiki/Norröra ("Sedan april 2006 trafikeras ön dagligen året runt av Waxholmsbolaget")
-      warning: 'Waxholmsbolaget trafikerar ön regelbundet men med få dagliga turer (från Strömkajen vår/sommar/höst, från Köpmanholm vintertid). Servicen på ön är mycket begränsad — ingen affär eller restaurang.',
-      months: ['off','off','off','off','off','open','peak','open','limited','off','off','off'],
+      best: 'Juni eller augusti',
+      bestReason: 'Båtarna går och ön är lugnare än i juli.',
+      warning: 'Ingen affär eller restaurang på ön. Vintertid går båten bara från Köpmanholm på Yxlan.',
+      months: ['limited','limited','limited','limited','open','open','peak','open','open','limited','limited','limited'],
     },
 
   },
@@ -4767,14 +4786,15 @@ export const ISLANDS: Island[] = [
     region: 'goteborg',
     regionLabel: 'Göteborgs södra skärgård',
     emoji: '🦅',
-    tagline: 'Södra skärgårdens yttersta punkt — naturreservat, vild klippkust och havets ständiga närvaro.',
+    // KÄLLA: Göteborg & Co, Vrångö, https://www.goteborg.com/platser/vrango — "fina sandstränder"; "både områdena norr och söder om bebyggelsen är skyddade naturreservat"; lotsutkiken med "panoramavy över bland annat Vinga fyr" (läst 2026-09-21). "Södra skärgårdens yttersta punkt" hade ingen källa.
+    tagline: 'Bilfri ö längst ut på båtlinje 281 – sandstränder, naturreservat och lotsutkiken med utsikt mot Vinga.',
     description: [
       'Vrångö är den sydligaste bebodda ön i Göteborgs södra skärgård, med knappt 150 fast bosatta året om. Öns södra del är naturreservat och skyddat fågelområde — en vild, orörd klippkust med utsikt rakt ut mot Nordsjön.',
       'Känslan på Vrångö är annorlunda jämfört med Brännö och Styrsö. Lugnet är mer påtagligt, turistströmmen lättare och naturen tar mer plats. Det är hit göteborgare åker när de verkligen vill slita sig från stadens tempo.',
       'Inga bilar. Ingen kommersiell turism att tala om. En liten mataffär, ett kafé och naturens egna ljud.',
     ],
     facts: {
-      travel_time: '~35–50 min med Styrsöbolaget från Saltholmen (linje 281, yttersta ön)',
+      travel_time: '20–40 min med båt 281 från Saltholmen · ca 1 h 35 min direkt från Stenpiren',
       character: 'Vilt, stilla, natur, ytterst',
       season: 'Maj–September (fågelskydd: undvik klippreservatet under häckningen — datumen står på skyltarna)',
       best_for: 'Naturälskare, fågelskådare, de som söker verkligt lugn',
@@ -4786,7 +4806,10 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [
-      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '70–80 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281/283 via Brännö och Styrsö till Vrångö. Kontrollera tidtabell på styrsöbolaget.se.', icon: '🚋' },
+      // KÄLLA: Göteborg & Co, Ta dig till Göteborgs skärgård, https://www.goteborg.com/guider/ta-dig-till-skargarden — "Spårvagn 11, samt linje 9 under sommaren, restid cirka 35 minuter"; "Buss 114, Ö-snabben, restid cirka 25 minuter"; "281, Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö"; "för resor till öarna i södra skärgården räcker en biljett för zon A"; "Linje 281 och 282 trafikerar sträckan Stenpiren–Styrsö–Donsö–Vrångö, med en total restid på cirka 1 timme och 35 minuter … två turer per dag måndag till fredag, samt även lördag och söndag under sommaren"; parkering "i områdena Talattagatan och Vikebacken i Långedrag, samt sommartid vid Hinsholmskilen. På Saltholmen finns endast parkering för rörelsehindrade" (läst 2026-09-21). Västtrafik, tidtabell linje 281 Vrångö–Saltholmen 2026-08-24–2026-12-12, https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014528100000/ — Saltholmen 05:09 → Vrångö 05:27, 09:25 → 10:03, 10:53 → 11:28 (läst 2026-09-21). Tidigare stod linje 283 (går till Asperö och Brännö Rödsten, inte Vrångö).
+      { method: 'Spårvagn + båt 281', from: 'Göteborg centrum', time: '20–40 min båt', desc: 'Spårvagn 11 (sommartid även 9) till Saltholmen, ungefär 35 minuter, eller buss 114 Ö-snabben, ungefär 25. Därifrån båtlinje 281 via Köpstadsö, Styrsö och Donsö till Vrångö. En biljett för zon A räcker hela vägen.', icon: '⛴' },
+      { method: 'Båt direkt från Stenpiren', from: 'Stenpiren, centrala Göteborg', time: 'ca 1 h 35 min', desc: 'Utan byte från city – men bara två turer per dag måndag–fredag, helger bara sommartid.', icon: '⛴' },
+      { method: 'Bil till Långedrag', from: 'Göteborg', time: '', desc: 'Öarna är bilfria. Parkera i Långedrag (Talattagatan eller Vikebacken) eller sommartid vid Hinsholmskilen och ta spårvagnen sista biten till Saltholmen – på Saltholmen finns bara parkering för rörelsehindrade.', icon: '🚗' },
     ],
     harbors: [
       // KÄLLA: https://www.goteborg.com/platser/vrango — "en stor modern gästhamn med fiskekaj", "tvärs över ön, en knapp kilometer från båtens tilläggsplats", "livsmedelsbutiken Tempo vid hamnen". Service ej belagd (vrangogasthamn.se svarade inte).

@@ -10,6 +10,8 @@
  *
  * Innehåller native <details>/<summary> för progressiv expansion utan JS.
  */
+
+import { regionEtikett } from '@/lib/regionEtikett'
 interface Props {
   name: string
   type?: string | null                          // restaurant, marina, anchorage, ...
@@ -36,7 +38,7 @@ export default function PlaceFAQSection({
 
   // ── 1. Var ligger platsen? ──
   if (formattedAddress || island || region) {
-    const parts = [formattedAddress, island, region].filter(Boolean) as string[]
+    const parts = [formattedAddress, island, regionEtikett(region)].filter(Boolean) as string[]
     faqs.push({
       q: `Var ligger ${name}?`,
       a: `${name} ligger ${parts.length > 1 ? 'på ' : ''}${parts.join(', ')}. Använd "Visa i Google Maps"-länken högre upp på sidan för exakta vägbeskrivningar.`,

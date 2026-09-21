@@ -992,13 +992,16 @@ export const GUIDES: GuideMeta[] = [
   },
   {
     slug: "svampplockning-skargarden",
-    title: "Svampplockning i skärgården – säsong och platser",
-    excerpt: "Kantareller, karljohan och trattkantareller väntar i skärgårdens skogar. Bästa öarna och säsongstips.",
+    title: "Svampplockning i skärgården – öar och regler",
+    excerpt: "Utö, Möja, Själbottna och Bogesund – där Länsstyrelsen själv tipsar om svamp. Plus vad allemansrätten tillåter och vad du gör om du är osäker på en svamp.",
     category: "Aktivitet", emoji: "🍄", readTime: "5 min", fullContent: true,
     faqs: [
-      { q: 'När är bästa tid för svampplockning i skärgården?', a: 'Kantareller dyker upp i juli–aug. Karljohan och trattkantareller är bäst i september–oktober. Höstsvamparna efter regn i september är skärgårdens bästa. Ta med en lokal svampbok eller appen iNaturalist för bestämning.' },
-      { q: 'Vilka öar är bäst för svampplockning?', a: 'Öar med lövblandskogar och lite fukt är bäst. Ornö, Nåttarö, Möja och Ljusterö erbjuder goda svampmarker. Undvik öar med enbart klipphäll – svamp växer i skog och fuktiga gränszoner.' },
-      { q: 'Vad gäller för svampplockning i naturreservat?', a: 'Plocka svamp för eget bruk är tillåtet enligt allemansrätten, även i naturreservat. Begränsningar gäller för storskalig kommersiell plockning. Följ eventuella lokala reservatsregler.' },
+      // KÄLLA: Länsstyrelsen Stockholm, Utö, Möja-Björndalen, Själbottna-Östra Lagnö, Bogesundslandet (lästa 2026-09-21). Tidigare svar nämnde Ornö, Nåttarö och Ljusterö utan källa.
+      { q: 'Vilka öar i Stockholms skärgård är bra för svampplockning?', a: 'Länsstyrelsen nämner svampen uttryckligen för Utös naturreservat ("ta med svampkorgen" på hösten), Möja-Björndalen ("svamputflykter"), Själbottna-Östra Lagnö ("rika på bär och svamp") och Bogesundslandet vid Vaxholm.' },
+      // KÄLLA: Naturvårdsverket, Plocka blommor, bär och svamp (läst 2026-09-21); Länsstyrelsen Stockholm, föreskrifter Finnhamn, Grinda, Gällnö, Kårklö, Nämdö — "ta bort vedlevande svampar" förbjudet (lästa 2026-09-21). Tidigare svar sa att plockning är tillåten "även i naturreservat" utan förbehåll.
+      { q: 'Får man plocka svamp i naturreservat?', a: 'Allemansrätten ger dig rätt att plocka svamp, men i naturreservat gäller reservatets föreskrifter. I flera skärgårdsreservat, bland annat Finnhamn, Grinda och Gällnö, är det förbjudet att ta vedlevande svamp. Läs skylten eller föreskrifterna på Länsstyrelsens webbplats innan du plockar.' },
+      // KÄLLA: Livsmedelsverket, Svamp (läst 2026-09-21); Giftinformationscentralen, Svamp (läst 2026-09-21)
+      { q: 'Vad gör jag om jag har ätit en svamp jag är osäker på?', a: 'Vid allvarliga symtom: ring 112 och begär Giftinformation. I mindre akuta fall: ring Giftinformationscentralen på 010-456 67 00, dygnet runt. Spara svampen så att den kan artbestämmas.' },
     ],
   },
   {
@@ -1428,13 +1431,16 @@ export const GUIDES: GuideMeta[] = [
   // ── Batch E: Bad-serien ────────────────────────────────────────────────────────
   {
     slug: "basta-badplatser-bohuslan",
-    title: "Bästa badplatserna i Bohuslän 2026 – klippor och sandstränder",
-    excerpt: "Bohusläns klippkust har Sveriges mest dramatiska badplatser. Från Smögens klippor till Varbergs sandstränder – guide till 15 toppalternativ.",
+    title: "Badplatser i Bohuslän 2026 – klippor, sand och öar",
+    excerpt: "Från Seläter och Furholmen vid Strömstad till Hållös Marmorbassäng och Stångehuvud i Lysekil – badplatserna längs Bohuslänskusten, med fakta från kommunerna.",
     category: "Aktivitet", emoji: "🌊", readTime: "8 min", fullContent: true,
     faqs: [
-      // KÄLLA: Länsstyrelsen Västra Götaland — Hållöarkipelagen (Hållö) och Ramsvikslandet (2006, Västkuststiftelsen) (läst 2026-09-14). Stod "Hållorna".
-      { q: 'Vilka är de bästa badplatserna i Bohuslän?', a: 'Hållö vid Smögen, Ramsvikslandets naturreservat, Fiskebäckskil, Lysekils klippor och Kosteröarnas havsbad är i toppklass. Varbergs kallbadhus och Tylösand (Halland) är sandstrandklassiker söderut.' },
-      { q: 'Hur varmt är havet i Bohuslän på sommaren?', a: 'Västerhavet är kallare än Östersjön – ca 16–20°C i juli och aug. Sydkusten (Varberg, Falkenberg) är varmare. Kosteröarnas djupa fjord är svalare än kustnära grunda vikar.' },
+      // KÄLLA: Strömstads kommun badplatser; Sotenäs kommun badplatser Smögen och Kungshamn; Länsstyrelsen Västra Götaland Hållöarkipelagen, Ramsvikslandet, Stångehuvud, Tjurpanneområdet (alla lästa 2026-09-21) — se guide-content.ts. Tidigare svar nämnde Varberg och Tylösand, som ligger i Halland.
+      { q: 'Vilka badplatser finns i Bohuslän?', a: 'Några med fakta från kommun eller Länsstyrelse: Seläter, Furholmen och Styrsö vid Strömstad, naturreservatet Capri, Tjurpannan vid Grebbestad, Badberget i Fjällbacka, Marmorbassängen på Hållö, Sandö och Vallevik på Smögen, Ramsvikslandet, Stångehuvud och Pinnevik i Lysekil, och föreningsbaden på Orust.' },
+      // KÄLLA: Strömstads kommun, badplatser (läst 2026-09-21) — Seläter sandstrand, hopptorn, vattenrutschkana; Furholmen sandstrand 10 min båt från norra hamnen. Sotenäs kommun — Sandö sandstrand med handikapptrappa, omklädningsrum
+      { q: 'Var finns sandstrand i Bohuslän?', a: 'Seläter nordväst om Strömstad har sandstrand, hopptorn och vattenrutschkana. Furholmen, tio minuter med båt från Strömstads norra hamn, har sandstrand och klippor. På Smögen är Sandö kommunens sandstrand med bryggor och omklädningsrum.' },
+      // KÄLLA: Havs- och vattenmyndigheten, badplatser i Strömstads kommun (läst 2026-09-21) — provsvar per bad, prognos på vattentemperatur från Copernicus för kustbad
+      { q: 'Hur varmt är vattnet i Bohuslän?', a: 'Det varierar från dag till dag. Havs- och vattenmyndigheten visar provsvar och, för kustbad, en prognos på vattentemperaturen för varje registrerad badplats – kolla där innan du åker.' },
     ],
   },
   {
@@ -1910,7 +1916,8 @@ export const GUIDES: GuideMeta[] = [
   // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
   { slug: "hyra-stuga-oland", title: "Hyra stuga Öland 2026 – guide till bästa lägena och sajterna", excerpt: "Stugor på Öland finns längs hela ön – vid havet, på alvaret och nära Borgholm. Guide till var du hittar de bästa stugorna och vad du bör tänka på.", category: "Praktisk", emoji: "🏡", readTime: "6 min", fullContent: true, faqs: [{ q: 'Var hittar man stugor att hyra på Öland?', a: 'Blocket Bostad, Airbnb och Olandstugor.se. Boka i november–december för juli-veckor. Lägen nära Böda, Borgholm och Mörbylånga är populärast.' }, { q: 'Vad kostar en stuga på Öland i juli?', a: 'Enkelt: 3 000–5 000 kr/vecka. Standard nära havet: 6 000–10 000 kr/vecka. Lyxig villa: 15 000+ kr/vecka. Böda-lägen är dyrast pga narheten till sandstranden.' }] },
   { slug: "hyra-bil-oland", title: "Hyra bil Öland – guide till biluthyrning och hur du tar dig dit", excerpt: "Öland kräver bil för att utforska på riktigt. Guide till biluthyrning på Öland och i Kalmar, priser 2026 och tips för att köra runt ön.", category: "Praktisk", emoji: "🚗", readTime: "5 min", fullContent: true, faqs: [{ q: 'Var hyr man bil till Öland?', a: 'Hyr bil i Kalmar (Arlanda, Hertz, Enterprise finns vid centralstationen och flygplatsen). Ta sedan Ölandsbron (6 km, gratis) till ön. Inga biluthyrare finns på Öland.' }, { q: 'Måste man ha bil på Öland?', a: 'Inte nödvändigt – buss 101 och 106 kör längs Ölands Alvarväg och kustväg. Men för att nå avsides stränder och naturreservat är bil stor fördel.' }] },
-  { slug: "camping-oland", title: "Camping Öland – bästa campingplatser vid havet och alvaret", excerpt: "Öland har ett av Sveriges rikaste camping-utbud. Guide till de bästa campingplatserna vid Böda sand, Borgholm och södra Öland.", category: "Praktisk", emoji: "⛺", readTime: "6 min", fullContent: true, faqs: [{ q: 'Vilken är den bästa campingplatsen på Öland?', a: 'Böda Sand Camping är Ölands mest kända – direkt vid den långa sandstranden i norr. Kapelludden Camping ligger i Borgholm och erbjuder camping och stugor.' }, { q: 'Måste man boka camping på Öland i förväg?', a: 'Ja, definitivt för juli. Böda Sand är fullt i juli till mitten av juni. Boka via campingens hemsida eller Camping.se. Enklare platser i söder är lättare att boka.' }] },
+  // KÄLLA: Böda Sand, https://www.bodasand.se/om-oss/ (1350 platser, 125 stugor, 2 mil sandstrand); Ottenby Vandrarhem & Camping, https://ottenbyvandrarhem.se/ ; Länsstyrelsen Kalmar, Bödakustens östra, Trollskogen, Neptuni åkrar (tältförbud) — alla lästa 2026-09-21. Tidigare svar påstod att Böda Sand "är fullt i juli till mitten av juni" och nämnde Kapelludden utan läsbar källa.
+  { slug: "camping-oland", title: "Camping på Öland 2026 – från Böda till Ottenby", excerpt: "Böda Sand vid den två mil långa sandstranden, Ottenby nära södra udden – och var du inte får tälta. Med fakta från campingarna och Länsstyrelsen.", category: "Praktisk", emoji: "⛺", readTime: "6 min", fullContent: true, faqs: [{ q: 'Vilka campingplatser finns på Öland?', a: 'Två vi kunnat belägga hos operatören: Böda Sand på nordöstra Öland, som med 1 350 platser och 125 stugor kallar sig Sveriges största camping, och Ottenby Vandrarhem & Camping, öns sydligaste, sex kilometer från Ölands södra udde.' }, { q: 'Får man tälta fritt på Öland?', a: 'Allemansrätten gäller, men inte fullt ut i naturreservaten. I bland annat Bödakustens östra, Trollskogen och Neptuni åkrar är tält förbjudet, liksom eld. Kolla reservatets föreskrifter hos Länsstyrelsen Kalmar innan du slår upp tältet.' }, { q: 'Var ligger Ölands längsta sandstrand?', a: 'Enligt Länsstyrelsen i naturreservatet Bödakustens östra på nordöstra Öland, mellan Trollskogen och Böda camping. Stranden är badstrand, men tält och eld är förbjudet i reservatet.' }] },
   { slug: "mat-oland", title: "Mat och restauranger på Öland – lokala råvaror och sommarliv", excerpt: "Öland har en stark matidentitet med lamm, potatis och smör i världsklass. Guide till de bästa restaurangerna och matupplevelserna på Öland.", category: "Mat", emoji: "🍽", readTime: "6 min", fullContent: true, faqs: [{ q: 'Vilka är de bästa restaurangerna på Öland?', a: 'Hotell Skansen i Borgholm (klassiker), Smörcaféet (smör från Ölands kor), och lokala lantbruk med gårdsförsäljning. Ölands lamm, potatis och krispiga gurkor är regionens flaggskepp.' }, { q: 'Vad är Öland känt för inom mat?', a: 'Öländsk potatis (världens bästa enligt många), smör, lamm från alvarbetande får, och sommartomater. Smör-SM har arrangerats på Öland och lockar hela Sverige.' }] },
   // Höga Kusten
   // UPPSKATTNING: spann över flera uthyrare på orten, ej hämtat per aktör (2026-09). Sägs ut för läsaren som "enligt vår marknadsöversikt".

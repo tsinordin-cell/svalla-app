@@ -11,6 +11,7 @@
  * Server Component — interaktiviteten ligger i <PlaceActionPill> (klient).
  */
 import PlaceActionPill from './PlaceActionPill'
+import { regionEtikett } from '@/lib/regionEtikett'
 
 type PriceLevel = 'budget' | 'mellan' | 'premium' | 'lyx' | null
 type ActionKey = 'boka' | 'meny' | 'hemsida' | 'instagram'
@@ -57,7 +58,10 @@ export default function PlacePremiumHeader({
   const hasGoogle = typeof googleRating === 'number' && googleRating > 0
   const hasSvalla = typeof svallaRating === 'number' && svallaRating > 0
   const price = priceLevel ? PRICE_LABEL[priceLevel] : null
-  const locationLabel = [typeLabel, island, region].filter(Boolean).join(' · ')
+  // restaurants.archipelago_region är en kod ("north", "bohuslan") och visades
+  // rå i rubriken på ~370 platssidor (mätt 2026-09-21). Okänd kod visas inte.
+  const regionLabel = regionEtikett(region)
+  const locationLabel = [typeLabel, island, regionLabel].filter(Boolean).join(' · ')
 
   // Bygg lista med aktiva action-knappar
   const actions: Array<{ key: ActionKey; label: string; href: string; primary?: boolean; icon: string }> = []

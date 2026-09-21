@@ -82,6 +82,19 @@ const CATEGORY_LABEL: Record<string, string> = {
   cabin: 'Stugor',
   camping: 'Camping',
   pension: 'Pensionat',
+  // Koder som finns i restaurants.categories men saknade svensk etikett och
+  // visades som rå engelska ("Easy from stockholm", "Tech"), mätt 2026-09-21.
+  hamnkrog: 'Hamnkrog', gasthamn: 'Gästhamn', restaurang: 'Restaurang', hotell: 'Hotell',
+  krog: 'Krog', bensin: 'Bränsle', service: 'Service', vardshus: 'Värdshus', kiosk: 'Kiosk',
+  food: 'Mat', fish: 'Fisk', fishing: 'Fiske', dining: 'Restaurang', remote: 'Avskilt',
+  provisioning: 'Proviant', local: 'Lokalt', family: 'Familjevänligt', shopping: 'Butik',
+  hiking: 'Vandring', kallbad: 'Kallbad', seafood: 'Skaldjur', take_away: 'Take away',
+  diving: 'Dykning', nature: 'Natur', historic: 'Historiskt', bakery: 'Bageri', swimming: 'Bad',
+  traditionsrik: 'Traditionsrikt', waterfront: 'Vid vattnet', birdwatching: 'Fågelskådning',
+  adventure: 'Äventyr', easy_from_stockholm: 'Nära Stockholm', nationalpark: 'Nationalpark',
+  town: 'Ort', breakfast: 'Frukost', anchor_stop: 'Ankarplats', seasonal: 'Säsongsöppet',
+  bilfri: 'Bilfritt', lugn: 'Lugnt', quiet: 'Lugnt', sports: 'Sport', scandinavian: 'Nordiskt',
+  modern: 'Modernt',
 }
 
 const BEST_FOR_LABEL: Record<string, string> = {
@@ -141,8 +154,9 @@ export default function PlaceFactsSection({
   if (typeLabel) groups.push({ label: 'Typ', values: [typeLabel] })
 
   const cats = (categories ?? [])
-    .map(c => CATEGORY_LABEL[c] ?? capitalize(c))
-    .filter((v, i, arr) => v && arr.indexOf(v) === i)            // unique
+    // Okända koder visas inte – hellre ingen etikett än engelsk rådata.
+    .map(c => CATEGORY_LABEL[c] ?? null)
+    .filter((v, i, arr): v is string => !!v && arr.indexOf(v) === i)            // unique
   // Filtrera bort kategorin som redan visas som "Typ"
   const filteredCats = typeLabel ? cats.filter(c => c !== typeLabel) : cats
   if (filteredCats.length > 0) groups.push({ label: 'Kategorier', values: filteredCats })
