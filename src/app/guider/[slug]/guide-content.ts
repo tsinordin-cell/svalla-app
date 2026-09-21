@@ -1,10 +1,12 @@
+import { hummerpremiar, surstrommingspremiar, kraftpremiar, midsommarafton, KALLA_SURSTROMMING, KALLA_KRAFTOR, KALLA_HELGDAGAR } from '@/lib/arsdatum'
 
 export function getGuideContent(slug: string): string {
   const guides: Record<string, string> = {
     'midsommar-skargarden-2026': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Midsommarafton i skärgården är ett av de saker man berättar om i tjugo år efteråt. Det handlar sällan om majstången — den är likadan på varje ö. Det handlar om att solen inte riktigt gick ner, att någon hade med sig gitarr och att sista båten hem var klockan ett på natten och man tog den ändå.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">2026 är midsommarafton fredagen den 19 juni. Boka boende nu om du inte redan gjort det — Grinda, Utö och Sandhamn är fullbokade månader i förväg. Alternativet är dagsturen: ut tidigt, majstången vid tre, sista båten hem. Det funkar också, och kräver noll planering utöver biljetten.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><!-- KÄLLA: lag (1989:253) om allmänna helgdagar, midsommardagen = lördagen 20–26 juni, ${KALLA_HELGDAGAR} (läst 2026-09-21); datumet räknas fram i src/lib/arsdatum.ts -->
+2026 är midsommarafton ${midsommarafton(2026).text.replace(/ 2026$/, '')}. Boka boende nu om du inte redan gjort det — Grinda, Utö och Sandhamn är fullbokade månader i förväg. Alternativet är dagsturen: ut tidigt, majstången vid tre, sista båten hem. Det funkar också, och kräver noll planering utöver biljetten.</p>
 
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Här är 15 alternativ — 8 på ostkusten, 7 på västkusten — med hur du tar dig dit, var du äter och vad som faktiskt är värt att åka till.</p>
 
@@ -3252,7 +3254,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">I skärgården tar traditionen en extra dimension. Att sitta vid vattnet, med lyktorna hängandes i björkarna och doften av dill och hav, är en upplevelse som är svår att toppa. Många familjer har gjort kräftskivan till en årlig höjdpunkt och bokar sina bryggor och stugor redan i januari.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftpremiären 2026 – datum och säsong</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftpremiären är alltid den första onsdagen i augusti. 2026 innebär det <strong>onsdag 5 augusti</strong>. Det vanligaste är att hålla kräftskivan på lördagen närmast premiären – alltså lördag 8 augusti 2026 – eller helgen efter, 15 augusti. Kräftsäsongen pågår sedan fram till slutet av september.</p>
+<!-- KÄLLA: Institutet för språk och folkminnen, Kräftskiva, ${KALLA_KRAFTOR} (läst 2026-09-21): fiskeförbud fram till början av augusti t.o.m. 1994, från 1982 kl 17 första onsdagen i augusti, "en tradition som lever kvar"; datumet räknas fram i src/lib/arsdatum.ts -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftpremiären är av tradition den första onsdagen i augusti – dagen då kräftfisket fick börja fram till 1994, då förbudet upphävdes. 2026 innebär det <strong>${kraftpremiar(2026).text.replace(/ 2026$/, '')}</strong>. Något fastställt datum finns inte längre; det är handeln och vanan som håller dagen vid liv. Det vanligaste är att hålla kräftskivan på en lördag i augusti.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
 <strong style="color:var(--sea)">Viktiga datum 2026:</strong>
@@ -7360,13 +7363,13 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
   'hummerpremiar-bohuslan-2026': `
 <!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)"><strong>Hummerpremiären 2026 är måndag 21 september klockan 07.00.</strong> Premiären infaller alltid första måndagen efter 20 september – nästa år, 2027, blir det 27 september. Från den morgonen och till och med 30 november får fritidsfiskare vittja sina hummertinor längs Bohusläns kust.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)"><strong>Hummerpremiären 2026 är ${hummerpremiar(2026).text.replace(/ 2026$/, '')} klockan 07.00.</strong> Premiären infaller alltid första måndagen efter 20 september – nästa år, 2027, blir det ${hummerpremiar(2027).kort}. Från den morgonen och till och med 30 november får fritidsfiskare vittja sina hummertinor längs Bohusläns kust.</p>
 
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummern (Homarus gammarus) är strikt reglerad, och det är reglerna som gör premiären till en högtid: alla väntar på samma klockslag. Här är vad som gäller, ordagrant efter Havs- och vattenmyndigheten.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DATUM OCH REGLER 2026</h3>
 
-<p><strong>Premiär: måndag 21 september 2026 kl 07.00.</strong> Fritidsfiskare får fiska till och med 30 november, yrkesfiskare till och med 31 december.</p>
+<p><strong>Premiär: ${hummerpremiar(2026).text} kl 07.00.</strong> Fritidsfiskare får fiska till och med 30 november, yrkesfiskare till och med 31 december.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Regler du måste kunna</h4>
 <ul style="font-size:16px;line-height:1.8;color:var(--txt2);padding-left:20px">
@@ -7394,7 +7397,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
   'surstrommingspremiar-2026': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Den tredje torsdagen i augusti är en högtidsdag längs Norrlandskusten. Butiker längs Höga Kusten börjar stapla konservburkar med silhuetter av fisk och den distinkta lukten av fermenterad strömming sprider sig i luften. Det är surströmmingspremiär.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Surströmmingspremiären 2026 är torsdag 20 augusti. Konserverna – legalt sett – får inte säljas förrän detta datum. Det är en reglerad tradition sedan 1930-talet, då en kunglig förordning fastslog att ny skörd av surströmming inte fick säljas förrän tredje torsdagen i augusti.</p>
+<!-- KÄLLA: Institutet för språk och folkminnen, Surströmmingspremiär, ${KALLA_SURSTROMMING} (läst 2026-09-21): "Den tredje torsdagen i augusti är det av hävd premiär", "börjar säljas den tredje torsdagen i augusti"; Isof nämner ingen förordning — därför står det inte här; datumet räknas fram i src/lib/arsdatum.ts -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Surströmmingspremiären 2026 är ${surstrommingspremiar(2026).text.replace(/ 2026$/, '')}. Det är en tradition, inte en lag: av hävd börjar årets surströmming säljas den tredje torsdagen i augusti, och det är den dagen kalasen hålls.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAD ÄR SURSTRÖMMING?</h3>
 
