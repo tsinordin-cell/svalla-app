@@ -3243,48 +3243,77 @@ export const ISLANDS: Island[] = [
     region: 'norra',
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
-    tagline: 'Rådmansölandet i norra skärgården – hit kör du hela vägen, med gästhamn och sjömack.',
+    tagline: 'Hamnby på Rådmansö dit du kör hela vägen – och där båtarna till Tjockö, Lidö och Fejan börjar.',
+    seoTitle: 'Gräddö – hamn, camping & båt till Tjockö och Fejan',
+    seoDescription: 'Gräddö på Rådmansö: gästhamn med sjömack, Björköörens badplats, camping med restaurang och Waxholmsbolagets båt från Räfsnäs till Tjockö, Lidö och Fejan.',
+    // Ifylld 2026-09-21 efter Toms beslut "fyll ut med belagt innehåll". Allt nedan är läst i webbläsare samma dag; källa står vid varje uppgift.
     description: [
-      // Badplats, "en av regionens finaste stränder", busslinje, gång- och cykelbana, hotell och båtutflykter stod här utan källa och är strukna 2026-09-21. Kvar: det gästhamnen och Sjöhistoriska museet säger.
-      'Gräddö ligger på Rådmansölandet i Norrtälje kommun, i Roslagens skärgård, och nås med bil hela vägen – ingen färja. Här finns Gräddö Sjömack och Gästhamn med gästplatser, el, färskvatten, dusch och bränsle, enligt hamnens egen sida.',
-      'Platsen passar den som vill nå norra skärgården utan båt, eller som vill börja en båttur här med tank fylld. Vad kusten runt om erbjuder i bad och mat har vi ingen källa på och skriver därför inte.',
+      // KÄLLA: SL buss 631 Norrtälje–Rådmansö–Norrtälje, https://kund.printhuset-sthlm.se/sl/h631.pdf (giltig 17 augusti–12 december 2026) — hållplatser i ordning: Norrtälje busstation … Gräddö torg … Räfsnäs brygga (läst 2026-09-21)
+      'Gräddö ligger på Rådmansölandet i Norrtälje kommun, vid inloppet till Norrtäljeviken, och är en av få platser i norra skärgården dit du kör bil hela vägen – ingen färja. Utan bil tar du SL:s buss 631 från Norrtälje busstation; den stannar vid Gräddö torg och fortsätter till Räfsnäs brygga.',
+      // KÄLLA: Waxholmsbolaget linje 31 Räfsnäs–Tjockö–Fejan, https://kund.printhuset-sthlm.se/wa/h31.pdf (gäller 2 april–18 juni och 17 augusti–12 december 2026): Räfsnäs 10.05 → Tjockö ångbåtsbrygga 10.10 → Fejan 11.00; Lidö, Tyvö, Rovholmen, Enskär, Gisslingö med anmärkning b = beställs (läst 2026-09-21)
+      'Räfsnäs, strax intill, är Waxholmsbolagets brygga för linje 31: fem minuter över till Tjockö och därefter vidare mot Lidö och Fejan vid Ålands hav – hela vägen till Fejan på under timmen. Det gör Gräddö till ett naturligt nav för den som vill nå ytterskärgården utan egen båt.',
+      // KÄLLA: https://www.graddosjomack.se/ — gästplatser med el, färskvatten, dusch; bensin och diesel (läst 2026-08-24). Caravan Club Björkö Örn, https://caravanclub.se/camping/bjorko-orn/ — "havscamping", "långgrund sandstrand", "9 stugor och tomter för tält", "vedeldad bastu", "restaurang med fulla rättigheter" (läst 2026-09-21). Norrtälje kommun, https://www.norrtalje.se/info/kultur-och-fritid/bad/badplatser/bjorkooren/ — "sandstrand med cirka 85 meter strandlinje i norrläge", "väster om Gräddö" (läst 2026-09-21)
+      'Har du egen båt finns Gräddö Sjömack och Gästhamn med gästplatser, el, vatten, dusch och bränsle. Vill du stanna över: Caravan Club Björkö Örn är en havscamping vid viken med stugor, tältplatser, vedeldad bastu nere vid vattnet och restaurangen Gräddös Pärla. Intill ligger kommunens badplats Björköören med 85 meter sandstrand.',
     ],
 
     facts: {
-      travel_time: 'Bil hela vägen via Norrtälje – ingen färja',
-      character: 'Rådmansölandet, gästhamn med sjömack',
+      travel_time: 'Bil hela vägen via Norrtälje · SL-buss 631 från Norrtälje busstation',
+      character: 'Hamnby på Rådmansö – port till Tjockö, Lidö och Fejan',
       season: 'April–Oktober',
-      best_for: 'Bilresenärer, båtfolk som tankar, dagstur',
+      best_for: 'Bilburna, husbil och camping, ö-hopp till Tjockö och Fejan, kajak',
     },
-    facts_provenance: { travel_time: 'bedomning', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
+      // KÄLLA: Waxholmsbolaget linje 31, https://kund.printhuset-sthlm.se/wa/h31.pdf — Räfsnäs 10.05, Tjockö 10.10, Fejan 11.00; Lidö "b" = beställ resan (läst 2026-09-21)
+      { icon: '⛴', name: 'Båt till Tjockö, Lidö och Fejan', desc: 'Waxholmsbolagets linje 31 går från Räfsnäs brygga: Tjockö efter fem minuter, Fejan efter ungefär 55. Lidö och flera mindre bryggor angörs efter beställning – boka i SL-appen minst en timme före avgång.' },
+      // KÄLLA: Norrtälje kommun, https://www.norrtalje.se/info/kultur-och-fritid/bad/badplatser/bjorkooren/ — sandstrand ca 85 m i norrläge, beachvolleyplan ja, kiosk/kafé ja, parkering ja, toalett ja, brygga nej, hund nej 15 maj–15 september (läst 2026-09-21)
+      { icon: '🏖', name: 'Björköörens badplats', desc: 'Kommunal badplats vid Norrtäljevikens södra strand, väster om Gräddö: cirka 85 meter sandstrand, beachvolleyplan, kiosk, toalett och parkering. Ingen brygga. Hund är inte tillåten 15 maj–15 september.' },
+      // KÄLLA: Visit Skärgården, https://visitskargarden.se/resmaal/norra-skaergaarden/graeddoe.aspx — "Kajak och Uteliv … utgår från våra två kajakbaser i Stockholms norra skärgård, Gräddö och Furusund", adress Gräddö Brygga; butik för kajak och SUP (läst 2026-09-21). Caravan Club Björkö Örn: "kanoter och stand up paddle-boards för uthyrning" (läst 2026-09-21)
+      { icon: '🛶', name: 'Kajak och SUP', desc: 'Kajak & Uteliv har en kajakbas vid Gräddö brygga och butik för kajak- och SUP-utrustning. Campingen Björkö Örn hyr ut kanoter och SUP-brädor nere vid havet.' },
       { icon: '⛵', name: 'Gästhamn och sjömack', desc: 'Gräddö Sjömack och Gästhamn: gästplatser, el, vatten, dusch, bensin och diesel enligt hamnens egen sida.' },
     ],
-    accommodation: [],
+    // KÄLLA: Caravan Club Björkö Örn, https://caravanclub.se/camping/bjorko-orn/ — "Allmän Camping – Året runt", husvagns- och husbilstomter med el, 9 stugor, tälttomter, servicehus, vedeldad bastu vid havet, 9-håls minigolf, lekplats, "ca 7,5 km från färjeterminalen i Kapellskär" (läst 2026-09-21)
+    accommodation: [
+      { name: 'Caravan Club Björkö Örn', type: 'Camping & stugor', desc: 'Havscamping vid inloppet till Norrtäljeviken, öppen året runt: husvagns- och husbilsplatser med el, nio stugor, tältplatser, servicehus, vedeldad bastu vid havet, minigolf och lekplats. Cirka 7,5 km från färjeterminalen i Kapellskär.', websiteUrl: 'https://caravanclub.se/camping/bjorko-orn/' },
+    ],
+    accommodationIntro: 'Gräddö är en av få platser i norra skärgården där du kan bo med husbil eller husvagn vid havet och ändå ha båtarna till ytterskärgården inom promenadavstånd. Caravan Club Björkö Örn är det boende vi kunnat belägga hos operatören själv.',
     getting_there: [
-      { method: 'Bil', from: 'Stockholm via Norrtälje', desc: 'Kör mot Norrtälje och vidare ut på Rådmansölandet mot Gräddö. Ingen färja.', icon: '🚗' },
-      { method: 'Buss', from: 'Norrtälje', desc: 'SL-buss från Norrtälje busstation mot Rådmansö – sök resan i SL-appen; linjenummer och restid har vi inte kontrollerat.', icon: '🚌' },
+      { method: 'Bil', from: 'Stockholm via Norrtälje', desc: 'E18 till Norrtälje, sedan väg 276 ut på Rådmansölandet mot Gräddö och Räfsnäs. Ingen färja.', icon: '🚗' },
+      // KÄLLA: SL buss 631, https://kund.printhuset-sthlm.se/sl/h631.pdf (giltig 17 augusti–12 december 2026) — Norrtälje busstation → … Gräddö torg → … Räfsnäs brygga; SL buss 676 Tekniska högskolan–Norrtälje busstation, https://kund.printhuset-sthlm.se/sl/h676676x.pdf (läst 2026-09-19)
+      { method: 'Buss', from: 'Norrtälje busstation', desc: 'SL-buss 631 Norrtälje–Rådmansö stannar vid Gräddö torg och Räfsnäs brygga. Från Stockholm: buss 676 från Tekniska högskolan till Norrtälje busstation och byte där. Sök hela resan i SL-appen.', icon: '🚌' },
     ],
     harbors: [
       // KÄLLA: https://www.graddosjomack.se/ — "Gräddö Sjömack och Gästhamn", gästplatser med el, färskvatten, dusch; sjömack med bensin och diesel
       { name: 'Gräddö Sjömack och Gästhamn', desc: 'Gästhamn med sjömack på Gräddö. Gästplatser med el, färskvatten och dusch; bensin och diesel.', fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle'] },
     ],
+    // KÄLLA: https://www.graddosparla.se/ — "Gräddös Pärla – Bar & Restaurang", "I Gräddö utanför Norrtälje ligger Gräddös pärla … bar & restaurang naturnära med närheten till havet och Kapellskär" (läst 2026-09-21 i webbläsare); Caravan Club Björkö Örn: "restaurang med fulla rättigheter som har öppet året om men endast på helger under vintersäsongen" (läst 2026-09-21)
     restaurants: [
+      { name: 'Gräddös Pärla', type: 'Bar & restaurang', desc: 'Bar och restaurang vid campingen Björkö Örn, med utsikt över skärgården. Öppet året om enligt campingens sida, vintertid bara helger – kontrollera aktuella tider på restaurangens webbplats innan du åker.', websiteUrl: 'https://www.graddosparla.se/' },
     ],
     tips: [
-      'Gräddö är ett bra alternativ för den utan båt som vill nå norra skärgårdens karaktär med bil.',
+      'Parkera vid Räfsnäs och ta linje 31: Tjockö på fem minuter, Fejan på under timmen. Bryggor med beställningstrafik bokar du i SL-appen minst en timme innan.',
+      'Björköörens badplats har kiosk, toalett och parkering men ingen brygga – och hund är inte tillåten 15 maj–15 september.',
       'Tankar du båten här: hamnens sida anger både bensin och diesel.',
     ],
-    related: ['furusund', 'blido', 'norrora'],
-    tags: ['sandstrand', 'lättillgänglig', 'norra', 'bad', 'dagstur'],
+    related: ['tjocko', 'fejan', 'lido', 'furusund', 'blido'],
+    tags: ['gästhamn', 'camping', 'bad', 'norra', 'bilväg', 'ö-hopp'],
     // KÄLLA: Sjöhistoriska museet/DigitaltMuseum — Gräddö båtvarv grundat 1924 av bröderna Eriksson, nedlagt 1965, 54 båtar byggda (2026-08-24)
     did_you_know: 'På Gräddö drev bröderna Ericksson ett träbåtsvarv 1924–1965 som hann bygga ett femtiotal båtar innan det lades ner.',
+    amenities: { restaurant: true, accommodation: true, beach: true, camping: true },
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: Norrtälje kommun, https://www.norrtalje.se/info/kultur-och-fritid/bad/badplatser/bjorkooren/ (läst 2026-09-21)
+          { name: 'Björköörens badplats', type: 'sandstrand', desc: 'Kommunal havsbadplats väster om Gräddö med cirka 85 meter sandstrand i norrläge och mindre gräsytor. Beachvolleyplan, kiosk, toalett och parkering.', directions: 'Badviksvägen 7, Gräddö – vid Norrtäljevikens södra strand' },
+        ],
+      },
+    },
     seasonal: {
-      open: 'Maj–Oktober',
+      open: 'April–Oktober',
       peak: 'Juli',
       best: 'Juni eller September',
-      bestReason: 'Lugnare i hamnen utanför juli.',
-      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+      bestReason: 'Lugnare i hamnen och på campingen utanför juli, och båtarna till Tjockö och Fejan går hela perioden.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
     },
 
   },
@@ -3613,36 +3642,58 @@ export const ISLANDS: Island[] = [
     region: 'norra',
     regionLabel: 'Norra skärgården',
     emoji: '🚲',
-    tagline: 'En av norra skärgårdens största öar — bilfärja, cykling och Köpmanholms hamn',
+    tagline: 'Ön med bilfärja åt två håll – Furusund i väster, Blidö i öster och sju Waxholmsbryggor däremellan.',
+    seoTitle: 'Yxlan – färja från Furusund, bryggor & cykling',
+    seoDescription: 'Yxlan mellan Furusund och Blidö: avgiftsfria vägfärjor på fyra minuter, Waxholmsbolagets linje 24 till sju bryggor, SL-buss 632 från Norrtälje och vandringsled över ön.',
+    // Ifylld 2026-09-21 efter Toms beslut "fyll ut med belagt innehåll". Boende, affär och krog på ön har inte kunnat beläggas hos någon operatör och står därför inte här.
     description: [
-      // KÄLLA: Trafikverket, Furusundsleden (https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/) — Furusund–Yxlan, 600 m, fyra minuter, avgiftsfri; Blidöleden (https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/) — Yxlan–Blidö, 530 m, 4 minuter, avgiftsfri (båda lästa 2026-09-21). Areal, "huvudort", butiker, Waxholmsbolagets bryggor: ingen källa — struket 2026-09-21.
-      'Yxlan ligger mellan Furusund och Blidö i norra skärgården och nås med bil: Trafikverkets vägfärjor går både från Furusund (Furusundsleden, 600 meter, fyra minuter) och vidare till Blidö (Blidöleden, 530 meter, fyra minuter). Båda är avgiftsfria.',
-      'Det gör Yxlan till en av de mest lättillgängliga större öarna i Roslagen – utan fast bro, men med två färjor som kör i skytteltrafik. Köpmanholm på Yxlansidan av Furusundsleden är den plats de flesta möter först.',
-      'Ön passar för cykling och vandring med bilen kvar på fastlandet eller med. Stockholm Archipelago Trail har en etapp över ön.',
+      // KÄLLA: Trafikverket, Furusundsleden (https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/) — Furusund–Yxlan, 600 m, fyra minuter, avgiftsfri; Blidöleden (https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/) — Yxlan–Blidö, 530 m, 4 minuter, avgiftsfri (båda lästa 2026-09-21). SL buss 632 Norrtälje–Yxlan, https://kund.printhuset-sthlm.se/sl/h632.pdf — hållplatser i ordning: Norrtälje busstation … Furusunds färjeläge, Köpmanholm, Köpmanholms skola … Yxlö brygga … Yxlövik … Alsvik … Vagnsunda (läst 2026-09-21)
+      'Yxlan ligger mellan Furusund och Blidö i norra skärgården och nås med bil: Trafikverkets vägfärjor går både från Furusund (Furusundsleden, 600 meter, fyra minuter) och vidare till Blidö (Blidöleden, 530 meter, fyra minuter). Båda är avgiftsfria. Utan bil tar du SL:s buss 632 från Norrtälje busstation – den åker med färjan över och fortsätter via Köpmanholm, Yxlö och Yxlövik till Vagnsunda i öns östra ände.',
+      // KÄLLA: Waxholmsbolaget linje 24 Stockholm–Vaxholm–Blidösundet, https://kund.printhuset-sthlm.se/wa/h24.pdf (gäller 2 april–18 juni och 17 augusti–1 november 2026): Strömkajen 08.45 → Vaxholm 09.40 → Siaröfortet 10.35 → Själbottna 11.00 → Vagnsunda (Yxlan) 11.01; Alsvik, Yxlövik, Duvnäs, Kolsvik, Yxlö och Köpmanholm (Yxlan) med X = "trafikeras utan fast avgångstid" (läst 2026-09-21)
+      'Från Stockholm går Waxholmsbolagets linje 24 från Strömkajen via Vaxholm och Siaröfortet ut i Blidösundet och angör sju bryggor på Yxlan: Vagnsunda, Alsvik, Yxlövik, Duvnäs, Kolsvik, Yxlö och Köpmanholm. Strömkajen–Vagnsunda tar omkring 2 timmar 15 minuter. De flesta övriga bryggor trafikeras utan fast tid, så sök resan i SL-appen och räkna med att båten går när det finns resenärer.',
+      // KÄLLA: Stockholm Archipelago Trail, https://stockholmarchipelagotrail.com/section/ (2026-09-17) — etapp över Yxlan, 24 km. Länsstyrelsen Stockholm, Själbottna-Östra Lagnö naturreservat, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sjalbottna-ostra-lagno.html — skyddat sedan 1977, 532 ha, markägare och förvaltare Skärgårdsstiftelsen, "bra tältplats", "strövvänliga skogarna är rika på bär och svamp", "Till Själbottna går reguljär Waxholmsbåt sommartid" (läst 2026-09-21); linje 24: Själbottna 11.00, Vagnsunda 11.01
+      'Ön passar den som vill cykla eller gå: Stockholm Archipelago Trail har en 24 kilometer lång etapp över Yxlan, och vägarna binder ihop bryggorna från färjeläget vid Köpmanholm till Vagnsunda. Bryggan före Vagnsunda är Själbottna, ett naturreservat sedan 1977 som Skärgårdsstiftelsen förvaltar – strövvänlig skog med bär och svamp, tältplats och slipade klippor. Waxholmsbåten lägger till där en minut innan den når Yxlan.',
     ],
-    facts: { travel_time: 'Bil + avgiftsfri vägfärja från Furusund (fyra minuter)', character: 'Stor ö med bilfärja åt två håll, Köpmanholm', season: 'Maj–oktober', best_for: 'Cykling, vandring, dagsutflykt med bil' },
+    facts: { travel_time: 'Bil + avgiftsfri vägfärja från Furusund (fyra minuter) · Waxholmsbåt linje 24 ca 2 h 15 min till Vagnsunda', character: 'Stor ö med bilfärja åt två håll och sju Waxholmsbryggor', season: 'Maj–oktober', best_for: 'Cykling, vandring, dagsutflykt med bil, ö-hopp till Själbottna' },
     facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
       // Tidigare stod "bilfärja från Räfsnäs" — Räfsnäs ligger på Rådmansö och färjan därifrån går till Tjockö, inte Yxlan. Struket 2026-09-21.
-      { icon: '🚲', name: 'Cykling', desc: 'Ta färjan från Furusund och cykla över ön mot Blidöleden – vägarna binder ihop bryggorna.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Ta färjan från Furusund och cykla över ön mot Blidöleden – vägarna binder ihop bryggorna. Buss 632 och båda vägfärjorna gör det enkelt att åka en väg och cykla tillbaka.' },
       // KÄLLA: Stockholm Archipelago Trail, https://stockholmarchipelagotrail.com/section/ (2026-09-17) — etapp över Yxlan, 24 km
       { icon: '🚶', name: 'Vandring', desc: 'Stockholm Archipelago Trail går över Yxlan, en etapp på 24 km enligt ledens egen sida.' },
+      // KÄLLA: Länsstyrelsen Stockholm, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sjalbottna-ostra-lagno.html — bad/badplats, fiske, tältplats, torrdass, stig; "tälta mer än två dygn i följd på samma plats" förbjudet; hund kopplad; öppen eld förbjuden (läst 2026-09-21)
+      { icon: '⛺', name: 'Själbottna naturreservat', desc: 'Grannön mot söder, brygga intill Vagnsunda på linje 24. Länsstyrelsen anger bad, fiske, tältplats och torrdass; strandängar och bär- och svamprik skog. Högst två dygn på samma tältplats, hund kopplad och ingen öppen eld.' },
     ],
     // "Yxlans Vandrarhem", "Köpmanholms Gästhamn" med service och "Yxlans Café" stod här utan källa och kunde inte beläggas på någon operatörssida — strukna 2026-09-21.
     accommodation: [],
-    // KÄLLA: Trafikverket, https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård"; "Färjeledens längd är 600 meter"; "överfartstiden är fyra minuter"; "Resan med vägfärjan är avgiftsfri" (läst 2026-09-19); färjelägena (Köpmanholm) nämns inte på sidan och är därför strukna ur resvägen; Waxholmsbolagets åtta bryggor och Cinderellabåtarna till Köpmanholm nämns inte heller här eftersom linje och tid inte kunnat kontrolleras
+    // KÄLLA: Trafikverket, https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård"; "Färjeledens längd är 600 meter"; "överfartstiden är fyra minuter"; "Resan med vägfärjan är avgiftsfri" (läst 2026-09-19). SL buss 632, https://kund.printhuset-sthlm.se/sl/h632.pdf (läst 2026-09-21). Waxholmsbolaget linje 24, https://kund.printhuset-sthlm.se/wa/h24.pdf — Strömkajen 08.45 → Vagnsunda 11.01 (läst 2026-09-21)
     getting_there: [
       { method: 'Bil + bilfärja', from: 'Stockholm via Furusund', desc: 'Kör mot Norrtälje och vidare till Furusund. Furusundsleden (Trafikverkets vägfärja, 600 m, fyra minuter, avgiftsfri) över till Yxlan; Blidöleden (530 m, fyra minuter, avgiftsfri) fortsätter till Blidö.', icon: '🚗' },
+      { method: 'Buss', from: 'Norrtälje busstation', desc: 'SL-buss 632 Norrtälje–Yxlan åker med färjan från Furusund och stannar vid Köpmanholm, Yxlö brygga, Yxlövik, Alsvik och Vagnsunda. Sista biten efter Köpmanholms skola körs bara om det finns resenärer i bussen.', icon: '🚌' },
+      { method: 'Waxholmsbolaget linje 24', from: 'Strömkajen via Vaxholm', time: 'ca 2 h 15 min till Vagnsunda', desc: 'Linje 24 Stockholm–Vaxholm–Blidösundet angör Vagnsunda med fast tid och Alsvik, Yxlövik, Duvnäs, Kolsvik, Yxlö och Köpmanholm utan fast tid. Sök resan i SL-appen; gäller 2 april–18 juni och 17 augusti–1 november.', icon: '⛴' },
     ],
+    transport_meta: {
+      from_city_min: 136,
+      nearest_hub: 'Furusund',
+      from_nearest_hub_min: 4,
+      operator: 'Waxholmsbolaget',
+      line: '24',
+      frequency: 'Enstaka turer per dag; de flesta bryggor utan fast tid',
+    },
     harbors: [],
     restaurants: [],
-    tips: ['Båda vägfärjorna (Furusund–Yxlan och Yxlan–Blidö) är avgiftsfria och tar fyra minuter.', 'Cykla mellan bryggorna — ön är stor nog för en heldag.'],
+    tips: [
+      'Båda vägfärjorna (Furusund–Yxlan och Yxlan–Blidö) är avgiftsfria och tar fyra minuter.',
+      'Buss 632 från Norrtälje åker med färjan över och går ända till Vagnsunda – bra om du vill vandra ledens etapp åt ett håll.',
+      'Bara Vagnsunda har fast tid på linje 24. Ska du av vid någon annan brygga, sök resan i SL-appen och kontrollera att turen angör den.',
+      'Affär, krog och boende på ön har vi inte kunnat belägga hos någon operatör – Blidö på andra sidan Blidöleden har vandrarhem vid bryggan.',
+    ],
     activity_meta: {
       // KÄLLA: Stockholm Archipelago Trail, https://stockholmarchipelagotrail.com/section/ (2026-09-17)
       vandring: { trails: 1, max_km: 24, sat: { km: 24, difficulty: 'Medel' } },
     },
     related: ['blido', 'furusund', 'graddo'],
-    tags: ['stor ö', 'bilfärja', 'cykling', 'norra', 'köpmanholm'],
+    tags: ['stor ö', 'bilfärja', 'cykling', 'vandring', 'norra', 'köpmanholm'],
     did_you_know: 'Yxlan nås med två avgiftsfria vägfärjor: Furusundsleden (600 m) från Furusund och Blidöleden (530 m) vidare till Blidö – fyra minuter vardera, enligt Trafikverket.',
     seasonal: {
       open: 'Maj–Oktober',
@@ -4935,48 +4986,72 @@ export const ISLANDS: Island[] = [
     name: 'Tynningö',
     region: 'norra',
     emoji: '🌿',
-    tagline: 'Bilfri idyllö nära Vaxholm — klippor, sommarstugor och skärgårdsro.',
+    tagline: 'Sommarvillornas ö mellan Vaxholm och Värmdö – klippor, en insjö att bada i och två vägar dit.',
+    seoTitle: 'Tynningö – färja, badplats & sommarvillornas ö',
+    seoDescription: 'Tynningö nära Vaxholm: Waxholmsbåt eller avgiftsfri vägfärja från Lagnö, badplatsen Myrholmsmaren vid insjön Stora Maren, Tynningö klack och villorna från ångbåtstiden.',
+    // Ifylld 2026-09-21 efter Toms beslut "fyll ut med belagt innehåll". Huvudkälla: Vaxholms stads "Kulturmiljöunderlag och landskapsanalys, Tynningö" (Sweco för Vaxholms stad, slutversion 2020-04-24), https://www.vaxholm.se/download/18.7540ce651827e350272a8e08/1661434105419/Bilaga%203%20-%20Kulturmilj%C3%B6underlag%20o%20.pdf — läst 2026-09-21. Restaurang/affär: sökt, ingen operatörssida hittad — står därför inte här.
     description: [
-      // Areal, folkmängd, "bilfri", badplatsnamn, gångstigar och stuguthyrning stod här utan källa och är strukna 2026-09-21. Det vi kan belägga är resvägen (Waxholmsbolaget linje 4 och Trafikverkets vägfärja) — se KÄLLA nedan.
-      'Tynningö ligger strax öster om Vaxholm och nås både med Waxholmsbolagets båt till Norra Tynningö och med Trafikverkets avgiftsfria vägfärja från Lagnö på Värmdö. Det är en sommarstugeö med klippor och vatten runt om, och närheten till Vaxholm gör den till en enkel halvdagstur.',
-      'Räkna inte med service: ta med det du behöver. Vad ön har i övrigt – bad, stigar, boende – har vi ingen källa på och skriver därför inte.',
+      // KÄLLA: Vaxholms stad, Kulturmiljöunderlag Tynningö 2020, faktaruta s. 5: "Areal: cirka 441 hektar. Tynningö klack ligger ca 50 meter över havet. Sammanhängande sötvattensjö (Maren, Myrholmsmaren, Lilla Maren …) cirka 1500 m lång och 100 m bred. Tynningö sträcker ut sig närmare 6 km i nordväst-sydöst riktning mellan Vaxholm och Värmdö. Vegetation … hälltallskog med mellanliggande lersvackor med stråk av örtrik skog och alkärr."
+      'Tynningö sträcker sig närmare sex kilometer mellan Vaxholm och Värmdö, mitt i inloppet till Stockholm. Ön är omkring 441 hektar med hälltallskog på höjderna och lövskog i svackorna, och tvärs igenom den ligger en sammanhängande insjö, Maren, ungefär en och en halv kilometer lång. Från Tynningö klack, öns högsta punkt cirka 50 meter över havet, ser du ut över farleden.',
+      // KÄLLA: samma rapport, kap. 06 Historik "Sommarvillor och ångbåtstrafik": Höganäs (Fyrkanten) köpt 1874 av snickarmästare Munthe, ångbåtstrafik till Höganäs 1877, Östra Tynningö reguljärtrafik 1875, "Som mest hade Tynningö ett tjugotal samtidigt trafikerade bryggor"; kap. 03: "sommarvillor uppförda 1870–1920 … Två bryggor är fortfarande i bruk"; kap. 02: "Tynningö norra delar ligger inom riksintresse för kulturmiljövården Norra Boo - Vaxholm - Oxdjupet - Lindalssundet [AB 51, 58]"
+      'Det som ger ön dess karaktär är sommarvillorna. När Höganäs styckades upp 1874 och ångbåtarna började gå 1877 byggdes påkostade villor på klippor och strandtomter runt hela ön – som mest hade Tynningö ett tjugotal ångbåtsbryggor i trafik samtidigt. Villorna från 1870–1920 står till stor del kvar, och öns norra del ingår i riksintresset för kulturmiljövården längs inloppet till Stockholm.',
+      // KÄLLA: samma rapport, kap. 05 Nuläge: "Många av de målpunkter som finns på ön vänder sig främst till de boende och inte till turister"; "strandlinjen är i huvudsak privatiserad"; "det finns få allmänna platser att lägga till sin båt eller bada". Vaxholms stad, badplatser, https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Badet Myrholmsmaren ligger vid sjön Stora Maren … sköts av Tynningö Idrottsförening" (läst 2026-09-21)
+      'Räkna med en ö för dem som bor här snarare än för turister: strandlinjen är till största delen privat och det finns få allmänna platser att lägga till eller bada – det konstaterar Vaxholms stads egen landskapsanalys. Öns allmänna badplats, Myrholmsmaren, ligger i stället inne på ön vid insjön Stora Maren. Affär eller krog har vi inte kunnat belägga hos någon källa vi litar på, så ta med det du behöver.',
     ],
     facts: {
       season: 'Juni–Augusti',
       travel_time: 'ca 1–1,25 h med Waxholmsbåt (linje 4) från Strömkajen; vägfärja från Lagnö',
-      character: 'Sommarstugeö nära Vaxholm, båt eller vägfärja',
-      best_for: 'Halvdagstur, klippor, skärgårdsro',
+      character: 'Sommarvillor från 1870–1920, hälltallskog, insjöbad',
+      best_for: 'Halvdagstur från Vaxholm, bad i sötvatten, utsikt från Tynningö klack',
     },
-    facts_provenance: { travel_time: 'matt', character: 'bedomning', season: 'bedomning', best_for: 'bedomning' },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
-      { icon: '🚶', name: 'Promenad och klippor', desc: 'Ta med matsäck och gå längs vägarna och ner till vattnet – det är det ön bjuder på.' },
+      // KÄLLA: Vaxholms stad, badplatser (länk ovan): "Badet Myrholmsmaren ligger vid sjön Stora Maren. Badplatsen sköts av Tynningö Idrottsförening som också anordnar simskola varje sommar. Sandstrand, Bryggor, Grillplats med fasta bänkar och lösa bord, Omklädningshytt, Baja-maja under badsäsong". Havs- och vattenmyndigheten, https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-vaxholms-stad/tynningo-myrholmsmaren.html — provsvar 2026-07-20 Tjänligt, Ingen blomning (läst 2026-09-21)
+      { icon: '🏊', name: 'Bada i Myrholmsmaren', desc: 'Kommunal badplats vid insjön Stora Maren mitt på ön: sandstrand, bryggor, grillplats med bänkar och omklädningshytt. Tynningö IF sköter badet och håller simskola varje sommar. Kommunen provtar vattnet under badsäsongen och provsvaren finns hos Havs- och vattenmyndigheten.' },
+      // KÄLLA: Kulturmiljöunderlag Tynningö 2020, kap. 06: "närliggande höjden Tynningö klack där det troligen funnit en vårdkase vilken tjänade som varningssystem när fiendeflotta kom seglande. Systemet med vårdkasar var i fullt bruk till 1700-talet"; kap. 05: "Öns högsta punkter, där i bland Tynningö klack, ger god utblick"
+      { icon: '⛰', name: 'Tynningö klack', desc: 'Öns högsta punkt, omkring 50 meter över havet, med utblick över farleden. Här stod troligen en vårdkase som varnade när fientlig flotta kom seglande – systemet var i bruk till 1700-talet.' },
+      // KÄLLA: Kulturmiljöunderlag Tynningö 2020, kap. 03: "rik uppsättning av sommarvillor uppförda 1870–1920 i välexponerade lägen på klippor och tomter utmed vattnet till vilka man tog sig med ångbåt"; kap. 05: "Ofta har fastigheterna privata stränder med egna bryggor"; "Många av de större husen … lättare att observera från vattnet"
+      { icon: '🏛', name: 'Sommarvillorna', desc: 'Villor från 1870–1920 i exponerade lägen på klippor och strandtomter, byggda när ångbåten gjorde ön till sommarnöje för Stockholms borgerskap. Tomterna är privata – villorna ses bäst från vattnet eller från vägarna.' },
+      // KÄLLA: Kulturmiljöunderlag Tynningö 2020, kap. 05: "Huvudvägarna på Tynningö kopplar ihop öns tre bryggor … Över ön löper stigar och stråk … vissa av dessa är markerade och andra inte". Vaxholms stad (värd), "Mark och Vandringsleder på Tynningö 2011", TGEF, https://www.vaxholm.se/download/18.5dda784b16d6ccd6b031b3f3/1569999357738/Mark_och_vandringsleder_pa_Tynningo_2011.pdf — "Ca 300 tomtägare äger genom TGEF, Tynningö Gård Ekonomisk Förening, runt 100 hektar skogsmark på ön" (läst 2026-09-21; dokumentet är från 2011)
+      { icon: '🚶', name: 'Vägar och stigar', desc: 'Huvudvägarna binder ihop öns tre bryggor och över ön går stigar, en del markerade. Skogen – runt 100 hektar enligt en beskrivning från 2011 – förvaltas av Tynningö Gård Ekonomisk Förening, som beskrev leder söder om Tynningövägen.' },
     ],
     accommodation: [],
-    // KÄLLA: Waxholmsbolaget linje 4, https://kund.printhuset-sthlm.se/wa/h4.pdf — "4A STOCKHOLM – VAXHOLM – RAMSÖSUND – ÅLSTÄKET", gäller 2 april–18 juni och 17 augusti–12 december 2026; angör Norra Tynningö: Strömkajen 07.45 → Norra Tynningö 08.59 (1 h 14 min), 11.00 → 12.23 (1 h 23 min); Vaxholm avg. 08.52 → Norra Tynningö 08.59 (7 min), 12.15 → 12.23 (8 min) (läst 2026-09-19); linje 83 nämns inte i SL:s eller Waxholmsbolagets tidtabellsindex för hösten 2026 (senaste 83-tabellen gällde t.o.m. 29 april 2025) ; Trafikverket, https://www.trafikverket.se/resa-och-trafik/farjetrafik/tynningoleden/ — "Tynningöleden går mellan Lagnö på Värmdö och Tynningö i Stockholms skärgård"; "Färjeledens längd är 1000 meter lång"; "Resan med vägfärjan är avgiftsfri" (läst 2026-09-19)
+    // KÄLLA: Waxholmsbolaget linje 4, https://kund.printhuset-sthlm.se/wa/h4.pdf — "4A STOCKHOLM – VAXHOLM – RAMSÖSUND – ÅLSTÄKET", gäller 2 april–18 juni och 17 augusti–12 december 2026; angör Norra Tynningö, Norehill (Tynningö) och Orrlunda (Tynningö): Strömkajen 07.45 → Norra Tynningö 08.59 (1 h 14 min), 11.00 → 12.23 (1 h 23 min); Vaxholm avg. 08.52 → Norra Tynningö 08.59 (7 min), 12.15 → 12.23 (8 min); Norehill och Orrlunda "Xb" = utan fast tid, beställs (läst 2026-09-19 och 2026-09-21); linje 83 nämns inte i SL:s eller Waxholmsbolagets tidtabellsindex för hösten 2026 (senaste 83-tabellen gällde t.o.m. 29 april 2025) ; Trafikverket, https://www.trafikverket.se/resa-och-trafik/farjetrafik/tynningoleden/ — "Tynningöleden går mellan Lagnö på Värmdö och Tynningö i Stockholms skärgård"; "Färjeledens längd är 1000 meter lång"; "Resan med vägfärjan är avgiftsfri" (läst 2026-09-19 och 2026-09-21)
     getting_there: [
       // Linje 83 finns inte längre: kund.printhuset-sthlm.se/wa/h83.pdf svarar 404 (2026-09-19). Norra Tynningö ligger nu på linje 4A enligt h4.pdf ovan.
-      { method: 'Waxholmsbolaget linje 4', from: 'Strömkajen via Vaxholm', time: 'ca 1–1,25 h', desc: 'Linje 4A (Stockholm–Vaxholm–Ramsösund–Ålstäket) angör Norra Tynningö. Vissa turer är beställningstrafik och måste bokas i SL-appen i förväg — kontrollera tidtabellen. Gäller 2 april–18 juni och 17 augusti–12 december.', icon: '⛴' },
-      { method: 'Bilfärja', from: 'Lagnö (Värmdö)', time: 'några minuter', desc: 'Trafikverkets vägfärja Tynningöleden Lagnö–Tynningö, ca 1 000 m, avgiftsfri.', icon: '🚗' },
+      { method: 'Waxholmsbolaget linje 4', from: 'Strömkajen via Vaxholm', time: 'ca 1–1,25 h', desc: 'Linje 4A (Stockholm–Vaxholm–Ramsösund–Ålstäket) angör Norra Tynningö med fast tid, och Norehill och Orrlunda efter beställning. Vissa turer är beställningstrafik och måste bokas i SL-appen i förväg — kontrollera tidtabellen. Gäller 2 april–18 juni och 17 augusti–12 december.', icon: '⛴' },
+      { method: 'Bilfärja', from: 'Lagnö (Värmdö)', time: 'några minuter', desc: 'Trafikverkets vägfärja Tynningöleden Lagnö–Tynningö, ca 1 000 m, avgiftsfri. Tidtabell och trafikinfo i appen Trafikinfo Färjerederiet.', icon: '🚗' },
     ],
     transport_meta: {
-      from_city_min: 70,
+      from_city_min: 74,
       nearest_hub: 'Vaxholm',
-      from_nearest_hub_min: 20,
+      from_nearest_hub_min: 7,
       operator: 'Waxholmsbolaget',
-      frequency: 'Sommartid dagligen, vinter mer sällan',
+      line: '4',
+      frequency: 'Några turer per dag; Norehill och Orrlunda efter beställning',
     },
     harbors: [
     ],
     restaurants: [],
     tips: [
-      'Ta med mat och dryck — räkna inte med service på ön.',
-      'Halvdagsutflykt från Vaxholm: linje 4 tar under tio minuter Vaxholm–Norra Tynningö enligt tidtabellen.',
+      'Badet ligger vid en insjö, inte vid havet: Myrholmsmaren vid Stora Maren är öns allmänna badplats, med sandstrand och grillplats.',
+      'Strandlinjen är till största delen privat. Kommer du med egen båt, räkna inte med att hitta en allmän plats att lägga till.',
+      'Halvdagsutflykt från Vaxholm: linje 4 tar sju–åtta minuter Vaxholm–Norra Tynningö enligt tidtabellen.',
       'Vissa turer på linje 4 är beställningstrafik — kontrollera i SL-appen innan du åker.',
     ],
     related: ['vaxholm', 'resaro', 'rindo'],
-    tags: ['bilfritt', 'bad', 'norra skärgård', 'dagsutflykt', 'familjer'],
-    did_you_know: 'Tynningö har två vägar in: Waxholmsbolagets båt till Norra Tynningö och Trafikverkets vägfärja Tynningöleden från Lagnö – 1 000 meter, avgiftsfri.',
-    amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: false },
+    tags: ['bad', 'sommarvillor', 'norra skärgård', 'dagsutflykt', 'vägfärja'],
+    // KÄLLA: Kulturmiljöunderlag Tynningö 2020, kap. 06: "Några byggnader från Stockholmsutställningen 1897 kom att flyttas till Tynningö, exempelvis villa Björkudden och nuvarande bostadshuset Kvarnen."
+    did_you_know: 'Några byggnader från Stockholmsutställningen 1897 flyttades ut till Tynningö – bland dem villa Björkudden och huset som i dag heter Kvarnen.',
+    amenities: { restaurant: false, shop: false, accommodation: false, beach: true, camping: false },
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: Vaxholms stad, badplatser (länk ovan); HaV Tynningö, Myrholmsmaren (länk ovan) — läst 2026-09-21
+          { name: 'Myrholmsmaren', type: 'sandstrand', desc: 'Kommunal badplats vid insjön Stora Maren inne på ön: sandstrand, bryggor, grillplats med fasta bänkar, omklädningshytt och toalett under badsäsong. Simskola varje sommar genom Tynningö IF.', child_friendly: true, directions: 'Vid sjön Stora Maren inne på ön' },
+        ],
+      },
+    },
     seasonal: {
       open: 'Maj–September',
       peak: 'Juli–Augusti',
