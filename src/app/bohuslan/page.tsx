@@ -251,7 +251,8 @@ export default function BohuslanPage() {
  Hummersäsongen — september och oktober
  </h2>
  <p>
- Hummersäsongen öppnar andra onsdagen i september — ett datum som många seglare antecknar röd i kalendern. Då släpps tiotusentals färska humrar från fiskare runt västkusten, och restauranterna börjar sina klassiska hummerkokningar.
+ {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html (läst 2026-09-21) */}
+ Hummerpremiären infaller första måndagen efter 20 september, klockan 07.00 — 2026 är det 21 september. Fritidsfiskare får fiska till och med 30 november, och restaurangerna längs kusten tar in årets första hummer samma vecka.
  </p>
  <p>
  De bästa krogarna för hummerupplevelse ligger i <strong>Kungshamn, Smögen, Lysekil och Grebbestad</strong>. Här får du autentisk västkustkvalitet — malen hummar med smör, mänad från källan samma morgon. Mängden gäster är stor — <strong>boka bord i god tid</strong> om du vill sitta någonstans populärt.
