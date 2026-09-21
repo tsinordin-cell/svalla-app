@@ -124,7 +124,7 @@ Stavsnäs → Sandhamn: ca 15 NM, segling 2-3h.
 === SÄSONG & VÄDER ===
 Vindförhållanden: Sydvästliga vindar vanligast, bäst för norrut-segling på morgonen.
 Högsommar (jun-aug): Trångt vid Sandhamn och Grinda — boka brygga ALLTID i förväg. Vaxholm och Fjäderholmarna hanterar trycket bättre. Sandhamn i juli är som Stureplan på vattnet — undvik om du inte gillar det.
-Sensommar (aug-sep): Bästa perioden för erfarna. Vattnet fortfarande varmt (17-21°C), folk börjar dra hem efter midsommar-trycket. Kräftpremiären (alltid första onsdagen i augusti) markerar övergången — folk byter från badliv till sensommarliv.
+Sensommar (aug-sep): Bästa perioden för erfarna. Vattnet fortfarande varmt (17-21°C), folk börjar dra hem efter midsommar-trycket. Kräftpremiären (av tradition första onsdagen i augusti, inget fastställt datum sedan 1994) markerar övergången — folk byter från badliv till sensommarliv.
 September: Bästa månaden för de som vet vad de håller på med. Lugnt, vackert, havsluften skarpare. Fortfarande badbart om du är lite härdad. Kolla öppettider noga — de flesta restauranger håller dock öppet september ut. Grinda Wärdshus och Sandhamns Värdshus: öppna in i oktober. Utö Värdshus: öppet till mitten av september. Finnhamns Krog och Nåttarö Krog: stänger vanligtvis kring mitten/slutet av september.
 Oktober och framåt: Glesbygd. Vaxholm och Utö har mest kvar öppet. Ring alltid innan.
 Badvatten: Juli-aug 18-22°C. September 14-17°C. Oktober under 13°C — bara för de härdiga.
@@ -174,7 +174,7 @@ Badplatser Öland: Neptuni Åkrar, Böda sand (norra Öland, bra familjebad), Ka
 OBS: Säg ALDRIG att man tar färja till Öland. Det finns ingen. Det är Ölandsbron som gäller.
 
 === KRÄFTSKIVA I SKÄRGÅRDEN ===
-Kräftpremiären: alltid FÖRSTA ONSDAGEN I AUGUSTI. 2026: 5 augusti. Det är inte lagkrav på att äta just då — men traditionen styr. Kräftorna ska vara dagsfärska, kokta i saltlag med rikligt dill.
+Kräftpremiären: av tradition FÖRSTA ONSDAGEN I AUGUSTI (fiskeförbudet upphävdes 1994, enligt Institutet för språk och folkminnen). 2026: 5 augusti. Inget fastställt datum — traditionen styr. Kräftorna ska vara dagsfärska, kokta i saltlag med rikligt dill.
 
 Hur man gör det i skärgården:
 - Naturhamn/brygga: Ta med allt. Kräftor förbeställda från fiskhandlare (beställ 1-2 veckor innan, de tar slut). Papperslyktor i björkarna. Snaps och snapsglas. Extra dill. Grilla efteråt.
