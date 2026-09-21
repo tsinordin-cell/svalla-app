@@ -3243,30 +3243,27 @@ export const ISLANDS: Island[] = [
     region: 'norra',
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
-    tagline: 'Halvö i norra skärgården med direktbuss och en av regionens finaste stränder.',
+    tagline: 'Rådmansölandet i norra skärgården – hit kör du hela vägen, med gästhamn och sjömack.',
     description: [
-      'Gräddö är en halvö i Roslagens skärgård i Norrtälje kommun, broförbunden med fastlandet via E18 och väg 76. Det gör Gräddö till en av de mest tillgängliga skärgårdsplatserna i norra Stockholms län, man kör hela vägen utan färja.',
-      'Halvön är populär för dagsutflykter från Stockholm. Sommartid finns båtutflykter till Tjockö, Fejan och vidare ut i Furusunds skärgård. Gräddöbadet är en lättillgänglig sandstrand och området har flera mindre gästhamnar och restauranger längs kusten.',
-      'Gräddö passar för bilburna familjer som vill nå Roslagens skärgård utan båt, för dagsturer från Norrtälje, eller som start- och slutpunkt för båtutflykter mot Furusund och de yttre öarna.',
+      // Badplats, "en av regionens finaste stränder", busslinje, gång- och cykelbana, hotell och båtutflykter stod här utan källa och är strukna 2026-09-21. Kvar: det gästhamnen och Sjöhistoriska museet säger.
+      'Gräddö ligger på Rådmansölandet i Norrtälje kommun, i Roslagens skärgård, och nås med bil hela vägen – ingen färja. Här finns Gräddö Sjömack och Gästhamn med gästplatser, el, färskvatten, dusch och bränsle, enligt hamnens egen sida.',
+      'Platsen passar den som vill nå norra skärgården utan båt, eller som vill börja en båttur här med tank fylld. Vad kusten runt om erbjuder i bad och mat har vi ingen källa på och skriver därför inte.',
     ],
 
     facts: {
-      travel_time: '90 min med buss från Stockholm',
-      character: 'Lättillgänglig, sandstrand, norra skärgård',
+      travel_time: 'Bil hela vägen via Norrtälje – ingen färja',
+      character: 'Rådmansölandet, gästhamn med sjömack',
       season: 'April–Oktober',
-      best_for: 'Bad, dagstur, barnfamiljer, bilresenärer',
+      best_for: 'Bilresenärer, båtfolk som tankar, dagstur',
     },
+    facts_provenance: { travel_time: 'bedomning', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
-      { icon: '🏖', name: 'Gräddöbadet', desc: 'En av norra skärgårdens populäraste sandstränder. Grunt och barnvänligt.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Ny gång- och cykelbana vid Gräddö hamn (1,1 km). Cykla vidare längs Rådmansölandet mot Räfsnäs och Kapellskär, ca 20 km enkel väg längs en av Roslagens vackraste kustlinjer.' },
-      { icon: '⛵', name: 'Segling', desc: 'Välplacerat stopp på väg norrut längs Furusundsleder.' },
+      { icon: '⛵', name: 'Gästhamn och sjömack', desc: 'Gräddö Sjömack och Gästhamn: gästplatser, el, vatten, dusch, bensin och diesel enligt hamnens egen sida.' },
     ],
-    accommodation: [
-      { name: 'Gräddö Gård', type: 'Hotell', desc: 'Konferens- och övernattning på gård i naturskönt läge.' },
-    ],
+    accommodation: [],
     getting_there: [
-      { method: 'Buss', from: 'Stockholm', time: '90 min', desc: 'SL-buss 637 mot Norrtälje och vidare.', icon: '🚌' },
-      { method: 'Bil', from: 'Stockholm', time: '75 min', desc: 'E18 mot Norrtälje, sedan väg 76 mot Gräddö.', icon: '🚗' },
+      { method: 'Bil', from: 'Stockholm via Norrtälje', desc: 'Kör mot Norrtälje och vidare ut på Rådmansölandet mot Gräddö. Ingen färja.', icon: '🚗' },
+      { method: 'Buss', from: 'Norrtälje', desc: 'SL-buss från Norrtälje busstation mot Rådmansö – sök resan i SL-appen; linjenummer och restid har vi inte kontrollerat.', icon: '🚌' },
     ],
     harbors: [
       // KÄLLA: https://www.graddosjomack.se/ — "Gräddö Sjömack och Gästhamn", gästplatser med el, färskvatten, dusch; sjömack med bensin och diesel
@@ -3275,8 +3272,8 @@ export const ISLANDS: Island[] = [
     restaurants: [
     ],
     tips: [
-      'Gräddöbadet är bäst tidig morgon — sandstranden fylls snabbt på varma dagar.',
-      'Gräddö är ett bra alternativ för den utan båt som vill uppleva norra skärgårdens karaktär.',
+      'Gräddö är ett bra alternativ för den utan båt som vill nå norra skärgårdens karaktär med bil.',
+      'Tankar du båten här: hamnens sida anger både bensin och diesel.',
     ],
     related: ['furusund', 'blido', 'norrora'],
     tags: ['sandstrand', 'lättillgänglig', 'norra', 'bad', 'dagstur'],
@@ -3286,7 +3283,7 @@ export const ISLANDS: Island[] = [
       open: 'Maj–Oktober',
       peak: 'Juli',
       best: 'Juni eller September',
-      bestReason: 'Gräddö är en stor norrskärgårdsö med karaktär och egna hamnar — bäst besökt utanför peak.',
+      bestReason: 'Lugnare i hamnen utanför juli.',
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
 
@@ -3618,36 +3615,40 @@ export const ISLANDS: Island[] = [
     emoji: '🚲',
     tagline: 'En av norra skärgårdens största öar — bilfärja, cykling och Köpmanholms hamn',
     description: [
-      'Yxlan är en av norra skärgårdens största öar, cirka 17 km², och ligger mellan Furusund och Blidö. Köpmanholm vid öns nordspets är öns huvudort, med gästhamn, butiker och restauranger. Waxholmsbolaget angör åtta bryggor på ön: Yxlö, Alsvik, Brokholmen, Duvnäs, Kolsvik, Köpmanholm, Vagnsunda och Yxlövik.',
-      'Ön är broförbunden i båda riktningar via Trafikverkets avgiftsfria bilfärjor: Furusundsleden (600 meter, 4 minuter) från Furusund och Blidöleden (530 meter, 4 minuter) över till Blidö. Det gör Yxlan till en av de mest tillgängliga större öarna i norra skärgården.',
-      'Yxlan passar för cykelsemester, vandring och båtutflykter med övernattning på land. Köpmanholm är ett bra startläge för seglare som vill utforska Furusunds- och Blidöleden.',
+      // KÄLLA: Trafikverket, Furusundsleden (https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/) — Furusund–Yxlan, 600 m, fyra minuter, avgiftsfri; Blidöleden (https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/) — Yxlan–Blidö, 530 m, 4 minuter, avgiftsfri (båda lästa 2026-09-21). Areal, "huvudort", butiker, Waxholmsbolagets bryggor: ingen källa — struket 2026-09-21.
+      'Yxlan ligger mellan Furusund och Blidö i norra skärgården och nås med bil: Trafikverkets vägfärjor går både från Furusund (Furusundsleden, 600 meter, fyra minuter) och vidare till Blidö (Blidöleden, 530 meter, fyra minuter). Båda är avgiftsfria.',
+      'Det gör Yxlan till en av de mest lättillgängliga större öarna i Roslagen – utan fast bro, men med två färjor som kör i skytteltrafik. Köpmanholm på Yxlansidan av Furusundsleden är den plats de flesta möter först.',
+      'Ön passar för cykling och vandring med bilen kvar på fastlandet eller med. Stockholm Archipelago Trail har en etapp över ön.',
     ],
-    facts: { travel_time: '1,5 h med bil + bilfärja från Stockholm', character: 'Stor ö, bilförbunden via färja, Köpmanholm', season: 'Maj–oktober', best_for: 'Cykling, vandring, segling, dagsutflykt' },
+    facts: { travel_time: 'Bil + avgiftsfri vägfärja från Furusund (fyra minuter)', character: 'Stor ö med bilfärja åt två håll, Köpmanholm', season: 'Maj–oktober', best_for: 'Cykling, vandring, dagsutflykt med bil' },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
-      { icon: '🚲', name: 'Cykling', desc: 'Stor ö med bilfärja från Räfsnäs (Norrtälje). Cykla runt från Köpmanholm längs kustvägar — räkna med heldagstur. Bra bas för seglare och naturälskare i norra skärgårdens ytterkanter.' },
-      { icon: '🏊', name: 'Klipp- och sandbad', desc: 'Flera badplatser längs kusten, både klippor och mindre sandstränder.' },
-      { icon: '⛵', name: 'Hamnliv i Köpmanholm', desc: 'Öns huvudort med gästhamn, restauranger och småbåtsservice.' },
+      // Tidigare stod "bilfärja från Räfsnäs" — Räfsnäs ligger på Rådmansö och färjan därifrån går till Tjockö, inte Yxlan. Struket 2026-09-21.
+      { icon: '🚲', name: 'Cykling', desc: 'Ta färjan från Furusund och cykla över ön mot Blidöleden – vägarna binder ihop bryggorna.' },
+      // KÄLLA: Stockholm Archipelago Trail, https://stockholmarchipelagotrail.com/section/ (2026-09-17) — etapp över Yxlan, 24 km
+      { icon: '🚶', name: 'Vandring', desc: 'Stockholm Archipelago Trail går över Yxlan, en etapp på 24 km enligt ledens egen sida.' },
     ],
-    accommodation: [{ name: 'Yxlans Vandrarhem', type: 'Vandrarhem', desc: 'Enkelt boende med självhushåll, perfekt för naturälskare.' }],
+    // "Yxlans Vandrarhem", "Köpmanholms Gästhamn" med service och "Yxlans Café" stod här utan källa och kunde inte beläggas på någon operatörssida — strukna 2026-09-21.
+    accommodation: [],
     // KÄLLA: Trafikverket, https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård"; "Färjeledens längd är 600 meter"; "överfartstiden är fyra minuter"; "Resan med vägfärjan är avgiftsfri" (läst 2026-09-19); färjelägena (Köpmanholm) nämns inte på sidan och är därför strukna ur resvägen; Waxholmsbolagets åtta bryggor och Cinderellabåtarna till Köpmanholm nämns inte heller här eftersom linje och tid inte kunnat kontrolleras
     getting_there: [
-      { method: 'Bil + bilfärja', from: 'Stockholm via Furusund', time: '1,5 h', desc: 'E18 mot Norrtälje, sen väg 276 till Furusund. Furusundsleden (Trafikverkets vägfärja, 600 m, 4 min, avgiftsfri) över till Köpmanholm på Yxlan.', icon: '🚗' },
+      { method: 'Bil + bilfärja', from: 'Stockholm via Furusund', desc: 'Kör mot Norrtälje och vidare till Furusund. Furusundsleden (Trafikverkets vägfärja, 600 m, fyra minuter, avgiftsfri) över till Yxlan; Blidöleden (530 m, fyra minuter, avgiftsfri) fortsätter till Blidö.', icon: '🚗' },
     ],
-    harbors: [{ name: 'Köpmanholms Gästhamn', desc: 'Yxlans huvudhamn vid Köpmanholm — full service.', service: ['El', 'Vatten', 'Dusch'] }],
-    restaurants: [{ name: 'Yxlans Café', type: 'Kafé', desc: 'Hemlagad mat och kaffe i lantlig miljö vid hamnen.' }],
-    tips: ['Båda bilfärjorna (Furusund-Yxlan och Yxlan-Blidö) är avgiftsfria.', 'Cykla mellan bryggor — varje brygga har sin egen karaktär.', 'Köpmanholm är livligast under hummerveckan i september.'],
+    harbors: [],
+    restaurants: [],
+    tips: ['Båda vägfärjorna (Furusund–Yxlan och Yxlan–Blidö) är avgiftsfria och tar fyra minuter.', 'Cykla mellan bryggorna — ön är stor nog för en heldag.'],
     activity_meta: {
       // KÄLLA: Stockholm Archipelago Trail, https://stockholmarchipelagotrail.com/section/ (2026-09-17)
       vandring: { trails: 1, max_km: 24, sat: { km: 24, difficulty: 'Medel' } },
     },
     related: ['blido', 'furusund', 'graddo'],
     tags: ['stor ö', 'bilfärja', 'cykling', 'norra', 'köpmanholm'],
-    did_you_know: 'Yxlan är broförbunden med både Furusund och Blidö via två avgiftsfria bilfärjor — Furusundsleden (600 m) i väster och Blidöleden (530 m) i öster. Tillsammans gör de Yxlan till en av de mest lättillgängliga större öarna i Roslagens skärgård, trots att den saknar fast brobindelse till fastlandet.',
+    did_you_know: 'Yxlan nås med två avgiftsfria vägfärjor: Furusundsleden (600 m) från Furusund och Blidöleden (530 m) vidare till Blidö – fyra minuter vardera, enligt Trafikverket.',
     seasonal: {
       open: 'Maj–Oktober',
       peak: 'Juli',
       best: 'Juni',
-      bestReason: 'Stor norrröslagens ö — cykla och segla i juni när Köpmanholm är öppet men ännu inte fullpackat.',
+      bestReason: 'Cykla i juni när färjorna går tätt och vägarna är lugna.',
       months: ['off','off','off','off','open','open','peak','peak','open','limited','off','off'],
     },
   },
@@ -4936,27 +4937,21 @@ export const ISLANDS: Island[] = [
     emoji: '🌿',
     tagline: 'Bilfri idyllö nära Vaxholm — klippor, sommarstugor och skärgårdsro.',
     description: [
-      'Tynningö är en liten bilfri ö strax nordöst om Vaxholm, perfekt för dem som vill ha skärgårdens lugn utan att åka långt. Ön nås med Waxholmsbolaget och välkomnar besökare med klippor, badskelett och sommarstugornas täta grönska.',
-      'Det finns inga affärer, inga restauranger öppna för allmänheten, och absolut ingen stress. Tynningö är skärgården i sin renaste form: komma dit, kliva upp på en klippa och låta timmar bli till timmar.',
+      // Areal, folkmängd, "bilfri", badplatsnamn, gångstigar och stuguthyrning stod här utan källa och är strukna 2026-09-21. Det vi kan belägga är resvägen (Waxholmsbolaget linje 4 och Trafikverkets vägfärja) — se KÄLLA nedan.
+      'Tynningö ligger strax öster om Vaxholm och nås både med Waxholmsbolagets båt till Norra Tynningö och med Trafikverkets avgiftsfria vägfärja från Lagnö på Värmdö. Det är en sommarstugeö med klippor och vatten runt om, och närheten till Vaxholm gör den till en enkel halvdagstur.',
+      'Räkna inte med service: ta med det du behöver. Vad ön har i övrigt – bad, stigar, boende – har vi ingen källa på och skriver därför inte.',
     ],
     facts: {
-      area: 'ca 3 km²',
-      population: 'ca 300 (helårsboende)',
-      known_for: 'Bilfritt, nära Vaxholm, klippor och bad',
       season: 'Juni–Augusti',
-    
-      travel_time: 'ca 1–1,25 h med Waxholmsbåt (linje 4) från Strömkajen; bilfärja från Lagnö',
-      character: 'Bilfritt, sommarstugeö',
-      best_for: 'Bad, barnfamiljer, skärgårdsro',
+      travel_time: 'ca 1–1,25 h med Waxholmsbåt (linje 4) från Strömkajen; vägfärja från Lagnö',
+      character: 'Sommarstugeö nära Vaxholm, båt eller vägfärja',
+      best_for: 'Halvdagstur, klippor, skärgårdsro',
     },
+    facts_provenance: { travel_time: 'matt', character: 'bedomning', season: 'bedomning', best_for: 'bedomning' },
     activities: [
-      { icon: '🏊', name: 'Klippbad', desc: 'Klara vatten runt hela ön. Hoppklippor och grunda sandvikar på öns södra sida.' },
-      { icon: '🚶', name: 'Promenader', desc: 'Välmärkta gångstigar runt ön. Kombinera med ett picknick­stopp vid vattnet.' },
-      { icon: '⛵', name: 'Segla till', desc: 'Populärt mål för dagsseglare från Stockholm och Vaxholm. Gott ankrings­läge på öns sydöstra sida.' },
+      { icon: '🚶', name: 'Promenad och klippor', desc: 'Ta med matsäck och gå längs vägarna och ner till vattnet – det är det ön bjuder på.' },
     ],
-    accommodation: [
-      { name: 'Sommarstugor Tynningö', type: 'Stugor', desc: 'Privata stuguthyrningar via Airbnb och lokala uthyrare. Boka tidigt.' },
-    ],
+    accommodation: [],
     // KÄLLA: Waxholmsbolaget linje 4, https://kund.printhuset-sthlm.se/wa/h4.pdf — "4A STOCKHOLM – VAXHOLM – RAMSÖSUND – ÅLSTÄKET", gäller 2 april–18 juni och 17 augusti–12 december 2026; angör Norra Tynningö: Strömkajen 07.45 → Norra Tynningö 08.59 (1 h 14 min), 11.00 → 12.23 (1 h 23 min); Vaxholm avg. 08.52 → Norra Tynningö 08.59 (7 min), 12.15 → 12.23 (8 min) (läst 2026-09-19); linje 83 nämns inte i SL:s eller Waxholmsbolagets tidtabellsindex för hösten 2026 (senaste 83-tabellen gällde t.o.m. 29 april 2025) ; Trafikverket, https://www.trafikverket.se/resa-och-trafik/farjetrafik/tynningoleden/ — "Tynningöleden går mellan Lagnö på Värmdö och Tynningö i Stockholms skärgård"; "Färjeledens längd är 1000 meter lång"; "Resan med vägfärjan är avgiftsfri" (läst 2026-09-19)
     getting_there: [
       // Linje 83 finns inte längre: kund.printhuset-sthlm.se/wa/h83.pdf svarar 404 (2026-09-19). Norra Tynningö ligger nu på linje 4A enligt h4.pdf ovan.
@@ -4974,20 +4969,20 @@ export const ISLANDS: Island[] = [
     ],
     restaurants: [],
     tips: [
-      'Ta med all mat — ingen affär på ön.',
-      'Perfekt halvdagsutflykt kombinerat med Vaxholm: ta morgonbåten, bada, ta kvällsbåten tillbaka.',
+      'Ta med mat och dryck — räkna inte med service på ön.',
+      'Halvdagsutflykt från Vaxholm: linje 4 tar under tio minuter Vaxholm–Norra Tynningö enligt tidtabellen.',
+      'Vissa turer på linje 4 är beställningstrafik — kontrollera i SL-appen innan du åker.',
     ],
     related: ['vaxholm', 'resaro', 'rindo'],
     tags: ['bilfritt', 'bad', 'norra skärgård', 'dagsutflykt', 'familjer'],
-    did_you_know: 'Tynningö är en av öarna i det historiska Östersjö­archipelaget nära Vaxholm, en stad som sedan 1600-talet tjänat som Stockholm­s yttre försvarslinje.',
-    amenities: { restaurant: false, shop: false, accommodation: true, beach: true, camping: false },
-    activity_meta: { bad: { beaches: ['Södra klippbaden', 'Sandvik östra'] } },
+    did_you_know: 'Tynningö har två vägar in: Waxholmsbolagets båt till Norra Tynningö och Trafikverkets vägfärja Tynningöleden från Lagnö – 1 000 meter, avgiftsfri.',
+    amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: false },
     seasonal: {
       open: 'Maj–September',
       peak: 'Juli–Augusti',
       best: 'Juni eller Augusti',
-      bestReason: 'Bilfritt, nära Vaxholm och klippbaden är på topp. Perfekt halvdagstur kombinerat med Vaxholm.',
-      warning: 'Ingen affär eller restaurang på ön. Ta alltid med mat och dryck.',
+      bestReason: 'Nära Vaxholm och lugnt – en halvdagstur när Vaxholm är fullt.',
+      warning: 'Räkna inte med affär eller restaurang på ön. Ta med mat och dryck.',
       months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
     },
   },

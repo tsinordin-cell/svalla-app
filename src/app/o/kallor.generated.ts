@@ -2385,14 +2385,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/",
       "org": "Trafikverket",
-      "vad": "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård; Färjeledens längd är 600 meter; överfartstiden är fyra minuter; Resan med vägfärjan är avgiftsfri",
+      "vad": "Furusund–Yxlan, 600 m, fyra minuter, avgiftsfri; Blidöleden ( — Yxlan–Blidö, 530 m, 4 minuter, avgiftsfri (båda lästa 2026-09-21). Areal, \"huvudort\", butiker, Waxholmsbolagets bryggor: ingen källa — struket 2026-09-21.",
       "last": "2026-09-19",
       "myndighet": true
     },
     {
       "url": "https://stockholmarchipelagotrail.com/section/",
       "org": "Stockholm Archipelago Trail",
-      "vad": "",
+      "vad": "etapp över Yxlan, 24 km",
       "last": null,
       "myndighet": false
     }
