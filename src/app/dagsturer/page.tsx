@@ -20,7 +20,7 @@ export const metadata: Metadata = {
  'dagsturer stockholms skärgård',
  ],
  openGraph: {
- title: 'Dagsturer i Stockholms skärgård — Bästa dagsutflykterna med båt | Svalla',
+ title: 'Dagsturer i Stockholms skärgård — Bästa dagsutflykterna med båt',
  description: 'De bästa dagsturerna från Stockholm till skärgården. Fjäderholmarna, Vaxholm, Sandhamn, Grinda och fler — planera din dagstur.',
  url: 'https://svalla.se/dagsturer',
  },
