@@ -86,7 +86,7 @@ export const SEASON_GUIDES: SeasonGuide[] = [
     tips: [
       'Åk ut sista augustiveckan för de bästa kombinationerna: fullt öppet, men lite lugnare.',
       'Boka havsbastu — bastusäsongen börjar bli attraktiv mot slutet av månaden.',
-      'Hummerfiske öppnar sista helgen i september — börja planera redan i augusti.',
+      'Hummerpremiären på västkusten är första måndagen efter 20 september (2026: 21 september) — börja planera redan i augusti.', // KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html (läst 2026-09-21)
       'Kolla in bilfria öar för en cykeldag — träden börjar bli gula i slutet av månaden.',
       'Natthimlen börjar bli mörkare igen — perfekt för stjärnskådning i yttre skärgården.',
     ],
