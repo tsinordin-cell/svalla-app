@@ -28,7 +28,7 @@ export const metadata: Metadata = {
  'bohuslän naturhamnar',
  ],
  openGraph: {
- title: 'Bohuslän — Segla västkusten | Svalla',
+ title: 'Bohuslän — Segla västkusten',
  description: 'Logga dina båtturer och hitta de bästa platserna längs Bohusläns kust.',
  url: 'https://svalla.se/bohuslan',
  },
