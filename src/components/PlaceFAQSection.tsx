@@ -22,6 +22,7 @@ interface Props {
   websiteUrl?: string | null
   bookingUrl?: string | null
   openingHours?: string | null
+  hoursVerifiedAt?: string | null
   facilities?: string[] | null                  // för "vad finns här"-fråga
   bestFor?: string[] | null
   hasGuestHarbor?: boolean                      // true om gästhamn-faciliteter finns
@@ -31,7 +32,7 @@ interface Props {
 export default function PlaceFAQSection({
   name, type, island, region,
   formattedAddress, phone, websiteUrl, bookingUrl,
-  openingHours, facilities, bestFor,
+  openingHours, hoursVerifiedAt, facilities, bestFor,
   hasGuestHarbor, approachNotes,
 }: Props) {
   const faqs: Array<{ q: string; a: string }> = []
@@ -81,10 +82,13 @@ export default function PlaceFAQSection({
   }
 
   // ── 5. När har de öppet? ──
-  if (openingHours) {
+  // Bara kontrollerade öppettider blir ett FAQ-svar (och därmed FAQPage-schema).
+  // Obekräftad fritext presenterades tidigare som "Aktuella öppettider".
+  if (openingHours && hoursVerifiedAt) {
+    const datum = new Date(hoursVerifiedAt).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })
     faqs.push({
       q: `När har ${name} öppet?`,
-      a: `Aktuella öppettider: ${openingHours}. Kontrollera alltid ${websiteUrl ? 'hemsidan' : 'med platsen'} för säsongsavvikelser.`,
+      a: `Enligt uppgifter kontrollerade ${datum}: ${openingHours}. Tiderna kan ändras under säsongen – kontrollera ${websiteUrl ? 'hemsidan' : 'med platsen'} före besöket.`,
     })
   }
 
