@@ -730,7 +730,7 @@ export default function OstlistanPage() {
                   variant="inline"
                   source={`ostlistan-${list.id}`}
                   title="Vill du ha fler tips som dessa?"
-                  description="Varannan tisdag — öppna öar, insider-tips och det vi inte publicerar annars. Gratis."
+                  description="Säsongsstarter och nya guider, när det händer något. Gratis, inga annonser."
                   buttonLabel="Prenumerera gratis →"
                 />
               </div>
@@ -753,7 +753,7 @@ export default function OstlistanPage() {
             Håll dig uppdaterad om skärgården
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 15, margin: '0 0 24px', lineHeight: 1.6 }}>
-            Nyhetsbrevet skickas varannan tisdag — öppna öar, säsongsuppdateringar och tips du inte hittar på TripAdvisor.
+            Nyhetsbrevet berättar när säsongen drar igång, när guider uppdateras och när båtlinjer ändras.
           </p>
           <EmailSignup
             variant="inline"
