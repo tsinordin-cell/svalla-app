@@ -354,7 +354,7 @@ export default async function ActivityTypePage({ params }: Props) {
             variant="card"
             source={`aktivitet-${activity.slug}`}
             title={`Mer om ${activity.shortName.toLowerCase()} i skärgården`}
-            description="Nya guider, säsongstips och insidertips direkt i inkorgen. Varannan tisdag."
+            description="Nya guider och säsongsnytt direkt i inkorgen. Inga annonser."
           />
         </div>
       </main>
