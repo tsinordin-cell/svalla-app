@@ -329,6 +329,65 @@ function harBaraSvagKalla(rader, i) {
   return sagSvag
 }
 
+
+/**
+ * ÅRSDATUM — handskrivna premiärdatum jämförs mot regeln i src/lib/arsdatum.ts.
+ *
+ * Bakgrund 2026-09-21: hummerpremiären stod på sju sidor med sex olika datum,
+ * och den mest visade sidan sa "lördag 26 september" på premiärdagen 21 september.
+ * Räknesättet nedan är samma som i src/lib/arsdatum.ts (som har vitest);
+ * skriptet självtestar mot HaV:s och Isofs egna exempel innan det körs.
+ */
+const utcDag = (ar, m0, d) => new Date(Date.UTC(ar, m0, d, 12))
+const forstaVeckodagFran = (fran, vd) => utcDag(fran.getUTCFullYear(), fran.getUTCMonth(), fran.getUTCDate() + ((vd - fran.getUTCDay() + 7) % 7))
+const nteVeckodag = (ar, m0, vd, n) => { const f = forstaVeckodagFran(utcDag(ar, m0, 1), vd); return utcDag(ar, m0, f.getUTCDate() + 7 * (n - 1)) }
+const ARSDATUM = {
+  // ord som ska stå inom 160 tecken före datumet, månad(er) datumet får ha, funktion, förbjudna regelformuleringar
+  hummerpremiär:      { ord: /hummer(?:fiske|premiär)/i, manad: /sep(?:tember)?/i, fn: (ar) => forstaVeckodagFran(utcDag(ar, 8, 21), 1),
+                        forbjudet: /(?:sista|andra|tredje|första)\s+(?:lördagen|helgen|söndagen|onsdagen|torsdagen|fredagen|tisdagen)\s+i\s+september|andra\s+måndagen\s+i\s+september|sista\s+lördagen/i },
+  surströmmingspremiär: { ord: /surströmming/i, manad: /aug(?:usti)?/i, fn: (ar) => nteVeckodag(ar, 7, 4, 3),
+                        forbjudet: /(?:första|andra|fjärde|sista)\s+torsdagen\s+i\s+augusti|tredje\s+(?:onsdagen|fredagen|lördagen)\s+i\s+augusti/i },
+  kräftpremiär:       { ord: /kräftpremiär/i, manad: /aug(?:usti)?/i, fn: (ar) => nteVeckodag(ar, 7, 3, 1),
+                        forbjudet: /(?:andra|tredje|sista)\s+onsdagen\s+i\s+augusti|första\s+(?:torsdagen|fredagen|lördagen|måndagen)\s+i\s+augusti/i },
+  midsommarafton:     { ord: /midsommarafton/i, manad: /juni/i, fn: (ar) => utcDag(ar, 5, forstaVeckodagFran(utcDag(ar, 5, 20), 6).getUTCDate() - 1), forbjudet: null },
+  midsommardagen:     { ord: /midsommardagen/i, manad: /juni/i, fn: (ar) => forstaVeckodagFran(utcDag(ar, 5, 20), 6), forbjudet: null },
+}
+// Självtest mot myndigheternas egna exempel — faller skriptet här är räknesättet fel, inte innehållet.
+const iso = (d) => d.toISOString().slice(0, 10)
+for (const [namn, vantat] of [['hummerpremiär', '2026-09-21'], ['hummerpremiär', '2027-09-27'], ['surströmmingspremiär', '2026-08-20'], ['kräftpremiär', '2026-08-05'], ['midsommarafton', '2026-06-19']]) {
+  const ar = Number(vantat.slice(0, 4))
+  if (iso(ARSDATUM[namn].fn(ar)) !== vantat) { console.error(`✗ verify-claims självtest: ${namn}(${ar}) gav ${iso(ARSDATUM[namn].fn(ar))}, väntade ${vantat}`); process.exit(2) }
+}
+const DATUMORD = /\b([1-9]|[12]\d|3[01])(?:\s|&nbsp;)+(januari|februari|mars|april|maj|juni|juli|augusti|aug|september|sep|oktober|november|december)\b\.?(?:\s+(20\d\d))?/gi
+const MANADSNR = { januari: 0, februari: 1, mars: 2, april: 3, maj: 4, juni: 5, juli: 6, augusti: 7, aug: 7, september: 8, sep: 8, oktober: 9, november: 10, december: 11 }
+/**
+ * Går igenom en textrad: för varje "<dag> <månad>[ <år>]" som har ett händelseord
+ * strax före (inom 160 tecken) kontrolleras att dagen är den beräknade. Årtal tas
+ * från datumet, annars från närmaste "20xx" i raden, annars innevarande år.
+ */
+function arsdatumFel(rad) {
+  const fel = []
+  for (const [namn, r] of Object.entries(ARSDATUM)) {
+    if (r.forbjudet && r.ord.test(rad) && r.forbjudet.test(rad)) fel.push(`${namn}: fel regel "${rad.match(r.forbjudet)[0]}"`)
+    for (const m of rad.matchAll(DATUMORD)) {
+      const [, dag, manad, arStr] = m
+      if (!r.manad.test(manad)) continue
+      const fore = rad.slice(Math.max(0, m.index - 160), m.index)
+      if (!r.ord.test(fore)) continue
+      // "efter 20 september", "t.o.m. 30 november", "19–25 juni": regeltext och intervall, inte ett premiärdatum
+      if (/(?:efter|från|f\.o\.m\.|t\.o\.m\.|till|senast|tidigast|mellan|före|[–-])\s*$/i.test(fore.slice(-12))) continue
+      // Årtal: i datumet, annars närmast före ("2027: 27 september"), annars någonstans på raden, annars i år
+      const arFore = fore.slice(-40).match(/\b(20\d\d)\b(?!.*\b20\d\d\b)/)
+      const ar = Number(arStr ?? arFore?.[1] ?? (rad.match(/\b20\d\d\b/) || [new Date().getUTCFullYear()])[0])
+      const ratt = r.fn(ar)
+      if (ratt.getUTCMonth() !== MANADSNR[manad.toLowerCase()] || ratt.getUTCDate() !== Number(dag)) {
+        fel.push(`${namn} ${ar}: står "${m[0].trim()}", ska vara ${ratt.getUTCDate()} ${Object.keys(MANADSNR).find(k => MANADSNR[k] === ratt.getUTCMonth() && k.length > 3)}`)
+      }
+    }
+  }
+  return fel
+}
+
 const fynd = []
 const varningar = []
 let uppskattningar = 0
@@ -351,6 +410,9 @@ for (const f of filer(ROT)) {
       fynd.push({ fil: f, rad: i + 1, typ: 'självcitering', text: rad.trim().slice(0, 90) })
     }
     if (ärKommentar(rad)) return
+    for (const fel of arsdatumFel(rad)) {
+      fynd.push({ fil: f, rad: i + 1, typ: 'årsdatum', text: fel })
+    }
     if (PRODUKTLOFTE.test(rad) && !rader.slice(Math.max(0, i - 5), i + 1).some(r => FUNKTION.test(r))) {
       fynd.push({ fil: f, rad: i + 1, typ: 'produktlöfte', text: (rad.match(PRODUKTLOFTE)?.[0] ?? '') + ' — ' + rad.trim().slice(0, 70) })
     }
