@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords: ['B&B skärgård', 'pensionat skärgård', 'bed and breakfast skärgård', 'bo personligt skärgård', 'pensionat havet'],
   alternates: { canonical: 'https://svalla.se/boende/bb' },
   openGraph: {
-    title: 'B&B och pensionat i skärgården | Svalla',
+    title: 'B&B och pensionat i skärgården',
     description: 'Hitta B&B, pensionat och små personliga boenden i skärgården för lugna helger och nära skärgårdsliv.',
     url: 'https://svalla.se/boende/bb',
   },
