@@ -15,6 +15,7 @@
  * Mobile: tab-toggle "Karta" / "Lista" — bottom-sheet kommer i v2.
  */
 
+import { upptackRegion } from '@/lib/upptackRegion'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react'
@@ -323,6 +324,9 @@ export default function UpptackExplorer() {
   const clusterRef = useRef<unknown>(null)
   const markersRef = useRef<Map<string, unknown>>(new Map())
   const listScrollRef = useRef<HTMLDivElement>(null)
+  // Google Places-fotona svarar 403 så länge nyckeln nekas (kort 08208bd8).
+  // Ett trasigt foto visar i stället kategorins platshållare.
+  const [trasigaBilder, setTrasigaBilder] = useState<Set<string>>(() => new Set())
 
   // ── Hämta POIs från API ────────────────────────────────────────────────
   useEffect(() => {
@@ -346,7 +350,10 @@ export default function UpptackExplorer() {
           Number.isFinite(p.latitude) &&
           Number.isFinite(p.longitude) &&
           p.latitude > 54 && p.latitude < 70 &&
-          p.longitude > 5 && p.longitude < 25
+          p.longitude > 5 && p.longitude < 25 &&
+          // Google Places-importen gav poster som "not the public sauna" och
+          // "sandstrand" — beskrivningar, inte namn. Egennamn börjar med versal.
+          /^[^a-zåäö]/.test((p.name ?? '').trim())
         )
         setPois(valid)
         setLoading(false)
@@ -367,10 +374,7 @@ export default function UpptackExplorer() {
     return pois.filter(p => {
       // Region-filter
       if (selectedRegion !== 'all') {
-        const regionConfig = REGION_CONFIG[selectedRegion]
-        const region = p.archipelago_region ?? ''
-        // Type-safe: check if string is in the readonly array using indexOf
-        if ((regionConfig.archRegions as readonly string[]).indexOf(region) === -1) return false
+        if (upptackRegion(p) !== selectedRegion) return false
       }
       // Multi-select: tomt set = visa allt; annars måste platsens kategori finnas i set
       if (!isAllMode && !activeCats.has(categorize(p))) return false
@@ -398,9 +402,7 @@ export default function UpptackExplorer() {
     for (const p of pois) {
       // Region-filter
       if (selectedRegion !== 'all') {
-        const regionConfig = REGION_CONFIG[selectedRegion]
-        const region = p.archipelago_region ?? ''
-        if ((regionConfig.archRegions as readonly string[]).indexOf(region) === -1) continue
+        if (upptackRegion(p) !== selectedRegion) continue
       }
       if (q) {
         const hay = `${p.name} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
@@ -758,10 +760,10 @@ export default function UpptackExplorer() {
             Alla
           </button>
           {(Object.entries(REGION_CONFIG) as Array<[RegionKey, typeof REGION_CONFIG['stockholm']]>).map(([key, config]) => {
-            const count = pois.filter(p => {
-              const region = p.archipelago_region ?? ''
-              return (config.archRegions as readonly string[]).indexOf(region) !== -1
-            }).length
+            const count = pois.filter(p => upptackRegion(p) === key).length
+            // En flik utan platser leder till en tom karta. Visa den inte
+            // förrän regionen har innehåll (kort 08208bd8).
+            if (count === 0 && selectedRegion !== key) return null
             return (
               <button
                 key={key}
@@ -882,8 +884,9 @@ export default function UpptackExplorer() {
                 className={`upx-card ${hoveredId === p.id ? 'hovered' : ''}`}
               >
                 <div className="upx-card-img">
-                  {p.image_url ? (
+                  {p.image_url && !trasigaBilder.has(p.id) ? (
                     <Image
+                      onError={() => setTrasigaBilder(prev => new Set(prev).add(p.id))}
                       src={p.image_url}
                       alt={p.name}
                       fill
