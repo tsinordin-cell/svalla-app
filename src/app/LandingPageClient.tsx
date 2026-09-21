@@ -1512,7 +1512,21 @@ function toggleFaq(btn){
 
 `
 
-export default function LandingPageClient({ photoMap }: { photoMap?: Record<string, string> }) {
+export type Bildkalla = { namn: string; fotograf: string; licens: string; licensUrl: string | null; kalla: string }
+
+const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+/** Fotograf och licens för Commons-fotona. CC BY/BY-SA kräver att de anges. */
+function bildkallorHtml(k: Bildkalla[]): string {
+  if (!k.length) return ''
+  const rader = k.map(b =>
+    `${esc(b.namn)}: <a href="${esc(b.kalla)}" rel="noopener noreferrer" target="_blank">${esc(b.fotograf)}</a>, ` +
+    (b.licensUrl ? `<a href="${esc(b.licensUrl)}" rel="noopener noreferrer license" target="_blank">${esc(b.licens)}</a>` : esc(b.licens))
+  ).join(' · ')
+  return `<section aria-label="Bildkällor" style="max-width:1160px;margin:0 auto;padding:28px 24px 36px;font-size:12px;line-height:1.7;color:var(--txt3)"><strong style="font-weight:600">Bildkällor</strong> (Wikimedia Commons) – ${rader}</section>`
+}
+
+export default function LandingPageClient({ photoMap, bildkallor = [] }: { photoMap?: Record<string, string>; bildkallor?: Bildkalla[] }) {
  const router = useRouter()
  useEffect(() => {
  // Auto-redirect till feed borttagen — inloggade användare ska kunna besöka startsidan
@@ -1725,7 +1739,7 @@ export default function LandingPageClient({ photoMap }: { photoMap?: Record<stri
  /* Hero section — transparent shows canvas through, no dark bg that would cover animation */
  .hero { position: relative; z-index: 1; background: transparent !important; }
  `}</style>
- <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML }} />
+ <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML.replace('<footer>', bildkallorHtml(bildkallor) + '<footer>') }} />
  </div>
  </>
  )
