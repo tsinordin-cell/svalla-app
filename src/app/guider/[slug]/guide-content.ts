@@ -667,13 +667,14 @@ export function getGuideContent(slug: string): string {
 <p>Europas största bestånd av hummer lever längs Bohusläns kust. Hummerpremiären i september är ett av Sveriges mest älskade kulinariska evenemang – och du kan vara med.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hummerpremiären – datum och regler</h3>
-<p>Hummerpremiären infaller traditionellt den andra måndagen i september. Exakt datum varierar år från år – kontrollera Havs- och vattenmyndigheten för aktuellt datum.</p>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
+<p>Hummerpremiären infaller klockan 07.00 den första måndagen efter 20 september varje år. 2026 är det måndag 21 september; 2027 blir det 27 september.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Fisketid:</strong> Hummer får fångas från premiären i september till och med den 30 november</li>
-<li><strong>Minimimått:</strong> 9 cm på carapaxet (skalryggen), mäts från ögat till bakre skalkantet</li>
-<li><strong>Kvota:</strong> Privatpersoner med handredskapsfiskelicens får fiska max 2 hummer/dag, max 60 hummer per säsong</li>
-<li><strong>Ryssor:</strong> Max 6 ryssor per licens för handredskapsfisket</li>
-<li><strong>Äggbärande honor:</strong> Alltid förbjudna att ta upp</li>
+<li><strong>Fisketid:</strong> Fritidsfiskare får fiska hummer från premiären till och med 30 november</li>
+<li><strong>Minimimått:</strong> 9 cm carapaxlängd – från ögonhålans bakkant till huvudsköldens bakkant. Mindre hummer släpps genast tillbaka</li>
+<li><strong>Redskap:</strong> Bara hummertina är tillåten, högst sex tinor samtidigt för fritidsfiskare. Tinorna ska ha flyktöppningar och rymningshål och vara märkta med namn och adress eller telefonnummer samt bokstaven F</li>
+<li><strong>Rombärande hummer:</strong> Ska alltid släppas tillbaka</li>
+<li><strong>Vem får fiska:</strong> Svenska medborgare eller den som är stadigvarande bosatt i Sverige. Ingen licens behövs för fritidsfiske, men fångsten får inte säljas</li>
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boka en guidad hummersafari</h3>
@@ -756,7 +757,8 @@ export function getGuideContent(slug: string): string {
 <li>Havstemperatur: 16–19°C – varmaste månaden för bottenvattnet</li>
 <li>Lufttemperatur: 14–20°C – behaglig för vandring och båtliv</li>
 <li>Beläggningstryck: 30–50% av juli–augustomgång</li>
-<li>Hummerpremiären – tredje torsdagen i september</li>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
+<li>Hummerpremiären – första måndagen efter 20 september (2026: 21 september kl 07.00)</li>
 <li>Fågelflyttningen börjar – bra tid för fågelskådning</li>
 </ul>
 
@@ -1930,7 +1932,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p>Fiske i Stockholms skärgård är fritt att utöva utan fiskelicens för fritidsfiske med handredskap (spö, krok och lina). Undantag:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Havsöring och lax:</strong> Kräver sportfiskekort för kustfiske i vissa vatten. Köps via Sportfiskarnas webshop eller fiskekortslösningar i appen.</li>
-<li><strong>Hummerrevir:</strong> Bohuslänska hummerfisket regleras med licens och säsong (normalt öppnar hummersäsongen i september).</li>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
+<li><strong>Hummer:</strong> Fritidsfiske efter hummer kräver ingen licens men har säsong (premiär första måndagen efter 20 september, t.o.m. 30 november), minimimått 9 cm och högst sex tinor. Bara svenska medborgare eller stadigvarande bosatta får fiska hummer.</li>
 <li><strong>Minimimått och fredningsperioder:</strong> Kontrollera Havs- och vattenmyndighetens aktuella regler för respektive art – dessa ändras och varierar per vattenområde.</li>
 <li><strong>Landägares vatten:</strong> Insjöar och vikar nära fastlandet kan ha privata fiskerättigheter. Fiske i öppna havsvatten är normalt fritt.</li>
 </ul>
@@ -5178,7 +5181,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Strömstad är Sveriges nordligaste kuststad och porten till Kosterhavets nationalpark och norska skärgårdsön Hvaler. En levande hamnstad med stark sjömatkultur och enkel åtkomst till Bohuslän norrra yttersta.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Strömstad och hummern</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Strömstad är landets hummercentrum. Hummerpremiären i september (16 sep 2026) firas med fanfar i Strömstads hamn och fiskeflottan kommer in med årets första fångst. Restaurangerna längs Norra Hamngatan är fyllda med hummerfirare. Boka bord nu för premiärkvällen.</p>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummerpremiären infaller första måndagen efter 20 september – 2026 den 21 september kl 07.00 – och firas i hamnstäderna längs hela kusten, Strömstad inräknat. Restaurangerna tar in årets första hummer samma vecka; boka bord i förväg.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kosteröarna – porten till nationalparkerna</h2>
 <!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från Strömstad tar färjan ut till Sydkoster (ca 45 min) och Nordkoster (ca 1 h). Kosteröarna är bilfria och del av Kosterhavets nationalpark. Kajakpaddling, snorkling och vandring på bilfria öar är Strömstads stora utflyktsmål.</p>
@@ -7355,49 +7359,36 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 `,
 
   'hummerpremiar-bohuslan-2026': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Hummerpremiären är en av Bohusläns stoltaste traditioner. Den sista lördagen i september – 2026 den 26 september – öppnar hummerburar längs hela Bohuslänska kusten och tusentals fiskare drar sin första bur i gryningen. Det finns en anledning till att lördagsnatten innan kallas Bohusläns stiltjälle.</p>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)"><strong>Hummerpremiären 2026 är måndag 21 september klockan 07.00.</strong> Premiären infaller alltid första måndagen efter 20 september – nästa år, 2027, blir det 27 september. Från den morgonen och till och med 30 november får fritidsfiskare vittja sina hummertinor längs Bohusläns kust.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummer (Homarus gammarus) är en av världens mest uppskattade delikatesser och den europeiska hummern längs Bohusläns kust räknas av kockar som en av de finaste. Den är också reglerad – och det är precis det som gör premiären till ett evenemang.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummern (Homarus gammarus) är strikt reglerad, och det är reglerna som gör premiären till en högtid: alla väntar på samma klockslag. Här är vad som gäller, ordagrant efter Havs- och vattenmyndigheten.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DATUM OCH REGLER 2026</h3>
 
-<p><strong>Hummerpremiären 2026: lördag 26 september</strong></p>
-<!-- KÄLLA: Havs- och vattenmyndigheten — hummerfisket startar kl 07.00 första måndagen efter 20 september. havochvatten.se (avläst 2026-08-12) -->
-<p>Fisket öppnar klockan 07:00. Hummerburar får sättas ut redan fredagskvällen, men bурarna får inte vittjas förrän 07:00 lördag.</p>
+<p><strong>Premiär: måndag 21 september 2026 kl 07.00.</strong> Fritidsfiskare får fiska till och med 30 november, yrkesfiskare till och med 31 december.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Regler du måste kunna</h4>
 <ul style="font-size:16px;line-height:1.8;color:var(--txt2);padding-left:20px">
-  <li><strong>Minimimått:</strong> 87 mm karapaxlängd (huvud + mellankropp). Mät noga – för liten hummer ska sättas tillbaka.</li>
-  <li><strong>Max antal burar:</strong> 3 burar per person vid husbehovsfiske. Yrkesfiske har separata regler.</li>
-  <li><strong>Romhona:</strong> Honor med synlig rom (ägg under stjärten) måste alltid sättas tillbaka oavsett storlek.</li>
-  <li><strong>Fiskekort:</strong> Fridfiskelicens för husbehovsfiske krävs, köps på havochvatten.se.</li>
-  <li><strong>Burmärkning:</strong> Märk bурarna med namn och adress.</li>
+  <li><strong>Vem får fiska:</strong> Svenska medborgare eller den som är stadigvarande bosatt i Sverige. Ingen licens behövs för fritidsfiske – men fångsten får inte säljas.</li>
+  <li><strong>Redskap:</strong> Bara hummertina. Högst sex tinor samtidigt för fritidsfiskare. Tinan ska ha minst två flyktöppningar (60 mm) och rymningshål mot spökfiske.</li>
+  <li><strong>Minimimått:</strong> 9 cm carapaxlängd, mätt från ögonhålans bakkant till huvudsköldens bakkant. Mindre hummer släpps genast tillbaka.</li>
+  <li><strong>Rombärande hummer:</strong> Ska alltid släppas tillbaka, oavsett storlek.</li>
+  <li><strong>Märkning:</strong> Kula eller cylinder i rött, orange, gult eller vitt med namn och adress eller telefonnummer, plus bokstaven F för fritidsfiske. Sedan 10 januari 2026 ska passiva redskap dessutom märkas direkt på redskapet.</li>
+  <li><strong>Före premiären:</strong> Från måndagen före premiären kl 07.00 är nät, ryssjor och tinor förbjudna i kustvattnet från norska gränsen ned till Klosterfjorden. Sumpning av hummer är förbjuden från 1 februari fram till premiären.</li>
+  <li><strong>Fredningsområden:</strong> Vissa områden är stängda för hummertinor – kontrollera kartan på svenskafiskeregler.se innan du sätter.</li>
+  <li><strong>Amerikansk hummer:</strong> Främmande art. Misstänkt amerikansk eller sjuk hummer rapporteras genast till SLU Havsfiskelaboratoriet i Lysekil.</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA PLATSERNA FÖR HUMMERFISKE</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kosterfjorden och yttre Koster</h4>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAR FISKAS DET?</h3>
 <!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
-<p>Omkring 6 000 marina arter och en utmärkt hummerlokal. Branta klippbottnar. Bäst från Strömstad och med lokal fiskeguide. Kosterhavets nationalpark: kontrollera restriktioner.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Smögenskäret och Pater Noster</h4>
-<p>Trakterna kring Smögen och Väderöarna är klassisk hummerfiskevattne. Klippbottnar på 5–25 meters djup. Hyr båt i Smögen, sätt bурarna kvällen innan premiären.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Gullholmen och Orusts kust</h4>
-<p>Den södra Bohuslänska kusten kring Orust och Tjörn har rika hummervatten. Lokal kännedom är ovärderlig – kontakta Gullholmens fiskelag eller lokala båtklubbar.</p>
+<p>Hummerfisket är en bohuslänsk tradition från Strömstad i norr till Göteborgs skärgård i söder. I Kosterhavets nationalpark gäller egna föreskrifter utöver fiskereglerna – läs på hos Länsstyrelsen innan du sätter tinor där. Saknar du egen båt och lokalkännedom: flera fiskelägen har guidade hummerturer under säsongen, se vår guide om hummersafari.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR DU FIRAR</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Laga hummern själv – klassiken</h4>
-<p>Koka hummern i välsaltat vatten (1 msk salt per liter) i 12–15 minuter beroende på storlek. Servera med aioli, gott bröd och ett glas Chablis. Inget krångligare än så.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Restauranger som firar premiären</h4>
-<p>Smögen Fisk & Skaldjur och Krog+Bar i Lysekil brukar ha specialmeny på premiärhelgen. Boka i god tid – premiärhelgen är fullbokad längs hela kusten.</p>
+<p>Premiärveckan är den bästa tiden att äta hummer i Bohuslän: restaurangerna i fiskelägena tar in årets första fångst. Boka bord i förväg – premiärhelgen fylls. Kokar du själv: levande hummer i rikligt saltat vatten, tiden beror på storleken.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR TAR DU DIG DIT?</h3>
-<p><strong>Till Smögen:</strong> Tåg från Göteborg till Munkedal (ca 1h), sedan buss 840 till Smögen (ca 45 min). Med bil: E6 norrut mot Munkedal, sedan väg 174 till Smögen.</p>
-<p><strong>Till Strömstad:</strong> Tåg från Göteborg, ca 2h. Med bil: E6 norrut ca 1h45 min.</p>
-<p><strong>Till Lysekil:</strong> Tåg till Uddevalla + buss, ca 1h45 min totalt. Med bil via E6 + väg 161.</p>
+<p>Kollektivt: Västtrafiks reseplanerare (vasttrafik.se) för tåg och buss till Strömstad, Lysekil, Smögen och Grebbestad. Bil: E6 norrut från Göteborg, sedan avtag mot respektive fiskeläge.</p>
 `,
 
   'surstrommingspremiar-2026': `
