@@ -23,7 +23,7 @@ export const metadata: Metadata = {
  'åland sommar',
  ],
  openGraph: {
- title: 'Åland — Segla dit från Sverige | Svalla',
+ title: 'Åland — Segla dit från Sverige',
  description: 'Logga din seglingstur till Åland och utforska skärgårdshavets 6 500 öar med Svalla.',
  url: 'https://svalla.se/aland',
  },
