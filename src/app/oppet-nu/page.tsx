@@ -281,7 +281,7 @@ export default function OppetNuPage() {
             lineHeight: 1.6,
             maxWidth: 420,
           }}>
-            Svallanyheter skickas varannan tisdag. Öppna öar, insider-tips och säsongsguider direkt i inkorgen. Gratis, inga annonser.
+            Svallanyheter: säsongsstarter, nya guider och ändrade båtlinjer, när det händer något. Gratis, inga annonser.
           </p>
           <div style={{ maxWidth: 420, margin: '0 auto' }}>
             <EmailSignup
