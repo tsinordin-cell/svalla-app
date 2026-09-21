@@ -25,7 +25,7 @@ export const metadata: Metadata = {
  'södra skärgården',
  ],
  openGraph: {
- title: 'Stockholms skärgård — Logga turer, hitta platser | Svalla',
+ title: 'Stockholms skärgård — Logga turer, hitta platser',
  description: 'Logga dina båtturer och utforska Stockholms skärgård med Svalla.',
  url: 'https://svalla.se/stockholms-skargard',
  },
