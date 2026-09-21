@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords: ['skärgården vinter','julkryssning skärgård','skärgård december','vinter stockholm skärgård','påskkryssning skärgård','isvandring skärgård','vinter fjäderholmarna'],
   alternates: { canonical: 'https://svalla.se/vinter' },
   openGraph: {
-    title: 'Skärgården på vintern | Svalla',
+    title: 'Skärgården på vintern',
     description: 'Julkryssningar, isvandring och skärgårdsmat framför öppen spis.',
     url: 'https://svalla.se/vinter',
   },
