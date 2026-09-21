@@ -678,7 +678,7 @@ export default function VandringPage() {
               variant="card"
               source="aktivitet-vandring"
               title="Mer om vandring i skärgården"
-              description="Nya guider, säsongstips och insidertips direkt i inkorgen. Varannan tisdag."
+              description="Nya guider och säsongsnytt direkt i inkorgen. Inga annonser."
             />
           </div>
 
