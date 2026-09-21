@@ -2278,10 +2278,52 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "graddo": [
     {
+      "url": "https://www.norrtalje.se/info/kultur-och-fritid/bad/badplatser/bjorkooren/",
+      "org": "Norrtälje kommun",
+      "vad": "sandstrand ca 85 m i norrläge, beachvolleyplan ja, kiosk/kafé ja, parkering ja, toalett ja, brygga nej, hund nej 15 maj–15 september",
+      "last": "2026-09-21",
+      "myndighet": true
+    },
+    {
+      "url": "https://caravanclub.se/camping/bjorko-orn/",
+      "org": "Caravan Club Björkö Örn",
+      "vad": "Allmän Camping — Året runt, husvagns- och husbilstomter med el, 9 stugor, tälttomter, servicehus, vedeldad bastu vid havet, 9-håls minigolf, lekplats, ca 7,5 km från färjeterminalen i Kapellskär",
+      "last": "2026-09-21",
+      "myndighet": false
+    },
+    {
       "url": "https://www.graddosjomack.se/",
       "org": "graddosjomack.se",
-      "vad": "Gräddö Sjömack och Gästhamn, gästplatser med el, färskvatten, dusch; sjömack med bensin och diesel",
-      "last": null,
+      "vad": "gästplatser med el, färskvatten, dusch; bensin och diesel . Caravan Club Björkö Örn,  — \"havscamping\", \"långgrund sandstrand\", \"9 stugor och tomter för tält\", \"vedeldad bastu\", \"restaurang med fulla rättigheter\" . Norrtälje kommun,  — \"sandstrand med cirka 85 meter strandlinje i norrläge\", \"väster om Gräddö\"",
+      "last": "2026-08-24",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.graddosparla.se/",
+      "org": "graddosparla.se",
+      "vad": "Gräddös Pärla — Bar & Restaurang, I Gräddö utanför Norrtälje ligger Gräddös pärla … bar & restaurang naturnära med närheten till havet och Kapellskär ; Caravan Club Björkö Örn: restaurang med fulla rättigheter som har öppet året om men endast på helger under vintersäsongen",
+      "last": "2026-09-21",
+      "myndighet": false
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/h631.pdf",
+      "org": "SL buss 631",
+      "vad": "Norrtälje busstation → … Gräddö torg → … Räfsnäs brygga; SL buss 676 Tekniska högskolan–Norrtälje busstation",
+      "last": "2026-09-21",
+      "myndighet": false
+    },
+    {
+      "url": "https://visitskargarden.se/resmaal/norra-skaergaarden/graeddoe.aspx",
+      "org": "Visit Skärgården",
+      "vad": "Kajak och Uteliv … utgår från våra två kajakbaser i Stockholms norra skärgård, Gräddö och Furusund, adress Gräddö Brygga; butik för kajak och SUP . Caravan Club Björkö Örn: kanoter och stand up paddle-boards för uthyrning",
+      "last": "2026-09-21",
+      "myndighet": false
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/h31.pdf",
+      "org": "Waxholmsbolaget linje 31",
+      "vad": "Räfsnäs 10.05, Tjockö 10.10, Fejan 11.00; Lidö \"b\" = beställ resan",
+      "last": "2026-09-21",
       "myndighet": false
     }
   ],
@@ -2383,17 +2425,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "yxlan": [
     {
+      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sjalbottna-ostra-lagno.html",
+      "org": "Länsstyrelsen Stockholm",
+      "vad": "bad/badplats, fiske, tältplats, torrdass, stig; \"tälta mer än två dygn i följd på samma plats\" förbjudet; hund kopplad; öppen eld förbjuden",
+      "last": "2026-09-21",
+      "myndighet": true
+    },
+    {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/",
       "org": "Trafikverket",
-      "vad": "Furusund–Yxlan, 600 m, fyra minuter, avgiftsfri; Blidöleden ( — Yxlan–Blidö, 530 m, 4 minuter, avgiftsfri (båda lästa 2026-09-21). Areal, \"huvudort\", butiker, Waxholmsbolagets bryggor: ingen källa — struket 2026-09-21.",
-      "last": "2026-09-19",
+      "vad": "Furusund–Yxlan, 600 m, fyra minuter, avgiftsfri; Blidöleden ( — Yxlan–Blidö, 530 m, 4 minuter, avgiftsfri (båda lästa 2026-09-21). SL buss 632 Norrtälje–Yxlan,  — hållplatser i ordning: Norrtälje busstation … Furusunds färjeläge, Köpmanholm, Köpmanholms skola … Yxlö brygga … Yxlövik … Alsvik … Vagnsunda",
+      "last": "2026-09-21",
       "myndighet": true
     },
     {
       "url": "https://stockholmarchipelagotrail.com/section/",
       "org": "Stockholm Archipelago Trail",
-      "vad": "etapp över Yxlan, 24 km",
-      "last": null,
+      "vad": "etapp över Yxlan, 24 km. Länsstyrelsen Stockholm, Själbottna-Östra Lagnö naturreservat,  — skyddat sedan 1977, 532 ha, markägare och förvaltare Skärgårdsstiftelsen, \"bra tältplats\", \"strövvänliga skogarna är rika på bär och svamp\", \"Till Själbottna går reguljär Waxholmsbåt sommartid\" ; linje 24: Själbottna 11.00, Vagnsunda 11.01",
+      "last": "2026-09-21",
+      "myndighet": false
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/h24.pdf",
+      "org": "Waxholmsbolaget linje 24 Stockholm–Vaxholm–Blidösundet",
+      "vad": "",
+      "last": "2026-09-21",
       "myndighet": false
     }
   ],
@@ -2655,14 +2711,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/tynningoleden/",
       "org": "Trafikverket",
       "vad": "Tynningöleden går mellan Lagnö på Värmdö och Tynningö i Stockholms skärgård; Färjeledens längd är 1000 meter lång; Resan med vägfärjan är avgiftsfri",
-      "last": "2026-09-19",
+      "last": null,
       "myndighet": true
+    },
+    {
+      "url": "https://www.vaxholm.se/download/18.5dda784b16d6ccd6b031b3f3/1569999357738/Mark_och_vandringsleder_pa_Tynningo_2011.pdf",
+      "org": "Kulturmiljöunderlag Tynningö 2020",
+      "vad": "Ca 300 tomtägare äger genom TGEF, Tynningö Gård Ekonomisk Förening, runt 100 hektar skogsmark på ön",
+      "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser",
+      "org": "samma rapport",
+      "vad": "Badet Myrholmsmaren ligger vid sjön Stora Maren … sköts av Tynningö Idrottsförening",
+      "last": "2026-09-21",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-vaxholms-stad/tynningo-myrholmsmaren.html",
+      "org": "Vaxholms stad",
+      "vad": "provsvar 2026-07-20 Tjänligt, Ingen blomning",
+      "last": "2026-09-21",
+      "myndighet": false
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h4.pdf",
       "org": "Waxholmsbolaget linje 4",
-      "vad": "4A STOCKHOLM — VAXHOLM — RAMSÖSUND — ÅLSTÄKET, gäller 2 april–18 juni och 17 augusti–12 december 2026; angör Norra Tynningö: Strömkajen 07.45 → Norra Tynningö 08.59 (1 h 14 min), 11.00 → 12.23 (1 h 23 min); Vaxholm avg. 08.52 → Norra Tynningö 08.59 (7 min), 12.15 → 12.23 (8 min)",
-      "last": "2026-09-19",
+      "vad": "4A STOCKHOLM — VAXHOLM — RAMSÖSUND — ÅLSTÄKET, gäller 2 april–18 juni och 17 augusti–12 december 2026; angör Norra Tynningö, Norehill (Tynningö) och Orrlunda (Tynningö): Strömkajen 07.45 → Norra Tynningö 08.59 (1 h 14 min), 11.00 → 12.23 (1 h 23 min); Vaxholm avg. 08.52 → Norra Tynningö 08.59 (7 min), 12.15 → 12.23 (8 min); Norehill och Orrlunda Xb = utan fast tid, beställs",
+      "last": null,
       "myndighet": false
     }
   ],
