@@ -11,7 +11,8 @@ const HeroAnimation = dynamic(() => import('@/components/HeroAnimation'), {
 })
 
 const LANDING_CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+/* 2026-09-21: @import av Google Fonts borttagen. CSP:n (style-src 'self') blockerade den på varje
+   sidvisning — den laddade aldrig, gav bara ett konsolfel. Playfair Display kommer från next/font i layout.tsx. */
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
