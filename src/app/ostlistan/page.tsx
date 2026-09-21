@@ -7,7 +7,7 @@ import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
-  title: 'Bästa öarna i Stockholms skärgård 2026 – listor per tema | Svalla',
+  title: 'Bästa öarna i Stockholms skärgård 2026 – listor per tema',
   description: 'Kuraterade ö-listor för barnfamiljer, dagsturister, seglare och romantiska par. Hitta rätt ö i Stockholms skärgård – 2026.',
   alternates: { canonical: 'https://svalla.se/ostlistan' },
   openGraph: {
