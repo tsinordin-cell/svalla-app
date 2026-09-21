@@ -439,7 +439,7 @@ export default function StockholmArchipelagoTrailPage() {
               variant="card"
               source="stockholm-archipelago-trail"
               title="Vandrar du leden?"
-              description="Nya etappguider, säsongstips och avstängningar direkt i inkorgen. Varannan tisdag."
+              description="Nya etappguider, säsongstips och avstängningar direkt i inkorgen. Inga annonser."
             />
           </div>
 
