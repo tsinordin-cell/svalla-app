@@ -422,7 +422,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">7. Ljusterö – norra skärgårdens hemlighet</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
-<p><strong>Transport:</strong> SL-buss 626 från Danderyds sjukhus till Ljusterö-bryggan, ca 1 h 20 min. Bussen inkluderar bilfärja och ingår i SL-abonnemanget.</p>
+<p><strong>Transport:</strong> SL-buss 626 från Danderyds sjukhus till Ljusterö-bryggan, ca 1 h 20 min. Bussen kör ombord på Trafikverkets vägfärja Östanå–Ljusterö (avgiftsfri, sju minuter).</p>
 <p><strong>Pris:</strong> Gratis med SL-kort.</p>
 <p><strong>Upplev:</strong> Ljusterö är en av de få öarna i skärgården som är bilburen (buss med bil) och ändå har en äkta öatmosfär. Vandringsleder, stränder och sommarcaféer.</p>
 <p><strong>Praktisk info:</strong> Sommartid finns fler avgångar. Kolla SL:s tidtabell på sl.se.</p>
@@ -506,7 +506,7 @@ export function getGuideContent(slug: string): string {
 <li><strong>SL-buss 670/671</strong> till Vaxholm – alternativ till båten</li>
 <li><strong>SL-buss 433</strong> till Stavsnäs Vinterhamn – utgångspunkt för Sandhamn, Möja, Gällnö</li>
 <li><strong>SL-buss 839</strong> till Dalarö – utgångspunkt för bilfärja till Ornö</li>
-<li><strong>SL-buss 626</strong> till Ljusterö – inklusive bilfärjan över till ön (ingår i SL!)</li>
+<li><strong>SL-buss 626</strong> till Ljusterö – bussen kör ombord på Trafikverkets vägfärja Östanå–Ljusterö, som är avgiftsfri för alla</li>
 <li><strong>Pendeltåg till Bålsta</strong> och anslutningsbussar till Mälaren-öar</li>
 </ul>
 
@@ -518,7 +518,8 @@ export function getGuideContent(slug: string): string {
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Undantaget: Ljusteröbussen med färja</h3>
-<p>Ljusterö är ett specialfall. SL-buss 626 från Danderyds sjukhus kör ner till bilfärjan och <em>inklusive färjan</em> över till Ljusterö ingår i SL-biljetten.</p>
+<!-- KÄLLA: Trafikverket, Ljusteröleden (https://www.trafikverket.se/resa-och-trafik/farjetrafik/ljusteroleden/, läst 2026-09-21): Östanå–Ljusterö, 1 100 meter, sju minuter, "Resan med vägfärjan är avgiftsfri" -->
+<p>Ljusterö är ett specialfall: färjan Östanå–Ljusterö är Trafikverkets vägfärja, avgiftsfri för alla – sju minuters överfart. SL-bussen kör ombord, så för resenären känns det som att färjan ingår, men det är vägfärjan som är gratis, inte SL-biljetten som täcker den.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Waxholmsbolagets eget biljettsystem</h3>
 <!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter, waxholmsbolaget.se/biljetter-och-priser/periodbiljetter, waxholmsbolaget.se/nyheter-och-trafikinfo/ny-kombinationsbiljett-waxholmsbolaget-och-sl, läst 2026-09-19. Tidigare listades "Archipelago Card", "Destinationskort" och "Waxholmskortet" — inget av dem finns hos operatören. -->
@@ -1324,7 +1325,7 @@ export function getGuideContent(slug: string): string {
 <p>Stockholms pendelbåttrafik är ett underskattat transportalternativ. Waxholmsbolaget driver det stora linjenätet, men det finns också privata aktörer och sommarspecifika linjer.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Waxholmsbolagets linjer – översikt</h3>
-<p>Waxholmsbolaget driver ca 50 linjer med tät trafik inomskärs under rushningstid. Dessa linjer fungerar som pendlingalternativ för boende i skärgårdssamhällen:</p>
+<p>Waxholmsbolaget driver ett trettiotal linjer – siffran är vår egen räkning ur tidtabellerna, bolaget publicerar ingen – och flera av dem fungerar som pendling för boende i skärgårdssamhällena:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 {/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets egen linjeförteckning (waxholmsbolaget.linjetidtabeller.se, läst 2026-08-25) listar linjen som 4 Stockholm-Vaxholm-Ramsösund-Ålstäket - suffixet A i tidtabellshuvudet är en tabellbeteckning, inte ett linjenummer, och sträckan Strömkajen-Vaxholm trafikeras av flera linjer. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
 <li><strong>Strömkajen – Vaxholm:</strong> Waxholmsbolaget — alla SL-biljetter gäller sedan 30 april 2025 — ungefär en timme</li>
@@ -1338,7 +1339,6 @@ export function getGuideContent(slug: string): string {
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Cinderellabåtarna (Strömma):</strong> Direktavgångar till Sandhamn, Grinda och Vaxholm. Dyrare men snabbare och med restaurang ombord.</li>
 <li><strong>Strömma Kanalbolaget:</strong> Sightseeing och charter, inte reguljär trafik</li>
-<li><strong>Styrsöbolaget (Göteborg):</strong> Driver söder Stockholms skärgård – ej Waxholmsbolaget</li>
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Avgångspunkter i Stockholm</h3>
