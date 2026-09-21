@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Dagsupplägg i skärgården — vad gör man idag?',
   description: 'Kurerade dagsupplägg för Stockholms skärgård — familj, par, seglare och nybörjare. Aktuellt väder och direktlänkar till öarna.',
   openGraph: {
-    title: 'Dagsupplägg i skärgården | Svalla',
+    title: 'Dagsupplägg i skärgården',
     description: 'Vad gör man idag i skärgården? Kurerade upplägg för alla typer av utflykter.',
     url: 'https://svalla.se/dag',
   },

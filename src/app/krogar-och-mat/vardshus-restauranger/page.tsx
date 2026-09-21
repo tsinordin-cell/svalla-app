@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'skärgårdskrog boka',
   ],
   openGraph: {
-    title: 'Värdshus och restauranger i skärgården | Svalla',
+    title: 'Värdshus och restauranger i skärgården',
     description: 'Klassiska skärgårdsvärdshus med sjöutsikt, sommarstämning och svensk husmanskost.',
     url: 'https://svalla.se/krogar-och-mat/vardshus-restauranger',
   },

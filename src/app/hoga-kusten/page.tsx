@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     'höga kusten vandring',
   ],
   openGraph: {
-    title: 'Höga Kusten — Norrlands dramatiska klippkust | Svalla',
+    title: 'Höga Kusten — Norrlands dramatiska klippkust',
     description: 'Logga dina båtturer och hitta de bästa platserna längs Höga Kusten.',
     url: 'https://svalla.se/hoga-kusten',
   },

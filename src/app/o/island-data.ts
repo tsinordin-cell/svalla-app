@@ -107,7 +107,7 @@ export type Island = {
   /**
    * Anpassad SEO-title som ersätter den generiska mallen.
    * Ange för högtrafik-öar för att bättre matcha sökintent.
-   * Max ~60 tecken inkl. " | Svalla" (12 tecken) = 48 tecken för titeln.
+   * Max ~60 tecken inkl. layoutens suffix " – Svalla" (9 tecken) = ~50 tecken för titeln. Skriv INTE "| Svalla" själv — layout.tsx lägger på suffixet (PR #336).
    */
   seoTitle?: string
   /**

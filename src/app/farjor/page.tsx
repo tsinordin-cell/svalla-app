@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     'färjetider stockholm',
   ],
   openGraph: {
-    title: 'Cinderella & Waxholmsbolaget tidtabell — Färjetider Stockholms skärgård | Svalla',
+    title: 'Cinderella & Waxholmsbolaget tidtabell — Färjetider Stockholms skärgård',
     description: 'Cinderella tidtabell Sandhamn och Waxholmsbolaget tidtabeller för Stockholms skärgård 2026.',
     url: 'https://svalla.se/farjor',
   },

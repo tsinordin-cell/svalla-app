@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     'öland äventyr',
   ],
   openGraph: {
-    title: 'Öland — Solön vid Östersjön | Svalla',
+    title: 'Öland — Solön vid Östersjön',
     description: 'Utforska Ölands Alvaret, Borgholm, Trollskogen och Långe Jan med Svalla.',
     url: 'https://svalla.se/oland',
   },

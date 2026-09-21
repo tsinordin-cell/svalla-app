@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'hamburgare skärgård',
   ],
   openGraph: {
-    title: 'Take-away, kiosker och lanthandlar i skärgården | Svalla',
+    title: 'Take-away, kiosker och lanthandlar i skärgården',
     description: 'Glass, räksmörgåsar och lanthandlar — enkla stopp utan bokning längs skärgårdsrutten.',
     url: 'https://svalla.se/krogar-och-mat/take-away-kiosker',
   },

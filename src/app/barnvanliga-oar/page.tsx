@@ -17,7 +17,7 @@ export const metadata: Metadata = {
  'grunt vatten öar',
  ],
  openGraph: {
- title: 'Barnvänliga öar i Stockholms skärgård — Guide för familjer | Svalla',
+ title: 'Barnvänliga öar i Stockholms skärgård — Guide för familjer',
  description: 'De bästa barnvänliga öarna i Stockholms skärgård. Sandstränder, lugnt vatten, restauranger för familjer och enkla färjeförbindelser.',
  url: 'https://svalla.se/barnvanliga-oar',
  },

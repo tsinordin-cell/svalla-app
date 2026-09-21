@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     'båt sandhamn tidtabell',
   ],
   openGraph: {
-    title: 'Cinderellabåten — Tidtabell, hållplatser & biljetter 2026 | Svalla',
+    title: 'Cinderellabåten — Tidtabell, hållplatser & biljetter 2026',
     description: 'Komplett guide till Cinderellabåten: tidtabell 2026, alla hållplatser, priser och tips för resan till Sandhamn och Vaxholm.',
     url: 'https://svalla.se/cinderella-baaten',
   },

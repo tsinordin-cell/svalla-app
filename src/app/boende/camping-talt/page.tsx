@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords: ['camping skärgård', 'tälta skärgård', 'tältplats skärgården', 'camping nära havet', 'tälta ö stockholm'],
   alternates: { canonical: 'https://svalla.se/boende/camping-talt' },
   openGraph: {
-    title: 'Camping och tält i skärgården | Svalla',
+    title: 'Camping och tält i skärgården',
     description: 'Hitta campingplatser och tältvänliga platser i skärgården nära bad, vandring, paddling och färjor.',
     url: 'https://svalla.se/boende/camping-talt',
   },
