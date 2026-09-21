@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
   return {
-    title: `Boende på ${island.name} — hotell, vandrarhem och stugor | Svalla`,
+    title: `Boende på ${island.name} — hotell, vandrarhem och stugor`,
     description: `Hela utbudet av boende på ${island.name}: hotell, värdshus, B&B, stugor och vandrarhem. Bokningstips inför sommaren.`,
     keywords: [
       `${island.name.toLowerCase()} hotell`,
