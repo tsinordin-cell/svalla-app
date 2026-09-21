@@ -2397,7 +2397,7 @@ export default async function BloggPostPage({
            variant="inline"
            source={`blogg-${slug}-mid`}
            title="Häng med i skärgårdsvärlden"
-           description="Insider-tips och öppna öar — varannan tisdag. Helt gratis."
+           description="Nya guider och säsongsnytt från skärgården. Gratis, inga annonser."
            buttonLabel="Prenumerera gratis"
          />
        </div>
@@ -2474,7 +2474,7 @@ export default async function BloggPostPage({
      Gillade du den här artikeln?
    </p>
    <h3 style={{ fontSize: 20, fontWeight: 800, color: 'var(--txt)', margin: '0 0 10px', lineHeight: 1.3 }}>
-     Fler guider likt denna, varannan tisdag
+     Få nya guider som denna i inkorgen
    </h3>
    <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.7, margin: '0 0 22px', maxWidth: 480 }}>
      Vi skriver om Stockholms skärgård — öppna öar, öppettider och insider-tips du inte hittar på TripAdvisor. Inga annonser. Inga länklistor. Bara skärgård.

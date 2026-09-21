@@ -26,6 +26,10 @@ interface Props {
   /** Strukturerad öppettider-JSON för "Öppet nu / Stängt"-pill */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   openingHoursJson?: any
+  /** Satt när platsens uppgifter kontrollerats mot källa. Utan den visas inga öppettider. */
+  hoursVerifiedAt?: string | null
+  /** Platsen har öppettider i databasen som ingen kontrollerat — hänvisa till egen webbplats. */
+  harObekraftadeTider?: boolean
   // För Google Maps-link om google_place_id saknas
   latitude?: number | null
   longitude?: number | null
@@ -35,13 +39,18 @@ interface Props {
 export default function PlaceContactSection({
   phone, email, website, menuUrl, bookingUrl, instagram, facebook,
   formattedAddress, googleRating, googleRatingsTotal, googlePlaceId,
-  openingHours, openingHoursJson,
+  openingHours, openingHoursJson, hoursVerifiedAt, harObekraftadeTider,
   latitude, longitude, name,
 }: Props) {
   const hasContact = !!(phone || email || website || menuUrl || bookingUrl || instagram || facebook)
   const hasRating = typeof googleRating === 'number' && googleRating > 0
   const hasAddress = !!(formattedAddress || (latitude && longitude))
-  const hasHours = !!openingHours
+  // 2026-09-21: MÄTT — 203 platser har öppettider i fri text, ingen av dem är
+  // kontrollerad (verified_at är null på alla). De såg ut som fakta ("Juni–Augusti:
+  // dagligen 12–21."). Obekräftade tider visas inte längre; finns en egen webbplats
+  // hänvisar vi dit i stället.
+  const hasHours = !!openingHours && !!hoursVerifiedAt
+  const hoursHint = !hasHours && !!harObekraftadeTider && !!website
 
   // Bestäm "Öppet nu / Stängt" från opening_hours_json om finns
   // Format antas vara Google Places-stil: { periods: [{open: {day, time}, close: {day, time}}] }
@@ -166,7 +175,17 @@ export default function PlaceContactSection({
               </span>
             )}
             <span style={{ whiteSpace: 'pre-wrap' }}>{openingHours}</span>
+            <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 4 }}>Kontrollerad {new Date(hoursVerifiedAt as string).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
           </div>
+        } />
+      )}
+
+      {hoursHint && website && (
+        <ContactRow icon="clock" label="Öppettider" content={
+          <span>
+            Tiderna varierar med säsongen –{' '}
+            <a href={website} target="_blank" rel="noopener noreferrer" style={LINK}>se aktuella tider på deras egen sida</a>
+          </span>
         } />
       )}
 

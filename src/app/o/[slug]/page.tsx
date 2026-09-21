@@ -619,7 +619,7 @@ export default async function IslandPage({ params }: Props) {
      variant="inline"
      source={`o-${island.slug}-midpage`}
      title={`Planerar du en tur till ${island.name}?`}
-     description="Säsongsuppdateringar, öppettider och insider-tips direkt i inkorgen. Varannan tisdag, inga annonser."
+     description="Säsongsstarter, nya guider och ändrade båtlinjer, när det händer något. Inga annonser."
      buttonLabel="Ja, prenumerera"
    />
  </div>

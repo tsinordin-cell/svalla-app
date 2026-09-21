@@ -41,7 +41,7 @@ Hur lång tid tar det, vad finns på ön, hur blir vädret? [Skriv till Thorkel 
 [Planera din första tur](https://svalla.se/planera)
 :::
 
-Det här var sista påminnelsen. Du ligger kvar i listan och får nyhetsbrevet varannan tisdag som vanligt.
+Det här var sista påminnelsen. Du ligger kvar i listan och hör av oss när det händer något i skärgården.
 
 :::signatur
 Ses därute.

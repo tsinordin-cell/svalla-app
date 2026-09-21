@@ -7,6 +7,8 @@ import PublicFooter from '@/components/PublicFooter'
 import { OAR_CATEGORIES, getOarCategory, islandsForCategory } from '../oar-categories'
 import IslandThumb from '@/components/IslandThumb'
 import { OBILDER } from '@/app/o/obilder.generated'
+import { commonsThumb } from '@/lib/commonsBild'
+import Bildkallor from '@/components/Bildkallor'
 
 type Props = { params: Promise<{ kategori: string }> }
 
@@ -37,6 +39,8 @@ const REGION_LABELS: Record<string, string> = {
   mellersta: 'Mellersta skärgården',
   södra: 'Södra skärgården',
   bohuslan: 'Bohuslän',
+  goteborg: 'Göteborgs skärgård',
+  ovriga: 'Övriga Sverige',
 }
 
 export default async function OarCategoryPage({ params }: Props) {
@@ -47,7 +51,7 @@ export default async function OarCategoryPage({ params }: Props) {
   const islands = islandsForCategory(kategori)
 
   // Gruppera per region
-  const grouped: Record<string, typeof islands> = { norra: [], mellersta: [], södra: [], bohuslan: [] }
+  const grouped: Record<string, typeof islands> = { norra: [], mellersta: [], södra: [], bohuslan: [], goteborg: [], ovriga: [] }
   for (const i of islands) {
     const region = i.region in grouped ? i.region : 'mellersta'
     const bucket = grouped[region]
@@ -126,7 +130,7 @@ export default async function OarCategoryPage({ params }: Props) {
             Vi hittade inga öar för denna kategori — säg till om någon saknas.
           </div>
         ) : (
-          (['norra', 'mellersta', 'södra', 'bohuslan'] as const).map(region => {
+          (['norra', 'mellersta', 'södra', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
             const items = grouped[region] ?? []
             if (items.length === 0) return null
             return (
@@ -155,7 +159,7 @@ export default async function OarCategoryPage({ params }: Props) {
                         <div style={{
                           width: 84, height: 64, flexShrink: 0,
                           borderRadius: 8, overflow: 'hidden',
-                          background: `url('${OBILDER[i.slug]?.url ?? i.coverImage}') center/cover, linear-gradient(135deg, var(--sea)`,
+                          background: `url('${OBILDER[i.slug] ? commonsThumb(OBILDER[i.slug]!.url, 330) : i.coverImage}') center/cover, linear-gradient(135deg, #1e5c82, #2d7d8a)`,
                         }} aria-hidden />
                       ) : (
                         <IslandThumb slug={i.slug} region={i.region} width={84} height={64} />
@@ -179,6 +183,7 @@ export default async function OarCategoryPage({ params }: Props) {
             )
           })
         )}
+        <Bildkallor slugs={islands.map(i => i.slug)} namn={Object.fromEntries(islands.map(i => [i.slug, i.name]))} />
 
         {/* Andra kategorier */}
         <div style={{
@@ -209,7 +214,7 @@ export default async function OarCategoryPage({ params }: Props) {
             variant="card"
             source={`oar-${cat.slug}`}
             title="Få fler skärgårdstips"
-            description="Varannan tisdag — säsong, evenemang och nya guider."
+            description="Säsongsstarter och nya guider, när det händer något. Inga annonser."
           />
         </div>
       </main>

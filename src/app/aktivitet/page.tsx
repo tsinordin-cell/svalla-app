@@ -119,7 +119,7 @@ export default function ActivityIndexPage() {
             variant="card"
             source="aktivitet-index"
             title="Få veckans skärgårdstips"
-            description="Varannan tisdag — bästa krogarna, evenemang och nya guider. Inga annonser."
+            description="Nya guider och säsongsnytt direkt i inkorgen. Inga annonser."
           />
         </div>
       </main>

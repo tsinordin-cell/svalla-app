@@ -8,6 +8,8 @@ import { ALL_ISLANDS, type Island } from '../o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from './oar-categories'
 import IslandThumb from '@/components/IslandThumb'
 import { OBILDER } from '@/app/o/obilder.generated'
+import { commonsThumb } from '@/lib/commonsBild'
+import Bildkallor from '@/components/Bildkallor'
 
 export const metadata: Metadata = {
   title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer',
@@ -288,7 +290,7 @@ export default function OarIndexPage() {
             color: 'var(--txt)', margin: '0 0 8px',
             fontFamily: "'Playfair Display', Georgia, serif",
           }}>
-            Alla {ALL_ISLANDS.length}+ öar
+            Alla {ALL_ISLANDS.length} öar
           </h2>
           <p style={{ fontSize: 15, color: 'var(--txt2)', margin: '0 0 24px' }}>
             Bläddra per region eller scrolla för att hitta din destination.
@@ -338,7 +340,7 @@ export default function OarIndexPage() {
                         <div style={{
                           width: 64, height: 48, flexShrink: 0,
                           borderRadius: 8, overflow: 'hidden',
-                          background: `url('${OBILDER[i.slug]?.url ?? i.coverImage}') center/cover, linear-gradient(135deg, #1e5c82, #2d7d8a)`,
+                          background: `url('${OBILDER[i.slug] ? commonsThumb(OBILDER[i.slug]!.url, 250) : i.coverImage}') center/cover, linear-gradient(135deg, #1e5c82, #2d7d8a)`,
                         }} aria-hidden />
                       ) : (
                         <IslandThumb slug={i.slug} region={i.region} width={64} height={48} />
@@ -352,8 +354,9 @@ export default function OarIndexPage() {
                           {i.name}
                         </div>
                         <div style={{
-                          fontSize: 12, color: 'var(--txt2)',
-                          overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                          fontSize: 12, color: 'var(--txt2)', lineHeight: 1.45,
+                          // Två rader i stället för en avkapad: "båk från 176…" (kort 2ccd3cd5)
+                          display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
                         }}>
                           {i.tagline}
                         </div>
@@ -365,6 +368,7 @@ export default function OarIndexPage() {
               </div>
             )
           })}
+          <Bildkallor slugs={ALL_ISLANDS.map(i => i.slug)} namn={Object.fromEntries(ALL_ISLANDS.map(i => [i.slug, i.name]))} />
         </section>
 
         {/* Email signup */}
@@ -373,7 +377,7 @@ export default function OarIndexPage() {
             variant="card"
             source="oar-index"
             title="Få tips inför sommaren"
-            description="Varannan tisdag — säsong, evenemang och nya guider. Ingen reklam."
+            description="Säsongsstarter och nya guider, när det händer något. Inga annonser."
           />
         </section>
 
