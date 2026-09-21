@@ -83,7 +83,7 @@ export default function UtflyktPage() {
             variant="card"
             source="utflykt"
             title="Få fler utflyktstips"
-            description="Varannan tisdag — säsong, evenemang och nya öar att utforska."
+            description="Säsongsstarter och nya guider, när det händer något. Inga annonser."
           />
         </div>
       </main>
