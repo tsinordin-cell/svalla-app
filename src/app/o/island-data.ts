@@ -366,7 +366,7 @@ export const ISLANDS: Island[] = [
       'Sandhamn var lotsstation i hundratals år. Lotsarna här guidade handelsfartyg genom de smala passagerna in mot Stockholm, vilket formade byn och dess karaktär.',
     ],
     blogLinks: [
-      { slug: 'basta-restaurangerna-sandhamn', title: 'De 5 bästa restaurangerna på Sandhamn 2026' },
+      { slug: 'basta-restaurangerna-sandhamn', title: 'Fem krogar och kaféer på Sandhamn 2026' },
       { slug: 'gasthamnar-guide', title: 'Bästa gästhamnarna i Stockholms skärgård 2026' },
       { slug: 'segling-nyborjare-guide', title: 'Segla för första gången – allt du behöver veta' },
     ],
