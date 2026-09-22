@@ -39,6 +39,7 @@ interface Poi {
   slug: string | null
   island: string | null
   archipelago_region: string | null
+  endast_medlemmar?: boolean
 }
 
 type Category = 'krog' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'boende' | 'bad' | 'annat'
@@ -909,6 +910,7 @@ export default function UpptackExplorer() {
                   <div className="upx-card-meta">
                     <span className="upx-card-cat" style={{ color: meta.color }}>{meta.label}</span>
                     {p.island && <span className="upx-card-island">· {p.island}</span>}
+                    {p.endast_medlemmar && <span className="upx-card-medlem">Endast medlemmar</span>}
                   </div>
                   {p.description && (
                     <div className="upx-card-desc">{p.description.slice(0, 80)}{p.description.length > 80 ? '…' : ''}</div>
@@ -1253,6 +1255,7 @@ export default function UpptackExplorer() {
         }
         .upx-card-cat { font-weight: 700; }
         .upx-card-island { color: var(--txt3); }
+        .upx-card-medlem { margin-left: 6px; font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #9a4f14; background: rgba(201,110,42,0.14); border-radius: 999px; padding: 1px 7px; white-space: nowrap; }
         .upx-card-desc {
           font-size: 12px;
           color: var(--txt2);
