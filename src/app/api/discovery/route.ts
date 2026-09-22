@@ -59,7 +59,7 @@ export async function GET(req: Request) {
   if (type === 'poi') {
     const { data, error } = await supabase
       .from('restaurants')
-      .select('id, name, latitude, longitude, type, categories, description, image_url, slug, island, archipelago_region, google_photo_refs')
+      .select('id, name, latitude, longitude, type, categories, description, image_url, slug, island, archipelago_region, google_photo_refs, endast_medlemmar')
       .not('latitude', 'is', null)
       .not('longitude', 'is', null)
 
@@ -74,6 +74,7 @@ export async function GET(req: Request) {
       image_url: string | null; slug: string | null; island: string | null;
       archipelago_region: string | null;
       google_photo_refs: { reference: string }[] | null;
+      endast_medlemmar: boolean | null;
     }
     const projected = (data as RawRow[] | null ?? []).map((r) => {
       let imageUrl = r.image_url
@@ -93,6 +94,8 @@ export async function GET(req: Request) {
         description: r.description ? r.description.slice(0, 300) : null,
         image_url: imageUrl, slug: r.slug, island: r.island,
         archipelago_region: r.archipelago_region,
+        // Skickas bara när den är sann — håller listsvaret litet.
+        ...(r.endast_medlemmar ? { endast_medlemmar: true } : {}),
       }
     })
 
