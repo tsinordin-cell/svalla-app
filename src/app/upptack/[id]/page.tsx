@@ -138,7 +138,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  const data = await fetchRestaurant(
    idOrSlug,
-   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, postal_code, city, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated, verified_at'
+   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, postal_code, city, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated, verified_at, endast_medlemmar'
  )
  if (!data) notFound()
  // Sanera dubbelkodad UTF-8 innan raden anvands. En del platsdata har
@@ -496,6 +496,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    svallaRatingCount={reviewCount}
    priceLevel={null}
    websiteUrl={r.website}
+   endastMedlemmar={(r as Restaurant & { endast_medlemmar?: boolean }).endast_medlemmar === true}
    menuUrl={(r as Restaurant & { menu_url?: string | null }).menu_url ?? null}
    bookingUrl={r.booking_url}
    instagram={(r as Restaurant & { instagram?: string | null }).instagram ?? null}
