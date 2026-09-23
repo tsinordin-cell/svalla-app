@@ -30,9 +30,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
+  // Metabeskrivningen sa "Waxholmsbolaget, Cinderellabåten, SL eller bil" på
+  // ALLA öar, även Bohuslän och Göteborg (Käringön: båt från Tuvesvik).
+  // Uppmätt i Search Console 2026-09-23 (6 400 visningar). Nu byggs den av
+  // öns egna färdsätt och operatör.
+  const forsta = island.getting_there[0]
+  const vag = forsta
+    ? `${forsta.method}${forsta.from && !/från/i.test(forsta.method) ? ` från ${forsta.from}` : ''}`
+    : null
+  const operator = island.transport_meta?.operator ?? null
+  const beskrivning = [
+    `Så tar du dig till ${island.name}`,
+    vag ? `: ${vag}` : '',
+    '.',
+    island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : '',
+    operator && !(vag ?? '').toLowerCase().includes(operator.toLowerCase()) ? ` Trafik: ${operator}.` : '',
+  ].join('')
   return {
     title: `Hur tar man sig till ${island.name}? — Båt, buss, färja 2026`,
-    description: `Allt om transport till ${island.name}: Waxholmsbolaget, Cinderellabåten, SL eller bil. Avgångstider, priser och tips för ${island.facts.travel_time}.`,
+    description: beskrivning,
     keywords: [
       `hur tar man sig till ${island.name.toLowerCase()}`,
       `${island.name.toLowerCase()} båt`,
@@ -40,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${island.name.toLowerCase()} transport`,
       `komma till ${island.name.toLowerCase()}`,
       `resa till ${island.name.toLowerCase()}`,
-      `${island.name.toLowerCase()} waxholmsbolaget`,
+      ...(operator ? [`${island.name.toLowerCase()} ${operator.toLowerCase()}`] : []),
       `how to get to ${island.name.toLowerCase()} sweden`,
     ],
     openGraph: {
