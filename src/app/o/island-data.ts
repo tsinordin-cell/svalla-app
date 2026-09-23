@@ -1115,7 +1115,10 @@ export const ISLANDS: Island[] = [
     ],
     facts: {
       // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf (Möja-foldern) — "Båt från Strömkajen tar ca 3-4 timmar. Det går också att åka buss 434 från Slussen till Sollenkroka och därifrån båt, restid ca 2,5 timme, varav båt drygt 1 timme." Waxholmsbolagets tabell 14 gick inte att öppna.
-      travel_time: 'Drygt 1 tim med båt från Sollenkroka (ca 2,5 tim från Slussen med buss 434) · ca 3–4 tim med båt från Strömkajen',
+      // Kortad 2026-09-23: parentesen gjorde Restid-kortet dubbelt så högt som
+      // de andra tre i heron. Hela restiden från Slussen står i brödtexten och
+      // på /komma-dit — faktakortet ska gå att läsa på en blick.
+      travel_time: 'Drygt 1 tim med båt från Sollenkroka · ca 3–4 tim från Strömkajen',
       character: 'Bilfri, lantlig, genuint, lugnt',
       season: 'Maj–September',
       best_for: 'De som söker äkta skärgårdsliv utan turister',
