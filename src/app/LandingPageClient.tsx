@@ -1135,6 +1135,9 @@ const LANDING_HTML = `
 <section class="gallery-section" id="galleri">
  <div class="section-inner reveal">
   <div class="section-label">Inspiration</div>
+  <!-- Galleriet visar PLATSER, inte teman. Klippbad och Kajak & paddling togs
+      bort 2026-09-23 (Max): de är aktiviteter, inte ställen man reser till, och
+      hörde inte hemma bland öar och regioner. -->
   <h2 class="section-title" style="font-size:clamp(24px,3vw,36px);margin-bottom:4px">Skärgårdslivet på bild</h2>
   <p style="color:rgba(255,255,255,.55);font-size:14px;margin-top:6px">Klicka för att utforska — foton hämtade direkt från platsen</p>
  </div>
@@ -1154,20 +1157,10 @@ const LANDING_HTML = `
    <div class="gallery-item-overlay"></div>
    <div class="gallery-item-label"><div class="gallery-item-title">Bohuslän</div><div class="gallery-item-sub">Västkusten · Smögen &amp; Fjällbacka</div></div>
   </a>
-  <a href="/blogg/basta-badplatserna" class="gallery-item">
-   <div class="gallery-item-bg" data-lp-photo="badplatser" style="background-color:#0a2e3a"></div>
-   <div class="gallery-item-overlay"></div>
-   <div class="gallery-item-label"><div class="gallery-item-title">Klippbad</div><div class="gallery-item-sub">Stockholms skärgård · Badplatser</div></div>
-  </a>
   <a href="/gotland" class="gallery-item">
    <div class="gallery-item-bg" data-lp-photo="gotland" style="background-color:#2a1a08"></div>
    <div class="gallery-item-overlay"></div>
    <div class="gallery-item-label"><div class="gallery-item-title">Gotland</div><div class="gallery-item-sub">Östersjön · Visby &amp; Fårö</div></div>
-  </a>
-  <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="gallery-item">
-   <div class="gallery-item-bg" data-lp-photo="kajak" style="background-color:#0c2218"></div>
-   <div class="gallery-item-overlay"></div>
-   <div class="gallery-item-label"><div class="gallery-item-title">Kajak &amp; paddling</div><div class="gallery-item-sub">Stockholms skärgård · Nybörjarvänligt</div></div>
   </a>
   <a href="/aland" class="gallery-item">
    <div class="gallery-item-bg" data-lp-photo="aland" style="background-color:#081a28"></div>
