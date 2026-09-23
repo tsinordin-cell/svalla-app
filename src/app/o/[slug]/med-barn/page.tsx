@@ -138,7 +138,8 @@ export default async function IslandMedBarnPage({ params }: Props) {
               // "[object Object]" på varje ö som fått strukturerad baddata —
               // syntes live på /o/moja/med-barn 2026-09-23.
               { icon: 'waves', label: 'Badmöjligheter', value: badnamn.length > 0 ? badnamn.slice(0, 2).join(', ') : (island.activity_meta?.bad ? 'Klippbad och bryggor' : 'Klippor längs kusten') },
-              { icon: 'utensils', label: 'Restauranger', value: island.restaurants.length > 0 ? `${island.restaurants.length} krogar och caféer` : 'Begränsat utbud — ta matsäck' },
+              // "1 krogar och caféer" stod live på varje ö med exakt ett ställe.
+              { icon: 'utensils', label: 'Restauranger', value: island.restaurants.length === 1 ? 'En krog eller kafé' : island.restaurants.length > 1 ? `${island.restaurants.length} krogar och kaféer` : 'Begränsat utbud — ta matsäck' },
               { icon: 'navigation', label: 'Cykling', value: island.activity_meta?.cykel?.rental ? 'Cykeluthyrning finns' : (island.activity_meta?.cykel ? 'Cykelleder finns' : 'Kontrollera lokalt') },
               { icon: 'calendar', label: 'Bäst säsong', value: island.facts.season },
               { icon: 'users', label: 'Passar', value: island.facts.best_for },

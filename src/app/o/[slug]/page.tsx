@@ -647,7 +647,10 @@ export default async function IslandPage({ params }: Props) {
  gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
  gap: 14,
  }}>
- {island.activities.map(act => (
+ {/* Tre kort syns, resten bakom "Visa fler". Samma mönster som "Om X" och
+     guidelistan: inget tas bort, allt ligger kvar i DOM:en. */}
+ {(() => {
+ const kort = (act: typeof island.activities[number]) => (
  <div key={act.name} style={{
  background: 'var(--white)',
  borderRadius: 14,
@@ -666,7 +669,17 @@ export default async function IslandPage({ params }: Props) {
  <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', marginBottom: 5 }}>{act.name}</div>
  <div style={{ fontSize: 13, color: 'var(--txt3)', lineHeight: 1.6 }}>{act.desc}</div>
  </div>
- ))}
+ )
+ const SYNLIGA = 3
+ if (island.activities.length <= SYNLIGA + 1) return island.activities.map(kort)
+ return (
+ <Hopfallbart
+ synligt={island.activities.slice(0, SYNLIGA).map(kort)}
+ dolt={island.activities.slice(SYNLIGA).map(kort)}
+ etikett={`Visa fler aktiviteter (${island.activities.length - SYNLIGA})`}
+ />
+ )
+ })()}
  </div>
  <div style={{ marginTop: 16, textAlign: 'right' }}>
  <Link href={`/o/${slug}/aktiviteter`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
@@ -955,18 +968,30 @@ export default async function IslandPage({ params }: Props) {
  padding: '24px',
  border: '1px solid rgba(30,92,130,0.12)',
  }}>
- {island.tips.map((tip, i) => (
+ {(() => {
+ const rad = (tip: string, i: number, sist: boolean) => (
  <div key={i} style={{
  display: 'flex',
  gap: 12,
- marginBottom: i < island.tips.length - 1 ? 16 : 0,
- paddingBottom: i < island.tips.length - 1 ? 16 : 0,
- borderBottom: i < island.tips.length - 1 ? '1px solid rgba(30,92,130,0.08)' : 'none',
+ marginBottom: sist ? 0 : 16,
+ paddingBottom: sist ? 0 : 16,
+ borderBottom: sist ? 'none' : '1px solid rgba(30,92,130,0.08)',
  }}>
  <span style={{ fontSize: 18, lineHeight: 1.5, flexShrink: 0 }}>→</span>
  <p style={{ fontSize: 14, color: 'var(--txt2)', margin: 0, lineHeight: 1.7 }}>{tip}</p>
  </div>
- ))}
+ )
+ const SYNLIGA = 3
+ const sista = island.tips.length - 1
+ if (island.tips.length <= SYNLIGA + 1) return island.tips.map((t, i) => rad(t, i, i === sista))
+ return (
+ <Hopfallbart
+ synligt={island.tips.slice(0, SYNLIGA).map((t, i) => rad(t, i, false))}
+ dolt={island.tips.slice(SYNLIGA).map((t, i) => rad(t, i + SYNLIGA, i + SYNLIGA === sista))}
+ etikett={`Visa fler tips (${island.tips.length - SYNLIGA})`}
+ />
+ )
+ })()}
  </div>
  </section>
  )}
@@ -1214,7 +1239,8 @@ export default async function IslandPage({ params }: Props) {
       <span style={{ color: 'var(--sea)', fontWeight: 700, flexShrink: 0 }}>→</span>
      </Link>
      )
-     const SYNLIGA = 6
+     // 6 → 4 (2026-09-23): guidelistan var det längsta kvarvarande blocket.
+     const SYNLIGA = 4
      if (guideLinks.length <= SYNLIGA + 1) return guideLinks.map(kort)
      return (
       <Hopfallbart

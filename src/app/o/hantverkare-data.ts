@@ -326,21 +326,22 @@ export const HANTVERKARE: Hantverkare[] = [
     verifierad: false,
     noteringar: 'Ramsmora 818, 130 43 Möja. Båttaxi för upp till 7 personer, båten Lisa. Inget pris publicerat.',
   },
-  {
-    slug: 'seacab-moja',
-    namn: 'SeaCab Möja AB',
-    ort: 'Bergs by, Möja',
-    bas: 'Bergs by, Möja',
-    yrken: ['sjotransport'],
-    telefon: '0708-17 47 78',
-    epost: 'info@seacab.se',
-    webb: 'https://www.seacab.se',
-    oar: ['moja'],
-    kalla: { niva: 'egen-sajt', url: 'https://www.seacab.se', last: '2026-09-22',
-      reservation: 'Företagets webbplats har inte uppdaterats sedan 2016 och ett inlägg från 2014 meddelar att de inte kör egna reguljära turer. Uppgifterna kan stämma ändå, men vi har inte kunnat bekräfta att verksamheten är igång.' },
-    verifierad: false,
-    noteringar: 'Möja Bergs By 640, 130 43 Möja. Båt- OCH SVÄVARTAXI — svävare går på is och är ovanligt.',
-  },
+  /*
+   * SeaCab Möja AB — BORTTAGEN 2026-09-23 (Max).
+   *
+   * Sjötransport, Bergs by på Möja, 0708-17 47 78, info@seacab.se,
+   * seacab.se. Båt- och SVÄVARTAXI; svävare går på is och är ovanligt.
+   *
+   * Varför borta: webbplatsen har inte uppdaterats sedan 2016, och ett
+   * inlägg från 2014 meddelar att de inte kör egna reguljära turer. Vi kunde
+   * inte bekräfta att verksamheten är igång. Att lista ett företag som
+   * kanske lagt ner är sämre än att lista ett för lite — den som ringer ett
+   * dött nummer litar inte på nästa post heller.
+   *
+   * Uppgifterna ligger kvar här och inte i datat: ringer någon och får svar,
+   * eller hör de av sig, är posten färdigskriven och kan läggas tillbaka med
+   * verifierad: { av, datum }.
+   */
 
   // ── Verksamma i Möjaskärgården men med bas på annan ö eller fastlandet ──
 
