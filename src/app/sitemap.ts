@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { ALL_ISLANDS } from './o/island-data'
+import { getHantverkareForIsland } from './o/hantverkare-data'
 import { ACTIVITY_LIST, islandsForActivity } from './aktivitet/activity-data'
 import { OAR_CATEGORIES } from './oar/oar-categories'
 import { createClient } from '@/lib/supabase'
@@ -304,6 +305,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   // ── Per-ö kategorisidor (7 sub-sidor per ö) ─────────────────────
+  // Hantverkarsidan listas BARA för öar som faktiskt har poster.
+  // Skälet är inte kosmetiskt: en genererad sida per ö oavsett underlag är
+  // precis den tunna massproduktion Google klassar som scaled content abuse,
+  // och straffet drabbar hela domänen — inklusive guiderna som rankar i dag.
+  // Husarö har två företag för att det bor ett fåtal människor där.
+  const islandHantverkarePages: MetadataRoute.Sitemap = ALL_ISLANDS
+    .filter(island => getHantverkareForIsland(island.slug).length > 0)
+    .map(island => ({
+      url: `${base}/o/${island.slug}/hantverkare`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+
   const islandCategoryPages: MetadataRoute.Sitemap = ALL_ISLANDS.flatMap(island => [
     { url: `${base}/o/${island.slug}/aktiviteter`,  lastModified: now, changeFrequency: 'monthly' as const, priority: 0.75 },
     { url: `${base}/o/${island.slug}/restauranger`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
@@ -478,6 +493,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...jamforPages,
     ...islandPages,
     ...islandCategoryPages,
+    ...islandHantverkarePages,
     ...activityIndex,
     ...activityTypePages,
     ...activityIslandPages,

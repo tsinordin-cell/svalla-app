@@ -782,7 +782,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Hantverkare — renderar sig själv till null om inga VERIFIERADE poster finns
      för ön, vilket är normalfallet tills registret ringts igenom. Se
      hantverkare-data.ts för varför spärren ligger i datalagret och inte här. */}
- <IslandHantverkare islandSlug={slug} />
+ <IslandHantverkare islandSlug={slug} islandName={island.name} />
 
  {/* Boende */}
  {island.accommodation.length > 0 && (
