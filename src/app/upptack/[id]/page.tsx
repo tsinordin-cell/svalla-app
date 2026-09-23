@@ -17,6 +17,7 @@ import TrackPlaceView from '@/components/TrackPlaceView'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
 import { fixMojibake, fixMojibakeLista } from '@/lib/mojibake'
+import { regionEtikett } from '@/lib/regionEtikett'
 
 // PRESTANDA (2026-08-02): stod tidigare på 60 s "för att uppdatera recensioner
 // ofta". Med 699 platssidor hann cachen nästan alltid gå ut mellan två besök på
@@ -70,13 +71,22 @@ async function fetchRestaurant(idOrSlug: string, columns: string) {
   return data
 }
 
+/** Typord för titel, metabeskrivning och nyckelord (små bokstäver). */
+const META_TYP_ORD: Record<string, string> = {
+  restaurant: 'restaurang', cafe: 'kafé', bar: 'bar',
+  marina: 'gästhamn', harbor: 'hamn', anchorage: 'naturhamn', nature_harbor: 'naturhamn',
+  fuel: 'tankställe', fuel_station: 'tankställe',
+  beach: 'badplats', sauna: 'bastu', shop: 'butik', hotel: 'hotell', nature: 'naturplats',
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
  const { id } = await params
  const data = await fetchRestaurant(
    id,
-   'id, name, description, island, image_url, tags, slug, google_photo_refs',
+   'id, name, description, island, image_url, tags, slug, google_photo_refs, type, archipelago_region',
  ) as {
    id: string; name: string; description?: string; island?: string;
+   type?: string | null; archipelago_region?: string | null;
    image_url?: string; tags?: string[]; slug?: string;
    google_photo_refs?: { reference: string }[] | null;
  } | null
@@ -89,14 +99,24 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  if (!data) notFound()
  // Canonical pekar alltid på slug-URL om sluggen finns, annars UUID
  const canonicalPath = data.slug ?? data.id
- const desc = data.description ?? `${data.name} på ${data.island ?? 'skärgårdsön'} – mat och dryck längs kusten.`
+ // SEO (Tom 2026-09-23): titel och reservbeskrivning ska säga VAD platsen är
+ // och VAR den ligger. Den gamla reserven ("… – mat och dryck längs kusten")
+ // och de fasta nyckelorden ("skärgårdsrestaurang", "Stockholms skärgård")
+ // stod även på bad, bastur och hamnar i Bohuslän – fel fakta.
+ const typOrd = data.type ? (META_TYP_ORD[data.type] ?? null) : null
+ const region = regionEtikett(data.archipelago_region)
+ const plats = [data.island, region].filter(Boolean).join(', ')
+ const desc = data.description
+   ?? `${data.name}${typOrd ? ` – ${typOrd}` : ''}${plats ? `, ${plats}` : ''}. Läge och karta på Svalla.`
  const keywords = [
  data.name?.toLowerCase(),
- data.island ? `${data.island.toLowerCase()} restaurang` : null,
- 'skärgårdsrestaurang',
- 'Stockholms skärgård',
+ typOrd && data.island ? `${typOrd} ${data.island.toLowerCase()}` : null,
+ typOrd && region ? `${typOrd} ${region.toLowerCase()}` : null,
+ region,
  ...(Array.isArray(data.tags) ? data.tags : []),
  ].filter(Boolean) as string[]
+ const titelTyp = typOrd ? typOrd.charAt(0).toUpperCase() + typOrd.slice(1) : null
+ const titel = titelTyp ? `${data.name} · ${titelTyp}${data.island ? `, ${data.island}` : ''}` : data.name
 
  /**
   * OG-image — peka till vår CUSTOM OG-route som bygger ett premium-card
@@ -111,7 +131,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  const ogHeight = 630
 
  return {
- title: data.name,
+ title: titel,
  description: desc,
  keywords,
  alternates: { canonical: `${SITE}/upptack/${canonicalPath}` },
