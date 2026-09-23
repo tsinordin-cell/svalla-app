@@ -3217,7 +3217,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 `,
 
   // ── Batch D: Kräftskiva-serien 2026 ──────────────────────────────────────────
-  'kraftskiva-skargarden-2026': `
+  'kraftskiva-skargarden': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kräftpremiären 2026 infaller onsdagen den 5 augusti. Det är startskottet för Sveriges mest älskade sensommartradition – och i skärgården firas den med extra stil. Här är allt du behöver veta för att planera en oförglömlig kräftskiva ute på öarna.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad är kräftskiva egentligen?</h2>
@@ -7350,7 +7350,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p><strong>Kläder:</strong> September: fleece + vindjakka. Oktober: vinterjacka + mössa. Skärgårdsvindar gör att det känns kallare än temperaturen.</p>
 `,
 
-  'hummerpremiar-bohuslan-2026': `
+  'hummerpremiar-bohuslan': `
 <!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)"><strong>Hummerpremiären 2026 är ${hummerpremiar(2026).text.replace(/ 2026$/, '')} klockan 07.00.</strong> Premiären infaller alltid första måndagen efter 20 september – nästa år, 2027, blir det ${hummerpremiar(2027).kort}. Från den morgonen och till och med 30 november får fritidsfiskare vittja sina hummertinor längs Bohusläns kust.</p>
 

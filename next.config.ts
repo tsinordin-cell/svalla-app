@@ -200,6 +200,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       { source: '/blogg/midsommar-skargarden-2026', destination: '/guider/midsommar-skargarden-2026', permanent: true },
+      // Årslösa adresser för säsongsguider (Search Console 2026-09-23: 38 848 + 27 091 visningar/3 mån).
+      // Med årtal i adressen börjar sidan om från noll varje år. Innehåll och datum uppdateras årligen,
+      // adressen ligger fast.
+      { source: '/guider/kraftskiva-skargarden-2026', destination: '/guider/kraftskiva-skargarden', permanent: true },
+      { source: '/guider/hummerpremiar-bohuslan-2026', destination: '/guider/hummerpremiar-bohuslan', permanent: true },
       { source: '/blogg/packlista-skargarden', destination: '/guider/packlista-skargarden', permanent: true },
       { source: '/blogg/allemansratten-pa-sjon', destination: '/guider/allemansratten-pa-sjon', permanent: true },
       { source: '/blogg/waxholmsbolaget-guide', destination: '/guider/waxholmsbolaget-guide', permanent: true },
