@@ -455,17 +455,21 @@ export function synligaYrken(h: Hantverkare): Yrke[] {
 /**
  * Hantverkare att visa på en ösida.
  *
- * Två spärrar, båda avsiktliga och ingen av dem ska "optimeras bort":
+ * Spärren här är EN, och den ska inte "optimeras bort": poster vars enda yrke
+ * är elektriker utan bekräftad registrering visas inte. Mätningen 2026-09-22
+ * visade att 7 av 29 elföretag i insamlingsregistret inte gick att hitta hos
+ * Elsäkerhetsverket, varav Möjas båda. Utan den spärren hade de hamnat på
+ * ösidan som elektriker.
  *
- * 1. Returnerar BARA verifierade poster — någon människa har ringt.
- * 2. Utesluter poster vars enda yrke är elektriker utan bekräftad registrering.
- *    Mätningen 2026-09-22 visade att 7 av 29 elföretag i insamlingsregistret
- *    inte gick att hitta hos Elsäkerhetsverket, varav Möjas båda. Utan den här
- *    spärren hade de hamnat på ösidan som elektriker.
+ * `verifierad` filtrerar INTE. Det var så det var byggt först, och effekten
+ * blev att sidan var tom på varenda ö: ingen post är uppringd, och vi kommer
+ * aldrig hinna ringa alla. Modellen är i stället den som står i källrutan
+ * överst på sidan — vi visar var uppgiften kommer ifrån och när vi läste den,
+ * och säger rent ut att vi inte kan garantera att den är aktuell.
+ * `verifierad` styr bara den gröna bocken på kortet.
  */
 export function getHantverkareForIsland(slug: string): Hantverkare[] {
   return HANTVERKARE.filter(h =>
-    h.verifierad !== false &&
     h.oar.includes(slug) &&
     synligaYrken(h).length > 0
   )
