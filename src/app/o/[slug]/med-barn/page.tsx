@@ -59,6 +59,8 @@ export default async function IslandMedBarnPage({ params }: Props) {
   const isFamilyFriendly = bestFor.includes('barn') || bestFor.includes('familj')
 
   const beaches = island.activity_meta?.bad?.beaches ?? []
+  /** Badplatserna som rena namn. Fältet rymmer både strängar och IslandBeach. */
+  const badnamn = beaches.map(b => (typeof b === 'string' ? b : b.name)).filter(Boolean)
   const travelTime = island.facts.travel_time ?? ''
   const shortTravel = island.transport_meta
     ? island.transport_meta.from_city_min <= 90
@@ -132,7 +134,10 @@ export default async function IslandMedBarnPage({ params }: Props) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 14 }}>
             {([
               { icon: 'ship', label: 'Restid', value: island.facts.travel_time },
-              { icon: 'waves', label: 'Badmöjligheter', value: beaches.length > 0 ? beaches.slice(0, 2).join(', ') : (island.activity_meta?.bad ? 'Klippbad och bryggor' : 'Klippor längs kusten') },
+              // beaches är (string | IslandBeach)[]. Ett rakt join() gav
+              // "[object Object]" på varje ö som fått strukturerad baddata —
+              // syntes live på /o/moja/med-barn 2026-09-23.
+              { icon: 'waves', label: 'Badmöjligheter', value: badnamn.length > 0 ? badnamn.slice(0, 2).join(', ') : (island.activity_meta?.bad ? 'Klippbad och bryggor' : 'Klippor längs kusten') },
               { icon: 'utensils', label: 'Restauranger', value: island.restaurants.length > 0 ? `${island.restaurants.length} krogar och caféer` : 'Begränsat utbud — ta matsäck' },
               { icon: 'navigation', label: 'Cykling', value: island.activity_meta?.cykel?.rental ? 'Cykeluthyrning finns' : (island.activity_meta?.cykel ? 'Cykelleder finns' : 'Kontrollera lokalt') },
               { icon: 'calendar', label: 'Bäst säsong', value: island.facts.season },
