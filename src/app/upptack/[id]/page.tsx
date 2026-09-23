@@ -78,6 +78,7 @@ const META_TYP_ORD: Record<string, string> = {
   marina: 'gästhamn', harbor: 'hamn', anchorage: 'naturhamn', nature_harbor: 'naturhamn',
   fuel: 'tankställe', fuel_station: 'tankställe',
   beach: 'badplats', sauna: 'bastu', shop: 'butik', hotel: 'hotell', nature: 'naturplats',
+  attraction: 'sevärdhet',
 }
 
 /**
@@ -89,7 +90,7 @@ const SCHEMA_TYP: Record<string, string> = {
   restaurant: 'Restaurant', cafe: 'CafeOrCoffeeShop', bar: 'BarOrPub',
   hotel: 'Hotel', hostel: 'Hostel', camping: 'Campground',
   beach: 'Beach', fuel: 'GasStation', fuel_station: 'GasStation',
-  nature: 'TouristAttraction', sauna: 'TouristAttraction',
+  nature: 'TouristAttraction', attraction: 'TouristAttraction', sauna: 'TouristAttraction',
   marina: 'TouristAttraction', harbor: 'TouristAttraction',
   anchorage: 'TouristAttraction', nature_harbor: 'TouristAttraction',
 }
@@ -439,6 +440,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    marina: 'Gästhamn', harbor: 'Hamn', anchorage: 'Naturhamn', nature_harbor: 'Naturhamn',
    fuel: 'Bränsle', fuel_station: 'Bränsle',
    beach: 'Bad', sauna: 'Bastu', shop: 'Butik', hotel: 'Hotell', nature: 'Naturplats',
+   attraction: 'Sevärdhet',
  }
  const typeLabel = r.type ? (TYPE_LABEL_MAP[r.type] ?? null) : null
 
