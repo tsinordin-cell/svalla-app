@@ -75,6 +75,7 @@ const DOLD_PLATS_REDIRECT: Record<string, string> = {
   'singo-battaxi': '/o/singo',
   'fjallbacka-bensinstation': '/o/fjallbacka',
   'norrora-krog': '/o/norrora',
+  'langviks-yttre-gasthamn': '/o/moja',
 }
 
 // ── Riktig 404 för okända och dolda platser (/upptack/<slug|uuid>) ──
