@@ -23,6 +23,8 @@ import { GUIDES } from '../../guider/guides-data'
 import { getGuidesForIsland } from '../../guider/guide-island-map'
 import IslandB2BCTA from '@/components/IslandB2BCTA'
 import IslandHantverkare from '@/components/IslandHantverkare'
+import { getHantverkareForIsland } from '../hantverkare-data'
+import IslandTabRow from '@/components/IslandTabRow'
 import IslandKallor from '@/components/IslandKallor'
 import Hopfallbart from '@/components/Hopfallbart'
 import IslandFoto from '@/components/IslandFoto'
@@ -409,6 +411,18 @@ export default async function IslandPage({ params }: Props) {
  </div>
  )})}
  </div>
+
+ {/* Undersidorna. Samma rad som ligger överst på varje undersida — ösidan
+     var den enda sidan i familjen som saknade den, vilket gav den bakvända
+     effekten att man kunde navigera mellan öns undersidor bara om man redan
+     stod på en av dem. Ligger under faktakorten och inte bland Spara/Dela:
+     de knapparna är saker man gör med sidan, det här är dit man går. */}
+ <div style={{ marginTop: 22 }}>
+   <IslandTabRow
+     islandSlug={island.slug}
+     dolj={getHantverkareForIsland(island.slug).length === 0 ? ['hantverkare'] : []}
+   />
+ </div>
  </div>
  </div>
 
@@ -779,7 +793,7 @@ export default async function IslandPage({ params }: Props) {
  </section>
  )}
 
- {/* Hantverkare — renderar sig själv till null om inga VERIFIERADE poster finns
+ {/* Hantverk & service — renderar sig själv till null om ön saknar poster
      för ön, vilket är normalfallet tills registret ringts igenom. Se
      hantverkare-data.ts för varför spärren ligger i datalagret och inte här. */}
  <IslandHantverkare islandSlug={slug} islandName={island.name} />
@@ -1062,6 +1076,32 @@ export default async function IslandPage({ params }: Props) {
        <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
       </div>
      </Link>
+     {/* Hantverkarkortet visas bara när ön faktiskt har poster. Ett kort som
+         leder till "vi har inga uppgifter ännu" är sämre än inget kort.
+         Samma villkor som sitemapen använder. */}
+     {getHantverkareForIsland(slug).length > 0 && (
+     <Link href={`/o/${slug}/hantverkare`} style={{ textDecoration: 'none' }}>
+      <div style={{
+       background: 'var(--white)', borderRadius: 14, padding: '18px 20px',
+       boxShadow: '0 2px 10px rgba(0,0,0,0.06)', border: '1px solid var(--surface-3)',
+       display: 'flex', gap: 14, alignItems: 'center',
+       transition: 'box-shadow 0.15s',
+      }}>
+       <div style={{
+        width: 40, height: 40, flexShrink: 0, borderRadius: 10,
+        background: 'rgba(45,125,138,0.10)', color: 'var(--sea)',
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+       }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}><path d="M14.7 6.3a4 4 0 0 0 5 5l-9 9a2.8 2.8 0 0 1-4-4z"/><path d="M14.7 6.3 17.5 3.5"/></svg>
+       </div>
+       <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Hantverkare &amp; service</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Hus, brygga, båt och tomt på {island.name}</div>
+       </div>
+       <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
+      </div>
+     </Link>
+     )}
     </div>
     {/* Flyttat hit från heron 2026-09-19: logga besök, forum, nyhetsbrev. */}
     <div style={{ display: 'flex', gap: 10, marginTop: 14, flexWrap: 'wrap' }}>

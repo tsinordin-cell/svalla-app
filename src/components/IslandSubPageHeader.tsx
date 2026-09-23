@@ -3,18 +3,9 @@ import type { ReactNode } from 'react'
 import SvallaLogo from './SvallaLogo'
 import Breadcrumb from './Breadcrumb'
 
-export type IslandSubPageTab = 'aktiviteter' | 'restauranger' | 'boende' | 'hamnar' | 'komma-dit' | 'bad' | 'med-barn' | 'hantverkare'
+import IslandTabRow, { TAB_LABEL, type IslandSubPageTab } from './IslandTabRow'
 
-const TAB_LABEL: Record<IslandSubPageTab, string> = {
-  aktiviteter: 'Aktiviteter',
-  restauranger: 'Restauranger',
-  boende: 'Boende',
-  hamnar: 'Hamnar',
-  'komma-dit': 'Komma dit',
-  bad: 'Bad',
-  'med-barn': 'Med barn',
-  hantverkare: 'Hantverkare',
-}
+export type { IslandSubPageTab }
 
 interface IslandSubPageHeaderProps {
   island: {
@@ -124,32 +115,10 @@ export default function IslandSubPageHeader({ island, tab, title, subtitle }: Is
             </p>
           )}
 
-          {/* Sub-tab-rad — visar alla tre tabs med aktiv markerad */}
-          <div style={{
-            display: 'flex', gap: 6, marginTop: 24, flexWrap: 'wrap',
-          }}>
-            {(Object.keys(TAB_LABEL) as IslandSubPageTab[]).map(key => {
-              const isActive = key === tab
-              return (
-                <Link
-                  key={key}
-                  href={`/o/${island.slug}/${key}`}
-                  aria-current={isActive ? 'page' : undefined}
-                  style={{
-                    padding: '7px 14px', borderRadius: 999,
-                    fontSize: 12.5, fontWeight: 600,
-                    textDecoration: 'none',
-                    background: isActive ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.10)',
-                    color: isActive ? 'var(--sea-d)' : 'rgba(255,255,255,0.85)',
-                    border: '1px solid rgba(255,255,255,0.16)',
-                    transition: 'background 0.14s, color 0.14s',
-                    WebkitTapHighlightColor: 'transparent',
-                  }}
-                >
-                  {TAB_LABEL[key]}
-                </Link>
-              )
-            })}
+          {/* Sub-tab-raden ligger i IslandTabRow sedan 2026-09-23, för att
+              ösidan ska kunna visa samma rad. */}
+          <div style={{ marginTop: 24 }}>
+            <IslandTabRow islandSlug={island.slug} tab={tab} />
           </div>
         </div>
       </header>
