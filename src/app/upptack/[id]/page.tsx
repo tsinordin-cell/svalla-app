@@ -138,7 +138,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  const data = await fetchRestaurant(
    idOrSlug,
-   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, postal_code, city, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated'
+   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, postal_code, city, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated, verified_at, endast_medlemmar'
  )
  if (!data) notFound()
  // Sanera dubbelkodad UTF-8 innan raden anvands. En del platsdata har
@@ -496,6 +496,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    svallaRatingCount={reviewCount}
    priceLevel={null}
    websiteUrl={r.website}
+   endastMedlemmar={(r as Restaurant & { endast_medlemmar?: boolean }).endast_medlemmar === true}
    menuUrl={(r as Restaurant & { menu_url?: string | null }).menu_url ?? null}
    bookingUrl={r.booking_url}
    instagram={(r as Restaurant & { instagram?: string | null }).instagram ?? null}
@@ -561,7 +562,10 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    googleRating={(r as Restaurant & { google_rating?: number | null }).google_rating}
    googleRatingsTotal={(r as Restaurant & { google_ratings_total?: number | null }).google_ratings_total}
    googlePlaceId={(r as Restaurant & { google_place_id?: string | null }).google_place_id}
-   openingHours={(r as Restaurant & { opening_hours?: string | null }).opening_hours}
+   // Obekräftade öppettider skickas inte ens med till klienten (de hamnade annars i RSC-datat).
+   openingHours={(r as Restaurant & { verified_at?: string | null }).verified_at ? (r as Restaurant & { opening_hours?: string | null }).opening_hours : null}
+   hoursVerifiedAt={(r as Restaurant & { verified_at?: string | null }).verified_at ?? null}
+   harObekraftadeTider={!!(r as Restaurant & { opening_hours?: string | null }).opening_hours && !(r as Restaurant & { verified_at?: string | null }).verified_at}
    openingHoursJson={(r as Restaurant & { opening_hours_json?: unknown }).opening_hours_json}
    latitude={r.latitude}
    longitude={r.longitude}
@@ -737,7 +741,8 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    phone={(r as Restaurant & { phone?: string | null }).phone ?? r.contact_phone ?? null}
    websiteUrl={r.website ?? null}
    bookingUrl={r.booking_url ?? null}
-   openingHours={r.opening_hours ?? null}
+   openingHours={(r as Restaurant & { verified_at?: string | null }).verified_at ? (r.opening_hours ?? null) : null}
+   hoursVerifiedAt={(r as Restaurant & { verified_at?: string | null }).verified_at ?? null}
    facilities={(r as Restaurant & { facilities?: string[] | null }).facilities ?? null}
    bestFor={(r as Restaurant & { best_for?: string[] | null }).best_for ?? null}
    hasGuestHarbor={Array.isArray((r as Restaurant & { facilities?: string[] | null }).facilities) &&

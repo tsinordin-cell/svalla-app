@@ -1,25 +1,38 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
+// OMSKRIVEN 2026-09-21 (topp-30 i GSC). Den gamla sidan länkade till sju ruttsidor
+// under /segelrutter/… som inte finns (404, mätt i produktion 2026-09-21), lovade
+// att "rutterna är testade av erfarna seglare och uppdateras löpande", kallade
+// Mälaren "Europas tredje största insjö", placerade Birka i västra Mälaren och
+// listade sjökortsnummer utan källa. Kvar är det som går att belägga, och korten
+// pekar nu på sidor som finns.
+//
+// KÄLLOR (lästa i webbläsare 2026-09-21):
+// - KSSS, Gotland Runt, https://www.ksss.se/en/gotlandrunt — "first sailed in 1937"; "since 2024 it starts at Gråskärsfjärden south of Sandön … north along the outer archipelago to the Svenska Högarna … before the boats sail south on open water to round Gotland with the finish at Sandhamn"; "The race course is about 350 NM long and the Visby Course is 245 NM long"
+// - Sveriges nationalparker, Kosterhavet, https://www.sverigesnationalparker.se/park/kosterhavets-nationalpark/ — "Sveriges första marina nationalpark"; 2009
+// - Transportstyrelsen, Kompetens och utbildning, https://www.transportstyrelsen.se/sv/sjofart/fritidsbatar/Kunskap-och-kompetens/ — "inga krav på körkort om du har … en fritidsbåt som är kortare än tolv meter och smalare än fyra meter"; vattenskoter kräver förarbevis; över 12 m och 4 m krävs skepparexamen, kustskepparexamen eller högre
+// - Sjöfartsverket, När olyckan är framme, https://www.sjofartsverket.se/sv/tjanster/sakert-batliv/nar-olyckan-ar-framme/ — "ring 112 och begär sjöräddning"; "VHF kanal 16 … Anropet är SWEDEN RESCUE"; "JRCC är bemannat dygnet runt"
+// - Sjöfartsverket, Navigationsvarningar, https://navvarn.sjofartsverket.se/Index — gällande svenska navigationsvarningar
+// UPPMÄTT (Svalla, fågelvägen, 2026-08-23 och 2026-09-13): Strömkajen–Sandhamn 31,8 NM; Sandhamn–Visby 101 NM; Visby–Hoburgen–Karlskrona 140 NM; Karlskrona–Falsterbo–Malmö 120 NM. Sjövägen längs kusten är längre.
+
 export const metadata: Metadata = {
- title: 'Segelrutter i Sverige — ostkusten, Gotland Runt, Bohuslän',
- // KÄLLA: KSSS (ksss.se/en/gotlandrunt), läst 2026-09-13: 'The race course is about 350 NM long'
- description: 'Kompletta segelrutter i Sverige: Stockholm–Malmö (östkust-segling), Gotland Runt (klassiker cirka 350 sjömil), Bohusleden, Mälaren och Stockholms skärgård. Nivåer 1–3, sjökort, vindanpassningar.',
+ title: 'Segelrutter – skärgården, Gotland och Bohuslän',
+ description: 'Segla Stockholms skärgård, ostkusten, Gotland Runt och Bohuslän – distanser, kappseglingens bana och regler för förarintyg och sjöräddning, med källa.',
  keywords: [
  'segelrutter sverige',
  'segla ostkusten',
  'gotland runt',
- 'bohusleden',
  'segelrutter stockholms skärgård',
+ 'segla bohuslän',
  'mälaren segling',
- 'svenska segelrutter',
- 'segelrutter kust',
+ 'segla stockholm visby',
  'kappsegling sandhamn',
- 'segelturer sverige',
  ],
  openGraph: {
- title: 'Segelrutter — Svalla',
- description: 'Kompletta segelrutter i Sverige: från östkusten till Gotland Runt och Bohusläns kust.',
+ title: 'Segelrutter – skärgården, Gotland och Bohuslän',
+ description: 'Distanser, Gotland Runt-banan och vad som gäller för förarintyg och sjöräddning.',
  url: 'https://svalla.se/segelrutter',
  },
  alternates: { canonical: 'https://svalla.se/segelrutter' },
@@ -27,72 +40,67 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
+ icon: 'anchor',
+ title: 'Naturhamnar i Stockholms skärgård',
+ description: 'Ankringsplatser för natten – var du ligger skyddat och vad som gäller i reservaten.',
+ href: '/naturhamnar',
+ meta: 'Stockholms skärgård',
+ },
+ {
  icon: 'sailboat',
- title: 'Nybörjarsegling: Saltsjön',
- description: 'Inga öppna hav, god vind och många naturhamnar — perfekt första-seglingen med familj eller segelskola.',
- href: '/segelrutter/saltsjon',
- meta: 'Nivå 1',
- },
- {
- icon: 'wind',
- title: 'Mellanskärgården (västanvind)',
- description: 'Grinda, Finnhamn, Möja — en vecka med oftast gynnsam vind. Klassisk svensk seglarsommar.',
- href: '/segelrutter/mellanskargarden',
- meta: 'Nivå 2',
- },
- {
- icon: 'ship',
- title: 'Ytterskärgården',
- description: 'Sandhamn, Huvudskär, Rödlöga — öppna vatten, hårdare sjö, stora upplevelser.',
- href: '/segelrutter/ytterskargarden',
- meta: 'Nivå 3',
- },
- {
- icon: 'map',
- title: 'Ostkusten Stockholm–Malmö',
- description: 'Långfärdssegling längs svenska östkusten via Sandhamn, Visby, Blekinge-skärgården och Skånes kust. Dagsetapper, historia och skyddade farleder.',
- href: '/segelrutter/osterjosleden',
- meta: 'Nivå 2–3',
- },
- {
- icon: 'building',
- title: 'Bohuslän & västkusten',
- description: 'Hummervatten, Marstrand, Smögen, Kosterhavet. Västkustens granitkust med fiskelägen och naturhamnar.',
- href: '/segelrutter/bohusleden',
- meta: 'Nivå 2–3',
- },
- {
- icon: '🏁',
- title: 'Gotland Runt (klassikern)',
- // KÄLLA: KSSS (ksss.se/en/gotlandrunt), läst 2026-08-16: banan är ca 350 nm (2025 kortad till 312 pga väder); 'for most of the boats the race takes closer to 3 days'. Tidigare stod 300 och 'ettdygn' — båda fel.
- description: 'Cirka 350 sjömil — kappseglingsklassikern från Sandhamn runt Gotland och tillbaka. För de flesta båtar närmare tre dygn.',
- href: '/segelrutter/gotland-runt',
- meta: 'Nivå 3',
- },
- {
- icon: 'building',
- title: 'Mälaren — insjösegling',
- description: 'Karl Johans sluss, historiska slott (Drottningholm, Birka), skyddade vatten. Perfekt för varmare dagar och familjer.',
- href: '/segelrutter/malaren',
- meta: 'Nivå 1–2',
- },
- {
- icon: '🏁',
- title: 'Regattor 2026',
- description: 'Gotland Runt, Midsommarseglingen, Sandhamn Race Week — kappseglingskalendern.',
- href: '/evenemang?kategori=regatta',
- },
- {
- icon: '📋',
- title: 'Segelkort',
- description: 'Rekommenderade sjökort (papper + plotter), aktuella farledsnoteringar och faror.',
- href: '/tips?kategori=segelkort',
+ title: 'Börja segla',
+ description: 'För dig som ska ut för första gången – båt, besättning och vad du behöver kunna.',
+ href: '/nyborjare-segling',
+ meta: 'Nybörjare',
  },
  {
  icon: 'compass',
- title: 'Vind & väder',
- description: 'Så läser du SMHI:s sjöprognos och när du ska vänta på en dags-avbrott.',
- href: '/tips?kategori=vader',
+ title: 'Segelkurs',
+ description: 'Kurser för olika nivåer, från första seglingen till kustskepparintyg.',
+ href: '/segelkurs',
+ meta: 'Utbildning',
+ },
+ {
+ icon: 'map',
+ title: 'Gotland',
+ description: 'Stockholm–Visby är ungefär 100 sjömil fågelvägen från Sandhamn. Kappseglingen Gotland Runt är omkring 350.',
+ href: '/gotland',
+ meta: 'Östersjön',
+ },
+ {
+ icon: 'waves',
+ title: 'Bohuslän',
+ description: 'Granitkust, fiskelägen och Kosterhavet – Sveriges första marina nationalpark.',
+ href: '/bohuslan',
+ meta: 'Västkusten',
+ },
+ {
+ icon: 'wind',
+ title: 'Västerhavet',
+ description: 'Kattegatt och Skagerrak – seglingen utanför Bohuslän och Halland.',
+ href: '/vasterhav',
+ meta: 'Västkusten',
+ },
+ {
+ icon: 'map',
+ title: 'Blekinge skärgård',
+ description: 'Sydostkustens skärgård – en naturlig etapp på väg söderut längs ostkusten.',
+ href: '/blekinge-skargard',
+ meta: 'Sydost',
+ },
+ {
+ icon: 'building',
+ title: 'Mälaren',
+ description: 'Insjösegling in från Stockholm – skyddade vatten och slott längs stränderna.',
+ href: '/malaren',
+ meta: 'Insjö',
+ },
+ {
+ icon: 'navigation',
+ title: 'Turer och rutter',
+ description: 'Dagsturer och längre turer med båt, filtrerade efter tid och typ – segling ingår.',
+ href: '/rutter',
+ meta: 'Alla',
  },
 ]
 
@@ -103,23 +111,23 @@ export default function SegelrutterPage() {
  mainEntity: [
  {
  '@type': 'Question',
- name: 'Behöver man certifikat för att segla i Sverige?',
- acceptedAnswer: { '@type': 'Answer', text: 'Nej, det finns ingen laglig seglarcertifikatskrävning för privat segling i Sverige. Många seglare tar dock en segelkurs för säkerhet och kunskapers skull. För kommersiell segling eller andras båtar måste det finnas en ansvarig person med relevant utbildning ombord.' },
+ name: 'Behöver man körkort för att segla i Sverige?',
+ acceptedAnswer: { '@type': 'Answer', text: 'Nej, inte för en fritidsbåt som är kortare än tolv meter och smalare än fyra meter, enligt Transportstyrelsen. För större fritidsbåtar krävs skepparexamen, kustskepparexamen eller högre, och för vattenskoter krävs förarbevis.' },
  },
  {
  '@type': 'Question',
- name: 'Hur lång tid tar en östkustsegling Stockholm–Malmö?',
- acceptedAnswer: { '@type': 'Answer', text: 'Hela kustruten Stockholm–Malmö via östkusten är cirka 380–420 sjömil. Realistisk tid är 10–14 dagar med stopp vid Sandhamn, Visby, Karlskrona och längs Skånes kust. Många seglare gör detta som ett 2-veckors sommaräventyr eller sprider det över flera sommrar.' },
+ name: 'Hur långt är det att segla Stockholm–Malmö längs ostkusten?',
+ acceptedAnswer: { '@type': 'Answer', text: 'Fågelvägen via Sandhamn, Visby, Hoburgen, Karlskrona och Falsterbo är det omkring 390 sjömil, uppmätt av Svalla. Sjövägen längs kusten är längre. Det finns ingen officiellt märkt segelled hela vägen.' },
  },
  {
  '@type': 'Question',
- name: 'Vad är bästa månaden att segla i Sverige?',
- acceptedAnswer: { '@type': 'Answer', text: 'Juli och augusti är de varmaste månaderna med mest förutsägbar vind och de flesta restauranger öppna. Maj är för många den perfekta månaden — mindre trängsel, ändå mildt väder och längre dagar. September kan ge vakra höstdagar men mer oförutsägbart väder.' },
+ name: 'Hur lång är Gotland Runt?',
+ acceptedAnswer: { '@type': 'Answer', text: 'Omkring 350 sjömil enligt KSSS, som arrangerar kappseglingen. Sedan 2024 startar den på Gråskärsfjärden söder om Sandön, går norrut till Svenska Högarna, runt Gotland och i mål vid Sandhamn. Den kortare Visbybanan är 245 sjömil.' },
  },
  {
  '@type': 'Question',
- name: 'Vilka sjökort behöver man för segling i Sverige?',
- acceptedAnswer: { '@type': 'Answer', text: 'För Stockholms skärgård: kort 6111, 6113. För ostkusten söderut: 6103, 6104, 6105, 6112. För Bohuslän: 6058, 6059. Sjöfartsverkets officiella sjökort finns i papper- och digitalt format. Många använder tabletappar som Navily men papperskort rekommenderas alltid som backup.' },
+ name: 'Vart ringer man om något händer på sjön?',
+ acceptedAnswer: { '@type': 'Answer', text: 'Ring 112 och begär sjöräddning, eller anropa SWEDEN RESCUE på VHF kanal 16. Sjöfartsverkets räddningscentral JRCC är bemannad dygnet runt.' },
  },
  ],
  }
@@ -139,7 +147,7 @@ export default function SegelrutterPage() {
  heroGradient={['#1e5c82', '#2d7d8a']}
  eyebrow="Segelrutter"
  title="Segelrutter i Sverige"
- tagline="Från Stockholms skärgård till västkusten: kurerade rutter sorterade efter nivå, distans och säsong. ostkusten, Gotland Runt, Bohuskusten och mer."
+ tagline="Stockholms skärgård, ostkusten ner till Malmö, Gotland Runt och Bohuslän – distanser och regler med källa."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M2 20h20" />
@@ -151,173 +159,68 @@ export default function SegelrutterPage() {
  intro={
  <>
  <p>
- Sverige är hemmet för några av världens bästa segelrevir. Med tre långa kuster — östkusten längs Östersjön, västkusten vid Bohuslän och skärgårdarna framför Stockholm — erbjuds seglare oändliga möjligheter för allt från helgseglingar till månadslånga äventyr. Varje region har sitt unika karaktär: stockade öar i Stockholms skärgård, granitklipper på västkusten, och öppna vatten längs Gotlands österut.
+ Det finns ingen officiellt märkt segelled längs den svenska kusten. Det som finns är farleder, sjökort och vägar som seglare tagit i generationer: ut genom Stockholms skärgård till Sandhamn, över till Gotland, söderut längs ostkusten – eller norrut längs Bohuslän på västkusten.
  </p>
  <p>
- Vad är en segelrutt? Det är en planerad väg mellan två eller flera hamnar eller ankringsplatser, ofta med utgångspunkt i en särskild vind, säsong eller svårighetsnivå. Svenska rutterna bygger på århundraden av erfarenhet — från handelsmän som navigerade mellan Stockholm och Visby till moderna racingseglare som tävlar runt Gotland varje sommar.
- </p>
- <p>
- Sverige delas in i flera klassiska segelrevir. Stockholms skärgård domineras av tätare öar och skyddade vatten. Ostkusten från Stockholm till Malmö är en klassisk långfärd — någon officiellt märkt segelled finns inte, men vägen via Gotland och Blekinge är väl beseglad med utprickade farleder. Bohuskusten i väster möter Skagerrak och är känd för hummervatten, granitöar och vild skönhet. Mälaren erbjuder lugna, historiska insjövatten med gamla slott och börande historia.
- </p>
- <p>
- Varje rutt i denna guide listar distans, uppskattad tid vid normal vind, rekommenderade naturhamnar, vindanpassningar och vilka sjökort du behöver. Vi sorterar efter svårighetsnivå (1–3) så du kan välja enligt din erfarenhet, båttyp och tid. Rutterna är testade av erfarna seglare och uppdateras löpande med säsongsnoteringar — farleder som är stängda, bryggor som försvunnit, nya ankringsplatser och säkerhetsfaktorer.
+ Här är distanserna vi kunnat mäta, banan för kappseglingen Gotland Runt och det du måste veta om förarintyg och sjöräddning. För ankringsplatser, gästhamnar och enskilda öar går du vidare till sidorna nedan.
  </p>
  </>
  }
- itemsTitle="Alla svenska segelrutter"
- itemsDescription="Sortering efter region och svårighetsnivå (1–3). Se varje ruttsida för detaljerade förberedelseöversikter och sjökortrekommendationer."
+ itemsTitle="Segla vidare"
+ itemsDescription="Regioner, naturhamnar och kurser – sidor med mer om varje område."
  items={ITEMS}
  deeperContent={
  <>
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Ostkusten Stockholm–Malmö — den långa klassikern
+ Ostkusten Stockholm–Malmö
  </h2>
  <p>
- Östkusten — från Stockholms skärgård söderut längs Sveriges östkust — är en klassisk segeltur för den som vill utforska kusten över längre tid. Vanlig rutt går genom Stockholms skärgård, ut till Sandhamn, vidare över Östersjön till Gotland, ner längs Smålandskusten och Blekinge till Karlskrona, och slutligen till Skånes ostkust och vidare till Öresund. Sommaren är populärast för sin stabilare vind och milda väder.
- </p>
- <p>
- {/* UPPMÄTT: stromkajen_to_sandhamn 58,9 km = 31,8 NM (precomputed-routes, validated); Sandhamn–Visby storcirkel 187,6 km = 101 NM (2026-08-23); Visby–Hoburgen–Karlskrona 44+96 = 140 NM, Karlskrona–Falsterbo–Malmö 105+15 = 120 NM storcirkel (2026-09-13) — sjövägen längs kust något längre */}
- Klassiska etapper är Stockholm–Sandhamn (cirka 30 sjömil, en dag), Sandhamn–Visby (cirka 100 sjömil — vanligen seglas över natten eller på en lång dag), Visby–Karlskrona (cirka 130–140 sjömil, två dagar med stopp), och Karlskrona–Malmö (cirka 130 sjömil längs Skånes ostkust och runt Falsterbo, två till tre dagar). Många seglare gör detta som ett tvåveckors sommaräventyr, andra delar upp över flera somrar. De flesta väljer juli–augusti för stabilast väder.
- </p>
- <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Blekinge och Gotland
- </h3>
- <p>
- Blekinge-skärgården är känd för sin granitkust, många små öar och ancienta befästningar. Gotland är världskänd bland seglare både för sin skönhet och för den årliga Gotland Runt-regattan. Området runt Visby är populärt för sin medeltidsbottenstad och många restauranger — en perfekt stopp mitt i en längre segling.
- </p>
-
- <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
- Bohuslän och västkusten
- </h2>
- <p>
- Bohusläns kust representerar västkustens hjärta — ett område präglat av granit, fiskelägen och ett unikt skärgårdslandskap. Vanlig segelrutt går från Göteborgs skärgård norrut längs kusten till norska gränsen vid Strömstad, med klassiska stopp som Marstrand, Klädesholmen, Käringön, Smögen, Fjällbacka och Grebbestad.
- </p>
- <p>
- Marstrand är en klassisk gästhamn och kappseglingsplats med Carlstens fästning på Marstrandsön. Smögen är en av Bohusläns mest fotograferade fiskelägen. Längst i norr ligger Kosteröarna med Kosterhavets nationalpark — Sveriges första marina nationalpark, känt för rent vatten och rik biodiversitet. Området är känt för pålitliga västvindar och granit-skärgården.
- </p>
- <p>
- Bra att veta: västkustens tidvatten är blygsamt jämfört med Nordsjön — typiskt 20–40 cm — men kan skapa märkbara strömmar i trånga sund. Sjökortet är extra viktigt här eftersom området är fyllt av grund och småklippor.
- </p>
-
- <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
- Gotland Runt — klassikern
- </h2>
- <p>
- {/* KÄLLA: KSSS (ksss.se/en/gotlandrunt), läst 2026-08-16: banan ca 350 nm */}
- Gotland Runt är den mest berömda kappseglingsklassikern i Sverige — en rutt som varje allvarlig seglare drömmer om att färdas på något tillfälle. Rundan går cirka 350 sjömil runt hela Gotland och startar traditionellt från Sandhamn i Stockholms skärgård.
- </p>
- <p>
- {/* UPPMÄTT: Sandhamn–Visby storcirkel 101 NM (2026-09-13) — stod 120, motsade etapplistan ovan. UPPSKATTNING: runt Gotland = storcirkelsumma Visby–Fårö–Östergarn–Hoburgen–Visby 160 NM + sjövägens tillägg ≈ 180 (2026-09) */}
- Under den officiella Gotland Runt-regattan varje sommar deltar hundratals båtar av alla slag. Regattat är notoriskt för sitt impulsiva väder — ibland får du svag vind och behöver motorkraft, ibland möter du kraftiga östvindar som driver dig från vägen. En typisk segling tar mellan 30 timmar för snabba racingbåtar och 2–3 dygn för långsammare båtar. För privatseglare som inte tävlar rekommenderas ofta två etapper: Sandhamn–Visby (över Östersjön, cirka 100 sjömil) och sedan hela vägen runt Gotland (cirka 160–180 sjömil).
- </p>
- <p>
- Klassiska ankarplatser: Visby hamn (medeltidsstaden), Fårö norrut, Östergarn österut, Hallshuk södersyd och Hemse västerut innan du återvänder till Sandhamn. Denna tur kräver god navigation, läsning av väder och en erfaren besättning — den klassificeras som Nivå 3.
- </p>
-
- <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
- Mälaren — insjösegling med historia
- </h2>
- <p>
- Mälaren är Europas tredje största insjö och en favorit bland seglare som söker lugna, historiska vatten utan öppet havs utmaningar. Sjön är cirka 120 kilometer lång och 65 kilometer bred — stor nog för riktiga seglingar men skyddad från oceanens krafter.
- </p>
- <p>
- Klassisk segling på Mälaren startar vid Karl Johans sluss som förbinder Stockholm med sjön själv. Söder om slussen ligger Drottningholms slott — kungliga sommarboendet och en majestätisk syn under segling. Längre västerut nere vid Västerås finns många restauranger och hamnar. Birka — Vikingbyn och Unesco-världsarv — ligger på en ö i västra Mälaren och är ett populärt stopp för både historia och mat.
- </p>
- <p>
- Mälaren är perfekt för familjeseglingar, längre helger eller för nya seglare som vill bygga erfarenhet utan att möta öppet hav. Vinden är ofta mjuk och förutsägbar på grund av sjöns stora landmassa runt omkring. Många båtar ankrar på naturliga ankringsplatser längs vägen, och varje större stad erbjuder hamn och grundläggande faciliteter.
- </p>
-
- <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
- Välj rätt nivå för din erfarenhet
- </h2>
- <p>
- Vi kategoriserar alla rutter efter tre svårighetsnivåer. Dina val av båt, besättning och tid påverkar vilken nivå som passar dig.
- </p>
- <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Nivå 1: Nybörjare & familjer
- </h3>
- <p>
- Skyddade vatten, ofta inom ett par timmars segel från basen. Exempel: Saltsjön, inre skärgården, Mälaren. Dessa rutter passar för:
+ Den klassiska långfärden går ut till Sandhamn, över Östersjön till Visby, runt Gotlands sydspets vid Hoburgen och vidare till Karlskrona, och sedan längs Skånes kust runt Falsterbo till Malmö. Fågelvägen, uppmätt av Svalla, är etapperna ungefär:
  </p>
  <ul style={{ margin: '8px 0 12px', paddingLeft: '20px' }}>
- <li>Första gången du seglar längre än en dag</li>
- <li>Familjer med barn</li>
- <li>Seglare som är nöjda med 4–8 knops vind</li>
- <li>Enkelbetjänade båtar utan komplexa manövrar</li>
+ <li>Strömkajen–Sandhamn: 32 sjömil</li>
+ <li>Sandhamn–Visby: 101 sjömil över öppet hav</li>
+ <li>Visby–Hoburgen–Karlskrona: 140 sjömil</li>
+ <li>Karlskrona–Falsterbo–Malmö: 120 sjömil</li>
  </ul>
- <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Nivå 2: Medel & erfarna
- </h3>
  <p>
- Längre dagar, möjlig öppen vattensegling, behov av navigation och väderläsning. Exempel: Mellanskärgården, östkustens norra del, Mälaren längre sträckor. Dessa rutter passar för:
+ Totalt omkring 390 sjömil – sjövägen längs kusten blir längre. Många delar upp sträckan över flera somrar.
  </p>
- <ul style={{ margin: '8px 0 12px', paddingLeft: '20px' }}>
- <li>Du har flera seglingar under båtens kelar</li>
- <li>Du kan läsa ett sjökort och en väderprognos</li>
- <li>Din besättning kan hålla fokus under 8–12 timmar segling</li>
- <li>Du är bekväm med vind upp till 15–18 knop</li>
- </ul>
- <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Nivå 3: Erfarna & racingseglare
- </h3>
+
+ <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
+ Gotland Runt
+ </h2>
  <p>
- Långdistans, öppet hav, kräver mycket säkerhet och beslutsförmåga. Exempel: Ytterskärgården, Gotland Runt, hela ostkusten Stockholm–Malmö, Bohuskusten. Dessa rutter passar för:
+ KSSS kappsegling seglades första gången 1937. Sedan 2024 går starten på Gråskärsfjärden söder om Sandön. Banan går norrut längs ytterskärgården till Svenska Högarna, Stockholms skärgårds östligaste utpost, och sedan söderut över öppet hav runt Gotland, med mål vid Sandhamn – omkring 350 sjömil. Den kortare Visbybanan är 245 sjömil.
  </p>
+
+ <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
+ Bohuslän
+ </h2>
+ <p>
+ På västkusten går seglingen längs Bohusläns granitkust mellan Göteborg och Strömstad, med fiskelägen och naturhamnar hela vägen. Längst i norr ligger Kosterhavets nationalpark, Sveriges första marina nationalpark, från 2009. Läs mer på <Link href="/bohuslan" style={{ color: 'var(--sea)' }}>Bohuslänsidan</Link>.
+ </p>
+
+ <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
+ Innan du kastar loss
+ </h2>
  <ul style={{ margin: '8px 0 12px', paddingLeft: '20px' }}>
- <li>Du har flera längre seglingar (flera dagar) i ditt CV</li>
- <li>Din besättning är väl tränad och kan hänga med under trötta nätter</li>
- <li>Du kan hantera vind upp till 20+ knop och höga vågor</li>
- <li>Du har nödradio, livräddar och sjövärdighetskunskap</li>
- <li>Du kan ta självständiga navigationsbeslut utan GPS</li>
+ <li><strong>Förarintyg</strong> – krävs inte för fritidsbåt under tolv meter och smalare än fyra meter, enligt Transportstyrelsen. Över det krävs skepparexamen, kustskepparexamen eller högre, och vattenskoter kräver förarbevis. Du som för båten ansvarar alltid för att den är sjövärdig.</li>
+ <li><strong>Navigationsvarningar</strong> – Sjöfartsverket publicerar gällande varningar för svenska farvatten. Kolla dem innan en längre segling.</li>
+ <li><strong>Sjökort</strong> – Sjöfartsverket ger ut Sveriges officiella sjökort, i papper och digitalt.</li>
  </ul>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
- Förberedelser innan du ger dig iväg
+ Om något händer
  </h2>
  <p>
- En säker segling börjar långt innan du slår loss från bryggan. Kontrollera alltid SMHI:s sjöprognos (särskilt för längre rutter — vindshiftar kan ändra hela planeringen). Läs Sjöfartsverkets senaste farledsmeddelanden för att se om något är stängt eller förändrat. Se till att din båt har reservgas, en fungerade nödhandradio och både papperssjökort och digital navigation (sjökortsplotter eller tablet). Mobiltäckning är spöklikt i ytterskärgården — Svalla-appen har offline-kartvisning och GPS-logg så du kan navigera utan internet.
- </p>
-
- <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
- Säkerhet på sjön
- </h2>
- <p>
- Anmäl alltid din avreseplan till någon på land — med förväntad återkomst, position och annarluftä nummer. Flytväst på alla besättningsmedlemmar när ni är på däck. Håll mycket koll på trötthet — även erfarna seglare gör misstag efter 14 timmar utan sömn. Om något går fel, ring 112 och begär Sjöräddningen. De är ditt livsnät på öppet vatten och arbetar dygnet runt längs alla svenska kuster.
- </p>
-
- <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
- Vanliga frågor om segelrutter i Sverige
- </h2>
- <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- <strong>Behöver man certifikat för att segla i Sverige?</strong>
- </h3>
- <p>
- Nej, det finns ingen laglig seglarcertifikatskrävning för privat segling i Sverige. Många seglare tar dock en segelkurs för säkerhet och kunskapers skull — bland annat ett DSV-certifikat eller motsvarande utbildning. För kommersiell segling eller andras båtar måste det finnas en ansvarig person med relevant utbildning ombord.
- </p>
- <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- <strong>Hur lång tid tar det att segla Stockholm–Malmö?</strong>
- </h3>
- <p>
- {/* UPPSKATTNING: summering av etappexemplen ovan (2026-09); storcirkelsumma Strömkajen–Sandhamn–Visby–Hoburgen–Karlskrona–Falsterbo–Malmö = 32+101+44+96+105+15 = 393 NM, så 350 var under golvet. Faktagranskning 2026-08-23 tog bort tidigare påstående om en märkt 800-sjömilsled som ingen källa känner till */}
- Det finns ingen officiellt märkt led — sträckan längs kusten via Gotland och Blekinge är i storleksordningen 380–420 sjömil beroende på vägval. Många gör den som ett par veckors sommaräventyr, andra delar upp den över flera somrar och seglar en del i taget.
- </p>
- <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- <strong>Vad är bästa månaden att segla i Sverige?</strong>
- </h3>
- <p>
- Juli och augusti är de varmaste månaderna med mest förutsägbar vind (ofta väst) och de flesta bastupunkter/restauranger öppna. Juni kan vara underbar men kan också få nordliga kalla vindar. Maj är för många den perfekta månaden — mindre trängsel än sommaren, ändå mildt väder och längre dagar. September kan ge både vakra höstdagar och oväntade stormvindar — väder är mindre förutsägbart.
- </p>
- <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- <strong>Vilka sjökort behöver man?</strong>
- </h3>
- <p>
- För kustsegling rekommenderas Sjöfartsverkets officiella sjökort — antingen i pappersformat (vilket är lagligen kravt för vissa kommersiella operationer) eller digitala sjökort via en plotter. För Stockholms skärgård: Kort 6111, 6113. För Östersjöleden: 6103, 6104, 6105 (norr), 6112 (Visby). För Bohuslän: 6058, 6059. Många använder tabletappar som Navily eller Naveo för praktisk planering, men papperskorten är ett måste som backup då elektroniken kan sluta fungera.
+ Ring 112 och begär sjöräddning, eller anropa <strong>SWEDEN RESCUE</strong> på VHF kanal 16. Sjöfartsverkets räddningscentral är bemannad dygnet runt. Slå på platstjänsterna i telefonen så att din position kan skickas med, och var beredd att svara på vad som hänt, hur många ni är ombord och var ni är. Ser du någon annan i sjönöd är du skyldig att hjälpa till om det går utan allvarlig fara för din egen båt.
  </p>
  </>
  }
  related={[
  { label: 'Naturhamnar', href: '/naturhamnar' },
- { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
+ { label: 'Börja segla', href: '/nyborjare-segling' },
  { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
  { label: 'Bohuslän', href: '/bohuslan' },
  ]}

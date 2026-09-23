@@ -26,7 +26,7 @@ export const metadata: Metadata = {
  'tidvatten segling',
  ],
  openGraph: {
- title: 'Västerhavet — Segla Kattegatt & Skagerrak | Svalla',
+ title: 'Västerhavet — Segla Kattegatt & Skagerrak',
  description: 'Logga dina båtturer längs svenska västkusten med Svalla.',
  url: 'https://svalla.se/vasterhav',
  },

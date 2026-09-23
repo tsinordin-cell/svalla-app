@@ -8,7 +8,7 @@ import { REGIONS, hikesForRegion, type Hike } from './hike-data'
 import Icon, { type IconName } from '@/components/Icon'
 
 export const metadata: Metadata = {
-  title: 'Vandring i skärgården — kustleder, öar och tips | Svalla',
+  title: 'Vandring i skärgården — kustleder, öar och tips',
   description: 'Hitta de bästa vandringarna längs Sveriges kust och skärgård. Topp 10 per region, filtrera på svårighet, transport och bad. Från Stockholms skärgård till Höga kusten.',
   keywords: [
     'vandring skärgård',
@@ -684,7 +684,7 @@ export default function VandringPage() {
               variant="card"
               source="aktivitet-vandring"
               title="Mer om vandring i skärgården"
-              description="Nya guider, säsongstips och insidertips direkt i inkorgen. Varannan tisdag."
+              description="Nya guider och säsongsnytt direkt i inkorgen. Inga annonser."
             />
           </div>
 

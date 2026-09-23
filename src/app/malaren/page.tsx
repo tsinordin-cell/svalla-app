@@ -28,7 +28,7 @@ export const metadata: Metadata = {
  'gripsholm mariefred',
  ],
  openGraph: {
- title: 'Mälaren — Segla Sveriges tredje största sjö | Svalla',
+ title: 'Mälaren — Segla Sveriges tredje största sjö',
  description: 'Logga dina båtturer på Mälaren med Svalla — 8 000+ öar, historiska hamnar och kafébryggor.',
  url: 'https://svalla.se/malaren',
  },

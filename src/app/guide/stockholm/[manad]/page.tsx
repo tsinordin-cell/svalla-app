@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const guide = getSeasonGuide(manad)
   if (!guide) return {}
 
-  const title = `Skärgård i ${guide.month} — guide för Stockholm | Svalla`
+  const title = `Skärgård i ${guide.month} — guide för Stockholm`
   const description = `Vad är öppet i Stockholms skärgård i ${guide.month.toLowerCase()}? Öar, väder, aktiviteter och tips. ${guide.tagline}`
 
   return {

@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const plan = UPPLÄGG.find(u => u.slug === slug)
   if (!plan) return {}
   const island = getIsland(slug)
-  const title = `Dagstur till ${plan.name} — vad göra, mat & transport | Svalla`
+  const title = `Dagstur till ${plan.name} — vad göra, mat & transport`
   const description = `Komplett dagstursguide till ${plan.name}: ${plan.desc} ${plan.duration}, ${plan.distance}.`
   return {
     title,

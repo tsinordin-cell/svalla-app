@@ -5,76 +5,85 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { cache } from 'react'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 
-type RegionInfo = { label: string; description: string; archipelago_region: string }
+// koder: alla archipelago_region-koder som hör till regionen. Tidigare matchades
+// bara en exakt kod, så t.ex. 'bohuslan_nord' föll bort från /bohuslan/* (mätt
+// 2026-09-23). Samma kodgruppering som Upptäck-flikarna (src/lib/upptackRegion.ts).
+type RegionInfo = { label: string; description: string; koder: string[] }
 export const REGIONS = {
   goteborg: {
     label: 'Göteborgs skärgård',
     description: 'Göteborgs södra och norra skärgård — Brännö, Donsö, Vrångö, Styrsö, Hönö, Öckerö och Källö-Knippla.',
-    archipelago_region: 'goteborg',
+    koder: ['goteborg'],
   },
   bohuslan: {
     label: 'Bohuslän',
     description: 'Från Marstrand i söder till Strömstad i norr — Käringön, Smögen, Fjällbacka, Grebbestad och Kosteröarna.',
-    archipelago_region: 'bohuslan',
+    koder: ['bohuslan', 'bohuslan_nord'],
   },
   aland: {
     label: 'Åland',
     description: 'Mariehamn, Eckerö, Kökar, Föglö, Brändö och de yttre öarna — den åländska skärgården samlad.',
-    archipelago_region: 'aland',
+    koder: ['aland'],
   },
   oland: {
     label: 'Öland',
     description: 'Borgholm, Mörbylånga, Färjestaden, Byxelkrok, Sandvik och Löttorp — hela Öland norr till söder.',
-    archipelago_region: 'oland',
+    koder: ['oland'],
   },
   gotland: {
     label: 'Gotland',
     description: 'Visby med medeltida ringmur, Fårö med Bergmans landskap, Slite, Burgsvik och Karlsöarna.',
-    archipelago_region: 'gotland',
+    koder: ['gotland'],
   },
   hogakusten: {
     label: 'Höga Kusten',
     // KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14)
     description: 'Härnösand, Ulvön, Kramfors, Höga Kusten-leden och Skuleskogens nationalpark — Norrlands dramatiska klippkust.',
-    archipelago_region: 'hogakusten',
+    koder: ['hogakusten'],
   },
   halland: {
     label: 'Halland',
     description: 'Tylösand, Varberg fästning, Falkenberg, Båstad och Laholmsbukten — Hallands långa sandstrand och fästningsstad.',
-    archipelago_region: 'halland',
+    koder: ['halland'],
   },
 } satisfies Record<string, RegionInfo>
 
-export const CATEGORIES: Record<string, { label: string; type: string; intro: string; metaTitle: (region: string) => string; metaDesc: (region: string) => string }> = {
+// types: alla platstyper som hör till kategorin. "Gästhamnar och marinor" tog
+// tidigare bara med typen harbor, så marinor (typ marina) saknades, och
+// sjömackar med typen fuel_station saknades på sjömackssidorna.
+// Texterna lovar inget sajten inte kan hålla: inga "bästa", inga "verifierade
+// öppettider", inga "testade av båtfolk" (ingen sådan testning finns).
+export const CATEGORIES: Record<string, { label: string; types: string[]; intro: string; metaTitle: (region: string) => string; metaDesc: (region: string) => string }> = {
   krogar: {
     label: 'Krogar och restauranger',
-    type: 'restaurant',
-    intro: 'Krogar och restauranger längs kusten — testade av båtfolk, recensionerna är från Google.',
-    metaTitle: r => `Krogar & restauranger i ${r} 2026 — Svalla`,
-    metaDesc: r => `Hitta de bästa krogarna och restaurangerna i ${r}. Verifierade öppettider, telefon, foto och recensioner. Allt på en karta.`,
+    types: ['restaurant'],
+    intro: 'Krogar och restauranger längs kusten. Betygen kommer från Google.',
+    metaTitle: r => `Krogar & restauranger i ${r} — Svalla`,
+    metaDesc: r => `Krogar och restauranger i ${r} samlade på en karta, med kontaktuppgifter och länkar till verksamheterna.`,
   },
   gasthamnar: {
     label: 'Gästhamnar och marinor',
-    type: 'harbor',
-    intro: 'Gästhamnar och marinor med koordinater, kontaktuppgifter och recensioner från andra båtfolk.',
-    metaTitle: r => `Gästhamnar i ${r} 2026 — Svalla`,
-    metaDesc: r => `Komplett guide till gästhamnar och marinor i ${r}. Telefon, hemsida, koordinater och recensioner.`,
+    types: ['harbor', 'marina'],
+    intro: 'Gästhamnar och marinor med position och kontaktuppgifter. Betygen kommer från Google.',
+    metaTitle: r => `Gästhamnar & marinor i ${r} — Svalla`,
+    metaDesc: r => `Gästhamnar och marinor i ${r} med position, telefon och hemsida.`,
   },
   sjomackar: {
     label: 'Sjömackar och drivmedel',
-    type: 'fuel',
-    intro: 'Var du kan tanka båten i området — diesel, bensin och öppettider.',
-    metaTitle: r => `Sjömackar i ${r} 2026 — Svalla`,
-    metaDesc: r => `Hitta alla sjömackar och bränslestationer för båt i ${r}. Öppettider, telefon, koordinater.`,
+    types: ['fuel', 'fuel_station'],
+    intro: 'Var du kan tanka båten i området. Kontrollera öppettider och drivmedel hos macken innan du lägger till.',
+    metaTitle: r => `Sjömackar i ${r} — Svalla`,
+    metaDesc: r => `Sjömackar och bränslestationer för båt i ${r}, med position och kontaktuppgifter.`,
   },
   bastu: {
     label: 'Bastu och kallbadhus',
-    type: 'sauna',
-    intro: 'Bastu, badhus och kallbadhus i området — för det perfekta avslutet på en seglardag.',
-    metaTitle: r => `Bastu & kallbadhus i ${r} 2026 — Svalla`,
-    metaDesc: r => `De bästa bastu och kallbadhusen i ${r}. Öppettider, telefon, foto och recensioner.`,
+    types: ['sauna'],
+    intro: 'Bastur, badhus och kallbadhus i området. Vissa drivs av föreningar och är bara öppna för medlemmar – det står i så fall på platsens sida.',
+    metaTitle: r => `Bastu & kallbadhus i ${r} — Svalla`,
+    metaDesc: r => `Bastur och kallbadhus i ${r} med position och kontaktuppgifter.`,
   },
 }
 
@@ -89,23 +98,25 @@ interface Place {
   google_ratings_total: number | null
   formatted_address: string | null
   image_url: string | null
+  endast_medlemmar: boolean | null
 }
 
-export async function getPlacesForRegionCategory(regionKey: string, categoryKey: string): Promise<Place[]> {
+// cache(): generateMetadata (noindex för tom kategori) och sidan delar samma hämtning.
+export const getPlacesForRegionCategory = cache(async (regionKey: string, categoryKey: string): Promise<Place[]> => {
   const region = REGIONS[regionKey as keyof typeof REGIONS]
   const cat = CATEGORIES[categoryKey]
   if (!region || !cat) return []
   const supabase = await createServerSupabaseClient()
   const { data } = await supabase
     .from('restaurants')
-    .select('id, name, slug, latitude, longitude, island, google_rating, google_ratings_total, formatted_address, image_url')
-    .eq('archipelago_region', region.archipelago_region)
-    .eq('type', cat.type)
+    .select('id, name, slug, latitude, longitude, island, google_rating, google_ratings_total, formatted_address, image_url, endast_medlemmar')
+    .in('archipelago_region', region.koder)
+    .in('type', cat.types)
     .order('google_rating', { ascending: false, nullsFirst: false })
     .order('google_ratings_total', { ascending: false, nullsFirst: false })
     .limit(200)
   return (data ?? []) as Place[]
-}
+})
 
 export default async function RegionCategoryPage({
   regionKey,
@@ -126,7 +137,7 @@ export default async function RegionCategoryPage({
     itemListElement: places.slice(0, 50).map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      url: `https://svalla.se/platser/${p.slug || p.id}`,
+      url: `https://svalla.se/upptack/${p.slug || p.id}`,
       name: p.name,
     })),
   }
@@ -169,7 +180,7 @@ export default async function RegionCategoryPage({
         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
           {places.map(p => (
             <li key={p.id} style={{ background: 'var(--white, #fff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: 12, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-              <Link href={`/platser/${p.slug || p.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+              <Link href={`/upptack/${p.slug || p.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                 {p.image_url && (
                   <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: '#eee' }}>
                     <Image
@@ -184,9 +195,10 @@ export default async function RegionCategoryPage({
                 <div style={{ padding: 16, flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
                   <h2 style={{ margin: 0, fontSize: 18, fontWeight: 600, lineHeight: 1.3 }}>{p.name}</h2>
                   {p.island && <div style={{ fontSize: 13, color: 'var(--txt-muted, #777)' }}>{p.island}</div>}
+                  {p.endast_medlemmar && <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt-muted, #555)' }}>Endast medlemmar</div>}
                   {p.google_rating != null && (
                     <div style={{ fontSize: 14, color: 'var(--txt-muted, #555)', marginTop: 4 }}>
-                      {p.google_rating.toFixed(1)}★ {p.google_ratings_total != null && <span style={{ opacity: 0.7 }}>({p.google_ratings_total} recensioner)</span>}
+                      Google-betyg {p.google_rating.toFixed(1).replace('.', ',')} {p.google_ratings_total != null && <span style={{ opacity: 0.7 }}>({p.google_ratings_total} recensioner)</span>}
                     </div>
                   )}
                 </div>

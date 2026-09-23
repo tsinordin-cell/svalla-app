@@ -27,11 +27,28 @@ function buildRoutePath(pts: { lat: number; lng: number }[], W: number, H: numbe
  }).join(' ')
 }
 
-// SVG icons for boat types
-const BOAT_ICONS: Record<string, string> = {
-  'Segelbåt': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L18 10L18 20H6L6 10Z"/><path d="M12 10V18"/></svg>',
-  'Motorbåt': '<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="8" rx="6" ry="4"/><path d="M6 8V18H18V8"/><rect x="10" y="4" width="4" height="4"/></svg>',
-  'Kajak': '<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="8" cy="12" rx="3" ry="6"/><rect x="5" y="12" width="14" height="2"/><ellipse cx="16" cy="12" rx="3" ry="6"/></svg>',
+// Båtikoner som JSX-barn. Satori (next/og) stöder inte dangerouslySetInnerHTML,
+// så ikonerna måste vara riktiga element — annars kraschar hela OG-bilden.
+function boatIconShapes(boatType: string | null | undefined) {
+  switch (boatType) {
+    case 'Motorbåt':
+      return [
+        <ellipse key="a" cx="12" cy="8" rx="6" ry="4" />,
+        <path key="b" d="M6 8V18H18V8" />,
+        <rect key="c" x="10" y="4" width="4" height="4" />,
+      ]
+    case 'Kajak':
+      return [
+        <ellipse key="a" cx="8" cy="12" rx="3" ry="6" />,
+        <rect key="b" x="5" y="12" width="14" height="2" />,
+        <ellipse key="c" cx="16" cy="12" rx="3" ry="6" />,
+      ]
+    default:
+      return [
+        <path key="a" d="M12 2L18 10L18 20H6L6 10Z" />,
+        <path key="b" d="M12 10V18" />,
+      ]
+  }
 }
 
 export async function GET(
@@ -62,7 +79,7 @@ export async function GET(
  ? `${trip.start_location} → ${trip.location_name}`
  : trip?.location_name ?? ''
  const username = userRow?.username ?? 'Seglare'
- const boatSvg = BOAT_ICONS[trip?.boat_type ?? 'Segelbåt'] ?? BOAT_ICONS['Segelbåt']
+ const boatShapes = boatIconShapes(trip?.boat_type)
  const boatLabel = trip?.boat_type ?? 'Tur'
  const magisk = trip?.pinnar_rating === 3
 
@@ -125,7 +142,7 @@ export async function GET(
  background: 'rgba(255,255,255,0.08)',
  borderRadius: 20, padding: '6px 14px',
  }}>
- <svg width={16} height={16} viewBox="0 0 24 24" fill="rgba(255,255,255,0.90)" dangerouslySetInnerHTML={{ __html: boatSvg ?? '' }} />
+ <svg width={16} height={16} viewBox="0 0 24 24" fill="rgba(255,255,255,0.90)">{boatShapes}</svg>
  <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.70)' }}>{boatLabel}</div>
  </div>
  </div>
@@ -255,7 +272,7 @@ export async function GET(
  </svg>
  ) : (
  /* Fallback — show boat icon SVG instead of emoji */
- <svg width={80} height={80} viewBox="0 0 24 24" fill="rgba(255,255,255,0.15)" opacity={0.5} dangerouslySetInnerHTML={{ __html: boatSvg ?? '' }} />
+ <svg width={80} height={80} viewBox="0 0 24 24" fill="rgba(255,255,255,0.15)" opacity={0.5}>{boatShapes}</svg>
  )}
 
  {/* Right edge fade */}

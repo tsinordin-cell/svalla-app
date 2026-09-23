@@ -24,7 +24,7 @@ export const metadata: Metadata = {
  'karlskrona unesco',
  ],
  openGraph: {
- title: 'Blekinges skärgård — Logga turer | Svalla',
+ title: 'Blekinges skärgård — Logga turer',
  description: 'Logga dina båtturer i Blekinges skärgård med Svalla.',
  url: 'https://svalla.se/blekinge-skargard',
  },

@@ -19,7 +19,7 @@ export default function EmailSignup({
   source = 'homepage-footer',
   variant = 'inline',
   title = 'Få veckans skärgårdstips',
-  description = 'Varannan tisdag. Inga annonser, lätt att avregistrera.',
+  description = 'Nya guider och säsongsnytt, när det händer något. Inga annonser.',
   buttonLabel = 'Prenumerera',
   className,
   style,

@@ -1,10 +1,12 @@
+import { hummerpremiar, surstrommingspremiar, kraftpremiar, midsommarafton, KALLA_SURSTROMMING, KALLA_KRAFTOR, KALLA_HELGDAGAR } from '@/lib/arsdatum'
 
 export function getGuideContent(slug: string): string {
   const guides: Record<string, string> = {
     'midsommar-skargarden-2026': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Midsommarafton i skärgården är ett av de saker man berättar om i tjugo år efteråt. Det handlar sällan om majstången — den är likadan på varje ö. Det handlar om att solen inte riktigt gick ner, att någon hade med sig gitarr och att sista båten hem var klockan ett på natten och man tog den ändå.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">2026 är midsommarafton fredagen den 19 juni. Boka boende nu om du inte redan gjort det — Grinda, Utö och Sandhamn är fullbokade månader i förväg. Alternativet är dagsturen: ut tidigt, majstången vid tre, sista båten hem. Det funkar också, och kräver noll planering utöver biljetten.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><!-- KÄLLA: lag (1989:253) om allmänna helgdagar, midsommardagen = lördagen 20–26 juni, ${KALLA_HELGDAGAR} (läst 2026-09-21); datumet räknas fram i src/lib/arsdatum.ts -->
+2026 är midsommarafton ${midsommarafton(2026).text.replace(/ 2026$/, '')}. Boka boende nu om du inte redan gjort det — Grinda, Utö och Sandhamn är fullbokade månader i förväg. Alternativet är dagsturen: ut tidigt, majstången vid tre, sista båten hem. Det funkar också, och kräver noll planering utöver biljetten.</p>
 
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Här är 15 alternativ — 8 på ostkusten, 7 på västkusten — med hur du tar dig dit, var du äter och vad som faktiskt är värt att åka till.</p>
 
@@ -420,7 +422,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">7. Ljusterö – norra skärgårdens hemlighet</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
-<p><strong>Transport:</strong> SL-buss 626 från Danderyds sjukhus till Ljusterö-bryggan, ca 1 h 20 min. Bussen inkluderar bilfärja och ingår i SL-abonnemanget.</p>
+<p><strong>Transport:</strong> SL-buss 626 från Danderyds sjukhus till Ljusterö-bryggan, ca 1 h 20 min. Bussen kör ombord på Trafikverkets vägfärja Östanå–Ljusterö (avgiftsfri, sju minuter).</p>
 <p><strong>Pris:</strong> Gratis med SL-kort.</p>
 <p><strong>Upplev:</strong> Ljusterö är en av de få öarna i skärgården som är bilburen (buss med bil) och ändå har en äkta öatmosfär. Vandringsleder, stränder och sommarcaféer.</p>
 <p><strong>Praktisk info:</strong> Sommartid finns fler avgångar. Kolla SL:s tidtabell på sl.se.</p>
@@ -504,7 +506,7 @@ export function getGuideContent(slug: string): string {
 <li><strong>SL-buss 670/671</strong> till Vaxholm – alternativ till båten</li>
 <li><strong>SL-buss 433</strong> till Stavsnäs Vinterhamn – utgångspunkt för Sandhamn, Möja, Gällnö</li>
 <li><strong>SL-buss 839</strong> till Dalarö – utgångspunkt för bilfärja till Ornö</li>
-<li><strong>SL-buss 626</strong> till Ljusterö – inklusive bilfärjan över till ön (ingår i SL!)</li>
+<li><strong>SL-buss 626</strong> till Ljusterö – bussen kör ombord på Trafikverkets vägfärja Östanå–Ljusterö, som är avgiftsfri för alla</li>
 <li><strong>Pendeltåg till Bålsta</strong> och anslutningsbussar till Mälaren-öar</li>
 </ul>
 
@@ -516,7 +518,8 @@ export function getGuideContent(slug: string): string {
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Undantaget: Ljusteröbussen med färja</h3>
-<p>Ljusterö är ett specialfall. SL-buss 626 från Danderyds sjukhus kör ner till bilfärjan och <em>inklusive färjan</em> över till Ljusterö ingår i SL-biljetten.</p>
+<!-- KÄLLA: Trafikverket, Ljusteröleden (https://www.trafikverket.se/resa-och-trafik/farjetrafik/ljusteroleden/, läst 2026-09-21): Östanå–Ljusterö, 1 100 meter, sju minuter, "Resan med vägfärjan är avgiftsfri" -->
+<p>Ljusterö är ett specialfall: färjan Östanå–Ljusterö är Trafikverkets vägfärja, avgiftsfri för alla – sju minuters överfart. SL-bussen kör ombord, så för resenären känns det som att färjan ingår, men det är vägfärjan som är gratis, inte SL-biljetten som täcker den.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Waxholmsbolagets eget biljettsystem</h3>
 <!-- KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter, waxholmsbolaget.se/biljetter-och-priser/periodbiljetter, waxholmsbolaget.se/nyheter-och-trafikinfo/ny-kombinationsbiljett-waxholmsbolaget-och-sl, läst 2026-09-19. Tidigare listades "Archipelago Card", "Destinationskort" och "Waxholmskortet" — inget av dem finns hos operatören. -->
@@ -667,13 +670,14 @@ export function getGuideContent(slug: string): string {
 <p>Europas största bestånd av hummer lever längs Bohusläns kust. Hummerpremiären i september är ett av Sveriges mest älskade kulinariska evenemang – och du kan vara med.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hummerpremiären – datum och regler</h3>
-<p>Hummerpremiären infaller traditionellt den andra måndagen i september. Exakt datum varierar år från år – kontrollera Havs- och vattenmyndigheten för aktuellt datum.</p>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
+<p>Hummerpremiären infaller klockan 07.00 den första måndagen efter 20 september varje år. 2026 är det måndag 21 september; 2027 blir det 27 september.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Fisketid:</strong> Hummer får fångas från premiären i september till och med den 30 november</li>
-<li><strong>Minimimått:</strong> 9 cm på carapaxet (skalryggen), mäts från ögat till bakre skalkantet</li>
-<li><strong>Kvota:</strong> Privatpersoner med handredskapsfiskelicens får fiska max 2 hummer/dag, max 60 hummer per säsong</li>
-<li><strong>Ryssor:</strong> Max 6 ryssor per licens för handredskapsfisket</li>
-<li><strong>Äggbärande honor:</strong> Alltid förbjudna att ta upp</li>
+<li><strong>Fisketid:</strong> Fritidsfiskare får fiska hummer från premiären till och med 30 november</li>
+<li><strong>Minimimått:</strong> 9 cm carapaxlängd – från ögonhålans bakkant till huvudsköldens bakkant. Mindre hummer släpps genast tillbaka</li>
+<li><strong>Redskap:</strong> Bara hummertina är tillåten, högst sex tinor samtidigt för fritidsfiskare. Tinorna ska ha flyktöppningar och rymningshål och vara märkta med namn och adress eller telefonnummer samt bokstaven F</li>
+<li><strong>Rombärande hummer:</strong> Ska alltid släppas tillbaka</li>
+<li><strong>Vem får fiska:</strong> Svenska medborgare eller den som är stadigvarande bosatt i Sverige. Ingen licens behövs för fritidsfiske, men fångsten får inte säljas</li>
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boka en guidad hummersafari</h3>
@@ -756,7 +760,8 @@ export function getGuideContent(slug: string): string {
 <li>Havstemperatur: 16–19°C – varmaste månaden för bottenvattnet</li>
 <li>Lufttemperatur: 14–20°C – behaglig för vandring och båtliv</li>
 <li>Beläggningstryck: 30–50% av juli–augustomgång</li>
-<li>Hummerpremiären – tredje torsdagen i september</li>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
+<li>Hummerpremiären – första måndagen efter 20 september (2026: 21 september kl 07.00)</li>
 <li>Fågelflyttningen börjar – bra tid för fågelskådning</li>
 </ul>
 
@@ -1320,7 +1325,7 @@ export function getGuideContent(slug: string): string {
 <p>Stockholms pendelbåttrafik är ett underskattat transportalternativ. Waxholmsbolaget driver det stora linjenätet, men det finns också privata aktörer och sommarspecifika linjer.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Waxholmsbolagets linjer – översikt</h3>
-<p>Waxholmsbolaget driver ca 50 linjer med tät trafik inomskärs under rushningstid. Dessa linjer fungerar som pendlingalternativ för boende i skärgårdssamhällen:</p>
+<p>Waxholmsbolaget driver ett trettiotal linjer – siffran är vår egen räkning ur tidtabellerna, bolaget publicerar ingen – och flera av dem fungerar som pendling för boende i skärgårdssamhällena:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 {/* KÄLLA: SL:s pressmeddelande 2025 ("Den 29 april kör pendelbåtslinje 83 sina sista turer som SL-pendelbåt. Från och med den 30 april fortsätter trafiken, men då som en del av Waxholmsbolagets trafik" - alla SL-biljetter gäller) + Waxholmsbolagets egen linjeförteckning (waxholmsbolaget.linjetidtabeller.se, läst 2026-08-25) listar linjen som 4 Stockholm-Vaxholm-Ramsösund-Ålstäket - suffixet A i tidtabellshuvudet är en tabellbeteckning, inte ett linjenummer, och sträckan Strömkajen-Vaxholm trafikeras av flera linjer. Restiden varierar med antal angöringar; Waxholmsbolaget anger "ungefär en timme". Läst 2026-08-25. */}
 <li><strong>Strömkajen – Vaxholm:</strong> Waxholmsbolaget — alla SL-biljetter gäller sedan 30 april 2025 — ungefär en timme</li>
@@ -1334,7 +1339,6 @@ export function getGuideContent(slug: string): string {
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Cinderellabåtarna (Strömma):</strong> Direktavgångar till Sandhamn, Grinda och Vaxholm. Dyrare men snabbare och med restaurang ombord.</li>
 <li><strong>Strömma Kanalbolaget:</strong> Sightseeing och charter, inte reguljär trafik</li>
-<li><strong>Styrsöbolaget (Göteborg):</strong> Driver söder Stockholms skärgård – ej Waxholmsbolaget</li>
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Avgångspunkter i Stockholm</h3>
@@ -1930,7 +1934,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p>Fiske i Stockholms skärgård är fritt att utöva utan fiskelicens för fritidsfiske med handredskap (spö, krok och lina). Undantag:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Havsöring och lax:</strong> Kräver sportfiskekort för kustfiske i vissa vatten. Köps via Sportfiskarnas webshop eller fiskekortslösningar i appen.</li>
-<li><strong>Hummerrevir:</strong> Bohuslänska hummerfisket regleras med licens och säsong (normalt öppnar hummersäsongen i september).</li>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
+<li><strong>Hummer:</strong> Fritidsfiske efter hummer kräver ingen licens men har säsong (premiär första måndagen efter 20 september, t.o.m. 30 november), minimimått 9 cm och högst sex tinor. Bara svenska medborgare eller stadigvarande bosatta får fiska hummer.</li>
 <li><strong>Minimimått och fredningsperioder:</strong> Kontrollera Havs- och vattenmyndighetens aktuella regler för respektive art – dessa ändras och varierar per vattenområde.</li>
 <li><strong>Landägares vatten:</strong> Insjöar och vikar nära fastlandet kan ha privata fiskerättigheter. Fiske i öppna havsvatten är normalt fritt.</li>
 </ul>
@@ -2311,47 +2316,39 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 `,
 
     'svampplockning-skargarden': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Svampplockning i skärgården – säsong, platser och tips</h2>
-<p>Skärgårdens öar har något som fastlandet sällan kan matcha: ostörda svampskogar utan konkurrens från andra plockare. Tallskogar, blandskog och fuktig mark skapar perfekta förutsättningar för kantareller, karljohanssvamp och trattkantarell. Och med Waxholmsbolagets båtar är du snabbt ute i de bästa svampmarkerna.</p>
+<!-- OMSKRIVEN 2026-09-21 (topp-30 i GSC). Den gamla texten sa att kantarell är "omöjlig att blanda ihop", att man kan visa svamp på apoteket för gratis identifiering, att Ornö har "skärgårdens största skog" och att Nåttarös camping är "känd för kantareller" — inget av det har källa, och de två första är farliga råd. Allt nedan är läst i webbläsare 2026-09-21. -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgårdens öar har barrskog, hällmarkstall och fuktiga sänkor – och på flera av dem pekar Länsstyrelsen själv ut svampen som ett skäl att åka dit. Här är de öarna, vad allemansrätten tillåter, och det enda råd som gäller före allt annat: plocka bara det du är säker på.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Svampsäsong i skärgården</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Juni–juli:</strong> Kantareller börjar dyka upp efter varm regnperiod. Tidig säsong.</li>
-<li><strong>Augusti:</strong> Högsäsong för kantareller och karljohanssvamp. Bästa månaden.</li>
-<li><strong>September:</strong> Trattkantarell och höstmusseron. Skärgårdens svamp är framme länge.</li>
-<li><strong>Oktober:</strong> Sen säsong. Trattkantarell klarar frost och kan plockas till november i mild höst.</li>
-</ul>
-<p>Svampsäsongen styrs av väder. En varm period följd av regn ger explosion av kantareller inom 3–5 dagar. Följ SVT Naturnyheternas svamptips och lokala Facebook-grupper för aktuell info.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öarna där Länsstyrelsen nämner svampen</h2>
+<!-- KÄLLA: Länsstyrelsen Stockholm, Utö naturreservat, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "På hösten kan det vara en god idé är att ta med svampkorgen och en god matsäck ut i markerna"; skyddat 1974, 4 183 ha varav land 653 ha, förvaltare Skärgårdsstiftelsen; "Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan" (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Utö – norra delen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturreservatet täcker norra Utö och öarna runt omkring, och Länsstyrelsen tipsar uttryckligen om att ta med svampkorgen på hösten. Hit kommer du året runt: pendeltåg till Västerhaninge, buss till Årsta brygga och Waxholmsbåt till Gruvbryggan.</p>
+<!-- KÄLLA: Länsstyrelsen Stockholm, Möja-Björndalen, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/moja-bjorndalen.html — "ett fint strövområde. Här kan du göra svamputflykter och långa strandnära promenader … gammal obrukad skog, myrmarker, hällmarker"; skyddat 1992, 143 ha, förvaltare Skärgårdsstiftelsen; "Enklast tar man sig till Björndalen med skärgårdsbåt till Dragedets ångbåtsbrygga" (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Möja – Björndalen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Längst norrut på Möja ligger Björndalen, 143 hektar gammal obrukad skog, myr och häll. Länsstyrelsen beskriver det som ett strövområde för svamputflykter och långa promenader längs stranden. Ta båten till Dragedets ångbåtsbrygga.</p>
+<!-- KÄLLA: Länsstyrelsen Stockholm, Själbottna-Östra Lagnö, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sjalbottna-ostra-lagno.html — "De strövvänliga skogarna är rika på bär och svamp"; "Skogarna är strövvänliga med bär- och svamprika marker"; tältplats; tälta högst två dygn; "Till Själbottna går reguljär Waxholmsbåt sommartid"; Östra Lagnö nås med bil via Östanå färjeläge (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Själbottna och Östra Lagnö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt Länsstyrelsen är skogarna här "rika på bär och svamp". Själbottna nås med Waxholmsbåt sommartid; Östra Lagnö på Ljusterö når du med bil över färjan från Östanå. Reservatet har tältplats – du får stanna högst två dygn på samma ställe – så det går att göra en helg av det.</p>
+<!-- KÄLLA: Länsstyrelsen Stockholm, Bogesundslandet, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — "Svamp- och bärskogar, ridstigar, badplatser, vandringsleder"; "Svamp och bär lockar många besökare"; skyddat 2015, 4 341 ha varav 2 891 ha land, förvaltare Statens fastighetsverk; "Man når området med främst bil, buss eller båt" (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Bogesundslandet vid Vaxholm</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Närmast stan. Halvön mellan Stora Värtan och Vaxholmsfjärden är nästan 2 900 hektar land, och Länsstyrelsen skriver att svamp och bär lockar många besökare. Du når den med bil, buss eller båt – bra för en halvdag.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa öarna för svampplockning</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Möja:</strong> Tallskog och blandskog runt hela ön. Goda kantarellmarker längs grusvägar i norra delen.</li>
-<li><strong>Ornö:</strong> Skärgårdens största och mest varierade skog. Utmärkta förutsättningar för alla vanliga matsvampar.</li>
-<li><strong>Gällnö:</strong> Naturreservat med gammelskog och gammal tallmark. Bra karljohanssvamp.</li>
-<li><strong>Nåttarö:</strong> Tallskogen kring campingplatsen är känd för bra kantareller.</li>
-<li><strong>Utö:</strong> Ön har varierad skog i norra delarna. Bra höstsvamp i september–oktober.</li>
-</ul>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vanligaste matsvamparna</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Kantarell (Cantharellus cibarius):</strong> Gul och trattformad. Växer i mossig barrskog. Omöjlig att blanda ihop om du lär dig den.</li>
-<li><strong>Karljohanssvamp (Boletus edulis):</strong> Brun hatt, vitt nät på stammen. Växer nära gran och tall.</li>
-<li><strong>Trattkantarell (Cantharellus tubaeformis):</strong> Mindre och mörkare än vanlig kantarell. Höstsvamp, tålig för frost.</li>
-<li><strong>Rödhätting (Leccinum sp.):</strong> Vanlig under björk. God men mörknar vid tillagning.</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad allemansrätten tillåter – och vad reservaten inte gör</h2>
+<!-- KÄLLA: Naturvårdsverket, Plocka blommor, bär och svamp, https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/plocka-blommor-bar-och-svamp/ — "Vilt växande bär och svamp tillhör markägaren så länge de står på rot … Markägaren får inte hindra dig från att plocka bär och svamp på marker där allemansrätten gäller"; "Kolla upp vad som gäller i skyddade områden"; tryffel kräver markägarens tillstånd (läst 2026-09-21). Länsstyrelsen Stockholm, föreskrifter för Finnhamn, Grinda, Gällnö, Kårklö och Nämdö — förbjudet att "ta bort vedlevande svampar"; Nämdöskärgårdens nationalpark — "ta bort … vedlevande svampar" förbjudet (lästa 2026-09-21) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Du får plocka svamp på mark där allemansrätten gäller, och markägaren får inte hindra dig. Svampen tillhör ändå markägaren så länge den står kvar – plocka för eget bruk.</li>
+<li>I naturreservat gäller reservatets föreskrifter. På bland annat Finnhamn, Grinda, Gällnö, Kårklö och Nämdö, och i Nämdöskärgårdens nationalpark, är det förbjudet att ta <strong>vedlevande svamp</strong> – tickor och annat som växer på träd och död ved. Föreskriften nämner vedlevande svamp, inte svamp på marken – men läs skylten vid varje reservat.</li>
+<li>Tryffel ingår inte – Naturvårdsverket bedömer att du behöver markägarens tillstånd eftersom den grävs upp.</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Regler och etik</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Allemansrätten tillåter svampplockning – plocka fritt men lämna inga spår</li>
-<li>Plocka inte mer än du kan använda – svamp som kastas är slöseri</li>
-<li>I naturreservat kan det finnas begränsningar – kontrollera lokalt</li>
-<li>Använd korg, inte plastpåse – svampen behöver andas</li>
-<li>Sätt tillbaka missfärgade eller maskanfrätta svampar i skogen</li>
-</ul>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kantareller – fler än du tror</h2>
+<!-- KÄLLA: Naturhistoriska riksmuseet, Kantareller, https://www.nrm.se/fakta-om-naturen/vaxter/svampar/kantareller — Kantarell Cantharellus cibarius "lite var som helst, till exempel i granskog, bokskog och i gräs under ekar … gul svamp som på … undersidan av hatten har åsar"; "Trattkantarell Craterellus tubaeformis hittar du mest i barrskog … grå till gråbrun hatt, gråaktiga åsar och en gul fot … ofta mycket rikligt förekommande och är en bra matsvamp"; "Svart trumpetsvamp … växer i mossiga barrskogar … Bra matsvamp"; "alla de nämnda svamparna kan förekomma med stora färgvariationer" (läst 2026-09-21) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kantarell</strong> växer i granskog, bokskog och i gräs under ek – en gul svamp med åsar under hatten. <strong>Trattkantarell</strong> hittar du mest i barrskog: gråbrun hatt, gråaktiga åsar och gul fot, ofta i stora mängder. <strong>Svart trumpetsvamp</strong> växer i mossig barrskog och är, liksom de andra två, en bra matsvamp enligt Naturhistoriska riksmuseet. Museet påpekar också att alla kantarellsvampar kan variera mycket i färg – ännu ett skäl att inte gå på färgen ensam.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Osäker på svampen?</strong>
-<p style="margin:8px 0 0;font-size:14px">Plocka aldrig svamp du inte kan identifiera med 100% säkerhet. Sveriges mykologiska sällskap erbjuder svampkurser och identifieringshjälp. Appen iNaturalist kan ge viss ledning men ersätter inte kunskap. Plockad svamp kan visas på apoteket för kostnadsfri identifiering.</p>
+<strong style="color:var(--sea)">Är du det minsta osäker – plocka inte</strong>
+<!-- KÄLLA: Livsmedelsverket, Svamp – lär dig skilja på ätliga och giftiga sorter, https://www.livsmedelsverket.se/matvanor-halsa--miljo/kostrad/kostrad-vuxna/gronsaker-frukt-och-bar/svamp/ — "Om du är det minsta osäker - plocka inte"; "Den vanligaste orsaken till svampförgiftning är att matsvamp förväxlats med giftig svamp"; "Tillaga svampen väl – ät den inte rå"; "Vid akuta och allvarliga fall, ring 112 och begär Giftinformation. Vid mindre brådskande fall … 010-456 67 00 – dygnet runt"; avråder från stenmurkla (läst 2026-09-21). Giftinformationscentralen, Svamp, https://giftinformation.se/Las-mer/forgiftningar-vuxna/svamp/ — "Spara svampen för eventuell identifiering"; "att svampkunnig vuxen bör rensa svampen"; "Skaffa en modern svampbok!" (faktagranskad 15 januari 2025, läst 2026-09-21) -->
+<p style="margin:8px 0 0;font-size:15px;line-height:1.7">Den vanligaste orsaken till svampförgiftning är att en matsvamp förväxlas med en giftig, skriver Livsmedelsverket. Ät bara svamp du är säker på, och tillaga den ordentligt – aldrig rå. Använd en modern svampbok, och låt någon som kan svamp rensa. Misstänker du förgiftning: ring 112 och begär Giftinformation vid allvarliga symtom, annars Giftinformationscentralen på 010-456 67 00, dygnet runt. Spara svampen så att den kan artbestämmas.</p>
 </div>
 `,
 
@@ -2599,50 +2596,28 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
     'oland-guide': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Öland – guide till solens och vindarnas ö</h2>
-<p>Öland är unikt i Sverige: en lång, smal ö (16 km bred på bredaste stället, 137 km lång) som är sammankopplad med fastlandet via en av Europas längsta broar. Ölandsbron gör ön unik – du kan köra hit med bil utan färja – och det kombinerat med Sveriges solrikaste klimat gör Öland till ett av landets mest besökta sommarmål.</p>
+<!-- KÄLLA: Riksantikvarieämbetet, Södra Ölands odlingslandskap (https://www.raa.se/kulturarv/varldsarv/varldsarv-i-sverige/sodra-olands-odlingslandskap/, läst 2026-09-21): "fördes in på världsarvslistan år 2000", "drygt 56000 hektar", "Stora Alvaret dominerar". Länsstyrelsen Kalmar, Trollskogen (https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/trollskogen.html, läst 2026-09-21): "gammal tallskog med stormvridna träd", "mäktiga ekar klädda i murgröna", Trolleken 800–900 år, 266 hektar, beslutsår 1998, "Ölands nordostligaste udde", naturum vid parkeringen. Länsstyrelsen Kalmar, Bödakustens östra (https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/bodakustens-ostra.html): "Bödabuktens sandstränder som inåt land övergår i sanddyner och flygsandfält", 1020,6 hektar, 1998. Tidigare version (borttagen 2026-09-21) påstod utan källa: "Sveriges solrikaste klimat", "Böda sand Sveriges längsta sandstrand 20 km", "ca 400 vindmöllor", "Trollskogen ekskog", "Naturum Öland vid Mörbylånga", "Solliden ca 80 kr", "EuroVelo 10 passerar Öland", restider med bil. -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Öland är en lång, smal ö med bro till fastlandet – du kör hit utan färja. Söderut breder Stora Alvaret ut sig i ett världsarv, norrut ligger Bödabuktens sandstränder och Trollskogens vindvridna tallar. Här är det vi kan belägga.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Öland</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Bil via Ölandsbron:</strong> Bron är 6,07 km lång och binder Kalmar med Mörbylånga. Gratis passage. Från Stockholm ca 4 h, från Malmö ca 2 h 30 min, från Göteborg ca 3 h 30 min.</li>
-<li><strong>Buss:</strong> Länstrafiken Kalmar kör bussar till Öland men utbudet är begränsat. Bil rekommenderas för att se mer än Borgholm.</li>
-<li><strong>Tåg + buss:</strong> Tåg till Kalmar (ca 3 h från Stockholm), sedan buss över Ölandsbron till Borgholm.</li>
-</ul>
+<p><strong>Bil:</strong> Ölandsbron går mellan Kalmar och Färjestaden på Öland. <strong>Kollektivt:</strong> tåg till Kalmar och därefter buss över bron med Kalmar länstrafik – sök resan i deras reseplanerare. Utan bil är Borgholm och bussnätet ramen; med bil når du alvaret, norra udden och de små byarna.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Borgholm – Ölands centralort</h3>
-<p>Borgholm är öns enda stad och ett populärt sommarnav med restauranger, butiker och caféer längs strandpromenaden. Sommarkalendern är fullspäckad – Borgholm Music Festival i juli samlar stora artister till Borgholms slottsträdgård.</p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Borgholms slottsruin:</strong> En av Skandinaviens mest imponerande slottsruiner. Fribiljett vid solnedgång för en magisk upplevelse.</li>
-<li><strong>Borgholm Musik:</strong> Storslagen utomhuskonsert varje sommar i slottsparken</li>
-<li><strong>Strandpromenaden:</strong> Caféer, glass och souvenirishop längs hamnkanten</li>
-</ul>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Södra Öland – världsarvet</h3>
+<p>Södra Ölands odlingslandskap fördes in på Unescos världsarvslista år 2000. Området omfattar drygt 56 000 hektar med åkerjord, betade marker, byar, fornborgar och vattenområden. Stora Alvaret dominerar – ett flackt kalkstenslandskap med "mycket speciella klimatförhållanden", som Riksantikvarieämbetet skriver – och intill den odlade jorden ligger sjömarkerna. Håll dig på stigar och vägar; alvarets vegetation är känslig.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Solliden – kungafamiljens sommarpalats</h3>
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p>Solliden är den svenska kungafamiljens sommarresidens och ligger strax söder om Borgholm. Parken är öppen för allmänheten under sommarmånaderna (ca 80 kr entré). Parken är välskött och erbjuder fina utsikter mot Kalmarsund.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Norra Öland – Böda och Trollskogen</h3>
+<p><strong>Bödakusten:</strong> Bödabuktens sandstränder övergår inåt land i sanddyner och flygsandfält. Naturreservatet Bödakustens östra bildades 1998 och omfattar 1 020 hektar.</p>
+<p><strong>Trollskogen</strong> på Ölands nordostligaste udde är ett naturreservat sedan 1998, 266 hektar, med gammal tallskog med stormvridna träd och mäktiga ekar klädda i murgröna. Trolleken är Ölands äldsta ek, 800–900 år. Naturum Trollskogen ligger vid parkeringen, med utställningar, kafé och aktiviteter.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Alvaret – UNESCO-världsarvet</h3>
-<p>Alvaret är ett av Europas mest unika landskap: ett flackt, stenigt kalkstenshav som sträcker sig längs hela södra Öland. Landskapet är ett UNESCO-världsarv sedan 2000 (tillsammans med omgivande jordbrukslandskap) och hyser ett unikt växt- och djurliv.</p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Bäst att uppleva i maj–juni när Alvaret blommar</li>
-<li>Promenera på markerade stigar – kliv inte utanför, vegetationen är extremt känslig</li>
-<li>Naturum Öland vid Mörbylånga erbjuder info om Alvaret och Ölands natur</li>
-<li>Storslagna solnedgångar med horisont i alla riktningar</li>
-</ul>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Norra Öland – Böda sands och vindmöllor</h3>
-<p>Norra Öland är mer skogigt och grönare än söder. Böda sand är Sveriges längsta sandstrand och ett sommarmål i sig – ca 20 km ljus sand med camping, restauranger och familjevänligt vatten.</p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Böda sand:</strong> Sveriges längsta sandstrand — ca två mil längs Bödabukten i norra Öland. Grunt och barnvänligt.</li>
-<li><strong>Historiska vindmöllor:</strong> Öland har fler bevarade traditionella vindmöllor än något annat landskap i Sverige – ca 400 st</li>
-<li><strong>Trollskogen:</strong> Gammal vresig ekskog vid Böda – unik naturupplevelse</li>
-</ul>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Borgholm och Solliden</h3>
+<p>Borgholm är öns stad, med slottsruinen ovanför. Strax söder om Borgholm ligger Solliden, kungafamiljens sommarresidens, vars park är öppen för besökare under sommaren – öppettider och entré står på Sollidens egen webbplats.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Cykla Öland</h3>
-<p>Öland är perfekt för cykling: platt, vindskyddat längs ostkusten och med utmärkta cykelvägar längs hela ön. EuroVelo 10 (Östersjöleden) passerar Öland. Hyrcyklar finns i Borgholm och vid de flesta campingplatser.</p>
+<p>Ön är flack och lämpar sig för cykel. Cykeluthyrning finns i Borgholm och vid campingplatser – kontrollera hos uthyraren. Vinden är den faktor som avgör dagsetappen; planera med den, inte mot den.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Bästa tips:</strong>
-<p style="margin:8px 0 0;font-size:14px">Besök Öland i maj eller september. Klimatet är bra, Alvaret blommar (maj) eller är guldgult (september), och turistmassorna är borta. Juli är fullt av barnfamiljer och priserna är höga. Ölandsbron under solnedgång är en upplevelse oavsett årstid.</p>
+<p style="margin:8px 0 0;font-size:14px">Maj–juni för alvarets blomning, september för lugnet. Juli är högsäsong med barnfamiljer och fulla boenden.</p>
 </div>
 `,
 
@@ -3017,7 +2992,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
     'barplockning-skargarden': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Bärplockning i skärgården – blåbär, lingon och hallon</h2>
-<p>Skärgårdens öar är en av de bäst bevarade bärplockningsplatserna i Stockholmsregionen. Täta bosättningar och stadsbruset har inte nått ut till de yttre öarna, och tallskogarna och ljunghedarna är fullproppade med blåbär, lingon, hallon och smultron under rätt säsong.</p>
+<p>Skärgårdens tallskogar och hedar ger blåbär, lingon, hallon och smultron i rätt säsong – och färre plockare än fastlandets skogar. Här är säsongerna, reglerna och några öar där skogen är stor nog att leta i.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Säsong för respektive bär</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -3025,10 +3000,11 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <li><strong>Hallon:</strong> Juli–september. Öppna hyggen, skogsbryn och klippsidor med sol.</li>
 <li><strong>Blåbär:</strong> Juli–september. Tallskogar med mossig mark. Högsäsong mitten av juli–mitten av augusti.</li>
 <li><strong>Lingon:</strong> Augusti–oktober. Tallmark och hedar. Mognar lite senare och håller sig längre.</li>
-<li><strong>Nypon:</strong> September–november. Häggbuskar längs strandkanter – goda för te och sylt.</li>
+<li><strong>Nypon:</strong> September–november. Nyponrosens buskar, ofta i strandnära buskage och vid gamla tomter – goda till te och soppa.</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa öarna</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Öar med skog att leta i</h3>
+<!-- UPPSKATTNING: vilka öar som ger bäst bär är vår redaktionella bedömning, ingen har mätt det (2026-09) -->
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Möja:</strong> Tallskogar längs norra och östra sidan. Bra blåbär och lingon.</li>
 <li><strong>Ornö:</strong> Stor ö med varierad skog och lite besökstryck. Rik på alla vanliga bär.</li>
@@ -3038,8 +3014,9 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Regler och etik</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Bärplockning är alltid tillåtet med allemansrätten – på alla marker, även privat</li>
-<li>I naturreservat kan det finnas begränsningar – kontrollera lokala regler</li>
+<!-- KÄLLA: Naturvårdsverket, Plocka blommor, bär och svamp (https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/plocka-blommor-bar-och-svamp/, läst 2026-09-21): "Plocka vilda blommor, bär och svamp som inte är fridlysta."; "I nationalparker och naturreservat och även i fornminnesområden gäller särskilda regler."; "Du får ta förvildade äpplen, körsbär, hallon, krusbär och liknande på ödetomter utan byggnader." -->
+<li>Allemansrätten låter dig plocka vilda bär, svamp och blommor som inte är fridlysta – men inte på någons tomt eller i planteringar. Förvildade hallon och fruktträd får du ta på ödetomter utan byggnader, säger Naturvårdsverket.</li>
+<li>I nationalparker, naturreservat och fornminnesområden gäller särskilda regler – där kan bärplockning vara begränsad. Läs föreskrifterna hos Länsstyrelsen innan du plockar.</li>
 <li>Använd korg, inte plastpåse – bären behöver andas</li>
 <li>Ta med fästingspray och kontrollera kroppen efteråt</li>
 </ul>
@@ -3244,19 +3221,19 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kräftpremiären 2026 infaller onsdagen den 5 augusti. Det är startskottet för Sveriges mest älskade sensommartradition – och i skärgården firas den med extra stil. Här är allt du behöver veta för att planera en oförglömlig kräftskiva ute på öarna.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad är kräftskiva egentligen?</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivan är en svensk tradition med rötter från 1930-talet då kräftorna fridlystes och man bara fick fiska under kräftpremiären. I dag är restriktionerna borta men traditionen lever starkare än någonsin. Lyktor i papper, snapsvisor, kräfthattar och högar av kokta kräftor på ett stort fat mitt på bordet – det är kärnan i festen.</p>
+<!-- KÄLLA: Institutet för språk och folkminnen, Kräftskiva, ${KALLA_KRAFTOR} (läst 2026-09-21): "Från slutet av 1800-talet fram till år 1994 rådde förbud mot kräftfiske från november till början av augusti … 1982 ändrades det till klockan 17 den första onsdagen i augusti" -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivan har sina rötter i ett fiskeförbud: från slutet av 1800-talet fram till 1994 var kräftfiske förbjudet från november till början av augusti, så när fisket öppnade i augusti blev det fest. Förbudet är borta sedan 1994, men traditionen lever. Lyktor i papper, snapsvisor, kräfthattar och högar av kokta kräftor på ett stort fat mitt på bordet – det är kärnan i festen.</p>
 
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">I skärgården tar traditionen en extra dimension. Att sitta vid vattnet, med lyktorna hängandes i björkarna och doften av dill och hav, är en upplevelse som är svår att toppa. Många familjer har gjort kräftskivan till en årlig höjdpunkt och bokar sina bryggor och stugor redan i januari.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftpremiären 2026 – datum och säsong</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftpremiären är alltid den första onsdagen i augusti. 2026 innebär det <strong>onsdag 5 augusti</strong>. Det vanligaste är att hålla kräftskivan på lördagen närmast premiären – alltså lördag 8 augusti 2026 – eller helgen efter, 15 augusti. Kräftsäsongen pågår sedan fram till slutet av september.</p>
+<!-- KÄLLA: Institutet för språk och folkminnen, Kräftskiva, ${KALLA_KRAFTOR} (läst 2026-09-21): fiskeförbud fram till början av augusti t.o.m. 1994, från 1982 kl 17 första onsdagen i augusti, "en tradition som lever kvar"; datumet räknas fram i src/lib/arsdatum.ts -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftpremiären är av tradition den första onsdagen i augusti – dagen då kräftfisket fick börja fram till 1994, då förbudet upphävdes. 2026 innebär det <strong>${kraftpremiar(2026).text.replace(/ 2026$/, '')}</strong>. Något fastställt datum finns inte längre; det är handeln och vanan som håller dagen vid liv. Det vanligaste är att hålla kräftskivan på en lördag i augusti.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
 <strong style="color:var(--sea)">Viktiga datum 2026:</strong>
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>Kräftpremiär: <strong>onsdag 5 augusti</strong></li>
-<li>Populäraste kräftskivehelgen: <strong>8–9 augusti</strong></li>
-<li>Säsong: <strong>5 aug – slutet av september</strong></li>
+<li>Kräftpremiär: <strong>${kraftpremiar(2026).text.replace(/ 2026$/, '')}</strong> (av tradition, se ovan)</li>
 <li>Boka restauranger i skärgården: <strong>nu, helst redan gjort</strong></li>
 </ul>
 </div>
@@ -3264,16 +3241,18 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var håller du kräftskiva i skärgården?</h2>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">1. Fjäderholmarna</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarna är det enklaste alternativet – bara 25 minuter med båt från Nybrokajen. Restaurangerna på ön arrangerar kräftskivor under hela premiärperioden med kräftor, snaps och lyktfärgad stämning direkt vid vattnet. Boka tidigt, det är fullt.</p>
+<!-- KÄLLA: Strömma (https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/) — Strandvägen kajplats 13, ca 30 min; https://www.fjaderholmarna.se/ — Fjäderholmarnas Krog och Restaurang Rökeriet på ön. Om krogarna ordnar kräftskivor 2026 står inte på deras sidor — därför "se krogens egen sida" -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarna är det enklaste alternativet – omkring en halvtimme med Strömmas båt från Strandvägen, eller med Waxholmsbolaget från Strömkajen. På ön ligger Fjäderholmarnas Krog och Restaurang Rökeriet; om de ordnar kräftskiva i år står på respektive krogs egen sida. Boka i förväg.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">2. Vaxholm</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm har flera restauranger med uteservering vid vattnet. Åk dit med pendelbåten och avnjut kräftor med utsikt mot fästningen. Charming och lättillgängligt – perfekt för de som inte vill åka till yttre skärgården.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm har restauranger vid vattnet och nås med Waxholmsbolaget från Strömkajen – lättillgängligt för den som inte vill ut i ytterskärgården. Vilka krogar som serverar kräftor i augusti framgår av krogarnas egna sidor.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">3. Grinda eller Utö</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus och Utö Värdshus arrangerar båda kräftskivor med övernattning. Det är den ultimata upplevelsen – kräftor, snaps och sensommarnatt utan att behöva ta en båt hem. Boka boende och kräftskiva som ett paket, de säljer ut månader i förväg.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du slippa sista båten hem: Grinda Wärdshus och Utö Värdshus har både restaurang och boende. Om de ordnar kräftskiva med övernattning 2026 har vi inte kunnat belägga – kontrollera på värdshusets egen sida innan du bokar.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">4. Egen kräftskiva på ön</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det mest folkliga alternativet är att köpa kräftor på ICA eller Lidl, ta ut till din favoritö med Waxholmsbolaget och duka upp på klipphällarna. Ta med: kylbox med kräftor, dill, bröd och smör, lyktor, snapsvisor, servetter och sopptunna för skalen. Allemansrätten tillåter brasa på hårdare mark – kontrollera brandrisk.</p>
+<!-- KÄLLA: Naturvårdsverket, Allemansrätten – eldning (https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/eldning/, läst 2026-09-21): "Undvik även att elda på berghällar och större stenblock. De kan nämligen spricka och skadas permanent."; "Du gör allemansrätt när du använder en fast grillplats, eller väljer grus eller sand som underlag."; eldningsförbud: "Du hittar information om vad som gäller på länsstyrelsens eller kommunens webbplats." -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det mest folkliga alternativet är att köpa kräftor på ICA eller Lidl, ta ut till din favoritö med Waxholmsbolaget och duka upp på klipphällarna. Ta med: kylbox med kräftor, dill, bröd och smör, lyktor, snapsvisor, servetter och sopptunna för skalen. Ska du elda: använd fast grillplats eller grus/sand som underlag – aldrig klipphällar, de spricker – och kontrollera eldningsförbud hos länsstyrelsen eller kommunen först.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Klassisk kräftskivemeny</h2>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
@@ -3287,7 +3266,7 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 </ul>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dekorationer och stämning</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivans färgschema är rött, vitt och gult – sedan 1930-talet. Du behöver: papperslyktor att hänga i träden, servetter med kräftmotiv, kräfthattar och haklappar, en vit duk och gärna en girlang. Handla på Åhlens, Clas Ohlson eller välsorterade livsmedelsbutiker i veckan innan premiären – hyllorna töms fort.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivans färger är rött, vitt och gult. Du behöver: papperslyktor att hänga i träden, servetter med kräftmotiv, kräfthattar och haklappar, en vit duk och gärna en girlang. Handla på Åhlens, Clas Ohlson eller välsorterade livsmedelsbutiker i veckan innan premiären – hyllorna töms fort.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Snapsvisor – måste du kunna</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingen kräftskiva utan snapsvisor. De klassiska är "Helan går" (obligatorisk som första snapsvisa), "Gubben i lådan" och "Hej tomtegubbar". Ta med en snapsvisebok eller ladda ner appen Snapsvisor inför festen – det är alltid uppskattad med en som kan leda vissångerna.</p>
@@ -3983,46 +3962,59 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 
   // ── Batch E: Bad-serien ────────────────────────────────────────────────────────
   'basta-badplatser-bohuslan': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohusläns klippkust erbjuder Sveriges mest dramatiska badupplevelser. Gneisklippor som sluttats av havet under tusentals år, kristallklart Västerhav och solvarma hällar att torka på. Här är de 15 bästa badplatserna längs Bohusläns kust.</p>
+<!-- OMSKRIVEN 2026-09-21 (topp-30 i GSC, 27 klick/28 d). Den gamla texten hade Tjurpannan på Resö (den ligger vid Grebbestad), "Norska havet" vid Koster, Varberg och Tylösand (Halland) i en Bohuslänsguide, en påhittad vandring på 4 km till Ramsvik och vattentemperaturer utan källa. Allt nedan är läst i webbläsare 2026-09-21 hos kommunen, Länsstyrelsen eller Havs- och vattenmyndigheten. -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohuslänskusten badar man på två sätt: från rundslipade granithällar rakt ut i Skagerrak, eller i skyddade vikar med sand. Här är badplatserna vi kunnat belägga hos kommunen eller Länsstyrelsen – från Strömstad i norr till Orust i söder, med vad som faktiskt finns på plats och hur du tar dig dit.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad gör Bohusläns badplatser unika?</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Västerhavet är kallare än Östersjön (ca 18–20°C i juli mot 22°C i Stockholms skärgård) men renare och klarare. Salthaltens påverkan gör att alger och grumligt vatten är sällsynt. Klipphällarna värms upp av solen och håller värmen länge efter solnedgången – perfekt för kvällsdopp.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Strömstad – sandstrand, hopptorn och bad på öarna</h2>
+<!-- KÄLLA: Strömstads kommun, badplatser, https://www.stromstad.se/upplevaochgora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.b5400fe1453b28b6b71c266.html — fem kommunala badplatser; Seläter "cirka sex kilometer nordväst om Strömstad … sandstrand, gräsbacke, brygga med hopptorn, toalett och dusch … kiosk och vattenrutschkana", avgiftsbelagd parkering, cykelväg, tillgänglighetsanpassad; Hålkedalen "cirka 1,5 km söder om Strömstad", gratis buss sommartid; Furholmen "10 minuters båtresa från norra hamnen … sandstrand, klippor, brygga och hopptorn"; Styrsö "ca 15 minuters båtresa med kosterbåten … sandstrand och klippor … toalett och servering"; hundförbud på kommunala badplatser hela året (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Seläter</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kommunalt bad ungefär sex kilometer nordväst om Strömstad: sandstrand, gräsbacke, brygga med hopptorn, vattenrutschkana, kiosk, toalett och dusch. Badet är tillgänglighetsanpassat – ramp till bryggan, parkering för rörelsehindrade intill stranden och en rullstol att låna i kiosken. Parkeringen kostar; det går cykelväg från centrum.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Furholmen och Styrsö – bad med båt</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Två kommunala havsbad på öar utanför Strömstad. Furholmen ligger tio minuter med båt från norra hamnen och har sandstrand, klippor, brygga och hopptorn. Styrsö nås på ungefär en kvart med Kosterbåten och har både sandstrand och klippor, toalett och servering.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Hålkedalen och Skurveskär</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hålkedalen, en och en halv kilometer söder om stan, är en liten sandstrand med hopptorn – sommartid går gratis buss från centrum. Skurveskär i södra hamnen är klippbad med badstege och dusch; det blir snabbt djupt. Hund är förbjuden på kommunens badplatser hela året.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Topp 15 badplatser i Bohuslän</h2>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Capri – naturreservatet norr om stan</h2>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland, Capri, https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/capri.html — "Med klipp- och sandstränderna finns goda förutsättningar för bad, vilket gör Capri livligt besökt under badsäsongen"; bildat 1978, ca 12 ha, förvaltare Strömstads kommun, Natura 2000; avgiftsbelagd bilparkering; "Det närbelägna Seläter har bussförbindelse"; förbjudet att tälta, ställa upp husvagn, okopplad hund (läst 2026-09-21) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ett litet naturreservat på fastlandet nordväst om Strömstad, vid Långörännan, med både klipp- och sandstränder – Länsstyrelsen beskriver det som livligt besökt under badsäsongen. Hällmarkerna är karga med ris och lav, typiskt för den skogfattiga Bohuskusten. Buss går till grannen Seläter; parkeringen vid reservatet kostar. Tältning och okopplad hund är förbjudet.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">1. Ramsvikslandet, Sotenäset</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ramsvikslandet är ett naturreservat med urklippta klippbad och naturpooler. En av Bohusläns mest dramatiska miljöer – öppet hav, klippor och tystnad. Nås via vandring (ca 4 km) från parkeringen, vilket håller folkmassan nere.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tanum – Tjurpannan, Fjällbacka och Grebbestad</h2>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland, Tjurpanneområdet, https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html — "Tjurpannan är med sitt oskyddade läge en fruktad passage bland sjöfarare … Den som vill bada här gör klokt i att invänta stiltje"; västra delen av Havstenssundshalvön; "Långgrunda havsvikar finns innanför Stora Huvudet och Smugholmen"; bildat 1968, ca 499 ha, Västkuststiftelsen; buss från Grebbestad till Saltviks camping; parkering vid Långeby; toalett, eldplats, vindskydd; campa och elda förbjudet (läst 2026-09-21). Tanums kommun, badplatser, https://www.tanum.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.7664b4813898b7df9845725.html — "På badplatserna vid Badberget i Fjällbacka, Tanum Strand strax söder om Grebbestad, Östad samt Edsviksbadet finns handikappramper" (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Tjurpannan</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Västra spetsen av Havstenssundshalvön, nära 500 hektar kala hällar, ljunghed och branta klippstränder mot öppet hav. Länsstyrelsen är rak: Tjurpannan är en fruktad passage för sjöfarare, och den som vill bada ska vänta på stiltje. Vill du ha lugnare vatten finns långgrunda vikar innanför Stora Huvudet och Smugholmen. Buss går från Grebbestad till Saltviks camping vid reservatsgränsen; med bil parkerar du vid Långeby. Här finns toalett och vindskydd men ingen eldning eller camping.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Badberget i Fjällbacka och Tanum Strand</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Två av Tanums kommunala bad med handikappramp ner i vattnet: Badberget i Fjällbacka och Tanum Strand strax söder om Grebbestad. Kommunen har en karta över alla sina bad, både hav och insjö.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">2. Smögen klipphällar</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Klipporna runt Smögen är lätta att nå och populära med rätta. Naturliga pooler som fylls med Västerhavet i vågsvallet, djupare delar för hopp och stora hällar att sola på. Kom tidigt under Juli.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sotenäs – Hållö, Smögen, Kungshamn och Ramsvik</h2>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland, Hållöarkipelagen, https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Släta klippavsatser lockar ner dig i det klara, blåa vattnet vid Marmorbassängen på Hållös västsida"; "ett fyrtiotal jättegrytor"; "Bohusläns äldsta fyr … sedan 1842"; radiopejlingsstationen "fungerar idag som vandrarhem"; gästhamn på östsidan; servering, toalett; "Sommartid utgår regelbundna badturer från Kungshamn"; tälta förbjudet; bildat 1975, ca 292 ha, Västkuststiftelsen (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Hållö – Marmorbassängen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hållö och Sälö är de sista större öarna utanför Sotenäset innan Skagerrak tar vid. På Hållös västsida ligger Marmorbassängen, där släta klippavsatser leder ner i klart vatten. Ön har ett fyrtiotal jättegrytor och Bohusläns äldsta fyr, tänd 1842. Sommartid går regelbundna badturer från Kungshamn; på ön finns servering, toalett, vandrarhem i den gamla radiopejlingsstationen och gästhamn på östsidan. Tältning är förbjuden i reservatet.</p>
+<!-- KÄLLA: Sotenäs kommun, badplatser Smögen, https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatserhundbad/smogen.4.15eba9af15b0a9219ba31966.html — Sandö "Sandstrand med bryggor, badstegar och handikapptrappa. Omklädningsrum, toalett …"; Vallevik "Klippbad med badstegar och hopptorn. Stor gräsplan, grillplats och parkering"; Herr- och dambadet, Makrillviken "Klippor med bryggor och badstegar" (läst 2026-09-21). Sotenäs kommun, badplatser Kungshamn, https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn — Fisketången "Klippbad med sandstrand. Bryggor med badstegar. Handikappramp, omklädningsrum, toalett"; Stenbogen "Klippbad med badstegar, hopptorn och trampolin" (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Smögen – Sandö, Vallevik och Makrillviken</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tre kommunala bad på samma ö. Sandö har sandstrand med bryggor, badstegar och handikapptrappa, omklädningsrum och grillplats – det familjevänliga alternativet. Vallevik är klippbad med hopptorn och en stor gräsplan. Herr- och dambadet i Makrillviken är klippbad med bryggor och badstegar.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kungshamn – Fisketången och Stenbogen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fisketången kombinerar klippor och en liten sandstrand, med bryggor, handikappramp och omklädningsrum; en pontonbrygga leder ut till Klövholmen. Stenbogen är klippbad med hopptorn och trampolin.</p>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland, Ramsvikslandet, https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/ramsvikslandet.html — "ett av länets mest besökta naturreservat … fina badplatser vid Haby bukt och på Tryggö"; "Klippornas rike"; svängbro över Sotekanalen; "Tryggö har inte någon fast förbindelse, men kan nås ganska lätt via vadställen när det är lågvatten"; "Kung Trygges grav"; tälta bara på anvisad plats "observera att just nu finns ingen anvisad plats"; husvagn/husbil förbjudet (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ramsvikslandet – Haby bukt och Tryggö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Länsstyrelsen kallar det "Klippornas rike": röd bohusgranit med jättegrytor och isräfflor, ljunghed och betesmarker, och ett av länets mest besökta reservat. Bada vid Haby bukt eller gå över till Tryggö, som saknar fast förbindelse men nås via vadställen vid lågvatten – där ligger också gravröset Kung Trygges grav. Du kommer ut över en svängbro över Sotekanalen. Tältning är bara tillåten på anvisad plats, och just nu finns ingen.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">3. Pinneviksbadet, Lysekil</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lysekils mest barnvänliga badplats med sandstrand, grunt vatten och bra service. Enkelt nå med bil eller buss från centrum.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Lysekil – Stångehuvud, Pinnevik och Bökevik</h2>
+<!-- KÄLLA: Länsstyrelsen Västra Götaland, Stångehuvud, https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — "den sydligaste utlöparen av det bohuslänska granitområdet"; "fina möjligheter till bad och fritidsfiske utefter klippstranden i väster"; "stigar som gjorts lättgångna med prydligt anordnade trappor och spänger"; donationsmark, Kungliga Vetenskapsakademin; bildat 1983, ca 48 ha; kollektivtrafik, parkering i norr och söder; tälta förbjudet (läst 2026-09-21). Lysekils kommun, badplatser, https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "På två av kommunens populäraste badplatser mäter vi … bad- och lufttemperatur": Pinnevik, Lysekil och Bökevik, Fiskebäckskil; badplatserna driftsätts mitten av maj, stängs slutet av augusti; vinterstegar bl.a. Pinnevik, Kallbadhuset och Trampen (läst 2026-09-21) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stångehuvud</strong> är den sydligaste utlöparen av Bohusläns granit, längst ut på Stångenäset där Lysekils bebyggelse tar slut. Rundhällar med isräfflor, klyftor och grottliknande bildningar – och bad och fiske längs klippstranden i väster. Trappor och spänger gör stigarna lättgångna, och du når reservatet både till fots från stan och med kollektivtrafik.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Pinnevik</strong> i Lysekil och <strong>Bökevik</strong> i Fiskebäckskil räknar kommunen till sina populäraste bad, och där mäter den vatten- och lufttemperatur. Pinnevik har också vinterstege för den som badar året runt. Kommunens bad är i drift från mitten av maj till slutet av augusti.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">4. Stångehuvud, Lysekil</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Klippudde med öppet hav mot Skagerrak. Dramatisk natur och djupt, klart vatten. Perfekt för erfarna simare och de som vill ha ett mer äventyrligt bad.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Orust – föreningarnas badplatser</h2>
+<!-- KÄLLA: Orust kommun, badplatser, https://www.orust.se/uppleva-och-gora/idrott-motion-och-friluftsliv/badplatser — Småholmarnas badplats i Henån (kommunal); övriga sköts av föreningar med kommunalt stöd och har simskola sommartid; listade: Henån Småholmarna, Ellös Sörkilen, Hälleviksstrand, Kungsviken, Mollösund Kattevik, Nösund, Svanesund, Slussen, Hagens badplats Stocken; "Hundar får inte vistas på badplatserna under badsäsongen"; Henåns badplats har sensorer för vattentemperatur (läst 2026-09-21) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utöver kommunens eget bad Småholmarna i Henån sköts flera av Orusts bad av lokala föreningar, med simskola varje sommar. Kommunen listar Sörkilen i Ellös, Hälleviksstrand, Kungsviken, Kattevik i Mollösund, Nösund, Svanesund, Slussen och Hagen på Stocken. Hundar får inte vara på badplatserna under badsäsongen.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">5. Tjurpannan, Resö</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En av Bohusläns bäst bevarade badhemligheter. Naturreservat med klipphällar, naturliga pooler och Bohusläns klaraste vatten. Rätt svår att nå utan bil men belönar de som tar sig dit.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">6–15. Fler badplatser</h3>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-<li><strong>Nordkoster</strong> – klippbad med utsikt mot Norska havet</li>
-<li><strong>Sydkoster</strong> – sandstränder och grunda vikar för familjer</li>
-<li><strong>Marstrand klipphällar</strong> – välbesökt men utsikten mot hamnen är oslagbar</li>
-<li><strong>Käringön</strong> – fridfull ö med klipphällar och naturhamn</li>
-<li><strong>Skärhamn, Tjörn</strong> – kommunal badplats med hopptorn och brygga</li>
-<li><strong>Hälleviksstrand, Orust</strong> – populär sandstrand med service</li>
-<li><strong>Fiskebäckskil</strong> – pittoreskt fiskeläge med klippbad</li>
-<li><strong>Grebbestad klipphällar</strong> – lokalt favorit utanför turistströmmarna</li>
-<li><strong>Hamburgsund</strong> – skyddad vik med familjebad</li>
-<li><strong>Fjällbacka klipphällar</strong> – badliv runt Ingrid Bergmans hemort</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Innan du åker</h2>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Badplatser i Strömstads kommun, https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-stromstads-kommun.html — "EU-bad måste provtas och besiktigas regelbundet av kommunen … för kustbad kan det finnas prognoser på vattentemperatur från Copernicus" (läst 2026-09-21) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Vattentemperatur och badvattenkvalitet</strong> – Havs- och vattenmyndigheten visar provsvar för varje registrerat bad och, för kustbad, en prognos på vattentemperaturen. Kolla där samma dag i stället för att lita på en siffra i en guide.</li>
+<li><strong>Hund</strong> – förbjuden året runt på Strömstads kommunala bad och under badsäsongen på Orusts. I naturreservaten ska den vara kopplad.</li>
+<li><strong>Tält</strong> – inte tillåtet i Capri, Tjurpannan, Hållöarkipelagen eller Stångehuvud, och just nu inte heller i Ramsvikslandet.</li>
+<li><strong>Öppet hav</strong> – de yttersta klippbaden ligger mot Skagerrak utan skydd. Länsstyrelsens råd för Tjurpannan – vänta på stiltje – är värt att ta med till alla yttre klippbad.</li>
 </ul>
-
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Badtips för Bohuslän:</strong>
-<p style="margin:8px 0 0;font-size:14px">Halkfria skor är ett måste på Bohusläns klipphällar – alger gör dem extremt hala. Vattentemperaturen är ca 18–20°C i juli och sjunker till 15–16°C i september. Ta med neoprenskor för sensommar. De bästa dagarna är klara dagar med måttlig nordlig vind – vattnet är som klarast.</p>
-</div>
 `,
 
   'basta-badplatser-gotland': `
@@ -5178,7 +5170,8 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 <!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Strömstad är Sveriges nordligaste kuststad och porten till Kosterhavets nationalpark och norska skärgårdsön Hvaler. En levande hamnstad med stark sjömatkultur och enkel åtkomst till Bohuslän norrra yttersta.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Strömstad och hummern</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Strömstad är landets hummercentrum. Hummerpremiären i september (16 sep 2026) firas med fanfar i Strömstads hamn och fiskeflottan kommer in med årets första fångst. Restaurangerna längs Norra Hamngatan är fyllda med hummerfirare. Boka bord nu för premiärkvällen.</p>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummerpremiären infaller första måndagen efter 20 september – 2026 den 21 september kl 07.00 – och firas i hamnstäderna längs hela kusten, Strömstad inräknat. Restaurangerna tar in årets första hummer samma vecka; boka bord i förväg.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kosteröarna – porten till nationalparkerna</h2>
 <!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från Strömstad tar färjan ut till Sydkoster (ca 45 min) och Nordkoster (ca 1 h). Kosteröarna är bilfria och del av Kosterhavets nationalpark. Kajakpaddling, snorkling och vandring på bilfria öar är Strömstads stora utflyktsmål.</p>
@@ -6169,27 +6162,30 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 `,
 
   'camping-oland': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Camping på Öland är en klassisk sommarritual för svenska familjer. Med några av Sveriges vackraste sandstränder, öppet landskap och en mängd campingplatser i alla prisklasser finns det goda skäl till att Öland är campingsvenskens paradis.</p>
+<!-- OMSKRIVEN 2026-09-21 (topp-30 i GSC). Den gamla texten listade Neptuni åkrar som campingplats (det är ett naturreservat där tält och husvagn är förbjudet), två campingar som inte gick att hitta hos någon operatör, "5 km sandstrand" vid Böda och påstod att tältning är tillåten "på de flesta delar av Öland". Allt nedan är läst i webbläsare 2026-09-21. Klinta Camping och Kapelludden gick inte att läsa (robotspärr) och står därför inte med. -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Öland är lätt att campa på och lätt att campa fel på. De stora campingarna ligger vid de bästa stränderna, men flera av öns mest besökta naturområden runt dem är reservat där tält är förbjudet. Här är två campingar vi kunnat belägga hos operatören själv – en i norr, en i söder – och reglerna för naturen runt omkring.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Öland</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bil via Ölandsbron (gratis) är det praktiska valet för camping med utrustning. Tåg till Kalmar + buss 101 fungerar för lätt vandrarpack, men bil ger frihet att flytta runt under vistelsen.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Norra Öland – Böda Sand och sandkusten</h2>
+<!-- KÄLLA: Böda Sand, Om oss, https://www.bodasand.se/om-oss/ — "med sina 1350 campingplatser och 125 stugor Sveriges största camping"; "belägen längs med en 2 mil lång vit sandstrand"; "pool, spa, bastu, restauranger, pub, after beach, bageri, ICA-butik, frisör, kiosk, gatukök och pizzeria"; "Böda Sand GK - en 9 håls fullängdsbana"; familjen Barkevall sedan 1994 (läst 2026-09-21). Böda Sand, Camping, https://www.bodasand.se/bo/camping/ — "platser utan el, platser med el samt platser med både el och vatten"; "behöver du ta med en CEE-koppling"; storlekar S–XXL upp till 12 m; "Hundar är välkomna på campingen"; bussförbindelser och cykeluthyrning (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Böda Sand</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Med 1 350 campingplatser och 125 stugor kallar sig Böda Sand Sveriges största camping, och anläggningen ligger längs en två mil lång sandstrand på nordöstra Öland. Det är en by i sig: pool, spa, bastu, flera restauranger, bageri, ICA-butik och en niohålsbana för golf. Platserna finns utan el, med el och med el och vatten, i storlekar från van upp till tolv meter långa ekipage – ta med en CEE-kontakt om du bokar el. Hund är välkommen, och det går buss och finns cykeluthyrning på området.</p>
+<!-- KÄLLA: Länsstyrelsen Kalmar, Bödakustens östra, https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/bodakustens-ostra.html — "Här finns Ölands längsta sandstrand. In mot land reser sig tio meter höga sanddyner"; "De äldsta tallarna är upp emot 200 år gamla"; "mellan naturreservatet Trollskogen i norr och Böda camping i söder"; "Allemansrätten gäller inte fullt ut"; förbjudet att tälta och göra upp eld; "Du får plocka bär och matsvamp"; beslutsår 1998, 1020,6 ha (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Bödakustens östra – stranden norr om campingen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mellan Böda och Trollskogen ligger naturreservatet med Ölands längsta sandstrand enligt Länsstyrelsen – bakom den tio meter höga sanddyner och en gles sandtallskog där de äldsta träden är upp mot 200 år. Här finns badstrand, vandringsled, toalett och parkering. Tält och eld är inte tillåtet; bär och matsvamp får du plocka.</p>
+<!-- KÄLLA: Länsstyrelsen Kalmar, Trollskogen, https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/trollskogen.html — "Trollskogen är ett av Ölands mest besökta naturområden"; "gammal tallskog med stormvridna träd"; "cirka 300 olika svamparter och 155 olika lavarter"; på Ölands nordostligaste udde; förbjudet att tälta och göra upp eld (läst 2026-09-21). Länsstyrelsen Kalmar, Neptuni åkrar, https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/neptuni-akrar.html — namnet "kommer från Linné som 1741 gjorde sin Ölandsresa"; blåeld; "Tälta eller ställa upp husvagn" förbjudet; "invid väg 136, cirka 2 kilometer norr om Byxelkrok" (läst 2026-09-21) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Dagsutflykter: Trollskogen och Neptuni åkrar</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Trollskogen</strong> på Ölands nordostligaste udde är ett av öns mest besökta naturområden: stormvriden tallskog, murgrönsklädda ekar och klapperstensstränder, med omkring 300 svamparter. <strong>Neptuni åkrar</strong>, två kilometer norr om Byxelkrok längs väg 136, är strandvallar av kalksten som blir blå när blåelden blommar på sommaren – namnet fick platsen av Linné på hans Ölandsresa 1741. Båda är dagsmål: i Trollskogen är tält förbjudet, och vid Neptuni åkrar gäller förbudet både tält och husvagn.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa campingplatserna</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>First Camp Böda Sand:</strong> Ölands mest populära camping med direkt tillgång till den 5 km långa sandstranden. Stora faciliteter med pool, lekplatser och restaurang. Boka månader i förväg för juli.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Neptuni Åkrar:</strong> Norra Öland, naturnärmre och lite lugnare än Böda. Bra för familjer som vill ha strandnärheten men lite mer stillhet.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Ölands Camping Mörbylånga:</strong> Södra Öland nära världsarvslandskapet. Bra utgångspunkt för alvarvandring och kulturturism.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sandvik Camping:</strong> Liten, fridfull och nära havet. Utan de stora campingplatsernas köer och larm.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Södra Öland – Ottenby i världsarvet</h2>
+<!-- KÄLLA: Ottenby Vandrarhem & Camping, https://ottenbyvandrarhem.se/ — "Ölands sydligaste vandrarhem och camping, beläget cirka 55 km söderut från Ölandsbron, 6 km norr om Ölands Södra Udde intill Ås kyrka"; "50 rum"; "camping med elplatser och plats för tält"; "två uppvärmda pooler"; "Vill du bo mitt i ett världsarv?"; "Ta väg 136 mot Ottenby"; reception, frukostservering, självhushållskök, duschar och toaletter (läst 2026-09-21) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Ottenby Vandrarhem &amp; Camping</strong> är Ölands sydligaste camping, ungefär 55 kilometer söder om Ölandsbron och sex kilometer från Ölands södra udde, intill Ås kyrka. Här finns elplatser och tältplatser, två uppvärmda pooler, självhushållskök och frukostservering – och ett vandrarhem med 50 rum om vädret slår om. Kör väg 136 mot Ottenby. Campingen beskriver sig själv som boende mitt i ett världsarv – Södra Ölands odlingslandskap.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Friluftscamping – allemansrätten</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tältning via allemansrätten är tillåten på de flesta delar av Öland. Alvaret kräver lite omsorg – slå läger på strandängar eller längs skogskanter, inte direkt på kalkstensmarken. Lämna inga spår och respektera privat mark.</p>
-
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk info</h2>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Campingplatser har generellt öppet juni–aug, några maj–sept</li>
-  <li>Eluttag är standard på de flesta platser – ta med adapter om du har husbil</li>
-  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-  <li>Priserna varierar 150–350 kr/natt beroende på plats och säsong</li>
-  <li>Myggor kan vara besvärliga i inre delar av ön – ta med myggmedel</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tälta utanför campingen</h2>
+<!-- KÄLLA: Länsstyrelsen Kalmar, Bödakustens östra och Neptuni åkrar — "Allemansrätten gäller inte fullt ut i naturreservatet"; tältförbud i Bödakustens östra, Trollskogen och Neptuni åkrar (lästa 2026-09-21) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Allemansrätten gäller på Öland som i resten av landet – men i naturreservaten gäller den inte fullt ut, skriver Länsstyrelsen.</li>
+<li>Tält är förbjudet i bland annat Bödakustens östra, Trollskogen och Neptuni åkrar; vid Neptuni åkrar också husvagn. Eld är förbjuden i alla tre.</li>
+<li>Kolla reservatets föreskrifter på Länsstyrelsen Kalmars webbplats innan du slår upp tältet någonstans utanför en camping.</li>
 </ul>
 `,
 
@@ -7355,55 +7351,43 @@ Enklast: pendeltåg linje 43 från Stockholm City till Nynäshamn (ca 65 min), s
 `,
 
   'hummerpremiar-bohuslan-2026': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Hummerpremiären är en av Bohusläns stoltaste traditioner. Den sista lördagen i september – 2026 den 26 september – öppnar hummerburar längs hela Bohuslänska kusten och tusentals fiskare drar sin första bur i gryningen. Det finns en anledning till att lördagsnatten innan kallas Bohusläns stiltjälle.</p>
+<!-- KÄLLA: Havs- och vattenmyndigheten, Hummerfiske – regler (https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html), läst i webbläsare 2026-09-21: premiär 2026 den 21 september kl 07.00, alltid första måndagen efter 20 september (2027: 27 september); fritidsfiske t.o.m. 30 november; endast hummertina, högst sex tinor för fritidsfiskare; minimimått 9 cm carapaxlängd; rombärande hummer ska släppas tillbaka; bara svenska medborgare eller stadigvarande bosatta; fritidsfiskare får inte sälja fångsten; redskap märkta med namn och adress/telefon samt F -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)"><strong>Hummerpremiären 2026 är ${hummerpremiar(2026).text.replace(/ 2026$/, '')} klockan 07.00.</strong> Premiären infaller alltid första måndagen efter 20 september – nästa år, 2027, blir det ${hummerpremiar(2027).kort}. Från den morgonen och till och med 30 november får fritidsfiskare vittja sina hummertinor längs Bohusläns kust.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummer (Homarus gammarus) är en av världens mest uppskattade delikatesser och den europeiska hummern längs Bohusläns kust räknas av kockar som en av de finaste. Den är också reglerad – och det är precis det som gör premiären till ett evenemang.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummern (Homarus gammarus) är strikt reglerad, och det är reglerna som gör premiären till en högtid: alla väntar på samma klockslag. Här är vad som gäller, ordagrant efter Havs- och vattenmyndigheten.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DATUM OCH REGLER 2026</h3>
 
-<p><strong>Hummerpremiären 2026: lördag 26 september</strong></p>
-<!-- KÄLLA: Havs- och vattenmyndigheten — hummerfisket startar kl 07.00 första måndagen efter 20 september. havochvatten.se (avläst 2026-08-12) -->
-<p>Fisket öppnar klockan 07:00. Hummerburar får sättas ut redan fredagskvällen, men bурarna får inte vittjas förrän 07:00 lördag.</p>
+<p><strong>Premiär: ${hummerpremiar(2026).text} kl 07.00.</strong> Fritidsfiskare får fiska till och med 30 november, yrkesfiskare till och med 31 december.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Regler du måste kunna</h4>
 <ul style="font-size:16px;line-height:1.8;color:var(--txt2);padding-left:20px">
-  <li><strong>Minimimått:</strong> 87 mm karapaxlängd (huvud + mellankropp). Mät noga – för liten hummer ska sättas tillbaka.</li>
-  <li><strong>Max antal burar:</strong> 3 burar per person vid husbehovsfiske. Yrkesfiske har separata regler.</li>
-  <li><strong>Romhona:</strong> Honor med synlig rom (ägg under stjärten) måste alltid sättas tillbaka oavsett storlek.</li>
-  <li><strong>Fiskekort:</strong> Fridfiskelicens för husbehovsfiske krävs, köps på havochvatten.se.</li>
-  <li><strong>Burmärkning:</strong> Märk bурarna med namn och adress.</li>
+  <li><strong>Vem får fiska:</strong> Svenska medborgare eller den som är stadigvarande bosatt i Sverige. Ingen licens behövs för fritidsfiske – men fångsten får inte säljas.</li>
+  <li><strong>Redskap:</strong> Bara hummertina. Högst sex tinor samtidigt för fritidsfiskare. Tinan ska ha minst två flyktöppningar (60 mm) och rymningshål mot spökfiske.</li>
+  <li><strong>Minimimått:</strong> 9 cm carapaxlängd, mätt från ögonhålans bakkant till huvudsköldens bakkant. Mindre hummer släpps genast tillbaka.</li>
+  <li><strong>Rombärande hummer:</strong> Ska alltid släppas tillbaka, oavsett storlek.</li>
+  <li><strong>Märkning:</strong> Kula eller cylinder i rött, orange, gult eller vitt med namn och adress eller telefonnummer, plus bokstaven F för fritidsfiske. Sedan 10 januari 2026 ska passiva redskap dessutom märkas direkt på redskapet.</li>
+  <li><strong>Före premiären:</strong> Från måndagen före premiären kl 07.00 är nät, ryssjor och tinor förbjudna i kustvattnet från norska gränsen ned till Klosterfjorden. Sumpning av hummer är förbjuden från 1 februari fram till premiären.</li>
+  <li><strong>Fredningsområden:</strong> Vissa områden är stängda för hummertinor – kontrollera kartan på svenskafiskeregler.se innan du sätter.</li>
+  <li><strong>Amerikansk hummer:</strong> Främmande art. Misstänkt amerikansk eller sjuk hummer rapporteras genast till SLU Havsfiskelaboratoriet i Lysekil.</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA PLATSERNA FÖR HUMMERFISKE</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kosterfjorden och yttre Koster</h4>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAR FISKAS DET?</h3>
 <!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
-<p>Omkring 6 000 marina arter och en utmärkt hummerlokal. Branta klippbottnar. Bäst från Strömstad och med lokal fiskeguide. Kosterhavets nationalpark: kontrollera restriktioner.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Smögenskäret och Pater Noster</h4>
-<p>Trakterna kring Smögen och Väderöarna är klassisk hummerfiskevattne. Klippbottnar på 5–25 meters djup. Hyr båt i Smögen, sätt bурarna kvällen innan premiären.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Gullholmen och Orusts kust</h4>
-<p>Den södra Bohuslänska kusten kring Orust och Tjörn har rika hummervatten. Lokal kännedom är ovärderlig – kontakta Gullholmens fiskelag eller lokala båtklubbar.</p>
+<p>Hummerfisket är en bohuslänsk tradition från Strömstad i norr till Göteborgs skärgård i söder. I Kosterhavets nationalpark gäller egna föreskrifter utöver fiskereglerna – läs på hos Länsstyrelsen innan du sätter tinor där. Saknar du egen båt och lokalkännedom: flera fiskelägen har guidade hummerturer under säsongen, se vår guide om hummersafari.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR DU FIRAR</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Laga hummern själv – klassiken</h4>
-<p>Koka hummern i välsaltat vatten (1 msk salt per liter) i 12–15 minuter beroende på storlek. Servera med aioli, gott bröd och ett glas Chablis. Inget krångligare än så.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Restauranger som firar premiären</h4>
-<p>Smögen Fisk & Skaldjur och Krog+Bar i Lysekil brukar ha specialmeny på premiärhelgen. Boka i god tid – premiärhelgen är fullbokad längs hela kusten.</p>
+<p>Premiärveckan är den bästa tiden att äta hummer i Bohuslän: restaurangerna i fiskelägena tar in årets första fångst. Boka bord i förväg – premiärhelgen fylls. Kokar du själv: levande hummer i rikligt saltat vatten, tiden beror på storleken.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR TAR DU DIG DIT?</h3>
-<p><strong>Till Smögen:</strong> Tåg från Göteborg till Munkedal (ca 1h), sedan buss 840 till Smögen (ca 45 min). Med bil: E6 norrut mot Munkedal, sedan väg 174 till Smögen.</p>
-<p><strong>Till Strömstad:</strong> Tåg från Göteborg, ca 2h. Med bil: E6 norrut ca 1h45 min.</p>
-<p><strong>Till Lysekil:</strong> Tåg till Uddevalla + buss, ca 1h45 min totalt. Med bil via E6 + väg 161.</p>
+<p>Kollektivt: Västtrafiks reseplanerare (vasttrafik.se) för tåg och buss till Strömstad, Lysekil, Smögen och Grebbestad. Bil: E6 norrut från Göteborg, sedan avtag mot respektive fiskeläge.</p>
 `,
 
   'surstrommingspremiar-2026': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Den tredje torsdagen i augusti är en högtidsdag längs Norrlandskusten. Butiker längs Höga Kusten börjar stapla konservburkar med silhuetter av fisk och den distinkta lukten av fermenterad strömming sprider sig i luften. Det är surströmmingspremiär.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Surströmmingspremiären 2026 är torsdag 20 augusti. Konserverna – legalt sett – får inte säljas förrän detta datum. Det är en reglerad tradition sedan 1930-talet, då en kunglig förordning fastslog att ny skörd av surströmming inte fick säljas förrän tredje torsdagen i augusti.</p>
+<!-- KÄLLA: Institutet för språk och folkminnen, Surströmmingspremiär, ${KALLA_SURSTROMMING} (läst 2026-09-21): "Den tredje torsdagen i augusti är det av hävd premiär", "börjar säljas den tredje torsdagen i augusti"; Isof nämner ingen förordning — därför står det inte här; datumet räknas fram i src/lib/arsdatum.ts -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Surströmmingspremiären 2026 är ${surstrommingspremiar(2026).text.replace(/ 2026$/, '')}. Det är en tradition, inte en lag: av hävd börjar årets surströmming säljas den tredje torsdagen i augusti, och det är den dagen kalasen hålls.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAD ÄR SURSTRÖMMING?</h3>
 

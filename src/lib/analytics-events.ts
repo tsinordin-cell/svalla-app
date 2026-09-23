@@ -131,6 +131,7 @@ export function track<E extends SvallaEvent>(name: E['name'], props: E['props'])
         props,
         sessionId,
         path: window.location.pathname,
+        ursprung: ursprungForSession(),
       }),
       // keepalive så event skickas även vid page-unload
       keepalive: true,
@@ -151,6 +152,30 @@ function getOrCreateSessionId(): string {
     return id
   } catch {
     return 'no-session'
+  }
+}
+
+/**
+ * Varifrån sessionen kom — skickas EN gång per session, på första eventet.
+ *
+ * Fetch-anropets Referer-header pekar alltid på svalla.se (sidan som gjorde
+ * anropet), så kolumnen `referer` sa ingenting om ursprung fram till 2026-09-20
+ * (docs/BASLINJE-2026-09.md). Nu skickar klienten document.referrer i stället:
+ * bara värddelen (google.com, facebook.com …), aldrig sökväg eller query, och
+ * 'direkt' när det saknas. Samma sajt räknas som direkt.
+ */
+function ursprungForSession(): string | undefined {
+  try {
+    const KEY = 'svalla_ursprung_skickat'
+    if (sessionStorage.getItem(KEY)) return undefined
+    sessionStorage.setItem(KEY, '1')
+    const ref = document.referrer
+    if (!ref) return 'direkt'
+    const host = new URL(ref).hostname.replace(/^www\./, '')
+    if (!host || host === window.location.hostname.replace(/^www\./, '')) return 'direkt'
+    return host.slice(0, 200)
+  } catch {
+    return undefined
   }
 }
 

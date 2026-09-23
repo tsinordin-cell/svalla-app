@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords: ['skärgården sommar','sommarsemester skärgård','skärgård juli','skärgård juni','bästa tid skärgården','sommar stockholm skärgård','skärgård utan båt sommar','sandhamn sommar','utö sommar','grinda sommar'],
   alternates: { canonical: 'https://svalla.se/sommar' },
   openGraph: {
-    title: 'Skärgården på sommaren 2026 | Svalla',
+    title: 'Skärgården på sommaren 2026',
     description: 'Bästa öarna, krogar och badplatser. Planera din sommar i skärgården.',
     url: 'https://svalla.se/sommar',
   },

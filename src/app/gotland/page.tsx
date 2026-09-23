@@ -24,7 +24,7 @@ export const metadata: Metadata = {
  'gotland segelrutt',
  ],
  openGraph: {
- title: 'Gotland — Segla dit, logga turen | Svalla',
+ title: 'Gotland — Segla dit, logga turen',
  description: 'Planera din seglingstur till Gotland och logga varje etapp med Svalla.',
  url: 'https://svalla.se/gotland',
  },

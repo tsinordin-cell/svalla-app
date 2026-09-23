@@ -4,6 +4,7 @@ import { getHantverkareForIsland } from './o/hantverkare-data'
 import { ACTIVITY_LIST, islandsForActivity } from './aktivitet/activity-data'
 import { OAR_CATEGORIES } from './oar/oar-categories'
 import { createClient } from '@/lib/supabase'
+import { REGIONS, CATEGORIES } from '@/components/RegionCategoryPage'
 import { UPPLÄGG } from './dag/dag-data'
 import { GUIDES, ALL_REGIONS, REGION_URL_SLUG } from './guider/guides-data'
 import { TEAMBUILDING_SUBS } from './teambuilding/teambuilding-data'
@@ -178,38 +179,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/halland`,                lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${base}/malaren`,               lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
     { url: `${base}/goteborg-skargard`,     lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
-    // Region + kategori-sidor (Göteborg/Bohuslän) — auto-genererade från Google-data
+    // Region + kategori-sidor (/goteborg/krogar osv.) läggs till nedan från databasen,
+    // bara när kategorin har minst en plats.
     { url: `${base}/goteborg`,               lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
-    { url: `${base}/goteborg/krogar`,        lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/goteborg/gasthamnar`,    lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/goteborg/sjomackar`,     lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
-    { url: `${base}/goteborg/bastu`,         lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
-    { url: `${base}/bohuslan/krogar`,        lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/bohuslan/gasthamnar`,    lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/bohuslan/sjomackar`,     lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
-    { url: `${base}/bohuslan/bastu`,         lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
-    // Expansion: Åland, Öland, Gotland (kategori-sidor från Google Places-data)
     { url: `${base}/oland`,                  lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
-    { url: `${base}/aland/krogar`,           lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/aland/gasthamnar`,       lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/aland/sjomackar`,        lastModified: now, priority: 0.7,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/aland/bastu`,            lastModified: now, priority: 0.7,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/oland/krogar`,           lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/oland/gasthamnar`,       lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/oland/sjomackar`,        lastModified: now, priority: 0.7,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/oland/bastu`,            lastModified: now, priority: 0.7,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/gotland/krogar`,         lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
-    { url: `${base}/gotland/gasthamnar`,     lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/gotland/sjomackar`,      lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
-    { url: `${base}/gotland/bastu`,          lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
-    { url: `${base}/hoga-kusten/krogar`,     lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/hoga-kusten/gasthamnar`, lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/hoga-kusten/sjomackar`,  lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
-    { url: `${base}/hoga-kusten/bastu`,      lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
-    { url: `${base}/halland/krogar`,         lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/halland/gasthamnar`,     lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
-    { url: `${base}/halland/sjomackar`,      lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
-    { url: `${base}/halland/bastu`,          lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
     // Kategori-landningssidor (dropdown-mål) — kurerade, SEO-optimerade
     { url: `${base}/resmal`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/aktiviteter`,            lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
@@ -407,6 +380,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let planeraPages: MetadataRoute.Sitemap = []
   let forumCatPages: MetadataRoute.Sitemap = []
   let forumThreadPages: MetadataRoute.Sitemap = []
+  const regionKategoriPages: MetadataRoute.Sitemap = []
 
   try {
     const supabase = createClient()
@@ -424,7 +398,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       { data: forumCats, error: forumCatsErr },
       { data: forumThreads, error: forumThreadsErr },
     ] = await Promise.all([
-      supabase.from('restaurants').select('id, slug, updated_at').order('id'),
+      supabase.from('restaurants').select('id, slug, updated_at, archipelago_region, type').order('id'),
       supabase.from('tours').select('id, created_at').order('id'),
       supabase.from('articles').select('slug, updated_at, published').eq('published', true),
       supabase.from('planned_routes').select('id, updated_at').eq('status', 'published'),
@@ -448,6 +422,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.75,
     }))
+
+    // Region + kategori: tomma kategorier är tunna sidor (noindex) och ska inte
+    // ligga i sitemapen. Mätt 2026-09-23: alla 8 /hoga-kusten/* och /halland/*
+    // samt /oland/bastu hade 0 platser men låg i sitemapen.
+    const REGION_URL: Record<string, string> = { hogakusten: 'hoga-kusten' }
+    const finns = new Set((restaurants ?? []).map((r: { archipelago_region?: string | null; type?: string | null }) => `${r.archipelago_region}|${r.type}`))
+    for (const [regionKey, region] of Object.entries(REGIONS)) {
+      for (const [katKey, kat] of Object.entries(CATEGORIES)) {
+        if (!region.koder.some(k => kat.types.some(t => finns.has(`${k}|${t}`)))) continue
+        regionKategoriPages.push({
+          url: `${base}/${REGION_URL[regionKey] ?? regionKey}/${katKey}`,
+          lastModified: now,
+          changeFrequency: 'weekly' as const,
+          priority: katKey === 'krogar' || katKey === 'gasthamnar' ? 0.8 : 0.75,
+        })
+      }
+    }
 
     rutterPages = (tours ?? []).map((t: { id: string; created_at?: string }) => ({
       // Rutt-sidan slår upp på UUID (.eq('id', id)); slug ger 404. Därför id, inte slug.
@@ -519,5 +510,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...planeraPages,
     ...forumCatPages,
     ...forumThreadPages,
+    ...regionKategoriPages,
   ]
 }

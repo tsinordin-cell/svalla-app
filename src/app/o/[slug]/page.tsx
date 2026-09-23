@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
  return {
- title: island.seoTitle ? `${island.seoTitle} | Svalla` : `${island.name} 2026 – restauranger, boende & aktiviteter | Svalla`,
+ title: island.seoTitle ? `${island.seoTitle}` : `${island.name} 2026 – restauranger, boende & aktiviteter`,
  description: island.seoDescription ?? `Guide till ${island.name}: restauranger, boende, aktiviteter, badplatser och hur du tar dig dit. ${island.tagline}`,
  keywords: [
   `${island.name.toLowerCase()} guide`,
@@ -619,7 +619,7 @@ export default async function IslandPage({ params }: Props) {
      variant="inline"
      source={`o-${island.slug}-midpage`}
      title={`Planerar du en tur till ${island.name}?`}
-     description="Säsongsuppdateringar, öppettider och insider-tips direkt i inkorgen. Varannan tisdag, inga annonser."
+     description="Säsongsstarter, nya guider och ändrade båtlinjer, när det händer något. Inga annonser."
      buttonLabel="Ja, prenumerera"
    />
  </div>

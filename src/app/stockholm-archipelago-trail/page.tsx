@@ -8,7 +8,7 @@ import Icon from '@/components/Icon'
 import { SAT_SECTIONS, SAT_TOTAL_KM, SAT_SUM_KM, SAT_ISLANDS, SAT_URL, type SatDifficulty } from './sat-data'
 
 export const metadata: Metadata = {
-  title: 'Stockholm Archipelago Trail — alla 22 etapper, längd och svårighet | Svalla',
+  title: 'Stockholm Archipelago Trail — alla 22 etapper, längd och svårighet',
   description:
     'Hela Stockholm Archipelago Trail: 270 km vandringsled över 20 öar från Arholma till Landsort. Etapp för etapp med längd, svårighetsgrad och hur du tar dig dit.',
   keywords: [
@@ -439,7 +439,7 @@ export default function StockholmArchipelagoTrailPage() {
               variant="card"
               source="stockholm-archipelago-trail"
               title="Vandrar du leden?"
-              description="Nya etappguider, säsongstips och avstängningar direkt i inkorgen. Varannan tisdag."
+              description="Nya etappguider, säsongstips och avstängningar direkt i inkorgen. Inga annonser."
             />
           </div>
 

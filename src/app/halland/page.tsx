@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     'halland sommar',
   ],
   openGraph: {
-    title: 'Halland — Västkustens sandstränder och fästningsstäder | Svalla',
+    title: 'Halland — Västkustens sandstränder och fästningsstäder',
     description: 'Logga dina båtturer och hitta de bästa platserna längs Hallands kust.',
     url: 'https://svalla.se/halland',
   },

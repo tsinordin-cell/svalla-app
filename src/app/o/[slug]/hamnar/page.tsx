@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
   return {
-    title: `Gästhamnar på ${island.name} — bryggor och båtplatser | Svalla`,
+    title: `Gästhamnar på ${island.name} — bryggor och båtplatser`,
     description: `Alla gästhamnar och bryggor på ${island.name}. Antal platser, bränsle, dusch, el och bokning. Aktuell info inför sommaren.`,
     keywords: [`${island.name.toLowerCase()} gästhamn`, `${island.name.toLowerCase()} brygga`, `båt till ${island.name.toLowerCase()}`],
     openGraph: {

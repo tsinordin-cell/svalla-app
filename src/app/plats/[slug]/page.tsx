@@ -16,6 +16,7 @@ type Plats = {
  longitude: number
  description: string | null
  opening_hours: string | null
+ verified_at?: string | null
  menu: string | null
  images: string[] | null
  image_url: string | null
@@ -331,8 +332,8 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  </div>
  )}
 
- {/* Öppettider */}
- {p.opening_hours && (
+ {/* Öppettider — bara kontrollerade (2026-09-21: 203 obekräftade fritexter visades som fakta) */}
+ {p.opening_hours && p.verified_at && (
  <div style={{ marginBottom: 22 }}>
  <SectionTitle>Öppettider</SectionTitle>
  <div style={{

@@ -147,11 +147,6 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "oland-guide": {
-    "antal": 1,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "kosterarna-guide": {
     "antal": 1,
     "datum": "2026-08",
@@ -191,6 +186,11 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "antal": 1,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
+  },
+  "barplockning-skargarden": {
+    "antal": 1,
+    "datum": "2026-09",
+    "vad": "vilka öar som ger bäst bär är vår redaktionella bedömning, ingen har mätt det"
   },
   "ankra-sova-bat": {
     "antal": 14,
@@ -278,7 +278,7 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
   "dagstur-marstrand": {
-    "antal": 14,
+    "antal": 13,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   }

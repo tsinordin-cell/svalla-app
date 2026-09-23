@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     'segling västkust göteborg',
   ],
   openGraph: {
-    title: 'Göteborgs skärgård — Logga turer | Svalla',
+    title: 'Göteborgs skärgård — Logga turer',
     description: 'Logga dina båtturer i Göteborgs skärgård med Svalla.',
     url: 'https://svalla.se/goteborg-skargard',
   },

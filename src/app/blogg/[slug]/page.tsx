@@ -26,42 +26,36 @@ type Post = {
 const POSTS: Record<string, Post> = {
 
  'basta-restaurangerna-sandhamn': {
- title: 'De 5 bästa restaurangerna på Sandhamn 2026',
- excerpt: 'Sandhamn är seglingscentrum och skärgårdsklassiker. Men vilka ställen är verkligen värda ett besök?',
+ title: 'Fem krogar och kaféer på Sandhamn 2026',
+ excerpt: 'Seglarhotellet, Värdshuset, Sands, Dykarbaren och bageriet – de ställen på Sandhamn som står på operatörernas egna sidor, och hur du tar dig dit.',
  category: 'Mat & dryck',
  date: '2026-04-10',
  readTime: '5 min',
  emoji: '',
  tags: ['Sandhamn', 'Restauranger', 'Sommar'],
  content: `
-Sandhamn är ett av Stockholms skärgårds mest välkända namn. Segelbåtar i hamnen, vita trävillor och ett restaurangutbud som håller oväntat hög nivå för att vara ute i skären. Men med flera alternativ att välja mellan – var ska du äta?
+<!-- KÄLLA: https://www.sandhamn.com/sv/restauranger-och-barer/segelsalen (Segelsalen, säsongens råvaror; hotellet listar Bistro, Segelsalen, Seglarbaren, Orangeriet, Terassen, Hamnbaren); https://sandhamns-vardshus.se/ ("anno 1672", pub öppet året runt, restaurang med utsikt över hamnen); https://sandshotell.se (Sands Hotell & Bistro, uteterrass); https://www.dykarbaren.se/ (inne- och uteservering, säsong); https://sandhamnsbageriet.com/ (surdegsbröd, bullar, säsongsöppet). Tidigare version (borttagen 2026-09-21) listade "Sandhamns Krog" och "Bryggcafé 7an" som vi inte hittar på någon operatörssida, och påstod "Seglarhotellet sedan 1897", "färsk fisk från lokala fiskare", "handplockade kantareller" utan källa. -->
+Sandhamn är ett av Stockholms skärgårds mest välkända namn: segelbåtar i hamnen, vita trävillor och fler krogar än de flesta öar. Här är de fem ställen vi kan belägga på operatörernas egna sidor – inte "de bästa", för det har ingen mätt.
 
-## Seglarhotellets Restaurang
-
-Seglarhotellet har legat på Sandhamn sedan 1897 och restaurangen lever upp till historien. Kök med fokus på svenska råvaror – färsk fisk från lokala fiskare, handplockade kantareller och en ostbricka som är värd besöket i sig. Boka bord i förväg under högsäsong, den är fullbokad de flesta kvällar i juli.
-
-**Tips:** Be om ett bord mot hamnen. Utsikten mot inkommande segelbåtar i solnedgången är svårslagen.
+## Segelsalen på Sandhamn Seglarhotell
+Seglarhotellets matsal, med en meny som hotellet beskriver som fokuserad på säsongens råvaror. Hotellet har dessutom Bistro, Seglarbaren, Orangeriet, Terassen och Hamnbaren. Boka bord i förväg under högsäsong.
 
 ## Sandhamns Värdshus
+Värdshus anno 1672, enligt värdshuset självt. Puben är öppen året runt och restaurangen har utsikt över hamnen. Det första du möter när du kliver av båten.
 
-Det klassiska värdshuset vid färjebryggan är det första du möter när du kliver av båten. Enkel, ärlig husmanskost – fisksoppa, räkor och smörgåsar. Perfekt för lunch efter en lång seglingsdag. Priserna är rimliga, servicen snabb.
+## Sands Bistro
+Bistron på Sands Hotell, med uteterrass. Mat lagad från grunden enligt hotellet.
 
 ## Dykarbaren
+Bar och restaurang med inne- och uteservering nere vid vattnet. Säsongsöppen – öppettiderna står på dykarbaren.se.
 
-Lite mer avslappnad stämning nere vid dykarna. Bryggserveringen med hamburgare, öl och havsutsikt är sommarens bästa kombination. Öppnar tidigt och stänger sent – populär för sundowner efter seglingen.
-
-## Sandhamns Krog
-
-Inne i byn hittar du den lilla krogens som är lite av en insider-favorit. Inte fullt så turistigt, mer lokalt. Menyn varierar med säsongen – fråga alltid vad som är färskast in den dagen.
-
-## Bryggcafé 7an
-
-För frukost eller fika är Bryggcafé 7an oöverträffat. Nybakat bröd, smör och skärgårdsmarmelad med utsikt mot Sandhamnsfjärden. Öppnar tidigt – passa på innan lunch-turisterna anländer.
+## Sandhamnsbageriet
+För frukost och fika: surdegsbröd, kanelbullar och den egna "Seglarbullen". Säsongsöppet, i år till sista helgen i september enligt bageriet.
 
 ## Praktisk info
+Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara 19 juni–16 augusti, och då tar turen mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48–59 min) och därifrån Waxholmsbolagets linje 16 på 40–65 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong 30 april–27 september. Boka bord i förväg när det går – sommarhelgerna är fulla.
+    `,
 
-Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara 19 juni–16 augusti, och då tar turen mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48–59 min) och därifrån Waxholmsbolagets linje 16 på 40–65 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong 30 april–27 september. Under sommarsäsongen är det kö vid populäraste restaurangerna – boka i förväg när det går.
- `,
  },
 
  'kajak-stockholms-skargard-nyborjare': {
@@ -426,7 +420,8 @@ Segling ser svårt ut utifrån. Det är det inte – men det kräver lite grundk
 ## Börja med en kurs
 
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Seglingen rätt: börja med en SXK (Segel sällskapet för att lära sig), KSSS eller liknande klubbs nybörjarkurs. En tvådagars grundkurs kostar ca 2 000–3 500 kr och lär dig det du behöver för att ta ut en hyrbåt i lugn skärgård.
+<!-- UPPSKATTNING: kurspriser är ett spann över flera seglarskolor, ej hämtat per aktör (2026-09) -->
+Börja med en nybörjarkurs hos en seglarskola eller ett segelsällskap – KSSS och flera lokala klubbar håller kurser. En tvådagars grundkurs brukar ligga i storleksordningen 2 000–3 500 kr och lär dig det du behöver för att ta ut en hyrbåt i lugn skärgård. Priset står på skolans egen sida.
 
 Du lär dig: kryssa (segla mot vinden), falla (segla med vinden), revning (minska segel i vind), förtöja och lägga till.
 
@@ -435,7 +430,8 @@ Du lär dig: kryssa (segla mot vinden), falla (segla med vinden), revning (minsk
 Det finns flera hyrbåtsföretag runt Stockholm. Vanligast är att hyra en 28–32 fots segelbåt – tillräckligt stor för 4 personer och tillräckligt liten för att hanteras av en nybörjare.
 
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Räkna med 5 000–10 000 kr per vecka beroende på säsong och båtstorlek. De flesta hyrbåtsföretag kräver ett enklare certifikat eller intygad segelerfarenhet.
+<!-- UPPSKATTNING: veckohyra är ett spann över flera uthyrare, ej hämtat per aktör (2026-09); observerade dagspriser med källa finns på /hyra-bat/stockholms-skargard -->
+Räkna med storleksordningen 5 000–10 000 kr per vecka beroende på säsong och båtstorlek – exakta priser står hos uthyraren, och observerade dagspriser finns i vår hyrbåtsguide. De flesta uthyrare vill se förarintyg eller intygad seglingsvana.
 
 ## Rätt väder att börja med
 
@@ -448,13 +444,12 @@ Som nybörjare, sikta på:
 
 **Trafikregler:** En segelbåt under segel har generellt rätt till väg gentemot motorbåtar. Men den praktiska regeln är: ett stort fartyg kan inte manövrera – ge alltid väg för stora fartyg och färjor.
 
-**Sjövägsregler:** Lär dig de 6 viktigaste – de räcker för nybörjarsegling i skärgård.
+**Sjövägsregler:** Lär dig grunderna i väjningsreglerna på kursen – de räcker långt i skärgården, tillsammans med regeln ovan om stora fartyg.
 
-**Svalla-kartan** visar gästhamnar, bränsleplatser och ankringsplatser längs din rutt.
 
 ## Klassiska nybörjarrutter
 
-**Vaxholm – Sandhamn tur och retur.** Ca 25 NM enkel väg. Stockholmsleden som guide, gästhamnar i Sandhamn, bra väderlekar för nybörjare.
+**Vaxholm – Sandhamn tur och retur.** Följ farleden österut; gästhamn i Sandhamn. Skyddat vatten större delen av vägen.
 
 **Dalarö – Utö.** Södra skärgården, mer öppet vatten, fin seglingsled med tydliga naturhamnar längs vägen.
 
@@ -463,7 +458,7 @@ Som nybörjare, sikta på:
 1. **För lite mat och vatten ombord.** Ta alltid dubbelt mot vad du tror.
 2. **Inte reservera gästhamn i förväg.** Sandhamn är fullbokad i juli – boka i god tid.
 3. **Underskatta vindriktningsändringen.** Vinden ändrar sig – ha alltid en plan B.
-4. **Segling utan sjökort.** GPS-appen på telefonen är bra. Fysiskt sjökort ombord är obligatoriskt.
+4. **Segling utan sjökort.** Ha sjökort ombord – app eller papper – och kunna läsa det. Telefonen kan dö; ett papperssjökort gör det inte.
 
 Segla varsamt och njut. Skärgården från en segelbåt är en helt annan upplevelse än från däck på en färja.
  `,
@@ -2402,7 +2397,7 @@ export default async function BloggPostPage({
            variant="inline"
            source={`blogg-${slug}-mid`}
            title="Häng med i skärgårdsvärlden"
-           description="Insider-tips och öppna öar — varannan tisdag. Helt gratis."
+           description="Nya guider och säsongsnytt från skärgården. Gratis, inga annonser."
            buttonLabel="Prenumerera gratis"
          />
        </div>
@@ -2479,7 +2474,7 @@ export default async function BloggPostPage({
      Gillade du den här artikeln?
    </p>
    <h3 style={{ fontSize: 20, fontWeight: 800, color: 'var(--txt)', margin: '0 0 10px', lineHeight: 1.3 }}>
-     Fler guider likt denna, varannan tisdag
+     Få nya guider som denna i inkorgen
    </h3>
    <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.7, margin: '0 0 22px', maxWidth: 480 }}>
      Vi skriver om Stockholms skärgård — öppna öar, öppettider och insider-tips du inte hittar på TripAdvisor. Inga annonser. Inga länklistor. Bara skärgård.

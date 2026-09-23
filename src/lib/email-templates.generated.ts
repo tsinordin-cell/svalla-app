@@ -262,15 +262,15 @@ trigger: newsletter_subscribe
 layout: fullt
 subject_options:
   - "Välkommen — nu har du en insider i skärgården 🌊"
-  - "Varannan tisdag: det som faktiskt händer därute"
+  - "Det som faktiskt händer därute"
   - "Din första öinsider är på väg"
-preheader: Varannan tisdag. Det som är öppet, det som ändrats, och det ingen karta visar.
+preheader: Det som öppnat, det som ändrats och det ingen karta visar – när det händer.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
 # Nu har du en insider i skärgården.
 
-Varannan tisdag i inkorgen: vad som är öppet just nu, vad som ändrats och var det är värt att åka. Inga annonser, ingen utfyllnad, inga "5 tips du INTE får missa". Bara sånt vi själva hade velat veta.
+Vi hör av oss när det händer något: vad som öppnat, vad som ändrats och var det är värt att åka. Inga annonser, ingen utfyllnad, inga "5 tips du INTE får missa". Bara sånt vi själva hade velat veta.
 
 :::kort
 ### Det här kommer i brevet
@@ -459,7 +459,7 @@ Hur lång tid tar det, vad finns på ön, hur blir vädret? [Skriv till Thorkel 
 [Planera din första tur](https://svalla.se/planera)
 :::
 
-Det här var sista påminnelsen. Du ligger kvar i listan och får nyhetsbrevet varannan tisdag som vanligt.
+Det här var sista påminnelsen. Du ligger kvar i listan och hör av oss när det händer något i skärgården.
 
 :::signatur
 Ses därute.
