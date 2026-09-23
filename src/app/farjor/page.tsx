@@ -11,7 +11,8 @@ import { ALL_ISLANDS } from '@/app/o/island-data'
 // finnhamn". Sidan pekar nu vidare till varje ös resesida och till
 // Cinderella-sidan i stället för att konkurrera med dem.
 export const metadata: Metadata = {
-  title: 'Färjetider Stockholms skärgård – båt till öarna, Waxholmsbolaget & Cinderella',
+  // absolute: utan " – Svalla" så att Google inte klipper Waxholmsbolaget/Cinderella (≈60 tecken)
+  title: { absolute: 'Färjetider Stockholms skärgård – Waxholmsbolaget & Cinderella' },
   description: 'Kommande avgångar, linjer och bryggor för Waxholmsbolaget och Cinderellabåtarna – och hur du tar båten till Sandhamn, Möja, Finnhamn, Grinda, Utö och ett sextiotal andra öar.',
   keywords: [
     'färjetider stockholms skärgård',

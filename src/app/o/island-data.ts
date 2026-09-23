@@ -119,7 +119,7 @@ export type Island = {
   seoDescription?: string
   did_you_know?: string
   /**
-   * Maskinläsbar transport-sammanfattning för /ta-dig-till/[slug] och BusTrip-schema.
+   * Maskinläsbar transport-sammanfattning för /o/[slug]/komma-dit (snabbfakta).
    * Kompletterar getting_there[] som är display-fokuserad.
    */
   transport_meta?: {
@@ -372,7 +372,7 @@ export const ISLANDS: Island[] = [
       'Sandhamn var lotsstation i hundratals år. Lotsarna här guidade handelsfartyg genom de smala passagerna in mot Stockholm, vilket formade byn och dess karaktär.',
     ],
     blogLinks: [
-      { slug: 'basta-restaurangerna-sandhamn', title: 'Fem krogar och kaféer på Sandhamn 2026' },
+      { slug: 'basta-restaurangerna-sandhamn', title: 'Restauranger på Sandhamn – lunch, middag, kafé och bar' },
       { slug: 'gasthamnar-guide', title: 'Bästa gästhamnarna i Stockholms skärgård 2026' },
       { slug: 'segling-nyborjare-guide', title: 'Segla för första gången – allt du behöver veta' },
     ],
