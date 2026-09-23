@@ -26,34 +26,64 @@ type Post = {
 const POSTS: Record<string, Post> = {
 
  'basta-restaurangerna-sandhamn': {
- title: 'Fem krogar och kaféer på Sandhamn 2026',
- excerpt: 'Seglarhotellet, Värdshuset, Sands, Dykarbaren och bageriet – de ställen på Sandhamn som står på operatörernas egna sidor, och hur du tar dig dit.',
+ title: 'Restauranger på Sandhamn – lunch, middag, kafé och bar',
+ excerpt: 'Var du äter på Sandhamn: Värdshusets pub som är öppen året runt, Seglarhotellet, Dykarbaren, Sands, bageriet, kaféerna och barerna – säsonger, bordsbokning och båten dit.',
  category: 'Mat & dryck',
  date: '2026-04-10',
- readTime: '5 min',
+ updatedAt: '2026-09-23',
+ readTime: '6 min',
  emoji: '',
- tags: ['Sandhamn', 'Restauranger', 'Sommar'],
+ tags: ['Sandhamn', 'Restauranger på Sandhamn', 'Lunch på Sandhamn', 'Kafé', 'Bar', 'Stockholms skärgård'],
+ faqs: [
+  { q: 'Vilken restaurang på Sandhamn är öppen året runt?', a: 'Puben på Sandhamns Värdshus är öppen året runt och serverar lunchmeny, enligt värdshuset. Värdshusets restaurang har öppet varje dag från mitten av juni till mitten av september och annars främst på helger.' },
+  { q: 'Behöver man boka bord på Sandhamn?', a: 'Seglarhotellet ber gäster boka bord i Segelsalen i förväg, och Sandhamns Värdshus ber om bordsbokning. Dykarbaren tar bara bokningar för bord inomhus, eftersom uteserveringen inte går att vädersäkra.' },
+  { q: 'När har restaurangerna på Sandhamn säsong?', a: 'Dykarbaren har säsong maj–september, Värdshusets restaurang har öppet varje dag från mitten av juni till mitten av september och Sandhamnsbageriet är säsongsöppet. Värdshusets pub är öppen året runt.' },
+  { q: 'Hur tar man sig till Sandhamn för att äta?', a: 'Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn och därifrån Waxholmsbolagets linje 16 eller Stavsnäs Båttaxis Sandhamnslinje. Under säsong går Cinderella från Strandvägen, och på högsommaren går Waxholmsbåten direkt från Strömkajen.' },
+ ],
  content: `
-<!-- KÄLLA: https://www.sandhamn.com/sv/restauranger-och-barer/segelsalen (Segelsalen, säsongens råvaror; hotellet listar Bistro, Segelsalen, Seglarbaren, Orangeriet, Terassen, Hamnbaren); https://sandhamns-vardshus.se/ ("anno 1672", pub öppet året runt, restaurang med utsikt över hamnen); https://sandshotell.se (Sands Hotell & Bistro, uteterrass); https://www.dykarbaren.se/ (inne- och uteservering, säsong); https://sandhamnsbageriet.com/ (surdegsbröd, bullar, säsongsöppet). Tidigare version (borttagen 2026-09-21) listade "Sandhamns Krog" och "Bryggcafé 7an" som vi inte hittar på någon operatörssida, och påstod "Seglarhotellet sedan 1897", "färsk fisk från lokala fiskare", "handplockade kantareller" utan källa. -->
-Sandhamn är ett av Stockholms skärgårds mest välkända namn: segelbåtar i hamnen, vita trävillor och fler krogar än de flesta öar. Här är de fem ställen vi kan belägga på operatörernas egna sidor – inte "de bästa", för det har ingen mätt.
+<!-- KÄLLA (lästa 2026-09-23): https://www.sandhamns-vardshus.se/ ("anno 1672"; Puben "Öppet året runt. Här serveras våra klassiska rätter samt lunchmeny."; Restaurangen "Med en magisk utsikt över hamnen. Öppet varje dag från mitten av juni till mitten på september. Annan tid på året är restaurangen främst öppen helger. Boka gärna bord."; Pentaboden "skaldjurslådor/platåer samt fina sallader", "vid vattnet"; "Boende och frukost i Missionshuset"; info@sandhamns-vardshus.se, 08-571 530 51). https://www.sandhamn.com/sv/restauranger-och-barer/segelsalen (Segelsalen "meny med fokus på säsongens råvaror", "Boka gärna bord i förväg", hovmastare@sandhamn.com; Bistro; Seglarbaren "Bar, dansgolv och DJ"; Orangeriet; Terassen "utsikt över hamnen"; Hamnbaren "under sommaren där vi då erbjuder After sail"; "Julbord med guldkant 26 november–24 december"). https://www.dykarbaren.se/ och /om-oss/ ("Sandhamn 425", "säsong maj – september", "endast bordsbokning inomhus då vår uteservering inte helt går att vädersäkra", "Större sällskap (fler än 8) vänligen mejla", "1921 uppfördes huset", "1982 höll man dykutbildningar på Sandhamn ... växte en café- och barverksamhet fram", uteservering "precis vid strandkanten"; menyer som PDF på /menyer/). https://sandshotell.se/ ("konferens- och weekend-hotell", "33 bäddar", "restaurangen med uteterassen", "terrasser med utsikt över hamninloppet", +46 8 571 530 20). https://www.sandhamnsbageriet.com/ (vetesurdeg, rågsurdeg, frallor, kanelbulle, kardemummabulle, seglarbulle; tårtor "BESTÄLLES MINST TRE VARDAGAR I FÖRVÄG"; beställning per sms). https://www.explorearchipelago.com/sv/sthlm/mellersta-skargarden/sandhamn (Skärgårdsstiftelsen: Café Ankaret "Kafe", Café Strindbergsgården "Sandhamn 109", PUB Alma "PUB", Sandhamns Glassigaste Ställe "Glass", Sandhamns Kiosk AB "Kiosk", Tempo Westerbergs Livs "Affär som även är ombud för Apoteket och Systembolaget"). KSSS gästhamn ligger vid "kajer framför Seglarhotellet" (ksss.se/hamnar/sandhamn). Resvägar: oförändrade från versionen 2026-09-21 (Waxholmsbolaget, SL, Stavsnäs Båttaxi, Strömma). Tidigare version listade "Sandhamns Krog" och "Bryggcafé 7an" som vi inte hittar på någon operatörssida – de är borttagna. -->
+Sandhamn har fler restauranger, kaféer och barer än de flesta öar i Stockholms skärgård. Här är alla ställen att äta och dricka på [Sandhamn](/o/sandhamn) som vi kan belägga, antingen på operatörernas egna sidor eller i Skärgårdsstiftelsens förteckning Upptäck Skärgården. Varje ställe har en egen sida på Svalla med karta. Vi rangordnar dem inte, eftersom ingen har mätt vilket som är bättre.
 
-## Segelsalen på Sandhamn Seglarhotell
-Seglarhotellets matsal, med en meny som hotellet beskriver som fokuserad på säsongens råvaror. Hotellet har dessutom Bistro, Seglarbaren, Orangeriet, Terassen och Hamnbaren. Boka bord i förväg under högsäsong.
+## Restauranger på Sandhamn – lunch och middag
 
-## Sandhamns Värdshus
-Värdshus anno 1672, enligt värdshuset självt. Puben är öppen året runt och restaurangen har utsikt över hamnen. Det första du möter när du kliver av båten.
+### [Sandhamns Värdshus](/upptack/sandhamn-sandhamns-vardshus)
+Värdshuset, anno 1672 enligt värdshuset självt, har två delar. Puben är öppen året runt och serverar lunchmeny. Restaurangen har utsikt över hamnen och öppet varje dag från mitten av juni till mitten av september, annars främst på helger. På sommaren serverar värdshusets Pentaboden skaldjurslådor och sallader vid vattnet. Bord bokas på info@sandhamns-vardshus.se eller 08-571 530 51.
 
-## Sands Bistro
-Bistron på Sands Hotell, med uteterrass. Mat lagad från grunden enligt hotellet.
+### [Sandhamn Seglarhotell](/upptack/seglarhotellet-sandhamn) – Segelsalen och Bistro
+Seglarhotellet ligger vid KSSS gästhamn. Matsalen Segelsalen har en meny som hotellet beskriver som fokuserad på säsongens råvaror, och hotellet ber gäster boka bord där i förväg (hovmastare@sandhamn.com). Hotellet har också en Bistro. Från slutet av november till julafton serverar Seglarhotellet julbord.
 
-## Dykarbaren
-Bar och restaurang med inne- och uteservering nere vid vattnet. Säsongsöppen – öppettiderna står på dykarbaren.se.
+### [Dykarbaren](/upptack/dykarbaren)
+Bar och restaurang på Sandhamn 425, i ett hus som uppfördes 1921. Baren växte fram 1982, när huset användes för dykutbildningar. Uteserveringen ligger mitt emot, vid strandkanten. Säsongen är maj–september. Bord bokas bara inomhus, eftersom uteserveringen inte går att vädersäkra, och sällskap på fler än åtta mejlar info@dykarbaren.se. Veckans meny ligger som PDF på dykarbaren.se.
 
-## Sandhamnsbageriet
-För frukost och fika: surdegsbröd, kanelbullar och den egna "Seglarbullen". Säsongsöppet, i år till sista helgen i september enligt bageriet.
+### [Bistro Sands](/upptack/bistro-sands) på Sands Hotell
+Sands Hotell är ett konferens- och weekendhotell med 33 bäddar. Restaurangen har uteterrass, och hotellet har terrasser med utsikt över hamninloppet. Vi hittar inga öppettider för restaurangen på hotellets sida, så ring 08-571 530 20 innan du går dit.
 
-## Praktisk info
-Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara 19 juni–16 augusti, och då tar turen mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48–59 min) och därifrån Waxholmsbolagets linje 16 på 40–65 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong 30 april–27 september. Boka bord i förväg när det går – sommarhelgerna är fulla.
+## Kaféer, bageri och glass på Sandhamn
+
+### [Sandhamnsbageriet](/upptack/sandhamns-bageriet)
+Surdegsbröd, frallor och bullar, bland dem kanelbulle, kardemummabulle och bageriets seglarbulle. Tårtor beställs minst tre vardagar i förväg. Bageriet är säsongsöppet, och dagarna det har öppet står på sandhamnsbageriet.com.
+
+### Fler kaféer
+Upptäck Skärgården listar också [Café Strindbergsgården](/upptack/cafe-strindbergsgarden) på Sandhamn 109, [Café Ankaret](/upptack/cafe-ankaret), glasscaféet [Sandhamns Glassigaste Ställe](/upptack/sandhamns-glassigaste-stalle) och Sandhamns Kiosk. Ingen av dem har en egen webbplats med öppettider som vi hittar.
+
+## Barer och pubar på Sandhamn
+- **Seglarbaren** på Seglarhotellet: bar, dansgolv och DJ.
+- **Hamnbaren** på Seglarhotellet: after sail i hamnen på sommaren.
+- **Terassen** och **Orangeriet** på Seglarhotellet. Från Terassen ser du ut över hamnen.
+- [Dykarbaren](/upptack/dykarbaren): bar på bottenvåningen, uteservering vid strandkanten.
+- [PUB Alma](/upptack/pub-alma-sandhamn): pub, listad i Upptäck Skärgården.
+- **Värdshusets pub**: öppen året runt.
+
+## Äta på Sandhamn utanför högsäsong
+Efter mitten av september har färre ställen öppet. Värdshusets pub är öppen året runt och restaurangen främst på helger. Dykarbaren har säsong till och med september, och bageriet är säsongsöppet. Seglarhotellet serverar julbord från slutet av november till julafton. Mat att laga själv finns i Tempo Westerbergs Livs, som också är ombud för Apoteket och Systembolaget.
+
+## Boka bord på Sandhamn
+- **Segelsalen**: hotellet ber om bokning i förväg, hovmastare@sandhamn.com.
+- **Sandhamns Värdshus**: info@sandhamns-vardshus.se eller 08-571 530 51.
+- **Dykarbaren**: bokning bara för bord inomhus, sällskap på fler än åtta mejlar info@dykarbaren.se.
+
+## Så tar du dig till Sandhamn
+Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara 19 juni–16 augusti, och då tar turen mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48–59 min) och därifrån Waxholmsbolagets linje 16 på 40–65 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong 30 april–27 september. Alla alternativ med restider finns på [Båt till Sandhamn](/o/sandhamn/komma-dit).
     `,
 
  },
@@ -2221,7 +2251,7 @@ function renderContent(content: string) {
 // ─── Region crosslinks per post ───────────────────────────────────────────────
 
 const REGION_LINKS: Record<string, { href: string; label: string }[]> = {
- 'basta-restaurangerna-sandhamn': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
+ 'basta-restaurangerna-sandhamn': [{ href: '/o/sandhamn', label: 'Sandhamn – ön' }, { href: '/o/sandhamn/komma-dit', label: 'Båt till Sandhamn' }, { href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
  'kajak-stockholms-skargard-nyborjare': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
  'dolda-parlor-moja': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
  'bransle-ankring-skargard': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/hamnar-och-bryggor', label: 'Hamnar & bryggor' }],
