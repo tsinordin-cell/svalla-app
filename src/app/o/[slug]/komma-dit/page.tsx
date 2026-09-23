@@ -144,8 +144,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
             display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 16,
           }}>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 4 }}>Från Stockholm</div>
-              <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--sea)' }}>{island.transport_meta.from_city_min} min</div>
+              {/* "Från Stockholm" stod även på Bohusläns och Göteborgs öar. */}
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 4 }}>{stockholm ? 'Från Stockholm' : `Från ${island.transport_meta.nearest_hub}`}</div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--sea)' }}>{stockholm ? island.transport_meta.from_city_min : island.transport_meta.from_nearest_hub_min} min</div>
             </div>
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 4 }}>Närmaste knutpunkt</div>
@@ -153,7 +154,12 @@ export default async function IslandKommaDitPage({ params }: Props) {
             </div>
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 4 }}>Operatör</div>
-              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)' }}>{island.transport_meta.operator}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)' }}>{island.transport_meta.operator}{island.transport_meta.line ? ` · linje ${island.transport_meta.line}` : ''}</div>
+              {island.transport_meta.booking_url && (
+                <a href={island.transport_meta.booking_url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none' }}>
+                  Se tidtabell →
+                </a>
+              )}
             </div>
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 4 }}>Turtäthet</div>
