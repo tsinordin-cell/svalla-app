@@ -694,7 +694,9 @@ export default async function IslandPage({ params }: Props) {
  <section style={{ marginBottom: 52 }}>
  <SectionHeader icon="utensils" title="Mat & Dryck" />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
- {island.restaurants.map(r => (
+ {/* Tre kort syns, resten bakom "Visa fler". Samma mönster som Se & Göra. */}
+ {(() => {
+ const kort = (r: typeof island.restaurants[number]) => (
  <div key={r.name} style={{
  background: 'var(--white)',
  borderRadius: 14,
@@ -796,7 +798,17 @@ export default async function IslandPage({ params }: Props) {
  )}
  </div>
  </div>
- ))}
+ )
+ const SYNLIGA = 3
+ if (island.restaurants.length <= SYNLIGA + 1) return island.restaurants.map(kort)
+ return (
+ <Hopfallbart
+ synligt={island.restaurants.slice(0, SYNLIGA).map(kort)}
+ dolt={island.restaurants.slice(SYNLIGA).map(kort)}
+ etikett={`Visa fler ställen (${island.restaurants.length - SYNLIGA})`}
+ />
+ )
+ })()}
  </div>
  <div style={{ marginTop: 16, textAlign: 'right' }}>
  <Link href={`/o/${slug}/restauranger`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
