@@ -40,6 +40,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://waxholmsbolaget.se/reseplanering/resmal/sandhamn",
+      "org": "Waxholmsbolaget",
+      "vad": "Ut till Sandhamn går det turer året runt; Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme. Under sommaren så kan du också åka till Sandhamn från Strömkajen; tabell 15 (endast sommartid) och tabell 16. Nord/Sydlinjens tider hittar du i tabell 40 . Waxholmsbolaget linje 16,  — 16A STAVSNÄS — SANDHAMN — HAGEDE, gäller 2 april–18 juni och 17 augusti–12 december 2026: Stavsnäs 10.40 → Sandhamn 11.20 (40 min), 06.05 → 06.55 (50 min), 09.45 → 10.45 (60 min) . Sandhamn Seglarhotell,  — Take bus 433 from Slussen … Approx. 1 hour by bus; Board line 15 to Sandhamn … Summer — June to September … The journey takes 2–3 hours; avgång Strandvägskajen / Strömkajen, berth 3 at Nybroviken . SL buss 433 Slussen–Djurö,  — hållplats Stavsnäs vinterhamn",
+      "last": "2026-09-21",
+      "myndighet": true
+    },
+    {
       "url": "https://waxholmsbolaget.se/",
       "org": "waxholmsbolaget.se",
       "vad": "",
@@ -97,7 +104,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.sandhamn.com/en/hitta-hit",
-      "org": "Sandhamn Seglarhotell",
+      "org": "sandhamn.com",
       "vad": "Total travel time from Stockholm: approx. 1.5 hours via buss 433 och båt från Stavsnäs . Tidigare 150 min avsåg den längre sommarbåten från Strömkajen.",
       "last": "2026-09-21",
       "myndighet": false
@@ -163,13 +170,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "Strömma",
       "vad": "30/4–27/9, \"Strandvägen - kajplats 14\" 10:00 → Sandhamn 12:30 . Waxholmsbolaget linje 15,  — \"GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026\"; Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 . Seglarhotellets \"2–3 hours\" för linje 15 stämmer inte med Waxholmsbolagets tidtabell och används inte.",
       "last": "2026-09-21",
-      "myndighet": false
-    },
-    {
-      "url": "https://badplats.nu/varmdo/flaskberget/",
-      "org": "thatsup.se/stockholm/plats/flaskberget-sandhamn",
-      "vad": "klippbadet nära Sandhamns by/Trouville heter Fläskberget, inte \"Västerudd\" (namnet kunde inte beläggas). Uppgifter om exakt väderstreck/avstånd/solnedgång kunde inte beläggas och är borttagna.",
-      "last": null,
       "myndighet": false
     },
     {
@@ -836,16 +836,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://www.svenskagasthamnar.se/se/",
-      "org": "(\"Gästplatser 35 (1/5-31/9) | Förtöjning boj\"",
-      "vad": "toalett, eluttag och färskvatten är obockade);  (\"Dusch | Färskvatten | Restaurang | Lokaltrafik | Drivmedel\", utan WC);  (Sjömacken & Gästhamnskontor)",
-      "last": null,
-      "myndighet": false
-    },
-    {
-      "url": "https://www.naturkartan.se/sv",
-      "org": "(Jenny Linds ek",
-      "vad": "",
+      "url": "https://www.explorearchipelago.com/",
+      "org": "explorearchipelago.com",
+      "vad": "klippbad med utsikt över Stockholms inlopp samt mindre sandstränder;  — klipphällar för sol",
       "last": null,
       "myndighet": false
     },
@@ -917,6 +910,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "Strömma",
       "vad": "Avgår från: Strandvägen & Nacka Strand; Strandvägen - Kajplatsområde 13; Enkel resa: 170 kr | Tur och retur: 205 kr; Endast 30 minuters båtresa från city; ÅTER MAJ 2027; När du har bokat en viss avgång har du förtur på den; hundar måste hållas kopplade … enligt Lidingö kommuns lokala ordningsföreskrifter",
       "last": "2026-09-21",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.svenskagasthamnar.se/se/",
+      "org": "svenskagasthamnar.se",
+      "vad": "toalett, eluttag och färskvatten är obockade);  (\"Dusch | Färskvatten | Restaurang | Lokaltrafik | Drivmedel\", utan WC);  (Sjömacken & Gästhamnskontor)",
+      "last": null,
       "myndighet": false
     },
     {
@@ -2482,7 +2482,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h24.pdf",
-      "org": "Waxholmsbolaget linje 24 Stockholm–Vaxholm–Blidösundet",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "",
       "last": "2026-09-21",
       "myndighet": false
@@ -2765,7 +2765,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser",
-      "org": "samma rapport",
+      "org": "vaxholm.se",
       "vad": "Badet Myrholmsmaren ligger vid sjön Stora Maren … sköts av Tynningö Idrottsförening",
       "last": "2026-09-21",
       "myndighet": false
