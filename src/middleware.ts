@@ -65,6 +65,7 @@ const DOLD_PLATS_REDIRECT: Record<string, string> = {
   'fjallbacka-vardshus': '/upptack/stora-hotellet-fjallbacka',
   'smogen-brygghus': '/upptack/smogenbryggar-ns-olhall',
   'klintan-sjöstation': '/upptack/circle-k-klintsundet',
+  'toro-ankarudden': '/upptack/sjoboden-toro-ankarudden',
   // Poster som inte motsvarade en verklig verksamhet → öns sida
   'alice-foodtruck-skarhamn': '/o/tjorn',
   'blido-sommarcafe': '/o/blido',
@@ -72,6 +73,7 @@ const DOLD_PLATS_REDIRECT: Record<string, string> = {
   'styrso-skaret': '/o/styrso',
   'singo-battaxi': '/o/singo',
   'fjallbacka-bensinstation': '/o/fjallbacka',
+  'norrora-krog': '/o/norrora',
 }
 
 // ── Riktig 404 för okända och dolda platser (/upptack/<slug|uuid>) ──
