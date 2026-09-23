@@ -122,15 +122,12 @@ export default function HantverkarKort({ h, oSlug }: { h: Hantverkare; oSlug?: s
         )}
       </div>
 
-      {h.kalla.reservation && (
-        <p style={{
-          margin: '11px 0 0', fontSize: 12.5, lineHeight: 1.55,
-          color: 'var(--acc-d)', background: 'var(--acc-l)',
-          borderRadius: 10, padding: '9px 12px',
-        }}>
-          {h.kalla.reservation}
-        </p>
-      )}
+      {/* kalla.reservation visas INTE för besökaren (Max 2026-09-23).
+          Fältet är vår interna anteckning om varför en uppgift utelämnats —
+          motstridiga telefonnummer, en sida som inte uppdaterats på år. Att
+          skriva ut det gör tvivlet till besökarens problem i stället för
+          vårt. Konsekvensen tas i datat: håller uppgiften inte, tar vi bort
+          den. Håller hela posten inte, tar vi bort posten. */}
 
       <p style={{
         margin: '10px 0 0', paddingTop: 8, fontSize: 11.5, color: 'var(--txt3)',
