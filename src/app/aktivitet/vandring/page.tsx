@@ -33,7 +33,10 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     q: 'Var kan man vandra i Stockholms skärgård?',
-    a: 'De bästa öarna för vandring i Stockholms skärgård är Utö (8 km led), Finnhamn (4 km STF-ö), Grinda, Sandhamn, Nåttarö, Möja och Arholma. Alla nås med Waxholmsbolaget eller pendelbåt från Nynäshamn. Utö och Nåttarö är söder om Nynäshamn; de övriga i mellersta eller norra skärgården.',
+    // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com (läst 2026-09-18).
+    // Öarnas egna rundslingor (Utö ~8 km, Finnhamn ~4 km) är kortare än öns SAT-etapp
+    // (Utö 18,4 km, Finnhamn 10,1 km) — det är två olika leder på samma ö.
+    a: 'De bästa öarna för vandring i Stockholms skärgård är Utö, Finnhamn, Grinda, Sandhamn, Nåttarö, Möja och Arholma. Alla nås med Waxholmsbolaget eller pendelbåt från Nynäshamn. Utö och Nåttarö är söder om Nynäshamn; de övriga i mellersta eller norra skärgården. Observera att många öar har två olika leder: öns egen rundslinga (Utö ca 8 km, Finnhamn ca 4 km) och öns etapp av Stockholm Archipelago Trail, som är betydligt längre (Utö 18,4 km, Finnhamn 10,1 km).',
   },
   {
     q: 'Vilken skärgårdsö är bäst för vandring?',
@@ -128,7 +131,10 @@ const GUIDES = [
 const TOP_10 = [
   // KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark 1984; Länsstyrelsen Västernorrland — Höga Kusten är UNESCO-världsarv (2000), inte "reservat" (läst 2026-09-14)
   { rank: 1, name: 'Skuleskogen, Höga kusten', region: 'Höga kusten', desc: 'Nationalpark i UNESCO-världsarvet Höga kusten — dramatiska bergssidor och urskogsstämning.', slug: '/aktivitet/vandring/skuleskogen' },
-  { rank: 2, name: 'Utö, Stockholms skärgård', region: 'Stockholms skärgård', desc: 'Skärgårdens längsta led på ~8 km. Passerar gruvor, gammal kvarn, naturreservat och havsklippor. Nås utan bil.', slug: '/aktivitet/vandring/uto' },
+  // KÄLLA: Stockholm Archipelago Trail — Ornö-etappen är 34,1 km, Utö-etappen 18,4 km
+  // (stockholmarchipelagotrail.com, läst 2026-09-18). Utös egen rundslinga på ~8 km är
+  // alltså inte skärgårdens längsta led — den formuleringen togs bort 2026-09-21.
+  { rank: 2, name: 'Utö, Stockholms skärgård', region: 'Stockholms skärgård', desc: 'Öns egen rundslinga är ~8 km och passerar gruvor, gammal kvarn, naturreservat och havsklippor. Nås utan bil.', slug: '/aktivitet/vandring/uto' },
   { rank: 3, name: 'Digerhuvud, Fårö', region: 'Gotland', desc: 'Raukarna är surrealistiska — klippformationer mot öppet hav som ser ut som en annan planet. En halvdag som sitter kvar länge.', slug: '/aktivitet/vandring/digerhuvud-faro' },
   // KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark 2009, Kosteröarna naturreservat (läst 2026-09-14)
   { rank: 4, name: 'Nordkoster, Kosterhavet', region: 'Bohuslän', desc: 'Sveriges första marina nationalpark. Dramatiska klippor och Västerhavet i alla riktningar. Bilfri ö med välmarkerade leder.', slug: '/aktivitet/vandring/nordkoster' },

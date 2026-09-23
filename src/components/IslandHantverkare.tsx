@@ -1,22 +1,43 @@
+import Link from 'next/link'
 import Icon from '@/components/Icon'
-import { getHantverkareForIsland, YRKE_ETIKETT } from '@/app/o/hantverkare-data'
+import HantverkarKort from '@/components/HantverkarKort'
+import { getHantverkareForIsland } from '@/app/o/hantverkare-data'
 
 /**
- * IslandHantverkare — hantverkare och sjötjänster på en ö.
+ * IslandHantverkare — avsnittet på ösidan som leder vidare till hantverkarsidan.
  *
- * Renderar ingenting alls om det inte finns verifierade poster för ön, vilket
- * är normalfallet tills någon ringt igenom registret. En tom rubrik är sämre
- * än ingen rubrik.
+ * Visar ett smakprov, inte hela listan. Ösidan har många andra saker att göra,
+ * och den som letar hantverkare ska hamna på undersidan där filtreringen finns.
  *
- * Filtreringen på verifierade sker i getHantverkareForIsland(), inte här.
+ * Renderar ingenting alls när ön saknar poster. En tom rubrik är sämre än
+ * ingen rubrik, och de flesta öar kommer aldrig ha tillräckligt underlag —
+ * Husarö har två företag för att det bor ett fåtal människor där.
+ *
+ * Filtreringen sker i getHantverkareForIsland(), inte här. Den utesluter
+ * poster vars enda yrke är elektriker utan bekräftad registrering hos
+ * Elsäkerhetsverket.
  */
-export default function IslandHantverkare({ islandSlug }: { islandSlug: string }) {
-  const hantverkare = getHantverkareForIsland(islandSlug)
-  if (hantverkare.length === 0) return null
+const SMAKPROV = 3
+
+export default function IslandHantverkare({
+  islandSlug,
+  islandName,
+}: {
+  islandSlug: string
+  islandName?: string
+}) {
+  const alla = getHantverkareForIsland(islandSlug)
+  if (alla.length === 0) return null
+
+  const visade = alla.slice(0, SMAKPROV)
+  const fler = alla.length - visade.length
 
   return (
     <section style={{ marginBottom: 52 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 10,
+        marginBottom: 6, flexWrap: 'wrap',
+      }}>
         <div style={{
           minWidth: 30, height: 30, borderRadius: 9,
           background: 'var(--grad-sea)',
@@ -25,63 +46,32 @@ export default function IslandHantverkare({ islandSlug }: { islandSlug: string }
           <Icon name="wrench" size={16} stroke={1.9} />
         </div>
         <h2 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
-          Hantverkare på ön
+          Hantverkare och service{islandName ? ` på ${islandName}` : ' på ön'}
         </h2>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {hantverkare.map(h => (
-          <div key={h.slug} style={{
-            background: 'var(--white)',
-            borderRadius: 14,
-            padding: '16px 20px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 6 }}>
-              <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>{h.namn}</span>
-              {h.yrken.map(y => (
-                <span key={y} style={{
-                  fontSize: 10, fontWeight: 700, color: 'var(--sea)',
-                  background: 'rgba(45,125,138,0.1)',
-                  padding: '2px 8px', borderRadius: 10,
-                }}>{YRKE_ETIKETT[y]}</span>
-              ))}
-            </div>
-
-            {h.noteringar && (
-              <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 10px', lineHeight: 1.6 }}>
-                {h.noteringar}
-              </p>
-            )}
-
-            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', fontSize: 13 }}>
-              {h.telefon && (
-                <a href={`tel:${h.telefon.replace(/\s/g, '')}`}
-                   style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>
-                  {h.telefon}
-                </a>
-              )}
-              {h.epost && (
-                <a href={`mailto:${h.epost}`}
-                   style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>
-                  E-post
-                </a>
-              )}
-              {h.webb && (
-                <a href={h.webb} target="_blank" rel="noopener noreferrer"
-                   style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>
-                  Webbplats →
-                </a>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <p style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 12, lineHeight: 1.6 }}>
-        Uppgifterna är hämtade från företagens egna kanaler och kontrollerade av oss.
-        Stämmer något inte — <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>hör av dig</a>.
+      <p style={{ margin: '0 0 14px', fontSize: 13.5, color: 'var(--txt3)', lineHeight: 1.6 }}>
+        {alla.length} {alla.length === 1 ? 'företag' : 'företag'} med verksamhet här.
+        {' '}Varje uppgift visas med källa och läsdatum.
       </p>
+
+      <ul style={{ display: 'grid', gap: 10, margin: 0, padding: 0 }}>
+        {visade.map(h => <HantverkarKort key={h.slug} h={h} oSlug={islandSlug} />)}
+      </ul>
+
+      {fler > 0 && (
+        <Link
+          href={`/o/${islandSlug}/hantverkare`}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            marginTop: 14, fontSize: 14, fontWeight: 600,
+            color: 'var(--acc-d)', textDecoration: 'none',
+          }}
+        >
+          Se alla {alla.length} och filtrera efter behov
+          <Icon name="arrowRight" size={15} stroke={2.2} />
+        </Link>
+      )}
     </section>
   )
 }

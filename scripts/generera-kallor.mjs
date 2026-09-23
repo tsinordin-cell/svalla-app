@@ -67,6 +67,90 @@ function parseOrg(rest) {
   return org.replace(/[.;:]+$/, '')
 }
 
+/**
+ * Längsta avsändarnamn vi tror på. Allt längre är nästan säkert en mening.
+ * Jämförelse: "Länsstyrelsen Västra Götaland" är 29 tecken, "Riksantikvarieämbetet"
+ * är 21. Ingen riktig myndighet eller verksamhet heter något som är längre än så.
+ */
+const MAX_ORG_TECKEN = 40
+
+/**
+ * Avsändaren som besökaren faktiskt ser under "Källor för X".
+ *
+ * parseOrg tar texten före första kommatecknet. Det fungerar för
+ * "Länsstyrelsen Västra Götaland, naturreservat X — …" men inte för KÄLLA-rader
+ * som är skrivna som en mening: då blev hela meningen avsändare. Mätning
+ * 2026-09-20: 29 av 642 poster hade org-fält över 70 tecken, t.ex. Sandhamns
+ * 'linjenummer "444" kunde inte beläggas (skargardstrafikanten.se)' och Utös
+ * 'och utogasthamn.se/uto-cykeluthyrning/ bekräftar…'.
+ *
+ * När den råa texten är för lång faller vi tillbaka på domänen. Den är alltid
+ * kort, alltid sann, och säger besökaren precis vad hen behöver veta för att
+ * bedöma uppgiften. Anteckningen går inte förlorad — den står kvar i KÄLLA-raden
+ * i datafilen, som är där den hör hemma.
+ */
+/**
+ * Domäner där värdnamnet inte säger besökaren vad källan är.
+ *
+ * kund.printhuset-sthlm.se är tryckeriet som är värd för SL:s och
+ * Waxholmsbolagets tryckta tidtabeller. Sökvägen skiljer dem åt: /sl/ respektive
+ * /wa/. Att visa "kund.printhuset-sthlm.se" hade varit sant men obegripligt —
+ * en besökare som ser det drar slutsatsen att vi hittat tabellen var som helst.
+ * Vi säger därför vem tidtabellen kommer ifrån, vilket är vad KÄLLA-raderna
+ * i island-data.ts redan säger (t.ex. rad 437: "Waxholmsbolagets tabell 21").
+ */
+function domanNamn(url) {
+  const u = new URL(url)
+  const host = u.hostname.replace(/^www\./, '')
+  if (host === 'kund.printhuset-sthlm.se') {
+    if (u.pathname.startsWith('/wa/')) return 'Waxholmsbolaget (tryckt tidtabell)'
+    if (u.pathname.startsWith('/sl/')) return 'SL (tryckt tidtabell)'
+  }
+  return host
+}
+
+/**
+ * Ser texten ut som en avsändare, eller som en bit av en mening?
+ *
+ * En avsändare är antingen ett egennamn ("Länsstyrelsen Västra Götaland",
+ * "Turistrådet Västsverige") eller en domän ("badplats.nu"). Det som fastnade
+ * i mätningen 2026-09-20 var varken: "naturreservat Grönskär" är vad källan
+ * handlar om, "reseplaneraren" är en sidfunktion, och "(Värmdö kommun",
+ * "(Kvarnvillan" och "(hotels" är avhuggna parenteser. Alla tre såg ut som
+ * avsändare i listan under "Källor för X" och var det inte.
+ */
+function serUtSomAvsandare(org) {
+  if (!org) return false
+  if (/^[([{]/.test(org)) return false              // avhuggen parentes
+  if (/[([{]$|[,;:]$/.test(org)) return false        // öppen parentes eller hängande skiljetecken
+  if (/^[a-zåäö0-9-]+(\.[a-z]{2,})+$/i.test(org)) return true  // ren domän duger
+  return /^[A-ZÅÄÖ]/.test(org)                       // annars: måste börja med versal
+}
+
+function snyggOrg(raOrg, url) {
+  if (!raOrg) return domanNamn(url)
+  if (raOrg.length > MAX_ORG_TECKEN) return domanNamn(url)
+  return serUtSomAvsandare(raOrg) ? raOrg : domanNamn(url)
+}
+
+/**
+ * Anteckningar till oss själva, inte till besökaren.
+ *
+ * KÄLLA-raderna används under arbetet för att hålla reda på vad som INTE gick
+ * att belägga. Den informationen är värdefull i datafilen och pinsam på sidan:
+ * fram till 2026-09-21 stod det "Waxholmsbolaget — en självcitering, borttagen."
+ * och "Kvarnvillan — STF-ansluten borttaget" under Källor på ösidorna.
+ *
+ * Ett tomt vad-fält är inget problem: IslandKallor visar då adressen i stället,
+ * vilket är sant och begripligt. Hellre bara adressen än en intern anteckning.
+ */
+const INTERN_ANTECKNING = /(borttage[nt]|självciter|kunde inte beläggas|gick (ej|inte) att (verifiera|belägga)|hittades inte|går inte att belägga|saknar belägg|ej verifierat|obekräftat)/i
+
+function rensaVad(vad) {
+  if (!vad) return ''
+  return INTERN_ANTECKNING.test(vad) ? '' : vad
+}
+
 /** Läser ut vad källan sägs bekräfta — texten mellan första — och URL:en. */
 function parseVad(rest) {
   const delar = rest.split(/\s+[—–]\s+/)
@@ -131,12 +215,16 @@ function laisFil(relPath) {
       // med den här ordningen belägger den genererade filen sig själv i stället
       // för att behöva ett undantag i spärren. Ett undantag hade varit en
       // blindfläck, och en spärr med blindfläck ger falsk trygghet.
+      // Myndighetsbedömningen görs på den RÅA texten, inte på det förkortade
+      // namnet: ordet "kommun" kan stå längre in i meningen, och om vi kortat
+      // ner till domänen hade vi tappat det.
+      const raOrg = parseOrg(bit)
       nuvarande.kallor.push({
         url,
-        org: parseOrg(bit) || new URL(url).hostname.replace(/^www\./, ''),
-        vad: parseVad(bit),
+        org: snyggOrg(raOrg, url),
+        vad: rensaVad(parseVad(bit)),
         last,
-        myndighet: arMyndighet(url, parseOrg(bit) || ''),
+        myndighet: arMyndighet(url, raOrg || ''),
       })
     }
   }
