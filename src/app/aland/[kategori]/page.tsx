@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import RegionCategoryPage, { CATEGORIES, REGIONS } from '@/components/RegionCategoryPage'
+import RegionCategoryPage, { CATEGORIES, REGIONS, getPlacesForRegionCategory } from '@/components/RegionCategoryPage'
 
 interface Props { params: Promise<{ kategori: string }> }
 
@@ -15,7 +15,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cat) return {}
   const title = cat.metaTitle(region.label)
   const description = cat.metaDesc(region.label)
+  // Tom kategori = tunn sida: noindex tills det finns platser (mätt 2026-09-23:
+  // bl.a. alla /hoga-kusten/* och /halland/* var tomma men indexerbara).
+  const tom = (await getPlacesForRegionCategory('aland', kategori)).length === 0
   return {
+    ...(tom ? { robots: { index: false, follow: true } } : {}),
     title, description,
     alternates: { canonical: `https://svalla.se/aland/${kategori}` },
     openGraph: { title, description, url: `https://svalla.se/aland/${kategori}`, type: 'website' },
