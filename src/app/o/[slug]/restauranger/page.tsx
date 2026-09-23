@@ -54,7 +54,9 @@ export default async function IslandRestaurantsPage({ params }: Props) {
         subtitle={
           island.restaurants.length === 0
             ? `${island.name} har begränsat utbud — ta gärna med matsäck.`
-            : `Här är de ${island.restaurants.length} restauranger, krogar och caféer som finns på ${island.name}.`
+            : island.restaurants.length === 1
+            ? `Det här är stället att äta på ${island.name}.`
+            : `Här är de ${island.restaurants.length} restauranger, krogar och kaféer som finns på ${island.name}.`
         }
       />
 

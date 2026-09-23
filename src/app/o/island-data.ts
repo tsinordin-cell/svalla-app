@@ -1150,6 +1150,20 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://mojavardshusochbageri.se/ — "genuin och hemtrevlig skärgårdsrestaurang med fullskaligt bageri", "Möja bageris historia tar sin början 1951", Bergs by
       { name: 'Möja Värdshus & Bageri', type: 'Värdshus/Bageri', desc: 'Skärgårdsrestaurang med eget bageri i Bergs by. Bagerihistoria sedan 1951. Säsongsöppet.', websiteUrl: 'https://mojavardshusochbageri.se' },
+      // Nedan fyra kompletterade 2026-09-23. Källan var redan läst och stod i
+      // källistan, men bara värdshuset hade lagts in — sidan sa "1 krog eller
+      // kafé" om en ö med sex ställen.
+      // Beskrivningarna är tunna med flit: visitmoja.se räknar upp namnen men
+      // säger inget om kök, säsong eller öppettider utom för Hamncafét. Vi
+      // skriver inte mer än vad någon har läst.
+      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — "Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, Möja bageri"
+      { name: 'Hamnbaren', type: 'Bar', desc: 'Listad av Möjas egen besöksguide bland öns ställen att äta och dricka.' },
+      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — "Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, Möja bageri"
+      { name: 'Les Poissonniers de Möja', type: 'Restaurang', desc: 'Listad av Möjas egen besöksguide bland öns ställen att äta och dricka.' },
+      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — "Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, Möja bageri"
+      { name: 'Jeppes', type: 'Restaurang', desc: 'Listad av Möjas egen besöksguide bland öns ställen att äta och dricka.' },
+      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — Hamncafét: "Café med glass och bullar samt cykeluthyrning"
+      { name: 'Hamncafét', type: 'Café', desc: 'Café med glass och bullar. Hyr även ut cyklar.' },
     ],
     tips: [
       'Möja är inte en plats att hasta igenom — stanna gärna minst en natt.',
