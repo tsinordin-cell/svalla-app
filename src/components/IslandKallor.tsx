@@ -110,8 +110,14 @@ export default function IslandKallor({ slug, islandName }: { slug: string; islan
   const datum = [...new Set(kallor.map(k => k.last).filter(Boolean))]
   const gemensamtDatum = datum.length === 1 ? datum[0] : null
 
+  /** Tre källor öppet, resten i ett scrollfönster. */
+  const SYNLIGA = 3
+  const forsta = grupper.slice(0, SYNLIGA)
+  const resten = grupper.slice(SYNLIGA)
+
   return (
-    <section style={{ marginBottom: 36 }} aria-labelledby={`kallor-${slug}`}>
+    // marginTop: källorna är fotnoter och ska inte klistra i "Besök också".
+    <section style={{ marginTop: 44, marginBottom: 36 }} aria-labelledby={`kallor-${slug}`}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 6 }}>
         <span aria-hidden style={{ color: 'var(--sea)', display: 'flex' }}>
           <Icon name="clipboard" size={18} stroke={2} />
@@ -132,10 +138,42 @@ export default function IslandKallor({ slug, islandName }: { slug: string; islan
       </p>
 
       <ul style={{ margin: 0, padding: 0 }}>
-        {grupper.map(g => (
+        {forsta.map(g => (
           <Kort key={g.org} grupp={g} visaDatum={!gemensamtDatum} />
         ))}
       </ul>
+
+      {/* Resten hopfällt. <details> och inte ett scrollfält: ett scrollområde
+          inuti en sida som redan scrollar fångar hjulet på fel element och är
+          svårt att träffa på mobil.
+
+          Och inte en knapp som hämtar innehållet vid klick — då hade källorna
+          saknats i HTML:en och sökmotorerna aldrig sett beläggningen. Här
+          ligger varje länk i sidan från början, bara visuellt hopfälld. */}
+      {resten.length > 0 && (
+        <details className="kallor-detaljer" style={{ marginTop: 10 }}>
+          <summary
+            style={{
+              cursor: 'pointer', listStyle: 'none',
+              display: 'inline-flex', alignItems: 'center', gap: 7,
+              padding: '9px 15px', borderRadius: 999,
+              background: 'var(--white)', border: '1px solid var(--surface-3)',
+              fontSize: 13, fontWeight: 600, color: 'var(--sea-d, var(--txt2))',
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >
+            Visa alla {grupper.length} källor
+            <span aria-hidden style={{ fontSize: 11, color: 'var(--txt3)' }}>&#9662;</span>
+          </summary>
+          {/* Safari ritar en egen triangel framför summary trots listStyle:none. */}
+          <style>{`.kallor-detaljer summary::-webkit-details-marker { display: none; }`}</style>
+          <ul style={{ margin: '10px 0 0', padding: 0 }}>
+            {resten.map(g => (
+              <Kort key={g.org} grupp={g} visaDatum={!gemensamtDatum} />
+            ))}
+          </ul>
+        </details>
+      )}
     </section>
   )
 }
