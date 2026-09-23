@@ -36,6 +36,44 @@ const PERMANENT_REDIRECTS: Record<string, string> = {
   '/o/sydkoster/': '/o/kosterhavet',
 }
 
+// ── Dolda platser med Google-trafik → permanent omdirigering ──
+// Mätt i Search Console 2026-09-23 (3 mån): flera dolda platser hade klick,
+// t.ex. alice-foodtruck-skarhamn 96, furusund-cafe-kiosk 59, blido-sommarcafe 44.
+// Utan omdirigering får de besökarna en 404. Regel: dubblett → den riktiga
+// platsen (samma verksamhet); post som inte fanns → öns sida, som handlar om
+// samma ort. Ingen omdirigering till något som inte svarar på samma fråga.
+const DOLD_PLATS_REDIRECT: Record<string, string> = {
+  // Dubbletter: samma verksamhet finns under annan slug
+  'furusund-cafe-kiosk': '/upptack/furusunds-brygga-restaurang',
+  'waxholms-camping-servering': '/upptack/vaxholm-waxholms-camping',
+  'gasthamn-gratis-kommunala-gastplatser': '/upptack/norrbergshamnen',
+  'sandhamns-vardshus': '/upptack/sandhamn-sandhamns-vardshus',
+  'marstrands-vardshus': '/upptack/marstrand-vardshus',
+  'marstrand-gasthamn': '/upptack/marstrands-gasthamn',
+  'hono-klava-gasthamn': '/upptack/hono-gasthamn',
+  'hamburgsund-gasthamn': '/upptack/hamburgsunds-gasthamn',
+  'astol-hamnkrog': '/upptack/astols-rokeri-bohuslan',
+  'nickstabadet-mini': '/upptack/nickstabadet',
+  'rokeriet-pa-fjaderholmarna': '/upptack/rokeriet-fjaderholmarna',
+  'namndö-restaurang': '/upptack/namndo-krog',
+  'uto-bakficka': '/upptack/bakfickan-uto',
+  'seglarrestaurangen-sandhamn': '/upptack/seglarhotellet-sandhamn',
+  'motorverkstan-djuro': '/upptack/motorverkstan-bistro-bar',
+  'orno-krog': '/upptack/kyrkviken-bar-bistro',
+  'orno-naturhamn': '/upptack/orno-gasthamn-och-stugor',
+  'vrango-naturhamn': '/upptack/vrango-gasthamn',
+  'fjallbacka-vardshus': '/upptack/stora-hotellet-fjallbacka',
+  'smogen-brygghus': '/upptack/smogenbryggar-ns-olhall',
+  'klintan-sjöstation': '/upptack/circle-k-klintsundet',
+  // Poster som inte motsvarade en verklig verksamhet → öns sida
+  'alice-foodtruck-skarhamn': '/o/tjorn',
+  'blido-sommarcafe': '/o/blido',
+  'flatons-krog': '/o/orust',
+  'styrso-skaret': '/o/styrso',
+  'singo-battaxi': '/o/singo',
+  'fjallbacka-bensinstation': '/o/fjallbacka',
+}
+
 // ── Riktig 404 för okända och dolda platser (/upptack/<slug|uuid>) ──
 // Uppmätt 2026-09-23: /upptack/<okänd-slug> och alla dolda platser (65 st vid mätningen) svarade
 // HTTP 200 med noindex och texten "Platsen kunde inte hittas" (soft-404), både
@@ -85,6 +123,13 @@ export async function middleware(request: NextRequest) {
   if (platsMatch) {
     let seg = platsMatch[1] ?? ''
     try { seg = decodeURIComponent(seg) } catch { /* ogiltig kodning: slå upp som den är */ }
+    const omdirigering = DOLD_PLATS_REDIRECT[seg]
+    if (omdirigering) {
+      const url = request.nextUrl.clone()
+      url.pathname = omdirigering
+      url.search = ''
+      return NextResponse.redirect(url, 308)
+    }
     if (await platsFinns(seg) === false) {
       const url = request.nextUrl.clone()
       url.pathname = '/_plats-saknas'
