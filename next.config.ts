@@ -205,6 +205,10 @@ const nextConfig: NextConfig = {
       // adressen ligger fast.
       { source: '/guider/kraftskiva-skargarden-2026', destination: '/guider/kraftskiva-skargarden', permanent: true },
       { source: '/guider/hummerpremiar-bohuslan-2026', destination: '/guider/hummerpremiar-bohuslan', permanent: true },
+      // Dubbletter: /ta-dig-till/[ö] och /o/[ö]/komma-dit svarade på samma fråga ("hur tar man sig till …")
+      // för alla 103 öar och konkurrerade i Google (Search Console 3 mån till 2026-09-23: 42 000 resp.
+      // 60 000 visningar, båda runt plats 10). Allt samlas på komma-dit, som har mer och rättare innehåll.
+      { source: '/ta-dig-till/:slug', destination: '/o/:slug/komma-dit', permanent: true },
       { source: '/blogg/packlista-skargarden', destination: '/guider/packlista-skargarden', permanent: true },
       { source: '/blogg/allemansratten-pa-sjon', destination: '/guider/allemansratten-pa-sjon', permanent: true },
       { source: '/blogg/waxholmsbolaget-guide', destination: '/guider/waxholmsbolaget-guide', permanent: true },
