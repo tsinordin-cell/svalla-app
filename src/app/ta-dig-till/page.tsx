@@ -127,7 +127,7 @@ export default function TaDigTillIndex() {
                   {islands.map(island => {
                     const hasLive = !!getIslandTransit(island.slug)
                     return (
-                      <Link key={island.slug} href={`/ta-dig-till/${island.slug}`} style={{ textDecoration: 'none' }}>
+                      <Link key={island.slug} href={`/o/${island.slug}/komma-dit`} style={{ textDecoration: 'none' }}>
                         <div style={{
                           background: 'var(--white)',
                           borderRadius: 12,

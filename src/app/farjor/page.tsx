@@ -3,31 +3,38 @@ import Link from 'next/link'
 import PublicFooter from '@/components/PublicFooter'
 import SvallaLogo from '@/components/SvallaLogo'
 import { SEED_FERRY_ROUTES, fetchDepartures, type FerryDeparture } from '@/lib/ferries'
+import { ALL_ISLANDS } from '@/app/o/island-data'
 
+// SEO 2026-09-23 (Search Console 3 mån): 32 500 visningar, plats 8,1, 0,5 % klick.
+// Sökorden är mest "cinderella …" (egen sida finns: /cinderella-baaten) och
+// sträckor som "vaxholm grinda tidtabell", "strömkajen till möja", "båt till
+// finnhamn". Sidan pekar nu vidare till varje ös resesida och till
+// Cinderella-sidan i stället för att konkurrera med dem.
 export const metadata: Metadata = {
-  title: 'Färjetider Stockholms skärgård — Cinderella & Waxholmsbolaget',
-  description: 'Färjetider för Stockholms skärgård 2026. Cinderella tidtabell Sandhamn, Waxholmsbolaget linjer och avgångar från Stockholm. Aktuella tider och hållplatser.',
+  title: 'Färjetider Stockholms skärgård – båt till öarna, Waxholmsbolaget & Cinderella',
+  description: 'Kommande avgångar, linjer och bryggor för Waxholmsbolaget och Cinderellabåtarna – och hur du tar båten till Sandhamn, Möja, Finnhamn, Grinda, Utö och ett sextiotal andra öar.',
   keywords: [
-    'cinderella tidtabell',
-    'cinderella sandhamn tidtabell',
-    'cinderellabåtarna tidtabell',
-    'cinderella sandhamn',
+    'färjetider stockholms skärgård',
+    'båt till sandhamn',
+    'båt till möja',
+    'båt till finnhamn',
+    'båt till grinda',
     'waxholmsbolaget tidtabell',
     'skärgårdsbåt tidtabell',
-    'färjetider stockholms skärgård',
-    'båt sandhamn stockholm',
-    'cinderella tidtabell 2026',
-    'waxholmsbolaget sandhamn',
     'skärgårdslinjer stockholm',
-    'färjetider stockholm',
   ],
   openGraph: {
-    title: 'Cinderella & Waxholmsbolaget tidtabell — Färjetider Stockholms skärgård',
-    description: 'Cinderella tidtabell Sandhamn och Waxholmsbolaget tidtabeller för Stockholms skärgård 2026.',
+    title: 'Färjetider och båt till öarna i Stockholms skärgård',
+    description: 'Waxholmsbolaget, Cinderellabåtarna och hur du tar dig till ett sextiotal öar.',
     url: 'https://svalla.se/farjor',
   },
   alternates: { canonical: 'https://svalla.se/farjor' },
 }
+
+// Stockholmsöarna med egen resesida (/o/[ö]/komma-dit), i bokstavsordning.
+const STOCKHOLMSOAR = ALL_ISLANDS
+  .filter(i => (i.region === 'norra' || i.region === 'mellersta' || i.region === 'södra') && i.getting_there.length > 0)
+  .sort((a, b) => a.name.localeCompare(b.name, 'sv'))
 
 export const revalidate = 600
 
@@ -301,6 +308,34 @@ export default async function FarjorPage() {
         </div>
       </div>
 
+      {/* BÅT TILL ÖARNA — interna länkar till varje ös resesida */}
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 20px 32px' }}>
+        <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px', letterSpacing: -0.2 }}>
+          Båt till öarna
+        </h2>
+        <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 16px', lineHeight: 1.6 }}>
+          Varifrån båten går, restid och operatör för varje ö – med länk till operatörens tidtabell.
+        </p>
+        <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 8 }}>
+          {STOCKHOLMSOAR.map(o => {
+            const forsta = o.getting_there[0]
+            return (
+              <li key={o.slug}>
+                <Link href={`/o/${o.slug}/komma-dit`} style={{
+                  display: 'block', textDecoration: 'none', background: 'var(--white)',
+                  borderRadius: 12, padding: '10px 14px', border: '1px solid var(--border)',
+                }}>
+                  <span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>Båt till {o.name}</span>
+                  {forsta?.from && (
+                    <span style={{ display: 'block', fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>från {forsta.from}</span>
+                  )}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+
       {/* CINDERELLA — faktasektion.
           2026-08-05: den här sektionen innehöll en påhittad tidtabell
           ("Strömkajen 10:00, Djurgårdsbryggan ~10:20, Vaxholm ~11:10,
@@ -333,6 +368,11 @@ export default async function FarjorPage() {
             Cinderellabåtarna avgår från <strong>Strandvägen</strong> i centrala Stockholm — inte
             från Strömkajen, som är Waxholmsbolagets kaj. Linjen går till Vaxholm, Grinda,
             Gällnö och Sandhamn. Säsongen löper från slutet av april till slutet av september.
+          </p>
+          <p style={{ fontSize: 14, margin: '-12px 0 24px' }}>
+            <Link href="/cinderella-baaten" style={{ color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}>
+              Allt om Cinderellabåtarna: hållplatser, restider och biljetter →
+            </Link>
           </p>
 
           {/* KÄLLA: Strömma/Cinderellabåtarna — restid och pris avlästa på operatörens egen sida (2026-08-05) */}

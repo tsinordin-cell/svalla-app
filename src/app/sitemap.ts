@@ -252,12 +252,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const transportIndex: MetadataRoute.Sitemap = [
     { url: `${base}/ta-dig-till`, lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
   ]
-  const transportPages: MetadataRoute.Sitemap = ALL_ISLANDS.map(island => ({
-    url: `${base}/ta-dig-till/${island.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: 0.75,
-  }))
+  // /ta-dig-till/[ö] skickas vidare (308) till /o/[ö]/komma-dit sedan 2026-09-23 och ska inte stå här.
+  const transportPages: MetadataRoute.Sitemap = []
 
   // ── Säsongssidor /sasong/[slug] ──────────────────────────────────
   // Max P1: "vakant content om skärgård utanför sommar"
