@@ -162,7 +162,7 @@ export default function IslandKallor({ slug, islandName }: { slug: string; islan
               WebkitTapHighlightColor: 'transparent',
             }}
           >
-            Visa alla {grupper.length} källor
+            Visa fler källor ({resten.length})
             <span aria-hidden style={{ fontSize: 11, color: 'var(--txt3)' }}>&#9662;</span>
           </summary>
           {/* Safari ritar en egen triangel framför summary trots listStyle:none. */}
