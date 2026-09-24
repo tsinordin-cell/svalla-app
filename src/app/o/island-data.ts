@@ -561,8 +561,8 @@ export const ISLANDS: Island[] = [
     ],
     blogLinks: [
       { slug: 'uto-guide', title: 'Utö guide – gruvorna, cykel, bad och båt från Årsta brygga' },
-      { slug: 'vandring-orno-uto', title: 'Vandring i skärgården – bästa lederna på Ornö och Utö' },
-      { slug: 'havsbastu-guide', title: 'Havsbastu i skärgården – de bästa platserna 2026' },
+      { slug: 'vandring-orno-uto', title: 'Vandring på Ornö och Utö – etapper, slingor och båt' },
+      { slug: 'havsbastu-guide', title: 'Havsbastu i skärgården – bastur vid hamnar och öar' },
     ],
     seasonal: {
       open: 'Maj–Oktober',
@@ -895,7 +895,7 @@ export const ISLANDS: Island[] = [
     ],
     blogLinks: [
       { slug: 'kajak-stockholms-skargard-nyborjare', title: 'Kajak i Stockholms skärgård – guide för nybörjare' },
-      { slug: 'barnfamilj-skargard', title: 'Skärgård med barnfamilj – 8 tips för en lyckad tur' },
+      { slug: 'barnfamilj-skargard', title: 'Skärgård med barn – flytväst, säkerhet och båtvett' },
     ],
     seasonal: {
       open: 'Maj–September',

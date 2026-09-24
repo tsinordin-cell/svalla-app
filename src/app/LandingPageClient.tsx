@@ -889,7 +889,7 @@ const LANDING_HTML = `
      <span class="guide-card-cat">Aktiviteter</span>
     </div>
     <div class="guide-card-body">
-     <div class="guide-card-title">Kajak i skärgården — guide för nybörjaren</div>
+     <div class="guide-card-title">Kajak i Stockholms skärgård – guide för nybörjare</div>
      <div class="guide-card-read">Läs guide &rarr;</div>
     </div>
    </a>
