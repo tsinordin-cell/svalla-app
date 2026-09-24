@@ -373,7 +373,7 @@ export const ISLANDS: Island[] = [
     ],
     blogLinks: [
       { slug: 'basta-restaurangerna-sandhamn', title: 'Restauranger på Sandhamn – lunch, middag, kafé och bar' },
-      { slug: 'gasthamnar-guide', title: 'Bästa gästhamnarna i Stockholms skärgård 2026' },
+      { slug: 'gasthamnar-guide', title: 'Gästhamnar i Stockholms skärgård – platser, service och bokning' },
       { slug: 'segling-nyborjare-guide', title: 'Segla för första gången – allt du behöver veta' },
     ],
     seasonal: {
@@ -1241,8 +1241,8 @@ export const ISLANDS: Island[] = [
       'Möja är bilfri för besökare men har ett internt bilsystem för de fastboende.',
     ],
     blogLinks: [
-      { slug: 'dolda-parlor-moja', title: 'Möjas dolda pärlor – bilfri ö med äkta skärgårdsstämning' },
-      { slug: 'cykling-moja-gallno', title: 'Cykla i skärgården – guide för Möja och Gällnö' },
+      { slug: 'dolda-parlor-moja', title: 'Möja – vandring, bad, museum och mat på ön' },
+      { slug: 'cykling-moja-gallno', title: 'Hyra cykel på Möja och Gällnö – cykla i skärgården' },
     ],
     seasonal: {
       open: 'Maj–Oktober',
