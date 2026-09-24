@@ -374,7 +374,7 @@ export const ISLANDS: Island[] = [
     blogLinks: [
       { slug: 'basta-restaurangerna-sandhamn', title: 'Restauranger på Sandhamn – lunch, middag, kafé och bar' },
       { slug: 'gasthamnar-guide', title: 'Gästhamnar i Stockholms skärgård – platser, service och bokning' },
-      { slug: 'segling-nyborjare-guide', title: 'Segla för första gången – allt du behöver veta' },
+      { slug: 'segling-nyborjare-guide', title: 'Börja segla – så lär du dig segla i skärgården' },
     ],
     seasonal: {
       open: 'Maj–Oktober',
@@ -726,7 +726,7 @@ export const ISLANDS: Island[] = [
       'Innerstan i Vaxholm har välbevarad trähusmiljö med byggnader från 1800-talets slut.',
     ],
     blogLinks: [
-      { slug: 'vaxholm-guide', title: 'Vaxholm – skärgårdsstadens kompletta guide' },
+      { slug: 'vaxholm-guide', title: 'Vaxholm dagstur – kastellet, staden och båt från Strömkajen' },
       { slug: 'waxholmsbolaget-guide', title: 'Waxholmsbolaget – komplett guide till båttrafiken' },
     ],
     seasonal: {
@@ -894,7 +894,7 @@ export const ISLANDS: Island[] = [
       'STF-anläggningen på Grinda serverar frukost och middag. Under juli och augusti är bokning av bord starkt rekommenderat.',
     ],
     blogLinks: [
-      { slug: 'kajak-stockholms-skargard-nyborjare', title: 'Kajak i skärgården – guide för nybörjaren' },
+      { slug: 'kajak-stockholms-skargard-nyborjare', title: 'Kajak i Stockholms skärgård – guide för nybörjare' },
       { slug: 'barnfamilj-skargard', title: 'Skärgård med barnfamilj – 8 tips för en lyckad tur' },
     ],
     seasonal: {
