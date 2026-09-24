@@ -880,7 +880,7 @@ const LANDING_HTML = `
      <span class="guide-card-cat">Öguide</span>
     </div>
     <div class="guide-card-body">
-     <div class="guide-card-title">Utö — södra skärgårdens kronjuvel</div>
+     <div class="guide-card-title">Utö guide – gruvorna, cykel, bad och båt från Årsta brygga</div>
      <div class="guide-card-read">Läs guide &rarr;</div>
     </div>
    </a>
