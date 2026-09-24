@@ -89,60 +89,54 @@ Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara 19 juni–16 augu
  },
 
  'kajak-stockholms-skargard-nyborjare': {
- title: 'Kajak i skärgården – guide för nybörjaren',
- excerpt: 'Aldrig paddlat men vill prova? Här är allt du behöver veta: utrustning, säkerhet, bra startsträckor och vad du inte får missa.',
+ title: 'Kajak i Stockholms skärgård – guide för nybörjare',
+ excerpt: 'Paddla kajak i Stockholms skärgård: var du hyr kajak, vad allemansrätten säger om att gå i land och övernatta, fågel- och sälskyddsområden, tältplatser och utrustning för säker paddling.',
  category: 'Aktiviteter',
  date: '2026-03-28',
- readTime: '8 min',
+ updatedAt: '2026-09-24',
+ readTime: '6 min',
  emoji: '',
- tags: ['Kajak', 'Nybörjare', 'Paddling'],
+ tags: ['Kajak Stockholms skärgård', 'Paddla kajak', 'Nybörjare', 'Paddling', 'Allemansrätten'],
+ faqs: [
+   { q: 'Var kan man hyra kajak i Stockholms skärgård?', a: 'Några exempel: Möja Outdoor på Möja hyr ut kajak, roddbåt och SUP, Gällnö har kajakuthyrning på sommaren, Klintsundet Marina på Ljusterö hyr ut kajaker och Saltsjöbadens friluftsbad har kajakuthyrning.' },
+   { q: 'Får man gå i land var som helst med kajak?', a: 'Enligt Naturvårdsverket får du gå i land, bada och tillfälligt förtöja vid en strand som inte hör till någon tomt och inte är skyddad för fågelliv eller annat. Håll koll på skyltar för fågel- och sälskyddsområden.' },
+   { q: 'Vilken utrustning behöver man för att paddla kajak i skärgården?', a: 'Flytväst, vattentäta packpåsar för kläder och telefon, sjökort eller sjökortsapp, extra kläder och vatten. Kolla SMHI:s prognos innan du ger dig ut, och berätta för någon vart du ska och när du räknar med att vara tillbaka.' },
+ ],
  content: `
-Stockholms skärgård är ett av världens bästa paddlingslandskap. 30 000 öar, skyddade vikar och ett unikt allemansrätt som låter dig paddla nästan var du vill och övernatta i naturen. Som nybörjare är det lätt att komma igång – men det finns saker du behöver veta innan du sätter dig i båten.
+<!-- KÄLLA: naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ (granskad 19 juni 2025, läst 2026-09-24): "Du får bada vid stränder, paddla kajak och åka båt"; "Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt, eller som är skyddad för fågelliv eller annat"; "Håll avstånd till häckande fåglar"; "Håll koll på fågel- och sälskyddsområden"; "Ta med dig en påse som du kan samla skräp och matrester i"; toalett: "Använd toalett i land", annars "Gräv en grop för avföring"; "Du som färdas på vatten ska enligt Sjölagen visa hänsyn mot omgivningen". Uthyrning: visitmoja.se (Möja Outdoor "Hyr kajak, roddbåt och SUP"), gallno.se (cykel och kajak sommartid), klintsundetmarina.se ("Kajakuthyrning", läst 2026-09-23), nacka.se Saltsjöbadens friluftsbad ("kajakuthyrning", datafix 2026-09-22). Tältplatser: skargardsstiftelsen.se Gällnö-Karklö (Torsviken "sandstrand och tältplats"), Grinda ("öns tältplats ligger nära norra bryggan", datafix), Finnhamn (tältplats, Skärgårdsstiftelsen). Fågelskyddsområden Libertas och Rövarns holme vid Fjäderholmarna: landstigningsförbud under häckningstid (se island-data fjaderholmarna). Gällnö: förbud att köra motorbåt i Norrviken (lansstyrelsen.se). Tidigare version (borttagen 2026-09-24) angav hyrpris 400–600 kr per dag som uppskattning, blandade vindstyrka 5 med 8 m/s och föreslog rutter utan källa. -->
+Kajak är ett av de enklaste sätten att ta sig ut bland öarna, och allemansrätten ger dig rätt att paddla, gå i land och bada längs stränderna. Här är det du behöver veta som nybörjare – var du hyr kajak, vad som gäller när du går i land och vad du packar.
+
+## Börja med en guidad tur eller kurs
+Första gången är det tryggast att paddla med någon som kan området – en guidad tur eller en nybörjarkurs hos en kajakuthyrare eller paddelklubb. Där får du öva på att komma i och ur kajaken och vad du gör om du välter.
+
+## Hyra kajak
+- **Möja:** Möja Outdoor hyr ut kajak, roddbåt och SUP och ordnar sälsafari.
+- **Gällnö:** kajak går att hyra på ön under sommaren.
+- **Ljusterö:** [Klintsundet Marina](/upptack/circle-k-klintsundet) har kajakuthyrning.
+- **Saltsjöbaden:** [Saltsjöbadens friluftsbad](/upptack/saltsjobadens-friluftsbad) har kajakuthyrning, cirka 500 meter från Saltsjöbanans station.
+
+## Allemansrätten på vattnet
+Enligt Naturvårdsverket får du gå i land, bada och tillfälligt förtöja vid en strand som inte hör till någon tomt och inte är skyddad för fågelliv eller annat. Det finns inget bestämt avstånd till hus – det är risken att störa de boende som avgör. Plocka med dig skräp och matrester, och använd toalett i land när det finns.
+
+## Fåglar och sälar
+Håll avstånd till häckande fåglar och håll koll på skyltar för fågel- och sälskyddsområden, där det kan vara förbjudet att gå i land under delar av året. Ett exempel nära stan: Libertas och Rövarns holme vid [Fjäderholmarna](/o/fjaderholmarna) har landstigningsförbud under häckningstiden.
+
+## Tältplatser för paddlare
+- [Gällnö](/o/gallno): tältplats och sandstrand vid Torsviken. Tältet får stå högst två dygn på samma plats i reservatet.
+- [Grinda](/o/grinda): öns tältplats ligger nära norra bryggan.
+- [Finnhamn](/o/finnhamn): tältplats på Stora Jolpan.
 
 ## Utrustning
+- Flytväst – alltid på.
+- Vattentäta packpåsar för kläder, mat och telefon.
+- Sjökort eller sjökortsapp.
+- Extra varma kläder och vatten.
+- Påse för skräp.
 
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Du behöver inte köpa kajak direkt. I skärgården finns det uthyrning vid de flesta större hamnar och startpunkter. Räkna med 400–600 kr per dag för en havskajak.
-
-**Grundutrustning du behöver:**
-- Flytväst (obligatorisk, aldrig kompromiss)
-- Paddeljacka eller våtdräkt vid kall väderlek
-- Vattentäta påsar för kläder och telefon
-- Sjökort eller sjökortsapp (Navionics är bra)
-- Vatten och mat för minst en dag extra
-
-## Säkerhet
-
-Havet kan vara opålitligt, även i skärgården. Några grundregler:
-
-**Kontrollera vädret** innan du ger dig ut. Vindstyrka 5+ (ca 8 m/s) är krävande för nybörjare. Titta alltid på SMHI:s väderprognos och var uppmärksam på hur vädret förändras under dagen.
-
-**Paddla inte ensam** de första gångerna. Ta med ett sällskap eller gå på en guidad tur.
-
-**Håll kusten nära.** Det ser lugnt ut att paddla tvärs över en fjärd, men det kan snabbt ändras. Håll dig längs kusterna och ta skyddade rutter.
-
-**Meddela någon** vart du ska och när du beräknas vara tillbaka.
-
-## Bästa startsträckor för nybörjare
-
-### Fjäderholmarna – Nacka
-En av de enklaste och kortaste turerna. Paddla ut från Nacka strand och ha Fjäderholmarna som mål. Skyddad vattenväg, fin ö att ta lunchrast på.
-
-### Furusund – Blidö
-Norra Stockholms skärgård (Roslagen) runt Blidö är idealt för nybörjare. Lugnt vatten, korta sträckor och vackra naturhamnar. Furusund nås enkelt med bil eller buss från Norrtälje.
-
-### Dalarö – Ornö
-Söder om Stockholm, med paddling längs Ornös västra sida. Kuperat, naturskönt och med möjlighet att övernatta i naturhamnarna.
-
-## Vad du inte får missa längs vägen
-
-- **Sälarna** – de gillar att titta på kajakpaddlare. Håll avstånd men njut av mötet.
-- **Naturhamnarna** – ta rast i en skyddad vik, laga mat och bada. Det är det allra bästa med kajak.
-- **Soluppgången** – paddla ut tidigt en klar morgon. Det finns inget bättre.
-
-## Guideturer och kurser
-
-Rekommendation för nybörjare: boka en halvdagstur med en certifierad guideverksamhet första gången. Du lär dig grunderna på ett säkert sätt och får tipsen om de bästa ruttoma. Efteråt kan du med god marginal ge dig ut på egna äventyr.
+## Innan du paddlar ut
+- Kolla SMHI:s prognos och varningar. Vind och vågor kan öka under dagen.
+- Håll dig nära land i början i stället för att korsa öppna fjärdar.
+- Berätta för någon vart du ska och när du räknar med att vara tillbaka.
  `,
  },
 
@@ -339,48 +333,49 @@ Fjäderholmarna nämns i skrift redan 1381, och åtminstone sedan 1699 har det f
  },
 
  'vaxholm-guide': {
- title: 'Vaxholm – skärgårdsstadens kompletta guide',
- excerpt: 'Vaxholm är porten till skärgården. En stad med fästning, historia, fantastiska restauranger och direktbåt från Strömkajen.',
+ title: 'Vaxholm dagstur – kastellet, staden och båt från Strömkajen',
+ excerpt: 'Dagstur till Vaxholm: båt från Strömkajen eller buss 670, Vaxholms kastell och museet, kyrkan, Rindö redutt och Oscar-Fredriksborg, Bogesundslandet och var du äter vid hamnen.',
  category: 'Öguide',
  date: '2026-04-05',
+ updatedAt: '2026-09-24',
  readTime: '6 min',
  emoji: '',
- tags: ['Vaxholm', 'Fästning', 'Dag- eller weekendtur'],
+ tags: ['Vaxholm', 'Vaxholms kastell', 'Dagstur från Stockholm', 'Stockholms skärgård'],
+ faqs: [
+   { q: 'Hur tar man sig till Vaxholm?', a: 'Waxholmsbolagets båt från Strömkajen tar ungefär en timme. Buss 670 går mellan Tekniska högskolan och Vaxholm.' },
+   { q: 'Hur kommer man ut till Vaxholms kastell?', a: 'Kastellet ligger på ön Vaxholmen, ett stenkast från Vaxholms stad, och nås över vattnet. I kastellet finns museet, en restaurang och konsertlokaler.' },
+   { q: 'Är Vaxholm öppet på vintern?', a: 'Vaxholm är en stad där livet inte följer turistsäsongen. I december arrangeras Vaxholms julmarknad.' },
+ ],
  content: `
-Vaxholm kallas för porten till skärgården – och det är en rättvis beskrivning. Staden är startpunkten för Waxholmsbåtarna ut i Stockholms skärgård, men förtjänar att besökas i sig. Fästningen på holmen mitt i sundet, trähusen längs kanalen, restaurangerna vid vattnet. En dag i Vaxholm räcker inte.
+<!-- KÄLLA: alla uppgifter är hämtade från källorna i src/app/o/island-data.ts (vaxholm): vaxholmsfastning.se/historik/ (blockhus i början av 1500-talet av Svante Nilsson Sture; Gustav Vasa 1548; nuvarande Kastellet 1833–1863; angrepp 1612 och 1719), sfv.se Vaxholms kastell (på ön Vaxholmen; museet invigt 1964; restaurang och konsertlokaler), vaxholmsfastning.se (museet om "skärgårdsförsvarets 500-åriga historia"), Waxholmsbolagets tabell 11 (Strömkajen–Vaxholm ~55–70 min), SL linje 670 (Tekniska högskolan–Vaxholm), vaxholm.se historia (stadsprivilegier 1647; Pålsundsbron 1926), svenskakyrkan.se/vaxholm (kyrkan 1760–1803, klockstapel, dopfunt från slutet av 1300-talet), sfv.se Rindö redutt (1859–1864, "går att besöka på egen hand"), sfv.se Oscar Fredriksborg (1867–1877, "Området ... är öppet för besök"), lansstyrelsen.se Bogesundslandet (bildat 2015, 4 341 ha, leder, badplatser, koppel på hund), vaxholm.se (julmarknad). Hamnkrogen: "Söderhamnen 10", "kvarterskrog sedan 1950-talet", ostar från Ostmakeriet på Rindö (datafix). Rindö nås med "gratis bilfärja från Vaxön" (vaxholm.se badplatser, datafix 2026-09-22). Tidigare version (borttagen 2026-09-24) angav båtresa 1,5 timmar och bussresa 1 timme utan källa, vägbeskrivning via E18, museibiljett "ca 120 kr" och restaurangomdömen utan källa. -->
+Vaxholm är en stad, inte en ö-by, och därför fungerar den som dagstur året runt. Du tar dig dit med båt från Strömkajen på ungefär en timme, och i sundet ligger kastellet med museum. Mer fakta och karta: [Vaxholm på Svalla](/o/vaxholm).
 
-## Ta sig dit
+## Ta dig dit
+- **Båt:** Waxholmsbolagets båt från Strömkajen tar ungefär en timme. Alla alternativ: [Båt till Vaxholm](/o/vaxholm/komma-dit).
+- **Buss:** buss 670 går mellan Tekniska högskolan och Vaxholm. Landförbindelsen finns sedan Pålsundsbron byggdes 1926.
 
-**Båt:** Waxholmsbåten från Strömkajen, ca 1,5 timmar. En av de trevligaste turerna i sig.
+## Vaxholms kastell
+Kastellet ligger på ön Vaxholmen, ett stenkast från staden, och nås över vattnet. Fästningens historia börjar i början av 1500-talet med ett blockhus byggt av Svante Nilsson Sture, och 1548 beställde Gustav Vasa en kraftigare fästning. Den nuvarande byggnaden uppfördes 1833–1863. Fästningen har slagit tillbaka angrepp två gånger, från danskarna 1612 och från ryssarna 1719.
 
-**Buss:** 670 från Tekniska Högskolan, ca 1 timme. Billigare men missar skärgårdsupplevelsen.
+Museet i kastellet invigdes 1964 och följer skärgårdsförsvarets 500-åriga historia. I kastellet finns också restaurang och konsertlokaler.
 
-**Bil:** E18 norrut mot Norrtälje, avfart mot Vaxholm. Ca 45 min från centrala Stockholm.
+## Fler fästningar
+- **Rindö redutt** (1859–1864) på grannön Rindö byggdes för att komplettera kastellet och går att besöka på egen hand. Rindö nås med gratis bilfärja från Vaxön.
+- **Oscar-Fredriksborg** vid Oxdjupet (1867–1877) är ett bergfort med tunnlar sprängda i berget. Området är öppet för besök.
 
-## Vaxholms fästning
+## Staden
+Vaxholm fick stadsprivilegier 1647 av drottning Kristina. Vaxholms kyrka byggdes 1760–1803; det planerade tornet blev aldrig byggt och ersattes av en klockstapel i trä. Inne i kyrkan står en dopfunt i gotländsk sandsten från slutet av 1300-talet, som ursprungligen stod i Riddarholmskyrkan. I december hålls Vaxholms julmarknad.
 
-Fästningen på Vaxholmen är Stockholms skärgårds bäst bevarade historiska monument. Ursprungligen byggd under 1500-talet av Gustav Vasa och ombyggd till sitt nuvarande utseende 1833–63. Idag museum – ta färjan ut till fästningen (5 minuters tur) och vandra runt i historien.
+## Natur: Bogesundslandet
+Bogesundslandets naturreservat, 4 341 hektar varav 2 891 på land, har markerade vandringsleder, badplatser och rastplatser med vindskydd. Hunden ska vara kopplad. Badplatser i området: [Tenöbadet](/upptack/tenobadet) och [Eriksöbadet](/upptack/eriksobadet).
 
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Militärmuseet på fästningen berättar om skärgårdens försvar under 400 år. Öppet sommarsäsong, biljett ca 120 kr.
+## Äta
+- [Hamnkrogen](/upptack/hamnkrogen-vaxholm) på Söderhamnen 10 har varit kvarterskrog sedan 1950-talet och ser ut över gästhamnen.
+- [Magasinet](/upptack/magasinet-gustavsberg) ligger vid vattnet på Fiskaregatan 1.
+- Restaurangen i kastellet.
 
-## Stadsvandring
-
-Vaxholm är liten nog att gå på en timme. Gå längs Hamngatan, titta in i antikhandlarna och de gamla trädgårdarna. Hamnen med sina träbryggor och vita trävillor är fotogenisk på ett sätt som känns äkta snarare än arrangerat.
-
-**Rådhuset** från 1925 är en vacker byggnad värd att stanna vid. **Hembygdsgården** visar hur livet i skärgården sett ut historiskt.
-
-## Äta i Vaxholm
-
-**Waxholms Hotell** – anrika och välkomnande. Klassisk skärgårdsmeny med fokus på lokala råvaror. Utsiktsservering mot sundet.
-
-**Hamnkrogen** – brasserieformat vid hamnen. Räkor, fisk och bra viner. En av stadens bästa terrasser.
-
-**Söderby Gårdsbutik & Café** – lite utanför centrum men väl värd resan. Lokala produkter och hembakt i en gammal ladugård.
-
-## Praktisk info
-
-Vaxholm är bra som dagstur men ännu bättre som övernattning. Waxholms Hotell och ett par bed & breakfast tar emot gäster. På sommaren är det levande in på kvällen – ta en promenad efter middagen när turister åkt hem och staden är sig igen.
+## Med egen båt
+[Vaxholms gästhamn](/upptack/waxholms-gasthamn-och-rent-under-batbotten-tvatt) ligger mitt i staden. I Norrbergshamnen finns platser där du får ligga upp till tre timmar utan avgift.
  `,
  },
 
@@ -433,60 +428,47 @@ Rekommendation: res dit på fredag kväll, stanna lördag-söndag. Det är inte 
  },
 
  'segling-nyborjare-guide': {
- title: 'Segla för första gången – allt du behöver veta',
- excerpt: 'Drömmer du om att ta ut en segelbåt i skärgården? Ärlig guide för den som aldrig seglat.',
+ title: 'Börja segla – så lär du dig segla i skärgården',
+ excerpt: 'Så börjar du segla: seglarskola för vuxna, Seglarintyg 1 och 2, vilka krav som gäller för att köra fritidsbåt, de viktigaste väjningsreglerna och hur du hyr en segelbåt i Stockholms skärgård.',
  category: 'Aktiviteter',
  date: '2026-03-18',
- readTime: '9 min',
+ updatedAt: '2026-09-24',
+ readTime: '7 min',
  emoji: '',
- tags: ['Segling', 'Nybörjare', 'Hyrbåt'],
+ tags: ['Börja segla', 'Lära sig segla', 'Segling', 'Seglarskola', 'Nybörjare'],
+ faqs: [
+   { q: 'Behöver man körkort för att segla?', a: 'Nej, inte för en fritidsbåt som är kortare än 12 meter och smalare än 4 meter, enligt Transportstyrelsen. Den som kör ett fritidsskepp som är längre än 12 meter och bredare än 4 meter ska ha skepparexamen, kustskepparexamen eller högre. Transportstyrelsen rekommenderar ändå att alla har grundläggande kunskaper om säkerhet och sjövägsregler.' },
+   { q: 'Var lär man sig segla som vuxen?', a: 'Svenska Seglarförbundets certifierade seglarskolor finns hos klubbar över hela landet och har kurser för barn, ungdomar och vuxna i jolle, kölbåt och vindsurfing. För ungdomar och vuxna leder kurserna till Seglarintyg 1 och 2, som ingår i kompetensintygen hos Nämnden för båtlivsutbildning.' },
+   { q: 'Har segelbåten alltid företräde framför motorbåten?', a: 'Nej. Enligt sjövägsreglerna ska ett maskindrivet fartyg på väg hålla undan för ett segelfartyg, men i en trång farled får segelfartyg och fartyg under 20 meter inte hindra ett fartyg som bara kan framföras säkert i farleden, till exempel en färja eller ett fraktfartyg.' },
+ ],
  content: `
-Segling ser svårt ut utifrån. Det är det inte – men det kräver lite grundkunskap och respekt för havet innan du ger dig ut. Den goda nyheten: med rätt förberedelse kan du segla en enklare båt i skyddad skärgård redan efter en helgkurs.
+<!-- KÄLLA (lästa 2026-09-24): transportstyrelsen.se/sv/sjofart/fritidsbatar/Kunskap-och-kompetens/ ("inga krav på körkort om du har ett fritidsfartyg/en fritidsbåt som är kortare än tolv meter och smalare än fyra meter", vattenskoter kräver förarbevis, fritidsskepp "längd som överstiger 12 meter och en bredd som överstiger 4 meter ska ha skepparexamen, kustskepparexamen eller högre nautisk kompetens", "vi rekommenderar att alla som vistas på sjön har grundläggande kunskaper"). transportstyrelsen.se sjövärdighet för fritidsbåtsförare ("Det är befälhavarens ansvar att se till att båten är sjövärdig", sjölagen 1994:1009). TSFS 2009:44 sjövägsregler: regel 18 a ("Ett maskindrivet fartyg på väg ska hålla undan för ... segelfartyg"), regel 18 b (segelfartyg håller undan för ej manöverfärdiga fartyg, fartyg med begränsad manöverförmåga och fiskande fartyg), regel 9 b ("Fartyg med en längd under 20 meter och segelfartyg får inte hindra ett annat fartygs passage om det fartyget endast kan framföras säkert i en trång farled"), regel 12 a (vinden in på babord håller undan; lovart håller undan för lä). svensksegling.se/upptack-segling/seglarskola/ (certifierade seglarskolor "för barn, ungdomar, vuxna och paraseglare", "jolle, kölbåt och vindsurfing", "Seglarintyg 1 & 2 som ingår i kompetensintygen hos Nämnden för båtlivsutbildning (NFB)", nybörjarkursen: hur vindens riktning påverkar, lägga till, justera seglen). ksss.se/lager/seglarskola/ (KSSS seglarskola för 8–12-åringar). Tidigare version (borttagen 2026-09-24) angav uppskattade kurs- och hyrpriser och antydde att KSSS har nybörjarkurser för vuxna; KSSS seglarskola vänder sig till barn 8–12 år. -->
+Att segla är inte svårare än att det går att lära sig på en kurs, men sjövägsreglerna och ansvaret för båten gäller från första dagen. Här är vägen från noll till att ta ut en segelbåt i Stockholms skärgård, med fakta från Transportstyrelsen och Svenska Seglarförbundet.
 
-## Börja med en kurs
+## 1. Gå en seglarskola
+Svenska Seglarförbundets certifierade seglarskolor finns hos klubbar över hela landet och har kurser för barn, ungdomar och vuxna i jolle, kölbåt och vindsurfing. På nybörjarkursen lär du dig hur vindens riktning påverkar båten, vad båtens delar heter och gör, hur du justerar seglen och hur du lägger till. För ungdomar och vuxna leder kurserna till Seglarintyg 1 och 2, som ingår i kompetensintygen hos Nämnden för båtlivsutbildning (NFB). Seglarförbundet har en sökfunktion för att hitta en certifierad seglarskola nära dig.
 
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<!-- UPPSKATTNING: kurspriser är ett spann över flera seglarskolor, ej hämtat per aktör (2026-09) -->
-Börja med en nybörjarkurs hos en seglarskola eller ett segelsällskap – KSSS och flera lokala klubbar håller kurser. En tvådagars grundkurs brukar ligga i storleksordningen 2 000–3 500 kr och lär dig det du behöver för att ta ut en hyrbåt i lugn skärgård. Priset står på skolans egen sida.
+## 2. Vilka krav gäller?
+För en fritidsbåt som är kortare än 12 meter och smalare än 4 meter krävs inget körkort, enligt Transportstyrelsen. Det gäller de flesta segelbåtar du kan hyra. Den som framför ett fritidsskepp som är både längre än 12 meter och bredare än 4 meter ska ha skepparexamen, kustskepparexamen eller högre. Vattenskoter kräver alltid förarbevis.
 
-Du lär dig: kryssa (segla mot vinden), falla (segla med vinden), revning (minska segel i vind), förtöja och lägga till.
+Oavsett storlek är det du som befälhavare som ansvarar för att båten är sjövärdig – rätt utrustad, bemannad och provianterad. Transportstyrelsen rekommenderar att alla som är ute på sjön har grundkunskaper om säkerhet och sjövägsregler.
 
-## Hyra segelbåt
+## 3. Lär dig väjningsreglerna
+Sjövägsreglerna gäller alla båtar. Tre regler du behöver kunna från början:
+- **Motorbåt och segelbåt:** ett maskindrivet fartyg på väg ska hålla undan för ett segelfartyg.
+- **Två segelbåtar:** den som har vinden in från babord håller undan. Har båda vinden från samma sida håller den i lovart undan för den i lä.
+- **Trång farled:** segelfartyg och båtar under 20 meter får inte hindra ett fartyg som bara kan framföras säkert i farleden – i skärgården till exempel färjor och större fartyg. Segelbåtens företräde gäller alltså inte där.
 
-Det finns flera hyrbåtsföretag runt Stockholm. Vanligast är att hyra en 28–32 fots segelbåt – tillräckligt stor för 4 personer och tillräckligt liten för att hanteras av en nybörjare.
+Segelbåten ska också hålla undan för fartyg som inte är manöverfärdiga, har begränsad manöverförmåga eller fiskar.
 
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<!-- UPPSKATTNING: veckohyra är ett spann över flera uthyrare, ej hämtat per aktör (2026-09); observerade dagspriser med källa finns på /hyra-bat/stockholms-skargard -->
-Räkna med storleksordningen 5 000–10 000 kr per vecka beroende på säsong och båtstorlek – exakta priser står hos uthyraren, och observerade dagspriser finns i vår hyrbåtsguide. De flesta uthyrare vill se förarintyg eller intygad seglingsvana.
+## 4. Hyr en segelbåt
+När du har gått kurs kan du hyra båt. Många uthyrare vill se intyg eller dokumenterad seglingsvana, så kolla villkoren innan du bokar. Uthyrare och observerade priser i Stockholms skärgård finns på [Hyra båt i Stockholms skärgård](/hyra-bat/stockholms-skargard).
 
-## Rätt väder att börja med
-
-Som nybörjare, sikta på:
-- Vind: 3–5 m/s (lätt bris). Tillräckligt för att segla, hanterbart om något går fel.
-- Undvik: Vindbyar, kustvädervarningar, dimmigt väder.
-- Bästa tid: Tidiga morgontimmar är oftast lugna. Vinden ökar typiskt på eftermiddagen.
-
-## Skärgårdsregler du måste kunna
-
-**Trafikregler:** En segelbåt under segel har generellt rätt till väg gentemot motorbåtar. Men den praktiska regeln är: ett stort fartyg kan inte manövrera – ge alltid väg för stora fartyg och färjor.
-
-**Sjövägsregler:** Lär dig grunderna i väjningsreglerna på kursen – de räcker långt i skärgården, tillsammans med regeln ovan om stora fartyg.
-
-
-## Klassiska nybörjarrutter
-
-**Vaxholm – Sandhamn tur och retur.** Följ farleden österut; gästhamn i Sandhamn. Skyddat vatten större delen av vägen.
-
-**Dalarö – Utö.** Södra skärgården, mer öppet vatten, fin seglingsled med tydliga naturhamnar längs vägen.
-
-## De vanligaste misstagen
-
-1. **För lite mat och vatten ombord.** Ta alltid dubbelt mot vad du tror.
-2. **Inte reservera gästhamn i förväg.** Sandhamn är fullbokad i juli – boka i god tid.
-3. **Underskatta vindriktningsändringen.** Vinden ändrar sig – ha alltid en plan B.
-4. **Segling utan sjökort.** Ha sjökort ombord – app eller papper – och kunna läsa det. Telefonen kan dö; ett papperssjökort gör det inte.
-
-Segla varsamt och njut. Skärgården från en segelbåt är en helt annan upplevelse än från däck på en färja.
+## 5. Planera första turen
+- **Väder:** kolla SMHI:s prognos och varningar innan du går ut, och ha en plan för att vända om vinden ökar.
+- **Sjökort:** ha sjökort ombord, i app eller på papper, och öva på att läsa det.
+- **Hamn för natten:** [gästhamnar i Stockholms skärgård](/blogg/gasthamnar-guide) med antal platser och om de går att boka.
+- **Leder:** [segelrutter i skärgården](/segelrutter).
  `,
  },
 
@@ -638,6 +620,7 @@ Det bästa sättet att vandra i skärgården: ta båten till en ö, vandra tvär
  faqs: [
    { q: 'Var hyr man cykel på Möja?', a: 'Hamncafét på Möja har cykeluthyrning enligt Möja turistförening. På sommaren kör PerMobilen också daglig transport på landsvägen mellan norra och södra Möja.' },
    { q: 'Kan man hyra cykel på Gällnö?', a: 'Ja, cykel och kajak går att hyra på Gällnö under sommaren enligt Gällnös egen sida. Länsstyrelsen räknar en cykelled till anordningarna i Gällnö naturreservat.' },
+   { q: 'Får man ta med cykel på Waxholmsbåten?', a: 'Ja, enligt Waxholmsbolaget får du ta med en vanlig cykel i mån av plats utan extra kostnad. Personalen ombord avgör om det finns plats.' },
    { q: 'Hur lång är Möja?', a: 'Möja är cirka 6,5 kilometer från norr till söder enligt Möja turistförening, och Värmdö kommun anger ön till ungefär 6 kilometer lång och 4 kilometer bred.' },
  ],
  content: `
@@ -657,6 +640,10 @@ Möja har ingen officiell badplats. Turistföreningen tipsar om naturliga bad fr
 
 ### Äta och handla
 Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét och det sommaröppna Möja bageri. Coop i Berg har öppet året runt.
+
+### Ta med egen cykel
+<!-- KÄLLA: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med (läst 2026-09-24): "Du får ta med en vanlig cykel ombord i mån av plats. Att ta med cykeln kostar inget extra"; "Personalen ombord avgör om det finns plats för din cykel"; "Elcyklar och elsparkcyklar ska placeras utomhus på däck."; "Lådcykel, tandemcykel eller andra skrymmande cyklar räknas som gods". -->
+På Waxholmsbolagets båtar får du ta med en vanlig cykel i mån av plats utan extra kostnad. Personalen avgör om det finns plats, och elcyklar ställs ute på däck. Lådcyklar och tandemcyklar räknas som gods.
 
 ### Ta sig dit
 Buss 434 från Slussen till Sollenkroka och båt därifrån tar enligt Värmdö kommun cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3–4 timmar.
@@ -1068,10 +1055,11 @@ Räfsnäs är startpunkten för Waxholmsbåten norrut. En liten samlingsplats me
  },
 
  'packlista-bat': {
- title: 'Packlista för båtturen – det du inte får glömma',
- excerpt: 'Oavsett om du tar ut en dagsbåt eller planerar en vecka i skärgården finns saker du alltid behöver. Komplett packlista.',
+ title: 'Packlista för båten – bra saker att ha ombord',
+ excerpt: 'Bra saker att ha i båten: säkerhetsutrustning, navigation, verktyg, mat och kläder – en checklista för dagsturen och veckan i skärgården.',
  category: 'Praktiskt',
  date: '2026-04-01',
+ updatedAt: '2026-09-24',
  readTime: '4 min',
  emoji: '🎒',
  tags: ['Packlista', 'Utrustning', 'Säkerhet'],
@@ -1083,10 +1071,9 @@ En bra packlista för båt handlar inte om att ta med allt – det handlar om at
 - Flytvästar till samtliga ombord (rätt storlek!)
 - Kastkrans med lina
 - Nödbloss (godkänd och ej utgången)
-- Handeldslockare (B-typ)
 - Kompass (fungerande, ej bara GPS)
 - Sjökort för området (papper, inte bara app)
-- VHF-radio (kanalerna 16 och 77)
+- VHF-radio
 - Ankare med kedja och lina
 
 ## Navigation och kommunikation
@@ -1100,7 +1087,6 @@ En bra packlista för båt handlar inte om att ta med allt – det handlar om at
 ## Verktyg och reparation
 
 - Verktygslåda (kniv, tång, skruvmejsel, skiftnyckel)
-- Reservkylarvätska för motorn
 - Reservimpeller (om du har utombordsmotor)
 - Självhäftande reparationstejp
 - Packnålar för segel (om segelbåt)
@@ -1108,26 +1094,26 @@ En bra packlista för båt handlar inte om att ta med allt – det handlar om at
 
 ## Mat och vatten
 
-- Minimum 2 liter vatten per person och dag, plus extra
+- Dricksvatten, med marginal
 - Reservmat för minst 1 extra dag utöver planerat
 - Gasolkök med reservgasol
 - Gryta, kastrull, tallrik och bestick
-- Kaffebryggare eller fältperkulator – prioriterat
+- Kaffebryggare eller perkulator
 
 ## Personliga saker
 
 - Regnkläder (täcker hela kroppen, inklusive byxor)
-- Varma kläder (även sommar – temperaturen på havet är lägre)
-- Solskyddsfaktor 50 (havsreflektion förstärker solen)
+- Varma kläder, även på sommaren
+- Solskydd
 - Solglasögon med UV-skydd
-- Myggmedel (maj–juli inomskärs)
+- Myggmedel
 - Förbandslåda
 
 ## Administrativa saker
 
-- Båtens dokument (registrering, försäkring, sjövägsboken)
+- Båtens försäkringsbrev och eventuellt hyreskontrakt
 - Kontanter i nödfall
-- Betalkort (de flesta gästhamnar tar kort nu)
+- Betalkort
 - Nödkontaktlista i vattentätt fodral
 
 ---
@@ -1806,55 +1792,47 @@ Skärgårdsövernattning handlar inte nödvändigtvis om pengar. Med tält och r
  },
 
  'skargard-med-hund': {
-   title: 'Skärgård med hund – 6 hundvänliga öar och regler du måste känna till',
-   excerpt: 'Hundar och skärgård är en perfekt kombination — om du vet vad som gäller. Här är de bästa hundvänliga öarna, när hunden måste vara kopplad och naturhamnar med grönyta.',
+   title: 'Skärgård med hund – regler, båten och öar att besöka',
+   excerpt: 'Ta med hunden till Stockholms skärgård: när hunden ska vara kopplad enligt Naturvårdsverket, vad som gäller i naturreservat, hund på Waxholmsbåten, hundbad och öar att besöka.',
    category: 'Guide',
    date: '2026-07-28',
-   readTime: '6 min',
+   updatedAt: '2026-09-24',
+   readTime: '5 min',
    emoji: '🐕',
-   tags: ['Hund', 'Hundvänlig', 'Regler', 'Allemansrätten'],
+   tags: ['Skärgård med hund', 'Hund', 'Kopplingstvång', 'Allemansrätten', 'Waxholmsbolaget'],
    content: `
-En skärgårdsdag med hund är annorlunda på ett bra sätt. Hunden älskar klippor, gräs och havsluften — och de flesta öar välkomnar hundar. Men det finns regler att känna till, och några öar har restriktioner under sommarmånaderna.
+<!-- KÄLLA (lästa 2026-09-24): naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/ ("Mellan 1 mars och 20 augusti måste du ha extra uppsikt över din hund i naturen. Under den tiden får hunden inte springa lös. I praktiken innebär det nästan alltid att du behöver ha hunden kopplad."; "Ha alltid koppel på hunden när ni vistas i nationalparker eller naturreservat."; "Ha alltid hunden i koppel nära betande djur"). waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med ("Du får ta med hundar och mindre sällskapsdjur gratis. Ombord på båten finns det skyltar som visar var det finns platser för dig som reser med husdjur. Hundar ska hållas kopplade ombord"). lansstyrelsen.se Gällnö naturreservat (föreskrift: förbjudet att föra lös hund; läst 2026-09-14). Grinda, Finnhamn: naturreservat enligt Skärgårdsstiftelsen/Länsstyrelsen (se DB-texter och island-data). Linanäs gästhamn: "restaurang och café, där även hundar är välkomna" (datafix 2026-09-22). Schweizerbadet: "hundbad finns vid Vadviken" (haninge.se, datafix 2026-09-22). Tidigare version (borttagen 2026-09-24) påstod att hunden får springa fritt på Grinda utanför 1 mars–20 augusti (fel: Grinda är naturreservat där hunden alltid ska vara kopplad), att Ornö nås med vägfärja från Nynäshamn och att Grinda Wärdshus tillåter hundar i uteserveringen – utan källa. -->
+Hunden får följa med på skärgårdsbåten och ut på öarna, men reglerna för koppel är striktare än många tror: i naturreservat ska hunden alltid vara kopplad, och många av Stockholms skärgårdsöar är naturreservat. Här är vad som gäller enligt Naturvårdsverket och Waxholmsbolaget.
 
-## Regler du måste känna till
+## Reglerna
 
-**Kopplingstvång 1 mars–20 aug:** Under den här perioden ska hundar vara kopplade i de flesta naturreservat. Anledningen är fågelungar och häckande djur. Det gäller oavsett hur väluppfostrad hunden är.
+### Koppel 1 mars–20 augusti – överallt i naturen
+Mellan 1 mars och 20 augusti får hunden inte springa lös i naturen, eftersom vilda djur har ungar. Enligt Naturvårdsverket innebär det i praktiken nästan alltid att hunden ska vara kopplad.
 
-**Naturreservat med egna regler:** Varje reservat kan ha egna föreskrifter. Kontrollera alltid Länsstyrelsens webbplats för den specifika ön du ska besöka.
+### I naturreservat – alltid koppel
+I nationalparker och naturreservat ska hunden ha koppel hela året, enligt Naturvårdsverket. Varje reservat har också egna föreskrifter som står på Länsstyrelsens sida för reservatet.
 
-**Badplatser:** Hundar är ofta förbjudna vid kommunala badplatser under badsäsongen. Privata klippor under allemansrätten är oftast okej.
+### Nära betande djur – alltid koppel
+På öar med betesmark, till exempel där får och kor håller landskapet öppet, ska hunden vara kopplad.
 
-**Waxholmsbåtarna tar hundar:** Ja, hundar är välkomna ombord. Det kostar normalt inget extra. Håll hunden lugn och iaktta hänsyn mot medspassagerare.
+## Hunden på båten
+På Waxholmsbolagets båtar får du ta med hund gratis. Ombord visar skyltar var platserna för husdjur finns, och hunden ska vara kopplad under resan.
 
----
+## Öar och platser
+- [Grinda](/o/grinda) – naturreservat med ångbåtsbryggor som trafikeras året om. Här gäller koppel hela året.
+- [Gällnö](/o/gallno) – naturreservat där det enligt föreskrifterna är förbjudet att ha lös hund, med hagmarker och levande jordbruk.
+- [Finnhamn](/o/finnhamn) – naturreservat med gästhamn, vandrarhem och krog.
+- [Linanäs](/upptack/linanas-gasthamn), Ljusterö – restaurangen och caféet vid bryggan välkomnar hundar.
+- **Hundbad i Vadviken, Dalarö** – intill [Schweizerbadet](/upptack/schweizerbadet) finns ett hundbad.
 
-## 6 hundvänliga öar
-
-**1. [Grinda](/o/grinda)** — Naturreservat med tydliga leder och stora gräsytor. Hunden kan springa fritt utanför kopplingstvångsperioden. Grinda Wärdshus tillåter hundar i uteserveringen.
-
-**2. [Möja](/o/moja)** — Bilfri ö med vägar och stigar. Lite trafik, lugnt tempo. Perfekt för en dag med hunden längs byvägarna.
-
-**3. [Vaxholm](/o/vaxholm)** — Stad med kaféer och restauranger med uteservering. Stadspromenaden längs vattnet är populär. Fästningsholmen kräver koppling.
-
-**4. Runmarö** — Lite större ö i Stockholms skärgård med skogspartier och klippor. Välbesökt av hundägare som vill ha plats att röra sig.
-
-**5. Blidö** — I norra skärgården, enklare att nå med bil. Stigar och skogar, lite turister. Bra för längre promenader med hunden.
-
-**6. [Ornö](/o/orno)** — En av de större skärgårdsöarna söder om Stockholm. Bil krävs (vägfärja från Nynäshamn). Stor ö med riktig natur att utforska.
-
-## Praktiska tips
-
-- Ta med **extra vatten** till hunden — saltvattnet är inte drickbart
-- Kontrollera att **klipporna inte är hala** innan hunden hoppar
-- Ha alltid **hundpåsar** med
-- **Flytväst till hunden** rekommenderas om ni ska ut i båt
-
-Skärgården med hund fungerar utmärkt med rätt planering. Välj öar med utrymme, kontrollera reservatets regler och åk på förmiddagen för att undvika trängseln vid bryggorna.
+## Praktiskt
+- Ta med dricksvatten och hundpåsar.
+- Planerar du att ta hunden i egen båt: [gästhamnar i Stockholms skärgård](/blogg/gasthamnar-guide).
    `,
    faqs: [
-     { q: 'Är hundar tillåtna på Waxholmsbåtarna?', a: 'Ja, hundar är välkomna ombord på Waxholmsbåtarna. Det kostar normalt inget extra. Hunden ska vara i koppel ombord.' },
-     { q: 'Gäller kopplingstvång hela sommaren i skärgårdens naturreservat?', a: 'Kopplingstvång gäller 1 mars–20 aug i de flesta naturreservat för att skydda häckande fåglar. Kontrollera alltid det specifika reservatets regler på Länsstyrelsens webbplats.' },
-     { q: 'Vilka öar i skärgården är bäst för hundar?', a: 'Grinda och Möja är populära val med gott om utrymme och få bilar. Vaxholm passar för en stadsrunda med hunden. Ornö och Blidö är bra om du kan ta dig dit med bil.' },
+     { q: 'Får man ta med hund på Waxholmsbåten?', a: 'Ja. Enligt Waxholmsbolaget får du ta med hundar och mindre sällskapsdjur gratis. Hunden ska vara kopplad ombord, och skyltar visar var platserna för husdjur finns.' },
+     { q: 'När ska hunden vara kopplad i skärgården?', a: 'Mellan 1 mars och 20 augusti får hunden inte springa lös i naturen, vilket i praktiken nästan alltid betyder koppel. I naturreservat och nationalparker ska hunden ha koppel hela året, enligt Naturvårdsverket.' },
+     { q: 'Får hunden springa lös på Grinda?', a: 'Nej. Grinda är naturreservat, och i naturreservat ska hunden alltid vara kopplad enligt Naturvårdsverket.' },
    ],
  },
 
