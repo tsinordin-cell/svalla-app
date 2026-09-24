@@ -5983,6 +5983,29 @@ export const ISLANDS: Island[] = [
       { name: 'Visingsö gästhamn', desc: 'Gästhamn nedanför Visingsborgs slottsruin. Färskvatten, el, dusch, toalett och latrintömning. Djup vid gästplatserna 0,6–1 m.', fuel: false, service: ['el', 'vatten', 'dusch'] },
     ],
     restaurants: [
+      // Visingsö hade noll restauranger inlagda. Öns egen näringslivsförening
+      // listar tio ställen. Tillagt 2026-09-24. Beskrivningarna är källans
+      // egna formuleringar, förkortade. Inga öppettider, inga priser.
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Restaurang Framnäs ligger i anslutning till Wisingö Hotell & Konferens och inryms i hotellets vackraste byggnad, uppförd 1892"
+      { name: 'Restaurang Framnäs', type: 'Restaurang', desc: 'Ligger i anslutning till Wisingö Hotell & Konferens, i en byggnad uppförd 1892.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Wisingsborgs Trädgård. Härligt prunkande trädgård med anor från 1600-talet. Mitt inne i den härliga trädgården ligger ett Trädgårdscafé och i den anrika ladan i anslutning till trädgården serveras dagens lunch."
+      { name: 'Wisingsborgs Trädgård', type: 'Trädgårdscafé', desc: 'Trädgårdscafé i en trädgård med anor från 1600-talet. Dagens lunch serveras i ladan intill.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Persgårdens Café. Här har du möjlighet att ta en ekologisk kaffe med en vidunderlig utsikt över Vättern"
+      { name: 'Persgårdens Café', type: 'Café', desc: 'Ekologiskt kaffe med utsikt över Vättern.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Kajkanten är samlingsnamnet på Fiskboden, Glasskiosken och Restaurang Båthuset precis intill färjeläget på Visingsö. Öl- och vinrättigheter samt lunch, mjukglass, hemlagade våfflor, á la Carte och räkfrossa."
+      { name: 'Kajkanten', type: 'Restaurang', desc: 'Samlingsnamn för Fiskboden, Glasskiosken och Restaurang Båthuset, precis intill färjeläget.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Svensgårdens Kafé ligger vackert på västra sidan av Visingsö i Rökinge. Här serveras kaffe, glass, ostkaka, hembakat och lättare luncher."
+      { name: 'Svensgårdens Kafé', type: 'Café', desc: 'Ligger i Rökinge på öns västra sida. Kaffe, glass, ostkaka, hembakat och lättare luncher.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Restaurang Ek & Glasshuset ligger strax ovanför hamnen, granne med Visingsö Ställplats och mitt i ekskogen. Här serveras A la Carte & husmanskost"
+      { name: 'Restaurang Ek och Glasshuset', type: 'Restaurang', desc: 'Strax ovanför hamnen, mitt i ekskogen. À la carte och husmanskost.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Restaurang Solbacken. Restaurang & Café. Vackert beläget invid Visingsö hamn och granne med Visingsborgs Slottsruin."
+      { name: 'Restaurang Solbacken', type: 'Restaurang/Café', desc: 'Ligger invid hamnen, granne med Visingsborgs slottsruin.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Visingsö Pensionat & Café. Alldeles i skogsbrynet, granne med Brahekyrkan och Kungseken ligger Visingsö Pensionat som varje dag serverar dagens lunch, kaffe och tillhörande fika"
+      { name: 'Visingsö Pensionat & Café', type: 'Café', desc: 'I skogsbrynet vid Brahekyrkan och Kungseken. Dagens lunch och fika.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Inne på fantastiska Tempelgårdens område ligger Tempelgårdens Café & Keramik."
+      { name: 'Tempelgårdens Café', type: 'Café', desc: 'Café och keramik på Tempelgårdens område.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Mysig thairestaurang belägen cenralt på Visingsö."
+      { name: 'Restaurang Talay Thai', type: 'Thai', desc: 'Thairestaurang centralt på ön.' },
     ],
     tips: [
       'Ta häst­skjuts direkt när du kliver av färjan — det är en del av Visingsöupplevelsen.',
@@ -6045,6 +6068,32 @@ export const ISLANDS: Island[] = [
     harbors: [
     ],
     restaurants: [
+      // Ven hade noll restauranger inlagda trots att Landskrona stads egen
+      // besöksguide listar ett tjugotal ställen. Tillagt 2026-09-23 ur den
+      // kommunala listan. Beskrivningarna säger bara det källan säger:
+      // läge och verksamhetstyp. Inga öppettider, inga priser, ingen meny.
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Agnes Tapas, Bäckvikens hamn, 0418-724 60"
+      { name: 'Agnes Tapas', type: 'Tapas', desc: 'Ligger i Bäckvikens hamn.', phone: '0418-724 60' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Café Tycho Brahe, mitt på ön, cafetychobrahe.se"
+      { name: 'Café Tycho Brahe', type: 'Café', desc: 'Ligger mitt på ön.', websiteUrl: 'http://www.cafetychobrahe.se' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Fiskboden, Kyrkbackens hamn, 0418-722 20"
+      { name: 'Fiskboden', type: 'Fisk', desc: 'Ligger i Kyrkbackens hamn.', phone: '0418-722 20' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "House of Ven, houseofven.com" och "Trädgårdscafé & deli, houseofven.com"
+      { name: 'House of Ven', type: 'Restaurang', desc: 'Har även trädgårdscafé och deli.', websiteUrl: 'http://www.houseofven.com' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Hvendurum, bageri, 0418-724 48"
+      { name: 'Hvendurum', type: 'Bageri', desc: 'Bageri på ön.', phone: '0418-724 48' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Pumpans café & restaurang, mitt på ön, pumpans.com"
+      { name: 'Pumpans café & restaurang', type: 'Café/Restaurang', desc: 'Ligger mitt på ön.', websiteUrl: 'http://www.pumpans.com' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Spirit of Hven Backafallsbyn (whiskydestilleri och restaurang), hven.com"
+      { name: 'Spirit of Hven Backafallsbyn', type: 'Restaurang', desc: 'Whiskydestilleri och restaurang.', websiteUrl: 'http://www.hven.com' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Strandkrogen, CampVen, campven.com"
+      { name: 'Strandkrogen', type: 'Krog', desc: 'Ligger vid CampVen.', websiteUrl: 'http://www.campven.com' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Stures krog, stureskrog.se"
+      { name: 'Stures krog', type: 'Krog', desc: 'Krog på Ven.', websiteUrl: 'https://www.stureskrog.se' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Vens Hamnkrog, venshamnkrog.se"
+      { name: 'Vens Hamnkrog', type: 'Krog', desc: 'Krog vid hamnen.', websiteUrl: 'https://venshamnkrog.se' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Vens Våffelmakeri, vaffelmakeri.se"
+      { name: 'Vens Våffelmakeri', type: 'Café', desc: 'Våfflor.', websiteUrl: 'https://vaffelmakeri.se' },
     ],
     tips: [
       'Hyr cykel direkt vid färjeläget i Kyrkbacken — det är det naturliga sättet att se hela ön.',
