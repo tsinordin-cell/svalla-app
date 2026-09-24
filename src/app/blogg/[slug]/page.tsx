@@ -147,49 +147,45 @@ Rekommendation för nybörjare: boka en halvdagstur med en certifierad guideverk
  },
 
  'dolda-parlor-moja': {
- title: 'Möjas dolda pärlor – bilfri ö med äkta skärgårdsstämning',
- excerpt: 'Möja är en av skärgårdens bäst bevarade hemligheter. Bilfri, lugn och genuint vacker.',
+ title: 'Möja – vandring, bad, museum och mat på ön',
+ excerpt: 'Vad du gör på Möja i Stockholms mellersta skärgård: naturstigen genom Björndalen, bad enligt allemansrätten, Roland Svensson-museet, kyrkan från 1768, var du äter och hur du tar dig dit.',
  category: 'Öguide',
  date: '2026-03-15',
+ updatedAt: '2026-09-24',
  readTime: '6 min',
  emoji: '',
- tags: ['Möja', 'Bilfri ö', 'Skärgård'],
+ tags: ['Möja', 'Stockholms skärgård', 'Vandring', 'Mellersta skärgården'],
+ faqs: [
+   { q: 'Hur tar man sig till Möja?', a: 'Enligt Värmdö kommun tar buss 434 från Slussen till Sollenkroka och båt därifrån cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3–4 timmar.' },
+   { q: 'Finns det badplatser på Möja?', a: 'Möja har ingen officiell badplats. Möja turistförening tipsar om naturliga bad från klippor och stränder vid Saltvik, Kyrkviken, Löka, Ramsmora och Långvik, som används enligt allemansrätten.' },
+   { q: 'Hur stor är Möja?', a: 'Möja är cirka 6,5 kilometer från norr till söder enligt Möja turistförening. Huvudöarna Möja och Södermöja har omkring 250 bofasta.' },
+ ],
  content: `
-Det finns öar i Stockholms skärgård som alla vet om – Sandhamn, Fjäderholmarna, Vaxholm. Och sedan finns det Möja. Bilfri, lagom svårtillgänglig och med en genuinitet som turistifierade öar saknar. Det är precis det som gör Möja till en av skärgårdens finaste hemligheter.
+<!-- KÄLLA: varmdo.se Möja.pdf ("Huvudöarna Möja och Södermöja har cirka 250 bofasta"; "Kyrkan uppfördes 1768"; buss 434 Slussen–Sollenkroka "restid ca 2,5 timme"; "båt från Strömkajen tar ca 3-4 timmar"; Björndalens, Storö-Bockö-Lökaö och Granholmens naturreservat; "Här finns tre insjöar"; fisket "den mest betydelsefulla inkomstkällan till långt in på 1980-talet"; 1719 "all bebyggelse blev nedbränd förutom det lilla kapellet i Berg"). stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ ("Ryssugnarna", "Möja fick fast ångbåtsförbindelse 1906"). rolandsvenssonmuseet.se ("Roland Svensson (1910-2003)", museet vid Ramsmora ångbåtsbrygga, "Museet öppnade 2014"; läst 2026-09-19). visitmoja.se/aktiviteter-på-möja/ och /vandra/ ("ca 6,5km från norr till söder", ingen officiell badplats, Saltvik, Kyrkviken, Löka, Ramsmora, Långvik; naturstig Hamn–Ramsmora genom Björndalen "passerar du både ryssugn, insjöar och urskog", 12 km; SAT Långvik–Hamn; Möja Outdoor kajak, roddbåt, SUP, sälsafari; "Möjas dansbana är skärgårdens äldsta ännu i drift"; läst 2026-09-24). visitmoja.se/äta-och-handla-på-möja/ (Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, "Sommaröppet" Möja bageri). konsummoja.se (Coop Berg året runt). svenskaturistforeningen.se STF Möja vandrarhem ("öppet april–december"). Gästhamnar: svenskagasthamnar.se moja-kyrkviken och moja-loka (datafix 2026-09-22). Tidigare version (borttagen 2026-09-24) påstod att Möja nås via Stavsnäs med linje 16 (det gäller Sandhamn), nämnde badplatsen "Möja Hälludden" som vi inte hittar och kallade ön bilfri och "näst folkrikaste" utan källa. -->
+Möja ligger i Stockholms mellersta skärgård och är cirka 6,5 kilometer från norr till söder. Huvudöarna Möja och Södermöja har omkring 250 bofasta, och på ön finns byar, kyrka, lanthandel och tre naturreservat. Här är vad du kan göra på ön, enligt Möja turistförening och Värmdö kommun. Mer fakta: [Möja på Svalla](/o/moja).
 
-## Varför Möja?
+## Vandra
+Möja turistförening har märkt upp en naturstig mellan byarna Hamn i väster och Ramsmora i öster, 12 kilometer genom Björndalens naturreservat. Längs vägen passerar du ryssugnar – eldstäder där ryska soldater lagade mat när de brände Möja 1719 – insjöar och urskog. Stockholm Archipelago Trail följer landsvägen från Långvik till Hamn, en lätt etapp som fungerar även med barnvagn.
 
-Möja är Stockholms skärgårds näst folkrikaste ö, men stämningen är allt annat än stadsmässig. Inga bilar, inga köer, inga hotellkedjor. Istället: cyklar, roddbåtar och ett tempo som påminner dig om vad sommaren egentligen är till för.
+## Bada
+Möja har ingen officiell badplats. Turistföreningen tipsar om naturliga bad från klippor och stränder vid Saltvik, Kyrkviken, Löka, Ramsmora och Långvik, som används enligt allemansrätten.
 
-Ön är stor nog att utforska – cirka 5 km lång, och närmare 8 km räknar man in Södermöja – men liten nog att inte kännas anonym. Här vet folk vem du är när du kommit tillbaka andra gången.
+## Museum, kyrka och dansbana
+- **Roland Svensson-museet** vid Ramsmora brygga öppnade 2014. Skärgårdskonstnären Roland Svensson (1910–2003) hade sin ateljé på Tornö, och hans målar- och skrivarhörnor flyttades hit.
+- **Möja kyrka** uppfördes 1768, och kyrkogården anlades omkring 1755.
+- **Möja dansbana** är enligt turistföreningen skärgårdens äldsta dansbana som fortfarande används, med musik, dans, bio och marknader på sommaren.
 
-## Komma dit
+## Ut på vattnet
+Möja Outdoor hyr ut kajak, roddbåt och SUP och ordnar sälsafari. Cykel hyrs på Hamncafét – se [Hyra cykel på Möja och Gällnö](/blogg/cykling-moja-gallno).
 
-Waxholmsbåten går direkt från Strömkajen bara under sommartabellen 19 juni–16 augusti, och tar då mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Alternativet, som fungerar året runt, är att ta sig till Stavsnäs vinterhamn och ta båten därifrån – Waxholmsbolagets linje 16 tar 40–65 min, Stavsnäs Båttaxis Sandhamnslinje 30 min. Under högsäsong går det fler avgångar, men kolla tidtabellen noga på waxholmsbolaget.se.
-
-## Vad du ska göra
-
-**Hyr cykel vid bryggan.** Det är det självklara sättet att ta sig runt ön. Cykelvägarna är platta och fina längs kusterna, lite kuperade inne i skogen.
-
-**Bada vid Möja Hälludden.** En av öns finaste badplatser med klippor och klart vatten. Lite promenad från huvudbryggan men väl värt det.
-
-**Fika hos Möja Bageri.** Genuint lokalt bageri med kanelbullar som smakar som de ska smaka.
-
-**Naturhamnen i söder.** Ta dig till den skyddade naturhamnen i södra delen av ön. Sälar och storskarvar håller ofta till här.
-
-## Äta på Möja
-
-Möja Wärdshus är det självklara valet – klassisk husmanskost med skärgårdsinfluenser. Räkor, fisk och en kall öl i sommarkvällen vid vattnet. Boka bord om du kommer en lördagskväll.
-
-Det finns också ett litet sommarcafé vid norra bryggan som serverar smörgåsar och glass.
+## Äta och handla
+Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét och det sommaröppna Möja bageri. Coop i Berg har öppet året runt.
 
 ## Övernatta
+STF Möja vandrarhem har öppet april–december. Med egen båt finns gästplatser i [Kyrkviken](/upptack/kyrkviken) nära Berg och i fiskehamnen [Löka](/upptack/loka-gasthamn).
 
-Flera stuguthyrningar och ett mindre vandrarhem finns på ön. Det populäraste alternativet är att hyra en av de gamla fiskarstugorna nära vattnet – boka tidigt, de är fullbokade från mars.
-
-## Rätt tid att åka
-
-Möja är vackert hela sommaren, men allra bäst är det i juni (innan massornas ankomst) och i september när turister försvunnit och lugnet återvänder. Höst på Möja är en underskattad upplevelse.
+## Ta sig dit
+Buss 434 från Slussen till Sollenkroka och båt därifrån tar cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3–4 timmar. Aktuella avgångar finns hos Waxholmsbolaget.
  `,
  },
 
@@ -301,44 +297,44 @@ Ute i ytterskärgården, långt från Stockholms ljusföroreningar, är natthiml
  },
 
  'fjaderholmarna-dagstur': {
- title: 'Fjäderholmarna – perfekt dagstur från Stockholm',
- excerpt: 'Bara 25 minuter från Strandvägen och du är i skärgården. Fjäderholmarna är den perfekta introduktionen.',
+ title: 'Fjäderholmarna dagstur – båt, mat och vad du gör på ön',
+ excerpt: 'Dagstur till Fjäderholmarna från Stockholm: vilka båtar som går och hur lång tid det tar, Rökeriet, krogen och bryggeriet, hantverkarna, bad från klipporna och öarnas historia.',
  category: 'Öguide',
  date: '2026-01-30',
+ updatedAt: '2026-09-24',
  readTime: '5 min',
  emoji: '',
- tags: ['Fjäderholmarna', 'Dagstur', 'Stockholm'],
+ tags: ['Fjäderholmarna', 'Dagstur från Stockholm', 'Skärgård nära Stockholm', 'Stockholm'],
+ faqs: [
+   { q: 'Hur tar man sig till Fjäderholmarna?', a: 'Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen trafikerar öarna. Strömmas båt går från Strandvägen kajplats 13 och tar cirka 30 minuter, och vissa avgångar stannar vid Nacka Strand.' },
+   { q: 'Är Fjäderholmarna öppet året runt?', a: 'Nej. Båtar, restauranger och butiker har säsongsöppet under sommarhalvåret, och utanför säsong är det mesta stängt.' },
+   { q: 'Kan man bada på Fjäderholmarna?', a: 'Ja, från klipporna med utsikt över Stockholms inlopp och vid några mindre sandstränder.' },
+ ],
  content: `
-Om du aldrig sett Stockholms skärgård men vill starta försiktigt – Fjäderholmarna är din ö. 25 minuters båtresa från Strandvägen, öppen sommarsäsong och ett litet ösamhälle med restauranger, hantverk och promenadstråk.
+<!-- KÄLLA: stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ (Strandvägen kajplats 13, ca 30 min, "Some departures also stop at Nacka Strand"). fjaderholmarna.se (båtoperatörer Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen; Fjäderholmarnas Krog, Restaurang Rökeriet och Fjäderholmarnas Bryggeri; hantverkare inom trä, textil, keramik och glas; utställningen "Allmogebåtar"; "Fjäderholmarna har nu säsongsöppet"). fjaderholmarnasbryggeri.se (brewpub, öl direkt från tankarna, huvudproduktion i Bro). fjaderholmarnaskrog.se (Krogen, Hamnbaren och Loftet, bordsbokning online). explorearchipelago.com (klippbad med utsikt över Stockholms inlopp, mindre sandstränder). lidingo.se kulturmiljöunderlag Stora Fjäderholmen ("omnämns i skrift redan 1381", krog "Åtminstone sedan 1699", marinen förvärvade öarna 1918, Försvarsmakten lämnade 1976, "Sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken"). Ögruppen Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme; Libertas och Rövarns holme fågelskyddsområden med landstigningsförbud under häckningstid (naturkartan.se/lidingo.se). Gästhamnen 35 platser med boj (svenskagasthamnar.se, datafix 2026-09-22). Alla källor återges i src/app/o/island-data.ts (fjaderholmarna). Tidigare version (borttagen 2026-09-24) påstod att "Waxholmsbolaget kör" båten från Strandvägen, att det finns ett akvarium och "Båthuset Bar & Grill" och gav pris och turtäthet utan källa. -->
+Fjäderholmarna är de skärgårdsöar som ligger närmast centrala Stockholm – en dryg halvtimme med båt från Strandvägen. På Stora Fjäderholmen finns rökeri, krog, bryggeri och hantverkare, och du badar från klipporna med Stockholms inlopp framför dig. Mer fakta och karta: [Fjäderholmarna på Svalla](/o/fjaderholmarna).
 
-## Ta sig dit
+## Båten dit
+Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13 och tar cirka 30 minuter, och vissa avgångar stannar vid Nacka Strand. Alla restider: [Båt till Fjäderholmarna](/o/fjaderholmarna/komma-dit).
 
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Båt från Strandvägen, Nybroplan eller Allmänna Gränd. Sommarsäsong med täta avgångar (var 30:e minut under högtrafik). Pris ca 125 kr tur och retur. Inga förkunskaper behövs – det är en riktig båt som Waxholmsbolaget kör.
-
-## Vad du gör på Fjäderholmarna
-
-Öarna är fyra till antalet – bara Stora Fjäderholmen är tillgänglig för besökare. Det räcker gott.
-
-**Promenera runt ön.** Det tar ca 45 minuter att gå runt hela Stora Fjäderholmen längs strandstigen. Fantastisk utsikt, historiska byggnader och fågellivet som strömmar in från havet.
-
-**Hantverksgallerierna.** Unika butiker med lokalt hantverk – keramik, smycken, textil. Inte turistfällan du kanske tror utan genuint gott hantverk.
-
-**Akvariet.** Litet men välgjort akvarium med Östersjöns fisk och havsliv. Bra för barn, intressant för vuxna.
+Fjäderholmarna har säsongsöppet under sommarhalvåret – båtar, restauranger och butiker. Utanför säsong är det mesta stängt.
 
 ## Äta och dricka
+- **Restaurang Rökeriet** röker på plats och säljer både i restaurangen och i delin, med skagenmackor, sallader, rökta räkor och chark.
+- **Fjäderholmarnas Krog** vid gästhamnen har Krogen, Hamnbaren och Loftet. Bord bokas online.
+- **Fjäderholmarnas Bryggeri** har en brewpub där ölen serveras direkt från tankarna, med pubmeny och ölprovningar.
 
-**Fjäderholmarnas Krog** – det självklara alternativet för en riktigt lunch eller middag. Havsutsikt, fisk och skaldjur och en av Stockholms bästa sommarterrasser. Boka bord.
+## Vad du gör på ön
+- **Hantverkare** inom trä, textil, keramik och glas har verkstad på ön. Vilka som är på plats varierar mellan säsonger.
+- **Utställningen Allmogebåtar** visar traditionella skärgårdsbåtar.
+- **Bad** från klipporna och vid några mindre sandstränder.
+- **Fåglarna:** ögruppen består av Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme. Libertas och Rövarns holme är fågelskyddsområden med landstigningsförbud under häckningstiden.
 
-**Rökeriet** – lite mer avslappnat, fokus på rökt fisk och skaldjur. Perfekt för en enkel lunch.
+## Historia
+Fjäderholmarna nämns i skrift redan 1381, och åtminstone sedan 1699 har det funnits krog på Stora Fjäderholmen. Marinen köpte öarna 1918, och i praktiken rådde landstigningsförbud tills Försvarsmakten lämnade 1976. Sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken.
 
-**Båthuset Bar & Grill** – drinkar och snabbmat nere vid bryggan. Bra sundowner-plats.
-
-## Bästa tid att åka
-
-Morgon eller sen eftermiddag – undvik mitt på dagen i juli när dagstursturister är som flest. En kvällstur med middag på Fjäderholmarnas Krog och sista båten hem är en av Stockholms bästa sommarupplevelser.
-
-**Tips:** Köp returbiljett ombord eller via appen. Kontrollera avgångstider noga – sista båten tillbaka kan vara tidigare än du tror.
+## Med egen båt
+[Fjäderholmarnas gästhamn](/upptack/fjaderholmarnas-gasthamn) har 35 gästplatser med bojförtöjning.
  `,
  },
 
@@ -495,62 +491,90 @@ Segla varsamt och njut. Skärgården från en segelbåt är en helt annan upplev
  },
 
  'basta-badplatserna': {
- title: 'De 12 bästa badplatserna i Stockholms skärgård',
- excerpt: 'Klippbad, sandstrand eller bastu vid vattnet? Vi har listat de absolut bästa badplatserna.',
+ title: 'Badplatser i Stockholms skärgård – sandstränder och klippbad',
+ excerpt: 'Sandstränder, klippbad och havsbad i Stockholms skärgård: Trouville på Sandhamn, Björnö och Ingarö, Vaxholmsöarna och bad du når med Roslagsbanan, Saltsjöbanan eller buss. Fakta från kommunerna och Havs- och vattenmyndigheten.',
  category: 'Aktiviteter',
  date: '2026-04-08',
- updatedAt: '2026-07-14',
- readTime: '6 min',
+ updatedAt: '2026-09-24',
+ readTime: '7 min',
  emoji: '',
- tags: ['Bad', 'Badplatser', 'Sommar'],
+ tags: ['Badplatser Stockholms skärgård', 'Sandstrand', 'Klippbad', 'Havsbad', 'Bad'],
  faqs: [
-   { q: 'Vilka är de bästa badplatserna i Stockholms skärgård?', a: 'Trouville på Sandhamn är den mest kända sandstranden. Stora Sand på Utö är bäst för barnfamiljer med grunt vatten. Fejan naturreservat norr om Furusund har kristallklart vatten och vita klipphällar. Kymmendö (Strindbergs ö) är en av de mest stämningsfulla platserna att bada på i hela skärgården.' },
-   { q: 'Kan man bada gratis i Stockholms skärgård?', a: 'Ja — naturliga badplatser, klippbad och stränder i Stockholms skärgård är gratis tack vare allemansrätten (anlagda friluftsbad och kallbadhus kan ta inträde). Du har rätt att bada och vistas på land som inte är privattomt, vilket täcker de allra flesta klippor och stränder i skärgårdslandskapet.' },
-   { q: 'Vilken badplats i skärgården är bäst för barn?', a: 'Stora Sand på Utö har grunt, sandigt vatten och är ett av de säkraste badfamiljealternativen. Dalarö klapperstensstrand nås med bil och passar för barn. Fjäderholmarna (25 min från Stockholm) har klippbad som är tryggt och lättillgängligt utan lång resväg.' },
-   { q: 'Hur tar man sig till badplatser i skärgården utan båt?', a: 'Waxholmsbolaget kör till Sandhamn, Utö, Möja, Ingmarsö och många fler. Dalarö nås med buss 839 från Handens station, eller 869 från Slakthuset vid Globen. Fjäderholmarna nås med båt från Strandvägen på 25 minuter. Västerudd på Värmdö nås med buss och promenad från Gustavsberg.' },
+   { q: 'Var finns sandstränder i Stockholms skärgård?', a: 'Trouville på Sandhamns södra sida har vit sand. På södra Ingarö finns Stora Sandarna, cirka 200 meter sandstrand, och Lilla Sandarna, och i Björnö naturreservat ligger Torpesand med ungefär 120 meter sandstrand och långgrund sandbotten. Nära Vaxholm har Eriksöbadet och Tenöbadet sandstrand.' },
+   { q: 'Får man bada var som helst i skärgården?', a: 'Enligt Naturvårdsverket får du gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt eller är skyddad, till exempel för fågelliv. Det finns inget förbud mot att bada vid en brygga som ligger utanför en tomt, men ägaren får inte hindras från att använda den.' },
+   { q: 'Vilka havsbad når man utan bil eller båt?', a: 'Österskärs havsbad (Solbrännan) ligger en kort promenad från Roslagsbanans Österskärs station, och Saltsjöbadens friluftsbad cirka 500 meter från Saltsjöbanans station. Schweizerbadet på Dalarö, Årsta havsbad, Trinntorpsbadet i Tyresö och Stora Sandarna på Ingarö har busshållplats i närheten.' },
+   { q: 'Hur vet jag om badvattnet är bra?', a: 'Havs- och vattenmyndighetens Badplatsen visar provtagning och badvattenkvalitet för badplatser som kommunerna provtar, till exempel EU-baden Eriksöbadet och Tenöbadet. Alla bad provtas inte – Värmdö kommun tar till exempel inga prover vid Trouville på Sandhamn.' },
  ],
  content: `
-Stockholms skärgård har hundratals badplatser. De flesta är dolda klippor nåbara bara med båt. Några är klassiker. Naturbaden är gratis tack vare allemansrätten. Här är våra tolv favoriter.
+<!-- KÄLLA (lästa 2026-09-22 om inget annat anges; citat i supabase/datafix/2026-09-22-strander-beskrivningar.sql): Trouville – varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn ("Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida", "omkring 20 minuters promenad från hamnen", "Toaletter sommartid", "Ingen provtagning av badvatten utförs av Värmdö kommun"; läst 2026-09-23). Torpesand, Stora och Lilla Sandarna, Grisslinge, Södersved – havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-varmdo-kommun/. Björkviks havsbad – visitvarmdo.com ("a mixture of both rocky waters edge and sandy beaches", Ingaröfjärden; datafix 2026-09-23-texter-omgang2.sql). Eriksöbadet, Tenöbadet, Grönviksbadet, Måldepån, Överbybadet – vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser ("Tenöbadet är ett EU-bad"). Solbrännan – osteraker.se badplatser. Saltsjöbadens friluftsbad – nacka.se/uppleva--gora/friluftsliv-motion/badplatser-och-badvatten/saltsjobaden-fisksatra/. Trinntorpsbadet – tyreso.se badplatser. Schweizerbadet, Årsta havsbad – haninge.se/uppleva-och-gora/idrott-och-friluftsliv/friluft-och-natur/bad/. Nickstabadet, Hamnviken – havochvatten.se Nynäshamns kommun. Backbybadet, Kvarnsand – norrtalje.se/info/kultur-och-fritid/bad/badplatser/. Allemansrätten – naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ ("Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt, eller som är skyddad för fågelliv eller annat", "Det finns inget förbud mot att tillfälligt förtöja eller bada vid en brygga som ligger utanför en tomt"; läst 2026-09-24). Tidigare version (borttagen 2026-09-24) rangordnade "tolv favoriter" utan mätning och påstod bl.a. att Kymmendö är naturreservat och att Stora Sand på Utö ligger inom ett skjutfält som främst är öppet i juli – påståenden utan källa. -->
+Stockholms skärgård har både sandstränder och klippbad, och enligt allemansrätten får du bada vid stränder som inte hör till någon tomt. Här är badplatser där kommunen, Havs- och vattenmyndigheten eller Skärgårdsstiftelsen beskriver vad som finns på plats. Vi rangordnar dem inte – de är sorterade efter hur du tar dig dit. Varje bad har en egen sida på Svalla med karta.
 
-## 1. Trouville, Sandön (Sandhamn)
-Sandhamns mest kända badstrand på södra sidan av Sandön — vit sandstrand med fin sand, cirka 15–20 min promenad från hamnen genom skogen. Klassisk skärgårdsbadplats.
+## Sandstränder i skärgården
 
-## 2. Möja Hälludden
-Klippbad på Möjas östra sida. Lite promenad från bryggan men med en av öns bästa utsikter. Solsäker plats från tidig morgon.
+### [Trouville, Sandhamn](/upptack/stora-trouvillestranden)
+Den långa stranden med vit sand ligger på Sandhamns södra sida, omkring 20 minuters promenad från hamnen. Sommartid finns toaletter. Badet ägs och sköts av Eknö hemman, och Värmdö kommun tar inga badvattenprover här. Stranden delas i [Stora](/upptack/stora-trouvillestranden) och [Lilla Trouville](/upptack/lilla-trouville-stranden). Så tar du dig till ön: [Båt till Sandhamn](/o/sandhamn/komma-dit).
 
-## 3. Stora Sand, Utö
-Stora Sand är Utös största sandstrand — lång och bred, väl lämpad för barn med gradvis djupare vatten. Ligger inom skjutfältet, så kontrollera tillgänglighet hos Utö Turistbyrå innan du åker (öppen för allmänheten främst i juli).
+### [Torpesand, Björnö naturreservat](/upptack/torpesand)
+Strand- och klippbad i Björnö naturreservat på Ingarö. Sandstranden är cirka 120 meter lång med långgrund sandbotten, och vid klippbadet finns en handikappanpassad badbrygga.
 
-## 4. Storskär, Möja-området
-Klippbad ute i ytterskärgården öster om Möja. Klart, öppet vatten — bäst med egen båt.
+### [Stora Sandarna](/upptack/stora-sandarna) och [Lilla Sandarna](/upptack/lilla-sandarna), Ingarö
+Två naturliga sandstränder på södra Ingarö med öppet läge i söder mot Nämdöfjärden. Stora Sandarna är cirka 200 meter lång och har klippuddar på båda sidor, Lilla Sandarna cirka 100 meter. Parkering finns cirka 150 meter bort och busshållplats cirka 500 meter bort.
 
-## 5. Fejan, naturreservat
-En av skärgårdens finaste klippöar norr om Furusund. Klart vatten, vita klippor och en naturhamn som är lika fin att bada i som att ankra i.
+### [Björkviks havsbad](/upptack/bjorviks-havsbad), Ingarö
+Klippor och sandstrand vid Ingaröfjärden på södra Ingarö. Här finns komposttoalett.
 
-## 6. Ingmarsö, norra sidan
-Norra Ingmarsös klippbad är ostört och otouristifierat. Ta cykel från södra bryggan upp till norra sidan.
+### [Eriksöbadet](/upptack/eriksobadet), Vaxholm
+Sandstränder och klippbad i Eriksö friluftsområde på Vaxön, med handikappramp, flytbrygga med hopptorn, grillplats och omklädningshytt. Badet är ett EU-bad, och i friluftsområdet finns camping, kiosk och servering.
 
-## 7. Västerudd, Värmdö
-Lättillgängligt klippbad med buss och promenad från Gustavsberg. Bra för Stockholmsbor utan båt.
+### [Tenöbadet](/upptack/tenobadet), Bogesund
+Sandstrand och stora grönytor i Tenöreservatet, nära vandringsleder, med grillplats, lekplats och omklädningshytt. EU-bad. Kör över Pålsundsbron och följ Tenövägen till den stora parkeringen.
 
-## 8. Björkvik, Gällnö
-Gällnö är bilfri och rofylld. Björkvik på öns västra sida har klippor och fin vik. Perfekt kombination med en cykeltur på ön.
+## Klippbad och mindre bad
 
-## 9. Norrpada
-Ögrupp i ytterskärgården nordost om Möja, kända för rent vatten och dramatiska klippor. Bäst nådd med fritidsbåt — inga reguljära färjor går dit.
+### [Måldepån](/upptack/maldepan), Rindö
+Enklare bad med stenstrand och badbryggor längs Militärvägen, med utsikt mot Oxdjupet där de stora fartygen passerar på väg in mot Stockholm.
 
-## 10. Huvudskär
-Ytterst i ytterskärgården. Mer äventyr än bekvämt bad – men att bada här med öppen Östersjö runtomkring är något alldeles speciellt.
+### [Grönviksbadet](/upptack/gronviksbadet), Rindö
+Litet bad med sandstrand, badbrygga och grillplats i slutet av Grönviksvägen. Rindö nås med gratis bilfärja från Vaxön.
 
-## 11. Dalarö klapperstensstrand
-Söder om Stockholm, nåbar med bil. Gammal fiskeby och fin klapperstensstrand. Bra för familjer.
+### [Hamnvikens badplats](/upptack/tian), Nynäshamn
+Sandstrand, gräsytor och brygga i en skyddad vik söder om Nynäshamn, och bad från klippor.
 
-## 12. Kymmendö (Strindbergs ö)
-August Strindberg bodde här och inspirerades. Ön är numera naturreservat – besök med respekt och njut av en av Stockholms skärgårds mest stämningsfulla bad.
+## Havsbad du når med tåg eller buss
 
----
+### [Österskärs havsbad (Solbrännan)](/upptack/solbrannan)
+Lång sandstrand med badbrygga vid Trälhavet, en kort promenad från Roslagsbanans Österskärs station. Ett upplyst promenadstråk i trä gör stranden relativt lättillgänglig.
 
-**Tips:** Svalla-kartan visar badplatser med GPS-koordinater. Filtrera på "Bad" i kategorierna för att hitta närmaste plats längs din rutt.
+### [Saltsjöbadens friluftsbad](/upptack/saltsjobadens-friluftsbad)
+Sandstrand som är öppen för alla, hopptorn, servering och kajakuthyrning, cirka 500 meter från Saltsjöbanans station Saltsjöbaden. Dam- och herrbaden har egna badhus med bastu och vinterbad.
+
+### [Schweizerbadet](/upptack/schweizerbadet), Dalarö
+Stort havsbad med strand som är mycket långgrunt, med toalett, kiosk och grillplats. Närmaste busshållplats heter Schweizerparken.
+
+### [Årsta havsbad](/upptack/arsta-havsbad), Haninge
+Stort bad med strand, hopptorn och flera bryggor. Busshållplatsen heter Årsta havsbad.
+
+### [Trinntorpsbadet](/upptack/trinntorpsbadet), Tyresö
+Sandstrand med brygga vid Erstaviken. Busshållplatsen heter Trinntorp.
+
+### [Grisslinge havsbad](/upptack/grisslinge-havsbad) och [Södersved havsbad](/upptack/sodersved-havsbad), Värmdö
+Grisslinge har cirka 300 meter sandstrand med kiosk, konditori och restaurang. Södersved, vid Ingarö Havscamping, har cirka 150 meter sandstrand och är handikappvänligt.
+
+### [Nickstabadet](/upptack/nickstabadet), Nynäshamn
+Cirka 600 meter lång, långgrund sandstrand längst in i Nickstaviken väster om centrala Nynäshamn, med hopptorn och vattenrutschbanor.
+
+## Norra skärgården
+
+### [Backbybadet](/upptack/backbybadet), Singö
+Sandstrand i en skyddad vik i söderläge på Singös östra sida, med brygga, badstege, omklädningsrum och toalett.
+
+### [Kvarnsand](/upptack/kvarnsand), Väddö
+Havsbad med cirka 190 meter strandlinje i österläge söder om Grisslehamn, med beachvolleyplan och eldstad. Brygga saknas.
+
+## Innan du badar
+- **Allemansrätten:** enligt Naturvårdsverket får du gå i land och bada vid en strand som inte tillhör någon tomt eller är skyddad för fågelliv. Du får också bada vid en brygga utanför en tomt, så länge ägaren inte hindras från att använda den.
+- **Badvattnet:** Havs- och vattenmyndighetens Badplatsen visar provsvar för de bad som kommunen provtar. Alla bad provtas inte.
+- **Hitta fler:** på [Svallas karta](/upptack) kan du filtrera på badplatser.
  `,
  },
 
@@ -603,169 +627,211 @@ Det bästa sättet att vandra i skärgården: ta båten till en ö, vandra tvär
  },
 
  'cykling-moja-gallno': {
- title: 'Cykla i skärgården – guide för Möja och Gällnö',
- excerpt: 'Bilfria öar är perfekta för cykling. Hyr en cykel vid bryggan och utforska hela ön på ett par timmar.',
+ title: 'Hyra cykel på Möja och Gällnö – cykla i skärgården',
+ excerpt: 'Var du hyr cykel på Möja och Gällnö, hur långa öarna är, var du badar och äter längs vägen och hur du tar dig dit med båt från Stockholm.',
  category: 'Aktiviteter',
  date: '2026-02-20',
+ updatedAt: '2026-09-24',
  readTime: '5 min',
  emoji: '🚴',
- tags: ['Cykling', 'Möja', 'Gällnö', 'Bilfri ö'],
+ tags: ['Hyra cykel Möja', 'Cykla i skärgården', 'Möja', 'Gällnö', 'Cykeluthyrning'],
+ faqs: [
+   { q: 'Var hyr man cykel på Möja?', a: 'Hamncafét på Möja har cykeluthyrning enligt Möja turistförening. På sommaren kör PerMobilen också daglig transport på landsvägen mellan norra och södra Möja.' },
+   { q: 'Kan man hyra cykel på Gällnö?', a: 'Ja, cykel och kajak går att hyra på Gällnö under sommaren enligt Gällnös egen sida. Länsstyrelsen räknar en cykelled till anordningarna i Gällnö naturreservat.' },
+   { q: 'Hur lång är Möja?', a: 'Möja är cirka 6,5 kilometer från norr till söder enligt Möja turistförening, och Värmdö kommun anger ön till ungefär 6 kilometer lång och 4 kilometer bred.' },
+ ],
  content: `
-Bilfria öar och cykel är en kombination som inte kan slå fel. Inga bilar att ta hänsyn till, byvägar med grus och gräs, och ett tempo som gör att du hinner se allt som de som kör igenom missar.
+<!-- KÄLLA (lästa 2026-09-24 om inget annat anges): visitmoja.se/aktiviteter-på-möja/ (Möja turistförening: "Möja är ca 6,5km från norr till söder"; PerMobilen "Sommartid daglig transport på landsväg från norr till söder ... fr.100 kr/person"; Möja Outdoor "Hyr kajak, roddbåt och SUP"; SAT "går leden längs landsvägen från Långvik till Hamn, en lätt etapp som även fungerar med barnvagn eller rullstol"; "det finns ingen officiell badplats och alla platser nyttjas enl. Allemansrätten", Saltvik, Kyrkviken, Löka, Ramsmora, Långvik; naturstigar "Mellan Hamn-Ramsmora är det (12km)"). visitmoja.se/äta-och-handla-på-möja/ (Hamncafét "Café med glass och bullar samt cykeluthyrning"; Möja bageri "Sommaröppet"; Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes). konsummoja.se (Coop Berg "öppet året runt"; läst 2026-09-14). varmdo.se Möja.pdf ("cirka 6 km lång och 4 km bred"; buss 434 Slussen–Sollenkroka och båt, "restid ca 2,5 timme"; "båt från Strömkajen tar ca 3-4 timmar"). gallno.se och gallno.se/dagsutflykt/ ("Båten från Strömkajen eller Strandvägen tar mellan 1,5 – 2 timmar", "Waxholmsbolaget och Strömma/Cinderella-båtarna", sommaröppen krog, lanthandel, café, gratis tältplats, vandrarhem; cykel och kajak att hyra sommartid enligt FAQ, kontrollerad 2026-09-03). lansstyrelsen.se Gällnö naturreservat (anordningar inkl. "cykelled"; hund kopplad, tält högst två dygn; läst 2026-09-14). skargardsstiftelsen.se/omraden/gallno-karklo/ (Torsviken "sandstrand och tältplats"). Tidigare version (borttagen 2026-09-24) nämnde "Möja Cykeluthyrning" med pris, "Stationärens restaurang" och rundor på 8 och 12 km som vi inte hittar i någon källa. -->
+Möja och Gällnö i Stockholms mellersta skärgård går att cykla på en dag, och på båda öarna går det att hyra cykel på sommaren. Här är vad som finns, enligt öarnas egna turistsidor. Mer om öarna: [Möja](/o/moja) och [Gällnö](/o/gallno).
 
-## Möja – den längsta cykelturen
+## Cykla på Möja
 
-Möja är ca 5 km lång (8 km med Södermöja) och skansen för den som vill cykla ordentligt. Öns vägnät täcker de flesta delar och kombinerar kustlinjer, skog och by i ett och samma svep.
+### Hyra cykel
+Hamncafét på Möja, som också säljer glass och bullar, har cykeluthyrning. Vill du hellre åka än trampa kör PerMobilen daglig transport på landsvägen mellan norra och södra Möja sommartid, som hop on hop off.
 
-**Norra rundan** (ca 8 km) – Från Möja brygga norrut och in mot bykärnan. Grusvägar, gammal bebyggelse och en naturhamn vid norra udden som är perfekt för en paus.
+### Vägen över ön
+Möja är cirka 6,5 kilometer från norr till söder. Landsvägen binder ihop byarna, och Stockholm Archipelago Trail följer den från Långvik till Hamn – en lätt etapp som enligt turistföreningen fungerar även med barnvagn eller rullstol. Den uppmärkta naturstigen mellan Hamn och Ramsmora, 12 kilometer genom Björndalens naturreservat, är gjord för att gå.
 
-**Södra rundan** (ca 12 km) – Ner längs östra kusten mot södra udden. Mer kuperat, bättre utsikt mot ytterskärgården. Ta med matsäck.
+### Bada längs vägen
+Möja har ingen officiell badplats. Turistföreningen tipsar om naturliga bad från klippor och stränder vid Saltvik, Kyrkviken, Löka, Ramsmora och Långvik, som nyttjas enligt allemansrätten.
 
-**Uthyrning:** Möja Cykeluthyrning vid bryggan, ca 100–150 kr/dag. Elektriska cyklar finns för den som vill ha lite hjälp i backarna.
+### Äta och handla
+Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét och det sommaröppna Möja bageri. Coop i Berg har öppet året runt.
 
-**Äta:** Möja Wärdshus är klart bästa alternativet för middag. Möja Bageri för fika. Vänta inte för länge – Möja Bageri stänger ofta tidigt.
+### Ta sig dit
+Buss 434 från Slussen till Sollenkroka och båt därifrån tar enligt Värmdö kommun cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3–4 timmar.
 
-## Gällnö – den lilla ön med stort välbefinnande
+## Cykla på Gällnö
 
-Gällnö är mindre än Möja och mer lättcyklad. Ön är bilfri och lite mer undanskymd – färre turister, mer ro.
+### Hyra cykel
+Cykel och kajak går att hyra på Gällnö under sommaren. Länsstyrelsen räknar en cykelled till anordningarna i Gällnö naturreservat.
 
-**Rundan runt ön** (ca 6 km) – En lagom dagstur. Ön är platt längs kusterna men lite backig inne i mitten. Fina klippbad på västra sidan.
+### Vad du cyklar genom
+Gällnö är naturreservat med hagmarker, lövskog och ett odlat kulturlandskap. Vid Torsviken finns sandstrand och tältplats. I reservatet ska hundar vara kopplade och tält får stå högst två dygn på samma plats.
 
-**Björkvik** är den finaste badplatsen på Gällnö. Ta cykeln dit och hoppa i från klipporna.
+### Äta
+En sommaröppen krog, Handelsboden och café. Vandrarhemmet har också stugor.
 
-**Stationärens restaurang** vid bryggan – öppen sommarsäsong, enkel mat och en av skärgårdens bästa korvar.
+### Ta sig dit
+Båten från Strömkajen eller Strandvägen tar 1,5–2 timmar. Både Waxholmsbolaget och Strömma/Cinderella-båtarna trafikerar ön.
 
-## Tips för cykeldagen
-
-- Kom med tidig båt – ön vaknar kring nio, du kan cykla ostört
-- Boka inte cykel på lördag i juli utan förbokning – de tar slut
-- Ta med picknick – det är det bästa sättet att uppleva de fina utsiktsplatserna
-- Kolla vädret noga – regn på grusväg är trist, sol är fantastisk
+## Före cykeldagen
+- **Kolla säsongen:** uthyrning, krogar och bageri har sommaröppet. Möja turistförening har en öppettidskalender på visitmoja.se.
+- **Möja Outdoor** hyr ut kajak, roddbåt och SUP om du vill ut på vattnet i stället.
+- Fler öar: [Skärgård utan båt – öar du når med kollektivtrafik](/guider/skargard-utan-bat).
  `,
  },
 
  'fiske-skargard-guide': {
- title: 'Fiske i skärgården – leder, arter och bästa säsonger',
- excerpt: 'Abborre, gädda och havsöring väntar i skären. En komplett guide till sportfiske i Stockholms skärgård.',
+ title: 'Fiske i Stockholms skärgård – arter, platser och regler',
+ excerpt: 'Abborre, gädda, gös, havsöring och sik i Stockholms skärgård: när och var de biter enligt Länsstyrelsens fiskeguide, var handredskapsfisket är fritt och vilka mått och fångstgränser som gäller.',
  category: 'Aktiviteter',
  date: '2026-02-10',
- readTime: '8 min',
+ updatedAt: '2026-09-24',
+ readTime: '7 min',
  emoji: '',
- tags: ['Fiske', 'Sportfiske', 'Skärgård'],
+ tags: ['Fiske Stockholms skärgård', 'Sportfiske', 'Gädda', 'Abborre', 'Havsöring', 'Fiskeregler'],
+ faqs: [
+   { q: 'Behöver man fiskekort i Stockholms skärgård?', a: 'Nej, inte för handredskap. Enligt Länsstyrelsen i Stockholm får du fiska fritt med handredskap utan fiskekort i havet längs kusten. Trolling, dragrodd och angelfiske kräver däremot fiskerättsägarens tillstånd, till exempel T-D-A-kortet, eller att du fiskar på allmänt vatten.' },
+   { q: 'Hur många gäddor får man behålla i skärgården?', a: 'Vid fiske med handredskap och ryssjor får du behålla sammanlagt tre gäddor eller gösar per dag. Gäddan måste vara mellan 40 och 75 centimeter; mindre och större gäddor ska släppas tillbaka.' },
+   { q: 'Vilket minimimått gäller för havsöring?', a: 'I Östersjön är minimimåttet för öring 50 centimeter, och längs Stockholmskusten får du behålla högst en icke fenklippt öring per dygn vid fiske med handredskap och ryssjor.' },
+ ],
  content: `
-Stockholms skärgård är ett av Sveriges bästa fiskevatten för sportfiske. Arterna är många, säsongerna tydliga och möjligheterna att nå fiskevatten enorma – oavsett om du fiskar från klippa, kajak eller båt.
+<!-- KÄLLA: Länsstyrelsen Stockholm, "Stockholms läns Fiskeguide 2023" (lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide Stockholms län.pdf, läst 2026-09-24): abborre "Bra fiske hela året med undantag av maj månad då abborren leker", "Bästa fisket är i innerskärgården", "djup mellan 1 och 10 meter", tips "söder om Horsfjärden, Västerfjärden utanför Spillersboda och vid Stora Värtan", "numera har skarv en stor inverkan på bestånden"; gädda "Hela året, bäst vår och höst", "Hela skärgården utom de yttersta delarna", tips "Väddö, Furusund, Ljusterö, Jolpan, Vaxholm, Järnafjärden, Stora Värtan och Västra Muskö"; gös "Bäst fiske på sommaren", "grunda inner fjärdar/vikar", tips "Bergshamraviken till Spillersboda, vattnet runt Vaxholm, Gålö, vattnen runt Mörkö samt Hallsfjärden och Järnafjärden"; havsöring "Från september till maj", "uddar, grynnor och strömsatta sund", "Ofta hugger havsöringen på grunt vatten nära land", utsättningar "Stockholms ström, Kappelskär, Möja, Gålö och Nynäshamn", andra ställen "Singö-Väddökusten, Ljusterö, Kanholmsfjärden, Baggensfjärden, Ingarö, Ornö, Utö och Torö", "Utplanterad öring är fettfeneklippt"; sik "November till maj, bäst i april", "Grunda vikar, sund och flader på 1 till 4 meters djup", "Bottenmete med sk Pater-Noster-tackel", tips "Väddö, Kappelskär, Baggensfjärden, Erstaviken, Kymmendö, Gålö, Fjärdlång, Häringe och Hammersta"; regler "Ryckfiskeförbud gäller i Mälaren, Strömmen och i skärgården", "Ålfiskeförbud gäller för allt fiske i hav", "Trolling, dragrodd och angel får endast bedrivas med fiskerättsägarens tillstånd (exv TDA-kortet) eller på allmänt vatten", "max 3 gäddor eller gös ... per dag. Gäddor <40 cm och >75 cm är fredade". lansstyrelsen.se/stockholm/djur/fiske.html: "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort" (läst 2026-09-24). havochvatten.se gädda i Östersjön: minimimått 40 cm, maximimått 75 cm, "fångstbegränsning för gös och gädda till sammantaget tre fiskar". havochvatten.se öring: "50 centimeter som minimimått i Östersjöns samtliga delområden", "1 icke fenklippt öring per dygn" (läst 2026-09-24). Tidigare version (borttagen 2026-09-24) angav minimimått 45 cm för gädda (fel: 40–75 cm), en säsongstabell och platser utan källa. -->
+Stockholms skärgård har både söt- och saltvattensarter, och med handredskap fiskar du fritt utan fiskekort längs kusten. Här är när och var de vanligaste arterna biter enligt Länsstyrelsen i Stockholms fiskeguide, och vilka regler som gäller.
 
-## Vilka arter finns?
+## Arterna – när och var
 
-**Abborre** – den vanligaste sportfisken i skärgården. Aktiv hela säsongen, biter på flest agn och är utmärkt mat.
+### Abborre
+Den vanligaste sportfisken. Bra fiske hela året utom i maj, när abborren leker, och bäst i innerskärgården på 1–10 meters djup på sommaren. Länsstyrelsen tipsar om vattnen söder om Horsfjärden, Västerfjärden utanför Spillersboda och Stora Värtan. Abborrtillgången varierar mycket, och skarven påverkar bestånden.
 
-**Gädda** – springer längs grunda vikar och vass under vår och sen höst. Kräver lite mer teknik men ger en av fiskesportens bästa upplevelser.
+### Gädda
+Hela året, bäst vår och höst, i hela skärgården utom de yttersta delarna. Spinnfiske med betet någon meter ovanför botten fungerar, liksom mete med död fisk. Tips: Väddö, Furusund, Ljusterö, Jolpan, Vaxholm, Järnafjärden, Stora Värtan och västra Muskö.
 
-**Havsöring** – kommer in längs kusten under höst och vår. Kräver mer kunskap att hitta men är eftertraktad av hängivna sportfiskare.
+### Gös
+Bäst på sommaren, i grunda innerfjärdar och vikar och runt grynnor på försommaren. Tips: sträckan Bergshamraviken–Spillersboda, vattnet runt Vaxholm, Gålö, Mörkö, Hallsfjärden och Järnafjärden.
 
-**Torsk** – mer ute i ytterskärgården och Östersjön. Kraftigt minskade bestånd – kontrollera regler kring fångstbegränsningar.
+### Havsöring
+September till maj, vid uddar, grynnor och strömsatta sund, och ofta på grunt vatten nära land. Havsöring sätts ut vid bland annat Stockholms ström, Kappelskär, Möja, Gålö och Nynäshamn; andra ställen är Singö–Väddökusten, Ljusterö, Kanholmsfjärden, Baggensfjärden, Ingarö, Ornö, Utö och Torö. Utplanterad öring har klippt fettfena.
 
-**Sik** – djupfiskas under sensäsong. Delikatess om du kan hitta det.
+### Sik
+November till maj, bäst i april, på 1–4 meters djup i grunda vikar, sund och flader. Bottenmete med paternostertackel. Tips: Väddö, Kappelskär, Baggensfjärden, Erstaviken, Kymmendö, Gålö, Fjärdlång, Häringe och Hammersta.
 
-## Säsonger
+## Reglerna
 
-| Art | Bästa tid |
-|-----|-----------|
-| Abborre | Maj–juni, september |
-| Gädda | April–maj, oktober |
-| Havsöring | Mars–april, oktober–november |
-| Makrill | Juli–september (ytterskärgård) |
+### Var får du fiska?
+Med handredskap – spö och liknande – fiskar du fritt och utan fiskekort i havet längs kusten. Trolling, dragrodd och angelfiske kräver fiskerättsägarens tillstånd, till exempel T-D-A-kortet, om du inte är på allmänt vatten.
 
-## Regler
+### Mått och fångstgränser
+| Art | Regel |
+|-----|-------|
+| Gädda | Minst 40 och högst 75 cm |
+| Gädda och gös | Högst 3 fiskar sammanlagt per dag |
+| Öring (havsöring) | Minst 50 cm, högst 1 icke fenklippt per dygn |
 
-Fiske med handredskap är fritt för alla i allmänt vatten – ingen licens krävs. Dock gäller:
-- Minimimått (t.ex. gädda 45 cm, torsk – kolla aktuellt)
-- Fångstbegränsningar för torsk
-- Fredade områden (kolla Havs- och vattenmyndigheten)
-- Laxfiske kräver laxkort i vissa vatten
+### Förbud
+- Ryckfiske är förbjudet i skärgården.
+- Ålfiske är förbjudet i hav och vattendrag.
+- Fredningsområden och fredningstider varierar längs kusten – kolla kartan på svenskafiskeregler.se innan du fiskar.
 
-## Bästa platserna
-
-**Innerskärgården (abborre):** Klippor och vass längs Lidingöns östra sida, Baggensfjärden och Baggenskanalen i Nacka – klassiska abborrevikar.
-
-**Mellanska skärgården (gädda):** Grunda vikar runt Ornö, Möja och Ingmarsö är utmärkta gäddvatten på våren.
-
-**Ytterskärgården (havsöring):** Längs ytterkusternas klippor, strömkanter och mynningszoner. Söderarm, Sandhamn och Landsort är kända platser.
-
-## Utrustning för nybörjaren
-
-- Lätt kastspö (7–21g) för abborre och havsöring
-- Makrill-/havsöringlöp med spinnare och wobbler
-- Flytväst – alltid på vattnet, oavsett farkost
-- Återutsättningshåv – skyddad hantering av fisken
-
-Svalla-kartan markerar bränsleplatser och gästhamnar längs fiskerutterna – bra för planering av längre fisketurer ute i skären.
+## Innan du åker
+- **Säkerhet:** flytväst på, oavsett om du fiskar från båt eller kajak.
+- **Båt och bränsle:** Svallas karta visar [sjömackar och gästhamnar](/upptack) längs vägen.
+- **Hitta fler regler:** Länsstyrelsen i Stockholms fiskeguide har kartor över allmänt vatten och fredningsområden.
  `,
  },
 
  'gasthamnar-guide': {
- title: 'Bästa gästhamnarna i Stockholms skärgård 2026',
- excerpt: 'Vi har besökt och betygsatt de 10 bästa gästhamnarna. Service, läge, faciliteter och pris.',
+ title: 'Gästhamnar i Stockholms skärgård – platser, service och bokning',
+ excerpt: 'Gästhamnar i Stockholms skärgård från Grisslehamn till Nåttarö: antal gästplatser, djup, förtöjning, service och om platsen går att boka – hämtat från hamnarnas egna sidor.',
  category: 'Praktiskt',
  date: '2026-01-25',
- readTime: '8 min',
+ updatedAt: '2026-09-24',
+ readTime: '9 min',
  emoji: '',
- tags: ['Gästhamn', 'Båt', 'Övernattning'],
+ tags: ['Gästhamnar Stockholms skärgård', 'Gästhamn', 'Båt', 'Övernattning', 'Segling'],
+ faqs: [
+   { q: 'Kan man boka gästplats i skärgården?', a: 'Det beror på hamnen. Grinda har 28 bokningsbara platser, Rindö Hamn och Svartsö bokas via Dockspot, medan platserna i Lidö gästhamn och Gästhamn Sandudden på Utö inte kan förbokas. Kontrollera hos respektive hamn.' },
+   { q: 'Vilken gästhamn har flest platser?', a: 'Av hamnarna i den här guiden har Utö gästhamn och Nynäshamns gästhamn vardera plats för omkring 300 båtar, och KSSS gästhamn på Sandhamn omkring 150 gästplatser, med ytterligare plats för cirka 200 båtar på Lökholmen.' },
+   { q: 'Vad kostar en natt i gästhamn?', a: 'Hamnavgiften skiljer sig mellan hamnarna och beror oftast på båtens storlek och säsong. Vi anger inga priser utan prislista – aktuell avgift står på varje hamns egen sida.' },
+ ],
  content: `
-En bra gästhamn är mer än bara en förtöjningsplats. Det är slutpunkten på en lång seglingsdag, platsen för en kall öl i solnedgången och grunden för nästa dags äventyr. Här är tio av skärgårdens bästa.
+<!-- KÄLLA: uppgifterna om varje hamn är hämtade från hamnens egen sida eller Svenska Gästhamnars sida för hamnen och finns ordagrant citerade i supabase/datafix/2026-09-22-hamnar-beskrivningar*.sql och 2026-09-23-granskning-namn-lage.sql (lästa 2026-09-22–23): ksss.se/hamnar/sandhamn/ och /lokholmen/, grinda.se/hamn-mack/gasthamn/, finnhamn.se, svenskagasthamnar.se/stockholms-skargard/finnhamn-med-paradisviken-och-soder-langholm/, ingmarsogasthamn.se, svartsolanthandel.se/gasthamn, waxholmshamn.se, rindohamn.se, svenskagasthamnar.se/stockholms-skargard/stockholm-fjaderholmarna/, svenskagasthamnar.se/stockholms-skargard/moja-kyrkviken/ och /moja-loka/, utogasthamn.se, sanduddenuto.se, creapreneur.se/dalaro-information, svenskagasthamnar.se/stockholms-skargard/orno-kyrkviken/, ornobatvarv.se/gasthamn/, nattaro.se/gasthamn/, svenskagasthamnar.se/stockholms-skargard/nynashamn/, grisslehamnsmarina.se/hamnen/, svenskagasthamnar.se/oregrunds-skargard/elmsta-almsta-gasthamn/, arholmanord.se, lidovardshus.com/gsthamnen, graddosjomack.se/gasthamn/, svenskagasthamnar.se/stockholms-skargard/blido/, furusundshamnkrog.se. Tidigare version (borttagen 2026-09-24) påstod att Svalla "besökt och betygsatt" hamnarna, gav stjärnbetyg och ungefärliga priser, sa att Sandhamn bokas via waxholmsbolaget.se och att Landsort är landets sydligaste fyr – inget av det hade källa. -->
+Här är gästhamnarna i Stockholms skärgård där hamnen själv eller Svenska Gästhamnar anger antal platser, djup och service. Vi har inte betygsatt dem: guiden är sorterad från norr till söder, och varje hamn har en egen sida på Svalla med karta. Priser står inte med, eftersom de ändras och ska hämtas från hamnens prislista.
 
-## 1. Sandhamns gästhamn ★★★★★
+## Norra skärgården
 
-Skärgårdens mest kända gästhamn är också bland de bästa. Utmärkt service, välskötta faciliteter och ett fantastiskt läge i seglingens hjärta. Fullbokad i juli – boka platser via waxholmsbolaget.se eller direkt med hamnen.
+### [Grisslehamn Gästhamn](/upptack/grisslehamn-gasthamn)
+77 gästplatser bakom en vågbrytare i västra hamnen, förtöjning vid Y-bom eller boj på 1–5 meters djup. El och vatten på bryggorna, servicehus med wc och dusch, septiktömning och sjömack.
 
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Pris: ca 380 kr/natt för 30 fot.
+### [Elmsta Udde Gästhamn](/upptack/elmsta-udde-gasthamn), Väddö
+Cirka 50 platser där Väddö kanal mynnar ut i Väddöviken, för båtar upp till 25 meter och med cirka 5 meters djup. Dusch, bastu, tvättstuga och latrintömning. Mataffär på gångavstånd i Älmsta.
 
-## 2. Utö gästhamn ★★★★☆
+### [Arholma gästhamn](/upptack/arholma-gasthamn)
+50 meter brygga med mooringlinor och segelbåtsdjup vid Arholma Nord, med el och toaletter. Restaurang och boende i samma anläggning.
 
-Perfekt läge vid Utö Värdshus. Nyrenoverade pontoner, el, vatten och rena faciliteter. Kombinera gästhamnen med middag på värdshuset för en av skärgårdens bästa kvällar.
+### [Lidö gästhamn](/upptack/lido-gasthamn)
+Ett 50-tal platser för stävförtöjning med ankare i Båthusviken, 1,7–2,7 meters djup. Platserna kan inte bokas. Eluttag på bryggan, toalett och dusch vid Oasen.
 
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Pris: ca 350 kr/natt.
+### [Gräddö gästhamn](/upptack/graddo-brygga)
+50 platser med bojförtöjning i Gräddöviken, 1,5–6 meters djup. Sjömack och servicehus med toaletter, duschar, bastu och tvättstuga.
 
-## 3. Vaxholms gästhamn ★★★★☆
+### [Blidö Gästhamn](/upptack/blido-gasthamn)
+50 gästplatser i skyddat läge vid restaurang Blidö Brygga, förtöjning vid boj, mooringlina eller långsides på 2–7 meters djup. Toalett, dusch och tvätt.
 
-Centralt läge i Vaxholms hamn. Bra service, promenadavstånd till stadens alla restauranger. Lite trafikerat av färjor men välskött och rimligt prisad.
+### [Furusunds Gästhamn](/upptack/furusunds-gasthamn)
+Gästhamn med hamnkrog i Furusund, för både korta och längre besök.
 
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Pris: ca 280 kr/natt.
+## Mellersta skärgården
 
-## 4. Dalarö gästhamn ★★★★☆
+### [Ingmarsö Gästhamn](/upptack/ingmarso-gasthamn)
+Cirka 30 platser vid bom, på boj och för ankare, skyddat från alla vindar. Dusch, wc och grillplats ingår i hamnavgiften. Sjömack finns, och krogen ligger cirka 200 meter bort.
 
-Charmig liten hamn söder om Stockholm. Bra service, välkänd krog i hamnen och lättillgänglig från Stockholm (E18 + landsväg). Populär startpunkt för turer mot Utö och Landsort.
+### [Finnhamn](/upptack/finnhamns-arkipelag-ab)
+Tre gästhamnar: [Paradisviken](/upptack/paradiset-stora-jolpan) med drygt hundra platser, el, vatten och wifi, Vandrarhemsviken med ett tjugotal platser nära krog och lanthandel, och en flytbrygga vid [Söder Långholm](/upptack/soderlangholm) med 30 platser.
 
-## 5. Furusunds gästhamn ★★★★☆
+### [Svartsö Gästhamn](/upptack/svartso-gasthamn)
+Drivs av Svartsö Lanthandel intill butiken och caféet. Den som bokat via Dockspot har tillgång till servicehuset med toalett och dusch.
 
-Knutpunkt på Furusundsleder. Välutrustad hamn med bränsle, dusch och restaurang. Bra för norrutseglare.
+### [Grinda Gästhamn](/upptack/grinda-gasthamn)
+28 bokningsbara platser, förtöjning på boj eller mooringlina. El, dusch, toalett och tömning av sopor och septiktank. Nära sjökrogen Framfickan, lanthandeln och Wärdshuset.
 
-## 6. Nynäshamns gästhamn ★★★☆☆
+### [Möja: Kyrkviken](/upptack/kyrkviken) och [Löka](/upptack/loka-gasthamn)
+Kyrkviken är en fiskehamn på Möjas sydöstra sida med ankarförtöjning på 1,8–2,5 meters djup, nära byn Berg. Löka på östra Möja har sju gästplatser med Y-bom för båtar upp till 2,75 meters bredd.
 
-Stor och välskött men lite anonym. Bra om du ska till Utö nästa dag – ta pendeltåget från Stockholm till Nynäshamn och segla därifrån.
+### [KSSS Gästhamn Sandhamn](/upptack/ksss-gasthamn-sandhamn)
+Omkring 150 gästplatser vid tre pontonbryggor framför Seglarhotellet. Förtöjning med mooringlina, ankring förbjuden, och hamnvakter hjälper till. Passbåt går till [Lökholmen](/upptack/ksss-gasthamn-lokholmen-trollsundet) med plats för cirka 200 båtar, dusch och bastu. Under högsommaren är platserna på Lökholmen i första hand för KSSS medlemmar. Mat på ön: [Restauranger på Sandhamn](/blogg/basta-restaurangerna-sandhamn).
 
-## 7. Möja gästhamn ★★★★☆
+## Vaxholm och innerskärgården
 
-Liten och charmig. Plats för ca 40 båtar. Enkla faciliteter men perfekt läge – promenadavstånd till Möja Wärdshus och Möja Bageri.
+### [Vaxholms gästhamn](/upptack/waxholms-gasthamn-och-rent-under-batbotten-tvatt)
+Mitt i Vaxholm, i skyddad hamn med mat, dryck och bränsle nära.
 
-## 8. Ingmarsö gästhamn ★★★☆☆
+### [Rindö Hamn](/upptack/rindo-marina)
+13 gästplatser som bokas via Dockspot eller tas vid drop in, cirka 10 minuter från Vaxholm. Dusch, landström och ostmakeri med café i hamnen.
 
-Lugnt och avsides. Om du vill ha avskildhet och inte turistifiering – Ingmarsö är det. Enkel service men i en av skärgårdens finaste miljöer.
+### [Fjäderholmarnas gästhamn](/upptack/fjaderholmarnas-gasthamn)
+35 gästplatser med bojförtöjning på Stora Fjäderholmen vid inloppet till Stockholm, 1–8 meters djup.
 
-## 9. Landsort gästhamn ★★★☆☆
+## Södra skärgården
 
-Ytterst i ytterskärgården – landets sydligaste fyr är grannen. Enkel hamn med begränsad service men en upplevelse i sig att ligga förtöjd här med Östersjön runtomkring.
+### [Dalarö gästhamn (Askfatshamnen)](/upptack/dalaro-turistbyra-och-gasthamn-askfatshamnen)
+Cirka 40 gästplatser med bom och 2–4 meters djup, drivs tillsammans med turistbyrån. Toaletter, duschar, bastu, tvättstuga och wifi.
 
-## 10. Kymmendö gästhamn ★★★☆☆
+### [Ornö: Kyrkviken](/upptack/ornomacken-gasthamn) och [Brunnsviken](/upptack/orno-gasthamn-och-stugor)
+Kyrkviken har 35 platser med ankarförtöjning på 4 meters djup vid ångbåtsbryggan, med diesel, bensin och restaurang inom 30 meter. Ornö Båtvarvs gästhamn i Brunnsviken har cirka 20 platser vid boj eller långsides, café och microlivs.
 
-Strindbergs ö. Naturreservat med begränsat antal båtplatser. Lugnt, historiskt och med en känsla av att du inte befinner dig på vilken turistkrog som helst.
+### [Utö gästhamn](/upptack/gruvbryggan)
+Plats för cirka 300 fritidsbåtar vid Gruvbryggan, med el, vatten, bastu, dusch, cykeluthyrning och restaurang. [Gästhamn Sandudden](/upptack/gasthamn-sandudden-uto) i Kyrkviken hyr ut platser per dygn, vecka eller säsong, men de kan inte förbokas.
 
----
+### [Nåttarö gästhamn](/upptack/nattaro-nya-gasthamn)
+45 platser med el och boj på den nya flytbryggan i Kvarnviken, 3–4 meters djup längst ut. Dagsgäster kan ligga vid gamla ångbåtsbryggan.
 
-**Tips:** Svalla-kartan visar alla gästhamnar med -ikonen. Filtrera på "Hamn" för att hitta alternativen längs din planerade rutt.
+### [Nynäshamns gästhamn](/upptack/nynashamns-gasthamn)
+300 gästplatser med bom eller boj, restauranger längs hamnstråket och cirka fem minuters promenad till centrum.
+
+## Fler hamnar och naturhamnar
+Svallas karta visar alla gästhamnar, bryggor och naturhamnar – [filtrera på hamnar](/upptack). Vill du ankra i en vik i stället: [Naturhamnar i Stockholms skärgård](/blogg/naturhamnar-stockholm-skargard).
  `,
  },
 

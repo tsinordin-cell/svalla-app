@@ -862,7 +862,7 @@ const LANDING_HTML = `
      <span class="guide-card-cat">Aktiviteter</span>
     </div>
     <div class="guide-card-body">
-     <div class="guide-card-title">De 12 bästa badplatserna i Stockholms skärgård 2026</div>
+     <div class="guide-card-title">Badplatser i Stockholms skärgård – sandstränder och klippbad</div>
      <div class="guide-card-read">Läs guide &rarr;</div>
     </div>
    </a>
@@ -871,7 +871,7 @@ const LANDING_HTML = `
      <span class="guide-card-cat">Öguide</span>
     </div>
     <div class="guide-card-body">
-     <div class="guide-card-title">Fjäderholmarna — perfekt dagstur från Stockholm</div>
+     <div class="guide-card-title">Fjäderholmarna dagstur – båt, mat och vad du gör på ön</div>
      <div class="guide-card-read">Läs guide &rarr;</div>
     </div>
    </a>
