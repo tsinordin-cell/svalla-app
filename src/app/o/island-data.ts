@@ -560,7 +560,7 @@ export const ISLANDS: Island[] = [
       'Havsbastu finns på Utö och är populär även under vinterhalvåret. Kontrasten mot kallt hav är störst i november och mars.',
     ],
     blogLinks: [
-      { slug: 'uto-guide', title: 'Utö – södra skärgårdens kronjuvel' },
+      { slug: 'uto-guide', title: 'Utö guide – gruvorna, cykel, bad och båt från Årsta brygga' },
       { slug: 'vandring-orno-uto', title: 'Vandring i skärgården – bästa lederna på Ornö och Utö' },
       { slug: 'havsbastu-guide', title: 'Havsbastu i skärgården – de bästa platserna 2026' },
     ],

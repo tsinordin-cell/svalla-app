@@ -380,50 +380,49 @@ Bogesundslandets naturreservat, 4 341 hektar varav 2 891 på land, har markerade
  },
 
  'uto-guide': {
- title: 'Utö – södra skärgårdens kronjuvel',
- excerpt: 'Utö har allt: cykelleder, gruvhistoria, havsbastu, topprestaurang och fantastiska naturhamnar.',
+ title: 'Utö guide – gruvorna, cykel, bad och båt från Årsta brygga',
+ excerpt: 'Allt om Utö i Stockholms södra skärgård: Waxholmsbåten från Årsta brygga, gruvorna och väderkvarnen från 1791, cykeluthyrning, bad vid Ålö Storsand och Rävstavik, Utö Värdshus, gästhamnen och reglerna i naturreservatet.',
  category: 'Öguide',
  date: '2026-03-22',
- readTime: '7 min',
+ updatedAt: '2026-09-24',
+ readTime: '6 min',
  emoji: '🚲',
- tags: ['Utö', 'Cykling', 'Havsbastu'],
+ tags: ['Utö', 'Utö gruvor', 'Cykla på Utö', 'Södra skärgården', 'Stockholms skärgård'],
+ faqs: [
+   { q: 'Hur tar man sig till Utö?', a: 'Enligt Länsstyrelsen tar du pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan på Utö. Båt går också från Nynäshamn till grannön Ålö, som har broförbindelse till Utö.' },
+   { q: 'Kan man hyra cykel på Utö?', a: 'Ja. Skärgårdsstiftelsen beskriver Utö som en cykel-ö med cykeluthyrning dagsvis, och Utö gästhamn hyr ut cyklar vid hamnen.' },
+   { q: 'Var badar man på Utö?', a: 'Skärgårdsstiftelsen nämner Ålö Storsand, som nås med båt eller via vandringsled, samt badplatserna Rävstavik och Barnens bad.' },
+ ],
  content: `
-I södra Stockholms skärgård (Haninge kommun, knappt 20 km nordost om Nynäshamn fågelvägen) ligger Utö. Det är en av skärgårdens mest kompletta öar – historia, natur, mat, aktiviteter och infrastruktur som gör ett längre besök möjligt utan att sakna fastlandets bekvämligheter.
+<!-- KÄLLA: källorna finns ordagrant i src/app/o/island-data.ts (uto): lansstyrelsen.se Utö naturreservat (gruvor "till och från under 700 år med början redan under 1100-talet"; reservatet norra delen, skyddat 1974, 4 183 ha; skjutfält i södra delen; väderkvarnen 1791; hundar kopplade; tältning endast anvisade platser; båt högst två dygn vid samma strand; resväg "Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan", läst 2026-09-21), kulturarvstockholm.se Utö gruvor (gruvdriften upphörde 1879; ryssarna förstörde gruvorna 1719; befolkningsmax 446 på 1840-talet), skargardsstiftelsen.se/omraden/uto ("Sveriges äldsta bevarade väderkvarn", "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis", Ålö Storsand "nås med båt eller via vandringsled", Rävstavik och Barnens bad), skargardsstiftelsen.se byggnader (kvarnen byggd 1791, byggnadsminne 2001), svenskakyrkan.se/haninge/om-uto-kyrka (byggd 1848–1850 av sten från gruvorna, orgel från 1745), utovardshus.se (resväg; Utö Värdshus i gamla gruvkontoret, à la carte lunch och middag; Seglarbaren mitt i hamnen), utogasthamn.se (ca 300 fritidsbåtar med el, dusch, bastu, sjömack i norra hamnen; Hamnboden kiosk, café och restaurang; cykeluthyrning), SL linje 846 Västerhaninge–Årsta, Waxholmsbolaget tabell 21 Årsta–Utö. Tidigare version (borttagen 2026-09-24) angav "pendelfartyg från Nynäshamn ca 1,5 timmar" (Utö nås från Årsta brygga; Nynäshamnsbåten går till Ålö), en namngiven kock, cykelpris och naturhamnar utan källa. -->
+[Utö](/o/uto) i Stockholms södra skärgård har gruvor från medeltiden, Sveriges äldsta bevarade väderkvarn och grusvägar som gör ön till en cykel-ö. Norra delen är naturreservat, södra delen militärt övningsområde. Här är det du behöver för ett besök.
 
-## Historien under marken
+## Ta dig dit
+Enklast året runt: pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt till Gruvbryggan på Utö. Båt går också från Nynäshamn till grannön Ålö, som har broförbindelse till Utö. Alla avgångar: [Båt till Utö](/o/uto/komma-dit).
 
-Utö har gruvor. Järnmalmsbrytning pågick här från 1100-talet till 1879 – en av Sveriges äldsta kända gruvdrifter. Gruvmuseet berättar historien och det går faktiskt att gå ner i de gamla schakten. En unik upplevelse som sätter ön i ett helt annat perspektiv.
+## Gruvorna och Gruvbyn
+Järnmalm bröts på Utö till och från i omkring 700 år, med början redan på 1100-talet, och gruvdriften upphörde helt 1879. Sommaren 1719 förstörde den ryska flottan gruvorna. I Gruvbyn står trähusen längs Lurgatan och väderkvarnen från 1791 – Sveriges äldsta bevarade, och byggnadsminne sedan 2001 tillsammans med nio gruvarbetarbostäder. Utö kyrka byggdes 1848–1850 av sten från gruvorna, och orgeln från 1745 stod ursprungligen i Holländska reformerta kyrkan i Stockholm.
 
-## Cykla runt Utö
+## Cykla
+Skärgårdsstiftelsen beskriver Utö som en riktig cykel-ö med milslånga grusvägar, och cyklar hyrs dagsvis vid hamnen.
 
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Utö är bilfri för genomfartstrafik. Det gör ön perfekt för cykling. Hyr cykel vid bryggan (ca 150 kr/dag) och följ de markerade lederna som täcker hela ön.
+## Bada
+- **Ålö Storsand** på grannön Ålö, som nås med båt eller via vandringsled.
+- [Rävstavik](/upptack/ravstavik) nära Gruvbyn.
+- **Barnens bad.**
 
-**Södra ruten** – längs kusten söderut mot Utö fyr. Ca 10 km, fin utsikt och lämplig för lite kondition.
+## Äta
+- **Utö Värdshus** i det gamla gruvkontoret serverar à la carte till lunch och middag.
+- **Seglarbaren** mitt i hamnen har enklare rätter till lunch och grillat på kvällen.
+- **Hamnboden** är kiosk, café och restaurang i samma byggnad.
 
-**Norra ruten** – mot Gruvbyn och upp mot norra udden. Mer kuperad, fint skogslandskap.
+## Med egen båt
+[Utö gästhamn](/upptack/gruvbryggan) har plats för cirka 300 fritidsbåtar med el, dusch, bastu och toaletter, och sjömacken ligger i norra hamnen. [Gästhamn Sandudden](/upptack/gasthamn-sandudden-uto) i Kyrkviken går inte att förboka.
 
-## Utö Värdshus
-
-Värdshusets restaurang är ett av skärgårdens bästa – utan tvekan. Kocken Henrik Norström har arbetat med svenska råvaror på ett seriöst sätt och menyn speglar vad skärgården producerar varje säsong. Priser i premiumsegmentet men väl motiverade.
-
-Boka bord minst en vecka i förväg under högsäsong.
-
-## Havsbastu
-
-Utö har en av skärgårdens bäst belägna havsbastun – direkt vid vattnet med klockren utsikt mot öppet hav. Öppen för gäster på värdshuset och för dagsgäster mot en avgift. Perfekt kombination med ett nattvak i naturhamnen.
-
-## Naturhamnarna
-
-Öster om Utö, mot ytterskärgården, öppnar sig en rad fantastiska naturhamnar. Örnhaken, Lövholmen och Hässelbyholme är favoritplatser för segelbåtar och motorbåtar. Ankra fritt, bada och grilla.
-
-## Ta sig dit
-
-**Pendelfartyg** från Nynäshamn, ca 1,5 timmar. Nynäshamn når du med pendeltåget från Stockholm.
-
-**Direkt båt** från Strömkajen sommarsäsong – ca 3 timmar men en fin tur i sig.
-
-Rekommendation: res dit på fredag kväll, stanna lördag-söndag. Det är inte rimligt att se Utö ordentligt på en dagstur.
+## Regler i naturreservatet
+- Hunden ska vara kopplad.
+- Tälta bara på anvisade platser och elda bara på iordningställda platser.
+- Båt får ligga högst två dygn vid samma strand.
  `,
  },
 
@@ -1229,75 +1228,49 @@ Oavsett vilken led du väljer: ta tid på dig. De bästa seglarupplevelserna i S
  // ── Säsongsredaktionella artiklar ────────────────────────────────────────
 
  'host-i-skargarden-2026': {
-   title: 'Höst i skärgården 2026 – varför september är årets bästa månad',
-   excerpt: 'Lugnet efter högsäsongen, varmt vatten kvar, öppna restauranger och inga köer. September och tidigt oktober är skärgårdens bäst bevarade hemlighet.',
+   title: 'Höst i skärgården – öar du når med båt i september och oktober',
+   excerpt: 'Skärgården på hösten: öarna med båt året runt (Sandhamn, Grinda, Utö, Vaxholm), var du kan äta och bo efter högsäsongen, bastun och nationalparken på Bullerö och vad som stänger i augusti och september.',
    category: 'Inspiration',
    date: '2026-07-27',
-   readTime: '6 min',
+   updatedAt: '2026-09-24',
+   readTime: '5 min',
    emoji: 'leaf',
-   tags: ['Höst', 'September', 'Säsong', 'Tips'],
+   tags: ['Höst i skärgården', 'September', 'Oktober', 'Eftersäsong', 'Stockholms skärgård'],
    content: `
-Fråga vem som helst som bott i eller nära skärgården länge vad årets bästa månad är. Svaret är nästan alltid september.
+<!-- KÄLLA (lästa 2026-09-14–24; ordagranna citat i island-data.ts och datafix-filerna): waxholmsbolaget.se/reseplanering/resmal/sandhamn ("Ut till Sandhamn går det turer året runt"); battaxi.se/sandhamnslinjen-2 (hösttidtabeller 17/8–20/9 och 21/9–20/12 2026); Grinda Norra och Södra bryggan "trafikeras året om av Waxholmsbolaget och Cinderella" (datafix 2026-09-22); lansstyrelsen.se Utö ("Waxholmsbåt året om till Gruvbryggan"); sandhamns-vardshus.se (puben "Öppet året runt", restaurangen "Öppet varje dag från mitten av juni till mitten på september. Annan tid på året är restaurangen främst öppen helger", boende och frukost i Missionshuset); sandhamn.com (julbord 26 november–24 december); dykarbaren.se (säsong maj–september); konsummoja.se (Coop Berg öppet året runt); svenskaturistforeningen.se STF Möja vandrarhem (april–december) och STF Gällnö vandrarhem (öppet året runt); gallno.se/oppettider (krogen: mitten av maj–slutet av augusti); explorearchipelago.com Finnhamns Café & Krog ("Open June to August"); fjaderholmarna.se (säsongsöppet sommarhalvåret); stromma.com Cinderella Sandhamn (30/4–27/9); ksss.se/hamnar/sandhamn/aktuellt (servicehusen "endast öppna maj till september"); vaxholm.se (julmarknad i december); naturvardsverket.se (Nämdöskärgårdens nationalpark invigd 5 september 2025, huvudentré på Bullerö); sverigesnationalparker.se Nämdöskärgården ("Bastun är öppen för alla och går inte att boka", "97 procent av nationalparkens yta är hav"); waxholmsbolaget.se före och under resan (vintertidtabell december–april, vissa fartyg har då begränsad servering); naturvardsverket.se hundar (koppel 1 mars–20 augusti). Tidigare version (borttagen 2026-09-24) angav vatten- och lufttemperaturer och solnedgångstider utan källa, nämnde "Möja Krog" som inte finns i Möja turistförenings förteckning och påstod att "de flesta" restauranger håller öppet till mitten av oktober. -->
+Efter högsäsongen stänger en del av skärgården, men inte allt. Båtarna till de större öarna går året runt, flera pubar och butiker har öppet och Nämdöskärgårdens nationalpark på Bullerö är ny sedan 2025. Här är vad som gäller, ställe för ställe, med källa. Kolla alltid aktuella tider innan du åker.
 
-Inte juli. Inte midsommar. September.
+## Öar med båt året runt
+- [Sandhamn](/o/sandhamn): Waxholmsbolaget går dit året runt via Stavsnäs, och Stavsnäs Båttaxis Sandhamnslinje har hösttidtabell fram till 20 december. Cinderella från Strandvägen slutar för säsongen i slutet av september.
+- [Grinda](/o/grinda): Norra och Södra bryggan trafikeras året om av Waxholmsbolaget och Cinderella.
+- [Utö](/o/uto): Waxholmsbåt året om från Årsta brygga till Gruvbryggan.
+- [Vaxholm](/o/vaxholm): en stad med liv året runt, och i december hålls Vaxholms julmarknad.
 
-Anledningarna är uppenbara när man tänker på det – men de flesta missar dem, för vi är programmerade att tänka "skärgård = sommar = juli". Det är ett dyrt misstag.
+## Äta och bo efter högsäsongen
+- **Sandhamns Värdshus:** puben är öppen året runt. Restaurangen har öppet främst på helger utanför perioden mitten av juni–mitten av september, och boendet i Missionshuset har frukost.
+- **Seglarhotellet på Sandhamn:** julbord från slutet av november till julafton.
+- **Möja:** Coop i Berg har öppet året runt, och STF Möja vandrarhem har öppet april–december.
+- **Gällnö:** STF-vandrarhemmet har öppet året runt, men krogen stänger i slutet av augusti.
 
-## Varmt vatten, kalla nätter, inga köer
+## Det som stänger
+- Dykarbaren på Sandhamn har säsong maj–september.
+- Finnhamns Café & Krog har huvudsäsong juni–augusti.
+- Fjäderholmarna har säsongsöppet under sommarhalvåret.
+- KSSS servicehus med dusch och toalett i Sandhamns gästhamn är öppna maj–september.
+- På Waxholmsbolagets båtar har vissa fartyg begränsad servering under vintertidtabellen, december–april.
 
-I september är Östersjön och innerskärgårdens vikar fortfarande badvarma – ytvattentemperaturen brukar ligga runt 17–20 grader de första veckorna. Lufttemperaturen på dagen är 18–22 grader, perfekt för att sitta ute utan att svettas. Nätterna är svala, sömnen är god.
+## Bullerö och nationalparken
+Nämdöskärgårdens nationalpark invigdes 5 september 2025 och är Sveriges första marina nationalpark i Östersjön – 97 procent av ytan är hav. Huvudentrén ligger på Bullerö, där bastun är öppen för alla och inte går att boka. Mer: [Bullerö](/o/bullero).
 
-Och gästhamnarna? Du bokar dagen innan. Ibland bara dyker du upp.
-
-[Sandhamn](/o/sandhamn) i september är en annan planet jämfört med Sandhamn i juli. Restaurangen tar emot dig. Du hittar en brygga att lägga till vid. Det finns bord.
-
-## Vad som faktiskt är öppet
-
-Det här är den vanligaste frågan: "Men är ju allt stängt i september?"
-
-Nej. Inte alls.
-
-De flesta restauranger och gästhamnar håller öppet till och med september, och många till mitten av oktober. Sandhamns Värdshus, [Möja](/o/moja) Krog, [Utö](/o/uto) Värdshus, [Bullerö](/o/bullero) och Furusunds Gästhamn är alla öppna september ut och tar emot besökare. Ring och bekräfta – men förvänta dig inte att det är stängt.
-
-Det som stänger tidigt är strandbarer och enklare baguettekiosker. Det som håller öppet länge är restauranger med kök och historia.
-
-## Ljuset i september är unikt
-
-Fotografer vet det. Färgtemperaturen på ljuset i september är varmare och lägre än i juli. Gyllene timmar som varar längre. Solnedgångar som slår allt du ser på Instagram i somras. Om du ska fota skärgården – september är rätt.
-
-Lövens första antydning av höstfärger börjar synas i ytterskärgårdens lövträd mot slutet av månaden. Det är inte höst på allvar – det är höstens debut, och den är vacker.
-
-## Vilka öar fungerar bäst i september?
-
-**Sandhamn** – Nästan alltid öppet, sämre alternativ finns inte i september. Tar emot oavsett väder.
-
-**Utö** – Utö Värdshus håller öppet och cykelleder är bättre att cykla nu än i sommarvärmen. Lugnt, genuint.
-
-**Möja** – Bilfritt, lugnt, en av de vackraste öarna i eftersäsongen. Möja Krog håller öppet september ut.
-
-**Nämndö** – Litet, stilla, naturhamnarna är tomma. Perfekt för segling utan att stressa om bryggor.
-
-**Bullerö** – Del av Nämdöskärgårdens nationalpark (sedan 2025), i ytterskärgården. Vandringsled runt ön, inga restauranger – men en av de vackraste naturupplevelserna i skärgården.
-
-## Vad du behöver tänka på
-
-Klädsel förändras. Ta med ett lager extra – en rejäl fleece och regnfria ytterkläder om du är i båt. Nätterna är kalla.
-
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Solnedgångarna är tidiga – runt 20:00 i september mot 21:30 i juli. Planera rutter med det i åtanke.
-
-Kollektivtrafiken tunnas ut. Waxholmsbolaget kör färre turer efter högsäsong. Kolla tidtabellen innan du lämnar bryggan.
-
----
-
-Det bästa med september i skärgården? Du hinner faktiskt lyssna. På vattnet. På löven. På det du missar i juli när allt är brus.
-
-Boka en tur. Du ångrar dig inte.
+## Tänk på
+- Efter 20 augusti upphör det allmänna kravet att hålla hunden kopplad i naturen, men i naturreservat och nationalparker gäller koppel hela året.
+- Färre avgångar på hösten: kolla tidtabellen för både ut- och hemresan.
+- Fler ställen som har öppet: [Öppet i skärgården efter säsong](/blogg/eftersasong-skargard-oktober).
    `,
    faqs: [
-     { q: 'Är skärgården öppen i september?', a: 'Ja. De flesta restauranger, gästhamnar och aktiviteter håller öppet genom hela september. Vissa stänger i mitten av oktober. Ring och bekräfta för specifika ställen, men räkna inte med att det är stängt.' },
-     { q: 'Hur varmt är vattnet i skärgården i september?', a: 'Normalt 17–20 grader i ytvattnet de första veckorna av september. Det är fullt badbart. Mot slutet av månaden sjunker temperaturen mot 15–16 grader.' },
-     { q: 'Kör Waxholmsbolaget i september?', a: 'Ja, men med reducerad tidtabell jämfört med högsäsong. Kontrollera aktuell tidtabell på waxholmsbolaget.se innan du planerar resan.' },
+     { q: 'Går skärgårdsbåtarna på hösten?', a: 'Ja, till de större öarna. Waxholmsbolaget går till Sandhamn året runt via Stavsnäs, till Grinda året om och till Utö året om från Årsta brygga. Cinderellabåtarna till Sandhamn har säsong 30 april–27 september.' },
+     { q: 'Vad har öppet på Sandhamn på hösten?', a: 'Sandhamns Värdshus pub är öppen året runt, och restaurangen har främst öppet på helger utanför högsäsongen. Seglarhotellet har julbord från slutet av november till julafton.' },
+     { q: 'Kan man bada bastu i skärgården på hösten?', a: 'Ja, på Bullerö i Nämdöskärgårdens nationalpark finns en bastu som är öppen för alla och inte går att boka.' },
    ],
  },
 
@@ -1395,77 +1368,47 @@ Skärgården är närmre än du tror. Börja med ett av förslagen ovan – och 
  },
 
  'eftersasong-skargard-oktober': {
-   title: 'Eftersäsongen i skärgården – vad som håller öppet i oktober',
-   excerpt: 'Många tror att skärgården stänger i september. Det stämmer inte. Här är en genomgång av vilka öar, restauranger och aktiviteter som håller öppet in i oktober.',
+   title: 'Öppet i skärgården efter säsong – mat, båtar, bränsle och boende',
+   excerpt: 'Vad har öppet i Stockholms skärgård i oktober och vintern? Lista med källa: pubar och butiker som har öppet året runt, båtlinjer som går hela året, sjömackar med automat och vandrarhem som tar emot gäster efter sommaren.',
    category: 'Praktiskt',
    date: '2026-07-27',
-   readTime: '5 min',
-   emoji: 'sun',
-   tags: ['Oktober', 'Höst', 'Eftersäsong', 'Öppettider'],
+   updatedAt: '2026-09-24',
+   readTime: '4 min',
+   emoji: '🌿',
+   tags: ['Eftersäsong', 'Oktober', 'Öppet året runt', 'Stockholms skärgård', 'Höst'],
    content: `
-Det finns en utbredd missuppfattning om skärgårdens eftersäsong: att allt stänger efter midsommar, senast efter sommarlovet, och definitivt innan oktober.
+<!-- KÄLLA (ordagranna citat i island-data.ts och supabase/datafix): sandhamns-vardshus.se (puben "Öppet året runt", restaurangen främst helger utanför mitten juni–mitten september); sandhamn.com (julbord 26 november–24 december); konsummoja.se (Coop Berg "öppet året runt"); svenskaturistforeningen.se (STF Gällnö vandrarhem öppet året runt; STF Möja vandrarhem april–december); explorearchipelago.com (Tempo Westerbergs Livs på Sandhamn, ombud för Apoteket och Systembolaget); waxholmsbolaget.se (Sandhamn "turer året runt"; vintertidtabell december–april); lansstyrelsen.se Utö ("Waxholmsbåt året om till Gruvbryggan"); Grinda bryggor "trafikeras året om" (datafix 2026-09-22); battaxi.se/sandhamnslinjen-2 (hösttidtabell 21/9–20/12 2026); svenskagasthamnar.se/stockholms-skargard/husaro/ ("Drivmedel kan köpas med kortautomat året runt"); kymendo.se (tankning "dygnet runt året om med kortautomat", datafix 2026-09-23); sverigesnationalparker.se (bastun på Bullerö "öppen för alla och går inte att boka"); vaxholm.se (julmarknad i december). Tidigare version (borttagen 2026-09-24) angav öppettider för Seglarhotellet, Grinda Wärdshus, "Möja Krog" och gästhamnar i oktober och vattentemperatur 12–15 grader utan källa. -->
+Den här listan tar bara med det vi kan belägga: ställen som själva skriver att de har öppet året runt eller efter sommaren. Öppettider ändras, så ring eller kolla deras sida innan du åker. Vill du ha inspiration för hösten: [Höst i skärgården](/blogg/host-i-skargarden-2026).
 
-Det stämmer inte.
+## Mat och butik året runt
+- **Sandhamns Värdshus, Sandhamn:** puben är öppen året runt. Restaurangen har främst öppet på helger utanför högsommaren. [Fler ställen på Sandhamn](/blogg/basta-restaurangerna-sandhamn).
+- **Seglarhotellet, Sandhamn:** julbord från slutet av november till julafton.
+- **Coop Berg, Möja:** öppet året runt.
+- **Tempo Westerbergs Livs, Sandhamn:** livsmedelsbutik och ombud för Apoteket och Systembolaget.
 
-Skärgården i oktober är inte detsamma som skärgården i juli – men den är öppen, vacker och i många avseenden mer autentisk. Här är en konkret genomgång av vad som faktiskt håller öppet.
+## Båtar hela året
+- **Sandhamn:** Waxholmsbolaget via Stavsnäs året runt. Stavsnäs Båttaxis Sandhamnslinje har hösttidtabell fram till 20 december.
+- **Grinda:** Norra och Södra bryggan trafikeras året om.
+- **Utö:** Waxholmsbåt året om från Årsta brygga.
+- Under Waxholmsbolagets vintertidtabell, december–april, har vissa fartyg begränsad servering ombord.
 
-## Restauranger och kaféer
+## Bränsle med automat
+- [Husarö](/upptack/husaro-gasthamn-cafe): drivmedel med kortautomat året runt.
+- [Kymendö Service](/upptack/kymmendo-gasthamn-kok): tankning dygnet runt året om med kortautomat.
 
-Flera av skärgårdens bäst etablerade restauranger håller öppet hela oktober. Gemensamt för dem: de har en lojal lokal kundkrets, starka varumärken och matsalar som tål att vara tomma en kväll då och då.
+## Boende
+- **STF Gällnö vandrarhem:** öppet året runt.
+- **STF Möja vandrarhem:** öppet april–december.
+- **Sandhamns Värdshus:** boende med frukost i Missionshuset.
 
-**Sandhamn:**
-Sandhamns Värdshus håller öppet september–oktober (ring och bekräfta aktuellt datum, öppettider varierar per år). Seglarhotellet har matsalsservering tom tredje veckan i oktober.
-
-**Utö:**
-[Utö](/o/uto) Värdshus är öppet hela oktober och är faktiskt ett av de bästa alternativen för en hösthelg. Lugnt, vackert och med menyändringar mot säsong.
-
-**Möja:**
-[Möja](/o/moja) Krog håller normalt öppet september ut och helger i oktober. Ring i förväg.
-
-**Grinda:**
-[Grinda](/o/grinda) Wärdshus brukar ha öppet tom andra helgen i oktober. Kontrollera deras sociala medier för aktuell info.
-
-**Fjäderholmarna:**
-Restaurangerna håller öppet september ut. Oktober beror på år och väderlek.
-
-## Gästhamnar
-
-Gästhamnarna har generellt sett längre säsong än restaurangerna. De flesta av Waxholmsbåtarnas gästhamnar håller öppet tom mitten–slutet av oktober.
-
-**Furusunds Gästhamn** brukar ta emot gäster tom sista veckan i oktober. **Sandhamns Gästhamn** håller öppet så länge trafiken tillåter.
-
-Naturhamnarna – ankringsplatser utan service – är förstås alltid öppna.
-
-## Waxholmsbolaget och kollektivtrafik
-
-Waxholmsbolaget kör reducerad tidtabell efter högsäsong (normalt från slutet av augusti) men linjer till de större öarna – [Sandhamn](/o/sandhamn), [Vaxholm](/o/vaxholm), [Grinda](/o/grinda), [Utö](/o/uto) – trafikeras hela oktober.
-
-Kontrollera alltid aktuell tidtabell på waxholmsbolaget.se. Söndagskvällar har färre avgångar.
-
-## Aktiviteter
-
-Vandring och cykling är faktiskt bättre i oktober än i juli: färre mygg, svalare luft och höstfärger i lövträden. De markerade lederna på Utö och Ornö fungerar utmärkt.
-
-Paddling är möjlig med rätt utrustning (våtdräkt eller torrdräkt), men kräver mer erfarenhet i oktober när vattnet svalnat till 12–15 grader.
-
-Naturreservaten och fågelskären är om möjligt ännu mer intressanta i oktober – höstflytten gör att ovanliga fågelarter dyker upp i ytterskärgården.
-
-## Vad stänger tidigt?
-
-Det som stänger i september eller tidigt oktober: strandbarer och enklare sommarkiosker, de flesta aktivitetsbolag (kajak-uthyrning, paddel-guider), vattenscooteruthyrning.
-
-## Tips för en hösttur
-
-Ring innan. Det sparar dig besvikelsen av en stängd restaurang. Ett snabbt samtal tar 2 minuter.
-
-Ta med rätt kläder. Oktober i skärgården kan vara en strålande solig dag på 15 grader – eller en fuktig grå dag på 8. Ha alltid ett isolerande lager och regnkläder.
-
-Njut av stillheten. Oktober-skärgården är tyst på ett sätt som inte finns i juli. Det är inte ett minus. Det är ett annat sätt att uppleva havet.
+## Övrigt
+- **Bastun på Bullerö** i Nämdöskärgårdens nationalpark är öppen för alla och går inte att boka.
+- **Vaxholms julmarknad** hålls i december.
    `,
    faqs: [
-     { q: 'Är Sandhamn öppet i oktober?', a: 'Ja, Sandhamns Värdshus och Seglarhotellet håller normalt öppet i oktober (ring och bekräfta aktuella datum). Gästhamnen tar emot besökare tom slutet av oktober.' },
-     { q: 'Kör Waxholmsbolaget i oktober?', a: 'Ja, med reducerad tidtabell. Linjer till de stora öarna (Sandhamn, Vaxholm, Grinda, Utö) trafikeras under hela oktober. Kontrollera aktuell tidtabell på waxholmsbolaget.se.' },
-     { q: 'Är det värt att åka till skärgården på hösten?', a: 'Absolut. Eftersäsongen bjuder på lugn, tomma hamnar, öppna restauranger utan köer och ett unikt höstljus. Många som besökt skärgården både i juli och oktober föredrar oktober.' },
+     { q: 'Är Sandhamn öppet i oktober?', a: 'Ja. Båtarna via Stavsnäs går året runt, och Sandhamns Värdshus pub är öppen året runt. Restaurangen har främst öppet på helger utanför högsommaren.' },
+     { q: 'Kan man tanka båten i skärgården på hösten?', a: 'Ja, bland annat på Husarö, där drivmedel säljs med kortautomat året runt, och hos Kymendö Service, där det går att tanka dygnet runt året om med kortautomat.' },
+     { q: 'Vilka vandrarhem i skärgården har öppet på vintern?', a: 'STF Gällnö vandrarhem har öppet året runt, och STF Möja vandrarhem har öppet april–december.' },
    ],
  },
 
@@ -1648,67 +1591,54 @@ Under sommarsäsongen (juni–aug) är populära öar som Sandhamn och Grinda fu
  },
 
  'sandhamn-guide-2026': {
-   title: 'Sandhamn guide 2026 – restauranger, bad, boende och hur du tar dig dit',
-   excerpt: 'Sandhamn är skärgårdens mest välkända destination. Komplett guide: de bästa restaurangerna, Trouville-stranden, var du bor och allt om båten från Stockholm.',
+   title: 'Sandhamn guide – båt dit, Trouville, mat, boende och historia',
+   excerpt: 'Allt om Sandhamn i Stockholms skärgård: båt från Strömkajen, Strandvägen och Stavsnäs med restider, Trouville och Sandhamnsstigen, restauranger och boende, Grönskärs fyr och öns historia som lotsplats.',
    category: 'Öguide',
    date: '2026-07-28',
-   readTime: '8 min',
+   updatedAt: '2026-09-24',
+   readTime: '7 min',
    emoji: '⛵',
-   tags: ['Sandhamn', 'Guide', 'Restauranger', 'Segling'],
+   tags: ['Sandhamn', 'Sandhamn guide', 'Trouville', 'Stockholms skärgård', 'KSSS'],
    content: `
-[Sandhamn](/o/sandhamn) är Stockholms skärgårds mest kända destination och lever upp till ryktet. Segelbåtar i hamnen, välskötta restauranger, vita trävillor och en skärgårdsstämning som är svår att hitta längre in mot Stockholm. Den här guiden är allt du behöver för ett besök 2026.
+<!-- KÄLLA: källorna finns ordagrant i src/app/o/island-data.ts (sandhamn) och i /blogg/basta-restaurangerna-sandhamn: Waxholmsbolaget tabell 15 (gäller 19 juni–16 augusti 2026, Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25) och tabell 16 (Stavsnäs–Sandhamn 40–65 min), waxholmsbolaget.se/reseplanering/resmal/sandhamn ("Ut till Sandhamn går det turer året runt"), battaxi.se/sandhamnslinjen-2 (Stavsnäs–Sandhamn 30 min), Strömma Cinderella 2026 (30/4–27/9, Strandvägen kajplats 14 10:00 → 12:30), SL buss 433/434 Slussen–Stavsnäs vinterhamn. varmdo.se Trouville (vit sand, södra sidan, ca 20 min promenad, toaletter sommartid, ingen badvattenprovtagning), varmdo.se spår och leder (Sandhamnsstigen ca 8 km runt Sandön via Trouville), naturkartan.se Sandön (Värmdö kommun: slingor 2,5, 3,5 och 5,5 km; trädklädda sanddyner jämförbara med Gotska Sandön och Fårö), stockholmslansmuseum.se Sandhamn (lotsstation slutet av 1600-talet; tullhuset av Carl Hårleman 1752; museum i Bryggstugan och Tullvaktstugan; Värdshuset från 1670-talet), ksss.se historia (grundat 1830), ksss.se/en/gotlandrunt/ (start sedan 2024 vid Gråskärsfjärden, mål i Sandhamn), lansstyrelsen.se Grönskär (naturreservat sedan 1965), skargardsstiftelsen.se (fyren 26 m, 1770, Adelcrantz; skänkt till stiftelsen 1984), ksss.se/hamnar/sandhamn (ca 150 gästplatser, 20 bokningsbara via Dockspot). Boende: sandhamn.com, sandhamns-vardshus.se (Missionshuset, boende och frukost), sandshotell.se; inget STF-boende på Sandhamn (visitskargarden.se, läst 2026-09-14). Tidigare version (borttagen 2026-09-24) påstod att Match Cup Sweden seglas på Sandhamn (tävlingen hålls i Marstrand), nämnde "Bryggcafé 7an", "Sandhamns Pensionat", "Lotsmuseet" och "Flaskbrottet" som vi inte hittar, angav hotell- och stugpriser och att ön är bilfri utan källa. -->
+[Sandhamn](/o/sandhamn) på Sandön i Värmdö kommun är en gammal lots- och tullplats som blev seglarort, och i dag målgång för havskappseglingen Gotland Runt. Här är det du behöver för ett besök: båtarna dit, stranden, maten och boendet, med källor från operatörerna, kommunen och Stockholms läns museum.
 
-## Hur du tar dig till Sandhamn
+## Båt till Sandhamn
+- **Året runt via Stavsnäs:** buss 433 eller 434 från Slussen till Stavsnäs vinterhamn och därifrån Waxholmsbolagets linje 16 på 40–65 minuter eller Stavsnäs Båttaxis Sandhamnslinje på 30 minuter.
+- **Cinderella från Strandvägen:** kajplats 14, cirka 2 timmar 30 minuter, under säsongen 30 april–27 september.
+- **Waxholmsbåten från Strömkajen:** bara 19 juni–16 augusti, 3 timmar 45 minuter till knappt 5 timmar beroende på avgång och byte i Finnhamn.
 
-**Snabbaste vägen:** Waxholmsbåtens snabba linjer från Stavsnäs (nås med bil/buss från Slussen) — ca 40 minuter. Stavsnäs är enklast med bil; parkering kostar 80–100 kr/dygn.
+Alla avgångar och restider: [Båt till Sandhamn](/o/sandhamn/komma-dit).
 
-**Direkt från Stockholm city:** Waxholmsbåten från Strömkajen — bara 19 juni–16 augusti, och då 3 tim 45 min till knappt 5 timmar beroende på avgång. Cinderella från Strandvägen tar 2 tim 30 min under säsongen 30 april–27 september. Längre men stämningsfull; passa på att se skärgårdens karaktär förändras längs vägen.
+## Bada och gå
+[Trouville](/upptack/stora-trouvillestranden) är en lång strand med vit sand på öns södra sida, omkring 20 minuters promenad från hamnen, med toaletter sommartid. Kommunen tar inga badvattenprover här. Fler bad: [Fläskbergets strand](/upptack/flaskbergets-strand) och [Västerudde strand](/upptack/vasterudde-strand).
 
-**Snabbaste linjen sommartid:** Cinderella Boats kör expresser i sommarperioden.
+Sandhamnsstigen är cirka 8 kilometer och går runt hela Sandön, förbi Trouville och genom tallskogen. Det finns kortare slingor på 2,5, 3,5 och 5,5 kilometer, alla med start i byn. Sandön består till stor del av trädklädda sanddyner – i den här delen av landet finns motsvarigheten bara på Gotska Sandön och Fårö.
 
-## Stränderna
+## Äta
+Sandhamns Värdshus har pub som är öppen året runt, och Seglarhotellet, Dykarbaren och Sands Hotell har restauranger. Sandhamnsbageriet har säsongsöppet. Alla ställen, säsonger och bordsbokning: [Restauranger på Sandhamn](/blogg/basta-restaurangerna-sandhamn).
 
-**Trouville** är Sandhamns ikoniska strand – vit sand, klart vatten och en vy mot havet. Nås med 15 minuters promenad från hamnen längs byns enda väg. Kom tidigt på högsommar; den fylls på fort.
+## Bo
+- **Sandhamn Seglarhotell** vid gästhamnen.
+- **Sandhamns Värdshus** har boende med frukost i Missionshuset mitt i byn.
+- **Sands Hotell**, ett konferens- och weekendhotell.
 
-**Flaskbrottet** är en lite mer undanstoppad strand söder om byn. Lugnare, mer klippor, fint för solbad.
+Det finns inget STF-boende på Sandhamn.
 
----
+## Med egen båt
+[KSSS gästhamn](/upptack/ksss-gasthamn-sandhamn) har cirka 150 gästplatser, varav 20 går att boka via Dockspot. Passbåten går till [Lökholmen](/upptack/ksss-gasthamn-lokholmen-trollsundet), där det finns plats för cirka 200 båtar.
 
-## Restauranger 2026
+## Historia
+En lotsstation upprättades på Sandhamn i slutet av 1600-talet, och de bofasta var länge främst lotsar, tullare och krögare. Det gula tullhuset av sten i hamnen ritades av Carl Hårleman och byggdes 1752, och i de små 1700-talshusen Bryggstugan och Tullvaktstugan finns ett museum. Värdshuset är från 1670-talet. Kungliga Svenska Segel Sällskapet, grundat 1830, har seglingsverksamhet på fjärdarna runt Sandhamn, och mot slutet av 1800-talet hade Sandhamn blivit ett svenskt centrum för seglare. Sedan 2024 startar Gotland Runt vid Gråskärsfjärden söder om Sandön med målgång i Sandhamn.
 
-**Seglarhotellets Restaurang** – Det finaste alternativet på ön. Svenska råvaror, kök med säsongsvariation och en historia sedan 1897. Boka bord minst en vecka i förväg i juli–aug.
-
-**Sandhamns Värdshus** – Det klassiska stoppet vid bryggan. Fisksoppa, räkor och smörgåsar. Prisvärt och med direkt hamnutsikt. Ingen bokning behövs.
-
-**Dykarbaren** – Bryggservering med hamburgare och öl. Det avslappnade alternativet, bra för sundowner.
-
-**Bryggcafé 7an** – Bäst för frukost eller fika. Nybakat och hamnutsikt. Köen bildas fort på helger.
-
-## Boende
-
-**Seglarhotellet** (seglarhotellet.se) — Historiskt hotell i trävillor. Dubbel från ~1 800 kr/natt högsäsong. Boka månader i förväg.
-
-**Sandhamns Pensionat** — Mer budgetvänlig, lite enklare standard. Perfekt för de som prioriterar priset över poolen.
-
-**Villor och stugor** — Går att hyra via Blocket och Airbnb. Priserna varierar kraftigt; förvänta dig minst 3 000–5 000 kr/natt under högsäsongens populäraste veckor.
-
-## Vad du inte får missa
-
-- **Sandhamns Segelsällskap** — Seglarnas hjärta på ön. Under Match Cup Sweden i juni är ön fullpackad med seglare.
-- **Promenad längs Västerudd** — Det vackraste sundet på ön, med båttrafik in och ut mot havet.
-- **Lotsmuseet** — Litet och charmigt museum om öns historia som lots- och skepparstation.
-
-## Praktiska tips
-
-Sandhamn är bilfri. Allt du behöver ta med är det du bär på. Det finns en liten livsmedelsbutik på ön men räkna inte med att hitta allt du söker. Ta med solkräm, kontanter (inte alla ställen tar kortbetalning ute i skären) och ett vindtätt plagg — havet kan vara kallare än du tror.
-
-Hög- vs lågsäsong: juli är turisternas månad. Maj och september är skärgårdens bäst bevarade hemlighet — all skönhet, utan köerna.
+## Grönskärs fyr
+Öster om Sandhamn ligger Grönskär, naturreservat sedan 1965. Fyren är 26 meter hög och byggdes 1770 efter ritningar av Carl Fredrik Adelcrantz. Sjöfartsverket skänkte den till Skärgårdsstiftelsen 1984.
    `,
    faqs: [
-     // KÄLLA: Waxholmsbolagets tidtabell 15A Stockholm-Vaxholm-Sandhamn, GÄLLER 19 JUNI 2026 - 16 AUGUSTI 2026 (Strömkajen 10.00 -> Sandhamn 13.45 = 3 tim 45 utan byte; 08.30 -> 13.25 med byte i Finnhamn = 4 tim 55. Vilka veckodagar respektive tur gar har inte kunnat lasas tillforlitligt ur kolumnerna - darfor anges bara spannet). Ingen v15-tabell finns för 17 aug-12 dec, alltså ingen direktbåt utanför sommaren. Tabell 16A Stavsnäs-Sandhamn (gäller nu): 38-65 min. Stavsnäs Båttaxis Sandhamnslinje: 30 min. Strömma: Cinderella från Strandvägen kajplats 14, 2 tim 30 min, säsong 30 april-27 september 2026. Läst 2026-08-25.
-     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Det beror helt på årstid och kaj. Waxholmsbåten går direkt från Strömkajen bara 19 juni–16 augusti och tar då 3 tim 45 min till knappt 5 timmar beroende på avgång och byte i Finnhamn. Cinderella från Strandvägen kajplats 14 går längre säsong, 30 april–27 september, och tar 2 tim 30 min — den går alltså även nu i slutet av augusti. Snabbast året runt är buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnet, och sedan båt: Sandhamnslinjen 30 min eller Waxholmsbolagets linje 16 på 30–70 min.' },
-     { q: 'Finns det strand på Sandhamn?', a: 'Ja. Trouville-stranden är den mest kända – vit sand och klart vatten, ca 15 min promenad från hamnen. Flaskbrottet är ett mer undanskymt alternativ med klippor.' },
-     { q: 'Är det bilfritt på Sandhamn?', a: 'Ja, Sandhamn är bilfri. Det finns inga bilar på ön. Allt nås till fots.' },
+     // KÄLLA: Waxholmsbolagets tidtabell 15A (19 juni–16 augusti 2026), Strömma Cinderella 2026, battaxi.se/sandhamnslinjen-2, Waxholmsbolaget tabell 16 – se KÄLLA-kommentaren i content.
+     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Via Stavsnäs året runt: buss från Slussen till Stavsnäs vinterhamn och sedan Waxholmsbolagets linje 16 på 40–65 minuter eller Sandhamnslinjen på 30 minuter. Cinderella från Strandvägen tar cirka 2 timmar 30 minuter (30 april–27 september), och Waxholmsbåten från Strömkajen 3 timmar 45 minuter till knappt 5 timmar (19 juni–16 augusti).' },
+     { q: 'Finns det strand på Sandhamn?', a: 'Ja. Trouville på öns södra sida är en lång strand med vit sand, omkring 20 minuters promenad från hamnen enligt Värmdö kommun.' },
+     { q: 'Kan man övernatta på Sandhamn?', a: 'Ja, på Sandhamn Seglarhotell, Sands Hotell eller i Sandhamns Värdshus boende i Missionshuset. Med egen båt finns KSSS gästhamn med cirka 150 gästplatser.' },
    ],
  },
 
@@ -1967,72 +1897,48 @@ Naturhamnens framtid beror på att vi som seglare behandlar dem rätt. Med respe
  },
 
  'grinda-guide-2026': {
-   title: 'Grinda guide 2026 – Grinda Wärdshus, gästhamn och direktbåt',
-   excerpt: 'Grinda kallas skärgårdens hjärta och lever upp till det. Komplett guide: Grinda Wärdshus, gästhamnen, stränderna och direktbåten från Strömkajen.',
+   title: 'Grinda guide – båt dit, Wärdshuset, gästhamn och bad',
+   excerpt: 'Allt om Grinda i Stockholms skärgård: Waxholmsbåten från Strömkajen, Grinda Wärdshus och Framfickan, gästhamnen med 28 bokningsbara platser, bad vid Källviken, natur- och kulturstigen och reglerna i naturreservatet.',
    category: 'Öguide',
    date: '2026-07-28',
+   updatedAt: '2026-09-24',
    readTime: '6 min',
    emoji: '🌿',
-   tags: ['Grinda', 'Värdshus', 'Gästhamn', 'Guide'],
+   tags: ['Grinda', 'Grinda Wärdshus', 'Grinda gästhamn', 'Stockholms skärgård', 'Naturreservat'],
    content: `
-[Grinda](/o/grinda) är en av Stockholms skärgårds mest omtyckta öar — och med rätta. Naturreservat sedan 1968, bilfri, med ett välskött värdshus och en gästhamn som tar emot seglare från hela Östersjön. Den här guiden är allt du behöver för ett besök 2026.
+<!-- KÄLLA: källorna finns ordagrant i src/app/o/island-data.ts (grinda): lansstyrelsen.se Grinda naturreservat ("Skyddat sedan: 2000", "503 hektar varav land 178", Skärgårdsstiftelsen förvaltare och markägare, "Stockholms stad förvärvade Grinda 1947", Klubbudden "öns högsta punkt med 35 m", natur- och kulturstig "cirka 2,5 km" från Hemviken, förbud mot okopplad hund, "Tältning är endast tillåten på tältplatsen nära norra bryggan", förbud att förankra båt längre än två dygn), skargardsstiftelsen.se/omraden/grinda (Wärdshuset mitt på ön, badplatsen Källviken, barnvänliga badstränder, lanthandel, café och tältplats sommartid, Grinda lantbruk med kor och hästar, SAT), grinda.se/mat-fest/wardshuset ("klassisk skärgårdsmat & stämning sedan 1906", utsikt över Saxarfjärden), grinda.se/mat-fest/framfickan ("hamnkrog, pizza & lättare rätter", "endast drop-in"), grinda.se/mat-fest/lanthandel-cafe (frukost och enklare luncher), grinda.se/hamn-mack/gasthamn ("gästhamn för 100 båtar", "28 st bokningsbara platser", el, dusch, toalett), grinda.se/hamn-mack/sjomack ("Bensin 98, Diesel, Gasol"), svenskaturistforeningen.se STF Grinda hotell & Sea Lodge (28 dubbelrum, Sea Lodge på södra sidan, ca 1 km/15 min från bryggorna), skargardsstiftelsen.se byggnader (jugendvillan av Ernst Stenhammar klar 1908, Henrik Santesson), Waxholmsbolagets reseplanerare (linje 13 Strömkajen–Södra Grinda 1 tim 50 min, linje 14 1 tim 45 min; läst 2026-09-19), Grinda Norra och Södra bryggan trafikeras året om av Waxholmsbolaget och Cinderella (datafix). Tidigare version (borttagen 2026-09-24) angav naturreservat sedan 1968 (rätt: 2000), båtresa 1 timme 20 minuter, gästhamn för 150–200 båtar, bokning via marinadata.se, rum- och hamnpriser, samt badplatser och fiske utan källa. -->
+[Grinda](/o/grinda) är ett naturreservat i Stockholms mellersta skärgård som ägs och förvaltas av Skärgårdsstiftelsen. Stockholms stad köpte ön 1947, och sedan dess har den varit ett friluftsområde med värdshus, gästhamn, tältplats och lantbruk. Här är det du behöver för ett besök.
 
-## Hur du tar dig till Grinda
+## Båt till Grinda
+Waxholmsbolagets båtar från Strömkajen tar ungefär 1 timme 45 minuter till Södra Grinda (linje 14) eller 1 timme 50 minuter (linje 13). Både Norra och Södra bryggan trafikeras året om av Waxholmsbolaget och Cinderella. Alla avgångar: [Båt till Grinda](/o/grinda/komma-dit).
 
-**Direktbåt från Strömkajen** med Waxholmsbåtarna — ca 1 timme 20 min. Sommartid går det flera avgångar per dag; se waxholmsbolaget.se för tidtabell.
+## Äta
+- **Grinda Wärdshus** ligger mitt på ön med utsikt över Saxarfjärden och serverar skärgårdsmat. Wärdshuset har funnits sedan 1906.
+- **Framfickan** vid gästhamnen är en hamnkrog med pizza och lättare rätter, endast drop-in.
+- **Lanthandeln** nedanför Wärdshuset har café med frukost och enklare luncher.
 
-**Med segelbåt** — Grinda är ett populärt stopp längs den klassiska Stockholms skärgårdsrutten. Gästhamnen tar emot upp till 200 båtar.
+## Bo
+STF Grinda Hotell har 28 dubbelrum och ligger cirka en kilometer, ungefär 15 minuter till fots, från bryggorna. Grinda Sea Lodge på öns södra sida är ett enklare boende. Tälta får du bara på tältplatsen nära norra bryggan.
 
-## Grinda Wärdshus
+## Bad och natur
+Skärgårdsstiftelsen lyfter fram badplatsen vid Källviken och öns barnvänliga badstränder. Natur- och kulturstigen är cirka 2,5 kilometer och börjar vid gården Hemviken, och från Klubbudden, öns högsta punkt på 35 meter, ser du ut över skärgården. Stockholm Archipelago Trail går också över ön. På Grinda lantbruk betar kor och hästar.
 
-Värdshuset är öns hjärta. Byggt i traditionell skärgårdsarkitektur med rödfärgade trävillor mot skogen, uteservering mot havet och rum med sjöutsikt.
+## Med egen båt
+[Grinda gästhamn](/upptack/grinda-gasthamn) i Hemviken har plats för 100 båtar, varav 28 bokningsbara, med el, dusch och toalett. Sjömacken säljer bensin 98, diesel och gasol. I reservatet får du inte förankra båten längre än två dygn på samma ställe.
 
-**Restaurangen** serverar lokalt och säsongsanpassat — torghandlad fisk, bär plockade på ön och brännvinsnuanser som passar maten. Boka bord i förväg för kvällsmaten; utflyktsgrupper och seglare konkurrerar om platserna.
+## Regler i naturreservatet
+- Hunden ska vara kopplad.
+- Tältning bara på tältplatsen nära norra bryggan.
+- Båt får inte ligga förankrad längre än två dygn.
 
-**Övernattning** — Dubbelrum från ~1 400 kr/natt. Boka på grinda.se. Högsäsong (juli) är fullbokad månader i förväg.
-
-**Uteserveringen** — Öppet för lunch och middag utan bokning. Kom tidigt på helger.
-
----
-
-## Stränderna
-
-Grinda har tre godkända bad-ställen:
-
-**Södra bryggan** — En klippstrand med solbad och direkt tillgång från Waxholmsbåtens brygga.
-
-**Grindaviken** — En vik på öns södra sida med fin badplats och lugn vattenyta.
-
-**Naturreservat-leden** — Tar dig runt ön och förbi badplatser längs östra sidan.
-
-## Gästhamnen
-
-Grinda gästhamn är välskött med dusch, toalett, el och vatten vid bryggorna. Plats för ca 150–200 båtar.
-
-**Boka i förväg** via marinadata.se eller via Grinda Wärdshus hemsida. Helgveckor i juli är fullbelagda – ring/boka minst en vecka i förväg.
-
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-Avgiften 2026: ~180–220 kr/natt för en standardbåt, inkl. el.
-
-## Aktiviteter på Grinda
-
-- **Vandring** — Runt hela ön ca 4 km längs välskötta stigar
-- **Kajak** — Uthyrning finns på ön sommartid
-- **Fiske** — Abborre och gädda i vikarna, havsöring längs ytterklipporna
-- **Svampplockning** — Höst (sept–okt) när turisterna är borta
-
-## Bra att veta
-
-Grinda är ett naturreservat. Det innebär att du inte får tälta utanför anvisade platser, plocka blommor eller köra motorbåt i höghastighet längs stränderna. Respektera djurlivet — öns fågelstam är rik och höjden av häckning sammanfaller med högsäsongen.
-
-Grinda med barn: barnvänlig, plana gångvägar, varm och lugn vattenyta vid södra bryggan. Perfekt för familjer med barn under tio år.
+## Historia
+En jugendvilla i sten på ön ritades av Ernst Stenhammar och stod klar 1908 åt Henrik Santesson, Nobelstiftelsens första vd. Reservatet omfattar 503 hektar, varav 178 hektar land, och bildades 2000.
    `,
    faqs: [
-     // KÄLLA: Waxholmsbolagets tidtabell 11A Stockholm-Vaxholm-Grinda-Boda-Sollenkroka. Vinter/höst (17 aug-12 dec 2026): snabbaste turen Strömkajen 12.45 -> Södra Grinda 14.20 = 1 tim 35. Sommar (19 juni-16 aug): snabbast 07.45 -> 09.15 = 1 tim 30. Ingen tur går på 1 tim 20. Strömma: Cinderella Strandvägen -> Södra Grinda 1 tim 30. Läst 2026-08-25.
-     { q: 'Hur lång är båtresan till Grinda från Stockholm?', a: 'Waxholmsbolagets linje 11 från Strömkajen tar som snabbast 1 timme 35 minuter, sommartid 1 timme 30 — de flesta turer tar 1 tim 45 till 2 tim 20 beroende på antal angöringar. Cinderella från Strandvägen tar 1 timme 30 minuter. Sommartid går det flera avgångar per dag.' },
-     // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
-     { q: 'Kan man övernatta på Grinda?', a: 'Ja. Grinda Wärdshus har rum från ~1 400 kr/natt. Gästhamnen tar emot båtar till ~200 kr/natt. Boka i god tid — högsäsong är det fullbokat fort.' },
-     { q: 'Är Grinda lämplig för barnfamiljer?', a: 'Absolut. Grinda är bilfri, har lugna badplatser, plana gångvägar och ett barnvänligt värdshus. En av de bästa öarna i Stockholms skärgård för familjer med barn.' },
+     // KÄLLA: Waxholmsbolagets reseplanerare (linje 13 och 14), grinda.se/hamn-mack/gasthamn, lansstyrelsen.se Grinda naturreservat – se KÄLLA-kommentaren i content.
+     { q: 'Hur lång tid tar båten till Grinda?', a: 'Från Strömkajen tar Waxholmsbolagets båt ungefär 1 timme 45 minuter till Södra Grinda med linje 14 och 1 timme 50 minuter med linje 13. Båtarna går året om.' },
+     { q: 'Kan man boka plats i Grinda gästhamn?', a: 'Ja, 28 av gästhamnens platser går att boka. Hamnen har plats för 100 båtar totalt.' },
+     { q: 'Får man tälta på Grinda?', a: 'Ja, men bara på tältplatsen nära norra bryggan. Grinda är naturreservat, och där är tältning på andra platser förbjuden.' },
    ],
  },
 
