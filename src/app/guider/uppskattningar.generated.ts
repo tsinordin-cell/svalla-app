@@ -22,11 +22,6 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "skargard-utan-bat": {
-    "antal": 9,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "rakfrukost-skargard": {
     "antal": 1,
     "datum": "2026-08",
@@ -97,11 +92,6 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "cykling-skargarden": {
-    "antal": 2,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "moja-guide": {
     "antal": 2,
     "datum": "2026-08",
@@ -113,11 +103,6 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
   "finnhamn-guide": {
-    "antal": 2,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "nattaro-guide": {
     "antal": 2,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
@@ -187,18 +172,8 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "barplockning-skargarden": {
-    "antal": 1,
-    "datum": "2026-09",
-    "vad": "vilka öar som ger bäst bär är vår redaktionella bedömning, ingen har mätt det"
-  },
   "ankra-sova-bat": {
     "antal": 14,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "hyra-bat-utan-korkort-stockholm": {
-    "antal": 3,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
@@ -219,11 +194,6 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
   },
   "hyra-kajak-stockholm": {
     "antal": 3,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "hyra-elektrisk-bat-stockholm": {
-    "antal": 2,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
@@ -285,4 +255,4 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
 }
 
 /** Antal guider som innehåller minst en uppskattad prisnivå. */
-export const GUIDER_MED_UPPSKATTNING = 53
+export const GUIDER_MED_UPPSKATTNING = 47
