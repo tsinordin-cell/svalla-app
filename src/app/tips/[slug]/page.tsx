@@ -113,6 +113,9 @@ export default async function TipsArticlePage({ params }: Props) {
             {a.published_at && (
               <> · {new Date(a.published_at).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}</>
             )}
+            {a.updated_at && a.published_at && new Date(a.updated_at).getTime() - new Date(a.published_at).getTime() > 86_400_000 && (
+              <> · uppdaterad {new Date(a.updated_at).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}</>
+            )}
           </div>
         </div>
       </div>
