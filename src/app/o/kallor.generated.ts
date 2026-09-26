@@ -174,8 +174,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html",
-      "org": "Trouville Sandhamn",
-      "vad": "Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida. / Trouville ligger omkring 20 minuters promenad från hamnen.",
+      "org": "varmdo.se",
+      "vad": "Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida, omkring 20 minuters promenad från hamnen, Toaletter sommartid, Badet ägs och sköts av Eknö hemman, Ingen provtagning av badvatten utförs av Värmdö kommun. Stod ca 10 min, barnvänligt djup, vind och namnets ursprung utan källa.",
       "last": null,
       "myndighet": false
     },
@@ -2615,8 +2615,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://storholmensjokrog.se/",
       "org": "storholmensjokrog.se",
-      "vad": "skärgårdsrestaurang på ön Storholmen utanför Lidingö. Njut av nyfångad fisk och klassisk skärgårdsmat vid vattnet, © 2026",
-      "last": null,
+      "vad": "SEDAN 2018, Vår terrass sträcker sig ut mot vattnet, rätter med säsongens bästa råvaror, meny med bl.a. Stekt strömming, Fish and Chips, Moules Frites, För barnen, skräddarsydd catering, Hyr hela restaurangen",
+      "last": "2026-09-26",
       "myndighet": false
     }
   ],

@@ -139,7 +139,11 @@ export type Island = {
   activity_meta?: {
     kajak?: { difficulty: string, rental: boolean, notes?: string }
     cykel?: { rental: boolean, km_track?: number, notes?: string }
-    bad?: { beaches: (string | IslandBeach)[] }
+    bad?: {
+      beaches: (string | IslandBeach)[]
+      /** Källbelagd upplysning om bad på ön (t.ex. att kommunen saknar badplats här). Visas överst på /o/[slug]/bad. */
+      note?: string
+    }
     vandring?: {
       trails: number
       max_km?: number
@@ -210,6 +214,7 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '⛵',
+    // KÄLLA: stockholmslansmuseum.se/besoksmal/sandhamn/ (lots- och tullstation sedan 1700-talet, "tull- och lotsstugor"); sandshotell.se ("Sandhamn i Stockholms ytterskärgård", läst 2026-09-26); ksss.se (segling runt Sandhamn)
     tagline: 'Seglingsvatten, gammal lots- och tullplats och en by av trähus i ytterskärgården.',
     seoTitle: 'Sandhamn 2026 – restauranger, boende & seglarkultur',
     seoDescription: 'Guide till Sandhamn: restauranger, Trouville-stranden, Seglarhotellet och båt från Stockholm. Lots- och tullplats i Stockholms skärgård.',
@@ -217,7 +222,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://ksss.se/KSSS/historia/ — "KSSS grundades i Stockholm 1830 under namnet Svenska Segel Sällskapet" samt "aktiv seglingsverksamhet på fjärdarna runt Sandhamn, bidrog till klubbens goda rykte"
       'Sandhamn hör till de namn i Stockholms skärgård som de flesta känner igen, och seglingen är en stor del av förklaringen. Kungliga Svenska Segel Sällskapet, KSSS, grundades i Stockholm 1830 under namnet Svenska Segel Sällskapet, och sällskapets seglingsverksamhet på fjärdarna runt Sandhamn har följt ön sedan dess. Under sommaren ligger båtarna tätt och hamnlivet håller på långt in på kvällarna.',
       // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html, Trouville Sandhamn — "Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida." / "Trouville ligger omkring 20 minuters promenad från hamnen."
-      'Den långsträckta stranden Trouville, med sin vita sand, ligger på Sandhamns södra sida, omkring tjugo minuters promenad från hamnen. Sand i stället för klippor är ovanligt i de här farvattnen. Klipporna öster om stranden ligger öppna mot havet och är oftast tommare.',
+      'Den långsträckta stranden Trouville, med sin vita sand, ligger på Sandhamns södra sida, omkring tjugo minuters promenad från hamnen.',
       // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — "Under slutet av 1600-talet upprättades en lotsstation och de bofasta under 1700- och 1800-talen var främst lotsar, tullare och krögare." / "Sandhamn har sedan 1700-talet varit lots- och tullstation"
       'Sandhamn är ingen gammal fiskeby utan en gammal lots- och tullplats. En lotsstation upprättades under slutet av 1600-talet, och de bofasta under 1700- och 1800-talen var främst lotsar, tullare och krögare. Sedan 1700-talet har ön varit lots- och tullstation, och den sjöfartsanknutna arbetskulturen syns fortfarande i hur byn är byggd.',
       // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — "Det pampiga gula tullhuset av sten som dominerar hamnen ritades av slottsarkitekten Carl Hårleman och byggdes 1752." / "I de små 1700-talshusen Bryggstugan och Tullvaktstugan finns ett museum"
@@ -225,9 +230,6 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://ksss.se/en/gotlandrunt/ — "since 2024 it starts at Gråskärsfjärden south of Sandön" / "boats sail south on open water to round Gotland with the finish at Sandhamn"
       // KÄLLA: https://ksss.se/KSSS/historia/ — Gotland Runt beskrivs som "den ledande havskappseglingen i norra Europa"
       'Gotland Runt avslutas i Sandhamn. Sedan 2024 går starten från Gråskärsfjärden söder om Sandön, medan målgången ligger kvar i Sandhamn, och KSSS beskriver tävlingen som den ledande havskappseglingen i norra Europa. Under tävlingsveckan ligger båtarna tätt i hamnen och byn har en annan puls än resten av sommaren.',
-      'Ön ligger långt ut, där vattnet är saltare och klipporna lägre och jämnare. Havet beter sig annorlunda här än längre in: svallet är längre, horisonten bredare. Från de östra klipporna en klar dag ser du ingenting annat än öppet vatten.',
-      'Östra sidan är för den som vill bort från hamnen. Klipporna är jämna, havet öppet och tystnaden bruten mest av sjöfåglar. En vardag utanför högsommaren kan du gå länge utan att möta någon.',
-      'Från oktober till maj är Sandhamn en stillsammare plats. Vinterlandskapet har sin egen kvalitet: is kan bildas i inre hamnen, gränderna står tomma och hamnen rymmer några vinterliggande båtar. Värt ett besök för den som specifikt vill ha kontrasten till sommarön.',
       // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html, Trouville Sandhamn — "Trouville ligger omkring 20 minuters promenad från hamnen."
       'Sandhamn passar inte alla, och det är en del av tjusningen. Barnfamiljer bör veta att det inte finns någon strand vid hamnen: Trouville ligger omkring tjugo minuters promenad bort, och hamnen i sig är full av båttrafik. För den som vill ha energin i en aktiv seglarhamn är det däremot precis rätt.',
       // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 (ansvarig utgivare: Kultur & Fritid, Värmdö kommun) — "trädklädda sanddynor" som i storlek bara är jämförbara med Gotska Sandön eller Fårö; "vindpinade och små tallar"; äldre tallar över 200 år har ofta smala stammar
@@ -250,25 +252,29 @@ export const ISLANDS: Island[] = [
     facts: {
       // KÄLLA: https://www.sandhamn.com/en/hitta-hit (Waxholmsbåt linje 15 Strömkajen–Sandhamn: "2–3 hours"); battaxi.se/sandhamnslinjen-2 (Sandhamnslinjen Stavsnäs–Sandhamn: "30 minuter"). Siffran "3 tim 45" kunde inte beläggas och är borttagen.
       travel_time: 'Från Stavsnäs 30 min–1 h året runt · 2 tim 30 min med Cinderella från Strandvägen sommartid',
-      character: 'Livlig, seglartät, festlig sommardestination',
+      character: 'Seglarort med gästhamn, hotell och värdshus',
       season: 'Maj–September (Seglarhotellet: helår)',
-      best_for: 'Seglare, restaurangälskare, sommarturer',
+      best_for: 'Segling, strandbad vid Trouville, promenad runt ön',
     },
-    facts_provenance: { travel_time: 'matt' },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://ksss.se/en/gotlandrunt/ (start sedan 2024 vid Gråskärsfjärden, mål i Sandhamn; nuvarande namn "Gotland Runt Offshore Race")
-      { icon: '⛵', name: 'Segling', desc: 'KSSS-hamnen är en av Östersjöns mest besökta gästhamnar med plats för hundratals båtar. Sandhamn är målhamn för flera klassiska kappseglingar, däribland Gotland Runt Offshore Race.' },
-      { icon: '🏊', name: 'Sandstranden Trouville', desc: 'Öns vackraste sandstrand på södra sidan. Sällsynt i skärgårdssammanhang — sand istället för klippor.' },
-      { icon: '🧖', name: 'Spa & Gym', desc: 'Seglarhotellets spa med bubbelpool, bastu och havsutsikt. Öppet för hotellgäster och boende.' },
-      { icon: '🚶', name: 'Vandring', desc: 'Promenera runt ön på de smala stigarna. Klipporna på östra sidan ger utsikt mot öppet hav.' },
-      { icon: '🎣', name: 'Fiske', desc: 'Ytterskärgårdens vatten erbjuder utmärkt fiske. Havsöring och makrill är vanliga.' },
-      { icon: '🛶', name: 'Kajak & SUP', desc: 'Uthyrning finns vid hamnen. Paddla runt ön eller ut mot de omgivande grunden.' },
+      // KÄLLA: ksss.se/hamnar/sandhamn (datafix 2026-09-22: "tre pontonbryggor" framför Seglarhotellet, omkring 150 gästplatser; Lökholmen cirka 200 båtar)
+      { icon: '⛵', name: 'Segling', desc: 'KSSS gästhamn har omkring 150 gästplatser framför Seglarhotellet och plats för cirka 200 båtar på Lökholmen. Gotland Runt Offshore Race har målgång i Sandhamn.' },
+      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html — "Den långsträckta stranden i Trouville, med sin vita sand", "omkring 20 minuters promenad från hamnen"
+      { icon: '🏊', name: 'Sandstranden Trouville', desc: 'Lång strand med vit sand på södra sidan, omkring 20 minuters promenad från hamnen.' },
+      // KÄLLA: sandhamn.com/sv/spa (läst 2026-09-26) — "tempererade poolen", "jacuzzin", "bastu, gym", "Spa och gym har öppet dagligen mellan 08.00–20.00", "Icke hotellgäster är välkomna i mån av plats", "Bastuflottar vid havet"
+      { icon: '🧖', name: 'Spa & Gym', desc: 'Seglarhotellets spa har tempererad pool, jacuzzi, bastu och gym, öppet dagligen 08–20. Den som inte bor på hotellet är välkommen i mån av plats. Vid havet finns vedeldade bastuflottar att boka.' },
+      // KÄLLA: varmdo.se Spår och leder — "Den cirka 8 km stigen går runt hela Sandön. Stigen utgår från Sandhamn, passerar sandstranden Trouville"; naturkartan.se/sv/stockholms-lan/sandon-2 (Värmdö kommun) — slingor 2,5, 3,5 och 5,5 km
+      { icon: '🚶', name: 'Vandring', desc: 'Sandhamnsstigen går runt hela Sandön, cirka 8 km från byn förbi Trouville. Kortare slingor på 2,5, 3,5 och 5,5 km börjar också i byn.' },
+      // KÄLLA: Länsstyrelsen Stockholm, Fiskeguide 2023 — näbbgädda "Våren och sommaren", "I Stockholms yttre skärgård från Sandhamn och söderut". Stod "utmärkt fiske. Havsöring och makrill är vanliga" utan källa.
+      { icon: '🎣', name: 'Fiske', desc: 'Enligt Länsstyrelsens fiskeguide går näbbgäddan till i ytterskärgården från Sandhamn och söderut på våren och sommaren.' },
     ],
     // Öppettider och "boka månader i förväg" var obelagt och togs bort 2026-09-14. Anläggningarna och deras egenskaper är källmärkta i accommodation nedan.
     accommodationIntro: 'Boendet på Sandhamn ligger samlat kring hamnen: Seglarhotellet med spa och restaurang, Sandhamns Värdshus i Missionshuset och lägenhetshotellet Sands Hotell.',
     // KÄLLA: sandhamn.com, https://sandhamns-vardshus.se/, https://sandshotell.se/ — egna webbplatser; https://visitskargarden.se/ listar samma tre, inget STF-boende på Sandhamn (läst 2026-09-14)
     accommodation: [
-      { name: 'Sandhamn Seglarhotell', type: 'Hotell', desc: 'Hotell vid hamnen med spa, restaurang, gym och pool. Öppet året runt. Boka långt i förväg.', websiteUrl: 'https://www.sandhamn.com' },
+      { name: 'Sandhamn Seglarhotell', type: 'Hotell', desc: 'Hotell vid hamnen med spa, restaurang, gym och pool. Öppet året runt.', websiteUrl: 'https://www.sandhamn.com' },
       { name: 'Sandhamns Värdshus', type: 'B&B', desc: 'Gästgiveri i Missionshuset med fem dubbelrum och en stuga, frukost ingår.', websiteUrl: 'https://sandhamns-vardshus.se' },
       { name: 'Sands Hotell', type: 'Hotell', desc: 'Lägenhetshotell med hotellservice nära hamnen, 15 dubbelrum och 3 enkelrum, totalt 33 bäddar.', websiteUrl: 'https://sandshotell.se' },
     ],
@@ -334,26 +340,20 @@ export const ISLANDS: Island[] = [
     activity_meta: {
       // KÄLLA: Stockholm Archipelago Trail, https://stockholmarchipelagotrail.com/section/ (2026-09-17)
       vandring: { trails: 1, max_km: 8.1, sat: { km: 8.1, difficulty: 'Lätt' } },
-      kajak: { difficulty: 'lätt', rental: true, notes: 'Uthyrning vid hamnen. Paddla runt ön eller ut mot omgivande grund.' },
       bad: {
         beaches: [
           {
             name: 'Trouville-stranden',
             type: 'sandstrand',
-            desc: 'Sandhamns enda sandstrand och öns mest älskade badplats. Smal remsa av fin ljus sand på södra sidan, skyddad mot nordliga vindar. Heter "Trouville" efter den franska badorten — ett smeknamn seglarna gav platsen på 1800-talet.',
-            child_friendly: true,
-            depth: 'Grunt och sandbotten nära stranden — bra för barn. Vattnet värms upp snabbt i juli.',
-            directions: 'Gå söderut från hamnen ca 10 min förbi Sandhamns Värdshus, ta sedan stigen ned mot havet.',
-            insider_tip: 'Kom tidigt på morgonen eller sent på eftermiddagen — bryggan mitt på dagen fylls av dagsturister. Lokalt bad = morgon.',
+            // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html — "Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida", "omkring 20 minuters promenad från hamnen", "Toaletter sommartid", "Badet ägs och sköts av Eknö hemman", "Ingen provtagning av badvatten utförs av Värmdö kommun". Stod "ca 10 min", barnvänligt djup, vind och namnets ursprung utan källa.
+            desc: 'Lång strand med vit sand på Sandhamns södra sida. Toaletter finns sommartid. Badet ägs och sköts av Eknö hemman, och Värmdö kommun tar inga badvattenprover här.',
+            directions: 'Omkring 20 minuters promenad från hamnen.',
           },
           // KÄLLA: https://badplats.nu/varmdo/flaskberget/, thatsup.se/stockholm/plats/flaskberget-sandhamn — klippbadet nära Sandhamns by/Trouville heter Fläskberget, inte "Västerudd" (namnet kunde inte beläggas). Uppgifter om exakt väderstreck/avstånd/solnedgång kunde inte beläggas och är borttagna.
           {
             name: 'Fläskberget',
             type: 'klippbad',
-            desc: 'Klippbad vid Sandhamns by, i närheten av Trouville-stranden. Öppet hav och hällar. Populärt bland seglarna som vinterliggare och de som bor på ön.',
-            child_friendly: false,
-            depth: 'Djupt direkt vid klippkanten — hoppa in, men håll koll på barn.',
-            directions: 'Följ klippkanten från Trouville-stranden.',
+            desc: 'Klippbad vid Sandhamns by, i närheten av Trouville-stranden.',
           },
         ],
       },
@@ -361,28 +361,33 @@ export const ISLANDS: Island[] = [
     },
     amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
     dog_friendly: true,
-    // OBELAGT efter sökning (inget hittat om säsongsbundet hundförbud vid Trouville; Värmdö kommuns badplatssida gick inte att läsa). Den specifika förbudsperioden är borttagen tills den kan beläggas.
-    dog_notes: 'Hundar tillåtna på de flesta delar av ön. Koppeltvång i hamn- och restaurangområden.',
+    // KÄLLA: naturvardsverket.se, hundar i naturen — hunden får inte springa lös 1 mars–20 augusti; i naturreservat gäller föreskrifterna. Stod "Koppeltvång i hamn- och restaurangområden" utan källa (borttaget 2026-09-26).
+    dog_notes: 'Mellan 1 mars och 20 augusti får hunden inte springa lös i naturen, enligt Naturvårdsverket. I naturreservat gäller reservatets egna föreskrifter.',
     insiderTips: [
-      'Waxholmsbåten tar ungefär 2,5–3,5 timmar från Strömkajen beroende på antal bryggstopp. Snabbåt via Stavsnäs kortar restiden rejält.',
-      'Trouville är en av få sandstränder i hela Stockholms skärgård. De flesta öar har klippor och hällmarker, inte sand.',
+      // KÄLLA: waxholmsbolaget.se/reseplanering/resmal/sandhamn ("från Stavsnäs och då tar resan drygt en timme", Strömkajen "endast sommartid"); sandhamn.com/en/hitta-hit (Strömkajen "2–3 hours"). Stod "2,5–3,5 timmar", i strid med faktarutan.
+      'Waxholmsbåten från Strömkajen går bara sommartid och tar 2–3 timmar. Året runt går båtarna från Stavsnäs, drygt en timme.',
+      // KÄLLA: naturkartan.se/sv/stockholms-lan/sandon-2 (ansvarig utgivare Värmdö kommun) — trädklädda sanddyner jämförbara bara med Gotska Sandön och Fårö
+      'Sandön består till stor del av trädklädda sanddyner. Enligt Värmdö kommun finns motsvarigheten i den här delen av landet bara på Gotska Sandön och Fårö.',
       // KÄLLA: https://ksss.se/KSSS/historia/ (fullständigt namn "Kungl. Svenska Segel Sällskapet"); ksss.se/en/gotlandrunt/ (start sedan 2024 vid Gråskärsfjärden, mål i Sandhamn)
-      'KSSS (Kungliga Svenska Segel Sällskapet) har sin flaggskeppshamn i Sandhamn. Gotland Runt Offshore Race, en av världens mest välkända offshore-seglingstävlingar, avslutas i Sandhamn varje år.',
-      'Byn Sandhamn ligger i öns nordöstra del. Promenaden runt hela ön tar ungefär två timmar i lugnt tempo.',
-      'Sandhamn var lotsstation i hundratals år. Lotsarna här guidade handelsfartyg genom de smala passagerna in mot Stockholm, vilket formade byn och dess karaktär.',
+      'KSSS (Kungliga Svenska Segel Sällskapet) har gästhamn på Sandhamn och på Lökholmen, och Gotland Runt Offshore Race har målgång i Sandhamn.',
+      // KÄLLA: varmdo.se Spår och leder (se activities); stockholmslansmuseum.se/besoksmal/sandhamn/ (lotsstation från slutet av 1600-talet)
+      'Sandhamnsstigen runt hela Sandön är omkring 8 kilometer och börjar i byn.',
+      'En lotsstation upprättades på Sandhamn i slutet av 1600-talet, och Sjöfartsverkets lotsverksamhet finns kvar vid inloppet i dag.',
     ],
     blogLinks: [
       { slug: 'basta-restaurangerna-sandhamn', title: 'Restauranger på Sandhamn – lunch, middag, kafé och bar' },
       { slug: 'gasthamnar-guide', title: 'Gästhamnar i Stockholms skärgård – platser, service och bokning' },
       { slug: 'segling-nyborjare-guide', title: 'Börja segla – så lär du dig segla i skärgården' },
     ],
+    // KÄLLA (läst 2026-09-14–26): waxholmsbolaget.se resmål Sandhamn ("turer året runt"); sandhamns-vardshus.se (puben "Öppet året runt", restaurangen "Öppet varje dag från mitten av juni till mitten på september. Annan tid på året är restaurangen främst öppen helger"); sandhamn.com (Seglarhotellet "året runt"); stromma.com Cinderella Sandhamn (30/4–27/9 2026); dykarbaren.se ("säsong maj – september"); ksss.se/hamnar/sandhamn/aktuellt (servicehusen "endast öppna maj till september").
+    // Månaderna följer källorna: öppet året runt men begränsat oktober–april, fullt öppet mitten av juni–mitten av september. Stod "juni: allt öppet utan trängseln", "september: badbart vatten, tomma restauranger och billigare boende" och januari–mars "stängt" utan källa.
     seasonal: {
-      open: 'Maj–Oktober',
-      peak: 'Juli–mitten av Augusti',
-      best: 'Juni eller September',
-      bestReason: 'Juni: allt öppet utan trängseln. September: badbart vatten, tomma restauranger och billigare boende.',
-      warning: 'Seglarhotellet är öppet hela året men de flesta caféer och barer stänger oktober–april.',
-      months: ['off','off','off','limited','limited','open','peak','peak','open','limited','off','off'],
+      open: 'Året runt – båt från Stavsnäs, värdshusets pub och Seglarhotellet',
+      peak: 'Mitten av juni–mitten av september',
+      best: 'Mitten av juni–mitten av september',
+      bestReason: 'Då har Sandhamns Värdshus restaurang öppet varje dag, och Dykarbaren (maj–september) och KSSS servicehus (maj–september) är öppna.',
+      warning: 'Oktober–april har värdshusets restaurang främst öppet helger, och Cinderellabåtarna från Strandvägen går bara 30 april–27 september.',
+      months: ['limited','limited','limited','limited','open','peak','peak','peak','open','limited','limited','limited'],
     },
   },
   // ─── UTÖ ─────────────────────────────────────────────────────
@@ -3719,22 +3724,16 @@ export const ISLANDS: Island[] = [
       'Båda vägfärjorna (Furusund–Yxlan och Yxlan–Blidö) är avgiftsfria och tar fyra minuter.',
       'Buss 632 från Norrtälje åker med färjan över och går ända till Vagnsunda – bra om du vill vandra ledens etapp åt ett håll.',
       'Bara Vagnsunda har fast tid på linje 24. Ska du av vid någon annan brygga, sök resan i SL-appen och kontrollera att turen angör den.',
-      'Affär, krog och boende på ön har vi inte kunnat belägga hos någon operatör – Blidö på andra sidan Blidöleden har vandrarhem vid bryggan.',
+      'Affär, krog och boende på ön har vi inte kunnat belägga hos någon operatör – ta med det du behöver.',
     ],
     activity_meta: {
-      // KÄLLA: Stockholm Archipelago Trail, https://stockholmarchipelagotrail.com/section/ (2026-09-17)
+      // KÄLLA: Stockholm Archipelago Trail, https://stockholmarchipelagotrail.com/section/ (2026-09-17; läst igen 2026-09-26: "Section Yxlan Moderate 24 km")
       vandring: { trails: 1, max_km: 24, sat: { km: 24, difficulty: 'Medel' } },
     },
     related: ['blido', 'furusund', 'graddo'],
     tags: ['stor ö', 'bilfärja', 'cykling', 'vandring', 'norra', 'köpmanholm'],
     did_you_know: 'Yxlan nås med två avgiftsfria vägfärjor: Furusundsleden (600 m) från Furusund och Blidöleden (530 m) vidare till Blidö – fyra minuter vardera, enligt Trafikverket.',
-    seasonal: {
-      open: 'Maj–Oktober',
-      peak: 'Juli',
-      best: 'Juni',
-      bestReason: 'Cykla i juni när färjorna går tätt och vägarna är lugna.',
-      months: ['off','off','off','off','open','open','peak','peak','open','limited','off','off'],
-    },
+    // seasonal borttaget 2026-09-26: månadskalendern angav januari–april som stängt, men ön är bebodd och vägfärjorna har tidtabell även sent på hösten (Trafikverket). "Färjorna går tätt och vägarna är lugna" i juni hade ingen källa.
   },
   {
     slug: 'kymmendo',
@@ -4371,7 +4370,8 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Innerskärgården',
     emoji: '🌳',
-    tagline: 'Lättillgänglig skärgårdsö med restaurang, vandringsleder och havsbad — en halvtimme med pendelbåt från Ropsten',
+    // KÄLLA: Lidingö stad (lidingo.se/stad-politik/om-lidingo/lidingo-skargard/) — "bebyggda, har restaurang och stigar att promenera på"; SL linje 80 (se getting_there). Stod "vandringsleder och havsbad": Lidingö stad nämner inga, och Storholmen finns inte bland stadens badplatser hos Havs- och vattenmyndigheten.
+    tagline: 'Bebodd ö i Lidingös skärgård med sjökrog och promenadstigar — ca 25–30 min med SL:s pendelbåt 80 från Ropsten',
     description: [
       // KÄLLA: Lidingö stad, Lidingö skärgård (https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/), läst i webbläsare 2026-09-21 — "Med skärgårdsbåt tar du dig lätt till Storholmen eller Fjäderholmarna … Bägge två är bebyggda, har restaurang och stigar att promenera på"; "dagsverkstorp under Frösviks säteri från 1780-talet"; Villa Kassman ("Slottet") 1917; "cirka 250 fastigheter för sommarboende" 1925–1935; "i dag finns cirka 80 permanenta hushåll"; "överflyttades från Vaxholm kommun till Lidingö stad 2011"
       'Storholmen är en bebyggd ö i Lidingös skärgård med restaurang och stigar att promenera på, som nås med SL:s pendelbåt från Ropsten. Ön ligger i innerskärgården, nära nog för en dagstur utan lång restid.',
@@ -4393,16 +4393,23 @@ export const ISLANDS: Island[] = [
     ],
     harbors: [],
     restaurants: [
-      // KÄLLA: https://storholmensjokrog.se/ — "skärgårdsrestaurang på ön Storholmen utanför Lidingö. Njut av nyfångad fisk och klassisk skärgårdsmat vid vattnet", © 2026
-      { name: 'Storholmen Sjökrog', type: 'Restaurang', desc: 'Skärgårdsrestaurang på Storholmen utanför Lidingö med nyfångad fisk och klassisk skärgårdsmat vid vattnet.', websiteUrl: 'https://www.storholmensjokrog.se/' },
+      // KÄLLA: https://storholmensjokrog.se/ (läst 2026-09-26) — "SEDAN 2018", "Vår terrass sträcker sig ut mot vattnet", "rätter med säsongens bästa råvaror", meny med bl.a. "Stekt strömming", "Fish and Chips", "Moules Frites", "För barnen", "skräddarsydd catering", "Hyr hela restaurangen"
+      { name: 'Storholmen Sjökrog', type: 'Restaurang', desc: 'Sjökrog på Storholmen sedan 2018, med terrass ut mot vattnet och meny efter säsong – till exempel stekt strömming, fish and chips och moules frites – och barnmeny. Tar också catering och går att hyra för fester.', websiteUrl: 'https://www.storholmensjokrog.se/' },
     ],
+    // KÄLLA: tips 1 = SL linje 80 och Lidingö stad (se getting_there); tips 2 = storholmensjokrog.se ("Boka bord"). Borttaget 2026-09-26: "Kortare restid än Vaxholm … lugnare alternativ" (obelagd jämförelse).
     tips: [
       'Båten hit är SL:s pendelbåt 80 från Ropsten, inte Waxholmsbolaget — den ingår i SL-biljetten. Kontrollera tidtabellen på sl.se; vintertid trafikeras inte alla bryggor.',
       'Boka bord på Storholmen Sjökrog i förväg — se restaurangens egen sida för säsong.',
-      'Kortare restid än Vaxholm och Fjäderholmarna ligger runt hörnet — Storholmen är ett lugnare alternativ nära stan.',
     ],
     related: ['vaxholm', 'fjaderholmarna', 'moja'],
-    tags: ['bebodd', 'lidingö', 'innerskärgård', 'dagstur', 'restaurang', 'vandring', 'bad'],
+    tags: ['bebodd', 'lidingö', 'innerskärgård', 'dagstur', 'restaurang', 'vandring'],
+    // KÄLLA: havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-lidingo-stad.html (läst 2026-09-26) — Lidingö stads registrerade badplatser: "Fågelöudde", "Kottlasjön, badviken", "Käppalabadet", "Sticklinge udde, Sandviksbadet", "Södergarn"; ingen på Storholmen. lidingo.se bad-och-simhallar — "mest känt är badet vid Fågelöudde", bottenbesiktning två gånger per sommar.
+    activity_meta: {
+      bad: {
+        beaches: [],
+        note: 'Lidingö stad har ingen kommunal badplats på Storholmen. Stadens badplatser, som provtas och bottenbesiktas under sommaren, ligger på Lidingö: Fågelöudde, Käppalabadet, Sticklinge udde (Sandviksbadet), Södergarn och Kottlasjön. Vattenkvaliteten redovisas på Havs- och vattenmyndighetens sida Badplatsen.',
+      },
+    },
     // KÄLLA: Lidingö stad (samma sida) — "Storholmen överflyttades från Vaxholm kommun till Lidingö stad 2011"; att det skulle vara en av få ändringar under 2000-talet har vi ingen källa för
     did_you_know: 'Storholmen tillhörde Vaxholms kommun fram till 2011, då ön överfördes till Lidingö stad. I mitten av 1980-talet bodde tolv hushåll här året runt — i dag omkring 80.',
   },
@@ -4622,35 +4629,45 @@ export const ISLANDS: Island[] = [
     region: 'ovriga',
     regionLabel: 'Öland',
     emoji: '🌾',
-    tagline: 'Solens och vindarnas ö — UNESCO-alvaret, 400 väderkvarnar och Östersjöns längsta sandstrand.',
+    // Omskriven 2026-09-26 från Länsstyrelsen Kalmar, Riksantikvarieämbetet, oland.se (Ölands officiella besöksguide), Borgholms slott, Sollidens slott och Trafikverket. Tidigare text hade "400 väderkvarnar", "Östersjöns längsta sandstrand", "en av Europas längsta broar", flyg med BRA, tre boenden och soltimmar – inget med källa.
+    // KÄLLA: oland.se ("solens och vindarnas ö"); lansstyrelsen.se/kalmar Bödakustens östra ("Här finns Ölands längsta sandstrand")
+    tagline: 'Solens och vindarnas ö – världsarvet på södra Öland, Trollskogen och Ölands längsta sandstrand vid Böda.',
     description: [
-      'Öland är Sveriges längsta och näst största ö och ett av landets mest omtyckta sommarmål. Den 137 km långa ön förbinds med fastlandet via Ölandsbron från Kalmar — en av Europas längsta broar. Borgholm är den lilla huvudstaden med ett sommarliv i särklass.',
-      'Södra Ölands odlingslandskap är UNESCO-världsarv sedan 2000. Det så kallade Alvaret — en unik, kalkstensbaserad stäpp — är en av Europas mest sällsynta naturmiljöer och hem till hundratals växt- och fågelarter. Mer än 400 väderkvarnar ger Öland sin karaktäristiska siluett.',
-      'I norr väntar Böda Sand, en av Skandinaviens längsta sandstränder, omgiven av Trollskogen — en vresig bokskog som ger en närmast magisk atmosfär. Eketorps ringborg från järnåldern och Borgholms slottsruin är välbevarade pärlor längs landsvägen.',
+      // KÄLLA: lansstyrelsen.se/kalmar/besoksmal/varldsarvet-sodra-olands-odlingslandskap.html (läst 2026-09-26) — "År 2000 skrevs Södra Ölands odlingslandskap in på Unesco:s världsarvslista", "ett av Sveriges 15 världsarv", "Idag odlar ölänningarna den jord som odlats sedan många generationer tillbaka och låter beta de marker som har betats i ett par tusen år"
+      'Södra Ölands odlingslandskap skrevs in på Unescos världsarvslista år 2000 och är ett av Sveriges 15 världsarv. Enligt Länsstyrelsen i Kalmar län odlar ölänningarna i dag den jord som odlats i generationer och låter beta de marker som har betats i ett par tusen år.',
+      // KÄLLA: Länsstyrelsen Kalmar (samma sida) — "Av Ölands drygt 300 byar är cirka 200 radbyar", "alla gårdarna ligger tätt intill varandra på rad utmed bygatan eller landsvägen"; raa.se Södra Ölands odlingslandskap — alvaren "består av flacka hällmarker på hård kalkberggrund", "Stora Alvaret dominerar"
+      'Av Ölands drygt 300 byar är cirka 200 radbyar, där gårdarna ligger tätt på rad utmed bygatan. Utmarkerna är alvaren – flacka hällmarker på hård kalkberggrund – och Stora alvaret är det största.',
+      // KÄLLA: lansstyrelsen.se/kalmar Trollskogen — "Ölands nordostligaste udde", "gammal tallskog med stormvridna träd", "mäktiga ekar klädda i murgröna", "klapperstenstränder", "ett av Ölands mest besökta naturområden"; Bödakustens östra — "Ölands längsta sandstrand", "tio meter höga sanddyner", "De äldsta tallarna är upp emot 200 år gamla"
+      'I norr ligger naturreservatet Trollskogen på Ölands nordostligaste udde, med stormvridna tallar, grova ekar och klapperstensstränder – ett av öns mest besökta naturområden. I Bödakustens östra naturreservat finns Ölands längsta sandstrand, med upp till tio meter höga sanddyner och sandtallskog där de äldsta tallarna är nära 200 år.',
+      // KÄLLA: borgholmsslott.se (läst 2026-09-26) — "I 900 år har Borgholms slott stått på sin klippkant och blickat ut över Kalmarsund", "palatset förstördes vid en brand i början av 1800-talet", guidade turer och utställningar; sollidensslott.se — "Öppet dagligen 7 maj - 27 september 2026", byggt av drottning Victoria, "stod färdigt 1906", parker
+      'Vid Borgholm står Borgholms slott, som har legat på klippkanten över Kalmarsund i 900 år; palatset brann i början av 1800-talet, och ruinen har i dag utställningar och guidade turer. Sollidens slott, som drottning Victoria lät bygga och som stod färdigt 1906, har parker som är öppna för besökare under sommarhalvåret.',
     ],
     facts: {
-      travel_time: '3,5–4 h med bil från Stockholm (E4 + E22 via Kalmar)',
-      character: 'Soligt, öppet, historiskt, naturvård',
+      travel_time: 'Bil över Ölandsbron från Kalmar · tåg till Kalmar och regionbuss vidare',
+      character: 'Världsarv, alvar, radbyar och långa sandstränder i norr',
       season: 'Maj–September (peak juli–aug)',
-      best_for: 'Familjer, naturälskare, historia, cykling, strand',
+      best_for: 'Natur, kulturhistoria, cykling, strand',
     },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
-      { icon: '🌾', name: 'Alvaret', desc: 'Vandra i det UNESCO-listade odlingslandskapet i söder — en unik kalkstäpp med sällsynt flora.' },
-      { icon: '🏰', name: 'Borgholms slottsruin', desc: 'En av Skandinaviens största slottsruiner, med utsikt över sundet mot fastlandet.' },
-      { icon: '🏖', name: 'Böda Sand', desc: 'Norra Ölands långa sandstrand — ett av Sveriges populäraste badsställen.' },
-      { icon: '🌲', name: 'Trollskogen', desc: 'Vresig bokskog på norra spetsen med knöliga, vindpinade träd och en närmast sagolik stämning.' },
-      { icon: '⛺', name: 'Eketorps ringborg', desc: 'Rekonstruerad järnåldersby och fornborg från 400-talet. Levande historia för hela familjen.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Platt landskap och välskyltad cykelväg längs hela ön. Hyr cykel i Borgholm eller Mörbylånga.' },
+      // KÄLLA: Länsstyrelsen Kalmar, världsarvet (se description); oland.se/varldsarvet — guidade turer med Öländsguiderna, världsarvshelg 4–6 september 2026
+      { icon: '🌾', name: 'Världsarvet på södra Öland', desc: 'Radbyar, stenmurar och Stora alvaret i det levande odlingslandskapet. Öländsguiderna har guidade turer i världsarvet.' },
+      // KÄLLA: borgholmsslott.se
+      { icon: '🏰', name: 'Borgholms slott', desc: 'Slottsruinen på klippkanten över Kalmarsund, med utställningar, guidade turer och slottscafé.' },
+      // KÄLLA: lansstyrelsen.se/kalmar Bödakustens östra — "Ölands längsta sandstrand", "fina badstränder och en vandringsled"; hund ska vara kopplad, ingen eld, inget tält
+      { icon: '🏖', name: 'Böda', desc: 'Ölands längsta sandstrand i Bödakustens östra naturreservat, med sanddyner och en vandringsled. I reservatet ska hunden vara kopplad, och det är förbjudet att tälta och göra upp eld.' },
+      // KÄLLA: lansstyrelsen.se/kalmar Trollskogen — "Vandringsleder i Trollskogen", "Reservatet ligger på Ölands nordostligaste udde och är en del av Ekopark Böda"
+      { icon: '🌲', name: 'Trollskogen', desc: 'Vandringsleder genom stormvriden tallskog och längs klapperstensstränder på öns nordostligaste udde, en del av Ekopark Böda.' },
+      // KÄLLA: sollidensslott.se — "Öppet dagligen 7 maj - 27 september 2026", parker, restaurang & café
+      { icon: '🌷', name: 'Sollidens slott', desc: 'Kungafamiljens sommarslott med parker som är öppna dagligen på sommaren – 2026 från 7 maj till 27 september.' },
     ],
-    accommodation: [
-      { name: 'Borgholms Stadshotell', type: 'Hotell', desc: 'Klassiskt hotell i centrum av Borgholm med terrass och sommarstämning.' },
-      { name: 'Böda Sand Camping', type: 'Camping', desc: 'Stor välskött camping direkt vid stranden i norra Öland. Boka i god tid.' },
-      { name: 'Halltorps Gästgiveri', type: 'Hotell', desc: 'Historisk herrgård i ek- och bokskogen nära Borgholm. Stillsamt och naturnära.' },
-    ],
+    // Stod Borgholms Stadshotell, Böda Sand Camping och Halltorps Gästgiveri med obelagda beskrivningar ("Boka i god tid"). Borttagna 2026-09-26; oland.se har boendesök.
+    accommodation: [],
+    // KÄLLA: oland.se/en/travel/bus-tag-taxi (läst 2026-09-26) — "several daily departures to Kalmar from Stockholm, Gothenburg and Malmö/Copenhagen", Silverlinjen "Direct bus in both directions all year round", Swebus/Flixbus Stockholm–Kalmar, "From Kalmar and on to Öland, you can travel with the local bus company KLT", regionbussar "lines 101, 102, 103 …"; trafikverket.se "Underhållsarbeten på Ölandsbron" (trafik från Kalmar och från Öland över bron, arbeten 6 april–15 juni och 16 augusti–21 september 2026). Restider, BRA-flyg och "kostnads- och tullfri bro" stod utan källa.
     getting_there: [
-      { method: 'Bil via Ölandsbron', from: 'Stockholm', time: '3,5 h', desc: 'Kör E4 söderut till Södertälje, sedan E22 via Norrköping och Kalmar. Ölandsbron tar dig direkt in på ön. Kostnads- och tullfri bro.', icon: '🚗' },
-      { method: 'Tåg + buss', from: 'Stockholm Central', time: '4–5 h', desc: 'SJ tåg till Kalmar (ca 3 h), sedan buss 101 mot Borgholm via Ölandsbron (45 min).', icon: '🚆' },
-      { method: 'Flyg till Kalmar', from: 'Stockholm Arlanda', time: '3 h totalt', desc: 'BRA flyger Stockholm–Kalmar (55 min), sedan hyrbil eller taxi över bron (15 min).', icon: '✈️' },
+      { method: 'Bil', from: 'Kalmar', desc: 'Ölandsbron går från Kalmar över Kalmarsund till Öland. Trafikverket har aviserat underhållsarbeten med risk för köer under delar av våren och sensommaren.', icon: '🚗' },
+      { method: 'Tåg + buss', from: 'Stockholm, Göteborg eller Malmö', desc: 'Tåg till Kalmar flera gånger om dagen, sedan Kalmar länstrafiks regionbussar (t.ex. linje 101–107) vidare till Öland.', icon: '🚆' },
+      { method: 'Direktbuss', from: 'Stockholm', desc: 'Silverlinjen kör direktbuss mellan Stockholm och Öland/Kalmar året runt.', icon: '🚌' },
     ],
     harbors: [
       // KÄLLA: https://www.borgholm.se/borgholms-hamn — "Drivs av: Strand Öland", "Duschar: 3", "Tvättstuga: Ja", "Tanka: Diesel och bensin", "Wifi: Ja", "El: Ja" (redigerad 2026-06-29)
@@ -4660,28 +4677,16 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.borgholmsslott.se/slottscafe/ — "Slottscafé", pannkakor, bullar, kakor och glass. Namnet Källarporten finns inte.
       { name: 'Slottscafé, Borgholms slott', type: 'Café', desc: 'Café i slottsruinen med pannkakor, bullar, kakor och glass.', websiteUrl: 'https://www.borgholmsslott.se/slottscafe/' },
     ],
+    // KÄLLA: oland.se (Ölands Turistcenter, boende och evenemang); lansstyrelsen.se/kalmar reservatsföreskrifter för Bödakustens östra
     tips: [
-      'Boka camping och hotell i god tid — Öland är fullbokat i juli och första halvan av augusti.',
-      'Kör eller cykla landsvägarna längs östra och västra kusten — vyn över Kalmarsund är fantastisk.',
-      'Solliden Palace (kungafamiljens sommarresidens) har öppna trädgårdar — värt ett besök.',
-      'Besök Eketorps ringborg med barn — rekonstruktionen är imponerande och pedagogisk.',
+      'I Bödakustens östra naturreservat får du inte tälta eller göra upp eld, och hunden ska vara kopplad.',
+      'Under världsarvshelgen, 2026 den 4–6 september, har södra Öland extra många guidade turer, öppna kyrkor och konserter.',
     ],
     related: ['gotland', 'ulvon'],
-    tags: ['öland', 'alvaret', 'böda sand', 'väderkvarnar', 'borgholm', 'unesco', 'strand', 'historia', 'cykling'],
-    insiderTips: [
-      'Alvaret blommar som vackrast i juni — orkidéer, backsippa och andra sällsynta arter täcker kalkstenen.',
-      'Trollskogen på norra spetsen är allra vackrast i morgondimma eller solnedgång.',
-      'Ölandsmarknaden i Borgholm (tidig juli) är en av Sveriges äldsta marknader och ett lokalt evenemang i särklass.',
-    ],
-    did_you_know: 'Öland har fler soltimmar per år än nästan hela övriga Sverige — och fler än många platser på kontinenten. Klimatet liknar centrala Europa mer än norra Skandinavien.',
-    seasonal: {
-      open: 'Maj–September',
-      peak: 'Juli–Augusti',
-      best: 'Juni eller September',
-      bestReason: 'Juni: alvaret blommar med orkidéer och backsippa, stränder är tomma och priser rimliga. September: badbart vatten fortfarande, fullständig lugn och naturen övergår i höstfärger.',
-      warning: 'Juli fullbokas tidigt — camping och hotell i Borgholm ska bokas månader i förväg. Ölandsbron kan ha kö på fredag eftermiddag i juli.',
-      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
-    },
+    tags: ['öland', 'alvaret', 'böda', 'trollskogen', 'borgholm', 'unesco', 'strand', 'historia', 'cykling'],
+    // KÄLLA: Länsstyrelsen Kalmar, världsarvet — radbyarna, "Gårdstypen kallas götisk", Östgötalagen från 1200-talet. Stod "fler soltimmar än nästan hela övriga Sverige" utan källa.
+    did_you_know: 'I en öländsk radby fick gården en bredare tomt mot bygatan ju större andel den hade i byns jord – regler för hur radbytomten skulle läggas ut finns redan i Östgötalagen från 1200-talet.',
+    // seasonal borttaget 2026-09-26: "alvaret blommar med orkidéer", "priser rimliga", "Ölandsbron kan ha kö på fredagar" och stängt november–mars stod utan källa.
   },
   // ── Göteborgs södra skärgård (Styrsöbolaget) ─────────────────────────────
 
@@ -4691,30 +4696,39 @@ export const ISLANDS: Island[] = [
     region: 'goteborg',
     regionLabel: 'Göteborgs södra skärgård',
     emoji: '💃',
-    tagline: 'Folkdansön — hambo på bryggan varje fredag och ett genuint Göteborgsliv utanför staden.',
+    // Omskriven 2026-09-26. Tidigare text sa att dansen på bryggan är "varje fredag" med hambo och polska sedan 1930-talet, att Rävholmen är populärast, att värdshuset är öns enda boende och att restiden är 30 min. Inget av det gick att belägga; dansen är på torsdagar (Brännöföreningen, Styrsöbolaget).
+    // KÄLLA: goteborg.com/platser/branno (Göteborg & Co, läst 2026-09-26) — "Ö med välkänd bryggdans, barnvänlig badplats och genuint värdshus"
+    tagline: 'Ön med dansen på Brännö brygga, badplatser och värdshus – bilfri, i Göteborgs södra skärgård.',
     description: [
-      'Brännö är känd i hela Göteborg för en sak: folkdansen på bryggan varje fredag kväll sommartid. Sedan decennier samlas hundratals människor på Brännö Brygga för att dansa hambo och polska i solnedgången — en tradition utan like i Sverige.',
-      'Ön är den folkrikaste i södra skärgården utanför Donsö, med ett genuint ösamhälle och en atmosfär som är svår att beskriva utan att ha upplevt den. Ingen bil får köras på ön — transporter sker med moped och kärra.',
-      'Brännö nås med Styrsöbolaget från Saltholmen (spårvagn 11 från centrum). Restid ca 30 minuter. En fullständigt annan värld, 8 km från Göteborg.',
+      // KÄLLA: goteborg.com/platser/branno — "levande skärgårdsö i södra delen av Göteborgs skärgård med cirka 900 bofasta invånare", "Sommargästerna började inta ön på 1930-talet och numera är pendlarna i klar majoritet", "jordbruket, lots-historien, tullarna och sjöfarten", "Viskompositören Lasse Dahlqvist har gjort ön känd genom sina visor", "Från berget vid den gamla lotsutkiken, på öns högsta punkt, har du utsikt från Vinga till inloppet till Göteborg", "hembygdsmuseet mitt på ön"
+      'Brännö är en levande ö i Göteborgs södra skärgård med omkring 900 bofasta. Sommargästerna kom på 1930-talet, och i dag är pendlarna i klar majoritet. Tidigare levde ön på jordbruk, lotsning, tull och sjöfart, och från den gamla lotsutkiken på öns högsta punkt ser man från Vinga till inloppet till Göteborg. Mitt på ön finns ett litet hembygdsmuseum.',
+      // KÄLLA: brannoforeningen.se/kulturevenemang/dans-pa-branno-brygga/ och styrsobolaget.se/dans-pa-branno-brygga/ (lästa 2026-09-26) — 2026: torsdagar 25 juni–30 juli och lördag 8 aug, kl 19.30–22.00, olika band; "Le Shack har som vanligt öppet under danserna"; M/S Kungsö "avgår på torsdagar från Stenpiren kl 19:10", "avgång från Brännö 22.30". goteborg.com: "Lasse Dahlquists klassiska visa 'De' ä' dans på Brännö brygga'".
+      'Ön är känd genom Lasse Dahlquists visa om dansen på Brännö brygga, och dansen finns kvar. Brännöföreningen ordnar den på sommaren: 2026 var det dans på torsdagar från 25 juni till 30 juli och en avslutning lördag 8 augusti, kl. 19.30–22.00 med olika band. Styrsöbolagets M/S Kungsö går då en kvällstur från Stenpiren i Göteborg.',
+      // KÄLLA: goteborg.com/guider/ta-dig-till-skargarden — "De södra öarna är bilfria och nås enkelt året runt med Styrsöbolagets båtar", "283, Saltholmen–Asperö–Brännö Rödsten", "282, Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik", "Båtarna avgår som regel en gång i timmen", "räcker en biljett för zon A"
+      'Brännö är bilfri och nås året runt med Styrsöbolagets båtar från Saltholmen: linje 283 till Brännö Rödsten och linje 282 till Brännö Husvik. Båtarna går som regel en gång i timmen och ingår i Västtrafiks kollektivtrafik, med en biljett för zon A.',
     ],
     facts: {
-      travel_time: '~20 min till Brännö Rödsten (linje 283) från Saltholmen — spårvagn 11 dit',
-      character: 'Autentiskt, folkligt, levande, bilfritt',
-      season: 'Maj–September (folkdansen: juni–aug)',
-      best_for: 'Göteborgare som vill komma bort, dansintresserade, naturälskare',
+      travel_time: 'Båt från Saltholmen, som regel en gång i timmen (linje 283 till Rödsten, 282 till Husvik)',
+      character: 'Bilfri ö med omkring 900 bofasta, bryggdans och värdshus',
+      season: 'Året runt (dansen: sommar)',
+      best_for: 'Bad, promenad till Galterö, dans på bryggan',
     },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'matt', best_for: 'bedomning' },
     activities: [
-      { icon: '💃', name: 'Folkdans på Brännö Brygga', desc: 'Varje fredag kväll i sommar (juni–aug). Hambo, polska och glädje — kom tidigt för att få plats.' },
-      { icon: '🏖', name: 'Bad', desc: 'Flera badplatser runt ön. Rävholmen på östra sidan är populärast.' },
-      { icon: '🥾', name: 'Vandring', desc: 'Välskyltade stigar runt hela ön. Vacker västkustsnatur med klippor och hedar.' },
-      { icon: '⛵', name: 'Gästhamn', desc: 'Välutrustad gästhamn i Rödsten på östra sidan.' },
+      // KÄLLA: brannoforeningen.se och styrsobolaget.se (se description)
+      { icon: '💃', name: 'Dans på Brännö brygga', desc: 'Sommartid, med levande band kl. 19.30–22.00 – 2026 på torsdagar 25 juni–30 juli och lördag 8 augusti. Le Shack har öppet under danserna.' },
+      // KÄLLA: goteborg.com/platser/branno — "Vid Ramsdals badplats, nära Husvik finns en barnvänlig strand med klippor och hopptorn samt toaletter", "Från Rödsten är det cirka en kilometer till badplatsen Gröna Vik. Här finns sandstrand och bryggor"
+      { icon: '🏖', name: 'Bad', desc: 'Ramsdal nära Husvik har barnvänlig strand, klippor, hopptorn och toaletter. Gröna Vik, cirka en kilometer från Rödsten, har sandstrand och bryggor.' },
+      // KÄLLA: goteborg.com/platser/branno — "Via en smal landförbindelse går det att vandra över till fantastiska Galterö. Här finns ett rikt fågelliv", "enkelt att ta upp kajaken på stränderna vid Galterös vikar"; goteborg.com/guider/en-guide-till-skargarden-sodra-oar — "obebodda grannön Galterö"
+      { icon: '🥾', name: 'Promenad till Galterö', desc: 'Via en smal landförbindelse går det att gå över till obebodda Galterö, med rikt fågelliv och vikar där man kan ta upp kajaken.' },
+      // KÄLLA: goteborg.com/platser/branno — "hyra cykel på Aroniagården"
+      { icon: '🚲', name: 'Cykel', desc: 'Cyklar hyrs ut på Aroniagården.' },
     ],
-    accommodation: [
-      { name: 'Brännö Värdshus & Pensionat', type: 'Pensionat', desc: 'Öns enda övernattning — enkelt, genuint och fullt sommartid. Boka långt i förväg.' },
-    ],
+    // Stod "Brännö Värdshus & Pensionat – öns enda övernattning … Boka långt i förväg" utan källa; boendet står under värdshuset nedan (rum året runt enligt brannovardshus.se).
+    accommodation: [],
     getting_there: [
-      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50 min totalt', desc: 'Spårvagn linje 11 till Saltholmen (25 min), sedan Styrsöbolagets linje 283 till Brännö Rödsten (~20 min). Avgår ofta sommartid.', icon: '🚋' },
-      { method: 'Bil + färja', from: 'Göteborg', time: '40 min', desc: 'Kör till Saltholmen (parkering finns), ta färjan. Bilar får ej tas med till ön.', icon: '🚗' },
+      // KÄLLA: goteborg.com/guider/ta-dig-till-skargarden (se description). Restiden "~20 min"/"50 min totalt" och "parkering finns" stod utan källa och är borttagna.
+      { method: 'Styrsöbolagets båt', from: 'Saltholmen', desc: 'Linje 283 Saltholmen–Asperö–Brännö Rödsten och linje 282 via Styrsö till Brännö Husvik. Båtarna går som regel en gång i timmen och ingår i Västtrafiks zon A. Sök resan i Västtrafiks app.', icon: '⛴' },
     ],
     harbors: [
     ],
@@ -4722,19 +4736,23 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.goteborg.com/platser/branno-vardshus-pensionat-baggen — "mitt på den södra ön Brännö", "Mat med inspiration från havet", byggt 1900; brannovardshus.se/oppettider — 14 februari–31 maj och 10 augusti–13 december torsdag–söndag, 24 juni–9 augusti "Öppet alla dagar 12.00-23.00", "Rumsuthyrning på Pensionat Baggen och Värdshusets Gästrum är möjlig året runt"
       { name: 'Brännö Värdshus & Pensionat Baggen', type: 'Värdshus', desc: 'Värdshus och pensionat mitt på Brännö, byggt år 1900. Mat med inspiration från havet. Öppet 14 februari–13 december: torsdag–söndag utanför högsäsongen och alla dagar 12–23 mellan 24 juni och 9 augusti. Rumsuthyrning året runt.', websiteUrl: 'https://brannovardshus.se/' },
     ],
+    // KÄLLA: goteborg.com/guider/ta-dig-till-skargarden ("bilfria", "zon A"); goteborg.com/platser/branno (Le Shack i Husvik intill dansbryggan)
     tips: [
-      'Inga bilar på ön: lämna bilen i Saltholmens parkeringshus och njut av bilfrihetens lugn.',
-      'Ta med picnic — det finns begränsad matservice utanför värdshuset.',
+      'Ön är bilfri. En biljett för Västtrafiks zon A räcker för båten, samma som för spårvagn och buss.',
+      'På danskvällarna går Styrsöbolagets M/S Kungsö från Stenpiren i Göteborg (kl. 19.10 sommaren 2026) och tillbaka från Brännö 22.30.',
     ],
     related: ['styrso', 'vrango', 'donso', 'asperon'],
-    tags: ['göteborg', 'södra skärgård', 'folkdans', 'bilfritt', 'styrsöbolaget', 'västkust'],
-    did_you_know: 'Folkdansen på Brännö Brygga startade på 1930-talet och har hållits nästan varje fredag sommartid sedan dess. Det är en av Göteborgs mest omtyckta sommartraditioner.',
+    tags: ['göteborg', 'södra skärgård', 'dans', 'bilfritt', 'styrsöbolaget', 'västkust', 'bad'],
+    // KÄLLA: goteborg.com/platser/branno — "Sommargästerna började inta ön på 1930-talet"; Lasse Dahlquists visa. Stod "Folkdansen … startade på 1930-talet och har hållits nästan varje fredag" utan källa.
+    did_you_know: 'Lasse Dahlquists visa om dansen på Brännö brygga gjorde ön känd, och dansen hålls fortfarande varje sommar – i dag på torsdagskvällar med levande band.',
+    // KÄLLA: goteborg.com ("nås enkelt året runt"); brannovardshus.se/oppettider (restaurangen 14 februari–13 december, "Öppet alla dagar" 24 juni–9 augusti, rum "året runt"); dansen 25 juni–8 augusti 2026 (Brännöföreningen). Stod "Undvik juli" utan källa.
     seasonal: {
-      open: 'Hela året',
-      peak: 'Juli',
-      best: 'Maj–Juni eller September',
-      bestReason: 'Göteborgsarkipelagen har service året om. Undvik juli — välj juni för bästa möjliga upplevelse med allt öppet.',
-      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+      open: 'Året runt – båtar och rum; värdshusets restaurang 14 februari–13 december',
+      peak: 'Slutet av juni–början av augusti',
+      best: 'Slutet av juni–början av augusti',
+      bestReason: 'Då är det dans på Brännö brygga och värdshuset har öppet alla dagar (24 juni–9 augusti 2026).',
+      warning: 'Utanför sommaren har värdshusets restaurang öppet torsdag–söndag, och i januari är den stängd.',
+      months: ['limited','limited','limited','limited','open','peak','peak','peak','open','limited','limited','limited'],
     },
 
   },
@@ -4802,21 +4820,27 @@ export const ISLANDS: Island[] = [
     emoji: '🦅',
     // KÄLLA: Göteborg & Co, Vrångö, https://www.goteborg.com/platser/vrango — "fina sandstränder"; "både områdena norr och söder om bebyggelsen är skyddade naturreservat"; lotsutkiken med "panoramavy över bland annat Vinga fyr" (läst 2026-09-21). "Södra skärgårdens yttersta punkt" hade ingen källa.
     tagline: 'Bilfri ö längst ut på båtlinje 281 – sandstränder, naturreservat och lotsutkiken med utsikt mot Vinga.',
+    // Omskriven 2026-09-26. Stod "knappt 150 fast bosatta" (Länsstyrelsen: "drygt 350 invånare"), "ingen kommersiell turism … en liten mataffär, ett kafé" (goteborg.com nämner två restauranger, pensionat, hotell, affär, post och kiosk) och "utsikt mot Nordsjön".
     description: [
-      'Vrångö är den sydligaste bebodda ön i Göteborgs södra skärgård, med knappt 150 fast bosatta året om. Öns södra del är naturreservat och skyddat fågelområde — en vild, orörd klippkust med utsikt rakt ut mot Nordsjön.',
-      'Känslan på Vrångö är annorlunda jämfört med Brännö och Styrsö. Lugnet är mer påtagligt, turistströmmen lättare och naturen tar mer plats. Det är hit göteborgare åker när de verkligen vill slita sig från stadens tempo.',
-      'Inga bilar. Ingen kommersiell turism att tala om. En liten mataffär, ett kafé och naturens egna ljud.',
+      // KÄLLA: lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vrangoskargarden-vrango-arkipelagen.html (läst 2026-09-26) — "Vrångö är bebodd med drygt 350 invånare", "Bildat: 1979", "Areal: cirka 5 184 hektar", "Naturvårdsförvaltare: Västkuststiftelsen", "ett av de mest besökta naturreservaten i länet", "Över sextio arter häckar i området", "På reservatets södra skär syns knubbsälar", "betande får"
+      'Vrångö har drygt 350 invånare, och stora delar av ön ingår i naturreservatet Vrångöskärgården, bildat 1979 och på omkring 5 184 hektar, som Västkuststiftelsen förvaltar. Enligt Länsstyrelsen är det ett av de mest besökta naturreservaten i länet. Över sextio fågelarter häckar i området, på de södra skären ligger knubbsälar, och på ön betar får för att hålla gamla ängar öppna.',
+      // KÄLLA: goteborg.com/platser/vrango (läst 2026-09-26) — "Bebyggelsen sträcker sig som ett bälte tvärs över ön och både områdena norr och söder om bebyggelsen är skyddade naturreservat", "Skärgårdsbåten lägger till i Mittvik, där finns Restaurang Ternan", "en knapp kilometer … stor modern gästhamn med fiskekaj, livsmedelsbutiken Tempo samt Fiskeboa Vrångö Hamnkrogen Lotsen", "post, affär, kiosk, bangolfsbana", "pensionat Solviken eller på Kajkanten", "sedan 1600-talet varit viktig utpost för att lotsa"
+      'Bebyggelsen går som ett bälte tvärs över ön, med naturreservat både norr och söder om den. Båten lägger till i Mittvik, där Restaurang Ternan ligger, och en knapp kilometer bort på andra sidan ön finns gästhamnen med fiskekaj, livsmedelsbutiken Tempo och Hamnkrogen Lotsen. Här finns också post, kiosk och bangolf, och den som vill stanna kan bo på pensionat Solviken eller på Kajkanten i sjöbodar vid hamnen.',
+      // KÄLLA: goteborg.com/platser/vrango — lotsning "sedan 1600-talet", lotsutkiken med "panoramavy över bland annat Vinga fyr, Öckerööarna och fastlandet"
+      'Vrångö har sedan 1600-talet varit en utpost för att lotsa och hjälpa fartyg i nöd. Den gamla lotsutkiken står kvar, med utsikt över bland annat Vinga fyr, Öckerööarna och fastlandet.',
     ],
     facts: {
       travel_time: '20–40 min med båt 281 från Saltholmen · ca 1 h 35 min direkt från Stenpiren',
-      character: 'Vilt, stilla, natur, ytterst',
-      season: 'Maj–September (fågelskydd: undvik klippreservatet under häckningen — datumen står på skyltarna)',
-      best_for: 'Naturälskare, fågelskådare, de som söker verkligt lugn',
+      character: 'Bebodd, bilfri ö med stort naturreservat och sandstrand',
+      season: 'Maj–September',
+      best_for: 'Bad, promenadslingor, fågelliv',
     },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
-      { icon: '🦅', name: 'Naturreservat i söder', desc: 'Vild klippkust och rikt fågelliv. Promenadstigen runt sydspetsen ger panoramautsikt mot havet.' },
-      { icon: '🏊', name: 'Bad', desc: 'Klippbad på östra och norra sidan. Vattnet är klart och kallt.' },
-      { icon: '🚶', name: 'Vandring', desc: 'Välmärkta stigar runt ön — ca 6 km runt hela Vrångö.' },
+      // KÄLLA: lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vrangoskargarden-vrango-arkipelagen.html — "Ta dig förbi Brevik, Bingen och Vättnena i norr, via de lummiga busk- och skogspartierna längs en markerad promenadslinga. Eller gå söderut, förbi Nötholmsviken över den öppna hällmarksljungheden och förbi Store rös, det gamla bronsåldersröset"; "Det finns en fin sandstrand söder om färjeläget"; "Det bästa fisket sägs vara på öns södra sida vid Kungsnabbe och vid Kungsö sund". Stod "ca 6 km runt hela Vrångö" och "klippbad på östra och norra sidan" utan källa.
+      { icon: '🚶', name: 'Promenadslingor', desc: 'En markerad slinga går norrut förbi Brevik, Bingen och Vättnena. Söderut går du över hällmarksljungheden förbi Nötholmsviken och bronsåldersröset Store rös.' },
+      { icon: '🏊', name: 'Bad', desc: 'Sandstrand söder om färjeläget i Mittvik.' },
+      { icon: '🎣', name: 'Fiske', desc: 'Länsstyrelsen skriver att det bästa fisket sägs vara på öns södra sida, vid Kungsnabbe och Kungsö sund.' },
     ],
     accommodation: [],
     getting_there: [
@@ -4835,21 +4859,15 @@ export const ISLANDS: Island[] = [
       { name: 'Fiskeboa Vrångö Hamnkrogen Lotsen', type: 'Restaurang', desc: 'Hamnkrog vid Vrångö hamn.' },
     ],
     tips: [
-      'Gå hela vägen till sydspetsen — utsikten mot Nordsjön och de yttre skären är enastående.',
-      'Fågelskyddsperioden gäller i reservatets klippzoner — datumen står på skyltarna och i föreskrifterna, vanligen någon gång mellan 1 februari och 31 augusti: håll dig till stigen.',
-      'Ta med egen mat — utbudet är mycket begränsat på ön.',
+      // KÄLLA: lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vrangoskargarden-vrango-arkipelagen.html — föreskrifter: inte "campa", "medföra okopplad hund", "elda annat än på plats som förvaltaren anordnat"; "skyddade områden för säl och fågel med landstigningsförbud i delar av skärgården"; "vissa tider om året får du inte gå iland". Stod "vanligen någon gång mellan 1 februari och 31 augusti" utan källa.
+      'I naturreservatet får du inte campa, hunden ska vara kopplad och eld får bara göras på iordningställda platser.',
+      'Delar av skärgården runt Vrångö är skyddade för säl och fågel med landstigningsförbud vissa tider på året – se skyltarna om du kommer med egen båt.',
     ],
     related: ['branno', 'styrso', 'asperon'],
     tags: ['göteborg', 'södra skärgård', 'naturreservat', 'bilfritt', 'fågelliv', 'ytterst'],
-    did_you_know: 'Vrångö naturreservats klippzoner är klassade som riksintresse för naturvård och hyser häckande skarvar, ejdrar och tärnor.',
-    seasonal: {
-      open: 'Maj–September',
-      peak: 'Juli',
-      best: 'Juni eller September',
-      bestReason: 'Juni: reservatets fågelskyddsperiod börjar avta, havet är tyst och naturupplevelsen är ostörd. September: klart höstljus, inga turistmassorna och den vilda klippkusten på sitt bästa.',
-      warning: 'Fågelskyddsperiod i klippreservatet — datumen står på skyltarna och i länsstyrelsens föreskrifter, vanligen någon gång mellan 1 februari och 31 augusti; håll dig till markerade stigar. Cafét är bara öppet sommartid; ta med egen mat.',
-      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
-    },
+    // KÄLLA: lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vrangoskargarden-vrango-arkipelagen.html — klapperstensfälten "spår efter landisens avsmältning för ungefär 12 000 år sedan, då Vrångö täcktes av havet". Stod "riksintresse … skarvar, ejdrar och tärnor" utan källa.
+    did_you_know: 'Klapperstensfälten på Vrångö är spår efter inlandsisens avsmältning för ungefär 12 000 år sedan, då ön täcktes av havet.',
+    // seasonal borttaget 2026-09-26: fågelskyddsdatum, "cafét är bara öppet sommartid" och stängt oktober–april stod utan källa. Ön är bebodd och båt 281 går året runt (se getting_there).
   },
   {
     slug: 'donso',
