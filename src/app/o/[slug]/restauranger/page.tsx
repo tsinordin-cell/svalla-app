@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+import IslandPlacesList from '@/components/IslandPlacesList'
+import { getIslandPlaces } from '@/lib/islandPlaces'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -16,6 +18,8 @@ type Props = { params: Promise<{ slug: string }> }
 // i routern, före skalet. Gäller INTE db-backade rutter (upptack, tur,
 // u) — nya rader där måste kunna renderas utan ny deploy.
 export const dynamicParams = false
+// ISR: krogarna ur platsdatabasen hämtas vid bygget och uppdateras varje timme.
+export const revalidate = 3600
 
 export async function generateStaticParams() {
   return ALL_ISLANDS.map(island => ({ slug: island.slug }))
@@ -29,12 +33,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
   return {
-    title: `Restauranger på ${island.name} — bästa krogarna 2026`,
-    description: `Alla restauranger, krogar och caféer på ${island.name}. Öppettider, specialiteter, hur man hittar dit. Uppdaterad guide.`,
+    title: `Restauranger på ${island.name} – krogar och kaféer`,
+    description: `Restauranger, krogar, barer och kaféer på ${island.name}, med beskrivning och länk till varje ställe.`,
     keywords: [`${island.name.toLowerCase()} restaurang`, `${island.name.toLowerCase()} krog`, `${island.name.toLowerCase()} café`, `mat på ${island.name.toLowerCase()}`],
     openGraph: {
       title: `Restauranger på ${island.name}`,
-      description: `Var äter man bäst på ${island.name}? Komplett guide.`,
+      description: `Restauranger, krogar och kaféer på ${island.name}.`,
       url: `https://svalla.se/o/${slug}/restauranger`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/restauranger` },
@@ -46,22 +50,28 @@ export default async function IslandRestaurantsPage({ params }: Props) {
   const island = getIsland(slug)
   if (!island) notFound()
 
+  // Krogar ur platsdatabasen som inte redan står i island-data.
+  const known = new Set(island.restaurants.flatMap(r => [r.slug, r.name.toLowerCase()]).filter(Boolean) as string[])
+  const dbPlaces = (await getIslandPlaces(island, ['restaurant', 'cafe', 'bar'], { extraKm: 0.5 }))
+    .filter(p => !known.has(p.slug) && !known.has(p.name.toLowerCase()))
+  const total = island.restaurants.length + dbPlaces.filter(p => p.onIsland).length
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <IslandSubPageHeader
         island={island}
         tab="restauranger"
         subtitle={
-          island.restaurants.length === 0
-            ? `${island.name} har begränsat utbud — ta gärna med matsäck.`
-            : island.restaurants.length === 1
-            ? `Det här är stället att äta på ${island.name}.`
-            : `Här är de ${island.restaurants.length} restauranger, krogar och kaféer som finns på ${island.name}.`
+          total === 0
+            ? `Vi har inga restauranger registrerade på ${island.name}. Kolla säsong och öppettider innan du åker, och ta med matsäck om du är osäker.`
+            : total === 1
+            ? `Restaurangen på ${island.name} som vi har uppgifter om.`
+            : `${total} restauranger, krogar och kaféer på ${island.name} som vi har uppgifter om.`
         }
       />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
-        {island.restaurants.length === 0 ? (
+        {island.restaurants.length === 0 && dbPlaces.length === 0 ? (
           <div style={{ background: 'var(--white)', padding: 24, borderRadius: 14, fontSize: 14, color: 'var(--txt2)' }}>
             Inga registrerade restauranger på {island.name}. <Link href="/partner" style={{ color: 'var(--sea)' }}>Är du krögare här? Kontakta oss</Link> så lägger vi upp.
           </div>
@@ -103,6 +113,16 @@ export default async function IslandRestaurantsPage({ params }: Props) {
                 </div>
               )
             })}
+          </div>
+        )}
+
+        {dbPlaces.length > 0 && (
+          <div style={{ marginTop: island.restaurants.length > 0 ? 28 : 0 }}>
+            <IslandPlacesList
+              places={dbPlaces}
+              islandName={island.name}
+              heading={island.restaurants.length > 0 ? `Fler ställen på och nära ${island.name}` : `Restauranger och kaféer på och nära ${island.name}`}
+            />
           </div>
         )}
 
