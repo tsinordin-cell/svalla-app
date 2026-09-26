@@ -5,6 +5,8 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import IslandPlacesList from '@/components/IslandPlacesList'
+import { getIslandPlaces } from '@/lib/islandPlaces'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -18,6 +20,8 @@ type Props = { params: Promise<{ slug: string }> }
 // i routern, före skalet. Gäller INTE db-backade rutter (upptack, tur,
 // u) — nya rader där måste kunna renderas utan ny deploy.
 export const dynamicParams = false
+// ISR: boenden ur platsdatabasen hämtas vid bygget och uppdateras varje timme.
+export const revalidate = 3600
 
 export async function generateStaticParams() {
   return ALL_ISLANDS.map(island => ({ slug: island.slug }))
@@ -32,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!island) notFound()
   return {
     title: `Boende på ${island.name} — hotell, vandrarhem och stugor`,
-    description: `Hela utbudet av boende på ${island.name}: hotell, värdshus, B&B, stugor och vandrarhem. Bokningstips inför sommaren.`,
+    description: `Boende på ${island.name}: hotell, värdshus, vandrarhem, stugor och camping som vi har uppgifter om, med länk till bokning.`,
     keywords: [
       `${island.name.toLowerCase()} hotell`,
       `${island.name.toLowerCase()} boende`,
@@ -70,6 +74,10 @@ export default async function IslandAccommodationPage({ params }: Props) {
   // Pre-filtrerade sök-URL:er — affiliate-IDs läggs till vid partnerskap
   // Booking.com: lägg till &aid=AFFILIATE_ID
   // Airbnb: lägg till ?s_af=AFFILIATE_TOKEN
+  const known = new Set(island.accommodation.map(a => a.name.toLowerCase()))
+  const dbStays = (await getIslandPlaces(island, ['hotel'], { extraKm: 0.5 }))
+    .filter(p => !known.has(p.name.toLowerCase()))
+
   const bookingComUrl = `https://www.booking.com/searchresults.sv.html?ss=${encodeURIComponent(island.name)}`
   const airbnbUrl = `https://www.airbnb.com/s/${encodeURIComponent(island.name)}--Sverige/homes`
 
@@ -91,12 +99,12 @@ export default async function IslandAccommodationPage({ params }: Props) {
         )}
 
         {/* Boendekort */}
-        {island.accommodation.length === 0 ? (
+        {island.accommodation.length === 0 && dbStays.length === 0 ? (
           <div style={{
             background: 'var(--white)', padding: 24, borderRadius: 14,
             border: '1px solid var(--surface-3)', fontSize: 14, color: 'var(--txt2)',
           }}>
-            Inga registrerade boenden på {island.name}. Många öar har privat stuguthyrning — sök på Airbnb eller Booking.com nedan.
+            Vi har inga boenden registrerade på {island.name}. Sök på bokningssajterna nedan.
           </div>
         ) : (
           <div style={{ display: 'grid', gap: 14 }}>
@@ -155,6 +163,16 @@ export default async function IslandAccommodationPage({ params }: Props) {
                 )}
               </div>
             ))}
+          </div>
+        )}
+
+        {dbStays.length > 0 && (
+          <div style={{ marginTop: island.accommodation.length > 0 ? 28 : 0 }}>
+            <IslandPlacesList
+              places={dbStays}
+              islandName={island.name}
+              heading={island.accommodation.length > 0 ? `Fler boenden på och nära ${island.name}` : `Boende på och nära ${island.name}`}
+            />
           </div>
         )}
 
