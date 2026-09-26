@@ -59,6 +59,7 @@ export default async function IslandBadPage({ params }: Props) {
   if (!island) notFound()
 
   const beaches = island.activity_meta?.bad?.beaches ?? []
+  const badNote = island.activity_meta?.bad?.note
   const hasBad = island.activities.some(a =>
     ['bad', 'klippbad', 'simning', 'strand', 'sandstrand'].some(k => a.name.toLowerCase().includes(k) || a.desc.toLowerCase().includes(k))
   )
@@ -103,6 +104,17 @@ export default async function IslandBadPage({ params }: Props) {
       />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+
+        {/* Källbelagd upplysning om bad på just den här ön */}
+        {badNote && (
+          <div style={{
+            background: 'var(--white)', borderRadius: 14, padding: '20px 20px',
+            border: '1px solid rgba(10,123,140,0.07)',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.05)', marginBottom: 24,
+          }}>
+            <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>{badNote}</p>
+          </div>
+        )}
 
         {/* Stränder och badplatser */}
         {beaches.length > 0 && (
@@ -210,7 +222,7 @@ export default async function IslandBadPage({ params }: Props) {
             boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
           }}>
             <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
-              Vi har ännu inga badplatser med källa på {island.name}. Enligt allemansrätten får du bada vid stränder som inte hör till någon tomt. Badplatser i hela skärgården hittar du på <Link href="/upptack" style={{ color: 'var(--sea)' }}>kartan</Link>, och fler saker att göra på <Link href={`/o/${slug}/aktiviteter`} style={{ color: 'var(--sea)' }}>{island.name}s aktivitetssida</Link>.
+              {!badNote && <>Vi har ännu inga badplatser med källa på {island.name}. </>}Enligt allemansrätten får du bada vid stränder som inte hör till någon tomt. Badplatser i hela skärgården hittar du på <Link href="/upptack" style={{ color: 'var(--sea)' }}>kartan</Link>, och fler saker att göra på <Link href={`/o/${slug}/aktiviteter`} style={{ color: 'var(--sea)' }}>{island.name}s aktivitetssida</Link>.
             </p>
           </div>
         )}

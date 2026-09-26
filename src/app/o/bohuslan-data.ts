@@ -32,7 +32,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar sillhandelns centrum på 1500-talet — https://www.vastsverige.com/en/kungalv/products/marstrand/ ; att Match Cup Sweden avgörs första veckan i juli — https://www.vastsverige.com/kungalv/marstrand/ (läst 2026-09-16)
     tagline: 'Carlstens fästning, sillstadens gränder och match-racing första veckan i juli.',
     seoTitle: 'Marstrand 2026 – Carlstens fästning & segling',
-    seoDescription: 'Guide till Marstrand: Carlstens fästning, bilfri ö på Bohuskusten, Match Cup Sweden och de bästa restaurangerna. Hur du tar dig dit och var du bor.',
+    seoDescription: 'Guide till Marstrand: Carlstens fästning, ö med begränsad biltrafik, Match Cup Sweden och restaurangerna vid hamnen. Hur du tar dig dit och var du bor.',
     description: [
       // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar provisorisk skans efter freden i Roskilde 1658, mindre stenfästning från 1660, bygget 1682 under Erik Dahlberg, färdig 1860, "en av Europas starkaste fästningar", statligt byggnadsminne förvaltat av SFV sedan hösten 1993 — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
       'Marstrand domineras av Carlstens fästning. Efter freden i Roskilde 1658 restes först en provisorisk skans på öns högsta punkt, och två år senare — 1660 — började en mindre fästning i sten att byggas. Den stora anläggningen påbörjades 1682 under Erik Dahlbergs ledning men stod inte helt färdig förrän 1860, då den enligt Statens fastighetsverk betraktades som en av Europas starkaste fästningar. Carlsten är statligt byggnadsminne och förvaltas av Statens fastighetsverk sedan hösten 1993.',
@@ -50,7 +50,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     facts: {
       // KÄLLA: Kungälvs kommun, Marstrandsfärjan — bekräftar färjeförbindelsen Koön–Marstrandsön — https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ (läst 2026-09-16)
       travel_time: 'Bil eller buss till Koön, sedan Marstrandsfärjan över sundet',
-      character: 'Festlig sommardestination, segling, historia',
+      character: 'Fästningsö med gästhamn och trästad',
       season: 'Juni–september högsäsong, helår med begränsat utbud',
       best_for: 'Segling, fästningsbesök, historisk trästadsmiljö',
     },
@@ -105,9 +105,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       open: 'Maj–September',
       peak: 'Juli–Augusti',
       best: 'Juni eller September',
-      bestReason: 'Juni: hamnen och fästningsmiljön utan trängseln från Match Cup-veckan. September: höstljuset över fästningsmuren och betydligt lugnare på ön.',
-      warning: 'GKSS Match Cup Sweden avgörs första veckan i juli och drar stora åskådarmängder till ön. Planera boende i god tid om du vill vara här då.',
-      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+      // KÄLLA: vastsverige.com/kungalv/marstrand/ (Match Cup första veckan i juli, se tips). Månaderna: faktarutan säger "helår med begränsat utbud", så vintermånaderna är 'limited', inte stängda. "Höstljus" och "betydligt lugnare" stod utan källa.
+      bestReason: 'Juni och september ligger utanför Match Cup-veckan i början av juli.',
+      warning: 'GKSS Match Cup Sweden avgörs första veckan i juli – boka boende i god tid om du vill vara på ön då.',
+      months: ['limited','limited','limited','limited','open','open','peak','peak','open','limited','limited','limited'],
     },
   },
   {
@@ -134,7 +135,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     ],
     facts: {
       travel_time: 'Bil eller buss via Kungshamn',
-      character: 'Livlig fiskeby, sommarmagnet, klippvandring',
+      character: 'Fiskeläge med Smögenbryggan, klippor och badplatser',
       season: 'Juni–augusti högsäsong',
       best_for: 'Räkmacka, sommarmiljö, klippvandring',
     },
@@ -568,7 +569,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       travel_time: '',
       character: 'Aktiv fiskehamn, hamnkanal',
       season: 'Maj–september',
-      best_for: 'Avkoppling, autenticitet, vandring',
+      best_for: 'Vandring, Vägeröds naturreservat, hamnmiljö',
     },
     facts_provenance: {
       travel_time: 'bedomning',
