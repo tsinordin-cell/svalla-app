@@ -1066,7 +1066,7 @@ export default async function IslandPage({ params }: Props) {
        </div>
        <div style={{ flex: 1 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Bad &amp; stränder</div>
-        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Bästa badplatserna på {island.name}</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Badplatser på och nära {island.name}</div>
        </div>
        <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
       </div>
