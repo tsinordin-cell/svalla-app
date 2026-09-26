@@ -4,6 +4,11 @@ import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland, type IslandBeach } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon, { type IconName } from '@/components/Icon'
+import IslandPlacesList from '@/components/IslandPlacesList'
+import { getIslandPlaces } from '@/lib/islandPlaces'
+
+// ISR: badplatserna ur platsdatabasen hämtas vid bygget och uppdateras varje timme.
+export const revalidate = 3600
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -29,8 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = getIsland(slug)
   if (!island) return {}
   return {
-    title: `Bästa badplatser på ${island.name} 2026`,
-    description: `Var badar man på ${island.name}? Klippbad, sandstränder och dolda badvikar — komplett guide med tips om hur du hittar dit.`,
+    title: `Bada på ${island.name} – badplatser och stränder`,
+    description: `Badplatser på och nära ${island.name}: stränder och bad med beskrivning, vägbeskrivning och vad allemansrätten säger om att bada.`,
     keywords: [
       `bada på ${island.name.toLowerCase()}`,
       `badplatser ${island.name.toLowerCase()}`,
@@ -40,8 +45,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${island.name.toLowerCase()} swim`,
     ],
     openGraph: {
-      title: `Bästa badplatser på ${island.name}`,
-      description: `Klippbad, sandstränder och dolda badvikar på ${island.name}. Komplett guide.`,
+      title: `Bada på ${island.name} – badplatser och stränder`,
+      description: `Badplatser på och nära ${island.name}.`,
       url: `https://svalla.se/o/${slug}/bad`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/bad` },
@@ -63,16 +68,21 @@ export default async function IslandBadPage({ params }: Props) {
     )
   )
 
-  const badSchema = beaches.length > 0 ? {
+  // Badplatser ur platsdatabasen (källbelagda texter), utom de som redan står i island-data.
+  const beachNames = new Set(beaches.map(b => (isBeachObject(b) ? b.name : b).toLowerCase()))
+  const dbBeaches = (await getIslandPlaces(island, ['beach'])).filter(p => !beachNames.has(p.name.toLowerCase()))
+  const allBeachNames = [...beaches.map(b => (isBeachObject(b) ? b.name : b)), ...dbBeaches.map(p => p.name)]
+
+  const badSchema = allBeachNames.length > 0 ? {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: `Badplatser på ${island.name}`,
     url: `https://svalla.se/o/${slug}/bad`,
-    numberOfItems: beaches.length,
-    itemListElement: beaches.map((b, i) => ({
+    numberOfItems: allBeachNames.length,
+    itemListElement: allBeachNames.map((name, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      name: isBeachObject(b) ? b.name : b,
+      name,
     })),
   } : null
 
@@ -86,9 +96,9 @@ export default async function IslandBadPage({ params }: Props) {
         island={island}
         tab="bad"
         subtitle={
-          !hasBad && beaches.length === 0
-            ? `${island.name} är inte känt som badö — men det finns alltid klippor och bryggor att doppa sig från.`
-            : `Var badar man bäst på ${island.name}? Här är allt du behöver veta.`
+          beaches.length === 0 && dbBeaches.length === 0 && !hasBad
+            ? `Badplatser på ${island.name} och vad som gäller när du badar i skärgården.`
+            : `Badplatser på och nära ${island.name}, med beskrivning och vägbeskrivning.`
         }
       />
 
@@ -161,6 +171,13 @@ export default async function IslandBadPage({ params }: Props) {
           </div>
         )}
 
+        {/* Badplatser ur platsdatabasen */}
+        <IslandPlacesList
+          places={dbBeaches}
+          islandName={island.name}
+          heading={beaches.length > 0 ? `Fler badplatser på och nära ${island.name}` : `Badplatser på och nära ${island.name}`}
+        />
+
         {/* Bad-aktiviteter från activities[] */}
         {badActivities.length > 0 && (
           <div style={{ marginBottom: 32 }}>
@@ -186,14 +203,14 @@ export default async function IslandBadPage({ params }: Props) {
         )}
 
         {/* Om inga baddata finns */}
-        {beaches.length === 0 && badActivities.length === 0 && (
+        {beaches.length === 0 && badActivities.length === 0 && dbBeaches.length === 0 && (
           <div style={{
             background: 'var(--white)', borderRadius: 14, padding: '24px 20px',
             border: '1px solid rgba(10,123,140,0.07)',
             boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
           }}>
             <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
-              {island.name} har klippor och bryggor längs hela kusten. Allemansrätten ger rätt att bada och vistas längs stranden — ta med snorkel och utforska på eget hand. Se <Link href={`/o/${slug}/aktiviteter`} style={{ color: 'var(--sea)' }}>alla aktiviteter på {island.name}</Link> för mer info.
+              Vi har ännu inga badplatser med källa på {island.name}. Enligt allemansrätten får du bada vid stränder som inte hör till någon tomt. Badplatser i hela skärgården hittar du på <Link href="/upptack" style={{ color: 'var(--sea)' }}>kartan</Link>, och fler saker att göra på <Link href={`/o/${slug}/aktiviteter`} style={{ color: 'var(--sea)' }}>{island.name}s aktivitetssida</Link>.
             </p>
           </div>
         )}
@@ -206,14 +223,14 @@ export default async function IslandBadPage({ params }: Props) {
           marginBottom: 32,
         }}>
           <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 12 }}>
-            Tips för bad i skärgården
+            Bra att veta innan du badar
           </h3>
+          {/* KÄLLA: naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ ("Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt, eller som är skyddad för fågelliv eller annat"; "Det finns inget förbud mot att tillfälligt förtöja eller bada vid en brygga som ligger utanför en tomt"; "Håll koll på fågel- och sälskyddsområden"), havochvatten.se/badplatser-och-badvatten (Badplatsen, provtagning av badvatten), naturvardsverket.se hundar i naturen (koppel 1 mars–20 augusti; alltid i naturreservat) — läst 2026-09-24 */}
           <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
-            <li>Vattnet är varmast i slutet av juli — runt 18–22°C i innerskärgården</li>
-            <li>Klippbad är ofta bättre än stränder — renare vatten och färre folk</li>
-            <li>Badbryggor med stege finns vid de flesta gästhamnar och värdshus</li>
-            <li>Allemansrätten ger rätt att bada och vistas vid strandkanten — håll avstånd till privata tomter</li>
-            <li>Ta med vattenost — siktdjupet i ytterskärgården kan vara 8–10 meter</li>
+            <li>Enligt allemansrätten får du bada vid en strand som inte hör till någon tomt, och vid en brygga utanför en tomt så länge ägaren inte hindras.</li>
+            <li>Håll koll på skyltar för fågel- och sälskyddsområden, där det kan vara förbjudet att gå i land under delar av året.</li>
+            <li>Havs- och vattenmyndighetens Badplatsen visar provsvar för de bad som kommunen provtar. Alla bad provtas inte.</li>
+            <li>Hunden får inte springa lös i naturen 1 mars–20 augusti, och i naturreservat ska den alltid vara kopplad.</li>
           </ul>
         </div>
 
@@ -230,7 +247,7 @@ export default async function IslandBadPage({ params }: Props) {
               Planera hela dagen på {island.name}
             </div>
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
-              Thorkel fixar båttider, lunch och bad — på sekunder.
+              Thorkel hjälper dig med båttider, lunch och bad.
             </div>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver gratis konto — tar 30 sekunder.</div>
           </div>

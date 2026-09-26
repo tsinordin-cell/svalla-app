@@ -233,8 +233,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://skargardsstiftelsen.se/omraden/uto/",
       "org": "skargardsstiftelsen.se",
-      "vad": "I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden. / Sveriges äldsta bevarade väderkvarn",
-      "last": null,
+      "vad": "Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens; Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter; Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis; lansstyrelsen.se Utö: Waxholmsbåt året om till Gruvbryggan",
+      "last": "2026-09-26",
       "myndighet": false
     },
     {
