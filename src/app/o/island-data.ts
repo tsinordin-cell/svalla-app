@@ -394,7 +394,7 @@ export const ISLANDS: Island[] = [
     emoji: '🚲',
     tagline: 'Järngruvor sedan medeltiden, grusvägar att cykla och sandstrand vid Ålö Storsand.',
     seoTitle: 'Utö 2026 – cykling, gruvhistoria & Utö Värdshus',
-    seoDescription: 'Guide till Utö: cykelleder, gruvhistoria och Utö Värdshus. Pendeltåg till Nynäshamn och båt vidare. Naturreservat i södra skärgården.',
+    seoDescription: 'Guide till Utö: cykelleder, gruvhistoria och Utö Värdshus. Pendeltåg till Västerhaninge, buss till Årsta brygga och båt året om. Naturreservat i södra skärgården.',
     description: [
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Här finns också Utö gruvor från järnmalmsbrytningen som funnits till och från under 700 år med början redan under 1100-talet." (läst 2026-09-19)
       // KÄLLA: https://www.kulturarvstockholm.se/industrihistoria/artiklar-om-industrihistoria/uto-gruvor/, Utö gruvor — "År 1879 upphörde slutligen gruvdriften helt"
@@ -418,7 +418,6 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.utovardshus.se/kontakt/hitta-hit/ — "Waxholmsbåtar trafikerar linjen Utö – Årsta Brygga dagligen" / "Båt utgår även från Nynäshamn till grannön Ålö som har broförbindelse till Utö"
       // KÄLLA: https://sl.se/, linje 846 Västerhaninge station–Årsta (–Årsta slott)
       'Waxholmsbåtar trafikerar linjen Utö–Årsta brygga dagligen. Årsta brygga nås med pendeltåg till Västerhaninge och därifrån buss 846 mot Årsta. Båt utgår även från Nynäshamn till grannön Ålö, som har broförbindelse till Utö.',
-      'Utö belönar den som stannar mer än en dag. Cykelturen och gruvbyn fyller lätt ett dygn; nästa dag är för det långsammare, en runda längs vattnet eller en lång lunch utan något planerat efteråt. Landskapet har en hårdare, mer ärlig kvalitet utanför högsommaren som klär öns gruvhistoria.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html, naturreservat Utö — hundar måste hållas kopplade (undantag Persholmen utanför 1 mars–20 augusti); tältning endast på anvisade platser; eldning endast på iordningställda platser; båt får förtöjas högst två dygn vid samma strand
       'Reservatsföreskrifterna styr mer än man tror. Hund ska hållas kopplad, med undantag för Persholmen utanför perioden 1 mars till 20 augusti. Tältning är bara tillåten på anvisade platser, eldning bara på iordningställda, och en båt får förtöjas högst två dygn vid samma strand. Det är inga hårda regler att leva med, men de är värda att känna till innan man packar tältet.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html, naturreservat Utö — urkalksten i berggrunden, främst i ett band på öns norra del; på de kalkpåverkade markerna växer "Adam och Eva, mandelblom och grusbräcka"
@@ -442,35 +441,39 @@ export const ISLANDS: Island[] = [
     facts: {
       // KÄLLA: Waxholmsbolagets tabell 21 (https://kund.printhuset-sthlm.se/wa/h21.pdf) Årsta–Utö. Nynäshamnslinjen (tabell 22) slutar på Ålö, inte Utö by. Årsta brygga nås med buss 846 (14–17 min). Se varv 51–52.
       travel_time: 'Buss 846 till Årsta brygga + båt 40–75 min (Gruvbryggan förbokas minst 1 tim före avgång)',
-      character: 'Lugnt, naturnära, perfekt för familjer och cyklister',
-      season: 'April–Oktober (Värdshuset öppet helår)',
+      character: 'Cykel-ö med gruvby och naturreservat',
+      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (läst 2026-09-26) — "Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens"; "Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter"; "Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis"; lansstyrelsen.se Utö: "Waxholmsbåt året om till Gruvbryggan"
+      season: 'Året runt – båt året om och Utö Värdshus öppet året runt; fler ställen öppna sommartid',
       best_for: 'Cykling, havsbastu, naturupplevelser, familjer',
     },
     facts_provenance: { travel_time: 'matt' },
     activities: [
       // KÄLLA: https://www.uto.se/cykel/ och utogasthamn.se/uto-cykeluthyrning/ bekräftar cykeluthyrning vid hamnen (Cykelboden); exakt antal/märke gick ej att verifiera (sidor blockerade av robots.txt)
-      { icon: '🚲', name: 'Cykling', desc: 'Cykeluthyrning vid hamnen (Cykelboden). Klassiska rutten Gruvbyn–Ålö är ca 13 km enkel väg längs grusvägar genom skog och ängar till Ålö storsand med en storslagen sandstrand och krogen Båtshaket.' },
-      { icon: '🧖', name: 'Havsbastu', desc: 'En av skärgårdens mest omtalade havsbastur. Dörren går ut mot havet — basta, hoppa i, basta igen.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Cykeluthyrning dagsvis vid hamnen (Cykelboden). Grusvägarna går över ön och via bron vidare till grannön Ålö.' },
+      // KÄLLA: https://www.utogasthamn.se/gasthamnen/ — "dusch, bastu och toaletter"
+      { icon: '🧖', name: 'Bastu', desc: 'Utö gästhamn har bastu, dusch och toaletter.' },
       // KÄLLA: https://www.kulturarvstockholm.se/industrihistoria/artiklar-om-industrihistoria/uto-gruvor/, Utö gruvor — "under 1840-talet uppnådde befolkningstalet sitt maximum, 446 personer" / "År 1879 upphörde slutligen gruvdriften helt". "16 000 ton/år" och "cirka 500 invånare" saknade källa och motsade 446; strukna.
       { icon: '⛏', name: 'Gruvan & museet', desc: 'Järnmalm bröts på Utö till och från under 700 år, från 1100-talet till 1879. Befolkningen var som störst på 1840-talet, 446 personer. Gruvmuseet berättar historien.' },
       // KÄLLA: https://marinwiki.se/port/661 — "Stranden ligger på militärens område drygt 7 kilometer från Gruvbyn"
-      { icon: '🏊', name: 'Bad & stränder', desc: 'Stora Sand på Utö (drygt 7 km från Gruvbyn, ligger inom skjutfältet — kontrollera tillgänglighet) och Ålö Storsand på grannön Ålö (broförbunden) hör till Sveriges finaste sandstränder.' },
+      { icon: '🏊', name: 'Bad & stränder', desc: 'Ålö Storsand på grannön Ålö nås med båt eller via vandringsled. Närmare Gruvbyn ligger badplatserna Rävstavik och Barnens bad. Stora Sand ligger på södra Utö, som är militärt övningsområde.' },
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — reservatet omfattar "norra delen av Utö samt ett antal öar i omgivande vatten"; södra delen är militärt övningsområde
-      { icon: '🚶', name: 'Vandring', desc: 'Naturreservat i öns norra del med välmarkerade leder och vacker urbergslandskap.' },
-      { icon: '🎣', name: 'Fiske', desc: 'Ytterskärgården runt Utö är utmärkt för havsöring och abborre.' },
+      { icon: '🚶', name: 'Vandring', desc: 'Naturreservat i öns norra del. Stockholm Archipelago Trail går över ön.' },
+      // KÄLLA: Länsstyrelsen Stockholm, Stockholms läns Fiskeguide 2023 — havsöring: "Andra bra ställen är Singö-Väddökusten, Ljusterö, Kanholmsfjärden, Baggensfjärden, Ingarö, Ornö, Utö och Torö"
+      { icon: '🎣', name: 'Fiske', desc: 'Länsstyrelsens fiskeguide nämner vattnen vid Utö bland platserna för havsöring. Med spö fiskar du fritt utan fiskekort längs kusten.' },
     ],
     // "Skärgårdens bredaste boendeutbud" var ett obelagt superlativ och togs bort 2026-09-14.
-    accommodationIntro: 'Utö har både värdshus, stugor och camping. Anläggningarna ligger i eller nära Gruvbyn, och flera av dem ligger inom naturreservatet.',
+    // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (läst 2026-09-26) — "Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens"; "Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter"; "Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis"; lansstyrelsen.se Utö: "Waxholmsbåt året om till Gruvbryggan"
+    accommodationIntro: 'Utö har värdshus med hotell och vandrarhem, camping och stugor som Skärgårdsstiftelsen hyr ut veckovis.',
     // KÄLLA: https://www.utovardshus.se/boende/ (Kvarnvillan, Stenhotellet, hotellstugor, vandrarhemmet); uto.se/camping; STF:s lista över vandrarhem i Stockholms skärgård nämner INTE Utö — "STF-ansluten" borttaget (läst 2026-09-14)
     accommodation: [
-      { name: 'Utö Värdshus', type: 'Hotell', desc: 'Värdshus med restaurang och havsutsikt — rum i Kvarnvillan, Stenhotellet och hotellstugor. Öppet hela året.', websiteUrl: 'https://www.utovardshus.se' },
+      { name: 'Utö Värdshus', type: 'Hotell', desc: 'Värdshus med restaurang, hotell och konferens – rum i Kvarnvillan, Stenhotellet och hotellstugor. Öppet året runt.', websiteUrl: 'https://www.utovardshus.se' },
       { name: 'Utö Vandrarhem Skärgården', type: 'Vandrarhem', desc: 'Vandrarhemsdelen av Utö Värdshus. Enkelt boende, bokningsbart online.', websiteUrl: 'https://www.utovardshus.se/boende/vandrarhemmet/' },
-      { name: 'Utö campingplats', type: 'Camping', desc: 'Tältplats nära Gruvbryggan, sköts av Hamnboden/Utö gästhamn.', websiteUrl: 'https://www.uto.se/camping/' },
+      { name: 'Utö campingplats', type: 'Camping', desc: 'Campingplats på Utö.', websiteUrl: 'https://www.uto.se/camping/' },
     ],
     getting_there: [
       { method: 'Skärgårdsbåt', from: 'Årsta brygga, Haninge', time: '40 min', desc: 'Waxholmsbolagets linje 21 från Årsta brygga i Haninge, 40 min till Gruvbryggan. Waxholmsbolaget-biljett krävs (104 kr vuxen, 64 kr 7–19 år) utom 14 september–29 april för den som har SL-periodbiljett på 30 dagar eller mer.', icon: '⛴' }, // KÄLLA: https://waxholmsbolaget.se/ reseplaneraren, sökning lördag 2026-09-26, läst 2026-09-19: linje 21 Årsta brygga–Gruvbryggan 40 min, taxa 3 = 104/64 kr; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar. Årsta brygga ligger i Haninge kommun, inte Nynäshamn.,
       // Raden "Snabbåt 30 min, expresslinje av Waxholmsbolaget" struken 2026-09-21: linje 21 (https://kund.printhuset-sthlm.se/wa/h21.pdf, läst 2026-09-21) har ingen separat expresslinje; snabbaste tur Årsta brygga 20.35 → Gruvbryggan 21.10 = 35 min.
-      { method: 'Pendel + buss + båt', from: 'Stockholm City', time: '2 h totalt', desc: 'Pendeltåg linje 43 till Västerhaninge, buss 846 till Årsta brygga (16 min), sedan båt till Gruvbryggan 35–75 min, beställningsbrygga på de flesta turer.', icon: '🚆' },
+      { method: 'Pendel + buss + båt', from: 'Stockholm City', time: 'båt 35–75 min', desc: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga (14–17 min) och Waxholmsbåt till Gruvbryggan (35–75 min). På flera turer ska resan beställas i förväg.', icon: '🚆' },
     ],
     harbors: [
       // KÄLLA: https://www.utogasthamn.se/gasthamnen/ — "plats för ca 300 fritidsbåtar med eluttag … på samtliga platser", "dusch, bastu och toaletter", "tvättstuga att hyra", "fylla på färskvatten", "I den norra hamnen finns sjömacken"
@@ -484,7 +487,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.utogasthamn.se/kiosk-cafe/ — "Hamnboden … kiosk, café och restaurang i samma byggnad … glass, godis, korv och toast men även sushi samt en bar"
       { name: 'Hamnboden', type: 'Kiosk/Café', desc: 'Kiosk, café och restaurang i Utö gästhamn: glass, korv, toast, sushi och bar.', websiteUrl: 'https://www.utogasthamn.se/kiosk-cafe/' },
       // KÄLLA: https://visitskargarden.se/mat-dryck/restaurang/bakfickan.aspx — "Utös vattenhål och nattklubb", bar/nattklubb i anslutning till Utö Värdshus
-      { name: 'Bakfickan Utö', type: 'Bar', desc: 'Bar och nattklubb vid Gruvbryggan, del av Utö Värdshus. Livemusik och DJ sommarhelger.', slug: 'bakfickan-uto' },
+      { name: 'Bakfickan Utö', type: 'Bar', desc: 'Bar och nattklubb i anslutning till Utö Värdshus.', slug: 'bakfickan-uto' },
     ],
     tips: [
       // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis"
@@ -520,28 +523,23 @@ export const ISLANDS: Island[] = [
       car_parking: 'Utan bil: pendeltåg till Västerhaninge och buss till Årsta brygga. Med bil: väg 73 söderut, skyltat mot Årsta brygga.',
     },
     activity_meta: {
-      kajak: { difficulty: 'lätt', rental: true, notes: 'Kajakuthyrning vid hamnen. Lugnt vatten på öns västra sida, mer öppet i söder.' },
-      cykel: { rental: true, km_track: 13, notes: 'Ca 350 hyrcyklar. Klassrutt: Gruvbryggan–Ålö ca 13 km enkel väg.' },
+      cykel: { rental: true, notes: 'Cykeluthyrning dagsvis vid hamnen (Cykelboden).' },
       bad: {
         beaches: [
           {
             name: 'Ålö Storsand',
             type: 'sandstrand',
-            desc: 'En av Stockholms skärgårds verkligt vackra sandstränder — vit sand, turkost vatten och öppet hav mot söder. Ligger på grannön Ålö (broförbunden med Utö). Strandkrogen Båtshaket ligger precis intill.',
+            desc: 'Sandstrand på grannön Ålö, som har broförbindelse med Utö. Nås med båt eller via vandringsled.',
             child_friendly: true,
-            depth: 'Grunt vid strandlinjen, sandbotten hela vägen ut — perfekt för barn.',
-            directions: 'Hyr cykel vid Gruvbryggan. Cykla söderut längs grusvägen, passera Ålöbron och följ skyltarna till Storsand. Ca 13 km, ca 45 min i lugnt tempo.',
-            insider_tip: 'Gå bort till stenrevet i norr — där är det färre folk och exakt samma vatten. Kom med morgonbåten och ha stranden för dig själv till 11.',
+            directions: 'Via vandringsleden eller grusvägen och bron över till Ålö, eller med båt.',
           },
           // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (naturreservat Utö): skjutfältet ligger i öns södra del; marinwiki.se/port/661: Stora Sand ligger på militärens område "drygt 7 kilometer från Gruvbyn"
           {
             name: 'Stora Sand (södra Utö)',
             type: 'sandstrand',
-            desc: 'Sandstrand på Utös södra sida inom militärt övningsområde. Öppen för besökare under stora delar av sommaren men stängs vid militärövningar utan förvarning. Kolla skyltningen vid infarterna.',
+            desc: 'Sandstrand på Utös södra sida, inom militärt övningsområde. Kontrollera skyltningen innan du går in i området.',
             child_friendly: true,
-            depth: 'Sandbotten, grunt — bra för barn när stranden är öppen.',
-            directions: 'Cykla söderut från Gruvbryggan, drygt 7 km. Skyltar vid infarterna visar om stranden är tillgänglig.',
-            insider_tip: 'Fråga alltid vid bryggan eller kolla utoinfo.se om stranden är öppen denna dag. Stängs utan förvarning.',
+            directions: 'Söderut från Gruvbyn, drygt 7 km.',
           },
         ],
       },
@@ -551,13 +549,13 @@ export const ISLANDS: Island[] = [
     },
     amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
     dog_friendly: true,
-    dog_notes: 'Hundar välkomna. Naturreservat i södra delen har koppeltvång under häckningssäsong; enligt lag ska hundar dessutom hindras från att springa lösa i marker med vilt 1 mars–20 augusti, och reservatet kan ha egna perioder. Värdshuset tillåter hundar i uteserveringen.',
+    // KÄLLA: lansstyrelsen.se Utö naturreservat — hundar kopplade i reservatet (norra Utö), undantag Persholmen utanför 1 mars–20 augusti; naturvardsverket.se hundar i naturen — lös hund förbjuden 1 mars–20 augusti
+    dog_notes: 'Hunden ska vara kopplad i naturreservatet på norra Utö, utom på Persholmen utanför perioden 1 mars–20 augusti. I resten av naturen får hunden inte springa lös 1 mars–20 augusti.',
     insiderTips: [
       // KÄLLA: Stockholms läns museum (https://stockholmslansmuseum.se/) — brytning möjligen redan på 1100-talet, nedlagd 1879 (2026-08-24)
-      'Järngruvan på Utö var i drift från medeltiden — möjligen redan på 1100-talet — till 1879 och räknas till Sveriges äldsta kända järngruvor. Gruvsystemet kan besökas.',
-      'Cykellederna på Utö är välmarkerade och terrängen är till stor del flack, vilket gör en rundtur tillgänglig för de flesta konditionsnivåer.',
-      'Utö Värdshus vid Gruvbryggan erbjuder restaurang, bar och boende åt besökare och sjöfarare.',
-      'Havsbastu finns på Utö och är populär även under vinterhalvåret. Kontrasten mot kallt hav är störst i november och mars.',
+      'Järngruvan på Utö var i drift från medeltiden — möjligen redan på 1100-talet — till 1879 och räknas till Sveriges äldsta kända järngruvor.',
+      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (läst 2026-09-26) — "Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens"; "Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter"; "Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis"; lansstyrelsen.se Utö: "Waxholmsbåt året om till Gruvbryggan"
+      'Utö Värdshus har öppet året runt med restaurang, hotell och konferens.',
     ],
     blogLinks: [
       { slug: 'uto-guide', title: 'Utö guide – gruvorna, cykel, bad och båt från Årsta brygga' },
@@ -565,11 +563,12 @@ export const ISLANDS: Island[] = [
       { slug: 'havsbastu-guide', title: 'Havsbastu i skärgården – bastur vid hamnar och öar' },
     ],
     seasonal: {
-      open: 'Maj–Oktober',
+      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (läst 2026-09-26) — "Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens"; "Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter"; "Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis"; lansstyrelsen.se Utö: "Waxholmsbåt året om till Gruvbryggan"
+      open: 'Året runt',
       peak: 'Juli',
-      best: 'Juni eller September',
-      bestReason: 'Sandstrand, cykel och värdshus — utan juliträngseln. Havsbastu är ett plus i september.',
-      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+      best: 'Sommar för flest öppna ställen',
+      bestReason: 'Båten går året om och Utö Värdshus har öppet året runt. Sommartid har fler restauranger, kaféer och butiker öppet.',
+      months: ['limited','limited','limited','limited','open','open','peak','peak','open','limited','limited','limited'],
     },
   },
   // ─── VAXHOLM ─────────────────────────────────────────────────
@@ -1284,14 +1283,13 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.fjaderholmarna.se/ — flera hantverkare listas på ön, bland annat inom trä, textil, keramik och glas
       'Flera hantverkare har verkstad på ön, bland annat inom trä, textil, keramik och glas. Vilka som är på plats varierar mellan säsonger.',
       // KÄLLA: https://www.explorearchipelago.com/ — klippbad med utsikt över Stockholms inlopp samt mindre sandstränder; https://www.naturkartan.se/sv — klipphällar för sol
-      'Bad går bra från klipporna, med utsikt över Stockholms inlopp, och vid några mindre sandstränder. Klipphällarna fylls tidigt på varma dagar.',
+      'Bad går bra från klipporna, med utsikt över Stockholms inlopp, och vid några mindre sandstränder.',
       // KÄLLA: https://www.fjaderholmarna.se/ — "Fjäderholmarna har nu säsongsöppet"
       'Fjäderholmarna drivs inte året runt. Båtar, restauranger och butiker har säsongsöppet under sommarhalvåret; utanför säsong är det mesta stängt. En vardag i början eller slutet av säsongen ger öarna med allt öppet men utan de tätaste folksamlingarna.',
       // KÄLLA: https://lidingo.se/bygga-bo/bygglov/kulturmiljoprogram/ (Stora Fjäderholmen, pdf), kulturmiljöunderlag Stora Fjäderholmen — "Fjäderholmarna omnämns i skrift redan 1381"; "Åtminstone sedan 1699 och troligen även sedan långt tidigare fanns krog på Stora Fjäderholmen"; "År 1849 övertogs ägandet av holmarna av Stockholms stad"; "Från 1849 fram till 1880-talets slut använde Stockholms stad nämligen Ängsholmen som deponi för stadens latrintömning"
       'Fjäderholmarna omnämns i skrift redan 1381, och åtminstone sedan 1699 fanns krog på Stora Fjäderholmen — troligen långt tidigare än så. År 1849 övertog Stockholms stad ägandet, och från 1849 fram till 1880-talets slut användes Ängsholmen som deponi för stadens latrintömning.',
       // KÄLLA: https://lidingo.se/bygga-bo/bygglov/kulturmiljoprogram/ (Stora Fjäderholmen, pdf), kulturmiljöunderlag Stora Fjäderholmen — "År 1918 när Försvarsmakten (marinen) förvärvade Fjäderholmarna"; "landstigningsförbud, som i princip rådde fram till 1976 då Försvarsmakten lämnade holmarna"; "Kungliga Djurgårdsförvaltningen förvaltar Fjäderholmarna sedan 1982"; ny restaurangbyggnad färdig 1985; "Sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken"
       '1918 förvärvade marinen Fjäderholmarna, och 1940 utfärdades ett landstigningsförbud som i princip rådde fram till 1976 då Försvarsmakten lämnade holmarna. Kungl. Djurgårdens förvaltning har förvaltat öarna sedan 1982, en ny restaurangbyggnad stod färdig 1985 och sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken.',
-      'Kvällarna har ett eget ljus. Solen går ner i väster bakom stadens siluett, och uteplatserna vetter åt rätt håll för det.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/kungliga-nationalstadsparken.html — parken inrättades 1995, omfattar 27 kvadratkilometer, sträcker sig "från Sörentorp och Ulriksdal i norr till Djurgården och Fjäderholmarna i söder" och "spänner över tre kommuner: Solna, Stockholm och Lidingö"; "Länsstyrelsen samordnar arbetet med parkens förvaltning och utveckling. Kungliga Djurgårdens förvaltning sköter runt 80 procent av marken."
       'Att Fjäderholmarna ingår i Kungliga nationalstadsparken är mer än en etikett. Parken inrättades 1995, omfattar 27 kvadratkilometer och sträcker sig från Sörentorp och Ulriksdal i norr till Djurgården och Fjäderholmarna i söder, över tre kommuner: Solna, Stockholm och Lidingö. Länsstyrelsen samordnar förvaltningen och Kungliga Djurgårdens förvaltning sköter runt 80 procent av marken. Öarna är alltså den yttersta sydspetsen av ett skyddat landskap som börjar långt inne i staden.',
       // KÄLLA: https://lidingo.se/bygga-bo/bygglov/kulturmiljoprogram/ (Stora Fjäderholmen, pdf), kulturmiljöunderlag Stora Fjäderholmen — "Redan 1884 hade ett utsiktstorn uppförts, kallat Belvederen. År 1894 byggdes detta om till restaurangpaviljong för 500–600 personer." / "År 1905 ombyggdes restaurangpaviljongen till en större anläggning, som fick namnet 'Grand Restaurant Bellevue' och 1910 tillkom en utedansbana."
@@ -1376,8 +1374,8 @@ export const ISLANDS: Island[] = [
     seasonal: {
       open: 'Maj–September', // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/, rokeriet-https://www.fjaderholmarna.se/, fjaderholmarnasbryggeri.se (1 maj–13 sep)
       peak: 'Juli–Augusti',
-      best: 'Maj–Juni',
-      bestReason: 'Maj och juni ger sommarstemning utan trängsel. Gå promenaden runt ön och lunta på rökeriet utan kö.',
+      best: 'Maj–mitten av september',
+      bestReason: 'Båtar, restauranger och butiker har säsongsöppet ungefär maj–mitten av september. Utanför säsong är det mesta stängt.',
       warning: 'Sommarsäsongen är kort. De flesta verksamheter stänger i mitten av september och öppnar i maj; Rökeriet har julbord i november–december.', // KÄLLA: rokeriet-https://www.fjaderholmarna.se/ (1 maj–13 sep, julbord 20 nov–22 dec), fjaderholmarnaskrog.se
       months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
     },
@@ -1388,11 +1386,10 @@ export const ISLANDS: Island[] = [
           {
             name: 'Klipporna på Stora Fjäderholmen',
             type: 'klippbad',
-            desc: 'Klipphällar med utsikt över Stockholms inlopp. Det finns även några mindre sandstränder. Välbesökt på varma dagar.',
+            desc: 'Klipphällar med utsikt över Stockholms inlopp. Det finns även några mindre sandstränder.',
             child_friendly: false,
             depth: 'Varierar längs klipporna.',
             directions: 'Följ stigen från bryggan ut längs strandlinjen.',
-            insider_tip: 'Vardagar är lugnare än helger, när dagsbåtarna fyller ön.',
           },
         ],
       },
@@ -2213,7 +2210,7 @@ export const ISLANDS: Island[] = [
     harbors: [{ name: 'Gällnö brygga', desc: 'Brygga vid Gällnö by, nära krog, café och handelsbod.', fuel: false }], // KÄLLA: https://gallno.se/ (nämner "Gällnö brygga" och "Gällnö by"); namnet "Gällnö Hamn" hittades inte i primärkällor
     restaurants: [
       // KÄLLA: https://gallno.se/gallno-krog/ (namn, meny) och gallno.se/mat-dryck/oppettider (2026: begränsat öppet från 14 maj, fullt öppet 27 juni–9 aug ti–lö 11–22, sö 12–16, må stängt; nedtrappning 11–23 aug). Prisexempel hittades inte i primärkällor och togs bort. Kontrollerad 2026-09-03.
-      { name: 'Gällnö krog', type: 'Restaurang & bar', desc: 'Sommaröppen krog med bar och café, medelhavsinspirerad meny.', slug: 'gallno-bar', open_season: 'Mitten av maj–slutet av augusti (fullt öppethållande slutet av juni–början av augusti)', open_hours: 'Tisdag–lördag ca 11–22, söndag 12–16, måndag stängt (kortare tider i maj och augusti)' },
+      { name: 'Gällnö krog', type: 'Restaurang & bar', desc: 'Sommaröppen krog med bar och café, medelhavsinspirerad meny.', slug: 'gallno-krog', open_season: 'Mitten av maj–slutet av augusti (fullt öppethållande slutet av juni–början av augusti)', open_hours: 'Tisdag–lördag ca 11–22, söndag 12–16, måndag stängt (kortare tider i maj och augusti)' },
       // KÄLLA: https://gallno.se/handelsboden/ ("omfattande sortiment av kolonialvaror, mejeriprodukter, frysvaror, färsk frukt, kött, fisk, konfektyr och dryck"; "Varje vardag levereras färskt bröd från bageri Vivels i Stockholm") och gallno.se/mat-dryck/oppettider (2026: högsäsong 13 juli–9 aug ti–lö 09–20, sö–må 10–17; kortare tider i maj, juni och augusti). Kontrollerad 2026-09-03.
       { name: 'Gällnö Handelsbod', type: 'Handel', desc: 'Bred handelsbod med livsmedel, kött, fisk och grönsaker. Färskt bröd levereras varje vardag — alltså inte lördag och söndag.', open_season: 'Mitten av maj–slutet av augusti', open_hours: 'Ca 09–20 i högsäsong (juli), kortare tider i maj, juni och augusti' },
     ],
@@ -2329,8 +2326,8 @@ export const ISLANDS: Island[] = [
     seasonal: {
       open: 'Maj–September',
       peak: 'Juli',
-      best: 'Juni eller augusti',
-      bestReason: 'Båtarna går och ön är lugnare än i juli.',
+      best: 'Vår till höst',
+      bestReason: 'Linje 26 från Strömkajen går 2 april–18 juni och 17 augusti–1 november, med egna tider sommartid. Vintertid åker du från Köpmanholm på Yxlan.',
       warning: 'Ingen affär eller restaurang på ön. Vintertid går båten bara från Köpmanholm på Yxlan.',
       months: ['limited','limited','limited','limited','open','open','peak','open','open','limited','limited','limited'],
     },

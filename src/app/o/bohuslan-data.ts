@@ -716,9 +716,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     facts: {
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Färja Tuvesvik–Gullholmen–Käringön — personfärja, till Käringön cirka 35 minuter, och Käringön-sidan anger högst 40 minuter — https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/ (läst 2026-09-16)
       travel_time: '35–40 min båt från Tuvesvik',
-      character: 'Bilfri, pittoresk, kustkulturell',
-      season: 'Juni–september',
-      best_for: 'Romantik, fotografi, lugn',
+      character: 'Bilfri fiskeby med q-märkta trähus',
+      // KÄLLA: orust.se Käringöns gästhamn — säsong 1 april–30 september (läst 2026-09-16)
+      season: 'April–september (gästhamnens säsong)',
+      best_for: 'Promenad, bad, gästhamn',
     },
     facts_provenance: {
       travel_time: 'matt',
@@ -764,13 +765,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: Orust kommun, Kulturhistoriska byggnader och kulturmiljöer — Käringön ligger inom riksintresse för kulturmiljövården, de flesta husen är q-märkta i detaljplan och staket, altaner och solceller kan kräva bygglov — https://www.orust.se/bygga-bo-och-miljo/bygga-nytt-andra-eller-riva/kulturhistoriska-byggnader-kulturmiljoer (läst 2026-09-16)
     did_you_know: 'Käringön är ett av de områden som ligger inom riksintresse för kulturmiljövården. Orust kommun anger att de flesta husen är q-märkta i detaljplan och att även staket, altaner och solceller kan kräva bygglov här.',
     seasonal: {
-      open: 'Juni–September',
+      // KÄLLA: orust.se Käringöns gästhamn — säsong 1 april–30 september
+      open: 'April–September (gästhamnen)',
       peak: 'Juli–mitten av Augusti',
-      best: 'Juni eller September',
-      bestReason: 'Juni: byn är i skick inför sommaren och ön visar sig från sin ljusaste sida. September: husen glänser i höstljuset och fiskebygden lever.',
+      best: 'April–september',
+      bestReason: 'Gästhamnen har säsong 1 april–30 september. Personfärjan från Tuvesvik tar 35–40 minuter.',
       // KÄLLA: Orust kommun, Käringöns gästhamn — gästhamnssäsong 1 april–30 september, servicehus på Skepparsholme med toalett året runt — https://www.orust.se/uppleva-och-gora/gasthamnar/karingons-gasthamn (läst 2026-09-16)
       warning: 'Gästhamnen har säsong 1 april–30 september; ett servicehus på Skepparsholme har toalett året runt.',
-      months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
+      months: ['off','off','off','limited','limited','open','peak','peak','open','off','off','off'],
     },
   },
   {
