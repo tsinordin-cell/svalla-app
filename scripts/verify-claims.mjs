@@ -376,6 +376,8 @@ function arsdatumFel(rad) {
       if (!r.ord.test(fore)) continue
       // "efter 20 september", "t.o.m. 30 november", "19–25 juni": regeltext och intervall, inte ett premiärdatum
       if (/(?:efter|från|f\.o\.m\.|t\.o\.m\.|till|senast|tidigast|mellan|före|[–-])(?:\s+den)?\s*$/i.test(fore.slice(-16))) continue
+      // "mellan 19 och 25 juni": andra ledet i ett intervall
+      if (/mellan\s+(?:den\s+)?\d{1,2}\s+och(?:\s+den)?\s*$/i.test(fore.slice(-24))) continue
       // Årtal: i datumet, annars närmast före ("2027: 27 september"), annars någonstans på raden, annars i år
       const arFore = fore.slice(-40).match(/\b(20\d\d)\b(?!.*\b20\d\d\b)/)
       const ar = Number(arStr ?? arFore?.[1] ?? (rad.match(/\b20\d\d\b/) || [new Date().getUTCFullYear()])[0])
