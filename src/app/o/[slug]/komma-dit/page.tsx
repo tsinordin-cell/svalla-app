@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     openGraph: {
       title: `Hur tar man sig till ${island.name}? Allt om transport`,
-      description: `Båt, buss och färja till ${island.name}. Avgångstider, priser, tips. Restid: ${island.facts.travel_time}.`,
+      description: `Båt, buss och färja till ${island.name}. Avgångstider, priser, tips.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
       url: `https://svalla.se/o/${slug}/komma-dit`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/komma-dit` },
@@ -98,7 +98,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
           '@type': 'Answer',
           text: island.getting_there.length > 0
             ? island.getting_there.map(t => `${t.method}: ${t.desc}`).join('. ')
-            : `${island.name} nås med reguljärbåt. Restid: ${island.facts.travel_time}.`,
+            : `${island.name} nås med reguljärbåt.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
         },
       },
       {
@@ -108,7 +108,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
           '@type': 'Answer',
           text: kollektivt
             ? `Nej. ${island.getting_there.filter(t => !/egen båt|segelbåt|kajak|charter/i.test(t.method)).map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}${t.time ? ` (${t.time})` : ''}`).join(', ')}.`
-            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}. Restid: ${island.facts.travel_time}.`,
+            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
         },
       },
       {
@@ -116,7 +116,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
         name: `Hur lång tid tar båten till ${island.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Restid till ${island.name}: ${island.facts.travel_time}. ${island.transport_meta ? `Från närmaste knutpunkt (${island.transport_meta.nearest_hub}): ca ${island.transport_meta.from_nearest_hub_min} minuter.` : ''}`,
+          text: `${island.facts.travel_time ? `Restid till ${island.name}: ${island.facts.travel_time}. ` : island.getting_there.filter(t => t.time).map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}: ${t.time}`).join('. ') + (island.getting_there.some(t => t.time) ? '. ' : '')}${island.transport_meta ? `Från närmaste knutpunkt (${island.transport_meta.nearest_hub}): ca ${island.transport_meta.from_nearest_hub_min} minuter.` : ''}`,
         },
       },
     ],
@@ -129,7 +129,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
       <IslandSubPageHeader
         island={island}
         tab="komma-dit"
-        subtitle={`Restid: ${island.facts.travel_time}.${kollektivt ? ' Ingen egen båt krävs.' : ''}`}
+        subtitle={`${island.facts.travel_time ? `Restid: ${island.facts.travel_time}.` : ''}${kollektivt ? `${island.facts.travel_time ? ' ' : ''}Ingen egen båt krävs.` : ''}`}
       />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
