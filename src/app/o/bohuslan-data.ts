@@ -32,7 +32,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar sillhandelns centrum på 1500-talet — https://www.vastsverige.com/en/kungalv/products/marstrand/ ; att Match Cup Sweden avgörs första veckan i juli — https://www.vastsverige.com/kungalv/marstrand/ (läst 2026-09-16)
     tagline: 'Carlstens fästning, sillstadens gränder och match-racing första veckan i juli.',
     seoTitle: 'Marstrand 2026 – Carlstens fästning & segling',
-    seoDescription: 'Guide till Marstrand: Carlstens fästning, ö med begränsad biltrafik, Match Cup Sweden och restaurangerna vid hamnen. Hur du tar dig dit och var du bor.',
+    // KÄLLA: https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Marstrandsön är en bilfri ö men vissa kan ansöka om specialöverfart under ordinarie tider" (läst 2026-09-27)
+    seoDescription: 'Guide till Marstrand: Carlstens fästning, bilfria Marstrandsön, Match Cup Sweden och restaurangerna vid hamnen. Hur du tar dig dit och var du bor.',
     description: [
       // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar provisorisk skans efter freden i Roskilde 1658, mindre stenfästning från 1660, bygget 1682 under Erik Dahlberg, färdig 1860, "en av Europas starkaste fästningar", statligt byggnadsminne förvaltat av SFV sedan hösten 1993 — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
       'Marstrand domineras av Carlstens fästning. Efter freden i Roskilde 1658 restes först en provisorisk skans på öns högsta punkt, och två år senare — 1660 — började en mindre fästning i sten att byggas. Den stora anläggningen påbörjades 1682 under Erik Dahlbergs ledning men stod inte helt färdig förrän 1860, då den enligt Statens fastighetsverk betraktades som en av Europas starkaste fästningar. Carlsten är statligt byggnadsminne och förvaltas av Statens fastighetsverk sedan hösten 1993.',
@@ -40,19 +41,30 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       'Fästningen har haft många roller. Den fungerade som fängelse med som mest 232 fångar; den ökände tjuven Lasse-Maja fördes hit 1813, och 1858 flyttades de sista fångarna bort eftersom krigshotet under Krimkriget var stort. På tornet installerades 1781 världens första roterande fyr. I början av 1900-talet drev Skeppsgossekåren en skola för 200 pojkar i fästningen, och ända fram till 1993 fanns en kustspaningsradarstation i tornet.',
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar att orten grundades på 1200-talet av Håkon Håkonsson, blev svensk 1658 och på 1500-talet var centrum för sillhandeln i Europa — https://www.vastsverige.com/en/kungalv/products/marstrand/ (läst 2026-09-16)
       'Orten är äldre än fästningen. Marstrand grundades på 1200-talet av den norske kungen Håkon Håkonsson och blev svenskt först 1658. På 1500-talet var staden ett centrum för sillhandeln i Europa, och sillen avgjorde under lång tid välstånd och fattigdom för invånarna.',
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar "Sommarens seglingshöjdpunkt är när Match Cup Sweden avgörs första veckan i juli" och "Sveriges största gästhamn" — https://www.vastsverige.com/kungalv/marstrand/ ; gästhamnsdata (bryggorna G/H/D/E, Gästkajen för båtar över 15 m med minsta djup 3,5 m, el och vatten ingår, hamnkontor bemannat maj–september) — https://www.vastsverige.com/kungalv/produkter/marstrands-gasthamn/ (läst 2026-09-16)
-      'Seglingen sätter sin prägel på ön. Match Cup Sweden avgörs första veckan i juli, och enligt destinationsbolaget Turistrådet Västsverige är Marstrand då landets segelcentrum. Den kommunala gästhamnen kallas av samma källa Sveriges största gästhamn. Gästbåtar ligger vid bryggorna G, H, D och E, medan båtar över 15 meters skrovlängd ligger vid Gästkajen, där minsta djup är 3,5 meter. El och vatten ingår i gästhamnsavgiften och hamnkontoret är bemannat dagligen maj–september.',
+      // KÄLLA: https://www.vastsverige.com/kungalv/marstrand/ — "Sommarens seglingshöjdpunkt är när Match Cup Sweden avgörs första veckan i juli", "Längs bryggorna i Sveriges största gästhamn ligger båtarna tätt" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "Marstrand is definitely the sailing centre of the whole country" (läst 2026-09-27)
+      // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/kungalv/produkter/marstrands-gasthamn/ — "Bryggorna G, H, D och E är för gästande båtar", "Kajen är förtöjningsplats för gästande båtar över 15 m skrovlängd", "Minsta djup är 3,5 m" (läst 2026-09-27)
+      // KÄLLA: https://www.marstrandsgasthamn.se/sv/ — "Marstrands gästhamn och dess bryggor är beläget på den sydöstra delen av ön med 275 gästplatser varav 98 bokningsbara" (läst 2026-09-27)
+      // KÄLLA: https://www.marstrandsgasthamn.se/sv/Gasthamn — "El och vatten ingår i serviceavgiften och finns på alla bryggor" (läst 2026-09-27)
+      // KÄLLA: https://www.marstrandsgasthamn.se/sv/Kontakt — "Högsäsong (15 juni - 30 juni och 1 augusti - 15 augusti)", "Högsäsong (1 juli - 31 juli)", "1 maj - 14 juni och 16 augusti - 30 september", "Fredag - Söndag" (läst 2026-09-27). Tidigare stod att hamnkontoret är bemannat dagligen maj–september (vastsverige.com); gästhamnens egen sida anger dagligen bara 15 juni–15 augusti.
+      'Seglingen sätter sin prägel på ön. GKSS Match Cup Sweden avgörs i början av juli – 2026 seglades den 29 juni–4 juli – och Turistrådet Västsverige kallar då Marstrand landets segelcentrum. Den kommunala gästhamnen på sydöstra Marstrandsön kallas av samma källa Sveriges största gästhamn och har 275 gästplatser, varav 98 går att förboka. Gästbåtar ligger vid bryggorna G, H, D och E, medan båtar över 15 meters skrovlängd ligger vid Gästkajen, där minsta djup är 3,5 meter. El och vatten ingår i avgiften. Gästhamnskontoret är bemannat dagligen 15 juni–15 augusti och fredag–söndag under resten av perioden maj–september.',
       // KÄLLA: Kungälvs kommun, Marstrandsfärjan — bekräftar att färjan mellan Koön och Marstrand drivs av kommunen och att biljetter och dispensansökningar hanteras där — https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ ; Besöksparkering i Marstrand — https://www.kungalv.se/trafik--gator/parkering/parkeringsplatser-i-marstrand/ ; Samlastning Marstrand — https://www.kungalv.se/trafik--gator/kollektivtrafik/samlastning/ (läst 2026-09-16)
-      'Färjan mellan Koön och Marstrandsön kallas Marstrandsfärjan och drivs av Kungälvs kommun, som också hanterar biljetter och dispensansökningar för den. Besöksparkering finns på Koön och fastlandssidan. Fordonstrafiken på själva ön är starkt begränsad: den som ska skicka gods dit hänvisas av kommunen till en samlastningstjänst.',
+      // KÄLLA: https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Färjan mellan Koön och Marstrand kallas för Marstrandsfärjan", "Endast fordon i nyttotrafik får färjas över till Marstrandsön", "Inga enkelbiljetter som är köpta hos Västtrafik gäller på marstrandsfärjan", "Alla biljetter gäller tur och retur till och från Marstrandsön" (läst 2026-09-27)
+      'Färjan mellan Koön och Marstrandsön kallas Marstrandsfärjan och drivs av Kungälvs kommun. Biljetterna gäller tur och retur och köps på marstrandsfarja.se eller i kuren vid Koöns färjeläge – Västtrafiks enkelbiljetter gäller inte på färjan, men vissa periodbiljetter för zon B gör det. Besöksparkering finns på Koön och fastlandssidan. Marstrandsön är bilfri: bara fordon i nyttotrafik får färjas över, och den som ska skicka gods dit hänvisas av kommunen till en samlastningstjänst.',
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar Societetshuset och Marstrands Varmbadhus samt att kung Oscar II fanns bland badortsgästerna — https://www.vastsverige.com/en/kungalv/products/marstrand/ (läst 2026-09-16)
       'Under 1800-talet fick Marstrand ett andra liv som badort. Societetshuset och Marstrands Varmbadhus drog societeten till ön, och bland gästerna fanns kung Oscar II.',
     ],
     facts: {
       // KÄLLA: Kungälvs kommun, Marstrandsfärjan — bekräftar färjeförbindelsen Koön–Marstrandsön — https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ (läst 2026-09-16)
-      travel_time: 'Bil eller buss till Koön, sedan Marstrandsfärjan över sundet',
-      character: 'Fästningsö med gästhamn och trästad',
-      season: 'Juni–september högsäsong, helår med begränsat utbud',
-      best_for: 'Segling, fästningsbesök, historisk trästadsmiljö',
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6302__0__LINE__20251214__20261212__25ea94b6-c06e-4190-822d-a22d774d80ee__1%2C0__2635889.pdf — "302 Kungälv–Ytterby–Marstrand", "Gäller 14 dec 2025 - 12 dec 2026" (läst 2026-09-27). Restid räknad ur tabellen måndag–fredag: Ytterby station 09.08 → Marstrands färjeläge 09.37 (29 min), Kungälv resecentrum 08.55 → 09.37 (42 min).
+      travel_time: 'Buss 302 från Kungälv (42 min) eller Ytterby station (29 min) till Koön, sedan Marstrandsfärjan över sundet',
+      // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "is spread over the two islands of Koön and Marstrandsön", "small alleys, the spectacular fortress and sea views at every turn" (läst 2026-09-27); https://www.vastsverige.com/kungalv/marstrand/ — "Sveriges största gästhamn" (läst 2026-09-27)
+      character: 'Kuststad på Koön och Marstrandsön med fästning, gränder och Sveriges största gästhamn',
+      // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "3 april – 31 maj 2026", "1 juni – 30 juni 2026", "September 2026" (läst 2026-09-27); https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Lågsäsong (september–april)" (läst 2026-09-27)
+      season: 'Året runt; Carlstens fästning har öppet april–september (alla dagar juni–augusti)',
+      // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "walk around the whole of Marstrandsön", "Skallens lighthouse" (läst 2026-09-27); https://carlsten.se/oppettider-och-priser/ — "Guidade turer på svenska varje dag kl 12, 14, 15" (läst 2026-09-27)
+      best_for: 'Segling, guidad tur på Carlstens fästning, promenad runt Marstrandsön',
     },
     facts_provenance: {
       travel_time: 'matt',
@@ -62,26 +74,36 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     },
     activities: [
       // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar namnet, att anläggningen är statligt byggnadsminne och att SFV förvaltar den sedan 1993 — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
-      { icon: '🏰', name: 'Carlstens fästning', desc: 'Statligt byggnadsminne, förvaltat av Statens fastighetsverk sedan 1993.' },
+      // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "3 april – 31 maj 2026", "Öppet helger:", "1 juni – 30 juni 2026", "Öppet alla dagar:", "Ordinarie guidade turer nedan ges på svenska och ingår i", "En guidad tur tar ca 45 minuter", "Alla hundar är välkomna och har fri entré på fästningen" (läst 2026-09-27)
+      { icon: '🏰', name: 'Carlstens fästning', desc: 'Statligt byggnadsminne, förvaltat av Statens fastighetsverk sedan 1993. 2026 öppet helger i april–maj och september och alla dagar juni–augusti. Guidade turer på svenska (cirka 45 minuter) ingår i entrén; hundar får följa med kopplade.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar GKSS Match Cup Sweden första veckan i juli och Marstrand som landets segelcentrum då — https://www.vastsverige.com/kungalv/marstrand/ (läst 2026-09-16)
-      { icon: '⛵', name: 'GKSS Match Cup Sweden', desc: 'Avgörs första veckan i juli — då är Marstrand landets segelcentrum enligt Turistrådet Västsverige.' },
+      // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27)
+      { icon: '⛵', name: 'GKSS Match Cup Sweden', desc: 'Avgörs i början av juli (2026: 29 juni–4 juli) — då är Marstrand landets segelcentrum enligt Turistrådet Västsverige.' },
+      // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "walk around the whole of Marstrandsön, or take a shorter walk through Smugglarrännan", "Take a break out by Skallens lighthouse and admire the enchanting area where the Skagerrak and Kattegatt meet", "On Koön there are well-marked footpaths, with three levels of difficulty" (läst 2026-09-27)
+      { icon: '🥾', name: 'Promenad runt Marstrandsön', desc: 'Gå runt hela Marstrandsön eller ta den kortare vägen genom Smugglarrännan, med paus vid Skallens fyr där Skagerrak och Kattegatt möts. På Koön finns märkta leder i tre svårighetsgrader.' },
     ],
     accommodation: [
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Grand Hotel Marstrand — bekräftar namnet, Rådhusgatan 2 på Marstrandsön och matsalarna Grand Tenan och Bakfickan — https://www.vastsverige.com/en/kungalv/products/grand-hotel-marstrand/ (läst 2026-09-16)
+      // KÄLLA: https://grandmarstrand.se/restaurang-tenan/ — "Restaurang Grand Tenan är ett välkänt begrepp på Västkusten" (läst 2026-09-27)
       { name: 'Grand Hotel Marstrand', type: 'Hotell', desc: 'Hotell på Marstrandsön med restaurangerna Grand Tenan och Bakfickan.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrands Havshotell — bekräftar läget på Koön intill färjeläget, spa, 144 rum och restaurangen Otto\'s Vardagsrum & Kök — https://www.vastsverige.com/en/kungalv/products/marstrands-havshotell/ (läst 2026-09-16)
+      // KÄLLA: https://marstrands.se/en/about-us — "a warm spa, 144 rooms", "Otto's Vardagsrum & Kök" (läst 2026-09-27)
       { name: 'Marstrands Havshotell', type: 'Hotell', desc: 'Hotell på Koön vid färjeläget till Marstrandsön, med spa och restaurangen Otto\'s Vardagsrum & Kök.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrands Kurhotell — bekräftar byggnaden som på 1800-talet inrymde kall- och varmbad, 39 rum, Kungsplanen på Marstrandsön — https://www.vastsverige.com/en/kungalv/products/marstrands-kurhotell/ (läst 2026-09-16)
+      // KÄLLA: https://www.marstrandskurhotell.se/ — "Välkommen till Marstrands Kurhotell" (läst 2026-09-27)
       { name: 'Marstrands Kurhotell', type: 'Hotell', desc: 'Hotell i en byggnad som på 1800-talet inrymde kall- och varmbad. 39 rum på Marstrandsön.' },
     ],
     getting_there: [
       // KÄLLA: Kungälvs kommun, Marstrandsfärjan och Besöksparkering i Marstrand — bekräftar färjan Koön–Marstrandsön och parkering på Koön — https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ och https://www.kungalv.se/trafik--gator/parkering/parkeringsplatser-i-marstrand/ (läst 2026-09-16)
-      { method: 'Bil + färja', from: 'Göteborg', desc: 'Kör till Koön och parkera, ta sedan Marstrandsfärjan över sundet.', icon: '🚗' },
-      { method: 'Buss', from: 'Göteborg', desc: 'Buss från Göteborg till Marstrand — se Västtrafiks reseplanerare.', icon: '🚌' },
+      // KÄLLA: https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Inga enkelbiljetter som är köpta hos Västtrafik gäller på marstrandsfärjan", "Du köper din biljett i kundservicekuren vid Koöns färjeläge" (läst 2026-09-27); https://www.marstrandsfarja.se/ — "Biljetter gäller tur och retur från färjeläget på Koön till Marstrandsön" (läst 2026-09-27)
+      { method: 'Bil + färja', from: 'Göteborg', desc: 'Kör till Koön och parkera, ta sedan Marstrandsfärjan över sundet. Biljetten gäller tur och retur och köps på marstrandsfarja.se eller i kuren vid Koöns färjeläge; Västtrafiks enkelbiljetter gäller inte på färjan.', icon: '🚗' },
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6302__0__LINE__20251214__20261212__25ea94b6-c06e-4190-822d-a22d774d80ee__1%2C0__2635889.pdf — "302 Kungälv–Ytterby–Marstrand", "Marstrands färjeläge", "Gäller 14 dec 2025 - 12 dec 2026", "C Går endast 19 juni - 16 aug." (läst 2026-09-27). Restider räknade ur tabellen (Ytterby station → Marstrands färjeläge 29 min, Kungälv resecentrum → 42 min); måndag–fredag dagtid avgång från Kungälv varje timme (08.55, 09.55, 10.55 …), lördag–söndag 19 juni–16 augusti extra turer så att bussen går varje halvtimme. Linjen går inte från Göteborg, vilket den tidigare texten påstod.
+      { method: 'Buss', from: 'Kungälv / Ytterby', desc: 'Västtrafiks buss 302 går från Kungälv resecentrum (cirka 42 minuter) och Ytterby station (cirka 29 minuter) till Marstrands färjeläge på Koön, på vardagar dagtid en gång i timmen. Från Göteborg byter du till linje 302 i Kungälv eller Ytterby – sök hela resan i Västtrafiks reseplanerare. Tänk på att enkelbiljett för bussen inte gäller på färjan.', icon: '🚌' },
     ],
     harbors: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrands gästhamn — bekräftar kommunal gästhamn på sydöstra Marstrandsön, el och vatten som ingår i gästhamnsavgiften samt dusch och WC — https://www.vastsverige.com/kungalv/produkter/marstrands-gasthamn/ ; drift av Kungälvs kommun — https://www.marstrandsgasthamn.se/sv/ ; tvättmaskin och torktumlare — https://www.gasthamnsguide.se/omradesindelat/vastkusten/item/marstrands-gasthamn (läst 2026-09-16)
-      { name: 'Marstrands Gästhamn', desc: 'Kommunal gästhamn på sydöstra Marstrandsön. El och vatten ingår i gästhamnsavgiften. Ankring är inte tillåten.', fuel: false, service: ['Vatten', 'El', 'Dusch', 'WC', 'Tvätt'] },
+      // KÄLLA: https://www.vastsverige.com/kungalv/produkter/marstrands-gasthamn/ — "På den sydöstra delen av Marstrandsön ligger den kommunala gästhamnen", "I gästhamnen råder det ankringsförbud" (läst 2026-09-27)
+      // KÄLLA: https://www.marstrandsgasthamn.se/sv/Gasthamn — "El och vatten ingår i serviceavgiften och finns på alla bryggor", "Kod till duschar och toalett", "Tvättmaskiner och torktumlare finner du i vår tvättstuga på baksidan gästhamnsbyggnaden", "Bunkring av bränsle är förbjuden inom området kring gästhamnen", "Det är totalt förbjudet att grilla på båten, bryggor och i området kring dessa", "Det råder badförbud i hamnområdet" (läst 2026-09-27); https://www.marstrandsgasthamn.se/sv/ — "275 gästplatser varav 98 bokningsbara", "hamnkontoret@kungalv.se" (läst 2026-09-27). Tidigare källa (en gästhamnsguide som inte är tillåten) borttagen.
+      { name: 'Marstrands Gästhamn', desc: 'Kommunal gästhamn på sydöstra Marstrandsön med 275 gästplatser, varav 98 går att förboka. El och vatten ingår i avgiften, och tvättstugan har tvättmaskiner, torktumlare och diskstation. Ankring, grillning på båtar och bryggor, bunkring av bränsle och bad är förbjudet i hamnområdet.', fuel: false, service: ['Vatten', 'El', 'Dusch', 'WC', 'Tvätt'] },
     ],
     restaurants: [
       // KÄLLA: Grand Hotel Marstrand, egen webbplats — bekräftar Restaurang Tenan med "vällagad à la carte, fisk och skaldjur samt klassiska rätter" — https://grandmarstrand.se/restaurang-tenan/ ; läget Rådhusgatan 2 — https://www.vastsverige.com/kungalv/produkter/restaurang-tenan/ (läst 2026-09-16)
@@ -89,25 +111,29 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: Hamnkrogen Marstrand, egen webbplats — bekräftar namn, adressen Lilla Varvsgatan 20 samt rubrikerna KÖK & BAR och Butik — https://www.hamnkrogenmarstrand.se/ (läst 2026-09-16)
       { name: 'Hamnkrogen Marstrand', type: 'Krog', desc: 'Krog med kök och bar på Lilla Varvsgatan.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrands Wärdshus — bekräftar skaldjursplatåer och grillmat samt adressen "Mitt på kajen" på Marstrandsön — https://www.vastsverige.com/kungalv/produkter/marstands-wardshus/ (läst 2026-09-16)
+      // KÄLLA: https://www.marstrandswardshus.se/ — "skaldjur-, och grillrestaurang mitt på kajen på Marstrand", "Vi har cirka 120 sittplatser på uteserveringen och 30 inomhus" (läst 2026-09-27)
       { name: 'Marstrands Wärdshus', type: 'Restaurang', desc: 'Skaldjurs- och grillrestaurang mitt på kajen på Marstrandsön, med uteterrass vid hamnen.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Johans krog Marstrand — bekräftar "fransk bistro" och adressen Kungsgatan 12 — https://www.vastsverige.com/kungalv/produkter/johans-krog-marstrand/ (läst 2026-09-16)
+      // KÄLLA: https://www.johanskrogmarstrand.se/ — "Fransk bistro möter Västkusten" (läst 2026-09-27)
       { name: 'Johans krog Marstrand', type: 'Restaurang', desc: 'Fransk bistro på Kungsgatan med utservering.' },
-      // KÄLLA: Carlstens fästning, egen webbplats — bekräftar caféet vid fästningens entré, utbudet av våfflor, pajer, baguetter och sallader samt att fästningsbiljett inte krävs — https://carlsten.se/en/carlsten-waffle-cafe/ (läst 2026-09-16)
-      { name: 'Carlstens Vaffelcafé', type: 'Café', desc: 'Café vid ingången till Carlstens fästning. Våfflor, pajer, baguetter och sallader; fästningsbiljett krävs inte för besök.' },
+      // KÄLLA: https://carlsten.se/carlstens-vaffelcafe/ — "Du hittar oss vid fästningens entré och du behöver inte köpa entré till fästningen för att komma till oss", "Våfflor, Sallader, Pajer, Smörgåsar", "Tack för säsongen 2026", "Vi öppnar igen till påsken 2027" (läst 2026-09-27)
+      { name: 'Carlstens Vaffelcafé', type: 'Café', desc: 'Säsongscafé vid ingången till Carlstens fästning, öppet från påsk och under sommaren. Våfflor, pajer, smörgåsar och sallader; fästningsbiljett krävs inte för besök. Säsongen 2026 är avslutad – caféet öppnar igen till påsken 2027.' },
     ],
-    // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar att GKSS Match Cup Sweden avgörs första veckan i juli — https://www.vastsverige.com/kungalv/marstrand/ (läst 2026-09-16)
-    tips: ['Match Cup Sweden avgörs första veckan i juli — boka boende i god tid om du vill vara på ön då.'],
+    // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27); https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Inga enkelbiljetter som är köpta hos Västtrafik gäller på marstrandsfärjan" (läst 2026-09-27); https://carlsten.se/oppettider-och-priser/ — "Ordinarie guidade turer nedan ges på svenska och ingår i" (läst 2026-09-27)
+    tips: ['Match Cup Sweden avgörs i början av juli (2026: 29 juni–4 juli) — boka boende i god tid om du vill vara på ön då.', 'Köp färjebiljett på marstrandsfarja.se eller vid Koöns färjeläge – Västtrafiks enkelbiljetter gäller inte på Marstrandsfärjan.', 'De guidade turerna på Carlstens fästning ingår i entréavgiften.'],
     related: ['smogen', 'kungshamn', 'lysekil'],
     tags: ['fästning', 'segling', 'restauranger', 'sommardestination', 'lyx'],
     // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar världens första roterande fyr 1781, högst 232 fångar, Lasse-Maja dit 1813 och att de sista fångarna flyttades 1858 — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
     did_you_know: 'Världens första roterande fyr installerades i Carlstens torn 1781. Fästningen var också fängelse — som mest 232 fångar, bland dem Lasse-Maja som fördes hit 1813 — och de sista fångarna flyttades bort 1858.',
+    // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "3 april – 31 maj 2026", "September 2026", "1 juli – 9 augusti 2026" (läst 2026-09-27); https://www.marstrandsgasthamn.se/sv/Kontakt — "Högsäsong (15 juni - 30 juni och 1 augusti - 15 augusti)", "Högsäsong (1 juli - 31 juli)" (läst 2026-09-27); https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Lågsäsong (september–april)" (läst 2026-09-27)
     seasonal: {
-      open: 'Maj–September',
-      peak: 'Juli–Augusti',
-      best: 'Juni eller September',
-      // KÄLLA: vastsverige.com/kungalv/marstrand/ (Match Cup första veckan i juli, se tips). Månaderna: faktarutan säger "helår med begränsat utbud", så vintermånaderna är 'limited', inte stängda. "Höstljus" och "betydligt lugnare" stod utan källa.
-      bestReason: 'Juni och september ligger utanför Match Cup-veckan i början av juli.',
-      warning: 'GKSS Match Cup Sweden avgörs första veckan i juli – boka boende i god tid om du vill vara på ön då.',
+      open: 'Året runt – Carlstens fästning april–september',
+      peak: 'Mitten av juni–mitten av augusti',
+      best: 'Juni eller september',
+      // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27); https://carlsten.se/oppettider-och-priser/ — "Guidade turer på svenska varje dag kl 12, 14, 15", "Öppet helger:" (läst 2026-09-27)
+      bestReason: 'Juni och september ligger till största delen utanför Match Cup-veckan (29 juni–4 juli 2026). I juni har Carlstens fästning öppet alla dagar med guidade turer; i september har den öppet helger.',
+      // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27); https://carlsten.se/carlstens-vaffelcafe/ — "Vi öppnar igen till påsken 2027" (läst 2026-09-27)
+      warning: 'GKSS Match Cup Sweden avgörs i början av juli – boka boende i god tid om du vill vara på ön då. Fästningen anger inga öppettider för oktober–mars, och våffelcaféet öppnar först till påsk.',
       months: ['limited','limited','limited','limited','open','open','peak','peak','open','limited','limited','limited'],
     },
   },
@@ -1200,10 +1226,12 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     facts: {
       // KÄLLA: Göteborg & Co, Ta dig till skärgården — väg 155 till färjeläget vid Lilla Varholmen och den avgiftsfria vägfärjan — https://www.goteborg.com/guider/ta-dig-till-skargarden (läst 2026-09-16)
       travel_time: 'Väg 155 + avgiftsfri färja från Lilla Varholmen',
-      character: 'Tillgänglig, livlig, fiskartradition',
+      // KÄLLA: https://honoklavahamn.se/ — "Hönö Klåva Hamn är en stor båt- och fiskehamn på Hönö i Göteborgs norra skärgård" (läst 2026-09-27); https://www.goteborg.com/guider/ta-dig-till-skargarden — "Från färjeläget Lilla Varholmen går avgiftsfria vägfärjor till Hönö och Björkö" (läst 2026-09-27)
+      character: 'Fiskeö med stor båt- och fiskehamn, nås med avgiftsfri vägfärja',
       // KÄLLA: Visit Öckerö — "Hela året går färjorna från Lilla Varholmens färjeläge ... avgiftsfria turer ut till Öckeröarna" — https://www.vastsverige.com/visitockero/ (läst 2026-09-16)
       season: 'Helår',
-      best_for: 'Dagsutflykt, lättillgänglig, familjevänligt',
+      // KÄLLA: https://www.goteborg.com/platser/hono — "fina badvikar och ett stort utbud av aktiviteter som klättring och kajakpaddling" (läst 2026-09-27); https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/ersdalen.html — "Längst ut på Kråkudden finns ett vindskydd för fågelskådning" (läst 2026-09-27); https://www.tullhuset.se/ — "renodlad fisk- och skaldjursrestaurang" (läst 2026-09-27)
+      best_for: 'Bad, klättring och kajak, vandring och fågelskådning i Ersdalen, fisk och skaldjur i Hönö Klåva',
     },
     facts_provenance: {
       travel_time: 'matt',
@@ -1213,18 +1241,22 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     },
     activities: [
       // KÄLLA: Göteborg & Co, Hönö — Fiskemuseet i hamnen i Hönö Klåva, badplatserna Hästen och Lappesand nära hamnen med anläggningar på plats — https://www.goteborg.com/platser/hono (läst 2026-09-16)
-      { icon: '🐟', name: 'Fiskemuseet', desc: 'Fiskets historia, i hamnen i Hönö Klåva.' },
+      // KÄLLA: http://www.fiskemuseet.se/ — "Fiskemuseet drivs av Föreningen Kusttraditioner" (läst 2026-09-27)
+      { icon: '🐟', name: 'Fiskemuseet', desc: 'Fiskets historia, i hamnen i Hönö Klåva. Museet drivs av den ideella Föreningen Kusttraditioner.' },
       { icon: '🏊', name: 'Lappesand och Hästen', desc: 'Badplatser nära hamnen, med anläggningar på plats.' },
       // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Ersdalen — grusade stigar, klippstränder, cykelled och fågelskådarskydd vid Kråkudden — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/ersdalen.html (läst 2026-09-16)
       { icon: '🥾', name: 'Ersdalens naturreservat', desc: 'Grusade stigar, klippstränder, cykelled och fågelskådarskydd vid Kråkudden.' },
     ],
     accommodation: [
       // KÄLLA: Skärgårdshotellet Hönö, egen webbplats — Västra vägen 17, Hönö Klåva, 16 rum varav hälften med havsutsikt, restaurang, konferens och festvåning — https://skargardshotellethono.se/en/home/ ; Visit Öckerö, boendelista Hönö Klåva — https://www.vastsverige.com/visitockero/bo/bourvalhonoklava/ (läst 2026-09-16)
-      { name: 'Skärgårdshotellet Hönö', type: 'Hotell', desc: 'Hotell i Hönö Klåva med 16 rum, varav hälften med havsutsikt. Egen restaurang, konferens och festvåning. Öppet året runt.' },
+      // KÄLLA: https://skargardshotellethono.se/ — "Vi har 16 härliga rum på andra våningen där hälften av dem har en uteplats mot havet och hamninloppet", "fest för upp till 80 personer i sittning" (läst 2026-09-27); https://skargardshotellethono.se/en/home/ — "Skärgårdshotellet Hönö is open all year round for hotel guests, diners, conferences and meetings" (läst 2026-09-27)
+      { name: 'Skärgårdshotellet Hönö', type: 'Hotell', desc: 'Hotell vid kajen i Hönö Klåva med 16 rum på andra våningen, varav hälften har uteplats mot havet och hamninloppet. Egen restaurang, konferens och fester för upp till 80 sittande gäster. Öppet året runt.' },
       // KÄLLA: Västsverige/Visit Öckerö, Havskatten — namnet "Havskatten Hotell & Vandrarhem", läge i Hönö Röds hamn, 12 hotelldubbelrum och 9 sovrum med eget badrum, bastu och konferens — https://www.vastsverige.com/en/visitockero/produkter/havskatten/ (läst 2026-09-16)
-      { name: 'Havskatten Hotell & Vandrarhem', type: 'Vandrarhem', desc: 'Hotell och vandrarhem i Hönö Röds hamn. Hotelldubbelrum och sovrum med eget badrum, bastu och konferensmöjligheter. Nära naturreservatet Ersdalen.' },
+      // KÄLLA: https://www.havskatten.com/ — "Vi har 12 rum, alla med bara få meter från bryggkanten", "Rum med 2 + 2 enkelsängar gemensam wc/dusch", "Här har ni bubbelpool, bastu & relaxutrymme för er själva", "Rödvägen 73, 475 41 Hönö", "Bjud vännerna på kalas i vår festlokal eller ha företagets konferens här" (läst 2026-09-27)
+      { name: 'Havskatten Hotell & Vandrarhem', type: 'Vandrarhem', desc: 'Hotell och vandrarhem vid Rödvägen på Hönö, med 12 rum några meter från bryggkanten – en del med egen wc och dusch, andra med gemensam. Spaavdelning med bubbelpool och bastu, festlokal och konferens. Nära naturreservatet Ersdalen.' },
       // KÄLLA: Visit Öckerö, boendelista Hönö Klåva — Hönö Sjöbodar som ett av boendena på ön — https://www.vastsverige.com/visitockero/bo/bourvalhonoklava/ (läst 2026-09-16)
-      { name: 'Hönö Sjöbodar', type: 'Sjöbodar', desc: 'Boende i sjöbodar på Hönö.' },
+      // KÄLLA: https://www.honosjobodar.se/ — "Här bor du i en av våra 6 sjöbodar, som har allt du behöver i form av fullutrustat kök, badrum", "i denna sjöbod är det tillåtet att ha med hund", "Öppet året om" (läst 2026-09-27)
+      { name: 'Hönö Sjöbodar', type: 'Sjöbodar', desc: 'Sex sjöbodar vid vattnet med fullutrustat kök och badrum. I en av dem får man ha med hund. Öppet året om.' },
     ],
     getting_there: [
       // KÄLLA: Göteborg & Co, Ta dig till skärgården — väg 155 till färjeläget vid Lilla Varholmen, den avgiftsfria vägfärjan, buss 290 från Järntorget hela vägen inklusive färjeöverfarten och buss X6 från Centralstationen till Lilla Varholmen — https://www.goteborg.com/guider/ta-dig-till-skargarden (läst 2026-09-16)
@@ -1232,28 +1264,34 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Buss', from: 'Göteborg', desc: 'Buss 290 från Järntorget går hela vägen inklusive färjeöverfarten; buss X6 från Centralstationen går till Lilla Varholmen.', icon: '🚌' },
     ],
     harbors: [
-      // KÄLLA: Hönö Klåva Hamn, egen webbplats — privatägd båt- och fiskehamn, nyrenoverat servicehus vid gästhamnen med duschar, toaletter, tvättmaskin och torktumlare — https://honoklavahamn.se/ ; Västsverige/Visit Öckerö, Hönö Klåva hamn — gästplatser och ställplatser för husbil, restauranger i hamnen — https://www.vastsverige.com/en/visitockero/produkter/honoklavahamn/ ; drivmedel endast belagt via reservkällan gasthamnsguide.se — https://www.gasthamnsguide.se/omradesindelat/vastkusten/item/hono-klava-gasthamn (läst 2026-09-16)
-      { name: 'Hönö Klåva Hamn', desc: 'Privatägd båt- och fiskehamn i Hönö Klåva med gästplatser och ställplatser för husbil. Nyrenoverat servicehus med dusch, toalett, tvättmaskin och torktumlare. Butiker och restauranger i hamnen.', fuel: true },
+      // KÄLLA: https://honoklavahamn.se/om-oss/ — "Hönö Klåva Fiskehamn ägs av Hönö Klåva Fiskehamn ekonomisk förening" (läst 2026-09-27); https://www.vastsverige.com/en/visitockero/produkter/honoklavahamn/ (läst 2026-09-16)
+      // KÄLLA: https://honoklavahamn.se/gasthamn/ — "I Hönö Klåva hamn finns miljöstation, septisug, vatten, diesel (sjömack) och mastkran", "Här finns duschar, toaletter, tvättmaskin och torktumlare", "Mellan 1 april och 31 oktober är vårt servicehus vid hamnkontoret öppet", "I vår gästhamn tillämpas ingen förbokning av platser", "I lågsäsong 1 december – 1 april finns inte vatten att tillgå vid kajerna", "Kod till vårt wi-fi för gäster finns på din biljett", "Varje båt ansvarar för att ha rätt kablar och uttag med sig" (läst 2026-09-27). Drivmedel var tidigare bara belagt via en gästhamnsguide som inte är tillåten; nu belagt av hamnens egen sida.
+      { name: 'Hönö Klåva Hamn', desc: 'Privatägd båt- och fiskehamn i Hönö Klåva med gästplatser och ställplatser för husbil. Platserna går inte att förboka. Servicehuset vid hamnkontoret har dusch, toalett, tvättmaskin och torktumlare och är öppet 1 april–31 oktober; 1 december–1 april finns inget vatten vid kajerna. Diesel (sjömack), septitömning och mastkran finns i hamnen, liksom butiker och restauranger.', fuel: true, service: ['Vatten', 'El', 'Dusch', 'WC', 'Tvätt', 'Wifi', 'Diesel', 'Septitömning'] },
     ],
     restaurants: [
-      // KÄLLA: Västsverige/Visit Öckerö, Restaurang Kroken — namnet "Klova Hamnkrog" (även kallad Nya Kroken), Hönö Klåva hamn väg 15, uteservering i lä, mat lagad från grunden, hummermiddagar och à la carte — https://www.vastsverige.com/visitockero/produkter/restaurang-kroken/ (läst 2026-09-16)
-      { name: 'Klova Hamnkrog', type: 'Restaurang', desc: 'Restaurang i Hönö Klåva hamn med uteservering i lä från havsvindarna. Sidan beskriver god och vällagad mat som lagas från grunden samt hummermiddagar och à la carte.' },
+      // Klova Hamnkrog borttagen 2026-09-27: restaurangen har ingen egen webbplats (klovahamnkrog.se är en parkerad domän), så den gick inte att verifiera för 2026.
       // KÄLLA: Tullhuset, egen webbplats — Västra Vägen 3, Hönö, fisk- och skaldjursrestaurang med à la carte, smakmeny och skaldjursbuffé — https://www.tullhuset.se/ ; Visit Öckerö, Klåva-guide — https://www.vastsverige.com/en/visitockero/eat-drink/eat-klava/ (läst 2026-09-16)
-      { name: 'Tullhuset', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang på Hönö. À la carte, smakmeny och skaldjursbuffé.' },
-      // KÄLLA: Skärgårdshotellet Hönö, egen webbplats — restaurangen Skafferiet, hotellet tar emot både hotellgäster och restaurangbesökare — https://skargardshotellethono.se/en/home/ (läst 2026-09-16)
+      // KÄLLA: https://www.tullhuset.se/ — "Á la carte", "Skärgårdslunch", "Smakmeny", "Skaldjursbuffé", "Tullhuset håller öppet dagligen!", "Vi ses på Hönö Klåva!" (läst 2026-09-27)
+      { name: 'Tullhuset', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang i Hönö Klåva. À la carte, skärgårdslunch på vardagar, smakmeny och skaldjursbuffé.' },
+      // KÄLLA: https://skargardshotellethono.se/en/home/ — "Skafferiet Restaurant", "Skärgårdshotellet Hönö is open all year round for hotel guests, diners, conferences and meetings" (läst 2026-09-27); https://skargardshotellethono.se/ — "Varmt välkomna på frukost, lunch, middag", "lokala och i säsong" (läst 2026-09-27)
       { name: 'Skafferiet', type: 'Restaurang', desc: 'Skärgårdshotellets restaurang i Hönö Klåva. Serverar frukost, lunch och middag med lokala och säsongsbetonade råvaror, öppen även för icke-boende.' },
     ],
     // KÄLLA: Göteborg & Co, Hönö — ett tjugotal butiker samt restauranger och kaféer, Hönö Klåva "utsedd till bästa ställplats 2019 av Husbil & Husvagn" — https://www.goteborg.com/platser/hono ; Göteborg & Co, Ta dig till skärgården — cykelvägar från Göteborgs centrum till Lilla Varholmen och vägfärjan som tar cyklar — https://www.goteborg.com/guider/ta-dig-till-skargarden (läst 2026-09-16)
-    tips: ['Hönö Klåva har ett tjugotal butiker samt restauranger och kaféer.', 'Cykelvägar går från Göteborgs centrum ut till Lilla Varholmen, där vägfärjan tar cyklar.', 'Hönö Klåva utsågs 2019 till bästa ställplats av tidningen Husbil & Husvagn (enligt Göteborg & Co).'],
+    // KÄLLA: https://honoklavahamn.se/ — "År 2019 blev Hönö Klåva Hamns ställplats utsedd till Årets Ställplats 2019 av Husbil & Husvagn" (läst 2026-09-27); https://honoklavahamn.se/gasthamn/ — "I vår gästhamn tillämpas ingen förbokning av platser" (läst 2026-09-27)
+    tips: ['Hönö Klåva har ett tjugotal butiker samt restauranger och kaféer.', 'Cykelvägar går från Göteborgs centrum ut till Lilla Varholmen, där vägfärjan tar cyklar.', 'Hönö Klåva Hamns ställplats utsågs till Årets Ställplats 2019 av tidningen Husbil & Husvagn.', 'Gästhamnen i Hönö Klåva går inte att förboka – kom i god tid på sommaren.'],
     related: ['styrso', 'donso', 'vrango'],
     tags: ['nära göteborg', 'bilfärja', 'fiskeläge', 'familjer'],
     // KÄLLA: Visit Öckerö, Ett centrum för fiske — "var tionde svensk yrkesfiskare" bor i kommunen och levererar tillsammans med kollegerna i Fiskebäck 75 procent av all fisk som fångas i Sverige — https://www.vastsverige.com/visitockero/centrum-for-fiske/ (läst 2026-09-16)
     did_you_know: 'Var tionde svensk yrkesfiskare bor i Öckerö kommun. Tillsammans med kollegerna i Fiskebäck levererar de 75 procent av all fisk som fångas i Sverige.',
+    // KÄLLA: https://www.vastsverige.com/visitockero/ — "Hela året går färjorna från Lilla Varholmens färjeläge" (läst 2026-09-27); https://honoklavahamn.se/gasthamn/ — "Högsäsong", "1 april- 30 september", "Mellan 1 april och 31 oktober är vårt servicehus vid hamnkontoret öppet" (läst 2026-09-27); https://skargardshotellethono.se/en/home/ — "open all year round" (läst 2026-09-27)
     seasonal: {
       open: 'Hela året',
+      // UPPSKATTNING: sommaren är badsäsong och gästhamnens högsäsong (1 april–30 september); juli är semestermånad.
       peak: 'Juli',
-      best: 'Juni eller September',
-      bestReason: 'Hönö är det lättaste sättet att komma ut i Göteborgs skärgård. Reguljär färja hela året gör att det aldrig är fel säsong, men juni och september ger bästa upplevelsen.',
+      best: 'Juni eller september',
+      bestReason: 'Vägfärjan från Lilla Varholmen är avgiftsfri och går hela året, och hotellet i Hönö Klåva har öppet året runt. Juni och september ligger inom gästhamnens högsäsong (1 april–30 september) men utanför semestermånaden juli.',
+      // KÄLLA: https://honoklavahamn.se/gasthamn/ — "I vår gästhamn tillämpas ingen förbokning av platser", "I lågsäsong 1 december – 1 april finns inte vatten att tillgå vid kajerna" (läst 2026-09-27)
+      warning: 'Gästhamnen går inte att förboka, och 1 december–1 april finns inget vatten vid kajerna.',
       months: ['limited','limited','limited','limited','open','open','peak','open','open','open','limited','limited'],
     },
   },
@@ -1280,14 +1318,17 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       'Härmanö naturreservat bildades 1967 och omfattar cirka 1 481 hektar. Landskapet domineras av nakna hällmarker med inslag av vidsträckta ljunghedar, och här växer bland annat gullviva, krissla och ängsnycklar. Ormbunken safsa har sin enda kända förekomst i Bohuslän i reservatet. Området ingår i EU:s nätverk av skyddade områden, Natura 2000, och förvaltas av Västkuststiftelsen.',
       // KÄLLA: Bohusläns museum, Kunskapsbanken "Gullholmen" — bekräftar att Gullholmens kyrka byggdes 1799 på Lilla Härmanö — https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ (läst 2026-09-16)
       // KÄLLA: Västsverige, "Gullholmen och Härmanö" — bekräftar Skepparhuset från 1893 — https://www.vastsverige.com/sodrabohuslan/produkter/gullholmen-och-harmano/?site=5 (läst 2026-09-16)
-      'Gullholmens kyrka byggdes 1799 på Lilla Härmanö, och på ön står Skepparhuset från 1893.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html — "Husen står tätt tillsammans, vilket beror på att Gullholmen fram till 1999 var en så kallad kronoholme.", "På öns norra del ligger Stenstugan, som är ett av de äldsta husen på ön. Det är idag museum." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/sodrabohuslan/produkter/gullholmen-och-harmano/?site=5 — "Det innebar att marken ägdes av staten och var fri att bygga på, vilket banade väg för den täta bebyggelse som idag kännetecknar ön." (läst 2026-09-27)
+      'Gullholmens kyrka byggdes 1799 på Lilla Härmanö, och på ön står Skepparhuset från 1893. På öns norra del ligger Stenstugan, ett av de äldsta husen, som i dag är sjöfarts- och fiskemuseum. Att husen står så tätt beror på att Gullholmen fram till 1999 var en så kallad kronoholme: marken ägdes av staten och var fri att bygga på.',
     ],
     // KÄLLA: Länsstyrelsen Västra Götaland, Härmanö naturreservat — ca 1 481 ha — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html (läst 2026-09-16)
     // KÄLLA: Bohusläns museum, Kunskapsbanken "Gullholmen" — drygt 800 invånare omkring 1910; år 2010 tio fastboende på Gullholmen och närmare 100 på Härmanö — https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ (läst 2026-09-16)
     facts: {
       area: 'Gullholmen + Härmanö; Härmanö naturreservat ca 1 481 ha',
       population: 'som mest drygt 800 invånare omkring 1910; år 2010 tio fastboende på Gullholmen och närmare 100 på Härmanö',
-      known_for: 'Välbevarat historiskt fiskesamhälle, täta gränder, bilfritt',
+      // KÄLLA: https://www.vastsverige.com/sodrabohuslan/produkter/gullholmen-och-harmano/?site=5 — "Gullholmen är ett av Bohusläns äldsta fiskelägen", "Mycket av öns gamla karaktär finns bevarad än idag med sjöbodar, bryggor och en välbesökt gästhamn." (läst 2026-09-27); https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ — "Väl intrampade prång och gränder mellan husen leder ner mot vattnet." (läst 2026-09-27)
+      known_for: 'Ett av Bohusläns äldsta fiskelägen, bevarade sjöbodar, täta gränder, bilfritt',
       season: 'Maj–September',
     },
     facts_provenance: {
@@ -1307,57 +1348,67 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { icon: '📸', name: 'Fotografera', desc: 'Den täta bebyggelsen på holmen och de öppna hällmarkerna på Härmanö ger två helt olika motiv inom gångavstånd.' },
     ],
     accommodation: [
-      // KÄLLA: Gullholmsbaden, egen webbplats — 69 fullt utrustade stugor, egen restaurang, konferenslokaler och minigolf — https://www.gullholmsbaden.se/ (läst 2026-09-16)
-      { name: 'Gullholmsbaden', type: 'Stugby', desc: 'Stugby på Gullholmen med 69 fullt utrustade stugor. Egen restaurang, konferenslokaler och minigolf på anläggningen.' },
+      // KÄLLA: https://www.gullholmsbaden.se/?page_id=6253 — "Gullholmsbaden är en unik destination belägen vid strandkanten på vackra Gullholmen", "Anläggningen erbjuder 69 fullt utrustade stugor" (läst 2026-09-27)
+      // KÄLLA: https://www.gullholmsbaden.se/?page_id=360 — "I receptionen kan man hyra klubbor för att spela minigolf på vår bana.", "Bastun bokas i vår reception" (läst 2026-09-27); https://www.gullholmsbaden.se/ — "Här finns utmärkta konferensmöjligheter året runt" (läst 2026-09-27)
+      { name: 'Gullholmsbaden', type: 'Stugby', desc: 'Stugby vid strandkanten i Gullholmen med 69 fullt utrustade stugor. Egen restaurang, konferenslokaler, minigolf och en bastu som bokas i receptionen.' },
     ],
     getting_there: [
-      // KÄLLA: Västsverige, "Färja Tuvesvik – Gullholmen – Käringön" — Västtrafiks linje 381 avgår från Tuvesvik, tio minuter till Gullholmen, cykel kan tas med — https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/ (läst 2026-09-16)
-      // KÄLLA: Västsverige/Orust, "Bilfria öar i södra Bohuslän" — överfarten tar tio minuter till Gullholmen — https://www.vastsverige.com/en/orust/things-to-do/boating/car-less-islands/ (läst 2026-09-16)
-      { method: 'Passagerarfärja från Tuvesvik', from: 'Tuvesvik (Orust)', time: 'ca 10 min', desc: 'Västtrafiks linje 381 från Tuvesvik på Orust. Överfarten till Gullholmen tar ca 10 minuter. Cykel kan tas med.', icon: '⛴' },
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6381__0__LINE__20260915__20261031__de9ca77a-74b2-4c80-a07f-0e9d5aafbcd8__0%2C0__2790296.pdf — "Tuvesvik–Gullholmen–Käringön", "Gäller 15 sept - 31 okt 2026" (läst 2026-09-27). Tuvesvik–Gullholmen tar 5 min i varje tur (t.ex. 08.30–08.35 hamnen, 12.30–12.35 piren); båten lägger till vid Gullholmen hamnen eller Gullholmen piren beroende på tur.
+      // KÄLLA: https://www.vastsverige.com/en/orust/things-to-do/boating/car-less-islands/ — "line 381, operate every day all year round", "You can bring a bicycle" (läst 2026-09-27). OBS: samma sida anger tio minuter, men Västtrafiks tidtabell och https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/ ("5 minuter till Härmanö/Gullholmen") säger fem.
+      // KÄLLA: https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ — "Färjeläget ligger i Gullholmens hamn på nordöstra Hermanö och därifrån går en bro över till Gullholmen." (läst 2026-09-27)
+      { method: 'Passagerarfärja från Tuvesvik', from: 'Tuvesvik (Orust)', time: 'ca 5 min', desc: 'Västtrafiks linje 381 från Tuvesvik på västra Orust går alla dagar året runt. Överfarten tar 5 minuter, och båten lägger till vid Gullholmen hamnen eller Gullholmen piren beroende på tur. Cykel kan tas med.', icon: '⛴' },
     ],
+    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6381__0__LINE__20260915__20261031__de9ca77a-74b2-4c80-a07f-0e9d5aafbcd8__0%2C0__2790296.pdf — "Tuvesvik–Gullholmen–Käringön", "Gäller 15 sept - 31 okt 2026" (läst 2026-09-27). Från Tuvesvik mån–fre 9 avgångar varav 8 angör Gullholmen (07.00 går direkt till Käringön), lördag 7 och söndag 7 avgångar som alla angör Gullholmen; restid 5 min.
+    // KÄLLA: https://www.vastsverige.com/en/orust/things-to-do/boating/car-less-islands/ — "line 381, operate every day all year round" (läst 2026-09-27)
     transport_meta: {
+      // UPPSKATTNING: 120 min från Göteborg till Gullholmen är inte kontrollerat mot tidtabell (Västtrafiks reseplanerare kräver JavaScript och anslutande bussar till Tuvesvik hittades inte i de öppna linjetabellerna).
       from_city_min: 120,
-      nearest_hub: 'Henån (Orust) / Tuvesvik',
-      from_nearest_hub_min: 10,
-      operator: 'Lokal passagerarfärja (sommarsäsong)',
-      frequency: 'Se Västtrafiks tidtabell',
+      nearest_hub: 'Tuvesvik (Orust)',
+      from_nearest_hub_min: 5,
+      operator: 'Västtrafik, linje 381 (personfärja året runt)',
+      frequency: 'Mån–fre 8 turer, lör–sön 7 turer Tuvesvik–Gullholmen (15 sept–31 okt 2026)',
     },
     harbors: [
-      // KÄLLA: Orust kommun, Gullholmens gästhamn — 50 platser, el, servicebyggnad med toalett, dusch och tvättmaskin, sugtömningsstation, inget drivmedel — https://www.orust.se/uppleva-och-gora/gasthamnar/gullholmens-gasthamn (läst 2026-09-16)
-      // KÄLLA: Gästhamnsguiden, Gullholmen gästhamn — "Harbour Depth 2 - 7 m Spots 50", bekräftar färskvatten, el, dusch, toalett och tvättstuga, inget drivmedel — https://www.gasthamnsguiden.se/en/harbor/gullholmen-gasthamn-2/ (läst 2026-09-16)
-      { name: 'Gullholmens Gästhamn', desc: 'Gästhamn i fiskeläget med 50 platser på 2–7 meters djup. Servicebyggnad med toalett, dusch och tvättmaskin. Sugtömningsstation för latrintank.', fuel: false, service: ['Vatten', 'El', 'Dusch', 'Toalett', 'Tvättmaskin'] },
+      // KÄLLA: https://www.orust.se/uppleva-och-gora/gasthamnar/gullholmens-gasthamn — "Gullholmens hamn är öppen 1 april till 30 september.", "50 platser. Djup cirka 1,5-3,5 meter.", "Servicebyggnad med toalett, dusch, tvättmaskin, torktumlare.", "Sugtömningsstation där fritidsbåtar kan tömma sin latrintank, mellan 1 april och 31 oktober.", "Förhandsbokning av gästplats sker via Dockspot. Hamnen är kontantfri." (läst 2026-09-27)
+      // KÄLLA: https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ — "Gästhamn finns i södra delen av hamnbassängen, öppen under säsongen." (läst 2026-09-27)
+      { name: 'Gullholmens Gästhamn', desc: 'Gästhamn i södra delen av hamnbassängen med 50 platser på cirka 1,5–3,5 meters djup, öppen 1 april–30 september. Servicebyggnad med toalett, dusch, tvättmaskin och torktumlare, sugtömningsstation för latrintank (1 april–31 oktober). Kontantfri hamn, förbokning via Dockspot.', fuel: false, service: ['El', 'Dusch', 'Toalett', 'Tvättmaskin'] },
     ],
     restaurants: [
-      // KÄLLA: Gullholmens Hamnkrog, egen webbplats (Torget 105, 47471 Gullholmen) — https://gullholmenshamnkrog.se/ (läst 2026-09-16)
-      // KÄLLA: Västsverige/Orust, "Gullholmens Hamnkrog" — mötesplats ett stenkast från hamnen — https://www.vastsverige.com/orust/produkter/gullholmens-hamnkrog/ (läst 2026-09-16)
-      { name: 'Gullholmens Hamnkrog', type: 'Krog', desc: 'Krog vid hamnen på Gullholmen med uteservering. Serverar mat, dryck och fika, bland annat räksmörgås.' },
-      // KÄLLA: Gullholmsbaden, egen webbplats — "Restaurangen — Sommarterrass med havsutsikt", a la carte samt hantverkarlunch — https://www.gullholmsbaden.se/?page_id=19 (läst 2026-09-16)
-      { name: 'Gullholmsbaden Restaurang', type: 'Restaurang', desc: 'Restaurang på stugbyn Gullholmsbaden med sommarterrass mot havet. Mat lagad från grunden, känd för sin räksmörgås.' },
+      // KÄLLA: https://gullholmenshamnkrog.se/ — "Torget 105, Gullholmen", "Kom och njut av en unik matupplevelse vid vattnet!", "Vare sig om du kommer för en lunch i solen eller en middag med vänner", "Hör av er till oss för att boka bord eller take away.", "Öppettider Sep - Dec 2026" (läst 2026-09-27)
+      { name: 'Gullholmens Hamnkrog', type: 'Krog', desc: 'Krog vid vattnet på Torget i Gullholmen — lunch och middag, bordsbokning och take away. Har öppet även under hösten.' },
+      // KÄLLA: https://www.gullholmsbaden.se/?page_id=19 — "Sommarterrass med havsutsikt", "Njut av mat lagad från grunden", "missa inte vår legendariska Räksmörgås", "Hantverkarlunch kl. 12.00 – 14.00" (läst 2026-09-27)
+      { name: 'Gullholmsbaden Restaurang', type: 'Restaurang', desc: 'Restaurang på stugbyn Gullholmsbaden med sommarterrass mot havet. Mat lagad från grunden, räksmörgåsen är husets egen favorit, och vardagar serveras hantverkarlunch som förbokas.' },
     ],
     tips: [
       // KÄLLA: Västsverige, "Vandra på Gullholmen och Härmanö" — markerade leder från färjeläget ut i Härmanö naturreservat — https://www.vastsverige.com/en/orust/trails/harmano-hiking-trails/ (läst 2026-09-16)
       'Ta med vandringsskor — härifrån går markerade leder rakt ut i Härmanö naturreservat.',
       // KÄLLA: Västsverige, "Färja Tuvesvik – Gullholmen – Käringön" — parkering vid Tuvesvik betalas med kort eller SMS, kontanter tas inte emot — https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/ (läst 2026-09-16)
       'Parkera vid Tuvesvik och ta färjan över — parkeringen betalas med kort eller SMS, kontanter tas inte emot.',
+      // KÄLLA: https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ — "Färjeläget ligger i Gullholmens hamn på nordöstra Hermanö och därifrån går en bro över till Gullholmen." (läst 2026-09-27)
+      'Färjan lägger till på Härmanö-sidan av hamnen — till själva Gullholmen går du över bron.',
     ],
     related: ['marstrand', 'karingon', 'orust'],
     tags: ['bohuslän', 'historisk', 'bilfritt', 'fiskeläge', 'fotografi', 'familjer'],
     insiderTips: [
-      'De tätaste gränderna hittar du norr om hamnen — gå uppåt längs bergets östsida. Det är inte skyltade, det är bara gränderna.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html — "I norr ligger Ulkhåleberget. Berget har delats i klyftor och är fyllt av gångar och grottor.", "En gammal ek är så välbesökt att den har en egen gästbok. Den står på östra sidan av ön söder om Myren" (läst 2026-09-27)
+      'I norra Härmanö ligger Ulkhåleberget, fyllt av klyftor, gångar och grottor. På öns östra sida söder om Myren står en gammal ek som är så välbesökt att den har en egen gästbok.',
     ],
     dog_friendly: true,
-    dog_notes: 'Hund tillåten på de flesta platser på ön. Håll koppel i fiskesamhällets gränder.',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html — "medföra lös hund" (förbjudet i naturreservatet) (läst 2026-09-27)
+    dog_notes: 'I Härmanö naturreservat måste hunden vara kopplad.',
     // KÄLLA: Bohusläns museum, Kunskapsbanken "Gullholmen" — äldsta säkra belägg 1588, 24 bofasta 1610, drygt 800 invånare omkring 1910, tio fast bosatta 2010 — https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ (läst 2026-09-16)
     did_you_know: 'Det äldsta säkra belägget för bosättning på Gullholmen är från 1588, då två män uppges ha byggt sig bodar på holmen. År 1610 fanns 24 bofasta. Befolkningen var som störst omkring 1910 med drygt 800 invånare — år 2010 var tio personer fast bosatta på själva Gullholmen.',
     amenities: {
       restaurant: true,
       shop: true,
       accommodation: true,
-      beach: false,
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html — "Välj mellan sandstrand och klippor." (läst 2026-09-27)
+      beach: true,
       camping: false,
     },
     activity_meta: {
-      bad: { beaches: ['Klippbad vid Gullholmens norra udde'] },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html — "Prova vid Skottarn, Gullholmsbaden, Grindebacken eller Härmanö huvud. Du kan också bada från Ångbåtsbryggan på Gullholmen och det finns flera badstegar på klipporna väster om kyrkan." (läst 2026-09-27)
+      bad: { beaches: ['Skottarn', 'Gullholmsbaden', 'Grindebacken', 'Härmanö huvud', 'Ångbåtsbryggan på Gullholmen', 'Badstegar på klipporna väster om kyrkan'] },
     },
   },
 
