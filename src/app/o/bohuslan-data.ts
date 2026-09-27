@@ -814,7 +814,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: Orust kommun, Kommunfakta — drygt 15 000 invånare och cirka 40 000 sommartid, cirka 2,8 mil i väst-östlig och cirka 2,5 mil i nord-sydlig riktning, västkustens största ö — https://www.orust.se/kommun-och-politik/kommunfakta (läst 2026-09-16)
       // KÄLLA: Hallberg-Rassy, Varvets historia — Harry Hallberg öppnade eget varv i Kungsviken på Orust 1943, nya lokaler byggdes i Ellös i mitten av 1960-talet, samgående med Christoph Rassys varv 1972 till Hallberg-Rassy Varvs AB, omkring 9 800 levererade båtar — https://www.hallberg-rassy.com/sv/varvet/varvets-historia (läst 2026-09-16)
       // KÄLLA: Najad Yachts, egen webbplats — produktionen flyttad tillbaka till Henån på Orust efter förvärvet av Orust Yacht Service, meddelat 2 november 2022 — https://najad.se/najad-yachts-moves-production-back-to-orust-following-the-acquisition-of-orust-yacht-service/ (läst 2026-09-16)
-      'Orust är västkustens största ö, cirka 28 kilometer i väst-östlig och 25 kilometer i nord-sydlig riktning, med drygt 15 000 åretruntboende — en siffra som stiger mot 40 000 på sommaren. Ön har en stark varvstradition. Hallberg-Rassy har sina rötter i det varv Harry Hallberg grundade i Kungsviken 1943; verksamheten flyttade till Ellös i mitten av 1960-talet. Efter samgåendet med Christoph Rassys varv 1972 drivs det som Hallberg-Rassy Varvs AB och har levererat omkring 9 800 båtar. Najad flyttade tillbaka sin produktion till Henån 2022.',
+      // KÄLLA: https://www.orust.se/kommun-och-politik/kommunfakta — "Orust kommun har drygt 15 000 invånare.", "Själva Orust är västkustens största ö.", "kanske antalet människor i kommunen närmar sig 40 000 personer" (läst 2026-09-27)
+      // KÄLLA: https://www.orust.se/jobb-och-foretagande/foretag-stod-och-radgivning/fakta-om-naringslivet — "är Sveriges tredje största ö" (läst 2026-09-27)
+      // KÄLLA: https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf — "Tio-i-topp. Statistiska öar i Sverige, efter areal i hektar.", "Gotland Gotlands län 296 800", "Öland Kalmar län 134 300", "Södertörn Stockholms län 120 700", "Orust Västra Götalands län 34 400" (läst 2026-09-27)
+      'Orust är västkustens största ö, cirka 28 kilometer i väst-östlig och 25 kilometer i nord-sydlig riktning. Orust kommun kallar den Sveriges tredje största ö; i SCB:s statistik, där även Södertörn räknas som ö, kommer Orust på fjärde plats med 34 400 hektar, efter Gotland, Öland och Södertörn. Kommunen har drygt 15 000 invånare, och sommartid kan antalet människor i kommunen närma sig 40 000. Ön har en stark varvstradition. Hallberg-Rassy har sina rötter i det varv Harry Hallberg grundade i Kungsviken 1943; verksamheten flyttade till Ellös i mitten av 1960-talet. Efter samgåendet med Christoph Rassys varv 1972 drivs det som Hallberg-Rassy Varvs AB och har levererat omkring 9 800 båtar. Najad flyttade tillbaka sin produktion till Henån 2022.',
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Mollösund — sydvästra spetsen av Orust, sillfisket från 1500-talet och Bohusläns främsta fiskecentrum inom hundra år, fyren på Gallebergs udde, träskulpturen av fiskarkvinna med barn vid Klockeberget, kyrkan färdig 1866, väderkvarnen från 1700-talet i bruk till 1929, hamnen byggd under andra världskriget — https://www.vastsverige.com/en/orust/products/mollosund/ (läst 2026-09-16)
       // KÄLLA: Orust kommun, Kommunfakta — Henån är centralort med cirka 3 000 invånare — https://www.orust.se/kommun-och-politik/kommunfakta (läst 2026-09-16)
       'Mollösund ligger på Orusts sydvästra spets. Sillfisket började här på 1500-talet, och inom hundra år var Mollösund Bohusläns främsta fiskecentrum. Fyra landmärken präglar byn: fyren på Gallebergs udde, träskulpturen av en fiskarkvinna med barn vid utsiktsplatsen Klockeberget, kyrkan som stod färdig 1866 och väderkvarnen från 1700-talet, som var i bruk ända till 1929. Nuvarande hamn byggdes under andra världskriget. Henån är kommunens centralort med omkring 3 000 invånare.',
@@ -828,9 +831,11 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     facts: {
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Mollösund — cirka 80 minuter med bil från Göteborg — https://www.vastsverige.com/en/orust/products/mollosund/ (läst 2026-09-16)
       travel_time: 'Mollösund cirka 80 min med bil från Göteborg',
-      character: 'Stort, varierat, båtbyggartradition',
+      // KÄLLA: https://www.orust.se/kommun-och-politik/kommunfakta — "Själva Orust är västkustens största ö.", "Båtar har satt sin prägel på ön långt innan vikingatiden", "traditionella fiskesamhällen" (läst 2026-09-27)
+      character: 'Västkustens största ö, båtbyggartradition, fiskelägen',
       season: 'Helår',
-      best_for: 'Bas för utflykter, vandring, segling',
+      // KÄLLA: https://www.orust.se/kommun-och-politik/kommunfakta — "Baden, båtlivet, naturen med sina vandringsmöjligheter, vandringsleder, traditionella fiskesamhällen" (läst 2026-09-27)
+      best_for: 'Bad, båtliv, vandring, fiskelägen',
     },
     facts_provenance: {
       travel_time: 'matt',
@@ -847,20 +852,25 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { icon: '🏊', name: 'Badplatser', desc: 'Nio badplatser i kommunen, bland dem Småholmarna i Henån med simskola sommartid och Kattevik i Mollösund.' },
     ],
     accommodation: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Villa Frideborg, Hotell Henån — familjehotell och B&B, Åvägen 1, 473 32 Henån — https://www.vastsverige.com/orust/produkter/villa-frideborg/ (läst 2026-09-16)
-      { name: 'Villa Frideborg, Hotell Henån', type: 'Hotell', desc: 'Familjehotell och B&B i centrala Henån, Åvägen 1.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Prästgårdens Pensionat — Kyrkvägen 1, 47470 Mollösund, i en byggnad från 1893 — https://www.vastsverige.com/en/orust/products/prastgardens-pensionat/ (läst 2026-09-16)
+      // KÄLLA: http://www.prastgardens.se/ — "I det gamla fiskeläget Mollösund på Orust ligger den anrika Prästgården som restes 1893. Idag fungerar gården som hotell." (läst 2026-09-27); sidan senast ändrad 11 augusti 2026 enligt servern.
       { name: 'Prästgårdens Pensionat', type: 'Pensionat', desc: 'Pensionat i Mollösund, Kyrkvägen 1, i en byggnad från 1893.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Kobbar & Skär — stugförmedlare för Orust och Tjörn, Tyfta 560, 473 98 Henån — https://www.vastsverige.com/orust/produkter/kobbar-skar/ (läst 2026-09-16)
+      // KÄLLA: https://kobbaroskar.com/ — "Vi hyr ut charmiga stugor på Orust & Tjörn" (läst 2026-09-27)
       { name: 'Kobbar & Skär', type: 'Stugförmedling', desc: 'Stugförmedling för Orust och Tjörn, med kontor i Henån.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Slussens Pensionat — Slussen 415, 47392 Henån, pensionat med restaurang och konferens — https://www.vastsverige.com/en/orust/products/slussens-pensionat/ (läst 2026-09-16)
-      { name: 'Slussens Pensionat', type: 'Pensionat', desc: 'Pensionat med restaurang vid vattnet i Slussen, Henån.' },
+      // KÄLLA: https://www.slussenspensionat.se/ — "På norra Orust, i innerskärgården, ligger en plats", "Sedan 1987 har det här lilla stället funnits här" (läst 2026-09-27)
+      { name: 'Slussens Pensionat', type: 'Pensionat', desc: 'Pensionat med restaurang och musikscen i innerskärgården på norra Orust, i Slussen utanför Henån, sedan 1987.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Hotell Varvet — Ravinvägen 2, 474 31 Ellös, lägenhetshotell med restaurang och spa — https://www.vastsverige.com/en/orust/products/hotel-varvet/ (läst 2026-09-16)
-      { name: 'Hotell Varvet', type: 'Hotell', desc: 'Lägenhetshotell med vandrarhem och restaurang i Ellös, Ravinvägen 2.' },
+      // KÄLLA: http://www.hotellvarvet.se — "nyrenoverat lägenhetshotell med en populär lunchrestaurang och perfekt läge vid havet i Ellös på Orust", "är enkelt och i gammaldags stil med sina 14 rum" (läst 2026-09-27)
+      { name: 'Hotell Varvet', type: 'Hotell', desc: 'Lägenhetshotell vid havet i Ellös, Ravinvägen 2, med lunchrestaurang och ett vandrarhem med 14 rum.' },
     ],
     getting_there: [
       // KÄLLA: Orust kommun, Kommunfakta — fasta broförbindelser åt båda hållen och dessutom två färjelinjer — https://www.orust.se/kommun-och-politik/kommunfakta (läst 2026-09-16)
-      { method: 'Bil', from: 'Göteborg', time: '', desc: 'Orust har fasta broförbindelser åt båda hållen och dessutom två färjelinjer.', icon: '🚗' },
+      // KÄLLA: https://www.orust.se/kommun-och-politik/kommunfakta — "Orust ligger sex mil norr om Göteborg och tre mil sydväst om Uddevalla. Fasta broförbindelser finns åt båda hållen. Dessutom finns det två färjelinjer som förbinder Orust med fastlandet." (läst 2026-09-27)
+      { method: 'Bil', from: 'Göteborg', time: '', desc: 'Orust ligger sex mil norr om Göteborg och tre mil sydväst om Uddevalla. Fasta broförbindelser finns åt båda hållen, och dessutom två färjelinjer till fastlandet.', icon: '🚗' },
+      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/svanesundsleden/ — "Svanesundsleden går mellan Svanesund på Orust och Kolhättan i Halsefjorden Bohuslän. Färjeledens längd är 830 meter och överfartstiden är fem minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27)
+      { method: 'Bil + bilfärja', from: 'Kolhättan', time: '5 min överfart', desc: 'Trafikverkets vägfärja Svanesundsleden Kolhättan–Svanesund, 830 m, avgiftsfri.', icon: '⛴' },
     ],
     harbors: [
       // KÄLLA: Orust kommun, Henåns gästhamn — 10 gästplatser, djup cirka 1–2,5 meter, el, dusch, toalett, ramp och sugtömningsstation 1 april–31 oktober; bensin och diesel anges som tillgångar i orten Henån — https://www.orust.se/amnesomrade/upplevaochgora/gasthamnar/henansgasthamn.4.2f8c9bd513dca025875ec3.html (läst 2026-09-16)
@@ -870,16 +880,16 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     ],
     restaurants: [
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Wärds Mollösund — hotell och restaurang med cocktailbar, Kyrkvägen 9, 474 70 Mollösund — https://www.vastsverige.com/orust/produkter/wards-i-mollosund/ (läst 2026-09-16)
-      { name: 'Wärds Mollösund', type: 'Restaurang/Hotell', desc: 'Restaurang och hotell i Mollösund, Kyrkvägen 9, några meter från hamnen.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Brygghuset Mollösund — Hamnvägen 4, 47440 Mollösund, restaurang med havsinspirerad mat samt rum med utsikt över hamnen — https://www.vastsverige.com/en/orust/products/brygghuset-mollosund/ (läst 2026-09-16)
-      { name: 'Brygghuset Mollösund', type: 'Restaurang', desc: 'Restaurang och boende vid hamnen i Mollösund, Hamnvägen 4, med mat från havet.' },
+      // KÄLLA: https://wards.se/ — "Sedan 1860 har Mollösunds Wärdshus stått stolt i en av Sveriges äldsta fiskebyar.", "Vi öppnar ibland ad hoc — hör gärna av dig, så berättar vi mer.", "För bordsbokning ring" (läst 2026-09-27)
+      { name: 'Mollösunds Wärdshus (Wärds)', type: 'Värdshus', desc: 'Värdshus sedan 1860 i Mollösund, Kyrkvägen 9, några meter från hamnen. Öppnar ibland ad hoc — kontakta värdshuset och boka bord i förväg.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Bryggvingen Restaurang & Fiskaffär — restaurang och fiskaffär på Lyr, Orust — https://www.vastsverige.com/en/orust/products/restaurang-cafe-bryggvingen/ (läst 2026-09-16)
-      { name: 'Bryggvingen Restaurang & Fiskaffär', type: 'Restaurang', desc: 'Restaurang och fiskaffär på Lyr, Orust.' },
+      // KÄLLA: http://www.bryggvingen.se — "Varmt välkommen till ön Lyr på sydvästra Orust, där vi har vår fisk- & skaldjursrestaurang och fiskaffär.", "Kom med båt eller ta färjan som går dagligen." (läst 2026-09-27)
+      { name: 'Bryggvingen Restaurang & Fiskaffär', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang och fiskaffär på ön Lyr vid sydvästra Orust. Dit kommer man med egen båt eller med färjan, som går dagligen.' },
     ],
     // KÄLLA: Orust kommun, Kulturhistoriska byggnader och kulturmiljöer — Käringön, Mollösund, Gullholmen och Härmanö är riksintressen — https://www.orust.se/bygga-bo-och-miljo/bygga-nytt-andra-eller-riva/kulturhistoriska-byggnader-kulturmiljoer (läst 2026-09-16)
     // KÄLLA: Turistrådet Västsverige (vastsverige.com), Färja Tuvesvik–Gullholmen–Käringön — personfärjan går till Gullholmen, Härmanö och Käringön — https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/ (läst 2026-09-16)
     // KÄLLA: Turistrådet Västsverige (vastsverige.com), Mollösund — väderkvarnen från 1700-talet var i bruk till 1929 — https://www.vastsverige.com/en/orust/products/mollosund/ (läst 2026-09-16)
-    tips: ['Öns fyra riksintresseorter är Käringön, Mollösund, Gullholmen och Härmanö.', 'Personfärjan från Tuvesvik går till Gullholmen, Härmanö och Käringön.', 'Mollösunds väderkvarn från 1700-talet var i bruk till 1929.'],
+    tips: ['Käringön, Mollösund, Gullholmen och Härmanö är exempel på platser inom riksintresse för kulturmiljövården.', 'Personfärjan från Tuvesvik går till Gullholmen, Härmanö och Käringön.', 'Mollösunds väderkvarn från 1700-talet var i bruk till 1929.'],
     related: ['tjorn', 'karingon', 'gullholmen'],
     tags: ['stor ö', 'båtbyggning', 'mångsidig', 'bas'],
     // KÄLLA: Hallberg-Rassy, Varvets historia — grundat 1943, omkring 9 800 levererade båtar, varvet helägt inom familjen Rassy — https://www.hallberg-rassy.com/sv/varvet/varvets-historia (läst 2026-09-16)
@@ -889,7 +899,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       open: 'Hela året',
       peak: 'Juli–Augusti',
       best: 'Juni eller September',
-      bestReason: 'Orust är stort nog att ha bra upplevelser hela sommarsäsongen. Juni ger Mollösunds klippor, september segling i klarblått hav.',
+      // KÄLLA: https://www.orust.se/kommun-och-politik/kommunfakta — "Sommartid när de flesta fritidshusen är bebodda och campingplatser, gästhamnar, hotell och vandrarhemmet mera är fyllda av besökare, kanske antalet människor i kommunen närmar sig 40 000 personer." (läst 2026-09-27)
+      // KÄLLA: https://www.orust.se/uppleva-och-gora/gasthamnar/mollosunds-gasthamn — "Sugtömningsstation där fritidsbåtar kan tömma sin latrintank, mellan 1 april och 31 oktober." (läst 2026-09-27)
+      // KÄLLA: https://www.hallberg-rassy.com/sv/nyheter/oeppet-varv — "Öppet Varv i Ellös på Orust kommer 2026 att gå den 21-23 augusti." (läst 2026-09-27); https://www.orust.se/jobb-och-foretagande/foretag-stod-och-radgivning/fakta-om-naringslivet — "Hallberg Rassy anordnar varje år Öppet Varv, Skandinaviens största Segelbåtmässa." (läst 2026-09-27)
+      bestReason: 'Sommartid, när fritidshus, campingplatser och gästhamnar är fulla, kan antalet människor i kommunen närma sig 40 000. Juni och september ligger utanför den toppen, och gästhamnarnas sugtömning är öppen 1 april–31 oktober. Hallberg-Rassys årliga båtmässa Öppet Varv i Ellös hölls 2026 den 21–23 augusti.',
       warning: '',
       months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
     },
