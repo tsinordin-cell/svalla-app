@@ -157,23 +157,13 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "lysekil-guide": {
-    "antal": 1,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "bornholm-guide": {
-    "antal": 1,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "dalaro-guide": {
     "antal": 1,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
   "ankra-sova-bat": {
-    "antal": 14,
+    "antal": 13,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
@@ -227,11 +217,6 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "hyra-stuga-marstrand-bohuslan": {
-    "antal": 2,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "workshop-skargard-stockholm": {
     "antal": 2,
     "datum": "2026-08",
@@ -255,4 +240,4 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
 }
 
 /** Antal guider som innehåller minst en uppskattad prisnivå. */
-export const GUIDER_MED_UPPSKATTNING = 47
+export const GUIDER_MED_UPPSKATTNING = 44
