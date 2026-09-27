@@ -112,11 +112,6 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "romantisk-weekend-skargarden": {
-    "antal": 3,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "foretagsevent-skargarden": {
     "antal": 1,
     "datum": "2026-08",
@@ -163,7 +158,7 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
   "ankra-sova-bat": {
-    "antal": 13,
+    "antal": 9,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
@@ -173,11 +168,6 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "vad": "spann över flera charteroperatörer, ej hämtat per aktör"
   },
   "konferens-skargard-stockholm": {
-    "antal": 1,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "kajak-vaxholm": {
     "antal": 1,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
@@ -233,11 +223,11 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
   "dagstur-marstrand": {
-    "antal": 13,
+    "antal": 11,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   }
 }
 
 /** Antal guider som innehåller minst en uppskattad prisnivå. */
-export const GUIDER_MED_UPPSKATTNING = 44
+export const GUIDER_MED_UPPSKATTNING = 42
