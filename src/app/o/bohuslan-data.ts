@@ -143,83 +143,109 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
     emoji: '🦐',
-    // KÄLLA: Turistrådet Västsverige (vastsverige.com), Smögenbryggan — bekräftar formuleringen "Sveriges mest besökta brygga" — https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ ; landets näst största fiskauktion — https://www.vastsverige.com/sotenas/artiklar/smogen/ (läst 2026-09-16)
-    tagline: 'Sveriges mest besökta brygga, landets näst största fiskauktion och Hållö fyr utanför.',
+    // KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ — "Sveriges mest besökta brygga" (läst 2026-09-27)
+    // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Landets näst största fiskauktion ligger på Smögen." (läst 2026-09-27)
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Med en vit blixt var tolfte sekund gör sig Bohusläns äldsta fyr påmind." (läst 2026-09-27)
+    tagline: 'Sveriges mest besökta brygga, landets näst största fiskauktion och Bohusläns äldsta fyr på Hållö utanför.',
     description: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Smögenbryggan — bekräftar "1 km långt", "Sveriges mest besökta brygga", caféer, krogar och butiker, båtturer till Hållö och Kungshamn samt hamnen använd av fiskare redan under mitten av 1500-talet — https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ ; första omnämnandet 1594 — https://www.vastsverige.com/sotenas/artiklar/smogen/ (läst 2026-09-16)
-      'Smögenbryggan är Smögens nav. Turistrådet Västsverige anger bryggan som 1 kilometer lång och kallar den Sveriges mest besökta brygga sommartid. Längs den ligger caféer, krogar och ett stort antal butiker, och härifrån går båtturer till bland annat Hållö och Kungshamn. Hamnen har använts av fiskare sedan mitten av 1500-talet, och första gången Smögen nämns i litteraturen är 1594.',
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Smögen — bekräftar "Landets näst största fiskauktion ligger på Smögen" och Fiskarstugan daterad till omkring 1850 — https://www.vastsverige.com/sotenas/artiklar/smogen/ (läst 2026-09-16)
-      'Fisket är fortfarande på riktigt här: landets näst största fiskauktion ligger på Smögen. I hamnmiljön finns också Fiskarstugan, en fiskarbostad från omkring 1850 som visar hur man bodde och levde här.',
-      // KÄLLA: Sotenäs kommun, Smögens gästhamn — bekräftar kommunal drift, ca 120 gästplatser, fastförtöjning, vattendjup 3–5 meter, servicen WC, färskvatten, el, wifi, tvättmaskin/torktumlare, sopor och dusch, hamnkontor öppet vecka 25–33 samt bokning via Dockspot — https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/smogens-gasthamn (läst 2026-09-16)
-      'Gästhamnen drivs av Sotenäs kommun och ligger vid själva Smögenbryggan. Den har cirka 120 gästplatser med fastförtöjning och ett vattendjup på 3–5 meter. Servicen omfattar toalett, färskvatten, el, wifi, tvättmaskin och torktumlare, sopor och dusch, och hamnkontoret vid början av bryggan är öppet dagligen under vecka 25–33. Bokning sker via Dockspot.',
-      // KÄLLA: Sotenäs kommun, Badplatser Smögen — bekräftar de tre badplatserna Sandö, Vallevik samt Herr- och dambadet i Makrillviken med angiven service — https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatserhundbad/smogen.4.15eba9af15b0a9219ba31966.html (läst 2026-09-16)
-      'Sotenäs kommun listar tre badplatser på Smögen. Sandö är en sandstrand med bryggor, badstegar och tillgänglighetsramp, omklädningsrum, toalett och tillgänglighetsanpassad toalett samt grillplats och parkering. Vallevik är ett klippbad med badstegar och hopptorn, stor gräsyta, grillmöjlighet och parkering. Herr- och dambadet i Makrillviken är en klippstrand med bryggor och badstegar, där omklädning och toalett nås via det intilliggande vandrarhemmet.',
-      // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Hållöarkipelagen — bekräftar bildat 1975, ca 292 hektar, förvaltas av Västkuststiftelsen, Bohusläns äldsta fyr på plats sedan 1842 med vit blixt var tolfte sekund, byggnadsminne 1935, Marmorbassängen och regelbundna badturer från Kungshamn sommartid — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html (läst 2026-09-16)
-      'Strax utanför ligger Hållö. Ön ingår i naturreservatet Hållöarkipelagen, som bildades 1975, omfattar cirka 292 hektar och förvaltas av Västkuststiftelsen. Hållö fyr är Bohusläns äldsta fyr — den har stått här sedan 1842, lyser med en vit blixt var tolfte sekund och blev byggnadsminne 1935. På öns västsida ligger Marmorbassängen med släta klippavsatser att bada från, och sommartid går regelbundna badturer från Kungshamn.',
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Smögen — bekräftar att Hotell Smögens Hafvsbad stod klart 1900 och tog emot sommargäster som kom för att bada tångbad och roa sig — https://www.vastsverige.com/sotenas/artiklar/smogen/ (läst 2026-09-16)
-      'Badortstiden satte också spår. Hotell Smögens Hafvsbad stod klart år 1900 och tog emot sommargäster som kom för att bada tångbad och roa sig.',
+      // KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ — "Smögenbryggan är sommartid ett av Sveriges mest besökta turistmål.", "1 km långa", "Här finns ett antal caféer, krogar och mängder av butiker.", "Flera båtturer utgår från Smögenbryggan.", "Du kan ta dig till Hållö, Kungshamn", "I hamnområdet finns även hembygdsmuseum", "användes av fiskare redan under mitten av 1500-talet" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Första gången Smögen nämndes i litteraturen var 1594" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/sotenas/produkter/gasthamn-smogen/ — "Från Smögenbryggan går under säsong turbåtar till Kungshamn en gång i halvtimmen." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/sotenas/produkter/smogen/ — "The pier is almost 800 metres long" (läst 2026-09-27)
+      'Smögenbryggan är Smögens nav. Turistrådet Västsverige anger bryggans längd till 1 km på sin svenska sida och knappt 800 meter på den engelska, och kallar den sommartid ett av Sveriges mest besökta turistmål. Längs den ligger caféer, krogar och ett stort antal butiker, och i hamnområdet finns också ett hembygdsmuseum. Härifrån går båtturer till bland annat Hållö och Kungshamn; till Kungshamn går turbåten under säsong en gång i halvtimmen. Hamnen har använts av fiskare sedan mitten av 1500-talet, och första gången Smögen nämns i litteraturen är 1594.',
+      // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Landets näst största fiskauktion ligger på Smögen.", "Här landar fiskebåtarna sina fångster av färsk fisk och skaldjur", "Fiskarstugan, en inredd fiskarbostad från ca 1850", "Du hittar stugan bakom Smögenbryggan", "Sommartid visas stugan fasta tider, övriga året får man kontakta Smögens Hembygdsförening för visning." (läst 2026-09-27)
+      'Här landar fiskebåtarna fortfarande sina fångster av färsk fisk och skaldjur: landets näst största fiskauktion ligger på Smögen. Bakom Smögenbryggan ligger Fiskarstugan, en inredd fiskarbostad från omkring 1850 som visar hur man bodde och levde här. Sommartid visas stugan på fasta tider, övriga året via Smögens Hembygdsförening.',
+      // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/smogens-gasthamn — "Gästhamnen ligger vid den berömda Smögenbryggan och drivs av Sotenäs kommun.", "Antal platser: ca 120 st", "Förtöjning: Fastförtöjning", "Vattendjup: 3-5 m", "WC, färskvatten, el, wifi, tvättmaskin/torktumlare, sopor och dusch", "Hamnkontoret är beläget i början på bryggan/Ringareskäret", "Öppet alla dagar under perioden v25-33.", "Bokning sker via Dockspot.se" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/sotenas/produkter/gasthamn-smogen/ — "Under lågsäsong (före 1 april och efter 31 oktober) är anläggningen stängd." (läst 2026-09-27)
+      'Gästhamnen drivs av Sotenäs kommun och ligger vid själva Smögenbryggan. Den har cirka 120 gästplatser med fastförtöjning och ett vattendjup på 3–5 meter. Servicen omfattar toalett, färskvatten, el, wifi, tvättmaskin och torktumlare, sopor och dusch; hygienanläggningen är stängd före 1 april och efter 31 oktober. Hamnkontoret vid början av bryggan är öppet alla dagar under vecka 25–33. Bokning sker via Dockspot.',
+      // KÄLLA: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatserhundbad/smogen.4.15eba9af15b0a9219ba31966.html — "Sandstrand med bryggor, badstegar och handikapptrappa. Omklädningsrum, toalett och handikapptoalett. Där finns också gillplats och parkering.", "Klippbad med badstegar och hopptorn. Stor gräsplan, grillplats och parkering.", "Klippor med bryggor och badstegar. Omklädningsrum och toalett i vandrarhemmet." (läst 2026-09-27)
+      'Sotenäs kommun listar tre badplatser på Smögen. Sandö är en sandstrand med bryggor, badstegar och en trappa anpassad för rörelsehindrade, omklädningsrum, toalett och handikapptoalett samt grillplats och parkering. Vallevik är ett klippbad med badstegar och hopptorn, stor gräsplan, grillplats och parkering. Herr- och dambadet i Makrillviken är en klippstrand med bryggor och badstegar, där omklädningsrum och toalett finns i vandrarhemmet intill.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Bildat: 1975", "Areal: cirka 292 hektar", "Naturvårdsförvaltare: Västkuststiftelsen", "Med en vit blixt var tolfte sekund gör sig Bohusläns äldsta fyr påmind.", "Här har den stått sedan 1842 på Hållös högsta punkt.", "Fyren förklarades som byggnadsminne 1935.", "Släta klippavsatser lockar ner dig i det klara, blåa vattnet vid Marmorbassängen på Hållös västsida.", "Det finns ett fyrtiotal jättegrytor på Hållö", "Sommartid utgår regelbundna badturer från Kungshamn." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "10 minuters båttur från Smögen ligger ön Hållö" (läst 2026-09-27)
+      'Tio minuters båttur från Smögen ligger Hållö. Ön ingår i naturreservatet Hållöarkipelagen, som bildades 1975, omfattar cirka 292 hektar och förvaltas av Västkuststiftelsen. Hållö fyr är Bohusläns äldsta fyr — den har stått på öns högsta punkt sedan 1842, lyser med en vit blixt var tolfte sekund och blev byggnadsminne 1935. På ön finns ett fyrtiotal jättegrytor från istiden, och på västsidan ligger Marmorbassängen med släta klippavsatser att bada från. Sommartid går regelbundna badturer från Kungshamn.',
+      // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Smögens äldsta hotell är Hotell Smögens Hafvsbad, som stod klart 1900 och tog emot sommargäster som kom för att bada tångbad och roa sig." (läst 2026-09-27)
+      'Badortstiden satte också spår. Smögens äldsta hotell, Hotell Smögens Hafvsbad, stod klart år 1900 och tog emot sommargäster som kom för att bada tångbad och roa sig.',
     ],
     facts: {
-      travel_time: 'Bil eller buss via Kungshamn',
-      character: 'Fiskeläge med Smögenbryggan, klippor och badplatser',
-      season: 'Juni–augusti högsäsong',
-      best_for: 'Räkmacka, sommarmiljö, klippvandring',
+      // KÄLLA: https://www.vastsverige.com/en/sotenas/produkter/smogen/ — "It takes just under two hours to drive from Gothenburg to Smögen." (läst 2026-09-27)
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf — "Smögen–Kungshamn–Uddevalla–Trollhättan", "Gäller 14 dec 2025 - 12 dec 2026", "Smögen busstation 08.47 10.47 12.47 14.47 16.47 18.47 20.47 23.07" — lör/sön Uddevalla central 09.19 → Smögen busstation 10.47 = 88 min (läst 2026-09-27)
+      travel_time: 'Knappt två timmar med bil från Göteborg; buss 860 från Uddevalla ca 1,5 timme',
+      // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Folkliv, klippor och charmiga sjöbodar", "Landets näst största fiskauktion ligger på Smögen." (läst 2026-09-27)
+      character: 'Fiskeläge med fiskauktion, Smögenbryggan, klippor och badplatser',
+      // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/smogens-gasthamn — "Lågsäsong Mellansäsong Högsäsong Mellansäsong Lågsäsong", "v 1-24 v 25-26 v 27-31 v 32-37 v 38-52", "Öppet alla dagar under perioden v25-33." (läst 2026-09-27)
+      season: 'Året runt; högsäsong i gästhamnen vecka 27–31',
+      // KÄLLA: https://skaretskrog.se/ — "Där räkmackan föddes 1931." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/sotenas/produkter/smogen/ — "The path meanders along the west coast through Smögen, Kungshamn, Bohus-Malmön, Ramsvik, Hunnebostrand and Bovallstrand." (läst 2026-09-27)
+      best_for: 'Räkmacka, fisk och skaldjur, klippbad, vandring på Soteleden',
     },
     facts_provenance: {
-      travel_time: 'bedomning',
-      character: 'bedomning',
-      season: 'bedomning',
-      best_for: 'bedomning',
+      travel_time: 'matt',
+      character: 'matt',
+      season: 'matt',
+      best_for: 'matt',
     },
     activities: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Smögen — bekräftar att landets näst största fiskauktion ligger på Smögen — https://www.vastsverige.com/sotenas/artiklar/smogen/ (läst 2026-09-16)
-      { icon: '🦐', name: 'Fiskauktionen', desc: 'Landets näst största fiskauktion ligger på Smögen.' },
-      // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Hållöarkipelagen — bekräftar berggrunden av ljusröd, slipad granit i området — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html (läst 2026-09-16)
-      { icon: '🥾', name: 'Klippvandring', desc: 'Klippterräng i ljusröd, slipad granit — samma berggrund som präglar Hållöarkipelagen.' },
-      // KÄLLA: Sotenäs kommun, Badplatser Smögen — bekräftar Vallevik som kommunalt klippbad med badstegar, hopptorn, gräsyta och grillmöjlighet — https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatserhundbad/smogen.4.15eba9af15b0a9219ba31966.html (läst 2026-09-16)
-      { icon: '🏊', name: 'Vallevik', desc: 'Kommunalt klippbad med badstegar, hopptorn, gräsyta och grillplats.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Smögenbryggan — bekräftar caféer, krogar och butiker längs bryggan samt båtturer till Hållö — https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ (läst 2026-09-16)
-      { icon: '🛍', name: 'Smögenbryggan', desc: 'Caféer, krogar och ett stort antal butiker längs bryggan; härifrån går även båtturer till Hållö.' },
+      // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Landets näst största fiskauktion ligger på Smögen.", "som du lite senare kan köpa i fiskaffärerna om hörnet" (läst 2026-09-27)
+      { icon: '🦐', name: 'Fiskauktionen', desc: 'Landets näst största fiskauktion ligger på Smögen. Fångsten säljs sedan i fiskaffärerna runt hamnen.' },
+      // KÄLLA: https://www.vastsverige.com/en/sotenas/produkter/smogen/ — "Soteleden/Kungsstigen", "The path meanders along the west coast through Smögen, Kungshamn, Bohus-Malmön, Ramsvik, Hunnebostrand and Bovallstrand.", "You can walk it easily by dividing it into sections." (läst 2026-09-27)
+      { icon: '🥾', name: 'Soteleden', desc: 'Kustleden Soteleden/Kungsstigen går genom Smögen och vidare via Kungshamn, Bohus-Malmön, Ramsvik, Hunnebostrand och Bovallstrand. Den går att dela upp i etapper.' },
+      // KÄLLA: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatserhundbad/smogen.4.15eba9af15b0a9219ba31966.html — "Klippbad med badstegar och hopptorn. Stor gräsplan, grillplats och parkering." (läst 2026-09-27)
+      { icon: '🏊', name: 'Vallevik', desc: 'Kommunalt klippbad med badstegar, hopptorn, stor gräsplan, grillplats och parkering.' },
+      // KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ — "Här finns ett antal caféer, krogar och mängder av butiker.", "Flera båtturer utgår från Smögenbryggan.", "Du kan ta dig till Hållö, Kungshamn" (läst 2026-09-27)
+      { icon: '🛍', name: 'Smögenbryggan', desc: 'Caféer, krogar och ett stort antal butiker längs bryggan; härifrån går även båtturer till Hållö och Kungshamn.' },
     ],
     accommodation: [
-      // KÄLLA: Smögens Hafvsbad, egen webbplats — bekräftar hotell med spa och restaurang på Smögen med utsikt över havet — https://www.smogenshafvsbad.se/restaurang/ (läst 2026-09-16)
-      { name: 'Smögens Hafvsbad', type: 'Hotell', desc: 'Hotell på Smögen med spa och restaurang med utsikt över havet.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Sea Lodge Smögen — bekräftar namnet, adressen Nordmanshuvudet 1, 15 rum och restaurang med servering på bryggan — https://www.vastsverige.com/en/sotenas/produkter/sea-lodge-smogen/ (läst 2026-09-16)
-      { name: 'Sea Lodge Smögen', type: 'Hotell', desc: 'Hotell med 15 rum och restaurang med servering på bryggan.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Pensionat Bryggan — bekräftar läget på Smögenbryggan, rum mot hamnen och bistro i sjöboden nedanför huset — https://www.vastsverige.com/sotenas/produkter/pensionat-bryggan/ (läst 2026-09-16)
-      { name: 'Pensionat Bryggan', type: 'Pensionat', desc: 'Pensionat på Smögenbryggan med rum mot hamnen och bistro i sjöbod nedanför huset.' },
+      // KÄLLA: https://www.smogenshafvsbad.se/ — "Hotell, Spa & Konferens på Smögen", "Hotellet bestod då av den vackra matsalen, åtta rum" (läst 2026-09-27)
+      // KÄLLA: https://www.smogenshafvsbad.se/restaurang/ — "Från restaurangen ser du ut över Smögen, havet, klipporna" (läst 2026-09-27)
+      { name: 'Smögens Hafvsbad', type: 'Hotell', desc: 'Hotell, spa och konferens på Smögen. Från restaurangen ser man ut över Smögen, havet och klipporna. Hotellet började år 1900 med matsal och åtta rum.' },
+      // KÄLLA: https://www.sealodge.se/ — "Sea Lodge är hotell, restaurang och brygga på Smögen", "16 rum, UMI:s asiatiska kök, en uteservering vid vattnet", "Nordmanshuvudet 1" (läst 2026-09-27)
+      { name: 'Sea Lodge Smögen', type: 'Hotell', desc: 'Hotell, restaurang och brygga vid Nordmanshuvudet på Smögen, med 16 rum, restaurangen UMI och uteservering vid vattnet.' },
+      // KÄLLA: https://www.makrillviken.se/ — "alldeles vid vattenbrynet på öns västsida", "Vi erbjuder 25 olika rum samt en sjöbod, med totalt 80 sängplatser.", "14 av rummen har egen toalett och dusch.", "koppla av i vår bastu", "alkoholfri miljö", "Sedan 1993 drivs Makrillvikens Vandrarhem av familjen Strand." (läst 2026-09-27)
+      { name: 'Makrillvikens Vandrarhem', type: 'Vandrarhem', desc: 'Familjedrivet vandrarhem vid vattnet på Smögens västsida sedan 1993, med 25 rum och en sjöbod, totalt 80 sängplatser. 14 rum har egen toalett och dusch; bastu finns. Alkoholfri miljö.' },
     ],
     getting_there: [
-      { method: 'Bil', from: 'Göteborg', desc: 'E6 norrut, därefter västerut mot Kungshamn och vidare över bron till Smögen.', icon: '🚗' },
-      { method: 'Buss', from: 'Göteborg', desc: 'Buss till Kungshamn, därefter lokalbuss till Smögen — se Västtrafiks reseplanerare.', icon: '🚌' },
+      // KÄLLA: https://www.vastsverige.com/en/sotenas/produkter/smogen/ — "It takes just under two hours to drive from Gothenburg to Smögen.", "After crossing Smögen Bridge from the centre of Kungshamn" (läst 2026-09-27)
+      { method: 'Bil', from: 'Göteborg', desc: 'E6 norrut och vidare mot Kungshamn; från Kungshamns centrum går Smögenbron över till Smögen. Knappt två timmar från Göteborg.', icon: '🚗' },
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf — "Smögen–Kungshamn–Uddevalla–Trollhättan", "Linjen trafikeras av Vy Buss.", "Gäller 14 dec 2025 - 12 dec 2026", "Smögen busstation 08.47 10.47 12.47 14.47 16.47 18.47 20.47 23.07", "09.19 11.19 13.19 15.19 17.19 19.19 21.39" — t.ex. lör/sön Uddevalla central 09.19 → Smögen busstation 10.47 (88 min); Torp Terminalen 09.35 → Smögen 10.47 (72 min) (läst 2026-09-27)
+      { method: 'Buss', from: 'Uddevalla', desc: 'Västtrafiks linje 860 går från Uddevalla central och Torp Terminalen via Kungshamn ända fram till Smögen busstation, ca 1,5 timme från Uddevalla central. Alla turer går inte hela vägen till Smögen – vissa slutar i Kungshamn (tidtabell 14 dec 2025–12 dec 2026). Från Göteborg tar man sig först till Uddevalla.', icon: '🚌' },
     ],
     harbors: [
-      // KÄLLA: Sotenäs kommun, Smögens gästhamn — bekräftar kommunal drift och servicen "WC, färskvatten, el, wifi, tvättmaskin/torktumlare, sopor och dusch" — https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/batarochhamnar/gasthamnar/smogensgasthamn.4.15eba9af15b0a9219ba328a8.html ; ca 120 platser, vattendjup 3–5 m och formuleringen "Västkustens mest välbesökta hamn" — https://www.vastsverige.com/sotenas/produkter/gasthamn-smogen/ (läst 2026-09-16)
-      { name: 'Smögens Gästhamn', desc: 'Kommunalt driven gästhamn vid Smögenbryggan. vastsverige.com kallar den "Västkustens mest välbesökta hamn".', fuel: false, service: ['Vatten', 'El', 'Dusch', 'WC', 'Tvätt', 'Wifi'] },
+      // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/smogens-gasthamn — "Gästhamnen ligger vid den berömda Smögenbryggan och drivs av Sotenäs kommun.", "Antal platser: ca 120 st", "Vattendjup: 3-5 m", "WC, färskvatten, el, wifi, tvättmaskin/torktumlare, sopor och dusch" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/sotenas/produkter/gasthamn-smogen/ — "Västkustens mest välbesökta hamn", "Under lågsäsong (före 1 april och efter 31 oktober) är anläggningen stängd." (läst 2026-09-27)
+      { name: 'Smögens Gästhamn', desc: 'Kommunalt driven gästhamn vid Smögenbryggan med ca 120 platser, fastförtöjning och 3–5 meters djup. vastsverige.com kallar den "Västkustens mest välbesökta hamn". Hygienanläggningen är stängd före 1 april och efter 31 oktober.', spots: 120, fuel: false, service: ['Vatten', 'El', 'Dusch', 'WC', 'Tvätt', 'Wifi'] },
     ],
     restaurants: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Glasscafét — bekräftar namnet, adressen Smögenbryggan och servering av glass och lunch inne och ute med utsikt över hamnen, säsongsöppet — https://www.vastsverige.com/sotenas/produkter/glasscafet/ (läst 2026-09-16)
-      { name: 'Glasscafét', type: 'Glass/Café', desc: 'Glasscafé på Smögenbryggan med servering inomhus och utomhus mot hamnen. Säsongsöppet.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Skärets Krog — bekräftar krog och pianobar vid Smögenbryggan med café och bistro, "Allt här är bakat och tillagat från grunden, med lokala råvaror som utgångspunkt", Hamnen 1 — https://www.vastsverige.com/en/sotenas/produkter/skarets-krog/ (läst 2026-09-16)
-      { name: 'Skärets Krog', type: 'Krog', desc: 'Krog och pianobar vid Smögenbryggan, med café och bistro. Västkustmat lagad från grunden.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Göstas Fiskekrog — bekräftar fisk och skaldjur direkt från kajen samt adressen Fiskhamnsgatan 32 — https://www.vastsverige.com/en/sotenas/produkter/gostas-fiskekrog/ (läst 2026-09-16)
-      { name: 'Göstas Fiskekrog', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang vid hamnen, med fiskbutik intill.' },
+      // KÄLLA: https://www.sealodge.se/ — "Restaurang UMI", "Råvaror från havet utanför, kryddade med Tokyo, Bangkok och Seoul.", "Lunch, middag och drinkar på bryggan.", "50 platser direkt vid vattnet, med utsikt mot Hållö fyr." (läst 2026-09-27)
+      { name: 'Restaurang UMI (Sea Lodge)', type: 'Restaurang', desc: 'Sea Lodges restaurang med råvaror från havet och asiatiska smaker. Lunch, middag och drinkar; uteserveringen har 50 platser vid vattnet med utsikt mot Hållö fyr.' },
+      // KÄLLA: https://skaretskrog.se/ — "Restaurang på Smögen · Hamnen 1", "I början av Smögenbryggan, i samma lokaler där räkmackan såg dagens ljus 1931, lagas och bakas fortfarande allt från grunden.", "Klassiska västkustsmaker med modern twist.", "Sveriges pianistelit på scen", "Café & Bistro" (läst 2026-09-27)
+      { name: 'Skärets Krog', type: 'Krog', desc: 'Krog och pianobar samt café och bistro i början av Smögenbryggan, i de lokaler där räkmackan kom till 1931. Västkustmat lagad från grunden.' },
+      // KÄLLA: https://gostasfiskekrog.se/ — "fisk som ofta passerat Smögens fiskauktion bara några timmar tidigare", "blicka ut över Smögens hamn", "en restaurang på Smögen där havet alltid spelar huvudrollen, året om" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/sotenas/produkter/gostas-fiskekrog/ — "Göstas Fiskekrog is located next to the fish shop, Göstas Fiskbutik" (läst 2026-09-27)
+      { name: 'Göstas Fiskekrog', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang vid hamnen, öppen året om, med fisk som ofta gått via Smögens fiskauktion samma dag. Fiskbutiken Göstas Fiskbutik ligger intill.' },
     ],
-    // KÄLLA: Sotenäs kommun, Badplatser Smögen — bekräftar badplatserna Sandö, Vallevik och Herr- och dambadet i Makrillviken — https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatserhundbad/smogen.4.15eba9af15b0a9219ba31966.html (läst 2026-09-16)
-    tips: ['Kom tidigt på morgonen för bästa bryggvyn utan folkvimmel.', 'Sotenäs kommun listar badplatserna på Smögen — Sandö, Vallevik och Herr- och dambadet i Makrillviken.'],
+    // KÄLLA: https://www.vastsverige.com/en/sotenas/produkter/smogen/ — "If you are an early bird, you can see the fishing boats as they bring their catches ashore" (läst 2026-09-27)
+    // KÄLLA: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatserhundbad/smogen.4.15eba9af15b0a9219ba31966.html — "Herr- och dambadet, Makrillviken" (läst 2026-09-27)
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "medföra okopplad hund" (läst 2026-09-27)
+    tips: ['Kom tidigt på morgonen: då kan du se fiskebåtarna lägga till och landa sin fångst.', 'Sotenäs kommun listar badplatserna på Smögen — Sandö, Vallevik och Herr- och dambadet i Makrillviken.', 'Tar du med hunden till Hållö ska den vara kopplad – det är förbjudet att medföra okopplad hund i naturreservatet.'],
     related: ['kungshamn', 'grundsund', 'hamburgsund'],
     tags: ['räkor', 'fiskeby', 'sommardestination', 'fotogen'],
-    // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Hållöarkipelagen — bekräftar Bohusläns äldsta fyr på plats sedan 1842, vit blixt var tolfte sekund och byggnadsminnesförklaring 1935 — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html (läst 2026-09-16)
-    did_you_know: 'Hållö fyr utanför Smögen är Bohusläns äldsta fyr. Den har stått på ön sedan 1842, lyser med en vit blixt var tolfte sekund och byggnadsminnesförklarades 1935.',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Med en vit blixt var tolfte sekund gör sig Bohusläns äldsta fyr påmind.", "Här har den stått sedan 1842 på Hållös högsta punkt.", "Fyren förklarades som byggnadsminne 1935.", "Evert Taube besökte ön då och då under tiden när hans morbror var fyrmästare vid Hållö fyr." (läst 2026-09-27)
+    did_you_know: 'Hållö fyr utanför Smögen är Bohusläns äldsta fyr. Den har stått på öns högsta punkt sedan 1842, lyser med en vit blixt var tolfte sekund och byggnadsminnesförklarades 1935. Evert Taube besökte ön då och då när hans morbror var fyrmästare där.',
     seasonal: {
-      open: 'Juni–Augusti',
-      peak: 'Juli',
-      best: 'Juni',
-      // KÄLLA: Sotenäs kommun, Smögens gästhamn — bekräftar att hamnkontoret är öppet från vecka 25 — https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/smogens-gasthamn (läst 2026-09-16)
-      bestReason: 'Bryggan är hanterbar och du hinner se sjöbodarnas fasader. Gästhamnens hamnkontor är bemannat från vecka 25.',
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Smögenbryggan — bekräftar formuleringen "Sveriges mest besökta brygga" — https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ (läst 2026-09-16)
-      warning: 'Juli är högsäsong på Smögenbryggan, som enligt Turistrådet Västsverige är Sveriges mest besökta brygga. Kom tidigt på dagen om du vill ha bryggan för dig själv.',
-      months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
+      // KÄLLA: https://gostasfiskekrog.se/ — "en restaurang på Smögen där havet alltid spelar huvudrollen, året om" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/sotenas/produkter/gasthamn-smogen/ — "Under lågsäsong (före 1 april och efter 31 oktober) är anläggningen stängd." (läst 2026-09-27)
+      open: 'Året runt – gästhamnens servicehus 1 april–31 oktober',
+      // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/smogens-gasthamn — "v 1-24 v 25-26 v 27-31 v 32-37 v 38-52", "Lågsäsong Mellansäsong Högsäsong Mellansäsong Lågsäsong" (läst 2026-09-27)
+      peak: 'Juli (gästhamnens högsäsong vecka 27–31)',
+      best: 'Juni eller september',
+      // KÄLLA: https://www.vastsverige.com/en/sotenas/produkter/smogen/ — "why not come here in the spring or early autumn" (läst 2026-09-27)
+      // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/smogens-gasthamn — "Öppet alla dagar under perioden v25-33." (läst 2026-09-27)
+      bestReason: 'Turistrådet Västsverige tipsar om våren eller tidig höst för den som vill uppleva Smögen utan tusentals sommarturister. Gästhamnens hamnkontor är bemannat alla dagar från vecka 25.',
+      // KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ — "Sveriges mest besökta brygga" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/sotenas/produkter/smogen/ — "If you are an early bird, you can see the fishing boats as they bring their catches ashore" (läst 2026-09-27)
+      warning: 'Juli är högsäsong på Smögenbryggan, som enligt Turistrådet Västsverige är Sveriges mest besökta brygga. Den som är tidigt uppe får se fiskebåtarna landa sin fångst innan folkströmmen kommer.',
+      // Månader: gästhamnens taxeperioder (hög v27–31, mellan v25–26 och v32–37) och servicehus 1 apr–31 okt; krogar som Göstas har öppet året om.
+      months: ['limited','limited','limited','open','open','open','peak','open','open','open','limited','limited'],
     },
   },
   {
@@ -234,48 +260,77 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     description: [
       // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Gullmarn — bekräftar "en äkta tröskelfjord", största djup cirka 125 meter nära Alsbäck en mil från mynningen, tröskel på omkring 45 meters djup, djurarter i djupbassängen som saknas i fjorden i övrigt, bildat 1983, ca 16 499 hektar, förvaltas av Västkuststiftelsen — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/gullmarn.html (läst 2026-09-16)
       'Lysekil ligger på Stångenäsets sydspets och blickar ut över Gullmarsfjorden, som Länsstyrelsen beskriver som en äkta tröskelfjord. Största djupet är cirka 125 meter och ligger nära Alsbäck, en mil från mynningen, medan tröskeln vid mynningen ligger på omkring 45 meters djup. Många av djurarterna i djupbassängen finns inte i fjorden i övrigt — vissa påträffas annars bara på stora djup i Skagerrak och i arktiska vatten. Naturreservatet Gullmarn bildades 1983, omfattar cirka 16 499 hektar och förvaltas av Västkuststiftelsen.',
-      // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Stångehuvud — bekräftar ca 48 hektar, bildat 1983, förvaltas av Lysekils kommun tillsammans med Kungliga Vetenskapsakademien som skänkte marken under stenindustrins glansdagar, rundhällar med isräfflor och pegmatitgångar, Galleberget lämnat orört av kulturhistoriska skäl, stigar med trappor och broar samt bad och fiske längs västsidan — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html (läst 2026-09-16)
-      'Stångehuvud vid stadens södra kant är naturreservat sedan 1983 och omfattar cirka 48 hektar. Området förvaltas av Lysekils kommun tillsammans med Kungliga Vetenskapsakademien, som skänkte marken mitt under stenindustrins glansdagar just för att rädda landskapet undan brytning. Karaktäristiskt är rundhällarna med vackert slipade, mjuka former och tydliga isräfflor, ibland genomdragna av pegmatitgångar. På Galleberget i norr syns spår av tidigare brytning — den delen har av kulturhistoriska skäl lämnats nästan precis som den var när stenbrytningen upphörde. Stigarna är gjorda framkomliga med trappor och broar i kuperad terräng, och längs västsidans klippstrand finns bad och fiskemöjligheter.',
-      // KÄLLA: Havets Hus, Om akvariet (svenska sidan) — bekräftar 25 akvarier, hälleflundror, rockor och havsaborrar i tunnelakvariet samt det grunda strandområdet med alger och sand; omkring 100 arter från Gullmarsfjorden och Västerhavet enligt sidans meta-beskrivning — https://www.havetshus.se/akvariet/om-akvariet/ ; Projekt Knaggrocka (Project Thornback Ray) — https://www.havetshus.se/en/akvariet/about-the-aquarium/ (läst 2026-09-16)
-      'Lysekil har en stark marinbiologisk profil. Akvariet Havets Hus visar djur från Gullmarsfjorden och Västerhavet i 25 akvarier och omkring 100 arter, bland dem hälleflundror, rockor och havsaborrar, och har ett tunnelakvarium där fiskarna simmar ovanför besökaren. Miljöerna spänner från det grunda strandområdet med alger och sand till djupare vatten, ålgräsängar, mjuka sandbottnar och vrak. Akvariet driver också bevarandearbete, bland annat Projekt Knaggrocka.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — "Stångehuvud utgör den sydligaste utlöparen av det bohuslänska granitområdet"; "former och tydliga isräfflor är karaktäristiska för området"; "Här och var randas granitklipporna av pegmatitgångar"; "Flera stigpassager går genom smala klyftor och förbi grottliknande bildningar"; "fina möjligheter till bad och fritidsfiske utefter klippstranden i väster"; "promenader på stigar som gjorts lättgångna med prydligt anordnade trappor och spänger"; "Området utgör donationsmark som ägs av Kungliga Vetenskapsakademin"; "Donationen tillkom i en tid då stenindustrin stod på sin höjdpunkt och huvudsyftet var att undanta ett naturskönt område från stentäkt"; "detta parti ligger kvar nästan exakt som det lämnades när täktverksamheten upphörde"; "Bildat: 1983 Areal: cirka 48 hektar Naturvårdsförvaltare: Lysekils kommun och Kungliga Vetenskapsakademin" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/lysekil/produkter/lysekil/ — "hans fru Calla Curman har blivit känd som Stångehuvuds räddare efter att ha köpt och donerat området, som numera är naturreservat" (läst 2026-09-27)
+      // Rättat 2026-09-27: stod att Vetenskapsakademien skänkte marken. Akademien äger den; det var Calla Curman som köpte och donerade området. Stod också 'broar' (källan: spänger).
+      'Stångehuvud vid stadens södra kant är naturreservat sedan 1983 och omfattar cirka 48 hektar. Det är den sydligaste utlöparen av det bohuslänska granitområdet. Marken köptes och donerades av Calla Curman och ägs i dag av Kungliga Vetenskapsakademien, som förvaltar reservatet tillsammans med Lysekils kommun. Donationen kom till när stenindustrin stod på sin höjdpunkt, för att rädda området från stenbrytning. Karaktäristiskt är rundhällarna med slipade, mjuka former och tydliga isräfflor, här och var genomdragna av pegmatitgångar. På Galleberget i norr syns spår av tidigare brytning — den delen har av kulturhistoriska skäl lämnats nästan precis som den var när stenbrytningen upphörde. Stigarna går genom smala klyftor och förbi grottliknande bildningar och är gjorda lättgångna med trappor och spänger, och längs klippstranden i väster finns bad och fritidsfiske.',
+      // KÄLLA: https://www.havetshus.se/om-havets-hus/ — "Havets Hus grundades 1993"; "Varje år stiftar närmare 80 000 besökare bekantskap med hundratals fascinerande arter" (läst 2026-09-27)
+      // KÄLLA: https://www.havetshus.se/akvariet/om-akvariet/ — "När du stiger in i Havets Hus omges du snart av 25 akvarier"; "Se hälleflundror, rockor och havsaborrar simma ovanför ditt huvud i tunnelakvariet"; "Våra akvarier förses hela tiden med kallt, färskt havsvatten från 32 meters djup" (läst 2026-09-27)
+      // KÄLLA: https://www.havetshus.se/akvariet/djuren/ — "Över 250 fascinerande arter finns i Havets Hus"; "Alla djur, alger och växter i våra akvarier lever också i det salta Västerhavet utanför Havets Hus" (läst 2026-09-27)
+      // KÄLLA: https://www.havetshus.se/en/akvariet/about-the-aquarium/ — "Some prefer the eelgrass meadows while others like soft sand bottoms or to stay around ship wrecks" (läst 2026-09-27)
+      // KÄLLA: https://www.havetshus.se/projektknaggrocka/ — "I januari 2016 föddes den första knaggrockan på Havets Hus och sommaren 2021 släpptes de första egenuppfödda knaggrockorna ut"; "Hittills har 13 märkta knaggrockor släppts ut" (läst 2026-09-27)
+      // Rättat 2026-09-27: stod 'omkring 100 arter' (Havets Hus: över 250) och 'stark marinbiologisk profil' utan källa.
+      'Akvariet Havets Hus, grundat 1993, tar emot närmare 80 000 besökare om året. I 25 akvarier visas över 250 arter som alla lever i Västerhavet, bland dem hälleflundror, rockor och havsaborrar som simmar ovanför besökaren i tunnelakvariet. Akvarierna får hela tiden kallt havsvatten från 32 meters djup, och miljöerna spänner från det grunda strandområdet med alger och sand till djupare vatten, ålgräsängar, mjuka sandbottnar och vrak. Akvariet föder också upp och sätter ut hotade arter: den första knaggrockan föddes här 2016, och sedan 2021 har 13 märkta, egenuppfödda knaggrockor släppts ut.',
       // KÄLLA: Bohusläns museum, Badorten Lysekil — bekräftar badinrättning 1847, första varmbadhuset som däckshus från ett fartyg, första egentliga badhuset 1849, Carl Curman som badläkare, nytt varmbadhus och kallbadhus 1864, Havsbadrestaurangen 1869, Societetshuset 1872 utbyggt 1882, Curmans villor som byggnadsminnen, gångbryggan Trampen och kallbadhuset från 1911 — https://www.bohuslansmuseum.se/samlingar-och-historia/gamla-historiska-artiklar/badorten-lysekil/ (läst 2026-09-16)
       'Lysekil växte fram som badort under 1800-talet. En badinrättning bildades 1847 — det första varmbadhuset var däckshuset från ett fartyg — och det första egentliga badhuset byggdes 1849. När läkaren Carl Curman anställdes som badläkare fick orten kontakter i Stockholms societetsliv och blev stockholmarnas favoritbadort på västkusten. 1864 kom ett nytt varmbadhus och nya kallbadhus, 1869 Havsbadrestaurangen och 1872 Societetshuset, som byggdes ut 1882. Kvar i stadsbilden finns bland annat Curmans villor, som är byggnadsminnen, portalen, Havsbadrestaurangen, gångbryggan Trampen och kallbadhuset från 1911.',
-      // KÄLLA: Lysekils kommun, Badplatser — bekräftar "salta och friska bad från klippor till sandstränder med lättillgängliga parkeringar, toaletter samt kiosk" och att Pinnevik i Lysekil och Bökevik i Fiskebäckskil namnges — https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser (läst 2026-09-16)
-      'Kommunen sköter ett stort antal badplatser i och runt staden, från klippor till sandstränder, med parkering, toaletter och kiosk. Pinnevik i Lysekil och Bökevik i Fiskebäckskil lyfts fram särskilt.',
+      // KÄLLA: https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Allt ifrån salta och friska bad från klippor till sandstränder med lättillgängliga parkeringar, toaletter samt kiosk"; "Badplatserna börjar driftsättas i mitten av maj och stängs i slutet av augusti"; "På flera av badplatserna finns vinterstegar för den som vill bada även under årets kallare månader"; "Lysekils tätort Pinnevik Norra Hamnen Rinkenäs Fridhem Stångholmesund Kallbadhuset och Trampen"; "Lysekil har tre kommunala badplatser där våra fyrfotade kompisar får bada" (läst 2026-09-27)
+      // Rättat 2026-09-27: stod att Pinnevik och Bökevik 'lyfts fram särskilt' – det gör inte kommunens sida.
+      'Kommunen sköter ett stort antal badplatser i och runt staden, från klippor till sandstränder, med parkering, toaletter och kiosk. De är i drift från mitten av maj till slutet av augusti. På flera av dem finns vinterstegar för den som vill bada även under den kalla delen av året, i Lysekils tätort bland annat vid Pinnevik, Norra Hamnen och Kallbadhuset och Trampen, och kommunen har tre badplatser där hundar får bada.',
     ],
     facts: {
-      travel_time: 'Bil eller buss från Göteborg via E6',
-      character: 'Badort, marinbiologi, kustnära vandring',
-      season: 'Juni–september högsäsong, helår',
-      best_for: 'Familjer, akvariebesök, vandring längs kust',
+      // KÄLLA: https://www.vastsverige.com/lysekil/produkter/lysekil/ — "Lysekil ligger mitt i den västsvenska skärgården, ungefär 90 minuter från Göteborg" (läst 2026-09-27)
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4841__0__LINE__20260817__20261212__dab04179-6e0d-43b0-a0e6-a6dfd3d216d6__0%2C0__2824773.pdf — "841 Lysekil–Torp–Göteborg och omvänt"; "Gäller 20 aug - 12 dec 2026" (läst 2026-09-27). Restid räknad ur tabellen måndag–fredag: Nils Ericson Terminalen 05.23 → Lysekil södra hamnen 07.22 (1 h 59 min), 08.21 → 10.22 (2 h 1 min).
+      travel_time: 'Ca 1,5 h med bil från Göteborg · ca 2 h med buss 841 från Nils Ericson Terminalen',
+      // KÄLLA: https://www.vastsverige.com/lysekil/produkter/lysekil/ — "där Gullmarsfjorden öppnar upp sig mot havet, ligger den livliga staden Lysekil"; "samhället utvecklades till en välbesökt badort" (läst 2026-09-27)
+      character: 'Kuststad och gammal badort vid Gullmarsfjordens mynning, med akvariet Havets Hus och naturreservatet Stångehuvud',
+      // KÄLLA: https://www.havetshus.se/besok-oss/oppettider/ — "15/6 – 16/8 Dagligen kl 10-18" (läst 2026-09-27); https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Badplatserna börjar driftsättas i mitten av maj och stängs i slutet av augusti" (läst 2026-09-27). Havets Hus håller öppet dagligen 2/1–30/12 utom några helgdagar.
+      season: 'Året runt · badplatserna i drift mitten av maj–slutet av augusti, Havets Hus har sommartider 15 juni–16 augusti',
+      // KÄLLA: https://www.havetshus.se/om-havets-hus/ — "Havets Hus erbjuder lärorika och roliga upplevelser utifrån Västerhavets liv för i första hand barnfamiljer" (läst 2026-09-27)
+      best_for: 'Familjer, akvariebesök, klippbad och vandring längs kusten',
     },
     facts_provenance: {
-      travel_time: 'bedomning',
-      character: 'bedomning',
-      season: 'bedomning',
+      travel_time: 'matt',
+      character: 'matt',
+      season: 'matt',
       best_for: 'bedomning',
     },
     activities: [
-      // KÄLLA: Havets Hus, Om akvariet (svenska sidan) — bekräftar 25 akvarier, omkring 100 arter från Gullmarsfjorden och Västerhavet samt hälleflundror, rockor och havsaborrar i tunnelakvariet — https://www.havetshus.se/akvariet/om-akvariet/ (läst 2026-09-16)
-      { icon: '🐠', name: 'Havets Hus', desc: '25 akvarier med omkring 100 arter från Gullmarsfjorden och Västerhavet — hälleflundror, rockor och havsaborrar, plus tunnelakvarium.' },
-      // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Stångehuvud — bekräftar bildat 1983, ca 48 hektar, rundhällar med isräfflor, stigar med trappor och broar samt bad längs västsidans klippstrand — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html (läst 2026-09-16)
-      { icon: '🥾', name: 'Stångehuvud naturreservat', desc: 'Naturreservat sedan 1983, ca 48 ha — rundhällar med isräfflor, stigar med trappor och broar, bad längs västsidans klippstrand.' },
-      // KÄLLA: Lysekils kommun, Badplatser — bekräftar Pinnevik som kommunal badplats i Lysekil — https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser (läst 2026-09-16)
-      { icon: '🏊', name: 'Pinnevik', desc: 'Kommunal badplats i Lysekil.' },
+      // KÄLLA: https://www.havetshus.se/akvariet/om-akvariet/ — "När du stiger in i Havets Hus omges du snart av 25 akvarier"; "Se hälleflundror, rockor och havsaborrar simma ovanför ditt huvud i tunnelakvariet" (läst 2026-09-27)
+      // KÄLLA: https://www.havetshus.se/akvariet/djuren/ — "Över 250 fascinerande arter finns i Havets Hus" (läst 2026-09-27)
+      // KÄLLA: https://www.havetshus.se/besok-oss/oppettider/ — "2/1 – 14/6 Dagligen kl 10-16" (läst 2026-09-27)
+      { icon: '🐠', name: 'Havets Hus', desc: '25 akvarier med över 250 arter från Västerhavet — hälleflundror, rockor och havsaborrar i tunnelakvariet. Öppet dagligen nästan hela året.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — "Bildat: 1983 Areal: cirka 48 hektar"; "former och tydliga isräfflor är karaktäristiska för området"; "prydligt anordnade trappor och spänger"; "fina möjligheter till bad och fritidsfiske utefter klippstranden i väster" (läst 2026-09-27)
+      { icon: '🥾', name: 'Stångehuvud naturreservat', desc: 'Naturreservat sedan 1983, ca 48 ha — rundhällar med isräfflor, stigar med trappor och spänger, bad och fiske längs klippstranden i väster.' },
+      // KÄLLA: https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Lysekils tätort Pinnevik"; "På flera av badplatserna finns vinterstegar för den som vill bada även under årets kallare månader" (läst 2026-09-27)
+      { icon: '🏊', name: 'Pinnevik', desc: 'Kommunal badplats i Lysekils tätort, med vinterstege för den som vill bada även på vintern.' },
+      // KÄLLA: https://www.havetshus.se/att-gora/salsafari/ — "Följ med ut i Lysekils vackra skärgård och se knubbsälar som solar på klipporna"; "Turen tar cirka 1,5 timme" (läst 2026-09-27)
+      // KÄLLA: https://www.havetshus.se/om-havets-hus/ — "Under sommaren pågår strandskolor, sälsafari, bangolf, nattvandringar" (läst 2026-09-27)
+      { icon: '🦭', name: 'Sälsafari', desc: 'Sommartid går sälsafari från Havets Hus ut i skärgården för att se knubbsälar på klipporna. Turen tar ungefär 1,5 timme.' },
     ],
     accommodation: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Strandflickorna Hotell & Konferens — bekräftar namnet, Turistgatan 13 i Lysekil, sekelskifteshotell vid vattnet med spa, restaurang och privat brygga — https://www.vastsverige.com/en/lysekil/produkter/strandflickornas-havshotell/ (läst 2026-09-16)
-      { name: 'Strandflickorna Hotell & Konferens', type: 'Hotell', desc: 'Sekelskifteshotell vid vattnet i Lysekil med spa, restaurang och egen brygga.' },
+      // KÄLLA: https://strandflickorna.com/ — "Vi erbjuder tre charmiga sekelskifteshotell och två unika hideaways - hotellrum som vilar på pålar i havet"; "Havshotellet är vårt genuina skärgårdshotell med egen havstomt"; "I vår lilla bistro-restaurang" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/lysekil/produkter/strandflickornas-havshotell/ — "Badpaviljongen gives you a combination of outdoor spa bath with a relaxation room and sauna"; "you have access to a private pier" (läst 2026-09-27)
+      { name: 'Strandflickorna', type: 'Hotell', desc: 'Tre sekelskifteshotell vid havet i Lysekil, bland dem Havshotellet med egen havstomt och brygga, samt två hotellrum på pålar i havet. Bistro-restaurang och spa med utomhusbad och bastu.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Hotel Lysekil — bekräftar namnet, Rosvikstorg 1 i Lysekils södra hamn, anor från 1952 och restaurangen My Italian Friend i huset — https://www.vastsverige.com/lysekil/produkter/hotell-lysekil/ (läst 2026-09-16)
+      // Egen webbplats hotellysekil.se kontrollerad 2026-09-27 (Rosvikstorg 1, restaurangen My Italian Friend) – sidan kräver webbläsare, så citaten tas från vastsverige.com ovan.
       { name: 'Hotel Lysekil', type: 'Hotell', desc: 'Hotell vid Lysekils södra hamn med anor från 1952. Restaurangen My Italian Friend ligger i huset.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Siviks Camping — bekräftar läget 4 km norr om Lysekils centrum, havsnära, med campingplatser och stugor — https://www.vastsverige.com/en/lysekil/produkter/siviks-camping-eng/ (läst 2026-09-16)
-      { name: 'Siviks Camping', type: 'Camping', desc: 'Camping 4 km norr om Lysekils centrum, vid havet, med campingplatser och stugor.' },
+      // KÄLLA: https://www.sivikscampinglysekil.se/ — "Bara 4 km till Lysekil"; "Välj campingtomt för husvagn, husbil eller tält – eller bo bekvämt i villavagn med kök, dusch och WC"; "Säsong: 15 april–15 september"; "Varmt välkomna till säsong 2026!" (läst 2026-09-27)
+      { name: 'Siviks Camping', type: 'Camping', desc: 'Camping vid havet 4 km från Lysekil, med tomter för husvagn, husbil och tält samt villavagnar med kök, dusch och WC. Säsong 15 april–15 september.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Grand Hotel Lysekil — bekräftar drift sedan 1878 och adressen Kungsgatan 36 i centrala Lysekil — https://www.vastsverige.com/en/lysekil/produkter/grand-hotel-lysekil/ (läst 2026-09-16)
+      // KÄLLA: https://www.grandhotellysekil.se/ — "har varit hotell ända sedan huset uppfördes 1878" (läst 2026-09-27)
       { name: 'Grand Hotel Lysekil', type: 'Hotell', desc: 'Hotell på Kungsgatan i Lysekils centrum, i drift sedan 1878.' },
     ],
     getting_there: [
-      { method: 'Bil', from: 'Göteborg', desc: 'E6 norrut, avfart mot Lysekil.', icon: '🚗' },
-      { method: 'Buss', from: 'Göteborg', desc: 'Buss från Göteborg — se Västtrafiks reseplanerare.', icon: '🚌' },
+      // KÄLLA: https://www.havetshus.se/besok-oss/hitta-hit/ — "Från E6 söder, efter Uddevallabron, ta av vid trafikmotet Torp och välj väg 161. Ta sedan bilfärja (kostnadsfri) över Gullmarsfjorden mot Lysekil."; "Från E6 norr, du når Lysekil via väg 162." (läst 2026-09-27)
+      // KÄLLA: https://www.lysekil.se/bygga-bo-och-miljo/flytta-hit/res-och-pendla — "Resan med vägfärjan tar cirka 10 minuter och är avgiftsfri" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/lysekil/produkter/lysekil/ — "ungefär 90 minuter från Göteborg" (läst 2026-09-27)
+      { method: 'Bil', from: 'Göteborg', time: 'ca 1,5 h', desc: 'E6 norrut till trafikmotet Torp efter Uddevallabron, sedan väg 161 och den avgiftsfria bilfärjan över Gullmarsfjorden (ca 10 minuter). Norrifrån når du Lysekil via väg 162.', icon: '🚗' },
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4841__0__LINE__20260817__20261212__dab04179-6e0d-43b0-a0e6-a6dfd3d216d6__0%2C0__2824773.pdf — "841 Lysekil–Torp–Göteborg och omvänt"; "Gäller 20 aug - 12 dec 2026"; "Linjen trafikeras av Vy Buss." (läst 2026-09-27). Måndag–fredag går bussen från Nils Ericson Terminalen ungefär en gång i timmen (05.23, 06.23, 07.21, 08.21 …), lördag och söndag varannan timme; 05.23 → Lysekil södra hamnen 07.22.
+      // KÄLLA: https://www.havetshus.se/besok-oss/hitta-hit/ — "Det finns en hållplats utanför Havets Hus som trafikeras av bla linje 841 från Göteborg/Uddevalla" (läst 2026-09-27)
+      { method: 'Buss 841', from: 'Göteborg, Nils Ericson Terminalen', time: 'ca 2 h', desc: 'Västtrafiks linje 841 går via Kungälv, Ljungskile och Torp till Lysekils södra hamn och Havets Hus. Vardagar ungefär en gång i timmen, helger varannan timme.', icon: '🚌' },
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4847__1__LINE__20260101__20261211__e8375385-c9fa-43eb-880d-cff01ed9acbf__1%2C0__2697062.pdf — "847 Lysekil–Skaftö"; "Ångbåtsbryggan"; "Fiskebäckskil brygga"; "Turen måste förbeställas"; "Gäller 1 jan - 12 dec 2026 utom 15 juni - 16 aug" (läst 2026-09-27). Restid ur tabellen: Ångbåtsbryggan 07.40 → Fiskebäckskil brygga 07.55, 05.30 → 05.48.
+      // KÄLLA: https://www.lysekil.se/bygga-bo-och-miljo/flytta-hit/res-och-pendla — "den elektrifierade passagerarfärjan Elise som varje dag, året runt, trafikerar sträckan Fiskebäckskil och Lysekils stad" (läst 2026-09-27)
+      { method: 'Passagerarfärja 847', from: 'Fiskebäckskil, Skaftö', time: 'ca 15–20 min', desc: 'Elfärjan Elise går varje dag året runt mellan Ångbåtsbryggan i Lysekil och Fiskebäckskil. Några kvällsturer måste förbeställas.', icon: '⛴' },
     ],
     harbors: [
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Kommunala gästhamnar i Lysekil — bekräftar att Lysekils kommun driver fem gästhamnar och att Fiskhamnens ligger mitt i Lysekil med gångavstånd till butiker och restauranger samt café och sjömack — https://www.vastsverige.com/lysekil/produkter/kommunala-gasthamnar/ (läst 2026-09-16)
@@ -286,23 +341,39 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     ],
     restaurants: [
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Brygghuset — bekräftar fisk- och skaldjursrestaurang med säsongsmeny i Fiskebäckskil på Skaftö, knuten till Slipens Hotell — https://www.vastsverige.com/en/lysekil/produkter/brygghuset/ (läst 2026-09-16)
-      { name: 'Brygghuset', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang i Fiskebäckskil på Skaftö, med meny efter säsong. Ligger vid Slipens Hotell.' },
+      // KÄLLA: https://www.brygghusetkrog.se/ — "Fiskebäckskilsvägen 28"; "Julbord 2026" (läst 2026-09-27)
+      { name: 'Brygghuset', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang i Fiskebäckskil på Skaftö, med meny efter säsong. Ligger vid Slipens Hotell, en kort tur med passagerarfärjan från Lysekil.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Norra Hamnen 5 — bekräftar adressen Norra Hamngatan 5 i Lysekil och menyn med skaldjur, fiskrätter, inlagd sill och moules frites — https://www.vastsverige.com/en/lysekil/produkter/norra-hamnen-5/ (läst 2026-09-16)
+      // KÄLLA: https://www.norrahamnen5.se/ — "Förstklassig mat och utsikt över västerhavet" (läst 2026-09-27); sidan uppdaterad 2026-05-05 enligt metadata.
       { name: 'Restaurang Norra Hamnen 5', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang vid Norra hamnen, med flera matsalar, lounge och terrass mot havet.' },
     ],
-    // KÄLLA: Havets Hus, Om akvariet — bekräftar att akvariet visar arter från Gullmarsfjorden och Västerhavet — https://www.havetshus.se/en/akvariet/about-the-aquarium/ ; Lysekils kommun, Badplatser — Pinnevik som kommunal badplats — https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser (läst 2026-09-16)
-    tips: ['Havets Hus visar bara arter från Gullmarsfjorden och Västerhavet — bra att veta om du väntar dig tropiska akvarier.', 'Stångehuvud är magiskt vid soluppgång, undvik mitten av dagen.', 'Pinnevik är kommunens badplats i centrala Lysekil.'],
+    tips: [
+      // KÄLLA: https://www.havetshus.se/akvariet/djuren/ — "Alla djur, alger och växter i våra akvarier lever också i det salta Västerhavet utanför Havets Hus"; "Några är så färgstarka att man skulle kunna tro att de lever i tropiska vatten långt söderut, som blågyltan och den röda sjögurkan" (läst 2026-09-27)
+      'Havets Hus visar bara djur som också lever i Västerhavet — men blågyltan och den röda sjögurkan är så färgstarka att de kunde vara tropiska.',
+      // KÄLLA: https://www.havetshus.se/att-gora/salsafari/ — "Det blir ofta fullt på parkeringarna i centrum och det blir köer till bilfärjorna över Gullmaren"; "Kollektivtrafiken åker före köerna så det är ett bra tips" (läst 2026-09-27)
+      'Sommartid blir parkeringarna i centrum ofta fulla och det blir kö till bilfärjorna över Gullmarn. Bussen kör före kön.',
+      // KÄLLA: https://www.havetshus.se/besok-oss/hitta-hit/ — "Alla sorts nötter är förbjudna i lokalerna"; "Husdjur får inte heller komma in dock tillåts ledarhundar" (läst 2026-09-27)
+      'Nötter är förbjudna i Havets Hus lokaler, och husdjur får inte följa med in – ledarhundar undantagna.',
+      // KÄLLA: https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Lysekils tätort Pinnevik"; "På flera av badplatserna finns vinterstegar" (läst 2026-09-27)
+      'Pinnevik är en av kommunens badplatser i centrala Lysekil och har vinterstege.',
+    ],
     related: ['fiskebackskil', 'grundsund', 'kosterhavet'],
     tags: ['badort', 'akvarium', 'vandring', 'familjer'],
-    // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Stångehuvud — bekräftar att Kungliga Vetenskapsakademien skänkte marken under stenindustrins glansdagar och att Galleberget lämnats orört av kulturhistoriska skäl — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html ; bohusgranitens roll i Lysekil, Lysekils kommun, Industrihistoria — https://www.lysekil.se/uppleva-och-gora/kultur/kulturhistoria-och-kulturarv/industrihistoria.html (läst 2026-09-16)
-    did_you_know: 'Stångehuvuds slipade klippor är räddade av en donation: Kungliga Vetenskapsakademien skänkte marken mitt under stenindustrins glansdagar för att området inte skulle brytas bort. På Galleberget i reservatets norra del har spåren efter brytningen medvetet lämnats orörda av kulturhistoriska skäl.',
+    // KÄLLA: https://www.vastsverige.com/lysekil/produkter/lysekil/ — "hans fru Calla Curman har blivit känd som Stångehuvuds räddare efter att ha köpt och donerat området, som numera är naturreservat" (läst 2026-09-27)
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — "Området utgör donationsmark som ägs av Kungliga Vetenskapsakademin"; "huvudsyftet var att undanta ett naturskönt område från stentäkt"; "detta parti ligger kvar nästan exakt som det lämnades när täktverksamheten upphörde" (läst 2026-09-27)
+    did_you_know: 'Stångehuvuds slipade klippor räddades av en donation: Calla Curman köpte området och donerade det för att det inte skulle brytas bort, och marken ägs i dag av Kungliga Vetenskapsakademien. På Galleberget i reservatets norra del har spåren efter brytningen medvetet lämnats nästan precis som de var när stenbrytningen upphörde.',
+    // Rättat 2026-09-27: stod öppet maj–september och 'off' januari–april. Havets Hus, hotellen och passagerarfärjan är öppna året runt. bestReason (lugna stränder i juni, badvarmt i september) och parkeringsvarningen saknade källa.
     seasonal: {
-      open: 'Maj–September',
-      peak: 'Juli–Augusti',
-      best: 'Juni eller September',
-      bestReason: 'Juni: stränderna och Stångehuvuds klippor är lugna. September: Västerhavet är fortfarande badvarmt och det är glesare i staden.',
-      warning: 'Parkering längs hamnen kan vara krånglig i högsäsong.',
-      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+      // KÄLLA: https://www.havetshus.se/besok-oss/oppettider/ — "2/1 – 14/6 Dagligen kl 10-16"; "15/6 – 16/8 Dagligen kl 10-18" (läst 2026-09-27)
+      open: 'Året runt',
+      peak: 'Mitten av juni–mitten av augusti',
+      // KÄLLA: https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Badplatserna börjar driftsättas i mitten av maj och stängs i slutet av augusti" (läst 2026-09-27)
+      best: 'Juni–augusti',
+      // KÄLLA: https://www.havetshus.se/om-havets-hus/ — "Under sommaren pågår strandskolor, sälsafari, bangolf, nattvandringar" (läst 2026-09-27)
+      bestReason: 'Kommunens badplatser är i drift från mitten av maj till slutet av augusti, och sommartid finns sälsafari, strandskola och nattvandringar vid Havets Hus, som då har längre öppettider (15 juni–16 augusti).',
+      // KÄLLA: https://www.havetshus.se/att-gora/salsafari/ — "Lysekil är en populär stad på sommaren"; "Det blir ofta fullt på parkeringarna i centrum och det blir köer till bilfärjorna över Gullmaren" (läst 2026-09-27)
+      warning: 'Sommartid blir parkeringarna i centrum ofta fulla och det blir kö till bilfärjorna över Gullmarn – räkna med extra restid eller ta bussen.',
+      months: ['limited','limited','limited','limited','open','open','peak','peak','open','limited','limited','limited'],
     },
   },
   {
@@ -312,87 +383,95 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
     emoji: '🐟',
-    // KÄLLA: sverigesnationalparker.se, Kosterhavets nationalpark — bekräftar Sveriges första marina nationalpark — https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark ; Fakta om parken — bildad 9 september 2009, 38 900 hektar varav 860 hektar land — https://sverigesnationalparker.se/park/kosterhavets-nationalpark/nationalparksfakta ; Djurliv — knubbsälar och ögonkorall — https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv (läst 2026-09-16)
+    // KÄLLA: https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark — "Kosterhavets nationalpark är Sveriges första marina nationalpark och består främst av vatten och undervattensmiljöer" ; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken — "38 900 hektar, varav 860 hektar land" ; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv — "Runt grynnor och holmar simmar Västerhavets största bestånd av knubbsälar", "ett av Sveriges två kända växtplatser för revbildande korall, ögonkorall" (läst 2026-09-27)
     tagline: 'Sveriges första marina nationalpark — 38 900 hektar, varav 860 hektar land, knubbsälar och ögonkorall.',
     description: [
-      // KÄLLA: sverigesnationalparker.se, Kosterhavets nationalpark — bekräftar "Kosterhavets nationalpark är Sveriges första marina nationalpark och består främst av vatten och undervattensmiljöer" — https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark ; Fakta om parken — "Bildades: 9 september 2009" — https://sverigesnationalparker.se/park/kosterhavets-nationalpark/nationalparksfakta (läst 2026-09-16)
-      'Kosterhavets nationalpark är Sveriges första marina nationalpark och består främst av vatten och undervattensmiljöer. Parken bildades den 9 september 2009.',
-      // KÄLLA: sverigesnationalparker.se, Fakta om parken — bekräftar bildad 9 september 2009, "38 900 hektar, varav 860 hektar land", kommunerna Strömstad och Tanum samt Länsstyrelsen Västra Götaland som förvaltare — https://sverigesnationalparker.se/park/kosterhavets-nationalpark/nationalparksfakta (läst 2026-09-16)
-      'Parken är stor och till övervägande del våt: 38 900 hektar, varav bara 860 hektar är land. Den ligger i Strömstads och Tanums kommuner och förvaltas av Länsstyrelsen Västra Götaland.',
-      // KÄLLA: Naturvårdsverket / sverigesnationalparker.se, Kosterhavets nationalpark – Djurliv — bekräftar "omkring 6 000 olika arter", "Närmare 300 av dem finns inte någon annanstans i Sverige", Kosterfjordens djupränna, "Västerhavets största bestånd av knubbsälar" och "ett av Sveriges två kända växtplatser för revbildande korall, ögonkorall" — https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv (läst 2026-09-16)
-      'Artrikedomen är parkens kärna. Enligt Naturvårdsverkets sida om parkens djurliv lever omkring 6 000 olika arter här, och närmare 300 av dem finns inte någon annanstans i Sverige. Många hör hemma i Kosterfjordens djupränna, Kosterrännan, där de branta klippväggarna sluttar ner mot djupet. Runt grynnor och holmar simmar Västerhavets största bestånd av knubbsälar. Parken rymmer också en av Sveriges två kända växtplatser för den revbildande korallen ögonkorall, vars rev är en värdefull livsmiljö för hundratals arter.',
-      // OKLART: Naturvårdsverkets djurliv-sida anger "omkring 6 000 arter" medan parkens startsida anger "cirka 12 000 arter". Siffran 6 000 används här med avsändare utskriven, enligt granskningsrapporten.
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Frågor & svar Kosteröarna — bekräftar "both are virtually car-free", Sydkoster 8 kvadratkilometer och Nordkoster 4 kvadratkilometer, "it is only biking on South Koster. North Koster is not bike friendly", stränderna Rörvik, Kilesand, Västra Bryggan, Basteviken och Norrvikarna samt linfärjan Västra Bryggan–Långegärde bemannad sommartid — https://www.vastsverige.com/en/stromstad/articles/faq-koster/ (läst 2026-09-16)
-      'Kosteröarna är två. Sydkoster är störst med en yta på 8 kvadratkilometer, flackare och den ö där man cyklar — här finns cykeluthyrning, restauranger och två stora stränder vid Rörvik och Kilesand, varav Kilesand är en kilometerlång sandstrand. Nordkoster är 4 kvadratkilometer, kuperat och enligt Turistrådet Västsverige inte lämpat för cykel, men har bra badplatser vid Västra Bryggan, Basteviken och Norrvikarna. Mellan öarna, från Västra Bryggan till Långegärde, går en liten linfärja som är bemannad sommartid. Båda öarna är i praktiken bilfria.',
-      // KÄLLA: sverigesnationalparker.se, Naturum Kosterhavet — bekräftar utställningar, filmer och bildspel, klappakvarium, guidningar, föredrag, visningar och turer samt kartor — https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/att-gora-i-parken/sevardheter/naturum-kosterhavet (läst 2026-09-16)
-      'På naturum Kosterhavet finns utställningar, filmer och bildspel om nationalparken och naturen i området, samt ett klappakvarium där du kan titta och känna på Kosterhavet. Personalen ordnar guidningar, föredrag, visningar och turer på stränderna, och där får du kartor och svar på frågor om parken.',
+      // KÄLLA: https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark — "Kosterhavets nationalpark är Sveriges första marina nationalpark och består främst av vatten och undervattensmiljöer", "Nationalparken bevarar ett särpräglat och artrikt havs- och skärgårdsområde med djupa lerbottnar, rev, grunda vikar och tallskog i oförändrat skick" ; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken — "Bildades 9 september 2009" (läst 2026-09-27)
+      'Kosterhavets nationalpark är Sveriges första marina nationalpark och består främst av vatten och undervattensmiljöer. Parken bildades den 9 september 2009 och ska bevara ett artrikt havs- och skärgårdsområde med djupa lerbottnar, rev, grunda vikar och tallskog.',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken — "38 900 hektar, varav 860 hektar land", "Strömstad, Tanum", "Länsstyrelsen Västra Götaland", "Markägare Naturvårdsverket" (läst 2026-09-27)
+      'Parken är stor och till övervägande del våt: 38 900 hektar, varav bara 860 hektar är land. Den ligger i Strömstads och Tanums kommuner, ägs av Naturvårdsverket och förvaltas av Länsstyrelsen Västra Götaland.',
+      // KÄLLA: https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark — "I Kosterhavets nationalpark finns totalt cirka 12 000 arter", "Många av de arterna finns i Kosterfjordens djupränna, Kosterrännan" ; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv — "I de långgrunda vikarna, på de klippiga stränderna, och i alla de miljöer vi förknippar med Bohuskusten lever omkring 6 000 olika arter. Närmare 300 av dem finns inte någon annanstans i Sverige", "De djupa och brant sluttande klippväggarna i Kosterfjordens djupränna liknar dessutom miljöerna långt ute i Atlanten", "Runt grynnor och holmar simmar Västerhavets största bestånd av knubbsälar", "Rev av ögonkorall är en värdefull livsmiljö för hundratals arter", "här häckar ejder, tobisgrissla, labb och den ovanliga silvertärnan" (läst 2026-09-27)
+      'Artrikedomen är parkens kärna. Totalt finns cirka 12 000 arter i nationalparken, och i de långgrunda vikarna och längs de klippiga stränderna lever omkring 6 000 av dem; närmare 300 finns inte någon annanstans i Sverige. Många hör hemma i Kosterfjordens djupränna, Kosterrännan, vars branta klippväggar liknar miljöerna långt ute i Atlanten. Runt grynnor och holmar simmar Västerhavets största bestånd av knubbsälar, och här häckar bland annat ejder, tobisgrissla och silvertärna. Parken rymmer också en av Sveriges två kända växtplatser för den revbildande korallen ögonkorall, vars rev är en värdefull livsmiljö för hundratals arter.',
+      // KÄLLA: https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "South Koster has an area of 8 square km and North Koster an area of 4 square km", "Tiny North Koster is hilly and has good beaches", "Larger South Koster is flatter and better for cycling, with bike-rental facilities, restaurants and two large beaches at Rörvik and Kilesand", "the kilometer long sandy beach at Kilesand", "On North Koster you can go swimming near Västra bryggan, Basteviken and Norrvikarna up north", "Between North and South Koster (Västra Bryggan-Långegärde) there is a small cable ferry that is manned summertime", "These two main islands have 300 year-round inhabitants (240 of them at South Koster) and since both are virtually car-free" (läst 2026-09-27)
+      'Kosteröarna är två, med omkring 300 åretruntboende, varav 240 på Sydkoster. Sydkoster är störst med en yta på 8 kvadratkilometer, flackare och den ö där man cyklar — här finns cykeluthyrning, restauranger och två stora stränder vid Rörvik och Kilesand, varav Kilesand är en kilometerlång sandstrand. Nordkoster är 4 kvadratkilometer, kuperat och enligt Turistrådet Västsverige inte lämpat för cykel, men har bra badplatser vid Västra Bryggan, Basteviken och Norrvikarna. Mellan öarna, från Västra Bryggan till Långegärde, går en liten linfärja som är bemannad sommartid. Båda öarna är i praktiken bilfria.',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/att-gora-i-parken/sevardheter/naturum-kosterhavet — "På naturum Kosterhavet finns utställningar, filmer och bildspel om nationalparken och naturen i området. Här finns också ett klappakvarium där du kan titta och känna på Kosterhavet", "Naturum ordnar guidningar och föredrag, visningar och turer på stränderna i närområdet", "23 februari–26 april", "26 oktober-1 november (Höstlov)" ; https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "is a stone’s throw from the Ekenäs jetty on South Koster" (läst 2026-09-27)
+      'Naturum Kosterhavet ligger ett stenkast från bryggan i Ekenäs på Sydkoster. Där finns utställningar, filmer och bildspel om nationalparken och naturen i området, samt ett klappakvarium där du kan titta och känna på Kosterhavet. Naturum ordnar guidningar, föredrag, visningar och turer på stränderna, och där får du kartor och svar på frågor om parken. År 2026 har naturum öppet från 23 februari till 1 november, med olika öppettider under perioden.',
     ],
     facts: {
-      // KÄLLA: Västtrafik, Kosterbåtarna — bekräftar linje 899 mellan Strömstad och Kosteröarna — https://www.vasttrafik.se/info/kosterbatarna/ ; avgång från Strömstads norra hamn intill torget och turistinformationen samt restid ca 30–60 min beroende på brygga och årstid enligt Turistrådet Västsverige — https://www.vastsverige.com/en/stromstad/articles/faq-koster/ (läst 2026-09-16)
+      // KÄLLA: https://www.vasttrafik.se/info/kosterbatarna/ — "Kosterbåtarna - linje 899" ; https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "departing from the north harbour in Stromstad, adjacent to the square and tourist information centre", "approximately 30-60 minutes depending on where you get off and what time of year you travel" ; https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4899__1__LINE__20260927__20261212__d2244526-47e2-4e6f-9db3-0febd05bdb81__2%2C0__2719851.pdf — "899 Strömstad–Kosteröarna–Strömstad", "Gäller 27 sept - 12 dec 2026" (läst 2026-09-27)
+      // Avläst måndag–fredag: Strömstad norra hamnen 06.25 → Sydkoster Kilesand 06.53 (28 min) … Nordkoster Västra bryggan 07.15 (50 min); 14.25 → Västra bryggan 15.00 (35 min) … Kilesand 15.30 (65 min).
       travel_time: 'Kosterbåtarna (Västtrafik linje 899) från Strömstads norra hamn; ca 30–60 min beroende på brygga och årstid enligt Turistrådet Västsverige',
-      character: 'Vild natur, marinbiologi, bilfria Nord- och Sydkoster', // Kosteröarna är två (se beskrivningen), inte en trio
-      season: 'Juni–september, vintertid begränsat',
-      best_for: 'Cykling på Sydkoster, bad, naturupplevelse',
+      // KÄLLA: https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark — "Kosterhavets nationalpark är ett kust- och havsområde med klippor, grunda vikar och miljöer under vattnet som är fulla av liv" ; https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "since both are virtually car-free" (läst 2026-09-27)
+      character: 'Marin nationalpark med klippor och grunda vikar; bilfria Nord- och Sydkoster',
+      // KÄLLA: https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "the Koster ferry take you to the Koster Islands every day, all year round", "the holiday accommodation is often fully booked during high season (primarily in July and August)" ; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/att-gora-i-parken/sevardheter/naturum-kosterhavet — "23 februari–26 april", "26 oktober-1 november (Höstlov)" (läst 2026-09-27)
+      season: 'Året runt med Kosterbåtarna; naturum öppet februari–oktober, högsäsong juli–augusti',
+      // KÄLLA: https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "it is only biking on South Koster", "well-known for offering wonderful opportunities for sunbathing and swimming", "There are four colour-coded walking trails", "The archipelago around the Koster islands is an incredible area for kayaking" (läst 2026-09-27)
+      best_for: 'Cykling på Sydkoster, bad, vandring, kajak',
     },
     facts_provenance: {
       travel_time: 'matt',
-      character: 'bedomning',
-      season: 'bedomning',
-      best_for: 'bedomning',
+      character: 'matt',
+      season: 'matt',
+      best_for: 'matt',
     },
     activities: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Frågor & svar Kosteröarna — bekräftar att cykling endast sker på Sydkoster, att cykeluthyrning finns och att Nordkoster inte är cykelvänligt — https://www.vastsverige.com/en/stromstad/articles/faq-koster/ (läst 2026-09-16)
-      { icon: '🚲', name: 'Cykla Sydkoster', desc: 'Sydkoster är flackare och den ö man cyklar på — cykeluthyrning finns. Nordkoster är enligt Turistrådet Västsverige inte cykelvänligt.' },
-      // KÄLLA: Naturvårdsverket / sverigesnationalparker.se, Kosterhavets nationalpark – Djurliv — bekräftar Kosterfjordens djupränna med branta klippväggar och en av Sveriges två kända växtplatser för revbildande ögonkorall samt Västerhavets största bestånd av knubbsälar — https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv (läst 2026-09-16)
-      { icon: '🤿', name: 'Dykning', desc: 'Kosterfjordens djupränna har branta klippväggar och en av Sveriges två kända växtplatser för revbildande ögonkorall.' },
+      // KÄLLA: https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "Larger South Koster is flatter and better for cycling, with bike-rental facilities", "North Koster is not bike friendly", "You can cycle between different attractions on smaller roads on South Koster" (läst 2026-09-27)
+      { icon: '🚲', name: 'Cykla Sydkoster', desc: 'Sydkoster är flackare och den ö man cyklar på, på mindre vägar mellan sevärdheterna — cykeluthyrning finns. Nordkoster är enligt Turistrådet Västsverige inte cykelvänligt.' },
+      // KÄLLA: https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark — "Här kan du snorkla eller dyka bland tångskogar och ålgräsängar" ; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv — "De djupa och brant sluttande klippväggarna i Kosterfjordens djupränna", "ett av Sveriges två kända växtplatser för revbildande korall, ögonkorall" (läst 2026-09-27)
+      { icon: '🤿', name: 'Snorkling och dykning', desc: 'Snorkla eller dyk bland tångskogar och ålgräsängar. I Kosterfjordens djupränna, med branta klippväggar, finns en av Sveriges två kända växtplatser för revbildande ögonkorall.' },
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv — "Runt grynnor och holmar simmar Västerhavets största bestånd av knubbsälar" (läst 2026-09-27)
       { icon: '🦭', name: 'Knubbsäl', desc: 'Runt grynnor och holmar simmar Västerhavets största bestånd av knubbsälar.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Frågor & svar Kosteröarna — bekräftar Nordkoster som kuperad ö med badplatser vid Västra Bryggan, Basteviken och Norrvikarna — https://www.vastsverige.com/en/stromstad/articles/faq-koster/ (läst 2026-09-16)
-      { icon: '🚶', name: 'Vandring Nordkoster', desc: 'Kuperad ö med badplatser vid Västra Bryggan, Basteviken och Norrvikarna.' },
+      // KÄLLA: https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "Tiny North Koster is hilly and has good beaches", "On North Koster you can go swimming near Västra bryggan, Basteviken and Norrvikarna up north", "Visit Kosters highest vantage point at Högen where there are two former lighthouses at almost 60 metres above sea level" (läst 2026-09-27)
+      { icon: '🚶', name: 'Vandring Nordkoster', desc: 'Kuperad ö med badplatser vid Västra Bryggan, Basteviken och Norrvikarna. Vid Högen, öarnas högsta utsiktspunkt, står två gamla fyrar nästan 60 meter över havet.' },
+      // KÄLLA: https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "The archipelago around the Koster islands is an incredible area for kayaking", "You can bring your own kayak or hire", "There is an extra charge for kayaks and you can bring them in case of space in the storage on board" (läst 2026-09-27)
+      { icon: '🛶', name: 'Kajak', desc: 'Skärgården runt Kosteröarna passar för kajak, och kajak kan hyras på öarna. Egen kajak kan tas med på Kosterbåtarna i mån av plats, mot extra avgift.' },
     ],
     accommodation: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Ekenäs Havshotell — bekräftar namnet, läget på Sydkoster i Kosterhavets marina nationalpark samt rum och lägenheter med havsutsikt — https://www.vastsverige.com/stromstad/produkter/ekenas-havshotell/ ; egen webbplats — https://www.ekenashavshotell.se/en (läst 2026-09-16)
-      { name: 'Ekenäs Havshotell', type: 'Hotell', desc: 'Hotell vid Ekenäs på Sydkoster, i Kosterhavets nationalpark. Rum och lägenheter, flera med havsutsikt.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Reservatet Nordkoster — bekräftar "Kosteröarnas enda campingplats för tält samt sju ekologiska stugor", läget på Nordkosters nordöstra kust och att tältplatserna måste förbokas — https://www.vastsverige.com/stromstad/produkter/reservatet-nordkoster/ (läst 2026-09-16)
-      { name: 'Reservatet Nordkoster', type: 'Camping', desc: 'Tältcamping och sju ekologiska stugor på Nordkosters nordöstra kust. Tältplatserna måste förbokas.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Kläpphagen Koster — bekräftar läget vid Ekenäs på Sydkoster, sex sviter med terrass, glampingtält, Gårdshuset och restaurang med mat över öppen eld — https://www.vastsverige.com/en/stromstad/produkter/klapphagen-koster/ (läst 2026-09-16)
-      { name: 'Kläpphagen Koster', type: 'Hotell', desc: 'Boende vid Ekenäs på Sydkoster med sviter, glampingtält och gårdshus. Restaurang med mat lagad över öppen eld.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Kostergården — bekräftar läget vid sandstranden Kilesand på Sydkoster, stugor, lägenheter och sviter samt restaurang med två uteserveringar — https://www.vastsverige.com/en/stromstad/produkter/kostergarden/ (läst 2026-09-16)
-      { name: 'Kostergården', type: 'Stugor', desc: 'Stugor, lägenheter och sviter vid sandstranden Kilesand på Sydkoster. Restaurang och två uteserveringar på plats.' },
+      // KÄLLA: https://www.ekenashavshotell.se/ — "Längst västerut i Sverige, mitt i Kosterhavets marina nationalpark, ligger Ekenäs Havshotell", "15 Juli 2026" ; https://www.vastsverige.com/stromstad/produkter/ekenas-havshotell/ — "Ekenäs Havshotell på Sydkoster erbjuder havsnära boende mitt i Kosterhavets marina nationalpark", "charmiga rum och lägenheter", "Många boenden erbjuder egen balkong eller altan" (läst 2026-09-27)
+      { name: 'Ekenäs Havshotell', type: 'Hotell', desc: 'Hotell vid Ekenäs på Sydkoster, i Kosterhavets nationalpark. Rum och lägenheter, många med egen balkong eller altan. Livemusik på terrassen sommartid.', websiteUrl: 'https://www.ekenashavshotell.se/' },
+      // KÄLLA: https://lyths.se/ — "VÄLKOMMEN TILL LYTHS TÄLTPLATS OCH EKOSTUGOR PÅ NORDKOSTER", "Sju ekostugor byggdes -97", "det är endast tillåtet att tälta på Nordkosters tältplats när den är öppen på sommaren", "Förbokning krävs" ; https://www.vastsverige.com/stromstad/produkter/reservatet-nordkoster/ — "Alldeles vid havet på Nordkosters nordöstra sida ligger Kosteröarnas enda campingplats för tält samt sju ekologiska stugor för uthyrning" (läst 2026-09-27)
+      { name: 'Lyths tältplats och ekostugor', type: 'Camping', desc: 'Kosteröarnas enda tältplats, vid havet på Nordkosters nordöstra sida, med sju ekologiska stugor. Tältplatsen har öppet på sommaren och måste förbokas; på övriga Kosteröarna är tältning inte tillåten.', websiteUrl: 'https://lyths.se/' },
+      // KÄLLA: https://www.klapphagen.se/ — "Utvalda söndagar våren & hösten 2026", "Boutique Hotel - Glamping - Restaurang & Bar - Gårdsbutik - Bryggeri" ; https://www.vastsverige.com/en/stromstad/produkter/klapphagen-koster/ — "At Kläpphagen Koster by Ekenäs on Sydkoster you can enjoy food cooked over an open fire", "6 premium suites, each with their own terrace", "a luxurious glamping tent", "Gårdshuset, a separate building" (läst 2026-09-27)
+      { name: 'Kläpphagen Koster', type: 'Hotell', desc: 'Boende vid Ekenäs på Sydkoster med sex sviter med egen terrass, glampingtält och ett separat gårdshus. Restaurang med mat lagad över öppen eld och gårdsbutik.', websiteUrl: 'https://www.klapphagen.se/' },
+      // KÄLLA: https://kostergarden.se/ — "SYDKOSTER · KILESAND", "Restaurang, takterrass, kiosk, minigolf och stugby", "© 2026 Kostergården" ; https://www.vastsverige.com/en/stromstad/produkter/kostergarden/ — "only a stone's throw from the long sandy beach at Kilesand", "At Kostergården you can stay in a cottage, an apartment or a suite with sea views" (läst 2026-09-27)
+      { name: 'Kostergården', type: 'Stugor', desc: 'Stugor och lägenheter vid sandstranden Kilesand på Sydkoster. Restaurang med takterrass, kiosk och minigolf på plats.', websiteUrl: 'https://kostergarden.se/' },
     ],
     getting_there: [
-      // KÄLLA: Västtrafik, Kosterbåtarna — bekräftar linje 899, cykel ombord i mån av plats och biljett via Västtrafik To Go eller av däcksman ombord — https://www.vasttrafik.se/info/kosterbatarna/ ; avgång från Strömstads norra hamn intill torget och turistinformationen samt restid ca 30–60 min beroende på brygga och årstid — https://www.vastsverige.com/en/stromstad/articles/faq-koster/ (läst 2026-09-16)
-      { method: 'Bil + båt', from: 'Strömstad', time: 'ca 30–60 min beroende på brygga och årstid', desc: 'Kosterbåtarna går från Strömstads norra hamn, intill torget och turistinformationen. Linjen är Västtrafik 899; cykel får tas med i mån av plats. Biljett köps i Västtrafik To Go eller av däcksman ombord.', icon: '⛴' },
+      // KÄLLA: https://www.vasttrafik.se/info/kosterbatarna/ — "Kosterbåtarna - linje 899", "Köp biljett i appen Västtrafik To Go", "Köp biljett av däcksman ombord på båten", "Du kan ta med dig cykel ombord i mån av plats", "Från januari 2027 kommer Kosteröarna istället ingå i zon C" ; https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "departing from the north harbour in Stromstad, adjacent to the square and tourist information centre", "On North Koster you can get off at the harbour Västra Bryggan and Vettnet (only summer season). On South Koster there are three harbours, Kilesand, Ekenäs and Långegärde", "Yes, you can bring your dog on the boat" ; https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4899__1__LINE__20260927__20261212__d2244526-47e2-4e6f-9db3-0febd05bdb81__2%2C0__2719851.pdf — "Gäller 27 sept - 12 dec 2026", "Strömstad norra hamnen" (läst 2026-09-27)
+      // Avläst: 7 avgångar från Strömstad måndag–torsdag (06.25, 08.45, 12.00, 14.25, 16.25, 18.30, 20.30) och 8 på fredagar; restid 28–65 min beroende på brygga.
+      { method: 'Bil + båt', from: 'Strömstad', time: 'ca 30–60 min beroende på brygga och årstid', desc: 'Kosterbåtarna, Västtrafik linje 899, går från Strömstads norra hamn intill torget och turistinformationen. De angör Västra Bryggan (och sommartid Vettnet) på Nordkoster samt Långegärde, Ekenäs och Kilesand på Sydkoster. Cykel får tas med i mån av plats, och hund får följa med. Biljett köps i Västtrafik To Go eller av däcksman ombord. Hösttabellen 27 september–12 december 2026 har sju avgångar från Strömstad måndag–torsdag och åtta på fredagar.', icon: '⛴', url: 'https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014489900000/' },
     ],
     harbors: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Korshamn – Ekenäs gästhamn — bekräftar namnet och läget på Sydkoster, restauranger, hotell och cykeluthyrning vid bryggan, besökscenter för Kosterhavets nationalpark intill samt ICA ca 1,5 km bort öppet året runt — https://www.vastsverige.com/stromstad/produkter/gasthamn-ekenas/ (läst 2026-09-16)
-      { name: 'Korshamn–Ekenäs gästhamn', desc: 'Gästhamn vid Ekenäs på Sydkoster. Restauranger, hotell och cykeluthyrning vid bryggan, besökscenter för Kosterhavets nationalpark intill och livsmedelsbutik ca 1,5 km bort.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Gästhamn Nordkoster — bekräftar lägena Bopallen (Västra Bryggan) och Vettnet, restauranger vid Västra Bryggan och livsmedelsaffären "Affärn på Nord" sommartid — https://www.vastsverige.com/stromstad/produkter/gasthamn-nordkoster/ ; turlistkarta Strömstad–Koster som visar att Långegärde ligger på Sydkoster — https://www.vastsverige.com/en/things-to-do/explore-the-west-coast-by-boat/ferry-lines/route-map-stromstadkoster/ (läst 2026-09-16)
+      // KÄLLA: https://www.vastsverige.com/stromstad/produkter/gasthamn-ekenas/ — "Gästhamnen ligger vid Ekenäs på natursköna Kosteröarna, vid bryggan finns restauranger, hotell, cykeluthyrning och här ligger även besökscenter för Kosterhavets nationalpark", "ca 1,5 km från gästhamnen ligger helårsöppna ICA-butiken" (läst 2026-09-27)
+      { name: 'Korshamn–Ekenäs gästhamn', desc: 'Gästhamn vid Ekenäs på Sydkoster. Restauranger, hotell och cykeluthyrning vid bryggan, besökscenter för Kosterhavets nationalpark intill och en livsmedelsbutik som har öppet året runt ca 1,5 km bort.' },
+      // KÄLLA: https://www.vastsverige.com/stromstad/produkter/gasthamn-nordkoster/ — "Gästhamnarna är hittar du vid Bopallen (Västra Bryggan) och vid Vettnet på ön", "I anslutning till gästhamnen vid Västra Bryggan finns restauranger och under sommaren finns en livsmedelaffär" (läst 2026-09-27)
       { name: 'Gästhamn Nordkoster', desc: 'Gästhamn på Nordkoster med lägena Bopallen (Västra Bryggan) och Vettnet. Restauranger vid Västra Bryggan och livsmedelsaffär sommartid.' },
     ],
     restaurants: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Ekenäs Havshotell — bekräftar restaurangen Himmel & Hav på Sydkoster med skaldjur, fisk och lokala råvaror efter säsong — https://www.vastsverige.com/stromstad/produkter/ekenas-havshotell/ ; egen webbplats — https://www.ekenashavshotell.se/en (läst 2026-09-16)
-      { name: 'Ekenäs Havshotell (restaurang Himmel & Hav)', type: 'Restaurang', desc: 'Hotellrestaurangen Himmel & Hav vid Ekenäs på Sydkoster. Skaldjur, fisk och lokala råvaror efter säsong.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Strandkanten — bekräftar familjerestaurang i renoverad sjöbod vid stranden på Nordkoster, Kalkemyrsvägen 4, rätter från havet, utsikt över Kostersundet och presentbutik intill — https://www.vastsverige.com/stromstad/produkter/strandkanten/ (läst 2026-09-16)
-      { name: 'Strandkanten', type: 'Restaurang', desc: 'Familjerestaurang i en renoverad sjöbod vid stranden på Nordkoster. Rätter från havet och utsikt över Kostersundet. Presentbutik intill.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Kosters Rökeri — bekräftar läget vid Ekenäs brygga på Sydkoster bredvid naturum samt färsk och rökt fisk med tillhörande fiskaffär — https://www.vastsverige.com/stromstad/produkter/kosters-rokeri/ (läst 2026-09-16)
-      { name: 'Kosters Rökeri', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang vid Ekenäs brygga på Sydkoster, intill naturum Kosterhavet. Rökeri och fiskbutik i anslutning.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Sundets Skaldjurscafé — bekräftar läget vid Långegärde brygga på Sydkoster, färska skaldjur och säsongsöppet — https://www.vastsverige.com/stromstad/produkter/sundets-skaldjurscafe/ (läst 2026-09-16)
-      { name: 'Sundets Skaldjurscafé', type: 'Café', desc: 'Bryggservering vid Långegärde brygga på Sydkoster med färska skaldjur. Säsongsöppet.' },
+      // KÄLLA: https://www.ekenashavshotell.se/ — "Välkommen till vår restaurang Himmel och Hav med enastående utsikt över havet", "15 Juli 2026" ; https://www.vastsverige.com/stromstad/produkter/ekenas-havshotell/ — "Menyn lyfter fram skaldjur, fisk och lokala råvaror" (läst 2026-09-27)
+      { name: 'Ekenäs Havshotell (restaurang Himmel & Hav)', type: 'Restaurang', desc: 'Hotellrestaurangen Himmel och Hav vid Ekenäs på Sydkoster, med utsikt över havet. Skaldjur, fisk och lokala råvaror efter säsong.', websiteUrl: 'https://www.ekenashavshotell.se/' },
+      // KÄLLA: https://strandkanten.se/ — "Restaurang Strandkanten på Nordkoster erbjuder mat och dryck i en fantastisk miljö med utomhusservering på bryggan eller inomhus i den mysiga sjöboden", "Säsongen startar vid påsk och sträcker sig till och med hummerfisket i oktober" ; https://www.vastsverige.com/stromstad/produkter/strandkanten/ — "Restaurangen ligger alldeles vid havet i en ombyggd gammal sjöbod vid Västra Bryggan på Nordkoster", "Menyn består till stor del av rätter från havet" (läst 2026-09-27)
+      // Egen sida läst 2026-09-27 med renderande webbläsare (sidan är JavaScript); ingen årtalsuppgift på sidan.
+      { name: 'Strandkanten', type: 'Restaurang', desc: 'Restaurang i en ombyggd sjöbod vid Västra Bryggan på Nordkoster, med servering på bryggan. Mest rätter från havet, och en butik med presenter i samma lokal. Öppet från påsk till hummerfisket i oktober.', websiteUrl: 'https://strandkanten.se/' },
+      // KÄLLA: http://kostersundet.se/ — "Sundets Skaldjurscafé har ett fantastiskt läge vid Långagärde Brygga på Sydkoster", "På vår soliga bryggservering kan du njuta av färska skaldjur, välja mellan kött, fisk och diverse smårätter" ; http://kostersundet.se/makrill-race — "Den 1augusti avgörs Sundets Makrillrace 2026" (läst 2026-09-27)
+      { name: 'Sundets Skaldjurscafé', type: 'Café', desc: 'Bryggservering vid Långegärde brygga på Sydkoster med färska skaldjur samt kött, fisk och smårätter.', websiteUrl: 'http://kostersundet.se/' },
     ],
-    // KÄLLA: Turistrådet Västsverige (vastsverige.com), Frågor & svar Kosteröarna — bekräftar att cykling hör hemma på Sydkoster, att Nordkoster inte är cykelvänligt och att linfärjan Västra Bryggan–Långegärde är bemannad sommartid — https://www.vastsverige.com/en/stromstad/articles/faq-koster/ (läst 2026-09-16)
-    tips: ['Cykeln hör hemma på Sydkoster — Nordkoster är kuperat och beskrivs av Turistrådet Västsverige som inte cykelvänligt.', 'Mellan öarna går en liten linfärja, Västra Bryggan–Långegärde, bemannad sommartid.', 'Ta med vindjacka — det blåser nästan alltid.'],
+    // KÄLLA: https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "it is only biking on South Koster. North Koster is not bike friendly", "Between North and South Koster (Västra Bryggan-Långegärde) there is a small cable ferry that is manned summertime. At other times of the year you can take the Koster boat", "it is advisable to pre-book, as the holiday accommodation is often fully booked during high season (primarily in July and August)", "If you are bringing a dog, it must be on a leash" (läst 2026-09-27)
+    tips: ['Cykeln hör hemma på Sydkoster — Nordkoster är kuperat och beskrivs av Turistrådet Västsverige som inte cykelvänligt.', 'Mellan öarna går en liten linfärja, Västra Bryggan–Långegärde, bemannad sommartid; övriga året tar du Kosterbåten.', 'Ska du övernatta i juli eller augusti, boka i förväg — boendena är ofta fullbokade under högsäsong.', 'Hund ska hållas i koppel på Kosteröarna.'],
     related: ['stromstad', 'grebbestad', 'fjallbacka'],
     tags: ['nationalpark', 'dykning', 'cykel', 'marint liv', 'sälar'],
-    // KÄLLA: Naturvårdsverket / sverigesnationalparker.se, Kosterhavets nationalpark – Djurliv — bekräftar en av Sveriges två kända växtplatser för revbildande ögonkorall, reven som livsmiljö för hundratals arter, omkring 6 000 arter och närmare 300 som inte finns någon annanstans i Sverige — https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv (läst 2026-09-16)
-    did_you_know: 'Kosterhavet rymmer en av Sveriges två kända växtplatser för revbildande korall — ögonkorall. Reven är en värdefull livsmiljö för hundratals arter. Enligt Naturvårdsverkets sida om parkens djurliv lever omkring 6 000 arter i parken, och närmare 300 av dem finns inte någon annanstans i Sverige.',
+    // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv — "ett av Sveriges två kända växtplatser för revbildande korall, ögonkorall", "Rev av ögonkorall är en värdefull livsmiljö för hundratals arter och artrikedomen kan mäta sig med de tropiska revens" ; https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark — "I Kosterhavets nationalpark finns totalt cirka 12 000 arter" (läst 2026-09-27)
+    did_you_know: 'Kosterhavet rymmer en av Sveriges två kända växtplatser för revbildande korall — ögonkorall. Reven är en värdefull livsmiljö för hundratals arter, och enligt Naturvårdsverket kan artrikedomen mäta sig med de tropiska revens. Totalt finns cirka 12 000 arter i nationalparken.',
     seasonal: {
+      // UPPSKATTNING: månadsindelningen bygger på naturums öppetperioder 2026 (23 feb–1 nov, längst öppet 26 juni–16 aug) och Västsveriges uppgift att högsäsongen främst är juli–augusti.
       open: 'Maj–September',
       peak: 'Juli–Augusti',
       best: 'Juni eller September',
-      bestReason: 'Juni: klippstigarna på Nordkoster är lugna och naturum har öppet. September: glesare på öarna och fortfarande båtturer från Strömstad.',
-      // KÄLLA: Västtrafik, Kosterbåtarna — bekräftar linje 899 mellan Strömstad och Kosteröarna och att cykel tas med i mån av plats — https://www.vasttrafik.se/info/kosterbatarna/ ; avgång från Strömstads norra hamn — https://www.vastsverige.com/en/stromstad/articles/faq-koster/ (läst 2026-09-16)
-      warning: 'Kosterbåtarna är Västtrafik linje 899 från Strömstads norra hamn; cykel tas med i mån av plats, så räkna inte med att få plats för cykeln i högsäsong. Ta med vindjacka.',
-      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+      // KÄLLA: https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "high season (primarily in July and August)", "the Koster ferry take you to the Koster Islands every day, all year round" ; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/att-gora-i-parken/sevardheter/naturum-kosterhavet — "13 maj–25 juni", "31 augusti-27 september" (läst 2026-09-27)
+      bestReason: 'Juli och augusti är högsäsong, då boendena ofta är fullbokade. I juni och september har naturum öppet alla dagar och Kosterbåtarna går dagligen från Strömstad.',
+      // KÄLLA: https://www.vasttrafik.se/info/kosterbatarna/ — "Du kan ta med dig cykel ombord i mån av plats" ; https://www.vastsverige.com/en/stromstad/articles/faq-koster/ — "departing from the north harbour in Stromstad" (läst 2026-09-27)
+      warning: 'Kosterbåtarna är Västtrafik linje 899 från Strömstads norra hamn; cykel tas med i mån av plats.',
+      months: ['off','off','limited','limited','open','open','peak','peak','open','limited','off','off'],
     },
   },
   {
@@ -402,85 +481,120 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
     emoji: '🦪',
-    // KÄLLA: Tanums kommun, Ostronmeckat — bekräftar att 90 procent av Sveriges ostron kommer från Tanums kommun — https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html (läst 2026-09-16)
-    tagline: '90 % av Sveriges ostron kommer från Tanums kommun — och Grebbestad är dess hamn.',
+    // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "90 procent av Sveriges ostron kommer från Tanums kommun" (läst 2026-09-27)
+    // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "centret för Sveriges produktion av vilda ostron" (läst 2026-09-27)
+    tagline: '90 % av Sveriges ostron kommer från Tanums kommun — och Grebbestad är centrum för de vilda ostronen.',
     description: [
-      // KÄLLA: Tanums kommun, Ostronmeckat — bekräftar "90 procent av Sveriges ostron kommer från Tanums kommun", Ostrea edulis handplockad av dykare, 3–4 år före skörd och säsong september–midsommar med uppehåll juli–augusti — https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html ; "90 procent av Sveriges ostronproduktion kommer från Grebbestad och Tanum" — https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 (läst 2026-09-16)
-      'Ostronen är Grebbestads signum. Tanums kommun anger att 90 procent av Sveriges ostron kommer från kommunen, och Turistrådet Västsverige skriver att 90 procent av landets ostronproduktion kommer från Grebbestad och Tanum. Det handlar om det vilda, platta ostronet Ostrea edulis, som plockas för hand av dykare och behöver bli tre till fyra år innan det skördas. Skördesäsongen löper från september fram till midsommar med uppehåll i juli och augusti, då ostronen leker.',
-      // KÄLLA: Tanums kommun, Ostronmeckat — bekräftar Ostronakademien bildad 2004, NM i ostronöppning i maj, Ostronets dag i september, Kalvö Ostron handplockat sedan 1600-talet, Grebbestads Ostron med EU-skyddad ursprungsbeteckning sedan maj 2023 och 50 000–60 000 ostron per år samt Havstenssunds Ostron som enda kommersiella odlingen i Skandinavien med säsong september–maj — https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html (läst 2026-09-16)
-      'Kring ostronen har det vuxit fram både hantverk och evenemang. Ostronakademien bildades 2004, Nordiska mästerskapen i ostronöppning hålls i maj och Ostronets dag i september. Bland producenterna i kommunen finns Kalvö Ostron, som plockat ostron för hand sedan 1600-talet, Grebbestads Ostron, som sedan maj 2023 har EU-skyddad ursprungsbeteckning och vars fiske är begränsat till 50 000–60 000 ostron om året, samt Havstenssunds Ostron, enligt Tanums kommun för närvarande den enda kommersiella ostronodlingen i Skandinavien, med säsong september–maj.',
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Grebbestad — bekräftar första moderna omnämnandet i början av 1600-talet, utvecklingen under 1800-talet, stenhuggarna i slutet av 1800-talet, gästhamnen som fullserviceanläggning med gott om båtplatser samt att Evert Taube skrev "Så länge skutan kan gå" på Otterön sommaren 1954 — https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 (läst 2026-09-16)
-      'Orten nämns första gången i modern tid i början av 1600-talet och växte kraftigt under 1800-talet, och mot slutet av seklet kom stenhuggarna hit. Gästhamnen beskrivs av Turistrådet Västsverige som en fullserviceanläggning med gott om båtplatser. På Otterön utanför skrev Evert Taube sommaren 1954 "Så länge skutan kan gå".',
-      // KÄLLA: Länsstyrelsen Västra Götaland, Tjurpanneområdet — bekräftar bildat 1968, ca 499 hektar, förvaltas av Västkuststiftelsen, öppet och kargt landskap, vandring i flera längder och rådet att invänta stiltje för bad — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html ; Länsstyrelsen Västra Götaland, Otterön — bildat 1967, ca 629 hektar, Västkuststiftelsen, ett av de mest välbesökta reservaten bland Bohusläns öar, stigar, naturhamnar, orkidéer, lövskog, bronsåldersrös, en kopia av en runsten med den längsta urnordiska runskrift som påträffats och taxibåt från Grebbestad — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/otteron.html ; Falkerödsleden tre kilometer lång — https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 (läst 2026-09-16)
-      'Naturen runt Grebbestad är skyddad på flera håll. Tjurpanneområdet strax norr om samhället blev naturreservat 1968, omfattar cirka 499 hektar och förvaltas av Västkuststiftelsen. Landskapet är öppet och kargt, med branta klippstränder, sand-, grus- och blockstränder, kala hällar och ljunghed med enstaka tallar och rönnar; här erbjuds vandring i flera olika längder. Badar gör man klokast i stiltje. Ute i skärgården ligger Otterön, naturreservat sedan 1967 och cirka 629 hektar stort, också det förvaltat av Västkuststiftelsen — ett av de mest välbesökta reservaten bland Bohusläns öar, med flera vandringsstigar, skyddade naturhamnar, orkidéer, lövskog, en bronsåldersrös och en kopia av en runsten med den längsta kända urnordiska runinskriften. Ön nås enklast med taxibåt från Grebbestad. Inne på fastlandet går den tre kilometer långa Falkerödsleden.',
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Grebbestad — bekräftar hällristningar daterade till 1700–300 f.Kr., omkring 600 hällristningsplatser kring Vitlycke och Greby gravfält med fler än 180 synliga gravar — https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 (läst 2026-09-16)
-      'Trakten är också hällristningarnas. Ristningarna i Tanum dateras till 1700–300 f.Kr., och kring Vitlycke finns omkring 600 hällristningsplatser. Strax utanför Grebbestad ligger dessutom Greby gravfält med fler än 180 synliga gravar.',
+      // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "90 procent av Sveriges ostron kommer från Tanums kommun", "Ostronet ska antingen ha handplockats av dykare eller fiskats av fiskare med håv", "Ostrea Edulis plockas när de är som minst 3-4 år gamla", "Ostronen plockas från första veckan i September t.o.m midsommar, då ostronen har sin fortplantningsperiod under Juli-Augusti" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "hela 90 procent av Sveriges ostronproduktion kommer från Grebbestad och Tanum" (läst 2026-09-27)
+      'Ostronen är Grebbestads signum. Tanums kommun anger att 90 procent av Sveriges ostron kommer från kommunen, och Turistrådet Västsverige skriver att 90 procent av landets ostronproduktion kommer från Grebbestad och Tanum. Det handlar om det vilda, platta ostronet Ostrea edulis, som plockas för hand av dykare eller fiskas med håv och ska vara minst tre till fyra år innan det skördas. Skördesäsongen löper från första veckan i september fram till midsommar, med uppehåll i juli och augusti då ostronen förökar sig.',
+      // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "Ostronakademien, en ideell förening som bildades 2004", "Akademin arrangerar varje år Nordiska Mästerskapen i Ostron öppning i maj och Ostronets dag i september.", "Kalvö Ostron är Ostrea edulis som lever fritt utanför Fjällbackas kust", "sedan 1600 talet", "Grebbestadostron är varumärket för det europeiska ostronet Ostrea edulis som lever fritt i Grebbestads norra och södra skärgårdar.", "Sedan maj 2023 är dessa ostron också ursprungsskyddade av EU", "begränsas fisket av Grebbestadostron till 50 000-60 000 per år", "Havstenssunds Ostron är för närvarande den enda kommersiella odlingen i Skandinavien.", "som sträcker sig från september till och med maj månad" (läst 2026-09-27)
+      'Kring ostronen har det vuxit fram både hantverk och evenemang. Ostronakademien, en ideell förening, bildades 2004 och arrangerar Nordiska mästerskapen i ostronöppning i maj och Ostronets dag i september. Bland producenterna i kommunen finns Kalvö Ostron utanför Fjällbacka, där man skördat ostron sedan 1600-talet, och Grebbestadostron från Grebbestads norra och södra skärgård, som sedan maj 2023 är ursprungsskyddade av EU och vars fiske är begränsat till 50 000–60 000 ostron om året. Havstenssunds Ostron är enligt Tanums kommun för närvarande den enda kommersiella ostronodlingen i Skandinavien, med säsong september–maj.',
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "första gången orten nämns i modern skrift är i början av 1600-talet", "Samhället utvecklades sedan mycket under 1800-talet", "många stenhuggare flyttade till samhället i slutet av 1800-talet", "blev Grebbestad också en framstående badort, med både kall- och varmbadhus", "När du närmar dig Grebbestad möts du av ortens nygotiska kyrka", "Hamnområdet kantas av fiskebåtar, pittoreska sjöbodar, caféer, butiker och restauranger.", "den populära bryggpromenaden med flera restauranger som serverar färsk fisk, räkor, ostron, hummer, krabba och havskräftor", "krogar som under tidigt 1900-tal huserade konservfabrik och telegrafstation", "en fullserviceanläggning med gott om båtplatser", "Evert Taube skrev sommaren 1954", "när han vistades på just Otterön" (läst 2026-09-27)
+      'Orten nämns första gången i modern skrift i början av 1600-talet och växte kraftigt under 1800-talet. Mot slutet av seklet flyttade många stenhuggare hit, och Grebbestad blev samtidigt badort med både kall- och varmbadhus. Över de vita och röda husen reser sig den nygotiska kyrkan. Hamnen kantas av fiskebåtar, sjöbodar, caféer och butiker, och längs bryggpromenaden serveras fisk och skaldjur – bland annat på krogar i en före detta konservfabrik och telegrafstation. Gästhamnen beskrivs av Turistrådet Västsverige som en fullserviceanläggning med gott om båtplatser. På Otterön utanför skrev Evert Taube sommaren 1954 "Så länge skutan kan gå".',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html — "Bildat: 1968", "Areal: cirka 499 hektar", "Naturvårdsförvaltare: Västkuststiftelsen", "Området ligger på den västra delen av Havstenssundshalvön.", "Branta klippstränder stupar ner i havet och här och där går det in vikar med stränder av sand, grus eller stenblock.", "Kala hällar och ljunghedar dominerar, och enstaka träd som tall och rönn kryper längs bergssidorna", "Flera olika längder på vandring erbjuds.", "Den som vill bada här gör klokt i att invänta stiltje." (läst 2026-09-27)
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/otteron.html — "Bildat: 1967", "Areal: cirka 629 hektar", "är kanske ett av de mest välbesökta reservaten bland Bohusläns öar", "Många stigar genomkorsar ön", "flera skyddade naturhamnar", "På ön finns åtskilliga orkidéarter", "Rika lövskogsområden", "ett stort bronsåldersröse", "en kopia av en märklig runsten med den längsta urnordiska runskrift som påträffats", "Otterön ligger sydväst om Grebbestad och är den största ön i det skärgårdsområdet.", "Till ön kommer man enklast med taxibåt från Grebbestad" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "Strax ovanför samhället startar den tre kilometer långa Falkerödsleden" (läst 2026-09-27)
+      'Naturen runt Grebbestad är skyddad på flera håll. Tjurpanneområdet på västra delen av Havstenssundshalvön blev naturreservat 1968, omfattar cirka 499 hektar och förvaltas av Västkuststiftelsen. Landskapet är öppet och kargt, med branta klippstränder, vikar med sand-, grus- och stenstränder, kala hällar och ljunghed med enstaka tallar och rönnar; här erbjuds vandring i flera olika längder. Badar gör man klokast i stiltje. Sydväst om Grebbestad ligger Otterön, den största ön i skärgården där, naturreservat sedan 1967 och cirka 629 hektar stort, också det förvaltat av Västkuststiftelsen — kanske ett av de mest välbesökta reservaten bland Bohusläns öar, med många stigar, skyddade naturhamnar, orkidéer, lövskog, ett bronsåldersröse och en kopia av en runsten med den längsta urnordiska runskrift som påträffats. Ön nås enklast med taxibåt från Grebbestad. Strax ovanför samhället startar den tre kilometer långa Falkerödsleden.',
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "hällristningar från 1700 f.Kr. till 300 f.Kr.", "beläget i ett område med omkring 600 hällristningsplatser", "Med fler än 180 synliga gravar räknas det som Bohusläns största gravfält.", "Falkerödsleden som följer gamla stigar och vägar utmed flera fornminnen, däribland Greby Gravfält" (läst 2026-09-27)
+      'Trakten är också hällristningarnas. Hällristningarna kring Grebbestad dateras till 1700–300 f.Kr., och Tanums världsarv ligger i ett område med omkring 600 hällristningsplatser. Längs Falkerödsleden ligger dessutom Greby gravfält, som med fler än 180 synliga gravar räknas som Bohusläns största gravfält.',
     ],
     facts: {
-      travel_time: 'Bil via E6 norrut',
-      character: 'Mysigt fiskeläge, ostron, klippvandring',
-      season: 'Juni–september högsäsong',
-      best_for: 'Ostron, segling, klippvandring',
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "mittemellan Göteborg och Oslo" (läst 2026-09-27)
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html — "Tag från E6 av mot Grebbestad." (läst 2026-09-27)
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4877__0__LINE__20260817__20261212__9d26ba47-e7c4-4a38-b1c9-09f2b69a0feb__2%2C0__2767448.pdf — "Havstenssund–Tanumshede och omvänt", "Gäller 17 aug - 12 dec 2026", "Tanumshede centrum 06.55 13.30 15.50", "Grebbestad busstation 07.09 07.46 13.40 16.00" — 13.30 → 13.40 = 10 min, 06.55 → 07.09 = 14 min (läst 2026-09-27)
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4878__0__LINE__20260817__20261212__77a1bfb5-4966-45e6-89b6-e487842a0851__1%2C0__2767487.pdf — "Tanumshede–Grebbestad–Sportshopen och omvänt" — Tanumshede centrum 09.05 → Grebbestad busstation 09.23 = 18 min (läst 2026-09-27)
+      travel_time: 'Bil via E6, mitt emellan Göteborg och Oslo; buss 10–18 min från Tanumshede',
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "Grebbestad är en populär sommarort i norra Bohuslän och centret för Sveriges produktion av vilda ostron." (läst 2026-09-27)
+      character: 'Sommarort och fiskeläge, centrum för Sveriges vilda ostron',
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "med året-runt-puls", "Bästa tiden för skaldjur är höst och vinter då vattnet är kallt och friskt." (läst 2026-09-27)
+      // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "Ostronen plockas från första veckan i September t.o.m midsommar" (läst 2026-09-27)
+      season: 'Året runt; ostron september–midsommar, skaldjur bäst höst och vinter',
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "Många tycker att vattnen kring Grebbestad är bland de bästa i världen när det kommer till paddling.", "den populära bryggpromenaden med flera restauranger som serverar färsk fisk, räkor, ostron, hummer, krabba och havskräftor" (läst 2026-09-27)
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html — "Flera olika längder på vandring erbjuds." (läst 2026-09-27)
+      best_for: 'Ostron och skaldjur, kajakpaddling, vandring i Tjurpannan',
     },
     facts_provenance: {
-      travel_time: 'bedomning',
-      character: 'bedomning',
-      season: 'bedomning',
-      best_for: 'bedomning',
+      travel_time: 'matt',
+      character: 'matt',
+      season: 'matt',
+      best_for: 'matt',
     },
     activities: [
-      // OKLART: res-ent-g1.md behåller Everts Sjöbod som verksamhet med egen källa, medan res-desc-g1.md anger att namnet inte gick att belägga och stryker det ur denna aktivitet. Rapporterna motsäger varandra; namnet står kvar under restaurants och är struket här enligt respektive rapport.
-      // KÄLLA: Tanums kommun, Ostronmeckat — bekräftar att det vilda platta ostronet Ostrea edulis plockas för hand av dykare och att Ostronakademien bildades 2004 — https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html (läst 2026-09-16)
-      { icon: '🦪', name: 'Ostron-safari', desc: 'Vilda ostron, Ostrea edulis, plockas för hand av dykare. Ostronakademien i Grebbestad bildades 2004.' },
-      // KÄLLA: Länsstyrelsen Västra Götaland, Tjurpanneområdet (Tjurpannans naturreservat) — bekräftar bildat 1968, ca 499 hektar, förvaltas av Västkuststiftelsen, öppet och kargt landskap med branta klippstränder och ljunghed samt vandring i flera längder — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html (läst 2026-09-16)
-      { icon: '🥾', name: 'Tjurpannans naturreservat', desc: 'Naturreservat sedan 1968, ca 499 ha — öppet och kargt landskap med branta klippstränder och ljunghed. Vandring i flera längder.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Grebbestad — bekräftar gästhamnen som fullserviceanläggning med gott om båtplatser — https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 (läst 2026-09-16)
-      { icon: '⛵', name: 'Gästhamnen', desc: 'Fullserviceanläggning med gott om båtplatser enligt Turistrådet Västsverige.' },
-      // KÄLLA: Länsstyrelsen Västra Götaland, Otterön — bekräftar bildat 1967, ca 629 hektar, stigar, naturhamnar, orkidéer och lövskog samt att ön enklast nås med taxibåt från Grebbestad — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/otteron.html (läst 2026-09-16)
-      { icon: '🏊', name: 'Otterön', desc: 'Naturreservat sedan 1967, ca 629 ha — stigar, naturhamnar, orkidéer och lövskog. Nås enklast med taxibåt från Grebbestad.' },
+      // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "Skördning, Ostronskola och Ostronprovningar erbjuds som exempel.", "Det är markägaren som har rätt att skörda ostron på sin mark, dvs vem som helst får inte skörda dem själv.", "dess egna akademi finns i Grebbestad" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tanum/produkter/everts-sjobod/ — "You can also book an oyster tasting session or go on an oyster safari." (läst 2026-09-27)
+      // KÄLLA: https://www.evertssjobod.se/ — "hummersafari, ostronprovningar och fisketurer" (läst 2026-09-27)
+      { icon: '🦪', name: 'Ostronsafari och ostronprovning', desc: 'Ostron får bara skördas av markägaren eller med dennes tillstånd, så plocka inte på egen hand. I kommunen erbjuds ostronsafari, ostronskola och ostronprovningar, bland annat hos Everts Sjöbod i Grebbestad, där också Ostronakademien har sitt säte.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html — "Bildat: 1968", "Areal: cirka 499 hektar", "Öppet och kargt landskap", "Branta klippstränder stupar ner i havet", "Kala hällar och ljunghedar dominerar", "Flera olika längder på vandring erbjuds." (läst 2026-09-27)
+      { icon: '🥾', name: 'Tjurpannans naturreservat', desc: 'Naturreservat sedan 1968, ca 499 ha — öppet och kargt landskap med branta klippstränder, kala hällar och ljunghed. Vandring i flera längder.' },
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "en fullserviceanläggning med gott om båtplatser" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tanum/accomodation/marinas/ — "Grebbestad Bryggan Guest Harbour", "160 guest berths.", "Grebbestad Seaport Guest Harbour", "30 berths.", "250 berths directly adjacent to TanumStrand SPA & Resort." (läst 2026-09-27)
+      { icon: '⛵', name: 'Gästhamnarna', desc: 'Grebbestads gästhamn är enligt Turistrådet Västsverige en fullserviceanläggning med gott om båtplatser. I och kring orten finns tre gästhamnar: Grebbestad Bryggan (160 platser), Grebbestad Seaport (30) och TanumStrand (250).' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/otteron.html — "Bildat: 1967", "Areal: cirka 629 hektar", "Många stigar genomkorsar ön", "flera skyddade naturhamnar", "På ön finns åtskilliga orkidéarter", "Rika lövskogsområden", "Till ön kommer man enklast med taxibåt från Grebbestad" (läst 2026-09-27)
+      { icon: '🏊', name: 'Otterön', desc: 'Naturreservat sedan 1967, ca 629 ha — stigar, skyddade naturhamnar, orkidéer och lövskog. Nås enklast med taxibåt från Grebbestad.' },
     ],
     accommodation: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), TanumStrand — bekräftar namnet TanumStrand, postadress 457 95 Grebbestad, hotellrum och stugor med havsutsikt, nordiskt spa samt restaurangen Latitud 58° — https://www.vastsverige.com/en/tanum/produkter/tanumstrand/ (läst 2026-09-16)
-      { name: 'TanumStrand SPA & Resort', type: 'Hotell', desc: 'Hotell- och konferensanläggning vid havet med hotellrum och stugor, nordiskt spa och restaurangen Latitud 58°.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Rosenhill Bed & Breakfast — bekräftar namnet, Sövallsvägen 5 i Grebbestad, Grebbestads gamla skolbyggnad renoverad och öppnad 2009 samt ca 500 m från centrum — https://www.vastsverige.com/en/tanum/produkter/rosenhill-bb/ (läst 2026-09-16)
-      { name: 'Rosenhill Bed & Breakfast', type: 'B&B', desc: 'Bed & breakfast i Grebbestads gamla skolbyggnad, öppnat 2009, ca 500 m från centrum.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Grebys Hotell & Restaurang — bekräftar Strandvägen 1 i Grebbestad, nio individuellt inredda rum och restaurang med fisk och skaldjur från lokala vatten — https://www.vastsverige.com/en/tanum/produkter/grebys-hotell-o-restaurang/ (läst 2026-09-16)
-      { name: 'Grebys Hotell & Restaurang', type: 'Hotell', desc: 'Hotell med nio rum och restaurang vid vattnet på Strandvägen i Grebbestad.' },
+      // KÄLLA: https://www.tanumstrand.se/ — "TanumStrand SPA & Resort - Hotell, SPA och konferens i Norra Bohuslän", "Boka rum/stuga" (läst 2026-09-27)
+      // KÄLLA: https://tanumstrand.se/gasthamn/ — "Strax söder om Grebbestad ligger vår gästhamn med 250 båtplatser vid bryggan i direkt anslutning till hotellområdet.", "Familjebadet, SPA Horisont eller någon av våra restauranger Latitud 58° och Sjöboden Udden" (läst 2026-09-27)
+      { name: 'TanumStrand SPA & Resort', type: 'Hotell', desc: 'Hotell-, spa- och konferensanläggning strax söder om Grebbestad med hotellrum och stugor, SPA Horisont, familjebad, gästhamn och restaurangerna Latitud 58° och Sjöboden Udden.' },
+      // KÄLLA: https://www.rosenhillbedandbreakfast.se/ — "I utkanten av västkustpärlan Grebbestad, i byns gamla skola från 1800-talet, hittar ni Villa Rosenhill B&B.", "Hos oss finns det fyra standard dubbelrum med dubbelsängar och tre mindre dubbelrum med enkelsängar.", "Vi har delade badrum", "Trädgården är stor och lummig", "Sövallsvägen 5" (läst 2026-09-27)
+      { name: 'Villa Rosenhill B&B', type: 'B&B', desc: 'Bed & breakfast i Grebbestads gamla skola från 1800-talet, i utkanten av samhället på Sövallsvägen. Sju dubbelrum med delade badrum och en stor trädgård.' },
+      // KÄLLA: https://grebys.se/hotell — "Hotellet med totalt 9 unika rum stod klart sommaren 2013.", "Vi har ett dubbelrum med eget badrum samt ett famliljerum med gemensam wc/dusch där hundar är tillåtna." (läst 2026-09-27)
+      // KÄLLA: https://grebys.se/ — "Här serverar vi färsk fisk och skaldjur från lokala vatten", "utsikt över hamnen" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tanum/produkter/grebys-hotell-o-restaurang/ — "Strandvägen 1" (läst 2026-09-27)
+      { name: 'Grebys Hotell & Restaurang', type: 'Hotell', desc: 'Familjeägt hotell med nio rum från 2013 och restaurang med fisk och skaldjur från lokala vatten och utsikt över hamnen, på Strandvägen i Grebbestad. Två rum tar emot hund.' },
     ],
     getting_there: [
-      { method: 'Bil', from: 'Göteborg', desc: 'E6 norrut, avtag mot Grebbestad efter Munkedal.', icon: '🚗' },
-      // KÄLLA: Länsstyrelsen Västra Götaland, Otterön — bekräftar att ön enklast nås med taxibåt från Grebbestad och att regelbundna turer görs sommartid — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/otteron.html (läst 2026-09-16)
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html — "Tag från E6 av mot Grebbestad." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "mittemellan Göteborg och Oslo" (läst 2026-09-27)
+      { method: 'Bil', from: 'Göteborg', desc: 'E6 norrut och av mot Grebbestad. Orten ligger mitt emellan Göteborg och Oslo.', icon: '🚗' },
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4878__0__LINE__20260817__20261212__77a1bfb5-4966-45e6-89b6-e487842a0851__1%2C0__2767487.pdf — "Tanumshede–Grebbestad–Sportshopen och omvänt", "Linjen trafikeras av Bivab.", "Gäller 17 aug - 12 dec 2026" (läst 2026-09-27)
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4877__0__LINE__20260817__20261212__9d26ba47-e7c4-4a38-b1c9-09f2b69a0feb__2%2C0__2767448.pdf — "Havstenssund–Tanumshede och omvänt", "Tanumshede centrum 06.55 13.30 15.50", "Grebbestad busstation 07.09 07.46 13.40 16.00" (läst 2026-09-27)
+      { method: 'Buss', from: 'Tanumshede', desc: 'Västtrafiks linjer 877 (Havstenssund–Tanumshede) och 878 (Tanumshede–Grebbestad–Sportshopen) går mellan Tanumshede centrum och Grebbestad busstation på 10–18 minuter, några turer per dag (tidtabell 17 aug–12 dec 2026).', icon: '🚌' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/otteron.html — "Till ön kommer man enklast med taxibåt från Grebbestad och sommartid görs regelbundna turer till ön." (läst 2026-09-27)
       { method: 'Taxibåt', from: 'Grebbestad', desc: 'Till Otterön går taxibåt från Grebbestad, och sommartid görs regelbundna turer till ön.', icon: '⛴' },
     ],
     harbors: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), gästhamnar i Tanum — bekräftar ordagrant "Grebbestad Bryggan Guest Harbour. 160 guest berths. Washing machine, dryer, toilet, shower, and shore power. Operated by Gästhamnsbolaget. Harbour office open during summer." — https://www.vastsverige.com/en/tanum/accomodation/marinas/ (läst 2026-09-16)
-      { name: 'Grebbestad Bryggan', desc: 'Gästhamn med 160 gästplatser, driven av Gästhamnsbolaget. Hamnkontor öppet sommartid.', fuel: false, service: ['El', 'Dusch', 'WC', 'Tvätt'] },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), gästhamnar i Tanum — bekräftar ordagrant "Grebbestad Seaport Guest Harbour. 30 berths. WC, shower, waste disposal, water and fuel refill." samt "TanumStrand Guest Harbour. Just south of Grebbestad. 250 berths directly adjacent to TanumStrand SPA & Resort. Toilet, shower, washing machine, dryer, shore power, and WiFi." — https://www.vastsverige.com/en/tanum/accomodation/marinas/ (läst 2026-09-16)
-      { name: 'Grebbestad Seaport', desc: 'Gästhamn med 30 platser i Grebbestad.', fuel: true, service: ['Vatten', 'Dusch', 'WC'] },
-      { name: 'TanumStrand Guest Harbour', desc: 'Gästhamn med 250 platser strax söder om Grebbestad, direkt vid TanumStrand SPA & Resort. Bemannat hamnkontor sommartid.', fuel: false, service: ['El', 'Dusch', 'WC', 'Tvätt', 'Wifi'] },
+      // KÄLLA: https://www.vastsverige.com/en/tanum/accomodation/marinas/ — "Grebbestad Bryggan Guest Harbour", "160 guest berths. Washing machine, dryer, toilet, shower, and shore power.", "Operated by Gästhamnsbolaget. Harbour office open during summer." (läst 2026-09-27)
+      { name: 'Grebbestad Bryggan', desc: 'Gästhamn med 160 gästplatser, driven av Gästhamnsbolaget. Tvättmaskin, torktumlare, toalett, dusch och landström. Hamnkontor öppet sommartid.', spots: 160, fuel: false, service: ['El', 'Dusch', 'WC', 'Tvätt'] },
+      // KÄLLA: https://www.vastsverige.com/en/tanum/accomodation/marinas/ — "Grebbestad Seaport Guest Harbour", "30 berths. WC, shower, waste disposal, water and fuel refill." (läst 2026-09-27)
+      { name: 'Grebbestad Seaport', desc: 'Gästhamn med 30 platser i Grebbestad: toalett, dusch, avfallshantering, vatten och bränsle.', spots: 30, fuel: true, service: ['Vatten', 'Dusch', 'WC'] },
+      // KÄLLA: https://tanumstrand.se/gasthamn/ — "Strax söder om Grebbestad ligger vår gästhamn med 250 båtplatser vid bryggan i direkt anslutning till hotellområdet.", "Här finns fräscha toaletter, duschar, tvättmaskiner och torktumlare. Du har också tillgång till landström och WiFi.", "Hamnservicen är bemannad 19+20+21 juni samt 26 juni till 9 augusti kl 09.00 till kl 17.00 år 2026.", "Under perioden sommarperioden kan du boka din båtplats via Dockspot" (läst 2026-09-27)
+      { name: 'TanumStrand Guest Harbour', desc: 'Gästhamn med 250 platser strax söder om Grebbestad, direkt vid TanumStrand SPA & Resort. Hamnservicen var 2026 bemannad 26 juni–9 augusti; sommartid kan plats bokas via Dockspot.', spots: 250, fuel: false, service: ['El', 'Dusch', 'WC', 'Tvätt', 'Wifi'] },
     ],
     restaurants: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Everts Sjöbod — bekräftar namn och läge Grönemadsvägen 61 i Grebbestad, ostronsafari och skaldjursupplevelser med servering i en fiskebod från 1800-talet samt sex dubbelrum — https://www.vastsverige.com/en/tanum/produkter/everts-sjobod/ (läst 2026-09-16)
-      { name: 'Everts Sjöbod', type: 'Restaurang', desc: 'Ostronsafari och skaldjursupplevelser med servering i en fiskebod från 1800-talet. Även boende i sex dubbelrum.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Restaurant Telegrafen — bekräftar namnet, Nedre Långgatan 28 i Grebbestad, husmanskost och à la carte med kött och fisk samt drift sedan 2002 i en gammal telegrafstation — https://www.vastsverige.com/en/tanum/produkter/restaurant-telegrafen/ (läst 2026-09-16)
-      { name: 'Restaurang Telegrafen', type: 'Krog', desc: 'Restaurang i en gammal telegrafstation på Nedre Långgatan, i drift sedan 2002. Husmanskost och à la carte, kött och fisk.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Café Skafferiet Grebbestad — bekräftar Nedre Långgatan 40 i Grebbestad och att stället fungerar både som café och restaurang — https://www.vastsverige.com/en/tanum/produkter/cafe-skafferiet-grebbestad/ (läst 2026-09-16)
-      { name: 'Café Skafferiet', type: 'Café', desc: 'Café och bistro på Nedre Långgatan i Grebbestad.' },
+      // KÄLLA: https://www.evertssjobod.se/ — "Everts Sjöbod är ett litet familjeföretag med fast förankring i trakten", "Vårt B&B ligger i direkt anslutning till vår gamla sjöbod där alla aktiviteter utgår ifrån.", "hummersafari, ostronprovningar och fisketurer", "Njut av det bästa från havet i vår gamla charmiga sjöbod med utsikt över havet." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tanum/produkter/everts-sjobod/ — "Enjoy delicious seafood in a traditional boathouse from the 19th century.", "you can rent one of the six double rooms beside the boathouse", "go on an oyster safari" (läst 2026-09-27)
+      { name: 'Everts Sjöbod', type: 'Skaldjursupplevelser', desc: 'Familjeföretag i en sjöbod från 1800-talet med utsikt över havet: hummersafari, ostronprovning och ostronsafari samt skaldjursmåltider i sjöboden. B&B med sex dubbelrum intill.' },
+      // KÄLLA: https://www.telegrafen.info/ — "Den lilla restaurangen i Grebbestad med det stora hjärtat. Känd för sina goda fiskrätter." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tanum/produkter/restaurant-telegrafen/ — "Nedre Långgatan 28", "well-made traditional Swedish fare and á la carte, both meat and fish", "the Restaurang Telegrafen in what once used to be a telegraph station in Grebbestad" (läst 2026-09-27)
+      { name: 'Restaurang Telegrafen', type: 'Krog', desc: 'Restaurang i en gammal telegrafstation på Nedre Långgatan, i drift sedan 2002. Husmanskost och à la carte, känd för sina fiskrätter.' },
+      // KÄLLA: https://bistroskafferiet.se/ — "Nedre Långgatan 40", "sedan 2005 har vi haft vår verksamhet", "fantastisk utsikt över hamnen och den lilla parken" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tanum/produkter/cafe-skafferiet-grebbestad/ — "Café Skafferiet serves as both a café and restaurant", "Nedre Långgatan 40" (läst 2026-09-27)
+      { name: 'Bistro Skafferiet', type: 'Café', desc: 'Café och bistro på Nedre Långgatan i Grebbestad sedan 2005, med uteplats och en övervåning med utsikt över hamnen.' },
     ],
-    // KÄLLA: Turistrådet Västsverige (vastsverige.com), Grebbestad — bekräftar omkring 600 hällristningsplatser kring Vitlycke och ristningar daterade till 1700–300 f.Kr. — https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 ; Vitlycke museum drivs av Västra Götalandsregionens kulturförvaltning — https://www.vitlyckemuseum.se/ (läst 2026-09-16)
-    tips: ['Boka ostron-safari en vecka i förväg.', 'Tjurpannan är magiskt vid solnedgång.', 'Kring Vitlycke finns omkring 600 hällristningsplatser, med ristningar daterade till 1700–300 f.Kr. Vitlycke museum drivs av Västra Götalandsregionens kulturförvaltning.'],
+    // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "Det är markägaren som har rätt att skörda ostron på sin mark, dvs vem som helst får inte skörda dem själv." (läst 2026-09-27)
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html — "Du kan åka buss från Grebbestad till Saltviks camping som gränsar till naturreservatet.", "finns en större parkeringsplats", "vid Långeby", "medföra okopplad hund" (läst 2026-09-27)
+    // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "beläget i ett område med omkring 600 hällristningsplatser", "hällristningar från 1700 f.Kr. till 300 f.Kr." (läst 2026-09-27)
+    // KÄLLA: https://www.vitlyckemuseum.se/ — "Vitlycke museum - porten till världsarvet", "Vi är en del av Västra Götalandsregionens kulturförvaltning" (läst 2026-09-27)
+    tips: ['Plocka inte ostron på egen hand – det är markägaren som har rätt att skörda. Boka hellre en ostronsafari eller ostronprovning.', 'Till Tjurpannan kan du åka buss från Grebbestad till Saltviks camping, som gränsar till reservatet; med bil finns en större parkering vid Långeby. Hunden ska vara kopplad.', 'Vitlycke museum, porten till världsarvet Tanums hällristningar, drivs av Västra Götalandsregionens kulturförvaltning. Världsarvet ligger i ett område med omkring 600 hällristningsplatser, med ristningar från 1700–300 f.Kr.'],
     related: ['fjallbacka', 'kosterhavet', 'hamburgsund'],
     tags: ['ostron', 'fiskeläge', 'klippvandring', 'sommardestination'],
-    // KÄLLA: Tanums kommun, Ostronmeckat — bekräftar att 90 procent av Sveriges ostron kommer från kommunen, att Ostrea edulis plockas för hand av dykare och behöver bli tre till fyra år samt att Grebbestads Ostron har EU-skyddad ursprungsbeteckning sedan maj 2023 — https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html (läst 2026-09-16)
-    did_you_know: 'Tanums kommun anger att 90 procent av Sveriges ostron kommer härifrån. Det vilda platta ostronet Ostrea edulis plockas för hand av dykare och måste bli tre till fyra år innan det skördas — och sedan maj 2023 har Grebbestads Ostron EU-skyddad ursprungsbeteckning.',
+    // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "90 procent av Sveriges ostron kommer från Tanums kommun", "Ostronet ska antingen ha handplockats av dykare eller fiskats av fiskare med håv", "Ostrea Edulis plockas när de är som minst 3-4 år gamla", "Sedan maj 2023 är dessa ostron också ursprungsskyddade av EU" (läst 2026-09-27)
+    did_you_know: 'Tanums kommun anger att 90 procent av Sveriges ostron kommer härifrån. Det vilda platta ostronet Ostrea edulis plockas för hand av dykare eller fiskas med håv och ska vara minst tre till fyra år innan det skördas — och sedan maj 2023 är Grebbestadostronen ursprungsskyddade av EU.',
     seasonal: {
-      open: 'Maj–Oktober',
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "med året-runt-puls" (läst 2026-09-27)
+      // KÄLLA: https://tanumstrand.se/gasthamn/ — "Hamnservicen är bemannad 19+20+21 juni samt 26 juni till 9 augusti kl 09.00 till kl 17.00 år 2026." (läst 2026-09-27)
+      open: 'Året runt',
       peak: 'Juli–Augusti',
       best: 'September eller Oktober',
-      // KÄLLA: Tanums kommun, Ostronmeckat — bekräftar skördesäsong september fram till midsommar med uppehåll i juli och augusti då ostronen leker — https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html (läst 2026-09-16)
-      bestReason: 'Skördesäsongen för ostron löper från september fram till midsommar, med uppehåll i juli och augusti då ostronen leker. En septemberdag med tomt hav och klara klippor är Grebbestad på sitt bästa.',
+      // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "Ostronen plockas från första veckan i September t.o.m midsommar, då ostronen har sin fortplantningsperiod under Juli-Augusti", "Akademin arrangerar varje år Nordiska Mästerskapen i Ostron öppning i maj och Ostronets dag i september." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "Bästa tiden för skaldjur är höst och vinter då vattnet är kallt och friskt." (läst 2026-09-27)
+      bestReason: 'Ostronskörden börjar första veckan i september och pågår fram till midsommar, med uppehåll i juli och augusti då ostronen förökar sig. Hösten är också bästa tiden för skaldjur, när vattnet är kallt och friskt, och i september firas Ostronets dag.',
+      // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "fortplantningsperiod under Juli-Augusti" (läst 2026-09-27)
       warning: 'Ostronskörden har uppehåll i juli och augusti — kommer du för ostronens skull är september och framåt rätt tid.',
-      months: ['off','off','off','off','limited','open','peak','peak','open','open','limited','off'],
+      // Månader: vastsverige anger året-runt-puls; högsäsong jul–aug då TanumStrands hamnservice är bemannad, ostron sep–midsommar.
+      months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
     },
   },
   {
@@ -489,12 +603,15 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
     emoji: '⛰',
-    tagline: 'Camilla Läckbergs by, Vetteberget och pittoreska sjöbodar.',
+    // KÄLLA: https://www.vastsverige.com/tanum/fjallbacka/ — "Fjällbacka är ett litet fiskeläge i Tanums kommun, i norra Bohuslän" (läst 2026-09-27)
+    // KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/fjallbacka.4.7664b4813898b7df98459f8.html — "Vid foten av Vetteberget ligger Fjällbacka centrum med Ingrid Bergmans torg"; "Fjällbacka utgör den rumsliga ramen i Camilla Läckbergs deckarsvit" (läst 2026-09-27)
+    // KÄLLA: https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ — "Berget delar i Stora och Lilla Vetteberget genom den säregna Kungsklyftan" (läst 2026-09-27)
+    tagline: 'Fiskeläget vid foten av Vetteberget – Kungsklyftan, Ingrid Bergmans torg och miljöerna från Camilla Läckbergs deckare.',
     description: [
       // KÄLLA: Tanums kommun, ortsinformation Fjällbacka — cirka 950 personer bor här året runt, orten omnämnd 1610, 22 hus 1694, Vetteberget skiljde orten från havet, Läckbergs deckare utspelar sig i Fjällbacka — https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/fjallbacka.4.7664b4813898b7df98459f8.html (läst 2026-09-16)
       'Fjällbacka är ett litet samhälle vid Tanums kust med ungefär 950 åretruntboende — en siffra som mångdubblas på somrarna. Orten finns omnämnd i skrivna källor från 1610 och hade 22 hus år 1694. Byn låg ursprungligen på randen mellan berg och hav; under 1900-talet har bebyggelsen krupit runt hela Vetteberget, och numera byggs det även uppe på berget. Fjällbacka används i dag som miljö i Camilla Läckbergs kriminalromaner.',
-      // KÄLLA: Tanums kommun, ortsinformation Fjällbacka — sillfiskeperioderna, spannmålsfrakt till England, ansjovisen uppfanns i Fjällbacka på 1860–1880-talen och fick utmärkelser på internationella utställningar — https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/fjallbacka.4.7664b4813898b7df98459f8.html (läst 2026-09-16)
-      'Fjällbackas historia är sillens. Samhället växte under de stora sillperioderna på 1700- och 1800-talen och på fraktseglationen, inte minst spannmålsfrakt till England. Det var också här den svenska ansjovisen uppfanns: konserveringen utvecklades i Fjällbacka under 1860–1880-talen och produkten prisbelönades på internationella utställningar.',
+      // KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/fjallbacka.4.7664b4813898b7df98459f8.html — "Samhällets historia är intimt förknippad med de stora sillfiskeperioderna under 1700- och 1800-talen"; "speciellt under 1800-talets senare del då sill fraktades och inte minst havre som skeppades ut från Fjällbacka till England"; "Han gav produkten namnet"; "På utställningar runt om i världen., bl a vid fiskeriutställningen i Bergen 1865, erhöll Fjällbacka-ansjovis utmärkelser"; "Det fanns fiskkonservindustri i Fjällbacka ända fram till 1978" (läst 2026-09-27)
+      'Fjällbackas historia är sillens. Samhället växte under de stora sillperioderna på 1700- och 1800-talen och på fraktseglationen, inte minst havre som skeppades till England. Det var också här den svenska ansjovisen uppfanns: konserveringen utvecklades i Fjällbacka under 1860–1880-talen och produkten prisbelönades på internationella utställningar, bland annat i Bergen 1865. Fiskkonservindustri fanns i Fjällbacka ända fram till 1978.',
       // KÄLLA: Tanums kommun, ortsinformation Fjällbacka — en 200 meter lång spricka i granitberget med inkilade stenblock mellan två toppar, tidigare namn Ramneklovan — https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/fjallbacka.4.7664b4813898b7df98459f8.html (läst 2026-09-16)
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Vetteberget/Kungsklyftan — trappor från Ingrid Bergmans Torg, Stora och Lilla Vetteberget, fastkilat klippblock som tak, namnet efter Oscar II:s besök 1887 och hans signatur på bergväggen, filmscener från Ronja Rövardotter, utsikt över både övärld och fastland — https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ (läst 2026-09-16)
       'Vetteberget är granitberget som reser sig direkt bakom bykärnan. Genom det löper Kungsklyftan — en 200 meter lång spricka i berget, med ett fastkilat klippblock som tak, som delar massivet i Stora och Lilla Vetteberget. Klyftan hette tidigare Ramneklovan och fick sitt nuvarande namn efter Oscar II:s besök 1887, då kungen signerade bergväggen vid den norra ingången. Här spelades också scener till filmen Ronja Rövardotter in. Upp går man via trapporna från Ingrid Bergmans torg, och från högsta punkten är utsikten vidsträckt över både övärlden och fastlandet.',
@@ -509,42 +626,59 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       'Vill man gå längre än upp på berget är Vettebergsleden en tätortsnära rundslinga med blå markering, en del av Kuststigen. Den passerar Ingrid Bergmans torg, Kungsklyftan och Vetteberget, och det finns flera sträckningar att välja mellan med olika terräng, längd och svårighetsgrad.',
     ],
     facts: {
-      travel_time: '',
-      character: 'Pittoresk fiskeby, kriminalromanromantik, klippvandring',
-      season: 'Juni–september',
-      best_for: 'Romantik, vandring, Läckberg-läsare',
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4875__0__LINE__20260817__20261212__83be1ed8-a883-462d-b8ea-6f64e9b6df0c__4%2C0__2768580.pdf — "875 Tanumshede–Fjällbacka–Dingle–Håby"; "Gäller 19 aug - 12 dec 2026" (läst 2026-09-27). Restid ur tabellen: Tanumshede centrum 06.25 → Fjällbacka 06.54 (29 min), 08.44 → 09.10 (26 min), lördag 10.20 → 10.48 (28 min).
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ — "Från E6, Vid Grindmotet tag av väg 163 mot Fjällbacka." (läst 2026-09-27)
+      travel_time: 'Ca 25–30 min med buss 875 från Tanumshede · med bil från E6 via Grindmotet och väg 163',
+      // KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/fjallbacka.4.7664b4813898b7df98459f8.html — "Ungefär 950 personer bor i Fjällbacka året runt"; "Vid foten av Vetteberget ligger Fjällbacka centrum med Ingrid Bergmans torg" (läst 2026-09-27)
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vaderoarna.html — "Det går turbåtar till Väderöarna från bland annat Fjällbacka och Hamburgsund" (läst 2026-09-27)
+      character: 'Litet fiskeläge med ca 950 åretruntboende vid foten av Vetteberget, med gästhamn och turbåtar till Väderöarna',
+      // KÄLLA: https://gasthamnsbolaget.se/boende-i-bohuslan/badholmens-vandrarhem/ — "Öppet året runt" (läst 2026-09-27); https://www.vastsverige.com/en/tanum/accomodation/marinas/ — "Harbour office open during summer" (läst 2026-09-27); https://www.vastsverige.com/en/tanum/service/travel-tanum/ — "a fee is charged from June 15 to August 15 between 9:00 AM and 6:00 PM" (läst 2026-09-27)
+      season: 'Året runt · högsäsong mitten av juni–mitten av augusti, då hamnkontoret är öppet och parkeringen i centrum avgiftsbelagd',
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ — "Vettebergsleden är en stadsnära rundslinga som tar dig upp på Vetteberget och runt samhället" (läst 2026-09-27); https://www.vastsverige.com/en/tanum/fjallbacka/guided-tours-in-fjallbacka/ — "The tour starts at Ingrid Bergman Square" (läst 2026-09-27); https://www.vastsverige.com/en/tanum/aktiviteter/paddling/paddla-fjallbacka/ — "Explore idyllic Fjällbacka in the best way - by kayak!" (läst 2026-09-27)
+      best_for: 'Vandring på Vetteberget, guidade Läckberg-vandringar, skärgårdsturer och paddling',
     },
     facts_provenance: {
-      travel_time: 'bedomning',
-      character: 'bedomning',
-      season: 'bedomning',
+      travel_time: 'matt',
+      character: 'matt',
+      season: 'matt',
       best_for: 'bedomning',
     },
     activities: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Vetteberget/Kungsklyftan — trappor från Ingrid Bergmans Torg genom Kungsklyftan — https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ (läst 2026-09-16)
-      { icon: '⛰', name: 'Vettebergets klättring', desc: 'Upp via trapporna från Ingrid Bergmans torg, genom Kungsklyftan till toppen.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Discover Fjällbacka with a Guide — guidade vandringar i Camilla Läckbergs fotspår med start vid Ingrid Bergmans torg — https://www.vastsverige.com/en/tanum/fjallbacka/guided-tours-in-fjallbacka/ (läst 2026-09-16)
-      { icon: '📚', name: 'Läckbergs Fjällbacka', desc: 'Guidade vandringar i Camilla Läckbergs fotspår, med start vid Ingrid Bergmans torg.' },
-      // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Väderöarna — turbåtar till Väderöarna från bland annat Fjällbacka — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vaderoarna.html (läst 2026-09-16)
-      { icon: '⛵', name: 'Båtutflykter', desc: 'Turbåtar till Väderöarna går från Fjällbacka.' },
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ — "nås genom trappor från Ingrid Bergmans Torg"; "Berget delar i Stora och Lilla Vetteberget genom den säregna Kungsklyftan" (läst 2026-09-27)
+      // KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/fjallbacka.4.7664b4813898b7df98459f8.html — "är en 200 meter lång spricka i granitberget" (läst 2026-09-27)
+      { icon: '⛰', name: 'Vetteberget och Kungsklyftan', desc: 'Trapporna från Ingrid Bergmans torg leder upp på Vetteberget och genom Kungsklyftan, en 200 meter lång spricka i berget med ett fastkilat klippblock som tak.' },
+      // KÄLLA: https://www.vastsverige.com/en/tanum/fjallbacka/guided-tours-in-fjallbacka/ — "The tour starts at Ingrid Bergman Square" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tanum/fjallbacka/ — "Hitta platserna från Camilla Läckbergs böcker i verkligheten. Ladda ned vår karta och gå din Läckberg-vandring när det passar dig." (läst 2026-09-27)
+      { icon: '📚', name: 'Läckbergs Fjällbacka', desc: 'Guidade vandringar i Camilla Läckbergs fotspår startar vid Ingrid Bergmans torg. Turistrådet Västsverige har också en karta att ladda ned för den som vill gå på egen hand.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vaderoarna.html — "Det går turbåtar till Väderöarna från bland annat Fjällbacka och Hamburgsund"; "Storö är välbesökt och har värdshus, kafé och gammal lotsutkik"; "Det finns en skyltad och spångad vandringsled" (läst 2026-09-27)
+      { icon: '⛵', name: 'Båtutflykter', desc: 'Turbåtar går från Fjällbacka till Väderöarna. På Storö finns värdshus, kafé, en gammal lotsutkik och en skyltad, spångad vandringsled.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Paddle on your own starting in Fjällbacka — dagstur i skyddat vatten förbi Porsholmen, Valö, Dannholmen och Hjärterön — https://www.vastsverige.com/en/tanum/aktiviteter/paddling/paddla-fjallbacka/ (läst 2026-09-16)
       { icon: '🛶', name: 'Kajakpaddling', desc: 'Dagstur i skyddat vatten förbi Porsholmen, Valö, Dannholmen och Hjärterön.' },
     ],
     accommodation: [
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Stora Hotellet Fjällbacka — Galärbacken 2, 457 40 Fjällbacka; hotellets egen webbplats shfjallbacka.se anger Restaurant Mamsell i huset — https://www.vastsverige.com/en/tanum/produkter/stora-hotellet-fjallbacka/ (läst 2026-09-16)
-      { name: 'Stora Hotellet Fjällbacka', type: 'Hotell', desc: 'Hotell på Galärbacken i Fjällbacka. Restaurang Mamsell finns i huset.' },
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Badholmens Vandrarhem — adress Badholmen, 45741 Fjällbacka, rum med våningssängar — https://www.vastsverige.com/en/tanum/produkter/badholmens-vandrarhem/ (läst 2026-09-16)
-      { name: 'Badholmens Vandrarhem', type: 'Vandrarhem', desc: 'Vandrarhem på Badholmen i Fjällbacka hamn.' },
+      // KÄLLA: https://www.vastsverige.com/en/tanum/produkter/stora-hotellet-fjallbacka/ — "Stora Hotellet in Fjällbacka has attracted guests from near and far since 1834"; "Restaurant Mamsell serves well-crafted à la carte dining" (läst 2026-09-27)
+      // KÄLLA: https://shfjallbacka.se/en/restaurants/ — "© 2026 Stora Hotellet" (läst 2026-09-27)
+      { name: 'Stora Hotellet Fjällbacka', type: 'Hotell', desc: 'Hotell vid vattnet på Galärbacken, som tagit emot gäster sedan 1834. Restaurang Mamsell finns i huset.' },
+      // KÄLLA: https://gasthamnsbolaget.se/boende-i-bohuslan/badholmens-vandrarhem/ — "Öppet året runt"; "3 fyrbäddsrum och 1 tvåbäddsrum"; "Gemensamt kök, dusch, WC och bastu"; "Köket är nyrenoverat 2025"; "Vandrarhemmets café är öppet hela sommaren" (läst 2026-09-27)
+      { name: 'Badholmens Vandrarhem', type: 'Vandrarhem', desc: 'Vandrarhem på Badholmen i Fjällbacka hamn, öppet året runt. Tre fyrbäddsrum och ett tvåbäddsrum, gemensamt kök och bastu, och ett café sommartid.' },
     ],
     getting_there: [
-      { method: 'Bil', from: 'Göteborg', time: '2 h', desc: 'E6 norrut, avtag mot Fjällbacka efter Tanumshede.', icon: '🚗' },
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ — "Från E6, Vid Grindmotet tag av väg 163 mot Fjällbacka." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tanum/service/travel-tanum/ — "In central parking areas in Fjällbacka, Grebbestad, and Hamburgsund, a fee is charged from June 15 to August 15 between 9:00 AM and 6:00 PM"; "Free long-term parking in the city's of Grebbestad, Fjällbacka, and Hamburgsund is about a 10-minute walk from the center" (läst 2026-09-27)
+      // Restiden '2 h' stod utan källa och är struken.
+      { method: 'Bil', from: 'Göteborg', time: '', desc: 'E6 norrut, ta av vid Grindmotet och följ väg 163 mot Fjällbacka. Parkeringen i centrum är avgiftsbelagd 15 juni–15 augusti; gratis långtidsparkering finns ungefär 10 minuters promenad från centrum.', icon: '🚗' },
+      // KÄLLA: https://www.vastsverige.com/en/tanum/service/travel-tanum/ — "Between Gothenburg and Strömstad, local trains run along the Bohus Line, with our local train station located just outside Tanumshede. Local buses stop at the train station" (läst 2026-09-27)
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4875__0__LINE__20260817__20261212__83be1ed8-a883-462d-b8ea-6f64e9b6df0c__4%2C0__2768580.pdf — "875 Tanumshede–Fjällbacka–Dingle–Håby"; "Gäller 19 aug - 12 dec 2026" (läst 2026-09-27). Måndag–fredag nio avgångar från Tanumshede centrum (06.25–18.31), lördag och söndag 10.20 och 14.10; 06.25 → Fjällbacka 06.54.
+      { method: 'Tåg + buss 875', from: 'Göteborg', time: 'ca 25–30 min buss', desc: 'Tåg på Bohusbanan mot Strömstad till Tanum, strax utanför Tanumshede, och lokalbuss vidare. Västtrafiks linje 875 går från Tanumshede till Fjällbacka flera gånger om dagen på vardagar och två gånger om dagen på helger.', icon: '🚌' },
     ],
     harbors: [
-      // KÄLLA: Gästhamnsbolaget (driver Tanums gästhamnar på uppdrag av kommunen), Fjällbacka gästhamn — adress Ingrid Bergmanstorg 457 40 Fjällbacka, toaletter, duschar och el; drivmedel anges inte — https://gasthamnsbolaget.se/en/guest-harbours-in-bohuslan/fjallbacka-guest-harbour/ (läst 2026-09-16)
-      { name: 'Fjällbacka Gästhamn', desc: 'Gästhamn vid Ingrid Bergmans torg, drivs av Gästhamnsbolaget.', fuel: false, service: ['El', 'Dusch', 'Toalett'] },
+      // KÄLLA: https://www.vastsverige.com/en/tanum/accomodation/marinas/ — "160 guest berths, next to Ingrid Bergman Square. Toilet, shower, and shore power. Washing machine and dryer available at Badholmen Hostel. Operated by Gästhamnsbolaget. Harbour office open during summer." (läst 2026-09-27)
+      // KÄLLA: https://gasthamnsbolaget.se/gasthamnar-i-bohuslan/fjallbacka-gasthamn/ — "Cirka 29 förbokningsbara platser"; "Servicebyggnaden med 6 toaletter och 6 duschar renoverades inför säsongen 2023"; "I gästhamnen kan du sortera glas, matavfall, pant och restavfall" (läst 2026-09-27). Drivmedel nämns inte (fuel: false).
+      { name: 'Fjällbacka Gästhamn', desc: 'Gästhamn vid Ingrid Bergmans torg med ca 160 gästplatser, varav cirka 29 går att förboka. Servicehus med 6 toaletter och 6 duschar; tvätt och hamnkontor på Badholmens vandrarhem. Hamnkontoret är öppet sommartid.', fuel: false, service: ['El', 'Dusch', 'Toalett', 'Tvätt'] },
     ],
     restaurants: [
       // KÄLLA: Bryggan Fjällbacka, egen webbplats — listar Bryggan Café & Bistro, Restaurant Matilda, Everts Tapasbar och The Harbour House på Ingrid Bergmans Torg — https://www.brygganfjallbacka.se/ (läst 2026-09-16)
+      // KÄLLA: https://www.brygganfjallbacka.se/ — "Måndagen den 21/9 så drar årets hummerfiske igång"; "Restaurang Matilda: Öppnar åter under hummerfisket"; "inför säsongen 2027" (läst 2026-09-27)
       { name: 'Bryggan Café & Bistro', type: 'Restaurang/Café', desc: 'Café och bistro vid Ingrid Bergmans Torg, del av Bryggan Fjällbacka.' },
       { name: 'Restaurant Matilda', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang vid Ingrid Bergmans Torg, del av Bryggan Fjällbacka.' },
       // KÄLLA: Stora Hotellet Fjällbacka, egen webbplats — Restaurant Mamsell är hotellets restaurang, Galärbacken 2, Fjällbacka — https://shfjallbacka.se/en/restaurants/ (läst 2026-09-16)
@@ -552,20 +686,33 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: Fjällbacka Golfklubb, egen webbplats — Sandbunkern Bistro & Deli i klubbhuset, Långö Rörvikarna 1 — https://fjallbackagk.se/sandbunkern-bistro-deli/ (läst 2026-09-16)
       { name: 'Sandbunkern Bistro & Deli', type: 'Bistro', desc: 'Bistro i klubbhuset på Fjällbacka Golfklubb, Långö Rörvikarna 1.' },
     ],
-    // KÄLLA: Turistrådet Västsverige (vastsverige.com), Vetteberget/Kungsklyftan — trapporna startar vid Ingrid Bergmans Torg — https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ (läst 2026-09-16)
-    // KÄLLA: Turistrådet Västsverige (vastsverige.com), Discover Fjällbacka with a Guide — arrangörer Fjällbackaguiderna och Kustguiden — https://www.vastsverige.com/en/tanum/fjallbacka/guided-tours-in-fjallbacka/ (läst 2026-09-16)
-    tips: ['Trapporna upp till Vetteberget startar vid Ingrid Bergmans torg.', 'Guidade turer arrangeras av Fjällbackaguiderna och Kustguiden.', 'Båtturer till Väderöarna kräver bra väder — håll koll dagen innan.'],
+    tips: [
+      // KÄLLA: https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ — "nås genom trappor från Ingrid Bergmans Torg" (läst 2026-09-27)
+      'Trapporna upp till Vetteberget startar vid Ingrid Bergmans torg.',
+      // KÄLLA: https://www.vastsverige.com/en/tanum/service/travel-tanum/ — "a fee is charged from June 15 to August 15 between 9:00 AM and 6:00 PM. The first hour is free"; "You can park for a maximum of 3 consecutive hours"; "Free long-term parking in the city's of Grebbestad, Fjällbacka, and Hamburgsund is about a 10-minute walk from the center" (läst 2026-09-27)
+      'Mitt i sommaren (15 juni–15 augusti) kostar parkeringen i centrum från andra timmen och du får stå högst tre timmar. Gratis långtidsparkering finns ungefär 10 minuters promenad bort.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vaderoarna.html — "närmare öar och skär än 100 meter inom fågel- och sälskyddsområden"; "Under tiden 1 mars – 31 augusti"; "Ha hund okopplad under perioden 1 mars–20 augusti"; "Förbudet gäller även engångsgrillar" (läst 2026-09-27)
+      'På Väderöarna är det landstigningsförbud i fågel- och sälskyddsområdena 1 mars–31 augusti, hundar ska vara kopplade 1 mars–20 augusti och det är eldningsförbud, även för engångsgrillar.',
+      // KÄLLA: https://www.brygganfjallbacka.se/ — "Höstens stora händelse längs med kusten är hummersäsongen, vars premiär äger rum varje år den första måndagen efter 20 september" (läst 2026-09-27)
+      'Hummerfisket börjar varje år den första måndagen efter 20 september.',
+    ],
     related: ['grebbestad', 'kosterhavet', 'hamburgsund'],
     tags: ['kriminalromaner', 'klippvandring', 'pittoreskt', 'ingrid bergman'],
     // KÄLLA: Turistrådet Västsverige (vastsverige.com), Vetteberget/Kungsklyftan — tidigare namnet Ramneklovan, namnet Kungsklyftan efter Oscar II:s besök 1887 och kungens signatur på bergväggen vid norra ingången — https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ (läst 2026-09-16)
     did_you_know: 'Kungsklyftan hette förr Ramneklovan. Namnet Kungsklyftan kommer av att Oscar II besökte platsen 1887 och signerade bergväggen vid klyftans norra ingång.',
+    // Rättat 2026-09-27: stod öppet juni–september och 'off' januari–maj, men ca 950 personer bor här året runt och vandrarhemmet har öppet året runt. bestReason ('hela byn i blomning', 'autentisk fiskebystämning') och varningen om inställda båtturer saknade källa.
     seasonal: {
-      open: 'Juni–September',
-      peak: 'Juli–Augusti',
-      best: 'Juni eller September',
-      bestReason: 'Juni: vandringen upp till Vettebergets topp, restaurangerna öppna och hela byn i blomning. September: autentisk fiskebystämning och höstljus.',
-      warning: 'Båtturer till Väderöarna ställs in vid kraftig vind.',
-      months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
+      // KÄLLA: https://gasthamnsbolaget.se/boende-i-bohuslan/badholmens-vandrarhem/ — "Öppet året runt"; "Vandrarhemmets café är öppet hela sommaren" (läst 2026-09-27)
+      open: 'Året runt',
+      // KÄLLA: https://www.vastsverige.com/en/tanum/service/travel-tanum/ — "a fee is charged from June 15 to August 15 between 9:00 AM and 6:00 PM" (läst 2026-09-27)
+      peak: 'Mitten av juni–mitten av augusti',
+      // KÄLLA: https://www.vastsverige.com/en/tanum/accomodation/marinas/ — "Harbour office open during summer" (läst 2026-09-27)
+      // KÄLLA: https://www.brygganfjallbacka.se/ — "Höstens stora händelse längs med kusten är hummersäsongen, vars premiär äger rum varje år den första måndagen efter 20 september"; "Restaurang Matilda: Öppnar åter under hummerfisket" (läst 2026-09-27)
+      best: 'Sommar eller slutet av september',
+      bestReason: 'Sommartid är hamnkontoret och vandrarhemmets café öppna. Den första måndagen efter 20 september börjar hummerfisket, och Bryggans Restaurang Matilda öppnar då igen.',
+      // KÄLLA: https://www.vastsverige.com/en/tanum/service/travel-tanum/ — "You can park for a maximum of 3 consecutive hours" (läst 2026-09-27)
+      warning: 'Parkeringen i centrum är avgiftsbelagd 15 juni–15 augusti kl. 9–18 och begränsad till tre timmar.',
+      months: ['limited','limited','limited','limited','limited','open','peak','peak','open','limited','limited','limited'],
     },
   },
   {
@@ -999,72 +1146,84 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
     emoji: '🦐',
-    // KÄLLA: Västsverige/Sotenäs, Kungshamn — orten och broförbindelsen med Smögen sedan 70-talet — https://www.vastsverige.com/sotenas/artiklar/kungshamn/ ; Sotenäs kommun, Kungshamns gästhamn — "beläget ytterst på halvön Sotenäset" — https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn (läst 2026-09-16)
-    tagline: 'Sotenäsets centralort — gästhamn, fiskeindustri och bro till Smögen.',
+    // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn — "Kustsamhället Kungshamn är beläget ytterst på halvön Sotenäset och är huvudorten i Sotenäs kommun", "Kungshamn har sedan 1970-talet en broförbindelse med Smögen" ; https://www.vastsverige.com/sotenas/artiklar/made-in-sotenas/ — "I Kungshamn tillverkar man", "och det har man gjort sedan 1954" (läst 2026-09-27)
+    slag: 'ort',
+    tagline: 'Sotenäs huvudort — gästhamn, fiskberedning och bro till Smögen.',
     description: [
-      // KÄLLA: Västsverige/Sotenäs, Kungshamn — Gravarne, Bäckevik och Fisketången, sammanslagningen för cirka fyrtio år sedan, Fisketångens äldre bebyggelse — https://www.vastsverige.com/sotenas/artiklar/kungshamn/ ; Sotenäs kommun, Kungshamns gästhamn — "beläget ytterst på halvön Sotenäset" — https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn (läst 2026-09-16)
-      'Kungshamn ligger ytterst på halvön Sotenäset och är Sotenäs kommuns centralort. Orten består av tre historiskt skilda delar — Gravarne, Bäckevik och Fisketången — som slogs samman under ett namn för drygt fyrtio år sedan; lokalt används de gamla ortnamnen fortfarande. Fisketången har kvar den äldre bebyggelsen med sjöbodar och trånga gränder, medan centrala Kungshamn är mer modernt.',
-      // KÄLLA: Västsverige/Sotenäs, Kungshamn — "Kungshamn har sedan 70-talet broförbindelse med Smögen" — https://www.vastsverige.com/sotenas/artiklar/kungshamn/ ; Västsverige/Sotenäs, Smögen — "Landets näst största fiskauktion ligger på Smögen" — https://www.vastsverige.com/sotenas/artiklar/smogen/ ; Sotenäs kommun, Kungshamns gästhamn — cirka 100 platser, vattendjup 2,5–5 m, dusch, WC, tvättstuga, färskvatten, eluttag, wifi, mycket centralt placerad — https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn (läst 2026-09-16)
-      'Kungshamn har sedan 1970-talet broförbindelse med Smögen. På Smögen ligger landets näst största fiskauktion, dit fiskebåtarna kommer in med färsk fisk och skaldjur som sedan säljs vidare i fiskaffärerna i området. Kungshamns egen gästhamn ligger mycket centralt och har ett hundratal platser, med vattendjup på 2,5–5 meter, dusch, WC, tvättstuga, färskvatten, eluttag och wifi.',
-      // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Hållöarkipelagen — bildat 1975, cirka 292 hektar, Bohusläns äldsta fyr rest 1842 på Hållös högsta punkt med vit blixt var tolfte sekund, byggnadsminne 1935, turbåtar från Kungshamn, badplatser, eldplatser, toalett och vandrarhem i gamla radiopejlstationen — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html (läst 2026-09-16)
-      'Utanför Kungshamn ligger naturreservatet Hållöarkipelagen, avsatt 1975 och cirka 292 hektar stort. Öarna är flacka och havsexponerade med naken berggrund; i svackor och sprickor växer slån, nypon och vide, och fågellivet omfattar bland annat lommar, alkor, tofsvipa och rödbena. På Hållös högsta punkt står Bohusläns äldsta fyr, rest 1842 och byggnadsminnesförklarad 1935; den lyser med en vit blixt var tolfte sekund. Sommartid går turbåtar till öarna från Kungshamn, och på reservatet finns badplatser, eldplatser, toalett och ett vandrarhem i den gamla radiopejlstationen.',
-      // KÄLLA: Sotenäs kommun, Badplatser Kungshamn — Fisketången (klippbad med sandstrand, bryggor med badstegar, handikappramp, omklädningsrum och toaletter), Stenbogen (klippbad med badstegar, hopptorn och trampolin), Ramnerer (klippbad) — https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn ; Sotenäs kommun, Soteleden och Kuststigen — digitala kartor och etappförslag — https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/vandringsleder/soteleden-och-kuststigen (läst 2026-09-16)
-      'I Kungshamn finns tre kommunala badplatser: Fisketången, klippbad med sandstrand, bryggor med badstegar, handikappramp, omklädningsrum och toaletter; Stenbogen, klippbad med badstegar, hopptorn och trampolin; och Ramnerer, rent klippbad. Härifrån går också Soteleden och Kuststigen, som Sotenäs kommun tillhandahåller digitala kartor och etappförslag för.',
-      // KÄLLA: Nordens Ark, Om oss — ideell stiftelse för hotade djur sedan 1989, totalt 383 hektar mark, nationellt uppfödningsansvar, adress Åby säteri, Hunnebostrand — https://nordensark.se/om-oss/ (läst 2026-09-16)
-      'En dryg mil norrut, på Åby säteri utanför Hunnebostrand i samma kommun, ligger Nordens Ark — en ideell stiftelse som sedan 1989 arbetar för att ge hotade djur en framtid genom bevarande, uppfödning, forskning och utbildning. Anläggningen omfattar totalt 383 hektar mark och har nationellt ansvar för uppfödning av flera svenska arter.',
+      // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/kungshamn/ — "Många föredrar att fortfarande använda de gamla namnen trots att det är drygt 40 år sedan samlingsnamnet Kungshamn antogs", "medan Fisketången mer har kvar sin traditionella bebyggelse med sjöbodar och ljugarbänkar" ; https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn — "Kustsamhället Kungshamn är beläget ytterst på halvön Sotenäset och är huvudorten i Sotenäs kommun" (läst 2026-09-27)
+      'Kungshamn ligger ytterst på halvön Sotenäset och är huvudort i Sotenäs kommun. Orten består av de tidigare samhällena Gravarne, Bäckevik och Fisketången, som fick samlingsnamnet Kungshamn för drygt fyrtio år sedan; många använder fortfarande de gamla namnen. Bebyggelsen i centrala Kungshamn har förändrats mycket genom åren, medan Fisketången har kvar sin traditionella bebyggelse med sjöbodar och ljugarbänkar.',
+      // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/kungshamn/ — "Kungshamn har sedan 70-talet broförbindelse med Smögen" ; https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Landets näst största fiskauktion ligger på Smögen", "Här landar fiskebåtarna sina fångster av färsk fisk och skaldjur, som du lite senare kan köpa i fiskaffärerna om hörnet" ; https://www.vastsverige.com/sotenas/artiklar/made-in-sotenas/ — "Här finns flera stora företag inom fiskberedning och mat från havet", "I Kungshamn tillverkar man", "och det har man gjort sedan 1954", "Sill, ansjovis och mycket annat som ställs på borden tillverkas också av Orkla i Kungshamn" ; https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn — "Antal platser: ca 100st", "Vattendjup: 2,5-5m", "Dusch, WC, tvättstuga, färskvatten, eluttag, wifi, sopor och mycket centralt placerad" (läst 2026-09-27)
+      'Kungshamn har sedan 1970-talet broförbindelse med Smögen. På Smögen ligger landets näst största fiskauktion, dit fiskebåtarna kommer in med färsk fisk och skaldjur som sedan säljs i fiskaffärerna i området. I Kungshamn finns flera stora företag inom fiskberedning: Orkla (tidigare Abba) har tillverkat Kalles Kaviar här sedan 1954 och gör även sill och ansjovis på orten. Kungshamns egen gästhamn ligger mycket centralt och har ett hundratal platser, med vattendjup på 2,5–5 meter, dusch, WC, tvättstuga, färskvatten, eluttag och wifi.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Bildat: 1975", "Areal: cirka 292 hektar", "Öarna är flacka och mycket utsatta för väder och vind", "buskar som slån, nypon och vide är förvisade till små sänkor och sprickdalar", "Från öarna kan du studera sträck av änder, lommar och alkor", "Till häckfåglarna hör tofsvipa, enkelbeckasin, kustlabb och rödbena", "Med en vit blixt var tolfte sekund gör sig Bohusläns äldsta fyr påmind", "Här har den stått sedan 1842 på Hållös högsta punkt", "Fyren förklarades som byggnadsminne 1935", "radiopejlingsstationen fungerar idag som vandrarhem", "Sommartid utgår regelbundna badturer från Kungshamn", "Det finns ett fyrtiotal jättegrytor på Hållö" (läst 2026-09-27)
+      'Utanför Kungshamn ligger naturreservatet Hållöarkipelagen, bildat 1975 och cirka 292 hektar stort. Öarna är flacka och mycket utsatta för väder och vind; buskar som slån, nypon och vide växer i små sänkor och sprickdalar. Från öarna kan man se sträckande änder, lommar och alkor, och bland häckfåglarna finns tofsvipa, kustlabb och rödbena. På Hållö finns ett fyrtiotal jättegrytor. På Hållös högsta punkt står Bohusläns äldsta fyr, rest 1842 och byggnadsminne sedan 1935; den lyser med en vit blixt var tolfte sekund. Sommartid går regelbundna badturer från Kungshamn, och den gamla radiopejlingsstationen är i dag vandrarhem.',
+      // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn — "Klippbad med sandstrand. Bryggor med badstegar. Handikappramp, omklädningsrum, toalett och handikapptoalett", "Klippbad med badstegar, hopptorn och trampolin", "Ramnerer" ; https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/vandringsleder/soteleden-och-kuststigen — "Planera din vandring med de digitala kartorna över Soteleden och Kuststigen i Kartportalen. Här finns etappförslag" (läst 2026-09-27)
+      'Sotenäs kommun listar tre badplatser i Kungshamn: Fisketången, klippbad med sandstrand, bryggor med badstegar, handikappramp, omklädningsrum och toaletter; Stenbogen, klippbad med badstegar, hopptorn och trampolin; och Ramnerer, klippbad. För vandring på Soteleden och Kuststigen har kommunen digitala kartor med etappförslag.',
+      // KÄLLA: https://nordensark.se/om-oss/ — "Nordens Ark är en ideell stiftelse som arbetar för att ge hotade djur en framtid", "Nordens Ark har funnits sedan 1989 och den zoologiska parken är öppen för besökare", "Åby säteri omfattar totalt 383 hektar mark", "Nordens Ark har ett nationellt ansvar för uppfödning och utplantering av flera svenska arter", "Åby säteri, 456 93 Hunnebostrand" ; https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf — "Smögen–Kungshamn–Uddevalla–Trollhättan", "Nordens ark", "Gäller 14 dec 2025 - 12 dec 2026" (läst 2026-09-27)
+      // Busstiden Kungshamns busstation–Nordens ark avläst i Västtrafiks tabell för linje 860 (måndag–fredag, t.ex. 06.23–06.42 och 08.23–08.42).
+      'På Åby säteri utanför Hunnebostrand i samma kommun ligger Nordens Ark — en ideell stiftelse som sedan 1989 arbetar för att ge hotade djur en framtid, med en zoologisk park som är öppen för besökare. Åby säteri omfattar totalt 383 hektar mark, och Nordens Ark har nationellt ansvar för uppfödning och utplantering av flera svenska arter. Västtrafiks buss 860 från Kungshamns busstation har en hållplats vid Nordens Ark, cirka 20 minuter bort.',
     ],
     facts: {
-      // Restiden från Göteborg utelämnad: ingen tillåten källa anger den.
-      travel_time: '',
-      character: 'Fiskeindustriell by, räkor, arbetshamn',
-      season: 'Juni–september',
-      // KÄLLA: Sotenäs kommun, Kungshamns gästhamn och Soteleden/Kuststigen — gästhamnen och vandringsleden — https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/vandringsleder/soteleden-och-kuststigen (läst 2026-09-16)
+      // KÄLLA: https://www.sotenas.se/taxorochavgifter/bussbatochtag.4.5d92f42815befa72d8ea31ef.html — "Avstånd Göteborg: 130 km", "Kör E6 norrut mot Oslo. Vid Gläborgmotet, norr om Munkedal, tag höger på väg 162 mot Kungshamn/Smögen" (läst 2026-09-27) ; https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf — "Smögen–Kungshamn–Uddevalla–Trollhättan", "Gäller 14 dec 2025 - 12 dec 2026" (läst 2026-09-27)
+      // Busstid avläst i tabellen, måndag–fredag: Kungshamns busstation 06.23 → Uddevalla central 07.44 och 07.23 → 08.44 (81 min).
+      travel_time: 'Ca 13 mil med bil från Göteborg; buss 860 Kungshamn–Uddevalla ca 1 tim 20 min',
+      // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn — "huvudorten i Sotenäs kommun" ; https://www.vastsverige.com/sotenas/artiklar/made-in-sotenas/ — "Här finns flera stora företag inom fiskberedning och mat från havet" ; https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Landets näst största fiskauktion ligger på Smögen" (läst 2026-09-27)
+      character: 'Sotenäs huvudort med fiskberedning, gästhamn och bro till Smögen',
+      // UPPSKATTNING: sommarsäsongen avgränsad efter gästhamnens bemannade period – https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn — "Personal finns på plats alla dagar under högsäsong v25-33" (läst 2026-09-27)
+      season: 'Juni–september (gästhamnen bemannad vecka 25–33)',
+      // KÄLLA: https://fyrenkungshamn.se/ — "Ett stort lass med räkor, serveras på tekaka, ägg, majonnäs" (läst 2026-09-27) ; https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/vandringsleder/soteleden-och-kuststigen — "Planera din vandring med de digitala kartorna över Soteleden och Kuststigen" (läst 2026-09-27)
       best_for: 'Räkmacka, gästhamn, vandring på Soteleden',
     },
     facts_provenance: {
-      travel_time: 'bedomning',
-      character: 'bedomning',
+      travel_time: 'matt',
+      character: 'matt',
       season: 'bedomning',
       best_for: 'bedomning',
     },
     activities: [
-      // KÄLLA: Västsverige/Sotenäs, Smögen — möjlighet att följa med lokala fiskare och delta i räkfisketurer — https://www.vastsverige.com/sotenas/artiklar/smogen/ (läst 2026-09-16)
-      { icon: '🦐', name: 'Räkfiskartur', desc: 'Räkfisketurer med lokala fiskare erbjuds i området.' },
-      // KÄLLA: Nordens Ark, Om oss — stiftelse för hotade djur sedan 1989, Åby säteri utanför Hunnebostrand — https://nordensark.se/om-oss/ (läst 2026-09-16)
-      { icon: '🦭', name: 'Nordens Ark', desc: 'Stiftelse för hotade djur sedan 1989, på Åby säteri i samma kommun.' },
-      // KÄLLA: Västsverige/Sotenäs, Kungshamn — "Kungshamn har sedan 70-talet broförbindelse med Smögen" — https://www.vastsverige.com/sotenas/artiklar/kungshamn/ (läst 2026-09-16)
+      // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "följa med en lokal fiskare ut på fisketur eller kanske en kräftfisketur" (läst 2026-09-27)
+      { icon: '🎣', name: 'Fisketur med lokal fiskare', desc: 'Från Smögen, över bron, går det att följa med en lokal fiskare ut på fisketur eller kräftfisketur.' },
+      // KÄLLA: https://nordensark.se/om-oss/ — "Nordens Ark har funnits sedan 1989 och den zoologiska parken är öppen för besökare", "Åby säteri, 456 93 Hunnebostrand" ; https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf — "Nordens ark" (läst 2026-09-27)
+      { icon: '🦭', name: 'Nordens Ark', desc: 'Zoologisk park för hotade djur sedan 1989, på Åby säteri utanför Hunnebostrand. Buss 860 från Kungshamn stannar vid parken.' },
+      // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/kungshamn/ — "Kungshamn har sedan 70-talet broförbindelse med Smögen" ; https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn — "Klippbad med badstegar, hopptorn och trampolin" (läst 2026-09-27)
       { icon: '🥾', name: 'Promenad till Smögen', desc: 'Broförbindelse till Smögen sedan 1970-talet.' },
+      { icon: '🏊', name: 'Klippbad på Stenbogen', desc: 'Kommunal badplats i Kungshamn med badstegar, hopptorn och trampolin.' },
     ],
     accommodation: [
-      // KÄLLA: Västsverige/Sotenäs, Hotell Kungshamn Suites — namnet, adress Hotellgatan 6, Kungshamn, lägenhetssviter och egen restaurang med utsikt över Kungshamnsinloppet — https://www.vastsverige.com/en/sotenas/produkter/hotell-kungshamn/ (läst 2026-09-16)
-      { name: 'Hotell Kungshamn Suites', type: 'Hotell', desc: 'Lägenhetssviter på en klippa vid Kungshamnsinloppet, de flesta med balkong eller terrass mot kusten. Egen restaurang.' },
+      // KÄLLA: https://www.hotellkungshamn.se/ — "Högst upp på en klippa i hjärtat av Kungshamn solar sig vårt unika boende", "Hotellgatan 6, 456 31 Kungshamn", "under 2026" ; https://www.vastsverige.com/en/sotenas/produkter/hotell-kungshamn/ — "most of them having a balcony or terrace with fantastic views over the coast of Bohuslän", "The hotel's renowned restaurant is well situated, with a great view of the Kungshamn inlet" (läst 2026-09-27)
+      { name: 'Hotell Kungshamn Suites', type: 'Hotell', desc: 'Lägenhetssviter högst upp på en klippa i centrala Kungshamn, de flesta med balkong eller terrass mot kusten. Restaurang med utsikt över Kungshamnsinloppet.', websiteUrl: 'https://www.hotellkungshamn.se/' },
     ],
     getting_there: [
-      { method: 'Bil', from: 'Göteborg', desc: 'E6 norrut och västerut ut på Sotenäset.', icon: '🚗' },
+      // KÄLLA: https://www.sotenas.se/taxorochavgifter/bussbatochtag.4.5d92f42815befa72d8ea31ef.html — "Avstånd Göteborg: 130 km", "Vid Gläborgmotet, norr om Munkedal, tag höger på väg 162 mot Kungshamn/Smögen. Efter ca 6 km , vid Hallinden, tag höger på väg 171 mot Kungshamn/Smögen", "Direktbussar till Sotenäs går från bland annat Kampenhof, Uddevalla och Nils Ericson-terminalen, Göteborg" (läst 2026-09-27)
+      { method: 'Bil', from: 'Göteborg', time: 'ca 130 km', desc: 'E6 norrut. Vid Gläborgmotet norr om Munkedal tar du väg 162 och efter cirka 6 km, vid Hallinden, väg 171 mot Kungshamn/Smögen.', icon: '🚗' },
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf — "Smögen–Kungshamn–Uddevalla–Trollhättan", "Kungshamns busstation", "Uddevalla central", "Gäller 14 dec 2025 - 12 dec 2026", "Linjen trafikeras av Vy Buss" (läst 2026-09-27)
+      // Restid avläst måndag–fredag: Kungshamns busstation 06.23 → Uddevalla central 07.44 (81 min).
+      { method: 'Buss', from: 'Uddevalla', time: 'ca 1 tim 20 min', desc: 'Västtrafiks linje 860 Smögen–Kungshamn–Uddevalla–Trollhättan går via Torp och Uddevalla central. Enligt Sotenäs kommun går direktbussar till Sotenäs också från Nils Ericson-terminalen i Göteborg.', icon: '🚌', url: 'https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014486000000/' },
     ],
     harbors: [
-      // KÄLLA: Sotenäs kommun, Kungshamns gästhamn — cirka 100 platser, vattendjup 2,5–5 m, dusch, WC, tvättstuga, färskvatten, eluttag, wifi, sopor; inget drivmedel anges; centralt läge med butiker, restauranger och banker nära — https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn (läst 2026-09-16)
-      { name: 'Kungshamns Gästhamn', desc: 'Gästhamn i Kungshamn med cirka 100 båtplatser och djup 2,5–5 meter enligt Sotenäs kommun. Kommunen anger centralt läge med butiker, restauranger och banker nära.', fuel: false },
+      // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn — "Antal platser: ca 100st", "Vattendjup: 2,5-5m", "Dusch, WC, tvättstuga, färskvatten, eluttag, wifi, sopor och mycket centralt placerad", "Det finns ett bra shoppingsutbud, livsmedel, systembolag, restauranger, nattklubbar och banker", "Personal finns på plats alla dagar under högsäsong v25-33" (läst 2026-09-27)
+      // Drivmedel nämns inte på kommunens sida (fuel: false = inte angivet).
+      { name: 'Kungshamns Gästhamn', desc: 'Kommunal gästhamn mitt i Kungshamn med cirka 100 båtplatser och djup 2,5–5 meter. Dusch, WC, tvättstuga, färskvatten, el och wifi. Personal finns på plats alla dagar vecka 25–33. Livsmedel, systembolag, restauranger och banker finns i orten.', spots: 100, fuel: false, service: ['Dusch', 'WC', 'Tvättstuga', 'Färskvatten', 'El', 'Wifi'] },
     ],
     restaurants: [
-      // KÄLLA: Restaurang Fyren, egen webbplats — Bäckeviksgatan 3D, Kungshamn, "precis vid havet och strandpromenaden" — https://fyrenkungshamn.se/ (läst 2026-09-16)
-      { name: 'Restaurang Fyren', type: 'Restaurang', desc: 'Restaurang längst in i hamnen i Kungshamn, vid havet och strandpromenaden. Husmanskost, fisk- och kötträtter, pasta, hamburgare och räkmacka.' },
-      // KÄLLA: Västsverige/Sotenäs, Krogar och caféer året om — Calmars Veranda, Hamnbageriet och Coza Café & Mat listade under Kungshamn — https://www.vastsverige.com/sotenas/artiklar/artiklar-se--gora/krogar-och-cafeer-aret-om/ (läst 2026-09-16)
-      { name: 'Calmars Veranda', type: 'Restaurang', desc: 'Krog i Kungshamn.' },
-      { name: 'Hamnbageriet', type: 'Café', desc: 'Café och bageri i Kungshamn.' },
-      { name: 'Coza Café & Mat', type: 'Café', desc: 'Café med matservering i Kungshamn.' },
+      // KÄLLA: https://fyrenkungshamn.se/ — "Med det mest centrala läget du kan hitta i Kungshamn, precis vid havet och strandpromenaden", "Längst in i hamnen i Kungshamn finner du oss", "Hemlagad husmanskost till ett bra pris", "Ett stort lass med räkor, serveras på tekaka", "Tagliatelle, kycklingfilé, pesto, grädde", "Vi har även pizza för avhämtning" (läst 2026-09-27)
+      // Sidan uppdaterad september 2026 (dateModified 2026-09-07).
+      { name: 'Restaurang Fyren', type: 'Restaurang', desc: 'Restaurang längst in i hamnen i Kungshamn, vid havet och strandpromenaden, med uteservering mot småbåtshamnen. Husmanskost till lunch vardagar, fisk- och kötträtter, pasta, räkmacka och pizza för avhämtning.', websiteUrl: 'https://fyrenkungshamn.se/' },
+      // KÄLLA: https://shop.hamnbageriet.se/ — "ett härligt bageri och café i hjärtat av Kungshamn", "2026" ; https://hamnbageriet.se/ — "Bagerihuset är själva hjärtat i Hamnbageriet", "Huset är öppet året om", "Glass och mathuset öppnar vi upp under sommarmånaderna" (läst 2026-09-27)
+      { name: 'Hamnbageriet', type: 'Café', desc: 'Bageri och café vid hamnen i Kungshamn. Bagerihuset har öppet året om; sommartid öppnar också ett glass- och mathus med mackor, panini och våfflor.', websiteUrl: 'https://hamnbageriet.se/' },
     ],
-    // KÄLLA: Västsverige/Sotenäs, Smögen — Hållö "a 10-minute boat ride away" — https://www.vastsverige.com/sotenas/artiklar/smogen/ ; Västsverige/Sotenäs, Kungshamn — granitvalvbron i Hovenäset uppges vara Sveriges största valvbro av granit — https://www.vastsverige.com/sotenas/artiklar/kungshamn/ (läst 2026-09-16)
-    tips: ['Hållö nås med båt från Smögen på cirka tio minuter.', 'Söder om Kungshamn ligger Hovenäset, vars granitvalvbro från tidigt 1900-tal uppges vara Sveriges största valvbro av granit (Västsverige).'],
+    // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "10 minuters båttur från Smögen ligger ön Hållö" ; https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Sommartid utgår regelbundna badturer från Kungshamn" ; https://www.vastsverige.com/sotenas/artiklar/kungshamn/ — "Strax innan den södra infarten till Kungshamn ligger det lilla samhället Hovenäset", "Hovenäsbron som förbinder Hovenäset med Kungshamn byggdes i början av 1900-talet, den sägs vara unik pga att den är Sveriges största valvbro av granit" ; https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn — "vid Tångens badplats finns också en liten parkering" (läst 2026-09-27)
+    tips: ['Till Hållö går det sommartid regelbundna badturer från Kungshamn; från Smögen tar båtturen cirka tio minuter.', 'Strax före den södra infarten till Kungshamn ligger Hovenäset. Hovenäsbron från tidigt 1900-tal sägs vara Sveriges största valvbro av granit (Västsverige).', 'Vid Fisketångens badplats finns en liten parkering.'],
     related: ['smogen', 'lysekil', 'grebbestad'],
-    tags: ['räkor', 'fiskeindustri', 'prisvärt', 'arbetshamn'],
-    // KÄLLA: Västsverige/Sotenäs, Kungshamn — Gravarne, Bäckevik och Fisketången slogs ihop för drygt fyrtio år sedan och de gamla ortnamnen används fortfarande lokalt — https://www.vastsverige.com/sotenas/artiklar/kungshamn/ (läst 2026-09-16)
-    did_you_know: 'Kungshamn är egentligen tre orter i en: Gravarne, Bäckevik och Fisketången slogs ihop under ett gemensamt namn för drygt fyrtio år sedan, och de gamla ortnamnen används fortfarande lokalt.',
+    tags: ['räkor', 'fiskberedning', 'gästhamn', 'klippbad', 'vandring'],
+    // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/kungshamn/ — "Gravarne", "Bäckevik", "Många föredrar att fortfarande använda de gamla namnen trots att det är drygt 40 år sedan samlingsnamnet Kungshamn antogs" (läst 2026-09-27)
+    did_you_know: 'Kungshamn är egentligen tre orter i en: Gravarne, Bäckevik och Fisketången fick samlingsnamnet Kungshamn för drygt fyrtio år sedan, och många använder fortfarande de gamla namnen.',
     seasonal: {
+      // UPPSKATTNING: säsong och högsäsong bedömda utifrån gästhamnens bemannade period (v25–33) och badturerna till Hållö sommartid.
       open: 'Juni–September',
       peak: 'Juli–Augusti',
       best: 'Juni eller September',
-      bestReason: 'Juni och september ger gästhamnsplats och vandring på Soteleden utan högsäsongens tryck.',
+      // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn — "Personal finns på plats alla dagar under högsäsong v25-33" ; https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Sommartid utgår regelbundna badturer från Kungshamn" (läst 2026-09-27)
+      bestReason: 'Gästhamnen har personal alla dagar vecka 25–33, och sommartid går regelbundna badturer från Kungshamn till Hållöarkipelagen.',
       months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
     },
   },
@@ -1432,106 +1591,152 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
     emoji: '🐟',
-    // KÄLLA: Klädesholmens Samhällsförening, egen webbplats — beskriver ön som "Klädesholmen, solens & sillens ö" — https://kladesholmen.com/ (läst 2026-09-16)
-    // KÄLLA: Tjörns kommun, "Tjörn och sillen" — bekräftar att Klädesholmen varit viktig för sillhandeln sedan 1500-talet — https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/tjorn-pa-hosten-och-vintern/tjorn-och-sillen (läst 2026-09-16)
+    // KÄLLA: https://kladesholmen.com/ — "solens & sillens ö" (läst 2026-09-27)
+    // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/tjorn-pa-hosten-och-vintern/tjorn-och-sillen — "Ända sedan 1500-talet har Klädesholmen varit en viktig plats för sillhandeln." (läst 2026-09-27)
+    // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmens-sauna/ — "In the beautiful Jungfruviken on Klädesholmen" (läst 2026-09-27)
     tagline: 'Sillens och solens ö — 1500-talets sillhandel, Sillebua och bastu i Jungfruviken.',
     description: [
-      // KÄLLA: Tjörns kommun, "Tjörn och sillen" — sillhandel sedan 1500-talet, den stora sillperioden på 1700-talet, nästa sillperiod runt 1870, 26 fabriker 1967, tre kvar vid millennieskiftet som gick samman — https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/tjorn-pa-hosten-och-vintern/tjorn-och-sillen ; Tjörns kommun, "Öar runt Tjörn" — ordagrant "Under den stora sillperioden 1747-1808 bodde uppemot 1 000 personer på Klädesholmen" — https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn (läst 2026-09-16)
-      'Klädesholmen har varit en viktig plats för sillhandeln ända sedan 1500-talet. Under den stora sillperioden 1747–1808 bodde uppemot 1 000 personer på ön, och en ny sillperiod kom runt 1870: när sillen gick till kokade det av den i vikarna, och salterier och konservfabriker växte fram längs hamnen. År 1967 fanns 26 fabriker på ön. Vid millennieskiftet återstod tre, som gick samman.',
-      // KÄLLA: Klädesholmens Samhällsförening, "Klädesholmens museum – Sillebua" — öppnade 1995 i en gammal konservfabrik, flyttade 2020 till Sillens hus på Strandgatan 12B, visar fisk- och sillberedning från ca 1860, dokumentationsavdelning — https://kladesholmen.com/att-gora/museum/ (läst 2026-09-16)
-      'Sillhistorien finns samlad på Sillebua, Klädesholmens museum, som visar öns historia och utveckling med tonvikt på fisk- och sillberedning från omkring 1860 fram till dagens moderna industri. Museet öppnade 1995 i en gammal konservfabrik och flyttade 2020 till Sillens hus på Strandgatan 12B. Där finns också en dokumentationsavdelning med fotografier, film och inspelade intervjuer.',
-      // KÄLLA: Salt & Sill, "Vår historia" (verksamhetens egen webbplats) — Sveriges första flytande hotell, sex moduler bogserade till Klädesholmen i juli 2008 på specialtillverkade pontoner, 300 m² konferens- och eventlokaler våren 2013 — https://www.saltosill.se/om-salt-sill/var-historia/ (läst 2026-09-16)
-      'I dag är Salt & Sill öns mest kända verksamhet. Restaurangen fick sällskap av Sveriges första flytande hotell — de sex hotellmodulerna bogserades till Klädesholmen i juli 2008, byggda på specialtillverkade pontoner. Våren 2013 tillkom 300 kvadratmeter konferens- och eventlokaler.',
-      // KÄLLA: Västsverige/Tjörn, "Klädesholmen" — broförbunden sedan 1983, traditionella vita trähus, gatunamnet Skomakaregatan — https://www.vastsverige.com/en/tjorn/products/kladesholmen/ (läst 2026-09-16)
-      'Klädesholmen är broförbundet med Tjörn sedan 1983 och är inte bilfritt. Bebyggelsen består av de traditionella vita trähus som är typiska för bohuslänska fiskesamhällen, och gatorna bär yrkesnamn som Skomakaregatan.',
-      // KÄLLA: Västsverige/Tjörn, "Klädesholmen" — bebodd redan på 1200-talet, norsk biskop passerade 1594 och beskrev ön som ett gammalt fiskeläge, drygt 400 invånare 1830, nästan tusen i början av 1900-talet — https://www.vastsverige.com/en/tjorn/products/kladesholmen/ (läst 2026-09-16)
-      'Bebyggelsen är tät och gränderna smala. Ön antas ha varit bebodd redan på 1200-talet, och när en norsk biskop passerade 1594 beskrev han den som ett gammalt fiskeläge. År 1830 hade befolkningen sjunkit till drygt 400, för att i början av 1900-talet nå nästan tusen invånare.',
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/tjorn-pa-hosten-och-vintern/tjorn-och-sillen — "Ända sedan 1500-talet har Klädesholmen varit en viktig plats för sillhandeln.", "Riktig fart tog det under den stora sillperioden på 1700-talet, när det kokade av sill i vikarna.", "Nästa sillperiod kom runt 1870.", "Sillfabriker växte fram", "1967 fanns det 26 fabriker på Klädesholmen.", "Vid millennieskiftet var det tre fabriker kvar som bestämde sig för att gå samman." (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "Under den stora sillperioden 1747–1808 bodde uppemot 1 000 personer på Klädesholmen" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmen/ — "the three remaining factories merged to form Klädesholmen Seafood AB", "In 2015, herring production was transferred to larger factory premises in Rönnäng, on Tjörn, while the factory outlet remained on Klädesholmen." (läst 2026-09-27)
+      'Klädesholmen har varit en viktig plats för sillhandeln ända sedan 1500-talet. Under den stora sillperioden 1747–1808 bodde uppemot 1 000 personer på ön, och det kokade av sill i vikarna. Nästa sillperiod kom runt 1870, och då växte sillfabrikerna fram. År 1967 fanns 26 fabriker på ön. Vid millennieskiftet återstod tre, som gick samman till Klädesholmen Seafood; 2015 flyttades sillproduktionen till större lokaler i Rönnäng på Tjörn, medan fabriksbutiken blev kvar på ön.',
+      // KÄLLA: https://kladesholmen.com/att-gora/museum/ — "fisk- och sillberedning från ca 1860 fram till dagens moderna industri" — öppnade 1995 i en tidigare konservfabrik, flyttade 2020 till Sillens hus på Strandgatan 12B, drivs ideellt, dokumentationsavdelning med bild, film och intervjuer (läst 2026-09-27)
+      'Sillhistorien finns samlad på Sillebua, Klädesholmens museum, som visar öns historia och utveckling med tonvikt på fisk- och sillberedning från omkring 1860 fram till dagens moderna industri. Museet öppnade 1995 i en gammal konservfabrik och flyttade 2020 till Sillens hus på Strandgatan 12B. Det drivs ideellt och har en dokumentationsavdelning med fotografier, film och inspelade intervjuer.',
+      // KÄLLA: https://www.saltosill.se/om-salt-sill/var-historia/ — "Restaurangens specialitet blev sill", "Sveriges första flytande hotell", "Hotellet byggdes på flytande pontoner, som specialtillverkades av", "i juli 2008", "bogserades de sex hotellmodulerna från Wallhamn", "Våren 2013 stod de 300 kvadratmeter nya lokalerna klara", "Destination Salt & Sill har idag fyra olika restauranger. Salt & Sill, Sjöboden, Saltbaren och Holmens kiosk." (läst 2026-09-27)
+      'Restaurangen Salt & Sill har sill som specialitet. År 2008 fick den sällskap av Sveriges första flytande hotell: de sex hotellmodulerna byggdes på specialtillverkade pontoner vid Wallhamn och bogserades till Klädesholmen i juli 2008. Våren 2013 tillkom 300 kvadratmeter konferens- och festlokaler, och i dag driver Salt & Sill fyra serveringar på ön: Salt & Sill, Sjöboden, Saltbaren och Holmens kiosk.',
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmen/ — "linked by a bridge that was built in 1983", "traditional white wooden houses that are typical of fishing communities along the coast", "Skomakaregatan (Shoemaker Street), Kustroddarvägen (Coastguard Road)", "Fiskargränd", "granite sculpture: Faith, Hope and Love" (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "till Klädesholmen och Lilla Askerön kan du åka bil eller buss" (läst 2026-09-27)
+      'Klädesholmen är broförbundet med Tjörn sedan 1983, och hit kan man åka både bil och buss. Bebyggelsen består av de traditionella vita trähus som är typiska för fiskesamhällena längs kusten, och gatorna bär yrkesnamn som Skomakaregatan, Kustroddarvägen och Fiskargränd. Längst i väster, där husen övergår i klippor vid vattenbrynet, står Claes Hakes granitskulptur Tro, hopp och kärlek.',
+      // KÄLLA: https://kladesholmen.com/ — "trånga gränder, med tät bebyggelse" (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "Klädesholmen är egentligen två holmar – den södra är Klädesholmen med den äldsta bebyggelsen, den norra är Koholmen.", "så skrev biskop Jens Nilsson från Oslo i sin resa genom Bohuslän 1594", "En gissning som mycket väl kan stämma är att de första bosättarna kom hit på 1200-talet." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmen/ — "by 1830 the population had dropped to just over 400", "almost a thousand people lived on the island" (läst 2026-09-27)
+      'Gränderna är trånga och bebyggelsen tät. Klädesholmen är egentligen två holmar: den södra, Klädesholmen, med den äldsta bebyggelsen, och den norra, Koholmen. De första bosättarna kom troligen på 1200-talet, och när biskop Jens Nilsson från Oslo reste genom Bohuslän 1594 beskrev han ön som ett gammalt fiskeläge. År 1830 hade befolkningen sjunkit till drygt 400, för att i början av 1900-talet nå nästan tusen invånare.',
     ],
-    // KÄLLA: Klädesholmens Samhällsförening, "Klädesholmens museum – Sillebua" — https://kladesholmen.com/att-gora/museum/ (läst 2026-09-16)
     facts: {
+      // KÄLLA: https://www.saltosill.se/om-salt-sill/var-historia/ — "endast en timmes bilfärd bort" (läst 2026-09-27)
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf — "Tjörn–Stenungsund/Göteborg", "Gäller 14 dec 2025 - 12 dec 2026", "Klädesholmen östra 08.33 09.33 10.33 11.33 12.33 13.33 14.33 15.33 16.33 17.33 18.33 19.33 20.33 21.33 22.33", "Stenungsunds station 09.28 10.28 11.28 12.28 13.28 14.28 15.28 16.28 17.28 18.28 19.28 20.28 21.28 22.28 23.28" — t.ex. Klädesholmen östra 08.33 → Stenungsunds station 09.28 = 55 min (läst 2026-09-27)
+      travel_time: 'Ca 1 timme med bil från Göteborg; buss ca 55 min från Stenungsund',
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/tjorn-pa-hosten-och-vintern/tjorn-och-sillen — "Ända sedan 1500-talet har Klädesholmen varit en viktig plats för sillhandeln." (läst 2026-09-27)
+      // KÄLLA: https://www.saltosill.se/om-salt-sill/var-historia/ — "Sveriges första flytande hotell" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmens-sauna/ — "The sauna is operated by the Klädesholmen Sauna Association." (läst 2026-09-27)
       known_for: 'Sillhistoria och sillindustri, Sillebua museum, Salt & Sill, bastu',
     },
     facts_provenance: {
+      travel_time: 'matt',
       known_for: 'matt',
     },
     activities: [
-      // KÄLLA: Salt & Sill, "Vår historia" — Sveriges första flytande hotell, sex moduler på pontoner bogserade till ön i juli 2008 — https://www.saltosill.se/om-salt-sill/var-historia/ (läst 2026-09-16)
-      { icon: '🍽', name: 'Salt & Sill', desc: 'Restaurang på Klädesholmen med Sveriges första flytande hotell intill — sex hotellmoduler på pontoner, bogserade till ön i juli 2008.' },
-      // KÄLLA: Västsverige/Tjörn, "Klädesholmens Bastu" — ligger i Jungfruviken, drivs av Klädesholmens Bastuförening, havsvatten kan pumpas in i badtunnan, bokning via bastuföreningen — https://www.vastsverige.com/en/tjorn/products/kladesholmens-sauna/ (läst 2026-09-16)
-      { icon: '🧖', name: 'Havsbastu', desc: 'Klädesholmens bastu ligger i Jungfruviken och drivs av Klädesholmens Bastuförening. Bad i havet direkt från bastun, och havsvatten kan pumpas in i badtunnan. Bokas via bastuföreningen.' },
-      // KÄLLA: Klädesholmens Samhällsförening, "Klädesholmens museum – Sillebua" — fisk- och sillberedning från ca 1860, Sillens hus på Strandgatan 12B, flyttade dit 2020 — https://kladesholmen.com/att-gora/museum/ (läst 2026-09-16)
+      // KÄLLA: https://www.saltosill.se/om-salt-sill/var-historia/ — "Restaurangens specialitet blev sill", "Sveriges första flytande hotell", "bogserades de sex hotellmodulerna från Wallhamn", "i juli 2008" (läst 2026-09-27)
+      { icon: '🍽', name: 'Salt & Sill', desc: 'Restaurang med sill som specialitet och Sveriges första flytande hotell intill — sex hotellmoduler på pontoner, bogserade till ön i juli 2008.' },
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmens-sauna/ — "In the beautiful Jungfruviken on Klädesholmen", "there's a clever solution where you can pump seawater into the hot tub", "In addition to piers and ladders, there is a spacious relaxation area, a kitchen, changing rooms, showers, and toilets.", "It can accommodate groups of up to 12 people.", "The facility is accessible for all.", "The sauna is operated by the Klädesholmen Sauna Association." (läst 2026-09-27)
+      // KÄLLA: https://kladesholmensbastu.se/ — "magnifika utsikten mot väst, med Flatholmen och havet i blickfånget" — bokning via boka.kladesholmensbastu.se (läst 2026-09-27)
+      { icon: '🧖', name: 'Havsbastu', desc: 'Klädesholmens bastu ligger bland klipporna i Jungfruviken med utsikt västerut mot Flatholmen och drivs av Klädesholmens Bastuförening. Bryggor och badstegar ner i havet, badtunna som fylls med havsvatten, kök, omklädningsrum, duschar och toaletter. Anläggningen är tillgänglighetsanpassad och tar upp till 12 personer. Bokas via bastuföreningen.' },
+      // KÄLLA: https://kladesholmen.com/att-gora/museum/ — "fisk- och sillberedning från ca 1860 fram till dagens moderna industri" — Sillens hus, Strandgatan 12B, flyttade dit 2020 (läst 2026-09-27)
       { icon: '🏛', name: 'Sillebua', desc: 'Klädesholmens museum visar öns fisk- och sillberedning från omkring 1860 fram till i dag. Ligger i Sillens hus på Strandgatan 12B, dit museet flyttade 2020.' },
-      // KÄLLA: Västsverige/Tjörn, "House of Herrings" — sillbutik på Klädesholmen — https://www.vastsverige.com/tjorn/produkter/house-of-herrings/ (läst 2026-09-16)
-      { icon: '🐟', name: 'House of Herrings', desc: 'Sillbutik på Klädesholmen.' },
+      // KÄLLA: https://www.vastsverige.com/tjorn/produkter/house-of-herrings/ — "House of Herrings – världens första och enda sillbutik – hittar du mitt på Klädesholmen i Bohuslän, precis intill Sillmuseet.", "samt köpa tillbehör för egna inläggningar", "Du hittar också lokala delikatesser från Bohuslän och fina souvenirer att ta med hem" (läst 2026-09-27)
+      // KÄLLA: https://www.saltosill.se/houseofherrings/ — "en butik fylld av sill, tradition och smakupplevelser" — drivs av Salt & Sill, Strandgatan 12, sill från Klädesholmen Seafood (läst 2026-09-27)
+      { icon: '🐟', name: 'House of Herrings', desc: 'Sillbutik mitt på Klädesholmen, precis intill sillmuseet, som drivs av Salt & Sill. Här finns sill i traditionella och nya smaker, tillbehör för egna inläggningar, lokala delikatesser och souvenirer.' },
     ],
     accommodation: [
-      // KÄLLA: Salt & Sill, egen webbplats — "Sveriges första flytande hotell", fyra serveringar och konferens på anläggningen, bastubåt — https://www.saltosill.se/hotell/ och https://www.saltosill.se/aktiviteter/bad-och-bastubaten/ (läst 2026-09-16)
-      // KÄLLA: Tjörns kommun, "Äta och bo" — "Salt & Sill — Flytande hotell vid Klädesholmen, en ö med broförbindelse" — https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo (läst 2026-09-16)
-      { name: 'Salt & Sill', type: 'Hotell', desc: 'Flytande hotell vid Klädesholmen, enligt verksamheten "Sveriges första flytande hotell". Fyra serveringar på anläggningen och konferens. Bastubåt finns.' },
+      // KÄLLA: https://www.saltosill.se/hotell/ — "Sveriges första flytande hotell", "Enkelrum och dubbelrum med havsutsikt", "vår enda svit", "Villa stora Salt är en separat villa", "Villa lilla Salt är en separat villa" (läst 2026-09-27)
+      // KÄLLA: https://www.saltosill.se/aktiviteter/bad-och-bastubaten/ — "Förtöjd vid Salt & Sills brygga ligger S/S Silla – vår bad- och bastubåt" (läst 2026-09-27)
+      // KÄLLA: https://www.saltosill.se/om-salt-sill/var-historia/ — "Destination Salt & Sill har idag fyra olika restauranger." (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo — "Flytande hotell vid Klädesholmen, en ö med broförbindelse." (läst 2026-09-27)
+      { name: 'Salt & Sill', type: 'Hotell', desc: 'Flytande hotell vid Klädesholmen, enligt verksamheten "Sveriges första flytande hotell". Enkel- och dubbelrum med havsutsikt, en svit och två separata villor på land. Fyra serveringar och konferens på anläggningen, och vid bryggan ligger bad- och bastubåten S/S Silla.' },
     ],
     getting_there: [
-      // KÄLLA: Västsverige/Tjörn, "Klädesholmen" — broförbunden med Tjörn genom en bro byggd 1983 — https://www.vastsverige.com/en/tjorn/products/kladesholmen/ (läst 2026-09-16)
-      { method: 'Bil via Tjörn', from: 'Stenungsund / Göteborg', desc: 'Klädesholmen är broförbundet med Tjörn sedan 1983. Kör E6 norrut mot Stenungsund, över Tjörnbron och vidare mot Rönnäng, och ta av mot Klädesholmen.', icon: '🚗' },
-      { method: 'Västtrafik buss', from: 'Stenungsund', desc: 'Västtrafik trafikerar Tjörn med buss. Sök aktuell resa i Västtrafiks reseplanerare.', icon: '🚌' },
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmen/ — "linked by a bridge that was built in 1983" (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "Kör väg 169 mot Rönnäng. Ta höger i Bleket, mot bron som leder över till Klädesholmen. Parkering finns före och efter bron." (läst 2026-09-27)
+      // KÄLLA: https://www.saltosill.se/om-salt-sill/var-historia/ — "endast en timmes bilfärd bort" (läst 2026-09-27)
+      { method: 'Bil via Tjörn', from: 'Stenungsund / Göteborg', desc: 'Klädesholmen är broförbundet med Tjörn sedan 1983. Kör över Tjörnbroarna och väg 169 mot Rönnäng, ta höger i Bleket mot bron till Klädesholmen. Parkering finns före och efter bron. Ungefär en timme från Göteborg.', icon: '🚗' },
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf — "Tjörn–Stenungsund/Göteborg", "Gäller 14 dec 2025 - 12 dec 2026", "Klädesholmen östra 08.33 09.33 10.33 11.33 12.33 13.33 14.33 15.33 16.33 17.33 18.33 19.33 20.33 21.33 22.33", "Stenungsunds station 09.28 10.28 11.28 12.28 13.28 14.28 15.28 16.28 17.28 18.28 19.28 20.28 21.28 22.28 23.28", "Klädesholmen östra 05.03 06.03 06.33 07.03 07.33 08.33", "Nils Ericson Terminalen 06.02 06.35 07.05 07.20 07.32 07.35 08.05" — lör/sön Klädesholmen östra 08.33 → Stenungsunds station 09.28 (55 min); vardagar Klädesholmen östra 06.03 → Nils Ericson Terminalen 07.35 (92 min) (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/bygga-bo-miljo-och-trafik/trafik-och-resor/buss-bat-och-tag — "Närmaste tågstation ligger i Stenungsund.", "Inom Tjörn kan du åka linjebuss eller åka med expressbussarna som fortsätter till Stenungsund och Göteborg." (läst 2026-09-27)
+      { method: 'Västtrafik buss', from: 'Stenungsund / Göteborg', desc: 'Tjörnexpressen (TEXP) stannar vid Klädesholmen östra och går ungefär en gång i timmen till och från Stenungsunds station, där närmaste tågstation finns – ca 55 minuter. Vardagsmorgnar går vissa turer direkt till Nils Ericson Terminalen i Göteborg, ca 1,5 timme (tidtabell 14 dec 2025–12 dec 2026).', icon: '🚌' },
     ],
     transport_meta: {
-      from_city_min: 75,
-      nearest_hub: 'Stenungsund',
-      from_nearest_hub_min: 50,
-      operator: 'Väg (broförbunden) + Västtrafik',
-      frequency: 'Tillgänglig hela året med bil',
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf — "Tjörn–Stenungsund/Göteborg", "Gäller 14 dec 2025 - 12 dec 2026", "Klädesholmen östra 05.03 06.03 06.33 07.03 07.33 08.33", "Nils Ericson Terminalen 06.02 06.35 07.05 07.20 07.32 07.35 08.05" — vardagar Klädesholmen östra 06.03 → Nils Ericson Terminalen 07.35 = 92 min (ingen bil-/buss-sida anger 75 min) (läst 2026-09-27)
+      from_city_min: 92,
+      nearest_hub: 'Stenungsunds station',
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf — "Klädesholmen östra 08.33 09.33 10.33 11.33 12.33 13.33 14.33 15.33 16.33 17.33 18.33 19.33 20.33 21.33 22.33", "Stenungsunds station 09.28 10.28 11.28 12.28 13.28 14.28 15.28 16.28 17.28 18.28 19.28 20.28 21.28 22.28 23.28" — 08.33 → 09.28 = 55 min, en tur i timmen lör 08.33–22.33 (läst 2026-09-27)
+      from_nearest_hub_min: 55,
+      operator: 'Västtrafik (buss) – ön är broförbunden',
+      line: 'Tjörnexpressen (TEXP)',
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf — "Klädesholmen östra 08.33 09.33 10.33 11.33 12.33 13.33 14.33 15.33 16.33 17.33 18.33 19.33 20.33 21.33 22.33" — en tur i timmen 08.33–22.33 lördagar; vardagar och söndagar likaså ungefär varje timme (läst 2026-09-27)
+      frequency: 'Ungefär en tur i timmen till och från Stenungsunds station alla dagar',
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "Parkering finns före och efter bron." (läst 2026-09-27)
+      car_parking: 'Parkering finns före och efter bron till Klädesholmen',
     },
     harbors: [
-      // KÄLLA: Klädesholmen Västra Hamn, hamnens egen sida — el (6 A ingår), färskvatten, dusch och toalett samt grillplats, inget drivmedel — https://kladesholmenvh.se/gasthamn/ (läst 2026-09-16)
-      // KÄLLA: Västsverige/Tjörn, "Klädesholmens Gästhamn" — 35 platser, dusch, el, livsmedel, restaurang, toalett, sugtömning och miljöstation — https://www.vastsverige.com/tjorn/produkter/kladesholmens-gasthamn/ (läst 2026-09-16)
-      // KÄLLA: Tjörns kommun, "Båtliv och hamnar" — listar Klädesholmen bland kommunens gästhamnar — https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/batliv-och-hamnar (läst 2026-09-16)
-      { name: 'Klädesholmens Gästhamn', desc: 'Gästhamn i fiskeläget Klädesholmen, 35 platser. El, färskvatten, dusch och toalett. Sugtömning och miljöstation. Gångavstånd till restauranger och livsmedelsbutik.', fuel: false, service: ['Vatten', 'El', 'Dusch', 'Toalett'] },
+      // KÄLLA: https://kladesholmenvh.se/gasthamn/ — "Djupet i gästhamnen är 3-4 meter", "El 6 Ampere ingår i alla priser", "Ja, el och färskvatten finns tillgängligt vid bryggorna.", "Ja, dusch och toalett finns för gästande båtar.", "Förhandsbokning endast Dockspot – 5 platser.", "Högsäsong Vecka 25-33", "8.Grillplats" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tjorn/produkter/kladesholmens-gasthamn/ — "Platser: 35", "Gästhamnen har formen av en gryta vilket gör att vinden inte stör.", "Båtkran, dusch, el, livsmedel, mastkran, restaurang, toalett och båtramp. Sugtömning av latrin. Miljöstation. Nära till mataffär." (läst 2026-09-27)
+      { name: 'Klädesholmens Gästhamn', desc: 'Gästhamn på öns västsida, 35 platser och 3–4 meters djup. Hamnen är formad som en gryta, vilket ger lä. El (6 A ingår), färskvatten, dusch och toalett, grillplats, sugtömning och miljöstation. Fem platser kan förbokas via Dockspot; högsäsong vecka 25–33. Nära till restauranger och livsmedelsbutik.', spots: 35, fuel: false, service: ['Vatten', 'El', 'Dusch', 'Toalett'] },
     ],
     restaurants: [
-      // KÄLLA: Salt & Sill, egen webbplats — restaurangen Salt & Sill på Klädesholmen, Tjörn — https://www.saltosill.se/restauranger/ (läst 2026-09-16)
-      // KÄLLA: Tjörns kommun, "Äta och bo" — "Salt och Sill — Restaurang på Klädesholmen" — https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo (läst 2026-09-16)
-      { name: 'Salt & Sill', type: 'Restaurang', desc: 'Restaurang på Klädesholmen, del av anläggningen Salt & Sill. Meny med utgångspunkt i havet och öns sillhistoria.' },
-      // KÄLLA: Salt & Sill, "Sjöboden" — neapolitansk pizza och skaldjur från lokala fiskare — https://www.saltosill.se/restauranger/sjoboden/ (läst 2026-09-16)
-      // KÄLLA: Tjörns kommun, "Äta och bo" — "Sjöboden på Salt och Sill — Restaurang på Salt & Sill som specialiserar sig på pizza" — https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo (läst 2026-09-16)
-      { name: 'Sjöboden på Salt & Sill', type: 'Restaurang', desc: 'Restaurang på Salt & Sill som specialiserar sig på neapolitansk pizza och skaldjur från lokala fiskare. Sommarsäsong.' },
-      // KÄLLA: Salt & Sill, "Holmens Kiosk" — https://www.saltosill.se/holmens-kiosk/ (läst 2026-09-16)
-      // KÄLLA: Tjörns kommun, "Äta och bo" — "Holmens Kiosk på Klädesholmen för en lättare måltid vid havet" — https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo (läst 2026-09-16)
-      { name: 'Holmens Kiosk', type: 'Kiosk/Café', desc: 'Kiosk vid vattnet på Klädesholmen för en lättare måltid — salt, sött, varmt och kallt.' },
-      // KÄLLA: Salt & Sill, egen webbplats — listar Saltbaren som en av fyra serveringar på anläggningen — https://www.saltosill.se/restauranger/ (läst 2026-09-16)
+      // KÄLLA: https://www.saltosill.se/om-salt-sill/var-historia/ — "Restaurangens specialitet blev sill", "mat av hög kvalitet baserad på lokala råvaror med starka influenser från kust och hav" (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo — "Restaurang på Klädesholmen" (läst 2026-09-27)
+      { name: 'Salt & Sill', type: 'Restaurang', desc: 'Skärgårdskrog på Klädesholmen med sill som specialitet och mat baserad på lokala råvaror från kust och hav. Enligt Salt & Sill har restaurang och hotell öppet året runt.' },
+      // KÄLLA: https://www.saltosill.se/restauranger/sjoboden/ — "napolitanska pizzor med krispiga bottnar, färska skaldjur fiskade i Västerhavet, fräscha sallader" — sommaröppet, lokalen kan hyras resten av året (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo — "som specialiserar sig på pizza" (läst 2026-09-27)
+      { name: 'Sjöboden på Salt & Sill', type: 'Restaurang', desc: 'Sommarrestaurang på Salt & Sill med napolitansk pizza, skaldjur fiskade i Västerhavet och sallader, med utsikt över skärgården. Resten av året kan lokalen hyras för sällskap.' },
+      // KÄLLA: https://www.saltosill.se/holmens-kiosk/ — "glass, havsbris och sommar på riktigt" — kulglass, fish n chips, grillkorv, wraps, sallader och toast, allt som takeaway; stängd för säsongen (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo — "Här kan du avnjuta både salt, sött, varmt och kallt." (läst 2026-09-27)
+      { name: 'Holmens Kiosk', type: 'Kiosk/Café', desc: 'Sommaröppen kiosk vid vattnet med glass, fish and chips, grillkorv, wraps och toast som takeaway — salt, sött, varmt och kallt.' },
+      // KÄLLA: https://www.saltosill.se/om-salt-sill/var-historia/ — "Destination Salt & Sill har idag fyra olika restauranger. Salt & Sill, Sjöboden, Saltbaren och Holmens kiosk." (läst 2026-09-27)
+      // KÄLLA: https://www.saltosill.se/restauranger/ — "Saltbaren är en plats där du kan koppla av och njuta av utsikten över havet" (läst 2026-09-27)
       { name: 'Saltbaren', type: 'Bar', desc: 'Bar på Salt & Sill med utsikt över havet.' },
     ],
     tips: [
-      // KÄLLA: Västsverige/Tjörn, "Klädesholmens Bastu" — ligger i Jungfruviken och drivs av Klädesholmens Bastuförening — https://www.vastsverige.com/en/tjorn/products/kladesholmens-sauna/ (läst 2026-09-16)
-      'Bastun i Jungfruviken drivs av Klädesholmens Bastuförening och bokas via dem — den hör inte till Salt & Sill.',
-      // KÄLLA: Västsverige/Tjörn, "Klädesholmen" — bro byggd 1983 — https://www.vastsverige.com/en/tjorn/products/kladesholmen/ (läst 2026-09-16)
-      'Ön är broförbunden sedan 1983 — ingen färja behövs.',
-      // KÄLLA: Klädesholmens Samhällsförening, "Klädesholmens museum – Sillebua" — Sillens hus, Strandgatan 12B, sillhistoria från ca 1860 — https://kladesholmen.com/att-gora/museum/ (läst 2026-09-16)
-      'Historieintresserade: Sillebua i Sillens hus på Strandgatan 12B samlar öns sillhistoria från omkring 1860 och framåt.',
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmens-sauna/ — "The sauna is operated by the Klädesholmen Sauna Association." (läst 2026-09-27)
+      // KÄLLA: https://www.saltosill.se/aktiviteter/bad-och-bastubaten/ — "Förtöjd vid Salt & Sills brygga ligger S/S Silla – vår bad- och bastubåt" (läst 2026-09-27)
+      'Bastun i Jungfruviken drivs av Klädesholmens Bastuförening och bokas via dem — Salt & Sill har en egen bad- och bastubåt, S/S Silla, vid sin brygga.',
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmen/ — "linked by a bridge that was built in 1983" (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "Parkering finns före och efter bron." (läst 2026-09-27)
+      'Ön är broförbunden sedan 1983 — ingen färja behövs. Parkering finns före och efter bron.',
+      // KÄLLA: https://kladesholmen.com/att-gora/museum/ — "fisk- och sillberedning från ca 1860 fram till dagens moderna industri" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tjorn/produkter/house-of-herrings/ — "precis intill Sillmuseet" (läst 2026-09-27)
+      'Historieintresserade: Sillebua i Sillens hus på Strandgatan 12B samlar öns sillhistoria från omkring 1860 och framåt, och sillbutiken House of Herrings ligger precis intill.',
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "Sedan 1972 firas Samhällets dag den första lördagen i juli månad med mängder av aktiviteter och gemensam sillunch." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmen/ — "presented on Swedish National Day, on 6 June, which also happens to be Herring Day" (läst 2026-09-27)
+      'Sedan 1972 firas Samhällets dag den första lördagen i juli med aktiviteter och gemensam sillunch. Årets sill presenteras varje år på nationaldagen den 6 juni, som också är sillens dag.',
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "När västvinden friskar i under höst och vinter kommer havsfåglar in mot land.", "Bästa platsen för havsfågelskådning är längst ut vid Västra hamnen." (läst 2026-09-27)
+      'När västvinden friskar i under höst och vinter kommer havsfåglar in mot land — bästa platsen för havsfågelskådning är längst ut vid Västra hamnen.',
     ],
     related: ['tjorn', 'orust', 'marstrand'],
     tags: ['mat', 'skaldjur', 'historia', 'bastu', 'romantisk', 'bohuslän'],
     insiderTips: [],
     dog_friendly: true,
-    dog_notes: 'Hund välkommen på de flesta platser. Restaurangens uteservering tillåter hundar — fråga personalen.',
-    // KÄLLA: Tjörns kommun, "Tjörn och sillen" — sillhandel sedan 1500-talet, den stora sillperioden på 1700-talet, nästa sillperiod runt 1870, 26 fabriker 1967, tre kvar vid millennieskiftet som gick samman — https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/tjorn-pa-hosten-och-vintern/tjorn-och-sillen (läst 2026-09-16)
-    did_you_know: 'Sillen har gått till i Bohuslän i återkommande perioder. Klädesholmen var med redan under 1500-talets sillhandel, och den stora sillperioden på 1700-talet följdes av en ny sillperiod runt 1870. År 1967 fanns 26 fabriker på ön — vid millennieskiftet återstod tre, som gick samman.',
+    // KÄLLA: https://www.saltosill.se/fragor-svar/ — "Kopplade, Nära sin ägare, Under uppsikt" — hundrum kan förbokas, hundar tillåtna i restaurangens övre del men inte inomhus under julbord, påsk- och midsommarbuffé; hundar kan läggas längs uteserveringen (läst 2026-09-27)
+    dog_notes: 'Salt & Sill har hundrum som förbokas. I restaurangens övre del är hundar välkomna om de är kopplade och hålls nära ägaren, dock inte inomhus under julbord, påsk- och midsommarbuffé. Hundar kan också följa med på uteserveringen.',
+    // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/tjorn-pa-hosten-och-vintern/tjorn-och-sillen — "Ända sedan 1500-talet har Klädesholmen varit en viktig plats för sillhandeln.", "Riktig fart tog det under den stora sillperioden på 1700-talet", "Nästa sillperiod kom runt 1870.", "1967 fanns det 26 fabriker på Klädesholmen.", "Vid millennieskiftet var det tre fabriker kvar som bestämde sig för att gå samman.", "Sill som räckte både till föda och till gatlyktorna i Paris, som lär ha spridit sitt sken med hjälp av sillolja från Bohuslän." (läst 2026-09-27)
+    did_you_know: 'Sillen har gått till i Bohuslän i återkommande perioder. Klädesholmen var med redan under 1500-talets sillhandel, och under den stora sillperioden på 1700-talet räckte sillen enligt Tjörns kommun både till föda och till gatlyktorna i Paris, som lär ha lysts upp med sillolja från Bohuslän. En ny sillperiod följde runt 1870. År 1967 fanns 26 fabriker på ön — vid millennieskiftet återstod tre, som gick samman.',
     amenities: {
       restaurant: true,
       shop: true,
       accommodation: true,
-      beach: false,
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmen/ — "You can relax at one of several swimming areas" (läst 2026-09-27)
+      // KÄLLA: https://kladesholmenvh.se/gasthamn/ — "7.Badplats" (läst 2026-09-27)
+      beach: true,
       camping: false,
     },
     activity_meta: {
       bad: { beaches: [] },
     },
     seasonal: {
-      // REDAKTIONELL BEDÖMNING: fälten nedan är vår egen bedömning, inte öppettider. Ön är broförbunden och tillgänglig året runt.
-      open: 'Maj–Oktober (ön är broförbunden och nåbar året runt)',
+      // KÄLLA: https://kladesholmenvh.se/gasthamn/ — "– Restaurang och hotell öppet året runt" (läst 2026-09-27)
+      // KÄLLA: https://www.saltosill.se/restauranger/sjoboden/ — "napolitanska pizzor med krispiga bottnar" — Sjöboden och Holmens kiosk är sommaröppna (läst 2026-09-27)
+      open: 'Året runt – ön är broförbunden och Salt & Sills restaurang och hotell har öppet året runt; Sjöboden och kiosken bara sommartid',
+      // KÄLLA: https://kladesholmenvh.se/gasthamn/ — "Högsäsong Vecka 25-33" (läst 2026-09-27)
+      // KÄLLA: https://kladesholmen.com/att-gora/museum/ — "fisk- och sillberedning från ca 1860" — museet dagligen öppet juli–augusti, lördagar april–juni och september–november (läst 2026-09-27)
       peak: 'Juli–Augusti',
       best: 'September eller Oktober',
-      bestReason: 'September ger lugnare tempo på ön: bastu i Jungfruviken, stillare hav och plats i gränderna.',
-      months: ['off','off','off','off','open','open','peak','peak','open','open','limited','off'],
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "När västvinden friskar i under höst och vinter kommer havsfåglar in mot land." (läst 2026-09-27)
+      // KÄLLA: https://kladesholmenvh.se/gasthamn/ — "Lågsäsong Vecka 39-16" (läst 2026-09-27)
+      // KÄLLA: https://kladesholmensbastu.se/ — "magnifika utsikten mot väst" — bastun öppen alla dagar året runt (läst 2026-09-27)
+      bestReason: 'På hösten har Salt & Sills restaurang och hotell fortfarande öppet, bastun i Jungfruviken går att boka alla dagar och gästhamnen har gått över till lågsäsong från vecka 39. När västvinden friskar i kommer havsfåglarna in mot land.',
+      // KÄLLA: https://www.saltosill.se/holmens-kiosk/ — "glass, havsbris och sommar på riktigt" — kiosken stängd för säsongen (läst 2026-09-27)
+      warning: 'Sjöboden och Holmens Kiosk har bara sommaröppet.',
+      // Månader: restaurang och hotell året runt, museet lördagar apr–jun och sep–nov samt dagligen jul–aug, gästhamnens högsäsong v25–33.
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
     },
   },
 
@@ -1542,88 +1747,95 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
     emoji: '🏚',
-    // KÄLLA: Västsverige/Tjörn, "Åstol" — små vita trähus omgivna av kala klippor, smala bilfria gator — https://www.vastsverige.com/en/tjorn/products/astol/ (läst 2026-09-16)
-    // KÄLLA: Västsverige/Tjörn, "Bilfria öar" — "en bilfri klippö", "smala gränder mellan vitmålade trähus" — https://www.vastsverige.com/tjorn/se-och-gora/bilfria-oar/ (läst 2026-09-16)
+    // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astol/ — "Åstol is the small island with the white wooden houses surrounded by rugged rocks rising from the sea", "The island is easy to reach by ferry from Rönnäng" ; https://www.vastsverige.com/tjorn/se-och-gora/bilfria-oar/ — "en bilfri klippö", "Här slingrar sig smala gränder mellan vitmålade trähus" (läst 2026-09-27)
     tagline: 'Bilfri klippö utanför Rönnäng — vita trähus, smala gränder och havet runt om.',
     description: [
-      // KÄLLA: Västsverige/Tjörn, "Åstol" — vita trähus mot kala klippor, smala bilfria gator, befolkades vid mitten av 1700-talet under en av de stora sillperioderna, mer än tjugo stora ståltrålare med hemmahamn på Åstol på 1960-talet, fiskeindustri fram till 1970-talet — https://www.vastsverige.com/en/tjorn/products/astol/ (läst 2026-09-16)
-      'Åstol är en liten klippö utanför Rönnäng på Tjörn, känd för sina vita trähus omgivna av kala klippor som reser sig ur havet. De smala, bilfria gatorna slingrar sig mellan husen. Ön befolkades först vid mitten av 1700-talet i samband med en av de stora sillperioderna, och fiskeindustrin var huvudnäring fram till 1970-talet — på 1960-talet hade mer än tjugo stora ståltrålare Åstol som hemmahamn.',
-      // KÄLLA: Västsverige/Tjörn, "Personfärja Rönnäng – Tjörnekalv – Dyrön – Åstol" — Västtrafiks linje 361 utgår från Rönnängs brygga, cirka en kvart till Åstol, cykel kan tas med — https://www.vastsverige.com/tjorn/produkter/personfarja-ronnang-tjornekalv-dyron-astol/ (läst 2026-09-16)
-      'Ön nås med Västtrafiks personfärja linje 361 från Rönnängs brygga på Tjörn. Överfarten tar cirka en kvart. Cykel kan tas med ombord.',
-      // KÄLLA: Västsverige/Tjörn, "Åstol" — många flyttade när fisket gick tillbaka på 1970-talet; i dag caféer, uteserveringar, galleri, mataffär och bibliotek — https://www.vastsverige.com/en/tjorn/products/astol/ (läst 2026-09-16)
-      // KÄLLA: Åstols Samhällsförening — "Åstols hamn är väl skyddad från de flesta vindar" — https://astol.se/besok-astol/ (läst 2026-09-16)
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astol/ — "surrounded by rugged rocks rising from the sea", "The narrow, car-free streets meander between the houses", "Åstol was first inhabited in the mid-18th century in connection with one of the great herring periods", "More than 20 large steel trawlers had their home port on Åstol in the 1960s", "The fishing industry declined during the 1970s" ; https://www.raa.se/app/uploads/2022/11/V%C3%A4stra-G%C3%B6taland-O_riksintressen.pdf — "Fiskeläge från 1700-talets sillperiod, på en kal minimal ö, som genom en intensiv bebyggelsefas under 1920-1950-talet utvecklats till ett av västkustens mest tättbebyggda kustsamhällen" (läst 2026-09-27)
+      'Åstol är en liten klippö utanför Rönnäng på Tjörn, känd för sina vita trähus omgivna av kala klippor som reser sig ur havet. De smala, bilfria gatorna slingrar sig mellan husen. Ön befolkades vid mitten av 1700-talet under en av de stora sillperioderna, och enligt Riksantikvarieämbetet utvecklades fiskeläget genom en intensiv byggperiod på 1920–1950-talen till ett av västkustens mest tättbebyggda kustsamhällen. På 1960-talet hade mer än tjugo stora ståltrålare Åstol som hemmahamn; fisket gick tillbaka under 1970-talet.',
+      // KÄLLA: https://astol.se/besok-astol/ — "Till Åstol tar du Västtrafiks linje 361 och personfärjan Ellenor från hållplatsen Rönnängs brygga", "Färjan går cirka en gång i timmen, och överfarten tar mellan 10 och 20 minuter" ; https://www.vastsverige.com/tjorn/produkter/personfarja-ronnang-tjornekalv-dyron-astol/ — "linje 361 alla dagar året runt", "Cykel kan tas med" ; https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf — "Rönnäng–Tjörnekalv–Dyrön–Åstol–Rönnäng", "Gäller 14 dec 2025 - 12 dec 2026 utom 15 juni - 16 aug" (läst 2026-09-27)
+      // Avläst i tabellen (måndag–fredag): Rönnängs brygga 07.50 → Åstol 08.00 (direkt), 07.10 → Dyrön norra 07.20 → Åstol 07.30, 08.50 → Åstol 09.13 via Tjörnekalv och Dyrön.
+      'Ön nås med Västtrafiks personfärja linje 361, färjan Ellenor, från Rönnängs brygga på Tjörn. Den går alla dagar året runt, ungefär en gång i timmen, och överfarten tar 10–20 minuter beroende på om båten går direkt eller via Dyrön. Cykel kan tas med ombord.',
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astol/ — "The fishing industry declined during the 1970s and many people moved off the island, but new residents arrived to enjoy the magic of the place during the summer", "There are now cafés, outdoor terraces, a gallery, a grocery store and a library" ; https://astol.se/besok-astol/ — "Åstols hamn är väl skyddad från de flesta vindar" (läst 2026-09-27)
       'När fisket gick tillbaka på 1970-talet flyttade många från ön, men nya sommarboende har tillkommit sedan dess. I dag finns caféer, uteserveringar, galleri, mataffär och bibliotek på ön, och hamnen är väl skyddad från de flesta vindar.',
-      // KÄLLA: Riksantikvarieämbetet, riksintressen Västra Götalands län — "Åstol [O 62] (Rönnäng sn)" — https://www.raa.se/app/uploads/2022/11/V%C3%A4stra-G%C3%B6taland-O_riksintressen.pdf (läst 2026-09-16)
-      // KÄLLA: Västsverige/Tjörn, "Åstol" — Klockareudden har en naturlig havsvattenpool med sandbotten och vattenrutschkana — https://www.vastsverige.com/en/tjorn/products/astol/ (läst 2026-09-16)
-      'Åstol ingår i riksintresset för kulturmiljövården (O 62) i Rönnängs socken, Tjörns kommun. Badplatsen vid Klockareudden har en naturlig havsvattenpool med sandbotten och vattenrutschkana.',
+      // KÄLLA: https://www.raa.se/app/uploads/2022/11/V%C3%A4stra-G%C3%B6taland-O_riksintressen.pdf — "Åstol [O 62] (Rönnäng sn)", "Äldre tät bebyggelseklunga vid gamla hamnen omgiven av senare uppförda hus (från 1800- och 1900-talen) varav många är eternitklädda samt sjöbodar" ; https://www.vastsverige.com/en/tjorn/products/astol/ — "Klockareudden has a natural rock pool filled with salt-water, a water slide and a sandy bottom", "in the middle of the island there is a lush little park with a memorial to lost fishermen" (läst 2026-09-27)
+      'Åstol ingår i riksintresset för kulturmiljövården (O 62) i Rönnängs socken, Tjörns kommun. Riksantikvarieämbetet pekar ut den äldre täta bebyggelseklungan vid gamla hamnen, omgiven av senare hus från 1800- och 1900-talen, många eternitklädda, och sjöbodarna. Mitt på ön finns en liten park med ett minnesmärke över förolyckade fiskare. Badplatsen vid Klockareudden har en naturlig havsvattenpool med sandbotten och vattenrutschkana.',
     ],
-    // KÄLLA: Västsverige/Tjörn, "Åstol" — omkring 500 invånare under öns högdagar, vita trähus, bilfritt — https://www.vastsverige.com/en/tjorn/products/astol/ (läst 2026-09-16)
-    // KÄLLA: Riksantikvarieämbetet, riksintressen Västra Götalands län — Åstol (O 62) — https://www.raa.se/app/uploads/2022/11/V%C3%A4stra-G%C3%B6taland-O_riksintressen.pdf (läst 2026-09-16)
     facts: {
-      population: 'omkring 500 invånare under öns högdagar',
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf — "Rönnäng–Tjörnekalv–Dyrön–Åstol–Rönnäng", "Gäller 14 dec 2025 - 12 dec 2026 utom 15 juni - 16 aug" ; https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf — "Tjörn–Stenungsund/Göteborg", "Nils Ericson Terminalen", "Rönnängs brygga" (läst 2026-09-27)
+      // Avläst måndag–fredag: Tjörnexpressen Nils Ericson Terminalen 06.05 → Aröd 07.16, fortsätter (not J) → Rönnängs brygga 07.27; båt 361 07.50 → Åstol 08.00. Totalt 1 tim 55 min.
+      travel_time: 'Båt 10–20 min från Rönnängs brygga; från Göteborg ca 2 tim med Tjörnexpressen och båt',
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astol/ — "during the heydays there were around 500 inhabitants" ; https://www.raa.se/app/uploads/2022/11/V%C3%A4stra-G%C3%B6taland-O_riksintressen.pdf — "Åstol [O 62] (Rönnäng sn)" ; https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo — "Åstols Rökeri", "Restaurang på Åstol" (läst 2026-09-27)
+      population: 'omkring 500 invånare under fiskets glansdagar',
       known_for: 'Bilfritt fiskesamhälle med vita trähus, riksintresse för kulturmiljövården (O 62), Åstols Rökeri',
     },
     facts_provenance: {
+      travel_time: 'matt',
       population: 'matt',
       known_for: 'matt',
     },
     activities: [
-      // KÄLLA: Västsverige/Tjörn, "Åstol" — vita trähus mot kala klippor — https://www.vastsverige.com/en/tjorn/products/astol/ (läst 2026-09-16)
-      // KÄLLA: Riksantikvarieämbetet, riksintressen Västra Götalands län — Åstol (O 62) — https://www.raa.se/app/uploads/2022/11/V%C3%A4stra-G%C3%B6taland-O_riksintressen.pdf (läst 2026-09-16)
-      { icon: '📸', name: 'Fotografera bybild', desc: 'Vita trähus tätt mot grå klippor och blått hav — den bebyggelsebild som gett Åstol dess riksintresse för kulturmiljövården.' },
-      // KÄLLA: Västsverige/Tjörn, "Åstol" — Klockareudden har en naturlig havsvattenpool med sandbotten och vattenrutschkana — https://www.vastsverige.com/en/tjorn/products/astol/ (läst 2026-09-16)
+      // KÄLLA: https://www.raa.se/app/uploads/2022/11/V%C3%A4stra-G%C3%B6taland-O_riksintressen.pdf — "Äldre tät bebyggelseklunga vid gamla hamnen omgiven av senare uppförda hus", "samt sjöbodar" ; https://www.vastsverige.com/en/tjorn/products/astol/ — "Pater Nosterskären to the west can be seen from the water tower on Store Varn" (läst 2026-09-27)
+      { icon: '📸', name: 'Fotografera bybild', desc: 'Den täta husklungan vid gamla hamnen med sjöbodarna är det Riksantikvarieämbetet lyfter fram i riksintresset. Från vattentornet på Store Varn syns Pater Nosterskären i väster.' },
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astol/ — "Klockareudden has a natural rock pool filled with salt-water, a water slide and a sandy bottom" ; https://www.vastsverige.com/tjorn/se-och-gora/bilfria-oar/ — "För den badsugna väntar Klockareudden, en fin plats för ett bad året om" (läst 2026-09-27)
       { icon: '🏊', name: 'Klippbad', desc: 'Badplatsen vid Klockareudden har en naturlig havsvattenpool med sandbotten och vattenrutschkana.' },
-      // KÄLLA: Västsverige/Tjörn, "Åstol" — de smala, bilfria gatorna slingrar sig mellan husen — https://www.vastsverige.com/en/tjorn/products/astol/ (läst 2026-09-16)
-      { icon: '🚶', name: 'Promenad runt ön', desc: 'De smala, bilfria gatorna slingrar sig mellan husen — allt på ön nås till fots.' },
-      // KÄLLA: Åstols Samhällsförening — hamnen väl skyddad från de flesta vindar, gästhamnsplatser på norra och södra sidan — https://astol.se/besok-astol/ (läst 2026-09-16)
-      { icon: '⛵', name: 'Ankra utanför', desc: 'Åstols hamn är väl skyddad från de flesta vindar, och det finns gästhamnsplatser på både norra och södra sidan.' },
-      // KÄLLA: Västsverige/Tjörn, "Åstols Rökeri" — fiskrestaurang med eget rökeri och en liten butik, adress Hamnen 4, 471 44 Åstol — https://www.vastsverige.com/en/tjorn/products/astols-rokeri/ (läst 2026-09-16)
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astol/ — "A day trip is quite sufficient to walk around the traffic-free island", "The narrow, car-free streets meander between the houses" (läst 2026-09-27)
+      { icon: '🚶', name: 'Promenad runt ön', desc: 'De smala, bilfria gatorna slingrar sig mellan husen, och en dagstur räcker för att gå runt hela ön.' },
+      // KÄLLA: https://astol.se/besok-astol/ — "Åstols hamn är väl skyddad från de flesta vindar", "Gästplatserna  ligger utmed både norra och södra sidan av hamnen" ; https://www.vastsverige.com/tjorn/produkter/astols-gasthamn/ — "Här finns plats för ca. 80 gästande båtar, med stävförtöjning samt långsidesförtöjning" (läst 2026-09-27)
+      { icon: '⛵', name: 'Gästhamn', desc: 'Åstols hamn är väl skyddad från de flesta vindar. Gästplatserna, omkring 80, ligger längs både norra och södra sidan av hamnen.' },
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astols-rokeri/ — "Åstols Rökeri (Åstols Smokery) is a fish restaurant with its own smokery and a small shop" ; https://astolsrokeri.se/ — "Hamnen 4" (läst 2026-09-27)
       { icon: '🐟', name: 'Åstols Rökeri', desc: 'Fiskrestaurang med eget rökeri och en liten butik, i hamnen.' },
     ],
     accommodation: [],
     getting_there: [
-      // KÄLLA: Västsverige/Tjörn, "Personfärja Rönnäng – Tjörnekalv – Dyrön – Åstol" — Västtrafiks linje 361 från Rönnängs brygga, cirka en kvart till Åstol, biljettautomat vid färjeläget, cykel kan tas med — https://www.vastsverige.com/tjorn/produkter/personfarja-ronnang-tjornekalv-dyron-astol/ (läst 2026-09-16)
-      // KÄLLA: Åstols Samhällsförening — https://astol.se/besok-astol/ (läst 2026-09-16)
-      { method: 'Passagerarfärja från Rönnäng', from: 'Rönnäng (Tjörn)', time: 'ca 15 min', desc: 'Västtrafiks personfärja linje 361 från hållplatsen Rönnängs brygga. Överfarten tar cirka en kvart. Biljettautomat finns vid färjeläget i Rönnäng, och biljett kan också köpas ombord. Cykel kan tas med.', icon: '⛴' },
+      // KÄLLA: https://astol.se/besok-astol/ — "Till Åstol tar du Västtrafiks linje 361 och personfärjan Ellenor från hållplatsen Rönnängs brygga", "överfarten tar mellan 10 och 20 minuter", "Långtidsparkering (upp till sju dygn) finns vid Tjörns ishall i Stansvik. Härifrån tar det cirka 20 minuter att promenera till färjeläget", "Har du svårt att promenera har bussen en hållplats vid ishallen" ; https://www.vastsverige.com/tjorn/produkter/personfarja-ronnang-tjornekalv-dyron-astol/ — "Västtrafiks kontoladdning eller köp enkelbiljett ombord", "Biljettautomat finns vid färjeläget i Rönnäng", "Cykel kan tas med" ; https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf — "C Turen måste förbeställas på tel: 0304-601242" (läst 2026-09-27)
+      { method: 'Passagerarfärja från Rönnäng', from: 'Rönnäng (Tjörn)', time: '10–20 min', desc: 'Västtrafiks personfärja linje 361 (färjan Ellenor) från hållplatsen Rönnängs brygga, ungefär en gång i timmen alla dagar. Biljettautomat finns vid färjeläget, och enkelbiljett kan också köpas ombord. Cykel kan tas med. Några tidiga och sena turer måste förbeställas. Långtidsparkering (upp till sju dygn) finns vid Tjörns ishall i Stansvik, cirka 20 minuters promenad från färjeläget; bussen har hållplats vid ishallen.', icon: '⛴', url: 'https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014636100000/' },
+      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf — "Tjörn–Stenungsund/Göteborg", "Nils Ericson Terminalen", "J Efter Aröd fortsätter bussen som ny tur mot Bäckevik, Rönnäng och", "Gäller 14 dec 2025 - 12 dec 2026" (läst 2026-09-27)
+      // Avläst måndag–fredag: Nils Ericson Terminalen 06.05 → Aröd 07.16 → Rönnängs brygga 07.27 (82 min). Direktturerna från Göteborg går främst morgon och eftermiddag; övriga tider byte i Stenungsund.
+      { method: 'Buss från Göteborg', from: 'Göteborg (Nils Ericson Terminalen)', time: 'ca 1 tim 20 min till Rönnäng', desc: 'Västtrafiks Tjörnexpressen (TEXP) går från Nils Ericson Terminalen via Kungälv till Tjörn; vissa turer fortsätter efter Aröd till Rönnängs brygga. Andra tider byter man i Stenungsund.', icon: '🚌', url: 'https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014620800000/' },
     ],
-    // KÄLLA: Västsverige/Tjörn, "Personfärja Rönnäng – Tjörnekalv – Dyrön – Åstol" — Västtrafiks linje 361, ca en kvart till Åstol — https://www.vastsverige.com/tjorn/produkter/personfarja-ronnang-tjornekalv-dyron-astol/ (läst 2026-09-16)
+    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf — "Rönnäng–Tjörnekalv–Dyrön–Åstol–Rönnäng", "Gäller 14 dec 2025 - 12 dec 2026 utom 15 juni - 16 aug" ; https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf — "Nils Ericson Terminalen" ; https://astol.se/besok-astol/ — "Färjan går cirka en gång i timmen", "Långtidsparkering (upp till sju dygn) finns vid Tjörns ishall i Stansvik" (läst 2026-09-27)
+    // from_city_min: Nils Ericson Terminalen 06.05 → Rönnängs brygga 07.27 → båt 07.50 → Åstol 08.00 = 115 min (måndag–fredag).
+    // from_nearest_hub_min: direktturen Rönnängs brygga 07.50 → Åstol 08.00 = 10 min; turer via Dyrön tar ca 20 min.
+    // frequency: 21 avgångar från Rönnängs brygga måndag–fredag i tabellen, varav några förbeställs.
     transport_meta: {
-      from_city_min: 90,
-      nearest_hub: 'Rönnäng (Tjörn)',
-      from_nearest_hub_min: 15,
-      operator: 'Västtrafik / lokal passagerarfärja',
-      frequency: 'Se Västtrafiks tidtabell',
+      from_city_min: 115,
+      nearest_hub: 'Rönnängs brygga (Tjörn)',
+      from_nearest_hub_min: 10,
+      operator: 'Västtrafik',
+      line: '361',
+      // KÄLLA: https://astol.se/besok-astol/ — "Färjan går cirka en gång i timmen" ; https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf — "Rönnängs brygga" (läst 2026-09-27)
+      frequency: 'Ungefär en tur i timmen alla dagar; ca 20 avgångar per vardag',
+      // KÄLLA: https://astol.se/besok-astol/ — "Långtidsparkering (upp till sju dygn) finns vid Tjörns ishall i Stansvik. Härifrån tar det cirka 20 minuter att promenera till färjeläget", "Närmare Rönnängs brygga finns ett fåtal avgiftsbelagda parkeringsplatser" (läst 2026-09-27)
+      car_parking: 'Långtidsparkering upp till sju dygn vid Tjörns ishall i Stansvik, ca 20 min promenad till färjeläget; få avgiftsbelagda platser nära bryggan',
     },
     harbors: [
-      // KÄLLA: Åstols hamn, hamnens egen sida — vatten april–oktober, el 220 V, dusch och toalett, tvättmaskin och torktumlare, wifi, inget drivmedel — https://www.astolshamn.se/gasthamn/ (läst 2026-09-16)
-      // KÄLLA: Västsverige/Tjörn, "Åstols Gästhamn" — 80 platser, el, wifi, färskvatten, båtkran, miljöstation, septisug, dusch, tvättmaskin, torktumlare, WC — https://www.vastsverige.com/tjorn/produkter/astols-gasthamn/ (läst 2026-09-16)
-      // KÄLLA: Tjörns kommun, "Båtliv och hamnar" — listar Åstol bland kommunens gästhamnar — https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/batliv-och-hamnar (läst 2026-09-16)
-      { name: 'Åstols Gästhamn', desc: 'Gästhamn på Åstol med platser längs norra och södra sidan. Färskvatten, el, dusch och WC, tvättmaskin och torktumlare, miljöstation och sugtömning. Café, restaurang och livsmedelsbutik på ön.', fuel: false, service: ['Vatten', 'El', 'Dusch', 'Toalett', 'Tvättmaskin'] },
+      // KÄLLA: https://www.astolshamn.se/gasthamn/ — "I avgiften ingår: toalett, dusch, wifi, tvättmaskin, torktumlare", "Vatten är också avstängt fr.o.m. början november till början april", "Under högsäsong från mitten juni till mitten augusti är hamnkontoret (som ligger på norra piren) bemannat dagligen" ; https://www.vastsverige.com/tjorn/produkter/astols-gasthamn/ — "Här finns plats för ca. 80 gästande båtar, med stävförtöjning samt långsidesförtöjning", "Det finns 75 st elanslutningar mot avgift", "Elektricitet, Wifi, Färskvatten, Båtkran, Miljöstation, Sopmaja, Septisug" ; https://astol.se/besok-astol/ — "Gästplatserna  ligger utmed både norra och södra sidan av hamnen" ; https://www.tjorn.se/kultur-fritid-och-turism/batliv-och-hamnar — "Åstol" (läst 2026-09-27)
+      // Drivmedel nämns inte av hamnen eller Västsverige (fuel: false = inte angivet).
+      { name: 'Åstols Gästhamn', desc: 'Gästhamn för omkring 80 båtar längs norra och södra sidan av hamnen, med stäv- eller långsidesförtöjning. Dusch, WC, tvättmaskin och torktumlare, wifi, el, miljöstation och sugtömning. Vattnet är avstängt från början av november till början av april. Hamnkontoret på norra piren är bemannat dagligen från mitten av juni till mitten av augusti.', spots: 80, fuel: false, service: ['Vatten', 'El', 'Dusch', 'Toalett', 'Tvättmaskin', 'Wifi', 'Sugtömning'] },
     ],
     restaurants: [
-      // KÄLLA: Åstols Rökeri, egen webbplats — "mat och musik mitt i havet", adress Hamnen 4, 471 44 Åstol, havsrätter och pizza, regelbundna musikframträdanden — http://www.astolsrokeri.se (läst 2026-09-16)
-      // KÄLLA: Tjörns kommun, "Äta och bo" — "Åstols Rökeri — Restaurang på Åstol" — https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo (läst 2026-09-16)
-      { name: 'Åstols Rökeri', type: 'Restaurang', desc: 'Restaurang i hamnen på Åstol med rätter från havet och pizza. Livemusik återkommande under säsong.' },
-      // KÄLLA: Tjörns kommun, "Äta och bo" — "Åstols Café — Kafé på Åstol, dit du kommer med personfärja från Rönnäng" — https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo (läst 2026-09-16)
-      { name: 'Åstols Café', type: 'Café', desc: 'Kafé på Åstol, dit man kommer med personfärja från Rönnäng.' },
+      // KÄLLA: https://astolsrokeri.se/ — "Hamnen 4", "fantastiskt tillagade rätter från havet", "en enorm bredd på musikaliska framträdanden" ; https://www.vastsverige.com/en/tjorn/products/astols-rokeri/ — "The restaurant is booming with activity from April to September", "In summertime, the hotel’s musicians gather in the afternoons at the very end of the northern pier" ; https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo — "Restaurang på Åstol" (läst 2026-09-27)
+      // Egen sida läst 2026-09-27 via WebFetch (curl blockeras): öppettider fredag–söndag, adress Hamnen 4. Åstols Café är struket – det har ingen egen webbplats som gick att läsa (församlingens sida blockeras av Cloudflare); caféet nämns i tips via Samhällsföreningen.
+      { name: 'Åstols Rökeri', type: 'Restaurang', desc: 'Restaurang med eget rökeri i hamnen på Åstol, med rätter från havet och många musikframträdanden. Mest aktivitet april–september; sommartid spelas livemusik ute på norra piren.', websiteUrl: 'https://astolsrokeri.se/' },
     ],
     tips: [
-      // KÄLLA: Västsverige/Tjörn, "Åstols Rökeri" — fiskrestaurang med eget rökeri och liten butik — https://www.vastsverige.com/en/tjorn/products/astols-rokeri/ (läst 2026-09-16)
-      // KÄLLA: Åstols Samhällsförening — café och handelsbod på ön — https://astol.se/besok-astol/ (läst 2026-09-16)
-      'Åstols Rökeri i hamnen är en fiskrestaurang med eget rökeri och liten butik. Det finns också café och handelsbod på ön.',
-      // KÄLLA: Åstols Samhällsförening — "Flera husägare hyr ut privata boenden" — https://astol.se/besok-astol/ (läst 2026-09-16)
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astols-rokeri/ — "is a fish restaurant with its own smokery and a small shop" ; https://astol.se/bo-ata/ — "Åstols café ligger väl skyddat inne i hamnen och drivs av Elimförsamlingen" (läst 2026-09-27)
+      'Åstols Rökeri i hamnen är en fiskrestaurang med eget rökeri och liten butik. Inne i hamnen ligger också Åstols café, som drivs av Elimförsamlingen.',
+      // KÄLLA: https://astol.se/besok-astol/ — "Flera husägare hyr ut privata boenden" (läst 2026-09-27)
       'Det går att övernatta — flera husägare på Åstol hyr ut privata boenden.',
-      // KÄLLA: Åstols Samhällsförening — "Åstols handelsbod är också en välsorterad året-runt-butik" — https://astol.se/besok-astol/ (läst 2026-09-16)
-      'Handelsboden på Åstol är en välsorterad året-runt-butik — du behöver inte bära med dig allt.',
+      // KÄLLA: https://astol.se/besok-astol/ — "köp med dig en pizza från handelsboden och ät den på klipporna", "Åstols handelsbod är också en välsorterad året-runt-butik" (läst 2026-09-27)
+      'Handelsboden på Åstol är en välsorterad året-runt-butik, och där kan du köpa pizza att äta på klipporna.',
+      // KÄLLA: https://astol.se/besok-astol/ — "Toaletter för besökare finns ombord på färjan Ellenor, i vänthuset vid färjeläget, vid brandstationen samt vid gästhamnskontoret på Norra piren" (läst 2026-09-27)
+      'Toaletter för besökare finns ombord på färjan, i vänthuset vid färjeläget, vid brandstationen och vid gästhamnskontoret på norra piren.',
     ],
     related: ['tjorn', 'kladesholmen', 'orust'],
-    tags: ['bohuslän', 'bilfritt', 'fiskeläge', 'fotografi', 'bad', 'romantisk'],
+    tags: ['bohuslän', 'bilfritt', 'fiskeläge', 'fotografi', 'bad', 'gästhamn', 'riksintresse'],
     insiderTips: [],
     dog_friendly: true,
-    dog_notes: 'Hund välkommen på ön. Håll koppel nära de tätbebyggda delarna och byborna.',
-    // KÄLLA: Västsverige/Tjörn, "Åstol" — befolkades vid mitten av 1700-talet under en stor sillperiod, omkring 500 invånare under högdagarna, mer än tjugo ståltrålare på 1960-talet, utflyttning på 1970-talet — https://www.vastsverige.com/en/tjorn/products/astol/ (läst 2026-09-16)
-    // KÄLLA: Riksantikvarieämbetet, riksintressen Västra Götalands län — Åstol (O 62) — https://www.raa.se/app/uploads/2022/11/V%C3%A4stra-G%C3%B6taland-O_riksintressen.pdf (läst 2026-09-16)
-    did_you_know: 'Åstol befolkades först vid mitten av 1700-talet i samband med en av de stora sillperioderna. Under öns högdagar bodde här omkring 500 personer, och på 1960-talet hade mer än tjugo stora ståltrålare Åstol som hemmahamn. När fisket gick tillbaka på 1970-talet flyttade många — men ön är i dag skyddad som riksintresse för kulturmiljövården.',
+    // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/hund-i-naturen — "under vistelse utomhus på offentlig plats där folksamlingar förekommer, eller kan antas förekomma, ska hundar alltid hållas kopplade", "1 mars och 20 augusti" ; https://www.vasttrafik.se/resa-med-oss/under-resan/husdjur/ — "Ha djuret i koppel, bur eller väska", "Vid resa med båt ska husdjur vara på styrbord" (läst 2026-09-27)
+    dog_notes: 'Hunden får följa med på Västtrafiks färja i koppel, bur eller väska och ska vara på styrbordssidan. Enligt Tjörns ordningsstadga ska hundar hållas kopplade på offentliga platser där människor samlas, och 1 mars–20 augusti får hunden inte springa lös i skog och mark.',
+    // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astol/ — "Åstol was first inhabited in the mid-18th century in connection with one of the great herring periods", "during the heydays there were around 500 inhabitants", "More than 20 large steel trawlers had their home port on Åstol in the 1960s" ; https://www.raa.se/app/uploads/2022/11/V%C3%A4stra-G%C3%B6taland-O_riksintressen.pdf — "Fiskeläge från 1700-talets sillperiod, på en kal minimal ö", "ett av västkustens mest tättbebyggda kustsamhällen" (läst 2026-09-27)
+    did_you_know: 'Åstol befolkades först vid mitten av 1700-talet i samband med en av de stora sillperioderna. Under fiskets glansdagar bodde här omkring 500 personer, och på 1960-talet hade mer än tjugo stora ståltrålare Åstol som hemmahamn. Riksantikvarieämbetet beskriver ön som en kal minimal ö som blivit ett av västkustens mest tättbebyggda kustsamhällen.',
     amenities: {
       restaurant: true,
       shop: true,
@@ -1632,6 +1844,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       camping: false,
     },
     activity_meta: {
+      // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astol/ — "Klockareudden has a natural rock pool filled with salt-water, a water slide and a sandy bottom" (läst 2026-09-27)
       bad: { beaches: ['Klockareudden — naturlig havsvattenpool med sandbotten och vattenrutschkana'] },
     },
   },
