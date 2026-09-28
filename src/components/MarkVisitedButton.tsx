@@ -41,7 +41,8 @@ export default function MarkVisitedButton({ islandSlug, islandName, variant = 'h
   async function handleClick() {
     if (loading) return
     if (!userId) {
-      router.push(`/auth?next=${encodeURIComponent(`/o/${islandSlug}`)}`)
+      // RÄTTAT 2026-09-28: /auth?next=… gav 404 (sidan har aldrig funnits).
+      router.push(`/logga-in?returnTo=${encodeURIComponent(`/o/${islandSlug}`)}&mode=ny`)
       return
     }
     if (visited) return

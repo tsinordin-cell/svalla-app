@@ -62,7 +62,8 @@ export default async function MinSkargardPage() {
   const supabase = await createServerSupabaseClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
-    redirect('/auth?next=/min-skargard')
+    // RÄTTAT 2026-09-28: /auth?next=… gav 404. Middleware fångar normalt detta först.
+    redirect('/logga-in?returnTo=%2Fmin-skargard&mode=ny')
   }
 
   const { data: savedRows } = await supabase
