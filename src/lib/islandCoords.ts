@@ -49,7 +49,6 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'bullero',           name: 'Bullerö',           lat: 59.2049, lng: 18.8472, radiusKm: 2.0 },
   { slug: 'vindo',             name: 'Vindö',             lat: 59.3462, lng: 18.6990, radiusKm: 2.0 },
   { slug: 'ingaro',            name: 'Ingarö',            lat: 59.2500, lng: 18.4833, radiusKm: 4.0 },
-  { slug: 'kanholmen',         name: 'Kanholmen',         lat: 59.3679, lng: 18.7263, radiusKm: 1.5 },
   { slug: 'svenska-hogarna',   name: 'Svenska Högarna',   lat: 59.4431, lng: 19.5024, radiusKm: 2.5 },
   { slug: 'huvudskar',         name: 'Huvudskär',         lat: 58.9630, lng: 18.5683, radiusKm: 2.0 },
   { slug: 'ekno',              name: 'Eknö',              lat: 59.3087, lng: 18.8676, radiusKm: 2.0 },
