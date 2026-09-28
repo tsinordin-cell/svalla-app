@@ -1828,6 +1828,22 @@ export const ISLANDS: Island[] = [
       { name: 'Kyrkviken', desc: 'Öns huvudhamn med gästbryggor, museum, bibliotek och cykeluthyrning.', fuel: false },
     ],
     restaurants: [
+      // Ornö hade noll ställen inlagda. Öns egen sajt listar sex. Tillagt
+      // 2026-09-24. Flera är säsongsöppna och sidan angav i september att
+      // Pizzaboden och Sundby Gård stängt för säsongen. Vi skriver därför
+      // ut säsong där källan anger den, men inga öppettider per dag.
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "Ornö Krog i Bygdegården vid Kyrkviken som ansvarar för maten i Ornö skola serverar också dagens lunch vardagar."
+      { name: 'Ornö Krog', type: 'Krog', desc: 'Ligger i Bygdegården vid Kyrkviken. Ansvarar för skolmaten och serverar dagens lunch på vardagar.' },
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "Restaurang Sågverket ligger liksom hotellet i det som tidigare var Sågen vid Brunnsviken på södra Ornö. Hotellet är öppet året runt men restaurangen endast juni till augusti."
+      { name: 'Restaurang Sågverket', type: 'Restaurang', desc: 'Vid Brunnsviken på södra Ornö, i det som tidigare var sågen. Hör till Ornö Skärgårdshotell.', open_season: 'Juni till augusti' },
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "Vid Pizzaboden i Kyrkviken kan man under säsong äta pizza och dricka en öl eller ett glas vin på Bodens fina trädäck alldeles vid vattnet."
+      { name: 'Pizzaboden', type: 'Pizzeria', desc: 'Trädäck vid vattnet i Kyrkviken. Pizza, öl och vin, kaffe och smörgås.', open_season: 'Säsongsöppet' },
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "Caféet som är inrymt i en av de två stora ladorna vid Sundby Gård har under säsongen gräddglass från Engelholms Glass, hembakat, lättare luncher samt flera sorters kaffe."
+      { name: 'Sundby Gård, Magasinets café', type: 'Café', desc: 'I en av ladorna vid Sundby Gård. Glass, hembakat och lättare luncher.', open_season: 'Säsongsöppet' },
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "På Ornö Museum vid Ornö Kyrka finns sommartid servering med glass, kaffe, läsk, bullar och kondisbitar. Öppettider 2026: Museum och café är öppet 13 juni till 16 augusti alla dagar 12 till 16 och tisdagar till 18."
+      { name: 'Ornö Museums trädgårdscafé', type: 'Café', desc: 'Servering vid Ornö Museum intill kyrkan. Glass, kaffe, bullar och kondisbitar.', open_season: '13 juni till 16 augusti 2026' },
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "Kaffe, läsk, kondisbitar, godis och glass finns till självservering vid Microbutiken i Brunnsviken på södra Ornö."
+      { name: 'Ornö båtvarv, Microbutiken', type: 'Självservering', desc: 'Kaffe, läsk, kondisbitar, godis och glass i självservering vid Brunnsviken.' },
     ],
     tips: [
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/norra-skogen.html — reservatet ligger på norra Ornö och skyddades 2024
@@ -1941,6 +1957,17 @@ export const ISLANDS: Island[] = [
       { name: 'Landsorts Gästhamn', desc: 'Gästhamn på Landsort.', fuel: false }, // KÄLLA: https://www.gasthamnsguide.se/ – Landsorts Gästhamn, Stockholms södra skärgård (2026-09-03)
     ],
     restaurants: [
+      // Landsort hade noll ställen inlagda. Öns egen besöksportal listar fyra
+      // med namn. Tillagt 2026-09-24. Källan ger inga öppettider eller
+      // säsonger, så vi skriver inga.
+      // KÄLLA: https://visitlandsort.se/slappna-av-ma-bra/ata/ (Landsort Sjö- och MiljöCentrum), läst 2026-09-24 , "Svedtiljas. En gourmetrestaurang"
+      { name: 'Svedtiljas', type: 'Restaurang', desc: 'Beskrivs av öns besöksportal som en gourmetrestaurang.' },
+      // KÄLLA: https://visitlandsort.se/slappna-av-ma-bra/ata/ (Landsort Sjö- och MiljöCentrum), läst 2026-09-24 , "Saltboden Kök & Proviant. Vår handelsbod. Med tillhörande, välbesökt pub."
+      { name: 'Saltboden Kök & Proviant', type: 'Handelsbod/Pub', desc: 'Handelsbod med tillhörande pub.' },
+      // KÄLLA: https://visitlandsort.se/slappna-av-ma-bra/ata/ (Landsort Sjö- och MiljöCentrum), läst 2026-09-24 , "Landsorts gästhamn. Ett litet café och butik"
+      { name: 'Landsorts gästhamn', type: 'Café', desc: 'Litet café och butik i gästhamnen.' },
+      // KÄLLA: https://visitlandsort.se/slappna-av-ma-bra/ata/ (Landsort Sjö- och MiljöCentrum), läst 2026-09-24 , "Rastplatsen vid Norrhamn. Här finns det möjlighet till grillning och att äta medhavd picknick."
+      { name: 'Rastplatsen vid Norrhamn', type: 'Grillplats', desc: 'Grillning och medhavd picknick, ingen servering.' },
     ],
     tips: [
       'Kolla väderprognosen noggrant — Landsort är en exponerad ytterskärgårdsö.',
@@ -2038,6 +2065,12 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://hotellfurusund.se/ — hotellet kallar den bara "restaurang"; "Värdshus" är det historiska namnet
       { name: 'Hotell Furusund, restaurangen', type: 'Restaurang', desc: 'Det gamla värdshuset — mat i historisk miljö.', slug: 'furusund-vardshus', price_example: 'Förrätt 175–195 kr, huvudrätt 225–390 kr', open_season: 'Maj–Oktober', open_hours: 'Varierar med säsong, kortare öppettider utanför juni–augusti', book_required: true, phone: '0176-803 44', child_menu: true }, // KÄLLA: https://hotellfurusund.se/kontakt/ (telefon +46 (0)176-803 44; öppettider publicerade per månad, t.ex. september); hotellfurusund.se/menyer/, PDF-menyer hösten 2026 (förrätter 175–195 kr, huvudrätter 225–390 kr)
+      // Två ställen till enligt regionens officiella besökssajt. Tillagt
+      // 2026-09-28. Inga priser och inga öppettider anges där.
+      // KÄLLA: https://roslagen.se/oar/furusund/ (Destination Roslagen), läst 2026-09-28 , under Mat och dryck: "Högmarsö krog"
+      { name: 'Högmarsö krog', type: 'Krog', desc: 'Krog som Destination Roslagen listar under Furusund.' },
+      // KÄLLA: https://roslagen.se/oar/furusund/ (Destination Roslagen), läst 2026-09-28 , under Mat och dryck: "Gästhamnen med servering i Havspaviljongen", och under Service: "Gästhamn med café"
+      { name: 'Havspaviljongen', type: 'Servering', desc: 'Servering i gästhamnen.' },
     ],
     day_cost: {
       // Ingen totalsumma: parkering och resa saknar belagt pris. Menypriserna nedan är belagda.
@@ -2134,8 +2167,22 @@ export const ISLANDS: Island[] = [
       // KÄLLA: sv.wikipedia.org/wiki/Blidö ("färjeförbindelse från Furusund via trafikfärjelederna Furusundsleden och Blidöleden... mellan Furusund... och Köpmanholm (Yxlan) samt mellan Larshamn (Yxlan) och Norrsund (Blidö)")
       { method: 'Bil + två bilfärjor', from: 'Furusund', desc: 'Kör mot Furusund, bilfärja till Yxlan (Furusundsleden), sedan bilfärja Yxlan–Blidö (Blidöleden). Båda avgiftsfria.', icon: '🚗' },
     ],
-    harbors: [], // KÄLLA: inget hittat efter sökning (https://www.gasthamnsguide.se/, https://skargardsstiftelsen.se/, https://waxholmsbolaget.se/, https://www.norrtalje.se/) — gästhamnen kunde inte bekräftas
+    harbors: [], // KÄLLA: inget hittat efter sökning (https://www.gasthamnsguide.se/, https://skargardsstiftelsen.se/, https://waxholmsbolaget.se/, https://www.norrtalje.se/) — gästhamnen kunde inte bekräftas.
+    // NOTERAT 2026-09-28: Destination Roslagen anger gästhamn bland Blidös
+    // service (https://roslagen.se/oar/blido/). Namn och läge saknas där, så
+    // harbors lämnas tom tills någon hittar hamnens egen sida.
     restaurants: [
+      // Blidö hade noll ställen inlagda trots att regionens officiella
+      // besökssajt listar fyra under Mat och dryck. Tillagt 2026-09-28.
+      // Källan ger bara namn, inga öppettider och ingen säsong.
+      // KÄLLA: https://roslagen.se/oar/blido/ (Destination Roslagen, officiellt platsvarumärke för Norrtälje, Östhammar och Österåker), läst 2026-09-28 , listar under Mat och dryck: "Blidö Hamnkrog"
+      { name: 'Blidö Hamnkrog', type: 'Krog', desc: 'Krog på Blidö.' },
+      // KÄLLA: https://roslagen.se/oar/blido/ (Destination Roslagen, officiellt platsvarumärke för Norrtälje, Östhammar och Österåker), läst 2026-09-28 , listar "Blidö Brygga och Bistro" under Mat och dryck och som vandrarhem under Boende
+      { name: 'Blidö Brygga och Bistro', type: 'Bistro', desc: 'Bistro med vandrarhem.' },
+      // KÄLLA: https://roslagen.se/oar/blido/ (Destination Roslagen, officiellt platsvarumärke för Norrtälje, Östhammar och Österåker), läst 2026-09-28 , listar under Mat och dryck: "Blidö Matlådan"
+      { name: 'Blidö Matlådan', type: 'Mat', desc: 'Listad av Destination Roslagen bland öns ställen för mat och dryck.' },
+      // KÄLLA: https://roslagen.se/oar/blido/ (Destination Roslagen, officiellt platsvarumärke för Norrtälje, Östhammar och Österåker), läst 2026-09-28 , listar "Skärgårdspadel" under Mat och dryck. Vad serveringen består av framgår inte.
+      { name: 'Skärgårdspadel', type: 'Servering', desc: 'Padelanläggning som regionens besökssajt listar under mat och dryck. Vad som serveras framgår inte av källan.' },
     ],
     tips: [
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/linkudden.html — föreskrifterna förbjuder tältning, öppen eld, lös hund eller katt samt förtöjning på samma plats längre än två dygn (2026-09-14)
@@ -2414,6 +2461,13 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://nattaro.se/ (mat på ön: "Vi tar inte bordsbokningar"; krogen har haft öppna helger även i september — dvs. längre säsong än juni–mitten av augusti). Priser och exakta öppettider kunde inte beläggas.
       { name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Restaurang vid ångbåtsbryggan och gästhamnen. Öppettider varierar under säsongen.', open_season: 'Del av sommarsäsongen, kontrollera aktuella tider på nattaro.se', book_required: false },
+      // Två ställen till stod på öns egen sida men saknades hos oss. Tillagt
+      // 2026-09-28. Sidan angav i september att båda är stängda för säsongen,
+      // vilket är ett läge och inte en egenskap, så vi skriver säsongsöppet.
+      // KÄLLA: https://nattaro.se/mat-pa-on/ , "Sixtens Bodega. Varmt välkommen att parkera flip-flopsen och landa på Sixtens bodega", läst 2026-09-28
+      { name: 'Sixtens Bodega', type: 'Pizzeria', desc: 'Bodega på ön. Pizza enligt öns egen sida.', open_season: 'Säsongsöppet, stängt utanför säsong' },
+      // KÄLLA: https://nattaro.se/mat-pa-on/ , "Handelsbod & Glasskiosker. Här finns allt från frukostbröd till badtillbehör", läst 2026-09-28
+      { name: 'Handelsboden och glasskioskerna', type: 'Butik/Glass', desc: 'Handelsbod med bland annat frukostbröd, och glasskiosker.', open_season: 'Säsongsöppet' },
     ],
     day_cost: {
       // Inga belopp: varken resa eller krog har belagt pris (se raderna nedan). Siffror borttagna på Toms beslut 2026-09-14.
@@ -3717,8 +3771,18 @@ export const ISLANDS: Island[] = [
       frequency: 'Enstaka turer per dag; de flesta bryggor utan fast tid',
     },
     harbors: [],
-    restaurants: [],
+    restaurants: [
+      // Yxlan hade noll ställen inlagda. Destination Roslagen listar två med
+      // namn under Mat och dryck, plus bygdegården som hyrs ut. Tillagt
+      // 2026-09-28. Inga öppettider anges i källan, alltså inga hos oss.
+      // KÄLLA: https://roslagen.se/oar/yxlan/ (Destination Roslagen), läst 2026-09-28 , under Mat och dryck: "Restaurant Yxlan"
+      { name: 'Restaurant Yxlan', type: 'Restaurang', desc: 'Restaurang på ön.' },
+      // KÄLLA: https://roslagen.se/oar/yxlan/ (Destination Roslagen), läst 2026-09-28 , under Mat och dryck: "Ting Tong Take Away"
+      { name: 'Ting Tong Take Away', type: 'Take away', desc: 'Take away på ön.' },
+    ],
     tips: [
+      // KÄLLA: https://roslagen.se/oar/yxlan/ (Destination Roslagen), läst 2026-09-28: "Service på platsen: Skola, livsmedelsbutik, kiosk" och "Bygdegården finns tillgänglig för uthyrning"
+      'På Yxlan finns livsmedelsbutik och kiosk. Bygdegården går att hyra.',
       'Båda vägfärjorna (Furusund–Yxlan och Yxlan–Blidö) är avgiftsfria och tar fyra minuter.',
       'Buss 632 från Norrtälje åker med färjan över och går ända till Vagnsunda – bra om du vill vandra ledens etapp åt ett håll.',
       'Bara Vagnsunda har fast tid på linje 24. Ska du av vid någon annan brygga, sök resan i SL-appen och kontrollera att turen angör den.',
@@ -3765,7 +3829,11 @@ export const ISLANDS: Island[] = [
     ],
     harbors: [{ name: 'Kymmendö naturhamn', desc: 'Skyddad vik på södra sidan. Ankring möjlig.' }],
     restaurants: [],
-    tips: ['Läs Hemsöborna innan besöket.', 'Ta med allt — ingen butik eller service finns.', 'Planera vistelsen med vädret i tanke, svår att lämna vid storm.'],
+    // RÄTTAT 2026-09-24: tipset sa att ingen butik eller service finns. Ornös
+    // egen sajt säger motsatsen. Namnen på verksamheterna står inte där, så
+    // restaurants lämnas tom tills någon läst Kymendös egen sida.
+    // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ , "På Kymendö vid Ornös nordöstra sida finns butik och restaurang", läst 2026-09-24
+    tips: ['Läs Hemsöborna innan besöket.', 'Enligt Ornös egen sajt finns butik och restaurang på Kymendö. Öppettider och säsong har vi inte kunnat belägga, så räkna med att ta med det du behöver.', 'Planera vistelsen med vädret i tanke, svår att lämna vid storm.'],
     related: ['orno', 'dalaro', 'nattaro'],
     tags: ['Strindberg', 'literär', 'orört', 'historia', 'mellersta'],
     did_you_know: 'Kymmendö är känd som platsen där August Strindberg skildrade skärgårdslivet i romanen "Hemsöborna" från 1887 — en av Sveriges mest lästa böcker.',
