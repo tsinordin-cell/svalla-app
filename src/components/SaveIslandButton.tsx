@@ -11,7 +11,7 @@ interface Props {
 
 /**
  * SaveIslandButton — hjärtknapp som sparar en ö i `saved_islands`.
- * - Utloggad: triggar /auth?next=... så användaren kan logga in/skapa konto.
+ * - Utloggad: skickar till /logga-in?returnTo=… så användaren kan logga in/skapa konto.
  * - Inloggad: toggle save state.
  *
  * Variant 'pill': stor textknapp för ösidan.
@@ -46,8 +46,10 @@ export default function SaveIslandButton({ islandSlug, islandName, variant = 'pi
   async function toggle() {
     if (loading) return
     if (!userId) {
-      // Utloggad → till login med next-param
-      router.push(`/auth?next=${encodeURIComponent(`/o/${islandSlug}?saved=1`)}`)
+      // Utloggad → till inloggningen med returnTo. RÄTTAT 2026-09-28: pekade på
+      // /auth?next=…, en sida som aldrig funnits (bara /auth/callback), så varje
+      // utloggat klick gav 404 sedan 2026-04-28. ?saved=1 togs bort: ingen läste den.
+      router.push(`/logga-in?returnTo=${encodeURIComponent(`/o/${islandSlug}`)}&mode=ny`)
       return
     }
     setLoading(true)
