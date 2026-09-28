@@ -128,12 +128,9 @@ const BLOG_SLUGS = [
   'packlista-bat',
   'havsbastu-guide',
   'segling-klassiska-leder',
-  // Strategiska SEO-artiklar (2026)
-  'midsommar-skargarden-2026',
-  'packlista-skargarden',
-  'allemansratten-pa-sjon',
-  'waxholmsbolaget-guide',
-  'skargard-utan-bat',
+  // Strategiska SEO-artiklar (2026). Fem av dem (midsommar, packlista, allemansrätten,
+  // waxholmsbolaget, skärgård utan båt) flyttade till /guider/ och togs bort härifrån 2026-09-28:
+  // sitemapen listade adresser som svarade 308, kontrollerat mot produktion.
   'weekend-skargard-stockholm',
   'sandhamn-guide-2026',
   'boende-skargard-2026',
@@ -207,7 +204,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/oppet-nu`,              lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     // Guider (hub)
     { url: `${base}/guider`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
-    { url: `${base}/guider/midsommar-skargarden-2026`, lastModified: now, priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: `${base}/guider/midsommar-skargarden`, lastModified: now, priority: 0.9, changeFrequency: 'weekly' as const },
     // Transaktionella SEO-sektioner
     { url: `${base}/teambuilding`,           lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     { url: `${base}/hyra-bat`,               lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
