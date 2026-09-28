@@ -62,7 +62,7 @@ export const URL_SLUG_TO_REGION: Record<string, GuideRegion> = {
 // Guide slug → region mapping
 const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   // ── Stockholms skärgård ─────────────────────────────────────────
-  'midsommar-skargarden-2026':            'stockholm',
+  'midsommar-skargarden':            'stockholm',
   'waxholmsbolaget-guide':                'stockholm',
   'skargard-utan-bat':                    'stockholm',
   'vad-kostar-skargarden':                'stockholm',
@@ -111,9 +111,9 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'fiske-i-skargarden':                   'stockholm',
   'cykling-skargarden':                   'stockholm',
   'kraftskiva-skargarden':           'stockholm',
-  'juli-skargarden-2026-oar':             'stockholm',
-  'juli-skargarden-2026-aktiviteter':     'stockholm',
-  'juli-skargarden-2026-mat':             'stockholm',
+  'juli-skargarden-oar':             'stockholm',
+  'juli-skargarden-aktiviteter':     'stockholm',
+  'juli-skargarden-mat':             'stockholm',
   'semestervecka-skargarden':             'stockholm',
   'sommarlov-skargarden-barn':            'stockholm',
   'barnvanliga-bad-skargarden':           'stockholm',
@@ -126,12 +126,12 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'bad-med-bastu-skargarden':             'stockholm',
   'uto-vs-sandhamn':                      'stockholm',
   'inre-vs-yttre-skargard':               'stockholm',
-  'sensommar-skargarden-2026':            'stockholm',
-  'september-skargarden-2026':            'stockholm',
-  'jul-skargarden-2026':                  'stockholm',
-  'nyar-skargarden-2026':                 'stockholm',
-  'pask-skargarden-2027':                 'stockholm',
-  'valborg-skargarden-2027':              'stockholm',
+  'sensommar-skargarden':            'stockholm',
+  'september-skargarden':            'stockholm',
+  'jul-skargarden':                  'stockholm',
+  'nyar-skargarden':                 'stockholm',
+  'pask-skargarden':                 'stockholm',
+  'valborg-skargarden':              'stockholm',
   'skargard-instagramguide':              'stockholm',
   'wellness-retreat-skargarden':          'stockholm',
   'brollop-skargarden':                   'stockholm',
@@ -145,29 +145,29 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'kosterarna-guide':                     'goteborg',
   'fjallbacka-guide':                     'goteborg',
   'lysekil-guide':                        'goteborg',
-  'kraftskiva-bohuslan-2026':             'goteborg',
-  'juli-bohuslan-2026':                   'goteborg',
+  'kraftskiva-bohuslan':             'goteborg',
+  'juli-bohuslan':                   'goteborg',
   'barnvanliga-oar-bohuslan':             'goteborg',
   'basta-badplatser-bohuslan':            'goteborg',
   'marstrand-vs-smogen':                  'goteborg',
-  'host-bohuslan-2026':                   'goteborg',
+  'host-bohuslan':                   'goteborg',
   'kajakpaddling-bohuslan':               'goteborg',
   'snorkling-kosterhavet':                'goteborg',
   'ostronstangning-bohuslan':             'goteborg',
-  'grebbestad-kraftskiva-2026':           'goteborg',
+  'grebbestad-kraftskiva':           'goteborg',
   'grebbestad-guide':                     'goteborg',
   'stromstad-guide':                      'goteborg',
   'tjorn-guide':                          'goteborg',
   'orust-guide':                          'goteborg',
-  'sensommar-bohuslan-2026':              'goteborg',
+  'sensommar-bohuslan':              'goteborg',
   // ── Gotland ─────────────────────────────────────────────────────
   'gotland-guide':                        'gotland',
-  'kraftskiva-gotland-2026':              'gotland',
-  'juli-gotland-2026':                    'gotland',
+  'kraftskiva-gotland':              'gotland',
+  'juli-gotland':                    'gotland',
   'barnfamilj-gotland':                   'gotland',
   'basta-badplatser-gotland':             'gotland',
   'gotland-vs-bohuslan':                  'gotland',
-  'host-gotland-2026':                    'gotland',
+  'host-gotland':                    'gotland',
   'vandring-gotland':                     'gotland',
   'cykling-gotland':                      'gotland',
   'hyra-stuga-gotland':                   'gotland',
@@ -180,7 +180,7 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'camping-stockholm-skargard':           'stockholm',
   // ── Öland ───────────────────────────────────────────────────────
   'oland-guide':                          'oland',
-  'kraftskiva-oland-2026':                'oland',
+  'kraftskiva-oland':                'oland',
   'cykling-oland':                        'oland',
   'borgholm-guide':                       'oland',
   // ── Höga Kusten ─────────────────────────────────────────────────
@@ -229,13 +229,13 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'yttre-garden-guide':                   'stockholm',
   // ── Batch J: SEO-gap-guider – säsong, region, tematiska ─────────────────
   // Säsong
-  'juni-skargarden-2026':               'stockholm',
+  'juni-skargarden':               'stockholm',
   'folkfria-oar-juli':                  'stockholm',
   'oktober-skargarden':                 'stockholm',
-  'host-oland-2026':                    'oland',
-  'host-hoga-kusten-2026':              'hogakusten',
-  'vinter-gotland-2026':                'gotland',
-  'vinter-bohuslan-2026':               'goteborg',
+  'host-oland':                    'oland',
+  'host-hoga-kusten':              'hogakusten',
+  'vinter-gotland':                'gotland',
+  'vinter-bohuslan':               'goteborg',
   'isbad-vinterbad-sverige':            'sverige',
   // Öland expansion
   'badplatser-oland':                   'oland',
@@ -292,7 +292,7 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'vinterbastu-isbastu':                'sverige',
   'fagelskadning-skargarden':           'stockholm',
   'snorkling-stockholm':                'stockholm',
-  'vinter-oland-2026':                  'oland',
+  'vinter-oland':                  'oland',
   'skridskor-havet':                    'sverige',
   'julmarknad-havet':                   'sverige',
   'fjallalternativet-kust':             'sverige',
@@ -310,15 +310,15 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'restauranger-havsvy-stockholm':      'stockholm',
   'vandring-var-kust':                  'sverige',
   // ── Batch L: SEO-gap-guider – aug–okt säsong ─────────────────────────────
-  'host-stockholms-skargard-2026':      'stockholm',
+  'host-stockholms-skargard':      'stockholm',
   'hummerpremiar-bohuslan':        'goteborg',
-  'surstrommingspremiar-2026':          'hogakusten',
+  'surstrommingspremiar':          'hogakusten',
   'michelin-havet-guide':               'sverige',
   'sandhamn-vaxholm-grinda-host':       'stockholm',
   'camping-host-skargard':              'stockholm',
   // ── Batch M: Höst/planering SEO-artiklar ─────────────────────────────────
   'havsbastu-guide':                    'sverige',
-  'hostlov-vid-havet-2026':             'sverige',
+  'hostlov-vid-havet':             'sverige',
   'november-skargard':                  'stockholm',
   'host-blekinge-skargard':             'sydkusten',
   'host-skane-kusten':                  'sydkusten',
@@ -332,7 +332,7 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'hund-skargarden':                    'sverige',
   'barnfamilj-stockholms-skargard':     'stockholm',
   'romantisk-skargard':                 'sverige',
-  'var-stockholms-skargard-2027':       'stockholm',
+  'var-stockholms-skargard':       'stockholm',
 }
 
 export function getGuideRegion(slug: string): GuideRegion {
@@ -361,7 +361,7 @@ export type GuideMeta = {
 
 export const GUIDES: GuideMeta[] = [
   {
-    slug: "midsommar-skargarden-2026",
+    slug: "midsommar-skargarden",
     title: "Midsommar i skärgården 2026 – 15 alternativ",
     excerpt: "8 destinationer på ostkusten och 7 på västkusten. Kollektivtrafik, vad du gör och var du äter – komplett planeringsguide.",
     category: "Säsong",
@@ -1835,7 +1835,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "kraftskiva-bohuslan-2026",
+    slug: "kraftskiva-bohuslan",
     title: "Kräftskiva på västkusten 2026 – kräftor och kräftfiske i Bohuslän",
     excerpt: "Kräftskiva på västkusten 2026: när man har kräftskiva, kräftor 2026 och reglerna för havskräfta, kräftsafari i Smögen och Marstrand och vad kräfttesterna säger.",
     category: "Säsong", emoji: "🦞", readTime: "7 min", fullContent: true,
@@ -1855,7 +1855,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "kraftskiva-gotland-2026",
+    slug: "kraftskiva-gotland",
     title: "Kräftor på Gotland – kräftpremiär 2026 och kräftskiva",
     excerpt: "Kräftor på Gotland: hela ön är skyddsområde för flodkräfta och okokta kräftor utifrån är förbjudna. Kräftpremiär 2026, fiskeregler och tips för kräftskivan.",
     category: "Säsong", emoji: "🏰", readTime: "6 min", fullContent: true,
@@ -1875,7 +1875,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "kraftskiva-oland-2026",
+    slug: "kraftskiva-oland",
     title: "Kräftskiva på Öland 2026 – regler för kräftor och praktiska tips",
     excerpt: "Kräftskiva på Öland 2026: ön är skyddsområde för flodkräfta, och okokta kräftor utifrån får inte säljas eller transporteras. Regler, köp av kräftor och resan.",
     category: "Säsong", emoji: "🌾", readTime: "4 min", fullContent: true,
@@ -1895,7 +1895,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "grebbestad-kraftskiva-2026",
+    slug: "grebbestad-kraftskiva",
     title: "Kräftskiva 2026 i Grebbestad – kräftskiva på västkusten",
     excerpt: "När har man kräftskiva 2026? Kräftpremiären var 5 augusti. Om kräftskiva på västkusten, havskräftor, fiskeregler och kräftkok i Grebbestad.",
     category: "Region", emoji: "🦐", readTime: "6 min", fullContent: true,
@@ -1936,7 +1936,7 @@ export const GUIDES: GuideMeta[] = [
   },
   // ── Batch D: Juli-serien 2026 ────────────────────────────────────────────────
   {
-    slug: "juli-skargarden-2026-oar",
+    slug: "juli-skargarden-oar",
     title: "Juli i Stockholms skärgård 2026 – öar att besöka",
     excerpt: "Grinda, Möja, Sandhamn, Utö, Ornö och Nåttarö i juli: hur du tar dig dit med båt eller färja, vad som finns på ön och vad som gäller för biljetterna.",
     category: "Säsong", emoji: "☀️", readTime: "5 min", fullContent: true,
@@ -1954,7 +1954,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "juli-skargarden-2026-aktiviteter",
+    slug: "juli-skargarden-aktiviteter",
     title: "Juli i skärgården 2026 – aktiviteter: kajak, SUP, bad och bastu",
     excerpt: "Aktiviteter i Stockholms skärgård i juli: var du hyr kajak och SUP, snorkelleder, cykel på bilfria öar, bastu vid havet och vad som gäller vid eldningsförbud.",
     category: "Säsong", emoji: "🌊", readTime: "8 min", fullContent: true,
@@ -1974,7 +1974,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "juli-skargarden-2026-mat",
+    slug: "juli-skargarden-mat",
     title: "Juli i skärgården 2026 – mat, krogar och att grilla själv",
     excerpt: "Mat i skärgården i juli: krogar på Fjäderholmarna, Vaxholm, Grinda, Sandhamn och Utö, servering på båten, bordsbokning och reglerna för att grilla själv.",
     category: "Säsong", emoji: "🍤", readTime: "6 min", fullContent: true,
@@ -2046,7 +2046,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "juli-bohuslan-2026",
+    slug: "juli-bohuslan",
     title: "Bohusbåten och juli i Bohuslän 2026 – ångaren, orter och bad",
     excerpt: "Bohusbåten är i praktiken ångaren Bohuslän. Hennes kusttur i juli 2026, fästningsspelen i Marstrand och fakta om Smögen, Fjällbacka och Grebbestad i juli.",
     category: "Säsong", emoji: "🪨", readTime: "7 min", fullContent: true,
@@ -2064,7 +2064,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "juli-gotland-2026",
+    slug: "juli-gotland",
     title: "När är Medeltidsveckan på Gotland 2026? Juli på Gotland",
     excerpt: "När är Medeltidsveckan på Gotland 2026? Den var 2–9 augusti (vecka 32) och 2027 blir den 8–15 augusti. Plus Gotlandsveckan, Vikingaveckan och juli på Gotland.",
     category: "Säsong", emoji: "🌻", readTime: "7 min", fullContent: true,
@@ -2422,7 +2422,7 @@ export const GUIDES: GuideMeta[] = [
   },
   // ── Batch F: Säsongsmotorer höst/vinter ──────────────────────────────────────
   {
-    slug: "sensommar-skargarden-2026",
+    slug: "sensommar-skargarden",
     title: "När börjar sensommaren? Sensommar 2026 i skärgården",
     excerpt: "När börjar sensommaren och när är sensommar? SMHI:s definitioner av sommar och höst, Waxholmsbolagets tidtabeller efter 17 augusti, bad, bär och kräftor 2026.",
     category: "Säsong", emoji: "🍂", readTime: "6 min", fullContent: true,
@@ -2442,7 +2442,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "september-skargarden-2026",
+    slug: "september-skargarden",
     title: "September i Stockholms skärgård 2026 – vad gäller och vad stänger",
     excerpt: "September i Stockholms skärgård: båtarnas hösttidtabell, vad som stänger efter säsongen, vad som har öppet in i oktober och tips om svamp, vandring och bastu.",
     category: "Säsong", emoji: "🍁", readTime: "7 min", fullContent: true,
@@ -2460,7 +2460,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "host-bohuslan-2026",
+    slug: "host-bohuslan",
     title: "Hummerpremiär 2026 och höst i Bohuslän – ostron och skaldjur",
     excerpt: "Hummerpremiär 2026 var 21 september kl. 07.00. Om hösten i Bohuslän: regler för hummerfiske, ostronsäsongen i Grebbestad, skaldjur och vandring vid kusten.",
     category: "Säsong", emoji: "🦪", readTime: "6 min", fullContent: true,
@@ -2478,7 +2478,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "host-gotland-2026",
+    slug: "host-gotland",
     title: "Kantareller på Gotland – svamp och höst på Gotland 2026",
     excerpt: "Finns det kantareller på Gotland? Ja, kantarellen finns i hela landet. Här är regler för svampplockning på Gotland, tryffel, raukar och höstens evenemang.",
     category: "Säsong", emoji: "🍄", readTime: "6 min", fullContent: true,
@@ -2697,7 +2697,7 @@ export const GUIDES: GuideMeta[] = [
   },
   // ── Batch G: Resterande guider – alla serier ──────────────────────────────────
   {
-    slug: "jul-skargarden-2026",
+    slug: "jul-skargarden",
     title: "Jul i skärgården 2026 – julbord, julmarknader och jultrafik",
     excerpt: "Jul i skärgården 2026: julbord på Sandhamn, Utö och Fjäderholmarna, Vaxholms julmarknad 5–6 december och hur Waxholmsbolagets båtar går i december.",
     category: "Säsong", emoji: "🎄", readTime: "6 min", fullContent: true,
@@ -2715,7 +2715,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "nyar-skargarden-2026",
+    slug: "nyar-skargarden",
     title: "Nyårsfirande i skärgården 2026 – nyårspaket och båtar på nyår",
     excerpt: "Nyårsfirande i skärgården 2026: vilka hotell som har publicerat nyårspaket, var bokningen öppnar snart, hur båtarna går på nyår och regler för fyrverkerier.",
     category: "Säsong", emoji: "🎆", readTime: "5 min", fullContent: true,
@@ -2733,7 +2733,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "pask-skargarden-2027",
+    slug: "pask-skargarden",
     title: "Påskpaket 2027 och påsk 2027 i skärgården – datum och båtar",
     excerpt: "Påsk 2027: påskdagen är 28 mars. Läget för påskpaket 2027 i skärgården, hur båtarna går under påskweekend 2027 och vilka öar som har trafik året runt.",
     category: "Säsong", emoji: "🐣", readTime: "6 min", fullContent: true,
@@ -2753,7 +2753,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "valborg-skargarden-2027",
+    slug: "valborg-skargarden",
     title: "Valborg 2027 i skärgården – valborgsmässoafton fredag 30 april",
     excerpt: "Valborg 2027: valborgsmässoafton är fredag 30 april 2027. Datum, traditioner, när majbrasan tänds, regler för valborgseld och läget för program i skärgården.",
     category: "Säsong", emoji: "🔥", readTime: "5 min", fullContent: true,
@@ -3120,7 +3120,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "sensommar-bohuslan-2026",
+    slug: "sensommar-bohuslan",
     title: "Sensommar 2026 i Bohuslän – hummerpremiär, ostron och kräftor",
     excerpt: "Sensommar 2026 i Bohuslän: kräftpremiären i augusti, ostronsafari och Ostronets dag i september, hummerpremiären 21 september och vad du kan göra vid kusten.",
     category: "Säsong", emoji: "🍂", readTime: "6 min", fullContent: true,
@@ -3498,7 +3498,7 @@ export const GUIDES: GuideMeta[] = [
   // ── Batch J: SEO-gap-guider ────────────────────────────────────────────────
   // Säsong
   {
-    slug: "juni-skargarden-2026",
+    slug: "juni-skargarden",
     title: "Juni i skärgården 2026 – båtar, midsommar, öar och regler",
     excerpt: "Juni i skärgården: så gick båtarna vid midsommar 2026, när midsommar infaller, var du ser badtemperaturen och vad som gäller för fågelskydd och grillning.",
     category: "Säsong", emoji: "🌿", readTime: "5 min", fullContent: true,
@@ -3556,7 +3556,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "host-oland-2026",
+    slug: "host-oland",
     title: "Öland på hösten 2026 – tranor, fågelsträck och Öland i oktober",
     excerpt: "Öland på hösten: tusentals tranor vid Möckelmossen, fågelsträck och evenemang på Öland i oktober, vad som har öppet och hur Skördefesten 2026 gick till.",
     category: "Säsong", emoji: "🌾", readTime: "6 min", fullContent: true,
@@ -3576,7 +3576,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "host-hoga-kusten-2026",
+    slug: "host-hoga-kusten",
     title: "Höga Kusten på hösten 2026 – Skuleskogen och världsarvet",
     excerpt: "Höga Kusten på hösten: leder i höstfärger, Skuleskogen, Skuleberget och resan dit. Och Höstljus 2026 – var och när ljusfestivalen faktiskt äger rum.",
     category: "Säsong", emoji: "🏔", readTime: "7 min", fullContent: true,
@@ -3594,7 +3594,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "vinter-gotland-2026",
+    slug: "vinter-gotland",
     title: "Gotland på vintern 2026 – Visby i vinter och vad som har öppet",
     excerpt: "Gotland på vintern: färjan och flyget året runt, Visby i vinter med museum, julmarknad och restauranger, skidspår när det snöar och vad som har öppet.",
     category: "Säsong", emoji: "❄️", readTime: "7 min", fullContent: true,
@@ -3614,7 +3614,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "vinter-bohuslan-2026",
+    slug: "vinter-bohuslan",
     title: "Vinter i Bohuslän 2026 – vinterbad, bastu och öppet året runt",
     excerpt: "Vinter i Bohuslän 2026: vinterbad med bastu i Strömstad, Grebbestad och Smögen, hotell med vinteröppet, julmarknad i Marstrand och båtarna ut till öarna.",
     category: "Säsong", emoji: "🌊", readTime: "7 min", fullContent: true,
@@ -4525,7 +4525,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "vinter-oland-2026",
+    slug: "vinter-oland",
     title: "Öland på vintern 2026 – havsörn, alvar och vinterutflykter",
     excerpt: "Öland på vintern: här ser du havsörn vid Ottenby, vandrar i Trollskogen och på alvaret, kallbadar och besöker fornborgar. Så tar du dig dit utan cykelfärja.",
     category: "Säsong", emoji: "❄", readTime: "7 min", fullContent: true,
@@ -4856,7 +4856,7 @@ export const GUIDES: GuideMeta[] = [
   },
   // ── Batch L: SEO-gap-guider – aug–okt säsong ─────────────────────────────
   {
-    slug: "host-stockholms-skargard-2026",
+    slug: "host-stockholms-skargard",
     title: "Höst i Stockholms skärgård 2026 – båtar, öar och vad som har öppet",
     excerpt: "Båtarna till Sandhamn, Grinda, Utö och Möja går hela hösten, men mer sällan. Här är vad som har öppet hösten 2026, bastun på Bullerö och regler för hund.",
     category: "Säsong", emoji: "🍂", readTime: "6 min", featured: true, fullContent: true,
@@ -4895,7 +4895,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "surstrommingspremiar-2026",
+    slug: "surstrommingspremiar",
     title: "Surströmmingspremiär 2026 – när är surströmmingspremiären 2027?",
     excerpt: "Surströmmingspremiär 2026 var torsdag 20 augusti. När är surströmmingspremiären? Den tredje torsdagen i augusti – nästa gång torsdag 19 augusti 2027.",
     category: "Säsong", emoji: "🐟", readTime: "5 min", fullContent: true,
@@ -4955,7 +4955,7 @@ export const GUIDES: GuideMeta[] = [
   },
   // ── Batch M: Höst/planering SEO-artiklar ─────────────────────────────────
   { slug: "havsbastu-guide", title: "Havsbastu – guide till ett av Nordens bästa bad", excerpt: "Havsbastu kombinerar extrem värme med ett dopp i salthav – en skandinavisk upplevelse utan motstycke. Guide till de bästa havsbastuerna i Sverige och hur du planerar ditt besök.", category: "Aktivitet", emoji: "🧖", readTime: "7 min", fullContent: true, faqs: [{ q: 'Vad är havsbastu?', a: 'Havsbastu är en bastu placerad direkt vid havet med brygga för bad. Principen är enkel: svetta i bastun, sedan ett snabbt dopp i salthav. Kontrasten mellan extrem värme (80–100°C i bastun) och kallt hav ger en kraftig välbefinnandeeffekt och är en djupt rotad skandinavisk tradition.' }, { q: 'Var finns de bästa havsbastuerna i Sverige?', a: 'Utö Havsbastu (Stockholms skärgård), Arholma STF (norra skärgården), Smådalarö Gård SPA (södra Stockholms skärgård), och längs Bohusläns kust: Lysekil Havsbadet och Marstrand. På Gotland: Snäcks havsbastu. De flesta STF-anläggningar i skärgården erbjuder bastumöjligheter.' }, { q: 'Behöver man boka havsbastu i förväg?', a: 'Ja – populära bastuer som Utö Havsbastu och Smådalarö Gård tar bokningar och är ofta fullbokade helger september–november. Boka minst 1–2 veckor i förväg. Vardagar är lättare att boka och ger en lugnare upplevelse.' }] },
-  { slug: "hostlov-vid-havet-2026", title: "Höstlov 2026 vid havet – guide för höstlovsveckan", excerpt: "Höstlovet 2026 är vecka 44 (26 oktober–1 november). Guide till de bästa kustnära resmålen för hela familjen – och varför havet slår alla andra alternativ.", category: "Säsong", emoji: "🍂", readTime: "6 min", fullContent: true, faqs: [{ q: 'När är höstlovet 2026?', a: 'Höstlovet 2026 är vecka 44: måndag 26 oktober till söndag 1 november. Observera att datum varierar lite mellan kommuner – kolla din kommuns skolkalender. De flesta skolor i Stockholmsregionen har samma datum.' }, { q: 'Vad kan man göra vid havet på höstlovet?', a: 'Vandring längs kustleder, svampplockning, fiskeutflykter, havsbastu, och besök till öar och fiskelägen. Höstlovet sammanfaller med höstfärgernas höjdpunkt i Bohuslän och Stockholms skärgård. Lövfärger och tom natur ger en minnesvärdig upplevelse.' }, { q: 'Vilka kustnära resmål passar barnfamiljer på höstlovet?', a: 'Vaxholm (nära Stockholm, öppet hela hösten), Lysekil och Smögen i Bohuslän, samt Borgholm på Öland. Alla tre är tillgängliga utan komplicerad planering och har aktiviteter och restauranger öppna under höstlovet.' }] },
+  { slug: "hostlov-vid-havet", title: "Höstlov 2026 vid havet – guide för höstlovsveckan", excerpt: "Höstlovet 2026 är vecka 44 (26 oktober–1 november). Guide till de bästa kustnära resmålen för hela familjen – och varför havet slår alla andra alternativ.", category: "Säsong", emoji: "🍂", readTime: "6 min", fullContent: true, faqs: [{ q: 'När är höstlovet 2026?', a: 'Höstlovet 2026 är vecka 44: måndag 26 oktober till söndag 1 november. Observera att datum varierar lite mellan kommuner – kolla din kommuns skolkalender. De flesta skolor i Stockholmsregionen har samma datum.' }, { q: 'Vad kan man göra vid havet på höstlovet?', a: 'Vandring längs kustleder, svampplockning, fiskeutflykter, havsbastu, och besök till öar och fiskelägen. Höstlovet sammanfaller med höstfärgernas höjdpunkt i Bohuslän och Stockholms skärgård. Lövfärger och tom natur ger en minnesvärdig upplevelse.' }, { q: 'Vilka kustnära resmål passar barnfamiljer på höstlovet?', a: 'Vaxholm (nära Stockholm, öppet hela hösten), Lysekil och Smögen i Bohuslän, samt Borgholm på Öland. Alla tre är tillgängliga utan komplicerad planering och har aktiviteter och restauranger öppna under höstlovet.' }] },
   { slug: "november-skargard", title: "November i skärgården – kustens stillaste säsong", excerpt: "November är den månad de flesta undviker havet. Det är precis därför du ska åka dit. Guide till november i skärgården – stormar, stillhet och en annan slags skönhet.", category: "Säsong", emoji: "🌫", readTime: "6 min", fullContent: true, faqs: [{ q: 'Är det värt att åka till skärgården i november?', a: 'Absolut – för rätt person. November ger total stillhet, dramatiska stormar mot klippor, och en skärgård som är genuint folktom. Det är inte en semester för sol och bad utan för vandring, havsbastu, och upplevelsen av naturen i sin råaste form.' }, { q: 'Vilka båtar går till skärgården i november?', a: 'Waxholmsbolaget kör ett kraftigt reducerat schema i november. Vaxholm och Möja har daglig trafik. Grinda, Sandhamn och Utö har begränsad trafik – kolla aktuell tidtabell på waxholmsbolaget.se. Yttre skärgården är i princip avstängd.' }, { q: 'Vad ska man göra i skärgården i november?', a: 'Havsbastu är höjdpunkten – kontrasten mellan varm bastu och kallt novemberhav är en upplevelse utöver det vanliga. Vandring längs kustleder utan ett enda mötande fotspår. Birdwatching längs kusten är utmärkt – havsörn och ejdrar syns regelbundet.' }] },
   { slug: "host-blekinge-skargard", title: "Höst i Blekinge skärgård 2026 – Aspö, Sturkö och sydkusten", excerpt: "Blekinges skärgård är liten, tyst och genuint vacker. På hösten är den nästan helt tom – perfekt för den som söker äkta stillhet vid havet. Guide till höstens Blekinge.", category: "Säsong", emoji: "🏝", readTime: "6 min", fullContent: true, faqs: [{ q: 'Hur tar man sig till Blekinges skärgård på hösten?', a: 'Från Karlskrona kör reguljära passagerarfärjor till Aspö (ca 40 min) och Sturkö (ca 25 min) via Blekinges länstrafik. Höststidtabellen är reducerad – kolla blekinge.se för aktuella tider. Karlskrona nås med tåg från Malmö (1,5 h) eller Stockholm (4 h).' }, { q: 'Vad är unikt med Blekinges skärgård jämfört med Stockholm och Bohuslän?', a: 'Blekinge är mer avsides och genuint touristfri. Skärgården är plattare och med mer granit och sandstränder – och vattnet är klarare än Östersjöns genomsnitt. Det är en välbevarad hemlighet.' }, { q: 'Vad gör man på Aspö och Sturkö på hösten?', a: 'Vandring längs kustleder, fiskeutflykter med lokala fiskare, birdwatching (höstmigration längs sydkusten är intensiv), och cykla runt öarna. Järnavik på Aspö har en av Blekinges vackraste sandstränder – tom på hösten.' }] },
   { slug: "host-skane-kusten", title: "Höst i Skåne kust 2026 – Falsterbo, Kullaberg och Österlen", excerpt: "Skånes kust är vacker hela året – men hösten ger något unikt. Fågelflyttningens höjdpunkt, dramatiska storm och en öppen natur som glöder i gult och rött. Guide till höstens Skåne.", category: "Säsong", emoji: "🌊", readTime: "7 min", fullContent: true, faqs: [{ q: 'Varför är Skåne speciellt på hösten?', a: 'Falsterbo är en av Europas bästa fågelstationer under höstflyttningen (september–november). Kullaberg har dramatisk klippkust bäst utan sommarsäsongens turister. Österlen blommar av bök- och ekskogars lövfärger mot havet. Det är en annan upplevelse än sommaren.' }, { q: 'Vad ska man göra längs Skånes kust på hösten?', a: 'Fågelskådning vid Falsterbo (Falsterbo Fågelstation, september–oktober). Vandring längs Skåneleden vid Kullaberg. Österlenrundan med besök i Simrishamn och Kivik. Havsbad i Mölle eller Torekov – vattnet är fortfarande badbart i september.' }, { q: 'Är Skånes kust tillgänglig utan bil på hösten?', a: 'Delvis – tåg och Skånetrafiken täcker Ystad, Simrishamn och Höganäs. Kullaberg och Falsterbo kräver bil eller cykel. Malmö är perfekt bascamp – pendla ut till kusterna under dagen. Öresundsbron från Köpenhamn är enkel.' }] },
@@ -5076,7 +5076,7 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
-    slug: "var-stockholms-skargard-2027",
+    slug: "var-stockholms-skargard",
     title: "Vår i Stockholms skärgård 2027 – öarna i april och maj",
     excerpt: "Vår i Stockholms skärgård 2027: öar med båt året om som Vaxholm, Grinda, Utö och Nämdö, vårtidtabellerna och fågelskär där du inte får gå i land.",
     category: "Säsong", emoji: "🌸", readTime: "6 min", fullContent: true,

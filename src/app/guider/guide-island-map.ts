@@ -11,7 +11,7 @@
 
 export const GUIDE_ISLAND_MAP: Record<string, string[]> = {
   // ── Stockholms skärgård: övergripande ──────────────────────────────────────
-  'midsommar-skargarden-2026':        ['sandhamn', 'grinda', 'fjaderholmarna', 'vaxholm'],
+  'midsommar-skargarden':        ['sandhamn', 'grinda', 'fjaderholmarna', 'vaxholm'],
   'sandhamn-vs-grinda':               ['sandhamn', 'grinda'],
   'grinda-vs-finnhamn':               ['grinda', 'finnhamn'],
   'basta-oar-stockholms-skargard':    ['sandhamn', 'grinda', 'uto', 'fjaderholmarna', 'finnhamn', 'moja', 'arholma'],
@@ -23,7 +23,7 @@ export const GUIDE_ISLAND_MAP: Record<string, string[]> = {
   'solnedgang-skargarden':            ['sandhamn', 'grinda', 'uto'],
   'stockholm-archipelago-trail':      ['arholma', 'ingmarso'],
   'norrtelje-guide':                  ['arholma', 'ingmarso'],
-  'juni-skargarden-2026':             ['sandhamn', 'grinda', 'moja', 'arholma'],
+  'juni-skargarden':             ['sandhamn', 'grinda', 'moja', 'arholma'],
   'folkfria-oar-juli':                ['arholma', 'moja', 'namdo'],
   'oktober-skargarden':               ['sandhamn', 'moja', 'arholma'],
   'ankra-sova-bat':                   ['moja', 'finnhamn', 'arholma'],
@@ -81,13 +81,13 @@ export const GUIDE_ISLAND_MAP: Record<string, string[]> = {
   'flyga-till-gotland':               ['gotland'],
   'hyra-bil-gotland':                 ['gotland'],
   'hyra-husbil-gotland':              ['gotland'],
-  'vinter-gotland-2026':              ['gotland'],
+  'vinter-gotland':              ['gotland'],
   'gotland-vs-bornholm':              ['gotland'],
   'gotland-vs-oland':                 ['gotland', 'oland'],
   // ── Öland ─────────────────────────────────────────────────────────────────
   'oland-guide':                      ['oland'],
-  'host-oland-2026':                  ['oland'],
-  'vinter-oland-2026':                ['oland'],
+  'host-oland':                  ['oland'],
+  'vinter-oland':                ['oland'],
   'badplatser-oland':                 ['oland'],
   'barnfamilj-oland':                 ['oland'],
   'vandring-oland':                   ['oland'],
@@ -102,7 +102,7 @@ export const GUIDE_ISLAND_MAP: Record<string, string[]> = {
   'vandring-skuleskogen':             ['ulvon'],
   'barnfamilj-hoga-kusten':           ['ulvon'],
   'camping-hoga-kusten':              ['ulvon'],
-  'host-hoga-kusten-2026':            ['ulvon'],
+  'host-hoga-kusten':            ['ulvon'],
   'trysunda-guide':                   ['ulvon'],
   // ── Göteborg sydskärgård & Bohuslän ──────────────────────────────────────
   'hyra-bat-goteborg':                ['styrso', 'branno', 'vrango', 'donso'],
@@ -114,7 +114,7 @@ export const GUIDE_ISLAND_MAP: Record<string, string[]> = {
   'hyra-kajak-bohuslan':              ['styrso', 'branno', 'vrango'],
   'bohuslan-skargard-guide':          ['styrso', 'branno', 'vrango', 'donso'],
   'bohuslan-vs-hoga-kusten':          ['styrso', 'branno', 'ulvon'],
-  'vinter-bohuslan-2026':             ['styrso', 'branno'],
+  'vinter-bohuslan':             ['styrso', 'branno'],
   'hummersafari-bohuslan':            ['styrso', 'vrango'],
   'midsommar-bohuslan':               ['styrso', 'branno'],
   'hyra-stuga-marstrand-bohuslan':    ['styrso', 'branno'],
