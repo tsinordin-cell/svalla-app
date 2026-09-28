@@ -7,6 +7,7 @@ import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 import IslandWeatherClient from '@/components/IslandWeatherClient'
 import SaveIslandButton from '@/components/SaveIslandButton'
+import IslandNavAuth from '@/components/IslandNavAuth'
 import MarkVisitedButton from '@/components/MarkVisitedButton'
 import FAQSection from '@/components/FAQSection'
 import { getFaqsForIsland } from '@/lib/islandFaqs'
@@ -278,13 +279,9 @@ export default async function IslandPage({ params }: Props) {
    <Link href="/rutter?vy=oar" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>
      ← Alla öar
    </Link>
-   <Link href="/nyhetsbrev" style={{
-     color: '#fff', fontSize: 12, fontWeight: 700, textDecoration: 'none',
-     background: 'rgba(255,255,255,0.18)', borderRadius: 20,
-     padding: '5px 12px', border: '1px solid rgba(255,255,255,0.25)',
-   }}>
-     <Icon name="mail" size={13} stroke={2} /> Nyhetsbrev
-   </Link>
+   {/* 2026-09-28: "Logga in" + "Kom igång" (utloggad) eller "Min skärgård" (inloggad),
+       som på startsidan. Nyhetsbrevsknappen som låg här finns kvar under "Mer om …". */}
+   <IslandNavAuth islandSlug={island.slug} />
  </div>
  </div>
  </nav>
