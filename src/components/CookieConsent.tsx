@@ -48,18 +48,26 @@ export default function CookieConsent() {
       role="dialog"
       aria-label="Cookie-inställningar"
       style={{
+        /* 2026-09-28 (Toms beslut, förslag 1 i appgenomgången): en låg remsa i
+           nederkant i stället för en ruta som täckte ~45 % av en telefonskärm och
+           låg ovanpå öns viktigaste uppgifter och knappar. Samma två val som förut,
+           samma vikt på båda knapparna. Texten är kortad; allt står i policyn. */
         position: 'fixed',
-        bottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 12px)',
-        left: 12,
-        right: 12,
-        maxWidth: 540,
+        bottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 8px)',
+        left: 8,
+        right: 8,
+        maxWidth: 640,
         margin: '0 auto',
         background: 'var(--card-bg, #fff)',
-        borderRadius: 16,
+        borderRadius: 12,
         border: '1px solid rgba(10,123,140,0.18)',
-        boxShadow: '0 12px 36px rgba(10,31,43,0.20)',
-        padding: '18px 20px',
+        boxShadow: '0 8px 24px rgba(10,31,43,0.18)',
+        padding: '10px 12px',
         zIndex: 1000,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        flexWrap: 'wrap',
         animation: 'svallaConsentSlide 280ms cubic-bezier(.2,.8,.2,1)',
       }}
     >
@@ -70,58 +78,48 @@ export default function CookieConsent() {
         }
       `}</style>
 
-      <h3 style={{
-        fontSize: 14, fontWeight: 700, color: 'var(--txt)',
-        margin: '0 0 6px', letterSpacing: '0.01em',
-      }}>
-        Vi använder cookies
-      </h3>
       <p style={{
-        fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55,
-        margin: '0 0 14px',
+        flex: '1 1 220px',
+        fontSize: 12.5, color: 'var(--txt2)', lineHeight: 1.45,
+        margin: 0,
       }}>
-        Nödvändiga cookies behövs för att Svalla ska fungera (inloggning, förfrågningar).
-        För att förbättra upplevelsen använder vi även analys-cookies (PostHog) och kan skicka
-        push-notiser. Du kan ändra ditt val när som helst. <a href="/integritetspolicy" style={{ color: 'var(--sea)', textDecoration: 'underline' }}>Läs mer</a>.
+        <strong style={{ color: 'var(--txt)', fontWeight: 700 }}>Cookies:</strong>{' '}
+        nödvändiga för inloggning, analys (PostHog) bara om du godkänner.{' '}
+        <a href="/integritetspolicy" style={{ color: 'var(--sea)', textDecoration: 'underline' }}>Läs mer</a>
       </p>
 
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: 6, flex: '0 0 auto' }}>
         <button
           onClick={() => setConsent('accepted')}
           style={{
-            flex: '1 1 200px',
-            padding: '11px 18px',
+            padding: '9px 14px',
             background: 'var(--grad-sea, linear-gradient(135deg, #0a7b8c 0%, #0d8fa3 100%))',
             color: '#fff',
-            borderRadius: 10,
+            borderRadius: 9,
             border: 'none',
-            fontSize: 13, fontWeight: 700,
+            fontSize: 12.5, fontWeight: 700,
             cursor: 'pointer',
             letterSpacing: '0.02em',
-            boxShadow: '0 3px 10px rgba(10,123,140,0.25)',
             fontFamily: 'inherit',
-            transition: 'transform 120ms ease',
+            whiteSpace: 'nowrap',
           }}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)' }}
-          onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)' }}
         >
           Acceptera alla
         </button>
         <button
           onClick={() => setConsent('necessary')}
           style={{
-            flex: '1 1 160px',
-            padding: '11px 18px',
-            /* 2026-09-20: samma vikt som "Acceptera alla" — synlig ram och fet text,
-               så valet inte lutar. Tidigare en blek spökknapp (Toms delegation). */
+            padding: '9px 14px',
+            /* Samma vikt som "Acceptera alla" (2026-09-20, Toms delegation). */
             background: 'var(--card-bg, #fff)',
             color: 'var(--sea)',
-            borderRadius: 10,
+            borderRadius: 9,
             border: '1.5px solid var(--sea)',
-            fontSize: 13, fontWeight: 700,
+            fontSize: 12.5, fontWeight: 700,
             cursor: 'pointer',
             letterSpacing: '0.02em',
             fontFamily: 'inherit',
+            whiteSpace: 'nowrap',
           }}
         >
           Endast nödvändiga
