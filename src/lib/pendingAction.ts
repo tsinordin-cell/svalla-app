@@ -17,7 +17,8 @@ const KEY = 'svalla_pending_action'
 const MAX_AGE_MS = 24 * 60 * 60 * 1000
 
 export type PendingAction = {
-  type: 'save_island' | 'mark_visited'
+  /** mark_route_visited: slug är ruttens id, inte en ö. */
+  type: 'save_island' | 'mark_visited' | 'mark_route_visited'
   slug: string
   at: number
 }
