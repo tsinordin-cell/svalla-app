@@ -550,7 +550,7 @@ const LANDING_HTML = `
  <div class="nav-dd-divider"></div>
  <div class="nav-dd-section">Praktiska guider</div>
  <a href="/guider" class="nav-dd-link">Alla guider</a>
- <a href="/guider/midsommar-skargarden-2026" class="nav-dd-link">Midsommar i skärgården</a>
+ <a href="/guider/midsommar-skargarden" class="nav-dd-link">Midsommar i skärgården</a>
  <a href="/guider/packlista-skargarden" class="nav-dd-link">Packlista för skärgården</a>
  <a href="/guider/allemansratten-pa-sjon" class="nav-dd-link">Allemansrätten på sjön</a>
  </div></div>
@@ -671,7 +671,7 @@ const LANDING_HTML = `
  <a href="/vinter" class="mob-acc-link">Vinter &amp; julkryssning</a>
  <div class="mob-acc-section">Praktiska guider</div>
  <a href="/guider" class="mob-acc-link">Alla guider</a>
- <a href="/guider/midsommar-skargarden-2026" class="mob-acc-link">Midsommar i skärgården</a>
+ <a href="/guider/midsommar-skargarden" class="mob-acc-link">Midsommar i skärgården</a>
  <a href="/guider/packlista-skargarden" class="mob-acc-link">Packlista för skärgården</a>
  <a href="/guider/allemansratten-pa-sjon" class="mob-acc-link">Allemansrätten på sjön</a>
  </div>

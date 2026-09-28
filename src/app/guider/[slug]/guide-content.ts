@@ -2,7 +2,7 @@ import { hummerpremiar, surstrommingspremiar, kraftpremiar, midsommarafton, KALL
 
 export function getGuideContent(slug: string): string {
   const guides: Record<string, string> = {
-    'midsommar-skargarden-2026': `
+    'midsommar-skargarden': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Midsommarafton i skärgården är ett av de saker man berättar om i tjugo år efteråt. Det handlar sällan om majstången — den är likadan på varje ö. Det handlar om att solen inte riktigt gick ner, att någon hade med sig gitarr och att sista båten hem var klockan ett på natten och man tog den ändå.</p>
 
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><!-- KÄLLA: lag (1989:253) om allmänna helgdagar, midsommardagen = lördagen 20–26 juni, ${KALLA_HELGDAGAR} (läst 2026-09-21); datumet räknas fram i src/lib/arsdatum.ts -->
@@ -728,7 +728,7 @@ export function getGuideContent(slug: string): string {
 <li><strong>Hösten:</strong> havet är nu varmare än luften, men solen tillför lite ny värme och höststormarna blandar upp kallare vatten.</li>
 <li><strong>Vintern:</strong> ytvattnet kyls så mycket att det kan bildas is. Det är säsongen för vinterbad och bastu.</li>
 </ul>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om hur skärgården fungerar under andra delar av året finns i våra guider om <a href="/guider/host-stockholms-skargard-2026">hösten i Stockholms skärgård</a>, <a href="/guider/vinter-i-skargarden">vintern i skärgården</a>, <a href="/guider/var-stockholms-skargard-2027">våren i Stockholms skärgård</a> och <a href="/guider/isbad-vinterbad-sverige">isbad och vinterbad</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om hur skärgården fungerar under andra delar av året finns i våra guider om <a href="/guider/host-stockholms-skargard">hösten i Stockholms skärgård</a>, <a href="/guider/vinter-i-skargarden">vintern i skärgården</a>, <a href="/guider/var-stockholms-skargard">våren i Stockholms skärgård</a> och <a href="/guider/isbad-vinterbad-sverige">isbad och vinterbad</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bada säkert i skärgården</h2>
 <!-- KÄLLA: https://svenskalivraddningssallskapet.se/wp-content/uploads/2026/06/badvett.pdf — "Tala om vart du ska och när du tror du är tillbaka."; "Ha alltid sällskap med dig när du badar."; "Gå försiktigt på brygga, klippa eller bassängkant."; "Hoppa och dyka bara om det är tillräckligt djupt."; "Simma längs med strand eller brygga." (läst 2026-09-27) -->
@@ -962,7 +962,7 @@ export function getGuideContent(slug: string): string {
 <!-- KÄLLA: https://www.vastsverige.com/en/bohuslan/seafood-safaris/seafood-cruises/ — "We’ve listed the best boat trips offering prawn or seafood buffets, or a variation on that theme."; "Spend an evening onboard the traditional archipelago boat MS Göteborg exploring Gothenburg’s beautiful archipelago."; "When: several days a week, from 3 May to 25 October."; "Last updated on: 11 August 2026" (läst 2026-09-27) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det som ligger närmast är räkbuffé på båt. Turistrådet Västsverige listar kvällskryssningar i Göteborgs skärgård med räk- eller skaldjursbuffé. Enligt listan (uppdaterad 11 augusti 2026) gick räkbufféturen med skärgårdsbåten MS Göteborg flera dagar i veckan mellan 3 maj och 25 oktober. Det är alltså kvällsturer, inte frukost.</p>
 <!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/gostas-fisk-och-skaldjur/ — "Nytt för i år är att butiken har sin alldeles egna uteservering där man kan få både räkmackor, fish & chips och annat gott att äta." (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du äta räkor vid havet utan att fixa själv har Göstas Fiskbutik på Smögen en egen uteservering med räkmackor, och Nynäs Rökeri har servering året runt. Enklast är ändå att köpa räkor i fiskbutiken och ta med dem ut. Tips om fler ställen att äta finns i <a href="/guider/sjomatkrogar-guide">Sjömatskrogar i skärgården</a> och <a href="/guider/juli-skargarden-2026-mat">Juli i skärgården – mat och krogar</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du äta räkor vid havet utan att fixa själv har Göstas Fiskbutik på Smögen en egen uteservering med räkmackor, och Nynäs Rökeri har servering året runt. Enklast är ändå att köpa räkor i fiskbutiken och ta med dem ut. Tips om fler ställen att äta finns i <a href="/guider/sjomatkrogar-guide">Sjömatskrogar i skärgården</a> och <a href="/guider/juli-skargarden-mat">Juli i skärgården – mat och krogar</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur förvarar man räkorna till frukosten?</h2>
 <!-- KÄLLA: https://www.livsmedelsverket.se/livsmedel-och-innehall/tillagning-forvaring-hallbarhet/forvaring-av-kyld-mat/ — "Ha 4 °C i kylskåpet, då håller maten längre och risken för att bli matförgiftad minskar."; "Sätt in kylvaror, som till exempel färsk fisk, kött och mejerivaror, i kylskåpet så fort som möjligt."; "Vid 4°C håller sig maten fräsch ungefär dubbelt så länge som vid 8 °C." (läst 2026-09-27) -->
@@ -1043,7 +1043,7 @@ export function getGuideContent(slug: string): string {
 <!-- KÄLLA: https://grebys.se/ — "Här serverar vi färsk fisk och skaldjur från lokala vatten och erbjuder även bekväma hotellrum"; "Restaurangen har en avslappnad atmosfär och utsikt över hamnen." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebys i Grebbestad serverar fisk och skaldjur från lokala vatten och har utsikt över hamnen. Grebys har också hotellrum.</p>
 <!-- KÄLLA: https://tanumstrand.se/restaurant/sjoboden-udden/ — "Längst ut på bryggan året om hittar du Sjöboden Udden."; "Lördagar kokas det levande kräfta på beställning och från och med Ostronets dag varje år så serveras färska ostron som är plockade rätt utanför i havet."; "INGEN BORDSBOKNING – DROP IN." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sjöboden Udden på TanumStrand ligger längst ut på bryggan och har öppet året om. På lördagar kokas havskräftor på beställning, och från Ostronets dag i september serveras ostron plockade utanför. Det går inte att boka bord – det är drop-in. Mer om kräftorna i Grebbestad finns i guiden <a href="/guider/grebbestad-kraftskiva-2026">Kräftskiva 2026 i Grebbestad</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sjöboden Udden på TanumStrand ligger längst ut på bryggan och har öppet året om. På lördagar kokas havskräftor på beställning, och från Ostronets dag i september serveras ostron plockade utanför. Det går inte att boka bord – det är drop-in. Mer om kräftorna i Grebbestad finns i guiden <a href="/guider/grebbestad-kraftskiva">Kräftskiva 2026 i Grebbestad</a>.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Smögens Hafvsbad, Smögen</h3>
 <!-- KÄLLA: https://smogenshafvsbad.se/ — "Smögens Hafvsbad vuxit till att bli en modern anläggning med 76 hotellrum, en stor restaurang, spa och konferens öppet hela året."; "Smögens Hafvsbad ligger välplacerad bland klippiga Smögen med gångavstånd till smögenbryggan och Smögens båthamn." (läst 2026-09-28) -->
@@ -1179,7 +1179,7 @@ export function getGuideContent(slug: string): string {
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "fermenterats i minst sex månader – ibland upp till ett år" (dagens surströmming jäser veckor, inte månader), "traditionen härstammar från 1500–1600-talets Norrland" i den formen, surströmmingsskivor i Kramfors och Härnösand, "det enda rätta sättet enligt norrländingar", "aldrig vin (syran krockar)", "håll burken under vatten", butikslistan (ICA och Coop i norra Sverige, Fiskhallen på Östermalms saluhall, två webbutiker), "Ulvön – köp direkt från producenten", tipsen om plasthandskar och att servera fisken kall, samt värdeord. -->
 <!-- KÄLLA: https://www.hogakusten.com/sv/mat-dryck/surstromming — "Surströmming är strömming som konserverats genom jäsning. En läcker delikatess som är en del av svensk mattradition." (läst 2026-09-28) -->
 <!-- KÄLLA: https://levandekulturarv.se/forteckningen/element/surstromming — "Surströmming är lättsaltad mjölksyrejäst/fermenterad strömming."; "Surströmming betraktas i dag som en delikatess med stark koppling till Norrland." (läst 2026-09-28) -->
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Surströmming är strömming som har konserverats genom jäsning. Den är lättsaltad och mjölksyrejäst, alltså fermenterad, och räknas i dag som en delikatess med stark koppling till Norrland. Den här guiden handlar om när man äter surströmming, traditionen bakom den, hur den smakar och hur man äter den. Datum för premiären i år och nästa år finns i guiden <a href="/guider/surstrommingspremiar-2026">Surströmmingspremiär 2026</a>.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Surströmming är strömming som har konserverats genom jäsning. Den är lättsaltad och mjölksyrejäst, alltså fermenterad, och räknas i dag som en delikatess med stark koppling till Norrland. Den här guiden handlar om när man äter surströmming, traditionen bakom den, hur den smakar och hur man äter den. Datum för premiären i år och nästa år finns i guiden <a href="/guider/surstrommingspremiar">Surströmmingspremiär 2026</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">När äter man surströmming?</h2>
 <!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/surstrommingspremiar — "Den tredje torsdagen i augusti är det av hävd premiär för att äta surströmming"; "Den surströmming som numera produceras börjar säljas den tredje torsdagen i augusti." (läst 2026-09-28) -->
@@ -1273,7 +1273,7 @@ export function getGuideContent(slug: string): string {
 <!-- KÄLLA: https://www.livsmedelsverket.se/matvanor-halsa--miljo/kostrad/kostrad-vuxna/fisk/ — "Barn upp till 18 år, den som vill bli gravid i framtiden, gravida och ammande rekommenderas att inte äta fisk som kan innehålla höga halter dioxin och PCB oftare än 2-3 gånger per år." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Surströmming görs av strömming från Östersjön och omfattas därför av Livsmedelsverkets kostråd om fet fisk från Östersjön. Barn upp till 18 år, den som vill bli gravid i framtiden, gravida och ammande rekommenderas att inte äta sådan fisk oftare än 2–3 gånger per år.</p>
 <!-- KÄLLA: https://kontrollwiki.livsmedelsverket.se/artikel/697/surstromming-produktbeskrivning — "Undantaget är de personer som är överkänsliga mot fisk, liksom spädbarn." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Livsmedelsverkets exempel på produktbeskrivning räknar inte heller spädbarn eller personer som är överkänsliga mot fisk till målgruppen. Vill du fira premiären på plats i Höga Kusten finns tips i guiden <a href="/guider/surstrommingspremiar-2026">Surströmmingspremiär 2026</a> och i <a href="/guider/hoga-kusten-guide">guiden till Höga Kusten</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Livsmedelsverkets exempel på produktbeskrivning räknar inte heller spädbarn eller personer som är överkänsliga mot fisk till målgruppen. Vill du fira premiären på plats i Höga Kusten finns tips i guiden <a href="/guider/surstrommingspremiar">Surströmmingspremiär 2026</a> och i <a href="/guider/hoga-kusten-guide">guiden till Höga Kusten</a>.</p>
 `,
 
     'skargard-host': `
@@ -1295,7 +1295,7 @@ export function getGuideContent(slug: string): string {
 <li>Skärgårdsstiftelsens stugor och lägenheter på Utö öppnar 1 maj, stugan Norrötorpet på Fjärdlång 8 maj och vandrarhemmet på Huvudskär 15 maj.</li>
 </ul>
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Under försommar, sommar och sensommar kan du resa till Vaxholm med de klassiska fartygen Storskär, Norrskär och Västan och få en skön retrokänsla på din resa." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från försommaren kan du resa till Vaxholm med de klassiska fartygen Storskär, Norrskär och Västan. Fler tips för våren finns i <a href="/guider/var-stockholms-skargard-2027">guiden om våren i Stockholms skärgård</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från försommaren kan du resa till Vaxholm med de klassiska fartygen Storskär, Norrskär och Västan. Fler tips för våren finns i <a href="/guider/var-stockholms-skargard">guiden om våren i Stockholms skärgård</a>.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sommaren – flest båtar</h3>
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Under sommaren går det flera turer till Grinda varje dag, men Grinda har trafik året om." (läst 2026-09-28) -->
@@ -1352,7 +1352,7 @@ export function getGuideContent(slug: string): string {
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
 <li><strong>Nämdö:</strong> grusvägar binder ihop byar och bryggor, och här finns också en etapp av Stockholm Archipelago Trail.</li>
 </ul>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler idéer finns i guiderna <a href="/guider/hostlov-vid-havet-2026">Höstlov vid havet</a>, <a href="/guider/vandring-host-skargard">Vandring i skärgården på hösten</a> och <a href="/guider/oktober-skargarden">Skärgården i oktober</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler idéer finns i guiderna <a href="/guider/hostlov-vid-havet">Höstlov vid havet</a>, <a href="/guider/vandring-host-skargard">Vandring i skärgården på hösten</a> och <a href="/guider/oktober-skargarden">Skärgården i oktober</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kör Waxholmsbolaget på hösten?</h2>
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Du kan åka till Grinda från Strömkajen, via Vaxholm. Resan från Strömkajen tar ungefär en och en halv timme." (läst 2026-09-28) -->
@@ -1437,7 +1437,7 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Midsommarpaket och boende</h2>
 <!-- KÄLLA: https://www.vastsverige.com/bohuslan/se-och-gora/midsommar/ — "Vad sägs om att bo i en stuga vid strandkanten, på ett mysigt hotell eller på en camping nära hav och natur?" (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vastsverige.com har en sida med midsommarpaket med boende i Bohuslän och Göteborgs skärgård: stugor, hotell och campingar. Utbudet och priserna står hos respektive boende. För midsommar i Stockholms skärgård, se <a href="/guider/midsommar-skargarden-2026">midsommarguiden för Stockholms skärgård</a>. Mer om kusten i <a href="/guider/bohuslan-skargard-guide">guiden till Bohusläns skärgård</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vastsverige.com har en sida med midsommarpaket med boende i Bohuslän och Göteborgs skärgård: stugor, hotell och campingar. Utbudet och priserna står hos respektive boende. För midsommar i Stockholms skärgård, se <a href="/guider/midsommar-skargarden">midsommarguiden för Stockholms skärgård</a>. Mer om kusten i <a href="/guider/bohuslan-skargard-guide">guiden till Bohusläns skärgård</a>.</p>
 `,
 
     'sandhamn-vs-grinda': `
@@ -1657,7 +1657,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Evenemang: Medeltidsveckan och Skördefesten</h2>
 <!-- KÄLLA: https://gotland.com/medeltidsveckan/ — "Medeltidsveckan är medeltidsfestivalen som varje år breder ut sig över hela Visby och ut på Gotland vecka 32." (läst 2026-09-28) -->
 <!-- KÄLLA: https://skordefest.nu/om-skordefesten/ — "Varje höst i slutet av september (vecka 39), bjuder Ölands Skördefest på drygt 900 aktiviteter över hela ön." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands Medeltidsveckan pågår i Visby och på resten av ön vecka 32 varje år. Ölands Skördefest hålls i slutet av september, vecka 39, med drygt 900 aktiviteter över hela ön. Planerar du en höstresa finns mer i <a href="/guider/host-oland-2026">Höst på Öland</a> och <a href="/guider/host-gotland-2026">Höst på Gotland</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands Medeltidsveckan pågår i Visby och på resten av ön vecka 32 varje år. Ölands Skördefest hålls i slutet av september, vecka 39, med drygt 900 aktiviteter över hela ön. Planerar du en höstresa finns mer i <a href="/guider/host-oland">Höst på Öland</a> och <a href="/guider/host-gotland">Höst på Gotland</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öland och Gotland med barn</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svalla har egna guider för barnfamiljer på båda öarna: <a href="/guider/barnfamilj-oland">Öland med barn</a> och <a href="/guider/gotland-med-barn">Gotland med barn</a>. Jämför du Gotland med en annan ö finns också <a href="/guider/gotland-vs-bornholm">Gotland vs Bornholm</a>.</p>
@@ -2360,7 +2360,7 @@ export function getGuideContent(slug: string): string {
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/moja — "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt." (läst 2026-09-28) -->
 <!-- KÄLLA: https://grinda.se/oppettider/ — "Grinda stugby har öppet med start strax innan månadssskiftet april / maj till 3.e helgen i oktober" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus och Sandhamn Seglarhotell har öppet året runt, och Grinda, Möja och Sandhamn har båttrafik året om. Grinda stugby stänger efter tredje helgen i oktober. Fler tips för hösten finns i <a href="/guider/host-stockholms-skargard-2026">Hösten i Stockholms skärgård</a>, och packlistan finns i <a href="/guider/packlista-skargarden">Packlista för skärgården</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus och Sandhamn Seglarhotell har öppet året runt, och Grinda, Möja och Sandhamn har båttrafik året om. Grinda stugby stänger efter tredje helgen i oktober. Fler tips för hösten finns i <a href="/guider/host-stockholms-skargard">Hösten i Stockholms skärgård</a>, och packlistan finns i <a href="/guider/packlista-skargarden">Packlista för skärgården</a>.</p>
 `,
 
     'basta-oar-stockholms-skargard': `
@@ -4755,7 +4755,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">En gammal tradition att ta med sig ut: i folktron kallades Kristi himmelsfärdsdag metaredagen. Man skulle meta hela dagen för att se när fisken nappade som bäst, och sedan fiska på den tiden resten av året. Läs mer om <a href="/guider/fiske-i-skargarden">fiske i skärgården</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mer om våren i skärgården</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Läs också <a href="/guider/var-stockholms-skargard-2027">våren i Stockholms skärgård</a>, <a href="/guider/valborg-skargarden-2027">valborg i skärgården</a>, <a href="/guider/pask-skargarden-2027">påsk i skärgården</a> och <a href="/guider/waxholmsbolaget-guide">guiden till Waxholmsbolaget</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Läs också <a href="/guider/var-stockholms-skargard">våren i Stockholms skärgård</a>, <a href="/guider/valborg-skargarden">valborg i skärgården</a>, <a href="/guider/pask-skargarden">påsk i skärgården</a> och <a href="/guider/waxholmsbolaget-guide">guiden till Waxholmsbolaget</a>.</p>
 `,
 
     'foretagsevent-skargarden': `
@@ -5032,7 +5032,7 @@ export function getGuideContent(slug: string): string {
 <!-- KÄLLA: https://gotland.com/companies/visby-ringmur/ — "Visby Ringmur är ca 3,5 km lång"; "Den är 11m hög, byggdes i olika etapper och stod färdig år 1288."; "Nu finns 27 marktorn kvar." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visby innanför murarna är världsarv sedan 1995. Unesco utnämnde staden som den bäst bevarade muromgärdade handelsstaden från sent 1200-tal. Ringmuren är ungefär 3,5 kilometer lång och 11 meter hög och stod färdig 1288. I dag finns 27 marktorn kvar.</p>
 <!-- KÄLLA: https://gotland.com/medeltidsveckan/ — "Medeltidsveckan är medeltidsfestivalen som varje år breder ut sig över hela Visby och ut på Gotland vecka 32." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Medeltidsveckan är en medeltidsfestival i Visby och på resten av Gotland som hålls varje år vecka 32. Läs mer i <a href="/guider/visby-sommar-guide">Visby sommarguide</a> och <a href="/guider/juli-gotland-2026">juli på Gotland</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Medeltidsveckan är en medeltidsfestival i Visby och på resten av Gotland som hålls varje år vecka 32. Läs mer i <a href="/guider/visby-sommar-guide">Visby sommarguide</a> och <a href="/guider/juli-gotland">juli på Gotland</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Södra Gotland – tips</h2>
 <!-- KÄLLA: https://gotland.com/besoka-uppleva/upptack-sodra-gotland/ — "Södra Gotland med sina pittoreska småvägar och lummighet är en kontrast mot den norra, kargare delen."; "med den kända fyren som landmärke"; "Holmen är en halvö och ett naturreservat"; "Stavgard Vikingagård"; "Herta, eller Hörte som det heter på gotländska, är en långgrund, vacker sandstrand som passar bra för barnfamiljer."; "På denna vikingagård har man rekonstruerat hus och föremål"; "En av Gotlands största kyrkor hittar du i Lau."; "På Gotlands sydspets har du en storslagen utsikt över Storsudret och Östersjön."; "Du kan även bekanta dig med Gotlands kändaste gubbe" (läst 2026-09-28) -->
@@ -6518,7 +6518,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt allemansrätten får du låna en brygga tillfälligt eller välja en strand som ligger utanför någons tomt – men lämna bryggan om ägaren vill använda den. Mer om reglerna på vattnet i <a href="/guider/allemansratten-pa-sjon">guiden om allemansrätten på sjön</a>.</p>
 `,
 
-  'kraftskiva-bohuslan-2026': `
+  'kraftskiva-bohuslan': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "Bohuslän är kräftornas hemort", "kräftor från Västerhavet är fetare och smakrikare", "Grebbestad – landets kräftcentrum", Grebbestads Fiskekrog och "Havets Hus-liknande fiskeauktioner", restauranger längs Smögenbryggan och i Lysekil och Marstrand (inte verifierade på egen sida), "Smögen når du med färja från Kungshamn" (fel), "Bohusbåten" längs kusten, bilrestid från Göteborg, receptrutan med ost och snaps, fel säsongsangivelse för kräftor, att Bohusläns kräftor är Sveriges bästa, "fullbokade under kräftpremiärhelgen" och "slut redan i maj–juni", samt värdeord. -->
 <!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Augusti är kräftskivornas tid."; "Kräftpremiären har länge varit en festlig tillställning och i dag ordnas många fester, kräftskivor, i augusti." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.vastsverige.com/en/bohuslan/seafood-safaris/crayfish-and-langoustine/ — "In West Sweden we have langoustine, which come from the sea and are available year round, as well as crayfish, a lake creature that can only be caught in late summer." (läst 2026-09-28) -->
@@ -6574,7 +6574,7 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Grebbestad</h3>
 <!-- KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/grebbestad.4.7664b4813898b7df9845a4a.html — "Grebbestad är fortfarande ett levande fiskeläge. Vid fiskmottagningen i hamnen lämnar trålarna från Grebbestad och omgivande fiskelägen sina fångster: mest kräftor och räkor." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Grebbestad lämnar trålarna fortfarande sina fångster vid fiskmottagningen i hamnen – mest kräftor och räkor. Kräftkok, restauranger och resvägar i Grebbestad finns i guiden <a href="/guider/grebbestad-kraftskiva-2026">Kräftskiva 2026 i Grebbestad</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Grebbestad lämnar trålarna fortfarande sina fångster vid fiskmottagningen i hamnen – mest kräftor och räkor. Kräftkok, restauranger och resvägar i Grebbestad finns i guiden <a href="/guider/grebbestad-kraftskiva">Kräftskiva 2026 i Grebbestad</a>.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Köpa kräftor till egen kräftskiva</h3>
 <!-- KÄLLA: https://www.vastsverige.com/sotenas/listning/fisk--och-skaldjursbutiker/ — "Här hittar du tips på fisk- och skaldjursbutiker i Sotenäs. Glöm inte att kontrollera tillgång och öppettider innan ditt besök!" (läst 2026-09-28) -->
@@ -6594,7 +6594,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Grebbestad tar du lokaltåget på Bohusbanan mellan Göteborg och Strömstad till stationen strax utanför Tanumshede och fortsätter med lokalbuss. E6 går genom Tanums kommun. Efter kräftorna kommer hummern – läs om <a href="/guider/hummerpremiar-bohuslan">hummerpremiären i Bohuslän</a>.</p>
 `,
 
-  'kraftskiva-gotland-2026': `
+  'kraftskiva-gotland': `
 <!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "Östersjökräftor" och att kräftor fiskas i Östersjön (kräftorna på Gotland är sötvattenskräftor och ön är skyddsområde för flodkräfta), "fråga lokala fiskare i Visby hamn", krogarna Aifur, Bolaget och Gutekällaren med kräftarrangemang, Klintehamn, Röck och Burgsviken som kräftskiveplatser, privatbryggor som hyrs ut, "gotländsk dill är rikligare", Gotlandslammets korv, Gotlands Bryggeri, Lummelundasmör, lantbruksmarknader, "Medeltidsveckan är precis avslutad", restider med färja och flyg som inte stämde, prisnivåer, "guidade kräftfisketurer" och "Gotlands sportfiskare" i FAQ, samt värdeord. -->
 <!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Augusti är kräftskivornas tid." (läst 2026-09-27) -->
 <!-- KÄLLA: https://www.lansstyrelsen.se/gotland/djur/hotade-arter/hotade-djur-och-vaxter/sotvatten/flodkrafta.html — "År 2007 beslöt Länsstyrelsen att inrätta hela Gotlands län som skyddsområde för flodkräfta och därmed stärka skyddet."; "Detta var också det första skyddsområdet för flodkräfta i Sverige, och i och med att det omfattar hela länet också det största." (läst 2026-09-27) -->
@@ -6680,10 +6680,10 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://gotland.com/resa-hit-runt/ — "Drygt 3 timmar med färja"; "Cirka 30 minuter med flyg" (läst 2026-09-27) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlandsfärjan går mellan Nynäshamn, Oskarshamn och Visby. Enligt Region Gotland tar färjan drygt tre timmar och flyget cirka 30 minuter. Se Destination Gotlands turlista för avgångar. Mer om flyget finns i <a href="/guider/flyga-till-gotland">flyga till Gotland</a>.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om ön: <a href="/o/gotland">Gotland</a>, <a href="/guider/gotland-guide">Gotlandsguiden</a> och <a href="/guider/host-gotland-2026">hösten på Gotland 2026</a>. Kräftskiva på andra håll: <a href="/guider/kraftskiva-oland-2026">kräftskiva på Öland 2026</a> och <a href="/guider/kraftskiva-skargarden">kräftskiva i skärgården</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om ön: <a href="/o/gotland">Gotland</a>, <a href="/guider/gotland-guide">Gotlandsguiden</a> och <a href="/guider/host-gotland">hösten på Gotland 2026</a>. Kräftskiva på andra håll: <a href="/guider/kraftskiva-oland">kräftskiva på Öland 2026</a> och <a href="/guider/kraftskiva-skargarden">kräftskiva i skärgården</a>.</p>
 `,
 
-  'kraftskiva-oland-2026': `
+  'kraftskiva-oland': `
 <!-- OMSKRIVEN 2026-09-26. Borttaget utan källa: påståenden om väder, vattentemperatur och turisttryck, "kungsörnar", krogar i Borgholms hamn med kräftkvällar, Byxelkrok med gästhamn och restaurang, kräftskiva på södra Ölands stränder, getost från Ölands getgård, Alvaröl och Ölands bryggeri, rökt strömming, att bron är gratis, att kräftor köps i Borgholm eller hos lokala fiskare, Kusthotellet och restauranger vid Böda sand i FAQ, samt värdeord. -->
 <!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Augusti är kräftskivornas tid." (läst 2026-09-26) -->
 <!-- KÄLLA: https://www.lansstyrelsen.se/kalmar/djur/hotade-arter/hotade-djur-och-vaxter/flodkrafta.html — "År 2013 beslutade Länsstyrelsen att inrätta Öland som skyddsområde för flodkräfta för att stärka skyddet för arten." (läst 2026-09-26) -->
@@ -6742,7 +6742,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om ön: <a href="/o/oland">Öland</a>, <a href="/guider/oland-guide">Ölandsguiden</a> och <a href="/guider/borgholm-guide">Borgholm</a>. Kräftskiva på andra håll: <a href="/guider/kraftskiva-skargarden">kräftskiva i skärgården</a>.</p>
 `,
 
-  'grebbestad-kraftskiva-2026': `
+  'grebbestad-kraftskiva': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "landets kräftcentrum" och "kräftornas hjärta", invånarantalet (kommunen anger ett annat), "kräftfisket bedrivs kommersiellt av lokala fiskare som säljer direkt till restaurangerna", "inte importerade från Turkiet eller Kina", "festligheter under premiärveckan" och kräftskivor längs hamnen (ingen arrangör anger det), försäljning av kräftor från fiskebåtarna vid kajen, Grebbestads Fiskekrog och Krokholmens Fiskerestaurang (inte verifierade på egen sida), "fullbokade under premiärhelgen", "Västerhavshumrar", avstånd och restid med bil, "parkera vid infarten", "ostronpremiären i september" och "Oysterfestival", restid till hällristningarna, samt värdeord. -->
 <!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Augusti är kräftskivornas tid."; "Kräftpremiären har länge varit en festlig tillställning och i dag ordnas många fester, kräftskivor, i augusti." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/grebbestad.4.7664b4813898b7df9845a4a.html — "Grebbestad är fortfarande ett levande fiskeläge. Vid fiskmottagningen i hamnen lämnar trålarna från Grebbestad och omgivande fiskelägen sina fångster: mest kräftor och räkor." (läst 2026-09-28) -->
@@ -6864,7 +6864,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://www.havochvatten.se/arter-och-livsmiljoer/arter-och-naturtyper/flodkrafta.html — "Flodkräftan är klassad som Akut hotad (CR) i Artdatabankens nationella rödlista 2020."; "Exempelvis har signalkräftan en vit vårta vid tumgreppet, något som flodkräftan saknar." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Sverige finns två arter sötvattenskräftor: flodkräfta och signalkräfta. Flodkräftan är inhemsk och klassad som akut hotad. Signalkräftan känner du igen på den vita vårtan vid tumgreppet, som flodkräftan saknar. Svenska kräftor räcker inte till, så de flesta kräftor som äts i Sverige är importerade.</p>
 <!-- KÄLLA: https://smakasverige.se/nyheter/nyhetsarkiv/2020-08-07-krafttider — "Förutom sötvattenkräftan finns även havskräftan. På västkusten är den vanlig på kräftskivan." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På västkusten är havskräftan vanlig på kräftskivan. Mer om den finns i guiden <a href="/guider/kraftskiva-bohuslan-2026">Kräftskiva på västkusten 2026</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På västkusten är havskräftan vanlig på kräftskivan. Mer om den finns i guiden <a href="/guider/kraftskiva-bohuslan">Kräftskiva på västkusten 2026</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur kokar man kräftor?</h2>
 <!-- KÄLLA: https://smakasverige.se/mat/fisk-och-skaldjur/sotvattenskraftor — "För att bibehålla kräftornas kvalitet hålls de vid liv fram tills de kokas, gärna i minst ett dygn."; "Kräftorna kokas med dillkronor, salt och strösocker." (läst 2026-09-28) -->
@@ -6931,7 +6931,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 `,
 
   // ── Batch D: Juli-serien 2026 ──────────────────────────────────────────────
-  'juli-skargarden-2026-oar': `
+  'juli-skargarden-oar': `
 <!-- OMSKRIVEN 2026-09-26. Borttaget utan källa eller fel: rangordningen och "bästa öarna", ytvattentemperatur i juli, "längsta solnedgångarna", "Utö Värdshus med pool och havsbastu", "sandstranden Långa bryggan", "Utö Runt-cykelleden", "kvällsbåten", "Sandhamn Regattan", Trouville "legendomspunnen", Grinda "tryggt och välordnat", Möja "håller barnfamiljerna borta" och restid från stan, Ornö "inga värdshus" (fel: krog finns vid Kyrkviken) och "övernattningsstugor", Nåttarö "södra skärgårdens bästa sandstrand", råd om veckodagar, "högsommartidtabell", Cinderellabåtarna, sommarkort och båtluffarkort som "lönar sig vid tredje turen", FAQ om Marstrand, Svartlöga, Arholma, Landsort, Ingmarsö och Blidö, "boka 2–3 månader i förväg", paketresor, Blocket och Airbnb, samt värdeord. -->
 <!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period." (läst 2026-09-26) -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">I juli går Waxholmsbolagets sommartrafik, och många öar har fler turer än resten av året. Här är sex öar i Stockholms skärgård som du når med skärgårdsbåt eller färja och där det finns mat och boende på sommaren. Ordningen går från mellersta till södra skärgården och är ingen rangordning. För varje ö står hur du tar dig dit och vad som finns på plats.</p>
@@ -6979,7 +6979,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Letar du efter öar med färre besökare finns en separat guide om <a href="/guider/folkfria-oar-juli">folkfria öar i juli</a>.</p>
 `,
 
-  'juli-skargarden-2026-aktiviteter': `
+  'juli-skargarden-aktiviteter': `
 <!-- OMSKRIVEN 2026-09-27. Borttaget utan källa: kajakpriser och bastupriser (uppskattningar utan prislista), vattentemperaturer, "Stockholm Archipelago Trail 270 km", "Utö runt 18 km", Ornöleden, "Möja runt", kajakuthyrning på Kymmendö, SUP-uthyrning på Grinda och Sandhamn, båtuthyrning med fiskeutrustning på Dalarö och Gustavsberg, "sikten är bäst i juli innan algblomningen", gädda, abborre och ål att se vid snorkling, havsöring längs yttre kusten, "fullbokat i juli, boka några veckor i förväg", "eftermiddagsvindar", klockslag för morgonpaddling, samt värdeord ("bästa", "fantastiskt", "världsklass", "klassisk", "oöverträffade"). -->
 <!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period." (läst 2026-09-27) -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Juli i Stockholms skärgård handlar om att vara på och vid vattnet: paddla kajak eller SUP, snorkla, bada, cykla på bilfria öar, basta och fiska. Här är aktiviteterna, var du kan hyra utrustning och vilka regler som gäller. Waxholmsbolaget byter tidtabell fyra gånger om året och vissa linjer går bara under delar av en period, så kolla reseplaneraren för just ditt datum innan du åker.</p>
@@ -7074,10 +7074,10 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/natur-och-landsbygd/om-eldningsforbud.html — "Aktiviteter som eldning, grillning och bränning med fast bränsle (ved, kol, gräs, ris, grenar etcetera) är förbjudet."; "Beslut om lokala eldningsförbud hittar du på din kommuns webbplats." (läst 2026-09-27) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid eldningsförbud är det förbjudet att elda och grilla med fast bränsle som ved och kol. Länsstyrelsen i Stockholm publicerar länets beslut, och lokala förbud hittar du på kommunens webbplats.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planerar du resten av juli? Se guiderna <a href="/guider/juli-skargarden-2026-oar">Öar att besöka i juli</a> och <a href="/guider/juli-skargarden-2026-mat">Mat i skärgården i juli</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planerar du resten av juli? Se guiderna <a href="/guider/juli-skargarden-oar">Öar att besöka i juli</a> och <a href="/guider/juli-skargarden-mat">Mat i skärgården i juli</a>.</p>
 `,
 
-  'juli-skargarden-2026-mat': `
+  'juli-skargarden-mat': `
 <!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: räkor som köps direkt från fiskebryggan i Vaxholm, Sandhamn och Grinda, rökerier på Räfsnäs, Arholma, Kymmendö och Möja, rökt ål, tipset om engångsgrill (Skärgårdsstiftelsen säger nej till engångsgrill och eld direkt på berghällar), "Möja krog" (ingen egen webbplats hittad), Finnhamns vandrarhem som restaurang, skärgårdsbuffé på helger på Utö, "fullbokat veckor i förväg", rangordningen "bästa restaurangerna", picknicklistan, priset på räkor utan prislista, samt värdeord (ikoniska, oöverträffat, mysig, berömd, klassiker). -->
 <!-- KÄLLA: https://www.explorearchipelago.com/sv/sthlm/mellersta-skargarden/fjaderholmarna — "Fjäderholmarna är säsongsöppet mellan april och september." (läst 2026-09-27) -->
 <!-- KÄLLA: https://www.sandhamns-vardshus.se/ — "Öppet varje dag från mitten av juni till mitten på september. Annan tid på året är restaurangen främst öppen helger." (läst 2026-09-27) -->
@@ -7369,7 +7369,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vad du bör packa för blöta dagar finns i <a href="/guider/packlista-skargarden">packlistan för skärgården</a>.</p>
 `,
 
-  'juli-bohuslan-2026': `
+  'juli-bohuslan': `
 <!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "Bohusbåten" som egen båtlinje (ingen sådan linje hittad, ersatt med ångaren Bohuslän och de reguljära båtlinjerna), "räksmörgåsarna tar slut", "gästhamnarna bokade månader i förväg", klimat- och vattenjämförelser med Stockholm, Smögenbryggans längd (källan anger en annan längd), "Marstrand Race", "restaurangerna längs kajen", "de bästa kräftorna och ostronen", Ingrid Bergman-torget, klockslag för tomma parkeringar och trängsel, restid med tåg och bil utan källa, avståndet Grebbestad–Tanum, samt värdeord. -->
 <!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "Vill du uppleva Smögen utan att behöva trängas med tusentals sommarturister? Kom hit under våren eller tidig höst då det fortfarande är ljummet i vinden." (läst 2026-09-27) -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Juli är högsäsong i Bohuslän. Västsverige skriver själva att den som vill slippa trängas med tusentals sommarturister på Smögen kan komma på våren eller tidig höst. Den här guiden handlar om vad som faktiskt händer längs kusten i juli, och om Bohusbåten – som i praktiken är ångaren Bohuslän och de vanliga båtlinjerna.</p>
@@ -7428,7 +7428,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur undviker man trängsel i Bohuslän i juli?</h2>
 <!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "Vill du uppleva Smögen utan att behöva trängas med tusentals sommarturister? Kom hit under våren eller tidig höst"; "Flera av krogarna har öppet året om, och vissa andra slår upp dörrarna i april." (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Västsveriges eget råd för Smögen är att komma på våren eller tidig höst om man vill slippa trängseln. Flera krogar där har öppet året om. Svalla har ingen källa för vilka dagar eller tider i juli som har minst folk. Om Bohuslän efter högsäsongen finns guiden <a href="/guider/sensommar-bohuslan-2026">Sensommar i Bohuslän</a>, och öar finns i <a href="/guider/bohuslan-skargard-guide">guiden om Bohusläns skärgård</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Västsveriges eget råd för Smögen är att komma på våren eller tidig höst om man vill slippa trängseln. Flera krogar där har öppet året om. Svalla har ingen källa för vilka dagar eller tider i juli som har minst folk. Om Bohuslän efter högsäsongen finns guiden <a href="/guider/sensommar-bohuslan">Sensommar i Bohuslän</a>, och öar finns i <a href="/guider/bohuslan-skargard-guide">guiden om Bohusläns skärgård</a>.</p>
 `,
 
   // ── Batch E: Barnvänligt-serien ──────────────────────────────────────────────
@@ -8521,7 +8521,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler platser med bastu finns i <a href="/guider/20-bastustallen-skargarden-boka">bastuställen i skärgården</a>, och för vintern se <a href="/guider/vinterbastu-isbastu">vinterbastu och isbastu</a>.</p>
 `,
 
-  'juli-gotland-2026': `
+  'juli-gotland': `
 <!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "40 000 besökare", "Europas enda medeltidsfestival av den här skalan", "levande 1200-tal", Tofta som "populäraste sandstrand" och "två mil söder om Visby", "varmare vatten", Gnisvärd som "filmiskt", Langhammars som "Nordens mest surrealistiska landskap", krogar och rätter i Visby, "Gotlands äldsta restaurang", Sleepy Bulldog-öl, "enda län i Sverige med vinodlingar" och vingården i Kattlund, cykelrutter med längder utan källa, färje- och flygtider som inte stämde, bokningsråd och prisnivåer för boende, "insidertips" om folkmassor och priser, samt värdeord. -->
 <!-- KÄLLA: https://www.medeltidsveckan.se/om-medeltidsveckan/ — "Medeltidsveckan på Gotland har arrangerats sedan 1984 och är Sveriges största historiska festival."; "Festivalen varar åtta dagar från söndag veckan 31 till söndag vecka 32." (läst 2026-09-27) -->
 <!-- KÄLLA: https://gotland.com/stora-evenemang-pa-gotland/ — "STORA EVENEMANG PÅ GOTLAND 2026"; "22-26/6: Almedalsveckan"; "2-9/8: Medeltidsveckan" (läst 2026-09-27) -->
@@ -8965,7 +8965,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">När på året?</h2>
 <!-- KÄLLA: https://gotland.com/medeltidsveckan/ — "Medeltidsveckan är medeltidsfestivalen som varje år breder ut sig över hela Visby och ut på Gotland vecka 32." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Gotland är Medeltidsveckan i Visby varje år vecka 32 och fyller hela staden. Vill du uppleva festivalen är det den veckan du ska åka; vill du undvika den bör du välja en annan vecka. I Bohuslän är hösten skaldjurens säsong, som nämns ovan. Båda resmålen går att besöka året runt, se <a href="/guider/vinter-gotland-2026">Gotland på vintern</a> och <a href="/guider/vinter-bohuslan-2026">vinter i Bohuslän</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Gotland är Medeltidsveckan i Visby varje år vecka 32 och fyller hela staden. Vill du uppleva festivalen är det den veckan du ska åka; vill du undvika den bör du välja en annan vecka. I Bohuslän är hösten skaldjurens säsong, som nämns ovan. Båda resmålen går att besöka året runt, se <a href="/guider/vinter-gotland">Gotland på vintern</a> och <a href="/guider/vinter-bohuslan">vinter i Bohuslän</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj Gotland om du…</h2>
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
@@ -9246,7 +9246,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 `,
 
   // ── Batch F: Säsongsmotorer ───────────────────────────────────────────────────
-  'sensommar-skargarden-2026': `
+  'sensommar-skargarden': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "bäst bevarade hemligheten i Sverige", "havets temperatur toppar i slutet av juli", badtemperaturer i grader, "öarna nästan tomma", "vädret ofta som finast", påståendet att priserna sjunker med en viss procentsats, "Möja, Ornö och Gällnö är kända för bra svampmarker", "allemansrätten ger fri tillgång på alla öar utan privat mark" (fel: gäller även privat mark), solnedgångsplatser på Utö och Ornö, "många värdshus och caféer stänger i mitten av september", Utö Värdshus öppettider, att Sandhamn, Utö, Grinda och Vaxholm "håller öppet", "Fjäderholmarna stänger efter Alla hjärtans dag", samt värdeord. Tillagt: SMHI:s definitioner av sommar och höst, brittsommar, badsäsongen enligt HaV, Waxholmsbolagets tidtabellsperiod efter sommaren och allemansrättens regler för bär och svamp. -->
 <!-- KÄLLA: https://www.smhi.se/kunskapsbanken/meteorologi/arstider — "Det finns både en meteorologisk definition av årstiderna baserad på temperaturförhållandena, och en kalendarisk definition där våren sträcker sig från mars till maj, sommaren från juni till augusti, hösten från september till november och vintern från december till februari." (läst 2026-09-28) -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">När börjar sensommaren? Det finns inget officiellt svar. SMHI har två sätt att dela in året: ett kalendariskt, där sommaren är juni–augusti och hösten september–november, och ett meteorologiskt som bygger på temperaturen. Ordet sensommar finns inte med i någon av indelningarna. Här är vad SMHI:s definitioner säger, och vad som gäller i Stockholms skärgård i slutet av sommaren 2026: båtarnas tidtabeller efter 17 augusti, badsäsongen, bär, svamp och kräftor.</p>
@@ -9294,7 +9294,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Grinda - Boda - Sollenkroka Gäller:2026-08-17till2026-12-12"; "Stavsnäs - Sandhamn - Hagede Gäller:2026-08-17till2026-12-12"; "Årsta - Utö Gäller:2026-08-17till2026-12-12"; "Stockholm - Dalarö - Ornö (östra sidan) - Fjärdlång - Utö Gäller:2026-08-17till2026-12-12"; "Stockholm - Vaxholm - Sollenkroka - Möja Gäller:2026-08-17till2026-12-12" (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den 17 augusti 2026 började en ny tidtabellsperiod. De flesta linjetidtabeller gäller från 17 augusti till 12 december 2026, till exempel linjerna Stockholm–Vaxholm–Grinda–Boda–Sollenkroka, Stavsnäs–Sandhamn–Hagede, Årsta–Utö, Stockholm–Dalarö–Ornö–Fjärdlång–Utö och Stockholm–Vaxholm–Sollenkroka–Möja.</p>
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Några linjer i norra skärgården har en kortare period, från 17 augusti till 1 november 2026: Stockholm–Vaxholm–Blidösundet, Stockholm–Vaxholm–Norrsund–Rödlöga och Stockholm–Vaxholm–Norrsund–Arholma. Sök alltid din resa i Waxholmsbolagets reseplanerare innan du åker. Mer om båtarna finns i <a href="/guider/waxholmsbolaget-guide">guiden till Waxholmsbolaget</a> och i <a href="/guider/host-stockholms-skargard-2026">guiden till hösten i Stockholms skärgård</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Några linjer i norra skärgården har en kortare period, från 17 augusti till 1 november 2026: Stockholm–Vaxholm–Blidösundet, Stockholm–Vaxholm–Norrsund–Rödlöga och Stockholm–Vaxholm–Norrsund–Arholma. Sök alltid din resa i Waxholmsbolagets reseplanerare innan du åker. Mer om båtarna finns i <a href="/guider/waxholmsbolaget-guide">guiden till Waxholmsbolaget</a> och i <a href="/guider/host-stockholms-skargard">guiden till hösten i Stockholms skärgård</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad händer i skärgården på sensommaren?</h2>
 
@@ -9315,10 +9315,10 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sensommar på västkusten</h2>
 <!-- KÄLLA: https://www.smhi.se/kunskapsbanken/meteorologi/arstider/arstidernas-ankomst — "Längst varar sommaren i Skåne och vid västkusten" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html — "Premiär för hummerfisket 2026 är den 21 september kl. 07.00." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid västkusten varar den meteorologiska sommaren längst, och där börjar hummerfisket i september. Hummerpremiären 2026 var den 21 september klockan 07.00. Läs mer i guiden <a href="/guider/sensommar-bohuslan-2026">Sensommar 2026 i Bohuslän</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid västkusten varar den meteorologiska sommaren längst, och där börjar hummerfisket i september. Hummerpremiären 2026 var den 21 september klockan 07.00. Läs mer i guiden <a href="/guider/sensommar-bohuslan">Sensommar 2026 i Bohuslän</a>.</p>
 `,
 
-  'september-skargarden-2026': `
+  'september-skargarden': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: havstemperaturer i grader och påståendet att Östersjön är varmare än Medelhavet, "turisterna är borta", "fotografer vallfärdar", svampmarker på Möja, Gällnö och Ornö, en svampapp, lövfärgernas tidpunkt, påståendet att Utö Värdshus, Finnhamn, Grinda Wärdshus och Sandhamns Värdshus håller öppet hela september men "de flesta stänger i mitten av september", lufttemperatur på kvällarna, "havsöringen är aktiv", samt värdeord ("bästa månad", "bäst bevarade hemlighet", "oöverträffat"). -->
 <!-- KÄLLA: https://www.smhi.se/kunskapsbanken/meteorologi/arstider/host — "Enligt kalendern är september vår första höstmånad." (läst 2026-09-28) -->
 <!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period." (läst 2026-09-28) -->
@@ -9374,7 +9374,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <li>Skärgårdsstiftelsens bokningsfria bastur, till exempel på Träskö-Storö, är öppna till och med den 31 oktober.</li>
 <li>Skärgårdens Kanotcenter på Resarö har öppettider för uthyrningen maj–september, men ordnar kajakäventyr och bastubad för grupper året runt.</li>
 </ul>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vad som har öppet senare på hösten finns i <a href="/guider/oktober-skargarden" style="color:var(--sea)">oktober i skärgården</a> och <a href="/guider/host-stockholms-skargard-2026" style="color:var(--sea)">höst i Stockholms skärgård 2026</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vad som har öppet senare på hösten finns i <a href="/guider/oktober-skargarden" style="color:var(--sea)">oktober i skärgården</a> och <a href="/guider/host-stockholms-skargard" style="color:var(--sea)">höst i Stockholms skärgård 2026</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad kan man göra i skärgården i september?</h2>
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Plocka svamp</h3>
@@ -9407,11 +9407,11 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <li>Klä dig efter vattnets temperatur om du ska paddla eller segla.</li>
 <li>Ta med svampkorg och kontrollera reservatets regler på Länsstyrelsens sida.</li>
 </ul>
-<p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Planerar du slutet av sommaren i stället, se <a href="/guider/sensommar-skargarden-2026" style="color:var(--sea)">sensommar i skärgården 2026</a>.</p>
+<p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Planerar du slutet av sommaren i stället, se <a href="/guider/sensommar-skargarden" style="color:var(--sea)">sensommar i skärgården 2026</a>.</p>
 </div>
 `,
 
-  'host-bohuslan-2026': `
+  'host-bohuslan': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: pris för ostronsafari (prislista ej använd), Bohusledens längd och sträckning "längs Bohusläns kust" (ledens egen sida anger en betydligt kortare längd), "kräftor sista chansen i september", "priserna sjunker" för boende, väderomdömen om september och oktober, "restaurangerna i Smögen, Marstrand och Grebbestad fyller sina menyer", "boka bord veckan innan", "Grebbestad och Lysekil är ostronhuvudstäderna", "turisterna är borta", samt värdeord (bästa, dramatiska, festligaste, fantastiska, perfekt). -->
 <!-- KÄLLA: https://www.vastsverige.com/sotenas/evenemang/hummerpremiar/ — "Kl. 07.00 går startskottet för höjdpunkten i Bohuslän. Hummerfisket startar och många ger sig ut på jakt efter den ultimata delikatessen." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.vastsverige.com/tanum/se--gora/grebbestad/ — "Bästa tiden för skaldjur är höst och vinter då vattnet är kallt och friskt." (läst 2026-09-28) -->
@@ -9486,7 +9486,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 </div>
 `,
 
-  'host-gotland-2026': `
+  'host-gotland': `
 <!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "Gotland är överfyllt i juli", "turisterna är borta", "svampskogen är oöverträffad", "Gotlands blandskog ger bra förutsättningar", påstående om när kantareller och Karl Johan toppar, tips om att leta svamp söder om Visby och runt Roma (påhittade växtplatser), "fotografer vallfärdar", Gotlands Vingård i Kattlund med visningar och skörd, höstmenyer med lamm och saffransbröd, "inga motorcyklar", cykelrutten Visby–Tofta–Gnisvärd med avstånd, färjan "till och med oktober", procentsatser för lägre priser, "restaurangerna håller öppet till och med oktober", cykeluthyrning hela säsongen, restider för färja och flyg i FAQ, flygbolagsnamn, samt värdeord. -->
 <!-- KÄLLA: https://artfakta.se/taxa/3213/information — "Mest frekvent rapporterad från de södra delarna men finns utbredd i hela landet ända upp till Norrbotten." (läst 2026-09-27) -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kantareller på Gotland är det många som söker efter på hösten. Kort svar: ja, kantarellen finns i hela Sverige, och SLU Artdatabanken anger att den är utbredd i hela landet. Här är vad myndigheterna säger om arten, vad som gäller för svampplockning på Gotland och vad mer som händer på ön under hösten 2026.</p>
@@ -9937,7 +9937,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://www.medeltidsveckan.se/faq/ — "över 600 programpunkter"; "Medeltidsveckan är gratis för alla barn upp till 6 år!" (läst 2026-09-27) -->
 <!-- KÄLLA: https://gotland.com/medeltidsveckan/ — "Medeltidsveckans festivalband ger dig fri tillgång till alla områden och gör så att du kan boka biljetter." (läst 2026-09-27) -->
 <!-- KÄLLA: https://gotland.com/events/medeltidsveckan-2026/ — "Medeltidsveckans moderna camping och medeltida läger ligger inom gångavstånd från innerstaden!" (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Festivalen har över 600 programpunkter. Ett festivalband ger tillgång till alla områden och gör att du kan boka biljetter till programmet. Barn upp till sex år går gratis. Medeltidsveckan har en egen camping inom gångavstånd från innerstaden. Mer om juli och augusti på ön i <a href="/guider/juli-gotland-2026">guiden till Gotland i juli</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Festivalen har över 600 programpunkter. Ett festivalband ger tillgång till alla områden och gör att du kan boka biljetter till programmet. Barn upp till sex år går gratis. Medeltidsveckan har en egen camping inom gångavstånd från innerstaden. Mer om juli och augusti på ön i <a href="/guider/juli-gotland">guiden till Gotland i juli</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bad nära Visby</h2>
 <!-- KÄLLA: https://gotland.com/besoka-uppleva/friluftsliv-natur/strandhang-och-bad-gotland/ — "Norderstrand ligger bara en kilometer norr om ringmuren, sandstrand med stenbotten, badbrygga finns."; "Ett par kilometer från Norderstrand kommer den funtionsanpassade stranden Gustavsvik"; "Bussförbindelse till Snäck och Gustavsvik med buss 4."; "Om du vill ta ett dopp i Visby finns badbrygga vid Kallis nedanför Almedalen." (läst 2026-09-27) -->
@@ -9952,7 +9952,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 `,
 
   // ── Batch G: Alla återstående guider ─────────────────────────────────────────
-  'jul-skargarden-2026': `
+  'jul-skargarden': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "Utö Värdshus håller öppet de flesta adventshelger med julbuffé och vinterbastu", "Sandhamns Värdshus har begränsat öppethållande", "Vaxholms julmarknad första advent-helgen" (Destination Vaxholm anger andra helgen i advent), "Fjäderholmarnas adventsevenemang", bastu- och vattentemperaturer, "Utös havsbastu och Finnhamns bastu öppna delar av vintern", "bara en eller två avgångar per dag till yttre öarna", "havsisen kan blockera linjer", samt värdeord ("magisk", "mysigaste", "charmigt", "ultimata"). Nytt: julbord och julmarknader med datum för i år från arrangörernas egna sidor, Waxholmsbolagets tidtabellsbyte och helgtrafik. -->
 <!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.destinationvaxholm.se/events/vaxholms-julmarknad-2026 — "Den andra helgen i advent, 5 – 6 december, är det åter dags för Vaxholms traditionsenliga julmarknad." (läst 2026-09-28) -->
@@ -10000,7 +10000,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julafton i skärgården</h2>
 <!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julafton — "Fira Julafton med oss"; "24 december 2026"; "Och dagen därpå fortsätter firandet med vår traditionella kalkonmiddag" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du fira själva julafton i skärgården har Sandhamn Hotell &amp; Restaurang julbord på julafton, 24 december 2026, och kalkonmiddag på juldagen. Nyårsfirandet har en egen guide: <a href="/guider/nyar-skargarden-2026">Nyår i skärgården 2026</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du fira själva julafton i skärgården har Sandhamn Hotell &amp; Restaurang julbord på julafton, 24 december 2026, och kalkonmiddag på juldagen. Nyårsfirandet har en egen guide: <a href="/guider/nyar-skargarden">Nyår i skärgården 2026</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka öar kan man åka till i december?</h2>
 <!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme." (läst 2026-09-28) -->
@@ -10033,7 +10033,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn Hotell &amp; Restaurang har spa med tempererad pool, jacuzzi och bastu, och gäster som inte bor på hotellet är välkomna i mån av plats. Hotellet har också vedeldade bastuflottar vid havet som du lägger till när du bokar din vistelse. Fler bastur finns i guiden <a href="/guider/vinterbastu-isbastu">Vinterbastu och isbastu</a>.</p>
 `,
 
-  'nyar-skargarden-2026': `
+  'nyar-skargarden': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "Utö Värdshus arrangerar nyårsmiddag och fest med övernattning" (inget nyårspaket publicerat på Utö Värdshus sida), "Sandhamns Värdshus har liknande arrangemang" (inget nyårspaket publicerat på Sandhamn Seglarhotells sida), "ett av de mest eftertraktade nyårspaketen", "nyårspaket på Utö och Sandhamn är fullbokade i september–oktober", "Vaxholm med sina belysta gränder", "vintrarna kan vara torra", påståendet att Waxholmsbolaget kör specialtidtabell och att sista båten går tidigt, samt värdeord. -->
 <!-- KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "Jul- och nyårsveckorna 2026-2027"; "Nyårsafton torsdag 31 december: trafiken går som en lördag" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "NYÅRSPAKET 2026"; "Exklusivt nyårsfirande i Stockholms skärgård" (läst 2026-09-28) -->
@@ -10105,7 +10105,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Länsstyrelsen kan besluta om eldningsförbud när risken för brand i skog och mark är stor. I Länsstyrelsen i Stockholms föreskrifter om förbud mot eldning ingår att det är förbjudet att använda pyroteknik.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julen och vintern i skärgården</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du hellre se nyårsfyrverkerierna från vattnet i Stockholm finns nyårskryssningen i guiden <a href="/guider/nattkryssning-skargarden">Nattkryssning i skärgården</a>. Vill du fira jul ute på öarna finns julbord, julmarknader och jultrafiken i guiden <a href="/guider/jul-skargarden-2026">Jul i skärgården 2026</a>. Tips för resten av vintern finns i <a href="/guider/vinter-i-skargarden">Vinter i skärgården</a> och <a href="/guider/vinterbastu-isbastu">Vinterbastu och isbastu</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du hellre se nyårsfyrverkerierna från vattnet i Stockholm finns nyårskryssningen i guiden <a href="/guider/nattkryssning-skargarden">Nattkryssning i skärgården</a>. Vill du fira jul ute på öarna finns julbord, julmarknader och jultrafiken i guiden <a href="/guider/jul-skargarden">Jul i skärgården 2026</a>. Tips för resten av vintern finns i <a href="/guider/vinter-i-skargarden">Vinter i skärgården</a> och <a href="/guider/vinterbastu-isbastu">Vinterbastu och isbastu</a>.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Bra att veta:</strong>
@@ -10115,7 +10115,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 </div>
 `,
 
-  'pask-skargarden-2027': `
+  'pask-skargarden': `
 <!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: lufttemperaturer och vattentemperaturer för mars–april, "Utö Värdshus öppnar i påsk och erbjuder påskpaket med påskbuffé" (inget påskpaket för nästa påsk publicerat), "Sandhamns Värdshus öppnar säsongen i påsk" (puben har öppet året runt), "Vaxholm är alltid öppet", "Fjäderholmarna och Grinda öppnar normalt till påsk", "Sandhamn och Utö brukar ha påskpaket", fåglar som återvänder (ejder, skärpiplärka, havsörn), samt värdeord. -->
 <!-- KÄLLA: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-1989253-om-allmanna-helgdagar_sfs-1989-253/ — "långfredagen fredagen närmast före påskdagen"; "annandag påsk dagen efter påskdagen"; "söndagen närmast efter den fullmåne som infaller på eller närmast efter den 21 mars" (läst 2026-09-27) -->
 <!-- KÄLLA: https://www.sundbyberg.se/forskola-skola-och-utbildning/grundskola/lasarstider-och-lov — "Vårtermin 2027"; "Långfredag: 26 mars"; "Annandag påsk: 29 mars" (läst 2026-09-27) -->
@@ -10191,10 +10191,10 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/natur-och-landsbygd/skyddad-natur.html — "Det är framförallt häckningsplatser för störningskänsliga fågelarter som vi försöker skydda med tillträdesförbud."; "Du kan hitta områden med tillträdesförbud i Naturvårdsverkets kartverktyg" (läst 2026-09-27) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">På våren börjar fåglarna häcka, och i skärgården finns fågel- och sälskyddsområden som bara får besökas vissa tider på året. Länsstyrelsen Stockholm hänvisar till Naturvårdsverkets kartverktyg Skyddad natur för att se var tillträdesförbud gäller. Läs mer i <a href="/guider/fagelskadning-skargarden">guiden till fågelskådning i skärgården</a>.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler vårguider: <a href="/guider/var-stockholms-skargard-2027">våren i Stockholms skärgård</a>, <a href="/guider/valborg-skargarden-2027">valborg i skärgården</a> och <a href="/guider/pingst-skargarden">pingst i skärgården</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler vårguider: <a href="/guider/var-stockholms-skargard">våren i Stockholms skärgård</a>, <a href="/guider/valborg-skargarden">valborg i skärgården</a> och <a href="/guider/pingst-skargarden">pingst i skärgården</a>.</p>
 `,
 
-  'valborg-skargarden-2027': `
+  'valborg-skargarden': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "brasor på klipphällarna på många öar", "Vaxholm brukar ha aktiviteter på valborg", "Fjäderholmarna kan ha evenemang", "Grinda öppnar sin säsong runt valborg", "många öar håller gemensamma valborgsfiranden", "snaps", "visselpipor", "kvällstidtabell kan ha extra avgångar", "valborg infaller en vardag och Waxholmsbolaget kör normal veckotidtabell" (valborgsmässoafton är en fredag nästa år och helgtrafiken för våren är inte publicerad), lyktor i träden, samt värdeord. -->
 <!-- KÄLLA: https://www.visitblekinge.se/valborg-i-blekinge — "Valborgsmässoafton 2027 faller på en fredag den 30 april - starten på en naturlig tredagarshelg." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.nordiskamuseet.se/traditioner-och-hogtider/valborg/ — "Det svenska valborgsmässofirandet med eldar och studentkörsång äger rum på Valborgsmässoafton den 30 april." (läst 2026-09-28) -->
@@ -10262,7 +10262,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Råder det eldningsförbud får du inte elda, oavsett tillstånd – då får ni fira utan brasa. Länsstyrelsen beslutar om eldningsförbud när risken för brand i skog och mark är stor, och lokala förbud står på kommunens webbplats. I Stockholms län kan du också ringa räddningstjänsternas telefonsvarare: Storstockholms brandförsvar 08-454 83 39, Södertörns brandförsvarsförbund 08-721 23 26 och Räddningstjänsten Norrtälje kommun 0176-28 42 00.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mer om våren i skärgården</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planerar du vårens resor finns <a href="/guider/pask-skargarden-2027">påsk i skärgården 2027</a>, <a href="/guider/var-stockholms-skargard-2027">våren i Stockholms skärgård 2027</a> och <a href="/guider/pingst-skargarden">pingst i skärgården</a>. Om Blekinges skärgård kan du läsa i <a href="/guider/blekinge-skargard-guide">guiden till Blekinge skärgård</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planerar du vårens resor finns <a href="/guider/pask-skargarden">påsk i skärgården 2027</a>, <a href="/guider/var-stockholms-skargard">våren i Stockholms skärgård 2027</a> och <a href="/guider/pingst-skargarden">pingst i skärgården</a>. Om Blekinges skärgård kan du läsa i <a href="/guider/blekinge-skargard-guide">guiden till Blekinge skärgård</a>.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Valborg-tipset:</strong>
@@ -10790,7 +10790,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur äter man ostron säkrast?</h2>
 <!-- KÄLLA: https://www.livsmedelsverket.se/matvanor-halsa--miljo/kostrad/kostrad-vuxna/fisk/musslor-och-ostron/ — "Både bakterier och virus i musslor och ostron dör av värme. Men marina algtoxiner tål värme och förstörs inte vid tillagning."; "Vid gratinering av musslor och ostron behöver de gratineras i 10 minuter för att virus ska förstöras."; "Handplockade ostron är ett hållbart fiske då vilda ostronbankar bevaras och inga bifångster görs." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Råa ostron innebär en större risk för magsjuka än upphettade. Bakterier och virus dör av värme, men algtoxiner gör det inte. Gratinerar du ostron behöver de enligt Livsmedelsverket gratineras i 10 minuter för att virus ska förstöras. Livsmedelsverket noterar också att handplockade ostron är ett hållbart fiske, eftersom de vilda ostronbankarna bevaras och inga bifångster görs.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om skaldjurshösten i Bohuslän finns i <a href="/guider/hummerpremiar-bohuslan">guiden till hummerpremiären</a> och <a href="/guider/sensommar-bohuslan-2026">sensommar i Bohuslän 2026</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om skaldjurshösten i Bohuslän finns i <a href="/guider/hummerpremiar-bohuslan">guiden till hummerpremiären</a> och <a href="/guider/sensommar-bohuslan">sensommar i Bohuslän 2026</a>.</p>
 `,
 
   'hyra-stuga-skargarden': `
@@ -11616,7 +11616,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Surströmmingspremiären är av hävd den tredje torsdagen i augusti, och det är då årets surströmming börjar säljas. Det är en tradition, inte en lag. Surströmmingspremiären 2026 var torsdag 20 augusti.</p>
 <!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/surstrommingspremiar — "Den tredje torsdagen i augusti är det av hävd premiär för att äta surströmming" (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nästa surströmmingspremiär blir torsdag 19 augusti 2027.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om dagen och hur den firas finns i guiden <a href="/guider/surstrommingspremiar-2026">Surströmmingspremiär 2026</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om dagen och hur den firas finns i guiden <a href="/guider/surstrommingspremiar">Surströmmingspremiär 2026</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var kan man äta surströmming i Höga Kusten?</h2>
 <!-- KÄLLA: https://www.hogakusten.com/sv/stader-platser/ulvon — "Det varierar från år till år. Här behöver du kontakta restauratörerna inför ditt besök." (läst 2026-09-28) -->
@@ -12386,7 +12386,7 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Orust Turistinformation finns i Kulturhuset Kajutan i Henån. Mer om ön: <a href="/o/orust">Orust</a>. Grannön <a href="/o/tjorn">Tjörn</a> har en egen <a href="/guider/tjorn-guide">guide</a>.</p>
 `,
 
-  'sensommar-bohuslan-2026': `
+  'sensommar-bohuslan': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "turiststormen lägger sig i slutet av juli", "Smögen fullpackat" och "klipporna tomma", vattentemperaturer i september, "Kräftskivan" med fast datum (det finns ingen fastställd dag för kräftskivan), "Grebbestad och Smögen firar med kräftskivor", "Bohusläns folkligaste sensommarhögtid", "restaurangerna fyllda", "klätteringssäsong i full gång", "klipporna varma i september", "priserna på boende sjunker" med procentsatser, "boende tillgängligt utan förhandsbokning", samt värdeord (bästa, renaste, speciell stillhet). -->
 <!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Augusti är kräftskivornas tid." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.vastsverige.com/sotenas/artiklar/varldens-basta-skaldjur/ — "Räkorna är som finast under hösten och in på vintersäsongen, hummern likaså" (läst 2026-09-28) -->
@@ -12408,7 +12408,7 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 <!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Från slutet av 1800-talet fram till år 1994 rådde förbud mot kräftfiske från november till början av augusti."; "Från början startade kräftfisket den 7 augusti klockan 17 men 1982 ändrades det till klockan 17 den första onsdagen i augusti."; "Vill man vara petig med traditionen infaller kräftpremiären första veckan i augusti." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från slutet av 1800-talet fram till 1994 var det förbjudet att fiska kräftor från november till början av augusti. Enligt Institutet för språk och folkminnen (Isof) startade fisket först den 7 augusti klockan 17, och från 1982 klockan 17 den första onsdagen i augusti. Räknat så föll kräftpremiären 2026 på onsdag 5 augusti. Förbudet är borta, men den som vill följa traditionen håller kräftpremiären första veckan i augusti.</p>
 <!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Augusti är kräftskivornas tid."; "Kräftpremiären har länge varit en festlig tillställning och i dag ordnas många fester, kräftskivor, i augusti." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivan har ingen fast dag. Isof skriver att augusti är kräftskivornas tid och att kräftpremiären länge har varit en festlig tillställning. Recept, meny och tips finns i <a href="/guider/kraftskiva-bohuslan-2026">kräftskiva i Bohuslän 2026</a> och <a href="/guider/grebbestad-kraftskiva-2026">kräftskiva i Grebbestad</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivan har ingen fast dag. Isof skriver att augusti är kräftskivornas tid och att kräftpremiären länge har varit en festlig tillställning. Recept, meny och tips finns i <a href="/guider/kraftskiva-bohuslan">kräftskiva i Bohuslän 2026</a> och <a href="/guider/grebbestad-kraftskiva">kräftskiva i Grebbestad</a>.</p>
 <!-- KÄLLA: https://tanumstrand.se/attgora/ostron/ — "Vi har alltid uppehåll av kräftkok under sommarperioden från midsommar till söndag vecka 32" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.vastsverige.com/sotenas/artiklar/varldens-basta-skaldjur/ — "Båtar tar dig med på kräftfiske, hummerfisket och krabbfiske." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">På västkusten betyder kräftor också havskräftor. TanumStrand i Grebbestad har uppehåll i sina kräftkok från midsommar till söndagen i vecka 32 och börjar alltså igen i augusti. I Sotenäs kan du följa med båtar ut på kräftfiske, hummerfiske och krabbfiske.</p>
@@ -12452,7 +12452,7 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vandra Bohusleden på sensommaren</h2>
 <!-- KÄLLA: https://www.bohusleden.se/ — "Välkommen till Bohusledens 27 etapper som bjuder på totalt ca 35 mil av naturskön och omväxlande vandring genom Bohusläns vilda och vackra natur. Leden sträcker sig från Älvsåker i söder, vid gränsen till Halland, till Strömstad i norr." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusleden har 27 etapper och är totalt ungefär 35 mil. Den går från Älvsåker vid gränsen till Halland till Strömstad i norr. Fler tips för hösten finns i <a href="/guider/host-bohuslan-2026">hösten i Bohuslän 2026</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusleden har 27 etapper och är totalt ungefär 35 mil. Den går från Älvsåker vid gränsen till Halland till Strömstad i norr. Fler tips för hösten finns i <a href="/guider/host-bohuslan">hösten i Bohuslän 2026</a>.</p>
 `,
 
     'hyra-bat-utan-korkort-stockholm': `
@@ -13954,7 +13954,7 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 
   // ── Batch J: SEO-gap-guider ────────────────────────────────────────────────
 
-  'juni-skargarden-2026': `
+  'juni-skargarden': `
 <!-- OMSKRIVEN 2026-09-26, SEO-pass 2026-09-27 (rubriker som frågor, nya källbelagda avsnitt om midsommar och bad). Borttaget utan källa eller fel: vattentemperatur i juni, "lågsäsongspriser" med procentsats, "inga folkmassor" och "skärgården tom igen" (trängsel går inte att belägga), "fågellivet som livligast" med artlista, "de flesta restauranger öppnar sista veckan i maj", "Wärdshuset öppnar i juni", "ett av skärgårdens bästa härbärgen", "Pendelbåten från Årstaberg" (båten till Utö går från Årsta brygga i Haninge), "sommartidtabellen gäller från mitten av juni", myggtipset, samt värdeord som perfekt, underbar, fantastisk, äkta och bäst bevarade hemlighet. -->
 <!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period. Alla datum finns på respektive tidtabell." (läst 2026-09-26) -->
 <!-- KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "I samband med storhelger som till exempel jul, påsk och midsommar går båtarna lite annorlunda än den veckodag som helgen eller klämdagen infaller på." (läst 2026-09-27) -->
@@ -13980,7 +13980,7 @@ och midsommardagen lördag 20 juni som en söndag.</p>
 <!-- KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "Midsommardagen lördag 20 juni: trafiken går som en söndag" (läst 2026-09-27) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt lagen om allmänna helgdagar är midsommardagen den lördag som infaller under perioden 20–26 juni, och midsommarafton är dagen före.
 År 2026 var midsommarafton fredag 19 juni
-och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar-skargarden-2026">guiden till midsommar i skärgården</a>.</p>
+och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar-skargarden">guiden till midsommar i skärgården</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kan man bada i skärgården i juni?</h2>
 <!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten.html — "Här redovisas vattenkvalitet, temperatur, algblomning, klassificering och annan information om din specifika badplats. Kommunerna står för provtagning och insamling av data som ligger till grund för informationen." (läst 2026-09-27) -->
@@ -14019,7 +14019,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <li>Länsstyrelsen beslutar om eldningsförbud i länet, och kommunerna om lokala förbud. Kolla båda innan du tänder grillen.</li>
 <li>Det är förbjudet att elda direkt på berghällar, eftersom de kan spricka. Skärgårdsstiftelsen avråder också från engångsgrillar.</li>
 </ul>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ska du ut i skärgården i juli i stället? Läs <a href="/guider/juli-skargarden-2026-oar">guiden till skärgårdens öar i juli</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ska du ut i skärgården i juli i stället? Läs <a href="/guider/juli-skargarden-oar">guiden till skärgårdens öar i juli</a>.</p>
 `,
 
   'folkfria-oar-juli': `
@@ -14079,7 +14079,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <li>Under torrperioder på sommaren ska du räkna med eldningsförbud. Kolla vad som gäller i kommunen innan du tar med grillen.</li>
 <li>Arholma-Idö och Härmanö är naturreservat med egna regler om hund, tält och eld (se ovan). Läs föreskrifterna hos Länsstyrelsen för det område du ska till.</li>
 </ul>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler tips om öar i juli finns i <a href="/guider/juli-skargarden-2026-oar">guiden till skärgårdens öar i juli</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler tips om öar i juli finns i <a href="/guider/juli-skargarden-oar">guiden till skärgårdens öar i juli</a>.</p>
 `,
 
   'oktober-skargarden': `
@@ -14154,10 +14154,10 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/ — "Du får njuta av det naturen ger och plocka vilt växande blommor, bär och svamp, men vissa växter är fridlysta och de får du inte plocka." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "På hösten kan det vara en god idé är att ta med svampkorgen och en god matsäck ut i markerna."; "särskilt vid västliga och nordvästliga vindar under hösten, då flyttande rov- och småfågel blåser dit" (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Allemansrätten låter dig plocka bär och svamp, men inte fridlysta växter. Länsstyrelsen tipsar om att ta med svampkorgen till naturreservatet på norra Utö på hösten. Där samlas också flyttande rovfåglar och småfåglar under hösten, särskilt vid västliga och nordvästliga vindar.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Läs också <a href="/guider/host-stockholms-skargard-2026">hösten i Stockholms skärgård</a> och <a href="/blogg/eftersasong-skargard-oktober">öppet i skärgården efter säsong</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Läs också <a href="/guider/host-stockholms-skargard">hösten i Stockholms skärgård</a> och <a href="/blogg/eftersasong-skargard-oktober">öppet i skärgården efter säsong</a>.</p>
 `,
 
-  'host-oland-2026': `
+  'host-oland': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: ett påstått högsta antal tranor och tranperiod "mitten av september till slutet av oktober", "tranorna samlas inför sin sydliga migration", "Bron är gratis", vägbeskrivningen till Kalmar, påstådd busslinje till Mörbylånga eller Borgholm, "busstrafiken är glesare på hösten", "parkering begränsad", "Möckelmossen skyltad från riksvägen", "Borgholms slottsruin öppet till mitten av september" (fel: slottet har öppet även i oktober), "Öland har flera lokala höstmarknader", "många campingplatser stänger i september", "Borgholm och Mörbylånga har hotell som håller öppet hela hösten", "höstfågelskådarna fyller ut platserna", samt värdeord. -->
 <!-- KÄLLA: https://www.oland.se/gynge-mockelmossen-alvarflora-och-rastande-tranor — "På höstarna är mossen rast- och övernattningsplats för tusentals tranor." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.oland.se/evenemang — "I oktober kommer många fågelskådare till Öland i förhoppningen om bra sträck och kanske någon ovanlig fågel, en raritet." (läst 2026-09-28) -->
@@ -14236,10 +14236,10 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende på Öland på hösten</h2>
 <!-- KÄLLA: https://www.oland.se/bo — "Ja, många boenden håller öppet året runt." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.bodahamnscamping.se/ — "Under 2026 öppnar campingen 30 April och stänger efter skördefesten 28 September." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt oland.se håller många boenden på Öland öppet året runt. Säsongsboenden stänger däremot efter sommaren – Böda Hamns Camping stängde till exempel efter Skördefesten den 28 september 2026. Kontrollera alltid öppettiderna hos boendet innan du bokar. Fler tips finns i <a href="/guider/hyra-stuga-oland">Hyra stuga på Öland</a>, <a href="/guider/vinter-oland-2026">Öland på vintern</a> och på Svallas sida om <a href="/o/oland">Öland</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt oland.se håller många boenden på Öland öppet året runt. Säsongsboenden stänger däremot efter sommaren – Böda Hamns Camping stängde till exempel efter Skördefesten den 28 september 2026. Kontrollera alltid öppettiderna hos boendet innan du bokar. Fler tips finns i <a href="/guider/hyra-stuga-oland">Hyra stuga på Öland</a>, <a href="/guider/vinter-oland">Öland på vintern</a> och på Svallas sida om <a href="/o/oland">Öland</a>.</p>
 `,
 
-  'host-hoga-kusten-2026': `
+  'host-hoga-kusten': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: restid med bil från Stockholm, "SJ norrpilen", "Skuleborgsstigen", "inga turister" och "leder nästan för dig själv", Omneberget som utsiktspunkt över Ångermanälvens mynning, "naturum öppet in i höst" (källorna anger olika säsong), Nordingrå Kajakuthyrning (inte verifierad), "Hotell Höga Kusten håller öppet hela hösten", "boka via höstens webbplats", "svamp är riklig runt Skuleskogen", höstfärgernas topp i en viss period, samt värdeord och jämförelsen med Skottland. -->
 <!-- KÄLLA: https://www.hogakusten.com/sv/host — "Hösten är en av årets finaste tider i Höga Kusten. Skogarna skiftar färg, luften blir klar och lederna blir lite lugnare."; "September till november är ljuvliga månader att vandra i Höga Kusten." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/varldsarvet-hoga-kusten.html — "Höga Kusten blev utsedd till världsarv år 2000." (läst 2026-09-28) -->
@@ -14316,7 +14316,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Höga Kusten finns hotell, B&amp;B, stugor och campingar, och i Skuleskogen finns tältplatser och öppna övernattningsstugor. Höstöppet varierar, så kontrollera direkt med boendet. Se också <a href="/guider/camping-hoga-kusten">camping i Höga Kusten</a>.</p>
 `,
 
-  'vinter-gotland-2026': `
+  'vinter-gotland': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "stugor och hotell kostar hälften mot sommaren", "restauranger öppnar igen för stammisarna", "färjan avgår dagligen, trafiken glesnar inte dramatiskt", färjetider per hamn (Region Gotland anger drygt tre timmar), pendeltågstid, flygbolag och "flyg är ofta billigare vintertid", "fråga om cyklar med bredare däck", "Klintebys och Tofta stränder är populära för vinterbad", "kollektivtrafiken är gles, hyra bil rekommenderas" (kollektivtrafiken går året runt), "många restauranger stänger i november och öppnar i april", "januari ger chansen till snö", "glögg i de få kaféer som har öppet", samt värdeord. -->
 <!-- KÄLLA: https://gotland.com/guide/tips-pa-saker-att-gora-pa-gotland-i-januari/ — "Januari är en av årets lugnare månader här på Gotland, men visst finns det ändå en hel del saker att hitta på och utforska!"; "Med appen Öppet Gotland får du lätt reda på vilka caféer, restauranger, butiker mm som har öppet just nu." (läst 2026-09-28) -->
 <!-- KÄLLA: https://gotland.com/article/gotlands-natur/ — "Kalkstensgrunden som ön vilar på hjälper till att hålla värmen långt in på vintern." (läst 2026-09-28) -->
@@ -14385,10 +14385,10 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <li>Nästan alla av öns medeltida sockenkyrkor har öppet 15 maj–15 september, men vissa har öppet året runt.</li>
 <li>Kolla i appen Öppet Gotland vilka caféer och restauranger som har öppet innan du åker ut på landsbygden.</li>
 </ul>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler tips om ön finns i <a href="/guider/gotland-guide">Gotlandsguiden</a>, i <a href="/guider/host-gotland-2026">hösten på Gotland</a> och på Svallas sida om <a href="/o/gotland">Gotland</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler tips om ön finns i <a href="/guider/gotland-guide">Gotlandsguiden</a>, i <a href="/guider/host-gotland">hösten på Gotland</a> och på Svallas sida om <a href="/o/gotland">Gotland</a>.</p>
 `,
 
-  'vinter-bohuslan-2026': `
+  'vinter-bohuslan': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "Trafikverkets vägfärjor till Käringön och Gullholmen, gratis" (dit går Västtrafiks passagerarbåt, inte vägfärja), "Smögen har fiskauktion och rökeri öppet året om", "räkor, sill och krabba är billigare på vintern", ostronsäsong med månader utan källa, "klippor säkrare att gå på vintern", Sotenäset, Ramsvikslandet och Dannemarksklippan som vintertips utan källa, "Lysekil brukar ha julmarknad", "många restauranger stänger" utan källa, "flera havsbastur håller öppet hela vintern" utan namn, samt värdeord. -->
 <!-- KÄLLA: https://www.vastsverige.com/tanum/vinter/ — "Tänk på att du ibland kan behöva förboka ditt besök, så kolla upp öppettider och eventuell bokningsinformation hos respektive företag." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.vastsverige.com/orust/produkter/karingon/ — "Tänk på att aktivitetsutbud och öppettider för restauranger, butiker och boenden varierar över året." (läst 2026-09-28) -->
@@ -14466,7 +14466,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <li>Har du högt blodtryck eller hjärtsjukdom, prata med din läkare innan du börjar bada kallt.</li>
 <li>Öppettider för restauranger, butiker och boenden varierar över året. Kolla på företagens egna sidor och förboka där det behövs.</li>
 </ul>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planerar du en resa senare på säsongen finns också <a href="/guider/host-bohuslan-2026">hösten i Bohuslän</a> och <a href="/guider/bohuslan-skargard-guide">guiden till Bohusläns skärgård</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planerar du en resa senare på säsongen finns också <a href="/guider/host-bohuslan">hösten i Bohuslän</a> och <a href="/guider/bohuslan-skargard-guide">guiden till Bohusläns skärgård</a>.</p>
 `,
 
   'isbad-vinterbad-sverige': `
@@ -14505,7 +14505,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://www.vastsverige.com/en/things-to-do/winter-swimming/cold-bathing/ — "At Hedvigsholmen on the island of Koön there’s both a ramp and a ladder."; "On the actual island of Marstrand there are bathing ladders in both the south and north of the island"; "On the south side of the little island of Dyrön there’s a swimming area with a ladder, where you can also easily reach the island’s sauna nearby."; "At other local swimming areas from the rocks ladders are taken up during the winter." (läst 2026-09-27) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Turistrådet Västsverige tipsar om fler vinterbadplatser längs kusten. I Marstrand finns ramp och stege vid Hedvigsholmen på Koön och badstegar på både södra och norra Marstrandsön. På Dyrön utanför Tjörn finns en badplats med stege på södra sidan och en bastu i närheten. På en del klippbad tas badstegarna upp på vintern, så kolla innan du åker.</p>
 <!-- KÄLLA: https://www.vastsverige.com/en/things-to-do/winter-swimming/cold-bathing/ — "One is Pinneviken, with a sandy beach and rocks with a ladder."; "lies Govik, all three with swimming ladders all year round"; "There’s a nice jetty where the ladder is left in all year round and the water is kept ice free."; "Just south of the coastal town of Strömstad" (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid Lysekil har Pinneviken och Govik badstegar året runt, och vid Lagunen strax söder om Strömstad ligger stegen i året runt vid en brygga där vattnet hålls isfritt. Läs mer om kusten i vår guide om <a href="/guider/vinter-bohuslan-2026">vinter i Bohuslän</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid Lysekil har Pinneviken och Govik badstegar året runt, och vid Lagunen strax söder om Strömstad ligger stegen i året runt vid en brygga där vattnet hålls isfritt. Läs mer om kusten i vår guide om <a href="/guider/vinter-bohuslan">vinter i Bohuslän</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Är isbad farligt? Så reagerar kroppen på kallt vatten</h2>
 <!-- KÄLLA: https://www.sjoraddning.se/artiklar/kroppens-reaktion-pa-kallt-vatten — "När vi hamnar i kallt vatten drabbas vi av en köldchock. Denna triggas av att det kalla vattnet träffar huden. Kroppen reagerar då precis likadant som vid smärta. Du kommer inte att kunna kontrollera andningen och du kommer inte att kunna hålla andan."; "i 0-gradigt vatten kan det räcka med 10 minuter innan du börjar domna bort och inte längre kan kontrollera armar och ben"; "Hypotermi är ett allvarligt tillstånd och uppstår när kroppen kommer ner till en temperatur på under 35 grader." (läst 2026-09-27) -->
@@ -14935,7 +14935,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://www.oland.se/alska-oland-varsamt — "Högst besökartryck är det under veckorna 28 – 31" (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt oland.se blir många boenden snabbt fullbokade på sommaren och vid större evenemang, särskilt under högsäsong. Boka därför i god tid. Flest besökare har naturreservaten på norra Öland under veckorna 28–31.</p>
 <!-- KÄLLA: https://www.oland.se/bo — "Ja, många boenden håller öppet året runt." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Du behöver inte åka på sommaren: många boenden på Öland har öppet året runt. Läs mer i <a href="/guider/host-oland-2026">höstguiden</a> och <a href="/guider/vinter-oland-2026">vinterguiden för Öland</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Du behöver inte åka på sommaren: många boenden på Öland har öppet året runt. Läs mer i <a href="/guider/host-oland">höstguiden</a> och <a href="/guider/vinter-oland">vinterguiden för Öland</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Resa till stugan på Öland</h2>
 <!-- KÄLLA: https://www.oland.se/bra-att-veta — "Du tar dig enkelt till Öland via Ölandsbron med bil eller buss." (läst 2026-09-28) -->
@@ -15136,7 +15136,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Slottscaféet i Borgholm</h2>
 <!-- KÄLLA: https://www.borgholmsslott.se/slottscafe/ — "Välkommen till vårt sommarcafé. På yttre borggården kan du sitta ner och ta en fika, äta en lättare lunch eller njuta av en svalkande glass."; "Öppnar återigen sommaren 2027." (läst 2026-09-26) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Borgholms slott har ett sommarcafé på yttre borggården med fika, lättare lunch och glass. När vi läste slottets sida den 26 september 2026 stod det att caféet öppnar igen sommaren 2027.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Läs mer: <a href="/o/oland">Öland</a>, <a href="/guider/oland-guide">Ölandsguiden</a>, <a href="/guider/borgholm-guide">Borgholm</a> och <a href="/guider/host-oland-2026">Öland på hösten</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Läs mer: <a href="/o/oland">Öland</a>, <a href="/guider/oland-guide">Ölandsguiden</a>, <a href="/guider/borgholm-guide">Borgholm</a> och <a href="/guider/host-oland">Öland på hösten</a>.</p>
 `,
 
   'kajak-hoga-kusten': `
@@ -15425,7 +15425,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">I naturreservat och i nationalparken får ni bara tälta och elda på anvisade platser. Stugorna i Skuleskogen kostar inget, står öppna året runt och går inte att boka. Campingplatser vid havet finns i guiden <a href="/guider/camping-hoga-kusten">camping i Höga Kusten</a>.</p>
 <!-- KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/skuleskogens-nationalpark.html — "Medföra hund som inte är kopplad."; "Fiska i sjöar, tjärnar och vattendrag." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Skuleskogens nationalpark är det förbjudet att fiska i sjöar, tjärnar och vattendrag, och hundar ska vara kopplade.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Läs vidare i <a href="/guider/hoga-kusten-guide">guiden till Höga Kusten</a>, <a href="/guider/kajak-hoga-kusten">kajak i Höga Kusten</a> och <a href="/guider/host-hoga-kusten-2026">Höga Kusten på hösten</a>. Öarna utanför kusten har egna sidor: <a href="/guider/ulvon-guide">Ulvön</a> och <a href="/guider/trysunda-guide">Trysunda</a>. Fler familjeresor finns i <a href="/guider/barnfamilj-skargarden">skärgården med barn</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Läs vidare i <a href="/guider/hoga-kusten-guide">guiden till Höga Kusten</a>, <a href="/guider/kajak-hoga-kusten">kajak i Höga Kusten</a> och <a href="/guider/host-hoga-kusten">Höga Kusten på hösten</a>. Öarna utanför kusten har egna sidor: <a href="/guider/ulvon-guide">Ulvön</a> och <a href="/guider/trysunda-guide">Trysunda</a>. Fler familjeresor finns i <a href="/guider/barnfamilj-skargarden">skärgården med barn</a>.</p>
 `,
 
   'camping-hoga-kusten': `
@@ -18291,7 +18291,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 </div>
 `,
 
-  'vinter-oland-2026': `
+  'vinter-oland': `
 <!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: vinterpriser på stugor och hotell i procent, Ölandsbrons längd och avgift, "buss 101 längs västra sidan är glesare på vintern", "bil rekommenderas", "Ottenby fågelstation är aktiv hela vintern", "bästa fågelskådningsperiod december–mars", snösparv och "sjöfågel i råkar" utan källa, "ruinen är fri att gå runt hela vintern", "ett par kaféer och restauranger öppna" i Borgholm, "Sollidens slott och Ekoparken stängda", "alfågel", "gotlänningarna" (fel ö), "tranorna är borta", uppgifter om vindkyla samt värdeord. -->
 <!-- KÄLLA: https://www.oland.se/sasong/vinter — "Här finns inga skidbackar, inga köer och inga måsten."; "Många tror att ön stänger när sommaren är över, men sanningen är en annan: Öland är inte stängt. Bara lite lugnare!" (läst 2026-09-27) -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Öland på vintern har inga skidbackar och inga köer. Ölands officiella besöksguide oland.se skriver att många tror att ön stänger efter sommaren, men att den bara blir lugnare. Här är vad som finns att göra på Öland under vintern 2026–2027: havsörn vid Ottenby, vandring i Trollskogen och på alvaret, fornborgar, kallbad och julbord, och hur du tar dig dit.</p>
@@ -18386,7 +18386,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <li>Många besöksmål har säsongsöppet. Kolla öppettider på verksamhetens egen sida innan du åker.</li>
 <li>Oland.se föreslår att kombinera utflykter med en paus vid någon av öns anlagda grillplatser. Ta med egen mat om du är osäker på vad som har öppet.</li>
 <li>Drönare är förbjudna i Ottenby naturreservat, och i Trollskogen får hundar inte gå lösa.</li>
-<li>Andra årstider på Öland: <a href="/guider/host-oland-2026">Öland på hösten</a> och <a href="/guider/oland-guide">Ölandsguiden</a>.</li>
+<li>Andra årstider på Öland: <a href="/guider/host-oland">Öland på hösten</a> och <a href="/guider/oland-guide">Ölandsguiden</a>.</li>
 </ul>
 `,
 
@@ -18509,7 +18509,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför saknas Smögen och Lysekil?</h2>
 <!-- KÄLLA: https://www.vastsverige.com/lysekil/aktiviteter3/jul-i-lysekil/julaktiviteter/ — "Senast uppdaterad: 11 oktober 2023" (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vi hittade inga datum för 2026 hos arrangörerna i Smögen och Lysekil. Lysekils sida om julmarknader på vastsverige.com uppdaterades senast 2023. Datum brukar publiceras under hösten, så kolla kommunens och turistorganisationens evenemangskalendrar i november. Fler tips för vintern finns i <a href="/guider/jul-skargarden-2026">jul i skärgården 2026</a> och <a href="/guider/vinter-i-skargarden">vinter i skärgården</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vi hittade inga datum för 2026 hos arrangörerna i Smögen och Lysekil. Lysekils sida om julmarknader på vastsverige.com uppdaterades senast 2023. Datum brukar publiceras under hösten, så kolla kommunens och turistorganisationens evenemangskalendrar i november. Fler tips för vintern finns i <a href="/guider/jul-skargarden">jul i skärgården 2026</a> och <a href="/guider/vinter-i-skargarden">vinter i skärgården</a>.</p>
 `,
 
   'fjallalternativet-kust': `
@@ -18557,7 +18557,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://www.vastsverige.com/tanum/vinter/vinterbada/ — "Följande badplatser har stegarna i året om och lämpar sig bra för ett dopp vintertid:"; "Badholmen, Fjällbacka"; "Grebbestad badplats, Grebbestad" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.stromstad-bad.se/kallbadhus/ — "Kallbadhuset i Strömstad är beläget längs med strandpromenaden i centrala Strömstad."; "VINTERBAD MED BASTU"; "Uppehåll under juni-juli-augusti" (läst 2026-09-28) -->
 <!-- KÄLLA: https://tanumstrand.se/attgora/havsbastu/ — "Bastun på bryggan, erbjuder härliga kontraster mellan varmt och kallt – året runt!" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kustens motsvarighet till skidbacken är vinterbadet. I Tanums kommun ligger badstegarna i året om vid bland annat Badholmen i Fjällbacka och Grebbestads badplats. Kallbadhuset vid strandpromenaden i Strömstad har vinterbad med bastu och håller uppehåll under juni, juli och augusti. TanumStrand utanför Grebbestad har en havsbastu på bryggan som används året runt. Fler ställen finns i <a href="/guider/vinter-bohuslan-2026">vinter i Bohuslän</a> och <a href="/guider/vinterbastu-isbastu">vinterbastu</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kustens motsvarighet till skidbacken är vinterbadet. I Tanums kommun ligger badstegarna i året om vid bland annat Badholmen i Fjällbacka och Grebbestads badplats. Kallbadhuset vid strandpromenaden i Strömstad har vinterbad med bastu och håller uppehåll under juni, juli och augusti. TanumStrand utanför Grebbestad har en havsbastu på bryggan som används året runt. Fler ställen finns i <a href="/guider/vinter-bohuslan">vinter i Bohuslän</a> och <a href="/guider/vinterbastu-isbastu">vinterbastu</a>.</p>
 <!-- KÄLLA: https://www.vastsverige.com/tanum/se--gora/grebbestad/ — "Bästa tiden för skaldjur är höst och vinter då vattnet är kallt och friskt. En gammal regel är att endast månader med bokstaven R i namnet är så kallade skaldjursmånader." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vintern är också skaldjurens tid. Enligt Västsverige är hösten och vintern den bästa tiden för skaldjur, när vattnet är kallt, och en gammal regel säger att bara månader med bokstaven R i namnet är skaldjursmånader. Se <a href="/guider/ostronstangning-bohuslan">ostron i Bohuslän</a>.</p>
 <!-- KÄLLA: https://www.karingon.se/om-k%C3%A4ring%C3%B6n — "Den reguljära färjan gör det möjligt att besöka Käringön året runt, även på vintern är det flera dagliga avgångar."; "Den lugnaste perioden är januari till mars." (läst 2026-09-28) -->
@@ -18570,7 +18570,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Färjan till Gotland går året runt från Nynäshamn och Oskarshamn, och resan tar drygt tre timmar. I Visby finns restauranger, caféer och barer året runt.</p>
 <!-- KÄLLA: https://gotland.com/guide/sportlov-pa-gotland-2026/ — "Om det finns snö går det vissa dagar att hyra skidor och åka på Svaidestugan och VOK-stugan. Båda ligger strax utanför Visby."; "Raukarna är lika spännande året runt." (läst 2026-09-28) -->
 <!-- KÄLLA: https://gotland.com/guide/tips-pa-saker-att-gora-pa-gotland-i-januari/ — "Med appen Öppet Gotland får du lätt reda på vilka caféer, restauranger, butiker mm som har öppet just nu." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Om det finns snö går det vissa dagar att hyra skidor och åka vid Svaidestugan och VOK-stugan strax utanför Visby. Raukarna går att besöka året runt. Eftersom många verksamheter har kortare säsong på vintern tipsar gotland.com om appen Öppet Gotland för att se vad som har öppet. Mer i <a href="/guider/vinter-gotland-2026">Gotland på vintern</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Om det finns snö går det vissa dagar att hyra skidor och åka vid Svaidestugan och VOK-stugan strax utanför Visby. Raukarna går att besöka året runt. Eftersom många verksamheter har kortare säsong på vintern tipsar gotland.com om appen Öppet Gotland för att se vad som har öppet. Mer i <a href="/guider/vinter-gotland">Gotland på vintern</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad kusten inte kan ersätta</h2>
 <!-- KÄLLA: https://www.hogakusten.com/sv/sportlov — "I år har vi dessutom förhoppningen att Skulebacken åter igen ska öppna om snön lägger sig" (läst 2026-09-28) -->
@@ -19823,7 +19823,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 
   // ── Batch L ───────────────────────────────────────────────────────────────
 
-  'host-stockholms-skargard-2026': `
+  'host-stockholms-skargard': `
 <!-- OMSKRIVEN 2026-09-26. Borttaget utan källa eller fel: "hösten är skärgårdens bästa säsong", "priserna halveras", "höstpriser 30–50 % lägre", "halva väntetiden" på Sandhamns Värdshus, "cykla runt Utö på en timme", Utö Värdshus "höstmeny med viltkött", Utö nås "från Nynäshamn, 1 h 15 min" (Waxholmsbolaget: från Årsta brygga), Möja "via Stavsnäs, ca 2,5 timmar" (Waxholmsbolaget: från Boda brygga), Grinda "linje 11, ca 1 h 45 min" (Waxholmsbolaget: ungefär 1,5 timme, tabell 11), "alla SL-biljetter gäller", fästningsmuseets höstöppettider, svampmånader och svampöar, "Utö Havsbastu", "Arholma bastu", "Smådalarö Gård SPA", "boka 1–2 veckor i förväg", "havsöringen vandrar september–november", "inga fiskekort krävs", fiske vid åmynningar, "Ornö har välmarkerade leder", "höstschema från september", "sista båten 17–18", "rumsbokning hela hösten", klädråd per månad, samt värdeord. -->
 <!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period." (läst 2026-09-26) -->
 <!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "lite mer sällan övrig tid på året" (läst 2026-09-26) -->
@@ -19964,7 +19964,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Sotenäs arrangerar flera boenden och turistfiskebåtar hummersafari och hummerpaket, enligt Västsverige. I Tanum kan du följa med lokala fiskare ut och vittja tinor, och restaurangerna där har hummermenyer under säsongen. Se också <a href="/guider/hummersafari-bohuslan">guiden om hummersafari i Bohuslän</a>.</p>
 `,
 
-  'surstrommingspremiar-2026': `
+  'surstrommingspremiar': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "butiker längs Höga Kusten staplar burkar" och lukten i luften, "flertalet länder förbjuder öppning av burkar inomhus", "Ulvöns Hotell arrangerar traditionell surströmmingsfest på premiärdagen", "hit vallfärdar surströmmingsentusiaster", "butiker i Kramfors och Härnösand öppnar lagren vid midnatt", "boka boende i god tid", "säljs i ICA och Coop från premiärdagen", tåg-, flyg- och bilresor med restider till Höga Kusten, "officiell tradition sedan 1930-talet" (dagen bestämdes 1940), samt värdeord. -->
 <!-- KÄLLA: ${KALLA_SURSTROMMING} — "Den tredje torsdagen i augusti är det av hävd premiär för att äta surströmming" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/surstrommingspremiar — "Den tredje torsdagen i augusti är det av hävd premiär för att äta surströmming"; "Den surströmming som numera produceras börjar säljas den tredje torsdagen i augusti." (läst 2026-09-28) -->
@@ -20086,7 +20086,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fiskar du själv får du fritidsfiska havskräfta året runt, i första hand med burar. Du får använda högst sex redskap samtidigt.</p>
 <!-- KÄLLA: https://tanumstrand.se/attgora/skaldjur/ — "Upplev ett äkta kräftkok på bryggan, se hur nyfångade havskräftor blir till salta delikatesser i den rykande heta grytan." (läst 2026-09-28) -->
 <!-- KÄLLA: https://guide.michelin.com/en/vastra-gotaland/gothenburg/restaurant/sjomagasinet — "shrimp, crab and langoustine on toast" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På restaurang kan du till exempel äta havskräftor på TanumStrand, där nyfångade havskräftor kokas på bryggan i Sjöboden Udden, och på Sjömagasinet i Göteborg, där Michelinguiden nämner toast med räkor, krabba och havskräfta. Mer om skaldjurssäsongen finns i guiden om <a href="/guider/host-bohuslan-2026">hösten i Bohuslän</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På restaurang kan du till exempel äta havskräftor på TanumStrand, där nyfångade havskräftor kokas på bryggan i Sjöboden Udden, och på Sjömagasinet i Göteborg, där Michelinguiden nämner toast med räkor, krabba och havskräfta. Mer om skaldjurssäsongen finns i guiden om <a href="/guider/host-bohuslan">hösten i Bohuslän</a>.</p>
 `,
 
   'sandhamn-vaxholm-grinda-host': `
@@ -20558,7 +20558,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/julbord/julbordskryssningar-i-stockholms-skargard/ — "FRÅN NOVEMBER 2026"; "Välj mellan en lunchkryssning på cirka 2,5 timmar och en middagskryssning på cirka 3 timmar."; "Kryssningarna avgår från Nybrokajen/Strandvägen i centrala Stockholm." (läst 2026-09-27) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från november 2026 har Strömma julbordskryssningar i skärgården. Du väljer mellan en lunchkryssning på cirka 2,5 timmar och en middagskryssning på cirka 3 timmar, med avgång från Nybrokajen eller Strandvägen beroende på båt.</p>
 <!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/julbord/nyarskryssning/ — "Strandvägen kl. 20:00"; "5-timmars kryssning i skärgården"; "Vid tolvslaget lyser fyrverkerierna upp Stockholm och du har första parkett." (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På nyårsafton går nyårskryssningen från Strandvägen kl. 20.00. Kryssningen är fem timmar, och enligt Strömma har du första parkett när fyrverkerierna lyser upp Stockholm vid tolvslaget. Mer om att fira i skärgården finns i guiderna <a href="/guider/jul-skargarden-2026">Jul i skärgården</a> och <a href="/guider/nyar-skargarden-2026">Nyår i skärgården</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På nyårsafton går nyårskryssningen från Strandvägen kl. 20.00. Kryssningen är fem timmar, och enligt Strömma har du första parkett när fyrverkerierna lyser upp Stockholm vid tolvslaget. Mer om att fira i skärgården finns i guiderna <a href="/guider/jul-skargarden">Jul i skärgården</a> och <a href="/guider/nyar-skargarden">Nyår i skärgården</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Chartra båt i Stockholm för fest eller middag</h2>
 <!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/grupper-foretag/ — "Middag på privat båt i Mälaren & Stockholms skärgård"; "Festpaket på M/S Gustafsberg VII i Stockholms skärgård"; "Flytande privat festlokal för 60-120 personer"; "Be om en offert direkt" (läst 2026-09-27) -->
@@ -20916,7 +20916,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill ni bo enklare har STF boenden på Arholma, Lidö, Finnhamn, Möja, Svartsö, Grinda och Stora Kalholmen, och alla de öarna nås med reguljär skärgårdsbåt. Tips på fler boenden finns i guiden <a href="/guider/hyra-stuga-skargarden">hyra stuga i skärgården</a>.</p>
 `,
 
-  'var-stockholms-skargard-2027': `
+  'var-stockholms-skargard': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "inga turister", "Sandhamn fullt i juli och tomt i maj", "priserna är lägre", "fågellivet på topp i april och maj" med ejder, havsörn och tärnor som anländer, restiden till Fjäderholmarna från Strandvägen och att ön "öppnar tidigt", kaféer och restauranger i Vaxholm "tillgängliga tidigt på våren", Arholma som "en av Sveriges bästa fågelskådningsplatser", "arholma.se" och STF-vandrarhemmets vårstart, Utö Havsbastu och havsbastu på Arholma, räkfrukost, lövsprickningen, "inga mygg", "enstaka avgångar per dag", jämförelsen vår mot sommar, samt värdeord som "bästa hemligheter", "orörda", "unikt skådespel" och "oslagbar". Gamla texten innehöll inga datumuttryck att behålla. -->
 <!-- KÄLLA: https://skargardsstiftelsen.se/omraden/bjorno/ — "ett uppskattat utflyktsmål året om" (läst 2026-09-28) -->
 <!-- KÄLLA: https://skargardsstiftelsen.se/omraden/arholma/ — "ett uppskattat resmål året om" (läst 2026-09-28) -->
@@ -20996,7 +20996,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <li>Håll dig borta från fågelskär med tillträdesförbud under häckningstiden.</li>
 <li>Kolla på verksamhetens egen sida om krog, café eller boende har öppnat för säsongen.</li>
 </ul>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planerar du en resa kring helgerna finns <a href="/guider/pask-skargarden-2027">påsk i skärgården 2027</a> och <a href="/guider/valborg-skargarden-2027">valborg i skärgården 2027</a>. Öarna: <a href="/o/vaxholm">Vaxholm</a>, <a href="/o/fjaderholmarna">Fjäderholmarna</a>, <a href="/o/grinda">Grinda</a>, <a href="/o/uto">Utö</a>, <a href="/o/namdo">Nämdö</a>, <a href="/o/arholma">Arholma</a> och <a href="/o/svenska-hogarna">Svenska Högarna</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planerar du en resa kring helgerna finns <a href="/guider/pask-skargarden">påsk i skärgården 2027</a> och <a href="/guider/valborg-skargarden">valborg i skärgården 2027</a>. Öarna: <a href="/o/vaxholm">Vaxholm</a>, <a href="/o/fjaderholmarna">Fjäderholmarna</a>, <a href="/o/grinda">Grinda</a>, <a href="/o/uto">Utö</a>, <a href="/o/namdo">Nämdö</a>, <a href="/o/arholma">Arholma</a> och <a href="/o/svenska-hogarna">Svenska Högarna</a>.</p>
 `,
 
   }

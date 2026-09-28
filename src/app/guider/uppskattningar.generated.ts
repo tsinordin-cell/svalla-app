@@ -17,7 +17,7 @@ export type Uppskattning = {
 }
 
 export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
-  "midsommar-skargarden-2026": {
+  "midsommar-skargarden": {
     "antal": 1,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
