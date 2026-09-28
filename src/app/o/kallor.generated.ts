@@ -4854,36 +4854,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     }
   ],
-  "kanholmen": [
-    {
-      "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf",
-      "org": "lansstyrelsen.se",
-      "vad": "Utsättningar av havsöring görs bl a vid, Kanholmsfjärden, Baggensfjärden, Ingarö, Utplanterad öring är fettfeneklippt, I nedanstående vikar är det förbjudet att fiska under perioden, 1 april — 15 juni, Värmdö kommun, Harö (öster om Kanholmsfjärden)",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/",
-      "org": "naturvardsverket.se",
-      "vad": "Låna en brygga tillfälligt eller hitta en strand, som ligger utanför någons tomt., Förtöj och övernatta något dygn i din båt. ;  — Utsättningar av havsöring görs bl a vid, Kanholmsfjärden, Baggensfjärden, Ingarö, Utplanterad öring är fettfeneklippt, I nedanstående vikar är det förbjudet att fiska under perioden, 1 april — 15 juni, Värmdö kommun, Harö (öster om Kanholmsfjärden)",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.sjofartsverket.se/sv/tjanster/lotsning/lotsomrade-sodertalje/hamn-och-farledsinformation/farleder/landsortsleden/",
-      "org": "sjofartsverket.se",
-      "vad": "Landsortsleden sträcker sig från Landsort över Mysingen, Jungfrufjärden, Nämdöfjärden till Kanholmsfjärden där den ansluter till Sandhamnsleden., via Kanholmsfjärden 10,0 m ;  — Utsättningar av havsöring görs bl a vid, Kanholmsfjärden, Baggensfjärden, Ingarö, Utplanterad öring är fettfeneklippt, I nedanstående vikar är det förbjudet att fiska under perioden, 1 april — 15 juni, Värmdö kommun, Harö (öster om Kanholmsfjärden)",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.varmdo.se/download/18.79379661188ba20c6714e030/1688990516415/25%20ha%CC%88rliga%20utflyktsma%CC%8Al-1.rev%20230710.pdf",
-      "org": "varmdo.se",
-      "vad": "väntar den vida Kanholmsfjärden med stora vajande blåstångsbälten under vattenytan, utblick över den vida Kanholmsfjärden, Blåstången är en viktig växt i Östersjön. ;  — Utsättningar av havsöring görs bl a vid, Kanholmsfjärden, Baggensfjärden, Ingarö, Utplanterad öring är fettfeneklippt, I nedanstående vikar är det förbjudet att fiska under perioden, 1 april — 15 juni, Värmdö kommun, Harö (öster om Kanholmsfjärden)",
-      "last": "2026-09-27",
-      "myndighet": false
-    }
-  ],
   "norrpada": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/norrpada.html",
@@ -10383,4 +10353,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 103
+export const OAR_MED_KALLOR = 102
