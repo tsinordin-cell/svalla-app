@@ -165,7 +165,7 @@ export default function SparaPage() {
 
   useEffect(() => {
     getViewer(supabase).then(({ data }) => {
-      if (!data.user) { router.push('/logga-in?redirect=/spara'); return }
+      if (!data.user) { router.push('/logga-in?returnTo=%2Fspara&mode=ny'); return }
       setCurrentUserId(data.user.id)
       setAuthLoading(false)
     })
