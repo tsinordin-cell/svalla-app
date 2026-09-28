@@ -88,7 +88,7 @@ export default function CookieConsent() {
         <a href="/integritetspolicy" style={{ color: 'var(--sea)', textDecoration: 'underline' }}>Läs mer</a>
       </p>
 
-      <div style={{ display: 'flex', gap: 6, flex: '0 0 auto' }}>
+      <div style={{ display: 'flex', gap: 6, flex: '1 1 auto', flexWrap: 'wrap' }}>
         <button
           onClick={() => setConsent('accepted')}
           style={{
@@ -101,7 +101,7 @@ export default function CookieConsent() {
             cursor: 'pointer',
             letterSpacing: '0.02em',
             fontFamily: 'inherit',
-            whiteSpace: 'nowrap',
+            whiteSpace: 'nowrap', flex: '1 1 auto',
           }}
         >
           Acceptera alla
@@ -119,7 +119,7 @@ export default function CookieConsent() {
             cursor: 'pointer',
             letterSpacing: '0.02em',
             fontFamily: 'inherit',
-            whiteSpace: 'nowrap',
+            whiteSpace: 'nowrap', flex: '1 1 auto',
           }}
         >
           Endast nödvändiga

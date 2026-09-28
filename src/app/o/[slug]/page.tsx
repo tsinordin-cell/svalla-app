@@ -293,7 +293,8 @@ export default async function IslandPage({ params }: Props) {
  color: '#fff',
  }}>
  <div style={{ maxWidth: 900, margin: '0 auto' }}>
- <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+ {/* flexWrap 2026-09-28: raden gjorde sidan 412 px bred på 320 px-skärmar (sidled-skroll). */}
+ <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
  <span style={{
  fontSize: 11,
  fontWeight: 700,
@@ -476,7 +477,8 @@ export default async function IslandPage({ params }: Props) {
        </div>
 
        {/* Månadsrutnät */}
-       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12,1fr)', gap: 3, marginBottom: 14 }}>
+       {/* minmax(0,1fr) 2026-09-28: annars fick månadsrutorna minsta bredd av texten och rutnätet stack ut på 320 px. */}
+       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12,minmax(0,1fr))', gap: 3, marginBottom: 14 }}>
          {island.seasonal.months.map((status, i) => (
            <div key={i} style={{
              background: COLOR[status],
@@ -486,7 +488,7 @@ export default async function IslandPage({ params }: Props) {
              border: i === currentMonth ? '2px solid var(--sea)' : '2px solid transparent',
              position: 'relative',
            }}>
-             <div style={{ fontSize: 9, fontWeight: 700, color: TEXT[status], letterSpacing: 0.3 }}>
+             <div style={{ fontSize: 9, fontWeight: 700, color: TEXT[status], letterSpacing: 0.3, overflow: 'hidden' }}>
                {MONTH_LABELS[i]}
              </div>
              {i === currentMonth && (
