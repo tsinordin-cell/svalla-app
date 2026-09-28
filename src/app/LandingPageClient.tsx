@@ -754,7 +754,7 @@ const LANDING_HTML = `
  <button type="submit">Sök</button>
  </form>
  <div style="text-align:center;margin-bottom:12px;display:flex;flex-direction:column;align-items:center;gap:10px">
- <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Planera din tur med Thorkel &rarr;</a>
+ <a href="/utflykt" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Planera din dag i skärgården &rarr;</a>
  </div>
  <div class="hero-search-hint">
  Populärt just nu:
@@ -1180,8 +1180,12 @@ const LANDING_HTML = `
   <div class="reveal">
    <div class="thorkel-label">AI-planeraren</div>
    <h2 class="section-title">Thorkel planerar din perfekta skärgårdsdag</h2>
-   <p class="section-sub">Berätta vad du är sugen på — Thorkel fixar färjor, restauranger, bad och dolda pärlor. Klar plan på sekunder.</p>
-   <a href="/planera" class="btn btn-accent btn-lg">Planera med Thorkel &rarr;</a>
+   <p class="section-sub">Berätta vad du är sugen på — Thorkel föreslår öar, båtar, krogar och bad utifrån Svallas ösidor. Gratis, men kräver ett konto.</p>
+   <!-- 2026-09-28: knapparna gick till /planera (båtruttplaneraren, kräver inloggning). Thorkel bor på /guide; dagsplaneraren /utflykt är öppen för alla. -->
+   <div style="display:flex;flex-wrap:wrap;gap:10px">
+    <a href="/guide" class="btn btn-accent btn-lg">Prata med Thorkel &rarr;</a>
+    <a href="/utflykt" class="btn btn-ghost btn-lg">Planera utan konto &rarr;</a>
+   </div>
   </div>
   <div class="thorkel-chat reveal reveal-delay-2">
    <div class="thorkel-msg user">
@@ -1320,7 +1324,7 @@ const LANDING_HTML = `
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Måste man ha egen båt för att använda Svalla?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Absolut inte. Svalla är byggt för alla — oavsett om du reser med Waxholmsbåten, Cinderellabåten, pendeltåg + färja eller bil. Thorkel planerar din rutt med kollektivt resande som standard och visar restid och avgångspunkter direkt. Ingen båt krävs, någonsin.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Absolut inte. Svalla är byggt för alla — oavsett om du reser med Waxholmsbåten, Cinderellabåten, pendeltåg + färja eller bil. <a href="/utflykt">Dagsplaneraren</a> visar öar som nås med kollektivtrafik från din startpunkt, med restid och båttider för dagen. Ingen båt krävs, någonsin.</div></div>
    </div>
   </div>
  </div>
