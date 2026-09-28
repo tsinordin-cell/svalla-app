@@ -8719,230 +8719,356 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "grundsund": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vagerod.html",
-      "org": "Länsstyrelsen Västra Götaland",
-      "vad": "bildat 2003, cirka 121 hektar i Lysekils kommun, kuperat med blockrika sluttningar och lodräta klippor, ek och bok, krattekskog, gräsarten råglosta, känt för sina blåsippor, förvaltas av Västkuststiftelsen",
-      "last": "2026-09-16",
+      "org": "lansstyrelsen.se",
+      "vad": "Bildat: 2003, Areal: cirka 121 hektar, Allra mest känt är området för sina blåsippor, De blommar här i stora mängder under våren innan lövträdens krontak sluter sig i ek- och bokskog, Området är kuperat med gott om block och lodräta stup, På flera platser finns så kallad krattekskog, hävdade kulturmarker, Du hittar det sällsynta och hotade gräset råglosta i reservatet, Här vittnar fällda träd och stubbar om att det finns bäver i området, En av lederna följer den gamla landsvägen, som var i bruk ännu under 1930-talet, Naturvårdsförvaltare: Västkuststiftelsen, Området ingår i EU:s ekologiska nätverk av skyddade områden, Natura 2000",
+      "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/gullmarsleden/",
-      "org": "Trafikverket",
-      "vad": "mellan Finnsbo i Lysekils kommun och Skår i Uddevalla kommun, 1 850 meter, överfarten tar tio minuter, resan med vägfärjan är avgiftsfri",
-      "last": "2026-09-16",
+      "org": "trafikverket.se",
+      "vad": "Gullmarsleden går mellan Finnsbo, Lysekil och Skår, Uddevalla i Gullmarsfjorden, Färjeledens längd är 1850 meter och överfartstiden är tio minuter, Resan med vägfärjan är avgiftsfri",
+      "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.grundenshotell.se/",
-      "org": "Grundéns hotell",
-      "vad": "adress Furtofta 204, 451 79 Grundsund, hotell vid infarten till Grundsund",
-      "last": "2026-09-16",
+      "org": "grundenshotell.se",
+      "vad": "Grundéns hotell, Furtofta 204 451 79 Grundsund, vid infarten till det charmiga lilla fiskesamhället Grundsund, Gäster erbjuds fri parkering direkt vid hotellet samt gratis utlåning av cyklar, Vår egen Restaurang Pelles",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://hamn.lysekil.se/sv/GastServicePriser",
+      "org": "hamn.lysekil.se",
+      "vad": "Priser och service 2026, Tvättmaskin: Havsbadet Grundsund Norra hamnen, Sugtömningsstation: Fiskehamnen Grundsund, Västra Kajen",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.pellesrokeri.com/",
+      "org": "pellesrokeri.com",
+      "vad": "Pelles rökeri i Grundsund, Tack för sommaren 2026 - Vi ses den 30 april 2027, Hugos bu, Bar & café, Terrassen pizza & lounge, Här serveras mat inspirerad av havet — lagad från grunden, både till lunch och middag",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.smultrontang.se/",
+      "org": "smultrontang.se",
+      "vad": "En pub & restaurang, Västkust - Klassiskt - Medelhav, Nu har vi stängt för i år och vi tackar er alla för säsongen 2026, Västra Kajen 11",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/lysekil/produkter/skafto/",
       "org": "vastsverige.com",
-      "vad": "Grundsund beskrivs som en aktiv fiskehamn med en lång hamnkanal som byn är byggd kring",
-      "last": "2026-09-16",
+      "vad": "has always been an active fishing port and has a long harbour canal around which the village is built",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/lysekil/produkter/skafto-grundsund/",
       "org": "vastsverige.com",
-      "vad": "sillperioden på 1700-talet, byn förblev i allt väsentligt en fiskehamn medan andra fiskelägen blev badorter i slutet av 1800-talet, fisket fortfarande ekonomiskt viktigt, stora delar av tv-serien Saltön inspelade i Grundsund",
-      "last": "2026-09-16",
+      "vad": "is on the westernmost point of Skaftö, The long, narrow village is divided by a canal which separates Skaftö from the small island of Ösö, You can buy fresh fish, shrimps and crabs directly from the commercial fishing boats when they dock, The canal that divides the village into two parts, east and west, was dug out during the first world war to allow fishing boats and small cargo boats to pass more easily and make a larger, more protected harbour, A new sea-front promenade has been constructed by the eastern quay, long pier to Skäddhålan which then continues to connect with a footpath to Vigerna",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/lysekil/produkter/skafto-grundsunds-kyrka/",
       "org": "vastsverige.com",
-      "vad": "kapell 1799, torn 1818, ombyggnad 1893 av Fredrik Falkenberg med förlängning åt öster och nytt tresidigt avslutat kor, breda korsarmar, 400 platser, gospelkonserter i juli och julkonserter i december",
-      "last": "2026-09-16",
+      "vad": "Ursprungliga kyrkobyggnaden var ett kapell som uppfördes 1799, Ett kyrktorn byggdes till 1818, En större ombyggnad genomfördes 1893 efter ritningar av arkitekt Fredrik Falkenberg, Kyrkan förlängdes åt öster och fick ett nytt tresidigt avslutat kor, De breda korsarmarna uppfördes och kyrkan fick sin nuvarande planform som korskyrka, gospelkonserterna i juli och julkonserter i december är mycket välbesökta, Kyrkan rymmer 400 besökare",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/things-to-do/explore-the-west-coast-by-boat/ferry-lines/route-map-lysekiluddevallaljungskile/",
       "org": "vastsverige.com",
-      "vad": "Västtrafiks linje 847 Lysekil–Fiskebäckskil–Östersidan på Skaftö, året runt",
-      "last": "2026-09-16",
+      "vad": "Lysekil — Fiskebäckskil, Skaftö - Östersidan, Skaftö, all year round",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/lysekil/leder/skafto---vagerod/",
       "org": "vastsverige.com",
-      "vad": "2,4 km, följer delvis den blåmarkerade Kuststigen, gamla landsvägen, bok- och ekskog, bäver i Edsvattnet",
-      "last": "2026-09-16",
+      "vad": "2.4 km, Partly the blue-marked coastal trail Kuststigen, There is also the bus stop Vägeröd (Västtrafik 845)",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.vastsverige.com/skafto/bo/rum--och-stugformedling/",
+      "url": "https://www.vastsverige.com/lysekil/produkter/skafto-vandrarhem/",
       "org": "vastsverige.com",
-      "vad": "Skaftö Vandrarhem förmedlar rum, stugor och kaptenshus på Skaftö, läge Grundsund",
-      "last": "2026-09-16",
+      "vad": "Skaftö Vandrarhem och B & B är öppet året runt, och förmedlar även veckovisprivatboende, 30 bäddar i 10 individuellt inredda rum — inga sovsalar, Gemensamma duschar och WC, Hemtrevligt boende i hjärtat av Grundsund",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/lysekil/produkter/skafto-gasthamn-grundsund/",
       "org": "vastsverige.com",
-      "vad": "läge på sydvästra Skaftö i en gammal fiskeby, förtöjning längs Östra kaj och med akterlinor vid Västra kaj, service; drivmedel anges inte",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.vastsverige.com/skafto/artiklar/premiar-for-krogens-fisk--krog/",
-      "org": "vastsverige.com",
-      "vad": "ligger vid torget i Grundsund, fisk och skaldjur kombinerat med fiskbutik",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.vastsverige.com/lysekil/produkter/pelles-rokeri/",
-      "org": "vastsverige.com",
-      "vad": "adress Östra kajen 20, 451 79 Grundsund, restaurang med havsutsikt samt Terrassen Pizza & Loungebar; på samma sida Hugos Bu, Bar & Café i en genuin sjöbod från 1905",
-      "last": "2026-09-16",
+      "vad": "lies on the Southwestern part of Skaftö, mooring along the Eastern berth and mooring with aft lines by the Western berth, Fresh water, Electricity, Laundry (on the Western pier), Recycling station and septic tank emptying, Toilet (Code is on the receipt), Shower (Code is on the receipt), Payment on website: www.hamn.lysekil.se",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/skafto---eng/food--beverage/eat-on-skafto/",
       "org": "vastsverige.com",
-      "vad": "listar Smultron & Tång bland Skaftös serveringar med orten Grundsund",
-      "last": "2026-09-16",
+      "vad": "Östra kajen 20, 45179 Grundsund",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4847__1__LINE__20260101__20261211__e8375385-c9fa-43eb-880d-cff01ed9acbf__1%2C0__2697062.pdf",
+      "org": "vtstorage002.blob.core.windows.net",
+      "vad": "847 Lysekil–Skaftö, Gäller 1 jan - 12 dec 2026 utom 15 juni - 16 aug",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4845__0__LINE__20260817__20261212__1fb56a4f-7e7e-4e3c-8b26-b834a4887c8a__1%2C0__2789942.pdf",
+      "org": "vtstorage002.blob.core.windows.net",
+      "vad": "Grundsund–Fiskebäckskil–Bokenäs–Uddevalla, Torp Terminalen, Gäller 17 aug - 12 dec 2026",
+      "last": "2026-09-27",
       "myndighet": false
     }
   ],
   "hamburgsund": [
     {
-      "url": "https://gasthamnsbolaget.se/en/guest-harbours-in-bohuslan/hamburgsund-guest-harbour/",
-      "org": "gasthamnsbolaget.se",
-      "vad": "Skolvägen 5, 457 45 Hamburgsund, platser vid två huvudkajer samt Hjalmars Kaj, tvättstuga på fastlandet, sugtömning av porta potti på Hamburgö; drivmedel anges inte",
-      "last": "2026-09-16",
-      "myndighet": true
-    },
-    {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/kulturmiljoer/greby-gravfalt.html",
-      "org": "Länsstyrelsen Västra Götaland",
-      "vad": "Bohusläns största gravfält strax norr om Grebbestad, cirka 200 gravar, 68 runda högar, 54 långhögar samt 47 runda och 12 ovala stensättningar, 200 till 600 år efter vår tideräknings början, 28 resta stenar upp till 4,5 meter, fynd från undersökningarna 1873 av brända ben, glaspärlor, benkammar och sländtrissor",
-      "last": "2026-09-16",
+      "org": "lansstyrelsen.se",
+      "vad": "Strax norr om Grebbestad ligger Greby gravfält, Greby gravfält ligger väster om Tanumshede i norra Bohuslän, Det är Bohusläns största gravfält med nästan 200 gravar som ligger tätt, nästan på varandra, Tvåhundra gravar ligger tätt, tätt i en ljungbevuxen västerslänt, Gravarna består av 68 runda högar, 54 långhögar samt 47 runda och 12 ovala stensättningar, Det finns 28 resta stenar på krönet av gravar, Stenhällarna kan vara upp till fyra och en halv meter höga, Ett tiotal av gravarna undersöktes 1873 av den blivande riksantikvarien Oscar Montelius, Förutom gravurnor med brända ben fann man sländtrissor, glaspärlor och benkammar, Fynden tyder på att Greby använts som begravningsplats på järnåldern, under tiden 200 till 600 år efter vår tideräknings början",
+      "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vaderoarna.html",
-      "org": "Länsstyrelsen Västra Götaland",
-      "vad": "turbåtar till Väderöarna från bland annat Fjällbacka och Hamburgsund",
-      "last": "2026-09-16",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/hamburgsund.4.7664b4813898b7df9844de1.html",
-      "org": "Tanums kommun",
-      "vad": "traditionen säger att tingsplatsen för Viken under medeltiden låg vid sundets södra del, Viken det administrativa område som bestod av norra Bohuslän och det nu norska området runt Oslofjorden, namnet av öns medeltida namn Hornbora, den hornförsedda, utan koppling till tyska Hamburg, sillfiske och trankokerier 1500–1700-tal, stenhuggeri och fraktsegling 1800–1900-tal, ett av Bohusläns största skutsamhällen i början av 1900-talet, hemmahamn för stor del av fiskeflottan",
-      "last": "2026-09-16",
+      "org": "lansstyrelsen.se",
+      "vad": "Det går turbåtar till Väderöarna från bland annat Fjällbacka och Hamburgsund",
+      "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/hamburgsundsleden/",
-      "org": "Trafikverket",
-      "vad": "linfärja Hamburgsund–Hamburgö —  och Länsstyrelsen Västra Götaland, Greby gravfält",
-      "last": "2026-09-16",
+      "org": "trafikverket.se",
+      "vad": "Hamburgsundsleden går mellan Hamburgsund och Hamburgö i Norra Bohuslän, Färjeledens längd är 130 meter och överfartstiden är tre minuter, Resan är avgiftsfri",
+      "last": "2026-09-27",
       "myndighet": true
+    },
+    {
+      "url": "https://gasthamnsbolaget.se/en/guest-harbours-in-bohuslan/hamburgsund-guest-harbour/",
+      "org": "gasthamnsbolaget.se",
+      "vad": "one on the mainland south of the ferry between the fishing harbor and the marina, and one on Hamburgö right by the ferry landing, There are also guest berths at Hjalmars Kaj, on the mainland side there is a laundry room",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://hamburgsundbedandbreakfast.se/",
+      "org": "hamburgsundbedandbreakfast.se",
+      "vad": "I Hamburgsunds centrum, granne med färjeläget, ligger vårt boende, 4 st lite större dubbelrum, och 6 st dubbelrum, har alla egen liten balkong, dusch och toalett, wi-fi och tv",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.hjalmars.se/",
+      "org": "hjalmars.se",
+      "vad": "Välkommen till Hjalmars i Hamburgsund, Med en fantastisk utsikt över sundet, Smaker från havet i en oslagbar miljö, Strandvägen 8, 457 45 Hamburgsund, sista öppetdagen sön 27 sept",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.rorvikscamping.se/",
+      "org": "rorvikscamping.se",
+      "vad": "Campingen ligger 1.5 km söder om kustsamhället Hamburgsund, Vi erbjuder campingtomter för husvagn/husbil/tält, stugor, rum/vandrarhem med 24 bäddar samt säsongs- och båtplatser, barnvänlig sandstrand",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/hamburgsund.4.7664b4813898b7df9844de1.html",
+      "org": "tanum.se",
+      "vad": "Förledet kommer från önamnet Hornbora, som syftar på Hamburgös utskjutande uddar i söder och väster, Namnet Hamburgsund har ingen koppling till den tyska staden Hamburg, Traditionen säger att under medeltiden fanns tingsplatsen för Viken vid södra delen Hamburgsundet, Viken var det administrativa område som bestod av norra Bohuslän och det nu norska området runt Oslofjorden, Hamburgsund omtalas redan 1585 som tullstation, Under 1700-taletets sillperiod inbjöd det skyddade läget längs sundet till att bygga ett flertal trankokerier, tog fart när befolkningen började bedriva fraktfart, Under senare delen av 1800-talet fanns två stenhuggerier i Hamburgsund, Hamburgsund var i början av 1900-talet ett av Bohusläns största skutsamhällen, Hamburgsund är hemmahamn för en stor del av kommunens fiskeflotta, Husen ligger i enkla rader på båda sidor om sundet",
+      "last": "2026-09-27",
+      "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/tanum/produkter/hamburgsund/",
       "org": "vastsverige.com",
-      "vad": "Hornborgs borgruin med storhetstid enligt fynden omkring 1450–1530, utgrävd i början av 1900-talet med fynd av bakstycket till en kanon, kanonkulor och andra vapen, vikingamarknaden Hornbore Ting varje sommar, konstskolan Gerlesborgsskolan",
-      "last": "2026-09-16",
+      "vad": "was excavated at the beginning of the last century and among the findings the back of cannon, cannonballs, bullets and other weapons, The findins show that the period of greatness of the castle was around 1450-1530, Today, low grassy embankments are the only remains of what was once the Hornborg Castle, Gerlesborgsskolan right next to the sea engaged in artistic education, short courses, open cultural activities, concerts, lectures and open art workshops for children",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/tanum/accomodation/marinas/",
       "org": "vastsverige.com",
-      "vad": "50 platser i Hamburgsund och på Hamburgö i sundet, toalett, dusch, tvättmaskin, torktumlare och landström",
-      "last": "2026-09-16",
+      "vad": "50 berths in Hamburgsund and on Hamburgö in the strait. Toilet, shower, washing machine, dryer, and shore power, Operated by Gästhamnsbolaget",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/tanum/produkter/hamburgsund-bed-and-breakfast/",
       "org": "vastsverige.com",
-      "vad": "adress Udden 1, 45745 Hamburgsund, intill färjestationen, tio dubbelrum",
-      "last": "2026-09-16",
+      "vad": "Udden 1",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.vastsverige.com/en/tanum/produkter/kustnara-bb-och-konferens/",
-      "org": "vastsverige.com",
-      "vad": "adress Heestrand Rådalen 10, 45747 Hamburgsund, drivs av Gästhamnsbolaget Väst AB, cirka 5 km från Hamburgsund",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.vastsverige.com/en/tanum/produkter/rorvik-family-camping/",
-      "org": "vastsverige.com",
-      "vad": "adress Rörviksängen 15, 45747 Hamburgsund, 1,5 km söder om Hamburgsund, stugor, rum, husvagns- och tältplatser",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.vastsverige.com/en/tanum/produkter/hjalmars/",
-      "org": "vastsverige.com",
-      "vad": "adress Strandvägen 8, 45745 Hamburgsund, läge vid kajen, mat med lokala råvaror",
-      "last": "2026-09-16",
+      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4875__0__LINE__20260817__20261212__83be1ed8-a883-462d-b8ea-6f64e9b6df0c__4%2C0__2768580.pdf",
+      "org": "vtstorage002.blob.core.windows.net",
+      "vad": "Tanumshede–Fjällbacka–Dingle–Håby, Tanumshede centrum, Hamburgsund centrum, Dingle station, Gäller 19 aug - 12 dec 2026",
+      "last": "2026-09-27",
       "myndighet": false
     }
   ],
   "karingon": [
     {
-      "url": "https://www.orust.se/uppleva-och-gora/gasthamnar/karingons-gasthamn",
-      "org": "Orust kommun",
-      "vad": "125 platser, djup cirka 4 meter, servicehus med toalett, dusch, tvättmaskin och torktumlare, sugtömningsstation 1 april–31 oktober",
-      "last": "2026-09-16",
+      "url": "https://www.vasttrafik.se/resa-med-oss/under-resan/husdjur/",
+      "org": "vasttrafik.se",
+      "vad": "Ha djuret i koppel, bur eller väska, Vid resa med båt ska husdjur vara på styrbord",
+      "last": "2026-09-27",
       "myndighet": true
     },
     {
-      "url": "https://www.orust.se/bygga-bo-och-miljo/bygga-nytt-andra-eller-riva/kulturhistoriska-byggnader-kulturmiljoer",
-      "org": "Orust kommun",
-      "vad": "Käringön ligger inom riksintresse för kulturmiljövården, de flesta byggnaderna är q-märkta i detaljplan, varsamhetskrav och förvanskningsförbud enligt plan- och bygglagen gäller även utanför de orter där byggnaderna är skyddsmärkta, och bygglov kan krävas för annars lovbefriade åtgärder som staket, altaner, trädäck, attefallsåtgärder och solceller",
-      "last": "2026-09-16",
-      "myndighet": true
+      "url": "https://www.destinationkaringon.online/upplev",
+      "org": "destinationkaringon.online",
+      "vad": "Käringöns gästhamn ligger mitt i samhället",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.destinationkaringon.online/",
+      "org": "destinationkaringon.online",
+      "vad": "Det finns därför inga bilar, mopeder eller cyklar, Nästan alla öns 280 hus är byggda före år 1920, det finns knappt 70 personer som är bosatta här",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.destinationkaringon.online/planera-ditt-bes%C3%B6k",
+      "org": "destinationkaringon.online",
+      "vad": "Under sommaren erbjuds även fasta avgångar mellan Hälleviksstrand och Käringön. Överfarten tar cirka 10–15 minuter, För dig som vill komma fram snabbare eller boka din resa i förväg finns möjlighet att resa med båttaxi från fastlandet",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.destinationkaringon.online/%C3%A4ta-dricka",
+      "org": "destinationkaringon.online",
+      "vad": "Längst ut i havsbandet, med utsikt mot Måseskärs fyr, ligger Karingo — en unik ostronbar, Karingo erbjuder även uppvärmda havsvattenbad, Anläggningen har egen brygga och kan nås med båt, eller via transport från Käringön med båt eller helikopter, Säsongsöppet från mitten av mars till juni samt från mitten av augusti till december",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "http://www.karingo.com/",
+      "org": "karingo.com",
+      "vad": "pinfärska ostron, kall champagne, varm badtunna och underbar utsikt till Måseskärs fyr",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.karingon.se/om-k%C3%A4ring%C3%B6n",
+      "org": "karingon.se",
+      "vad": "Ön fick fast bosättning redan 1596, då några unga fiskarfamiljer från Orust, år 1912 nåddes toppnoteringen med hela 662 personer kyrkobokförda här, Öborna kunde nu bygga en egen kyrka som invigdes 1796",
+      "last": "2026-09-27",
+      "myndighet": false
     },
     {
       "url": "https://www.karingon.se/",
-      "org": "Hotell Käringön",
-      "vad": "21 rum (enkelrum, dubbelrum, trebäddsrum, familjerum och juniorsviter) samt restaurang och bar, Käringöns Brygga",
-      "last": "2026-09-16",
+      "org": "karingon.se",
+      "vad": "Våra 21 rum, två enkelrum, fyra dubbelrum, sju dubbelrum med balkong, två dubbelrum deluxe med balkong, två trebäddsrum samt fyra familjerum/juniorsviter med stora terrasser, Alla rum har dusch och toalett och frukost ingår alltid i priset, Adress: Skeppersholme 127",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.karingon.se/hundv%C3%A4nlig-destination",
+      "org": "karingon.se",
+      "vad": "Vi erbjuder möjligheten att ta med hunden i alla våra rumskategorier, För din hunds vistelse tillkommer en avgift, flera av öns restauranger och uteserveringar välkomnar hundar",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.karingon.se/restaurang",
+      "org": "karingon.se",
+      "vad": "på vår stora, härliga uteservering, Restaurangen är öppen varje dag under sommaren, Övriga året har vi öppet på förfrågan för gruppbokningar samt de flesta fredagarna, Restaurangen kan ta cirka 70 sittande gäster",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lotshotellet.com/",
+      "org": "lotshotellet.com",
+      "vad": "Lotshotellet har fått sitt namn från den lotsstation som funnits på Käringön i över 300 år, Alla våra fina rum har eget badrum med golvvärme, fri tillgång till vår egen badbrygga och bastu med utsikt över havet, Under vintern håller vi stängt",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lotshotellet.com/creperiet",
+      "org": "lotshotellet.com",
+      "vad": "På Crêperiet på Lotshotellet erbjuder vi läckra crêpes och galetter, Vi har också ett stort urval av fransk kvalitetscider, goda viner, i eftermiddagssolen i bästa hamnläge, STÄNGT FÖR SÄSONGEN 2026",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.orust.se/uppleva-och-gora/gasthamnar/karingons-gasthamn",
+      "org": "orust.se",
+      "vad": "125 platser., Djup cirka 4 meter., Käringöns hamn är öppen 1 april - 30 september., Servicebyggnad med toalett, dusch, tvättmaskin och torktumlare., Sugtömningsstation där fritidsbåtar kan tömma sina latrintankar, mellan 1 april och 31 oktober., Hamnen är kontantfri., Förhandsbokning av gästplatser sker via Dockspot., El - undvik att använda alla elapparater i båten samtidigt",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.orust.se/bygga-bo-och-miljo/bygga-nytt-andra-eller-riva/kulturhistoriska-byggnader-kulturmiljoer",
+      "org": "orust.se",
+      "vad": "Käringön, Mollösund, Gullholmen och Härmanö är exempel på platser som ligger inom riksintresse för kulturmiljövården, De flesta byggnader i dessa områden är q-märkta och detaljplanen innehåller strikta regler för hur byggnationer får utföras, Generella varsamhetskrav och förvanskningsförbud enligt Plan- och bygglagen gäller även utanför de orter där byggnaderna är skyddsmärkta, I de skyddade miljöerna kan bygglov krävas för åtgärder som i normala fall inte är bygglovspliktiga, Till exempel staket, altaner, trädäck, Attefallsåtgärder eller solceller.",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.petersonskrog.se/boende",
+      "org": "petersonskrog.se",
+      "vad": "Under vår, höst och vinter finns det möjlighet att bo i vårt vandrarhem som ligger i direkt anslutning till krogen, Boendet har totalt 10 bäddar, uppdelat på 5 rum, Ni delar dusch, toalett och kök, Under juni, juli och augusti kan ni inte bo hos oss",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.petersonskrog.se/",
-      "org": "Petersons Krog",
-      "vad": "krog på Käringön med lunch, à la carte och sällskapsmenyer",
-      "last": "2026-09-16",
+      "org": "petersonskrog.se",
+      "vad": "Är ni ett större sällskap, d.v.s. 12 personer eller fler, man kan äta både hummersupé i oktober och julbord från sent november hos oss",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.petersonskrog.se/hummerfest",
+      "org": "petersonskrog.se",
+      "vad": "3 lördagskvällar i oktober serverar vi en 4-rättersmeny med fokus på svensk hummer, Datum för hummersupén 2026 är",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/orust/products/karingon/",
       "org": "vastsverige.com",
-      "vad": "bilfri, smala gator med vita trähus, kyrkan omgiven av gräsmattor och planteringar, permanent bebodd 1596 av fiskarfamiljer, över 300 invånare under 1700-talets sillperiod, fördubblad folkmängd på 1800-talet, namnet av käring som benämning på ett litet stentorn eller kummel använt som sjömärke",
-      "last": "2026-09-16",
+      "vad": "Öviken, which is closest to the harbour, has pontoon piers and a trampoline for older children, The south side of the island has a traditional bathing house with small piers, steps into the sea, Barnbadet is also on the south coast and offers child-friendly swimming with its shallow cove and soft sandy beach, Friluftsbadet, lies on the south-west tip of the island and has separate bathing times for men and women",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vastsverige.com/en/orust/things-to-do/boating/car-less-islands/",
+      "org": "vastsverige.com",
+      "vad": "line 381, operate every day all year round, there is a bicycle ban on Käringön",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/",
       "org": "vastsverige.com",
-      "vad": "Västtrafiks personfärja linje 381 går till Gullholmen, Härmanö och Käringön, 5 minuter till Härmanö/Gullholmen och cirka 35 minuter till Käringön",
-      "last": "2026-09-16",
+      "vad": "Du betalar parkeringen med kort eller sms. Det finns ingen kontantbetalning., Kom i god tid då parkering för besökare ligger längre bort från färjan.",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/orust/produkter/karingon/",
       "org": "vastsverige.com",
-      "vad": "båtresan mellan klippor och kobbar tar inte mer än 40 minuter, ön är bilfri",
-      "last": "2026-09-16",
+      "vad": "På Käringön föddes fiskarsonen Olof Knape år 1664, Olof gick till sjöss åtta år gammal, År 1700 blev han handplockad som amiralitetskapten av kung Karl XII, främst var han involverad i kaparverksamheten som pågick, Olof blev så småningom adlad till Olof Strömstierna, och namnet återfinns idag på flera platser på Käringön",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.vastsverige.com/en/orust/karingon-gullholmen/eat-and-drink/",
-      "org": "vastsverige.com",
-      "vad": "listar Skafferiet, Creperiet och Karingo bland Käringöns serveringar",
-      "last": "2026-09-16",
+      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6381__0__LINE__20260915__20261031__de9ca77a-74b2-4c80-a07f-0e9d5aafbcd8__0%2C0__2790296.pdf",
+      "org": "vtstorage002.blob.core.windows.net",
+      "vad": "Tuvesvik–Gullholmen–Käringön, Gäller 15 sept - 31 okt 2026",
+      "last": "2026-09-27",
       "myndighet": false
     }
   ],
@@ -9126,163 +9252,163 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "tjorn": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stigfjorden.html",
-      "org": "Länsstyrelsen Västra Götaland",
-      "vad": "bildat 1979, cirka 6 714 hektar i Orusts och Tjörns kommuner, näringsplats för tusentals änder, gäss, svanar och vadarfåglar under vår och höst, Ramsarkonventionen, Natura 2000",
-      "last": "2026-09-16",
+      "org": "lansstyrelsen.se",
+      "vad": "Stigfjorden utgör ett innanhav i miniatyr mellan Orust och Tjörn, Bildat: 1979, Areal: cirka 6714 hektar, Naturvårdsförvaltare: Västkuststiftelsen, Under vår och höst gör den rika produktionen i vattnet och på strandängarna området till näringsplats för tusentals änder, gäss, svanar och vadarfåglar, Stigfjorden har upptagits på listan över våtmarker som anses ha stor internationell betydelse enligt den så kallade Ramsarkonventionen, Området ingår i EU:s ekologiska nätverk av skyddade områden, Natura 2000, Det skyddade läget gör att Stigfjordenområdet är rikt på natthamnar, exempelvis vid Smögholmarna längst i väster, Kalven, Bockholmarna, Kälkerön och Hälsön",
+      "last": "2026-09-27",
       "myndighet": true
     },
     {
-      "url": "https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn",
-      "org": "Tjörns kommun",
-      "vad": "två holmar, den södra Klädesholmen med den äldsta bebyggelsen och den norra Koholmen, sillperioden 1747–1808 med uppemot 1 000 personer, 40 procent av alla svenska sillkonserver, personfärja från Rönnängs brygga till Åstol, Tjörnekalv och Dyrön medan Härön nås via Kyrkesund",
-      "last": "2026-09-16",
-      "myndighet": true
+      "url": "https://www.akvarellmuseet.org/om/historia",
+      "org": "akvarellmuseet.org",
+      "vad": "År 2000 stod ett centrum för akvarell klart och 16 juni invigdes Nordiska Akvarellmuseet, utlystes vad som kom att bli Nordens dittills största arkitekttävling, 386 arkitektförslag lämnades in och vann gjorde slutligen Niels Bruun och Henrik Corfitsen från Danmark med sitt förslag Mötet, Byggnaden har placerats längs strandlinjen, delvis ute i vattnet, fem gästateljéer uppförda på betongpelare i vattnet, gästateljéerna på Bockholmen, År 2012 byggdes museet ut med en ny konsthall, Sedan dess har museet haft mer än tre miljoner besök",
+      "last": "2026-09-27",
+      "myndighet": false
     },
     {
-      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/natur-och-gronomraden/utsiktsplatser",
-      "org": "Tjörns kommun",
-      "vad": "Tjörnbron som utsiktsplats med utsikt över fjordarna och skärgården, Sankt Olovs valar som \"ett av Bohusläns mest kända sjömärken\"",
-      "last": "2026-09-16",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.tjorn.se/webbplatser/sundsby-sateri",
-      "org": "Tjörns kommun",
-      "vad": "säteriet på ön Mjörn med trädgård, park, vandringsleder, köksträdgård, utställningar, kafé och gårdsbutik",
-      "last": "2026-09-16",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser",
-      "org": "Tjörns kommun",
-      "vad": "Gråskär, Skärhamn listad med sandstrand och tillgänglighetsanpassning",
-      "last": "2026-09-16",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.tjorn.se/bygga-bo-miljo-och-trafik/trafik-och-resor/buss-bat-och-tag",
-      "org": "Tjörns kommun",
-      "vad": "expressbussar mot Stenungsund och Göteborg",
-      "last": "2026-09-16",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014620800000/",
-      "org": "Västtrafik",
-      "vad": "Buss Tjörn express: Tjörn — Göteborg",
-      "last": "2026-09-16",
-      "myndighet": true
+      "url": "https://www.bistroportsud.se/",
+      "org": "bistroportsud.se",
+      "vad": "Södra Hamnen 8, 471 32 Skärhamn, Mat, Dryck & Logi vid bryggkanten i Skärhamn",
+      "last": "2026-09-27",
+      "myndighet": false
     },
     {
       "url": "https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/pilane-gravfalt/",
-      "org": "Bohusläns museum",
-      "vad": "ungefär 80 synliga gravar från järnåldern, 57 runda stensättningar, tio runda högar, sju domarringar och sex resta stenar, inga uppgifter om utgrävning, skulpturen \"Anna\" 14 meter hög av Jaume Plensa",
-      "last": "2026-09-16",
+      "org": "bohuslansmuseum.se",
+      "vad": "Det har ungefär 80 synliga gravar från järnåldern, Gravmarkeringarna består av 57 runda stensättningar, tio runda högar, sju domarringar och enstaka sex resta stenar, Det finns inga uppgifter om att det har gjorts någon utgrävning på gravfältet, Skulpturen Anna är 14 meter hög och skapad av den spanske konstnären Jaume Plensa",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://digitaltmuseum.se/021015874271/almobron-i-bohuslan-paseglad-av-bulkfartyget-star-clipper-i-januari-198",
-      "org": "Bohusläns museum via DigitaltMuseum",
-      "vad": "18 januari 1980 klockan 01.30, åtta omkomna, omedelbar planering av provisorisk färjeförbindelse och projektering av ny bro",
-      "last": "2026-09-16",
+      "org": "digitaltmuseum.se",
+      "vad": "Almöbron rasade klockan 01.30 den 18 januari 1980 då brospannet blev påkört av bulkfartyget Star Clipper, Det ena fästet till den största av Tjörnbroarna, Almöbron, Sju bilar körde ut i intet och störtade i havet varvid åtta människor omkom, Dock startade omedelbart planering för provisorisk färjeförbindelse, samt även projekteringen av en ny bro",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://kladesholmenvh.se/gasthamn/",
-      "org": "Klädesholmen Västra Hamn",
-      "vad": "Klädesholmens gästhamn",
-      "last": "2026-09-16",
+      "org": "kladesholmenvh.se",
+      "vad": "Djupet i gästhamnen är 3-4 meter, El 6 Ampere ingår i alla priser, Förhandsbokning endast Dockspot — 5 platser",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.akvarellmuseet.org/om/historia",
-      "org": "Nordiska Akvarellmuseet",
-      "vad": "öppnade 16 juni 2000, arkitekttävlingsförslaget \"Mötet\" av de danska arkitekterna Niels Bruun och Henrik Corfitsen, huvudbyggnaden längs strandlinjen delvis ute i vattnet, fem gästateljéer på betongpelare i vattnet",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.saltosill.se/",
-      "org": "Salt & Sill",
-      "vad": "Sverige första flytande hotell",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.saltosill.se/om-salt-sill/",
-      "org": "Salt & Sill",
-      "vad": "Sveriges första flytande hotell, adress Rytterholmen 1, Klädesholmen",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.saltosill.se/restauranger/",
-      "org": "Salt & Sill",
-      "vad": "huvudrestaurangen heter Salt & Sill, färska skaldjur från lokala fiskare",
-      "last": "2026-09-16",
+      "url": "https://restaurangvatten.se/",
+      "org": "restaurangvatten.se",
+      "vad": "belägen strax intill Nordiska Akvarellmuseet, Med havet som närmsta granne präglas menyn förstås av fisk och skaldjur, men där finns även alternativ för den som föredrar kött eller vegetariskt, Copyright 2026",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.skarhamnsgasthamn.se/service/",
-      "org": "Skärhamns Gästhamn",
-      "vad": "wifi, toalett, dusch, tvättmaskin, torktumlare, septitanksugning, grillplats; inget drivmedel anges",
-      "last": "2026-09-16",
+      "org": "skarhamnsgasthamn.se",
+      "vad": "I hamnavgiften ingår bland annat wifi, toalett, dusch, familjedusch, tvättmaskin, torktumlare, Septitanksugen är gratis, Skärhamns gästhamn drivs av Skärhamns Båtförening",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.vastsverige.com/sodrabohuslan/produkter/rovor-rum/",
-      "org": "Västsverige/Södra Bohuslän",
-      "vad": "Toftenäs 4, Skärhamn, fungerar även som vandrarhem utanför sommaren",
-      "last": "2026-09-16",
+      "url": "https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn",
+      "org": "tjorn.se",
+      "vad": "Klädesholmen är egentligen två holmar — den södra är Klädesholmen med den äldsta bebyggelsen, den norra är Koholmen, Ta höger i Bleket, mot bron som leder över till Klädesholmen, till Klädesholmen och Lilla Askerön kan du åka bil eller buss, Under den stora sillperioden 1747–1808 bodde uppemot 1 000 personer på Klädesholmen, idag kommer 40 procent av alla svenska sillkonserver från Klädesholmen, Från Rönnängs brygga går personfärja till Dyrön, Färjan går från Rönnäng cirka en gång i timman, Färjan går även till Tjörnekalv och Åstol, Till exempelvis Dyrön, Åstol, Härön och Tjörnekalv går regelbunden färjetrafik",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.vastsverige.com/tjorn/",
-      "org": "Västsverige/Tjörn",
-      "vad": "1546 öar och skär att uppleva året om",
-      "last": "2026-09-16",
+      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/natur-och-gronomraden/utsiktsplatser",
+      "org": "tjorn.se",
+      "vad": "Den 15 juni 1960 invigdes Tjörnbroleden — en fast förbindelse mellan Stenungsund på fastlandet och Almön på Tjörn, Tjörnbron är en del av länsväg 160 som går förbi Stenungsund och norrut över Tjörn och Orust, När man åker mot Tjörn och kommer ur tunneln öppnar sig landskapet med en storslagen utsikt över fjordarna och skärgården, Vetteberget, Tjörns högsta berg, bjuder på en magnifik utsikt över havet mot horisonten i väst, Vid bra väder syns Danmark och Skagen, På toppen av Vetteberget ligger ett bronsåldersröse daterat till cirka 1 000 år f.Kr, Med 19 meter i diameter är det ett av de största i Bohuslän",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.vastsverige.com/tjorn/produkter/kladesholmen/",
-      "org": "Västsverige/Tjörn",
-      "vad": "25 konservfabriker och cirka 150 yrkesfiskare år 1950",
-      "last": "2026-09-16",
+      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser",
+      "org": "tjorn.se",
+      "vad": "Badplatsen intill Nordiska Akvarellmuseet har stora gräsytor, sandstrand, klippor, badbrygga, hopptorn, volleybollplan och toaletter, Badplatsen är delvis tillgänglighetsanpassad med handikapptoalett",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.vastsverige.com/en/tjorn/products/hotel-nordevik/",
-      "org": "Västsverige/Tjörn",
-      "vad": "a charming boutique hotel in the heart of Skärhamn, Hamngatan 60, Skärhamn",
-      "last": "2026-09-16",
+      "url": "https://www.tjorn.se/webbplatser/sundsby-sateri",
+      "org": "tjorn.se",
+      "vad": "Sundsby Säteri ligger på ön Mjörn i Tjörn kommun i Bohuslän, flera naturstigar och ett vackert parklandskap, Parken, vandringsleder och området har öppet året runt",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.tjorn.se/bygga-bo-miljo-och-trafik/trafik-och-resor/buss-bat-och-tag",
+      "org": "tjorn.se",
+      "vad": "Inom Tjörn kan du åka linjebuss eller åka med expressbussarna som fortsätter till Stenungsund och Göteborg, Närmaste tågstation ligger i Stenungsund",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/tjorn/products/skarhamn-guest-marina/",
-      "org": "Västsverige/Tjörn",
-      "vad": "centralt läge, toaletter, duschar, wifi och tvättmaskin, inget bränsle",
-      "last": "2026-09-16",
+      "org": "vastsverige.com",
+      "vad": "located in the middle of Skärhamn on western Tjörn, proximity to shops, restaurants, food stores, During the first weekend of June each year, Skärhamn harbour is home to the wooden boat festival Träbåtsfestivalen",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.vastsverige.com/tjorn/produkter/kladesholmens-gasthamn/",
-      "org": "Västsverige/Tjörn",
-      "vad": "den \"omtalade sillön\", grytformad hamn där vinden inte stör, fasta förtöjningslinor",
-      "last": "2026-09-16",
+      "url": "https://www.vastsverige.com/tjorn/produkter/skulptur-i-pilane/",
+      "org": "vastsverige.com",
+      "vad": "arrangeras varje sommar en skulpturutställning med världsledande konstnärer, Sedan 2007 har Skulptur i Pilane visat konst av bland annat, är ingen traditionell park utan ett levande beteslandskap, funnit sin permanenta placering i Pilane",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vastsverige.com/tjorn/produkter/kladesholmen/",
+      "org": "vastsverige.com",
+      "vad": "1950 fanns det 25 konservfabriker på ön och cirka 150 yrkesfiskare, Här finns sillfabrik, sillmuseum och restaurangen Salt & Sill, stoltserar med Sveriges första flytande hotell, På Sveriges nationaldag, den 6 juni, firas också Sillens dag, Då utses också Årets Sill av en namnkunnig jury",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vastsverige.com/tjorn/",
+      "org": "vastsverige.com",
+      "vad": "Tjörn är en hel övärld — från huvudön till de bilfria öarna Åstol, Dyrön, Tjörnekalv, Härön och Lilla Brattön, tre internationellt kända besöksmål: Skulptur i Pilane, Nordiska Akvarellmuseet och Pater Noster",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/tjorn/products/vatten-restaurang-kafe/",
-      "org": "Västsverige/Tjörn",
-      "vad": "Södra Hamnen 6, Skärhamn, certifierad av A Taste of West Sweden, fisk och skaldjur som favoritråvaror",
-      "last": "2026-09-16",
+      "org": "vastsverige.com",
+      "vad": "Södra Hamnen 6, The restaurant is certified by A Taste of West Sweden, Eat and drink well at Vatten all year round",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vastsverige.com/en/tjorn/products/hotel-nordevik/",
+      "org": "vastsverige.com",
+      "vad": "boutique hotel in the heart of Skärhamn, individually decorated rooms in a range of sizes, from cosy double rooms to spacious family rooms, Bohuslän-style egg cheese, Hamngatan 60",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vastsverige.com/sodrabohuslan/produkter/rovor-rum/",
+      "org": "vastsverige.com",
+      "vad": "mitt i Toftenäs vackra naturreservat, Gårdens gamla ekonomibyggnad med anor från 1700-talet är idag omgjord till två stora lägenheter, Under sommaren, från midsommar och till skolstart, hyrs lägenheterna ut veckovis men resten av året fungerar de även som vandrarhem",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vastsverige.com/tjorn/produkter/kladesholmens-gasthamn/",
+      "org": "vastsverige.com",
+      "vad": "belägen på västsidan av den omtalade sillön, Gästhamnen har formen av en gryta vilket gör att vinden inte stör, fasta linor",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/tjorn/produkter/bistro-port-sud/",
-      "org": "Västsverige/Tjörn",
-      "vad": "Södra Hamnen 8, Skärhamn, meny som blandar västkust och provensalskt",
-      "last": "2026-09-16",
+      "org": "vastsverige.com",
+      "vad": "Menyn är inspirerad av Västkusten med fräscha råvaror från såväl land som hav och av södra Frankrike med sina Provencalska smaker",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf",
+      "org": "vtstorage002.blob.core.windows.net",
+      "vad": "Tjörn–Stenungsund/Göteborg, Skärhamn torg, Stenungsunds station, Nils Ericson Terminalen, Gäller 14 dec 2025 - 12 dec 2026",
+      "last": "2026-09-27",
       "myndighet": false
     }
   ],
@@ -9395,45 +9521,94 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "pater-noster": [
     {
-      "url": "https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn",
-      "org": "tjorn.se",
-      "vad": "Pater Noster släcktes 1977, fyren togs iland för omfattande renovering och fördes tillbaka sommaren 2007, statligt byggnadsminne med högt kulturhistoriskt värde 2015",
-      "last": "2026-09-16",
+      "url": "https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster",
+      "org": "sfv.se",
+      "vad": "Arbetet med att binda ihop landets kuster med fyrar leddes av fyringenjör Gustav von Heidenstam vid Lotsverket, Pater Noster började lysa den 1 november 1868, Pater Nosterskären består av 97 öar som breder ut sig från Tjörns sydvästra udde och ner i höjd med Marstrand",
+      "last": "2026-09-27",
       "myndighet": true
     },
     {
-      "url": "https://paternoster.se/",
-      "org": "Pater Noster",
-      "vad": "150 dagsgäster, Vi använder lokala råvaror utifrån säsong, Fisk och skaldjur från Kattegatt och Skagerrak står i fokus, utmärkelserna Världens bästa hotellkoncept, Stora Turismpriset och The Special One",
-      "last": "2026-09-16",
+      "url": "https://www.head4waves.se/",
+      "org": "head4waves.se",
+      "vad": "Under högsäsongen erbjuder vi fasta dagsturer till den fantastiska fyrplatsen Pater Noster",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://en.paternoster.se/faq",
-      "org": "Pater Noster",
-      "vad": "hotellgäster med egen båt anmäler minst tre timmar i förväg, dagsbesökare med egen båt i mån av plats max två timmar, platser kan inte förbokas —  och",
-      "last": "2026-09-16",
+      "url": "https://www.marstrandtransport.se/",
+      "org": "marstrandtransport.se",
+      "vad": "från Marstrandsön med omnejd ända ut till Pater Noster, Hamneskär med RIB",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://paternoster.se/om-pater-noster",
+      "org": "paternoster.se",
+      "vad": "År 2020 omvandlade designer på Stylt den gamla bostaden för generationer av fyrvaktare till ett unikt och personligt boutiquehotell",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://paternoster.se/fragor-svar",
+      "org": "paternoster.se",
+      "vad": "Om du inte är hotellgäst är du välkommen att besöka fyren och den tillhörande utställningen, där entré betalas på plats, Övriga byggnader på ön är reserverade för vår verksamhet och våra hotellgäster, Nej, det går ingen reguljär färja till Pater Noster, Alla våra boendepaket på Pater Noster inkluderar RIB-transport tur och retur från Marstrand eller Rönnäng",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://paternoster.se/",
+      "org": "paternoster.se",
+      "vad": "Vi använder lokala råvaror utifrån säsong och i fyrträdgården odlas grönsaker och örter, Fisk och skaldjur från Kattegatt och Skagerrak står i fokus, fått utmärkelser som Världens bästa hotellkoncept, Stora Turismpriset samt The Special One",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://paternoster.se/ta-dig-hit",
+      "org": "paternoster.se",
+      "vad": "Restid ca 20 min från både Marstrand söder ifrån och Rönnäng norr ifrån., Hemresa är kl 10.30 till samma hamn som vid utresa., Bakom Marstrands färjeläge, nedanför Coop på Koön, Stansvikstappen, sjötapp i Rönnäng",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://paternoster.se/aktiviteter",
+      "org": "paternoster.se",
+      "vad": "Paddla ca 2h med guide i havskajak bland kobbar och skär runt Pater Noster, Vår sälsafari-tur ger dig en unik möjlighet att lära dig mer om dessa fascinerande djur",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://paternoster.se/sommarcafet",
+      "org": "paternoster.se",
+      "vad": "Under sommaren 2026 driver vi ett sommarcafé på Pater Noster med fika, kaffe, hembakat samt ett urval av kalla rätter inspirerade av havet och säsongen, Öppna dagar och tider styrs av vädret och kan variera",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://paternoster.se/besok-oss",
+      "org": "paternoster.se",
+      "vad": "Pater Noster är ett prisbelönt fyrhotell på en avskild ö längst ut i Bohusläns skärgård",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten",
+      "org": "tjorn.se",
+      "vad": "Fyren Pater Noster är 32 meter hög och konstruerades av Nils Gustav von Heidenstam, Pater Noster är latin för Fader vår, Det sägs att sjömännen bad bönen när de siktade skären, Starka havsströmmar och förrädiska grund har fått många fartyg att förlisa där.",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/tjorn/produkter/pater-noster/",
-      "org": "Västsverige/Tjörn",
-      "vad": "nio väldesignade rum för 18 gäster, sovplatser på klipporna sommartid, renovering av designbyrån Stylt Trampoli",
-      "last": "2026-09-16",
+      "org": "vastsverige.com",
+      "vad": "tack vare designbyrån, Stylt Trampoli, Sommartid går det även bra att boka sovplats där den sköna sängen placerats på klipporna",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/tjorn/",
-      "org": "Västsverige/Tjörn",
-      "vad": "Tjörn Island of Art med Skulptur i Pilane, Nordiska Akvarellmuseet och Pater Noster",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.vastsverige.com/en/tjorn/products/pater-noster/",
-      "org": "Västsverige/Tjörn",
-      "vad": "nio rum i de restaurerade fyrvaktarbostäderna",
-      "last": "2026-09-16",
+      "org": "vastsverige.com",
+      "vad": "Här väntar tre internationellt kända besöksmål: Skulptur i Pilane, Nordiska Akvarellmuseet och Pater Noster",
+      "last": "2026-09-27",
       "myndighet": false
     }
   ],
@@ -10002,80 +10177,206 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "dyron": [
     {
-      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/vandra/dyrons-vandringsleder",
-      "org": "Tjörns kommun",
-      "vad": "gula leden 5 km och medelsvår, gula brickor på trästolpar, delen Sydhamnen–bastun framkomlig med rullstol och barnvagn, blå leden 1,6 km över bergen från norr till söder, rastplatser, utsikt mot Marstrand, Åstol och Pater Noster, sandstrand på östra sidan",
-      "last": "2026-09-16",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/ata-och-bo",
-      "org": "Tjörns kommun",
-      "vad": "Dyrön Cafe & Kiosk med uteservering i Sydhamnen under sommaren",
-      "last": "2026-09-16",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/batliv-och-hamnar",
-      "org": "Tjörns kommun",
-      "vad": "listar både Nordhamnen och Sydhamnen som gästhamnar",
-      "last": "2026-09-16",
+      "url": "https://www.vasttrafik.se/resa-med-oss/under-resan/husdjur/",
+      "org": "vasttrafik.se",
+      "vad": "Ha djuret i koppel, bur eller väska, Vid resa med båt ska husdjur vara på styrbord",
+      "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.dyron.se/om-dyron/",
-      "org": "Dyrön",
-      "vad": "Ett speciellt inslag är de inplanterade vilda bergsfåren s k mufflonfår, varierat och dramatiskt landskap",
-      "last": "2026-09-16",
+      "org": "dyron.se",
+      "vad": "Dyrön strax norr om Marstrand är en av Tjörns kommuns sex skärgårdsöar med boende året runt, Bebyggelsen ligger samlad i en dalgång som sträcker sig mellan Nord- och Sydhamnen, På ömse sidor dalgången är det berg- och klippterräng med hällmarker och sänkor. Raviner genomkorsar landskapet på flera ställen., Berggrunden domineras av mörka mineral, Bergarten kallas för metabasit, På nordöstra sidan av ön finns kuddlavastruktur, ett för landet unikt inslag i berggrunden, området ingår i riksintresse för naturvården (NO 17b), Ett speciellt inslag är de inplanterade vilda bergsfåren s k mufflonfår",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/se-gora/mufflonfar/",
+      "org": "dyron.se",
+      "vad": "Det bor cirka 50 — 60 stycken på Dyrön som lever fritt bland skog och berg",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/ata-bo/pizzeria/",
+      "org": "dyron.se",
+      "vad": "Öns egen ICA-butik Dyröboden erbjuder inte bara ett mycket bra sortiment och öppet året runt. De bakar även pizza i egen pizzaugn., i caféet finns microugn",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/ata-bo/dyrons-vardshus-restaurang/",
+      "org": "dyron.se",
+      "vad": "Välkommen till vår restaurang i Nordhamnen mittemot färjeläget, där vi serverar lunch och middag",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/ata-bo/cafe-kiosk/",
+      "org": "dyron.se",
+      "vad": "I Sydhamnen finns under sommaren kiosk och café med uteservering, I anslutning till caféet ligger också minigolfen",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/ata-bo/vaffelcafe/",
+      "org": "dyron.se",
+      "vad": "När Kiosk och Café stänger för sommaren öppnar Våffelcafé i samma lokal. Våffelcaféet är obemannat",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/se-gora/vandra/",
+      "org": "dyron.se",
+      "vad": "Lederna är delvis bergiga och kan vara hala om det regnat, Trappor, broar och räcken förenklar dock vandringen på de svåra ställena, Gula leden är 5 km lång runt hela ön, men det finns 6 ingångar/utgångar så du kan välja kortare väg, Den byggdes av ett gäng pensionärer, helt ideellt, under åren 2000–2008",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/se-gora/badplatser/",
+      "org": "dyron.se",
+      "vad": "I Nordhamnen ligger en badplats med pontonbrygga och sandstrand, Badplatsen är mycket populär bland barnfamiljer, Sydhamnens badplats heter Hala, Här finns också en liten sandstrand och brygga, hoppa och dyka från trampolin, klippor och 3-meterstornet, Här finns också en lättillgänglig badbrygga med stege",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/hamnar/nordhamnen/",
+      "org": "dyron.se",
+      "vad": "I Nordhamnen finns plats för ca 40 båtar, 10 förtöjningar vid boj i yttre bassängen och 30 långsides mot kajen i inre bassängen, Dessutom tillfälligt lediga grönmarkerade privata platser, I hamnen finns toalett, dusch, sophantering, el och vatten samt tvättstuga med tvättmaskin, Möjlighet för tömning av septiktank finns i yttre bassängen på piren bredvid färjans tilläggningsplats, Nordhamnen ligger 50 m från handikappanpassad badplats med bryggor och sandstrand",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/hamnar/sydhamnen/",
+      "org": "dyron.se",
+      "vad": "I sydhamnen finns plats 50 gästbåtar, 20 vid bommar väster om inloppet och 30 långsides vid norra kajen, tvättstuga med tvättmaskin och torktumlare. Ingen extra avgift tas ut för tvättstugan, I hamnen finns kran för lyft på max 5 ton, Vid Linas Brygga kan du också tanka diesel och byta dina gasolflaskor",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/se-gora/bastu/",
+      "org": "dyron.se",
+      "vad": "Dyröns bastu, som drivs av Dyröns Samhällsförening, utnämndes år 2008 till Sveriges finaste eluppvärmda bastu av finska Sisuradion på Sveriges Radio, Bastu, som är handikappanpassad, ligger på öns sydsida, Bastun rymmer 12 personer, Efter bastubadet kan du bada från bryggan",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/ta-dig-hit/",
+      "org": "dyron.se",
+      "vad": "Sommartid parkerar du vid Rönnängs Ishall, varifrån du har en promenad på cirka 15 minuter",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/ata-bo/linas-brygga/",
+      "org": "dyron.se",
+      "vad": "I Sydhamnen hittar du Linas Brygga med café och butik med glassmenyer, hembakt och smårätter",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.dyron.se/om-dyron/historia/",
+      "org": "dyron.se",
+      "vad": "Oscar II invigde den efterlängtade Nordhamnen, som är den första hamnen i Sverige som byggts med statsunderstöd, den 2 september 1902, Dyrön hade emellertid ingen hamn utan jordbruk och boskapsskötsel var fortfarande huvudnäring på ön",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://dyronsvardshus.se/",
-      "org": "Dyröns Värdshus",
-      "vad": "upp till 12 sjöbodar, plats för upp till 6 personer per bod, pentry, badrum, tvättmaskin, vardagsrum och uteplats",
-      "last": "2026-09-16",
+      "org": "dyronsvardshus.se",
+      "vad": "På Dyröns Värdshus lagar vi mat inspirerad av havet och säsongen runt oss, Här möts lokala råvaror, skärgårdsmiljö och en meny som förändras efter vad Bohuslän har att erbjuda, Vilka fantastiska artistkvällar vi har fått uppleva tillsammans på Dyröns Värdshus, Höstens höjdpunkt",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ica.se/butiker/nara/tjorn/ica-nara-dyroboden-1634/start/",
+      "org": "ica.se",
+      "vad": "Postombud, Apoteksombud, Systembolagsombud, Månadens pizza",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://linasbrygga.se/",
-      "org": "Linas Brygga",
-      "vad": "kafé i Södra Hamnen, 47114 Dyrön",
-      "last": "2026-09-16",
+      "org": "linasbrygga.se",
+      "vad": "Räksmörgåsar, glasskreationer, hembakat, äggost och annat gott., Förutom caféverksamheten, erbjuder vi också boende och sjömack., Hamnvägen 80, Södra hamnen, Tack för sommaren 2026. Välkomna åter våren 2027",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/vandra/dyrons-vandringsleder",
+      "org": "tjorn.se",
+      "vad": "Den gula leden går runt hela ön och är cirka 5 kilometer, Den blå leden går över bergen från norr till söder och är 1,6 kilometer, Medelsvår, Från Sydhamnen går det att med rullstol och barnvagn ta sig västerut en bit längs leden fram till bastun, Längs med leden finns en rad olika rastplatser med bord och bänkar, en fantastisk utsikt över havet med öarna Marstrand och Åstol och fyren Pater Noster, På öns östra sida finns det längs vandringen en fin sandstrand där man kan rasta och bada",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/hund-i-naturen",
+      "org": "tjorn.se",
+      "vad": "Hundar ska alltid hållas kopplade utomhus på offentliga platser där människor samlas, Här får hundar inte vistas, 1 mars och 20 augusti",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/tjorn/se-och-gora/bilfria-oar/",
-      "org": "Västsverige/Tjörn",
-      "vad": "Dyrön som grönskande ö känd för sin storslagna natur, dramatisk skärgårdsmiljö, vilda mufflonfår",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.vastsverige.com/tjorn/produkter/dyrons-gasthamn-nord-sydhamnen/",
-      "org": "Västsverige/Tjörn",
-      "vad": "Nordhamnen 20 platser långsides på norra sidan och akterförtöjning i inloppet, Sydhamnen 55 platser med fast akterförtöjning och långsides, båda med sjömack/diesel och sugtömning, nära till mataffär, färjetrafik från Nordhamnen",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.vastsverige.com/en/tjorn/products/dyrons-vardshus/",
-      "org": "Västsverige/Tjörn",
-      "vad": "restaurang med skaldjur, fisk, kött, grönsaker och svamp samt övernattning i sjöbodar vid vattnet, adress Hamnvägen, 471 43 Dyrön",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.vastsverige.com/tjorn/produkter/personfarja-ronnang-tjornekalv-dyron-astol/",
-      "org": "Västsverige/Tjörn",
-      "vad": "Tjörnekalv — Dyrön — Åstol — Västtrafiks linje 361 utgår från Rönnängs brygga, 20 minuter till Dyröns norra hamn, biljettautomat vid färjeläget i Rönnäng",
-      "last": "2026-09-16",
+      "org": "vastsverige.com",
+      "vad": "Ta färjan till en av Tjörns bilfria öar, Håll utkik — med lite tur får du syn på de vilda mufflonfåren",
+      "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/en/tjorn/products/dyron/",
-      "org": "Västsverige/Tjörn",
-      "vad": "södra hamnen har förbindelse till Rökan, därifrån buss",
-      "last": "2026-09-16",
+      "org": "vastsverige.com",
+      "vad": "you can book it all year round",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vastsverige.com/en/tjorn/products/dyrons-vardshus/",
+      "org": "vastsverige.com",
+      "vad": "shellfish and fish to meat, vegetables, and mushrooms",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vastsverige.com/tjorn/produkter/personfarja-ronnang-tjornekalv-dyron-astol/",
+      "org": "vastsverige.com",
+      "vad": "linje 361 alla dagar året runt, Västtrafiks kontoladdning eller köp enkelbiljett ombord, Biljettautomat finns vid färjeläget i Rönnäng, Cykel kan tas med",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vastsverige.com/tjorn/produkter/dyrons-gasthamn-nord-sydhamnen/",
+      "org": "vastsverige.com",
+      "vad": "Sugtömning av latrin",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf",
+      "org": "vtstorage002.blob.core.windows.net",
+      "vad": "Rönnäng–Tjörnekalv–Dyrön–Åstol–Rönnäng, Gäller 14 dec 2025 - 12 dec 2026 utom 15 juni - 16 aug, C Turen måste förbeställas på tel: 0304-601242",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf",
+      "org": "vtstorage002.blob.core.windows.net",
+      "vad": "Nils Ericson Terminalen, J Efter Aröd fortsätter bussen som ny tur mot Bäckevik, Rönnäng och, Gäller 14 dec 2025 - 12 dec 2026",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6326__0__LINE__20260817__20260930__3f059e68-c41c-44bf-bb36-b0b087de0549__1%2C0__2778882.pdf",
+      "org": "vtstorage002.blob.core.windows.net",
+      "vad": "Dyrön — Rökan — Rörtången, Gäller 17 aug - 30 sept 2026",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6326__0__LINE__20261001__20261031__5c843cab-c0f3-4630-88cc-c2a33e730dbc__1%2C0__2778908.pdf",
+      "org": "vtstorage002.blob.core.windows.net",
+      "vad": "Gäller 1 okt - 31 okt 2026, Resan måste förbeställas senast tre timmar före avgång",
+      "last": "2026-09-27",
       "myndighet": false
     }
   ]
