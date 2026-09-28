@@ -7831,9 +7831,10 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://www.vastsverige.com/tanum/se--gora/grebbestad/ — "Grebbestad är en populär sommarort i norra Bohuslän och centret för Sveriges produktion av vilda ostron."; "Visste du att hela 90 procent av Sveriges ostronproduktion kommer från Grebbestad och Tanum?"; "En gammal regel är att endast månader med bokstaven R i namnet är så kallade skaldjursmånader." (läst 2026-09-28) -->
 <!-- KÄLLA: https://tanumstrand.se/attgora/skaldjur/ — "En tumregel är att äta skaldjur bara under månader med bokstaven “R”  i namnet. Alltså september till april." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad i Tanums kommun är centrum för Sveriges produktion av vilda ostron. Enligt Västsverige kommer 90 procent av Sveriges ostronproduktion från Grebbestad och Tanum. En gammal regel säger att man äter skaldjur under månaderna med bokstaven R i namnet, alltså september till april.</p>
-<!-- KÄLLA: https://klemmingsdyk.se/grebbestad-ostron/ — "Ostron har sedan 2004 en alldeles egen dag, ostronets dag. Den är instiftad av Ostronakademien i Grebbestad. Ostronets dag infaller alltid den första lördagen i september varje år" (läst 2026-09-28) -->
+<!-- KÄLLA: https://klemmingsdyk.se/grebbestad-ostron/ — "Ostron har sedan 2004 en alldeles egen dag, ostronets dag. Den är instiftad av Ostronakademien i Grebbestad." (läst 2026-09-28) -->
+<!-- KÄLLA: https://ostronakademien.se/ — "Ostronets Dag i Grebbestad firas numera alltid lördag v37!"; "Anledningen är att ostronets lektid förlängts på grund av varmare hav" (läst 2026-09-28) -->
 <!-- KÄLLA: https://tanumstrand.se/attgora/ostron/ — "ostron serveras igen från och med Ostronets dag i september" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Säsongen inleds med Ostronets dag, som instiftades av Ostronakademien i Grebbestad och som alltid infaller den första lördagen i september. TanumStrand, till exempel, börjar servera ostron igen från och med Ostronets dag.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Säsongen inleds med Ostronets dag, som instiftades av Ostronakademien i Grebbestad och som numera alltid firas på lördagen i vecka 37. TanumStrand, till exempel, börjar servera ostron igen från och med Ostronets dag.</p>
 <!-- KÄLLA: https://klemmingsdyk.se/ostronsafari/ — "Vi kör ostronsafari från april-juni och slutet på augusti-november, fredagar och lördagar."; "2026 kör vi ostronsafari varje fredag och lördag mellan den 18/4-27/6 och 29/8-31/10."; "Här fiskar du ostron med hjälp av vattenkikare och håv." (läst 2026-09-28) -->
 <!-- KÄLLA: https://tanumstrand.se/attgora/ostron/ — "Grebbestadostron fick skyddad ursprungsbeteckning (SUB) i EU den 22 maj 2023." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bröderna Klemmings Dykhjälp i Grebbestad kör ostronsafari på fredagar och lördagar. Hösten 2026 går safarierna från 29 augusti till 31 oktober. Du fiskar själv ostron med vattenkikare och håv. Grebbestadostron har sedan 2023 skyddad ursprungsbeteckning i EU. Läs mer i guiden om <a href="/guider/ostronstangning-bohuslan">ostron i Bohuslän</a> och om <a href="/guider/grebbestad-guide">Grebbestad</a>.</p>
@@ -7860,8 +7861,8 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html — "Nästa år (2027) infaller hummerpremiären istället den 27 september." (läst 2026-09-28) -->
 <li>Hummerpremiär 2027: måndag 27 september.</li>
 <li>Fritidsfiske efter hummer: till och med 30 november.</li>
-<!-- KÄLLA: https://klemmingsdyk.se/grebbestad-ostron/ — "Ostronets dag infaller alltid den första lördagen i september varje år" (läst 2026-09-28) -->
-<li>Ostronets dag: första lördagen i september.</li>
+<!-- KÄLLA: https://ostronakademien.se/ — "Ostronets Dag i Grebbestad firas numera alltid lördag v37!"; "Anledningen är att ostronets lektid förlängts på grund av varmare hav" (läst 2026-09-28) -->
+<li>Ostronets dag: lördagen i vecka 37.</li>
 <!-- KÄLLA: https://tanumstrand.se/attgora/skaldjur/ — "En tumregel är att äta skaldjur bara under månader med bokstaven “R”  i namnet. Alltså september till april." (läst 2026-09-28) -->
 <li>Skaldjursmånader: månaderna med R, september till april.</li>
 </ul>
@@ -9901,8 +9902,9 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">TanumStrand, söder om centrum, har ostronsmakning i Sjöboden Udden i samband med sina kräftkok. Ostron serveras där igen från och med Ostronets dag i september.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ostronets dag</h3>
-<!-- KÄLLA: https://klemmingsdyk.se/grebbestad-ostron/ — "Ostron har sedan 2004 en alldeles egen dag, ostronets dag. Den är instiftad av Ostronakademien i Grebbestad. Ostronets dag infaller alltid den första lördagen i september varje år"; "Restauranger och pubar i Grebbestad hyllar ostronet genom att bjuda på underhållning och att servera massor av våra ostron" (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ostronets dag instiftades 2004 av Ostronakademien i Grebbestad och infaller alltid första lördagen i september. Då serverar restauranger i Grebbestad ostron.
+<!-- KÄLLA: https://ostronakademien.se/ — "Ostronets Dag i Grebbestad firas numera alltid lördag v37!"; "Anledningen är att ostronets lektid förlängts på grund av varmare hav" (läst 2026-09-28) -->
+<!-- KÄLLA: https://klemmingsdyk.se/grebbestad-ostron/ — "Ostron har sedan 2004 en alldeles egen dag, ostronets dag. Den är instiftad av Ostronakademien i Grebbestad. "; "Restauranger och pubar i Grebbestad hyllar ostronet genom att bjuda på underhållning och att servera massor av våra ostron" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ostronets dag instiftades 2004 av Ostronakademien i Grebbestad och firas numera alltid på lördagen i vecka 37. Då serverar restauranger i Grebbestad ostron.
 Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohuslän</a> och <a href="/guider/hummerpremiar-bohuslan">guiden om hummerpremiären</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Att se och göra i Grebbestad</h2>
