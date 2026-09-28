@@ -349,7 +349,6 @@ export const ISLAND_NO_TRANSIT: Record<string, string> = {
   'huvudskar': 'ingen hållplats inom 5 km',
   'hasselo': 'närmaste hållplats (Lökholmen, 4865 m) kunde inte knytas till ön',
   'ormsko': 'närmaste hållplats (Kalkberget (Nämdö) brygga, 2969 m) kunde inte knytas till ön',
-  'kanholmen': 'närmaste hållplats (Arbodaö brygga, 1097 m) kunde inte knytas till ön',
   'norrpada': 'ingen hållplats inom 5 km',
   'graskar': 'ingen hållplats inom 5 km',
   'langviksskaret': 'ingen hållplats inom 5 km',

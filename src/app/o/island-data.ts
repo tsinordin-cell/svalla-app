@@ -5696,43 +5696,6 @@ export const ISLANDS: Island[] = [
     did_you_know: 'Runt Ormskär och de andra större öarna i nationalparkens sydvästra del ligger många av parkens omkring 140 laguner. Fler än hälften är flador, och landhöjningen gör att vikarna långsamt snörs av från havet och ändrar form och funktion över tid.',
   },
   {
-    slug: 'kanholmen',
-    name: 'Kanholmen',
-    region: 'mellersta',
-    regionLabel: 'Mellersta skärgården',
-    emoji: '⚓',
-    // KÄLLA: https://www.sjofartsverket.se/sv/tjanster/lotsning/lotsomrade-sodertalje/hamn-och-farledsinformation/farleder/landsortsleden/ — "Landsortsleden sträcker sig från Landsort över Mysingen, Jungfrufjärden, Nämdöfjärden till Kanholmsfjärden där den ansluter till Sandhamnsleden.", "via Kanholmsfjärden 10,0 m" (läst 2026-09-27)
-    tagline: 'Kanholmsfjärden – vattnet där farleden från Landsort möter Sandhamnsleden',
-    description: [
-      // KÄLLA: https://www.sjofartsverket.se/sv/tjanster/lotsning/lotsomrade-sodertalje/hamn-och-farledsinformation/farleder/landsortsleden/ — "Landsortsleden sträcker sig från Landsort över Mysingen, Jungfrufjärden, Nämdöfjärden till Kanholmsfjärden där den ansluter till Sandhamnsleden.", "via Kanholmsfjärden 10,0 m" (läst 2026-09-27)
-      'Kanholmsfjärden är en knutpunkt för sjötrafiken i Stockholms mellersta skärgård: enligt Sjöfartsverket går Landsortsleden från Landsort över Mysingen, Jungfrufjärden och Nämdöfjärden till Kanholmsfjärden och ansluter där till Sandhamnsleden. Farleden via Kanholmsfjärden har ett maximalt djupgående på 10 meter.',
-      // KÄLLA: https://www.varmdo.se/download/18.79379661188ba20c6714e030/1688990516415/25%20ha%CC%88rliga%20utflyktsma%CC%8Al-1.rev%20230710.pdf — "väntar den vida Kanholmsfjärden med stora vajande blåstångsbälten under vattenytan", "utblick över den vida Kanholmsfjärden", "Blåstången är en viktig växt i Östersjön." (läst 2026-09-27); https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Utsättningar av havsöring görs bl a vid", "Kanholmsfjärden, Baggensfjärden, Ingarö", "Utplanterad öring är fettfeneklippt", "I nedanstående vikar är det förbjudet att fiska under perioden", "1 april – 15 juni", "Värmdö kommun", "Harö (öster om Kanholmsfjärden)" (läst 2026-09-27)
-      'Fjärden ligger i Värmdö kommun. Kommunens natur- och kulturguide beskriver utblicken över den vida Kanholmsfjärden från halvön Skarpö och de stora blåstångsbältena under vattenytan, och Länsstyrelsens fiskeguide nämner Kanholmsfjärden bland de bra platserna för havsöring.',
-      // Tidigare stod att ön är obebodd och saknar service och har en skyddad naturhamn på lä-sidan som är ett klassiskt mellanstopp mot Sandhamn. Ingen tillåten källa (myndighet, kommun, Skärgårdsstiftelsen, förening) beskriver ön – struket 2026-09-27.
-      'Om själva Kanholmen – bebyggelse, bryggor eller ankringsplatser – har vi inte hittat någon uppgift hos myndigheter, kommunen eller Skärgårdsstiftelsen. Planera därför med sjökort och räkna inte med en iordningställd naturhamn eller service på ön.',
-    ],
-    // KÄLLA: https://www.sjofartsverket.se/sv/tjanster/lotsning/lotsomrade-sodertalje/hamn-och-farledsinformation/farleder/landsortsleden/ — "Landsortsleden sträcker sig från Landsort över Mysingen, Jungfrufjärden, Nämdöfjärden till Kanholmsfjärden där den ansluter till Sandhamnsleden.", "via Kanholmsfjärden 10,0 m" (läst 2026-09-27); https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Utsättningar av havsöring görs bl a vid", "Kanholmsfjärden, Baggensfjärden, Ingarö", "Utplanterad öring är fettfeneklippt", "I nedanstående vikar är det förbjudet att fiska under perioden", "1 april – 15 juni", "Värmdö kommun", "Harö (öster om Kanholmsfjärden)" (läst 2026-09-27)
-    // UPPSKATTNING: säsong och best_for är bedömningar; restid med egen båt beror på båt och väder och anges inte.
-    facts: { travel_time: 'Egen båt – ingen reguljär båtlinje som vi kunnat belägga', character: 'Kanholmsfjärden: här möts Landsortsleden och Sandhamnsleden', season: 'Juni–augusti', best_for: 'Segling, fiske' },
-    activities: [
-      // KÄLLA: https://www.sjofartsverket.se/sv/tjanster/lotsning/lotsomrade-sodertalje/hamn-och-farledsinformation/farleder/landsortsleden/ — "Landsortsleden sträcker sig från Landsort över Mysingen, Jungfrufjärden, Nämdöfjärden till Kanholmsfjärden där den ansluter till Sandhamnsleden.", "via Kanholmsfjärden 10,0 m" (läst 2026-09-27)
-      { icon: '⛵', name: 'Segling i farleden', desc: 'Landsortsleden och Sandhamnsleden möts i Kanholmsfjärden, och farleden här har ett maximalt djupgående på 10 meter – håll utkik efter större fartyg.' },
-      // KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Utsättningar av havsöring görs bl a vid", "Kanholmsfjärden, Baggensfjärden, Ingarö", "Utplanterad öring är fettfeneklippt", "I nedanstående vikar är det förbjudet att fiska under perioden", "1 april – 15 juni", "Värmdö kommun", "Harö (öster om Kanholmsfjärden)" (läst 2026-09-27)
-      { icon: '🎣', name: 'Fiske', desc: 'Länsstyrelsens fiskeguide nämner Kanholmsfjärden bland bra ställen för havsöring; utplanterad öring är fettfeneklippt. Viken vid Harö öster om fjärden är fredad lekvik – där är fiske förbjudet 1 april–15 juni.' },
-    ],
-    accommodation: [],
-    getting_there: [{ method: 'Egen båt', from: 'Stavsnäs / Sandhamn', desc: 'Vi har inte hittat någon reguljär båtlinje eller brygga för Kanholmen – kom med egen båt och planera med sjökort.', icon: '⛵' }],
-    // "Kanholmens naturhamn – välskyddad ankringsplats på lä-sidan" stod här utan källa och kunde inte beläggas hos någon tillåten källa – struken 2026-09-27.
-    harbors: [],
-    restaurants: [],
-    // KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — "Låna en brygga tillfälligt eller hitta en strand, som ligger utanför någons tomt.", "Förtöj och övernatta något dygn i din båt." (läst 2026-09-27); https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Utsättningar av havsöring görs bl a vid", "Kanholmsfjärden, Baggensfjärden, Ingarö", "Utplanterad öring är fettfeneklippt", "I nedanstående vikar är det förbjudet att fiska under perioden", "1 april – 15 juni", "Värmdö kommun", "Harö (öster om Kanholmsfjärden)" (läst 2026-09-27)
-    tips: ['Allemansrätten: låna en brygga tillfälligt eller hitta en strand som ligger utanför någons tomt, och förtöj och övernatta något dygn i båten.', 'Fiskar du vid Harö öster om fjärden: viken är fredad 1 april–15 juni.'],
-    related: ['sandhamn', 'gallno', 'ingmarso'],
-    tags: ['fjärd', 'farled', 'fiske', 'mellersta', 'segling'],
-    // KÄLLA: https://www.varmdo.se/download/18.79379661188ba20c6714e030/1688990516415/25%20ha%CC%88rliga%20utflyktsma%CC%8Al-1.rev%20230710.pdf — "väntar den vida Kanholmsfjärden med stora vajande blåstångsbälten under vattenytan", "utblick över den vida Kanholmsfjärden", "Blåstången är en viktig växt i Östersjön." (läst 2026-09-27); https://www.varmdo.se/download/18.79379661188ba20c6714e030/1688990516415/25%20ha%CC%88rliga%20utflyktsma%CC%8Al-1.rev%20230710.pdf — "blåstångsruskorna hittar många smådjur", "mat, skydd från faror" (läst 2026-09-27)
-    did_you_know: 'Under ytan i Kanholmsfjärden växer stora bälten av blåstång. Enligt Värmdö kommuns natur- och kulturguide är blåstången en viktig växt i Östersjön – i ruskorna hittar många smådjur mat och skydd.',
-  },
-  {
     slug: 'norrpada',
     name: 'Norrpada',
     // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/norrpada.html — "Norrpada naturreservatet ligger i Norrpada skärgård, som ligger i ytterskärgården 15 kilometer sydost om Kapellskär"; "Kommun: Norrtälje" (läst 2026-09-27). Stod 'mellersta' och 'i området kring Möja' — fel del av skärgården.
@@ -6015,7 +5978,7 @@ export const ISLANDS: Island[] = [
     restaurants: [],
     // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/storskar.html — "Det här är ett litet reservat som omfattar södra delen av ön Storskär."; "Markägare: privat"; "göra upp eld."; "tälta mer än ett dygn i följd" (läst 2026-09-27)
     tips: ['Bara södra delen av ön är naturreservat, och marken är privatägd — reservatsreglerna gäller bara inom reservatets gräns.', 'Eld får inte göras upp i reservatet och tältet får stå högst ett dygn i följd.'],
-    related: ['moja', 'kanholmen', 'norrora'],
+    related: ['moja', 'norrora'],
     tags: ['naturreservat', 'naturhamn', 'mellersta', 'segling'],
     // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/storskar.html — "Naturen i Storskärs naturreservat är typisk och representativ för mellanskärgården."; "Skyddat sedan: 1968"; "Förvaltare: Länsstyrelsen" (läst 2026-09-27)
     // KÄLLA: https://geodata.naturvardsverket.se/handlingar/rest/dokument/296458 — "att återkalla förordnandet för Skärgårdsstiftelsen som förvaltare för naturreservat och naturminne"; "Storskär Naturreservat Österåker 0117-02-001"; "2020-02-05"; "Länsstyrelsen har i beslut överlåtit förvaltningen till Skärgårdsstiftelsen för dessa områden." (Länsstyrelsen Stockholm, beslut 511-5414-2020) (läst 2026-09-27)
