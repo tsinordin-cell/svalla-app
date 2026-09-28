@@ -22,11 +22,6 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "hummersafari-bohuslan": {
-    "antal": 1,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "vaxholm-guide-komplett": {
     "antal": 2,
     "datum": "2026-08",
@@ -52,22 +47,12 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "moja-guide": {
-    "antal": 2,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "finnhamn-guide": {
     "antal": 2,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
   "orno-guide": {
-    "antal": 1,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "missat-sista-baten": {
     "antal": 1,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
@@ -82,47 +67,12 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "ankra-sova-bat": {
-    "antal": 2,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "aw-pa-bat-stockholm": {
-    "antal": 2,
-    "datum": "2026-08",
-    "vad": "spann över flera charteroperatörer, ej hämtat per aktör"
-  },
-  "hyra-kajak-stockholm": {
-    "antal": 3,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "segeldag-foretag-stockholm": {
     "antal": 2,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
   "teambuilding-kajak-stockholm": {
-    "antal": 2,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "kursgard-skargard-stockholm": {
-    "antal": 1,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "kickoff-ideer-skargard": {
-    "antal": 2,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "workshop-skargard-stockholm": {
-    "antal": 2,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "segelkurs-stockholm": {
     "antal": 2,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
@@ -135,4 +85,4 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
 }
 
 /** Antal guider som innehåller minst en uppskattad prisnivå. */
-export const GUIDER_MED_UPPSKATTNING = 23
+export const GUIDER_MED_UPPSKATTNING = 13
