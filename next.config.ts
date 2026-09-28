@@ -209,6 +209,9 @@ const nextConfig: NextConfig = {
       // för alla 103 öar och konkurrerade i Google (Search Console 3 mån till 2026-09-23: 42 000 resp.
       // 60 000 visningar, båda runt plats 10). Allt samlas på komma-dit, som har mer och rättare innehåll.
       { source: '/ta-dig-till/:slug', destination: '/o/:slug/komma-dit', permanent: true },
+      // Kanholmen borttagen 2026-09-28 (Toms beslut): ingen tillåten källa beskriver ön. Närmaste belagda ösida är Djurö.
+      { source: '/o/kanholmen', destination: '/o/djuro', permanent: true },
+      { source: '/o/kanholmen/:path*', destination: '/o/djuro', permanent: true },
       { source: '/blogg/packlista-skargarden', destination: '/guider/packlista-skargarden', permanent: true },
       { source: '/blogg/allemansratten-pa-sjon', destination: '/guider/allemansratten-pa-sjon', permanent: true },
       { source: '/blogg/waxholmsbolaget-guide', destination: '/guider/waxholmsbolaget-guide', permanent: true },
