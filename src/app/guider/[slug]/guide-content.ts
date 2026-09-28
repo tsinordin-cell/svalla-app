@@ -589,34 +589,101 @@ export function getGuideContent(slug: string): string {
 `,
 
     'badtemperatur-skargard': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Badtemperaturen i skärgården – månad för månad</h2>
-<p>Havstemperaturen i Stockholms skärgård varierar kraftigt mellan säsongerna. Här är vad du faktiskt kan förvänta dig varje månad – och när det är som bäst att bada.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa: hela månadstabellen med vattentemperaturer, "badbart för de flesta", "ytterskärgården alltid 3–5 grader kallare", "vikar 3–5 grader varmare än öppet hav", "Bohuslän 1–3 grader varmare än Stockholms skärgård", temperaturer för Smögen, Marstrand och Kosteröarna, att restauranger stänger efter en viss helg, listan "bästa badplatser per typ" (Trouville, Björkö, Ljusterö, Stora Sandvik, Landsort, Arholma, Svenska Högarna, Utö, Grinda nordvik, Möja sydvik, Finnhamn), appen "Havstemperatur", "200+ platser" hos SMHI, samt värdeord. -->
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/temperatur-i-havet — "Havet värms framför allt upp från ytan och kyls av samma väg."; "Vid havsytan är därför variationerna stora här, från sköna badtemperaturer på sommaren till så kallt vatten att det fryser till is i stora områden på vintern." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten.html — "Här redovisas vattenkvalitet, temperatur, algblomning, klassificering och annan information om din specifika badplats. Kommunerna står för provtagning och insamling av data som ligger till grund för informationen." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Badtemperaturen i Stockholms skärgård varierar mycket över året. Havet värms upp och kyls av från ytan, och enligt SMHI sträcker sig variationen vid ytan från badtemperaturer på sommaren till vatten som fryser till is på vintern. Den här guiden visar var du hittar aktuell vattentemperatur, när badsäsongen gäller och vad som gör att vattnet kan bli kallt från en dag till en annan. Vi skriver inga egna temperaturer per månad, eftersom de inte går att belägga – kolla i stället mätningarna och prognoserna nedan.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Månadsöversikt – Stockholms skärgård</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:2.0">
-<li><strong>Januari–Mars:</strong> 1–4°C. Havsbastuäventyr och vinterbad för de härdade. Isen lägger sig i innerskärgården.</li>
-<li><strong>April:</strong> 4–7°C. Kallbad möjligt för vana. Säsongsstarten för de flesta öar och restauranger.</li>
-<li><strong>Maj:</strong> 7–12°C. Fortfarande kallt för de flesta, men de första djärva badarna dyker upp. Ytterskärgården kallare än innerskärgården.</li>
-<li><strong>Juni:</strong> 12–17°C. Badbart för de flesta om solen är framme. Temperaturen stiger snabbt vid grunda stränder och vikar.</li>
-<li><strong>Juli:</strong> 17–22°C. Högsäsong. Ytvattnet värms av solen och vikar kan nå 22–24°C under varma somrar. Ytterskärgården är alltid 3–5°C kallare.</li>
-<li><strong>Augusti:</strong> 18–21°C. Ofta den bästa badmånaden – vattnet har lagrat sommarsolvärmen. Fantastiskt för kvällsbad.</li>
-<li><strong>September:</strong> 14–18°C. Fortfarande badbart men sjunker snabbt. De flesta restauranger stänger efter första helgen i september.</li>
-<li><strong>Oktober:</strong> 10–13°C. Kallbad för entusiasterna. Havet är fridfullast och vackrast – men bara för de härdade.</li>
-<li><strong>November–December:</strong> 4–8°C. Havsbasturundor, inte simrundor.</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var hittar man badtemperatur i Stockholms skärgård?</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">SMHI:s mätstationer för havstemperatur</h3>
+<!-- KÄLLA: https://www.smhi.se/data/hav-och-havsmiljo/havstemperatur — "Havstemperatur mäts med instrument placerade på bojar i havet, mätstationer vid kusten och färjor som trafikerar Sveriges omgivande hav."; "Mätning en gång per timme."; "Prognosdata, historiska analysdata och data från mätningar av temperatur i havet." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/matningar-i-havet/havsobservationer — "SMHI utför realtidsobservationer av oceanografiska parametrar med havspeglar och bojar. Data samlas in en gång per timme och presenteras inom 30 minuter." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">SMHI mäter havsvattentemperatur med instrument på bojar i havet, på mätstationer vid kusten och på färjor som går i haven runt Sverige. Mätningarna görs en gång i timmen och presenteras inom en halvtimme. På SMHI:s sida om havstemperatur finns både mätningar från stationerna, prognosdata och historiska data. Stationerna ligger oftast ute till havs eller vid kusten, så de visar inte exakt vad vattnet håller vid en viss badstrand.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Vattentemperatur vid badplatsen – Havs- och vattenmyndigheten</h3>
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/vattenprov-badtemperatur/vattentemperatur-och-kvalitet-pa-badvatten-pa-ostkusten.html — "Här ser du ett urval av badplatser på den svenska ostkusten samt Öland och Gotland som kommunerna regelbundet besiktigar och provtar för bakterier."; "Väderprognos kommer från SMHI och uppdateras var fjärde timma."; "Prognos på vattentemperatur kommer från Copernicus och uppdateras dagligen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du veta badtemperaturen vid en viss strand är Havs- och vattenmyndighetens webbplats Badplatser och badvatten det enklaste stället att titta. Där finns ett urval av badplatser längs ostkusten som kommunerna regelbundet besiktigar och tar bakterieprover på. Vattentemperaturen där är en prognos från det europeiska Copernicus som uppdateras dagligen, och väderprognosen kommer från SMHI och uppdateras var fjärde timme.</p>
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/vattenprov-badtemperatur/vattentemperatur-och-kvalitet-pa-badvatten-pa-ostkusten.html — "Väddö, Sandvikens Camping"; "Trälhavet, Österskärs havsbad"; "Eriksöbadet"; "Torpesand"; "Gålö, Skälåker"; "Nickstabadet" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Exempel på badplatser i Stockholms skärgård i den listan är Sandvikens camping på Väddö (Norrtälje), Österskärs havsbad vid Trälhavet (Österåker), Eriksöbadet (Vaxholm), Torpesand (Värmdö), Skälåker på Gålö (Haninge) och Nickstabadet (Nynäshamn). Klicka på badplatsen för att se den senaste provtagningen och badplatsens klassificering.</p>
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-varmdo-kommun.html — "Här ser du badplatserna som kommunen har registrerat."; "Väderprognoser kommer från SMHI och för kustbad kan det finnas prognoser på vattentemperatur från Copernicus." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Varje kommun har också en egen lista hos Havs- och vattenmyndigheten med de badplatser som kommunen har registrerat, till exempel Värmdö kommun. För kustbad kan det där finnas en prognos på vattentemperaturen.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vattentemperatur i Stockholms skärgård under året</h2>
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/temperatur-i-havet — "När solen här hemma på våren börjar stå högre på himlen värms både land och hav upp av solens strålar."; "Framåt hösten när solen står lägre blir värmeutstrålningen istället större och dessutom blandas kyligare djupvatten upp via höststormarna."; "På sommaren är temperaturen runt 20 grader i söder, men svalare i norr."; "På vintern är temperaturen nära fryspunkten i norr och öster, medan de södra och västra delarna sällan blir såpass avkylda." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">SMHI beskriver årets gång så här: på våren, när solen står högre, värms både land och hav upp. På hösten, när solen står lägre, strålar mer värme ut, och höststormarna blandar upp kallare djupvatten. SMHI:s exempelkarta över ytvattnet visar runt 20 grader i södra Sverige på sommaren och svalare vatten längre norrut. På vintern ligger ytvattnet nära fryspunkten i norr och öster, medan de södra och västra delarna sällan kyls av lika mycket.</p>
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/temperatur-i-havet — "Efter hand bildas en tydlig gräns, ett så kallat språngskikt mellan det varmare ytlagret och det kalla vattnet längre ner."; "Sommartid ligger termoklinen normalt på 20–30 meters djup."; "Variationerna i djupvattnet är dock mycket mer blygsamma. Hit når varken solens strålar eller vindens inverkan." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Under sommaren bildas ett språngskikt mellan det varmare ytvattnet och det kalla vattnet längre ner. Sommartid ligger det normalt på 20–30 meters djup. Under språngskiktet ändras temperaturen mycket mindre över året, eftersom varken sol eller vind når dit. Det är därför det kan kännas kallt om fötterna när du dyker ner en bit.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Varför är vattnet varmare i vikar och vid grunda stränder?</h3>
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/temperatur-i-havet — "Temperaturen inomskärs och längs grunda stränder är oftast högre än längre ut till havs. Ytvattnet värms där snabbare eftersom det är mindre omblandning och solstrålningen värmer botten." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt SMHI är vattnet inomskärs och längs grunda stränder oftast varmare än längre ut till havs. Där blandas vattnet mindre, och solen värmer botten, så ytvattnet värms snabbare. En mätstation ute till havs kan alltså visa kallare vatten än det du möter vid en grund sandstrand i en skyddad vik.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Därför kan vattnet bli kallt på en dag – uppvällning</h3>
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/uppvallning — "Det blir varmt i vattnet vid pålandsvind och kallt när det blåser från land."; "Det betyder till exempel för den svenska ostkusten vindar mellan väst och syd."; "Det uppvällande vattnet har temperaturen 5-10 grader och vattnet i utsjön är varmare än kustvattnet."; "Uppvällning är vanligt längs alla våra kuster, ofta mest påtagligt i Hanöbukten och runt Gotland samt minst vanligt på västkusten." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/temperatur-i-havet — "Från en dag till en annan kan badtemperaturen en sommardag gå från att kännas varm och behaglig till att kännas iskall." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vinden styr mycket. När det blåser in mot land kommer det varma ytvattnet in, och när det blåser från land förs det ut. Då kan kallt vatten underifrån komma upp till ytan – det kallas uppvällning. På ostkusten, där Stockholms skärgård ligger, är det vindar mellan väst och syd som ger uppvällning. Vattnet som väller upp håller 5–10 grader, och SMHI skriver att badtemperaturen en sommardag kan gå från varm till iskall från en dag till en annan. Uppvällning är vanligt längs alla svenska kuster men minst vanligt på västkusten.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ett varmare hav</h3>
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/temperatur-i-havet — "Även i haven runt Sverige har det på senare år mätts upp ovanligt höga vattentemperaturer periodvis." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.havsmiljoinstitutet.se/havsmedvetenhet/marina-natverket-for-vattenpedagogik/aktiviteter-2023/sammanfattning-traff-vart-hav-i-ett-varmare-klimat — "Här i Sverige visar långtidsmätningar vid Tjärnö utanför Strömstad att det blivit fler värmeböljor i havet."; "Prognoser pekar mot att Bottniska viken och Östersjön är de svenska havsområden som förväntas värmas upp allra mest." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">SMHI skriver att det på senare år periodvis har uppmätts ovanligt höga vattentemperaturer även i haven runt Sverige. Havsmiljöinstitutet återger att långtidsmätningar vid Tjärnö utanför Strömstad visar fler värmeböljor i havet, och att prognoserna pekar mot att Bottniska viken och Östersjön är de svenska havsområden som väntas bli varmast framöver.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">När är det badsäsong?</h2>
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/fakta-om-badvatten.html — "Det finns tre olika badsäsonger i Sverige. Den som varar längst är mellan 21:a juni och 20:e augusti."; "Stockholm, Uppsala, Södermanland, Östergötland, Jönköping, Kronoberg, Kalmar, Gotland, Värmland, Örebro, Västmanland, Dalarna och Gävleborg"; "Blekinge, Skåne, Halland och Västra Götaland"; "Västernorrland, Jämtland, Västerbotten och Norrbotten" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Badsäsongen är i Sverige en formell period då kommunerna ska ta prover på badvattnet vid de större baden. Havs- och vattenmyndigheten anger tre badsäsonger beroende på län:</p>
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/fakta-om-badvatten.html — "21 juni - 15 augusti"; "21 juni - 20 augusti"; "15 juli - 15 augusti" (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Stockholms län</strong> (och bland annat Uppsala, Södermanland, Kalmar och Gotland): 21 juni–15 augusti.</li>
+<li><strong>Västra Götaland, Halland, Skåne och Blekinge</strong>: 21 juni–20 augusti.</li>
+<li><strong>Västernorrland, Jämtland, Västerbotten och Norrbotten</strong>: 15 juli–15 augusti.</li>
+</ul>
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/fakta-om-badvatten.html — "I Sverige ska de badplatser som har mer än 200 badande per dag under badsäsongen registreras som EU-bad."; "Vid EU-bad ska vattenprover tas minst 3-4 gånger per badsäsong."; "Den första mätningen görs ofta under juni månad." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Badplatser med fler än 200 badande per dag under badsäsongen ska registreras som EU-bad. Där ska kommunen ta vattenprover minst tre–fyra gånger per säsong, och den första mätningen görs ofta i juni. Badsäsongen säger alltså när vattnet kontrolleras – inte att det är förbjudet eller olämpligt att bada utanför den.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kommunernas badvattenprover</h3>
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/fakta-om-badvatten.html — "Kommunerna ansvarar för provtagning, kontroll och information om EU-bad."; "Skyltar som visar kvaliteten på badvattnet ska finnas på alla EU-bad." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo.4.18c983316e0536cb189a176.html — "Värmdö kommun tar prover på vattnet på allmänna badplatser under badsäsongen."; "Bakteriehalten i vattnet bedöms i tre nivåer: tjänligt, tjänligt med anmärkning eller otjänligt."; "Det är inte förbjudet att bada i otjänligt vatten, men badet sker på egen risk."; "EU-baden i Värmdö kommun är Grisslinge havsbad, Södersved och Torpesand." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det är kommunerna som tar proverna, och alla EU-bad ska ha skyltar som visar badvattnets kvalitet. Värmdö kommun, som exempel, tar prover på sina allmänna badplatser under badsäsongen. Bakteriehalten bedöms som tjänlig, tjänlig med anmärkning eller otjänlig. Det är inte förbjudet att bada i otjänligt vatten, men det sker på egen risk. EU-baden i Värmdö är Grisslinge havsbad, Södersved och Torpesand.</p>
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-sotenas-kommun.html — "Kommunen skickar vattenproverna till ett laboratorium för analys. Analysen tar flera dagar."; "Hör av dig till din kommun om du är osäker på om det är okej att bada." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tänk på att provsvaret alltid är några dagar gammalt: analysen på laboratoriet tar flera dagar. Är du osäker på om det går bra att bada, hör av dig till kommunen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Algblomning på sensommaren</h3>
+<!-- KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo.4.18c983316e0536cb189a176.html — "Vid tydliga tecken av algblomning i vattnet bör du undvika att bada. Det kan till exempel vara att vattnet är grumligt, färgat eller har synliga klumpar av alger."; "Barn är särskilt känsliga för algblommande vatten."; "Även husdjur och personer med allergier är särskilt känsliga." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/avradan/algblomning/algblomning-i-norra-ostersjon.html — "Länsstyrelsernas informationscentral för egentliga Östersjön tar emot observationer och informerar om det aktuella läget i Sveriges kustvatten."; "På SMHI:s sida om Alger kan du se satellitbilder och kartor." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Varmt vatten kan också betyda algblomning. Ser vattnet grumligt eller färgat ut, eller har det synliga klumpar av alger, bör du inte bada. Barn, husdjur och personer med allergier är särskilt känsliga. Havs- och vattenmyndigheten har en sida om algblomning i norra Östersjön, och Länsstyrelsernas informationscentral för egentliga Östersjön och SMHI:s satellitbilder visar läget längs kusten.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Badtemperatur på Smögen och västkusten</h2>
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/vattenprov-badtemperatur/vattentemperatur-och-kvalitet-pa-badvatten-pa-vastkusten.html — "Här ser du ett urval av badplatser på den svenska västkusten som kommunerna regelbundet besiktigar och provtar för bakterier."; "Sandön, Smögen"; "Marstrand strandverket" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Det finns cirka 20 större kommunala badplatser."; "De största kontrolleras vid ett flertal tillfällen varje säsong med hänsyn till säkerhet och vattenkvalitet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">För västkusten har Havs- och vattenmyndigheten en motsvarande lista. Där finns bland annat Sandön på Smögen och Strandverket i Marstrand, med prognos för vattentemperaturen. Sotenäs kommun, där Smögen ligger, har cirka 20 större kommunala badplatser, och de största kontrolleras flera gånger varje säsong för säkerhet och vattenkvalitet.</p>
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/uppvallning — "Uppvällning är vanligt längs alla våra kuster, ofta mest påtagligt i Hanöbukten och runt Gotland samt minst vanligt på västkusten." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vi skriver inte att västkusten är ett visst antal grader varmare än Stockholms skärgård, eftersom det inte finns någon källa för det. Det SMHI anger är att uppvällning, som plötsligt kan kyla vattnet, är minst vanlig på västkusten. Läs mer om Smögen i vår <a href="/guider/smogen-guide">Smögenguide</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">När är bästa tiden att resa till skärgården – och vad är speciellt med varje årstid?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det beror på vad du vill göra. Så här ser havet ut under årets olika delar, enligt SMHI:</p>
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/temperatur-i-havet — "från sköna badtemperaturer på sommaren till så kallt vatten att det fryser till is"; "På våren börjar solen värma upp havets ytskikt."; "Detta gäller om det är helt stilla väder, något det sällan är under någon längre tid."; "När sommarvärmen börjar avta ökar värmeutstrålningen genom havsytan. Havet är nu varmare än luften och solen börjar stå lägre och tillför inte mycket ny värme."; "Under vintern då dagarna är korta kyls ytvattnet av så mycket att det kan bildas is." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Våren:</strong> solen börjar värma havets ytskikt, men vind blandar om vattnet, så uppvärmningen tar tid.</li>
+<li><strong>Sommaren:</strong> havsytan har badtemperaturer, men uppvällning kan ge kallt vatten med kort varsel. Det är också då badsäsongen och kommunernas vattenprover gäller.</li>
+<li><strong>Hösten:</strong> havet är nu varmare än luften, men solen tillför lite ny värme och höststormarna blandar upp kallare vatten.</li>
+<li><strong>Vintern:</strong> ytvattnet kyls så mycket att det kan bildas is. Det är säsongen för vinterbad och bastu.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om hur skärgården fungerar under andra delar av året finns i våra guider om <a href="/guider/host-stockholms-skargard-2026">hösten i Stockholms skärgård</a>, <a href="/guider/vinter-i-skargarden">vintern i skärgården</a>, <a href="/guider/var-stockholms-skargard-2027">våren i Stockholms skärgård</a> och <a href="/guider/isbad-vinterbad-sverige">isbad och vinterbad</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bada säkert i skärgården</h2>
+<!-- KÄLLA: https://svenskalivraddningssallskapet.se/wp-content/uploads/2026/06/badvett.pdf — "Tala om vart du ska och när du tror du är tillbaka."; "Ha alltid sällskap med dig när du badar."; "Gå försiktigt på brygga, klippa eller bassängkant."; "Hoppa och dyka bara om det är tillräckligt djupt."; "Simma längs med strand eller brygga." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sjoraddning.se/sjosakerhet/badsakerhet — "Bada inte med alkohol i kroppen"; "Ta reda på var närmaste livräddningsutrustning finns"; "Drunkningar sker tyst och nästan helt stilla, och det kan gå på några sekunder." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Tala om vart du ska och när du tror att du är tillbaka, och bada inte ensam.</li>
+<li>Gå försiktigt på bryggor och klippor, och hoppa eller dyk bara där det är tillräckligt djupt.</li>
+<li>Simma längs stranden eller bryggan i stället för rakt ut.</li>
+<li>Bada inte med alkohol i kroppen, och ta reda på var närmaste livräddningsutrustning finns.</li>
+<li>Håll uppsikt över varandra – Sjöräddningssällskapet påpekar att drunkning sker tyst och nästan helt stilla.</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa badplatser per typ</h3>
-<p><strong>Sandstränder (varmar snabbast):</strong> Trouville på Sandhamn, Björkö strand, Ljusterö sandstrand, Stora Sandvik på Grinda.</p>
-<p><strong>Klippbad (bästa sommarbad):</strong> Landsort, Arholma, Svenska Högarna, Utö (sydspetsen).</p>
-<p><strong>Barnvänliga grunda vikar:</strong> Grinda nordvik, Möja sydvik, Finnhamn mellanbåtsviken.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bohuslän – lite varmare på sommaren</h3>
-<p>Bohusläns skärgård är generellt 1–3°C varmare än Stockholmsskärgården under högsäsong, tack vare grunt vatten och Västerhavet. Smögen, Marstrand och Kosteröarna når ofta 21–23°C i slutet av juli och början av augusti.</p>
-
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Håll koll på temperaturen:</strong>
-<p style="margin:8px 0 0;font-size:14px">SMHI publicerar aktuella havstemperaturer på smhi.se. Appen "Havstemperatur" visar realtidsmätningar från mätstationer i skärgården. Temperaturerna i vikar och grunda områden kan vara 3–5°C varmare än öppet hav.</p>
-</div>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hitta en badplats</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Letar du efter en strand att bada vid, läs våra guider om <a href="/guider/sandstrand-skargarden">sandstränder i skärgården</a>, <a href="/guider/klippbad-skargarden">klippbad</a> och <a href="/guider/barnvanliga-bad-skargarden">barnvänliga bad</a>.</p>
 `,
 
     'sl-kort-skargarden': `
@@ -796,46 +863,101 @@ export function getGuideContent(slug: string): string {
 `,
 
     'sjomatkrogar-guide': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Sjömatskrogar i skärgården – bästa ställena</h2>
-<p>Sverige har ett av världens bästa råvaruunderlag för sjömat. Här är restaurangerna som gör havets gåvor rättvisa – från Smögen till Sandhamn.</p>
+<!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: alla prislägen och "räkna med"-belopp (ingen prislista), "boka två veckor i förväg", "smörgåsbord med gravad lax, sill och räkor", "havsbastupaket och middag som signatur", "Finnhamns Sjökrog" (egen webbplats gick inte att läsa), "Smögens Fisk och Skaldjursrestaurang", "Kosterfjordens Fisk och Skaldjur" och "Grebbestads Fisk" (inga egna webbplatser hittades), "räksmörgåsen är nationellt känd", "kö bildas sommartid", "fångst från egna ryssjor", "kontant eller Swish", "fullbokade veckan i förväg", samt värdeord och rangordning. -->
+<!-- KÄLLA: https://www.vastsverige.com/en/seafood-safaris/food-from-the-sea/ — "In the cold, fresh, salty waters off the west coast there are prawns, langoustine, lobster, mussels, oysters – and fantastic fish, of course."; "Shellfish are in their prime in spring and autumn." (läst 2026-09-28) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Här är värdshus och sjökrogar i Stockholms skärgård och restauranger vid havet på västkusten som vi har kontrollerat på krogarnas egna webbplatser hösten 2026. Öppettider och menyer ändras med säsongen, så kolla alltid krogens egen sida innan du åker. På västkusten fiskas räkor, havskräftor, hummer, musslor och ostron, och enligt Västsveriges turistråd är skaldjuren som bäst på våren och hösten.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Stockholms skärgård</h3>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Värdshus i skärgården</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera av skärgårdens värdshus har både restaurang och boende, så att du kan äta middag och stanna över natten.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Sandhamns Värdshus, Sandhamn</h4>
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p>En skärgårdslegend som levererar säsong efter säsong. Smörgåsbordet med gravad lax, sill och räkor är värt resan i sig. Boka bord minst två veckor i förväg under högsäsong. Prisläge: 300–500 kr/person för middag.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sandhamns Värdshus, Sandhamn</h3>
+<!-- KÄLLA: https://www.sandhamns-vardshus.se/ — "Sandhamns Värdshus Anno 1672"; "Öppet året runt. Här serveras våra klassiska rätter"; "Öppet varje dag från mitten av juni till mitten på september. Annan tid på året är restaurangen främst öppen helger."; "ät goda skaldjurslådor/platåer"; "Boende och frukost i Missionshuset" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamns Värdshus har årtalet 1672 i sitt namn. Värdshuset har öppet året runt, men restaurangen har öppet varje dag från mitten av juni till mitten av september och resten av året främst på helger. Här serveras bland annat skaldjurslådor och skaldjursplatåer, och värdshuset hyr ut rum med frukost i Missionshuset mitt i byn. Mer om ön finns i <a href="/guider/sandhamn-komplett-guide">guiden till Sandhamn</a>.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Grinda Wärdshus, Grinda</h4>
-<p>Kanske skärgårdens vackrast belägna restaurang. Husmanskost med lokala råvaror – räkor, abborre och strömming från grannskapet. Prisläge: 200–380 kr/person.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Grinda Wärdshus, Grinda</h3>
+<!-- KÄLLA: https://grinda.se/mat-fest/wardshuset/ — "Det anrika huset har blickat ut över Saxarfjärden sedan 1906 och är idag ett legendariskt riktmärke för seglare och  skärgårdsgäster." (läst 2026-09-28) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/grinda/ — "Mitt på ön ligger Grinda Wärdshus, en självklar samlingspunkt där du kan äta, bo eller bara njuta av utsikten över vattnet."; "det anrika värdshuset som Skärgårdsstiftelsen äger och förvaltar"; "Kommer du med egen båt finns gästhamn i Hemviken och naturhamn i Hästholmssundet." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus ligger mitt på ön och har sedan 1906 blickat ut över Saxarfjärden. Huset ägs och förvaltas av Skärgårdsstiftelsen, och här kan du både äta och bo. Kommer du med egen båt finns gästhamn i Hemviken och naturhamn i Hästholmssundet.</p>
+<!-- KÄLLA: https://grinda.se/hittahit/ — "Waxholmsbolaget (+46 8 600 10 00) och Cinderellabåtarna (+46 8 12 00 40 45) har flera turer dagligen från Stockholm, Nacka Strand, Lidingö, Waxholm och Värmdö."; "Från Stockholm tar resan drygt en timme, från norra Värmdö bara tio minuter."; "Södra Grinda är mest trafikerad och det är lika långt (eller kort) att gå från båda, ca 10 -15 min, till Wärdshuset som ligger mitt på Grinda." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget och Cinderellabåtarna går till Grinda från bland annat Stockholm, Vaxholm och Värmdö. Enligt Grinda tar resan från Stockholm drygt en timme. Från både Södra och Norra Grinda brygga är det 10–15 minuters promenad till värdshuset. Läs mer i <a href="/guider/grinda-guide">guiden till Grinda</a>.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Utö Värdshus, Utö</h4>
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p>Utö Värdshus levererar konsekvent hög kvalitet med fokus på lokala råvaror och säsong. Havsbastupaket + middag är deras signaturupplevelse. Prisläge: 280–450 kr/person.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Utö Värdshus, Utö</h3>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens."; "Här finns boende i hotellstugor och vandrarhem, flera restauranger, livsmedelsaffär, kafé, cykeluthyrning och gästhamn." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus har öppet året runt, med restaurang, hotell och konferens. På Utö finns också flera andra restauranger, kafé, livsmedelsaffär och gästhamn. Se <a href="/guider/uto-komplett-guide">guiden till Utö</a>.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Finnhamns Sjökrog, Finnhamn</h4>
-<p>Intim krog i naturskön miljö. Fokus på fisk och skaldjur från Roslagskusten. Prisläge: 180–320 kr/person.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Lidö Värdshus, Lidö</h3>
+<!-- KÄLLA: https://www.lidovardshus.se/ — "Värdshus, stugor, pensionat och gästhamn."; "Boende & restaurang öppnar åter till midsommar 2027 den 25 juni och Oasen, vår framficka vid gästhamnen 26 juni."; "Vi har nu öppet för grupper, konferenser, fester och bröllop." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Lidö finns värdshus, stugor, pensionat och gästhamn. Boende och restaurang öppnar igen till midsommar, den 25 juni 2027. Under tiden tar värdshuset emot grupper, konferenser, fester och bröllop på förfrågan.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bohuslän – västkustens bästa</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Väderöarnas Värdshus, Väderöarna</h3>
+<!-- KÄLLA: https://www.vaderoarna.com/ — "Längst ut i det bohuslänska havsbandet ligger Väderöarnas Värdshus. Ett värdshus & hotell med 28 hotellrum och 65 bäddar."; "Våra båtar med plats för 12 passagerare vardera avgår från Hamburgsund"; "Hit kan du resa året runt" (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vaderoarna.html — "Väderöarna består av två grupper med totalt 365 öar och skär."; "Storö är välbesökt och har värdshus, kafé och gammal lotsutkik." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Väderöarnas Värdshus ligger på Storö, längst ut i havsbandet i Bohuslän. Väderöarna är naturreservat och består enligt Länsstyrelsen av 365 öar och skär. Värdshuset har 28 hotellrum och tar emot gäster året runt. Värdshusets egna båtar, med plats för 12 passagerare var, går från Hamburgsund.</p>
+<!-- KÄLLA: https://www.vaderoarna.com/restaurang/ — "Därför arbetar vi utan en fast meny"; "Till lunch erbjuder vi vanligtvis två vällagade rätter, en med fisk och en med kött"; "På kvällen serverar vi en noggrant komponerad middag med förrätt och varmrätt, där havets råvaror ofta står i centrum."; "Antalet platser i restaurangen är begränsat och vi rekommenderar därför att du bokar bord i förväg för att säkra din plats." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Restaurangen har ingen fast meny. Till lunch finns vanligtvis en fiskrätt och en kötträtt, och till middag förrätt och varmrätt där havets råvaror ofta står i centrum. Antalet platser är begränsat, och värdshuset rekommenderar att du bokar bord i förväg.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Smögens Fisk & Skaldjursrestaurang, Smögen</h4>
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p>Räksmörgåsen här är nationellt känd och välförtjänt. Räkan fångad samma dag, brödet bakat på morgonen. Kö bildas sommartid men det är värt väntan. Prisläge: 150–280 kr.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sjökrogar i Stockholms skärgård</h2>
 
-<h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Kosterfjordens Fisk & Skaldjur, Sydkoster</h4>
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p>I nationalparken Kosterhavet. Hummer, ostron och räkor serveras direkt från de egna ryssorna. Boka i god tid. Prisläge: 350–600 kr/person.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Fjäderholmarnas Krog, Fjäderholmarna</h3>
+<!-- KÄLLA: https://fjaderholmarnaskrog.se/ — "NU SERVERA JULBORD MELLAN 20/11 -  22/12"; "Vi söker nu  personal för julbordet 2026" (läst 2026-09-28) -->
+<!-- KÄLLA: https://fjaderholmarnaskrog.se/batar-till-och-fran — "Båtarna till och från ön under det att vi serverar vår julbord går endast i samband med de olika sittningar." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarnas Krog serverar julbord mellan 20 november och 22 december 2026. Under julbordsperioden går båtarna till och från ön bara i samband med sittningarna.</p>
+<!-- KÄLLA: https://fjaderholmarnaskrog.se/ — "FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Krogen öppnar för sommarsäsongen igen den 1 maj 2027. Mer om ön finns i <a href="/guider/fjaderholmarna-guide">guiden till Fjäderholmarna</a>.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Grebbestads Fisk, Grebbestad</h4>
-<p>Ostronets och hummerpremiärens hemstad. Bäst i september–april. Direkt vid hamnen med hamnar landad fångst. Prisläge: 200–400 kr/person.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sandhamn Seglarhotell, Sandhamn</h3>
+<!-- KÄLLA: https://sandhamn.com/sv/matdryck — "Toast Skagen, bouillabaisse och rödtunga med smörsås samsas med råbiff och krämig kantarellpasta."; "Havet finns utanför fönstret."; "Under årets övriga månader används Orangeriet för utvalda tillfällen och event, som grillkvällar, vinprovningar, kräftskivor och särskilda middagar."; "Från vinterns skrei till sensommarens kräftor, höstens ostron och julens klassiker." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Restaurangen på Sandhamn Seglarhotell har bland annat toast Skagen, bouillabaisse och rödtunga med smörsås på menyn, och havet utanför fönstret. Matkalendern följer säsongerna, från skrei på vintern till kräftor på sensommaren och ostron på hösten. I Orangeriet ordnas utanför sommaren bland annat kräftskivor och vinprovningar.</p>
+<!-- KÄLLA: https://sandhamn.com/sv/hitta-hit — "Ta buss 433 från Slussen eller kör till Stavsnäs Vinterhamn."; "Kliv ombord – linje 15 mot Sandhamn." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Sandhamn tar du buss 433 från Slussen till Stavsnäs vinterhamn och båten vidare därifrån, eller Cinderellabåten linje 15 från Strandvägskajen.</p>
 
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Tips vid restaurangbesök i skärgården:</strong>
-<ul style="margin:8px 0 0;padding-left:18px;line-height:1.9">
-<li>Boka alltid bord under högsäsong – de flesta krogar är fullbokade veckan i förväg</li>
-<li>Fråga alltid vad som är fångat idag – de bästa krogarna anpassar menyn efter fångsten</li>
-<li>Räkna med att betala kontant eller Swish på de allra minsta ställena</li>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Nåttarö Krog, Nåttarö</h3>
+<!-- KÄLLA: https://nattaro.se/mat_pa_on/nattaro-krog/ — "Krogen hittar du intill ångbåtsbryggan och gästhamnen."; "På menyn finner ni såväl kött som fisk med lokala smaker som dovhjort från ön eller varför inte testa vår trogna följeslagare havets Wallenbergare."; "Bordsbokning sker endast med förbokad fast 3-rätters meny för hela sällskapet. (minst 10p)" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nåttarö Krog ligger intill ångbåtsbryggan och gästhamnen. Menyn har både kött och fisk, bland annat dovhjort från ön och havets Wallenbergare. Bord kan bara bokas för sällskap om minst tio personer som väljer en fast trerättersmeny – andra kommer förbi utan bokning. Se <a href="/guider/nattaro-guide">guiden till Nåttarö</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Restaurang vid havet på västkusten</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Petersons Krog, Käringön</h3>
+<!-- KÄLLA: https://www.petersonskrog.se/ — "ÖPPET HELA SOMMAREN & VARJE HELG APRIL - DECEMBER"; "Vår säsong sträcker sig från påsk till jul varje år, vilket innebär att man kan äta både hummersupé i oktober och julbord från sent november hos oss."; "Är ni ett större sällskap, d.v.s. 12 personer eller fler, som kommer till oss för att äta ber vi er välja från någon av våra två sällskapsmenyer." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Petersons Krog på Käringön har säsong från påsk till jul: öppet hela sommaren och varje helg april–december. På hösten serveras hummersupé och från sent i november julbord. Sällskap på tolv personer eller fler väljer från krogens sällskapsmenyer. Läs mer i <a href="/guider/karingon-guide">guiden till Käringön</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Grebys och Sjöboden Udden, Grebbestad</h3>
+<!-- KÄLLA: https://grebys.se/ — "Här serverar vi färsk fisk och skaldjur från lokala vatten och erbjuder även bekväma hotellrum"; "Restaurangen har en avslappnad atmosfär och utsikt över hamnen." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebys i Grebbestad serverar fisk och skaldjur från lokala vatten och har utsikt över hamnen. Grebys har också hotellrum.</p>
+<!-- KÄLLA: https://tanumstrand.se/restaurant/sjoboden-udden/ — "Längst ut på bryggan året om hittar du Sjöboden Udden."; "Lördagar kokas det levande kräfta på beställning och från och med Ostronets dag varje år så serveras färska ostron som är plockade rätt utanför i havet."; "INGEN BORDSBOKNING – DROP IN." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sjöboden Udden på TanumStrand ligger längst ut på bryggan och har öppet året om. På lördagar kokas havskräftor på beställning, och från Ostronets dag i september serveras ostron plockade utanför. Det går inte att boka bord – det är drop-in. Mer om kräftorna i Grebbestad finns i guiden <a href="/guider/grebbestad-kraftskiva-2026">Kräftskiva 2026 i Grebbestad</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Smögens Hafvsbad, Smögen</h3>
+<!-- KÄLLA: https://smogenshafvsbad.se/ — "Smögens Hafvsbad vuxit till att bli en modern anläggning med 76 hotellrum, en stor restaurang, spa och konferens öppet hela året."; "Smögens Hafvsbad ligger välplacerad bland klippiga Smögen med gångavstånd till smögenbryggan och Smögens båthamn." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögens Hafvsbad har en stor restaurang, hotell och spa med öppet hela året, och ligger på gångavstånd från Smögenbryggan och båthamnen. Se <a href="/guider/smogen-guide">guiden till Smögen</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka krogar är öppna på hösten och vintern?</h2>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.vaderoarna.com/ — "Våra båtar avgår från Hamburgsund året runt." (läst 2026-09-28) -->
+<!-- KÄLLA: https://smogenshafvsbad.se/ — "en stor restaurang, spa och konferens öppet hela året" (läst 2026-09-28) -->
+<!-- KÄLLA: https://tanumstrand.se/restaurant/sjoboden-udden/ — "Öppet året runt men öppettiderna kan variera beroende på säsong och helgdagar." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Året runt:</strong> Utö Värdshus, Väderöarnas Värdshus, Smögens Hafvsbad och Sjöboden Udden. Öppettiderna varierar med säsong och helgdagar.</li>
 </ul>
-</div>
+<!-- KÄLLA: https://www.sandhamns-vardshus.se/ — "Annan tid på året är restaurangen främst öppen helger." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.petersonskrog.se/ — "Vår säsong sträcker sig från påsk till jul varje år" (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Främst helger utanför sommaren:</strong> restaurangen på Sandhamns Värdshus.</li>
+<li><strong>Påsk till jul:</strong> Petersons Krog på Käringön.</li>
+</ul>
+<!-- KÄLLA: https://fjaderholmarnaskrog.se/ — "FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.lidovardshus.se/ — "Boende & restaurang öppnar åter till midsommar 2027 den 25 juni" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stängt för säsongen:</strong> Lidö Värdshus och Fjäderholmarnas Krog (utom julbordet) öppnar igen 2027.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips inför besöket</h2>
+<!-- KÄLLA: https://www.vaderoarna.com/restaurang/ — "vi rekommenderar därför att du bokar bord i förväg för att säkra din plats" (läst 2026-09-28) -->
+<!-- KÄLLA: https://tanumstrand.se/restaurant/sjoboden-udden/ — "Vi förbehåller oss också att kräftor och ostron kan under serveringstid ta slut vid stor åtgång." (läst 2026-09-28) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Reglerna för bordsbokning skiljer sig åt. Väderöarna rekommenderar att du bokar i förväg, Sjöboden Udden tar bara drop-in och Nåttarö Krog bokar bara större sällskap.</li>
+<li>Färska skaldjur kan ta slut. Sjöboden Udden skriver att kräftor och ostron kan ta slut under serveringen.</li>
+<li>Kolla båten hem. Waxholmsbolaget byter tidtabell fyra gånger om året och vissa linjer går bara under delar av en period.</li>
+</ul>
 `,
 
     'hummersafari-bohuslan': `
@@ -1225,37 +1347,90 @@ export function getGuideContent(slug: string): string {
 `,
 
     'smogen-guide': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Smögen – guide till klippornas stad</h2>
-<p>Smögen är Bohusläns kanske mest fotograferade destination. Smögenbryggan, de färgglada fiskarstugorna, räksmörgåsen och klipporna – allt är äkta och allt är värt resan.</p>
+<!-- OMSKRIVEN 2026-09-27 (med SEO-pass). Borttaget utan källa eller fel: bryggans längd i FAQ ("600 meter") och "landets folkrikaste träbrygga", "en av Sveriges mest fotograferade platser", restider för buss och bil och "ca 15 mil", "tåg till Munkedal, sedan buss direkt till Smögen" utan linje, "expressbuss direkt", pris på räksmörgås (ingen prislista), "Smögens Fisk & Skaldjursrestaurang", "Brygghuset", "Smögens Bageri", "Hällene badplats", "Kungshamn badklippa", "stugor i Hunnebostrand", "köp räkor direkt från fiskebåtarna – billigast", påståenden om havstemperatur och köer i september, samt värdeord som äkta, världsberömd, fantastisk, klassisk och måste. -->
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "Varje år besöks Smögenbryggan i Sotenäs kommun av tusentals besökare från hela världen."; "När du kör över Smögenbron från centralorten Kungshamn kommer du först till samhällets norra del, Hasselön." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Smögen ligger i Sotenäs kommun i mellersta Bohuslän. Du kommer dit över Smögenbron från Kungshamn, kommunens centralort. Här får du svar på hur lång Smögenbryggan är, om Smögen är en stad, hur bussen går och vad det finns att göra i Smögen.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Smögenbryggan</h3>
-<p>Bryggan är 800 meter lång och löper längs hela Smögens hamnfront. På sommaren är den landets folkrikaste träbrygga. Längs bryggan hittar du fiskbutiker, caféer, restauranger och båtar fyllda med dagens fångst. Köp räkor direkt från fiskebåtarna – billigast och färskast.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur lång är Smögenbryggan?</h2>
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "På den nästan 800 meter långa bryggan ligger sjöbodarna tätt och inhyser både butiker, caféer och restauranger." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ — "Idag är Smögens hamn en välbesökt gästhamn som med sin 1 km långa" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögenbryggan är nästan 800 meter lång enligt Västsverige, den regionala turistorganisationen. På en annan av deras sidor avrundas längden till 1 km. Räkna alltså med en bra bit under en kilometer från början till slut. Längs bryggan ligger sjöbodarna tätt, med butiker, caféer och restauranger.</p>
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ — "Smögenbryggan är sommartid ett av Sveriges mest besökta turistmål."; "Smögens hamn är en väl skyddad hamn och användes av fiskare redan under mitten av 1500-talet."; "I hamnområdet finns även hembygdsmuseum och flera boendeanläggningar." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögens hamn är väl skyddad och användes av fiskare redan i mitten av 1500-talet. I dag är bryggan sommartid ett av Sveriges mest besökta turistmål. I hamnområdet finns också ett hembygdsmuseum och flera boenden.</p>
+<!-- KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/smogens-gasthamn — "Gästhamnen ligger vid den berömda Smögenbryggan och drivs av Sotenäs kommun."; "Hamnservice: WC, färskvatten, el, wifi, tvättmaskin/torktumlare, sopor och dusch."; "Hamnkontoret är beläget i början på bryggan/Ringareskäret" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gästhamnen vid Smögenbryggan drivs av Sotenäs kommun. Där finns WC, färskvatten, el, wifi, tvättmaskin och torktumlare, sopor och dusch. Hamnkontoret ligger i början av bryggan vid Ringareskäret.</p>
+<!-- KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/smabatshamnar/smogens-bathamn — "Det finns två småbåtshamnar på Smögen och cirka 460 platser." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utöver gästhamnen finns två småbåtshamnar på Smögen med sammanlagt cirka 460 platser.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du tar dig dit</h3>
-<p><strong>Med bil:</strong> E6 norr från Göteborg, avfart mot Kungshamn, sedan skyltning mot Smögen. Ca 1 h 30 min. Parkering finns längs vägen till Smögen – kom tidigt sommartid.</p>
-<p><strong>Med kollektivtrafik:</strong> Tåg från Göteborg till Munkedal, sedan buss till Smögen. Totalt ca 2 h. Alternativt expressbuss direkt.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Är Smögen en stad?</h2>
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/artiklar/mer-om-sotenas/ — "Här ligger orterna Smögen, Kungshamn, Hunnebostrand, Bovallstrand, Malmön, Väjern och Hovenäset."; "Orterna i kommunen växte fram under den första sillperioden under 1500-talet" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "första gången Smögen nämns i skrift är 1594"; "Uppkomsten till ortsnamnet tros vara"; "som den lilla kanalen mellan Smögenön och ön Kleven kallades."; "När du kör över Smögenbron från centralorten Kungshamn" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nej, Smögen är ingen egen stad eller kommun. Det är ett av flera samhällen i Sotenäs kommun, tillsammans med Kungshamn, Hunnebostrand, Bovallstrand, Malmön, Väjern och Hovenäset. Kommunens centralort är Kungshamn. Orterna växte fram under den första sillperioden på 1500-talet, och Smögen nämns i skrift första gången 1594. Namnet tros komma från "Smyghålet", den lilla kanalen mellan Smögenön och ön Kleven.</p>
+<!-- KÄLLA: https://www.sotenas.se/kommunpolitik/kommunfakta/vanligafragorundersommaren.4.f8e9d9b1639b7a2e6f3b71c.html — "Enligt allemansrätten har du möjlighet att tälta ett dygn i områden som inte är tätort eller naturreservat/naturvårdsområden."; "Man får alltså inte övernatta, campa eller tälta utomhus på exempelvis Smögen eller Ramsvik." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sotenäs kommun påpekar att allemansrättens tältning inte gäller i tätort eller naturreservat, och att du därför inte får övernatta, campa eller tälta utomhus på till exempel Smögen.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Räksmörgåsen – vad, var och hur</h3>
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p>Smögens räksmörgås är världsberömd och det är inte en överdrift. Köp räkorna färska på bryggan, brödet i bageriet och sätt ihop din egen – det är det billigaste alternativet. Eller beställ en färdig räksmörgås hos Smögens Fisk (ca 165–225 kr) med lokala räkor, majonnäs och dill.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Klipporna och badplatserna</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Klipporna söder om Smögen:</strong> Natursköna klippformationer, fantastiska för solbad och bad</li>
-<li><strong>Hällene badplats:</strong> Sandstrand på fastlandet, barnvänlig</li>
-<li><strong>Kungshamn badklippa:</strong> 10 min promenad från Smögen, ofta mindre folk</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Smögen karta – så hittar du</h2>
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "När du kör över Smögenbron från centralorten Kungshamn kommer du först till samhällets norra del, Hasselön. Här finns bostadsområden, fiskebodar och fina naturområden."; "Fortsätt fem minuter och du är framme vid Smögenbryggan" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sotenas.se/kommunpolitik/kommunfakta/vanligafragorundersommaren.4.f8e9d9b1639b7a2e6f3b71c.html — "Smögen – Sandö, Vallevik och herr- och dambadet vid Makrillviken"; "Smögen Rum & Stuga, vid ICA-parkeringen på Smögen" (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Smögenbron</strong> förbinder Kungshamn med Smögen.</li>
+<li><strong>Hasselön</strong> är Smögens norra del, det första du kommer till efter bron, med bostäder och fiskebodar.</li>
+<li><strong>Smögenbryggan</strong> ligger ungefär fem minuter längre fram, runt Smögens hamn.</li>
+<li><strong>Kleven</strong> är ön som skiljs från Smögenön av den lilla kanalen Smyghålet.</li>
+<li><strong>Badplatser</strong> som kommunen listar på Smögen är Sandö, Vallevik och herr- och dambadet vid Makrillviken.</li>
+<li><strong>Turistinformation:</strong> sommartid finns en infopoint hos Smögen Rum &amp; Stuga vid ICA-parkeringen.</li>
 </ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Du hittar Smögen på kartan på <a href="/o/smogen">Svallas sida om Smögen</a>, och grannorten på <a href="/o/kungshamn">sidan om Kungshamn</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat och dryck</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Smögens Fisk & Skaldjursrestaurang:</strong> Bästa sjömat vid bryggan</li>
-<li><strong>Smögens Hafvsbad:</strong> Hotellets restaurang med havsfrukter och fin vinlista</li>
-<li><strong>Brygghuset:</strong> Avslappnat krog med goda hamburgare och fisketips</li>
-<li><strong>Smögens Bageri:</strong> Bröd, bullar och kaffe – kö på morgonen är ett gott tecken</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Buss till Smögen – Västtrafik linje 860</h2>
+<!-- KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014486000000/ — "Tidtabell linje 860 Smögen - Kungshamn - Uddevalla - Trollhättan"; "2025-12-14 till 2026-12-12" (läst 2026-09-27) -->
+<!-- KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf — "Smögen busstation"; "Norra hamnen"; "Hasselön"; "Kungshamns busstation"; "Nordens ark"; "Munkedal station"; "Uddevalla central"; "Trollhättan resecentrum"; "Linjen trafikeras av Vy Buss." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Västtrafiks buss 860 går Smögen–Kungshamn–Uddevalla–Trollhättan. Tidtabellen gäller 14 december 2025–12 december 2026. På Smögen stannar bussen vid Smögen busstation, Norra hamnen och Hasselön. Sedan går den via Kungshamns busstation och hållplatsen Nordens ark till bland annat Munkedal station, Uddevalla central och Trollhättan resecentrum. Linjen körs av Vy Buss.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Linje 860 går alltså inte till Göteborg. Kommer du därifrån byter du till buss 860 någonstans längs linjen. Sök hela resan i Västtrafiks reseplanerare, så får du rätt byte för din avgång.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Med bil och parkering på Smögen</h3>
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "Från Göteborg tar det strax under två timmar att ta sig med bil till Smögen." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sotenas.se/kommunpolitik/kommunfakta/vanligafragorundersommaren.4.f8e9d9b1639b7a2e6f3b71c.html — "I Sotenäs kommun gäller p-skiva under första timmen då man kan parkera gratis."; "Vi har parkeringsvakter hela året i Sotenäs." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Med bil tar det strax under två timmar från Göteborg. I Sotenäs kommun parkerar du gratis första timmen med p-skiva, och kommunen har parkeringsvakter hela året.</p>
+<!-- KÄLLA: https://www.sotenas.se/kommunpolitik/kommunfakta/vanligafragorundersommaren.4.f8e9d9b1639b7a2e6f3b71c.html — "Du kan parkera din husbil på samtliga campingplatser i kommunen. Det är också tillåtet att parkera husbilen på:"; "Smögenbron vid brofästet mot Kungshamn"; "Flundrebosand på Klevenvägen på Smögen (kl. 06-24)"; "Mellan 15 juni och 15 augusti är det endast tillåtet att campa på våra campingplatser." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Husbilen kan du parkera på kommunens campingplatser. Kommunen tillåter också husbilsparkering vid Smögenbrons brofäste mot Kungshamn och vid Flundrebosand på Klevenvägen på Smögen (kl. 06–24). Mellan 15 juni och 15 augusti får du bara campa på campingplatserna. Mer i guiden om <a href="/guider/skargard-med-husbil">skärgård med husbil</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Att göra i Smögen</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Båt till Hållö</h3>
+<!-- KÄLLA: https://hallofarjan.se/ — "Hållöfärjan kör varje dag under sommarperioden med 15 turer dagligen från Smögenbryggan. Restiden till Hållö är cirka 10 minuter."; "Daglig trafik: 20 juni-30 augusti 2026 med 15 turer dagligen."; "Lördagstrafik gäller under maj, juni och september utanför den dagliga sommarperioden."; "Vi kör även extra turer till Hållö på beställning under hela året." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hållöfärjan går från Smögenbryggan till Hållö. Resan tar cirka 10 minuter. Sommaren 2026 gick färjan varje dag 20 juni–30 augusti med 15 turer om dagen, och i maj, juni och september finns lördagstrafik utanför den perioden. Extra turer kan beställas hela året.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Släta klippavsatser lockar ner dig i det klara, blåa vattnet vid Marmorbassängen på Hållös västsida."; "Det finns ett fyrtiotal jättegrytor på Hållö i olika storlekar."; "Med en vit blixt var tolfte sekund gör sig Bohusläns äldsta fyr påmind. Här har den stått sedan 1842 på Hållös högsta punkt."; "radiopejlingsstationen fungerar idag som vandrarhem" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hållö ingår i naturreservatet Hållöarkipelagen. På västsidan finns Marmorbassängen, där släta klippavsatser går ner i vattnet. På ön finns ett fyrtiotal jättegrytor, och på högsta punkten står sedan 1842 Bohusläns äldsta fyr. Den gamla radiopejlingsstationen är i dag vandrarhem.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "tälta eller ställa upp husvagn"; "göra upp eld annat än på av förvaltaren anvisade platser"; "plocka blommor och gräva upp växter"; "Naturvårdsförvaltare: Västkuststiftelsen" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I reservatet är det förbjudet att tälta eller ställa upp husvagn, att elda annat än på anvisade platser och att plocka blommor eller gräva upp växter. Reservatet förvaltas av Västkuststiftelsen.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Båtturer, sälsafari och fiske</h3>
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "Från Smögenbryggan utgår också flera båtturer till närliggande Hållö och Kungshamn samt kryssningar genom den vackra Sotekanalen. Du kan också åka på sälsafari eller följa med en lokal fiskare ut på djuphavsfiske." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från Smögenbryggan går också båtturer till Kungshamn och kryssningar genom Sotekanalen, och det finns sälsafari och djuphavsfiske med lokala fiskare.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Räkmacka och fiskaffärer</h3>
+<!-- KÄLLA: https://www.skaretskrog.se/ — "I början av Smögenbryggan, i samma lokaler där räkmackan såg dagens ljus 1931, lagas och bakas fortfarande allt från grunden." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.gostasfisk.se/ — "Alla Göstas verksamheter ligger precis i början av Smögenbryggan"; "Göstas Fiskekrog, Göstas Fiskbutik och restaurang CJA" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "Är du morgonpigg kan du vara med när fiskebåtarna landar sina fångster som du senare kan köpa i någon av fiskaffärerna på Smögen." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Skärets Krog</strong> ligger i början av Smögenbryggan, i de lokaler där räkmackan enligt krogen serverades första gången 1931.</li>
+<li><strong>Göstas</strong> driver Göstas Fiskekrog, Göstas Fiskbutik och restaurang CJA, alla i början av Smögenbryggan.</li>
+<li>Är du uppe tidigt kan du se fiskebåtarna landa fångsten, som sedan säljs i fiskaffärerna på Smögen.</li>
 </ul>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende</h3>
-<p>Smögens Hafvsbad är det klassiska valet – hotell med havspool och utsikt. För ett billigare alternativ: campingplatser runt Kungshamn, stugor i Hunnebostrand (10 min med bil).</p>
+<!-- KÄLLA: https://smogenshafvsbad.se/ — "en modern anläggning med 76 hotellrum, en stor restaurang, spa och konferens öppet hela året"; "med gångavstånd till smögenbryggan och Smögens båthamn" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hotell Smögens Hafvsbad har 76 rum, restaurang, spa och konferens och har öppet hela året, på gångavstånd från Smögenbryggan. Fler krogar längs kusten finns i guiden om <a href="/guider/sjomatkrogar-guide">sjömatkrogar</a>.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Vandra Soteleden</h3>
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "Leden tar dig utmed västkusten genom Smögen, Kungshamn, Bohus-Malmön, Ramsvik, Hunnebostrand och Bovallstrand. Det är enkelt att dela upp vandringen i olika etapper." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/artiklar/mer-om-sotenas/ — "Vandrar man Soteleden, den ca 7 mil långa vandringsleden i kommunen" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sotenas.se/kommunpolitik/kommunfakta/vanligafragorundersommaren.4.f8e9d9b1639b7a2e6f3b71c.html — "eller på kommunens Servicecenter, hamnkontoren i Kungshamn, Hunnebostrand och på Smögen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Soteleden är ungefär 7 mil lång och går genom Smögen, Kungshamn, Bohus-Malmön, Ramsvik, Hunnebostrand och Bovallstrand. Den går lätt att dela upp i etapper. Kartor över leden finns hos kommunens servicecenter och hamnkontoren i Kungshamn, Hunnebostrand och på Smögen.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Nordens Ark</h3>
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "Tjugo minuter öster om Smögen ligger Nordens Ark" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.nordensark.se/ — "Nordens Arks syfte är att bevara utrotningshotade djur och biologisk mångfald."; "Åby säteri, 456 93 Hunnebostrand" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nordens Ark ligger tjugo minuter öster om Smögen, vid Åby säteri utanför Hunnebostrand. Parken arbetar med att bevara utrotningshotade djur och biologisk mångfald. Buss 860 har en hållplats som heter Nordens ark.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Bad och hund</h3>
+<!-- KÄLLA: https://www.sotenas.se/kommunpolitik/kommunfakta/vanligafragorundersommaren.4.f8e9d9b1639b7a2e6f3b71c.html — "Hundar får gärna bada men inte på våra offentliga badplatser under sommaren"; "Smögen – Sandö, Vallevik och herr- och dambadet vid Makrillviken" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De offentliga badplatserna på Smögen är Sandö, Vallevik och herr- och dambadet vid Makrillviken. Hundar får inte bada på de offentliga badplatserna under sommaren. Fler bad finns i guiden om <a href="/guider/basta-badplatser-bohuslan">badplatser i Bohuslän</a>.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">När på året?</h3>
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "Vill du uppleva Smögen utan att behöva trängas med tusentals sommarturister?"; "Kom hit under våren eller tidig höst då det fortfarande är ljummet i vinden. Flera av krogarna har öppet året om, och vissa andra slår upp dörrarna i april." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Västsverige tipsar om våren eller tidig höst för den som vill undvika sommarens trängsel. Flera krogar har öppet året om, och andra öppnar i april. Jämför gärna med <a href="/guider/marstrand-vs-smogen">Marstrand och Smögen</a> eller läs vår <a href="/guider/bohuslan-skargard-guide">guide till Bohusläns skärgård</a>.</p>
 `,
 
     'naturhamnar-guide': `
@@ -1400,75 +1575,176 @@ export function getGuideContent(slug: string): string {
 `,
 
     'bohuslan-skargard-guide': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Bohuslän – guide till västkustens skärgård</h2>
-<p>Bohuslän är ett av Nordeuropas vackraste kustlandskap. Röda granitklippor, spegelblanka sund, skaldjursrika fjordar och pittoreska fiskbyar – allt längs 160 mil av kust.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "ett av Nordeuropas vackraste kustlandskap", kustlängd i mil, restid för tåget till Strömstad och vilka stationer det stannar vid, "omkring 6 000 marina arter", "Astrid Lindgrens Bullerbykust" (fel), felstavat författarnamn och "charmigaste gränder", "Europas ostronhuvudstad", ostronsäsong i månader, räkor "direkt vid bryggan", brunfärgad krabba med majonnäs, hummerpremiärens datum skrivet för hand, råd om att undvika midsommarhelgen, samt värdeord. -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/om-oss/om-lansstyrelsen-vastra-gotaland.html — "Naturen i länet bjuder på en unik skärgård i Bohuslän, djupa skogar i Dalsland och slättområden rika på historiska minnesmärken i Västergötland." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/bohuslan/ — "Här hittar du destinationer att besöka i Bohuslän. Från Göteborgs skärgård i söder till Strömstad i norr." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohuslän är landskapet längs västkusten norr om Göteborg. Länsstyrelsen i Västra Götaland lyfter fram skärgården i Bohuslän som en del av länets natur, och Turistrådet Västsverige räknar Bohusläns resmål från Göteborgs skärgård i söder till Strömstad i norr. Här går vi igenom skärgården, Kustvägen, norra Bohuslän och hur du tar dig runt.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du tar dig dit</h3>
-<p><strong>Från Göteborg med bil:</strong> E6 norrut är ryggraden. Avfarter mot de flesta öar och kustbyar finns med korta omvägar.</p>
-<p><strong>Kollektivtrafik:</strong> Västtrafik täcker kuststräckan med bussar och båtar. Tåg från Göteborg till Strömstad tar ca 1,5 h och stannar vid Stenungsund, Uddevalla och Munkedal – alla med anslutning till skärgården.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Finns det en region Bohuslän?</h2>
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/om-oss/om-lansstyrelsen-vastra-gotaland.html — "Länsstyrelsen i Västra Götaland kom till 1998, när de tre länsstyrelserna i Göteborgs och Bohus län, Skaraborgs län och Älvsborgs län slogs samman. Då bildades storlänet Västra Götalands län." (läst 2026-09-27) -->
+<!-- KÄLLA: https://ext-geodatakatalog-forv.lansstyrelsen.se/PlaneringsKatalogen/GetMetaDataById?id=922a99d3-802c-4acc-b32c-cb0ae5e79861_C — "Gränser för landskapen Bohuslän, Dalsland och Västergötland." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nej. Bohuslän är ett landskap, inte en region eller ett län. Länsstyrelsen redovisar Bohuslän, Dalsland och Västergötland som landskap inom Västra Götalands län. Fram till 1998 hörde Bohuslän till Göteborgs och Bohus län. Det året slogs det ihop med Skaraborgs län och Älvsborgs län till Västra Götalands län, enligt Länsstyrelsen.</p>
+<!-- KÄLLA: https://www.vgregion.se/om-vgr/ — "Västra Götalandsregionen ansvarar för hälso- och sjukvård, kultur, kollektivtrafik och regional utveckling i Västra Götaland." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.orust.se/trafik-och-gator/bil-buss-bat-och-tag — "Kollektivtrafiken körs av Västtrafik." (läst 2026-09-26) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/om-oss/om-lansstyrelsen-vastra-gotaland.html — "Sverige består av 21 län och i varje län finns en länsstyrelse."; "Länsstyrelsen ska ha ett statligt helhetsperspektiv i sitt arbete" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den region som gäller i Bohuslän är Västra Götalandsregionen. Den ansvarar för hälso- och sjukvård, kultur, kollektivtrafik och regional utveckling i hela Västra Götaland. Kollektivtrafiken körs av Västtrafik, till exempel på Orust. Den statliga myndigheten i länet är Länsstyrelsen Västra Götaland.</p>
+<!-- KÄLLA: https://www.uddevalla.se/uppleva-och-gora/sevardheter/bohuslans-museum.html — "Här kan du se fasta utställningar om Bohusläns historia, samt tidsbegränsade utställningar och samtida konst."; "Fri entré." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du veta mer om landskapets historia finns Bohusläns museum i Uddevalla, med fasta utställningar om Bohusläns historia och fri entré.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Destinationer norr till söder</h3>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kustvägen i Bohuslän</h2>
+<!-- KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc2757/1732533960034/V%C3%A4gvisning%20till%20bes%C3%B6ksm%C3%A5l%20med%20h%C3%B6ga%20natur-%20och%20kulturv%C3%A4rden.pdf — "I norra Bohuslän finns redan en vägsträcka markerad som turistväg. Den berör delar av länsvägar 171,174 och 163 samt några mindre sammanbindande allmänna vägar." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc2757/1732533960034/V%C3%A4gvisning%20till%20bes%C3%B6ksm%C3%A5l%20med%20h%C3%B6ga%20natur-%20och%20kulturv%C3%A4rden.pdf — "Skyltningen är fullständig med anvisningsskyltar från E6 med flera platser samt märket turistväg (prästkragar) utmed vägen."; "Namnförslag: Kustvägen Bohuslän." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc2757/1732533960034/V%C3%A4gvisning%20till%20bes%C3%B6ksm%C3%A5l%20med%20h%C3%B6ga%20natur-%20och%20kulturv%C3%A4rden.pdf — "Rapportnr: 2011:66"; "Idag går den norr om Lysekil och är länets enda turistväg." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kustvägen Bohuslän är namnet på den skyltade turistvägen i norra Bohuslän. Enligt en rapport från Länsstyrelsen i Västra Götaland (2011:66) går den norr om Lysekil och följer delar av länsvägarna 171, 174 och 163 och några mindre vägar som binder ihop dem. Du hittar den via anvisningsskyltar från E6, och längs vägen står märket för turistväg: en skylt med prästkragar. Rapporten föreslog namnet Kustvägen Bohuslän.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc2757/1732533960034/V%C3%A4gvisning%20till%20bes%C3%B6ksm%C3%A5l%20med%20h%C3%B6ga%20natur-%20och%20kulturv%C3%A4rden.pdf — "Vårt förslag är att skylta väg 160 från Tjörnbroarna till Roteviksbro"; "Trafikverket har rastplatser vid Skåpesundsbron och vid utsiktspunkten norr om Henån" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I södra Bohuslän fanns ingen skyltad turistväg när rapporten skrevs. Länsstyrelsen föreslog att förlänga Kustvägen söderut, bland annat längs väg 160 från Tjörnbroarna. Längs den sträckan har Trafikverket rastplatser vid Skåpesundsbron och vid en utsiktspunkt norr om Henån på Orust.</p>
 
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Kosteröarna och Strömstad (längst norrut)</h4>
-<!-- KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark bildad 2009, Sveriges första marina; kosterhavet.se: ca 6 000 arter, ~300 bara här i Sverige, ett av Sveriges två kända levande korallrev; Kosteröarna är naturreservat (läst 2026-09-14) -->
-<p>Bilfria Kosteröarna i Kosterhavets nationalpark – med omkring 6 000 marina arter. Snorkling, paddling och vandring. Strömstad är basstaden med färjeförbindelser till Koster och Norge.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Bilresa längs kusten från Marstrand till Strömstad</h3>
+<!-- KÄLLA: https://www.vastsverige.com/bohuslan/campingibohuslan/roadtrip-genom-bohuslan/ — "Nedan följer ett förslag på en resa med 12 stopp"; "En timmes bilfärd från Göteborg ligger Marstrand."; "Fortsätt turen norrut, passera den majestätiska Tjörnbron"; "Rutten tar dig sen via färjan i Svanesund åter till fastlandet och fjordarna innanför Orust."; "innan man tar färjan över till Lysekil"; "Från Grebbestad styr ni norrut och når snart Strömstad." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Turistrådet Västsverige har ett förslag på en bilresa genom Bohuslän med tolv stopp. Resan börjar i Marstrand, en timmes bilfärd från Göteborg. Den fortsätter över Tjörnbron till Tjörn, med färjan i Svanesund tillbaka till fastlandet vid fjordarna innanför Orust, med färja över till Lysekil och vidare mot Smögen, Fjällbacka, Grebbestad och Strömstad. Resan passar ihop med <a href="/guider/camping-bohuslan">camping i Bohuslän</a>.</p>
 
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Grebbestad och Fjällbacka</h4>
-<p>Hummerpremiärens hemstad och Astrid Lindgrens Bullerbykust. Fjällbacka är känt från Camilla Läckmans deckare och har Bohusläns charmigaste gränder.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bohusläns skärgård från söder till norr</h2>
 
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Smögen och Kungshamn</h4>
-<p>Smögenbryggan och räksmörgåsen – se separat Smögen-guide för detaljer.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Marstrand</h3>
+<!-- KÄLLA: https://www.vastsverige.com/kungalv/marstrand/ — "Längst ut i väster i Kungälvs kommun, där skärgården tar slut och havet tar vid, ligger Marstrand." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Marstrandsön är en bilfri ö" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand — "Carlstens fästning ligger på ön Marstrand i Bohuslän, som blev svenskt genom freden i Roskilde 1658." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><a href="/o/marstrand">Marstrand</a> ligger längst västerut i Kungälvs kommun. Marstrandsön är bilfri. Där ligger Carlstens fästning, och Statens fastighetsverk påminner om att Marstrand blev svenskt genom freden i Roskilde 1658. Läs mer i <a href="/guider/marstrand-guide">Marstrandsguiden</a>.</p>
 
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Orust och Tjörn</h4>
-<p>Bohusläns två största öar nåbara med bil via broar. Orust har Mollösunds fiskeby, Tjörn har Nordiska Akvarellmuseet och Skärhamn.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Tjörn och Orust</h3>
+<!-- KÄLLA: https://www.vastsverige.com/bohuslan/campingibohuslan/roadtrip-genom-bohuslan/ — "När ni är i Skärhamn passa på att göra ett besök på Nordiska akvarellmuseet där ni kan uppleva internationell akvarellkonst." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/orust/ — "Orust är Bohusläns största ö"; "De bilfria öarna Käringön och Gullholmen nås enkelt med färja från Tuvesvik" (läst 2026-09-26) -->
+<!-- KÄLLA: https://www.vastsverige.com/orust/produkter/mollosund/ — "Sillfisket började i Mollösund redan på 1500-talet och under ett drygt sekel växte samhället till Bohusläns största fiskeläge." (läst 2026-09-26) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På <a href="/o/tjorn">Tjörn</a> ligger Nordiska akvarellmuseet i Skärhamn. <a href="/o/orust">Orust</a> är Bohusläns största ö. Mollösund på Orust växte under sillfisket till Bohusläns största fiskeläge. Från Tuvesvik går färjan till de bilfria öarna <a href="/o/karingon">Käringön</a> och <a href="/o/gullholmen">Gullholmen</a>. Se <a href="/guider/tjorn-guide">Tjörnguiden</a>, <a href="/guider/orust-guide">Orustguiden</a> och <a href="/guider/fiskelage-bohuslan">fiskelägen i Bohuslän</a>.</p>
 
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Marstrand (närmast Göteborg)</h4>
-<p>Fästningsön – se separat Marstrand-guide.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Lysekil och Gullmarsfjorden</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/gullmarn.html — "Gullmarsfjorden är med 25 kilometer längd och 1-3 kilometer bredd den största av Bohusläns fjordar och är en äkta tröskelfjord." (läst 2026-09-26) -->
+<!-- KÄLLA: https://www.havetshus.se/besok-oss/hitta-hit/ — "Havets Hus ligger i centrala Lysekil, precis på kajkanten" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gullmarsfjorden vid <a href="/o/lysekil">Lysekil</a> är enligt Länsstyrelsen Bohusläns största fjord, 25 kilometer lång. I centrala Lysekil ligger Havets Hus på kajkanten. Mer finns i <a href="/guider/lysekil-guide">Lysekilsguiden</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat som definierar Bohuslän</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Räkor – fångade lokalt, serverade kylda direkt vid bryggan</li>
-<li>Ostron – Bohuslänet är Europas ostronhuvudstad, bäst september–april</li>
-<li>Hummer – premiären i september, se hummersafari-guiden</li>
-<li>Krabba – brunfärgad, kokt och serverad med majonnäs och bröd</li>
-<li>Musslor – blåmusslor odlas längs hela kusten</li>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Smögen och Kungshamn</h3>
+<!-- KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogen/ — "När du kör över Smögenbron från centralorten Kungshamn kommer du först till samhällets norra del, Hasselön."; "På den nästan 800 meter långa bryggan ligger sjöbodarna tätt och inhyser både butiker, caféer och restauranger." (läst 2026-09-26) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till <a href="/o/smogen">Smögen</a> kör du över Smögenbron från Kungshamn. Smögenbryggan är nästan 800 meter lång, och i sjöbodarna finns butiker, kaféer och restauranger. Läs <a href="/guider/smogen-guide">Smögenguiden</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Norra Bohuslän: Fjällbacka, Grebbestad, Strömstad och Koster</h2>
+<!-- KÄLLA: https://www.vastsverige.com/bohuslan/campingibohuslan/roadtrip-genom-bohuslan/ — "På vägen till Grebbestad passerar ni Fjällbacka där ni kan göra ett besök till Kungsklyftan där Ronja Rövardotter spelades in."; "Väderöarna är en av Sveriges västligaste ögrupper, strax utanför Fjällbacka i Bohusläns skärgård." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/tanum/produkter/fjallbacka2/ — "Det var tack vare den stora sillperioden på 1750-talet som byggandet av kustsamhället Fjällbacka tog fart" (läst 2026-09-26) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><a href="/o/fjallbacka">Fjällbacka</a> växte under sillperioden på 1750-talet. I Kungsklyftan spelades filmen Ronja Rövardotter in. Strax utanför Fjällbacka ligger Väderöarna, en av Sveriges västligaste ögrupper. Se <a href="/guider/fjallbacka-guide">Fjällbackaguiden</a>.</p>
+<!-- KÄLLA: https://www.vastsverige.com/tanum/se--gora/grebbestad/ — "Grebbestad är en populär sommarort i norra Bohuslän och centret för Sveriges produktion av vilda ostron."; "Grebbestad är en tätort i Tanums kommun, mittemellan Göteborg och Oslo." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><a href="/o/grebbestad">Grebbestad</a> i Tanums kommun ligger i norra Bohuslän, mitt emellan Göteborg och Oslo. Turistrådet Västsverige kallar orten centrum för Sveriges produktion av vilda ostron. Läs <a href="/guider/grebbestad-guide">Grebbestadsguiden</a>.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/kosterhavets-nationalpark.html — "Kosterhavet är Sveriges första marina nationalpark."; "Kosterhavets nationalpark ligger i Strömstads och Tanums kommuner och omfattar nästan 400 kvadratkilometer. Större delen av nationalparken utgörs av hav, bara ett par procent är landområden."; "Året runt avgår Kosterbåtarna från Strömstad. Resan tar ungefär 45 minuter." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Längst norrut ligger <a href="/guider/stromstad-guide">Strömstad</a> och Kosterhavets nationalpark, Sveriges första marina nationalpark. Den ligger i Strömstads och Tanums kommuner och är nästan 400 kvadratkilometer stor, men bara ett par procent är land. Kosterbåtarna går från Strömstad året runt, och resan tar ungefär 45 minuter. Mer finns i <a href="/guider/kosterarna-guide">Kosteröarna-guiden</a> och <a href="/guider/snorkling-kosterhavet">snorkling i Kosterhavet</a>.</p>
+<!-- KÄLLA: https://www.vastsverige.com/bohuslan/campingibohuslan/roadtrip-genom-bohuslan/ — "den korta turen till Älgafallet, Bohusläns högsta vattenfall på 46 meter, som ligger till hälften i Sverige och till hälften i Norge." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid norska gränsen ligger Älgafallet, som med 46 meter är Bohusläns högsta vattenfall. Det ligger till hälften i Sverige och till hälften i Norge.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till Bohuslän och ut i skärgården?</h2>
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kosteroarna.html — "Strömstad ligger utmed E6 längst norrut på den svenska västkusten. Hit tar du dig med både tåg och buss. Tidtabeller finns hos Västtrafik." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.orust.se/trafik-och-gator/bil-buss-bat-och-tag — "Orust har inga tågstationer. Närmaste tågstation finns i Stenungsund eller i Uddevalla."; "Busstrafikens knutpunkter på Orust är Henån och Varekil." (läst 2026-09-26) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Med bil är E6 vägen norrut längs kusten, ända till Strömstad. Dit kan du också åka tåg och buss, och tidtabellerna finns hos Västtrafik. Alla orter har inte tåg: Orust saknar tågstation, och närmaste station är Stenungsund eller Uddevalla. Bussarna på Orust utgår från Henån och Varekil.</p>
+<!-- KÄLLA: https://www.vastsverige.com/turistradet-vastsverige/artiklar/koncept-batluffa-i-bohuslan/ — "Det har länge funnits aktörer som kör reguljära båtlinjer här, och Turistrådet har genom samverkan med de lokala aktörerna tagit fram konceptet Båtluffa."; "Här finns även förslag på tematiserade turer såsom båtluffa med cykel, romantisk båtluff och båtluff för hela familjen." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/ — "Tuvesvik är platsen där färjan (linje 381) till Gullholmen, Härmanö och Käringön avgår."; "Endast personfärja." (läst 2026-09-26) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ut till öarna tar du dig med reguljära båtlinjer. Turistrådet Västsverige har samlat dem under namnet Båtluffa, med linjekartor och förslag på turer, till exempel med cykel. Ett exempel är linje 381 från Tuvesvik, en personfärja till Gullholmen, Härmanö och Käringön.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Skaldjur och säsonger i Bohuslän</h2>
+<!-- KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html — "Hummerpremiären infaller klockan 07.00 den första måndagen efter 20 september varje år."; "Fritidsfiskare får fiska till och med 30 november." (läst 2026-09-26) -->
+<!-- KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/grebbestad.4.7664b4813898b7df9845a4a.html — "Grebbestad är fortfarande ett levande fiskeläge. Vid fiskmottagningen i hamnen lämnar trålarna från Grebbestad och omgivande fiskelägen sina fångster: mest kräftor och räkor." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/bohuslan/campingibohuslan/roadtrip-genom-bohuslan/ — "följa med M/S Märta på musselexpedition och skördar musslor från fjordarnas musselodlingar"; "följ med på en krabbfisketur för familjen" (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Hummer:</strong> hummerpremiären är klockan 07.00 den första måndagen efter 20 september varje år, och fritidsfiskare får fiska till och med 30 november. Se <a href="/guider/hummerpremiar-bohuslan">hummerpremiären i Bohuslän</a>.</li>
+<li><strong>Räkor och havskräftor:</strong> till fiskmottagningen i Grebbestads hamn kommer mest kräftor och räkor.</li>
+<li><strong>Ostron:</strong> Grebbestad är centrum för Sveriges produktion av vilda ostron.</li>
+<li><strong>Musslor och krabbor:</strong> det finns turer där du skördar musslor från fjordarnas musselodlingar och krabbfisketurer för familjer.</li>
 </ul>
-
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Bästa säsongen:</strong>
-<p style="margin:8px 0 0;font-size:14px">Juni–september för bad och folkliv. September–oktober för hummer, ostron och höststämning. Undvik midsommarhelgen om du vill undvika köer – de populäraste destinationerna är fullbelagda.</p>
-</div>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/globalassets/kosterhavet/dokument/sv/kosterhavet-under-ytan-sv.pdf — "Observera att det inte är tillåtet att plocka ostron i Kosterhavet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Observera att du inte får plocka ostron i Kosterhavets nationalpark.</p>
+<!-- KÄLLA: https://www.vastsverige.com/bohuslan/ — "Upplev västkusten under hösten och känn lugnet efter högsäsongen. Här väntar skärgårdskrogar med vackra vyer, kustnära vandring, båtturer till bilfria öar och skaldjursturer med fiske och tillagning av det bästa från havet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Turistrådet Västsverige tipsar om hösten, efter högsäsongen, med kustnära vandring, båtturer till bilfria öar och skaldjursturer. Jämför gärna med Stockholms skärgård i <a href="/guider/stockholm-vs-bohuslan-skargard">Stockholm eller Bohuslän</a>.</p>
 `,
 
     'norrtelje-guide': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Norrtälje – porten till norra skärgården</h2>
-<p>Norrtälje är norra skärgårdens naturliga bas – en charmig sommarstad med en av Upplands-Ros bästa restaurangscener och direkt tillgång till Roslagens fridfulla skärgård.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: busslinjenummer och restider med buss och bil, "bra parkering i centrum", åldern på trähusen, "sommarmarknaden en av Upplands populäraste evenemang", Pythagoras industrimuseum, restaurangerna Norrtälje Saluhall, Kokta Karet och Hamncaféet (ej verifierade), restid Strömkajen–Arholma, "Blidö bilfärja från Vätö" (Blidöleden går från Yxlan), Räfsnäs–Rådmansö bilfärja, bilrestid till Kapellskär, Vandrarhemmet Hvilan och campingplatser längs ån (ej verifierade), samt värdeord. -->
+<!-- KÄLLA: https://www.norrtalje.se/info/kultur-och-fritid/idrott-motion-friluftsliv/batar-och-hamnar/ — "I Roslagens skärgård finns över 13 000 öar och en stor del av Norrtälje kommun består av skärgård och farleder." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.norrtalje.se/info/jobb-och-foretag/besoksnaringsstrategi/norra-batlinjen/ — "Under sommarmånaderna tar du dig enkelt ut i skärgården med Norra Båtlinjen, Nord/Sydlinjen och S/S Blidösund." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En stor del av Norrtälje kommun består av skärgård och farleder, och i Roslagens skärgård finns över 13 000 öar. Från Norrtälje hamn går båtar ut i skärgården under sommarmånaderna, och med buss och Trafikverkets vägfärjor når du öar som Yxlan och Blidö. Här är hur du tar dig till Norrtälje, vilka öar du når därifrån och vad handelsområdet Norrtälje Porten är.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du tar dig dit</h3>
-<p><strong>Buss:</strong> SL-buss 676 från Tekniska Högskolan T, ca 1 h 20 min. SL-abonnemang gäller.</p>
-<p><strong>Bil:</strong> E18 norrut från Stockholm, avfart Norrtälje. Ca 1 h. Bra parkering i centrum.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till Norrtälje?</h2>
+<!-- KÄLLA: https://www.norrtalje.se/info/trafik-gator-parker/resa-parkera-och-ladda/kollektivtrafik/ — "Buss från Norrtälje busstation till Tekniska Högskolan (Östra station) tar 70 minuter och har hållplatsen Arninge för byte till Roslagsbanan."; "Många av busslinjerna utgår från Norrtälje busstation och Campus Roslagen."; "Mer information och tidtabeller finns på webbsidan för Storstockholms lokaltrafik, SL." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bussen mellan Norrtälje busstation och Tekniska högskolan (Östra station) i Stockholm tar 70 minuter enligt Norrtälje kommun. Vid hållplatsen Arninge kan du byta till Roslagsbanan. Bussarna ingår i SL-trafiken, så tider och biljetter hittar du hos SL.</p>
+<!-- KÄLLA: https://www.norrtalje.se/info/trafik-gator-parker/resa-parkera-och-ladda/kollektivtrafik/ — "Busslinjerna mot Hallstavik, Älmsta/Väddö, Rådmansö, Vätö, Blidö/Yxlan och Åkersberga är några av de större linjerna" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från Norrtälje går busslinjer vidare ut i kommunen, bland annat mot Rådmansö, Vätö, Blidö och Yxlan, Älmsta på Väddö och Hallstavik.</p>
+<!-- KÄLLA: https://blidosundsbolaget.se/norrtalje/ — "Under sommarsäsongen erbjuder vi turer med S/S Blidösund från Skeppsbron upp till Norrtälje via Blidösundet."; "genom det vackra Blidösundet, mellan öarna Blidö och Yxlan" (läst 2026-09-27) -->
+<!-- KÄLLA: https://blidosundsbolaget.se/destinationer/ — "Ta en kryssning med det anrika ångfartyget Blidösund från Skeppsbron i Stockholm till Norrtälje, en resa som tar dig genom Stockholms skärgårdslandskap och tar cirka sju timmar." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sommartid kan du också åka ångfartyget S/S Blidösund från Skeppsbron i Stockholm till Norrtälje via Blidösundet, mellan Blidö och Yxlan. Resan tar enligt Blidösundsbolaget cirka sju timmar.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Stadskärnan</h3>
-<p>Norrtäljes gamla centrum längs Norrtäljeån är välbevarat med trähus från 1700–1800-talet. Sommarmarknaden i juli är en av Upplands populäraste evenemang – hantverk, mat och folkliv längs ån. Norrtälje Museum och Pythagoras Industrimuseum är värda ett besök.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Norrtälje Porten – handelsområdet i Norrtälje</h2>
+<!-- KÄLLA: https://www.norrteljeporten.se/ — "NorrteljePorten har ett varierat utbud av butiker och varuhus."; "Både Biltema och Stora Coop har mindre serveringar."; "På NorrteljePortens handelsområde gäller,"; "4 timmars parkering med p-skiva."; "Här hittar du annonser från lokala företag i Norrtälje."; "Du som har el- eller hybridbil kan ladda bilen medan du gör dina inköp på olika butiker och varuhus." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.coop.se/butiker-erbjudanden/stora-coop/stora-coop-norrteljeporten/ — "Stora Coop Norrteljeporten" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Norrtälje Porten (skrivs också NorrteljePorten) är ett handelsområde i Norrtälje med butiker och varuhus, bland annat Stora Coop Norrteljeporten och Biltema, som båda har mindre serveringar. På området gäller fyra timmars parkering med p-skiva, och du som har el- eller hybridbil kan ladda medan du handlar. Om du ska vidare ut i skärgården med bil kan det vara ett ställe att handla mat och förnödenheter innan färjan.</p>
+<!-- KÄLLA: https://www.norrteljeporten.se/ — "Här hittar du enkelt öppettider till alla butiker, varuhus och anläggningar på NorrteljePorten." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Öppettider för butikerna står på norrteljeporten.se och på respektive butiks webbplats. Busshållplats och resväg dit söker du i SL:s reseplanerare.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Restauranger</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Norrtälje Saluhall:</strong> Lokal matmarknad med råvaror från Roslagen</li>
-<li><strong>Restaurant Kokta Karet:</strong> Välrenommerad krog med norrlänsk husmanskost</li>
-<li><strong>Hamncaféet:</strong> Enkel mat och kaffe vid båthamnen</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Norrtälje skärgård: båtar från Norrtälje hamn</h2>
+<!-- KÄLLA: https://www.norrtalje.se/info/jobb-och-foretag/besoksnaringsstrategi/norra-batlinjen/ — "Under sommarmånaderna tar du dig enkelt ut i skärgården med Norra Båtlinjen, Nord/Sydlinjen och S/S Blidösund."; "Vid resa med Norra båtlinjen och Nord/Sydlinjen finns möjlighet att parkera vid Roslagsskolan på Bältartorpsgatan 7 i Norrtälje kostnadsfritt. Parkeringstillstånd krävs och finns att hämta på Norrtälje turistbyrå, Lilla torget 1 eller vid Åtellet, Sjötullsgatan 10." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Under sommarmånaderna går Norra båtlinjen, Nord/Sydlinjen och S/S Blidösund från Norrtälje hamn. Reser du med Norra båtlinjen eller Nord/Sydlinjen kan du parkera gratis vid Roslagsskolan på Bältartorpsgatan 7. Du behöver ett parkeringstillstånd, som du hämtar på Norrtälje turistbyrå vid Lilla torget eller vid Åtellet på Sjötullsgatan.</p>
+<!-- KÄLLA: https://blidosundsbolaget.se/norra-batlinjen/ — "Upplev norra skärgården med Norra båtlinjen – en heldagsresa från Norrtälje hamn till vackra Lidö eller Arholma."; "I sommar erbjuder vi dagliga avgångar mellan den 6 juli och 9 augusti."; "Norrtälje, längst bort på Norrtälje hamnpromenad, vid bron Havslänken"; "Ombord på M/S Rex finns ett café" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Norra båtlinjen drivs av Blidösundsbolaget och går med M/S Rex från Norrtälje hamn till Lidö och Arholma som heldagsutflykt. Sommaren 2026 gick båten dagligen mellan den 6 juli och 9 augusti, enligt Blidösundsbolagets sida. Båten avgår längst bort på hamnpromenaden i Norrtälje, vid bron Havslänken, och har café ombord.</p>
+<!-- KÄLLA: https://www.norrtalje.se/info/trafik-gator-parker/resa-parkera-och-ladda/kollektivtrafik/ — "På öar där det finns fastboende finns året runt trafik. Under sommarhalvåret när många besöker Norrtälje kommuns skärgård finns ytterligare fler linjer och som endast trafikerar under denna period. Mer information och tidtabeller finns på Waxholmsbolagets webbsida."; "Inom Norrtälje kommun finns kollektivtrafik till sjöss som tar resenärer mellan öar och till fastlandet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Inom kommunen finns också kollektivtrafik till sjöss mellan öarna och fastlandet, med tider hos Waxholmsbolaget. Öar med fastboende har trafik året runt, och under sommarhalvåret går fler linjer. Tider finns hos Waxholmsbolaget.</p>
+<!-- KÄLLA: https://www.norrtalje.se/info/kultur-och-fritid/idrott-motion-friluftsliv/batar-och-hamnar/ — "Norrtälje gästhamn erbjuder båtplatser för gästande båtar vid södra kajen och havspiren. Norrtälje gästhamn ägs av Norrtälje kommun och drivs av Norrtälje Sjömack." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kommer du med egen båt har Norrtälje gästhamn gästplatser vid södra kajen och havspiren. Gästhamnen ägs av kommunen och drivs av Norrtälje Sjömack.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öar utanför Norrtälje</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Lidö – ön vid inloppet till Norrtäljeviken</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/lido.html — "Kommun: Norrtälje"; "Lidö naturreservat med omgivande öar ligger vid inloppet till Norrtäljeviken."; "Reguljärtrafik med Waxholmsbolaget från Stockholm, båtbyte vid Fejan. Buss med SL går ut till Räfsnäs." (läst 2026-09-27) -->
+<!-- KÄLLA: https://blidosundsbolaget.se/norra-batlinjen/ — "Att åka med Norra båtlinjen till Lidö tar lite drygt en och en halv timme"; "gå runt hela ön på den välutmärkta Stockholm Archipelago Trail"; "Hela varvet runt är 11,9 kilometer medan den kortaste slingan är ungefär tre kilometer." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lidö naturreservat i Norrtälje kommun ligger vid inloppet till Norrtäljeviken. Med Norra båtlinjen från Norrtälje tar resan lite drygt en och en halv timme. Året runt når du ön med Waxholmsbolaget från Stockholm med byte vid Fejan, och SL-bussen går ut till Räfsnäs. Stockholm Archipelago Trail runt ön är 11,9 kilometer, och den kortaste slingan är ungefär tre kilometer.</p>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/lido/ — "Lidö värdshus har både prisbelönt krog och boende i vandrarhem, stugor och glampingtält."; "Gästhamnen i Båthusviken erbjuder service för båtburna besökare medan Österhamn är ett populärt val för den som söker en naturnära hamn." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Lidö finns Lidö värdshus med krog och boende i vandrarhem, stugor och glampingtält. Båtfolk kan lägga till i gästhamnen i Båthusviken eller i naturhamnen Österhamn. Se <a href="/o/lido">Lidö</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Arholma</h3>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/arholma/ — "Arholma är en av de nordligaste öarna i Stockholms skärgård"; "Här ligger Arholma handelsbod med café, service och cykeluthyrning."; "Arholma båk. Den imponerande sjömärkesbyggnaden uppfördes på 1700-talet"; "Arholma Nord där den tidigare hemliga försvarsanläggningen Batteri Arholma numera är museum och besöksmål."; "Från Norra bryggan leder den gamla bygatan genom öns bebyggelse." (läst 2026-09-27) -->
+<!-- KÄLLA: https://blidosundsbolaget.se/norra-batlinjen/ — "Dagliga avgångar mellan Norrtälje och Arholma" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma är en av de nordligaste öarna i Stockholms skärgård. Längs bygatan från Norra bryggan ligger Arholma handelsbod med café och cykeluthyrning. Sjömärket Arholma båk byggdes på 1700-talet, och på Arholma Nord är den tidigare hemliga försvarsanläggningen Batteri Arholma i dag museum. Sommartid når du Arholma med Norra båtlinjen från Norrtälje. Läs mer i <a href="/guider/arholma-guide">Arholmaguiden</a> och på <a href="/o/arholma">Arholma</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Yxlan och Blidö – med vägfärja</h3>
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård. Färjeledens längd är 600 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/ — "Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård. Färjeledens längd är 530 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri."; "Med vår app Trafikinfo Färjerederiet får du tillgång till tidtabeller och trafikinformation." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.norrtalje.se/info/trafik-gator-parker/resa-parkera-och-ladda/kollektivtrafik/ — "Färjorna körs av Trafikverkets färjerederi och är inte en del av Waxholmsbolagets trafik. Resan är kostnadsfri eftersom det är en del av statlig väg."; "Busslinjerna mot Hallstavik, Älmsta/Väddö, Rådmansö, Vätö, Blidö/Yxlan och Åkersberga" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Yxlan och Blidö nås med bil eller buss och Trafikverkets avgiftsfria vägfärjor. Furusundsleden går mellan Furusund och Yxlan, och Blidöleden mellan Yxlan och Blidö. Båda överfarterna tar fyra minuter. Färjorna körs av Trafikverkets färjerederi och ingår inte i Waxholmsbolagets trafik. Tider finns i Trafikverkets app Trafikinfo Färjerederiet. Läs mer i <a href="/guider/blido-guide">Blidöguiden</a> och på <a href="/o/yxlan">Yxlan</a> och <a href="/o/blido">Blidö</a>.</p>
+<!-- KÄLLA: https://www.norrtalje.se/info/trafik-gator-parker/resa-parkera-och-ladda/kollektivtrafik/ — "Högmarsö färja är en avgiftsbelagd färja. Färjelinjen drivs av Högmarsö samfällighetsförening." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Högmarsö och Svartnö går en avgiftsbelagd färja som drivs av Högmarsö samfällighetsförening.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Norröra och Söderöra – Saltkråkan</h3>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Norröra och Söderöra ligger i den vackra Svartlögafjärden, precis utanför Furusund."; "Det finns varken livsmedelsbutiker eller restauranger på öarna"; "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Norröra eller Söderöra."; "fick öarna agera Astrid Lindgrens fiktiva ö"; "Saltkråkan är framför allt inspelat på Norröra."; "Under våren, sommaren och hösten kommer du till Norröra och Söderöra genom att åka från Strömkajen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Norröra och Söderöra ligger i Svartlögafjärden precis utanför Furusund, och det var här tv-serien om Saltkråkan spelades in, framför allt på Norröra. Det finns varken livsmedelsbutik eller restaurang på öarna, så ta med mat. Från våren till hösten går Waxholmsbolagets båtar från Strömkajen; på vintern och tidig vår åker du från Köpmanholm på Yxlan. Se <a href="/o/norrora">Norröra</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Svartlöga och Rödlöga</h3>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/rodloga — "Rödlöga ligger längst ut i den vackra, karga ytterskärgården."; "Det här är så långt ut i havsbandet du kommer med reguljär trafik."; "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Rödlöga." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.norrtalje.se/info/kultur-och-fritid/kultur-och-konst/norrtalje-museerkulturarv-och-stadsarkiv/upptack-kulturarvet/riksintressen/riksintresseomraden/svartloga--rodloga/ — "Riksintresseområden för kulturmiljövården"; "Norrtälje kommun har gjort kulturhistoriska utredningar av kommunens riksintresseområden"; "På den här sidan kan du läsa utredningen för Svartlöga - Rödlöga." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Rödlöga ligger längst ut i ytterskärgården, så långt ut i havsbandet du kommer med reguljär trafik enligt Waxholmsbolaget. På vintern och tidig vår går båten från Köpmanholm på Yxlan. Svartlöga och Rödlöga är ett riksintresseområde för kulturmiljövården, och Norrtälje kommun har publicerat en kulturhistorisk utredning om området. Läs mer i <a href="/guider/svartloga-guide">Svartlögaguiden</a> och på <a href="/o/svartloga">Svartlöga</a> och <a href="/o/rodloga">Rödlöga</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Naturreservat för båtfolk och paddlare</h3>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/vidinge-och-vidingsora/ — "Vidinge är en ytterskärgårdsö sydost om Kapellskär"; "Vidinge och den närliggande ön Vidingsöra är en del av Norrtäljes ytterskärgård"; "Hit söker sig båtfolk, paddlare och badgäster" (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/norrpada/ — "Norrpada ligger cirka 15 kilometer sydost om Kapellskär och består av ett trettiotal öar, kobbar och skär"; "Här finns inga större anläggningar, ingen bebyggelse och få spår av modern utveckling." (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/salskaren/ — "Salskären är en liten ögrupp mitt i Svartlögafjärden mellan Blidö och Svartlöga." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Vidinge och Vidingsöra</strong> sydost om Kapellskär hör till Norrtäljes ytterskärgård och besöks av båtfolk, paddlare och badgäster.</li>
+<li><strong>Norrpada</strong> cirka 15 kilometer sydost om Kapellskär är ett trettiotal öar, kobbar och skär utan bebyggelse eller större anläggningar.</li>
+<li><strong>Salskären</strong> är en liten ögrupp i Svartlögafjärden mellan Blidö och Svartlöga.</li>
 </ul>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/riddersholm/ — "Riddersholm ligger längst ut på Rådmansö, bara några minuter från Kapellskär."; "Genom området löper nästan två mil markerade stigar"; "Vid Kapellskärsudden finns Estoniakorset som restes efter färjekatastrofen 1994"; "För den som vill stanna över natten finns olika boendealternativ hos Kapellskärs camping." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På fastlandssidan ligger Riddersholms naturreservat längst ut på Rådmansö, några minuter från Kapellskär. Här finns nästan två mil markerade stigar, och vid Kapellskärsudden står Estoniakorset, som restes efter färjekatastrofen 1994. Skärgårdsstiftelsen hänvisar till Kapellskärs camping för övernattning.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Från Norrtälje till skärgården</h3>
-<p>Norrtälje är utgångspunkt för norra skärgårdens mest avlägsna öar:</p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Arholma:</strong> Waxholmsbolaget 4 h från Strömkajen, eller kortare från Furusund (norr om Norrtälje)</li>
-<li><strong>Blidö:</strong> Bilfärja från Vätö (15 min norr om Norrtälje)</li>
-<li><strong>Räfsnäs:</strong> Bilfärja till Rådmansö och vidare norrut</li>
-<li><strong>Kapellskär:</strong> 30 min bil från Norrtälje – här avgår färjorna till Finland och Åland</li>
-</ul>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende</h3>
-<p>Vandrarhemmet Hvilan och ett antal B&B i omgivningarna. Campingplatser längs Norrtelje ån och vid kusten norr om staden.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad finns att göra i Norrtälje stad?</h2>
+<!-- KÄLLA: https://www.norrtalje.se/info/kultur-och-fritid/kultur-och-konst/roslagsmuseet/ — "Museet har tillfälliga utställningar, guidade visningar och barnverksamhet året om i ett stenhus från 1700-talet. Roslagsmuseet har fri entré, välkommen!"; "Hantverkaregatan 23, 761 30 Norrtälje" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.norrtalje.se/info/kultur-och-fritid/kultur-och-konst/norrtalje-museerkulturarv-och-stadsarkiv/ — "Enheten för kulturarv har uppdraget att stötta och främja arbetet med kulturarv i Norrtälje kommun och att driva Roslagsmuseet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Roslagsmuseet på Hantverkaregatan 23 drivs av kommunen och visar tillfälliga utställningar i ett stenhus från 1700-talet. Museet har guidade visningar och barnverksamhet året om, och entrén är fri.</p>
+<!-- KÄLLA: https://www.norrtalje.se/info/visit-norrtalje/kultur/ — "Norrtälje konsthall får uppmärksamhet för sina konstutställningar. Vi har också ett rikt utbud av offentlig konst – och utställningen Konst i Ån."; "Norrtälje stad har en lång och spännande historia. Upptäck Norrtälje med digital stadsvandring." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Norrtälje konsthall har konstutställningar, och i staden finns offentlig konst och utställningen Konst i Ån. Kommunen har också en digital stadsvandring om stadens historia.</p>
+<!-- KÄLLA: https://www.norrtalje.se/info/visit-norrtalje/ — "Norrtälje turistbyrå"; "Lilla Torget 1A (Wallinska gårdarna), 761 30 Norrtälje" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Norrtälje turistbyrå ligger på Lilla Torget 1A i Wallinska gårdarna. Aktuella öppettider står på kommunens sida Visit Norrtälje.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om området finns i <a href="/blogg/norrtelje-norra-skargard">Norrtälje och norra skärgården</a> och <a href="/guider/host-roslagen">hösten i Roslagen</a>.</p>
 `,
 
     'fjaderholmarna-guide': `
@@ -2000,48 +2276,92 @@ export function getGuideContent(slug: string): string {
 `,
 
     'sup-paddleboard-skargarden': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">SUP och paddleboard i skärgården – guide för nybörjare och erfarna</h2>
-<p>Ståndupp-paddling – SUP – har blivit en av skärgårdens mest populära sommaraktiviteter, och det är lätt att förstå varför. Du rör dig tyst och nära vattnet, du kan pausa och bada precis var du vill, och du behöver varken segellicens eller körkort. Skärgårdens lugna fjärdar och vindskyddade vikar är perfekta för paddling.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: priser för timhyra och heldag (inga prislistor), "snabbast växande aktivitet", "balansen inom några minuter", uthyrare vid Djurgårdsbrunnsviken och Strandvägen, "STF:s uthyrning på Grinda" (uthyrningen finns i Grindas hamnkontor), uthyrning vid Utö Värdshus brygga och i Möja hamn, platsråd för Sandhamn, Utö, Finnhamn, "flytväst obligatorisk för barn under en viss ålder" (ingen sådan lag), vindgräns i m/s, vattentemperaturer i juli, påståendet att Waxholmsbolaget tillåter uppblåsbara brädor men inte hårda, samt värdeord. -->
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/5-proffstips-att-bli-en-battre-stapaddlare — "Har du bra balans och gillar att glida fram på vattnet? Då kan SUP, stand up paddling, vara något för dig."; "Den moderna formen av sporten föddes på Hawaii" (läst 2026-09-27) -->
+<!-- KÄLLA: https://nynashamn.se/uppleva/skargard--batliv/surfa-och-paddla — "Stand up paddleboard (SUP) är ett enkelt sätt att komma ut på vattnet."; "Stand up paddle är träning för nästan alla muskelgrupper i kroppen." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">SUP, stand up paddle, betyder att du står upp på en bräda och paddlar med en lång paddel. Nynäshamns kommun beskriver SUP som ett enkelt sätt att komma ut på vattnet och som träning för nästan alla muskelgrupper. Här är uthyrarna för SUP i Stockholm och i skärgården som vi har kunnat kontrollera på deras egna webbplatser, och vad Sjöräddningssällskapet och Transportstyrelsen säger om flytväst och säkerhet.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad är SUP?</h3>
-<p>SUP (Stand Up Paddleboarding) innebär att du paddlar stående på en bred, stabil bräda med ett långt paddel. Brädan är betydligt bredare och stabilare än en surfbräda och flesta vuxna hittar balansen inom 10–15 minuter. Du kan också sitta ner på brädan och paddla – vanligt bland nybörjare eller de som vill slappna av.</p>
-<p>SUP är lägre ingångströskel än kajak, enklare att hyra, och erbjuder en unik utsiktsvinkel på skärgårdslandskapet: du ser precis ner i det klara vattnet och kan navigera in i grunda vikar där kajaker knappt kommer åt.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad är SUP och stand up paddle?</h2>
+<!-- KÄLLA: https://langholmenkajak.se/pages/hyra-sup-stockholm — "Att ”SUPa” går ut på att stå upp på en sorts surfbräda och paddla sig fram med en paddel."; "Vissa väljer att göra SUP-turen till en lugn och fridfull stund på vattnet, medan andra väljer att göra turen till ett riktigt träningspass." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/5-proffstips-att-bli-en-battre-stapaddlare — "Den moderna formen av sporten föddes på Hawaii och har snabbt blivit populär." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Att SUP:a går ut på att stå upp på en bräda som liknar en surfbräda och ta sig fram med en paddel. Enligt Sjöräddningssällskapet föddes den moderna formen av sporten på Hawaii. Långholmen kajak skriver att en del gör turen till en stilla stund på vattnet och andra till ett träningspass.</p>
+<!-- KÄLLA: https://langholmenkajak.se/pages/hyra-sup-stockholm — "Visste du att man även kan göra yoga på SUP?" (läst 2026-09-27) -->
+<!-- KÄLLA: https://hellasgarden.se/aktiviteter/sup-stand-up-paddle/ — "Testa yoga på SUP (bräda) under kunnig ledning. Bräda med fena och flytväst ingår." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Du kan också göra yoga på brädan. Både Långholmen kajak och Hellasgården har SUP-yoga med ledare.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Var du hyr SUP i Stockholm och skärgården</h3>
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p>De flesta kajak- och uthyrningsbolagen i skärgårdsregionen hyr nu ut SUP-brädor parallellt med kajaker. Förvänta dig att betala ca 250–400 kr för 2–3 timmar, eller ca 500–700 kr för en heldag.</p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Stockholm stad:</strong> Flera uthyrare längs Djurgårdsbrunnsviken, vid Strandvägen och i Nacka. Bra för den som vill prova nära stan.</li>
-<li><strong>Vaxholm:</strong> Uthyrning vid hamnen. Perfekt för att paddla runt Vaxholm och mot Rindö.</li>
-<li><strong>Grinda:</strong> STF:s uthyrning på Grinda. Ön har utmärkt SUP-terräng med lugna sund och klippvikar.</li>
-<li><strong>Utö:</strong> Uthyrning vid Utö Värdshus brygga. Paddla längs Utös kust och utforska naturreservatet från vattnet.</li>
-<li><strong>Möja:</strong> Enklare uthyrning vid hamnen. Möjas lugna sund och bilfria karaktär ger perfekta paddlingsbetingelser.</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hyra SUP i Stockholm – uthyrare i stan</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De här uthyrarna av SUP i Stockholm har vi kontrollerat på deras egna webbplatser. Priser och öppettider ändras mellan säsonger, så de står inte här – boka och se aktuella tider hos uthyraren.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Långholmen och Tantolunden</h3>
+<!-- KÄLLA: https://langholmenkajak.se/pages/hyra-sup-stockholm — "All uthyrning startar på Långholmen intill Pålsundskanalen."; "Närmaste tunnelbana är Hornstull"; "Visste du att du också kan hyra SUP från vår uthyrning i Tantolunden?"; "Var på plats minst 10 minuter innan utsatt tid för att checka in och förbereda din utrustning." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Långholmen kajak hyr ut SUP från Långholmen intill Pålsundskanalen, med tunnelbanan Hornstull närmast. De har också en uthyrning i Tantolunden. Var på plats minst tio minuter innan din tid för att checka in.</p>
+<!-- KÄLLA: https://langholmenkajak.se/pages/hyra-sup-stockholm — "Djurgården runt"; "Årstaviken runt"; "Kungsholmen runt"; "Lekfull SUP-Yoga" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bland rutterna de föreslår finns Årstaviken runt, Kungsholmen runt och Djurgården runt. De har även pass med SUP-yoga.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Vinterviken</h3>
+<!-- KÄLLA: https://www.soderkajak.se/uthyrning/hyra-sup — "SUP-UTHYRNING I VINTERVIKEN"; "Vinterviksvägen 52"; "Boka enkelt genom formuläret. Ingen förhandsbetalning krävs - du betalar på plats."; "Du checkar in hos oss och får rätt utrustning - SUP-bräda, paddel och flytväst."; "Aspudden · Liljeholmen"; "Ca 10 min promenad från stationerna" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Söderkajak har SUP-uthyrning i Vinterviken på Vinterviksvägen 52. Du bokar online och betalar på plats, och i hyran ingår bräda, paddel och flytväst. Till fots är det ungefär tio minuter från tunnelbanan i Aspudden eller Liljeholmen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Hellasgården i Nacka</h3>
+<!-- KÄLLA: https://hellasgarden.se/aktiviteter/sup-stand-up-paddle/ — "Hos oss på Hellasgården kan du hyra kajak, kanadensare och SUP."; "Vi tar enbart onlinebokningar."; "I din bokning ingår flytväst."; "Du ska vara minst 18 år, eller i målsmans sällskap."; "Du måste vara simkunnig." (läst 2026-09-27) -->
+<!-- KÄLLA: https://hellasgarden.se/aktiviteter/sup-stand-up-paddle/ — "Källtorpssjön är en populär plats för fåglar. I sjön finns även mindre öar vilka är fågelreservat."; "beträd aldrig någon av reservaten" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Hellasgården i Nacka paddlar du på Källtorpssjön, en insjö. De tar bara onlinebokningar och flytväst ingår. Du ska vara minst 18 år eller ha målsman med dig, och du ska kunna simma. De små öarna i sjön är fågelreservat som du inte får gå i land på.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hyra SUP i Stockholms skärgård</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Vaxholm och Resarö</h3>
+<!-- KÄLLA: https://www.vaxholmkanot.se/sida/?ID=487749 — "Hyr hos Vaxholms Kanotsällskap, vi erbjuder ett brett sortiment av kanoter/kajaker, kanadensare och SUP."; "från Maj till september"; "Du som hyr behöver kunna simma 200 meter och flytväst är alltid obligatorisk." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.kayakomat.com/sv/location/628e1ae0c5365312a173dc54 — "Kajak och SUP-uthyrning på KAYAKOMAT Vaxholm, Norrhamnsplan"; "Ni finner Kayakomaten vid Norrhamnsplan vilket ligger ca 5 min promenad från färjan och Vaxholms hotell."; "Flytväst ingår" (läst 2026-09-27) -->
+<!-- KÄLLA: https://kanotcenter.com/sv/kajakuthyrning-stockholm-skargard/dagligen/ — "Kajaker, kanoter och SUP:s - hyr för en dag och utforska!"; "Maj – september:"; "Flytväst & paddel"; "Säkerhetsgenomgång" (läst 2026-09-27) -->
+<!-- KÄLLA: https://kanotcenter.com/sv/ — "Resarövägen 10, 185 51 Resarö" (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Vaxholms Kanotsällskap</strong> hyr ut kajaker, kanadensare och SUP från maj till september. Du som hyr ska kunna simma 200 meter, och flytväst är alltid obligatorisk.</li>
+<li><strong>Kayakomat Vaxholm</strong> är en obemannad uthyrning vid Norrhamnsplan, ungefär fem minuters promenad från färjan. Flytväst ingår.</li>
+<li><strong>Skärgårdens Kanotcenter</strong> på Resarö hyr ut kajak, kanot och SUP under säsongen maj–september. I hyran ingår flytväst, paddel och en säkerhetsgenomgång.</li>
 </ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om paddling här finns i guiden <a href="/guider/kajak-vaxholm">Hyra kajak i Vaxholm</a> och i <a href="/guider/vaxholm-guide-komplett">Vaxholmsguiden</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa platserna för SUP i skärgården</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Grinda</h3>
+<!-- KÄLLA: https://grinda.se/aktiviteter/ — "I hamnkontoret kan du hyra kajak, SUP och handla olika båtartiklar"; "På våra SUP-brädor kan du på ett utmanande, rogivande och otroligt kul sätt utforska Grinda från vattnet." (läst 2026-09-27) -->
+<!-- KÄLLA: https://grinda.se/hittahit/ — "Waxholmsbolaget (+46 8 600 10 00) och Cinderellabåtarna (+46 8 12 00 40 45) har flera turer dagligen från Stockholm"; "Från Stockholm tar resan drygt en timme" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På <a href="/o/grinda">Grinda</a> hyr du SUP i hamnkontoret. Waxholmsbolaget och Cinderellabåtarna går till ön från Stockholm, och resan tar enligt Grinda drygt en timme. Läs mer i <a href="/guider/grinda-guide">Grindaguiden</a>.</p>
 
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Nybörjare: vindskyddade fjärdar</h4>
-<p>Välj platser med vindskydd och lugnt vatten för din första tur. Fjärdarna innanför Vaxholm, Grindas norra sida och Finnhamns sund är utmärkta. Undvik öppna fjärdar och hav vid din första session – vind och vågor gör balansen avsevärt svårare.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Nynäshamn</h3>
+<!-- KÄLLA: https://nynashamn.se/uppleva/skargard--batliv/surfa-och-paddla — "Ett utmärkt sätt att utforska en kuststräcka i närheten eller någon av våra mysiga insjöar som Muskan eller Fjättern." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.kayakomat.com/sv/location/62b4ecb11cfae6aacec5e0ef — "Hyr SUP och kajak i Nynäshamn Nickstabadet"; "Flytväst ingår"; "Boka, lås upp och paddla när som helst!" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nynäshamns kommun föreslår SUP längs kusten eller på insjöarna Muskan och Fjättern. Vid Nickstabadet i Nynäshamn finns en obemannad Kayakomat där du hyr SUP med flytväst och låser upp utrustningen med en kod.</p>
 
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Erfarna: öppen skärgård</h4>
-<p>Sandhamns yttersida och Utös västra kust erbjuder mer utmanande förhållanden med vind och svall. Kräver erfarenhet och rätt utrustning inklusive flytväst.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Säkerhet och regler</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Flytväst:</strong> Rekommenderas starkt, obligatorisk för barn under 15 år. Kan bäras runt midjan som bältesväst.</li>
-<li><strong>Lina:</strong> Koppla alltid en säkerhetslina mellan dig och brädan. Om du ramlar av driver brädan snabbt iväg i vind.</li>
-<li><strong>Väder:</strong> Kolla vindriktning och vindstyrka innan du ger dig ut. Vindstyrka över 5–6 m/s ger besvärliga förhållanden för nybörjare.</li>
-<li><strong>Avstånd från båttrafik:</strong> Håll dig borta från farleder och områden med tät båttrafik. Du är svår att se från en motorbåt.</li>
-<li><strong>Kyla:</strong> Vattnet i Stockholms skärgård är kallt även på sommaren – 18–21°C i juli. Ta inte ut dig längre från land än du kan simma.</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Flytväst och säkerhet när du paddlar SUP</h2>
+<!-- KÄLLA: https://www.transportstyrelsen.se/sv/sjofart/fritidsbatar/sjosakerhet/pa-sjon/anvand-flytvast/ — "Flytvästen ökar chanserna till överlevnad väsentligt."; "Var noga med att flytvästen du använder är CE-märkt."; "Barn och vuxna som inte kan simma ska använda räddningsväst."; "Uppblåsbara flytvästar ska bara användas av simkunniga personer." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/tank-pa-det-har-nar-du-valjer-flytvast — "Flythjälpmedel har en flytkraft på minst 50 Newton (N) och är avsedda för simkunniga personer."; "Barn ska alltid använda en räddningsväst för att garantera maximal säkerhet i vattnet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Transportstyrelsen skriver att flytvästen ökar chanserna att överleva väsentligt och att den ska vara CE-märkt. Barn och vuxna som inte kan simma ska ha räddningsväst, och uppblåsbara flytvästar är bara för den som kan simma. Sjöräddningssällskapet förklarar att flythjälpmedel på minst 50 Newton är avsedda för simkunniga, och att barn alltid ska ha räddningsväst.</p>
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/5-proffstips-att-bli-en-battre-stapaddlare — "Vid ståpaddling är du mer känslig för vind än vid många andra vattenaktiviteter."; "Det gäller därför att ha koll på vilket väder som väntas"; "särskilt om det ska bli från-landsvind"; "paddla gärna i grupp, meddela någon på land om din rutt, och var vaksam på andra farkoster på sjön"; "Använd alltid leash, som är ett säkerhetskoppel mellan benet och brädan."; "Klä dig alltid utifrån att du ska kunna hamna i vattnet"; "Våtdräkt eller torrdräkt funkar bra." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/bli-en-sakrare-paddlare — "Planera din färdväg och undvik att paddla i farleder."; "Fungerande visselpipa"; "I vår app Kustväder finns information om rådande luft- och vattenförhållanden."; "Ring 112 och beskriv vad som hänt och vart du är så gott du kan." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Vind:</strong> på en SUP är du känsligare för vind än i många andra vattenaktiviteter. Kolla prognosen, särskilt om det ska blåsa från land. Sjöräddningssällskapets app Kustväder visar luft- och vattenförhållanden.</li>
+<li><strong>Leash:</strong> koppla alltid brädan till benet med en leash, så att den inte blåser iväg om du ramlar i.</li>
+<li><strong>Kläder:</strong> klä dig för att kunna hamna i vattnet. Våtdräkt eller torrdräkt fungerar bra.</li>
+<li><strong>Sällskap och rutt:</strong> paddla gärna i grupp, berätta för någon på land vilken rutt du tar och undvik farlederna.</li>
+<li><strong>Flytväst:</strong> den ska ha en fungerande visselpipa. Är du i fara ringer du 112.</li>
 </ul>
+<!-- KÄLLA: https://www.sjoraddning.se/sjosakerhet/paddla-sakert — "Varje år får vi larm om saker som flyter i vattnet. Hittas en farkost ensam inleds sök efter person."; "Märk din utrustning så får upphittaren lättare få tag i dig" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Märk brädan så att den som hittar den kan nå dig. Sjöräddningssällskapet får varje år larm om saker som flyter i vattnet, och hittas en farkost ensam inleds en sökning efter en person. Läs mer i vår <a href="/guider/batsaerhet-guide">guide om båtsäkerhet</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta med SUP på Waxholmsbolaget</h3>
-<p>Waxholmsbolaget tillåter SUP-brädor ombord om de är uppblåsbara (iSUP) och kan rullas ihop. En uppblåsbar bräda i säck tar ungefär lika stor plats som en stor ryggsäck. Hårda brädor är normalt inte tillåtna ombord. Kontrollera alltid med Waxholmsbolaget om du planerar att ta med brädan på en specifik linje.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta med egen SUP på skärgårdsbåten</h2>
+<!-- KÄLLA: https://waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med — "Du får ta med dig handbagage som väger under 30 kg."; "Allt annat bagage klassas som gods och kostar extra att ta med."; "Du ska egentligen förboka din godstransport men du kan också betala för ditt gods i samband med avfärden om det finns plats för godset ombord." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget har inga särskilda regler för SUP-brädor på sin sida. Handbagage som väger under 30 kg och som du bär själv får du ta med. Allt annat bagage räknas som gods och kostar extra. Gods ska egentligen förbokas, men du kan betala vid avfärd om det finns plats ombord. Fråga Waxholmsbolagets kundtjänst om brädan räknas som handbagage eller gods innan du reser. Se också <a href="/guider/waxholmsbolaget-guide">vår guide till Waxholmsbolaget</a>.</p>
 
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Nybörjartips:</strong>
-<p style="margin:8px 0 0;font-size:14px">Börja på knä och paddla tills du är bekväm med brädan innan du reser dig. Titta mot horisonten snarare än ner i vattnet – det hjälper balansen. Välj morgontimmarna för din första tur – vinden är oftast svagast då och trafiken är liten.</p>
-</div>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips för din första SUP-tur</h2>
+<!-- KÄLLA: https://langholmenkajak.se/pages/hyra-sup-stockholm — "När man börjar paddla kan det kännas bra att stå på knä då man får bättre balans ju lägre tyngdpunkt man har på brädan."; "Efter ett litet tag brukar det gå bra att ställa sig upp med fötterna brett isär."; "Om det blåser mycket är det bra att hålla sig nära land, och en bra tumregel är att alltid paddla tillsammans med någon annan." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/5-proffstips-att-bli-en-battre-stapaddlare — "En paddel för SUP har en svag vinkel mellan paddelbladet och skaftet, och när man paddlar ska bladets vinkel vara riktad framåt."; "Lär dig därför att använda mer av bålens styrka och låt överkroppen och höfterna göra mycket av arbetet" (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Börja på knä. Ju lägre tyngdpunkt, desto bättre balans. Ställ dig sedan upp med fötterna brett isär.</li>
+<li>Vänd paddeln rätt: bladet har en svag vinkel mot skaftet, och vinkeln ska peka framåt.</li>
+<li>Använd bålen och höfterna, inte bara armarna.</li>
+<li>Håll dig nära land när det blåser, och paddla tillsammans med någon annan.</li>
+</ul>
+<!-- KÄLLA: https://www.kayakomat.com/sv/location/628e1ae0c5365312a173dc54 — "För nybörjare är det här ett lätt sätt att testa på SUP eller kajakpaddling och samtidigt hålla sig nära stranden." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du hellre sitta i en kajak finns uthyrare i <a href="/guider/hyra-kajak-stockholm">guiden om att hyra kajak i Stockholm</a> och tips för nybörjare i <a href="/blogg/kajak-stockholms-skargard-nyborjare">kajak i Stockholms skärgård för nybörjare</a>. Allemansrätten på vattnet står i <a href="/guider/allemansratten-pa-sjon">allemansrätten på sjön</a>.</p>
 `,
 
     'o-luffa-guide': `
@@ -2206,57 +2526,89 @@ export function getGuideContent(slug: string): string {
 `,
 
     'barnfamilj-skargarden': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det händer ungefär på timme tre. Barnen är hungriga, någon har tappat sin sandal i havet och vuxna håller på att bli trötta av att låtsas att det inte är det. Det är inte ett misslyckande. Det är information: du åkte till fel ö, eller vid fel tidpunkt, eller utan att äta lunch i tid.</p>
+<!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: inledande berättelse och "vad som avgör om en ö fungerar", "barn orkar sällan mer än 1,5–2 timmar på färja", rangordningen av öar och åldersgränser per ö, restider (flera stämmer inte med operatörerna), "STF-café" på Grinda, "trampolin", "hantverksbutiker och rökeri" på Fjäderholmarna, Trouville "gradvisa instegsdjup", cykeluthyrning vid bryggan på Utö, glassbaren på Möja, flytvästregeln för barn under femton år (ingen sådan lag hittades), solskyddsråd, "ta morgonbåten" och övriga egna tips, familjekostnad och biljettbelopp utan prislista, samt värdeord. Öarna i Stockholms skärgård beskrivs utförligt i guiden barnfamilj-stockholms-skargard och upprepas inte här. -->
+<!-- KÄLLA: https://www.goteborg.com/guider/en-guide-till-skargarden-sodra-oar — "De södra öarna i Göteborgs skärgård är bilfria" (läst 2026-09-28) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgården med barn handlar mest om tre saker: en båt som är lätt att ta med barnvagn, en sandstrand där de minsta kan bada och en toalett i närheten. Här är vad som gäller i Stockholms och Göteborgs skärgårdar – biljetter för barn, barnvagn ombord, sandstränder, flytväst och badvatten. I Göteborg är de södra öarna dessutom helt bilfria.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Letar du efter en viss ö i Stockholms skärgård finns en genomgång ö för ö i guiden <a href="/guider/barnfamilj-stockholms-skargard">Stockholms skärgård med barn</a>. Bohuslän har en egen guide: <a href="/guider/barnvanliga-oar-bohuslan">barnvänliga öar i Bohuslän</a>.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgård med barn är ett av sommarens bästa saker — men det är ett annat sak att planera än vuxenresan. Öarna som fungerar bäst för familjer är inte nödvändigtvis de som fotograferas mest. De är öar med grunt vatten nära bryggan, en toalett utan kö och ett café där beställningen går fort.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Stockholms skärgård med barn</h2>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — "Grinda har fina barnvänliga bad både vid den södra och norra ångbåtsbryggan."; "Torrdass finns vid alla badplatser" (läst 2026-09-28) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/grinda/ — "Sommartid finns även café, lanthandel och aktiviteter för både stora och små." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Grinda</strong> har barnvänliga bad vid både södra och norra ångbåtsbryggan, och torrdass vid alla badplatser. Sommartid finns café, lanthandel och aktiviteter för både stora och små. Läs mer i <a href="/guider/grinda-guide">guiden till Grinda</a>.</p>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "Rävstavik och Barnens bad erbjuder långgrunda sandstränder som passar barnfamiljer"; "Utö nås med reguljär skärgårdsbåt året runt, enklast via Årsta brygga dit du kommer med buss från Västerhaninge." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Utö</strong> har två långgrunda sandstränder som enligt Skärgårdsstiftelsen passar barnfamiljer: Rävstavik och Barnens bad. Båten går året runt, enklast från Årsta brygga dit bussen går från Västerhaninge.</p>
+<!-- KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/nattaro/ — "Det finns gott om barnvänliga, långgrunda sandstränder." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "Storsand i öster är en av skärgårdens längsta sandstränder med stora sanddyner." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Nåttarö</strong> har enligt Haninge kommun gott om barnvänliga, långgrunda sandstränder. Storsand på östra sidan är en av skärgårdens längsta sandstränder. Se <a href="/guider/nattaro-guide">guiden till Nåttarö</a>.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad som faktiskt avgör om en ö fungerar med barn</h2>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Sandstrand eller lugnt grundvattenbad (inte branta klippor som enda badalternativ)</li>
-<li>Toaletter tillgängliga utan lång promenad</li>
-<li>Café eller kiosk med barnmat i närheten</li>
-<li>Kort restid med båt – barn orkar sällan mer än 1,5–2 timmar på färja</li>
-<li>Välmarkerade, breda stigar utan branta steg</li>
-<li>Möjlighet att stanna och vila utan att missa "allt"</li>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Barnbiljett och barnvagn på Waxholmsbolaget</h3>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/biljetter-och-priser/rabatterat-pris — "Barn som är under 7 år gamla reser utan avgift med annan betalande resenär."; "Du räknas som ungdom om du är över 7 år gammal men inte har fyllt 20 år ännu." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd."; "Till skillnad från när du reser på SL-biljett så kan du alltså med Waxholmsbolaget-biljett inte ta med dig barn i åldrarna 7–11 år på din biljett. Men det kan du göra i SL-området om du använder SL-biljett." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med — "Du som reser med barn under 7 år får ta med barnvagn utan kostnad."; "Du ställer barnvagnen på barnvagnsplatserna eller där personalen visar att den ska stå." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Barn under 7 år reser utan avgift med en betalande resenär. Från 7 år räknas barnet som ungdom.</li>
+<li>Mellan Strömkajen och Vaxholm med omnejd gäller SL-biljett. Där får du ta med barn 7–11 år på din SL-biljett, men inte på en Waxholmsbolaget-biljett.</li>
+<li>Reser du med barn under 7 år tar du med barnvagnen utan kostnad och ställer den på barnvagnsplatserna.</li>
+</ul>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/att-resa-med-oss/fore-och-under-resan — "Du kan inte boka plats ombord på våra fartyg, utan som i annan kollektivtrafik i länet är det bara att gå till hållplatsen, bryggan eller kajen och kliva ombord." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det går inte att boka plats på Waxholmsbolagets båtar – du går till bryggan och kliver ombord. Mer om båtresor med barn finns i guiden <a href="/guider/barnvanliga-batresor-skargarden">båttur med barn i Stockholms skärgård</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Göteborgs skärgård med barn</h2>
+<!-- KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "De södra öarna är bilfria och nås enkelt året runt med Styrsöbolagets båtar."; "Färjorna ingår i Västtrafiks ordinarie kollektivtrafik, och för resor till öarna i södra skärgården räcker en biljett för zon A."; "Spårvagn 11, samt linje 9 under sommaren, restid cirka 35 minuter"; "Buss 114, Ö-snabben, restid cirka 25 minuter" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De södra öarna i Göteborgs skärgård är bilfria och nås året runt med Styrsöbolagets båtar från Saltholmen. Båtarna ingår i Västtrafiks vanliga kollektivtrafik, och en biljett för zon A räcker. Till Saltholmen tar du spårvagn 11 (cirka 35 minuter) eller buss 114, Ö-snabben (cirka 25 minuter).</p>
+<!-- KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "281, Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö"; "282, Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik"; "283, Saltholmen–Asperö–Brännö Rödsten"; "Båtarna avgår som regel en gång i timmen till de större öarna Asperö, Brännö, Köpstadsö, Styrsö, Donsö och Vrångö."; "Reser du med linje 281, 282 och 283 med färjorna Silvertärnan, Vesta eller Ylva finns möjlighet att fika under resan. I tidtabellen framgår vilka avgångar som har servering."; "Ombord serveras varma och kalla drycker, smörgåsar, bullar, kakor, glass och godis." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Linje 281:</strong> Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö.</li>
+<li><strong>Linje 282:</strong> Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik.</li>
+<li><strong>Linje 283:</strong> Saltholmen–Asperö–Brännö Rödsten.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Båtarna går som regel en gång i timmen till de större öarna. På en del avgångar på linje 281–283 finns kafé ombord med bland annat smörgåsar, bullar och glass – i tidtabellen ser du vilka.</p>
+<!-- KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "Från färjeläget Lilla Varholmen går avgiftsfria vägfärjor till Hönö och Björkö."; "Buss X6 från Centralstationen går till Lilla Varholmen."; "Färjeturen tar 12 minuter och från Hönö kan du sedan ta dig vidare till Fotö, Öckerö och Hälsö som är sammanlänkade med broar." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till de norra öarna går avgiftsfria vägfärjor från Lilla Varholmen, dit buss X6 går från Centralstationen. Färjan till Hönö tar 12 minuter, och därifrån når du Fotö, Öckerö och Hälsö över broar.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Barnbiljett i Västtrafik</h3>
+<!-- KÄLLA: https://www.vasttrafik.se/resa-med-oss/fore-resan/aldersgranser/ — "Resenärskategori barn tillhör man fram till den dagen barnet fyller 7 år."; "Fritt antal barn under sju år reser gratis med vuxen som har giltig biljett."; "En vuxen med en giltig periodbiljett eller dygnsbiljett (1 och 3 dygn) för vuxen får gratis ta med sig upp till tre ungdomar som inte fyllt 20 år."; "Erbjudandet gäller endast i appen Västtrafik To Go." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hos Västtrafik reser hur många barn under sju år som helst gratis med en vuxen som har giltig biljett. Har den vuxna en periodbiljett eller dygnsbiljett för vuxen, köpt i appen Västtrafik To Go, får hen dessutom ta med upp till tre ungdomar under 20 år gratis.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sandstrand i skärgården – var kan barnen bada?</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Göteborgs skärgård</h3>
+<!-- KÄLLA: https://goteborg.com/guider/sommarparlor-i-goteborgs-skargard — "För dig med småbarn är Nötholmen ett bra alternativ tack vare långrund sandstrand och stora gräsytor."; "300 meter från färjeläget finns badplatsen Styrsö Bratten, här kan du bada från både strand eller brygga."; "Befinner du dig på Brännö finns Ramsdalsbadet. Här har du både klippor och sandstrand och kan bada från bryggor omgärdade av skyddande klippor." (läst 2026-09-28) -->
+<!-- KÄLLA: https://goteborg.com/guider/sommarparlor-i-goteborgs-skargard — "På Hönö, med promenadavstånd från hamnen Hönö Klåva finns den populära badplatsen Hästen. Här finns både sandstrand och klippor, flytbryggor samt en tillgänglighetsanpassad toalett."; "Ute på Hyppeln finns Strandtångens badplats. Det är en långgrund sandstrand omgiven av klippor. Här finns även toalett och flytbrygga."; "Här hittar du också Gula skärens badplats, en idyll med sandstrand, brygga och torrtoalett." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Nötholmen, Vrångö:</strong> långgrund sandstrand och stora gräsytor. Göteborg &amp; Co tipsar om den för familjer med småbarn.</li>
+<li><strong>Styrsö Bratten:</strong> 300 meter från färjeläget, med bad från strand eller brygga.</li>
+<li><strong>Ramsdalsbadet, Brännö:</strong> klippor och sandstrand, med bryggor omgivna av skyddande klippor.</li>
+<li><strong>Hästen, Hönö:</strong> sandstrand och klippor, flytbryggor och tillgänglighetsanpassad toalett, på promenadavstånd från Hönö Klåva.</li>
+<li><strong>Strandtången, Hyppeln:</strong> långgrund sandstrand omgiven av klippor, med toalett och flytbrygga.</li>
+<li><strong>Gula skären, Rörö:</strong> sandstrand, brygga och torrtoalett.</li>
+</ul>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Stockholms skärgård och Bohuslän</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "Storsand och Skarsand är de största sandstränderna." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.vastsverige.com/tanum/se--gora/grebbestad/ — "I Grebbestad finns barnvänliga badplatser med sandstrand, brygga och hopptorn." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Stockholms skärgård är Storsand och Skarsand på Nåttarö de största sandstränderna, och på Utö finns Rävstavik och Barnens bad. I Grebbestad i norra Bohuslän finns barnvänliga badplatser med sandstrand, brygga och hopptorn. Fler stränder finns i guiderna <a href="/guider/sandstrand-skargarden">sandstrand i skärgården</a> och <a href="/guider/barnvanliga-bad-skargarden">barnvänliga badplatser i Stockholms skärgård</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Promenader med barnvagn</h2>
+<!-- KÄLLA: https://www.vastsverige.com/en/nexttogothenburg/vrango/ — "If you want to explore the island on foot there are three circular walks of 2-3 km each. Tärnstigen is the easier trail which is fine to get around with wheelchairs or pushchairs." (läst 2026-09-28) -->
+<!-- KÄLLA: https://goteborg.com/guider/sommarparlor-i-goteborgs-skargard — "Stora delar av Vrångö är naturreservat och här finns fina promenadslingor. Tärnstigen är en kortare, tillgänglig led för barnvagn och rullstol." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Vrångö finns tre promenadslingor på 2–3 km var. Tärnstigen är den kortare och går att ta sig fram på med barnvagn och rullstol. Stora delar av ön är naturreservat.</p>
+<!-- KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "Det går bra att ta med cykel på båtarna i mån av plats." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På båtarna i Göteborgs södra skärgård får du ta med cykel i mån av plats.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Flytväst för barn</h2>
+<!-- KÄLLA: https://svenskalivraddningssallskapet.se/flytvastar/ — "För små barn som leker i eller nära vatten är en räddningsväst ett bra komplement till ständig uppsikt och ökar säkerheten."; "100N-västar kallas ofta för räddningsvästar och är det bästa alternativet för barn och vuxna som inte kan simma."; "Barn ska alltid använda grenband."; "Uppblåsbara västar är tekniskt mer avancerade och rekommenderas inte till barn under 40 kilo"; "Då kan du enkelt låna eller hyra en flytväst billigt i våra depåer." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Svenska Livräddningssällskapet beskriver räddningsväst som ett bra komplement till ständig uppsikt när små barn leker i eller nära vatten.</li>
+<li>100N-västar, räddningsvästar, är det alternativ Livräddningssällskapet rekommenderar för barn och för den som inte kan simma.</li>
+<li>Barn ska alltid använda grenband. Uppblåsbara västar rekommenderas inte för barn under 40 kilo.</li>
+<li>Saknar du flytväst kan du låna eller hyra en i Livräddningssällskapets depåer.</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa öarna för barnfamiljer</h3>
-
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Grinda – bästa valet under 10 år</h4>
-<p>Grinda är överlägset bästa valet för familjer med barn under 10 år. Sandstrand med grunt och lugnt vatten, STF-café med barnmat, välmarkerade stigar och en familjär stämning. Restid ca 1 h 45 min med Waxholmsbolaget från Strömkajen. Wärdshuset erbjuder boende om ni vill stanna natten.</p>
-
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Fjäderholmarna – perfekt med de minsta</h4>
-<p>Bara 25 minuter från Strandvägen – och du är i skärgård. Fjäderholmarna är idéalet för dagstur med riktigt småbarn eller de som inte är redo för längre färjeresor. Restauranger, hantverksbutiker och ett rökerioververk. Begränsat badalternativ men fint att promenera och upptäcka.</p>
-
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Sandhamn – välmarkerat med strandliv</h4>
-<p>Sandhamns strand Trouville är en av skärgårdens vackraste och passar barn utmärkt med sin mjuka sand och gradvisa instegsdjup. Välbesökt med Seglarhotellet och Sandhamns Värdshus i närheten. Restid ca 2 h 30 min via Stavsnäs.</p>
-
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Utö – familjedagen med innehåll</h4>
-<p>Utö passar äldre barn (8+) som kan cykla. Hyr cykel vid bryggan och ta er till Stora Sand – en lång och barnvänlig sandstrand. Utö Värdshus serverar barnvänlig mat. Restid ca 2 h via Nynäshamn.</p>
-
-<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Möja – bilfritt äventyr</h4>
-<p>Möja är bilfri, lugn och har grusvägar som är perfekta för cyklar och balanscyklar. Glassbaren vid hamnen är ett givet stopp. Äldre barn (6+) tycker ofta att Möjas karaktär är spännande. Restid ca 2 h 30 min via Stavsnäs.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Säkerhet på båt och i vatten</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Flytväst:</strong> Barn under 15 år ska ha godkänd flytväst vid vatten och ombord på öppna båtar. Waxholmsbolagets färjor är räknas som slutna passagerarbåtar – väst krävs inte ombord men är klokt vid bryggor och i kajaker.</li>
-<li><strong>Badöversikt:</strong> Skärgårdens klippbad saknar strandkant – håll koll på barn vid kanten. Välj sandstrand med gradvis djuphöjning för de minsta.</li>
-<li><strong>Sol och värme:</strong> Reflexer från vatten förstärker solstrålning. Solkräm faktor 30+ och keps är ett måste.</li>
-</ul>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Praktiska tips för en lyckad familjedag</h3>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Ta morgonbåten – undvik middagsträngseln och ha mest tid på ön</li>
-<li>Ta med mer snacks än du tror att barnen behöver – skärgårdsluft ger hunger</li>
-<li>Ha badkläder lättillgängliga – spontana dopp sker oavsett om du planerat det</li>
-<li>Planera kortare etapper än du tänkt – räkna hälften av din normala dagsplan</li>
-<li>Kolla sista avgångstiden HEM innan du ger er iväg. Sätt ett larm.</li>
-</ul>
-
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Insider-tips för familjer:</strong>
-<p style="margin:8px 0 0;font-size:14px">Waxholmsbolaget har barnbiljetter (barn under 7 år åker gratis med betalande vuxen). Kolla appen för aktuella regler. Midvecka-turer undviker helgträngseln och gör upplevelsen mer avslappnad för barnen.</p>
-</div>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Badvatten, grill och skräp</h2>
+<!-- KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/fakta-om-badvatten.html — "I Sverige ska de badplatser som har mer än 200 badande per dag under badsäsongen registreras som EU-bad."; "Alla EU-bad ska ha tydliga skyltar som visar vilken kvalitet badvattnet har."; "Om badvattenkvaliteten bedöms vara dålig ska det finnas en skylt som avråder från bad." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn — "Ingen provtagning av badvatten utförs av Värmdö kommun." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Större badplatser, med fler än 200 badande per dag, är EU-bad. Där kontrollerar kommunen vattnet, och skyltar visar badvattnets kvalitet. Är kvaliteten dålig ska en skylt avråda från bad. På mindre stränder provtas vattnet inte alltid – Värmdö kommun provtar till exempel inte vid Trouville på Sandhamn.</p>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/eldning/ — "Du gör allemansrätt när du använder en fast grillplats, eller väljer grus eller sand som underlag."; "Undvik även att elda på berghällar och större stenblock. De kan nämligen spricka och skadas permanent."; "Du hittar information om vad som gäller på länsstyrelsens eller kommunens webbplats."; "Ta med skräp och matrester hem." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ska ni grilla gäller allemansrätten: använd en fast grillplats eller grus eller sand som underlag, och elda inte på berghällar eftersom de kan spricka. Kolla eldningsförbud på länsstyrelsens eller kommunens webbplats, och ta med skräp och matrester hem.</p>
 `,
 
     'uto-komplett-guide': `
@@ -4479,27 +4831,86 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 `,
 
   'grebbestad-kraftskiva-2026': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Om Bohuslän är kräftornas hemort, är Grebbestad kräftornas hjärta. Det lilla fiskesamhället norr om Fjällbacka är känt i hela Sverige för sin kräfttradition och sina lokalt fångade skaldjur. Guide till kräftpremiären 2026 i landets mest äkta kräftstad.</p>
+<!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "landets kräftcentrum" och "kräftornas hjärta", invånarantalet (kommunen anger ett annat), "kräftfisket bedrivs kommersiellt av lokala fiskare som säljer direkt till restaurangerna", "inte importerade från Turkiet eller Kina", "festligheter under premiärveckan" och kräftskivor längs hamnen (ingen arrangör anger det), försäljning av kräftor från fiskebåtarna vid kajen, Grebbestads Fiskekrog och Krokholmens Fiskerestaurang (inte verifierade på egen sida), "fullbokade under premiärhelgen", "Västerhavshumrar", avstånd och restid med bil, "parkera vid infarten", "ostronpremiären i september" och "Oysterfestival", restid till hällristningarna, samt värdeord. -->
+<!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Augusti är kräftskivornas tid."; "Kräftpremiären har länge varit en festlig tillställning och i dag ordnas många fester, kräftskivor, i augusti." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/grebbestad.4.7664b4813898b7df9845a4a.html — "Grebbestad är fortfarande ett levande fiskeläge. Vid fiskmottagningen i hamnen lämnar trålarna från Grebbestad och omgivande fiskelägen sina fångster: mest kräftor och räkor." (läst 2026-09-28) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Augusti är kräftskivornas tid, och på västkusten står ofta havskräftor på bordet. I Grebbestad i norra Bohuslän lämnar trålarna fortfarande sina fångster vid fiskmottagningen i hamnen – mest kräftor och räkor. Här är när man har kräftskiva 2026, vad som skiljer kräftor från havskräftor, vilka regler som gäller för fisket och var du kan äta kräftor i Grebbestad.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Grebbestad?</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad är ett aktivt fiskesamhälle med ca 800 fast boende men tiotusentals sommargäster. Det unika med Grebbestad är att kräftfisket fortfarande bedrivs kommersiellt av lokala fiskare som säljer direkt till restaurangerna och i hamnen. Här är kräftorna inte importerade från Turkiet eller Kina – de är fångade utanför Grebbestad i Västerhavet samma morgon.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">När har man kräftskiva 2026?</h2>
+<!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Från början startade kräftfisket den 7 augusti klockan 17 men 1982 ändrades det till klockan 17 den första onsdagen i augusti."; "Vill man vara petig med traditionen infaller kräftpremiären första veckan i augusti." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det finns ingen bestämd dag för kräftskivan. Institutet för språk och folkminnen (Isof) skriver att augusti är kräftskivornas tid och att många fester, kräftskivor, ordnas i augusti. Kräftfisket startade först den 7 augusti, men 1982 flyttades starten till den första onsdagen i augusti. Räknat så föll kräftpremiären 2026 på onsdagen den 5 augusti.</p>
+<!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "1982 ändrades det till klockan 17 den första onsdagen i augusti" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nästa år är den första onsdagen i augusti den 4 augusti 2027.</p>
+<!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Från slutet av 1800-talet fram till år 1994 rådde förbud mot kräftfiske från november till början av augusti."; "Syftet var att förhindra utfiske av kräftor i svenska vattendrag."; "en tradition som lever kvar trots att förbudet upphävdes för mer än två årtionden sedan" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bakgrunden är ett gammalt fiskeförbud. Från slutet av 1800-talet fram till 1994 var det förbjudet att fiska kräftor från november till början av augusti, för att förhindra utfiske i svenska vattendrag. Förbudet är borta, men premiären i början av augusti lever kvar som tradition. Mer om traditionen, kräftfisket i Vättern och kräftskiva nära Stockholm finns i guiden <a href="/guider/kraftskiva-skargarden">Kräftpremiär och kräftskiva i skärgården</a>.</p>
+<!-- KÄLLA: https://www.isof.se/utforska/kunskapsbanker/lar-dig-mer-om-arets-namn-och-handelser/handelser/kraftskiva — "Ordet skiva för ’fest, hippa, tillställning’ är med all sannolikhet utvecklat ur betydelsen ’bordsskiva’"; "Att kräftor och nubbe hör ihop är känt sedan länge." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ordet skiva i kräftskiva betyder fest och har enligt Isof med all sannolikhet utvecklats ur betydelsen bordsskiva. Att kräftor och nubbe hör ihop är känt sedan länge.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftpremiären i Grebbestad</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Under kräftpremiärveckan (5 aug 2026 och helgerna runt) är Grebbestad fyllt med festligheter. Restaurangerna längs Grebbestads hamn arrangerar kräftskivor, det säljs kräftor direkt från fiskebåtarna vid kajen och stämningen är genuint folklig. Det är inte ett turistkonstrukt – det är en levande tradition.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftskiva på västkusten – kräftor eller havskräftor?</h2>
+<!-- KÄLLA: https://www.vastsverige.com/en/bohuslan/seafood-safaris/crayfish-and-langoustine/ — "In West Sweden we have langoustine, which come from the sea and are available year round, as well as crayfish, a lake creature that can only be caught in late summer."; "It can be purchased year round, and in the coastal regions most people prefer it to crayfish."; "Most sustainable are those caught in pots." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Västsveriges turistråd skiljer på två sorters kräftor. Havskräftan kommer från havet och finns att köpa året runt. Kräftan i sötvatten kan bara fångas på sensommaren. Enligt turistrådet föredrar de flesta längs kusten havskräftan, och de mest hållbara havskräftorna är de som fångats i bur.</p>
+<!-- KÄLLA: https://www.havochvatten.se/arter-och-livsmiljoer/arter-och-naturtyper/havskrafta.html — "Längs Sveriges kust förekommer havskräfta i Kattegatt och Skagerrak."; "Havskräftan lever på fast lerbotten där kräftan gräver hålor. Den lever på djup mellan 40 och 250 meter."; "Under natten kommer kräftorna upp för att leta föda som består av ormstjärnor och andra små bottendjur." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Havskräftan (Nephrops norvegicus) finns längs svenska kusten bara i Kattegatt och Skagerrak. Den gräver hålor i fast lerbotten på mellan 40 och 250 meters djup och kommer upp på natten för att leta föda.</p>
+<!-- KÄLLA: https://www.vastsverige.com/tanum/se--gora/grebbestad/ — "Bästa tiden för skaldjur är höst och vinter då vattnet är kallt och friskt. En gammal regel är att endast månader med bokstaven R i namnet är så kallade skaldjursmånader." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Turistorganisationen i Tanum skriver att höst och vinter är skaldjurens tid, när vattnet är kallt. En gammal regel säger att bara månader med bokstaven R i namnet är skaldjursmånader.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa restaurangerna</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Grebbestads Fiskekrog</strong> är den självklara adressen – direkt vid hamnen med lokalt fångad sjömat och en kräftmeny som är svår att slå. <strong>Krokholmens Fiskerestaurang</strong> ute på en liten ö i närheten är ett annat alternativ med utsikt och stillhet. Boka bord nu – de är fullbokade under premiärhelgen långt i förväg.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftsäsongen 2026 – vad gäller för kräftfisket?</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Havskräfta</h3>
+<!-- KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/havskrafta---minimimatt-och-redskapsbegransningar.html — "Det är tillåtet att fritidsfiska havskräfta året runt. Fritidsfisket bedrivs i första hand med burar. Vid fritidsfiske efter havskräfta med burar får sammanlagt högst sex redskap användas samtidigt."; "3,2 centimeter carapaxlängd"; "10,5 centimeter totallängd"; "Från och med den 1 januari 2023 ska havskräftburar vara försedda med rymningshål för att motverka spökfiske." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Som fritidsfiskare får du fiska havskräfta året runt, i första hand med burar.</li>
+<li>Du får använda högst sex burar samtidigt per person som deltar aktivt i fisket.</li>
+<li>Minimimåttet är 3,2 centimeter carapaxlängd eller 10,5 centimeter totallängd.</li>
+<li>Sedan den 1 januari 2023 ska havskräftburar ha rymningshål som motverkar spökfiske.</li>
+</ul>
+<!-- KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/havskrafta---minimimatt-och-redskapsbegransningar.html — "Från och med kl. 07.00 måndagen före första tillåtna dagen att fiska"; "är det förbjudet att fiska med nät, ryssjor och tinor inom vissa områden."; "Undantagna från redskapsförbudet är sillgarn och makrillgarn samt fiske med tinor efter havskräfta på större djup än 30 meter." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Veckan före hummerpremiären gäller ett redskapsförbud för nät, ryssjor och tinor i kustvattnen i Skagerrak och Kattegatt. Tinor för havskräfta på större djup än 30 meter är undantagna.</p>
+<!-- KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "Det är förbjudet för fritidsfiskare att sälja fångst från havet." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det du fångar som fritidsfiskare får du inte sälja.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kräftor i sjöar i norra Bohuslän</h3>
+<!-- KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/signalkrafta---regler-for-fiske-och-hantering.html — "Det är bara i Vättern som allmänheten får fiska kräftor. I alla andra sjöar och vattendrag måste du ha fiskerättsinnehavarens tillstånd."; "Öland, Gotland, norra Bohuslän, västra Värmland och Dalsland ligger utanför hanteringsområdet."; "Som huvudregel får signalkräfta inte fiskas eller hanteras okokt utanför hanteringsområdet." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Allmänheten får fiska kräftor fritt bara i Vättern. I alla andra sjöar och vattendrag krävs tillstånd från den som har fiskerätten. Norra Bohuslän ligger dessutom utanför det så kallade hanteringsområdet för signalkräfta, och där får signalkräftor som huvudregel inte fiskas eller hanteras okokta.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Köpa kräftor i Grebbestad</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Under premiärperioden säljer lokala fiskare kräftor direkt vid kajen. Priset är högre än i affären men kvaliteten är oomtvistad – levande, nyfångade Västerhavshumrar och kräftor. Ta med kylbox och is. Du kan också köpa förbehandlade kräftor i saltlag som är redo att äta.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftor i Grebbestad</h2>
+<!-- KÄLLA: https://www.vastsverige.com/tanum/se--gora/grebbestad/ — "Grebbestad är en tätort i Tanums kommun, mittemellan Göteborg och Oslo."; "Idag består trålarnas fångster i huvudsak av räkor och kräftor"; "Det är också här du hittar den populära bryggpromenaden med flera restauranger som serverar färsk fisk, räkor, ostron, hummer, krabba och havskräftor." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/grebbestad.4.7664b4813898b7df9845a4a.html — "Grebbestad har blivit en av Sveriges mest restaurangtäta orter." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad ligger i Tanums kommun, mitt emellan Göteborg och Oslo. Tanums kommun beskriver orten som en av Sveriges mest restaurangtäta. Längs bryggpromenaden finns flera restauranger som serverar färsk fisk, räkor, ostron, hummer, krabba och havskräftor.</p>
+<!-- KÄLLA: https://www.vastsverige.com/tanum/se--gora/grebbestad/ — "Du har möjlighet att följa med på fisketurer och vittja hummer, kräft- och krabbtinor" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Du kan också följa med på fisketurer och vittja hummer-, kräft- och krabbtinor. Fler fisketurer och ostronsafari i Grebbestad finns i <a href="/guider/grebbestad-guide">guiden till Grebbestad</a>.</p>
 
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
-<strong style="color:var(--sea)">Hur du tar dig till Grebbestad:</strong>
-<p style="margin:8px 0 0;font-size:14px">Grebbestad ligger 15 km norr om Fjällbacka och 30 km söder om Strömstad på väg 163. Från Göteborg tar det ca 2,5 timme med bil. Buss från Göteborg till Tanumshede, sedan lokalbuss till Grebbestad. Parkering i samhället är begränsad under högsäsong – parkera vid infarten och gå in.</p>
-</div>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kräftkok på Sjöboden Udden, TanumStrand</h3>
+<!-- KÄLLA: https://tanumstrand.se/restaurant/sjoboden-udden/ — "Längst ut på bryggan året om hittar du Sjöboden Udden."; "Lördagar kokas det levande kräfta på beställning"; "Upplev ett äkta Bohuslänskt kräftkok på bryggan och smaka nyfångade havskräftor som på bryggan kokas till salta delikatesser vid beställning."; "Endast drop-in." (läst 2026-09-28) -->
+<!-- KÄLLA: https://tanumstrand.se/attgora/kraftkok/ — "Vi väljer därför att ha uppehåll i kräftkoket under sommarperioden från midsommar till mitten på augusti."; "Med reservation för råvarubrist." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">TanumStrand har kräftkok på lördagar i Sjöboden Udden, längst ut på bryggan. Nyfångade havskräftor kokas på bryggan vid beställning. Det är drop-in och går inte att boka bord. Kräftkoket har uppehåll från midsommar till mitten av augusti, och TanumStrand reserverar sig för råvarubrist.</p>
+<!-- KÄLLA: https://tanumstrand.se/restaurant/sjoboden-udden/ — "Alla lördagar kl 14.00-17.00 – premiär 29/8!" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">TanumStrand anger premiär den 29 augusti för lördagarnas kräftkok efter sommaruppehållet.</p>
+<!-- KÄLLA: https://tanumstrand.se/attgora/kraftkok/ — "Vi anordnar kräftkok på förfrågan för både privatpersoner och företag."; "upp till 40 personer åt gången"; "Kan bokas för grupp tisdag till lördag." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">För större sällskap ordnar TanumStrand kräftkok på förfrågan, för upp till 40 personer åt gången. Gruppkräftkok bokas tisdag till lördag direkt hos TanumStrand.</p>
+<!-- KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/grebbestad.4.7664b4813898b7df9845a4a.html — "turistanläggningen TanumStrand söder om centrum" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">TanumStrand ligger söder om Grebbestads centrum.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grebbestad utöver kräftorna</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad är faktiskt lika känt för ostron som för kräftor – ostronpremiären är i september och orten arrangerar Oysterfestival. Området runt Grebbestad med Kosteröarna, Fjällbacka och Hamburgsund ger en hel veckas utflykter. Tanum med hällristningarna är 10 minuter bort med bil.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Fisk och skaldjur vid hamnen</h3>
+<!-- KÄLLA: https://grebys.se/ — "Välkommen till Grebys i Grebbestad. Här serverar vi färsk fisk och skaldjur från lokala vatten"; "Restaurangen har en avslappnad atmosfär och utsikt över hamnen."; "Strandvägen 1" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebys på Strandvägen serverar fisk och skaldjur från lokala vatten och har utsikt över hamnen. Grebys anger inget särskilt kräftarrangemang på sin webbplats, så fråga restaurangen direkt om kräftor och aktuella tider.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till Grebbestad?</h2>
+<!-- KÄLLA: https://www.vastsverige.com/tanum/service/res-hit/ — "Mellan Göteborg och Strömstad går lokaltåg längs Bohusbanan, där vår lokala tågstation ligger strax utanför Tanumshede. Lokala bussar stannar vid tågstationen, så du kan ta dig vidare inom kommunen."; "Mellan Oslo och Göteborg går snabbussar som stannar i Tanumshede."; "E6 mot Oslo och Göteborg går genom kommunen." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014487800000/ — "Tanumshede - Grebbestad - Sportshopen" (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Tåg och buss:</strong> lokaltåget på Bohusbanan mellan Göteborg och Strömstad stannar strax utanför Tanumshede. Därifrån går lokalbussar vidare, bland annat Västtrafiks linje 878 Tanumshede–Grebbestad.</li>
+<li><strong>Snabbuss:</strong> snabbussarna mellan Oslo och Göteborg stannar i Tanumshede.</li>
+<li><strong>Bil:</strong> E6 mellan Göteborg och Oslo går genom Tanums kommun.</li>
+</ul>
+<!-- KÄLLA: https://www.vastsverige.com/tanum/service/res-hit/ — "På centrala parkeringar i Fjällbacka, Grebbestad och Hamburgsund tas avgift ut under perioden 15 juni–15 augusti mellan klockan 9.00-18.00."; "Som mest kan du parkera 3 timmar i följd."; "Långtidsparkeringar i tätorterna Grebbestad, Fjällbacka och Hamburgsund ligger cirka 10 minuter promenad från centrum." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På de centrala parkeringarna i Grebbestad tas avgift ut 15 juni–15 augusti, och där får du stå högst 3 timmar i följd. Långtidsparkeringarna ligger ungefär 10 minuters promenad från centrum.</p>
+<!-- KÄLLA: https://gasthamnsbolaget.se/ — "Gästhamnsbolaget sköter på uppdrag av Tanums kommun gästhamnarna i Grebbestad, Fjällbacka och Hamburgsund." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kommer du med egen båt sköts gästhamnen i Grebbestad av Gästhamnsbolaget på uppdrag av Tanums kommun.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ostron och hummer i Grebbestad</h2>
+<!-- KÄLLA: https://www.vastsverige.com/tanum/se--gora/grebbestad/ — "vad som verkligen sätter Grebbestad på skaldjurskartan är de vilda ostron, Ostrea edulis. Visste du att hela 90 procent av Sveriges ostronproduktion kommer från Grebbestad och Tanum?" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Efter kräftorna tar ostronen och hummern över. Enligt Västsveriges turistråd kommer 90 procent av Sveriges ostronproduktion från Grebbestad och Tanum, och det är vilda ostron (Ostrea edulis).</p>
+<!-- KÄLLA: https://www.vastsverige.com/en/bohuslan/seafood-safaris/crayfish-and-langoustine/ — "at 7 am on the first Monday after the 20th of September both professional fishermen and local residents put their lobster pots in the water" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummerfisket börjar klockan 7 den första måndagen efter den 20 september. Läs mer i guiden om <a href="/guider/hummerpremiar-bohuslan">hummerpremiären i Bohuslän</a>.</p>
 `,
 
   'kraftskiva-recept-meny': `
@@ -5384,32 +5795,65 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 `,
 
   'barnvanliga-restauranger-skargarden': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Att äta ute med barn i skärgården kan vara en utmaning – men det finns restauranger som verkligen välkomnar familjer med barnmenyer, höga stolar och gott tålamod. Här är de bästa barnvänliga matställena i skärgården.</p>
+<!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "skärgårdens mest barnvänliga restaurang", höga stolar, "stor uteplats omgiven av gräsmatta", "djuren på ön (höns, kor)", Utö Värdshus barnmeny och helgbuffé (restaurangens egen sida visar ingen barnmeny), "fisk och chips" på Fjäderholmarnas Krog (barnmenyn har andra rätter), restid till Fjäderholmarna, "lite dyrare", påståendet att de flesta krogar inte tar onlinebokning, klockslag för lunch, "barn äter ofta bättre utomhus", samt värdeord och rangordningar. -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Letar du efter en barnvänlig restaurang i skärgården? I den här guiden finns bara krogar som själva visar en barnmeny eller rätter för barn på sin egen webbplats. Vi har läst varje krogs egen sida när guiden skrevs. Menyer och öppettider ändras med säsongen, så kolla alltid krogens egen sida innan ni åker.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad gör en restaurang barnvänlig?</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tre saker avgör: barnmeny (med rätter som barn faktiskt vill äta), tillgång på höga stolar, och uteplats där barn kan leka eller röra sig utan att störa andra gäster. Bonus om det finns aktiviteter för barn, ritpapper eller liknande.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka restauranger i skärgården har barnmeny?</h2>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa barnvänliga restaurangerna</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Grinda Wärdshus – barnrätter på Grinda</h3>
+<!-- KÄLLA: https://grinda.se/mat-fest/wardshuset/grinda-wardshus-menyer/ — "Höstmeny September till November 2026"; "Till barnen / For the children:"; "Pancakes with vanilla ice cream & strawberry jam."; "Köttbullar med potatispure, brunsås, rårörda lingon & pressgurka." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus har en egen del på menyn som heter Till barnen. På höstmenyn för september till november 2026 finns pannkakor med vaniljglass och jordgubbssylt, och köttbullar med potatispuré, brunsås, rårörda lingon och pressgurka.</p>
+<!-- KÄLLA: https://www.grindawardshus.se/ — "Observera att 3-rättersmiddag endast ingår för vuxna. Kostnad för eventuell barnmat till middag för barn tillkommer och du kan enkelt lägga till detta senare i din bokning eller beställa det på plats i restaurangen." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bor ni på Grinda med Wärdshusets boendepaket ingår trerättersmiddagen bara för vuxna. Barnens mat läggs till i bokningen eller beställs på plats i restaurangen.</p>
+<!-- KÄLLA: https://grinda.se/mat-fest/framfickan/ — "OBS! Framfickan har endast drop-in. Ej möjligt att boka bord."; "Här finns ett urval av lika läckra som unika pizzor, som även går bra att beställa som takeaway." (läst 2026-09-28) -->
+<!-- KÄLLA: https://grinda.se/mat-fest/lanthandel-cafe/ — "Pussel och pyssel och lite andra leksaker. Blöjor och klämmisar."; "Bakom Lanthandeln har vi också ett lekskåp från vilket ni kan låda olika spel." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Framfickan</strong> i hamnen har bara drop-in, så där går det inte att boka bord. Pizzorna går att beställa som takeaway.</li>
+<li><strong>Grinda Lanthandel &amp; Café</strong> säljer pussel, pyssel, leksaker, blöjor och klämmisar. Bakom lanthandeln finns ett lekskåp där ni kan låna spel.</li>
+</ul>
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — "Du kan åka till Grinda från Strömkajen, via Vaxholm. Resan från Strömkajen tar ungefär en och en halv timme."; "Under sommaren går det flera turer till Grinda varje dag, men Grinda har trafik året om." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Grinda åker du med Waxholmsbolaget från Strömkajen via Vaxholm. Resan tar ungefär en och en halv timme, och ön har trafik året om. Mer om ön finns i <a href="/guider/grinda-guide">Grindaguiden</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Grinda Wärdshus</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus är skärgårdens mest barnvänliga restaurang. Barnmeny med pannkakor och pasta, höga stolar på plats och en stor uteplats omgiven av gräsmatta där barn kan springa fritt. Djuren på ön (höns, kor) ger extra underhållning. Öppet hela sommaren.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Fjäderholmarnas Krog – barnmeny nära stan</h3>
+<!-- KÄLLA: https://www.fjaderholmarnaskrog.se/boka-online-2 — "Glöm ej att även boka plats för eventuella barn i ert sällskap." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.fjaderholmarnaskrog.se/menyforslag-krogen — "BARNMENY"; "ÖPPNA PDF" (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.fjaderholmarnaskrog.se/s/Barnmeny-2026-7an2.pdf — "Barnmeny"; "Hemkokt sylt och grädde"; "Ketchup, senap, friterad potatis"; "lingon och gräddsås"; "VANILJGLASS" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarnas Krog har en egen barnmeny för 2026 som pdf på sin webbplats. På den finns köttbullar med potatispuré, pressgurka, lingon och gräddsås, hamburgare med friterad potatis, pannkakor med hemkokt sylt och grädde och vaniljglass. När du bokar bord ber krogen dig att även boka plats för barnen i sällskapet.</p>
+<!-- KÄLLA: https://www.explorearchipelago.com/sv/sthlm/mellersta-skargarden/fjaderholmarna — "En kort båtresa på 20 minuter från centrala Stockholm tar dig till en charmig ö med krogar, café, små hantverksbutiker och gästhamn."; "Fjäderholmarna är säsongsöppet mellan april och september." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarna ligger ungefär 20 minuter med båt från centrala Stockholm. Ön har krogar, café, hantverksbutiker och gästhamn och är säsongsöppen mellan april och september.</p>
+<!-- KÄLLA: https://www.fjaderholmarnaskrog.se/ — "FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt krogens webbplats öppnar den för kommande sommar den 1 maj 2027. Mer om ön finns i <a href="/guider/fjaderholmarna-guide">guiden om Fjäderholmarna</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Utö Värdshus</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus har en väldig uteplats med utsikt mot hamnen och en barnmeny som faktiskt håller klass. Personalen är van vid barnfamiljer. Helgluncher med buffé är bra för familjer eftersom barnen kan ta vad de vill.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Sandhamns Värdshus – barnmeny i puben och på uteserveringen</h3>
+<!-- KÄLLA: https://sandhamns-vardshus.se/meny/barnmeny — "Barnmeny / Childrens menu"; "Puben, restaurangen, uteserveringen"; "Piratbiff med pommes frites & bearnaisesås"; "Plättar med sylt & grädde"; "Köttbullar" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamns Värdshus har en barnmeny som serveras i puben, restaurangen och på uteserveringen. På den finns bland annat fish and chips, piratbiff med pommes frites och bearnaisesås, köttbullar och plättar med sylt och grädde.</p>
+<!-- KÄLLA: https://www.sandhamns-vardshus.se/ — "Öppet varje dag från mitten av juni till mitten på september. Annan tid på året är restaurangen främst öppen helger." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme. Under sommaren så kan du också åka till Sandhamn från Strömkajen." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Restaurangen har öppet varje dag från mitten av juni till mitten av september. Resten av året har den främst öppet på helger. Till Sandhamn tar du Waxholmsbolagets båt från Stavsnäs, en resa på drygt en timme. På sommaren går det även båt från Strömkajen. Läs mer i <a href="/guider/sandhamn-komplett-guide">Sandhamnsguiden</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Fjäderholmarnas Krog</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarna har ett heltäckande matutbud och deras restaurang har barnmeny med fisk och chips och enkla barnrätter. Uteserveringen är stor och trygg, och den korta båtresan dit (25 min) är perfekt för yngre barn.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Smådalarö Gård – barnmeny vid Dalarö</h3>
+<!-- KÄLLA: https://www.smadalarogard.se/restauranger/brasserie-branneri/barnmeny/ — "Barnmenyn serveras i vår restaurang Brasserie & Bränneri samt i Bloms Bar för barn till och med 12 år."; "Varmrätter från ordinarie à la carte menyn"; "Går att få som halv portion" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smådalarö Gård har en barnmeny för barn till och med 12 år. Den serveras i restaurangen Brasserie &amp; Bränneri och i Bloms Bar. Varmrätter från den vanliga à la carte-menyn går också att få som halv portion.</p>
+<!-- KÄLLA: https://smadalarogard.se/restauranger/brasserie-branneri/ — "Ät frukost, lunch eller sen middag i det avslappnade sorlet från den öppna matsalen, eller slå dig ner vid ett bord ute på terrassen med utsikt över Hemviken." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Restaurangen serverar frukost, lunch och middag, inne i matsalen eller ute på terrassen mot Hemviken. Mer om området finns i <a href="/guider/dalaro-guide">Dalaröguiden</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Sandhamns Värdshus</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lite dyrare men välkomnar barnfamiljer med separat barnmeny och uteservering nära bryggan. Barnen kan se båtar komma och gå medan de äter – underhållning ingår automatiskt.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur hittar man en barnvänlig restaurang i skärgården?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vi tar bara med restauranger som själva visar en barnmeny eller barnrätter på sin egen webbplats. Många skärgårdskrogar kan säkert laga något enkelt åt barnen, men om det inte står på krogens egen sida kan vi inte lova det. Ring och fråga innan ni åker.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Alternativet – picknick</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det ärligaste barnvänliga alternativet i skärgården är picknick. Köp in mat och dryck hemma, ta med termos och ät på en klippa eller strand. Barn äter ofta bättre utomhus och slipper sitta still på en stol. Spara restaurangbesöket till kvällsmaten.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Med barn på skärgårdsbåten</h2>
+<!-- KÄLLA: https://waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med — "Du som reser med barn under 7 år får ta med barnvagn utan kostnad."; "Du ställer barnvagnen på barnvagnsplatserna eller där personalen visar att den ska stå."; "Du får ta med dig handbagage som väger under 30 kg."; "Allt annat bagage klassas som gods" (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Reser du med barn under 7 år får du ta med barnvagn på Waxholmsbolagets båtar utan kostnad.</li>
+<li>Barnvagnen ställs på barnvagnsplatserna eller där personalen visar.</li>
+<li>Handbagage får väga högst 30 kg. Allt annat räknas som gods.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler tips om resor med barn finns i <a href="/guider/barnvanliga-batresor-skargarden">guiden om barnvänliga båtresor</a> och i <a href="/guider/barnfamilj-stockholms-skargard">guiden för barnfamiljer i Stockholms skärgård</a>.</p>
 
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Tips:</strong>
-<p style="margin:8px 0 0;font-size:14px">Boka bord i förväg under högsäsong – skärgårdsrestaurangerna är små och fulltecknade snabbt. Ring direkt till restaurangen, de flesta tar inte online-bokningar. Kom tidigt (11.30–12.00) för lunchen – kön till de populäraste ställena är lång på helgmiddagarna.</p>
-</div>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Picknick i stället för restaurang</h2>
+<!-- KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/att-besoka-skyddad-natur/grilla/ — "Använd grill på ben eller anvisad eldstad, använd inte engångsgrill."; "Under torrperioder vår- och sommartid kan du utgå från att eldningsförbud är utfärdat."; "Det är förbjudet att göra upp eld direkt på berghällar då de kan spricka." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill ni grilla själva på Skärgårdsstiftelsens öar ska ni använda en grill på ben eller en anvisad eldstad, inte en engångsgrill. Det är förbjudet att elda direkt på berghällar, eftersom de kan spricka. Under torrperioder på våren och sommaren kan ni räkna med att det är eldningsförbud.</p>
+<!-- KÄLLA: https://www.fjaderholmarna.se/ — "Packa gärna medhavd picknick i förpackningar du tar med hem, och lämna inga matrester till djuren, ej heller i papperskorgarna." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Fjäderholmarna ber förvaltningen besökarna att packa picknicken i förpackningar som de tar med hem, och att inte lämna matrester till djuren eller i papperskorgarna.</p>
 `,
 
   'barnvanliga-aktiviteter-skargarden': `
@@ -6433,27 +6877,105 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 
   // ── Batch F: Regionala djupguider ────────────────────────────────────────────
   'karlskrona-guide': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Karlskrona är en av Sveriges mest unika städer. Sveriges enda barockstad, UNESCO-världsarv, örlogsflottans historiska hemvist och utgångspunkt för Blekinges vackra skärgård. Komplett guide till Karlskrona och Blekinge.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "Sveriges enda barockstad", "ett av Europas bäst bevarade barockstäder", "Sveriges bästa sjöfartsmuseum", "fullstort slagskepp", "ypperligt för barn" med åldersgräns, "Stortorget ett av Sveriges vackraste", "Blekinges skärgård Sveriges minst kända", "få turister", "Blekingetrafikens båtar till Tjurkö", "Hanö i östra Blekinge" (läget stämmer inte, se hano-guide), restaurangerna "Saltö" och "Fiskets Hus" (ej verifierade), "Blekingebröd – surt tunnbröd", "Bla Line" (linjen trafikeras av Stena Line), restider från Stockholm med tåg och bil, samt värdeord. -->
+<!-- KÄLLA: https://www.karlskrona.se/kultur-fritid-och-turism/varldsarv/ — "Med sina unika värden är staden betydelsefull för hela mänskligheten och skrevs därför in på världsarvslistan den 3 december 1998."; "Örlogsstaden Karlskrona är en av de 15 världsarven i Sverige" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/orlogsstaden-karlskrona/ — "Karlskrona i Blekinge grundades 1680 och var en av den tidens modernaste och mest effektiva flottbas." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Karlskrona i Blekinge grundades 1680 som flottbas och är UNESCO-världsarv sedan den 3 december 1998 under namnet Örlogsstaden Karlskrona. Det är ett av 15 världsarv i Sverige. Här går vi igenom varför Karlskrona blev världsarv, vilka platser som ingår, vad du kan besöka och hur du tar dig till Karlskrona.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Karlskrona är ett UNESCO-världsarv</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskrona grundades 1680 som en ny hemvist för den svenska örlogsflottan. Staden planerades från scratch i barockstil på en serie öar och är ett av de bäst bevarade exemplen på en europeisk örlogsstad. Stadsplanen, örlogsvarvet Marinmuseum och kyrkobyggnaderna är alla del av det som gett UNESCO-statusen 1998. Det är en stad som tar tid att förstå men som belönar de nyfikna.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför är Karlskrona ett UNESCO-världsarv?</h2>
+<!-- KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/orlogsstaden-karlskrona/ — "Karlskrona är ett utomordentligt väl bevarat exempel på en europeiskt planerad örlogsstad inspirerad av anläggningar i andra länder. Karlskrona har i sin tur tjänat som förebild för andra anläggningar med liknande uppgifter."; "Karlskrona är den bäst bevarade och mest kompletta av dem som finns kvar." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt UNESCO:s världsarvskommitté är Karlskrona ett utomordentligt väl bevarat exempel på en europeiskt planerad örlogsstad, inspirerad av anläggningar i andra länder. Karlskrona blev i sin tur förebild för andra örlogsbaser. Kommittén skriver också att örlogsbaser spelade en viktig roll när ett lands flottstyrka var avgörande i europeisk politik, och att Karlskrona är den bäst bevarade och mest kompletta av dem som finns kvar.</p>
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/varldsarvet-orlogsstaden-karlskrona/varldsarvsutnamningen/ — "Karlskrona uppfyller två av 10 kriterier som UNESCOs världsarvskommitté ställt upp." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/varldsarvet-karlskrona.html — "Karlskrona skrevs in på den prestigefyllda världsarvslistan den 3 december 1998 och blev därmed Sveriges nionde världsarv." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskrona uppfyller två av UNESCO:s tio kriterier för världsarv. När staden skrevs in på listan 1998 blev den Sveriges nionde världsarv.</p>
+<!-- KÄLLA: https://www.karlskrona.se/kultur-fritid-och-turism/varldsarv/ — "Det är inte enskilda byggnader som gör Karlskrona till ett världsarv, utan hela stadens helhet."; "Redan från början planerades staden som en sammanhängande helhet med befästningar, hamnar, skeppsvarv, en militär bas samt en civil stad för handel proviantering och administration." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskrona kommun betonar att det inte är enskilda byggnader utan helheten som gör staden till världsarv. Redan från början planerades staden som en sammanhängande helhet med befästningar, hamnar, skeppsvarv, en militär bas och en civil stad för handel, proviantering och administration.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Måste se i Karlskrona</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Örlogsstaden Karlskronas historia i korthet</h3>
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/varldsarvet-orlogsstaden-karlskrona/orlogsstaden-karlskronas-historia/ — "Senhösten 1679 steg kungen och hans män iland på skärgårdsön Trossö."; "Kung Karl XI utfärdade stadsprivilegierna, vilket bland annat innebar rätt att bedriva handel, år 1680."; "Området var även isfritt under en mycket längre tid än Stockholm." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karl XI steg i land på skärgårdsön Trossö hösten 1679 och utfärdade stadsprivilegierna 1680. Platsen valdes bland annat för att området var isfritt mycket längre tid än Stockholm, och för att en smal och djup inseglingsled lätt kunde försvaras.</p>
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/varldsarvet-orlogsstaden-karlskrona/orlogsstaden-karlskronas-historia/ — "Här fanns såväl en smal och djup inseglingsled, vilken lätt skulle kunna försvaras mot angrepp, som plats för en stor skyddad hamnbassäng." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/orlogsstaden-karlskrona/ — "örlogsbasen med omgivande försvarsanläggningar började uppföras under ledning av Erik Dahlbergh"; "Det tack vare att Sverige inte har upplevt krig inom sina gränser sedan 1809."; "Här har den svenska marinen ett av sina högkvarter och varvsverksamheten finns kvar i staden med produktion av både civila och militära fartyg." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Örlogsbasen och försvarsanläggningarna byggdes under ledning av Erik Dahlbergh. Till skillnad från liknande baser på andra håll i Europa har Karlskrona levt vidare, vilket Riksantikvarieämbetet förklarar med att Sverige inte haft krig inom sina gränser sedan 1809. I dag har marinen ett av sina högkvarter här, och på varvet byggs både civila och militära fartyg.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Marinmuseum</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sveriges bästa sjöfartsmuseum med en gammal ubåt man kan gå ombord i, ett fullstort slagskepp och utställningar om Sveriges marinehistoria från 1600-talet till idag. Perfekt regnvädersmål och ypperligt för barn 8+.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad ingår i världsarvet Örlogsstaden Karlskrona?</h2>
+<!-- KÄLLA: https://www.karlskrona.se/kultur-fritid-och-turism/varldsarv/ — "Den civila staden: Stadsplan, äldre bebyggelse på Trossö, Björkholmen samt Stumholmen"; "Örlogsvarvet och örlogshamnen"; "De anläggningar i omgivningen som haft betydelse för örlogsbasens försörjning: Skärva herrgård, Lyckeby kronokvarn med dammen och stenbron"; "Befästningarna Kungsholms fort, Drottningskärs kastell, Kurrholmen, Godnatt, Koholmen, Ljungskär och Mjölnareholmen" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskrona kommun räknar upp fyra delar som har enastående värde för världsarvet:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Den civila staden:</strong> stadsplanen och den äldre bebyggelsen på Trossö, Björkholmen och Stumholmen.</li>
+<li><strong>Örlogsvarvet och örlogshamnen.</strong></li>
+<li><strong>Befästningarna:</strong> Kungsholms fort, Drottningskärs kastell, Kurrholmen, Godnatt, Koholmen, Ljungskär och Mjölnareholmen.</li>
+<li><strong>Anläggningar i omlandet</strong> som försörjde örlogsbasen: Skärva herrgård och Lyckeby kronokvarn med dammen och stenbron.</li>
+</ul>
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/ — "När du besöker världsarvet Örlogsstaden Karlskrona, utforskar du samtidigt en annan av UNESCO:s unika utnämningar – biosfärområdet Blekinge Arkipelag."; "Platserna och byggnaderna inom världsarvet ägs och förvaltas av olika aktörer" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Världsarvet ligger inom biosfärområdet Blekinge Arkipelag, som också är en UNESCO-utnämning. Platserna ägs och förvaltas av olika aktörer, så öppettider och bokning hittar du hos respektive aktör eller hos Visit Karlskrona.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Stortorget och barockkyrkorna</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskronas stortorg är ett av Sveriges vackraste – stort, öppet och omgivet av barockarkitektur. Fredrikskyrkan och Trefaldighetskyrkan på torget är båda ritade av Nicodemus Tessin d.y., som även ritade Stockholms slott.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Se världsarvet i Karlskrona: platser du kan besöka</h2>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Blekinges skärgård</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Blekinges skärgård är Sveriges minst kända skärgård – och den är vacker. Mjuka klippor, klart vatten och få turister. Utflykter med Blekingetrafikens båtar till Tjurkö, Sturkö och de yttre öarna är obligatoriska. Hanö i östra Blekinge är ett av skärgårdens pärlor.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Stortorget, Fredrikskyrkan och Trefaldighetskyrkan</h3>
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/varldsarvet-orlogsstaden-karlskrona/orlogsstaden-karlskronas-historia/ — "I denna klassiska rutnätsplan har den civila staden sitt centrum på den högst belägna platsen, Stortorget, som omgärdas av ståtliga byggnader för religion och rättskipning." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/karta-over-varldsarvet/fredrikskyrkan/ — "Den ritades som en basilika med latinsk korsplan av Nicodemus Tessin d.y. på 1690-talet."; "Fredrikskyrkan började byggas år 1720, men det skulle dröja till 1744 innan kyrkan kunde invigas." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/karta-over-varldsarvet/trefaldighetskyrkan/ — "Trefaldighetskyrkan kallas också Tyska kyrkan eftersom den fram till 1846 var Karlskronas tyska församlings kyrka."; "Ritningarna till denna rundkyrka gjordes av Nicodemus Tessin d.y. efter italienska förebilder." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stortorget på Trossö är stadens högst belägna plats och omges av byggnader för religion och rättskipning. Fredrikskyrkan ritades av Nicodemus Tessin d.y. som en basilika med latinsk korsplan; den började byggas 1720 och invigdes 1744. Trefaldighetskyrkan, också kallad Tyska kyrkan, är en rundkyrka efter ritningar av samme Tessin.</p>
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/karta-over-varldsarvet/radhuset/ — "Karlskrona rådhus är en av de monumentala byggnader som inramar Stortorget i centrala Karlskrona. Byggnaden är säte för Blekinge tingsrätt." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Rådhuset vid Stortorget är i dag säte för Blekinge tingsrätt.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mat och dryck</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskrona har en levande matscen med fokus på Östersjöns råvaror. Torskrätter och sill är lokala specialiteter. Restaurang Saltö vid hamnen och Fiskets Hus vid marinan är bra val. Blekingebröd – ett enkelt surt tunnbröd – hittas på lokala bagerier.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Amiralitetskyrkan</h3>
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/karta-over-varldsarvet/amiralitetskyrkan/ — "Kyrkan är Karlskronas första och är egentligen ett provisorium som skulle ersatts av en stenkyrka."; "Kyrkan var ett hastigt uppfört provisorium för amiralitetsförsamlingen och invigdes år 1685."; "Utanför kyrkan står den kända fattigbössan ”Rosenbom”, utformad som en båtsman från 1700-talet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Amiralitetskyrkan är Karlskronas första kyrka, en träkyrka som invigdes 1685 och egentligen var tänkt som ett provisorium tills en stenkyrka byggts. Utanför står fattigbössan Rosenbom, utformad som en båtsman från 1700-talet.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Karlskrona</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tåg från Stockholm tar ca 3,5 timme (Kalmarbanan via Alvesta). Med bil från Stockholm tar det ca 4,5 timme via E22. Från Malmö/Köpenhamn är det ca 2 timme med bil längs E22. Bla Line kör färja från Gdynia i Polen till Karlskrona – ett alternativ för de som vill kombinera med Polen-besök.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Marinmuseum på Stumholmen</h3>
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/karta-over-varldsarvet/marinmuseum/ — "Marinmuseum är Sveriges nationella museum för den svenska marinens historia, från år 1522 till idag."; "Ubåtshallen intill byggdes 2012-14 och innehåller bland annat ubåten HMS Neptun."; "Runt piren ligger flera intressanta fartyg såsom HMS Jarramas (Sveriges sista fullriggare) och minsveparen HMS Bremön." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marinmuseum är Sveriges nationella museum för den svenska marinens historia. I ubåtshallen står ubåten HMS Neptun, och vid piren ligger bland annat HMS Jarramas, Sveriges sista fullriggare, och minsveparen HMS Bremön.</p>
+<!-- KÄLLA: https://www.marinmuseum.se/besok/planera-ditt-besok/ — "Marinmuseum ligger på Stumholmen i centrala Karlskrona. Du kan gå från centrum, åka kollektivt eller bil hit."; "På ön Stumholmen finns inga publika parkeringsplatser."; "Observera att fartygen inte är tillgänglighetsanpassade." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Museet ligger på Stumholmen i centrala Karlskrona och du kan gå dit från centrum. På Stumholmen finns inga publika parkeringsplatser. Tänk på att fartygen inte är tillgänglighetsanpassade. Aktuella öppettider och priser står på marinmuseum.se.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Drottningskärs kastell på Aspö</h3>
+<!-- KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/blekinge-lan/drottningskars-kastell/ — "Drottningskärs kastell på Aspö är idag ett besöksmål med restaurang och evenemang. Kastellet är en välbevarad fästning från 1600-talet med fyra bastioner som döpts efter svenska drottningar."; "Förutom spännande miljöer från stormaktstiden erbjuder kastellet i dag restaurang och underhållning sommartid." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/karta-over-varldsarvet/drottningsskars-kastell/ — "Trots sin styrka har Drottningskärs kastell aldrig varit i strid."; "Kastellet förvaltas av Statens Fastighetsverk." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Drottningskärs kastell på Aspö förvaltas av Statens fastighetsverk. Det är en välbevarad fästning från 1600-talet med fyra bastioner uppkallade efter svenska drottningar, och kastellet har aldrig varit i strid. Sommartid finns restaurang och evenemang.</p>
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/drottningskarskastell — "För de stora örlogsskeppen är inloppet mellan Aspö och Tjurkö det enda sättet att nå Karlskrona." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlskrona-skargard/ — "Fisktorget–Kastellet"; "Du köper din biljett när du går ombord och betalar med Swish eller betalkort." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kastellet vaktar inloppet mellan Aspö och Tjurkö, som var den enda vägen in till Karlskrona för de stora örlogsskeppen. Blekingetrafiken har en båtlinje mellan Fisktorget och Kastellet; biljetten köper du ombord med Swish eller betalkort. Läs mer om Aspö i <a href="/guider/aspo-sturko-guide">guiden till Aspö och Sturkö</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kungsholms fort och Godnatt</h3>
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/karta-over-varldsarvet/kungsholms-fort/ — "Kungsholms fort har varit i kontinuerligt militärt bruk i över 300 år"; "Den unika cirkelformade hamnbassängen, byggd 1831–1838, är en av fortets mest karakteristiska delar"; "Kungsholmsfort förvaltas av Fortifikationsverket och sedan hösten 2020 används det för utbildning av värnpliktiga i Marinen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kungsholms fort på andra sidan inloppet har varit i militärt bruk i över 300 år och har en cirkelformad hamnbassäng. Fortet förvaltas av Fortifikationsverket och används sedan hösten 2020 för utbildning av värnpliktiga i Marinen.</p>
+<!-- KÄLLA: https://www.visitkarlskrona.se/en/guided-tour-kungsholms-fortress — "Since the area is a military protected object, additional personal information is required for booking."; "tickets can only be purchased through Karlskrona Tourist Center, either in person, by phone, or via email."; "All tours to Kungsholm's fortress depart from Fisktorget (located next to Scandic Hotel)" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/en/experience/guided-tours — "Guided tours on the military areas - All tours must be booked in advance. Valid ID is required for both Swedish and foreign citizens over 18 years of age." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Du kan besöka fortet på en guidad tur med båt från Fisktorget. Eftersom fortet är ett militärt skyddsobjekt krävs extra personuppgifter vid bokningen, och biljetter säljs bara via Karlskrona Turistcenter på plats, per telefon eller e-post. Alla guidade turer på militära områden måste bokas i förväg, och alla över 18 år behöver giltig legitimation.</p>
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/karta-over-varldsarvet/god-natt/ — "det första tornet som byggdes var God natt, som stod färdigt 1862"; "På takplanet finns en fyr som fortfarande är i bruk." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fästningstornet Godnatt på Karlskronas redd stod färdigt 1862. Det användes knappt som fästning men har en fyr på taket som fortfarande är i bruk.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kan man besöka örlogsvarvet i Karlskrona?</h3>
+<!-- KÄLLA: https://www.visitkarlskrona.se/en/experience/guided-tours — "Unfortunately the guided tours to The old Navy Yard are cancelled until further notice, due to the current security situation in Europe." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/karta-over-varldsarvet/repslagarbanan/ — "Repslagarbanan från 1690-talet är en av Karlskronas äldsta bevarade byggnader och Sveriges längsta träbyggnad."; "På grund av det rådande världsläget kan man ej besöka Lindholmen och Repslagarbanan." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.karlskrona.se/varldsarvet-orlogsstaden-karlskrona/karta/karta-over-varldsarvet/polhemsdockan/ — "Den väldiga torrdockan, utsprängd ur urberget på Lindholmen, var den första i sitt slag i Sverige" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Inte just nu. Visit Karlskrona skriver att de guidade turerna till det gamla örlogsvarvet är inställda tills vidare på grund av säkerhetsläget i Europa. Karlskrona kommun skriver också att Lindholmen och Repslagarbanan, Sveriges längsta träbyggnad, inte går att besöka. På Lindholmen finns även Polhemsdockan, Sveriges första torrdocka i sitt slag.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Guidade turer och världsarvsfestivalen</h3>
+<!-- KÄLLA: https://www.visitkarlskrona.se/en/experience/guided-tours — "It is possible to book guided tours at Karlskrona Tourist Center all year round."; "Discover Karlskrona's World Heritage from the water with Arkipelag Kajaks guided kayak tours. The tours start from Fisktorget in the centre of Karlskrona." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Guidade turer bokas året runt hos Karlskrona Turistcenter. Vill du se världsarvet från vattnet har Arkipelag Kajak guidade kajakturer som startar vid Fisktorget i centrum.</p>
+<!-- KÄLLA: https://www.visitkarlskrona.se/en/experience/guided-tours — "THE WORLD HERITAGE FESTIVAL 2026"; "Experience Karlskrona's unique world heritage during the World Heritage Festival from October 24 to" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hösten 2026 hålls världsarvsfestivalen i Karlskrona med start den 24 oktober. Programmet finns hos Visit Karlskrona och på karlskrona.se.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till Karlskrona?</h2>
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/resa — "Från Malmö: Tåg 2 h 45 min eller bil 2 h 30 min."; "Från Stockholm: Flyg 1 h (Ronneby flygplats)."; "Från Ronneby flygplats: Flygbuss/taxi 30 min."; "Från Göteborg: Tåg 4 h 30 min eller bil 4 h."; "Från Gdynia, Polen: Färja (Stena Line) 10 h." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visit Karlskrona anger dessa ungefärliga restider:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Från Malmö:</strong> tåg 2 h 45 min eller bil 2 h 30 min.</li>
+<li><strong>Från Göteborg:</strong> tåg 4 h 30 min eller bil 4 h.</li>
+<li><strong>Från Stockholm:</strong> flyg 1 h till Ronneby flygplats, därefter flygbuss eller taxi 30 min.</li>
+<li><strong>Från Gdynia i Polen:</strong> Stena Lines färja, 10 h.</li>
+</ul>
+<!-- KÄLLA: https://www.stenaline.se/rutter/karlskrona-gdynia — "Ta den mest bekväma, direkta färjerutten till Karlskrona i Sverige och Gdynia i Polen" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/resa — "Från E22:an, via infartsleden, tar du dig lätt och snabbt in till Karlskrona centrum" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Färjelinjen mellan Karlskrona och Gdynia trafikeras av Stena Line. Med bil kommer du in till centrum från E22 via infartsleden.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Karlskronas skärgård</h2>
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlskrona-skargard/ — "Fisktorget–Nättraby"; "Fisktorget–Stenshamn"; "Handelshamnen–Hasslö"; "Handelshamnen–Sturkö"; "Handelshamnen–Trummenäs"; "Yttre Park–Stenshamn"; "Barn mellan 7 och 19 år har 40 procent i rabatt och två barn under 7 år åker gratis i sällskap med betalande resenär."; "Du hittar aktuella priser vid tidtabellen."; "Hop-on Hop-off" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Blekingetrafiken kör skärgårdsbåtar från Fisktorget, Handelshamnen och Yttre Park, bland annat till Stenshamn, Nättraby, Hasslö, Sturkö och Trummenäs, och en Hop-on Hop-off-linje. Barn mellan 7 och 19 år får 40 procent rabatt, och två barn under 7 år åker gratis med en betalande vuxen. Tider och priser står vid respektive tidtabell hos Blekingetrafiken.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om öarna hittar du i <a href="/guider/blekinge-skargard-guide">guiden till Blekinges skärgård</a>, <a href="/guider/aspo-sturko-guide">guiden till Aspö och Sturkö</a> och <a href="/guider/hano-guide">guiden till Hanö</a>. Öarna finns också på <a href="/o/aspo-blekinge">Aspö</a> och <a href="/o/sturko">Sturkö</a>.</p>
 `,
 
   'varberg-guide': `
@@ -6665,13 +7187,82 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 `,
 
   'pask-skargarden-2027': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Påsk i skärgården är startskottet för säsongen. Vattnet är fortfarande kallt, björkarna knappt gröna – men öarna börjar vakna och de som är först ut belönas med tystnad, fjädersångfåglar och det unika förkänning av sommar som bara påsk ger.</p>
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Påsk 2027 – datum och väder</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Påsk 2027 infaller 28 mars (påskdagen). Det är tidigt på våren och vädret kan vara allt från snöiga dagar till solig skärgårdsdag. Genomsnittstemperaturen i mars–april i skärgården är 5–10°C. Ta med rejäla kläder och planera för alla väder.</p>
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka öar är öppna i påsk</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm är alltid öppet. Utö Värdshus öppnar i påsk och erbjuder påskpaketet med övernattning och påskbuffé. Sandhamns Värdshus öppnar säsongen i påsk. Waxholmsbolaget kör mer begränsad trafik – kolla aktuell tidtabell för påskhelgen.</p>
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför påsk är speciellt</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Påskskärgården är tyst. Sommarens folkmassor är månader borta. Fåglarna återvänder – ejdern, skärpiplärkan och havsörnens skrik hör man tydligt i den stilla luften. Det är en av årets bästa upplevelser för fågelskådare och naturälskare.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: lufttemperaturer och vattentemperaturer för mars–april, "Utö Värdshus öppnar i påsk och erbjuder påskpaket med påskbuffé" (inget påskpaket för nästa påsk publicerat), "Sandhamns Värdshus öppnar säsongen i påsk" (puben har öppet året runt), "Vaxholm är alltid öppet", "Fjäderholmarna och Grinda öppnar normalt till påsk", "Sandhamn och Utö brukar ha påskpaket", fåglar som återvänder (ejder, skärpiplärka, havsörn), samt värdeord. -->
+<!-- KÄLLA: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-1989253-om-allmanna-helgdagar_sfs-1989-253/ — "långfredagen fredagen närmast före påskdagen"; "annandag påsk dagen efter påskdagen"; "söndagen närmast efter den fullmåne som infaller på eller närmast efter den 21 mars" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sundbyberg.se/forskola-skola-och-utbildning/grundskola/lasarstider-och-lov — "Vårtermin 2027"; "Långfredag: 26 mars"; "Annandag påsk: 29 mars" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.bromolla.se/utbildning-barnomsorg/grundskola/lasarstider/ — "Långfredag:26 mars 2027"; "Annandag påsk: 29 mars 2027" (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Påsk 2027 infaller tidigt: påskdagen är söndag 28 mars 2027. Här är datumen för påskweekend 2027, läget för påskpaket 2027 i skärgården, hur Waxholmsbolagets båtar brukar gå i påskhelgen och vilka öar i Stockholms skärgård som har båttrafik året runt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">När är påsk 2027?</h2>
+<!-- KÄLLA: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-1989253-om-allmanna-helgdagar_sfs-1989-253/ — "långfredagen fredagen närmast före påskdagen"; "annandag påsk dagen efter påskdagen"; "söndagen närmast efter den fullmåne som infaller på eller närmast efter den 21 mars" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sundbyberg.se/forskola-skola-och-utbildning/grundskola/lasarstider-och-lov — "Vårtermin 2027"; "Långfredag: 26 mars"; "Annandag påsk: 29 mars" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.bromolla.se/utbildning-barnomsorg/grundskola/lasarstider/ — "Långfredag:26 mars 2027"; "Annandag påsk: 29 mars 2027" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt lagen om allmänna helgdagar (1989:253) är påskdagen söndagen närmast efter den fullmåne som infaller på eller närmast efter den 21 mars. Långfredagen är fredagen närmast före påskdagen och annandag påsk dagen efter. Kommunernas läsårskalendrar för våren 2027 anger långfredag 26 mars och annandag påsk 29 mars. Det ger påskweekend 2027:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Skärtorsdag:</strong> torsdag 25 mars 2027</li>
+<li><strong>Långfredag:</strong> fredag 26 mars 2027 (röd dag)</li>
+<li><strong>Påskafton:</strong> lördag 27 mars 2027</li>
+<li><strong>Påskdagen:</strong> söndag 28 mars 2027</li>
+<li><strong>Annandag påsk:</strong> måndag 29 mars 2027 (röd dag)</li>
+</ul>
+<!-- KÄLLA: https://www.sundbyberg.se/forskola-skola-och-utbildning/grundskola/lasarstider-och-lov — "Påsklov: 30 mars–2 april" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.bromolla.se/utbildning-barnomsorg/grundskola/lasarstider/ — "Påsklov: 30 mars - 2 april 2027 (vecka 13)" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Påsklovet ligger i många kommuner veckan efter påsk, till exempel 30 mars–2 april 2027 i Sundbyberg och Bromölla. Kolla din egen kommuns läsårstider.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Påskpaket 2027 – finns det några ännu?</h2>
+<!-- KÄLLA: https://www.utovardshus.se/erbjudanden/ — "PAKET & ERBJUDANDEN"; "Våra paket och erbjudanden samlar det bästa av ön" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/ — "VÅRA HOTELLERBJUDANDEN & PAKET" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nej, inte när den här guiden skrevs i september 2026. Vi har läst paket- och erbjudandesidorna hos hotell och värdshus i Stockholms skärgård, bland annat Utö Värdshus och Smådalarö Gård, och där fanns inget påskpaket för påsken 2027 publicerat. Påskpaket läggs ut på hotellens och värdshusens egna sidor för paket och erbjudanden.</p>
+<!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/pasklyx/ — "Detta paket är ej bokningsbart just nu."; "Upplev en påsk i skärgårdens hjärta"; "eftermiddagsfika, spa, tvårättersmiddag, övernattning och vår omtyckta frukostbuffé" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/pasklyx/ — "Detta erbjudande är bokningsbart 2-5 april 2026." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ett exempel på var de brukar dyka upp: Smådalarö Gård hade påskpaketet "Påsklyx" under säsongens paket, med eftermiddagsfika, spa, tvårättersmiddag, övernattning och frukost. Paketet gällde 2–5 april 2026 och är nu markerat som ej bokningsbart.</p>
+<!-- KÄLLA: https://www.siggestagard.se/hotell/hotellpaket/paskmiddag-med-overnattning — "Påskpaketet är ett hotellpaket på Siggesta Gård som kombinerar trerätters påskmiddag, övernattning och frukost"; "Siggesta Gård ligger på Värmdö" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.siggestagard.se/hotell/hotellpaket/paskmiddag-med-overnattning — "2- 5 & 9 - 12 april" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Siggesta Gård på Värmdö har en sida för sitt påskpaket med trerätters påskmiddag, övernattning och frukost. Datumen på sidan, 2–5 och 9–12 april, gäller påsken 2026 och inte 2027.</p>
+<!-- KÄLLA: https://www.sundbyberg.se/forskola-skola-och-utbildning/grundskola/lasarstider-och-lov — "Vårtermin 2027"; "Långfredag: 26 mars"; "Annandag påsk: 29 mars" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du boka påskpaket 2027: bevaka hotellens och värdshusens egna sidor för paket och erbjudanden, och kontrollera att datumen gäller 26–29 mars 2027 innan du bokar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Påskweekend 2027: så går Waxholmsbolagets båtar</h2>
+<!-- KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "I samband med storhelger som till exempel jul, påsk och midsommar går båtarna lite annorlunda än den veckodag som helgen eller klämdagen infaller på." (läst 2026-09-27) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period."; "Tänk på att tidtabellerna visar hur trafiken är planerad. Fartygen kan ändras med kort varsel." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid storhelger som påsk går Waxholmsbolagets båtar enligt en annan veckodags tabell än den dag det är i kalendern. Bolaget byter tidtabell fyra gånger om året, och påsken ligger i vårtabellen. Listan för påsken 2027 var inte publicerad när vi läste sidan.</p>
+<!-- KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "Skärtorsdag 2 april: trafiken går som en fredag"; "Långfredag 3 april: trafiken går som en söndag"; "Påskafton 4 april: trafiken går som en lördag"; "Påskdagen 5 april: trafiken går som en söndag"; "Annandag påsk 6 april: trafiken går som en söndag" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Så här gick båtarna påsken 2026, enligt Waxholmsbolagets sida om helgtrafik:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Skärtorsdag: som en fredag</li>
+<li>Långfredag: som en söndag</li>
+<li>Påskafton: som en lördag</li>
+<li>Påskdagen och annandag påsk: som en söndag</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kontrollera helgtrafiksidan och reseplaneraren inför påsken 2027. Läs mer om biljetter och linjer i <a href="/guider/waxholmsbolaget-guide">guiden till Waxholmsbolaget</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Påsk i Stockholms skärgård – vilka öar kan man åka till?</h2>
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Båtresan från Strömkajen tar bara en timme och under sommaren går det turer många gånger om dagen, och övrig tid på året går det flera per dag."; "Och skulle det inte passa med en båt hem, går SL:s bussar från Vaxholm till Tekniska högskolan." (läst 2026-09-27) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt."; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme. Under sommaren så kan du också åka till Sandhamn från Strömkajen." (läst 2026-09-27) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — "Under sommaren går det flera turer till Grinda varje dag, men Grinda har trafik året om." (läst 2026-09-27) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong><a href="/guider/vaxholm-guide-komplett">Vaxholm</a>:</strong> båten från Strömkajen tar en timme, och utanför sommaren går det flera turer per dag. Du kan också åka hem med SL-buss.</li>
+<li><strong><a href="/guider/sandhamn-komplett-guide">Sandhamn</a>:</strong> turer året runt från Stavsnäs, drygt en timme. Från Strömkajen går båten bara på sommaren.</li>
+<li><strong><a href="/guider/grinda-guide">Grinda</a>:</strong> har trafik året om, med färre turer än på sommaren.</li>
+<li><strong><a href="/guider/uto-komplett-guide">Utö</a>:</strong> båt från Årsta brygga i Haninge, lite mer sällan än sommartid.</li>
+</ul>
+<!-- KÄLLA: https://www.sandhamns-vardshus.se/ — "Öppet året runt. Här serveras våra klassiska rätter"; "Öppet varje dag från mitten av juni till mitten på september. Annan tid på året är restaurangen främst öppen helger." (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mat och boende utanför sommarsäsongen: puben på Sandhamns Värdshus har öppet året runt, medan restaurangen annan tid än sommaren främst har öppet helger. Utö Värdshus har enligt Skärgårdsstiftelsen öppet året runt med restaurang och hotell. Kolla öppettiderna för påskhelgen direkt hos dem.</p>
+<!-- KÄLLA: https://fjaderholmarnaskrog.se/ — "FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Alla krogar har inte öppnat till påsk. Fjäderholmarnas Krog skriver till exempel att den öppnar för sommaren den 1 maj 2027, alltså efter påsk. Läs mer om <a href="/guider/fjaderholmarna-guide">Fjäderholmarna</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vädret i påsk</h2>
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/meteorologi/arstider/var — "Den meteorologiska definitionen av vår är att dygnsmedeltemperaturen ska vara stigande och över 0,0°C men under 10,0°C."; "Ofta kommer bakslag med kyliga nordliga vindar och snöfall i både april och maj." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Påsken ligger på våren, och enligt SMHI är meteorologisk vår när dygnsmedeltemperaturen är stigande och ligger mellan 0 och 10 grader. SMHI skriver också att bakslag med kyliga nordliga vindar och snöfall är vanliga i både april och maj. Packa för kyla och blåst, särskilt på båtdäck. Se <a href="/guider/packlista-skargarden">packlistan för skärgården</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fåglar och naturreservat på våren</h2>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/friluftsliv-och-allemansratt.html — "Ett annat exempel på områden som har särskilda regler är fågel- och sälskyddsområden. Dessa områden får bara besökas vissa tider på året." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/natur-och-landsbygd/skyddad-natur.html — "Det är framförallt häckningsplatser för störningskänsliga fågelarter som vi försöker skydda med tillträdesförbud."; "Du kan hitta områden med tillträdesförbud i Naturvårdsverkets kartverktyg" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På våren börjar fåglarna häcka, och i skärgården finns fågel- och sälskyddsområden som bara får besökas vissa tider på året. Länsstyrelsen Stockholm hänvisar till Naturvårdsverkets kartverktyg Skyddad natur för att se var tillträdesförbud gäller. Läs mer i <a href="/guider/fagelskadning-skargarden">guiden till fågelskådning i skärgården</a>.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler vårguider: <a href="/guider/var-stockholms-skargard-2027">våren i Stockholms skärgård</a>, <a href="/guider/valborg-skargarden-2027">valborg i skärgården</a> och <a href="/guider/pingst-skargarden">pingst i skärgården</a>.</p>
 `,
 
   'valborg-skargarden-2027': `
@@ -7279,51 +7870,117 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 `,
 
   'faro-guide': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Fårö är Sveriges mest unika ö — Ingmar Bergmans hemvist i 40 år, hem till Nordens mest dramatiska raukformationer och tre av Gotlands vackraste sandstränder. Den lilla ön norr om Gotland nås med gratisfärja på tio minuter och belönar med ett landskap som inte finns någon annanstans.</p>
+<!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "Bergman Center i Fårösund på fastlandssidan" (centret ligger mitt på Fårö nära Fårö kyrka), överfartstid tio minuter (Trafikverket anger sex), körtid från Visby och avstånd till Visby, "Bergman bosatte sig permanent 1966", inträdespris och säsong för Bergmancenter, "Café Sudersand", "Fårö har inga restauranger" (Region Gotland anger krogar och caféer under högsäsong), "Fårö kyrka från 1200-talet … medeltida muralmålningar", Fårö fyr, öns storlek och cykeltid, Bunge museum och avstånd till Lummelundagrottan, "kontanter", "mygg", Airbnb och semesterboende.se som tips, samt värdeord och rangordningar. -->
+<!-- KÄLLA: https://gotland.com/article/gotlands-natur/ — "Ett besök på Fårö brukar de flesta vilja hinna med under sin vistelse. Här finns några av de finaste sandstränderna och raukområdena. Det är även platsen som Ingmar Bergman valde att kalla sitt hem." (läst 2026-09-28) -->
+<!-- KÄLLA: https://gotland.se/rg/oversiktsplan-vart-gotland-2040/3.-anvandning-av-mark--och-vattenomraden/3.3-norra-gotland/3.3.16-faro — "Fårö är Gotlands största socken. Här bor 508 personer varav 251 utgörs av kvinnor och 257 av män (uppgifter från 2022)."; "På sommaren bor här uppskattningsvis cirka" (läst 2026-09-28) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Fårö ligger längst norrut på Gotland och är ön som Ingmar Bergman valde att kalla sitt hem – därför kallas den ofta Bergmans ö. Här finns några av Gotlands största raukområden och långa sandstränder. Fårö är Gotlands största socken. Enligt Region Gotland bodde 508 personer här år 2022, och på sommaren uppskattas ön ha omkring 10 000 invånare.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till Fårö</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö nås med bilfärja från Fårösund på norra Gotland. Överfarten tar tio minuter och avgår kontinuerligt under sommarsäsongen — ingen bokning behövs och resan är gratis. Kör norrut från Visby i ca 55–65 minuter längs väg 148 till Fårösund färjeläge. Cykel passar utmärkt på Fårö — ön är liten, flack och vägnätet är enkelt. Cyklar kan hyras i Fårösund innan färjan.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till Fårö?</h2>
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/farosundsleden/ — "Fårösundsleden går mellan Fårösund på norra Gotland och Broa på Fårö. Färjeledens längd är 1300 meter och överfartstiden är sex minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-28) -->
+<!-- KÄLLA: https://gotland.com/besoka-uppleva/upptack-norra-gotland/ — "Färjan till Fårö går varje hel och halv timme från Fårösund året runt, när det är många som vill åka under sommaren går färjorna oftare" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fåröfärjan (Fårösundsleden) går mellan Fårösund på norra Gotland och Broa på Fårö. Leden är 1 300 meter lång, överfarten tar sex minuter och resan är avgiftsfri. Leden är en av Trafikverkets vägfärjeleder. Enligt Gotlands besöksguide går färjan varje hel och halv timme året runt, och oftare på sommaren när många vill åka.</p>
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/farosundsleden/ — "Utöver dessa kategorier gäller rätt till förtur mellan 1 juni och 15 augusti för fast bosatta på Fårö"; "Med vår app Trafikinfo Färjerederiet får du tillgång till tidtabeller och trafikinformation." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mellan 1 juni och 15 augusti har fast bosatta på Fårö och vissa andra trafikanter förtur till färjan. Aktuell tidtabell och störningsinformation finns i Trafikverkets app Trafikinfo Färjerederiet.</p>
+<!-- KÄLLA: https://gotland.com/besoka-uppleva/upptack-norra-gotland/ — "Det går endast bussar på Fårö under sommartid, från mitten av juni till mitten av augusti."; "Vill du hyra cykel på norra Gotland kan du göra det i Slite och på Fårö (sommartid)." (läst 2026-09-28) -->
+<!-- KÄLLA: https://gotland.com/besoka-uppleva/friluftsliv-natur/strandhang-och-bad-gotland/ — "Under sommaren finns bussförbindelse med buss 20." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utan bil: bussar går på Fårö bara under sommaren, från mitten av juni till mitten av augusti. Till Sudersand går buss 20 på sommaren. Cykel kan du hyra på Fårö under sommaren, och även i Slite. Läs mer om att ta sig runt på ön i <a href="/guider/cykling-gotland">guiden om cykling på Gotland</a> och <a href="/guider/hyra-bil-gotland">guiden om att hyra bil på Gotland</a>.</p>
+<!-- KÄLLA: https://lansstyrelsen.se/gotland/besoksmal/kulturmiljoer/kulturhistoriska-besoksplatser/faro-kulturvag.html — "Kulturvägen börjar vid Broa och stäcker sig upp till Gåsemora."; "Vägen kantas på båda sidor av stentunar växlat med lammnät och bandtun."; "Bandtun kallas det som på fastlandet ofta kallas gärdsgårdar."; "Länsstyrelsen och Trafikverket samarbetar kring vård och skötsel av stenmurarna längs kulturvägarna" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Redan när du kör av färjan börjar Fårö kulturväg. Den sträcker sig från Broa upp till Gåsemora, och vägen kantas av stentunar (stenmurar), lammnät och bandtun, det vill säga gärdsgårdar.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ingmar Bergman och Fårö</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingmar Bergman kom till Fårö 1960 när han filmade "Såsom i en spegel" och lät sig fullständigt fascineras av öns karga skönhet. Han bosatte sig permanent 1966 och bodde här till sin död 2007. Filmer som "Persona", "Skammen" och "En passion" är djupt präglade av Fårös landskap — de kala klipporna, det vida havet och det speciella ljuset som bara finns här. Bergmans bostad Hammars är privat och ej öppen för besök, men atmosfären av ensamhet och konstnärskap finns överallt på ön.</p>
-<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bergman Center i Fårösund — på fastlandssidan strax innan färjan — är det naturliga startbesöket. Centret berättar om Bergmans liv, filmer och relation till Fårö med utställningar, filmer och originaldokument. Öppet maj–september, ca 100 kr inträde.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför kallas Fårö Bergmans ö?</h2>
+<!-- KÄLLA: https://bergmancenter.se/besok-oss/utstallningar/ — "Allt startade 1960 när Ingmar Bergman besökte Fårö för första gången för att hitta en inspelningsplats till Såsom i en spegel. Bergman själv beskriver det som kärlek vid första ögonkastet." (läst 2026-09-28) -->
+<!-- KÄLLA: https://gotland.com/article/bergman-island-2/ — "He had his house built not far from where Persona was filmed. He came to live and work there for al – most 40 years."; "Ingmar Bergman died at the age of 89 at his home on Fårö and is buried in Fårö Church Cemetery" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingmar Bergman kom till Fårö första gången 1960, när han letade inspelningsplats för Såsom i en spegel. Själv beskrev han mötet med ön som kärlek vid första ögonkastet. Han byggde ett hus på ön och bodde och arbetade där i nästan 40 år. Bergman dog i sitt hem på Fårö, 89 år gammal, och är begravd på Fårö kyrkogård.</p>
+<!-- KÄLLA: https://gotland.com/article/bergman-island-2/ — "As well as Through a Glass Darkly, Bergman would make three feature films, a TV series, two documentary films and a short film on Fårö."; "In the late 1960s, Bergman formed production company Cinematograph with its headquarters on Fårö." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utöver Såsom i en spegel gjorde Bergman enligt Gotlands besöksguide ytterligare tre långfilmer, en tv-serie, två dokumentärfilmer och en kortfilm på Fårö. I slutet av 1960-talet grundade han produktionsbolaget Cinematograph med huvudkontor på ön.</p>
+<!-- KÄLLA: https://bergmancenter.se/besok-oss/utstallningar/ — "Ingmar Bergmans hus vid Hammars står idag på samma sätt som det gjorde när Ingmar Bergman bodde där. 2009 blev Bergmans fastigheter på ön ett konstnärsresidens, Bergmangårdarna, och är inte tillgängligt för allmänheten." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bergmans hus vid Hammars står kvar som när han bodde där. Sedan 2009 är hans fastigheter på ön ett konstnärsresidens, Bergmangårdarna, och de är inte öppna för allmänheten. På Bergmancenter kan du i stället gå en VR-vandring genom huset.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Raukar — tre fält att välja mellan</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö har tre raukfält och varje fält har sin egen karaktär. Langhammars i nordväst är det mest spektakulära — höga, smala kalkstensformationer reste av Östersjöns vågor under tusentals år, formade som monument, troll och figurer. Beräkna minst 1–2 timmar här. Gamla Hamn på norra Fårö har raukar vid strandlinjen med en stor vik som bakgrund — dramatiska foton och ett lugnare besöksflöde. Digerhuvud söder om Fårö hamn är det mest lättillgängliga fältet med bra parkering och en kort promenad ut till kalkstenarna.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Skammen och Persona – Bergmans filmer på Fårö</h3>
+<!-- KÄLLA: https://www.ingmarbergman.se/verk/skammen — "Inspelningen ägde rum på Fårö - där Bergman nu bosatt sig - från mitten av september till senare hälften av november 1967."; "Skammen var den första filmen som Bergman spelade in på Fårö efter att han bosatt sig på ön."; "Max von Sydow och Liv Ullmann spelar ett konstnärspar som lever på en ö i havsbandet och förgäves försöker undkomma det annalkande kriget" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skammen spelades in på Fårö från mitten av september till senare delen av november 1967. Enligt Stiftelsen Ingmar Bergman var det den första filmen han spelade in på ön efter att ha bosatt sig där. I filmen spelar Max von Sydow och Liv Ullmann ett konstnärspar som bor på en ö och försöker undkomma ett krig som närmar sig.</p>
+<!-- KÄLLA: https://www.ingmarbergman.se/en/production/persona — "Most of the shooting took place on Fårö but began with some work in the studio, Filmstaden, starting on 19 July 1965." (läst 2026-09-28) -->
+<!-- KÄLLA: https://bergmancenter.se/besok-oss/utstallningar/ — "Här kom några av de mest ikoniska filmerna till – främst bland dem Persona." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Persona började spelas in i studio 1965, men det mesta filmades på Fårö. Stiftelsen Ingmar Bergman och Bergmancenter anger inte vid vilka stränder scenerna spelades in. Därför kan vi inte bekräfta de uppgifter som finns på nätet om att Skammen eller andra filmer spelades in just vid Sudersand.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Stränder — tre av Gotlands bästa</h2>
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sudersand</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårös mest kända strand och en av Gotlandsregionens absolut vackraste. Bred, lång sandstrand med kristallklart vatten och sanddyner i bakgrunden. Café Sudersand vid stranden serverar mat, glass och kaffe — ett av öns bästa ställen att äta. Parkeringen fylls snabbt i juli, kom tidigt på morgonen.</p>
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ekeviken</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Östkustens mest skyddade bad — en djup vik med lugnt vatten och raukar ut i havet. Perfekt när det blåser på Sudersand. Ekeviken är Fårös hemliga strand, långt ifrån turistströmmarna.</p>
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Norsta Auren</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårös nordligaste strand, öppen och vild mot Östersjön. Lång promenad dit, men nästan aldrig trångt. Dramatisk stämning och fantastiskt kvällsljus.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Bergmancenter på Fårö</h3>
+<!-- KÄLLA: https://bergmancenter.se/besok-oss — "Bergmancenter ligger mitt på Fårö nära Fårö kyrka, 7 km från färjeläget Broa och är enkelt att hitta till."; "Bergmancenter har en egen fantastisk biograf med 64 platser"; "Här på Bergmancenter finns ett internationellt referensbibliotek" (läst 2026-09-28) -->
+<!-- KÄLLA: https://bergmancenter.se/besok-oss/utstallningar/ — "I Bergmancenters basutställning Lek, lust och ljus! Ingmar Bergman och Fårö  är det Ingmar Bergman som har ordet och för berättelsen framåt."; "om filmerna han spelade in på ön, om favoritskådespelarna"; "både som hantverkare och statister"; "Men i Bergmancenters VR-vandring kan du ändå besöka Bergmans hus!" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bergmancenter ligger mitt på Fårö, nära Fårö kyrka och sju kilometer från färjeläget i Broa – alltså inte i Fårösund, som den gamla versionen av den här guiden påstod. Basutställningen heter Lek, lust och ljus! Ingmar Bergman och Fårö och handlar om filmerna han spelade in på ön, skådespelarna och öborna som var med som hantverkare och statister. Centret har också en biograf med 64 platser och ett referensbibliotek med böcker om och av Bergman.</p>
+<!-- KÄLLA: https://gotland.com/companies/bergmancenter/ — "Varje sommar, veckan efter midsommar, arrangerar Bergmancenter Bergmanveckan"; "Kafé Smultronstället på Fårö är Bergmancenters kafé och restaurang" (läst 2026-09-28) -->
+<!-- KÄLLA: https://bergmancenter.se/besok-oss — "Skaparverkstan är öppen mellan vecka 26 och 32 för barn och ungdomar" (läst 2026-09-28) -->
+<!-- KÄLLA: https://bergmancenter.se/ — "I oktober stänger vi utställningen för säsongen." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Bergmanveckan</strong> är en filmfestival som Bergmancenter arrangerar varje sommar, veckan efter midsommar.</li>
+<li><strong>Skaparverkstan</strong> för barn och unga har öppet mellan vecka 26 och 32.</li>
+<li><strong>Kafé Smultronstället</strong> är Bergmancenters kafé och restaurang.</li>
+<li>Utställningen stänger för säsongen i oktober. Kolla aktuella öppettider på bergmancenter.se innan du åker.</li>
+</ul>
+<!-- KÄLLA: https://www.svenskakyrkan.se/norragotland/faro-kyrka — "Kyrkogården är stor, och i det nordvästra hörnet ligger Ingmar Bergmans välbesökta grav. Intill är minneslunden, där alla är välkomna att tända ljus."; "Här ligger han bredvid sin hustru Ingrid Bergman" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bergmans grav ligger i det nordvästra hörnet av Fårö kyrkogård, bredvid hans hustru Ingrid Bergman. Intill finns minneslunden, där alla är välkomna att tända ljus.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fårö kyrka och fyrtornet</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö kyrka är från 1200-talet och ett av de vackraste exemplen på gotländsk medeltidskyrkoarkitektur. Den massiva kalkstenstornet och de romanska murarna är välbevarade. Inne finns medeltida muralmålningar. Öppen dagligen under sommarsäsongen, fri entré. Fårö fyr i norr markerar öns nordligaste punkt och ger utsikt över öppet hav — ett perfekt stopp på cykelrundan.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Raukar på Fårö – var finns de?</h2>
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/digerhuvud.html — "Den gotländska berggrunden är till stor del uppbyggd av korallrev som bildades i ett tropiskt hav för cirka 430 miljoner år sedan, under silurperioden."; "Raukarna består alltså av hård, olagrad kalksten och är lämningar av de forntida rev som kom att ge upphov till dagens Gotland."; "Befriat från ismassornas tyngd höjde sig dock landet så småningom långsamt över havsytan."; "Själva revkropparna motstod vågornas nötning bättre än de omgivande skiktade bergarterna" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Raukarna är pelare av hård kalksten, rester av korallrev som bildades i ett tropiskt hav för omkring 430 miljoner år sedan. När landet steg ur havet efter istiden nötte vågorna bort de mjukare bergarterna, och revkärnorna blev stående. På Fårö finns raukar bland annat i naturreservaten Digerhuvud, Langhammars och Gamla hamn.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Cykla runt Fårö</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö är ungefär 8 × 12 km och perfekt för cykling. En fullrunda tar 4–6 timmar beroende på stopp. Klassisk rutt: Fårö hamn → Langhammars raukar → Sudersand strand → Fårö kyrka → Gamla Hamn raukar → Norsta Auren → fyrtornet → tillbaka. Cyklar med god standard finns att hyra i Fårösund. Ta med vatten och mat — servicen på ön är begränsad till ett fåtal ställen.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Langhammars</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/langhammars.html — "Raukarna finns även avbildade på baksidan av den svenska 200 kronorssedeln."; "Det 480 hektar stora naturreservatet"; "På strandsluttningen ovanför Klajvika står ett drygt 50-tal raukar, av vilka några är mer än 8 meter höga och formade som bildstoder." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/langhammars.html — "Langhammars ligger på nordligaste Fårö; nås antingen västerifrån via Digerhuvud naturreservat eller via avfart 2 km nordost om Fårö k:a." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Langhammars naturreservat ligger på nordligaste Fårö och är 480 hektar stort. På strandsluttningen ovanför Klajvika står drygt 50 raukar, och några av dem är mer än åtta meter höga. Det är de raukarna som finns avbildade på baksidan av 200-kronorssedeln. Du tar dig dit västerifrån via Digerhuvud eller via avfarten två kilometer nordost om Fårö kyrka.</p>
+<!-- KÄLLA: https://gotland.com/besoka-uppleva/friluftsliv-natur/tio-raukomraden-pa-gotland/ — "Du kan betrakta raukarna på håll från höjden ovanför eller på nära håll om du går ner till klapperstenstranden. Testa gärna den iordningställda grillplatsen." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/langhammars.html — "föra eller parkera motordrivet fordon utanför anvisade vägar och parkeringsplatser,"; "göra upp öppen eld annat än på särskilt iordningsställda eldplatser." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Du kan se raukarna från höjden ovanför eller gå ner till klapperstensstranden. Det finns en iordningställd grillplats. I reservatet får du inte köra eller parkera utanför anvisade vägar och parkeringar, och du får bara elda på iordningställda eldplatser.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mat och dryck på Fårö</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö har inga restauranger i traditionell mening — det är en liten ö med begränsad service. Café Sudersand vid Sudersandsstranden är det självklara matstellät — enkel mat, glass, fika och kaffe i strandsand. Öppet i stort sett hela sommarsäsongen. Handla med dig mat från Fårösund eller Visby för längre utflykter. En väl packad kylväska är mer användbar än en restaurangguide på Fårö.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Digerhuvud och Helgumannen</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/digerhuvud.html — "Naturreservatet Digerhuvud sträcker sig längs Fårös nordvästra kust, från Lauterhorn i sydväst till Helgumannens fiskeläge i nordost. Genom reservatet löper en belagd bilväg som gör områdets olika delar lätta att nå."; "Raukarna varierar i höjd från någon meter upp till 8 meter." (läst 2026-09-28) -->
+<!-- KÄLLA: https://gotland.com/besoka-uppleva/friluftsliv-natur/tio-raukomraden-pa-gotland/ — "Digerhuvud är Sveriges största raukområde och sträcker sig 3500 meter längs Fårös västra kust. Här finns raukar både på land och i vattnet." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Digerhuvud sträcker sig längs Fårös nordvästra kust, från Lauterhorn till Helgumannens fiskeläge. Gotlands besöksguide kallar det Sveriges största raukområde, 3 500 meter långt. Raukarna är från någon meter upp till åtta meter höga, och några står ute i vattnet. En belagd bilväg går genom reservatet, så det är lätt att nå olika delar av det.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/digerhuvud.html — "förstöra eller skada fast naturföremål eller ytbildning genom att exempelvis knacka fossil ur raukar eller övrigt fast berg,"; "medföra okopplad hund, med undantag för tiden 1 november – 31 januari," (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Digerhuvud är det förbjudet att knacka loss fossil ur raukarna. Hunden ska vara kopplad, utom mellan 1 november och 31 januari.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/kulturmiljoer/faro-helgumannen.html — "Det består av ett 20-tal bodar, med några få undantag, uppförda i trä."; "Bodarna och de tillhörande redskapen ägs privat. Tänk på att visa hänsyn och lämna inget skräp."; "Fiskeläget ligger inom naturreservatet Digerhuvud." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Helgumannens fiskeläge i reservatets nordöstra ände består av ett tjugotal bodar, de flesta av trä. Bodarna och redskapen är privatägda, så visa hänsyn när du går där.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende på och nära Fårö</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sudersand Resort vid Sudersandstranden är det enklaste sättet att övernatta — tältplatser och stugor direkt vid havet. Boka tidigt för juli. Privatuthyrda stugor och lägenheter på Fårö hittas via Airbnb och semesterboende.se. Fårösund på fastlandssidan har fler hotellalternativ om du hellre bor kvar på Gotland och åker dagstur till Fårö. Visby med sina hotell är 60 km söderut.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Gamla hamn och rauken Kaffepannan</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/gamla-hamn.html — "Såväl på själva udden som ute i vattnet står ett flertal raukar, raukporten"; "På klapperstensstranden innanför reservatet ligger ett 15-tal gravar som sannolikt är från vikingatid."; "Gamla hamn ligger drygt 4 km nordväst om Fårö k:a. Skyltad avfart från vägen mot Lauter." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/kulturmiljoer/faro-gamla-hamn--st-olov-ka.html — "Från parkeringen till hamnen och lämningarna från kyrkogården är det några hundra meters promenad."; "den berömda Kaffepannan, Hunden, S:t Oles port eller vad du väljer att kalla den"; "100 m söder om hamnen, omgiven av låga tallar, hittar du en rund kyrkogård med ruiner av ett litet medeltida kapell. Här låg en gång S:t Olofs kyrka." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gamla hamn ligger drygt fyra kilometer nordväst om Fårö kyrka, med skyltad avfart från vägen mot Lauter. Här står raukporten Kaffepannan, som också kallas Hunden eller S:t Oles port. På klapperstensstranden finns ett femtontal gravar som troligen är från vikingatiden, och en bit söder om hamnen ligger ruinerna av S:t Olofs kyrka. Från parkeringen är det några hundra meter att gå.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/gamla-hamn.html — "göra upp eld i närheten av raukarna vilka därigenom kan skadas eller svärtas av upphettningen," (läst 2026-09-28) -->
+<!-- KÄLLA: https://gotland.com/besoka-uppleva/friluftsliv-natur/tio-raukomraden-pa-gotland/ — "Tänk på att det ofta bildas undervattensströmmar i havet utanför raukar och klintkanter, det är därför ingen bra idé att bada där." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Du får inte elda nära raukarna, eftersom de kan skadas eller svärtas av hettan. Bada inte heller vid raukarna. Enligt Gotlands besöksguide bildas det ofta undervattensströmmar utanför raukar och klintkanter.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Norra Gotland – utforska mer</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårösund och norra Gotland erbjuder mer än färjeläget. Bunge friluftsmuseum norr om Bunge samhälle är ett av Gotlands bästa friluftsmuser med historiska byggnader, forntida bilstenar och medeltida kalk. Fårösunds hamn har ett par restauranger. Lummelundagrottan — Gotlands mest besökta attraktion — ligger ca 20 km söder om Fårösund på vägen mot Visby.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Stränder på Fårö</h2>
+<!-- KÄLLA: https://gotland.com/besoka-uppleva/friluftsliv-natur/strandhang-och-bad-gotland/ — "En av Gotlands absolut vackraste och längsta sandstränder är Sudersand som ligger på Fårö. Idealisk för barnfamiljer med mjuk len sand och långgrunt vatten. Restauranger, stugor, camping, café, kiosk, butiker och mycket mer finns i närheten." (läst 2026-09-28) -->
+<!-- KÄLLA: https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser — "Badplatsen Ekeviken på Fårö är en cirka 900 meter lång, långgrund, sandstrand."; "Badplatsen Norsta Aurar på Fårö är en cirka fem kilometer lång, långgrund, sandstrand som västerut övergår i badplatsen Skär."; "Badplatsen Skalasand på Fårö är en drygt 800 meter lång, långgrund, sandstrand." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Sudersand</strong> är en lång sandstrand med mjuk sand och långgrunt vatten. Gotlands besöksguide beskriver den som lämplig för barnfamiljer. I närheten finns restauranger, stugor, camping, café, kiosk och butiker.</li>
+<li><strong>Norsta Aurar</strong> är en långgrund sandstrand som är ungefär fem kilometer lång och övergår i badplatsen Skär västerut.</li>
+<li><strong>Ekeviken</strong> är en långgrund sandstrand som är ungefär 900 meter lång.</li>
+<li><strong>Skalasand</strong> är en långgrund sandstrand som är drygt 800 meter lång.</li>
+</ul>
+<!-- KÄLLA: https://www.sudersand.se/ — "Med Sudersand mot söder, Norsta auren mot öster och Ekeviken mot norr så kan du säkerligen hitta sol och lä oavsett vindriktning!" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stränderna vetter åt olika håll: Sudersand mot söder, Norsta Aurar mot öster och Ekeviken mot norr. Därför går det oftast att hitta en strand i lä, oavsett vindriktning. Fler stränder på ön finns i <a href="/guider/basta-badplatser-gotland">guiden om badplatser på Gotland</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var är Gotlands nordligaste punkt?</h2>
+<!-- KÄLLA: https://gotland.com/article/bergman-island-2/ — "The meeting with the barren island on Gotland’s northern point was overwhelming." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/langhammars.html — "Langhammars ligger på nordligaste Fårö" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands norra spets är Fårö. Enligt Länsstyrelsen ligger naturreservatet Langhammars på nordligaste Fårö. Källorna vi har läst anger inte vilken udde som är den exakta nordligaste punkten, så den uppgiften har vi strukit ur guiden.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mat, affär och boende på Fårö</h2>
+<!-- KÄLLA: https://gotland.se/rg/oversiktsplan-vart-gotland-2040/3.-anvandning-av-mark--och-vattenomraden/3.3-norra-gotland/3.3.16-faro — "På Fårö finns en livsmedelsaffär öppen året om. Under högsäsong är utbudet större med bland annat småbutiker, kiosk, hembageri, caféer, restauranger och krogar."; "För Fårös del innebär det att den närmsta serviceorten är Fårösund." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Fårö finns en livsmedelsaffär som är öppen året om. Under högsäsong finns också småbutiker, kiosk, hembageri, caféer, restauranger och krogar. Närmaste serviceort är Fårösund, på andra sidan sundet.</p>
+<!-- KÄLLA: https://gotland.com/companies/sudersand-resort/ — "Bo i stuga, hus, villa, hotellrum eller på camping – alldeles nära Sudersands strand"; "Alla campingplatser på strandcampingen inom 100m från badstranden." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.sudersand.se/ — "Men vet du att du kan bo i stuga, villa och till och med campa året runt på Sudersand?" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sudersand Resort har stugor, hus, villor, hotellrum och camping nära Sudersands strand. Alla campingplatser på strandcampingen ligger inom 100 meter från badstranden, och enligt anläggningen går det att bo och campa där året runt. Fler boenden och campingar på Gotland finns i guiderna <a href="/guider/camping-gotland">Camping på Gotland</a> och <a href="/guider/hyra-stuga-gotland">Hyra stuga på Gotland</a>.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Praktiska tips för Fårö:</strong>
+<strong style="color:var(--sea)">Bra att veta om Fårö:</strong>
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/farosundsleden/ — "Resan med vägfärjan är avgiftsfri." (läst 2026-09-28) -->
+<!-- KÄLLA: https://lansstyrelsen.se/gotland/besoksmal/kulturmiljoer/kulturhistoriska-besoksplatser/faro-bondans-och-langhammars.html — "Gårdarna ägs privat och håller inte öppet för visningar. Gården är väl synlig från allmän väg." (läst 2026-09-28) -->
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>Ta med kontanter — kortterminaler är osäkra på ön</li>
-<li>Fyll på vatten och mat i Fårösund eller Visby innan färjan</li>
-<li>Bäst tid: juni och tidig juli — folktommare och vackrast ljus</li>
-<li>Mygg finns vid inre delar av ön kvällstid — ta med myggmedel</li>
-<li>Gratisfärjan kör kontinuerligt, ingen bokning behövs</li>
-<li>Langhammars raukar: ca 15 min bilfärd från hamnen, sedan 10 min promenad</li>
+<li>Fåröfärjan från Fårösund är avgiftsfri. Följ trafiken i appen Trafikinfo Färjerederiet.</li>
+<li>I raukreservaten gäller särskilda regler: knacka inte loss fossil, elda bara på anvisade platser och kör bara på anvisade vägar.</li>
+<li>Gårdarna Bondans och Langhammars är privata och kan inte besökas, men syns från allmän väg.</li>
+<li>Mer om ön: <a href="/o/faro">Fårö</a> och <a href="/guider/gotland-guide">Gotlandsguiden</a>.</li>
 </ul>
 </div>
 `,
@@ -7613,40 +8270,104 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 `,
 
   'camping-stockholm-skargard': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård är ett av världens bästa naturcampingmål — 30 000 öar och skär, gott om naturreservat med fria övernattningsplatser och STF-anläggningar på nyckelöar. Guide till campingplatserna, friluftscamping och vad du behöver veta.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "ett av världens bästa naturcampingmål", "STF driver campingplatser på Finnhamn, Arholma och Kymmendö" (STF har vandrarhem och hotell, inga tältplatser på sina sidor), "stugby och tält- och hängmattsplatser hos STF", restid Strömkajen–Finnhamn, "buss till Simpnäs + Waxholmsbåt" till Arholma, fyrtornet på Arholma och "fiskeläge som inte förändrats", Utö Värdshus "klassiskt och dyrt", pendelbåt Nynäshamn–Utö med restid, "tälta ett par nätter på de flesta öar", "gott om mark utan byggförbud", "STF-rastkojor", båtcamping och körkortsgräns för hyrbåt, kajakuthyrning i Vaxholm, Gustavsberg och Stavsnäs, kajakrutt Stavsnäs–Bullerö–Kymmendö, avsnittet om Bullerö, antal öar med Waxholmsbolaget, myggmedel, "boka STF-platser via stfturist.se", samt värdeord. -->
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/omraden/stockholms-skargard/ — "Koppla av i ett varierat landskap med 30 000 öar, kobbar och skär." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/taltning/ — "Du får tälta något enstaka dygn i naturen" (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård har 30 000 öar, kobbar och skär. Du kan tälta på anvisade tältplatser, som tältplatsen på Finnhamn eller campingen på Grinda, eller med stöd av allemansrätten något enstaka dygn i naturen. Här går vi igenom var du kan campa i Stockholms skärgård, vad som gäller i naturreservaten och hur du tar dig ut med båt.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Finnhamn — det enklaste valet</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Finnhamn i mellanskärgården är Stockholms mest tillgängliga skärgårdsö för camping och övernattning. STF driver vandrarhem och stugby på ön, med tält- och hängmattsplatser under sommaren. Åker med Waxholmsbåten direkt från Strömkajen (ca 2,5 tim) eller kortare från Ljusterö. Café, bastu och fina bad. Perfekt för en nybörjarövernattning i skärgården — service finns men naturen dominerar.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Finnhamn camping – tältplatsen på Finnhamn</h2>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/finnhamn.html — "På Idholmen finns uthyrningsstugor och på Stora Jolpan finns bland annat vandrarhem, restaurang, tältplats och handelsbod."; "Eldplatser finns vid tältplatsen på södra Jolpan, nära vandrarhemmet och på Idholmen."; "Tältning på anvisad plats."; "Torrdass (sopmaja) finns på flera platser." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Finnhamn i mellanskärgården har en anvisad tältplats på södra Stora Jolpan. Enligt Länsstyrelsen finns eldplatser vid tältplatsen, och torrdass med sopmaja finns på flera platser i reservatet. På Stora Jolpan finns också vandrarhem, restaurang och handelsbod, och på Idholmen finns uthyrningsstugor.</p>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/finnhamn/ — "För den som besöker Finnhamn finns det mesta – vandrarhem, stugby, tältplats, flera gästhamnar, bastu, badstrand, kafé och Finnhamns sjökrog med en oslagbar takbar."; "För den som vill uppleva öarna från vattnet finns möjlighet att hyra kajak" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/finnhamn.html — "Markägare: Skärgårdsstiftelsen"; "Förvaltare: Skärgårdsstiftelsen" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdsstiftelsen, som äger och förvaltar Finnhamn, räknar upp vandrarhem, stugby, tältplats, flera gästhamnar, bastu, badstrand, kafé och krog på ön. Det går också att hyra kajak.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Arholma — yttre skärgårdens pärla</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma i norra skärgårdens yttersta del är en av Stockholms vackraste öar — klippiga hällar, öppet hav och ett fiskeläge som inte förändrats på decennier. STF Arholma har vandrarhem med enkla övernattningsplatser. Nås med buss till Simpnäs + Waxholmsbåt, eller direktlinje säsongsvis. Fyrtornet på öns norra udde ger utsikt mot öppet Bottenhavet. Mer avlägset och vildare än Finnhamn — passa för den som vill komma bort på riktigt.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Regler för att tälta på Finnhamn</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/finnhamn.html — "på Idholmen, Stora och Lilla Jolpan tälta på annat än anvisad plats. På övriga platser gäller förbud att tälta längre tid än två dygn i följd"; "elda annat än på anvisad plats"; "Markägare: Skärgårdsstiftelsen" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Finnhamn är naturreservat. På Idholmen, Stora Jolpan och Lilla Jolpan får du bara tälta på den anvisade platsen. På övriga delar av reservatet är det förbjudet att tälta längre än två dygn i följd. Du får bara elda på anvisad plats.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utö — söder om Stockholm</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö i södra skärgården är ett av Stockholms mest populära övernattningsresmål med ett varierat utbud av boende. Utö Värdshus är klassiskt (och dyrt), men det finns enklare alternativ inklusive vandrarhem och stuguthyrning. Nås med pendelbåt från Nynäshamn (ca 1,5 tim). Cykla runt ön, bada vid Gruvbryggan och besök landets äldsta fortfarande aktiva gruva. Mer "resort" än tält — passa för den som vill ha bekvämlighet med skärgårdsatmosfär.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Så tar du dig till Finnhamn</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/finnhamn.html — "Finnhamns naturreservat är beläget i mellanskärgården öster om Ljusterö."; "Reguljär båttrafik året runt med Waxholmsbolaget."; "Buss till Boda eller Lillsved på Värmdö, varifrån reguljär båt går vissa tider." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.explorearchipelago.com/sthlm/central-archipelago/finnhamn — "You can also take the bus to Boda, Lillsved, or Åsättra on Ljusterö, and then take the archipelago boat from there to Finnhamn." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Finnhamn ligger öster om Ljusterö och har reguljär båttrafik året runt med Waxholmsbolaget från Stockholm. Du kan också ta buss till Boda eller Lillsved på Värmdö, eller till Åsättra på Ljusterö, och byta till skärgårdsbåten där. Sök din resa i Waxholmsbolagets reseplanerare.</p>
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/boende/ — "Finnhamns vandrarhem ligger ca 600 m från ångbåtsbryggan. Här blir du mött när du går av båten och ditt bagage körs till vandrarhemmet."; "Finnhamns vandrarhem har 87 bäddar fördelade på 28 rum." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du hellre sova inomhus ligger STF Finnhamns Vandrarhem ungefär 600 meter från ångbåtsbryggan. Vandrarhemmet har 87 bäddar i 28 rum, och gästerna blir mötta vid båten och får bagaget kört till vandrarhemmet. Mer om ön finns i <a href="/guider/finnhamn-guide">Finnhamnsguiden</a> och på <a href="/o/finnhamn">Finnhamn</a>.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Friluftscamping — Allemansrätten i skärgården</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdens absoluta höjdpunkt för friluftsmänniskan är att campa fritt via Allemansrätten. Du får tälta 1–2 nätter på de flesta öar och klipphällar. Välj platser i naturreservat — Stockholms skärgårds nationalpark och de många naturreservaten har gott om mark utan byggförbud. Viktiga regler: tältet utom syn- och hörhåll från boningshus (ingen fast meteruppgift finns — terrängen avgör), elda bara i grillplats och aldrig direkt på klipphäll (det missfärgar permanent), ta med allt skräp. Många öar har STF-rastkojor och tältplatser att boka via STF.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Camping i Stockholms skärgård: fler tältplatser</h2>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Båtcamping — skärgårdens bästa sätt</h2>
-<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö i Nämdöskärgårdens nationalpark (2025) (läst 2026-09-14) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Egentligen är båtcamping det naturliga sättet att uppleva Stockholms skärgård. Hyra en liten motorbåt (kan göras utan körkort upp till 12 hk), paddla kajak eller hyra en segelbåt och välj själv var du ankrar. Kajak och SUP-uthyrning finns i Vaxholm, Gustavsberg och Stavsnäs. Kajak är smidigt för att ta sig till öar som inte har Waxholmsångare. Populär kajakrutt: Stavsnäs → Bullerö i Nämdöskärgårdens nationalpark → Kymmendö (1–3 dagars paddling beroende på tempo).</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Grinda camping</h3>
+<!-- KÄLLA: https://grinda.se/boende/camping/ — "Upplev den genuina skärgårdskänslan på Grindas natursköna campingplats, vackert belägen på Norra Grinda."; "Ingen platsbokning behövs"; "i avgiften ingår tillgång till sophantering, torrdass samt duschmöjligheter."; "Den enklaste vägen hit är att kliva av Waxholmsbåten vid Norra Grinda – därifrån är det bara en kort promenad på några hundra meter till campingområdet." (läst 2026-09-27) -->
+<!-- KÄLLA: https://grinda.se/boende/camping/ — "Avgiften kan betalas i Stugby receptionen, Lilla Längan, vid södra bryggan, receptionen Grinda Wärdshus eller i Lanthandeln." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda har en campingplats på norra Grinda. Du tar med eget tält och behöver inte boka plats. I avgiften ingår sophantering, torrdass och möjlighet till dusch, och du betalar i stugbyns reception vid södra bryggan, i Grinda Wärdshus reception eller i lanthandeln. Kliv av Waxholmsbåten vid Norra Grinda; campingen ligger några hundra meter därifrån.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — "Tältning är endast tillåten på tältplatsen nära norra bryggan."; "Grillplatser finns vid södra ångbåtsbryggan och vid tältplatsen."; "Norra och södra bryggan trafikeras året om av Waxholmsbolaget och Cinderella." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda är naturreservat, och enligt Länsstyrelsen är tältning bara tillåten på tältplatsen nära norra bryggan. Där finns också grillplatser. Norra och södra bryggan trafikeras året om av Waxholmsbolaget och Cinderella. Läs mer i <a href="/guider/grinda-guide">Grindaguiden</a>.</p>
 
-<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö ingår i Nämdöskärgårdens nationalpark (invigd sept 2025), reservatet Bullerö upphävt 01FS 2026:01 (läst 2026-09-14) -->
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bullerö i Nämdöskärgårdens nationalpark</h2>
-<!-- KÄLLA: Länsstyrelsen Stockholm — Bullerö ingår i Nämdöskärgårdens nationalpark (invigd sept 2025), reservatet Bullerö upphävt 01FS 2026:01 (läst 2026-09-14) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bullerö i yttre skärgården (södra delen) är ett populärt mål för båtfolk och kajakpaddlare. Del av Nämdöskärgårdens nationalpark (sedan 2025) med en gammal fiskestation; nationalparkens föreskrifter gäller. Nås enklast med kajak från Stavsnäs eller egen båt — ingen reguljär Waxholmslinje. Gott om gömda vikar och klippbad.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Nåttarö – dygnscamping i södra skärgården</h3>
+<!-- KÄLLA: https://nattaro.se/boende/ — "Även dygnscampingen för er som vill tälta ligger centralt placerat på ön."; "max sju nätter. (betalas på expeditionen)"; "Enklare camping med dass i anslutning till tältplatsen."; "Duschar och diskrum på promenadavstånd."; "Från 1:a september går det att boka för säsongen 2027" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nåttarö Gård &amp; Resort har en dygnscamping mitt på Nåttarö. Det är en enklare camping med dass vid tältplatsen och duschar och diskrum på promenadavstånd. Du får stanna högst sju nätter och betalar på expeditionen. Mer om ön och båten från Nynäshamn finns i <a href="/guider/nattaro-guide">Nåttaröguiden</a>.</p>
 
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Praktisk info för skärgårdscamping:</strong>
-<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>SL-biljetten gäller på Waxholmsbåtarna bara mellan Strömkajen och Vaxholm med omnejd (och i hela trafiken 14 sep–29 apr med periodbiljett på 30 dagar eller mer) — annars köp Waxholmsbolaget-biljett i SL-appen eller ombord</li>
-<li>Waxholmsbolaget kör till ca 100 öar i Stockholms skärgård</li>
-<li>Ta med alla sopor — det finns sällan sopkärl på öarna</li>
-<li>Sötvatten finns inte på alla öar — ha med extra</li>
-<li>Myggmedel är ett måste innanför den yttre skärgårdens klipphällar</li>
-<li>Boka STF-platser (Finnhamn, Arholma, Kymmendö) via stfturist.se</li>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Tältplatser i Skärgårdsstiftelsens naturreservat</h3>
+<!-- KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/talt-och-lagerplatser/ — "Alla lägerplatser ligger i naturreservat där reservatsregler gäller."; "På Upptäckskärgården.se går det söka efter tältplatser i hela skärgården." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdsstiftelsen hänvisar till sin webbplats Upptäckskärgården.se för att söka tältplatser i hela skärgården. Stiftelsens lägerplatser ligger alla i naturreservat där reservatsreglerna gäller. Några exempel där stiftelsen eller Länsstyrelsen nämner tältplatser:</p>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/bjorno/ — "Björnö är också ett uppskattat område för paddling och båtliv, med naturhamnar, skyddade vikar, tältplatser och rastplatser med eldstäder." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html — "Björnö naturreservat ligger längst ut på Ingarö i Värmdö kommun."; "Området, som ligger på en halvö, är lättillgängligt även för den som inte har båt."; "Buss från Slussen mot Björkviks brygga, hållplats Björkviks gård." (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/gallno-karklo/ — "Torsviken är särskilt uppskattad med naturhamn, sandstrand och tältplats." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gallno.html — "Waxholmsbolaget kör båt till Gällnö Söderby och därifrån får man ta sig till fots till reservatets områden." (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/boskapso/ — "På ängarna utmed udden i norr brukar kanotister slå upp sina tält, i söder finns sopmaja och naturhamn"; "Många besökare kommer hit med kajak eller egen båt." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Björnö</strong> längst ut på Ingarö i Värmdö kommun har tältplatser och rastplatser med eldstäder. Området ligger på en halvö och nås utan båt, med buss från Slussen mot Björkviks brygga till hållplatsen Björkviks gård.</li>
+<li><strong>Gällnö</strong> har en tältplats vid Torsviken, med naturhamn och sandstrand. Waxholmsbolagets båt går till Gällnö Söderby, och därifrån går du till fots. Se även <a href="/o/gallno">Gällnö</a>.</li>
+<li><strong>Boskapsö</strong> nås främst med kajak eller egen båt. Kanotister brukar tälta på ängarna vid udden i norr, och i söder finns sopmaja och naturhamn.</li>
 </ul>
-</div>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/lido.html — "Lidö naturreservat med omgivande öar ligger vid inloppet till Norrtäljeviken."; "Reguljärtrafik med Waxholmsbolaget från Stockholm, båtbyte vid Fejan."; "Tältplats" (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/riddersholm/ — "Riddersholm ligger längst ut på Rådmansö, bara några minuter från Kapellskär."; "Hit kommer besökare året om för att tälta, vandra, fågelskåda och bada." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I norra skärgården har Lidö naturreservat vid inloppet till Norrtäljeviken en tältplats; dit åker du med Waxholmsbolaget från Stockholm med byte vid Fejan. Riddersholm längst ut på Rådmansö, nära Kapellskär, besöks året om av folk som tältar, vandrar och badar. Mer om norra skärgården finns i <a href="/guider/norrtelje-guide">Norrtäljeguiden</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tälta i skärgården – vad säger allemansrätten?</h2>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/taltning/ — "Du får tälta något enstaka dygn i naturen, men tänk på att välja en tältplats långt bort från bostadshus och att visa hänsyn till markägaren."; "Sätt upp tältet på tålig mark, undvik betesmark och jordbruk."; "Stanna inte för länge, en eller två nätter är en bra tumregel."; "Det ingår i allemansrätten att tälta med några få tält, som två eller tre, under något enstaka dygn. Är ni däremot en stor grupp med många tält behöver ni be markägaren om lov." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt Naturvårdsverket får du tälta något enstaka dygn i naturen. Välj en plats långt från bostadshus, visa hänsyn till markägaren och sätt upp tältet på tålig mark, inte på betesmark eller åker. En eller två nätter är en bra tumregel. Allemansrätten gäller för några få tält, två eller tre. Är ni en stor grupp med många tält behöver ni fråga markägaren.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Får man tälta i naturreservat i skärgården?</h3>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/taltning/ — "I allmänhet är det inte tillåtet att tälta annat än på särskilt angivna platser. Det kan också vara tältförbud i hela området."; "Anslagstavlor i området visar vad som gäller." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/friluftsliv-och-allemansratt.html — "I naturreservat, nationalparker och andra skyddade områden gäller särskilda regler eller föreskrifter som begränsar allemansrätten."; "Det kan exempelvis vara förbjudet att tälta, elda, cykla eller att ha hunden okopplad." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Många öar i Stockholms skärgård är naturreservat, och där begränsar föreskrifterna allemansrätten. Naturvårdsverket skriver att det i nationalparker och naturreservat i allmänhet bara är tillåtet att tälta på särskilt angivna platser, och att det kan vara tältförbud i hela området. Anslagstavlorna i området och Länsstyrelsens sida för reservatet visar vad som gäller.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html — "tälta annat än inom anvisade områden. Tältning får utan markägarens tillstånd inte ske längre tid än två dygn på samma plats" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gallno.html — "tälta mer än två dygn i följd på samma plats" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Reglerna skiljer sig mellan reservaten. På Björnö får du bara tälta inom anvisade områden och högst två dygn på samma plats utan markägarens tillstånd. På Gällnö är det förbjudet att tälta mer än två dygn i följd på samma plats. På Finnhamn och Grinda gäller anvisad tältplats, som beskrivs ovan.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Elda och grilla när du campar</h3>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/eldning/ — "Använd en fast grillplats, eller välj grus eller sand som underlag."; "Undvik även att elda på berghällar och större stenblock. De kan nämligen spricka och skadas permanent."; "Om det är torrt i skog och mark kan länsstyrelsen eller kommunen besluta om eldningsförbud."; "I dessa områden kan det vara helt förbjudet att elda, eller bara vara tillåtet på vissa iordningställda eldplatser." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Använd en fast grillplats, eller grus eller sand som underlag. Elda inte på berghällar och större stenblock, eftersom de kan spricka och skadas permanent. När det är torrt kan länsstyrelsen eller kommunen besluta om eldningsförbud, och i naturreservat kan det vara helt förbjudet att elda eller bara tillåtet på iordningställda eldplatser.</p>
+<!-- KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/talt-och-lagerplatser/ — "Grilla med största försiktighet i våra anvisade eldstäder. Och du vet väl att engångsgrillar är miljöfarliga, använd hellre en grill på ben." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdsstiftelsen ber besökare grilla i de anvisade eldstäderna och använda en grill på ben i stället för engångsgrill.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Toalett och skräp</h3>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/taltning/ — "Om det inte finns toalett eller dass, gräv en grop för avföring långt ifrån stigar och tältplatser. Täck över med jord eller en sten."; "Ta med dig en påse som du kan samla skräp och matrester i för att ta med hem eller slänga i en papperskorg." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Finns det inget dass, gräv en grop långt från stigar och tältplatser och täck över med jord eller en sten. Samla skräp och matrester i en påse och ta med dem hem eller släng dem i en papperskorg. Mer om reglerna på sjön finns i <a href="/guider/allemansratten-pa-sjon">guiden om allemansrätten på sjön</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">STF i Stockholms skärgård</h2>
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/omraden/stockholms-skargard/ — "Hos STF hittar du hotell, vandrarhem och pensionat i flera delar av skärgården"; "STF Finnhamns Vandrarhem"; "STF Gällnö Vandrarhem"; "STF Möja Vandrarhem"; "STF Stora Kalholmen Vandrarhem"; "STF Arholma Nord"; "STF Lidö Värdshus" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svenska Turistföreningen har hotell, vandrarhem och pensionat i flera delar av Stockholms skärgård, och det är just sådana boenden som står i STF:s lista för skärgården. Bland STF:s anläggningar finns STF Finnhamns Vandrarhem, STF Gällnö Vandrarhem, STF Möja Vandrarhem, STF Stora Kalholmen Vandrarhem, STF Arholma Nord och STF Lidö Värdshus. Det gör att du kan kombinera en natt i tält med en natt inomhus på samma ö, till exempel på Finnhamn, Gällnö eller Lidö.</p>
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/omraden/stockholms-skargard/ — "STF har mysiga boenden på några av etapperna, bland annat STF Svartsö Skärgårdshotell och Vandrarhem, STF Finnhamns Vandrarhem, STF Grinda Hotell & Sea Lodge, STF Lidö Värdshus, STF Arholma Nord, STF Arholma Bull-August gård och STF Möja Vandrarhem." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera av STF:s boenden ligger längs vandringsleden Stockholm Archipelago Trail, bland annat på Svartsö, Finnhamn, Grinda, Lidö, Arholma och Möja. Läs mer i <a href="/guider/stockholm-archipelago-trail">guiden till Stockholm Archipelago Trail</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kan man ta Waxholmsbåten till campingen?</h2>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd."; "För resor som delvis sker inom SL-området behöver du komplettera med en Waxholmsbolaget-biljett för den delsträcka som är utanför området, förutsatt att din SL-biljett inte gäller i 30 dagar eller mer."; "I SL-appen kan du köpa Waxholmsbolagets enkelbiljetter (inklusive gruppbiljetter)." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ja, till Finnhamn, Grinda och Gällnö går Waxholmsbolagets båtar. SL-biljetten gäller bara mellan Strömkajen och Vaxholm med omnejd. För resten av sträckan behöver du en Waxholmsbolaget-biljett, om din SL-biljett inte gäller 30 dagar eller mer. Waxholmsbolagets enkelbiljetter kan köpas i SL-appen.</p>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april"; "Om din SL-biljett gäller i 30 dagar eller mer kan du resa på den i hela Waxholmsbolagets trafik när det är lågsäsong." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Under lågsäsongen, 14 september–29 april, gäller SL-biljetter med 30 dagars giltighet eller mer i hela Waxholmsbolagets trafik. Mer om biljetterna finns i <a href="/guider/sl-kort-skargarden">guiden om SL-kort i skärgården</a> och <a href="/guider/waxholmsbolaget-guide">Waxholmsbolagsguiden</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Checklista för camping i skärgården</h2>
+<!-- KÄLLA: https://grinda.se/boende/camping/ — "Vatten hämtas enkelt från de närliggande pumparna" (läst 2026-09-27) -->
+<!-- KÄLLA: https://nattaro.se/boende/ — "Vatten hämtas i diskrummet." (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/talt-och-lagerplatser/ — "I anslutning till lägerplatserna finns toaletter, sopkärl och ofta tillgång till färskvatten." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Kontrollera vattnet innan du åker. På Grinda hämtas vatten från pumparna nära campingen och på Nåttarö i diskrummet. Vid Skärgårdsstiftelsens lägerplatser finns ofta, men inte alltid, färskvatten.</li>
+<li>Läs reservatets föreskrifter på Länsstyrelsens sida innan du slår upp tältet.</li>
+<li>Kolla om det råder eldningsförbud hos länsstyrelsen eller kommunen.</li>
+<li>Sök båten i Waxholmsbolagets reseplanerare och köp rätt biljett för sträckan utanför SL-området.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Se också <a href="/guider/packlista-skargarden">packlistan för skärgården</a> och <a href="/guider/camping-talta-skargarden">guiden till camping och tältning i skärgården</a>.</p>
 `,
 
   'fiskelage-bohuslan': `
@@ -7934,24 +8655,80 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 `,
 
   'skargard-instagramguide': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård erbjuder ett ändlöst galleri av fotogeniska platser. Från solnedgångar bakom silhuetterade öar till kristallklara vikar och gammaldags fiskestugor – guide till de vackraste och mest fotogeniska platserna i skärgården.</p>
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa platserna för foto</h2>
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Solnedgång från Utös västra sida</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utös västra klipphällar mot kvällssolen är klassisk. Havet orange, öar i siluett och det lugna havet som spegel. Kom dit 30 minuter innan solnedgång, hitta en bra klippa och vänta.</p>
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sandhamn – segelbåtar i hamnen</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamns hamn med masterna mot kvällshimlen och det gamla värdshuset i bakgrunden är ett klassiskt fotomotiv. Bäst tidig morgon (06–08) eller sen kväll när ljuset är mjukt.</p>
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Arholma – ytterskärgårdens minimalism</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma i norra ytterskärgården har en nästan nordisk minimalism – kala klippor, rödmålade sjöbodar och öppet hav. Dramatisk fotografering i alla ljusförhållanden.</p>
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Gamla stan Vaxholm vid gryningen</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholms trähusarkitektur i morgonljuset med dimma från havet är en av skärgårdens vackraste scener. Ta pendelbåten tidigt och var på plats innan turisterna vaknar.</p>
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fototips</h2>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-<li>Golden hour (1 h efter soluppgång, 1 h innan solnedgång) ger bäst ljus</li>
-<li>Molniga dagar ger jämnare ljus utan hårda skuggor</li>
-<li>Spegelblankt hav tidiga mornar ger reflektionsfotografering</li>
-<li>Ta med stativ för lång slutartid i svagt ljus</li>
-<li>September–oktober ger varmast höstljus</li>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa: "Utös västra klipphällar" som solnedgångsplats och råd om att komma en halvtimme före solnedgången, klockslag för morgonljus i Sandhamns hamn, "Arholmas fyrtorn", "rödmålade sjöbodar" och "kala klippor" på Arholma, dimma i Vaxholm i gryningen, "golden hour"-tider, "molniga dagar ger jämnare ljus", "september–oktober ger varmast höstljus", solnedgångstid i juli i FAQ, "Sandhamns ytterskärgård" som fotoplats, samt värdeord och rangordning ("vackraste", "bästa platserna"). -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/friluftsliv-och-allemansratt.html — "Ett annat exempel på områden som har särskilda regler är fågel- och sälskyddsområden. Dessa områden får bara besökas vissa tider på året." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Den här guiden samlar platser i Stockholms skärgård där myndigheter, Skärgårdsstiftelsen och Waxholmsbolaget själva beskriver utsikter och landmärken: Sandhamn, Arholma båk, Utö, Grinda, Fjärdlång och Björnö. Du får också reglerna som gäller när du fotograferar: fågel- och sälskyddsområden, drönarregler och spridningstillstånd för flygbilder som du vill lägga ut på Instagram.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sandhamn – hamnen, Trouville och tidig soluppgång</h2>
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt."; "Byn Sandhamn ligger på ön Sandö."; "Över hela ön finns ett fint nät av stigar som tar dig till havet och de långa vita sandstränderna."; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme. Under sommaren så kan du också åka till Sandhamn från Strömkajen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Byn Sandhamn ligger på Sandön, och Waxholmsbolaget har turer dit året runt. Från Stavsnäs tar båten drygt en timme, och på sommaren går det också båt från Strömkajen. Över hela ön går stigar ut till havet och de långa sandstränderna.</p>
+<!-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — "Det pampiga gula tullhuset av sten som dominerar hamnen ritades av slottsarkitekten Carl Hårleman och byggdes 1752."; "Vid 1800-talets slut utvecklades Sandhamn till ett centrum för segelsporten."; "Värdshuset från 1670-talet är ett av Sveriges äldsta." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.explorearchipelago.com/sv/sthlm/mellersta-skargarden/sandhamn — "På sommaren är hamnen full av båtar och det myllrar av besökare längs hamnpromenaden." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Motiven i hamnen har historia: det gula tullhuset i sten ritades av Carl Hårleman och byggdes 1752, och värdshuset från 1670-talet är ett av Sveriges äldsta. Sedan slutet av 1800-talet är Sandhamn ett centrum för segelsporten, så hamnen är full av segelbåtar på sommaren.</p>
+<!-- KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn — "Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida."; "Trouville ligger omkring 20 minuters promenad från hamnen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stranden Trouville med vit sand ligger på Sandöns södra sida, omkring 20 minuters promenad från hamnen enligt Värmdö kommun.</p>
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/meteorologi/solens-upp--och-nedgang/vad-ar-ett-solbanediagram — "Exempelvis ligger Sandhamn, Stockholms skärgård, cirka en grad öster om Stockholm. Där går solen alltså upp cirka fyra minuter tidigare än i Stockholm." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planerar du att fotografera soluppgången: SMHI räknar med att solen går upp cirka fyra minuter tidigare i Sandhamn än i Stockholm, eftersom Sandhamn ligger ungefär en grad längre österut. Mer om ön i <a href="/guider/sandhamn-komplett-guide">guiden till Sandhamn</a> och på <a href="/o/sandhamn">Sandhamn</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Arholma båk – utsikt över Ålands hav</h2>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/arholma/ — "Från Norra bryggan leder den gamla bygatan genom öns bebyggelse."; "når så småningom Arholmas mest kända landmärke – Arholma båk. Den imponerande sjömärkesbyggnaden uppfördes på 1700-talet och erbjuder en fantastisk utsikt över Ålands hav." (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/arholma/ — "Arholma Nord där den tidigare hemliga försvarsanläggningen Batteri Arholma numera är museum och besöksmål."; "Etappen följer öns vägar och stigar genom kulturlandskap, skogspartier och längs den dramatiska ytterskärgårdskusten med utsikt över Ålands hav." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma båk är öns mest kända landmärke. Sjömärket byggdes på 1700-talet, och därifrån ser du ut över Ålands hav. Du når båken längs den gamla bygatan från Norra bryggan. På norra delen av ön ligger Batteri Arholma, en tidigare hemlig försvarsanläggning som i dag är museum. Etappen av Stockholm Archipelago Trail på Arholma går längs ytterskärgårdskusten. Läs mer i <a href="/guider/arholma-guide">guiden till Arholma</a>.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/arholma-ido.html — "under tiden 1 april till 31 juli landstiga på öarna Rödkobben och Nollekobb eller befara vattenområdet inom 100 meter från ovan nämnda öar" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma ingår i Arholma-Idö naturreservat. Där är det förbjudet att gå i land på Rödkobben och Nollekobb, eller att åka närmare än 100 meter, under tiden 1 april till 31 juli. Kör du egen båt eller kajak för att fotografera fåglar: håll dig utanför.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utö – gruvbyn och väderkvarnen</h2>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden. Gruvhål, historiska byggnader och Sveriges äldsta bevarade väderkvarn berättar om öns långa historia" (läst 2026-09-27) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Utö är en blandning av karga klippor, vild skog, öppen odlingsmark och vidsträckta sandstränder."; "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Utö finns Gruvbyn med gruvhål och historiska byggnader efter järnbrytning som började redan på medeltiden, och Sveriges äldsta bevarade väderkvarn. Ön har klippor, skog, odlingsmark och sandstränder. Båten från Årsta brygga i Haninge går sju till åtta gånger om dagen på sommaren. Se <a href="/guider/uto-komplett-guide">guiden till Utö</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utsiktspunkter: Klubbudden, Tysta Klint och Björnö</h2>
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — "Du kan till exempel promenera längs med Grindastigen som tar dig förbi Klubbudden, öns högsta punkt. Stigen är ungefär 2,5 kilometer lång."; "Resan från Strömkajen tar ungefär en och en halv timme." (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/fjardlang/ — "En av de mest uppskattade utflykterna går upp till Tysta Klint, där du belönas med vidsträckt utsikt över öar och hav." (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/bjorno/ — "Flera markerade vandringsleder tar dig vidare genom reservatet till Småängsuddarna och utkikstornet med vidsträckt utsikt över skärgården." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Klubbudden på <a href="/o/grinda">Grinda</a></strong> är öns högsta punkt. Grindastigen, ungefär 2,5 km, går förbi den. Båten från Strömkajen tar ungefär en och en halv timme.</li>
+<li><strong>Tysta Klint på <a href="/o/fjardlang">Fjärdlång</a></strong> ger utsikt över öar och hav.</li>
+<li><strong>Utkikstornet på Björnö</strong> nås via markerade leder genom naturreservatet mot Småängsuddarna.</li>
 </ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vaxholm och Kastellet</h2>
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Båtresan från Strömkajen tar bara en timme"; "bryggan Kastellet trafikeras även den av Waxholmsbolaget. Väl där kan du känna historiens vingslag när du promenerar runt utanför Vaxholms kastell, som ligger precis intill bryggan."; "När du är i Vaxholm kan du promenera i den gamla delen av staden med dess smala gränder." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Vaxholm tar båten från Strömkajen en timme. I den gamla delen av staden finns smala gränder, och på andra sidan sundet ligger Vaxholms kastell precis intill bryggan Kastellet, som Waxholmsbolaget också trafikerar. Se <a href="/guider/vaxholm-guide-komplett">guiden till Vaxholm</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">När är ljuset bäst för foto i skärgården?</h2>
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/meteorologi/solens-upp--och-nedgang/gryning-och-skymning — "I södra Sverige är den borgerliga skymningen som allra kortast kring vår och höstdagjämningarna, knappt 40 minuter. På sommaren är den där omkring 1 timme lång."; "himlen naturligtvis är ljusare i den riktning i vilken solen gick ned" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/meteorologi/solens-upp--och-nedgang/sommarsolstand-och-vintersolstand — "Vid sommarsolståndet blir det aldrig riktigt beckmörkt någonstans i Sverige eftersom solen bara är en bit under horisonten i nordlig riktning." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/meteorologi/solens-upp--och-nedgang — "Generella beräkningar av solens upp- och nedgång förutsätter en fri horisont"; "sjöhorisonten, som är en mycket god approximation av en fri horisont" (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Efter solnedgången följer borgerlig skymning. I södra Sverige varar den knappt 40 minuter kring vår- och höstdagjämningen och omkring en timme på sommaren, enligt SMHI.</li>
+<li>Himlen är ljusast åt det håll där solen gick ner.</li>
+<li>Kring sommarsolståndet blir det aldrig riktigt mörkt, eftersom solen bara går en bit under horisonten i norr.</li>
+<li>Ute i skärgården har du ofta havet som horisont, och SMHI:s beräknade tider för sol upp och ner utgår från en fri horisont.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om var och när du ser solen gå ner i <a href="/guider/solnedgang-skargarden">guiden till solnedgång i skärgården</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fotografera i naturreservat, fågel- och sälskyddsområden</h2>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/natur-och-landsbygd/skyddad-natur.html — "Tillträdesförbud används för att skydda djur- eller växtarter i ett avgränsat område under en viss tid på året."; "Det är framförallt häckningsplatser för störningskänsliga fågelarter som vi försöker skydda med tillträdesförbud."; "Du kan hitta områden med tillträdesförbud i Naturvårdsverkets kartverktyg" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Många av skärgårdens fotoplatser ligger i naturreservat med egna föreskrifter. Fågel- och sälskyddsområden får bara besökas vissa tider på året, och tillträdesförbud används främst för att skydda häckningsplatser för störningskänsliga fåglar. Du hittar områdena i Naturvårdsverkets kartverktyg Skyddad natur. Kom inte närmare än reglerna tillåter för en bild, och läs mer i <a href="/guider/fagelskadning-skargarden">guiden till fågelskådning i skärgården</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Får man flyga drönare i skärgården?</h2>
+<!-- KÄLLA: https://www.transportstyrelsen.se/sv/luftfart/luftfartyg-och-luftvardighet/dronare/dronarflygguiden/ — "Kom ihåg att du måste ha drönarkort om din drönare väger 250 gram eller mer."; "är utrustad med kamera, ljudupptagning eller annan sensor (gäller även C0 och under 250g), eller"; "För att registrera sig som operatör och därmed få ett Operatörs-ID, så måste du som privatperson vara minst 18 år och folkbokförd i Sverige." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.transportstyrelsen.se/sv/luftfart/Luftfartyg-och-luftvardighet/dronare/flyga-dronare-i-luftrummet/ — "Maxhöjd: 120 meter."; "Drönaren måste flygas inom synhåll från dig som fjärrpilot." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Drönarkort</strong> krävs om drönaren väger 250 gram eller mer.</li>
+<li><strong>Operatörs-ID:</strong> du ska registrera dig som operatör hos Transportstyrelsen om drönaren har kamera, även om den väger under 250 gram. Som privatperson ska du vara minst 18 år och folkbokförd i Sverige.</li>
+<li><strong>Höjd och sikt:</strong> i den öppna kategorin är maxhöjden 120 meter, och drönaren ska flygas inom synhåll.</li>
+</ul>
+<!-- KÄLLA: https://www.transportstyrelsen.se/sv/luftfart/luftfartyg-och-luftvardighet/dronare/dronarflygguiden/ — "Start- och landningsförbud kan råda i Naturreservat och nationalparker."; "som beslutar om tillstånd för start och landning i naturreservat och nationalparker"; "Var alltid extra uppmärksam och försiktig i naturreservat och ta hänsyn till naturen och djurlivet." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lfv.se/tjanster/informationstjanster/lfvs-dronarkarta — "Det finns också restriktionsområden i Sverige där det är förbjudet att flyga, till exempel över fängelser, kärnkraftverk och nationalparker."; "Syftet med kartan är att underlätta för fjärrpiloter att avgöra var de kan flyga utan att störa ordinarie flygtrafik." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I naturreservat och nationalparker kan det råda start- och landningsförbud, och det är Länsstyrelsen som beslutar om tillstånd. Transportstyrelsen ber drönarpiloter vara extra försiktiga i naturreservat och ta hänsyn till djurlivet. Kontrollera alltid LFV:s drönarkarta före flygning: den visar flygplatsernas luftrum och restriktionsområden där det är förbjudet att flyga.</p>
+<!-- KÄLLA: https://www.transportstyrelsen.se/sv/luftfart/luftfartyg-och-luftvardighet/dronare/dronarflygguiden/ — "En strand kan till exempel betraktas som rekreationsområde under vissa tider på sommaren men inte under andra perioder."; "Vid flygning med en drönare som endast får flygas inom underkategori A3"; "ska ett avstånd till rekreationsområden på minst 150m hållas" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En strand kan enligt Transportstyrelsen räknas som rekreationsområde under vissa tider på sommaren. Med en drönare som bara får flygas i underkategori A3 ska du hålla minst 150 meter avstånd till sådana områden.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Får man lägga upp drönarbilder på Instagram?</h2>
+<!-- KÄLLA: https://www.lantmateriet.se/spridningstillstand/ — "Om du har fotograferat eller filmat från luftfartyg som till exempel drönare, flygplan, helikopter eller luftballong och vill dela, publicera eller sälja dina bilder behöver du ansöka om spridningstillstånd."; "Att ansöka om spridningstillstånd är kostnadsfritt."; "Om ditt material innehåller avbildningar av hav, så kallad sjögeografisk information, kan du behöva ansöka om spridningstillstånd från Sjöfartsverket också."; "Du behöver inte alltid ansöka om tillstånd" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bara med spridningstillstånd. Enligt Lantmäteriet behöver du ansöka om spridningstillstånd om du har fotograferat eller filmat från en drönare och vill dela, publicera eller sälja bilderna. Ansökan är kostnadsfri. Visar bilderna havet kan du också behöva tillstånd från Sjöfartsverket. Lantmäteriet anger vissa undantag från kravet, så läs deras sida innan du ansöker.</p>
 `,
 
   'wellness-retreat-skargarden': `
@@ -8903,35 +9680,61 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 `,
 
     'teambuilding-skargard-stockholm': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård är Nordens bästa naturliga teambuilding-arena. Öar, vatten och friluftsliv skapar äkta utmaningar som team-övningar inomhus aldrig kan matcha. Alla oavsett kontorshierarki är lika noviser ute på havet – det skapar en jämbördighet och gemenskap som hänger med länge efter kvittot.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "Nordens bästa naturliga teambuilding-arena", påståenden om jämbördighet och samhörighet, alla priser per person och budgetnivåer (inga prislistor), gruppstorlekar per aktivitet, "Archipelago Events" och "Teambuilding.se" (kunde inte verifieras som arrangörer i skärgården), helpaketpris på Grinda, råd om antal veckor för bokning, "Skärgårds-OS", samt värdeord. -->
+<!-- KÄLLA: https://seglingstockholm.se/vara-tjanster/ — "Vi erbjuder kappsegling, konferens, matchrace, kickoff, utbildning eller stillsam skärgårdssegling med erfarna instruktörer ombord." (läst 2026-09-27) -->
+<!-- KÄLLA: https://kanotcenter.com/sv/grupper-foretagsevent-stockholm/ — "Från teambuilding till evenemang för upp till 100 personer – vi tar hand om alla detaljer." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Teambuilding i Stockholms skärgård handlar oftast om segling, kajak eller en konferens på en ö med aktiviteter runt omkring. Här är arrangörer och konferensgårdar som vi har kontrollerat på deras egna webbplatser, vad de erbjuder och vilka regler ni som arrangör behöver känna till. Priser står inte här eftersom de sätts per offert och ändras.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Populäraste aktiviteterna</h2>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-  <li><strong>Segelregatta</strong> – 2–6 lag mot varandra. Bäst för 20–80 pers. Kräver samarbete, kommunikation och strategi. Pris 1 000–2 000 kr/pers.</li>
-  <li><strong>Kajakpaddling</strong> – nybörjarvänlig och naturnära. Guider sköter säkerheten. Passar 10–60 pers. Pris 800–1 500 kr/pers halvdag.</li>
-  <li><strong>Skärgårds-OS</strong> – stafetter, orientering och utmaningar. Arrangörer bygger skräddarsydda upplägg för 20–150 pers.</li>
-  <li><strong>Havsbastu + kall bad</strong> – enkel och effektiv lagbyggare. Alla gör samma sak, alla är lika nakna och det skapar omedelbar samhörighet.</li>
-  <li><strong>Matlagning på ön</strong> – laga gemensam middag med råvaror från havet. Kombineras gärna med kvällsvistelse.</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Teambuilding med segling i Stockholms skärgård</h2>
+<!-- KÄLLA: https://www.destinationvaxholm.se/sv/se-gora/segla-paddla-fiska-bada-och-annan-vattensport — "Out arrangerar seglingsaktiviteter för grupper, företag och privat: teamaktivitet, incentive, sälj, kick-off, transport, jubileum, födelsedag. Ansvarig skeppare finns alltid med ombord för säkerhet och vägledning. Ingen tidigare seglingserfarenhet krävs."; "Rindö Hamn" (läst 2026-09-27) -->
+<!-- KÄLLA: https://out.se/ — "Vi skräddarsyr seglingsaktiviteter och seglingsevenemang med vår flotta av rymliga och bekväma 50 fots segelbåtar (15 meter)."; "match racing – en katt och råtta lek som väcker tävlingsinstinkten hos alla"; "Eller varför inte en segling med konferens ombord?" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Out Seglingsevenemang</strong> utgår från Rindö Hamn i Vaxholm och seglar med 50-fotsbåtar, 15 meter långa. De ordnar bland annat match racing, där lagen tävlar mot varandra, skärgårdssegling och konferens ombord. En ansvarig skeppare finns alltid ombord, och ingen i gruppen behöver ha seglat förut.</p>
+<!-- KÄLLA: https://seglingstockholm.se/vara-tjanster/ — "Adress: Bullandö Marina, 139 56 Värmdö"; "Vi erbjuder kappsegling, konferens, matchrace, kickoff, utbildning eller stillsam skärgårdssegling med erfarna instruktörer ombord." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sailingevents.se/aktiviteter/teambuilding/ — "Våra erfarna skeppare vägleder deltagarna hela tiden, vilket gör att ni inte behöver ha några förkunskaper alls." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sailing Events</strong> finns på Bullandö Marina på Värmdö. De ordnar kappsegling, matchrace, kickoff och konferens med instruktörer ombord, och skepparna vägleder deltagarna så att inga förkunskaper behövs.</p>
+<!-- KÄLLA: https://www.siggestagard.se/konferens/konferensaktiviteter/segling-i-stockholms-skargard — "Deltagarna delas upp i två lag, beroende på antal. Varje lag får en båt med en erfaren skeppare. Ingen tidigare seglingserfarenhet behövs"; "Hyra av segelbåtar, varje båt tar upp till 12 deltagare"; "Vår samarbetspartner Sailing Events har arrangerat mer än 800 seglingsevenemang i Stockholms skärgård" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.siggestagard.se/konferens/konferensaktiviteter/segling-i-stockholms-skargard — "© Siggesta Gård AB, 139 90 Värmdö" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Siggesta Gård</strong> på Värmdö har kappsegling som konferensaktivitet tillsammans med Sailing Events. Gruppen delas upp i lag, varje lag får en båt med skeppare och varje båt tar upp till 12 deltagare. Läs också om <a href="/guider/segeldag-foretag-stockholm">segeldag för företag i Stockholm</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kajak och paddling som teambuilding</h2>
+<!-- KÄLLA: https://kanotcenter.com/sv/grupper-foretagsevent-stockholm/ — "Från teambuilding till evenemang för upp till 100 personer – vi tar hand om alla detaljer."; "Vårt team talar EN | DE | FR | NL | PL | SE"; "från kajakäventyr och bastubad året runt till uteservering med catering från lokala restauranger" (läst 2026-09-27) -->
+<!-- KÄLLA: https://kanotcenter.com/sv/ — "Resarövägen 10, 185 51 Resarö" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Skärgårdens Kanotcenter</strong> på Resarö i Vaxholm tar emot företagsgrupper på upp till 100 personer. De erbjuder guidade kajakturer, bastu året runt och catering, och guiderna talar flera språk, bland annat svenska, engelska och tyska.</p>
+<!-- KÄLLA: https://www.siggestagard.se/konferens/konferensaktiviteter/kajak-i-stockholms-skargard — "Starta äventyret med en kort introduktion av guiden och genomgång av säkerhetsrutiner"; "Om det finns nybörjare i gruppen kan en guide följa med för att ge stöd och instruktioner."; "Flytväst är en självklarhet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Siggesta Gård har också kajak som konferensaktivitet. Turen börjar med en introduktion och en genomgång av säkerheten, och finns det nybörjare i gruppen kan en guide följa med. Flytväst använder alla. Mer om paddling finns i <a href="/guider/teambuilding-kajak-stockholm">teambuilding med kajak</a> och <a href="/guider/hyra-kajak-stockholm">hyra kajak i Stockholm</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Företagsevent i Stockholms skärgård med konferens på ön</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Grinda</h3>
+<!-- KÄLLA: https://grinda.se/konferens/aktiviteter/ — "I Grindas armada av flytetyg finns segelbåtar, kajaker, ribbåtar och  stridsbåtar."; "Match race/Fleet race – Utmana kollegor eller kunder i en rafflande kappsegling – där ni själva är besättning!"; "Fiske med företaget – Ett perfekt avbrott i konferensen"; "På och kring Grinda arrangerar vi även teamaktiviteter, tävlingsaktiviteter och fartfyllda äventyr på höghöjdsbanan." (läst 2026-09-27) -->
+<!-- KÄLLA: https://grinda.se/konferens/aktiviteter/ — "Stand up paddle"; "Sälsafari – En oförglömlig upplevelse där ni kan se detta magnifika djur i sin naturliga miljö." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus har konferens på <a href="/o/grinda">Grinda</a> och ordnar aktiviteter med segelbåtar, kajaker, ribbåtar och stridsbåtar. Där finns kappsegling där gruppen själv är besättning, fisketurer, stand up paddle, sälsafari och en höghöjdsbana.</p>
+<!-- KÄLLA: https://grinda.se/hittahit/ — "Waxholmsbolaget (+46 8 600 10 00) och Cinderellabåtarna (+46 8 12 00 40 45) har flera turer dagligen från Stockholm"; "Från Stockholm tar resan drygt en timme"; "Vi kan även ordna taxibåt, charterbåt, helikopter och sjöflyg" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Grinda går Waxholmsbolaget och Cinderellabåtarna från Stockholm, och resan tar drygt en timme. För grupper kan Grinda ordna taxibåt, charterbåt, helikopter och sjöflyg. Läs mer i <a href="/guider/grinda-guide">Grindaguiden</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Utö</h3>
+<!-- KÄLLA: https://www.utovardshus.se/konferens/ — "Utö ligger i Stockholms södra skärgård, ca en timme från Stockholm med bil och båt."; "14 mötesrum för olika typer av grupper"; "200 bäddar i flera boendeformat"; "För kick-off eller teamdag. När aktiviteten är en större del av helheten." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus på <a href="/o/uto">Utö</a> i södra skärgården ligger ungefär en timme från Stockholm med bil och båt. De har 14 mötesrum och 200 bäddar och ordnar aktiviteter för kickoff och teamdagar. Se även <a href="/guider/uto-komplett-guide">Utöguiden</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler idéer finns i <a href="/guider/konferens-skargard-stockholm">konferens i Stockholms skärgård</a>, <a href="/guider/kickoff-ideer-skargard">kickoff-idéer</a> och <a href="/guider/foretagsevent-skargarden">företagsevent i skärgården</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad gäller för en grupp i naturen?</h2>
+<!-- KÄLLA: https://www.naturvardsverket.se/vagledning-och-stod/allemansratten/organiserad-verksamhet/ — "Allemansrätten är dock knuten till den enskilde individen, inte till grupper. Därför har du som arrangör av organiserade aktiviteter i naturen ett särskilt ansvar." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.naturvardsverket.se/vagledning-och-stod/allemansratten/organiserad-verksamhet/ — "Välja lämplig plats samt tid på året för arrangemanget för att förebygga risken för skador och andra besvär."; "Ta reda på om arrangemanget eller dess kringaktiviteter kräver någon form av tillstånd, till exempel dispens från naturreservatsföreskrifter"; "Informera deltagarna om allemansrätten och det ansvar som följer av den" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Allemansrätten gäller den enskilda personen, inte gruppen. Den som arrangerar en aktivitet för en grupp har därför ett särskilt ansvar, skriver Naturvårdsverket. Som arrangör ska ni:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>välja en lämplig plats och tid på året så att ni inte orsakar skador eller besvär</li>
+<li>ta reda på om aktiviteten kräver tillstånd, till exempel dispens från ett naturreservats föreskrifter</li>
+<li>informera deltagarna om allemansrätten och ansvaret som följer med den.</li>
 </ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Anlitar ni en arrangör är det bra att fråga hur de hanterar det här. Läs mer i <a href="/guider/allemansratten-pa-sjon">allemansrätten på sjön</a>.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ledande arrangörer 2026</h2>
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
-  <strong style="color:var(--sea)">Archipelago Events</strong>
-  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Fullservice-leverantör för skärgårds-teambuilding. Allt från transport och aktiviteter till mat och boende. 10–200 pers. Kontakta för skräddarsydd offert.</p>
-</div>
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
-  <strong style="color:var(--sea)">Teambuilding.se (skärgård)</strong>
-  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Jämförelsesajt med 50+ leverantörer i Stockholmsregionen. Filtrera på skärgård, antal pers och aktivitetstyp.</p>
-</div>
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
-  <strong style="color:var(--sea)">Grinda Wärdshus Konferens</strong>
-  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Kombinera konferens, teambuilding och middag på Grinda. Helpaket 1 800–2 800 kr/pers/dag. Nås med Waxholmsbåten. Perfekt för övernattande event.</p>
-</div>
-
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Budget och planering</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Halvdagsevent: 800–1 500 kr/pers. Heldagsevent utan boende: 1 200–2 500 kr/pers. Övernattande event (2 dagar): 2 500–4 500 kr/pers. Boka 6–8 veckor i förväg för sommarhalvåret, 2–4 veckor för höst och vår.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Säkerhet, flytväst och alkohol på sjön</h2>
+<!-- KÄLLA: https://www.transportstyrelsen.se/sv/sjofart/fritidsbatar/sjosakerhet/pa-sjon/anvand-flytvast/ — "Samtliga ombord ska ha en flytväst i rätt storlek."; "Barn och vuxna som inte kan simma ska använda räddningsväst." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Transportstyrelsen skriver att alla ombord ska ha en flytväst i rätt storlek, och att den som inte kan simma ska ha räddningsväst. Fråga i förväg om någon i gruppen inte kan simma.</p>
+<!-- KÄLLA: https://www.transportstyrelsen.se/sv/sjofart/fritidsbatar/sjosakerhet/pa-sjon/var-nykter-pa-sjon/ — "Den fasta gränsen för sjöfylleri är 0,2 promille. Regeln gäller alla fartyg som kan framföras i minst 15 knop eller har ett skrov som är minst tio meter."; "Både den som framför fartyget och personer ombord, med uppgifter som har stor betydelse för fartygets säkra framförande, omfattas av reglerna." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gränsen för sjöfylleri är 0,2 promille och gäller båtar med ett skrov på minst tio meter eller som kan gå i minst 15 knop. Det gäller inte bara den som kör, utan också den som ombord har uppgifter som är viktiga för att båten ska framföras säkert. Styr och trimmar deltagarna själva under en kappsegling, så spara alkoholen till efteråt.</p>
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/bli-en-sakrare-paddlare — "Paddlare i grupp är enklare att se än en enskild paddlare."; "Ring 112 och beskriv vad som hänt och vart du är så gott du kan." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Paddlare syns bättre i grupp än en och en, enligt Sjöräddningssällskapet. Om något händer ringer ni 112 och berättar vad som hänt och var ni är.</p>
 `,
 
     'segelkurs-stockholm': `
@@ -9394,28 +10197,91 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 `,
 
   'isbad-vinterbad-sverige': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Vinterbad är en av de snabbast växande trenderna i Sverige. Det är inte längre bara härdade norrlänningar – stockholmare, göteborgare och gotlänningar kastar sig i 3-gradigt vatten och lovar att det är den bästa känslan de vet. Det stämmer.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Forskning visar att regelbundet kallbad förbättrar cirkulationen, minskar inflammation och ger en naturlig endorfinskjuts som varar i timmar. Men det handlar lika mycket om den mentala känslan – att ta sig an något svårt och lyckas.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "snabbast växande trenderna", "3-gradigt vatten", hälsopåståenden om cirkulation, inflammation och endorfiner, organiserade vinterbad på Lappis, Tantolunden och Långholmen, "bada från vilken brygga som helst", Saltholmens klippor, Smögens klippor och Hamburgsunds naturhamn, Tofta och Klinteby på Gotland med "aktiva communities", badklubbar vid Härnösand och Kramfors, råden om dopp i sekunder och "undvik att duscha direkt", FAQ-platserna Marstrand, Tylösand, Skanör, Nacka, Lidingö och Haparanda som "bästa platser", "friska personer klarar kortvarig kallbadning bra", samt värdeord och "bästa isbadsplatserna". Kallbadhus som inte på egen sida anger vinteröppet har inte tagits med. -->
+<!-- KÄLLA: https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/temperatur-i-havet — "Vid havsytan är därför variationerna stora här, från sköna badtemperaturer på sommaren till så kallt vatten att det fryser till is i stora områden på vintern."; "På vintern är temperaturen nära fryspunkten i norr och öster, medan de södra och västra delarna sällan blir såpass avkylda." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.goteborg.com/guider/vinterbada-i-goteborg — "Här listar vi vinterbadställen i Göteborg och Göteborgs skärgård." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Isbad och vinterbad i havet går att göra längs hela Sveriges kust, men förutsättningarna skiljer sig. Enligt SMHI ligger ytvattnet på vintern nära fryspunkten i norr och öster, medan havet i söder och väster sällan kyls av lika mycket. Här är platser för isbad i Göteborg, Stockholm och Malmö som själva skriver att de har vinterbad, och vad Svenska Livräddningssällskapet, Sjöräddningssällskapet och 1177 säger om säkerheten.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa isbadsplatserna i Sverige</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stockholm och Stockholms skärgård:</strong> Lappis, Tantolunden och Långholmen har organiserade vinterbad med bryggor och ombytesrum. Ute i skärgården kan du bada från vilken brygga som helst – men ta med eget omklädningstält och värmeägg.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Göteborg:</strong> Saltholmens klippor är en klassiker. Fria bad med granit direkt i havet. Klä dig varmt efteråt – ha termos med varmt i bilen.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bohuslän:</strong> Klippbad längs hela kusten. Havet är kallare och saltare än Östersjön – ger en intensivare upplevelse. Smögens klippor och Hamburgsunds naturhamn är populära.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotland:</strong> Östersjöbad vid Tofta och Klinteby – Östersjöns lägre salthalt ger något mildare känsla men lika effektivt. Gotlänska vinterbadare finns i aktiva communities.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Höga Kusten:</strong> Bottenhavet runt Härnösand och Kramfors. Lägre salthalter och intensiv kyla. Lokala badklubbar arrangerar gemensamma dopp.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Isbad i Göteborg</h2>
+<!-- KÄLLA: https://goteborg.se/wps/portal/enheter/jubileumsparken/aktiviteter-i-parken/bada — "Hamnbadet har två bassänger, en med saltvatten från saltkilen i Göta älv och en med sötvatten som renas på naturlig väg med hjälp av en filterbädd på land."; "Hamnbadet är tillgängligt för alla och helt kostnadsfritt."; "Under resterande delar av året är en av saltvattenbassängerna (simbassängen) öppen för bad."; "Öppettiderna varierar från dag till dag och ändras efter säsong." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.goteborg.com/platser/allmanna-badet-i-jubileumsparken — "Hamnbadet i Jubileumsparken ligger i Jubileumsparken i området i Frihamnen på norra sidan av Göta älv."; "Under sommaren är alla bassänger öppna, medan simbassängen håller öppet året runt för den som vill vinterbada eller ta ett svalkande dopp även under årets kallare månader." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hamnbadet i Jubileumsparken ligger i Frihamnen på norra sidan av Göta älv. Badet är gratis och öppet för alla. På sommaren är alla bassänger öppna, och resten av året är simbassängen med saltvatten från saltkilen i Göta älv öppen för vinterbad. Öppettiderna ändras från dag till dag och efter säsong, så kolla goteborg.se innan du åker.</p>
+<!-- KÄLLA: https://goteborg.se/wps/portal/enheter/jubileumsparken/aktiviteter-i-parken/basta — "För att basta behöver du boka plats på ett pass. Det finns både uppdelade och mixade pass. I bastun finns plats för 25 personer. Den är öppen för alla, året om och kostnadsfri. Boka bastupass via timecenter.se/jubileumsparken. Under sommarsäsongen gäller drop-in i bastun."; "Duscha alltid före bastubad." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bredvid badet ligger Göteborgs Stads bastu, som också är gratis och öppen året om. Utanför sommaren bokar du ett pass via timecenter.se/jubileumsparken – det finns både uppdelade och mixade pass – och bastun rymmer 25 personer. På sommaren gäller drop-in. Duscha alltid före bastubadet.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Nybörjarens guide till vinterbad</h2>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Börja med 30 sekunder och jobba dig upp – forcera aldrig kroppen i början</li>
-  <li>Ha alltid torrt och varmt ombyte redo på land innan du hoppar i</li>
-  <li>Andas lugnt och kontrolleratt – hyperventilera inte av kylan</li>
-  <li>Bada aldrig ensam på okänd plats – ta med någon de första gångerna</li>
-  <li>Värm upp naturligt efteråt med kläder och varmt dryck – undvik duscha direkt</li>
-  <li>Kombinera med bastu för den bästa upplevelsen om möjlighet finns</li>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Vinterbad vid klippor och bryggor i Göteborg</h3>
+<!-- KÄLLA: https://www.goteborg.com/guider/vinterbada-i-goteborg — "Bada från klippor, badstege eller från den lilla stranden vid vackra Ganletbadet."; "du tar dig ner i vattnet från en badstege eller från klippporna"; "Här finns badbryggor och badstegar, och klippor att hoppa från om du är en våghals."; "Använd brygga, trappor, strand eller klippor för att ta dig ner i vattnet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Göteborg &amp; Co listar också vinterbadplatser i stan. Vid Ganletbadet på Näset kan du gå i från klippor, badstege eller en liten strand. På Smithska udden finns badstege och klippor, på Marholmen i Askimsviken badbryggor och badstegar, och vid Fiskebäcksbadet brygga, trappor, strand och klippor.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Isbad i Göteborgs skärgård: Öckerö och Hönö</h3>
+<!-- KÄLLA: https://www.goteborg.com/guider/vinterbada-i-goteborg — "Här vid hamnen finns en brygga och en bastu (som måste bokas i förhand)."; "Boka bastun genom Nimbus Öckerö"; "Du behöver bara ta dig ett par hundra meter från Hönö Klåva för att nå denna fantastiska badplats. Här finns brygga, stege och strand"; "Vid bryggan i Hjälvik finns ett litet omklädningsrum, grillplats, en sandstrand och fantastisk natur." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/visitockero/se--gora/badochbastuiskargarden/ — "Omklädningshytt och badstege längst ut på badplatsen."; "Badplatsen har strand, brygga och stege … klipporna."; "Badstege i året runt"; "badstegarna får ligga i medans flytbryggorna tas upp på hösten" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I norra skärgården finns flera vinterbadplatser. Vid Öckerö hamn finns en brygga och en bastu som bokas i förväg, och vid Nimbus Öckerö bokar du bastu hos Nimbus. Hästens badplats på Hönö ligger ett par hundra meter från Hönö Klåva, med strand, brygga och stege på klipporna. I Hjälvik på Öckerö finns ett litet omklädningsrum, en sandstrand och en badstege längst ut. Visit Öckerö skriver att badstegarna vid Hästen och Hjälvik ligger i året runt, medan flytbryggorna tas upp på hösten.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Isbad i Stockholm: Hellasgården</h2>
+<!-- KÄLLA: https://www.nacka.se/uppleva--gora/friluftsliv-motion/friluftsgardar/hellasgarden/ — "Hellasgården är friluftsgård med omklädningsrum, bastu och servering och ägs och drivs av sim- och idrottsklubben Hellas. Gården ligger i ett stort friluftsområde – Nackareservatet – omedelbart intill Stockholms sydöstra gräns mot Nacka." (läst 2026-09-27) -->
+<!-- KÄLLA: https://hellasgarden.se/oppettider-och-pris/ — "Öppet varje dag året om!" (läst 2026-09-27) -->
+<!-- KÄLLA: https://hellasgarden.se/aktiviteter/bastu/ — "Som bastubadande gäst kan du svalka dig i Källtorpssjön via vår badbrygga. Här badar våra gäster året om!"; "Boka ditt besök här på hemsidan, välj starttid, håll tiden - och njut!"; "Vardagar fram till kl 13 är det möjligt med drop-in-besök i mån av plats och starttider" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hellasgården i Nackareservatet, precis vid Stockholms sydöstra gräns mot Nacka, är en friluftsgård med omklädningsrum, bastu och servering som drivs av sim- och idrottsklubben Hellas. Den har öppet varje dag året om. Från bastun går du ut på en badbrygga i Källtorpssjön, där gästerna badar hela året – det är alltså ett insjöbad, inte havet. Besöket bokas på Hellasgårdens webbplats med en starttid, och på vardagar före lunch går det också att komma på drop-in om det finns plats.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kallbadhus i Malmö: Ribersborg</h2>
+<!-- KÄLLA: https://ribersborgskallbadhus.se/ — "Kallbad & Bastu"; "Unna kropp & själ en stund i bastun."; "Limhamnsvägen"; "Med start i oktober kommer kallbadhuset hålla öppet till 21:00 Måndag - Onsdag fram till årsskiftet. Detta är en testperiod som sedan kommer utvärderas för att se om det kan bli permanenta tider." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ribersborgs Kallbadhus ligger på en brygga vid Limhamnsvägen i Malmö och har kallbad och bastu. Enligt kallbadhusets egen sida har det förlängda kvällsöppettider måndag–onsdag från oktober fram till årsskiftet, som en testperiod. Kolla aktuella tider på ribersborgskallbadhus.se.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vinterbad i Bohuslän och på västkusten</h2>
+<!-- KÄLLA: https://www.vastsverige.com/en/things-to-do/winter-swimming/cold-bathing/ — "At Hedvigsholmen on the island of Koön there’s both a ramp and a ladder."; "On the actual island of Marstrand there are bathing ladders in both the south and north of the island"; "On the south side of the little island of Dyrön there’s a swimming area with a ladder, where you can also easily reach the island’s sauna nearby."; "At other local swimming areas from the rocks ladders are taken up during the winter." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Turistrådet Västsverige tipsar om fler vinterbadplatser längs kusten. I Marstrand finns ramp och stege vid Hedvigsholmen på Koön och badstegar på både södra och norra Marstrandsön. På Dyrön utanför Tjörn finns en badplats med stege på södra sidan och en bastu i närheten. På en del klippbad tas badstegarna upp på vintern, så kolla innan du åker.</p>
+<!-- KÄLLA: https://www.vastsverige.com/en/things-to-do/winter-swimming/cold-bathing/ — "One is Pinneviken, with a sandy beach and rocks with a ladder."; "lies Govik, all three with swimming ladders all year round"; "There’s a nice jetty where the ladder is left in all year round and the water is kept ice free."; "Just south of the coastal town of Strömstad" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid Lysekil har Pinneviken och Govik badstegar året runt, och vid Lagunen strax söder om Strömstad ligger stegen i året runt vid en brygga där vattnet hålls isfritt. Läs mer om kusten i vår guide om <a href="/guider/vinter-bohuslan-2026">vinter i Bohuslän</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Är isbad farligt? Så reagerar kroppen på kallt vatten</h2>
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/kroppens-reaktion-pa-kallt-vatten — "När vi hamnar i kallt vatten drabbas vi av en köldchock. Denna triggas av att det kalla vattnet träffar huden. Kroppen reagerar då precis likadant som vid smärta. Du kommer inte att kunna kontrollera andningen och du kommer inte att kunna hålla andan."; "i 0-gradigt vatten kan det räcka med 10 minuter innan du börjar domna bort och inte längre kan kontrollera armar och ben"; "Hypotermi är ett allvarligt tillstånd och uppstår när kroppen kommer ner till en temperatur på under 35 grader." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sjöräddningssällskapet beskriver vad som händer: när kallt vatten träffar huden får du en köldchock, och kroppen reagerar som vid smärta. Du kan varken kontrollera andningen eller hålla andan. I vatten som håller noll grader kan det räcka med tio minuter innan armar och ben domnar bort. Sjunker kroppstemperaturen under 35 grader drabbas du av hypotermi, ett allvarligt tillstånd.</p>
+<!-- KÄLLA: https://sjoraddning.se/hall-huvudet-kallt-nar-du-hamnar-i-kyligt-vatten — "Pulsen ökar, andningen påverkas och man börjar flämta."; "Flämtreflexen kan göra att man drunknar redan efter ett par sekunder"; "Händerna är det första som slutar fungera" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.vastsverige.com/visitockero/se--gora/badochbastuiskargarden/ — "Gå i med fötterna först" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Pulsen ökar och du börjar flämta. Hamnar huvudet under vattnet i det ögonblicket kan flämtreflexen göra att man drunknar på några sekunder. Visit Öckerö råder därför vinterbadare att gå i med fötterna först. Händerna är enligt Sjöräddningssällskapet det första som slutar fungera i kallt vatten.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vinterbad för nybörjare – så gör du</h2>
+<!-- KÄLLA: https://www.vastsverige.com/visitockero/se--gora/badochbastuiskargarden/ — "Bada inte själv  - Bada i dagsljus - Gå i med fötterna först - Gärna en mössa på huvudet"; "Bada nykter - Bada där du bottnar - Se alltid efter vart du tar dig upp innan du tar dig i vattnet"; "Stor handduk eller badrock - En termos varm dryck - Varma kläder att klä om till - Tjock jacka och mössa om du promenerar - Tofflor är smart på kall brygga och berg" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visit Öckerös råd för vinterbad:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Bada inte ensam, bada i dagsljus och bada nykter.</li>
+<li>Gå i med fötterna först och bada där du bottnar.</li>
+<li>Se efter var du ska ta dig upp innan du går i.</li>
+<li>Ha gärna mössa på huvudet.</li>
+<li>Ta med stor handduk eller badrock, termos med varm dryck, varma kläder att byta om till och tofflor för kalla bryggor och berg.</li>
 </ul>
+<!-- KÄLLA: https://hellasgarden.se/aktiviteter/bastu/ — "Använd gärna badtofflor när du ska gå ut och till sjön, bryggan kan vara mycket hal." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hellasgården påpekar också att bryggan kan vara mycket hal – ha badtofflor på dig ut.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bassänger och organiserade bad</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera anläggningar längs kusten erbjuder havsbastu + kallbad-kombinationer med ombytesrum och professionella faciliteter. Söka på "havsbastu" + din närmaste kuststad för aktuella alternativ.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Efter doppet: värm upp</h3>
+<!-- KÄLLA: https://www.1177.se/Vastra-Gotaland/olyckor--skador/brannskador-och-koldskador/koldskador/ — "Du ska så fort som möjligt försöka komma inomhus eller i skydd från vind och blåst."; "Byt till torra kläder. Det är också bra att dricka varm dryck."; "Ett tips för att upptäcka köldskador är att titta efter vita fläckar på kinder, näsa och öron."; "Vind och fukt gör att du kyls ner fortare." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">1177 skriver om köldskador att du så fort som möjligt ska ta dig inomhus eller i lä, byta till torra kläder och gärna dricka något varmt. Vind och fukt gör att du kyls ner fortare – och efter ett vinterbad är du blöt. Titta efter vita fläckar på kinder, näsa och öron, som kan vara tecken på köldskada.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Isvett när du badar i en isvak</h2>
+<!-- KÄLLA: https://svenskalivraddningssallskapet.se/wp-content/uploads/2026/06/Isvett.pdf — "Tala om vart du ska och när du tror du är tillbaka."; "Kärnis ska vara minst 10 cm tjock."; "Ta med dig räddningsutrustning på isen."; "Gå aldrig ut på is om du inte är säker på att den håller."; "Ha alltid sällskap på och vid isen."; "Lägg dig på mage om du kommer ut på svag is."; "Använd förlängda armen om du behöver hjälpa någon upp ur vattnet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svenska Livräddningssällskapets isvett:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Tala om vart du ska och när du tror att du är tillbaka.</li>
+<li>Kärnisen ska vara minst 10 cm tjock, och gå aldrig ut på isen om du inte är säker på att den håller.</li>
+<li>Ta med räddningsutrustning och ha alltid sällskap på och vid isen.</li>
+<li>Kommer du ut på svag is – lägg dig på mage.</li>
+<li>Ska du hjälpa någon upp ur vattnet, använd förlängda armen, till exempel en lina eller en stav.</li>
+</ul>
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/om-is-och-dess-svagheter — "En 20 cm tjock is kan vara mindre hållbar än en is på 5 cm."; "Generellt sett är isen svagare i skärgårdar och hav än de är i insjöar."; "När du är ute på isen bör du se upp för till- och frånflöden, sund, uddar, utsläpp och grund. På det här ställena är isen ofta mycket svag. Samma sak gäller vid broar, bryggor och vass." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sjöräddningssällskapet påpekar att tjockleken inte säger allt – en 20 cm tjock is kan vara svagare än en på 5 cm – och att isen i skärgården och på havet generellt är svagare än på insjöar. Isen är ofta mycket svag vid till- och frånflöden, sund, uddar, utsläpp och grund, och vid broar, bryggor och vass. Just vid bryggor vill många ta sig i, så var extra försiktig där.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Om någon hamnar i nöd i vattnet</h3>
+<!-- KÄLLA: https://www.1177.se/Blekinge/olyckor--skador/akuta-rad---forsta-hjalpen/drunkningsolyckor — "Ropa på hjälp. Ring 112 eller säg åt någon annan att göra det."; "Försök att hitta något att kasta ut som personen kan ta tag i, till exempel en livboj eller en åra."; "En person som har hållit på att drunkna blir ofta snabbt nedkyld. Försök att hålla personen torr och skydda hen mot nedkylning med hjälp av torra handdukar eller kläder."; "Även om personen verkar må bra och andas själv behöver hen komma till sjukhus för bedömning." (läst 2026-09-27) -->
+<!-- KÄLLA: https://sjoraddning.se/hall-huvudet-kallt-nar-du-hamnar-i-kyligt-vatten — "Det viktigaste är inte att få upp personen ur vattnet, utan att få upp luftvägarna."; "Larma innan du vidtar några andra åtgärder."; "Använd något mellan dig och den drabbade så att du inte riskerar att dras ner i vattnet." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ropa på hjälp och ring 112, eller be någon annan ringa. Kasta ut något personen kan ta tag i, som en livboj eller en åra, i stället för att räcka fram handen. Sjöräddningssällskapet betonar att det viktigaste är att få upp personens luftvägar, inte hela kroppen. Enligt 1177 blir den som nästan drunknat ofta snabbt nedkyld – håll personen torr med handdukar eller kläder – och hen behöver alltid komma till sjukhus för bedömning, även om hen verkar må bra.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Får man gå ut på isen och göra en isvak?</h2>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/sno-och-is/ — "Du har stor frihet att röra dig på isbelagda vattenområden, även på någons mark, så länge du inte stör eller orsakar skada."; "Båthus och bryggor som är en del av en sjötomt räknas som privat mark och omfattas inte av allemansrätten." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt Naturvårdsverket har du stor frihet att röra dig på isbelagt vatten, även på någon annans mark, så länge du inte stör eller orsakar skada. Båthus och bryggor som hör till en sjötomt är däremot privata och ingår inte i allemansrätten. Bada därför från allmänna badplatser eller anläggningar som välkomnar vinterbadare.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mer om vinterbad och bastu på Svalla</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler vinterbastur vid vattnet finns i guiden om <a href="/guider/vinterbastu-isbastu">vinterbastu och isbastu</a>. Läs också om <a href="/guider/havsbastu-skargarden">havsbastu i skärgården</a>, <a href="/guider/skridskor-havet">skridskor på havsisen</a>, <a href="/guider/vinter-i-skargarden">vinter i skärgården</a> och <a href="/guider/badtemperatur-skargard">badtemperaturen i skärgården</a>.</p>
 `,
 
   'badplatser-oland': `
@@ -10536,21 +11402,108 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 `,
 
   'blekinge-skargard-guide': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Blekinges skärgård är det bäst bevarade hemligheten längs Sveriges sydkust. Inga stora turistmassor, fantastiska öar och ett Östersjö-hav som är varmare än i norr. Karlskrona med sina 30 000 öar är en Unescos världsarvstad – och härifrån utgår färjorna ut i skärgården.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Aspö, Sturkö, Tjurkö och Hanö är de mest kända öarna. Alla har lokala färjeförbindelser och erbjuder en upplevelse som är genuint annorlunda än Stockholm eller Bohuslän.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "30 000 öar" (Visit Karlskrona anger 1 650 öar, holmar och skär), "varmare hav än i norr", restider med bil från Malmö och Stockholm, "taxi eller buss till hamnen", Aspö som "störst" med sandstränder, camping och café och "färja ca 45 min" (vägfärjan tar cirka 25 minuter och Sturkö är störst), Sturkö "nås med bilfärja" (Sturkö har bro), Tjurkö "bilfärja" (Tjurkö har bro), Hanö "öde ö" som nås "med sommarbåt från Sölvesborg" (båten går året runt från Nogersund), "Jojo-kortet", restider i FAQ, "fiskebyar utan turister", samt värdeord. -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/en/experience/karlskrona-archipelago — "Karlskrona and Sweden’s most southerly archipelago is made up of 1,650 islands, islets and skerries – from Hasslö in the west to Utlängan in the east."; "Karlskrona archipelago is a part of the biosphere area Blekinge Archipelago, which was designated by UNESCO in 2011 for its high and unique natural and cultural values." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/en/experience/karlskrona-archipelago — "Boat traffic to the archipelago departs from Fisktorget and from Handelshamnen in Karlskrona." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Karlskronas skärgård är Sveriges sydligaste. Enligt Visit Karlskrona består den av 1 650 öar, holmar och skär, från Hasslö i väster till Utlängan i öster. Hela skärgården ingår i biosfärområdet Blekinge Arkipelag, som Unesco utsåg 2011. Båtarna ut till öarna går från två ställen i Karlskrona: Fisktorget och Handelshamnen. Här är vilka öar utanför Karlskrona du når med färja eller skärgårdsbåt, och vilka som har bro.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Blekinge</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bil:</strong> E22 längs sydkusten till Karlskrona. Ca 3,5 h från Malmö, 5,5 h från Stockholm.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Tåg:</strong> SJ eller Öresundståg till Karlskrona centralstation. Därifrån taxi eller buss till Karlskrona hamn och vidare med lokala färjor till öarna.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka öar nås med färja i Blekinge?</h2>
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/aspoleden/ — "Aspöleden går mellan Karlskrona och Aspö i Karlskrona skärgård. Färjeledens längd är 6700 meter och överfartstiden är cirka 25 minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/en/experience/karlskrona-archipelago — "If you want to visit the island Aspö, you do it easily with a free road ferry from Handelshamnen." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/en/node/1111 — "The island has no fixed land connection and from the city center there is instead a car ferry, free of charge." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ — "Från Handelshamnen finns båtpendel året runt till Hasslö, Sturkö och Trummenäs."; "Mellan Nogersund och Hanö finns skärgårdstrafik året runt. Gå ombord på M/F Vitaskär i Nogersund och 25 minuter senare befinner du dig på sköna Hanö." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/oarna-i-ostra-skargarden — "Till Stenshamn kommer man med skärgårdsbåten M/F Witus eller med M/F Ungskär från Torhamn."; "Ytterön – Östra Hästholmen trafikeras av Ytteröfärjan som är en linfärja, den avgår ifrån Yttre Park och tar bara några få minuter över sundet." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Aspö</strong> – Trafikverkets vägfärja på Aspöleden går från Handelshamnen i Karlskrona. Överfarten tar cirka 25 minuter och är avgiftsfri. Du kan ta med bil.</li>
+<li><strong>Hasslö, Sturkö och Trummenäs</strong> – Blekingetrafikens båtpendel går året runt från Handelshamnen.</li>
+<li><strong>Stenshamn, Utlängan, Ungskär, Inlängan och Långören</strong> i östra skärgården – skärgårdsbåten M/F Wittus och M/F Ungskär från Torhamn.</li>
+<li><strong>Ytterön</strong> – linfärjan Ytteröfärjan från Yttre Park tar några minuter över sundet.</li>
+<li><strong>Hanö</strong> utanför Sölvesborg – M/F Vitaskär från Nogersund året runt. Resan tar 25 minuter.</li>
+</ul>
+<!-- KÄLLA: https://www.visitblekinge.se/en/karlskrona/sturko — "Accessible by road bridge – no ferry needed" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/tjuko-stenhuggaron — "Till Tjurkö finns det möjlighet att ta sig med bil eller kollektivtrafik, då ön har broförbindelse. Under sommarsäsongen finns det möjlighet att åka skärgårdsbåt." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/senoren-ta-med-familjen-ut-pa-promenadtrim — "Ön har broförbindelse med fastlandet. Skärgårdsbåt angör vid Brofästet under sommaren." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera av de stora öarna har bro, så där behövs ingen färja: <strong>Sturkö</strong>, <strong>Tjurkö</strong> och <strong>Senoren</strong> når du med bil eller buss. Tjurkö och Senoren angörs också av skärgårdsbåten under sommaren.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öarna i Blekinges skärgård</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Aspö:</strong> Störst och mest besökt. Bra sandstränder, camping och ett litet café. Färja från Karlskrona ca 45 min.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sturkö:</strong> Nås med bilfärja – du kan ta med bilen. Lantligare och mer vildmarkskaraktär. Bra vandringsleder och fiskeplatser.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Tjurkö:</strong> Liten och lugn, bilfärja tillgänglig. Populär bland badturister och fågelskådare.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Hanö:</strong> Berömd öde ö i öppen Östersjön. Nås med sommarbåt från Sölvesborg. Dramatisk och otillgänglig – en upplevelse utöver det vanliga.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Skärgårdsbåtarna från Karlskrona – tidtabell och biljett</h2>
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ — "Från Fisktorget börjar säsongen i maj och sträcker sig hela vägen till slutet av september." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlskrona/ — "Fisktorget–Kastellet"; "Fisktorget–Nättraby"; "Fisktorget–Stenshamn"; "Handelshamnen–Hasslö"; "Handelshamnen–Sturkö"; "Handelshamnen–Trummenäs"; "Yttre Park–Stenshamn" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Blekingetrafiken kör skärgårdstrafiken. Från Fisktorget går sommarbåtarna från maj till slutet av september, medan båtpendeln från Handelshamnen går året runt. Tidtabellerna ligger per linje på Blekingetrafikens sida om Karlskrona skärgård: Fisktorget–Kastellet, Fisktorget–Nättraby, Fisktorget–Stenshamn, Handelshamnen–Hasslö, Handelshamnen–Sturkö, Handelshamnen–Trummenäs och Yttre Park–Stenshamn.</p>
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlskrona/ — "Du köper din biljett när du går ombord och betalar med Swish eller betalkort."; "Barn mellan 7 och 19 år har 40 procent i rabatt och två barn under 7 år åker gratis i sällskap med betalande resenär."; "För Trummenäs, Hasslö- och Sturköpendeln och linjen Yttre Park–Stenshamn gäller samma biljetter, priser och rabatter som i vår övriga trafik vilket innebär att du kan köpa biljett i vår app." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlskrona/ — "Det går bra att ta ombord cykel på de båtturer som har en cykelsymbol vid tidtabellen."; "Det går bra att ta med djur ombord på våra båtar." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Biljett på sommarbåtarna:</strong> köps ombord och betalas med Swish eller betalkort. Aktuella priser står vid tidtabellen.</li>
+<li><strong>Biljett på båtpendeln:</strong> till Hasslö, Sturkö, Trummenäs och på linjen Yttre Park–Stenshamn gäller samma biljetter som på bussen, och du kan köpa dem i Blekingetrafikens app.</li>
+<li><strong>Barn:</strong> 7–19 år har 40 procent rabatt, och två barn under 7 år åker gratis med en betalande vuxen.</li>
+<li><strong>Cykel:</strong> går att ta med på turer som har en cykelsymbol i tidtabellen. Personalen avgör om det finns plats.</li>
+<li><strong>Hund och andra djur:</strong> får följa med ombord.</li>
+</ul>
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/aspoleden/ — "Med vår app Trafikinfo Färjerederiet får du tillgång till tidtabeller och trafikinformation. Du kan även kalla på färjan direkt i appen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Aspöfärjan har en egen tidtabell hos Trafikverket. Den finns också i appen Trafikinfo Färjerederiet, där du även kan se trafikinformation.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Karlskrona – världsarvsbasen</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskrona är en av Sveriges vackraste städer med barockstadsplan och marinhistoria. Marinmuseum och Stumholmen är obligatoriska besök. Bas för skärgårdsutflykter och fin stad i sig.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öar utanför Karlskrona</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Aspö – ön med gratis färja</h3>
+<!-- KÄLLA: https://www.visitkarlskrona.se/en/node/1111 — "Nice bathing cliffs is to be found on the west part of Aspö."; "Guest harbor is to be found at Lökanabben on the east side of the island."; "There is also a grocery store on the island" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/blekinge-lan/drottningskars-kastell/ — "Kastellet började uppföras i samband med anläggningen av den nya örlogsbasen i Karlskrona 1680 och ritades av militären och arkitekten Erik Dahlbergh." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.karlskrona.se/hitta-verksamheter/badplatser/aspo-havsbad/ — "Långgrund sandstrand i skärgårdsmiljö. Stor gräsyta samt lekplats." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Aspö ligger Drottningskärs kastell, som började byggas 1680 samtidigt som örlogsbasen i Karlskrona och ritades av Erik Dahlbergh. Aspö havsbad har en långgrund sandstrand med gräsyta och lekplats, och på västra sidan finns badklippor. Ön har en livsmedelsbutik och en gästhamn vid Lökanabben på östsidan. Läs mer i <a href="/guider/aspo-sturko-guide">guiden till Aspö och Sturkö</a> och på <a href="/o/aspo-blekinge">Aspö</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Hasslö</h3>
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/ta-baten-till-hasslo — "Gå ombord på skärgårdsbåt vid Handelshamnen i Karlskrona."; "Efter 20 minuter ankommer ni till Horn och några minuter senare till Garpahamnen på Hasslö."; "Du kan också ha med egen cykel på skärgårdsbåten."; "Lanthandeln en bit upp på ön säljer det mesta som behövs för en vistelse i skärgården."; "När bron är passerad kommer du till Almö" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Båten från Handelshamnen når Horn på Hasslö efter 20 minuter och Garpahamnen några minuter senare. Du kan ha med cykel ombord. På ön finns en lanthandel, och Hasslö har också bro till fastlandet via Almö.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sturkö – Blekinges största ö</h3>
+<!-- KÄLLA: https://www.visitblekinge.se/en/karlskrona/sturko — "At just over 21 square kilometres it is by far the largest island in Blekinge's archipelago"; "Sturkö sits 15 kilometres south-east of Karlskrona town centre, reached via Sturkövägen – a permanent road bridge running across the islands of Senoren and Skällö." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/uttorp.html — "Naturreservatet Uttorp är en del av ett stort strövvänligt utmarksområde på södra delen av Sturkö." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sturkö är med drygt 21 kvadratkilometer den största ön i Blekinges skärgård. Den ligger 15 kilometer sydost om Karlskrona och nås via en fast bro över Senoren och Skällö. På södra Sturkö ligger Länsstyrelsens naturreservat Uttorp. Se även <a href="/o/sturko">Sturkö</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Tjurkö – stenhuggarön</h3>
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/tjuko-stenhuggaron — "Här fanns omkring 1900 en av landets största arbetsplatser. Gatsten bröts och skeppades till världens metropoler!"; "På Tjurkö finns en markerad vandringsled på 1,5 km." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tjurkö kallas stenhuggarön. Omkring 1900 fanns här en av landets största arbetsplatser, där gatsten bröts och skeppades ut. På ön finns en markerad vandringsled på 1,5 km.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Östra skärgården: Stenshamn, Utlängan, Ungskär och Långören</h3>
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/oarna-i-ostra-skargarden — "Karlskronas östra skärgård, når man med egen båt, kajak eller skärgårdsbåt."; "Under sommaren utgår även en skärgårdstur till Östra skärgården ifrån hamnen i Torhamn." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/oarna-i-ostra-skargarden — "Byn räknas som ett av de bäst bevarade fiskelägena i Karlskrona skärgård och i båthuset finns en utställning, som beskriver öarnas historia under 1900-talet."; "En fin vandringsstig finns att följa från Stenshamn och vidare över fördämningen till Utlängan. Den är ca 3,5 km lång." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/oarna-i-ostra-skargarden — "M/F Ungskär trafikerar ön på helårsbasis."; "Lotsstationen, anlades på ön ca 1710 och stängdes 1960, men byn har behållit sin karaktär av lots- och fiskeläge."; "Från lotstornet har man också en fantastisk utsikt över skärgården."; "Denna lilla ö, har en skyddad hamn och byn ligger samlad kring den."; "Det finns flera intressanta platser markerade längs stigen som är ca 4 km." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Stenshamn och Utlängan</strong> ligger längst ut före Utklippan. Byn i Stenshamn räknas som ett av de bäst bevarade fiskelägena i Karlskrona skärgård, och i båthuset finns en utställning om öarnas historia. En vandringsstig på cirka 3,5 km går från Stenshamn över fördämningen till Utlängan.</li>
+<li><strong>Ungskär</strong> har en skyddad hamn med byn samlad runt den, och en strövstig på cirka 4 km. M/F Ungskär trafikerar ön året runt.</li>
+<li><strong>Långören</strong>, "lotsarnas ö", hade en lotsstation från omkring 1710 till 1960. Från lotstornet ser du ut över skärgården.</li>
+</ul>
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ — "Från Fisktorget börjar säsongen i maj och sträcker sig hela vägen till slutet av september." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlskrona/ — "Fisktorget–Stenshamn"; "Mindre gods får med på M/F Ungskär och M/F Wittus mellan Yttre Park och Stenshamn." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sommarbåten mot östra skärgården går från Fisktorget, och M/F Ungskär och M/F Wittus trafikerar sträckan mellan Yttre Park och Stenshamn. Under sommaren finns även en tur från hamnen i Torhamn.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Utklippan – Sveriges sydöstligaste ögrupp</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklippan är Sveriges sydöstligaste ögrupp och ett populärt besöksmål för båtfolk. Öarna har gästhamn och på Södraskär finns bland annat en fågelstation. Du kan studera fåglar och se gråsälar vila på klipporna."; "Öarna nås med egen båt." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.visitkarlskrona.se/sv/utklippan-sveriges-sydostligaste-ogrupp — "Fyren på Utklippan var bemannad till 1972."; "Med Karlskrona Sjötaxi tar båtresan ca 45 minuter." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utklippan är naturreservat och har gästhamn, fyr och fågelstation på Södraskär. Gråsälar vilar ofta på klipporna. Länsstyrelsen skriver att öarna nås med egen båt, och Visit Karlskrona anger att resan med Karlskrona Sjötaxi tar cirka 45 minuter. Fyren var bemannad till 1972.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Hanö utanför Sölvesborg</h3>
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg/ — "Väl framme finns det mycket att upptäcka: Bönsäcken, Drakmärket, Engelska kyrkogården och självklart en oändlig utsikt."; "Mellan den 1 september och 31 maj körs trafiken mellan Nogersund och Hanö som en båtpendel."; "Under sommaren, när biljettkiosken i Nogersund är öppen, köper du alltid din biljett där före avgång." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hanö ligger i Sölvesborgs kommun och nås med M/F Vitaskär från Nogersund. Från september till maj körs linjen som en båtpendel med samma biljetter som bussen. På sommaren köper du biljett i kiosken i Nogersund före avgång. På ön finns bland annat Bönsäcken, Drakmärket och Engelska kyrkogården. Mer i <a href="/guider/hano-guide">guiden till Hanö</a> och på <a href="/o/hano">Hanö</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Öarna i Ronneby och Karlshamn</h3>
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ — "I Ronneby pågår skärgårdssäsongen mellan juni och början av september." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ronneby/ — "Under sommaren reser du med båt mellan Ekenäs och Karön eller tar en tur längs Ronnebyån. Från Ronneby Marina kan du resa hela vägen till Tjärö." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn/ — "Vid gästhamnen i centrala Karlshamn hittar du skärgårdsterminalen. Under sommaren tar båtarna dig ut till öar som Tjärö, Tärnö och Kastellet och från Matvik når du Tärnö och Eriksberg." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Längre västerut i Blekinge går sommarbåtar i Ronneby, från juni till början av september, mellan Ekenäs och Karön och från Ronneby Marina till Tjärö. I Karlshamn går båtarna från skärgårdsterminalen vid gästhamnen till bland annat Tjärö, Tärnö och Kastellet, och från Matvik till Tärnö och Eriksberg.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Blekinge skärgård – biosfärområde och världsarv</h2>
+<!-- KÄLLA: https://unesco.se/vetenskap/biosfaromraden/sveriges-biosfaromraden/biosfaromrade-blekinge-arkipelag/ — "I juni 2011 utsåg Unesco Blekinge Arkipelag som biosfärområde."; "Området omfattar merparten av Blekinges skärgårds- och kustlandskap som sträcker sig genom Karlskrona, Ronneby och Karlshamns kommun." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.karlskrona.se/kommun-och-politik/hallbara-karlskrona/ekologisk-hallbarhet2/biosfaromrade-blekinge-arkipelag/ — "Området omfattar merparten av Blekinges skärgårds- och kustlandskap, varav 156 000 hektar är vatten och 54 000 hektar land."; "Här finns världsarvet örlogsstaden, kastell och befästningar från dansktiden, lämningar från stenhuggeriepoken och det småskaliga kustnära fisket." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Unesco utsåg Blekinge Arkipelag till biosfärområde i juni 2011. Området täcker större delen av Blekinges skärgård och kust i Karlskrona, Ronneby och Karlshamns kommuner. Enligt Karlskrona kommun är 156 000 hektar vatten och 54 000 hektar land. Här finns världsarvet Örlogsstaden Karlskrona, kastell och befästningar, lämningar från stenhuggeritiden och småskaligt kustfiske. Läs mer om staden i <a href="/guider/karlskrona-guide">guiden till Karlskrona</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Regler i naturreservaten</h2>
+<!-- KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Inom naturreservatet finns fågelskyddsområden som är viktiga att respektera"; "medföra hund, katt eller annat rovdjur som inte är kopplat"; "göra upp eld eller använda grillar, spritkök eller motsvarande annat än på anvisad grillplats"; "tälta annat än på anvisad plats, och i högst 2 dygn" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/uttorp.html — "släppa hund eller andra djur fria inom området"; "tälta eller uppställa husvagn" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I skärgårdens naturreservat gäller särskilda föreskrifter utöver allemansrätten. Två exempel från Länsstyrelsen Blekinge:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Utklippan:</strong> hunden ska vara kopplad, eld och grill bara på anvisad grillplats, tältning bara på anvisad plats och högst två dygn. Det finns fågelskyddsområden i reservatet.</li>
+<li><strong>Uttorp på Sturkö:</strong> hunden får inte gå lös, och det är inte tillåtet att tälta eller ställa upp husvagn.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Läs mer om Blekinge efter sommaren i <a href="/guider/host-blekinge-skargard">hösten i Blekinge skärgård</a>.</p>
 `,
 
   'nacka-skargard-guide': `
@@ -10570,24 +11523,94 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 `,
 
   'svartloga-guide': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Svartlöga är ytterskärgårdens stillhet. Tre timmar från Strömkajen och du är på en ö där granit möter öppet hav och inga motorbåtar stör tystnaden. Det är en av Stockholms skärgårds absoluta pärlor – och relativt okänd för de flesta.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ön är liten med knappt 50 fastboende, en hamn och ett naturreservat som skyddar det mesta av marken. Det finns inget hotell, inget café med öppet hela dygnet. Det är poängen.</p>
+<!-- OMSKRIVEN 2026-09-27 (med SEO-pass). Borttaget utan källa eller fel: restid "ca tre timmar" från Strömkajen (tidtabellen ger knappt fyra timmar), avgång "från Vaxholm" som startpunkt, "knappt femtio fastboende" (kommunen anger en person året runt), "ett naturreservat som skyddar det mesta av marken" (inget reservat för Svartlöga hittat hos Länsstyrelsen; närmaste reservat är Salskären), "inga motorbåtar", "tältning tillåten i delar av reservatet", "mobilnätet är opålitligt", "bästa säsong", råd om kajak till ön, "boka boende i tid" (det finns inget tillfälligt boende), samt värdeord som pärla, stillhet och fantastiskt. -->
+<!-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/svartloga/ — "Kommun: Norrtälje"; "Svartlöga är en ö utanför Blidö i den norra ytterskärgården."; "Svartlöga är en flack och stenig ö." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.explorearchipelago.com/sv/sthlm/ytterskargarden/svartloga — "Här finns ingen affär, servering eller tillfälligt boende." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Svartlöga är en flack och stenig ö utanför Blidö i norra ytterskärgården, i Norrtälje kommun. Det finns ingen affär, ingen servering och inget tillfälligt boende på ön. Här går vi igenom vad som finns i stället, hur båten till Svartlöga går och var saker ligger på ön.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Svartlöga</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Waxholmsbolaget:</strong> Avgår från Strömkajen i Stockholm (vid Operan) eller från Vaxholm. Restid ca 3 h från Strömkajen. Kontrollera alltid aktuell tidtabell på waxholmsbolaget.se – avgångstider varierar med säsong och linje. Antalet avgångar är begränsat, framför allt på höst/vinter.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka i tid om du planerar övernattning – ön är populär bland de som vet om den och boendet är begränsat.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Finns det en butik på Svartlöga?</h2>
+<!-- KÄLLA: https://www.explorearchipelago.com/sv/sthlm/ytterskargarden/svartloga — "Här finns ingen affär, servering eller tillfälligt boende." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.norrtalje.se/globalassets/kultur-och-fritid/riksintressen/svartloga---rodloga.pdf — "På Svartlöga ligger ett före detta posthus som idag tjänar som kiosk under sommarmånaderna." (läst 2026-09-27) -->
+<!-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/svartloga/ — "I byns sydvästra del ligger missionshuset och posthuset, skärgårdens minsta." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nej, det finns ingen affär på Svartlöga. Skärgårdsstiftelsens och Åbo stads besöksguide Upptäck Skärgården skriver att ön saknar affär, servering och tillfälligt boende. Enligt Norrtälje kommuns kulturmiljöutredning används det före detta posthuset som kiosk under sommarmånaderna. Posthuset ligger i byns sydvästra del och beskrivs av Stockholms läns museum som skärgårdens minsta.</p>
+<!-- KÄLLA: https://www.norrtalje.se/globalassets/kultur-och-fritid/riksintressen/svartloga---rodloga.pdf — "På Rödlöga finns en handelsbod som har öppet under sommarhalvåret."; "Det är skärgårdens ostligaste lanthandel. Där finns också ett litet kafé." (läst 2026-09-27) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Närmaste butik är handelsboden på grannön <a href="/o/rodloga">Rödlöga</a>, som har öppet under sommarhalvåret. Kommunen kallar den skärgårdens ostligaste lanthandel, och där finns också ett litet kafé. Rödlöga är sista bryggan på Waxholmsbolagets linje 26, samma båt som stannar vid Svartlöga.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planera därför som om det inte fanns någon butik alls: ta med mat, vatten och det du behöver för dagen. Kioskens öppettider kan vi inte bekräfta.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På ön</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturreservat, stigar längs klippkusten, badplatser med bergshällar och klart vatten. Det finns inga bilar på ön. Tältning är tillåtet i delar av reservatet – kolla aktuella regler hos Länsstyrelsen Stockholm.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ta med allt du behöver – butik finns inte. Mat, dricka, sovsäck och känsla för tystnad.</p>
-
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktiskt</h2>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Kolla sista båten hem noga – sen miss kan ge overnattning utan planering</li>
-  <li>Bästa säsong: juni–aug. Höst och vinter ger dramatisk natur men färre avgångar</li>
-  <li>Mobilnätet är opålitligt – ladda ner kartor offline i förväg</li>
-  <li>Kajak är ett fantastiskt sätt att ta sig dit om du har erfarenhet – men havet är öppet</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Båt till Svartlöga</h2>
+<!-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/svartloga/ — "På sommaren trafikeras ön av Vaxholmsbolagets båtar med dagliga turer." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.norrtalje.se/globalassets/kultur-och-fritid/riksintressen/svartloga---rodloga.pdf — "Öarna har regelbunden reguljärtrafik året runt." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svartlöga har reguljär båttrafik året runt. På sommaren går Waxholmsbolagets båtar dit varje dag. Två linjer stannar vid Svartlöga:</p>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA" (läst 2026-09-27) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – BROMSKÄR / RÖDLÖGA" (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Linje 26</strong> Stockholm (Strömkajen) – Vaxholm – Norrsund på Blidö – Norröra – Söderöra – Svartlöga – Rödlöga.</li>
+<li><strong>Linje 28</strong> från Furusund via bland annat Östernäs och Söderöra till Svartlöga, Bromskär och Rödlöga.</li>
 </ul>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Hur lång tid tar båten från Stockholm?</h3>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; "Strömkajen (Stockholm) 08.45"; "Svartlöga 12.40b" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I tidtabellen för linje 26 som gäller hösten 2026 (till och med 1 november) går morgonbåten från Strömkajen 08.45 och är vid Svartlöga 12.40. Resan tar alltså knappt fyra timmar, inte tre som ofta sägs.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Beställ båten hem från Svartlöga</h3>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svartlöga är en beställningsbrygga på linje 26. Vill du åka med båten från Svartlöga beställer du resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst på 08-600 10 00, minst en timme före avgång och senast kl. 17.00. Missar du beställningen kan båten gå förbi bryggan. Läs också <a href="/guider/missat-sista-baten">vad du gör om du missat sista båten</a>.</p>
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period."; "Tänk på att tidtabellerna visar hur trafiken är planerad. Fartygen kan ändras med kort varsel." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget byter tidtabell fyra gånger om året, och vissa linjer går bara under delar av en period. Fartygen kan dessutom ändras med kort varsel, så kontrollera avgången samma dag. Mer om bolaget i vår <a href="/guider/waxholmsbolaget-guide">guide till Waxholmsbolaget</a>.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Båt till Svartlöga på vintern</h3>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.norrtalje.se/globalassets/kultur-och-fritid/riksintressen/svartloga---rodloga.pdf — "Viss svävartrafik förekommer vid kraftig isläggning." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Linje 28 från Furusund har en egen tidtabell för perioden 1 oktober–12 december 2026. När isen lägger sig kraftigt förekommer enligt kommunen viss trafik med svävare.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ångbåtsutflykt till Svartlöga</h3>
+<!-- KÄLLA: https://blidosundsbolaget.se/svartloga/ — "Under sommarsäsongen erbjuder vi söndagsutflykter till Svartlöga ombord på vårt historiska ångfartyg Blidösund."; "Vi erbjuder avgångar från så väl Furusund som Norrtälje och Stockholm." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Blidösundsbolaget kör under sommarsäsongen söndagsutflykter till Svartlöga med ångfartyget S/S Blidösund, med avgångar från Furusund, Norrtälje och Stockholm. Bokning sker hos rederiet.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Med egen båt</h3>
+<!-- KÄLLA: https://www.norrtalje.se/globalassets/kultur-och-fritid/riksintressen/svartloga---rodloga.pdf — "Farvattnen runt ön är mycket grunda och svårnavigerade på grund av hundratals grynnor och småskär." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kommer du med egen båt: vattnen runt Svartlöga är enligt kommunen mycket grunda och svårnavigerade, med hundratals grynnor och småskär. Använd aktuellt sjökort.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Karta: var ligger Svartlöga?</h2>
+<!-- KÄLLA: https://www.norrtalje.se/globalassets/kultur-och-fritid/riksintressen/svartloga---rodloga.pdf — "Riksintresset omfattar byarna Svartlöga och Rödlöga i Stockholms norra ytterskärgård i jämnhöjd med Yxlan och Blidö."; "Svartlöga är en låglänt huvudö med tillhörande öar, skär och kobbar som omfattar omkring sammanlagt 385 hektar." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/salskaren.html — "Reservatet, som är beläget mellan Blidö och Svartlöga, omfattar östra delen av Salskären och några öar öster därom." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svartlöga ligger i Stockholms norra ytterskärgård, i höjd med Yxlan och <a href="/o/blido">Blidö</a>, med Rödlöga längre österut. Huvudön med tillhörande öar, skär och kobbar är omkring 385 hektar. Mellan Blidö och Svartlöga ligger Svartlögafjärden med ögruppen Salskären. Se ön på kartan på <a href="/o/svartloga">Svallas sida om Svartlöga</a>.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Så hittar du på ön</h3>
+<!-- KÄLLA: https://www.explorearchipelago.com/sv/sthlm/ytterskargarden/svartloga — "Från Waxhomsbryggan på norra sidan av ön leder en smal väg till  byhamnen och den välbevarade fiskebyn med anor från 1600-talet."; "erbjuder över en mil uppmärkta stigar" (läst 2026-09-27) -->
+<!-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/svartloga/ — "Byn ligger samlad ovanför hamnen på öns sydöstra sida."; "Den östligaste boden ovanför hamnen har länge varit ett känt inseglingsmärke." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.norrtalje.se/globalassets/kultur-och-fritid/riksintressen/svartloga---rodloga.pdf — "Det är beläget strax väster om bykärnan." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Waxholmsbryggan</strong> ligger på norra sidan. Därifrån leder en smal väg till byhamnen.</li>
+<li><strong>Byn</strong> ligger samlad ovanför hamnen på sydöstra sidan. Den östligaste boden ovanför hamnen har länge varit ett känt inseglingsmärke.</li>
+<li><strong>Posthuset och missionshuset</strong> ligger i byns sydvästra del.</li>
+<li><strong>Arboretum Lassas Hagar</strong> ligger strax väster om bykärnan.</li>
+<li><strong>Stigar:</strong> på ön finns över en mil uppmärkta stigar.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad kan man göra på Svartlöga?</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Bad</h3>
+<!-- KÄLLA: https://www.explorearchipelago.com/sv/sthlm/ytterskargarden/svartloga — "På ön finns en liten långgrund sandstrand och flera klippbad, både på norra sidan och vid byhamnen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På ön finns en liten långgrund sandstrand och flera klippbad, både på norra sidan och vid byhamnen. Fler tips finns i guiden om <a href="/guider/klippbad-skargarden">klippbad i skärgården</a>.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Arboretum Lassas Hagar</h3>
+<!-- KÄLLA: https://www.norrtalje.se/globalassets/kultur-och-fritid/riksintressen/svartloga---rodloga.pdf — "År 1980 planterades de första träden som senare skulle komma att kallas för Arboretum Lassas Hagar."; "Idag är området för verksamheten omkring fem hektar stort och det hyser omkring 1 000 olika arter av träd."; "Lassas hagar drivs av stiftelsen Arboretum Lassas Hagar." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arboretum Lassas Hagar är en trädsamling som började planteras 1980. Området är omkring fem hektar och har omkring 1 000 olika trädarter. Det drivs av stiftelsen Arboretum Lassas Hagar.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Byn och historien</h3>
+<!-- KÄLLA: https://www.norrtalje.se/globalassets/kultur-och-fritid/riksintressen/svartloga---rodloga.pdf — "Den första noteringen om fast bosättning på Svartlöga är från år 1576."; "År 1928 fick ön en regelbunden ångbåtstrafik"; "Idag finns en person som bor där hela året" (läst 2026-09-27) -->
+<!-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/svartloga/ — "Svartlögaborna var kända för sina färder till långväga fiskeplatser."; "Svartlöga var en av få skärgårdsöar som klarade sig från ryssarnas härjningar 1719." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den första noteringen om fast bosättning på Svartlöga är från 1576. Öborna var kända för sina färder till avlägsna fiskeplatser, och Svartlöga var en av få skärgårdsöar som klarade sig undan rysshärjningarna 1719. Reguljär ångbåtstrafik kom 1928. I dag bor enligt Norrtälje kommun en person på ön året runt, och resten är sommarboende.</p>
+<!-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/svartloga/ — "På berghällar i norr och öster står byns gamla nät- och saltbodar." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.norrtalje.se/info/kultur-och-fritid/kultur-och-konst/norrtalje-museerkulturarv-och-stadsarkiv/upptack-kulturarvet/riksintressen/riksintresseomraden/svartloga--rodloga/ — "Norrtälje kommun har gjort kulturhistoriska utredningar av kommunens riksintresseområden" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Byns gamla nät- och saltbodar står på berghällarna i norr och öster. Svartlöga och Rödlöga är tillsammans ett riksintresse för kulturmiljövården, och Norrtälje kommun har gett ut en kulturhistorisk utredning om området.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Salskären i Svartlögafjärden</h3>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/salskaren/ — "Salskären är en liten ögrupp mitt i Svartlögafjärden mellan Blidö och Svartlöga."; "Ögruppen är också en viktig häckningsplats för sjöfåglar"; "Salskären är ett naturreservat som förvaltas av" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/salskaren.html — "I Salskärens naturreservat är stränderna delvis steniga, delvis med flacka klippor lämpliga för bad." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Med egen båt kan du också besöka Salskären, ett naturreservat mitt i Svartlögafjärden som förvaltas av Skärgårdsstiftelsen. Stränderna är delvis steniga och delvis flacka klippor som går att bada från. Ögruppen är en viktig häckningsplats för sjöfåglar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tälta, el och avfall på Svartlöga</h2>
+<!-- KÄLLA: https://www.explorearchipelago.com/sv/sthlm/ytterskargarden/svartloga — "Ön har dock flera platser som är lämpliga att tälta på." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/taltning/ — "Du får tälta något enstaka dygn i naturen, men tänk på att välja en tältplats långt bort från bostadshus och att visa hänsyn till markägaren."; "Om ni är flera personer med flera tält krävs markägarens tillstånd." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Eftersom det inte finns något tillfälligt boende tältar de som stannar över natten. Ön har flera platser som passar för tält. Allemansrätten tillåter att du tältar något enstaka dygn, långt från bostadshus och med hänsyn till markägaren. Är ni flera personer med flera tält krävs markägarens tillstånd. Mer i guiden om <a href="/guider/camping-talta-skargarden">att tälta i skärgården</a>.</p>
+<!-- KÄLLA: https://www.norrtalje.se/globalassets/kultur-och-fritid/riksintressen/svartloga---rodloga.pdf — "På öarna finns ingen framdragen elektricitet men det finns en fast telefonförbindelse." (läst 2026-09-27) -->
+<!-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/svartloga/ — "Svartlöga har aldrig anslutits till det fasta elnätet" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svartlöga har aldrig anslutits till det fasta elnätet. Ladda telefon och powerbank innan du åker.</p>
+<!-- KÄLLA: https://www.norrtalje.se/info/bygga-bo-miljo/Avfall-och-atervinning/sopmajor-i-skargarden/ — "En sopmaja är ett litet hus där till exempel dagturister, campare eller tillfälliga besökare mellan vecka 19 och 45 kan lämna avfall och låna toalett." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Norrtälje kommun har sopmajor i skärgården där dagturister, campare och tillfälliga besökare kan lämna avfall och låna toalett mellan vecka 19 och 45. Var de står visas på kommunens karta över sopmajor.</p>
 `,
 
   'ljustero-guide': `
@@ -10915,25 +11938,69 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 `,
 
   'skargard-solo': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgården är perfekt för ensamresenären. Inga kompromisser om destination, ingen som tar bilder när du ser havet och sätter dig ned i tystnad. Det är resan på dina egna villkor och i din egna takt.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Solo-resan i skärgård ger en frihet som gruppresor aldrig kan matcha: du stannar längre när det är vackert, du lämnar tidigare om det inte passar och du sitter i båten utan att prata med någon.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "pendelbåt från Årstaberg" till Utö (båten går från Årsta brygga), "STF härbärge med dorm" på Finnhamn, Marstrand (STF:s sida för Marstrands vandrarhem visar inte längre något boende), "riktig skärgårdsö med butik och café" om Möja, "Svallas forum", VHF-radio och satellitkommunikation, "Svartlöga och Arholma för det äkta äventyret", "Runmarö och Ingmarsö lugna och genuina", samt värdeord som perfekt, autentisk och äkta. -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/nyheter-och-trafikinfo/forlang-sommaren-i-skargarden — "När vi går mot lågsäsong öppnar sig en annan sida av skärgården. Ni blir färre som är ute och reser, vilket gör att det blir gott om plats att uppleva naturen i din egen takt." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Att resa ensam i skärgården handlar mest om planering: vilka öar du når med reguljär båt, var du kan sova i en bädd i stället för ett helt rum eller hus, och hur du håller dig säker när ingen annan är med. Den här guiden bygger på vad Waxholmsbolaget, STF, Skärgårdsstiftelsen och Sjöräddningssällskapet själva skriver. Waxholmsbolaget påpekar att det är färre resenärer under lågsäsongen, så att du får mer plats att uppleva naturen i din egen takt.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa öar för ensamresenären</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Finnhamn:</strong> STF härbärge med dorm-alternativ – möt andra resenärer om du vill, var för dig själv om du vill. Reguljär Waxholmsbåt från Strömkajen.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Utö:</strong> Stor ö med cykeluthyrning, restaurang och vandrarhem. Pendelbåt från Årstaberg. Bra infrastruktur för solo-resenären.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Möja:</strong> Riktig skärgårdsö med fast befolkning, butik och café. Känslan av ett autentiskt samhälle utan att vara isolerad.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Marstrand:</strong> Bilfritt och livligt – ensam men omgiven av folk om du vill. Carlstens fästning och klippbad att utforska i egen takt.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öar du når med reguljär båt</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utan egen båt är du beroende av Waxholmsbolagets tidtabeller. De här öarna har trafik, boende och service som gör dem lätta att besöka på egen hand.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Solo-säkerhet</h2>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Alltid meddela någon i land vart du åker och när du väntas hem</li>
-  <li>Ladda ned offline-kartor innan du lämnar mobilnätet</li>
-  <li>Kajak solo i öppet hav kräver erfarenhet – välj skyddade vatten om du är osäker</li>
-  <li>Ha alltid en backup-plan om vädret förändras</li>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Finnhamn</h3>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/finnhamn/ — "Trots sitt läge i mellanskärgården är ön lätt att nå med reguljär skärgårdstrafik från Stockholm."; "För den som besöker Finnhamn finns det mesta – vandrarhem, stugby, tältplats, flera gästhamnar, bastu, badstrand, kafé och Finnhamns sjökrog med en oslagbar takbar."; "Stora delar av Finnhamn är ett naturreservat med vandringsstigar" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Waxholmsbolaget kör flera turer till Finnhamn per dag. Från Strömkajen, Värmdö Boda brygga/Lillsved, Vaxholm och Ljusterö." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><a href="/o/finnhamn">Finnhamn</a> ligger i mellanskärgården men nås med reguljär trafik. Waxholmsbolaget går dit flera gånger om dagen från Strömkajen, Boda brygga/Lillsved på Värmdö, Vaxholm och Ljusterö. På ön finns vandrarhem, stugby, tältplats, bastu, badstrand, kafé och en krog, och stora delar av ön är naturreservat med vandringsstigar. Läs mer i <a href="/guider/finnhamn-guide">guiden till Finnhamn</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Möja</h3>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/moja — "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja. Till Boda kan du resa med båt från Strömkajen eller med buss från Slussen."; "Möja lämpar sig lika bra för en dagsutflykt som för några lediga dagar med övernattning. Kliv till exempel av båten vid Möjaström och promenera mellan öns sevärdheter." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till <a href="/o/moja">Möja</a> går båtar året runt från Boda brygga på Värmdö, dit du kommer med båt från Strömkajen eller buss från Slussen. Waxholmsbolaget föreslår att du kliver av vid Möjaström och promenerar mellan öns sevärdheter.</p>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/mojaskargarden/ — "Möjaskärgården är en samling öar och skär som ligger öster om ön Möja."; "Skärgårdsstiftelsen har ett par övernattningsstugor för den som vill bo kvar."; "ett populärt besöksmål för båtfolk och kanotister" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Öster om Möja ligger Möjaskärgården, där Skärgårdsstiftelsen har ett par övernattningsstugor. Området besöks framför allt av båtfolk och kanotister.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Utö</h3>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året. Till Årsta brygga kommer du med pendeltåg och sedan buss."; "Ön har många fina promenad- och cykelvägar, och cykel finns att hyra på ön." (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "Här finns boende i hotellstugor och vandrarhem, flera restauranger, livsmedelsaffär, kafé, cykeluthyrning och gästhamn." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till <a href="/o/uto">Utö</a> åker du pendeltåg och buss till Årsta brygga i Haninge. Därifrån går båten sju till åtta gånger om dagen på sommaren och lite mer sällan resten av året. På ön finns vandrarhem, hotellstugor, restauranger, livsmedelsaffär, kafé och cykeluthyrning. Se också <a href="/guider/uto-komplett-guide">den kompletta Utöguiden</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Nämdö och Sandhamn året runt</h3>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/namdo — "Ön är promenadvänlig året om – den är både bilfri och till viss del ett naturreservat. Waxholmsbolagets fartyg lägger till vid flera bryggor på ön." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt."; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nämdö är bilfri och promenadvänlig året om, och Waxholmsbolagets båtar lägger till vid flera bryggor på ön. Till <a href="/o/sandhamn">Sandhamn</a> går det båt året runt från Stavsnäs, och resan tar drygt en timme.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende för dig som reser ensam</h2>
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Vandrarhemmet har öppet året runt men under den kallare årstiden endast för större grupper."; "Juni till augusti är allt öppet på Finnhamn"; "Vandrarhemmet och de tillhörande stugorna har totalt 87 bäddar fördelade på 28 rum."; "Gemensamt kök där du kan tillaga din mat själv." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>STF Finnhamns vandrarhem</strong> har 87 bäddar i 28 rum, fördelade på huvudbyggnaden och stugor, och ett gemensamt kök där du lagar egen mat. Allt är öppet juni–augusti. Resten av året har vandrarhemmet bara öppet för större grupper, så som ensamresenär får du planera för sommaren.</p>
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — "Öppet April - December"; "Antal rum 8" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — "Välkommen till ett mysigt familjeägt vandrarhem i Stockholms yttre mellanskärgård." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>STF Möja vandrarhem</strong> är familjeägt, har åtta rum och är öppet april–december enligt STF:s sida.</p>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "Förutom hotell, vandrarhem och camping erbjuder Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdsstiftelsen hyr också ut stugor, till exempel på Utö, men där är det veckohyra som gäller. Läs om regler för tältning i <a href="/guider/allemansratten-pa-sjon">guiden om allemansrätten</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Säkerhet när du är ute ensam</h2>
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/bli-en-sakrare-paddlare — "Paddlare i grupp är enklare att se än en enskild paddlare."; "Eftersom att kajaker ligger lågt i vattnet kan de vara svåra att se. Speciellt i motljus och solglimmer."; "Planera din färdväg och undvik att paddla i farleder." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sjöräddningssällskapet skriver att paddlare i grupp syns bättre än en ensam paddlare. En kajak ligger lågt i vattnet och är svår att se, särskilt i motljus och solglitter. Paddlar du ensam ska du därför planera din färdväg och hålla dig borta från farlederna. Nybörjare kan läsa <a href="/blogg/kajak-stockholms-skargard-nyborjare">kajak i Stockholms skärgård för nybörjare</a>.</p>
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/bli-en-sakrare-paddlare — "Fungerande visselpipa"; "Reflexer"; "En färg som syns"; "Tänk även på att klä dig efter vattentemperaturen och inte efter lufttemperaturen."; "Ha med torrt ombyte"; "Lägg mobilen i vattentätt fodral"; "Ring 112 och beskriv vad som hänt och vart du är så gott du kan." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Flytvästen ska ha fungerande visselpipa, reflexer och en färg som syns.</li>
+<li>Klä dig efter vattentemperaturen, inte lufttemperaturen.</li>
+<li>Ha ett torrt ombyte med dig.</li>
+<li>Lägg mobilen i ett vattentätt fodral.</li>
+<li>Är du i fara: ring 112 och beskriv så gott du kan vad som hänt och var du är.</li>
 </ul>
+<!-- KÄLLA: https://www.sjoraddning.se/artiklar/bli-en-sakrare-paddlare — "Undvik att ge dig ut i väder som du inte behärskar."; "I vår app Kustväder finns information om rådande luft- och vattenförhållanden." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kolla vädret innan du ger dig ut och undvik väder du inte behärskar. Sjöräddningssällskapets app Kustväder visar aktuella luft- och vattenförhållanden.</p>
+<!-- KÄLLA: https://www.sjoraddning.se/sjosakerhet/issakerhet — "Det är skillnad på is och is. En 20 cm tjock is kan vara mindre hållbar än en is på 5 cm." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Är du ute på vintern gäller extra försiktighet på isen. Enligt Sjöräddningssällskapet kan en 20 centimeter tjock is vara svagare än en på 5 centimeter, beroende på isens kvalitet.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Nätverk och community</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Solo behöver inte vara ensamt. Svallas forum är ett bra ställe att höra av sig i förväg och kanske hitta andra som planerar liknande turer. Vandrarhem och STF härbärgen skapar naturliga mötesplatser för ensamresenärer.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Om du missar båten</h3>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/ — "Kundtjänst har öppet dygnet runt"; "Ring 08-600 10 00" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/tidtabeller — "Tänk på att tidtabellerna visar hur trafiken är planerad. Fartygen kan ändras med kort varsel." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tidtabellerna visar planerad trafik och fartygen kan ändras med kort varsel. Waxholmsbolagets kundtjänst svarar dygnet runt på 08-600 10 00. Läs också <a href="/guider/missat-sista-baten">vad du gör om du missat sista båten</a> och se till att någon hemma vet vilken båt du planerar att ta tillbaka.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öluffa på egen hand</h2>
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Öluff med Stockholm Archipelago Trail"; "På egen hand"; "Flera dagar" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">STF säljer öluffning längs Stockholm Archipelago Trail som ett flerdagarspaket du gör på egen hand, och paketet visas både på Finnhamns och Möjas vandrarhemssidor. Mer om leden finns på sidan om <a href="/guider/stockholm-archipelago-trail">Stockholm Archipelago Trail</a> och i guiden <a href="/guider/o-luffa-guide">Öluffa i skärgården</a>.</p>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/nyheter-och-trafikinfo/lagsasongen-igang — "Från den 14 september till den 29 april 2027 kan du som har en SL-biljett som gäller för 30 dagar eller längre resa i hela Waxholmsbolagets trafik." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från 14 september 2026 till 29 april 2027 gäller SL-biljetter för 30 dagar eller längre i hela Waxholmsbolagets trafik. Det gör det enklare att hoppa mellan öar under lågsäsongen. Se <a href="/guider/sl-kort-skargarden">SL-kort i skärgården</a> och <a href="/guider/skargard-pa-budget">Skärgård på budget</a>.</p>
 `,
 
   'skargard-seniorer': `
@@ -10957,23 +12024,81 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 `,
 
   'nationalparkerna-havet': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Sverige har sex nationalparker direkt vid havet eller i skärgård. De skyddar det allra värdefullaste vi har – orörda kuster, marint liv och landskap som inte kunnat formas av turism. De är värda att söka sig till.</p>
+<!-- OMSKRIVEN 2026-09-27 (med SEO-pass). Borttaget utan källa eller fel: "sex nationalparker vid havet", "Nackareservatet nationalpark sedan" ett visst år (Nackareservatet är ingen nationalpark och finns inte i Naturvårdsverkets lista), "Europas rikaste marina biodiversitet", "bilfria öar" om Kosteröarna, Stenshuvud "bil från Ystad", Haparanda skärgård "arktisk karaktär", Skuleskogen "avfart Kramfors/Härnösand", generella regler som inte gäller alla parker (motorfordon, "fri tältning", hund), "koraller" för snorkling, samt värdeord som unik, naturunder och värda att söka sig till. -->
+<!-- KÄLLA: https://www.sverigesnationalparker.se/upptack-nationalparkerna/ — "Sveriges 31 nationalparker är öppna årets alla dagar för dig som vill upptäcka landets mest sevärda naturupplevelser." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark — "Kosterhavets nationalpark är Sveriges första marina nationalpark och består främst av vatten och undervattensmiljöer." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark — "Nämdöskärgårdens nationalpark är Sveriges första marina nationalpark i Östersjön i Stockholms skärgård." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Sverige har 31 nationalparker, och de är öppna alla dagar på året. Två av dem är marina nationalparker där nästan allt är hav: Kosterhavet på västkusten och Nämdöskärgården i Stockholms skärgård. Flera andra ligger vid havet eller är öar. Här är parkerna, hur du tar dig dit och vilka regler som gäller.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sveriges kustnära nationalparker</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kosterhavet (Bohuslän):</strong> Sveriges första marina nationalpark, invigd 2009. Kosterfjorden har Europas rikaste marina biodiversitet. Snorkling, dykning och kajakpaddling i ett unikt ekosystem. Nås med båt från Strömstad till Kosteröarna (bilfria öar).</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Skuleskogen (Höga Kusten):</strong> Urskog och brant klippterräng som möter havet. Slåttdalsskrevan är ett naturunder. Bil via E4, avfart Kramfors/Härnösand.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stenshuvud (Skåne):</strong> Sandstränder och fornlämningar vid Östersjön i sydöstra Skåne. Bra vandringsleder och utsikt. Bil från Kristianstad eller Ystad.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Nackareservatet (Stockholm):</strong> Invigt som nationalpark 2024. Gammalt naturskogsreservat med direktbuss från centrala Stockholm. Unikt stadsnärt naturskydd.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Haparanda skärgård (Norrbotten):</strong> Norrligaste skärgården i Sverige, vid finska gränsen. Unik arktisk karaktär med öar och fågelrika stränder. Bil till Haparanda, sedan båt.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka marina nationalparker finns i Sverige?</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kosterhavets nationalpark – Sveriges första marina nationalpark</h3>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark — "Bildades 2009"; "I Kosterhavets nationalpark finns totalt cirka 12 000 arter."; "Kosterhavets nationalpark förvaltas av Länsstyrelsen Västra Götaland." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/kosterhavets-nationalpark.html — "Kosterhavets nationalpark ligger i Strömstads och Tanums kommuner och omfattar nästan 400 kvadratkilometer. Större delen av nationalparken utgörs av hav, bara ett par procent är landområden."; "bland annat Kosterrännan med sina brant sluttande bergväggar och koraller" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kosterhavet bildades 2009 och är Sveriges första marina nationalpark. Parken ligger i Strömstads och Tanums kommuner, omfattar nästan 400 kvadratkilometer och är till största delen hav – bara ett par procent är land. Här finns havsmiljöer och arter som inte finns någon annanstans i Sverige, bland annat Kosterrännan med branta bergväggar och koraller. Totalt finns cirka 12 000 arter i parken. Länsstyrelsen Västra Götaland förvaltar den.</p>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/besok-parken/hitta-hit — "Du kan ta Kosterbåtarna till nationalparken. De avgår från Strömstad året runt och resan tar ungefär 45 minuter."; "Huvudentrén till Kosterhavets nationalpark ligger i naturum vid Ekenäs brygga på Sydkoster."; "Övriga entréer finns i Strömstad, på Saltö, på Resö och på Rossö."; "Alla entréer går också att nå med bil, förutom entrén vid naturum." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kosterbåtarna går från Strömstad året runt, och resan tar ungefär 45 minuter. Huvudentrén är naturum vid Ekenäs brygga på Sydkoster. Andra entréer finns i Strömstad, på Saltö, Resö och Rossö, och dit kommer du med bil. Läs mer i <a href="/guider/kosterarna-guide">guiden till Kosteröarna</a>, <a href="/guider/snorkling-kosterhavet">snorkling i Kosterhavet</a> och <a href="/guider/stromstad-guide">guiden till Strömstad</a>.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Regler i nationalparkerna</h2>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Motorfordon är förbjudna inom parkernas gränser</li>
-  <li>Plocka inga växter eller mineraler</li>
-  <li>Hundar måste hållas kopplade</li>
-  <li>Eldning endast på anvisade platser</li>
-  <li>Fri tältning i enlighet med parkens specifika regler – kolla Naturvårdsverket</li>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Nämdöskärgårdens nationalpark – första marina nationalparken i Östersjön</h3>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark — "Bildades 2025"; "Nationalparkens yta är uppdelad på ett tusental öar, kobbar och skär. Huvudentrén finns på ön Bullerö."; "97 procent av nationalparkens yta är hav."; "Nämdöskärgårdens nationalpark förvaltas av Länsstyrelsen Stockholm." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — "I nationalparken finns 1 353 öar, kobbar och skär och ett större havsområde längst österut." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nämdöskärgården bildades 2025 och är Sveriges första marina nationalpark i Östersjön. 97 procent av ytan är hav, och i parken finns 1 353 öar, kobbar och skär. Huvudentrén är ön Bullerö. Länsstyrelsen Stockholm förvaltar parken.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — "I byn finns ett gästhem med utekök som är öppet under högsäsong och en varm raststuga och vedeldad bastu som är öppna året om."; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På <a href="/o/bullero">Bullerö</a> finns ett gästhem med utekök som är öppet under högsäsong, och en varm raststuga och en vedeldad bastu som är öppna året om. Mat och dryck går inte att köpa någonstans i nationalparken, så ta med eget.</p>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/besok-parken/hitta-hit — "Samtliga båtlinjer utgår från Stavsnäs vinterhamn."; "Du kan resa med Bullerölinjen till nationalparkens huvudentré på Bullerö från maj till en bit in i oktober."; "Buss 434 går från Slussen i centrala Stockholm hela vägen fram till hamnen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Alla båtlinjer till parken går från Stavsnäs vinterhamn. Bullerölinjen går till Bullerö från maj till en bit in i oktober. Till Stavsnäs vinterhamn tar du buss 434 från Slussen. Mer om ön i <a href="/o/namdo">Svallas sida om Nämdö</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Nationalparker vid havet i Sverige</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De här nationalparkerna är inte marina, men de ligger vid havet eller är öar i havet.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Haparanda skärgårds nationalpark</h3>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark — "Bildades 1995"; "Haparanda skärgårds nationalpark består av flera öar i Bottenviken med långa sandstränder, grunda havsvikar och öppna hedmarker."; "På ön Sandskär i Haparanda skärgårds nationalpark har man sett över 250 olika fågelarter."; "Den största ön i Haparanda nationalpark heter Sandskär."; "Om du vill besöka andra delar av Haparanda skärgårds nationalpark behöver du egen båt." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit — "Haparanda skärgårds nationalpark ligger nära den finska gränsen, längst upp i Bottenviken i Haparanda kommun."; "Från Haparanda hamn i Nikkala går turbåtar till Sandskär. Bokning av turer och stugboende görs via Haparanda turistbyrå." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Haparanda skärgård bildades 1995 och ligger längst upp i Bottenviken, nära finska gränsen. Parken består av flera öar med långa sandstränder, grunda havsvikar och öppna hedmarker. På största ön, Sandskär, har man sett över 250 fågelarter. Turbåtar går till Sandskär från Haparanda hamn i Nikkala och bokas via Haparanda turistbyrå. Till de andra öarna behöver du egen båt.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ängsö nationalpark</h3>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/angso-nationalpark — "Bildades 1909"; "Ängsö ligger i Stockholms norra skärgård, i hjärtat av Roslagen."; "Ängsö är en av Sveriges första nationalparker och bildades i början av 1900-talet."; "Ängsö nationalpark rymmer ängar, betesmarker och lövängar i ett gammalt odlingslandskap." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/angso-nationalpark/besok-parken/hitta-hit — "Under vår- och sommar går turbåtar till Ängsö från Strömkajen i centrala Stockholm samt från Furusund. Turbåtarna anländer till Hemudden."; "stora delar av den östra sidan av ön är fågelskyddsområde med tillträdesförbud under perioden mellan den 1 februari och den 15 augusti" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ängsö i Roslagen bildades 1909 och är en av Sveriges första nationalparker. Här bevaras ett gammalt odlingslandskap med ängar och betesmarker. Under vår och sommar går turbåtar från Strömkajen i Stockholm och från Furusund till Hemudden. Stora delar av östra sidan är fågelskyddsområde med tillträdesförbud 1 februari–15 augusti.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Gotska Sandöns nationalpark</h3>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon — "Ensligt paradis norr om Fårö"; "Bildades 1909"; "Gotska Sandöns nationalpark är Östersjöns ensligaste ö."; "Det går turbåtar till nationalparken från Nynäshamn på fastlandet och Fårösund på Gotland." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotska Sandön bildades också 1909. Ön ligger ensam i Östersjön norr om Fårö, med sandstränder, tallskog och sanddyner. Turbåtar går från Nynäshamn och från Fårösund på Gotland.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Blå Jungfrun nationalpark</h3>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark — "Bildades 1926"; "Blå Jungfruns nationalpark är en isolerad ö i Kalmarsund"; "Ön motsvarar två tredjedelar av nationalparkens yta, resten består av vatten." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark/besok-parken/hitta-hit — "Under sommaren, från midsommar till mitten av augusti, går turbåten dagligen."; "Båten avgår från Ölandskajen i Oskarshamns hamn på fastlandet och från Södra piren i Byxelkroks hamn på Öland."; "Landstigning sker direkt mot klipporna, eftersom det inte finns några bryggor på ön." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Blå Jungfrun i Kalmarsund bildades 1926. Ön utgör två tredjedelar av parkens yta, och resten är vatten. Från midsommar till mitten av augusti går turbåten varje dag från Oskarshamn och från Byxelkrok på Öland. Det finns inga bryggor, så du kliver i land direkt på klipporna. Mer på <a href="/o/bla-jungfrun">Svallas sida om Blå Jungfrun</a>.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Skuleskogens nationalpark vid Höga Kusten</h3>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/skuleskogens-nationalpark — "Bildades 1984"; "Parken är känd för Slåttdalsskrevan med sina 40 meter höga, lodräta bergväggar."; "I nationalparken finns flera mil vandringsleder och många rastplatser, tältplatser och öppna övernattningsstugor." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/skuleskogens-nationalpark/besok-parken/hitta-hit — "Skuleskogens nationalpark ligger i Höga Kusten, vid havet öster om E4:an mellan Örnsköldsvik och Härnösand." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skuleskogen bildades 1984 och ligger vid havet öster om E4 mellan Örnsköldsvik och Härnösand. Parken är känd för Slåttdalsskrevan med 40 meter höga lodräta bergväggar. Här finns flera mil vandringsleder, tältplatser och öppna övernattningsstugor. Läs mer i <a href="/guider/vandring-skuleskogen">guiden till vandring i Skuleskogen</a>.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Stenshuvuds nationalpark på Österlen</h3>
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/stenshuvuds-nationalpark — "Bildades 1986"; "Stenshuvuds nationalpark består av kustberg, ädellövskog och hedar som möter stränderna på Österlen." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/stenshuvuds-nationalpark/besok-parken/hitta-hit — "Stenshuvuds nationalpark ligger strax söder om Kivik."; "Då tar du Skåneexpressen linje 3, som går mellan Simrishamn och Kristianstad." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stenshuvud bildades 1986 och ligger strax söder om Kivik. Kustberg, lövskog och hedar möter stränderna på Österlen. Med buss tar du Skåneexpressen linje 3 mellan Simrishamn och Kristianstad.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Skärgårdshavets nationalpark ligger i Finland</h2>
+<!-- KÄLLA: https://www.luontoon.fi/sv/destinationer/skargardshavets-nationalpark — "Egentliga Finland"; "I Skärgårdshavet är den finländska havsnaturen som mest mångsidig."; "Att slå läger är endast tillåten på särskilt anvisade tältområden." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdshavets nationalpark hör inte till Sverige. Den ligger i landskapet Egentliga Finland och beskrivs på finska Forststyrelsens webbplats luontoon.fi. Där får du bara tälta på anvisade tältområden. Blanda inte ihop den med de svenska parkerna ovan.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka regler gäller i en nationalpark?</h2>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/skyddade-omraden/ — "Allemansrätten gäller även i skyddade områden, men den kan vara begränsad eller i vissa fall utökad."; "I vissa naturreservat och nationalparker får du inte tälta, eller bara göra det på bestämda platser." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Allemansrätten gäller även i nationalparker, men den kan vara begränsad. Varje park har egna föreskrifter, och i vissa får du inte tälta alls eller bara på bestämda platser. Läs reglerna för just den park du ska till. Se också guiden om <a href="/guider/allemansratten-pa-sjon">allemansrätten på sjön</a>.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Exempel: Kosterhavet</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/kosterhavets-nationalpark.html — "göra upp eld, annat än på anvisade och iordningställda platser."; "övernatta eller ankra på samma plats mer än två dygn."; "På Nord- och Sydkoster är övernattning förbudet, förutom på campingplatsen på Nordkoster."; "köra båt snabbare än max 25 knop i hela nationalparken."; "köra båt snabbare än 5 knop runt Kosteröarna, under tiden 15 maj–31 augusti."; "starta och landa med luftfartyg, gäller även drönare." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Du får bara elda på anvisade och iordningställda platser.</li>
+<li>Du får inte övernatta eller ankra på samma plats mer än två dygn. På Nord- och Sydkoster är övernattning förbjuden utom på campingplatsen på Nordkoster.</li>
+<li>Högsta fart för båt i hela parken är 25 knop, och runt Kosteröarna gäller 5 knop 15 maj–31 augusti.</li>
+<li>Drönare får inte starta eller landa i parken.</li>
 </ul>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Exempel: Nämdöskärgården</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — "Du får tälta upp till två dygn på samma plats i nästan hela nationalparken. På Bullerö finns en tältplats där du får tälta upp till sju dygn."; "Din hund ska alltid vara kopplad. Det gäller även andra husdjur."; "Du får inte köra motordrivet fartyg snabbare än 5 knop inom 100 meter från land."; "Fiskeförbud råder året om inom vissa områden." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Du får tälta upp till två dygn på samma plats i nästan hela parken. På tältplatsen på Bullerö får du stanna upp till sju dygn.</li>
+<li>Hundar och andra husdjur ska alltid vara kopplade.</li>
+<li>Motorbåt får inte köras snabbare än 5 knop inom 100 meter från land.</li>
+<li>I vissa områden råder fiskeförbud året om.</li>
+</ul>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — "I nationalparken finns flera fågelskyddsområden som skyddar fågellivet under häckningssäsongen när fåglarna är som mest känsliga för störningar. I dessa råder tidsbegränsat tillträdesförbud." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/kosterhavets-nationalpark.html — "uppehålla sig eller färdas närmare än 100 meter inom fågelskyddsområden under tiden 1 mars–31 augusti." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Båda parkerna har fågelskyddsområden med tillträdesförbud under delar av året. I Kosterhavet får du inte vistas eller färdas närmare än 100 meter från dem 1 mars–31 augusti. Kolla var de ligger innan du lägger till.</p>
 `,
 
   'skargard-tillganglighet': `
@@ -11189,21 +12314,75 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 `,
 
   'skargard-vs-fjall': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Varje sommar ställs miljontals semesterplanerande inför samma fråga: skärgård eller fjäll? Båda är fantastiska – men de ger radikalt olika upplevelser, och rätt svar beror på vad du söker.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det här är en ärlig jämförelse av de faktorer som faktiskt avgör vilket som passar dig och ditt sällskap bäst.</p>
+<!-- OMSKRIVEN 2026-09-28. Borttaget utan källa: "miljontals semesterplanerande", "varmt bad", "restauranger och service på de flesta öar", "trångt i juli (Sandhamn, Marstrand)", "Sarekleden", "inga folkmassor", "renare luft", "kallt och myggigt i juli", "transport kostar mer", påståenden om vad som "passar bäst" för olika grupper och semesterlängder, kostnadsjämförelsen i FAQ, "Vår rekommendation" samt värdeord. -->
+<!-- KÄLLA: https://www.fjallsakerhetsradet.se/vader-och-prognoser/fjallets-olika-arstider/ — "Den svenska delen av Skanderna, vår fjällkedja, sträcker sig från Dalafjällen i söder till Treriksröset i norr. Bästa tiden i fjällen beror naturligtvis på vart du vill åka och vad du vill göra." (läst 2026-09-28) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgård eller fjäll i sommar? Den här jämförelsen innehåller bara det vi kunnat belägga: hur du tar dig dit utan bil, när säsongen är, hur du bor och vilka regler som gäller för att tälta och elda. Vad som passar dig bäst beror, som Fjällsäkerhetsrådet skriver, på vart du vill åka och vad du vill göra.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Skärgård</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Styrkor:</strong> Varmt bad, restauranger och service på de flesta öar, kortare transport från Stockholm och Göteborg, kombinerar natur med matupplevelse och havslivet, perfekt för de som vill ha lite av varje.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Svagheter:</strong> Kan vara trångt i juli (Sandhamn, Marstrand), inte det bästa för långa vandringsleder, väder varierar och dåliga dagar ger lite att göra.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Passar bäst för:</strong> Par, vänner, barnfamiljer som prioriterar bad och avkoppling, urban-natur-kombination, kortare semester på 2–5 dagar.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Skärgård och fjäll – skillnaden i korthet</h2>
+<!-- KÄLLA: https://www.fjallsakerhetsradet.se/forbered-fjallturen/praktiska-tips-for-en-tryggare-fjallvistelse/sex-tips-for-en-trygg-fjalltur-pa-sommaren/ — "Det finns gott om markerade leder, rastskydd och övernattningsstugor, men också stora områden av ren vildmark i varierande terräng." (läst 2026-09-28) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/hotell-stugor-och-vandrarhem/ — "Många av boendena nås smidigt med Waxholmsbolagets båtar, vilket gör det enkelt att ta sig ut även utan egen båt." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/taltning/ — "Du får bada vid stränder, paddla kajak och åka båt." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Fjällen:</strong> markerade leder, rastskydd och övernattningsstugor, men också stora områden av vildmark. Du tar dig fram till fots eller på skidor.</li>
+<li><strong>Skärgården:</strong> öar som du når med skärgårdsbåt eller egen båt. Allemansrätten ger dig rätt att bada vid stränder, paddla kajak och åka båt.</li>
+</ul>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fjäll</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Styrkor:</strong> Episka vandringsleder (Kungsleden, Sarekleden), inga folkmassor i vild terräng, renare luft och starkare naturupplevelse, midnattssol i norr, fjällrävens och renens land.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Svagheter:</strong> Kallt och myggigt i juli, kräver mer fysisk förmåga, service är begränsad utanför stugorna, transport tar lång tid och kostar mer.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Passar bäst för:</strong> Erfarna friluftsmänniskor, de som söker äventyr och isolering, längre vandringssemestrar 7–14 dagar.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till skärgården utan bil?</h2>
+<!-- KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd."; "Om du till exempel ska resa från Strömkajen till Grinda kan du resa på SL-biljett mellan Strömkajen och Vaxholm och sedan resa på en Waxhomsbolaget-biljett för sträckan mellan Vaxholm och Grinda." (läst 2026-09-28) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Stockholms skärgård går Waxholmsbolagets båtar från Strömkajen i centrala Stockholm. SL-biljetten gäller mellan Strömkajen och Vaxholm med omnejd. Ska du längre ut, till exempel till Grinda, kompletterar du med en Waxholmsbolaget-biljett för sträckan utanför SL-området. Waxholmsbolaget byter tidtabell fyra gånger om året, och vissa linjer går bara under en del av perioden. Mer om båtarna finns i <a href="/guider/waxholmsbolaget-guide">guiden om Waxholmsbolaget</a>.</p>
+<!-- KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "De södra öarna är bilfria och nås enkelt året runt med Styrsöbolagets båtar. Färjorna ingår i Västtrafiks ordinarie kollektivtrafik, och för resor till öarna i södra skärgården räcker en biljett för zon A."; "Spårvagn 11, samt linje 9 under sommaren, restid cirka 35 minuter" (läst 2026-09-28) -->
+<!-- KÄLLA: https://styrsobolaget.se/kollektivtrafik-till-sjoss-med-vasttrafik/ — "Reser du med kollektivtrafiken till Södra skärgården utgår våra linjer i huvudsak från Saltholmen, samt vissa turer från Stenpiren i centrum." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Göteborg är öarna i södra skärgården bilfria och nås året runt med Styrsöbolagets båtar. Båtarna ingår i Västtrafiks vanliga kollektivtrafik, och en biljett för zon A räcker. Båtarna utgår i huvudsak från Saltholmen, och dit tar spårvagn 11 omkring 35 minuter från centrum. På sommaren går även linje 9.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vår rekommendation</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Välj skärgård om du vill ha havet, mat och möjligheten att ta det lugnt utan att missa upplevelsen. Välj fjäll om du söker äventyr, vildmark och inte bryr dig om service längs vägen. De två är inte konkurrenter – de är helt olika resor.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till fjällen utan bil?</h2>
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/omraden/kungsleden/ — "Kungsleden mellan Abisko och Hemavan är en 450 kilometer lång vandringsled genom svenska fjällvärlden."; "STF Abisko Turiststation ligger vid Abisko Turiststation station på Malmbanan – tåget stannar i princip utanför dörren, så det här är områdets enklaste boende att nå utan bil." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/omraden/kungsleden/ — "STF Kebnekaise Fjällstation nås från Nikkaluokta, dit bussen går från Kiruna. Från vägens slut är det 19 kilometer att gå."; "Under sommarsäsongen går båt över Láddjujávri, vilket kortar sträckan med ungefär 6 kilometer." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kungsleden går 450 kilometer mellan Abisko och Hemavan. STF Abisko Turiststation ligger vid en station på Malmbanan, och tåget stannar i princip utanför dörren. Till STF Kebnekaise Fjällstation åker du buss från Kiruna till Nikkaluokta och går sedan 19 kilometer. Under sommarsäsongen går en båt över Láddjujávri som kortar sträckan med ungefär sex kilometer.</p>
+<!-- KÄLLA: https://www.fjallsakerhetsradet.se/att-gora-i-fjallen/fjallvandring/ — "I fjällterräng går man ungefär 3 km på en timme med packning. I besvärlig terräng får du räkna med kortare sträcka." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Planera dagsetapperna med marginal. Fjällsäkerhetsrådet räknar med ungefär tre kilometer i timmen med packning i fjällterräng, och kortare i besvärlig terräng.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">När är säsongen i fjällen och i skärgården?</h2>
+<!-- KÄLLA: https://www.fjallsakerhetsradet.se/att-gora-i-fjallen/fjallvandring/ — "Sommarsäsongen på fjället kan räknas från midsommartid till några veckor in i september. Den som vill njuta av blomsterprakt kommer tidigt och den som är myggkänslig väntar en bit in på säsongen." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.fjallsakerhetsradet.se/vader-och-prognoser/fjallets-olika-arstider/ — "Stugor och fjällstationer i väglöst land öppnar vid midsommartid och håller öppet långt in i september. I slutet av juli och i början av september är det flest vandrare." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sommarsäsongen på fjället räknas från midsommar till några veckor in i september. Stugor och fjällstationer i väglöst land öppnar vid midsommar och håller öppet långt in i september. Enligt Fjällsäkerhetsrådet är det flest vandrare i slutet av juli och början av september. Den som vill se blommorna åker tidigt, och den som inte tål mygg väntar en bit in på säsongen.</p>
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/boendetyper/fjallstuga/ — "Vintersäsongen pågår från slutet av februari till månadsskiftet april/maj. Sommarsäsongen varierar från midsommar till mitten eller slutet av september." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">STF:s fjällstugor har också en vintersäsong, från slutet av februari till månadsskiftet april/maj.</p>
+<!-- KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april" (läst 2026-09-28) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolagets båtar byter tidtabell fyra gånger om året. Waxholmsbolaget räknar lågsäsong från 14 september till 29 april, och då gäller vissa SL-biljetter i hela trafiken.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende: fjällstuga eller skärgårdsö</h2>
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/boendetyper/fjallstuga/ — "Mellan stugorna är det cirka 10–20 kilometers avstånd, vilket motsvarar en dagstur."; "Stugorna har varken el, rinnande vatten eller dusch"; "Toalett finns alltid, i form av utedass."; "avsedda för övernattning för alla som besöker fjällen till fots eller på skidor" (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/omraden/kungsleden/ — "Fjällstationerna – STF Abisko Turiststation och STF Kebnekaise Fjällstation – är bemannade anläggningar med restaurang, reception, dusch och rum i flera standardklasser." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/omraden/kungsleden/ — "Fjällstugorna bokas helst i förväg men den som kommer fram utan en bokning får ändå alltid tak över huvudet, men det kan bli på en madrass på golvet." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">STF:s fjällstugor ligger 10–20 kilometer från varandra, alltså ungefär en dagstur. De har varken el, rinnande vatten eller dusch, och toaletten är ett utedass. Fjällstugorna bokas helst i förväg, men den som kommer utan bokning får ändå tak över huvudet, även om det kan bli på en madrass på golvet. Fjällstationerna är bemannade anläggningar med restaurang, reception och dusch.</p>
+<!-- KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/hotell-stugor-och-vandrarhem/ — "Det finns stugor som går att hyra direkt från Skärgårdsstiftelsen – bland annat på Utö och Gålö."; "Skärgårdsstiftelsens besöksanläggningar drivs till största del av olika entreprenörer och bokas direkt via respektive anläggning." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Stockholms skärgård hyr Skärgårdsstiftelsen själv ut stugor, bland annat på Utö och Gålö. De flesta av stiftelsens besöksanläggningar drivs av entreprenörer och bokas direkt hos anläggningen. Se också <a href="/guider/hyra-stuga-skargarden">guiden om att hyra stuga i skärgården</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Får man tälta i fjällen och i skärgården?</h2>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/taltning/ — "Du får tälta något enstaka dygn i naturen, men tänk på att välja en tältplats långt bort från bostadshus och att visa hänsyn till markägaren."; "Det ingår i allemansrätten att tälta med några få tält, som två eller tre, under något enstaka dygn."; "Är ni däremot en stor grupp med många tält behöver ni be markägaren om lov." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Allemansrätten gäller både vid havet och på fjället. Du får tälta något enstaka dygn i naturen, med några få tält, långt från bostadshus och med hänsyn till markägaren. Är ni en stor grupp med många tält behöver ni markägarens tillstånd.</p>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/fjallen/ — "Du får tälta, men välj platsen med omsorg och håll avstånd till leder, stugor och vattendrag."; "Håll avstånd till renar och undvik renbetesmarker under kalvningstidenmellan april och juni." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/fjallen/ — "Allemansrätten kan vara begränsad i nationalparker och naturreservat som ligger i fjällen." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>I fjällen</strong> ska du enligt Naturvårdsverket hålla avstånd till leder, stugor och vattendrag när du tältar. Håll avstånd till renar och undvik renbetesmarker under kalvningstiden mellan april och juni. I nationalparker och naturreservat i fjällen kan allemansrätten vara begränsad.</p>
+<!-- KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/talt-och-lagerplatser/ — "Alla lägerplatser ligger i naturreservat där reservatsregler gäller." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/taltning/ — "I nationalparker och naturreservat gäller särskilda regler"; "I allmänhet är det inte tillåtet att tälta annat än på särskilt angivna platser. Det kan också vara tältförbud i hela området." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>I skärgården</strong> ligger många öar i naturreservat. Skärgårdsstiftelsens lägerplatser ligger alla i naturreservat där reservatsreglerna gäller. I nationalparker och naturreservat gäller särskilda regler, och där får du enligt Naturvårdsverket i allmänhet bara tälta på särskilt angivna platser. Det kan också vara tältförbud i hela området. Läs mer i <a href="/guider/allemansratten-pa-sjon">guiden om allemansrätten på sjön</a> och <a href="/guider/camping-talta-skargarden">guiden om att tälta i skärgården</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Eld och grill</h3>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/fjallen/ — "Elda bara där det är tillåtet och använd i första hand iordningställda eldstäder eller eget friluftskök." (läst 2026-09-28) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/att-besoka-skyddad-natur/grilla/ — "Under torrperioder vår- och sommartid kan du utgå från att eldningsförbud är utfärdat."; "Det är förbjudet att göra upp eld direkt på berghällar då de kan spricka." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I fjällen ska du bara elda där det är tillåtet och helst använda iordningställda eldstäder eller eget friluftskök. I skärgården påminner Skärgårdsstiftelsen om att du kan räkna med eldningsförbud under torrperioder på våren och sommaren, och att det är förbjudet att elda direkt på berghällar eftersom de kan spricka.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Säkerhet i fjällen</h2>
+<!-- KÄLLA: https://www.fjallsakerhetsradet.se/forbered-fjallturen/praktiska-tips-for-en-tryggare-fjallvistelse/sex-tips-for-en-trygg-fjalltur-pa-sommaren/ — "Vädret kan slå om hastigt i fjällen."; "Det är viktigt att någon känner till er planerade färdväg och när ni räknar med att komma tillbaka."; "Tänk på att röda kryss markerar vinterleder, som inte alltid är lämpliga att följa på sommaren." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Vädret kan slå om snabbt. Kolla prognoser och respektera fjällvädervarningar.</li>
+<li>Berätta för någon vilken väg du tänker gå och när du räknar med att vara tillbaka.</li>
+<li>Röda kryss markerar vinterleder, som inte alltid passar att följa på sommaren.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du ha fjällkänsla men stanna vid havet finns Svallas guide <a href="/guider/fjallalternativet-kust">Fjällalternativet vid kusten</a>.</p>
 `,
 
   'bohuslan-vs-hoga-kusten': `
@@ -11482,23 +12661,101 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 `,
 
   'vinter-oland-2026': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Öland på vintern är en helt annan ö. Alvaret vilar under grå himmel, tranorna är borta och de tusentals sommargästerna med dem. Vad som är kvar är ett stilla och vackert landskap med lägre priser och en frihet att se ön som gotlänningarna – och öländningarna – faktiskt upplevs.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vinterpriserna på stugor och hotell är 40–60% lägre än sommaren. Och du slipper letar p-plats vid Böda Sand.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: vinterpriser på stugor och hotell i procent, Ölandsbrons längd och avgift, "buss 101 längs västra sidan är glesare på vintern", "bil rekommenderas", "Ottenby fågelstation är aktiv hela vintern", "bästa fågelskådningsperiod december–mars", snösparv och "sjöfågel i råkar" utan källa, "ruinen är fri att gå runt hela vintern", "ett par kaféer och restauranger öppna" i Borgholm, "Sollidens slott och Ekoparken stängda", "alfågel", "gotlänningarna" (fel ö), "tranorna är borta", uppgifter om vindkyla samt värdeord. -->
+<!-- KÄLLA: https://www.oland.se/sasong/vinter — "Här finns inga skidbackar, inga köer och inga måsten."; "Många tror att ön stänger när sommaren är över, men sanningen är en annan: Öland är inte stängt. Bara lite lugnare!" (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Öland på vintern har inga skidbackar och inga köer. Ölands officiella besöksguide oland.se skriver att många tror att ön stänger efter sommaren, men att den bara blir lugnare. Här är vad som finns att göra på Öland under vintern 2026–2027: havsörn vid Ottenby, vandring i Trollskogen och på alvaret, fornborgar, kallbad och julbord, och hur du tar dig dit.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Öland</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bil via Ölandsbron (gratis, 6 km) från Kalmar. Tåg till Kalmar med SJ eller Kustpilen, sedan buss 101 längs öns västra sida – men busstrafiken är glesare på vintern. Bil rekommenderas för vintertur.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Så tar du dig till Öland på vintern</h2>
+<!-- KÄLLA: https://www.oland.se/resa/cykelfarjan — "Från mitten av juni till mitten av augusti, finns det, förutom Ölandsbron, ytterligare en möjlighet att ta sig till och från Öland, nämligen med den populära cykelfärjan Dessi. Eftersom det råder cykel- och gångförbud på Ölandsbron" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.transportstyrelsen.se/sv/vagtrafik/trafikregler-och-vagmarken/trafikregler/beslut-i-overklagningsarenden/Ovrigt/Olandsbron/ — "Detta ärende rör lokala trafikföreskrifter om förbud mot gång- och cykeltrafik på del av den allmänna vägen 137, Ölandsbron." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På vintern är Ölandsbron, väg 137 från Kalmar, den enda vägen över sundet. Cykelfärjan Dessi går bara från mitten av juni till mitten av augusti. På bron är det förbjudet att gå och cykla, så utan bil tar du bussen över.</p>
+<!-- KÄLLA: https://www.oland.se/resa/buss-tag-taxi — "Till Kalmar finns ett flertal dagliga avgångar från Stockholm, Göteborg och Malmö/Köpenhamn via Kust till Kustbanan och Öresundstågen."; "Direktbuss i båda riktningarna året runt."; "Kalmar Läns Trafik trafikerar med buss i Kalmar och på Öland." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.silverlinjen.se/ — "Silverlinjens direktbussar går från norra Öland via Kalmar och hela vägen till Stockholm, tur och retur året runt" (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Tåg till Kalmar:</strong> det går flera avgångar om dagen från Stockholm, Göteborg och Malmö/Köpenhamn.</li>
+<li><strong>Direktbuss:</strong> Silverlinjen kör mellan Öland/Kalmar och Stockholm i båda riktningarna året runt.</li>
+<li><strong>Lokalbuss:</strong> Kalmar Läns Trafik (KLT) kör buss i Kalmar och på Öland.</li>
+</ul>
+<!-- KÄLLA: https://www.borgholmsslott.se/hitta-hit/ — "Borgholms Slott hittar du intill väg 136 mot Borgholm, ca 25 km norr om Ölandsbron." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Med bil kör du väg 136 norrut mot Borgholm, som ligger ungefär 25 kilometer norr om Ölandsbron. Läs mer i <a href="/guider/hyra-bil-oland">guiden om att hyra bil på Öland</a>.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad man gör på Öland på vintern</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Alvaret i vinterskrud:</strong> Det flacka kalkstenslandskapet ger ett storslagen öppet panorama under lågt vinterljus. Kvarnar och fornlämningar utan kö.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Trollskogen:</strong> Den magiska urskogen med skruvade enar är om möjligt ännu mer dramatisk utan sommarens gröna löv. Tyst och helt ensam på stigarna.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fågelskådning:</strong> Ottenby fågelstation är aktiv hela vintern med vinterfåglar som havsörn, snösparv och sjöfågel i råkar. Bästa fågelskådningsperiod är december–mars.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Borgholm i vinter:</strong> Ruinen är fri att gå runt hela vintern. Slottets dramatik förstärks av vintervädret. Borgholm stad har ett par kaféer och restauranger öppna.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Havsörn på Öland – var och när?</h2>
+<!-- KÄLLA: https://naturumottenby.se/besokstips/ — "Året om är det gott om fåglar i området. På vintern är havsörnarna särskilt talrika." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.oland.se/olandstips/vinteraktiviteter — "har du nu även chansen att se Havsörn som lockats hit av det öppna vattnet och de stora mängderna sjöfågel" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ölands södra udde vid Ottenby är platsen för havsörn på vintern. Naturum Ottenby skriver att havsörnarna är särskilt talrika där på vintern, och oland.se förklarar att de lockas av det öppna vattnet och de stora mängderna sjöfågel.</p>
+<!-- KÄLLA: https://naturumottenby.se/aktiviteter/skadarskola-vinterfaglar-pa-udden/ — "Havsörnarna sitter ute på Västrevet och sångsvanar simmar i viken."; "änder av olika arter, några olika vadare och snösparvar lär finnas på plats" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I början av december sitter havsörnarna ute på Västrevet, enligt naturum. Samtidigt brukar det finnas sångsvanar, änder av olika arter, några arter av vadare och snösparvar på udden.</p>
+<!-- KÄLLA: https://www.oland.se/olandstips/vinteraktiviteter — "Det är även nu du har chansen att se Strömstare, som letar mat under vattnet, de förbiflygande Sidensvansarna"; "Vinterhämpling, som övervintrar i de södra delarna av landet" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Oland.se nämner också strömstare, sidensvans och vinterhämpling som vinterfåglar att hålla utkik efter i Ottenby.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk info</h2>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Kolla restauranger och sevärdheters öppethållande – stänger tidigt på vintern</li>
-  <li>Vind från Östersjön ger kraftig vindkyla – klä dig varmare än du tror</li>
-  <li>Stugor och hotell tillgängliga men boka i förväg – utbudet är lägre</li>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Fågeltornet i Ottenby lund</h3>
+<!-- KÄLLA: https://naturumottenby.se/besokstips/ — "I de södra delarna av Ottenby lund ligger ett stort fågeltorn beläget."; "Härifrån kan besökaren blicka ut över Schäferiängarna mot havsbandet där sjöfåglarna sträcker."; "Fågeltornet är en bra plats för en utflykt året om." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I södra delen av Ottenby lund finns ett stort fågeltorn med utsikt över Schäferiängarna mot havet. Naturum beskriver tornet som ett utflyktsmål året om, och du kan sitta där med medhavd matsäck.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Skådarskola om vinterfåglar</h3>
+<!-- KÄLLA: https://naturumottenby.se/aktiviteter/skadarskola-vinterfaglar-pa-udden/ — "Skådarskola: Vinterfåglar på udden"; "28 nov kl. 13:00 - 28 nov kl. 15:00"; "Samling utanför naturum, där finns möjlighet att låna kikare."; "i din anmälan skriv om du vill låna kikare"; "Skådarskola är för dig som är ny eller vill lära dig fåglar från grunden." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturum Ottenby har en skådarskola, "Vinterfåglar på udden", den 28 november kl. 13–15. Samlingen är utanför naturum och du kan låna kikare om du skriver det i anmälan. Skådarskolan är gjord för den som är ny som fågelskådare.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ottenby på vintern: reservat, fågelstation och naturum</h2>
+<!-- KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/ottenby.html — "På Ölands södra udde, en av Sveriges bästa fågellokaler, ligger naturreservatet Ottenby. Reservatet är ett av de största i Kalmar län och omfattar 995 hektar."; "Inom Ottenby naturreservat är det förbjudet att flyga drönare med stöd av föreskriften om förbud att störa djurlivet."; "Vid udden och vid kungsgården finns två stora parkeringsplatser." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturreservatet Ottenby på Ölands södra udde är 995 hektar och ett av de största reservaten i Kalmar län. Det finns två stora parkeringar, vid udden och vid kungsgården. Drönare är förbjudna i reservatet eftersom de stör fåglarna.</p>
+<!-- KÄLLA: https://www.ottenby.se/ — "Ottenby fågelstation ägs och drivs av BirdLife Sverige, och har verkat oavbrutet sedan 1946"; "Trafiken av flyttfåglar vid Ottenby är som mest intensiv under april-maj och september-oktober" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.ottenby.se/guidning-besok/ — "För den som är nyfiken på verksamheten och själv vill uppleva ringmärkning av vilda fåglar går det bra att boka en guidning." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ottenby fågelstation drivs av BirdLife Sverige och har varit i gång sedan 1946. Flyttfågelsträcket är som intensivast i april–maj och september–oktober, och på vintern är det i stället havsörn och övervintrande fåglar du ser. Vill du se ringmärkning kan du boka en guidning hos fågelstationen.</p>
+<!-- KÄLLA: https://naturumottenby.se/oppettider/ — "Öppettider 2026"; "Höstlov 24-31 oktober dagligen 11-16"; "Höstlov 24–31 oktober dagligen, insläpp varje heltimme 11-16" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.oland.se/olandstips/vinteraktiviteter — "Har du inte besökt Ölands södra udde under vinterhalvåret är det hög tid att göra det nu!" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.ottenby.se/ — "Fyren Långe Jan är med sina 42 meter Sveriges högsta fyr och är öppen för besök under vår, sommar och höst" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturum Ottenby och fyren Långe Jan har säsongsöppet. Enligt naturums öppettider för 2026 är höstlovet, 24–31 oktober, den sista perioden med öppet. Långe Jan, som är 42 meter och Sveriges högsta fyr, är öppen på våren, sommaren och hösten. Naturen på udden kan du besöka hela vintern.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad kan man göra på Öland på vintern?</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Trollskogen på norra Öland</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/trollskogen.html — "Här vandrar du genom gammal tallskog med stormvridna träd. Här och var står mäktiga ekar klädda i murgröna."; "Reservatet ligger på Ölands nordostligaste udde och är en del av Ekopark Böda." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.oland.se/vinterutflykter — "Knysselnackestigen (1 km, blå)"; "Kolkyrkestigen (1,3 km, grön)"; "Murgrönestigen (3,3 km, gul)"; "Trollskogsstigen (4,5 km, röd)"; "intill parkeringen, finns en raststuga"; "Här finns även möjlighet att grilla vid grillplatsen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Trollskogen ligger på Ölands nordostligaste udde och är en del av Ekopark Böda. Här går du genom gammal tallskog med stormvridna träd och ekar klädda i murgröna. Det finns fyra färgmarkerade leder: Knysselnackestigen (1 km, blå), Kolkyrkestigen (1,3 km, grön), Murgrönestigen (3,3 km, gul) och Trollskogsstigen (4,5 km, röd). Vid parkeringen finns en raststuga och en grillplats.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/trollskogen.html — "Göra upp eld."; "Ta med hund, eller annat djur, som inte är kopplad."; "Du får plocka bär och matsvamp." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I reservatet får du inte göra upp eld eller ha hunden okopplad. Bär och matsvamp får du plocka.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Alvaret och världsarvet på södra Öland</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/varldsarvet-sodra-olands-odlingslandskap.html — "År 2000 skrevs Södra Ölands odlingslandskap in på Unesco:s världsarvslista."; "Stora alvaret är 260 km² stort."; "Hela Stora alvaret genomkorsas av äldre vägsträckningar, så kallade hålvägar." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Södra Ölands odlingslandskap är världsarv sedan 2000. Stora alvaret är 260 kvadratkilometer och korsas av gamla vägar, så kallade hålvägar.</p>
+<!-- KÄLLA: https://www.morbylanga.se/uppleva-och-gora/idrott-motion-natur-och-friluftsliv/cykel-vandringsleder-och-naturreservat/stora-alvarleden/ — "Leden följer en gammal väg över alvaret."; "Efter snösmältning eller efter kraftiga regn kan vissa partier vara sanka."; "Leden är markerad med små stenrösen av kalkstensﬂisor" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stora Alvarleden följer en gammal väg över alvaret och är markerad med små stenrösen. Mörbylånga kommun varnar för att vissa partier kan vara sanka efter snösmältning eller kraftigt regn, så ha stadiga skor. Fler leder finns i guiden <a href="/guider/vandring-oland">Vandring på Öland</a>.</p>
+<!-- KÄLLA: https://www.oland.se/vinterutflykter — "Här kan du uppleva ruinerna efter byn Dröstorp som övergavs i slutet av 1800-talet."; "Parkera bilen vid Skarpa Alby och promenera de 2,8 km på det karga alvaret till ödebyn." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Dröstorps ödeby, där byn övergavs i slutet av 1800-talet, parkerar du vid Skarpa Alby och går 2,8 kilometer över alvaret.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Fornborgar: Gråborg och Eketorp</h3>
+<!-- KÄLLA: https://www.oland.se/vinterutflykter — "Gråborg & Färjestaden"; "Gråborg är Ölands största fornborg"; "är alltid öppen för besökare"; "Vid borgen ligger en kapellruin, S:t Knuts kapell och lite längre bort finner du en grillplats."; "Eketorps borg, den sydligaste av Ölands fornborgar"; "Upptäck borgen som är tillgänglig året runt för att sedan promenera längs med Eketorpsleden, en 1,6 km lång vandringsled på alvaret väster om Eketorps borg." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gråborg nära Färjestaden är Ölands största fornborg och alltid öppen för besökare. Intill finns kapellruinen S:t Knuts kapell och en grillplats. Eketorps borg längst söderut är tillgänglig året runt, och väster om borgen går Eketorpsleden, 1,6 kilometer över alvaret.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Borgholms slott på vintern</h3>
+<!-- KÄLLA: https://www.borgholmsslott.se/oppettider/ — "Öppettider 2026"; "1 oktober – 1 november: Dagligen kl. 10-16" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.oland.se/vinterutflykter — "Starta din tur längs Strandvägen vid kallbadhuset intill hamnen."; "Passa på att gå runt den ståtliga ruinen och speja ut över Kalmarsund."; "Återvänd sedan till Borgholm via Garderobstrappan ner till Slottsskogen." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Borgholms slott har öppet för besök till och med 1 november 2026 enligt slottets egen sida. Som vinterutflykt föreslår oland.se en promenad som börjar vid hamnen i Borgholm, går förbi slottsruinen med utsikt över Kalmarsund och tillbaka ner genom Slottsskogen. Mer om staden finns i <a href="/guider/borgholm-guide">guiden till Borgholm</a>.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kallbad och skridskor</h3>
+<!-- KÄLLA: https://www.oland.se/kallbada-i-vinter — "Sjöstugan i Borgholm."; "Kallbadhuset i Borgholm."; "Färjestadens hamn."; "Kalvhagens badplats (dubbelkolla med Mörbylånga kommun så stegen är i när isen lagt sig)."; "Bada aldrig ensam!"; "Doppa inte huvudet när det är minusgrader." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Oland.se tipsar om kallbad vid Sjöstugan och Kallbadhuset i Borgholm, i Färjestadens hamn och vid Kalvhagens badplats. Vid Kalvhagen ska du kolla med Mörbylånga kommun att stegen sitter kvar när isen lagt sig. Bada aldrig ensam och doppa inte huvudet när det är minusgrader. Mer finns i guiden <a href="/guider/isbad-vinterbad-sverige">Isbad och vinterbad</a>.</p>
+<!-- KÄLLA: https://www.oland.se/skridskoakning-pa-alvaret — "På alvaret samlas det vatten här och var vid små ”mossar”, och där är det perfekt att åka skridskor!"; "En av de populäraste isarna på alvaret är Möckelmossen som är alvarets största sjö." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">När det fryser samlas vatten i grunda mossar på alvaret där man kan åka skridskor. Möckelmossen är alvarets största sjö.</p>
+<!-- KÄLLA: https://www.sjoraddning.se/sjosakerhet/issakerhet — "Det är skillnad på is och is. En 20 cm tjock is kan vara mindre hållbar än en is på 5 cm." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sjöräddningssällskapet påminner om att tjockleken inte säger allt: en 20 centimeter tjock is kan vara svagare än en på 5 centimeter, beroende på isens kvalitet och struktur.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julbord, butiker och turistbyrå</h2>
+<!-- KÄLLA: https://www.oland.se/ — "nov - dec 2026" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.oland.se/jul-och-nyar — "Kombinera det bästa julen har att erbjuda och boka ett julpaket med övernattning och julbord" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.ekerum.com/ — "När vintern sveper in och ljusen tänds, bjuder vi in till en julupplevelse fylld av dofter, smaker och värme." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I november och december samlar oland.se julmarknader, julbord och julpaket med övernattning. Ekerum Resort har till exempel julbord enligt sin egen sida. Aktuella tider för restauranger och butiker på vintern hittar du hos respektive ställe och i oland.se:s kalender.</p>
+<!-- KÄLLA: https://www.oland.se/olands-turistbyra — "Träffpunkt Öland 102"; "386 33 Färjestaden"; "turistbyrån i borgholm"; "Storgatan 1" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ölands turistbyrå finns i Färjestaden (Träffpunkt Öland 102) och i Borgholm (Storgatan 1). Kolla öppettiderna på oland.se innan du åker dit.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Att tänka på</h2>
+<!-- KÄLLA: https://www.oland.se/vinterutflykter — "Kombinera din utflykt till fina platser med ett besök hos ett café eller en restaurang eller varför inte ta en paus vid en grillplats." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Många besöksmål har säsongsöppet. Kolla öppettider på verksamhetens egen sida innan du åker.</li>
+<li>Oland.se föreslår att kombinera utflykter med en paus vid någon av öns anlagda grillplatser. Ta med egen mat om du är osäker på vad som har öppet.</li>
+<li>Drönare är förbjudna i Ottenby naturreservat, och i Trollskogen får hundar inte gå lösa.</li>
+<li>Andra årstider på Öland: <a href="/guider/host-oland-2026">Öland på hösten</a> och <a href="/guider/oland-guide">Ölandsguiden</a>.</li>
 </ul>
 `,
 
@@ -13026,30 +14283,78 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 `,
 
   'nattkryssning-skargarden': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det finns en speciell stämning i att vara ute på vattnet när Stockholm slagit igen sina kontorsdörrar. Brygglamporna tänds, kvällssolen drar långa skuggor över vattnet och middagen serveras utan stress om sista tåget hem. Det är kvällsskärgård – och den är undervärderad.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "Cinderellabåtarna kör kvällstrafik" (operatören anger ingen kvällstrafik, och säsongen slutar i september), "chartrade middagskryssningar från Strandvägen – juli är fulltecknat", restauranger och deras öppettider på Sandhamn, Grinda och i Vaxholm, restid till Fjäderholmarna från Strandvägen, "specialavgångar på midsommarafton", "midnattssol", priser utan prislista samt värdeord. -->
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/ — "Middagskryssning i skärgården"; "Räkfrossa i Stockholms skärgård"; "Kvällskryssning i skärgården med buffé" (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En kvällskryssning i Stockholms skärgård kan vara en middagskryssning med båt från centrala Stockholm, en räkkryssning eller en vanlig skärgårdsbåt ut till en ö och tillbaka. Här är vad operatörerna själva anger om turerna hösten 2026 och säsongen 2027, och hur du kommer hem med reguljär trafik om du äter middag ute på en ö.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sista båten – längre ute än du tror</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget kör senare än de flesta tror under sommarsäsongen. Det innebär att du kan ta middagen på en skärgårdsrestaurang och fortfarande hinna hem med reguljär trafik.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kontrollera alltid aktuell tidtabell på <strong>waxholmsbolaget.se</strong> – avgångstiderna varierar per linje och säsong och uppdateras varje år.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kvällskryssning i Stockholms skärgård hösten 2026</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Strömma Kanalbolaget har flest middagskryssningar från city. Två av dem går fortfarande under hösten enligt Strömmas egna sidor. Övriga kvällsturer är markerade som att de kommer tillbaka först 2027.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Cinderellabåten</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Cinderellabåtarna kör kvällstrafik till populära öar under högsäsong. Avgångarna från Strömkajen är ett etablerat alternativ för den som vill ut i skärgården på kvällen utan att chartra privat båt. Kolla Cinderellabåtarnas hemsida för aktuell tidtabell och bokningsinfo.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Middagskryssning med S/S Stockholm</h3>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/middagskryssningar/ss-stockholm/ — "Kliv ombord på klassiska S/S Stockholm och följ med på en 3-timmars middagskryssning i skärgården."; "Förboka en trerättersmeny eller välj din middag ombord."; "Kajplatsområde 16" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/middagskryssningar/ss-stockholm/ — "17 september – 15 november: Torsdag–fredag kl. 18:00" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">S/S Stockholm går från Strandvägen, kajplatsområde 16, på en tre timmar lång middagskryssning i skärgården. Du kan förboka en trerättersmeny eller välja maten ombord. Enligt tidtabellen på Strömmas sida går turen torsdagar och fredagar kl. 18.00 under perioden 17 september–15 november.</p>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/middagskryssningar/ss-stockholm/ — "Om ni är 8 personer eller fler behöver ni förboka er meny i förväg."; "Dryck ingår inte – beställ och betala ombord" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sällskap på åtta personer eller fler måste förboka menyn. Dryck ingår inte utan beställs och betalas ombord.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Chartrade kvällskryssningar</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera aktörer erbjuder chartrade middagskryssningar och kvällsturer från Strömkajen och Strandvägen. Dessa passar grupper som vill ha en privat upplevelse med middag ombord. Boka i god tid – juli är fulltecknat.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Räkfrossa med M/S Strömma Kanal</h3>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/middagskryssningar/rakfrossa/ — "Nybrokajen kl. 19:30"; "Kajplatsområde 10"; "I biljetten ingår tre timmars kryssning i skärgården och räkor med klassiska tillbehör."; "Under turen stannar vi till vid Vaxholms Kastell där ni kan gå av båten och sträcka på benen." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/middagskryssningar/rakfrossa/ — "27 september – 24 oktober" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Räkkryssningen med M/S Strömma Kanal går från Nybrokajen, kajplatsområde 10, kl. 19.30 och tar tre timmar. I biljetten ingår kryssningen och räkor med tillbehör. Under turen stannar båten vid Vaxholms kastell, där du kan gå i land en kort stund. Enligt tidtabellen på Strömmas sida går turen torsdag till lördag från 27 september till 24 oktober.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa öarna för kvällsmiddag</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sandhamn:</strong> Sandhamns Värdshus serverar middag till sent på kvällen. Sista båten hem är sen under högsäsong – kontrollera tidtabellen.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Grinda:</strong> Grinda Wärdshus har kvällsservering sommartid. Lugnt och vackert i solnedgången.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Vaxholm:</strong> Nära och lättillgängligt hela säsongen. Flera restauranger öppna till 21–22.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fjäderholmarna:</strong> 25 minuter från Strandvägen – perfekt för kvällsmiddag utan komplicerad planering.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sommarens kvällskryssningar kommer tillbaka 2027</h3>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/middagskryssningar/kvallskryssning-i-skargarden-med-buffe/ — "ÅTER 2027"; "Strandvägen kl. 19:30"; "Klassisk skärgårdsbåt från 1912"; "Båten tar dig under Skurubron och vidare genom det natursköna Skurusundet" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kvällskryssningen med buffé på M/S Gustafsberg VII, en skärgårdsbåt från 1912, är enligt Strömma tillbaka 2027. Den avgår från Strandvägen kl. 19.30 och går under Skurubron och genom Skurusundet innan den fortsätter ut i skärgården.</p>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/middagskryssningar/skargardskryssning-med-trubadur/ — "Nybrokajen kl. 19:00"; "Innan båten vänder hemåt görs ett strandhugg på en skärgårdsö." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/middagskryssningar/skargardskryssning-med-trubadur/ — "12 augusti – 25 september" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdskryssningen med trubadur på M/S Mälar Victoria avgår från Nybrokajen kl. 19.00, har middagsbuffé och livemusik och gör ett strandhugg på en skärgårdsö innan båten vänder. Enligt tidtabellen på Strömmas sida gick höstens sista avgångar 12 augusti–25 september, så nästa chans är säsongen 2027.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Kontrollera alltid sista båten <em>innan</em> du bokar middag</li>
-  <li>Ta med ett extra lager kläder – kvällar ute på vattnet är svalare än på land</li>
-  <li>Boka restaurang i förväg – kvällssittningarna är ofta fullbokade i juli</li>
-  <li>Midsommarafton har specialavgångar – kolla separat tidtabell</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dagskryssning och skärgårdskryssning från Stockholm</h2>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/sightseeing/batsightseeing/lilla-skargardsturen/ — "Följ med på en av våra mest populära båtturer i Stockholms skärgård – med dagliga avgångar, året runt."; "du själv väljer hur länge du vill vara ute på sjön: 1,5, 2,5 eller 3 timmar."; "Alla turer är liveguidade på engelska. Turerna på 2,5 och 3 tim guidas även på svenska." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Lilla skärgårdsturen</strong> är Strömmas guidade tur från Strandvägen med dagliga avgångar året runt. Du väljer mellan 1,5, 2,5 och 3 timmar. Alla turer guidas på engelska, och turerna på 2,5 och 3 timmar guidas även på svenska. Den kortaste turen går runt Fjäderholmarna och den längsta passerar Vaxholm.</p>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/sightseeing/batsightseeing/lilla-skargardsturen/ — "Se både city och skärgården på denna tur runt Fjäderholmarna"; "Se det mesta av skärgården & åk förbi Vaxholm" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/brunchkryssningar/brunchkryssning/ — "Turen avgår från Strandvägen lördagar och söndagar, året runt. I biljetten ingår både båtresa och brunch."; "Strandvägen kl. 12:00" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Brunchkryssningen</strong> med S/S Stockholm går från Strandvägen kl. 12.00 lördagar och söndagar året runt. Turen är tre timmar och biljetten gäller både båtresa och brunch.</p>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/tusen-oars-kryssning/ — "ÅTER JUNI 2027"; "Nybrokajen kl. 09:30"; "Unik kryssning med guidade promenader på de populära skärgårdsöarna Sandhamn, Bullerö och Kymmendö"; "Eftersom turen är lång och mestadels ute till sjöss ombord på båten rekommenderar vi inte turen för barn." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Tusen öars kryssning</strong> är en heldagstur på elva timmar med M/S Waxholm III från Nybrokajen kl. 09.30, med guidade promenader på Kymmendö, Bullerö och Sandhamn och måltider ombord. Den är tillbaka i juni 2027. Strömma rekommenderar inte turen för barn eftersom den är lång.</p>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/sandhamn/ — "ÅTER JUNI 2027"; "Guidad båtutflykt från Stockholm till Sandhamn via Strömma Kanal."; "Ca 2 tim stopp på Sandhamn." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Strömma kanalturen till Sandhamn</strong> är en guidad dagsutflykt med ungefär två timmar på <a href="/o/sandhamn">Sandhamn</a>. Även den kommer tillbaka i juni 2027.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Cinderellabåtarna till Grinda, Gällnö, Sandhamn och Vaxholm</h3>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — "30 apr - 27 sep 2026"; "Kliv ombord vid Strandvägen och res till några av Stockholms skärgårds mest älskade öar – Sandhamn, Grinda, Gällnö och Vaxholm."; "Säsongen löper från slutet av april till slutet av september." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Cinderellabåtarna går från Strandvägen till Sandhamn, <a href="/o/grinda">Grinda</a>, Gällnö och Vaxholm. Säsongen 2026 pågår 30 april–27 september, och enligt Strömma löper säsongen från slutet av april till slutet av september.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julbordskryssning och nyårskryssning</h2>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/julbord/julbordskryssningar-i-stockholms-skargard/ — "FRÅN NOVEMBER 2026"; "Välj mellan en lunchkryssning på cirka 2,5 timmar och en middagskryssning på cirka 3 timmar."; "Kryssningarna avgår från Nybrokajen/Strandvägen i centrala Stockholm." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från november 2026 har Strömma julbordskryssningar i skärgården. Du väljer mellan en lunchkryssning på cirka 2,5 timmar och en middagskryssning på cirka 3 timmar, med avgång från Nybrokajen eller Strandvägen beroende på båt.</p>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/julbord/nyarskryssning/ — "Strandvägen kl. 20:00"; "5-timmars kryssning i skärgården"; "Vid tolvslaget lyser fyrverkerierna upp Stockholm och du har första parkett." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På nyårsafton går nyårskryssningen från Strandvägen kl. 20.00. Kryssningen är fem timmar, och enligt Strömma har du första parkett när fyrverkerierna lyser upp Stockholm vid tolvslaget. Mer om att fira i skärgården finns i guiderna <a href="/guider/jul-skargarden-2026">Jul i skärgården</a> och <a href="/guider/nyar-skargarden-2026">Nyår i skärgården</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Chartra båt i Stockholm för fest eller middag</h2>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/grupper-foretag/ — "Middag på privat båt i Mälaren & Stockholms skärgård"; "Festpaket på M/S Gustafsberg VII i Stockholms skärgård"; "Flytande privat festlokal för 60-120 personer"; "Be om en offert direkt" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill ni ha båten för er själva har Strömma paket för middag på privat båt i Mälaren och Stockholms skärgård. M/S Gustafsberg VII kan till exempel bokas som festlokal för 60–120 personer. Priset lämnas som offert, så kontakta Strömmas grupp- och eventavdelning.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kvällsmiddag på en ö och sista båten hem</h2>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period."; "Tänk på att tidtabellerna visar hur trafiken är planerad. Fartygen kan ändras med kort varsel." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du äta middag ute på en ö och åka hem med reguljär trafik, är Waxholmsbolaget ditt alternativ. Bolaget byter tidtabell fyra gånger om året, och vissa linjer går bara under delar av en period. Tidtabellerna visar planerad trafik och fartygen kan ändras med kort varsel. Sök därför din hemresa i reseplaneraren innan du bokar bord. Läs också <a href="/guider/missat-sista-baten">vad du gör om du missat sista båten</a>.</p>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Båtresan från Strömkajen tar bara en timme och under sommaren går det turer många gånger om dagen, och övrig tid på året går det flera per dag."; "skulle det inte passa med en båt hem, går SL:s bussar från Vaxholm till Tekniska högskolan." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong><a href="/o/vaxholm">Vaxholm</a></strong> är enklast för en kvällsmiddag. Båten från Strömkajen tar en timme och går flera gånger om dagen även utanför sommaren. Passar ingen båt hem går SL:s bussar från Vaxholm till Tekniska högskolan.</p>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt."; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sandhamn</strong> har båt året runt. Från Stavsnäs tar resan drygt en timme, och på sommaren går det även båtar från Strömkajen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Res med SL-biljett under lågsäsongen</h3>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/nyheter-och-trafikinfo/lagsasongen-igang — "Från och med den 14 september inleds lågsäsongen i Waxholmsbolagets trafik." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/nyheter-och-trafikinfo/lagsasongen-igang — "Från den 14 september till den 29 april 2027 kan du som har en SL-biljett som gäller för 30 dagar eller längre resa i hela Waxholmsbolagets trafik." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från 14 september 2026 till 29 april 2027 gäller SL-biljetter för 30 dagar eller längre i hela Waxholmsbolagets trafik. Med en sådan biljett kan du alltså göra din egen dagskryssning ut i skärgården och tillbaka. Se också <a href="/guider/sl-kort-skargarden">SL-kort i skärgården</a> och <a href="/guider/waxholmsbolaget-guide">guiden till Waxholmsbolaget</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips inför kvällen på vattnet</h2>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/tusen-oars-kryssning/ — "Under en heldag i skärgården kan vädret snabbt skifta så vi rekommenderar att du packar ner följande:"; "Extra tjock tröja"; "Filt till kvällen" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/matkryssningar/brunchkryssningar/brunchkryssning/ — "OBS! Ingen guidning i matsalarna för matgäster. Guidning sker endast i utrymmen avsedda för övriga passagerare." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Kolla hemresan innan du bokar middag ute på en ö.</li>
+<li>Strömma påpekar att vädret kan skifta snabbt i skärgården. Ta med en extra tjock tröja och gärna en filt till kvällen.</li>
+<li>På brunchkryssningen med S/S Stockholm guidas det inte i matsalarna, bara i de utrymmen som är avsedda för övriga passagerare.</li>
+<li>Se till att turen faktiskt går det datum du tänkt dig. Flera kvällsturer är markerade "Åter 2027" på Strömmas sida.</li>
 </ul>
 `,
 
@@ -13091,37 +14396,94 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 `,
 
   'hund-skargarden': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Att ta med hunden till skärgården är en av sommarsäsongens bästa upplevelser – för dig och för hunden. Klippor att utforska, saltluft och öar utan bilstraffik. Men det kräver lite mer planering än en hundfri resa.</p>
+<!-- OMSKRIVEN 2026-09-27. Borttaget utan källa eller fel: "hunden behöver ingen biljett men ska hållas kopplad under hela resan" (stämmer i sak men gällde utan källa), "välj aktern för mer utrymme", "ingen officiell begränsning på hundar ombord" (operatören begränsar antalet djur), "koppeltvång under fåglarnas häckningssäsong" (reglerna gäller en fast period och i många reservat hela året), "böter", Vaxholm med hundvänliga kaféer och "nästan inga restriktioner", Möja "bilfri" och restid från Strömkajen, Arholma med sandstrand och vandrarhem, "reservatsrestriktionerna lättar" efter häckningen, solskydd och flytväst för hund, samt värdeord och rangordningen "bästa öarna". -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/friluftsliv-och-allemansratt.html — "På våren vaknar naturen till liv och ungar föds. Håll hunden kopplad. 1 mars till 20 augusti ska du alltid ha den kopplad. I många naturreservat ska hunden vara kopplad hela året." (läst 2026-09-27) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med — "Du får ta med hundar och mindre sällskapsdjur gratis." (läst 2026-09-27) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Hunden får följa med på skärgårdsbåten, men i skärgården gäller strikta regler om koppel. Länsstyrelsen i Stockholms län sammanfattar det så här: mellan 1 mars och 20 augusti ska hunden alltid vara kopplad, och i många naturreservat ska den vara kopplad hela året. Här är vad som gäller på båten, på öarna, i naturreservaten och på badplatserna.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Waxholmsbolaget och hund</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hund på koppel är välkommen på Waxholmsbolagets linjer. Hunden behöver ingen biljett men ska hållas kopplad under hela resan. På fullsatta sommarbåtar kan det vara trångt – välj aktern för mer utrymme. På de flesta linjer finns ingen officiell begränsning på hundar ombord, men kontrollera på waxholmsbolaget.se om du är osäker på din specifika linje.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Får man ta med hund på Waxholmsbolaget?</h2>
+<!-- KÄLLA: https://waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med — "Du får ta med hundar och mindre sällskapsdjur gratis. Ombord på båten finns det skyltar som visar var det finns platser för dig som reser med husdjur. Hundar ska hållas kopplade ombord, mindre sällskapsdjur ska förvaras i väska eller bur."; "Du som har ledarhund eller assistanshund kan även sitta med hunden på andra platser än de ordinarie husdjursplatserna." (läst 2026-09-27) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/att-resa-med-oss/resevillkor — "Husdjur måste vara kopplade eller sitta i väska/bur. Du får bara ta med djur i de delar av fartyget som inte har förbudsskylt. Du får ta med dig som mest två djur om de inte sitter i väska/bur. Ledarhund och assistanshund får följa med överallt." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ja. Hunden reser gratis på Waxholmsbolagets båtar, men den ska vara kopplad ombord. Skyltar ombord visar var platserna för husdjursresenärer finns, och i de delar av fartyget som har en förbudsskylt får du inte ha med djur. Du får ha med högst två djur, om de inte sitter i väska eller bur. Ledarhundar och assistanshundar får följa med överallt ombord.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Regler i naturreservat</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Många av skärgårdens öar är naturreservat med koppeltvång under fåglarnas häckningssäsong. Reglerna varierar per reservat och år – kontrollera alltid Länsstyrelsens skyltning och information på länsstyrelsen.se för det specifika reservat du planerar att besöka. En lös hund kan allvarligt störa häckande fåglar och utsätta dig för böter.</p>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Generellt råd: håll hunden kopplad på alla öar under våren och försommaren.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Koppel 1 mars–20 augusti: vad gäller i hela landet?</h2>
+<!-- KÄLLA: https://jordbruksverket.se/djur/hundar-katter-och-smadjur/hundar/sa-skoter-du-din-hund — "Mellan den 1 mars och den 20 augusti får hundar inte springa lösa där det kan finnas vilda djur. Under övrig tid av året ska du se till att hundar inte driver eller förföljer vilt när de inte deltar i jakt." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/ — "Mellan 1 mars och 20 augusti måste du ha extra uppsikt över din hund i naturen. Under den tiden får hunden inte springa lös. I praktiken innebär det nästan alltid att du behöver ha hunden kopplad."; "I praktiken ska hunden, om den är lös, vara högst någon meter ifrån dig." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt Jordbruksverket får hundar inte springa lösa där det kan finnas vilda djur mellan 1 mars och 20 augusti. Resten av året ska du se till att hunden inte driver eller förföljer vilt. Naturvårdsverket skriver att det i praktiken nästan alltid betyder koppel under perioden: en lös hund ska vara högst någon meter från dig.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/skotsel-av-djur/tillsyn-over-hundar-och-katter.html — "Mellan 1 mars och 20 augusti är djurlivet som känsligast och du ska hålla extra uppsikt över din hund i naturen. Det innebär att den ska vara kopplad eller under sådan kontroll att det motsvarar ett koppel. Din hund kan omhändertas om den springer lös i skog och mark under denna period." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/ — "Tänk på att en hund som springer löst i naturen får kopplas av en jakträttshavare, som ofta är markägaren eller någon som företräder denne." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Länsstyrelsen i Stockholm påpekar att djurlivet är som känsligast under den perioden och att en hund som springer lös i skog och mark då kan omhändertas. En lös hund i naturen får också kopplas av den som har jakträtten, ofta markägaren.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa öarna med hund</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Länsstyrelsens föreskrift om koppeltvång i Stockholms skärgård</h3>
+<!-- KÄLLA: https://www.lansstyrelsen.se/download/18.4df86bcd164893b7cd92abaa/1534325706010/01FS%201990%20010%20F%C3%B6reskrift%20om%20koppeltv%C3%A5ng%20f%C3%B6r%20hundar%20i%20Stockholms%20l%C3%A4ns%20sk%C3%A4rg%C3%A5rd.pdf — "hundar skall hållas kopplade (koppeltvång) årligen under tiden den 1 mars - 20 augusti på alla öar i saltsjön i Stockholms läns skärgård."; "Öar som har fast bro- eller tunnelförbindelse med fastlandet omfattas inte av koppeltvånget."; "På tomt i anslutning … till boningshus … får hund hållas utan koppel." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/download/18.4df86bcd164893b7cd92abaa/1534325706010/01FS%201990%20010%20F%C3%B6reskrift%20om%20koppeltv%C3%A5ng%20f%C3%B6r%20hundar%20i%20Stockholms%20l%C3%A4ns%20sk%C3%A4rg%C3%A5rd.pdf — "Arholma"; "Ljusterö"; "Ingmarsö"; "Möja"; "Runmarö"; "Utö" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Länsstyrelsen i Stockholms län beslutade 1990 en särskild föreskrift om koppeltvång för hundar i skärgården. Den säger att hundar ska vara kopplade varje år 1 mars–20 augusti på alla öar i saltsjön i Stockholms läns skärgård. Öar med fast bro- eller tunnelförbindelse med fastlandet omfattas inte, och inte heller ett antal större öar som räknas upp i föreskriften, bland dem Arholma, Ljusterö, Ingmarsö, Möja, Runmarö och Utö. På tomten vid ett bostadshus får hunden vara okopplad.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/download/18.2c30d6f167c5e8e7c015aaf/1547824511573/01FS%202019%20001%20F%C3%B6rteckning%20%C3%B6ver%20f%C3%B6reskrifter%20och%20allm%C3%A4nna%20r%C3%A5d%20utf%C3%A4rdade%20av%20L%C3%A4nsstyrelsen%20i%20Stockholms%20l%C3%A4n%20och%20som%20g%C3%A4ller%20den%2031%20december%202018.pdf — "Förteckningen avser föreskrifter som gäller den 31 december 2018."; "Föreskrift om koppeltvång för hundar i Stockholms läns skärgård" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Föreskriften finns med i Länsstyrelsens förteckning över de föreskrifter som gällde i länet den 31 december 2018. Att en ö är undantagen i den gör ändå ingen skillnad i praktiken under våren och sommaren: den nationella regeln ovan gäller överallt, och på öar med naturreservat gäller reservatets egna regler.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Vaxholm – stadskänsla utan stress</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm är den enklaste hundvänliga öen – det är en stad med gator, restauranger och hundvänliga kaféer. Du kan gå promenad längs kajen, utforska det gamla stadskärnan och äta lunch med hunden vid ett uteservering. Nästan inga restriktioner utanför naturreservaten i närheten.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hund i naturreservat i skärgården</h2>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/ — "Ha alltid koppel på hunden när ni vistas i nationalparker eller naturreservat."; "I vissa skyddade områden kan det vara förbjudet att ta med hund, kolla upp vad som gäller innan." (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/att-besoka-skyddad-natur/ — "Alla Skärgårdsstiftelsens områden är naturreservat och ger dig möjlighet att besöka Stockholms skärgård året runt." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/friluftsliv-och-allemansratt.html — "Föreskrifterna hittar du på varje reservats webbsida och även i det formella beslutsdokumentet. Föreskrifterna finns ofta också på informationsskyltar i det skyddade området." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturvårdsverkets råd är att alltid ha hunden kopplad i naturreservat, och i vissa skyddade områden får du inte ta med hund alls. Alla Skärgårdsstiftelsens områden är naturreservat. Varje reservat har egna föreskrifter, som finns på reservatets sida hos Länsstyrelsen och ofta på skyltar på plats. Några exempel från Länsstyrelsen i Stockholm:</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — "I reservatet är det förbjudet att"; "medföra okopplad hund" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/finnhamn.html — "medföra okopplad hund" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "medföra hund som inte är kopplad" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gallno.html — "medföra hund som inte är kopplad" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/arholma-ido.html — "medföra okopplad hund" (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Grinda, Finnhamn, Nåttarö, Gällnö och Arholma-Idö:</strong> det är förbjudet att ha med okopplad hund i reservatet. Regeln gäller hela året.</li>
+</ul>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "inom hela reservatet med undantag av Persholmen medföra hund som ej är kopplad. För Persholmen skall hund vara kopplad under tiden 1 mars - 20 augusti och under övrig tid hållas under uppsikt" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/stora-nassa.html — "vid landstigning medföra hund, katt eller annat tamdjur. Kopplad hund eller annat tamdjur får dock medföras på Bäckskäret och Stora Bonden"; "Under tiden 1 februari till 31 augusti är det förbjudet att gå iland eller vistas närmare än 100 meter från de öar i Stora Nassa som är fågelskyddsområden." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Utö:</strong> hunden ska vara kopplad i hela reservatet utom på Persholmen. Där ska den vara kopplad 1 mars–20 augusti och hållas under uppsikt resten av året.</li>
+<li><strong>Stora Nassa:</strong> det är förbjudet att ta med hund i land, utom kopplad på Bäckskäret och Stora Bonden. Fågelskyddsområdena får du inte gå i land på eller komma närmare än 100 meter 1 februari–31 augusti.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om öarna finns i våra guider om <a href="/guider/grinda-guide">Grinda</a>, <a href="/guider/finnhamn-guide">Finnhamn</a>, <a href="/guider/nattaro-guide">Nåttarö</a>, <a href="/guider/uto-komplett-guide">Utö</a> och <a href="/guider/arholma-guide">Arholma</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Möja – bilfri och lugn</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Möja är bilfri, vilket gör den perfekt för hundar. Inga bilar, öppna marker och lantliga vägar att promenera på. Planera för en halvdags- eller heldagstur – resan dit tar ca 2,5 timmar från Strömkajen.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Får hunden bada? Hundar på badplatser</h2>
+<!-- KÄLLA: https://www.varmdo.se/byggabomiljo/boendemiljo/djur/reglergallandehundar.4.18c983316e0536cb18bb92f.html — "Hundar ska hållas kopplade i kommunen på offentliga platser och hundar får inte vistas på allmänna badplatser, begravningsplatser och allmänna lekparker."; "I naturreservat gäller oftast alltid kopplingstvång, oavsett hur bra lydnad du har på din hund." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.varmdo.se/barnochutbildning/yngrebarn/alltomforskolaochbarnomsorg/forskolorivarmdo/mojaforskola.4.612ff7261872c3a6ab31b3.html — "Skärgårdsförskolorna består av Möja förskola, Runmarö förskola och Sandhamn förskola." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Många kommuner förbjuder hundar på de allmänna badplatserna. I Värmdö kommun, där bland annat Sandhamn och Möja ligger, ska hundar vara kopplade på offentliga platser och får inte alls vistas på allmänna badplatser, begravningsplatser eller allmänna lekparker.</p>
+<!-- KÄLLA: https://www.haninge.se/uppleva-och-gora/natur-parker-och-lekplatser/hundar/ — "Hundar ska hållas kopplade. Undantag gäller på anordnade hundrastplatser, där du får släppa hunden lös."; "Mellan 1 maj–30 september får hundar inte vistas på delar av kommunens badplatser." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html — "Kommun: Haninge" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kommun: Haninge" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Haninge kommun, där bland annat Utö och Nåttarö ligger, ska hundar vara kopplade på allmän plats utom i hundrastgårdar, och mellan 1 maj och 30 september får de inte vara på delar av kommunens badplatser.</p>
+<!-- KÄLLA: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Hundar får gärna bada men inte på kommunens offentliga badplatser under sommaren, enligt de allmänna lokala ordningsföreskrifterna för Sotenäs kommun."; "Smögen - Sandö, Vallevik och herr- och dambadet vid Makrillviken" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På västkusten är det likadant. Sotenäs kommun skriver att hundar gärna får bada, men inte på kommunens offentliga badplatser under sommaren – på Smögen gäller det Sandö, Vallevik och herr- och dambadet vid Makrillviken. Kolla kommunens lokala ordningsföreskrifter där du är, och låt hunden bada en bit bort från de ordnade baden.</p>
+<!-- KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo.4.18c983316e0536cb189a176.html — "Vid tydliga tecken av algblomning i vattnet bör du undvika att bada. Det kan till exempel vara att vattnet är grumligt, färgat eller har synliga klumpar av alger."; "Även husdjur och personer med allergier är särskilt känsliga." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Algblomning:</strong> Värmdö kommun påpekar att husdjur är särskilt känsliga för algblommande vatten. Låt inte hunden bada eller dricka där vattnet är grumligt eller färgat eller har synliga klumpar av alger.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Arholma – norra skärgårdens pärlor</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma i norra Roslagen har sandstrand, STF-vandrarhem och öppna marker. Det är en av skärgårdens mest genuina öar – långt från turisttrycket. Kontrollera reservatsreglerna för specifika delar av ön.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka öar kan man besöka med hund?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Reglerna skiljer sig mellan öarna, beroende på kommun och på om ön har naturreservat. Några exempel:</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/arholma-ido.html — "Både Arholma och Idö är en kulturbygd där jordbruk, jakt, fiske och sjöfart utgjort de huvudsakliga försörjningskällorna."; "medföra okopplad hund" (läst 2026-09-27) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/arholma/ — "Landskapet har brukats i hundratals år och än idag hålls de öppna markerna vid liv av betande djur." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/ — "Ha alltid hunden i koppel nära betande djur och i renbetesmarker." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Arholma</strong> i norra skärgården är undantagen i Länsstyrelsens föreskrift från 1990, men på ön finns naturreservatet Arholma-Idö, där okopplad hund är förbjuden. De öppna markerna hålls öppna av betande djur, och nära betande djur ska hunden alltid vara kopplad.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Skyddat sedan: 1974"; "Kommun: Haninge"; "Förvaltare: Skärgårdsstiftelsen" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Utö</strong> är också undantagen i föreskriften, men på Utö finns ett naturreservat, skyddat sedan 1974 och förvaltat av Skärgårdsstiftelsen. I reservatet gäller koppel hela året, utom på Persholmen.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/download/18.4df86bcd164893b7cd92abaa/1534325706010/01FS%201990%20010%20F%C3%B6reskrift%20om%20koppeltv%C3%A5ng%20f%C3%B6r%20hundar%20i%20Stockholms%20l%C3%A4ns%20sk%C3%A4rg%C3%A5rd.pdf — "Möja" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.varmdo.se/byggabomiljo/boendemiljo/djur/reglergallandehundar.4.18c983316e0536cb18bb92f.html — "Hundar ska hållas kopplade i kommunen på offentliga platser och hundar får inte vistas på allmänna badplatser"; "Under perioden mellan den 1 mars och den 20 augusti ska hundar i kommunen hållas under sådan tillsyn att de hindras från att springa lösa i marker där det kan finnas vilda djur." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.varmdo.se/barnochutbildning/yngrebarn/alltomforskolaochbarnomsorg/forskolorivarmdo/mojaforskola.4.612ff7261872c3a6ab31b3.html — "Möja förskola är en del av Skärgårdsförskolorna." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Möja</strong> är undantagen i föreskriften från 1990. Men Möja ligger i Värmdö kommun, och där gäller kommunens regler: koppel på offentliga platser, inga hundar på allmänna badplatser och koppel i naturen 1 mars–20 augusti. Läs mer i vår <a href="/guider/moja-guide">guide till Möja</a>.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Packlista för hunden</h2>
-<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li>Tillräckligt med vatten – saltvatten duger inte och sötvatten är begränsat på öarna</li>
-  <li>Extra koppel (ett kan gå förlorat eller gå sönder)</li>
-  <li>Hundpåsar – på öarna finns sällan papperskorgar nära</li>
-  <li>Solskydd för hundar med kort päls vid längre utevistelse i full sol</li>
-  <li>Flytväst om hunden följer med i kajak eller liten båt</li>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Packlista och ansvar för hunden</h2>
+<!-- KÄLLA: https://jordbruksverket.se/djur/hundar-katter-och-smadjur/hundar/sa-skoter-du-din-hund — "Hunden ska ha fri tillgång till dricksvatten."; "Du bör rasta din hund minst var 6:e timme dagtid." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/skotsel-av-djur/tillsyn-over-hundar-och-katter.html — "Hundar och katter som bor i Sverige ska vara märkta med mikrochip eller tatuering, och vara registrerade i Jordbruksverkets register." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.varmdo.se/byggabomiljo/boendemiljo/djur/reglergallandehundar.4.18c983316e0536cb18bb92f.html — "Se till att din hund har halsband med ditt namn, adress och telefonnummer när den inte hålls kopplad."; "Avföring från hundar räknas som avfall och ska slängas i soporna."; "Hundar får inte heller förorena sandlådor eller stränder." (läst 2026-09-27) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Dricksvatten och skål.</strong> Jordbruksverket skriver att hunden ska ha fri tillgång till dricksvatten.</li>
+<li><strong>Koppel</strong> – för båten, naturreservaten och perioden 1 mars–20 augusti.</li>
+<li><strong>Halsband med ditt namn, adress och telefonnummer.</strong> Hunden ska också vara märkt och registrerad i Jordbruksverkets register.</li>
+<li><strong>Hundpåsar.</strong> Hundbajs räknas som avfall och ska slängas i soporna, och hunden får inte förorena stränder.</li>
+<li><strong>Tid för rastning.</strong> Jordbruksverket rekommenderar att rasta hunden minst var sjätte timme dagtid – tänk på det om båtresan och utflykten blir lång.</li>
 </ul>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa säsongen</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sensommar och tidig höst (augusti–september) är idealiskt. Fåglarna är klara med häckningen, reservatsrestriktionerna lättar, och öarna är mindre trängda. Hunden kan bada i det fortfarande varma vattnet och promenera på öar som under juli hade köer vid bryggan.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">När på året är det lättast att ha med hund?</h2>
+<!-- KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/ — "Du som hundägare måste hindra din hund från att störa vilda djur även under andra tider på året. Det innebär att din hund får vara lös så länge du kan se den, förutsatt att du kan stoppa hunden eller kalla in den om den stöter på ett vilt djur." (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.haninge.se/uppleva-och-gora/natur-parker-och-lekplatser/hundar/ — "Mellan 1 maj–30 september får hundar inte vistas på delar av kommunens badplatser." (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Efter 20 augusti får hunden enligt Naturvårdsverket vara lös i naturen så länge du ser den och kan kalla in eller stoppa den om den stöter på vilt. Det gäller inte i naturreservat där koppel gäller hela året, och inte på kommunernas badplatser där hundar är förbjudna. Haninges förbud på delar av badplatserna gäller till exempel till och med september. Läs också vår guide <a href="/guider/allemansratten-pa-sjon">allemansrätten på sjön</a> om du reser med egen båt.</p>
 `,
 
   'barnfamilj-stockholms-skargard': `
