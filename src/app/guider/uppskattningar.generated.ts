@@ -67,17 +67,7 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
-  "aland-guide": {
-    "antal": 1,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
   "missat-sista-baten": {
-    "antal": 1,
-    "datum": "2026-08",
-    "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
-  },
-  "batkorkort-guide": {
     "antal": 1,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
@@ -93,7 +83,7 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
   "ankra-sova-bat": {
-    "antal": 3,
+    "antal": 2,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
@@ -138,11 +128,11 @@ export const UPPSKATTNINGAR_PER_GUIDE: Record<string, Uppskattning> = {
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   },
   "dagstur-marstrand": {
-    "antal": 8,
+    "antal": 3,
     "datum": "2026-08",
     "vad": "ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör"
   }
 }
 
 /** Antal guider som innehåller minst en uppskattad prisnivå. */
-export const GUIDER_MED_UPPSKATTNING = 25
+export const GUIDER_MED_UPPSKATTNING = 23
