@@ -318,6 +318,15 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     note: 'Buss från Slussen ända fram. Djurö nås över broar via Värmdö.',
   },
+  graskar: {
+    // Uppmätt 2026-09-28 med /api/transit/stop-lookup: Gräskö brygga ligger 564 m från
+    // Lantmäteriets ortnamnspunkt. Provresa från Stockholm: buss 676 och 634 via
+    // Norrtälje, sista biten med färja linje 28. Tidigare stod ön felaktigt som
+    // "ingen hållplats inom 5 km" eftersom koordinaten låg vid Möja.
+    destStopId: '740034555', destStopName: 'Gräskö brygga',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss via Norrtälje och Waxholmsbolagets linje 28 sista biten.',
+  },
   'aspo-blekinge': {
     // 37 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
     destStopId: '740071726', destStopName: 'Aspö Djupvik',
@@ -350,11 +359,12 @@ export const ISLAND_NO_TRANSIT: Record<string, string> = {
   'hasselo': 'närmaste hållplats (Lökholmen, 4865 m) kunde inte knytas till ön',
   'ormsko': 'närmaste hållplats (Kalkberget (Nämdö) brygga, 2969 m) kunde inte knytas till ön',
   'norrpada': 'ingen hållplats inom 5 km',
-  'graskar': 'ingen hållplats inom 5 km',
   'langviksskaret': 'ingen hållplats inom 5 km',
   'storholmen': 'närmaste hållplats (Långvik (Runmarö) brygga, 2752 m) kunde inte knytas till ön',
-  'langskar': 'ingen hållplats inom 5 km',
-  'storskar': 'närmaste hållplats (Rödlöga brygga, 4719 m) kunde inte knytas till ön',
+  // Ommätt 2026-09-28 med rättade koordinater (islandCoords.ts).
+  'langskar': 'närmaste hållplats (Bullerö brygga, 1799 m) kunde inte knytas till ön',
+  // Ommätt 2026-09-28 med rättade koordinater (islandCoords.ts).
+  'storskar': 'närmaste hållplats (Särsö brygga, 3979 m) kunde inte knytas till ön',
 }
 
 export function getIslandNoTransitReason(slug: string): string | null {

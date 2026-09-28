@@ -26,25 +26,21 @@ export const revalidate = 60
  * Utan generateStaticParams behandlas en dynamisk route som on-demand och
  * hamnar aldrig i CDN-cachen, aven om revalidate ar satt (CLAUDE.md punkt 18
  * och 26 - det var det avgorande steget bade for /upptack/[id] och /o/[slug]).
+ * Funktionen maste darfor finnas kvar.
  *
- * Profiler ar fa (~100) sa det kostar nastan ingenting att forgenerera dem.
- * Nya anvandare renderas on-demand och cachas darefter, eftersom
- * dynamicParams ar pa som standard.
+ * Den returnerar medvetet en tom lista (2026-09-28): ingen profil byggs i
+ * forvag, varje profil renderas vid forsta besoket och cachas darefter
+ * (dynamicParams ar pa som standard, revalidate = 60).
+ * Skal: forhandsbygget for PR #397 fol for att /u/dellwik tog over 60 s
+ * att bygga, tre forsok i rad, och da stoppas hela bygget. Samma sida
+ * svarade pa ca 1 s i produktion och anvandaren har inga tunga data, sa
+ * felet satt i ett Supabase-anrop som hangde under bygget, inte i sidan.
+ * ~120 profiler x ~10 anrop per profil i bygget ar 1 000+ anrop som var
+ * och ett kan stoppa en publicering. Profilerna ar noindex och ligger inte
+ * i sitemapen, sa det finns inget SEO-varde i att forgenerera dem.
  */
-export async function generateStaticParams() {
-  try {
-    const supabase = createPublicSupabaseClient()
-    const { data } = await supabase.from('users').select('username').limit(1000)
-    return (data ?? [])
-      .map((u: { username: string | null }) => u.username)
-      .filter((u): u is string => !!u)
-      .map(username => ({ username }))
-  } catch {
-    // Hellre on-demand-rendering an ett trasigt bygge. Samma skydd som
-    // /upptack/[id] redan har: utan Supabase-env (t.ex. en lokal maskin utan
-    // .env.local) kastar klienten, och da ska bygget anda ga igenom.
-    return []
-  }
+export async function generateStaticParams(): Promise<{ username: string }[]> {
+  return []
 }
 
 const COUNTRIES = [
