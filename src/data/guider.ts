@@ -30,7 +30,7 @@ export interface Guide {
 export const GUIDER: Guide[] = [
   // ── 1. MIDSOMMAR — Redaktionens val ────────────────────────────────────
   {
-    slug: 'midsommar-skargarden-2026',
+    slug: 'midsommar-skargarden',
     title: 'Midsommar i skärgården 2026 — kompletta guiden',
     description: 'Sex genomtänkta alternativ för att fira midsommar i Stockholms och Bohusläns skärgård. Hur du tar dig dit, vad du gör och vad du behöver veta.',
     emoji: '🌼',
