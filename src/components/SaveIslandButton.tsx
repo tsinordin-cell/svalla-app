@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
+import { setPendingAction, takePendingAction } from '@/lib/pendingAction'
 
 interface Props {
   islandSlug: string
@@ -38,7 +39,17 @@ export default function SaveIslandButton({ islandSlug, islandName, variant = 'pi
         .eq('user_id', user.id)
         .eq('island_slug', islandSlug)
         .maybeSingle()
-      setSaved(!!data)
+      if (data) { setSaved(true); takePendingAction('save_island', islandSlug); return }
+      // Kom hon hit från "Spara ön" → skapa konto → tillbaka? Då sparar vi nu,
+      // så klicket hon gjorde som utloggad blir gjort (se lib/pendingAction.ts).
+      if (takePendingAction('save_island', islandSlug)) {
+        const { error } = await supabase.from('saved_islands').insert({ user_id: user.id, island_slug: islandSlug })
+        if (!error) {
+          setSaved(true)
+          setShowToast(true)
+          setTimeout(() => setShowToast(false), 2400)
+        }
+      }
     }
     load()
   }, [islandSlug, supabase])
@@ -49,6 +60,7 @@ export default function SaveIslandButton({ islandSlug, islandName, variant = 'pi
       // Utloggad → till inloggningen med returnTo. RÄTTAT 2026-09-28: pekade på
       // /auth?next=…, en sida som aldrig funnits (bara /auth/callback), så varje
       // utloggat klick gav 404 sedan 2026-04-28. ?saved=1 togs bort: ingen läste den.
+      setPendingAction('save_island', islandSlug)
       router.push(`/logga-in?returnTo=${encodeURIComponent(`/o/${islandSlug}`)}&mode=ny`)
       return
     }

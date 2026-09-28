@@ -1191,3 +1191,6 @@ img {
     scroll-behavior: auto !important;
   }
 }
+
+/* Ösidornas sidhuvud (IslandNavAuth): dölj "Logga in" på de smalaste telefonerna. */
+@media (max-width: 399px) { .o-nav-login { display: none; } }
