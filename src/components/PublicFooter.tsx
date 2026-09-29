@@ -71,7 +71,7 @@ export default function PublicFooter() {
           <FooterColumn
             title="Verktyg"
             links={[
-              { href: '/utflykt', label: 'Utflyktsplanerare' },
+              { href: '/utflykt', label: 'Din dag i skärgården' },
               { href: '/planera', label: 'Båtruttplanerare' },
               { href: '/jamfor', label: 'Jämför öar' },
               { href: '/farjor', label: 'Färjetider' },
