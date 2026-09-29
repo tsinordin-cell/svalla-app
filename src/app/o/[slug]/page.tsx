@@ -29,6 +29,8 @@ import IslandTabRow from '@/components/IslandTabRow'
 import IslandKallor from '@/components/IslandKallor'
 import Hopfallbart from '@/components/Hopfallbart'
 import IslandFoto from '@/components/IslandFoto'
+import IslandFakta from '@/components/IslandFakta'
+import { SCB_OAR, SCB_OAR_KALLA } from '../scb-oar.generated'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -178,6 +180,7 @@ export default async function IslandPage({ params }: Props) {
    const coordLat = island.lat ?? ISLAND_COORD_MAP[slug]?.lat
    const coordLng = island.lng ?? ISLAND_COORD_MAP[slug]?.lng
    const hasCoords = !!(coordLat && coordLng)
+   const scb = SCB_OAR[island.slug]
    const mapsUrl = hasCoords
      ? `https://www.google.com/maps?q=${coordLat},${coordLng}`
      : undefined
@@ -214,6 +217,16 @@ export default async function IslandPage({ params }: Props) {
                name: a.name,
                value: true,
              })),
+           } : {}),
+           // Officiell statistik från SCB (kort 80106ebb). Bara siffror SCB redovisar.
+           ...(scb?.folkbokforda != null ? {
+             additionalProperty: [{
+               '@type': 'PropertyValue',
+               name: 'Folkbokförda',
+               value: scb.folkbokforda,
+               description: `SCB, ${SCB_OAR_KALLA.referens}`,
+               url: SCB_OAR_KALLA.url,
+             }],
            } : {}),
            ...(hasCoords ? {
              geo: {
@@ -429,6 +442,9 @@ export default async function IslandPage({ params }: Props) {
  	{/* Fotot av ön. Fotograf och licens står under bilden — villkoret för
  	    att vi får använda den. Genereras av scripts/hamta-obilder.mjs. */}
  	<IslandFoto slug={island.slug} islandName={island.name} />
+
+ 	{/* Officiell statistik per ö (SCB). Visas bara för öar SCB redovisar. */}
+ 	<IslandFakta slug={island.slug} islandName={island.name} />
 
 
  {/* Visste du att */}
