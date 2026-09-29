@@ -17,6 +17,8 @@ const CHIP: Record<IslandChip, { label: string; icon: IconName }> = {
   bad:        { label: 'Bad',      icon: 'waves' },
   bastu:      { label: 'Bastu',    icon: 'sun' },
   natur:      { label: 'Natur',    icon: 'leaf' },
+  barn:       { label: 'Med barn', icon: 'child' },
+  lugnt:      { label: 'Lugnt',    icon: 'moon' },
 }
 
 function distLabel(km: number): string {
