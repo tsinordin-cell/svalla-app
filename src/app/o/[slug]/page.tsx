@@ -20,7 +20,7 @@ import { emojiToIcon } from '@/lib/iconMap'
 import DepartureWidget from '@/components/DepartureWidget'
 import LastBoatPanel from '@/components/LastBoatPanel'
 import { getThreadsByIsland, formatForumDate } from '@/lib/forum'
-import { GUIDES } from '../../guider/guides-data'
+import { PUBLICERADE_GUIDER } from '../../guider/guides-data'
 import { getGuidesForIsland } from '../../guider/guide-island-map'
 import IslandB2BCTA from '@/components/IslandB2BCTA'
 import IslandHantverkare from '@/components/IslandHantverkare'
@@ -166,7 +166,7 @@ export default async function IslandPage({ params }: Props) {
 
  const relatedIslands = ALL_ISLANDS.filter(i => island.related.includes(i.slug))
  const guideLinks = getGuidesForIsland(slug)
-   .map(gs => GUIDES.find(g => g.slug === gs))
+   .map(gs => PUBLICERADE_GUIDER.find(g => g.slug === gs))
    .filter((g): g is NonNullable<typeof g> => Boolean(g))
 
  return (
