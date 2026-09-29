@@ -1,4 +1,4 @@
-import { hummerpremiar, surstrommingspremiar, kraftpremiar, midsommarafton, KALLA_SURSTROMMING, KALLA_KRAFTOR, KALLA_HELGDAGAR } from '@/lib/arsdatum'
+import { hummerpremiar, surstrommingspremiar, kraftpremiar, midsommarafton, allaHelgonsDag, KALLA_SURSTROMMING, KALLA_KRAFTOR, KALLA_HELGDAGAR } from '@/lib/arsdatum'
 
 export function getGuideContent(slug: string): string {
   const guides: Record<string, string> = {
@@ -14080,6 +14080,68 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <li>Arholma-Idö och Härmanö är naturreservat med egna regler om hund, tält och eld (se ovan). Läs föreskrifterna hos Länsstyrelsen för det område du ska till.</li>
 </ul>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler tips om öar i juli finns i <a href="/guider/juli-skargarden-oar">guiden till skärgårdens öar i juli</a>.</p>
+`,
+
+  'hostlov-vid-havet': `
+<!-- SKRIVEN 2026-09-29 (kort 0842411b). Sidan var en platshållare som rankade position 7,7 på "höstlov 2026". Varje uppgift nedan har en källa; öppettider och tidtabeller är lästa 27–29 september 2026 och kan ändras. -->
+<!-- KÄLLA: https://meetingspublic.stockholm.se/welcome-sv/namnder-styrelser/utbildningsnamnden/mote-2022-11-17/agenda/bilaga-1-larotider-2024-2027-gr-o-grsarpdf?downloadMode=open — Stockholms stad, "Lärotider för elever i kommunal grundskola … Läsåren 2024 - 2025, 2025 - 2026 samt 2026 - 2027": "HÖSTTERMINEN 2026 … Höstlov, vecka 44: 26 - 30 oktober" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www4.goteborg.se/prod/intraservice/namndhandlingar/samrumportal.nsf/27E222BA3B3D2538C1258CEB004EF9A6/$File/10.%20TU%20Lasarstider%202026%202027.pdf — Göteborgs Stad, grundskoleförvaltningens tjänsteutlåtande om läsårstider 2026/2027: "Läslov infaller den 26 – 30 oktober (vecka 44)."; "Göteborgsregionens utbildningsgrupp rekommenderar medlemskommunerna att fastställa gemensamma lovtider för läslov" (läst 2026-09-29) -->
+<!-- KÄLLA: ${KALLA_HELGDAGAR} — alla helgons dag är "den lördag som infaller under tiden den 31 oktober-6 november"; datumet räknas fram i src/lib/arsdatum.ts -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Höstlovet 2026 ligger vecka 44. I Stockholms stads kommunala grundskolor är det lov 26–30 oktober, och Göteborgs grundskoleförvaltning har föreslagit läslov samma dagar. Varje kommun bestämmer sina egna lov, så kolla läsårstiderna där barnen går i skolan. Helgen efter är alla helgons helg: alla helgons dag är ${allaHelgonsDag(2026).text}.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid havet är det här en övergångsvecka. Båtarna går, men flera linjer har sin sista vecka, och en del boenden och serveringar har redan stängt. Nedan står vad vi har kunnat kontrollera – med källa för varje uppgift.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Båtarna i Stockholms skärgård under höstlovet</h2>
+<!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Grinda - Boda - Sollenkroka Gäller:2026-08-17till2026-12-12"; "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De flesta av Waxholmsbolagets hösttidtabeller gäller till 12 december 2026. Tre linjer från Stockholm – till Rödlöga, till Arholma och till Blidösundet – gäller bara till 1 november. Höstlovsveckan är alltså sista veckan med de turerna från stan.</p>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Båtresan från Strömkajen tar bara en timme och under sommaren går det turer många gånger om dagen, och övrig tid på året går det flera per dag." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Du kan åka till Grinda från Strömkajen, via Vaxholm. Resan från Strömkajen tar ungefär en och en halv timme."; "Grinda har trafik året om" (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/moja — "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt."; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme. Under sommaren så kan du också åka till Sandhamn från Strömkajen." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong><a href="/o/vaxholm">Vaxholm</a>:</strong> en timme från Strömkajen och flera turer om dagen även utanför sommaren – den enklaste dagsturen med barn.</li>
+<li><strong><a href="/o/grinda">Grinda</a>:</strong> trafik året om, ungefär en och en halv timme från Strömkajen via Vaxholm.</li>
+<li><strong><a href="/o/moja">Möja</a>:</strong> båtar året runt från Boda brygga på Värmdö.</li>
+<li><strong><a href="/o/sandhamn">Sandhamn</a>:</strong> turer året runt från Stavsnäs, drygt en timme. Turerna från Strömkajen går bara på sommaren.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sök alltid resan för rätt datum, både ut och hem. I <a href="/utflykt">dagsplaneraren</a> väljer du startpunkt och dag och ser båttiderna för varje ö.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Saltkråkan-öarna: sista helgen med båt från Strömkajen</h2>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — Waxholmsbolaget tabell 26, "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026": 26A lördag tur 2651 Strömkajen 08.45 → Norröra 12.15 → Söderöra 12.25; söndag tur 2671 Strömkajen 10.00 → Norröra 13.10; 26B lördag tur 2652 Norröra 14.40 → Strömkajen 18.15; söndag tur 2682 Norröra 15.45 → Strömkajen 19.15; "Vid jul, nyår, påsk, midsommar samt övriga storhelger förekommer förändringar i trafiken." (läst 2026-09-29) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Det finns varken livsmedelsbutiker eller restauranger på öarna"; "Från Norröra kan du även enkelt ta dig över till Söderöra – båtturen tar bara 10 minuter. Söderöra går också att känna igen från Saltkråkan-serien. Framför allt vinterscenerna spelades in på ön." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.norrora.se/gronomraden/ — "totalt på ön ca 7 km stigar som är röjda och iordningjorda med god framkomlighet (för gående, ej rullstolar eller barnvagnar)"; "vårt vägnät på 4 km grusvägar" (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><a href="/o/norrora">Norröra</a> och Söderöra är öarna där Saltkråkan spelades in. Tabellen för båten från Strömkajen gäller till och med söndag 1 november, så höstlovets helg är den sista med direktbåt. På helgerna räcker tiden till en dagstur:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Lördag:</strong> Strömkajen 08.45 → Norröra 12.15. Hem från Norröra 14.40, framme vid Strömkajen 18.15.</li>
+<li><strong>Söndag:</strong> Strömkajen 10.00 → Norröra 13.10. Hem från Norröra 15.45, framme vid Strömkajen 19.15.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lördagen under höstlovet är alla helgons dag, och Waxholmsbolaget skriver att trafiken kan ändras vid storhelger – sök turen för just den dagen. Det finns varken affär eller restaurang på öarna, så ta med matsäck. På Norröra finns omkring sju kilometer röjda stigar och fyra kilometer grusväg, men stigarna fungerar inte med barnvagn.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Göteborgs södra skärgård: bilfritt och båt året runt</h2>
+<!-- KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "För bilfria öar och smidig resa med kollektivtrafiken: Välj den södra skärgården. Färjorna går året runt från Saltholmen"; "En Västtrafikbiljett för zon A gäller hela vägen på spårvagn, buss och färja."; "Båtarna avgår som regel en gång i timmen till de större öarna Asperö, Brännö, Köpstadsö, Styrsö, Donsö och Vrångö." (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Göteborg är skärgården lika nära på höstlovet som på sommaren. Färjorna går året runt från Saltholmen, i regel en gång i timmen till de större öarna, och en Västtrafikbiljett för zon A gäller hela vägen – spårvagn, buss och båt.</p>
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vrangoskargarden-vrango-arkipelagen.html — "Ta dig förbi Brevik, Bingen och Vättnena i norr, via de lummiga busk- och skogspartierna längs en markerad promenadslinga."; "Det finns en fin sandstrand söder om färjeläget"; "På reservatets södra skär syns knubbsälar" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.goteborg.com/platser/branno — "Via en smal landförbindelse går det att vandra över till fantastiska Galterö. Här finns ett rikt fågelliv" (läst 2026-09-29) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong><a href="/o/vrango">Vrångö</a>:</strong> en markerad promenadslinga, sandstrand söder om färjeläget och knubbsälar på reservatets södra skär.</li>
+<li><strong><a href="/o/branno">Brännö</a>:</strong> över en smal landförbindelse kan du gå ut till Galterö, som har ett rikt fågelliv.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Stängt eller osäkert under höstlovet</h2>
+<!-- KÄLLA: https://grinda.se/oppettider/ — "Grinda stugby har öppet med start strax innan månadssskiftet april / maj till 3.e helgen i oktober" (läst 2026-09-28) -->
+<!-- KÄLLA: https://explorearchipelago.se/sv/sthlm/inre-skargarden/fjaderholmarna — "Fjäderholmarna är säsongsöppet mellan april och september." (läst 2026-09-28) -->
+<!-- KÄLLA: https://carlsten.se/en/fortress-opening-hours-and-prices/ — öppettiderna 2026 listas april–september; "September 2026 Weekends: Open 11.00 – 15.00"; "For questions regarding the fortress opening hours or guided tours call 0303-611 67" (läst 2026-09-29) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Grinda Stugby</strong> har öppet till tredje helgen i oktober – alltså stängt under höstlovet. Båten till Grinda går ändå.</li>
+<li><strong><a href="/o/fjaderholmarna">Fjäderholmarna</a></strong> är säsongsöppet april–september.</li>
+<li><strong>Carlstens fästning</strong> på Marstrand har bara publicerat öppettider till och med september 2026. Ring 0303-611 67 innan du åker.</li>
+</ul>
+<!-- KÄLLA: https://www.sandhamns-vardshus.se/ — "Öppet året runt."; "Öppet varje dag från mitten av juni till mitten på september. Annan tid på året är restaurangen främst öppen helger." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.konsummoja.se/ — "Den stora butiken på Möja och som har öppet året runt." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det som har öppet: på Sandhamn har Sandhamns Värdshus puben öppen året runt, men restaurangen är utanför sommaren främst öppen på helger. På Möja har Coop öppet året runt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mer för höstlovsveckan</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler öar, öppettider och båtlinjer för oktober finns i <a href="/guider/oktober-skargarden">Skärgården i oktober</a>. För Stockholm finns också <a href="/guider/host-stockholms-skargard">Höst i Stockholms skärgård</a>, och för västkusten <a href="/guider/host-bohuslan">Höst i Bohuslän</a>. Vill ni plocka något på vägen: <a href="/guider/svampplockning-skargarden">svampplockning</a> och <a href="/guider/barplockning-skargarden">bärplockning</a> i skärgården.</p>
 `,
 
   'oktober-skargarden': `
