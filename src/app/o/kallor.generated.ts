@@ -1285,6 +1285,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://orno.se/ata-bo/resturang-cafe/",
+      "org": "orno.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://ornosjotrafik.se/",
       "org": "ornosjotrafik.se",
       "vad": "Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö, Överfarten tar ca 30 minuter; publicerad turlista gäller 27/4–13/9 2026 och ingen vintertidtabell hittades vid granskningen. KÄLLA: stockholmarchipelagotrail.com/sv/section/etapp-orno — Du åker till Hässelmara på Ornö från Dalarö året om.",
@@ -1427,6 +1434,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://visitlandsort.se/slappna-av-ma-bra/ata/",
+      "org": "visitlandsort.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://visitskargarden.se/",
       "org": "visitskargarden.se",
       "vad": "Landsorts Stugor AB (1–4 pers, året runt;  Landsorts Vandrarhem (4 hus, 26 bäddar, året runt; landsortsvandrarhem.se), Lotstornet (6 dubbelrum, restaurang Svedtiljas",
@@ -1496,6 +1510,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "hotellfurusund.se",
       "vad": "boutiquehotell med 16 rum, restaurang, året runt; visitskargarden.se/boende/hotell/hotell-furusund",
       "last": "2026-09-14",
+      "myndighet": false
+    },
+    {
+      "url": "https://roslagen.se/oar/furusund/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
       "myndighet": false
     },
     {
@@ -1580,7 +1601,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.gasthamnsguide.se/",
       "org": "gasthamnsguide.se",
-      "vad": "gästhamnen kunde inte bekräftas",
+      "vad": "gästhamnen kunde inte bekräftas.",
       "last": null,
       "myndighet": false
     },
@@ -1595,6 +1616,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.norrtalje.se/",
       "org": "Köpmanholms skola",
       "vad": "Här går cirka 35 elever; skolan är en F–6-skola på adressen Lilltorpsvägen 33, 760 18 Yxlan, och beskrivs som omgiven av öarna Furusund och Blidö med närhet till både skog och hav (2026-09-14)",
+      "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "https://roslagen.se/oar/blido/",
+      "org": "roslagen.se",
+      "vad": "",
       "last": null,
       "myndighet": false
     }
@@ -1753,6 +1781,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://nattaro.se/gasthamn/",
+      "org": "nattaro.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "https://nattaro.se/mat-pa-on/",
       "org": "nattaro.se",
       "vad": "",
       "last": null,
@@ -2235,6 +2270,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "fejan": [
     {
+      "url": "https://roslagen.se/oar/fejan/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
       "org": "skargardsstiftelsen.se",
       "vad": "När koleran svepte över Europa 1892 uppfördes i en hast en karantänstation på ön Fejan. Ett monteringsfärdigt trähus som skulle skeppas till Kongo som missionsstation exproprierades vid utskeppningskajen och sattes upp som doktorsvilla på Fejan",
@@ -2273,6 +2315,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     }
   ],
   "singo": [
+    {
+      "url": "https://roslagen.se/oar/singo-och-fogdo-lattillganglig-kulturmiljo/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
     {
       "url": "https://kund.printhuset-sthlm.se/sl/h637.pdf",
       "org": "SL (tryckt tidtabell)",
@@ -2363,6 +2412,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     }
   ],
   "vaddo": [
+    {
+      "url": "https://roslagen.se/oar/vaddo-roslagens-storsta-o/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
     {
       "url": "https://kund.printhuset-sthlm.se/sl/h637.pdf",
       "org": "SL buss 637 Norrtälje–Singö",
@@ -2474,6 +2530,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://roslagen.se/oar/yxlan/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://stockholmarchipelagotrail.com/section/",
       "org": "Stockholm Archipelago Trail",
       "vad": "etapp över Yxlan, 24 km. Länsstyrelsen Stockholm, Själbottna-Östra Lagnö naturreservat,  — skyddat sedan 1977, 532 ha, markägare och förvaltare Skärgårdsstiftelsen, \"bra tältplats\", \"strövvänliga skogarna är rika på bär och svamp\", \"Till Själbottna går reguljär Waxholmsbåt sommartid\" ; linje 24: Själbottna 11.00, Vagnsunda 11.01",
@@ -2489,6 +2552,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     }
   ],
   "kymmendo": [
+    {
+      "url": "https://orno.se/ata-bo/resturang-cafe/",
+      "org": "orno.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/v19.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
@@ -2597,6 +2667,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     }
   ],
+  "graskar": [
+    {
+      "url": "https://roslagen.se/oar/grasko-en-badvanlig-o-i-fjarden/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    }
+  ],
   "storholmen": [
     {
       "url": "https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/",
@@ -2698,6 +2777,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "vad": "mitt på den södra ön Brännö, Mat med inspiration från havet, byggt 1900; brannovardshus.se/oppettider — 14 februari–31 maj och 10 augusti–13 december torsdag–söndag, 24 juni–9 augusti Öppet alla dagar 12.00-23.00, Rumsuthyrning på Pensionat Baggen och Värdshusets Gästrum är möjlig året runt",
       "last": null,
       "myndighet": false
+    },
+    {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "",
+      "last": null,
+      "myndighet": false
     }
   ],
   "styrso": [
@@ -2744,6 +2830,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.goteborg.com/platser/isbolaget-donso",
       "org": "goteborg.com",
       "vad": "längst ut på piren i Donsö hamn, gammalt ismagasin; isbolaget.com — öppettider v 37–38 2026",
+      "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    }
+  ],
+  "asperon": [
+    {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "",
       "last": null,
       "myndighet": false
     }
@@ -2949,6 +3051,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "vad": "Gästhamn på Visingsö … Färskvatten, Toalett, Dusch, Eluttag, Latrintömning … Från 0,6 m till 1 m; jkpg.com/gasthamnar — nedanför Visingsborgs slottsruin",
       "last": null,
       "myndighet": false
+    },
+    {
+      "url": "https://www.visitvisingso.com/ta-dricka",
+      "org": "visitvisingso.com",
+      "vad": "Wisingsborgs Trädgård. Härligt prunkande trädgård med anor från 1600-talet. Mitt inne i den härliga trädgården ligger ett Trädgårdscafé och i den anrika ladan i anslutning till trädgården serveras dagens lunch.",
+      "last": null,
+      "myndighet": false
+    }
+  ],
+  "ven": [
+    {
+      "url": "https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/",
+      "org": "ilandskrona.se",
+      "vad": "Spirit of Hven Backafallsbyn (whiskydestilleri och restaurang), hven.com",
+      "last": null,
+      "myndighet": false
     }
   ],
   "tjaro": [
@@ -2976,6 +3094,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "ockero": [
     {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://ockerohamn.se/gasthamn-o-camping",
       "org": "ockerohamn.se",
       "vad": "sydvästra delen av fiskehamnen, moderna duschar och toaletter … inkluderat, Trådlös bredbandsuppkoppling, diesel, tvättmaskiner, öppen 30 april–30 september",
@@ -2995,6 +3120,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.goteborg.com/platser/roro",
       "org": "goteborg.com",
       "vad": "Rörö Fiskeboa & Krog … rätter med tydlig förankring i havet; rorofiskeboakrog.se — nykokta kräftor, räkor och fisk, fish & chips",
+      "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "hamburgare och gelato",
       "last": null,
       "myndighet": false
     }
@@ -4382,6 +4514,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://www.goteborg.com/guider/ta-dig-till-skargarden",
       "org": "Göteborg & Co",
       "vad": "väg 155 till färjeläget vid Lilla Varholmen, den avgiftsfria vägfärjan, buss 290 från Järntorget hela vägen inklusive färjeöverfarten och buss X6 från Centralstationen till Lilla Varholmen",
@@ -4827,4 +4966,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 90
+export const OAR_MED_KALLOR = 93

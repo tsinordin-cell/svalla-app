@@ -3109,7 +3109,8 @@ export const ISLANDS: Island[] = [
     ],
     facts: {
       travel_time: 'Nås med skärgårdsbåt (Waxholmsbolaget) från Räfsnäs, ca 30 min — eller med privat båt från Furusund',
-      character: 'Orört, naturreservat, vitt klipplandskap',
+      // KÄLLA: Norrtälje kommuns lista över skyddad natur saknar Fejan (kontrollerat 2026-09-14). Ön är inte naturreservat, ordet är struket här och i tags.
+      character: 'Orört, vitt klipplandskap',
       season: 'Juni–Augusti',
       best_for: 'Seglare, naturälskare, snorkling, fotografer',
     },
@@ -3130,14 +3131,19 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://skargardsstiftelsen.se/omraden/fejan/ — "Fejans gästhamn … Hamnavgiften inkluderar tillgång till dusch, toalett och bastu"; fejan.com/gasthamn — "ligger ni på mooringlinor", el/dusch/WC
       { name: 'Fejans gästhamn', desc: 'Gästhamn vid Fejan Sjökrog med mooringlinor. Hamnavgiften inkluderar dusch, toalett och bastu. Säsongsöppen.', fuel: false, service: ['el', 'dusch'] },
     ],
-    restaurants: [],
+    restaurants: [
+      // KÄLLA: https://roslagen.se/oar/fejan/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-29 , listar under Mat och dryck: "Fejan Sjökrog" och "Fejan Outdoor", och under service: "Krog, vandrarhem, pensionat, glamping, kajakuthyrning, rökeri, café, servicehus med wc och dusch"
+      { name: 'Fejan Sjökrog', type: 'Krog', desc: 'Sjökrog vid gästhamnen. Destination Roslagen beskriver den som en populär krog.' },
+      { name: 'Fejan Outdoor', type: 'Café', desc: 'Verksamhet på Fejan med boende och servering. Destination Roslagen listar den under Mat och dryck.' },
+    ],
     tips: [
       'Anlöp tidigt — Fejan är populär och naturhamnen fylls kvällar i juli.',
-      'Ta med allt du behöver — ingen service finns på ön.',
+      // KÄLLA: https://roslagen.se/oar/fejan/ (Destination Roslagen), läst 2026-09-29 , under rubriken "Vad finns det för service på platsen?": "Krog, vandrarhem, pensionat, glamping, kajakuthyrning, rökeri, café, servicehus med wc och dusch". Tidigare tips här påstod att ingen service finns på ön. Det var fel och är struket.
+      'Det finns krog, café och rökeri på ön, men ingen livsmedelsaffär. Ska du laga själv, ta med maten.',
       // KÄLLA: Skärgårdsstiftelsen, https://skargardsstiftelsen.se/omraden/fejan/ — "I slutet av 1800-talet anlades här en karantänstation för fartyg som misstänktes bära smittsamma sjukdomar, och de välbevarade byggnaderna berättar än idag om öns unika förflutna"; "Under 2026 håller vandrarhemmet stängt"; Fejan är inte naturreservat: ön finns inte med i Norrtälje kommuns lista över skyddad natur (kontrollerat 2026-09-14) och tidigare tips om naturreservatsregler är borttaget (läst 2026-09-19); årtalet 1892 och sjukhusnamnet Wasa nämns inte på sidan
     ],
     related: ['furusund', 'arholma', 'graddo'],
-    tags: ['naturreservat', 'klippor', 'segling', 'snorkling', 'norra'],
+    tags: ['klippor', 'segling', 'snorkling', 'norra'],
     // KÄLLA: Skärgårdsstiftelsen, https://skargardsstiftelsen.se/omraden/fejan/ — "I slutet av 1800-talet anlades här en karantänstation för fartyg som misstänktes bära smittsamma sjukdomar, och de välbevarade byggnaderna berättar än idag om öns unika förflutna. Under senare perioder har Fejan även fungerat som flyktingförläggning och lotsmiljö" / fliken Äta och bo: "Under 2026 håller vandrarhemmet stängt" (läst 2026-09-19). 1892, "Wasa" och 1930-talet saknar tillåten källa; strukna.
     // KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/ — "När koleran svepte över Europa 1892 uppfördes i en hast en karantänstation på ön Fejan. Ett monteringsfärdigt trähus som skulle skeppas till Kongo som missionsstation exproprierades vid utskeppningskajen och sattes upp som doktorsvilla på Fejan" (läst 2026-09-19)
     did_you_know: 'När koleran svepte över Europa 1892 uppfördes i all hast en karantänstation på Fejan för fartyg som misstänktes bära smitta. Doktorsvillan är ett monteringsfärdigt trähus som var på väg till Kongo som missionsstation men exproprierades vid kajen — därav namnet Kongohuset. Byggnaderna är bevarade, och ön har senare varit både flyktingförläggning och lotsmiljö. Vandrarhemmet håller stängt under 2026.',
@@ -3247,6 +3253,8 @@ export const ISLANDS: Island[] = [
     harbors: [
     ],
     restaurants: [
+      // KÄLLA: https://roslagen.se/oar/singo-och-fogdo-lattillganglig-kulturmiljo/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-29 , anger under Mat och dryck endast: "Singö choklad"
+      { name: 'Singö Choklad', type: 'Café', desc: 'Chokladtillverkning på Singö. Det enda stället Destination Roslagen listar under Mat och dryck på ön.' },
     ],
     tips: [
       'Singö kapell är öns absoluta höjdpunkt — ta med kameran.',
@@ -3445,6 +3453,8 @@ export const ISLANDS: Island[] = [
     restaurants: [
     ],
     tips: [
+      // KÄLLA: https://roslagen.se/oar/vaddo-roslagens-storsta-o/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-29 : "Du hittar minst ett 30-tal olika typer av restauranger, barer och kaféer på Väddö" och "Handla direkt av producenten eller hos bygdens mathandlare i Älmsta". Enskilda ställen namnges inte på sidan, därför står inga poster under Mat och dryck här.
+      'Väddö är ingen matöken. Destination Roslagen räknar minst ett trettiotal restauranger, barer och kaféer på ön, och livsmedel handlar du i Älmsta.',
       'Herrängs Dansbana (juli) är en upplevelse utöver det vanliga — boka boende i god tid.',
       'Väddö Kanalen är ett underskattat besök — kryssningen tar 45 minuter.',
     ],
@@ -4398,7 +4408,10 @@ export const ISLANDS: Island[] = [
     accommodation: [],
     getting_there: [{ method: 'Färja', from: 'Räfsnäs / Furusund', desc: 'Färjetrafik året runt; vintertid beställningstrafik via M/S Riddarfjärden på Rödlöga-traden via Gräskö.', icon: '⛴' }],
     harbors: [{ name: 'Gräskös brygga', desc: 'Den bebodda öns anlöpsbrygga.' }],
-    restaurants: [],
+    restaurants: [
+      // KÄLLA: https://roslagen.se/oar/grasko-en-badvanlig-o-i-fjarden/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-29 , anger under Mat och dryck: "Sommarkafé i det gamla posthuset i Byviken". Namnet på verksamheten står inte där.
+      { name: 'Sommarkafé i gamla posthuset, Byviken', type: 'Café', desc: 'Sommarkafé i det gamla posthuset i Byviken. Destination Roslagen anger inget företagsnamn eller öppettider.' },
+    ],
     tips: ['Respektera privata tomter — många sommarstugor och permanentbo.', 'Kombinera med en tur till närliggande Rödlöga.'],
     related: ['rodloga', 'fejan', 'arholma'],
     tags: ['bebodd', 'historisk', 'norra', 'roslagen'],
@@ -4792,6 +4805,10 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://www.goteborg.com/platser/branno-vardshus-pensionat-baggen — "mitt på den södra ön Brännö", "Mat med inspiration från havet", byggt 1900; brannovardshus.se/oppettider — 14 februari–31 maj och 10 augusti–13 december torsdag–söndag, 24 juni–9 augusti "Öppet alla dagar 12.00-23.00", "Rumsuthyrning på Pensionat Baggen och Värdshusets Gästrum är möjlig året runt"
       { name: 'Brännö Värdshus & Pensionat Baggen', type: 'Värdshus', desc: 'Värdshus och pensionat mitt på Brännö, byggt år 1900. Mat med inspiration från havet. Öppet 14 februari–13 december: torsdag–söndag utanför högsäsongen och alla dagar 12–23 mellan 24 juni och 9 augusti. Rumsuthyrning året runt.', websiteUrl: 'https://brannovardshus.se/' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Det är en rosa foodtruck som serverar asiatiska rätter med en svensk touch, hemmagjorda bakverk, juicer och iskaffe. Foodtrucken hittas på Varpevägen 3 på Brännö … öppet april-september"
+      { name: 'Kärran', type: 'Foodtruck', desc: 'Rosa foodtruck på Varpevägen 3 med asiatiska rätter med svensk touch, bakverk, juicer och iskaffe. Öppet april till september.' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "kaféet Le Shack. Det ligger i direkt anslutning till färjelägret Brännö Husvik och erbjuder allt från matiga smörgåsar till fika"
+      { name: 'Le Shack', type: 'Café', desc: 'Kafé i direkt anslutning till färjeläget Brännö Husvik. Matiga smörgåsar och fika.' },
     ],
     tips: [
       'Inga bilar på ön: lämna bilen i Saltholmens parkeringshus och njut av bilfrihetens lugn.',
@@ -4848,6 +4865,12 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — "Brattens Wärdshus – vid färjelägret Styrsö Bratten"; brattenswardshus.se
       { name: 'Bratten\'s Wärdshus', type: 'Restaurang', desc: 'Restaurang och kafé vid färjeläget Styrsö Bratten. Fisk och skaldjur samt pizza och klassiska rätter.', websiteUrl: 'https://www.brattenswardshus.se/' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Här kommer mycket av fisken och skaldjuren direkt från Styrsös egna fiskebåtar. Restaurangen är belägen på en brygga över havet"
+      { name: 'Tångbaren', type: 'Bar', desc: 'Bar och restaurang på en brygga över havet. Mycket av fisken och skaldjuren kommer direkt från Styrsös egna fiskebåtar.' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Kusthotellet Styrsö, en fridfull oas med havsutsikt och skärgårdskänsla. Här kan du njuta av god mat i restaurangen Astri, njuta av utsikten på uteserveringen eller koppla av i wellnessområdet"
+      { name: 'Astri, Kusthotellet Styrsö', type: 'Restaurang', desc: 'Kusthotellets restaurang, med uteservering och havsutsikt.' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Nere vid färjeläget Styrsö Tången hittar du Båtebackens Caférestaurang med enklare rätter och hembakta bullar"
+      { name: 'Båtebackens Caférestaurang', type: 'Café', desc: 'Caférestaurang vid färjeläget Styrsö Tången. Enklare rätter och hembakta bullar, med utsikt mot Känsö, Vargö och Brännö.' },
     ],
     tips: [
       'Tången kostar inget och är öppet dygnet runt — ta med termos och se solnedgången.',
@@ -4958,6 +4981,8 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://www.goteborg.com/platser/isbolaget-donso — "längst ut på piren i Donsö hamn", gammalt ismagasin; isbolaget.com — öppettider v 37–38 2026
       { name: 'Isbolaget', type: 'Restaurang', desc: 'Restaurang och hotell i det gamla ismagasinet längst ut på piren i Donsö hamn.', websiteUrl: 'https://isbolaget.com/' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "I en grön liten oas i Donsö hamn hittar du den trevliga restaurangen och kaféet Popsicle. Här kan du välja mellan goda luncher och hemmagjord glass."
+      { name: 'Popsicle', type: 'Café', desc: 'Restaurang och kafé i en grön oas i Donsö hamn. Luncher och hemmagjord glass.' },
     ],
     tips: [
       'Donsö hamn har bränsle — ovanligt i södra skärgården. Planera bunkringen hit om du seglar söderut.',
@@ -5003,9 +5028,13 @@ export const ISLANDS: Island[] = [
       { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 282 till Asperö Östra (~6–10 min) eller linje 283 till Asperö Norra (~14 min).', icon: '🚋' },
     ],
     harbors: [],
-    restaurants: [],
+    restaurants: [
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "är det till Knutssons Trädgårdscafé på ön Asperö. De serverar, förutom fika och glass även riktigt goda smörgåsar. Öppet sommartid."
+      { name: 'Knutssons Trädgårdscafé', type: 'Trädgårdscafé', desc: 'Kafé i en lummig trädgård. Fika, glass och smörgåsar. Öppet sommartid.' },
+    ],
     tips: [
-      'Ta med all mat och dryck — det finns ingen service på ön.',
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 listar Knutssons Trädgårdscafé på Asperö, öppet sommartid. Tidigare tips här påstod att ingen service finns på ön. Det var fel och är struket.
+      'Sommartid finns Knutssons Trädgårdscafé. Övriga delar av året, och för allt utom fika, ta med maten själv.',
       'Kombinera gärna med Brännö under samma dag — de ligger nära varandra.',
       'Perfekt för barnfamiljer: liten, säker och promenadvänlig.',
     ],
@@ -6299,6 +6328,12 @@ export const ISLANDS: Island[] = [
       { name: 'Öckerö gästhamn', desc: 'Gästhamn i sydvästra delen av fiskehamnen, drivs av Öckerö Hamn & Fiskareförening. El, dusch, bastu, tvättmaskin, wifi och diesel.', fuel: true, service: ['el', 'dusch', 'tvätt', 'wifi', 'bränsle'] },
     ],
     restaurants: [
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "På ön Öckerö hittar du Nimbusgården. Här kan du både bo och äta precis vid vattnet. Här serveras härliga luncher och bakverk i kaféet."
+      { name: 'Nimbusgården', type: 'Restaurang', desc: 'Boende och restaurang precis vid vattnet. Luncher och bakverk i kaféet.' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Nere vid kajkanten hittar du Öckerö Hamncafé. Här kan du njuta av både dagens lunch och fika i alla slags former."
+      { name: 'Öckerö Hamncafé', type: 'Café', desc: 'Kafé vid kajkanten. Dagens lunch och fika.' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Hönö Bryggeriet, som bryggt öl på Öckerö sedan 2014. Under våren och sommaren öppnar bryggeriet upp för besök och ölprovningar."
+      { name: 'Hönö Bryggeriet', type: 'Bryggeri', desc: 'Hantverksbryggeri som bryggt öl på Öckerö sedan 2014. Öppnar för besök och ölprovningar under vår och sommar.' },
     ],
     tips: [
       'Räkor direkt från fiskebåtarna i hamnen — billigare och färskare än någon restaurang.',
@@ -6358,6 +6393,8 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://www.goteborg.com/platser/roro — "Rörö Fiskeboa & Krog … rätter med tydlig förankring i havet"; rorofiskeboakrog.se — "nykokta kräftor, räkor och fisk", "fish & chips"
       { name: 'Rörö Fiskeboa & Krog', type: 'Restaurang', desc: 'Krog och fiskbod vid hamnen. Nykokta kräftor, räkor och fisk samt fish & chips.', websiteUrl: 'https://rorofiskeboakrog.se/' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "På Röröboa kan du räkna med två riktigt bra saker i matväg – hamburgare och gelato"
+      { name: 'Röröboa Gelato & Restaurang', type: 'Restaurang', desc: 'Kafé och restaurang känd för sin gelato, med hamburgare och annan mat i köket.' },
     ],
     tips: [
       'Dagstur från Göteborg är perfekt — ut med morgonfärjan, lunch vid hamnen, hem till kvällen.',
