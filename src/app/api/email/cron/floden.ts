@@ -50,6 +50,9 @@ async function skickaEnGang(
     if (skickat.has(`${m.loggnyckel}|${m.email.toLowerCase()}`)) continue
     budget.kvar--
     const r = await sendEmail({ template, to: m.email, vars: m.vars })
+    // sendEmail svarar ok med error 'unsubscribed' när adressen har
+    // avregistrerat sig. Inget skickades, så det ska inte räknas eller loggas.
+    if (r.ok && r.error === 'unsubscribed') continue
     if (r.ok) {
       sent++
       skickat.add(`${m.loggnyckel}|${m.email.toLowerCase()}`)
@@ -64,16 +67,34 @@ async function skickaEnGang(
   return { sent, errors }
 }
 
-/** Bekräftade prenumeranter + konton med e-post, deduplicerat på adress. */
-async function allaMottagare(service: SupabaseClient): Promise<Array<{ email: string; firstName: string }>> {
-  const [{ data: users }, { data: subs }] = await Promise.all([
-    service.from('users').select('email, username').not('email', 'is', null).limit(5000),
+/**
+ * Mottagare av utskick som går till en lista (månadsbrev, veckans ö):
+ * BARA bekräftade prenumeranter som inte avregistrerat sig.
+ *
+ * Konton (users) är medvetet INTE med (2026-09-29). Integritetspolicyn
+ * nämner inte nyhetsbrev som ändamål för kontots e-postadress, och
+ * marknadsföringslagen 19 § kräver samtycke i förväg för reklam via e-post
+ * till privatpersoner. Kontoinnehavare kommer med när de själva kryssat i
+ * nyhetsbrevet (då finns de i email_subscribers).
+ *
+ * Avregistreringarna i email_unsubscribes filtreras bort här också, och om
+ * den listan inte går att läsa skickas ingenting (fail-closed). sendEmail
+ * är fail-open vid databasfel, vilket är rimligt för enskilda mejl men inte
+ * för ett massutskick.
+ */
+async function prenumeranter(service: SupabaseClient): Promise<Array<{ email: string; firstName: string }> | null> {
+  const [{ data: subs, error: e1 }, { data: avreg, error: e2 }] = await Promise.all([
     service.from('email_subscribers').select('email').eq('confirmed', true).eq('unsubscribed', false).limit(5000),
+    service.from('email_unsubscribes').select('email').limit(10000),
   ])
+  if (e1 || e2) return null
+  const bort = new Set((avreg ?? []).map(r => String(r.email).toLowerCase()))
   const map = new Map<string, string>()
-  for (const s of subs ?? []) if (s.email) map.set(String(s.email).toLowerCase(), 'där')
-  for (const u of users ?? []) if (u.email) map.set(String(u.email).toLowerCase(), u.username || 'där')
-  return [...map.entries()].map(([email, firstName]) => ({ email, firstName }))
+  for (const s of subs ?? []) {
+    const e = s.email ? String(s.email).toLowerCase() : ''
+    if (e && !bort.has(e)) map.set(e, 'där')
+  }
+  return [...map.keys()].map(email => ({ email, firstName: 'där' }))
 }
 
 /** Variabler för en ö, bara från ösidans data. */
@@ -116,10 +137,14 @@ export async function korAvstangdaFloden(
     if (manad !== manadsnyckel(today)) {
       ut.manadsbrev = { sent: 0, errors: 0, skipped: `mallen gäller ${manad ?? 'ingen månad'}, inte ${manadsnyckel(today)}` }
     } else {
-      const lista = (await allaMottagare(service)).map(m => ({
-        email: m.email, vars: { first_name: m.firstName }, loggnyckel: `manadsbrev-${manad}`,
-      }))
-      ut.manadsbrev = await skickaEnGang(service, 'manadsbrev', lista, budget)
+      const mottagare = await prenumeranter(service)
+      if (!mottagare) ut.manadsbrev = { sent: 0, errors: 0, skipped: 'kunde inte läsa listan, skickar inget' }
+      else {
+        const lista = mottagare.map(m => ({
+          email: m.email, vars: { first_name: m.firstName }, loggnyckel: `manadsbrev-${manad}`,
+        }))
+        ut.manadsbrev = await skickaEnGang(service, 'manadsbrev', lista, budget)
+      }
     }
   }
 
@@ -183,8 +208,12 @@ export async function korAvstangdaFloden(
     else {
       const nyckel = `weekly_island-${today.getUTCFullYear()}-v${isoVecka(today)}`
       const vars = oVariabler(o)
-      const lista = (await allaMottagare(service)).map(m => ({ email: m.email, vars, loggnyckel: nyckel }))
-      ut.weekly_island = { ...(await skickaEnGang(service, 'weekly_island', lista, budget)), details: { o: o.slug } }
+      const mottagare = await prenumeranter(service)
+      if (!mottagare) ut.weekly_island = { sent: 0, errors: 0, skipped: 'kunde inte läsa listan, skickar inget' }
+      else {
+        const lista = mottagare.map(m => ({ email: m.email, vars, loggnyckel: nyckel }))
+        ut.weekly_island = { ...(await skickaEnGang(service, 'weekly_island', lista, budget)), details: { o: o.slug } }
+      }
     }
   }
 
