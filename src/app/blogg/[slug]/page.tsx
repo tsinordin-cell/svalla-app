@@ -388,6 +388,7 @@ Museet i kastellet invigdes 1964 och följer skärgårdsförsvarets 500-åriga h
 Vaxholm fick stadsprivilegier 1647 av drottning Kristina. Vaxholms kyrka byggdes 1760–1803; det planerade tornet blev aldrig byggt och ersattes av en klockstapel i trä. Inne i kyrkan står en dopfunt i gotländsk sandsten från slutet av 1300-talet, som ursprungligen stod i Riddarholmskyrkan. I december hålls Vaxholms julmarknad.
 
 ## Natur: Bogesundslandet
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 2015"; "Storlek: 4341 hektar varav 2 891 hektar land"; "Skyddsform: naturreservat"; "det nät av vandringsleder och ridstigar som finns markerade"; "flera iordningställda badplatser och en rad rastplatser med eldstäder och vindskydd" -->
 Bogesundslandets naturreservat, 4 341 hektar varav 2 891 på land, har markerade vandringsleder, badplatser och rastplatser med vindskydd. Hunden ska vara kopplad. I Tenöreservatet på Bogesund ligger [Tenöbadet](/upptack/tenobadet), och på Vaxön ligger [Eriksöbadet](/upptack/eriksobadet) i Eriksö friluftsområde.
 
 ## Äta
@@ -516,6 +517,7 @@ Stockholms skärgård har både sandstränder och klippbad, och enligt allemansr
 ### [Trouville, Sandhamn](/upptack/stora-trouvillestranden)
 Den långa stranden med vit sand ligger på Sandhamns södra sida, omkring 20 minuters promenad från hamnen. Sommartid finns toaletter. Badet ägs och sköts av Eknö hemman, och Värmdö kommun tar inga badvattenprover här. Stranden delas i [Stora](/upptack/stora-trouvillestranden) och [Lilla Trouville](/upptack/lilla-trouville-stranden). Så tar du dig till ön: [Båt till Sandhamn](/o/sandhamn/komma-dit).
 
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "Björnö naturreservat ligger längst ut på Ingarö i Värmdö kommun"; "den fina sandstranden vid Torpesand med utblick mot Nämdöfjärden". OBELAGT ÄNNU: strandens längd "cirka 120 meter" står inte hos Länsstyrelsen. Belägg eller stryk siffran. -->
 ### [Torpesand, Björnö naturreservat](/upptack/torpesand)
 Strand- och klippbad i Björnö naturreservat på Ingarö. Sandstranden är cirka 120 meter lång med långgrund sandbotten, och vid klippbadet finns en handikappanpassad badbrygga.
 
@@ -609,6 +611,7 @@ Ornö är den längsta etappen på Stockholm Archipelago Trail. Den är märkt s
 Du kan också börja vid Ornöboda, där Waxholmsbåten lägger till mitt emot Kymmendö, vid Lättinge brygga eller vid Ornö kyrka. Går du alla 34 kilometer i ett sträck rekommenderar leden medsols. Med barnvagn eller rullstol rekommenderar leden sträckan Hässelmara–Bodal.
 
 ### Sundby – drygt 6 km
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sundby.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1965"; "Skyddsform: naturreservat"; reservatet "omfattar södra delen av Ornö" -->
 Från Sundby gård i Sundby naturreservat på södra Ornö går en drygt sex kilometer lång, lättvandrad rundslinga på grusvägar och stigar genom ett odlingslandskap som brukats sedan 1400-talet. Den är till stora delar framkomlig med barnvagn eller rullstol, men inte hela vägen runt. Längs slingan ligger Stenhuset, ruinen efter Sundbys första säteri som brändes av ryssarna 1719, och eklandskapet vid Mane äng.
 
 Naturreservatet Norra skogen på norra Ornö skyddades 2024 och nås bara till fots, cirka 1,5–2 kilometer från parkering eller färjeläget.
@@ -659,6 +662,7 @@ Enligt Stockholm Archipelago Trail passar etapperna Ornö, Fjärdlång och Utö 
  tags: ['Hyra cykel Möja', 'Cykla i skärgården', 'Möja', 'Gällnö', 'Cykeluthyrning'],
  faqs: [
    { q: 'Var hyr man cykel på Möja?', a: 'Hamncafét på Möja har cykeluthyrning enligt Möja turistförening. På sommaren kör PerMobilen också daglig transport på landsvägen mellan norra och södra Möja.' },
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gallno.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1978, utvidgat 2017 och 2024"; "Skyddsform: naturreservat"; "I reservatet finns informationstavla, cykelled, rast- och övernattningsstuga och båtluffarled"
    { q: 'Kan man hyra cykel på Gällnö?', a: 'Ja, cykel och kajak går att hyra på Gällnö under sommaren enligt Gällnös egen sida. Länsstyrelsen räknar en cykelled till anordningarna i Gällnö naturreservat.' },
    { q: 'Får man ta med cykel på Waxholmsbåten?', a: 'Ja, enligt Waxholmsbolaget får du ta med en vanlig cykel i mån av plats utan extra kostnad. Personalen ombord avgör om det finns plats.' },
    { q: 'Hur lång är Möja?', a: 'Möja är cirka 6,5 kilometer från norr till söder enligt Möja turistförening, och Värmdö kommun anger ön till ungefär 6 kilometer lång och 4 kilometer bred.' },
@@ -691,6 +695,7 @@ Buss 434 från Slussen till Sollenkroka och båt därifrån tar enligt Värmdö 
 ## Cykla på Gällnö
 
 ### Hyra cykel
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gallno.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1978, utvidgat 2017 och 2024"; "Skyddsform: naturreservat"; "I reservatet finns informationstavla, cykelled, rast- och övernattningsstuga och båtluffarled" -->
 Cykel och kajak går att hyra på Gällnö under sommaren. Länsstyrelsen räknar en cykelled till anordningarna i Gällnö naturreservat.
 
 ### Vad du cyklar genom
@@ -1592,6 +1597,7 @@ Närmast stan: cirka 30 minuter med Strömmas båt från Strandvägen. Här bada
 ### Roslagsbanan och Värmdö
 - [Österskärs havsbad (Solbrännan)](/upptack/solbrannan) – fem minuters promenad från Roslagsbanans Österskärs station. Lång sandstrand med badbrygga, och öster om badet en lekplats och en stor gräsplan.
 - [Grisslinge havsbad](/upptack/grisslinge-havsbad) – cirka 300 meter sandstrand med lekplats, toalett, omklädningsrum, utedusch och kiosk.
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "den fina sandstranden vid Torpesand med utblick mot Nämdöfjärden". OBELAGT ÄNNU: strandens längd "cirka 120 meter" står inte hos Länsstyrelsen. Belägg eller stryk siffran. -->
 - [Torpesand](/upptack/torpesand), Björnö naturreservat – cirka 120 meter sandstrand med långgrund sandbotten.
 
 ### Södra skärgården
@@ -1781,6 +1787,7 @@ De flesta boenden på Skärgårdsstiftelsens områden drivs av entreprenörer oc
 - **Utö och Gålö:** stugor och lägenheter med enkel standard och utedass, öppna 1 maj–2 november.
 - **Fjärdlång – Norrötorpet:** torp på 33 kvadratmeter utan el, med gårdspump, utedass och bastu vid egen brygga. Öppet 8 maj–20 september.
 - **Huvudskär:** vandrarhem i Lotshuset och Tullhuset, nio boenden med 47 bäddar. Här finns varken el eller värme, och du tar med egen mat. Öppet 15 maj–20 september.
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/haringe-hammersta.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1990"; "Skyddsform: naturreservat"; "Förvaltare: Skärgårdsstiftelsen". OBELAGT ÄNNU: öppettiderna 22 januari–2 november för stugan Gröndal står inte hos Länsstyrelsen. Kontrollera mot Skärgårdsstiftelsen eller stryk. -->
 - **Hammersta – stugan Gröndal** i Häringe–Hammersta naturreservat, öppen 22 januari–2 november.
 
 ### Öppna bodar
@@ -1957,6 +1964,7 @@ Många naturhamnar ligger i naturreservat. På Grinda, Granholmen, Gällnö, Fin
 
 ### Mellersta skärgården
 - [Grinda](/o/grinda) – naturhamn i Hästholmssundet. Gästhamnen ligger i Hemviken.
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/granholmen.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1978, utvidgat 2018"; "Skyddsform: naturreservat"; "Reservatet ligger på nordvästra delen av Granholmen, 2,5 kilometer söder om Möja" -->
 - **Granholmen** – Munkhamnen i Granholmens naturreservat, 2,5 kilometer söder om [Möja](/o/moja).
 - [Gällnö](/o/gallno) – flera naturhamnar runt ön. Torsviken har naturhamn, sandstrand och tältplats. I Norrviken är motorbåt och vattenskoter förbjudna.
 - [Finnhamn](/o/finnhamn) – naturhamnar vid Djupfladen, Söder-Långholm och Korsholm.
@@ -1964,6 +1972,7 @@ Många naturhamnar ligger i naturreservat. På Grinda, Granholmen, Gällnö, Fin
 
 ### Runt Nämdö
 - **Jungfruskär** – naturreservat fyra kilometer söder om Nämdö, som SXK tar upp bland sina besöksmål. Fågelskyddsområdet får inte beträdas 1 februari–15 augusti.
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/biskopso.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "Biskopsös naturreservat omfattar ett spännande ytterskärgårdsområde med de stora öarna Biskopsön och Kastön". OBELAGT ÄNNU: avståndet "åtta kilometer söder om Nämdö" och sälskyddsområdets datum 1 februari–15 augusti står inte på sidan. Belägg mot föreskrifterna eller stryk. -->
 - **Koxviken på Biskopsön** – också ett av SXK:s besöksmål. Biskopsö naturreservat ligger åtta kilometer söder om Nämdö, och sälskyddsområdet är stängt 1 februari–15 augusti.
 <!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 - [Bullerö](/o/bullero) och Nämdöskärgårdens nationalpark – enligt Länsstyrelsen finns här gott om naturhamnar.
