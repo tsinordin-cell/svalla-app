@@ -15,6 +15,7 @@
 import { NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { sendEmail } from '@/lib/email'
+import { korAvstangdaFloden } from './floden'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -503,6 +504,11 @@ async function handle(req: Request) {
       }
     }
   }
+
+  // ── 5. Byggda men avstängda flöden (2026-09-29) ──────────────────────────
+  // Månadsbrev, dag 60/90, sparad ö, veckans ö. Skickar ingenting förrän
+  // flödet står i EMAIL_AUTOMATIK — se src/lib/mailfloden.ts.
+  Object.assign(results, await korAvstangdaFloden(service, today))
 
   return NextResponse.json({ ok: true, today: today.toISOString().slice(0, 10), results })
 }
