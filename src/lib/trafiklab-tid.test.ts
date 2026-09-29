@@ -23,3 +23,12 @@ describe('arGammalResa', () => {
     expect(arGammalResa('', '2026-09-21')).toBe(false)
   })
 })
+
+describe('restidFranTider', () => {
+  it('räknar från avgång till ankomst, inte ResRobots duration', async () => {
+    const { restidFranTider } = await import('./trafiklab')
+    expect(restidFranTider('06:38', '08:07', 121)).toBe(89)
+    expect(restidFranTider('23:30', '00:45', 0)).toBe(75)
+    expect(restidFranTider('', '08:07', 121)).toBe(121)
+  })
+})
