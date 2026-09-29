@@ -22,6 +22,7 @@ import {
 import { ALL_ISLANDS, getIsland, type Island } from '@/app/o/island-data'
 import { getGuidesForIsland } from '@/app/guider/guide-island-map'
 import { PUBLICERADE_GUIDER } from '@/app/guider/guides-data'
+import { SCB_OAR, SCB_OAR_KALLA } from '@/app/o/scb-oar.generated'
 
 const MAX_PER_KORNING = 80
 
@@ -107,7 +108,16 @@ export function oVariabler(island: Island): Record<string, string> {
     // går året runt, så de hoppas över.
     .filter(g => g.category !== 'Säsong')
     .slice(0, 3)
+  // Officiell statistik från SCB, samma som ösidans faktaruta. Tom rad när
+  // SCB inte redovisar ön eller inte har någon siffra.
+  const scb = SCB_OAR[island.slug]
+  const fakta_rad = scb?.folkbokforda != null
+    ? scb.scbNamn === island.name
+      ? `Enligt SCB var ${scb.folkbokforda.toLocaleString('sv-SE')} personer folkbokförda på ${island.name} den ${SCB_OAR_KALLA.referens}.`
+      : `Enligt SCB var ${scb.folkbokforda.toLocaleString('sv-SE')} personer folkbokförda på ${scb.scbNamn} den ${SCB_OAR_KALLA.referens}.`
+    : ''
   return {
+    fakta_rad,
     island_name: island.name,
     island_tagline: island.tagline,
     restid_rad: matt
