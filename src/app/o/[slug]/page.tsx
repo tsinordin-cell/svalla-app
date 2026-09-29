@@ -908,9 +908,13 @@ export default async function IslandPage({ params }: Props) {
  </div>
  ))}
  </div>
- <div style={{ marginTop: 16, textAlign: 'right' }}>
+ <div style={{ marginTop: 16, display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+  {/* 2026-09-28: väg från ösidan in i dagsplaneraren, med ön förvald. */}
+  <Link href={`/utflykt?o=${slug}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
+   Planera en dag på {island.name} →
+  </Link>
   <Link href={`/o/${slug}/komma-dit`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
-   Komplett transportguide till {island.name} →
+   Komplett transportguide →
   </Link>
  </div>
  </section>
