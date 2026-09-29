@@ -2169,6 +2169,22 @@ export const ISLANDS: Island[] = [
       { name: 'Ornö Båtvarv (Brunnsviken)', desc: 'Liten gästhamn med ett tjugotal platser längst in i Brunnsviken: bojar och längsplatser, tre meters djup, bryggor med el, wc, dusch och tvättmaskin. Eget ankare är inte tillåtet i hamnen.' },
     ],
     restaurants: [
+      // Ornö hade noll ställen inlagda. Öns egen sajt listar sex. Tillagt
+      // 2026-09-24. Flera är säsongsöppna och sidan angav i september att
+      // Pizzaboden och Sundby Gård stängt för säsongen. Vi skriver därför
+      // ut säsong där källan anger den, men inga öppettider per dag.
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "Ornö Krog i Bygdegården vid Kyrkviken som ansvarar för maten i Ornö skola serverar också dagens lunch vardagar."
+      { name: 'Ornö Krog', type: 'Krog', desc: 'Ligger i Bygdegården vid Kyrkviken. Ansvarar för skolmaten och serverar dagens lunch på vardagar.' },
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "Restaurang Sågverket ligger liksom hotellet i det som tidigare var Sågen vid Brunnsviken på södra Ornö. Hotellet är öppet året runt men restaurangen endast juni till augusti."
+      { name: 'Restaurang Sågverket', type: 'Restaurang', desc: 'Vid Brunnsviken på södra Ornö, i det som tidigare var sågen. Hör till Ornö Skärgårdshotell.', open_season: 'Juni till augusti' },
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "Vid Pizzaboden i Kyrkviken kan man under säsong äta pizza och dricka en öl eller ett glas vin på Bodens fina trädäck alldeles vid vattnet."
+      { name: 'Pizzaboden', type: 'Pizzeria', desc: 'Trädäck vid vattnet i Kyrkviken. Pizza, öl och vin, kaffe och smörgås.', open_season: 'Säsongsöppet' },
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "Caféet som är inrymt i en av de två stora ladorna vid Sundby Gård har under säsongen gräddglass från Engelholms Glass, hembakat, lättare luncher samt flera sorters kaffe."
+      { name: 'Sundby Gård, Magasinets café', type: 'Café', desc: 'I en av ladorna vid Sundby Gård. Glass, hembakat och lättare luncher.', open_season: 'Säsongsöppet' },
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "På Ornö Museum vid Ornö Kyrka finns sommartid servering med glass, kaffe, läsk, bullar och kondisbitar. Öppettider 2026: Museum och café är öppet 13 juni till 16 augusti alla dagar 12 till 16 och tisdagar till 18."
+      { name: 'Ornö Museums trädgårdscafé', type: 'Café', desc: 'Servering vid Ornö Museum intill kyrkan. Glass, kaffe, bullar och kondisbitar.', open_season: '13 juni till 16 augusti 2026' },
+      // KÄLLA: https://orno.se/ata-bo/resturang-cafe/ (Ornö Skärgård, öns egen sajt), läst 2026-09-24 , "Kaffe, läsk, kondisbitar, godis och glass finns till självservering vid Microbutiken i Brunnsviken på södra Ornö."
+      { name: 'Ornö båtvarv, Microbutiken', type: 'Självservering', desc: 'Kaffe, läsk, kondisbitar, godis och glass i självservering vid Brunnsviken.' },
     ],
     tips: [
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/norra-skogen.html — reservatet ligger på norra Ornö och skyddades 2024
@@ -2457,6 +2473,12 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://furusundshamnkrog.se/ — "Hamnkrogen är Furusunds vardagsrum – en plats för luncher, middagar och sommarkvällar vid vattnet" (läst 2026-09-27)
       // KÄLLA: https://furusundshamnkrog.se/gasthamn/hamnguide/ — "Lågsäsong:"; "1 oktober – 30 april (öppet varje helg och vanligtvis onsdagar" (läst 2026-09-27)
       { name: 'Furusunds hamnkrog', type: 'Restaurang', desc: 'Hamnkrogen i gästhamnen, för lunch och middag vid vattnet. Lågsäsong 1 oktober–30 april har den öppet varje helg och vanligtvis onsdagar.', websiteUrl: 'https://furusundshamnkrog.se/' },
+      // Två ställen till enligt regionens officiella besökssajt. Tillagt
+      // 2026-09-28. Inga priser och inga öppettider anges där.
+      // KÄLLA: https://roslagen.se/oar/furusund/ (Destination Roslagen), läst 2026-09-28 , under Mat och dryck: "Högmarsö krog"
+      { name: 'Högmarsö krog', type: 'Krog', desc: 'Krog som Destination Roslagen listar under Furusund.' },
+      // KÄLLA: https://roslagen.se/oar/furusund/ (Destination Roslagen), läst 2026-09-28 , under Mat och dryck: "Gästhamnen med servering i Havspaviljongen", och under Service: "Gästhamn med café"
+      { name: 'Havspaviljongen', type: 'Servering', desc: 'Servering i gästhamnen.' },
     ],
     day_cost: {
       // Ingen totalsumma: parkering och resa saknar belagt pris. Menypriserna nedan är belagda.
@@ -2580,6 +2602,15 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://www.blidorestaurang.se/ — "Från början av juni till mitten av augusti har vi öppet för lunch och middag", "Onsdagar förgyller vi med trubadur", "Man kan inte boka bord hos oss", "Vi har nu stängt för säsongen" (läst 2026-09-27); adress Stämmarsundsbacken 7 enligt https://www.explorearchipelago.com/sv/sthlm/norra-skargarden/blido/blido-brygga-och-bistro-vandrarhem
       { name: 'Blidö Brygga & Bistro', type: 'Restaurang', desc: 'Sommarkrog vid gästbryggan i Stämmarsund med lunch och middag från början av juni till mitten av augusti, trubadur på onsdagar. Bordsbokning tas inte emot.', websiteUrl: 'https://www.blidorestaurang.se' },
+      // Blidö hade noll ställen inlagda trots att regionens officiella
+      // besökssajt listar fyra under Mat och dryck. Tillagt 2026-09-28.
+      // Källan ger bara namn, inga öppettider och ingen säsong.
+      // KÄLLA: https://roslagen.se/oar/blido/ (Destination Roslagen, officiellt platsvarumärke för Norrtälje, Östhammar och Österåker), läst 2026-09-28 , listar under Mat och dryck: "Blidö Hamnkrog"
+      { name: 'Blidö Hamnkrog', type: 'Krog', desc: 'Krog på Blidö.' },
+      // KÄLLA: https://roslagen.se/oar/blido/ (Destination Roslagen, officiellt platsvarumärke för Norrtälje, Östhammar och Österåker), läst 2026-09-28 , listar under Mat och dryck: "Blidö Matlådan"
+      { name: 'Blidö Matlådan', type: 'Mat', desc: 'Listad av Destination Roslagen bland öns ställen för mat och dryck.' },
+      // KÄLLA: https://roslagen.se/oar/blido/ (Destination Roslagen, officiellt platsvarumärke för Norrtälje, Östhammar och Österåker), läst 2026-09-28 , listar "Skärgårdspadel" under Mat och dryck. Vad serveringen består av framgår inte.
+      { name: 'Skärgårdspadel', type: 'Servering', desc: 'Padelanläggning som regionens besökssajt listar under mat och dryck. Vad som serveras framgår inte av källan.' },
     ],
     tips: [
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/linkudden.html — föreskrifterna förbjuder tältning, öppen eld, lös hund eller katt samt förtöjning på samma plats längre än två dygn (2026-09-14)
@@ -3954,6 +3985,8 @@ export const ISLANDS: Island[] = [
     harbors: [
     ],
     restaurants: [
+      // KÄLLA: https://roslagen.se/oar/singo-och-fogdo-lattillganglig-kulturmiljo/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-29 , anger under Mat och dryck endast: "Singö choklad"
+      { name: 'Singö Choklad', type: 'Café', desc: 'Chokladtillverkning på Singö. Det enda stället Destination Roslagen listar under Mat och dryck på ön.' },
     ],
     tips: [
       // KÄLLA: https://www.svenskakyrkan.se/roslagens-ostra-pastorat/singo-kyrka — "Adress: Singövägen 250, 764 57 Grisslehamn" (läst 2026-09-27)
@@ -4645,6 +4678,8 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://rindohamn.se/ — "Vid gästhamnen ligger restaurang Syrran & Jag (Fd Batteriet)" (läst 2026-09-27); restaurangens egen sida https://syrranparindo.se/ (läst 2026-09-27 via WebFetch – "Restaurang Syrran & Jag", "Grisselmarens väg 21, 185 41 Vaxholm"; sidan stoppar skript med Vercel-kontroll)
     restaurants: [
       { name: 'Syrran & Jag', type: 'Restaurang', desc: 'Restaurang vid gästhamnen i Rindö hamn, tidigare Batteriet.', websiteUrl: 'https://syrranparindo.se/' },
+      // KÄLLA: http://upplevvaxholm.se/mat-och-dryck/ (Upplev Vaxholm, kommunens besöksinformation), läst 2026-09-29 , listar under Kaféer: "Ostmakeriet på Rindö, Östra Kasernvägen 7"
+      { name: 'Ostmakeriet på Rindö', type: 'Café', desc: 'Kafé på Östra Kasernvägen i det gamla kasernområdet.' },
     ],
     tips: [
       // KÄLLA: https://www.vaxholmsfastning.se/ — "Vaxholms Fästnings Museum, Vaxholms Kastell", "Här får du följa skärgårdsförsvarets 500-åriga historia", "endast öppet i samband med särskilda evenemang och lovaktiviteter" (läst 2026-09-27). «Vaxholmen-sidan» var oklart – museet ligger på Vaxholms kastell.
@@ -4718,13 +4753,20 @@ export const ISLANDS: Island[] = [
       car_parking: 'Stockholm Archipelago Trail rekommenderar att lämna bilen hemma eller i Furusund; på Yxlan får du inte parkera i småhusområdena.',
     },
     harbors: [],
-    restaurants: [],
+    restaurants: [
+      // KÄLLA: https://roslagen.se/oar/yxlan/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-28 , under Mat och dryck: "Restaurant Yxlan"
+      { name: 'Restaurant Yxlan', type: 'Restaurang', desc: 'Restaurang på ön. Destination Roslagen anger inga öppettider.' },
+      // KÄLLA: https://roslagen.se/oar/yxlan/ (Destination Roslagen), läst 2026-09-28 , under Mat och dryck: "Ting Tong Take Away"
+      { name: 'Ting Tong Take Away', type: 'Take away', desc: 'Take away på ön.' },
+    ],
     // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård. Färjeledens längd är 600 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27); https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/ — "Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård. Färjeledens längd är 530 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/h632.pdf — "Vagnsunda" (läst 2026-09-27); https://stockholmarchipelagotrail.com/section/section-yxlan/ — "Plan your hike based on when you can catch the bus back from the furthest southern point you reach." (läst 2026-09-27); https://kund.printhuset-sthlm.se/wa/h24.pdf — "Vagnsunda (Yxlan) 11.01", "Kolsvik (Yxlan) 13.02", "utan fast avgångstid" (läst 2026-09-27)
     tips: [
+      // KÄLLA: https://roslagen.se/oar/yxlan/ (Destination Roslagen), läst 2026-09-28: "Service på platsen: Skola, livsmedelsbutik, kiosk" och "Bygdegården finns tillgänglig för uthyrning"
+      'På Yxlan finns livsmedelsbutik och kiosk. Bygdegården går att hyra.',
       'Båda vägfärjorna (Furusund–Yxlan och Yxlan–Blidö) är avgiftsfria och tar fyra minuter.',
       'Buss 632 från Norrtälje åker ända till Vagnsunda – vandrar du ledens etapp åt ett håll, planera efter när bussen går tillbaka.',
       'Linje 24 har fast tid vid Vagnsunda på utresan och vid Kolsvik på hemresan. Ska du av eller på vid någon annan brygga, sök resan i SL-appen och kontrollera att turen angör den.',
-      'Affär, krog och boende på ön har vi inte kunnat belägga på någon egen webbplats – ta med det du behöver.',
+      // KÄLLA: https://roslagen.se/oar/yxlan/ (Destination Roslagen), läst 2026-09-28 , listar Restaurant Yxlan och Ting Tong Take Away under Mat och dryck. Tidigare tips här sa att krog inte gick att belägga. Det är nu belagt och tipset är struket.
     ],
     activity_meta: {
       // KÄLLA: https://stockholmarchipelagotrail.com/section/ — "Section Yxlan", "Moderate", "24 km" (läst 2026-09-27)
@@ -5783,7 +5825,10 @@ export const ISLANDS: Island[] = [
     ],
     // KÄLLA: https://www.norrtalje.se/osternas — "Godslinje 60 F utgår från Östernäs och går till Gräskö, Norröra, Söderöra, Svartlöga och Rödlöga." (Norrtälje kommun) (läst 2026-09-27)
     harbors: [{ name: 'Gräskö brygga', desc: 'Angörs av Waxholmsbolagets linje 27 och 28 och av godslinje 60 F från Östernäs. Någon gästhamn med service på ön har vi inte hittat.' }],
-    restaurants: [],
+    restaurants: [
+      // KÄLLA: https://roslagen.se/oar/grasko-en-badvanlig-o-i-fjarden/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-29 , anger under Mat och dryck: "Sommarkafé i det gamla posthuset i Byviken". Namnet på verksamheten står inte där.
+      { name: 'Sommarkafé i gamla posthuset, Byviken', type: 'Café', desc: 'Sommarkafé i det gamla posthuset i Byviken. Destination Roslagen anger inget företagsnamn eller öppettider.' },
+    ],
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "Beställ resan i SL-appen, på"; "minst 1 timme innan avgång"; "Gräskö 08.15 10.30b 10.30b 10.30b"; "Rödlöga 12.20 12.20" (läst 2026-09-27)
     tips: ['Många turer till och från Gräskö är beställningsturer (markerade b i tidtabellen) — beställ i SL-appen, på Waxholmsbolagets webb eller via kundtjänst minst en timme före avgång.', 'Vissa turer på linje 28 fortsätter från Gräskö ut till Svartlöga och Rödlöga — kontrollera i tidtabellen vilka.'],
     related: ['rodloga', 'fejan', 'arholma'],
@@ -6387,6 +6432,10 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.goteborg.com/platser/branno-vardshus-pensionat-baggen — "mitt på den södra ön Brännö", "Mat med inspiration från havet", byggt 1900 (läst 2026-09-26)
       // KÄLLA: https://brannovardshus.se/oppettider — "14 Februari – 31 maj 2026", "1 JUNI – 23 JUNI 2026", "Onsdag kl. 12-18/20", "24 JUNI – 9 AUGUSTI 2026", "Öppet alla dagar 12.00-23.00", "10 AUGUSTI – 13 DECEMBER 2026", "Rumsuthyrning på Pensionat Baggen och Värdshusets Gästrum är möjlig året runt" (läst 2026-09-27). 1–23 juni är restaurangen öppen även onsdagar, så den tidigare texten (torsdag–söndag utanför högsäsongen) var inte helt rätt; klockslag struket (sidan anger att stängningstiden varierar).
       { name: 'Brännö Värdshus & Pensionat Baggen', type: 'Värdshus', desc: 'Värdshus och pensionat mitt på Brännö, byggt år 1900. Mat med inspiration från havet. Restaurangen har 2026 öppet 14 februari–13 december: alla dagar 24 juni–9 augusti, övriga perioder vissa veckodagar (torsdag–söndag, i juni även onsdag). Rumsuthyrning året runt.', websiteUrl: 'https://brannovardshus.se/' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Det är en rosa foodtruck som serverar asiatiska rätter med en svensk touch, hemmagjorda bakverk, juicer och iskaffe. Foodtrucken hittas på Varpevägen 3 på Brännö … öppet april-september"
+      { name: 'Kärran', type: 'Foodtruck', desc: 'Rosa foodtruck på Varpevägen 3 med asiatiska rätter med svensk touch, bakverk, juicer och iskaffe. Öppet april till september.' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "kaféet Le Shack. Det ligger i direkt anslutning till färjelägret Brännö Husvik och erbjuder allt från matiga smörgåsar till fika"
+      { name: 'Le Shack', type: 'Café', desc: 'Kafé i direkt anslutning till färjeläget Brännö Husvik. Matiga smörgåsar och fika.' },
     ],
     // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "De södra öarna är bilfria", "Samma typ av biljett gäller på båten som på buss och spårvagn" (läst 2026-09-27)
     // KÄLLA: https://www.styrsobolaget.se/dans-pa-branno-brygga/ — "M/S Kungsö avgår på torsdagar från Stenpiren kl 19:10", "avgång från Brännö 22.30" (läst 2026-09-27); https://transdev.se/wp-content/uploads/sites/5/2026/03/25-056-Annons-Ockero-Tidning-252x370-3.pdf — "STENPIREN – BRÄNNÖ HUSVIK" (läst 2026-09-27), framme i Husvik 20.15 enligt samma tabell
@@ -6663,6 +6712,8 @@ export const ISLANDS: Island[] = [
       { name: 'Måns Hamnkafé & Kök', type: 'Pizzeria/Grill', desc: 'Liten familjerestaurang mitt i Donsö hamn med pizza, grillmat och bar.', websiteUrl: 'https://manshamnkafe.se/' },
       // KÄLLA: https://istappen.com/ — "Sugen på mer, då kan ni besöka vår grill där ni kan få hamburgare och korv med pommes/mos."; "Copyright © 2026 Istappen Donsö!" (läst 2026-09-27)
       { name: 'Istappen Grillen', type: 'Grill/Kiosk', desc: 'Grill vid sjömacken i hamnen med hamburgare och korv, och butik med glass och båttillbehör.', websiteUrl: 'https://istappen.com/' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "I en grön liten oas i Donsö hamn hittar du den trevliga restaurangen och kaféet Popsicle. Här kan du välja mellan goda luncher och hemmagjord glass."
+      { name: 'Popsicle', type: 'Café', desc: 'Restaurang och kafé i en grön oas i Donsö hamn. Luncher och hemmagjord glass.' },
     ],
     tips: [
       // KÄLLA: https://istappen.com/ — "Hos oss på Istappen kan du tanka Diesel utan RME, Färgad diesel, Bensin 98 och nu HVO100."; "Vill du tanka när stationen är stängd går det bra att göra via vår självbetjäningsautomat på utsidan." (läst 2026-09-27)
@@ -8344,6 +8395,24 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://www.wisingso.se/restaurang — "Restaurang Framnäs på Visingsö är en restaurang"; "i en unik miljö med fullständiga rättigheter" (läst 2026-09-27)
       { name: 'Restaurang Framnäs', type: 'Restaurang', desc: 'Hotellrestaurangen vid Wisingsö Hotell & Konferens mitt på ön, med lunch och middag och fullständiga rättigheter.', websiteUrl: 'https://www.wisingso.se/restaurang' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Wisingsborgs Trädgård. Härligt prunkande trädgård med anor från 1600-talet. Mitt inne i den härliga trädgården ligger ett Trädgårdscafé och i den anrika ladan i anslutning till trädgården serveras dagens lunch."
+      { name: 'Wisingsborgs Trädgård', type: 'Trädgårdscafé', desc: 'Trädgårdscafé i en trädgård med anor från 1600-talet. Dagens lunch serveras i ladan intill.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Persgårdens Café. Här har du möjlighet att ta en ekologisk kaffe med en vidunderlig utsikt över Vättern"
+      { name: 'Persgårdens Café', type: 'Café', desc: 'Ekologiskt kaffe med utsikt över Vättern.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Kajkanten är samlingsnamnet på Fiskboden, Glasskiosken och Restaurang Båthuset precis intill färjeläget på Visingsö. Öl- och vinrättigheter samt lunch, mjukglass, hemlagade våfflor, á la Carte och räkfrossa."
+      { name: 'Kajkanten', type: 'Restaurang', desc: 'Samlingsnamn för Fiskboden, Glasskiosken och Restaurang Båthuset, precis intill färjeläget.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Svensgårdens Kafé ligger vackert på västra sidan av Visingsö i Rökinge. Här serveras kaffe, glass, ostkaka, hembakat och lättare luncher."
+      { name: 'Svensgårdens Kafé', type: 'Café', desc: 'Ligger i Rökinge på öns västra sida. Kaffe, glass, ostkaka, hembakat och lättare luncher.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Restaurang Ek & Glasshuset ligger strax ovanför hamnen, granne med Visingsö Ställplats och mitt i ekskogen. Här serveras A la Carte & husmanskost"
+      { name: 'Restaurang Ek och Glasshuset', type: 'Restaurang', desc: 'Strax ovanför hamnen, mitt i ekskogen. À la carte och husmanskost.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Restaurang Solbacken. Restaurang & Café. Vackert beläget invid Visingsö hamn och granne med Visingsborgs Slottsruin."
+      { name: 'Restaurang Solbacken', type: 'Restaurang/Café', desc: 'Ligger invid hamnen, granne med Visingsborgs slottsruin.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Visingsö Pensionat & Café. Alldeles i skogsbrynet, granne med Brahekyrkan och Kungseken ligger Visingsö Pensionat som varje dag serverar dagens lunch, kaffe och tillhörande fika"
+      { name: 'Visingsö Pensionat & Café', type: 'Café', desc: 'I skogsbrynet vid Brahekyrkan och Kungseken. Dagens lunch och fika.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Inne på fantastiska Tempelgårdens område ligger Tempelgårdens Café & Keramik."
+      { name: 'Tempelgårdens Café', type: 'Café', desc: 'Café och keramik på Tempelgårdens område.' },
+      // KÄLLA: https://www.visitvisingso.com/ta-dricka (Visingsö Näringslivsförening) — "Mysig thairestaurang belägen cenralt på Visingsö."
+      { name: 'Restaurang Talay Thai', type: 'Thai', desc: 'Thairestaurang centralt på ön.' },
     ],
     tips: [
       // KÄLLA: https://www.visitvisingso.com/faq — "Remmalagen utgår från Remmalagsplattan, som du hittar strax ovanför färjeläget när du kliver iland på Visingsö. Granne med Visingsö Cykeluthyrning" (läst 2026-09-27)
@@ -8462,6 +8531,26 @@ export const ISLANDS: Island[] = [
       { name: 'House of Ven', type: 'Restaurang', desc: 'Hotellrestaurang med bland annat en sjurätters avsmakningsmeny på råvaror från Ven.', websiteUrl: 'https://www.houseofven.com/' },
       // KÄLLA: https://backafallsbyn.se/ — "med sin unika bar serverar vi mat lagad på utvalda skånska råvaror" (läst 2026-09-27)
       { name: 'Spirit of Hven Backafallsbyn', type: 'Restaurang/bar', desc: 'Restaurang och bar vid destilleriet, med mat på skånska råvaror.', websiteUrl: 'https://backafallsbyn.se/' },
+      // Ven hade noll restauranger inlagda trots att Landskrona stads egen
+      // besöksguide listar ett tjugotal ställen. Tillagt 2026-09-23 ur den
+      // kommunala listan. Beskrivningarna säger bara det källan säger:
+      // läge och verksamhetstyp. Inga öppettider, inga priser, ingen meny.
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Agnes Tapas, Bäckvikens hamn, 0418-724 60"
+      { name: 'Agnes Tapas', type: 'Tapas', desc: 'Ligger i Bäckvikens hamn.', phone: '0418-724 60' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Café Tycho Brahe, mitt på ön, cafetychobrahe.se"
+      { name: 'Café Tycho Brahe', type: 'Café', desc: 'Ligger mitt på ön.', websiteUrl: 'http://www.cafetychobrahe.se' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Fiskboden, Kyrkbackens hamn, 0418-722 20"
+      { name: 'Fiskboden', type: 'Fisk', desc: 'Ligger i Kyrkbackens hamn.', phone: '0418-722 20' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Hvendurum, bageri, 0418-724 48"
+      { name: 'Hvendurum', type: 'Bageri', desc: 'Bageri på ön.', phone: '0418-724 48' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Pumpans café & restaurang, mitt på ön, pumpans.com"
+      { name: 'Pumpans café & restaurang', type: 'Café/Restaurang', desc: 'Ligger mitt på ön.', websiteUrl: 'http://www.pumpans.com' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Strandkrogen, CampVen, campven.com"
+      { name: 'Strandkrogen', type: 'Krog', desc: 'Ligger vid CampVen.', websiteUrl: 'http://www.campven.com' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Stures krog, stureskrog.se"
+      { name: 'Stures krog', type: 'Krog', desc: 'Krog på Ven.', websiteUrl: 'https://www.stureskrog.se' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Vens Våffelmakeri, vaffelmakeri.se"
+      { name: 'Vens Våffelmakeri', type: 'Café', desc: 'Våfflor.', websiteUrl: 'https://vaffelmakeri.se' },
     ],
     tips: [
       // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/landskrona/vens-backafall.html — "Cykeluthyrning och buss till andra delar av ön finns i anslutning till färjan i Bäckviken." (läst 2026-09-27)
@@ -8681,6 +8770,12 @@ export const ISLANDS: Island[] = [
       { name: 'Öckerö gästhamn', desc: 'Gästhamn i sydvästra delen av fiskehamnen med plats för ett 30-tal båtar (djupgående upp till 5 m), drivs av Öckerö Hamn & Fiskareförening. Full service 30 april–30 september, begränsad service övrig tid; hamnen är bemannad året runt. El, dusch och wc (ingår i hamnavgiften), tvättmaskin, wifi, diesel, mastkran, badbrygga med bastu och hamncafé med öl- och vinrättigheter.', fuel: true, service: ['el', 'dusch', 'tvätt', 'wifi', 'bränsle'] },
     ],
     restaurants: [
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "På ön Öckerö hittar du Nimbusgården. Här kan du både bo och äta precis vid vattnet. Här serveras härliga luncher och bakverk i kaféet."
+      { name: 'Nimbusgården', type: 'Restaurang', desc: 'Boende och restaurang precis vid vattnet. Luncher och bakverk i kaféet.' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Nere vid kajkanten hittar du Öckerö Hamncafé. Här kan du njuta av både dagens lunch och fika i alla slags former."
+      { name: 'Öckerö Hamncafé', type: 'Café', desc: 'Kafé vid kajkanten. Dagens lunch och fika.' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Hönö Bryggeriet, som bryggt öl på Öckerö sedan 2014. Under våren och sommaren öppnar bryggeriet upp för besök och ölprovningar."
+      { name: 'Hönö Bryggeriet', type: 'Bryggeri', desc: 'Hantverksbryggeri som bryggt öl på Öckerö sedan 2014. Öppnar för besök och ölprovningar under vår och sommar.' },
     ],
     tips: [
       // KÄLLA: https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/badplatser/hjalviks-badplats — "Hjälviks badplats ligger på Öckerö", "Sandstrand, gräs och klippor", "Toalett (WC och för funktionshindrade)", "Volleybollplan", "Hundförbud från 1 maj till 30 september" (läst 2026-09-27)
@@ -8762,6 +8857,8 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://www.goteborg.com/platser/roro — "På Rörö Fiskeboa & Krog serveras rätter med tydlig förankring i havet" (läst 2026-09-27); https://rorofiskeboakrog.se/ — "I Fiskeboa kan ni köpa nykokta kräftor, räkor och fisk av olika slag", "Vi har både lunch och middagsservering", "På Wilmas så serverar vi fish & chips", "Vi använder oss av Kolja", "Kommer ni med båt är vi precis vid gästhamnen", "Copyright © 2026 Rörö Fiskeboa & Krog" (läst 2026-09-27)
       { name: 'Rörö Fiskeboa & Krog', type: 'Restaurang', desc: 'Krog och fiskbod vid gästhamnen. I Fiskeboa säljs nykokta kräftor, räkor och fisk, krogen har lunch- och middagsservering och Wilmas serverar fish & chips på kolja. Säsongsöppet; kontrollera öppettider på egna sidan.', websiteUrl: 'https://rorofiskeboakrog.se/' },
+      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "På Röröboa kan du räkna med två riktigt bra saker i matväg – hamburgare och gelato"
+      { name: 'Röröboa Gelato & Restaurang', type: 'Restaurang', desc: 'Kafé och restaurang känd för sin gelato, med hamburgare och annan mat i köket.' },
     ],
     tips: [
       // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6290__0__LINE__20260817__20261212__392b5cc8-4462-460d-b9ed-07c70df4464b__0%2C0__2808493.pdf — "290 Burö–Göteborg", "MÅNDAG – FREDAG" (läst 2026-09-27); https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6281__0__LINE__20251214__20261212__1b7d89b9-d2d4-4151-a903-70a45274103d__0%2C0__2628605.pdf — "LÖRDAG – SÖNDAG", "Hönö färjeläge" (läst 2026-09-27)

@@ -1691,6 +1691,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://orno.se/ata-bo/resturang-cafe/",
+      "org": "orno.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://www.ornobatvarv.se/gasthamn/",
       "org": "ornobatvarv.se",
       "vad": "Vi erbjuder en trevlig, annorlunda, liten och mycket familjär gästhamn med ca 20 platser. / Hamnen som ligger längst in i Brunnsviken / I hela hamnen är det inte tillåtet att använda eget ankare",
@@ -2031,6 +2038,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://roslagen.se/oar/furusund/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://kund.printhuset-sthlm.se/sl/h632.pdf",
       "org": "SL (tryckt tidtabell)",
       "vad": "Norrtälje busstation; Furusunds hotellplan; Furusunds färjeläge; Giltig 17 augusti–12 december 2026. Fyra turer mån–fre (09.14, 14.36, 16.43, 18.44), tre lördag och tre söndag",
@@ -2156,6 +2170,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "norrtalje.se",
       "vad": "ligger vid södra kusten på Oxhalsö, Här hittar du cirka 25 meter strandlinje som består av sand, Runt om badplatsen finns lövskog, Ytterligare en badflotte närmare strandkanten, på grundare vatten, Hund tillåtet: Nej, inte mellan 15 maj och 15 september",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://roslagen.se/oar/blido/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
       "myndighet": false
     },
     {
@@ -3359,6 +3380,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://roslagen.se/oar/singo-och-fogdo-lattillganglig-kulturmiljo/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://singo-fogdo.se/SHBf/lankar_v_sidan/gamla_nyheter.html",
       "org": "singo-fogdo.se",
       "vad": "Den 16 nov 1955 kl 1300 klipptes bandet; blev klara 1955 — sidan anger också att broarna gick från Väddö-Byholma över Kolskär, Fogdö och Riddarskär till Singö och att telefon kom 1905 och elektricitet 1945",
@@ -3893,6 +3921,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "http://upplevvaxholm.se/mat-och-dryck/",
+      "org": "upplevvaxholm.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://www.vaxholm.se/download/18.5dda784b16d6ccd6b031b3c8/1569999167884/Kulturmiljoinventering_av_fd_Kustartilleriregemente_KA_1_vid_Oscar-Fredriksborg_pa_Rindo_2007.pdf",
       "org": "vaxholm.se",
       "vad": "byggnaderna stod klara 1906 efter Erik Josephsons typritningar för infanteriet, merparten av bebyggelsen från 1906 - 07 finns kvar ;  — omvandling av området till en levande skärgårdsmiljö med bostäder, verksamheter och skola ;  — 1987 fick områdena runt Rindö Redutt och Oskar Fredriksborg status av Riksintresse för kulturmiljön",
@@ -3935,6 +3970,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "vad": "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård. Färjeledens längd är 600 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri. ;  — Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård. Färjeledens längd är 530 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri. ;  — Parking on Yxlan can be tricky and even hazardous. You can not park in the small housing communities. ;  — Giltig 17 augusti–12 december 2026, Norrtälje busstation 09.14 14.36 16.43 18.44, Vagnsunda 10.29 16.00 18.00 19.59b, Fortsätter efter Köpmanholms skola endast om resenärer . Restid Norrtälje–Vagnsunda 1 h 15 min (09.14 → 10.29) till 1 h 24 min (14.36 → 16.00).  — Strömkajen (Stockholm) 08.45, Vagnsunda (Yxlan) 11.01, Kolsvik (Yxlan) 13.02, utan fast avgångstid, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026",
       "last": "2026-09-27",
       "myndighet": true
+    },
+    {
+      "url": "https://roslagen.se/oar/yxlan/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
     },
     {
       "url": "https://stockholmarchipelagotrail.com/section/",
@@ -4893,6 +4935,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://roslagen.se/oar/grasko-en-badvanlig-o-i-fjarden/",
+      "org": "roslagen.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 30 SEPTEMBER 2026; Furusund 07.50 10.05 10.05 10.05; Gräskö 08.15 10.30b 10.30b 10.30b; GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026 — Furusund 07.50/10.05, Gräskö 08.15/10.30 = 25 min; Gräskö finns även i höst-/vintertabellen 1 oktober–12 december",
@@ -5476,6 +5525,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://www.styrsobolaget.se/dans-pa-branno-brygga/",
       "org": "styrsobolaget.se",
       "vad": "M/S Kungsö avgår på torsdagar från Stenpiren kl 19:10, avgång från Brännö 22.30 ;  — STENPIREN — BRÄNNÖ HUSVIK , framme i Husvik 20.15 enligt samma tabell",
@@ -5773,6 +5829,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "goteborg.com",
       "vad": "Längst upp i huset ligger 14 hotellrum, där du får en fantastisk utsikt över havet och fiskebåtshamnen.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "",
+      "last": null,
       "myndighet": false
     },
     {
@@ -7229,6 +7292,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.visitvisingso.com/ta-dricka",
+      "org": "visitvisingso.com",
+      "vad": "Wisingsborgs Trädgård. Härligt prunkande trädgård med anor från 1600-talet. Mitt inne i den härliga trädgården ligger ett Trädgårdscafé och i den anrika ladan i anslutning till trädgården serveras dagens lunch.",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://www.visitvisingso.com/aktiviteter",
       "org": "visitvisingso.com",
       "vad": "I hamnen hittar du uthyrarna som erbjuder mängder av alternativ",
@@ -7459,6 +7529,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
       "url": "https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/naturomraden-och-naturreservat/ockero-naturomrade-och-motionsspar",
       "org": "ockero.se",
       "vad": "Rördammen (1), en av kommunens största våtmarker, enkelbeckasin, näktergal, vattenrall och rörhöna, Vid dammen finns högt uppsatta holkar och i dessa brukar det häcka tornfalk, I vikarna finns vidsträckta klapperstensfält, här växer den sällsynta strandvallmon, Motionsspåret har grusunderlag och är 4600 meter långt",
@@ -7542,6 +7619,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "goteborg.com",
       "vad": "På Rörö Fiskeboa & Krog serveras rätter med tydlig förankring i havet ;  — I Fiskeboa kan ni köpa nykokta kräftor, räkor och fisk av olika slag, Vi har både lunch och middagsservering, På Wilmas så serverar vi fish & chips, Vi använder oss av Kolja, Kommer ni med båt är vi precis vid gästhamnen, Copyright © 2026 Rörö Fiskeboa & Krog",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "hamburgare och gelato",
+      "last": null,
       "myndighet": false
     },
     {
@@ -9695,6 +9779,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "goteborg.com",
       "vad": "fina badvikar och ett stort utbud av aktiviteter som klättring och kajakpaddling ;  — Längst ut på Kråkudden finns ett vindskydd för fågelskådning ;  — renodlad fisk- och skaldjursrestaurang",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
+      "org": "goteborg.com",
+      "vad": "",
+      "last": null,
       "myndighet": false
     },
     {
