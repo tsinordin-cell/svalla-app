@@ -340,8 +340,34 @@ export function getGuideRegion(slug: string): GuideRegion {
 }
 
 export function getGuidesByRegion(region: GuideRegion): GuideMeta[] {
-  return GUIDES.filter(g => getGuideRegion(g.slug) === region)
+  return PUBLICERADE_GUIDER.filter(g => getGuideRegion(g.slug) === region)
 }
+
+/**
+ * Guider som finns i listan men saknar innehåll i guide-content.ts och därför
+ * visar platshållaren "Innehåll kommer snart" (2026-09-29, kort 0842411b).
+ *
+ * MÄTT: de svarade 200, saknade noindex och låg i sitemapen. Höstlovsguiden
+ * rankade position 7,7 på "höstlov 2026" med 0 klick — en tom sida som
+ * rankar ger inga besökare och sänker förtroendet för domänen.
+ *
+ * En slug här: noindex på sidan, ingen plats i sitemap, /guider-listan,
+ * regionsidorna eller ösidornas guidelistor. Adressen fungerar fortfarande.
+ * När guiden skrivs — ta bort den härifrån. Testet i
+ * src/lib/guiderPlatshallare.test.ts spärrar åt båda hållen: en guide utan
+ * innehåll som saknas här, eller en guide med innehåll som står kvar här,
+ * fäller bygget.
+ */
+export const GUIDER_UTAN_INNEHALL: ReadonlySet<string> = new Set([
+  'havsbastu-guide',        // finns som /blogg/havsbastu-guide — omdirigeras dit i next.config
+  'host-blekinge-skargard',
+  'host-roslagen',
+  'host-skane-kusten',
+  'hostlov-vid-havet',
+  'november-skargard',
+  'planera-host-resa-havet',
+  'weekendresa-host-havet',
+])
 // ───────────────────────────────────────────────────────────────────────────
 
 export type FAQItem = { q: string; a: string }
@@ -5094,3 +5120,6 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
 ]
+
+/** GUIDES utan platshållarna — det som ska listas och indexeras. */
+export const PUBLICERADE_GUIDER: GuideMeta[] = GUIDES.filter(g => !GUIDER_UTAN_INNEHALL.has(g.slug))

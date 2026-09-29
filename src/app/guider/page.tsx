@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import GuiderClient from './GuiderClient'
-import { GUIDES } from './guides-data'
+import { PUBLICERADE_GUIDER } from './guides-data'
 
 export const metadata: Metadata = {
   title: 'Praktiska guider till skärgården',
@@ -20,8 +20,8 @@ export default function GuiderPage() {
     name: 'Guider till skärgården',
     description: 'Praktiska guider om skärgårdslivet — transport, aktiviteter, mat och säsong.',
     url: 'https://svalla.se/guider',
-    numberOfItems: GUIDES.length,
-    itemListElement: GUIDES.map((g, i) => ({
+    numberOfItems: PUBLICERADE_GUIDER.length,
+    itemListElement: PUBLICERADE_GUIDER.map((g, i) => ({
       '@type': 'ListItem',
       position: i + 1,
       name: g.title,

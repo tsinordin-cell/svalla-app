@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import {
-  GUIDES,
+  PUBLICERADE_GUIDER,
   type GuideCategory,
   type GuideRegion,
   ALL_REGIONS,
@@ -24,7 +24,7 @@ const TRANSACTIONAL_LINKS = [
   { href: '/segelkurs',   emoji: '🏖', label: 'Segelkurs',    sub: 'Certifikat & seglarskola' },
 ]
 
-function GuideCard({ guide }: { guide: typeof GUIDES[0] }) {
+function GuideCard({ guide }: { guide: typeof PUBLICERADE_GUIDER[0] }) {
   return (
     <Link href={`/guider/${guide.slug}`} style={{ textDecoration: 'none' }}>
       <article style={{
@@ -73,14 +73,14 @@ export default function GuiderClient() {
   const [activeCategory, setActiveCategory] = useState<GuideCategory | 'Alla'>('Alla')
   const [searchQuery, setSearchQuery] = useState('')
 
-  const featured = GUIDES.find(g => g.featured)
+  const featured = PUBLICERADE_GUIDER.find(g => g.featured)
 
   const q = searchQuery.trim().toLowerCase()
   const isSearching = q.length > 0
 
   // Search across all guides when query is active
   const searchResults = isSearching
-    ? GUIDES.filter(g =>
+    ? PUBLICERADE_GUIDER.filter(g =>
         g.title.toLowerCase().includes(q) ||
         g.excerpt.toLowerCase().includes(q) ||
         g.category.toLowerCase().includes(q)
@@ -88,7 +88,7 @@ export default function GuiderClient() {
     : []
 
   // Filtered flat view (when a specific category is selected)
-  const filteredGuides = GUIDES.filter(g => g.category === activeCategory && !g.featured)
+  const filteredGuides = PUBLICERADE_GUIDER.filter(g => g.category === activeCategory && !g.featured)
 
   const showGeo = activeCategory === 'Alla' && !isSearching
 
@@ -122,7 +122,7 @@ export default function GuiderClient() {
             Guider om Sveriges kust
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 14, margin: '0 0 20px' }}>
-            {GUIDES.length} guider – från Stockholms skärgård till Bohuslän, Gotland och Höga Kusten
+            {PUBLICERADE_GUIDER.length} guider – från Stockholms skärgård till Bohuslän, Gotland och Höga Kusten
           </p>
 
           {/* Sökfält */}
