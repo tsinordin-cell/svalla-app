@@ -1629,12 +1629,13 @@ export default function LandingPageClient({ photoMap, bildkallor = [] }: { photo
  // Scripts inuti dangerouslySetInnerHTML körs INTE vid client-side navigation
  // (browsers kör aldrig scripts injektade via innerHTML). Logiken lever
  // därför här i useEffect så att den alltid körs, oavsett navigationssätt.
- function applyLpPhotos(map: Record<string, string> | null) {
-   if (!map || !Object.keys(map).length) return
-   document.querySelectorAll<HTMLElement>('[data-lp-photo]').forEach(el => {
-     const key = el.getAttribute('data-lp-photo')
-     const url = key ? map[key] : undefined
-     if (!url) return
+ // Bilderna är CSS-bakgrunder och kan därför inte lazy-laddas av webbläsaren
+ // själv. Uppmätt med Lighthouse (mobil, 2026-09-29): startsidan hämtade 15
+ // Commons-bilder à 960 px = 3,3 MB direkt vid sidladdning, varav ingen syns
+ // ovanför vecket (hjälten är en canvas). Därför sätts bakgrunden först när
+ // kortet närmar sig vyn (600 px marginal). Utan IntersectionObserver
+ // (gamla webbläsare) sätts allt direkt som förut.
+ const sattBild = (el: HTMLElement, url: string) => {
      if (
        el.classList.contains('dest-card-bg') ||
        el.classList.contains('region-card-bg') ||
@@ -1655,6 +1656,31 @@ export default function LandingPageClient({ photoMap, bildkallor = [] }: { photo
        el.style.backgroundSize = 'cover'
        el.style.backgroundPosition = 'center'
      }
+ }
+ let bildObserver: IntersectionObserver | null = null
+ function applyLpPhotos(map: Record<string, string> | null) {
+   if (!map || !Object.keys(map).length) return
+   if ('IntersectionObserver' in window && !bildObserver) {
+     bildObserver = new IntersectionObserver(entries => {
+       for (const e of entries) {
+         if (!e.isIntersecting) continue
+         const el = e.target as HTMLElement
+         const url = el.dataset.lpUrl
+         if (url) sattBild(el, url)
+         bildObserver?.unobserve(el)
+       }
+     }, { rootMargin: '600px 0px' })
+   }
+   document.querySelectorAll<HTMLElement>('[data-lp-photo]').forEach(el => {
+     const key = el.getAttribute('data-lp-photo')
+     const url = key ? map[key] : undefined
+     if (!url) return
+     if (bildObserver) {
+       el.dataset.lpUrl = url
+       bildObserver.observe(el)
+       return
+     }
+     sattBild(el, url)
    })
  }
  if (photoMap && Object.keys(photoMap).length > 0) {
@@ -1697,6 +1723,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [] }: { photo
  document.removeEventListener('click', onLinkClick)
  document.removeEventListener('pointerover', onLinkHover)
  observer.disconnect()
+ bildObserver?.disconnect()
  searchInput?.removeEventListener('focus', onFocus)
  searchInput?.removeEventListener('blur', onBlur)
  hamburger?.removeEventListener('click', openMobDrawer)
