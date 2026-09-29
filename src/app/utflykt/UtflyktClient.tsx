@@ -55,21 +55,6 @@ function fmtDag(iso: string): string {
   const d = new Date(`${iso}T12:00:00Z`)
   return d.toLocaleDateString('sv-SE', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).replace('.', '')
 }
-/**
- * Restid mellan två klockslag samma dag. ResRobots `durationMin` räknar från
- * sökpunkten (t.ex. gångtid Strömkajen→Slussen) medan startTime är första
- * transportleget — visade vi den blev "06:38 → 08:07 · 2 h 1 min". Mätt
- * 2026-09-29 mot /api/transit/departures?dest=grinda. Räknar över midnatt
- * som +24 h; faller tillbaka på durationMin om tiderna saknas.
- */
-function restidMin(t: { startTime: string; endTime: string; durationMin: number }): number {
-  const [sh, sm] = t.startTime.split(':').map(Number)
-  const [eh, em] = t.endTime.split(':').map(Number)
-  if ([sh, sm, eh, em].some(n => n === undefined || Number.isNaN(n))) return t.durationMin
-  let d = (eh! * 60 + em!) - (sh! * 60 + sm!)
-  if (d < 0) d += 24 * 60
-  return d
-}
 function fmtMin(min: number): string {
   const h = Math.floor(min / 60), m = min % 60
   if (h === 0) return `${m} min`
@@ -468,7 +453,7 @@ function Battider({ slug, name, iso }: { slug: string; name: string; iso: string
           {trips.map((t, i) => (
             <li key={i} style={{ display: 'flex', gap: 10, flexWrap: 'wrap', textDecoration: t.cancelled ? 'line-through' : 'none' }}>
               <span style={{ fontWeight: 800, fontVariantNumeric: 'tabular-nums' }}>{t.startTime} → {t.endTime}</span>
-              <span style={{ opacity: 0.85 }}>{fmtMin(restidMin(t))}{t.changes > 0 ? ` · ${t.changes} ${t.changes === 1 ? 'byte' : 'byten'}` : ' · direkt'}{t.cancelled ? ' · inställd' : ''}</span>
+              <span style={{ opacity: 0.85 }}>{fmtMin(t.durationMin)}{t.changes > 0 ? ` · ${t.changes} ${t.changes === 1 ? 'byte' : 'byten'}` : ' · direkt'}{t.cancelled ? ' · inställd' : ''}</span>
             </li>
           ))}
         </ul>
@@ -478,7 +463,7 @@ function Battider({ slug, name, iso }: { slug: string; name: string; iso: string
       </div>
       {hem ? (
         <div>
-          <span style={{ fontWeight: 800, fontVariantNumeric: 'tabular-nums' }}>{hem.startTime}</span> från {last.destName} · framme {hem.endTime} ({fmtMin(restidMin(hem))})
+          <span style={{ fontWeight: 800, fontVariantNumeric: 'tabular-nums' }}>{hem.startTime}</span> från {last.destName} · framme {hem.endTime} ({fmtMin(hem.durationMin)})
         </div>
       ) : (
         <div style={{ opacity: 0.9 }}>Ingen returresa hittades i Trafiklab för den dagen — kontrollera hos operatören innan du åker.</div>
