@@ -28,13 +28,15 @@ const EXEMPELVARDEN: Record<EmailTemplate, Record<string, string | number>> = {
   day60: { first_name: 'Anna' },
   day90: { first_name: 'Anna' },
   saved_island: {
-    island_name: 'Grinda', island_tagline: 'Exempeltext: ösidans tagline hamnar här.',
+    island_name: 'Möja', island_tagline: 'Exempeltext: ösidans tagline hamnar här.',
+    fakta_rad: 'Enligt SCB var 203 personer folkbokförda på Möja den 31 december 2020.',
     restid_rad: 'Exempeltext: ösidans restid hamnar här.',
-    island_url: 'https://svalla.se/o/grinda', planera_url: 'https://svalla.se/utflykt?o=grinda',
-    guide_rad: 'Mer att läsa: [Guider om Grinda](https://svalla.se/o/grinda)',
+    island_url: 'https://svalla.se/o/moja', planera_url: 'https://svalla.se/utflykt?o=moja',
+    guide_rad: 'Mer att läsa: [Guider om Möja](https://svalla.se/o/moja)',
   },
   weekly_island: {
     island_name: 'Grinda', island_tagline: 'Exempeltext: ösidans tagline hamnar här.',
+    fakta_rad: '',
     restid_rad: 'Exempeltext: ösidans restid hamnar här.',
     island_url: 'https://svalla.se/o/grinda', planera_url: 'https://svalla.se/utflykt?o=grinda',
     guide_rad: '',
