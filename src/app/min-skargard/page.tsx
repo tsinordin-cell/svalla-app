@@ -72,11 +72,14 @@ export default async function MinSkargardPage() {
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
 
+  // RÄTTAT 2026-09-29: frågade efter created_at, som inte finns i visited_islands
+  // (kolumnen heter visited_at). Frågan gav fel → null → "0 besökta öar" för
+  // alla, oavsett hur många rader som fanns. Mätt: Tom hade 3 rader och såg 0.
   const { data: visitedRows } = await supabase
     .from('visited_islands')
-    .select('island_slug, created_at')
+    .select('island_slug, visited_at')
     .eq('user_id', user.id)
-    .order('created_at', { ascending: false })
+    .order('visited_at', { ascending: false })
 
   const { data: userProfileRow } = await supabase
     .from('users')
@@ -95,7 +98,7 @@ export default async function MinSkargardPage() {
   type VisitGroup = { label: string; items: { slug: string; name: string }[] }
   const visitGroupMap = new Map<string, VisitGroup>()
   for (const row of visitedRows ?? []) {
-    const d = new Date(row.created_at)
+    const d = new Date(row.visited_at)
     const key = `${d.getFullYear()}-${String(d.getMonth()).padStart(2, '0')}`
     if (!visitGroupMap.has(key)) {
       visitGroupMap.set(key, { label: `${SV_MONTHS[d.getMonth()]} ${d.getFullYear()}`, items: [] })
@@ -173,8 +176,8 @@ export default async function MinSkargardPage() {
             }} />
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontSize: 12, color: 'var(--txt2)' }}>
-            <span>{percentVisited}% av Norden</span>
-            <span>{savedSlugs.size} sparade vill jag besöka</span>
+            <span>{percentVisited}% av {TOTAL_ISLANDS} öar</span>
+            <span>{savedSlugs.size === 1 ? '1 sparad att besöka' : `${savedSlugs.size} sparade att besöka`}</span>
           </div>
 
           {/* Närmaste oupptäckta */}
@@ -302,7 +305,7 @@ export default async function MinSkargardPage() {
           </div>
           {visitedCount === 0 ? (
             <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '8px 0 0' }}>
-              Logga din första tur i appen så dyker de besökta öarna upp här.
+              Tryck ”Jag har varit här” på en ösida, eller logga en tur, så dyker öarna upp här.
             </p>
           ) : (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -433,8 +436,8 @@ export default async function MinSkargardPage() {
           }}>
             <Link href="/utflykt" style={toolCardStyle('var(--sea)')}>
               <ToolIcon name="navigation" color="var(--sea)" />
-              <div style={toolLabelStyle}>Utflyktsplanerare</div>
-              <div style={toolDescStyle}>Restid + packlista + krogar</div>
+              <div style={toolLabelStyle}>Din dag i skärgården</div>
+              <div style={toolDescStyle}>Öar, restid och båttider för dagen</div>
             </Link>
 
             <Link href="/bingo" style={toolCardStyle('#7c3aed')}>
