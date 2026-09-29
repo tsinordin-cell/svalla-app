@@ -147,6 +147,29 @@ const SKYDDSSTATUS_REST = new RegExp(
 const SKYDDSSTATUS = { test: (t) => SKYDDSSTATUS_NAMN.test(t) || SKYDDSSTATUS_REST.test(t) }
 
 /**
+ * NAMN I RUBRIK (2026-09-29). Tretton av varningarna var rubriker, sidtitlar
+ * och ingresser som bara NAMNGER en plats: "Kosterhavets nationalpark",
+ * "Regler i Nackas naturreservat". Själva påståendet står i brödtexten under,
+ * och där finns källan.
+ *
+ * De tystas INTE. Bullerö-felet var just ett bart namn — vi skrev "Bullerö
+ * naturreservat" om ett reservat som upphört — så att sluta larma på namn
+ * vore att öppna exakt det hålet igen. I stället får de en egen etikett så
+ * att listan över prosapåståenden går att läsa. En spärr man slutar orka
+ * läsa skyddar ingenting.
+ *
+ * Villkoren är avsiktligt snäva: raden ska vara en rubrik eller ett
+ * title/excerpt-fält, strängen får inte innehålla en siffra (då är det ett
+ * årtal eller ett mått) och inte heller en statusfras som "är ett".
+ */
+const ARBARANAMN = (rent, rad) => {
+  if (!/<h[1-6][\s>]|^\s*(title|excerpt|rubrik)\s*:/i.test(rad)) return false
+  // Taggarna själva räknas inte: <h3> innehåller en trea.
+  const utanTaggar = rent.replace(/<[^>]*>/g, ' ')
+  return !/\d/.test(utanTaggar) && !SKYDDSSTATUS_REST.test(utanTaggar)
+}
+
+/**
  * FÄLTPÅSTÅENDEN — ny kategori 2026-08-19.
  *
  * BLINDFLÄCK 4: spärren läste bara STRÄNGAR. Ett påstående som `spots: 150`
@@ -486,7 +509,10 @@ for (const f of filer(ROT)) {
 
       // Distans, knop och skyddsstatus varnar men fäller inte — se kommentarerna ovan.
       if (typ === 'distans' || typ === 'knop' || typ === 'skyddsstatus') {
-        varningar.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) }); continue
+        const etikett = typ === 'skyddsstatus' && ARBARANAMN(rent, rad)
+          ? 'skyddsstatus — NAMN I RUBRIK'
+          : typ
+        varningar.push({ fil: f, rad: i + 1, typ: etikett, text: s.slice(0, 90) }); continue
       }
       fynd.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) })
     }
