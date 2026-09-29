@@ -18,6 +18,7 @@ import { MAIL_MALLAR } from './email-templates.generated'
 export type EmailTemplate =
   | 'welcome' | 'day7' | 'season_open' | 'season_close' | 'weather_tip'
   | 'newsletter_welcome' | 'day3_newsletter' | 'day14_newsletter' | 'day30_newsletter'
+  | 'manadsbrev' | 'day60' | 'day90' | 'saved_island' | 'weekly_island'
 
 type Frontmatter = {
   trigger?: string
@@ -385,6 +386,11 @@ export async function sendEmail(opts: {
       body: JSON.stringify({
         from,
         to: opts.to,
+        // Svar ska nå en inkorg. Avsändaren hej@mail.svalla.se har ingen MX-post
+        // (kontrollerat 2026-09-29: mail.svalla.se saknar MX), så ett svar på
+        // mejlet studsade — samtidigt som mallarna ber mottagaren svara.
+        // info@svalla.se tar emot post (kontrollerat samma dag).
+        reply_to: process.env.EMAIL_REPLY_TO || 'info@svalla.se',
         subject,
         html,
         // Inbäddad logga (cid:svalla-logo) — refereras från <img src="cid:..."> i headern.
