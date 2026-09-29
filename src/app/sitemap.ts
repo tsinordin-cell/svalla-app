@@ -6,7 +6,7 @@ import { OAR_CATEGORIES } from './oar/oar-categories'
 import { createClient } from '@/lib/supabase'
 import { REGIONS, CATEGORIES } from '@/components/RegionCategoryPage'
 import { UPPLÄGG } from './dag/dag-data'
-import { GUIDES, ALL_REGIONS, REGION_URL_SLUG } from './guider/guides-data'
+import { PUBLICERADE_GUIDER, ALL_REGIONS, REGION_URL_SLUG } from './guider/guides-data'
 import { TEAMBUILDING_SUBS } from './teambuilding/teambuilding-data'
 import { HYRBAT_SUBS } from './hyra-bat/hyrbat-data'
 import { SEGELKURS_SUBS } from './segelkurs/segelkurs-data'
@@ -331,7 +331,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   // ── Guide-sidor — dynamiskt från guides-data.ts ─────────────────
-  const guidePages: MetadataRoute.Sitemap = GUIDES.map(g => ({
+  const guidePages: MetadataRoute.Sitemap = PUBLICERADE_GUIDER.map(g => ({
     url: `${base}/guider/${g.slug}`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
