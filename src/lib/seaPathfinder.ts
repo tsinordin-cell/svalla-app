@@ -13,6 +13,7 @@
 import { SEA_WAYPOINTS, SEA_EDGES, buildSeaGraph, buildWaypointMap, getAllWaypoints, SeaWaypoint } from './seaWaypoints'
 import { pointOnLand, segmentCrossesLand, validatePathLand, inMaskCoverage, findRasterPath } from './landMask'
 import { logger } from './logger'
+import { DEPARTURES } from './planner-client'
 import precomputedRoutesData from './data/precomputed-routes.json'
 
 // ─── Pre-computed routes lookup ────────────────────────────────────────────
@@ -694,6 +695,20 @@ export function qualityToConfidence(q: RouteQuality): number {
 const MAX_SHORE_DISTANCE_KM = 5
 
 /**
+ * En punkt inom 80 m (samma tolerans som lookupPrecomputed) från en hamn i
+ * vår egen lista som ligger i Mälaren eller Saltsjön. Sådana hamnar är per
+ * definition i farbart vatten och ska inte stoppas av inlandsspärren bara
+ * för att waypoint-grafen är gles där (Färentuna, Stallarholmen).
+ */
+function isKnownSeaHarbour(lat: number, lng: number): boolean {
+  for (const d of DEPARTURES) {
+    if (d.water === 'insjo') continue
+    if (coordsMatch(d, lat, lng)) return true
+  }
+  return false
+}
+
+/**
  * 2026-05-23: scanar ALLA waypoints (manuell + OSM från 3 391 hamnar +
  * 225 anchorages + 30 083 färjelinje-noder). Med så tät täckning betyder
  * "ingen waypoint inom 5 km" att punkten är genuint inland (insjö, fastland).
@@ -728,13 +743,27 @@ export function findSeaPathWithQuality(
   //    föräldralös när sista-utvägssteget lades till 2026-05-27; safety-
   //    testerna (Tullinge → unavailable) har varit röda sedan dess.
   //    Kustnära mål (<5 km) berörs INTE — de tas fortsatt av harbor-snap.
-  if (!isNearShore(startLat, startLng) || !isNearShore(endLat, endLng)) {
-    return { path: null, quality: 'unavailable' }
-  }
-
-  // 1. Pre-computed — hand-validerad vattenrutt (garanterat säker)
+  //
+  //    2026-09-29 (kort d986cb85): spärren mäter avstånd till närmsta
+  //    WAYPOINT, inte till vatten. I västra Mälaren är waypoint-grafen gles:
+  //    Färentuna (Skarven) ligger 6,8 km och Stallarholmen 9,2 km från
+  //    närmsta waypoint fast båda är hamnar i vatten. Följd, uppmätt i
+  //    produktion: varenda rutt till eller från de två svarade
+  //    "no_sea_route" sedan de lades till, trots att rastret hittar väg
+  //    (Stadshuskajen → Stallarholmen 74 km). Därför (a) kontrolleras
+  //    precompute FÖRE spärren — en handvaliderad rutt i filen är i sig
+  //    bevis på vatten — och (b) undantas hamnar ur vår egen lista som är
+  //    märkta malaren/saltsjon. Insjöhamnar (water: 'insjo', Tullinge) är
+  //    inte undantagna: spärren är skriven för dem.
   const precompFirst = lookupPrecomputed(startLat, startLng, endLat, endLng)
   if (precompFirst) return { path: precompFirst, quality: 'precomputed' }
+
+  if (
+    (!isNearShore(startLat, startLng) && !isKnownSeaHarbour(startLat, startLng)) ||
+    (!isNearShore(endLat, endLng) && !isKnownSeaHarbour(endLat, endLng))
+  ) {
+    return { path: null, quality: 'unavailable' }
+  }
 
   // 2. Grid-A* med land-mask
   let path = findPathViaGrid(startLat, startLng, endLat, endLng)
