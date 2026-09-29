@@ -10,6 +10,8 @@ import IslandThumb from '@/components/IslandThumb'
 import { OBILDER } from '@/app/o/obilder.generated'
 import { commonsThumb } from '@/lib/commonsBild'
 import Bildkallor from '@/components/Bildkallor'
+import OarSnabbfilter from './OarSnabbfilter'
+import { sokNyckel } from './oar-sok'
 
 export const metadata: Metadata = {
   title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer',
@@ -292,15 +294,43 @@ export default function OarIndexPage() {
           }}>
             Alla {ALL_ISLANDS.length} öar
           </h2>
-          <p style={{ fontSize: 15, color: 'var(--txt2)', margin: '0 0 24px' }}>
-            Bläddra per region eller scrolla för att hitta din destination.
+          <p style={{ fontSize: 15, color: 'var(--txt2)', margin: '0 0 20px' }}>
+            Skriv namnet, hoppa till en region eller bläddra.
           </p>
+
+          {/*
+            Kort 2ccd3cd5 (2026-09-29): listan är sexton skärmar lång i telefon-
+            bredd, och "scrolla för att hitta din destination" var det enda
+            sättet. Nu finns ett snabbfilter (JS) och regionlänkar (ren HTML,
+            fungerar utan JS). Listan är fortfarande serverrenderad i sin helhet
+            — den är sidans SEO-innehåll och över nätet väger hela sidan ~40 kB
+            (brotli), samma som en ösida.
+          */}
+          <OarSnabbfilter total={ALL_ISLANDS.length} />
+          <nav aria-label="Hoppa till region" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
+            {(['norra', 'mellersta', 'södra', 'bohuslan', 'goteborg', 'ovriga'] as const)
+              .filter(region => (grouped[region] ?? []).length > 0)
+              .map(region => (
+                <a
+                  key={region}
+                  href={`#region-${region}`}
+                  style={{
+                    fontSize: 13, fontWeight: 600,
+                    padding: '7px 14px', borderRadius: 999,
+                    background: 'var(--surface-2)', color: 'var(--sea)',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {REGION_LABELS[region]} · {(grouped[region] ?? []).length}
+                </a>
+              ))}
+          </nav>
 
           {(['norra', 'mellersta', 'södra', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
             const items = grouped[region] ?? []
             if (items.length === 0) return null
             return (
-              <div key={region} style={{ marginBottom: 36 }}>
+              <div key={region} id={`region-${region}`} data-region-grupp style={{ marginBottom: 36, scrollMarginTop: 16 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 16 }}>
                   <h3 style={{
                     fontSize: 20, fontWeight: 700, color: 'var(--sea)',
@@ -327,6 +357,8 @@ export default function OarIndexPage() {
                     <Link
                       key={i.slug}
                       href={`/o/${i.slug}`}
+                      data-o-kort
+                      data-sok={sokNyckel(i.name, REGION_LABELS[region] ?? '', i.tagline)}
                       style={{
                         background: 'var(--white)',
                         border: '1px solid var(--surface-3)',
