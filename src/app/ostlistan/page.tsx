@@ -774,7 +774,7 @@ export default function OstlistanPage() {
             { href: '/oar', icon: 'map' as const, label: 'Alla öar' },
             { href: '/guider', icon: 'bookmark' as const, label: 'Guider' },
             { href: '/blogg', icon: 'edit' as const, label: 'Blogg' },
-            { href: '/utflykt', icon: 'sailboat' as const, label: 'Utflyktsplanerare' },
+            { href: '/utflykt', icon: 'sailboat' as const, label: 'Din dag i skärgården' },
           ].map(({ href, icon, label }) => (
             <Link key={href} href={href} style={{
               display: 'inline-block',
