@@ -11,8 +11,10 @@ describe('cronBehorig', () => {
     expect(cronBehorig(req({ authorization: 'Bearer hemligt' }), 'hemligt')).toBe(true)
     expect(cronBehorig(req({ authorization: 'Bearer fel' }), 'hemligt')).toBe(false)
   })
+  // Tom sträng och inte undefined: undefined triggar standardvärdet
+  // process.env.CRON_SECRET, som är satt i Vercels byggmiljö.
   it('utan CRON_SECRET: gamla beteendet (User-Agent) ligger kvar', () => {
-    expect(cronBehorig(req({ 'user-agent': 'vercel-cron/1.0' }), undefined)).toBe(true)
-    expect(cronBehorig(req({}), undefined)).toBe(false)
+    expect(cronBehorig(req({ 'user-agent': 'vercel-cron/1.0' }), '')).toBe(true)
+    expect(cronBehorig(req({}), '')).toBe(false)
   })
 })
