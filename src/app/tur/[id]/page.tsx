@@ -16,7 +16,6 @@ import TripShareModal from '@/components/TripShareModal'
 import TripActions from '@/components/TripActions'
 import TripTagger from '@/components/TripTagger'
 import TripHighlightPrompt from '@/components/TripHighlightPrompt'
-import RepostButton from '@/components/RepostButton'
 import BackButton from '@/components/BackButton'
 import TripGearAffiliate from '@/components/TripGearAffiliate'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
@@ -573,7 +572,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  <Comments tripId={trip.id} />
  {/* Spacer */}
  <div style={{ flex: 1 }} />
- <RepostButton tripId={trip.id} tripOwnerId={trip.user_id} compact />
+ {/* RepostButton borttagen 2026-09-29: tabellen reposts finns inte (se PR #409). */}
  {/* Dela-knapp med text — mer synlig */}
  <TripShareModal
  tripId={id}

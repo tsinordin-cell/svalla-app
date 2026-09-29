@@ -5,6 +5,7 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon, { type IconName } from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { getIslandPlaces } from '@/lib/islandPlaces'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -18,6 +19,8 @@ type Props = { params: Promise<{ slug: string }> }
 // i routern, före skalet. Gäller INTE db-backade rutter (upptack, tur,
 // u) — nya rader där måste kunna renderas utan ny deploy.
 export const dynamicParams = false
+// ISR: badplatser och krogar ur platsdatabasen hämtas vid bygget och uppdateras varje timme.
+export const revalidate = 3600
 
 export async function generateStaticParams() {
   return ALL_ISLANDS.map(island => ({ slug: island.slug }))
@@ -31,8 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
   return {
-    title: `${island.name} med barn — barnvänlig guide 2026`,
-    description: `Är ${island.name} bra för barnfamiljer? Stränder, lugnt vatten, restauranger och tips för familjer med barn. Komplett guide.`,
+    title: `${island.name} med barn – bad, mat och resväg`,
+    description: `${island.name} med barn: badplatser, restauranger, restid och vad barn betalar på båten.`,
     keywords: [
       `${island.name.toLowerCase()} med barn`,
       `${island.name.toLowerCase()} barnfamilj`,
@@ -42,8 +45,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `dagstur med barn ${island.name.toLowerCase()}`,
     ],
     openGraph: {
-      title: `${island.name} med barn — barnvänlig guide`,
-      description: `Allt du behöver veta för att besöka ${island.name} med barnfamilj. Transport, bad, mat och tips.`,
+      title: `${island.name} med barn – bad, mat och resväg`,
+      description: `Badplatser, restauranger och resväg för besök på ${island.name} med barn.`,
       url: `https://svalla.se/o/${slug}/med-barn`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/med-barn` },
@@ -55,8 +58,6 @@ export default async function IslandMedBarnPage({ params }: Props) {
   const island = getIsland(slug)
   if (!island) notFound()
 
-  const bestFor = (island.facts.best_for ?? '').toLowerCase()
-  const isFamilyFriendly = bestFor.includes('barn') || bestFor.includes('familj')
 
   const beaches = island.activity_meta?.bad?.beaches ?? []
   /** Badplatserna som rena namn. Fältet rymmer både strängar och IslandBeach. */
@@ -78,18 +79,30 @@ export default async function IslandMedBarnPage({ params }: Props) {
     )
   )
 
+  // Badplatser och krogar ur platsdatabasen, som komplement till island-data.
+  const [dbBeaches, dbFood] = await Promise.all([
+    getIslandPlaces(island, ['beach'], { extraKm: 0 }),
+    getIslandPlaces(island, ['restaurant', 'cafe', 'bar'], { extraKm: 0 }),
+  ])
+  const allaBad = [...new Set([...badnamn, ...dbBeaches.filter(p => p.onIsland).map(p => p.name)])]
+  const antalKrogar = Math.max(island.restaurants.length, dbFood.filter(p => p.onIsland).length)
+  const usesWaxholmsbolaget = (island.transport_meta?.operator ?? '').includes('Waxholmsbolaget')
+    || island.getting_there.some(t => `${t.method} ${t.desc}`.includes('Waxholm'))
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
       {
         '@type': 'Question',
-        name: `Är ${island.name} bra för barnfamiljer?`,
+        name: `Vad finns för barnfamiljer på ${island.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: isFamilyFriendly
-            ? `Ja, ${island.name} passar barnfamiljer bra. ${island.facts.best_for}. Restid: ${island.facts.travel_time}.`
-            : `${island.name} kan fungera för äldre barn och familjer med vana av skärgårdsresor. ${island.facts.best_for}. Restid: ${island.facts.travel_time}.`,
+          text: [
+            allaBad.length > 0 ? `Badplatser: ${allaBad.slice(0, 4).join(', ')}.` : null,
+            antalKrogar > 0 ? `${antalKrogar === 1 ? 'En restaurang eller ett kafé' : `${antalKrogar} restauranger och kaféer`} som vi har uppgifter om.` : 'Vi har inga restauranger registrerade på ön – ta med matsäck om du är osäker.',
+            island.facts.travel_time ? `Restid: ${island.facts.travel_time}.` : null,
+          ].filter(Boolean).join(' '),
         },
       },
       {
@@ -113,9 +126,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
         island={island}
         tab="med-barn"
         subtitle={
-          isFamilyFriendly
-            ? `${island.name} är ett populärt val för barnfamiljer — ${(island.facts.best_for ?? '').toLowerCase()}.`
-            : `Guide för dig som planerar att besöka ${island.name} med barn.`
+          `Bad, mat och resväg för dig som åker till ${island.name} med barn.`
         }
       />
 
@@ -137,9 +148,9 @@ export default async function IslandMedBarnPage({ params }: Props) {
               // beaches är (string | IslandBeach)[]. Ett rakt join() gav
               // "[object Object]" på varje ö som fått strukturerad baddata —
               // syntes live på /o/moja/med-barn 2026-09-23.
-              { icon: 'waves', label: 'Badmöjligheter', value: badnamn.length > 0 ? badnamn.slice(0, 2).join(', ') : (island.activity_meta?.bad ? 'Klippbad och bryggor' : 'Klippor längs kusten') },
+              { icon: 'waves', label: 'Badmöjligheter', value: allaBad.length > 0 ? allaBad.slice(0, 2).join(', ') : 'Ingen badplats registrerad' },
               // "1 krogar och caféer" stod live på varje ö med exakt ett ställe.
-              { icon: 'utensils', label: 'Restauranger', value: island.restaurants.length === 1 ? 'En krog eller kafé' : island.restaurants.length > 1 ? `${island.restaurants.length} krogar och kaféer` : 'Begränsat utbud — ta matsäck' },
+              { icon: 'utensils', label: 'Restauranger', value: antalKrogar === 1 ? 'En krog eller kafé' : antalKrogar > 1 ? `${antalKrogar} krogar och kaféer` : 'Ingen registrerad – ta med matsäck' },
               { icon: 'navigation', label: 'Cykling', value: island.activity_meta?.cykel?.rental ? 'Cykeluthyrning finns' : (island.activity_meta?.cykel ? 'Cykelleder finns' : 'Kontrollera lokalt') },
               { icon: 'calendar', label: 'Bäst säsong', value: island.facts.season },
               { icon: 'users', label: 'Passar', value: island.facts.best_for },
@@ -184,7 +195,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
         {kidFriendlyRestaurants.length > 0 && (
           <div style={{ marginBottom: 28 }}>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 16 }}>
-              Bra restauranger för familjer
+              Kaféer och lunchställen på {island.name}
             </h2>
             <div style={{ display: 'grid', gap: 12 }}>
               {kidFriendlyRestaurants.map((r, i) => (
@@ -230,11 +241,13 @@ export default async function IslandMedBarnPage({ params }: Props) {
                 </div>
               ))}
             </div>
+            {usesWaxholmsbolaget && (
             <p style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 12, display: 'flex', alignItems: 'flex-start', gap: 6 }}>
               <Icon name="star" size={14} stroke={2} style={{ marginTop: 3 }} />
               {/* KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; läst 2026-09-19 */}
               <span>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen. 7–19 år betalar rabatterat pris (39–114 kr i stället för 61–186 kr).</span>
             </p>
+            )}
           </div>
         )}
 
@@ -247,7 +260,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
             marginBottom: 28,
           }}>
             <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 12 }}>
-              Insidertips för besök med barn
+              Tips om {island.name}
             </h3>
             <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
               {island.insiderTips.slice(0, 4).map((tip, i) => <li key={i}>{tip}</li>)}
@@ -269,7 +282,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
               Planera familjedagen på {island.name}
             </div>
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
-              Thorkel hittar rätt båt, bästa lunchrestaurangen och ett badtips anpassat för barn.
+              Thorkel hjälper dig med båt, lunch och bad.
             </div>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver gratis konto — tar 30 sekunder.</div>
           </div>

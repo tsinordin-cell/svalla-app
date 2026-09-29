@@ -30,9 +30,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
+  // Metabeskrivningen sa "Waxholmsbolaget, Cinderellabåten, SL eller bil" på
+  // ALLA öar, även Bohuslän och Göteborg (Käringön: båt från Tuvesvik).
+  // Uppmätt i Search Console 2026-09-23 (6 400 visningar). Nu byggs den av
+  // öns egna färdsätt och operatör.
+  const forsta = island.getting_there[0]
+  const vag = forsta
+    ? `${forsta.method}${forsta.from && !/från/i.test(forsta.method) ? ` från ${forsta.from}` : ''}`
+    : null
+  const operator = island.transport_meta?.operator ?? null
+  const beskrivning = [
+    `Så tar du dig till ${island.name}`,
+    vag ? `: ${vag}` : '',
+    '.',
+    island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : '',
+    operator && !(vag ?? '').toLowerCase().includes(operator.toLowerCase()) ? ` Trafik: ${operator}.` : '',
+  ].join('')
   return {
     title: `Hur tar man sig till ${island.name}? — Båt, buss, färja 2026`,
-    description: `Allt om transport till ${island.name}: Waxholmsbolaget, Cinderellabåten, SL eller bil. Avgångstider, priser och tips för ${island.facts.travel_time}.`,
+    description: beskrivning,
     keywords: [
       `hur tar man sig till ${island.name.toLowerCase()}`,
       `${island.name.toLowerCase()} båt`,
@@ -40,12 +56,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${island.name.toLowerCase()} transport`,
       `komma till ${island.name.toLowerCase()}`,
       `resa till ${island.name.toLowerCase()}`,
-      `${island.name.toLowerCase()} waxholmsbolaget`,
+      ...(operator ? [`${island.name.toLowerCase()} ${operator.toLowerCase()}`] : []),
       `how to get to ${island.name.toLowerCase()} sweden`,
     ],
     openGraph: {
       title: `Hur tar man sig till ${island.name}? Allt om transport`,
-      description: `Båt, buss och färja till ${island.name}. Avgångstider, priser, tips. Restid: ${island.facts.travel_time}.`,
+      description: `Båt, buss och färja till ${island.name}. Avgångstider, priser, tips.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
       url: `https://svalla.se/o/${slug}/komma-dit`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/komma-dit` },
@@ -82,7 +98,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
           '@type': 'Answer',
           text: island.getting_there.length > 0
             ? island.getting_there.map(t => `${t.method}: ${t.desc}`).join('. ')
-            : `${island.name} nås med reguljärbåt. Restid: ${island.facts.travel_time}.`,
+            : `${island.name} nås med reguljärbåt.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
         },
       },
       {
@@ -92,7 +108,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
           '@type': 'Answer',
           text: kollektivt
             ? `Nej. ${island.getting_there.filter(t => !/egen båt|segelbåt|kajak|charter/i.test(t.method)).map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}${t.time ? ` (${t.time})` : ''}`).join(', ')}.`
-            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}. Restid: ${island.facts.travel_time}.`,
+            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
         },
       },
       {
@@ -100,7 +116,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
         name: `Hur lång tid tar båten till ${island.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Restid till ${island.name}: ${island.facts.travel_time}. ${island.transport_meta ? `Från närmaste knutpunkt (${island.transport_meta.nearest_hub}): ca ${island.transport_meta.from_nearest_hub_min} minuter.` : ''}`,
+          text: `${island.facts.travel_time ? `Restid till ${island.name}: ${island.facts.travel_time}. ` : island.getting_there.filter(t => t.time).map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}: ${t.time}`).join('. ') + (island.getting_there.some(t => t.time) ? '. ' : '')}${island.transport_meta ? `Från närmaste knutpunkt (${island.transport_meta.nearest_hub}): ca ${island.transport_meta.from_nearest_hub_min} minuter.` : ''}`,
         },
       },
     ],
@@ -113,7 +129,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
       <IslandSubPageHeader
         island={island}
         tab="komma-dit"
-        subtitle={`Restid: ${island.facts.travel_time}.${kollektivt ? ' Ingen egen båt krävs.' : ''}`}
+        subtitle={`${island.facts.travel_time ? `Restid: ${island.facts.travel_time}.` : ''}${kollektivt ? `${island.facts.travel_time ? ' ' : ''}Ingen egen båt krävs.` : ''}`}
       />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
@@ -128,8 +144,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
             display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 16,
           }}>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 4 }}>Från Stockholm</div>
-              <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--sea)' }}>{island.transport_meta.from_city_min} min</div>
+              {/* "Från Stockholm" stod även på Bohusläns och Göteborgs öar. */}
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 4 }}>{stockholm ? 'Från Stockholm' : `Från ${island.transport_meta.nearest_hub}`}</div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--sea)' }}>{stockholm ? island.transport_meta.from_city_min : island.transport_meta.from_nearest_hub_min} min</div>
             </div>
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 4 }}>Närmaste knutpunkt</div>
@@ -137,7 +154,12 @@ export default async function IslandKommaDitPage({ params }: Props) {
             </div>
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 4 }}>Operatör</div>
-              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)' }}>{island.transport_meta.operator}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)' }}>{island.transport_meta.operator}{island.transport_meta.line ? ` · linje ${island.transport_meta.line}` : ''}</div>
+              {island.transport_meta.booking_url && (
+                <a href={island.transport_meta.booking_url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none' }}>
+                  Se tidtabell →
+                </a>
+              )}
             </div>
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 4 }}>Turtäthet</div>

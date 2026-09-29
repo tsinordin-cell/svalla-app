@@ -66,6 +66,7 @@ const DOLD_PLATS_REDIRECT: Record<string, string> = {
   'smogen-brygghus': '/upptack/smogenbryggar-ns-olhall',
   'klintan-sjöstation': '/upptack/circle-k-klintsundet',
   'toro-ankarudden': '/upptack/sjoboden-toro-ankarudden',
+  'salt-sill': '/upptack/salt-och-sill-hotell-konferens-och-restaurang-bohuslan',
   // Poster som inte motsvarade en verklig verksamhet → öns sida
   'alice-foodtruck-skarhamn': '/o/tjorn',
   'blido-sommarcafe': '/o/blido',
@@ -74,6 +75,8 @@ const DOLD_PLATS_REDIRECT: Record<string, string> = {
   'singo-battaxi': '/o/singo',
   'fjallbacka-bensinstation': '/o/fjallbacka',
   'norrora-krog': '/o/norrora',
+  'langviks-yttre-gasthamn': '/o/moja',
+  'arholma-hamnkrog': '/o/arholma',
 }
 
 // ── Riktig 404 för okända och dolda platser (/upptack/<slug|uuid>) ──

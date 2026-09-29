@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon from '@/components/Icon'
+import IslandPlacesList from '@/components/IslandPlacesList'
+import { getIslandPlaces } from '@/lib/islandPlaces'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -17,6 +19,8 @@ type Props = { params: Promise<{ slug: string }> }
 // i routern, före skalet. Gäller INTE db-backade rutter (upptack, tur,
 // u) — nya rader där måste kunna renderas utan ny deploy.
 export const dynamicParams = false
+// ISR: hamnarna ur platsdatabasen hämtas vid bygget och uppdateras varje timme.
+export const revalidate = 3600
 
 export async function generateStaticParams() {
   return ALL_ISLANDS.map(island => ({ slug: island.slug }))
@@ -31,11 +35,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!island) notFound()
   return {
     title: `Gästhamnar på ${island.name} — bryggor och båtplatser`,
-    description: `Alla gästhamnar och bryggor på ${island.name}. Antal platser, bränsle, dusch, el och bokning. Aktuell info inför sommaren.`,
+    description: `Gästhamnar, bryggor och båtplatser på ${island.name}: antal platser, bränsle, dusch och el där hamnen själv anger det.`,
     keywords: [`${island.name.toLowerCase()} gästhamn`, `${island.name.toLowerCase()} brygga`, `båt till ${island.name.toLowerCase()}`],
     openGraph: {
       title: `Gästhamnar på ${island.name}`,
-      description: `Alla bryggor och hamnar på ${island.name}.`,
+      description: `Gästhamnar och bryggor på ${island.name}.`,
       url: `https://svalla.se/o/${slug}/hamnar`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/hamnar` },
@@ -47,6 +51,10 @@ export default async function IslandHarborsPage({ params }: Props) {
   const island = getIsland(slug)
   if (!island) notFound()
 
+  const known = new Set(island.harbors.map(h => h.name.toLowerCase()))
+  const dbHarbors = (await getIslandPlaces(island, ['harbor', 'marina', 'anchorage', 'nature_harbor', 'fuel'], { extraKm: 1 }))
+    .filter(p => !known.has(p.name.toLowerCase()))
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <IslandSubPageHeader
@@ -56,9 +64,9 @@ export default async function IslandHarborsPage({ params }: Props) {
       />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
-        {island.harbors.length === 0 ? (
+        {island.harbors.length === 0 && dbHarbors.length === 0 ? (
           <div style={{ background: 'var(--white)', padding: 24, borderRadius: 14, fontSize: 14, color: 'var(--txt2)' }}>
-            Inga registrerade gästhamnar på {island.name}.
+            Vi har inga gästhamnar registrerade på {island.name}.
           </div>
         ) : (
           <div style={{ display: 'grid', gap: 14 }}>
@@ -88,6 +96,16 @@ export default async function IslandHarborsPage({ params }: Props) {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {dbHarbors.length > 0 && (
+          <div style={{ marginTop: island.harbors.length > 0 ? 28 : 0 }}>
+            <IslandPlacesList
+              places={dbHarbors}
+              islandName={island.name}
+              heading={island.harbors.length > 0 ? `Fler hamnar, bryggor och sjömackar på och nära ${island.name}` : `Hamnar, bryggor och sjömackar på och nära ${island.name}`}
+            />
           </div>
         )}
 

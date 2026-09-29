@@ -7,6 +7,7 @@ import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 import IslandWeatherClient from '@/components/IslandWeatherClient'
 import SaveIslandButton from '@/components/SaveIslandButton'
+import IslandNavAuth from '@/components/IslandNavAuth'
 import MarkVisitedButton from '@/components/MarkVisitedButton'
 import FAQSection from '@/components/FAQSection'
 import { getFaqsForIsland } from '@/lib/islandFaqs'
@@ -278,13 +279,9 @@ export default async function IslandPage({ params }: Props) {
    <Link href="/rutter?vy=oar" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>
      ← Alla öar
    </Link>
-   <Link href="/nyhetsbrev" style={{
-     color: '#fff', fontSize: 12, fontWeight: 700, textDecoration: 'none',
-     background: 'rgba(255,255,255,0.18)', borderRadius: 20,
-     padding: '5px 12px', border: '1px solid rgba(255,255,255,0.25)',
-   }}>
-     <Icon name="mail" size={13} stroke={2} /> Nyhetsbrev
-   </Link>
+   {/* 2026-09-28: "Logga in" + "Kom igång" (utloggad) eller "Min skärgård" (inloggad),
+       som på startsidan. Nyhetsbrevsknappen som låg här finns kvar under "Mer om …". */}
+   <IslandNavAuth islandSlug={island.slug} />
  </div>
  </div>
  </nav>
@@ -296,7 +293,8 @@ export default async function IslandPage({ params }: Props) {
  color: '#fff',
  }}>
  <div style={{ maxWidth: 900, margin: '0 auto' }}>
- <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+ {/* flexWrap 2026-09-28: raden gjorde sidan 412 px bred på 320 px-skärmar (sidled-skroll). */}
+ <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
  <span style={{
  fontSize: 11,
  fontWeight: 700,
@@ -479,7 +477,8 @@ export default async function IslandPage({ params }: Props) {
        </div>
 
        {/* Månadsrutnät */}
-       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12,1fr)', gap: 3, marginBottom: 14 }}>
+       {/* minmax(0,1fr) 2026-09-28: annars fick månadsrutorna minsta bredd av texten och rutnätet stack ut på 320 px. */}
+       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12,minmax(0,1fr))', gap: 3, marginBottom: 14 }}>
          {island.seasonal.months.map((status, i) => (
            <div key={i} style={{
              background: COLOR[status],
@@ -489,7 +488,7 @@ export default async function IslandPage({ params }: Props) {
              border: i === currentMonth ? '2px solid var(--sea)' : '2px solid transparent',
              position: 'relative',
            }}>
-             <div style={{ fontSize: 9, fontWeight: 700, color: TEXT[status], letterSpacing: 0.3 }}>
+             <div style={{ fontSize: 9, fontWeight: 700, color: TEXT[status], letterSpacing: 0.3, overflow: 'hidden' }}>
                {MONTH_LABELS[i]}
              </div>
              {i === currentMonth && (
@@ -909,9 +908,13 @@ export default async function IslandPage({ params }: Props) {
  </div>
  ))}
  </div>
- <div style={{ marginTop: 16, textAlign: 'right' }}>
+ <div style={{ marginTop: 16, display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+  {/* 2026-09-28: väg från ösidan in i dagsplaneraren, med ön förvald. */}
+  <Link href={`/utflykt?o=${slug}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
+   Planera en dag på {island.name} →
+  </Link>
   <Link href={`/o/${slug}/komma-dit`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
-   Komplett transportguide till {island.name} →
+   Komplett transportguide →
   </Link>
  </div>
  </section>
@@ -1066,7 +1069,7 @@ export default async function IslandPage({ params }: Props) {
        </div>
        <div style={{ flex: 1 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Bad &amp; stränder</div>
-        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Bästa badplatserna på {island.name}</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Badplatser på och nära {island.name}</div>
        </div>
        <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
       </div>

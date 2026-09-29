@@ -835,7 +835,9 @@ export async function POST(req: NextRequest) {
   // Fetch user's last 5 trips for personalized context
   const { data: recentTrips } = await supabase
     .from('trips')
-    .select('title, location_name, distance, created_at')
+    // RÄTTAT 2026-09-29: kolumnen title finns inte i trips (heter caption).
+    // Frågan gav fel → recentTrips null → Thorkel har aldrig sett någons turer.
+    .select('caption, location_name, distance, created_at')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
     .limit(5)
@@ -843,8 +845,8 @@ export async function POST(req: NextRequest) {
   let tripCtx = ''
   if (recentTrips && recentTrips.length > 0) {
     tripCtx = '\n\n=== ANVÄNDARENS SENASTE TURER (använd för personalisering) ===\n' +
-      (recentTrips as Array<{ title?: string | null; location_name?: string | null; distance?: number | null }>)
-        .map(t => `- ${t.title ?? 'Namnlös tur'}${t.location_name ? ` — ${t.location_name}` : ''}${t.distance != null ? ` (${Math.round(t.distance)} NM)` : ''}`)
+      (recentTrips as Array<{ caption?: string | null; location_name?: string | null; distance?: number | null }>)
+        .map(t => `- ${t.caption ?? 'Namnlös tur'}${t.location_name ? ` — ${t.location_name}` : ''}${t.distance != null ? ` (${Math.round(t.distance)} NM)` : ''}`)
         .join('\n') +
       '\nOm relevant: referera till deras tidigare turer när du ger råd.'
   }

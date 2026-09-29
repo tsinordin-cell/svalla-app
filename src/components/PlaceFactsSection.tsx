@@ -44,6 +44,7 @@ const TYPE_LABEL: Record<string, string> = {
   camping: 'Camping',
   pension: 'Pensionat',
   nature: 'Naturplats',
+  attraction: 'Sevärdhet',
 }
 
 const CATEGORY_LABEL: Record<string, string> = {

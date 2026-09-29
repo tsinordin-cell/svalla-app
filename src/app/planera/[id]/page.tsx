@@ -11,6 +11,9 @@ import PlaneraCTA from './PlaneraCTA'
 import PlaneraShare from './PlaneraShare'
 import PlaneraRouteSection from './PlaneraRouteSection'
 import PlaneraDistanceBadge from './PlaneraDistanceBadge'
+import PlaneraIslands from './PlaneraIslands'
+import PlaneraMarkVisited from './PlaneraMarkVisited'
+import { islandsAlongRoute } from '@/lib/islandsAlongRoute'
 import RouteDisclaimer from '@/components/RouteDisclaimer'
 import RouteFeedbackButton from '@/components/RouteFeedbackButton'
 import RouteWeatherStrip from '@/components/RouteWeatherStrip'
@@ -153,6 +156,8 @@ export default async function PlaneraIdPage({ params }: Props) {
  ).catch(() => null)
 
  const [resolvedStops, forecast] = await Promise.all([fetchStops, fetchForecast])
+ // Öar längs rutten (2026-09-28): ösidor inom 5 km från linjen start→mål, i ruttordning.
+ const islands = islandsAlongRoute(route.start_lat, route.start_lng, route.end_lat, route.end_lng)
 
  // Sort stops geographically along the route (start → end)
  const sortedStops = [...resolvedStops].sort((a, b) => {
@@ -242,6 +247,9 @@ export default async function PlaneraIdPage({ params }: Props) {
  haversineDistKm={haversineDistKm}
  routeId={route.id}
  />
+
+ {/* Öar längs rutten — Svallas ösidor, med spara-knapp */}
+ <PlaneraIslands islands={islands} />
 
  {/* Vindprognos längs rutten */}
  {forecast && <RouteWeatherStrip forecast={forecast} />}
@@ -370,6 +378,8 @@ export default async function PlaneraIdPage({ params }: Props) {
 
  {/* CTA */}
  <PlaneraCTA routeId={route.id} hasDoneIt={!!route.trip_id} />
+ {/* Avslut utan GPS: markera öarna längs rutten som besökta */}
+ <PlaneraMarkVisited routeId={route.id} slugs={islands.map(i => i.slug)} names={islands.map(i => i.name)} />
 
  {/* Share */}
  <PlaneraShare routeId={route.id} startName={route.start_name} endName={route.end_name} />

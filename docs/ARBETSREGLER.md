@@ -120,3 +120,13 @@ av just det skälet.
 
 En KÄLLA-rad får aldrig peka på svalla.se — det är självcitering, och
 verify-claims fäller bygget på det sedan PR #316.
+
+## Platstexter ska vara SEO-anpassade (Tom 2026-09-23)
+
+Varje text om en plats på Svalla skrivs för att hittas, men aldrig på bekostnad av korrekt fakta.
+
+- **Första meningen** säger namn, vad platsen är (badplats, bastu, restaurang, hamn, tankställe …), ort och kommun/region. Det är den meningen som blir metabeskrivning och det folk söker på: "badplats Utö", "bastu Strömstad".
+- **Bara belagda fakta.** Ort och kommun får tas från postens egen koordinat (OpenStreetMap, omvänd geokodning). Allt annat kräver tillåten källa med ordagrant citat i datafix-filen.
+- **Inga värdeord** (populär, mysig, bästa …), inga priser utan prislista, inga egna öppettider.
+- **Titel och reservbeskrivning** byggs i `src/app/upptack/[id]/page.tsx` av namn, typ, ö och region — aldrig fasta ord som "restaurang" eller "Stockholms skärgård" på alla sidor.
+

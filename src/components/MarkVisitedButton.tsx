@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { analytics } from '@/lib/analytics'
+import { setPendingAction, takePendingAction } from '@/lib/pendingAction'
 
 interface Props {
   islandSlug: string
@@ -33,15 +34,31 @@ export default function MarkVisitedButton({ islandSlug, islandName, variant = 'h
         .eq('user_id', user.id)
         .eq('island_slug', islandSlug)
         .maybeSingle()
-      setVisited(!!data)
+      if (data) { setVisited(true); takePendingAction('mark_visited', islandSlug); return }
+      // Klickade hon "Jag har varit här" som utloggad och kom tillbaka inloggad?
+      // Då markerar vi nu (se lib/pendingAction.ts).
+      if (takePendingAction('mark_visited', islandSlug)) {
+        const { error } = await supabase.from('visited_islands').upsert(
+          { user_id: user.id, island_slug: islandSlug, visited_at: new Date().toISOString() },
+          { onConflict: 'user_id,island_slug', ignoreDuplicates: true },
+        )
+        if (!error) {
+          setVisited(true)
+          setShowToast(true)
+          setTimeout(() => setShowToast(false), 3000)
+          analytics.islandMarkedVisited({ island_slug: islandSlug, island_name: islandName })
+        }
+      }
     }
     load()
-  }, [islandSlug, supabase])
+  }, [islandSlug, islandName, supabase])
 
   async function handleClick() {
     if (loading) return
     if (!userId) {
-      router.push(`/auth?next=${encodeURIComponent(`/o/${islandSlug}`)}`)
+      // RÄTTAT 2026-09-28: /auth?next=… gav 404 (sidan har aldrig funnits).
+      setPendingAction('mark_visited', islandSlug)
+      router.push(`/logga-in?returnTo=${encodeURIComponent(`/o/${islandSlug}`)}&mode=ny`)
       return
     }
     if (visited) return

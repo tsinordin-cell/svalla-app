@@ -157,6 +157,22 @@ interface ResRobotTripResponse {
 
 // ─── Hjälpare ───────────────────────────────────────────────────────────────
 
+/**
+ * Restid mellan första transportlegets avgång och sista legets ankomst.
+ * ResRobots `duration` räknar från sökpunkten och tar med gångtiden dit
+ * (Strömkajen → Slussen ≈ 30 min), så "06:38 → 08:07" visades som 2 h 1 min
+ * på ösidor, sista båten-panelen och i dagsplaneraren. Mätt 2026-09-29 mot
+ * Grinda. Över midnatt räknas +24 h. Saknas tider används ResRobots värde.
+ */
+export function restidFranTider(startTime: string, endTime: string, fallbackMin: number): number {
+  const m = /^(\d{1,2}):(\d{2})/
+  const a = startTime.match(m), b = endTime.match(m)
+  if (!a || !b) return fallbackMin
+  let d = (Number(b[1]) * 60 + Number(b[2])) - (Number(a[1]) * 60 + Number(a[2]))
+  if (d < 0) d += 24 * 60
+  return d
+}
+
 function parseIsoDuration(iso: string | undefined): number {
   if (!iso) return 0
   // "PT1H45M" -> 105 min. Stödjer även "PT45M" och "PT2H".
@@ -291,11 +307,13 @@ export async function fetchTripsResult(
         const d = l.delayMin ?? 0
         return d > max ? d : max
       }, 0)
+      const startTime = first?.fromTime ?? ''
+      const endTime = last?.toTime ?? ''
       return {
-        durationMin: parseIsoDuration(t.duration),
-        startTime: first?.fromTime ?? '',
+        durationMin: restidFranTider(startTime, endTime, parseIsoDuration(t.duration)),
+        startTime,
         startDate,
-        endTime: last?.toTime ?? '',
+        endTime,
         changes: Math.max(0, legs.length - 1),
         legs,
         allLegs,
