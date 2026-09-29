@@ -221,6 +221,10 @@ const nextConfig: NextConfig = {
       { source: '/guider/host-oland-2026', destination: '/guider/host-oland', permanent: true },
       { source: '/guider/host-stockholms-skargard-2026', destination: '/guider/host-stockholms-skargard', permanent: true },
       { source: '/guider/hostlov-vid-havet-2026', destination: '/guider/hostlov-vid-havet', permanent: true },
+      // 2026-09-29: /guider/havsbastu-guide var en tom platshållare medan samma ämne
+      // har en skriven artikel på /blogg/havsbastu-guide. Tillfällig (307) så att
+      // guiden kan skrivas senare utan att Google cachat en permanent flytt.
+      { source: '/guider/havsbastu-guide', destination: '/blogg/havsbastu-guide', permanent: false },
       { source: '/guider/jul-skargarden-2026', destination: '/guider/jul-skargarden', permanent: true },
       { source: '/guider/juli-bohuslan-2026', destination: '/guider/juli-bohuslan', permanent: true },
       { source: '/guider/juli-gotland-2026', destination: '/guider/juli-gotland', permanent: true },
