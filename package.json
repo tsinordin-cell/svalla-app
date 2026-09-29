@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/build-email-templates.mjs && node scripts/guard-cache-regler.mjs && node scripts/verify-claims.mjs && node scripts/generera-kallor.mjs --kontroll && node scripts/generera-uppskattningar.mjs --kontroll && vitest run src/lib && node scripts/hamta-obilder.mjs --stada --kontroll",
+    "prebuild": "node scripts/build-email-templates.mjs && node scripts/guard-cache-regler.mjs && node scripts/schemakontroll.mjs && node scripts/verify-claims.mjs && node scripts/generera-kallor.mjs --kontroll && node scripts/generera-uppskattningar.mjs --kontroll && vitest run src/lib && node scripts/hamta-obilder.mjs --stada --kontroll",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
