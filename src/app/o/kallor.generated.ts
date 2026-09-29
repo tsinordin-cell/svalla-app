@@ -5183,6 +5183,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ulv%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Ulvön\" → Ulvön | Örnsköldsvik | Trakt, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://smakasverige.jordbruksverket.se/produkter/produktarkiv/surstromming.413.html",
       "org": "smakasverige.jordbruksverket.se",
       "vad": "Ulvö Gamla Salteri var först att konsumentförpacka surströmming i plåtburkar. Detta skedde ca. 1890; På burkarna stod det Surströmming från Ulvön; Idag finns endast ett salteri kvar på Ulvön, Ulvö Lilla Salteri",
@@ -5360,6 +5367,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gotland",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Gotland\" → Gotland | Gotland | Natur- och terrängnamn (mittpunkt av tre), SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.smhi.se/kunskapsbanken/klimat/klimatet-i-sveriges-landskap/gotlands-klimat",
       "org": "smhi.se",
       "vad": "Visby och Hoburg på Gotland som har lite drygt 2000 soltimmar per år; I juli är medeltemperaturen strax över 17°; Eftermiddagstemperaturerna är dock sommartid ett par grader högre och nattemperaturerna ett par grader lägre i de centrala delarna av ön än vid kusten",
@@ -5436,6 +5450,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "borgholmsslott.se",
       "vad": "Välkommen till vårt sommarcafé., På yttre borggården kan du sitta ner och ta en fika, äta en lättare lunch eller njuta av en svalkande glass., Öppnar återigen sommaren 2027.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96land",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Öland\" → Öland | Borgholm | Trakt, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -5529,6 +5550,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "goteborg.com",
       "vad": "",
       "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Br%C3%A4nn%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Brännö\" → Brännö | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -5667,6 +5695,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Styrs%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Styrsö\" → Styrsö | Göteborg | Trakt, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://stbnb.se/",
       "org": "stbnb.se",
       "vad": "We are open for bookings for the summer season June — August 2026; four bedrooms, kitchen and a bathroom. We can accommodate up to 10 guests; a six minute walk from the ferry station Tången",
@@ -5764,6 +5799,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "kajkantenvrango.se",
       "vad": "När du går av färjan på Vrångö är det 15 minuters promenad över ön till Kajkantens hotell och relaxflotte. Hotellet ligger i fiskehamnen på andra sidan av ön.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vr%C3%A5ng%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Vrångö\" → Vrångö | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -5867,6 +5909,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Dons%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Donsö\" → Donsö | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://transdev.se/wp-content/uploads/sites/5/2026/07/Hosttidtabell-281-282-Liggande-A3.pdf",
       "org": "transdev.se",
       "vad": "23/08 2026 - 12/12 2026; 281 Stenpiren-Saltholmen-Köpstadsö-Styrsö Bratten-Donsö-Vrångö och omvänt . Vardagar enligt tabellen (avläst ur den renderade PDF:en, textlagret är sammanblandat): Saltholmen 06:09→Donsö 06:37, 07:24→07:44, 09:25→09:51, 11:20→12:00, 13:25→14:02, 14:23→14:41, 15:28→15:46, 16:30→16:48, 22:36→22:53 — 17–40 min, cirka 20 avgångar per vardag.",
@@ -5922,6 +5971,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "knutssonsskafferi.se",
       "vad": "Vi är familjen Knutsson som förra året öppnade café i vår trädgård! Vi serverar allt från kaffe och glass till räksmörgåsar och baskisk cheesecake.; Vi är belägna på Asperö",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Asper%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Asperö\" → Asperö | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -6041,6 +6097,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Tynning%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Tynningö\" → Tynningö | Vaxholm | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://kund.printhuset-sthlm.se/sl/v689.pdf",
       "org": "SL (tryckt tidtabell)",
       "vad": "Höganäs brygga/Norra Tynningö–Östra Tynningö (–Gustavsbergs centrum); Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026 — måndag–fredag Norra Lagnö 10.07 → Gustavsbergs centrum 10.21 och 13.27 → 13.41",
@@ -6145,6 +6208,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "ica.se",
       "vad": "ICA Nära Djurö Gransbergsvägen 2-4, Djurhamn; Alla dagar 9 - 20; Postombud",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Djur%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Djurö\" → Djurö | Värmdö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -6262,6 +6332,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Bj%C3%B6rk%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Björkö\" → Björkö | Ekerö | Trakt (Birka ligger på Björkö), SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf",
       "org": "stromma.com",
       "vad": "7 MAJ — 25 OKTOBER, 2026, 22 JUN — 9 AUG, 10 — 28 AUG, 21 SEP — 25 OKT, Klara Mälarstrand, Tid på Birka: ;  — TIPS! Under högsommaren är Birka ett populärt utflyktsmål — för att garantera din plats ombord på båten rekommenderar vi att du förbokar din biljett. . Räknat: en tur per trafikdag, dagligen 22 juni–28 augusti, från 21 september bara lördag–söndag; 3 h 15 min på ön (4 h 45 min 29–30 augusti).",
@@ -6296,6 +6373,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "destinationgotland.se",
       "vad": "På omkring tre timmar är du framme i Visby ;  — Avgång kl. 09.00 från, Djupvik",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lilla%20Karls%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Lilla Karlsö\" → Lilla Karlsö | Gotland | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -6397,6 +6481,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "vad": "Du tar dig ut dit med turbåten, M/S Gotska Sandön;  — Gotska Sandöns nationalpark förvaltas av Länsstyrelsen Gotland",
       "last": "2026-09-27",
       "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gotska%20Sand%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Gotska Sandön\" → Gotska Sandön | Gotland | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
     }
   ],
   "aspo-blekinge": [
@@ -6454,6 +6545,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "lotstornet.se",
       "vad": "Fem hotellrum i det gamla lotstornet och tre rymliga stugor med uteplats, öppet hela året, Tre rymliga stugor på 45 m² med 6 bäddar, kök, dusch/wc och privat uteplats med grill., Hund välkommen i alla stugor!",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Asp%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Aspö\" → Aspö | Karlskrona | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -6550,6 +6648,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sturk%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Sturkö\" → Sturkö | Karlskrona | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.visitblekinge.se/en/sturko-a-picturesque-island",
       "org": "visitblekinge.se",
       "vad": "Between the Ekenabben pier and the island of Tjurkö, the remains of six deliberately scuttled ships from the seventeenth and eighteenth centuries rest on the bed of Djupasund.",
@@ -6636,6 +6741,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Bl%C3%A5%20Jungfrun",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Blå Jungfrun\" → Blå Jungfrun | Oskarshamn | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.solkustturer.se/kopia-på-när-ställs-turen-in",
       "org": "solkustturer.se",
       "vad": "Historia om de nordiska folken, från 1555 talar ärkebiskopen och kartografen Olaus Magnus om ön Jungfrun som en plats där nordiska häxor under vissa tider av året lär hålla möten, Blå Jungfrun finns även inritad i Olaus Magnus sjökort Carta Marina från år 1539",
@@ -6719,6 +6831,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "hogakusten.com",
       "vad": "där det finns en övernattningsstuga. Stugan har en kamin, en våningssäng och en solcellspanel. Utanför finns en fin eldplats med ved på plats. . Ingen camping på Hemsön gick att belägga; Hemsö fästnings boendetips listar bara campingar på fastlandet.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Hems%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Hemsön\" → Hemsön | Härnösand | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -6899,6 +7018,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=F%C3%A5r%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Fårö\" → Fårö | Gotland | Natur- och terrängnamn (mittpunkt), SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://verktygsladan.gotland.com/companies/broa-kiosken-faro/",
       "org": "verktygsladan.gotland.com",
       "vad": "Vid Broa Kiosken hittar du Fårö cykeluthyrning.;   — Badplatsen Ekeviken på Fårö är en cirka 900 meter lång, långgrund, sandstrand.;  — Badplatsen Norsta Aurar",
@@ -6975,6 +7101,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "mfulvon.se",
       "vad": "Boka gärna din biljett i förväg, När biljetten är köpt är din plats ombord garanterad;  — 3 stycken 4-bäddsrum, 4 stycken 2-bäddsrum",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Trysunda",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Trysunda\" → Trysunda | Örnsköldsvik | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -7097,6 +7230,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "vad": "I hamnen finns en liten lanthandel som har öppet under högsäsong, Här kan man köpa basala livsmedel och hushållprodukter samt nybakade frallor på morgonen;  — Man får inte samla döda grenar att elda, så ta med dig egen ved eller kol om du vill grilla",
       "last": "2026-09-27",
       "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Han%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Hanö\" → Hanö | Sölvesborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
     }
   ],
   "svartloga": [
@@ -7140,6 +7280,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "lassashagar.se",
       "vad": "ALEVIK Uthyres v 26-32 2027; Huset är 15 kvm med en nästan lika stor veranda i söderläge.; Fullt utrustat hus med bland annat köksutrustning, gasolspis, gasolkylskåp och gasolvärme.; Uthyres lördag-lördag med incheckning kl 14.00 och utcheckning kl 12.00. Kostnad: 5500kr/vecka inkl gasol.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Svartl%C3%B6ga",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Svartlöga\" → Svartlöga | Norrtälje | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -7254,6 +7401,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "jonkoping.se",
       "vad": "Gästhamn på Visingsö … Färskvatten, Toalett, Dusch, Eluttag, Latrintömning … Från 0,6 m till 1 m; jkpg.com/gasthamnar — nedanför Visingsborgs slottsruin",
       "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Visings%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Visingsö\" → Visingsö | Jönköping | Natur- och terrängnamn (mittpunkt), SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -7413,6 +7567,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ven",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Ven\" → Ven | Landskrona | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.norreborgshamn.se/",
       "org": "norreborgshamn.se",
       "vad": "Norreborgs Hamn — Gästundersökning 2026; Hamnen är öppen hela året.; Från och med den 1 maj gäller taxa för högsäsong.; Även i år kommer det att finnas en kioskvagn; El finns, men kommer att stängas av på piren.; Dusch och toalett finns i reducerad omfattning.; Vattenposter stängs av när temperaturen medför risk för frysning.; den 39:e i ordningen i gästhamnens historia",
@@ -7461,6 +7622,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "blekingetrafiken.se",
       "vad": "Karlshamn–Tjärö, 19 juni - 16 augusti, Karlshamn–Tärnö–Tjärö, 17 augusti - 6 september; Karlshamn 09.45 → Matvik 10.25 → Tjärö 11.05 (80 min), 13.00 → 14.20, 15.50 → 16.55",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Tj%C3%A4r%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Tjärö\" → Tjärö | Karlshamn | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -7533,6 +7701,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "goteborg.com",
       "vad": "",
       "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96cker%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Öckerö\" → Öckerö | Öckerö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -7636,6 +7811,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=R%C3%B6r%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Rörö\" → Rörö | Öckerö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/naturomraden-och-naturreservat/roro-naturreservat",
       "org": "ockero.se",
       "vad": "Rörö naturreservat breder ut sig över större delen av ön Rörö, Ön karaktäriseras av nästan helt trädlösa hedmarker samt ljung- och gräshedar, På vägen kan du stöta på både får och hästar, som hjälper till att hålla markerna öppna, två dammar, Stora och Lilla Ers vatten, Den hotade stinkpaddan håller också till i dammarna, I blickfånget finns lämningar från, istiden som vidsträckta klapperstensfält ;  — klapperstensfält, rullstenar och jättegrytor som formats under istiden",
@@ -7726,6 +7908,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "holmonslanthandel.se",
       "vad": "Förutom att vara en välsorterad dagligvarubutik fungerar butiken som ombud för Apoteket, Systembolaget, Bussgods och Posten. Vi håller öppet varje dag, året om.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Holm%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Holmön\" → Holmön | Umeå | Trakt, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -7990,6 +8179,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Marstrand",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Marstrand\" → Marstrand | Kungälv | Tätort, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.kungalv.se/trafik--gator/kollektivtrafik/samlastning/",
       "org": "Samlastning Marstrand",
       "vad": "",
@@ -8087,6 +8283,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "makrillviken.se",
       "vad": "alldeles vid vattenbrynet på öns västsida, Vi erbjuder 25 olika rum samt en sjöbod, med totalt 80 sängplatser., 14 av rummen har egen toalett och dusch., koppla av i vår bastu, alkoholfri miljö, Sedan 1993 drivs Makrillvikens Vandrarhem av familjen Strand.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sm%C3%B6gen%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Smögenön\" → Smögenön | Sotenäs | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -8281,6 +8484,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lysekil",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Lysekil\" → Lysekil | Lysekil | Tätort, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.norrahamnen5.se/",
       "org": "norrahamnen5.se",
       "vad": "Förstklassig mat och utsikt över västerhavet ; sidan uppdaterad 2026-05-05 enligt metadata.",
@@ -8444,6 +8654,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kosterhavet",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kosterhavet\" → Kosterhavet | Strömstad | Trakt, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://strandkanten.se/",
       "org": "strandkanten.se",
       "vad": "Restaurang Strandkanten på Nordkoster erbjuder mat och dryck i en fantastisk miljö med utomhusservering på bryggan eller inomhus i den mysiga sjöboden, Säsongen startar vid påsk och sträcker sig till och med hummerfisket i oktober",
@@ -8555,6 +8772,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "grebys.se",
       "vad": "Här serverar vi färsk fisk och skaldjur från lokala vatten, utsikt över hamnen",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Grebbestad",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Grebbestad\" → Grebbestad | Tanum | Tätort, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -8693,6 +8917,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Fj%C3%A4llbacka",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Fjällbacka\" → Fjällbacka | Tanum | Tätort, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://shfjallbacka.se/en/restaurants/",
       "org": "shfjallbacka.se",
       "vad": "Restaurant Mamsell är hotellets restaurang, Galärbacken 2, Fjällbacka",
@@ -8797,6 +9028,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "hamn.lysekil.se",
       "vad": "Priser och service 2026, Tvättmaskin: Havsbadet Grundsund Norra hamnen, Sugtömningsstation: Fiskehamnen Grundsund, Västra Kajen",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Grundsund",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Grundsund\" → Grundsund | Lysekil | Tätort, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -8928,6 +9166,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Hamburgsund",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Hamburgsund\" → Hamburgsund | Tanum | Tätort, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.rorvikscamping.se/",
       "org": "rorvikscamping.se",
       "vad": "Campingen ligger 1.5 km söder om kustsamhället Hamburgsund, Vi erbjuder campingtomter för husvagn/husbil/tält, stugor, rum/vandrarhem med 24 bäddar samt säsongs- och båtplatser, barnvänlig sandstrand",
@@ -9053,6 +9298,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "lotshotellet.com",
       "vad": "På Crêperiet på Lotshotellet erbjuder vi läckra crêpes och galetter, Vi har också ett stort urval av fransk kvalitetscider, goda viner, i eftermiddagssolen i bästa hamnläge, STÄNGT FÖR SÄSONGEN 2026",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=K%C3%A4ring%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Käringön\" → Käringön | Orust | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -9212,6 +9464,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Orust",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Orust\" → Orust | Orust | Natur- och terrängnamn (mittpunkt), SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://najad.se/najad-yachts-moves-production-back-to-orust-following-the-acquisition-of-orust-yacht-service/",
       "org": "Najad Yachts",
       "vad": "produktionen flyttad tillbaka till Henån på Orust efter förvärvet av Orust Yacht Service, meddelat 2 november 2022",
@@ -9344,6 +9603,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "kladesholmenvh.se",
       "vad": "Djupet i gästhamnen är 3-4 meter, El 6 Ampere ingår i alla priser, Förhandsbokning endast Dockspot — 5 platser",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Tj%C3%B6rn",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Tjörn\" → Tjörn | Tjörn | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -9496,6 +9762,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kungshamn",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kungshamn\" → Kungshamn | Sotenäs | Tätort, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://nordensark.se/om-oss/",
       "org": "nordensark.se",
       "vad": "Nordens Ark är en ideell stiftelse som arbetar för att ge hotade djur en framtid, Nordens Ark har funnits sedan 1989 och den zoologiska parken är öppen för besökare, Åby säteri omfattar totalt 383 hektar mark, Nordens Ark har ett nationellt ansvar för uppfödning och utplantering av flera svenska arter, Åby säteri, 456 93 Hunnebostrand",
@@ -9596,6 +9869,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Pater%20Noster",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Pater Noster\" → Pater Noster | Tjörn | Anläggning (fyren på Hamneskär), SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://paternoster.se/om-pater-noster",
       "org": "paternoster.se",
       "vad": "År 2020 omvandlade designer på Stylt den gamla bostaden för generationer av fyrvaktare till ett unikt och personligt boutiquehotell",
@@ -9686,6 +9966,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "Göteborg & Co",
       "vad": "Vinga i Göteborgs yttre skärgård",
       "last": "2026-09-16",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vinga",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Vinga\" → Vinga | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -9831,6 +10118,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=H%C3%B6n%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Hönö\" → Hönö | Öckerö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://skargardshotellethono.se/",
       "org": "skargardshotellethono.se",
       "vad": "Vi har 16 härliga rum på andra våningen där hälften av dem har en uteplats mot havet och hamninloppet, fest för upp till 80 personer i sittning ;  — Skärgårdshotellet Hönö is open all year round for hotel guests, diners, conferences and meetings",
@@ -9931,6 +10225,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gullholmen",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Gullholmen\" → Gullholmen | Orust | Trakt, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.orust.se/uppleva-och-gora/gasthamnar/gullholmens-gasthamn",
       "org": "orust.se",
       "vad": "Gullholmens hamn är öppen 1 april till 30 september., 50 platser. Djup cirka 1,5-3,5 meter., Servicebyggnad med toalett, dusch, tvättmaskin, torktumlare., Sugtömningsstation där fritidsbåtar kan tömma sin latrintank, mellan 1 april och 31 oktober., Förhandsbokning av gästplats sker via Dockspot. Hamnen är kontantfri.",
@@ -10000,6 +10301,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "kladesholmenvh.se",
       "vad": "Djupet i gästhamnen är 3-4 meter, El 6 Ampere ingår i alla priser, Ja, el och färskvatten finns tillgängligt vid bryggorna., Ja, dusch och toalett finns för gästande båtar., Förhandsbokning endast Dockspot — 5 platser., Högsäsong Vecka 25-33, 8.Grillplats",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kl%C3%A4desholmen",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Klädesholmen\" → Klädesholmen | Tjörn | Trakt, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -10163,6 +10471,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "astolsrokeri.se",
       "vad": "Hamnen 4, fantastiskt tillagade rätter från havet, en enorm bredd på musikaliska framträdanden",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%85stol",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Åstol\" → Åstol | Tjörn | Trakt, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -10361,6 +10676,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "linasbrygga.se",
       "vad": "Räksmörgåsar, glasskreationer, hembakat, äggost och annat gott., Förutom caféverksamheten, erbjuder vi också boende och sjömack., Hamnvägen 80, Södra hamnen, Tack för sommaren 2026. Välkomna åter våren 2027",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stora%20Dyr%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Stora Dyrön\" → Stora Dyrön | Tjörn | Trakt, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {

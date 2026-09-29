@@ -6041,6 +6041,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://smakasverige.jordbruksverket.se/produkter/produktarkiv/surstromming.413.html — "Fyra faktorer anses ha gjort Ulvön och Ulvöhamn till surströmmingens centrum i Sverige" (läst 2026-09-27)
     // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/stormyran-pa-ulvon.html — "Naturreservat, Natura 2000, Världsarv" (läst 2026-09-27)
     tagline: 'Norrlands en gång största fiskeläge — surströmmingens centrum, Ulvöleden och världsarvet Höga Kusten.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ulv%C3%B6n — Lantmäteriet Min Karta, sökning "Ulvön" → Ulvön | Örnsköldsvik | Trakt, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 63.0340,
+    lng: 18.6457,
     description: [
       // KÄLLA: https://www.hogakusten.com/sv/stader-platser/ulvon — "Ulvöarna ligger 30 km söder om Örnsköldsvik"; "Ulvön är vår skärgårds största turistiska besöksmål med stora kulturella värden tack vare välbevarade sjöbodar, bostadshus och gistvallar"; "kallas ibland för Bottenhavets pärla eller Norrlands Sandhamn" (läst 2026-09-27)
       // KÄLLA: https://www.ulvomuseum.com/surstromming/ — "alltsedan samhällets etablering från slutet av 1500-talet" (läst 2026-09-27)
@@ -6159,6 +6162,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://gotland.com/hansestaden/ — "1995 utnämndes Visby till världsarv" (läst 2026-09-27)
     // KÄLLA: https://gotland.com/besoka-uppleva/friluftsliv-natur/tio-raukomraden-pa-gotland/ — "De flesta som besöker Gotland vill se åtminstone en av öns kända raukar" (läst 2026-09-27)
     tagline: 'Sveriges största ö — världsarvsstaden Visby, raukar och över 2 000 soltimmar om året.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gotland — Lantmäteriet Min Karta, sökning "Gotland" → Gotland | Gotland | Natur- och terrängnamn (mittpunkt av tre), SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.4286,
+    lng: 18.4796,
     description: [
       // KÄLLA: https://gotland.com/hansestaden/ — "1995 utnämndes Visby till världsarv"; "Ringmuren, vallgravarna, kyrkoruinerna" (läst 2026-09-27)
       // KÄLLA: https://gotland.com/companies/visby-ringmur/ — "Visby Ringmur är ca 3,5 km lång och är den bäst bevarade stadsmuren i hela norra Europa"; "stod färdig år 1288" (läst 2026-09-27)
@@ -6295,6 +6301,9 @@ export const ISLANDS: Island[] = [
     // Omskriven 2026-09-26 från Länsstyrelsen Kalmar, Riksantikvarieämbetet, oland.se (Ölands officiella besöksguide), Borgholms slott, Sollidens slott och Trafikverket. Tidigare text hade "400 väderkvarnar", "Östersjöns längsta sandstrand", "en av Europas längsta broar", flyg med BRA, tre boenden och soltimmar – inget med källa.
     // KÄLLA: https://www.oland.se/ — "Solens och vindarnas ö", "Välkommen till Ölands officiella besöksguide." (läst 2026-09-27); https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/bodakustens-ostra.html — "Här finns Ölands längsta sandstrand" (läst 2026-09-27); https://www.lansstyrelsen.se/kalmar/besoksmal/varldsarvet-sodra-olands-odlingslandskap.html — "År 2000 skrevs Södra Ölands odlingslandskap in på Unesco:s världsarvslista" (läst 2026-09-27); https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/trollskogen.html — "Trollskogen gör verkligen skäl för sitt namn" (läst 2026-09-27)
     tagline: 'Solens och vindarnas ö – världsarvet på södra Öland, Trollskogen och Ölands längsta sandstrand vid Böda.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96land — Lantmäteriet Min Karta, sökning "Öland" → Öland | Borgholm | Trakt, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 56.8809,
+    lng: 16.6529,
     description: [
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/varldsarvet-sodra-olands-odlingslandskap.html — "År 2000 skrevs Södra Ölands odlingslandskap in på Unesco:s världsarvslista", "ett av Sveriges 15 världsarv", "Idag odlar ölänningarna den jord som odlats sedan många generationer tillbaka och låter beta de marker som har betats i ett par tusen år" (läst 2026-09-27)
       'Södra Ölands odlingslandskap skrevs in på Unescos världsarvslista år 2000 och är ett av Sveriges 15 världsarv. Enligt Länsstyrelsen i Kalmar län odlar ölänningarna i dag den jord som odlats i generationer och låter beta de marker som har betats i ett par tusen år.',
@@ -6383,6 +6392,9 @@ export const ISLANDS: Island[] = [
     // Omskriven 2026-09-26. Tidigare text sa att dansen på bryggan är "varje fredag" med hambo och polska sedan 1930-talet, att Rävholmen är populärast, att värdshuset är öns enda boende och att restiden är 30 min. Inget av det gick att belägga; dansen är på torsdagar (Brännöföreningen, Styrsöbolaget).
     // KÄLLA: goteborg.com/platser/branno (Göteborg & Co, läst 2026-09-26) — "Ö med välkänd bryggdans, barnvänlig badplats och genuint värdshus"
     tagline: 'Ön med dansen på Brännö brygga, badplatser och värdshus – bilfri, i Göteborgs södra skärgård.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Br%C3%A4nn%C3%B6 — Lantmäteriet Min Karta, sökning "Brännö" → Brännö | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.6464,
+    lng: 11.7723,
     description: [
       // KÄLLA: goteborg.com/platser/branno — "levande skärgårdsö i södra delen av Göteborgs skärgård med cirka 900 bofasta invånare", "Sommargästerna började inta ön på 1930-talet och numera är pendlarna i klar majoritet", "jordbruket, lots-historien, tullarna och sjöfarten", "Viskompositören Lasse Dahlqvist har gjort ön känd genom sina visor", "Från berget vid den gamla lotsutkiken, på öns högsta punkt, har du utsikt från Vinga till inloppet till Göteborg", "hembygdsmuseet mitt på ön"
       'Brännö är en levande ö i Göteborgs södra skärgård med omkring 900 bofasta. Sommargästerna kom på 1930-talet, och i dag är pendlarna i klar majoritet. Tidigare levde ön på jordbruk, lotsning, tull och sjöfart, och från den gamla lotsutkiken på öns högsta punkt ser man från Vinga till inloppet till Göteborg. Mitt på ön finns ett litet hembygdsmuseum.',
@@ -6469,6 +6481,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌿',
     // KÄLLA: https://www.goteborg.com/platser/styrso — "cirka 1400 bofasta invånare"; "Skärgårdsbåten anlöper vid tre olika bryggor: Styrsö Bratten, Styrsö Tången och Styrsö Skäret"; "På Styrsö finns fyra små samhällen med olika karaktärer"; "Det finns en broförbindelse mellan Styrsö och Donsö" (läst 2026-09-27)
     tagline: 'Bilfri ö med 1 400 invånare i Göteborgs södra skärgård — tre bryggor, fyra små samhällen och bro till Donsö.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Styrs%C3%B6 — Lantmäteriet Min Karta, sökning "Styrsö" → Styrsö | Göteborg | Trakt, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.6152,
+    lng: 11.7757,
     description: [
       // KÄLLA: https://www.goteborg.com/platser/styrso — "Styrsö är den södra delen av skärgårdens centralort med cirka 1400 bofasta invånare"; "Det är förbjudet att köra bil på Styrsö, de flesta använder därför lastmopeder och golfbilar som transportmedel" (läst 2026-09-27)
       // KÄLLA: https://www.brattenswardshus.se/historia/ — "Styrsö Bratten är centralpunkten i Södra Skärgården. Här finns vårdcentral, folktandvård, äldreboendet Styrsö Hemmet, samt ett stycke upp på ön högstadieskola med centralbibliotek" (läst 2026-09-27)
@@ -6577,6 +6592,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: Göteborg & Co, Vrångö, https://www.goteborg.com/platser/vrango — "fina sandstränder"; "både områdena norr och söder om bebyggelsen är skyddade naturreservat"; lotsutkiken med "panoramavy över bland annat Vinga fyr" (läst 2026-09-21). "Södra skärgårdens yttersta punkt" hade ingen källa.
     // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "281, Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö"; "De södra öarna är bilfria" (läst 2026-09-27)
     tagline: 'Bilfri ö längst ut på båtlinje 281 – sandstränder, naturreservat och lotsutkiken med utsikt mot Vinga.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vr%C3%A5ng%C3%B6 — Lantmäteriet Min Karta, sökning "Vrångö" → Vrångö | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.5809,
+    lng: 11.7871,
     // Omskriven 2026-09-26. Stod "knappt 150 fast bosatta" (Länsstyrelsen: "drygt 350 invånare"), "ingen kommersiell turism … en liten mataffär, ett kafé" (goteborg.com nämner två restauranger, pensionat, hotell, affär, post och kiosk) och "utsikt mot Nordsjön".
     description: [
       // KÄLLA: lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vrangoskargarden-vrango-arkipelagen.html (läst 2026-09-26) — "Vrångö är bebodd med drygt 350 invånare", "Bildat: 1979", "Areal: cirka 5 184 hektar", "Naturvårdsförvaltare: Västkuststiftelsen", "ett av de mest besökta naturreservaten i länet", "Över sextio arter häckar i området", "På reservatets södra skär syns knubbsälar", "betande får"
@@ -6655,6 +6673,9 @@ export const ISLANDS: Island[] = [
     emoji: '⚓',
     // KÄLLA: https://www.goteborg.com/platser/donso — "Här spelar fiske och rederinäring störst roll och ön är Sveriges tredje största redarort efter Göteborg och Stockholm. Hamnen är öns hjärta" (läst 2026-09-27)
     tagline: 'Sveriges tredje största redarort — bilfri fiske- och rederiö i Göteborgs södra skärgård med hamnen som centrum.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Dons%C3%B6 — Lantmäteriet Min Karta, sökning "Donsö" → Donsö | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.5994,
+    lng: 11.8095,
     description: [
       // KÄLLA: https://www.goteborg.com/platser/donso — "Donsö och grannen Styrsö är de två största öarna i södra delen av Göteborgs skärgård. På Donsö bor cirka 1 500 bofasta invånare. Här spelar fiske och rederinäring störst roll och ön är Sveriges tredje största redarort efter Göteborg och Stockholm." (läst 2026-09-27)
       // KÄLLA: https://donsohamn.se/ — "ett flertal av de 60-tal företag registrerade på Donsö är inom rederi och sjöfartsnäring" (läst 2026-09-27)
@@ -6749,6 +6770,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://www.goteborg.com/platser/aspero/ — "Här bor cirka 400 invånare året runt, vilket gör Asperö till den minsta av de bofasta öarna i den södra delen av Göteborgs skärgård."; "Från utsiktsberget Valen har du en strålande utsikt över Göteborgs hamnninlopp." (läst 2026-09-27)
     // KÄLLA: https://www.asperofritid.se/ — "Asperö är en bilfri ö." (läst 2026-09-27)
     tagline: 'Den minsta av de bofasta öarna i Göteborgs södra skärgård – bilfri, med badplats, vandringsslinga och utsikt över hamninloppet från berget Valen.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Asper%C3%B6 — Lantmäteriet Min Karta, sökning "Asperö" → Asperö | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.6477,
+    lng: 11.8080,
     description: [
       // KÄLLA: https://www.goteborg.com/platser/aspero/ — "Här bor cirka 400 invånare året runt, vilket gör Asperö till den minsta av de bofasta öarna i den södra delen av Göteborgs skärgård. Ön nämns första gången på 1200-talet och namnet Asperö härstammar från trädet asp som fortfarande växer i stort antal på ön."; "Asperö i Göteborgs södra skärgård är en bilfri ö. Till transporter används bland annat flakmopeder." (läst 2026-09-27)
       // KÄLLA: https://www.asperofritid.se/ — "På Asperö bor cirka 400 personer året runt."; "en förskola och skola upp till år 3" (läst 2026-09-27)
@@ -6935,6 +6959,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "2A STOCKHOLM – HÖGANÄS – VAXHOLM" (läst 2026-09-27)
     // KÄLLA: https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Badet Myrholmsmaren ligger vid sjön Stora Maren." (läst 2026-09-27)
     tagline: 'Sommarvillornas ö mellan Vaxholm och Värmdö – klippor, en insjö att bada i och två vägar dit.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Tynning%C3%B6 — Lantmäteriet Min Karta, sökning "Tynningö" → Tynningö | Vaxholm | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 59.3783,
+    lng: 18.3775,
     seoTitle: 'Tynningö – färja, badplats & sommarvillornas ö',
     seoDescription: 'Tynningö nära Vaxholm: Waxholmsbåt till Höganäs och Norra Tynningö eller avgiftsfri vägfärja från Lagnö, badplatsen Myrholmsmaren vid insjön Stora Maren, Tynningö klack och villorna från ångbåtstiden.',
     // Ifylld 2026-09-21 efter Toms beslut "fyll ut med belagt innehåll". Huvudkälla: Vaxholms stads "Kulturmiljöunderlag och landskapsanalys, Tynningö" (Sweco för Vaxholms stad, slutversion 2020-04-24), https://www.vaxholm.se/download/18.7540ce651827e350272a8e08/1661434105419/Bilaga%203%20-%20Kulturmilj%C3%B6underlag%20o%20.pdf — läst 2026-09-21. Restaurang/affär: sökt, ingen operatörssida hittad — står därför inte här.
@@ -7056,6 +7083,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/alltomnaturochfriluftsliv/badplatserivarmdo/vitagrindarnadjurohavsbad.4.18c983316e0536cb189a2ae.html — "Väg 222 mot Djurö/Stavsnäs. Omkring 2 km efter Djuröbron" (läst 2026-09-27)
     // KÄLLA: https://www.djuronaset.com/ — "273 Rum" (läst 2026-09-27)
     tagline: 'Landfast ö över Djuröbron – flottans ankringshamn sedan Vasatiden, timrad kyrka från 1683 och hotellet Djurönäset.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Djur%C3%B6 — Lantmäteriet Min Karta, sökning "Djurö" → Djurö | Värmdö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 59.3126,
+    lng: 18.6914,
     description: [
       // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/alltomnaturochfriluftsliv/badplatserivarmdo/vitagrindarnadjurohavsbad.4.18c983316e0536cb189a2ae.html — "Bil: Väg 222 mot Djurö/Stavsnäs. Omkring 2 km efter Djuröbron" (läst 2026-09-27)
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — "Slussen–Djurö"; "Giltig 17 augusti–12 december 2026"; "Djurönäset"; "Djurö kyrka"; "Djurö skola"; "BYNS GÅRD" — tur Slussen 08.18, Byns gård 09.20 (läst 2026-09-27)
@@ -7174,6 +7204,9 @@ export const ISLANDS: Island[] = [
     emoji: '⚔️',
     // KÄLLA: https://www.birkavikingastaden.se/om-birka/ — "Området blev upptaget på Unescos världsarvslista år 1993", "en plats som också brukar kallas Sveriges första stad" (läst 2026-09-27); https://www.birkavikingastaden.se/hitta-pa-birka/ — "Besök den rekonstruerade vikingabyn", "besök vårt museum" (läst 2026-09-27)
     tagline: 'Vikingatidens Birka på Björkö – världsarv i Mälaren med museum, vikingaby och båt från Stockholm.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Bj%C3%B6rk%C3%B6 — Lantmäteriet Min Karta, sökning "Björkö" → Björkö | Ekerö | Trakt (Birka ligger på Björkö), SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 59.3252,
+    lng: 17.5594,
     description: [
       // KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/ — "Staden anlades på 700-talet och blev en viktig handelsplats", "då vikingastaden på Björkö övergavs och rollen som Birka hade övertogs av staden Sigtuna" (läst 2026-09-27)
       // KÄLLA: https://www.birkavikingastaden.se/om-birka/ — "Till Birka kom köpmän och hantverkare med varor från hela Europa och andra delar av världen", "arabiskt silver, östeuropeiska pärlor, vackra glasbägare, keramik och exklusiva tyger", "Under 200 år var Birka en blomstrande tätort", "När Birka var som störst hade staden omkring 700-1000 invånare" (läst 2026-09-27). «Frankiska vapen» och «sidenstoffer» saknade källa.
@@ -7272,6 +7305,9 @@ export const ISLANDS: Island[] = [
     emoji: '🐦',
     // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html — "Liksom på Storön finns här höga klintar med tusentals häckande alkfåglar" (läst 2026-09-27); https://storakarlso.se/faglarna/ — "en stor del på Lilla Karlsö (ca 2000-3000 par)" (läst 2026-09-27)
     tagline: 'Gotlands andra fågelberg — kalkstensklintar med tusentals häckande sillgrisslor och tordmular.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lilla%20Karls%C3%B6 — Lantmäteriet Min Karta, sökning "Lilla Karlsö" → Lilla Karlsö | Gotland | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.3142,
+    lng: 18.0567,
     description: [
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html — "Lilla Karlsö är en ö med fågelberg och fårbetade kalkhedar", "Lilla Karlsö ligger ca 3,5 km väster om Djupviks fiskeläge i Eksta", "Drygt 70 arter fåglar häckar på ön", "I Öster- och Västerbergets branter bor tusentals sillgrisslor, tordmular och storskarvar" (läst 2026-09-27)
       // KÄLLA: https://www.lansstyrelsen.se/download/18.2c30d6f167c5e8e7c0179a/1545313306910/Lilla%20Karls%C3%B6%20SE0340025.pdf — "på de båda Karlsöarna finns Sveriges enda fågelberg", "Talrikaste häckfåglar är sillgrissla, tordmule med omkring 3000 par vardera" (läst 2026-09-27)
@@ -7351,6 +7387,9 @@ export const ISLANDS: Island[] = [
     emoji: '🏝',
     // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon — "Gotska Sandöns nationalpark är Östersjöns ensligaste ö", "Större delen av ön är täckt av tallskog, med träd så gamla som 500 år", "I nationalparken kan du också få se sälar på nära håll" (läst 2026-09-27)
     tagline: 'Östersjöns ensligaste ö — nationalpark med sanddyner, 500 år gamla tallar och sälar.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gotska%20Sand%C3%B6n — Lantmäteriet Min Karta, sökning "Gotska Sandön" → Gotska Sandön | Gotland | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.3741,
+    lng: 19.2564,
     description: [
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/nationalparker/gotska-sandons-nationalpark.html — "Nationalparken Gotska Sandön är med sitt läge, 37 kilometer norr om Fårö, Östersjöns ensligaste plats", "I den gamla skolbyggnaden finns numera ett natur- och hembygdsmuseum", "Nytt kapell stod inte klart förrän 1950", "framföra motordrivet fordon"; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/besok-parken/tips-och-guider/tips-for-att-packa-ratt-infor-ditt-besok — "Det finns ingen butik eller matservering på Gotska Sandön" (läst 2026-09-27)
       'Gotska Sandön ligger 37 kilometer norr om Fårö och är Östersjöns ensligaste plats. Hela ön är nationalpark. Här finns ingen butik eller matservering, och motorfordon får inte köras av besökare. Bebyggelsen omfattar bland annat Fyrbyn med fyrmästarbostaden, Gamla gården, ett natur- och hembygdsmuseum i gamla skolhuset, ett kapell från 1950 och ett antal stugor.',
@@ -7451,6 +7490,9 @@ export const ISLANDS: Island[] = [
     emoji: '🦀',
     // KÄLLA: https://www.visitkarlskrona.se/sv/drottningskarskastell — "Drottningskärs kastell är en del av världsarvet Örlogsstaden Karlskrona" (läst 2026-09-27); https://www.visitkarlskrona.se/sv/aspofarja-aspoleden — "Gratis bil- och vägfärja mellan Karlskrona och Aspö." (läst 2026-09-27)
     tagline: 'Skärgårdsö vid inloppet till Karlskrona — Drottningskärs kastell och gratis vägfärja från stan.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Asp%C3%B6 — Lantmäteriet Min Karta, sökning "Aspö" → Aspö | Karlskrona | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 56.1142,
+    lng: 15.5356,
     description: [
       // KÄLLA: https://www.visitkarlskrona.se/sv/drottningskars-kastells-historia — "För de stora örlogsskeppen är inloppet mellan Aspö och Tjurkö det enda sättet att nå Karlskrona." (läst 2026-09-27); https://www.visitkarlskrona.se/sv/drottningskarskastell — "Drottningskärs kastell är en del av världsarvet Örlogsstaden Karlskrona", "Själva fastigheten förvaltas av Statens fastighetsverk" (läst 2026-09-27); https://www.visitkarlskrona.se/sv/aspo-kyrka — "Aspö kyrka stod färdig 1891.", "Aspö kyrka är uppförd i nygotisk stil." (läst 2026-09-27)
       'Aspö ligger i Karlskronas skärgård vid inloppet mellan Aspö och Tjurkö, som var det enda sättet för de stora örlogsskeppen att nå Karlskrona. På ön ligger Drottningskärs kastell, som ingår i världsarvet Örlogsstaden Karlskrona och förvaltas av Statens fastighetsverk. Aspö kyrka i nygotisk stil stod färdig 1891.',
@@ -7552,6 +7594,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://www.visitkarlskrona.se/en/caferunda-pa-sturko-blekinges-storsta-o — "Blekinge’s largest island attracts visitors with its lovely swimming coves and excellent fishing waters."; "The island has two nature reserves" (läst 2026-09-27)
     // KÄLLA: https://www.visitblekinge.se/en/sturko-a-picturesque-island — "reached via Sturkövägen – a permanent road bridge running across the islands of Senoren and Skällö" (läst 2026-09-27)
     tagline: 'Blekinges största ö — nås med bil över broar, med två naturreservat, badvikar och fina fiskevatten.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sturk%C3%B6 — Lantmäteriet Min Karta, sökning "Sturkö" → Sturkö | Karlskrona | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 56.0966,
+    lng: 15.6734,
     description: [
       // KÄLLA: https://www.visitblekinge.se/en/sturko-a-picturesque-island — "At just over 21 square kilometres it is by far the largest island in Blekinge's archipelago" (läst 2026-09-27)
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/uttorp.html — "Naturreservatet Uttorp är en del av ett stort strövvänligt utmarksområde på södra delen av Sturkö."; "vid klart väder siktar du Utklippans fyr" (läst 2026-09-27)
@@ -7666,6 +7711,9 @@ export const ISLANDS: Island[] = [
     emoji: '🪄',
     // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark/att-gora-i-parken/sevardheter/labyrinten-trojeborg — "På en av Blå Jungfruns klippor finns stenlabyrinten Trojeborg" (läst 2026-09-27); https://www.lansstyrelsen.se/kalmar/besoksmal/nationalparker/bla-jungfrun.html — "Redan på 1400-talet omgavs ön Blå Jungfrun med magiska föreställningar om häxor och trolldom", "Graniten dominerar" (läst 2026-09-27)
     tagline: 'Nationalpark i Kalmarsund — häxmyter, stenlabyrinten Trojeborg och granitberg.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Bl%C3%A5%20Jungfrun — Lantmäteriet Min Karta, sökning "Blå Jungfrun" → Blå Jungfrun | Oskarshamn | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.2550,
+    lng: 16.7987,
     description: [
       // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark — "Blå Jungfruns nationalpark är en isolerad ö i Kalmarsund med branta klippor, blockterräng och höjder som reser sig över havet", "Öns har fått sin runda form av inlandsisen", "Under istiden bildades också öns många jättegrytor" (läst 2026-09-27); https://www.lansstyrelsen.se/kalmar/besoksmal/nationalparker/bla-jungfrun.html — "Redan på 1400-talet omgavs ön Blå Jungfrun med magiska föreställningar om häxor och trolldom", "Själva urberget är anledningen till att ön blivit skyddad som nationalpark. Graniten dominerar" (läst 2026-09-27)
       // KÄLLA: https://www.solkustturer.se/kopia-på-när-ställs-turen-in — "Ön är också kallad", "Blåkulla", "Blåkulla är enligt myten den plats dit häxorna åkte på skärtorsdagen" (läst 2026-09-27); https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark/att-gora-i-parken/sevardheter/labyrinten-trojeborg — "Labyrinten ligger på öns sydsida" (läst 2026-09-27)
@@ -7756,6 +7804,9 @@ export const ISLANDS: Island[] = [
     emoji: '🏰',
     // KÄLLA: https://se.hemsofastning.se/naturupplevelse/ — "Hemsön ligger i världsarvet Höga kusten." (läst 2026-09-27); https://se.hemsofastning.se/guidade-turer/ — "går man sedan ner 40 meter ner i urberget" (läst 2026-09-27)
     tagline: 'Ö i världsarvet Höga kusten — Hemsö fästning från kalla kriget, 40 meter ner i berget.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Hems%C3%B6n — Lantmäteriet Min Karta, sökning "Hemsön" → Hemsön | Härnösand | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 62.7406,
+    lng: 18.0836,
     description: [
       // KÄLLA: https://www.hogakusten.com/sv/upplevelser/natur-friluftsliv/skargard/farja — "Hemsön är en stor ö i södra delen av Höga Kusten. Det mest populära besöksmålet på ön är" (läst 2026-09-27); https://www.hogakusten.com/sv/hemso-fastning — "Hemsön ligger mittemellan Härnösand och Höga Kusten bron, ca 20 min från vardera." (läst 2026-09-27); https://se.hemsofastning.se/historia/ — "Åren 1953-1957 uppfördes batteriet vid Storråberget" (läst 2026-09-27); https://se.hemsofastning.se/ — "Sedan 2009 drivs Hemsö fästning av oss", "I dag får vi varje år välkomna över 30 000 besökare" (läst 2026-09-27)
       'Hemsön är en stor ö i södra delen av Höga kusten, mitt emellan Härnösand och Högakustenbron. Det mest besökta målet är Hemsö fästning, där batteriet i Storråberget byggdes 1953–1957 som en del av kustförsvaret under kalla kriget. Sedan 2009 drivs fästningen som besöksmål och tar emot över 30 000 besökare om året.',
@@ -7837,6 +7888,9 @@ export const ISLANDS: Island[] = [
     emoji: '🪨',
     // KÄLLA: https://gotland.com/companies/faro/ — "trots att det bara tar sex minuter att åka över sundet", "Här finns långa vackra sandstränder och ståtliga raukar längs västkusten." (läst 2026-09-27)
     tagline: 'Bergmans ö – raukar, långa sandstränder och sex minuter med färja från Fårösund.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=F%C3%A5r%C3%B6 — Lantmäteriet Min Karta, sökning "Fårö" → Fårö | Gotland | Natur- och terrängnamn (mittpunkt), SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.9346,
+    lng: 19.1279,
     description: [
       // KÄLLA: https://gotland.com/article/bergman-and-faro/ — "Ingmar Bergman first came to Fårö on a stormy April day in 1960.", "as a possible location for Through a Glass Darkly", "He had his house built not far from where Persona was filmed. He came to live and work there for almost 40 years.", "Ingmar Bergman died at the age of 89 at his home on Fårö and is buried in Fårö Church Cemetery.", "The meeting with the barren island on Gotland’s northern point was overwhelming." (läst 2026-09-27); https://www.trafikverket.se/resa-och-trafik/farjetrafik/farosundsleden/ — "Resan med vägfärjan är avgiftsfri." (läst 2026-09-27)
       'Fårö ligger vid Gotlands norra spets och nås med en avgiftsfri vägfärja från Fårösund. Ingmar Bergman kom hit första gången en stormig aprildag 1960, när han letade inspelningsplats för Såsom i en spegel. Han lät bygga sitt hus inte långt från platsen där Persona spelades in, levde och arbetade på ön i nästan 40 år och dog i sitt hem på Fårö 2007, 89 år gammal.',
@@ -7965,6 +8019,9 @@ export const ISLANDS: Island[] = [
     emoji: '🏡',
     // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/trysunda.html — "Vid hamnen ligger ett idylliskt fiskeläge som är det bäst bevarade längs hela Ångermanlandskusten"; https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22cdc/1732538244407/Trysunda.pdf — "I fiskeläget finns också ett litet kapell, från 1654"; https://www.hogakusten.com/en/trysunda-vandrarhem-skargardscafe — "a peaceful, car-free environment" (läst 2026-09-27)
     tagline: 'Ångermanlandskustens bäst bevarade fiskeläge — bilfri ö i naturreservat, med kapell från 1654.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Trysunda — Lantmäteriet Min Karta, sökning "Trysunda" → Trysunda | Örnsköldsvik | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 63.1410,
+    lng: 18.7721,
     description: [
       // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22cdc/1732538244407/Trysunda.pdf — "Trysunda är det bäst bevarade fiskeläget i hela", "Det grundades 1557, när Gustav", "Röda stugor och", "sjöbodar ligger uppradade längs en skyddande hamn", "Genom området löper en bygata och invid den ligger", "gamla gistvallar"; https://www.svenskakyrkan.se/ornskoldsvikssodra/natra-sidensjo/trysunda-kapell — "Målningarna i kapellet är utförda av Olof Gåhlin", "År 1711 då målningarna gjordes" (läst 2026-09-27)
       'Fiskeläget på Trysunda är det bäst bevarade i hela Ångermanland. Det grundades 1557, när Gustav Vasa gav fiskare från Gävle ensamrätt till fisket i ytterskärgården. Röda stugor och sjöbodar ligger uppradade längs den skyddade hamnen, och genom byn löper en bygata med gamla gistvallar där näten hängdes på tork. Det lilla kapellet från 1654 har väggmålningar av Olof Gåhlin från 1711.',
@@ -8085,6 +8142,9 @@ export const ISLANDS: Island[] = [
     emoji: '⚓',
     // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "Engelska kyrkogården är ett minne från åren 1810-1812", "I norr finns strandsporren Bönsäcken", "Idag finns en av Sveriges största avenbokskogar på Hanös södra delar" (läst 2026-09-27)
     tagline: 'Naturreservat i Hanöbukten — engelsk kyrkogård från Napoleonkrigen, Bönsäcken och avenbokskog.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Han%C3%B6 — Lantmäteriet Min Karta, sökning "Hanö" → Hanö | Sölvesborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 56.0097,
+    lng: 14.8478,
     description: [
       // KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg-skargard/nogersund-hano/ — "Hanö är ett mycket populärt utflyktsmål med cirka 30 000 besökare årligen", "Gå ombord på M/F Vitaskär i Nogersund och 25 minuter senare"; https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "Skyddsår: 2017, utvidgning 2024", "sedan 1830-talet har ön haft en fast befolkning", "Ön är ett restberg, som formades i ett tropiskt klimat för ett par hundra miljoner år sedan"; https://www.hano.nu/g%C3%B6ra/vandra-33709369 — "Skyddet omfattar hela ön förutom Hanö läge och fyrområdet" (läst 2026-09-27)
       'Hanö tar emot cirka 30 000 besökare om året och nås året runt med M/F Vitaskär från Nogersund på Listerlandet – överfarten tar 25 minuter. Hela ön utom Hanö läge och fyrområdet är naturreservat sedan 2017 (utvidgat 2024). Ön har haft fast befolkning sedan 1830-talet och är geologiskt ett restberg, format i tropiskt klimat för ett par hundra miljoner år sedan.',
@@ -8205,6 +8265,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://stockholmslansmuseum.se/besoksmal/svartloga/ — "Svartlöga är en ö utanför Blidö i den norra ytterskärgården."; "Svartlöga är en flack och stenig ö."; "Svartlöga befolkades på 1500-talet" (läst 2026-09-27)
     // KÄLLA: https://www.explorearchipelago.com/sthlm/outer-archipelago/svartloga — "There is no shop, catering or temporary accommodation here" (läst 2026-09-27)
     tagline: 'Flack ytterskärgårdsö utanför Blidö med fiskeläge från 1500-talet, arboretum och varken affär eller servering.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Svartl%C3%B6ga — Lantmäteriet Min Karta, sökning "Svartlöga" → Svartlöga | Norrtälje | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 59.5747,
+    lng: 19.0318,
     description: [
       // KÄLLA: https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/svartloga---rodloga.pdf — "Ett riksintresseområde för kulturmiljövården"; "Riksintresset omfattar byarna Svartlöga och Rödlöga i Stockholms norra ytterskärgård"; "Svartlöga är en låglänt huvudö med tillhörande öar, skär och kobbar som omfattar omkring sammanlagt 385 hektar."; "Farvattnen runt ön är mycket grunda och svårnavigerade på grund av hundratals grynnor och småskär." (Norrtälje kommun, Kulturmiljöutredning nr 4, 2016) (läst 2026-09-27)
       // KÄLLA: https://stockholmslansmuseum.se/besoksmal/svartloga/ — "Svartlöga är en ö utanför Blidö i den norra ytterskärgården."; "har en högsta punkt på 12 meter över havet." (läst 2026-09-27)
@@ -8326,6 +8389,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/jonkopings-lan/ekskogen-pa-visingso — "Vandra genom Sveriges största sammanhängande ekskog, planterad år 1831 för flottans båtbygge" (läst 2026-09-27)
     // KÄLLA: https://vattern.org/om-vattern/ — "sjön är en näringsfattig klarvattensjö med ett för svenska sjöar enormt siktdjup (15-16 m)" (läst 2026-09-27)
     tagline: 'Vätterns största ö — Visingsborgs slottsruin, Sveriges största sammanhängande ekskog och remmalag i en näringsfattig klarvattensjö.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Visings%C3%B6 — Lantmäteriet Min Karta, sökning "Visingsö" → Visingsö | Jönköping | Natur- och terrängnamn (mittpunkt), SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.0633,
+    lng: 14.3311,
     description: [
       // KÄLLA: https://www.jonkoping.se/trafik--stadsplanering/planarbete-och-samhallsbyggnad/kommundelsutveckling/visingso-kommundelsutveckling — "Visingsö är Vätterns största ö med en längd av 14 km och en största bredd på 3 km. Den ligger 3 mil norr om Jönköping och 6 km väster om Gränna"; "Visingsö är tillsammans med Gränna, Jönköpings kommuns främsta turistattraktion med över 100 000 besökare per år" (läst 2026-09-27)
       // KÄLLA: https://jkpg.com/upplevelser/remmalag-pa-visingso — "Remmalagen är Visingsös populära hästdroskor som har skjutsat besökare runt den vackra ön i över 100 år" (läst 2026-09-27)
@@ -8448,6 +8514,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://ilandskrona.se/besoka/ven/tips-pa-vad-du-kan-uppleva-pa-ven/ — "ta en promenad i den rekonstruerade renässansträdgården"; "underjordiska observatorium Stjärneborg" (läst 2026-09-27)
     // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/landskrona/vens-backafall.html — "Den kraftiga lutningen och rasrisken gör att du bäst upplever backafallens natur från cykelleden som går uppe längs krönet." (läst 2026-09-27)
     tagline: 'Tycho Brahes ö mitt i Öresund — underjordiskt observatorium, branta backafall och cykelleder runt ön.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ven — Lantmäteriet Min Karta, sökning "Ven" → Ven | Landskrona | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 55.9102,
+    lng: 12.6976,
     description: [
       // KÄLLA: https://ilandskrona.se/besoka/ven/tychobrahe-museet/tycho-och-vetenskapen/ — "Tycho förlänades ön Hven i Öresund mellan Danmark och Skåne"; "På Ven anlade Tycho en av Europas första forskningsinstitutioner där man använde sig av empirisk forskning. Anläggningen på ön bestod bland annat av det spektakulära slottet Uraniborg, det underjordiska observatoriet Stjerneborg och en fantastisk renässansträdgård."; "Det uppstod dock meningsskiljaktigheter mellan Tycho och det danska hovet år 1597 och Tycho tvingades lämna Danmark." (läst 2026-09-27)
       'Ven (tidigare stavat Hven) ligger i Öresund mellan Skåne och Danmark. Under slutet av 1500-talet fick den danske adelsmannen och astronomen Tycho Brahe ön i förläning och byggde här en av Europas första forskningsinstitutioner med empirisk forskning: slottet Uraniborg, det underjordiska observatoriet Stjerneborg och en renässansträdgård. 1597 hamnade Tycho i konflikt med det danska hovet och lämnade landet.',
@@ -8589,6 +8658,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://tjaro.com/hotell-vandrarhem/ — "Tjärö erbjuder boende i härliga små hus från 1800-talet." (läst 2026-09-27)
     // KÄLLA: https://tjaro.com/farjeavgangar/ — "Färjan tar 15 minuter enkel väg." (läst 2026-09-27)
     tagline: 'Naturreservat i Karlshamns skärgård — rundslipade klipphällar, betesmarker och övernattning i 1800-talshus, 15 min med färja från Järnavik.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Tj%C3%A4r%C3%B6 — Lantmäteriet Min Karta, sökning "Tjärö" → Tjärö | Karlshamn | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 56.1691,
+    lng: 15.0476,
     description: [
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tjaro.html — "Kommun: Karlshamn", "Ön Tjärö ligger i Hällaryds skärgård", "Skyddsår: 1976", "Areal: 306 hektar, varav 83 hektar land", "Ön är inte större än att du kan vandra runt den på några timmar.", "Just de branta rundslipade hällarna längs kusten är utmärkande för Tjärö.", "Ekhagar och ädellövskog blandas med enbuskar, hällmarker och klippstränder samt mindre strandängar och gräsmarker." (läst 2026-09-27)
       'Tjärö ligger i Hällaryds skärgård i Karlshamns kommun och är naturreservat sedan 1976. Reservatet omfattar 306 hektar, varav 83 hektar land – ön är inte större än att man kan gå runt den på några timmar. Utmärkande är de branta, rundslipade klipphällarna längs kusten. Inåt ön blandas ekhagar och ädellövskog med enbuskar, hällmarker, strandängar och gräsmarker.',
@@ -8708,6 +8780,9 @@ export const ISLANDS: Island[] = [
     emoji: '🚢',
     // KÄLLA: https://www.vastsverige.com/visitockero/centrum-for-fiske/ — "Längs kajerna i Hönö klåva, Öckerö, Rörö och andra hamnar ser man fortfarande en hel del större och mindre fiskebåtar" (läst 2026-09-27); https://www.goteborg.com/guider/ta-dig-till-skargarden — "Från Hönö kan du fortsätta över broarna till Fotö, Öckerö och Hälsö" (läst 2026-09-27)
     tagline: 'Fiskeö i Göteborgs norra skärgård — fiskehamn, hällmarker och broar till Hönö och Hälsö.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96cker%C3%B6 — Lantmäteriet Min Karta, sökning "Öckerö" → Öckerö | Öckerö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.7156,
+    lng: 11.6475,
     description: [
       // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "Norra skärgården består av tio bebodda öar, Björkö, Fotö, Grötö, Hälsö, Hyppeln, Hönö, Kalvsund, Källö-Knippla, Rörö och Öckerö", "Kostnadsfria bilfärjor går från Lilla Varholmen till Hönö och Björkö. Från Hönö kan du fortsätta över broarna till Fotö, Öckerö och Hälsö" (läst 2026-09-27); https://www.ockero.se/kommun-och-politik/statistik — "Befolkning per ö", "3569 3498 3559" (läst 2026-09-27); https://www.trafikverket.se/resa-och-trafik/farjetrafik/honoleden/ — "Hönöleden går mellan Lilla Varholmen och Hönö/Öckerö", "Resan med vägfärjan är avgiftsfri" (läst 2026-09-27)
       'Öckerö är en av tio bebodda öar i Öckerö kommun i Göteborgs norra skärgård, och med 3 559 invånare (2025) den näst folkrikaste efter Hönö. Ön nås med bil, buss eller cykel: den avgiftsfria vägfärjan Hönöleden går från Lilla Varholmen på Hisingen till Hönö, och därifrån går bro vidare till Öckerö och Hälsö.',
@@ -8803,6 +8878,9 @@ export const ISLANDS: Island[] = [
     emoji: '🔴',
     // KÄLLA: https://www.goteborg.com/platser/roro — "Rörö är den nordligaste ön i Göteborgs skärgård, känd för sitt öppna naturreservat, rika fågelliv, sommarhamn och barnvänliga badplatser" (läst 2026-09-27); https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/naturomraden-och-naturreservat/roro-naturreservat — "nästan helt trädlösa hedmarker samt ljung- och gräshedar" (läst 2026-09-27)
     tagline: 'Nordligaste ön i Göteborgs skärgård — naturreservat med ljunghed, rikt fågelliv, gästhamn och barnvänliga bad.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=R%C3%B6r%C3%B6 — Lantmäteriet Min Karta, sökning "Rörö" → Rörö | Öckerö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.7791,
+    lng: 11.6113,
     description: [
       // KÄLLA: https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/naturomraden-och-naturreservat/roro-naturreservat — "Rörö är den nordligaste av öarna i Öckerö kommun" (läst 2026-09-27); https://www.ockero.se/kommun-och-politik/statistik — "Befolkning per ö", "Rörö 248 243 244 240 250 250 245 253 252 254" (läst 2026-09-27)
       // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/nordoleden/ — "Nordöleden går mellan Burö, Knippla, Hyppeln och Rörö i Bohusläns skärgård", "längd 3500 meter, restid cirka 18 minuter" (läst 2026-09-27); https://www.goteborg.com/guider/ta-dig-till-skargarden — "Vill du vidare kan du ta en färja från Hälsö (Burö färjeläge) till öarna", "Det är möjligt att ta bilen över men en rekommendation är att parkera den vid färjeläget då öarna är små och parkeringsplatserna begränsade" (läst 2026-09-27)
@@ -8891,6 +8969,9 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://www.umea.se/kommunochpolitik/kommunfakta/umeashistoria/50aravgemensamutveckling/orternaochderashistoria.4.174670ac18f90cfab9a1666a.html — "Holmön är även känd som Sveriges soligaste ö, med flest soltimmar i landet baserat på över 150 års mätningar." (läst 2026-09-27)
     // KÄLLA: https://www.umea.se/upplevaochgora/idrottmotionochfriluftsliv/friluftslivochmotion/naturomradenfriluftsomraden/holmon.4.27a2de8b172da059ace20f5.html — "Holmön är huvudön i ögruppen Holmöarna, belägen en mil ut i havet i norra Kvarken."; "Färjan är gratis." (läst 2026-09-27)
     tagline: 'Sveriges soligaste ö – huvudön i Holmöarna, en mil ut i Norra Kvarken, med gratis färja från Norrfjärden.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Holm%C3%B6n — Lantmäteriet Min Karta, sökning "Holmön" → Holmön | Umeå | Trakt, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 63.7847,
+    lng: 20.8772,
     description: [
       // KÄLLA: https://www.umea.se/upplevaochgora/idrottmotionochfriluftsliv/friluftslivochmotion/naturomradenfriluftsomraden/holmon.4.27a2de8b172da059ace20f5.html — "Holmön är huvudön i ögruppen Holmöarna, belägen en mil ut i havet i norra Kvarken."; "Idag är Holmön den enda ön i Västerbotten med en året runt-befolkning."; "på sommaren ökar befolkningen avsevärt" (läst 2026-09-27)
       // KÄLLA: https://www.umea.se/kommunochpolitik/kommunfakta/umeashistoria/50aravgemensamutveckling/orternaochderashistoria.4.174670ac18f90cfab9a1666a.html — "I dag bor det över 60 personer året runt på ön."; "Holmön är även känd som Sveriges soligaste ö, med flest soltimmar i landet baserat på över 150 års mätningar." (läst 2026-09-27)
