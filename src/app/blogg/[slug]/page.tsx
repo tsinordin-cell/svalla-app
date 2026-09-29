@@ -285,6 +285,7 @@ Möja Outdoor hyr ut kajak, roddbåt och SUP. På Ornö hyrs kajak vid Kajakomat
 Möja Outdoor ordnar sälsafari. Mer om ön: [Möja](/blogg/dolda-parlor-moja).
 
 ## 5. Basta på Bullerö
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 På [Bullerö](/o/bullero) i Nämdöskärgårdens nationalpark finns en vedeldad bastu som är öppen året om och för alla, och den går inte att boka. Under högsäsong går turbåt från Stavsnäs vinterhamn. Kommer du med egen båt till Utö har [Utö gästhamn](/upptack/gruvbryggan) bastu.
 
 ## 6. Se Grönskärs fyr
@@ -902,6 +903,7 @@ Enligt verksamheternas egna sidor:
 - **Tjockö:** [Ökrogen](/upptack/okrogen-tjocko) har pubkvällar under vår, vinter och höst.
 - [Gräddö](/o/graddo): Björkö-Örns camping har öppet året runt, och restaurangen där har öppet helger under vintersäsongen.
 - **Hammersta:** Skärgårdsstiftelsens stuga Gröndal går att hyra även på vintern.
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 - [Bullerö](/o/bullero) i Nämdöskärgårdens nationalpark: raststugan och den vedeldade bastun är öppna året om.
 - **Björnö och Gålö:** Skärgårdsstiftelsen beskriver båda som utflyktsmål året om.
 
@@ -1111,6 +1113,7 @@ I skyddade områden kan det vara helt förbjudet att elda, eller bara tillåtet 
 - [Finnhamn](/o/finnhamn) – eldplatser finns vid tältplatsen på södra Jolpan, nära vandrarhemmet och på Idholmen.
 - [Nåttarö](/o/nattaro) – reservatet har anvisade eldplatser.
 - [Svenska Högarna](/o/svenska-hogarna) – både öppen eld och grill är bara tillåtna på anvisad plats.
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 - [Bullerö](/o/bullero) och Nämdöskärgårdens nationalpark – du får elda på anvisade platser eller i grill på ben, och friluftskök är tillåtet. I servicehuset på Bullerö finns grill och utekök.
 
 ### Öppen eld förbjuden
@@ -1408,6 +1411,7 @@ Efter högsäsongen stänger en del av skärgården, men inte allt. Båtarna til
 - På Waxholmsbolagets båtar har vissa fartyg begränsad servering under vintertidtabellen, december–april.
 
 ## Bullerö och nationalparken
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken". KÄLLA: https://www.lansstyrelsen.se/stockholm/om-oss/om-lansstyrelsen-stockholm/nyheter/nyheter---stockholm/2025-09-05-nu-ar-namdoskargardens-nationalpark-invigd.html (Länsstyrelsen Stockholm, nyhet daterad 2025-09-05), läst 2026-09-29 — nationalparken invigdes den 5 september 2025 -->
 Nämdöskärgårdens nationalpark invigdes 5 september 2025 och är Sveriges första marina nationalpark i Östersjön – 97 procent av ytan är hav. Huvudentrén ligger på Bullerö, där bastun är öppen för alla och inte går att boka. Mer: [Bullerö](/o/bullero).
 
 ## Tänk på
@@ -1418,6 +1422,7 @@ Nämdöskärgårdens nationalpark invigdes 5 september 2025 och är Sveriges fö
    faqs: [
      { q: 'Går skärgårdsbåtarna på hösten?', a: 'Ja, till de större öarna. Waxholmsbolaget går till Sandhamn året runt via Stavsnäs, till Grinda året om och till Utö året om från Årsta brygga. Cinderellabåtarna till Sandhamn har säsong (2026: 30 april–27 september).' },
      { q: 'Vad har öppet på Sandhamn på hösten?', a: 'Sandhamns Värdshus pub är öppen året runt, och restaurangen har främst öppet på helger utanför högsäsongen. Seglarhotellet har julbord från slutet av november till julafton.' },
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken"
      { q: 'Kan man bada bastu i skärgården på hösten?', a: 'Ja, på Bullerö i Nämdöskärgårdens nationalpark finns en bastu som är öppen för alla och inte går att boka.' },
    ],
  },
@@ -1523,6 +1528,7 @@ Den här listan tar bara med det vi kan belägga: ställen där verksamheten sj�
 - **Sandhamns Värdshus:** boende med frukost i Missionshuset.
 
 ## Övrigt
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 - **Bastun på Bullerö** i Nämdöskärgårdens nationalpark är öppen för alla och går inte att boka.
 - **Vaxholms julmarknad** hålls i december.
    `,
@@ -1658,6 +1664,7 @@ Mer: [Hyra cykel på Möja och Gällnö](/blogg/cykling-moja-gallno).
 Mer: [Vandring på Ornö och Utö](/blogg/vandring-orno-uto).
 
 ## Bullerö
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 - **Båt:** under högsäsong går turbåt från Stavsnäs vinterhamn till Bullerö, entrén till Nämdöskärgårdens nationalpark. [Båt till Bullerö](/o/bullero/komma-dit).
 - **Bo:** på Bullerös tältplats får du tälta upp till sju dygn, i nästan hela nationalparken i övrigt upp till två dygn på samma plats. I byn finns ett gästhem med utekök som har öppet under högsäsong, och en varm raststuga och vedeldad bastu som är öppna året om.
 - **Gör:** vandringsleder av olika svårighetsgrad och en badstrand. Mat och dryck går inte att köpa i nationalparken, så ta med allt. Hunden ska alltid vara kopplad.
@@ -1892,7 +1899,9 @@ Buss 434 från Slussen till Sollenkroka och båt därifrån tar enligt Värmdö 
 ### Sandhamn – 8,1 km, lätt
 Etappen på [Sandhamn](/o/sandhamn) börjar vid den allmänna bryggan, och leden rekommenderar medsols. Här är leden sparsamt uppmärkt. Värmdö kommuns Sandhamnsstigen, cirka 8 kilometer, går också runt Sandön förbi Trouville. Året runt tar du dig dit via Stavsnäs: Waxholmsbolagets linje 16 på 40–60 minuter eller Sandhamnslinjen på 30 minuter. Mer om ön: [Sandhamn guide](/blogg/sandhamn-guide-2026).
 
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 ### Bullerö i Nämdöskärgårdens nationalpark
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 [Bullerö](/o/bullero) är entrén till Nämdöskärgårdens nationalpark. Här finns vandringsleder av olika svårighetsgrad, en badstrand och en tältplats, och delar av ön är tillgänglighetsanpassade. Under högsäsong går turbåt från Stavsnäs vinterhamn. Mat och dryck går inte att köpa i nationalparken, men vattenflaskan kan fyllas på Bullerö.
 
 ## Regler längs lederna
@@ -1956,6 +1965,7 @@ Många naturhamnar ligger i naturreservat. På Grinda, Granholmen, Gällnö, Fin
 ### Runt Nämdö
 - **Jungfruskär** – naturreservat fyra kilometer söder om Nämdö, som SXK tar upp bland sina besöksmål. Fågelskyddsområdet får inte beträdas 1 februari–15 augusti.
 - **Koxviken på Biskopsön** – också ett av SXK:s besöksmål. Biskopsö naturreservat ligger åtta kilometer söder om Nämdö, och sälskyddsområdet är stängt 1 februari–15 augusti.
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 - [Bullerö](/o/bullero) och Nämdöskärgårdens nationalpark – enligt Länsstyrelsen finns här gott om naturhamnar.
 
 ### Södra skärgården
@@ -2072,6 +2082,7 @@ SL-buss till Dalarö och bilfärjan till Hässelmara. Ornö är södra skärgår
 Mellan slutet av juni och mitten av augusti går Nordsydlinjen hit från Utö och Ornö. Under mellansäsongen går turer från Dalarö fredag till söndag, och Stockholm Archipelago Trail påminner om söndagens returtur. Det finns ingen service på ön. En stor del av Fjärdlång är naturreservat som Skärgårdsstiftelsen äger och förvaltar, och från 1909 ägdes ön av bankmannen Ernest Thiel, som lät bygga en villa ritad av Ernst Stenhammar. [Fjärdlång på Svalla](/o/fjardlang).
 
 ### Bullerö
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 Under högsäsong går turbåt från Stavsnäs vinterhamn till Bullerö, entrén till Nämdöskärgårdens nationalpark som bildades 2025. Här finns ett litet museum i Bruno Liljefors före detta jaktstuga och en vedeldad bastu som är öppen året om. Mat och dryck går inte att köpa i nationalparken. [Bullerö på Svalla](/o/bullero).
 
 ## Biljetter på Waxholmsbåten

@@ -62,6 +62,17 @@ const KALLMARKORER = [
 ]
 
 /**
+ * KÄLLA MED PARENTES (2026-09-29). Markörerna ovan är raka strängar, så
+ * 'källa:' krävde att kolonet satt direkt efter ordet. Vi skriver ofta
+ * "KÄLLA (lästa 2026-09-24):" med läsdatumet emellan, och de blocken räknades
+ * därför inte som källa alls. Följden blev falska varningar på texter som
+ * hade en myndighetskälla rakt ovanför sig, bland annat på nästan hela
+ * nationalparksavsnittet i bloggen. Regexen nedan tillåter vad som helst utom
+ * radbrytning och nytt kolon mellan ordet och kolonet.
+ */
+const KALLA_MED_PARENTES = /\bk[äa]lla\b[^:\n]{0,60}:/i
+
+/**
  * ── KÄLLHIERARKI (införd 2026-08-19) ─────────────────────────────────────────
  *
  * Bakgrund: Bullerö. Sidan påstod att ön var ett naturreservat förvaltat av
@@ -95,8 +106,17 @@ const KALLMARKORER = [
  */
 const SVAGA_KALLOR = [
   'openstreetmap', 'osm ', 'osm/', 'osm way', 'wikipedia', 'wikimedia',
-  'tripadvisor', 'blogg', 'blogspot', 'wordpress.com',
+  'tripadvisor', 'blogspot', 'wordpress.com',
 ]
+
+/**
+ * VÅR EGEN BLOGG ÄR INTE EN RESEBLOGG (2026-09-29). Listan ovan innehöll
+ * 'blogg' rakt av. En KÄLLA-rad som hänvisar vidare till vår egen text med
+ * "(se /blogg/uto-guide)" räknades då som en reseblogg, trots att samma rad
+ * citerade Länsstyrelsen. Två av två SVAG KÄLLA-varningar var av det slaget.
+ * Nu matchar vi bara blogg som ORD eller domändel, aldrig en intern sökväg.
+ */
+const SVAG_BLOGG = /(?<!\/)\bbloggen?\b(?!\/)|\.blogg|blogg\.[a-z]/i
 
 /** Påståendetyper där en svag källa INTE räcker — de kräver nivå 1 eller 2. */
 const KRAVER_STARK_KALLA = new Set(['djup', 'segelfri höjd', 'knop', 'skyddsstatus'])
@@ -304,6 +324,7 @@ function harKallaNara(rader, i) {
     const rad = rader[k] || ''
     const l = rad.toLowerCase()
     const iKommentar = ÄR_KOMMENTARSRAD(rad)
+    if (iKommentar && KALLA_MED_PARENTES.test(rad)) return true
     for (const m of KALLMARKORER) {
       if (!l.includes(m)) continue
       if (BARA_I_KOMMENTAR.includes(m) && !iKommentar) continue
@@ -322,8 +343,8 @@ function harBaraSvagKalla(rader, i) {
   let sagSvag = false
   for (let k = Math.max(0, i - 5); k <= i; k++) {
     const l = (rader[k] || '').toLowerCase()
-    if (!KALLMARKORER.some(m => l.includes(m))) continue
-    if (SVAGA_KALLOR.some(m => l.includes(m))) { sagSvag = true; continue }
+    if (!KALLMARKORER.some(m => l.includes(m)) && !KALLA_MED_PARENTES.test(l)) continue
+    if (SVAGA_KALLOR.some(m => l.includes(m)) || SVAG_BLOGG.test(l)) { sagSvag = true; continue }
     return false // hittade en källa som INTE är svag
   }
   return sagSvag
