@@ -53,8 +53,8 @@ const ITEMS: LandingItem[] = [
   {
     icon: '6',
     title: 'Dela med sällskapet',
-    description: 'Skicka länk till din tur — alla ser samma plan, kartan och bokningar.',
-    href: '/bjud-in',
+    description: 'Skicka länk till din rutt — alla ser samma plan och karta.',
+    href: '/planera',
   },
 ]
 

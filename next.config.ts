@@ -200,6 +200,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       { source: '/blogg/midsommar-skargarden-2026', destination: '/guider/midsommar-skargarden', permanent: true },
+      // Klubbar (2026-09-29): funktionen bygger på tabeller som aldrig skapats. Sökintentionen
+      // "segelsällskap/segelklubb" landar redan på guiden — dit skickas besökaren tills vidare.
+      { source: '/klubbar', destination: '/guider/seglingsklubbar-guide', permanent: false },
+      { source: '/klubb/:slug', destination: '/guider/seglingsklubbar-guide', permanent: false },
+      // Check-in (2026-09-29): tabellen check_ins finns inte; middleware skulle annars skicka utloggade till inloggning för en 404.
+      { source: '/check-in', destination: '/profil', permanent: false },
       // Årslösa adresser för säsongsguider (Search Console 2026-09-23: 38 848 + 27 091 visningar/3 mån).
       // Med årtal i adressen börjar sidan om från noll varje år. Innehåll och datum uppdateras årligen,
       // adressen ligger fast.
