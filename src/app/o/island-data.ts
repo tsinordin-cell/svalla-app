@@ -3723,7 +3723,12 @@ export const ISLANDS: Island[] = [
       { method: 'Bilfärja', from: 'Stenslätten (Värmdö)', time: '3 min', desc: 'Trafikverkets vägfärja Oxdjupsleden Rindö–Stenslätten, 500 m, avgiftsfri — vägen österut mot Värmdö.', icon: '⛴' },
     ],
     harbors: [{ name: 'Rindö hamn', desc: 'Liten gästbrygga med begränsat antal platser.' }],
-    restaurants: [],
+    restaurants: [
+      // KÄLLA: https://syrranparindo.se/ (restaurangens egen webbplats), läst 2026-09-29 : "En skärgårdsrestaurang i Rindö hamn, öppet året runt", "Vi serverar dagens lunch samt á la carte", adress Grisselmarens väg 21, stängt måndagar
+      { name: 'Syrran & Jag', type: 'Restaurang', desc: 'Skärgårdsrestaurang i Rindö hamn med dagens lunch och à la carte. Hundar välkomna.', open_season: 'Öppet året runt', open_hours: 'Tisdag–söndag, stängt måndagar. Lunch 10.30–14.30, à la carte på kvällen onsdag, fredag och lördag.', websiteUrl: 'https://syrranparindo.se/' },
+      // KÄLLA: http://upplevvaxholm.se/mat-och-dryck/ (Upplev Vaxholm, kommunens besöksinformation), läst 2026-09-29 , listar under Kaféer: "Ostmakeriet på Rindö, Östra Kasernvägen 7"
+      { name: 'Ostmakeriet på Rindö', type: 'Café', desc: 'Kafé på Östra Kasernvägen i det gamla kasernområdet.' },
+    ],
     tips: ['Kombinera gärna med ett besök på Vaxholms fästning på Vaxholmen-sidan.', 'Vasallens omvandling av kasernerna är en av Sveriges större militära konversionsprojekt — värt en promenad.'],
     related: ['vaxholm', 'resaro', 'ljustero'],
     tags: ['militärhistoria', 'KA 1', 'bostadsö', 'nära Vaxholm', 'mellersta'],
@@ -5933,9 +5938,13 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.visitblekinge.se/en/guest-harbour-hano — "Guest harbor with 74 berths in Hanö Harbor", "WIFI is available in the harbor as well as shower and laundry facilities for boat guests. There is a sauna to rent a short distance from the harbor office." hano.nu/hamnen är blockerad av robots.txt och gick inte att läsa; 75 platser, byalaget, el, vatten och drivmedelsuppgiften är därför obelagda och borttagna.
       { name: 'Hanö gästhamn', desc: 'Gästhamn med 74 gästplatser. Wifi, dusch och tvättmöjligheter för båtgäster. Bastu finns att hyra en bit från hamnkontoret.', service: ['dusch', 'tvätt', 'wifi'] },
     ],
-    restaurants: [],
+    restaurants: [
+      // KÄLLA: https://www.visitblekinge.se/solvesborg/fisky-business-hano-hamnkrog (Visit Blekinge, regionens officiella besöksguide), läst 2026-09-29 : "Fisky Business - Hanö Hamnkrog ligger precis vid hamnplan på Hanö", MSC-certifierade sedan 2017, "Flaggskeppet på menyn är Fish & Chips", "fisksoppa, fisk- och vegetaco, räkmacka, hamburgare", "Fullständiga rättigheter", "Hanö Hamnkrog öppnar säsongen 12 juni 2026"
+      { name: 'Fisky Business, Hanö Hamnkrog', type: 'Krog', desc: 'Öns enda krog, vid hamnplan. Fisk och skaldjur med fish & chips som flaggskepp, plus kött, vegetariskt och barnmeny. MSC-certifierad sedan 2017. Fullständiga rättigheter.', open_season: 'Säsongen 2026 öppnar 12 juni', websiteUrl: 'https://fiskybusiness.nu/' },
+    ],
     tips: [
-      'Ta med all mat, vatten och utrustning — ingenting säljs på ön.',
+      // KÄLLA: https://www.visitblekinge.se/solvesborg/fisky-business-hano-hamnkrog (Visit Blekinge, regionens officiella besöksguide), läst 2026-09-29 . Tidigare tips här påstod att ingenting säljs på ön. Det var fel: Hanö Hamnkrog ligger vid hamnplan. Rättat.
+      'Hanö Hamnkrog vid hamnplan är öns enda krog, och den är stängd utanför säsongen. Åker du i maj eller september, ta med maten.',
       'Den engelska kyrkogården är liten men djupt stämningsfull. Ta dig tid.',
       'Kolla väderprognoser noga — Hanöbukten är öppet hav och trafiken ställs in vid sämre väder.',
       'Kombinerbar med Karlskrona: ligga i Karlskrona, dagstur till Hanö.',

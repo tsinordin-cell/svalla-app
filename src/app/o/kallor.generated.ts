@@ -2512,6 +2512,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "vad": "",
       "last": "2026-09-14",
       "myndighet": true
+    },
+    {
+      "url": "https://syrranparindo.se/",
+      "org": "syrranparindo.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "http://upplevvaxholm.se/mat-och-dryck/",
+      "org": "upplevvaxholm.se",
+      "vad": "",
+      "last": null,
+      "myndighet": false
     }
   ],
   "yxlan": [
@@ -3031,6 +3045,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.visitblekinge.se/en/guest-harbour-hano",
       "org": "visitblekinge.se",
       "vad": "Guest harbor with 74 berths in Hanö Harbor, WIFI is available in the harbor as well as shower and laundry facilities for boat guests. There is a sauna to rent a short distance from the harbor office. hano.nu/hamnen är blockerad av robots.txt och gick inte att läsa; 75 platser, byalaget, el, vatten och drivmedelsuppgiften är därför obelagda och borttagna.",
+      "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "https://www.visitblekinge.se/solvesborg/fisky-business-hano-hamnkrog",
+      "org": "visitblekinge.se",
+      "vad": "",
       "last": null,
       "myndighet": false
     }
