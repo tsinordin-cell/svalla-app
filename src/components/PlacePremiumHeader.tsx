@@ -11,6 +11,7 @@
  * Server Component — interaktiviteten ligger i <PlaceActionPill> (klient).
  */
 import PlaceActionPill from './PlaceActionPill'
+import { regionEtikett } from '@/lib/regionEtikett'
 
 type PriceLevel = 'budget' | 'mellan' | 'premium' | 'lyx' | null
 type ActionKey = 'boka' | 'meny' | 'hemsida' | 'instagram'
@@ -39,6 +40,9 @@ interface Props {
 
   // För analytics — skickas vidare till PlaceActionPill
   placeId?: string
+
+  /** Klubb- eller föreningshamn: platserna är för medlemmar (restaurants.endast_medlemmar). */
+  endastMedlemmar?: boolean
 }
 
 const PRICE_LABEL: Record<NonNullable<PriceLevel>, { label: string; symbol: string }> = {
@@ -52,12 +56,15 @@ export default function PlacePremiumHeader({
   name, oneLiner, typeLabel, island, region,
   googleRating, googleRatingsTotal, svallaRating, svallaRatingCount,
   priceLevel,
-  websiteUrl, menuUrl, bookingUrl, instagram, placeId,
+  websiteUrl, menuUrl, bookingUrl, instagram, placeId, endastMedlemmar,
 }: Props) {
   const hasGoogle = typeof googleRating === 'number' && googleRating > 0
   const hasSvalla = typeof svallaRating === 'number' && svallaRating > 0
   const price = priceLevel ? PRICE_LABEL[priceLevel] : null
-  const locationLabel = [typeLabel, island, region].filter(Boolean).join(' · ')
+  // restaurants.archipelago_region är en kod ("north", "bohuslan") och visades
+  // rå i rubriken på ~370 platssidor (mätt 2026-09-21). Okänd kod visas inte.
+  const regionLabel = regionEtikett(region)
+  const locationLabel = [typeLabel, island, regionLabel].filter(Boolean).join(' · ')
 
   // Bygg lista med aktiva action-knappar
   const actions: Array<{ key: ActionKey; label: string; href: string; primary?: boolean; icon: string }> = []
@@ -108,6 +115,23 @@ export default function PlacePremiumHeader({
       }}>
         {name}
       </h1>
+
+      {/* Klubbhamn — sägs före allt annat, så att ingen planerar en natt här i onödan */}
+      {endastMedlemmar && (
+        <div style={{
+          display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'flex-start',
+          background: 'rgba(201,110,42,0.08)', border: '1px solid rgba(201,110,42,0.25)',
+          borderRadius: 12, padding: '10px 12px', margin: '0 0 14px',
+        }}>
+          <span style={{
+            flexShrink: 0, fontSize: 11, fontWeight: 800, letterSpacing: '0.04em', textTransform: 'uppercase',
+            color: '#9a4f14', background: 'rgba(201,110,42,0.14)', borderRadius: 999, padding: '3px 9px',
+          }}>Endast medlemmar</span>
+          <span style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
+            Klubb- eller föreningshamn. Platserna är för medlemmar — kontakta föreningen innan du lägger till.
+          </span>
+        </div>
+      )}
 
       {/* One-liner — säger på 2 sek vad platsen är */}
       {oneLiner && (

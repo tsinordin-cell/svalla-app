@@ -80,7 +80,7 @@ export default function BastuOchBadPage() {
  Bastukultur och skärgård hör ihop. Saltvattnet runt Stockholms skärgård håller <strong>8–10°C från november till maj</strong> — perfekt temperaturkontrast till en vedeldad 80-gradig bastu. Och sommaren? Då är vattnet 18–23° och dopp och dagbad är vardag.
  </p>
  <p>
- Svalla samlar alla publika bastur och seriösa badplatser i skärgården — från klassiker som Nacka Strandbad och Hasseluddens Yasuragi till mindre lokala bastuklubbar du bara hittar genom lokalbefolkningen.
+ Här samlar vi bastur och badplatser i skärgården som vi har källa för — från klassiker som Nacka Strandbad och Hasseluddens Yasuragi till mindre lokala bastuklubbar du bara hittar genom lokalbefolkningen.
  </p>
  </>
  }

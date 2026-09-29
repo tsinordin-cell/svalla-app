@@ -52,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const month = new Date().getMonth()
   const monthName = MONTH_NAMES_SV[month]
   return {
-    title: `Öppet i skärgården i ${monthName} – vilka öar kan du besöka? | Svalla`,
+    title: `Öppet i skärgården i ${monthName} – vilka öar kan du besöka?`,
     description: `Se vilka öar i Stockholms skärgård och Bohuslän som är öppna i ${monthName} 2026 — med restauranger, gästhamnar och service. Uppdateras varje månad.`,
     alternates: { canonical: 'https://svalla.se/oppet-nu' },
     openGraph: {
@@ -281,7 +281,7 @@ export default function OppetNuPage() {
             lineHeight: 1.6,
             maxWidth: 420,
           }}>
-            Svallanyheter skickas varannan tisdag. Öppna öar, insider-tips och säsongsguider direkt i inkorgen. Gratis, inga annonser.
+            Svallanyheter: säsongsstarter, nya guider och ändrade båtlinjer, när det händer något. Gratis, inga annonser.
           </p>
           <div style={{ maxWidth: 420, margin: '0 auto' }}>
             <EmailSignup

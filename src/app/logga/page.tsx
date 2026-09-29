@@ -14,7 +14,7 @@ function LoggaChoice() {
   useEffect(() => {
     const supabase = createClient()
     getViewer(supabase).then(({ data }) => {
-      if (!data.user) { router.push('/logga-in?redirect=/logga'); return }
+      if (!data.user) { router.push('/logga-in?returnTo=%2Flogga&mode=ny'); return }
       setAuthReady(true)
     })
   }, [router])

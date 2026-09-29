@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'kaffe skärgård',
   ],
   openGraph: {
-    title: 'Fika och caféer i skärgården | Svalla',
+    title: 'Fika och caféer i skärgården',
     description: 'Kanelbullar, kaffe och havsutsikt — de bästa fikaställena i Stockholms skärgård.',
     url: 'https://svalla.se/krogar-och-mat/fika-cafe',
   },

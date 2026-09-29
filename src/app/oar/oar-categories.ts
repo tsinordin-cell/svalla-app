@@ -23,11 +23,32 @@ export const OAR_CATEGORIES: OarCategory[] = [
     title: 'Barnvänliga öar i skärgården',
     hero: 'Skärgårdsöar som är perfekta för familjer',
     description: 'Hitta öar med sandstränder, lugna stigar, korta restider och boende som passar familjer med små barn. Vi har samlat de öar där hela familjen får plats.',
-    intro: 'Skärgården är fantastisk med barn — men inte alla öar passar lika bra. Det vi tittar på: kort restid från Stockholm, lugn karaktär, sandstrand eller barnvänligt klippbad, mat och boende på plats. Här är de öar som faktiskt funkar för en familjeutflykt.',
+    intro: 'Skärgården är fantastisk med barn — men inte alla öar passar lika bra. Här finns bara öar som beskrivs som familj- eller barnvänliga eller har sandstrand, och som går att nå med reguljär båt, buss, färja eller bil. Öar som kräver egen båt är inte med, hur fina de än är. Restid och färdsätt står vid varje ö.',
+    /*
+      Filtret var en textsökning som inte hade med sidans löfte att göra.
+      Taggen `naturreservat` räckte för att räknas som barnvänlig — så Svenska
+      Högarna ("5–7 h med segelbåt"), Långskär, Storskär och Askö ("egen båt
+      från Trosa, ingen reguljär trafik") stod som "perfekta för familjer".
+      Vinga kom med för att "barndomsö" innehåller "barn". 46 öar, varav en
+      dryg tredjedel omöjliga att nå med två barn och utan egen båt.
+
+      Nu krävs att ön uttryckligen beskrivs som familj- eller barnvänlig (eller
+      har sandstrand), OCH att den nås med reguljär båt, buss, färja eller bil.
+      Öar som bara nås med egen båt, segelbåt eller kajak är inte med, hur fina
+      de än är. Det ger 24 öar i stället för 46.
+
+      Det riktiga svaret är en kurerad flagga per ö, satt av någon som varit
+      där — sidan säger "Svalla-utvalda", och det ska vara sant. Tills dess är
+      det här den ärligaste heuristiken datan räcker till.
+    */
     filter: (i) => {
-      const text = `${i.tagline} ${i.facts.best_for} ${i.tags.join(' ')}`.toLowerCase()
-      return text.includes('familj') || text.includes('barn')
-        || i.tags.some(t => ['sandstrand', 'cykling', 'havsbastu', 'naturreservat'].includes(t))
+      const text = `${i.tagline} ${i.facts.best_for} ${i.tags.join(' ')}`.toLowerCase().replace(/barndom/g, '')
+      const familj = text.includes('familj') || /\bbarn/.test(text) || i.tags.includes('sandstrand')
+      const gt = i.getting_there ?? []
+      const reguljar = gt.length === 0 || gt.some(g => !/egen båt|segelbåt|kajak|charter|taxibåt/i.test(`${g.method} ${g.desc ?? ''}`))
+      const t = (i.facts.travel_time ?? '').toLowerCase()
+      const baraEgenBat = /segelbåt|egen båt|kajak/.test(t) && !/waxholm|buss|färja|tåg|bil/.test(t)
+      return familj && reguljar && !baraEgenBat
     },
     searchTerms: ['barnvänliga öar stockholm', 'skärgården med barn', 'familjeö skärgården'],
   },

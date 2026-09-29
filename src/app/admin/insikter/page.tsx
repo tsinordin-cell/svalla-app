@@ -16,6 +16,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { baraManniskor } from '@/lib/analytics-filter'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -35,6 +36,8 @@ interface RawEvent {
   path: string | null
   props: Record<string, unknown>
   created_at: string
+  country_code: string | null
+  user_agent: string | null
 }
 
 export default async function InsikterPage({ searchParams }: PageProps) {
@@ -56,12 +59,13 @@ export default async function InsikterPage({ searchParams }: PageProps) {
   const admin = getAdminClient()
   const { data, error } = await admin
     .from('analytics_events')
-    .select('event_name, user_id, session_id, path, props, created_at')
+    .select('event_name, user_id, session_id, path, props, created_at, country_code, user_agent')
     .gte('created_at', sinceIso)
     .order('created_at', { ascending: false })
     .limit(20000)
 
-  const events: RawEvent[] = (data as RawEvent[] | null) ?? []
+  // Agentsessioner bort — se src/lib/analytics-filter.ts och docs/BASLINJE-2026-09.md.
+  const events: RawEvent[] = baraManniskor((data as RawEvent[] | null) ?? [])
 
   // ── Aggregera ─────────────────────────────────────────────────────────
   const total = events.length

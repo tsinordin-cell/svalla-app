@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords: ['hotell skärgård', 'vandrarhem skärgård', 'värdshus skärgården', 'bo skärgård weekend', 'hotell sandhamn', 'hotell utö'],
   alternates: { canonical: 'https://svalla.se/boende/hotell-vandrarhem' },
   openGraph: {
-    title: 'Hotell och vandrarhem i skärgården | Svalla',
+    title: 'Hotell och vandrarhem i skärgården',
     description: 'Hitta hotell, värdshus och vandrarhem i skärgården för weekend, kortsemester och övernattning nära havet.',
     url: 'https://svalla.se/boende/hotell-vandrarhem',
   },

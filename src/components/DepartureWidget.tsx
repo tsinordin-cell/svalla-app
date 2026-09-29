@@ -112,6 +112,9 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
     )
   }
 
+  // Rubriken hette "Hur du tar dig till X" fram till 2026-09-19. Ö-sidan har
+  // redan en statisk sektion "Ta sig dit" längre ner; två rubriker som lovar
+  // samma sak läste som dubblett. Widgeten visar avgångar — säg det.
   return (
     <section
       aria-labelledby="dep-widget-title"
@@ -128,7 +131,7 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
         <h2 id="dep-widget-title" style={{
           fontSize: 15, fontWeight: 700, margin: 0, letterSpacing: '-0.2px',
         }}>
-          Hur du tar dig till {islandName}
+          Nästa avgångar till {islandName}
         </h2>
         <span style={{
           background: 'rgba(74, 222, 128, 0.20)',

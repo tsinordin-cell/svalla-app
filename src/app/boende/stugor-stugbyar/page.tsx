@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords: ['hyra stuga skärgården', 'stugby skärgård', 'stuga nära havet', 'sommarstuga skärgård', 'stuga med brygga'],
   alternates: { canonical: 'https://svalla.se/boende/stugor-stugbyar' },
   openGraph: {
-    title: 'Hyr stuga i skärgården | Svalla',
+    title: 'Hyr stuga i skärgården',
     description: 'Hitta stugor och stugbyar i skärgården nära bad, bryggor, färjor och sommarkrogar.',
     url: 'https://svalla.se/boende/stugor-stugbyar',
   },

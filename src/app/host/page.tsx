@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords: ['skärgården höst','skärgård september','skärgård oktober','höst stockholm skärgård','skärgården efter sommaren','hösttur skärgård','september skärgård'],
   alternates: { canonical: 'https://svalla.se/host' },
   openGraph: {
-    title: 'Skärgården på hösten | Svalla',
+    title: 'Skärgården på hösten',
     description: 'September och oktober — varmaste vattnet, inga köer, öppna krogar.',
     url: 'https://svalla.se/host',
   },

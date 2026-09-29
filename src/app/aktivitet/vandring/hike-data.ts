@@ -62,7 +62,10 @@ export const HIKES: Hike[] = [
     suitableForChildren: false,
     suitableForDogs: true,
     bestSeason: 'Maj–september',
-    tagline: 'Skärgårdens längsta och mest varierade led — gruvor, kvarn, naturreservat och havsklippor på samma ö.',
+    // KÄLLA: Stockholm Archipelago Trail — Ornö-etappen 34,1 km, Utö-etappen 18,4 km
+    // (stockholmarchipelagotrail.com, läst 2026-09-18). Utös rundslinga på 8 km är
+    // alltså inte skärgårdens längsta led. Påståendet togs bort 2026-09-21.
+    tagline: 'Skärgårdens mest varierade led — gruvor, kvarn, naturreservat och havsklippor på samma ö.',
     islandSlug: 'uto',
     featured: true,
     topSweden: 2,

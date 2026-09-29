@@ -17,7 +17,7 @@ export const metadata: Metadata = {
  'segling utan erfarenhet',
  ],
  openGraph: {
- title: 'Börja segla — Nybörjarguide | Svalla',
+ title: 'Börja segla — Nybörjarguide',
  description: 'Allt du behöver veta för att börja segla. Kurser, båtval, revir, säkerhet och checklista.',
  url: 'https://svalla.se/nyborjare-segling',
  type: 'website',

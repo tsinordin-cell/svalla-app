@@ -178,7 +178,7 @@ const UNIQUE_BOHUSLAN: Record<string, FAQ[]> = {
     { q: 'Hur tar jag mig till Marstrand?',
       a: 'Marstrand är bilfri. Kör till Koön via Kungälv (E6 → väg 168) och ta sedan Marstrandsfärjan över sundet — gratis kommunal färja som går kontinuerligt under dagtid (5 min). Från Göteborg: ca 50 min med bil. Buss 312 från Kungälv eller direktbuss från Göteborg sommartid.' },
     { q: 'Vad är värt att se på Marstrand?',
-      a: 'Carlstens fästning (1600-tal, guidade turer + museum), Paradiset-stranden (klippbad), promenaden runt ön, hummerfiske-turer i augusti, och de färgglada hus i hamnen. Marstrand är också Skandinaviens äldsta segelort.' },
+      a: 'Carlstens fästning (1600-tal, guidade turer + museum), Paradiset-stranden (klippbad), promenaden runt ön, hummerturer under säsongen (premiär första måndagen efter 20 september), och de färgglada hus i hamnen. Marstrand är också Skandinaviens äldsta segelort.' },
     { q: 'Var äter man bäst i Marstrand?',
       a: 'Tenan (utsikt över hamnen, klassiska skaldjur), Båtellet, Strandverket Café & Konsthall (lokal mat + utställningar), och Carlstens Krog uppe vid fästningen. Hummersafari + lunchpaket finns sommartid.' },
     { q: 'Finns det boende på Marstrand?',

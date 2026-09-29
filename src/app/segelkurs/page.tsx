@@ -8,7 +8,7 @@ import Icon from '@/components/Icon'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Segelkurs Sverige 2026 – hitta rätt kurs för din nivå | Svalla',
+  title: 'Segelkurs Sverige 2026 – hitta rätt kurs för din nivå',
   description: 'Hitta segelkurs i Sverige. Nybörjarkurser, kustskepparintyget och seglarskola för barn. Jämför kurser i Stockholm, Göteborg och Bohuslän.',
   keywords: [
     'segelkurs',

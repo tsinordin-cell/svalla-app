@@ -27,7 +27,7 @@ const ISLAND_SECTIONS = [
     description: 'Det klassiska skärgårdslivet — Sandhamn, Möja och öarna däremellan.',
     slugs: [
       'sandhamn', 'moja', 'ljustero', 'gallno', 'ingmarso', 'namdo', 'svartso',
-      'runmaro', 'husaro', 'kymmendo', 'bullero', 'vindo', 'ingaro', 'kanholmen', 'hasselo',
+      'runmaro', 'husaro', 'kymmendo', 'bullero', 'vindo', 'ingaro', 'hasselo',
       'svenska-hogarna', 'huvudskar', 'ekno', 'ormsko', 'norrpada',
       'storholmen', 'storskar',
       'bjorko', 'adelsjo'],

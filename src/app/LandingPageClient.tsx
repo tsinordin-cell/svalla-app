@@ -11,7 +11,8 @@ const HeroAnimation = dynamic(() => import('@/components/HeroAnimation'), {
 })
 
 const LANDING_CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+/* 2026-09-21: @import av Google Fonts borttagen. CSP:n (style-src 'self') blockerade den på varje
+   sidvisning — den laddade aldrig, gav bara ett konsolfel. Playfair Display kommer från next/font i layout.tsx. */
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -549,7 +550,7 @@ const LANDING_HTML = `
  <div class="nav-dd-divider"></div>
  <div class="nav-dd-section">Praktiska guider</div>
  <a href="/guider" class="nav-dd-link">Alla guider</a>
- <a href="/guider/midsommar-skargarden-2026" class="nav-dd-link">Midsommar i skärgården</a>
+ <a href="/guider/midsommar-skargarden" class="nav-dd-link">Midsommar i skärgården</a>
  <a href="/guider/packlista-skargarden" class="nav-dd-link">Packlista för skärgården</a>
  <a href="/guider/allemansratten-pa-sjon" class="nav-dd-link">Allemansrätten på sjön</a>
  </div></div>
@@ -670,7 +671,7 @@ const LANDING_HTML = `
  <a href="/vinter" class="mob-acc-link">Vinter &amp; julkryssning</a>
  <div class="mob-acc-section">Praktiska guider</div>
  <a href="/guider" class="mob-acc-link">Alla guider</a>
- <a href="/guider/midsommar-skargarden-2026" class="mob-acc-link">Midsommar i skärgården</a>
+ <a href="/guider/midsommar-skargarden" class="mob-acc-link">Midsommar i skärgården</a>
  <a href="/guider/packlista-skargarden" class="mob-acc-link">Packlista för skärgården</a>
  <a href="/guider/allemansratten-pa-sjon" class="mob-acc-link">Allemansrätten på sjön</a>
  </div>
@@ -744,7 +745,7 @@ const LANDING_HTML = `
  <em>dag i skärgården</em>
  </h1>
  <p class="hero-sub">
- Krogar, badplatser och dolda pärlor tipsade av folk som faktiskt är där ute.
+ Öar, krogar, badplatser och båttider – samlat för en dag i skärgården.
  </p>
  </div>
  <div class="hero-bottom">
@@ -753,7 +754,7 @@ const LANDING_HTML = `
  <button type="submit">Sök</button>
  </form>
  <div style="text-align:center;margin-bottom:12px;display:flex;flex-direction:column;align-items:center;gap:10px">
- <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Planera din tur med Thorkel &rarr;</a>
+ <a href="/utflykt" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Planera din dag i skärgården &rarr;</a>
  </div>
  <div class="hero-search-hint">
  Populärt just nu:
@@ -797,7 +798,7 @@ const LANDING_HTML = `
     </div>
     <div class="resetips-card-body">
      <div class="resetips-card-title">Bil, glass och båt — Djurö till Grinda</div>
-     <div class="resetips-card-tagline">En av skärgårdens bästa dagsrutter med bil, brygga och lunchstopp på Grinda Wärdshus.</div>
+     <div class="resetips-card-tagline">Bil till Djurö, båt över till Grinda och lunch på Grinda Wärdshus.</div>
      <div class="resetips-card-meta">
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>Bil + båt</span>
@@ -809,11 +810,12 @@ const LANDING_HTML = `
    <a href="/resetips/sandhamn-ytterskargard" class="resetips-card reveal reveal-delay-2">
     <div class="resetips-card-img" data-lp-photo="sandhamn" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
      <span class="resetips-card-badge">Klassiker</span>
-     <span class="resetips-card-season">Jun–Aug</span>
+     <span class="resetips-card-season">Maj–Sep</span>
     </div>
     <div class="resetips-card-body">
-     <div class="resetips-card-title">Sandhamn — ytterskärgårdens pärla</div>
-     <div class="resetips-card-tagline">Lång båtresa med Cinderellabåten, fantastisk strand och KSSS-hamnen full av segelbåtar.</div>
+     <div class="resetips-card-title">Sandhamn med Cinderellabåten</div>
+     <!-- KÄLLA: Strömma, Cinderellabåtarna 2026, https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — 30/4–27/9, Strandvägen 10:00 → Sandhamn 12:30. Länsstyrelsen Stockholm, Utö, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "I Gruvbyn kan du strosa mellan gamla vackra byggnader"; "långa sandstränder och badvänliga klippor" (lästa 2026-09-21) -->
+     <div class="resetips-card-tagline">Två och en halv timme ut från Strandvägen – sandstränder och KSSS-hamnen full av segelbåtar.</div>
      <div class="resetips-card-meta">
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Cinderellabåten (linjebåt — ingen egen båt krävs)</span>
@@ -828,8 +830,8 @@ const LANDING_HTML = `
      <span class="resetips-card-season">Maj–Sep</span>
     </div>
     <div class="resetips-card-body">
-     <div class="resetips-card-title">Utö på cykel — gruvan, bastun och havet</div>
-     <div class="resetips-card-tagline">Cykla runt en av skärgårdens vackraste öar med stopp vid gruvmuseum och havsbastu.</div>
+     <div class="resetips-card-title">Utö på cykel</div>
+     <div class="resetips-card-tagline">Gruvbyns gamla hus, långa sandstränder och badvänliga klippor – med cykeln från Gruvbryggan.</div>
      <div class="resetips-card-meta">
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg>Tåg + färja</span>
@@ -860,7 +862,7 @@ const LANDING_HTML = `
      <span class="guide-card-cat">Aktiviteter</span>
     </div>
     <div class="guide-card-body">
-     <div class="guide-card-title">De 12 bästa badplatserna i Stockholms skärgård 2026</div>
+     <div class="guide-card-title">Badplatser i Stockholms skärgård – sandstränder och klippbad</div>
      <div class="guide-card-read">Läs guide &rarr;</div>
     </div>
    </a>
@@ -869,7 +871,7 @@ const LANDING_HTML = `
      <span class="guide-card-cat">Öguide</span>
     </div>
     <div class="guide-card-body">
-     <div class="guide-card-title">Fjäderholmarna — perfekt dagstur från Stockholm</div>
+     <div class="guide-card-title">Fjäderholmarna dagstur – båt, mat och vad du gör på ön</div>
      <div class="guide-card-read">Läs guide &rarr;</div>
     </div>
    </a>
@@ -878,7 +880,7 @@ const LANDING_HTML = `
      <span class="guide-card-cat">Öguide</span>
     </div>
     <div class="guide-card-body">
-     <div class="guide-card-title">Utö — södra skärgårdens kronjuvel</div>
+     <div class="guide-card-title">Utö guide – gruvorna, cykel, bad och båt från Årsta brygga</div>
      <div class="guide-card-read">Läs guide &rarr;</div>
     </div>
    </a>
@@ -887,7 +889,7 @@ const LANDING_HTML = `
      <span class="guide-card-cat">Aktiviteter</span>
     </div>
     <div class="guide-card-body">
-     <div class="guide-card-title">Kajak i skärgården — guide för nybörjaren</div>
+     <div class="guide-card-title">Kajak i Stockholms skärgård – guide för nybörjare</div>
      <div class="guide-card-read">Läs guide &rarr;</div>
     </div>
    </a>
@@ -976,7 +978,6 @@ const LANDING_HTML = `
      <div class="region-card-label">Västkusten</div>
      <div class="region-card-name">Bohuslän</div>
      <div class="region-card-sub">Smögen · Fjällbacka · Marstrand · Lysekil</div>
-     <span class="region-card-tag">32 platser kartlagda</span>
     </div>
    </a>
    <a href="/gotland" class="region-card reveal reveal-delay-2">
@@ -986,7 +987,6 @@ const LANDING_HTML = `
      <div class="region-card-label">Östersjön</div>
      <div class="region-card-name">Gotland</div>
      <div class="region-card-sub">Visby · Fårö · Lummelunda · gästhamnar</div>
-     <span class="region-card-tag">28 platser kartlagda</span>
     </div>
    </a>
    <a href="/aland" class="region-card reveal reveal-delay-3">
@@ -996,7 +996,6 @@ const LANDING_HTML = `
      <div class="region-card-label">Finland · Östersjön</div>
      <div class="region-card-name">Åland</div>
      <div class="region-card-sub">Mariehamn · ytterskärgård · Föglö</div>
-     <span class="region-card-tag">25 platser kartlagda</span>
     </div>
    </a>
    <a href="/oland" class="region-card reveal reveal-delay-4">
@@ -1006,7 +1005,6 @@ const LANDING_HTML = `
      <div class="region-card-label">Östersjön</div>
      <div class="region-card-name">Öland</div>
      <div class="region-card-sub">Borgholm · Långe Erik · södra Öland</div>
-     <span class="region-card-tag">18 platser kartlagda</span>
     </div>
    </a>
    <a href="/blekinge-skargard" class="region-card reveal reveal-delay-1">
@@ -1016,7 +1014,6 @@ const LANDING_HTML = `
      <div class="region-card-label">Östersjön</div>
      <div class="region-card-name">Blekinge</div>
      <div class="region-card-sub">Karlskrona · Hanö · Hanöbukten</div>
-     <span class="region-card-tag">20 platser kartlagda</span>
     </div>
    </a>
    <a href="/vasterhav" class="region-card reveal reveal-delay-2">
@@ -1024,9 +1021,8 @@ const LANDING_HTML = `
     <div class="region-card-overlay"></div>
     <div class="region-card-content">
      <div class="region-card-label">Västerhavet</div>
-     <div class="region-card-name">Kosteröarna</div>
-     <div class="region-card-sub">Orust · Tjörn · Varberg · Falkenberg</div>
-     <span class="region-card-tag">19 platser kartlagda</span>
+     <div class="region-card-name">Västerhavet</div>
+     <div class="region-card-sub">Kattegatt · Skagerrak · segling</div>
     </div>
    </a>
    <a href="/hoga-kusten" class="region-card reveal reveal-delay-3">
@@ -1036,7 +1032,6 @@ const LANDING_HTML = `
      <div class="region-card-label">Norrlandskusten</div>
      <div class="region-card-name">Höga Kusten</div>
      <div class="region-card-sub">Härnösand · Ulvön · Kramfors · Skuleskogen</div>
-     <span class="region-card-tag">15 platser kartlagda</span>
     </div>
    </a>
    <a href="/halland" class="region-card reveal reveal-delay-4">
@@ -1046,7 +1041,6 @@ const LANDING_HTML = `
      <div class="region-card-label">Västkusten</div>
      <div class="region-card-name">Halland</div>
      <div class="region-card-sub">Varberg · Tylösand · Falkenberg · Båstad</div>
-     <span class="region-card-tag">22 platser kartlagda</span>
     </div>
    </a>
  
@@ -1141,6 +1135,9 @@ const LANDING_HTML = `
 <section class="gallery-section" id="galleri">
  <div class="section-inner reveal">
   <div class="section-label">Inspiration</div>
+  <!-- Galleriet visar PLATSER, inte teman. Klippbad och Kajak & paddling togs
+      bort 2026-09-23 (Max): de är aktiviteter, inte ställen man reser till, och
+      hörde inte hemma bland öar och regioner. -->
   <h2 class="section-title" style="font-size:clamp(24px,3vw,36px);margin-bottom:4px">Skärgårdslivet på bild</h2>
   <p style="color:rgba(255,255,255,.55);font-size:14px;margin-top:6px">Klicka för att utforska — foton hämtade direkt från platsen</p>
  </div>
@@ -1160,20 +1157,10 @@ const LANDING_HTML = `
    <div class="gallery-item-overlay"></div>
    <div class="gallery-item-label"><div class="gallery-item-title">Bohuslän</div><div class="gallery-item-sub">Västkusten · Smögen &amp; Fjällbacka</div></div>
   </a>
-  <a href="/blogg/basta-badplatserna" class="gallery-item">
-   <div class="gallery-item-bg" data-lp-photo="badplatser" style="background-color:#0a2e3a"></div>
-   <div class="gallery-item-overlay"></div>
-   <div class="gallery-item-label"><div class="gallery-item-title">Klippbad</div><div class="gallery-item-sub">Stockholms skärgård · Badplatser</div></div>
-  </a>
   <a href="/gotland" class="gallery-item">
    <div class="gallery-item-bg" data-lp-photo="gotland" style="background-color:#2a1a08"></div>
    <div class="gallery-item-overlay"></div>
    <div class="gallery-item-label"><div class="gallery-item-title">Gotland</div><div class="gallery-item-sub">Östersjön · Visby &amp; Fårö</div></div>
-  </a>
-  <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="gallery-item">
-   <div class="gallery-item-bg" data-lp-photo="kajak" style="background-color:#0c2218"></div>
-   <div class="gallery-item-overlay"></div>
-   <div class="gallery-item-label"><div class="gallery-item-title">Kajak &amp; paddling</div><div class="gallery-item-sub">Stockholms skärgård · Nybörjarvänligt</div></div>
   </a>
   <a href="/aland" class="gallery-item">
    <div class="gallery-item-bg" data-lp-photo="aland" style="background-color:#081a28"></div>
@@ -1193,8 +1180,12 @@ const LANDING_HTML = `
   <div class="reveal">
    <div class="thorkel-label">AI-planeraren</div>
    <h2 class="section-title">Thorkel planerar din perfekta skärgårdsdag</h2>
-   <p class="section-sub">Berätta vad du är sugen på — Thorkel fixar färjor, restauranger, bad och dolda pärlor. Klar plan på sekunder.</p>
-   <a href="/planera" class="btn btn-accent btn-lg">Planera med Thorkel &rarr;</a>
+   <p class="section-sub">Berätta vad du är sugen på — Thorkel föreslår öar, båtar, krogar och bad utifrån Svallas ösidor. Gratis, men kräver ett konto.</p>
+   <!-- 2026-09-28: knapparna gick till /planera (båtruttplaneraren, kräver inloggning). Thorkel bor på /guide; dagsplaneraren /utflykt är öppen för alla. -->
+   <div style="display:flex;flex-wrap:wrap;gap:10px">
+    <a href="/guide" class="btn btn-accent btn-lg">Prata med Thorkel &rarr;</a>
+    <a href="/utflykt" class="btn btn-ghost btn-lg">Planera utan konto &rarr;</a>
+   </div>
   </div>
   <div class="thorkel-chat reveal reveal-delay-2">
    <div class="thorkel-msg user">
@@ -1333,7 +1324,7 @@ const LANDING_HTML = `
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Måste man ha egen båt för att använda Svalla?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Absolut inte. Svalla är byggt för alla — oavsett om du reser med Waxholmsbåten, Cinderellabåten, pendeltåg + färja eller bil. Thorkel planerar din rutt med kollektivt resande som standard och visar restid och avgångspunkter direkt. Ingen båt krävs, någonsin.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Absolut inte. Svalla är byggt för alla — oavsett om du reser med Waxholmsbåten, Cinderellabåten, pendeltåg + färja eller bil. <a href="/utflykt">Dagsplaneraren</a> visar öar som nås med kollektivtrafik från din startpunkt, med restid och båttider för dagen. Ingen båt krävs, någonsin.</div></div>
    </div>
   </div>
  </div>
@@ -1368,7 +1359,7 @@ const LANDING_HTML = `
 <section class="stats-section">
  <div class="section-inner">
  <div class="stats-grid">
- <div class="stat-box reveal"><span class="stat-num" data-stat="places">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård + Bohuslän</div></div>
+ <div class="stat-box reveal"><span class="stat-num" data-stat="places">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda längs Sveriges kuster</div></div>
  <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">${ISLANDS.length}</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
  <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
  <!-- PRODUKTREGEL: vårt eget pris (gratis att komma igång) — vi är källan. -->
@@ -1519,7 +1510,21 @@ function toggleFaq(btn){
 
 `
 
-export default function LandingPageClient({ photoMap }: { photoMap?: Record<string, string> }) {
+export type Bildkalla = { namn: string; fotograf: string; licens: string; licensUrl: string | null; kalla: string }
+
+const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+/** Fotograf och licens för Commons-fotona. CC BY/BY-SA kräver att de anges. */
+function bildkallorHtml(k: Bildkalla[]): string {
+  if (!k.length) return ''
+  const rader = k.map(b =>
+    `${esc(b.namn)}: <a href="${esc(b.kalla)}" rel="noopener noreferrer" target="_blank">${esc(b.fotograf)}</a>, ` +
+    (b.licensUrl ? `<a href="${esc(b.licensUrl)}" rel="noopener noreferrer license" target="_blank">${esc(b.licens)}</a>` : esc(b.licens))
+  ).join(' · ')
+  return `<section aria-label="Bildkällor" style="max-width:1160px;margin:0 auto;padding:28px 24px 36px;font-size:12px;line-height:1.7;color:var(--txt3)"><strong style="font-weight:600">Bildkällor</strong> (Wikimedia Commons) – ${rader}</section>`
+}
+
+export default function LandingPageClient({ photoMap, bildkallor = [] }: { photoMap?: Record<string, string>; bildkallor?: Bildkalla[] }) {
  const router = useRouter()
  useEffect(() => {
  // Auto-redirect till feed borttagen — inloggade användare ska kunna besöka startsidan
@@ -1732,7 +1737,7 @@ export default function LandingPageClient({ photoMap }: { photoMap?: Record<stri
  /* Hero section — transparent shows canvas through, no dark bg that would cover animation */
  .hero { position: relative; z-index: 1; background: transparent !important; }
  `}</style>
- <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML }} />
+ <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML.replace('<footer>', bildkallorHtml(bildkallor) + '<footer>') }} />
  </div>
  </>
  )

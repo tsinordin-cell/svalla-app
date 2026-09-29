@@ -80,7 +80,7 @@ export default function StickyNewsletterBar() {
       {/* Text */}
       <div style={{ flex: 1, minWidth: 0 }}>
         <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt, #1a1a1a)', margin: '0 0 2px', lineHeight: 1.3 }}>
-          Fler guider som denna, varannan tisdag
+          Få nya guider som denna i inkorgen
         </p>
         <p style={{ fontSize: 12, color: 'var(--txt2, rgba(0,0,0,0.55))', margin: 0, lineHeight: 1.4 }}>
           Insidertips du inte hittar på TripAdvisor. Gratis.

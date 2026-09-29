@@ -18,6 +18,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { checkRateLimit } from '@/lib/rateLimit'
+import { arAgentUserAgent } from '@/lib/analytics-filter'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -45,6 +46,15 @@ const KNOWN_EVENTS = new Set([
 
 const MAX_PROPS_BYTES = 4096
 
+/** Tillåter bara värdnamn eller 'direkt'. Allt annat blir null — vi vill inte
+ *  få in sökvägar, query-strängar eller fri text i tabellen. */
+function ursprung(v: unknown): string | null {
+  if (typeof v !== 'string') return null
+  const s = v.trim().toLowerCase().slice(0, 200)
+  if (s === 'direkt') return s
+  return /^[a-z0-9.-]+\.[a-z]{2,}$/.test(s) ? s : null
+}
+
 export async function POST(req: NextRequest) {
   try {
     // Rate-limit per IP
@@ -55,8 +65,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false }, { status: 429 })
     }
 
+    // Agenter (Claudes webbläsare, headless, crawlers) skrivs aldrig in.
+    // Svarar ok så klienten inte försöker igen. Se docs/BASLINJE-2026-09.md.
+    const ua = req.headers.get('user-agent')?.slice(0, 500) ?? null
+    if (arAgentUserAgent(ua)) {
+      return NextResponse.json({ ok: true, skipped: 'agent' })
+    }
+
     const body = await req.json().catch(() => null) as
-      | { event?: string; props?: Record<string, unknown>; sessionId?: string; path?: string }
+      | { event?: string; props?: Record<string, unknown>; sessionId?: string; path?: string; ursprung?: string }
       | null
 
     if (!body?.event || typeof body.event !== 'string' || !KNOWN_EVENTS.has(body.event)) {
@@ -86,8 +103,11 @@ export async function POST(req: NextRequest) {
       path: body.path ?? null,
       props: body.props ?? {},
       country_code: req.headers.get('x-vercel-ip-country') ?? null,
-      user_agent: req.headers.get('user-agent')?.slice(0, 500) ?? null,
-      referer: req.headers.get('referer')?.slice(0, 500) ?? null,
+      user_agent: ua,
+      // Kolumnen heter referer men bär sedan 2026-09-20 klientens document.referrer
+      // (bara värdnamn, en gång per session) — inte fetch-anropets Referer-header,
+      // som alltid var svalla.se och därför värdelös. Null = inte första eventet.
+      referer: ursprung(body.ursprung),
     })
 
     if (error) {

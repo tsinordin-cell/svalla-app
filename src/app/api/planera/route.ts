@@ -50,7 +50,9 @@ export async function POST(req: NextRequest) {
     const { data: places, error: placesErr } = await supabase
       .from('restaurants')
       .select('id, name, latitude, longitude, type, categories, tags, island')
-      .limit(300)
+      // 2026-09-28: var 300, men tabellen har 699 platser — mer än hälften kunde
+      // aldrig bli stopp. 1000 är Supabases tak per anrop; höj om tabellen växer förbi.
+      .limit(1000)
 
     if (placesErr) {
       return NextResponse.json({ error: 'Kunde inte hämta platser' }, { status: 500 })

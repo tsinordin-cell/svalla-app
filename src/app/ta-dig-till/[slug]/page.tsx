@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = ALL_ISLANDS.find(i => i.slug === slug)
   if (!island) return {}
 
-  const title = `Hur tar man sig till ${island.name}? Båt, buss och tips | Svalla`
+  const title = `Hur tar man sig till ${island.name}? Båt, buss och tips`
   const description = `Steg-för-steg guide: hur du tar dig till ${island.name} med kollektivtrafik, bil och egen båt. Restider, avgångar och praktiska tips.`
 
   return {

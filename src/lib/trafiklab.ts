@@ -39,6 +39,35 @@ function cacheSet<T>(key: string, data: T): void {
   cache.set(key, { data, expiresAt: Date.now() + TTL_MS })
 }
 
+
+// ─── Tid i Stockholm ────────────────────────────────────────────────────────
+
+/**
+ * "Nu" i Europe/Stockholm, nedrundat till närmaste 5 minuter.
+ *
+ * Bakgrund 2026-09-21: /api/transit/departures?dest=moja svarade med resor
+ * från 19 september på morgonen den 21:a. ResRobot-anropet gjordes utan
+ * date/time, så URL:en var identisk varje gång och Next.js datacache
+ * (revalidate 60) serverade ett två dagar gammalt svar när omhämtningen
+ * misslyckats (ResRobot-timeout eller kvot). Ö-sidorna visade Möjabåten
+ * "13:30" som nästa avgång — lördagens. Med datum och tid i anropet byts
+ * cachenyckeln var femte minut och gammalt kan inte överleva.
+ */
+export function nuIStockholm(nu: Date = new Date()): { date: string; time: string } {
+  const delar = new Intl.DateTimeFormat('sv-SE', {
+    timeZone: 'Europe/Stockholm', year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).formatToParts(nu)
+  const v = (typ: string) => delar.find(d => d.type === typ)?.value ?? '00'
+  const min = Math.floor(Number(v('minute')) / 5) * 5
+  return { date: `${v('year')}-${v('month')}-${v('day')}`, time: `${v('hour')}:${String(min).padStart(2, '0')}` }
+}
+
+/** Sant om resan startar före dagens datum i Stockholm — gammal data, ska bort. */
+export function arGammalResa(startDate: string, idag: string): boolean {
+  return /^\d{4}-\d{2}-\d{2}$/.test(startDate) && startDate < idag
+}
+
 // ─── Typer ──────────────────────────────────────────────────────────────────
 
 export interface TripLeg {
@@ -127,6 +156,22 @@ interface ResRobotTripResponse {
 }
 
 // ─── Hjälpare ───────────────────────────────────────────────────────────────
+
+/**
+ * Restid mellan första transportlegets avgång och sista legets ankomst.
+ * ResRobots `duration` räknar från sökpunkten och tar med gångtiden dit
+ * (Strömkajen → Slussen ≈ 30 min), så "06:38 → 08:07" visades som 2 h 1 min
+ * på ösidor, sista båten-panelen och i dagsplaneraren. Mätt 2026-09-29 mot
+ * Grinda. Över midnatt räknas +24 h. Saknas tider används ResRobots värde.
+ */
+export function restidFranTider(startTime: string, endTime: string, fallbackMin: number): number {
+  const m = /^(\d{1,2}):(\d{2})/
+  const a = startTime.match(m), b = endTime.match(m)
+  if (!a || !b) return fallbackMin
+  let d = (Number(b[1]) * 60 + Number(b[2])) - (Number(a[1]) * 60 + Number(a[2]))
+  if (d < 0) d += 24 * 60
+  return d
+}
 
 function parseIsoDuration(iso: string | undefined): number {
   if (!iso) return 0
@@ -217,7 +262,10 @@ export async function fetchTripsResult(
     return { trips: [], fel: 'ingen_nyckel' }
   }
 
-  const cacheKey = `trip:${originId}:${destId}:${numTrips}:${departAfter?.date ?? ''}:${departAfter?.time ?? ''}`
+  // Utan uttryckligt avgångsdatum: från nu (Stockholm-tid, 5-minutersrutor).
+  // Se nuIStockholm för varför det inte får utelämnas.
+  const fran = departAfter ?? nuIStockholm()
+  const cacheKey = `trip:${originId}:${destId}:${numTrips}:${fran.date}:${fran.time}`
   const hit = cacheGet<TripSummary[]>(cacheKey)
   if (hit) return { trips: hit, fel: null }
 
@@ -227,10 +275,8 @@ export async function fetchTripsResult(
   url.searchParams.set('numF', String(numTrips))
   url.searchParams.set('format', 'json')
   url.searchParams.set('accessId', KEY)
-  if (departAfter) {
-    url.searchParams.set('date', departAfter.date)
-    url.searchParams.set('time', departAfter.time)
-  }
+  url.searchParams.set('date', fran.date)
+  url.searchParams.set('time', fran.time)
 
   try {
     const res = await fetch(url.toString(), {
@@ -261,11 +307,13 @@ export async function fetchTripsResult(
         const d = l.delayMin ?? 0
         return d > max ? d : max
       }, 0)
+      const startTime = first?.fromTime ?? ''
+      const endTime = last?.toTime ?? ''
       return {
-        durationMin: parseIsoDuration(t.duration),
-        startTime: first?.fromTime ?? '',
+        durationMin: restidFranTider(startTime, endTime, parseIsoDuration(t.duration)),
+        startTime,
         startDate,
-        endTime: last?.toTime ?? '',
+        endTime,
         changes: Math.max(0, legs.length - 1),
         legs,
         allLegs,
@@ -273,7 +321,10 @@ export async function fetchTripsResult(
         hasDelay: maxDelayMin >= 1 || undefined,
         maxDelayMin: maxDelayMin >= 1 ? maxDelayMin : undefined,
       }
-    }).filter((t) => t.legs.length > 0)
+    })
+      .filter((t) => t.legs.length > 0)
+      // Hängslen till livremmen ovan: en resa som startade i går är aldrig "nästa avgång".
+      .filter((t) => !arGammalResa(t.startDate, fran.date))
     cacheSet(cacheKey, trips)
     return { trips, fel: null }
   } catch {

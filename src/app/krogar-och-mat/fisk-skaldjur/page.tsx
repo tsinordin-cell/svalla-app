@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'vaxholm räkor',
   ],
   openGraph: {
-    title: 'Fisk och skaldjur i skärgården | Svalla',
+    title: 'Fisk och skaldjur i skärgården',
     description: 'Rökt strömming, färska räkor och havskräftor — direkt från havet i Stockholms skärgård.',
     url: 'https://svalla.se/krogar-och-mat/fisk-skaldjur',
   },

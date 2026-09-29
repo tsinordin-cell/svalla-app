@@ -17,6 +17,8 @@ import TrackPlaceView from '@/components/TrackPlaceView'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
 import { fixMojibake, fixMojibakeLista } from '@/lib/mojibake'
+import { regionEtikett } from '@/lib/regionEtikett'
+import { ALL_ISLANDS } from '@/app/o/island-data'
 
 // PRESTANDA (2026-08-02): stod tidigare på 60 s "för att uppdatera recensioner
 // ofta". Med 699 platssidor hann cachen nästan alltid gå ut mellan två besök på
@@ -70,13 +72,49 @@ async function fetchRestaurant(idOrSlug: string, columns: string) {
   return data
 }
 
+/** Typord för titel, metabeskrivning och nyckelord (små bokstäver). */
+const META_TYP_ORD: Record<string, string> = {
+  restaurant: 'restaurang', cafe: 'kafé', bar: 'bar',
+  marina: 'gästhamn', harbor: 'hamn', anchorage: 'naturhamn', nature_harbor: 'naturhamn',
+  fuel: 'tankställe', fuel_station: 'tankställe',
+  beach: 'badplats', sauna: 'bastu', shop: 'butik', hotel: 'hotell', nature: 'naturplats',
+  attraction: 'sevärdhet',
+}
+
+/**
+ * schema.org-typ per platstyp. Förut var ALLA platser "Restaurant" med
+ * priceRange "$$" – även bad, hamnar och bastur. Påhittat pris och fel typ
+ * är fel fakta i Googles ögon (Tom 2026-09-23).
+ */
+const SCHEMA_TYP: Record<string, string> = {
+  restaurant: 'Restaurant', cafe: 'CafeOrCoffeeShop', bar: 'BarOrPub',
+  hotel: 'Hotel', hostel: 'Hostel', camping: 'Campground',
+  beach: 'Beach', fuel: 'GasStation', fuel_station: 'GasStation',
+  nature: 'TouristAttraction', attraction: 'TouristAttraction', sauna: 'TouristAttraction',
+  marina: 'TouristAttraction', harbor: 'TouristAttraction',
+  anchorage: 'TouristAttraction', nature_harbor: 'TouristAttraction',
+}
+
+/** Öns sida på Svalla, om platsens ö-fält motsvarar en ö vi har (exakt namn). */
+const OAR_EFTER_NAMN = new Map(ALL_ISLANDS.map(o => [o.name.toLowerCase(), o.slug]))
+function oSidaFor(island: string | null | undefined): { namn: string; slug: string } | null {
+  if (!island) return null
+  const slug = OAR_EFTER_NAMN.get(island.trim().toLowerCase())
+  return slug ? { namn: island.trim(), slug } : null
+}
+
+function kmTextSv(km: number): string {
+  return km < 1 ? `${Math.round(km * 1000 / 50) * 50} m` : `${km.toFixed(1).replace('.', ',')} km`
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
  const { id } = await params
  const data = await fetchRestaurant(
    id,
-   'id, name, description, island, image_url, tags, slug, google_photo_refs',
+   'id, name, description, island, image_url, tags, slug, google_photo_refs, type, archipelago_region',
  ) as {
    id: string; name: string; description?: string; island?: string;
+   type?: string | null; archipelago_region?: string | null;
    image_url?: string; tags?: string[]; slug?: string;
    google_photo_refs?: { reference: string }[] | null;
  } | null
@@ -89,14 +127,24 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  if (!data) notFound()
  // Canonical pekar alltid på slug-URL om sluggen finns, annars UUID
  const canonicalPath = data.slug ?? data.id
- const desc = data.description ?? `${data.name} på ${data.island ?? 'skärgårdsön'} – mat och dryck längs kusten.`
+ // SEO (Tom 2026-09-23): titel och reservbeskrivning ska säga VAD platsen är
+ // och VAR den ligger. Den gamla reserven ("… – mat och dryck längs kusten")
+ // och de fasta nyckelorden ("skärgårdsrestaurang", "Stockholms skärgård")
+ // stod även på bad, bastur och hamnar i Bohuslän – fel fakta.
+ const typOrd = data.type ? (META_TYP_ORD[data.type] ?? null) : null
+ const region = regionEtikett(data.archipelago_region)
+ const plats = [data.island, region].filter(Boolean).join(', ')
+ const desc = data.description
+   ?? `${data.name}${typOrd ? ` – ${typOrd}` : ''}${plats ? `, ${plats}` : ''}. Läge och karta på Svalla.`
  const keywords = [
  data.name?.toLowerCase(),
- data.island ? `${data.island.toLowerCase()} restaurang` : null,
- 'skärgårdsrestaurang',
- 'Stockholms skärgård',
+ typOrd && data.island ? `${typOrd} ${data.island.toLowerCase()}` : null,
+ typOrd && region ? `${typOrd} ${region.toLowerCase()}` : null,
+ region,
  ...(Array.isArray(data.tags) ? data.tags : []),
  ].filter(Boolean) as string[]
+ const titelTyp = typOrd ? typOrd.charAt(0).toUpperCase() + typOrd.slice(1) : null
+ const titel = titelTyp ? `${data.name} · ${titelTyp}${data.island ? `, ${data.island}` : ''}` : data.name
 
  /**
   * OG-image — peka till vår CUSTOM OG-route som bygger ett premium-card
@@ -111,7 +159,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  const ogHeight = 630
 
  return {
- title: data.name,
+ title: titel,
  description: desc,
  keywords,
  alternates: { canonical: `${SITE}/upptack/${canonicalPath}` },
@@ -138,7 +186,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  const data = await fetchRestaurant(
    idOrSlug,
-   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, postal_code, city, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated'
+   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, postal_code, city, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated, verified_at, endast_medlemmar'
  )
  if (!data) notFound()
  // Sanera dubbelkodad UTF-8 innan raden anvands. En del platsdata har
@@ -183,6 +231,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    { data: recentTripsRaw },
    { data: allTours },
    { data: reviewStats },
+   { data: allaPlatser },
  ] = await Promise.all([
    supabase
      .from('place_photos')
@@ -211,6 +260,14 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
      .from('reviews')
      .select('rating')
      .eq('place_id', id),
+   // I närheten: alla synliga platser med läge (RLS döljer dolda). ~600 rader.
+   r.latitude && r.longitude
+     ? supabase
+         .from('restaurants')
+         .select('id, slug, name, type, island, latitude, longitude')
+         .not('latitude', 'is', null)
+         .limit(3000)
+     : Promise.resolve({ data: null }),
  ])
 
  const placePhotoRows = (placePhotoRowsRaw ?? []) as Array<{ url: string; credit: string | null; sort_order: number | null; is_hero: boolean | null }>
@@ -245,6 +302,21 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  ).slice(0, 3)
  : []
 
+ // I närheten (SEO + nytta, Tom 2026-09-23): de sex närmaste synliga
+ // platserna inom 20 km, med typ och fågelvägsavstånd. Räknat från platsernas
+ // egna koordinater – inga påståenden utöver läget. Ger varje platssida unikt
+ // innehåll och interna länkar.
+ type NaraRad = { id: string; slug: string | null; name: string; type: string | null; island: string | null; latitude: number; longitude: number }
+ const naraPlatser = r.latitude && r.longitude
+   ? ((allaPlatser ?? []) as NaraRad[])
+       .filter(p => p.id !== r.id && typeof p.latitude === 'number' && typeof p.longitude === 'number')
+       .map(p => ({ ...p, km: haversineNM(r.latitude!, r.longitude!, p.latitude, p.longitude) * 1.852 }))
+       .filter(p => p.km <= 20)
+       .sort((a, b) => a.km - b.km)
+       .slice(0, 6)
+   : []
+ const oSida = oSidaFor(r.island)
+
  // Aggregate review stats for header (reviewStats hämtas parallellt ovan)
  const avgRating = reviewStats && reviewStats.length > 0
  ? (reviewStats.reduce((a: number, r: { rating?: number }) => a + (r?.rating ?? 0), 0) / reviewStats.length)
@@ -252,9 +324,11 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  const reviewCount = reviewStats?.length ?? 0
 
  // JSON-LD structured data
+ const schemaTyp = (r.type && SCHEMA_TYP[r.type]) || 'TouristAttraction'
+ const regionNamn = regionEtikett((r as Restaurant & { archipelago_region?: string | null }).archipelago_region)
  const jsonLd = {
  '@context': 'https://schema.org',
- '@type': 'Restaurant',
+ '@type': schemaTyp,
  name: r.name,
  description: r.description ?? undefined,
  url: `https://svalla.se/upptack/${canonicalPath}`,
@@ -276,15 +350,15 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  worstRating: 1,
  },
  } : {}),
- servesCuisine: Array.isArray(r.tags) ? r.tags.slice(0, 3) : undefined,
- priceRange: '$$',
- ...(r.island ? {
+ ...(r.island || regionNamn ? {
  address: {
  '@type': 'PostalAddress',
- addressLocality: r.island,
+ ...(r.island ? { addressLocality: r.island } : {}),
+ ...(regionNamn ? { addressRegion: regionNamn } : {}),
  addressCountry: 'SE',
  },
  } : {}),
+ ...(oSida ? { containedInPlace: { '@type': 'Place', name: oSida.namn, url: `https://svalla.se/o/${oSida.slug}` } } : {}),
  ...(r.contact_phone ? { telephone: r.contact_phone } : {}),
  }
 
@@ -366,6 +440,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    marina: 'Gästhamn', harbor: 'Hamn', anchorage: 'Naturhamn', nature_harbor: 'Naturhamn',
    fuel: 'Bränsle', fuel_station: 'Bränsle',
    beach: 'Bad', sauna: 'Bastu', shop: 'Butik', hotel: 'Hotell', nature: 'Naturplats',
+   attraction: 'Sevärdhet',
  }
  const typeLabel = r.type ? (TYPE_LABEL_MAP[r.type] ?? null) : null
 
@@ -406,7 +481,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  '@type': 'BreadcrumbList',
  itemListElement: [
  { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
- { '@type': 'ListItem', position: 2, name: 'Utforska', item: 'https://svalla.se/upptack' },
+ ...(oSida
+   ? [{ '@type': 'ListItem', position: 2, name: oSida.namn, item: `https://svalla.se/o/${oSida.slug}` }]
+   : [{ '@type': 'ListItem', position: 2, name: 'Utforska', item: 'https://svalla.se/upptack' }]),
  { '@type': 'ListItem', position: 3, name: r.name, item: `https://svalla.se/upptack/${canonicalPath}` },
  ],
  }) }}
@@ -496,6 +573,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    svallaRatingCount={reviewCount}
    priceLevel={null}
    websiteUrl={r.website}
+   endastMedlemmar={(r as Restaurant & { endast_medlemmar?: boolean }).endast_medlemmar === true}
    menuUrl={(r as Restaurant & { menu_url?: string | null }).menu_url ?? null}
    bookingUrl={r.booking_url}
    instagram={(r as Restaurant & { instagram?: string | null }).instagram ?? null}
@@ -561,7 +639,10 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    googleRating={(r as Restaurant & { google_rating?: number | null }).google_rating}
    googleRatingsTotal={(r as Restaurant & { google_ratings_total?: number | null }).google_ratings_total}
    googlePlaceId={(r as Restaurant & { google_place_id?: string | null }).google_place_id}
-   openingHours={(r as Restaurant & { opening_hours?: string | null }).opening_hours}
+   // Obekräftade öppettider skickas inte ens med till klienten (de hamnade annars i RSC-datat).
+   openingHours={(r as Restaurant & { verified_at?: string | null }).verified_at ? (r as Restaurant & { opening_hours?: string | null }).opening_hours : null}
+   hoursVerifiedAt={(r as Restaurant & { verified_at?: string | null }).verified_at ?? null}
+   harObekraftadeTider={!!(r as Restaurant & { opening_hours?: string | null }).opening_hours && !(r as Restaurant & { verified_at?: string | null }).verified_at}
    openingHoursJson={(r as Restaurant & { opening_hours_json?: unknown }).opening_hours_json}
    latitude={r.latitude}
    longitude={r.longitude}
@@ -727,6 +808,41 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  </div>
  )}
 
+ {/* ── I närheten + öns sida (interna länkar, unikt innehåll per plats) ── */}
+ {(naraPlatser.length > 0 || oSida) && (
+ <div style={{ marginBottom: 14 }}>
+ <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+ I närheten av {r.name}
+ </h2>
+ {naraPlatser.length > 0 && (
+ <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
+ {naraPlatser.map(p => (
+ <li key={p.id}>
+ <Link href={`/upptack/${p.slug ?? p.id}`} style={{
+ textDecoration: 'none', display: 'flex', alignItems: 'baseline', gap: 10,
+ background: 'var(--white)', borderRadius: 12, padding: '10px 14px',
+ border: '1px solid rgba(10,123,140,0.09)',
+ }}>
+ <span style={{ flex: 1, minWidth: 0, fontSize: 14, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</span>
+ <span style={{ fontSize: 12, color: 'var(--txt3)', whiteSpace: 'nowrap' }}>
+ {[p.type ? META_TYP_ORD[p.type] : null, kmTextSv(p.km)].filter(Boolean).join(' · ')}
+ </span>
+ </Link>
+ </li>
+ ))}
+ </ul>
+ )}
+ {naraPlatser.length > 0 && (
+ <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '6px 2px 0' }}>Avstånd fågelvägen.</p>
+ )}
+ {oSida && (
+ <Link href={`/o/${oSida.slug}`} style={{ display: 'inline-block', marginTop: 10, fontSize: 14, fontWeight: 600, color: 'var(--sea, #0a7b8c)', textDecoration: 'none' }}>
+ Mer om {oSida.namn} →
+ </Link>
+ )}
+ </div>
+ )}
+
  {/* ── Vanliga frågor (FAQ) — SEO + ger Google rich snippets ── */}
  <PlaceFAQSection
    name={r.name}
@@ -737,7 +853,8 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    phone={(r as Restaurant & { phone?: string | null }).phone ?? r.contact_phone ?? null}
    websiteUrl={r.website ?? null}
    bookingUrl={r.booking_url ?? null}
-   openingHours={r.opening_hours ?? null}
+   openingHours={(r as Restaurant & { verified_at?: string | null }).verified_at ? (r.opening_hours ?? null) : null}
+   hoursVerifiedAt={(r as Restaurant & { verified_at?: string | null }).verified_at ?? null}
    facilities={(r as Restaurant & { facilities?: string[] | null }).facilities ?? null}
    bestFor={(r as Restaurant & { best_for?: string[] | null }).best_for ?? null}
    hasGuestHarbor={Array.isArray((r as Restaurant & { facilities?: string[] | null }).facilities) &&

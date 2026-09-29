@@ -16,7 +16,7 @@ import EmptyState from '@/components/EmptyState'
 import { isProEnabled } from '@/lib/pro'
 import FollowListButton from '@/components/FollowListSheet'
 import ProfileForumSubscriptions from '@/components/ProfileForumSubscriptions'
-import { Camera, Pencil, Flame, Eye, Globe, Lock, Award, Sparkles, FolderOpen, MessageCircle, BarChart2, Trophy, MapPin, Link2, LogOut, Home, Sun, Moon, SunMoon } from '@/components/icons/LucideIcons'
+import { Camera, Pencil, Flame, Eye, Globe, Lock, Award, Sparkles, FolderOpen, MessageCircle, BarChart2, Trophy, LogOut, Home, Sun, Moon, SunMoon } from '@/components/icons/LucideIcons'
 import { IconAnchor, IconCompass, IconSailboat } from '@/components/icons/SvallaIcons'
 import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
@@ -848,8 +848,7 @@ export default function ProfilPage() {
             { href: '/meddelanden', icon: <MessageCircle size={20} style={{ color: 'var(--sea)' }} />, label: 'Meddelanden', sub: 'Direktmeddelanden med andra seglare' },
             { href: '/insikter',   icon: <BarChart2 size={20} style={{ color: 'var(--sea)' }} />,    label: 'Insikter',    sub: 'Din seglingsstatistik och trender' },
             { href: '/topplista',  icon: <Trophy size={20} style={{ color: 'var(--sea)' }} />,       label: 'Topplista',   sub: 'Veckans och alltidens bästa seglare' },
-            { href: '/check-in',   icon: <MapPin size={20} style={{ color: 'var(--sea)' }} />,       label: 'Check-in',    sub: 'Registrera dig på en plats' },
-            { href: '/bjud-in',    icon: <Link2 size={20} style={{ color: 'var(--sea)' }} />,        label: 'Bjud in',     sub: 'Skapa inbjudningslänkar' },
+            // Check-in och Bjud in borttagna 2026-09-29: tabellerna check_ins/invites finns inte (se PR #409).
           ].map(({ href, icon, label, sub }, i, arr) => (
             <Link key={href} href={href} style={{ textDecoration: 'none', display: 'block' }}>
               <div style={{

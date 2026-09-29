@@ -199,7 +199,57 @@ const nextConfig: NextConfig = {
         destination: '/event/:path*',
         permanent: true,
       },
-      { source: '/blogg/midsommar-skargarden-2026', destination: '/guider/midsommar-skargarden-2026', permanent: true },
+      { source: '/blogg/midsommar-skargarden-2026', destination: '/guider/midsommar-skargarden', permanent: true },
+      // Klubbar (2026-09-29): funktionen bygger på tabeller som aldrig skapats. Sökintentionen
+      // "segelsällskap/segelklubb" landar redan på guiden — dit skickas besökaren tills vidare.
+      { source: '/klubbar', destination: '/guider/seglingsklubbar-guide', permanent: false },
+      { source: '/klubb/:slug', destination: '/guider/seglingsklubbar-guide', permanent: false },
+      // Check-in (2026-09-29): tabellen check_ins finns inte; middleware skulle annars skicka utloggade till inloggning för en 404.
+      { source: '/check-in', destination: '/profil', permanent: false },
+      // Årslösa adresser för säsongsguider (Search Console 2026-09-23: 38 848 + 27 091 visningar/3 mån).
+      // Med årtal i adressen börjar sidan om från noll varje år. Innehåll och datum uppdateras årligen,
+      // adressen ligger fast.
+      { source: '/guider/kraftskiva-skargarden-2026', destination: '/guider/kraftskiva-skargarden', permanent: true },
+      { source: '/guider/hummerpremiar-bohuslan-2026', destination: '/guider/hummerpremiar-bohuslan', permanent: true },
+      // Resterande 29 säsongsguider flyttade till årslösa adresser 2026-09-28 (Toms beslut).
+      // Search Console 90 dagar till 2026-09-26: de 29 hade tillsammans ca 95 klick, varav
+      // host-stockholms-skargard-2026 46. Årtalet står kvar i titel och rubrik och uppdateras årligen.
+      { source: '/guider/grebbestad-kraftskiva-2026', destination: '/guider/grebbestad-kraftskiva', permanent: true },
+      { source: '/guider/host-bohuslan-2026', destination: '/guider/host-bohuslan', permanent: true },
+      { source: '/guider/host-gotland-2026', destination: '/guider/host-gotland', permanent: true },
+      { source: '/guider/host-hoga-kusten-2026', destination: '/guider/host-hoga-kusten', permanent: true },
+      { source: '/guider/host-oland-2026', destination: '/guider/host-oland', permanent: true },
+      { source: '/guider/host-stockholms-skargard-2026', destination: '/guider/host-stockholms-skargard', permanent: true },
+      { source: '/guider/hostlov-vid-havet-2026', destination: '/guider/hostlov-vid-havet', permanent: true },
+      { source: '/guider/jul-skargarden-2026', destination: '/guider/jul-skargarden', permanent: true },
+      { source: '/guider/juli-bohuslan-2026', destination: '/guider/juli-bohuslan', permanent: true },
+      { source: '/guider/juli-gotland-2026', destination: '/guider/juli-gotland', permanent: true },
+      { source: '/guider/juli-skargarden-2026-aktiviteter', destination: '/guider/juli-skargarden-aktiviteter', permanent: true },
+      { source: '/guider/juli-skargarden-2026-mat', destination: '/guider/juli-skargarden-mat', permanent: true },
+      { source: '/guider/juli-skargarden-2026-oar', destination: '/guider/juli-skargarden-oar', permanent: true },
+      { source: '/guider/juni-skargarden-2026', destination: '/guider/juni-skargarden', permanent: true },
+      { source: '/guider/kraftskiva-bohuslan-2026', destination: '/guider/kraftskiva-bohuslan', permanent: true },
+      { source: '/guider/kraftskiva-gotland-2026', destination: '/guider/kraftskiva-gotland', permanent: true },
+      { source: '/guider/kraftskiva-oland-2026', destination: '/guider/kraftskiva-oland', permanent: true },
+      { source: '/guider/midsommar-skargarden-2026', destination: '/guider/midsommar-skargarden', permanent: true },
+      { source: '/guider/nyar-skargarden-2026', destination: '/guider/nyar-skargarden', permanent: true },
+      { source: '/guider/pask-skargarden-2027', destination: '/guider/pask-skargarden', permanent: true },
+      { source: '/guider/sensommar-bohuslan-2026', destination: '/guider/sensommar-bohuslan', permanent: true },
+      { source: '/guider/sensommar-skargarden-2026', destination: '/guider/sensommar-skargarden', permanent: true },
+      { source: '/guider/september-skargarden-2026', destination: '/guider/september-skargarden', permanent: true },
+      { source: '/guider/surstrommingspremiar-2026', destination: '/guider/surstrommingspremiar', permanent: true },
+      { source: '/guider/valborg-skargarden-2027', destination: '/guider/valborg-skargarden', permanent: true },
+      { source: '/guider/var-stockholms-skargard-2027', destination: '/guider/var-stockholms-skargard', permanent: true },
+      { source: '/guider/vinter-bohuslan-2026', destination: '/guider/vinter-bohuslan', permanent: true },
+      { source: '/guider/vinter-gotland-2026', destination: '/guider/vinter-gotland', permanent: true },
+      { source: '/guider/vinter-oland-2026', destination: '/guider/vinter-oland', permanent: true },
+      // Dubbletter: /ta-dig-till/[ö] och /o/[ö]/komma-dit svarade på samma fråga ("hur tar man sig till …")
+      // för alla 103 öar och konkurrerade i Google (Search Console 3 mån till 2026-09-23: 42 000 resp.
+      // 60 000 visningar, båda runt plats 10). Allt samlas på komma-dit, som har mer och rättare innehåll.
+      { source: '/ta-dig-till/:slug', destination: '/o/:slug/komma-dit', permanent: true },
+      // Kanholmen borttagen 2026-09-28 (Toms beslut): ingen tillåten källa beskriver ön. Närmaste belagda ösida är Djurö.
+      { source: '/o/kanholmen', destination: '/o/djuro', permanent: true },
+      { source: '/o/kanholmen/:path*', destination: '/o/djuro', permanent: true },
       { source: '/blogg/packlista-skargarden', destination: '/guider/packlista-skargarden', permanent: true },
       { source: '/blogg/allemansratten-pa-sjon', destination: '/guider/allemansratten-pa-sjon', permanent: true },
       { source: '/blogg/waxholmsbolaget-guide', destination: '/guider/waxholmsbolaget-guide', permanent: true },

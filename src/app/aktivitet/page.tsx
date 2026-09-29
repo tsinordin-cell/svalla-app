@@ -6,7 +6,7 @@ import PublicFooter from '@/components/PublicFooter'
 import { ACTIVITY_LIST, islandsForActivity } from './activity-data'
 
 export const metadata: Metadata = {
-  title: 'Aktiviteter i skärgården — segling, cykling, bad, vandring, mat | Svalla',
+  title: 'Aktiviteter i skärgården — segling, cykling, bad, vandring, mat',
   description: 'Hitta segling, cykling, bad, vandring och bra mat i Stockholms skärgård och Bohuslän. Vägledning per aktivitet och ö — vad du ska packa, bästa säsong och vilka öar som passar.',
   alternates: { canonical: 'https://svalla.se/aktivitet' },
   openGraph: {
@@ -119,7 +119,7 @@ export default function ActivityIndexPage() {
             variant="card"
             source="aktivitet-index"
             title="Få veckans skärgårdstips"
-            description="Varannan tisdag — bästa krogarna, evenemang och nya guider. Inga annonser."
+            description="Nya guider och säsongsnytt direkt i inkorgen. Inga annonser."
           />
         </div>
       </main>

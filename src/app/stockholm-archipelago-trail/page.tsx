@@ -8,7 +8,7 @@ import Icon from '@/components/Icon'
 import { SAT_SECTIONS, SAT_TOTAL_KM, SAT_SUM_KM, SAT_ISLANDS, SAT_URL, type SatDifficulty } from './sat-data'
 
 export const metadata: Metadata = {
-  title: 'Stockholm Archipelago Trail — alla 22 etapper, längd och svårighet | Svalla',
+  title: 'Stockholm Archipelago Trail — alla 22 etapper, längd och svårighet',
   description:
     'Hela Stockholm Archipelago Trail: 270 km vandringsled över 20 öar från Arholma till Landsort. Etapp för etapp med längd, svårighetsgrad och hur du tar dig dit.',
   keywords: [
@@ -196,11 +196,11 @@ export default function StockholmArchipelagoTrailPage() {
           {/* ── Aktuellt ── */}
           {/* KÄLLA: stockholmarchipelagotrail.com/news/the-north-end-of-rano-closed-until-2027 (2026-08-18) */}
           <div style={{
-            background: '#fff7ed', border: '1px solid #fed7aa',
+            background: 'var(--acc-l)', border: '1px solid var(--acc-15)',
             borderRadius: 12, padding: '14px 18px', marginBottom: 28,
             display: 'flex', gap: 12, alignItems: 'flex-start',
           }}>
-            <span style={{ flexShrink: 0, marginTop: 2 }} aria-hidden>
+            <span style={{ flexShrink: 0, marginTop: 2, color: 'var(--acc)' }} aria-hidden>
               <Icon name="warning" size={16} stroke={2} />
             </span>
             <div>
@@ -439,7 +439,7 @@ export default function StockholmArchipelagoTrailPage() {
               variant="card"
               source="stockholm-archipelago-trail"
               title="Vandrar du leden?"
-              description="Nya etappguider, säsongstips och avstängningar direkt i inkorgen. Varannan tisdag."
+              description="Nya etappguider, säsongstips och avstängningar direkt i inkorgen. Inga annonser."
             />
           </div>
 

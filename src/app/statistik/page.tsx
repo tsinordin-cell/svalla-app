@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/statistik' },
   openGraph: {
-    title: 'Statistik om Stockholms skärgård | Svalla',
+    title: 'Statistik om Stockholms skärgård',
     description: 'Fakta och statistik om Stockholms skärgård: antal öar, besökare, trafik och natur.',
     url: 'https://svalla.se/statistik',
   },

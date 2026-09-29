@@ -7,7 +7,7 @@ import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
-  title: 'Bästa öarna i Stockholms skärgård 2026 – listor per tema | Svalla',
+  title: 'Bästa öarna i Stockholms skärgård 2026 – listor per tema',
   description: 'Kuraterade ö-listor för barnfamiljer, dagsturister, seglare och romantiska par. Hitta rätt ö i Stockholms skärgård – 2026.',
   alternates: { canonical: 'https://svalla.se/ostlistan' },
   openGraph: {
@@ -730,7 +730,7 @@ export default function OstlistanPage() {
                   variant="inline"
                   source={`ostlistan-${list.id}`}
                   title="Vill du ha fler tips som dessa?"
-                  description="Varannan tisdag — öppna öar, insider-tips och det vi inte publicerar annars. Gratis."
+                  description="Säsongsstarter och nya guider, när det händer något. Gratis, inga annonser."
                   buttonLabel="Prenumerera gratis →"
                 />
               </div>
@@ -753,7 +753,7 @@ export default function OstlistanPage() {
             Håll dig uppdaterad om skärgården
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 15, margin: '0 0 24px', lineHeight: 1.6 }}>
-            Nyhetsbrevet skickas varannan tisdag — öppna öar, säsongsuppdateringar och tips du inte hittar på TripAdvisor.
+            Nyhetsbrevet berättar när säsongen drar igång, när guider uppdateras och när båtlinjer ändras.
           </p>
           <EmailSignup
             variant="inline"
@@ -774,7 +774,7 @@ export default function OstlistanPage() {
             { href: '/oar', icon: 'map' as const, label: 'Alla öar' },
             { href: '/guider', icon: 'bookmark' as const, label: 'Guider' },
             { href: '/blogg', icon: 'edit' as const, label: 'Blogg' },
-            { href: '/utflykt', icon: 'sailboat' as const, label: 'Utflyktsplanerare' },
+            { href: '/utflykt', icon: 'sailboat' as const, label: 'Din dag i skärgården' },
           ].map(({ href, icon, label }) => (
             <Link key={href} href={href} style={{
               display: 'inline-block',

@@ -102,7 +102,7 @@ function ManuellForm() {
   // Auth gate — block render until auth resolved (prevents flash + premature file picker)
   useEffect(() => {
     getViewer(supabase).then(({ data }) => {
-      if (!data.user) { router.push('/logga-in?redirect=/logga/manuell'); return }
+      if (!data.user) { router.push('/logga-in?returnTo=%2Flogga%2Fmanuell&mode=ny'); return }
       setAuthLoading(false)
     })
   }, [supabase, router])

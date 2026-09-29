@@ -49,14 +49,17 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'bullero',           name: 'Bullerö',           lat: 59.2049, lng: 18.8472, radiusKm: 2.0 },
   { slug: 'vindo',             name: 'Vindö',             lat: 59.3462, lng: 18.6990, radiusKm: 2.0 },
   { slug: 'ingaro',            name: 'Ingarö',            lat: 59.2500, lng: 18.4833, radiusKm: 4.0 },
-  { slug: 'kanholmen',         name: 'Kanholmen',         lat: 59.3679, lng: 18.7263, radiusKm: 1.5 },
   { slug: 'svenska-hogarna',   name: 'Svenska Högarna',   lat: 59.4431, lng: 19.5024, radiusKm: 2.5 },
   { slug: 'huvudskar',         name: 'Huvudskär',         lat: 58.9630, lng: 18.5683, radiusKm: 2.0 },
   { slug: 'ekno',              name: 'Eknö',              lat: 59.3087, lng: 18.8676, radiusKm: 2.0 },
   { slug: 'ormsko',            name: 'Ormskär',           lat: 59.1701, lng: 18.7509, radiusKm: 1.5 },
   { slug: 'norrpada',          name: 'Norrpada',          lat: 59.6544, lng: 19.2748, radiusKm: 1.5 },
   { slug: 'storholmen',        name: 'Storholmen',        lat: 59.2803, lng: 18.8090, radiusKm: 1.5 },
-  { slug: 'storskar',          name: 'Storskär',          lat: 59.6075, lng: 19.2519, radiusKm: 1.5 },
+  // RÄTTAD 2026-09-28. Låg på 59.6075, 19.2519 vid Rödlöga, 24 km fel. Länsstyrelsen:
+  // reservatet ligger på södra delen av ön "i Svartlögafjärden 4 kilometer norr om Möja".
+  // Lantmäteriets ortnamn "Storskäret" (Österåker) SWEREF99 TM 6600960/721672 = 59.4883, 18.9154;
+  // Naturvårdsverkets reservatsgräns (NVR 2000006) har mittpunkt 59.4862, 18.9093 — 400 m isär.
+  { slug: 'storskar',          name: 'Storskär',          lat: 59.4883, lng: 18.9154, radiusKm: 1.5 },
   // RÄTTAD 2026-08-05. Låg på 59.2939, 18.9513 — en punkt som ligger inuti ön
   // Kroksö vid Sandhamn (OSM way/245761619), 79 km från Björkö. Ön vi menar är
   // Björkö i Mälaren, där Birka ligger: OSM way/34546894, centroid
@@ -97,8 +100,16 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'graddo',            name: 'Gräddö',            lat: 59.7642, lng: 19.0321, radiusKm: 2.0 },
   { slug: 'vaddo',             name: 'Väddö',             lat: 60.0037, lng: 18.8310, radiusKm: 5.0 },
   { slug: 'yxlan',             name: 'Yxlan',             lat: 59.6167, lng: 18.8532, radiusKm: 2.5 },
-  { slug: 'graskar',           name: 'Gräskar',           lat: 59.4811, lng: 18.9993, radiusKm: 1.5 },
-  { slug: 'langskar',          name: 'Långskär',          lat: 59.7065, lng: 19.4005, radiusKm: 1.5 },
+  // RÄTTAD 2026-09-28. Raden hette "Gräskar" och låg på 59.4811, 18.9993 vid Möja,
+  // 22 km fel, men ösidan /o/graskar handlar om Gräskö i Norrtälje kommun.
+  // Lantmäteriets ortnamn "Gräskö" (Norrtälje) SWEREF99 TM 6622776/726531 = 59.6812, 19.0243;
+  // Trafiklabs hållplats Gräskö brygga ligger 564 m därifrån.
+  { slug: 'graskar',           name: 'Gräskö',            lat: 59.6812, lng: 19.0243, radiusKm: 2.0 },
+  // RÄTTAD 2026-09-28. Låg på 59.7065, 19.4005 i Norrtäljes ytterskärgård, 65 km fel.
+  // Ösidan handlar om Långskärs naturreservat i Värmdö kommun (Länsstyrelsen).
+  // Lantmäteriets ortnamn "Långskär" (Värmdö) SWEREF99 TM 6566842/720013 = 59.1835, 18.8514,
+  // och punkten ligger inom Naturvårdsverkets reservatsgräns (NVR 2000877, 4,4 x 3,8 km).
+  { slug: 'langskar',          name: 'Långskär',          lat: 59.1835, lng: 18.8514, radiusKm: 2.5 },
 ]
 
 // Lookup map for O(1) access

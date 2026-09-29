@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import RegionOar from '@/components/RegionOar'
 
 // KÄLLA: Länsstyrelsen Västernorrland — Höga Kusten världsarv (UNESCO) sedan 2000, utvidgat 2006 med Kvarken; sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14)
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     'höga kusten vandring',
   ],
   openGraph: {
-    title: 'Höga Kusten — Norrlands dramatiska klippkust | Svalla',
+    title: 'Höga Kusten — Norrlands dramatiska klippkust',
     description: 'Logga dina båtturer och hitta de bästa platserna längs Höga Kusten.',
     url: 'https://svalla.se/hoga-kusten',
   },
@@ -33,9 +34,9 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
   {
     icon: '🗺️',
-    title: 'Karta över Höga Kusten',
-    description: 'Alla verifierade platser längs Norrlandskusten — gästhamnar, naturhamnar, krogar och sjömackar.',
-    href: '/upptack',
+    title: 'Öarna här',
+    description: 'Ö-sidor med hamnar, aktiviteter och källor — listan finns längre ner på sidan.',
+    href: '/hoga-kusten#oar',
     meta: 'Gratis',
   },
   {
@@ -143,6 +144,9 @@ export default function HogaKustenPage() {
         items={ITEMS}
         deeperContent={
           <>
+ {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
+ <RegionOar rubrik="Öar vid Höga Kusten" etiketter={['Höga Kusten']} />
+
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
               Ta dig dit — kollektivtrafik
             </h2>

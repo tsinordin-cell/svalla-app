@@ -7,6 +7,7 @@ import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 import IslandWeatherClient from '@/components/IslandWeatherClient'
 import SaveIslandButton from '@/components/SaveIslandButton'
+import IslandNavAuth from '@/components/IslandNavAuth'
 import MarkVisitedButton from '@/components/MarkVisitedButton'
 import FAQSection from '@/components/FAQSection'
 import { getFaqsForIsland } from '@/lib/islandFaqs'
@@ -23,7 +24,10 @@ import { GUIDES } from '../../guider/guides-data'
 import { getGuidesForIsland } from '../../guider/guide-island-map'
 import IslandB2BCTA from '@/components/IslandB2BCTA'
 import IslandHantverkare from '@/components/IslandHantverkare'
+import { getHantverkareForIsland } from '../hantverkare-data'
+import IslandTabRow from '@/components/IslandTabRow'
 import IslandKallor from '@/components/IslandKallor'
+import Hopfallbart from '@/components/Hopfallbart'
 import IslandFoto from '@/components/IslandFoto'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -51,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
  return {
- title: island.seoTitle ? `${island.seoTitle} | Svalla` : `${island.name} 2026 – restauranger, boende & aktiviteter | Svalla`,
+ title: island.seoTitle ? `${island.seoTitle}` : `${island.name} 2026 – restauranger, boende & aktiviteter`,
  description: island.seoDescription ?? `Guide till ${island.name}: restauranger, boende, aktiviteter, badplatser och hur du tar dig dit. ${island.tagline}`,
  keywords: [
   `${island.name.toLowerCase()} guide`,
@@ -275,13 +279,9 @@ export default async function IslandPage({ params }: Props) {
    <Link href="/rutter?vy=oar" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>
      ← Alla öar
    </Link>
-   <Link href="/nyhetsbrev" style={{
-     color: '#fff', fontSize: 12, fontWeight: 700, textDecoration: 'none',
-     background: 'rgba(255,255,255,0.18)', borderRadius: 20,
-     padding: '5px 12px', border: '1px solid rgba(255,255,255,0.25)',
-   }}>
-     <Icon name="mail" size={13} stroke={2} /> Nyhetsbrev
-   </Link>
+   {/* 2026-09-28: "Logga in" + "Kom igång" (utloggad) eller "Min skärgård" (inloggad),
+       som på startsidan. Nyhetsbrevsknappen som låg här finns kvar under "Mer om …". */}
+   <IslandNavAuth islandSlug={island.slug} />
  </div>
  </div>
  </nav>
@@ -293,7 +293,8 @@ export default async function IslandPage({ params }: Props) {
  color: '#fff',
  }}>
  <div style={{ maxWidth: 900, margin: '0 auto' }}>
- <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+ {/* flexWrap 2026-09-28: raden gjorde sidan 412 px bred på 320 px-skärmar (sidled-skroll). */}
+ <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
  <span style={{
  fontSize: 11,
  fontWeight: 700,
@@ -303,7 +304,7 @@ export default async function IslandPage({ params }: Props) {
  padding: '4px 12px',
  borderRadius: 20,
  color: 'rgba(255,255,255,0.9)',
- }}>{island.regionLabel}</span>
+ }}>{island.regionLabel}{island.slag === 'ort' ? ' · ort' : island.slag === 'nationalpark' ? ' · nationalpark' : ''}</span>
  {island.tags.slice(0, 3).map(tag => (
  <span key={tag} style={{
  fontSize: 11,
@@ -329,7 +330,9 @@ export default async function IslandPage({ params }: Props) {
  <div>
  <h1 style={{ fontSize: 42, fontWeight: 700, margin: '0 0 6px', letterSpacing: -0.5, fontFamily: "'Playfair Display', Georgia, serif" }}>{island.name}</h1>
  <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', margin: 0, lineHeight: 1.5, maxWidth: 560, fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic' }}>{island.tagline}</p>
- {(visitorCount ?? 0) > 0 && (
+ {/* "1 seglare har besökt" säger mindre än ingenting. Visas först från tio.
+     Toms ja 2026-09-19. */}
+ {(visitorCount ?? 0) >= 10 && (
  <div style={{
  display: 'inline-flex', alignItems: 'center', gap: 8,
  marginTop: 14, padding: '8px 16px', borderRadius: 999,
@@ -360,7 +363,8 @@ export default async function IslandPage({ params }: Props) {
  </div>
  </div>
 
- {/* Spara ön + logga besök + dela + forum CTA */}
+ {/* Spara + dela. Besökt, Forum och Nyhetsbrev låg också här — fem knappar
+     innan första innehållet på mobil. Flyttade till "Mer om X" 2026-09-19 (Toms ja). */}
  <div style={{ display: 'flex', gap: 10, marginTop: 22, flexWrap: 'wrap' }}>
  <SaveIslandButton islandSlug={island.slug} islandName={island.name} variant="pill" />
  <ShareButton
@@ -370,54 +374,6 @@ export default async function IslandPage({ params }: Props) {
    surface="island-page"
    entityId={island.slug}
  />
- <MarkVisitedButton islandSlug={island.slug} islandName={island.name} />
- <Link
-  href={`/forum/o/${island.slug}`}
-  style={{
-   display: 'inline-flex',
-   alignItems: 'center',
-   gap: 7,
-   padding: '9px 16px',
-   background: 'rgba(255,255,255,0.15)',
-   color: '#fff',
-   borderRadius: 50,
-   textDecoration: 'none',
-   fontSize: 13,
-   fontWeight: 600,
-   border: '1px solid rgba(255,255,255,0.25)',
-   backdropFilter: 'blur(4px)',
-   whiteSpace: 'nowrap',
-  }}
- >
-  <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-   <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z" />
-  </svg>
-  Forum
- </Link>
- <Link
-  href="/nyhetsbrev"
-  style={{
-   display: 'inline-flex',
-   alignItems: 'center',
-   gap: 7,
-   padding: '9px 16px',
-   background: 'rgba(255,255,255,0.92)',
-   color: '#0d3f5a',
-   borderRadius: 50,
-   textDecoration: 'none',
-   fontSize: 13,
-   fontWeight: 700,
-   border: '1px solid rgba(255,255,255,0.6)',
-   backdropFilter: 'blur(4px)',
-   whiteSpace: 'nowrap',
-  }}
- >
-  <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-   <rect x="2" y="4" width="20" height="16" rx="2"/>
-   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-  </svg>
-  Nyhetsbrev
- </Link>
  </div>
 
  {/* Quick facts */}
@@ -452,6 +408,18 @@ export default async function IslandPage({ params }: Props) {
 						)}
  </div>
  )})}
+ </div>
+
+ {/* Undersidorna. Samma rad som ligger överst på varje undersida — ösidan
+     var den enda sidan i familjen som saknade den, vilket gav den bakvända
+     effekten att man kunde navigera mellan öns undersidor bara om man redan
+     stod på en av dem. Ligger under faktakorten och inte bland Spara/Dela:
+     de knapparna är saker man gör med sidan, det här är dit man går. */}
+ <div style={{ marginTop: 22 }}>
+   <IslandTabRow
+     islandSlug={island.slug}
+     dolj={getHantverkareForIsland(island.slug).length === 0 ? ['hantverkare'] : []}
+   />
  </div>
  </div>
  </div>
@@ -509,7 +477,8 @@ export default async function IslandPage({ params }: Props) {
        </div>
 
        {/* Månadsrutnät */}
-       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12,1fr)', gap: 3, marginBottom: 14 }}>
+       {/* minmax(0,1fr) 2026-09-28: annars fick månadsrutorna minsta bredd av texten och rutnätet stack ut på 320 px. */}
+       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12,minmax(0,1fr))', gap: 3, marginBottom: 14 }}>
          {island.seasonal.months.map((status, i) => (
            <div key={i} style={{
              background: COLOR[status],
@@ -519,7 +488,7 @@ export default async function IslandPage({ params }: Props) {
              border: i === currentMonth ? '2px solid var(--sea)' : '2px solid transparent',
              position: 'relative',
            }}>
-             <div style={{ fontSize: 9, fontWeight: 700, color: TEXT[status], letterSpacing: 0.3 }}>
+             <div style={{ fontSize: 9, fontWeight: 700, color: TEXT[status], letterSpacing: 0.3, overflow: 'hidden' }}>
                {MONTH_LABELS[i]}
              </div>
              {i === currentMonth && (
@@ -630,10 +599,24 @@ export default async function IslandPage({ params }: Props) {
  {/* Om ön */}
  <section style={{ marginBottom: 36 }}>
  <SectionHeader icon="book" title={`Om ${island.name}`} />
+ {/* Fyra stycken syns, resten bakom "Läs hela texten". Mätt 2026-09-19: 18 stycken
+     / 3 435 px på Grinda i telefonbredd. Inget innehåll tas bort — se Hopfallbart. */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
- {island.description.map((para, i) => (
+ {(() => {
+ const stycke = (para: string, i: number) => (
  <p key={i} style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.75, margin: 0 }}>{para}</p>
- ))}
+ )
+ const SYNLIGA = 4
+ if (island.description.length <= SYNLIGA + 1) return island.description.map(stycke)
+ const dolda = island.description.length - SYNLIGA
+ return (
+ <Hopfallbart
+ synligt={island.description.slice(0, SYNLIGA).map(stycke)}
+ dolt={island.description.slice(SYNLIGA).map((p, i) => stycke(p, i + SYNLIGA))}
+ etikett={`Läs hela texten om ${island.name} (${dolda} stycken till)`}
+ />
+ )
+ })()}
  </div>
  </section>
 
@@ -649,7 +632,7 @@ export default async function IslandPage({ params }: Props) {
      variant="inline"
      source={`o-${island.slug}-midpage`}
      title={`Planerar du en tur till ${island.name}?`}
-     description="Säsongsuppdateringar, öppettider och insider-tips direkt i inkorgen. Varannan tisdag, inga annonser."
+     description="Säsongsstarter, nya guider och ändrade båtlinjer, när det händer något. Inga annonser."
      buttonLabel="Ja, prenumerera"
    />
  </div>
@@ -663,7 +646,10 @@ export default async function IslandPage({ params }: Props) {
  gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
  gap: 14,
  }}>
- {island.activities.map(act => (
+ {/* Tre kort syns, resten bakom "Visa fler". Samma mönster som "Om X" och
+     guidelistan: inget tas bort, allt ligger kvar i DOM:en. */}
+ {(() => {
+ const kort = (act: typeof island.activities[number]) => (
  <div key={act.name} style={{
  background: 'var(--white)',
  borderRadius: 14,
@@ -682,7 +668,17 @@ export default async function IslandPage({ params }: Props) {
  <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', marginBottom: 5 }}>{act.name}</div>
  <div style={{ fontSize: 13, color: 'var(--txt3)', lineHeight: 1.6 }}>{act.desc}</div>
  </div>
- ))}
+ )
+ const SYNLIGA = 3
+ if (island.activities.length <= SYNLIGA + 1) return island.activities.map(kort)
+ return (
+ <Hopfallbart
+ synligt={island.activities.slice(0, SYNLIGA).map(kort)}
+ dolt={island.activities.slice(SYNLIGA).map(kort)}
+ etikett={`Visa fler aktiviteter (${island.activities.length - SYNLIGA})`}
+ />
+ )
+ })()}
  </div>
  <div style={{ marginTop: 16, textAlign: 'right' }}>
  <Link href={`/o/${slug}/aktiviteter`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
@@ -697,7 +693,9 @@ export default async function IslandPage({ params }: Props) {
  <section style={{ marginBottom: 52 }}>
  <SectionHeader icon="utensils" title="Mat & Dryck" />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
- {island.restaurants.map(r => (
+ {/* Tre kort syns, resten bakom "Visa fler". Samma mönster som Se & Göra. */}
+ {(() => {
+ const kort = (r: typeof island.restaurants[number]) => (
  <div key={r.name} style={{
  background: 'var(--white)',
  borderRadius: 14,
@@ -799,7 +797,17 @@ export default async function IslandPage({ params }: Props) {
  )}
  </div>
  </div>
- ))}
+ )
+ const SYNLIGA = 3
+ if (island.restaurants.length <= SYNLIGA + 1) return island.restaurants.map(kort)
+ return (
+ <Hopfallbart
+ synligt={island.restaurants.slice(0, SYNLIGA).map(kort)}
+ dolt={island.restaurants.slice(SYNLIGA).map(kort)}
+ etikett={`Visa fler ställen (${island.restaurants.length - SYNLIGA})`}
+ />
+ )
+ })()}
  </div>
  <div style={{ marginTop: 16, textAlign: 'right' }}>
  <Link href={`/o/${slug}/restauranger`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
@@ -809,10 +817,10 @@ export default async function IslandPage({ params }: Props) {
  </section>
  )}
 
- {/* Hantverkare — renderar sig själv till null om inga VERIFIERADE poster finns
+ {/* Hantverk & service — renderar sig själv till null om ön saknar poster
      för ön, vilket är normalfallet tills registret ringts igenom. Se
      hantverkare-data.ts för varför spärren ligger i datalagret och inte här. */}
- <IslandHantverkare islandSlug={slug} />
+ <IslandHantverkare islandSlug={slug} islandName={island.name} />
 
  {/* Boende */}
  {island.accommodation.length > 0 && (
@@ -900,9 +908,13 @@ export default async function IslandPage({ params }: Props) {
  </div>
  ))}
  </div>
- <div style={{ marginTop: 16, textAlign: 'right' }}>
+ <div style={{ marginTop: 16, display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+  {/* 2026-09-28: väg från ösidan in i dagsplaneraren, med ön förvald. */}
+  <Link href={`/utflykt?o=${slug}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
+   Planera en dag på {island.name} →
+  </Link>
   <Link href={`/o/${slug}/komma-dit`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
-   Komplett transportguide till {island.name} →
+   Komplett transportguide →
   </Link>
  </div>
  </section>
@@ -971,18 +983,30 @@ export default async function IslandPage({ params }: Props) {
  padding: '24px',
  border: '1px solid rgba(30,92,130,0.12)',
  }}>
- {island.tips.map((tip, i) => (
+ {(() => {
+ const rad = (tip: string, i: number, sist: boolean) => (
  <div key={i} style={{
  display: 'flex',
  gap: 12,
- marginBottom: i < island.tips.length - 1 ? 16 : 0,
- paddingBottom: i < island.tips.length - 1 ? 16 : 0,
- borderBottom: i < island.tips.length - 1 ? '1px solid rgba(30,92,130,0.08)' : 'none',
+ marginBottom: sist ? 0 : 16,
+ paddingBottom: sist ? 0 : 16,
+ borderBottom: sist ? 'none' : '1px solid rgba(30,92,130,0.08)',
  }}>
  <span style={{ fontSize: 18, lineHeight: 1.5, flexShrink: 0 }}>→</span>
  <p style={{ fontSize: 14, color: 'var(--txt2)', margin: 0, lineHeight: 1.7 }}>{tip}</p>
  </div>
- ))}
+ )
+ const SYNLIGA = 3
+ const sista = island.tips.length - 1
+ if (island.tips.length <= SYNLIGA + 1) return island.tips.map((t, i) => rad(t, i, i === sista))
+ return (
+ <Hopfallbart
+ synligt={island.tips.slice(0, SYNLIGA).map((t, i) => rad(t, i, false))}
+ dolt={island.tips.slice(SYNLIGA).map((t, i) => rad(t, i + SYNLIGA, i + SYNLIGA === sista))}
+ etikett={`Visa fler tips (${island.tips.length - SYNLIGA})`}
+ />
+ )
+ })()}
  </div>
  </section>
  )}
@@ -1045,7 +1069,7 @@ export default async function IslandPage({ params }: Props) {
        </div>
        <div style={{ flex: 1 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Bad &amp; stränder</div>
-        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Bästa badplatserna på {island.name}</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Badplatser på och nära {island.name}</div>
        </div>
        <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
       </div>
@@ -1092,51 +1116,61 @@ export default async function IslandPage({ params }: Props) {
        <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
       </div>
      </Link>
+     {/* Hantverkarkortet visas bara när ön faktiskt har poster. Ett kort som
+         leder till "vi har inga uppgifter ännu" är sämre än inget kort.
+         Samma villkor som sitemapen använder. */}
+     {getHantverkareForIsland(slug).length > 0 && (
+     <Link href={`/o/${slug}/hantverkare`} style={{ textDecoration: 'none' }}>
+      <div style={{
+       background: 'var(--white)', borderRadius: 14, padding: '18px 20px',
+       boxShadow: '0 2px 10px rgba(0,0,0,0.06)', border: '1px solid var(--surface-3)',
+       display: 'flex', gap: 14, alignItems: 'center',
+       transition: 'box-shadow 0.15s',
+      }}>
+       <div style={{
+        width: 40, height: 40, flexShrink: 0, borderRadius: 10,
+        background: 'rgba(45,125,138,0.10)', color: 'var(--sea)',
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+       }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}><path d="M14.7 6.3a4 4 0 0 0 5 5l-9 9a2.8 2.8 0 0 1-4-4z"/><path d="M14.7 6.3 17.5 3.5"/></svg>
+       </div>
+       <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Hantverkare &amp; service</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Hus, brygga, båt och tomt på {island.name}</div>
+       </div>
+       <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
+      </div>
+     </Link>
+     )}
+    </div>
+    {/* Flyttat hit från heron 2026-09-19: logga besök, forum, nyhetsbrev. */}
+    <div style={{ display: 'flex', gap: 10, marginTop: 14, flexWrap: 'wrap' }}>
+     <MarkVisitedButton islandSlug={island.slug} islandName={island.name} variant="sektion" />
+     <Link href={`/forum/o/${island.slug}`} style={{
+       display: 'inline-flex', alignItems: 'center', gap: 8,
+       padding: '10px 18px', borderRadius: 999,
+       border: '1px solid var(--surface-3)', background: 'var(--white)',
+       color: 'var(--sea)', fontSize: 13.5, fontWeight: 700, textDecoration: 'none',
+      }}>
+      <Icon name="messageCircle" size={15} stroke={2} /> Forum om {island.name}
+     </Link>
+     <Link href="/nyhetsbrev" style={{
+       display: 'inline-flex', alignItems: 'center', gap: 8,
+       padding: '10px 18px', borderRadius: 999,
+       border: '1px solid var(--surface-3)', background: 'var(--white)',
+       color: 'var(--sea)', fontSize: 13.5, fontWeight: 700, textDecoration: 'none',
+      }}>
+      <Icon name="mail" size={15} stroke={2} /> Nyhetsbrev
+     </Link>
     </div>
    </section>
 
    {/*
-     FAQ — synlig för besökare sedan 2026-08-21.
-
-     Innehållet fanns redan och publicerades till Google via FAQPage-schemat
-     högre upp i filen, men renderades aldrig för människor. Sjutton öar hade
-     alltså handskrivna svar som bara sökmotorn kunde läsa.
-
-     Ingen ny faktarisk: exakt samma text som redan låg i JSON-LD.
-     <details> ger hopfällbarhet utan JavaScript.
+     Vanliga frågor renderas av <FAQSection> högre upp (synlig sedan april 2026,
+     med FAQPage-schema). Ett andra, identiskt block lades till 2026-08-21 på
+     felaktig grund ("renderades aldrig för människor") och gav två h2
+     "Vanliga frågor om X" på varje ö-sida. Borttaget 2026-09-19.
    */}
-   {(() => {
-     const faqs = getFaqsForIsland(island)
-     if (faqs.length === 0) return null
-     return (
-       <section style={{ marginBottom: 52 }}>
-         <SectionHeader icon="lightbulb" title={`Vanliga frågor om ${island.name}`} />
-         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-           {faqs.map(faq => (
-             <details key={faq.q} style={{
-               background: 'var(--white)',
-               border: '1px solid var(--surface-3)',
-               borderRadius: 12,
-               padding: '14px 18px',
-             }}>
-               <summary style={{
-                 fontSize: 14, fontWeight: 600, color: 'var(--txt)',
-                 cursor: 'pointer', listStyle: 'none',
-               }}>
-                 {faq.q}
-               </summary>
-               <p style={{
-                 fontSize: 13, color: 'var(--txt2)', lineHeight: 1.7,
-                 margin: '10px 0 0',
-               }}>
-                 {faq.a}
-               </p>
-             </details>
-           ))}
-         </div>
-       </section>
-     )
-   })()}
 
    {/* Related islands */}
  {relatedIslands.length > 0 && (
@@ -1185,16 +1219,21 @@ export default async function IslandPage({ params }: Props) {
      Genereras av scripts/generera-kallor.mjs ur KÄLLA-raderna i datafilerna. */}
  <IslandKallor slug={island.slug} islandName={island.name} />
 
- {/* Guider om ön — intern länkning till /guider/[slug] (220 artiklar) */}
- {guideLinks.length > 0 && (
+ {/* Guider om ön — /guider/[slug] (220 artiklar) och bloggartiklar i EN sektion.
+     Tidigare två sektioner med samma rubrik "Guider om X" efter varandra. */}
+ {(guideLinks.length > 0 || (island.blogLinks && island.blogLinks.length > 0)) && (
   <section style={{ marginBottom: 36 }}>
    <SectionHeader icon="book" title={`Guider om ${island.name}`} />
+   {guideLinks.length > 0 && (
    <div style={{
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
     gap: 10,
+    marginBottom: island.blogLinks && island.blogLinks.length > 0 ? 10 : 0,
    }}>
-    {guideLinks.map(g => (
+    {/* Sex guider syns, resten bakom knappen. Mätt 2026-09-19: 20 länkar / 3 051 px på Grinda. */}
+    {(() => {
+     const kort = (g: typeof guideLinks[number]) => (
      <Link
       key={g.slug}
       href={`/guider/${g.slug}`}
@@ -1214,15 +1253,22 @@ export default async function IslandPage({ params }: Props) {
       </div>
       <span style={{ color: 'var(--sea)', fontWeight: 700, flexShrink: 0 }}>→</span>
      </Link>
-    ))}
-   </div>
-  </section>
- )}
+     )
+     // 6 → 4 (2026-09-23): guidelistan var det längsta kvarvarande blocket.
+     const SYNLIGA = 4
+     if (guideLinks.length <= SYNLIGA + 1) return guideLinks.map(kort)
+     return (
+      <Hopfallbart
+       synligt={guideLinks.slice(0, SYNLIGA).map(kort)}
+       dolt={guideLinks.slice(SYNLIGA).map(kort)}
+       etikett={`Visa alla ${guideLinks.length} guider`}
+      />
+     )
+    })()}
 
- {/* Guider om ön — intern länkning till bloggartiklar */}
- {island.blogLinks && island.blogLinks.length > 0 && (
-  <section style={{ marginBottom: 36 }}>
-   <SectionHeader icon="book" title={`Guider om ${island.name}`} />
+   </div>
+   )}
+   {island.blogLinks && island.blogLinks.length > 0 && (
    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
     {island.blogLinks.map(link => (
      <Link
@@ -1244,6 +1290,7 @@ export default async function IslandPage({ params }: Props) {
      </Link>
     ))}
    </div>
+   )}
   </section>
  )}
 

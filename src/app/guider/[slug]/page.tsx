@@ -314,7 +314,7 @@ export default async function GuidePage({ params }: Props) {
           <EmailSignup
             source={`guide-${slug}-bottom`}
             variant="inline"
-            title="Fler guider likt denna, varannan tisdag"
+            title="Få nya guider som denna i inkorgen"
             description="Vi skriver om skärgårdsöar, öppettider och insider-tips du inte hittar på TripAdvisor. Gratis."
             buttonLabel="Skriv upp mig →"
           />

@@ -65,7 +65,8 @@ export function renderMarkdown(md: string): string {
   if (!md) return ''
   const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
-  const lines = md.split(/\r?\n/)
+  // Källkommentarer (<!-- KÄLLA … -->) är för granskning i efterhand och visas inte på sidan.
+  const lines = md.replace(/<!--[\s\S]*?-->/g, '').split(/\r?\n/)
   const out: string[] = []
   let inList = false
 
@@ -85,7 +86,8 @@ export function renderMarkdown(md: string): string {
     // Rubriker
     if (/^###\s+/.test(line)) { flushList(); out.push(`<h3>${inline(line.replace(/^###\s+/, ''))}</h3>`); continue }
     if (/^##\s+/.test(line))  { flushList(); out.push(`<h2>${inline(line.replace(/^##\s+/, ''))}</h2>`);  continue }
-    if (/^#\s+/.test(line))   { flushList(); out.push(`<h1>${inline(line.replace(/^#\s+/, ''))}</h1>`);   continue }
+    // Sidan har redan artikelns titel som h1 – en "# " i brödtexten blir h2 så att sidan bara har en h1.
+    if (/^#\s+/.test(line))   { flushList(); out.push(`<h2>${inline(line.replace(/^#\s+/, ''))}</h2>`);   continue }
     // Listor
     if (/^[-*]\s+/.test(line)) {
       if (!inList) { out.push('<ul>'); inList = true }
@@ -101,7 +103,9 @@ export function renderMarkdown(md: string): string {
   function inline(s: string): string {
     let t = esc(s)
     // Länkar [text](url)
-    t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    // Länkar inom svalla.se (börjar med /) öppnas i samma flik, externa i ny flik.
+    t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, text: string, url: string) =>
+      url.startsWith('/') ? `<a href="${url}">${text}</a>` : `<a href="${url}" target="_blank" rel="noopener">${text}</a>`)
     // Fet
     t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     // Kursiv

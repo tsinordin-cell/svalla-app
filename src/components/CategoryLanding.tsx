@@ -312,7 +312,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  Vill du ha allt i en app?
  </div>
  <div style={{ fontSize: 13, color: 'var(--txt2)' }}>
- Spara favoriter, logga turer och upptäck skärgården med hundratusentals andra.
+ Spara favoriter, logga turer och planera nästa tur ut.
  </div>
  </div>
  <div style={{ display: 'inline-flex', gap: 8 }}>

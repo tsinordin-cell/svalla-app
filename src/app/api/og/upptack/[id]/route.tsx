@@ -15,6 +15,7 @@
  */
 import { ImageResponse } from 'next/og'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { regionEtikett } from '@/lib/regionEtikett'
 
 export const runtime = 'nodejs'
 export const revalidate = 3600
@@ -112,7 +113,8 @@ export async function GET(
   }
 
   const typeLabel = data.type ? TYPE_LABEL[data.type] : null
-  const locationParts = [data.island, data.archipelago_region].filter(Boolean) as string[]
+  // archipelago_region är en kod ('north', 'bohuslan_nord') – visa etiketten, aldrig koden.
+  const locationParts = [data.island, regionEtikett(data.archipelago_region as string | null)].filter(Boolean) as string[]
   const locationLabel = locationParts.join(' · ')
 
   const hasGoogleRating = typeof data.google_rating === 'number' && data.google_rating > 0

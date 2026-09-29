@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import RegionOar from '@/components/RegionOar'
 
 export const metadata: Metadata = {
  title: 'Blekinges skärgård — Logga turer, hitta platser',
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
  'karlskrona unesco',
  ],
  openGraph: {
- title: 'Blekinges skärgård — Logga turer | Svalla',
+ title: 'Blekinges skärgård — Logga turer',
  description: 'Logga dina båtturer i Blekinges skärgård med Svalla.',
  url: 'https://svalla.se/blekinge-skargard',
  },
@@ -33,9 +34,9 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
  {
  icon: 'map',
- title: 'Karta över Blekinge',
- description: 'Verifierade platser längs Blekinges kust — naturhamnar, bryggor, krogar och sjömackar.',
- href: '/upptack',
+ title: 'Öarna här',
+ description: 'Ö-sidor med hamnar, aktiviteter och källor — listan finns längre ner på sidan.',
+ href: '/blekinge-skargard#oar',
  meta: 'Gratis',
  },
  {
@@ -143,6 +144,9 @@ export default function BlekingeSkargardPage() {
  items={ITEMS}
  deeperContent={
  <>
+ {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
+ <RegionOar rubrik="Öar i Blekinge skärgård" etiketter={['Blekinge']} />
+
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
  Ta dig dit — kollektivtrafik
  </h2>
