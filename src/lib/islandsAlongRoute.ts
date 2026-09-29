@@ -1,6 +1,7 @@
 import { ALL_ISLANDS, type Island } from '../app/o/island-data'
 import { ISLAND_COORD_MAP } from './islandCoords'
 import { crossTrack } from './planner'
+import { chipsFor, type IslandChip } from './islandChips'
 
 /**
  * Öar längs en planerad rutt (2026-09-28, ruttplanerarens nästa steg).
@@ -14,12 +15,11 @@ import { crossTrack } from './planner'
  * Öar utan koordinat (i dag 47, mest Bohuslän/Göteborg/Gotland) kan inte
  * hittas och utelämnas tyst — det är tomt, inte fel.
  *
- * Chips bygger bara på vad ösidan faktiskt innehåller: gästhamn om ön har
- * hamnar listade, krog om restauranger listade, bad/bastu/natur om taggen
- * eller aktiviteten finns. Inget hittas på.
+ * Chips bygger bara på vad ösidan faktiskt innehåller (se lib/islandChips.ts,
+ * delad med dagsplaneraren). Inget hittas på.
  */
 
-export type IslandChip = 'gästhamn' | 'krog' | 'bad' | 'bastu' | 'natur'
+export type { IslandChip }
 
 export type IslandAlongRoute = {
   slug: string
@@ -48,19 +48,6 @@ function coordFor(island: Island): { lat: number; lng: number } | null {
   if (typeof island.lat === 'number' && typeof island.lng === 'number') return { lat: island.lat, lng: island.lng }
   const c = ISLAND_COORD_MAP[island.slug]
   return c ? { lat: c.lat, lng: c.lng } : null
-}
-
-function chipsFor(island: Island): IslandChip[] {
-  const chips: IslandChip[] = []
-  const tags = new Set((island.tags ?? []).map(t => t.toLowerCase()))
-  const acts = (island.activities ?? []).map(a => `${a.name} ${a.desc}`.toLowerCase())
-  const has = (needle: string) => tags.has(needle) || acts.some(a => a.includes(needle))
-  if ((island.harbors ?? []).length > 0 || tags.has('gästhamn')) chips.push('gästhamn')
-  if ((island.restaurants ?? []).length > 0) chips.push('krog')
-  if (has('bad') || tags.has('sandstrand') || tags.has('klippbad')) chips.push('bad')
-  if (has('bastu')) chips.push('bastu')
-  if (tags.has('natur') || tags.has('naturreservat') || tags.has('nationalpark') || tags.has('vandring')) chips.push('natur')
-  return chips
 }
 
 /**

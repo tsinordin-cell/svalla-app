@@ -1,5 +1,8 @@
 /**
- * GET /api/transit/last-departure?dest=<slug>
+ * GET /api/transit/last-departure?dest=<slug>[&date=YYYY-MM-DD]
+ *
+ * `date` (2026-09-28, dagsplaneraren): sista avgång en annan dag, i dag
+ * t.o.m. 14 dagar fram. Ogiltigt datum → 400.
  *
  * Returnerar dagens SISTA avgång från fastlandet → ön (forward) OCH
  * dagens sista avgång från ön → fastlandet (return). Den senare är det
@@ -20,6 +23,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getIslandTransit } from '@/lib/transit-stops'
 import { fetchLastTripOfDay } from '@/lib/trafiklab'
+import { parseTransitDate } from '@/lib/transitDate'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -28,6 +32,10 @@ export async function GET(req: NextRequest) {
   const slug = req.nextUrl.searchParams.get('dest')?.trim().toLowerCase() ?? ''
   if (!slug) {
     return NextResponse.json({ error: 'missing_dest' }, { status: 400 })
+  }
+  const datum = parseTransitDate(req.nextUrl.searchParams.get('date'))
+  if (datum === 'ogiltigt') {
+    return NextResponse.json({ error: 'invalid_date' }, { status: 400 })
   }
 
   const cfg = getIslandTransit(slug)
@@ -40,8 +48,8 @@ export async function GET(req: NextRequest) {
 
   // Parallella anrop — outbound och return är oberoende
   const [outbound, returnTrip] = await Promise.all([
-    fetchLastTripOfDay(cfg.originStopId, cfg.destStopId),
-    fetchLastTripOfDay(cfg.destStopId, cfg.originStopId),
+    fetchLastTripOfDay(cfg.originStopId, cfg.destStopId, datum ?? undefined),
+    fetchLastTripOfDay(cfg.destStopId, cfg.originStopId, datum ?? undefined),
   ])
 
   return NextResponse.json(
@@ -49,6 +57,7 @@ export async function GET(req: NextRequest) {
       slug,
       originName: cfg.originStopName,
       destName: cfg.destStopName,
+      date: datum,
       outbound,
       return: returnTrip,
       checkedAt: new Date().toISOString(),
