@@ -11,6 +11,8 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 Du sparade {{island_name}} i Min skärgård. {{island_tagline}}
 
+{{fakta_rad}}
+
 :::ruta
 ### Så tar du dig dit
 {{restid_rad}}
