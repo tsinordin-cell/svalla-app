@@ -32,7 +32,14 @@ export const metadata: Metadata = {
     default: 'Svalla – Sveriges samlade skärgårdssida',
     template: '%s – Svalla',
   },
-  description: 'Logga dina båtturer, hitta restauranger längs kusten och följ andra seglare i den svenska skärgården.',
+  // Meta description = "underrubriken" under titeln i Googles resultat. PR #173
+  // (2026-08-21) bytte taglinen till "Sveriges samlade skärgårdssida" och
+  // skrev i commit-meddelandet att även meta description byttes — men bara
+  // OG/Twitter ändrades; den här raden låg kvar med den gamla sociala texten
+  // ("Logga dina båtturer … följ andra seglare"). Rättad 2026-09-29 (kort
+  // 52376ae5) till samma text som OG, utökad så att inga sökord försvinner
+  // (båt, restauranger, kusten finns kvar).
+  description: 'Allt om svenska öar — öprofiler, restauranger, aktiviteter, båttider och ruttplanering för skärgårdsresan längs hela kusten, från Bohuslän till Höga kusten.',
   keywords: ['skärgård', 'båtliv', 'segla', 'logga tur', 'skärgårdsrestaurang', 'Sverige', 'Stockholm'],
   authors: [{ name: 'Svalla' }],
   creator: 'Svalla',
@@ -129,7 +136,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               alternateName: 'Svalla.se',
               url: 'https://svalla.se',
               logo: 'https://svalla.se/icon-512.png',
-              description: 'Svenska skärgårdens digitala hem. Logga båtturer, hitta restauranger längs kusten och följ andra seglare — Strava för båtfolk.',
+              description: 'Sveriges samlade skärgårdssida. Öar, restauranger, hamnar, båttider och ruttplanering längs hela kusten, från Bohuslän till Höga kusten.',
               foundingDate: '2025',
               areaServed: { '@type': 'Country', name: 'Sweden' },
               inLanguage: 'sv-SE',
