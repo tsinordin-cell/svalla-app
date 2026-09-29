@@ -2138,17 +2138,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.hembygd.se/blido/about",
-      "org": "Blidö sockens hembygdsförening",
-      "vad": "Hembygdsgården består alltså av fyra hus: Båtsmanstorpet, fähuset, Silversmedens hus och Bagarstugan; fähuset är en så kallad 'en ko-ladugård', som var avsedd just för en ko",
-      "last": "2026-09-19",
-      "myndighet": false
-    },
-    {
       "url": "https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-norrtalje-kommun/blido-radmansholmen.html",
       "org": "havochvatten.se",
       "vad": "Blidö, Rådmansholmen är ett EU-bad, Dass på badplatsen, Lekutrustning samt grillplats, klassificering 2025 utmärkt kvalitet",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.hembygd.se/blido/about",
+      "org": "hembygd.se",
+      "vad": "Socknen bildades före 1650 och omfattar, förutom huvudöarna Blidö och Yxlan; Furusund, Granö, Själbottna, Svartlöga, Söderöra, Norröra, Gräskö, Kudoxa, Kallskär, Stora Ängskär, Rödlöga, Gillöga, Svenska Högarna, Ut-Fredel, In-Fredel, Söderskärgården, Röder samt Svenska Björns naturvårdsområde; 1862 övergick socknen till att kallas Blidö kommun.; 1971 uppgick den i Norrtälje kommun.; Blidö socken ligger sydost om Norrtälje i skärgården vid Svartlögafjärden.",
+      "last": "2026-09-19",
       "myndighet": false
     },
     {
@@ -2327,7 +2327,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.norrora.se/saltkrakan/",
       "org": "norrora.se",
       "vad": "Sommaren 1963 förverkligades Astrid Lindgrens manuskript för TV; Det var Artfilms producent Olle Nordemar och regissör Olle Hellbom som fann att Norröra och Söderöra bäst motsvarade idén om Saltkråkan; ångbåten hette egentligen 'Valkyrian' och var byggd 1909 och skulle just huggas upp; filmfolket bodde på 'Panget', klippte film i 'Stallet'; de 6 timmar och 15 minuter som de 13 avsnitten kom att ta i TV; fick 7 000 svar; Premiären var i januari 1964",
-      "last": "2026-09-27",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -2905,6 +2905,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "runmarobatvarv.se",
       "vad": "gästbrygga med båtplatser, inga stugor;  Runmarö Krog är nedlagd (\"F.d. Runmarö Krog\")",
       "last": "2026-09-14",
+      "myndighet": false
+    },
+    {
+      "url": "https://runmarobatvarv.se/tj%C3%A4nster/g%C3%A4sthamn-marina-29942252",
+      "org": "runmarobatvarv.se",
+      "vad": "Gästbrygga, Anslutning Landström, Runmarö Båtvarv AB | Solberga, 614; 130 38 Runmarö . Ingen källa för bränsle, vatten eller dusch.",
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -4697,6 +4704,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/velamsund.html",
+      "org": "lansstyrelsen.se",
+      "vad": "Länsstyrelsen Stockholm, naturreservatet Velamsund i Nacka kommun .",
+      "last": "2026-09-14",
+      "myndighet": true
+    },
+    {
       "url": "https://www.igk.se/banor/",
       "org": "igk.se",
       "vad": "Ingarö Golfklubb har två vackra och omväxlande 18-hålsbanor, Banan i sin nuvarande form invigdes 2012, Skogsbanan är breddad, ombyggd och nyinvigdes 2020",
@@ -4994,6 +5008,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     }
   ],
   "storholmen": [
+    {
+      "url": "https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-lidingo-stad.html",
+      "org": "havochvatten.se",
+      "vad": "Lidingö stads registrerade badplatser: \"Fågelöudde\", \"Kottlasjön, badviken\", \"Käppalabadet\", \"Sticklinge udde, Sandviksbadet\", \"Södergarn\"; ingen på Storholmen.  — \"Lidingö har fina friluftsbad, mest känt är badet vid Fågelöudde\", \"Två gånger varje sommar besiktar vi botten vid våra badplatser\" .",
+      "last": "2026-09-26",
+      "myndighet": false
+    },
     {
       "url": "https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/",
       "org": "lidingo.se",
@@ -5527,14 +5548,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.goteborg.com/platser/branno",
       "org": "goteborg.com",
-      "vad": "Vill du uppleva den klassiska dansen på Brännö brygga tar du båten till Husvik på sydvästra sidan, De’ ä’ dans på Brännö brygga . Samma sida har en bildtext som säger dans vid Rödstens brygga — den motsägs av arrangören, Styrsöbolaget och sidans egen brödtext.",
+      "vad": "levande skärgårdsö i södra delen av Göteborgs skärgård med cirka 900 bofasta invånare, Sommargästerna började inta ön på 1930-talet och numera är pendlarna i klar majoritet, jordbruket, lots-historien, tullarna och sjöfarten, Viskompositören Lasse Dahlqvist har gjort ön känd genom sina visor, Från berget vid den gamla lotsutkiken, på öns högsta punkt, har du utsikt från Vinga till inloppet till Göteborg, hembygdsmuseet mitt på ön",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.goteborg.com/guider/ta-dig-till-skargarden",
       "org": "goteborg.com",
-      "vad": "nås enkelt året runt ;  — Rumsuthyrning på Pensionat Baggen och Värdshusets Gästrum är möjlig året runt, 14 Februari — 31 maj 2026, 10 AUGUSTI — 13 DECEMBER 2026 .",
+      "vad": "De södra öarna är bilfria och nås enkelt året runt med Styrsöbolagets båtar, 283, Saltholmen–Asperö–Brännö Rödsten, 282, Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik, Båtarna avgår som regel en gång i timmen, räcker en biljett för zon A",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -5741,7 +5762,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vrangoskargarden-vrango-arkipelagen.html",
       "org": "lansstyrelsen.se",
-      "vad": "ett av de mest besökta naturreservaten i länet. Åtminstone sommartid. . Stod 'Maj–September' som bedömning utan källa.",
+      "vad": "Ta dig förbi Brevik, Bingen och Vättnena i norr, via de lummiga busk- och skogspartierna längs en markerad promenadslinga. Eller gå söderut, förbi Nötholmsviken över den öppna hällmarksljungheden och förbi Store rös, det gamla bronsåldersröset; Det finns en fin sandstrand söder om färjeläget; Det bästa fisket sägs vara på öns södra sida vid Kungsnabbe och vid Kungsö sund. Stod ca 6 km runt hela Vrångö och klippbad på östra och norra sidan utan källa.",
       "last": "2026-09-27",
       "myndighet": true
     },
