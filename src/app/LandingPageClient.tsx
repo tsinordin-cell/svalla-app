@@ -1665,23 +1665,31 @@ export default function LandingPageClient({ photoMap, bildkallor = [] }: { photo
        for (const e of entries) {
          if (!e.isIntersecting) continue
          const el = e.target as HTMLElement
-         const url = el.dataset.lpUrl
-         if (url) sattBild(el, url)
+         // En karusell observeras som helhet: korten till höger är klippta av
+         // karusellens overflow och skulle annars aldrig räknas som synliga
+         // förrän man sveper — då syns en tom ruta innan bilden kommer.
+         // Uppmätt i Playwright 2026-09-29: 3 av 4 galleribilder saknades.
+         const mal = el.dataset.lpUrl ? [el] : [...el.querySelectorAll<HTMLElement>('[data-lp-url]')]
+         for (const m of mal) if (m.dataset.lpUrl) sattBild(m, m.dataset.lpUrl)
          bildObserver?.unobserve(el)
        }
      }, { rootMargin: '600px 0px' })
    }
+   const karuseller = new Set<HTMLElement>()
    document.querySelectorAll<HTMLElement>('[data-lp-photo]').forEach(el => {
      const key = el.getAttribute('data-lp-photo')
      const url = key ? map[key] : undefined
      if (!url) return
      if (bildObserver) {
        el.dataset.lpUrl = url
-       bildObserver.observe(el)
+       const karusell = el.closest<HTMLElement>('.gallery-scroll, .regions-scroll')
+       if (karusell) karuseller.add(karusell)
+       else bildObserver.observe(el)
        return
      }
      sattBild(el, url)
    })
+   karuseller.forEach(k => bildObserver?.observe(k))
  }
  if (photoMap && Object.keys(photoMap).length > 0) {
    applyLpPhotos(photoMap)
