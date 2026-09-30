@@ -518,7 +518,7 @@ Stockholms skärgård har både sandstränder och klippbad, och enligt allemansr
 ### [Trouville, Sandhamn](/upptack/stora-trouvillestranden)
 Den långa stranden med vit sand ligger på Sandhamns södra sida, omkring 20 minuters promenad från hamnen. Sommartid finns toaletter. Badet ägs och sköts av Eknö hemman, och Värmdö kommun tar inga badvattenprover här. Stranden delas i [Stora](/upptack/stora-trouvillestranden) och [Lilla Trouville](/upptack/lilla-trouville-stranden). Så tar du dig till ön: [Båt till Sandhamn](/o/sandhamn/komma-dit).
 
-<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "Björnö naturreservat ligger längst ut på Ingarö i Värmdö kommun"; "den fina sandstranden vid Torpesand med utblick mot Nämdöfjärden". OBELAGT ÄNNU: strandens längd "cirka 120 meter" står inte hos Länsstyrelsen. Belägg eller stryk siffran. -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "Björnö naturreservat ligger längst ut på Ingarö i Värmdö kommun"; "den fina sandstranden vid Torpesand med utblick mot Nämdöfjärden". KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-varmdo-kommun/torpesand.html (Havs- och vattenmyndigheten), läst 2026-09-30, "Sandstranden är ca 120 meter lång. Botten är sandbotten och är långgrund. Klippbadet har en handikappanpassad badbrygga." -->
 ### [Torpesand, Björnö naturreservat](/upptack/torpesand)
 Strand- och klippbad i Björnö naturreservat på Ingarö. Sandstranden är cirka 120 meter lång med långgrund sandbotten, och vid klippbadet finns en handikappanpassad badbrygga.
 
@@ -1600,7 +1600,7 @@ Närmast stan: cirka 30 minuter med Strömmas båt från Strandvägen. Här bada
 ### Roslagsbanan och Värmdö
 - [Österskärs havsbad (Solbrännan)](/upptack/solbrannan) – fem minuters promenad från Roslagsbanans Österskärs station. Lång sandstrand med badbrygga, och öster om badet en lekplats och en stor gräsplan.
 - [Grisslinge havsbad](/upptack/grisslinge-havsbad) – cirka 300 meter sandstrand med lekplats, toalett, omklädningsrum, utedusch och kiosk.
-<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "den fina sandstranden vid Torpesand med utblick mot Nämdöfjärden". OBELAGT ÄNNU: strandens längd "cirka 120 meter" står inte hos Länsstyrelsen. Belägg eller stryk siffran. -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "den fina sandstranden vid Torpesand med utblick mot Nämdöfjärden". KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-varmdo-kommun/torpesand.html (Havs- och vattenmyndigheten), läst 2026-09-30, "Sandstranden är ca 120 meter lång. Botten är sandbotten och är långgrund. Klippbadet har en handikappanpassad badbrygga." -->
 - [Torpesand](/upptack/torpesand), Björnö naturreservat – cirka 120 meter sandstrand med långgrund sandbotten.
 
 ### Södra skärgården
@@ -1790,7 +1790,7 @@ De flesta boenden på Skärgårdsstiftelsens områden drivs av entreprenörer oc
 - **Utö och Gålö:** stugor och lägenheter med enkel standard och utedass, öppna 1 maj–2 november.
 - **Fjärdlång – Norrötorpet:** torp på 33 kvadratmeter utan el, med gårdspump, utedass och bastu vid egen brygga. Öppet 8 maj–20 september.
 - **Huvudskär:** vandrarhem i Lotshuset och Tullhuset, nio boenden med 47 bäddar. Här finns varken el eller värme, och du tar med egen mat. Öppet 15 maj–20 september.
-<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/haringe-hammersta.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1990"; "Skyddsform: naturreservat"; "Förvaltare: Skärgårdsstiftelsen". OBELAGT ÄNNU: öppettiderna 22 januari–2 november för stugan Gröndal står inte hos Länsstyrelsen. Kontrollera mot Skärgårdsstiftelsen eller stryk. -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/haringe-hammersta.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1990"; "Skyddsform: naturreservat"; "Förvaltare: Skärgårdsstiftelsen". KÄLLA: https://skargardsstiftelsen.se/boka-boende/ (Skärgårdsstiftelsen), läst 2026-09-30, "Stugan Gröndal är öppet under perioden 22 januari-2 november." -->
 - **Hammersta – stugan Gröndal** i Häringe–Hammersta naturreservat, öppen 22 januari–2 november.
 
 ### Öppna bodar
@@ -1977,8 +1977,8 @@ Många naturhamnar ligger i naturreservat. På Grinda, Granholmen, Gällnö, Fin
 
 ### Runt Nämdö
 - **Jungfruskär** – naturreservat fyra kilometer söder om Nämdö, som SXK tar upp bland sina besöksmål. Fågelskyddsområdet får inte beträdas 1 februari–15 augusti.
-<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/biskopso.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "Biskopsös naturreservat omfattar ett spännande ytterskärgårdsområde med de stora öarna Biskopsön och Kastön". OBELAGT ÄNNU: avståndet "åtta kilometer söder om Nämdö" och sälskyddsområdets datum 1 februari–15 augusti står inte på sidan. Belägg mot föreskrifterna eller stryk. -->
-- **Koxviken på Biskopsön** – också ett av SXK:s besöksmål. Biskopsö naturreservat ligger åtta kilometer söder om Nämdö, och sälskyddsområdet är stängt 1 februari–15 augusti.
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/biskopso.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "Biskopsös naturreservat omfattar ett spännande ytterskärgårdsområde med de stora öarna Biskopsön och Kastön". KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/salskyddsomrade-12-158 (Länsstyrelsen Stockholms föreskrifter för Biskopsö, publicerade i Länsstyrelsens guide på Naturkartan), läst 2026-09-30, "under tiden 1 februari-15 augusti beträda eller befara såväl land som vatten inom det område (sälskyddsområde)". Avståndet till Nämdö gick inte att belägga och är struket. -->
+- **Koxviken på Biskopsön** – också ett av SXK:s besöksmål. I Biskopsö naturreservat är sälskyddsområdet kring Själberget stängt för både land och vatten 1 februari till 15 augusti.
 <!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 - [Bullerö](/o/bullero) och Nämdöskärgårdens nationalpark – enligt Länsstyrelsen finns här gott om naturhamnar.
 
@@ -2085,8 +2085,8 @@ Buss från Slussen till Stavsnäs vinterhamn, sedan Waxholmsbolagets linje 16 (4
 Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan, 35–75 minuter enligt höst- och vårtidtabellen. I Gruvbyn står väderkvarnen från 1791, och gruvdriften upphörde 1879. Utö är en cykel-ö med cykeluthyrning dagsvis. [Utö guide](/blogg/uto-guide).
 
 ### Ålö – båt från Nynäshamn
-<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 2008"; "Skyddsform: naturreservat"; "Reservatet omfattar öarna Ålö och Rånö"; "Storsand på Ålö anses vara en av Stockholms skärgårds finaste sandstränder". OBELAGT ÄNNU: sträckan "12 kilometer" från Gruvbryggan till Ålö står inte hos Länsstyrelsen. Belägg eller stryk siffran. -->
-Båt går från Nynäshamn via Nåttarö och Rånö till Ålö, som har broförbindelse med Utö. Från Gruvbryggan på Utö är det 12 kilometer att cykla längs grusvägen. Ålö ingår i naturreservatet Ålö-Rånö, och Ålö Storsand nås med båt eller via vandringsled. På sommaren kan du äta och hyra cykel vid Båtshaket.
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 2008"; "Skyddsform: naturreservat"; "Reservatet omfattar öarna Ålö och Rånö"; "Storsand på Ålö anses vara en av Stockholms skärgårds finaste sandstränder". Sträckan Gruvbryggan till Ålö gick inte att belägga (uppgifterna går isär mellan 12 och 14 km) och är struken. -->
+Båt går från Nynäshamn via Nåttarö och Rånö till Ålö, som har broförbindelse med Utö. Från Gruvbryggan på Utö kan du cykla dit längs grusvägen. Ålö ingår i naturreservatet Ålö-Rånö, och Ålö Storsand nås med båt eller via vandringsled. På sommaren kan du äta och hyra cykel vid Båtshaket.
 
 ### Ornö – cirka 30 minuter från Dalarö
 SL-buss till Dalarö och bilfärjan till Hässelmara. Ornö är södra skärgårdens största ö. I Kyrkviken finns museum, bibliotek och cykeluthyrning, och från Sundby gård går en drygt sex kilometer lång rundslinga. [Vandring på Ornö och Utö](/blogg/vandring-orno-uto).
