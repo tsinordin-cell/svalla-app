@@ -9295,7 +9295,8 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Grinda - Boda - Sollenkroka Gäller:2026-08-17till2026-12-12"; "Stavsnäs - Sandhamn - Hagede Gäller:2026-08-17till2026-12-12"; "Årsta - Utö Gäller:2026-08-17till2026-12-12"; "Stockholm - Dalarö - Ornö (östra sidan) - Fjärdlång - Utö Gäller:2026-08-17till2026-12-12"; "Stockholm - Vaxholm - Sollenkroka - Möja Gäller:2026-08-17till2026-12-12" (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den 17 augusti 2026 började en ny tidtabellsperiod. De flesta linjetidtabeller gäller från 17 augusti till 12 december 2026, till exempel linjerna Stockholm–Vaxholm–Grinda–Boda–Sollenkroka, Stavsnäs–Sandhamn–Hagede, Årsta–Utö, Stockholm–Dalarö–Ornö–Fjärdlång–Utö och Stockholm–Vaxholm–Sollenkroka–Möja.</p>
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Några linjer i norra skärgården har en kortare period, från 17 augusti till 1 november 2026: Stockholm–Vaxholm–Blidösundet, Stockholm–Vaxholm–Norrsund–Rödlöga och Stockholm–Vaxholm–Norrsund–Arholma. Sök alltid din resa i Waxholmsbolagets reseplanerare innan du åker. Mer om båtarna finns i <a href="/guider/waxholmsbolaget-guide">guiden till Waxholmsbolaget</a> och i <a href="/guider/host-stockholms-skargard">guiden till hösten i Stockholms skärgård</a>.</p>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; turerna 2721 och 2771 till Arholma har anmärkning I "Går under perioden 2 april - 18 juni." (övriga turer slutar vid Gräskö); https://kund.printhuset-sthlm.se/wa/h30.pdf — Simpnäs–Arholma "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Några linjer i norra skärgården har en kortare period, från 17 augusti till 1 november 2026: Stockholm–Vaxholm–Blidösundet, Stockholm–Vaxholm–Norrsund–Rödlöga och Stockholm–Vaxholm–Norrsund–Arholma. Linjen mot Arholma går i höst bara till Gräskö. Till Arholma åker du med passbåten från Simpnäs, som går till 12 december. Sök alltid din resa i Waxholmsbolagets reseplanerare innan du åker. Mer om båtarna finns i <a href="/guider/waxholmsbolaget-guide">guiden till Waxholmsbolaget</a> och i <a href="/guider/host-stockholms-skargard">guiden till hösten i Stockholms skärgård</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad händer i skärgården på sensommaren?</h2>
 
@@ -9339,7 +9340,8 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Grinda - Boda - Sollenkroka Gäller:2026-08-17till2026-12-12"; "Stavsnäs - Sandhamn - Hagede Gäller:2026-08-17till2026-12-12"; "Årsta - Utö Gäller:2026-08-17till2026-12-12" (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget byter tidtabell fyra gånger om året. Den period som gäller i september började den 17 augusti 2026 och gäller till och med den 12 december 2026 för bland annat linjerna Stockholm–Vaxholm–Grinda–Boda–Sollenkroka, Stavsnäs–Sandhamn och Årsta–Utö.</p>
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Några längre linjer från Stockholm har en kortare period: Stockholm–Vaxholm–Blidösundet och linjerna via Norrsund till Rödlöga och Arholma gäller till och med den 1 november 2026.</p>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; turerna 2721 och 2771 till Arholma har anmärkning I "Går under perioden 2 april - 18 juni." (övriga turer slutar vid Gräskö); https://kund.printhuset-sthlm.se/wa/h30.pdf — Simpnäs–Arholma "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Några längre linjer från Stockholm har en kortare period: Stockholm–Vaxholm–Blidösundet och linjerna via Norrsund till Rödlöga och Arholma gäller till och med den 1 november 2026. Linjen mot Arholma går i höst bara till Gräskö. Till Arholma åker du med passbåten från Simpnäs, som går till 12 december.</p>
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Grinda har trafik året om" (läst 2026-09-28) -->
 <!-- KÄLLA: https://skargardsstiftelsen.se/omraden/finnhamn/ — "Finnhamn nås med reguljär båttrafik från Stockholm, året runt med Waxholmsbolaget." (läst 2026-09-28) -->
@@ -14095,7 +14097,8 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Båtarna i Stockholms skärgård under höstlovet</h2>
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Grinda - Boda - Sollenkroka Gäller:2026-08-17till2026-12-12"; "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De flesta av Waxholmsbolagets hösttidtabeller gäller till 12 december 2026. Tre linjer från Stockholm – till Rödlöga, till Arholma och till Blidösundet – gäller bara till 1 november. Höstlovsveckan är alltså sista veckan med de turerna från stan.</p>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; turerna 2721 och 2771 till Arholma har anmärkning I "Går under perioden 2 april - 18 juni." (övriga turer slutar vid Gräskö); https://kund.printhuset-sthlm.se/wa/h30.pdf — Simpnäs–Arholma "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De flesta av Waxholmsbolagets hösttidtabeller gäller till 12 december 2026. Tre linjer från Stockholm – till Rödlöga, till Arholma och till Blidösundet – gäller bara till 1 november. Höstlovsveckan är alltså sista veckan med de turerna från stan. Linjen mot Arholma går i höst bara till Gräskö. Till Arholma åker du med passbåten från Simpnäs, som går till 12 december.</p>
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Båtresan från Strömkajen tar bara en timme och under sommaren går det turer många gånger om dagen, och övrig tid på året går det flera per dag." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Du kan åka till Grinda från Strömkajen, via Vaxholm. Resan från Strömkajen tar ungefär en och en halv timme."; "Grinda har trafik året om" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/moja — "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja." (läst 2026-09-28) -->
@@ -14222,8 +14225,9 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01" (läst 2026-09-28) -->
 <!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — "GÄLLER 14 DECEMBER 2025 – 1 APRIL 2026" (läst 2026-09-29) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget byter tidtabell fyra gånger om året, och vissa linjer går bara under en del av en period. Hösten 2026 ser det ut så här:</p>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; turerna 2721 och 2771 till Arholma har anmärkning I "Går under perioden 2 april - 18 juni." (övriga turer slutar vid Gräskö); https://kund.printhuset-sthlm.se/wa/h30.pdf — Simpnäs–Arholma "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-09-30) -->
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
-<li><strong>1 november:</strong> sista dagen för linjerna från Stockholm till Rödlöga, Arholma och Blidösundet.</li>
+<li><strong>1 november:</strong> sista dagen för linjerna från Stockholm till Rödlöga, Arholma och Blidösundet. Linjen mot Arholma går i höst bara till Gräskö, och till Arholma går passbåten från Simpnäs till 12 december.</li>
 <li><strong>12 december:</strong> sista dagen för övriga hösttidtabeller.</li>
 <li><strong>Därefter:</strong> vintertidtabellen. Förra vintern gällde den 14 december 2025–1 april 2026. Årets datum var inte publicerade i slutet av september.</li>
 </ul>
@@ -14313,8 +14317,9 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://www.waxholmsbolaget.se/nyheter-och-trafikinfo/dags-for-hosttidtabell — "Hösttidtabellerna gäller mellan 17 augusti och lördagen den 12 december." (läst 2026-09-29) -->
 <!-- KÄLLA: https://waxholmsbolaget.se/nyheter-och-trafikinfo/lagsasongen-igang — "Från den 14 september till den 29 april 2027 kan du som har en SL-biljett som gäller för 30 dagar eller längre resa i hela Waxholmsbolagets trafik." (publicerad 2026-09-10, läst 2026-09-30) -->
 <!-- KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/sa-galler-sl-biljetten-pa-baten — "SL:s periodbiljetter med kortare giltighetstid än 30 dagar ingår inte i erbjudandet." (läst 2026-09-30) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; turerna 2721 och 2771 till Arholma har anmärkning I "Går under perioden 2 april - 18 juni." (övriga turer slutar vid Gräskö); https://kund.printhuset-sthlm.se/wa/h30.pdf — Simpnäs–Arholma "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-09-30) -->
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
-<li><strong>Linjer som har slutat:</strong> Waxholmsbolagets linjer från Stockholm till Rödlöga, Arholma och Blidösundet gick sista gången 1 november.</li>
+<li><strong>Linjer som har slutat:</strong> Waxholmsbolagets linjer från Stockholm till Rödlöga, Arholma och Blidösundet gick sista gången 1 november. Till Arholma åker du med passbåten från Simpnäs, som går till 12 december.</li>
 <li><strong>Resten av hösten:</strong> övriga hösttidtabeller gäller till och med lördag 12 december. Sedan kommer vintertidtabellen.</li>
 <li><strong>SL-biljetten gäller:</strong> från 14 september till 29 april 2027 reser du i hela Waxholmsbolagets trafik med en SL-biljett som gäller i 30 dagar eller längre. Kortare periodbiljetter ingår inte.</li>
 </ul>
@@ -14333,12 +14338,13 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://arholmahandel.se/ — "Öppettider 7 september och framåt": måndag och onsdag 12–14, fredag "12:00-14:00 & 15:30-19:00"; Bryggcaféet: "Vi har stängt nu. Välkommen tillbaka sommaren 2027!" (läst 2026-09-30) -->
 <!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Vandrarhemmet har öppet året runt men under den kallare årstiden endast för större grupper." (läst 2026-09-30) -->
 <!-- KÄLLA: https://www.kungligaslotten.se/vara-besoksmal/kungl.-nationalstadsparken/fjaderholmarna.html — "Fjäderholmarna har nu säsongsöppet till och med 13 september." (läst 2026-09-30) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; turerna 2721 och 2771 till Arholma har anmärkning I "Går under perioden 2 april - 18 juni." (övriga turer slutar vid Gräskö); https://kund.printhuset-sthlm.se/wa/h30.pdf — Simpnäs–Arholma "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-09-30) -->
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
 <li><strong>Sandhamn:</strong> Seglarhotellet har öppet året runt. Spaet och gymmet har öppet varje dag 08.00–20.00, och gäster som inte bor på hotellet är välkomna i mån av plats. På Sandhamns Värdshus är puben öppen året runt, medan restaurangen utanför säsong främst har öppet på helger.</li>
 <li><strong>Utö:</strong> Utö Värdshus har öppet året runt enligt Skärgårdsstiftelsen. Uppgifterna om öppettider skiljer sig åt mellan källorna, så ring innan.</li>
 <li><strong>Grinda:</strong> Grinda Wärdshus är stängt 2–30 november och har bara lunchöppet 1 november. Sjömacken är obemannad men öppen, med kortautomat. Ta med matsäck.</li>
 <li><strong>Möja:</strong> Coop i Berg har öppet året runt. Öppettiderna för november var inte publicerade i slutet av september.</li>
-<li><strong>Arholma:</strong> Arholma Handel har öppet måndag och onsdag 12–14 och fredag 12–14 och 15.30–19. Bryggcaféet har stängt till sommaren 2027. Tänk på att båten från Stockholm slutar gå 1 november.</li>
+<li><strong>Arholma:</strong> Arholma Handel har öppet måndag och onsdag 12–14 och fredag 12–14 och 15.30–19. Bryggcaféet har stängt till sommaren 2027. Båten från Stockholm går inte ända till Arholma på hösten, så åk med passbåten från Simpnäs.</li>
 <li><strong>Finnhamn:</strong> STF:s vandrarhem har öppet året runt, men under den kallare årstiden bara för större grupper.</li>
 <li><strong>Fjäderholmarna:</strong> säsongen slutade 13 september.</li>
 </ul>
@@ -14389,6 +14395,146 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Helgen 28–29 november är det julmarknad på <a href="/o/marstrand">Marstrand</a>, inomhus i Strandverket, lördag 11–16 och söndag 11–15. Samma lördag, 28 november klockan 15.30, är det adventsgudstjänst i Arholma kyrka.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">I <a href="/utflykt">dagsplaneraren</a> ser du båttiderna för en viss dag.</p>
 `,
+  'host-roslagen': `
+<!-- SKRIVEN 2026-09-30 (Toms lista punkt 5). Tidtabeller och öppettider lästa 2026-09-30. Hösttabellerna gäller olika långt: vissa till 1 november, andra till 12 december. -->
+<!-- KÄLLA: https://roslagen.se/om-oss/ — "Destination Roslagen är det officiella platsvarumärket för Roslagen – en del av Roslags-samarbetet mellan Östhammar, Norrtälje och Österåker."; https://roslagen.se/ — "Roslagen är stort och varierat – med skärgård, småstäder, bruksorter och levande landsbygd." (läst 2026-09-30) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Roslagen är kusten och skärgården norr om Stockholm, i kommunerna Österåker, Norrtälje och Östhammar. På hösten blir det glest med båtar och de flesta krogar stänger, men Arholma, Norröra, Fejan och Lidö går fortfarande att nå, och vandringslederna är öppna. Här är vad som gäller hösten 2026 och hur du tar dig ut, med källa för varje uppgift.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Viktigast först: båten från Stockholm når inte Arholma i höst</h2>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; turerna 2721 och 2771 till Arholma har anmärkning I "Går under perioden 2 april - 18 juni." (läst 2026-09-30) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h30.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"; "Simpnäs (Björkö) 07.05 – Arholma 07.20"; anmärkning C: förbokas "senast kl. 19.00 dag före resdag" (läst 2026-09-30) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/sl/h636.pdf — "636 Norrtälje–Björkö", "Giltig 17 augusti–12 december 2026"; hållplatser Simpnäs brygga, Älmsta busstation (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Linjen Stockholm–Vaxholm–Norrsund–Arholma har hösttabell till 1 november, men på hösten slutar alla turer vid Gräskö. Turerna ända till <a href="/o/arholma">Arholma</a> går bara på våren och försommaren. I höst åker du i stället buss 636 från Norrtälje till Simpnäs på Björkö och tar passbåten, linje 30, över. Den tabellen gäller till 12 december, och en morgontur går till exempel från Simpnäs 07.05 och är framme 07.20. Vissa turer måste förbokas senast klockan 19.00 dagen före.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Så tar du dig ut i Roslagens skärgård i höst</h2>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — anmärkning L: "Går under perioderna 8 maj - 18 juni och 17 augusti - 1 november"; fredag och lördag Strömkajen 08.45 → Rödlöga 13.00, söndag 10.00 → 14.00 (läst 2026-09-30) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026"; turer från Furusund och Köpmanholm; "Bryggan är avstängd till juni 2027 på grund av renoveringsarbeten." (Bromskär) (läst 2026-09-30) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Det finns varken livsmedelsbutiker eller restauranger på öarna" (läst 2026-09-30) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/sl/h634.pdf — "634 Norrtälje–Blidö", giltig 17 aug–12 dec 2026; https://kund.printhuset-sthlm.se/sl/h632.pdf — "632 Norrtälje–Yxlan" (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård."; https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/ — "Blidöleden går mellan Yxlan och Blidö … Resan med vägfärjan är avgiftsfri." (läst 2026-09-30) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/sl/h631.pdf — "631 Norrtälje–Rådmansö–Norrtälje", giltig 17 aug–12 dec 2026, hållplats Räfsnäs brygga; https://kund.printhuset-sthlm.se/wa/h31.pdf — Räfsnäs 10.05 → Fejan 11.00, anmärkning V "Går under perioden 14 september - 12 december." (läst 2026-09-30) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/lido/ — "Hit tar du dig med reguljär skärgårdsbåt från Räfsnäs året runt." (läst 2026-09-30) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/sl/h637.pdf — "637 Norrtälje–Singö", "Giltig 17 augusti–12 december 2026"; hållplatser Grisslehamns färjeläge, Singö kyrka (läst 2026-09-30) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong><a href="/o/rodloga">Rödlöga</a>, direkt från stan:</strong> till och med 1 november går båten från Strömkajen fredag och lördag 08.45 (framme 13.00) och söndag 10.00 (framme 14.00).</li>
+<li><strong><a href="/o/norrora">Norröra</a>, Söderöra, Svartlöga och Rödlöga från Furusund:</strong> från 1 oktober till 12 december går båtarna från Furusund och Köpmanholm på <a href="/o/yxlan">Yxlan</a>. Norröra och Söderöra har turer varje dag. Där finns varken butik eller restaurang.</li>
+<li><strong><a href="/o/blido">Blidö</a> och Yxlan:</strong> bussarna 634 och 632 går från Norrtälje, och vägfärjorna över Furusundsleden och Blidöleden är gratis. Bryggan vid Bromskär på Blidö är avstängd till juni 2027.</li>
+<li><strong><a href="/o/fejan">Fejan</a> och Lidö:</strong> buss 631 från Norrtälje till Räfsnäs brygga och båt vidare. En vardagstur går Räfsnäs 10.05 och är framme på Fejan 11.00. Till Lidö går båten från Räfsnäs året runt.</li>
+<li><strong>Grisslehamn och Singö:</strong> buss 637 från Norrtälje, med hållplatser vid Grisslehamns färjeläge och Singö kyrka.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Norrtälje kommer du med SL-buss från Stockholm. Sök hela resan i SL:s reseplanerare, eftersom bussar och båtar är anpassade till varandra och flera tabeller byts 1 november och 12 december.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad har öppet?</h2>
+<!-- KÄLLA: https://arholmahandel.se/ — "Öppettider 7 september och framåt Måndag 12:00-14:00 Tisdag Stängt Onsdag 12:00-14:00 Torsdag Stängt Fredag 12:00-14:00 & 15:30-19:00 Lördag 10:30-13:00 Söndag Stängt"; "Vid större helger har vi extra öppet"; https://arholmahandel.se/bryggcafet/ — "Vi har nu stängt för säsongen"; https://arholmahandel.se/stuguthyrning/ — Källarstugan "uthyres per dygn från maj till och med september månad samt under höstlovsveckan." (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-arholma-bull-august-gard/ — "Boningshuset, som är öppet året runt, har 10 bäddar."; "Bastu finns." (läst 2026-09-30) -->
+<!-- KÄLLA: https://arholmanord.se/ — "Nu är sommarsäsongen 2026 slut och vi har öppet för grupper, konferenser och bröllop"; "Vi ses på midsommarafton 2027 då vi öppnar igen." (läst 2026-09-30) -->
+<!-- KÄLLA: https://lidovardshus.com/ — "Vi har nu öppet för grupper, konferenser, fester och bröllop"; "Boende & restaurang öppnar åter till midsommar 2027 den 25 juni" (läst 2026-09-30) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/fejan/ — "Under 2026 håller vandrarhemmet stängt." (läst 2026-09-30) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Arholma:</strong> Arholma Handel har öppet måndag och onsdag 12–14, fredag 12–14 och 15.30–19 och lördag 10.30–13, med extra öppet vid större helger. Bryggcaféet har stängt för säsongen. Källarstugan hyrs ut under höstlovsveckan. STF:s Bull-August gård har ett boningshus som enligt STF är öppet året runt, och där finns bastu.</li>
+<li><strong>Arholma Nord och Lidö Värdshus:</strong> tar bara emot grupper, konferenser och fester nu. Båda öppnar för alla igen till midsommar 2027.</li>
+<li><strong>Fejan:</strong> vandrarhemmet håller stängt under hela 2026.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Räkna med att ta med mat. På flera av öarna finns ingenting att köpa på hösten.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vandra i höstfärger</h2>
+<!-- KÄLLA: https://www.norrtalje.se/roslagsleden — "Roslagsleden sträcker sig från Danderyd till Grisslehamn, och är en del av Europavandringsleden E6"; "Total längd: 19 mil"; "Etappernas längd: 9–25 km (3–8 timmar vandring per dag)" (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/arholma-ido.html — "Området ligger exponerat mot Ålands hav och är tydligt präglat av det."; lundmiljöerna "hyser en fin kärlväxtflora och dessutom en mycket artrik svampflora" (läst 2026-09-30) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/riddersholm/ — "Hit kommer besökare året om för att tälta, vandra, fågelskåda och bada."; "nästan två mil markerade stigar"; "Det går också SL-buss från Stockholm via Norrtälje till hållplats Riddersholm." (läst 2026-09-30) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Roslagsleden:</strong> 19 mil från Danderyd till Grisslehamn, i etapper på 9–25 kilometer. Leden är en del av Europavandringsleden E6.</li>
+<li><strong>Arholma-Idö naturreservat:</strong> ligger öppet mot Ålands hav. Enligt Länsstyrelsen har lundarna en mycket artrik svampflora, så ta med svampkorgen.</li>
+<li><strong>Riddersholm:</strong> Skärgårdsstiftelsens område har nästan två mil markerade stigar och besökare året om. Hit går SL-buss från Stockholm via Norrtälje, till hållplatsen Riddersholm.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Händer i Roslagen hösten 2026</h2>
+<!-- KÄLLA: https://www.arholma.nu/evenemang — söndag 4 oktober 2026 11–12 gudstjänst och Mikaelispel, Arholma kyrka; måndag 5 oktober 2026 14–16 skördefest, Arholmagården; lördag 31 oktober 2026 11–13 "Öppen kyrka för stillhet och ljuständning"; lördag 28 november 2026 adventsgudstjänst kl 15.30 (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.norrtalje.se/evenemang/2026/oktober/norrtalje-marknad/ — "Onsdagen den 7 oktober 2026 fylls Norrtälje stadskärna återigen av liv och rörelse" (läst 2026-09-30) -->
+<!-- KÄLLA: Norrtälje kommuns evenemangskalender 2026 (norrtalje.se/evenemang/2026) — höstutflykt med stridsbåt från Solö brygga till Siaröfortet "2026-10-04 13:00–15:00" och "2026-10-18 13:00–15:00"; till Söderarms skärgård 18 oktober 10.30–13.00; Gastronomi Roslagen 29 oktober på Å-tellet i Norrtälje (läst 2026-09-30) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Arholma:</strong> gudstjänst och Mikaelispel söndag 4 oktober klockan 11, skördefest på Arholmagården måndag 5 oktober 14–16, öppen kyrka för stillhet och ljuständning lördag 31 oktober 11–13, och adventsgudstjänst lördag 28 november klockan 15.30.</li>
+<li><strong>Norrtälje:</strong> Norrtälje marknad onsdag 7 oktober och Gastronomi Roslagen 29 oktober.</li>
+<li><strong>Med stridsbåt från Solö brygga:</strong> höstutflykter till Siaröfortet 4 och 18 oktober klockan 13–15, och till Söderarms skärgård 18 oktober 10.30–13.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om hösten i hela Stockholms skärgård finns i <a href="/guider/host-stockholms-skargard">guiden till hösten i Stockholms skärgård</a>. Hur båtarna går när vintern kommer står i <a href="/guider/vintertrafik-skargarden">Vintertrafiken i skärgården</a>.</p>
+`,
+  'weekendresa-host-havet': `
+<!-- SKRIVEN 2026-09-30 (Toms lista punkt 5). Tio resmål där en höstweekend faktiskt går att genomföra 2026: resa, boende eller mat och något att göra, läst på operatörernas och verksamheternas egna sidor 2026-09-30. Priser bara där de anges gälla 2026. Tidigare text påstod att priserna är "30–50% lägre" på hösten; det gick inte att belägga och är borttaget. -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En höstweekend vid havet kräver mer planering än en sommarhelg. Båtarna går glesare, många krogar har stängt och en del hotell tar bara emot grupper. Här är tio resmål längs kusten där det går att resa dit, bo och göra något en helg i oktober eller november 2026. Varje uppgift är kontrollerad mot operatörens eller verksamhetens egen sida.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Göteborgs skärgård</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">1. Brännö</h3>
+<!-- KÄLLA: https://styrsobolaget.se/tidtabeller/ — "Hösttidtabell L 283 20260824-20261212"; linje 283 "Stenpiren- Saltholmen-Asperö-Brännö Rödsten och omvänt" (läst 2026-09-30) -->
+<!-- KÄLLA: https://brannovardshus.se/oppettider/ — "Rumsuthyrning på Pensionat Baggen och Värdshusets Gästrum är möjlig året runt"; "10 AUGUSTI – 13 DECEMBER 2026 … Fredag kl. 12-20/23* Lördag kl. 12-20/23*" (läst 2026-09-30) -->
+<!-- KÄLLA: https://brannovardshus.se/erbjudanden/ — Vandringsweekend "Pris 1890 kr per person för boende på Pensionat Baggen"; "Erbjudandet gäller 1 oktober till 22 november 2026" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Båten från Saltholmen, linje 283, har hösttidtabell till 12 december. På <a href="/o/branno">Brännö</a> går det att hyra rum på Pensionat Baggen och i värdshusets gästrum året runt, och värdshusets restaurang har öppet fredag och lördag från 12.00 till och med 13 december. Värdshuset säljer en vandringsweekend för 1 890 kr per person, som gäller 1 oktober–22 november 2026.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">2. Styrsö</h3>
+<!-- KÄLLA: https://styrsobolaget.se/tidtabeller/ — "Hösttidtabell L 281-282 20260824-20261212"; linje 281 "Stenpiren-Saltholmen-Köpstadsö-Styrsö Bratten-Donsö-Vrångö" (läst 2026-09-30) -->
+<!-- KÄLLA: https://kusthotelletstyrso.se/restaurangen/ — "Hösttider 2026 … Restaurang – a la carte: Måndag – Söndag: 17.00-23.00 (köket stänger kl 20.00)"; https://kusthotelletstyrso.se/hitta-till-oss/ — "Kusthotellet ligger på nära gångavstånd från hållplatsen Styrsö Skäret"; https://kusthotelletstyrso.se/jul-2026/ — "från 20 november till 20 december" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till <a href="/o/styrso">Styrsö</a> går linjerna 281 och 282 från Saltholmen, med hösttidtabell till 12 december. Kusthotellet ligger nära bryggan Styrsö Skäret. Restaurangen har hösttider 2026 med à la carte varje kväll från 17.00, och från 20 november serveras julbord.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">3. Marstrand</h3>
+<!-- KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014630200000/ — "Marstrand - Ytterby - Kungälv 2025-12-14 till 2026-12-12" (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.marstrandsfarja.se/om-farjetrafiken/tidtabell — "Vintertidtabell … Uppdaterad: 2026-09-29 … Oktober - Maj" (läst 2026-09-30) -->
+<!-- KÄLLA: https://carlsten.se/oppettider-och-priser/ — "Soldathotellet är öppet året runt för bokningar"; fästningens öppettider anges bara till och med september 2026 (läst 2026-09-30) -->
+<!-- KÄLLA: https://marstrandsmarknad.com/ — "Julmarknad · 28–29 november 2026" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Västtrafiks buss 302 går från Kungälv till Marstrand, och Marstrandsfärjan har vintertidtabell från oktober till maj. På <a href="/o/marstrand">Marstrand</a> går Soldathotellet på Carlstens fästning att boka året runt. Själva fästningen har bara publicerat öppettider till och med september, så räkna inte med att komma in. Helgen 28–29 november är det julmarknad på ön.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bohuslän</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">4. Lysekil</h3>
+<!-- KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014484100000/ — "Lysekil - Torp - Göteborg 2026-08-17 till 2026-12-12" (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.havetshus.se/besok-oss/oppettider/ — "17/8 – 30/12 Dagligen kl 10-16, entrén stänger 15.30"; "*Stängt följande dagar under 2026" (läst 2026-09-30) -->
+<!-- KÄLLA: https://strandflickorna.com/aktuella-erbjudanden/ — "Här listar vi alla våra aktuella erbjudanden & rabatter höst/vinter 2026" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Västtrafiks buss 841 går mellan Göteborg och <a href="/o/lysekil">Lysekil</a>, även på helger, med tidtabell till 12 december. Havets Hus har öppet varje dag 10–16 fram till 30 december, med några stängda dagar som står på deras sida. Hotell Strandflickorna har samlat sina erbjudanden för hösten och vintern 2026 på sin webbplats.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">5. Smögen</h3>
+<!-- KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014486000000/ — "Smögen - Kungshamn - Uddevalla - Trollhättan 2025-12-14 till 2026-12-12" (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.smogenshafvsbad.se/ — "76 hotellrum, en stor restaurang, spa och konferens öppet hela året." (läst 2026-09-30) -->
+<!-- KÄLLA: https://nordensark.se/besok-oss/oppettider-och-priser/ — "Öppettider 2026 Öppet varje dag mellan måndag 10 augusti – söndag 1 november 10.00-16.00" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Buss 860 går till <a href="/o/smogen">Smögen</a> från Uddevalla och Trollhättan, även på helger. Smögens Hafvsbad skriver att hotellet, restaurangen och spaet har öppet hela året. Djurparken Nordens Ark har öppet varje dag 10–16 till och med 1 november 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Stockholms skärgård</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">6. Sandhamn</h3>
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt." (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.sandhamn.com/sv/kalender/familjelophelg — "30 - 31 oktober 2026"; https://www.sandhamn.com/sv/kalender/hostlov26 — "Under höstlovet tänder vi bastuflottarna varje dag kl. 12.30–15.30 för alla som bor på hotellet."; https://www.sandhamn.com/sv/spa — "Spa och gym har öppet dagligen mellan 08.00–20.00." (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till <a href="/o/sandhamn">Sandhamn</a> går Waxholmsbolagets båt året runt från Stavsnäs. Seglarhotellet har spa och gym öppet varje dag 08.00–20.00. Under höstlovet tänds bastuflottarna varje dag 12.30–15.30 för hotellets gäster, och helgen 30–31 oktober 2026 arrangerar hotellet en familjelöphelg.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">7. Grinda (bara i oktober)</h3>
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — "Grinda har trafik året om" (läst 2026-09-30) -->
+<!-- KÄLLA: https://grinda.se/mat-fest/wardshuset/ — kalendern oktober 2026, till exempel "oktober 17, 2026 12:00 – 23:00"; 30–31 oktober "Extra Höstlovsöppet!"; 1 november endast lunch; 2 november–31 december "Stängt" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><a href="/o/grinda">Grinda</a> har båt året om, och Grinda Wärdshus har helgöppet i oktober 2026, till exempel lördag 17 oktober 12–23, och extra öppet under höstlovet 30–31 oktober. Från 2 november till årsskiftet är värdshuset stängt, så det här är en oktoberhelg.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öarna längre bort</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">8. Visby</h3>
+<!-- KÄLLA: https://www.destinationgotland.se/turlista/ — turlistans data för oktober–november 2026: Nynäshamn–Visby fredagar 11.25 och 20.10, Visby–Nynäshamn söndagar 16.00 (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.gotlandsmuseum.se/planera-ditt-besok/entre-och-oppettider/ — "Oktober – april Dagligen 11–16. Kvällsöppet med fri entré: 1/10, 5/11, 3/12 kl. 16–20" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enligt Destination Gotlands turlista går båten från Nynäshamn till <a href="/o/gotland">Gotland</a> på fredagar i oktober och november, klockan 11.25 och 20.10, och tillbaka från Visby på söndagar klockan 16.00. Det räcker för en helg. Gotlands Museum har öppet varje dag 11–16 från oktober till april, och torsdag 5 november är det kvällsöppet med fri entré 16–20.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">9. Ven</h3>
+<!-- KÄLLA: https://ventrafiken.se/tidtabell/ — "Gäller fr.o.m. 2022-01-01 t.o.m. 2026-12-31"; "Överfarten tar cirka 30 minuter"; "Planerat serviceuppehåll 21 september – 2 oktober" (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.hven.com/ — "Lördag 3 oktober 2026 … Destillatprovning med whisky … säsongens specialmeny med 3 serveringar & logi"; "Pris/person (2-3 gäster/hotellenhet) 2495:-"; julbord "26 november till och med 12 december 2026" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Båten till <a href="/o/ven">Ven</a> tar ungefär 30 minuter. Ventrafiken har aviserat ett planerat serviceuppehåll 21 september–2 oktober, så kontrollera den första helgen i oktober. På ön arrangerar Spirit of Hven Backafallsbyn en whiskyprovning med middag och logi lördag 3 oktober 2026 för 2 495 kr per person, och julbord 26 november–12 december 2026.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">10. Karlskrona och Blekinge skärgård</h3>
+<!-- KÄLLA: https://www.marinmuseum.se/besok/oppettider — "Öppettider och priser 2026 … Oktober–april Tisdag–söndag: 10.00–16.00" (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/aspoleden/ — "överfartstiden är cirka 25 minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ — "Från Handelshamnen finns båtpendel året runt till Hasslö, Sturkö och Trummenäs." (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Karlskrona har Marinmuseum öppet tisdag till söndag 10–16 från oktober till april. Vägfärjan till <a href="/o/aspo-blekinge">Aspö</a> tar ungefär 25 minuter och är gratis, och från Handelshamnen går en båtpendel året runt till Hasslö, Sturkö och Trummenäs.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Innan du bokar</h2>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/tidtabeller — "Fartygen kan ändras med kort varsel." (läst 2026-09-29) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Kontrollera hemresan:</strong> flera tidtabeller byts 1 november och 12 december. Sök resan för just din helg, både dit och hem.</li>
+<li><strong>Boka bord:</strong> många restauranger har bara öppet vissa dagar på hösten.</li>
+<li><strong>Ta med mat:</strong> på mindre öar är butiken ofta stängd eller har korta tider.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om hösten finns i <a href="/guider/host-roslagen">Höst i Roslagen</a> och <a href="/guider/november-skargard">November i skärgården</a>. Julbord på öarna finns i <a href="/guider/julbord-skargarden">Julbord i skärgården 2026</a>.</p>
+`,
   'oktober-skargarden': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "havet är fortfarande varmt" och vattentemperaturer, "svampen är som rikligast", "Landsortsledens härbärgen har öppet in i oktober", "Finnhamns härbärge stänger i slutet av september", "Waxholmsbolaget kör vinterdrift från mitten av september" (höstens tidtabeller gäller från augusti), "pendelbåten från Årstaberg" till Utö (båten går från Årsta brygga), "direktbåt från Strömkajen" om Vaxholm utan källa, restiden till Fjäderholmarna, kantareller och trattkantareller på skärgårdsöar, "fullbokat av naturälskare", klädråd utan källa, samt värdeord. -->
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Grinda - Boda - Sollenkroka Gäller:2026-08-17till2026-12-12" (läst 2026-09-28) -->
@@ -14411,7 +14557,8 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Båtarna i oktober – Waxholmsbolagets hösttidtabeller</h2>
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01" (läst 2026-09-28) -->
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Simpnäs - Arholma Gäller:2026-08-17till2026-12-12"; "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga Gäller:2026-08-17till2026-12-12" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De flesta av Waxholmsbolagets linjetidtabeller för hösten gäller 17 augusti–12 december 2026. Tre linjer från Stockholm har en kortare period som slutar 1 november 2026: linjerna till Rödlöga, till Arholma och till Blidösundet. Till Arholma går båten från Simpnäs hela perioden till 12 december, och till Rödlöga går båten från Furusund.</p>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; turerna 2721 och 2771 till Arholma har anmärkning I "Går under perioden 2 april - 18 juni." (övriga turer slutar vid Gräskö); https://kund.printhuset-sthlm.se/wa/h30.pdf — Simpnäs–Arholma "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De flesta av Waxholmsbolagets linjetidtabeller för hösten gäller 17 augusti–12 december 2026. Tre linjer från Stockholm har en kortare period som slutar 1 november 2026: linjerna till Rödlöga, till Arholma och till Blidösundet. Linjen mot Arholma går i höst bara till Gräskö. Till Arholma går båten från Simpnäs hela perioden till 12 december, och till Rödlöga går båten från Furusund.</p>
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt."; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme. Under sommaren så kan du också åka till Sandhamn från Strömkajen." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Du kan åka till Grinda från Strömkajen, via Vaxholm. Resan från Strömkajen tar ungefär en och en halv timme."; "Grinda har trafik året om" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/moja — "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja." (läst 2026-09-28) -->
