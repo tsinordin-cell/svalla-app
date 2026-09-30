@@ -8,10 +8,31 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
+import { KALLOR_PER_O } from '@/app/o/kallor.generated'
+import { ALL_ISLANDS } from '@/app/o/island-data'
+
+/**
+ * Källsiffrorna räknas fram ur kallor.generated.ts vid varje bygge, så de kan
+ * aldrig bli inaktuella. Exitplanen task 6 (2026-09-30): vårt källsystem ska
+ * synas utanför koden. "Myndighet" följer generera-kallor.mjs: myndigheter,
+ * kommuner, regioner och de regionägda trafikbolagen.
+ */
+function kallsiffror() {
+  const listor = Object.values(KALLOR_PER_O)
+  const totalt = listor.reduce((n, l) => n + l.length, 0)
+  const myndighet = listor.reduce((n, l) => n + l.filter(k => k.myndighet).length, 0)
+  const oarMedKalla = listor.filter(l => l.length > 0).length
+  return {
+    totalt,
+    myndighetsandel: totalt > 0 ? Math.round((myndighet / totalt) * 100) : 0,
+    oarMedKalla,
+    oarTotalt: ALL_ISLANDS.length,
+  }
+}
 
 export const metadata: Metadata = {
   title: { absolute: 'Om Svalla – så bygger vi Sveriges skärgårdsguide' },
-  description: 'Svalla är en digital guide till svenska skärgården — byggd av skärgårdsälskare med stöd av Thorkel, vår AI-skeppare. Läs om hur vi samlar data, verifierar fakta och tänker kring innehållet.',
+  description: 'Svalla är en digital guide till svenska skärgården, byggd av skärgårdsälskare med stöd av Thorkel, vår AI-skeppare. Läs om hur vi samlar data, verifierar fakta och tänker kring innehållet.',
   alternates: { canonical: 'https://svalla.se/om' },
   openGraph: {
     title: 'Om Svalla',
@@ -30,7 +51,7 @@ const THORKEL_SCHEMA = {
   name: 'Thorkel',
   alternateName: 'Thorkel skeppare',
   jobTitle: 'AI-skärgårdsguide',
-  description: 'Thorkel är Svallas AI-baserade skärgårdsguide — en digital skeppare som hjälper användare planera turer, hitta öar och navigera kollektivtrafik i den svenska skärgården.',
+  description: 'Thorkel är Svallas AI-baserade skärgårdsguide, en digital skeppare som hjälper användare planera turer, hitta öar och navigera kollektivtrafik i den svenska skärgården.',
   disambiguatingDescription: 'Fiktiv AI-karaktär. Inte en verklig person.',
   image: 'https://svalla.se/thorkel-avatar.svg',
   url: 'https://svalla.se/planera-tur',
@@ -114,10 +135,10 @@ export default function OmPage() {
           }}>
             <h2 style={h2Style}>Vad är Svalla?</h2>
             <p>
-              Svalla är en digital plattform för svenska skärgården — från Fjäderholmarna i innerskärgården till Landsort i söder, och vidare till Bohusläns klippkust och västkustens öar.
+              Svalla är en digital plattform för svenska skärgården, från Fjäderholmarna i innerskärgården till Landsort i söder, och vidare till Bohusläns klippkust och västkustens öar.
             </p>
             <p>
-              Vi kombinerar tre saker: en sökbar karta över restauranger, gästhamnar, naturhamnar och bryggor; live tidtabeller och transport-guider till skärgårdens öar; och Thorkel — vår AI-skeppare — som hjälper dig planera turer och svarar på frågor.
+              Vi kombinerar tre saker: en sökbar karta över restauranger, gästhamnar, naturhamnar och bryggor; live tidtabeller och transport-guider till skärgårdens öar; och Thorkel, vår AI-skeppare, som hjälper dig planera turer och svarar på frågor.
             </p>
 
             <h2 style={h2Style}>Varför vi byggde det</h2>
@@ -125,7 +146,7 @@ export default function OmPage() {
               Vi tröttnade på att söka i fem olika appar för att hitta en öppen krog en sommarkväll. Google Maps saknar hälften av skärgårdens platser, Tripadvisor har gamla öppettider och sjökorten säger ingenting om mat.
             </p>
             <p>
-              Svalla samlar det som faktiskt spelar roll för den som är ute i skärgården — öppettider, koordinater på rätt ö, transport-länkar och insidertips.
+              Svalla samlar det som faktiskt spelar roll för den som är ute i skärgården: öppettider, koordinater på rätt ö, transport-länkar och insidertips.
             </p>
           </article>
 
@@ -143,7 +164,7 @@ export default function OmPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/thorkel-avatar.svg"
-                alt="Thorkel — Svallas AI-skeppare"
+                alt="Thorkel, Svallas AI-skeppare"
                 width={64}
                 height={64}
                 style={{ borderRadius: '50%', flexShrink: 0, background: 'var(--thor-l, rgba(204,178,122,0.12))' }}
@@ -156,10 +177,10 @@ export default function OmPage() {
               </div>
             </div>
             <p>
-              Thorkel är Svallas digitala skeppare — en AI-assistent som är formgiven som en 70-årig skeppare från Möja, gammal lots vid Sandhamn, med decennier på vattnet. Vit kaptens-keps, mörkblå uniform, doft av salt och tjära.
+              Thorkel är Svallas digitala skeppare, en AI-assistent som är formgiven som en 70-årig skeppare från Möja, gammal lots vid Sandhamn, med decennier på vattnet. Vit kaptens-keps, mörkblå uniform, doft av salt och tjära.
             </p>
             <p>
-              Han hjälper dig hitta öar, planera dagsturer, kolla färjetider och svara på frågor om vad som väntar dig på respektive ö. Han är opinionerad — han har starka åsikter om plast i havet, om trålare och om att respektera fredningstider. Det är inte politik för honom utan hemkärlek.
+              Han hjälper dig hitta öar, planera dagsturer, kolla färjetider och svara på frågor om vad som väntar dig på respektive ö. Han är opinionerad och har starka åsikter om plast i havet, om trålare och om att respektera fredningstider. Det är inte politik för honom utan hemkärlek.
             </p>
             <p style={{ fontSize: 13.5, color: 'var(--txt3)', fontStyle: 'italic', marginBottom: 0 }}>
               Transparent: Thorkel är en AI-karaktär. Inte en verklig person. Vi var tydliga med det från första dagen.
@@ -187,24 +208,37 @@ export default function OmPage() {
             lineHeight: 1.75, color: 'var(--txt2)', fontSize: 15,
           }}>
             <h2 style={h2Style}>Hur vi samlar data</h2>
+            {(() => {
+              const k = kallsiffror()
+              return (
+                <p>
+                  Ösidorna vilar på {k.totalt.toLocaleString('sv-SE')} källor, och {k.myndighetsandel} % av dem
+                  kommer från myndigheter, kommuner, regioner eller deras trafikbolag. {k.oarMedKalla === k.oarTotalt
+                    ? `Alla ${k.oarTotalt} öar har minst en.`
+                    : `${k.oarMedKalla} av ${k.oarTotalt} öar har minst en.`}{' '}
+                  Ett nytt pris eller klockslag utan källa stoppar publiceringen av sig själv.
+                  Avstånd och skyddsstatus utan källa flaggas för granskning.
+                </p>
+              )
+            })()}
             <p>
-              Vi tror på transparens. Här är vad vi gör, och varifrån informationen kommer:
+              Här är vad vi gör, och varifrån informationen kommer:
             </p>
             <ul style={ulStyle}>
               <li>
-                <strong>Platser och koordinater</strong> — manuellt curerade. Varje restaurang, hamn och brygga är verifierad mot officiella källor. Koordinater korrigerade mot Google Maps.
+                <strong>Platser och koordinater</strong>: handplockade av oss. Uppgifterna på ösidorna ska ha en källa från kommunen, myndigheten eller verksamheten själv, och källorna står längst ner på varje ösida.
               </li>
               <li>
-                <strong>Färje- och busstider</strong> — live från Trafiklab (ResRobot). Datan kommer direkt från SL, Waxholmsbolaget och deras systerbolag. Vi tar inte ansvar för avvikelser.
+                <strong>Färje- och busstider</strong>: live från Trafiklab (ResRobot). Datan kommer direkt från SL, Waxholmsbolaget och deras systerbolag. Vi tar inte ansvar för avvikelser.
               </li>
               <li>
-                <strong>Ö-guider och FAQ</strong> — handskrivna av Svalla-teamet. Vi använder Skärgårdsstiftelsen, Visit Stockholm, vastsverige.com och kommunala turistsidor som källor. Texter granskas innan publicering.
+                <strong>Ö-guider och FAQ</strong>: handskrivna av Svalla-teamet. Vi använder Skärgårdsstiftelsen, Visit Stockholm, vastsverige.com och kommunala turistsidor som källor. Texter granskas innan publicering.
               </li>
               <li>
-                <strong>Thorkels svar</strong> — genererade av en stor språkmodell (Anthropic Claude). Thorkel hämtar faktadata från Svallas databaser plus live-trafiklab-data. Han kan göra fel — kontrollera viktiga uppgifter mot officiella källor.
+                <strong>Thorkels svar</strong>: genererade av en stor språkmodell (Anthropic Claude). Thorkel hämtar faktadata från Svallas databaser plus live-trafiklab-data. Han kan göra fel, så kontrollera viktiga uppgifter mot officiella källor.
               </li>
               <li>
-                <strong>Användarinnehåll</strong> — turer, foton och forumtrådar är skapade av Svallas användare. Vi granskar för spam och olämpligt innehåll men står inte bakom enskilda uttalanden.
+                <strong>Användarinnehåll</strong>: turer, foton och forumtrådar är skapade av Svallas användare. Vi granskar för spam och olämpligt innehåll men står inte bakom enskilda uttalanden.
               </li>
             </ul>
             <p style={{ fontSize: 13.5, color: 'var(--txt3)', marginTop: 18, marginBottom: 0 }}>
