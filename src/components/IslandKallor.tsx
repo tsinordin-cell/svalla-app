@@ -85,9 +85,12 @@ function Kort({ grupp, visaDatum }: { grupp: Grupp; visaDatum: boolean }) {
             >
               {s.vad || s.url.replace(/^https?:\/\/(www\.)?/, '')}
               <span aria-hidden style={{ color: 'var(--txt3)', marginLeft: 5, fontSize: 11 }}>&#8599;</span>
-              {visaDatum && s.last && (
+              {/* Saknas läsdatum säger vi det rakt ut i stället för att tiga:
+                  en källa utan datum är inte kontrollerad, och besökaren ska
+                  kunna se skillnaden. */}
+              {visaDatum && (
                 <span style={{ display: 'block', fontSize: 10.5, color: 'var(--txt3)', marginTop: 1 }}>
-                  Läst {s.last}
+                  {s.last ? `Läst ${s.last}` : 'Läsdatum saknas'}
                 </span>
               )}
             </a>
@@ -107,8 +110,11 @@ export default function IslandKallor({ slug, islandName }: { slug: string; islan
 
   // Lästes allt samma dag står datumet en gång i ingressen i stället för under
   // varje rad. Skiljer datumen sig åt hör de hemma vid respektive sida.
-  const datum = [...new Set(kallor.map(k => k.last).filter(Boolean))]
-  const gemensamtDatum = datum.length === 1 ? datum[0] : null
+  const datum = [...new Set(kallor.map(k => k.last).filter((d): d is string => Boolean(d)))]
+  const utanDatum = kallor.filter(k => !k.last).length
+  const gemensamtDatum = datum.length === 1 && utanDatum === 0 ? datum[0] : null
+  // ISO-datum sorterar rätt som text.
+  const senast = datum.length > 0 ? [...datum].sort().at(-1) : null
 
   /** Tre källor öppet, resten i ett scrollfönster. */
   const SYNLIGA = 3
@@ -133,8 +139,10 @@ export default function IslandKallor({ slug, islandName }: { slug: string; islan
         {myndigheter > 0 && `, varav ${myndigheter} myndighet eller kommun`}. Vi skriver
         inga öppettider, avgångstider eller priser utan publicerad prislista, och inget
         om årtal, areal eller service utan att någon läst källan.
-        {gemensamtDatum && ` Samtliga lästa ${gemensamtDatum}.`} Hittar du något som
-        inte stämmer — hör av dig, vi rättar det.
+        {gemensamtDatum
+          ? ` Samtliga lästa ${gemensamtDatum}.`
+          : senast && ` Senast kontrollerad ${senast}.`} Hittar du något som
+        inte stämmer, hör av dig så rättar vi det.
       </p>
 
       <ul style={{ margin: 0, padding: 0 }}>
