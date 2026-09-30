@@ -31,6 +31,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar Carlsten som statligt byggnadsminne på Marstrand — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
     // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar sillhandelns centrum på 1500-talet — https://www.vastsverige.com/en/kungalv/products/marstrand/ ; att Match Cup Sweden avgörs första veckan i juli — https://www.vastsverige.com/kungalv/marstrand/ (läst 2026-09-16)
     tagline: 'Carlstens fästning, sillstadens gränder och match-racing första veckan i juli.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Marstrand — Lantmäteriet Min Karta, sökning "Marstrand" → Marstrand | Kungälv | Tätort, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.8864,
+    lng: 11.5753,
     seoTitle: 'Marstrand 2026 – Carlstens fästning & segling',
     // KÄLLA: https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Marstrandsön är en bilfri ö men vissa kan ansöka om specialöverfart under ordinarie tider" (läst 2026-09-27)
     seoDescription: 'Guide till Marstrand: Carlstens fästning, bilfria Marstrandsön, Match Cup Sweden och restaurangerna vid hamnen. Hur du tar dig dit och var du bor.',
@@ -147,6 +150,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Landets näst största fiskauktion ligger på Smögen." (läst 2026-09-27)
     // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Med en vit blixt var tolfte sekund gör sig Bohusläns äldsta fyr påmind." (läst 2026-09-27)
     tagline: 'Sveriges mest besökta brygga, landets näst största fiskauktion och Bohusläns äldsta fyr på Hållö utanför.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sm%C3%B6gen%C3%B6n — Lantmäteriet Min Karta, sökning "Smögenön" → Smögenön | Sotenäs | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.3595,
+    lng: 11.2222,
     description: [
       // KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ — "Smögenbryggan är sommartid ett av Sveriges mest besökta turistmål.", "1 km långa", "Här finns ett antal caféer, krogar och mängder av butiker.", "Flera båtturer utgår från Smögenbryggan.", "Du kan ta dig till Hållö, Kungshamn", "I hamnområdet finns även hembygdsmuseum", "användes av fiskare redan under mitten av 1500-talet" (läst 2026-09-27)
       // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Första gången Smögen nämndes i litteraturen var 1594" (läst 2026-09-27)
@@ -257,6 +263,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🌊',
     // KÄLLA: Bohusläns museum, Badorten Lysekil — bekräftar badortshistorien — https://www.bohuslansmuseum.se/samlingar-och-historia/gamla-historiska-artiklar/badorten-lysekil/ ; Havets Hus, Om akvariet — https://www.havetshus.se/en/akvariet/about-the-aquarium/ ; Länsstyrelsen Västra Götaland, naturreservatet Stångehuvud — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html (läst 2026-09-16)
     tagline: 'Badortsklassiker vid Gullmarn, med Havets Hus och Stångehuvuds slipade klippor.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lysekil — Lantmäteriet Min Karta, sökning "Lysekil" → Lysekil | Lysekil | Tätort, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.2723,
+    lng: 11.4431,
     description: [
       // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Gullmarn — bekräftar "en äkta tröskelfjord", största djup cirka 125 meter nära Alsbäck en mil från mynningen, tröskel på omkring 45 meters djup, djurarter i djupbassängen som saknas i fjorden i övrigt, bildat 1983, ca 16 499 hektar, förvaltas av Västkuststiftelsen — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/gullmarn.html (läst 2026-09-16)
       'Lysekil ligger på Stångenäsets sydspets och blickar ut över Gullmarsfjorden, som Länsstyrelsen beskriver som en äkta tröskelfjord. Största djupet är cirka 125 meter och ligger nära Alsbäck, en mil från mynningen, medan tröskeln vid mynningen ligger på omkring 45 meters djup. Många av djurarterna i djupbassängen finns inte i fjorden i övrigt — vissa påträffas annars bara på stora djup i Skagerrak och i arktiska vatten. Naturreservatet Gullmarn bildades 1983, omfattar cirka 16 499 hektar och förvaltas av Västkuststiftelsen.',
@@ -385,6 +394,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🐟',
     // KÄLLA: https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark — "Kosterhavets nationalpark är Sveriges första marina nationalpark och består främst av vatten och undervattensmiljöer" ; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken — "38 900 hektar, varav 860 hektar land" ; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv — "Runt grynnor och holmar simmar Västerhavets största bestånd av knubbsälar", "ett av Sveriges två kända växtplatser för revbildande korall, ögonkorall" (läst 2026-09-27)
     tagline: 'Sveriges första marina nationalpark — 38 900 hektar, varav 860 hektar land, knubbsälar och ögonkorall.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kosterhavet — Lantmäteriet Min Karta, sökning "Kosterhavet" → Kosterhavet | Strömstad | Trakt, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.8545,
+    lng: 11.0111,
     description: [
       // KÄLLA: https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark — "Kosterhavets nationalpark är Sveriges första marina nationalpark och består främst av vatten och undervattensmiljöer", "Nationalparken bevarar ett särpräglat och artrikt havs- och skärgårdsområde med djupa lerbottnar, rev, grunda vikar och tallskog i oförändrat skick" ; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken — "Bildades 9 september 2009" (läst 2026-09-27)
       'Kosterhavets nationalpark är Sveriges första marina nationalpark och består främst av vatten och undervattensmiljöer. Parken bildades den 9 september 2009 och ska bevara ett artrikt havs- och skärgårdsområde med djupa lerbottnar, rev, grunda vikar och tallskog.',
@@ -484,6 +496,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "90 procent av Sveriges ostron kommer från Tanums kommun" (läst 2026-09-27)
     // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "centret för Sveriges produktion av vilda ostron" (läst 2026-09-27)
     tagline: '90 % av Sveriges ostron kommer från Tanums kommun — och Grebbestad är centrum för de vilda ostronen.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Grebbestad — Lantmäteriet Min Karta, sökning "Grebbestad" → Grebbestad | Tanum | Tätort, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.6954,
+    lng: 11.2549,
     description: [
       // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "90 procent av Sveriges ostron kommer från Tanums kommun", "Ostronet ska antingen ha handplockats av dykare eller fiskats av fiskare med håv", "Ostrea Edulis plockas när de är som minst 3-4 år gamla", "Ostronen plockas från första veckan i September t.o.m midsommar, då ostronen har sin fortplantningsperiod under Juli-Augusti" (läst 2026-09-27)
       // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "hela 90 procent av Sveriges ostronproduktion kommer från Grebbestad och Tanum" (läst 2026-09-27)
@@ -607,6 +622,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/fjallbacka.4.7664b4813898b7df98459f8.html — "Vid foten av Vetteberget ligger Fjällbacka centrum med Ingrid Bergmans torg"; "Fjällbacka utgör den rumsliga ramen i Camilla Läckbergs deckarsvit" (läst 2026-09-27)
     // KÄLLA: https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ — "Berget delar i Stora och Lilla Vetteberget genom den säregna Kungsklyftan" (läst 2026-09-27)
     tagline: 'Fiskeläget vid foten av Vetteberget – Kungsklyftan, Ingrid Bergmans torg och miljöerna från Camilla Läckbergs deckare.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Fj%C3%A4llbacka — Lantmäteriet Min Karta, sökning "Fjällbacka" → Fjällbacka | Tanum | Tätort, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.6022,
+    lng: 11.2843,
     description: [
       // KÄLLA: Tanums kommun, ortsinformation Fjällbacka — cirka 950 personer bor här året runt, orten omnämnd 1610, 22 hus 1694, Vetteberget skiljde orten från havet, Läckbergs deckare utspelar sig i Fjällbacka — https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/fjallbacka.4.7664b4813898b7df98459f8.html (läst 2026-09-16)
       'Fjällbacka är ett litet samhälle vid Tanums kust med ungefär 950 åretruntboende — en siffra som mångdubblas på somrarna. Orten finns omnämnd i skrivna källor från 1610 och hade 22 hus år 1694. Byn låg ursprungligen på randen mellan berg och hav; under 1900-talet har bebyggelsen krupit runt hela Vetteberget, och numera byggs det även uppe på berget. Fjällbacka används i dag som miljö i Camilla Läckbergs kriminalromaner.',
@@ -723,6 +741,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🐟',
     // KÄLLA: https://www.vastsverige.com/en/lysekil/produkter/skafto/ — "has always been an active fishing port and has a long harbour canal around which the village is built" ; https://www.vastsverige.com/en/lysekil/produkter/skafto-grundsund/ — "The long, narrow village is divided by a canal which separates Skaftö from the small island of Ösö" (läst 2026-09-27)
     tagline: 'Fiskeläge på Skaftö byggt kring en hamnkanal.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Grundsund — Lantmäteriet Min Karta, sökning "Grundsund" → Grundsund | Lysekil | Tätort, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.2167,
+    lng: 11.4144,
     description: [
       // KÄLLA: https://www.vastsverige.com/en/lysekil/produkter/skafto-grundsund/ — "is on the westernmost point of Skaftö", "The long, narrow village is divided by a canal which separates Skaftö from the small island of Ösö", "You can buy fresh fish, shrimps and crabs directly from the commercial fishing boats when they dock", "The canal that divides the village into two parts, east and west, was dug out during the first world war to allow fishing boats and small cargo boats to pass more easily and make a larger, more protected harbour", "A new sea-front promenade has been constructed by the eastern quay", "long pier to Skäddhålan which then continues to connect with a footpath to Vigerna" ; https://www.vastsverige.com/en/lysekil/produkter/skafto/ — "has always been an active fishing port" (läst 2026-09-27)
       'Grundsund ligger ytterst på Skaftös västra udde och är fortfarande en aktiv fiskehamn. Den långsmala byn är byggd kring en hamnkanal som skiljer Skaftö från den lilla ön Ösö och delar byn i en östra och en västra del. Kanalen grävdes under första världskriget, för att fiskebåtar och mindre fraktbåtar lättare skulle ta sig fram och för att ge byn en större skyddad hamn. När fiskebåtarna lägger till kan man köpa färsk fisk, räkor och krabba direkt från dem. Längs östra kajen finns en nyanlagd strandpromenad – en lång brygga ut till Skäddhålan som fortsätter som gångstig till Vigerna.',
@@ -802,6 +823,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '⛵',
     // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/hamburgsundsleden/ — "Hamburgsundsleden går mellan Hamburgsund och Hamburgö i Norra Bohuslän" ; https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/hamburgsund.4.7664b4813898b7df9844de1.html — "Strax söder om Hamburgsund ligger berget där Hornborgs slott låg", "det arrangeras årligen, under augusti, Hornbore Ting" (läst 2026-09-27)
     tagline: 'Linfärja över sundet till Hamburgö, borgruinen Hornborg och Hornbore Ting.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Hamburgsund — Lantmäteriet Min Karta, sökning "Hamburgsund" → Hamburgsund | Tanum | Tätort, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.5596,
+    lng: 11.2626,
     description: [
       // KÄLLA: https://www.vastsverige.com/en/tanum/produkter/hamburgsund/ — "Hamburgsund is a village in Tanum and is located both on the mainland and the island Hamburgö", "130 meter wide Hamburgsund channel" ; https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/hamburgsund.4.7664b4813898b7df9844de1.html — "Förledet kommer från önamnet Hornbora", "som syftar på Hamburgös utskjutande uddar i söder och väster", "Namnet Hamburgsund har ingen koppling till den tyska staden Hamburg", "Traditionen säger att under medeltiden fanns tingsplatsen för Viken vid södra delen Hamburgsundet", "Viken var det administrativa område som bestod av norra Bohuslän och det nu norska området runt Oslofjorden", "Hamburgsund omtalas redan 1585 som tullstation", "Under 1700-taletets sillperiod inbjöd det skyddade läget längs sundet till att bygga ett flertal trankokerier", "tog fart när befolkningen började bedriva fraktfart", "Under senare delen av 1800-talet fanns två stenhuggerier i Hamburgsund", "Hamburgsund var i början av 1900-talet ett av Bohusläns största skutsamhällen", "Hamburgsund är hemmahamn för en stor del av kommunens fiskeflotta", "Husen ligger i enkla rader på båda sidor om sundet" (läst 2026-09-27)
       'Hamburgsund i norra Bohuslän ligger på båda sidor om ett 130 meter brett sund, dels på fastlandet, dels på ön Hamburgö. Namnet har ingen koppling till den tyska staden Hamburg – förledet kommer från önamnet Hornbora, "den med horn försedda", som syftar på Hamburgös utskjutande uddar i söder och väster. Enligt traditionen fanns under medeltiden tingsplatsen för Viken vid sundets södra del; Viken var det administrativa område som bestod av norra Bohuslän och trakten runt Oslofjorden. Hamburgsund omtalas som tullstation redan 1585, och under 1700-talets sillperiod byggdes flera trankokerier längs sundet. På 1800-talet växte orten när befolkningen började med fraktfart, och i slutet av seklet fanns två stenhuggerier. I början av 1900-talet var Hamburgsund ett av Bohusläns största skutsamhällen, och i dag är orten hemmahamn för en stor del av kommunens fiskeflotta. Den äldre bebyggelsen ligger i enkla rader på båda sidor om sundet.',
@@ -883,6 +907,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🏘',
     // KÄLLA: https://www.vastsverige.com/en/orust/products/karingon/ — "Narrow streets with white wooden houses", "Traffic-free island" ; https://www.destinationkaringon.online/upplev — "Käringöns gästhamn ligger mitt i samhället" (läst 2026-09-27)
     tagline: 'Bilfri ö med vita trähus, smala gator och gästhamn mitt i byn.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=K%C3%A4ring%C3%B6n — Lantmäteriet Min Karta, sökning "Käringön" → Käringön | Orust | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.1081,
+    lng: 11.3597,
     description: [
       // KÄLLA: https://www.destinationkaringon.online/ — "Det finns därför inga bilar, mopeder eller cyklar", "Nästan alla öns 280 hus är byggda före år 1920", "det finns knappt 70 personer som är bosatta här" ; https://www.vastsverige.com/en/orust/products/karingon/ — "the island was permanently populated as early as 1596", "reaching a population of more than 300 inhabitants. This was to double in the 19th century", "a small stone tower or cairn used as a navigation beacon", "In the middle of the barren island is a church, surrounded by lawns and colourful flowerbeds" ; https://www.karingon.se/om-k%C3%A4ring%C3%B6n — "Ön fick fast bosättning redan 1596, då några unga fiskarfamiljer från Orust", "år 1912 nåddes toppnoteringen med hela 662 personer kyrkobokförda här", "Öborna kunde nu bygga en egen kyrka som invigdes 1796" (läst 2026-09-27)
       'Käringön är bilfri – här finns inga bilar, mopeder eller cyklar. Öns gator är smala och kantade av vita trähus, och nästan alla de 280 husen är byggda före 1920. Mitt på ön ligger kyrkan från 1796, omgiven av gräsmattor och planteringar. Ön befolkades permanent 1596 av fiskarfamiljer från Orust. Under 1700-talets sillperiod passerade folkmängden 300, under 1800-talet fördubblades den, och 1912 var 662 personer skrivna här. I dag bor knappt 70 personer på ön året runt. Namnet kommer troligen av käring i betydelsen litet stentorn eller kummel som användes som sjömärke.',
@@ -984,6 +1011,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🏝',
     // KÄLLA: Orust kommun, Kommunfakta — västkustens största ö — https://www.orust.se/kommun-och-politik/kommunfakta (läst 2026-09-16)
     tagline: 'Västkustens största ö, med varvstradition och lång kustlinje.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Orust — Lantmäteriet Min Karta, sökning "Orust" → Orust | Orust | Natur- och terrängnamn (mittpunkt), SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.1723,
+    lng: 11.6756,
     description: [
       // KÄLLA: Orust kommun, Kommunfakta — drygt 15 000 invånare och cirka 40 000 sommartid, cirka 2,8 mil i väst-östlig och cirka 2,5 mil i nord-sydlig riktning, västkustens största ö — https://www.orust.se/kommun-och-politik/kommunfakta (läst 2026-09-16)
       // KÄLLA: Hallberg-Rassy, Varvets historia — Harry Hallberg öppnade eget varv i Kungsviken på Orust 1943, nya lokaler byggdes i Ellös i mitten av 1960-talet, samgående med Christoph Rassys varv 1972 till Hallberg-Rassy Varvs AB, omkring 9 800 levererade båtar — https://www.hallberg-rassy.com/sv/varvet/varvets-historia (läst 2026-09-16)
@@ -1089,6 +1119,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🌉',
     // KÄLLA: https://www.akvarellmuseet.org/om/historia — "16 juni invigdes Nordiska Akvarellmuseet" ; https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "idag kommer 40 procent av alla svenska sillkonserver från Klädesholmen" ; https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/pilane-gravfalt/ — "Det har ungefär 80 synliga gravar från järnåldern" ; https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/natur-och-gronomraden/utsiktsplatser — "Den 15 juni 1960 invigdes Tjörnbroleden – en fast förbindelse mellan Stenungsund på fastlandet och Almön på Tjörn" (läst 2026-09-27)
     tagline: 'Akvarellmuseum, sillhistoria och järnåldersgravar — broförbunden ö i Bohuslän.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Tj%C3%B6rn — Lantmäteriet Min Karta, sökning "Tjörn" → Tjörn | Tjörn | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.9919,
+    lng: 11.6159,
     description: [
       // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "Tjörns kommun omfattar, förutom huvudön, mer än 1 500 omkringliggande öar, holmar och skär" ; https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/natur-och-gronomraden/utsiktsplatser — "Den 15 juni 1960 invigdes Tjörnbroleden – en fast förbindelse mellan Stenungsund på fastlandet och Almön på Tjörn", "Tjörnbron är en del av länsväg 160 som går förbi Stenungsund och norrut över Tjörn och Orust", "När man åker mot Tjörn och kommer ur tunneln öppnar sig landskapet med en storslagen utsikt över fjordarna och skärgården", "Vetteberget, Tjörns högsta berg, bjuder på en magnifik utsikt över havet mot horisonten i väst", "Vid bra väder syns Danmark och Skagen", "På toppen av Vetteberget ligger ett bronsåldersröse daterat till cirka 1 000 år f.Kr", "Med 19 meter i diameter är det ett av de största i Bohuslän" (läst 2026-09-27)
       'Tjörn är en broförbunden ö i Bohuslän. Förutom huvudön omfattar Tjörns kommun mer än 1 500 öar, holmar och skär. Sedan 1960 förbinder Tjörnbroleden Stenungsund på fastlandet med Almön på Tjörn, och den är en del av länsväg 160 som fortsätter över Tjörn till Orust. Kommunen räknar bron som en utsiktsplats i sig: när man kommer ur tunneln öppnar sig landskapet med utsikt över fjordarna och skärgården. Öns högsta berg, Vetteberget, har utsikt mot havet i väster – vid bra väder syns Danmark och Skagen. På toppen ligger ett bronsåldersröse från omkring 1000 f.Kr., 19 meter i diameter och ett av de största i Bohuslän.',
@@ -1182,6 +1215,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn — "Kustsamhället Kungshamn är beläget ytterst på halvön Sotenäset och är huvudorten i Sotenäs kommun", "Kungshamn har sedan 1970-talet en broförbindelse med Smögen" ; https://www.vastsverige.com/sotenas/artiklar/made-in-sotenas/ — "I Kungshamn tillverkar man", "och det har man gjort sedan 1954" (läst 2026-09-27)
     slag: 'ort',
     tagline: 'Sotenäs huvudort — gästhamn, fiskberedning och bro till Smögen.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kungshamn — Lantmäteriet Min Karta, sökning "Kungshamn" → Kungshamn | Sotenäs | Tätort, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.3547,
+    lng: 11.2596,
     description: [
       // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/kungshamn/ — "Många föredrar att fortfarande använda de gamla namnen trots att det är drygt 40 år sedan samlingsnamnet Kungshamn antogs", "medan Fisketången mer har kvar sin traditionella bebyggelse med sjöbodar och ljugarbänkar" ; https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/batar-och-hamnar/gasthamnar/kungshamns-gasthamn — "Kustsamhället Kungshamn är beläget ytterst på halvön Sotenäset och är huvudorten i Sotenäs kommun" (läst 2026-09-27)
       'Kungshamn ligger ytterst på halvön Sotenäset och är huvudort i Sotenäs kommun. Orten består av de tidigare samhällena Gravarne, Bäckevik och Fisketången, som fick samlingsnamnet Kungshamn för drygt fyrtio år sedan; många använder fortfarande de gamla namnen. Bebyggelsen i centrala Kungshamn har förändrats mycket genom åren, medan Fisketången har kvar sin traditionella bebyggelse med sjöbodar och ljugarbänkar.',
@@ -1268,6 +1304,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '💡',
     // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Fyren Pater Noster är 32 meter hög och konstruerades av Nils Gustav von Heidenstam", "År 2015 blev fyren ett" ; https://www.vastsverige.com/tjorn/produkter/pater-noster/ — "Hamneskär, Tjörn", "Fyren är gjord helt i stål och gjutjärn", "Hotellet på Pater Noster har nio väldesignade rum" (läst 2026-09-27)
     tagline: 'Heidenstams järnfyr på Hamneskär — statligt byggnadsminne och hotell.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Pater%20Noster — Lantmäteriet Min Karta, sökning "Pater Noster" → Pater Noster | Tjörn | Anläggning (fyren på Hamneskär), SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.8960,
+    lng: 11.4678,
     description: [
       // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Fyren Pater Noster är 32 meter hög och konstruerades av Nils Gustav von Heidenstam", "Pater Noster är latin för Fader vår", "Det sägs att sjömännen bad bönen när de siktade skären", "Starka havsströmmar och förrädiska grund har fått många fartyg att förlisa där." ; https://www.vastsverige.com/tjorn/produkter/pater-noster/ — "Längst ut i havsbandet på en karg och vindpinad plats", "Fyren är gjord helt i stål och gjutjärn" ; https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "Arbetet med att binda ihop landets kuster med fyrar leddes av fyringenjör Gustav von Heidenstam vid Lotsverket", "Pater Noster började lysa den 1 november 1868", "Pater Nosterskären består av 97 öar som breder ut sig från Tjörns sydvästra udde och ner i höjd med Marstrand" (läst 2026-09-27)
       'Pater Noster är en fyr på den karga klippön Hamneskär, längst ut bland Pater Noster-skären – 97 öar som breder ut sig från Tjörns sydvästra udde ner mot Marstrand. Det 32 meter höga tornet är gjort helt i stål och gjutjärn och konstruerades av Nils Gustav von Heidenstam, fyringenjören som ledde arbetet med att binda ihop Sveriges kuster med fyrar. Fyren tändes den 1 november 1868. Starka havsströmmar och förrädiska grund har fått många fartyg att förlisa vid skären, och namnet är latin för Fader vår: det sägs att sjömännen bad bönen när de siktade skären.',
@@ -1356,6 +1395,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🎵',
     // KÄLLA: Winga Vänner — fadern Carl Gunnar Taube fyrvaktare på Vinga 1889–1905 — https://vinga.nu/ ; Sjöfartsverket, Vinga – Göteborgarnas fyr — båken och fyrarna — https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/vinga--goteborgarnas-fyr/ ; Länsstyrelsen Västra Götaland, Vinga — naturreservat — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
     tagline: 'Evert Taubes barndomsö — fyr, båk och naturreservat i yttre skärgården.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vinga — Lantmäteriet Min Karta, sökning "Vinga" → Vinga | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.6329,
+    lng: 11.6083,
     description: [
       // KÄLLA: Winga Vänner — "Evert Taube tillbringade sin barndom här på Vinga eftersom pappan, Carl Gunnar Taube var fyrvaktare mellan 1889 och 1905" — https://vinga.nu/ ; Sjöfartsverket, Vinga – Göteborgarnas fyr — skalden "delvis växte upp" på fyrplatsen — https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/vinga--goteborgarnas-fyr/ ; Göteborg & Co, Ta dig till skärgården — Vinga i Göteborgs yttre skärgård — https://www.goteborg.com/guider/ta-dig-till-skargarden (läst 2026-09-16)
       'Vinga ligger i Göteborgs yttre skärgård, längst ut mot havet. Evert Taube tillbringade sin barndom här: hans far Carl Gunnar Taube var fyrvaktare på Vinga mellan 1889 och 1905. Sjöfartsverket beskriver det som att skalden delvis växte upp på fyrplatsen.',
@@ -1427,6 +1469,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🐟',
     // KÄLLA: Göteborg & Co, Ta dig till skärgården — Hönö bland norra skärgårdens tio bebodda öar — https://www.goteborg.com/guider/ta-dig-till-skargarden ; Länsstyrelsen Västra Götaland, naturreservatet Ersdalen — reservatet på nordvästra Hönö — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/ersdalen.html (läst 2026-09-16)
     tagline: 'Norra skärgårdens fiskeö — hamn, gästhamn och naturreservatet Ersdalen.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=H%C3%B6n%C3%B6 — Lantmäteriet Min Karta, sökning "Hönö" → Hönö | Öckerö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.6856,
+    lng: 11.6542,
     description: [
       // KÄLLA: Göteborg & Co, Ta dig till skärgården — "Norra skärgården består av tio bebodda öar ... Hönö ...", väg 155 till färjeläget vid Lilla Varholmen, den avgiftsfria vägfärjan, buss X6 från Centralstationen och buss 290 från Järntorget — https://www.goteborg.com/guider/ta-dig-till-skargarden ; Visit Öckerö — "Hela året går färjorna från Lilla Varholmens färjeläge" — https://www.vastsverige.com/visitockero/ ; Göteborg & Co, Hönö — "i den norra delen av skärgården" — https://www.goteborg.com/platser/hono (läst 2026-09-16)
       'Hönö ligger i norra delen av Göteborgs skärgård och är en av de tio bebodda öarna i Öckerö kommun. Hit kommer man landvägen: väg 155 från Göteborg mot Hisingen och Öckerö leder till färjeläget vid Lilla Varholmen, där den avgiftsfria vägfärjan går över till öarna året runt. Buss X6 från Centralstationen går till Lilla Varholmen, och buss 290 från Järntorget tar dig hela vägen inklusive färjeöverfarten.',
@@ -1528,6 +1573,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: Västsverige/Orust, "Bilfria öar i södra Bohuslän" — bekräftar att Gullholmen är bilfri ö och ett av Bohusläns äldsta fiskelägen — https://www.vastsverige.com/en/orust/things-to-do/boating/car-less-islands/ (läst 2026-09-16)
     // KÄLLA: Västsverige, "Gullholmen och Härmanö" — bekräftar att samhällshalvan brukar kallas Sveriges mest tätbebyggda ö och att andra halvan ligger på Härmanö — https://www.vastsverige.com/sodrabohuslan/produkter/gullholmen-och-harmano/?site=5 (läst 2026-09-16)
     tagline: 'Ett av Bohusläns äldsta fiskelägen — bilfritt, tätbebyggt, med Härmanö inpå knuten.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gullholmen — Lantmäteriet Min Karta, sökning "Gullholmen" → Gullholmen | Orust | Trakt, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 58.1802,
+    lng: 11.4056,
     description: [
       // KÄLLA: Bohusläns museum, Kunskapsbanken "Gullholmen" — bekräftar äldsta säkra belägg 1588, ca 100 hus och ca 400 invånare år 1800 samt drygt 800 invånare 1910 — https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ (läst 2026-09-16)
       // KÄLLA: Västsverige, "Gullholmen och Härmanö" — bekräftar "Sveriges mest tätbebyggda ö" med myller av sommarbostäder och året runt-villor — https://www.vastsverige.com/sodrabohuslan/produkter/gullholmen-och-harmano/?site=5 (läst 2026-09-16)
@@ -1647,6 +1695,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/tjorn-pa-hosten-och-vintern/tjorn-och-sillen — "Ända sedan 1500-talet har Klädesholmen varit en viktig plats för sillhandeln." (läst 2026-09-27)
     // KÄLLA: https://www.vastsverige.com/en/tjorn/products/kladesholmens-sauna/ — "In the beautiful Jungfruviken on Klädesholmen" (läst 2026-09-27)
     tagline: 'Sillens och solens ö — 1500-talets sillhandel, Sillebua och bastu i Jungfruviken.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kl%C3%A4desholmen — Lantmäteriet Min Karta, sökning "Klädesholmen" → Klädesholmen | Tjörn | Trakt, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.9444,
+    lng: 11.5415,
     description: [
       // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/tjorn-pa-hosten-och-vintern/tjorn-och-sillen — "Ända sedan 1500-talet har Klädesholmen varit en viktig plats för sillhandeln.", "Riktig fart tog det under den stora sillperioden på 1700-talet, när det kokade av sill i vikarna.", "Nästa sillperiod kom runt 1870.", "Sillfabriker växte fram", "1967 fanns det 26 fabriker på Klädesholmen.", "Vid millennieskiftet var det tre fabriker kvar som bestämde sig för att gå samman." (läst 2026-09-27)
       // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "Under den stora sillperioden 1747–1808 bodde uppemot 1 000 personer på Klädesholmen" (läst 2026-09-27)
@@ -1801,6 +1852,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🏚',
     // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astol/ — "Åstol is the small island with the white wooden houses surrounded by rugged rocks rising from the sea", "The island is easy to reach by ferry from Rönnäng" ; https://www.vastsverige.com/tjorn/se-och-gora/bilfria-oar/ — "en bilfri klippö", "Här slingrar sig smala gränder mellan vitmålade trähus" (läst 2026-09-27)
     tagline: 'Bilfri klippö utanför Rönnäng — vita trähus, smala gränder och havet runt om.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%85stol — Lantmäteriet Min Karta, sökning "Åstol" → Åstol | Tjörn | Trakt, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.9231,
+    lng: 11.5851,
     description: [
       // KÄLLA: https://www.vastsverige.com/en/tjorn/products/astol/ — "surrounded by rugged rocks rising from the sea", "The narrow, car-free streets meander between the houses", "Åstol was first inhabited in the mid-18th century in connection with one of the great herring periods", "More than 20 large steel trawlers had their home port on Åstol in the 1960s", "The fishing industry declined during the 1970s" ; https://www.raa.se/app/uploads/2022/11/V%C3%A4stra-G%C3%B6taland-O_riksintressen.pdf — "Fiskeläge från 1700-talets sillperiod, på en kal minimal ö, som genom en intensiv bebyggelsefas under 1920-1950-talet utvecklats till ett av västkustens mest tättbebyggda kustsamhällen" (läst 2026-09-27)
       'Åstol är en liten klippö utanför Rönnäng på Tjörn, känd för sina vita trähus omgivna av kala klippor som reser sig ur havet. De smala, bilfria gatorna slingrar sig mellan husen. Ön befolkades vid mitten av 1700-talet under en av de stora sillperioderna, och enligt Riksantikvarieämbetet utvecklades fiskeläget genom en intensiv byggperiod på 1920–1950-talen till ett av västkustens mest tättbebyggda kustsamhällen. På 1960-talet hade mer än tjugo stora ståltrålare Åstol som hemmahamn; fisket gick tillbaka under 1970-talet.',
@@ -1910,6 +1964,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '⛺',
     // KÄLLA: https://www.vastsverige.com/tjorn/se-och-gora/bilfria-oar/ — "Ta färjan till en av Tjörns bilfria öar", "Håll utkik – med lite tur får du syn på de vilda mufflonfåren" ; https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/vandra/dyrons-vandringsleder — "På Dyrön finns två vandringsleder, den gula leden och den blå leden" ; https://www.dyron.se/om-dyron/ — "De båda badplatserna ligger alldeles nära de två gästhamnarna" (läst 2026-09-27)
     tagline: 'Bilfri ö utanför Tjörn — mufflonfår, vandringsleder och två gästhamnar.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stora%20Dyr%C3%B6n — Lantmäteriet Min Karta, sökning "Stora Dyrön" → Stora Dyrön | Tjörn | Trakt, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
+    lat: 57.9276,
+    lng: 11.6114,
     description: [
       // KÄLLA: https://www.dyron.se/om-dyron/ — "Dyrön strax norr om Marstrand är en av Tjörns kommuns sex skärgårdsöar med boende året runt", "Bebyggelsen ligger samlad i en dalgång som sträcker sig mellan Nord- och Sydhamnen", "På ömse sidor dalgången är det berg- och klippterräng med hällmarker och sänkor. Raviner genomkorsar landskapet på flera ställen.", "Berggrunden domineras av mörka mineral", "Bergarten kallas för metabasit", "På nordöstra sidan av ön finns kuddlavastruktur, ett för landet unikt inslag i berggrunden", "området ingår i riksintresse för naturvården (NO 17b)", "Ett speciellt inslag är de inplanterade vilda bergsfåren s k mufflonfår" ; https://www.dyron.se/se-gora/mufflonfar/ — "Det bor cirka 50 – 60 stycken på Dyrön som lever fritt bland skog och berg" ; https://www.vastsverige.com/tjorn/se-och-gora/bilfria-oar/ — "Ta färjan till en av Tjörns bilfria öar" (läst 2026-09-27)
       'Dyrön ligger strax norr om Marstrand och är en av Tjörns bilfria öar och en av kommunens sex skärgårdsöar med boende året runt. Bebyggelsen ligger samlad i en dalgång mellan Nord- och Sydhamnen, och på båda sidor tar berg- och klippterrängen vid, med hällmarker, sänkor och raviner. Berggrunden domineras av mörka mineral – bergarten kallas metabasit – och på öns nordöstra sida finns kuddlava, ett för landet unikt inslag som är en förklaring till att området ingår i riksintresse för naturvården. Här lever också cirka 50–60 inplanterade vilda bergsfår, så kallade mufflonfår.',

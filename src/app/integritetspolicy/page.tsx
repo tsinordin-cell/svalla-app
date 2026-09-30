@@ -21,7 +21,7 @@ export default function IntegritetspolicyPage() {
             <SvallaLogo height={26} color="#ffffff" />
           </Link>
           <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>Integritetspolicy</h1>
-          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Senast uppdaterad: april 2026</p>
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Senast uppdaterad: september 2026</p>
         </div>
       </div>
 
@@ -39,6 +39,7 @@ export default function IntegritetspolicyPage() {
             <li><strong>Aktivitetsdata:</strong> loggade turer, sparade platser, kommentarer och gillningar</li>
             <li><strong>Tekniska uppgifter:</strong> IP-adress, webbläsartyp och sessionscookies (för säker inloggning)</li>
             <li><strong>Platsdata:</strong> om du aktivt väljer att dela din position för GPS-funktionen</li>
+            <li><strong>Nyhetsbrev:</strong> din e-postadress, om du själv har valt att prenumerera på vårt nyhetsbrev</li>
           </ul>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>3. Hur vi använder dina uppgifter</h2>
@@ -48,12 +49,13 @@ export default function IntegritetspolicyPage() {
             <li>Möjliggöra inloggning och kontosäkerhet</li>
             <li>Visa dina loggade turer och sparade platser</li>
             <li>Skicka push-notiser om du valt att aktivera dessa</li>
+            <li>Skicka nyhetsbrevet till dig som har valt att prenumerera. Att ha ett konto räcker inte för att få nyhetsbrevet, du väljer det själv. Varje brev har en länk där du avregistrerar dig</li>
             <li>Analysera anonym användningsstatistik för att förbättra appen</li>
           </ul>
           <p>Vi säljer aldrig dina personuppgifter till tredje part.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>4. Rättslig grund</h2>
-          <p>Behandlingen sker med stöd av <strong>avtalsuppfyllelse</strong> (kontouppgifter, aktivitetsdata) och <strong>berättigat intresse</strong> (förbättring av tjänsten via anonym statistik) i enlighet med GDPR artikel 6.</p>
+          <p>Behandlingen sker med stöd av <strong>avtalsuppfyllelse</strong> (kontouppgifter, aktivitetsdata), <strong>berättigat intresse</strong> (förbättring av tjänsten via anonym statistik) och <strong>samtycke</strong> (nyhetsbrevet, som du kan återkalla när som helst genom att avregistrera dig) i enlighet med GDPR artikel 6.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>5. Lagring och säkerhet</h2>
           <p>Dina uppgifter lagras säkert hos Supabase (EU-region) med kryptering i transit och vila. Vi behåller kontouppgifter tills du väljer att radera ditt konto.</p>

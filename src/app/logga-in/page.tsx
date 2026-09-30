@@ -44,6 +44,9 @@ function LoginContent() {
   const [err,          setErr]          = useState('')
   const [msg,          setMsg]          = useState('')
   const [showPwd,      setShowPwd]      = useState(false)
+  // Månadsbrevet: frivilligt och INTE förkryssat (marknadsföringslagen 19 §,
+  // samtycke i förväg). Bara kontot räcker inte för att få nyhetsbrev.
+  const [nyhetsbrev,   setNyhetsbrev]   = useState(false)
 
   /* ── Mappa Supabase-felmeddelanden till svenska ── */
   function mapAuthError(msg: string): string {
@@ -103,6 +106,16 @@ function LoginContent() {
             username: newUsername,
             email,
           }, { onConflict: 'id', ignoreDuplicates: true }).then(() => {})
+
+          // Kryssade användaren i månadsbrevet läggs adressen till som
+          // prenumerant, samma väg som prenumerationsformulären på sajten.
+          if (nyhetsbrev) {
+            fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, source: 'registrering' }),
+            }).catch(() => {})
+          }
 
           // Skicka välkomstmail (icke-blockerande, fail-silent)
           // Kräver session — om "Confirm email" är på sker detta efter användaren bekräftat
@@ -308,6 +321,21 @@ function LoginContent() {
                 }
               </button>
             </div>
+            {isNew && (
+              <label htmlFor="nyhetsbrev" style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 13, lineHeight: 1.5, color: 'var(--txt2)', cursor: 'pointer', padding: '2px 2px 0' }}>
+                <input
+                  id="nyhetsbrev"
+                  type="checkbox"
+                  checked={nyhetsbrev}
+                  onChange={e => setNyhetsbrev(e.target.checked)}
+                  style={{ marginTop: 3, width: 16, height: 16, flexShrink: 0 }}
+                />
+                <span>
+                  Skicka mig Svallas månadsbrev med båttider, öar och tips. Du kan avregistrera dig i varje brev.{' '}
+                  <a href="/integritetspolicy" style={{ color: 'var(--sea)' }}>Så hanterar vi din adress</a>
+                </span>
+              </label>
+            )}
             {isNew && password.length > 0 && (() => {
               const hasNum = /\d/.test(password)
               const hasSpec = /[^a-zA-Z0-9]/.test(password)

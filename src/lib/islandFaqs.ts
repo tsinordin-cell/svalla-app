@@ -12,6 +12,7 @@
  */
 
 import type { Island } from '@/app/o/island-data'
+import { SCB_OAR, SCB_OAR_KALLA } from '../app/o/scb-oar.generated'
 
 export interface FAQ {
   q: string
@@ -377,14 +378,36 @@ function getTemplateForRegion(region: IslandRegion): FAQ[] {
   return TEMPLATE_STOCKHOLM
 }
 
+/**
+ * "Hur många bor på X?" ur SCB:s officiella statistik (kort 80106ebb,
+ * 2026-09-29). Bara för öar där SCB redovisar en siffra. Svaret säger vilket
+ * namn SCB använder när det skiljer sig från ösidans, så att läsaren kan
+ * kontrollera siffran i tabellen.
+ */
+export function befolkningsFaq(island: Pick<Island, 'slug' | 'name'>): FAQ | null {
+  const s = SCB_OAR[island.slug]
+  if (!s || s.folkbokforda === null) return null
+  const antal = s.folkbokforda.toLocaleString('sv-SE')
+  const personer = s.folkbokforda === 1 ? 'person' : 'personer'
+  const var_ = s.scbNamn === island.name
+    ? `Enligt SCB var ${antal} ${personer} folkbokförda på ${island.name} den ${SCB_OAR_KALLA.referens}.`
+    : `SCB redovisar ${island.name} som ${s.scbNamn}. Där var ${antal} ${personer} folkbokförda den ${SCB_OAR_KALLA.referens}.`
+  return {
+    q: `Hur många bor på ${island.name}?`,
+    a: `${var_} Det är det senaste året i SCB:s statistik över öar utan bro till fastlandet. Hur många som är där sommartid säger siffran inget om.`,
+  }
+}
+
 export function getFaqsForIsland(island: Pick<Island, 'slug' | 'name' | 'region'>): FAQ[] {
   const unique = getUniqueForRegion(island.region)
-  if (unique[island.slug]) return unique[island.slug]!
-  const template = getTemplateForRegion(island.region)
-  return template.map(t => ({
-    q: t.q.replace(/{{name}}/g, island.name),
-    a: t.a.replace(/{{name}}/g, island.name),
-  }))
+  const bas = unique[island.slug]
+    ? unique[island.slug]!
+    : getTemplateForRegion(island.region).map(t => ({
+        q: t.q.replace(/{{name}}/g, island.name),
+        a: t.a.replace(/{{name}}/g, island.name),
+      }))
+  const bef = befolkningsFaq(island)
+  return bef ? [...bas, bef] : bas
 }
 
 export function hasUniqueFaqs(slug: string, region: IslandRegion): boolean {

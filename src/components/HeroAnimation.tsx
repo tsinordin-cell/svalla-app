@@ -1209,7 +1209,16 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     /* ═══════════════════════════════════════════════════════════════════════
        MAIN LOOP
     ════════════════════════════════════════════════════════════════════════ */
+    // Bildfrekvens. Uppmätt med Lighthouse (mobil, simulerad 4× långsammare
+    // CPU, 2026-09-29): den här loopen stod för 10,7 s av startsidans 16 s
+    // huvudtrådstid och gav TBT 2,3 s / prestandapoäng 66. Vågorna rör sig
+    // långsamt, så 30 bilder/s ser likadant ut som 60 men halverar CPU och
+    // batteri. Med prefers-reduced-motion ritas en enda stillbild.
+    const MIN_FRAME_MS = 1000 / 30
+    const stilla = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
+
     const tick = (now: number) => {
+      if (now - last < MIN_FRAME_MS - 1) { raf = requestAnimationFrame(tick); return }
       const dt = Math.min(now - last, 50)
       last = now; t += dt * 0.001
 
@@ -1230,6 +1239,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawOverlay()
       drawBirds(dt)
 
+      if (stilla) return
       raf = requestAnimationFrame(tick)
     }
 
@@ -1239,6 +1249,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       const entry = entries[0]
       if (!entry) return
       if (entry.isIntersecting && !playing) {
+        if (stilla) return
         playing = true
         // Återupptag: nollställ time-deltat så vi inte hoppar
         raf = requestAnimationFrame(n => { last = n; tick(n) })

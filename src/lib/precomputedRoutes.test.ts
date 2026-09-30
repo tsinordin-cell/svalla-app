@@ -53,10 +53,15 @@ describe('precomputed-routes', () => {
     // Baggensfjärden och Skurusundet. Om det finns en kortare väg österut
     // (Kolström/Torsbyfjärden) är den inte undersökt; ingen passage får läggas
     // till utan att någon som känner vattnen bekräftat den.
+    //
+    // 2026-09-29: Färentuna (Skarven)–Birka 30,5 km mot 9,8 fågelvägen.
+    // Fågelvägen går rakt över Färingsö; sjövägen går ut ur Skarven, runt
+    // Färingsös nordspets och ner till Björkö. Det är geografi, inte en
+    // stängd passage — rutten lades till med lagg-till-precompute.ts.
     const kvar = ROUTES
       .filter(r => gcKm(r.from, r.to) > 0.5 && r.distanceKm / gcKm(r.from, r.to) > 2.5)
       .map(r => r.id)
       .sort()
-    expect(kvar).toEqual(['grinda_to_gustavsberg', 'gustavsberg_to_grinda'])
+    expect(kvar).toEqual(['grinda_to_gustavsberg', 'gustavsberg_to_grinda', 'maelaren-skarven_to_birka'])
   })
 })
