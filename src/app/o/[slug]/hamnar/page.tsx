@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+import Vidareklick from '@/components/Vidareklick'
 import Icon from '@/components/Icon'
 import IslandPlacesList from '@/components/IslandPlacesList'
 import { getIslandPlaces } from '@/lib/islandPlaces'
@@ -62,6 +63,7 @@ export default async function IslandHarborsPage({ params }: Props) {
         tab="hamnar"
         title={`Gästhamnar på ${island.name}`}
       />
+      <Vidareklick islandSlug={island.slug} standard="hamn" />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         {island.harbors.length === 0 && dbHarbors.length === 0 ? (

@@ -27,6 +27,7 @@ import IslandHantverkare from '@/components/IslandHantverkare'
 import { getHantverkareForIsland } from '../hantverkare-data'
 import IslandTabRow from '@/components/IslandTabRow'
 import IslandKallor from '@/components/IslandKallor'
+import Vidareklick from '@/components/Vidareklick'
 import Hopfallbart from '@/components/Hopfallbart'
 import IslandFoto from '@/components/IslandFoto'
 import IslandFakta from '@/components/IslandFakta'
@@ -173,7 +174,9 @@ export default async function IslandPage({ params }: Props) {
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', fontFamily: "'Inter','Helvetica Neue',sans-serif" }}>
- 
+ {/* Loggar klick ut till verksamheter, per sektion. Exitplanen task 1. */}
+ <Vidareklick islandSlug={island.slug} />
+
  {/* JSON-LD Structured Data */}
  {(() => {
    // Koordinater: island-data har prioritet, ISLAND_COORD_MAP är fallback
@@ -706,7 +709,7 @@ export default async function IslandPage({ params }: Props) {
 
  {/* Restauranger */}
  {island.restaurants.length > 0 && (
- <section style={{ marginBottom: 52 }}>
+ <section data-vidareklick="mat" style={{ marginBottom: 52 }}>
  <SectionHeader icon="utensils" title="Mat & Dryck" />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
  {/* Tre kort syns, resten bakom "Visa fler". Samma mönster som Se & Göra. */}
@@ -836,11 +839,11 @@ export default async function IslandPage({ params }: Props) {
  {/* Hantverk & service — renderar sig själv till null om ön saknar poster
      för ön, vilket är normalfallet tills registret ringts igenom. Se
      hantverkare-data.ts för varför spärren ligger i datalagret och inte här. */}
- <IslandHantverkare islandSlug={slug} islandName={island.name} />
+ <div data-vidareklick="hantverk"><IslandHantverkare islandSlug={slug} islandName={island.name} /></div>
 
  {/* Boende */}
  {island.accommodation.length > 0 && (
- <section style={{ marginBottom: 52 }}>
+ <section data-vidareklick="boende" style={{ marginBottom: 52 }}>
  <SectionHeader icon="bed" title="Boende" />
  <div style={{
  display: 'grid',
@@ -881,7 +884,7 @@ export default async function IslandPage({ params }: Props) {
 
  {/* Ta sig dit */}
  {island.getting_there.length > 0 && (
- <section style={{ marginBottom: 52 }}>
+ <section data-vidareklick="resa" style={{ marginBottom: 52 }}>
  <SectionHeader icon="map" title="Ta sig dit" />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
  {island.getting_there.map(t => (
@@ -938,7 +941,7 @@ export default async function IslandPage({ params }: Props) {
 
  {/* Hamnar */}
  {island.harbors.length > 0 && (
- <section style={{ marginBottom: 52 }}>
+ <section data-vidareklick="hamn" style={{ marginBottom: 52 }}>
  <SectionHeader icon="anchor" title="Hamnar & Service" />
  <div style={{
  display: 'grid',
@@ -1233,7 +1236,7 @@ export default async function IslandPage({ params }: Props) {
 
  {/* Källorna bakom sidan — synliga för besökaren, inte bara i kodkommentarer.
      Genereras av scripts/generera-kallor.mjs ur KÄLLA-raderna i datafilerna. */}
- <IslandKallor slug={island.slug} islandName={island.name} />
+ <div data-vidareklick="kalla"><IslandKallor slug={island.slug} islandName={island.name} /></div>
 
  {/* Guider om ön — /guider/[slug] (220 artiklar) och bloggartiklar i EN sektion.
      Tidigare två sektioner med samma rubrik "Guider om X" efter varandra. */}
