@@ -75,6 +75,12 @@ export default async function InsikterPage({ searchParams }: PageProps) {
   const placeViews = new Map<string, number>()
   const searchQueries = new Map<string, number>()
   const actionFunnel = { share: 0, directions: 0, actionPill: 0, bookmark: 0, placeView: 0 }
+  // Vidareklick: klick från ösidor ut till verksamheter (exitplanen task 1).
+  // Källor räknas separat, de är inte klick till någon som säljer något.
+  const vidareklickPerKategori = new Map<string, number>()
+  const vidareklickPerO = new Map<string, number>()
+  const vidareklickPerMal = new Map<string, number>()
+  let vidareklickTotalt = 0
 
   for (const ev of events) {
     if (ev.session_id) sessions.add(ev.session_id)
@@ -90,6 +96,18 @@ export default async function InsikterPage({ searchParams }: PageProps) {
     if (ev.event_name === 'directions_clicked') actionFunnel.directions++
     if (ev.event_name === 'action_pill_clicked') actionFunnel.actionPill++
     if (ev.event_name === 'bookmark_toggled') actionFunnel.bookmark++
+
+    if (ev.event_name === 'outbound_clicked') {
+      const kategori = String(ev.props?.['kategori'] ?? 'ovrigt')
+      vidareklickPerKategori.set(kategori, (vidareklickPerKategori.get(kategori) ?? 0) + 1)
+      if (kategori !== 'kalla') {
+        vidareklickTotalt++
+        const o = String(ev.props?.['island_slug'] ?? '')
+        if (o) vidareklickPerO.set(o, (vidareklickPerO.get(o) ?? 0) + 1)
+        const mal = String(ev.props?.['mal'] ?? '')
+        if (mal) vidareklickPerMal.set(mal, (vidareklickPerMal.get(mal) ?? 0) + 1)
+      }
+    }
 
     if (ev.event_name === 'search_performed') {
       const q = String(ev.props?.['query'] ?? '').toLowerCase().trim()
@@ -116,6 +134,10 @@ export default async function InsikterPage({ searchParams }: PageProps) {
   const topEvents = [...eventCounts.entries()]
     .sort((a, b) => b[1] - a[1])
     .slice(0, 10)
+
+  const toppVidareO = [...vidareklickPerO.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10)
+  const toppVidareMal = [...vidareklickPerMal.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10)
+  const vidareKategorier = [...vidareklickPerKategori.entries()].sort((a, b) => b[1] - a[1])
 
   const topQueries = [...searchQueries.entries()]
     .sort((a, b) => b[1] - a[1])
@@ -214,6 +236,21 @@ export default async function InsikterPage({ searchParams }: PageProps) {
                 )
               })}
             </ol>
+          )}
+        </Section>
+
+        {/* Vidareklick — exitplanen task 1 och 4 */}
+        <Section title={`Vidareklick till verksamheter: ${vidareklickTotalt}`}>
+          {vidareklickTotalt === 0 && vidareKategorier.length === 0 ? (
+            <Empty text="Inga outbound_clicked-events än. Mätningen startade 2026-09-30." />
+          ) : (
+            <div style={{ display: 'grid', gap: 16 }}>
+              <div style={{ fontSize: 13, color: 'var(--txt2)' }}>
+                {vidareKategorier.map(([k, n]) => `${k} ${n}`).join(' · ')}
+              </div>
+              <Topplista titel="Öar som skickar flest vidare" rader={toppVidareO} />
+              <Topplista titel="Dit klicken går" rader={toppVidareMal} />
+            </div>
           )}
         </Section>
 
@@ -363,6 +400,26 @@ function FunnelBar({ label, count, pct, color }: { label: string; count: number;
       <div style={{ background: 'var(--surface-3)', borderRadius: 4, overflow: 'hidden', height: 8 }}>
         <div style={{ background: color, height: '100%', width: `${Math.min(pct, 100)}%`, transition: 'width 200ms' }} />
       </div>
+    </div>
+  )
+}
+
+function Topplista({ titel, rader }: { titel: string; rader: [string, number][] }) {
+  if (rader.length === 0) return null
+  return (
+    <div>
+      <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', marginBottom: 6 }}>{titel}</div>
+      <ol style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+        {rader.map(([namn, n], idx) => (
+          <li key={namn} style={{
+            display: 'flex', gap: 12, padding: '6px 0',
+            borderBottom: idx === rader.length - 1 ? 'none' : '1px solid var(--border)',
+          }}>
+            <span style={{ flex: 1, fontSize: 14, color: 'var(--txt)' }}>{namn}</span>
+            <span style={{ fontSize: 12, color: 'var(--txt3)', fontVariantNumeric: 'tabular-nums' }}>{n}×</span>
+          </li>
+        ))}
+      </ol>
     </div>
   )
 }

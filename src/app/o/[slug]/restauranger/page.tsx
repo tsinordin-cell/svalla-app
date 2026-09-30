@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+import Vidareklick from '@/components/Vidareklick'
 import IslandPlacesList from '@/components/IslandPlacesList'
 import { getIslandPlaces } from '@/lib/islandPlaces'
 
@@ -69,6 +70,7 @@ export default async function IslandRestaurantsPage({ params }: Props) {
             : `${total} restauranger, krogar och kaféer på ${island.name} som vi har uppgifter om.`
         }
       />
+      <Vidareklick islandSlug={island.slug} standard="mat" />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         {island.restaurants.length === 0 && dbPlaces.length === 0 ? (

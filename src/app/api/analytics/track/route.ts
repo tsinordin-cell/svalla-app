@@ -42,6 +42,8 @@ const KNOWN_EVENTS = new Set([
   // Nya 2026-05-07
   'share_clicked', 'directions_clicked', 'action_pill_clicked',
   'filter_changed', 'bookmark_toggled',
+  // Nytt 2026-09-30: vidareklick från ösidor till verksamheter
+  'outbound_clicked',
 ])
 
 const MAX_PROPS_BYTES = 4096

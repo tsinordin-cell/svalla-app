@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import { getHantverkareForIsland, synligaYrken, YRKE_ETIKETT, type Yrke } from '../../hantverkare-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+import Vidareklick from '@/components/Vidareklick'
 import HantverkarKort from '@/components/HantverkarKort'
 import Icon, { type IconName } from '@/components/Icon'
 
@@ -93,6 +94,7 @@ export default async function IslandHantverkarePage({ params }: Props) {
         tab="hantverkare"
         title={`Hantverkare och service på ${island.name}`}
       />
+      <Vidareklick islandSlug={island.slug} standard="hantverk" />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         {alla.length === 0 ? (
