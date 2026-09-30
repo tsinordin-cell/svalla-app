@@ -3851,6 +3851,7 @@ export function getGuideContent(slug: string): string {
 <li>Ha alltid ett torrt ombyte i vattentät påse med dig ut på isen.</li>
 </ul>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svalla har också en äldre bloggtext om <a href="/blogg/vinter-skargard">vinter i skärgården</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hur båtarna går när isen lägger sig, med istabeller, svävare, vinterhamnar och isvägar: <a href="/guider/vintertrafik-skargarden">Vintertrafiken i skärgården</a>.</p>
 `,
 
     'fiske-i-skargarden': `
@@ -10031,6 +10032,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://www.sandhamn.com/sv/spa — "Här kan ni simma i den tempererade poolen, sjunka ner i jacuzzin"; "Här finns också bastu, gym och möjlighet att boka sköna behandlingar."; "Icke hotellgäster är välkomna i mån av plats." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.sandhamn.com/sv/spa/bastuflottar — "Njut av vedeldad bastu och ett dopp i havet"; "Lägg enkelt till en privat bastuflotte som tillval när du bokar din vistelse online eller via receptionen." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn Hotell &amp; Restaurang har spa med tempererad pool, jacuzzi och bastu, och gäster som inte bor på hotellet är välkomna i mån av plats. Hotellet har också vedeldade bastuflottar vid havet som du lägger till när du bokar din vistelse. Fler bastur finns i guiden <a href="/guider/vinterbastu-isbastu">Vinterbastu och isbastu</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Alla julbord vi har kontrollerat, på öarna och på kryssning i både Stockholms och Göteborgs skärgård, med datum och priser för 2026: <a href="/guider/julbord-skargarden">Julbord i skärgården 2026</a>.</p>
 `,
 
   'nyar-skargarden': `
@@ -14144,6 +14146,160 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler öar, öppettider och båtlinjer för oktober finns i <a href="/guider/oktober-skargarden">Skärgården i oktober</a>. För Stockholm finns också <a href="/guider/host-stockholms-skargard">Höst i Stockholms skärgård</a>, och för västkusten <a href="/guider/host-bohuslan">Höst i Bohuslän</a>. Vill ni plocka något på vägen: <a href="/guider/svampplockning-skargarden">svampplockning</a> och <a href="/guider/barplockning-skargarden">bärplockning</a> i skärgården.</p>
 `,
 
+  'julbord-skargarden': `
+<!-- SKRIVEN 2026-09-30 (kort 08e7a3dd). Varje ställe, datum och pris är läst på verksamhetens eller arrangörens egen sida 2026-09-29. Priser står bara där sidan anger att de gäller 2026. Kontrolleras om varje höst. -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">De flesta listor över julbord i skärgården handlar om kryssningar som går ut från stan och vänder. Den här guiden börjar i stället ute på öarna: vilka värdshus och hotell som dukar upp julbord 2026, hur du tar dig dit i december och vad du gör om båten inte går. Kryssningarna finns med längre ner.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Allt nedan är kontrollerat mot ställets egen sida i slutet av september 2026. Där ett pris saknas har stället inte publicerat något för 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julbord ute på öarna i Stockholms skärgård</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sandhamn: Seglarhotellet</h3>
+<!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julbord — "Julbord på Sandhamn 2026"; "JULBORD MED GULDKANT 26 november - 24 december 2026"; "Pris: torsdag 1 095 kr · fredag 1 195 kr · lördag 1 295 kr Barn: under 3 år gratis · 3–12 år 450 kr"; "v. 48 · 26–28 nov v. 49 · 3–5 dec v. 50 · 10–12 dec v. 51 · 18–19 dec v. 52 · 24 dec" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt."; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn Seglarhotell serverar julbord 26 november–24 december 2026, på utvalda dagar vecka 48–51 och på julafton. Priset är 1 095 kr på torsdagar, 1 195 kr på fredagar och 1 295 kr på lördagar. Barn 3–12 år betalar 450 kr och barn under 3 år äter gratis. Till <a href="/o/sandhamn">Sandhamn</a> går Waxholmsbolagets båtar året runt från Stavsnäs, och resan tar drygt en timme.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Utö: Utö Värdshus</h3>
+<!-- KÄLLA: https://www.utovardshus.se/julbord/ — "Julbord 2026 Dagar och tider för årets julbord 27 november – 19 december"; "Julbord på Utö fr. 895 kr/person"; "Julbords weekend … fr. 2.295 kr/person"; "Till varje sittning finns en ordinarie båt som passar tur och retur." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.utovardshus.se/kontakt/hitta-hit/ — "Waxholmsbåtar trafikerar linjen Utö – Årsta Brygga dagligen." (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus har julbord 27 november–19 december 2026, från 895 kr per person. Det finns också en julbordsweekend från 2 295 kr per person. Värdshuset skriver att det till varje sittning finns en ordinarie båt som passar både dit och hem. Waxholmsbåtarna går mellan Årsta brygga och <a href="/o/uto">Utö</a> varje dag.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Vaxholm: kastellet och Waxholms Hotell</h3>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/julbord/jul-pa-kastellet/ — "Mellan 25 november och 22 december 2026 dukar vi upp en traditionell julbuffé"; "I biljetten ingår: båtresa tur & retur med välkomstglögg och pepparkaka på båten (ej på avresa från Vaxholm) + generös julbordsbuffé på Vaxholms Kastell"; "Båten avgår 12:30 från Strandvägen – tillbaka ca 17:45"; "Båten avgår 18:00 från Strandvägen – tillbaka ca 23:30"; eftermiddag "från … SEK 795", kväll "från … SEK 1030" (produktsida märkt "Från november 2026") (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.waxholmshotell.se/julbord — "26 nov - 24 dec 2026 Restaurang Verandan … Lunch från 895 kr och middag från 1195 kr" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Båtresan från Strömkajen tar bara en timme och under sommaren går det turer många gånger om dagen, och övrig tid på året går det flera per dag." (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Vaxholms kastell, i restaurangen Pansarbatteriet, dukar Strömma upp julbord 25 november–22 december 2026. Här ingår båten: den går från Strandvägen 12.30 och är tillbaka ungefär 17.45, eller 18.00 och tillbaka ungefär 23.30, med glögg och pepparkaka ombord. Eftermiddagen kostar från 795 kr och kvällen från 1 030 kr.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Inne i Vaxholm serverar Waxholms Hotell julbord i restaurang Verandan 26 november–24 december 2026, lunch från 895 kr och middag från 1 195 kr. Till <a href="/o/vaxholm">Vaxholm</a> tar Waxholmsbolagets båt en timme från Strömkajen, och den går flera gånger om dagen även på vintern.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Fjäderholmarna: två julbord en kort båtresa från stan</h3>
+<!-- KÄLLA: https://www.fjaderholmarnaskrog.se/ — "Vi söker nu personal för julbordet 2026"; "NU SERVERA JULBORD MELLAN 20/11 - 22/12" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.fjaderholmarnaskrog.se/julbord — "TILL KROGENS KLASSISKA JULBORD GÅR BÅTARNA UT KLOCKAN: 11.30, 15.30, 19.30 Båtresan utgår från kajplats 14-15 på Strandvägen." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.rokeriet-fjaderholmarna.se/julbord — "Julbordet hålls från 20 november till 20 december 2026"; "Resan från Strandvägen till Fjäderholmarna tar ca 25 minuter, med stopp vid Nacka Strand."; "Båtbiljetter tur & retur bokas separat via Strömma." (samma källa som guiden jul-skargarden) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På <a href="/o/fjaderholmarna">Fjäderholmarna</a> finns två julbord. Fjäderholmarnas Krog serverar 20 november–22 december, och båtarna till krogens julbord går från kajplats 14–15 på Strandvägen klockan 11.30, 15.30 och 19.30. Rökeriet har julbord 20 november–20 december 2026. Båten dit tar ungefär 25 minuter med stopp vid Nacka Strand, och båtbiljetten bokas separat hos Strömma. Krogen har inte publicerat något pris för 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vid skärgården på Värmdö</h2>
+<!-- KÄLLA: https://artipelag.se/pa-gang/mat-och-dryck/julbord-i-artipelag-restaurang/ — "28 nov 2026 – 20 dec 2026 … Torsdag – söndag"; "Vuxen: Torsdag – fredag: 950 SEK Lördag – söndag: 1050 SEK (obs! lördag kväll 18.30: 1150 SEK)" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.djuronaset.com/restaurang-bar/julbord/ — sidtitel "Julbord 2026 i Stockholms skärgård | Djurönäset"; "Julbordet serveras torsdag till lördag under hela advent – från 27 november till 20 december" (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Två julbord ligger vid vattnet på Värmdö. Artipelags restaurang vid Baggensfjärden har julbord 28 november–20 december 2026, torsdag till söndag. Vuxna betalar 950 kr torsdag och fredag, 1 050 kr lördag och söndag, och 1 150 kr på lördagskvällen klockan 18.30. Djurönäset serverar julbord torsdag till lördag 27 november–20 december. Priset står på deras sida.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julbord i Göteborgs skärgård och Bohuslän</h2>
+<!-- KÄLLA: https://www.isbolaget.com/hogtid-frukost — "JULBORDSDATUM 2026 Fredag–lördag 27–28 november från kl. 18.00 Torsdag–lördag 3–5 december"; "Julbord vuxen: 895 kr Hotellpaket: 1 695 kr per person med del i dubbelrum" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "Färjorna går året runt från Saltholmen"; "Båtarna avgår som regel en gång i timmen till de större öarna Asperö, Brännö, Köpstadsö, Styrsö, Donsö och Vrångö." (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På <a href="/o/donso">Donsö</a> i Göteborgs södra skärgård har Isbolaget Hotell &amp; Restaurang julbord 2026, med start fredag och lördag 27–28 november från klockan 18.00. Julbordet kostar 895 kr för vuxna, och ett hotellpaket med övernattning i delat dubbelrum kostar 1 695 kr per person. Färjorna från Saltholmen går året runt, i regel en gång i timmen till de större öarna, Donsö inräknat.</p>
+<!-- KÄLLA: https://grandmarstrand.se/julbord/ — sidtitel "Julbord, Julfest på Västkusten 2026"; "Julbordet serveras i perioden 26/11- 19/12"; "Julbordspremiär i samband med Marstrands julmarknad 28-29/11"; "Fredagar från kl 18.30 Lördagar från kl 14.30" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Färjan mellan Koön och Marstrand kallas för Marstrandsfärjan" (läst 2026-09-27) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På <a href="/o/marstrand">Marstrand</a> serverar Grand Hotel julbord 26 november–19 december, fredagar från 18.30 och lördagar från 14.30. Premiären är samma helg som Marstrands julmarknad, 28–29 november. Hit tar du dig med Marstrandsfärjan från Koön. Hotellet har inte publicerat något pris för 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julbordskryssningar</h2>
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/julbord/julbordskryssningar-i-stockholms-skargard/ — "Från november 2026"; "Välj din julbordskryssning 2026"; "Pris från 795 kr" (lunch); "Pris från 995 kr" (middag); "Kryssningarna avgår från Nybrokajen/Strandvägen" (läst 2026-09-29) -->
+<!-- KÄLLA: https://blidosundsbolaget.se/julbord-till-sjoss/ — "Mellan 27 november och 20 december 2026 erbjuder vi flera julbordsavgångar per dag … onsdag–söndag"; "Julbordspriser Vuxen 895–1095 kr Barn 6–12 år 495–695 kr … I priset ingår kryssning, julbord och glögg."; "Avgång Skeppsbron 12:00, åter 14:30" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.stromma.com/sv-se/goteborg/julbord-goteborg/julbord-ms-goteborg/ — "Från november 2026"; "Julbordskryssningar 2026 i Göteborgs skärgård"; lunch 2 tim "från … SEK 699"; middag 3 tim "från … SEK 799"; "Avgår från: Lilla Bommen" (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du äta julbord medan båten går, finns det tre alternativ:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Strömma i Stockholm:</strong> julbordskryssningar från november 2026 med avgång från Nybrokajen och Strandvägen. Lunch från 795 kr och middag från 995 kr.</li>
+<li><strong>S/S Blidösund:</strong> Blidösundsbolaget har julbord till sjöss onsdag till söndag 27 november–20 december 2026, med avgång från Skeppsbron. Vuxna betalar 895–1 095 kr och barn 6–12 år 495–695 kr, och i priset ingår kryssning, julbord och glögg.</li>
+<li><strong>Strömma i Göteborg:</strong> julbordskryssningar i Göteborgs skärgård från november 2026, med avgång från Lilla Bommen. Lunchen tar två timmar och kostar från 699 kr, middagen tar tre timmar och kostar från 799 kr.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Om båten inte går</h2>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/tidtabeller — "Tänk på att tidtabellerna visar hur trafiken är planerad. Fartygen kan ändras med kort varsel." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/nyheter-och-trafikinfo/dags-for-hosttidtabell — "Hösttidtabellerna gäller mellan 17 augusti och lördagen den 12 december." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/nyheter-och-trafikinfo — rubriken "Trafikinformation"; "Kundtjänst har öppet alla dagar, dygnet runt. Ring 08-600 10 00." (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det här är skillnaden mot en restaurang i stan. Waxholmsbolaget skriver att tidtabellerna visar hur trafiken är planerad och att fartygen kan ändras med kort varsel. Tre saker att tänka på:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Julbord efter 12 december:</strong> hösttidtabellen gäller till och med lördag 12 december. Efter det gäller vintertidtabellen, som inte var publicerad när vi skrev det här. Sök hemresan för rätt dag innan du bokar.</li>
+<li><strong>Kolla samma dag:</strong> Waxholmsbolaget lägger störningar under Trafikinformation på sin webbplats, och kundtjänst har öppet dygnet runt på 08-600 10 00.</li>
+<li><strong>Vill du slippa sista båten:</strong> välj ett paket med boende, som hotellpaketet på Donsö, eller fråga värdshuset på Utö om julbordsweekenden.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer om december, julmarknaden i Vaxholm och hur båtarna går i jul finns i guiden <a href="/guider/jul-skargarden">Jul i skärgården 2026</a>. Hur båtarna går när isen lägger sig står i <a href="/guider/vintertrafik-skargarden">Vintertrafiken i skärgården</a>. Och i <a href="/utflykt">dagsplaneraren</a> ser du båttiderna för en viss dag.</p>
+`,
+  'vintertrafik-skargarden': `
+<!-- SKRIVEN 2026-09-30 (kort d6e86ef4). Waxholmsbolagets vintertidtabeller för 2026/27 var inte publicerade när guiden skrevs. Uppgifter om istabeller och svävare kommer från förra vinterns tabeller (14 december 2025 – 1 april 2026) och är märkta så i texten. Kontrolleras när vintertabellerna kommer. -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgårdstrafiken stannar inte när isen lägger sig. Den byter form. Båtar byts mot isgående fartyg, bryggor slutar angöras och på några sträckor tar svävare över. Det här är vad operatörerna själva skriver om hur det går till och var du ser läget en viss dag.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Stockholms skärgård: från hösttabell till istabell</h2>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period."; "Tänk på att tidtabellerna visar hur trafiken är planerad. Fartygen kan ändras med kort varsel." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/nyheter-och-trafikinfo/dags-for-hosttidtabell — "Hösttidtabellerna gäller mellan 17 augusti och lördagen den 12 december." (läst 2026-09-29) -->
+<!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01" (läst 2026-09-28) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — "GÄLLER 14 DECEMBER 2025 – 1 APRIL 2026" (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget byter tidtabell fyra gånger om året, och vissa linjer går bara under en del av en period. Hösten 2026 ser det ut så här:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>1 november:</strong> sista dagen för linjerna från Stockholm till Rödlöga, Arholma och Blidösundet.</li>
+<li><strong>12 december:</strong> sista dagen för övriga hösttidtabeller.</li>
+<li><strong>Därefter:</strong> vintertidtabellen. Förra vintern gällde den 14 december 2025–1 april 2026. Årets datum var inte publicerade i slutet av september.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget påpekar också att tidtabellen visar hur trafiken är planerad och att fartygen kan ändras med kort varsel.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Isfri period och isperiod</h3>
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/w14.pdf — "14C SOLLENKROKA – MÖJA GÄLLER ISFRI PERIOD"; vintertabell 14A/B "STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA" (läst 2026-09-29) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — "10E ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ GÄLLER ISPERIOD (VID KRAFTIG IS)"; "Avgången utförs av svävare. Beställ hos Svisch Air på telefon 08-77 123 77 senast kl. 19.00 dag före resdag." (läst 2026-09-29) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/w12.pdf — "12C ÅSÄTTRA – ÖRSÖ GÄLLER ISPERIOD 7 JANUARI – 1 APRIL" (läst 2026-09-29) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — "Vid kraftig isläggning kan trafiken till och från bryggorna Rödlöga" (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I vintertabellerna finns det linjer och delar av linjer som bara gäller vid isfritt vatten, och andra som bara gäller när det ligger is. Så här såg det ut förra vintern:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong><a href="/o/moja">Möja</a>:</strong> vintertabellen går Stockholm–Vaxholm–Sollenkroka–Möja. Den korta pendeln mellan Sollenkroka och Möja gällde bara under isfri period.</li>
+<li><strong><a href="/o/husaro">Husarö</a> och Norra <a href="/o/ingmarso">Ingmarsö</a>:</strong> vid kraftig is fanns en särskild istabell från Åsättra, där avgångarna gjordes av svävare. Svävaren beställdes hos Svisch Air på 08-77 123 77 senast klockan 19.00 dagen före.</li>
+<li><strong>Örsö:</strong> hade en istabell från Åsättra som gällde 7 januari–1 april.</li>
+<li><strong><a href="/o/rodloga">Rödlöga</a>:</strong> vid kraftig isläggning kan trafiken till bryggan ställas in.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Om samma upplägg gäller vintern 2026/27 ser du när Waxholmsbolaget publicerar vintertabellerna.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Vinterhamnar: varifrån båten går när sommarlinjerna har slutat</h3>
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Norröra eller Söderöra." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt."; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme." (läst 2026-09-28) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/w16.pdf — linje 16 "STAVSNÄS – SANDHAMN – HAGEDE", vintertabell 14 december 2025 – 1 april 2026 (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/moja — "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja." (läst 2026-09-28) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong><a href="/o/norrora">Norröra</a> och Söderöra:</strong> på vintern och tidig vår åker du från Köpmanholm på Yxlan, inte från Strömkajen.</li>
+<li><strong><a href="/o/sandhamn">Sandhamn</a>:</strong> båten går året runt från Stavsnäs och resan tar drygt en timme. Linjen Stavsnäs–Sandhamn–Hagede hade vintertabell förra vintern.</li>
+<li><strong>Möja:</strong> båtar året runt från Boda brygga på Värmdö.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ersättningstrafik är till för öborna</h3>
+<!-- KÄLLA: https://www.mynewsdesk.com/se/waxholmsbolaget/pressreleases/vattnet-boerjar-frysa-till-i-oestersjoen-se-till-att-aaka-hem-i-tid-3065129 — Waxholmsbolagets pressmeddelande 2021-01-15: "på vissa sträckor kan trafiken inom kort behöva ersättas av isgående fartyg. Ersättningsfartygen är ofta mindre…"; "Då ordnar Waxholmsbolaget särskild ersättningstrafik genom resor med helikopter eller svävare. Den trafiken finns endast till för de personer som är fastboende och har ökort." (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I januari 2021 skrev Waxholmsbolaget att trafiken på vissa sträckor kan behöva ersättas av isgående fartyg, som ofta är mindre. När inte ens de kommer fram ordnar bolaget ersättningstrafik med helikopter eller svävare, men den är bara till för fastboende med ökort. Som besökare kan du alltså inte räkna med att komma ut eller hem när isen är som svårast. Planera marginal, och åk inte ut med dagens sista båt när isen håller på att lägga sig.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vägfärjorna och isvägarna</h2>
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/ — förteckning över 40 leder, bl.a. Ljusteröleden, Vaxholmsleden, Furusundsleden, Blidöleden, Tynningöleden, Hönöleden, Björköleden, Gullmarsleden, Svanesundsleden; "Information om det aktuella läget i vägfärjetrafiken, exempelvis störningar, hittar du på respektive ledsida, via vår app, eller via Trafikinformationskartan." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.trafikverket.se/resa-och-trafik/trafiksakerhet/sakerhet-pa-vagfarja/fardas-sakert-pa-isvag/ — "Under vintern ersätts eller kompletteras vägfärjetrafiken med isvägar när klimatet tillåter."; "Trafikverkets färjerederi ansvarar för upp till sju isvägar."; "Kan vi inte säkerställa en bärighet på två ton, så öppnas inte isvägen."; högst 30 km/h och minst 50 meter mellan fordonen (sidan uppdaterad 23 januari 2026, läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Trafikverkets färjerederi kör 40 leder, bland annat Ljusteröleden, Vaxholmsleden, Furusundsleden och Blidöleden i Stockholms skärgård och Hönöleden, Björköleden och Svanesundsleden på västkusten. Störningar står på respektive ledsida, i appen Trafikinfo Färjerederiet och på Trafikverkets trafikinformationskarta.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På vintern ersätts eller kompletteras vissa leder med isvägar när vädret tillåter. Färjerederiet ansvarar för upp till sju isvägar, och en isväg öppnas bara om isen bär två ton. På isvägen gäller högst 30 km/h och minst 50 meters avstånd mellan fordonen. Vilka isvägar som öppnar en viss vinter syns på trafikinformationskartan.</p>
+<!-- KÄLLA: https://www.lulea.se/boende--gator/gator-och-trafik/isvagar.html — "I regel öppnas vägarna i slutet av januari eller i början av februari."; sidan listar fyra isvägar, bland dem till Sandön och Hindersön (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Längst norrut har Luleå kommun egna isvägar ut i skärgården, bland annat till Sandön och Hindersön. Enligt kommunen öppnar de i regel i slutet av januari eller början av februari.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Resten av kusten</h2>
+<!-- KÄLLA: https://styrsobolaget.se/kollektivtrafik-till-sjoss-med-vasttrafik/ — "Hösttidtabell L 281-282 20260824-20261212"; "Södra skärgårdstrafiken består av fyra linjer som körs på uppdrag av Västtrafik." (läst 2026-09-29) -->
+<!-- KÄLLA: https://styrsobolaget.se/infor-din-resa-med-styrsobolaget/ — "Uppdateringar om trafikläget finner du på vår hemsida och i Västtrafik To Go-appen." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "Färjorna går året runt från Saltholmen" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/nar-isen-lagger-sig — "När vintern kommer ersätts båtarna med svävare. Då blir platserna färre och öbor prioriteras."; "Det är skepparen som avgör när båtarna ersätts av svävare." (läst 2026-09-29) -->
+<!-- KÄLLA: https://sormlandstrafiken.se/res-med-oss/anropsstyrd-trafik/skargardstrafik/ — "Vid isbelagt vatten trafikeras skärgården med svävare." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.mfulvon.se/om-oss — "Ulvön trafikeras året om för att tillgodose de året runt-boendes behov men tidtabellen till Ulvön ser olika ut beroende på säsong." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ — "Mellan Nogersund och Hanö finns skärgårdstrafik året runt."; "Från Handelshamnen finns båtpendel året runt till Hasslö, Sturkö och Trummenäs." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.vastervik.com/skargardstrafiken/ — "Skärgårdstrafiken är stängd för säsongen och startar upp igen under maj 2027." (läst 2026-09-29) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Göteborgs södra skärgård:</strong> färjorna från Saltholmen går året runt. Styrsöbolagets hösttidtabell gäller till 12 december 2026, och trafikläget står på deras webbplats och i appen Västtrafik To Go. Vi har inte hittat något om hur is hanteras här.</li>
+<li><strong>Östergötland:</strong> när vintern kommer ersätts båtarna med svävare. Då blir platserna färre och öborna går före, och det är skepparen som avgör när bytet sker.</li>
+<li><strong>Sörmland:</strong> vid isbelagt vatten trafikeras skärgården med svävare.</li>
+<li><strong>Höga kusten:</strong> <a href="/o/ulvon">Ulvön</a> har trafik året om, med olika tidtabell beroende på säsong.</li>
+<li><strong>Blekinge:</strong> båten mellan Nogersund och <a href="/o/hano">Hanö</a> går året runt, och från Handelshamnen i Karlskrona går en båtpendel året runt till Hasslö, Sturkö och Trummenäs.</li>
+<li><strong>Västervik:</strong> skärgårdstrafiken är stängd för säsongen och börjar igen i maj 2027.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Om du tänker gå på isen</h2>
+<!-- KÄLLA: https://www.sjoraddning.se/sjosakerhet/issakerhet — "En 20 cm tjock is kan vara mindre hållbar än en is på 5 cm." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.naturvardsverket.se/om-oss/aktuellt/nyheter-och-pressmeddelanden/2025/november/snabb-islaggning-i-norra-sverige-har-ar-raden-som-kan-radda-liv/ — "Vistas aldrig på isen ensam."; "Använd ispik och isdubbar."; "Under de senaste tio åren har i genomsnitt 12 personer per år omkommit vid isolyckor i Sverige." (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.smhi.se/data/hav-och-havsmiljo/havsis — "Varje dag under november till maj kartlägger SMHI isläget i… Östersjön" (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sjöräddningssällskapet skriver att en 20 centimeter tjock is kan vara mindre hållbar än en is på 5 centimeter. Naturvårdsverkets råd är att aldrig vara ensam på isen och att alltid ha ispik och isdubbar. Under de senaste tio åren har i genomsnitt tolv personer om året omkommit i isolyckor i Sverige. SMHI kartlägger isläget i Östersjön varje dag från november till maj.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Här ser du läget en viss dag</h2>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/nyheter-och-trafikinfo — rubriken "Trafikinformation"; "Kundtjänst har öppet alla dagar, dygnet runt. Ring 08-600 10 00." (läst 2026-09-29) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Stockholms skärgård:</strong> Waxholmsbolagets sida Nyheter och trafikinfo. Kundtjänsten har öppet dygnet runt på 08-600 10 00.</li>
+<li><strong>Vägfärjor och isvägar:</strong> Trafikverkets trafikinformationskarta och appen Trafikinfo Färjerederiet.</li>
+<li><strong>Göteborgs skärgård:</strong> Styrsöbolagets störningsinformation och Västtrafiks trafikinformation.</li>
+<li><strong>Isläget till havs:</strong> SMHI:s havsiskarta.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vilka öar som går att besöka på vintern, och vad som har öppet, står i guiden <a href="/guider/vinter-i-skargarden">Stockholms skärgård på vintern</a>. I <a href="/utflykt">dagsplaneraren</a> ser du båttiderna för en viss dag.</p>
+`,
   'oktober-skargarden': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "havet är fortfarande varmt" och vattentemperaturer, "svampen är som rikligast", "Landsortsledens härbärgen har öppet in i oktober", "Finnhamns härbärge stänger i slutet av september", "Waxholmsbolaget kör vinterdrift från mitten av september" (höstens tidtabeller gäller från augusti), "pendelbåten från Årstaberg" till Utö (båten går från Årsta brygga), "direktbåt från Strömkajen" om Vaxholm utan källa, restiden till Fjäderholmarna, kantareller och trattkantareller på skärgårdsöar, "fullbokat av naturälskare", klädråd utan källa, samt värdeord. -->
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Grinda - Boda - Sollenkroka Gäller:2026-08-17till2026-12-12" (läst 2026-09-28) -->
