@@ -52,7 +52,28 @@ const MYNDIGHET_DOMAN = [
   'raa.se', 'sfv.se', 'sjofartsverket.se', 'trafikverket.se',
   'riksantikvarieambetet.se', 'kringla.nu', 'sl.se', 'vasttrafik.se',
   'waxholmsbolaget.se', 'sverigesradio.se', 'scb.se',
+  // Tillagt 2026-09-30. Listan räknade bara 16 % av källorna som myndighet,
+  // för att kommunernas egna domäner och flera statliga verk saknades. Siffran
+  // visas på /om, så den ska vara rätt och inte bara försiktig. Bara domäner
+  // som tillhör en kommun, en region eller ett statligt verk står här.
+  'lantmateriet.se', 'havochvatten.se', 'smhi.se', 'fortifikationsverket.se',
+  'riksarkivet.se', 'jordbruksverket.se', 'historiska.se', 'blekingetrafiken.se',
+  'varmdo.se', 'vaxholm.se', 'haninge.se', 'tjorn.se', 'norrtalje.se',
+  'nynashamn.se', 'orust.se', 'osteraker.se', 'ockero.se', 'kungalv.se',
+  'lysekil.se', 'sotenas.se', 'tanum.se', 'karlskrona.se', 'lidingo.se',
+  'sodertalje.se', 'umea.se', 'borgholm.se', 'gotland.se', 'jonkoping.se',
 ]
+
+/**
+ * Trafikbolagens tidtabeller ligger hos en tryckeripartner och på en
+ * lagringsyta. Värdnamnet är inte bolagets, men dokumentet är det.
+ * Samma avgränsning som domanNamn() använder för visningsnamnet.
+ */
+function arTrafikbolagetsTidtabell(u) {
+  const host = u.hostname.replace(/^www\./, '')
+  if (host === 'kund.printhuset-sthlm.se') return /^\/(wa|sl)\//.test(u.pathname)
+  return host.endsWith('.blob.core.windows.net') && host.startsWith('vtstorage')
+}
 
 /** Kommuner och regioner räknas också som myndighet, oavsett domännamn. */
 const MYNDIGHET_ORD = /kommun|länsstyrelse|lansstyrelse|naturvårdsverk|riksantikvarie|statens fastighetsverk|sjöfartsverk|trafikverk|västra götalandsregionen|region /i
@@ -208,8 +229,10 @@ function parseLast(rad) {
 function arMyndighet(url, org) {
   if (MYNDIGHET_ORD.test(org)) return true
   try {
-    const host = new URL(url).hostname.replace(/^www\./, '')
+    const u = new URL(url)
+    const host = u.hostname.replace(/^www\./, '')
     if (MYNDIGHET_DOMAN.some(d => host === d || host.endsWith('.' + d))) return true
+    if (arTrafikbolagetsTidtabell(u)) return true
     // kommunala domäner: tjorn.se, orust.se, varmdo.se … känns igen på org-namnet
     return false
   } catch { return false }
