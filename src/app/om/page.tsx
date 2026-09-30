@@ -218,6 +218,7 @@ export default function OmPage() {
                     : `${k.oarMedKalla} av ${k.oarTotalt} öar har minst en.`}{' '}
                   Ett nytt pris eller klockslag utan källa stoppar publiceringen av sig själv.
                   Avstånd och skyddsstatus utan källa flaggas för granskning.
+                  Hela källistan per ö finns som öppen fil: <a href="/data/oar.json">svalla.se/data/oar.json</a> (CC BY 4.0).
                 </p>
               )
             })()}

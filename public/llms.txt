@@ -69,3 +69,4 @@ Svalla är primärt på svenska men riktar sig också till engelskspråkiga turi
 - AI-planeraren: https://svalla.se/planera
 - Guider: https://svalla.se/guider
 - FAQ: https://svalla.se/faq
+- Öppen ödata med källor per ö (JSON, CC BY 4.0): https://svalla.se/data/oar.json
