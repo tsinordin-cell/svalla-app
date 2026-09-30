@@ -76,6 +76,7 @@ from: "Team Svalla <hej@mail.svalla.se>"
 Samma resa, varje år: Sandhamn, Grinda, Vaxholm. Inget ont om klassikerna — men skärgården är större än så, och de finaste öarna är ofta de som kräver ett byte till och en halvtimme extra på däck. Det är inte ett hinder. Det är entréavgiften.
 
 :::kort
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Huvudentrén finns på ön Bullerö" -->
 ### Fem under radarn
 - **Rödlöga** — ingen bilväg, ingen el, bara stigar och klippor. En av skärgårdens mest oförändrade öar
 - **Husarö** — bilfri seglarö, ett av Skärgårdsstiftelsens skyddade områden. Lugnet sitter i väggarna
@@ -93,8 +94,8 @@ Samma resa, varje år: Sandhamn, Grinda, Vaxholm. Inget ont om klassikerna — m
 
 :::ruta
 ### En helt egen nationalpark
-<!-- KÄLLA: src/app/o/island-data.ts (bullero) — Nämdöskärgårdens nationalpark invigd sep 2025, Sveriges 31:a och första marina nationalpark -->
-Bullerö blev 2025 huvudentré till Nämdöskärgårdens nationalpark — Sveriges första marina. Konstnären Bruno Liljefors köpte ön 1908, och hans jaktstuga rymmer i dag parkens utställning. Konsthistoria och ytterskärgård på samma klippa.
+<!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö". RÄTTAT 2026-09-29: texten sa "Sveriges första marina nationalpark". Det är Kosterhavet, bildad 2009. Nämdöskärgården är den första marina nationalparken i ÖSTERSJÖN. -->
+Bullerö blev 2025 huvudentré till Nämdöskärgårdens nationalpark, den första marina nationalparken i Östersjön. Konstnären Bruno Liljefors köpte ön 1908, och hans jaktstuga rymmer i dag parkens utställning. Konsthistoria och ytterskärgård på samma klippa.
 
 [Bullerö-guiden →](https://svalla.se/o/bullero)
 :::
@@ -384,27 +385,30 @@ Tryck hjärtat på en ö så hamnar den i *Min skärgård*. Dela listan med crew
 ## Tre att lägga in nu
 
 :::ruta
+<!-- KÄLLA: src/app/o/island-data.ts (sandhamn) — varmdo.se: "Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida." / "Trouville ligger omkring 20 minuters promenad från hamnen."; ksss.se: seglingsverksamhet runt Sandhamn (rättad 2026-09-29) -->
 ### Sandhamn
-Ytterskärgårdens seglarhamn. Sandstrand på Trouville, klippor mot öppet hav och Sandhamns Värdshus. Boka bord i förväg under högsommaren.
+Seglarön i ytterskärgården. Den långa sandstranden Trouville ligger på södra sidan, ungefär tjugo minuters promenad från hamnen.
 
 [Guiden →](https://svalla.se/o/sandhamn)
 :::
 
 :::ruta
+<!-- KÄLLA: src/app/o/island-data.ts (grinda) — grinda.se/en/accommodation/sea-lodge: "sandy beaches, rock pools, saunas for rent directly by the water"; waxholmsbolaget.se: "Grinda har trafik året om". Tidigare stod "klippbad på norra sidan", som inte har källa — baden ligger vid Sea Lodge på södra sidan (rättad 2026-09-29) -->
 ### Grinda
-Naturreservat med sandstrand vid gästhamnen och klippbad på norra sidan. Nära nog för en dagstur, tillräckligt för en helg.
+Sandstränder och klippbad vid Grinda Sea Lodge på öns södra sida, och båt året om. Nära nog för en dagstur, tillräckligt för en helg.
 
 [Guiden →](https://svalla.se/o/grinda)
 :::
 
 :::ruta
+<!-- KÄLLA: src/app/o/island-data.ts (uto) — skargardsstiftelsen.se/omraden/uto: "I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden", "Cykla längs grusvägarna", "Ålö Storsand, som nås med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder." Tidigare stod "broförbundna grannön" och "en av Sveriges finaste sandstränder" (rättad 2026-09-29) -->
 ### Utö
-Söder om det mesta. Gammal gruvö med cykelvägar som visar hela ön på en dag — och Ålö Storsand på broförbundna grannön, en av Sveriges finaste sandstränder.
+Järngruvor sedan medeltiden och grusvägar att cykla på. Ålö Storsand, som du når med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder.
 
 [Guiden →](https://svalla.se/o/uto)
 :::
 
-Letar du efter något särskilt — barnvänligt, bilfritt, seglingsvänligt — filtrera bland [alla 84 guider](https://svalla.se/oar) och spara ett par kandidater. Beslut blir lättare när alternativen ligger bredvid varandra.
+Letar du efter något särskilt — barnvänligt, bilfritt, seglingsvänligt — sök bland [alla öar](https://svalla.se/oar) och spara ett par kandidater. Beslut blir lättare när alternativen ligger bredvid varandra.
 
 :::knapp
 [Utforska öarna](https://svalla.se/oar)
@@ -442,12 +446,13 @@ Den svåra biten är att bestämma sig.
 
 :::ruta
 ### 1. Välj en ö
-Vill du testa lätt: [Fjäderholmarna](https://svalla.se/o/fjaderholmarna) — närmast stan och kräver ingen planering. Vill du längre ut: [Grinda](https://svalla.se/o/grinda) eller [Finnhamn](https://svalla.se/o/finnhamn).
+<!-- KÄLLA: waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Båtresan från Strömkajen tar bara en timme … övrig tid på året går det flera per dag"; resmal/grinda — "Grinda har trafik året om" (läst 2026-09-28). Tidigare föreslogs Fjäderholmarna, som är stängt oktober–mars; mejlet går året runt (rättad 2026-09-29) -->
+Vill du testa lätt: [Vaxholm](https://svalla.se/o/vaxholm), en timme från Strömkajen och flera båtar om dagen året runt. Vill du längre ut: [Grinda](https://svalla.se/o/grinda), som har trafik året om.
 :::
 
 :::ruta
 ### 2. Kolla turen — och sista båten hem
-Waxholmsbolagets och Strömmas avgångar ligger på [svalla.se/farjor](https://svalla.se/farjor). Titta på hemresan innan du bokar utresan.
+Välj startpunkt och dag i [dagsplaneraren](https://svalla.se/utflykt) så ser du båttiderna för varje ö. Titta på hemresan innan du bestämmer dig för utresan.
 :::
 
 :::ruta
@@ -465,6 +470,210 @@ Det här var sista påminnelsen. Du ligger kvar i listan och hör av oss när de
 Ses därute.
 — Team Svalla
 *Vi hoppas på ett bra väderfönster åt dig.*
+:::
+`,
+  manadsbrev: `---
+trigger: första tisdagen i månaden, oktober–mars (bara om manad stämmer)
+manad: 2026-10
+layout: fullt
+subject_options:
+  - "Två timmar på Saltkråkan innan båten slutar gå för året"
+preheader: Sista båtarna från stan, höstlovet och hur många som bor kvar på öarna när sommaren är slut.
+from: "Team Svalla <hej@mail.svalla.se>"
+---
+
+# Oktober vid havet
+
+Sommargästerna har åkt hem, men båtarna går fortfarande. Den 1 november gör några av dem sin sista tur för året, så oktober är sista chansen i år att åka direkt från stan ut till ett par av de yttre öarna.
+
+## Saltkråkan, en sista gång i år
+
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — Waxholmsbolaget tabell 26, "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026": lördag tur 2651 Strömkajen 08.45 → Norröra 12.15; lördag tur 2652 Norröra 14.40 → Strömkajen 18.15; "Vid jul, nyår, påsk, midsommar samt övriga storhelger förekommer förändringar i trafiken." (läst 2026-09-29) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Saltkråkan är framför allt inspelat på Norröra."; "Det finns varken livsmedelsbutiker eller restauranger på öarna" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.norrora.se/gronomraden/ — "totalt på ön ca 7 km stigar" (läst 2026-09-29) -->
+<!-- KÄLLA: alla helgons dag 2026 = lördag 31 oktober, räknas fram i src/lib/arsdatum.ts -->
+Norröra är ön där Saltkråkan spelades in. På en lördag i oktober går båten från Strömkajen 08.45 och är framme 12.15. Hem går den 14.40 och är tillbaka i stan 18.15. Det ger dig knappt två och en halv timme och ungefär sju kilometer stigar. Ta med matsäck, för på ön finns varken affär eller restaurang.
+
+Tabellen gäller till och med 1 november. Den sista lördagen, 31 oktober, är alla helgons dag, och vid storhelger kan Waxholmsbolaget ändra turerna. Åk hellre en lördag tidigare, eller kontrollera just den dagen.
+
+[Norröra på Svalla](https://svalla.se/o/norrora)
+
+## Det här ändras nu
+
+<!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Grinda - Boda - Sollenkroka Gäller:2026-08-17till2026-12-12" (läst 2026-09-28) -->
+<!-- KÄLLA: https://grinda.se/oppettider/ — "Grinda stugby har öppet med start strax innan månadssskiftet april / maj till 3.e helgen i oktober" (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Grinda har trafik året om" (läst 2026-09-28) -->
+<!-- KÄLLA: https://explorearchipelago.se/sv/sthlm/inre-skargarden/fjaderholmarna — "Fjäderholmarna är säsongsöppet mellan april och september." (läst 2026-09-28) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — turerna till Arholma har anmärkning "Går under perioden 2 april - 18 juni."; https://kund.printhuset-sthlm.se/wa/h30.pdf — Simpnäs–Arholma till "12 DECEMBER 2026" (läst 2026-09-30) -->
+- Waxholmsbolagets linjer från Stockholm till Rödlöga och Blidösundet går till och med 1 november. Linjen mot Arholma går i höst bara till Gräskö, så till Arholma åker du med passbåten från Simpnäs.
+- Linjen från Stockholm via Vaxholm och Grinda till Sollenkroka har höstturer till 12 december.
+- Grinda Stugby stänger efter tredje helgen i oktober. Grinda har ändå båttrafik året om.
+- Fjäderholmarnas säsong är april till september.
+
+## Höstlovet
+
+<!-- KÄLLA: https://meetingspublic.stockholm.se/welcome-sv/namnder-styrelser/utbildningsnamnden/mote-2022-11-17/agenda/bilaga-1-larotider-2024-2027-gr-o-grsarpdf?downloadMode=open — "Höstlov, vecka 44: 26 - 30 oktober" (läst 2026-09-29) -->
+<!-- KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "Färjorna går året runt från Saltholmen"; "En Västtrafikbiljett för zon A gäller hela vägen på spårvagn, buss och färja." (läst 2026-09-29) -->
+I Stockholms kommunala skolor är höstlovet vecka 44, alltså 26 till 30 oktober. I guiden står vilka båtar som går den veckan och vad som har stängt.
+
+Bor du i Göteborg är den södra skärgården det enklaste lovet: färjorna från Saltholmen går året runt, och en Västtrafikbiljett för zon A gäller hela vägen på spårvagn, buss och färja.
+
+[Höstlov vid havet](https://svalla.se/guider/hostlov-vid-havet)
+
+## Hur många bor kvar?
+
+<!-- KÄLLA: https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__MI__MI0812__MI0812A/OarEjBro01/ — SCB, "Befolkning och bebyggelse på öar utan fastlandsförbindelse med bro, per ö", 31 december 2020: Möja 203, Sandön 118, Arholma 40 folkbokförda (hämtad 2026-09-29) -->
+När sista sommarbåten har gått är det de fast boende som är kvar. Enligt SCB var 203 personer folkbokförda på Möja, 118 på Sandön där Sandhamn ligger och 40 på Arholma. Siffrorna gäller 31 december 2020, det senaste året i SCB:s statistik per ö.
+
+Nu står de siffrorna på öarnas sidor på Svalla, tillsammans med kommun och antal byggnader.
+
+[Se Möja](https://svalla.se/o/moja)
+
+## Nytt på Svalla
+
+- **Din dag i skärgården.** Välj var du startar och vilken dag du vill åka, så ser du vilka öar du hinner till och när båtarna går just den dagen. [Planera en dag](https://svalla.se/utflykt)
+- **Sök bland alla öar.** Listan över öar har fått ett sökfält. [Alla öar](https://svalla.se/oar)
+
+:::knapp
+[Planera en dag i oktober](https://svalla.se/utflykt)
+:::
+
+:::signatur
+Ses därute.
+*Nästa brev kommer i november. Svara gärna på det här mejlet om du undrar något om en ö, så svarar vi.*
+:::
+`,
+  day60: `---
+trigger: konto + 60 dagar, ingen tur loggad och ingen ö sparad
+layout: fullt
+subject_options:
+  - "Två månader sedan du skapade kontot"
+preheader: Välj var du startar och vilken dag, så visar vi öarna du hinner till.
+from: "Team Svalla <hej@mail.svalla.se>"
+---
+
+# Hej {{first_name}}
+
+Det har gått två månader sedan du skapade ditt konto på Svalla. Har du inte hunnit använda det än är det här det snabbaste sättet att komma igång.
+
+:::ruta
+### Din dag i skärgården
+Välj var du startar och vilken dag du vill åka. Du ser vilka öar du når därifrån och båttiderna just den dagen.
+
+[Planera en dag →](https://svalla.se/utflykt)
+:::
+
+:::ruta
+### Spara öar du vill till
+Tryck på hjärtat på en ösida så hamnar ön i Min skärgård. Då har du listan när det blir dags.
+
+[Alla öar →](https://svalla.se/oar)
+:::
+
+:::knapp
+[Planera en dag](https://svalla.se/utflykt)
+:::
+
+:::signatur
+Ses därute.
+*Vi hör av oss en gång till om en månad, sedan inte mer om det här.*
+:::
+`,
+  day90: `---
+trigger: konto + 90 dagar, ingen tur loggad och ingen ö sparad
+layout: fullt
+subject_options:
+  - "Båtarna går året runt"
+preheader: Fyra öar i Stockholms skärgård har båt hela året.
+from: "Team Svalla <hej@mail.svalla.se>"
+---
+
+# Hej {{first_name}}
+
+Det här är sista mejlet vi skickar om att komma igång. Skärgården är inte bara sommar. Till de här öarna går båten hela året:
+
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Båtresan från Strömkajen tar bara en timme och under sommaren går det turer många gånger om dagen, och övrig tid på året går det flera per dag." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Grinda har trafik året om" (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/moja — "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt."; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme." (läst 2026-09-28) -->
+- **[Vaxholm](https://svalla.se/o/vaxholm):** en timme från Strömkajen, flera turer om dagen.
+- **[Grinda](https://svalla.se/o/grinda):** trafik året om.
+- **[Möja](https://svalla.se/o/moja):** båt året runt från Boda brygga på Värmdö.
+- **[Sandhamn](https://svalla.se/o/sandhamn):** båt året runt från Stavsnäs, drygt en timme.
+
+:::knapp
+[Se båttiderna för en dag](https://svalla.se/utflykt)
+:::
+
+:::signatur
+Ses därute.
+*Du får inga fler mejl om att komma igång. Nyhetsbrevet kan du fortfarande prenumerera på.*
+:::
+`,
+  saved_island: `---
+trigger: användaren sparade en ö i går (en gång per ö)
+layout: fullt
+subject_options:
+  - "Du sparade {{island_name}}"
+preheader: Så tar du dig dit, och vad som står på ösidan.
+from: "Team Svalla <hej@mail.svalla.se>"
+---
+
+# {{island_name}}
+
+Du sparade {{island_name}} i Min skärgård. {{island_tagline}}
+
+{{fakta_rad}}
+
+:::ruta
+### Så tar du dig dit
+{{restid_rad}}
+
+[Planera en dag till {{island_name}} →]({{planera_url}})
+:::
+
+{{guide_rad}}
+
+:::knapp
+[Till ösidan]({{island_url}})
+:::
+
+:::signatur
+Ses därute.
+*Du får det här mejlet en gång per ö du sparar.*
+:::
+`,
+  weekly_island: `---
+trigger: tisdagar april–september, en ö per vecka
+layout: fullt
+subject_options:
+  - "Veckans ö: {{island_name}}"
+preheader: {{island_tagline}}
+from: "Team Svalla <hej@mail.svalla.se>"
+---
+
+# Veckans ö: {{island_name}}
+
+{{island_tagline}}
+
+{{fakta_rad}}
+
+:::ruta
+### Så tar du dig dit
+{{restid_rad}}
+
+[Planera en dag till {{island_name}} →]({{planera_url}})
+:::
+
+{{guide_rad}}
+
+:::knapp
+[Läs om {{island_name}}]({{island_url}})
+:::
+
+:::signatur
+Ses därute.
+*Allt i mejlet kommer från ösidan, där källan står för varje uppgift.*
 :::
 `,
 }

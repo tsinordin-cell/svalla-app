@@ -12,6 +12,7 @@
  */
 
 import { NextResponse } from 'next/server'
+import { cronBehorig } from '@/lib/cronAuth'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { sendPushToUsers } from '@/lib/push-server'
 import { notifyWithRetry } from '@/lib/notifyWithRetry'
@@ -24,11 +25,8 @@ export async function GET(req: Request)  { return handle(req) }
 export async function POST(req: Request) { return handle(req) }
 
 async function handle(req: Request) {
-  const ua = req.headers.get('user-agent') || ''
-  const isVercelCron = ua.toLowerCase().includes('vercel-cron')
-  const auth = req.headers.get('authorization') || ''
-  const isBearerAuthed = !!process.env.CRON_SECRET && auth === `Bearer ${process.env.CRON_SECRET}`
-  if (!isVercelCron && !isBearerAuthed) {
+  // Behörighet: se src/lib/cronAuth.ts (User-Agent går att förfalska).
+  if (!cronBehorig(req)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

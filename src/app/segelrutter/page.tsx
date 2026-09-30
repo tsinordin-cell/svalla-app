@@ -63,6 +63,8 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'map',
  title: 'Gotland',
+    // UPPSKATTNING: 100 sjömil är vår egen storcirkelberäkning Sandhamn–Visby ur koordinaterna 59,29 N 18,92 O och 57,64 N 18,29 O, avrundat. Ingen myndighet publicerar sträckan fågelvägen. (2026-09)
+    // KÄLLA: https://www.ksss.se/en/gotlandrunt/ (KSSS, arrangör) — banan är omkring 350 NM, läst 2026-09-29
  description: 'Stockholm–Visby är ungefär 100 sjömil fågelvägen från Sandhamn. Kappseglingen Gotland Runt är omkring 350.',
  href: '/gotland',
  meta: 'Östersjön',

@@ -2,11 +2,12 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { renderEmail, type EmailTemplate } from '@/lib/email'
+import { flodePa, MAILFLODEN, type Mailflode } from '@/lib/mailfloden'
 
 export const dynamic = 'force-dynamic'
 
 /**
- * Förhandsvisning av alla nio utskick, renderade av samma kod som skickar dem.
+ * Förhandsvisning av alla utskick, renderade av samma kod som skickar dem.
  *
  * Fanns inte tidigare, och det var en del av problemet: mailen gick bara att
  * granska genom att skicka dem till sig själv. Texten kunde därför driva iväg
@@ -23,6 +24,23 @@ const EXEMPELVARDEN: Record<EmailTemplate, Record<string, string | number>> = {
   day3_newsletter: {},
   day14_newsletter: {},
   day30_newsletter: {},
+  manadsbrev: {},
+  day60: { first_name: 'Anna' },
+  day90: { first_name: 'Anna' },
+  saved_island: {
+    island_name: 'Möja', island_tagline: 'Exempeltext: ösidans tagline hamnar här.',
+    fakta_rad: 'Enligt SCB var 203 personer folkbokförda på Möja den 31 december 2020.',
+    restid_rad: 'Exempeltext: ösidans restid hamnar här.',
+    island_url: 'https://svalla.se/o/moja', planera_url: 'https://svalla.se/utflykt?o=moja',
+    guide_rad: 'Mer att läsa: [Guider om Möja](https://svalla.se/o/moja)',
+  },
+  weekly_island: {
+    island_name: 'Grinda', island_tagline: 'Exempeltext: ösidans tagline hamnar här.',
+    fakta_rad: '',
+    restid_rad: 'Exempeltext: ösidans restid hamnar här.',
+    island_url: 'https://svalla.se/o/grinda', planera_url: 'https://svalla.se/utflykt?o=grinda',
+    guide_rad: '',
+  },
 }
 
 const BESKRIVNING: Record<EmailTemplate, string> = {
@@ -35,11 +53,17 @@ const BESKRIVNING: Record<EmailTemplate, string> = {
   day3_newsletter: 'Dag 3 efter prenumeration',
   day14_newsletter: 'Dag 14 efter prenumeration',
   day30_newsletter: 'Dag 30 efter prenumeration',
+  manadsbrev: 'Första tisdagen i månaden okt–mars, bara om mallens manad stämmer. Går bara till bekräftade prenumeranter',
+  day60: 'Konto + 60 dagar utan tur och utan sparad ö. Går till konton: kräver samtycke innan det slås på',
+  day90: 'Konto + 90 dagar utan tur och utan sparad ö. Går till konton: kräver samtycke innan det slås på',
+  saved_island: 'Dagen efter att en användare sparat en ö (en gång per ö). Går till konton: kräver samtycke innan det slås på',
+  weekly_island: 'Tisdagar april–september, en ö per vecka. Går bara till bekräftade prenumeranter',
 }
 
 const ORDNING: EmailTemplate[] = [
   'welcome', 'day7', 'season_open', 'season_close', 'weather_tip',
   'newsletter_welcome', 'day3_newsletter', 'day14_newsletter', 'day30_newsletter',
+  'manadsbrev', 'day60', 'day90', 'saved_island', 'weekly_island',
 ]
 
 export default async function AdminMailPage() {
@@ -54,7 +78,10 @@ export default async function AdminMailPage() {
 
   const mail = ORDNING.map(t => ({
     nyckel: t,
-    beskrivning: BESKRIVNING[t],
+    // Flödena i mailfloden.ts är avstängda tills de står i EMAIL_AUTOMATIK.
+    beskrivning: (MAILFLODEN as readonly string[]).includes(t)
+      ? `${BESKRIVNING[t]} · ${flodePa(t as Mailflode) ? 'PÅ' : 'AVSTÄNGT (EMAIL_AUTOMATIK)'}`
+      : BESKRIVNING[t],
     // {{email}} sätts normalt av sendEmail (avregistreringslänken i sidfoten).
     // Förhandsvisningen skickar inte riktig post, men variabelspärren kräver
     // den ändå — annars vägrar renderEmail, vilket den också gjorde: nio röda
@@ -75,7 +102,7 @@ export default async function AdminMailPage() {
           Renderade av samma kod som skickar dem. Texten ligger i <code className="font-mono">emails/*.md</code>.
           {trasiga > 0
             ? <span className="ml-2 font-semibold text-red-600 dark:text-red-400">{trasiga} mall(ar) går inte att rendera.</span>
-            : <span className="ml-2 text-emerald-700 dark:text-emerald-400">Alla nio renderar.</span>}
+            : <span className="ml-2 text-emerald-700 dark:text-emerald-400">Alla {mail.length} renderar.</span>}
         </p>
 
         <div className="grid gap-6 [grid-template-columns:repeat(auto-fill,minmax(380px,1fr))]">

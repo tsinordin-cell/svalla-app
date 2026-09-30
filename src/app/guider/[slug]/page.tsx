@@ -7,7 +7,7 @@ import GuideUppskattning from '@/components/GuideUppskattning'
 import { getIsland } from '../../o/island-data'
 import { GUIDE_ISLAND_MAP } from '../guide-island-map'
 import RegionGuides, { REGION_META } from './RegionGuides'
-import { URL_SLUG_TO_REGION, REGION_URL_SLUG } from '../guides-data'
+import { URL_SLUG_TO_REGION, REGION_URL_SLUG, GUIDER_UTAN_INNEHALL } from '../guides-data'
 
 import FAQSection from '@/components/FAQSection'
 import EmailSignup from '@/components/EmailSignup'
@@ -73,6 +73,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: guide.title,
     description: guide.excerpt,
     alternates: { canonical: `https://svalla.se/guider/${slug}` },
+    // Platshållare utan innehåll indexeras inte (se GUIDER_UTAN_INNEHALL).
+    ...(GUIDER_UTAN_INNEHALL.has(slug) ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title: `${guide.title} – Svalla`,
       description: guide.excerpt,

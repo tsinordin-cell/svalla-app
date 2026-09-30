@@ -30,6 +30,13 @@ const MALLAR = {
   day3_newsletter: '07_day3_newsletter.md',
   day14_newsletter: '08_day14_newsletter.md',
   day30_newsletter: '09_day30_newsletter.md',
+  // Byggda men avstängda 2026-09-29 — skickas bara om flödet står i
+  // EMAIL_AUTOMATIK (se src/lib/mailfloden.ts).
+  manadsbrev: '10_manadsbrev.md',
+  day60: '11_day60.md',
+  day90: '12_day90.md',
+  saved_island: '13_saved_island.md',
+  weekly_island: '14_weekly_island.md',
 }
 
 const saknade = []

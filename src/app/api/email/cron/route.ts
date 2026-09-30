@@ -13,8 +13,10 @@
  */
 
 import { NextResponse } from 'next/server'
+import { cronBehorig } from '@/lib/cronAuth'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { sendEmail } from '@/lib/email'
+import { korAvstangdaFloden } from './floden'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -27,15 +29,8 @@ export async function POST(req: Request) {
 }
 
 async function handle(req: Request) {
-  // Två autentiserings-vägar:
-  //  1. Vercel cron (User-Agent: 'vercel-cron/1.0') — automatiskt godkänd
-  //  2. Manuell trigger med Bearer ${CRON_SECRET}
-  const ua = req.headers.get('user-agent') || ''
-  const isVercelCron = ua.toLowerCase().includes('vercel-cron')
-  const auth = req.headers.get('authorization') || ''
-  const isBearerAuthed = !!process.env.CRON_SECRET && auth === `Bearer ${process.env.CRON_SECRET}`
-
-  if (!isVercelCron && !isBearerAuthed) {
+  // Behörighet: se src/lib/cronAuth.ts (User-Agent går att förfalska).
+  if (!cronBehorig(req)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -503,6 +498,11 @@ async function handle(req: Request) {
       }
     }
   }
+
+  // ── 5. Byggda men avstängda flöden (2026-09-29) ──────────────────────────
+  // Månadsbrev, dag 60/90, sparad ö, veckans ö. Skickar ingenting förrän
+  // flödet står i EMAIL_AUTOMATIK — se src/lib/mailfloden.ts.
+  Object.assign(results, await korAvstangdaFloden(service, today))
 
   return NextResponse.json({ ok: true, today: today.toISOString().slice(0, 10), results })
 }

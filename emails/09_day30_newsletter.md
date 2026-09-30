@@ -24,12 +24,13 @@ Den svåra biten är att bestämma sig.
 
 :::ruta
 ### 1. Välj en ö
-Vill du testa lätt: [Fjäderholmarna](https://svalla.se/o/fjaderholmarna) — närmast stan och kräver ingen planering. Vill du längre ut: [Grinda](https://svalla.se/o/grinda) eller [Finnhamn](https://svalla.se/o/finnhamn).
+<!-- KÄLLA: waxholmsbolaget.se/reseplanering/resmal/vaxholm — "Båtresan från Strömkajen tar bara en timme … övrig tid på året går det flera per dag"; resmal/grinda — "Grinda har trafik året om" (läst 2026-09-28). Tidigare föreslogs Fjäderholmarna, som är stängt oktober–mars; mejlet går året runt (rättad 2026-09-29) -->
+Vill du testa lätt: [Vaxholm](https://svalla.se/o/vaxholm), en timme från Strömkajen och flera båtar om dagen året runt. Vill du längre ut: [Grinda](https://svalla.se/o/grinda), som har trafik året om.
 :::
 
 :::ruta
 ### 2. Kolla turen — och sista båten hem
-Waxholmsbolagets och Strömmas avgångar ligger på [svalla.se/farjor](https://svalla.se/farjor). Titta på hemresan innan du bokar utresan.
+Välj startpunkt och dag i [dagsplaneraren](https://svalla.se/utflykt) så ser du båttiderna för varje ö. Titta på hemresan innan du bestämmer dig för utresan.
 :::
 
 :::ruta

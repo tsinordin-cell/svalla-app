@@ -62,6 +62,17 @@ const KALLMARKORER = [
 ]
 
 /**
+ * KÄLLA MED PARENTES (2026-09-29). Markörerna ovan är raka strängar, så
+ * 'källa:' krävde att kolonet satt direkt efter ordet. Vi skriver ofta
+ * "KÄLLA (lästa 2026-09-24):" med läsdatumet emellan, och de blocken räknades
+ * därför inte som källa alls. Följden blev falska varningar på texter som
+ * hade en myndighetskälla rakt ovanför sig, bland annat på nästan hela
+ * nationalparksavsnittet i bloggen. Regexen nedan tillåter vad som helst utom
+ * radbrytning och nytt kolon mellan ordet och kolonet.
+ */
+const KALLA_MED_PARENTES = /\bk[äa]lla\b[^:\n]{0,60}:/i
+
+/**
  * ── KÄLLHIERARKI (införd 2026-08-19) ─────────────────────────────────────────
  *
  * Bakgrund: Bullerö. Sidan påstod att ön var ett naturreservat förvaltat av
@@ -95,8 +106,20 @@ const KALLMARKORER = [
  */
 const SVAGA_KALLOR = [
   'openstreetmap', 'osm ', 'osm/', 'osm way', 'wikipedia', 'wikimedia',
-  'tripadvisor', 'blogg', 'blogspot', 'wordpress.com',
+  'tripadvisor', 'blogspot', 'wordpress.com',
 ]
+
+/**
+ * VÅR EGEN BLOGG ÄR INTE EN RESEBLOGG (2026-09-29). Listan ovan innehöll
+ * 'blogg' rakt av. En KÄLLA-rad som hänvisar vidare till vår egen text med
+ * "(se /blogg/uto-guide)" räknades då som en reseblogg, trots att samma rad
+ * citerade Länsstyrelsen. Två av två SVAG KÄLLA-varningar var av det slaget.
+ * Nu matchas "blogg" överallt UTOM direkt efter eller före ett snedstreck.
+ * Första versionen (samma dag) krävde ordgräns och missade därmed
+ * "reseblogg", "matbloggen.se" och "bloggare", alltså precis det regeln finns
+ * för. Rättad innan den gick ut.
+ */
+const SVAG_BLOGG = /(?<!\/)blogg(?!\/)/i
 
 /** Påståendetyper där en svag källa INTE räcker — de kräver nivå 1 eller 2. */
 const KRAVER_STARK_KALLA = new Set(['djup', 'segelfri höjd', 'knop', 'skyddsstatus'])
@@ -125,6 +148,29 @@ const SKYDDSSTATUS_REST = new RegExp(
   'i'
 )
 const SKYDDSSTATUS = { test: (t) => SKYDDSSTATUS_NAMN.test(t) || SKYDDSSTATUS_REST.test(t) }
+
+/**
+ * NAMN I RUBRIK (2026-09-29). Tretton av varningarna var rubriker, sidtitlar
+ * och ingresser som bara NAMNGER en plats: "Kosterhavets nationalpark",
+ * "Regler i Nackas naturreservat". Själva påståendet står i brödtexten under,
+ * och där finns källan.
+ *
+ * De tystas INTE. Bullerö-felet var just ett bart namn — vi skrev "Bullerö
+ * naturreservat" om ett reservat som upphört — så att sluta larma på namn
+ * vore att öppna exakt det hålet igen. I stället får de en egen etikett så
+ * att listan över prosapåståenden går att läsa. En spärr man slutar orka
+ * läsa skyddar ingenting.
+ *
+ * Villkoren är avsiktligt snäva: raden ska vara en rubrik eller ett
+ * title/excerpt-fält, strängen får inte innehålla en siffra (då är det ett
+ * årtal eller ett mått) och inte heller en statusfras som "är ett".
+ */
+const ARBARANAMN = (rent, rad) => {
+  if (!/<h[1-6][\s>]|^\s*(title|excerpt|rubrik)\s*:/i.test(rad)) return false
+  // Taggarna själva räknas inte: <h3> innehåller en trea.
+  const utanTaggar = rent.replace(/<[^>]*>/g, ' ')
+  return !/\d/.test(utanTaggar) && !SKYDDSSTATUS_REST.test(utanTaggar)
+}
 
 /**
  * FÄLTPÅSTÅENDEN — ny kategori 2026-08-19.
@@ -304,6 +350,7 @@ function harKallaNara(rader, i) {
     const rad = rader[k] || ''
     const l = rad.toLowerCase()
     const iKommentar = ÄR_KOMMENTARSRAD(rad)
+    if (iKommentar && KALLA_MED_PARENTES.test(rad)) return true
     for (const m of KALLMARKORER) {
       if (!l.includes(m)) continue
       if (BARA_I_KOMMENTAR.includes(m) && !iKommentar) continue
@@ -322,8 +369,8 @@ function harBaraSvagKalla(rader, i) {
   let sagSvag = false
   for (let k = Math.max(0, i - 5); k <= i; k++) {
     const l = (rader[k] || '').toLowerCase()
-    if (!KALLMARKORER.some(m => l.includes(m))) continue
-    if (SVAGA_KALLOR.some(m => l.includes(m))) { sagSvag = true; continue }
+    if (!KALLMARKORER.some(m => l.includes(m)) && !KALLA_MED_PARENTES.test(l)) continue
+    if (SVAGA_KALLOR.some(m => l.includes(m)) || SVAG_BLOGG.test(l)) { sagSvag = true; continue }
     return false // hittade en källa som INTE är svag
   }
   return sagSvag
@@ -393,9 +440,22 @@ function arsdatumFel(rad) {
 const fynd = []
 const varningar = []
 let uppskattningar = 0
+/**
+ * OBELAGT ÄNNU (2026-09-30). När en källa belägger HALVA meningen, till
+ * exempel reservatsstatusen men inte strandens längd, skriver vi ut det i
+ * KÄLLA-raden: "OBELAGT ÄNNU: cirka 120 meter står inte hos Länsstyrelsen".
+ * Problemet: KÄLLA-raden tystar spärren för hela meningen, så siffran blev
+ * osynlig just för att vi var ärliga om den. Här räknas markörerna och
+ * listas varje körning, så att de inte försvinner.
+ */
+const obelagda = []
 for (const f of filer(ROT)) {
   if (!iOmfang(f)) continue
   const rader = fs.readFileSync(f, 'utf8').split('\n')
+  rader.forEach((r, n) => {
+    const m = r.match(/OBELAGT ÄNNU:\s*([^.]{0,90})/)
+    if (m) obelagda.push({ fil: f, rad: n + 1, text: m[1] })
+  })
   /**
    * Flerradiga template-literals (guide-content.ts är en enda jättesträng)
    * har inga citattecken per rad — utan spårningen nedan var 120 påståenden
@@ -465,7 +525,10 @@ for (const f of filer(ROT)) {
 
       // Distans, knop och skyddsstatus varnar men fäller inte — se kommentarerna ovan.
       if (typ === 'distans' || typ === 'knop' || typ === 'skyddsstatus') {
-        varningar.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) }); continue
+        const etikett = typ === 'skyddsstatus' && ARBARANAMN(rent, rad)
+          ? 'skyddsstatus — NAMN I RUBRIK'
+          : typ
+        varningar.push({ fil: f, rad: i + 1, typ: etikett, text: s.slice(0, 90) }); continue
       }
       fynd.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) })
     }
@@ -584,6 +647,10 @@ if (nya.length === 0) {
   }
   if (uppskattningar > 0) {
     console.log(`  (${uppskattningar} märkta marknadsuppskattningar — inte källor, ska omprövas varje säsong)`)
+  }
+  if (obelagda.length > 0) {
+    console.log(`\n  ── OBELAGT ÄNNU (${obelagda.length}) — halvbelagda meningar, siffran saknar källa ──`)
+    for (const o of obelagda) console.log(`    ${path.relative(ROT, o.fil)}:${o.rad}  ${o.text}`)
   }
   process.exit(0)
 }
