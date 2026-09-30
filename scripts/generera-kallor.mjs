@@ -99,6 +99,27 @@ const MAX_ORG_TECKEN = 40
  * Vi säger därför vem tidtabellen kommer ifrån, vilket är vad KÄLLA-raderna
  * i island-data.ts redan säger (t.ex. rad 437: "Waxholmsbolagets tabell 21").
  */
+/**
+ * VÄRDNAMN SOM INTE SÄGER NÅGOT (2026-09-29).
+ *
+ * 27 poster visade "vtstorage002.blob.core.windows.net" som avsändare under
+ * Källor på ösidorna. Det är Västtrafiks lagringsyta för tidtabells-PDF:er.
+ * Sant, och obegripligt: en besökare som ser ett blob-lagringsnamn drar
+ * slutsatsen att uppgiften kommer från ingenstans. Samma problem som
+ * printhuset, samma lösning.
+ *
+ * Länsstyrelsen är 93 poster fördelade på tio län. "lansstyrelsen.se" döljer
+ * vilken länsstyrelse som står bakom, och det är hela poängen med en
+ * myndighetskälla. Sökvägens första led är länet.
+ */
+const LAN = {
+  stockholm: 'Stockholm', 'vastra-gotaland': 'Västra Götaland', gotland: 'Gotland',
+  kalmar: 'Kalmar län', blekinge: 'Blekinge', skane: 'Skåne',
+  vasternorrland: 'Västernorrland', vasterbotten: 'Västerbotten',
+  sodermanland: 'Södermanland', uppsala: 'Uppsala län', norrbotten: 'Norrbotten',
+  halland: 'Halland', ostergotland: 'Östergötland',
+}
+
 function domanNamn(url) {
   const u = new URL(url)
   const host = u.hostname.replace(/^www\./, '')
@@ -106,6 +127,19 @@ function domanNamn(url) {
     if (u.pathname.startsWith('/wa/')) return 'Waxholmsbolaget (tryckt tidtabell)'
     if (u.pathname.startsWith('/sl/')) return 'SL (tryckt tidtabell)'
   }
+  if (host.endsWith('.blob.core.windows.net') && host.startsWith('vtstorage')) {
+    return 'Västtrafik (tidtabell)'
+  }
+  if (host === 'lansstyrelsen.se' || host === 'ext-dokument.lansstyrelsen.se') {
+    const lan = LAN[u.pathname.split('/').filter(Boolean)[0]]
+    return lan ? `Länsstyrelsen ${lan}` : 'Länsstyrelsen'
+  }
+  if (host === 'sverigesnationalparker.se') return 'Sveriges Nationalparker'
+  if (host === 'naturvardsverket.se') return 'Naturvårdsverket'
+  if (host === 'trafikverket.se') return 'Trafikverket'
+  if (host === 'skargardsstiftelsen.se') return 'Skärgårdsstiftelsen'
+  if (host === 'waxholmsbolaget.se') return 'Waxholmsbolaget'
+  if (host === 'vasttrafik.se') return 'Västtrafik'
   return host
 }
 

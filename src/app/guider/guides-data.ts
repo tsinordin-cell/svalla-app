@@ -4199,6 +4199,8 @@ export const GUIDES: GuideMeta[] = [
     ],
   },
   {
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html (Länsstyrelsen Västra Götaland), läst 2026-09-29 — "Bildat: 1967"; "Areal: cirka 1481 hektar"; "Kommun: Orust"; "Härmanö är belägen väster om Orust och nås enklast via färja från Tuvesvik till Gullholmen"; "Området ingår i EU:s ekologiska nätverk av skyddade områden, Natura 2000". Myndighetens stavning är Härmanö; Hermanö är en vanlig alternativstavning och förklaras i guidetexten.
+    // KÄLLA: https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/ (Västsvenska Turistrådet), läst 2026-09-29 — "Tuvesvik är platsen där färjan (linje 381) till Gullholmen, Härmanö och Käringön avgår"
     slug: "gullholmen-guide",
     title: "Hur tar man sig till Gullholmen? Färja från Tuvesvik och karta",
     excerpt: "Hur tar man sig till Gullholmen? Med färja linje 381 från Tuvesvik på Orust. Här är bilvägen, bussen, parkeringen, kartor och Hermanö naturreservat.",

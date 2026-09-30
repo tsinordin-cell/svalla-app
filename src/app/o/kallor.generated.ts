@@ -26,29 +26,29 @@ export type Kalla = {
 export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "sandhamn": [
     {
-      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gronskar.html",
-      "org": "lansstyrelsen.se",
-      "vad": "Skyddat sedan: 1965, Storlek: 1,6 hektar varav land 1,1 hektar, en liten, flack och vegetationsfattig ö i det yttersta kustbandet öster om Sandhamn, den kända Grönskärs fyr som är av stort kulturhistoriskt värde",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
       "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen",
       "vad": "näbbgädda: \"Våren och sommaren\", \"I Stockholms yttre skärgård från Sandhamn och söderut\", \"Grönskär, Horsten, Långviksskär, Ålö, Torö\"",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
+      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gronskar.html",
+      "org": "Länsstyrelsen Stockholm",
+      "vad": "Skyddat sedan: 1965, Storlek: 1,6 hektar varav land 1,1 hektar, en liten, flack och vegetationsfattig ö i det yttersta kustbandet öster om Sandhamn, den kända Grönskärs fyr som är av stort kulturhistoriskt värde",
+      "last": "2026-09-27",
+      "myndighet": true
+    },
+    {
       "url": "https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/",
-      "org": "naturvardsverket.se",
+      "org": "Naturvårdsverket",
       "vad": "Mellan 1 mars och 20 augusti måste du ha extra uppsikt över din hund i naturen. Under den tiden får hunden inte springa lös., Ha alltid koppel på hunden när ni vistas i nationalparker eller naturreservat ;  — Här får man ha hund (stugan Friggan)",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/sandhamn",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "och då tar resan drygt en timme, Det går flera turer varje dag till Sandhamn, tabell 16 ;  — Year round — including winter, Take bus 433 from Slussen or drive to Stavsnäs Vinterhamn ;  — Stavsnäs vinterhamn, Slussen 10.15 → Stavsnäs vinterhamn 11.06",
       "last": "2026-09-27",
       "myndighet": true
@@ -160,14 +160,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Den 26 meter höga fyren har kallats Östersjöns Drottning på grund av sin skönhet. Fyren uppfördes 1770 av granit och sandsten efter ritningar av Carl Fredrik Adelcrantz.",
       "last": null,
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/om-skargardsstiftelsen/var-historia/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Sjöfartsverket skänker Grönskärs fyr efter renovering (1984); Stiftelsen Stockholms skärgård bildades den 20 mars 1959",
       "last": null,
       "myndighet": false
@@ -245,29 +245,29 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "uto": [
     {
+      "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf",
+      "org": "Länsstyrelsen",
+      "vad": "Andra bra ställen är, Baggensfjärden, Ingarö, Ornö, Utö och Torö, Fritt handredskapsfiske gäller på enskilt vatten i Mälaren och skärgården",
+      "last": "2026-09-27",
+      "myndighet": true
+    },
+    {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "inom hela reservatet med undantag av Persholmen medföra hund som ej är kopplad. För Persholmen skall hund vara kopplad under tiden 1 mars - 20 augusti och under övrig tid hållas under uppsikt, tälta eller ställa upp husvagn annat än på anvisad plats, för längre tid än två dygn förtöja eller förankra båt vid samma strand, göra upp eld annat än på härför iordningställda och anvisade platser, Tillträdesförbud på Utö skjutfält vissa tider.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "skyddat sedan 2008, 2 829 hektar varav land 1 063 hektar, Haninge kommun, Skärgårdsstiftelsen markägare och förvaltare, Natura 2000-områdena SE0110017 Ålö och SE0110118 Rånö Ängsholm; naturtyper \"skärgård, marina miljöer, barrskog, odlingslandskap\", främst hällmarkstallskogar med kalkpåverkad berggrund; \"Storsand på Ålö anses vara en av Stockholms skärgårds finaste sandstränder.\"; Ålö har broförbindelse med Utö",
       "last": null,
       "myndighet": true
     },
     {
-      "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf",
-      "org": "lansstyrelsen.se",
-      "vad": "Andra bra ställen är, Baggensfjärden, Ingarö, Ornö, Utö och Torö, Fritt handredskapsfiske gäller på enskilt vatten i Mälaren och skärgården",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
       "url": "https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/",
-      "org": "naturvardsverket.se",
+      "org": "Naturvårdsverket",
       "vad": "Koppla hunden när vilda djur har ungar, 1 mars–20 augusti.",
       "last": "2026-09-27",
       "myndighet": true
@@ -288,21 +288,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/uto/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens; Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter; Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis; lansstyrelsen.se Utö: Waxholmsbåt året om till Gruvbryggan",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Utö kvarn är byggd 1791 och har under lång tid varit både symbol och sjömärke för Utö. / 2001 blev de nio gruvarbetarbostäderna tillsammans med kvarnen byggnadsminne enligt Kulturmiljölagen. / kvarnen restaurerades 1982",
       "last": null,
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/om-skargardsstiftelsen/var-historia/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "1973: \"Hela norra Utö med gruvbyn köps från Ställbergsbolaget\"",
       "last": null,
       "myndighet": false
@@ -451,7 +451,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "vaxholm": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Bogesunds slott från mitten av 1600-talet är statligt byggnadsminne och rymmer vandrarhem; anordningar: markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd, campingplatser, golfbana; föreskrifterna förbjuder att medföra okopplad hund, att \"tälta mer än två dygn i följd annat än på anvisad plats\", att cykla utanför anvisade stigar och att \"rida annat än på vägar och på anvisade ridstigar\"",
       "last": null,
       "myndighet": true
@@ -642,21 +642,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "grinda": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "för längre tid än två dygn i följd förankra båt vid samma strand; förankra båt längs de strandsträckor som markerats med heldragen linje på karta; framföra motordrivet motorfordon annat än på anvisade vägar; landa med luftfarkost på annat än anvisad plats; på ett för andra störande sätt använda musikanläggning eller musikinstrument.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/grinda",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "Resan från Strömkajen tar ungefär en och en halv timme.; Under sommaren går det flera turer till Grinda varje dag, men Grinda har trafik året om.; tabell 11",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "Om du till exempel ska resa från Strömkajen till Grinda kan du resa på SL-biljett mellan Strömkajen och Vaxholm och sedan resa på en Waxhomsbolaget-biljett för sträckan mellan Vaxholm och Grinda.; Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april; Om din SL-biljett gäller i 30 dagar eller mer kan du resa på den i hela Waxholmsbolagets trafik när det är lågsäsong.",
       "last": "2026-09-27",
       "myndighet": true
@@ -733,35 +733,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/grinda/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Följ stigarna mellan norra och södra bryggan; bland annat natur- och kulturstigen och; som leder genom skogar, öppna marker och historiska miljöer; bjuder på en varierad vandring genom skogar, öppna ängar och havsnära klipplandskap",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/jordbruken-och-angarna/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Grinda lantbruk",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Den vackra jugendvillan i sten är ritad av Ernst Stenhammar och stod klar 1908.; Efter 1944 fungerade huset under en tid som behandlingshem och barnkoloni.",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/aktuellt/vara-hus-grinda/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Resan börjar genom Lindalssundet; Kring förra sekelskiftet uppfördes här några av skärgårdens mest påkostade sommarnöjen; Mitt i denna idyll lät Henrik Santesson, Nobelstiftelsens första vd, 1906 uppföra den stora sommarvillan som i dag är Grinda Wärdshus.; med pensionatsverksamhet, badgäster, ridläger, barnkollo och dagens värdshus",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/om-skargardsstiftelsen/var-historia/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Stiftelsen Stockholms skärgård bildas den 20 mars 1959.; Samma år skänker Stockholm stad alla sina skärgårdsmarker till Skärgårdsstiftelsen och vårt markinnehav fördubblas från ca 7 000 ha till ca 14 000 ha mark.; idag är vi Stockholms läns tredje största markägare (årtalet 1998 står som rubrik närmast ovanför)",
       "last": "2026-09-27",
       "myndighet": false
@@ -812,14 +812,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "finnhamn": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/finnhamn.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "föreskrifterna kräver kopplad hund, tillåter eldning endast på anvisade platser, förbjuder tältning längre än två dygn i följd och hänvisar tältning på Idholmen, Stora och Lilla Jolpan till anvisade platser, förbjuder att förtöja båt \"längre tid än två dygn i följd\" på samma plats, att landa luftfarkost utanför anvisad plats och att använda musikanläggning störande",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/kalgardson.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Skyddat sedan: 1974, 103 hektar varav land 100 hektar, Österåkers kommun, Skärgårdsstiftelsen markägare och förvaltare, naturtyper skärgård, ängs- och betesmark, barrskog; omfattar merparten av Kålgårdsön som är östligaste delen av Ingmarsö, Bockholmen söder därom samt ytterligare ett par öar; syftet är att säkra ett område av stort värde för allmänhetens rörliga friluftsliv",
       "last": null,
       "myndighet": true
@@ -833,14 +833,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/angso-nationalpark/fakta-om-parken",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Ängsö nationalpark inrättades 1909 (24 maj 1909), ligger i Norrtälje kommun, syfte \"Bevara ett äldre odlingslandskap i väsentligen oförändrat skick\", naturtyp \"Skärgård, ängs- och hagmarker, blandskog\"",
       "last": null,
       "myndighet": true
     },
     {
       "url": "https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "",
       "last": null,
       "myndighet": true
@@ -889,14 +889,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/finnhamn/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Finnhamn är ett av de mest välbesökta utflyktsmålen i Stockholms skärgård, Finnhamn nås med reguljär båttrafik från Stockholm, året runt, café och kiosk, vandrarhem, stugor och tältplatser på anvisade områden, badplatser med både sandstrand och klippor",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Arkitekt var Ernst Stenhammar som ritat många ståtliga hus i skärgården, till exempel den stora jugendvillan på Grinda, Idag är Utsikten vandrarhem. ;  — Vandrarhemmet renoverades mellan åren 2014-2017",
       "last": "2026-09-27",
       "myndighet": false
@@ -940,21 +940,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "moja": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/storo-bocko-lokao.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "skyddat sedan 1972; \"6 045 hektar varav land 1 892 hektar\"; Värmdö kommun; förvaltare Skärgårdsstiftelsen; syfte att \"säkra ett för allmänhetens friluftsliv värdefullt skärgårdsområde samt att skydda och bibehålla områdets värdefulla växt- och djurvärld\"; björk dominerar yttersta öarna, hällmarkstallskog i övrigt; arter svärta, vigg, ejder, roskarl, labb, tobisgrissla",
       "last": null,
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/moja-bjorndalen.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "skyddat sedan 1992, utvidgat 1998; 143 hektar; Värmdö; förvaltare Skärgårdsstiftelsen; syfte \"bevara och vårda ett för faunan värdefullt skogsområde samt att låta delar av skogsmarken utvecklas mot naturskog\"; hällmarkstallskog, barr- och blandskog, myrmarker; anordningar rast-/övernattningsstuga och torrdass; tältning och eldning förbjuden",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/granholmen.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Skyddat sedan: 1978, utvidgat 2018; Storlek: 39 hektar varav land 18 hektar; Värmdö; Skärgårdsstiftelsen; arter blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad; naturhamnen Munkhamnen; tältning högst två dygn per plats",
       "last": null,
       "myndighet": true
@@ -968,7 +968,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/moja",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja, Vissa turer går också direkt från Strömkajen ut till Möja utan byte, De mest trafikerade bryggorna på Möja är Möjaström och Berg, som båda ligger på öns sydligaste del",
       "last": "2026-09-27",
       "myndighet": true
@@ -1103,7 +1103,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "fjaderholmarna": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/kungliga-nationalstadsparken.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "parken inrättades 1995, omfattar 27 kvadratkilometer, sträcker sig \"från Sörentorp och Ulriksdal i norr till Djurgården och Fjäderholmarna i söder\" och \"spänner över tre kommuner: Solna, Stockholm och Lidingö\"; \"Länsstyrelsen samordnar arbetet med parkens förvaltning och utveckling. Kungliga Djurgårdens förvaltning sköter runt 80 procent av marken.\"",
       "last": null,
       "myndighet": true
@@ -1210,7 +1210,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "ljustero": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sjalbottna-ostra-lagno.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Brännholmen är udden vid nordöstra spetsen av reservatet och här kan du bada, tälta och fiska. Klipporna mot havet är mjukt slipade av inlandsisen och randiga av bergarterna svart diabas och ljusröd fältspat. / På Brännholmen finns ett gammalt självföryngrande idegransbestånd.",
       "last": null,
       "myndighet": true
@@ -1224,7 +1224,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/ljusteroleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Färjeledens längd är 1100 meter och överfartstiden är sju minuter, Med vår app Trafikinfo Färjerederiet får du tillgång till tidtabeller och trafikinformation. Du kan även kalla på färjan direkt i appen.",
       "last": "2026-09-27",
       "myndighet": true
@@ -1287,7 +1287,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/ostra-lagno/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Östra Lagnö är ett lättillgängligt naturreservat på Ljusterös östra sida där släta havsklippor, strandängar och skogsstigar möter utsikten över Svartlögafjärden. / Hit tar du dig med bil eller SL-buss via färjan till Ljusterö. Från Lagnö by är det en kort promenad till reservatet.",
       "last": null,
       "myndighet": false
@@ -1466,7 +1466,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "arholma": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/arholma-ido.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "medföra okopplad hund; för längre tid än två dygn i följd förtöja, dra upp eller förankra båt eller annan farkost vid samma plats (gäller ej brygga); för längre tid än två dygn i följd tälta på samma plats, annat än inom anlagd tältplats; elda annat än på anvisad plats; under tiden 1 april till 31 juli landstiga på öarna Rödkobben och Nollekobb; ankra båt eller framföra motordriven båt i inre delen av Idöfladen",
       "last": "2026-09-27",
       "myndighet": true
@@ -1585,7 +1585,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/arholma/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "landskapet brukats i hundratals år; åkrar, strandängar, hagmarker och skogspartier; på Arholma är kor våra bästa naturvårdsarbetare, de hjälper till att hålla markerna öppna; Bull-Augusts gård är en klassisk roslagsgård som idag fungerar som vandrarhem",
       "last": "2026-09-27",
       "myndighet": false
@@ -1649,29 +1649,29 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "orno": [
     {
+      "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/Förorenade",
+      "org": "Länsstyrelsen",
+      "vad": "De största gruvorna var Härsbacka i Österåkers kommun och Lugnet på Ornö i Haninge kommun. / Ornö, Lugnets fältspatsbrott ... Ett av länets största fältspatsbrott.",
+      "last": null,
+      "myndighet": true
+    },
+    {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/norra-skogen.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "I området har det under lång tid inte bedrivits något storskaligt skogsbruk. / Det är kala och glest tallbevuxna hällmarker och däremellan liggande marker med barrblandskog och i huvudsak odikade våtmarker. / tallmossar med skvattram / Från Nybysjöberget på cirka 45 meters höjd över havet på Nybysjöns östra sida kan man se ut över sjön.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sundby.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Med start vid Sundby gård finns en drygt sex kilometer lång, lättvandrad rundslinga. På grusvägar och stigar går du igenom naturreservatets uråldriga odlingslandskap. Slingan är till stora delar tillgänglig för barnvagn eller rullstol, men tyvärr inte hela vägen runt. Här har marken brukats sedan 1400-talet.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
-      "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/Förorenade",
-      "org": "lansstyrelsen.se",
-      "vad": "De största gruvorna var Härsbacka i Österåkers kommun och Lugnet på Ornö i Haninge kommun. / Ornö, Lugnets fältspatsbrott ... Ett av länets största fältspatsbrott.",
-      "last": null,
-      "myndighet": true
-    },
-    {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/stora-och-lilla-sandbote.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Skyddat sedan: 1938 Storlek: 21 hektar ... Markägare: Skärgårdsstiftelsen / En av de gamla stugorna är ett fiskartorp från 1700-talet som byggts upp efter en brand 2001 efter originalritningar och med gamla metoder och ställts i ordning som museum. Invid hamnen visas även ett båtbyggarmuseum. / Öarna donerades till Naturskyddsföreningen 1941 av Anna Lindhagen ... Anna hade fått området naturminnesförklarat redan 1938.",
       "last": null,
       "myndighet": true
@@ -1792,7 +1792,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "landsort": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/oja-landsort.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Bybebyggelsen som äger betydande kulturhistoriska och miljömässiga värden är koncentrerad till Storhamn på öns södra del, där även lotsplatsen och fyren ligger; förbjudet med okopplad hund, att tälta och elda annat än på anvisade platser, att skada fasta naturföremål och att plocka blomman nattviol; anordningar: informationstavla, rast-/övernattningsstuga, stig, toalett, tältplats och vandringsled",
       "last": "2026-09-27",
       "myndighet": true
@@ -1820,7 +1820,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/landsort",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "Landsort är Waxholmsbolagets sydligaste destination. Här hittar du vacker natur, badklippor och Sveriges allra äldsta fyr. (2026-09-14)",
       "last": null,
       "myndighet": true
@@ -1948,7 +1948,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "furusund": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/furusundsfjarden.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "reservatet omfattar öarna Stor-Asken, Lill-Asken och Stumpen \"belägna tre kilometer nordost om Furusund\"; skyddat sedan 1974; \"373 hektar varav land 24 hektar\"; förvaltare Länsstyrelsen; syftet är att \"bevara ett oexploaterat område av innerskärgården av värde för friluftslivet\"; Natura 2000-område (2026-09-14)",
       "last": null,
       "myndighet": true
@@ -1962,7 +1962,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.trafikverket.se/furusundsleden",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "vägfärja mellan Furusund och Yxlan, 600 meter (2026-09-14)",
       "last": null,
       "myndighet": true
@@ -2090,14 +2090,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "blido": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/linkudden.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "karakteristiska arter: \"rosettjungfrulin, liten blåklocka, vildlin\", \"hundratals Adam och Eva\", \"låsbräken, solvända, darrgräs, ormtunga, majviva och kärrspira\"; hällmarkstallskog i östra och västra delarna, blandskog med ek, asp och hassel mellan bergsryggarna; \"Fågellivet är rikt med bland annat häckande sjöfågel\" (2026-09-14)",
       "last": null,
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/salskaren.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "reservatet ligger mellan Blidö och Svartlöga i Norrtälje kommun; \"Skyddat sedan: 1973\"; \"Storlek: 76 hektar varav land 5\"; förvaltare Skärgårdsstiftelsen; syftet är att \"trygga en ögrupp för allmänhetens friluftsliv samt skydda en värdefull häckningsbiotop för sjöfågel\"; \"Vegetationen på öarna skall i princip lämnas för fri utveckling\" (2026-09-14)",
       "last": null,
       "myndighet": true
@@ -2211,28 +2211,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "gallno": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gallno.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "På ön finns bland annat handelsbod, rast- och informationstuga, allmän båtplats och vandrarhem, I reservatet finns informationstavla, cykelled, rast- och övernattningsstuga och båtluffarled ;  — Från Brännholmen kan du också ta båtluffarledens roddbåt över till Karklö ;  — Båtluffarled finns på Brännholmen mot Karklö för vidare färd mot Svartsö eller Finnhamn",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/karklo.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Skyddat sedan: 2017, Storlek: 123 hektar varav land 59 hektar, Förvaltare: Skärgårdsstiftelsen, Vid Vambö och Kolfatet gränsar reservatet till Gällnö naturreservat i sydost, Den lilla ön Kolfatet, På ön finns en grov döende ek, troligen upp emot 300 år gammal, Det finns en markerad strövstig på Karklö som hör samman med båtluffarleden, Badplats finns utanför reservatet, i närheten av ångbåtsbryggan, På Karklö-Vambö bedrivs ett aktivt jordbruk med boskapsskötsel ;  — Ett smalt sund skiljer Gällnö från grannön Karklö",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/gallno",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "Du kan åka till Gällnö från Strömkajen, vissa turer går direkt utan byte. ;  — GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, Gällnönäs (Gällnö), Ängsholmen (vid Gällnö): t.ex. lördag Strömkajen 08.00 → Gällnö 09.55, måndag–torsdag 09.00 → 11.30, Boda brygga 10.25 → Gällnö 10.30 ;  — GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026: Strömkajen 07.45 → Gällnö 09.30 ;  — Med Cinderella tar resan till Gällnö ca 1 tim och 45 min., Säsongen löper från slutet av april till slutet av september. ;  — Waxholmsbolaget kör båt till Gällnö Söderby",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://waxholmsbolaget.se/",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "prislistan renderas med JavaScript och kunde inte hämtas; inget belopp",
       "last": null,
       "myndighet": true
@@ -2281,7 +2281,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/gallno-karklo/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Torsviken är särskilt uppskattad med naturhamn, sandstrand och tältplats. Här finns också en välbevarad jättegryta som bildades av inlandsisen för omkring 10 000 år sedan. ;  — Det finns en fin och gratis tältplats vid Torsviken cirka 20 minuter promenad från Gällnö By. Där finns förutom färskvatten och torrdass också en fin sandstrand.",
       "last": "2026-09-27",
       "myndighet": false
@@ -2383,7 +2383,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "nattaro": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/nattaro.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Nåttaröfladen har med sina många små kobbar och skär ett rikt fågelliv ... För att skydda fågellivet råder tillträdesförbud mellan 1 februari och 15 augusti. / föreskrifterna räknar upp bland annat Östra Rödko, Långholmen, Grönborgen, Båten, Vittskär, Gjusskär, Brandholmen, Björkskär, Boskär, Rönnkobben, Tärnkobben och Grenkullen",
       "last": "2026-09-27",
       "myndighet": true
@@ -2490,7 +2490,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "ingmarso": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/kalgardson.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "reservatet utgörs till största delen av Kålgårdsön, \"den östligaste delen av Ingmarsö\", jämte Bockholmen i söder och ytterligare några öar i Österåkers kommun; bildat 1974; 103 hektar varav 100 hektar land; Skärgårdsstiftelsen är både markägare och förvaltare; \"Ändamålet med reservatet är att säkra ett område av stort värde för allmänhetens rörliga friluftsliv\" (2026-09-14)",
       "last": "2026-09-27",
       "myndighet": true
@@ -2618,14 +2618,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "namdo": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "I nationalparken finns 1 353 öar, kobbar och skär och ett större havsområde längst österut; förvaltare Länsstyrelsen i Stockholms län; markägare Staten genom Naturvårdsverket; tre större bebyggda öar — Bullerö, Rågskär och Långviksskär — har vandringsleder, rastplatser och tältplatser (2026-09-14)",
       "last": "2026-09-19",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/namdo.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Nämdös naturreservat ingår i södra skärgårdens urkalkstensbälte vilket medför att floran är mycket särpräglad och artrik på ormbunkar och orkidéer inom naturreservatet. ;  — Kalkhällarna vid Östanvik hör till de botaniskt mest värdefulla miljöerna i hela Stockholms skärgård. . «Ovanligt rik» och «annorlunda än i resten av skärgården» stod inte i källorna.",
       "last": "2026-09-27",
       "myndighet": true
@@ -2653,7 +2653,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/namdo",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "den är både bilfri och till viss del ett naturreservat ;  — floran är mycket särpräglad och artrik på ormbunkar och orkidéer ;  — Det är en levande skärgårdsbygd med flera byar; Nämdö erbjuder ett rikt och varierat friluftsliv året om.; I Solvik finns service och under sommaren erbjuds både mat, aktiviteter och boende för besökare. . «Genuint» och «välskyddat» var omdömen utan källa.",
       "last": "2026-09-27",
       "myndighet": true
@@ -2688,7 +2688,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/namdo/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Reguljär båttrafik går året runt från Stavsnäs med Waxholmsbolaget. Under sommaren finns även förbindelser från Stockholm och Saltsjöbaden. ;  — Sommartid går det turer till Nämdö tre eller fyra gånger om dagen från Stavsnäs. Under sommaren går även Nord/Sydlinjen via bryggorna Solvik och Östanvik. ;  — linje 17 med bryggorna Nämdöböte, Östanvik, Kalkberget, Västanvik, Solvik, Sand och Bunkvik; Stavsnäs 13.12 → Nämdöböte 13.35 … Bunkvik 14.10 .",
       "last": "2026-09-27",
       "myndighet": false
@@ -2746,7 +2746,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://waxholmsbolaget.se/",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "",
       "last": null,
       "myndighet": true
@@ -2874,7 +2874,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "runmaro": [
     {
       "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/Förorenade",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen",
       "vad": "Sulfidmineralen zinkblände och blyglans bröts på Runmarö i Stockholms skärgård. En mängd av 4 771 ton zinkmalm utvanns i början av 1900-talet. / Värmdös gruvor är med få undantag belägna på Runmarö. Här finns cirka sju sulfidmalmsbrott eller större skärpningar. De tre gruvorna Kilagruvorna, Söderbygruvorna och Vånögruvorna, alla belägna på Runmarö",
       "last": null,
       "myndighet": true
@@ -3223,14 +3223,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/fejan/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Fejan ligger i norra skärgården, strax öster om Räfsnäs, I slutet av 1800-talet anlades här en karantänstation för fartyg som misstänktes bära smittsamma sjukdomar, och de välbevarade byggnaderna berättar än idag om öns unika förflutna, Under senare perioder har Fejan även fungerat som flyktingförläggning och lotsmiljö",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "När koleran svepte över Europa 1892 uppfördes i en hast en karantänstation på ön Fejan. Ett monteringsfärdigt trähus som skulle skeppas till Kongo som missionsstation exproprierades vid utskeppningskajen och sattes upp som doktorsvilla på Fejan . «Därav namnet Kongohuset» står inte i källan — struket.",
       "last": "2026-09-27",
       "myndighet": false
@@ -3246,7 +3246,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "rodloga": [
     {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/rodloga",
-      "org": "waxholmsbolaget.se",
+      "org": "Waxholmsbolaget",
       "vad": "Under våren, sommaren och hösten kan du åka ut till Rödlöga från Strömkajen utan byten. Resan tar fyra timmar.; Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Rödlöga.; Heldagsutflykt till Rödlöga",
       "last": "2026-09-27",
       "myndighet": true
@@ -3339,7 +3339,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "singo": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/singo-soderby.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Den sällsynta vedsvampen stor aspticka kan du se på de grova asparna; den lilla orkidén knärot",
       "last": "2026-09-27",
       "myndighet": true
@@ -3425,7 +3425,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "lido": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/lido.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Storlek: 1212 hektar varav land 322 hektar, huvudsakligen bevuxna av barrskog, Inslag av ädellövskog finns, ett odlingslandskap med åker- och betesmarker;  — Gästhamnen i Båthusviken erbjuder service för båtburna besökare medan Österhamn är ett populärt val för den som söker en naturnära hamn, Runt ön finns flera fina badplatser med både klippbad och mindre sandstränder, På Lidö gård driver Magnus Atte med familj ett skärgårdsjordbruk;  — Gästhamnen hittar ni på öns sydvästra sida, i Båthusviken, På öns nordöstra sida finner ni Österhamn",
       "last": "2026-09-27",
       "myndighet": true
@@ -3474,14 +3474,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/lido/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Lidö passar lika bra för barnfamiljer som för paddlare, seglare och vandrare;  — Boende går att boka från midsommar till mitten av augusti;  — Vi har nu öppet för grupper, konferenser, fester och bröllop, Boende & restaurang öppnar åter till midsommar 2027 den 25 juni",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Den nuvarande herrgårdsliknande byggnaden uppfördes 1769 av Mattias Holmers, född på Simesgården på Arholma, Säteriet byggdes på grunden av ett stenhus, raserat av ryssarna 1719, ”Resare-Bengt” Oxenstierna och Otto Wilhelm Königsmark, general över Venedigs trupper vid belägringen av Aten 1687, Byggnaderna som utgör värdshus på exempelvis Lidö, Grinda och Utö, ägs av Skärgårdsstiftelsen",
       "last": "2026-09-27",
       "myndighet": false
@@ -3641,7 +3641,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Södermanland",
       "vad": "Askö är länets första marina naturreservat., Här finns värdefulla undervattensängar av ålgräs och stora bälten av blåstång., Askölaboratoriet samordnar svensk marin forskning och miljöövervakning inom Östersjön och tar emot studenter och forskare från hela världen. Mycket av den kunskap vi idag har om Östersjön härstammar från Askölaboratoriet., tack vare det är undervattensmiljöerna väl dokumenterade",
       "last": "2026-09-27",
       "myndighet": true
@@ -3678,7 +3678,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "galo": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Vandringsleden mot Havtornsudd från Skälåker går till stora delar längs stranden., Det är småskaligt med en mosaik av åkermarker, ekhagar, lundar och betade havsstrandängar, gärna längs stigen som börjar vid Stegsholms parkering",
       "last": "2026-09-27",
       "myndighet": true
@@ -3734,7 +3734,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/galo/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Gålö är ett lättillgängligt fastlandsområde på Södertörn där du enkelt kan kombinera bad, vandring och naturupplevelser året runt., Området passar också för paddling, cykling, fiske och fågelskådning.",
       "last": "2026-09-27",
       "myndighet": false
@@ -3764,7 +3764,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "toro": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/oren.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Naturreservatet utgörs av tallhedar och stränder med klappersten; Ören är också en känd sträckfågellokal",
       "last": "2026-09-27",
       "myndighet": true
@@ -3778,7 +3778,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.trafikverket.se/om-oss/nyheter/lansnyheter/stockholm/20262/2026-04/vi-bygger-om-och-forbattrar-tottnasbron/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Tottnäsbron är en vridbro över Tottnässundet på väg 528 mellan Södertörn och Oxnö där vägtrafiken går i en riktning i taget; Mellan den 1 september till 31 december arbetar vi med installationer av teknisk utrustning på bron; hastigheten över bron att sänkas från 50 km/h till 30 km/h",
       "last": "2026-09-27",
       "myndighet": true
@@ -3843,7 +3843,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "fjardlang": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/fjardlang.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Beslut och skötselplan Fjärdlångs naturreservat 1986, Storlek: 5 089 hektar, varav 557 hektar land, de stora öarna Fjärdlång, Ängsön-Marskär, Långholmen-Bockholmen och ett antal mindre öar, kobbar och skär, Förvaltare: Skärgårdsstiftelsen och USF-Ö Fastighet AB, I reservatet finns skogar som varit orörda länge, På Fjärdlång har delar av det gamla odlingslandskapet restaurerats och sköts genom betesdrift. Kobbar, skär och mellanliggande vatten är värdefulla för sjöfågel. . «Förvaltas av Skärgårdsstiftelsen» var ofullständigt, «öster om Dalarö» och «ett tag av … finaste» saknade källa.",
       "last": "2026-09-27",
       "myndighet": true
@@ -3864,14 +3864,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/fjardlang/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Fjärdlång nås med reguljär skärgårdstrafik från Stockholm under sommarsäsong ;  — En av dem leder dig upp till utkikspunkten Tysta Klint, 36 meter över havet. ;  — Stockholms Archipelago Trail sträcker sig över Fjärdlång med en etapp som är totalt 11,7 kilometer. . «En av södra skärgårdens bästa platser» var ett omdöme.",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/boka-boende/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Stugan Norrötorpet är öppet under perioden 8 maj-20 september., torp på 33 kvm med ett rum, kök och sovloft, Här bor du enkelt utan el, med vatten i gårdspump, utedass och bastu vid egen brygga. Du tar med egen mat och hit kommer man med reguljär Waxholmsbåt eller med egen båt. ;  — går att hyra veckovis från maj till september",
       "last": "2026-09-27",
       "myndighet": false
@@ -3966,14 +3966,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "yxlan": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sjalbottna-ostra-lagno.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Bad/badplats, Fiske, Torrdass, Tältplats, På ön Själbottna har landhöjningen förvandlat havsvikar till vackra strandängar., tälta mer än två dygn i följd på samma plats, medföra hund som inte är kopplad, göra upp öppen eld ;  — Själbottna 11.00, Vagnsunda (Yxlan) 11.01",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård. Färjeledens längd är 600 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri. ;  — Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård. Färjeledens längd är 530 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri. ;  — Parking on Yxlan can be tricky and even hazardous. You can not park in the small housing communities. ;  — Giltig 17 augusti–12 december 2026, Norrtälje busstation 09.14 14.36 16.43 18.44, Vagnsunda 10.29 16.00 18.00 19.59b, Fortsätter efter Köpmanholms skola endast om resenärer . Restid Norrtälje–Vagnsunda 1 h 15 min (09.14 → 10.29) till 1 h 24 min (14.36 → 16.00).  — Strömkajen (Stockholm) 08.45, Vagnsunda (Yxlan) 11.01, Kolsvik (Yxlan) 13.02, utan fast avgångstid, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026",
       "last": "2026-09-27",
       "myndighet": true
@@ -4124,84 +4124,84 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "en varm raststuga och vedeldad bastu som är öppna året om. På ön finns vandringsleder av olika svårighetsgrad, en informationsplats, en badstrand, en tältplats och ett litet museum i konstnären Bruno Liljefors före detta jaktstuga. Delar av ön är tillgänglighetsanpassade så att det går att ta sig runt med rullstol, barnvagn eller rullator",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Nämdöskärgårdens nationalpark är Sveriges första marina nationalpark i Östersjön i Stockholms skärgård. Nationalparkens yta är uppdelad på ett tusental öar, kobbar och skär. Huvudentrén finns på ön Bullerö.; 97 procent av nationalparkens yta är hav. ;  — Nämdöskärgården blir Sveriges 31:a nationalpark (nyhet 2025-06-23) . Stod «den första marina nationalparken i Östersjön» — källan säger Sveriges första.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/att-gora-i-parken",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "aktiviteterna \"Bastun på Bullerö\", \"Bullerö runt\", \"Fågelskådning\" och sevärdheten \"Jaktstugan\"",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/att-gora-i-parken/sevardheter/jaktstugan",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "På Bullerö, vid Rävängen, hittar du konstnären Bruno Liljefors före detta jaktstuga. I jaktstugan finns en utställning om Nämdöskärgårdens nationalpark, om förutsättningarna för Östersjön och om djurlivet ovan och under ytan. ;  — Liljefors lät år 1909 bygga den jaktstuga som än idag står kvar på Bullerö",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/att-gora-i-parken/aktiviteter/bastun-pa-bullero",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Bastun är öppen för alla och går inte att boka.; I närheten av båtbryggan och byn på Bullerö finns en bastu som är öppen för allmänheten.; Ved finns invid bastun. Här finns också en badstege om du vill ta ett dopp i havet.; Det är inte tillåtet att förtöja båtar, SUP-brädor eller liknande vid bastuns brygga.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/att-gora-i-parken/aktiviteter/brunos-slinga",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Brunos slinga är en kort men kuperad vandringsled där du får smakprov på hur det var att leva på ön förr.; Längd: 0,9 kilometer",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/att-gora-i-parken/aktiviteter/bullero-runt",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Leden tar dig runt Bullerön och följer i stort sett kustlinjen.; Längd: 3 kilometer; Terrängen är kuperad och det kan vara halt.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/att-gora-i-parken/sevardheter/utsikt-fran-bullero",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "På Bullerö finns flera iordninggjorda utkiksplatser att besöka. Ormbranten, Kikarberget och Dromudden",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/att-gora-i-parken/aktiviteter/fagelskadning",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/besok-parken/overnatta-i-parken",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "På nationalparkens huvudö Bullerö finns Gästhemmet som består av Parstugan och Sjögrenska villan. Parstugan har egen ingång, eget kök och fem bäddar.; Gästhemmet är öppet för bokning mellan den 1 maj–2 november.; Bokning av Gästhemmet på Bullerö och torpen på öarna hanteras av By Nordiq.; På Bullerö finns en anvisad plats för tältning — tältängen. Det kostar ingenting att tälta där; servicehus med dricksvatten, toalett och dusch, grill och utekök ;  — tält högst sju dygn i följd på samma plats inom område markerat på karta i bilaga 3:5 . Stod tomt trots att gästhem finns.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/besok-parken/hitta-hit",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Du kan resa med Bullerölinjen till nationalparkens huvudentré på Bullerö från maj till en bit in i oktober.; Stavsnäs båttaxi driver turlinjerna.; Buss 434 går från Slussen i centrala Stockholm hela vägen fram till hamnen. ;  — period 17/8 - 11/10; Stavsnäs 10:50 → Bullerö 11:20; Samtliga avgångar måste förbokas! ;  — trafikerar vi på uppdrag av Länsstyrelsen . Den tidigare källan bullero.se gick inte att nå (anslutningen bröts 2026-09-27).",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/besok-parken/ata-i-parken",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Det finns ingen matservering eller butik i nationalparken. ;  — Samtliga avgångar måste förbokas!",
       "last": "2026-09-27",
       "myndighet": true
@@ -4224,7 +4224,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "vindo": [
     {
       "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3748572/1732515661464/Landsbygdsutveckling%20p%C3%A5%20Djur%C3%B6%20genom%20projektet%20Bygd%20f%C3%B6r%20Bygd.pdf",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen",
       "vad": "På Vindö bor omkring 400 personer permanent, Norrut på Vindö finns utspridda villaområden och ett stort antal fritidshus, Särskilt hög koncentration av områden med stor betydelse för den biologiska mångfalden finns på Djurö och Vindö, stora sammanhängande barrskogsområden;  — liksom Djurö och Vindö bebyggts med stora fritidshusområden",
       "last": "2026-09-27",
       "myndighet": true
@@ -4382,35 +4382,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "morko": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/slessberget.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Slessbergets naturreservat ligger på södra Mörkö, 4 kilometer söder om Mörkö kyrka., En liten skogsstig tar dig till fornborgen och utsiktspunkten., utsikten över Kålsöfjärden och Mörkö är magnifik, På grund av granbarkborreangrepp underhåller vi inte stigar och leder just nu.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/erikso.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Längs bägge sidor av ön finns vackra, betade strandängar och sköna badklippor. Slingrande grusvägar och ett myller av skogsstigar gör det lätt att upptäcka Eriksö till fots eller på cykel., Promenera till Grönvik med en enkel grillplats",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/kalkberget.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Berget, som till stor del består av urbergskalksten, är cirka 1,2 kilometer långt. I nordöstra änden av berget finns ett gammalt övergivet kalkbrott., ovanligt artrik och för trakten unik flora och fauna",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/kalso.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Kålsö är en vacker halvö som tidigare varit en fristående ö. Här finns fin skog, hagar och strandängar., Under våren är fågelsången stark och fylld med liv., Har du tur kan du också se en havsörn",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/skanssundsleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Skanssundsleden går mellan Hörningsnäs på Södertörn och Mörkö. Färjeledens längd är 330 meter lång och överfartstiden är tre minuter. Resan med vägfärjan är avgiftsfri.",
       "last": "2026-09-27",
       "myndighet": true
@@ -4489,7 +4489,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "musko": [
     {
       "url": "https://www.trafikverket.se/om-oss/nyheter/lansnyheter/stockholm/2025/2025-09/arbeten-i-muskotunneln-nattetid/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Muskötunneln är 2 910 meter lång och ligger cirka 65 meter under vattenytan. Den fria höjden är 3,9 meter i den dubbelriktade tunneln., I mars 1964 öppnades tunneln för allmän trafik., Tunneln stängs cirka sex nätter per år för planerat underhållsarbete ;  — Kör mot Muskötunneln, skyltat från väg 73.",
       "last": "2026-09-27",
       "myndighet": true
@@ -4547,7 +4547,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "bjorko": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorko.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Reservatet, som inte är större än 1,6 hektar, ligger på Björkö i Mälaren. I området växer gammal barrskog.; Många av träden är äldre än 200 år.; ha okopplad hund, katt eller annat husdjur; elda",
       "last": "2026-09-27",
       "myndighet": true
@@ -4568,7 +4568,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/adelsoleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Adelsöleden går mellan Munsö och Adelsö på Mälaröarna. Färjeledens längd är 1 000 meter och överfartstiden är sex minuter. Resan med vägfärjan är avgiftsfri.",
       "last": "2026-09-27",
       "myndighet": true
@@ -4633,7 +4633,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/adelsoleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Adelsöleden går mellan Munsö och Adelsö på Mälaröarna. Färjeledens längd är 1 000 meter och överfartstiden är sex minuter. Resan med vägfärjan är avgiftsfri. ;  — Öppet alla dagar mellan kl. 11–16. Öppet även jul och nyår. (Hovgårdens informationscenter, året runt) ;  — Under lågsäsong (november–april) är museet och restaurangen stängda och det finns ingen ordinarie båttrafik till ön. (Birka)",
       "last": "2026-09-27",
       "myndighet": true
@@ -4691,21 +4691,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "ingaro": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Skyddat sedan: 1983, Storlek: 948 hektar, varav land 316 hektar, den fina sandstranden vid Torpesand med utblick mot Nämdöfjärden, Halvön genomkorsas av ett nätverk av stigar och grusvägar, Vackra och värdefulla betesmarker finns på Näset, där Adam och Eva blommar på försommaren ;  — På försommaren blommar orkidéer som Adam och Eva i de gamla betesmarkerna",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besok-och-upptack/naturreservat/langvikstrask.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Myren ingår i den nationella myrskyddsplanen liksom i nätverket Natura 2000, hör till de största och mest orörda i regionen, I slutet av sommaren lyser hjortronen som gula juveler i myrkanten",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/velamsund.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Länsstyrelsen Stockholm, naturreservatet Velamsund i Nacka kommun .",
       "last": "2026-09-14",
       "myndighet": true
@@ -4740,7 +4740,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/besoksmal/bjorno/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Björnö är också ett uppskattat område för paddling och båtliv, med naturhamnar, skyddade vikar, tältplatser och rastplatser med eldstäder ;  — för längre tid än två dygn förankra båt vid samma strand, framföra eller förankra båt eller annan farkost närmare än 50 meter från sandstränder, på vattenområdet Slängen framföra motorbåt eller annan motordriven farkost",
       "last": "2026-09-27",
       "myndighet": false
@@ -4770,7 +4770,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "svenska-hogarna": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/svenska-hogarna.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Begränsade hamnmöjligheter finns på östra delen av Storön, vid Ytterhamnen. Här finns en brygga och sopmaja samt torrdass för besökare. Mellan ön Skrubban och Ytterhamnen finns angöringsbojar som ägs och sköts av Svenska Kryssarklubben, allmänheten kan mot betalning angöra vid bojarna.",
       "last": "2026-09-27",
       "myndighet": true
@@ -4800,7 +4800,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "huvudskar": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/huvudskar.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Fågellivet är rikt i Huvudskärs naturreservat med många häckande sjöfågelarter som ejder, svärta, tobisgrissla, labb, skrak och vigg samt olika arter av vitfågel, I angränsande områden häckar tordmule;  — Området är också populärt för fågelskådning och naturfotografering",
       "last": "2026-09-27",
       "myndighet": true
@@ -4814,7 +4814,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/huvudskar/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Huvudskär ligger längst ut i Haninges ytterskärgård, sydost om Ornö;  — Reservatet omfattar hela Huvudskärsarkipelagen utom huvudön Ålandsskär, och ligger tio kilometer sydost om Ornö, Huvudskärs naturreservat omfattar ett skärgårdsområde med omkring 200 öar och skär, Öarna består oftast av kala klippor med sparsam vegetation, mest enbuskar, ljung och kråkris, På Ålandskär finns fyr och byggnader, Skyddat sedan: 1974",
       "last": "2026-09-27",
       "myndighet": false
@@ -4890,7 +4890,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "ormsko": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Det finns idag ingen reguljärtrafik mellan öarna. Med egen båt, taxibåt eller genom att åka med någon chartrad tur går det att besöka området året om.; Ta med egen mat och dryck — inget sådant finns att köpa i nationalparken. ;  — förbjudet att ankra eller förtöja farkost på samma plats mer än två dygn i följd och att ta med okopplad hund eller annat husdjur som inte är kopplat",
       "last": "2026-09-27",
       "myndighet": true
@@ -4904,7 +4904,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/besok-parken/hitta-hit",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "",
       "last": "2026-09-27",
       "myndighet": true
@@ -4913,14 +4913,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "norrpada": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/norrpada.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "vackert glacialslipade hällarna med tydliga isräfflor; På en del öar finns dalsänkor med al, ask, asp och idegran; På Hallskär och Idskär finns ett stort bestånd av idegran. Reservatet är värdefullt för häckande sjöfågel.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://skargardsstiftelsen.se/omraden/norrpada/",
-      "org": "skargardsstiftelsen.se",
+      "org": "Skärgårdsstiftelsen",
       "vad": "Norrpada ligger cirka 15 kilometer sydost om Kapellskär och består av ett trettiotal öar, kobbar och skär som tillsammans bildar ett av norra skärgårdens mest omtyckta båtområden; Här finns inga större anläggningar, ingen bebyggelse och få spår av modern utveckling",
       "last": "2026-09-27",
       "myndighet": false
@@ -4929,7 +4929,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "graskar": [
     {
       "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c37487ba/1732515932045/Sk%C3%A4rg%C3%A5rdsfakta%20%E2%80%93%20Grafiska%20kartor%202019.pdf",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen",
       "vad": "I Stockholms skärgård finns omkring 30 000 öar, varav cirka 200 är bebodda.; Region Stockholm har i den regionala utvecklingsplanen för Stockholmsregionen — RUFS 2050 pekat ut kärnöar.; Landsort och Gräskö är utpekade som kärnöar; 21 (27); Den första siffran visar antalet folkbokförda på huvudön.; Det reella befolkningsantalet är regelmässigt högre. (Länsstyrelsen Stockholm, Skärgårdsfakta 2019, siffror för 2018)",
       "last": "2026-09-27",
       "myndighet": true
@@ -4980,7 +4980,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/langviksskar.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Långviksskärs naturreservat ligger i Värmdö kommuns ytterskärgård; När Nämdöskärgårdens nationalpark bildades år 2025 övergick huvuddelen av det som tidigare var Långviksskärs naturreservat till att bli nationalpark, men en mindre del kvarstår som reservat; Storlek: 9,6 hektar varav land 8,1 hektar . Den tidigare kommentaren (ca 300 öar, 3 897 ha) gällde reservatet före 2025. Ortnamnet är Långviksskär, inte Långviksskäret. Stod 'södra' med Landsort/Nåttarö som grannar — det är Nämdö/Bullerö-området. Inte samma plats som Långskär.",
       "last": "2026-09-27",
       "myndighet": true
@@ -5054,14 +5054,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/langskar.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Öarna är kuperade med hällmarker, sänkor och en växtlighet typisk för den yttre skärgården.; I reservatet finns ett utomordentligt rikt och särpräglat fågelliv med senhäckande och störningskänsliga arter.; Under tiden 1 februari–15 augusti beträda utpekat fågelskyddsområde (se karta i föreskrifterna)",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/langviksskar.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Ta med egen mat och dryck — inget sådant finns att köpa i nationalparken. Det finns också begränsat med dricksvatten. Du kan fylla din vattenflaska på Bullerön",
       "last": "2026-09-27",
       "myndighet": true
@@ -5077,7 +5077,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/storskar.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Naturen i Storskärs naturreservat är typisk och representativ för mellanskärgården.; Det här är ett litet reservat som omfattar södra delen av ön Storskär. Ön ligger i Svartlögafjärden 4 kilometer norr om Möja.; Skyddat sedan: 1968; Storlek: 8,9 hektar; Naturtyp: barrskog, blandskog, skärgård; Kommun: Österåker; Markägare: privat",
       "last": "2026-09-27",
       "myndighet": true
@@ -5086,21 +5086,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "ulvon": [
     {
       "url": "https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/stormyran-pa-ulvon.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västernorrland",
       "vad": "Här hittar du blomsterrika våtmarker nära havet på Norra Ulvön; Området nås via stig från Sandvikssjön där en informationstavla är placerad. Du kan också nå området från Norrsand",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/vasternorrland/besoksmal/varldsarvet-hoga-kusten.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västernorrland",
       "vad": "Höga Kusten blev utsedd till världsarv år 2000; sedan dess har landet höjts 286 meter i förhållande till havsytan",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/ulvo-havet.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västernorrland",
       "vad": "Här bröts titan- och vanadinhaltig järnmalm av och till mellan 1690 och 1959; Södra Ulvön har därför också haft namnet; 100 meter söder om Marviksgrunnan kan du studera resterna av en nedlagd gruva med flera gruvhål och gamla gruvgångar",
       "last": "2026-09-27",
       "myndighet": true
@@ -5419,35 +5419,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "oland": [
     {
       "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/varldsarvet-sodra-olands-odlingslandskap.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Kalmar län",
       "vad": "I den medeltida Östgötalagen från 1200-talet, finns regler för hur bönderna skulle lägga ut en radbytomt, Ju bredare tomten var desto större andel hade gården i byns inägojord, Gårdstypen kallas götisk . Stod tidigare «fler soltimmar än nästan hela övriga Sverige» utan källa.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/trollskogen.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Kalmar län",
       "vad": "Reservatet ligger på Ölands nordostligaste udde, gammal tallskog med stormvridna träd, mäktiga ekar klädda i murgröna, klapperstenstränder, Trollskogen är ett av Ölands mest besökta naturområden ;  — Här finns Ölands längsta sandstrand, tio meter höga sanddyner, De äldsta tallarna är upp emot 200 år gamla",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/ottenby.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Kalmar län",
       "vad": "På Ölands södra udde, en av Sveriges bästa fågellokaler, ligger naturreservatet Ottenby. Reservatet är ett av de största i Kalmar län och omfattar 995 hektar., Vid Ottenby fyrby, längs ner på udden finns en fågelstation som drivs av Sveriges Ornitologiska förening. Här ringmärks årligen tusentals fåglar, Fyren Långe Jan är ett av Ölands mest kända landmärken. Den byggdes på 1780-talet och är med sina 42 meter Sveriges högsta fyr., de äldsta har en stamomkrets på över 400 cm och är drygt 400 år gamla, På 1690-talet lät Karl XI bygga muren runt Ottenby lund",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/bodakustens-ostra.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Kalmar län",
       "vad": "Dynområdet med flygsand är ett av Sveriges största, Från Fagerrör till Trollskogen går en järnväg som anlades i början av 1900-talet för att forsla ut timmer från kronoparken. Järnvägen används idag som museijärnväg med turisttrafik under sommaren. ;  — I Trollskogen finns fyra färgmarkerade vandringsleder, Samtliga leder startar och avslutas vid naturum",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.trafikverket.se/aktuellt-i-lanet/kalmar/pa-gang/vi-forbattrar-i-kalmar-lan/broarbeten-i-kalmar-lan/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Från augusti 2026 till 31 mars 2027, Trafiken påverkas genom att vi stänger ett körfält i vardera riktning och sänker hastigheten, Tänk också på att restiden kan bli längre ;  — 6 april till 15 juni och 16 augusti till 21 september",
       "last": "2026-09-27",
       "myndighet": true
@@ -5761,7 +5761,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "vrango": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vrangoskargarden-vrango-arkipelagen.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Ta dig förbi Brevik, Bingen och Vättnena i norr, via de lummiga busk- och skogspartierna längs en markerad promenadslinga. Eller gå söderut, förbi Nötholmsviken över den öppna hällmarksljungheden och förbi Store rös, det gamla bronsåldersröset; Det finns en fin sandstrand söder om färjeläget; Det bästa fisket sägs vara på öns södra sida vid Kungsnabbe och vid Kungsö sund. Stod ca 6 km runt hela Vrångö och klippbad på östra och norra sidan utan källa.",
       "last": "2026-09-27",
       "myndighet": true
@@ -5845,7 +5845,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "281 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö; Gäller 24 aug — 12 dec 2026; Linje 283 från Stenpiren och Lindholmspiren. Båtbyte på Saltholmen. . Restid räknad ur tabellen måndag–fredag: Saltholmen 05:09 → Vrångö 05:27 (18 min), 09:25 → 10:03 (38 min), 11:20 → 12:22 (62 min). Från Stenpiren 08:44 med byte på Saltholmen, framme 10:03 (1 h 19 min); 16:55 med byte till 17:35, framme 18:05 (1 h 10 min). Stod 'ca 1 h 35 min direkt från Stenpiren' — i höst- och vintertidtabellen byter man båt på Saltholmen.",
       "last": "2026-09-27",
       "myndighet": false
@@ -6012,49 +6012,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "yttre-garden": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/samhalle/sakerhet-och-beredskap/skyddsobjekt.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Ett beslut om skyddsobjekt innebär att obehöriga inte har tillträde till skyddsobjektet; Ett skyddsobjekt är vanligtvis utmärkt med gula skyltar.; förbud mot att bada, dyka, ankra eller fiska",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/natur-och-landsbygd/om-eldningsforbud.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Länsstyrelsen har rätt att besluta om eldningsförbud utifrån lagen om skydd mot olyckor när det råder stor risk för brand i skog och mark.; Beslut om lokala eldningsförbud hittar du på din kommuns webbplats.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.naturvardsverket.se/4a622a/contentassets/66a1a996e37b4ecd872d9df8b73a4387/statlig-skog-skyddsvarda-stockholm-objekt.pdf",
-      "org": "naturvardsverket.se",
+      "org": "Naturvårdsverket",
       "vad": "Ett parti med lövskog sträcker sig från den västra stranden, ungefär mitt på ön, nedanför en brant, i nordostlig riktning in mot mitten av ön.; I den sydvästra delen består lövskogen av gamla ekar med inslag av eklågor samt död ved av främst gran.; Av karta från 1800-talets slut framgår att denna del även då var lövträdsdominerad.; I den nordöstra delen övergår lövskogen till en ungskog dominerad av björk och asp.; en del mindre avverkningar har gjorts i anslutning till militära anläggningar som numer är rivna; Rödlistade arter noterade för området är stor klipptuss och mindre hackspett. (PDF, s. 1)",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.naturvardsverket.se/vagledning-och-stod/skyddad-natur/skyddsvarda-statliga-skogar/",
-      "org": "naturvardsverket.se",
+      "org": "Naturvårdsverket",
       "vad": "Det pågår ett arbete att ge skyddsvärda statliga ägda skogar formellt skydd.; inventeringar som Naturvårdsverket och länsstyrelserna redovisade 2004",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/",
-      "org": "naturvardsverket.se",
+      "org": "Naturvårdsverket",
       "vad": "Förtöj och övernatta något dygn i din båt.; Ta med dig en påse som du kan samla skräp och matrester i för att ta med hem eller slänga i en papperskorg.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/",
-      "org": "naturvardsverket.se",
+      "org": "Naturvårdsverket",
       "vad": "Du får tälta något enstaka dygn i naturen; allemansrätten ger dig ingen självklar rätt att elda. Du har ansvar för att elda på ett säkert sätt, utan att riskera att elden sprider sig",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/",
-      "org": "naturvardsverket.se",
+      "org": "Naturvårdsverket",
       "vad": "Koppla hunden när vilda djur har ungar, 1 mars–20 augusti.",
       "last": "2026-09-27",
       "myndighet": true
@@ -6105,7 +6105,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "tynningo": [
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/tynningoleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Tynningöleden går mellan Lagnö på Värmdö och Tynningö i Stockholms skärgård. Färjeledens längd är 1000 meter lång. Resan med vägfärjan är avgiftsfri.; Du kan även kalla på färjan direkt i appen.",
       "last": "2026-09-27",
       "myndighet": true
@@ -6191,7 +6191,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "djuro": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/hamnskogen-eriksberg.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Stockholm",
       "vad": "Hamnskogen-Eriksbergs naturreservat är ett kommunalt reservat som omfattar cirka 35 hektar skärgårdsnatur, i huvudsak skog.; Områdets variation med tät och öppnare skog och vida utblickar över fjärdar ger stora upplevelsevärden.; Bad/badplats; Vandringsled; De som besöker reservatet med bil kan parkera i Björkås eller på två mindre parkeringar",
       "last": "2026-09-27",
       "myndighet": true
@@ -6319,7 +6319,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/adelsoleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Adelsöleden går mellan Munsö och Adelsö på Mälaröarna. Färjeledens längd är 1 000 meter och överfartstiden är sex minuter. Resan med vägfärjan är avgiftsfri.",
       "last": "2026-09-27",
       "myndighet": true
@@ -6376,16 +6376,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "lilla-karlso": [
     {
-      "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html",
-      "org": "lansstyrelsen.se",
-      "vad": "tälta, göra upp öppen eld, föra iland hund, katt eller annat sällskapsdjur, Det har sannolikt aldrig funnits bofasta människor på Lilla Karlsö, Ön har istället utnyttjats säsongsvis för fiske, säljakt och fårbete ;  — Avgång kl. 09.00 från, Återresa och ankomst till Djupvik senast kl. 13.30",
+      "url": "https://www.lansstyrelsen.se/download/18.2c30d6f167c5e8e7c0179a/1545313306910/Lilla%20Karls%C3%B6%20SE0340025.pdf",
+      "org": "Länsstyrelsen",
+      "vad": "i äldre tider kallades Karlsöarna för, Fågelholmarna, då Linné besökte ön sommaren 1741 betade får där ;  — räddades från att försvinna av bankdirektören, Konrad Hellsing år 1943",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
-      "url": "https://www.lansstyrelsen.se/download/18.2c30d6f167c5e8e7c0179a/1545313306910/Lilla%20Karls%C3%B6%20SE0340025.pdf",
-      "org": "lansstyrelsen.se",
-      "vad": "i äldre tider kallades Karlsöarna för, Fågelholmarna, då Linné besökte ön sommaren 1741 betade får där ;  — räddades från att försvinna av bankdirektören, Konrad Hellsing år 1943",
+      "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html",
+      "org": "Länsstyrelsen Gotland",
+      "vad": "tälta, göra upp öppen eld, föra iland hund, katt eller annat sällskapsdjur, Det har sannolikt aldrig funnits bofasta människor på Lilla Karlsö, Ön har istället utnyttjats säsongsvis för fiske, säljakt och fårbete ;  — Avgång kl. 09.00 från, Återresa och ankomst till Djupvik senast kl. 13.30",
       "last": "2026-09-27",
       "myndighet": true
     },
@@ -6421,77 +6421,77 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "gotska-sandon": [
     {
       "url": "https://www.lansstyrelsen.se/gotland/besoksmal/nationalparker/gotska-sandons-nationalpark.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Gotland",
       "vad": "Sanden täcker hela Gotska Sandön, med undantag av klapperstränder främst i sydväst, Öns högsta punkt, krönet av sanddynen Höga åsen, ligger 42 meter över havet, närmast havet finns de vandrande vita dynerna som förflyttar sig upp till sex meter per år;  — Under Gotska Sandön ligger det fasta berget ungefär 70 meter ner",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/gotland/om-oss/nyheter-och-press/nyheter---gotland/2026-01-23-bokning-till-gotska-sandon-ar-oppen.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Gotland",
       "vad": "Båten går onsdagar, fredagar och söndar förutom under midsommarveckan då båten går tisdag, torsdag och söndag;  — Du kan göra dagsturer till Gotska Sandön från Nynäshamn under perioden mellan den 29 maj–21 juni och den 29 juli–30 augusti, Bokning av dagsbesök från Nynäshamn kan göras tidigast sju dagar innan avgångsdagen, 50 platser per avgång är möjliga att boka för dagsturer, Du behöver köpa biljett till turbåten i förväg;  — Du tar dig ut dit med turbåten, M/S Gotska Sandön",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Här finns exempelvis havsörn, lärkfalk och större korsnäbb;  — Sammanlagt har närmare 250 fågelarter setts på ön, Skogshare och nordisk fladdermus är de enda däggdjuren på ön. I vattnet runt ön lever gråsälar, några har också sin enda kända nordiska förekomst här;  — Innanför Säludden finns ett gömsle",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/besok-parken/tips-och-guider/turbat-och-boende-pa-gotska-sandon",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Turbåten till Gotska Sandön går tre dagar per vecka under sommaren, mellan den 29 maj till den 30 augusti, från Nynäshamn och Fårösund, Resan till Gotska Sandön tar ungefär 3 timmar och 30 minuter från Nynäshamn och 2 timmar och 15 minuter från Fårösund;  — På Gotska Sandön finns ingen hamn",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/besok-parken",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Det finns alltid två tillsynsmän på plats året runt",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/att-gora-i-parken/aktiviteter",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Bredsandsslingan tar dig till öns nordvästra del, Leden tar dig hela vägen ner till Tärnudden på öns södra del;  — På Höga Åsen kan vandringen vara krävande i lös sand och stark kupering;  — Myggor, bromsar och knott är däremot fåtaliga",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/att-gora-i-parken/sevardheter/fyren",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Den norra fyren som invigdes 1859 är ännu i drift och i dag är fyrplatsen statligt byggnadsminne. I fyren finns utställningen Fyrliv., Fyren återinvigdes i juni 2026 efter en renovering;  — I den gamla skolsalen på bottenvåningen finns en utställning om hur Gotska Sandöns bildats och om djurlivet på ön",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/besok-parken/hitta-hit",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Det går givetvis bra att besöka Gotska Sandön med egen båt året runt, Det finns ingen hamn så du får ankra utanför på en läsida, Det är ankringsförbud vid Tärnudden",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/besok-parken/tips-och-guider/tips-for-att-packa-ratt-infor-ditt-besok",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Kom ihåg att ta med mat för en extra dag. Då det finns en risk att turbåten kan bli inställd vid hårt väder., packa max 15 kilo per väska, Tänk på att packa i en väska som tål väta",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/att-gora-i-parken/aktiviteter/besok-salarna",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Som mest har över 180 sälar setts samtidigt men normalt ligger tre till fem stycken på stenarna. De går bara upp på stenarna om vågorna inte är för höga. Därför har du bäst förutsättningar att se säl när vädret är stilla., Tänk på att det är tillträdesförbud utanför repen",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/att-gora-i-parken/aktiviteter/hoga-asenslingan",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Passa på att bada vid Las Palmas;  — Sanden täcker hela Gotska Sandön, med undantag av klapperstränder främst i sydväst; fiske förbjudet:  — på ett störande sätt orsaka ljud, fiska.",
       "last": "2026-09-27",
       "myndighet": true
@@ -6521,7 +6521,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/aspoleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Aspöleden går mellan Karlskrona och Aspö i Karlskrona skärgård. Färjeledens längd är 6700 meter och överfartstiden är cirka 25 minuter. Resan med vägfärjan är avgiftsfri., Med vår app Trafikinfo Färjerederiet får du tillgång till tidtabeller och trafikinformation. ;  — Aspöleden går mellan Karlskrona handelshamn och Aspö ;  — Till Drottningskärs kastell kommer man dagligen året runt genom vägfärjan till Aspö.",
       "last": "2026-09-27",
       "myndighet": true
@@ -6621,7 +6621,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "sturko": [
     {
       "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/uttorp.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Blekinge",
       "vad": "Närmast havet och ett stycke inåt land utgörs området av blockiga strandängar och berghällar, enbuskrik utmark, hedmarker och öppna sandfält.",
       "last": "2026-09-27",
       "myndighet": true
@@ -6714,42 +6714,42 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "bla-jungfrun": [
     {
       "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/nationalparker/bla-jungfrun.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Kalmar län",
       "vad": "I den frodiga ädellövskogen söder om toppen växer en ymnig flora och sällsynta lavar. Lövskogen är hem för en rad ovanliga skalbaggar. Ön har också ett rikt fågelliv med arter som havsörn, skärpiplärka och tobisgrissla. ;  — På Blå Jungfruns västra sida finns en klapperstrand med rundslipad sandsten och granit",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.naturvardsverket.se/4ac67d/globalassets/nfs/2014/nfs-2014-8.pdf",
-      "org": "naturvardsverket.se",
+      "org": "Naturvårdsverket",
       "vad": "Tillstånd krävs dock inte för övernattning högst en natt i följd på, anvisad plats under perioden 20 juni–20 augusti, uppföra enklare anläggning för övernattning vid Sikhamn, sätta upp tält, vindskydd eller liknande anordning ;  — Mellan 27 juni och 16 augusti kan ni övernatta en natt i vindskydd på Blå Jungfrun. Det finns plats för 8 personer, fördelat på 2 vindskydd., Vindskydd: Ingen kostnad för att övernatta.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark/att-gora-i-parken/sevardheter/labyrinten-trojeborg",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Hur länge labyrinten har legat där på klippan är det ingen som vet, inte heller vem som lagt den eller varför, Labyrinten fanns på plats när Carl on Linné besökte ön 1741, Ofta gick man i dem som en rit — för fruktbarhet, god fiskelycka eller ett stilla hav på hemvägen, nära entrén Nedre Västra Stenbrottet ;  — skada labyrinten",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Blå Jungfruns nationalpark är en isolerad ö i Kalmarsund med branta klippor, blockterräng och höjder som reser sig över havet, Öns har fått sin runda form av inlandsisen, Under istiden bildades också öns många jättegrytor ;  — Redan på 1400-talet omgavs ön Blå Jungfrun med magiska föreställningar om häxor och trolldom, Själva urberget är anledningen till att ön blivit skyddad som nationalpark. Graniten dominerar",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark/besok-parken/hitta-hit",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Turerna arrangeras av Solkustturer. Båtresan tar cirka 1,5 timme. ;  — Högsäsong: 27 juni-27 augusti, kl 9-15.15 (3 tim och 15 min på Blå Jungfrun), kl 9-16.15 (4 tim och 15 min på Blå Jungfrun) ;  — är det färre än 20 bokade ställs turen in ;  — ca 15% av turerna får ställas in",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark/att-gora-i-parken/aktiviteter/bla-jungfrun-runt",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Den här vandringsleden tar dig runt hela Blå jungfrun. Du passerar sevärdheter som Jättegrytan, Stensliperiet, labyrinten Trojeborg, grottan Kyrkan och upp på toppen. Du kan starta din vandring från alla tre entréerna. ;  — Lervik, som är den vanligaste platsen, Sikhamn och Nedre västra stenbrottet ;  — Vandringen är 3,5 km och går över toppen som ligger 86m över vattenytan",
       "last": "2026-09-27",
       "myndighet": true
@@ -6828,7 +6828,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/hemsoleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Hemsöleden går mellan Strinningen och Hemsön vid Höga kusten i Västernorrlands län. Färjeledens längd är 540 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri. ;  — Till Hemsön går det bilfärja varje dag. Under sommaren går den mer frekvent, en gång varje hel- och halvtimme. Färjan är avgiftsfri och avgår från Strinningen. ;  — ca 20 min från vardera",
       "last": "2026-09-27",
       "myndighet": true
@@ -6907,28 +6907,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "faro": [
     {
       "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/digerhuvud.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Gotland",
       "vad": "Den gotländska berggrunden är till stor del uppbyggd av korallrev som bildades i ett tropiskt hav för cirka 430 miljoner år sedan, kunde de stå kvar som isolerade stenpelare — raukar, förstöra eller skada fast naturföremål eller ytbildning genom att exempelvis knacka fossil ur raukar",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/langhammars.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Gotland",
       "vad": "De ståtliga raukarna på stranden vid Klajvika är utan tvekan de mest fotograferade raukarna på Gotland. Raukarna finns även avbildade på baksidan av den svenska 200 kronorssedeln., Det 480 hektar stora naturreservatet, På strandsluttningen ovanför Klajvika står ett drygt 50-tal raukar, av vilka några är mer än 8 meter höga",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/gamla-hamn.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Gotland",
       "vad": "är namn på den så karaktäristiska rauken som står i reservatet, Naturreservatet Gamla hamn omfattar dels en mot nordväst utskjutande klippudde vid den södra änden av Lautervik, ligger ett 15-tal gravar som sannolikt är från vikingatid, Den brukar kallas S:t Olofs kyrka, Gamla hamn ligger drygt 4 km nordväst om Fårö k:a.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/farosundsleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Fårösundsleden går mellan Fårösund på norra Gotland och Broa på Fårö. Färjeledens längd är 1300 meter och överfartstiden är sex minuter. Resan med vägfärjan är avgiftsfri., Utöver dessa kategorier gäller rätt till förtur mellan 1 juni och 15 augusti för fast bosatta på Fårö",
       "last": "2026-09-27",
       "myndighet": true
@@ -7055,22 +7055,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "trysunda": [
     {
-      "url": "https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/trysunda.html",
-      "org": "lansstyrelsen.se",
-      "vad": "Här finns flera fina stigslingor som passerar mysiga vikar, klippstränder och utsiktspunkter, Rundan till Björnviken är ganska lättgången, Stigrundan på västra delen av ön är mer kuperad och utmanande;  — Från fiskeläget går en stig upp till Kapellberget",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
       "url": "https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22cdc/1732538244407/Trysunda.pdf",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen",
       "vad": "Till Trysunda kan du åka med passagerarbåten M/F Ulvön, från Köpmanholmen, 30 km söder om Örnsköldsvik, Sommartid går den varje dag, under vintern är det färre, Naturreservatet Trysunda är 1052 hektar stort, varav, 378 hektar är land;  — Köra motordrivet fordon på land. Nyttotrafik av boende på Trysunda samt statliga eller kommunala tjänstemän är dock tillåten, Nuförtiden bor bara några personer året om på ön, men sommartid kommer det många sommargäster och turister",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
+      "url": "https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/trysunda.html",
+      "org": "Länsstyrelsen Västernorrland",
+      "vad": "Här finns flera fina stigslingor som passerar mysiga vikar, klippstränder och utsiktspunkter, Rundan till Björnviken är ganska lättgången, Stigrundan på västra delen av ön är mer kuperad och utmanande;  — Från fiskeläget går en stig upp till Kapellberget",
+      "last": "2026-09-27",
+      "myndighet": true
+    },
+    {
       "url": "https://www.lansstyrelsen.se/vasternorrland/besoksmal/varldsarvet-hoga-kusten.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västernorrland",
       "vad": "Landet i Höga Kusten/Kvarkens skärgård stiger med 8-8,5 millimeter per år, Så den landhöjning som vi märker av är numera bara 5 millimeter per år, Höga Kusten blev isfritt för ungefär 10 500 år sedan;  — Trysunda hette från början Trijzundsön genom att tre öppna sund gick ihop. Genom landhöjningen är numera bara ett sund öppet.",
       "last": "2026-09-27",
       "myndighet": true
@@ -7177,7 +7177,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "hano": [
     {
       "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Blekinge",
       "vad": "Idag finns en av Sveriges största avenbokskogar på Hanös södra delar. Mot norr tar öppna gräsmarker, buskmarker och hällmarker vid, Det finns också dovhjortar på ön;  — På Hanös högsta berghäll (60 meters stigning från havet) står det 16 meter höga fyrtornet, som restes mellan 1904 och 1906, Det är en av de ljusstarkaste fyrarna i Östersjön",
       "last": "2026-09-27",
       "myndighet": true
@@ -7356,7 +7356,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/visingsoleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Visingsöleden går mellan Gränna och Visingsö i Vättern i Jönköpings län och är en betalled. Färjeledens längd är 6200 meter",
       "last": "2026-09-27",
       "myndighet": true
@@ -7498,7 +7498,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "ven": [
     {
       "url": "https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/landskrona/vens-backafall.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Skåne",
       "vad": "Det öppna åkerlandskapet avslutas med branta sluttningar ned i havet, så kallade backafall. De är på sina ställen upp till 30–40 meter höga.; Här har du dessutom en fin utsikt över havet med Danmark och svenska fastlandet i fjärran.; Här på Ven har man en av Sveriges största populationer av sandödla.",
       "last": "2026-09-27",
       "myndighet": true
@@ -7633,7 +7633,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "tjaro": [
     {
       "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tjaro.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Blekinge",
       "vad": "Kommun: Karlshamn, Ön Tjärö ligger i Hällaryds skärgård, Skyddsår: 1976, Areal: 306 hektar, varav 83 hektar land, Ön är inte större än att du kan vandra runt den på några timmar., Just de branta rundslipade hällarna längs kusten är utmärkande för Tjärö., Ekhagar och ädellövskog blandas med enbuskar, hällmarker och klippstränder samt mindre strandängar och gräsmarker.",
       "last": "2026-09-27",
       "myndighet": true
@@ -7705,7 +7705,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "ockero": [
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/honoleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Hönöleden turlista 2024-10-21 ;  — Röda dagar körs som söndag (tabellen: vardagar 06–18 avgång var 10:e minut, nattetid var 30:e minut) ;  — dygnet runt med täta avgiftsfria turer",
       "last": "2026-09-27",
       "myndighet": true
@@ -7789,14 +7789,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6290__0__LINE__20260817__20261212__392b5cc8-4462-460d-b9ed-07c70df4464b__0%2C0__2808493.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "290 Burö–Göteborg, Gäller 17 aug - 12 dec 2026, Linjen trafikeras av Connect Bus. ; tabellen måndag–fredag: Nils Ericson Terminalen 06.37 → Öckerö färjeläge 07.34, 09.12 → 10.12, 16.21 → 17.20; inga helgturer i tabellen.",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5206__0__LINE__20260817__20261212__f9ebc54c-e160-4a9f-80a3-948f860fcbd6__0%2C0__2796081.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Landvetter–Göteborg–Lilla Varholmen, Gäller 17 aug - 12 dec 2026; vardagar dagtid t.ex. Drottningtorget 09.28 → Lilla Varholmen 10.06, därefter var 15:e minut ;  — Färjeledens längd är 2500 meter och överfartstiden är 13 minuter. Resan med vägfärjan är avgiftsfri. ;  — Buss 1 tar dig från Hönö färjeläge till Öckerö och Hälsö",
       "last": "2026-09-27",
       "myndighet": false
@@ -7805,7 +7805,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "roro": [
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/nordoleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Nordöleden går mellan Burö, Knippla, Hyppeln och Rörö i Bohusläns skärgård, längd 3500 meter, restid cirka 18 minuter ;  — Vill du vidare kan du ta en färja från Hälsö (Burö färjeläge) till öarna, Det är möjligt att ta bilen över men en rekommendation är att parkera den vid färjeläget då öarna är små och parkeringsplatserna begränsade",
       "last": "2026-09-27",
       "myndighet": true
@@ -7875,14 +7875,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6290__0__LINE__20260817__20261212__392b5cc8-4462-460d-b9ed-07c70df4464b__0%2C0__2808493.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "290 Burö–Göteborg och omvänt, Gäller 17 aug - 12 dec 2026 ;  — Burö–Rörö, längd 3500 meter, restid cirka 18 minuter ;  — Ordinarie tidtabell, Gäller från 2026-05-25, Burö, Källö-Knippla, Hyppeln och Rörö, Kallelsetur: Beställning av kallelseturer sker till telefonsvararen  — from_city_min: Nils Ericson Terminalen 10.12 → Burö 11.20 → färja 11.35 → Rörö 11.53 = 101 min. 26 ordinarie ankomster till Rörö måndag–fredag 04.53–21.12.",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6281__0__LINE__20251214__20261212__1b7d89b9-d2d4-4151-a903-70a45274103d__0%2C0__2628605.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Burö–Öckerö–Hönö och omvänt, Hönö färjeläge, Gäller 14 dec 2025 - 12 dec 2026  — Hönö färjeläge–Burö färjeläge 20–21 min, måndag–fredag varje halvtimme dagtid.",
       "last": "2026-09-27",
       "myndighet": false
@@ -7891,14 +7891,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "holmon": [
     {
       "url": "https://www.lansstyrelsen.se/vasterbotten/besoksmal/naturreservat/holmoarna.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västerbotten",
       "vad": "Storlek: 25 000 hektar; Mer än något annat är det landhöjningen som orsakar variationsrikedomen. Efterhand som nytt land höjer sig ur havet blir avskilda havsvikar till grunda sjöar, som växer igen och blir våtmarker, kantade av lövträd. Så småningom gör granen entré.; Livet i havet runt Holmöarna präglas av att vattnet varken är salt eller sött.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/holmoleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Holmöleden går mellan Norrfjärden och Holmön i Kvarken norr om Umeå.; överfartstiden är 45 minuter; Resan med vägfärjan är avgiftsfri.; bokar du dina kallelseturer via appen Trafikinfo Färjerederiet eller via talsvar på 0771-65 65 65; Fordonsplatser bokas som tidigare på 070-346 48 19.",
       "last": "2026-09-27",
       "myndighet": true
@@ -8278,7 +8278,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6302__0__LINE__20251214__20261212__25ea94b6-c06e-4190-822d-a22d774d80ee__1%2C0__2635889.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "302 Kungälv–Ytterby–Marstrand, Marstrands färjeläge, Gäller 14 dec 2025 - 12 dec 2026, C Går endast 19 juni - 16 aug. . Restider räknade ur tabellen (Ytterby station → Marstrands färjeläge 29 min, Kungälv resecentrum → 42 min); måndag–fredag dagtid avgång från Kungälv varje timme (08.55, 09.55, 10.55 …), lördag–söndag 19 juni–16 augusti extra turer så att bussen går varje halvtimme. Linjen går inte från Göteborg, vilket den tidigare texten påstod.",
       "last": "2026-09-27",
       "myndighet": false
@@ -8287,7 +8287,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "smogen": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Bildat: 1975, Areal: cirka 292 hektar, Naturvårdsförvaltare: Västkuststiftelsen, Med en vit blixt var tolfte sekund gör sig Bohusläns äldsta fyr påmind., Här har den stått sedan 1842 på Hållös högsta punkt., Fyren förklarades som byggnadsminne 1935., Släta klippavsatser lockar ner dig i det klara, blåa vattnet vid Marmorbassängen på Hållös västsida., Det finns ett fyrtiotal jättegrytor på Hållö, Sommartid utgår regelbundna badturer från Kungshamn.",
       "last": "2026-09-27",
       "myndighet": true
@@ -8392,7 +8392,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Smögen–Kungshamn–Uddevalla–Trollhättan, Linjen trafikeras av Vy Buss., Gäller 14 dec 2025 - 12 dec 2026, Smögen busstation 08.47 10.47 12.47 14.47 16.47 18.47 20.47 23.07, 09.19 11.19 13.19 15.19 17.19 19.19 21.39 — t.ex. lör/sön Uddevalla central 09.19 → Smögen busstation 10.47 (88 min); Torp Terminalen 09.35 → Smögen 10.47 (72 min)",
       "last": "2026-09-27",
       "myndighet": false
@@ -8401,7 +8401,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "lysekil": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Stångehuvud utgör den sydligaste utlöparen av det bohuslänska granitområdet; former och tydliga isräfflor är karaktäristiska för området; Här och var randas granitklipporna av pegmatitgångar; Flera stigpassager går genom smala klyftor och förbi grottliknande bildningar; fina möjligheter till bad och fritidsfiske utefter klippstranden i väster; promenader på stigar som gjorts lättgångna med prydligt anordnade trappor och spänger; Området utgör donationsmark som ägs av Kungliga Vetenskapsakademin; Donationen tillkom i en tid då stenindustrin stod på sin höjdpunkt och huvudsyftet var att undanta ett naturskönt område från stentäkt; detta parti ligger kvar nästan exakt som det lämnades när täktverksamheten upphörde; Bildat: 1983 Areal: cirka 48 hektar Naturvårdsförvaltare: Lysekils kommun och Kungliga Vetenskapsakademin",
       "last": "2026-09-27",
       "myndighet": true
@@ -8583,14 +8583,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4841__0__LINE__20260817__20261212__dab04179-6e0d-43b0-a0e6-a6dfd3d216d6__0%2C0__2824773.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "841 Lysekil–Torp–Göteborg och omvänt; Gäller 20 aug - 12 dec 2026; Linjen trafikeras av Vy Buss. . Måndag–fredag går bussen från Nils Ericson Terminalen ungefär en gång i timmen (05.23, 06.23, 07.21, 08.21 …), lördag och söndag varannan timme; 05.23 → Lysekil södra hamnen 07.22.",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4847__1__LINE__20260101__20261211__e8375385-c9fa-43eb-880d-cff01ed9acbf__1%2C0__2697062.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "847 Lysekil–Skaftö; Ångbåtsbryggan; Fiskebäckskil brygga; Turen måste förbeställas; Gäller 1 jan - 12 dec 2026 utom 15 juni - 16 aug . Restid ur tabellen: Ångbåtsbryggan 07.40 → Fiskebäckskil brygga 07.55, 05.30 → 05.48.",
       "last": "2026-09-27",
       "myndighet": false
@@ -8599,35 +8599,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "kosterhavet": [
     {
       "url": "https://www.sverigesnationalparker.se/upptack-nationalparkerna/kosterhavets-nationalpark",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "Kosterhavets nationalpark är Sveriges första marina nationalpark och består främst av vatten och undervattensmiljöer, Nationalparken bevarar ett särpräglat och artrikt havs- och skärgårdsområde med djupa lerbottnar, rev, grunda vikar och tallskog i oförändrat skick",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "38 900 hektar, varav 860 hektar land, Strömstad, Tanum, Länsstyrelsen Västra Götaland, Markägare Naturvårdsverket",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/fakta-om-parken/djurliv",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "I de långgrunda vikarna, på de klippiga stränderna, och i alla de miljöer vi förknippar med Bohuskusten lever omkring 6 000 olika arter. Närmare 300 av dem finns inte någon annanstans i Sverige, De djupa och brant sluttande klippväggarna i Kosterfjordens djupränna liknar dessutom miljöerna långt ute i Atlanten, Runt grynnor och holmar simmar Västerhavets största bestånd av knubbsälar, Rev av ögonkorall är en värdefull livsmiljö för hundratals arter, här häckar ejder, tobisgrissla, labb och den ovanliga silvertärnan",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/kosterhavets-nationalpark/att-gora-i-parken/sevardheter/naturum-kosterhavet",
-      "org": "sverigesnationalparker.se",
+      "org": "Sveriges Nationalparker",
       "vad": "På naturum Kosterhavet finns utställningar, filmer och bildspel om nationalparken och naturen i området. Här finns också ett klappakvarium där du kan titta och känna på Kosterhavet, Naturum ordnar guidningar och föredrag, visningar och turer på stränderna i närområdet, 23 februari–26 april, 26 oktober-1 november (Höstlov)",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.vasttrafik.se/info/kosterbatarna/",
-      "org": "vasttrafik.se",
+      "org": "Västtrafik",
       "vad": "Kosterbåtarna - linje 899, Köp biljett i appen Västtrafik To Go, Köp biljett av däcksman ombord på båten, Du kan ta med dig cykel ombord i mån av plats, Från januari 2027 kommer Kosteröarna istället ingå i zon C",
       "last": "2026-09-27",
       "myndighet": true
@@ -8746,7 +8746,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4899__1__LINE__20260927__20261212__d2244526-47e2-4e6f-9db3-0febd05bdb81__2%2C0__2719851.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "899 Strömstad–Kosteröarna–Strömstad, Gäller 27 sept - 12 dec 2026",
       "last": "2026-09-27",
       "myndighet": false
@@ -8755,14 +8755,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "grebbestad": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Bildat: 1968, Areal: cirka 499 hektar, Naturvårdsförvaltare: Västkuststiftelsen, Området ligger på den västra delen av Havstenssundshalvön., Branta klippstränder stupar ner i havet och här och där går det in vikar med stränder av sand, grus eller stenblock., Kala hällar och ljunghedar dominerar, och enstaka träd som tall och rönn kryper längs bergssidorna, Flera olika längder på vandring erbjuds., Den som vill bada här gör klokt i att invänta stiltje.",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/otteron.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Bildat: 1967, Areal: cirka 629 hektar, är kanske ett av de mest välbesökta reservaten bland Bohusläns öar, Många stigar genomkorsar ön, flera skyddade naturhamnar, På ön finns åtskilliga orkidéarter, Rika lövskogsområden, ett stort bronsåldersröse, en kopia av en märklig runsten med den längsta urnordiska runskrift som påträffats, Otterön ligger sydväst om Grebbestad och är den största ön i det skärgårdsområdet., Till ön kommer man enklast med taxibåt från Grebbestad",
       "last": "2026-09-27",
       "myndighet": true
@@ -8888,14 +8888,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4877__0__LINE__20260817__20261212__9d26ba47-e7c4-4a38-b1c9-09f2b69a0feb__2%2C0__2767448.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Havstenssund–Tanumshede och omvänt, Gäller 17 aug - 12 dec 2026, Tanumshede centrum 06.55 13.30 15.50, Grebbestad busstation 07.09 07.46 13.40 16.00 — 13.30 → 13.40 = 10 min, 06.55 → 07.09 = 14 min",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4878__0__LINE__20260817__20261212__77a1bfb5-4966-45e6-89b6-e487842a0851__1%2C0__2767487.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Tanumshede–Grebbestad–Sportshopen och omvänt — Tanumshede centrum 09.05 → Grebbestad busstation 09.23 = 18 min",
       "last": "2026-09-27",
       "myndighet": false
@@ -8904,7 +8904,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "fjallbacka": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vaderoarna.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "bildat 2011, cirka 18 300 hektar, 365 öar och skär, turbåtar från bland annat Fjällbacka och Hamburgsund, ett av Sveriges mest värdefulla marina områden tillsammans med Kosterhavets nationalpark",
       "last": "2026-09-27",
       "myndighet": true
@@ -9016,7 +9016,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4875__0__LINE__20260817__20261212__83be1ed8-a883-462d-b8ea-6f64e9b6df0c__4%2C0__2768580.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "875 Tanumshede–Fjällbacka–Dingle–Håby; Gäller 19 aug - 12 dec 2026 . Restid ur tabellen: Tanumshede centrum 06.25 → Fjällbacka 06.54 (29 min), 08.44 → 09.10 (26 min), lördag 10.20 → 10.48 (28 min).",
       "last": "2026-09-27",
       "myndighet": false
@@ -9025,14 +9025,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "grundsund": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vagerod.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Bildat: 2003, Areal: cirka 121 hektar, Allra mest känt är området för sina blåsippor, De blommar här i stora mängder under våren innan lövträdens krontak sluter sig i ek- och bokskog, Området är kuperat med gott om block och lodräta stup, På flera platser finns så kallad krattekskog, hävdade kulturmarker, Du hittar det sällsynta och hotade gräset råglosta i reservatet, Här vittnar fällda träd och stubbar om att det finns bäver i området, En av lederna följer den gamla landsvägen, som var i bruk ännu under 1930-talet, Naturvårdsförvaltare: Västkuststiftelsen, Området ingår i EU:s ekologiska nätverk av skyddade områden, Natura 2000",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/gullmarsleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Gullmarsleden går mellan Finnsbo, Lysekil och Skår, Uddevalla i Gullmarsfjorden, Färjeledens längd är 1850 meter och överfartstiden är tio minuter, Resan med vägfärjan är avgiftsfri",
       "last": "2026-09-27",
       "myndighet": true
@@ -9130,14 +9130,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4847__1__LINE__20260101__20261211__e8375385-c9fa-43eb-880d-cff01ed9acbf__1%2C0__2697062.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "847 Lysekil–Skaftö, Gäller 1 jan - 12 dec 2026 utom 15 juni - 16 aug",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4845__0__LINE__20260817__20261212__1fb56a4f-7e7e-4e3c-8b26-b834a4887c8a__1%2C0__2789942.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Grundsund–Fiskebäckskil–Bokenäs–Uddevalla, Torp Terminalen, Gäller 17 aug - 12 dec 2026",
       "last": "2026-09-27",
       "myndighet": false
@@ -9146,21 +9146,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "hamburgsund": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/kulturmiljoer/greby-gravfalt.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Strax norr om Grebbestad ligger Greby gravfält, Greby gravfält ligger väster om Tanumshede i norra Bohuslän, Det är Bohusläns största gravfält med nästan 200 gravar som ligger tätt, nästan på varandra, Tvåhundra gravar ligger tätt, tätt i en ljungbevuxen västerslänt, Gravarna består av 68 runda högar, 54 långhögar samt 47 runda och 12 ovala stensättningar, Det finns 28 resta stenar på krönet av gravar, Stenhällarna kan vara upp till fyra och en halv meter höga, Ett tiotal av gravarna undersöktes 1873 av den blivande riksantikvarien Oscar Montelius, Förutom gravurnor med brända ben fann man sländtrissor, glaspärlor och benkammar, Fynden tyder på att Greby använts som begravningsplats på järnåldern, under tiden 200 till 600 år efter vår tideräknings början",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vaderoarna.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Det går turbåtar till Väderöarna från bland annat Fjällbacka och Hamburgsund",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/hamburgsundsleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Hamburgsundsleden går mellan Hamburgsund och Hamburgö i Norra Bohuslän, Färjeledens längd är 130 meter och överfartstiden är tre minuter, Resan är avgiftsfri",
       "last": "2026-09-27",
       "myndighet": true
@@ -9230,7 +9230,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4875__0__LINE__20260817__20261212__83be1ed8-a883-462d-b8ea-6f64e9b6df0c__4%2C0__2768580.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Tanumshede–Fjällbacka–Dingle–Håby, Tanumshede centrum, Hamburgsund centrum, Dingle station, Gäller 19 aug - 12 dec 2026",
       "last": "2026-09-27",
       "myndighet": false
@@ -9239,7 +9239,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "karingon": [
     {
       "url": "https://www.vasttrafik.se/resa-med-oss/under-resan/husdjur/",
-      "org": "vasttrafik.se",
+      "org": "Västtrafik",
       "vad": "Ha djuret i koppel, bur eller väska, Vid resa med båt ska husdjur vara på styrbord",
       "last": "2026-09-27",
       "myndighet": true
@@ -9393,7 +9393,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6381__0__LINE__20260915__20261031__de9ca77a-74b2-4c80-a07f-0e9d5aafbcd8__0%2C0__2790296.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Tuvesvik–Gullholmen–Käringön, Gäller 15 sept - 31 okt 2026",
       "last": "2026-09-27",
       "myndighet": false
@@ -9444,7 +9444,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/svanesundsleden/",
-      "org": "trafikverket.se",
+      "org": "Trafikverket",
       "vad": "Svanesundsleden går mellan Svanesund på Orust och Kolhättan i Halsefjorden Bohuslän. Färjeledens längd är 830 meter och överfartstiden är fem minuter. Resan med vägfärjan är avgiftsfri.",
       "last": "2026-09-27",
       "myndighet": true
@@ -9586,7 +9586,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "tjorn": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stigfjorden.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Stigfjorden utgör ett innanhav i miniatyr mellan Orust och Tjörn, Bildat: 1979, Areal: cirka 6714 hektar, Naturvårdsförvaltare: Västkuststiftelsen, Under vår och höst gör den rika produktionen i vattnet och på strandängarna området till näringsplats för tusentals änder, gäss, svanar och vadarfåglar, Stigfjorden har upptagits på listan över våtmarker som anses ha stor internationell betydelse enligt den så kallade Ramsarkonventionen, Området ingår i EU:s ekologiska nätverk av skyddade områden, Natura 2000, Det skyddade läget gör att Stigfjordenområdet är rikt på natthamnar, exempelvis vid Smögholmarna längst i väster, Kalven, Bockholmarna, Kälkerön och Hälsön",
       "last": "2026-09-27",
       "myndighet": true
@@ -9747,7 +9747,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Tjörn–Stenungsund/Göteborg, Skärhamn torg, Stenungsunds station, Nils Ericson Terminalen, Gäller 14 dec 2025 - 12 dec 2026",
       "last": "2026-09-27",
       "myndighet": false
@@ -9756,7 +9756,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "kungshamn": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Bildat: 1975, Areal: cirka 292 hektar, Öarna är flacka och mycket utsatta för väder och vind, buskar som slån, nypon och vide är förvisade till små sänkor och sprickdalar, Från öarna kan du studera sträck av änder, lommar och alkor, Till häckfåglarna hör tofsvipa, enkelbeckasin, kustlabb och rödbena, Med en vit blixt var tolfte sekund gör sig Bohusläns äldsta fyr påmind, Här har den stått sedan 1842 på Hållös högsta punkt, Fyren förklarades som byggnadsminne 1935, radiopejlingsstationen fungerar idag som vandrarhem, Sommartid utgår regelbundna badturer från Kungshamn, Det finns ett fyrtiotal jättegrytor på Hållö",
       "last": "2026-09-27",
       "myndighet": true
@@ -9861,7 +9861,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Smögen–Kungshamn–Uddevalla–Trollhättan, Kungshamns busstation, Uddevalla central, Gäller 14 dec 2025 - 12 dec 2026, Linjen trafikeras av Vy Buss",
       "last": "2026-09-27",
       "myndighet": false
@@ -10205,7 +10205,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "gullholmen": [
     {
       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html",
-      "org": "lansstyrelsen.se",
+      "org": "Länsstyrelsen Västra Götaland",
       "vad": "Husen står tätt tillsammans, vilket beror på att Gullholmen fram till 1999 var en så kallad kronoholme., På öns norra del ligger Stenstugan, som är ett av de äldsta husen på ön. Det är idag museum.",
       "last": "2026-09-27",
       "myndighet": true
@@ -10267,13 +10267,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6381__0__LINE__20260915__20261031__de9ca77a-74b2-4c80-a07f-0e9d5aafbcd8__0%2C0__2790296.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
-      "vad": "Tuvesvik–Gullholmen–Käringön, Gäller 15 sept - 31 okt 2026 . Tuvesvik–Gullholmen tar 5 min i varje tur (t.ex. 08.30–08.35 hamnen, 12.30–12.35 piren); båten lägger till vid Gullholmen hamnen eller Gullholmen piren beroende på tur.",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
       "url": "https://www.vastsverige.com/sodrabohuslan/produkter/gullholmen-och-harmano/?site=5",
       "org": "Västsverige",
       "vad": "Gullholmen är ett av Bohusläns äldsta fiskelägen, Mycket av öns gamla karaktär finns bevarad än idag med sjöbodar, bryggor och en välbesökt gästhamn. ;  — Väl intrampade prång och gränder mellan husen leder ner mot vattnet.",
@@ -10292,6 +10285,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "Västsverige",
       "vad": "Gullholmen — Käringön — parkering vid Tuvesvik betalas med kort eller SMS, kontanter tas inte emot",
       "last": "2026-09-16",
+      "myndighet": false
+    },
+    {
+      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6381__0__LINE__20260915__20261031__de9ca77a-74b2-4c80-a07f-0e9d5aafbcd8__0%2C0__2790296.pdf",
+      "org": "Västtrafik (tidtabell)",
+      "vad": "Tuvesvik–Gullholmen–Käringön, Gäller 15 sept - 31 okt 2026 . Tuvesvik–Gullholmen tar 5 min i varje tur (t.ex. 08.30–08.35 hamnen, 12.30–12.35 piren); båten lägger till vid Gullholmen hamnen eller Gullholmen piren beroende på tur.",
+      "last": "2026-09-27",
       "myndighet": false
     }
   ],
@@ -10445,7 +10445,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Tjörn–Stenungsund/Göteborg, Gäller 14 dec 2025 - 12 dec 2026, Klädesholmen östra 08.33 09.33 10.33 11.33 12.33 13.33 14.33 15.33 16.33 17.33 18.33 19.33 20.33 21.33 22.33, Stenungsunds station 09.28 10.28 11.28 12.28 13.28 14.28 15.28 16.28 17.28 18.28 19.28 20.28 21.28 22.28 23.28, Klädesholmen östra 05.03 06.03 06.33 07.03 07.33 08.33, Nils Ericson Terminalen 06.02 06.35 07.05 07.20 07.32 07.35 08.05 — lör/sön Klädesholmen östra 08.33 → Stenungsunds station 09.28 (55 min); vardagar Klädesholmen östra 06.03 → Nils Ericson Terminalen 07.35 (92 min)",
       "last": "2026-09-27",
       "myndighet": false
@@ -10461,7 +10461,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.vasttrafik.se/resa-med-oss/under-resan/husdjur/",
-      "org": "vasttrafik.se",
+      "org": "Västtrafik",
       "vad": "Ha djuret i koppel, bur eller väska, Vid resa med båt ska husdjur vara på styrbord",
       "last": "2026-09-27",
       "myndighet": true
@@ -10559,14 +10559,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Rönnäng–Tjörnekalv–Dyrön–Åstol–Rönnäng, Gäller 14 dec 2025 - 12 dec 2026 utom 15 juni - 16 aug",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Tjörn–Stenungsund/Göteborg, Nils Ericson Terminalen, J Efter Aröd fortsätter bussen som ny tur mot Bäckevik, Rönnäng och, Gäller 14 dec 2025 - 12 dec 2026",
       "last": "2026-09-27",
       "myndighet": false
@@ -10575,7 +10575,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   "dyron": [
     {
       "url": "https://www.vasttrafik.se/resa-med-oss/under-resan/husdjur/",
-      "org": "vasttrafik.se",
+      "org": "Västtrafik",
       "vad": "Ha djuret i koppel, bur eller väska, Vid resa med båt ska husdjur vara på styrbord",
       "last": "2026-09-27",
       "myndighet": true
@@ -10757,28 +10757,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Rönnäng–Tjörnekalv–Dyrön–Åstol–Rönnäng, Gäller 14 dec 2025 - 12 dec 2026 utom 15 juni - 16 aug, C Turen måste förbeställas på tel: 0304-601242",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Nils Ericson Terminalen, J Efter Aröd fortsätter bussen som ny tur mot Bäckevik, Rönnäng och, Gäller 14 dec 2025 - 12 dec 2026",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6326__0__LINE__20260817__20260930__3f059e68-c41c-44bf-bb36-b0b087de0549__1%2C0__2778882.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Dyrön — Rökan — Rörtången, Gäller 17 aug - 30 sept 2026",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6326__0__LINE__20261001__20261031__5c843cab-c0f3-4630-88cc-c2a33e730dbc__1%2C0__2778908.pdf",
-      "org": "vtstorage002.blob.core.windows.net",
+      "org": "Västtrafik (tidtabell)",
       "vad": "Gäller 1 okt - 31 okt 2026, Resan måste förbeställas senast tre timmar före avgång",
       "last": "2026-09-27",
       "myndighet": false
