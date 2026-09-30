@@ -4,10 +4,31 @@ import { describe, expect, it } from 'vitest'
 import { MAILFLODEN, flodePa, manadsbrevFonster, arVeckansOdag, isoVecka, valjVeckansO } from './mailfloden'
 
 describe('mejlflöden är avstängda som standard', () => {
+  // Testet får inte bero på byggmiljön. Att skicka undefined som argument
+  // triggar standardvärdet process.env.EMAIL_AUTOMATIK, och när variabeln är
+  // satt i Vercel (2026-09-30: manadsbrev) föll bygget. Därför tas variabeln
+  // bort under testet och läggs tillbaka efteråt.
   it('inget flöde är på utan EMAIL_AUTOMATIK', () => {
-    for (const f of MAILFLODEN) {
-      expect(flodePa(f, undefined)).toBe(false)
-      expect(flodePa(f, '')).toBe(false)
+    const sparad = process.env.EMAIL_AUTOMATIK
+    delete process.env.EMAIL_AUTOMATIK
+    try {
+      for (const f of MAILFLODEN) {
+        expect(flodePa(f)).toBe(false)
+        expect(flodePa(f, '')).toBe(false)
+      }
+    } finally {
+      if (sparad !== undefined) process.env.EMAIL_AUTOMATIK = sparad
+    }
+  })
+  it('läser EMAIL_AUTOMATIK från miljön', () => {
+    const sparad = process.env.EMAIL_AUTOMATIK
+    process.env.EMAIL_AUTOMATIK = 'manadsbrev'
+    try {
+      expect(flodePa('manadsbrev')).toBe(true)
+      expect(flodePa('day60')).toBe(false)
+    } finally {
+      if (sparad === undefined) delete process.env.EMAIL_AUTOMATIK
+      else process.env.EMAIL_AUTOMATIK = sparad
     }
   })
   it('bara uttryckligen namngivna flöden slås på', () => {
