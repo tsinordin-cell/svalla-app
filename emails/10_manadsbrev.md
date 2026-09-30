@@ -30,7 +30,8 @@ Tabellen gäller till och med 1 november. Den sista lördagen, 31 oktober, är a
 <!-- KÄLLA: https://grinda.se/oppettider/ — "Grinda stugby har öppet med start strax innan månadssskiftet april / maj till 3.e helgen i oktober" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Grinda har trafik året om" (läst 2026-09-28) -->
 <!-- KÄLLA: https://explorearchipelago.se/sv/sthlm/inre-skargarden/fjaderholmarna — "Fjäderholmarna är säsongsöppet mellan april och september." (läst 2026-09-28) -->
-- Waxholmsbolagets linjer från Stockholm till Rödlöga, Arholma och Blidösundet går till och med 1 november.
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — turerna till Arholma har anmärkning "Går under perioden 2 april - 18 juni."; https://kund.printhuset-sthlm.se/wa/h30.pdf — Simpnäs–Arholma till "12 DECEMBER 2026" (läst 2026-09-30) -->
+- Waxholmsbolagets linjer från Stockholm till Rödlöga och Blidösundet går till och med 1 november. Linjen mot Arholma går i höst bara till Gräskö, så till Arholma åker du med passbåten från Simpnäs.
 - Linjen från Stockholm via Vaxholm och Grinda till Sollenkroka har höstturer till 12 december.
 - Grinda Stugby stänger efter tredje helgen i oktober. Grinda har ändå båttrafik året om.
 - Fjäderholmarnas säsong är april till september.
