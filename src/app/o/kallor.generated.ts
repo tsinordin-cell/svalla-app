@@ -1829,7 +1829,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://sjofartsverket.se/en/about-us/fyrar-och-kulturfastigheter/visningsfyrar/landsort--the-oldest-swedish-built-lighthouse/",
       "org": "sjofartsverket.se",
       "vad": "the oldest Swedish-built lighthouse; Electrified in 1938; Automated and demanned in 1963 (2026-09-14)",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -1978,7 +1978,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.trafikverket.se/furusundsleden",
       "org": "Trafikverket",
       "vad": "vägfärja mellan Furusund och Yxlan, 600 meter (2026-09-14)",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -2073,13 +2073,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://stockholmarchipelagotrail.com/sv/section/",
-      "org": "stockholmarchipelagotrail.com",
-      "vad": "etappen \"Furusund\" anges som \"Medium, 7.2 km\" (2026-09-14)",
-      "last": null,
-      "myndighet": false
-    },
-    {
       "url": "https://stockholmarchipelagotrail.com/section/",
       "org": "stockholmarchipelagotrail.com",
       "vad": "Section Furusund, Moderate 7.2 km.",
@@ -2112,15 +2105,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/linkudden.html",
       "org": "Länsstyrelsen Stockholm",
-      "vad": "karakteristiska arter: \"rosettjungfrulin, liten blåklocka, vildlin\", \"hundratals Adam och Eva\", \"låsbräken, solvända, darrgräs, ormtunga, majviva och kärrspira\"; hällmarkstallskog i östra och västra delarna, blandskog med ek, asp och hassel mellan bergsryggarna; \"Fågellivet är rikt med bland annat häckande sjöfågel\" (2026-09-14)",
-      "last": null,
+      "vad": "föreskrifterna förbjuder att \"medföra hund eller katt som inte är kopplad\", \"tälta, ställa upp husvagn eller lägga upp båt\", \"för längre tid än två dygn i följd förankra båt vid samma strand\", \"göra upp öppen eld\" och \"framföra motordrivet fordon\"",
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/salskaren.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "reservatet ligger mellan Blidö och Svartlöga i Norrtälje kommun; \"Skyddat sedan: 1973\"; \"Storlek: 76 hektar varav land 5\"; förvaltare Skärgårdsstiftelsen; syftet är att \"trygga en ögrupp för allmänhetens friluftsliv samt skydda en värdefull häckningsbiotop för sjöfågel\"; \"Vegetationen på öarna skall i princip lämnas för fri utveckling\" (2026-09-14)",
-      "last": null,
+      "last": "2026-09-30",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.norrtalje.se/info/bygga-bo-miljo/klimat-och-natur/naturreservat-och-annan-skyddad-natur/linkudden/",
+      "org": "norrtalje.se",
+      "vad": "Reservatets östra och västra delar består av två stora hällmarksområden. Mellan dessa två bergsryggar växer blandskog med hög lövandel; Fågellivet är även det rikt med bland annat häckande sjöfågel.; rosettjungfrulin, darrgräs, vildlin, Adam och Eva, solvända, ormrot, älväxing, svartkämpar, liten blåklocka, bockrot och småborre; I söder och öster finns badvänliga klippstränder.",
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -2141,7 +2141,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.kringla.nu/kringla/objekt?referens=raa/bbr/21400000444777",
       "org": "Riksantikvarieämbetet",
       "vad": "En ny kyrka började uppföras år 1856 runt det gamla kapellet som revs först ett år senare. Invigningen förrättades år 1859. Den nya kyrkan ritades av arkitekten Ludvig Hedin.; salkyrka med enskeppigt långhus av sten och tegel; Fasaderna är putsade och gult avfärgade, tidigare vita; Sadeltaket täcks av skiffer (2026-09-14)",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -2641,7 +2641,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.kringla.nu/kringla/objekt?referens=raa/bbr/21400000445278",
       "org": "Riksantikvarieämbetet",
       "vad": "Nämdö kyrka invigdes hösten 1876; Stilen är nygotisk som framförallt uttrycks genom den höga takresningen, tornet samt de spetsbågade fönstren; utförd med trästomme, granitsockel samt svartmålat plåttak",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
