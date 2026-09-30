@@ -25,6 +25,8 @@ export const GUIDE_ISLAND_MAP: Record<string, string[]> = {
   'norrtelje-guide':                  ['arholma', 'ingmarso'],
   'juni-skargarden':             ['sandhamn', 'grinda', 'moja', 'arholma'],
   'folkfria-oar-juli':                ['arholma', 'moja', 'namdo'],
+  'julbord-skargarden':               ['sandhamn', 'uto', 'vaxholm', 'fjaderholmarna', 'donso', 'marstrand'],
+  'vintertrafik-skargarden':          ['moja', 'norrora', 'sandhamn', 'husaro', 'rodloga', 'ulvon'],
   'oktober-skargarden':               ['sandhamn', 'moja', 'arholma'],
   'ankra-sova-bat':                   ['moja', 'finnhamn', 'arholma'],
   'skargard-solo':                    ['moja', 'arholma', 'namdo'],
