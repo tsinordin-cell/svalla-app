@@ -14300,6 +14300,95 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 </ul>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vilka öar som går att besöka på vintern, och vad som har öppet, står i guiden <a href="/guider/vinter-i-skargarden">Stockholms skärgård på vintern</a>. I <a href="/utflykt">dagsplaneraren</a> ser du båttiderna för en viss dag.</p>
 `,
+  'november-skargard': `
+<!-- SKRIVEN 2026-09-30 (Toms lista punkt 5, platshållarguider i vinterordning). Varje uppgift har en källa; öppettider är lästa 2026-09-30 och kan ändras. Soltiderna är uträknade (NOAA:s solformel för Stockholm 59,33° N 18,07° O och Göteborg 57,71° N 11,97° O, svensk normaltid), inte hämtade från en källa. -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">November är månaden då skärgården blir sin egen igen. Flera båtlinjer har slutat och många krogar har stängt. Men båtarna går, några värdshus har öppet, bastun är varm och i slutet av månaden dukas de första julborden upp. Här är vad som gäller i november 2026, med källa för varje uppgift.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kort dagsljus: planera efter solen</h2>
+<!-- BERÄKNAT (inte källa): soluppgång och solnedgång med NOAA:s solformel. Stockholm 1 nov 07.06–15.56, 30 nov 08.14–14.57. Göteborg 1 nov 07.24–16.26, 30 nov 08.27–15.33. Normaltid. -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Dagarna blir korta fort. Enligt vår uträkning går solen i Stockholm upp ungefär 07.06 och ner 15.56 den 1 november, och den 30 november ungefär 08.14 och 14.57. I Göteborg är motsvarande tider ungefär 07.24–16.26 och 08.27–15.33. Välj en tidig båt ut, så att du hinner gå i dagsljus och ta dig hem innan det är mörkt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Båtarna i november</h2>
+<!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01" (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.waxholmsbolaget.se/nyheter-och-trafikinfo/dags-for-hosttidtabell — "Hösttidtabellerna gäller mellan 17 augusti och lördagen den 12 december." (läst 2026-09-29) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/nyheter-och-trafikinfo/lagsasongen-igang — "Från den 14 september till den 29 april 2027 kan du som har en SL-biljett som gäller för 30 dagar eller längre resa i hela Waxholmsbolagets trafik." (publicerad 2026-09-10, läst 2026-09-30) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/sa-galler-sl-biljetten-pa-baten — "SL:s periodbiljetter med kortare giltighetstid än 30 dagar ingår inte i erbjudandet." (läst 2026-09-30) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Linjer som har slutat:</strong> Waxholmsbolagets linjer från Stockholm till Rödlöga, Arholma och Blidösundet gick sista gången 1 november.</li>
+<li><strong>Resten av hösten:</strong> övriga hösttidtabeller gäller till och med lördag 12 december. Sedan kommer vintertidtabellen.</li>
+<li><strong>SL-biljetten gäller:</strong> från 14 september till 29 april 2027 reser du i hela Waxholmsbolagets trafik med en SL-biljett som gäller i 30 dagar eller längre. Kortare periodbiljetter ingår inte.</li>
+</ul>
+<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/vaxholm — "övrig tid på året går det flera per dag"; https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Grinda har trafik året om"; https://www.waxholmsbolaget.se/reseplanering/resmal/moja — "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja."; https://www.waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt." (läst 2026-09-28) -->
+<!-- KÄLLA: https://styrsobolaget.se/tidtabeller/ — "Hösttidtabell L 281-282 20260824-20261212" (läst 2026-09-30); https://www.goteborg.com/guider/ta-dig-till-skargarden — "Färjorna går året runt från Saltholmen"; "En Västtrafikbiljett för zon A gäller hela vägen på spårvagn, buss och färja." (läst 2026-09-29) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Året runt går båten till bland annat <a href="/o/vaxholm">Vaxholm</a>, <a href="/o/grinda">Grinda</a>, <a href="/o/moja">Möja</a> (från Boda brygga) och <a href="/o/sandhamn">Sandhamn</a> (från Stavsnäs). I Göteborg går färjorna från Saltholmen året runt. Styrsöbolagets hösttidtabell gäller till 12 december, och en Västtrafikbiljett för zon A gäller hela vägen.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hur båtarna går när isen lägger sig står i <a href="/guider/vintertrafik-skargarden">Vintertrafiken i skärgården</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad har öppet i Stockholms skärgård?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mycket är stängt. Så här ser det ut på några av de öar där båten går:</p>
+<!-- KÄLLA: https://www.sandhamn.com/sv — "Hit kommer människor för att vila, fira, mötas och njuta av skärgården – året runt."; https://www.sandhamn.com/sv/spa — "Spa och gym har öppet dagligen mellan 08.00–20.00."; "Icke hotellgäster är välkomna i mån av plats." (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.sandhamns-vardshus.se/ — puben: "Öppet året runt. Här serveras våra klassiska rätter samt lunchmeny."; "Annan tid på året är restaurangen främst öppen helger." (läst 2026-09-30) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — Utö Värdshus "som har öppet året runt, erbjuder både restaurang, hotell och konferens" (läst 2026-09-30) -->
+<!-- KÄLLA: https://grinda.se/oppettider/ — kalendern november 2026: 1 november "Endast Lunch Öppet" 12:00–15:00, 2–30 november "Stängt"; "Sjömacken är obemannad men öppen och utrustad med kortautomat." (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.konsummoja.se/ — Coop Berg: "Den stora butiken på Möja och som har öppet året runt."; tider publicerade för "28/9-2026 - 31/10-2026" (läst 2026-09-30) -->
+<!-- KÄLLA: https://arholmahandel.se/ — "Öppettider 7 september och framåt": måndag och onsdag 12–14, fredag "12:00-14:00 & 15:30-19:00"; Bryggcaféet: "Vi har stängt nu. Välkommen tillbaka sommaren 2027!" (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-finnhamns-vandrarhem/ — "Vandrarhemmet har öppet året runt men under den kallare årstiden endast för större grupper." (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.kungligaslotten.se/vara-besoksmal/kungl.-nationalstadsparken/fjaderholmarna.html — "Fjäderholmarna har nu säsongsöppet till och med 13 september." (läst 2026-09-30) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Sandhamn:</strong> Seglarhotellet har öppet året runt. Spaet och gymmet har öppet varje dag 08.00–20.00, och gäster som inte bor på hotellet är välkomna i mån av plats. På Sandhamns Värdshus är puben öppen året runt, medan restaurangen utanför säsong främst har öppet på helger.</li>
+<li><strong>Utö:</strong> Utö Värdshus har öppet året runt enligt Skärgårdsstiftelsen. Uppgifterna om öppettider skiljer sig åt mellan källorna, så ring innan.</li>
+<li><strong>Grinda:</strong> Grinda Wärdshus är stängt 2–30 november och har bara lunchöppet 1 november. Sjömacken är obemannad men öppen, med kortautomat. Ta med matsäck.</li>
+<li><strong>Möja:</strong> Coop i Berg har öppet året runt. Öppettiderna för november var inte publicerade i slutet av september.</li>
+<li><strong>Arholma:</strong> Arholma Handel har öppet måndag och onsdag 12–14 och fredag 12–14 och 15.30–19. Bryggcaféet har stängt till sommaren 2027. Tänk på att båten från Stockholm slutar gå 1 november.</li>
+<li><strong>Finnhamn:</strong> STF:s vandrarhem har öppet året runt, men under den kallare årstiden bara för större grupper.</li>
+<li><strong>Fjäderholmarna:</strong> säsongen slutade 13 september.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Göteborgs skärgård i november</h2>
+<!-- KÄLLA: https://brannovardshus.se/oppettider/ — "10 AUGUSTI – 13 DECEMBER 2026": måndag–onsdag "öppet endast för förbokade större sällskap", "Torsdag kl. 12-16/20*", "Fredag kl. 12-20/23*", "Lördag kl. 12-20/23*", "Söndag kl. 12-18/20*" (läst 2026-09-30) -->
+<!-- KÄLLA: https://kusthotelletstyrso.se/restaurangen/ — "Hösttider 2026" "Restaurang – a la carte: Måndag – Söndag: 17.00-23.00 (köket stänger kl 20.00)" (läst 2026-09-30) -->
+<!-- KÄLLA: https://kajkantenvrango.se/ — "Öppet året om" (läst 2026-09-30) -->
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong><a href="/o/branno">Brännö</a>:</strong> Brännö Värdshus har öppet torsdag till söndag till och med 13 december. Måndag till onsdag är det bara öppet för förbokade större sällskap.</li>
+<li><strong><a href="/o/styrso">Styrsö</a>:</strong> Kusthotellets restaurang har hösttider 2026 med à la carte varje dag från 17.00. Köket stänger 20.00.</li>
+<li><strong><a href="/o/vrango">Vrångö</a>:</strong> Kajkanten har öppet året om.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bastu och kallbad</h2>
+<!-- KÄLLA: https://www.sandhamn.com/sv/spa — "Icke hotellgäster är välkomna i mån av plats." (läst 2026-09-30) -->
+<!-- KÄLLA: https://lillasauna.se/bastu-vaxholm — "Öppet alla dagar: 06:00–23:00 Året runt." (läst 2026-09-30) -->
+<!-- KÄLLA: https://kajkantenvrango.se/relaxflotte/ — "vedeldad bastu, badtunna och badstege för havsbad året runt"; "Kallbadspaket … Kom valfria dagar november - mars." (läst 2026-09-30) -->
+<!-- KÄLLA: https://kladesholmensbastu.se/ — "08:00 till 22:00 alla dagar." (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">November är bastusäsong. Några ställen som har öppet:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li><strong>Vaxholm:</strong> Lilla Sauna vid Fredriksstrandsbadet har öppet alla dagar 06.00–23.00 året runt. Bastun bokas privat.</li>
+<li><strong>Sandhamn:</strong> Seglarhotellets spa med bastu tar emot gäster som inte bor på hotellet i mån av plats.</li>
+<li><strong>Vrångö:</strong> Kajkantens relaxflotte har vedeldad bastu, badtunna och badstege för havsbad året runt, och ett kallbadspaket för november till mars. Flotten hyrs i pass.</li>
+<li><strong>Klädesholmen på Tjörn:</strong> bastun har öppet 08.00–22.00 alla dagar och bokas på nätet.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fler bastur längs kusten finns i <a href="/blogg/havsbastu-guide">guiden till havsbastu</a>.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vandra i november</h2>
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/bjorno/ — "ett uppskattat utflyktsmål året om"; https://skargardsstiftelsen.se/omraden/fjardlang/ — vandringsleder som "lockar besökare året om"; https://skargardsstiftelsen.se/omraden/uto/ — "ett paradis för friluftsliv året om"; https://skargardsstiftelsen.se/omraden/namdo/ — "erbjuder ett rikt och varierat friluftsliv året om" (läst 2026-09-30) -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/sv/news/lag-sasong-i-stockholms-skargard/ — "Det betyder att vattnet stängs av i slutet av oktober"; "Alla handpumpar fungerar dock året runt."; "Spoltoaletter stängs också av under samma period"; "tillräckligt med mat, vatten och kläder för att vara självförsörjande under senhösten och under vintern" (artikel publicerad 2025-10-20, läst 2026-09-30) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "särskilt vid västliga och nordvästliga vindar under hösten, då flyttande rov- och småfågel blåser dit." (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.goteborg.com/guider/aktiviteter-i-goteborgs-skargard — Göteborgs skärgårdsled är "strax över 35 km" över "Hönö, Fotö, Öckerö och Hälsö" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdsstiftelsen beskriver Björnö, Fjärdlång, Utö och Nämdö som utflyktsmål året om. På Utö skriver Länsstyrelsen att flyttande rovfåglar och småfåglar blåser in till Kroka på hösten, särskilt vid västliga och nordvästliga vindar.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stockholm Archipelago Trails råd för lågsäsongen är värda att följa:</p>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Vattnet på lederna stängs av i slutet av oktober, men handpumparna fungerar året runt.</li>
+<li>Spoltoaletterna stängs samtidigt.</li>
+<li>Ta med mat, vatten och kläder så att du klarar dig själv.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Göteborg går skärgårdsleden över Hönö, Fotö, Öckerö och Hälsö, strax över 35 kilometer.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Slutet av november: julborden och julmarknaden</h2>
+<!-- KÄLLA: https://www.fjaderholmarnaskrog.se/ — "NU SERVERA JULBORD MELLAN 20/11 - 22/12" (läst 2026-09-29); https://kusthotelletstyrso.se/jul-2026/ — "från 20 november till 20 december och serveras torsdag-lördag från kl 17.00" (läst 2026-09-30); https://www.stromma.com/sv-se/stockholm/julbord/jul-pa-kastellet/ — "Mellan 25 november och 22 december 2026" (läst 2026-09-29); https://www.sandhamn.com/sv/kalender/julbord — "26 november - 24 december 2026" (läst 2026-09-29); https://www.utovardshus.se/julbord/ — "Julbord 2026 Dagar och tider för årets julbord 27 november – 19 december" (läst 2026-09-30) -->
+<!-- KÄLLA: https://marstrandsmarknad.com/ — "Julmarknad · 28–29 november 2026"; "Inomhus i Strandverkets varma, historiska miljö"; "Öppet lördag 11.00–16.00 · Söndag 11.00–15.00" (läst 2026-09-30) -->
+<!-- KÄLLA: https://www.arholma.nu/evenemang — "lördag 28 november 2026", "Adventsgudstjänst i Arholma kyrka kl 15.30" (läst 2026-09-30) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den 20 november dukar Fjäderholmarnas Krog och Kusthotellet på Styrsö upp de första julborden. Sedan följer Vaxholms kastell 25 november, Sandhamn 26 november och Utö 27 november. Datum, priser och båtar finns i <a href="/guider/julbord-skargarden">Julbord i skärgården 2026</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Helgen 28–29 november är det julmarknad på <a href="/o/marstrand">Marstrand</a>, inomhus i Strandverket, lördag 11–16 och söndag 11–15. Samma lördag, 28 november klockan 15.30, är det adventsgudstjänst i Arholma kyrka.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I <a href="/utflykt">dagsplaneraren</a> ser du båttiderna för en viss dag.</p>
+`,
   'oktober-skargarden': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "havet är fortfarande varmt" och vattentemperaturer, "svampen är som rikligast", "Landsortsledens härbärgen har öppet in i oktober", "Finnhamns härbärge stänger i slutet av september", "Waxholmsbolaget kör vinterdrift från mitten av september" (höstens tidtabeller gäller från augusti), "pendelbåten från Årstaberg" till Utö (båten går från Årsta brygga), "direktbåt från Strömkajen" om Vaxholm utan källa, restiden till Fjäderholmarna, kantareller och trattkantareller på skärgårdsöar, "fullbokat av naturälskare", klädråd utan källa, samt värdeord. -->
 <!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Grinda - Boda - Sollenkroka Gäller:2026-08-17till2026-12-12" (läst 2026-09-28) -->
