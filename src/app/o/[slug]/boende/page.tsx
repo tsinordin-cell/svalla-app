@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+import Vidareklick from '@/components/Vidareklick'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import IslandPlacesList from '@/components/IslandPlacesList'
@@ -84,6 +85,7 @@ export default async function IslandAccommodationPage({ params }: Props) {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <IslandSubPageHeader island={island} tab="boende" />
+      <Vidareklick islandSlug={island.slug} standard="boende" />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
 

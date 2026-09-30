@@ -90,6 +90,15 @@ export type SvallaEvent =
   | { name: 'filter_changed';       props: { surface: 'upptack' | 'sok' | 'other'; filter: string; value: string } }
   | { name: 'bookmark_toggled';     props: { entity_type: 'restaurant' | 'route'; entity_id: string; saved: boolean } }
 
+  // ── Vidareklick (2026-09-30, exitplanen task 1) ──────────────────────────
+  // Klick från en ösida ut till en verksamhet: krog, boende, båtbolag, hamn.
+  // Det är det här en köpare vill se: att skärgårdsresan börjar hos oss och
+  // fortsätter hos någon som säljer något. Bara värdnamnet sparas, aldrig
+  // sökväg eller query, samma princip som ursprung i /api/analytics/track.
+  | { name: 'outbound_clicked';     props: { island_slug: string; kategori: Vidareklickkategori; mal: string } }
+
+export type Vidareklickkategori = 'mat' | 'boende' | 'resa' | 'hamn' | 'hantverk' | 'kalla' | 'ovrigt'
+
 interface PostHogLike {
   capture: (eventName: string, properties?: Record<string, unknown>) => void
   identify?: (id: string, props?: Record<string, unknown>) => void
