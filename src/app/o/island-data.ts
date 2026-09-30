@@ -2476,7 +2476,7 @@ export const ISLANDS: Island[] = [
       // Två ställen till enligt regionens officiella besökssajt. Tillagt
       // 2026-09-28. Inga priser och inga öppettider anges där.
       // KÄLLA: https://roslagen.se/oar/furusund/ (Destination Roslagen), läst 2026-09-28 , under Mat och dryck: "Högmarsö krog"
-      { name: 'Högmarsö krog', type: 'Krog', desc: 'Krog som Destination Roslagen listar under Furusund.' },
+      { name: 'Högmarsö krog', type: 'Krog', desc: 'Krog på Högmarsö.' },
       // KÄLLA: https://roslagen.se/oar/furusund/ (Destination Roslagen), läst 2026-09-28 , under Mat och dryck: "Gästhamnen med servering i Havspaviljongen", och under Service: "Gästhamn med café"
       { name: 'Havspaviljongen', type: 'Servering', desc: 'Servering i gästhamnen.' },
     ],
@@ -2608,7 +2608,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://roslagen.se/oar/blido/ (Destination Roslagen, officiellt platsvarumärke för Norrtälje, Östhammar och Österåker), läst 2026-09-28 , listar under Mat och dryck: "Blidö Hamnkrog"
       { name: 'Blidö Hamnkrog', type: 'Krog', desc: 'Krog på Blidö.' },
       // KÄLLA: https://roslagen.se/oar/blido/ (Destination Roslagen, officiellt platsvarumärke för Norrtälje, Östhammar och Österåker), läst 2026-09-28 , listar under Mat och dryck: "Blidö Matlådan"
-      { name: 'Blidö Matlådan', type: 'Mat', desc: 'Listad av Destination Roslagen bland öns ställen för mat och dryck.' },
+      { name: 'Blidö Matlådan', type: 'Mat', desc: 'Matställe på Blidö.' },
       // KÄLLA: https://roslagen.se/oar/blido/ (Destination Roslagen, officiellt platsvarumärke för Norrtälje, Östhammar och Österåker), läst 2026-09-28 , listar "Skärgårdspadel" under Mat och dryck. Vad serveringen består av framgår inte.
       { name: 'Skärgårdspadel', type: 'Servering', desc: 'Padelanläggning som regionens besökssajt listar under mat och dryck. Vad som serveras framgår inte av källan.' },
     ],
@@ -3986,7 +3986,7 @@ export const ISLANDS: Island[] = [
     ],
     restaurants: [
       // KÄLLA: https://roslagen.se/oar/singo-och-fogdo-lattillganglig-kulturmiljo/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-29 , anger under Mat och dryck endast: "Singö choklad"
-      { name: 'Singö Choklad', type: 'Café', desc: 'Chokladtillverkning på Singö. Det enda stället Destination Roslagen listar under Mat och dryck på ön.' },
+      { name: 'Singö Choklad', type: 'Choklad', desc: 'Choklad från Singö.' },
     ],
     tips: [
       // KÄLLA: https://www.svenskakyrkan.se/roslagens-ostra-pastorat/singo-kyrka — "Adress: Singövägen 250, 764 57 Grisslehamn" (läst 2026-09-27)
@@ -4755,7 +4755,7 @@ export const ISLANDS: Island[] = [
     harbors: [],
     restaurants: [
       // KÄLLA: https://roslagen.se/oar/yxlan/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-28 , under Mat och dryck: "Restaurant Yxlan"
-      { name: 'Restaurant Yxlan', type: 'Restaurang', desc: 'Restaurang på ön. Destination Roslagen anger inga öppettider.' },
+      { name: 'Restaurant Yxlan', type: 'Restaurang', desc: 'Restaurang på Yxlan.' },
       // KÄLLA: https://roslagen.se/oar/yxlan/ (Destination Roslagen), läst 2026-09-28 , under Mat och dryck: "Ting Tong Take Away"
       { name: 'Ting Tong Take Away', type: 'Take away', desc: 'Take away på ön.' },
     ],
@@ -5827,7 +5827,7 @@ export const ISLANDS: Island[] = [
     harbors: [{ name: 'Gräskö brygga', desc: 'Angörs av Waxholmsbolagets linje 27 och 28 och av godslinje 60 F från Östernäs. Någon gästhamn med service på ön har vi inte hittat.' }],
     restaurants: [
       // KÄLLA: https://roslagen.se/oar/grasko-en-badvanlig-o-i-fjarden/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-29 , anger under Mat och dryck: "Sommarkafé i det gamla posthuset i Byviken". Namnet på verksamheten står inte där.
-      { name: 'Sommarkafé i gamla posthuset, Byviken', type: 'Café', desc: 'Sommarkafé i det gamla posthuset i Byviken. Destination Roslagen anger inget företagsnamn eller öppettider.' },
+      { name: 'Sommarkafé i gamla posthuset, Byviken', type: 'Café', desc: 'Sommarkafé i det gamla posthuset i Byviken.' },
     ],
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "Beställ resan i SL-appen, på"; "minst 1 timme innan avgång"; "Gräskö 08.15 10.30b 10.30b 10.30b"; "Rödlöga 12.20 12.20" (läst 2026-09-27)
     tips: ['Många turer till och från Gräskö är beställningsturer (markerade b i tidtabellen) — beställ i SL-appen, på Waxholmsbolagets webb eller via kundtjänst minst en timme före avgång.', 'Vissa turer på linje 28 fortsätter från Gräskö ut till Svartlöga och Rödlöga — kontrollera i tidtabellen vilka.'],

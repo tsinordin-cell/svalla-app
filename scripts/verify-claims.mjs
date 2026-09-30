@@ -114,9 +114,12 @@ const SVAGA_KALLOR = [
  * 'blogg' rakt av. En KÄLLA-rad som hänvisar vidare till vår egen text med
  * "(se /blogg/uto-guide)" räknades då som en reseblogg, trots att samma rad
  * citerade Länsstyrelsen. Två av två SVAG KÄLLA-varningar var av det slaget.
- * Nu matchar vi bara blogg som ORD eller domändel, aldrig en intern sökväg.
+ * Nu matchas "blogg" överallt UTOM direkt efter eller före ett snedstreck.
+ * Första versionen (samma dag) krävde ordgräns och missade därmed
+ * "reseblogg", "matbloggen.se" och "bloggare", alltså precis det regeln finns
+ * för. Rättad innan den gick ut.
  */
-const SVAG_BLOGG = /(?<!\/)\bbloggen?\b(?!\/)|\.blogg|blogg\.[a-z]/i
+const SVAG_BLOGG = /(?<!\/)blogg(?!\/)/i
 
 /** Påståendetyper där en svag källa INTE räcker — de kräver nivå 1 eller 2. */
 const KRAVER_STARK_KALLA = new Set(['djup', 'segelfri höjd', 'knop', 'skyddsstatus'])
@@ -437,9 +440,22 @@ function arsdatumFel(rad) {
 const fynd = []
 const varningar = []
 let uppskattningar = 0
+/**
+ * OBELAGT ÄNNU (2026-09-30). När en källa belägger HALVA meningen, till
+ * exempel reservatsstatusen men inte strandens längd, skriver vi ut det i
+ * KÄLLA-raden: "OBELAGT ÄNNU: cirka 120 meter står inte hos Länsstyrelsen".
+ * Problemet: KÄLLA-raden tystar spärren för hela meningen, så siffran blev
+ * osynlig just för att vi var ärliga om den. Här räknas markörerna och
+ * listas varje körning, så att de inte försvinner.
+ */
+const obelagda = []
 for (const f of filer(ROT)) {
   if (!iOmfang(f)) continue
   const rader = fs.readFileSync(f, 'utf8').split('\n')
+  rader.forEach((r, n) => {
+    const m = r.match(/OBELAGT ÄNNU:\s*([^.]{0,90})/)
+    if (m) obelagda.push({ fil: f, rad: n + 1, text: m[1] })
+  })
   /**
    * Flerradiga template-literals (guide-content.ts är en enda jättesträng)
    * har inga citattecken per rad — utan spårningen nedan var 120 påståenden
@@ -631,6 +647,10 @@ if (nya.length === 0) {
   }
   if (uppskattningar > 0) {
     console.log(`  (${uppskattningar} märkta marknadsuppskattningar — inte källor, ska omprövas varje säsong)`)
+  }
+  if (obelagda.length > 0) {
+    console.log(`\n  ── OBELAGT ÄNNU (${obelagda.length}) — halvbelagda meningar, siffran saknar källa ──`)
+    for (const o of obelagda) console.log(`    ${path.relative(ROT, o.fil)}:${o.rad}  ${o.text}`)
   }
   process.exit(0)
 }

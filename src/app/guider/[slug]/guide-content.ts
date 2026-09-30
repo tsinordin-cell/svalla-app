@@ -10695,6 +10695,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <li>plocka ostron eller gräva upp växter</li>
 <li>vara närmare än 100 meter inom sälskyddsområden 15 maj–15 juli</li>
 <li>vara närmare än 100 meter inom fågelskyddsområden 1 mars–31 augusti (för Mörholmen 1 mars–15 juli)</li>
+<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/kosterhavets-nationalpark.html (Länsstyrelsen Västra Götaland, förvaltare), läst 2026-09-29. Föreskrifterna citerade ordagrant: "köra båt snabbare än 5 knop runt Kosteröarna, under tiden 15 maj–31 augusti"; "uppehålla sig eller färdas närmare än 100 meter inom fågelskyddsområden under tiden 1 mars–31 augusti. För Mörholmen gäller tiden 1 mars–15 juli"; "uppehålla sig eller färdas närmare än 100 meter inom sälskyddsområden under tiden 15 maj–15 juli"; "köra vattenskoter eller liknande inom 5-knopsområde"; "övernatta eller ankra på samma plats mer än två dygn"; "dra upp eller ankra utanför sandstränder närmare stranden än 50 meter under tiden 15 maj–31 augusti"; "köra båt snabbare än max 25 knop i hela nationalparken". Alla regler i listan nedan är därmed belagda hos förvaltaren. -->
 <li>köra båt fortare än 5 knop runt Kosteröarna 15 maj–31 augusti</li>
 <li>köra vattenskoter inom 5-knopsområdet.</li>
 </ul>
@@ -18160,6 +18161,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <li><strong>Änder:</strong> ejder och svärta i ytterskärgårdens kolonier, sjöorre och alfågel vid Landsort, skrak och vigg på Huvudskär samt gravand, snatterand och bergand i Nåttaröfladen.</li>
 <li><strong>Måsfåglar och labb:</strong> flera måsfågelarter i Stora Nassa och på Nåttarö, vitfågel och labb på Huvudskär.</li>
 <li><strong>Vadare:</strong> roskarl häckar i Stora Nassa, och vadare rastar på strandängen Saltmar på Landsort.</li>
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Du ser ofta havsörn, och även annan sjöfågel, under ett besök här" -->
 <li><strong>Rovfåglar:</strong> havsörn syns ofta i Nämdöskärgårdens nationalpark, och på Arholma och Idö häckar många arter av rovfåglar.</li>
 </ul>
 
