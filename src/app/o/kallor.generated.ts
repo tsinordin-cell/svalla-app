@@ -120,7 +120,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://ksss.se/KSSS/historia/",
       "org": "ksss.se",
       "vad": "KSSS grundades i Stockholm 1830 under namnet Svenska Segel Sällskapet samt aktiv seglingsverksamhet på fjärdarna runt Sandhamn, bidrog till klubbens goda rykte",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -211,14 +211,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
       "org": "Skärgårdsstiftelsen",
       "vad": "Den 26 meter höga fyren har kallats Östersjöns Drottning på grund av sin skönhet. Fyren uppfördes 1770 av granit och sandsten efter ritningar av Carl Fredrik Adelcrantz.",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/om-skargardsstiftelsen/var-historia/",
       "org": "Skärgårdsstiftelsen",
       "vad": "Sjöfartsverket skänker Grönskärs fyr efter renovering (1984); Stiftelsen Stockholms skärgård bildades den 20 mars 1959",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -269,7 +269,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "skyddat sedan 2008, 2 829 hektar varav land 1 063 hektar, Haninge kommun, Skärgårdsstiftelsen markägare och förvaltare, Natura 2000-områdena SE0110017 Ålö och SE0110118 Rånö Ängsholm; naturtyper \"skärgård, marina miljöer, barrskog, odlingslandskap\", främst hällmarkstallskogar med kalkpåverkad berggrund; \"Storsand på Ålö anses vara en av Stockholms skärgårds finaste sandstränder.\"; Ålö har broförbindelse med Utö",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -297,7 +297,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://utoskola.haninge.se/",
       "org": "utoskola.haninge.se",
       "vad": "Elever 22, Årskurs 1–9, Personal 7",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -318,21 +318,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
       "org": "Skärgårdsstiftelsen",
       "vad": "Utö kvarn är byggd 1791 och har under lång tid varit både symbol och sjömärke för Utö. / 2001 blev de nio gruvarbetarbostäderna tillsammans med kvarnen byggnadsminne enligt Kulturmiljölagen. / kvarnen restaurerades 1982",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
       "url": "https://skargardsstiftelsen.se/om-skargardsstiftelsen/var-historia/",
       "org": "Skärgårdsstiftelsen",
       "vad": "1973: \"Hela norra Utö med gruvbyn köps från Ställbergsbolaget\"",
-      "last": null,
-      "myndighet": false
-    },
-    {
-      "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -350,10 +343,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://stockholmarchipelagotrail.com/section/",
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Utö, Challenging 18.4 km; Utö — Ålö Connector, Easy 4.6 km.",
+      "last": "2026-09-30",
+      "myndighet": false
+    },
+    {
       "url": "https://www.svenskakyrkan.se/haninge/om-uto-kyrka",
       "org": "svenskakyrkan.se",
       "vad": "kyrkan \"uppfördes mellan år 1848 och 1850\", byggd av \"sten som bröts direkt ur gruvorna\"; Utö Gruvbolag betalade 5 000 riksdaler banco och ställde tomten, församlingen bidrog med 11 000 riksdaler banco och dagsverken; \"Utö kyrka är skärgårdens största stenkyrka.\"",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -374,7 +374,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.utogasthamn.se/gasthamnen/",
       "org": "utogasthamn.se",
       "vad": "plats för ca 300 fritidsbåtar med eluttag … på samtliga platser, dusch, bastu och toaletter, tvättstuga att hyra, fylla på färskvatten, I den norra hamnen finns sjömacken",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -395,14 +395,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.utogasthamn.se/kiosk-cafe/",
       "org": "utogasthamn.se",
       "vad": "Hamnboden … kiosk, café och restaurang i samma byggnad … glass, godis, korv och toast men även sushi samt en bar",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
       "url": "https://www.utovardshus.se/kontakt/hitta-hit/",
       "org": "utovardshus.se",
       "vad": "Waxholmsbåtar trafikerar linjen Utö — Årsta Brygga dagligen / Båt utgår även från Nynäshamn till grannön Ålö som har broförbindelse till Utö",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -423,14 +423,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.utovardshus.se/restaurang/uto-vardshus/",
       "org": "utovardshus.se",
       "vad": "I det gamla gruvkontoret finns Utö Värdshus bar och matsalar … à la carte både lunch och middag … verandan öppen på sommaren",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
       "url": "https://www.utovardshus.se/restaurang/seglarbaren/",
       "org": "utovardshus.se",
       "vad": "BAREN MITT I HAMNEN, veranda mot hamninloppet, enklare rätter till lunch … kolgrillade rätter till kvällen",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -452,15 +452,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html",
       "org": "Länsstyrelsen Stockholm",
-      "vad": "Bogesunds slott från mitten av 1600-talet är statligt byggnadsminne och rymmer vandrarhem; anordningar: markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd, campingplatser, golfbana; föreskrifterna förbjuder att medföra okopplad hund, att \"tälta mer än två dygn i följd annat än på anvisad plats\", att cykla utanför anvisade stigar och att \"rida annat än på vägar och på anvisade ridstigar\"",
-      "last": null,
+      "vad": "Bogesunds slott, med anor från mitten av 1600-talet, ligger som ett slags centrum på Bogesundslandet. Själva slottet ingår inte i reservatet, men utgör istället ett statligt byggnadsminne. Vid slottsparken finns ett vandrarhem; markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd; I anslutning till området finns två campingplatser och en golfbana; föreskrifterna förbjuder att medföra okopplad hund, att tälta mer än två dygn i följd annat än på anvisad plats, att cykla utanför anvisade stigar och att rida annat än på vägar och på anvisade ridstigar",
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
       "url": "https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell",
       "org": "sfv.se",
       "vad": "arkitekter \"Erik Dahlberg, C M Stuart, C F Meijer\"; \"Efter första världskriget flyttades försvarslinjen längre ut i skärgården och Vaxholm förlorade då återigen sin militära betydelse\"; \"1964 invigdes kastellets museum\"; i dag finns \"restaurang, konsertlokaler och en uppskattad äventyrsverksamhet\"",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -488,7 +488,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/vaxholmsleden/",
       "org": "Trafikverket",
       "vad": "gratis vägfärja, ca 6 min över 970 m",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -600,7 +600,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.svenskakyrkan.se/vaxholm/vaxholms-kyrka",
       "org": "svenskakyrkan.se",
       "vad": "År 1760 lades grunden till den nuvarande kyrkan, färdig 1803 och kallad Gustav Adolfkyrkan efter Gustav III och Gustav IV Adolf; ritad av C F Adelcrantz och Olof Tempelman; det planerade tornet byggdes aldrig utan ersattes av en klockstapel i trä med tre klockor; dopfunt i gotländsk sandsten från slutet av 1300-talet, ursprungligen i Riddarholmskyrkan, överförd omkring 1677; modeller av roslagsbåtar i sidokapellen",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -614,7 +614,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://vaxholmsfastning.se/",
       "org": "vaxholmsfastning.se",
       "vad": "museet låter besökaren följa \"skärgårdsförsvarets 500-åriga historia\" och täcker \"Sveriges försvarshistoria från Gustav Vasa till nutid\"",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -789,9 +789,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Grinda, Moderate 9.8 km.",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -821,7 +821,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/kalgardson.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "Skyddat sedan: 1974, 103 hektar varav land 100 hektar, Österåkers kommun, Skärgårdsstiftelsen markägare och förvaltare, naturtyper skärgård, ängs- och betesmark, barrskog; omfattar merparten av Kålgårdsön som är östligaste delen av Ingmarsö, Bockholmen söder därom samt ytterligare ett par öar; syftet är att säkra ett område av stort värde för allmänhetens rörliga friluftsliv",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -842,7 +842,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor",
       "org": "Waxholmsbolaget",
       "vad": "",
-      "last": null,
+      "last": "2026-09-19",
       "myndighet": true
     },
     {
@@ -912,14 +912,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/",
       "org": "Skärgårdsstiftelsen",
       "vad": "Arkitekt var Ernst Stenhammar som ritat många ståtliga hus i skärgården, till exempel den stora jugendvillan på Grinda, Idag är Utsikten vandrarhem. ;  — Vandrarhemmet renoverades mellan åren 2014-2017",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -927,6 +920,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "stockholmarchipelagotrail.com",
       "vad": "ingen källa för exakt 12 km, justerat till belagd slinglängd.",
       "last": null,
+      "myndighet": false
+    },
+    {
+      "url": "https://stockholmarchipelagotrail.com/section/",
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Finnhamn, Moderate 10.1 km; Rowboats Finnhamn — Ingmarsö, Easy 0.4 km.",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -942,7 +942,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/storo-bocko-lokao.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "skyddat sedan 1972; \"6 045 hektar varav land 1 892 hektar\"; Värmdö kommun; förvaltare Skärgårdsstiftelsen; syfte att \"säkra ett för allmänhetens friluftsliv värdefullt skärgårdsområde samt att skydda och bibehålla områdets värdefulla växt- och djurvärld\"; björk dominerar yttersta öarna, hällmarkstallskog i övrigt; arter svärta, vigg, ejder, roskarl, labb, tobisgrissla",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -956,7 +956,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/granholmen.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "Skyddat sedan: 1978, utvidgat 2018; Storlek: 39 hektar varav land 18 hektar; Värmdö; Skärgårdsstiftelsen; arter blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad; naturhamnen Munkhamnen; tältning högst två dygn per plats",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -1009,10 +1009,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://mojavardshusochbageri.se/v%C3%A4rdshuset.php",
+      "org": "mojavardshusochbageri.se",
+      "vad": "en genuin och hemtrevlig skärgårdsrestaurang med fullskaligt bageri, Bergs by 600, Möja",
+      "last": "2026-09-30",
+      "myndighet": false
+    },
+    {
       "url": "https://mojavardshusochbageri.se/",
       "org": "mojavardshusochbageri.se",
-      "vad": "genuin och hemtrevlig skärgårdsrestaurang med fullskaligt bageri, Möja bageris historia tar sin början 1951, Bergs by",
-      "last": null,
+      "vad": "Möja bageris historia tar sin början 1951",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -1024,16 +1031,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Möja, Easy 13.8 km.",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
       "url": "https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/",
       "org": "stockholmslansmuseum.se",
       "vad": "Längs Möjas och Södermöjas östra kust har det funnits skyddade hamnvikar som lockat till sig bebyggelse ända sedan medeltiden; Vid 1800-talets mitt fanns där 74 gårdar; Det goda fisket var basen för försörjningen; jordgubbsodlingen blomstrade från sekelskiftet 1900 och en bit in på 1970-talet; Möja fick fast ångbåtsförbindelse 1906",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -1096,7 +1103,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://visitmoja.se/vandra/",
       "org": "visitmoja.se",
       "vad": "",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     }
   ],
@@ -1119,7 +1126,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/kungliga-nationalstadsparken.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "parken inrättades 1995, omfattar 27 kvadratkilometer, sträcker sig \"från Sörentorp och Ulriksdal i norr till Djurgården och Fjäderholmarna i söder\" och \"spänner över tre kommuner: Solna, Stockholm och Lidingö\"; \"Länsstyrelsen samordnar arbetet med parkens förvaltning och utveckling. Kungliga Djurgårdens förvaltning sköter runt 80 procent av marken.\"",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -1212,7 +1219,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sjalbottna-ostra-lagno.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "Brännholmen är udden vid nordöstra spetsen av reservatet och här kan du bada, tälta och fiska. Klipporna mot havet är mjukt slipade av inlandsisen och randiga av bergarterna svart diabas och ljusröd fältspat. / På Brännholmen finns ett gammalt självföryngrande idegransbestånd.",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -1310,7 +1317,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://skargardsstiftelsen.se/omraden/ostra-lagno/",
       "org": "Skärgårdsstiftelsen",
       "vad": "Östra Lagnö är ett lättillgängligt naturreservat på Ljusterös östra sida där släta havsklippor, strandängar och skogsstigar möter utsikten över Svartlögafjärden. / Hit tar du dig med bil eller SL-buss via färjan till Ljusterö. Från Lagnö by är det en kort promenad till reservatet.",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -1438,7 +1445,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.svenskakyrkan.se/haninge/historik-dalaro-kyrka",
       "org": "svenskakyrkan.se",
       "vad": "kyrkan uppfördes 1649–1652 som kapell; \"Fram till 1780-talet behöll kapellet sin form, en rektangulär knuttimrad byggnad med sadeltak och sakristia i norr\"; ombyggnad 1786–1787 då \"väggarna höjdes och brädfodrades, taket fick sin brutna form\"; restaurering 1936 av arkitekt Einar Lundberg; kyrkan och Sandemar var de enda byggnader som inte brändes av ryssarna 1719",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -1612,17 +1619,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
-      "myndighet": false
-    },
-    {
       "url": "https://stockholmarchipelagotrail.com/sv/section/etapp-arholma/",
       "org": "stockholmarchipelagotrail.com",
       "vad": "Arholma markerar den nordligaste punkten på den 270 km långa Stockholm Archipelago Trail; etappen anges som Medel 13.4 km; start vid kajen på Arholma; leden passerar Bull-Augusts gård, kyrkan och båken",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://stockholmarchipelagotrail.com/section/",
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Arholma, Moderate 13.4 km.",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -1663,7 +1670,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/Förorenade",
+      "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/F%C3%B6rorenade%20omr%C3%A5den%20-%20inventering%20av%20gruvbranschen%20i%20Stockholms%20l%C3%A4n.pdf",
       "org": "Länsstyrelsen",
       "vad": "De största gruvorna var Härsbacka i Österåkers kommun och Lugnet på Ornö i Haninge kommun. / Ornö, Lugnets fältspatsbrott ... Ett av länets största fältspatsbrott.",
       "last": null,
@@ -1708,7 +1715,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://orno.se/ata-bo/resturang-cafe/",
       "org": "orno.se",
       "vad": "",
-      "last": null,
+      "last": "2026-09-24",
       "myndighet": false
     },
     {
@@ -1761,17 +1768,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
-      "myndighet": false
-    },
-    {
       "url": "https://stockholmarchipelagotrail.com/sv/section/etapp-orno/",
       "org": "stockholmarchipelagotrail.com",
       "vad": "Det är en ö med ungefär 300 bofasta året om. / Ornö har vackra skogar, klipphällar, orkidéer, tolv injöar och två naturreservat. / Under 1500-talet fanns ett 30-tal gårdar och torp, under 1800-talet hade dessa mer än fördubblats. 1719 brändes mer eller mindre hela Ornö ner under Rysshärjningarna. / Under tidigt 1900-tal styckade och sålde Sundby Säteri mark för fritidsboende.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://stockholmarchipelagotrail.com/section/",
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Ornö, Moderate 34.1 km.",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -1822,7 +1829,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://sjofartsverket.se/en/about-us/fyrar-och-kulturfastigheter/visningsfyrar/landsort--the-oldest-swedish-built-lighthouse/",
       "org": "sjofartsverket.se",
       "vad": "the oldest Swedish-built lighthouse; Electrified in 1938; Automated and demanned in 1963 (2026-09-14)",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -1924,17 +1931,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
-      "myndighet": false
-    },
-    {
       "url": "https://stockholmarchipelagotrail.com/sv/section/etapp-landsort/",
       "org": "stockholmarchipelagotrail.com",
       "vad": "Du åker till Landsort från Ankarudden på Torö året om;  — Vandrarhemmet är öppet året runt;  — Vi har öppet dagligen juni-augusti",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://stockholmarchipelagotrail.com/section/",
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Landsort, Moderate 10.7 km.",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -1971,7 +1978,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.trafikverket.se/furusundsleden",
       "org": "Trafikverket",
       "vad": "vägfärja mellan Furusund och Yxlan, 600 meter (2026-09-14)",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -2062,21 +2069,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://roslagen.se/oar/furusund/",
       "org": "roslagen.se",
       "vad": "",
-      "last": null,
+      "last": "2026-09-28",
       "myndighet": false
     },
     {
       "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
-      "myndighet": false
-    },
-    {
-      "url": "https://stockholmarchipelagotrail.com/sv/section/",
       "org": "stockholmarchipelagotrail.com",
-      "vad": "etappen \"Furusund\" anges som \"Medium, 7.2 km\" (2026-09-14)",
-      "last": null,
+      "vad": "Section Furusund, Moderate 7.2 km.",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -2105,15 +2105,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/linkudden.html",
       "org": "Länsstyrelsen Stockholm",
-      "vad": "karakteristiska arter: \"rosettjungfrulin, liten blåklocka, vildlin\", \"hundratals Adam och Eva\", \"låsbräken, solvända, darrgräs, ormtunga, majviva och kärrspira\"; hällmarkstallskog i östra och västra delarna, blandskog med ek, asp och hassel mellan bergsryggarna; \"Fågellivet är rikt med bland annat häckande sjöfågel\" (2026-09-14)",
-      "last": null,
+      "vad": "föreskrifterna förbjuder att \"medföra hund eller katt som inte är kopplad\", \"tälta, ställa upp husvagn eller lägga upp båt\", \"för längre tid än två dygn i följd förankra båt vid samma strand\", \"göra upp öppen eld\" och \"framföra motordrivet fordon\"",
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/salskaren.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "reservatet ligger mellan Blidö och Svartlöga i Norrtälje kommun; \"Skyddat sedan: 1973\"; \"Storlek: 76 hektar varav land 5\"; förvaltare Skärgårdsstiftelsen; syftet är att \"trygga en ögrupp för allmänhetens friluftsliv samt skydda en värdefull häckningsbiotop för sjöfågel\"; \"Vegetationen på öarna skall i princip lämnas för fri utveckling\" (2026-09-14)",
-      "last": null,
+      "last": "2026-09-30",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.norrtalje.se/info/bygga-bo-miljo/klimat-och-natur/naturreservat-och-annan-skyddad-natur/linkudden/",
+      "org": "norrtalje.se",
+      "vad": "Reservatets östra och västra delar består av två stora hällmarksområden. Mellan dessa två bergsryggar växer blandskog med hög lövandel; Fågellivet är även det rikt med bland annat häckande sjöfågel.; rosettjungfrulin, darrgräs, vildlin, Adam och Eva, solvända, ormrot, älväxing, svartkämpar, liten blåklocka, bockrot och småborre; I söder och öster finns badvänliga klippstränder.",
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -2134,7 +2141,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.kringla.nu/kringla/objekt?referens=raa/bbr/21400000444777",
       "org": "Riksantikvarieämbetet",
       "vad": "En ny kyrka började uppföras år 1856 runt det gamla kapellet som revs först ett år senare. Invigningen förrättades år 1859. Den nya kyrkan ritades av arkitekten Ludvig Hedin.; salkyrka med enskeppigt långhus av sten och tegel; Fasaderna är putsade och gult avfärgade, tidigare vita; Sadeltaket täcks av skiffer (2026-09-14)",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -2190,7 +2197,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://roslagen.se/oar/blido/",
       "org": "roslagen.se",
       "vad": "",
-      "last": null,
+      "last": "2026-09-28",
       "myndighet": false
     },
     {
@@ -2473,17 +2480,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
-      "myndighet": false
-    },
-    {
       "url": "https://stockholmarchipelagotrail.com/sv/section/etapp-nattaro/",
       "org": "stockholmarchipelagotrail.com",
       "vad": "På Nåttarö finns bra möjligheter om du har med barnvagn, om du har begränsad rörlighet eller om du sitter i rullstol. Vid Ångbåtsbryggan möter du skärgårdsidyllen direkt. Vid kajkanten är det en fin badstrand. / Är du äventyrlig och stark kan du ta dig längs grusvägen norrut (1,5 km) förbi Drottninggrottan till Nåttarö Storsand.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://stockholmarchipelagotrail.com/section/",
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Nåttarö, Challenging 9.5 km.",
+      "last": "2026-09-30",
       "myndighet": false
     }
   ],
@@ -2492,7 +2499,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/kalgardson.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "reservatet utgörs till största delen av Kålgårdsön, \"den östligaste delen av Ingmarsö\", jämte Bockholmen i söder och ytterligare några öar i Österåkers kommun; bildat 1974; 103 hektar varav 100 hektar land; Skärgårdsstiftelsen är både markägare och förvaltare; \"Ändamålet med reservatet är att säkra ett område av stort värde för allmänhetens rörliga friluftsliv\" (2026-09-14)",
-      "last": "2026-09-27",
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -2519,7 +2526,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.ingmarso.se/",
       "org": "ingmarso.se",
-      "vad": "runt 180 bofasta; Coop Ingmarsö med året runt-öppet ligger vid södra bryggan; gästhamnen är Centralt belägen på Södra Ingmarsö med gångavstånd till krog, affär och bageri",
+      "vad": "Ingmarsö Bageri = \"Café — Deli — Restaurang — Catering\", öppet morgon till sen kväll, serverar frukost/lunch/middag/pizza/fika;  — bageriet ligger ca 1,5 km från södra bryggan",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -2545,16 +2552,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.ingmarso.se/:",
+      "url": "https://www.ingmarso.se/att-g%C3%B6ra",
       "org": "ingmarso.se",
-      "vad": "Deli — Restaurang — Catering, öppet morgon till sen kväll, serverar frukost/lunch/middag/pizza/fika; ingmarsogasthamn.se: bageriet ligger ca 1,5 km från södra bryggan",
-      "last": null,
-      "myndighet": false
-    },
-    {
-      "url": "https://www.ingmarso.se/att-g%C3%B6ra:",
-      "org": "ingmarso.se",
-      "vad": "",
+      "vad": "namnger badplatserna Femsundsviken (brygga och sandstrand) och Badberget (vid norra bryggan)",
       "last": null,
       "myndighet": false
     },
@@ -2573,9 +2573,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://ingmarsogasthamn.se/:",
+      "url": "https://ingmarsogasthamn.se/",
       "org": "ingmarsogasthamn.se",
-      "vad": "",
+      "vad": "ca 30 platser, landström, färskvatten, dusch/wc, bränsle (bensinmack + sjömack året runt, kortbetalning)",
       "last": null,
       "myndighet": false
     },
@@ -2594,13 +2594,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
-      "myndighet": false
-    },
-    {
       "url": "https://stockholmarchipelagotrail.com/sv/section/roddbatar-finnhamn-ingmarso/",
       "org": "stockholmarchipelagotrail.com",
       "vad": "Du kan ta dig mellan etapperna på Finnhamn och Ingmarsö med hjälp av roddbåtar som är utplacerade av Skärgårdsstiftelsen., Det är totalt 400 meter att ro åt ett håll.",
@@ -2612,6 +2605,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "stockholmarchipelagotrail.com",
       "vad": "etappen anges som \"Medel 9.8 km\" och förbinder bryggorna Ingmarsö Norra och Ingmarsö Södra via stigar och grusvägar, genom öppna ängar och skog och förbi flera insjöar samt Femsundsbadet; delar av leden beskrivs som tekniska och rekommenderas inte för den med begränsad rörlighet (2026-09-14)",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://stockholmarchipelagotrail.com/section/",
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Ingmarsö, Moderate 9.8 km.",
+      "last": "2026-09-30",
       "myndighet": false
     }
   ],
@@ -2641,7 +2641,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.kringla.nu/kringla/objekt?referens=raa/bbr/21400000445278",
       "org": "Riksantikvarieämbetet",
       "vad": "Nämdö kyrka invigdes hösten 1876; Stilen är nygotisk som framförallt uttrycks genom den höga takresningen, tornet samt de spetsbågade fönstren; utförd med trästomme, granitsockel samt svartmålat plåttak",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -2701,17 +2701,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
-      "myndighet": false
-    },
-    {
       "url": "https://stockholmarchipelagotrail.com/sv/section/etapp-namdo/",
       "org": "stockholmarchipelagotrail.com",
       "vad": "13,1 km skärgårdsupplevelse; Vi har valt att börja etappen vid Solvik och vi rekommenderar att du vandrar medsols; Därifrån följer du den smala vägen söderut förbi kyrkan.; där följer du stigen tills du når en förtrollad insjö; Från sjön fortsätter du till Långvik, där finns bastu.; utkiksberget vid Nämdö Böte; ett utsiktsberg där du har milsvid utsikt; Missa inte lugnet och utsikten vid Kyrknäset. . Tidigare citat «ett litet utsiktsberg» fanns inte på sidan.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://stockholmarchipelagotrail.com/section/",
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Nämdö, Moderate 13.1 km.",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -2766,17 +2766,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
-      "myndighet": false
-    },
-    {
       "url": "https://stockholmarchipelagotrail.com/sv/section/etapp-svartso/",
       "org": "stockholmarchipelagotrail.com",
       "vad": "etappen är 17,9 km, \"en liggande åtta\", nås från bryggorna Norra Svartsö, Alsvik, Skälvik och Söderboudd; svårighetsgrad \"Lätt\", \"De knappt arton kilometrarna är för det mesta på vacker grusväg\" (2026-09-14)",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://stockholmarchipelagotrail.com/section/",
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Svartsö, Easy 17.9 km.",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -2873,7 +2873,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "runmaro": [
     {
-      "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/Förorenade",
+      "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/F%C3%B6rorenade%20omr%C3%A5den%20-%20inventering%20av%20gruvbranschen%20i%20Stockholms%20l%C3%A4n.pdf",
       "org": "Länsstyrelsen",
       "vad": "Sulfidmineralen zinkblände och blyglans bröts på Runmarö i Stockholms skärgård. En mängd av 4 771 ton zinkmalm utvanns i början av 1900-talet. / Värmdös gruvor är med få undantag belägna på Runmarö. Här finns cirka sju sulfidmalmsbrott eller större skärpningar. De tre gruvorna Kilagruvorna, Söderbygruvorna och Vånögruvorna, alla belägna på Runmarö",
       "last": null,
@@ -2944,9 +2944,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Runmarö, Moderate 16.6 km.",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -3397,7 +3397,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://roslagen.se/oar/singo-och-fogdo-lattillganglig-kulturmiljo/",
       "org": "roslagen.se",
       "vad": "",
-      "last": null,
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -3516,9 +3516,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://stockholmarchipelagotrail.com/section/",
-      "org": "Stockholm Archipelago Trail",
-      "vad": "",
-      "last": null,
+      "org": "stockholmarchipelagotrail.com",
+      "vad": "Section Lidö, Moderate 11.9 km.",
+      "last": "2026-09-30",
       "myndighet": false
     }
   ],
@@ -3952,7 +3952,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "http://upplevvaxholm.se/mat-och-dryck/",
       "org": "upplevvaxholm.se",
       "vad": "",
-      "last": null,
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -3989,7 +3989,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://roslagen.se/oar/yxlan/",
       "org": "roslagen.se",
       "vad": "",
-      "last": null,
+      "last": "2026-09-28",
       "myndighet": false
     },
     {
@@ -4966,7 +4966,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://roslagen.se/oar/grasko-en-badvanlig-o-i-fjarden/",
       "org": "roslagen.se",
       "vad": "",
-      "last": null,
+      "last": "2026-09-29",
       "myndighet": false
     }
   ],
@@ -5577,7 +5577,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
       "org": "goteborg.com",
       "vad": "",
-      "last": null,
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -5905,7 +5905,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
       "org": "goteborg.com",
       "vad": "",
-      "last": null,
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -7763,7 +7763,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
       "org": "goteborg.com",
       "vad": "",
-      "last": null,
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -7863,7 +7863,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
       "org": "goteborg.com",
       "vad": "hamburgare och gelato",
-      "last": null,
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
@@ -10100,7 +10100,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard",
       "org": "goteborg.com",
       "vad": "",
-      "last": null,
+      "last": "2026-09-29",
       "myndighet": false
     },
     {
