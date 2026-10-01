@@ -6,7 +6,6 @@ import { notFound } from 'next/navigation'
 import ReviewSection from '@/components/ReviewForm'
 import BookmarkButton from '@/components/BookmarkButton'
 import ShareButton from '@/components/ShareButton'
-import PlaceSocialSection from '@/components/PlaceSocialSection'
 import PlaceContactSection from '@/components/PlaceContactSection'
 import PlacePremiumHeader from '@/components/PlacePremiumHeader'
 import PlaceFactsSection from '@/components/PlaceFactsSection'
@@ -714,8 +713,11 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  </svg>
  </Link>
 
- {/* ── Sociala objekt: check-ins, besökare, omdömen ── */}
- <PlaceSocialSection placeId={r.id} placeType="restaurant" placeName={r.name} />
+ {/* PlaceSocialSection borttagen 2026-10-01: den byggde på check_ins och
+     place_reviews, tabeller som aldrig skapats (samma fynd som #409). Den gav
+     en "Checka in här"-knapp till en sida som inte finns, ett omdömesformulär
+     som inte kunde spara och ca 1 500 misslyckade anrop per dygn. Omdömen på
+     platssidan sköts av ReviewForm mot tabellen reviews. */}
 
  {/* (Tidigare separat bilder-rad är borttagen — alla bilder visas nu i hero-carouseln ovan) */}
 
