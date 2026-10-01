@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { isProEnabled } from '@/lib/pro'
 
 export const metadata: Metadata = {
  title: 'Erbjudanden & paket i Stockholms skärgård — Svalla',
@@ -87,7 +88,7 @@ export default function ErbjudandenPage() {
  }
  itemsTitle="Kategorier"
  itemsDescription="Klicka på en kategori för aktuella erbjudanden."
- items={ITEMS}
+ items={isProEnabled() ? ITEMS : ITEMS.filter((i) => i.href !== '/pro')}
  deeperContent={
  <>
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>

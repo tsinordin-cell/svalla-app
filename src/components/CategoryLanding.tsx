@@ -3,6 +3,7 @@ import type { ReactNode, CSSProperties } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
 import Icon, { type IconName } from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { isProEnabled } from '@/lib/pro'
 
 // Mappar emojis och otydliga icon-strängar till Svalla IconName.
 // Vi vill aldrig rendera Apple-emojis i CategoryLanding-kort.
@@ -438,7 +439,8 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  <FooterCol title="Kom igång" links={[
  { label: 'Logga in', href: '/logga-in' },
  { label: 'Skapa konto', href: '/kom-igang' },
- { label: 'Pro', href: '/pro' },
+ // Pro visas inte förrän det är påslaget (Max 2026-10-01)
+ ...(isProEnabled() ? [{ label: 'Pro', href: '/pro' }] : []),
  ]} />
  </div>
  </div>
