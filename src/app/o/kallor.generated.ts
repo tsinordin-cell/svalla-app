@@ -502,21 +502,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm",
       "org": "vaxholm.se",
       "vad": "cirka 12 000 fastboende (2024); \"Kommunen omfattar cirka 70 öar, varav 57 bebodda samt den stora gröna halvön Bogesundslandet\"",
-      "last": null,
-      "myndighet": true
-    },
-    {
-      "url": "https://www.vaxholm.se/",
-      "org": "vaxholm.se",
-      "vad": "badplatsen på Rindö heter Grönviksbadet/Grönviken, \"liten sandstrand och en brygga\", renoverad 2020",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
       "url": "https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser",
       "org": "vaxholm.se",
       "vad": "Beläget på södra Rindö i slutet på Grönviksvägen finns detta lilla lokala bad, Sandstrand, Badbrygga, Grillplats, Baja-maja under badsäsong",
-      "last": "2026-09-27",
+      "last": "2026-09-30",
       "myndighet": true
     },
     {
@@ -569,17 +562,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.hamnkrogenvaxholm.com/",
-      "org": "hamnkrogenvaxholm.com",
-      "vad": "vaxholmarnas kvarterskrog sedan 1950-talet … ser ut över båtlivet i gästhamnen, Söderhamnen 10, Våra klassiker samsas med husmanskost",
-      "last": null,
+      "url": "https://www.destinationvaxholm.se/en/mathantverkstan",
+      "org": "destinationvaxholm.se",
+      "vad": "artisan cheeses, bread, jams, kombucha, coffee, ice cream, Söderhamnsplan 1, Shop with handcrafted products, Café with local treats",
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
-      "url": "https://ostmakeriet.se/aterforsaljare/",
-      "org": "ostmakeriet.se",
-      "vad": "Mathantverkstan i Skärgården; destinationvaxholm.se (Vaxholms turistbyrå) — artisan cheeses, bread, jams, kombucha, coffee, ice cream, Söderhamnsplan 1",
-      "last": null,
+      "url": "https://www.hamnkrogenvaxholm.com/",
+      "org": "hamnkrogenvaxholm.com",
+      "vad": "Hamnkrogen har varit vaxholmarnas kvarterskrog sedan 1950-talet. Här är du alltid välkommen för att äta lunch, middag eller ta något att dricka medan du ser ut över båtlivet i gästhamnen., Söderhamnen 10",
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
@@ -635,7 +628,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.winbergs.se/",
       "org": "winbergs.se",
       "vad": "WINBERGS KÖK & BAR PÅ KAJEN I VAXHOLM … sommarkrog … Krogen är grundad 1961",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": false
     }
   ],
@@ -827,15 +820,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://sl.se/aktuellt/nyheter/sl-biljetter-i-en-del-av-waxholmsbolagets-trafik",
       "org": "sl.se",
-      "vad": "",
-      "last": null,
+      "vad": "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd",
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
       "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/angso-nationalpark/fakta-om-parken",
       "org": "Sveriges Nationalparker",
       "vad": "Ängsö nationalpark inrättades 1909 (24 maj 1909), ligger i Norrtälje kommun, syfte \"Bevara ett äldre odlingslandskap i väsentligen oförändrat skick\", naturtyp \"Skärgård, ängs- och hagmarker, blandskog\"",
-      "last": null,
+      "last": "2026-10-01",
+      "myndighet": true
+    },
+    {
+      "url": "https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/sa-galler-sl-biljetten-pa-baten",
+      "org": "Waxholmsbolaget",
+      "vad": "Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april, SL:s periodbiljetter som gäller för 30 dagar eller längre",
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
@@ -891,14 +891,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://finnhamn.se/ata/",
       "org": "finnhamn.se",
       "vad": "Finnhamns krog är belägen nere vid ångbåtsbryggan … klassisk inriktning på lunchen och en á la carte meny som varierar under säsongen",
-      "last": null,
-      "myndighet": false
-    },
-    {
-      "url": "https://finnhamn.se/en/eat/",
-      "org": "finnhamn.se",
-      "vad": "",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
@@ -913,13 +906,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "Skärgårdsstiftelsen",
       "vad": "Arkitekt var Ernst Stenhammar som ritat många ståtliga hus i skärgården, till exempel den stora jugendvillan på Grinda, Idag är Utsikten vandrarhem. ;  — Vandrarhemmet renoverades mellan åren 2014-2017",
       "last": "2026-09-30",
-      "myndighet": false
-    },
-    {
-      "url": "https://stockholmarchipelagotrail.com/sv/section/etapp-finnhamn/",
-      "org": "stockholmarchipelagotrail.com",
-      "vad": "ingen källa för exakt 12 km, justerat till belagd slinglängd.",
-      "last": null,
       "myndighet": false
     },
     {
@@ -1337,17 +1323,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://www.haninge.se/uppleva-och-gora/besok-och-upplev-haninge/sevardheter/dalaro-skeppsvraksomrade/",
-      "org": "haninge.se",
-      "vad": "omkring 30 registrerade fartygslämningar från 1600- till 1900-talet, varav tre gjorts tillgängliga för dykning; all dykning måste ske från båt; tillstånd krävs från Dalarö Dykpark före varje dyk; dykguide håller en kulturhistorisk genomgång före dyket; förbjudet att dyka över skrovet; minst en meters säkerhetsavstånd till fartygslämningen",
-      "last": null,
-      "myndighet": true
-    },
-    {
       "url": "https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/sevardheter/dalaro-skeppsvraksomrade/",
       "org": "haninge.se",
-      "vad": "I Dalaröområdet finns ett 30-tal registrerade fartygslämningar från 1600- till 1900-talet, All dykning inom Dalarö skeppsvraksområde ska ske från en båt, detta sker via Dalarö Dykpark",
-      "last": "2026-09-27",
+      "vad": "omkring 30 registrerade fartygslämningar från 1600- till 1900-talet, varav tre gjorts tillgängliga för dykning; all dykning måste ske från båt; tillstånd krävs från Dalarö Dykpark före varje dyk; dykguide håller en kulturhistorisk genomgång före dyket; förbjudet att dyka över skrovet; minst en meters säkerhetsavstånd till fartygslämningen",
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
@@ -1466,7 +1445,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.vrak.se/utforska/vrak-och-lamningar/1600-talet/riksapplet",
       "org": "vrak.se",
       "vad": "Fartyget byggdes på flottans varv vid Stigberget i Göteborg och var färdigt 1663; längd 48 meter, bredd 12 meter; i storm 5 juni (1676) slet sig skeppet från sina förtöjningar, grundstötte och sjönk på 16 meters djup; djup 7–16 meter",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": false
     }
   ],
@@ -1594,7 +1573,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://arholmanord.se/",
       "org": "arholmanord.se",
       "vad": "Vandrarhem, restaurang, guidade turer och aktiviteter i egen havsvik på Arholma i Stockholms norra skärgård",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
@@ -1666,7 +1645,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/orno/",
       "org": "haninge.se",
       "vad": "sevärdheter: \"orkidéerna vid Mane äng\", \"gravfält från bronsåldern vid Hässelmara\", \"ruinerna efter öns första säteriet\", \"bergarter på Ornöhuvud\"",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
@@ -1694,7 +1673,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/stora-och-lilla-sandbote.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "Skyddat sedan: 1938 Storlek: 21 hektar ... Markägare: Skärgårdsstiftelsen / En av de gamla stugorna är ett fiskartorp från 1700-talet som byggts upp efter en brand 2001 efter originalritningar och med gamla metoder och ställts i ordning som museum. Invid hamnen visas även ett båtbyggarmuseum. / Öarna donerades till Naturskyddsföreningen 1941 av Anna Lindhagen ... Anna hade fått området naturminnesförklarat redan 1938.",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
@@ -1843,7 +1822,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/landsort",
       "org": "Waxholmsbolaget",
       "vad": "Landsort är Waxholmsbolagets sydligaste destination. Här hittar du vacker natur, badklippor och Sveriges allra äldsta fyr. (2026-09-14)",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
@@ -1898,8 +1877,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://landsort-birds.se/pages/foreningen.php",
       "org": "landsort-birds.se",
-      "vad": "fågelstationen bedriver ringmärkning och har guidningar och program för besökare (2026-09-14)",
-      "last": null,
+      "vad": "föreningen \"bedriver ringmärkning, sträckräkning och andra fågelrelaterade undersökningar\", menyn för besökare listar \"Guidningar\"",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -1957,7 +1936,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/furusundsfjarden.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "reservatet omfattar öarna Stor-Asken, Lill-Asken och Stumpen \"belägna tre kilometer nordost om Furusund\"; skyddat sedan 1974; \"373 hektar varav land 24 hektar\"; förvaltare Länsstyrelsen; syftet är att \"bevara ett oexploaterat område av innerskärgården av värde för friluftslivet\"; Natura 2000-område (2026-09-14)",
-      "last": null,
+      "last": "2026-10-01",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.norrtalje.se/info/bygga-bo-miljo/norrtalje-vaxer/samhallsplanering/oversiktsplanering/oversiktsplan2050/allmanna-intressen/kulturmiljo/kulturmiljoer-i-norrtalje-kommun/kulturmiljoer-av-lokalt-intresse/",
+      "org": "norrtalje.se",
+      "vad": "Furusund representerar en tidstypisk sommarnöjesort. Många byggnader är bevarade från storhetstiden från 1880 fram till första världskriget.",
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
@@ -1986,13 +1972,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — BROMSKÄR / RÖDLÖGA; GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 30 SEPTEMBER 2026; GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026",
       "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.norrtalje.se/",
-      "org": "Översiktsplan 2050",
-      "vad": "Furusund representerar en tidstypisk sommarnöjesort. Många byggnader är bevarade från storhetstiden från 1880 fram till första världskriget. (2026-09-14)",
-      "last": null,
       "myndighet": true
     },
     {
@@ -2096,13 +2075,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://www.norrtalje.se/",
-      "org": "Köpmanholms skola",
-      "vad": "Här går cirka 35 elever; skolan är en F–6-skola på adressen Lilltorpsvägen 33, 760 18 Yxlan, och beskrivs som omgiven av öarna Furusund och Blidö med närhet till både skog och hav (2026-09-14)",
-      "last": null,
-      "myndighet": true
-    },
-    {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/linkudden.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "föreskrifterna förbjuder att \"medföra hund eller katt som inte är kopplad\", \"tälta, ställa upp husvagn eller lägga upp båt\", \"för längre tid än två dygn i följd förankra båt vid samma strand\", \"göra upp öppen eld\" och \"framföra motordrivet fordon\"",
@@ -2128,6 +2100,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "norrtalje.se",
       "vad": "ligger vid södra kusten på Oxhalsö, Här hittar du cirka 25 meter strandlinje som består av sand, Runt om badplatsen finns lövskog, Ytterligare en badflotte närmare strandkanten, på grundare vatten, Hund tillåtet: Nej, inte mellan 15 maj och 15 september",
       "last": "2026-09-27",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.norrtalje.se/info/barn-och-skola/grundskola/grundskolor/kopmanholms-skola/",
+      "org": "norrtalje.se",
+      "vad": "Köpmanholms skola ligger på ön Yxlan, omgiven av öarna Furusund och Blidö, Här går cirka 35 elever, Lilltorpsvägen 33, 760 18 Yxlan",
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
@@ -2235,13 +2214,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "Waxholmsbolaget",
       "vad": "Du kan åka till Gällnö från Strömkajen, vissa turer går direkt utan byte. ;  — GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, Gällnönäs (Gällnö), Ängsholmen (vid Gällnö): t.ex. lördag Strömkajen 08.00 → Gällnö 09.55, måndag–torsdag 09.00 → 11.30, Boda brygga 10.25 → Gällnö 10.30 ;  — GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026: Strömkajen 07.45 → Gällnö 09.30 ;  — Med Cinderella tar resan till Gällnö ca 1 tim och 45 min., Säsongen löper från slutet av april till slutet av september. ;  — Waxholmsbolaget kör båt till Gällnö Söderby",
       "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://waxholmsbolaget.se/",
-      "org": "Waxholmsbolaget",
-      "vad": "prislistan renderas med JavaScript och kunde inte hämtas; inget belopp",
-      "last": null,
       "myndighet": true
     },
     {
@@ -2526,15 +2498,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.ingmarso.se/",
       "org": "ingmarso.se",
-      "vad": "Ingmarsö Bageri = \"Café — Deli — Restaurang — Catering\", öppet morgon till sen kväll, serverar frukost/lunch/middag/pizza/fika;  — bageriet ligger ca 1,5 km från södra bryggan",
-      "last": "2026-09-27",
+      "vad": "Längst in i Femsundsviken finns en badplats med brygga och sandstrand. Man kan även bada på ”Badberget” vid Norra bryggan.",
+      "last": "2026-09-30",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ingmarso.se/%C3%A4ta-och-sova",
+      "org": "ingmarso.se",
+      "vad": "Café — Deli — Restaurang — Catering, öppet från tidig morgon till sen kväll, frukost, lunch, middag, pizza och fika, På uteserveringen, i trädgården",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
       "url": "https://www.ingmarso.se/hittahit",
       "org": "ingmarso.se",
       "vad": "Båt hela vägen från stan tar mellan två och cirka tre timmar; Du till vissa turer ta SL-buss 438 från Slussen i Stockholm och stiga på båten i Boda; Till bryggan på norra Ingmarsö går reguljära turer från Åsättra på Ljusterö",
-      "last": "2026-09-27",
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
@@ -2552,20 +2531,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.ingmarso.se/att-g%C3%B6ra",
-      "org": "ingmarso.se",
-      "vad": "namnger badplatserna Femsundsviken (brygga och sandstrand) och Badberget (vid norra bryggan)",
-      "last": null,
-      "myndighet": false
-    },
-    {
-      "url": "https://www.ingmarso.se/%C3%A4ta-och-sova",
-      "org": "ingmarso.se",
-      "vad": "Affären är ombud för Systembolaget, Apoteket och Posten. Dessutom har de bensinmacken som har kortautomat som alltid är öppen.",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
       "url": "https://www.ingmarsobnb.se/",
       "org": "ingmarsobnb.se",
       "vad": "",
@@ -2576,7 +2541,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://ingmarsogasthamn.se/",
       "org": "ingmarsogasthamn.se",
       "vad": "ca 30 platser, landström, färskvatten, dusch/wc, bränsle (bensinmack + sjömack året runt, kortbetalning)",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
@@ -2752,13 +2717,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://waxholmsbolaget.se/",
-      "org": "Waxholmsbolaget",
-      "vad": "",
-      "last": null,
-      "myndighet": true
-    },
-    {
       "url": "https://kund.printhuset-sthlm.se/wa/h13.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, 13A STOCKHOLM — VAXHOLM — BODA — SÖDRA INGMARSÖ — HUSARÖ, Alsvik (Svartsö); Strömkajen–Alsvik t.ex. mån–tor 08.15–10.50, lör 08.35–10.50, sön 08.15–10.35, vardag 14.45–17.45",
@@ -2894,24 +2852,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://runmaro.se/om",
+      "url": "https://runmaro.se/handla",
       "org": "runmaro.se",
-      "vad": "buss 433 eller 434 från Slussen. Bussresan till Stavsnäs tar ca 50 minuter",
-      "last": null,
+      "vad": "Tempo Runmarö, Apoteksombud, Systemombud",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
-      "url": "https://runmaro.se/",
+      "url": "https://runmaro.se/matologi",
       "org": "runmaro.se",
-      "vad": "F.d. Runmarö Krog är nedlagd; aktiva: Svängen, Krog och restaurang och Tempo Runmarö. Inga öppettider anges där.",
-      "last": null,
+      "vad": "under Krog & restaurang listas bara \"Svängen Runmarö AB\"",
+      "last": "2026-09-30",
+      "myndighet": false
+    },
+    {
+      "url": "https://runmaro.se/om",
+      "org": "runmaro.se",
+      "vad": "buss 433 eller 434 från Slussen. Bussresan till Stavsnäs tar ca 50 minuter",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
       "url": "https://runmarobatvarv.se/",
       "org": "runmarobatvarv.se",
-      "vad": "gästbrygga med båtplatser, inga stugor;  Runmarö Krog är nedlagd (\"F.d. Runmarö Krog\")",
-      "last": "2026-09-14",
+      "vad": "gästbrygga med båtplatser, inga stugor;  — Krog & restaurang listar bara \"Svängen Runmarö AB\"",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -2981,14 +2946,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://xn--runmarhembygdsfrening-mecj.se/kalkhallar/",
       "org": "xn--runmarhembygdsfrening-mecj.se",
       "vad": "Där det finns urkalksten på Runmarö ser man en särpräglad och färgsprakande blomsterprakt och en stor rikedom på orkidéer; apollofjärilen finns bara på platser med kalkberggrund",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
       "url": "https://xn--runmarhembygdsfrening-mecj.se/lotsbyar/",
       "org": "xn--runmarhembygdsfrening-mecj.se",
       "vad": "år 1703 kom \"nio av nitton Stockholmslotsar\" från Runmarö; år 1797 var \"49 av 68 Stockholmslotsar\" bosatta på ön; lotsstationen Berghamn mellan Värmdö och Runmarö etablerades 1741 och upphörde i början av 1900-talet; då byggdes \"den lilla lotsutkiken på berget i Styrsvik\"",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": false
     }
   ],
@@ -3735,8 +3700,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://galohavsbad.se/ata/",
       "org": "galohavsbad.se",
-      "vad": "vår charmiga Bistro, matbit, fika, smarriga smörgåsar; skargardsstiftelsen.se/omraden/galo — Vid Gålö havsbad finns restaurang, café och camping med stugor",
-      "last": null,
+      "vad": "Välkomna till vår charmiga Bistro, matbit, fika, smarriga smörgåsar, Minilivs, Camping för dig och din familj",
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
@@ -5349,28 +5314,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://gotland.com/companies/visby-gasthamn/",
       "org": "gotland.com",
       "vad": "Platser finns både i inre hamnen, i fiskehamnen samt på norra vågbrytaren … 250 platser … hamndjupet är 3-6 m; gotland.se listar Visby gästhamn. Service anges inte av Region Gotland.",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
       "url": "https://gotland.com/companies/klintehamn-gasthamn/",
       "org": "gotland.com",
       "vad": "10 gästplatser, djup 1,8–2,5 m; gotland.se (hamnar för fritidsbåt) — \"tillgång till toalett, dusch och tvättstuga\", \"Hamncaféet ligger i anslutning\"",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
       "url": "https://gotland.com/companies/bakfickan/",
       "org": "gotland.com",
       "vad": "en fisk- och skaldjursrestaurang, Stora Torget 1, Året runt; bakfickanvisby.se",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
       "url": "https://gotland.com/companies/krakas-krog/",
       "org": "gotland.com",
       "vad": "Restaurang i gamla bankhuset i Kräklingbo, Fine dining, menyn följer … säsongerna; krakas.se — säsong 2026",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -5421,7 +5386,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.borgholm.se/borgholms-hamn",
       "org": "borgholm.se",
       "vad": "Drivs av: Strand Öland, Duschar: 3, Tvättstuga: Ja, Tanka: Diesel och bensin, Wifi: Ja, El: Ja (redigerad 2026-06-29)",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
@@ -5653,10 +5618,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.goteborg.com/",
+      "url": "https://www.goteborg.com/en/guides/guide-eat-and-fika-in-gothenburgs-archipelago",
       "org": "goteborg.com",
-      "vad": "Brattens Wärdshus — vid färjelägret Styrsö Bratten. Tidigare text om en av Göteborgs mest hyllade saknade källa och togs bort 2026-09-14.",
-      "last": null,
+      "vad": "If you instead head to the ferry terminal at Styrsö Bratten, you will find Brattens Wärdshus where you can stop for food or fika",
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
@@ -6827,10 +6792,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://mittharnosand.se/",
+      "url": "https://mittharnosand.se/en/experience/boating/natural-harbors-and-beaches",
       "org": "mittharnosand.se",
-      "vad": "Hultoms brygga … northern Hemsön … a jetty … a toilet and sauna. Ingen Hemsö Gästhamn hos kommunen.",
-      "last": null,
+      "vad": "Hultoms brygga is located on northern Hemsön and, as the name suggests, there is a jetty here. There is also a toilet and sauna.",
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
@@ -7035,7 +7000,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://gotland.com/companies/faro-strandcafe/",
       "org": "gotland.com",
       "vad": "frukost, lunch, afterbeach och middag … Pizza, pasta, sallad, smårätter samt … kött & fiskrätter, säsong 2026; farostrandcafe.se — Vid Sudersand resort",
-      "last": null,
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -7093,14 +7058,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.hogakusten.com/en/trysunda-guest-harbour",
       "org": "hogakusten.com",
       "vad": "Trysunda guest harbour, Hamndjup: 3-7 m, bastu/dusch/toalett, bojförtöjning ca 25 platser",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
       "url": "https://www.hogakusten.com/en/trysunda-vandrarhem-skargardscafe",
       "org": "hogakusten.com",
       "vad": "homemade refreshments (fika) and meals, and a small grocery store",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
@@ -7369,10 +7334,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://www.jonkoping.se/",
+      "url": "https://www.jonkoping.se/fritid-kultur--natur/friluftsliv-natur-och-parker/friluftsliv/batplatser-hamnar-och-gasthamnar",
       "org": "jonkoping.se",
-      "vad": "Gästhamn på Visingsö … Färskvatten, Toalett, Dusch, Eluttag, Latrintömning … Från 0,6 m till 1 m; jkpg.com/gasthamnar — nedanför Visingsborgs slottsruin",
-      "last": null,
+      "vad": "Gästhamn på Visingsö, Djupet vid gästplatserna är just nu grunt. Från 0,6 m till 1 m., Färskvatten Toalett Dusch Eluttag Latrintömning Trailerramp",
+      "last": "2026-10-01",
       "myndighet": true
     },
     {
@@ -7470,7 +7435,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.visitvisingso.com/ta-dricka",
       "org": "visitvisingso.com",
       "vad": "Wisingsborgs Trädgård. Härligt prunkande trädgård med anor från 1600-talet. Mitt inne i den härliga trädgården ligger ett Trädgårdscafé och i den anrika ladan i anslutning till trädgården serveras dagens lunch.",
-      "last": null,
+      "last": "2026-10-01",
       "myndighet": false
     },
     {
