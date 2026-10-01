@@ -61,7 +61,7 @@ export const SAT_SECTIONS: SatSection[] = [
   { name: 'Grinda', km: 9.8, difficulty: 'Medel', island: 'grinda' },
   { name: 'Sandhamn', km: 8.1, difficulty: 'Lätt', island: 'sandhamn',
     note: 'Tallskog, sanddyner och Trouvillestranden.' },
-  { name: 'Runmarö', km: 18.5, difficulty: 'Medel', island: 'runmaro' },
+  { name: 'Runmarö', km: 16.6, difficulty: 'Medel', island: 'runmaro' },
   { name: 'Nämdö', km: 13.1, difficulty: 'Medel', island: 'namdo' },
   { name: 'Ornö', km: 34.1, difficulty: 'Medel', island: 'orno',
     note: 'Ledens överlägset längsta etapp. Skogsö med utsikt från öns högsta punkt.' },

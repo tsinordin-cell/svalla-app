@@ -2995,7 +2995,7 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Alla etapper på Stockholm Archipelago Trail</h2>
 <!-- KÄLLA: https://stockholmarchipelagotrail.com/sv/section/ — "Visar 22 etapper"; "Etapp Arholma Medel 13.4 km"; "Etapp Lidö Medel 11.9 km"; "Etapp Furusund Medel 7.2 km"; "Etapp Yxlan Medel 24 km"; "Roddbåtar Finnhamn – Ingmarsö Lätt 0.4 km"; "Etapp Finnhamn Medel 10.1 km"; "Etapp Ingmarsö Medel 9.8 km"; "Etapp Brottö Lätt 1 km"; "Etapp Svartsö Lätt 17.9 km"; "Etapp Möja Lätt 13.8 km"; "Etapp Grinda Medel 9.8 km" (läst 2026-09-28) -->
-<!-- KÄLLA: https://stockholmarchipelagotrail.com/sv/section/ — "Etapp Sandhamn Lätt 8.1 km"; "Etapp Runmarö Medel 18.5 km"; "Etapp Nämdö Medel 13.1 km"; "Etapp Ornö Medel 34.1 km"; "Etapp Fjärdlång Medel 11.7 km"; "Etapp Utö Utmanande 18.4 km"; "Utö – Ålö Connector Lätt 4.6 km"; "Etapp Ålö Utmanande 13.2 km"; "Etapp Rånö Lätt 12 km"; "Etapp Nåttarö Utmanande 9.5 km"; "Etapp Landsort Medel 10.7 km" (läst 2026-09-28) -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/sv/section/ — "Etapp Sandhamn Lätt 8.1 km"; "Etapp Runmarö Medel 18.5 km" (Runmarö rättad till 16,6 km efter https://stockholmarchipelagotrail.com/section/section-runmaro/ — "Moderate 16.6 km", läst 2026-09-30); "Etapp Nämdö Medel 13.1 km"; "Etapp Ornö Medel 34.1 km"; "Etapp Fjärdlång Medel 11.7 km"; "Etapp Utö Utmanande 18.4 km"; "Utö – Ålö Connector Lätt 4.6 km"; "Etapp Ålö Utmanande 13.2 km"; "Etapp Rånö Lätt 12 km"; "Etapp Nåttarö Utmanande 9.5 km"; "Etapp Landsort Medel 10.7 km" (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ledens webbplats listar 22 delar från norr till söder: 20 öetapper, roddbåtarna mellan Finnhamn och Ingmarsö och en förbindelseled mellan Utö och Ålö. Varje etapp har en svårighetsgrad: lätt, medel eller utmanande.</p>
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
 <li><strong>Arholma</strong> – 13,4 km, medel</li>
@@ -3010,7 +3010,7 @@ export function getGuideContent(slug: string): string {
 <li><strong>Möja</strong> – 13,8 km, lätt</li>
 <li><strong>Grinda</strong> – 9,8 km, medel</li>
 <li><strong>Sandhamn</strong> – 8,1 km, lätt</li>
-<li><strong>Runmarö</strong> – 18,5 km, medel</li>
+<li><strong>Runmarö</strong> – 16,6 km, medel</li>
 <li><strong>Nämdö</strong> – 13,1 km, medel</li>
 <li><strong>Ornö</strong> – 34,1 km, medel</li>
 <li><strong>Fjärdlång</strong> – 11,7 km, medel</li>

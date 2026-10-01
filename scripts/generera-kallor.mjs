@@ -212,6 +212,8 @@ function parseVad(rest) {
   if (delar.length < 2) return ''
   let vad = delar.slice(1).join(' — ').replace(/https?:\/\/\S+/g, '').trim()
   vad = vad.replace(/\((?:läst|hämtad|verifierat)[^)]*\)/g, '')
+  // Samma datum utan parentes: "…, läst 2026-09-24 , …" (skrivsättet i omgångarna 24–29 sept)
+  vad = vad.replace(/[,;]?\s*\b(?:läst|hämtad|verifierat)\s+\d{4}-\d{2}-\d{2}\s*[,:;]?/g, ' ')
   // Städa bort halva citattecken som blivit kvar när raden delats
   vad = vad.replace(/^["'\u201d\u201c]+/, '').replace(/[\s;,—–]+$/, '')
   const citattecken = (vad.match(/"/g) || []).length
@@ -222,7 +224,9 @@ function parseVad(rest) {
 }
 
 function parseLast(rad) {
-  const m = rad.match(/\((?:läst|hämtad|verifierat)\s+(\d{4}-\d{2}-\d{2})\)/)
+  // Med eller utan parentes: "(läst 2026-09-27)" eller ", läst 2026-09-24 ,".
+  // Ett naket datum utan ordet läst räknas inte: det kan vara sidans eget datum.
+  const m = rad.match(/\b(?:läst|hämtad|verifierat)\s+(\d{4}-\d{2}-\d{2})/)
   return m ? m[1] : null
 }
 

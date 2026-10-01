@@ -44,7 +44,7 @@ const FAQ_ITEMS = [
   {
     q: 'Vilken etapp är längst?',
     // KÄLLA: stockholmarchipelagotrail.com/section (läst 2026-09-17)
-    a: 'Ornö med 34,1 km är den överlägset längsta etappen. Därefter kommer Yxlan med 24 km och Runmarö med 18,5 km. Kortast är Brottö på 1 km och roddbåtssträckan mellan Finnhamn och Ingmarsö på 400 meter.',
+    a: 'Ornö med 34,1 km är den överlägset längsta etappen. Därefter kommer Yxlan med 24 km och Runmarö med 16,6 km. Kortast är Brottö på 1 km och roddbåtssträckan mellan Finnhamn och Ingmarsö på 400 meter.',
   },
   {
     q: 'Vilken etapp är svårast?',
