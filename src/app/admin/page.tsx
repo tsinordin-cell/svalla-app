@@ -213,6 +213,14 @@ const ADMIN_TOOLS: AdminTool[] = [
     badge: 'NY',
     color: '#0a7b8c',
   },
+  {
+    href:  '/admin/nyckeltal',
+    icon:  <IcoBarChart color="#1e5c82" />,
+    title: 'Nyckeltal per månad',
+    desc:  'Besök, vidareklick, e-postlista och partnerförfrågningar, månaden mot månaden före',
+    badge: 'NY',
+    color: '#1e5c82',
+  },
 ]
 
 export default async function AdminPage() {
