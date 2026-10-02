@@ -11,6 +11,8 @@
  *   html_body  — HTML-kropp att wrappa i Svallamallen
  *   dry_run    — (valfritt) true = logga utan att skicka
  *   batch_size — (valfritt) max antal per körning, default 500
+ *   segment    — (valfritt) batagare | fritidshus | dagstur. Skickar bara till
+ *                dem som själva valt det segmentet. Utan segment: alla.
  *
  * Auth: Bearer ${CRON_SECRET}  (samma hemlig som cronen)
  *
@@ -20,6 +22,7 @@
 
 import { NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { arSegment } from '@/lib/mejlsegment'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -101,6 +104,7 @@ export async function POST(req: Request) {
     html_body?: string
     dry_run?: boolean
     batch_size?: number
+    segment?: string
   }
 
   try {
@@ -109,7 +113,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Ogiltig JSON' }, { status: 400 })
   }
 
-  const { issue_id, subject, html_body, preheader, dry_run = false, batch_size = 500 } = body
+  const { issue_id, subject, html_body, preheader, dry_run = false, batch_size = 500, segment } = body
+
+  if (segment !== undefined && !arSegment(segment)) {
+    return NextResponse.json({ error: 'segment måste vara batagare, fritidshus eller dagstur' }, { status: 400 })
+  }
 
   if (!issue_id || !subject || !html_body) {
     return NextResponse.json(
@@ -127,12 +135,13 @@ export async function POST(req: Request) {
   }
 
   // Hämta alla bekräftade, aktiva prenumeranter
-  const { data: subscribers, error: fetchErr } = await service
+  let fraga = service
     .from('email_subscribers')
     .select('email')
     .eq('confirmed', true)
     .eq('unsubscribed', false)
-    .limit(batch_size)
+  if (segment) fraga = fraga.eq('preferences->>segment', segment)
+  const { data: subscribers, error: fetchErr } = await fraga.limit(batch_size)
 
   if (fetchErr) {
     return NextResponse.json({ error: fetchErr.message }, { status: 500 })
