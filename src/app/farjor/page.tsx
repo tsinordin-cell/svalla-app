@@ -165,6 +165,9 @@ export default async function FarjorPage() {
           <p id="farjor-intro" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 15, margin: 0, maxWidth: 640, lineHeight: 1.5 }}>
             Waxholmsbolaget och Cinderellabåtarna — linjer, bryggor och kommande avgångar för Stockholms skärgård. Cinderella avgår från Strandvägen till Sandhamn på 2 tim 30 min. Waxholmsbolaget täcker hundratals bryggor med SL-kort.
           </p>
+          <p style={{ margin: '12px 0 0', fontSize: 14 }}>
+            <Link href="/vintertidtabeller" style={{ color: '#fff', fontWeight: 600, textDecoration: 'underline' }}>Vintertidtabeller 2026/27: vad som gäller efter 12 december</Link>
+          </p>
         </div>
       </div>
 
