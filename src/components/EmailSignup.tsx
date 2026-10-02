@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { MEJLSEGMENT, SEGMENT_ETIKETT, type Mejlsegment } from '@/lib/mejlsegment'
 
 interface Props {
   source?: string
@@ -27,6 +28,8 @@ export default function EmailSignup({
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [error, setError] = useState<string | null>(null)
+  const [sparadAdress, setSparadAdress] = useState('')
+  const [segment, setSegment] = useState<Mejlsegment | null>(null)
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
@@ -46,6 +49,7 @@ export default function EmailSignup({
         return
       }
       setStatus('success')
+      setSparadAdress(email)
       setEmail('')
 
       // GA4 sign_up event (fires when GA4 is configured via gtag.js)
@@ -68,6 +72,17 @@ export default function EmailSignup({
     }
   }
 
+  // Segment (2026-10-02): ett frivilligt klick efter att adressen sparats.
+  // Samma endpoint, samma adress; servern sätter segment bara om det saknas.
+  function valjSegment(s: Mejlsegment) {
+    setSegment(s)
+    fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: sparadAdress, source, segment: s }),
+    }).catch(() => {})
+  }
+
   if (status === 'success') {
     return (
       <div
@@ -81,7 +96,30 @@ export default function EmailSignup({
           ...style,
         }}
       >
-        Tack — vi hör av oss snart med första tipset.
+        <div>Tack, adressen är sparad.</div>
+        {segment ? (
+          <div style={{ fontWeight: 500, marginTop: 6 }}>Noterat. Då anpassar vi utskicken efter det.</div>
+        ) : (
+          <>
+            <div style={{ fontWeight: 500, marginTop: 8 }}>Vad stämmer bäst in på dig?</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center', marginTop: 8 }}>
+              {MEJLSEGMENT.map(s => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => valjSegment(s)}
+                  style={{
+                    padding: '7px 12px', borderRadius: 999, fontSize: 13, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer',
+                    border: variant === 'footer' ? '1px solid rgba(255,255,255,0.5)' : '1px solid rgba(10,123,140,0.3)',
+                    background: 'transparent', color: 'inherit',
+                  }}
+                >
+                  {SEGMENT_ETIKETT[s]}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     )
   }
