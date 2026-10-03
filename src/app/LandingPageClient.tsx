@@ -571,7 +571,7 @@ const LANDING_HTML = `
  <a href="/aktivitet/mat" class="nav-dd-link">Mat &amp; dryck</a>
  <div class="nav-dd-divider"></div>
  <a href="/topplista" class="nav-dd-link">Topplistor</a>
- <a href="/evenemang" class="nav-dd-link">Evenemang</a>
+ <a href="/skargardsdatum" class="nav-dd-link">Skärgårdens datum</a>
  <a href="/bingo" class="nav-dd-link">Skärgårdsbingo 2026</a>
  <div class="nav-dd-divider"></div>
  <div class="nav-dd-section">Boka en upplevelse</div>
@@ -690,7 +690,7 @@ const LANDING_HTML = `
  <a href="/bastu-och-bad" class="mob-acc-link">Bastu &amp; spa</a>
  <a href="/aktivitet/mat" class="mob-acc-link">Mat &amp; dryck</a>
  <a href="/topplista" class="mob-acc-link">Topplistor</a>
- <a href="/evenemang" class="mob-acc-link">Evenemang</a>
+ <a href="/skargardsdatum" class="mob-acc-link">Skärgårdens datum</a>
  <a href="/bingo" class="mob-acc-link">Skärgårdsbingo 2026</a>
  <a href="/upplevelser" class="mob-acc-link" style="font-weight:600;color:var(--sea,#0a7b8c)">Alla upplevelser →</a>
  </div>

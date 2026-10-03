@@ -307,6 +307,7 @@ export default async function GuidePage({ params }: Props) {
             url={`https://svalla.se/guider/${guide.slug}`}
             surface="guide-page"
             entityId={guide.slug}
+            variant="ljus"
           />
         </div>
         <div style={{ borderTop: '2px solid rgba(30,92,130,0.10)', paddingTop: 28 }}>

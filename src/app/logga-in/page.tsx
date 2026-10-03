@@ -145,13 +145,15 @@ function LoginContent() {
           }
           return
         }
-        // Icke-blockerande — trigger hanterar users-raden
+        // Icke-blockerande — trigger hanterar users-raden. Säkerställer bara att
+        // raden finns: ignoreDuplicates, annars skrev varje inloggning över ett
+        // användarnamn som ändrats i profilen (revision 2026-10-02).
         if (data.user) {
           supabase.from('users').upsert({
             id:       data.user.id,
             username: deriveUsername(data.user.user_metadata?.username || data.user.email),
             email:    data.user.email ?? '',
-          }, { onConflict: 'id' }).then(() => {})
+          }, { onConflict: 'id', ignoreDuplicates: true }).then(() => {})
         }
         router.push(returnTo)
       }

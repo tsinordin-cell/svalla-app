@@ -154,9 +154,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
 
   // ── Statiska sidor ──────────────────────────────────────────────
+  // Revision 2026-10-02: /platser (307 → /upptack) och /planera (inloggning,
+  // Disallow i robots.txt) ska inte stå här — de togs bort 2026-07-28 och kom
+  // tillbaka med en auto-commit dagen efter. /guider/midsommar-skargarden stod
+  // två gånger (den kommer redan med i guidelistan nedan).
   const staticPages: MetadataRoute.Sitemap = [
     { url: base,                             lastModified: now, priority: 1.0, changeFrequency: 'daily'   as const },
-    { url: `${base}/platser`,                lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
     { url: `${base}/karta`,                  lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/rutter`,                 lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
     // ?vy=oar och ?vy=farjor borttagna ur sitemap — query-strängar konkurrerar
@@ -206,7 +209,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/oppet-nu`,              lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     // Guider (hub)
     { url: `${base}/guider`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
-    { url: `${base}/guider/midsommar-skargarden`, lastModified: now, priority: 0.9, changeFrequency: 'weekly' as const },
     // Transaktionella SEO-sektioner
     { url: `${base}/teambuilding`,           lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     { url: `${base}/hyra-bat`,               lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
@@ -215,7 +217,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/gotland/aventyr`,        lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${base}/aland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${base}/oland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
-    { url: `${base}/planera`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     { url: `${base}/utflykt`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     { url: `${base}/bingo`,                   lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${base}/forum`,                   lastModified: now, priority: 0.85, changeFrequency: 'daily'   as const },

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: `https://svalla.se/hoga-kusten/${kategori}` },
-    openGraph: { title, description, url: `https://svalla.se/hoga-kusten/${kategori}`, type: 'website' },
+    openGraph: { title: `${title} – Svalla`, description, url: `https://svalla.se/hoga-kusten/${kategori}`, type: 'website' },
   }
 }
 
