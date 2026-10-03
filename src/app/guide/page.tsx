@@ -324,7 +324,7 @@ function GuideContent() {
         boxShadow: '0 2px 12px rgba(10,20,35,0.25)',
         flexShrink: 0,
       }}>
-        <Link href="/feed" style={{
+        <Link href="/feed" prefetch={false} style={{
           width: 36, height: 36, borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: 'rgba(255,255,255,0.12)',

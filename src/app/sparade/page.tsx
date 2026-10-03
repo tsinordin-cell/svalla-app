@@ -72,7 +72,7 @@ export default async function SparadePage() {
   const saves: Save[] = (data ?? []) as Save[]
 
   return (
-    <main style={{
+    <div style={{
       maxWidth: 720, margin: '0 auto',
       padding: '32px 16px calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 32px)',
       fontFamily: 'inherit',
@@ -210,6 +210,6 @@ export default async function SparadePage() {
           })}
         </div>
       )}
-    </main>
+    </div>
   )
 }

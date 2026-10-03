@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react'
 import type { TourWaypoint } from '@/lib/supabase'
 import type { Map as LeafletMap, Polyline } from 'leaflet'
-import { CARTO_TILE_DARK, CARTO_TILE_LIGHT, CARTO_ATTR } from '@/lib/map-tiles'
+import { CARTO_TILE_DARK, CARTO_TILE_LIGHT, CARTO_ATTR, ZOOM_SV } from '@/lib/map-tiles'
 
 interface Props {
  waypoints: TourWaypoint[]
@@ -186,7 +186,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
  map.fitBounds(bounds, { padding: [28, 28] })
 
  // Zoom controls
- L.control.zoom({ position: 'bottomright' }).addTo(map)
+ L.control.zoom({ position: 'bottomright', ...ZOOM_SV }).addTo(map)
  }
 
  init().catch(console.error)

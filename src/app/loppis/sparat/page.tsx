@@ -60,7 +60,7 @@ export default async function SavedListingsPage() {
   const valid = saves.filter(r => r.forum_threads)
 
   return (
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 32px)',
@@ -189,6 +189,6 @@ export default async function SavedListingsPage() {
           </>
         )}
       </div>
-    </main>
+    </div>
   )
 }

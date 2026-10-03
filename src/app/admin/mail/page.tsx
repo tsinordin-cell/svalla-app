@@ -92,7 +92,7 @@ export default async function AdminMailPage() {
   const trasiga = mail.filter(m => !m.resultat.ok).length
 
   return (
-    <main className="min-h-screen bg-slate-100 dark:bg-slate-950 py-8 px-4">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 py-8 px-4">
       <div className="max-w-[1400px] mx-auto">
         <div className="flex items-baseline justify-between flex-wrap gap-3 mb-1">
           <h1 className="text-2xl font-serif font-bold text-slate-900 dark:text-slate-100">Mailutskick</h1>
@@ -132,6 +132,6 @@ export default async function AdminMailPage() {
           ))}
         </div>
       </div>
-    </main>
+    </div>
   )
 }

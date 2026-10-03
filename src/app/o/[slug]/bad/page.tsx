@@ -103,7 +103,7 @@ export default async function IslandBadPage({ params }: Props) {
         }
       />
 
-      <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
 
         {/* Källbelagd upplysning om bad på just den här ön */}
         {badNote && (
@@ -263,7 +263,7 @@ export default async function IslandBadPage({ params }: Props) {
             </div>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver gratis konto — tar 30 sekunder.</div>
           </div>
-          <Link href="/planera" style={{
+          <Link href="/planera" prefetch={false} style={{
             display: 'inline-block', background: '#e8924a', color: '#fff',
             fontSize: 14, fontWeight: 700, textDecoration: 'none',
             padding: '12px 28px', borderRadius: 50, flexShrink: 0,
@@ -282,7 +282,7 @@ export default async function IslandBadPage({ params }: Props) {
             ← Tillbaka till {island.name}
           </Link>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

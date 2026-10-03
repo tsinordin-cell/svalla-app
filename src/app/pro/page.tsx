@@ -107,7 +107,7 @@ function ProPageInner() {
     // vidare — bara en rad text, noll länkar, länkad från 41 sidor. Nu en
     // riktig "kommer"-sida med det vi bygger och två vägar tillbaka.
     return (
-      <main style={{ maxWidth: 480, margin: '0 auto', padding: '60px 20px 100px' }}>
+      <div style={{ maxWidth: 480, margin: '0 auto', padding: '60px 20px 100px' }}>
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <h1 style={{ fontSize: 26, fontWeight: 800, color: 'var(--txt)', margin: '0 0 8px' }}>Svalla Pro kommer</h1>
           <p style={{ fontSize: 15, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>
@@ -124,10 +124,10 @@ function ProPageInner() {
           ))}
         </div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-          <Link href="/feed" style={{ flex: 1, textAlign: 'center', padding: '13px 16px', borderRadius: 14, background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Till flödet</Link>
+          <Link href="/feed" prefetch={false} style={{ flex: 1, textAlign: 'center', padding: '13px 16px', borderRadius: 14, background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Till flödet</Link>
           <Link href="/oar" style={{ flex: 1, textAlign: 'center', padding: '13px 16px', borderRadius: 14, background: 'rgba(10,123,140,0.08)', color: 'var(--sea)', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Utforska öar</Link>
         </div>
-      </main>
+      </div>
     )
   }
 
@@ -164,7 +164,7 @@ function ProPageInner() {
     ]
 
     return (
-      <main style={{ maxWidth: 480, margin: '0 auto', padding: '60px 20px 100px' }}>
+      <div style={{ maxWidth: 480, margin: '0 auto', padding: '60px 20px 100px' }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           {/* Success checkmark */}
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
@@ -234,7 +234,7 @@ function ProPageInner() {
         >
           {loading ? 'Laddar…' : 'Hantera prenumeration'}
         </button>
-      </main>
+      </div>
     )
   }
 
@@ -253,7 +253,7 @@ function ProPageInner() {
   } as React.CSSProperties)
 
   return (
-    <main style={{ maxWidth: 480, margin: '0 auto', padding: '60px 20px 100px' }}>
+    <div style={{ maxWidth: 480, margin: '0 auto', padding: '60px 20px 100px' }}>
       <div style={{ textAlign: 'center', marginBottom: 32 }}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
           <div style={{ width: 60, height: 60, borderRadius: '50%', background: 'rgba(30,92,130,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -367,7 +367,7 @@ function ProPageInner() {
       >
         ← Tillbaka
       </button>
-    </main>
+    </div>
   )
 }
 

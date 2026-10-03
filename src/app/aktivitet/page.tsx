@@ -55,7 +55,7 @@ export default function ActivityIndexPage() {
         </div>
       </header>
 
-      <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         <div style={{ display: 'grid', gap: 14 }}>
           {activities.map(a => (
             <Link
@@ -109,7 +109,7 @@ export default function ActivityIndexPage() {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, fontSize: 14 }}>
             <Link href="/rutter" style={{ padding: '6px 14px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--sea)', textDecoration: 'none' }}>Alla öar →</Link>
             <Link href="/upptack" style={{ padding: '6px 14px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--sea)', textDecoration: 'none' }}>Upptäck-kartan →</Link>
-            <Link href="/planera" style={{ padding: '6px 14px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--sea)', textDecoration: 'none' }}>Reseplaneraren →</Link>
+            <Link href="/planera" prefetch={false} style={{ padding: '6px 14px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--sea)', textDecoration: 'none' }}>Reseplaneraren →</Link>
             <Link href="/jamfor" style={{ padding: '6px 14px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--sea)', textDecoration: 'none' }}>Jämför öar →</Link>
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function ActivityIndexPage() {
             description="Nya guider och säsongsnytt direkt i inkorgen. Inga annonser."
           />
         </div>
-      </main>
+      </div>
       <PublicFooter />
     </div>
   )

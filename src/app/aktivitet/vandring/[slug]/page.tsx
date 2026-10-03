@@ -189,7 +189,7 @@ export default async function VandringHikePage({ params }: Props) {
           </div>
         </header>
 
-        <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 72px' }}>
+        <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 72px' }}>
 
           {/* Snabbfakta */}
           <div style={{
@@ -438,7 +438,7 @@ export default async function VandringHikePage({ params }: Props) {
             </Link>
           </div>
 
-        </main>
+        </div>
       </div>
     </>
   )

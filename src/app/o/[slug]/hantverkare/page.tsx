@@ -96,7 +96,7 @@ export default async function IslandHantverkarePage({ params }: Props) {
       />
       <Vidareklick islandSlug={island.slug} standard="hantverk" />
 
-      <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         {alla.length === 0 ? (
           <div style={{
             background: 'var(--white)', padding: 24, borderRadius: 14,
@@ -180,7 +180,7 @@ export default async function IslandHantverkarePage({ params }: Props) {
             </div>
           </>
         )}
-      </main>
+      </div>
     </div>
   )
 }

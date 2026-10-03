@@ -328,7 +328,7 @@ export default function VandringPage() {
           </div>
         </header>
 
-        <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 80px' }}>
+        <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 80px' }}>
 
           {/* ── Filter chips ── */}
           <div style={{
@@ -688,7 +688,7 @@ export default function VandringPage() {
             />
           </div>
 
-        </main>
+        </div>
       </div>
     </>
   )

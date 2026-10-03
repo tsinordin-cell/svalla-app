@@ -35,7 +35,7 @@ export default function UpplevelserPage() {
     : EXPERIENCES.filter(e => e.category === activeFilter)
 
   return (
-    <main style={{ minHeight: '100vh', background: 'var(--bg, #f8f7f4)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f8f7f4)', paddingBottom: 80 }}>
       {/* Hero */}
       <section style={{
         background: 'linear-gradient(135deg, #1a4a6b 0%, #1e6c6c 100%)',
@@ -289,6 +289,6 @@ export default function UpplevelserPage() {
       }}>
         Svalla kan få provision när du bokar via våra länkar. Det påverkar inte priset du betalar.
       </p>
-    </main>
+    </div>
   )
 }

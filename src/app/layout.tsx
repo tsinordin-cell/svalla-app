@@ -180,7 +180,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PostHogProvider>
           <ThemeProvider>
             <PostHogPageView />
-            <main style={{ minHeight: '100dvh' }}>
+            <main id="innehall" style={{ minHeight: '100dvh' }}>
               {children}
             </main>
             <Suspense fallback={null}><Nav /></Suspense>

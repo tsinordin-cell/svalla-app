@@ -279,7 +279,8 @@ export default async function IslandPage({ params }: Props) {
  />
 
  {/* ── NAV ─────────────────────────────────────────────────── */}
- <nav style={{
+ {/* revision 2026-10-02: mork-yta = vit fokusring (globals.css), --sea syntes inte här. */}
+ <nav className="mork-yta" style={{
  background: `linear-gradient(160deg, ${regionColor} 0%, #2d7d8a 100%)`,
  padding: '18px 24px 16px',
  position: 'sticky',
@@ -288,11 +289,13 @@ export default async function IslandPage({ params }: Props) {
  boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
  }}>
  <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
- <Link href="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
+ {/* revision 2026-10-02: padding + lika stor negativ marginal ger 44 px hög
+     träffyta (var 24 resp. 18 px) utan att något flyttas visuellt. */}
+ <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', padding: '10px 0', margin: '-10px 0' }}>
  <SvallaLogo height={24} color="#ffffff" />
  </Link>
  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-   <Link href="/rutter?vy=oar" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>
+   <Link href="/rutter?vy=oar" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500, padding: '13px 0', margin: '-13px 0' }}>
      ← Alla öar
    </Link>
    {/* 2026-09-28: "Logga in" + "Kom igång" (utloggad) eller "Min skärgård" (inloggad),
@@ -303,7 +306,7 @@ export default async function IslandPage({ params }: Props) {
  </nav>
 
  {/* ── HERO ────────────────────────────────────────────────── */}
- <div style={{
+ <div className="mork-yta" style={{
  background: `linear-gradient(170deg, ${regionColor} 0%, #2d7d8a 60%, #1a9ab0 100%)`,
  padding: '52px 24px 44px',
  color: '#fff',

@@ -189,7 +189,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  }}>
  <div style={{ maxWidth: 560, margin: '0 auto' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
- <Link href="/planera" style={{
+ <Link href="/planera" prefetch={false} style={{
  width: 34, height: 34, borderRadius: '50%',
  background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
  }}>

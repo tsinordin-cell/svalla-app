@@ -22,7 +22,7 @@ export default function PartnerTackPage() {
         </div>
       </nav>
 
-      <main style={{ maxWidth: 700, margin: '0 auto', padding: '60px 24px' }}>
+      <div style={{ maxWidth: 700, margin: '0 auto', padding: '60px 24px' }}>
         <div style={{
           background: 'var(--white)',
           border: '1px solid var(--surface-3)',
@@ -83,7 +83,7 @@ export default function PartnerTackPage() {
             Tillbaka till Svalla →
           </Link>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

@@ -83,7 +83,7 @@ export default async function TagPage({ params }: Props) {
  borderBottom: '1px solid rgba(10,123,140,0.10)',
  boxShadow: '0 2px 12px rgba(0,45,60,0.05)',
  }}>
- <Link href="/feed" style={{
+ <Link href="/feed" prefetch={false} style={{
  width: 36, height: 36, borderRadius: '50%',
  background: 'rgba(10,123,140,0.08)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -132,7 +132,7 @@ export default async function TagPage({ params }: Props) {
  <p style={{ fontSize: 14, color: 'var(--txt3)', lineHeight: 1.5, marginBottom: 24 }}>
  Bli den första att logga en tur med <strong style={{ color: 'var(--sea)' }}>#{tag}</strong>!
  </p>
- <Link href="/logga" style={{
+ <Link href="/logga" prefetch={false} style={{
  display: 'inline-flex', alignItems: 'center', gap: 8,
  padding: '12px 24px', borderRadius: 14,
  background: 'var(--grad-sea)',

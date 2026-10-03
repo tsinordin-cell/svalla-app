@@ -78,7 +78,7 @@ export default async function ForumKategoriPage({ params, searchParams }: Props)
  }
 
  return (
- <main style={{
+ <div style={{
  minHeight: '100vh',
  background: 'var(--bg)',
  paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)',
@@ -244,7 +244,7 @@ export default async function ForumKategoriPage({ params, searchParams }: Props)
  </div>
  )}
  </div>
- </main>
+ </div>
  )
 }
 

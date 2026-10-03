@@ -1,4 +1,5 @@
 import { createPublicSupabaseClient } from '@/lib/supabase-server'
+import { hittaAnvandarnamn } from '@/lib/anvandarnamn'
 import type { Trip } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
@@ -71,15 +72,15 @@ export async function generateMetadata({ params }: { params: Promise<{ username:
  // aven efter att encodeURIComponent lades pa lankarna. decodeURIComponent ar en
  // no-op for redan avkodade strangar, sa detta ar sakert aven for vanliga username.
  const { username: rawUsername } = await params
- const username = decodeURIComponent(rawUsername)
+ // revision 2026-10-02: namnet med rätt skiftläge ur databasen (layouten
+ // omdirigerar fel skiftläge, se layout.tsx och src/lib/anvandarnamn.ts).
+ const username = await hittaAnvandarnamn(decodeURIComponent(rawUsername))
 
  // SOFT-404-SKYDD (2026-08-12): metadata gjorde inget uppslag alls, så okända
  // användare fick 200 med 404-innehåll — loading.tsx streamar svaret och
  // sidkroppens notFound() hinner aldrig påverka statusen. Uppslaget här är
  // billigt (PK-index på username) och är enda stället som kan ge riktig 404.
- const { data: exists } = await createPublicSupabaseClient()
-   .from('users').select('id').eq('username', username).maybeSingle()
- if (!exists) notFound()
+ if (!username) notFound()
 
  return {
  title: `${username}`,
@@ -108,7 +109,10 @@ export default async function PublicProfilePage({
 }) {
  // Se kommentar i generateMetadata ovan: dekoda alltid params.username.
  const { username: rawUsername } = await params
- const username = decodeURIComponent(rawUsername)
+ // revision 2026-10-02: rätt skiftläge ur databasen (samma uppslag som i
+ // layouten, delat via cache()). Saknas namnet faller vi tillbaka på
+ // adressen, och notFound() nedan gäller som förut.
+ const username = (await hittaAnvandarnamn(decodeURIComponent(rawUsername))) ?? decodeURIComponent(rawUsername)
  // Server component → server-klient som forwardar auth-cookies.
  // Browser-client (createClient från '@/lib/supabase') saknar session i server-context
  // och RLS blockerar då trips-läsningen → 0 turer trots att data finns.

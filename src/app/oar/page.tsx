@@ -188,7 +188,8 @@ export default function OarIndexPage() {
         </div>
       </header>
 
-      <main style={{ maxWidth: 1080, margin: '-48px auto 0', padding: '0 16px 60px' }}>
+      {/* revision 2026-10-02: div i stället för main – root-layouten har redan <main>. */}
+      <div style={{ maxWidth: 1080, margin: '-48px auto 0', padding: '0 16px 60px' }}>
         {/* Konvertering — varför skapa konto */}
         <section style={{
           background: 'var(--surface-1)', borderRadius: 18,
@@ -447,7 +448,7 @@ export default function OarIndexPage() {
             Skapa konto — 30 sekunder →
           </Link>
         </section>
-      </main>
+      </div>
 
       <PublicFooter />
     </div>

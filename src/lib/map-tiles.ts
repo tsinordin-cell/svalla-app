@@ -31,6 +31,13 @@ export const SEAMARK_ATTR  = '&copy; <a href="https://www.openseamap.org">OpenSe
 export const OSM_ATTR      = CARTO_ATTR
 export const OSM_DARK_ATTR = CARTO_ATTR
 
+/**
+ * revision 2026-10-02: Leaflets zoomknappar på svenska. Leaflet sätter både
+ * title och aria-label från de här alternativen (standard: "Zoom in"/"Zoom out",
+ * de enda engelska texterna revisionen hittade). Används i L.control.zoom({...}).
+ */
+export const ZOOM_SV = { zoomInTitle: 'Zooma in', zoomOutTitle: 'Zooma ut' } as const
+
 /** Aktivt tema via data-theme på <html>. */
 export function isDarkTheme(): boolean {
   if (typeof document === 'undefined') return false

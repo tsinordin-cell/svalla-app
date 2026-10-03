@@ -56,7 +56,7 @@ export default function NotFound() {
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
         <Link
-          href="/feed"
+          href="/feed" prefetch={false}
           style={{
             padding: '13px 28px', borderRadius: 14, border: 'none',
             background: 'var(--grad-sea)',

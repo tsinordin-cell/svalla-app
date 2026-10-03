@@ -138,7 +138,7 @@ export default async function ActivityTypePage({ params }: Props) {
         </div>
       </header>
 
-      <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         {/* Faktarutor */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12, marginBottom: 28 }}>
           <div style={{ background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 12, padding: '14px 16px' }}>
@@ -357,7 +357,7 @@ export default async function ActivityTypePage({ params }: Props) {
             description="Nya guider och säsongsnytt direkt i inkorgen. Inga annonser."
           />
         </div>
-      </main>
+      </div>
     </div>
   )
 }

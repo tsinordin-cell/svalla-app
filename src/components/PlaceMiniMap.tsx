@@ -80,7 +80,10 @@ export default function PlaceMiniMap({ lat, lng, name, pinColor = '#1e5c82', pin
         iconSize: [36, 44],
         iconAnchor: [18, 43],
       })
-      L.marker([lat, lng], { icon }).addTo(map as never)
+      // revision 2026-10-02: nålen gör inget när man klickar på den, men Leaflet
+      // gjorde den ändå till en fokuserbar knapp utan namn (axe aria-command-name).
+      // keyboard: false tar bort knapprollen och tabbstoppet; musen påverkas inte.
+      L.marker([lat, lng], { icon, keyboard: false }).addTo(map as never)
 
       mapRef.current = map
 

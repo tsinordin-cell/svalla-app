@@ -246,7 +246,7 @@ export default function OlandAventyrClient() {
           <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', margin: '0 0 14px', position: 'relative' }}>Nästa steg</p>
           <p style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 800, color: '#fff', margin: '0 0 12px', fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)', position: 'relative', lineHeight: 1.25 }}>Redo att planera din Ölandsresa?</p>
           <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.6)', margin: '0 0 32px', position: 'relative' }}>Låt Thorkel hjälpa dig att sätta ihop en personlig dagsplan.</p>
-          <Link href="/planera" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#fff', color: '#6b3a1a', fontSize: 15, fontWeight: 800, textDecoration: 'none', padding: '16px 36px', borderRadius: 32, position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.25)', letterSpacing: '0.01em' }}>
+          <Link href="/planera" prefetch={false} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#fff', color: '#6b3a1a', fontSize: 15, fontWeight: 800, textDecoration: 'none', padding: '16px 36px', borderRadius: 32, position: 'relative', boxShadow: '0 4px 20px rgba(0,0,0,0.25)', letterSpacing: '0.01em' }}>
             Planera din tur med Thorkel
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} style={{ width: 16, height: 16 }}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 18l6-6-6-6" />

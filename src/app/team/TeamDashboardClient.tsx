@@ -1172,7 +1172,7 @@ export default function TeamDashboardClient({
         </div>
 
         {/* ── Huvudinnehåll ─────────────────────────────────────────────── */}
-        <main className="svt-main">
+        <div className="svt-main">
           <div style={{ maxWidth: 980, margin: '0 auto' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 22, flexWrap: 'wrap', gap: 10 }}>
               <div>
@@ -1264,7 +1264,7 @@ export default function TeamDashboardClient({
               />
             )}
           </div>
-        </main>
+        </div>
       </div>
     </>
   )
