@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PublicFooter from '@/components/PublicFooter'
 import SvallaLogo from '@/components/SvallaLogo'
-import { SEED_FERRY_ROUTES, fetchDepartures, type FerryDeparture } from '@/lib/ferries'
+import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats } from '@/lib/ferries'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 
 // SEO 2026-09-23 (Search Console 3 mån): 32 500 visningar, plats 8,1, 0,5 % klick.
@@ -121,16 +121,19 @@ function departureLabel(iso: string): string {
 }
 
 export default async function FarjorPage() {
-  // Hämta avgångar parallellt för alla rutter. fetchDepartures returnerar
-  // tom lista om ResRobot inte har någon båtresa på sträckan — då visas inga
-  // tider. Seed-generatorn är borttagen; vi hittar inte på tidtabeller.
+  // Hämta avgångar parallellt för alla rutter. Tom lista betyder att ResRobot
+  // inte har någon båtresa på sträckan — då visas inga tider. Seed-generatorn
+  // är borttagen; vi hittar inte på tidtabeller.
+  // revision 2026-10-02: `fel` skiljer "kunde inte hämtas" från "inga
+  // avgångar". Förut såg ett API-fel ut exakt som en tom tidtabell.
   const routesWithDeps = await Promise.all(
-    SEED_FERRY_ROUTES.map(async r => ({
-      route: r,
-      deps: await fetchDepartures(r, 3) as FerryDeparture[],
-    })),
+    SEED_FERRY_ROUTES.map(async r => {
+      const { departures, fel } = await fetchDeparturesResult(r, 3)
+      return { route: r, deps: departures, fel }
+    }),
   )
   const anyLive = routesWithDeps.some(r => r.deps.length > 0)
+  const allaFel = routesWithDeps.every(r => r.fel !== null)
 
   const speakableJsonLd = {
     '@context': 'https://schema.org',
@@ -163,7 +166,8 @@ export default async function FarjorPage() {
             Färjetider
           </h1>
           <p id="farjor-intro" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 15, margin: 0, maxWidth: 640, lineHeight: 1.5 }}>
-            Waxholmsbolaget och Cinderellabåtarna — linjer, bryggor och kommande avgångar för Stockholms skärgård. Cinderella avgår från Strandvägen till Sandhamn på 2 tim 30 min. Waxholmsbolaget täcker hundratals bryggor med SL-kort.
+            {/* revision 2026-10-02: "kommande avgångar" gäller bara Waxholmsbolagets linjer — ingen Cinderella-resa har setts i Trafiklabs data */}
+            Waxholmsbolaget och Cinderellabåtarna — linjer och bryggor i Stockholms skärgård, och kommande avgångar för Waxholmsbolagets linjer. Cinderella avgår från Strandvägen till Sandhamn på 2 tim 30 min. Waxholmsbolaget täcker hundratals bryggor med SL-kort.
           </p>
           <p style={{ margin: '12px 0 0', fontSize: 14 }}>
             <Link href="/vintertidtabeller" style={{ color: '#fff', fontWeight: 600, textDecoration: 'underline' }}>Vintertidtabeller 2026/27: vad som gäller efter 12 december</Link>
@@ -183,7 +187,8 @@ export default async function FarjorPage() {
             color: 'var(--txt2)',
             lineHeight: 1.5,
           }}>
-            <strong style={{ color: 'var(--txt)' }}>Live.</strong> Avgångar hämtas från Trafiklab (Waxholmsbolaget & Cinderella).
+            {/* revision 2026-10-02: "(Waxholmsbolaget & Cinderella)" borttaget — ingen Cinderella-resa har setts i Trafiklabs data */}
+            <strong style={{ color: 'var(--txt)' }}>Live.</strong> Avgångar hämtas från Trafiklab.
             Uppdateras löpande. Dubbelkolla alltid mot operatören inför avgång.
           </div>
         ) : (
@@ -196,8 +201,19 @@ export default async function FarjorPage() {
             color: 'var(--txt2)',
             lineHeight: 1.5,
           }}>
-            <strong style={{ color: 'var(--txt)' }}>Inga live-avgångar just nu.</strong> Vi visar bara tider vi kan hämta
-            från Trafiklab — aldrig uppskattningar. Följ länken till operatören för tidtabell och bokning.
+            {/* revision 2026-10-02: när ingen rutt kunde hämtas säger vi det, i stället för "inga avgångar".
+                Ingen orsak och inget "just nu": orsaken kan vara en saknad nyckel, och sidan kan vara cachad i timmar. */}
+            {allaFel ? (
+              <>
+                <strong style={{ color: 'var(--txt)' }}>Avgångarna kunde inte hämtas.</strong> Vi visar bara tider vi kan hämta
+                från Trafiklab — aldrig uppskattningar. Följ länken till operatören för tidtabell och bokning.
+              </>
+            ) : (
+              <>
+                <strong style={{ color: 'var(--txt)' }}>Inga live-avgångar.</strong> Vi visar bara tider vi kan hämta
+                från Trafiklab — aldrig uppskattningar. Följ länken till operatören för tidtabell och bokning.
+              </>
+            )}
           </div>
         )}
       </div>
@@ -205,7 +221,7 @@ export default async function FarjorPage() {
       {/* ROUTES */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '28px 20px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 16 }}>
-          {routesWithDeps.map(({ route: r, deps }) => {
+          {routesWithDeps.map(({ route: r, deps, fel }) => {
             const isLive = deps.length > 0
             return (
               <article key={r.id} style={{
@@ -261,9 +277,16 @@ export default async function FarjorPage() {
                   </div>
                   {deps.length === 0 ? (
                     <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5, padding: '4px 0 2px' }}>
-                      Ingen båtavgång hittad på den här sträckan just nu. Det kan bero på säsong,
-                      tid på dygnet eller att linjen inte finns i Trafiklab. Tidtabellen hos
-                      operatören gäller.
+                      {/* revision 2026-10-02: ett hämtfel får inte se ut som "inga båtar" */}
+                      {fel ? (
+                        <>Avgångarna kunde inte hämtas — se {operatorWebbplats(r)}.</>
+                      ) : (
+                        <>
+                          Ingen båtavgång hittad på den här sträckan. Det kan bero på säsong,
+                          tid på dygnet eller att linjen inte finns i Trafiklab. Tidtabellen hos
+                          operatören gäller.
+                        </>
+                      )}
                     </div>
                   ) : deps.map((d, i) => (
                     <div key={i} style={{

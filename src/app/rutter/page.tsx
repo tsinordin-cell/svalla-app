@@ -7,7 +7,7 @@ import MessageBell from '@/components/MessageBell'
 import EmptyState from '@/components/EmptyState'
 import { categoryColor as categoryColorTokens } from '@/lib/tokens'
 import { ISLANDS } from '@/app/o/island-data'
-import { SEED_FERRY_ROUTES, fetchDepartures, type FerryDeparture, type FerryRoute } from '@/lib/ferries'
+import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats, type FerryRoute } from '@/lib/ferries'
 
 // ── Öar-sektioner (matchar /oar) ──────────────────────────────────────────
 const ISLAND_SECTIONS = [
@@ -385,13 +385,15 @@ function departureLabel(iso: string): string {
 }
 
 async function FerriesView() {
+  // revision 2026-10-02: `fel` skiljer "kunde inte hämtas" från "inga avgångar".
   const routesWithDeps = await Promise.all(
-    SEED_FERRY_ROUTES.map(async (r: FerryRoute) => ({
-      route: r,
-      deps: await fetchDepartures(r, 3) as FerryDeparture[],
-    })),
+    SEED_FERRY_ROUTES.map(async (r: FerryRoute) => {
+      const { departures, fel } = await fetchDeparturesResult(r, 3)
+      return { route: r, deps: departures, fel }
+    }),
   )
   const anyLive = routesWithDeps.some(r => r.deps.length > 0)
+  const allaFel = routesWithDeps.every(r => r.fel !== null)
 
   return (
     <div style={{ maxWidth: 960, margin: '0 auto', padding: '16px 16px 100px' }}>
@@ -419,12 +421,22 @@ async function FerriesView() {
           lineHeight: 1.5,
           marginBottom: 14,
         }}>
-          <strong style={{ color: 'var(--txt)' }}>Inga live-avgångar just nu.</strong> Vi visar bara tider vi kan hämta från Trafiklab — följ länken till operatören för tidtabell.
+          {/* revision 2026-10-02: när ingen rutt kunde hämtas säger vi det, i stället för "inga avgångar".
+              Ingen orsak och inget "just nu": orsaken kan vara en saknad nyckel. */}
+          {allaFel ? (
+            <>
+              <strong style={{ color: 'var(--txt)' }}>Avgångarna kunde inte hämtas.</strong> Vi visar bara tider vi kan hämta från Trafiklab — följ länken till operatören för tidtabell.
+            </>
+          ) : (
+            <>
+              <strong style={{ color: 'var(--txt)' }}>Inga live-avgångar.</strong> Vi visar bara tider vi kan hämta från Trafiklab — följ länken till operatören för tidtabell.
+            </>
+          )}
         </div>
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 14 }}>
-        {routesWithDeps.map(({ route: r, deps }) => {
+        {routesWithDeps.map(({ route: r, deps, fel }) => {
           const isLive = deps.length > 0
           const opColor = r.operator === 'Waxholmsbolaget' ? '#1e5c82' : r.operator === 'Cinderella' ? '#c96e2a' : '#2e7d32'
           const opBg = r.operator === 'Waxholmsbolaget' ? 'rgba(30,92,130,0.08)' : r.operator === 'Cinderella' ? 'rgba(201,110,42,0.1)' : 'rgba(46,125,50,0.08)'
@@ -464,7 +476,10 @@ async function FerriesView() {
                 </div>
                 {deps.length === 0 ? (
                   <div style={{ fontSize: 12, color: 'var(--txt2)', lineHeight: 1.5, padding: '2px 0' }}>
-                    Ingen båtavgång hittad just nu — se operatörens tidtabell.
+                    {/* revision 2026-10-02: ett hämtfel får inte se ut som "inga båtar" */}
+                    {fel
+                      ? <>Avgångarna kunde inte hämtas — se {operatorWebbplats(r)}.</>
+                      : <>Ingen båtavgång hittad — se operatörens tidtabell.</>}
                   </div>
                 ) : deps.map((d, i) => (
                   <div key={i} style={{
