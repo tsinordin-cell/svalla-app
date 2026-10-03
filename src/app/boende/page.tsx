@@ -1,16 +1,12 @@
 import type { Metadata } from 'next'
-import { redirect } from 'next/navigation'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import JsonLd from '@/components/JsonLd'
 
-// Redirectar gamla ?typ=-URLer till de nya SEO-sidorna
-const TYP_REDIRECT: Record<string, string> = {
-  stugor: '/boende/stugor-stugbyar',
-  hotell: '/boende/hotell-vandrarhem',
-  camping: '/boende/camping-talt',
-  bnb: '/boende/bb',
-  bb: '/boende/bb',
-}
+// Gamla ?typ=-URLer redirectas i next.config.ts (redirects med has: query),
+// inte här (revision 2026-10-02). searchParams gjorde hela /boende dynamisk:
+// MISS båda varven, private/no-store (uppmätt 2026-10-02: 0,60/0,58 s), fast
+// sidan i övrigt är helt statisk. Läs inte searchParams här igen, då blir
+// sidan dynamisk på nytt.
 
 export const metadata: Metadata = {
   title: 'Boende i Stockholms skärgård',
@@ -70,16 +66,7 @@ const ITEMS: LandingItem[] = [
   },
 ]
 
-export default async function BoendePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ typ?: string }>
-}) {
-  const { typ } = await searchParams
-  if (typ && TYP_REDIRECT[typ]) {
-    redirect(TYP_REDIRECT[typ])
-  }
-
+export default function BoendePage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',

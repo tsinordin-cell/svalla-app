@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { cache } from 'react'
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createPublicSupabaseClient } from '@/lib/supabase-server'
 
 // koder: alla archipelago_region-koder som hör till regionen. Tidigare matchades
 // bara en exakt kod, så t.ex. 'bohuslan_nord' föll bort från /bohuslan/* (mätt
@@ -120,8 +120,13 @@ export const getPlacesForRegionCategory = cache(async (regionKey: string, catego
   const region = REGIONS[regionKey as keyof typeof REGIONS]
   const cat = CATEGORIES[categoryKey]
   if (!region || !cat) return []
-  const supabase = await createServerSupabaseClient()
-  const { data } = await supabase
+  // Cookie-fri klient (revision 2026-10-02). cookies() gjorde /goteborg och
+  // alla /{region}/[kategori] dynamiska: MISS båda varven, private/no-store
+  // (uppmätt 2026-10-02: /goteborg/krogar 0,47/0,60 s, /bohuslan/krogar
+  // 0,65/0,61 s). restaurants har samma läspolicy för alla roller
+  // (hidden_at IS NULL), så resultatet är detsamma för in- och utloggade.
+  const supabase = createPublicSupabaseClient()
+  const { data, error } = await supabase
     .from('restaurants')
     .select('id, name, slug, latitude, longitude, island, google_rating, google_ratings_total, formatted_address, image_url, endast_medlemmar')
     .in('archipelago_region', region.koder)
@@ -129,6 +134,15 @@ export const getPlacesForRegionCategory = cache(async (regionKey: string, catego
     .order('google_rating', { ascending: false, nullsFirst: false })
     .order('google_ratings_total', { ascending: false, nullsFirst: false })
     .limit(200)
+    // Avbryt efter 10 s (revision 2026-10-02), som i lib/articles.ts. Utan
+    // gräns fastnade bygget i 60 s per sida när databasen inte svarade.
+    .abortSignal(AbortSignal.timeout(10_000))
+  // Kasta vid frågefel i stället för att returnera [] (revision 2026-10-02).
+  // Med ISR cachades ett tyst [] som tom sida med noindex i upp till en timme,
+  // och ett bygge med databasen nere gick igenom med 28 tomma noindex-sidor
+  // (granskningen 2026-10-02, låtsasdatabas som svarar 500). Ett kast gör att
+  // Next behåller den gamla sidan vid förnyelse och att bygget avbryts.
+  if (error) throw new Error(`restaurants: ${error.message}`)
   return (data ?? []) as Place[]
 })
 
