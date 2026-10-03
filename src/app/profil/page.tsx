@@ -182,10 +182,15 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
       sailing_region: sailingRegion.trim() || null,
       website: website.trim() || null,
       public_fields: publicFields,
-    }).eq('id', user.id).select().single()
+    })
+      .eq('id', user.id)
+      // Uttryckliga kolumner, inte select(): e-post ska bara läsas på servern
+      // (revision 2026-10-02). Den egna adressen finns redan i user.
+      .select('id, username, avatar, bio, website, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields, created_at')
+      .single()
     if (upErr || !updated) { setError('Kunde inte spara. Försök igen.'); setSaving(false); return }
     toast('Profil sparad ✓')
-    onSaved(updated as User)
+    onSaved({ ...updated, email: user.email } as User)
   }
 
   return (
@@ -325,12 +330,14 @@ export default function ProfilPage() {
       const { data: { user: authUser } } = await supabase.auth.getUser()
       if (!authUser) { router.push('/logga-in'); return }
       const [{ data: profile }, { data: myTrips }, { count: fwers }, { count: fwing }] = await Promise.all([
-        supabase.from('users').select('id, username, email, avatar, bio, website, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields, created_at').eq('id', authUser.id).single(),
+        // email hämtas inte ur users (revision 2026-10-02): e-post ska bara
+        // läsas på servern. Den egna adressen finns i inloggningen och läggs på nedan.
+        supabase.from('users').select('id, username, avatar, bio, website, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields, created_at').eq('id', authUser.id).single(),
         supabase.from('trips').select('id, user_id, boat_type, distance, duration, average_speed_knots, max_speed_knots, image, location_name, caption, pinnar_rating, started_at, ended_at, created_at, route_points').eq('user_id', authUser.id).is('deleted_at', null).order('created_at', { ascending: false }),
         supabase.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', authUser.id),
         supabase.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', authUser.id),
       ])
-      setUser(profile as User)
+      setUser(profile ? ({ ...profile, email: authUser.email ?? '' } as User) : null)
       setTrips((myTrips as Trip[]) ?? [])
       setFollowersCount(fwers ?? 0)
       setFollowingCount(fwing ?? 0)
