@@ -188,16 +188,20 @@ const nextConfig: NextConfig = {
         destination: '/oar',
         permanent: true,
       },
-      // /evenemang → /event (svenska alias för evenemangssidan)
+      // /evenemang → /skargardsdatum (revision 2026-10-02). Gick tidigare till
+      // /event, som är gömd och svarar 404 (PR #409) — gamla länkar och
+      // sökträffar hamnade då på en 404. Skärgårdens datum är samma ersättning
+      // som menylänkarna. Tillfällig (307) så att /evenemang kan återanvändas
+      // om evenemangssidan kommer tillbaka.
       {
         source: '/evenemang',
-        destination: '/event',
-        permanent: true,
+        destination: '/skargardsdatum',
+        permanent: false,
       },
       {
         source: '/evenemang/:path*',
-        destination: '/event/:path*',
-        permanent: true,
+        destination: '/skargardsdatum',
+        permanent: false,
       },
       { source: '/blogg/midsommar-skargarden-2026', destination: '/guider/midsommar-skargarden', permanent: true },
       // Klubbar (2026-09-29): funktionen bygger på tabeller som aldrig skapats. Sökintentionen

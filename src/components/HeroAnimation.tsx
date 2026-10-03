@@ -250,7 +250,10 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Resize ─────────────────────────────────────────────────────────── */
     const resize = () => {
-      dpr = window.devicePixelRatio || 1
+      // Högst 2× upplösning (revision 2026-10-02): på en telefon med dpr 3
+      // ritades 9× så många pixlar som på en vanlig skärm, 30 gånger i sekunden.
+      // 2× ger 4× — tunna linjer (flagga, rigg, fåglar) är fortfarande skarpa.
+      dpr = Math.min(window.devicePixelRatio || 1, 2)
       const r = cv.getBoundingClientRect()
       W = r.width; H = r.height
       // szH = "scene height" — samma referens som peakY använder.
@@ -263,8 +266,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       init()
     }
     resize()
-    const ro = new ResizeObserver(resize)
-    ro.observe(cv)
 
     /* ═══════════════════════════════════════════════════════════════════════
        DRAW HELPERS
@@ -1217,11 +1218,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     const MIN_FRAME_MS = 1000 / 30
     const stilla = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 
-    const tick = (now: number) => {
-      if (now - last < MIN_FRAME_MS - 1) { raf = requestAnimationFrame(tick); return }
-      const dt = Math.min(now - last, 50)
-      last = now; t += dt * 0.001
-
+    const ritaBild = (dt: number) => {
       cx.clearRect(0, 0, W, H)
       drawSky()
       drawSun()
@@ -1238,30 +1235,79 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawBubbles(dt)
       drawOverlay()
       drawBirds(dt)
+    }
 
-      if (stilla) return
+    // ── Loopen: högst en åt gången (revision 2026-10-02) ──────────────────
+    // Tidigare kunde två rAF-kedjor gå samtidigt (start + återupptag efter
+    // scroll), och bara den ena stoppades vid avmontering.
+    let kor = false        // animationsloopen är igång
+    let fardig = false     // sidan har laddat klart och webbläsaren har tid över
+    let synlig = true      // canvas syns i fönstret
+
+    const tick = (now: number) => {
+      if (!kor) return
+      if (now - last < MIN_FRAME_MS - 1) { raf = requestAnimationFrame(tick); return }
+      const dt = Math.min(now - last, 50)
+      last = now; t += dt * 0.001
+      ritaBild(dt)
       raf = requestAnimationFrame(tick)
     }
 
+    const startaLoop = () => {
+      if (kor || stilla || !synlig || !fardig) return
+      kor = true
+      cancelAnimationFrame(raf)
+      // Nollställ tidsdeltat så att scenen inte hoppar efter en paus
+      raf = requestAnimationFrame(n => { last = n; tick(n) })
+    }
+    const stoppaLoop = () => {
+      kor = false
+      cancelAnimationFrame(raf)
+    }
+
+    // ── Storlek: att sätta canvas.width/height tömmer bilden ───────────────
+    // ResizeObserver anropas alltid en gång när observationen startar, och
+    // sedan vid varje storleksändring. Rita om direkt (dt=0, inget flyttas)
+    // — annars är canvas tom i den bild som målas, både när loopen står
+    // still (före start, utanför bild, reducerad rörelse) och när den går.
+    // Det här är också den första bilden som ritas.
+    const ro = new ResizeObserver(() => {
+      resize()
+      ritaBild(0)
+    })
+    ro.observe(cv)
+
     // ── Pausa när canvas är off-screen (sparar CPU + batteri) ───────────────
-    let playing = true
     const io = new IntersectionObserver(entries => {
-      const entry = entries[0]
+      const entry = entries[entries.length - 1]
       if (!entry) return
-      if (entry.isIntersecting && !playing) {
-        if (stilla) return
-        playing = true
-        // Återupptag: nollställ time-deltat så vi inte hoppar
-        raf = requestAnimationFrame(n => { last = n; tick(n) })
-      } else if (!entry.isIntersecting && playing) {
-        playing = false
-        cancelAnimationFrame(raf)
-      }
+      synlig = entry.isIntersecting
+      if (synlig) startaLoop()
+      else stoppaLoop()
     }, { threshold: 0 })
     io.observe(cv)
 
-    raf = requestAnimationFrame(n => { last = n; tick(n) })
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect() }
+    // Start: animationen först när sidan laddat klart och webbläsaren har tid
+    // över. Loopen stod för merparten av startsidans blockerade huvudtråd
+    // (Lighthouse TBT) under själva laddningen.
+    let ledig = 0
+    let vantarPaLoad = false
+    const kickoff = () => {
+      vantarPaLoad = false
+      const ric = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback
+      const klar = () => { fardig = true; startaLoop() }
+      if (ric) ledig = ric(klar, { timeout: 2000 })
+      else ledig = window.setTimeout(klar, 300)
+    }
+    if (document.readyState === 'complete') kickoff()
+    else { vantarPaLoad = true; window.addEventListener('load', kickoff, { once: true }) }
+
+    return () => {
+      stoppaLoop(); ro.disconnect(); io.disconnect()
+      if (vantarPaLoad) window.removeEventListener('load', kickoff)
+      const cic = (window as Window & { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback
+      if (cic) cic(ledig); else window.clearTimeout(ledig)
+    }
   }, [variant])
 
   return (

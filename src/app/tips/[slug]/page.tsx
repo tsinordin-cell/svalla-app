@@ -29,10 +29,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const a = await getArticleBySlug(slug)
-  if (!a) return { title: 'Artikel hittades inte — Svalla' }
+  if (!a) return { title: 'Artikel hittades inte' }
   const ogUrl = `https://svalla.se/api/og/tips/${a.slug}`
   return {
-    title: `${a.title} — Svalla`,
+    title: a.title,
     description: a.excerpt || 'Redaktionellt innehåll från Svalla.',
     // Tredje gången auto-verktyget stryker denna (07-24, 07-29). Se
     // CLAUDE.md punkt 1 innan den tas bort igen.
