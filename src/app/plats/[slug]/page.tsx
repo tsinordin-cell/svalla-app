@@ -90,7 +90,10 @@ function isEatery(type: string | null) {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
- const { slug } = await params
+ const { slug: rawSlug } = await params
+ // Next avkodar inte dynamiska segment (CLAUDE.md p13/p33) — revision 2026-10-02.
+ let slug = rawSlug
+ try { slug = decodeURIComponent(rawSlug) } catch { /* slå upp som den är */ }
  const supabase = await createServerSupabaseClient()
  const { data } = await supabase
  .from('restaurants')
@@ -114,7 +117,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function PlatsPage({ params }: { params: Promise<{ slug: string }> }) {
- const { slug } = await params
+ const { slug: rawSlug } = await params
+ // Next avkodar inte dynamiska segment (CLAUDE.md p13/p33) — revision 2026-10-02.
+ let slug = rawSlug
+ try { slug = decodeURIComponent(rawSlug) } catch { /* slå upp som den är */ }
  const supabase = await createServerSupabaseClient()
 
  const { data, error } = await supabase

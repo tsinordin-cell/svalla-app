@@ -144,7 +144,10 @@ export async function middleware(request: NextRequest) {
   }
 
   // ── 0. Permanent redirects (URL-rename) ──
-  const decodedPath = decodeURIComponent(pathname)
+  // try: en trasig %-kodning (t.ex. /%E0%A4%A) kastade URIError → 500 på
+  // varje sådan förfrågan (revision 2026-10-02).
+  let decodedPath = pathname
+  try { decodedPath = decodeURIComponent(pathname) } catch { /* behåll som den är */ }
   const redirectTo = PERMANENT_REDIRECTS[pathname] ?? PERMANENT_REDIRECTS[decodedPath]
   if (redirectTo) {
     const url = request.nextUrl.clone()

@@ -63,7 +63,13 @@ export async function generateStaticParams() {
  * (snyggare URL), fallback till UUID för bakåtkompatibilitet.
  */
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
-async function fetchRestaurant(idOrSlug: string, columns: string) {
+async function fetchRestaurant(rawIdOrSlug: string, columns: string) {
+  // Next avkodar inte dynamiska segment (CLAUDE.md p13/p33): /upptack/svartsö-…
+  // kommer in som svarts%C3%B6-… och matchade aldrig sluggen i databasen.
+  // Fem synliga platser visade därför "Platsen kunde inte hittas" (revision
+  // 2026-10-02). decodeURIComponent är en no-op för ASCII-slugs och UUID:n.
+  let idOrSlug = rawIdOrSlug
+  try { idOrSlug = decodeURIComponent(rawIdOrSlug) } catch { /* ogiltig kodning: slå upp som den är */ }
   const supabase = createPublicSupabaseClient()
   const isUuid = UUID_RE.test(idOrSlug)
   const col = isUuid ? 'id' : 'slug'
@@ -547,6 +553,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
          url={`https://svalla.se/upptack/${canonicalPath}`}
          surface="upptack_detail"
          entityId={r.id}
+         variant="ljus"
        />
      </div>
      <div style={{
