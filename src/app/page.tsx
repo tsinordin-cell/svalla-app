@@ -16,6 +16,7 @@ import type { Metadata } from 'next'
 import { getLandingPhotos } from '@/lib/landingPhotos'
 import { OBILDER } from '@/app/o/obilder.generated'
 import LandingPageClient, { type Bildkalla } from './LandingPageClient'
+import { ALL_ISLANDS } from '@/app/o/island-data'
 
 export const revalidate = 3600
 
@@ -56,5 +57,8 @@ export default async function Page() {
     bildkallor.push({ namn, fotograf: b.fotograf, licens: b.licens, licensUrl: b.licensUrl, kalla: b.kalla })
   }
 
-  return <LandingPageClient photoMap={photoMap} bildkallor={bildkallor} />
+  // Antalet öar räknas här på servern så att ödatan inte hamnar i klientbundlen.
+  // Samma lista som /api/stats (alla öar med egen guidesida, /o/[slug]) —
+  // tidigare visades 83 och sedan 102 när /api/stats svarat.
+  return <LandingPageClient photoMap={photoMap} bildkallor={bildkallor} antalOar={ALL_ISLANDS.length} />
 }
