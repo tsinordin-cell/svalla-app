@@ -214,19 +214,16 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  // Canonical slug-URL för länkar och delningar
  const canonicalPath = r.slug ?? r.id
 
- // ── place_photos: admin-uppladdade foton (separat tabell) ───────────────────
- // Migration 20260505000002 byggde tabellen men den lästes aldrig. Nu mixar vi
- // in den efter Google-foton men före r.images-arrayen. Felar tyst om tabell
- // är tom eller saknar rader för denna plats.
+ // ── place_photos: lagrade kopior av platsens Google-foton ──────────────────
+ // (scripts/cache-google-photos.mjs, source='google'). Visas först i galleriet;
+ // se placePhotos nedan för ordningen. Felar tyst om platsen saknar rader.
  // PRESTANDA (2026-08-02): de här fyra frågorna är oberoende av varandra och
  // kördes tidigare i serie, en efter en. Varje led lade på full nätverkslatens
  // mot Supabase — platssidan låg på ~4 s TTFB, och det är sajtens tyngsta
  // sidtyp (699 sidor). Nu körs de parallellt. Bara users-uppslaget nedan är
  // äkta beroende (det behöver user_id från trips).
  //
- // place_photos: admin-uppladdade foton (separat tabell). Migration
- // 20260505000002 byggde tabellen men den lästes aldrig. Mixas in efter
- // Google-foton men före r.images-arrayen. Felar tyst om tabellen är tom.
+ // place_photos: lagrade kopior av Google-foton, se ovan.
  //
  // tours: hoppas över helt när platsen saknar koordinater — nearbyTours blir
  // ändå tom då, så anropet var rent slöseri. Frågan är dessutom begränsad nu;
@@ -368,13 +365,10 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  }
 
  /**
-  * Bygg bild-array i prioritetsordning:
-  *   1. Google-foton (hög kvalitet, äkta bilder från platsen — proxy:as via /api)
-  *   2. Lokala images endast om INGA Google-foton finns (vi vill inte mixa in
-  *      seedade/AI-bilder bredvid äkta foton)
-  *
-  * Detta ger oss premium-känsla: när vi har Google så ser sidan ut som ett
-  * faktiskt restaurangkort, inte en katalog-sida med varierande kvalitet.
+  * Bygg bild-array i prioritetsordning (se placePhotos nedan):
+  *   1. Lagrade foton (place_photos — kopior av platsens Google-foton)
+  *   2. Google-foton via proxyn, bara om inga lagrade finns
+  *   3. r.images, utan stockbilder
   */
  const googlePhotoRefs = ((r as Restaurant & { google_photo_refs?: { reference: string }[] | null }).google_photo_refs) ?? []
  const googlePhotoUrls = googlePhotoRefs
@@ -395,8 +389,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    u.length > 0 &&
    (u.startsWith('http://') || u.startsWith('https://') || u.startsWith('/'))
 
- // Mixa: admin place_photos först (de är hand-kurerade), sen Google, sen fallback images.
- // is_hero-ordningen från SELECT säkerställer hero-bilden hamnar först.
+ // Lagrade foton först; is_hero-ordningen från SELECT gör att hero-bilden hamnar först.
  const adminPhotoUrls = placePhotoRows.map(p => p.url).filter(isValidPhotoUrl)
  /**
   * Stockbilder får INTE bli hero på en platssida.
@@ -418,9 +411,18 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  const fallbackImages = Array.isArray(r.images)
    ? r.images.filter(isValidPhotoUrl).filter(u => !ärStockbild(u))
    : []
+ /**
+  * Google-fotona tas bara med när platsen saknar lagrade foton (revision
+  * 2026-10-02). De lagrade fotona i place_photos är kopior av platsens tre
+  * första Google-foton (scripts/cache-google-photos.mjs), så när båda fanns
+  * visades samma bild två gånger. Och sedan augusti svarar Google 403: varje
+  * sidvisning gjorde upp till sex anrop som alla misslyckades, och rutorna
+  * blinkade förbi innan onError plockade bort dem. Priset: när Google
+  * fungerar igen visas högst de tre lagrade, inte foto 4–6.
+  */
  const placePhotos: string[] = [
    ...adminPhotoUrls,
-   ...googlePhotoUrls,
+   ...(adminPhotoUrls.length === 0 ? googlePhotoUrls : []),
    ...fallbackImages,
  ]
 

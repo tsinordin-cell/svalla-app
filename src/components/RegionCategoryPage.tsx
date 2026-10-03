@@ -11,7 +11,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 // koder: alla archipelago_region-koder som hör till regionen. Tidigare matchades
 // bara en exakt kod, så t.ex. 'bohuslan_nord' föll bort från /bohuslan/* (mätt
 // 2026-09-23). Samma kodgruppering som Upptäck-flikarna (src/lib/upptackRegion.ts).
-type RegionInfo = { label: string; description: string; koder: string[] }
+type RegionInfo = { label: string; description: string; koder: string[]; sokvag?: string }
 export const REGIONS = {
   goteborg: {
     label: 'Göteborgs skärgård',
@@ -43,6 +43,9 @@ export const REGIONS = {
     // KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14)
     description: 'Härnösand, Ulvön, Kramfors, Höga Kusten-leden och Skuleskogens nationalpark — Norrlands dramatiska klippkust.',
     koder: ['hogakusten'],
+    // Nyckeln (och koden i databasen) är hogakusten, men sidorna ligger på
+    // /hoga-kusten — /hogakusten omdirigeras med 308.
+    sokvag: 'hoga-kusten',
   },
   halland: {
     label: 'Halland',
@@ -56,34 +59,45 @@ export const REGIONS = {
 // sjömackar med typen fuel_station saknades på sjömackssidorna.
 // Texterna lovar inget sajten inte kan hålla: inga "bästa", inga "verifierade
 // öppettider", inga "testade av båtfolk" (ingen sådan testning finns).
+/**
+ * Preposition före regionnamnet: öar tar "på" (på Gotland, på Öland, på Åland),
+ * resten "i" (i Bohuslän, i Halland, i Göteborgs skärgård). Revision 2026-10-02:
+ * rubrikerna sa tidigare "i Åland/Öland/Gotland".
+ */
+export function iPa(region: string): string {
+  return ['Åland', 'Öland', 'Gotland'].includes(region) ? 'på' : 'i'
+}
+
+// metaTitle har inget "Svalla" — root-layoutens template lägger på "– Svalla"
+// (titelregeln i CLAUDE.md). Sidorna lägger själva till varumärket i openGraph.
 export const CATEGORIES: Record<string, { label: string; types: string[]; intro: string; metaTitle: (region: string) => string; metaDesc: (region: string) => string }> = {
   krogar: {
     label: 'Krogar och restauranger',
     types: ['restaurant'],
     intro: 'Krogar och restauranger längs kusten. Betygen kommer från Google.',
-    metaTitle: r => `Krogar & restauranger i ${r} — Svalla`,
-    metaDesc: r => `Krogar och restauranger i ${r} samlade på en karta, med kontaktuppgifter och länkar till verksamheterna.`,
+    metaTitle: r => `Krogar & restauranger ${iPa(r)} ${r}`,
+    metaDesc: r => `Krogar och restauranger ${iPa(r)} ${r} samlade på en karta, med kontaktuppgifter och länkar till verksamheterna.`,
   },
   gasthamnar: {
     label: 'Gästhamnar och marinor',
     types: ['harbor', 'marina'],
     intro: 'Gästhamnar och marinor med position och kontaktuppgifter. Betygen kommer från Google.',
-    metaTitle: r => `Gästhamnar & marinor i ${r} — Svalla`,
-    metaDesc: r => `Gästhamnar och marinor i ${r} med position, telefon och hemsida.`,
+    metaTitle: r => `Gästhamnar & marinor ${iPa(r)} ${r}`,
+    metaDesc: r => `Gästhamnar och marinor ${iPa(r)} ${r} med position, telefon och hemsida.`,
   },
   sjomackar: {
     label: 'Sjömackar och drivmedel',
     types: ['fuel', 'fuel_station'],
     intro: 'Var du kan tanka båten i området. Kontrollera öppettider och drivmedel hos macken innan du lägger till.',
-    metaTitle: r => `Sjömackar i ${r} — Svalla`,
-    metaDesc: r => `Sjömackar och bränslestationer för båt i ${r}, med position och kontaktuppgifter.`,
+    metaTitle: r => `Sjömackar ${iPa(r)} ${r}`,
+    metaDesc: r => `Sjömackar och bränslestationer för båt ${iPa(r)} ${r}, med position och kontaktuppgifter.`,
   },
   bastu: {
     label: 'Bastu och kallbadhus',
     types: ['sauna'],
     intro: 'Bastur, badhus och kallbadhus i området. Vissa drivs av föreningar och är bara öppna för medlemmar – det står i så fall på platsens sida.',
-    metaTitle: r => `Bastu & kallbadhus i ${r} — Svalla`,
-    metaDesc: r => `Bastur och kallbadhus i ${r} med position och kontaktuppgifter.`,
+    metaTitle: r => `Bastu & kallbadhus ${iPa(r)} ${r}`,
+    metaDesc: r => `Bastur och kallbadhus ${iPa(r)} ${r} med position och kontaktuppgifter.`,
   },
 }
 
@@ -122,9 +136,10 @@ export default async function RegionCategoryPage({
   regionKey,
   categoryKey,
 }: { regionKey: string; categoryKey: string }) {
-  const region = REGIONS[regionKey as keyof typeof REGIONS]
+  const region: RegionInfo = REGIONS[regionKey as keyof typeof REGIONS]
   const cat = CATEGORIES[categoryKey]
   if (!region || !cat) notFound()
+  const regionSokvag = region.sokvag ?? regionKey
 
   const places = await getPlacesForRegionCategory(regionKey, categoryKey)
 
@@ -132,7 +147,7 @@ export default async function RegionCategoryPage({
   const itemListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `${cat.label} i ${region.label}`,
+    name: `${cat.label} ${iPa(region.label)} ${region.label}`,
     numberOfItems: places.length,
     itemListElement: places.slice(0, 50).map((p, i) => ({
       '@type': 'ListItem',
@@ -153,7 +168,7 @@ export default async function RegionCategoryPage({
       <nav aria-label="Brödsmulor" style={{ fontSize: 14, color: 'var(--txt-muted, #666)', marginBottom: 16 }}>
         <Link href="/" style={{ color: 'inherit' }}>Hem</Link>
         <span style={{ margin: '0 8px' }}>/</span>
-        <Link href={`/${regionKey}`} style={{ color: 'inherit' }}>{region.label}</Link>
+        <Link href={`/${regionSokvag}`} style={{ color: 'inherit' }}>{region.label}</Link>
         <span style={{ margin: '0 8px' }}>/</span>
         <span style={{ color: 'var(--txt, #111)' }}>{cat.label}</span>
       </nav>
@@ -161,7 +176,7 @@ export default async function RegionCategoryPage({
       {/* Header */}
       <header style={{ marginBottom: 32 }}>
         <h1 style={{ fontSize: 'clamp(28px, 5vw, 44px)', fontWeight: 700, fontFamily: "'Playfair Display', Georgia, serif", margin: 0 }}>
-          {cat.label} i {region.label}
+          {cat.label} {iPa(region.label)} {region.label}
         </h1>
         <p style={{ fontSize: 18, lineHeight: 1.6, color: 'var(--txt-muted, #555)', marginTop: 12, maxWidth: 720 }}>
           {cat.intro} {region.description}
@@ -210,11 +225,11 @@ export default async function RegionCategoryPage({
 
       {/* Cross-link till andra kategorier i samma region */}
       <section style={{ marginTop: 48, padding: 24, background: 'var(--bg-soft, rgba(0,0,0,0.03))', borderRadius: 12 }}>
-        <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>Mer i {region.label}</h2>
+        <h2 style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>Mer {iPa(region.label)} {region.label}</h2>
         <ul style={{ display: 'flex', flexWrap: 'wrap', gap: 12, listStyle: 'none', padding: 0, marginTop: 12 }}>
           {Object.entries(CATEGORIES).filter(([k]) => k !== categoryKey).map(([k, c]) => (
             <li key={k}>
-              <Link href={`/${regionKey}/${k}`} style={{ display: 'inline-block', padding: '8px 16px', background: 'var(--white, #fff)', borderRadius: 999, border: '1px solid var(--border, rgba(0,0,0,0.1))', color: 'var(--txt, #111)', textDecoration: 'none', fontSize: 14 }}>
+              <Link href={`/${regionSokvag}/${k}`} style={{ display: 'inline-block', padding: '8px 16px', background: 'var(--white, #fff)', borderRadius: 999, border: '1px solid var(--border, rgba(0,0,0,0.1))', color: 'var(--txt, #111)', textDecoration: 'none', fontSize: 14 }}>
                 {c.label}
               </Link>
             </li>

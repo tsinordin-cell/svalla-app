@@ -1,4 +1,5 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import ForumQueueActions from './ForumQueueActions'
 
@@ -45,10 +46,13 @@ export default async function AdminForumPage({
     items = data ?? []
   }
 
-  // Enricha med användarinfo
+  // Enricha med användarinfo.
+  // E-post läses med tjänsteklienten (revision 2026-10-02): användares e-post
+  // ska bara läsas på servern, aldrig via en användarsession. Admin-kontrollen
+  // ovan har redan körts.
   const userIds = [...new Set(items.map(i => i.user_id as string))]
   const { data: users } = userIds.length
-    ? await supabase.from('users').select('id, username, email').in('id', userIds)
+    ? await getAdminClient().from('users').select('id, username, email').in('id', userIds)
     : { data: [] }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const umap = new Map((users ?? []).map((u: any) => [u.id, u]))
