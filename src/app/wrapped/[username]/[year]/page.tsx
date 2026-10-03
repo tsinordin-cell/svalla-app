@@ -23,10 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  const { username: rawUsername, year } = await params
  const username = decodeURIComponent(rawUsername)
  const title = `${username}s ${year} på Svalla`
+ // "Svalla" ingår i frasen → absolute, annars lägger mallen på "– Svalla" igen (titelregeln, undantagen).
  const description = `Se ${username}s seglarsäsong ${year} — turer, distans och höjdpunkter.`
  const ogUrl = `/wrapped/${encodeURIComponent(username)}/${year}/opengraph-image`
  return {
- title,
+ title: { absolute: title },
  description,
  robots: { index: true, follow: true },
  alternates: { canonical: `https://svalla.se/wrapped/${encodeURIComponent(username)}/${year}` },

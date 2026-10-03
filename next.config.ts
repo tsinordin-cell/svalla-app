@@ -188,16 +188,20 @@ const nextConfig: NextConfig = {
         destination: '/oar',
         permanent: true,
       },
-      // /evenemang → /event (svenska alias för evenemangssidan)
+      // /evenemang → /skargardsdatum (revision 2026-10-02). Gick tidigare till
+      // /event, som är gömd och svarar 404 (PR #409) — gamla länkar och
+      // sökträffar hamnade då på en 404. Skärgårdens datum är samma ersättning
+      // som menylänkarna. Tillfällig (307) så att /evenemang kan återanvändas
+      // om evenemangssidan kommer tillbaka.
       {
         source: '/evenemang',
-        destination: '/event',
-        permanent: true,
+        destination: '/skargardsdatum',
+        permanent: false,
       },
       {
         source: '/evenemang/:path*',
-        destination: '/event/:path*',
-        permanent: true,
+        destination: '/skargardsdatum',
+        permanent: false,
       },
       { source: '/blogg/midsommar-skargarden-2026', destination: '/guider/midsommar-skargarden', permanent: true },
       // Klubbar (2026-09-29): funktionen bygger på tabeller som aldrig skapats. Sökintentionen
@@ -206,6 +210,18 @@ const nextConfig: NextConfig = {
       { source: '/klubb/:slug', destination: '/guider/seglingsklubbar-guide', permanent: false },
       // Check-in (2026-09-29): tabellen check_ins finns inte; middleware skulle annars skicka utloggade till inloggning för en 404.
       { source: '/check-in', destination: '/profil', permanent: false },
+      // Gamla /boende?typ=…-adresser, flyttade hit från src/app/boende/page.tsx
+      // (revision 2026-10-02). searchParams i sidan gjorde hela /boende dynamisk
+      // (MISS båda varven, uppmätt 2026-10-02: 0,60/0,58 s). Här matchas
+      // query-strängen före cachen och sidan kan vara statisk. Samma status som
+      // förut (307). Skillnad: Vercel skickar med query-strängen till målet
+      // (/boende/bb?typ=bnb), se /vaxholm?typ=test → /o/vaxholm?typ=test
+      // (uppmätt 2026-10-02). Målsidorna läser inte typ och har canonical utan query.
+      { source: '/boende', has: [{ type: 'query', key: 'typ', value: 'stugor' }], destination: '/boende/stugor-stugbyar', permanent: false },
+      { source: '/boende', has: [{ type: 'query', key: 'typ', value: 'hotell' }], destination: '/boende/hotell-vandrarhem', permanent: false },
+      { source: '/boende', has: [{ type: 'query', key: 'typ', value: 'camping' }], destination: '/boende/camping-talt', permanent: false },
+      { source: '/boende', has: [{ type: 'query', key: 'typ', value: 'bnb' }], destination: '/boende/bb', permanent: false },
+      { source: '/boende', has: [{ type: 'query', key: 'typ', value: 'bb' }], destination: '/boende/bb', permanent: false },
       // Årslösa adresser för säsongsguider (Search Console 2026-09-23: 38 848 + 27 091 visningar/3 mån).
       // Med årtal i adressen börjar sidan om från noll varje år. Innehåll och datum uppdateras årligen,
       // adressen ligger fast.
