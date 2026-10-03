@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { verifyAdminToken } from '@/lib/adminToken'
+import { getViewerId } from '@/lib/authClaims'
 
 // Defense-in-depth: middleware-baserad auth-gate. Varje page har också egen
 // auth-check, men listan här fångar om någon framtida sida glömmer redirect.
@@ -222,8 +223,18 @@ export async function middleware(request: NextRequest) {
       }
     )
 
-    const { data: { user } } = await supabase.auth.getUser()
-    authenticated = !!user
+    // revision 2026-10-02: redirect-beslutet bygger på JWT-claims som
+    // verifieras lokalt (getViewerId: getSession() + getClaims()) i stället
+    // för auth.getUser(), som var ett nätverksanrop mot Auth-servern
+    // (uppmätt ~620 ms) före varje skyddad sida. Sessionsförnyelsen fungerar
+    // som förut: getSession() förnyar en utgången access-token och skriver de
+    // nya cookies via setAll ovan. Saknad session och utgången eller ogiltig
+    // token ger null och samma redirect som tidigare; går tokenen inte att
+    // verifiera lokalt frågar getViewerId Auth-servern.
+    // Till skillnad från getUser() kontrolleras inte att sessionen eller
+    // kontot finns kvar. Sidor som visar eller ändrar per-användardata
+    // kontrollerar själva (getUser) eller läser via RLS. Se src/lib/authClaims.ts.
+    authenticated = (await getViewerId(supabase)) !== null
   } catch (err) {
     console.error('[middleware] auth check failed:', err)
     authenticated = false
