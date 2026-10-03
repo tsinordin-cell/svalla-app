@@ -8,13 +8,21 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://svalla.se/goteborg' },
 }
 
+// ISR en gång i timmen (revision 2026-10-02), samma skäl som
+// /goteborg/[kategori]: sidan var dynamisk eftersom getPlacesForRegionCategory
+// läste cookies (MISS båda varven, uppmätt 2026-10-02: 0,67/0,90 s).
+export const revalidate = 3600
+
 export default async function GoteborgPage() {
   const region = REGIONS.goteborg
-  const counts: Record<string, number> = {}
-  for (const k of Object.keys(CATEGORIES)) {
-    const places = await getPlacesForRegionCategory('goteborg', k)
-    counts[k] = places.length
-  }
+  // De fyra kategorifrågorna är oberoende och körs parallellt (revision
+  // 2026-10-02). Tidigare väntade en sekventiell for…await på fyra rundresor
+  // till databasen i rad.
+  const counts: Record<string, number> = Object.fromEntries(
+    await Promise.all(
+      Object.keys(CATEGORIES).map(async k => [k, (await getPlacesForRegionCategory('goteborg', k)).length] as const),
+    ),
+  )
   return (
     <main style={{ maxWidth: 960, margin: '0 auto', padding: '32px 16px 96px' }}>
       <header style={{ marginBottom: 32 }}>

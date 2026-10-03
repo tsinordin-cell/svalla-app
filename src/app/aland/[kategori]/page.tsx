@@ -4,6 +4,18 @@ import RegionCategoryPage, { CATEGORIES, REGIONS, getPlacesForRegionCategory } f
 
 interface Props { params: Promise<{ kategori: string }> }
 
+// ISR en gång i timmen (revision 2026-10-02). Sidan var dynamisk eftersom
+// getPlacesForRegionCategory läste cookies (MISS båda varven, uppmätt
+// 2026-10-02: /aland/krogar 0,55/0,66 s). Med den cookie-fria klienten blir
+// sidan statisk, och revalidate gör att ändrade platser syns inom en timme i
+// stället för först vid nästa deploy.
+export const revalidate = 3600
+
+// Okända kategorier ger 404 i routern, utan rendering (revision 2026-10-02).
+// generateStaticParams nedan ger alla nycklar i CATEGORIES, samma mängd som
+// sidan själv slår upp, så inga riktiga sidor stängs ute (CLAUDE.md p28).
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   return Object.keys(CATEGORIES).map(kategori => ({ kategori }))
 }
@@ -22,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ...(tom ? { robots: { index: false, follow: true } } : {}),
     title, description,
     alternates: { canonical: `https://svalla.se/aland/${kategori}` },
-    openGraph: { title, description, url: `https://svalla.se/aland/${kategori}`, type: 'website' },
+    openGraph: { title: `${title} – Svalla`, description, url: `https://svalla.se/aland/${kategori}`, type: 'website' },
   }
 }
 

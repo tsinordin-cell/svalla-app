@@ -2,20 +2,37 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
-import { getArticleBySlug, renderMarkdown } from '@/lib/articles'
+import { getArticleBySlug, listPublishedArticles, renderMarkdown } from '@/lib/articles'
 import EmailSignup from '@/components/EmailSignup'
 
 export const revalidate = 300
 
 type Props = { params: Promise<{ slug: string }> }
 
+// generateStaticParams (revision 2026-10-02). Utan den är en dynamisk route ƒ
+// i byggutdata och hamnar aldrig i CDN-cachen, även när cookie-beroendet i
+// lib/articles.ts är borta (CLAUDE.md p18 punkt 3, samma som /upptack/[id]).
+// Publicerade artiklar (5 st 2026-10-02) förgenereras vid bygget. Artiklar som
+// publiceras senare renderas vid första besöket (dynamicParams är kvar på
+// standardvärdet true) och cachas sedan med revalidate = 300.
+export async function generateStaticParams() {
+  try {
+    const artiklar = await listPublishedArticles()
+    return artiklar.map(a => ({ slug: a.slug }))
+  } catch {
+    // listPublishedArticles kastar vid databasfel och avbryter efter 10 s.
+    // Hellre on-demand-rendering av artiklarna än ett trasigt bygge.
+    return []
+  }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const a = await getArticleBySlug(slug)
-  if (!a) return { title: 'Artikel hittades inte — Svalla' }
+  if (!a) return { title: 'Artikel hittades inte' }
   const ogUrl = `https://svalla.se/api/og/tips/${a.slug}`
   return {
-    title: `${a.title} — Svalla`,
+    title: a.title,
     description: a.excerpt || 'Redaktionellt innehåll från Svalla.',
     // Tredje gången auto-verktyget stryker denna (07-24, 07-29). Se
     // CLAUDE.md punkt 1 innan den tas bort igen.

@@ -65,9 +65,16 @@ export async function GET(req: Request) {
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
-    // Projicera image_url så Google-foton används automatiskt om de finns.
-    // Då slipper UpptackExplorer ha någon special-logik — den använder bara image_url.
-    // Bygger thumbnail-storlek (w=400) för list-kort/markers.
+    // Projicera image_url: platsens egen bild först, Google-foto (via proxyn)
+    // bara när egen bild saknas. Då slipper UpptackExplorer ha någon
+    // special-logik — den använder bara image_url. Thumbnail-storlek (w=400).
+    //
+    // Ändrat 2026-10-02 (revision): tidigare vann Google-fotot alltid. Sedan
+    // augusti svarar Google 403 på fotoanropen, och 519 av 563 kort visade då en
+    // ikon trots att platsen hade en egen bild. Egna bilder kostar dessutom inga
+    // Google-anrop (bara Vercels bildoptimering, cachad 31 dagar), och
+    // proxy-URL:erna (base64 av Googles referens, ~660 tecken st) var 57 % av
+    // svaret: 326 kB → 83 kB gzip, mätt på svaret 2026-10-02.
     type RawRow = {
       id: string; name: string; latitude: number; longitude: number;
       type: string | null; categories: string[] | null; description: string | null;
@@ -79,7 +86,7 @@ export async function GET(req: Request) {
     const projected = (data as RawRow[] | null ?? []).map((r) => {
       let imageUrl = r.image_url
       const ref = r.google_photo_refs?.[0]?.reference
-      if (ref) {
+      if (!imageUrl && ref) {
         const encoded = Buffer.from(ref, 'utf-8').toString('base64url')
         imageUrl = `/api/places/photo/${encoded}?w=400`
       }
