@@ -3,7 +3,10 @@ import { useEffect, Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
-import { ISLANDS } from '@/app/o/island-data'
+// island-data importeras INTE här (revision 2026-10-02): den drog med hela
+// ödatan till varje besökare bara för att visa antalet öar — en chunk på
+// 787 kB (235 kB gzip, drygt 40 % av startsidans JS), mätt på svalla.se
+// 2026-10-02. Talet räknas på servern (page.tsx) och skickas in.
 
 const HeroAnimation = dynamic(() => import('@/components/HeroAnimation'), {
  ssr: false,
@@ -568,7 +571,7 @@ const LANDING_HTML = `
  <a href="/aktivitet/mat" class="nav-dd-link">Mat &amp; dryck</a>
  <div class="nav-dd-divider"></div>
  <a href="/topplista" class="nav-dd-link">Topplistor</a>
- <a href="/evenemang" class="nav-dd-link">Evenemang</a>
+ <a href="/skargardsdatum" class="nav-dd-link">Skärgårdens datum</a>
  <a href="/bingo" class="nav-dd-link">Skärgårdsbingo 2026</a>
  <div class="nav-dd-divider"></div>
  <div class="nav-dd-section">Boka en upplevelse</div>
@@ -687,7 +690,7 @@ const LANDING_HTML = `
  <a href="/bastu-och-bad" class="mob-acc-link">Bastu &amp; spa</a>
  <a href="/aktivitet/mat" class="mob-acc-link">Mat &amp; dryck</a>
  <a href="/topplista" class="mob-acc-link">Topplistor</a>
- <a href="/evenemang" class="mob-acc-link">Evenemang</a>
+ <a href="/skargardsdatum" class="mob-acc-link">Skärgårdens datum</a>
  <a href="/bingo" class="mob-acc-link">Skärgårdsbingo 2026</a>
  <a href="/upplevelser" class="mob-acc-link" style="font-weight:600;color:var(--sea,#0a7b8c)">Alla upplevelser →</a>
  </div>
@@ -771,7 +774,7 @@ const LANDING_HTML = `
 </section>
 
 <div class="trust-bar">
- <div class="trust-item"><strong data-stat="islands">${ISLANDS.length}</strong> Öar med guider</div>
+ <div class="trust-item"><strong data-stat="islands">__ANTAL_OAR__</strong> Öar med guider</div>
  <div class="trust-divider"></div>
  <div class="trust-item"><strong data-stat="places">200+</strong> Krogar &amp; hamnar kartlagda</div>
  <div class="trust-divider"></div>
@@ -1360,7 +1363,7 @@ const LANDING_HTML = `
  <div class="section-inner">
  <div class="stats-grid">
  <div class="stat-box reveal"><span class="stat-num" data-stat="places">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda längs Sveriges kuster</div></div>
- <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">${ISLANDS.length}</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
+ <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">__ANTAL_OAR__</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
  <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
  <!-- PRODUKTREGEL: vårt eget pris (gratis att komma igång) — vi är källan. -->
  <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundfunktioner gratis för alltid</div></div>
@@ -1524,7 +1527,7 @@ function bildkallorHtml(k: Bildkalla[]): string {
   return `<section aria-label="Bildkällor" style="max-width:1160px;margin:0 auto;padding:28px 24px 36px;font-size:12px;line-height:1.7;color:var(--txt3)"><strong style="font-weight:600">Bildkällor</strong> (Wikimedia Commons) – ${rader}</section>`
 }
 
-export default function LandingPageClient({ photoMap, bildkallor = [] }: { photoMap?: Record<string, string>; bildkallor?: Bildkalla[] }) {
+export default function LandingPageClient({ photoMap, bildkallor = [], antalOar }: { photoMap?: Record<string, string>; bildkallor?: Bildkalla[]; antalOar: number }) {
  const router = useRouter()
  useEffect(() => {
  // Auto-redirect till feed borttagen — inloggade användare ska kunna besöka startsidan
@@ -1772,7 +1775,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [] }: { photo
  /* Hero section — transparent shows canvas through, no dark bg that would cover animation */
  .hero { position: relative; z-index: 1; background: transparent !important; }
  `}</style>
- <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML.replace('<footer>', bildkallorHtml(bildkallor) + '<footer>') }} />
+ <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML.split('__ANTAL_OAR__').join(String(antalOar)).replace('<footer>', bildkallorHtml(bildkallor) + '<footer>') }} />
  </div>
  </>
  )

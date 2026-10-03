@@ -15,6 +15,7 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect } from 'react'
 import { track } from '@/lib/analytics-events'
+import { hasAnalyticsConsent } from '@/components/CookieConsent'
 
 function PageViewTracker() {
   const pathname    = usePathname()
@@ -23,8 +24,10 @@ function PageViewTracker() {
 
   useEffect(() => {
     if (!pathname || !posthog) return
-    const url = window.location.href
-    posthog.capture('$pageview', { $current_url: url })
+    // PostHog initieras bara efter samtycke (PostHogProvider, 2026-10-02).
+    if (hasAnalyticsConsent()) {
+      posthog.capture('$pageview', { $current_url: window.location.href })
+    }
     // Spegla till vår egen analytics_events-tabell så /admin/malet och
     // /admin/insikter kan räkna trafik utan att gå via PostHogs API.
     // track() är no-op utan analytics-consent.

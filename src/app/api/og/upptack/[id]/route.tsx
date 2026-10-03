@@ -57,7 +57,10 @@ export async function GET(
   _req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const { id: idOrSlug } = await params
+  const { id: rawIdOrSlug } = await params
+  // Avkoda åäö-slugs (samma fel som på platssidan, revision 2026-10-02).
+  let idOrSlug = rawIdOrSlug
+  try { idOrSlug = decodeURIComponent(rawIdOrSlug) } catch { /* slå upp som den är */ }
   const supabase = await createServerSupabaseClient()
 
   const isUuid = UUID_RE.test(idOrSlug)

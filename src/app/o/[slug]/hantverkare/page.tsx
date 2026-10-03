@@ -51,8 +51,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: antal > 0
-      ? `Hantverkare och service på ${n} — ${antal} företag | Svalla`
-      : `Hantverkare och service på ${n} | Svalla`,
+      ? `Hantverkare och service på ${n} — ${antal} företag`
+      : `Hantverkare och service på ${n}`,
     description: `Behöver du hjälp med huset, bryggan, båten eller tomten på ${n}? Snickare, elektriker, rörmokare och sjötransport med verksamhet på ön. Varje uppgift med källa och läsdatum.`,
     keywords: [
       `hantverkare ${n.toLowerCase()}`, `snickare ${n.toLowerCase()}`,

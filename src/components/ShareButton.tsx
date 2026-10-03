@@ -25,9 +25,16 @@ interface Props {
   surface?: string
   /** Entity-id för platsen/turen som delas (för analytics). */
   entityId?: string
+  /**
+   * 'mork' (standard): vit text på glas — för mörka ytor som öarnas hero.
+   * 'ljus': havsblå text — för ljusa ytor. Revision 2026-10-02: knappen låg
+   * vit på vit botten på alla plats- och guidesidor och syntes inte.
+   */
+  variant?: 'mork' | 'ljus'
 }
 
-export default function ShareButton({ title, description, url, surface = 'place', entityId }: Props) {
+export default function ShareButton({ title, description, url, surface = 'place', entityId, variant = 'mork' }: Props) {
+  const ljus = variant === 'ljus'
   const [toast, setToast] = useState<string | null>(null)
   const [pressed, setPressed] = useState(false)
 
@@ -81,11 +88,11 @@ export default function ShareButton({ title, description, url, surface = 'place'
           alignItems: 'center',
           gap: 7,
           padding: '9px 16px',
-          background: 'rgba(255,255,255,0.15)',
-          color: '#fff',
+          background: ljus ? 'rgba(10,123,140,0.08)' : 'rgba(255,255,255,0.15)',
+          color: ljus ? 'var(--sea, #1e5c82)' : '#fff',
           borderRadius: 50,
-          border: '1px solid rgba(255,255,255,0.25)',
-          backdropFilter: 'blur(4px)',
+          border: ljus ? '1px solid rgba(10,123,140,0.28)' : '1px solid rgba(255,255,255,0.25)',
+          backdropFilter: ljus ? undefined : 'blur(4px)',
           fontSize: 13,
           fontWeight: 600,
           cursor: 'pointer',
