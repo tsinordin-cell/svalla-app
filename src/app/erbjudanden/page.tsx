@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import { isProEnabled } from '@/lib/pro'
 
 export const metadata: Metadata = {
- title: 'Erbjudanden & paket i Stockholms skärgård — Svalla',
+ title: 'Erbjudanden & paket i Stockholms skärgård',
  description: 'Aktuella erbjudanden och paket för skärgårdsvistelser: hotell, restauranger, aktiviteter och båtcharter i Stockholms skärgård.',
  keywords: [
  'erbjudanden stockholms skärgård',
@@ -45,12 +45,6 @@ const ITEMS: LandingItem[] = [
  title: 'Middags-paket',
  description: 'Krogkvällar med färjetransport t.o.r, ibland med övernattning — populärt för födelsedagar.',
  href: '/krogar-och-mat',
- },
- {
- icon: '🎟️',
- title: 'Evenemang',
- description: 'Kommande konserter, regattor, festivaler och marknader — bokning och biljetter.',
- href: '/evenemang',
  },
  {
  icon: '💎',
@@ -104,7 +98,7 @@ export default function ErbjudandenPage() {
  }
  cta={{ label: 'Alla platser på kartan', href: '/kom-igang' }}
  related={[
- { label: 'Evenemang', href: '/evenemang' },
+ { label: 'Skärgårdens datum', href: '/skargardsdatum' },
  { label: 'Boende', href: '/boende' },
  { label: 'Aktiviteter', href: '/aktiviteter' },
  { label: 'Krogar & mat', href: '/krogar-och-mat' },
