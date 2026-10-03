@@ -23,6 +23,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
+import { kartytaFor } from '@/lib/kartvy'
+import { tagPlatssvar } from './platsdata'
+import { hamtaLeaflet } from './leaflet'
 import { WeatherPill } from '@/components/MapCornerPills'
 import { track } from '@/lib/analytics-events'
 
@@ -219,6 +222,13 @@ function pinHtml(color: string, iconSvg: string, isActive = false): string {
 const INITIAL_CENTER: [number, number] = [59.35, 18.95]
 const INITIAL_ZOOM = 10
 
+/** Kartans vy för en region, eller startvyn för "Alla". */
+function vyFor(region: RegionKey | 'all'): { center: [number, number]; zoom: number } {
+  if (region === 'all') return { center: INITIAL_CENTER, zoom: INITIAL_ZOOM }
+  const c = REGION_CONFIG[region]
+  return { center: [c.center[0], c.center[1]], zoom: c.zoom }
+}
+
 // ── Komponent ────────────────────────────────────────────────────────────
 export default function UpptackExplorer() {
   const router = useRouter()
@@ -274,8 +284,18 @@ export default function UpptackExplorer() {
   // Map state — listan följer kartans bounds automatiskt vid varje pan/zoom
   const [bounds, setBounds] = useState<Bounds | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
+  // Startvyn följer regionen i adressen (?region=gotland). Tidigare startade
+  // kartan alltid i Stockholm medan listan filtrerades på regionen, så en delad
+  // eller omladdad regionlänk visade "0 platser i denna vy" (kontrollerat live
+  // 2026-10-03): region-effekten nedan hoppar över monteringen eftersom kartan
+  // inte finns än. Läses en gång, vid montering.
+  const startVyRef = useRef(vyFor(selectedRegion))
+  // Senaste valda region, för kartan som skapas asynkront (se init-effekten).
+  const selectedRegionRef = useRef(selectedRegion)
   // Karta-center (debouncat) för WeatherPill
-  const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>({ lat: INITIAL_CENTER[0], lng: INITIAL_CENTER[1] })
+  const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>(() => ({
+    lat: startVyRef.current.center[0], lng: startVyRef.current.center[1],
+  }))
 
   // GPS-state — "Visa min plats"
   const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active' | 'denied'>('idle')
@@ -336,13 +356,14 @@ export default function UpptackExplorer() {
   // ── Hämta POIs från API ────────────────────────────────────────────────
   useEffect(() => {
     let cancelled = false
-    fetch('/api/discovery?type=poi')
-      .then(r => {
-        if (r.status === 401) {
+    // Hämtningen startades redan i UpptackLoader (se platsdata.ts).
+    tagPlatssvar()
+      .then(svar => {
+        if (svar.status === 401) {
           throw new Error('Logga in för att se Upptäck-kartan')
         }
-        if (!r.ok) throw new Error(`HTTP ${r.status}`)
-        return r.json()
+        if (!svar.ok) throw new Error(`HTTP ${svar.status}`)
+        return svar.data as Poi[]
       })
       .then((data: Poi[]) => {
         if (cancelled) return
@@ -443,6 +464,7 @@ export default function UpptackExplorer() {
 
   // ── Region-byte: zoom kartan till regionens center ────────────────────
   useEffect(() => {
+    selectedRegionRef.current = selectedRegion
     if (!mapRef.current) return
     const map = mapRef.current as { flyTo?: (latlng: [number, number], zoom: number, opts?: object) => void }
     if (selectedRegion !== 'all') {
@@ -458,14 +480,28 @@ export default function UpptackExplorer() {
   useEffect(() => {
     if (!mapDivRef.current || mapRef.current) return
     let cancelled = false
+    // revision 2026-10-02 (P1-3): räkna ut kartans synliga yta redan nu, innan
+    // Leaflet (145 kB) laddats. Annars renderades alla ~560 kort först och
+    // byttes mot de ~70 synliga när kartan blev klar – 2–3 s extra på en
+    // långsam telefon och ett hopp i layouten. Leaflets egna bounds tar över
+    // nedan (updateBounds) så fort kartan finns.
+    const startVy = startVyRef.current
+    {
+      const r = mapDivRef.current.getBoundingClientRect()
+      const yta = kartytaFor(startVy.center, startVy.zoom, r.width, r.height)
+      if (yta) setBounds(prev => prev ?? yta)
+    }
     ;(async () => {
-      const L = (await import('leaflet')).default
-      await import('leaflet.markercluster')
+      // Leaflet-chunken började laddas redan i UpptackLoader (hamtaLeaflet).
+      const L = await hamtaLeaflet()
       if (cancelled || !mapDivRef.current) return
 
+      // Hann besökaren välja en annan region medan Leaflet laddades? Region-
+      // effekten gjorde då ingenting (kartan fanns inte), så vyn sätts här.
+      const vy = vyFor(selectedRegionRef.current)
       const map = L.map(mapDivRef.current, {
-        center: INITIAL_CENTER,
-        zoom: INITIAL_ZOOM,
+        center: vy.center,
+        zoom: vy.zoom,
         zoomControl: false,
         attributionControl: false,
       })
@@ -566,7 +602,7 @@ export default function UpptackExplorer() {
     if (!mapRef.current || !clusterRef.current) return
     let cancelled = false
     ;(async () => {
-      const L = (await import('leaflet')).default
+      const L = await hamtaLeaflet()
       if (cancelled) return
       const cluster = clusterRef.current as { clearLayers: () => void; addLayers: (m: unknown[]) => void }
       cluster.clearLayers()
@@ -628,12 +664,12 @@ export default function UpptackExplorer() {
   // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
   // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den
   // aktiva markörens icon mot den med ringen runt — och återställer den
-  // tidigare. Använder dynamisk leaflet-import så vi inte breakar SSR.
+  // tidigare. Leaflet hämtas via hamtaLeaflet (redan laddad här).
   const lastHoveredRef = useRef<string | null>(null)
   useEffect(() => {
     let cancelled = false
     ;(async () => {
-      const L = (await import('leaflet')).default
+      const L = await hamtaLeaflet()
       if (cancelled) return
 
       // Återställ tidigare aktiv pin
@@ -692,7 +728,7 @@ export default function UpptackExplorer() {
     if (!map) return
 
     setGpsState('loading')
-    const L = (await import('leaflet')).default
+    const L = await hamtaLeaflet()
 
     navigator.geolocation.getCurrentPosition(
       (pos) => {
