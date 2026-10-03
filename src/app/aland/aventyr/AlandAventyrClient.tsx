@@ -1,8 +1,9 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Icon from '@/components/Icon'
 
+// revision 2026-10-02: fältet icon ersätter imageFallback och imageAlt (se
+// kommentaren ovanför komponenten). `as const` längst ned gör att TypeScript
+// kontrollerar att varje icon är ett namn som finns i Icon.tsx.
 const ADVENTURES = [
   {
     id: 1,
@@ -10,11 +11,10 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Kastelholms slott – aldrig glömt',
     distance: 'Ca 30 km öster om Mariehamn',
-    imageFallback: 'https://images.unsplash.com/photo-1467377791767-c929b5dc9a23?w=1200&q=85',
-    imageAlt: 'Medeltida slottsruin omgiven av grönska',
+    icon: 'castle',
     intro: 'Kastelholm är Ålands mäktigaste medeltidslämning – och ett av de bäst bevarade slotten i hela Norden.',
     body: 'Slottet reser sig ur en skogklädd ås omgiven av vatten på tre sidor – ett läge valt med samma militära kalkyl som styrt alla Östersjöns strategiska platser sedan medeltiden. Byggt på 1300-talet tjänade Kastelholm som fängelse, kungligt residens, administrativt centrum och lantbruk under sina drygt 700 år. Gustav Vasa, Erik XIV och Johan III övernattade alla här. I dag är det ett välskött museum med guidade turer på svenska och engelska. Alldeles intill ligger Jan Karlsgårdens friluftsmuseum, ett levande 1800-talsgårdsmuseum med djur och hantverk. Planera minst tre timmar för båda.',
-    practicalInfo: 'Öppet maj–sep. Guidade turer – boka i förväg under högsäsong. Jan Karlsgårdens friluftsmuseum intill. Inträde ca 10 €. Ta med matsäck.',
+    practicalInfo: 'Öppet maj–sep. Guidade turer – boka i förväg under högsäsong. Jan Karlsgårdens friluftsmuseum intill. Ta med matsäck.',
   },
   {
     id: 2,
@@ -22,8 +22,7 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Bomarsunds fästning – ryssarnas Åland',
     distance: 'Ca 45 km öster om Mariehamn',
-    imageFallback: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=85',
-    imageAlt: 'Gamla fästningsruiner av sten vid vattnet',
+    icon: 'castle',
     intro: 'Ingenstans på Åland är historiens tyngd mer påtaglig än bland Bomarsunds kolossala stenväggar.',
     body: 'Bomarsund var ett gigantiskt ryskt fästningsverk påbörjat på 1830-talet, tänkt att bli ett av Östersjöns mest formidabla försvar. Men 1854, bara tjugo år efter att bygget startade, bombades det sönder av en brittisk-fransk flotta under Krimkriget. Det som återstår är häpnadsväckande i sin skala – stenblock stora som bilar, murar som är meter tjocka och vallgravar fortfarande synliga i terrängen. Platsen är aldrig stängd och kostar inget att besöka. Informationsskyltar på svenska och engelska förklarar geopolitiken bakom bygget. Kombinera med Kastelholm samma dag – bara 15 minuters bilresa åtskiljer dem.',
     practicalInfo: 'Alltid öppet, gratis inträde. Info-skyltar på svenska och engelska. Ta bil eller cykel från Kastelholm – ca 15 min.',
@@ -34,8 +33,7 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Föglö – cykelöns skärgård',
     distance: 'Ca 50 km öster om Mariehamn, bilfärja',
-    imageFallback: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=85',
-    imageAlt: 'Liten skärgårdsö med klippor och lugnt hav',
+    icon: 'island',
     intro: 'Föglö kallas cykelön och är en av Ålands mest välkomnande yttre öar – precis lagom stor för att utforska på en dag.',
     body: 'Gästhamnen i Degerby är liten och mysig, med ett kafé vid kajen och en butikshandel som säljer allt från fiskkrokar till lokalproducerade sylter. Nå hit med Ålandstrafiken från Svinö (ca 25 min). Välskyltade cykelleder löper runt Föglös kuperade landskap och tar dig till avskilda badklippor, gamla fiskelägen och vyer mot både finska och svenska fastlandet. Det finns ett litet café och en enkel krog sommartid, men ta gärna med matsäck som säkerhetsnät. Det är den typ av dag man inte planerar i detalj men alltid minns.',
     practicalInfo: 'Bilfärja från Svinö – kontrollera tidtabell på alandstrafiken.ax. Hyr cykel på Föglö. Kafé vid hamnen sommartid. Planera heldagstur.',
@@ -46,8 +44,7 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Kökar – längst ut i Åland',
     distance: 'Ca 100 km sydöster om Mariehamn, bilfärja',
-    imageFallback: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=85',
-    imageAlt: 'Karg klippö ute i havet med blå himmel',
+    icon: 'island',
     intro: 'Kökar är Ålands yttersta utpost – en ö där havet tar över och tystnad är det dominerande intrycket.',
     body: 'Klipporna är rakade rena av havet, vattnet är kristallklart och kyrkan från 1784 – byggd på resterna av ett fransiskanerkloster från 1100-talet – är en av Ålands vackraste byggnader. Nästan inga turister, nästan ingen kommersiell service. Resan hit är en del av upplevelsen: bilfärjan från Galtby på Korpo tar dig via öppet hav i nästan två timmar. Kökar har en liten butik och ett enkelt café, men ta med mat och dricka. Sätt dig vid vattnet och lyssna på tystnaden – det är en plats att andas ut i.',
     practicalInfo: 'Bilfärja från Galtby på Korpo – ca 2 h. Ta med matsäck och dricka. Planera hela dagen.',
@@ -58,11 +55,10 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Ålands sjöfartsmuseum – havshistoria i världsklass',
     distance: 'Mariehamn, västhamnen',
-    imageFallback: 'https://images.unsplash.com/photo-1566552881560-0be862a7c445?w=1200&q=85',
-    imageAlt: 'Gammalt segelfartyg i hamn',
+    icon: 'anchor',
     intro: 'Åland var länge en av världens ledande sjöfartsregioner. Museet berättar med en kärlek och ett djup som tar andan ur en.',
     body: 'Kronjuvelen är museifartyget Pommern – en av världens sista bevarade fyrmastade stålbarkar, byggd i Glasgow 1903 och fortfarande i ursprungligt skick. Att gå ombord är att kliva rakt in i 1900-talets stora seglingsepok: smala kojer, trängt maskinrum och den enorma däcksytan som en gång fylldes av sjömän under topptackel. Pommern seglade i spannmålshandeln mellan Europa och Australien ända till 1939. Museet inomhus kompletterar med kartor, berättelser och artefakter från hundratals åländska sjöfarare. Räkna med minst två timmar.',
-    practicalInfo: 'Öppet hela året. Pommern öppen maj–sep. Inträde ca 12 €. Parkering vid västhamnen.',
+    practicalInfo: 'Öppet hela året. Pommern öppen maj–sep. Parkering vid västhamnen.',
   },
   {
     id: 6,
@@ -70,8 +66,7 @@ const ADVENTURES = [
     transportColor: '#8b4513',
     title: 'Lemland & Lumparland – sydöns pärlor',
     distance: 'Ca 50–60 km rundtur',
-    imageFallback: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85',
-    imageAlt: 'Cyklist på smal väg omgiven av gröna åkrar',
+    icon: 'bike',
     intro: 'Lemland och Lumparland är Ålands lugnaste öar – och den bästa platsen att förstå vad folk menar när de talar om äkta åländsk natur.',
     body: 'Böljande åkrar, stenmurar, äldre träkyrkor och knappt någon biltrafik. Cykelturen passerar Flisö naturreservat med sina fågelrika strandängar och Lumparlands kyrka från 1280-talet. Inga branta backar, välskyltade leder och vackra vyer mot Östersjön. Vid Lembotes strandklippor kan du bada i klart vatten med utsikt mot öppet hav – ett av öarnas bäst bevarade hemligheter. Service är begränsad längs vägen – ta med matsäck.',
     practicalInfo: 'Hyr cykel i Mariehamn. Nås med bro – ingen färja krävs. Planera 4–5 h. Bäst maj–september.',
@@ -82,8 +77,7 @@ const ADVENTURES = [
     transportColor: '#8b4513',
     title: 'Sund & Kastelholm – historisk rundtur',
     distance: 'Ca 35 km rundtur från Kastelholm',
-    imageFallback: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=1200&q=85',
-    imageAlt: 'Smal cykelväg genom sommargrön natur',
+    icon: 'bike',
     intro: 'En cykeldag som kombinerar tre av Ålands viktigaste historiska platser – med välskyltad led och lagom svårighet för hela familjen.',
     body: 'Starta vid Kastelholms slott och rulla österut mot Bomarsunds imponerande ruin – stenblock av sådan storlek att man nästan inte tror dem vara lagda av mänskliga händer. Därifrån vidare till Sunds medeltida kyrka, vars romanska murar är ett av Ålands finaste kyrkliga arv. Leden är välskyltad och lagom utmanande, lämplig för familjer. Vägen löper längs lugna landsvägar omgiven av åländsk jordbruksmark. Cyklar hyrs vid Kastelholm eller i Mariehamn.',
     practicalInfo: 'Cyklar hyrs vid Kastelholm eller i Mariehamn. Nåbar med buss från Mariehamn. Planera 4–5 h.',
@@ -94,8 +88,7 @@ const ADVENTURES = [
     transportColor: '#8b4513',
     title: 'Runt Lemland – skärgårdens idyll',
     distance: 'Ca 40 km rundtur',
-    imageFallback: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=85',
-    imageAlt: 'Lugn havsvik omgiven av grönska i kvällsljus',
+    icon: 'bike',
     intro: 'Lemlands kust är en av Ålands vackraste – en rundtur som tar en halvdag och ger en hel dags känsla.',
     body: 'Vikar med spegelblank vattenyta, fågelrika våtmarker och en tystnad som sällan bryts av biltrafik. Lembote-klinten är ruttens höjdpunkt: en kalkstensklint vid havet med vyer söderut mot öppet Östersjö. Rundturen tar dig längs öns östra kust och söderut mot Flisö. Från Mariehamn tar du bron ut till Lemland och är igång direkt – ingen bilfärja krävs, vilket gör det till en av de smidigaste cykeldagarna på Åland.',
     practicalInfo: 'Från Mariehamn: bro – ingen bilfärja krävs. Hyr cykel i Mariehamn. Planera 4–5 h.',
@@ -106,8 +99,7 @@ const ADVENTURES = [
     transportColor: '#2a7a40',
     title: 'Skärgårdshoppning med passagerarbåt',
     distance: 'Varierar, utgår från Mariehamn',
-    imageFallback: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&q=85',
-    imageAlt: 'Liten passagerarfärja på blått hav',
+    icon: 'ship',
     intro: 'Ålands 6 700 öar går inte att uppleva från en bil. Med passagerarbåtarna kan du hoppa mellan dem som om du hade hela skärgårdshavet som hemmaplan.',
     body: 'Ålandstrafiken kör reguljära passagerarbåtar till Föglö, Kökar, Sottunga och andra yttre öar. En dag av öhoppning – frukost i Mariehamn, ett par timmar på Föglö, lunch på Kökar med benen hängande över kajen, hem via Sottunga – är ett av Ålands absolut bästa sätt att uppleva skärgårdshavet på riktigt. Det handlar om att sitta på däcket och se öarna träda ur dimman, om den salta lukten av öppet hav. Boka biljetter i förväg under högsäsong.',
     practicalInfo: 'Tidtabeller och biljetter på alandstrafiken.ax. Boka i förväg under juli–aug. Ta matsäck – service varierar på öarna.',
@@ -118,25 +110,29 @@ const ADVENTURES = [
     transportColor: '#2a7a40',
     title: 'Mariehamn stadsvandring – Nordens trädgårdsstad',
     distance: 'Mariehamn innerstad, ca 2–3 km',
-    imageFallback: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=85',
-    imageAlt: 'Charmig stadsallé med lindträd i sommarsol',
+    icon: 'walk',
     intro: 'Mariehamn är en av Skandinaviens minsta städer och, argumenterar många, en av de allra charmigaste.',
     body: 'Esplanaden är stadens hjärta och en av norra Europas vackraste stadsalleer – en boulevard kantad av lindar vars kronor sluter sig samman ovanför promenaden. Allén sträcker sig hela vägen från östhamnen till västhamnen, kantad av caféer, boutiques och sommarblomsrabatter. I änden mot västhamnen ligger Ålands sjöfartsmuseum och Pommern. Gamla stan med sina trähus i pastellfärger påminner om en norsk kuststad från förra seklet. Avsluta med kaffe och åländsk pannkaka längs Esplanaden.',
     practicalInfo: 'Ålands sjöfartsmuseum: öppet hela året. Esplanaden: alltid fri. Turistbyrån vid hamnen: gratis stadskartor.',
   },
-]
+] as const
 
+// revision 2026-10-02: sidan visar inga foton längre.
+// 1) Fotona hämtades från Google via /api/adventure-photos (borttagen). Rutten
+//    gjorde upp till 10 Text Search-anrop per cachemiss och tystade felen.
+//    Uppmätt 2026-10-02: /api/adventure-photos svarade {} för alla tre öarna,
+//    så besökarna fick bara reservbilderna (det tidigare fältet imageFallback).
+// 2) Reservbilderna var Unsplash-foton som inte föreställde platserna, till
+//    exempel Taj Mahal som Bomarsunds fästning, London som Mariehamn och en
+//    dykare som passagerarbåten. Alt-texterna beskrev alltså något annat än
+//    det som syntes. Granskat 2026-10-02. Hellre ingen bild än fel bild.
+// I stället visas en dekorativ ruta i samma format (16/7) med en ikon för
+// äventyrstypen, så att sidans utseende inte ändras. Rutan är aria-hidden och saknar
+// alt-text. Ska bilder tillbaka: använd foton av rätt plats, med alt-text som
+// beskriver det som faktiskt syns.
+// Komponenten har inga hooks eller händelsehanterare kvar och är därför en
+// serverkomponent. Filnamnet (…Client.tsx) är kvar för att hålla ändringen liten.
 export default function AlandAventyrClient() {
-  const [photoMap, setPhotoMap] = useState<Record<string, string>>({})
-  const [photosReady, setPhotosReady] = useState(false)
-
-  useEffect(() => {
-    fetch('/api/adventure-photos?island=aland')
-      .then(r => r.ok ? r.json() : {})
-      .then((data: Record<string, string>) => { setPhotoMap(data); setPhotosReady(true) })
-      .catch(() => setPhotosReady(true))
-  }, [])
-
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg, #f8f7f4)' }}>
 
@@ -209,11 +205,11 @@ export default function AlandAventyrClient() {
               </div>
             </div>
 
-            <div style={{ width: '100%', aspectRatio: '16 / 7', borderRadius: 20, overflow: 'hidden', marginBottom: 28, background: `linear-gradient(135deg, ${adv.transportColor}44, ${adv.transportColor}99)`, boxShadow: '0 4px 40px rgba(0,0,0,0.12)' }}>
-              {(photosReady || photoMap[String(adv.id)]) && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={photoMap[String(adv.id)] || adv.imageFallback} alt={adv.imageAlt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading={i < 2 ? 'eager' : 'lazy'} />
-              )}
+            {/* Dekorativ ruta i bildens format, se kommentaren ovanför komponenten */}
+            <div aria-hidden="true" style={{ width: '100%', aspectRatio: '16 / 7', borderRadius: 20, overflow: 'hidden', marginBottom: 28, background: `linear-gradient(135deg, ${adv.transportColor}44, ${adv.transportColor}99)`, boxShadow: '0 4px 40px rgba(0,0,0,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ width: 76, height: 76, borderRadius: '50%', background: adv.transportColor, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 20px rgba(0,0,0,0.18)' }}>
+                <Icon name={adv.icon} size={36} stroke={1.6} />
+              </span>
             </div>
 
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', color: 'var(--txt, #1a1a1a)', lineHeight: 1.7, margin: '0 0 16px', fontWeight: 700, fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)', fontStyle: 'italic', maxWidth: 720 }}>{adv.intro}</p>
