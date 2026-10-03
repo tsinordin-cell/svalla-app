@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { suggestStops, type Interest, type PlaceInput } from '@/lib/planner'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
@@ -76,11 +77,16 @@ export async function POST(req: NextRequest) {
       allPlaces,
     )
 
-    // Spara tillbaka
-    await supabase
+    // Spara tillbaka — med tjänsteklienten (revision 2026-10-02). Stoppen räknas
+    // fram här på servern och besökaren är oftast inte ruttens ägare, så
+    // besökarens session ska inte behöva skrivrätt till andras rutter. Bara
+    // suggested_stops på en publicerad rutt med känt id skrivs.
+    const { error: sparFel } = await getAdminClient()
       .from('planned_routes')
       .update({ suggested_stops: stops })
       .eq('id', routeId)
+      .eq('status', 'published')
+    if (sparFel) logger.error('planera', 'kunde inte spara suggested_stops', { routeId, e: sparFel.message })
 
     return NextResponse.json({ stops })
   } catch (err) {
