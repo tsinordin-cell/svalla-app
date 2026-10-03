@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ...(tom ? { robots: { index: false, follow: true } } : {}),
     title, description,
     alternates: { canonical: `https://svalla.se/gotland/${kategori}` },
-    openGraph: { title, description, url: `https://svalla.se/gotland/${kategori}`, type: 'website' },
+    openGraph: { title: `${title} – Svalla`, description, url: `https://svalla.se/gotland/${kategori}`, type: 'website' },
   }
 }
 
