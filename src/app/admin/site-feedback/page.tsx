@@ -4,7 +4,7 @@ import { createServerSupabaseClient as createClient } from '@/lib/supabase-serve
 import SiteFeedbackActions from './SiteFeedbackActions'
 
 export const metadata: Metadata = {
-  title: 'Feedback & Tips — Admin · Svalla',
+  title: 'Feedback & Tips — Admin',
   robots: { index: false, follow: false },
 }
 
@@ -148,7 +148,7 @@ export default async function AdminSiteFeedbackPage() {
   }
 
   return (
-    <main style={{
+    <div style={{
       minHeight:    '100vh',
       background:   'var(--bg)',
       paddingBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 24px)',
@@ -237,6 +237,6 @@ export default async function AdminSiteFeedbackPage() {
           </section>
         )}
       </div>
-    </main>
+    </div>
   )
 }

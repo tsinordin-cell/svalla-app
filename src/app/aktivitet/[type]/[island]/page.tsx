@@ -115,7 +115,7 @@ export default async function ActivityIslandPage({ params }: Props) {
         </div>
       </header>
 
-      <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         {/* Snabbfakta */}
         <div style={{
           display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
@@ -243,7 +243,7 @@ export default async function ActivityIslandPage({ params }: Props) {
               ))}
           </div>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function PlaceNotFound() {
   return (
-    <main style={{
+    <div style={{
       minHeight: 'calc(100dvh - var(--nav-h, 64px))',
       background: 'var(--bg)',
       padding: '60px 20px 80px',
@@ -106,7 +106,7 @@ export default function PlaceNotFound() {
         <Link href="/rutter" style={pillStyle}>Populära rutter</Link>
         <Link href="/" style={pillStyle}>Tillbaka till start</Link>
       </div>
-    </main>
+    </div>
   )
 }
 

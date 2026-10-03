@@ -388,7 +388,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
         )}
 
         {/* CTA: Logga tur */}
-        <Link href="/logga" style={{
+        <Link href="/logga" prefetch={false} style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           width: '100%', padding: '15px 0', borderRadius: 16, marginTop: 8,
           background: 'var(--grad-acc)',

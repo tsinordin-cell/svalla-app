@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  const distStr = trip.distance != null && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)} NM` : null
  const title = trip.location_name
  ? `${trip.location_name}${distStr ? ` – ${distStr}` : ''}`
- : distStr ? `Tur – ${distStr}` : 'Tur – Svalla'
+ : distStr ? `Tur – ${distStr}` : 'Tur'
  const desc = `${metaUser?.username ?? 'En seglare'} loggade en ${trip.boat_type?.toLowerCase() ?? 'tur'}${distStr ? ` på ${distStr}` : ''}${trip.location_name ? ` till ${trip.location_name}` : ''}.`
 
  // Dynamisk OG-bild — alltid genererad, oavsett om turen har foto eller inte

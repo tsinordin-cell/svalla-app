@@ -51,9 +51,9 @@ export default function BingoPage() {
         </div>
       </header>
 
-      <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         <BingoClient items={BINGO_ITEMS} />
-      </main>
+      </div>
       <PublicFooter />
     </div>
   )

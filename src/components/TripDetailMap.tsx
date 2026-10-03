@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import type { Map as LeafletMap, LayerGroup } from 'leaflet'
 import type { WindArrowSample } from '@/lib/weather'
 import { windColor, windDirectionLabel } from '@/lib/weather'
-import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
 import { speedRuns } from '@/lib/speedColor'
 
 type LeafletNS = typeof import('leaflet')
@@ -99,7 +99,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
  attributionControl: false,
  scrollWheelZoom: true,
  })
- L.control.zoom({ position: 'bottomright' }).addTo(map)
+ L.control.zoom({ position: 'bottomright', ...ZOOM_SV }).addTo(map)
  mapInstanceRef.current = map
 
  const { url: tileUrl, attr: tileAttr } = baseTile()

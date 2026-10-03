@@ -103,7 +103,7 @@ export default function ResetipsClient() {
   })
 
   return (
-    <main style={{ minHeight: '100vh', background: 'var(--bg, #f8f7f4)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f8f7f4)', paddingBottom: 80 }}>
 
       {/* Hero */}
       <section style={{
@@ -330,6 +330,6 @@ export default function ResetipsClient() {
           ))}
         </div>
       )}
-    </main>
+    </div>
   )
 }

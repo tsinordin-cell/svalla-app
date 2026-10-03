@@ -144,7 +144,7 @@ export default function AIGuidePage() {
             Berätta vad du är sugen på. Thorkel väljer rätt ö, hittar rätt båt och bokar rätt restaurang — på sekunder. Ingen båt krävs. Alltid gratis att börja.
           </p>
 
-          <Link href="/planera" style={{
+          <Link href="/planera" prefetch={false} style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
             background: '#e8924a', color: '#fff',
             fontSize: 16, fontWeight: 700, textDecoration: 'none',
@@ -201,7 +201,7 @@ export default function AIGuidePage() {
           </div>
 
           <div style={{ padding: '0 20px 20px', textAlign: 'center' }}>
-            <Link href="/planera" style={{
+            <Link href="/planera" prefetch={false} style={{
               display: 'inline-block', background: '#1a4a6b', color: '#fff',
               fontSize: 14, fontWeight: 700, textDecoration: 'none',
               padding: '12px 32px', borderRadius: 50,
@@ -353,7 +353,7 @@ export default function AIGuidePage() {
         <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 17, marginBottom: 32, maxWidth: 420, marginInline: 'auto' }}>
           Thorkel planerar din dag gratis — ingen registrering, ingen app att ladda ner.
         </p>
-        <Link href="/planera" style={{
+        <Link href="/planera" prefetch={false} style={{
           display: 'inline-flex', alignItems: 'center', gap: 10,
           background: '#e8924a', color: '#fff',
           fontSize: 16, fontWeight: 700, textDecoration: 'none',

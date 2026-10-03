@@ -16,6 +16,9 @@ export const metadata: Metadata = {
 export default function UpptackPage() {
   return (
     <div className="upptack-shell">
+      {/* revision 2026-10-02: sidan saknade h1 (skärmläsare och sökmotorer).
+          Designen har ingen synlig rubrik över kartan, så den är visuellt dold. */}
+      <h1 className="sr-only">Utforska skärgården</h1>
       <UpptackLoader />
     </div>
   )

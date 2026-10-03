@@ -63,7 +63,7 @@ export default async function AdminFeedbackPage() {
   const resolved = feedback.filter(f => f.resolved)
 
   return (
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 24px)',
@@ -158,7 +158,7 @@ export default async function AdminFeedbackPage() {
           </div>
         )}
       </div>
-    </main>
+    </div>
   )
 }
 

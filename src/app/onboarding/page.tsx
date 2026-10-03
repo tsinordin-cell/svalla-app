@@ -42,7 +42,7 @@ export default async function OnboardingPage() {
     .limit(8)
 
   return (
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(160deg, #061826 0%, #0e3848 30%, #1a5d72 65%, #24798e 100%)',
       display: 'flex',
@@ -80,6 +80,6 @@ export default async function OnboardingPage() {
           }))}
         />
       </div>
-    </main>
+    </div>
   )
 }

@@ -40,8 +40,10 @@ export default async function ForumPage() {
  inLanguage: 'sv',
  }
 
+ // revision 2026-10-02: div i stället för main. Root-layouten har redan ett
+ // <main> runt varje sida, och två nästlade main-landmärken förvirrar skärmläsare.
  return (
- <main style={{
+ <div style={{
  minHeight: '100vh',
  background: 'var(--bg)',
  paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)',
@@ -63,7 +65,7 @@ export default async function ForumPage() {
 
  {/* Flöde / Forum tab-rad */}
  <div style={{ display: 'flex', borderBottom: '1.5px solid rgba(10,123,140,0.08)', background: 'var(--white)' }}>
- <Link href="/feed" style={{ flex: 1, textAlign: 'center', padding: '11px 8px 9px', fontSize: 13, fontWeight: 700, color: 'var(--txt3)', textDecoration: 'none', display: 'block' }}>
+ <Link href="/feed" prefetch={false} style={{ flex: 1, textAlign: 'center', padding: '11px 8px 9px', fontSize: 13, fontWeight: 700, color: 'var(--txt3)', textDecoration: 'none', display: 'block' }}>
  Flöde
  </Link>
  <div style={{ flex: 1, textAlign: 'center', padding: '11px 8px 9px', fontSize: 13, fontWeight: 700, color: 'var(--sea)', borderBottom: '2px solid var(--sea)', marginBottom: -1.5 }}>
@@ -93,7 +95,7 @@ export default async function ForumPage() {
  </svg>
  Starta en ny diskussion
  </Link>
- <Link href="/forum/sok" style={{
+ <Link href="/forum/sok" aria-label="Sök i forumet" style={{
  display: 'flex',
  alignItems: 'center',
  justifyContent: 'center',
@@ -105,7 +107,7 @@ export default async function ForumPage() {
  textDecoration: 'none',
  flexShrink: 0,
  }}>
- <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+ <svg aria-hidden="true" width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
  <circle cx="11" cy="11" r="8" />
  <path d="M21 21l-4.35-4.35" />
  </svg>
@@ -298,6 +300,6 @@ export default async function ForumPage() {
  <strong style={{ color: 'var(--txt2)' }}>Välkommen till Svalla Forum!</strong>{' '}
  Diskutera skärgårdsliv med andra båtentusiaster. Håll en trevlig ton — vi är alla ute för att njuta av havet.
  </div>
- </main>
+ </div>
  )
 }

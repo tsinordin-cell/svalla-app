@@ -624,6 +624,7 @@ export default function OstlistanPage() {
                   url={`https://svalla.se/ostlistan#${list.id}`}
                   surface="ostlistan"
                   entityId={list.id}
+                  variant="ljus"
                 />
               </div>
             </div>

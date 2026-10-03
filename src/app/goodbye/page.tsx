@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function GoodbyePage() {
   return (
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: '32px 16px',
@@ -50,6 +50,6 @@ export default function GoodbyePage() {
           Till startsidan
         </a>
       </div>
-    </main>
+    </div>
   )
 }

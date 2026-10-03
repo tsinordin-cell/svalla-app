@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `https://svalla.se/forum/o/${slug}`
   const description = `Diskussioner, tips och frågor om ${island.name}. Dela erfarenheter, hitta lokala tjänster och knyt kontakter.`
   return {
-    title: `Forum om ${island.name} — Svalla`,
+    title: `Forum om ${island.name}`,
     description,
     // Andra gången auto-verktyget stryker denna (första: 07-24). Sätt
     // aldrig tillbaka utan att kontrollera hela filen — se CLAUDE.md punkt 1.
@@ -65,7 +65,7 @@ export default async function IslandForumPage({ params }: Props) {
   const threads = await getThreadsByIsland(slug, 0, true)
 
   return (
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)',
@@ -263,6 +263,6 @@ export default async function IslandForumPage({ params }: Props) {
           Se alla forumkategorier →
         </Link>
       </div>
-    </main>
+    </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase'
 
 export default function DeleteAccountForm() {
   const router = useRouter()
@@ -39,6 +40,15 @@ export default function DeleteAccountForm() {
         setError(data.error ?? 'Något gick fel')
         setLoading(false)
         return
+      }
+      // revision 2026-10-02: logga ut även i webbläsarklienten, så att
+      // komponenter som lyssnar på onAuthStateChange (Nav m.fl.) får
+      // SIGNED_OUT. Servern har redan tagit bort sessionens cookies, så det
+      // blir normalt inget nätverksanrop. Fel får inte stoppa omdirigeringen.
+      try {
+        await createClient().auth.signOut({ scope: 'local' })
+      } catch {
+        // ignoreras
       }
       // Redirect till goodbye-sida
       router.replace('/goodbye')

@@ -94,6 +94,15 @@ export interface TripLeg {
   delayMin?: number
   /** Sant om operatören har markerat resan som inställd. */
   cancelled?: boolean
+  /**
+   * revision 2026-10-02: ResRobots kodfält för trafikslag, som strängar.
+   * KÄLLA: trafiklab.se/api/our-apis/resrobot-v21/common/ (läst 2026-10-02):
+   * catCode 8 = "Ferries"; cls har samma koder som `products` i frågan
+   * (256 = färja). Dokumentationen kallar catCode Integer men exemplen har
+   * strängar ("catCode": "4"), därför String(). Saknas på promenadben.
+   */
+  catCode?: string
+  cls?: string
 }
 
 export interface TripSummary {
@@ -126,6 +135,9 @@ interface ResRobotProduct {
   line?: string
   catOutL?: string
   name?: string
+  // revision 2026-10-02: se TripLeg.catCode/cls.
+  catCode?: string | number
+  cls?: string | number
 }
 
 interface ResRobotPoint {
@@ -153,6 +165,8 @@ interface ResRobotTrip {
 
 interface ResRobotTripResponse {
   Trip?: ResRobotTrip[]
+  /** revision 2026-10-02: t.ex. "SVC_NO_RESULT" (HTTP 200) när sökningen inte gav några resor. */
+  errorCode?: string
 }
 
 // ─── Hjälpare ───────────────────────────────────────────────────────────────
@@ -222,6 +236,8 @@ function normalizeLeg(raw: ResRobotLeg): TripLeg {
     rtToTime,
     delayMin,
     cancelled: raw.cancelled === true || undefined,
+    catCode: product.catCode != null ? String(product.catCode) : undefined,
+    cls: product.cls != null ? String(product.cls) : undefined,
   }
 }
 
@@ -247,13 +263,33 @@ export type TripResult = {
   trips: TripSummary[]
   /** null = uppslaget lyckades. Tom trips + fel: null betyder ÄKTA inga avgångar. */
   fel: TripFel | null
+  /**
+   * revision 2026-10-02: ResRobots errorCode ur svarskroppen, när det fanns
+   * en (t.ex. 'SVC_NO_RESULT', 'API_QUOTA'). Bara tillagt: `fel` klassas som
+   * förut, så transit-lagrets anropare påverkas inte. Färjelagret använder
+   * koden för att skilja "sökningen gav inget" från riktiga fel.
+   */
+  errorCode?: string | null
 }
+
+/**
+ * revision 2026-10-02: trafikslaget "färja" i ResRobots `products`-filter.
+ * KÄLLA: trafiklab.se/api/our-apis/resrobot-v21/common/ (läst 2026-10-02):
+ * produktklass 256 = "Ferries and international ferries". Parametern
+ * `products` på /trip filtrerar resorna på trafikslag redan i sökningen
+ * (trafiklab.se/api/our-apis/resrobot-v21/route-planner/). Promenadben är
+ * inget trafikslag och påverkas inte.
+ */
+export const RESROBOT_PRODUKT_FARJA = 256
 
 export async function fetchTripsResult(
   originId: string,
   destId: string,
   numTrips = 4,
   departAfter?: { date: string; time: string }, // YYYY-MM-DD + HH:MM
+  // revision 2026-10-02: valfritt trafikslagsfilter (bitmask). Utelämnat =
+  // alla trafikslag, precis som förut, så befintliga anropare påverkas inte.
+  opts?: { products?: number },
 ): Promise<TripResult> {
   if (!KEY) {
     if (process.env.NODE_ENV !== 'production') {
@@ -265,7 +301,10 @@ export async function fetchTripsResult(
   // Utan uttryckligt avgångsdatum: från nu (Stockholm-tid, 5-minutersrutor).
   // Se nuIStockholm för varför det inte får utelämnas.
   const fran = departAfter ?? nuIStockholm()
-  const cacheKey = `trip:${originId}:${destId}:${numTrips}:${fran.date}:${fran.time}`
+  const products = opts?.products
+  // revision 2026-10-02: filtret ingår i cachenyckeln, annars kunde en
+  // båtsökning få en allt-trafik-sökning ur cachen (och tvärtom).
+  const cacheKey = `trip:${originId}:${destId}:${numTrips}:${fran.date}:${fran.time}${products ? `:p${products}` : ''}`
   const hit = cacheGet<TripSummary[]>(cacheKey)
   if (hit) return { trips: hit, fel: null }
 
@@ -277,6 +316,7 @@ export async function fetchTripsResult(
   url.searchParams.set('accessId', KEY)
   url.searchParams.set('date', fran.date)
   url.searchParams.set('time', fran.time)
+  if (products) url.searchParams.set('products', String(products))
 
   try {
     const res = await fetch(url.toString(), {
@@ -292,7 +332,10 @@ export async function fetchTripsResult(
     })
     if (!res.ok) {
       // 429 = kvot slut. Skiljs ut eftersom det är åtgärdbart och tillfälligt.
-      return { trips: [], fel: res.status === 429 ? 'kvot' : 'api_fel' }
+      // revision 2026-10-02: errorCode läses också ur kroppen och skickas med.
+      const kropp = (await res.json().catch(() => null)) as { errorCode?: unknown } | null
+      const errorCode = typeof kropp?.errorCode === 'string' ? kropp.errorCode : null
+      return { trips: [], fel: res.status === 429 ? 'kvot' : 'api_fel', errorCode }
     }
     const data = (await res.json()) as ResRobotTripResponse
     const trips = (data.Trip ?? []).map<TripSummary>((t) => {
@@ -326,7 +369,7 @@ export async function fetchTripsResult(
       // Hängslen till livremmen ovan: en resa som startade i går är aldrig "nästa avgång".
       .filter((t) => !arGammalResa(t.startDate, fran.date))
     cacheSet(cacheKey, trips)
-    return { trips, fel: null }
+    return { trips, fel: null, errorCode: typeof data.errorCode === 'string' ? data.errorCode : null }
   } catch {
     // AbortError (8 s timeout) eller nätverksfel.
     return { trips: [], fel: 'timeout' }

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function HelgturerPage() {
   return (
-    <main style={{
+    <div style={{
       minHeight: '100dvh',
       display: 'flex',
       alignItems: 'center',
@@ -92,6 +92,6 @@ export default function HelgturerPage() {
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

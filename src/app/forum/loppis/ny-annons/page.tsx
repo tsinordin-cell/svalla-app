@@ -193,7 +193,7 @@ export default function NyAnnonsPage() {
   }
 
   return (
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 32px)',
@@ -515,6 +515,6 @@ export default function NyAnnonsPage() {
           Du ansvarar själv för innehållet. Inga bedrägerier, inga kontakta-mig-direkt-för-pris-tricks.
         </p>
       </form>
-    </main>
+    </div>
   )
 }

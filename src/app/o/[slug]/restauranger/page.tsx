@@ -72,7 +72,7 @@ export default async function IslandRestaurantsPage({ params }: Props) {
       />
       <Vidareklick islandSlug={island.slug} standard="mat" />
 
-      <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         {island.restaurants.length === 0 && dbPlaces.length === 0 ? (
           <div style={{ background: 'var(--white)', padding: 24, borderRadius: 14, fontSize: 14, color: 'var(--txt2)' }}>
             Inga registrerade restauranger på {island.name}. <Link href="/partner" style={{ color: 'var(--sea)' }}>Är du krögare här? Kontakta oss</Link> så lägger vi upp.
@@ -136,7 +136,7 @@ export default async function IslandRestaurantsPage({ params }: Props) {
             <Link href={`/o/${slug}/boende`} style={{ padding: '6px 14px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--sea)', textDecoration: 'none' }}>Boende →</Link>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

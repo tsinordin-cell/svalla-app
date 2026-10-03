@@ -88,7 +88,7 @@ export default async function AdminRoutesPage() {
     .slice(0, 30)
 
   return (
-    <main style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 20px 80px', fontFamily: 'inherit' }}>
+    <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 20px 80px', fontFamily: 'inherit' }}>
       <Link href="/admin" style={{ fontSize: 13, color: 'var(--sea)', textDecoration: 'none' }}>← Admin-översikt</Link>
       <h1 style={{ fontSize: 28, fontWeight: 800, margin: '12px 0 6px', color: 'var(--txt)' }}>Rutt-kvalitet</h1>
       <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 28px', lineHeight: 1.55 }}>
@@ -208,6 +208,6 @@ export default async function AdminRoutesPage() {
           </div>
         )}
       </section>
-    </main>
+    </div>
   )
 }

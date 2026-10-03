@@ -734,6 +734,63 @@ img {
   outline-offset: 2px;
 }
 
+/* ── revision 2026-10-02: tvåfärgad fokusring på mörka ytor ──
+   --sea (#1e5c82) syntes knappt mot mörk botten (kravet för icke-text är 3:1,
+   WCAG 1.4.11). En enfärgad vit ring räcker inte heller: inuti de mörka ytorna
+   finns ljusa delar (sökrutan i startsidans hero), och i mörkt tema är
+   ösidornas nav ljust turkos. Därför vit outline ytterst och ett mörkt band
+   (box-shadow) innanför; minst ett av banden kontrasterar mot det som ligger
+   bredvid. Uppmätt i pixlar i Chromium 2026-10-02, 11 mål i ljust och mörkt
+   tema (startsidan, ösidan, CategoryLanding, PublicFooter): --sea 1,1–8,6:1,
+   under 3:1 i 15 av 22 fall. Enfärgad vit: under 3:1 vid Sök-knappen i
+   startsidans hero (1,35) och ösidornas logolänk i mörkt tema (2,6).
+   Tvåfärgad: bästa bandet 4,5–19,8:1, inget fall under 3:1.
+   Fält (input, textarea, select) behåller sin egen fokusstil och
+   skip-länkens mål ([data-skip-mal]) får ingen ring.
+   Klasserna: LandingPageClient (.lp-nav, .nav-dd-inner, .mob-drawer, .hero,
+   .footer-inner), PublicFooter (.public-footer) och .mork-yta (ösidans nav och
+   hero, CategoryLandings nav och sidfot). */
+.lp-nav :focus-visible:not(input, textarea, select, [data-skip-mal]),
+.nav-dd-inner :focus-visible:not(input, textarea, select, [data-skip-mal]),
+.mob-drawer :focus-visible:not(input, textarea, select, [data-skip-mal]),
+.hero :focus-visible:not(input, textarea, select, [data-skip-mal]),
+.footer-inner :focus-visible:not(input, textarea, select, [data-skip-mal]),
+.public-footer :focus-visible:not(input, textarea, select, [data-skip-mal]),
+.mork-yta :focus-visible:not(input, textarea, select, [data-skip-mal]) {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 20, 40, 0.85);
+}
+
+/* ── revision 2026-10-02: "Hoppa till innehållet" (SkipLink.tsx) ──
+   Ligger ovanför skärmen tills den får tangentbordsfokus. */
+.skip-link {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 8px);
+  left: 8px;
+  z-index: 10000;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #fff;
+  color: #1e5c82;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
+}
+.skip-link:focus-visible {
+  outline: 3px solid #1e5c82;
+  outline-offset: 2px;
+}
+/* Målet (sidans h1) får fokus bara för att flytta läspositionen; ingen ring. */
+[data-skip-mal]:focus {
+  outline: none;
+}
+
 /* ── sk / sk-pulse — global aliases used by loading skeletons ── */
 @keyframes sk-pulse {
   0%, 100% { opacity: 1; }

@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
 import type { Map as LeafletMap } from 'leaflet'
-import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
 
 type Stop = {
   lat: number
@@ -152,7 +152,7 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
           .bindTooltip(stop.name, { direction: 'top', offset: [0, -16] })
       }
 
-      L.control.zoom({ position: 'bottomright' }).addTo(map)
+      L.control.zoom({ position: 'bottomright', ...ZOOM_SV }).addTo(map)
       map.fitBounds(bounds, { padding: [48, 40], maxZoom: 13 })
 
       // Signalera att kartan går att rita på. Rit-effekten lyssnar på detta och

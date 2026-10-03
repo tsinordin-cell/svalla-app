@@ -6,7 +6,8 @@ import { ALL_ISLANDS } from '@/app/o/island-data'
 import { getAdminClient } from '@/lib/supabase-admin'
 
 export const metadata: Metadata = {
-  title: 'Annonsera och samarbeta med Svalla – mediakit 2026',
+  // absolute: varumärket finns redan i titeln (mallen skulle ge det två gånger)
+  title: { absolute: 'Annonsera och samarbeta med Svalla – mediakit 2026' },
   description: 'Nå skärgårds- och kustintresserade resenärer via Svalla. Nyhetsbrevssponsorskap, redaktionella samarbeten och destinationspartnerskap. Kontakta oss för offert.',
   alternates: { canonical: 'https://svalla.se/partner-sida' },
   robots: { index: true, follow: true },

@@ -1,7 +1,7 @@
 /**
  * /oppet-nu — "Vad är öppet i skärgården just nu?"
  *
- * Dynamisk sida som läser aktuell månad + filtrerar öar efter seasonal.months.
+ * ISR-sida (revalidate 3600) som läser aktuell månad i svensk tid + filtrerar öar efter seasonal.months.
  * Visar: Högsäsong → Öppet → Begränsad service → (ingen off-lista).
  *
  * SEO: naturlig för "vad är öppet i skärgården", "skärgård öppet nu", "skärgård [månadsnamn]".
@@ -12,8 +12,24 @@ import Link from 'next/link'
 import { ALL_ISLANDS } from '../o/island-data'
 import EmailSignup from '@/components/EmailSignup'
 import Icon from '@/components/Icon'
+import { todayStockholm } from '@/lib/transitDate'
 
-export const dynamic = 'force-dynamic' // uppdatera vid varje request (månads-byte)
+// ISR en gång i timmen i stället för force-dynamic (revision 2026-10-02).
+// Sidan läser inga cookies, headers eller searchParams, bara statisk ödata och
+// dagens månad, men renderades om vid varje besök: MISS båda varven,
+// private/no-store (uppmätt 2026-10-02: 0,51/0,68 s). Månaden räknas vid
+// rendering, i svensk tid (manadIStockholm nedan). Efter ett månadsskifte kan
+// förra månaden alltså visas i högst en timme plus ett besök: det första
+// besöket efter att cachen gått ut får den gamla sidan och startar
+// omrenderingen. Före ändringen räknades månaden i UTC, så den bytte först
+// 01:00 eller 02:00 svensk tid.
+export const revalidate = 3600
+
+// Månad (0–11) och år i svensk tid. Vercel kör i UTC (revision 2026-10-02).
+function manadIStockholm(nu: Date = new Date()): { month: number; year: number } {
+  const iso = todayStockholm(nu) // YYYY-MM-DD
+  return { month: Number(iso.slice(5, 7)) - 1, year: Number(iso.slice(0, 4)) }
+}
 
 const MONTH_NAMES_SV = [
   'Januari','Februari','Mars','April','Maj','Juni',
@@ -49,11 +65,13 @@ const STATUS_ICON: Record<Status, 'sun' | 'check' | 'warning'> = {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const month = new Date().getMonth()
+  // Året följer också svensk tid (revision 2026-10-02); det stod tidigare
+  // hårdkodat "2026" i beskrivningen.
+  const { month, year } = manadIStockholm()
   const monthName = MONTH_NAMES_SV[month]
   return {
     title: `Öppet i skärgården i ${monthName} – vilka öar kan du besöka?`,
-    description: `Se vilka öar i Stockholms skärgård och Bohuslän som är öppna i ${monthName} 2026 — med restauranger, gästhamnar och service. Uppdateras varje månad.`,
+    description: `Se vilka öar i Stockholms skärgård och Bohuslän som är öppna i ${monthName} ${year} — med restauranger, gästhamnar och service. Uppdateras varje månad.`,
     alternates: { canonical: 'https://svalla.se/oppet-nu' },
     openGraph: {
       title: `Vad är öppet i skärgården i ${monthName}?`,
@@ -65,10 +83,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function OppetNuPage() {
-  const now = new Date()
-  const month = now.getMonth() // 0–11
+  const { month, year } = manadIStockholm() // month 0–11, svensk tid
   const monthName = MONTH_NAMES_SV[month]
-  const year = now.getFullYear()
 
   // Samla öar per status
   const grouped: Record<Status, typeof ALL_ISLANDS> = { peak: [], open: [], limited: [] }

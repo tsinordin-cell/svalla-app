@@ -70,7 +70,7 @@ function NyTradForm() {
   if (pendingKategori) {
     const catName = STATIC_CATEGORIES.find(c => c.id === pendingKategori)?.name ?? pendingKategori
     return (
-      <main style={{
+      <div style={{
         minHeight: '100vh', background: 'var(--bg)',
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         padding: '40px 24px', textAlign: 'center',
@@ -96,7 +96,7 @@ function NyTradForm() {
             Tillbaka till {catName}
           </Link>
         </div>
-      </main>
+      </div>
     )
   }
 
@@ -112,7 +112,7 @@ function NyTradForm() {
   }
 
   return (
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 32px)',
@@ -300,7 +300,7 @@ function NyTradForm() {
           )}
         </button>
       </form>
-    </main>
+    </div>
   )
 }
 

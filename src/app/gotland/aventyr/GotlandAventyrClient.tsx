@@ -346,7 +346,7 @@ export default function GotlandAventyrClient() {
           <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.6)', margin: '0 0 32px', position: 'relative' }}>
             Låt Thorkel hjälpa dig att sätta ihop en personlig dagsplan.
           </p>
-          <Link href="/planera" style={{
+          <Link href="/planera" prefetch={false} style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
             background: '#fff', color: '#1a4a5e',
             fontSize: 15, fontWeight: 800, textDecoration: 'none',

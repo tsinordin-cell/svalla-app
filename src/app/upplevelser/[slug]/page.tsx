@@ -43,7 +43,7 @@ export default async function UpplevelseDetailPage({ params }: Props) {
   if (!exp) notFound()
 
   return (
-    <main style={{ minHeight: '100vh', background: 'var(--bg, #f8f7f4)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f8f7f4)', paddingBottom: 80 }}>
       {/* Back link */}
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '28px 24px 0' }}>
         <Link
@@ -205,6 +205,6 @@ export default async function UpplevelseDetailPage({ params }: Props) {
           Svalla kan få provision när du bokar via våra länkar. Det påverkar inte priset du betalar.
         </p>
       </article>
-    </main>
+    </div>
   )
 }

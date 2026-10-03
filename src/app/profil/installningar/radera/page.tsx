@@ -17,7 +17,7 @@ export default async function RaderaKontoPage() {
   }
 
   return (
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       padding: '32px 16px calc(var(--nav-h) + 32px)',
@@ -99,6 +99,6 @@ export default async function RaderaKontoPage() {
 
         <DeleteAccountForm />
       </div>
-    </main>
+    </div>
   )
 }

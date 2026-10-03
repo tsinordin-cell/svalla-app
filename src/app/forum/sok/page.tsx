@@ -51,7 +51,7 @@ export default function ForumSokPage() {
  }
 
  return (
- <main style={{
+ <div style={{
  minHeight: '100vh',
  background: 'var(--bg)',
  paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)',
@@ -196,6 +196,6 @@ export default function ForumSokPage() {
  </div>
  )}
  </div>
- </main>
+ </div>
  )
 }

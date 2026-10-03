@@ -141,7 +141,7 @@ export default async function ToplistaPage() {
         position: 'sticky', top: 0, zIndex: 50,
         display: 'flex', alignItems: 'center', gap: 10,
       }}>
-        <Link href="/feed" style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(10,123,140,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <Link href="/feed" prefetch={false} style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(10,123,140,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
@@ -256,7 +256,7 @@ export default async function ToplistaPage() {
           </div>
           <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Klättra på listan</h3>
           <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 16px' }}>Logga en tur och se dig själv bland de bästa</p>
-          <Link href="/logga" style={{
+          <Link href="/logga" prefetch={false} style={{
             display: 'inline-block', padding: '12px 32px', borderRadius: 14,
             background: 'var(--grad-acc)',
             color: '#fff', fontWeight: 600, fontSize: 14,
