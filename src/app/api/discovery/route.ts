@@ -114,8 +114,14 @@ export async function GET(req: Request) {
     // Vercel svarade `x-vercel-cache: MISS` på VARJE anrop och hela listan
     // (587 kB) byggdes om från databasen för varje besökare på kartan.
     // Kommentaren påstod "aggressiv cache är säker" medan koden gjorde tvärtom.
+    //
+    // max-age=60 (revision 2026-10-02, P1-3): /upptack preloadar det här svaret
+    // från HTML:en. Med max-age=0 räknar webbläsaren det förladdade svaret som
+    // gammalt och hämtar om det när fetch() körs – två nedladdningar i stället
+    // för en (provat i Chromium 2026-10-03: max-age=0 → 2 anrop, max-age=60 → 1).
+    // Listan ändras bara via /admin och ligger ändå en timme i CDN:en.
     return NextResponse.json(projected, {
-      headers: { 'Cache-Control': 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' },
+      headers: { 'Cache-Control': 'public, max-age=60, s-maxage=3600, stale-while-revalidate=86400' },
     })
   }
 
