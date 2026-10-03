@@ -129,7 +129,7 @@ export default function LoppisEditForm({ threadId, initial }: Props) {
   }
 
   return (
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 32px)',
@@ -344,6 +344,6 @@ export default function LoppisEditForm({ threadId, initial }: Props) {
           </button>
         </div>
       </form>
-    </main>
+    </div>
   )
 }

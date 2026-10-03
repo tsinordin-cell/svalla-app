@@ -10,6 +10,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import { IconHelm, IconRoute, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
 import { IconCompass } from '@/components/icons/SvallaIcons'
 import { Home } from '@/components/icons/LucideIcons'
+import { prefetchFor as prefetchUtloggad } from '@/lib/inloggningsrutter'
 
 export default function Nav() {
   const path = usePathname()
@@ -160,6 +161,11 @@ export default function Nav() {
     && !PAGES_WITH_OWN_BELLS.some(matchar)
     && !path.match(/^\/meddelanden/)
 
+  // revision 2026-10-02: Planera, Logga tur, Flöde och Profil kräver inloggning.
+  // För utloggade blev varje prefetch av flikarna en 307 till /logga-in (se
+  // src/lib/inloggningsrutter.ts). Inloggade (username satt) prefetchar som förut.
+  const prefetchFor = (href: string) => (username === null ? prefetchUtloggad(href) : undefined)
+
   return (
     <>
       {showGlobalBell && (
@@ -221,6 +227,7 @@ export default function Nav() {
             <Link
               key={tab.href}
               href={tab.href}
+              prefetch={prefetchFor(tab.href)}
               aria-label="Logga tur"
               className="press-feedback nav-fab-wrap"
               style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3 }}
@@ -238,7 +245,7 @@ export default function Nav() {
         }
 
         return (
-          <Link key={tab.href} href={tab.href} aria-current={active ? 'page' : undefined}
+          <Link key={tab.href} href={tab.href} prefetch={prefetchFor(tab.href)} aria-current={active ? 'page' : undefined}
             aria-label={`Gå till ${tab.label}`}
             className="nav-tab-link press-feedback"
             style={{

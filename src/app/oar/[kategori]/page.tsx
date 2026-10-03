@@ -120,7 +120,7 @@ export default async function OarCategoryPage({ params }: Props) {
         </div>
       </header>
 
-      <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         {islands.length === 0 ? (
           <div style={{
             background: 'var(--white)', border: '1px solid var(--surface-3)',
@@ -217,7 +217,7 @@ export default async function OarCategoryPage({ params }: Props) {
             description="Säsongsstarter och nya guider, när det händer något. Inga annonser."
           />
         </div>
-      </main>
+      </div>
       <PublicFooter />
     </div>
   )

@@ -22,7 +22,7 @@ import { useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
 import { WeatherPill } from '@/components/MapCornerPills'
 import { track } from '@/lib/analytics-events'
 
@@ -324,6 +324,10 @@ export default function UpptackExplorer() {
   const mapRef = useRef<unknown>(null)
   const clusterRef = useRef<unknown>(null)
   const markersRef = useRef<Map<string, unknown>>(new Map())
+  // revision 2026-10-02: kartan initieras asynkront. Kom datan före kartan
+  // returnerade markör-effekten tidigt och kördes inte om när kartan blev klar,
+  // så inga nålar ritades förrän ett filter ändrades. kartaKlar kör om den.
+  const [kartaKlar, setKartaKlar] = useState(false)
   const listScrollRef = useRef<HTMLDivElement>(null)
   // Google Places-fotona svarar 403 så länge nyckeln nekas (kort 08208bd8).
   // Ett trasigt foto visar i stället kategorins platshållare.
@@ -469,7 +473,7 @@ export default function UpptackExplorer() {
       L.tileLayer(tile.url, { maxZoom: 18, attribution: tile.attr }).addTo(map)
       // Sjökorts-overlay — sänkt opacity så Svallas pins dominerar visuellt
       L.tileLayer(SEAMARK_TILE, { opacity: 0.45, maxZoom: 18 }).addTo(map)
-      L.control.zoom({ position: 'topright' }).addTo(map)
+      L.control.zoom({ position: 'topright', ...ZOOM_SV }).addTo(map)
 
       // Cluster — markercluster augmenterar L runtime; cast så TS är glad
       const Lany = L as unknown as { markerClusterGroup: (opts: object) => unknown }
@@ -489,11 +493,20 @@ export default function UpptackExplorer() {
         },
         iconCreateFunction: (c: { getChildCount: () => number }) => {
           const n = c.getChildCount()
-          return L.divIcon({
+          const ikon = L.divIcon({
             html: `<div style="background:#1e5c82;color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;font-family:'Inter',sans-serif;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)">${n}</div>`,
             className: 'svalla-cluster',
             iconSize: [34, 34],
           })
+          // revision 2026-10-02: klustret är en knapp (role="button", tabindex)
+          // utan namn. Klick eller Enter zoomar in till platserna i klustret.
+          const skapa = ikon.createIcon.bind(ikon)
+          ikon.createIcon = (gammal?: HTMLElement) => {
+            const el = skapa(gammal)
+            el.setAttribute('aria-label', `${n} platser, zooma in`)
+            return el
+          }
+          return ikon
         },
       })
       map.addLayer(cluster as Parameters<typeof map.addLayer>[0])
@@ -519,6 +532,7 @@ export default function UpptackExplorer() {
 
       mapRef.current = map
       clusterRef.current = cluster
+      setKartaKlar(true)
 
       // Säkerställ att Leaflet ser rätt container-storlek även när
       // mobil-tab "Lista" är default (då är .upx-map-wrap display:none vid mount).
@@ -543,6 +557,7 @@ export default function UpptackExplorer() {
       mapRef.current = null
       clusterRef.current = null
       markersMap.clear()
+      setKartaKlar(false)
     }
   }, [])
 
@@ -580,6 +595,11 @@ export default function UpptackExplorer() {
           popupAnchor: [0, -40],
         })
         const m = L.marker([p.latitude, p.longitude], { icon })
+        // revision 2026-10-02: Leaflet gör nålen till role="button" med tabindex
+        // men utan namn (axe aria-command-name: 51 nålar). Namnet sätts när nålen
+        // läggs på kartan (även efter klustring); DivIcon återanvänder samma
+        // element vid setIcon, så det ligger kvar när hover byter ikon.
+        m.on('add', () => m.getElement()?.setAttribute('aria-label', `${p.name}, ${CATEGORY_META[cat].label}`))
         // Stash POI på markören så hover-effekten kan läsa kategorin
         ;(m as unknown as { _poi: Poi })._poi = p
         m.bindPopup(`
@@ -603,7 +623,7 @@ export default function UpptackExplorer() {
       cluster.addLayers(newMarkers)
     })()
     return () => { cancelled = true }
-  }, [pois, isAllMode, activeCats, query])
+  }, [pois, isAllMode, activeCats, query, kartaKlar])
 
   // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
   // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den

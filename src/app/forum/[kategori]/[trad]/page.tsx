@@ -294,7 +294,7 @@ export default async function ForumTradPage({ params }: Props) {
       postIds={posts.map(p => p.id)}
       isLoppis={kategori === 'loppis'}
     >
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 32px)',
@@ -634,7 +634,7 @@ export default async function ForumTradPage({ params }: Props) {
 
       {/* Realtime: lyssnar på nya posts och visar pill om någon annan postar */}
       <ForumRealtimeListener threadId={thread.id} initialCount={posts.length} />
-    </main>
+    </div>
     </ForumViewerProvider>
   )
 }

@@ -50,7 +50,7 @@ export default function JamforIndex() {
         </div>
       </header>
 
-      <main style={{ maxWidth: 760, margin: '24px auto 0', padding: '0 16px' }}>
+      <div style={{ maxWidth: 760, margin: '24px auto 0', padding: '0 16px' }}>
         <div style={{ display: 'grid', gap: 12 }}>
           {COMPARISONS.map(c => (
             <Link
@@ -85,7 +85,7 @@ export default function JamforIndex() {
             Mejla <a href="mailto:hello@svalla.se" style={{ color: 'var(--sea)' }}>hello@svalla.se</a>.
           </p>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

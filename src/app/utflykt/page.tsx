@@ -67,7 +67,7 @@ export default function UtflyktPage() {
         </div>
       </header>
 
-      <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         <Suspense fallback={<div style={{ minHeight: 320 }} aria-busy="true" />}>
           <UtflyktClient islands={islands} hubs={hubs} />
         </Suspense>
@@ -91,7 +91,7 @@ export default function UtflyktPage() {
             </div>
             <div>
               <dt style={{ fontWeight: 700, color: 'var(--txt)' }}>Har jag egen båt?</dt>
-              <dd style={{ margin: '4px 0 0' }}>Då är <Link href="/planera" style={{ color: 'var(--sea)', fontWeight: 700 }}>ruttplaneraren</Link> gjord för dig: distans, väder, hamnar och öar längs vägen.</dd>
+              <dd style={{ margin: '4px 0 0' }}>Då är <Link href="/planera" prefetch={false} style={{ color: 'var(--sea)', fontWeight: 700 }}>ruttplaneraren</Link> gjord för dig: distans, väder, hamnar och öar längs vägen.</dd>
             </div>
           </dl>
         </section>
@@ -104,7 +104,7 @@ export default function UtflyktPage() {
             description="Säsongsstarter och nya guider, när det händer något. Inga annonser."
           />
         </div>
-      </main>
+      </div>
       <PublicFooter />
     </div>
   )

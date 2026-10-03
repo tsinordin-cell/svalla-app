@@ -306,7 +306,7 @@ export default async function ComparisonPage({ params }: Props) {
         </div>
       </header>
 
-      <main style={{
+      <div style={{
         maxWidth: 1000, margin: '-32px auto 0', padding: '0 16px 60px',
       }}>
         <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
@@ -360,7 +360,7 @@ export default async function ComparisonPage({ params }: Props) {
             })}
           </div>
         </section>
-      </main>
+      </div>
     </div>
   )
 }

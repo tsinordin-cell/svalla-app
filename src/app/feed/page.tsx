@@ -19,11 +19,14 @@ import { Home } from '@/components/icons/LucideIcons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 import { getViewerId } from '@/lib/authClaims'
+import { timmeIStockholm } from '@/lib/svenskTid'
 
 export const dynamic = 'force-dynamic'
 
+// revision 2026-10-02: timmen räknas i Europe/Stockholm. Servern kör i UTC,
+// så new Date().getHours() gav "God morgon" en till två timmar för sent.
 function getGreeting(): string {
- const h = new Date().getHours()
+ const h = timmeIStockholm()
  if (h < 5) return 'God natt'
  if (h < 10) return 'God morgon'
  if (h < 13) return 'God förmiddag'
@@ -33,7 +36,7 @@ function getGreeting(): string {
 }
 
 function getTimeLabel(): string {
- const h = new Date().getHours()
+ const h = timmeIStockholm()
  if (h >= 5 && h < 8) return 'GRYNING'
  if (h >= 8 && h < 12) return 'MORGON'
  if (h >= 12 && h < 17) return 'EFTERMIDDAG'

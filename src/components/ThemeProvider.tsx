@@ -1,5 +1,6 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react'
+import SkipLink from '@/components/SkipLink'
 
 export type Theme = 'auto' | 'light' | 'dark'
 export type Lang  = 'sv' | 'en'
@@ -60,6 +61,10 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 
   return (
     <Ctx.Provider value={{ theme, setTheme, lang, setLang }}>
+      {/* revision 2026-10-02: skip-länken måste ligga före <main> i DOM:en, och
+          ThemeProvider är det enda som renderas där utan att röra layout.tsx.
+          Flytta den till layout.tsx när den filen är fri. Se SkipLink.tsx. */}
+      <SkipLink />
       {children}
     </Ctx.Provider>
   )

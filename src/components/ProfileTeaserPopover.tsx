@@ -246,7 +246,7 @@ export default function ProfileTeaserPopover({
                     </button>
                   )}
                   {!data.is_self && (
-                    <Link href={`/meddelanden/ny?to=${data.id}`} onClick={() => setOpen(false)}
+                    <Link href={`/meddelanden/ny?to=${data.id}`} prefetch={false} onClick={() => setOpen(false)}
                       aria-label="Skicka meddelande"
                       style={{
                         padding: 12, borderRadius: 12, border: '1px solid rgba(10,123,140,0.20)',

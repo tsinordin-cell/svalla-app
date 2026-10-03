@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import SvallaLogo from './SvallaLogo'
+import { prefetchFor } from '@/lib/inloggningsrutter'
 
 /**
  * Global footer för publika sidor — visas på /utflykt, /bingo, /aktivitet/*,
@@ -180,6 +181,8 @@ function FooterColumn({ title, links }: {
           <li key={l.href}>
             <Link
               href={l.href}
+              // revision 2026-10-02: ingen prefetch av /planera (307 till inloggning för utloggade)
+              prefetch={prefetchFor(l.href)}
               style={{
                 fontSize: 13,
                 color: 'rgba(255,255,255,0.65)',

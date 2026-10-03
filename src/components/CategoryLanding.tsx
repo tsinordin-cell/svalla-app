@@ -4,6 +4,9 @@ import SvallaLogo from '@/components/SvallaLogo'
 import Icon, { type IconName } from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import { isProEnabled } from '@/lib/pro'
+// revision 2026-10-02: ingen prefetch av inloggningsskyddade sidor (t.ex. CTA:n
+// till /planera) — för utloggade blev varje prefetch en 307 till /logga-in.
+import { prefetchFor } from '@/lib/inloggningsrutter'
 
 // Mappar emojis och otydliga icon-strängar till Svalla IconName.
 // Vi vill aldrig rendera Apple-emojis i CategoryLanding-kort.
@@ -101,7 +104,9 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 0 }}>
  {/* WEBBPLATS-NAV — markerar sidan som "hemsida", inte app */}
+ {/* revision 2026-10-02: mork-yta = vit fokusring på mörk botten (globals.css) */}
  <nav
+ className="mork-yta"
  style={{
  background: heroGradient[0],
  borderBottom: '1px solid rgba(255,255,255,0.08)',
@@ -320,6 +325,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  {cta.secondaryLabel && cta.secondaryHref && (
  <Link
  href={cta.secondaryHref}
+ prefetch={prefetchFor(cta.secondaryHref)}
  style={{
  display: 'inline-flex',
  alignItems: 'center',
@@ -340,6 +346,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  )}
  <Link
  href={cta.href}
+ prefetch={prefetchFor(cta.href)}
  style={{
  display: 'inline-flex',
  alignItems: 'center',
@@ -383,6 +390,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  <Link
  key={r.href}
  href={r.href}
+ prefetch={prefetchFor(r.href)}
  style={{
  display: 'inline-flex',
  alignItems: 'center',
@@ -406,6 +414,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
 
  {/* WEBBPLATS-FOOTER — signalerar tydligt att detta är en hemsida, inte app */}
  <footer
+ className="mork-yta"
  style={{
  marginTop: 64,
  padding: '32px 20px 28px',
@@ -527,7 +536,7 @@ function LandingCard({ item, accent, reservera }: { item: LandingItem; accent: s
  </>
  )
  return (
- <Link href={item.href} style={cardStyle}>
+ <Link href={item.href} prefetch={prefetchFor(item.href)} style={cardStyle}>
  {cardContent}
  </Link>
  )
@@ -545,7 +554,7 @@ function FooterCol({ title, links }: { title: string; links: { label: string; hr
  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
  {links.map(l => (
  <li key={l.href}>
- <Link href={l.href} style={{
+ <Link href={l.href} prefetch={prefetchFor(l.href)} style={{
  color: 'rgba(255,255,255,0.85)',
  fontSize: 13, textDecoration: 'none',
  }}>{l.label}</Link>

@@ -1,5 +1,5 @@
-import { notFound } from 'next/navigation'
-import { createPublicSupabaseClient } from '@/lib/supabase-server'
+import { notFound, redirect } from 'next/navigation'
+import { hittaAnvandarnamn } from '@/lib/anvandarnamn'
 
 export const revalidate = 60
 
@@ -26,8 +26,16 @@ export default async function UserProfileLayout({
   const { username: rawUsername } = await params
   // Samma dekodning som i page.tsx: dynamiska segment dekodas inte automatiskt.
   const username = decodeURIComponent(rawUsername)
-  const { data: exists } = await createPublicSupabaseClient()
-    .from('users').select('id').eq('username', username).maybeSingle()
-  if (!exists) notFound()
+  // revision 2026-10-02: skiftlägesokänslig reserv (/u/elin hittar "Elin"),
+  // se src/lib/anvandarnamn.ts. Exakt träff vinner och kostar ett uppslag som förut.
+  const namn = await hittaAnvandarnamn(username)
+  if (!namn) notFound()
+  // Fel skiftläge ger 307 till profilens riktiga adress. Då delas bara den
+  // adressen, och ett senare registrerat "elin" kan inte tyst ta över länkar
+  // som i dag visar "Elin". Tillfällig (307), inte permanent: kopplingen
+  // namn→profil kan ändras, och en 308 cachas för gott i webbläsaren
+  // (granskningen 2026-10-02). Omdirigeringen görs här, före loading-gränsen,
+  // av samma skäl som 404:an ovan: annars hinner svaret få status 200.
+  if (namn !== username) redirect(`/u/${encodeURIComponent(namn)}`)
   return <>{children}</>
 }

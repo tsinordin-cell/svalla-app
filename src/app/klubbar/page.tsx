@@ -98,7 +98,7 @@ export default function KlubbarPage() {
  padding: '14px 16px',
  }}>
  <div style={{ maxWidth: 520, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 10 }}>
- <Link href="/feed" aria-label="Tillbaka" style={{
+ <Link href="/feed" prefetch={false} aria-label="Tillbaka" style={{
  width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
  background: 'rgba(10,123,140,0.07)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',

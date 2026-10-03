@@ -113,7 +113,7 @@ export default async function IslandAktiviteterPage({ params }: Props) {
         }
       />
 
-      <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
 
         {island.activities.length === 0 ? (
           <div style={{
@@ -244,7 +244,7 @@ export default async function IslandAktiviteterPage({ params }: Props) {
             <Icon name="arrowRight" size={18} stroke={2.2} />
           </div>
         </Link>
-      </main>
+      </div>
     </div>
   )
 }

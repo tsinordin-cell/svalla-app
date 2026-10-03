@@ -6,6 +6,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import Icon from '@/components/Icon'
 import { SAT_SECTIONS, SAT_TOTAL_KM, SAT_SUM_KM, SAT_ISLANDS, SAT_URL, type SatDifficulty } from './sat-data'
+import { prefetchFor } from '@/lib/inloggningsrutter' // revision 2026-10-02: ingen prefetch av /planera
 
 export const metadata: Metadata = {
   title: 'Stockholm Archipelago Trail — alla 22 etapper, längd och svårighet',
@@ -191,7 +192,7 @@ export default function StockholmArchipelagoTrailPage() {
           </div>
         </header>
 
-        <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 80px' }}>
+        <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 80px' }}>
 
           {/* ── Aktuellt ── */}
           {/* KÄLLA: stockholmarchipelagotrail.com/news/the-north-end-of-rano-closed-until-2027 (2026-08-18) */}
@@ -421,7 +422,7 @@ export default function StockholmArchipelagoTrailPage() {
               ].map(link => (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={link.href} prefetch={prefetchFor(link.href)}
                   style={{
                     padding: '7px 14px', borderRadius: 999,
                     background: 'var(--surface-2)', color: 'var(--sea)',
@@ -443,7 +444,7 @@ export default function StockholmArchipelagoTrailPage() {
             />
           </div>
 
-        </main>
+        </div>
       </div>
     </>
   )

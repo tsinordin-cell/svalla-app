@@ -84,7 +84,7 @@ export default async function MyListingsPage() {
   const soldThreads = threads.filter(t => t.listing_data?.status === 'sald')
 
   return (
-    <main style={{
+    <div style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 32px)',
@@ -160,7 +160,7 @@ export default async function MyListingsPage() {
           </>
         )}
       </div>
-    </main>
+    </div>
   )
 }
 

@@ -148,7 +148,7 @@ export default async function MinSkargardPage() {
         </div>
       </header>
 
-      <main style={{ maxWidth: 900, margin: '-32px auto 0', padding: '0 16px', position: 'relative' }}>
+      <div style={{ maxWidth: 900, margin: '-32px auto 0', padding: '0 16px', position: 'relative' }}>
         {/* PROGRESS-CARD */}
         <section style={{
           background: 'var(--white)',
@@ -471,7 +471,7 @@ export default async function MinSkargardPage() {
             </Link>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   )
 }
