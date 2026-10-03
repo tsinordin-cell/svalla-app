@@ -1,8 +1,13 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Icon from '@/components/Icon'
 
+// revision 2026-10-02: fältet icon ersätter imageFallback och imageAlt (se
+// kommentaren ovanför komponenten). `as const` längst ned gör att TypeScript
+// kontrollerar att varje icon är ett namn som finns i Icon.tsx.
+// Entrépriserna för Långe Jan (nr 1), Eketorp (nr 2) och Borgholms slott (nr 3)
+// är också borttagna. De saknade belägg, och verify-claims släppte förut igenom
+// dem bara för att bildlänken strax ovanför räknades som belägg. Hellre kort
+// text än fel text.
 const ADVENTURES = [
   {
     id: 1,
@@ -10,11 +15,10 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Södra Öland UNESCO + Långe Jan',
     distance: 'Ca 120 km söder om Borgholm',
-    imageFallback: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85',
-    imageAlt: 'Öppet landskap med fyr vid havet',
+    icon: 'tower',
     intro: 'I södra Ölands ände möts två av Sveriges mest extraordinära naturupplevelser på samma dag – och ingen av dem kräver biljett för att ta emot dig.',
     body: 'Södra Ölands odlingslandskap är UNESCO-listat sedan 2000 – ett öppet, stäppliknande Alvar unikt i Europa, genomskuret av gamla stenmurar. I maj lyser kalkstensmarken av orkidéer i nästan osannolika koncentrationer. Längst ut i söder reser sig Långe Jan – Skandinaviens högsta fyr på 42 meter. Att klättra de 193 trappstegen och ställa sig vid lanterninen är att förstå vad som menas med horisont: hav i alla riktningar, Alvaret bakom. Ugglestarens naturreservat alldeles intill är ett paradis för fågelskådare under höstflyttningen.',
-    practicalInfo: 'Bil rekommenderas. Långe Jan: inträde ca 60 kr. Planera heldagstur. Bäst i maj (blomning) och aug–sep (fågelflyttning). Ta med matsäck.',
+    practicalInfo: 'Bil rekommenderas. Planera heldagstur. Bäst i maj (blomning) och aug–sep (fågelflyttning). Ta med matsäck.',
   },
   {
     id: 2,
@@ -22,11 +26,10 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Eketorps fornborg – järnålderns Öland',
     distance: 'Ca 100 km söder om Borgholm',
-    imageFallback: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=85',
-    imageAlt: 'Rekonstruerad fornborg av kalksten i solsken',
+    icon: 'castle',
     intro: 'Eketorp är den enda fullständigt utgrävda och rekonstruerade ringborgen i Norden – och ett av Ölands absoluta besöksmål.',
     body: 'Ursprungligen byggd på 400-talet e.Kr. som en befäst boplats för hundratals människor, ombyggd och återuppbyggd under järn- och folkvandringstiden. Borgvallen av kalksten är imponerande i sin omfång. Sommartid lever museet: kostymerad personal visar hantverk och djurhållning, arkeologer presenterar aktuella fynd och barn kan prova dräkter. Det är den typ av plats som gör historia konkret och gripbar istället för abstrakt och inlärd. Familjebiljetter finns. Kombinera med Alvaret som börjar precis söder om Eketorp.',
-    practicalInfo: 'Öppet maj–sep. Familjebiljetter finns. Kostymerad personal sommartid. Kombinera med Alvaret söderut. Inträde ca 140 kr vuxen.',
+    practicalInfo: 'Öppet maj–sep. Familjebiljetter finns. Kostymerad personal sommartid. Kombinera med Alvaret söderut.',
   },
   {
     id: 3,
@@ -34,11 +37,10 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Borgholms slottsruin – kunglig historia',
     distance: 'Borgholm centrum',
-    imageFallback: 'https://images.unsplash.com/photo-1467377791767-c929b5dc9a23?w=1200&q=85',
-    imageAlt: 'Imponerande slottsruin omgiven av park',
+    icon: 'castle',
     intro: 'Borgholms slott är en av Skandinaviens mest imponerande slottsruiner – och kopplingen till kungafamiljen gör besöket extra fascinerande.',
     body: 'Det enorma renässansslottet uppfördes på 1600-talet och brann 1806. Ruinen är i sin skala närmast häpnadsväckande: fyra höga murtorn, valvgångar och gallerier av sten som lyser guld i solskenet, med öppen himmel som tak innanför murarna. Guidade turer dagligen ger historien liv – en historia med Gustav Vasa, Erik XIV och Johan III. Kungafamiljen bor fortfarande på Solliden alldeles intill, och slottsparken är öppen under sommaren. Promenadavstånd från Borgholms centrum.',
-    practicalInfo: 'Öppet maj–aug. Guidade turer dagligen. Inträde ca 100 kr vuxen. Solliden slottspark: öppet jun–aug.',
+    practicalInfo: 'Öppet maj–aug. Guidade turer dagligen. Solliden slottspark: öppet jun–aug.',
   },
   {
     id: 4,
@@ -46,8 +48,7 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Trollskogen – bok och dimma',
     distance: 'Ca 55 km norr om Borgholm',
-    imageFallback: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=85',
-    imageAlt: 'Gammal mossig skog med vindpinade träd',
+    icon: 'tree',
     intro: 'Trollskogen på norra Öland är ett av Sveriges märkligaste naturområden – och namngiven av goda skäl.',
     body: 'En urskog av gamla, vindpinade och vridna bokträd med mossbetäckta stenar, rotvältor och ett dimmigt halvljus som skapar känslan av att träda in i en saga. Träden, som kan vara uppemot 1 000 år gamla, har formats av salta havsvinder till former ingen trädgårdsarkitekt kunde planera. Naturreservat med välmärkta stigar, barnvänlig terräng och spänstiga naturliga klätterträd runt varje kurva. Alltid öppet, inget inträde. Kombinera med ett besök i Byxelkroks charmiga fiskehamn och ett fiskebröd vid kajen.',
     practicalInfo: 'Alltid öppet, gratis inträde. Parkering vid Byxelkroks hamn ca 1 km. Barnvänligt. Bäst med morgondis – kom tidigt.',
@@ -58,8 +59,7 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Alvaret – Europas unika stäpp',
     distance: 'Södra Öland, ca 80–120 km söder om Borgholm',
-    imageFallback: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=85',
-    imageAlt: 'Öppet stäpplandskap i varmt solljus',
+    icon: 'leaf',
     intro: 'Det stora Alvaret saknar motstycke i Europa – en öppen kalkstensmark som varken är skog, åker eller myr, utan något helt eget.',
     body: 'Alvaret täcker nästan en tredjedel av Ölands yta och är ett landskap som kan se tomt ut från en bil men öppnar sig helt för den som kliver ut och börjar gå. Kalkstensmarken är extrem – extremt tunn jord, extrem torka sommartid – vilket har selekterat fram en blomsterflora utan motstycke: upp till 26 orkidéarter blommar här. I maj och juni lyser Alvaret av backsippa, rosenrot och timjan. Naturreservat med välmärkta vandringsleder och total tystnad bortsett från vind och fågelsång. Ta med vatten – inga serviceverksamheter ute på Alvaret.',
     practicalInfo: 'Bäst i maj–juni (blomning). Bil rekommenderas. Gratis inträde. Ta med vatten och matsäck. Kombinerbart med Eketorp och Långe Jan.',
@@ -70,8 +70,7 @@ const ADVENTURES = [
     transportColor: '#1a4a5e',
     title: 'Byxelkrok – norröns pärla',
     distance: 'Ca 60 km norr om Borgholm',
-    imageFallback: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=85',
-    imageAlt: 'Liten fiskehamn med båtar och röda stugor',
+    icon: 'anchor',
     intro: 'Byxelkrok är Ölands nordligaste by och ett av de mest genuina fiskelägen längs den svenska östkusten.',
     body: 'En liten hamn med brokiga fiskebåtar, ett rökeri vid kajen och ett sommarcafé – och direkt tillgång till Trollskogens trollska bokurskog norr om hamnen. Byxelkrok är inte ett turistmål i vanlig mening, det är en plats som råkar vara väldigt vacker utan att ha lagt ner något på det. På sommaren fylls gästhamnen av båtfolk från hela Östersjön. Parkera i byn, ta en promenad längs strandstigen och tillbringa ett par timmar i urskogen. Ät lunch vid kajen efteråt.',
     practicalInfo: 'Bil eller buss från Borgholm – kontrollera tidtabell. Café och rökeri vid hamnen sommartid. Kombinera med Trollskogen direkt norr om hamnen.',
@@ -82,8 +81,7 @@ const ADVENTURES = [
     transportColor: '#8b4513',
     title: 'Södra Öland – UNESCO på cykel',
     distance: 'Ca 60 km rundtur från Mörbylånga',
-    imageFallback: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85',
-    imageAlt: 'Cyklist på öppen väg genom flackt landskap',
+    icon: 'bike',
     intro: 'En cykelrunda som packar ett UNESCO-landskap, en fornborg och Skandinaviens högsta fyr på en och samma dag.',
     body: 'Starta i Mörbylånga och rulla söderut längs välskyltade cykelleder genom Alvaret, ett av Europas mest unika landskap med fri horisont och vind i håret. Eketorps fornborg dyker upp längs vägen – ett obligatoriskt stopp. Fortsätt söderut mot Ottenby och Långe Jan, vars trappa ger hisnande utsikt. Flackt landskap och bra asfalt gör det till en av Ölands bästa cykeldagar. Räkna med 7–8 timmar inklusive stopp och lunch.',
     practicalInfo: 'Start Mörbylånga (buss från Kalmar). Hyr cykel i Mörbylånga eller Borgholm. Planera 7–8 h. Ta med matsäck och vatten.',
@@ -94,8 +92,7 @@ const ADVENTURES = [
     transportColor: '#8b4513',
     title: 'Borgholm–Eketorp – historisk cykeltur',
     distance: 'Ca 50 km enkel resa',
-    imageFallback: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=1200&q=85',
-    imageAlt: 'Cykelväg längs öppen kust med hav i bakgrunden',
+    icon: 'bike',
     intro: 'En klassisk Ölandsdag: slottsruin på morgonen, fornborg på eftermiddagen, buss hem på kvällen.',
     body: 'Från Borgholms slottsruin söderut längs väg 136 mot Eketorps fornborg – en resa som passerar medeltida kyrkor, alvarmark och karaktäristiska kalkstensmurar. Kyrkan i Gårdby, Resmo kyrka med sina romanska muralmålningar och Vickleby är värda ett kortare stopp. Leden är välskyltad och relativt platt, men håll koll på biltrafiken under högsäsong. Buss tillbaka från Mörbylånga på kvällen, vilket gör att du slipper cykla tillbaka i motvind.',
     practicalInfo: 'Hyr cykel i Borgholm. Buss tillbaka från Mörbylånga på kvällen. Mellannivå-cyklister. Planera 6–7 h.',
@@ -106,8 +103,7 @@ const ADVENTURES = [
     transportColor: '#2a7a40',
     title: 'Borgholm stadsvandring – Ölands puls',
     distance: 'Borgholm centrum',
-    imageFallback: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=85',
-    imageAlt: 'Charmig liten stad med trähus i sommarljus',
+    icon: 'walk',
     intro: 'Borgholm är Ölands hjärta – och under sommaren en av Sveriges mest levande småstäder.',
     body: 'Hundratusentals turister passerar Borgholm varje sommar men staden har lyckats bevara sin karaktär tack vare ett centrum som fortfarande är mänskligt i sin skala. Storgatan med boutiques och restauranger, slottsruinen på kullen och hamnen nedanför skapar en naturlig promenadslinga. Kungsparken med sin havsutsikt är en av stadens bästa platser för picknick. Hamnrestaurangerna serverar allt från husmanskost till havsfrukt med direktutsikt mot båtarna. Turistbyrån vid hamnen ger karta och tips.',
     practicalInfo: 'Buss från Kalmar: ca 45 min. Promenadvänlig innerstad. Turistbyrån vid hamnen ger karta. Solliden slottspark: öppet jun–aug.',
@@ -118,25 +114,30 @@ const ADVENTURES = [
     transportColor: '#2a7a40',
     title: 'Mörbylånga – söder om Borgholm',
     distance: 'Ca 20 km söder om Borgholm, buss',
-    imageFallback: 'https://images.unsplash.com/photo-1519981337-32df2b6c1bbb?w=1200&q=85',
-    imageAlt: 'Pittoreskt litet samhälle med kvarn vid vatten',
+    icon: 'pin',
     intro: 'Mörbylånga är södra Ölands lilla krona – genuint, lugnt och ett perfekt utgångsläge för södra öns bästa upplevelser.',
     body: 'Den karaktäristiska holländska kvarnen syns långt borrifrån och är ortens mest fotograferade landmärke. Centrum är pittoreskt och genuint öländskt utan att kännas turistifierat – en bedrift för en ort i hjärtat av ett av Sveriges mest besökta semesterområden. Härifrån startar den bästa cykeln mot Eketorps fornborg och Alvaret, och direktbuss kör hit från Kalmar utan byte. Cykeluthyrning finns i byn. Avsluta dagen med fika vid kvarnparken i kvällssolen.',
     practicalInfo: 'Buss från Borgholm ca 20 min, från Kalmar direkt. Kvarnen och museet fritt. Cykeluthyrning i byn.',
   },
-]
+] as const
 
+// revision 2026-10-02: sidan visar inga foton längre.
+// 1) Fotona hämtades från Google via /api/adventure-photos (borttagen). Rutten
+//    gjorde upp till 10 Text Search-anrop per cachemiss och tystade felen.
+//    Uppmätt 2026-10-02: /api/adventure-photos svarade {} för alla tre öarna,
+//    så besökarna fick bara reservbilderna (det tidigare fältet imageFallback).
+// 2) Reservbilderna var Unsplash-foton som inte föreställde platserna, till
+//    exempel Taj Mahal som Eketorps fornborg, London som Borgholm och alptoppar
+//    som Långe Jan. Bilden till Mörbylånga gav 404. Alt-texterna beskrev alltså
+//    något annat än det som syntes. Granskat 2026-10-02. Hellre ingen bild än
+//    fel bild.
+// I stället visas en dekorativ ruta i samma format (16/7) med en ikon för
+// äventyrstypen, så att sidans utseende inte ändras. Rutan är aria-hidden och saknar
+// alt-text. Ska bilder tillbaka: använd foton av rätt plats, med alt-text som
+// beskriver det som faktiskt syns.
+// Komponenten har inga hooks eller händelsehanterare kvar och är därför en
+// serverkomponent. Filnamnet (…Client.tsx) är kvar för att hålla ändringen liten.
 export default function OlandAventyrClient() {
-  const [photoMap, setPhotoMap] = useState<Record<string, string>>({})
-  const [photosReady, setPhotosReady] = useState(false)
-
-  useEffect(() => {
-    fetch('/api/adventure-photos?island=oland')
-      .then(r => r.ok ? r.json() : {})
-      .then((data: Record<string, string>) => { setPhotoMap(data); setPhotosReady(true) })
-      .catch(() => setPhotosReady(true))
-  }, [])
-
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg, #f8f7f4)' }}>
 
@@ -209,11 +210,11 @@ export default function OlandAventyrClient() {
               </div>
             </div>
 
-            <div style={{ width: '100%', aspectRatio: '16 / 7', borderRadius: 20, overflow: 'hidden', marginBottom: 28, background: `linear-gradient(135deg, ${adv.transportColor}44, ${adv.transportColor}99)`, boxShadow: '0 4px 40px rgba(0,0,0,0.12)' }}>
-              {(photosReady || photoMap[String(adv.id)]) && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={photoMap[String(adv.id)] || adv.imageFallback} alt={adv.imageAlt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading={i < 2 ? 'eager' : 'lazy'} />
-              )}
+            {/* Dekorativ ruta i bildens format, se kommentaren ovanför komponenten */}
+            <div aria-hidden="true" style={{ width: '100%', aspectRatio: '16 / 7', borderRadius: 20, overflow: 'hidden', marginBottom: 28, background: `linear-gradient(135deg, ${adv.transportColor}44, ${adv.transportColor}99)`, boxShadow: '0 4px 40px rgba(0,0,0,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ width: 76, height: 76, borderRadius: '50%', background: adv.transportColor, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 20px rgba(0,0,0,0.18)' }}>
+                <Icon name={adv.icon} size={36} stroke={1.6} />
+              </span>
             </div>
 
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', color: 'var(--txt, #1a1a1a)', lineHeight: 1.7, margin: '0 0 16px', fontWeight: 700, fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)', fontStyle: 'italic', maxWidth: 720 }}>{adv.intro}</p>
