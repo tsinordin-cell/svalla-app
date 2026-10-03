@@ -1,8 +1,10 @@
 export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
 import { createHash } from 'crypto'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { clearSupabaseAuthCookies } from '@/lib/authCookies'
 import { getAdminClient } from '@/lib/supabase-admin'
 import Stripe from 'stripe'
 import { logger } from '@/lib/logger'
@@ -254,10 +256,23 @@ export async function POST(req: NextRequest) {
     // Icke-kritiskt — fortsätt ändå
   }
 
-  // Logga ut session
+  // Logga ut session.
+  // revision 2026-10-02: sessionen ligger i @supabase/ssr:s cookie
+  // sb-<projekt>-auth-token (ev. delad i .0, .1 …). De tidigare namnen
+  // sb-access-token/sb-refresh-token används inte, så sessionen låg kvar i
+  // webbläsaren efter raderingen. Cookies tas nu bort utan nätverksanrop
+  // (signOut() anropar Auth-servern och behåller sessionen om det anropet
+  // fallerar), så det fungerar även när användaren redan är raderad. Namnen
+  // tas från förfrågan och från cookies(), eftersom lösenordskontrollen ovan
+  // (signInWithPassword) kan ha satt nya sessionscookies under förfrågan.
   const res = NextResponse.json({ ok: true })
-  res.cookies.delete('sb-access-token')
-  res.cookies.delete('sb-refresh-token')
+  const cookieNames = req.cookies.getAll().map((c) => c.name)
+  try {
+    cookieNames.push(...(await cookies()).getAll().map((c) => c.name))
+  } catch {
+    // Förfrågans cookies räcker som underlag.
+  }
+  clearSupabaseAuthCookies(res, cookieNames, process.env.NEXT_PUBLIC_SUPABASE_URL)
 
   logger.info('account-delete', 'completed', { userId, email: userEmail })
   return res
