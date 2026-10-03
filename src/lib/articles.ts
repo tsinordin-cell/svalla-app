@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from './supabase-server'
+import { createPublicSupabaseClient } from './supabase-server'
 import { logger } from './logger'
 
 export type ArticleRow = {
@@ -26,16 +26,34 @@ const ARTICLE_COLUMNS =
  * Hämtar alla publicerade artiklar, sorterade efter published_at DESC.
  */
 export async function listPublishedArticles(): Promise<ArticleRow[]> {
-  const sb = await createServerSupabaseClient()
+  // Cookie-fri klient (revision 2026-10-02). createServerSupabaseClient()
+  // anropar cookies(), vilket gjorde /tips och /tips/[slug] dynamiska trots
+  // revalidate = 300: x-vercel-cache MISS båda varven och cache-control
+  // private, no-store (uppmätt 2026-10-02: /tips 0,91/0,76 s,
+  // /tips/basta-krogarna-skargarden-2026 1,47/0,65 s). Samma p29-mönster som
+  // forum.ts. Policyn "Articles public read" (published = true) gäller alla
+  // roller. Inloggade såg dessutom egna utkast ("Articles author read drafts"),
+  // men /tips filtrerar på published och /tips/[slug] 404:ar opublicerade, så
+  // ingen sida visar något annat än förut (0 utkast i tabellen 2026-10-02).
+  const sb = createPublicSupabaseClient()
   const { data, error } = await sb
     .from('articles')
     .select(ARTICLE_COLUMNS)
     .eq('published', true)
     .order('published_at', { ascending: false, nullsFirst: false })
     .limit(50)
+    // Avbryt efter 10 s (revision 2026-10-02). Funktionen körs av
+    // generateStaticParams i /tips/[slug] under bygget, och i granskningen
+    // hängde bygget i "Collecting page data" när databasen inte svarade.
+    // Gränsen omfattar även supabase-js egna omförsök (503/520, nätverksfel).
+    .abortSignal(AbortSignal.timeout(10_000))
   if (error) {
     logger.error('articles', 'listPublishedArticles failed', { error })
-    return []
+    // Kasta i stället för att returnera [] (revision 2026-10-02). Med ISR
+    // cachades ett tyst [] som "Inga artiklar publicerade ännu" i upp till
+    // 5 min. Ett kast gör att Next behåller den gamla sidan vid förnyelse och
+    // att bygget avbryts. generateStaticParams i /tips/[slug] fångar felet.
+    throw new Error(`articles: ${error.message}`)
   }
   return (data as ArticleRow[]) ?? []
 }
@@ -44,15 +62,25 @@ export async function listPublishedArticles(): Promise<ArticleRow[]> {
  * Hämtar en artikel via slug (endast publicerade returneras för anonyma).
  */
 export async function getArticleBySlug(slug: string): Promise<ArticleRow | null> {
-  const sb = await createServerSupabaseClient()
+  // Cookie-fri klient, se listPublishedArticles (revision 2026-10-02). RLS
+  // returnerar därmed bara publicerade artiklar, oavsett vem som tittar.
+  const sb = createPublicSupabaseClient()
   const { data, error } = await sb
     .from('articles')
     .select(ARTICLE_COLUMNS)
     .eq('slug', slug)
+    // Samma tidsgräns som listPublishedArticles (revision 2026-10-02): en
+    // databas som hänger ska ge ett fel (gamla sidan ligger kvar), inte en
+    // förnyelse eller ett bygge som hänger.
+    .abortSignal(AbortSignal.timeout(10_000))
     .maybeSingle()
   if (error) {
     logger.error('articles', 'getArticleBySlug failed', { error })
-    return null
+    // Kasta vid frågefel i stället för att returnera null (revision
+    // 2026-10-02): null blev notFound(), och med ISR cachades då en 404 för en
+    // befintlig artikel i upp till 5 min. Saknas artikeln (0 rader) är error
+    // null och data null, så den ger fortfarande null och 404.
+    throw new Error(`articles: ${error.message}`)
   }
   return (data as ArticleRow | null) ?? null
 }
