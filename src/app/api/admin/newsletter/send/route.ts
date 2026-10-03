@@ -20,6 +20,7 @@
 
 import { NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { avregLank } from '@/lib/avregistrering'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -70,7 +71,7 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
             Du får detta mejl för att du prenumererar på Svallanyheter.
             <a href="https://svalla.se/nyhetsbrev" style="color:#6a8a96;text-decoration:underline">Om nyhetsbrevet</a>
             &nbsp;·&nbsp;
-            <a href="https://svalla.se/api/email/unsubscribe?email={{email}}" style="color:#6a8a96;text-decoration:underline">Avregistrera</a>
+            <a href="{{avreg_url}}" style="color:#6a8a96;text-decoration:underline">Avregistrera</a>
           </p>
         </td>
       </tr>
@@ -182,8 +183,12 @@ export async function POST(req: Request) {
       continue
     }
 
-    // Byt ut {{email}} i footer
-    const personalizedHtml = html.replace(/\{\{email\}\}/g, encodeURIComponent(email))
+    // Signerad avregistreringslänk per mottagare (src/lib/avregistrering.ts)
+    const avreg = avregLank(email)
+    const personalizedHtml = html
+      .replace(/\{\{avreg_url\}\}/g, avreg.replace(/&/g, '&amp;'))
+      // Som förut, om brevtexten själv använder {{email}}
+      .replace(/\{\{email\}\}/g, encodeURIComponent(email))
 
     try {
       const res = await fetch('https://api.resend.com/emails', {
@@ -197,6 +202,11 @@ export async function POST(req: Request) {
           to: email,
           subject,
           html: personalizedHtml,
+          // One-click unsubscribe (RFC 8058) – Gmail och Yahoo kräver det för massutskick.
+          headers: {
+            'List-Unsubscribe': `<${avreg}>`,
+            'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+          },
         }),
       })
 
@@ -212,11 +222,12 @@ export async function POST(req: Request) {
         }).then(() => {}, () => {})
       } else {
         errors++
-        console.error(`Newsletter send error for ${email}:`, data)
+        // Ingen adress i loggen (revision 2026-10-02)
+        console.error('Newsletter send error:', data)
       }
     } catch (e) {
       errors++
-      console.error(`Newsletter fetch error for ${email}:`, e)
+      console.error('Newsletter fetch error:', e)
     }
 
     // Kort paus för att inte hammra Resend-API:t
