@@ -120,8 +120,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Preconnect to OSM tile servers for Leaflet maps */}
         <link rel="dns-prefetch" href="https://tile.openstreetmap.org" />
         <link rel="dns-prefetch" href="https://tiles.openseamap.org" />
-        {/* Preconnect to PostHog EU — minimizes analytics latency */}
-        <link rel="preconnect" href="https://eu.i.posthog.com" />
+        {/* (Preconnect till PostHog borttagen 2026-10-02: den kontaktade PostHog
+            innan besökaren gett samtycke, och pekade dessutom på EU-regionen
+            medan vi använder US.) */}
         {/* Schema.org Organization — binder svalla.se till varumärket "Svalla"
             i Googles Knowledge Graph. sameAs fylls på när sociala konton
             är skapade (Instagram, LinkedIn, Facebook). */}
