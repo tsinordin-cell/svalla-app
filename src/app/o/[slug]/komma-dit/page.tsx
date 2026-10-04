@@ -5,6 +5,7 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { kommaDitTitel } from '@/lib/kommaDitTitlar'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -47,7 +48,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     operator && !(vag ?? '').toLowerCase().includes(operator.toLowerCase()) ? ` Trafik: ${operator}.` : '',
   ].join('')
   return {
-    title: `Hur tar man sig till ${island.name}? — Båt, buss, färja 2026`,
+    // Egen titel med färdsätt och hamn för öarna i src/lib/kommaDitTitlar.ts.
+    title: kommaDitTitel(slug, island.name),
     description: beskrivning,
     keywords: [
       `hur tar man sig till ${island.name.toLowerCase()}`,
@@ -60,8 +62,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `how to get to ${island.name.toLowerCase()} sweden`,
     ],
     openGraph: {
-      title: `Hur tar man sig till ${island.name}? Allt om transport`,
-      description: `Båt, buss och färja till ${island.name}. Avgångstider, priser, tips.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
+      title: kommaDitTitel(slug, island.name),
+      // Tidigare lovade delningstexten "avgångstider, priser" och buss för alla
+      // öar. Sidorna har inga priser. Nu samma text som metabeskrivningen.
+      description: beskrivning,
       url: `https://svalla.se/o/${slug}/komma-dit`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/komma-dit` },
