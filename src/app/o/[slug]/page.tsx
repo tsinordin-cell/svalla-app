@@ -1423,7 +1423,7 @@ export default async function IslandPage({ params }: Props) {
       flex: 1,
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
       padding: '11px 16px',
-      background: '#e8924a',
+      background: 'var(--acc-knapp)',
       color: '#fff',
       borderRadius: 12,
       textDecoration: 'none',

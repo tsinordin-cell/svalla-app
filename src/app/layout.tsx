@@ -23,7 +23,6 @@ import PostHogProvider from '@/components/PostHogProvider'
 import PostHogPageView from '@/components/PostHogPageView'
 import CookieConsent from '@/components/CookieConsent'
 import FeedbackWidget from '@/components/FeedbackWidget'
-import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 // Note: Leaflet CSS is imported dynamically in client components that need it, not here
 
@@ -91,8 +90,9 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  // revision 2026-10-02 (P2-3): nypzoom var avstängd (maximumScale 1, userScalable false).
+  // Det bryter mot WCAG 1.4.4 och gör texten oläslig för den som ser dåligt. iPhone-zoomen
+  // vid fokus på fält hanteras i globals.css (16 px i fält på iOS) i stället.
   themeColor: '#1e5c82',
   viewportFit: 'cover',  // Täcker notch på iPhone
 }
@@ -191,7 +191,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <OfflineToast />
             <CookieConsent />
             <FeedbackWidget />
-            <Analytics />
             <SpeedInsights />
           </ThemeProvider>
         </PostHogProvider>

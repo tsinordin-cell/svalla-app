@@ -314,7 +314,7 @@ export default function MeddelandenPage() {
                 {requestConvs.length > 0 && (
                   <span style={{
                     marginLeft: 5,
-                    background: 'var(--acc)',
+                    background: 'var(--acc-knapp)',
                     color: '#fff',
                     fontSize: 10, fontWeight: fontWeight.semibold,
                     borderRadius: radius.full, padding: '2px 6px',
@@ -548,7 +548,7 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
             {unread > 0 && (
               <span style={{
                 fontSize: 10, fontWeight: fontWeight.semibold,
-                background: 'var(--acc)', color: '#fff',
+                background: 'var(--acc-knapp)', color: '#fff',
                 borderRadius: radius.full, padding: '2px 7px', flexShrink: 0,
                 minWidth: 18, textAlign: 'center',
               }}>{unread > 99 ? '99+' : unread}</span>

@@ -221,7 +221,7 @@ export default function GuiderClient() {
                   <div style={{ position: 'relative', minWidth: 220, overflow: 'hidden', flexShrink: 0 }}>
                     <span style={{
                       position: 'absolute', top: 12, left: 12, zIndex: 2,
-                      background: '#e8924a', color: '#fff',
+                      background: 'var(--acc-knapp)', color: '#fff',
                       fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.07em',
                       padding: '3px 10px', borderRadius: 20,
                     }}>Redaktionens val</span>

@@ -14,6 +14,9 @@
   --acc:   #c96e2a;
   --acc-d: #9e5318;
   --acc-l: #fdf0e5;
+  /* Knappar och etiketter med vit text: #c96e2a/#e8924a ger 3,6/2,4:1 mot vitt (kravet är 4,5:1).
+     Den här nyansen ger 4,8:1. Accentfärgen i övrigt (ikoner, ramar, text på mörkt) är oförändrad. */
+  --acc-knapp: #b5591a;
   /* ── Thorkel-palette — skeppare från Möja ── */
   --thor:       #2b3e56;  /* mörkblå uniform */
   --thor-d:     #1a2738;  /* hover/pressed */
@@ -200,6 +203,7 @@ img {
   --sea-xl:     #091825;
   --acc:        #e8924a;
   --acc-d:      #c97030;
+  --acc-knapp:  #b5591a;
   --acc-l:      #2a1a0e;
   /* Thorkel — mörkt läge */
   --thor:       #4d6b8c;
@@ -1251,3 +1255,13 @@ img {
 
 /* Ösidornas sidhuvud (IslandNavAuth): dölj "Logga in" på de smalaste telefonerna. */
 @media (max-width: 399px) { .o-nav-login { display: none; } }
+
+/* revision 2026-10-02 (P2-3): zoomen är tillåten igen. iPhone zoomar automatiskt in på
+   fält med text under 16 px – det är därför zoomen en gång stängdes av. Nu får fälten
+   16 px bara på iOS och bara på smala skärmar (@supports-testet träffar enbart WebKit på iOS). */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 767px) {
+    /* !important: de flesta fält har inline-stilar (style={{ fontSize: 14 }}) som annars vinner. */
+    input, select, textarea { font-size: max(16px, 1em) !important; }
+  }
+}

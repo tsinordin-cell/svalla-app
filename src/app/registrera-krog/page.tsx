@@ -150,7 +150,7 @@ export default function RegistreraKrogPage() {
  onClick={() => router.push('/')}
  style={{
  padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
- background: 'linear-gradient(135deg, #e8924a, #f4a450)',
+ background: 'var(--acc-knapp)',
  color: '#fff', fontSize: 15, fontWeight: 600, fontFamily: 'inherit',
  boxShadow: '0 5px 20px rgba(232,146,74,0.35)',
  }}
@@ -450,7 +450,7 @@ export default function RegistreraKrogPage() {
  padding: '17px', borderRadius: 14, border: 'none', cursor: 'pointer',
  background: loading
  ? 'var(--txt3)'
- : 'linear-gradient(135deg, #e8924a, #f4a450)',
+ : 'var(--acc-knapp)',
  color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
  boxShadow: loading ? 'none' : '0 5px 22px rgba(232,146,74,0.40)',
  transition: 'all 0.2s', letterSpacing: '0.02em',

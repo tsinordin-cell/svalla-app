@@ -196,7 +196,7 @@ export default function KlubbarPage() {
  <Image src={c.image} alt="" fill sizes="56px" style={{ objectFit: 'cover' }} />
  ) : initialsOf(c.name)}
  {!c.is_public && (
- <div style={{ position: 'absolute', top: -4, right: -4, background: 'var(--acc)', color: '#fff', fontSize: 9, fontWeight: 600, borderRadius: 8, padding: '2px 5px', border: '2px solid var(--white)' }}>
+ <div style={{ position: 'absolute', top: -4, right: -4, background: 'var(--acc-knapp)', color: '#fff', fontSize: 9, fontWeight: 600, borderRadius: 8, padding: '2px 5px', border: '2px solid var(--white)' }}>
  privat
  </div>
  )}
