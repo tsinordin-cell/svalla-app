@@ -82,9 +82,10 @@ export default async function AdminMailPage() {
     beskrivning: (MAILFLODEN as readonly string[]).includes(t)
       ? `${BESKRIVNING[t]} · ${flodePa(t as Mailflode) ? 'PÅ' : 'AVSTÄNGT (EMAIL_AUTOMATIK)'}`
       : BESKRIVNING[t],
-    // {{email}} sätts normalt av sendEmail (avregistreringslänken i sidfoten).
+    // {{email}} sätts normalt av sendEmail (avregistreringslänken i sidfoten
+    // är sedan 2026-10-02 {{avreg_url}}, med reservvärde i build()).
     // Förhandsvisningen skickar inte riktig post, men variabelspärren kräver
-    // den ändå — annars vägrar renderEmail, vilket den också gjorde: nio röda
+    // {{email}} ändå — annars vägrar renderEmail, vilket den också gjorde: nio röda
     // rutor på en nyss driftsatt sida. Spärren hade rätt, jag matade den fel.
     resultat: renderEmail(t, { email: 'exempel@svalla.se', ...EXEMPELVARDEN[t] }),
   }))

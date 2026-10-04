@@ -24,7 +24,7 @@ html{scroll-behavior:smooth}
  --teal:#1e5c82; --teal-light:#2d7aaa;
  --sand:#f4ede0; --sand-light:#faf6f0;
  --white:#ffffff; --ink:#1c2b2e; --muted:#6b8087;
- --accent:#e8924a; --accent-light:#f0a866;
+ --accent:#e8924a; --accent-light:#f0a866; --accent-strong:#b5591a; /* vit text på orange: 4,8:1 (revision P2-4) */
  --green:#2a9d5c; --green-light:#3ab870;
  --r:16px; --r-sm:8px;
  --shadow: 0 4px 24px rgba(26,74,94,.12);
@@ -100,8 +100,8 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .btn{padding:10px 20px;border-radius:var(--r-sm);font-size:13.5px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .btn-ghost{background:rgba(255,255,255,.12);color:var(--white);border:1px solid rgba(255,255,255,.2)}
 .btn-ghost:hover{background:rgba(255,255,255,.22)}
-.btn-accent{background:var(--accent);color:var(--white)}
-.btn-accent:hover{background:var(--accent-light);transform:translateY(-1px)}
+.btn-accent{background:var(--accent-strong);color:var(--white)}
+.btn-accent:hover{background:#9e4c14;transform:translateY(-1px)}
 .btn-accent:active,.btn-teal:active,.btn-ghost:active{transform:scale(0.97);transition:transform 80ms ease}
 .btn-teal{background:var(--teal);color:var(--white)}
 .btn-teal:hover{background:var(--teal-light);transform:translateY(-1px)}
@@ -131,8 +131,8 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .hero-search{display:flex;max-width:480px;margin:0 auto 14px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.35);border-radius:50px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.25);}
 .hero-search input{flex:1;border:none;outline:none;padding:16px 22px;font-size:15px;font-family:'Inter',sans-serif;color:#1c2b2e;background:transparent;}
 .hero-search input::placeholder{color:rgba(15,30,45,.55)}
-.hero-search button{margin:6px 6px 6px 0;padding:12px 28px;border-radius:50px;background:var(--accent);color:var(--white);border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:.2s;white-space:nowrap;}
-.hero-search button:hover{background:var(--accent-light)}
+.hero-search button{margin:6px 6px 6px 0;padding:12px 28px;border-radius:50px;background:var(--accent-strong);color:var(--white);border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:.2s;white-space:nowrap;}
+.hero-search button:hover{background:#9e4c14}
 .hero-search-hint{font-size:12.5px;color:rgba(255,255,255,.5);margin-bottom:24px}
 .hero-search-hint span{color:rgba(255,255,255,.75);text-decoration:underline;cursor:pointer;margin:0 6px}
 .hero-scroll{display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.45);font-size:11px;letter-spacing:.1em;text-transform:uppercase;animation:float 3s ease-in-out infinite;}
@@ -169,7 +169,7 @@ section{padding:100px 40px}
 .krog-card-img{height:180px;position:relative;overflow:hidden;}
 .krog-card-img .img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;transition:.5s;}
 .krog-card:hover .img-inner{transform:scale(1.06)}
-.krog-card-badge{position:absolute;top:14px;left:14px;background:var(--accent);color:var(--white);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 10px;}
+.krog-card-badge{position:absolute;top:14px;left:14px;background:var(--accent-strong);color:var(--white);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 10px;}
 .krog-card-open{position:absolute;top:14px;right:14px;background:rgba(42,157,92,.9);color:var(--white);font-size:10px;font-weight:700;border-radius:6px;padding:4px 10px;backdrop-filter:blur(4px);}
 .krog-card-body{padding:20px}
 .krog-card-name{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:4px}
@@ -431,7 +431,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .resetips-card{border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column;border:1px solid rgba(26,74,94,.07)}
 .resetips-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
 .resetips-card-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;overflow:hidden}
-.resetips-card-badge{position:absolute;top:12px;left:12px;background:var(--accent);color:var(--white);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 10px}
+.resetips-card-badge{position:absolute;top:12px;left:12px;background:var(--accent-strong);color:var(--white);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 10px}
 .resetips-card-season{position:absolute;top:12px;right:12px;background:rgba(13,36,64,.8);color:rgba(255,255,255,.9);font-size:10px;font-weight:600;border-radius:6px;padding:4px 10px;backdrop-filter:blur(4px)}
 .resetips-card-body{padding:20px;flex:1;display:flex;flex-direction:column}
 .resetips-card-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.3}

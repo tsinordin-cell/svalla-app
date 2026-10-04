@@ -1045,7 +1045,7 @@ export default function SparaPage() {
                   onClick={handleRecoverTrip}
                   style={{
                     flex: 1, padding: '10px', borderRadius: 12, border: 'none',
-                    background: 'var(--acc)', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
+                    background: 'var(--acc-knapp)', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
                   }}
                 >
                   Fortsätt turen

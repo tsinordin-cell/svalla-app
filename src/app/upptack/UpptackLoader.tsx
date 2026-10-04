@@ -1,5 +1,8 @@
 'use client'
 import dynamic from 'next/dynamic'
+import { useEffect } from 'react'
+import { startaPlatshamtning } from './platsdata'
+import { hamtaLeaflet } from './leaflet'
 
 // Ny STF-style split-explorer (karta + filterbar lista)
 const UpptackExplorer = dynamic(() => import('./UpptackExplorer'), {
@@ -41,5 +44,12 @@ const UpptackExplorer = dynamic(() => import('./UpptackExplorer'), {
 })
 
 export default function UpptackLoader() {
+  // Starta hämtningen av platsdatan medan explorer-chunken laddas, så att
+  // listan kan ritas direkt när koden finns (revision 2026-10-02, P1-3).
+  // Preloaden i page.tsx gör att svaret ofta redan är på väg.
+  useEffect(() => {
+    startaPlatshamtning().catch(() => { /* explorern visar felet */ })
+    hamtaLeaflet().catch(() => { /* explorern försöker igen och visar felet */ })
+  }, [])
   return <UpptackExplorer />
 }

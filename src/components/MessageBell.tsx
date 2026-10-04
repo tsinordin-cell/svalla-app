@@ -82,7 +82,7 @@ export default function MessageBell() {
         <div style={{
           position: 'absolute', top: 4, right: 4,
           width: 16, height: 16, borderRadius: '50%',
-          background: 'var(--acc)', border: '2px solid var(--bg)',
+          background: 'var(--acc-knapp)', border: '2px solid var(--bg)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 9, fontWeight: 600, color: '#fff', lineHeight: 1,
         }}>

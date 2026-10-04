@@ -14,6 +14,7 @@
  */
 
 import { MAIL_MALLAR } from './email-templates.generated'
+import { avregLank } from './avregistrering'
 
 export type EmailTemplate =
   | 'welcome' | 'day7' | 'season_open' | 'season_close' | 'weather_tip'
@@ -280,7 +281,7 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#e8ee
             Du får detta mejl för att du har ett konto på Svalla eller prenumererar på våra utskick.
             <a href="https://svalla.se/notiser" style="color:${MUTE};text-decoration:underline">Hantera utskick</a>
             &nbsp;·&nbsp;
-            <a href="https://svalla.se/api/email/unsubscribe?email={{email}}" style="color:${MUTE};text-decoration:underline">Avregistrera</a>
+            <a href="{{avreg_url}}" style="color:${MUTE};text-decoration:underline">Avregistrera</a>
           </p>
         </td>
       </tr>
@@ -304,7 +305,9 @@ function build(
 ): { subject: string; html: string; meta: Frontmatter } {
   const raw = MAIL_MALLAR[template]
   const { meta, body } = parseFrontmatter(raw)
-  const allVars = { email: '', ...vars }
+  // avreg_url sätts av sendEmail (signerad länk). I förhandsvisningen på
+  // /admin/mail finns ingen mottagare – då pekar länken på utskicksinställningarna.
+  const allVars = { email: '', avreg_url: 'https://svalla.se/notiser', ...vars }
   const htmlBody = markdownToHtml(substitute(body, allVars))
   const html = substitute(wrapEmail(htmlBody, meta.preheader, logoSrc), allVars)
   const subject = substitute(meta.subject_options?.[0] ?? 'Svalla', allVars)
@@ -374,7 +377,9 @@ export async function sendEmail(opts: {
     // fail-open: skicka ändå
   }
 
-  const vars = { email: opts.to, ...opts.vars }
+  // Signerad avregistreringslänk (src/lib/avregistrering.ts). & blir &amp; i HTML.
+  const avreg = avregLank(opts.to)
+  const vars = { email: opts.to, ...opts.vars, avreg_url: avreg.replace(/&/g, '&amp;') }
   // Loggan bäddas in inline (cid:) → syns även med externa bilder avstängda.
   const { subject, html, meta } = build(opts.template, vars, `cid:${LOGO_CID}`)
   const from = process.env.EMAIL_FROM || meta.from || 'Svalla <info@svalla.se>'
@@ -397,7 +402,7 @@ export async function sendEmail(opts: {
         attachments: [{ filename: 'svalla-logo.png', content: LOGO_B64, content_id: LOGO_CID }],
         // One-click unsubscribe (RFC 8058) — Gmail/Yahoo kräver det av bulk sedan 2024.
         headers: {
-          'List-Unsubscribe': `<https://svalla.se/api/email/unsubscribe?email=${encodeURIComponent(opts.to)}>`,
+          'List-Unsubscribe': `<${avreg}>`,
           'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
         },
       }),
