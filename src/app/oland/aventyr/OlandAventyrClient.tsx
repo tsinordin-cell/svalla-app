@@ -8,16 +8,25 @@ import Icon from '@/components/Icon'
 // är också borttagna. De saknade belägg, och verify-claims släppte förut igenom
 // dem bara för att bildlänken strax ovanför räknades som belägg. Hellre kort
 // text än fel text.
+// Faktagranskat 2026-10-03 (Toms beslut efter revisionen): avstånden var fel med
+// 20–100 km. Vägavstånd räknade med OSRM på OpenStreetMap-data (bil: Borgholm–
+// Långe Jan 82 km, –Eketorp 78 km, –Trollskogen 70 km, –Byxelkrok 62 km,
+// –Mörbylånga 47 km, –Resmo/Alvarets norra kant 42 km; cykel Mörbylånga–Eketorp–
+// Långe Jan–Mörbylånga 92 km, Borgholm–Eketorp 78 km). Trollskogen är tallskog
+// med gamla ekar, inte bokskog, och nås via Grankulla strax före Byxelkrok
+// (Länsstyrelsen Kalmar, naturreservatets sida). Långe Jan är Sveriges, inte
+// Skandinaviens, högsta fyr (Dueodde på Bornholm är högre). Busstider utan
+// källa är borttagna – hänvisa till KLT:s tidtabell.
 const ADVENTURES = [
   {
     id: 1,
     transport: 'Med bil',
     transportColor: '#1a4a5e',
     title: 'Södra Öland UNESCO + Långe Jan',
-    distance: 'Ca 120 km söder om Borgholm',
+    distance: 'Ca 82 km söder om Borgholm',
     icon: 'tower',
     intro: 'I södra Ölands ände möts två av Sveriges mest extraordinära naturupplevelser på samma dag – och ingen av dem kräver biljett för att ta emot dig.',
-    body: 'Södra Ölands odlingslandskap är UNESCO-listat sedan 2000 – ett öppet, stäppliknande Alvar unikt i Europa, genomskuret av gamla stenmurar. I maj lyser kalkstensmarken av orkidéer i nästan osannolika koncentrationer. Längst ut i söder reser sig Långe Jan – Skandinaviens högsta fyr på 42 meter. Att klättra de 193 trappstegen och ställa sig vid lanterninen är att förstå vad som menas med horisont: hav i alla riktningar, Alvaret bakom. Ugglestarens naturreservat alldeles intill är ett paradis för fågelskådare under höstflyttningen.',
+    body: 'Södra Ölands odlingslandskap är UNESCO-listat sedan 2000 – ett öppet, stäppliknande Alvar unikt i Europa, genomskuret av gamla stenmurar. I maj lyser kalkstensmarken av orkidéer i nästan osannolika koncentrationer. Längst ut i söder reser sig Långe Jan – Sveriges högsta fyr, 42 meter. Att klättra trappan och ställa sig vid lanterninen är att förstå vad som menas med horisont: hav i alla riktningar, Alvaret bakom. Ugglestarens naturreservat alldeles intill är ett paradis för fågelskådare under höstflyttningen.',
     practicalInfo: 'Bil rekommenderas. Planera heldagstur. Bäst i maj (blomning) och aug–sep (fågelflyttning). Ta med matsäck.',
   },
   {
@@ -25,7 +34,7 @@ const ADVENTURES = [
     transport: 'Med bil',
     transportColor: '#1a4a5e',
     title: 'Eketorps fornborg – järnålderns Öland',
-    distance: 'Ca 100 km söder om Borgholm',
+    distance: 'Ca 78 km söder om Borgholm',
     icon: 'castle',
     intro: 'Eketorp är den enda fullständigt utgrävda och rekonstruerade ringborgen i Norden – och ett av Ölands absoluta besöksmål.',
     body: 'Ursprungligen byggd på 400-talet e.Kr. som en befäst boplats för hundratals människor, ombyggd och återuppbyggd under järn- och folkvandringstiden. Borgvallen av kalksten är imponerande i sin omfång. Sommartid lever museet: kostymerad personal visar hantverk och djurhållning, arkeologer presenterar aktuella fynd och barn kan prova dräkter. Det är den typ av plats som gör historia konkret och gripbar istället för abstrakt och inlärd. Familjebiljetter finns. Kombinera med Alvaret som börjar precis söder om Eketorp.',
@@ -46,22 +55,22 @@ const ADVENTURES = [
     id: 4,
     transport: 'Med bil',
     transportColor: '#1a4a5e',
-    title: 'Trollskogen – bok och dimma',
-    distance: 'Ca 55 km norr om Borgholm',
+    title: 'Trollskogen – vridna tallar och dimma',
+    distance: 'Ca 70 km norr om Borgholm',
     icon: 'tree',
     intro: 'Trollskogen på norra Öland är ett av Sveriges märkligaste naturområden – och namngiven av goda skäl.',
-    body: 'En urskog av gamla, vindpinade och vridna bokträd med mossbetäckta stenar, rotvältor och ett dimmigt halvljus som skapar känslan av att träda in i en saga. Träden, som kan vara uppemot 1 000 år gamla, har formats av salta havsvinder till former ingen trädgårdsarkitekt kunde planera. Naturreservat med välmärkta stigar, barnvänlig terräng och spänstiga naturliga klätterträd runt varje kurva. Alltid öppet, inget inträde. Kombinera med ett besök i Byxelkroks charmiga fiskehamn och ett fiskebröd vid kajen.',
-    practicalInfo: 'Alltid öppet, gratis inträde. Parkering vid Byxelkroks hamn ca 1 km. Barnvänligt. Bäst med morgondis – kom tidigt.',
+    body: 'En gammal tallskog med stormvridna träd, grova ekar klädda i murgröna, mossbetäckta stenar och ett dimmigt halvljus som skapar känslan av att träda in i en saga. Tallarna har formats av salta havsvindar till former ingen trädgårdsarkitekt kunde planera. Naturreservat med välmärkta stigar, barnvänlig terräng och spänstiga naturliga klätterträd runt varje kurva. Alltid öppet, inget inträde. Kombinera med ett besök i Byxelkroks charmiga fiskehamn och ett fiskebröd vid kajen.',
+    practicalInfo: 'Alltid öppet, gratis inträde. Bil: väg 136 norrut, sväng mot Grankulla strax före Byxelkrok. Barnvänligt. Bäst med morgondis – kom tidigt.',
   },
   {
     id: 5,
     transport: 'Med bil',
     transportColor: '#1a4a5e',
     title: 'Alvaret – Europas unika stäpp',
-    distance: 'Södra Öland, ca 80–120 km söder om Borgholm',
+    distance: 'Södra Öland, ca 40–80 km söder om Borgholm',
     icon: 'leaf',
     intro: 'Det stora Alvaret saknar motstycke i Europa – en öppen kalkstensmark som varken är skog, åker eller myr, utan något helt eget.',
-    body: 'Alvaret täcker nästan en tredjedel av Ölands yta och är ett landskap som kan se tomt ut från en bil men öppnar sig helt för den som kliver ut och börjar gå. Kalkstensmarken är extrem – extremt tunn jord, extrem torka sommartid – vilket har selekterat fram en blomsterflora utan motstycke: upp till 26 orkidéarter blommar här. I maj och juni lyser Alvaret av backsippa, rosenrot och timjan. Naturreservat med välmärkta vandringsleder och total tystnad bortsett från vind och fågelsång. Ta med vatten – inga serviceverksamheter ute på Alvaret.',
+    body: 'Alvaret täcker en stor del av södra Öland och är ett landskap som kan se tomt ut från en bil men öppnar sig helt för den som kliver ut och börjar gå. Kalkstensmarken är extrem – extremt tunn jord, extrem torka sommartid – vilket har selekterat fram en blomsterflora utan motstycke med ett stort antal orkidéarter. I maj och juni lyser Alvaret av backsippa, rosenrot och timjan. Naturreservat med välmärkta vandringsleder och total tystnad bortsett från vind och fågelsång. Ta med vatten – inga serviceverksamheter ute på Alvaret.',
     practicalInfo: 'Bäst i maj–juni (blomning). Bil rekommenderas. Gratis inträde. Ta med vatten och matsäck. Kombinerbart med Eketorp och Långe Jan.',
   },
   {
@@ -71,31 +80,31 @@ const ADVENTURES = [
     title: 'Byxelkrok – norröns pärla',
     distance: 'Ca 60 km norr om Borgholm',
     icon: 'anchor',
-    intro: 'Byxelkrok är Ölands nordligaste by och ett av de mest genuina fiskelägen längs den svenska östkusten.',
-    body: 'En liten hamn med brokiga fiskebåtar, ett rökeri vid kajen och ett sommarcafé – och direkt tillgång till Trollskogens trollska bokurskog norr om hamnen. Byxelkrok är inte ett turistmål i vanlig mening, det är en plats som råkar vara väldigt vacker utan att ha lagt ner något på det. På sommaren fylls gästhamnen av båtfolk från hela Östersjön. Parkera i byn, ta en promenad längs strandstigen och tillbringa ett par timmar i urskogen. Ät lunch vid kajen efteråt.',
-    practicalInfo: 'Bil eller buss från Borgholm – kontrollera tidtabell. Café och rökeri vid hamnen sommartid. Kombinera med Trollskogen direkt norr om hamnen.',
+    intro: 'Byxelkrok är en av Ölands nordligaste byar och ett av de mest genuina fiskelägena längs den svenska östkusten.',
+    body: 'En liten hamn med brokiga fiskebåtar, ett rökeri vid kajen och ett sommarcafé – och Trollskogens stormvridna tallskog några kilometer nordost om hamnen. Byxelkrok är inte ett turistmål i vanlig mening, det är en plats som råkar vara väldigt vacker utan att ha lagt ner något på det. På sommaren fylls gästhamnen av båtfolk från hela Östersjön. Parkera i byn, ta en promenad längs strandstigen och tillbringa ett par timmar i urskogen. Ät lunch vid kajen efteråt.',
+    practicalInfo: 'Bil eller buss från Borgholm – kontrollera tidtabell. Café och rökeri vid hamnen sommartid. Kombinera med Trollskogen några kilometer nordost om hamnen (sväng mot Grankulla strax före Byxelkrok).',
   },
   {
     id: 7,
     transport: 'Med cykel',
     transportColor: '#8b4513',
     title: 'Södra Öland – UNESCO på cykel',
-    distance: 'Ca 60 km rundtur från Mörbylånga',
+    distance: 'Ca 90 km tur och retur från Mörbylånga',
     icon: 'bike',
-    intro: 'En cykelrunda som packar ett UNESCO-landskap, en fornborg och Skandinaviens högsta fyr på en och samma dag.',
-    body: 'Starta i Mörbylånga och rulla söderut längs välskyltade cykelleder genom Alvaret, ett av Europas mest unika landskap med fri horisont och vind i håret. Eketorps fornborg dyker upp längs vägen – ett obligatoriskt stopp. Fortsätt söderut mot Ottenby och Långe Jan, vars trappa ger hisnande utsikt. Flackt landskap och bra asfalt gör det till en av Ölands bästa cykeldagar. Räkna med 7–8 timmar inklusive stopp och lunch.',
-    practicalInfo: 'Start Mörbylånga (buss från Kalmar). Hyr cykel i Mörbylånga eller Borgholm. Planera 7–8 h. Ta med matsäck och vatten.',
+    intro: 'En cykelrunda som packar ett UNESCO-landskap, en fornborg och Sveriges högsta fyr på en och samma dag.',
+    body: 'Starta i Mörbylånga och rulla söderut längs välskyltade cykelleder genom Alvaret, ett av Europas mest unika landskap med fri horisont och vind i håret. Eketorps fornborg dyker upp längs vägen – ett obligatoriskt stopp. Fortsätt söderut mot Ottenby och Långe Jan, vars trappa ger hisnande utsikt. Flackt landskap och bra asfalt gör det till en av Ölands bästa cykeldagar – men det är nio mil, så räkna med en hel dag inklusive stopp och lunch.',
+    practicalInfo: 'Start Mörbylånga (buss från Kalmar, KLT). Hyr cykel i Mörbylånga eller Borgholm. Planera en hel dag. Ta med matsäck och vatten.',
   },
   {
     id: 8,
     transport: 'Med cykel',
     transportColor: '#8b4513',
     title: 'Borgholm–Eketorp – historisk cykeltur',
-    distance: 'Ca 50 km enkel resa',
+    distance: 'Ca 78 km enkel resa',
     icon: 'bike',
     intro: 'En klassisk Ölandsdag: slottsruin på morgonen, fornborg på eftermiddagen, buss hem på kvällen.',
-    body: 'Från Borgholms slottsruin söderut längs väg 136 mot Eketorps fornborg – en resa som passerar medeltida kyrkor, alvarmark och karaktäristiska kalkstensmurar. Kyrkan i Gårdby, Resmo kyrka med sina romanska muralmålningar och Vickleby är värda ett kortare stopp. Leden är välskyltad och relativt platt, men håll koll på biltrafiken under högsäsong. Buss tillbaka från Mörbylånga på kvällen, vilket gör att du slipper cykla tillbaka i motvind.',
-    practicalInfo: 'Hyr cykel i Borgholm. Buss tillbaka från Mörbylånga på kvällen. Mellannivå-cyklister. Planera 6–7 h.',
+    body: 'Från Borgholms slottsruin söderut längs väg 136 mot Eketorps fornborg – en resa som passerar medeltida kyrkor, alvarmark och karaktäristiska kalkstensmurar. Kyrkan i Gårdby, Resmo kyrka med sina romanska muralmålningar och Vickleby är värda ett kortare stopp. Leden är välskyltad och relativt platt, men håll koll på biltrafiken under högsäsong. Ta bussen tillbaka på kvällen (KLT, kontrollera tidtabell och cykelplats), så slipper du cykla tillbaka i motvind.',
+    practicalInfo: 'Hyr cykel i Borgholm. Buss tillbaka på kvällen (KLT). Vana cyklister – nästan åtta mil. Planera en hel dag.',
   },
   {
     id: 9,
@@ -106,18 +115,18 @@ const ADVENTURES = [
     icon: 'walk',
     intro: 'Borgholm är Ölands hjärta – och under sommaren en av Sveriges mest levande småstäder.',
     body: 'Hundratusentals turister passerar Borgholm varje sommar men staden har lyckats bevara sin karaktär tack vare ett centrum som fortfarande är mänskligt i sin skala. Storgatan med boutiques och restauranger, slottsruinen på kullen och hamnen nedanför skapar en naturlig promenadslinga. Kungsparken med sin havsutsikt är en av stadens bästa platser för picknick. Hamnrestaurangerna serverar allt från husmanskost till havsfrukt med direktutsikt mot båtarna. Turistbyrån vid hamnen ger karta och tips.',
-    practicalInfo: 'Buss från Kalmar: ca 45 min. Promenadvänlig innerstad. Turistbyrån vid hamnen ger karta. Solliden slottspark: öppet jun–aug.',
+    practicalInfo: 'Buss från Kalmar (KLT, se tidtabell). Promenadvänlig innerstad. Turistbyrån vid hamnen ger karta. Solliden slottspark: öppet jun–aug.',
   },
   {
     id: 10,
     transport: 'Kollektivt',
     transportColor: '#2a7a40',
     title: 'Mörbylånga – söder om Borgholm',
-    distance: 'Ca 20 km söder om Borgholm, buss',
+    distance: 'Ca 45 km söder om Borgholm',
     icon: 'pin',
     intro: 'Mörbylånga är södra Ölands lilla krona – genuint, lugnt och ett perfekt utgångsläge för södra öns bästa upplevelser.',
-    body: 'Den karaktäristiska holländska kvarnen syns långt borrifrån och är ortens mest fotograferade landmärke. Centrum är pittoreskt och genuint öländskt utan att kännas turistifierat – en bedrift för en ort i hjärtat av ett av Sveriges mest besökta semesterområden. Härifrån startar den bästa cykeln mot Eketorps fornborg och Alvaret, och direktbuss kör hit från Kalmar utan byte. Cykeluthyrning finns i byn. Avsluta dagen med fika vid kvarnparken i kvällssolen.',
-    practicalInfo: 'Buss från Borgholm ca 20 min, från Kalmar direkt. Kvarnen och museet fritt. Cykeluthyrning i byn.',
+    body: 'Den karaktäristiska holländska kvarnen syns långt borrifrån och är ortens mest fotograferade landmärke. Centrum är pittoreskt och genuint öländskt utan att kännas turistifierat – en bedrift för en ort i hjärtat av ett av Sveriges mest besökta semesterområden. Härifrån startar den bästa cykeln mot Eketorps fornborg och Alvaret, och det går buss hit från Kalmar (KLT). Cykeluthyrning finns i byn. Avsluta dagen med fika vid kvarnparken i kvällssolen.',
+    practicalInfo: 'Buss från Kalmar och Färjestaden (KLT, se tidtabell). Kvarnen och museet fritt. Cykeluthyrning i byn.',
   },
 ] as const
 
@@ -172,7 +181,7 @@ export default function OlandAventyrClient() {
           <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', margin: '0 0 16px' }}>Reseguide · 10 äventyr</p>
           <h1 style={{ fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)', fontSize: 'clamp(38px, 6vw, 68px)', fontWeight: 900, color: '#fff', margin: '0 0 20px', lineHeight: 1.08, letterSpacing: '-0.01em' }}>Äventyr på Öland</h1>
           <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 'clamp(16px, 2vw, 20px)', margin: 0, maxWidth: 580, lineHeight: 1.65, fontStyle: 'italic', fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)' }}>
-            UNESCO-Alvaret, Långe Jan, fornborg och cykelleder – tio upplevelser längs solöns 137 km långa kust.
+            UNESCO-Alvaret, Långe Jan, fornborg och cykelleder – tio upplevelser längs den 137 km långa solön.
           </p>
         </div>
         <svg viewBox="0 0 1440 56" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 56, marginBottom: -1 }}>
