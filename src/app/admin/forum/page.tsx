@@ -87,7 +87,7 @@ export default async function AdminForumPage({
                 <span style={{
                   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                   marginLeft: 10, minWidth: 22, height: 22, borderRadius: 11,
-                  background: 'var(--acc)', color: '#fff', fontSize: 11, fontWeight: 700,
+                  background: 'var(--acc-knapp)', color: '#fff', fontSize: 11, fontWeight: 700,
                   padding: '0 6px',
                 }}>
                   {(threadCount ?? 0) + (postCount ?? 0)}

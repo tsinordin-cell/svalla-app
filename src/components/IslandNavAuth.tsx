@@ -75,7 +75,7 @@ export default function IslandNavAuth({ islandSlug }: { islandSlug: string }) {
       <Link href={`/logga-in?returnTo=${returnTo}&mode=ny`} style={{
         ...pill,
         color: '#fff',
-        background: '#e8924a',
+        background: 'var(--acc-knapp)',
         boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
       }}>
         Kom igång →

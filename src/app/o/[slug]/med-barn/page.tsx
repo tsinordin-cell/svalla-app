@@ -287,7 +287,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver gratis konto — tar 30 sekunder.</div>
           </div>
           <Link href="/planera" prefetch={false} style={{
-            display: 'inline-block', background: '#e8924a', color: '#fff',
+            display: 'inline-block', background: 'var(--acc-knapp)', color: '#fff',
             fontSize: 14, fontWeight: 700, textDecoration: 'none',
             padding: '12px 28px', borderRadius: 50, flexShrink: 0,
           }}>

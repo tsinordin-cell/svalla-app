@@ -146,7 +146,7 @@ export default function AIGuidePage() {
 
           <Link href="/planera" prefetch={false} style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
-            background: '#e8924a', color: '#fff',
+            background: 'var(--acc-knapp)', color: '#fff',
             fontSize: 16, fontWeight: 700, textDecoration: 'none',
             padding: '16px 40px', borderRadius: 50,
             boxShadow: '0 8px 30px rgba(232,146,74,0.45)',
@@ -189,7 +189,7 @@ export default function AIGuidePage() {
                 )}
                 <div style={{
                   maxWidth: '78%',
-                  background: msg.from === 'user' ? '#e8924a' : '#f3f4f6',
+                  background: msg.from === 'user' ? 'var(--acc-knapp)' : '#f3f4f6',
                   color: msg.from === 'user' ? '#fff' : '#1c2b2e',
                   borderRadius: msg.from === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
                   padding: '12px 16px', fontSize: 14, lineHeight: 1.6,
@@ -355,7 +355,7 @@ export default function AIGuidePage() {
         </p>
         <Link href="/planera" prefetch={false} style={{
           display: 'inline-flex', alignItems: 'center', gap: 10,
-          background: '#e8924a', color: '#fff',
+          background: 'var(--acc-knapp)', color: '#fff',
           fontSize: 16, fontWeight: 700, textDecoration: 'none',
           padding: '16px 44px', borderRadius: 50,
           boxShadow: '0 8px 30px rgba(232,146,74,0.4)',
