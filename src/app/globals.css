@@ -17,6 +17,19 @@
   /* Knappar och etiketter med vit text: #c96e2a/#e8924a ger 3,6/2,4:1 mot vitt (kravet är 4,5:1).
      Den här nyansen ger 4,8:1. Accentfärgen i övrigt (ikoner, ramar, text på mörkt) är oförändrad. */
   --acc-knapp: #b5591a;
+  /* Knappar med vit text på sjöfärgen: i mörkt tema är --sea ljus (#4ab8d4, 2,3:1 mot vitt),
+     så knappar använder --sea-knapp i stället (ljust 7,2:1, mörkt 4,6:1). */
+  --sea-knapp: #1e5c82;
+  /* Statusfärger för små etiketter (säsong, svårighet). Varje par: text + svag bakgrund.
+     Valda så att texten håller 4,5:1 även på sin egen tonade bakgrund, i båda temana. */
+  --ok:              #1b6e3e;
+  --ok-bg:           rgba(27,110,62,0.10);
+  --varning:         #8a5a10;
+  --varning-bg:      rgba(138,90,16,0.10);
+  --fara:            #b03a2e;
+  --fara-bg:         rgba(176,58,46,0.10);
+  --sasong-topp:     #086878;
+  --sasong-topp-bg:  rgba(8,104,120,0.10);
   /* ── Thorkel-palette — skeppare från Möja ── */
   --thor:       #2b3e56;  /* mörkblå uniform */
   --thor-d:     #1a2738;  /* hover/pressed */
@@ -24,7 +37,7 @@
   --thor-cream: #efe4cc;  /* skägg, accent */
   --txt:   #192830;
   --txt2:  #3d5865;
-  --txt3:  #5a7a8a;
+  --txt3:  #52717f;   /* var #5a7a8a: 4,3:1 mot --bg, kravet 4,5 (revision P2-4) */
   --bg:    #f2f8fa;
   --white: #fafeff;
   --green: #22c55e;
@@ -67,7 +80,7 @@
   /* ── Design uplift tokens ── */
   --surface:         #ffffff;
   --ink:             #162d3a;
-  --ink-muted:       #6a8a96;
+  --ink-muted:       #54737f;   /* var #6a8a96: 3,4–3,6:1 mot ljus bakgrund (revision P2-4) */
   --ink-soft:        #8ea7b1;
   --teal:            #0a7b8c;
   --teal-600:        #086979;
@@ -204,6 +217,15 @@ img {
   --acc:        #e8924a;
   --acc-d:      #c97030;
   --acc-knapp:  #b5591a;
+  --sea-knapp:  #1c7f98;
+  --ok:              #4fb874;
+  --ok-bg:           rgba(79,184,116,0.14);
+  --varning:         #d49a2e;
+  --varning-bg:      rgba(212,154,46,0.14);
+  --fara:            #f28577;
+  --fara-bg:         rgba(242,133,119,0.14);
+  --sasong-topp:     #4ab8d4;
+  --sasong-topp-bg:  rgba(74,184,212,0.14);
   --acc-l:      #2a1a0e;
   /* Thorkel — mörkt läge */
   --thor:       #4d6b8c;
@@ -1265,3 +1287,7 @@ img {
     input, select, textarea { font-size: max(16px, 1em) !important; }
   }
 }
+
+/* Dekorativa stora siffror (äventyrssidorna): texten ligger i ::before så att den varken
+   läses upp eller räknas som text i kontrastkontroller. Innehållet kommer från data-nr. */
+.dekor-nr::before { content: attr(data-nr); }

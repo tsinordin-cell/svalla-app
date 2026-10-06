@@ -277,7 +277,7 @@ export default async function GuidePage({ params }: Props) {
         <div style={{ marginTop: 36, display: 'flex', justifyContent: 'center' }}>
           <Link href="/guider" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'var(--sea)', color: '#fff',
+            background: 'var(--sea-knapp)', color: '#fff',
             fontSize: 14, fontWeight: 700, textDecoration: 'none',
             padding: '13px 30px', borderRadius: 28,
             boxShadow: '0 4px 16px rgba(10,123,140,0.3)',

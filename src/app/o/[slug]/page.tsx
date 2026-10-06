@@ -480,10 +480,12 @@ export default async function IslandPage({ params }: Props) {
      off:     'rgba(120,140,160,0.18)',
      limited: 'rgba(246,173,72,0.35)',
      open:    'rgba(10,123,140,0.35)',
-     peak:    'rgba(10,123,140,0.85)',
+     peak:    'rgba(10,123,140,1)',   // var 0.85: vit text gav 3,8:1 i ljust tema
    }
    const TEXT: Record<string, string> = {
-     off: 'rgba(120,140,160,0.6)', limited: '#b07d20', open: '#0a7b8c', peak: '#fff',
+     // revision P2-4: etiketterna är 9 px – samma färg som stapeln gav 2,1–2,3:1. Nu texten i
+     // temats textfärg på de tonade staplarna, vit på den fyllda högsäsongsstapeln.
+     off: 'var(--txt2)', limited: 'var(--txt)', open: 'var(--txt)', peak: '#fff',
    }
    const LABEL: Record<string, string> = {
      off: 'Stängt', limited: 'Begränsad service', open: 'Öppet', peak: 'Högsäsong',
@@ -539,7 +541,7 @@ export default async function IslandPage({ params }: Props) {
            {island.seasonal.bestReason}
          </p>
          {island.seasonal.warning && (
-           <p style={{ fontSize: 12, color: '#9a6b00', margin: '8px 0 0', lineHeight: 1.5, fontStyle: 'italic' }}>
+           <p style={{ fontSize: 12, color: 'var(--varning)', margin: '8px 0 0', lineHeight: 1.5, fontStyle: 'italic' }}>
              <Icon name="warning" size={14} stroke={2} /> {island.seasonal.warning}
            </p>
          )}
@@ -1487,14 +1489,14 @@ export default async function IslandPage({ params }: Props) {
 
  {/* ── FOOTER ──────────────────────────────────────────────── */}
  <div style={{
- background: 'var(--txt)',
+ background: '#192830',   // fast mörk – var(--txt) blir ljus i mörkt tema och texten försvann (revision P2-4)
  padding: '28px 24px',
  textAlign: 'center',
  }}>
  <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 10 }}>
- <SvallaLogo height={22} color="rgba(255,255,255,0.5)" />
+ <SvallaLogo height={22} color="rgba(255,255,255,0.7)" />
  </Link>
- <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', margin: 0 }}>
+ <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', margin: 0 }}>
  Din guide till Stockholms skärgård
  </p>
  </div>

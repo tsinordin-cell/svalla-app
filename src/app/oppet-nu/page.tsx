@@ -48,15 +48,16 @@ const STATUS_LABEL: Record<Status, string> = {
   open: 'Öppet',
   limited: 'Begränsad service',
 }
+// revision P2-4: temaberoende tokens (globals.css) – de gamla hexfärgerna gav 3,3–4,3:1.
 const STATUS_COLOR: Record<Status, string> = {
-  peak: '#0a7b8c',
-  open: '#2d8a50',
-  limited: '#b07d20',
+  peak: 'var(--sasong-topp)',
+  open: 'var(--ok)',
+  limited: 'var(--varning)',
 }
 const STATUS_BG: Record<Status, string> = {
-  peak: 'rgba(10,123,140,0.08)',
-  open: 'rgba(45,138,80,0.08)',
-  limited: 'rgba(176,125,32,0.08)',
+  peak: 'var(--sasong-topp-bg)',
+  open: 'var(--ok-bg)',
+  limited: 'var(--varning-bg)',
 }
 const STATUS_ICON: Record<Status, 'sun' | 'check' | 'warning'> = {
   peak: 'sun',
@@ -259,8 +260,8 @@ export default function OppetNuPage() {
                       {island.seasonal?.warning && (
                         <div style={{
                           fontSize: 11,
-                          color: '#b07d20',
-                          background: 'rgba(176,125,32,0.08)',
+                          color: 'var(--varning)',
+                          background: 'var(--varning-bg)',
                           borderRadius: 6,
                           padding: '5px 8px',
                           lineHeight: 1.45,
@@ -340,7 +341,7 @@ export default function OppetNuPage() {
             gap: 6,
             padding: '10px 18px',
             borderRadius: 999,
-            background: 'var(--sea, #1e5c82)',
+            background: 'var(--sea-knapp, #1e5c82)',
             color: '#fff',
             fontWeight: 700,
             fontSize: 13,
