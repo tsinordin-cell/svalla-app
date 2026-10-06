@@ -50,7 +50,7 @@ export default function PublicFooter() {
                 display: 'inline-block',
                 padding: '10px 22px',
                 borderRadius: 999,
-                background: 'var(--acc, #c96e2a)',
+                background: 'var(--acc-knapp, #b5591a)',
                 color: '#fff',
                 fontSize: 13,
                 fontWeight: 700,
@@ -123,7 +123,7 @@ export default function PublicFooter() {
           paddingTop: 20,
           borderTop: '1px solid rgba(255,255,255,0.08)',
           fontSize: 12,
-          color: 'rgba(255,255,255,0.40)',
+          color: 'rgba(255,255,255,0.6)',
         }}>
           <span>© {new Date().getFullYear()} Svalla. Stockholms skärgård + Bohuslän.</span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 16 }}>

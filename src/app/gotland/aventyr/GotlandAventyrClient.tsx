@@ -227,14 +227,14 @@ export default function GotlandAventyrClient() {
 
             {/* Chapter number + meta */}
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: 16, marginBottom: 10 }}>
-              <span style={{
+              <span className="dekor-nr" aria-hidden="true" data-nr={String(adv.id).padStart(2, '0')} style={{
                 fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)',
                 fontSize: 'clamp(64px, 8vw, 96px)',
                 fontWeight: 900, lineHeight: 1,
                 color: 'rgba(10,123,140,0.09)',
                 flexShrink: 0, userSelect: 'none',
                 letterSpacing: '-0.03em',
-              }}>{String(adv.id).padStart(2, '0')}</span>
+              }} />
 
               <div style={{ paddingBottom: 8 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>

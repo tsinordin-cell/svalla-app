@@ -148,7 +148,7 @@ export default function EmailSignup({
             padding: '10px 20px',
             borderRadius: 8,
             border: 'none',
-            background: status === 'loading' ? '#7da7be' : 'var(--sea, #1e5c82)',
+            background: status === 'loading' ? '#7da7be' : 'var(--sea-knapp, #1e5c82)',
             color: '#fff',
             fontSize: 14, fontWeight: 700,
             cursor: status === 'loading' ? 'wait' : 'pointer',
