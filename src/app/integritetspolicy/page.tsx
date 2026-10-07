@@ -39,8 +39,14 @@ export default function IntegritetspolicyPage() {
             <li><strong>Aktivitetsdata:</strong> loggade turer, sparade platser, kommentarer och gillningar</li>
             <li><strong>Tekniska uppgifter:</strong> IP-adress, webbläsartyp och sessionscookies (för säker inloggning)</li>
             <li><strong>Platsdata:</strong> om du aktivt väljer att dela din position för GPS-funktionen</li>
-            <li><strong>Nyhetsbrev:</strong> din e-postadress, om du själv har valt att prenumerera på vårt nyhetsbrev</li>
+            <li><strong>Nyhetsbrev:</strong> din e-postadress, om du själv har valt att prenumerera på vårt nyhetsbrev, vilket formulär du anmälde dig via och, om du själv svarat på frågan, om du har båt, fritidshus eller åker ut över dagen</li>
           </ul>
+
+          <h3 style={{ color: 'var(--txt)', fontSize: 16 }}>Hantverkare och företag på öarna</h3>
+          <p>På ösidorna listar vi hantverkare och sjötjänster som tar uppdrag på öarna. Vi visar bara yrkesuppgifter som företaget självt har publicerat för att få kunder: firmanamn, yrke, var företaget finns, vilka öar det tar uppdrag på, telefonnummer, e-postadress och webbplats. Varje uppgift visas med källa och det datum vi läste den. För enskilda firmor kan uppgifterna vara personuppgifter.</p>
+          <p>Syftet är att boende och fritidshusägare på öar utan fast vägförbindelse ska hitta hantverkare, och att hantverkarna ska hittas av dem. Vi behandlar uppgifterna med stöd av berättigat intresse. Företag som listas får besked från oss. Vill du ändra något eller inte vara med alls skriver du till <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a>, så tar vi bort uppgifterna utan att fråga varför. Uppgifter som inte kontrollerats på tolv månader kontrolleras igen eller tas bort.</p>
+          <h3 style={{ color: 'var(--txt)', fontSize: 16 }}>Krogar, hamnar och andra verksamheter</h3>
+          <p>På ösidorna och platssidorna visar vi verksamheters namn, adress, telefonnummer, e-post, webbplats och öppettider, så som verksamheten själv har publicerat dem. Driver du en verksamhet som finns på Svalla och vill ändra eller ta bort något skriver du till <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a>, så gör vi det.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>3. Hur vi använder dina uppgifter</h2>
           <p>Dina uppgifter används för att:</p>
@@ -55,7 +61,7 @@ export default function IntegritetspolicyPage() {
           <p>Vi säljer aldrig dina personuppgifter till tredje part.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>4. Rättslig grund</h2>
-          <p>Behandlingen sker med stöd av <strong>avtalsuppfyllelse</strong> (kontouppgifter, aktivitetsdata), <strong>berättigat intresse</strong> (förbättring av tjänsten via anonym statistik) och <strong>samtycke</strong> (nyhetsbrevet, som du kan återkalla när som helst genom att avregistrera dig) i enlighet med GDPR artikel 6.</p>
+          <p>Behandlingen sker med stöd av <strong>avtalsuppfyllelse</strong> (kontouppgifter, aktivitetsdata), <strong>berättigat intresse</strong> (förbättring av tjänsten via anonym statistik, och listan över hantverkare och företag på öarna) och <strong>samtycke</strong> (nyhetsbrevet, som du kan återkalla när som helst genom att avregistrera dig) i enlighet med GDPR artikel 6.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>5. Lagring och säkerhet</h2>
           <p>Dina uppgifter lagras säkert hos Supabase (EU-region) med kryptering i transit och vila. Vi behåller kontouppgifter tills du väljer att radera ditt konto.</p>
