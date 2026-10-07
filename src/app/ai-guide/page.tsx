@@ -221,7 +221,7 @@ export default function AIGuidePage() {
         }}>
           Vad gör Thorkel som Google Maps inte gör?
         </h2>
-        <p style={{ textAlign: 'center', color: '#6b8087', fontSize: 16, marginBottom: 48, maxWidth: 540, margin: '0 auto 48px' }}>
+        <p style={{ textAlign: 'center', color: '#52717f /* sidan har fast ljus bakgrund – temats --txt3 blir ljus i mörkt läge */', fontSize: 16, marginBottom: 48, maxWidth: 540, margin: '0 auto 48px' }}>
           Google Maps vet var Sandhamn ligger. Thorkel vet vilket bord du ska boka, vilken båt du ska ta och var bastun håller öppet.
         </p>
 
@@ -265,7 +265,7 @@ export default function AIGuidePage() {
             }}>
               <div style={{ marginBottom: 12 }} aria-hidden><Icon name={emojiToIcon(f.icon)} size={28} /></div>
               <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1a4a6b', marginBottom: 8 }}>{f.title}</h3>
-              <p style={{ fontSize: 14, color: '#6b8087', lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
+              <p style={{ fontSize: 14, color: '#52717f', lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
             </div>
           ))}
         </div>
@@ -327,9 +327,9 @@ export default function AIGuidePage() {
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
               }}>
                 {faq.name}
-                <span style={{ fontSize: 18, color: '#6b8087', flexShrink: 0 }}>+</span>
+                <span style={{ fontSize: 18, color: '#52717f', flexShrink: 0 }}>+</span>
               </summary>
-              <div style={{ padding: '0 20px 18px', fontSize: 14, color: '#6b8087', lineHeight: 1.7 }}>
+              <div style={{ padding: '0 20px 18px', fontSize: 14, color: '#52717f', lineHeight: 1.7 }}>
                 {faq.acceptedAnswer.text}
               </div>
             </details>

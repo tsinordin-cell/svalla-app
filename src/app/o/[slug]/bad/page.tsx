@@ -275,7 +275,7 @@ export default async function IslandBadPage({ params }: Props) {
         <div style={{ marginTop: 36, display: 'flex', justifyContent: 'center' }}>
           <Link href={`/o/${slug}`} style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'var(--sea)', color: '#fff',
+            background: 'var(--sea-knapp)', color: '#fff',
             fontSize: 14, fontWeight: 700, textDecoration: 'none',
             padding: '12px 28px', borderRadius: 28,
           }}>
