@@ -45,6 +45,8 @@ export default function IntegritetspolicyPage() {
           <h3 style={{ color: 'var(--txt)', fontSize: 16 }}>Hantverkare och företag på öarna</h3>
           <p>På ösidorna listar vi hantverkare och sjötjänster som tar uppdrag på öarna. Vi visar bara yrkesuppgifter som företaget självt har publicerat för att få kunder: firmanamn, yrke, var företaget finns, vilka öar det tar uppdrag på, telefonnummer, e-postadress och webbplats. Varje uppgift visas med källa och det datum vi läste den. För enskilda firmor kan uppgifterna vara personuppgifter.</p>
           <p>Syftet är att boende och fritidshusägare på öar utan fast vägförbindelse ska hitta hantverkare, och att hantverkarna ska hittas av dem. Vi behandlar uppgifterna med stöd av berättigat intresse. Företag som listas får besked från oss. Vill du ändra något eller inte vara med alls skriver du till <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a>, så tar vi bort uppgifterna utan att fråga varför. Uppgifter som inte kontrollerats på tolv månader kontrolleras igen eller tas bort.</p>
+          <h3 style={{ color: 'var(--txt)', fontSize: 16 }}>Krogar, hamnar och andra verksamheter</h3>
+          <p>På ösidorna och platssidorna visar vi verksamheters namn, adress, telefonnummer, e-post, webbplats och öppettider, så som verksamheten själv har publicerat dem. Driver du en verksamhet som finns på Svalla och vill ändra eller ta bort något skriver du till <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a>, så gör vi det.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>3. Hur vi använder dina uppgifter</h2>
           <p>Dina uppgifter används för att:</p>
