@@ -1,39 +1,13 @@
 'use client'
-import { useState, useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useState } from 'react'
 
-const TIER_PRICES: Record<string, number> = {
-  bas: 290,
-  standard: 590,
-  premium: 990,
-}
-
+/**
+ * 2026-10-08: nivåvalet och Stripe-knappen är borttagna. Att finnas på Svalla
+ * kostar ingenting; formuläret skickar bara en förfrågan till partner_inquiries.
+ */
 export default function PartnerForm() {
-  const searchParams = useSearchParams()
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [error, setError] = useState<string | null>(null)
-  const [tier, setTier] = useState<string>('')
-
-  useEffect(() => {
-    const tierParam = searchParams.get('tier')
-    if (tierParam && ['bas', 'standard', 'premium'].includes(tierParam)) {
-      setTier(tierParam)
-    }
-  }, [searchParams])
-
-  /** Camel-casa kolumn-namnen: API route förväntar sig camelCase i partner-checkout */
-  function payloadCamel(formData: FormData) {
-    return {
-      tier: (formData.get('tier') as string) || '',
-      businessName: (formData.get('business_name') as string) || '',
-      contactName: (formData.get('contact_name') as string) || '',
-      email: (formData.get('email') as string) || '',
-      phone: (formData.get('phone') as string) || '',
-      category: (formData.get('category') as string) || '',
-      islandSlug: (formData.get('island_slug') as string) || '',
-      message: (formData.get('message') as string) || '',
-    }
-  }
 
   /** Användaren vill diskutera/förhandla — befintligt flöde */
   async function submitInquiry(e: React.FormEvent<HTMLFormElement>) {
@@ -53,50 +27,13 @@ export default function PartnerForm() {
       })
       if (!res.ok) {
         const j = await res.json().catch(() => ({}))
-        setError(j.error || 'Något gick fel — försök igen')
+        setError(j.error || 'Något gick fel. Försök igen.')
         setStatus('error')
         return
       }
       setStatus('success')
     } catch {
-      setError('Nätverksfel — försök igen')
-      setStatus('error')
-    }
-  }
-
-  /** Användaren har valt tier och vill betala direkt → Stripe checkout */
-  async function checkoutNow() {
-    if (status === 'loading') return
-    const form = document.querySelector<HTMLFormElement>('form#partner-form')
-    if (!form) return
-    if (!form.checkValidity()) {
-      form.reportValidity()
-      return
-    }
-    const formData = new FormData(form)
-    const payload = payloadCamel(formData)
-    if (!payload.tier) {
-      setError('Välj en nivå för att gå till betalning')
-      return
-    }
-
-    setStatus('loading')
-    setError(null)
-    try {
-      const res = await fetch('/api/stripe/partner-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-      const j = await res.json().catch(() => ({}))
-      if (!res.ok || !j.url) {
-        setError(j.error || 'Kunde inte starta betalning — försök igen eller skicka förfrågan istället')
-        setStatus('error')
-        return
-      }
-      window.location.href = j.url
-    } catch {
-      setError('Nätverksfel — försök igen')
+      setError('Nätverksfel. Försök igen.')
       setStatus('error')
     }
   }
@@ -110,11 +47,10 @@ export default function PartnerForm() {
         textAlign: 'center',
       }}>
         <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, color: 'var(--green, #2a6e50)' }}>
-          Tack — vi hör av oss
+          Tack, vi hör av oss
         </h3>
         <p style={{ fontSize: 14, color: 'var(--txt2)', maxWidth: 400, margin: '0 auto', lineHeight: 1.55 }}>
-          Vi tar gärna en kort pratstund för att skräddarsy lösningen för just din verksamhet.
-          Räkna med svar inom 1–2 arbetsdagar.
+          Vi har fått er förfrågan och återkommer via mejl.
         </p>
       </div>
     )
@@ -134,23 +70,6 @@ export default function PartnerForm() {
 
   return (
     <>
-      {tier && (
-        <div style={{
-          background: 'rgba(45, 125, 138, 0.08)', padding: '16px 20px', borderRadius: 12,
-          border: '1px solid var(--sea)', marginBottom: 20, display: 'flex',
-          justifyContent: 'space-between', alignItems: 'center',
-        }}>
-          <div>
-            <div style={{ fontSize: 12, color: 'var(--txt2)', fontWeight: 600, marginBottom: 2 }}>VALD PLAN</div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)' }}>
-              {tier.charAt(0).toUpperCase() + tier.slice(1)} — {TIER_PRICES[tier]} kr/månad
-            </div>
-          </div>
-          <a href="#tiers" style={{ fontSize: 13, color: 'var(--sea)', textDecoration: 'none', fontWeight: 600, cursor: 'pointer' }}>
-            Byt plan
-          </a>
-        </div>
-      )}
       <form
         id="partner-form"
         onSubmit={submitInquiry}
@@ -200,66 +119,25 @@ export default function PartnerForm() {
       </div>
 
       <div>
-        <label style={labelStyle}>Intresserad av nivå</label>
-        <select
-          name="tier"
-          style={fieldStyle}
-          value={tier}
-          onChange={e => setTier(e.target.value)}
-        >
-          <option value="">Vill diskutera</option>
-          <option value="bas">Bas — 290 kr/mån</option>
-          <option value="standard">Standard — 590 kr/mån</option>
-          <option value="premium">Premium — 990 kr/mån</option>
-        </select>
-      </div>
-
-      <div>
         <label style={labelStyle}>Vad vill du berätta?</label>
         <textarea
           name="message" rows={4} style={{ ...fieldStyle, resize: 'vertical' }}
-          placeholder="Något specifikt vi ska veta? Säsong, mål, frågor…"
+          placeholder="Vill ni komma med, eller är något fel på er sida? Berätta här."
         />
       </div>
 
-      {/* Två-knapps-CTA: betala direkt om tier vald, annars skicka förfrågan */}
-      <div style={{ display: 'grid', gap: 8, marginTop: 6 }}>
-        {tier && (
-          <button
-            type="button"
-            onClick={checkoutNow}
-            disabled={status === 'loading'}
-            style={{
-              padding: '14px 24px', borderRadius: 999,
-              background: status === 'loading' ? 'var(--sea-d, #7da7be)' : 'var(--acc, #c96e2a)',
-              color: '#fff', fontSize: 14, fontWeight: 700,
-              border: 'none', cursor: status === 'loading' ? 'wait' : 'pointer',
-            }}
-          >
-            {status === 'loading' ? 'Förbereder betalning…' : `Betala ${TIER_PRICES[tier] || '0'} kr/mån — kom igång nu →`}
-          </button>
-        )}
-        <button
-          type="submit"
-          disabled={status === 'loading'}
-          style={{
-            padding: '14px 24px', borderRadius: 999,
-            background: tier
-              ? 'transparent'
-              : (status === 'loading' ? 'var(--sea-d, #7da7be)' : 'var(--sea, #1e5c82)'),
-            color: tier ? 'var(--sea)' : '#fff',
-            border: tier ? '1.5px solid var(--sea)' : 'none',
-            fontSize: 14, fontWeight: 700,
-            cursor: status === 'loading' ? 'wait' : 'pointer',
-          }}
-        >
-          {status === 'loading' && !tier ? 'Skickar…' : tier ? 'Eller skicka frågor först →' : 'Skicka förfrågan'}
-        </button>
-      </div>
-
-      <p style={{ fontSize: 11, color: 'var(--txt3)', margin: 0, textAlign: 'center', lineHeight: 1.5 }}>
-        Säker betalning via Stripe. Avbryt när du vill, ingen bindningstid.
-      </p>
+      <button
+        type="submit"
+        disabled={status === 'loading'}
+        style={{
+          marginTop: 6, padding: '14px 24px', borderRadius: 999,
+          background: status === 'loading' ? 'var(--sea-d, #7da7be)' : 'var(--sea, #1e5c82)',
+          color: '#fff', border: 'none', fontSize: 14, fontWeight: 700,
+          cursor: status === 'loading' ? 'wait' : 'pointer',
+        }}
+      >
+        {status === 'loading' ? 'Skickar…' : 'Skicka'}
+      </button>
 
       {error && (
         <div role="alert" style={{ fontSize: 13, color: 'var(--red, #d44d4d)', marginTop: -6 }}>
