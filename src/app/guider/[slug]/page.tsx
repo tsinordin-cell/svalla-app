@@ -11,6 +11,7 @@ import { URL_SLUG_TO_REGION, REGION_URL_SLUG, GUIDER_UTAN_INNEHALL } from '../gu
 
 import FAQSection from '@/components/FAQSection'
 import EmailSignup from '@/components/EmailSignup'
+import { grannarISasongen } from '../sasongskedja'
 import ShareButton from '@/components/ShareButton'
 import StickyNewsletterBar from '@/components/StickyNewsletterBar'
 import { emojiToIcon } from '@/lib/iconMap'
@@ -272,6 +273,33 @@ export default async function GuidePage({ params }: Props) {
           }}
           dangerouslySetInnerHTML={{ __html: content }}
         />
+
+        {/* Genom säsongen: föregående och nästa säsongsguide (sasongskedja.ts) */}
+        {(() => {
+          const g = grannarISasongen(slug)
+          if (!g) return null
+          const titel = (s: string) => GUIDER_UTAN_INNEHALL.has(s) ? undefined : GUIDES.find(x => x.slug === s)?.title
+          const lankar = [
+            g.fore && titel(g.fore.slug) ? { ...g.fore, etikett: 'Före', titel: titel(g.fore.slug)! } : null,
+            g.efter && titel(g.efter.slug) ? { ...g.efter, etikett: 'Sedan', titel: titel(g.efter.slug)! } : null,
+          ].filter((x): x is NonNullable<typeof x> => x !== null)
+          if (lankar.length === 0) return null
+          return (
+            <nav aria-label="Genom säsongen" style={{ marginTop: 28, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 12 }}>
+              {lankar.map(l => (
+                <Link key={l.slug} href={`/guider/${l.slug}`} style={{
+                  display: 'block', textDecoration: 'none', background: 'var(--white)',
+                  border: '1px solid var(--surface-3)', borderRadius: 14, padding: '14px 18px',
+                }}>
+                  <span style={{ display: 'block', fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                    {l.etikett}: {l.kort}
+                  </span>
+                  <span style={{ display: 'block', fontSize: 15, fontWeight: 700, color: 'var(--sea)', marginTop: 4 }}>{l.titel}</span>
+                </Link>
+              ))}
+            </nav>
+          )
+        })()}
 
         {/* Back CTA */}
         <div style={{ marginTop: 36, display: 'flex', justifyContent: 'center' }}>

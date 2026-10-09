@@ -15,6 +15,7 @@
  * För server-side events (webhook, cron) → använd PostHog server SDK separat.
  */
 
+import { hamtaKampanj } from '@/lib/kampanj'
 import { hasAnalyticsConsent } from '@/components/CookieConsent'
 
 // ─── Event-katalog ────────────────────────────────────────────────────────────
@@ -141,6 +142,7 @@ export function track<E extends SvallaEvent>(name: E['name'], props: E['props'])
         sessionId,
         path: window.location.pathname,
         ursprung: ursprungForSession(),
+        kampanj: hamtaKampanj() ?? undefined,
       }),
       // keepalive så event skickas även vid page-unload
       keepalive: true,

@@ -213,6 +213,22 @@ const ADMIN_TOOLS: AdminTool[] = [
     badge: 'NY',
     color: '#0a7b8c',
   },
+  {
+    href:  '/admin/veckans-o',
+    icon:  <IcoBarChart color="#1e5c82" />,
+    title: 'Veckans ö',
+    desc:  'Granska och godkänn kommande utskick. Inget går ut utan godkännande',
+    badge: 'NY',
+    color: '#1e5c82',
+  },
+  {
+    href:  '/admin/kampanjer',
+    icon:  <IcoBarChart color="#b5591a" />,
+    title: 'Kampanjer',
+    desc:  'Besök och nya mejladresser per kampanjlänk (?k=), felrapporter per månad',
+    badge: 'NY',
+    color: '#b5591a',
+  },
 ]
 
 export default async function AdminPage() {

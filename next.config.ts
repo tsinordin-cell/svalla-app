@@ -269,6 +269,19 @@ const nextConfig: NextConfig = {
       { source: '/ta-dig-till/:slug', destination: '/o/:slug/komma-dit', permanent: true },
       // Kanholmen borttagen 2026-09-28 (Toms beslut): ingen tillåten källa beskriver ön. Närmaste belagda ösida är Djurö.
       { source: '/o/kanholmen', destination: '/o/djuro', permanent: true },
+      // Adelsö har sluggen 'adelsjo' sedan starten. /o/adelso gav 404 men fick
+      // besök (admin/oar-trafik, 2026-10-09). Sluggen byts inte, den är indexerad.
+      { source: '/o/adelso', destination: '/o/adelsjo', permanent: true },
+      { source: '/o/adelso/:path*', destination: '/o/adelsjo/:path*', permanent: true },
+      // Samma sak för fyra öar till vars slug inte följer namnet (2026-10-09).
+      { source: '/o/smadalaro', destination: '/o/smaadalaro', permanent: true }, // Smådalarö
+      { source: '/o/smadalaro/:path*', destination: '/o/smaadalaro/:path*', permanent: true },
+      { source: '/o/ormskar', destination: '/o/ormsko', permanent: true }, // Ormskär
+      { source: '/o/ormskar/:path*', destination: '/o/ormsko/:path*', permanent: true },
+      { source: '/o/grasko', destination: '/o/graskar', permanent: true }, // Gräskö
+      { source: '/o/grasko/:path*', destination: '/o/graskar/:path*', permanent: true },
+      { source: '/o/visingso', destination: '/o/visingo', permanent: true }, // Visingsö
+      { source: '/o/visingso/:path*', destination: '/o/visingo/:path*', permanent: true },
       { source: '/o/kanholmen/:path*', destination: '/o/djuro', permanent: true },
       { source: '/blogg/packlista-skargarden', destination: '/guider/packlista-skargarden', permanent: true },
       { source: '/blogg/allemansratten-pa-sjon', destination: '/guider/allemansratten-pa-sjon', permanent: true },
