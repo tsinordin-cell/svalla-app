@@ -19,6 +19,7 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { arAgentUserAgent } from '@/lib/analytics-filter'
+import { stadaKampanj } from '@/lib/kampanj'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -75,7 +76,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json().catch(() => null) as
-      | { event?: string; props?: Record<string, unknown>; sessionId?: string; path?: string; ursprung?: string }
+      | { event?: string; props?: Record<string, unknown>; sessionId?: string; path?: string; ursprung?: string; kampanj?: string }
       | null
 
     if (!body?.event || typeof body.event !== 'string' || !KNOWN_EVENTS.has(body.event)) {
@@ -103,7 +104,11 @@ export async function POST(req: NextRequest) {
       user_id: userId,
       session_id: body.sessionId ?? null,
       path: body.path ?? null,
-      props: body.props ?? {},
+      // Kampanjlänk (?k=) läggs i props, se lib/kampanj.ts. Ingen ny kolumn behövs.
+      props: (() => {
+        const k = stadaKampanj(body.kampanj)
+        return k ? { ...(body.props ?? {}), kampanj: k } : (body.props ?? {})
+      })(),
       country_code: req.headers.get('x-vercel-ip-country') ?? null,
       user_agent: ua,
       // Kolumnen heter referer men bär sedan 2026-09-20 klientens document.referrer

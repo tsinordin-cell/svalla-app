@@ -23,8 +23,9 @@ export default async function GoteborgPage() {
       Object.keys(CATEGORIES).map(async k => [k, (await getPlacesForRegionCategory('goteborg', k)).length] as const),
     ),
   )
+  // revision 2026-10-09: div i stället för main, root-layouten har redan <main>.
   return (
-    <main style={{ maxWidth: 960, margin: '0 auto', padding: '32px 16px 96px' }}>
+    <div style={{ maxWidth: 960, margin: '0 auto', padding: '32px 16px 96px' }}>
       <header style={{ marginBottom: 32 }}>
         <h1 style={{ fontSize: 'clamp(32px, 6vw, 56px)', fontWeight: 700, fontFamily: "'Playfair Display', Georgia, serif", margin: 0 }}>
           {region.label}
@@ -43,6 +44,6 @@ export default async function GoteborgPage() {
           </li>
         ))}
       </ul>
-    </main>
+    </div>
   )
 }

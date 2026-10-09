@@ -170,8 +170,13 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
       avatarUrl = supabase.storage.from('images').getPublicUrl(path).data.publicUrl
     }
     if (trimmed !== user.username) {
-      const { data: existing } = await supabase.from('users').select('id').eq('username', trimmed).neq('id', user.id).maybeSingle()
-      if (existing) { setError('Användarnamnet är redan taget.'); setSaving(false); return }
+      // Revision 2026-10-09: jämför utan skiftläge. /u/elin och /u/Elin leder till
+      // samma profil (lib/anvandarnamn.ts), så Elin och elin får inte båda finnas.
+      // \ % _ är specialtecken i ILIKE och escapas; * kan inte escapas i PostgREST
+      // och stoppas redan av validateUsername.
+      const monster = trimmed.replace(/[\\%_]/g, '\\$&')
+      const { data: existing } = await supabase.from('users').select('id').ilike('username', monster).neq('id', user.id).limit(1)
+      if (existing && existing.length > 0) { setError('Användarnamnet är redan taget.'); setSaving(false); return }
     }
     const { data: updated, error: upErr } = await supabase.from('users').update({
       username: trimmed, avatar: avatarUrl,

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { sendEmail } from '@/lib/email'
+import { stadaKampanj } from '@/lib/kampanj'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -13,9 +14,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Ogiltig request' }, { status: 400 })
   }
 
-  const { email, source, preferences } = body as {
+  const { email, source, preferences, kampanj } = body as {
     email?: string
     source?: string
+    kampanj?: string
     preferences?: Record<string, unknown>
   }
 
@@ -38,7 +40,12 @@ export async function POST(request: Request) {
   const { error, data: insertedRows } = await service.from('email_subscribers').insert({
     email: normalizedEmail,
     source: source ?? 'unknown',
-    preferences: preferences ?? { weekly_tips: true, season_alerts: true },
+    // Kampanjlänk (?k=) som besökaren kom via, se lib/kampanj.ts.
+    preferences: (() => {
+      const bas = preferences ?? { weekly_tips: true, season_alerts: true }
+      const k = stadaKampanj(kampanj)
+      return k ? { ...bas, kampanj: k } : bas
+    })(),
     user_id: user?.id ?? null,
     confirmed: true,
   }).select('id')

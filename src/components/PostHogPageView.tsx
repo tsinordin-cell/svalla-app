@@ -16,6 +16,7 @@ import { usePostHog } from 'posthog-js/react'
 import { useEffect } from 'react'
 import { track } from '@/lib/analytics-events'
 import { hasAnalyticsConsent } from '@/components/CookieConsent'
+import { fangaKampanj } from '@/lib/kampanj'
 
 function PageViewTracker() {
   const pathname    = usePathname()
@@ -23,6 +24,9 @@ function PageViewTracker() {
   const posthog     = usePostHog()
 
   useEffect(() => {
+    // Kampanjlänkar (?k=), se lib/kampanj.ts. Före posthog-kollen: namnet ska
+    // fångas även om PostHog inte är laddat.
+    fangaKampanj(window.location.search, hasAnalyticsConsent())
     if (!pathname || !posthog) return
     // PostHog initieras bara efter samtycke (PostHogProvider, 2026-10-02).
     if (hasAnalyticsConsent()) {

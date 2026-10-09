@@ -1,4 +1,5 @@
 'use client'
+import { hamtaKampanj } from '@/lib/kampanj'
 import { useState } from 'react'
 
 interface Props {
@@ -37,7 +38,7 @@ export default function EmailSignup({
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source }),
+        body: JSON.stringify({ email, source, kampanj: hamtaKampanj() ?? undefined }),
       })
       if (!res.ok) {
         const j = await res.json().catch(() => ({}))
