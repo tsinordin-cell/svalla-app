@@ -268,7 +268,7 @@ export default function OmPage() {
           {/* CTAs */}
           <div style={{ display: 'flex', gap: 12, marginTop: 28, flexWrap: 'wrap' }}>
             <Link href="/upptack" style={{
-              padding: '12px 24px', background: 'var(--sea)', color: '#fff',
+              padding: '12px 24px', background: 'var(--sea-knapp)', color: '#fff',
               borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
             }}>Utforska kartan</Link>
             <Link href="/faq" style={{

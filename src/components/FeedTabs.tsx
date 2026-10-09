@@ -198,7 +198,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
                   style={{
                     padding: '9px 16px', borderRadius: 22,
                     border: `1.5px solid ${boatFilter === f.value ? 'var(--sea)' : 'rgba(10,123,140,0.15)'}`,
-                    background: boatFilter === f.value ? 'var(--sea)' : 'transparent',
+                    background: boatFilter === f.value ? 'var(--sea-knapp)' : 'transparent',
                     color: boatFilter === f.value ? '#fff' : 'var(--txt)',
                     fontSize: 13, fontWeight: 600, cursor: 'pointer',
                     WebkitTapHighlightColor: 'transparent',

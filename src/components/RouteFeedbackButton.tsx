@@ -174,7 +174,7 @@ export default function RouteFeedbackButton({ routeId, startName, endName }: Pro
                 style={{
                   flex: 1.4, height: 44, borderRadius: 12,
                   border: 'none',
-                  background: status === 'sent' ? '#15803d' : 'var(--sea)',
+                  background: status === 'sent' ? '#15803d' : 'var(--sea-knapp)',
                   color: '#fff',
                   fontSize: 14, fontWeight: 700,
                   cursor: status === 'sending' || status === 'sent' ? 'default' : 'pointer',

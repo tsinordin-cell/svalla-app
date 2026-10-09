@@ -517,7 +517,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  <span style={{
  position: 'absolute', top: -4, right: -4,
  fontSize: 9, fontWeight: 700,
- background: 'var(--sea)', color: '#fff',
+ background: 'var(--sea-knapp)', color: '#fff',
  padding: '2px 5px', borderRadius: 8,
  letterSpacing: '0.2px',
  }}>

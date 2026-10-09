@@ -74,7 +74,7 @@ export default function PartnerTackPage() {
             display: 'inline-block',
             padding: '12px 28px',
             borderRadius: 10,
-            background: 'var(--sea)',
+            background: 'var(--sea-knapp)',
             color: '#fff',
             textDecoration: 'none',
             fontWeight: 700,

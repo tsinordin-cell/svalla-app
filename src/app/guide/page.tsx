@@ -485,7 +485,7 @@ function GuideContent() {
                   disabled={savingPlan}
                   style={{
                     padding: '8px 16px', borderRadius: 20,
-                    background: savingPlan ? 'rgba(10,123,140,0.4)' : 'var(--sea)',
+                    background: savingPlan ? 'rgba(10,123,140,0.4)' : 'var(--sea-knapp)',
                     color: '#fff',
                     border: 'none', cursor: savingPlan ? 'default' : 'pointer',
                     fontSize: 13, fontWeight: 700,

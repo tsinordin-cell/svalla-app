@@ -904,7 +904,7 @@ export default function ChatPage() {
             {/* Send */}
             <button className="press-feedback" type="submit" disabled={!text.trim() || posting} aria-label="Skicka" style={{
               width: 36, height: 36, borderRadius: '50%', border: 'none', flexShrink: 0,
-              background: text.trim() && !posting ? 'var(--sea)' : 'var(--surface-2, rgba(10,40,80,0.08))',
+              background: text.trim() && !posting ? 'var(--sea-knapp)' : 'var(--surface-2, rgba(10,40,80,0.08))',
               color: text.trim() && !posting ? '#fff' : 'var(--txt3)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               cursor: text.trim() && !posting ? 'pointer' : 'default',

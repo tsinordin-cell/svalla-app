@@ -269,7 +269,7 @@ export default async function VandringHikePage({ params }: Props) {
                     <span style={{
                       flexShrink: 0, marginTop: 3,
                       width: 18, height: 18, borderRadius: 999,
-                      background: 'var(--sea)', color: '#fff',
+                      background: 'var(--sea-knapp)', color: '#fff',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       fontSize: 10, fontWeight: 700,
                     }}>

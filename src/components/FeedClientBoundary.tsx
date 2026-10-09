@@ -55,7 +55,7 @@ export default class FeedClientBoundary extends Component<Props, State> {
             onClick={this.reset}
             style={{
               padding: '8px 14px', borderRadius: 10, border: 'none',
-              background: 'var(--sea)', color: '#fff',
+              background: 'var(--sea-knapp)', color: '#fff',
               fontSize: 12, fontWeight: 600, cursor: 'pointer',
             }}
           >

@@ -122,7 +122,7 @@ export default function InsikterPage() {
  onClick={() => setScope(v)}
  style={{
  flexShrink: 0, padding: '6px 14px', borderRadius: 20, border: 'none', cursor: 'pointer',
- background: active ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
+ background: active ? 'var(--sea-knapp)' : 'rgba(10,123,140,0.07)',
  color: active ? '#fff' : '#3a6a80',
  fontSize: 12, fontWeight: 700,
  WebkitTapHighlightColor: 'transparent',

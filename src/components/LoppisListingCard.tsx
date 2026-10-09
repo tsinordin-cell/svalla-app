@@ -356,7 +356,7 @@ export default function LoppisListingCard({
                 href={`/meddelanden/ny?to=${author.id}&about=${threadId}&title=${encodeURIComponent(title)}`}
                 style={{
                   padding: '10px 18px',
-                  background: 'var(--sea)',
+                  background: 'var(--sea-knapp)',
                   color: '#fff',
                   borderRadius: 12,
                   textDecoration: 'none',

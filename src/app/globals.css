@@ -17,6 +17,7 @@
   /* Knappar och etiketter med vit text: #c96e2a/#e8924a ger 3,6/2,4:1 mot vitt (kravet är 4,5:1).
      Den här nyansen ger 4,8:1. Accentfärgen i övrigt (ikoner, ramar, text på mörkt) är oförändrad. */
   --acc-knapp: #b5591a;
+  --acc-text:  #a8501a;  /* orange TEXT på ljus yta: 5,0:1 mot #fff3e6 (rester 2026-10-07) */
   /* Knappar med vit text på sjöfärgen: i mörkt tema är --sea ljus (#4ab8d4, 2,3:1 mot vitt),
      så knappar använder --sea-knapp i stället (ljust 7,2:1, mörkt 4,6:1). */
   --sea-knapp: #1e5c82;
@@ -217,6 +218,7 @@ img {
   --acc:        #e8924a;
   --acc-d:      #c97030;
   --acc-knapp:  #b5591a;
+  --acc-text:   #e8924a;  /* orange TEXT på mörk yta: 6,3:1 mot #22262c */
   --sea-knapp:  #1c7f98;
   --ok:              #4fb874;
   --ok-bg:           rgba(79,184,116,0.14);
