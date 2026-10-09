@@ -4,77 +4,87 @@ import Link from 'next/link'
 import PartnerForm from './PartnerForm'
 import SvallaLogo from '@/components/SvallaLogo'
 import Icon, { type IconName } from '@/components/Icon'
+import { ALL_ISLANDS } from '@/app/o/island-data'
+import { getAdminClient } from '@/lib/supabase-admin'
+
+/**
+ * /partner: för krogar, hamnar, boenden och upplevelser på öarna.
+ *
+ * 2026-10-08: priserna (290/590/990 kr), Stripe-knappen och siffrorna
+ * "2 500+ båtägare", "1 000+ rutter", "470+ verifierade" är borttagna. Det
+ * finns ingen betald nivå (Pro är parkerad) och siffrorna saknade underlag.
+ * Siffrorna nedan räknas ur sajtens egen data. Lägg inte till publiksiffror
+ * här förrän de är mätta, samma regel som på /partner-sida.
+ */
+export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: { absolute: 'Partner — Synas på Svalla | För restauranger, hamnar och upplevelser' },
-  // PRODUKTREGEL: vårt eget pris — vi är källan.
-  description: 'Sätt din verksamhet i karta över skärgården. 200+ platser, 120+ ösidor, växande organisk trafik. Från 500 kr/mån.',
-  keywords: ['skärgård restaurang marknadsföring', 'gästhamn synas online', 'svalla partner', 'skärgård annonsering'],
+  title: { absolute: 'Er verksamhet på Svalla, utan kostnad | Krogar, hamnar och boenden' },
+  description: 'Driver du en krog, gästhamn, ett boende eller en upplevelse i skärgården? Det kostar ingenting att finnas på Svalla, och ni bestämmer vad som står om er.',
+  keywords: ['skärgård restaurang synas', 'gästhamn synas online', 'svalla partner', 'skärgård verksamhet'],
   openGraph: {
-    title: 'Partner med Svalla — för restauranger, hamnar och upplevelser',
-    description: 'Sätt din verksamhet i karta över skärgården.',
+    title: 'Er verksamhet på Svalla, utan kostnad',
+    description: 'Det kostar ingenting att finnas på Svalla, och ni bestämmer vad som står om er.',
     url: 'https://svalla.se/partner',
   },
   alternates: { canonical: 'https://svalla.se/partner' },
 }
 
-const TIERS = [
-  {
-    name: 'Bas',
-    price: 290,
-    cta: 'Kom igång',
-    color: 'var(--sea)',
-    features: [
-      'Premium-placering i sökresultat',
-      'Bokningsknapp på er sida',
-      'Bilder & beskrivning',
-      'Statistik på besökare',
-    ],
-  },
-  {
-    name: 'Standard',
-    price: 590,
-    cta: 'Mest populär',
-    color: 'var(--acc)',
-    highlight: true,
-    features: [
-      'Allt i Bas, plus:',
-      'Featured i ö-toppar',
-      'Foto-galleri (upp till 8 bilder)',
-      'Väder-info på er sida',
-      'Månatlig statistik via mail',
-    ],
-  },
-  {
-    name: 'Premium',
-    price: 990,
-    cta: 'Mest synlighet',
-    color: 'var(--green, #2a6e50)',
-    features: [
-      'Allt i Standard, plus:',
-      'Sponsrade rutter direkt till er',
-      'Push-notiser till båtfolk i området',
-      'Thorkel rekommenderar er',
-      'Personlig kontakt + content-stöd',
-    ],
-  },
-]
+const fmt = (n: number) => n.toLocaleString('sv-SE')
 
-const STATS = [
-  { num: '2 500+', label: 'Båtägare aktiva på Svalla' },
-  { num: '1 000+', label: 'Planerade rutter senaste veckan' },
-  { num: '470+', label: 'Verifierade restauranger & hamnar' },
-  { num: 'Maj–Sept', label: 'Säsong med högtrafik' },
-]
+async function antalPlatser(): Promise<number | null> {
+  try {
+    const { count, error } = await getAdminClient().from('restaurants').select('*', { count: 'exact', head: true })
+    return error ? null : count ?? null
+  } catch {
+    return null
+  }
+}
 
 const BENEFITS: Array<{ icon: IconName; title: string; body: string }> = [
-  { icon: 'target',     title: 'Kvalificerad trafik',  body: 'Folk som besöker en ösida är redo att åka. De är inte slumpmässiga sökare — de planerar en konkret tur.' },
-  { icon: 'pin',        title: 'Geografisk relevans',  body: 'Du syns när någon planerar att åka just till din ö. Inga slumpmässiga visningar i fel del av Sverige.' },
-  { icon: 'trendingUp', title: 'Växande sökmotor',     body: 'Svallas ösidor rankar i topp på Google för "sandhamn restaurang", "möja gästhamn" osv. Du ärver av oss.' },
-  { icon: 'handshake',  title: 'Mätbar effekt',        body: 'Statistik på klick, samtal och besök. Du ser exakt vilken effekt din listning har över säsongen.' },
+  { icon: 'pin',        title: 'En egen sida om er',        body: 'Adress, kontaktuppgifter, länk till er webbplats och bokning, samlat på en sida som går att hitta på Google.' },
+  { icon: 'target',     title: 'Där gästerna planerar',     body: 'Er sida visas på ösidan, där folk läser på innan de åker ut. Ni syns för den som redan funderar på att komma.' },
+  { icon: 'handshake',  title: 'Ni bestämmer vad som står', body: 'Är något fel eller saknas? Skicka rätt uppgifter så ändrar vi. Vill ni inte finnas med tar vi bort sidan.' },
 ]
 
-export default function PartnerPage() {
+const HOW_IT_WORKS = [
+  { step: '1', title: 'Skicka formuläret', body: 'Namn på verksamheten, var ni finns och hur vi når er. Det tar ett par minuter.' },
+  { step: '2', title: 'Vi hör av oss', body: 'Vi svarar via mejl och frågar efter det som saknas, till exempel bilder eller öppettider.' },
+  { step: '3', title: 'Er sida är uppe', body: 'Vi lägger upp eller rättar er sida. Ni kan alltid be oss ändra något senare.' },
+]
+
+const FAQ: Array<{ q: string; a: React.ReactNode }> = [
+  {
+    q: 'Vad kostar det?',
+    a: 'Ingenting. Det kostar inget att finnas på Svalla och inget att be oss rätta era uppgifter. Ni skriver inte på något avtal.',
+  },
+  {
+    q: 'Vi finns redan med. Hur ändrar vi något?',
+    a: <>Skriv till <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>info@svalla.se</a> och berätta vad som ska ändras, eller använd formuläret nedan. Ni kan söka fram er sida under <Link href="/upptack" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>Upptäck</Link>.</>,
+  },
+  {
+    q: 'Kan vi bli borttagna?',
+    a: <>Ja. Skriv till <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>info@svalla.se</a> så tar vi bort sidan. Läs mer i vår <Link href="/integritetspolicy" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>integritetspolicy</Link>.</>,
+  },
+  {
+    q: 'Vilka verksamheter passar?',
+    a: 'Krogar, kaféer, gästhamnar, boenden, butiker, uthyrning och upplevelser på öarna och längs kusten.',
+  },
+]
+
+export default async function PartnerPage() {
+  const platser = await antalPlatser()
+  const STATS = [
+    { num: fmt(ALL_ISLANDS.length), label: 'öar med egen sida' },
+    ...(platser ? [{ num: fmt(platser), label: 'platser på kartan' }] : []),
+    { num: 'Gratis', label: 'att finnas med' },
+  ]
+
+  const h2: React.CSSProperties = {
+    fontSize: 28, fontWeight: 700, marginBottom: 18, color: 'var(--txt)',
+    fontFamily: "'Playfair Display', Georgia, serif",
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', color: 'var(--txt)' }}>
       {/* NAV */}
@@ -99,19 +109,17 @@ export default function PartnerPage() {
       }}>
         <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
           <div style={{ fontSize: 11, letterSpacing: 1.4, opacity: 0.85, textTransform: 'uppercase', marginBottom: 12 }}>
-            För restauranger · gästhamnar · upplevelser
+            För krogar · hamnar · boenden · upplevelser
           </div>
           <h1 style={{
             fontSize: 44, fontWeight: 700, lineHeight: 1.15, margin: '0 0 16px',
             fontFamily: "'Playfair Display', Georgia, serif",
           }}>
-            Bli synlig för Sveriges båtfolk
+            Er verksamhet på Svalla, utan kostnad
           </h1>
           <p style={{ fontSize: 18, lineHeight: 1.55, opacity: 0.9, maxWidth: 560, margin: '0 auto 28px' }}>
-            Svalla är den plats där båtfolk i Stockholms skärgård och Bohuslän planerar sina rutter.
-            Tusentals besökare varje månad söker restauranger, hamnar och upplevelser.
-            {/* PRODUKTREGEL: vårt eget pris — vi är källan. */}
-            Från 290 kr/mån.
+            Svalla samlar skärgårdens öar, krogar, hamnar och boenden på ett ställe.
+            Det kostar ingenting att finnas med, och ni bestämmer vad som står om er.
           </p>
           <a href="#kontakt" style={{
             display: 'inline-flex', gap: 8, alignItems: 'center',
@@ -120,15 +128,13 @@ export default function PartnerPage() {
             fontSize: 15, fontWeight: 700, borderRadius: 999,
             textDecoration: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.18)',
           }}>
-            Få mer information <Icon name="arrowRight" size={16} stroke={2.2} />
+            Kom med eller rätta er sida <Icon name="arrowRight" size={16} stroke={2.2} />
           </a>
         </div>
       </section>
 
-      {/* STATS */}
-      <section style={{
-        maxWidth: 900, margin: '-40px auto 0', padding: '0 16px', position: 'relative',
-      }}>
+      {/* STATS: räknas ur sajtens egen data */}
+      <section style={{ maxWidth: 900, margin: '-40px auto 0', padding: '0 16px', position: 'relative' }}>
         <div style={{
           background: 'var(--white)', border: '1px solid var(--surface-3)',
           borderRadius: 16, padding: '20px 16px',
@@ -146,15 +152,10 @@ export default function PartnerPage() {
         </div>
       </section>
 
-      {/* WHY SVALLA */}
+      {/* VAD NI FÅR */}
       <section style={{ maxWidth: 900, margin: '0 auto', padding: '60px 24px 24px' }}>
-        <h2 style={{
-          fontSize: 28, fontWeight: 700, marginBottom: 18, color: 'var(--txt)',
-          fontFamily: "'Playfair Display', Georgia, serif",
-        }}>
-          Vad du får
-        </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 18 }}>
+        <h2 style={h2}>Vad ni får</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 18 }}>
           {BENEFITS.map(b => (
             <div key={b.title} style={{
               background: 'var(--white)', padding: '22px 20px', borderRadius: 14,
@@ -163,144 +164,65 @@ export default function PartnerPage() {
               <div style={{ marginBottom: 10, color: 'var(--sea)' }}>
                 <Icon name={b.icon} size={28} stroke={2} />
               </div>
-              <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 6, color: 'var(--txt)' }}>
-                {b.title}
-              </div>
-              <div style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--txt2)' }}>
-                {b.body}
-              </div>
+              <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 6, color: 'var(--txt)' }}>{b.title}</div>
+              <div style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--txt2)' }}>{b.body}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* TIERS */}
-      <section id="tiers" style={{ maxWidth: 1000, margin: '40px auto 0', padding: '0 16px' }}>
-        <h2 style={{
-          fontSize: 28, fontWeight: 700, marginBottom: 6, color: 'var(--txt)',
-          fontFamily: "'Playfair Display', Georgia, serif", textAlign: 'center',
-        }}>
-          Tre nivåer — välj efter behov
-        </h2>
-        <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt2)', marginBottom: 30 }}>
-          Inga bindningstider. Säg upp när som helst.
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
-          {TIERS.map(t => (
-            <div key={t.name} style={{
-              background: 'var(--white)',
-              border: t.highlight ? `2px solid ${t.color}` : '1px solid var(--surface-3)',
-              borderRadius: 16, padding: '28px 22px',
-              position: 'relative',
-              boxShadow: t.highlight ? '0 8px 24px rgba(0,0,0,0.12)' : '0 2px 8px rgba(0,0,0,0.04)',
-              display: 'flex', flexDirection: 'column',
+      {/* SÅ FUNGERAR DET */}
+      <section style={{ maxWidth: 720, margin: '48px auto 0', padding: '0 24px' }}>
+        <h2 style={h2}>Så fungerar det</h2>
+        <div style={{ display: 'grid', gap: 16 }}>
+          {HOW_IT_WORKS.map(h => (
+            <div key={h.step} style={{
+              display: 'flex', gap: 18, alignItems: 'flex-start',
+              background: 'var(--white)', padding: '20px 22px', borderRadius: 14,
+              border: '1px solid var(--surface-3)',
             }}>
-              {t.highlight && (
-                <div style={{
-                  position: 'absolute', top: -12, left: 22,
-                  background: t.color, color: '#fff',
-                  fontSize: 11, fontWeight: 700, padding: '4px 10px',
-                  borderRadius: 999, textTransform: 'uppercase', letterSpacing: 1,
-                }}>
-                  {t.cta}
-                </div>
-              )}
-              <div style={{ fontSize: 14, fontWeight: 600, color: t.color, marginBottom: 6 }}>
-                {t.name}
-              </div>
-              <div style={{ fontSize: 36, fontWeight: 800, marginBottom: 4, color: 'var(--txt)', fontFamily: "'Playfair Display', Georgia, serif" }}>
-                {t.price} <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt2)' }}>kr/mån</span>
-              </div>
-              <div style={{ fontSize: 12, color: 'var(--txt2)', marginBottom: 18 }}>
-                exkl. moms
-              </div>
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 auto', fontSize: 13.5, lineHeight: 1.65 }}>
-                {t.features.map(f => (
-                  <li key={f} style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'flex-start' }}>
-                    <span style={{ color: t.color, marginTop: 2 }}>
-                      <Icon name="check" size={14} stroke={2.4} />
-                    </span>
-                    <span style={{ color: 'var(--txt)' }}>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <a href={`?tier=${t.name.toLowerCase()}#kontakt`} style={{
-                marginTop: 18, display: 'inline-flex', gap: 6, alignItems: 'center',
-                padding: '12px 18px', borderRadius: 999,
-                background: t.color, color: '#fff',
-                fontSize: 14, fontWeight: 700, textDecoration: 'none',
-                textAlign: 'center', justifyContent: 'center',
-                transition: 'opacity 0.2s',
+              <div style={{
+                width: 36, height: 36, borderRadius: '50%',
+                background: 'var(--sea)', color: '#fff',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 16, fontWeight: 800, flexShrink: 0,
               }}>
-                Välj denna plan <Icon name="arrowRight" size={14} stroke={2.4} />
-              </a>
+                {h.step}
+              </div>
+              <div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 4 }}>{h.title}</div>
+                <div style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55 }}>{h.body}</div>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
       {/* FAQ */}
-      <section style={{ maxWidth: 720, margin: '60px auto 0', padding: '0 24px' }}>
-        <h2 style={{
-          fontSize: 26, fontWeight: 700, marginBottom: 24, color: 'var(--txt)',
-          fontFamily: "'Playfair Display', Georgia, serif", textAlign: 'center',
-        }}>
-          Vanliga frågor
-        </h2>
+      <section style={{ maxWidth: 720, margin: '56px auto 0', padding: '0 24px' }}>
+        <h2 style={h2}>Vanliga frågor</h2>
         <div style={{ display: 'grid', gap: 14 }}>
-          <details style={{ background: 'var(--white)', padding: '16px 20px', borderRadius: 12, border: '1px solid var(--surface-3)', cursor: 'pointer' }}>
-            <summary style={{ fontWeight: 700, color: 'var(--txt)', fontSize: 15, userSelect: 'none' }}>
-              Hur länge är bindningstiden?
-            </summary>
-            <p style={{ margin: '12px 0 0', color: 'var(--txt2)', fontSize: 14, lineHeight: 1.55 }}>
-              Ingen bindningstid. Du betalar månad för månad och kan säga upp när som helst. Inga dolda avgifter.
-            </p>
-          </details>
-          <details style={{ background: 'var(--white)', padding: '16px 20px', borderRadius: 12, border: '1px solid var(--surface-3)', cursor: 'pointer' }}>
-            <summary style={{ fontWeight: 700, color: 'var(--txt)', fontSize: 15, userSelect: 'none' }}>
-              Får jag mer trafik?
-            </summary>
-            <p style={{ margin: '12px 0 0', color: 'var(--txt2)', fontSize: 14, lineHeight: 1.55 }}>
-              Svalla har 2 500+ aktiva båtägare som planerar rutter varje månad. Vi kan inte garantera siffror, men du syns för rätt personer på rätt tid.
-            </p>
-          </details>
-          <details style={{ background: 'var(--white)', padding: '16px 20px', borderRadius: 12, border: '1px solid var(--surface-3)', cursor: 'pointer' }}>
-            <summary style={{ fontWeight: 700, color: 'var(--txt)', fontSize: 15, userSelect: 'none' }}>
-              Vad händer efter betalning?
-            </summary>
-            <p style={{ margin: '12px 0 0', color: 'var(--txt2)', fontSize: 14, lineHeight: 1.55 }}>
-              Vi kontaktar er inom 24 timmar för att samla material (foton, beskrivning, öppettider). Ni är synliga på Svalla inom 48 timmar.
-            </p>
-          </details>
-          <details style={{ background: 'var(--white)', padding: '16px 20px', borderRadius: 12, border: '1px solid var(--surface-3)', cursor: 'pointer' }}>
-            <summary style={{ fontWeight: 700, color: 'var(--txt)', fontSize: 15, userSelect: 'none' }}>
-              Kan jag prova gratis?
-            </summary>
-            <p style={{ margin: '12px 0 0', color: 'var(--txt2)', fontSize: 14, lineHeight: 1.55 }}>
-              Ja. Kontakta <Link href="mailto:tom@svalla.se" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>tom@svalla.se</Link> för 30 dagar gratis test av Standard-paketet.
-            </p>
-          </details>
+          {FAQ.map(f => (
+            <details key={f.q} style={{ background: 'var(--white)', padding: '16px 20px', borderRadius: 12, border: '1px solid var(--surface-3)', cursor: 'pointer' }}>
+              <summary style={{ fontWeight: 700, color: 'var(--txt)', fontSize: 15, userSelect: 'none' }}>{f.q}</summary>
+              <p style={{ margin: '12px 0 0', color: 'var(--txt2)', fontSize: 14, lineHeight: 1.55 }}>{f.a}</p>
+            </details>
+          ))}
         </div>
       </section>
 
-      {/* FORM */}
-      <section id="kontakt" style={{
-        maxWidth: 720, margin: '60px auto 0', padding: '40px 24px 80px',
-      }}>
-        <h2 style={{
-          fontSize: 26, fontWeight: 700, marginBottom: 8, color: 'var(--txt)',
-          fontFamily: "'Playfair Display', Georgia, serif", textAlign: 'center',
-        }}>
-          Kontakta oss
-        </h2>
-        <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt2)', marginBottom: 24 }}>
-          Vi hör av oss inom 1–2 arbetsdagar med ett konkret förslag.
+      {/* FORMULÄR */}
+      <section id="kontakt" style={{ maxWidth: 720, margin: '60px auto 0', padding: '40px 24px 80px' }}>
+        <h2 style={{ ...h2, textAlign: 'center', marginBottom: 8 }}>Hör av er</h2>
+        <p style={{ textAlign: 'center', fontSize: 15, color: 'var(--txt2)', marginBottom: 24 }}>
+          Berätta vilken verksamhet det gäller, så återkommer vi via mejl.
         </p>
         <Suspense fallback={<div style={{ minHeight: 320 }} />}>
           <PartnerForm />
         </Suspense>
         <p style={{ marginTop: 18, fontSize: 12, color: 'var(--txt3)', textAlign: 'center' }}>
-          Genom att skicka godkänner du att vi sparar dina kontaktuppgifter för att svara på din förfrågan.
+          Vi sparar era kontaktuppgifter för att kunna svara. Läs mer i vår{' '}
+          <Link href="/integritetspolicy" style={{ color: 'var(--txt3)' }}>integritetspolicy</Link>.
         </p>
       </section>
     </div>

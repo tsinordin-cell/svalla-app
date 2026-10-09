@@ -872,8 +872,128 @@ export const OBILDER: Record<string, Obild> = {
     "licens": "Public domain",
     "licensUrl": null,
     "kalla": "https://commons.wikimedia.org/wiki/File:%C3%85stol_-_KMB_-_16001000041804.jpg"
+  },
+  "graddo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Gr%C3%A4dd%C3%B6_Marina_%2814568186667%29.jpg/1280px-Gr%C3%A4dd%C3%B6_Marina_%2814568186667%29.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2014,
+    "fotograf": "Jukka from HELSINKI, Finland",
+    "licens": "CC BY 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Gr%C3%A4dd%C3%B6_Marina_(14568186667).jpg"
+  },
+  "vaddo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/R%C3%B6nnsk%C3%A4rs_udde_5.jpg/1280px-R%C3%B6nnsk%C3%A4rs_udde_5.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2020,
+    "fotograf": "Krr005",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:R%C3%B6nnsk%C3%A4rs_udde_5.jpg"
+  },
+  "galo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/G%C3%A5l%C3%B6.jpg/1280px-G%C3%A5l%C3%B6.jpg",
+    "bredd": 1200,
+    "hojd": 675,
+    "ar": 2018,
+    "fotograf": "Peter Bures",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:G%C3%A5l%C3%B6.jpg"
+  },
+  "morko": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/M%C3%B6rk%C3%B6_kyrka_2021.jpg/1280px-M%C3%B6rk%C3%B6_kyrka_2021.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2021,
+    "fotograf": "TS Eriksson",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:M%C3%B6rk%C3%B6_kyrka_2021.jpg"
+  },
+  "bjorko": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Bj%C3%B6rk%C3%B6_%28powi%29_3.jpg",
+    "bredd": 1200,
+    "hojd": 791,
+    "ar": 2007,
+    "fotograf": "Per Ola Wiberg (Powi), Ekerö, Sweden",
+    "licens": "CC BY 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Bj%C3%B6rk%C3%B6_(powi)_3.jpg"
+  },
+  "ekno": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Ekn%C3%B6_brygga.jpg/1280px-Ekn%C3%B6_brygga.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2012,
+    "fotograf": "Esquilo",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Ekn%C3%B6_brygga.jpg"
+  },
+  "asperon": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Asper%C3%B6_July_2025_01.jpg/1280px-Asper%C3%B6_July_2025_01.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2025,
+    "fotograf": "ArildV",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Asper%C3%B6_July_2025_01.jpg"
+  },
+  "djuro": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/DIMG_1020_%286001707836%29.jpg/1280px-DIMG_1020_%286001707836%29.jpg",
+    "bredd": 1200,
+    "hojd": 565,
+    "ar": 2011,
+    "fotograf": "Bengt Nyman from Vaxholm, Sweden",
+    "licens": "CC BY 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:DIMG_1020_(6001707836).jpg"
+  },
+  "gotska-sandon": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Bredsandsudde_Gotska_Sand%C3%B6n.jpg/1280px-Bredsandsudde_Gotska_Sand%C3%B6n.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2016,
+    "fotograf": "Catasa",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Bredsandsudde_Gotska_Sand%C3%B6n.jpg"
+  },
+  "aspo-blekinge": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/G%C3%A4raviken%2C_Asp%C3%B6%2C_Karlskrona.jpg/1280px-G%C3%A4raviken%2C_Asp%C3%B6%2C_Karlskrona.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2008,
+    "fotograf": "Magnus Bäck",
+    "licens": "Public domain",
+    "licensUrl": null,
+    "kalla": "https://commons.wikimedia.org/wiki/File:G%C3%A4raviken,_Asp%C3%B6,_Karlskrona.jpg"
+  },
+  "bla-jungfrun": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/0047Bl%C3%A5_Jungfruns_nationalpark.jpg/1280px-0047Bl%C3%A5_Jungfruns_nationalpark.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2018,
+    "fotograf": "L.G.foto",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:0047Bl%C3%A5_Jungfruns_nationalpark.jpg"
+  },
+  "dyron": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Stora_Dyr%C3%B6n_July_2023_04.jpg/1280px-Stora_Dyr%C3%B6n_July_2023_04.jpg",
+    "bredd": 1200,
+    "hojd": 801,
+    "ar": 2023,
+    "fotograf": "Arild Vågen",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Stora_Dyr%C3%B6n_July_2023_04.jpg"
   }
 }
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = 85
+export const OAR_MED_BILD = 97
