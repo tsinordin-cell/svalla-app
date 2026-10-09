@@ -1,74 +1,74 @@
 'use client'
 /**
  * LoppisFilters — filter-rad ovanför grid på /forum/loppis.
- * URL-driven (searchParams) så filter kan delas/bookmarkas.
  *
  * - Kategori-chips: Alla, Båt, Motor, Tillbehör, Säkerhet, Övrigt
  * - Pris-range: Min – Max kr (tomt = ingen gräns)
  * - Plats: fritext (substring-match)
  * - "Rensa"-knapp om något filter är aktivt
+ *
+ * Styrd komponent (rester efter revisionen, 2026-10-07): filtret ägs av
+ * LoppisGrid, som också håller URL:en i synk så att filter går att dela och
+ * bokmärka. Tidigare läste den här komponenten useSearchParams() och
+ * navigerade med router.replace — det tvingade hela kategorisidan att
+ * renderas om vid varje besök (CLAUDE.md p27). Nu läser servern aldrig
+ * query-strängen, och sidan kan cachas.
  */
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect, useState } from 'react'
 
 const CATEGORIES = ['Alla', 'Båt', 'Motor', 'Tillbehör', 'Säkerhet', 'Övrigt'] as const
 
+export type LoppisFilter = {
+  cat: string | null
+  priceMin: number | null
+  priceMax: number | null
+  location: string | null
+}
+
+export const TOMT_FILTER: LoppisFilter = { cat: null, priceMin: null, priceMax: null, location: null }
+
 interface Props {
+  filter: LoppisFilter
+  onChange: (next: LoppisFilter) => void
   totalCount: number
   filteredCount: number
 }
 
-export default function LoppisFilters({ totalCount, filteredCount }: Props) {
-  const router = useRouter()
-  const sp = useSearchParams()
-  const [isPending, startTransition] = useTransition()
-
-  const currentCat      = sp.get('cat') ?? 'Alla'
-  const currentMinStr   = sp.get('priceMin') ?? ''
-  const currentMaxStr   = sp.get('priceMax') ?? ''
-  const currentLocation = sp.get('location') ?? ''
+export default function LoppisFilters({ filter, onChange, totalCount, filteredCount }: Props) {
+  const currentCat      = filter.cat ?? 'Alla'
+  const currentMinStr   = filter.priceMin === null ? '' : String(filter.priceMin)
+  const currentMaxStr   = filter.priceMax === null ? '' : String(filter.priceMax)
+  const currentLocation = filter.location ?? ''
 
   const [minStr, setMinStr] = useState(currentMinStr)
   const [maxStr, setMaxStr] = useState(currentMaxStr)
   const [locStr, setLocStr] = useState(currentLocation)
 
-  // Synka lokal state om URL ändras externt
+  // Synka lokal state om filtret ändras utifrån (t.ex. läst från URL:en)
   useEffect(() => { setMinStr(currentMinStr) }, [currentMinStr])
   useEffect(() => { setMaxStr(currentMaxStr) }, [currentMaxStr])
   useEffect(() => { setLocStr(currentLocation) }, [currentLocation])
 
-  function pushParams(updates: Record<string, string | null>) {
-    const next = new URLSearchParams(sp.toString())
-    for (const [k, v] of Object.entries(updates)) {
-      if (v === null || v === '') next.delete(k)
-      else next.set(k, v)
-    }
-    const qs = next.toString()
-    startTransition(() => {
-      router.replace(qs ? `/forum/loppis?${qs}` : '/forum/loppis', { scroll: false })
-    })
-  }
-
   function setCategory(cat: string) {
-    pushParams({ cat: cat === 'Alla' ? null : cat })
+    onChange({ ...filter, cat: cat === 'Alla' ? null : cat })
   }
 
   function applyPriceRange() {
     const sanitize = (s: string) => {
       const cleaned = s.replace(/[^0-9]/g, '')
-      return cleaned === '' ? null : cleaned
+      return cleaned === '' ? null : Number(cleaned)
     }
-    pushParams({ priceMin: sanitize(minStr), priceMax: sanitize(maxStr) })
+    onChange({ ...filter, priceMin: sanitize(minStr), priceMax: sanitize(maxStr) })
   }
 
   function applyLocation() {
     const trimmed = locStr.trim()
-    pushParams({ location: trimmed === '' ? null : trimmed })
+    onChange({ ...filter, location: trimmed === '' ? null : trimmed })
   }
 
   function clearAll() {
     setMinStr(''); setMaxStr(''); setLocStr('')
-    startTransition(() => router.replace('/forum/loppis', { scroll: false }))
+    onChange(TOMT_FILTER)
   }
 
   const hasFilters = currentCat !== 'Alla' || currentMinStr || currentMaxStr || currentLocation
@@ -91,8 +91,6 @@ export default function LoppisFilters({ totalCount, filteredCount }: Props) {
       padding: 14,
       marginBottom: 14,
       display: 'flex', flexDirection: 'column', gap: 12,
-      opacity: isPending ? 0.7 : 1,
-      transition: 'opacity 0.12s',
     }}>
       {/* Kategori-chips */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
@@ -103,11 +101,12 @@ export default function LoppisFilters({ totalCount, filteredCount }: Props) {
               key={c}
               type="button"
               onClick={() => setCategory(c)}
+              aria-pressed={isActive}
               style={{
                 padding: '7px 13px',
                 borderRadius: 999,
                 border: 'none',
-                background: isActive ? 'var(--sea)' : 'rgba(10,123,140,0.08)',
+                background: isActive ? 'var(--sea-knapp, var(--sea))' : 'rgba(10,123,140,0.08)',
                 color: isActive ? '#fff' : 'var(--txt)',
                 fontSize: 12.5, fontWeight: 600,
                 cursor: 'pointer',
@@ -129,6 +128,7 @@ export default function LoppisFilters({ totalCount, filteredCount }: Props) {
             onBlur={applyPriceRange}
             onKeyDown={(e) => { if (e.key === 'Enter') applyPriceRange() }}
             placeholder="Min kr"
+            aria-label="Lägsta pris i kronor"
             style={fieldStyle}
           />
           <input
@@ -139,6 +139,7 @@ export default function LoppisFilters({ totalCount, filteredCount }: Props) {
             onBlur={applyPriceRange}
             onKeyDown={(e) => { if (e.key === 'Enter') applyPriceRange() }}
             placeholder="Max kr"
+            aria-label="Högsta pris i kronor"
             style={fieldStyle}
           />
         </div>
@@ -149,6 +150,7 @@ export default function LoppisFilters({ totalCount, filteredCount }: Props) {
           onBlur={applyLocation}
           onKeyDown={(e) => { if (e.key === 'Enter') applyLocation() }}
           placeholder="Plats (t.ex. Halmstad)"
+          aria-label="Plats"
           maxLength={80}
           style={fieldStyle}
         />
@@ -159,7 +161,7 @@ export default function LoppisFilters({ totalCount, filteredCount }: Props) {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10,
         fontSize: 12, color: 'var(--txt3)',
       }}>
-        <span>
+        <span aria-live="polite">
           {filteredCount === totalCount
             ? `${totalCount} annonser`
             : `${filteredCount} av ${totalCount} annonser`}
