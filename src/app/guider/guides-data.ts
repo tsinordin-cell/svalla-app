@@ -394,7 +394,10 @@ export const GUIDES: GuideMeta[] = [
     faqs: [
       { q: 'Vad kostar det att fira midsommar på Sandhamn?', // KÄLLA: Strömma/Cinderellabåtarna, från 255 kr enkel resa (verifierat 2026-08-05). Boendespannet är uppskattning (2026-08).
       a: 'Cinderellabåtarna (Strömma) kostar från 255 kr per enkel resa. Boende på Sandhamn kostar uppskattningsvis 1 500–3 000 kr/natt per rum under midsommar. Räkna med att boka minst 3–4 månader i förväg för boende.' },
-      { q: 'Behöver man boka biljett till Cinderellabåten på midsommaraftonen?', a: 'Ja, absolut. Cinderellabåten kör med full kapacitet midsommaraftonen och biljetter tar slut veckor i förväg. Boka via Waxholmsbolagets app eller hemsida så snart du bestämt dig.' },
+      // Rättat 2026-10-09: svaret sa att biljetten bokas hos Waxholmsbolaget och att den tar slut veckor i förväg.
+      // Cinderellabåtarna drivs av Strömma och biljetten köps där (se /cinderella-baaten). Påståendet om slutsålt saknade källa.
+      // KÄLLA: stromma.com/sv-se/stockholm/cinderellabatarna/ (hämtad 2026-08-05), samma källa som /cinderella-baaten.
+      { q: 'Behöver man boka biljett till Cinderellabåten på midsommaraftonen?', a: 'Cinderellabåtarna drivs av Strömma, inte av Waxholmsbolaget, och biljetten köps hos Strömma. SL-kort och Waxholmsbolagets kort gäller inte ombord. Hur fullt det brukar vara på midsommaraftonen har vi inte kunnat belägga, så köp biljetten i god tid om du har bestämt dig.' },
       { q: 'Vilken ö är bäst för midsommar med barn?', a: 'Grinda är det bästa valet för barnfamiljer — kort restid (1h 45min), sandstrand, grunt vatten och ett genuint midsommarfirande med majstång. Alternativt Vaxholm (1h) om barnen tröttnar snabbt på resor.' },
       { q: 'Hur tidigt ska man boka boende inför midsommar i skärgården?', a: 'Minst 3–4 månader i förväg för Sandhamn, Utö och Grinda. Vaxholm och Möja är lättare att boka 4–6 veckor i förväg. Dagsturerna kräver bara biljettbokning — inget boende.' },
       { q: 'Kan man åka på dagstur utan övernattning på midsommar?', a: 'Ja, dagsturen fungerar utmärkt. Fjäderholmarna (25 min), Vaxholm (1h) och Grinda (1h 45min) är perfekta för dagstur. Kom tidigt — båtarna är fulla från lunch.' },
