@@ -109,7 +109,7 @@ export default async function SavedListingsPage() {
             <Link href="/forum/loppis" style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
               padding: '10px 18px',
-              background: 'var(--sea)', color: '#fff',
+              background: 'var(--sea-knapp)', color: '#fff',
               borderRadius: 12, textDecoration: 'none',
               fontSize: 14, fontWeight: 700,
             }}>

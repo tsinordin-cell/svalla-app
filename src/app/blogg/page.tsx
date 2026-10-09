@@ -166,7 +166,7 @@ export default function BloggPage() {
           </p>
           <Link href="/" style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,
-            background: 'var(--sea)', color: '#fff',
+            background: 'var(--sea-knapp)', color: '#fff',
             fontSize: 13, fontWeight: 700, textDecoration: 'none',
             padding: '9px 20px', borderRadius: 20,
           }}>

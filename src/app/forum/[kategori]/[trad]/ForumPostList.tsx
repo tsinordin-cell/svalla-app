@@ -85,7 +85,7 @@ export function PostHeader({
           {isOP && (
             <span style={{
               fontSize: 10, fontWeight: 700, color: '#fff',
-              background: 'var(--sea)',
+              background: 'var(--sea-knapp)',
               padding: '1px 6px', borderRadius: 4,
               letterSpacing: '0.03em',
             }}>OP</span>

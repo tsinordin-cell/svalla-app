@@ -393,7 +393,7 @@ function ManuellForm() {
             type="button"
             onClick={confirmCrop}
             style={{
-              color: '#fff', background: 'var(--sea)', border: 'none',
+              color: '#fff', background: 'var(--sea-knapp)', border: 'none',
               padding: '8px 18px', borderRadius: 20,
               fontWeight: 700, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit',
             }}
@@ -762,7 +762,7 @@ function ManuellForm() {
                           {label}
                           {isSelected && (
                             <span style={{
-                              background: 'var(--sea)', color: '#fff',
+                              background: 'var(--sea-knapp)', color: '#fff',
                               borderRadius: 10, padding: '1px 7px', fontSize: 9,
                             }}>VALD</span>
                           )}
@@ -836,7 +836,7 @@ function ManuellForm() {
                     <button key={bt} type="button" onClick={() => setBoatType(bt === boatType ? '' : bt)}
                       style={{
                         padding: '8px 4px', borderRadius: 10, border: 'none', cursor: 'pointer',
-                        background: boatType === bt ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
+                        background: boatType === bt ? 'var(--sea-knapp)' : 'rgba(10,123,140,0.07)',
                         color: boatType === bt ? '#fff' : 'var(--txt2)',
                         fontSize: 11, fontWeight: 600,
                       }}>

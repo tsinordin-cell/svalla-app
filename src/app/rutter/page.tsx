@@ -32,7 +32,7 @@ const ISLAND_SECTIONS = [
   {
     id: 'södra',
     label: 'Södra skärgården',
-    color: '#2a6e50',
+    color: 'var(--ok)',        // var #2a6e50: 3,2:1 på mörk yta (rester 2026-10-07)
     bg: 'rgba(42,110,80,0.07)',
     description: 'Vilda klippor, öppet hav och Utö — den dramatiska södra skärgården.',
     slugs: [
@@ -42,7 +42,7 @@ const ISLAND_SECTIONS = [
   {
     id: 'norra',
     label: 'Norra skärgården',
-    color: '#7a4e2d',
+    color: 'var(--varning)',   // var #7a4e2d: 2,7:1 på mörk yta
     bg: 'rgba(122,78,45,0.07)',
     description: 'Orörda öar, höga klippor och en av Europas ovanligaste mötesplatser.',
     slugs: [
@@ -171,7 +171,8 @@ async function FerriesView() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 14 }}>
         {routesWithDeps.map(({ route: r, deps, fel }) => {
           const isLive = deps.length > 0
-          const opColor = r.operator === 'Waxholmsbolaget' ? '#1e5c82' : r.operator === 'Cinderella' ? '#c96e2a' : '#2e7d32'
+          // Temafärger, inte fasta: #1e5c82 på mörk yta gav 2,2:1 i mörkt tema (rester 2026-10-07).
+          const opColor = r.operator === 'Waxholmsbolaget' ? 'var(--sea)' : r.operator === 'Cinderella' ? 'var(--acc-text)' : 'var(--ok)'
           const opBg = r.operator === 'Waxholmsbolaget' ? 'rgba(30,92,130,0.08)' : r.operator === 'Cinderella' ? 'rgba(201,110,42,0.1)' : 'rgba(46,125,50,0.08)'
           return (
             <article key={r.id} style={{
@@ -234,7 +235,7 @@ async function FerriesView() {
               <a href={r.infoUrl} target="_blank" rel="noopener noreferrer" style={{
                 marginTop: 'auto', display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                 height: 36, borderRadius: 10,
-                background: 'var(--sea)', color: '#fff',
+                background: 'var(--sea-knapp)', color: '#fff',
                 fontSize: 12, fontWeight: 600, textDecoration: 'none',
               }}>
                 Öppna tidtabell hos {r.operator} →

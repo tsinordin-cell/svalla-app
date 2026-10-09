@@ -122,7 +122,7 @@ export default function LoppisReportButton({ threadId, isLoggedIn }: Props) {
                 </p>
                 <button type="button" onClick={() => setOpen(false)} style={{
                   padding: '10px 22px', borderRadius: 12, border: 'none',
-                  background: 'var(--sea)', color: '#fff',
+                  background: 'var(--sea-knapp)', color: '#fff',
                   fontSize: 14, fontWeight: 700, cursor: 'pointer',
                 }}>Stäng</button>
               </div>

@@ -190,7 +190,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
      <span>Turen är privat — länken visar 404 för alla utom dig.</span>
      <button type="button" onClick={makePublic} style={{
        flexShrink: 0, padding: '6px 12px', borderRadius: 999, cursor: 'pointer',
-       background: 'var(--sea)', color: '#fff', border: 'none',
+       background: 'var(--sea-knapp)', color: '#fff', border: 'none',
        fontSize: 12.5, fontWeight: 700,
      }}>Gör synlig</button>
    </div>

@@ -430,7 +430,7 @@ const btnPrimary: React.CSSProperties = {
   padding: '9px 16px',
   borderRadius: 8,
   border: 'none',
-  background: 'var(--sea)',
+  background: 'var(--sea-knapp)',
   color: '#fff',
   fontSize: 13,
   fontWeight: 600,

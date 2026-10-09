@@ -137,7 +137,7 @@ export default function SaveRouteCTA({ routeId, hasOwner, isLoggedIn, ownsRoute 
           style={{
             marginTop: 16, width: '100%',
             padding: '14px', borderRadius: 12,
-            border: 'none', background: 'var(--sea)',
+            border: 'none', background: 'var(--sea-knapp)',
             color: '#fff', fontSize: 14, fontWeight: 700,
             cursor: status === 'saving' ? 'default' : 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
@@ -186,7 +186,7 @@ export default function SaveRouteCTA({ routeId, hasOwner, isLoggedIn, ownsRoute 
                 href={`/logga-in?returnTo=${encodeURIComponent(`/planera/${routeId}?claim=1`)}`}
                 style={{
                   flex: 1.4, padding: '10px 14px', borderRadius: 10,
-                  background: 'var(--sea)', color: '#fff',
+                  background: 'var(--sea-knapp)', color: '#fff',
                   fontSize: 13, fontWeight: 700, textDecoration: 'none',
                   textAlign: 'center',
                 }}
