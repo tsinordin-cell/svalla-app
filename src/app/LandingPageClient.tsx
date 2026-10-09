@@ -783,7 +783,7 @@ const LANDING_HTML = `
  <div class="trust-item"><strong>Ingen båt krävs</strong> Kollektivt ända ut</div>
  <div class="trust-divider"></div>
  <!-- PRODUKTREGEL: vårt eget pris (gratis att komma igång) — vi är källan. -->
- <div class="trust-item"><strong>0 kr</strong> Att komma igång</div>
+ <div class="trust-item"><strong>Gratis</strong> Att komma igång</div>
 </div>
 
 <section class="resetips-section" id="resetips">
@@ -1366,7 +1366,7 @@ const LANDING_HTML = `
  <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">__ANTAL_OAR__</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
  <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
  <!-- PRODUKTREGEL: vårt eget pris (gratis att komma igång) — vi är källan. -->
- <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundfunktioner gratis för alltid</div></div>
+ <div class="stat-box reveal reveal-delay-3"><span class="stat-num">Gratis</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Planera, läsa och logga utan kostnad</div></div>
  </div>
  </div>
 </section>

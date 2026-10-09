@@ -200,7 +200,7 @@ export default async function PartnerSidaPage() {
               {
                 icon: 'barChart' as IconName,
                 title: 'Tidigt partnerskap lönar sig',
-                text: 'Svalla lanseras fullt inför sommaren 2027. Partners som kommer in tidigt låser in priset och syns från första dagen.',
+                text: 'Svalla lanseras fullt inför sommaren 2027. Den som börjar samarbeta nu syns från första dagen.',
               },
             ].map(({ icon, title, text }) => (
               <div key={title} style={{
