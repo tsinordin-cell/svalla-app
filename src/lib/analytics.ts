@@ -1,10 +1,12 @@
 'use client'
 
-import posthog from 'posthog-js'
+import { posthogOmLaddad } from '@/lib/posthogLaddare'
 
+// No-op tills PostHog laddats efter samtycke (lib/posthogLaddare.ts) – samma som
+// förut, då capture() på ett ostartat posthog inte gjorde något.
 export function trackEvent(event: string, properties?: Record<string, unknown>) {
   try {
-    posthog.capture(event, properties)
+    posthogOmLaddad()?.capture(event, properties)
   } catch {}
 }
 
