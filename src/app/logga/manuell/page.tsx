@@ -345,8 +345,10 @@ function ManuellForm() {
         )
         for (const u of tagged) {
           try {
-            await supabase.from('notifications').insert({
-              user_id: u.id, actor_id: user.id, type: 'tag', trip_id: trip.id,
+            await fetch('/api/notifications/insert', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ targetUserId: u.id, type: 'tag', tripId: trip.id }),
             })
           } catch { /* ignore notification errors */ }
         }
