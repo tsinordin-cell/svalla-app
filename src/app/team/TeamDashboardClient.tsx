@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 import Icon from '@/components/Icon'
+import RoadmapView, { type Milestone, type RoadmapMerits, type RoadmapTraffic } from './RoadmapView'
+import type { KpiValues } from './roadmap-config'
 
 // ── Typer ─────────────────────────────────────────────────────────────────
 
@@ -89,7 +91,7 @@ type Activity = {
   created_at: string
 }
 
-type Tab = 'tasks' | 'routines' | 'prompts' | 'activity'
+type Tab = 'roadmap' | 'tasks' | 'routines' | 'prompts' | 'activity'
 
 const STATUS_LABEL: Record<TaskStatus, string> = {
   todo: 'Att göra',
@@ -257,6 +259,15 @@ function IcoRoutine({ color = 'currentColor' }: { color?: string }) {
     <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round">
       <path d="M21 12a9 9 0 1 1-2.64-6.36" /><path d="M21 3v5h-5" />
       <path d="m9 12 2 2 4-4" />
+    </svg>
+  )
+}
+
+function IcoRoadmap({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 21V4" /><path d="M5 4h11l-2 3.5L16 11H5" />
+      <path d="M12 21c0-3 2-4 4-4s3-1.5 3-3" strokeDasharray="2 2.5" />
     </svg>
   )
 }
@@ -782,6 +793,7 @@ export default function TeamDashboardClient({
   initialTasks,
   initialPrompts,
   initialActivity,
+  roadmap,
 }: {
   currentUser: { id: string; username: string; initials?: string | null }
   teamMembers: TeamMember[]
@@ -789,10 +801,11 @@ export default function TeamDashboardClient({
   initialTasks: Task[]
   initialPrompts: Prompt[]
   initialActivity: Activity[]
+  roadmap: { kpis: KpiValues; merits: RoadmapMerits; traffic: RoadmapTraffic; milestones: Milestone[] }
 }) {
   const supabase = useMemo(() => createClient(), [])
 
-  const [tab, setTab] = useState<Tab>('tasks')
+  const [tab, setTab] = useState<Tab>('roadmap')
   const [projects, setProjects] = useState<Project[]>(initialProjects)
   const [tasks, setTasks] = useState<Task[]>(initialTasks)
   const [prompts, setPrompts] = useState<Prompt[]>(initialPrompts)
@@ -1012,9 +1025,10 @@ export default function TeamDashboardClient({
     return boardTasks.filter(t => t.project_id === projectId).length
   }
 
-  const TAB_TITLE: Record<Tab, string> = { tasks: 'Uppgifter', routines: 'Rutiner', prompts: 'Promptbibliotek', activity: 'Aktivitet' }
+  const TAB_TITLE: Record<Tab, string> = { roadmap: 'Roadmap', tasks: 'Uppgifter', routines: 'Rutiner', prompts: 'Promptbibliotek', activity: 'Aktivitet' }
 
   const navItems: Array<{ key: Tab; label: string; icon: React.ReactNode }> = [
+    { key: 'roadmap', label: 'Roadmap', icon: <IcoRoadmap /> },
     { key: 'tasks', label: 'Uppgifter', icon: <IcoTasks /> },
     { key: 'routines', label: 'Rutiner', icon: <IcoRoutine /> },
     { key: 'prompts', label: 'Promptbibliotek', icon: <IcoPrompt /> },
@@ -1183,14 +1197,14 @@ export default function TeamDashboardClient({
                   {TAB_TITLE[tab]}
                 </h1>
                 <p style={{ fontSize: 12.5, color: 'var(--txt3)', margin: '2px 0 0' }}>
-                  {projectFilter ? projectById.get(projectFilter)?.name : 'Alla projekt'}
+                  {tab === 'roadmap' ? 'Vart vi är, vart vi ska och vad vi har klarat' : projectFilter ? projectById.get(projectFilter)?.name : 'Alla projekt'}
                 </p>
               </div>
             </div>
 
             {/* Projektväxlare — sidebaren är dold under 860px, så det här är
                 enda vägen att filtrera/skapa projekt på mobil. */}
-            <div className="svt-mobile-projectbar">
+            {tab !== 'roadmap' && <div className="svt-mobile-projectbar">
               <button className={`svt-chip${projectFilter === null ? ' active' : ''}`} onClick={() => setProjectFilter(null)}>
                 Alla <span style={{ opacity: 0.7 }}>{boardTasks.length}</span>
               </button>
@@ -1201,8 +1215,8 @@ export default function TeamDashboardClient({
                 </button>
               ))}
               <button className="svt-chip" onClick={() => setShowNewProject(v => !v)}><IcoPlus color="currentColor" /> Nytt</button>
-            </div>
-            {showNewProject && (
+            </div>}
+            {showNewProject && tab !== 'roadmap' && (
               <div className="svt-mobile-projectbar" style={{ marginTop: -10, display: 'flex' }}>
                 <input
                   value={newProjectName} onChange={e => setNewProjectName(e.target.value)}
@@ -1213,6 +1227,18 @@ export default function TeamDashboardClient({
                 <input type="color" value={newProjectColor} onChange={e => setNewProjectColor(e.target.value)} style={{ width: 36, border: 'none', borderRadius: 6, padding: 0, background: 'none', cursor: 'pointer', flexShrink: 0 }} />
                 <button onClick={submitNewProject} className="svt-btn-primary" style={{ ...btnPrimary, padding: '8px 14px', flexShrink: 0 }}>Skapa</button>
               </div>
+            )}
+
+            {tab === 'roadmap' && (
+              <RoadmapView
+                supabase={supabase}
+                kpis={roadmap.kpis}
+                merits={roadmap.merits}
+                traffic={roadmap.traffic}
+                initialMilestones={roadmap.milestones}
+                currentUserId={currentUser.id}
+                onLog={message => { void postNote(message, null) }}
+              />
             )}
 
             {tab === 'tasks' && (
