@@ -131,9 +131,13 @@ async function notifyForumParticipants({
     const mentionedIds = new Set<string>()
     if (mentionedUsernames.length > 0) {
       const mentionRows = await hittaOmnamnda(svc, mentionedUsernames)
-      mentionRows.forEach(u => {
-        if (u.id !== posterId) mentionedIds.add(u.id)
-      })
+      for (const u of mentionRows) {
+        if (u.id === posterId) continue
+        // Blockerade får inte pingas via forumet heller (2026-10-11).
+        const { data: blockerad } = await svc.rpc('ar_blockerad', { a: posterId, b: u.id })
+        if (blockerad === true) continue
+        mentionedIds.add(u.id)
+      }
 
       // Skapa mention-notis för varje + skicka specifik push
       if (mentionedIds.size > 0) {

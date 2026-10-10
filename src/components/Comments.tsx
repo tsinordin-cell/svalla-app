@@ -1,4 +1,6 @@
 'use client'
+import { arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
+import { toast } from '@/components/Toast'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
@@ -222,7 +224,7 @@ export default function Comments({
  setComments(prev => [...prev, { id: tempId, content, created_at: new Date().toISOString(), user_id: userId, username: myUsername, avatar: myAvatar, optimistic: true }])
  hasLoadedRef.current = true
  const { error } = await supabase.from('comments').insert({ trip_id: tripId, user_id: userId, content })
- if (error) { setComments(prev => prev.filter(c => c.id !== tempId)); setText(content); setPosting(false); return }
+ if (error) { setComments(prev => prev.filter(c => c.id !== tempId)); setText(content); setPosting(false); toast(arRegelstopp(error) ? BLOCKERAD_TEXT : 'Kunde inte skicka kommentaren. Försök igen.', 'error'); return }
  await load()
  setPosting(false)
  supabase.from('trips').select('user_id').eq('id', tripId).single().then(({ data: trip }) => {

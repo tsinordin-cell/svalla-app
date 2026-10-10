@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { markConversationRead, acceptDMRequest, declineDMRequest, deleteMessage, leaveConversation } from '@/lib/dm'
-import { blockUser } from '@/lib/blocks'
+import { blockUser, arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
 import { absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import { radius, fontWeight, fontSize, space, shadow, duration, easing } from '@/lib/tokens'
@@ -310,6 +310,7 @@ export default function ChatPage() {
       setMessages(prev => prev.filter(m => m.id !== tempId))
       setText(content)
       setPosting(false)
+      toast(arRegelstopp(error) ? BLOCKERAD_TEXT : 'Meddelandet kunde inte skickas. Försök igen.', 'error')
       return
     }
 

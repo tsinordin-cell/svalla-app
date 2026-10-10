@@ -1,4 +1,5 @@
 'use client'
+import { arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
@@ -56,7 +57,7 @@ export default function LikeButton({
  setLiked(true); setCount(c => c + 1)
  setAnimate(true); setTimeout(() => setAnimate(false), 600)
  const { error } = await supabase.from('likes').insert({ trip_id: tripId, user_id: userId })
- if (error) { setLiked(false); setCount(c => c - 1); toast('Kunde inte gilla turen', 'error') }
+ if (error) { setLiked(false); setCount(c => c - 1); toast(arRegelstopp(error) ? BLOCKERAD_TEXT : 'Kunde inte gilla turen', 'error') }
  else {
  toast('Du gillade turen')
  supabase.from('trips').select('user_id').eq('id', tripId).single()
