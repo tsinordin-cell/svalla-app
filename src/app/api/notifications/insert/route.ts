@@ -3,23 +3,26 @@ export const dynamic = 'force-dynamic'
 import { createServerClient } from '@supabase/ssr'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { cookies } from 'next/headers'
-import { NextResponse } from 'next/server'
+import { NextResponse, after } from 'next/server'
 import { checkRateLimit } from '@/lib/rateLimit'
+import { sendPushToUsers } from '@/lib/push-server'
+import { arKlientTyp, bedomNotis, notisDb } from '@/lib/notisRegler'
 
-const VALID_TYPES = ['like', 'comment', 'follow', 'tag', 'mention', 'forum_reply', 'forum_like', 'listing_saved', 'message', 'dm_accepted']
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
-
 /**
- * POST /api/notifications/insert
- * Inserts a notification for another user using the service role key (bypasses RLS).
- * The caller must be authenticated — actor_id is always set to auth.uid().
+ * POST /api/notifications/insert — { targetUserId, type, tripId?, conversationId? }
  *
- * Det här är den ENDA vägen för klienten att skapa notiser (2026-10). Den
- * öppna insert-policyn på notifications är borttagen, eftersom den lät vem
- * som helst skapa valfri notis till vem som helst direkt med den publika
- * nyckeln, utan rate limit. För tag, message och dm_accepted kontrolleras
- * dessutom att relationen finns (taggningen respektive konversationen).
+ * Den ENDA vägen för webbläsaren att skapa notiser (notifications har ingen
+ * insert-policy sedan 2026-10). actor_id är alltid den inloggade.
+ *
+ * Varje typ kräver att händelsen finns i databasen (gillningen, kommentaren,
+ * följningen, taggningen, meddelandet, accepterade förfrågan) och samma notis
+ * skapas inte två gånger i rad – se src/lib/notisRegler.ts. Pushen till
+ * mottagaren byggs här av servern; klienten väljer inte text eller länk.
+ *
+ * Forumnotiser, sparade annonser och ö-besök skapas av sina egna routes på
+ * servern och tas inte emot här.
  */
 export async function POST(req: Request) {
   const cookieStore = await cookies()
@@ -48,12 +51,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Ogiltig JSON' }, { status: 400 })
   }
 
-  const { targetUserId, type, tripId, referenceId } = payload as Record<string, unknown>
+  const { targetUserId, type, tripId, conversationId } = payload as Record<string, unknown>
 
-  if (!targetUserId || typeof targetUserId !== 'string' || !UUID_RE.test(targetUserId)) {
+  if (typeof targetUserId !== 'string' || !UUID_RE.test(targetUserId)) {
     return NextResponse.json({ error: 'Ogiltigt targetUserId' }, { status: 400 })
   }
-  if (!type || typeof type !== 'string' || !VALID_TYPES.includes(type)) {
+  if (!arKlientTyp(type)) {
     return NextResponse.json({ error: 'Ogiltig type' }, { status: 400 })
   }
   // Don't notify yourself
@@ -62,43 +65,28 @@ export async function POST(req: Request) {
   }
 
   const admin = getAdminClient()
+  const bedomning = await bedomNotis(notisDb(admin), { actorId: user.id, targetId: targetUserId, type, tripId, conversationId })
 
-  // Relationskontroll för de typer där klienten tidigare skrev direkt.
-  if (type === 'tag') {
-    if (typeof tripId !== 'string' || !UUID_RE.test(tripId)) {
-      return NextResponse.json({ error: 'tripId krävs' }, { status: 400 })
-    }
-    const { data: tagg } = await admin.from('trip_tags').select('trip_id')
-      .eq('trip_id', tripId).eq('tagged_user_id', targetUserId).eq('tagged_by_user_id', user.id)
-      .limit(1).maybeSingle()
-    if (!tagg) return NextResponse.json({ error: 'Ingen sådan taggning' }, { status: 403 })
+  if (bedomning.ok === false) {
+    return NextResponse.json({ error: bedomning.fel }, { status: bedomning.status })
   }
-  if (type === 'message' || type === 'dm_accepted') {
-    const { conversationId } = payload as Record<string, unknown>
-    if (typeof conversationId !== 'string' || !UUID_RE.test(conversationId)) {
-      return NextResponse.json({ error: 'conversationId krävs' }, { status: 400 })
-    }
-    const { data: deltagare } = await admin.from('conversation_participants').select('user_id')
-      .eq('conversation_id', conversationId).in('user_id', [user.id, targetUserId])
-    const ids = new Set((deltagare ?? []).map((d: { user_id: string }) => d.user_id))
-    if (!ids.has(user.id) || !ids.has(targetUserId)) {
-      return NextResponse.json({ error: 'Inte i samma konversation' }, { status: 403 })
-    }
+  if (bedomning.ok === 'hoppa') {
+    return NextResponse.json({ ok: true, skipped: bedomning.skal })
   }
 
-  const row: Record<string, string> = {
-    user_id:  targetUserId,
-    actor_id: user.id,
-    type,
+  const { error } = await admin.from('notifications').insert(bedomning.rad)
+  if (error?.code === '23505') {
+    // Unikt index: samma händelse har redan gett en notis (samtidiga anrop).
+    return NextResponse.json({ ok: true, skipped: 'dubblett' })
   }
-  if (tripId && typeof tripId === 'string' && UUID_RE.test(tripId)) row.trip_id = tripId
-  if (referenceId && typeof referenceId === 'string' && UUID_RE.test(referenceId)) row.reference_id = referenceId
-
-  const { error } = await admin.from('notifications').insert(row)
   if (error) {
     console.error('[notifications/insert] DB error:', error)
     return NextResponse.json({ error: 'Kunde inte skapa notis.' }, { status: 500 })
   }
+
+  // Pushen skickas efter svaret, så att klienten inte väntar på telefonernas pushtjänster.
+  const push = bedomning.push
+  if (push) after(() => sendPushToUsers([targetUserId], push))
 
   return NextResponse.json({ ok: true })
 }

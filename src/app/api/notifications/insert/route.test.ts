@@ -3,27 +3,20 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 const ME = '11111111-1111-4111-8111-111111111111'
 const DU = '22222222-2222-4222-8222-222222222222'
 const TUR = '33333333-3333-4333-8333-333333333333'
-const KONV = '44444444-4444-4444-8444-444444444444'
 
-let taggFinns = false
-let deltagare: string[] = []
-const insert = vi.fn(async () => ({ error: null }))
+const insert = vi.fn(async (_rad: unknown): Promise<{ error: null | { code: string } }> => ({ error: null }))
+const push = vi.fn(async () => {})
+let bedomning: unknown = { ok: true, rad: { user_id: DU, actor_id: ME, type: 'like', trip_id: TUR }, push: { title: 't', body: 'b', url: '/tur/x' } }
 
-function kedja(tabell: string) {
-  const q: Record<string, unknown> = {}
-  const self = () => q
-  Object.assign(q, {
-    select: self, eq: self, limit: self,
-    in: async () => ({ data: deltagare.map(user_id => ({ user_id })) }),
-    maybeSingle: async () => ({ data: taggFinns ? { trip_id: TUR } : null }),
-    insert,
-  })
-  if (tabell === 'notifications') return { insert }
-  return q
-}
-vi.mock('@/lib/supabase-admin', () => ({ getAdminClient: () => ({ from: kedja }) }))
+vi.mock('@/lib/supabase-admin', () => ({ getAdminClient: () => ({ from: () => ({ insert }) }) }))
 vi.mock('@/lib/rateLimit', () => ({ checkRateLimit: async () => true }))
+vi.mock('@/lib/push-server', () => ({ sendPushToUsers: (...a: unknown[]) => push(...(a as [])) }))
+vi.mock('@/lib/notisRegler', async (orig) => {
+  const riktig = await orig<typeof import('@/lib/notisRegler')>()
+  return { ...riktig, notisDb: () => ({}), bedomNotis: async () => bedomning }
+})
 vi.mock('next/headers', () => ({ cookies: async () => ({ getAll: () => [], set: () => {} }) }))
+vi.mock('next/server', async (orig) => ({ ...(await orig<typeof import('next/server')>()), after: (fn: () => unknown) => { void fn() } }))
 vi.mock('@supabase/ssr', () => ({
   createServerClient: () => ({ auth: { getUser: async () => ({ data: { user: { id: ME } } }) } }),
 }))
@@ -31,25 +24,40 @@ vi.mock('@supabase/ssr', () => ({
 import { POST } from './route'
 const post = (b: unknown) => POST(new Request('https://svalla.se/api/notifications/insert', { method: 'POST', body: JSON.stringify(b) }))
 
-describe('/api/notifications/insert relationskontroll', () => {
-  beforeEach(() => { insert.mockClear(); taggFinns = false; deltagare = [] })
+describe('/api/notifications/insert', () => {
+  beforeEach(() => { insert.mockClear(); push.mockClear() })
 
-  it('tag utan taggning ger 403', async () => {
-    expect((await post({ targetUserId: DU, type: 'tag', tripId: TUR })).status).toBe(403)
+  it('avvisar typer som skapas av servern själv', async () => {
+    expect((await post({ targetUserId: DU, type: 'forum_reply' })).status).toBe(400)
+    expect((await post({ targetUserId: DU, type: 'listing_saved' })).status).toBe(400)
+  })
+  it('sparar raden från regelbedömningen och skickar serverns push', async () => {
+    const res = await post({ targetUserId: DU, type: 'like', tripId: TUR, referenceId: 'ignoreras' })
+    expect(res.status).toBe(200)
+    expect(insert).toHaveBeenCalledWith({ user_id: DU, actor_id: ME, type: 'like', trip_id: TUR })
+    expect(push).toHaveBeenCalledWith([DU], { title: 't', body: 'b', url: '/tur/x' })
+  })
+  it('403 från reglerna skapar ingen notis', async () => {
+    bedomning = { ok: false, status: 403, fel: 'Ingen gillning' }
+    expect((await post({ targetUserId: DU, type: 'like', tripId: TUR })).status).toBe(403)
+    expect(insert).not.toHaveBeenCalled()
+    expect(push).not.toHaveBeenCalled()
+  })
+  it('dubblett ger 200 utan ny notis', async () => {
+    bedomning = { ok: 'hoppa', skal: 'dubblett' }
+    const res = await post({ targetUserId: DU, type: 'like', tripId: TUR })
+    expect(res.status).toBe(200)
+    expect(await res.json()).toEqual({ ok: true, skipped: 'dubblett' })
     expect(insert).not.toHaveBeenCalled()
   })
-  it('tag med taggning skapar notisen', async () => {
-    taggFinns = true
-    expect((await post({ targetUserId: DU, type: 'tag', tripId: TUR })).status).toBe(200)
-    expect(insert).toHaveBeenCalledWith(expect.objectContaining({ user_id: DU, actor_id: ME, type: 'tag', trip_id: TUR }))
+  it('unik-konflikt i databasen räknas som dubblett, utan push', async () => {
+    bedomning = { ok: true, rad: { user_id: DU, actor_id: ME, type: 'like', trip_id: TUR, reference_id: TUR }, push: { title: 't', body: 'b', url: '/x' } }
+    insert.mockResolvedValueOnce({ error: { code: '23505' } })
+    const res = await post({ targetUserId: DU, type: 'like', tripId: TUR })
+    expect(await res.json()).toEqual({ ok: true, skipped: 'dubblett' })
+    expect(push).not.toHaveBeenCalled()
   })
-  it('message kräver att båda är med i konversationen', async () => {
-    deltagare = [ME]
-    expect((await post({ targetUserId: DU, type: 'message', conversationId: KONV })).status).toBe(403)
-    deltagare = [ME, DU]
-    expect((await post({ targetUserId: DU, type: 'message', conversationId: KONV })).status).toBe(200)
-  })
-  it('message utan conversationId ger 400', async () => {
-    expect((await post({ targetUserId: DU, type: 'message' })).status).toBe(400)
+  it('notis till sig själv hoppas över', async () => {
+    expect(await (await post({ targetUserId: ME, type: 'follow' })).json()).toEqual({ ok: true, skipped: true })
   })
 })

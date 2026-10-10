@@ -605,19 +605,13 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         }))
         await supabase.from('follows').upsert(followRows, { onConflict: 'follower_id,following_id', ignoreDuplicates: true })
 
-        const { data: me } = await supabase.from('users').select('username').eq('id', userId).single()
-        const myName = me?.username ?? 'Någon'
-
-        await Promise.allSettled(Array.from(followIds).flatMap(fid => [
+        // Notis per följning. Servern kontrollerar följningen och skickar pushen själv.
+        await Promise.allSettled(Array.from(followIds).map(fid =>
           fetch('/api/notifications/insert', {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ targetUserId: fid, type: 'follow' }),
           }),
-          fetch('/api/push/send', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ targetUserId: fid, title: 'Ny följare', body: `${myName} börjar följa dig`, url: `/u/${encodeURIComponent(myName)}` }),
-          }),
-        ]))
+        ))
       }
 
       track('onboarding_completed', { duration_seconds: Math.round((Date.now() - startedAt) / 1000) })

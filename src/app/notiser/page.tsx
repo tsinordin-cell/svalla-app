@@ -35,6 +35,8 @@ const TYPE_LABEL: Record<string, string> = {
  forum_like: 'gillade ditt foruminlägg',
  forum_mention: 'taggade dig i forumet',
  forum_best_answer: 'markerade ditt svar som bäst',
+ listing_saved: 'sparade din annons',
+ dm_accepted: 'accepterade din meddelandeförfrågan',
 }
 
 // SVG-ikon per typ (badge i hörnet av avatar)
@@ -50,6 +52,8 @@ const TYPE_ICON: Record<string, IconName> = {
  forum_like: 'heart',
  forum_mention: 'atSign',
  forum_best_answer: 'check',
+ listing_saved: 'bookmark',
+ dm_accepted: 'mail',
 }
 
 // Badge-färg per typ
@@ -292,6 +296,8 @@ export default function NotiserPage() {
      (n.type === 'forum_reply' || n.type === 'forum_like' || n.type === 'forum_mention' || n.type === 'forum_best_answer') && n.reference_id
        ? `/forum/t/${n.reference_id}`
        : n.type === 'follow' ? `/u/${encodeURIComponent(n.actor_username)}`
+       : n.type === 'listing_saved' && n.reference_id ? `/forum/loppis/${n.reference_id}`
+       : n.type === 'dm_accepted' && n.reference_id ? `/meddelanden/${n.reference_id}`
        : n.type === 'message' ? '/meddelanden'
        : n.type === 'friend_visit' && n.related_island_slug ? `/o/${n.related_island_slug}`
        : n.trip_id ? `/tur/${n.trip_id}`
