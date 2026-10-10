@@ -63,6 +63,8 @@ export interface NotisDb {
   senasteMeddelande(conversationId: string, actorId: string, sedanIso: string): Promise<string | null>
   konversation(conversationId: string): Promise<{ created_by: string | null; status: string | null } | null>
   anvandarnamn(userId: string): Promise<string | null>
+  /** Har någon av de två blockerat den andra? */
+  blockerade(a: string, b: string): Promise<boolean>
   /** Finns samma notis redan? nyckel avgör vad som jämförs (se DUBBLETT_NYCKEL). */
   finnsRedan(rad: NotisRad, nyckel: 'tur' | 'par' | 'handelse'): Promise<boolean>
 }
@@ -105,6 +107,10 @@ export async function bedomNotis(
   if (behoverKonv && !convId) return { ok: false, status: 400, fel: 'conversationId krävs' }
 
   const aktorNamn = async () => (await db.anvandarnamn(actorId)) ?? 'Någon'
+
+  // Blockerade får inga notiser av varandra (databasen stoppar själva
+  // händelsen sedan 2026-10-11; forumets omnämnanden kontrollerar själva).
+  if (await db.blockerade(actorId, targetId)) return { ok: false, status: 403, fel: 'Blockerad' }
 
   switch (type) {
     case 'like': {
@@ -222,6 +228,10 @@ export function notisDb(admin: SupabaseClient): NotisDb {
     async anvandarnamn(userId) {
       const { data } = await admin.from('users').select('username').eq('id', userId).maybeSingle()
       return (data?.username as string | undefined) ?? null
+    },
+    async blockerade(a, b) {
+      const { data } = await admin.rpc('ar_blockerad', { a, b })
+      return data === true
     },
     async finnsRedan(rad, nyckel) {
       let q = admin.from('notifications').select('id')
