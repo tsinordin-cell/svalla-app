@@ -343,7 +343,9 @@ export default function ChatPage() {
       body: JSON.stringify({ conversationId: id, preview, kind }),
     }).catch(() => {})
 
-    // In-app-notiser i notifications-tabellen — separat kanal
+    // In-app-notiser i notifications-tabellen — separat kanal. Vid accept har
+    // inget meddelande skrivits; dm_accepted-notisen skapas i handleAcceptRequest.
+    if (kind === 'accept') return
     const { data: parts } = await supabase
       .from('conversation_participants')
       .select('user_id')

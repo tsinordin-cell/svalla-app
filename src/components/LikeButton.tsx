@@ -62,17 +62,11 @@ export default function LikeButton({
  supabase.from('trips').select('user_id').eq('id', tripId).single()
  .then(({ data: trip }) => {
  if (trip?.user_id && trip.user_id !== userId) {
+ // Servern kontrollerar gillningen och skickar pushen själv.
  fetch('/api/notifications/insert', {
  method: 'POST', headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify({ targetUserId: trip.user_id, type: 'like', tripId }),
  }).catch(() => {})
- supabase.from('users').select('username').eq('id', userId).single()
- .then(({ data: me }) => {
- fetch('/api/push/send', {
- method: 'POST', headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify({ targetUserId: trip.user_id, title: 'Ny gillning ', body: `${me?.username ?? 'Någon'} gillade din tur`, url: `/tur/${tripId}` }),
- }).catch(() => {})
- })
  }
  })
  }

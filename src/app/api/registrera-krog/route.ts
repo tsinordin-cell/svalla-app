@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     location,
     contact_name,
     contact_email,
-    contact_phone: text(body.phone, 50),
+    contact_phone: text(body.phone, 40), // databasens CHECK tillåter 40
     website: text(body.website, 300),
   })
 

@@ -48,22 +48,12 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
  if (error) { toast('Kunde inte följa. Försök igen.', 'error'); setLoading(false); return }
  setFollowing(true); setCount(c => c + 1)
  toast('Du följer nu den här seglaren ')
- // Notis + push till den som följs
+ // Notis till den som följs. Servern kontrollerar följningen och skickar
+ // pushen själv (src/lib/notisRegler.ts).
  fetch('/api/notifications/insert', {
  method: 'POST', headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify({ targetUserId, type: 'follow' }),
  }).catch(() => {})
- const { data: me } = await supabase.from('users').select('username').eq('id', myId).single()
- fetch('/api/push/send', {
- method: 'POST',
- headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify({
- targetUserId,
- title: 'Ny följare ',
- body: `${me?.username ?? 'Någon'} börjar följa dig`,
- url: `/u/${encodeURIComponent(me?.username ?? '')}`,
- }),
- }).catch(() => {/* tyst */})
  }
  setLoading(false)
  }
