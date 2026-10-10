@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { logger } from '@/lib/logger'
+import { getAdminClient } from '@/lib/supabase-admin'
+import { klientIp } from '@/lib/klientIp'
 // TODO: wrap handlers with withSentrySimple(handler, 'route-feedback') — se src/lib/api-handler.ts
 
 /**
@@ -26,8 +28,9 @@ import { logger } from '@/lib/logger'
  *     created_at timestamptz not null default now()
  *   );
  *   alter table route_feedback enable row level security;
- *   create policy "route_feedback_insert" on route_feedback for insert
- *     with check (true);
+ *   (Den öppna insert-policyn är borttagen 2026-10: skrivningen går bara
+ *   via den här routen med tjänsteklienten, så valideringen och
+ *   rate-limiten nedan kan inte kringgås med den publika nyckeln.)
  *   create policy "route_feedback_admin_read" on route_feedback for select
  *     using (auth.uid() in (select id from users where is_admin = true));
  */
@@ -77,12 +80,12 @@ export async function POST(req: NextRequest) {
 
   // Lättviktig rate-limit per användare/IP
   const { checkRateLimit } = await import('@/lib/rateLimit')
-  const rateKey = user?.id ?? req.headers.get('x-forwarded-for') ?? 'anon'
+  const rateKey = user?.id ?? klientIp(req)
   if (!(await checkRateLimit(`route-feedback:${rateKey}`, 5, 60_000))) {
     return NextResponse.json({ error: 'För många rapporter. Vänta en stund.' }, { status: 429 })
   }
 
-  const { error } = await supabase.from('route_feedback').insert({
+  const { error } = await getAdminClient().from('route_feedback').insert({
     route_id: routeId,
     start_name: startName,
     end_name: endName,

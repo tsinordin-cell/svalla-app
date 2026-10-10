@@ -59,12 +59,11 @@ export async function addTripTag(
     return { ok: false, errorMessage: error.message }
   }
   // Fire-and-forget: in-app notification + push
-  supabase.from('notifications').insert({
-    user_id: taggedUserId,
-    actor_id: currentUserId,
-    type: 'tag',
-    trip_id: tripId,
-  }).then(() => {})
+  fetch('/api/notifications/insert', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ targetUserId: taggedUserId, type: 'tag', tripId }),
+  }).catch(() => {})
 
   supabase.from('users').select('username').eq('id', currentUserId).single()
     .then(({ data }) => {

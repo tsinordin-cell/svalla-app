@@ -350,9 +350,11 @@ export default function ChatPage() {
       .eq('conversation_id', id)
       .neq('user_id', me)
     for (const p of parts ?? []) {
-      supabase.from('notifications').insert({
-        user_id: p.user_id, actor_id: me, type: 'message',
-      }).then(() => {})
+      fetch('/api/notifications/insert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetUserId: p.user_id, type: 'message', conversationId: id }),
+      }).catch(() => {})
     }
   }
 
@@ -365,10 +367,11 @@ export default function ChatPage() {
     // Notifiera avsändaren (push + in-app)
     if (conv.created_by && conv.created_by !== me) {
       pushToOthers('Du kan nu skriva fritt', 'accept')
-      supabase.from('notifications').insert({
-        user_id: conv.created_by, actor_id: me, type: 'dm_accepted',
-        reference_id: conv.id,
-      }).then(() => {})
+      fetch('/api/notifications/insert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetUserId: conv.created_by, type: 'dm_accepted', conversationId: conv.id, referenceId: conv.id }),
+      }).catch(() => {})
     }
   }
 
