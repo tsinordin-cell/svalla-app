@@ -3,6 +3,7 @@
  * ShareTripModal — välj en konversation att skicka en tur till som DM.
  * Öppnas från TripCard via "Skicka som meddelande"-knappen.
  */
+import { arBlockerad, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -137,7 +138,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
  if (!me) return
  setSending(otherId)
  const res = await findOrCreateDM(supabase, me, otherId)
- if (!res) { toast('Kunde inte starta konversation.', 'error'); setSending(null); return }
+ if (!res) { toast((await arBlockerad(supabase, me, otherId)) ? BLOCKERAD_TEXT : 'Kunde inte starta konversation.', 'error'); setSending(null); return }
  await sendToConv(res.id)
  }
 

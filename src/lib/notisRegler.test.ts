@@ -19,6 +19,7 @@ type Varld = {
   konv?: { created_by: string | null; status: string | null } | null
   namn?: Record<string, string>
   finnsRedan?: boolean
+  blockerade?: boolean
 }
 type Logg = { finnsRedan: [NotisRad, string][] }
 
@@ -33,6 +34,7 @@ function db(v: Varld, logg: Logg = { finnsRedan: [] }): NotisDb {
     senasteMeddelande: async () => v.meddelande ?? null,
     konversation: async () => (v.konv === undefined ? null : v.konv),
     anvandarnamn: async id => (v.namn ?? { [A]: 'Anna', [M]: 'Max' })[id] ?? null,
+    blockerade: async () => !!v.blockerade,
     finnsRedan: async (rad, nyckel) => { logg.finnsRedan.push([rad, nyckel]); return !!v.finnsRedan },
   }
 }
@@ -46,6 +48,13 @@ describe('arKlientTyp', () => {
     expect(arKlientTyp('forum_reply')).toBe(false)
     expect(arKlientTyp('listing_saved')).toBe(false)
     expect(arKlientTyp(42)).toBe(false)
+  })
+})
+
+describe('blockering', () => {
+  it('ger ingen notis åt något håll', async () => {
+    expect(await bed({ gillning: H, blockerade: true }, 'like', { tripId: T })).toMatchObject({ ok: false, status: 403 })
+    expect(await bed({ foljning: H, blockerade: true }, 'follow')).toMatchObject({ ok: false, status: 403 })
   })
 })
 

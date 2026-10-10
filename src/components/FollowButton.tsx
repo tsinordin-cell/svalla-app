@@ -1,4 +1,5 @@
 'use client'
+import { arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
@@ -45,7 +46,7 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
  toast('Du följer inte längre den här seglaren')
  } else {
  const { error } = await supabase.from('follows').insert({ follower_id: myId, following_id: targetUserId })
- if (error) { toast('Kunde inte följa. Försök igen.', 'error'); setLoading(false); return }
+ if (error) { toast(arRegelstopp(error) ? BLOCKERAD_TEXT : 'Kunde inte följa. Försök igen.', 'error'); setLoading(false); return }
  setFollowing(true); setCount(c => c + 1)
  toast('Du följer nu den här seglaren ')
  // Notis till den som följs. Servern kontrollerar följningen och skickar

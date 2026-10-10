@@ -1,5 +1,6 @@
 'use client'
 
+import { arBlockerad, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
@@ -105,7 +106,7 @@ function NyKonversationInner() {
  setStarting(otherId)
  const res = await findOrCreateDM(supabase, myId, otherId)
  if (!res) {
- toast('Kunde inte starta konversation. Försök igen.', 'error')
+ toast((await arBlockerad(supabase, myId, otherId)) ? BLOCKERAD_TEXT : 'Kunde inte starta konversation. Försök igen.', 'error')
  setStarting(null)
  return
  }
