@@ -12,7 +12,7 @@
  */
 
 import { usePathname, useSearchParams } from 'next/navigation'
-import { usePostHog } from 'posthog-js/react'
+import { laddaPostHog } from '@/lib/posthogLaddare'
 import { useEffect } from 'react'
 import { track } from '@/lib/analytics-events'
 import { hasAnalyticsConsent } from '@/components/CookieConsent'
@@ -21,22 +21,22 @@ import { fangaKampanj } from '@/lib/kampanj'
 function PageViewTracker() {
   const pathname    = usePathname()
   const searchParams = useSearchParams()
-  const posthog     = usePostHog()
 
   useEffect(() => {
     // Kampanjlänkar (?k=), se lib/kampanj.ts. Före posthog-kollen: namnet ska
     // fångas även om PostHog inte är laddat.
     fangaKampanj(window.location.search, hasAnalyticsConsent())
-    if (!pathname || !posthog) return
-    // PostHog initieras bara efter samtycke (PostHogProvider, 2026-10-02).
+    if (!pathname) return
+    // PostHog laddas och startas bara efter samtycke (lib/posthogLaddare.ts).
     if (hasAnalyticsConsent()) {
-      posthog.capture('$pageview', { $current_url: window.location.href })
+      const url = window.location.href
+      laddaPostHog().then(posthog => posthog?.capture('$pageview', { $current_url: url }))
     }
     // Spegla till vår egen analytics_events-tabell så /admin/malet och
     // /admin/insikter kan räkna trafik utan att gå via PostHogs API.
     // track() är no-op utan analytics-consent.
     track('page_viewed', { path: pathname })
-  }, [pathname, searchParams, posthog])
+  }, [pathname, searchParams])
 
   return null
 }

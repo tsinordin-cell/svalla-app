@@ -14,7 +14,11 @@
  *    (Inte reset(): i posthog-js raderar reset() opt-out-flaggan, och då
  *    började spårningen igen — uppmätt av granskaren 2026-10-02.)
  *
- * Konfiguration (oförändrad):
+ * 2026-10-10: själva biblioteket laddas också först efter samtycke
+ * (lib/posthogLaddare.ts, import()). Tidigare låg posthog-js (≈63 kB) i varje
+ * sidas JavaScript för alla besökare, även de som aldrig godkänt analys.
+ *
+ * Konfiguration (oförändrad, i lib/posthogLaddare.ts):
  *  - US-region (PostHog US Cloud) via vår /ingest-proxy
  *  - capture_pageview: false  → hanteras manuellt via PostHogPageView
  *  - session_recording med maskAllInputs → lösenord/e-post loggas aldrig
@@ -24,42 +28,10 @@
  * analytics-händelser till rätt användare — bara efter samtycke.
  */
 
-import posthog from 'posthog-js'
-import { PostHogProvider as PHProvider } from 'posthog-js/react'
 import { useEffect } from 'react'
 import { createClient, getViewer } from '@/lib/supabase'
 import { hasAnalyticsConsent } from '@/components/CookieConsent'
-
-let initialized = false
-
-function initPostHog(): boolean {
-  if (initialized) return true
-  const key = process.env.NEXT_PUBLIC_POSTHOG_KEY
-  if (!key) return false                    // ingen nyckel → ingen tracking
-
-  posthog.init(key, {
-    // Reverse proxy via Next.js rewrites (next.config.ts) — kringgår
-    // AdBlock som annars skulle blockera *.posthog.com och tappa data.
-    // ui_host pekar fortfarande på riktiga PostHog så toolbar/links funkar.
-    //
-    // OBS: tilläggsskripten (recorder, surveys m.m.) hämtas i praktiken från
-    // us-assets.i.posthog.com (uppmätt 2026-10-02), inte via proxyn.
-    api_host:           process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://svalla.se/ingest',
-    ui_host:            'https://us.posthog.com',
-    capture_pageview:   false,           // PostHogPageView hanterar detta
-    capture_pageleave:  true,
-    autocapture:        true,
-    persistence:        'localStorage+cookie',
-    // Efter opt-out sparas inget alls i webbläsaren.
-    opt_out_persistence_by_default: true,
-    session_recording: {
-      maskAllInputs:     true,           // dölj lösenord, e-post etc.
-      maskTextSelector:  '[data-ph-mask]',
-    },
-  })
-  initialized = true
-  return true
-}
+import { laddaPostHog, posthogOmLaddad } from '@/lib/posthogLaddare'
 
 /**
  * Tar bort PostHog-spår som satts innan samtycke krävdes (före 2026-10-02).
@@ -89,11 +61,17 @@ function stadaPostHogSpar() {
 
 export default function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    let avbruten = false
+    let startad = false
     let avregistrera: (() => void) | null = null
 
-    const starta = () => {
-      if (!initPostHog()) return
-      if (avregistrera) return
+    // Laddar biblioteket (bara efter samtycke, se lib/posthogLaddare.ts) och
+    // kopplar händelser till den inloggade användaren.
+    const starta = async () => {
+      if (startad) return
+      startad = true
+      const posthog = await laddaPostHog()
+      if (!posthog || avbruten) { startad = false; return }
 
       // Identifiera inloggad användare → kopplar events till rätt person i PostHog
       const supabase = createClient()
@@ -122,7 +100,7 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
     }
 
     if (hasAnalyticsConsent()) {
-      starta()
+      void starta()
     } else {
       stadaPostHogSpar()
     }
@@ -130,17 +108,19 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
     const vidNyttVal = (e: Event) => {
       const val = (e as CustomEvent<{ value?: string }>).detail?.value
       if (val === 'accepted') {
-        starta()
-        if (initialized) {
+        void starta()
+        laddaPostHog().then(posthog => {
+          if (!posthog) return
           posthog.opt_in_capturing()
           // Sidan besökaren står på räknas också (annars saknas landningssidan).
           posthog.capture('$pageview', { $current_url: window.location.href })
-        }
+        })
       } else {
         avregistrera?.()
         avregistrera = null
         stadaPostHogSpar()
-        if (initialized) {
+        const posthog = posthogOmLaddad()
+        if (posthog) {
           posthog.opt_out_capturing()
           posthog.stopSessionRecording()
           // PostHog fortsätter hämta /ingest/flags/ var 5:e minut så länge
@@ -153,10 +133,11 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
     window.addEventListener('svalla-consent-changed', vidNyttVal)
 
     return () => {
+      avbruten = true
       window.removeEventListener('svalla-consent-changed', vidNyttVal)
       avregistrera?.()
     }
   }, [])
 
-  return <PHProvider client={posthog}>{children}</PHProvider>
+  return <>{children}</>
 }
