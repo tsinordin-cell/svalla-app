@@ -963,7 +963,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Möja.pdf",
       "org": "varmdo.se",
       "vad": "Det var troligen under vikingatiden som Möja fick bofast befolkning; Möja nämns som Myghi i Kung Valdemars seglingsbeskrivning från 1200-talet; ön är cirka 6 km lång och 4 km bred; Här finns tre insjöar; landhöjningen 30 - 40 centimeter per hundra år",
-      "last": null,
+      "last": "2026-10-10",
       "myndighet": true
     },
     {
@@ -1389,7 +1389,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.dalarohembygd.se/Aretvarx/Aret%20var%20kronologi.pdf",
       "org": "dalarohembygd.se",
       "vad": "1675 Per Eriksson utses till Sveriges första lotsåldersman, med placering på Dalarö; 1770 Kungligt postkontor, med egen postmästare, Lars Filéen inrättas på Dalarö den 14 mars; 1858 Elektrisk telegraflinje mellan Stockholm - Dalarö invigs; 1844 Inrättades den första skolan i hyrd lokal",
-      "last": null,
+      "last": "2026-10-10",
       "myndighet": false
     },
     {
@@ -1652,7 +1652,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/F%C3%B6rorenade%20omr%C3%A5den%20-%20inventering%20av%20gruvbranschen%20i%20Stockholms%20l%C3%A4n.pdf",
       "org": "Länsstyrelsen",
       "vad": "De största gruvorna var Härsbacka i Österåkers kommun och Lugnet på Ornö i Haninge kommun. / Ornö, Lugnets fältspatsbrott ... Ett av länets största fältspatsbrott.",
-      "last": null,
+      "last": "2026-10-10",
       "myndighet": true
     },
     {
@@ -2834,7 +2834,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3749289/1732517028266/F%C3%B6rorenade%20omr%C3%A5den%20-%20inventering%20av%20gruvbranschen%20i%20Stockholms%20l%C3%A4n.pdf",
       "org": "Länsstyrelsen",
       "vad": "Sulfidmineralen zinkblände och blyglans bröts på Runmarö i Stockholms skärgård. En mängd av 4 771 ton zinkmalm utvanns i början av 1900-talet. / Värmdös gruvor är med få undantag belägna på Runmarö. Här finns cirka sju sulfidmalmsbrott eller större skärpningar. De tre gruvorna Kilagruvorna, Söderbygruvorna och Vånögruvorna, alla belägna på Runmarö",
-      "last": null,
+      "last": "2026-10-10",
       "myndighet": true
     },
     {
@@ -6492,13 +6492,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://www.karlskrona.se:443/",
-      "org": "karlskrona.se",
-      "vad": "Aspö, Lökanabben;  — just beside the citadel of Drottningskär, Shower/wc, 6 gästplatser;  — dusch, wifi, tvättmaskin",
-      "last": null,
-      "myndighet": true
-    },
-    {
       "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Asp%C3%B6",
       "org": "minkarta.lantmateriet.se",
       "vad": "Lantmäteriet Min Karta, sökning \"Aspö\" → Aspö | Karlskrona | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
@@ -6569,16 +6562,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.visitkarlskrona.se/sv/bat-hasslo-aspo-trosso",
-      "org": "visitkarlskrona.se",
-      "vad": "Turerna utgår från Trossö, Handelshamnen i centrala Karlskrona. Därefter går turen till Djupavik, på ön Aspös västra sida, och sen vidare till Horns brygga på ön Hasslös östra sida.",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
       "url": "https://www.visitkarlskrona.se/sv/gasthamn-lokanabben-aspo",
       "org": "visitkarlskrona.se",
       "vad": "På ön finns mataffär, samt restaurang och café sommartid. ;  — Till Drottningskärs kastell kommer man dagligen året runt genom vägfärjan till Aspö.",
+      "last": "2026-10-10",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.visitkarlskrona.se/sv/bat-hasslo-aspo-trosso",
+      "org": "visitkarlskrona.se",
+      "vad": "Turerna utgår från Trossö, Handelshamnen i centrala Karlskrona. Därefter går turen till Djupavik, på ön Aspös västra sida, och sen vidare till Horns brygga på ön Hasslös östra sida.",
       "last": "2026-09-27",
       "myndighet": false
     }
@@ -6603,13 +6596,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "karlskrona.se",
       "vad": "Långgrunt i kustbandet. ;  — The beach at Stensvik, however, is maintained by a nonprofit association and is a lovely swimming beach.",
       "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.karlskrona.se:443/",
-      "org": "karlskrona.se",
-      "vad": "Sturkö, Ekenabben, eluttag på gästbryggan;  — Guest harbour/Fishing harbor at Djupasund on the west side of Sturkö to the south of Tjurkö bridge",
-      "last": null,
       "myndighet": true
     },
     {
@@ -6658,7 +6644,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.visitkarlskrona.se/en/guest-harbour-ekenabben-sturko",
       "org": "visitkarlskrona.se",
       "vad": "It takes about 25 minutes by car to Karlskrona, about 30 kilometers from Karlskrona.",
-      "last": "2026-09-27",
+      "last": "2026-10-10",
       "myndighet": false
     },
     {
