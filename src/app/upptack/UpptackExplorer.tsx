@@ -10,7 +10,10 @@
  *   - Klick på listrad → karta flyger dit + popup öppnas
  *   - Klick på pin → motsvarande kort scrollas in i listan + highlight
  *
- * URL-state (?typ=&q=&bbox=) synkas så delningar fungerar.
+ * URL-state (?region=&typ=&q=) synkas så delningar fungerar. Den läses
+ * först efter monteringen: sidan renderas på servern (ISR) med listan i
+ * HTML:en, och servern vet inte adressens parametrar. Samma mönster som
+ * ProfileTabs (CLAUDE.md p27).
  *
  * Mobile: tab-toggle "Karta" / "Lista" — bottom-sheet kommer i v2.
  */
@@ -18,32 +21,18 @@
 import { upptackRegion } from '@/lib/upptackRegion'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
-import { useEffect, useMemo, useRef, useState, useCallback } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRouter, useSearchParams } from 'next/navigation'
 import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
 import { kartytaFor } from '@/lib/kartvy'
-import { tagPlatssvar } from './platsdata'
+import type { Plats } from '@/lib/platslista'
 import { hamtaLeaflet } from './leaflet'
 import { WeatherPill } from '@/components/MapCornerPills'
 import { track } from '@/lib/analytics-events'
 
 // ── Types ────────────────────────────────────────────────────────────────
-interface Poi {
-  id: string
-  name: string
-  latitude: number
-  longitude: number
-  type: string | null
-  categories: string[] | null
-  description: string | null
-  image_url: string | null
-  slug: string | null
-  island: string | null
-  archipelago_region: string | null
-  endast_medlemmar?: boolean
-}
+type Poi = Plats
 
 type Category = 'krog' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'boende' | 'bad' | 'annat'
 type RegionKey = 'stockholm' | 'goteborg' | 'bohuslan' | 'aland' | 'oland' | 'gotland'
@@ -230,28 +219,37 @@ function vyFor(region: RegionKey | 'all'): { center: [number, number]; zoom: num
 }
 
 // ── Komponent ────────────────────────────────────────────────────────────
-export default function UpptackExplorer() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
+const ALLA_KATEGORIER: ReadonlySet<Category> = new Set(['krog', 'hamn', 'naturhamn', 'bastu', 'bensin', 'boende', 'bad', 'annat'])
+const ALLA_REGIONER: ReadonlySet<RegionKey | 'all'> = new Set(['all', 'stockholm', 'goteborg', 'bohuslan', 'aland', 'oland', 'gotland'])
 
-  // Data state
-  const [pois, setPois] = useState<Poi[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+/** ?typ=krog,hamn (eller ?typ=all = inget filter, bakåtkompatibelt). */
+function kategorierUr(raw: string | null): Set<Category> {
+  const result = new Set<Category>()
+  if (!raw || raw === 'all') return result
+  for (const part of raw.split(',')) {
+    const t = part.trim() as Category
+    if (ALLA_KATEGORIER.has(t)) result.add(t)
+  }
+  return result
+}
+
+function regionUr(raw: string | null): RegionKey | 'all' {
+  return ALLA_REGIONER.has(raw as RegionKey) ? (raw as RegionKey) : 'all'
+}
+
+// Kartans yta i serverrenderingen: en telefon (390 × 844 minus sidhuvud och
+// meny). Listan i HTML:en visar platserna där; vid monteringen mäts den
+// riktiga ytan och listan växer (desktop) utan att korten som redan syns rör sig.
+const SSR_KARTA_PX = { bredd: 390, hojd: 650 }
+
+export default function UpptackExplorer({ initialPois }: { initialPois: Poi[] }) {
+  // Platserna kommer från servern (page.tsx, ISR). Inget hämtas i webbläsaren.
+  const pois = initialPois
 
   // Filter state — multi-select. Tom set = "Alla kategorier" (visa allt).
-  // URL-format: ?typ=krog,hamn  ELLER  ?typ=all (bakåtkompat)
-  const [activeCats, setActiveCats] = useState<Set<Category>>(() => {
-    const raw = searchParams.get('typ')
-    if (!raw || raw === 'all') return new Set()
-    const validCats: Set<Category> = new Set(['krog', 'hamn', 'naturhamn', 'bastu', 'bensin', 'boende', 'bad', 'annat'])
-    const result = new Set<Category>()
-    for (const part of raw.split(',')) {
-      const t = part.trim() as Category
-      if (validCats.has(t)) result.add(t)
-    }
-    return result
-  })
+  // Utgångsläget måste vara samma på server och klient (hydrering); adressens
+  // ?region/?typ/?q läses i layout-effekten nedan, före första målningen.
+  const [activeCats, setActiveCats] = useState<Set<Category>>(() => new Set())
   function toggleCat(cat: Category) {
     setActiveCats(prev => {
       const next = new Set(prev)
@@ -272,17 +270,18 @@ export default function UpptackExplorer() {
     track('filter_changed', { surface: 'upptack', filter: 'category', value: 'clear' })
   }
   const isAllMode = activeCats.size === 0
-  const [query, setQuery] = useState(() => searchParams.get('q') ?? '')
+  const [query, setQuery] = useState('')
 
   // Region-filter state — sparas i URL som ?region=stockholm
-  const [selectedRegion, setSelectedRegion] = useState<RegionKey | 'all'>(() => {
-    const raw = searchParams.get('region')
-    const validRegions: Set<RegionKey | 'all'> = new Set(['all', 'stockholm', 'goteborg', 'bohuslan', 'aland', 'oland', 'gotland'])
-    return (validRegions.has(raw as RegionKey | 'all') ? raw : 'all') as RegionKey | 'all'
-  })
+  const [selectedRegion, setSelectedRegion] = useState<RegionKey | 'all'>('all')
 
-  // Map state — listan följer kartans bounds automatiskt vid varje pan/zoom
-  const [bounds, setBounds] = useState<Bounds | null>(null)
+  // Map state — listan följer kartans bounds automatiskt vid varje pan/zoom.
+  // Startvärdet är startvyn på en telefon, så att listan i HTML:en redan är
+  // filtrerad (annars 560 kort som byts mot 70 – hoppet vi tog bort 2026-10-03).
+  const [bounds, setBounds] = useState<Bounds | null>(() => {
+    const vy = vyFor('all')
+    return kartytaFor(vy.center, vy.zoom, SSR_KARTA_PX.bredd, SSR_KARTA_PX.hojd)
+  })
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   // Startvyn följer regionen i adressen (?region=gotland). Tidigare startade
   // kartan alltid i Stockholm medan listan filtrerades på regionen, så en delad
@@ -353,43 +352,27 @@ export default function UpptackExplorer() {
   // Ett trasigt foto visar i stället kategorins platshållare.
   const [trasigaBilder, setTrasigaBilder] = useState<Set<string>>(() => new Set())
 
-  // ── Hämta POIs från API ────────────────────────────────────────────────
-  useEffect(() => {
-    let cancelled = false
-    // Hämtningen startades redan i UpptackLoader (se platsdata.ts).
-    tagPlatssvar()
-      .then(svar => {
-        if (svar.status === 401) {
-          throw new Error('Logga in för att se Upptäck-kartan')
-        }
-        if (!svar.ok) throw new Error(`HTTP ${svar.status}`)
-        return svar.data as Poi[]
-      })
-      .then((data: Poi[]) => {
-        if (cancelled) return
-        // Filtrera bort POIs utan eller med korrupta koordinater.
-        // Skandinavien ligger ungefär i 54-70°N och 5-25°E. (0,0) är öppet
-        // hav söder om Ghana — vanlig "default-koordinat" från trasig data.
-        const valid = (data ?? []).filter(p =>
-          typeof p.latitude === 'number' &&
-          typeof p.longitude === 'number' &&
-          Number.isFinite(p.latitude) &&
-          Number.isFinite(p.longitude) &&
-          p.latitude > 54 && p.latitude < 70 &&
-          p.longitude > 5 && p.longitude < 25 &&
-          // Google Places-importen gav poster som "not the public sauna" och
-          // "sandstrand" — beskrivningar, inte namn. Egennamn börjar med versal.
-          /^[^a-zåäö]/.test((p.name ?? '').trim())
-        )
-        setPois(valid)
-        setLoading(false)
-      })
-      .catch(err => {
-        if (cancelled) return
-        setError(err.message ?? 'Kunde inte ladda platser')
-        setLoading(false)
-      })
-    return () => { cancelled = true }
+  // ── Adressens parametrar + kartans riktiga yta, före första målningen ──
+  // Layout-effekten körs efter hydreringen men innan webbläsaren målar, så
+  // en delad länk (?region=gotland) visar aldrig Stockholmslistan först.
+  // startVyRef uppdateras här så att Leaflet-initieringen (effekten nedan)
+  // startar kartan i rätt region.
+  useLayoutEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const region = regionUr(params.get('region'))
+    const cats = kategorierUr(params.get('typ'))
+    const q = params.get('q') ?? ''
+    if (region !== 'all') { setSelectedRegion(region); startVyRef.current = vyFor(region) }
+    if (cats.size) setActiveCats(cats)
+    if (q) setQuery(q)
+    // Saknar kartdiven storlek (gömd av CSS) används telefonmåtten, så att
+    // listan ändå följer regionen i adressen och inte Stockholmsytan från servern.
+    const r = mapDivRef.current?.getBoundingClientRect()
+    const vy = startVyRef.current
+    const yta = kartytaFor(vy.center, vy.zoom, r?.width || SSR_KARTA_PX.bredd, r?.height || SSR_KARTA_PX.hojd)
+    if (yta) setBounds(yta)
+    setMapCenter({ lat: vy.center[0], lng: vy.center[1] })
+    urlKlar.current = true
   }, [])
 
   // ── Filtrerad lista (region + kategori + sök + bounds) ──────────────────────────
@@ -449,18 +432,23 @@ export default function UpptackExplorer() {
   // ── URL-sync (debounced så vi inte spammar history) ────────────────────
   // Multi-select: ?typ=krog,hamn  (alfabetisk för deterministisk URL)
   // Region: ?region=stockholm
+  // history.replaceState i stället för router.replace: ingen omrendering på
+  // servern, och adressen får inte skrivas över innan den har lästs (urlKlar).
+  const urlKlar = useRef(false)
   const activeCatsKey = useMemo(() => Array.from(activeCats).sort().join(','), [activeCats])
   useEffect(() => {
+    if (!urlKlar.current) return
     const id = setTimeout(() => {
       const params = new URLSearchParams()
       if (selectedRegion !== 'all') params.set('region', selectedRegion)
       if (activeCatsKey) params.set('typ', activeCatsKey)
       if (query.trim()) params.set('q', query.trim())
       const qs = params.toString()
-      router.replace(qs ? `/upptack?${qs}` : '/upptack', { scroll: false })
+      const url = qs ? `/upptack?${qs}` : '/upptack'
+      if (window.location.pathname + window.location.search !== url) window.history.replaceState(null, '', url)
     }, 250)
     return () => clearTimeout(id)
-  }, [selectedRegion, activeCatsKey, query, router])
+  }, [selectedRegion, activeCatsKey, query])
 
   // ── Region-byte: zoom kartan till regionens center ────────────────────
   useEffect(() => {
@@ -485,14 +473,9 @@ export default function UpptackExplorer() {
     // byttes mot de ~70 synliga när kartan blev klar – 2–3 s extra på en
     // långsam telefon och ett hopp i layouten. Leaflets egna bounds tar över
     // nedan (updateBounds) så fort kartan finns.
-    const startVy = startVyRef.current
-    {
-      const r = mapDivRef.current.getBoundingClientRect()
-      const yta = kartytaFor(startVy.center, startVy.zoom, r.width, r.height)
-      if (yta) setBounds(prev => prev ?? yta)
-    }
+    // Ytan räknades redan ut i layout-effekten ovan.
     ;(async () => {
-      // Leaflet-chunken började laddas redan i UpptackLoader (hamtaLeaflet).
+      // Leaflet laddas först här, efter hydreringen – listan finns redan i HTML:en.
       const L = await hamtaLeaflet()
       if (cancelled || !mapDivRef.current) return
 
@@ -802,232 +785,8 @@ export default function UpptackExplorer() {
   // ── Render ──────────────────────────────────────────────────────────────
   return (
     <div className="upx-shell">
-      {/* Header med region-toggle + filter-dropdown + sök */}
-      <header className="upx-header">
-        {/* Region-toggle pills */}
-        <div className="upx-regions-bar">
-          <button
-            type="button"
-            className={`upx-region-pill ${selectedRegion === 'all' ? 'active' : ''}`}
-            onClick={() => {
-              setSelectedRegion('all')
-              track('filter_changed', { surface: 'upptack', filter: 'region', value: 'all' })
-            }}
-          >
-            Alla
-          </button>
-          {(Object.entries(REGION_CONFIG) as Array<[RegionKey, typeof REGION_CONFIG['stockholm']]>).map(([key, config]) => {
-            const count = pois.filter(p => upptackRegion(p) === key).length
-            // En flik utan platser leder till en tom karta. Visa den inte
-            // förrän regionen har innehåll (kort 08208bd8).
-            if (count === 0 && selectedRegion !== key) return null
-            return (
-              <button
-                key={key}
-                type="button"
-                className={`upx-region-pill ${selectedRegion === key ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedRegion(key)
-                  track('filter_changed', { surface: 'upptack', filter: 'region', value: key })
-                }}
-                title={`${config.label} (${count} platser)`}
-              >
-                {config.label}
-              </button>
-            )
-          })}
-        </div>
-
-        <FilterDropdown
-          chips={FILTER_CHIPS}
-          counts={categoryCounts}
-          activeIds={activeCats}
-          onToggle={toggleCat}
-          onClear={clearCats}
-        />
-        <div className="upx-search">
-          <input
-            type="text"
-            placeholder="Sök plats, ö eller hamn…"
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-          />
-          {query && (
-            <button type="button" className="upx-clear" onClick={() => setQuery('')} aria-label="Rensa">×</button>
-          )}
-        </div>
-      </header>
-
-      {/* Mobile-tabs */}
-      <div className="upx-mob-tabs">
-        <button
-          type="button"
-          className={`upx-mob-tab ${mobileTab === 'list' ? 'active' : ''}`}
-          onClick={() => switchMobileTab('list')}
-        >Lista <span className="upx-count">{filteredPois.length}</span></button>
-        <button
-          type="button"
-          className={`upx-mob-tab ${mobileTab === 'map' ? 'active' : ''}`}
-          onClick={() => switchMobileTab('map')}
-        >Karta</button>
-      </div>
-
-      {/* Split-layout */}
-      <div className={`upx-split ${listCollapsed ? 'list-collapsed' : ''} sheet-${sheetState}`}>
-        {/* Lista */}
-        <aside
-          className={`upx-list ${mobileTab === 'list' ? 'mob-show' : 'mob-hide'}`}
-          ref={listScrollRef}
-        >
-          {/* Mobile bottom-sheet drag-handle. Klick cyclar genom snap-points. */}
-          <button
-            type="button"
-            className="upx-sheet-handle"
-            onClick={cycleSheet}
-            aria-label={`Lista (${sheetState === 'min' ? 'minimerad — visa mer' : sheetState === 'half' ? 'halvskärm — visa mer' : 'helskärm — minimera'})`}
-          >
-            <span className="upx-sheet-grip" aria-hidden />
-          </button>
-
-          <div className="upx-list-meta">
-            <span className="upx-list-count">{filteredPois.length} platser i denna vy</span>
-            <button
-              type="button"
-              className="upx-list-toggle"
-              onClick={toggleList}
-              aria-label="Göm sidobar"
-              title="Göm sidobar"
-            >
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m15 18-6-6 6-6"/>
-              </svg>
-            </button>
-          </div>
-
-          {loading && (
-            <div className="upx-skeletons">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="upx-skeleton" />
-              ))}
-            </div>
-          )}
-
-          {error && (
-            <div className="upx-empty">
-              <p>{error}</p>
-              {error.includes('Logga in') && (
-                <Link href="/logga-in?returnTo=/upptack" className="upx-empty-cta">Logga in</Link>
-              )}
-            </div>
-          )}
-
-          {!loading && !error && filteredPois.length === 0 && (
-            <div className="upx-empty">
-              <p>Inga platser här. Panorera kartan eller justera filtret.</p>
-            </div>
-          )}
-
-          {!loading && !error && filteredPois.map(p => {
-            const cat = categorize(p)
-            const meta = CATEGORY_META[cat]
-            return (
-              <button
-                key={p.id}
-                id={`upptack-card-${p.id}`}
-                type="button"
-                onClick={() => flyTo(p)}
-                onMouseEnter={() => setHoveredId(p.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                className={`upx-card ${hoveredId === p.id ? 'hovered' : ''}`}
-              >
-                <div className="upx-card-img">
-                  {p.image_url && !trasigaBilder.has(p.id) ? (
-                    <Image
-                      onError={() => setTrasigaBilder(prev => new Set(prev).add(p.id))}
-                      src={p.image_url}
-                      alt={p.name}
-                      fill
-                      sizes="120px"
-                      style={{ objectFit: 'cover' }}
-                      unoptimized={p.image_url.startsWith('/api/places/photo/')}
-                    />
-                  ) : (
-                    <div
-                      className="upx-card-placeholder"
-                      style={{ background: meta.color }}
-                      dangerouslySetInnerHTML={{
-                        __html: `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${CATEGORY_ICONS[cat]}</svg>`,
-                      }}
-                    />
-                  )}
-                </div>
-                <div className="upx-card-body">
-                  <div className="upx-card-title">{p.name}</div>
-                  <div className="upx-card-meta">
-                    <span className="upx-card-cat" style={{ color: meta.color }}>{meta.label}</span>
-                    {p.island && <span className="upx-card-island">· {p.island}</span>}
-                    {p.endast_medlemmar && <span className="upx-card-medlem">Endast medlemmar</span>}
-                  </div>
-                  {p.description && (
-                    <div className="upx-card-desc">{p.description.slice(0, 80)}{p.description.length > 80 ? '…' : ''}</div>
-                  )}
-                </div>
-              </button>
-            )
-          })}
-        </aside>
-
-        {/* Karta */}
-        <div className={`upx-map-wrap ${mobileTab === 'map' ? 'mob-show' : 'mob-hide'}`}>
-          <div ref={mapDivRef} className="upx-map" />
-          {/* Återöppna-flik (visas bara när lista collapsad) */}
-          {listCollapsed && (
-            <button
-              type="button"
-              className="upx-list-reopen"
-              onClick={toggleList}
-              aria-label="Visa lista"
-              title="Visa lista"
-            >
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m9 18 6-6-6-6"/>
-              </svg>
-              <span className="upx-list-reopen-label">Lista ({filteredPois.length})</span>
-            </button>
-          )}
-
-          {/* "Visa min plats" — bottom-left på kartan */}
-          <button
-            type="button"
-            className={`upx-locate ${gpsState}`}
-            onClick={handleGps}
-            disabled={gpsState === 'loading'}
-            aria-label={gpsState === 'denied' ? 'GPS-åtkomst nekad' : 'Visa min position'}
-            title={gpsState === 'denied' ? 'GPS nekad — aktivera i webbläsarens inställningar' : 'Visa min position'}
-          >
-            {gpsState === 'loading' ? (
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation: 'upxSpin 1s linear infinite' }}>
-                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-              </svg>
-            ) : gpsState === 'denied' ? (
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
-              </svg>
-            )}
-          </button>
-
-          {/* Vädervisare — top-left på kartan */}
-          <div className="upx-weather-wrap">
-            <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
-          </div>
-        </div>
-      </div>
-
-      {/* Inline styles — Svalla design tokens */}
+      {/* Inline styles — Svalla design tokens. Först i trädet så att korten i
+          serverrenderingen inte målas ostylade innan stilen anlänt (HTML:en streamas). */}
       <style dangerouslySetInnerHTML={{ __html: `
         .upx-shell {
           display: flex;
@@ -1301,6 +1060,16 @@ export default function UpptackExplorer() {
           font-weight: 700;
           color: var(--txt);
           line-height: 1.25;
+          margin: 0;
+        }
+        .upx-card-title a {
+          color: inherit;
+          text-decoration: none;
+        }
+        .upx-card-title a:hover,
+        .upx-card-title a:focus-visible {
+          text-decoration: underline;
+          text-underline-offset: 2px;
         }
         .upx-card-meta {
           font-size: 11px;
@@ -1323,40 +1092,12 @@ export default function UpptackExplorer() {
           -webkit-box-orient: vertical;
         }
 
-        .upx-skeletons {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-        .upx-skeleton {
-          height: 100px;
-          border-radius: 14px;
-          background: linear-gradient(90deg, rgba(10,123,140,.06), rgba(10,123,140,.12), rgba(10,123,140,.06));
-          background-size: 200% 100%;
-          animation: upxShimmer 1.4s ease infinite;
-        }
-        @keyframes upxShimmer {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
         .upx-empty {
           padding: 30px 10px;
           text-align: center;
           color: var(--txt3);
           font-size: 13.5px;
         }
-        .upx-empty-cta {
-          display: inline-block;
-          margin-top: 10px;
-          background: var(--sea, #1e5c82);
-          color: #fff;
-          padding: 9px 18px;
-          border-radius: 10px;
-          font-weight: 600;
-          font-size: 14px;
-          text-decoration: none;
-        }
-
         .upx-map-wrap {
           position: relative;
           background: rgba(10, 123, 140, 0.04);
@@ -1526,6 +1267,234 @@ export default function UpptackExplorer() {
           .upx-split.sheet-full .upx-weather-wrap { display: none; }
         }
       ` }} />
+      {/* Header med region-toggle + filter-dropdown + sök */}
+      <header className="upx-header">
+        {/* Region-toggle pills */}
+        <div className="upx-regions-bar">
+          <button
+            type="button"
+            className={`upx-region-pill ${selectedRegion === 'all' ? 'active' : ''}`}
+            onClick={() => {
+              setSelectedRegion('all')
+              track('filter_changed', { surface: 'upptack', filter: 'region', value: 'all' })
+            }}
+          >
+            Alla
+          </button>
+          {(Object.entries(REGION_CONFIG) as Array<[RegionKey, typeof REGION_CONFIG['stockholm']]>).map(([key, config]) => {
+            const count = pois.filter(p => upptackRegion(p) === key).length
+            // En flik utan platser leder till en tom karta. Visa den inte
+            // förrän regionen har innehåll (kort 08208bd8).
+            if (count === 0 && selectedRegion !== key) return null
+            return (
+              <button
+                key={key}
+                type="button"
+                className={`upx-region-pill ${selectedRegion === key ? 'active' : ''}`}
+                onClick={() => {
+                  setSelectedRegion(key)
+                  track('filter_changed', { surface: 'upptack', filter: 'region', value: key })
+                }}
+                title={`${config.label} (${count} platser)`}
+              >
+                {config.label}
+              </button>
+            )
+          })}
+        </div>
+
+        <FilterDropdown
+          chips={FILTER_CHIPS}
+          counts={categoryCounts}
+          activeIds={activeCats}
+          onToggle={toggleCat}
+          onClear={clearCats}
+        />
+        <div className="upx-search">
+          <input
+            type="text"
+            placeholder="Sök plats, ö eller hamn…"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+          />
+          {query && (
+            <button type="button" className="upx-clear" onClick={() => setQuery('')} aria-label="Rensa">×</button>
+          )}
+        </div>
+      </header>
+
+      {/* Mobile-tabs */}
+      <div className="upx-mob-tabs">
+        <button
+          type="button"
+          className={`upx-mob-tab ${mobileTab === 'list' ? 'active' : ''}`}
+          onClick={() => switchMobileTab('list')}
+        >Lista <span className="upx-count">{filteredPois.length}</span></button>
+        <button
+          type="button"
+          className={`upx-mob-tab ${mobileTab === 'map' ? 'active' : ''}`}
+          onClick={() => switchMobileTab('map')}
+        >Karta</button>
+      </div>
+
+      {/* Split-layout */}
+      <div className={`upx-split ${listCollapsed ? 'list-collapsed' : ''} sheet-${sheetState}`}>
+        {/* Lista */}
+        <aside
+          className={`upx-list ${mobileTab === 'list' ? 'mob-show' : 'mob-hide'}`}
+          ref={listScrollRef}
+        >
+          {/* Mobile bottom-sheet drag-handle. Klick cyclar genom snap-points. */}
+          <button
+            type="button"
+            className="upx-sheet-handle"
+            onClick={cycleSheet}
+            aria-label={`Lista (${sheetState === 'min' ? 'minimerad — visa mer' : sheetState === 'half' ? 'halvskärm — visa mer' : 'helskärm — minimera'})`}
+          >
+            <span className="upx-sheet-grip" aria-hidden />
+          </button>
+
+          <div className="upx-list-meta">
+            <span className="upx-list-count">{filteredPois.length} platser i denna vy</span>
+            <button
+              type="button"
+              className="upx-list-toggle"
+              onClick={toggleList}
+              aria-label="Göm sidobar"
+              title="Göm sidobar"
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m15 18-6-6 6-6"/>
+              </svg>
+            </button>
+          </div>
+
+          {filteredPois.length === 0 && (
+            <div className="upx-empty">
+              <p>Inga platser här. Panorera kartan eller justera filtret.</p>
+            </div>
+          )}
+
+          {filteredPois.map((p, i) => {
+            const cat = categorize(p)
+            const meta = CATEGORY_META[cat]
+            // Kortet är en artikel med namnet som länk till platssidan (gick
+            // tidigare bara via kartans popup – nu når sökmotorer och tangent-
+            // bord platssidorna direkt). Klick på resten av kortet flyger kartan dit.
+            return (
+              <article
+                key={p.id}
+                id={`upptack-card-${p.id}`}
+                onClick={() => flyTo(p)}
+                onMouseEnter={() => setHoveredId(p.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                className={`upx-card ${hoveredId === p.id ? 'hovered' : ''}`}
+              >
+                <div className="upx-card-img">
+                  {p.image_url && !trasigaBilder.has(p.id) ? (
+                    <Image
+                      onError={() => setTrasigaBilder(prev => new Set(prev).add(p.id))}
+                      src={p.image_url}
+                      alt=""
+                      // width/height i stället för fill+sizes: fill gav en srcset
+                      // med alla 16 bildbredder (3,9 kB HTML per kort, 71 kort
+                      // i serverrenderingen). Rutan är 80×68 px; med 160 väljer
+                      // Next två poster (256w och 384w) för 1× och 2×.
+                      width={160}
+                      height={136}
+                      // De två första korten syns direkt och är ofta sidans LCP-element.
+                      priority={i < 2}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      unoptimized={p.image_url.startsWith('/api/places/photo/')}
+                    />
+                  ) : (
+                    <div
+                      className="upx-card-placeholder"
+                      style={{ background: meta.color }}
+                      dangerouslySetInnerHTML={{
+                        __html: `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${CATEGORY_ICONS[cat]}</svg>`,
+                      }}
+                    />
+                  )}
+                </div>
+                <div className="upx-card-body">
+                  <h2 className="upx-card-title">
+                    {/* prefetch={false}: ~70 länkar som byts vid varje pan/zoom
+                        skulle annars hämta lika många platssidor i bakgrunden,
+                        i konkurrens med Leaflet och kartrutorna. */}
+                    <Link
+                      href={`/upptack/${p.slug || p.id}`}
+                      prefetch={false}
+                      onClick={e => e.stopPropagation()}
+                      onFocus={() => setHoveredId(p.id)}
+                      onBlur={() => setHoveredId(null)}
+                    >
+                      {p.name}
+                    </Link>
+                  </h2>
+                  <div className="upx-card-meta">
+                    <span className="upx-card-cat" style={{ color: meta.color }}>{meta.label}</span>
+                    {p.island && <span className="upx-card-island">· {p.island}</span>}
+                    {p.endast_medlemmar && <span className="upx-card-medlem">Endast medlemmar</span>}
+                  </div>
+                  {p.description && (
+                    <div className="upx-card-desc">{p.description.slice(0, 80)}{p.description.length > 80 ? '…' : ''}</div>
+                  )}
+                </div>
+              </article>
+            )
+          })}
+        </aside>
+
+        {/* Karta */}
+        <div className={`upx-map-wrap ${mobileTab === 'map' ? 'mob-show' : 'mob-hide'}`}>
+          <div ref={mapDivRef} className="upx-map" />
+          {/* Återöppna-flik (visas bara när lista collapsad) */}
+          {listCollapsed && (
+            <button
+              type="button"
+              className="upx-list-reopen"
+              onClick={toggleList}
+              aria-label="Visa lista"
+              title="Visa lista"
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+              <span className="upx-list-reopen-label">Lista ({filteredPois.length})</span>
+            </button>
+          )}
+
+          {/* "Visa min plats" — bottom-left på kartan */}
+          <button
+            type="button"
+            className={`upx-locate ${gpsState}`}
+            onClick={handleGps}
+            disabled={gpsState === 'loading'}
+            aria-label={gpsState === 'denied' ? 'GPS-åtkomst nekad' : 'Visa min position'}
+            title={gpsState === 'denied' ? 'GPS nekad — aktivera i webbläsarens inställningar' : 'Visa min position'}
+          >
+            {gpsState === 'loading' ? (
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation: 'upxSpin 1s linear infinite' }}>
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+            ) : gpsState === 'denied' ? (
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
+              </svg>
+            )}
+          </button>
+
+          {/* Vädervisare — top-left på kartan */}
+          <div className="upx-weather-wrap">
+            <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
+import { hamtaPlatslista, type Plats } from '@/lib/platslista'
 
 
 export async function GET(req: Request) {
@@ -57,54 +58,14 @@ export async function GET(req: Request) {
   }
 
   if (type === 'poi') {
-    const { data, error } = await supabase
-      .from('restaurants')
-      .select('id, name, latitude, longitude, type, categories, description, image_url, slug, island, archipelago_region, google_photo_refs, endast_medlemmar')
-      .not('latitude', 'is', null)
-      .not('longitude', 'is', null)
-
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-
-    // Projicera image_url: platsens egen bild först, Google-foto (via proxyn)
-    // bara när egen bild saknas. Då slipper UpptackExplorer ha någon
-    // special-logik — den använder bara image_url. Thumbnail-storlek (w=400).
-    //
-    // Ändrat 2026-10-02 (revision): tidigare vann Google-fotot alltid. Sedan
-    // augusti svarar Google 403 på fotoanropen, och 519 av 563 kort visade då en
-    // ikon trots att platsen hade en egen bild. Egna bilder kostar dessutom inga
-    // Google-anrop (bara Vercels bildoptimering, cachad 31 dagar), och
-    // proxy-URL:erna (base64 av Googles referens, ~660 tecken st) var 57 % av
-    // svaret: 326 kB → 83 kB gzip, mätt på svaret 2026-10-02.
-    type RawRow = {
-      id: string; name: string; latitude: number; longitude: number;
-      type: string | null; categories: string[] | null; description: string | null;
-      image_url: string | null; slug: string | null; island: string | null;
-      archipelago_region: string | null;
-      google_photo_refs: { reference: string }[] | null;
-      endast_medlemmar: boolean | null;
+    // Samma rader som /upptack renderar på servern – se src/lib/platslista.ts
+    // (projektionen och varför google_photo_refs inte skickas med).
+    let projected: Plats[]
+    try {
+      projected = await hamtaPlatslista(supabase)
+    } catch (e) {
+      return NextResponse.json({ error: e instanceof Error ? e.message : 'Fel' }, { status: 500 })
     }
-    const projected = (data as RawRow[] | null ?? []).map((r) => {
-      let imageUrl = r.image_url
-      const ref = r.google_photo_refs?.[0]?.reference
-      if (!imageUrl && ref) {
-        const encoded = Buffer.from(ref, 'utf-8').toString('base64url')
-        imageUrl = `/api/places/photo/${encoded}?w=400`
-      }
-      // Skicka inte med tunga google_photo_refs i list-svaret (kan vara ~3KB per plats × 288 = 1MB)
-      return {
-        id: r.id, name: r.name, latitude: r.latitude, longitude: r.longitude,
-        type: r.type, categories: r.categories,
-        // Beskrivningen klipps till två rader med CSS i UpptackExplorer, så
-        // allt över ~300 tecken syns aldrig. Den var den
-        // enskilt tyngsta posten i svaret (699 platser × full text).
-        // Sökningen matchar fortfarande mot den korta texten.
-        description: r.description ? r.description.slice(0, 300) : null,
-        image_url: imageUrl, slug: r.slug, island: r.island,
-        archipelago_region: r.archipelago_region,
-        // Skickas bara när den är sann — håller listsvaret litet.
-        ...(r.endast_medlemmar ? { endast_medlemmar: true } : {}),
-      }
-    })
 
     // POI-listan uppdateras bara via /admin → aggressiv cache är säker.
     //
