@@ -59,6 +59,8 @@ export default async function TeamPage() {
   // för alla efterföljande skriv/läs som klienten gör direkt mot Supabase).
   const service = getAdminClient()
 
+  const since30 = new Date(Date.now() - 30 * 24 * 3600 * 1000).toISOString()
+
   const [
     { data: teamMembers },
     { data: projects },
@@ -74,6 +76,8 @@ export default async function TeamPage() {
     events,
     gsc,
     stripeIntakt,
+    users30,
+    subs30,
   ] = await Promise.all([
     service.from('users').select('id, username, avatar').eq('is_admin', true).order('username'),
     service.from('team_projects').select('*').order('created_at', { ascending: true }),
@@ -97,6 +101,9 @@ export default async function TeamPage() {
       .limit(50_000),
     getGsc(),
     getStripeIntakt(),
+    // Fart: nya senaste 30 dygnen.
+    service.from('users').select('*', { count: 'exact', head: true }).gte('created_at', since30),
+    service.from('email_subscribers').select('*', { count: 'exact', head: true }).eq('unsubscribed', false).gte('created_at', since30),
   ])
 
   // Agentsessioner bort — se src/lib/analytics-filter.ts.
@@ -125,6 +132,8 @@ export default async function TeamPage() {
     daysSinceStart: Math.floor((Date.now() - Date.UTC(2026, 3, 16)) / 86_400_000) + 1,
     places: placesCount.count ?? 0,
     tasksDone: tasksDoneCount.count ?? 0,
+    users30: users30.count ?? 0,
+    subs30: subs30.count ?? 0,
   }
   const traffic: RoadmapTraffic = {
     own: { sessions, pageviews, outbound },
