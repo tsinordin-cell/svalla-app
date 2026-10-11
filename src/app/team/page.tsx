@@ -7,6 +7,7 @@ import { ALL_ISLANDS } from '@/app/o/island-data'
 import { REVENUE_YEARLY_SEK, TRAFFIC_OVERRIDE } from '@/app/admin/malet/config'
 import { baraManniskor } from '@/lib/analytics-filter'
 import { getGsc, summarize } from '@/lib/gsc'
+import { getStripeIntakt } from '@/lib/stripe-intakt'
 import type { KpiValues } from './roadmap-config'
 import type { Milestone, RoadmapMerits, RoadmapTraffic } from './RoadmapView'
 
@@ -72,6 +73,7 @@ export default async function TeamPage() {
     tasksDoneCount,
     events,
     gsc,
+    stripeIntakt,
   ] = await Promise.all([
     service.from('users').select('id, username, avatar').eq('is_admin', true).order('username'),
     service.from('team_projects').select('*').order('created_at', { ascending: true }),
@@ -82,7 +84,10 @@ export default async function TeamPage() {
     service.from('team_milestones').select('*').order('sort', { ascending: true }),
     service.from('users').select('*', { count: 'exact', head: true }),
     service.from('email_subscribers').select('*', { count: 'exact', head: true }).eq('unsubscribed', false),
-    service.from('partner_inquiries').select('*', { count: 'exact', head: true }).eq('status', 'active'),
+    // Betalande = Stripe-prenumeration aktiv. Webhooken sätter status='closed'
+    // vid betalning och sparar Stripes status i stripe_status — status='active'
+    // sätts aldrig, så den gamla räkningen hade stått på 0 för alltid.
+    service.from('partner_inquiries').select('*', { count: 'exact', head: true }).in('stripe_status', ['active', 'trialing']),
     service.from('restaurants').select('*', { count: 'exact', head: true }),
     service.from('team_tasks').select('*', { count: 'exact', head: true }).eq('status', 'done'),
     service.from('analytics_events')
@@ -91,6 +96,7 @@ export default async function TeamPage() {
       .gte('created_at', new Date(Date.now() - 30 * 24 * 3600 * 1000).toISOString())
       .limit(50_000),
     getGsc(),
+    getStripeIntakt(),
   ])
 
   // Agentsessioner bort — se src/lib/analytics-filter.ts.
@@ -110,7 +116,7 @@ export default async function TeamPage() {
     sessions: TRAFFIC_OVERRIDE > 0 ? TRAFFIC_OVERRIDE : visitors,
     subs: subsCount.count ?? 0,
     partners: partnersCount.count ?? 0,
-    revenue: REVENUE_YEARLY_SEK,
+    revenue: stripeIntakt?.kronor ?? REVENUE_YEARLY_SEK,
     users: usersCount.count ?? 0,
     guides: GUIDES.length,
     islands: ALL_ISLANDS.length,

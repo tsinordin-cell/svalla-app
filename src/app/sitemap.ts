@@ -10,6 +10,8 @@ import { PUBLICERADE_GUIDER, ALL_REGIONS, REGION_URL_SLUG } from './guider/guide
 import { TEAMBUILDING_SUBS } from './teambuilding/teambuilding-data'
 import { HYRBAT_SUBS } from './hyra-bat/hyrbat-data'
 import { SEGELKURS_SUBS } from './segelkurs/segelkurs-data'
+import { verkligtDatum } from '@/lib/sidodatum'
+
 
 // Jämförelsesidor — speglar PAIRS i jamfor/[pair]/page.tsx
 const JAMFOR_PAIRS: Array<[string, string]> = [
@@ -480,7 +482,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('[sitemap] Supabase svarade inte — dynamiska sidor utelämnade:', err)
   }
 
-  return [
+  const alla: MetadataRoute.Sitemap = [
     ...staticPages,
     ...transportIndex,
     ...transportPages,
@@ -508,4 +510,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...forumThreadPages,
     ...regionKategoriPages,
   ]
+
+  // Byt ut "i dag" mot riktiga ändringsdatum, se verkligtDatum ovan.
+  return alla.map(p => {
+    if (p.lastModified !== now || p.changeFrequency === 'daily') return p
+    const { lastModified: _bort, ...resten } = p
+    const d = verkligtDatum(p.url)
+    return d ? { ...resten, lastModified: d } : resten
+  })
 }

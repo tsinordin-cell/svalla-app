@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse, after } from 'next/server'
+import { pingaIndexNow } from '@/lib/indexnow'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { getUserForumPostCount } from '@/lib/forum'
@@ -120,18 +121,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Kunde inte spara tråden.' }, { status: 500 })
     }
 
-    // Pinga Google Indexing API om annonsen är publik (icke-spam)
+    // Meddela IndexNow om annonsen är publik (icke-spam)
     if (categoryId === 'loppis' && !inSpamQueue) {
       const url = `https://svalla.se/forum/loppis/${thread.id}`
-      // Fire-and-forget; failar tyst om SA-JSON saknas
-      fetch(`${req.nextUrl.origin}/api/seo/index-now`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Cookie': req.headers.get('cookie') ?? '',
-        },
-        body: JSON.stringify({ url }),
-      }).catch(() => { /* ignore — annons ska alltid lyckas skapas */ })
+      // after(): körs klart efter svaret, och ett fel stoppar aldrig annonsen.
+      after(() => pingaIndexNow([url]).then(() => undefined))
     }
 
     return NextResponse.json({
