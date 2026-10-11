@@ -1,9 +1,10 @@
 /**
- * Leaflet och markerklustret som en egen chunk (revision 2026-10-02, P1-3).
+ * Leaflet och markerklustret som en egen chunk, startad tidigt (revision 2026-10-02, P1-3).
  *
- * UpptackExplorer hämtar Leaflet (145 kB) efter hydreringen, när listan redan
- * står i HTML:en (serverrenderad sedan 2026-10-10). Löftet delas så att ett
- * andra anrop återanvänder samma laddning.
+ * UpptackExplorer hämtade Leaflet (145 kB) först när dess egen kod körts, så
+ * kartan – och dess rutor, som är sidans LCP-element – kom ett steg senare än
+ * nödvändigt. UpptackLoader anropar hamtaLeaflet() vid hydreringen, så att
+ * chunken laddas parallellt med explorerns. Explorern får samma löfte.
  *
  * Båda ligger i leaflet-med-kluster.ts, så de kommer i en chunk och i rätt ordning.
  */

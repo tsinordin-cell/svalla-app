@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
-import { preconnect } from 'react-dom'
-import { createPublicSupabaseClient } from '@/lib/supabase-server'
-import { arGiltigPlats, hamtaPlatslista } from '@/lib/platslista'
-import UpptackExplorer from './UpptackExplorer'
+import { preconnect, preload } from 'react-dom'
+import UpptackLoader from './UpptackLoader'
+import { PLATSDATA_URL } from './platsdata'
 
 export const metadata: Metadata = {
   title: 'Utforska skärgården',
@@ -16,27 +15,15 @@ export const metadata: Metadata = {
   },
 }
 
-// Listan ändras bara via /admin. Tio minuter i CDN:en. Kastar hämtningen vid
-// en bakgrundsrevalidering behåller Next den förra sidan; vid `next build`
-// stoppar den bygget (samma som /upptack/[id] och /o/[slug]).
-export const revalidate = 600
-
-/**
- * Sidan renderas på servern med platslistan i HTML:en (2026-10-10).
- *
- * Tidigare var hela vyn klientrenderad (dynamic ssr:false): HTML:en innehöll
- * en snurra, och först efter sidans JavaScript → explorerns chunk → API-
- * anropet fanns det något att läsa. Uppmätt live 2026-10-10 (mobil, Lighthouse):
- * LCP 5,0 s median med spridning 1–7 s, och sökmotorer såg en tom sida.
- * Nu kommer korten med första svaret, från CDN:en, och Leaflet laddas efter.
- * ?region=, ?typ= och ?q= läses i webbläsaren efter monteringen (samma
- * mönster som ProfileTabs, CLAUDE.md p27) så att sidan kan vara statisk.
- */
-export default async function UpptackPage() {
-  const platser = (await hamtaPlatslista(createPublicSupabaseClient())).filter(arGiltigPlats)
-  // Tom lista utan fel (t.ex. ändrad läspolicy) ska inte ligga tio minuter i CDN:en.
-  if (platser.length === 0) throw new Error('/upptack: platslistan var tom')
-  // Preconnect till kartrutornas servrar; den största rutan är ofta LCP-elementet.
+export default function UpptackPage() {
+  // revision 2026-10-02 (P1-3): kartan och listan laddas i webbläsaren efter
+  // att sidans JavaScript körts, och först då hämtades platsdatan. Med en
+  // preload börjar hämtningen när HTML:en läses, parallellt med skripten.
+  // Samma adress och anropssätt som fetch() i platsdata.ts, och API:t svarar
+  // med max-age=60 – annars hämtar webbläsaren om svaret i stället för att
+  // återanvända det förladdade. Preconnect sparar uppkopplingen till
+  // kartrutornas servrar; den största rutan är sidans LCP-element.
+  preload(PLATSDATA_URL, { as: 'fetch', crossOrigin: 'anonymous' })
   preconnect('https://tile.openstreetmap.org')
   preconnect('https://tiles.openseamap.org')
   return (
@@ -44,7 +31,7 @@ export default async function UpptackPage() {
       {/* revision 2026-10-02: sidan saknade h1 (skärmläsare och sökmotorer).
           Designen har ingen synlig rubrik över kartan, så den är visuellt dold. */}
       <h1 className="sr-only">Utforska skärgården</h1>
-      <UpptackExplorer initialPois={platser} />
+      <UpptackLoader />
     </div>
   )
 }
