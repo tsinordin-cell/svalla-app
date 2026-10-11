@@ -28,7 +28,7 @@ export const KPIS: { key: KpiKey; label: string; unit?: string; targets: [number
   { key: 'partners', label: 'Betalande partners', targets: [3, 15, 40], why: 'Återkommande B2B-intäkt värderas 3–5x. Den enskilt viktigaste siffran.' },
   { key: 'subs', label: 'E-postprenumeranter', targets: [1_000, 5_000, 15_000], why: 'Ägd publik. Köparen betalar för den.' },
   { key: 'sessions', label: 'Besökare per månad', targets: [15_000, 60_000, 150_000], why: 'Störst av egna sessioner 30 dygn (bara med samtycke) och Google-klick 28 dygn. Verklig siffra är högre.' },
-  { key: 'revenue', label: 'Intäkt senaste 12 mån', unit: 'kr', targets: [100_000, 500_000, 1_500_000], why: 'Manuell siffra — uppdateras i /admin/malet/config.ts.' },
+  { key: 'revenue', label: 'Intäkt senaste 12 mån', unit: 'kr', targets: [100_000, 500_000, 1_500_000], why: 'Från Stripe: betalningar minus återbetalningar senaste 12 mån. Faller tillbaka på /admin/malet/config.ts om Stripe inte svarar.' },
   { key: 'users', label: 'Registrerade användare', targets: [2_000, 10_000, 30_000], why: 'Konton på sajten och i appen.' },
   { key: 'guides', label: 'Publicerade guider', targets: [150, 250, 400], why: 'Innehållet som drar trafiken.' },
   { key: 'islands', label: 'Öprofiler', targets: [200, 400, 600], why: 'Den verifierade ödatan är moaten.' },
