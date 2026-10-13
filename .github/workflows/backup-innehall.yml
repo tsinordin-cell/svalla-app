@@ -1,0 +1,32 @@
+name: Backup av innehåll
+
+# Exporterar platser, turer, rutter och evenemang ur Supabase varje vecka och
+# sparar dem som en nedladdningsbar fil i GitHub i 90 dagar.
+# Kräver två hemligheter under Settings > Secrets and variables > Actions:
+#   SUPABASE_URL och SUPABASE_SERVICE_ROLE_KEY. Saknas de görs ingen backup.
+# Se scripts/backup-innehall.mjs.
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'   # måndagar 04:00 UTC
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Exportera innehåll
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/backup-innehall.mjs backup
+      - uses: actions/upload-artifact@v4
+        with:
+          name: innehall-${{ github.run_id }}
+          path: backup/
+          retention-days: 90
+          if-no-files-found: ignore
