@@ -117,14 +117,15 @@ export default function FaqPage() {
 
         <div style={{
           marginTop: 40,
-          background: 'var(--sea)',
+          background: 'var(--sea-knapp)',
           borderRadius: 16,
           padding: '28px 28px',
           color: '#fff',
           textAlign: 'center',
         }}>
           <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>Hittade du inte svaret?</div>
-          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', margin: '0 0 16px' }}>Vi svarar på mejl inom ett dygn.</p>
+          {/* Helvit: vit på --sea-knapp i mörkt tema är 4,6:1, så ingen genomskinlighet ryms (rester 2026-10-07). */}
+          <p style={{ fontSize: 14, color: '#fff', margin: '0 0 16px' }}>Vi svarar på mejl inom ett dygn.</p>
           <a href="mailto:info@svalla.se" style={{
             display: 'inline-block',
             padding: '10px 24px',

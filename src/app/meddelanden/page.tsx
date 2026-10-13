@@ -247,7 +247,7 @@ export default function MeddelandenPage() {
               display: 'flex', alignItems: 'center', gap: 6,
               height: 36, padding: `0 ${space[3]}px`,
               borderRadius: radius.sm,
-              background: 'var(--sea)',
+              background: 'var(--sea-knapp)',
               color: '#fff',
               fontSize: fontSize.small, fontWeight: fontWeight.semibold,
               textDecoration: 'none',
@@ -363,7 +363,7 @@ export default function MeddelandenPage() {
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               height: 44, padding: `0 ${space[6]}px`,
               borderRadius: radius.full,
-              background: 'var(--sea)', color: '#fff',
+              background: 'var(--sea-knapp)', color: '#fff',
               fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold,
               textDecoration: 'none',
             }}>
@@ -383,7 +383,7 @@ export default function MeddelandenPage() {
               style={{
                 height: 44, padding: `0 ${space[6]}px`,
                 borderRadius: radius.full, border: 'none', cursor: 'pointer',
-                background: 'var(--sea)', color: '#fff',
+                background: 'var(--sea-knapp)', color: '#fff',
                 fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold,
               }}
             >
@@ -415,7 +415,7 @@ export default function MeddelandenPage() {
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               height: 44, padding: `0 ${space[6]}px`,
               borderRadius: radius.full,
-              background: 'var(--sea)', color: '#fff',
+              background: 'var(--sea-knapp)', color: '#fff',
               fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold,
               textDecoration: 'none',
             }}>

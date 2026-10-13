@@ -396,7 +396,7 @@ function SokPageInner() {
  onClick={() => setActiveTab(tab.value)}
  style={{
  flexShrink: 0, padding: '5px 12px', borderRadius: 20, border: 'none', cursor: 'pointer',
- background: activeTab === tab.value ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
+ background: activeTab === tab.value ? 'var(--sea-knapp)' : 'rgba(10,123,140,0.07)',
  color: activeTab === tab.value ? '#fff' : '#3a6a80',
  fontSize: 11, fontWeight: 700, transition: 'all .15s',
  WebkitTapHighlightColor: 'transparent',
@@ -615,7 +615,7 @@ function SokPageInner() {
  </p>
  <button onClick={() => setActiveTab('alla')} style={{
  marginTop: 12, padding: '8px 20px', borderRadius: 12, border: 'none',
- background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
+ background: 'var(--sea-knapp)', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
  }}>
  Visa alla träffar
  </button>

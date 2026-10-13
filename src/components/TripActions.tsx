@@ -294,7 +294,7 @@ export default function TripActions({
                   onClick={() => setBoatType(bt === boatType ? '' : bt)}
                   style={{
                     padding: '8px 4px', borderRadius: 10, border: 'none', cursor: 'pointer', fontSize: 11, fontWeight: 600,
-                    background: boatType === bt ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
+                    background: boatType === bt ? 'var(--sea-knapp)' : 'rgba(10,123,140,0.07)',
                     color: boatType === bt ? '#fff' : 'var(--txt2)',
                   }}
                 >

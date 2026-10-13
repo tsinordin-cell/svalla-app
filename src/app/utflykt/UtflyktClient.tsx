@@ -304,7 +304,7 @@ function Pill({ active, onClick, icon, children }: { active: boolean; onClick: (
       style={{
         display: 'inline-flex', alignItems: 'center', gap: 6, padding: '9px 14px', borderRadius: 999,
         border: `1.5px solid ${active ? 'var(--sea)' : 'var(--surface-3)'}`,
-        background: active ? 'var(--sea)' : 'var(--white)',
+        background: active ? 'var(--sea-knapp)' : 'var(--white)',
         color: active ? '#fff' : 'var(--txt)',
         fontSize: 13.5, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', transition: 'all .12s',
       }}
@@ -334,7 +334,7 @@ function IslandCard({ island, iso, open, onToggle }: { island: DagIsland; iso: s
               <span>
                 {island.travelTime}
                 {island.travelTimeMatt && (
-                  <span title="Kontrollerad mot operatörens tidtabell" style={{ marginLeft: 6, fontSize: 11, fontWeight: 700, color: '#2a9d5c', display: 'inline-flex', alignItems: 'center', gap: 3, verticalAlign: 'middle' }}>
+                  <span title="Kontrollerad mot operatörens tidtabell" style={{ marginLeft: 6, fontSize: 11, fontWeight: 700, color: 'var(--ok)', display: 'inline-flex', alignItems: 'center', gap: 3, verticalAlign: 'middle' }}>
                     <Icon name="check" size={11} stroke={2.6} />Källbelagd
                   </span>
                 )}
@@ -364,7 +364,7 @@ function IslandCard({ island, iso, open, onToggle }: { island: DagIsland; iso: s
         {island.hasTransit ? (
           <button type="button" onClick={onToggle} aria-expanded={open} style={{
             display: 'inline-flex', alignItems: 'center', gap: 6, padding: '9px 14px', borderRadius: 999,
-            border: 'none', background: open ? 'var(--sea-d)' : 'var(--sea)', color: '#fff',
+            border: 'none', background: 'var(--sea-knapp)', color: '#fff',
             fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit',
           }}>
             <Icon name="ship" size={14} stroke={2.2} />

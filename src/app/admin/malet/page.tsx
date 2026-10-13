@@ -3,9 +3,10 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import { GUIDES } from '@/app/guider/guides-data'
 import { ALL_ISLANDS } from '@/app/o/island-data'
-import { TRAFFIC_OVERRIDE } from './config'
+import { TRAFFIC_OVERRIDE, REVENUE_YEARLY_SEK } from './config'
 import MaletClient from './MaletClient'
 import { baraManniskor } from '@/lib/analytics-filter'
+import { getStripeIntakt } from '@/lib/stripe-intakt'
 
 export const dynamic = 'force-dynamic'
 
@@ -20,14 +21,16 @@ export default async function MaletPage() {
   const service = getAdminClient()
   const since30d = new Date(Date.now() - 30 * 24 * 3600 * 1000).toISOString()
 
-  const [totalUsers, totalSubs, activePartners, events, places] = await Promise.all([
+  const [totalUsers, totalSubs, activePartners, events, places, stripeIntakt] = await Promise.all([
     service.from('users').select('*', { count: 'exact', head: true }),
     service.from('email_subscribers').select('*', { count: 'exact', head: true }).eq('unsubscribed', false),
-    service.from('partner_inquiries').select('*', { count: 'exact', head: true }).eq('status', 'active'),
+    // Betalande = aktiv Stripe-prenumeration (webhooken sätter aldrig status='active').
+    service.from('partner_inquiries').select('*', { count: 'exact', head: true }).in('stripe_status', ['active', 'trialing']),
     // Trafik: unika sessioner + sidvisningar senaste 30 dygnen.
     service.from('analytics_events').select('session_id, event_name, country_code, user_agent').gte('created_at', since30d).limit(50_000),
     // Antal företagssidor vi redan har — underlag för anspråkskampanjen.
     service.from('restaurants').select('*', { count: 'exact', head: true }),
+    getStripeIntakt(),
   ])
 
   // Agentsessioner (Claudes webbläsare, egna kontroller) räknas bort —
@@ -47,6 +50,8 @@ export default async function MaletPage() {
       sessions={TRAFFIC_OVERRIDE > 0 ? TRAFFIC_OVERRIDE : sessions}
       pageviews={pageviews}
       isLiveTraffic={TRAFFIC_OVERRIDE === 0}
+      revenue={stripeIntakt?.kronor ?? REVENUE_YEARLY_SEK}
+      isLiveRevenue={stripeIntakt !== null}
     />
   )
 }

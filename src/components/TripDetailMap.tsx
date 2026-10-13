@@ -250,7 +250,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
  position: 'absolute', top: 12, left: 12, zIndex: 400,
  display: 'inline-flex', alignItems: 'center', gap: 6,
  padding: '7px 12px', borderRadius: 20,
- background: showWind ? 'var(--sea)' : 'rgba(255,255,255,0.95)',
+ background: showWind ? 'var(--sea-knapp)' : 'rgba(255,255,255,0.95)',
  color: showWind ? '#fff' : 'var(--txt)',
  border: '1.5px solid ' + (showWind ? 'var(--sea)' : 'rgba(10,123,140,0.18)'),
  fontSize: 12, fontWeight: 700, letterSpacing: '0.2px',

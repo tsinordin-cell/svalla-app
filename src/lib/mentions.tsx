@@ -3,6 +3,7 @@
  * Works in both server and client components.
  */
 import Link from 'next/link'
+import { NAMN_I_OMNAMNANDE, arOmnamnande } from './omnamnanden'
 
 export type MentionSpan = {
   type: 'mention' | 'hashtag' | 'text'
@@ -13,12 +14,15 @@ export type MentionSpan = {
 
 /** Parse @username and #hashtag tokens from text. */
 export function parseTokens(text: string): MentionSpan[] {
-  const pattern = /(@[a-zA-Z0-9_]{2,30})|(#[a-zA-Z0-9_\u00C0-\u024F]{2,50})/g
+  // Namnregeln delas med servern (omnamnanden.ts): . och - får finnas inne i namnet.
+  const pattern = new RegExp(`(@${NAMN_I_OMNAMNANDE})|(#[a-zA-Z0-9_\\u00C0-\\u024F]{2,50})`, 'g')
   const spans: MentionSpan[] = []
   let last = 0
   let m: RegExpExecArray | null
 
   while ((m = pattern.exec(text)) !== null) {
+    // "max@exempel.se" och "@10.30" är ingen länk – texten följer med i nästa textbit.
+    if (m[1] && !arOmnamnande(text, m.index, m[1].slice(1))) continue
     if (m.index > last) {
       spans.push({ type: 'text', value: text.slice(last, m.index), start: last, end: m.index })
     }
@@ -62,10 +66,13 @@ export function extractHashtags(text: string): string[] {
 export function getActiveMention(text: string, cursorPos: number): { word: string; start: number } | null {
   // Walk backwards from cursor to find unbroken @-word
   let i = cursorPos - 1
-  while (i >= 0 && /[a-zA-Z0-9_]/.test(text.charAt(i))) i--
+  while (i >= 0 && /[a-zA-Z0-9_.-]/.test(text.charAt(i))) i--
   if (i < 0 || text[i] !== '@') return null
   const start = i
   const word = text.slice(start + 1, cursorPos)
+  // "Tack @max." – punkt eller bindestreck sist avslutar namnet, så Enter skickar
+  // kommentaren i stället för att välja ett förslag som max.berg.
+  if (/[.-]$/.test(word)) return null
   // Don't trigger with empty @ or very long words
   if (word.length > 30) return null
   return { word, start }

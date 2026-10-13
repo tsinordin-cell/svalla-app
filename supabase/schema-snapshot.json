@@ -47,6 +47,7 @@
   "stops": "id,trip_id,latitude,longitude,stop_type,started_at,ended_at,duration_seconds,note,place_name",
   "tag_follows": "user_id,tag,created_at",
   "team_activity": "id,kind,message,task_id,prompt_id,project_id,created_by,created_at",
+  "team_milestones": "id,stage,title,detail,status,owner,done_at,sort,created_by,created_at,updated_at",
   "team_projects": "id,name,slug,description,color,status,created_by,created_at,updated_at",
   "team_prompts": "id,project_id,title,content,tags,created_by,created_at,updated_at",
   "team_tasks": "id,project_id,title,description,status,priority,assignee_id,created_by,due_date,created_at,updated_at,pr_url,prompt,images,color,recurrence,last_done_at",

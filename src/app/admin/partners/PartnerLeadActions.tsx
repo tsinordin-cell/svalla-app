@@ -86,7 +86,7 @@ Passar det att höras kring `)
           fontSize: 12, fontWeight: 600,
           padding: '6px 12px', borderRadius: 8,
           border: '1px solid var(--sea)',
-          background: 'var(--sea)', color: '#fff',
+          background: 'var(--sea-knapp)', color: '#fff',
           textDecoration: 'none',
           marginLeft: 'auto',
         }}

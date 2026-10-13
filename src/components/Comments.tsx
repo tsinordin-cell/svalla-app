@@ -1,11 +1,14 @@
 'use client'
+import { arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
+import { toast } from '@/components/Toast'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import Image from 'next/image'
 import { createClient, getViewer } from '@/lib/supabase'
 import { timeAgoShort, absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
-import { parseTokens, getActiveMention, extractMentions } from '@/lib/mentions'
+import { parseTokens, getActiveMention } from '@/lib/mentions'
+import { omnamndaNamn, hittaOmnamnda } from '@/lib/omnamnanden'
 import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
 
 type Comment = {
@@ -193,20 +196,19 @@ export default function Comments({
  }
 
  async function sendMentionNotifications(content: string) {
- const mentioned = extractMentions(content)
+ const mentioned = omnamndaNamn(content)
  if (!mentioned.length || !userId) return
- const { data: mentionedUsers } = await supabase.from('users').select('id, username').in('username', mentioned)
- if (!mentionedUsers?.length) return
- const sixtySecondsAgo = new Date(Date.now() - 60_000).toISOString()
+ // Skiftlägesokänsligt och med . och - i namnet (src/lib/omnamnanden.ts)
+ const mentionedUsers = await hittaOmnamnda(supabase, mentioned)
+ if (!mentionedUsers.length) return
+ // Servern kontrollerar att kommentaren nämner mottagaren, spärrar dubbletter
+ // och skickar pushen själv (src/lib/notisRegler.ts).
  for (const mu of mentionedUsers) {
  if (mu.id === userId) continue
- const { data: recent } = await supabase.from('notifications').select('id').eq('user_id', mu.id).eq('actor_id', userId).eq('type', 'mention').gte('created_at', sixtySecondsAgo).limit(1).maybeSingle()
- if (recent) continue
  fetch('/api/notifications/insert', {
  method: 'POST', headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify({ targetUserId: mu.id, type: 'mention', tripId }),
  }).catch(() => {})
- fetch('/api/push/send', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ targetUserId: mu.id, title: `${myUsername} taggade dig`, body: content.slice(0, 80), url: `/tur/${tripId}` }) }).catch(() => {})
  }
  }
 
@@ -222,7 +224,7 @@ export default function Comments({
  setComments(prev => [...prev, { id: tempId, content, created_at: new Date().toISOString(), user_id: userId, username: myUsername, avatar: myAvatar, optimistic: true }])
  hasLoadedRef.current = true
  const { error } = await supabase.from('comments').insert({ trip_id: tripId, user_id: userId, content })
- if (error) { setComments(prev => prev.filter(c => c.id !== tempId)); setText(content); setPosting(false); return }
+ if (error) { setComments(prev => prev.filter(c => c.id !== tempId)); setText(content); setPosting(false); toast(arRegelstopp(error) ? BLOCKERAD_TEXT : 'Kunde inte skicka kommentaren. Försök igen.', 'error'); return }
  await load()
  setPosting(false)
  supabase.from('trips').select('user_id').eq('id', tripId).single().then(({ data: trip }) => {
@@ -231,7 +233,6 @@ export default function Comments({
  method: 'POST', headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify({ targetUserId: trip.user_id, type: 'comment', tripId }),
  }).catch(() => {})
- fetch('/api/push/send', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ targetUserId: trip.user_id, title: 'Ny kommentar ', body: `${myUsername}: ${content.slice(0, 60)}`, url: `/tur/${tripId}` }) }).catch(() => {})
  })
  sendMentionNotifications(content)
  }

@@ -132,7 +132,7 @@ export default function ForumPostActions({
             style={{
               ...btnBase,
               padding: '7px 16px',
-              background: saving ? '#ccc' : 'var(--sea)',
+              background: saving ? '#ccc' : 'var(--sea-knapp)',
               color: '#fff',
             }}
           >

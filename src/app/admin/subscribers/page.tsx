@@ -2,6 +2,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { MEJLSEGMENT, SEGMENT_ETIKETT, arSegment } from '@/lib/mejlsegment'
 
 export const dynamic = 'force-dynamic'
 
@@ -9,6 +10,7 @@ type Subscriber = {
   id: string
   email: string
   source: string | null
+  preferences: Record<string, unknown> | null
   confirmed: boolean
   unsubscribed: boolean
   user_id: string | null
@@ -56,12 +58,18 @@ export default async function AdminSubscribersPage() {
   }, {})
   const sources = Object.entries(sourceCounts).sort((a, b) => b[1] - a[1])
 
+  // Segment (2026-10-02): bara aktiva, bara de som själva valt.
+  const aktiva = list.filter(s => s.confirmed && !s.unsubscribed)
+  const segmentAv = (s: Subscriber) => (arSegment(s.preferences?.segment) ? (s.preferences!.segment as string) : '')
+  const segmentAntal = MEJLSEGMENT.map(seg => [seg, aktiva.filter(s => segmentAv(s) === seg).length] as const)
+  const utanSegment = aktiva.filter(s => !segmentAv(s)).length
+
   // CSV-export-data
   const csvData = list
     .filter(s => s.confirmed && !s.unsubscribed)
-    .map(s => `${s.email},${s.source || ''},${s.created_at}`)
+    .map(s => `${s.email},${s.source || ''},${segmentAv(s)},${s.created_at}`)
     .join('\n')
-  const csvBlob = `email,source,created_at\n${csvData}`
+  const csvBlob = `email,source,segment,created_at\n${csvData}`
 
   return (
     <div style={{ minHeight: '100dvh', background: 'var(--bg)', padding: '20px 16px 80px' }}>
@@ -121,6 +129,27 @@ export default async function AdminSubscribersPage() {
             </div>
           </div>
         )}
+
+        {/* Segment */}
+        <div style={{
+          background: 'var(--white)', border: '1px solid var(--surface-3)',
+          borderRadius: 12, padding: '16px 18px', marginBottom: 20,
+        }}>
+          <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>Segment bland aktiva</h2>
+          <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 0 10px' }}>
+            Bara de som själva svarat efter att de prenumererat. Ingen gissning.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {segmentAntal.map(([seg, n]) => (
+              <span key={seg} style={{ fontSize: 12, padding: '4px 10px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--txt2)' }}>
+                {SEGMENT_ETIKETT[seg]} <strong style={{ color: 'var(--sea)' }}>{n}</strong>
+              </span>
+            ))}
+            <span style={{ fontSize: 12, padding: '4px 10px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--txt2)' }}>
+              Inte svarat <strong style={{ color: 'var(--sea)' }}>{utanSegment}</strong>
+            </span>
+          </div>
+        </div>
 
         {/* Export */}
         {stats.confirmed > 0 && (

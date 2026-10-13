@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -9,18 +9,36 @@ import BookmarkButton from '@/components/BookmarkButton'
 import type { Metadata } from 'next'
 import { emojiToIcon } from '@/lib/iconMap'
 
-// ÄRLIGT DYNAMISK (2026-08-02): den här sidan deklarerade `revalidate` men
-// läser cookies/auth/searchParams, vilket tvingar dynamisk rendering — så
-// revalidate-löftet var verkningslöst och sidan renderades om vid varje
-// besök ändå. Nu säger koden sanningen (ingen beteendeförändring), och
-// cache-guarden (scripts/guard-cache-regler.mjs) vaktar regeln.
-// Vill du göra sidan cachebar: flytta betraktarberoendet till klienten —
-// mallar i ViewerGate.tsx/ProfileTabs.tsx/ForumViewer.tsx, se CLAUDE.md p27.
-export const dynamic = 'force-dynamic'
+// CACHEBAR (rester efter revisionen, 2026-10-07): sidan läser bara publik
+// data (tours och restaurants har publik läspolicy) och behöver inte veta vem
+// som tittar — bokmärkesknappen är en klientkomponent som själv frågar om
+// användaren. Därför den cookie-fria klienten och ISR i stället för
+// force-dynamic. Uppmätt före: x-vercel-cache MISS och private/no-store på
+// varje besök (0,8 s TTFB). Cache-guarden vaktar att inget dynamiskt smyger
+// in igen (CLAUDE.md p27).
+export const revalidate = 3600
+
+/**
+ * Utan generateStaticParams hamnar en dynamisk route aldrig i CDN-cachen,
+ * även med revalidate satt (CLAUDE.md p18, samma som /upptack/[id]). Alla
+ * turer (13 st 2026-10-07) förgenereras vid bygget; en tur som läggs till
+ * senare renderas vid första besöket och cachas sedan (dynamicParams är på
+ * som standard).
+ */
+export async function generateStaticParams() {
+  try {
+    const supabase = createPublicSupabaseClient()
+    const { data } = await supabase.from('tours').select('id').limit(500)
+    return (data ?? []).map((t: { id: string }) => ({ id: t.id }))
+  } catch {
+    // Hellre on-demand-rendering än ett trasigt bygge (lokal maskin utan env).
+    return []
+  }
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
-  const supabase = await createServerSupabaseClient()
+  const supabase = createPublicSupabaseClient()
   const { data } = await supabase.from('tours').select('title, usp, start_location, destination, best_for, cover_image').eq('id', id).single()
   if (!data) return { title: { absolute: 'Rutt – Svalla' } }
   const desc = data.usp ?? `Segelrutt ${data.start_location} → ${data.destination}.`
@@ -57,7 +75,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function TourPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const supabase = await createServerSupabaseClient()
+  const supabase = createPublicSupabaseClient()
 
   const { data, error } = await supabase.from('tours').select(
     'id, title, start_location, destination, transport_types, duration_label, best_for, highlights, food_stops, season, usp, hamn_profil, bad_profil, log_suggestions, insider_tip, waypoints'
@@ -289,7 +307,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                     <div style={{
                       position: 'absolute', top: -4, right: -4,
                       width: 16, height: 16, borderRadius: '50%',
-                      background: 'var(--sea)', color: '#fff',
+                      background: 'var(--sea-knapp)', color: '#fff',
                       fontSize: 8, fontWeight: 700,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>{i + 1}</div>
@@ -406,7 +424,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
         <Link href={`/guide?tur=${encodeURIComponent(t.title)}`} style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           width: '100%', padding: '13px 0', borderRadius: 16, marginTop: 10,
-          background: 'var(--sea)',
+          background: 'var(--sea-knapp)',
           color: '#fff', fontWeight: 700, fontSize: 13,
           textDecoration: 'none',
         }}>

@@ -65,3 +65,27 @@ export async function isBlocked(
     return false
   }
 }
+
+/**
+ * Har någon av de två blockerat den andra? Frågar databasens ar_blockerad
+ * (security definer), så svaret gäller även blockeringar man inte själv ser.
+ */
+export async function arBlockerad(
+  supabase: SupabaseClient,
+  a: string,
+  b: string,
+): Promise<boolean> {
+  try {
+    const { data } = await supabase.rpc('ar_blockerad', { a, b })
+    return data === true
+  } catch {
+    return false
+  }
+}
+
+/** Postgres 42501 = raden stoppades av en regel i databasen (t.ex. blockering). */
+export function arRegelstopp(error: { code?: string } | null | undefined): boolean {
+  return error?.code === '42501'
+}
+
+export const BLOCKERAD_TEXT = 'Det går inte på grund av en blockering.'

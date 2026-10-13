@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import {
-  REVENUE_YEARLY_SEK,
   COSTS_YEARLY_SEK,
   BOOKING_GMV_YEARLY,
   SAAS_MRR_SEK,
@@ -25,6 +24,10 @@ type Props = {
   pageviews: number
   /** true = siffran kommer live från analytics_events */
   isLiveTraffic: boolean
+  /** Intäkt senaste 12 mån (SEK) — från Stripe, annars config.ts */
+  revenue: number
+  /** true = intäkten kommer live från Stripe */
+  isLiveRevenue: boolean
 }
 
 type ScenarioKey = 'bas' | 'utokad' | 'plattform'
@@ -135,7 +138,7 @@ function targetsFor(
       { label: 'E-postprenumeranter', value: d.subs, target: 10_000 },
       { label: 'Betalande partners', value: d.partners, target: 125 },
       { label: 'Registrerade användare', value: d.users, target: 25_000 },
-      { label: 'Årlig vinst', value: Math.max(0, REVENUE_YEARLY_SEK - COSTS_YEARLY_SEK), target: 1_250_000, suffix: ' kr' },
+      { label: 'Årlig vinst', value: Math.max(0, d.revenue - COSTS_YEARLY_SEK), target: 1_250_000, suffix: ' kr' },
     ]
   }
   if (scenario === 'utokad') {
@@ -355,7 +358,7 @@ NULÄGE:
 • Betalande partners: ${d.partners}
 • Sessioner/mån: ${d.sessions.toLocaleString('sv-SE')} · Sidvisningar/mån: ${d.pageviews.toLocaleString('sv-SE')}
 • Guider: ${d.guides} · Öprofiler: ${d.islands} · Företagssidor: ${d.places}
-• Faktisk årsintäkt: ${kr(REVENUE_YEARLY_SEK)}
+• Faktisk årsintäkt: ${kr(d.revenue)}
 
 DE TRE SCENARIERNA:
 BAS (content)      3–5 MSEK   — 2,3–3,5x årsvinst
@@ -513,7 +516,7 @@ REGLER SOM ALDRIG BRYTS:
           <div style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic', marginTop: 12, lineHeight: 1.6 }}>
             Multiplar sätts på vinst för content-sajter, men på omsättning för marknadsplatser och SaaS.
             Samma intäktskrona är därför värd 2–3x mer som abonnemang än som annonsplats.
-            {REVENUE_YEARLY_SEK > 0 && <> Faktisk intäkt senaste 12 mån: <strong>{kr(REVENUE_YEARLY_SEK)}</strong>.</>}
+            {d.revenue > 0 && <> Faktisk intäkt senaste 12 mån: <strong>{kr(d.revenue)}</strong>.</>}
           </div>
         </Card>
 

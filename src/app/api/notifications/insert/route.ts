@@ -3,17 +3,26 @@ export const dynamic = 'force-dynamic'
 import { createServerClient } from '@supabase/ssr'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { cookies } from 'next/headers'
-import { NextResponse } from 'next/server'
+import { NextResponse, after } from 'next/server'
 import { checkRateLimit } from '@/lib/rateLimit'
+import { sendPushToUsers } from '@/lib/push-server'
+import { arKlientTyp, bedomNotis, notisDb } from '@/lib/notisRegler'
 
-const VALID_TYPES = ['like', 'comment', 'follow', 'tag', 'mention', 'forum_reply', 'forum_like', 'listing_saved']
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
-
 /**
- * POST /api/notifications/insert
- * Inserts a notification for another user using the service role key (bypasses RLS).
- * The caller must be authenticated — actor_id is always set to auth.uid().
+ * POST /api/notifications/insert — { targetUserId, type, tripId?, conversationId? }
+ *
+ * Den ENDA vägen för webbläsaren att skapa notiser (notifications har ingen
+ * insert-policy sedan 2026-10). actor_id är alltid den inloggade.
+ *
+ * Varje typ kräver att händelsen finns i databasen (gillningen, kommentaren,
+ * följningen, taggningen, meddelandet, accepterade förfrågan) och samma notis
+ * skapas inte två gånger i rad – se src/lib/notisRegler.ts. Pushen till
+ * mottagaren byggs här av servern; klienten väljer inte text eller länk.
+ *
+ * Forumnotiser, sparade annonser och ö-besök skapas av sina egna routes på
+ * servern och tas inte emot här.
  */
 export async function POST(req: Request) {
   const cookieStore = await cookies()
@@ -42,12 +51,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Ogiltig JSON' }, { status: 400 })
   }
 
-  const { targetUserId, type, tripId, referenceId } = payload as Record<string, unknown>
+  const { targetUserId, type, tripId, conversationId } = payload as Record<string, unknown>
 
-  if (!targetUserId || typeof targetUserId !== 'string' || !UUID_RE.test(targetUserId)) {
+  if (typeof targetUserId !== 'string' || !UUID_RE.test(targetUserId)) {
     return NextResponse.json({ error: 'Ogiltigt targetUserId' }, { status: 400 })
   }
-  if (!type || typeof type !== 'string' || !VALID_TYPES.includes(type)) {
+  if (!arKlientTyp(type)) {
     return NextResponse.json({ error: 'Ogiltig type' }, { status: 400 })
   }
   // Don't notify yourself
@@ -55,19 +64,29 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, skipped: true })
   }
 
-  const row: Record<string, string> = {
-    user_id:  targetUserId,
-    actor_id: user.id,
-    type,
-  }
-  if (tripId && typeof tripId === 'string' && UUID_RE.test(tripId)) row.trip_id = tripId
-  if (referenceId && typeof referenceId === 'string' && UUID_RE.test(referenceId)) row.reference_id = referenceId
+  const admin = getAdminClient()
+  const bedomning = await bedomNotis(notisDb(admin), { actorId: user.id, targetId: targetUserId, type, tripId, conversationId })
 
-  const { error } = await getAdminClient().from('notifications').insert(row)
+  if (bedomning.ok === false) {
+    return NextResponse.json({ error: bedomning.fel }, { status: bedomning.status })
+  }
+  if (bedomning.ok === 'hoppa') {
+    return NextResponse.json({ ok: true, skipped: bedomning.skal })
+  }
+
+  const { error } = await admin.from('notifications').insert(bedomning.rad)
+  if (error?.code === '23505') {
+    // Unikt index: samma händelse har redan gett en notis (samtidiga anrop).
+    return NextResponse.json({ ok: true, skipped: 'dubblett' })
+  }
   if (error) {
     console.error('[notifications/insert] DB error:', error)
     return NextResponse.json({ error: 'Kunde inte skapa notis.' }, { status: 500 })
   }
+
+  // Pushen skickas efter svaret, så att klienten inte väntar på telefonernas pushtjänster.
+  const push = bedomning.push
+  if (push) after(() => sendPushToUsers([targetUserId], push))
 
   return NextResponse.json({ ok: true })
 }

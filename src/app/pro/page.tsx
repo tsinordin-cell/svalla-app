@@ -124,7 +124,7 @@ function ProPageInner() {
           ))}
         </div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-          <Link href="/feed" prefetch={false} style={{ flex: 1, textAlign: 'center', padding: '13px 16px', borderRadius: 14, background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Till flödet</Link>
+          <Link href="/feed" prefetch={false} style={{ flex: 1, textAlign: 'center', padding: '13px 16px', borderRadius: 14, background: 'var(--sea-knapp)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Till flödet</Link>
           <Link href="/oar" style={{ flex: 1, textAlign: 'center', padding: '13px 16px', borderRadius: 14, background: 'rgba(10,123,140,0.08)', color: 'var(--sea)', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>Utforska öar</Link>
         </div>
       </div>

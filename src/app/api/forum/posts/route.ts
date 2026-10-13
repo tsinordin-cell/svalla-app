@@ -1,10 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse, after } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { getUserForumPostCount } from '@/lib/forum'
 import { sendPushToUsers } from '@/lib/push-server'
 import { extractMentions } from '@/lib/forum-mentions'
+import { hittaOmnamnda } from '@/lib/omnamnanden'
 // TODO: wrap handlers with withSentrySimple(handler, 'forum/posts') — se src/lib/api-handler.ts
 
 
@@ -78,7 +79,8 @@ export async function POST(req: NextRequest) {
     if (!inSpamQueue) {
       // Extrahera mentions först — dessa får specifik mention-notis (prio över reply-notis)
       const mentionedUsernames = extractMentions(trimBody)
-      void notifyForumParticipants({
+      // after(): körs klart efter svaret. Ett löst löfte (void) kan avbrytas när funktionen fryses.
+      after(() => notifyForumParticipants({
         threadId,
         threadTitle:    thread.title,
         threadOwnerId:  thread.user_id,
@@ -86,7 +88,7 @@ export async function POST(req: NextRequest) {
         posterId:       user.id,
         mentionedUsernames,
         supabase,
-      })
+      }))
     }
 
     return NextResponse.json({
@@ -125,16 +127,17 @@ async function notifyForumParticipants({
       .maybeSingle()
     const posterName = (posterRow?.username as string | undefined) ?? 'Någon'
 
-    // Resolve mentioned usernames to user-ids (case-insensitive)
+    // Omnämnda användare, skiftlägesokänsligt (tidigare .in() – "@elin" hittade aldrig "Elin")
     const mentionedIds = new Set<string>()
     if (mentionedUsernames.length > 0) {
-      const { data: mentionRows } = await svc
-        .from('users')
-        .select('id, username')
-        .in('username', mentionedUsernames)
-      ;(mentionRows ?? []).forEach((u: { id: string; username: string }) => {
-        if (u.id !== posterId) mentionedIds.add(u.id)
-      })
+      const mentionRows = await hittaOmnamnda(svc, mentionedUsernames)
+      for (const u of mentionRows) {
+        if (u.id === posterId) continue
+        // Blockerade får inte pingas via forumet heller (2026-10-11).
+        const { data: blockerad } = await svc.rpc('ar_blockerad', { a: posterId, b: u.id })
+        if (blockerad === true) continue
+        mentionedIds.add(u.id)
+      }
 
       // Skapa mention-notis för varje + skicka specifik push
       if (mentionedIds.size > 0) {

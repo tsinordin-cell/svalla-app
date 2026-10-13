@@ -1079,7 +1079,7 @@ export default function SparaPage() {
                   key={bt} type="button" onClick={() => setBoatType(bt)}
                   className="py-2 px-1 rounded-xl text-xs font-medium transition-all"
                   style={{
-                    background: boatType === bt ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
+                    background: boatType === bt ? 'var(--sea-knapp)' : 'rgba(10,123,140,0.07)',
                     color: boatType === bt ? '#fff' : 'var(--txt2)',
                   }}
                 >
@@ -1893,7 +1893,7 @@ export default function SparaPage() {
                         {label}
                         {isSelected && (
                           <span style={{
-                            background: 'var(--sea)', color: '#fff',
+                            background: 'var(--sea-knapp)', color: '#fff',
                             borderRadius: 10, padding: '1px 7px', fontSize: 9,
                           }}>VALD</span>
                         )}

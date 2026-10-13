@@ -43,7 +43,7 @@ export default function ForumQueueActions({
         disabled={loading !== null}
         style={{
           padding: '7px 16px', borderRadius: 10, fontSize: 13, fontWeight: 600,
-          background: loading === 'approve' ? '#ccc' : 'var(--sea)', color: '#fff',
+          background: loading === 'approve' ? '#ccc' : 'var(--sea-knapp)', color: '#fff',
           border: 'none', cursor: loading !== null ? 'default' : 'pointer',
           transition: 'background 0.15s',
         }}

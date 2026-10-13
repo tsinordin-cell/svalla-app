@@ -155,7 +155,7 @@ export default function BingoClient({ items }: Props) {
             onClick={share}
             style={{
               padding: '10px 20px', borderRadius: 10, border: 'none',
-              background: 'var(--sea)', color: '#fff', fontSize: 14, fontWeight: 700,
+              background: 'var(--sea-knapp)', color: '#fff', fontSize: 14, fontWeight: 700,
               cursor: 'pointer', flex: '1 1 200px',
             }}
           >

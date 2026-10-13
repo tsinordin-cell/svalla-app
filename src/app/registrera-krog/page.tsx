@@ -1,12 +1,11 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 
 /* ─────────────────────────────────────────────────────────────────────────────
  /registrera-krog — Lead form för krogägare
- Sparar till public.business_leads via Supabase (anonym insert)
+ Sparar via /api/registrera-krog (servern validerar och skriver till business_leads)
 ───────────────────────────────────────────────────────────────────────────── */
 
 type Step = 'form' | 'success'
@@ -45,7 +44,6 @@ function Label({ children, required }: { children: React.ReactNode; required?: b
 
 export default function RegistreraKrogPage() {
  const router = useRouter()
- const [supabase] = useState(() => createClient())
  const [step, setStep] = useState<Step>('form')
 
  // Form state
@@ -71,27 +69,26 @@ export default function RegistreraKrogPage() {
 
  setLoading(true); setErr('')
 
- const { error } = await supabase
- .from('business_leads')
- .insert({
- business_name: businessName.trim(),
- business_type: businessType,
- description: description.trim() || null,
- location: location.trim(),
- contact_name: contactName.trim(),
- contact_email: email.trim().toLowerCase(),
- contact_phone: phone.trim() || null,
- website: website.trim() || null,
+ let ok = false
+ try {
+ const res = await fetch('/api/registrera-krog', {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify({
+ businessName, businessType, description, location,
+ contactName, email, phone, website,
+ }),
  })
-
- if (error) {
- console.error('business_leads insert:', error)
- // Graceful degradation — show success even if table doesn't exist yet
- if (error.code === '42P01') {
- setStep('success')
- } else {
- setErr('Något gick fel. Försök igen eller maila oss direkt.')
+ ok = res.ok
+ if (res.status === 429) {
+ setErr('För många anmälningar från din anslutning. Försök igen om en stund.')
+ setLoading(false)
+ return
  }
+ } catch { /* nätverksfel hanteras nedan */ }
+
+ if (!ok) {
+ setErr('Något gick fel. Försök igen eller maila oss direkt.')
  setLoading(false)
  return
  }

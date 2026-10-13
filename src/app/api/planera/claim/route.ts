@@ -5,6 +5,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { logger } from '@/lib/logger'
 import { checkRateLimit } from '@/lib/rateLimit'
+import { getAdminClient } from '@/lib/supabase-admin'
 // TODO: wrap handlers with withSentrySimple(handler, 'planera/claim') — se src/lib/api-handler.ts
 
 /**
@@ -71,15 +72,26 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Rutten tillhör redan en användare' }, { status: 403 })
   }
 
-  const { error: updateError } = await supabase
+  // Skrivningen görs med tjänsteklienten (2026-10-06, kort 8ce07e20).
+  // Tidigare skrevs den med besökarens session, vilket krävde databaspolicyn
+  // planned_routes_update_stops: "vem som helst, även utloggad, får ändra
+  // alla kolumner på rutter utan ägare". Nu har servern redan kontrollerat
+  // att användaren är inloggad och att rutten saknar ägare, och skriver bara
+  // user_id. Policyn kan då tas bort (supabase/migrations/20261006000001).
+  const { data: uppdaterad, error: updateError } = await getAdminClient()
     .from('planned_routes')
     .update({ user_id: user.id })
     .eq('id', routeId)
     .is('user_id', null) // race-skydd: bara om fortfarande null
+    .select('id')
 
   if (updateError) {
     logger.error('planera-claim', 'update failed', { routeId, error: updateError.message })
     return NextResponse.json({ error: 'Kunde inte spara rutten' }, { status: 500 })
+  }
+  if (!uppdaterad || uppdaterad.length === 0) {
+    // Någon annan hann före mellan läsningen och skrivningen.
+    return NextResponse.json({ error: 'Rutten tillhör redan en användare' }, { status: 403 })
   }
 
   logger.info('planera-claim', 'claimed', { routeId, userId: user.id })

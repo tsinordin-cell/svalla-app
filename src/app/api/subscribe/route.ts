@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { sendEmail } from '@/lib/email'
+import { arSegment } from '@/lib/mejlsegment'
 import { stadaKampanj } from '@/lib/kampanj'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -14,11 +15,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Ogiltig request' }, { status: 400 })
   }
 
-  const { email, source, preferences, kampanj } = body as {
+  const { email, source, preferences, kampanj, segment } = body as {
     email?: string
     source?: string
     kampanj?: string
     preferences?: Record<string, unknown>
+    segment?: string
   }
 
   if (!email || typeof email !== 'string' || !EMAIL_REGEX.test(email)) {
@@ -26,6 +28,7 @@ export async function POST(request: Request) {
   }
 
   const normalizedEmail = email.toLowerCase().trim()
+  const valtSegment = arSegment(segment) ? segment : null
   const supabase = await createServerSupabaseClient()
 
   // Knyt till user_id om inloggad
@@ -40,11 +43,16 @@ export async function POST(request: Request) {
   const { error, data: insertedRows } = await service.from('email_subscribers').insert({
     email: normalizedEmail,
     source: source ?? 'unknown',
-    // Kampanjlänk (?k=) som besökaren kom via, se lib/kampanj.ts.
+    // Kampanjlänk (?k=) som besökaren kom via, se lib/kampanj.ts. Segment
+    // bara om besökaren själv valt ett (lib/mejlsegment.ts).
     preferences: (() => {
       const bas = preferences ?? { weekly_tips: true, season_alerts: true }
       const k = stadaKampanj(kampanj)
-      return k ? { ...bas, kampanj: k } : bas
+      return {
+        ...bas,
+        ...(k ? { kampanj: k } : {}),
+        ...(valtSegment ? { segment: valtSegment } : {}),
+      }
     })(),
     user_id: user?.id ?? null,
     confirmed: true,
@@ -57,6 +65,25 @@ export async function POST(request: Request) {
   if (error && !isDuplicate) {
     console.error('[subscribe] insert failed', error)
     return NextResponse.json({ error: 'Kunde inte spara — försök igen' }, { status: 500 })
+  }
+
+  // Segment (2026-10-02): svaret på "Vad stämmer bäst?" kommer i ett andra
+  // anrop med samma adress, efter att raden redan skapats. Vi sätter bara
+  // segment om raden saknar ett, så att ett anrop med någon annans adress
+  // inte kan skriva över ett svar som redan finns.
+  if (isDuplicate && valtSegment) {
+    const { data: rad } = await service
+      .from('email_subscribers')
+      .select('id, preferences')
+      .eq('email', normalizedEmail)
+      .maybeSingle()
+    const pref = (rad?.preferences ?? {}) as Record<string, unknown>
+    if (rad && !arSegment(pref.segment)) {
+      await service
+        .from('email_subscribers')
+        .update({ preferences: { ...pref, segment: valtSegment } })
+        .eq('id', rad.id)
+    }
   }
 
   // Skicka välkomstmail till NYA prenumeranter (inte vid dubbletter)

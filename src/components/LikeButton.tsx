@@ -1,4 +1,5 @@
 'use client'
+import { arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
@@ -56,23 +57,17 @@ export default function LikeButton({
  setLiked(true); setCount(c => c + 1)
  setAnimate(true); setTimeout(() => setAnimate(false), 600)
  const { error } = await supabase.from('likes').insert({ trip_id: tripId, user_id: userId })
- if (error) { setLiked(false); setCount(c => c - 1); toast('Kunde inte gilla turen', 'error') }
+ if (error) { setLiked(false); setCount(c => c - 1); toast(arRegelstopp(error) ? BLOCKERAD_TEXT : 'Kunde inte gilla turen', 'error') }
  else {
  toast('Du gillade turen')
  supabase.from('trips').select('user_id').eq('id', tripId).single()
  .then(({ data: trip }) => {
  if (trip?.user_id && trip.user_id !== userId) {
+ // Servern kontrollerar gillningen och skickar pushen själv.
  fetch('/api/notifications/insert', {
  method: 'POST', headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify({ targetUserId: trip.user_id, type: 'like', tripId }),
  }).catch(() => {})
- supabase.from('users').select('username').eq('id', userId).single()
- .then(({ data: me }) => {
- fetch('/api/push/send', {
- method: 'POST', headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify({ targetUserId: trip.user_id, title: 'Ny gillning ', body: `${me?.username ?? 'Någon'} gillade din tur`, url: `/tur/${tripId}` }),
- }).catch(() => {})
- })
  }
  })
  }

@@ -132,7 +132,6 @@ export async function POST(req: NextRequest) {
     'planned_routes',
     // Tillagda i 2026-05 audit (GDPR-komplettering)
     'notifications',
-    'user_blocks',
     'loppis_saves',
     'stories',
     'story_views',
@@ -154,6 +153,9 @@ export async function POST(req: NextRequest) {
     'user_presence',
     'push_log',
   ]
+
+  // user_blocks har blocker_id/blocked_id, inte user_id (tabellen finns sedan 2026-10-11).
+  await s.from('user_blocks').delete().or(`blocker_id.eq.${userId},blocked_id.eq.${userId}`)
 
   for (const table of tablesToClear) {
     const { error } = await s.from(table).delete().eq('user_id', userId)

@@ -155,6 +155,15 @@ export default function SkargardsdatumPage() {
             </ol>
           </section>
         ))}
+
+        {/* Båtupptagning saknas i listan med avsikt: det finns inget datum att
+            sätta och ingen källa att luta sig mot. Stycket förklarar varför. */}
+        <section style={{ marginBottom: 24 }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>Båtupptagning</h2>
+          <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.55, margin: 0 }}>
+            Båtupptagning har inget gemensamt datum. Varv och båtklubbar sätter sina egna tider, så kontrollera med din hamn.
+          </p>
+        </section>
       </div>
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 20px 48px' }}>

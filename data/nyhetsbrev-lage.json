@@ -1,0 +1,1090 @@
+{
+  "datum": "2026-10-10",
+  "manad": "oktober",
+  "lyfta": [
+    "sandhamn"
+  ],
+  "guider": [
+    {
+      "slug": "midsommar-skargarden"
+    },
+    {
+      "slug": "packlista-skargarden"
+    },
+    {
+      "slug": "allemansratten-pa-sjon"
+    },
+    {
+      "slug": "waxholmsbolaget-guide"
+    },
+    {
+      "slug": "skargard-utan-bat"
+    },
+    {
+      "slug": "vad-kostar-skargarden"
+    },
+    {
+      "slug": "badtemperatur-skargard"
+    },
+    {
+      "slug": "sl-kort-skargarden"
+    },
+    {
+      "slug": "dykning-snorkling-skargard"
+    },
+    {
+      "slug": "rakfrukost-skargard"
+    },
+    {
+      "slug": "sjomatkrogar-guide"
+    },
+    {
+      "slug": "hummersafari-bohuslan"
+    },
+    {
+      "slug": "surstrommning-guide"
+    },
+    {
+      "slug": "skargard-host"
+    },
+    {
+      "slug": "midsommar-bohuslan"
+    },
+    {
+      "slug": "sandhamn-vs-grinda"
+    },
+    {
+      "slug": "gotland-vs-oland"
+    },
+    {
+      "slug": "marstrand-guide"
+    },
+    {
+      "slug": "smogen-guide"
+    },
+    {
+      "slug": "naturhamnar-guide"
+    },
+    {
+      "slug": "bohuslan-skargard-guide"
+    },
+    {
+      "slug": "norrtelje-guide"
+    },
+    {
+      "slug": "fjaderholmarna-guide"
+    },
+    {
+      "slug": "weekend-i-skargarden"
+    },
+    {
+      "slug": "basta-oar-stockholms-skargard"
+    },
+    {
+      "slug": "vaxholm-guide-komplett"
+    },
+    {
+      "slug": "landsort-guide"
+    },
+    {
+      "slug": "hyrbat-guide"
+    },
+    {
+      "slug": "pendelbat-guide"
+    },
+    {
+      "slug": "seglingsklubbar-guide"
+    },
+    {
+      "slug": "aland-guide"
+    },
+    {
+      "slug": "gotland-guide"
+    },
+    {
+      "slug": "oland-guide"
+    },
+    {
+      "slug": "kosterarna-guide"
+    },
+    {
+      "slug": "missat-sista-baten"
+    },
+    {
+      "slug": "batkorkort-guide"
+    },
+    {
+      "slug": "ingmarso-guide"
+    },
+    {
+      "slug": "arholma-guide"
+    },
+    {
+      "slug": "hoga-kusten-guide"
+    },
+    {
+      "slug": "fjallbacka-guide"
+    },
+    {
+      "slug": "lysekil-guide"
+    },
+    {
+      "slug": "bornholm-guide"
+    },
+    {
+      "slug": "dalaro-guide"
+    },
+    {
+      "slug": "barplockning-skargarden"
+    },
+    {
+      "slug": "solnedgang-skargarden"
+    },
+    {
+      "slug": "ankra-sova-bat"
+    },
+    {
+      "slug": "moja-guide"
+    },
+    {
+      "slug": "grinda-guide"
+    },
+    {
+      "slug": "finnhamn-guide"
+    },
+    {
+      "slug": "nattaro-guide"
+    },
+    {
+      "slug": "orno-guide"
+    },
+    {
+      "slug": "hund-i-skargarden"
+    },
+    {
+      "slug": "romantisk-weekend-skargarden"
+    },
+    {
+      "slug": "svampplockning-skargarden"
+    },
+    {
+      "slug": "pingst-skargarden"
+    },
+    {
+      "slug": "foretagsevent-skargarden"
+    },
+    {
+      "slug": "digital-detox-skargarden"
+    },
+    {
+      "slug": "grinda-vs-finnhamn"
+    },
+    {
+      "slug": "stockholm-archipelago-trail"
+    },
+    {
+      "slug": "sup-paddleboard-skargarden"
+    },
+    {
+      "slug": "o-luffa-guide"
+    },
+    {
+      "slug": "camping-talta-skargarden"
+    },
+    {
+      "slug": "20-bastustallen-skargarden-boka"
+    },
+    {
+      "slug": "havsbastu-skargarden"
+    },
+    {
+      "slug": "barnfamilj-skargarden"
+    },
+    {
+      "slug": "uto-komplett-guide"
+    },
+    {
+      "slug": "sandhamn-komplett-guide"
+    },
+    {
+      "slug": "vinter-i-skargarden"
+    },
+    {
+      "slug": "fiske-i-skargarden"
+    },
+    {
+      "slug": "cykling-skargarden"
+    },
+    {
+      "slug": "kraftskiva-skargarden"
+    },
+    {
+      "slug": "kraftskiva-bohuslan"
+    },
+    {
+      "slug": "kraftskiva-gotland"
+    },
+    {
+      "slug": "kraftskiva-oland"
+    },
+    {
+      "slug": "grebbestad-kraftskiva"
+    },
+    {
+      "slug": "kraftskiva-recept-meny"
+    },
+    {
+      "slug": "juli-skargarden-oar"
+    },
+    {
+      "slug": "juli-skargarden-aktiviteter"
+    },
+    {
+      "slug": "juli-skargarden-mat"
+    },
+    {
+      "slug": "semestervecka-skargarden"
+    },
+    {
+      "slug": "sommarlov-skargarden-barn"
+    },
+    {
+      "slug": "vad-gora-regn-skargarden"
+    },
+    {
+      "slug": "juli-bohuslan"
+    },
+    {
+      "slug": "juli-gotland"
+    },
+    {
+      "slug": "barnvanliga-oar-bohuslan"
+    },
+    {
+      "slug": "barnfamilj-gotland"
+    },
+    {
+      "slug": "barnvanliga-bad-skargarden"
+    },
+    {
+      "slug": "barnvanliga-batresor-skargarden"
+    },
+    {
+      "slug": "barnvanliga-restauranger-skargarden"
+    },
+    {
+      "slug": "barnvanliga-aktiviteter-skargarden"
+    },
+    {
+      "slug": "basta-badplatser-bohuslan"
+    },
+    {
+      "slug": "basta-badplatser-gotland"
+    },
+    {
+      "slug": "klippbad-skargarden"
+    },
+    {
+      "slug": "sandstrand-skargarden"
+    },
+    {
+      "slug": "hemliga-badplatser-skargarden"
+    },
+    {
+      "slug": "bad-med-bastu-skargarden"
+    },
+    {
+      "slug": "uto-vs-sandhamn"
+    },
+    {
+      "slug": "marstrand-vs-smogen"
+    },
+    {
+      "slug": "gotland-vs-bohuslan"
+    },
+    {
+      "slug": "inre-vs-yttre-skargard"
+    },
+    {
+      "slug": "dagstur-vs-overnight-skargarden"
+    },
+    {
+      "slug": "stockholm-vs-bohuslan-skargard"
+    },
+    {
+      "slug": "sensommar-skargarden"
+    },
+    {
+      "slug": "september-skargarden"
+    },
+    {
+      "slug": "host-bohuslan"
+    },
+    {
+      "slug": "host-gotland"
+    },
+    {
+      "slug": "karlskrona-guide"
+    },
+    {
+      "slug": "varberg-guide"
+    },
+    {
+      "slug": "borgholm-guide"
+    },
+    {
+      "slug": "tjorn-guide"
+    },
+    {
+      "slug": "visby-sommar-guide"
+    },
+    {
+      "slug": "camping-gotland"
+    },
+    {
+      "slug": "camping-bohuslan"
+    },
+    {
+      "slug": "gotland-med-barn"
+    },
+    {
+      "slug": "camping-stockholm-skargard"
+    },
+    {
+      "slug": "fiskelage-bohuslan"
+    },
+    {
+      "slug": "jul-skargarden"
+    },
+    {
+      "slug": "nyar-skargarden"
+    },
+    {
+      "slug": "pask-skargarden"
+    },
+    {
+      "slug": "valborg-skargarden"
+    },
+    {
+      "slug": "kajakpaddling-bohuslan"
+    },
+    {
+      "slug": "vandring-gotland"
+    },
+    {
+      "slug": "cykling-gotland"
+    },
+    {
+      "slug": "cykling-oland"
+    },
+    {
+      "slug": "snorkling-kosterhavet"
+    },
+    {
+      "slug": "ostronstangning-bohuslan"
+    },
+    {
+      "slug": "hyra-stuga-skargarden"
+    },
+    {
+      "slug": "hyra-stuga-gotland"
+    },
+    {
+      "slug": "faro-guide"
+    },
+    {
+      "slug": "ulvon-guide"
+    },
+    {
+      "slug": "grebbestad-guide"
+    },
+    {
+      "slug": "stromstad-guide"
+    },
+    {
+      "slug": "hano-guide"
+    },
+    {
+      "slug": "bastad-guide"
+    },
+    {
+      "slug": "skargard-instagramguide"
+    },
+    {
+      "slug": "wellness-retreat-skargarden"
+    },
+    {
+      "slug": "brollop-skargarden"
+    },
+    {
+      "slug": "orust-guide"
+    },
+    {
+      "slug": "sensommar-bohuslan"
+    },
+    {
+      "slug": "hyra-bat-utan-korkort-stockholm"
+    },
+    {
+      "slug": "aw-pa-bat-stockholm"
+    },
+    {
+      "slug": "konferens-skargard-stockholm"
+    },
+    {
+      "slug": "kajak-vaxholm"
+    },
+    {
+      "slug": "hyra-kajak-stockholm"
+    },
+    {
+      "slug": "hyra-elektrisk-bat-stockholm"
+    },
+    {
+      "slug": "glamping-skargard"
+    },
+    {
+      "slug": "segeldag-foretag-stockholm"
+    },
+    {
+      "slug": "teambuilding-kajak-stockholm"
+    },
+    {
+      "slug": "cykeluthyrning-gotland"
+    },
+    {
+      "slug": "kursgard-skargard-stockholm"
+    },
+    {
+      "slug": "kickoff-ideer-skargard"
+    },
+    {
+      "slug": "hyra-stuga-marstrand-bohuslan"
+    },
+    {
+      "slug": "workshop-skargard-stockholm"
+    },
+    {
+      "slug": "teambuilding-skargard-stockholm"
+    },
+    {
+      "slug": "segelkurs-stockholm"
+    },
+    {
+      "slug": "dagstur-marstrand"
+    },
+    {
+      "slug": "yttre-garden-guide"
+    },
+    {
+      "slug": "juni-skargarden"
+    },
+    {
+      "slug": "folkfria-oar-juli"
+    },
+    {
+      "slug": "oktober-skargarden"
+    },
+    {
+      "slug": "host-oland"
+    },
+    {
+      "slug": "host-hoga-kusten"
+    },
+    {
+      "slug": "vinter-gotland"
+    },
+    {
+      "slug": "vinter-bohuslan"
+    },
+    {
+      "slug": "isbad-vinterbad-sverige"
+    },
+    {
+      "slug": "badplatser-oland"
+    },
+    {
+      "slug": "barnfamilj-oland"
+    },
+    {
+      "slug": "vandring-oland"
+    },
+    {
+      "slug": "hyra-stuga-oland"
+    },
+    {
+      "slug": "hyra-bil-oland"
+    },
+    {
+      "slug": "camping-oland"
+    },
+    {
+      "slug": "mat-oland"
+    },
+    {
+      "slug": "kajak-hoga-kusten"
+    },
+    {
+      "slug": "vandring-skuleskogen"
+    },
+    {
+      "slug": "barnfamilj-hoga-kusten"
+    },
+    {
+      "slug": "camping-hoga-kusten"
+    },
+    {
+      "slug": "hyra-bat-goteborg"
+    },
+    {
+      "slug": "hyra-bat-marstrand"
+    },
+    {
+      "slug": "hyra-kajak-bohuslan"
+    },
+    {
+      "slug": "segelkurs-goteborg"
+    },
+    {
+      "slug": "teambuilding-goteborg-skargard"
+    },
+    {
+      "slug": "aw-pa-bat-goteborg"
+    },
+    {
+      "slug": "konferens-bohuslan"
+    },
+    {
+      "slug": "flyga-till-gotland"
+    },
+    {
+      "slug": "hyra-bil-gotland"
+    },
+    {
+      "slug": "blekinge-skargard-guide"
+    },
+    {
+      "slug": "nacka-skargard-guide"
+    },
+    {
+      "slug": "svartloga-guide"
+    },
+    {
+      "slug": "ljustero-guide"
+    },
+    {
+      "slug": "runmaro-guide"
+    },
+    {
+      "slug": "blido-guide"
+    },
+    {
+      "slug": "karingon-guide"
+    },
+    {
+      "slug": "gullholmen-guide"
+    },
+    {
+      "slug": "skargard-pa-budget"
+    },
+    {
+      "slug": "camping-kust-sverige"
+    },
+    {
+      "slug": "vattensport-guide"
+    },
+    {
+      "slug": "skargard-solo"
+    },
+    {
+      "slug": "skargard-seniorer"
+    },
+    {
+      "slug": "nationalparkerna-havet"
+    },
+    {
+      "slug": "skargard-tillganglighet"
+    },
+    {
+      "slug": "batsaerhet-guide"
+    },
+    {
+      "slug": "fiske-host"
+    },
+    {
+      "slug": "vandring-host-skargard"
+    },
+    {
+      "slug": "skargard-vs-fjall"
+    },
+    {
+      "slug": "bohuslan-vs-hoga-kusten"
+    },
+    {
+      "slug": "gotland-vs-bornholm"
+    },
+    {
+      "slug": "varmdo-guide"
+    },
+    {
+      "slug": "vinterbastu-isbastu"
+    },
+    {
+      "slug": "fagelskadning-skargarden"
+    },
+    {
+      "slug": "snorkling-stockholm"
+    },
+    {
+      "slug": "vinter-oland"
+    },
+    {
+      "slug": "skridskor-havet"
+    },
+    {
+      "slug": "julmarknad-havet"
+    },
+    {
+      "slug": "fjallalternativet-kust"
+    },
+    {
+      "slug": "ekologisk-semester-skargard"
+    },
+    {
+      "slug": "skargard-med-husbil"
+    },
+    {
+      "slug": "hundstrand-sverige"
+    },
+    {
+      "slug": "hyra-husbil-gotland"
+    },
+    {
+      "slug": "aspo-sturko-guide"
+    },
+    {
+      "slug": "trysunda-guide"
+    },
+    {
+      "slug": "skafto-guide"
+    },
+    {
+      "slug": "holmon-guide"
+    },
+    {
+      "slug": "klattring-bohuslan"
+    },
+    {
+      "slug": "strandridning-kust"
+    },
+    {
+      "slug": "vegansk-mat-skargarden"
+    },
+    {
+      "slug": "restauranger-havsvy-stockholm"
+    },
+    {
+      "slug": "vandring-var-kust"
+    },
+    {
+      "slug": "host-stockholms-skargard"
+    },
+    {
+      "slug": "hummerpremiar-bohuslan"
+    },
+    {
+      "slug": "surstrommingspremiar"
+    },
+    {
+      "slug": "michelin-havet-guide"
+    },
+    {
+      "slug": "sandhamn-vaxholm-grinda-host"
+    },
+    {
+      "slug": "camping-host-skargard"
+    },
+    {
+      "slug": "havsbastu-guide"
+    },
+    {
+      "slug": "hostlov-vid-havet"
+    },
+    {
+      "slug": "julbord-skargarden"
+    },
+    {
+      "slug": "vintertrafik-skargarden"
+    },
+    {
+      "slug": "november-skargard"
+    },
+    {
+      "slug": "host-blekinge-skargard"
+    },
+    {
+      "slug": "host-skane-kusten"
+    },
+    {
+      "slug": "weekendresa-host-havet"
+    },
+    {
+      "slug": "host-roslagen"
+    },
+    {
+      "slug": "planera-host-resa-havet"
+    },
+    {
+      "slug": "ostgota-skargard"
+    },
+    {
+      "slug": "nattkryssning-skargarden"
+    },
+    {
+      "slug": "island-hopping-stockholms-skargard"
+    },
+    {
+      "slug": "hund-skargarden"
+    },
+    {
+      "slug": "barnfamilj-stockholms-skargard"
+    },
+    {
+      "slug": "romantisk-skargard"
+    },
+    {
+      "slug": "var-stockholms-skargard"
+    }
+  ],
+  "oar": [
+    {
+      "slug": "sandhamn"
+    },
+    {
+      "slug": "uto"
+    },
+    {
+      "slug": "vaxholm"
+    },
+    {
+      "slug": "grinda"
+    },
+    {
+      "slug": "finnhamn"
+    },
+    {
+      "slug": "moja"
+    },
+    {
+      "slug": "fjaderholmarna"
+    },
+    {
+      "slug": "ljustero"
+    },
+    {
+      "slug": "dalaro"
+    },
+    {
+      "slug": "arholma"
+    },
+    {
+      "slug": "orno"
+    },
+    {
+      "slug": "landsort"
+    },
+    {
+      "slug": "furusund"
+    },
+    {
+      "slug": "blido"
+    },
+    {
+      "slug": "gallno"
+    },
+    {
+      "slug": "norrora"
+    },
+    {
+      "slug": "nattaro"
+    },
+    {
+      "slug": "ingmarso"
+    },
+    {
+      "slug": "namdo"
+    },
+    {
+      "slug": "svartso"
+    },
+    {
+      "slug": "runmaro"
+    },
+    {
+      "slug": "resaro"
+    },
+    {
+      "slug": "husaro"
+    },
+    {
+      "slug": "fejan"
+    },
+    {
+      "slug": "rodloga"
+    },
+    {
+      "slug": "singo"
+    },
+    {
+      "slug": "lido"
+    },
+    {
+      "slug": "graddo"
+    },
+    {
+      "slug": "vaddo"
+    },
+    {
+      "slug": "asko"
+    },
+    {
+      "slug": "galo"
+    },
+    {
+      "slug": "toro"
+    },
+    {
+      "slug": "fjardlang"
+    },
+    {
+      "slug": "rindo"
+    },
+    {
+      "slug": "yxlan"
+    },
+    {
+      "slug": "kymmendo"
+    },
+    {
+      "slug": "bullero"
+    },
+    {
+      "slug": "vindo"
+    },
+    {
+      "slug": "smaadalaro"
+    },
+    {
+      "slug": "morko"
+    },
+    {
+      "slug": "musko"
+    },
+    {
+      "slug": "bjorko"
+    },
+    {
+      "slug": "adelsjo"
+    },
+    {
+      "slug": "ingaro"
+    },
+    {
+      "slug": "svenska-hogarna"
+    },
+    {
+      "slug": "huvudskar"
+    },
+    {
+      "slug": "ekno"
+    },
+    {
+      "slug": "hasselo"
+    },
+    {
+      "slug": "ormsko"
+    },
+    {
+      "slug": "norrpada"
+    },
+    {
+      "slug": "graskar"
+    },
+    {
+      "slug": "storholmen"
+    },
+    {
+      "slug": "langskar"
+    },
+    {
+      "slug": "storskar"
+    },
+    {
+      "slug": "ulvon"
+    },
+    {
+      "slug": "gotland"
+    },
+    {
+      "slug": "oland"
+    },
+    {
+      "slug": "branno"
+    },
+    {
+      "slug": "styrso"
+    },
+    {
+      "slug": "vrango"
+    },
+    {
+      "slug": "donso"
+    },
+    {
+      "slug": "yttre-garden"
+    },
+    {
+      "slug": "tynningo"
+    },
+    {
+      "slug": "djuro"
+    },
+    {
+      "slug": "birka"
+    },
+    {
+      "slug": "lilla-karlso"
+    },
+    {
+      "slug": "gotska-sandon"
+    },
+    {
+      "slug": "aspo-blekinge"
+    },
+    {
+      "slug": "sturko"
+    },
+    {
+      "slug": "bla-jungfrun"
+    },
+    {
+      "slug": "hemson"
+    },
+    {
+      "slug": "faro"
+    },
+    {
+      "slug": "trysunda"
+    },
+    {
+      "slug": "hano"
+    },
+    {
+      "slug": "svartloga"
+    },
+    {
+      "slug": "visingo"
+    },
+    {
+      "slug": "ven"
+    },
+    {
+      "slug": "tjaro"
+    },
+    {
+      "slug": "ockero"
+    },
+    {
+      "slug": "roro"
+    },
+    {
+      "slug": "holmon"
+    },
+    {
+      "slug": "marstrand"
+    },
+    {
+      "slug": "smogen"
+    },
+    {
+      "slug": "fjallbacka"
+    },
+    {
+      "slug": "grundsund"
+    },
+    {
+      "slug": "hamburgsund"
+    },
+    {
+      "slug": "karingon"
+    },
+    {
+      "slug": "orust"
+    },
+    {
+      "slug": "tjorn"
+    },
+    {
+      "slug": "kungshamn"
+    },
+    {
+      "slug": "pater-noster"
+    },
+    {
+      "slug": "vinga"
+    },
+    {
+      "slug": "hono"
+    },
+    {
+      "slug": "gullholmen"
+    },
+    {
+      "slug": "kladesholmen"
+    },
+    {
+      "slug": "astol"
+    },
+    {
+      "slug": "dyron"
+    }
+  ],
+  "hantverkare": [
+    {
+      "slug": "oct-entreprenad"
+    },
+    {
+      "slug": "wallner-marin"
+    },
+    {
+      "slug": "bjurmans-lastmaskiner"
+    },
+    {
+      "slug": "moja-snickarna"
+    },
+    {
+      "slug": "kyrkvikens-sjotransport"
+    },
+    {
+      "slug": "kjellgren-marin"
+    },
+    {
+      "slug": "vahine"
+    },
+    {
+      "slug": "hellstrom-marin"
+    },
+    {
+      "slug": "delsholmen-entreprenad"
+    },
+    {
+      "slug": "rb-rorteknik"
+    },
+    {
+      "slug": "jowa-elektriska"
+    },
+    {
+      "slug": "anderssons-batvarv"
+    }
+  ]
+}

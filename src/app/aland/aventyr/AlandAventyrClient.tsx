@@ -42,7 +42,7 @@ const ADVENTURES = [
     id: 4,
     transport: 'Med bil',
     transportColor: '#1a4a5e',
-    title: 'Kökar – längst ut i Åland',
+    title: 'Kökar – längst ut på Åland',
     distance: 'Ca 100 km sydöster om Mariehamn, bilfärja',
     icon: 'island',
     intro: 'Kökar är Ålands yttersta utpost – en ö där havet tar över och tystnad är det dominerande intrycket.',

@@ -224,7 +224,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  <span>Turen är privat — länken visar 404 för alla utom dig. Bilden går att dela ändå.</span>
  <button type="button" onClick={makePublic} style={{
  flexShrink: 0, padding: '6px 12px', borderRadius: 999, cursor: 'pointer',
- background: 'var(--sea)', color: '#fff', border: 'none',
+ background: 'var(--sea-knapp)', color: '#fff', border: 'none',
  fontSize: 12.5, fontWeight: 700,
  }}>Gör synlig</button>
  </div>
