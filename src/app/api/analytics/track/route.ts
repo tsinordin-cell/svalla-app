@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json().catch(() => null) as
-      | { event?: string; props?: Record<string, unknown>; sessionId?: string; path?: string; ursprung?: string; kampanj?: string }
+      | { event?: string; props?: Record<string, unknown>; sessionId?: string; path?: string; ursprung?: string; kampanj?: string; besokare?: string }
       | null
 
     if (!body?.event || typeof body.event !== 'string' || !KNOWN_EVENTS.has(body.event)) {
@@ -107,7 +107,9 @@ export async function POST(req: NextRequest) {
       // Kampanjlänk (?k=) läggs i props, se lib/kampanj.ts. Ingen ny kolumn behövs.
       props: (() => {
         const k = stadaKampanj(body.kampanj)
-        return k ? { ...(body.props ?? {}), kampanj: k } : (body.props ?? {})
+        // Anonymt besökar-id för återkommande besökare (lib/analytics-events.ts).
+        const b = typeof body.besokare === 'string' && /^[a-z0-9-]{6,40}$/.test(body.besokare) ? body.besokare : null
+        return { ...(body.props ?? {}), ...(k ? { kampanj: k } : {}), ...(b ? { besokare: b } : {}) }
       })(),
       country_code: req.headers.get('x-vercel-ip-country') ?? null,
       user_agent: ua,

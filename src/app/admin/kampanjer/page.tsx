@@ -4,6 +4,8 @@
  * Källor:
  *   - analytics_events.props.kampanj (sätts av /api/analytics/track, se lib/kampanj.ts)
  *   - email_subscribers.preferences.kampanj (sätts av /api/subscribe)
+ *   - analytics_events.props.besokare: återkommande besökare per månad
+ *     (anonymt id i localStorage, bara med samtycke, se lib/analytics-events.ts)
  *   - site_feedback: antal felrapporter per månad (kortet "Mät hur många som
  *     rapporterar fel via feedbackrutan")
  *
@@ -32,7 +34,7 @@ export default async function KampanjerPage() {
   const admin = getAdminClient()
   const sedan = new Date(Date.now() - DAGAR * 86400_000).toISOString()
 
-  const [{ data: events }, { data: mejl }, { data: feedback }] = await Promise.all([
+  const [{ data: events }, { data: mejl }, { data: feedback }, { data: besok }] = await Promise.all([
     admin.from('analytics_events')
       .select('session_id, event_name, country_code, user_agent, props')
       .gte('created_at', sedan)
@@ -47,6 +49,12 @@ export default async function KampanjerPage() {
       .select('created_at, feedback_type')
       .gte('created_at', new Date(Date.now() - 365 * 86400_000).toISOString())
       .limit(10_000),
+    admin.from('analytics_events')
+      .select('session_id, event_name, country_code, user_agent, props, created_at')
+      .eq('event_name', 'page_viewed')
+      .gte('created_at', new Date(Date.now() - 180 * 86400_000).toISOString())
+      .not('props->>besokare', 'is', null)
+      .limit(50_000),
   ])
 
   // Besök = unika sessioner per kampanj, efter att agenter sorterats bort.
@@ -75,6 +83,26 @@ export default async function KampanjerPage() {
   }
   const manader = [...perManad.entries()].sort((a, b) => b[0].localeCompare(a[0]))
 
+  // Återkommande: besökare som syns en månad och även syntes en tidigare månad.
+  // Mätningen började när besökar-id:t infördes, så första månaden har inga.
+  const forstaManad = new Map<string, string>()
+  const perManadBesokare = new Map<string, Set<string>>()
+  for (const r of baraManniskor((besok ?? []) as Array<Rad & { created_at: string }>)) {
+    const id = typeof r.props?.besokare === 'string' ? r.props.besokare : null
+    if (!id) continue
+    const m = String(r.created_at).slice(0, 7)
+    if (!perManadBesokare.has(m)) perManadBesokare.set(m, new Set())
+    perManadBesokare.get(m)!.add(id)
+    const f = forstaManad.get(id)
+    if (!f || m < f) forstaManad.set(id, m)
+  }
+  const aterkommande = [...perManadBesokare.entries()]
+    .sort((a, b) => b[0].localeCompare(a[0]))
+    .map(([m, ids]) => {
+      const ater = [...ids].filter(id => (forstaManad.get(id) ?? m) < m).length
+      return { m, totalt: ids.size, ater, andel: ids.size ? Math.round((ater / ids.size) * 100) : 0 }
+    })
+
   const th: React.CSSProperties = { textAlign: 'left', padding: '8px 10px', fontSize: 12, color: 'var(--txt3)', borderBottom: '1px solid var(--surface-3)' }
   const td: React.CSSProperties = { padding: '8px 10px', fontSize: 14, borderBottom: '1px solid var(--surface-3)' }
 
@@ -100,6 +128,24 @@ export default async function KampanjerPage() {
           <tbody>
             {namn.map(r => (
               <tr key={r.k}><td style={td}><code>{r.k}</code></td><td style={td}>{r.besok}</td><td style={td}>{r.mejl}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      <h2 style={{ fontSize: 20, fontWeight: 800, margin: '40px 0 8px' }}>Återkommande besökare per månad</h2>
+      <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 12px', lineHeight: 1.6 }}>
+        Besökare som också var här en tidigare månad. Räknas med ett anonymt id, bara för dem som sagt ja till statistik.
+        Mätningen började i oktober 2026, så den första månaden har inga återkommande.
+      </p>
+      {aterkommande.length === 0 ? (
+        <p style={{ fontSize: 14, color: 'var(--txt2)' }}>Inga mätningar än.</p>
+      ) : (
+        <table style={{ width: '100%', borderCollapse: 'collapse', background: 'var(--white)', borderRadius: 12 }}>
+          <thead><tr><th style={th}>Månad</th><th style={th}>Besökare</th><th style={th}>Återkommande</th><th style={th}>Andel</th></tr></thead>
+          <tbody>
+            {aterkommande.map(r => (
+              <tr key={r.m}><td style={td}>{r.m}</td><td style={td}>{r.totalt}</td><td style={td}>{r.ater}</td><td style={td}>{r.andel} %</td></tr>
             ))}
           </tbody>
         </table>
