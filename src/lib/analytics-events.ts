@@ -143,11 +143,32 @@ export function track<E extends SvallaEvent>(name: E['name'], props: E['props'])
         path: window.location.pathname,
         ursprung: ursprungForSession(),
         kampanj: hamtaKampanj() ?? undefined,
+        besokare: besokarId(),
       }),
       // keepalive så event skickas även vid page-unload
       keepalive: true,
     }).catch(() => { /* tyst */ })
   } catch { /* tyst */ }
+}
+
+/**
+ * Anonymt besökar-id i localStorage, för att räkna återkommande besökare per
+ * månad (/admin/kampanjer). Sätts bara här, och track() körs bara med samtycke
+ * till statistik, så id:t skapas aldrig utan samtycke. Slumptal, kopplas inte
+ * till konto eller mejladress.
+ */
+function besokarId(): string | undefined {
+  try {
+    const KEY = 'svalla_besokare'
+    let id = localStorage.getItem(KEY)
+    if (!id) {
+      id = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`
+      localStorage.setItem(KEY, id)
+    }
+    return id
+  } catch {
+    return undefined
+  }
 }
 
 /** Anonym session-id i sessionStorage. Återanvänds över page navigations

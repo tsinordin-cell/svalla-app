@@ -225,7 +225,7 @@ const ADMIN_TOOLS: AdminTool[] = [
     href:  '/admin/kampanjer',
     icon:  <IcoBarChart color="#b5591a" />,
     title: 'Kampanjer',
-    desc:  'Besök och nya mejladresser per kampanjlänk (?k=), felrapporter per månad',
+    desc:  'Kampanjlänkar (?k=), återkommande besökare och felrapporter per månad',
     badge: 'NY',
     color: '#b5591a',
   },
