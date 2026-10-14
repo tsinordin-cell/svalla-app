@@ -14,6 +14,10 @@
  *
  *   SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... node scripts/backup-innehall.mjs [utkatalog]
  *
+ * SUPABASE_SERVICE_ROLE_KEY kan vara en ny hemlig nyckel (sb_secret_...) eller
+ * den gamla service_role-nyckeln. Skapa helst en egen nyckel för backupen i
+ * Supabase (Settings, API Keys, New secret key), så kan den spärras för sig.
+ *
  * Körs varje vecka av .github/workflows/backup-innehall.yml.
  */
 import { mkdirSync, writeFileSync } from 'node:fs'
@@ -40,7 +44,10 @@ for (const tabell of TABELLER) {
     const r = await fetch(`${URL}/rest/v1/${tabell}?select=*&order=id`, {
       headers: {
         apikey: NYCKEL,
-        Authorization: `Bearer ${NYCKEL}`,
+        // Supabases nya hemliga nycklar (sb_secret_...) är inte JWT och skickas
+        // bara som apikey. De gamla service_role-nycklarna (eyJ...) skickas även
+        // som Bearer, som förut.
+        ...(NYCKEL.startsWith('eyJ') ? { Authorization: `Bearer ${NYCKEL}` } : {}),
         Range: `${fran}-${fran + SIDA - 1}`,
         'Range-Unit': 'items',
       },
