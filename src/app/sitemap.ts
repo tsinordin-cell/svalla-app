@@ -224,6 +224,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/forum`,                   lastModified: now, priority: 0.85, changeFrequency: 'daily'   as const },
     { url: `${base}/guide`,                  lastModified: now, priority: 0.6,  changeFrequency: 'monthly' as const },
     { url: `${base}/om`,                     lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
+    { url: `${base}/press`,                  lastModified: now, priority: 0.3,  changeFrequency: 'monthly' as const },
     { url: `${base}/faq`,                    lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
   ]
 
