@@ -39,48 +39,49 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'djuro-grinda-dagstur',
-    title: 'Bil, glass och båt — Djurö till Grinda',
-    tagline: 'En av skärgårdens bästa dagsrutter med bil, brygga och lunchstopp på Grinda.',
-    duration: 'Heldag (ca 8 timmar)',
+    // RÄTTAT 2026-10-16 efter Max och Thomas: glassen säljs på Glassvillan en bit från bryggan, inte vid bryggan,
+    // och bilarna står inte i en gammal lada. "Djurö bilmuseum" och djurobil.se gick inte att belägga (sidan finns inte).
+    // KÄLLA: https://glassvillan.se/ — "Glassvillan på vackra Vindö i Stockholms skärgård", "egentillverkade italienska gelato",
+    // "napolitanska pizzor", "Guld i Glass-SM 2022", "Stängt för säsongen", "Öppnar juni 2027", "Bredviksvägen 1, 139 74 Djurhamn" (läst 2026-10-16)
+    // KÄLLA: https://collectingcars.com/articles/incredible-collector-gallery-welcomes-our-latest-coffee-run — Vindö Bilgalleri, "over 100 different vehicles" (maj 2023)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA" (läst 2026-09-27)
+    title: 'Bil, glass och båt: Vindö till Grinda',
+    tagline: 'Dagstur med bil ut till Vindö, glass på Glassvillan och båt från Sollenkroka till Grinda.',
+    duration: 'Heldag',
     startPoint: 'Stockholm city',
     transport: 'Bil + båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Sommar',
     difficulty: 'lätt',
     featured: true,
-    description: 'En perfekt skärgårdsdag som kombinerar det bästa av land och vatten. Du kör till Djurö, utforskar bilmuseet, hämtar glass vid Sollenkroka brygga och kliver ombord på båten till Grinda för lunch på wärdshuset.',
+    description: 'Du kör ut till Vindö, tittar på bilsamlingen i Vindö Bilgalleri, äter gelato på Glassvillan och tar sedan båten från Sollenkroka brygga till Grinda.',
     stops: [
       {
-        name: 'Djurö bilmuseum',
+        name: 'Vindö Bilgalleri',
         type: 'kultur',
-        desc: 'Över 60 veteranbilar i en gammal lada mitt i skärgårdslandskapet. Oväntat bra och barnvänligt.',
-        tip: 'Öppnar kl 11 — kom inte för tidigt. Beräkna 1–1,5 timme.',
-        bookingUrl: 'https://www.djurobil.se',
+        desc: 'Bilsamling på Vindö. Enligt Collecting Cars fanns där 2023 över 100 bilar.',
+        tip: 'Kolla öppettider innan du åker.',
       },
       {
-        name: 'Glassbaren vid Sollenkroka brygga',
+        name: 'Glassvillan på Vindö',
         type: 'mat',
-        desc: 'Klassisk skärgårdsglass med utsikt mot båttrafiken.',
-        tip: 'Köp glassen och sätt dig på bryggan — det är halva upplevelsen.',
+        desc: 'Egentillverkad italiensk gelato och napolitansk pizza, en bit från Sollenkroka brygga. Guld i Glass-SM 2022.',
+        tip: 'Säsongsöppet. Glassvillan öppnar igen i juni 2027.',
+        bookingUrl: 'https://glassvillan.se',
       },
       {
         name: 'Båten från Sollenkroka till Grinda',
         type: 'transport',
-        desc: 'Lokalbåten går flera gånger om dagen. Turen tar ca 20 minuter.',
-        tip: 'Kolla Waxholmsbolagets tidtabell innan du åker hemifrån.',
+        desc: 'Waxholmsbolagets linje 11 går mellan Sollenkroka, Boda, Grinda och Vaxholm.',
+        tip: 'Kolla Waxholmsbolagets tidtabell innan du åker hemifrån. Alla turer går inte alla dagar.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
         name: 'Lunch på Grinda Wärdshus',
         type: 'mat',
-        desc: 'Skärgårdskök med fokus på lokala råvaror. Uteservering med utsikt mot vattnet.',
+        desc: 'Wärdshuset på Grinda.',
         tip: 'Boka bord i förväg på sommaren.',
         bookingUrl: 'https://grinda.se',
-      },
-      {
-        name: 'Bad vid Grindas naturhamn',
-        type: 'bad',
-        desc: 'Klippor och klart vatten på östra sidan av ön.',
       },
     ],
     resources: [
