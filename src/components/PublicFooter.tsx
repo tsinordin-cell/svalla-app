@@ -125,7 +125,7 @@ export default function PublicFooter() {
           fontSize: 12,
           color: 'rgba(255,255,255,0.6)',
         }}>
-          <span>© {new Date().getFullYear()} Svalla. Stockholms skärgård + Bohuslän.</span>
+          <span>© {new Date().getFullYear()} Svalla. Sveriges samlade skärgårdssida.</span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 16 }}>
             <a
               href="https://www.instagram.com/svalla.app/"

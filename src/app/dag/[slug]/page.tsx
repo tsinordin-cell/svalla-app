@@ -541,7 +541,7 @@ export default async function DagSlugPage({ params }: Props) {
           <SvallaLogo height={22} color="rgba(255,255,255,0.5)" />
         </Link>
         <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', margin: 0 }}>
-          Din guide till Stockholms skärgård
+          Sveriges samlade skärgårdssida
         </p>
       </div>
     </div>
