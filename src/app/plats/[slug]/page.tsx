@@ -8,6 +8,8 @@ import PlatsMapClient from './PlatsMapClient'
 import SaveButton from './SaveButton'
 import PlaceRecentVisitors from '@/components/PlaceRecentVisitors'
 
+const VISA_SASONG = false as boolean
+
 type Plats = {
  id: string
  name: string
@@ -399,7 +401,8 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  )}
 
  {/* Säsong */}
- {p.seasonality && p.seasonality !== 'year_round' && (
+ {/* Säsong dold 2026-10-19: fältet saknar källa per rad och var fel på helårsöppna ställen. */}
+          {VISA_SASONG && p.seasonality && p.seasonality !== 'year_round' && (
  <div style={{ marginBottom: 22 }}>
  <SectionTitle>Säsong</SectionTitle>
  <div style={{

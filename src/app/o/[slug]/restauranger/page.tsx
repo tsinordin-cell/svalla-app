@@ -5,7 +5,7 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Vidareklick from '@/components/Vidareklick'
 import IslandPlacesList from '@/components/IslandPlacesList'
-import { getIslandPlaces } from '@/lib/islandPlaces'
+import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -53,8 +53,12 @@ export default async function IslandRestaurantsPage({ params }: Props) {
 
   // Krogar ur platsdatabasen som inte redan står i island-data.
   const known = new Set(island.restaurants.flatMap(r => [r.slug, r.name.toLowerCase()]).filter(Boolean) as string[])
-  const dbPlaces = (await getIslandPlaces(island, ['restaurant', 'cafe', 'bar'], { extraKm: 0.5 }))
-    .filter(p => !known.has(p.slug) && !known.has(p.name.toLowerCase()))
+  const dbPlaces = utanDubbletter(
+    (await getIslandPlaces(island, ['restaurant', 'cafe', 'bar'], { extraKm: 0.5 }))
+      .filter(p => !known.has(p.slug) && !known.has(p.name.toLowerCase())),
+    island.restaurants.map(r => r.name),
+    island.name,
+  )
   const total = island.restaurants.length + dbPlaces.filter(p => p.onIsland).length
 
   return (

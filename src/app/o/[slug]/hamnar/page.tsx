@@ -6,7 +6,7 @@ import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Vidareklick from '@/components/Vidareklick'
 import Icon from '@/components/Icon'
 import IslandPlacesList from '@/components/IslandPlacesList'
-import { getIslandPlaces } from '@/lib/islandPlaces'
+import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -53,8 +53,12 @@ export default async function IslandHarborsPage({ params }: Props) {
   if (!island) notFound()
 
   const known = new Set(island.harbors.map(h => h.name.toLowerCase()))
-  const dbHarbors = (await getIslandPlaces(island, ['harbor', 'marina', 'anchorage', 'nature_harbor', 'fuel'], { extraKm: 1 }))
-    .filter(p => !known.has(p.name.toLowerCase()))
+  const dbHarbors = utanDubbletter(
+    (await getIslandPlaces(island, ['harbor', 'marina', 'anchorage', 'nature_harbor', 'fuel'], { extraKm: 1 }))
+      .filter(p => !known.has(p.name.toLowerCase())),
+    island.harbors.map(h => h.name),
+    island.name,
+  )
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
