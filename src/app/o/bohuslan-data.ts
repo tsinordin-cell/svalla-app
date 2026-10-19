@@ -1430,7 +1430,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     restaurants: [
       // KÄLLA: https://paternoster.se/fragor-svar — "serveras middagen vanligtvis samtidigt för alla i Sjöboden", "under sommaren (juli-augusti) har vi öppet vårt sommarcafé i Sjöboden" (läst 2026-09-27)
       // KÄLLA: https://paternoster.se/sommarcafet — "Matupplevelser utöver caféets ordinarie utbud, tillgängliga endast genom förbokning och som gruppbokning", "är vi ingen restaurang för spontana besök" (läst 2026-09-27)
-      { name: 'Sjöboden', type: 'Restaurang och sommarcafé', desc: 'Hotellets matsal och sommarcafé i den gamla sjöboden. Här serveras middag för hotellgästerna, och från juli till mitten av augusti har sommarcaféet fika, hembakat och kalla rätter. Lunch och middag utöver caféet serveras bara efter förbokning som gruppbokning – hotellet är ingen restaurang för spontana besök.' },
+      // KÄLLA: https://paternoster.se/ta-dig-hit — "Från juli-mitten av augusti är sommarcaféet öppet." (läst 2026-10-19)
+      { name: 'Sjöboden', type: 'Restaurang och sommarcafé', desc: 'Hotellets matsal och sommarcafé i den gamla sjöboden. Här serveras middag för hotellgästerna, och från juli till mitten av augusti har sommarcaféet fika, hembakat och kalla rätter. Lunch och middag utöver caféet serveras bara efter förbokning som gruppbokning. Hotellet är ingen restaurang för spontana besök.' },
     ],
     tips: [
       // KÄLLA: https://paternoster.se/fragor-svar — "Eftersom det inte finns någon mataffär på ön" (läst 2026-09-27)
