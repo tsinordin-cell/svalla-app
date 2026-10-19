@@ -42,7 +42,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/",
       "org": "Naturvårdsverket",
-      "vad": "Mellan 1 mars och 20 augusti måste du ha extra uppsikt över din hund i naturen. Under den tiden får hunden inte springa lös., Ha alltid koppel på hunden när ni vistas i nationalparker eller naturreservat ;  — Här får man ha hund (stugan Friggan)",
+      "vad": "Mellan 1 mars och 20 augusti måste du ha extra uppsikt över din hund i naturen. Under den tiden får hunden inte springa lös., Ha alltid koppel på hunden när ni vistas i nationalparker eller naturreservat",
+      "last": "2026-09-27",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/h433.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "Stavsnäs vinterhamn, Slussen 10.15 → Stavsnäs vinterhamn 11.06",
       "last": "2026-09-27",
       "myndighet": true
     },
@@ -50,6 +57,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html",
       "org": "varmdo.se",
       "vad": "Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida, omkring 20 minuters promenad från hamnen, Toaletter sommartid, Badet ägs och sköts av Eknö hemman, Ingen provtagning av badvatten utförs av Värmdö kommun. Stod ca 10 min, barnvänligt djup, vind och namnets ursprung utan källa.",
+      "last": "2026-09-27",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/flaskberget.4.18c983316e0536cb189a2c1.html",
+      "org": "varmdo.se",
+      "vad": "Ett fint klippbad alldeles vid Sandhamns by, Badet fick sitt namn efter en skuta lastad med fläsk gick på grund och sjönk där för länge sedan, Toaletter sommartid, Badet ägs och sköts av Eknö hemman, Ingen provtagning av badvatten utförs av Värmdö kommun",
       "last": "2026-09-27",
       "myndighet": true
     },
@@ -68,13 +82,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/flaskberget.4.18c983316e0536cb189a2c1.html",
-      "org": "varmdo.se",
-      "vad": "Ett fint klippbad alldeles vid Sandhamns by, Badet fick sitt namn efter en skuta lastad med fläsk gick på grund och sjönk där för länge sedan, Toaletter sommartid, Badet ägs och sköts av Eknö hemman, Ingen provtagning av badvatten utförs av Värmdö kommun",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
       "url": "https://www.varmdo.se/varmdohamnar/parkera.4.6e5e3cc318a8d4dc3f6361bf.html",
       "org": "varmdo.se",
       "vad": "Ska du parkera max 3 timmar så är det gratis om du använder p-skiva, Du betalar din besöksparkering med app, Parkit Sweden AB ansvarar, I Stavsnäs vinterhamn finns cirka 1300 parkeringsplatser. Cirka hälften är till för besökare",
@@ -84,14 +91,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/sandhamn",
       "org": "Waxholmsbolaget",
-      "vad": "och då tar resan drygt en timme, Det går flera turer varje dag till Sandhamn, tabell 16 ;  — Year round — including winter, Take bus 433 from Slussen or drive to Stavsnäs Vinterhamn ;  — Stavsnäs vinterhamn, Slussen 10.15 → Stavsnäs vinterhamn 11.06",
+      "vad": "Sandön ligger precis på gränsen till öppet hav och blev tidigt en viktig knutpunkt för sjöfarten",
       "last": "2026-09-27",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h16.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "STAVSNÄS — SANDHAMN — HAGEDE (året runt, tabellen gäller till 12 december 2026) ;  — GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026 (linje 15 Strömkajen–Sandhamn) ;  — Departures run several times daily . Sandhamnslinjen Stavsnäs–Sandhamn drivs av Stavsnäs Båttaxi, inte Waxholmsbolaget.",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, STAVSNÄS — SANDHAMN — HAGEDE: Stavsnäs 20.12 → Sandhamn 20.50 (38 min), 09.45 → 10.45 (60 min), 07.00 → 08.05 (65 min)",
       "last": "2026-09-27",
       "myndighet": true
     },
@@ -105,14 +112,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://battaxi.se/sandhamnslinjen-2/",
       "org": "battaxi.se",
-      "vad": "Sandhamnslinjen är en direkt reguljär tur som tar dig mellan Stavsnäs och Sandhamn på endast 30 minuter, Höst 2 2026 (21/9-20/12) ;  — GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, STAVSNÄS — SANDHAMN — HAGEDE: Stavsnäs 09.45 → Sandhamn 10.45, 07.00 → 08.05, 20.12 → 20.50 ;  — Year round — including winter",
+      "vad": "Sandhamnslinjen är en direkt reguljär tur som tar dig mellan Stavsnäs och Sandhamn på endast 30 minuter; Bokade biljetter har alltid förtur, men det går även bra att köpa biljett direkt på båten",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.dykarbaren.se/",
       "org": "dykarbaren.se",
-      "vad": "Öppet 2026 säsong maj — september ;  — servicehusen med dusch, toalett och tvättstuga är endast öppna maj till september ;  — året runt ;  — Puben, Öppet året runt",
+      "vad": "DYKARBAREN SANDHAMN, Vi erbjuder endast bordsbokning inomhus då vår uteservering inte helt går att vädersäkra, Öppet 2026 säsong maj — september",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ksss.se/hamnar/sandhamn",
+      "org": "ksss.se",
+      "vad": "Det finns ca 150 gästplatser på Sandhamn, Gästhamnen har 20 st bokningsbara platser, Hamnen är öppen från sista helgen i april till sista helgen i oktober",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -133,15 +147,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.ksss.se/hamnar/sandhamn/aktuellt",
       "org": "ksss.se",
-      "vad": "26 juni-2 juli, Gotland Runt. Hela hamnen abbonerad.",
+      "vad": "Vatten på bryggorna och servicehusen med dusch, toalett och tvättstuga är endast öppna maj till september.; You can find power on pier B and C (Middle and right seen from the hotel) all year round.",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ksss.se/hamnar/lokholmen",
+      "org": "ksss.se",
+      "vad": "På Lökholmen finns plats för ca 200 båtar",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.ksss.se/hamnar/sandhamn",
+      "url": "https://www.ksss.se/en/gotlandrunt/",
       "org": "ksss.se",
-      "vad": "Det finns ca 150 gästplatser på Sandhamn, Gästhamnen har 20 st bokningsbara platser, Hamnen är öppen från sista helgen i april till sista helgen i oktober ;  — Vatten på bryggorna och servicehusen med dusch, toalett och tvättstuga är endast öppna maj till september",
-      "last": "2026-09-27",
+      "vad": "since 2024 it starts at Gråskärsfjärden south of Sandön, with the finish at Sandhamn",
+      "last": "2026-09-30",
       "myndighet": false
     },
     {
@@ -159,9 +180,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.sandhamn.com/sv/spa",
+      "url": "https://www.sandhamn.com/en/hitta-hit",
       "org": "sandhamn.com",
-      "vad": "Här kan ni simma i den tempererade poolen, sjunka ner i jacuzzin, Här finns också bastu, gym, Spa och gym har öppet dagligen mellan 08.00–20.00, Icke hotellgäster är välkomna i mån av plats, Värmen från den vedeldade bastun, Bokningar av bastuflotten sker via receptionen",
+      "vad": "Departures run several times daily . Sandhamnslinjen Stavsnäs–Sandhamn drivs av Stavsnäs Båttaxi, inte Waxholmsbolaget.",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -173,16 +194,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.sandhamn.com/en/hitta-hit",
+      "url": "https://www.sandhamn.com/sv/spa",
       "org": "sandhamn.com",
-      "vad": "including winter),  (Öppet året runt, Öppet varje dag från mitten av juni till mitten på september. Annan tid på året är restaurangen främst öppen helger),  (året runt),  (Öppet 2026 säsong maj — september),  (servicehusen med dusch, toalett och tvättstuga är endast öppna maj till september) . Cinderella 30/4–27/9 2026 enligt Strömmas tidtabell (se getting_there).",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://sandhamns-vardshus.se/boende",
-      "org": "sandhamns-vardshus.se",
-      "vad": "På Missionshuset finns det 5 dubbelrum med gemensamma badrum, På gården finns en stuga med eget badrum som vi kallar för Friggan. Här får man ha hund., I alla våra priser ingår frukost, lakan och handdukar, Missionshuset är öppet året runt för bokning",
+      "vad": "Här kan ni simma i den tempererade poolen, sjunka ner i jacuzzin, Här finns också bastu, gym, Spa och gym har öppet dagligen mellan 08.00–20.00, Icke hotellgäster är välkomna i mån av plats, Värmen från den vedeldade bastun, Bokningar av bastuflotten sker via receptionen",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -190,6 +204,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://sandhamns-vardshus.se/",
       "org": "sandhamns-vardshus.se",
       "vad": "Sandhamns Värdshus anno 1672, Puben Här är hjärtat på Värdshuset! Öppet året runt., Restaurangen Med en magisk utsikt över hamnen",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://sandhamns-vardshus.se/boende",
+      "org": "sandhamns-vardshus.se",
+      "vad": "På Missionshuset finns det 5 dubbelrum med gemensamma badrum, På gården finns en stuga med eget badrum som vi kallar för Friggan. Här får man ha hund., I alla våra priser ingår frukost, lakan och handdukar, Missionshuset är öppet året runt för bokning",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -224,7 +245,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://stockholmarchipelagotrail.com/section/section-sandhamn/",
       "org": "stockholmarchipelagotrail.com",
-      "vad": "Section Sandhamn, Easy 8.1 km (ledens egen webbplats)",
+      "vad": "The section starts from the quay where the public ferries arrive",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -239,6 +260,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf",
       "org": "Strömma",
       "vad": "Strandvägen - kajplats 14, 7/9 - 27/9, Strandvägen 10:00 → Sandhamn 12:30",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.tempo.se/butiker/tempo-sandhamn-westerberg/",
+      "org": "tempo.se",
+      "vad": "TEMPO SANDHAMN WESTERBERG, SANDHAMNS BRYGGA . atm: ingen källa hittad åt något håll.",
       "last": "2026-09-27",
       "myndighet": false
     }
@@ -283,13 +311,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://kund.printhuset-sthlm.se/sl/v846.pdf",
       "org": "SL (tryckt tidtabell)",
       "vad": "Västerhaninge station–Årsta (–Årsta slott), Tidtabellen är anpassad till pendeltåg från Stockholm vid, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026; Västerhaninge station–Årsta brygga 14–17 min enligt tabellen",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar",
-      "org": "sl.se",
-      "vad": "Under lågsäsongen, från 14 september till 29 april, gäller alla SL:s periodbiljetter som har en giltighetstid på 30 dagar eller längre för resor på Waxholmsbolagets båtar. . Priset 104/64 kr struket: ingen daterad prislista kunde läsas.",
       "last": "2026-09-27",
       "myndighet": true
     },
@@ -347,6 +368,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "stockholmarchipelagotrail.com",
       "vad": "Section Utö, Challenging 18.4 km; Utö — Ålö Connector, Easy 4.6 km.",
       "last": "2026-09-30",
+      "myndighet": false
+    },
+    {
+      "url": "https://stockholmslansmuseum.se/besoksmal/uto/",
+      "org": "stockholmslansmuseum.se",
+      "vad": "På norra Utö ligger det som kan vara Sveriges äldsta järngruvor.; Vid rysshärjningarna i skärgården 1719 brändes all bebyggelse vid Utö gruvor ned. För att göra det svårare att börja bryta malm igen fyllde ryssarna gruvschakten med sten. Trots det togs de gamla schakten upp igen",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -437,13 +465,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.utovardshus.se/bakfickan/",
       "org": "utovardshus.se",
       "vad": "DANSA IN SOMMARNATTEN, musik, dans och trevligt umgänge, Bakfickan stänger för säsongen 31 augusti 2026.",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.kulturarvstockholm.se/industrihistoria/artiklar-om-industrihistoria/uto-gruvor/",
-      "org": "Utö gruvor",
-      "vad": "under 1840-talet uppnådde befolkningstalet sitt maximum, 446 personer / År 1879 upphörde slutligen gruvdriften helt. «16 000 ton/år» och «cirka 500 invånare» saknade källa och motsade 446; strukna.",
       "last": "2026-09-27",
       "myndighet": false
     }
@@ -1102,13 +1123,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://lidingo.se/bygga-bo/bygglov/kulturmiljoprogram/",
-      "org": "lidingo.se",
-      "vad": "Röda stugan (förr kallad Grå stugan) från 1700-talet. Det är den enda återstående byggnaden från Stora Fjäderholmens äldre sjöfartsepok. / Det faluröda panelade lilla timmerhuset har bland annat fyrspröjsade fönster och karaktäristiska korta taksprång. / I väster ligger Röda villan, förr kallad Gröna villan, i dag den enda återstående av de byggnader som uppförts på 1890-talet.",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/kungliga-nationalstadsparken.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "parken inrättades 1995, omfattar 27 kvadratkilometer, sträcker sig \"från Sörentorp och Ulriksdal i norr till Djurgården och Fjäderholmarna i söder\" och \"spänner över tre kommuner: Solna, Stockholm och Lidingö\"; \"Länsstyrelsen samordnar arbetet med parkens förvaltning och utveckling. Kungliga Djurgårdens förvaltning sköter runt 80 procent av marken.\"",
@@ -1125,8 +1139,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.fjaderholmarna.se/",
       "org": "fjaderholmarna.se",
-      "vad": "Fjäderholmarna har nu säsongsöppet till och med 13 september. ;  — 19 juni — 16 augusti, Varje halvtimme 10:30–17:00 ;  — 1 Maj-13 Sep, 20 Nov-20 Dec ;  — NU SERVERA JULBORD MELLAN 20/11 - 22/12 ;  — The brewpub opens on 1 May and closes for the season on 13 September.",
-      "last": "2026-09-27",
+      "vad": "I början av 1920-talet tog marinen över öarna för att bygga ammunitionsfabrik.; öarna öppnades åter för allmänheten 1985; ingår sedan 1995 i Kungliga Nationalstadsparken . Historiesidan anger 1918 och startsidan början av 1920-talet, därför står inget exakt år här.",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.fjaderholmarna.se/artiklar-film-360/kungliga-parker/2025-06-09-fjaderholmarnas-historia.html",
+      "org": "fjaderholmarna.se",
+      "vad": "Under andra världskriget hade holmarna ett utseende som liknade en välbepansrad fästning och disponerades av marinen som ammunitionsdepå. På holmarna finns flera stora bergrum och även luftvärnskanoner bevarade, med eldrören symboliskt riktade ut mot inloppet.; Som mest arbetade och bodde 150–200 personer här under krigsåren; Marinens byggnader rustades och fick nya ändamål.",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -1174,15 +1195,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.rokeriet-fjaderholmarna.se/",
       "org": "rokeriet-fjaderholmarna.se",
-      "vad": "1 Maj-13 Sep, 11:30-22:30, 20 Nov-20 Dec ;  — vår deli och glasskiosk",
+      "vad": "1 Maj-13 Sep, 11:30-22:30, 20 Nov-20 Dec",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/",
       "org": "Strömma",
-      "vad": "Avgår från: Strandvägen & Nacka Strand; Strandvägen - Kajplatsområde 13; Enkel resa: 170 kr | Tur och retur: 205 kr; Endast 30 minuters båtresa från city; ÅTER MAJ 2027; När du har bokat en viss avgång har du förtur på den; hundar måste hållas kopplade … enligt Lidingö kommuns lokala ordningsföreskrifter",
-      "last": "2026-09-27",
+      "vad": "Strandvägen - Kajplatsområde 13; Nacka Strand - Vid Restaurang J; Endast 30 minuters båtresa från city; Åter maj 2027; När du har bokat en viss avgång har du förtur på den; 1 maj — 17 juni & 16 augusti — 12 september:",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -1195,7 +1216,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.visitstockholm.se/o/fjaderholmarnas-bad/",
       "org": "visitstockholm.se",
-      "vad": "",
+      "vad": "Åk till badvänliga klippor på Stockholms närmaste skärgårdsö",
       "last": "2026-09-27",
       "myndighet": false
     }
@@ -1461,7 +1482,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.norrtalje.se/info/kultur-och-fritid/kultur-och-konst/norrtalje-museerkulturarv-och-stadsarkiv/museer-hembygds--och-kulturforeningar/batteri-arholma--upplevelsemuseum/",
       "org": "norrtalje.se",
       "vad": "Anläggningen byggdes för Kalla kriget och stod klar 1968; På ön Arholmas norra spets och gömd i berget; Den visas av säkerhetsskäl endast genom guidade turer",
-      "last": "2026-09-27",
+      "last": "2026-09-20",
       "myndighet": true
     },
     {
@@ -1500,13 +1521,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/wa/h27.pdf",
-      "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "27A STOCKHOLM — VAXHOLM — NORRSUND — ARHOLMA; GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026; Strömkajen (Stockholm) 08.45 08.45 08.45 16.30 16.30 08.45 10.00 10.30; Arholma 20.55 14.30. Lördagstur 2651: Strömkajen 08.45 → Arholma 14.30",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
       "url": "https://www.arholma.nu/resa-hit",
       "org": "arholma.nu",
       "vad": "Med bil från Stockholm tar det drygt två timmar; På Simpnäs finns en stor parkeringsplats",
@@ -1537,8 +1551,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://arholmahandel.se/cykeluthyrning/",
       "org": "arholmahandel.se",
-      "vad": "Halvdag; (4h) — 100kr; (8h) — 150kr; (24h) — 200kr; (7 dagar) — 1000kr; Hyr din cykel och hämta direkt på bryggan där båten lägger till; på grund av högt tryck rekommenderar vi att du bokar i god tid",
-      "last": "2026-09-27",
+      "vad": "Hyr din cykel och hämta direkt på bryggan där båten lägger till.; på grund av högt tryck rekommenderar vi att du bokar i god tid innan du kommer till Arholma",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -1577,13 +1591,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://arholmanord.se/mat",
-      "org": "arholmanord.se",
-      "vad": "Öppnar midsommarafton och stänger 9 augusti; här bjuder vi på godsaker från röken — sidan renderas med JavaScript, citatet kontrollerat i headless Chrome",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
       "url": "https://blidosundsbolaget.se/norra-batlinjen/",
       "org": "blidosundsbolaget.se",
       "vad": "I sommar erbjuder vi dagliga avgångar mellan den 6 juli och 9 augusti; 09:30 Norrtälje, längst bort på Norrtälje hamnpromenad, vid bron Havslänken; M/S Rex",
@@ -1594,7 +1601,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://skargardsstiftelsen.se/omraden/arholma/",
       "org": "Skärgårdsstiftelsen",
       "vad": "landskapet brukats i hundratals år; åkrar, strandängar, hagmarker och skogspartier; på Arholma är kor våra bästa naturvårdsarbetare, de hjälper till att hålla markerna öppna; Bull-Augusts gård är en klassisk roslagsgård som idag fungerar som vandrarhem",
-      "last": "2026-09-27",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -2961,15 +2968,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://kund.printhuset-sthlm.se/sl/h680.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Stockholm–Resarö, Tekniska högskolan, Överby, Giltig 17 augusti–12 december 2026; måndag–fredag Tekniska högskolan 14.37 → Överby 15.30 (53 min), Överby 06.02 → Tekniska högskolan 06.51 (49 min); Lördag, söndag oh helgdag, Ingen trafik",
-      "last": "2026-09-27",
+      "vad": "680 Stockholm–Resarö, Tekniska högskolan, Danderyds sjukhus, Arninge station, Engarn, Ytterby, Överby, Giltig 17 augusti–12 december 2026, Lördag, söndag oh helgdag, Ingen trafik; restid räknad ur tabellen: 14.37 → 15.30 och 06.02 → 06.51",
+      "last": "2026-10-19",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/sl/h682.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Engarn–Resarö, Resarö–Engarn (–Vaxholm), Giltig 17 augusti–12 december 2026; vardagar dagtid avgår 682 från Engarn 09.04, 09.34, 10.04 … (varje halvtimme), Engarn → Överby 9–11 min",
-      "last": "2026-09-27",
+      "vad": "682 Engarn–Resarö, Resarö–Engarn (–Vaxholm), Giltig 17 augusti–12 december 2026, Lördag, söndag och helgdag; Engarn 07.17, Ytterby 07.20, Överby 07.25; Engarn 16.33, Överby 16.44",
+      "last": "2026-10-19",
       "myndighet": true
     },
     {
@@ -2997,7 +3004,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/gronomraden",
       "org": "vaxholm.se",
       "vad": "Killingen består av ett cirka 100 hektar stort barrskogsområde på västra Resarö, Området används för idrottslektioner, motionering, bär- och svampplockning samt hundrastning., Det är möjligt att cykla och gå med barnvagn på de större stigarna.",
-      "last": "2026-09-27",
+      "last": "2026-10-19",
       "myndighet": true
     },
     {
@@ -3052,22 +3059,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://kanotcenter.com/sv/",
       "org": "kanotcenter.com",
-      "vad": "vårt ursprungliga kajakcenter vid vattnet på Resarö, Kajakturer, kajak-/kanot-/SUP-uthyrning, självguidade turer, campingpaket, bastuupplevelser och gruppevenemang.",
-      "last": "2026-09-27",
+      "vad": "Skärgårdens Outdoor — Kayak Center; Resarövägen 10, Resarö, Stockholms län; Följ med på våra guidade kajakturer året runt, eller besök oss under sommaren för att hyra kajak, kanot och SUP.; Uthyrning öppet maj-september; Vår vedeldade bastu vid vattnet på Resarö, nära Vaxholm i Stockholms skärgård, är tillgänglig för privata bokningar året runt.",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
       "url": "https://ytterbygruva.se/eget-besok/",
       "org": "ytterbygruva.se",
-      "vad": "installerade vi i samarbete med Stiftelsen för Strategisk Forskning ett antal skyltar i och kring dagbrottet, Du kan därför med fördel vandra här på egen hand.",
-      "last": "2026-09-27",
+      "vad": "Under hösten 2025 installerade vi i samarbete med Stiftelsen för Strategisk Forskning ett antal skyltar i och kring dagbrottet med information om gruvans historia. Du kan därför med fördel vandra här på egen hand.",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
       "url": "https://ytterbygruva.se/hitta-hit/",
       "org": "ytterbygruva.se",
       "vad": "Med SL-buss till hpl Ytterby (3). Gå sedan drygt 1km längs med Ytterbyvägen (ca 15min)., Med Waxholmsbåt till Ytterby brygga (2), gå sedan 200m till Ytterbyvägen 65.",
-      "last": "2026-09-27",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -5094,8 +5101,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://bistroruben.se/oppet/",
       "org": "bistroruben.se",
-      "vad": "18:e juni — 8:e augusti 2026; Tisdag–Söndag",
-      "last": "2026-09-27",
+      "vad": "Vi håller öppet under sommarsäsongen runt mitten av juni till mitten av augusti.; 18:e juni — 8:e augusti 2026; Sommaren 2027 startar om …",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -5106,10 +5113,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://hkship.se/pdf/turlista.pdf",
+      "org": "hkship.se",
+      "vad": "ULVÖN 2026; Dagliga turer med m/s Kusttrafik; 15 juni — 16 augusti",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
       "url": "https://www.hogakusten.com/sv/stader-platser/ulvon",
       "org": "hogakusten.com",
       "vad": "Ulvöarna ligger 30 km söder om Örnsköldsvik; Ulvön är vår skärgårds största turistiska besöksmål med stora kulturella värden tack vare välbevarade sjöbodar, bostadshus och gistvallar; kallas ibland för Bottenhavets pärla eller Norrlands Sandhamn",
-      "last": "2026-09-27",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -5164,8 +5178,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://mfulvon.se/turlistor",
       "org": "mfulvon.se",
-      "vad": "Turlista 14 sep - 31 okt 2026; Köpmanholmen 08.15 16.00 *08.15 10.00 16.00; Ulvöhamn 09.45 17.30 11.30 17.30",
-      "last": "2026-09-27",
+      "vad": "Turlista 14 sep - 31 okt 2026; Köpmanholmen 08.15, Ulvöhamn 09.45; Köpmanholmen 16.00, Ulvöhamn 17.30; Turlista 1 nov - 23 dec 2026",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -5478,6 +5492,85 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "sollidensslott.se",
       "vad": "Öppet dagligen 7 maj - 27 september 2026, Kungafamiljens privata foton från Solliden, deras privata miljö på Solliden, På natursköna Kaffetorpet njuter du av mat, smörgåsar och härliga bakverk från eget bageri",
       "last": "2026-09-27",
+      "myndighet": false
+    }
+  ],
+  "vinga": [
+    {
+      "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html",
+      "org": "Länsstyrelsen Västra Götaland",
+      "vad": "bildat 1987, cirka 559 hektar, \"Klipphällar möter buskiga snår av slån, björnbär, nypon och vinbär\", sparris, västkustarv, strandkål och marviol, gök och näktergal, Koholmen som häckningsplats",
+      "last": "2026-10-19",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vinga",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Vinga\" → Vinga | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+      "last": "2026-09-29",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/vinga--goteborgarnas-fyr/",
+      "org": "Sjöfartsverket",
+      "vad": "Göteborgarnas fyr — tornet 29 meter högt och ritat av fyringenjör Emil Karlsson, mittdelen göts i betong av Skånska Cementgjuteriet och \"Tornet kläddes med porfyrit bruten på Vinga\", automatisering 1975 och avbemannad fyrplats, kvarvarande lotsning, utställningen \"Fyrplats Vinga\"",
+      "last": "2026-09-16",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.stromma.com/sv-se/goteborg/utflykter/guidad-batutflykt-till-vinga/",
+      "org": "Strömma",
+      "vad": "Fyrön Vinga ligger i den yttre skärgården i Kattegatt och är Göteborgs västligaste punkt.",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://vinga.nu/",
+      "org": "vinga.nu",
+      "vad": "Vår och hösthelger 2026; 17 april — 21 juni och 24 aug — 15 okt; Kiosken öppen lördag och söndag; Sommarsäsong 2026; 22 juni — 23 augusti; Kiosken öppen varje dag",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://vinga.nu/turbatar/",
+      "org": "vinga.nu",
+      "vad": "Strömma från Lilla Bommen, Kungsö från Stenpiren, Silvana, Hönö Båtturer och Kastor från Hönö Klåva, Emma från Fotö",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://vinga.nu/museum/",
+      "org": "vinga.nu",
+      "vad": "När man kommer in i museet och träder in i det första rummet till höger, möts men av Evert Taube som sitter på en gammal kökssoffa.; förvärvade Winga Vänner från Liseberg",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://vinga.nu/gasthamn/",
+      "org": "vinga.nu",
+      "vad": "plats för cirka 30 båtar av normalstorlek, max 40 fot och max djup 2,5 meter, \"du är alltid välkommen med egen båt till Vinga, året runt\", toaletter, el, soprum, grillplatsen \"Brända Fläsket\" och kiosk",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.vastsverige.com/visitockero/produkter/on-vinga/",
+      "org": "Västsverige/Visit Öckerö",
+      "vad": "cirka fyra timmar på ön med turbåten från Hönö Klåva, kiosk och grillplatsen \"Brända Fläsket\"",
+      "last": "2026-09-16",
+      "myndighet": false
+    },
+    {
+      "url": "https://vinga.nu/uthyrning-av-stugor/",
+      "org": "Winga Vänner",
+      "vad": "Biskopsgården och Fyrmästarbostaden hyrs ut av föreningen medan \"Båken hyres ut endast för ceremonier som bröllop och dop\", Fyrfolkets By drivs av Vinga Event",
+      "last": "2026-09-16",
+      "myndighet": false
+    },
+    {
+      "url": "https://vinga.nu/uthyrning/",
+      "org": "Winga Vänner",
+      "vad": "Biskopsgården med 7 rum och 10 bäddar plus 2 extrabäddar, Fyrmästarbostaden med 3 rum och 7 bäddar, uthyrning till föreningens medlemmar; Fyrfolkets By sköts av Vinga Event",
+      "last": "2026-09-16",
       "myndighet": false
     }
   ],
@@ -6857,9 +6950,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "faro": [
     {
+      "url": "https://dokument.gotland.se:443/IntegrationService.svc/doc/content/55284",
+      "org": "dokument.gotland.se",
+      "vad": "Ordinarie tidtabell 2026/2027. Giltig 2026-08-16–2027-06-12, Visby busstation–Fårösund färjeläge 60 min (t.ex. 08.35–09.35)",
+      "last": "2026-09-27",
+      "myndighet": true
+    },
+    {
       "url": "https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser/norsta-aurar",
       "org": "gotland.se",
       "vad": "Badplatsen Norsta Aurar på Fårö är en cirka fem kilometer lång, långgrund, sandstrand, Skyltning mot badplatsen saknas, men badplatsen nås till fots från Fårö fyr.",
+      "last": "2026-09-27",
+      "myndighet": true
+    },
+    {
+      "url": "https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/allmant-om-region-gotlands-badplatser",
+      "org": "gotland.se",
+      "vad": "Enligt regionens Allmänna lokala ordningsföreskrifter får hundar under perioden 1 maj — 30 september inte vistas på vissa utpekade badplatser.",
+      "last": "2026-09-27",
+      "myndighet": true
+    },
+    {
+      "url": "https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser/ekeviken",
+      "org": "gotland.se",
+      "vad": "Se eventuell skyltning.",
       "last": "2026-09-27",
       "myndighet": true
     },
@@ -6906,9 +7020,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://bergmancenter.se/",
+      "org": "bergmancenter.se",
+      "vad": "1 juni — 30 augusti; Alla dagar 11.00–17.00; 3 - 27 september har vi öppet torsdag - söndag; I oktober stänger vi utställningen för säsongen och öppnar åter i maj.",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
       "url": "https://www.destinationgotland.se/resa/",
       "org": "destinationgotland.se",
-      "vad": "På omkring tre timmar är du framme i Visby;  — Ordinarie tidtabell 2026/2027. Giltig 2026-08-16–2027-06-12, Visby busstation–Fårösund färjeläge 60 min (t.ex. 08.35–09.35);  — överfartstiden är sex minuter",
+      "vad": "Res från Nynäshamn eller Oskarshamn, På omkring tre timmar är du framme i Visby",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.faroframtid.se/faronatta",
+      "org": "faroframtid.se",
+      "vad": "Det startade som ett kvällsevenemang den tredje lördagen i september men har vuxit till att omfatta hela helgen; Hela Fårö håller öppet med gårdsbutiker, loppisar, affärer, caféer, restauranger, konserter, konstutställningar",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://farogarden.se/",
+      "org": "farogarden.se",
+      "vad": "boende på vandrarhemmet, Vi har lunchöppet",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -6922,14 +7057,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://gotland.com/article/bergman-and-faro/",
       "org": "gotland.com",
-      "vad": "Ingmar Bergman first came to Fårö on a stormy April day in 1960., as a possible location for Through a Glass Darkly, He had his house built not far from where Persona was filmed. He came to live and work there for almost 40 years., Ingmar Bergman died at the age of 89 at his home on Fårö and is buried in Fårö Church Cemetery., The meeting with the barren island on Gotland’s northern point was overwhelming. ;  — Resan med vägfärjan är avgiftsfri.",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://gotland.com/besoka-uppleva/upptack-norra-gotland/",
-      "org": "gotland.com",
-      "vad": "Färjan till Fårö går varje hel och halv timme från Fårösund året runt, Det går endast bussar på Fårö under sommartid, från mitten av juni till mitten av augusti.",
+      "vad": "Ingmar Bergman first came to Fårö on a stormy April day in 1960., as a possible location for Through a Glass Darkly, He had his house built not far from where Persona was filmed. He came to live and work there for almost 40 years., Ingmar Bergman died at the age of 89 at his home on Fårö and is buried in Fårö Church Cemetery., The meeting with the barren island on Gotland’s northern point was overwhelming.",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -6941,9 +7069,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://gotland.com/besoka-uppleva/upptack-norra-gotland/",
+      "org": "gotland.com",
+      "vad": "Färjan till Fårö går varje hel och halv timme från Fårösund året runt, Det går endast bussar på Fårö under sommartid, från mitten av juni till mitten av augusti.",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
       "url": "https://gotland.com/companies/bergmancenter/",
       "org": "gotland.com",
-      "vad": "Bergmancenter är ett kulturcentrum med utställningar, skaparverkstad, kafé och biograf., Varje sommar, veckan efter midsommar, arrangerar Bergmancenter Bergmanveckan;  — 2009 blev Bergmans fastigheter på ön ett konstnärsresidens, Bergmangårdarna, och är inte tillgängligt för allmänheten., Men i Bergmancenters VR-vandring kan du ändå besöka Bergmans hus!",
+      "vad": "Bergmancenter är ett kulturcentrum med utställningar, skaparverkstad, kafé och biograf., Varje sommar, veckan efter midsommar, arrangerar Bergmancenter Bergmanveckan",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -6957,7 +7092,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://gotland.com/companies/farogarden-bb-och-vandrarhem/",
       "org": "gotland.com",
-      "vad": "I vackra Fårö östra skola från 1850 huserar Fårögårdens mysiga B&B.;  — boende på vandrarhemmet, Vi har lunchöppet",
+      "vad": "I vackra Fårö östra skola från 1850 huserar Fårögårdens mysiga B&B.",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -6971,7 +7106,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://gotland.com/companies/farofarjan-tidtabell/",
       "org": "gotland.com",
-      "vad": "Turer utöver ordinarie avgångar (även nattetid) kan beställas per telefon.;  — Färjan till Fårö går varje hel och halv timme från Fårösund året runt",
+      "vad": "Turer utöver ordinarie avgångar (även nattetid) kan beställas per telefon.",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -6999,8 +7134,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://verktygsladan.gotland.com/companies/broa-kiosken-faro/",
       "org": "verktygsladan.gotland.com",
-      "vad": "Vid Broa Kiosken hittar du Fårö cykeluthyrning.;   — Badplatsen Ekeviken på Fårö är en cirka 900 meter lång, långgrund, sandstrand.;  — Badplatsen Norsta Aurar",
-      "last": "2026-09-27",
+      "vad": "Broa Kiosken Fårö, glass, take away-kaffe, kylda drycker, snabbmat",
+      "last": "2026-10-19",
       "myndighet": false
     }
   ],
@@ -7127,24 +7262,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
   ],
   "hano": [
     {
-      "url": "https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg-skargard/nogersund-hano/",
+      "url": "https://www.blekingetrafiken.se/reseinformation/skargardstrafik/",
       "org": "blekingetrafiken.se",
-      "vad": "Hanö är ett mycket populärt utflyktsmål med cirka 30 000 besökare årligen, Gå ombord på M/F Vitaskär i Nogersund och 25 minuter senare;  — Skyddsår: 2017, utvidgning 2024, sedan 1830-talet har ön haft en fast befolkning, Ön är ett restberg, som formades i ett tropiskt klimat för ett par hundra miljoner år sedan;  — Skyddet omfattar hela ön förutom Hanö läge och fyrområdet",
-      "last": "2026-09-27",
+      "vad": "Mellan Nogersund och Hanö finns skärgårdstrafik året runt. Gå ombord på M/F Vitaskär i Nogersund och 25 minuter senare befinner du dig på sköna Hanö.",
+      "last": "2026-10-19",
       "myndighet": true
     },
     {
-      "url": "https://www.blekingetrafiken.se/reseinformation/skargardstrafik/",
+      "url": "https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg-skargard/",
       "org": "blekingetrafiken.se",
-      "vad": "Mellan Nogersund och Hanö finns skärgårdstrafik året runt;  — Öppet dagligen under sommaren, Glasskiosken i hamnen håller öppet under högsäsong;  — Gästhamn är bemannad 1 april till 30 september",
-      "last": "2026-09-27",
+      "vad": "Gå ombord på M/F Vitaskär i Nogersund och 25 minuter senare är du framme på sköna Hanö.; Mellan den 1 september och 31 maj körs trafiken mellan Nogersund och Hanö som en båtpendel.; Under sommaren, när biljettkiosken i Nogersund är öppen, köper du alltid din biljett där före avgång.",
+      "last": "2026-10-19",
       "myndighet": true
     },
     {
       "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html",
       "org": "Länsstyrelsen Blekinge",
-      "vad": "Idag finns en av Sveriges största avenbokskogar på Hanös södra delar. Mot norr tar öppna gräsmarker, buskmarker och hällmarker vid, Det finns också dovhjortar på ön;  — På Hanös högsta berghäll (60 meters stigning från havet) står det 16 meter höga fyrtornet, som restes mellan 1904 och 1906, Det är en av de ljusstarkaste fyrarna i Östersjön",
-      "last": "2026-09-27",
+      "vad": "Ett antal välmarkerade vandringsstigar leder besökaren runt på ön och minskar risken att gå vilse.; Den geologiska stigen är en av flera leder på Hanö. Den tar dig från hamnen upp på bergets topp.; läs om isräfflor, klapperstensfält och drumliner på skyltar längs vägen. Du får också följa Östersjöns historia",
+      "last": "2026-10-19",
       "myndighet": true
     },
     {
@@ -7157,57 +7292,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://fiskybusiness.nu/vandrarhemmet-hanouml.html",
       "org": "fiskybusiness.nu",
-      "vad": "är ett litet vandrarhem med totalt 20 st bäddar fördelat på fem rum och två stugor, Sängkläder, handduk och städning av rummet ingår i priset, augusti 2026 -Maj 2027, bokningsförfrågan via mail",
-      "last": "2026-09-27",
+      "vad": "Vandrarhemmet Hanö är ett litet vandrarhem med totalt 20 st bäddar fördelat på fem rum och två stugor; I den stora byggnaden (gamla skolan) finns fem rum; Sängkläder, handduk och städning av rummet ingår i priset.; augusti - maj; bokningsförfrågan via mail; Vi hoppas att Vandrarhemmet kan komplettera med Hanös enda och Hanös bästa restaurang",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
       "url": "https://fiskybusiness.nu/hanouml-hamnkrog.html",
       "org": "fiskybusiness.nu",
-      "vad": "stängt för säsongen 2026, vi är Hanös enda restaurang, Fisk n Chips, Krögarspätta, Vi har  fullständiga rättigheter;  — Öppet dagligen under sommaren",
-      "last": "2026-09-27",
+      "vad": "vi är Hanös enda restaurang; Fisk n Chips; Krögarspätta; Fixar du inte fisk har vi även några vegetariska rätter och något för köttätaren.; därför har vi en egen barnmeny; Vi har fullständiga rättigheter",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
-      "url": "https://www.hano.nu/g%C3%B6ra/sev%C3%A4rdheter-33705523",
-      "org": "hano.nu",
-      "vad": "15 sjömän ur flottan fick sina gravar William Miller och Clifford Williams är två av dem, Det stora träkorset restes först 1973 i samband med att en engelsk fregatt besökte ön;  — På den norra delen finns en handikappvänlig stig som tar dig till Bönsäcken och",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.hano.nu/g%C3%B6ra/vandra-33709369",
-      "org": "hano.nu",
-      "vad": "Vandra på de väl utmärkta vandringslederna runt hela Hanö, På den södra sidan vandrar du på lite mer krävande stigar genom trolsk avenbokskog;  — Den geologiska stigen är en av flera leder på Hanö. Den tar dig från hamnen upp på bergets topp",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.hano.nu/g%C3%B6ra/bada-33709445",
-      "org": "hano.nu",
-      "vad": "I hamnen finns möjlighet att ta ett dopp från Giselas brygga och simma ut till flotten, Ca 5 minuters promenad norrut från hamnen finns en liten badstrand med brygga. Rekommenderas för barnfamiljer, På öns östra sida, hittar du klippbadet Vindhalla. Det tar ca 30 minuter att promenera dit",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.hano.nu/bo-33719234",
-      "org": "hano.nu",
-      "vad": "Fyrvaktarbostaden ägs numera av Hanö Hamn- och Byalag, Där finns två lägenheter att hyra med två rum och kök. I varje lägenhet finns 4 bäddar, Lägenheterna hyrs ut veckovis, långhelg eller kortvecka",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.hano.nu/hamnen-33705539",
-      "org": "hano.nu",
-      "vad": "Gästplatser: 75 i hela hamnen utom i färjeläget dagtid. Det går inte att boka båtplatser, Hamndjup: 2-4 m, Gästhamn är bemannad 1 april till 30 september. Servicebyggnad med bastu, duschar, toaletter och tvättmaskin. Latrintömning erbjudes. Ingen försäljning av bensin eller diesel., Förtöjning: Fast akterförtöjning, Hamnen drivs av Hanö Hamn- och Byalag;  — WIFI is available in the harbor",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.hano.nu/%C3%A4ta-33688902",
-      "org": "hano.nu",
-      "vad": "I hamnen finns en liten lanthandel som har öppet under högsäsong, Här kan man köpa basala livsmedel och hushållprodukter samt nybakade frallor på morgonen;  — Man får inte samla döda grenar att elda, så ta med dig egen ved eller kol om du vill grilla",
-      "last": "2026-09-27",
+      "url": "https://www.visitblekinge.se/en/guest-harbour-hano",
+      "org": "visitblekinge.se",
+      "vad": "Guest harbor with 74 berths in Hanö Harbor.; Hanö Harbor has a Blue Flag.; WIFI is available in the harbor as well as shower and laundry facilities for boat guests.; There is a sauna to rent a short distance from the harbor office.",
+      "last": "2026-10-19",
       "myndighet": false
     }
   ],
@@ -7507,7 +7607,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://ilandskrona.se/besoka/ven/",
       "org": "ilandskrona.se",
       "vad": "Ventrafikens färja från Landskrona går året om och tar endast 30 minuter.",
-      "last": "2026-09-27",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -7527,8 +7627,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://ilandskrona.se/besoka/ven/tychobrahe-museet/besoka-museet/",
       "org": "ilandskrona.se",
-      "vad": "September, lördagar och söndagar klockan 09.30 — 14.00; Tillägg för entré till observatoriet Stjärneborg: 20 kr; I visningen ingår inte föreställningen i det underjordiska observatoriet Stjärneborg.",
-      "last": "2026-09-27",
+      "vad": "Öppettider 2026; September, lördagar och söndagar klockan 09.30 — 14.00; Tillägg för entré till observatoriet Stjärneborg; I visningen ingår inte föreställningen i det underjordiska observatoriet Stjärneborg.",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -7548,8 +7648,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.norreborgshamn.se/",
       "org": "norreborgshamn.se",
-      "vad": "Norreborgs Hamn — Gästundersökning 2026; Hamnen är öppen hela året.; Från och med den 1 maj gäller taxa för högsäsong.; Även i år kommer det att finnas en kioskvagn; El finns, men kommer att stängas av på piren.; Dusch och toalett finns i reducerad omfattning.; Vattenposter stängs av när temperaturen medför risk för frysning.; den 39:e i ordningen i gästhamnens historia",
-      "last": "2026-09-27",
+      "vad": "Hamnen är öppen hela året. Under tiden 11 oktober 2025 till 15 april 2026 har vi dock begränsad service; El finns, men kommer att stängas av på piren.; Dusch och toalett finns i reducerad omfattning.; Från och med den 1 maj gäller taxa för högsäsong.; Även i år kommer det att finnas en kioskvagn",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -7563,7 +7663,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://ventrafiken.se/tidtabell/",
       "org": "ventrafiken.se",
       "vad": "Överfarten tar cirka 30 minuter; Skeppsbron — Bäckviken; Gäller fr.o.m. 2022-01-01 t.o.m. 2026-12-31; Gäller fr.o.m. 2026-06-27 t.o.m. 2026-08-16 . Tabellen: Landskrona→Ven 06:05 (ej helg), 08:20, 10:00, 11:30, 14:15, 16:00, 17:35, 20:15, 21:30; Ven→Landskrona 05:30 (ej helg), 06:50, 09:10, 10:40, 12:40, 15:00, 16:45, 18:15, 20:55; sommaren 27/6–16/8 sex extra turer i vardera riktningen.",
-      "last": "2026-09-27",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -8055,8 +8155,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/",
       "org": "kungalv.se",
-      "vad": "Färjan mellan Koön och Marstrand kallas för Marstrandsfärjan, Endast fordon i nyttotrafik får färjas över till Marstrandsön, Inga enkelbiljetter som är köpta hos Västtrafik gäller på marstrandsfärjan, Alla biljetter gäller tur och retur till och från Marstrandsön",
-      "last": "2026-09-27",
+      "vad": "bekräftar att färjan mellan Koön och Marstrand drivs av kommunen och att biljetter och dispensansökningar hanteras där",
+      "last": "2026-10-19",
       "myndighet": true
     },
     {
@@ -8083,7 +8183,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6302__0__LINE__20251214__20261212__25ea94b6-c06e-4190-822d-a22d774d80ee__1%2C0__2635889.pdf",
       "org": "Västtrafik (tidtabell)",
-      "vad": "302 Kungälv–Ytterby–Marstrand, Marstrands färjeläge, Gäller 14 dec 2025 - 12 dec 2026, C Går endast 19 juni - 16 aug. . Restider räknade ur tabellen (Ytterby station → Marstrands färjeläge 29 min, Kungälv resecentrum → 42 min); måndag–fredag dagtid avgång från Kungälv varje timme (08.55, 09.55, 10.55 …), lördag–söndag 19 juni–16 augusti extra turer så att bussen går varje halvtimme. Linjen går inte från Göteborg, vilket den tidigare texten påstod.",
+      "vad": "302 Kungälv–Ytterby–Marstrand, Marstrands färjeläge, Gäller 14 dec 2025 - 12 dec 2026",
       "last": "2026-09-27",
       "myndighet": true
     },
@@ -8095,16 +8195,37 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://carlsten.se/carlstens-soldathotell/",
+      "org": "carlsten.se",
+      "vad": "Bo innaför murarna på Marstrands största sevärdhet; I dessa 1700 & 1800-talsbyggnader övernattar ni; Rummen på Carlstens Soldathotell är alltifrån enbäddsrum till åttabäddsrum i Kommendanthuset och Donjonen; Soldathotellet - Öppet året om!",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
       "url": "https://carlsten.se/carlstens-vaffelcafe/",
       "org": "carlsten.se",
-      "vad": "Du hittar oss vid fästningens entré och du behöver inte köpa entré till fästningen för att komma till oss, Våfflor, Sallader, Pajer, Smörgåsar, Tack för säsongen 2026, Vi öppnar igen till påsken 2027",
-      "last": "2026-09-27",
+      "vad": "Du hittar oss vid fästningens entré och du behöver inte köpa entré till fästningen för att komma till oss; Våfflor, Sallader, Pajer, Smörgåsar; Tack för säsongen 2026; Vi öppnar igen till påsken 2027.",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://carlsten.se/julbord/",
+      "org": "carlsten.se",
+      "vad": "Marstrands största julbordsbuffe på Carlstens fästning.; fredag 27 nov; lördag 19 dec; söndag 13 dec; Vi möter alla gäster vid färjeläget på Marstrandsön för gemensamt fackeltåg (om vädret tillåter) upp till Kungsporten; upp till Riddarsalen",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://carlsten.se/mat-fest-konferens/",
+      "org": "carlsten.se",
+      "vad": "Riddarsalen, Kruttornet, Batterisalen, Vapenhuset och Lasse-Majas kök; Konferens- & event öppet året om ; samma sida listar Våffelcaféet under Mat, Fest & Konferens, och caféet skriver Thomas, Nina & Sandra med personal, julbordet Thomas & Nina Berndtsson",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
       "url": "https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026",
       "org": "gkss.se",
-      "vad": "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand ;  — Inga enkelbiljetter som är köpta hos Västtrafik gäller på marstrandsfärjan ;  — Ordinarie guidade turer nedan ges på svenska och ingår i",
+      "vad": "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -8137,6 +8258,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.marstrandsfarja.se/fordonstrafik/vad-ar-nyttotrafik",
+      "org": "marstrandsfarja.se",
+      "vad": "Till Marstrandsön får endast överföras fordon i nyttotrafik.",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.marstrandsfarja.se/",
+      "org": "marstrandsfarja.se",
+      "vad": "Biljetter gäller tur och retur från färjeläget på Koön till Marstrandsön.; Västtrafiks enkelbiljetter gäller INTE på färjan!",
+      "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
       "url": "https://www.marstrandsgasthamn.se/sv/",
       "org": "marstrandsgasthamn.se",
       "vad": "Marstrands gästhamn och dess bryggor är beläget på den sydöstra delen av ön med 275 gästplatser varav 98 bokningsbara",
@@ -8146,7 +8281,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.marstrandsgasthamn.se/sv/Gasthamn",
       "org": "marstrandsgasthamn.se",
-      "vad": "El och vatten ingår i serviceavgiften och finns på alla bryggor",
+      "vad": "El och vatten ingår i serviceavgiften och finns på alla bryggor, Kod till duschar och toalett, Tvättmaskiner och torktumlare finner du i vår tvättstuga på baksidan gästhamnsbyggnaden, Bunkring av bränsle är förbjuden inom området kring gästhamnen, Det är totalt förbjudet att grilla på båten, bryggor och i området kring dessa, Det råder badförbud i hamnområdet",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -8174,15 +8309,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.vastsverige.com/en/kungalv/products/marstrand/",
       "org": "vastsverige.com",
-      "vad": "walk around the whole of Marstrandsön, or take a shorter walk through Smugglarrännan, Take a break out by Skallens lighthouse and admire the enchanting area where the Skagerrak and Kattegatt meet, On Koön there are well-marked footpaths, with three levels of difficulty",
-      "last": "2026-09-27",
+      "vad": "Marstrand was founded in the 13th century by the Norwegian king, Håkon Håkonsson, and did not become Swedish until 1658.; by the 16th century it was the centre of the herring industry in Europe.; the stocks of herring made the difference between prosperity and poverty for the inhabitants of Marstrand",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
       "url": "https://www.vastsverige.com/kungalv/marstrand/",
       "org": "vastsverige.com",
       "vad": "Sommarens seglingshöjdpunkt är när Match Cup Sweden avgörs första veckan i juli, Längs bryggorna i Sveriges största gästhamn ligger båtarna tätt",
-      "last": "2026-09-27",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -9830,7 +9965,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster",
       "org": "sfv.se",
       "vad": "Arbetet med att binda ihop landets kuster med fyrar leddes av fyringenjör Gustav von Heidenstam vid Lotsverket, Pater Noster började lysa den 1 november 1868, Pater Nosterskären består av 97 öar som breder ut sig från Tjörns sydvästra udde och ner i höjd med Marstrand",
-      "last": "2026-09-27",
+      "last": "2026-10-19",
       "myndighet": true
     },
     {
@@ -9843,8 +9978,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.head4waves.se/",
       "org": "head4waves.se",
-      "vad": "Under högsäsongen erbjuder vi fasta dagsturer till den fantastiska fyrplatsen Pater Noster",
-      "last": "2026-09-27",
+      "vad": "Under högsäsongen erbjuder vi fasta dagsturer till den fantastiska fyrplatsen Pater Noster.; Tider och upphämtning; 1 Juni - 30 Augusti; Avgång från Marstrand:; Avgång från Skärhamn:",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -9865,7 +10000,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://paternoster.se/fragor-svar",
       "org": "paternoster.se",
       "vad": "Om du inte är hotellgäst är du välkommen att besöka fyren och den tillhörande utställningen, där entré betalas på plats, Övriga byggnader på ön är reserverade för vår verksamhet och våra hotellgäster, Nej, det går ingen reguljär färja till Pater Noster, Alla våra boendepaket på Pater Noster inkluderar RIB-transport tur och retur från Marstrand eller Rönnäng",
-      "last": "2026-09-27",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -9879,7 +10014,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://paternoster.se/ta-dig-hit",
       "org": "paternoster.se",
       "vad": "Restid ca 20 min från både Marstrand söder ifrån och Rönnäng norr ifrån., Hemresa är kl 10.30 till samma hamn som vid utresa., Bakom Marstrands färjeläge, nedanför Coop på Koön, Stansvikstappen, sjötapp i Rönnäng",
-      "last": "2026-09-27",
+      "last": "2026-10-19",
       "myndighet": false
     },
     {
@@ -9915,85 +10050,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "vastsverige.com",
       "vad": "Här väntar tre internationellt kända besöksmål: Skulptur i Pilane, Nordiska Akvarellmuseet och Pater Noster",
       "last": "2026-09-27",
-      "myndighet": false
-    }
-  ],
-  "vinga": [
-    {
-      "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html",
-      "org": "Länsstyrelsen Västra Götaland",
-      "vad": "bildat 1987, cirka 559 hektar, \"Klipphällar möter buskiga snår av slån, björnbär, nypon och vinbär\", sparris, västkustarv, strandkål och marviol, gök och näktergal, Koholmen som häckningsplats",
-      "last": "2026-09-16",
-      "myndighet": true
-    },
-    {
-      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vinga",
-      "org": "minkarta.lantmateriet.se",
-      "vad": "Lantmäteriet Min Karta, sökning \"Vinga\" → Vinga | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
-      "last": "2026-09-29",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/vinga--goteborgarnas-fyr/",
-      "org": "Sjöfartsverket",
-      "vad": "Göteborgarnas fyr — tornet 29 meter högt och ritat av fyringenjör Emil Karlsson, mittdelen göts i betong av Skånska Cementgjuteriet och \"Tornet kläddes med porfyrit bruten på Vinga\", automatisering 1975 och avbemannad fyrplats, kvarvarande lotsning, utställningen \"Fyrplats Vinga\"",
-      "last": "2026-09-16",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.goteborg.com/guider/ta-dig-till-skargarden",
-      "org": "Göteborg & Co",
-      "vad": "Vinga i Göteborgs yttre skärgård",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.stromma.com/sv-se/goteborg/utflykter/guidad-batutflykt-till-vinga/",
-      "org": "Strömma",
-      "vad": "avgång Lilla Bommens hamn, cirka 1 timme 15 minuter enkel väg, två timmar på Vinga",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.vastsverige.com/visitockero/produkter/on-vinga/",
-      "org": "Västsverige/Visit Öckerö",
-      "vad": "cirka fyra timmar på ön med turbåten från Hönö Klåva, kiosk och grillplatsen \"Brända Fläsket\"",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://vinga.nu/",
-      "org": "Winga Vänner",
-      "vad": "Evert Taube tillbringade sin barndom här på Vinga eftersom pappan, Carl Gunnar Taube var fyrvaktare mellan 1889 och 1905",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://vinga.nu/turbatar/",
-      "org": "Winga Vänner",
-      "vad": "Strömma från Lilla Bommen, Kungsö från Stenpiren, Silvana, Hönö Båtturer och Kastor från Hönö Klåva, Emma från Fotö",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://vinga.nu/uthyrning-av-stugor/",
-      "org": "Winga Vänner",
-      "vad": "Biskopsgården och Fyrmästarbostaden hyrs ut av föreningen medan \"Båken hyres ut endast för ceremonier som bröllop och dop\", Fyrfolkets By drivs av Vinga Event",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://vinga.nu/uthyrning/",
-      "org": "Winga Vänner",
-      "vad": "Biskopsgården med 7 rum och 10 bäddar plus 2 extrabäddar, Fyrmästarbostaden med 3 rum och 7 bäddar, uthyrning till föreningens medlemmar; Fyrfolkets By sköts av Vinga Event",
-      "last": "2026-09-16",
-      "myndighet": false
-    },
-    {
-      "url": "https://vinga.nu/gasthamn/",
-      "org": "Winga Vänner",
-      "vad": "plats för cirka 30 båtar av normalstorlek, max 40 fot och max djup 2,5 meter, \"du är alltid välkommen med egen båt till Vinga, året runt\", toaletter, el, soprum, grillplatsen \"Brända Fläsket\" och kiosk",
-      "last": "2026-09-16",
       "myndighet": false
     }
   ],

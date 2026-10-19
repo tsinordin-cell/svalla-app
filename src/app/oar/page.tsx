@@ -38,7 +38,7 @@ const REGION_LABELS: Record<string, string> = {
   mellersta: 'Mellersta skärgården',
   södra: 'Södra skärgården',
   bohuslan: 'Bohuslän',
-  goteborg: 'Göteborgs södra skärgård',
+  goteborg: 'Göteborgs skärgård',
   ovriga: 'Övriga Sverige',
 }
 
@@ -47,7 +47,7 @@ const REGION_TAGLINES: Record<string, string> = {
   mellersta: 'Det klassiska skärgårdslivet — Sandhamn, Möja, Finnhamn.',
   södra: 'Söderskärgården — Utö, Nåttarö, Ornö, Landsort.',
   bohuslan: 'Västkusten — Marstrand, Smögen, Kosterhavet.',
-  goteborg: 'Styrsöbolaget från Saltholmen — Brännö, Styrsö, Vrångö, Donsö.',
+  goteborg: 'Brännö, Styrsö, Vrångö och Donsö i söder, Öckerö och Rörö i norr och Vinga, Göteborgs västligaste punkt.',
   ovriga: 'Höga Kusten, Gotland, Öland och mer — Sverige bortom Stockholmsskärgården.',
 }
 
