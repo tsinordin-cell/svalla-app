@@ -8446,8 +8446,9 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "Till Nogersund kan du ta dig med buss från Sölvesborg eller med bil."; "Närmaste busshållplats är Nogersunds hamn som trafikeras av linje 2."; "Ta av från E22:an vid trafikplats Listerlandet (47) och följ väg 123 (Hälleviksvägen) till Nogersund." (läst 2026-10-19)
       { method: 'Buss eller bil till Nogersund', from: 'Sölvesborg', time: 'varierar', desc: 'Buss från Sölvesborg till hållplatsen Nogersunds hamn, som trafikeras av linje 2. Med bil: av från E22 vid trafikplats Listerlandet (47) och väg 123 till Nogersund.', icon: '🚌' },
       // KÄLLA: https://www.visitblekinge.se/en/guest-harbour-hano — "Guest harbor with 74 berths in Hanö Harbor." (läst 2026-10-20)
-      // Rättad 2026-10-20: antal platser borttaget. Visit Blekinge skriver 74, Sölvesborgs kommun 75 ("Gästhamn 75 platser öppet året runt").
-      { method: 'Egen båt', from: 'Valfri hamn', time: 'varierar', desc: 'Hanö hamn har gästhamn.', icon: '⛵' },
+      // KÄLLA: https://www.hano.nu/hamnen-33705539 — hamnens egen sida (Hanö Hamn- och Byalag driver hamnen): "Gästplatser: 75 i hela hamnen utom i färjeläget dagtid. Det går inte att boka båtplatser." (läst 2026-10-20)
+      // KÄLLA: https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html — "Gästhamn 75 platser öppet året runt." (läst 2026-10-20). Visit Blekinge skriver 74; hamnens egen uppgift gäller.
+      { method: 'Egen båt', from: 'Valfri hamn', time: 'varierar', desc: 'Gästhamnen har 75 platser i hela hamnen utom i färjeläget dagtid, och platserna går inte att boka.', icon: '⛵' },
     ],
     transport_meta: {
       // UPPSKATTNING: from_city_min 360 = tåg Stockholm–Sölvesborg (ej kontrollerat mot tidtabell) + buss till Nogersund + båt 25 min. Tidigare 240 hade ingen källa.
@@ -8468,7 +8469,8 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.visitblekinge.se/en/guest-harbour-hano — "WIFI is available in the harbor as well as shower and laundry facilities for boat guests."; "There is a sauna to rent a short distance from the harbor office." (läst 2026-10-20)
       // KÄLLA: https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html — "Gästhamn"; "Servicebyggnad med bastu, duschar, toaletter och tvättmaskin." (läst 2026-10-20)
       // Rättad 2026-10-20: antal platser borttaget (74 hos Visit Blekinge, 75 hos Sölvesborgs kommun). Blå flagg borttagen: Visit Blekinges sida är odaterad och gäller inte säkert 2026.
-      { name: 'Hanö gästhamn', desc: 'Gästhamn i Hanö hamn med servicebyggnad: dusch, toalett och tvätt för båtgäster, wifi i hamnen och en bastu att hyra en bit från hamnkontoret.', service: ['dusch', 'tvätt', 'wifi', 'bastu'] },
+      // KÄLLA: https://www.hano.nu/hamnen-33705539 — "Gästplatser: 75 i hela hamnen utom i färjeläget dagtid."; "Gästhamn är bemannad 1 april till 30 september."; "Ingen försäljning av bensin eller diesel." (läst 2026-10-20)
+      { name: 'Hanö gästhamn', desc: 'Gästhamn med 75 platser, bemannad 1 april till 30 september. Servicebyggnad med dusch, toalett och tvätt för båtgäster, wifi i hamnen och en bastu att hyra en bit från hamnkontoret. Ingen försäljning av bensin eller diesel.', spots: 75, service: ['dusch', 'tvätt', 'wifi', 'bastu'] },
     ],
     restaurants: [
       // KÄLLA: https://fiskybusiness.nu/hanouml-hamnkrog.html — "vi är Hanös enda restaurang"; "Fisk n Chips"; "Krögarspätta"; "Fixar du inte fisk har vi även några vegetariska rätter och något för köttätaren."; "därför har vi en egen barnmeny"; "Vi har fullständiga rättigheter" (läst 2026-10-19)

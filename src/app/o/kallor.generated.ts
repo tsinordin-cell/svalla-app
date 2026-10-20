@@ -7360,6 +7360,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.hano.nu/hamnen-33705539",
+      "org": "hano.nu",
+      "vad": "hamnens egen sida (Hanö Hamn- och Byalag driver hamnen): \"Gästplatser: 75 i hela hamnen utom i färjeläget dagtid. Det går inte att boka båtplatser.\"",
+      "last": "2026-10-20",
+      "myndighet": false
+    },
+    {
       "url": "https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html",
       "org": "solvesborg.se",
       "vad": "En barnvänlig strand finner du cirka 5 minuters promenad norrut från hamnen.; Klippbadet Vindhalla finner du på öns östra sida.",
