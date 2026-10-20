@@ -48,7 +48,7 @@ update restaurants set
 --   (Skärgårdsstiftelsen) "pl 7, 764 54 Arholma", kartlänk destination=59.8499691,19.1085929
 --   Samma sida listar "Arholma Norra Brygga Ångbåtsbrygga" på 59.85123,19.10762, alltså cirka 150 m bort.
 update restaurants set
-  core_experience = 'På Arholma har det funnits en dansbana sedan beredskapstiden i början av 1940-talet. I dag är det en restaurang med stort kök och bar, nära Norra bryggan.',
+  core_experience = 'På Arholma har det funnits en dansbana sedan beredskapstiden i början av 1940-talet. I dag är det en restaurang med stort kök och bar.',
   facilities = array_remove(facilities, 'guest_dock'),
   tags = array_remove(tags, 'legendar'),
   menu = null,
