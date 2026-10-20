@@ -312,7 +312,8 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.sandhamn.com/en/hitta-hit — "Year round — including winter", "Take bus 433 from Slussen or drive to Stavsnäs Vinterhamn" (läst 2026-09-27)
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — "Stavsnäs vinterhamn", Slussen 10.15 → Stavsnäs vinterhamn 11.06 (läst 2026-09-27)
       // Rättad 2026-10-20: snabbaste turen i h16.pdf tar 38 min (Stavsnäs 20.12, Sandhamn 20.50), inte 40.
-      { method: 'Waxholmsbåt från Stavsnäs', from: 'Stavsnäs vinterhamn', time: '38 till 65 min', desc: 'Året runt med Waxholmsbolagets linje 16, flera turer om dagen. Till Stavsnäs tar du SL-buss 433 från Slussen, ungefär en timme, eller bil.', icon: '⛴' },
+      // Kontrollant 2026-10-20: längsta turen i h16.pdf är lördag och söndag 14.10 till 15.37 (87 min).
+      { method: 'Waxholmsbåt från Stavsnäs', from: 'Stavsnäs vinterhamn', time: '38 till 87 min', desc: 'Året runt med Waxholmsbolagets linje 16, flera turer om dagen. Till Stavsnäs tar du SL-buss 433 från Slussen, ungefär en timme, eller bil.', icon: '⛴' },
       // KÄLLA: Stavsnäs Båttaxi, Sandhamnslinjen, https://battaxi.se/sandhamnslinjen-2/ — "Sandhamnslinjen är en direkt reguljär tur som tar dig mellan Stavsnäs och Sandhamn på endast 30 minuter"; "Bokade biljetter har alltid förtur, men det går även bra att köpa biljett direkt på båten" (läst 2026-09-21)
       { method: 'Sandhamnslinjen (Stavsnäs Båttaxi)', from: 'Stavsnäs', time: '30 min', desc: 'Snabbast. Direktbåt från Stavsnäs, egen biljett – förbokade resenärer har förtur, men du kan också köpa ombord.', icon: '🚤', url: 'https://battaxi.se/sandhamnslinjen-2/' },
       // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — "30/4 - 4/6 a Sat-Sun Friday"; "7/9 - 27/9 Sat-Sun"; "Strandvägen - kajplats 14 10:00"; "Sandhamn 12:30" (läst 2026-10-20)
@@ -410,7 +411,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/s15.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026": Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 (läst 2026-09-27)
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — Stavsnäs 20.12, Sandhamn 20.50z; Stavsnäs 07.00, Sandhamn 08.05z (läst 2026-10-20)
       // KÄLLA: https://battaxi.se/sandhamnslinjen-2/ — "på endast 30 minuter" (läst 2026-09-27)
-      'Waxholmsbåten från Strömkajen (linje 15) gick 2026 bara 19 juni till 16 augusti och tog 3 h 45 min till 4 h 55 min, och den säsongen är slut. Året runt går båtarna från Stavsnäs: 38 till 65 minuter med Waxholmsbolaget eller 30 minuter med Sandhamnslinjen.',
+      'Waxholmsbåten från Strömkajen (linje 15) gick 2026 bara 19 juni till 16 augusti och tog 3 h 45 min till 4 h 55 min, och den säsongen är slut. Året runt går båtarna från Stavsnäs: 38 till 87 minuter med Waxholmsbolaget, beroende på tur, eller 30 minuter med Sandhamnslinjen.',
       // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 (text från Värmdö kommun) — "trädklädda sanddynor", "måste du åka till Gotska Sandön eller Fårö" (läst 2026-09-27)
       'Sandön består till stor del av trädklädda sanddyner. Enligt Värmdö kommun finns motsvarigheten i den här delen av landet bara på Gotska Sandön och Fårö.',
       // KÄLLA: https://ksss.se/KSSS/historia/ — "Kungl. Svenska Segel Sällskapet" (läst 2026-09-30)
@@ -3707,9 +3708,9 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://ytterbygruva.se/ — "Söndag 7 juni kl 10.30", "Lördag 5 september kl 10.30" (läst 2026-09-27)
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h682.pdf — "Giltig 17 augusti–12 december 2026" (läst 2026-09-27)
       bestReason: 'Ytterby gruvas allmänna visningar låg 2026 mellan maj och början av september (bland annat 7 juni och 5 september), och buss 682 går hela året.',
-      // Rättad 2026-10-20: januari till mars och december var 'off' trots att ön är öppen året runt och bussen går alla dagar. Ändrat till 'limited'.
+      // Rättad 2026-10-20: december var 'off' fast buss 682 går alla dagar enligt tidtabellen (giltig till 12 december). Januari till mars ligger utanför tabellen och är oförändrade.
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h682.pdf — "Giltig 17 augusti–12 december 2026"; "Måndag–fredag"; "Lördag, söndag och helgdag" (läst 2026-10-20)
-      months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
+      months: ['off','off','off','limited','open','open','peak','peak','open','open','limited','limited'],
     },
 
   },
@@ -6151,7 +6152,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.sandvikens-fiskelage-ulvon.se/ — "Fiskeläget är ett kulturreservat sedan 2005."; "Här har du tillgång till en fantastisk sandstrand"; "Den transfer som ingår i stugpriset gäller t/r Fjären-Sandviken för din ordinarie ankomst/avresedag, lördag eller onsdag under perioden 27/6 - 8/8 2026." (läst 2026-10-20)
       // KÄLLA: https://www.sandvikens-fiskelage-ulvon.se/tjanster/ — "Transfer t/r Fjären-Sandviken enbart MF Ulvöns turer."; "Sandvikens Fiskeläge är ett kulturreservat och därav råder det tältningsförbud i hela området" (läst 2026-10-20)
       // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/kulturmiljoer/sandvikens-fiskelage.html — "Sandvikens fiskeläge är beläget på den nordligaste delen av norra Ulvön. Fiskeläget ligger vid en öppen vik med sandstrand"; "Stugorna hyrs ut sommartid och området är öppet för allmänheten." (läst 2026-10-20)
-      { name: 'Sandvikens fiskeläge', type: 'Stuguthyrning', desc: 'Uthyrning av 28 stugor sommartid i kulturreservatet Sandvikens fiskeläge, längst norrut på Norra Ulvön vid en vik med sandstrand. Det finns fiskestugor och sjöbodar vid stranden och skogsstugor i skogsbrynet. Alla stugor har spis, kyl och frys, men i regel inget rinnande vatten, och dusch och toalett finns i två servicehus. Ta med sänglinne och handdukar. Sommaren 2026 ingick transfer mellan Fjären och Sandviken med M/F Ulvöns turer på de ordinarie ankomst och avresedagarna, 27 juni till 8 augusti. Tältning är inte tillåten i reservatet.', websiteUrl: 'https://www.sandvikens-fiskelage-ulvon.se/' },
+      { name: 'Sandvikens fiskeläge', type: 'Stuguthyrning', desc: 'Uthyrning av 28 stugor sommartid i kulturreservatet Sandvikens fiskeläge, längst norrut på Norra Ulvön vid en vik med sandstrand. Det finns fiskestugor och sjöbodar vid stranden och skogsstugor i skogsbrynet. Alla stugor har spis, kyl och frys, men i regel inget rinnande vatten, och dusch och toalett finns i två servicehus. Ta med sänglinne och handdukar. Sommaren 2026 ingick transfer mellan Fjären och Sandviken med M/F Ulvöns turer på de ordinarie dagarna för ankomst och avresa, 27 juni till 8 augusti. Tältning är inte tillåten i reservatet.', websiteUrl: 'https://www.sandvikens-fiskelage-ulvon.se/' },
     ],
     getting_there: [
       // KÄLLA: https://www.hogakusten.com/sv/mf-ulvon — "Färjan avgår året runt och extra frekvent under sommarmånaderna från kajen i Köpmanholmen"; "Sväng av E4 vid Bjästa 18 km S om Örnsköldsvik och följ skyltningen mot Köpmanholmen och Ulvön" (läst 2026-09-27)
@@ -6175,7 +6176,7 @@ export const ISLANDS: Island[] = [
       // Rättad 2026-10-19: perioden är 15 juni till 16 augusti enligt turlistan, inte hela juni till augusti. Säsongen 2026 är slut.
       // Rättad 2026-10-20: restiden följer nu rederiets egen turlista (45 min från Mjällomslandet, 2 h från Ullånger), och parkeringen förtydligad. Höga Kustens två sidor ger olika besked om Mjällomslandet, så bara rederiets uppgift används.
       // KÄLLA: https://hkship.se/pdf/turlista.pdf — "Fri parkering i Ullånger, Docksta och Barsta"; "ULVÖN 2026"; "Dagliga turer med m/s Kusttrafik"; "15 juni – 16 augusti"; "09.30 Ullånger"; "10.45 Mjällomslandet"; "11.30 Ulvöhamn" (läst 2026-10-20)
-      { method: 'Höga Kusten-båtarna', from: 'Ullånger, Docksta eller Mjällomslandet', time: '45 min till 2 h beroende på hamn', desc: 'Dagliga turer med m/s Kusttrafik, byggd 1908. År 2026 gick de 15 juni till 16 augusti, och säsongen är slut. Turen startar i Ullånger och går via Docksta och Mjällomslandet. Rederiet anger fri parkering i Ullånger och Docksta, men inte i Mjällomslandet.', icon: '⛴', url: 'https://www.hkship.se/' },
+      { method: 'Höga Kusten-båtarna', from: 'Ullånger, Docksta eller Mjällomslandet', time: '45 min till 2 h beroende på hamn', desc: 'Dagliga turer med m/s Kusttrafik, byggd 1908. År 2026 gick de 15 juni till 16 augusti, och säsongen är slut. Turen startar i Ullånger och går via Docksta och Mjällomslandet. Rederiet anger fri parkering i Ullånger och Docksta.', icon: '⛴', url: 'https://www.hkship.se/' },
     ],
     harbors: [
       // KÄLLA: https://www.hogakusten.com/sv/gasthamn-ulvo-hotell — "har i dag cirka 70 gästplatser alla med tillgång till färskvatten och el"; "ett djup på fyra meter och en nyrenoverad servicebyggnad med toaletter, duschar, kök och tvättstuga"; "Ett stenkast bort finns även handelsbod och sjömack med diesel, och bensin"; "Bastu" (läst 2026-09-27)
@@ -6979,7 +6980,7 @@ export const ISLANDS: Island[] = [
       bestReason: 'Båtarna går och gästhamnen är öppen året runt. Början av juni och september ligger utanför gästhamnens högsäsong (15 juni–15 augusti).',
       // KÄLLA: https://donsohamn.se/ — "Utöver dessa finns det lediga platser markerade med gröna skyltar. Är det en röd skylt innebär det att platsen används av någon annan." (läst 2026-09-27)
       warning: 'Gästhamnen har cirka 100 gästplatser. Andra lediga platser är märkta med grön skylt – en röd skylt betyder att platsen används.',
-      months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
+      months: ['off','off','off','limited','open','open','peak','peak','open','open','limited','limited'],
     },
   },
   {
