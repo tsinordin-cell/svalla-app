@@ -355,7 +355,8 @@ export const HANTVERKARE: Hantverkare[] = [
     epost: 'karl@hhmarin.se',
     webb: 'https://hhmarin.se',
     orgnr: '556711-6982',
-    oar: ['moja', 'runmaro', 'sandhamn'],
+    // Sandhamn borttagen 2026-10-20: hhmarin.se gick inte att läsa vid granskningen, så att de arbetar på Sandhamn kunde inte bekräftas.
+    oar: ['moja', 'runmaro'],
     kalla: { niva: 'egen-sajt', url: 'https://hhmarin.se', last: '2026-09-22' },
     verifierad: false,
     noteringar:
