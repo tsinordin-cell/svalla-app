@@ -7,7 +7,7 @@ import Vidareklick from '@/components/Vidareklick'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import IslandPlacesList from '@/components/IslandPlacesList'
-import { getIslandPlaces } from '@/lib/islandPlaces'
+import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -76,8 +76,12 @@ export default async function IslandAccommodationPage({ params }: Props) {
   // Booking.com: lägg till &aid=AFFILIATE_ID
   // Airbnb: lägg till ?s_af=AFFILIATE_TOKEN
   const known = new Set(island.accommodation.map(a => a.name.toLowerCase()))
-  const dbStays = (await getIslandPlaces(island, ['hotel'], { extraKm: 0.5 }))
-    .filter(p => !known.has(p.name.toLowerCase()))
+  const dbStays = utanDubbletter(
+    (await getIslandPlaces(island, ['hotel'], { extraKm: 0.5 }))
+      .filter(p => !known.has(p.name.toLowerCase())),
+    island.accommodation.map(a => a.name),
+    island.name,
+  )
 
   const bookingComUrl = `https://www.booking.com/searchresults.sv.html?ss=${encodeURIComponent(island.name)}`
   const airbnbUrl = `https://www.airbnb.com/s/${encodeURIComponent(island.name)}--Sverige/homes`
@@ -187,7 +191,7 @@ export default async function IslandAccommodationPage({ params }: Props) {
             Sök och boka direkt
           </h2>
           <p style={{ fontSize: 13, color: 'var(--txt2)', margin: '0 0 14px', lineHeight: 1.55 }}>
-            Jämför priser och tillgänglighet hos de stora bokningssajterna:
+            Sök fler boenden hos de stora bokningssajterna:
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <a href={bookingComUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>

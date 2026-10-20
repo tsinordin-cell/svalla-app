@@ -133,6 +133,8 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
         }}>
           Nästa avgångar till {islandName}
         </h2>
+        {/* Märket visades före laddning, även på öar utan avgångar (granskning 2026-10-19). */}
+        {!loading && !error && data && data.trips.length > 0 && (
         <span style={{
           background: 'rgba(74, 222, 128, 0.20)',
           color: '#9be59c',
@@ -143,6 +145,7 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
         }}>
           Nås med kollektivtrafik
         </span>
+        )}
       </div>
 
       {loading && <Skeleton />}

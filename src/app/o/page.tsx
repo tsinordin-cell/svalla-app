@@ -15,7 +15,8 @@ const regions = [
   // KÄLLA: Länsstyrelsen Stockholm — Utö (1974), Nåttarö (2008), Fjärdlång (1986) är naturreservat, Skärgårdsstiftelsen förvaltar (läst 2026-09-14)
   { key: 'södra', label: 'Södra skärgården', desc: 'Bilfria naturreservat och lugna vikar söder om Stockholm', accent: '#0a7b8c' },
   { key: 'bohuslan', label: 'Bohuslän', desc: 'Västkustens skärgård — räkor, klippor och Sveriges mest fotograferade fiskelägen', accent: '#a8381e' },
-  { key: 'goteborg', label: 'Göteborgs södra skärgård', desc: 'Styrsöbolaget från Saltholmen — Brännö, Styrsö, Vrångö och Donsö', accent: '#a8381e' },
+  // Ändrad 2026-10-19: Vinga (Göteborgs kommun) flyttades hit från Bohuslän, och Öckerö och Rörö låg redan här, så rubriken "södra skärgård" stämde inte.
+  { key: 'goteborg', label: 'Göteborgs skärgård', desc: 'Brännö, Styrsö, Vrångö och Donsö i söder, Öckerö och Rörö i norr och Vinga, Göteborgs västligaste punkt', accent: '#a8381e' },
   { key: 'ovriga', label: 'Övriga Sverige', desc: 'Gotland, Öland, Höga Kusten och mer — Sverige bortom Stockholmsskärgården', accent: '#6b4f9e' },
 ]
 

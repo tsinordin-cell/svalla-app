@@ -104,3 +104,45 @@ export async function getIslandPlaces(
 export function formatKm(km: number): string {
   return km < 10 ? `${km.toFixed(1).replace('.', ',')} km` : `${Math.round(km)} km`
 }
+
+/**
+ * Tar bort platser ur databaslistan som redan finns i öns egen källbelagda
+ * lista, eller som förekommer två gånger i databasen. Granskningen 2026-10-19
+ * hittade "Tenan" och "Tenan Marstrand", "Johans krog Marstrand" och
+ * "Johans Krog", "Hamnkrogen Marstrand" och "Hamnkrogen" på samma sida.
+ * Jämförelsen tar bort önamnet, skiljetecken och versaler, och räknar två
+ * namn som samma ställe om de blir lika eller om det ena (minst fem tecken)
+ * ingår i det andra.
+ */
+export function normaliseraPlatsnamn(namn: string, oNamn: string): string {
+  const o = oNamn.toLowerCase()
+  return namn
+    .toLowerCase()
+    .replace(new RegExp(`\\b${o.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}s?\\b`, 'g'), ' ')
+    .replace(/[^a-z0-9åäöéü]+/g, ' ')
+    .trim()
+    .replace(/\s+/g, ' ')
+}
+
+function sammaNamn(a: string, b: string): boolean {
+  if (!a || !b) return false
+  if (a === b) return true
+  const [kort, lang] = a.length <= b.length ? [a, b] : [b, a]
+  return kort.length >= 5 && lang.includes(kort)
+}
+
+export function utanDubbletter<T extends { name: string; slug?: string }>(
+  platser: T[],
+  kandaNamn: string[],
+  oNamn: string,
+): T[] {
+  const sedda = kandaNamn.map(n => normaliseraPlatsnamn(n, oNamn)).filter(Boolean)
+  const ut: T[] = []
+  for (const p of platser) {
+    const n = normaliseraPlatsnamn(p.name, oNamn)
+    if (sedda.some(s => sammaNamn(s, n))) continue
+    sedda.push(n)
+    ut.push(p)
+  }
+  return ut
+}
