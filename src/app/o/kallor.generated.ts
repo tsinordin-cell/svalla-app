@@ -99,14 +99,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://kund.printhuset-sthlm.se/wa/h16.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, STAVSNÄS — SANDHAMN — HAGEDE: Stavsnäs 20.12 → Sandhamn 20.50 (38 min), 09.45 → 10.45 (60 min), 07.00 → 08.05 (65 min)",
-      "last": "2026-09-27",
+      "last": "2026-10-20",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/s15.pdf",
-      "org": "Waxholmsbolaget linje 15",
-      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026; Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 . Seglarhotellets uppgift om 2–3 timmar för linje 15 stämmer inte med tidtabellen och används inte.",
-      "last": "2026-09-27",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026; Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25",
+      "last": "2026-10-20",
       "myndighet": true
     },
     {
@@ -258,9 +258,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     },
     {
       "url": "https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf",
-      "org": "Strömma",
-      "vad": "Strandvägen - kajplats 14, 7/9 - 27/9, Strandvägen 10:00 → Sandhamn 12:30",
-      "last": "2026-09-27",
+      "org": "stromma.com",
+      "vad": "30/4 - 4/6 a Sat-Sun Friday; 7/9 - 27/9 Sat-Sun; Strandvägen - kajplats 14 10:00; Sandhamn 12:30",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -459,6 +459,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "utovardshus.se",
       "vad": "BAREN MITT I HAMNEN, veranda mot hamninloppet, enklare rätter till lunch … kolgrillade rätter till kvällen",
       "last": "2026-09-30",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.utovardshus.se/oppettider/",
+      "org": "utovardshus.se",
+      "vad": "Seglarbaren; Stängt för säsongen. Öppnar Midsommar 2027.",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -1168,14 +1175,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.fjaderholmarnaskrog.se/",
       "org": "fjaderholmarnaskrog.se",
       "vad": "Hamnbaren, Loftet, FESTVÅNING MAGASINET, FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027, NU SERVERA JULBORD MELLAN 20/11 - 22/12",
-      "last": "2026-09-27",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
       "url": "http://www.fjaderholmslinjen.se/valkommen/index.asp",
       "org": "fjaderholmslinjen.se",
-      "vad": "under perioden 1 maj, till 13 september 2026, Resan tar ca 25 minuter., inte att reservera platser, Vi accepterar Visa/Mastercard, ej kontanter., hundar i koppel",
-      "last": "2026-09-27",
+      "vad": "Fjäderholmslinjen går under perioden 1 maj till 13 september 2026.; Resan tar ca 25 minuter.; Det går inte att reservera platser.; Vi accepterar Visa/Mastercard, ej kontanter.; Snälla hundar i koppel är välkomna.",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -1195,15 +1202,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.rokeriet-fjaderholmarna.se/",
       "org": "rokeriet-fjaderholmarna.se",
-      "vad": "1 Maj-13 Sep, 11:30-22:30, 20 Nov-20 Dec",
-      "last": "2026-09-27",
+      "vad": "Julbordet serveras från 20 november till 20 december 2026.; 1 Maj-13 Sep",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
       "url": "https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/",
       "org": "Strömma",
       "vad": "Strandvägen - Kajplatsområde 13; Nacka Strand - Vid Restaurang J; Endast 30 minuters båtresa från city; Åter maj 2027; När du har bokat en viss avgång har du förtur på den; 1 maj — 17 juni & 16 augusti — 12 september:",
-      "last": "2026-10-19",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -1538,7 +1545,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://arholmadansbana.se/index.html",
       "org": "arholmadansbana.se",
       "vad": "Tack för i år, vi ses 2027",
-      "last": "2026-09-27",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -2976,7 +2983,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://kund.printhuset-sthlm.se/sl/h682.pdf",
       "org": "SL (tryckt tidtabell)",
       "vad": "682 Engarn–Resarö, Resarö–Engarn (–Vaxholm), Giltig 17 augusti–12 december 2026, Lördag, söndag och helgdag; Engarn 07.17, Ytterby 07.20, Överby 07.25; Engarn 16.33, Överby 16.44",
-      "last": "2026-10-19",
+      "last": "2026-10-20",
       "myndighet": true
     },
     {
@@ -5078,6 +5085,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://www.lansstyrelsen.se/vasternorrland/besoksmal/kulturmiljoer/sandvikens-fiskelage.html",
+      "org": "Länsstyrelsen Västernorrland",
+      "vad": "Sandvikens fiskeläge är beläget på den nordligaste delen av norra Ulvön. Fiskeläget ligger vid en öppen vik med sandstrand; Stugorna hyrs ut sommartid och området är öppet för allmänheten.",
+      "last": "2026-10-20",
+      "myndighet": true
+    },
+    {
       "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ulv%C3%B6n",
       "org": "minkarta.lantmateriet.se",
       "vad": "Lantmäteriet Min Karta, sökning \"Ulvön\" → Ulvön | Örnsköldsvik | Trakt, SWEREF 99 TM omräknat till WGS 84",
@@ -5106,6 +5120,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://hkship.se/pdf/turlista.pdf",
+      "org": "hkship.se",
+      "vad": "Fri parkering i Ullånger, Docksta och Barsta; ULVÖN 2026; Dagliga turer med m/s Kusttrafik; 15 juni — 16 augusti; 09.30 Ullånger; 10.45 Mjällomslandet; 11.30 Ulvöhamn",
+      "last": "2026-10-20",
+      "myndighet": false
+    },
+    {
       "url": "https://www.hkship.se/",
       "org": "hkship.se",
       "vad": "Under sommarmånaderna juni-augusti kör vi reguljära dagliga turer till de populära öarna Ulvön och Högbonden; m/s KUSTTRAFIK (byggd 1908)",
@@ -5113,17 +5134,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://hkship.se/pdf/turlista.pdf",
-      "org": "hkship.se",
-      "vad": "ULVÖN 2026; Dagliga turer med m/s Kusttrafik; 15 juni — 16 augusti",
-      "last": "2026-10-19",
-      "myndighet": false
-    },
-    {
       "url": "https://www.hogakusten.com/sv/stader-platser/ulvon",
       "org": "hogakusten.com",
       "vad": "Ulvöarna ligger 30 km söder om Örnsköldsvik; Ulvön är vår skärgårds största turistiska besöksmål med stora kulturella värden tack vare välbevarade sjöbodar, bostadshus och gistvallar; kallas ibland för Bottenhavets pärla eller Norrlands Sandhamn",
-      "last": "2026-10-19",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -5148,16 +5162,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.hogakusten.com/sv/planera-resan/resa-hit-har",
-      "org": "hogakusten.com",
-      "vad": "Y-buss går via flera hållplatser på sträckan Örnsköldsvik-Stockholm; vid hpl Docksta finns FriluftsByn samt närhet till Ulvöns båtar; Om du reser till Höga Kusten söderifrån åker du oftast med SJ; kan du resa nästan överallt med kollektivtrafikföretaget DinTur",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
       "url": "https://www.hogakusten.com/sv/upplevelser/natur-friluftsliv/skargard/farja-till-ulvon",
       "org": "hogakusten.com",
       "vad": "Ingen av färjorna är bilfärjor så det är inte möjligt att ta med bilen till Ulvön; Parkeringen i Köpmanholmen är avgiftsbelagd. Parkeringarna i Ullånger och Docksta är gratis",
+      "last": "2026-10-20",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.hogakusten.com/sv/planera-resan/resa-hit-har",
+      "org": "hogakusten.com",
+      "vad": "Y-buss går via flera hållplatser på sträckan Örnsköldsvik-Stockholm; vid hpl Docksta finns FriluftsByn samt närhet till Ulvöns båtar; Om du reser till Höga Kusten söderifrån åker du oftast med SJ; kan du resa nästan överallt med kollektivtrafikföretaget DinTur",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -5197,6 +5211,34 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.sandvikens-fiskelage-ulvon.se/boende/",
+      "org": "sandvikens-fiskelage-ulvon.se",
+      "vad": "Här finns 28 stugor för uthyrning enligt följande:; 15 fiskestugor i angränsning till stranden.; Åtta sjöbodar direkt vid stranden.; Fem stugor ligger vid skogsbrynet med utsikt över viken.; Alla stugor har kyl/frys samt spis och mikrovågsugn.; Det finns två servicehus på området med dusch, toalett samt diskmöjligheter. Ett flertal vattenposter finns i angränsning till stugorna då det ej finns rinnande vatten i stugorna. Kom ihåg att ta med sänglinne och handdukar.; Denna stuga är dessutom den enda stuga som det finns rinnande vatten i diskhon",
+      "last": "2026-10-20",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.sandvikens-fiskelage-ulvon.se/",
+      "org": "sandvikens-fiskelage-ulvon.se",
+      "vad": "Fiskeläget är ett kulturreservat sedan 2005.; Här har du tillgång till en fantastisk sandstrand; Den transfer som ingår i stugpriset gäller t/r Fjären-Sandviken för din ordinarie ankomst/avresedag, lördag eller onsdag under perioden 27/6 - 8/8 2026.",
+      "last": "2026-10-20",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.sandvikens-fiskelage-ulvon.se/tjanster/",
+      "org": "sandvikens-fiskelage-ulvon.se",
+      "vad": "Transfer t/r Fjären-Sandviken enbart MF Ulvöns turer.; Sandvikens Fiskeläge är ett kulturreservat och därav råder det tältningsförbud i hela området",
+      "last": "2026-10-20",
+      "myndighet": false
+    },
+    {
+      "url": "https://ulvohamnkrog.se/",
+      "org": "ulvohamnkrog.se",
+      "vad": "Du hittar oss direkt på bryggan i skärgårdsidyllen Ulvöhamn. Här kan du äta, dricka gott och umgås till ljudet av vågorna som skvalpar under vår gamla sjöbod. Vissa kvällar har vi lite extra trevligt då vi bjuder på musikunderhållning.; Därför serverar vi enkel och god mat med en touch av hav & land; På vår trevliga uteservering sitter du på första parkett direkt vid havet; Vår restaurang har öppet varje dag från kl.11.30-22.00, fram till 31 augusti.; Vi har öppet alla helger i september, sen stänger vi för säsongen.",
+      "last": "2026-10-20",
+      "myndighet": false
+    },
+    {
       "url": "https://ulvohotell.se/sv/vanliga-fragor",
       "org": "ulvohotell.se",
       "vad": "Vi öppnar för säsongen under valborgshelgen; 15 juni startar högsäsongen, som pågår fram till den 15 augusti; har vi åter öppet fredag-lördag fram till sista oktober; ett stort gym och en mycket trevlig bastu med havsutsikt som är gratis att använda för våra hotellgäster",
@@ -5222,6 +5264,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "ulvomuseum.com",
       "vad": "alltsedan samhällets etablering från slutet av 1500-talet",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ulvon.info/mat-logi/almagrand/",
+      "org": "ulvon.info",
+      "vad": "Almagränd är döpt efter surströmmingskungen Fridolf Nordqvists hustru Alma och är inrymt i Fridolfs gamla sjöbod, där den berömda surströmmingen tillverkades fram till 1960-talet. Idag är Almagränd restaurang med blandad mat, bland annat husmanskost och pizza. Telefon till Almagränd: 0660-224132.",
+      "last": "2026-10-20",
       "myndighet": false
     }
   ],
@@ -5534,8 +5583,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://vinga.nu/turbatar/",
       "org": "vinga.nu",
-      "vad": "Strömma från Lilla Bommen, Kungsö från Stenpiren, Silvana, Hönö Båtturer och Kastor från Hönö Klåva, Emma från Fotö",
-      "last": "2026-10-19",
+      "vad": "Kastor Boat trips, Hönö Klåva; Skärgårdsturer (3,5 tim) från Hönö Klåva med sälstopp och makrillfiske och stopp på Vinga 2 tim.",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -7048,6 +7097,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://farostrandcafe.se/",
+      "org": "farostrandcafe.se",
+      "vad": "Vi ses nästa säsong - öppnar den 4 juni 2027!",
+      "last": "2026-10-20",
+      "myndighet": false
+    },
+    {
       "url": "https://gotland.com/companies/faro/",
       "org": "gotland.com",
       "vad": "På Fårö är landskapet ännu lite kargare och sanden ännu finkornigare., Digerhuvud är ett flera kilometer långt naturreservat och Gotlands största raukområde.",
@@ -7135,7 +7191,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://verktygsladan.gotland.com/companies/broa-kiosken-faro/",
       "org": "verktygsladan.gotland.com",
       "vad": "Broa Kiosken Fårö, glass, take away-kaffe, kylda drycker, snabbmat",
-      "last": "2026-10-19",
+      "last": "2026-10-20",
       "myndighet": false
     }
   ],
@@ -7599,8 +7655,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/",
       "org": "ilandskrona.se",
-      "vad": "På Ven böljar fält av raps och durum. Klimat och jordmån har lockat till produktion av både rapsolja och whisky.",
-      "last": "2026-09-27",
+      "vad": "Hamnkiosken i Bäckviken, Hvens Glassfabrik; 0704-13 28 72; Missa inte heller Hvenglassen som säljs i Bäckvikens hamn.",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -7614,7 +7670,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://ilandskrona.se/besoka/ven/planera-din-resa-till-ven/",
       "org": "ilandskrona.se",
       "vad": "då det är begränsat med övernattningsmöjligheter så rekommenderar vi dig att förboka. Stora delar av Ven är naturreservat och det är därför endast tillåtet att tälta på campingen.",
-      "last": "2026-09-27",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -8181,10 +8237,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6302__0__LINE__20251214__20261212__25ea94b6-c06e-4190-822d-a22d774d80ee__1%2C0__2635889.pdf",
-      "org": "Västtrafik (tidtabell)",
-      "vad": "302 Kungälv–Ytterby–Marstrand, Marstrands färjeläge, Gäller 14 dec 2025 - 12 dec 2026",
-      "last": "2026-09-27",
+      "url": "https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014630200000/",
+      "org": "Västtrafik",
+      "vad": "Buss 302: Marstrand - Ytterby - Kungälv; Marstrands färjeläge A; Ytterby station B; Kungälv resecentrum 2; 2025-12-14 till 2026-12-12",
+      "last": "2026-10-20",
       "myndighet": true
     },
     {
@@ -8269,6 +8325,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "marstrandsfarja.se",
       "vad": "Biljetter gäller tur och retur från färjeläget på Koön till Marstrandsön.; Västtrafiks enkelbiljetter gäller INTE på färjan!",
       "last": "2026-10-19",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.marstrandsfarja.se/start",
+      "org": "marstrandsfarja.se",
+      "vad": "Västtrafiks enkelbiljetter gäller INTE på färjan!",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -8365,8 +8428,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.vastsverige.com/kungalv/produkter/johans-krog-marstrand/",
       "org": "vastsverige.com",
-      "vad": "bekräftar \"fransk bistro\" och adressen Kungsgatan 12",
-      "last": "2026-09-16",
+      "vad": "Fransk krog i hjärtat av Marstrand med uteservering.; Johans Krog är en fransk bistro belägen på vackra Marstrand.; Kungsgatan 12",
+      "last": "2026-10-20",
       "myndighet": false
     }
   ],
