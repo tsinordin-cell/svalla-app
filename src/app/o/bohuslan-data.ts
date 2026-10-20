@@ -64,7 +64,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     ],
     facts: {
       // KÄLLA: Kungälvs kommun, Marstrandsfärjan — "Färjan mellan Koön och Marstrand kallas för Marstrandsfärjan." — https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ (läst 2026-10-19)
-      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6302__0__LINE__20251214__20261212__25ea94b6-c06e-4190-822d-a22d774d80ee__1%2C0__2635889.pdf — "302 Kungälv–Ytterby–Marstrand", "Gäller 14 dec 2025 - 12 dec 2026" (läst 2026-09-27)
+      // KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014630200000/ — "Buss 302: Marstrand - Ytterby - Kungälv"; "Marstrands färjeläge A"; "Ytterby station B"; "Kungälv resecentrum 2" (läst 2026-10-20)
+      // Rättad 2026-10-20: Västtrafiks PDF går inte att läsa, så källan är nu linjens HTML-sida hos Västtrafik.
       // Rättad 2026-10-19: restiderna 42 och 29 minuter borttagna. Västtrafiks PDF går inte att läsa med WebFetch (binärdata), så minuterna kunde inte kontrolleras.
       travel_time: 'Buss 302 från Kungälv eller Ytterby station till Koön, sedan Marstrandsfärjan över sundet',
       // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "is spread over the two islands of Koön and Marstrandsön", "small alleys, the spectacular fortress and sea views at every turn" (läst 2026-09-27)
@@ -111,10 +112,11 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // Rättad 2026-10-19: kungalv.se gick inte att läsa (bara menyn), så citatet om kuren är borttaget och uppgiften om kuren struken.
       // KÄLLA: https://www.marstrandsfarja.se/ — "Biljetter gäller tur och retur från färjeläget på Koön till Marstrandsön."; "Västtrafiks enkelbiljetter gäller INTE på färjan!" (läst 2026-10-19)
       { method: 'Bil + färja', from: 'Göteborg', desc: 'Kör till Koön och parkera, ta sedan Marstrandsfärjan över sundet. Biljetten gäller tur och retur och köps på marstrandsfarja.se. Västtrafiks enkelbiljetter gäller inte på färjan.', icon: '🚗' },
-      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6302__0__LINE__20251214__20261212__25ea94b6-c06e-4190-822d-a22d774d80ee__1%2C0__2635889.pdf — "302 Kungälv–Ytterby–Marstrand", "Marstrands färjeläge", "Gäller 14 dec 2025 - 12 dec 2026" (läst 2026-09-27)
-      // KÄLLA: https://www.marstrandsfarja.se/ — "Västtrafiks enkelbiljetter gäller INTE på färjan!" (läst 2026-10-19)
+      // KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014630200000/ — "Buss 302: Marstrand - Ytterby - Kungälv"; "Marstrands färjeläge A"; "Ytterby station B"; "Kungälv resecentrum 2"; "2025-12-14 till 2026-12-12" (läst 2026-10-20)
+      // KÄLLA: https://www.marstrandsfarja.se/start — "Västtrafiks enkelbiljetter gäller INTE på färjan!" (läst 2026-10-20)
+      // Rättad 2026-10-20: meningen om byte från Göteborg är borttagen, eftersom ingen läsbar källa säger det.
       // Rättad 2026-10-19: restiderna (42 och 29 minuter) och turtätheten är borttagna. PDF:en går inte att läsa med WebFetch, så uppgifterna kunde inte kontrolleras.
-      { method: 'Buss', from: 'Kungälv / Ytterby', desc: 'Västtrafiks buss 302 går från Kungälv resecentrum och Ytterby station till Marstrands färjeläge på Koön. Från Göteborg byter du till linje 302 i Kungälv eller Ytterby. Sök hela resan i Västtrafiks reseplanerare. Tänk på att enkelbiljett för bussen inte gäller på färjan.', icon: '🚌' },
+      { method: 'Buss', from: 'Kungälv / Ytterby', desc: 'Västtrafiks buss 302 går från Kungälv resecentrum och Ytterby station till Marstrands färjeläge på Koön. Sök hela resan i Västtrafiks reseplanerare. Tänk på att enkelbiljett för bussen inte gäller på färjan.', icon: '🚌' },
     ],
     harbors: [
       // KÄLLA: https://www.vastsverige.com/kungalv/produkter/marstrands-gasthamn/ — "På den sydöstra delen av Marstrandsön ligger den kommunala gästhamnen", "I gästhamnen råder det ankringsförbud" (läst 2026-09-27)
@@ -132,7 +134,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { name: 'Marstrands Wärdshus', type: 'Restaurang', desc: 'Skaldjurs- och grillrestaurang mitt på kajen på Marstrandsön, med uteterrass vid hamnen.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Johans krog Marstrand — bekräftar "fransk bistro" och adressen Kungsgatan 12 — https://www.vastsverige.com/kungalv/produkter/johans-krog-marstrand/ (läst 2026-09-16)
       // KÄLLA: https://www.johanskrogmarstrand.se/ — "Fransk bistro möter Västkusten" (läst 2026-09-27)
-      { name: 'Johans krog Marstrand', type: 'Restaurang', desc: 'Fransk bistro på Kungsgatan med utservering.' },
+      // KÄLLA: https://www.vastsverige.com/kungalv/produkter/johans-krog-marstrand/ — "Fransk krog i hjärtat av Marstrand med uteservering."; "Johans Krog är en fransk bistro belägen på vackra Marstrand."; "Kungsgatan 12" (läst 2026-10-20)
+      // Rättad 2026-10-20: uteserveringen har nu en källa (Turistrådet Västsverige), och stavningen är rättad.
+      { name: 'Johans krog Marstrand', type: 'Restaurang', desc: 'Fransk bistro på Kungsgatan med uteservering.' },
       // KÄLLA: https://carlsten.se/carlstens-vaffelcafe/ — "Du hittar oss vid fästningens entré och du behöver inte köpa entré till fästningen för att komma till oss"; "Våfflor, Sallader, Pajer, Smörgåsar"; "Tack för säsongen 2026"; "Vi öppnar igen till påsken 2027." (läst 2026-10-19)
       { name: 'Carlstens Vaffelcafé', type: 'Café', desc: 'Säsongscafé vid ingången till Carlstens fästning, öppet från påsk och under sommaren. Våfflor, pajer, smörgåsar och sallader; fästningsbiljett krävs inte för besök. Säsongen 2026 är avslutad – caféet öppnar igen till påsken 2027.' },
       // KÄLLA: https://carlsten.se/julbord/ — "Marstrands största julbordsbuffe på Carlstens fästning."; "fredag 27 nov"; "lördag 19 dec"; "söndag 13 dec"; "Vi möter alla gäster vid färjeläget på Marstrandsön för gemensamt fackeltåg (om vädret tillåter) upp till Kungsporten"; "upp till Riddarsalen" (läst 2026-10-19)
