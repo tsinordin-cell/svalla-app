@@ -324,7 +324,7 @@ Med egen båt: [Grinda gästhamn](/upptack/grinda-gasthamn) har plats för 100 b
  faqs: [
    { q: 'Hur tar man sig till Fjäderholmarna?', a: 'Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen trafikerar öarna. Strömmas båt går från Strandvägen kajplats 13 och tar cirka 30 minuter, och vissa avgångar stannar vid Nacka Strand.' },
    { q: 'Är Fjäderholmarna öppet året runt?', a: 'Nej. Båtar, restauranger och butiker har säsongsöppet under sommarhalvåret, och utanför säsong är det mesta stängt.' },
-   { q: 'Kan man bada på Fjäderholmarna?', a: 'Ja, från klipporna med utsikt över Stockholms inlopp och vid några mindre sandstränder.' },
+   { q: 'Kan man bada på Fjäderholmarna?', a: 'Ja, från klipporna med utsikt över Stockholms inlopp.' },
  ],
  content: `
 <!-- KÄLLA: stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ (Strandvägen kajplats 13, ca 30 min, "Some departures also stop at Nacka Strand"). fjaderholmarna.se (båtoperatörer Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen; Fjäderholmarnas Krog, Restaurang Rökeriet och Fjäderholmarnas Bryggeri; hantverkare inom trä, textil, keramik och glas; utställningen "Allmogebåtar"; "Fjäderholmarna har nu säsongsöppet"). fjaderholmarnasbryggeri.se (brewpub, öl direkt från tankarna, huvudproduktion i Bro). fjaderholmarnaskrog.se (Krogen, Hamnbaren och Loftet, bordsbokning online). explorearchipelago.com (klippbad med utsikt över Stockholms inlopp, mindre sandstränder). lidingo.se kulturmiljöunderlag Stora Fjäderholmen ("omnämns i skrift redan 1381", krog "Åtminstone sedan 1699", marinen förvärvade öarna 1918, Försvarsmakten lämnade 1976, "Sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken"). Ögruppen Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme; Libertas och Rövarns holme fågelskyddsområden med landstigningsförbud under häckningstid (naturkartan.se/lidingo.se). Gästhamnen 35 platser med boj (svenskagasthamnar.se, datafix 2026-09-22). Alla källor återges i src/app/o/island-data.ts (fjaderholmarna). Tidigare version (borttagen 2026-09-24) påstod att "Waxholmsbolaget kör" båten från Strandvägen, att det finns ett akvarium och "Båthuset Bar & Grill" och gav pris och turtäthet utan källa. -->
@@ -343,7 +343,7 @@ Fjäderholmarna har säsongsöppet under sommarhalvåret – båtar, restaurange
 ## Vad du gör på ön
 - **Hantverkare** inom trä, textil, keramik och glas har verkstad på ön.
 - **Utställningen Allmogebåtar** visar traditionella skärgårdsbåtar.
-- **Bad** från klipporna och vid några mindre sandstränder.
+- **Bad** från klipporna.
 - **Fåglarna:** ögruppen består av Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme. Libertas och Rövarns holme är fågelskyddsområden med landstigningsförbud under häckningstiden.
 
 ## Historia
@@ -1587,7 +1587,7 @@ Badet vid sjön Stora Maren inne på ön sköts av Tynningö Idrottsförening, s
 Vid Linanäs finns enligt Österåkers kommun ett barnbad med sandstrand och ett klippbad mot Saxarfjärden, och i naturstigen en sagostig för barn. Bilfärjan från Östanå går året runt, och Waxholmsbolaget lägger till vid [Linanäs](/upptack/linanas-gasthamn).
 
 ### [Fjäderholmarna](/o/fjaderholmarna)
-Närmast stan: cirka 30 minuter med Strömmas båt från Strandvägen. Här badar du från klipporna och vid några mindre sandstränder. Öarna har säsongsöppet under sommarhalvåret. Mer: [Fjäderholmarna dagstur](/blogg/fjaderholmarna-dagstur).
+Närmast stan: cirka 30 minuter med Strömmas båt från Strandvägen. Här badar du från klipporna. Öarna har säsongsöppet under sommarhalvåret. Mer: [Fjäderholmarna dagstur](/blogg/fjaderholmarna-dagstur).
 
 ## Bad du når med buss, tåg eller bil
 

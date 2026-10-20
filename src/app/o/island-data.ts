@@ -311,13 +311,16 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "och då tar resan drygt en timme", "Det går flera turer varje dag till Sandhamn", "tabell 16" (läst 2026-09-27)
       // KÄLLA: https://www.sandhamn.com/en/hitta-hit — "Year round — including winter", "Take bus 433 from Slussen or drive to Stavsnäs Vinterhamn" (läst 2026-09-27)
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — "Stavsnäs vinterhamn", Slussen 10.15 → Stavsnäs vinterhamn 11.06 (läst 2026-09-27)
-      { method: 'Waxholmsbåt från Stavsnäs', from: 'Stavsnäs vinterhamn', time: '40–65 min', desc: 'Året runt med Waxholmsbolagets linje 16, flera turer om dagen. Till Stavsnäs tar du SL-buss 433 från Slussen, ungefär en timme, eller bil.', icon: '⛴' },
+      // Rättad 2026-10-20: snabbaste turen i h16.pdf tar 38 min (Stavsnäs 20.12, Sandhamn 20.50), inte 40.
+      // Kontrollant 2026-10-20: längsta turen i h16.pdf är lördag och söndag 14.10 till 15.37 (87 min).
+      { method: 'Waxholmsbåt från Stavsnäs', from: 'Stavsnäs vinterhamn', time: '38 till 87 min', desc: 'Året runt med Waxholmsbolagets linje 16, flera turer om dagen. Till Stavsnäs tar du SL-buss 433 från Slussen, ungefär en timme, eller bil.', icon: '⛴' },
       // KÄLLA: Stavsnäs Båttaxi, Sandhamnslinjen, https://battaxi.se/sandhamnslinjen-2/ — "Sandhamnslinjen är en direkt reguljär tur som tar dig mellan Stavsnäs och Sandhamn på endast 30 minuter"; "Bokade biljetter har alltid förtur, men det går även bra att köpa biljett direkt på båten" (läst 2026-09-21)
       { method: 'Sandhamnslinjen (Stavsnäs Båttaxi)', from: 'Stavsnäs', time: '30 min', desc: 'Snabbast. Direktbåt från Stavsnäs, egen biljett – förbokade resenärer har förtur, men du kan också köpa ombord.', icon: '🚤', url: 'https://battaxi.se/sandhamnslinjen-2/' },
-      // KÄLLA: Strömma, Cinderellabåtarna Stockholm–Sandhamn 2026, https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — "30/4 - 4/6", "7/9 - 27/9", "Strandvägen - kajplats 14" 10:00 → Sandhamn 12:30 (läst 2026-09-27)
-      // KÄLLA: Waxholmsbolaget linje 15, https://kund.printhuset-sthlm.se/wa/s15.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026"; Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 (läst 2026-09-27). Seglarhotellets uppgift om 2–3 timmar för linje 15 stämmer inte med tidtabellen och används inte.
-      { method: 'Cinderellabåten från Strandvägen', from: 'Strandvägen kajplats 14, Stockholm', time: '2 h 30 min', desc: 'Strömmas sommarbåt via Vaxholm och Grinda, 30 april–27 september (helger mot slutet av säsongen).', icon: '⛴', url: 'https://www.stromma.com/en-se/stockholm/cinderella-boats/timetables/' },
-      { method: 'Waxholmsbåt från Strömkajen', from: 'Strömkajen, Stockholm', time: '3 h 45 min–4 h 55 min', desc: 'Linje 15, bara 19 juni–16 augusti. Lång resa rakt ut genom skärgården.', icon: '⛴' },
+      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — "30/4 - 4/6 a Sat-Sun Friday"; "7/9 - 27/9 Sat-Sun"; "Strandvägen - kajplats 14 10:00"; "Sandhamn 12:30" (läst 2026-10-20)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s15.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026"; Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 (läst 2026-10-20)
+      // Rättad 2026-10-20: båda sommarlinjerna har gått klart för 2026. Tidtabeller för 2027 är inte kontrollerade, så inga datum för 2027 anges. Seglarhotellets uppgift om 2–3 timmar för linje 15 stämmer inte med tidtabellen och används inte.
+      { method: 'Cinderellabåten från Strandvägen', from: 'Strandvägen kajplats 14, Stockholm', time: '2 h 30 min', desc: 'Strömmas sommarbåt via Vaxholm och Grinda. Säsongen 2026 gick 30 april till 27 september och är slut.', icon: '⛴', url: 'https://www.stromma.com/en-se/stockholm/cinderella-boats/timetables/' },
+      { method: 'Waxholmsbåt från Strömkajen', from: 'Strömkajen, Stockholm', time: '3 h 45 min till 4 h 55 min', desc: 'Linje 15 gick 2026 bara 19 juni till 16 augusti, och säsongen är slut. Lång resa rakt ut genom skärgården.', icon: '⛴' },
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamnen i Sandhamn – se hamnavsnittet för service och bokning.', icon: '⛵' },
     ],
     harbors: [
@@ -359,8 +362,9 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.sandhamn.com/en/hitta-hit — "Total travel time from Stockholm: approx. 1.5 hours" via buss 433 och båt från Stavsnäs (läst 2026-09-27)
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf Slussen 10.15 → Stavsnäs vinterhamn 11.06 och https://battaxi.se/sandhamnslinjen-2/ "på endast 30 minuter" ger samma storleksordning (läst 2026-09-27)
       from_city_min: 90,
-      // KÄLLA: https://battaxi.se/sandhamnslinjen-2/ — Sandhamnslinjen Stavsnäs–Sandhamn 30 minuter
-      from_nearest_hub_min: 30,
+      // Rättad 2026-10-20: operatören är Waxholmsbolaget, och deras snabbaste tur tar 38 min. 30 min gäller Stavsnäs Båttaxis Sandhamnslinjen.
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "Stavsnäs" 20.12, "Sandhamn" 20.50z (tur 1613) (läst 2026-10-20)
+      from_nearest_hub_min: 38,
       nearest_hub: 'Stavsnäs',
       operator: 'Waxholmsbolaget',
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "STAVSNÄS – SANDHAMN – HAGEDE" (året runt, tabellen gäller till 12 december 2026) (läst 2026-09-27)
@@ -405,9 +409,9 @@ export const ISLANDS: Island[] = [
     dog_notes: 'Mellan 1 mars och 20 augusti får hunden inte springa lös i naturen, och i naturreservat som Grönskär råder Naturvårdsverket att alltid ha hunden kopplad. Sandhamns Värdshus har en stuga där hund är tillåten.',
     insiderTips: [
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/s15.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026": Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 (läst 2026-09-27)
-      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — Stavsnäs–Sandhamn 38–65 min (läst 2026-09-27)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — Stavsnäs 20.12, Sandhamn 20.50z; Stavsnäs 07.00, Sandhamn 08.05z (läst 2026-10-20)
       // KÄLLA: https://battaxi.se/sandhamnslinjen-2/ — "på endast 30 minuter" (läst 2026-09-27)
-      'Waxholmsbåten från Strömkajen (linje 15) går bara 19 juni–16 augusti och tar 3 h 45 min–4 h 55 min. Året runt går båtarna från Stavsnäs: 40–65 minuter med Waxholmsbolaget eller 30 minuter med Sandhamnslinjen.',
+      'Waxholmsbåten från Strömkajen (linje 15) gick 2026 bara 19 juni till 16 augusti och tog 3 h 45 min till 4 h 55 min, och den säsongen är slut. Året runt går båtarna från Stavsnäs: 38 till 87 minuter med Waxholmsbolaget, beroende på tur, eller 30 minuter med Sandhamnslinjen.',
       // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 (text från Värmdö kommun) — "trädklädda sanddynor", "måste du åka till Gotska Sandön eller Fårö" (läst 2026-09-27)
       'Sandön består till stor del av trädklädda sanddyner. Enligt Värmdö kommun finns motsvarigheten i den här delen av landet bara på Gotska Sandön och Fårö.',
       // KÄLLA: https://ksss.se/KSSS/historia/ — "Kungl. Svenska Segel Sällskapet" (läst 2026-09-30)
@@ -435,7 +439,7 @@ export const ISLANDS: Island[] = [
       peak: 'Mitten av juni–mitten av september',
       best: 'Mitten av juni–mitten av september',
       bestReason: 'Då har Sandhamns Värdshus restaurang öppet varje dag, och Dykarbaren (maj–september) och KSSS servicehus (maj–september) är öppna.',
-      warning: 'Oktober–april har värdshusets restaurang främst öppet helger, och Cinderellabåtarna från Strandvägen går bara 30 april–27 september.',
+      warning: 'Oktober till april har värdshusets restaurang främst öppet helger. Cinderellabåtarna från Strandvägen gick 2026 bara 30 april till 27 september, och säsongen är slut.',
       months: ['limited','limited','limited','limited','open','peak','peak','peak','open','limited','limited','limited'],
     },
   },
@@ -568,11 +572,13 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.utovardshus.se/restaurang/uto-vardshus/ — "I det gamla gruvkontoret finns Utö Värdshus bar och matsalar … à la carte både lunch och middag … verandan öppen" på sommaren (läst 2026-09-30)
       { name: 'Utö Värdshus', type: 'Restaurang', desc: 'Bar och matsalar i det gamla gruvkontoret. À la carte lunch och middag, veranda sommartid.', bookingUrl: 'https://www.utovardshus.se/restaurang/boka-bord-vardshuset/', websiteUrl: 'https://www.utovardshus.se' },
       // KÄLLA: https://www.utovardshus.se/restaurang/seglarbaren/ — "BAREN MITT I HAMNEN", veranda mot hamninloppet, "enklare rätter till lunch … kolgrillade rätter till kvällen" (läst 2026-09-30)
-      { name: 'Seglarbaren', type: 'Bar', desc: 'Utö Värdshus bar mitt i hamnen. Veranda mot hamninloppet, enklare lunch och kolgrillat till kvällen.', websiteUrl: 'https://www.utovardshus.se/restaurang/seglarbaren/' },
+      // KÄLLA: https://www.utovardshus.se/oppettider/ — "Seglarbaren"; "Stängt för säsongen. Öppnar Midsommar 2027." (läst 2026-10-20)
+      { name: 'Seglarbaren', type: 'Bar', desc: 'Utö Värdshus bar mitt i hamnen. Veranda mot hamninloppet, enklare lunch och kolgrillat till kvällen.', open_season: 'Stängd för säsongen, öppnar midsommar 2027', websiteUrl: 'https://www.utovardshus.se/restaurang/seglarbaren/' },
       // KÄLLA: https://www.utogasthamn.se/kiosk-cafe/ — "Hamnboden … kiosk, café och restaurang i samma byggnad … glass, godis, korv och toast men även sushi samt en bar" (läst 2026-09-30)
       { name: 'Hamnboden', type: 'Kiosk/Café', desc: 'Kiosk, café och restaurang i Utö gästhamn: glass, korv, toast, sushi och bar.', websiteUrl: 'https://www.utogasthamn.se/kiosk-cafe/' },
       // KÄLLA: https://www.utovardshus.se/bakfickan/ — "DANSA IN SOMMARNATTEN", "musik, dans och trevligt umgänge", "Bakfickan stänger för säsongen 31 augusti 2026." (läst 2026-09-27)
-      { name: 'Bakfickan Utö', type: 'Bar', desc: 'Utö Värdshus dansställe med musik och dans sommarkvällar. Stängde för säsongen 31 augusti 2026.', slug: 'bakfickan-uto' },
+      // KÄLLA: https://www.utovardshus.se/oppettider/ — "Bakfickan"; "Från 5 Juni 2027 * Lördagar 22:00 –" (läst 2026-10-20)
+      { name: 'Bakfickan Utö', type: 'Bar', desc: 'Utö Värdshus dansställe med musik och dans sommarkvällar. Stängde för säsongen 31 augusti 2026 och öppnar igen 5 juni 2027, på lördagar.', slug: 'bakfickan-uto' },
     ],
     tips: [
       // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis"
@@ -1501,11 +1507,11 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/libertas-fagelskyddsomrade (Lidingö stads sida på Naturkartan) — "Libertas och Rövarns holme är ett fågelskyddsområde där det är landstigningsförbud under fåglarnas häckningstid från 1 april till 15 juli", "Stockholms största koloni av silltrut", "På Libertas står en fyr som är förklarad som byggnadsminne" (läst 2026-09-27)
       'Ögruppen består av fyra öar: Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme. Det är Stora Fjäderholmen man kliver av på. Libertas och Rövarns holme är fågelskyddsområde med landstigningsförbud under häckningstiden 1 april–15 juli. Där finns Stockholms största koloni av silltrut, och på Libertas står en fyr som är byggnadsminne. Fågellivet går att följa med kikare från Stora Fjäderholmen.',
       // KÄLLA: https://www.fjaderholmarna.se/ — "(1) Waxholmsbolaget", "(19) Strömma Kanalbolaget", "(20) Fjäderholmslinjen" (läst 2026-09-27)
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Strandvägen - Kajplatsområde 13", "Vissa turer stannar även vid Nacka Strand", "1 maj – 18 juni & 17 augusti – 13 september", "Varje halvtimme 10:30–17:00" (läst 2026-09-27)
-      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "under perioden 1 maj", "till 13 september 2026", "Alla turer stannar i Nacka Strand vid behov" (läst 2026-09-27)
+      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "Fjäderholmslinjen går under perioden 1 maj till 13 september 2026."; "Alla turer stannar i Nacka Strand vid behov" (läst 2026-10-20)
       // Rättad 2026-10-19: säsongen 2026 är slut. Strömmas sida visar nu bara tidtabellen för 2027, så uppgiften om halvtimmestrafik 2026 är ersatt med 2027 års datum.
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Åter maj 2027"; "Tidtabell 2027"; "18 juni – 15 augusti:"; "Varje halvtimme 10:30–17:00" (läst 2026-10-19)
-      'Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13, och vissa avgångar stannar vid Nacka Strand. Fjäderholmslinjen går från Slussen och stannar i Nacka Strand vid behov. Båda gick 2026 från 1 maj till 13 september, och den säsongen är slut. Strömma går åter i maj 2027, och mellan 18 juni och 15 augusti 2027 går båten från Strandvägen varje halvtimme mellan 10.30 och 17.00.',
+      // Rättad 2026-10-20: Strömmas datum för 2026 går inte längre att belägga, så bara Fjäderholmslinjens säsong 2026 anges.
+      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Strandvägen - Kajplatsområde 13"; "Vissa turer stannar även vid Nacka Strand"; "Åter maj 2027"; "Tidtabell 2027"; "18 juni – 15 augusti:"; "Varje halvtimme 10:30–17:00" (läst 2026-10-20)
+      'Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13, och vissa avgångar stannar vid Nacka Strand. Fjäderholmslinjen går från Slussen och stannar i Nacka Strand vid behov. Fjäderholmslinjen gick 2026 från 1 maj till 13 september, och båda sommarbåtarnas säsong för 2026 är slut. Strömma går åter i maj 2027, och mellan 18 juni och 15 augusti 2027 går båten från Strandvägen varje halvtimme mellan 10.30 och 17.00.',
       // KÄLLA: https://www.rokeriet-fjaderholmarna.se/om-rokeriet-fjaderholmarna — "fokus på våra egna rökta produkter, tillagade på plats", "under sommarmånaderna även besöka vår deli och glasskiosk", "Rökeriets uteservering bjuder på sol hela dagen och en fantastisk utsikt över Stockholms inlopp" (läst 2026-09-27)
       'Restaurang Rökeriet har fokus på egna rökta produkter som tillagas på plats. Under sommarmånaderna finns också en deli och en glasskiosk, så det går att ta med sig något ut på klipporna. Uteserveringen har sol hela dagen och vetter mot Stockholms inlopp.',
       // KÄLLA: https://fjaderholmarnasbryggeri.se/fjaderholmarnas-bryggeri-at-sea — "offering a wide variety of our beers served directly from the Brite Beer Tanks", "You can also grab a bite from our pub menu", "We offer Beer Flights", "We only accept drop-ins" (läst 2026-09-27)
@@ -1578,8 +1584,9 @@ export const ISLANDS: Island[] = [
       // Rättad 2026-10-19: priserna borttagna, Svalla anger inga priser. Säsongen 2026 är slut.
       // KÄLLA: Strömma, Båt till Fjäderholmarna, https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Strandvägen - Kajplatsområde 13"; "Nacka Strand - Vid Restaurang J"; "Endast 30 minuters båtresa från city"; "Åter maj 2027"; "När du har bokat en viss avgång har du förtur på den"; "1 maj – 17 juni & 16 augusti – 12 september:" (läst 2026-10-19)
       { method: 'Strömma', from: 'Strandvägen kajplats 13 eller Nacka Strand', time: '30 min', desc: 'Sommarbåten. Säsongen 2026 är slut, och båten går åter från 1 maj 2027. Bokad avgång ger förtur.', icon: '⛴', url: 'https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/' },
-      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "under perioden 1 maj", "till 13 september 2026", "Resan tar ca 25 minuter.", "inte att reservera platser", "Vi accepterar Visa/Mastercard, ej kontanter.", "hundar i koppel" (läst 2026-09-27)
-      { method: 'Fjäderholmslinjen', from: 'Slussen (via Nacka Strand vid behov)', time: '25 min', desc: 'Sommarbåt 1 maj–13 september 2026. Platser kan inte bokas; betalning ombord med kort, inte kontanter. Hundar i koppel får följa med.', icon: '⛴' },
+      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "Fjäderholmslinjen går under perioden 1 maj till 13 september 2026."; "Resan tar ca 25 minuter."; "Det går inte att reservera platser."; "Vi accepterar Visa/Mastercard, ej kontanter."; "Snälla hundar i koppel är välkomna." (läst 2026-10-20)
+      // Rättad 2026-10-20: säsongen 2026 är slut. Sidan säger inget om 2027.
+      { method: 'Fjäderholmslinjen', from: 'Slussen (via Nacka Strand vid behov)', time: '25 min', desc: 'Sommarbåt. Säsongen 2026 gick 1 maj till 13 september och är slut. Platser kan inte bokas; betalning ombord med kort, inte kontanter. Hundar i koppel får följa med.', icon: '⛴' },
       // KÄLLA: Waxholmsbolaget linje 2, https://kund.printhuset-sthlm.se/wa/h2.pdf — "2A STOCKHOLM – HÖGANÄS – VAXHOLM", gäller 2 april–18 juni och 17 augusti–12 december 2026; Fjäderholmarna angörs på vissa turer med X = "trafikeras utan fast avgångstid" (läst 2026-09-21). Waxholmsbolaget, Alla SL-biljetter gäller mellan 44 bryggor, https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd"; "SL-biljetter gäller endast på de linjer som går via Vaxholm" (läst 2026-09-21). Tidigare källa ResRobot är ingen operatör och är struken.
       // Rättad 2026-10-19: "När Strömma inte går" var fel (tabellen gäller även maj, juni, augusti och september). Uppgiften om SL-biljett är borttagen: Waxholmsbolagets sida kräver JavaScript och tidtabellen säger inget om biljetter.
       { method: 'Waxholmsbolaget linje 2', from: 'Strömkajen eller Nacka strand', time: '', desc: 'Linje 2 mot Vaxholm lägger till vid Fjäderholmarna på vissa turer, utan fast tid. Tabellen gäller 2 april till 18 juni och 17 augusti till 12 december 2026. Sök resan i SL-appen.', icon: '⛴' },
@@ -1630,8 +1637,9 @@ export const ISLANDS: Island[] = [
     seasonal: {
       // KÄLLA: https://www.fjaderholmarna.se/ — "Fjäderholmarna har nu säsongsöppet till och med 13 september." (läst 2026-09-27)
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "18 juni – 15 augusti:", "Varje halvtimme 10:30–17:00" (läst 2026-10-19)
-      // KÄLLA: https://www.rokeriet-fjaderholmarna.se/ — "1 Maj-13 Sep", "20 Nov-20 Dec" (läst 2026-09-27)
-      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — "NU SERVERA JULBORD MELLAN 20/11 - 22/12" (läst 2026-09-27)
+      // KÄLLA: https://www.rokeriet-fjaderholmarna.se/ — "Julbordet serveras från 20 november till 20 december 2026."; "1 Maj-13 Sep" (läst 2026-10-20)
+      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — "FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027."; "NU SERVERA JULBORD MELLAN 20/11 - 22/12" (läst 2026-10-20)
+      // Rättad 2026-10-20: oktober är stängd, november och december har julbord ('limited').
       // KÄLLA: https://fjaderholmarnasbryggeri.se/fjaderholmarnas-bryggeri-at-sea — "The brewpub opens on 1 May and closes for the season on 13 September." (läst 2026-09-27)
       open: 'Maj–September',
       peak: 'Juli–Augusti',
@@ -1640,7 +1648,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Åter maj 2027"; "18 juni – 15 augusti:"; "Varje halvtimme 10:30–17:00" (läst 2026-10-19)
       bestReason: 'Båtar, restauranger och butiker hade säsongsöppet 1 maj till 13 september 2026, och den säsongen är slut. Strömma går åter i maj 2027 och tätast, varje halvtimme, 18 juni till 15 augusti 2027.',
       warning: 'Sommarsäsongen är kort. De flesta verksamheter stänger i mitten av september och öppnar i maj; Krogen och Rökeriet serverar julbord från 20 november.',
-      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+      months: ['off','off','off','limited','open','open','peak','peak','open','off','limited','limited'],
     },
     activity_meta: {
       bad: {
@@ -2054,8 +2062,9 @@ export const ISLANDS: Island[] = [
     restaurants: [
       // KÄLLA: https://www.arholma.nu/mat-dryck/dansbanan — "På Arholma har det funnits en dansbana sedan beredskapstiden i början av 1940-talet"; "Idag är det en charmig restaurang med stort kök, trevlig bar" (läst 2026-09-27)
       // KÄLLA: https://arholmahandel.se/stuguthyrning/ — "På Arholma ö finns sommartid flera restauranger, den närmaste ser du från ditt sovrumsfönster – Arholma Dansbana" (läst 2026-09-27)
-      // KÄLLA: https://arholmadansbana.se/index.html — "Tack för i år, vi ses 2027" (läst 2026-09-27)
-      { name: 'Arholma Dansbana', type: 'Restaurang', desc: 'Restaurang och bar i den gamla dansbanan nära Norra bryggan. Dansbana har funnits här sedan början av 1940-talet.', open_season: 'Sommar', websiteUrl: 'https://arholmadansbana.se', slug: 'arholma-dansbana-krog' },
+      // KÄLLA: https://arholmadansbana.se/index.html — "Tack för i år, vi ses 2027" (läst 2026-10-20)
+      // Rättad 2026-10-20: "nära Norra bryggan" borttaget (står inte i någon källa). Säsongen 2026 är slut enligt krogens egen sida.
+      { name: 'Arholma Dansbana', type: 'Restaurang', desc: 'Restaurang med stort kök och bar i öns gamla dansbana. Dansbana har funnits här sedan början av 1940-talet.', open_season: 'Säsongen 2026 är slut, åter 2027', websiteUrl: 'https://arholmadansbana.se', slug: 'arholma-dansbana-krog' },
       // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-arholma-nord/ — "Arholma Nords restaurang har blivit en naturlig samlingsplats för båtfolk, gäster och öbor"; "särskilt under sommarkvällar med livemusik" (läst 2026-09-27)
       // Rättad 2026-10-19: öppettiden och "mat från röken" borttagna. arholmanord.se/mat går inte att läsa utan JavaScript, så uppgifterna kunde inte beläggas.
       { name: 'Arholma Nord', type: 'Restaurang', desc: 'Restaurang i Arholma Nords havsvik och en samlingsplats för båtfolk, gäster och öbor, särskilt sommarkvällar med livemusik.', websiteUrl: 'https://arholmanord.se' },
@@ -3699,7 +3708,9 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://ytterbygruva.se/ — "Söndag 7 juni kl 10.30", "Lördag 5 september kl 10.30" (läst 2026-09-27)
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h682.pdf — "Giltig 17 augusti–12 december 2026" (läst 2026-09-27)
       bestReason: 'Ytterby gruvas allmänna visningar låg 2026 mellan maj och början av september (bland annat 7 juni och 5 september), och buss 682 går hela året.',
-      months: ['off','off','off','limited','open','open','peak','peak','open','open','limited','off'],
+      // Rättad 2026-10-20: december var 'off' fast buss 682 går alla dagar enligt tidtabellen (giltig till 12 december). Januari till mars ligger utanför tabellen och är oförändrade.
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h682.pdf — "Giltig 17 augusti–12 december 2026"; "Måndag–fredag"; "Lördag, söndag och helgdag" (läst 2026-10-20)
+      months: ['off','off','off','limited','open','open','peak','peak','open','open','limited','limited'],
     },
 
   },
@@ -6133,6 +6144,15 @@ export const ISLANDS: Island[] = [
       { name: 'Ulvö Hotell', type: 'Hotell', desc: 'Hotell i Ulvöhamn med restaurang, bar, gym och bastu med havsutsikt (fri för hotellgäster). Öppet från valborg till sista oktober: alla dagar 15 juni–15 augusti, annars fredag–lördag.', websiteUrl: 'https://ulvohotell.se/sv' },
       // KÄLLA: https://www.hogakusten.com/sv/stader-platser/ulvon — "Tältning sker enligt allemansrätten – visa omtanke om både naturen och de som bor här"; "Fyll gärna på vatten i Ulvö hamn innan du ger dig av" (läst 2026-09-27)
       { name: 'Tält längs Ulvöleden', type: 'Tältning', desc: 'Tältning sker enligt allemansrätten, med hänsyn till naturen och de som bor på ön. Fyll på vatten i Ulvöhamn innan du går ut på leden.' },
+      // Tillagd 2026-10-20 efter granskning (krogar och trafik, grupp B).
+      // KÄLLA: https://ulvohamnkrog.se/ — "Vill ni stanna kvar och utforska resten av ön så finns 14 rum tillgängliga för bokning. De mysiga rummen är belägna på övervåningen i sjöboden, även känt som Ulvöns anrika gamla salteri."; "Vi erbjuder enkelrum, dubbelrum och familjerum för upp till fyra personer."; "I alla rumspriser ingår frukost, sänglinne och wi-fi."; "Ja, vi tillåter hundar i våra rum. Vänligen meddela oss i förväg om du planerar att ta med din hund" (läst 2026-10-20)
+      { name: 'Ulvö Hamnkrog Bed & Breakfast', type: 'B&B', desc: 'Fjorton rum på övervåningen i Ulvö Hamnkrogs sjöbod, öns gamla salteri, med havet närmast. Det finns enkelrum, dubbelrum och familjerum för upp till fyra personer, och frukost, sänglinne och wifi ingår. Hund får bo med i rummet om du meddelar krogen i förväg.', websiteUrl: 'https://ulvohamnkrog.se/boka-boende' },
+      // Tillagd 2026-10-20 efter granskning (krogar och trafik, grupp B).
+      // KÄLLA: https://www.sandvikens-fiskelage-ulvon.se/boende/ — "Här finns 28 stugor för uthyrning enligt följande:"; "15 fiskestugor i angränsning till stranden."; "Åtta sjöbodar direkt vid stranden."; "Fem stugor ligger vid skogsbrynet med utsikt över viken."; "Alla stugor har kyl/frys samt spis och mikrovågsugn."; "Det finns två servicehus på området med dusch, toalett samt diskmöjligheter. Ett flertal vattenposter finns i angränsning till stugorna då det ej finns rinnande vatten i stugorna. Kom ihåg att ta med sänglinne och handdukar."; "Denna stuga är dessutom den enda stuga som det finns rinnande vatten i diskhon" (läst 2026-10-20)
+      // KÄLLA: https://www.sandvikens-fiskelage-ulvon.se/ — "Fiskeläget är ett kulturreservat sedan 2005."; "Här har du tillgång till en fantastisk sandstrand"; "Den transfer som ingår i stugpriset gäller t/r Fjären-Sandviken för din ordinarie ankomst/avresedag, lördag eller onsdag under perioden 27/6 - 8/8 2026." (läst 2026-10-20)
+      // KÄLLA: https://www.sandvikens-fiskelage-ulvon.se/tjanster/ — "Transfer t/r Fjären-Sandviken enbart MF Ulvöns turer."; "Sandvikens Fiskeläge är ett kulturreservat och därav råder det tältningsförbud i hela området" (läst 2026-10-20)
+      // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/kulturmiljoer/sandvikens-fiskelage.html — "Sandvikens fiskeläge är beläget på den nordligaste delen av norra Ulvön. Fiskeläget ligger vid en öppen vik med sandstrand"; "Stugorna hyrs ut sommartid och området är öppet för allmänheten." (läst 2026-10-20)
+      { name: 'Sandvikens fiskeläge', type: 'Stuguthyrning', desc: 'Uthyrning av 28 stugor sommartid i kulturreservatet Sandvikens fiskeläge, längst norrut på Norra Ulvön vid en vik med sandstrand. Det finns fiskestugor och sjöbodar vid stranden och skogsstugor i skogsbrynet. Alla stugor har spis, kyl och frys, men i regel inget rinnande vatten, och dusch och toalett finns i två servicehus. Ta med sänglinne och handdukar. Sommaren 2026 ingick transfer mellan Fjären och Sandviken med M/F Ulvöns turer på de ordinarie dagarna för ankomst och avresa, 27 juni till 8 augusti. Tältning är inte tillåten i reservatet.', websiteUrl: 'https://www.sandvikens-fiskelage-ulvon.se/' },
     ],
     getting_there: [
       // KÄLLA: https://www.hogakusten.com/sv/mf-ulvon — "Färjan avgår året runt och extra frekvent under sommarmånaderna från kajen i Köpmanholmen"; "Sväng av E4 vid Bjästa 18 km S om Örnsköldsvik och följ skyltningen mot Köpmanholmen och Ulvön" (läst 2026-09-27)
@@ -6141,16 +6161,22 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://mfulvon.se/bra-att-veta — "Alla våra turer till Strängöarna, Trysunda och Ulvön utgår från Köpmanholmens färjeläge. Här finns flera stora parkeringar" (läst 2026-09-27)
       // Rättad 2026-10-19: exempeltiden (tisdag–torsdag 10.00, framme 11.30) är borttagen. Turlistan gäller bara till 31 oktober, och en not säger att en tur bara går på torsdagar 5 oktober till 21 december. Från 1 november finns turlistan bara som bild.
       // KÄLLA: https://mfulvon.se/turlistor — "Turlista 14 sep - 31 okt 2026"; Köpmanholmen 08.15, Ulvöhamn 09.45; Köpmanholmen 16.00, Ulvöhamn 17.30; "Turlista 1 nov - 23 dec 2026" (läst 2026-10-19)
-      { method: 'Bil + färja', from: 'Köpmanholmen', time: 'ca 1,5 h', desc: 'Sväng av E4 vid Bjästa, 18 km söder om Örnsköldsvik, och följ skyltarna till Köpmanholmen. Där parkerar du (avgift) och tar M/F Ulvön, som går året runt och oftare på sommaren. Turen via Strängöarna och Fjären tar omkring en och en halv timme. Se aktuell turlista hos M/F Ulvön.', icon: '🚗', url: 'https://mfulvon.se/' },
+      // Rättad 2026-10-20: etiketten ändrad, eftersom ingen av båtarna tar bil.
+      // KÄLLA: https://www.hogakusten.com/sv/upplevelser/natur-friluftsliv/skargard/farja-till-ulvon — "Ingen av färjorna är bilfärjor så det är inte möjligt att ta med bilen till Ulvön." (läst 2026-10-20)
+      { method: 'Bil till Köpmanholmen + passagerarfärja', from: 'Köpmanholmen', time: 'ca 1,5 h', desc: 'Sväng av E4 vid Bjästa, 18 km söder om Örnsköldsvik, och följ skyltarna till Köpmanholmen. Där parkerar du (avgift) och tar M/F Ulvön, som går året runt och oftare på sommaren. Turen via Strängöarna och Fjären tar omkring en och en halv timme. Se aktuell turlista hos M/F Ulvön.', icon: '🚗', url: 'https://mfulvon.se/' },
       // KÄLLA: https://www.hogakusten.com/sv/planera-resan/resa-hit-har — "Y-buss går via flera hållplatser på sträckan Örnsköldsvik-Stockholm"; "vid hpl Docksta finns FriluftsByn samt närhet till Ulvöns båtar"; "Om du reser till Höga Kusten söderifrån åker du oftast med SJ"; "kan du resa nästan överallt med kollektivtrafikföretaget DinTur" (läst 2026-09-27)
       // KÄLLA: https://www.hogakusten.com/sv/mf-ulvon — "Nås med kollektivtrafik" (läst 2026-09-27)
-      { method: 'Buss eller tåg + båt', from: 'Stockholm', desc: 'Y-buss Stockholm–Örnsköldsvik stannar i Docksta, nära Ulvöbåtarna. Med SJ-tåg till Höga Kusten fortsätter du med Din Turs bussar; färjeläget i Köpmanholmen nås med kollektivtrafik.', icon: '🚌' },
+      // Rättad 2026-10-20: tillagt att båten från Docksta bara går sommartid.
+      // KÄLLA: https://hkship.se/pdf/turlista.pdf — "ULVÖN 2026"; "Dagliga turer med m/s Kusttrafik"; "15 juni – 16 augusti"; "10.15 Docksta" (läst 2026-10-20)
+      // KÄLLA: https://www.hogakusten.com/sv/stader-platser/ulvon — "hit går färja året runt från Köpmanholmen med M/F Ulvön" (läst 2026-10-20)
+      { method: 'Buss eller tåg + båt', from: 'Stockholm', desc: 'Y-bussen mellan Stockholm och Örnsköldsvik stannar i Docksta, nära Ulvöbåtarna. Båten från Docksta går bara sommartid (2026: 15 juni till 16 augusti), och resten av året utgår båten till Ulvön från Köpmanholmen. Med SJ-tåg till Höga Kusten fortsätter du med Din Turs bussar; färjeläget i Köpmanholmen nås med kollektivtrafik.', icon: '🚌' },
       // KÄLLA: https://www.hkship.se/ — "Under sommarmånaderna juni-augusti kör vi reguljära dagliga turer till de populära öarna Ulvön och Högbonden"; "m/s KUSTTRAFIK (byggd 1908)" (läst 2026-09-27)
       // KÄLLA: https://www.hogakusten.com/sv/upplevelser/natur-friluftsliv/skargard/farja-till-ulvon — "Turen startar i Ullånger och går via Docksta och Mjällomslandet innan ankomst till Ulvön"; "Parkeringarna i Ullånger och Docksta är gratis" (läst 2026-09-27)
       // KÄLLA: https://www.hogakusten.com/sv/stader-platser/ulvon — "Turerna tar mellan 40 min-2 timmar beroende på avresehamn" (läst 2026-09-27)
       // Rättad 2026-10-19: perioden är 15 juni till 16 augusti enligt turlistan, inte hela juni till augusti. Säsongen 2026 är slut.
-      // KÄLLA: https://hkship.se/pdf/turlista.pdf — "ULVÖN 2026"; "Dagliga turer med m/s Kusttrafik"; "15 juni – 16 augusti" (läst 2026-10-19)
-      { method: 'Höga Kusten-båtarna', from: 'Ullånger, Docksta eller Mjällomslandet', time: '40 min–2 h beroende på hamn', desc: 'Dagliga turer med m/s Kusttrafik, byggd 1908. År 2026 gick de 15 juni till 16 augusti, och säsongen är slut. Turen startar i Ullånger och går via Docksta och Mjällomslandet. Gratis parkering i Ullånger och Docksta.', icon: '⛴', url: 'https://www.hkship.se/' },
+      // Rättad 2026-10-20: restiden följer nu rederiets egen turlista (45 min från Mjällomslandet, 2 h från Ullånger), och parkeringen förtydligad. Höga Kustens två sidor ger olika besked om Mjällomslandet, så bara rederiets uppgift används.
+      // KÄLLA: https://hkship.se/pdf/turlista.pdf — "Fri parkering i Ullånger, Docksta och Barsta"; "ULVÖN 2026"; "Dagliga turer med m/s Kusttrafik"; "15 juni – 16 augusti"; "09.30 Ullånger"; "10.45 Mjällomslandet"; "11.30 Ulvöhamn" (läst 2026-10-20)
+      { method: 'Höga Kusten-båtarna', from: 'Ullånger, Docksta eller Mjällomslandet', time: '45 min till 2 h beroende på hamn', desc: 'Dagliga turer med m/s Kusttrafik, byggd 1908. År 2026 gick de 15 juni till 16 augusti, och säsongen är slut. Turen startar i Ullånger och går via Docksta och Mjällomslandet. Rederiet anger fri parkering i Ullånger och Docksta.', icon: '⛴', url: 'https://www.hkship.se/' },
     ],
     harbors: [
       // KÄLLA: https://www.hogakusten.com/sv/gasthamn-ulvo-hotell — "har i dag cirka 70 gästplatser alla med tillgång till färskvatten och el"; "ett djup på fyra meter och en nyrenoverad servicebyggnad med toaletter, duschar, kök och tvättstuga"; "Ett stenkast bort finns även handelsbod och sjömack med diesel, och bensin"; "Bastu" (läst 2026-09-27)
@@ -6163,6 +6189,13 @@ export const ISLANDS: Island[] = [
       // Rättad 2026-10-19: säsongen 2026 är slut, och datum för 2027 är inte publicerade.
       // KÄLLA: https://bistroruben.se/oppet/ — "Vi håller öppet under sommarsäsongen runt mitten av juni till mitten av augusti."; "18:e juni – 8:e augusti 2026"; "Sommaren 2027 startar om …" (läst 2026-10-19)
       { name: 'Bistro Ruben', type: 'Restaurang', desc: 'Restaurang i flera små hus med trädgård mitt på hamngatan i Ulvöhamn. Lunch dagtid och à la carte-bistro på kvällen.', open_season: 'Runt mitten av juni till mitten av augusti. Säsongen 2026 (18 juni till 8 augusti) är slut.', websiteUrl: 'https://bistroruben.se/' },
+      // Tillagd 2026-10-20 efter granskning (krogar och trafik, grupp B). Sidan anger inget årtal vid öppettiderna, så inget år skrivs ut.
+      // KÄLLA: https://ulvohamnkrog.se/ — "Du hittar oss direkt på bryggan i skärgårdsidyllen Ulvöhamn. Här kan du äta, dricka gott och umgås till ljudet av vågorna som skvalpar under vår gamla sjöbod. Vissa kvällar har vi lite extra trevligt då vi bjuder på musikunderhållning."; "Därför serverar vi enkel och god mat med en touch av hav & land"; "På vår trevliga uteservering sitter du på första parkett direkt vid havet"; "Vår restaurang har öppet varje dag från kl.11.30-22.00, fram till 31 augusti."; "Vi har öppet alla helger i september, sen stänger vi för säsongen." (läst 2026-10-20)
+      { name: 'Ulvö Hamnkrog', type: 'Restaurang', desc: 'Restaurang och bar i en gammal sjöbod direkt på bryggan i Ulvöhamn, med enkel skärgårdsmat och uteservering vid vattnet. Vissa kvällar bjuder krogen på musik. Enligt krogens egen sida har restaurangen öppet varje dag till 31 augusti och alla helger i september, och sedan stänger den för säsongen.', websiteUrl: 'https://ulvohamnkrog.se/' },
+      // Tillagd 2026-10-20 efter granskning (krogar och trafik, grupp B). Ingen egen webbplats hittades, så ingen säsong eller öppettid anges.
+      // KÄLLA: https://www.ulvon.info/mat-logi/almagrand/ — "Almagränd är döpt efter surströmmingskungen Fridolf Nordqvists hustru Alma och är inrymt i Fridolfs gamla sjöbod, där den berömda surströmmingen tillverkades fram till 1960-talet. Idag är Almagränd restaurang med blandad mat, bland annat husmanskost och pizza. Telefon till Almagränd: 0660-224132." (läst 2026-10-20)
+      // KÄLLA: https://www.hogakusten.com/sv/stader-platser/ulvon — "Vilka matställen finns på Ulvön? Ulvö Hotell, Ulvö hamnkrog, Bistro Ruben och Almagränd." (läst 2026-10-20)
+      { name: 'Almagränd', type: 'Restaurang', desc: 'Restaurang i surströmmingskungen Fridolf Nordqvists gamla sjöbod, där surströmming tillverkades fram till 1960-talet. Namnet kommer från hans hustru Alma. Menyn är blandad, med bland annat husmanskost och pizza.', phone: '0660-224132' },
     ],
     tips: [
       // KÄLLA: https://www.hogakusten.com/sv/upplevelser/natur-friluftsliv/skargard/farja-till-ulvon — "För att säkra din plats ombord rekommenderar vi att du förbokar biljetter" (läst 2026-09-27)
@@ -6485,7 +6518,9 @@ export const ISLANDS: Island[] = [
       // Rättad 2026-10-19: säsongen 2026 är slut.
       // KÄLLA: https://www.stromma.com/sv-se/goteborg/utflykter/guidad-batutflykt-till-vinga/ — "Åter juni 2027"; "26 juni - 9 augusti:"; "14 - 30 augusti:" (läst 2026-10-19)
       // KÄLLA: https://vinga.nu/turbatar/ — "kungsö, Stenpiren"; "Direkt från Stenpiren till Vinga! Mellan 25 juni till 16 augusti" (läst 2026-10-19)
-      'Turbåtar till Vinga går sommartid från både Göteborg och Öckeröarna. Säsongen 2026 är slut, och Strömma går åter i juni 2027. Strömma avgår från Lilla Bommen och anger själv cirka 1 timme och 15 minuter enkel väg samt två timmar i land på ön. M/S Kungsö går från Stenpiren, Silvana och Hönö Båtturer från Hönö Klåva, och Emma från Fotö. Öns besöksverksamhet drivs av föreningen Winga Vänner. Det finns dessutom övernattningsmöjligheter: Winga Vänner hyr ut Biskopsgården och Fyrmästarbostaden, medan Båken hyrs ut endast för ceremonier som bröllop och dop. Vinga Event driver Fyrfolkets By.',
+      // Rättad 2026-10-20: Kastor Boat Trips från Hönö Klåva tillagd.
+      // KÄLLA: https://vinga.nu/turbatar/ — "Kastor Boat trips, Hönö Klåva"; "Skärgårdsturer (3,5 tim) från Hönö Klåva med sälstopp och makrillfiske och stopp på Vinga 2 tim." (läst 2026-10-20)
+      'Turbåtar till Vinga går sommartid från både Göteborg och Öckeröarna. Säsongen 2026 är slut, och Strömma går åter i juni 2027. Strömma avgår från Lilla Bommen och anger själv cirka 1 timme och 15 minuter enkel väg samt två timmar i land på ön. M/S Kungsö går från Stenpiren, Silvana, Hönö Båtturer och Kastor Boat Trips från Hönö Klåva, och Emma från Fotö. Kastor kör skärgårdsturer på tre och en halv timme med sälstopp, makrillfiske och två timmar på Vinga. Öns besöksverksamhet drivs av föreningen Winga Vänner. Det finns dessutom övernattningsmöjligheter: Winga Vänner hyr ut Biskopsgården och Fyrmästarbostaden, medan Båken hyrs ut endast för ceremonier som bröllop och dop. Vinga Event driver Fyrfolkets By.',
       // KÄLLA: Västsverige/Visit Öckerö, Ön Vinga — kiosk med glass, dryck och souvenirer samt grillplatsen "Brända Fläsket" — https://www.vastsverige.com/visitockero/produkter/on-vinga/ ; Länsstyrelsen Västra Götaland, Vinga — informationstavla, rastplats, vandringsled och toalett som besöksanordningar — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
       'På ön finns kiosk med glass, godis och fika samt grillplatsen "Brända Fläsket". Länsstyrelsen anger informationstavla, rastplats, vandringsled och toalett som besöksanordningar i reservatet.',
     ],
@@ -6945,7 +6980,7 @@ export const ISLANDS: Island[] = [
       bestReason: 'Båtarna går och gästhamnen är öppen året runt. Början av juni och september ligger utanför gästhamnens högsäsong (15 juni–15 augusti).',
       // KÄLLA: https://donsohamn.se/ — "Utöver dessa finns det lediga platser markerade med gröna skyltar. Är det en röd skylt innebär det att platsen används av någon annan." (läst 2026-09-27)
       warning: 'Gästhamnen har cirka 100 gästplatser. Andra lediga platser är märkta med grön skylt – en röd skylt betyder att platsen används.',
-      months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
+      months: ['off','off','off','limited','open','open','peak','peak','open','open','limited','limited'],
     },
   },
   {
@@ -8155,9 +8190,13 @@ export const ISLANDS: Island[] = [
     ],
     restaurants: [
       // KÄLLA: https://gotland.com/companies/faro-strandcafe/ — "frukost, lunch, afterbeach och middag … Pizza, pasta, sallad, smårätter samt … kött & fiskrätter", säsong 2026; farostrandcafe.se — "Vid Sudersand resort" (läst 2026-09-30)
-      { name: 'Fårö Strandcafé', type: 'Restaurang/Bar', desc: 'Restaurang och bar vid Sudersand Resort. Frukost, lunch, afterbeach och middag; pizza, pasta, kött och fisk.', websiteUrl: 'https://farostrandcafe.se/' },
+      // Rättad 2026-10-20: säsong tillagd.
+      // KÄLLA: https://farostrandcafe.se/ — "Vi ses nästa säsong - öppnar den 4 juni 2027!" (läst 2026-10-20)
+      { name: 'Fårö Strandcafé', type: 'Restaurang/Bar', desc: 'Restaurang och bar vid Sudersand Resort. Frukost, lunch, afterbeach och middag; pizza, pasta, kött och fisk.', open_season: 'Sommarsäsong. Stängt nu, öppnar 4 juni 2027.', websiteUrl: 'https://farostrandcafe.se/' },
       // KÄLLA: https://verktygsladan.gotland.com/companies/broa-kiosken-faro/ — "Broa Kiosken Fårö", "glass, take away-kaffe, kylda drycker, snabbmat"
-      { name: 'Broa Kiosken Fårö', type: 'Café/Kiosk', desc: 'Kiosk och café vid färjeläget i Broa. Glass, kaffe, kylda drycker och snabbmat.', websiteUrl: 'https://verktygsladan.gotland.com/companies/broa-kiosken-faro/' },
+      // Rättad 2026-10-20: säsong tillagd.
+      // KÄLLA: https://verktygsladan.gotland.com/companies/broa-kiosken-faro/ — "Kontakt & öppettider"; "juni-augusti" (läst 2026-10-20)
+      { name: 'Broa Kiosken Fårö', type: 'Café/Kiosk', open_season: 'Juni till augusti.', desc: 'Kiosk och café vid färjeläget i Broa. Glass, kaffe, kylda drycker och snabbmat.', websiteUrl: 'https://verktygsladan.gotland.com/companies/broa-kiosken-faro/' },
       // KÄLLA: https://gotland.com/activities/daglig-guidning/ — "Kafé Smultronstället på Fårö är Bergmancenters kafé och restaurang där du kan ta en fika, hemlagad lunch eller njuta av en glass i solen. Allt med utsikt över vackra Kyrkviken." (läst 2026-09-27)
       { name: 'Kafé Smultronstället', type: 'Kafé/Restaurang', desc: 'Bergmancenters kafé och restaurang med fika, hemlagad lunch och glass, med utsikt över Kyrkviken.', websiteUrl: 'https://bergmancenter.se/' },
     ],
@@ -8779,7 +8818,9 @@ export const ISLANDS: Island[] = [
       { method: 'Färja från Landskrona', from: 'Landskrona Skeppsbron', time: 'ca 30 min', desc: 'Ventrafiken går från Skeppsbron i Landskrona till Bäckviken på Ven året runt, 8 eller 9 turer per dag och riktning enligt tidtabellen som gäller till 31 december 2026. Sommartid går extra turer; sommaren 2026 var det 27 juni till 16 augusti. Boka plats i förväg på högsäsong – utan bokning kan du få vänta länge på en båt.', icon: '⛴', url: 'https://ventrafiken.se/tidtabell/' },
       // KÄLLA: https://ilandskrona.se/besoka/ven/planera-din-resa-till-ven/ — "trafikerar Landskrona och Ven dagligen, året om."; "Helsingborg och Malmö." (läst 2026-09-27)
       // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/landskrona/vens-backafall.html — "Under sommaren kan det även gå båtar från andra platser, som Råå (Helsingborg) och Köpenhamn. Vissa båtar kan angöra Kyrkbacken på andra sidan ön." (läst 2026-09-27)
-      { method: 'Sommarbåtar', from: 'Råå, Helsingborg, Malmö, Köpenhamn', desc: 'Sommartid går det också båtar till Ven från Råå, Helsingborg, Malmö och Köpenhamn. Vissa angör Kyrkbacken på andra sidan ön i stället för Bäckviken.', icon: '⛴' },
+      // Rättad 2026-10-20: kommunen nämner Råå, Helsingborg och Malmö. Köpenhamn har bara stöd i Länsstyrelsens "kan det även gå", så det skrivs nu så.
+      // KÄLLA: https://ilandskrona.se/besoka/ven/planera-din-resa-till-ven/ — "Under sommaren kan du även åka från Råå, Helsingborg och Malmö." (läst 2026-10-20)
+      { method: 'Sommarbåtar', from: 'Råå, Helsingborg, Malmö', desc: 'Sommartid går det också båtar till Ven från Råå, Helsingborg och Malmö, och enligt Länsstyrelsen kan det även gå båtar från Köpenhamn. Vissa angör Kyrkbacken på andra sidan ön i stället för Bäckviken.', icon: '⛴' },
       // KÄLLA: https://ventrafiken.se/kontaktuppgifter/ — "Åk tåg eller buss till oss! Bussarna stannar precis utanför terminalen och hållplatsen heter Skeppsbron." (läst 2026-09-27)
       // KÄLLA: https://ilandskrona.se/besoka/planera-din-resa-till-landskrona/ — "Tågstationen ligger på Östervångsplan." (läst 2026-09-27)
       // UPPSKATTNING: total restid från Malmö eller Helsingborg är inte kontrollerad mot Skånetrafikens tidtabell (reseplaneraren kräver JavaScript).
@@ -8831,6 +8872,17 @@ export const ISLANDS: Island[] = [
       { name: 'Stures krog', type: 'Krog', desc: 'Krog på Ven.', websiteUrl: 'https://www.stureskrog.se' },
       // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ (Landskrona stad) — "Vens Våffelmakeri, vaffelmakeri.se"
       { name: 'Vens Våffelmakeri', type: 'Café', desc: 'Våfflor.', websiteUrl: 'https://vaffelmakeri.se' },
+      // Tillagda 2026-10-20 efter granskning (krogar och trafik, grupp B): fem ställen till från kommunens lista. Bara det kommunen anger: namn, läge, telefon eller länk.
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ — "Hamnkiosken i Bäckviken, Hvens Glassfabrik"; "0704-13 28 72"; "Missa inte heller Hvenglassen som säljs i Bäckvikens hamn." (läst 2026-10-20)
+      { name: 'Hamnkiosken i Bäckviken', type: 'Kiosk', desc: 'Kiosk i Bäckvikens hamn, i kommunens lista under Hvens Glassfabrik. Hvenglassen säljs i Bäckvikens hamn.', phone: '0704-13 28 72' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ — "Kiosken i Kyrkbacken"; "0418-720 82" (läst 2026-10-20)
+      { name: 'Kiosken i Kyrkbacken', type: 'Kiosk', desc: 'Ligger i Kyrkbacken.', phone: '0418-720 82' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ — "Mitt på Hven"; "mittpahven.se" (läst 2026-10-20)
+      { name: 'Mitt på Hven', type: 'Mat och dryck', desc: 'Finns med i Landskrona stads lista över mat och dryck på Ven.', websiteUrl: 'http://www.mittpahven.se' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ — "Trädgårdscafé & deli"; "houseofven.com" (läst 2026-10-20)
+      { name: 'Trädgårdscafé & deli', type: 'Café/Deli', desc: 'Trädgårdscafé och deli. Kommunens lista länkar till House of Ven.', websiteUrl: 'http://www.houseofven.com' },
+      // KÄLLA: https://ilandskrona.se/besoka/ven/mat-och-dryck-pa-ven-2/ — "Vens Lounge"; "venslounge.se" (läst 2026-10-20)
+      { name: 'Vens Lounge', type: 'Mat och dryck', desc: 'Finns med i Landskrona stads lista över mat och dryck på Ven.', websiteUrl: 'http://www.venslounge.se' },
     ],
     tips: [
       // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/landskrona/vens-backafall.html — "Cykeluthyrning och buss till andra delar av ön finns i anslutning till färjan i Bäckviken." (läst 2026-09-27)
