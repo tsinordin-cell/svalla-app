@@ -7335,7 +7335,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html",
       "org": "Länsstyrelsen Blekinge",
       "vad": "Ett antal välmarkerade vandringsstigar leder besökaren runt på ön och minskar risken att gå vilse.; Den geologiska stigen är en av flera leder på Hanö. Den tar dig från hamnen upp på bergets topp.; läs om isräfflor, klapperstensfält och drumliner på skyltar längs vägen. Du får också följa Östersjöns historia",
-      "last": "2026-10-19",
+      "last": "2026-10-20",
       "myndighet": true
     },
     {
@@ -7349,7 +7349,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://fiskybusiness.nu/vandrarhemmet-hanouml.html",
       "org": "fiskybusiness.nu",
       "vad": "Vandrarhemmet Hanö är ett litet vandrarhem med totalt 20 st bäddar fördelat på fem rum och två stugor; I den stora byggnaden (gamla skolan) finns fem rum; Sängkläder, handduk och städning av rummet ingår i priset.; augusti - maj; bokningsförfrågan via mail; Vi hoppas att Vandrarhemmet kan komplettera med Hanös enda och Hanös bästa restaurang",
-      "last": "2026-10-19",
+      "last": "2026-10-20",
       "myndighet": false
     },
     {
@@ -7360,10 +7360,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.hano.nu/hamnen-33705539",
+      "org": "hano.nu",
+      "vad": "hamnens egen sida (Hanö Hamn- och Byalag driver hamnen): \"Gästplatser: 75 i hela hamnen utom i färjeläget dagtid. Det går inte att boka båtplatser.\"",
+      "last": "2026-10-20",
+      "myndighet": false
+    },
+    {
+      "url": "https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html",
+      "org": "solvesborg.se",
+      "vad": "En barnvänlig strand finner du cirka 5 minuters promenad norrut från hamnen.; Klippbadet Vindhalla finner du på öns östra sida.",
+      "last": "2026-10-20",
+      "myndighet": false
+    },
+    {
       "url": "https://www.visitblekinge.se/en/guest-harbour-hano",
       "org": "visitblekinge.se",
-      "vad": "Guest harbor with 74 berths in Hanö Harbor.; Hanö Harbor has a Blue Flag.; WIFI is available in the harbor as well as shower and laundry facilities for boat guests.; There is a sauna to rent a short distance from the harbor office.",
-      "last": "2026-10-19",
+      "vad": "WIFI is available in the harbor as well as shower and laundry facilities for boat guests.; There is a sauna to rent a short distance from the harbor office.",
+      "last": "2026-10-20",
       "myndighet": false
     }
   ],

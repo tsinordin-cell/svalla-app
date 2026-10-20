@@ -38,7 +38,7 @@ export const ACTIVITIES: Record<ActivityType, ActivityMeta> = {
     whatToBring: ['Cykelhjälm', 'Vattenflaska', 'Lätt regnjacka', 'Liten ryggsäck', 'Solskydd'],
     bestSeason: 'April–oktober. Maj–juni och september är klart bäst (mindre folk, lagom temperatur).',
     level: 'Lätt till medel. De flesta lederna går på grusvägar utan stora höjdskillnader.',
-    matchers: ['cykling', 'cykel', 'cykl', 'leder', 'mtb'],
+    matchers: ['cykling', 'cykel', 'cykl', 'mtb'],   // 'leder' borttaget 2026-10-20: matchade vandringsleder och gav falska cykelsidor (t.ex. Hanö)
     featured: ['uto', 'svartso', 'singo', 'runmaro', 'vaddo', 'ljustero', 'adelsjo', 'resaro', 'vindo', 'galo'],
   },
   bada: {

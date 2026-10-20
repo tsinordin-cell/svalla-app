@@ -11875,9 +11875,10 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
   'hano-guide': `
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "Blekinges mest avlägsna och dramatiska ö", ostindiefarare och "landmärke för ostindiefarare", "tusentals fåglar", "havsörnen syns ofta", sommarbåt från Sölvesborg (båten går från Nogersund, året runt), säsong juni–september, restid 40 minuter (operatören anger 25 minuter), "ön saknar service utöver ett enkelt café", "reservatets anvisade tältplats", 1810–1814 i gamla FAQ (källorna anger 1810–1812), "ett gammalt fyrtorn" (dagens fyr är från 1900-talets början), restid ca 1 timme i gamla FAQ, samt värdeord ("pärlor", "unikt"). -->
 <!-- KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "Kommun: Sölvesborg"; "Skyddsår: 2017, utvidgning 2024"; "Förvaltare: Länsstyrelsen Blekinge"; "Hanö har en spännande geologi. Ön är ett restberg, som formades i ett tropiskt klimat för ett par hundra miljoner år sedan." (läst 2026-09-28) -->
-<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg-skargard/nogersund-hano/ — "Hanö är ett mycket populärt utflyktsmål med cirka 30 000 besökare årligen." (läst 2026-09-28) -->
-<!-- KÄLLA: https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html — "Inte konstigt att ön lockar cirka 40 000 besökare varje år!" (läst 2026-09-28) -->
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Hanö ligger i Hanöbukten utanför Listerlandet och hör till Sölvesborgs kommun i Blekinge. Ön är ett restberg som formades i tropiskt klimat för ett par hundra miljoner år sedan, och i dag är nästan hela ön naturreservat. Blekingetrafiken räknar med cirka 30 000 besökare om året, Sölvesborgs kommun med cirka 40 000. Här är svaret på vilket landskap Hanö hör till, öns historia med Engelska kyrkogården, och hur du tar dig dit.</p>
+<!-- KONTROLLERAD 2026-10-20 mot alla källor nedan (hano.nu läst i webbläsare). Borttaget: "Hanöbukten" (ingen källa), besökarantal (Blekingetrafikens sida säger inte längre 30 000; Visit Blekinge skriver 30 000 per sommar, Sölvesborgs kommun 40 000 per år), "cirka 110 passagerare" (står inte längre hos Blekingetrafiken). -->
+<!-- KÄLLA: https://www.visitblekinge.se/en/hano-island — "Hanö is a popular and spectacular island near Listerlandet" (läst 2026-10-20) -->
+<!-- KÄLLA: https://www.hano.nu/g%C3%B6ra/vandra-33709369 — "Skyddet omfattar hela ön förutom Hanö läge och fyrområdet." (läst 2026-10-20) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Hanö ligger utanför Listerlandet och hör till Sölvesborgs kommun i Blekinge. Ön är ett restberg som formades i tropiskt klimat för ett par hundra miljoner år sedan, och i dag är nästan hela ön naturreservat. Här är svaret på vilket landskap Hanö hör till, öns historia med Engelska kyrkogården, och hur du tar dig dit.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Till vilket landskap hör ön Hanö?</h2>
 <!-- KÄLLA: https://app.raa.se/open/fornsok/lamning/publicerad/print?id=a0e56d73-b559-480c-8318-b47f96b9311a — "Län Blekinge Kommun Sölvesborg Landskap Blekinge Socken Mjällby"; "Namn på lämning Engelska kyrkogården" (läst 2026-09-28) -->
@@ -11899,12 +11900,13 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Engelska kyrkogården i Riksantikvarieämbetets register</h3>
 <!-- KÄLLA: https://app.raa.se/open/fornsok/lamning/publicerad/print?id=a0e56d73-b559-480c-8318-b47f96b9311a — "L1979:3419 Begravningsplats"; "Begravningsplats, 29x12 m (NNV-SSÖ), begränsad av en stenmur"; "I begravningsplatsens S hälft finns ca 13 gravkullar"; "Det översta skiftet på stenmuren lades upp vid ett engelskt flottbesök år 1971." (läst 2026-09-28) -->
-<!-- KÄLLA: https://app.raa.se/open/fornsok/lamning/publicerad/print?id=b2f185fc-2df2-4822-8803-b99a6321f7d0 — "Minnessten, av tuktad granit, 1,3 m h och 0,55 m gmsk, med texten: HÄR VILAR / ENGELSKA SJÖMÄN / AVLIDNA I TJÄNST / VID HANÖ 1810." (läst 2026-09-28) -->
+<!-- KÄLLA: https://app.raa.se/open/fornsok/lamning/publicerad/print?id=b2f185fc-2df2-4822-8803-b99a6321f7d0 — "Minnessten, av tuktad granit, 1,3 m h och 0,55 m gmsk" (läst 2026-10-20). Registrets text slutar på "1810", men inventeringen är från 1972. -->
+<!-- KÄLLA: https://svmm.se/registerkort-nr-k401/ — "Text på stenen: HÄR VILAR ENGELSKA SJÖMÄN AVLIDNA I TJÄNST VID HANÖ 1810, 1811 OCH 1812" och foto av stenen (https://svmm.se/wp-content/uploads/2024/06/K301c.jpg) som visar samma text (läst 2026-10-20) -->
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
 <li>Engelska kyrkogården är registrerad i Fornsök som fornlämning L1979:3419, en begravningsplats på 29 × 12 meter inom en stenmur.</li>
 <li>I den södra halvan finns ett tiotal gravkullar (registret anger ca 13).</li>
 <li>Det översta skiftet på stenmuren lades upp vid ett engelskt flottbesök 1971.</li>
-<li>Vid muren står en minnessten i granit med texten "Här vilar engelska sjömän avlidna i tjänst vid Hanö 1810".</li>
+<li>Vid muren står en minnessten i granit med texten "Här vilar engelska sjömän avlidna i tjänst vid Hanö 1810, 1811 och 1812".</li>
 </ul>
 <!-- KÄLLA: https://www.hano.nu/g%C3%B6ra/sev%C3%A4rdheter-33705523 — "Det stora träkorset restes först 1973 i samband med att en engelsk fregatt besökte ön."; "2010 firades 200 års jubileum med besök av representanter från engelska flottan." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det stora träkorset restes 1973, när en engelsk fregatt besökte ön. År 2010 firades 200-årsjubileet med besök av representanter för engelska flottan.</p>
@@ -11930,17 +11932,16 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till Hanö?</h2>
 <!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ — "Mellan Nogersund och Hanö finns skärgårdstrafik året runt. Gå ombord på M/F Vitaskär i Nogersund och 25 minuter senare befinner du dig på sköna Hanö." (läst 2026-09-28) -->
-<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg-skargard/nogersund-hano/ — "Du reser med båten M/F Vitaskär som tar ombord cirka 110 passagerare." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.hano.nu/ta-sig-hit-33942765 — "Det är enbart persontransporter (inga bilar)."; "Återfärd till Nogersund sker oftast direkt efter omlastning." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Båten till Hanö är Blekingetrafikens M/F Vitaskär från Nogersund. Den går året runt, och överfarten tar 25 minuter. Båten tar cirka 110 passagerare men inga bilar. Enligt byalaget går båten oftast tillbaka till Nogersund direkt efter omlastningen, så kolla tidtabellen innan du bestämmer hur länge du stannar.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Båten till Hanö är Blekingetrafikens M/F Vitaskär från Nogersund. Den går året runt, och överfarten tar 25 minuter. Båten tar bara passagerare, inga bilar. Enligt byalaget går båten oftast tillbaka till Nogersund direkt efter omlastningen, så kolla tidtabellen innan du bestämmer hur länge du stannar.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Biljetter och tidtabell för båten till Hanö</h3>
-<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg-skargard/nogersund-hano/ — "Mellan den 1 september och 31 maj körs trafiken mellan Nogersund och Hanö som en båtpendel. Du köper din biljett i appen eller blippar ditt betalkort ombord."; "Mellan den 1 juni och 31 augusti gäller sommarpris, du hittar priset vid tidtabellen."; "Under sommaren, när biljettkiosken i Nogersund är öppen, köper du alltid din biljett där före avgång." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg-skargard/ — "Mellan den 1 september och 31 maj körs trafiken mellan Nogersund och Hanö som en båtpendel. Du köper din biljett i appen eller blippar ditt betalkort ombord."; "Mellan den 1 juni och 31 augusti gäller sommarpris, du hittar priset vid tidtabellen."; "Under sommaren, när biljettkiosken i Nogersund är öppen, köper du alltid din biljett där före avgång." (läst 2026-09-28) -->
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
 <li><strong>1 september–31 maj:</strong> linjen körs som en båtpendel. Du köper biljett i Blekingetrafikens app eller blippar betalkortet ombord, och samma biljetter och rabatter gäller som på buss och tåg.</li>
 <li><strong>1 juni–31 augusti:</strong> sommarpris gäller. Priset står vid tidtabellen på Blekingetrafikens sida, och när biljettkiosken i Nogersund är öppen köper du biljetten där före avgång.</li>
 </ul>
-<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg-skargard/nogersund-hano/ — "Mellan den 1 september och 31 maj kan du som har en Seniorbiljett från Sölvesborgs kommun resa med din biljett på båten."; "Barn mellan 7 till 19 år har 40 procent i rabatt och två barn under 7 år åker gratis i sällskap med betalande resenär." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg-skargard/ — "Mellan den 1 september och 31 maj kan du som har en Seniorbiljett från Sölvesborgs kommun resa med din biljett på båten."; "Barn mellan 7 till 19 år har 40 procent i rabatt och två barn under 7 år åker gratis i sällskap med betalande resenär." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Seniorbiljetten från Sölvesborgs kommun gäller på båten från 1 september till 31 maj, men inte på sommaren. Med sommarpris har barn 7–19 år 40 procent rabatt, och två barn under 7 år åker gratis med en betalande vuxen.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Till Nogersund med bil eller buss</h3>
@@ -11952,7 +11953,7 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Med egen båt till Hanö</h3>
-<!-- KÄLLA: https://www.hano.nu/hamnen-33705539 — "Gästhamn är bemannad 1 april till 30 september. Servicebyggnad med bastu, duschar, toaletter och tvättmaskin."; "Ingen försäljning av bensin eller diesel."; "Gästplatser: 75 i hela hamnen utom i färjeläget dagtid. Det går inte att boka båtplatser."; "Hamndjup: 2-4 m" (läst 2026-09-28) -->
+<!-- KÄLLA (kontrollerad igen 2026-10-20): https://www.hano.nu/hamnen-33705539 — "Gästhamn är bemannad 1 april till 30 september. Servicebyggnad med bastu, duschar, toaletter och tvättmaskin."; "Ingen försäljning av bensin eller diesel."; "Gästplatser: 75 i hela hamnen utom i färjeläget dagtid. Det går inte att boka båtplatser."; "Hamndjup: 2-4 m" (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gästhamnen har 75 gästplatser i hela hamnen, utom i färjeläget dagtid, och platserna går inte att boka. Hamndjupet är 2–4 meter. Hamnen är bemannad 1 april–30 september. I servicebyggnaden finns bastu, duschar, toaletter och tvättmaskin, men det finns ingen försäljning av bensin eller diesel.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad kan man göra på Hanö?</h2>
@@ -11964,6 +11965,7 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Bada på Hanö</h3>
 <!-- KÄLLA: https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html — "Från hamnen kan du simma ut till flotten (med badstege) som ligger förtöjd ca 20 meter från kajen."; "En barnvänlig strand finner du cirka 5 minuters promenad norrut från hamnen."; "För att ta sig till Vindhalla får du räkna med cirka 30 minuters promenad" (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.hano.nu/ — "I hamnen finns möjlighet att ta ett dopp från Giselas brygga och simma ut till flotten som ligger förtöjd ca 20 meter från kajen."; "I anslutning till badplatsen finns grillplats." (läst 2026-10-20) -->
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
 <li><strong>Giselas brygga</strong> i hamnen: simma ut till flotten med badstege, ungefär 20 meter från kajen.</li>
 <li><strong>Badstranden</strong> ungefär 5 minuters promenad norr om hamnen har brygga och grillplats. Sölvesborgs kommun kallar den barnvänlig.</li>
@@ -11983,10 +11985,10 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">I Bödeboden, en bödebod från 1958 i hamnens södra del, finns ett litet museum om öns natur, kultur, fiske och historia. Museet har öppet dagtid på sommaren. På vägen upp mot fyren ligger bygdegården Hanöborg, där bygdegårdsföreningen sommartid serverar våfflor och visar en utställning om engelska flottan på Hanö 1810–1812.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mat och boende på Hanö</h2>
-<!-- KÄLLA: https://fiskybusiness.nu/hanouml-hamnkrog.html — "stängt för säsongen 2026"; "Hanö Hamnkrog är våra drömmars hamnkrog." (läst 2026-09-28) -->
-<!-- KÄLLA: https://www.hano.nu/ — "Nu går Hanö in i vintervila och restaurang, butik och glasskiosk är stängt." (läst 2026-09-28) -->
+<!-- KÄLLA: https://fiskybusiness.nu/hanouml-hamnkrog.html — "vi är Hanös enda restaurang" (läst 2026-10-20) -->
+<!-- KÄLLA: https://www.hano.nu/ — "Nu går Hanö in i vintervila och restaurang, butik och glasskiosk är stängt." (läst 2026-10-20) -->
 <!-- KÄLLA: https://www.hano.nu/hamnen-33705539 — "I hamnen finns affär och restaurang sommartid." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Restaurangen Hanö Hamnkrog (Fisky Business) och affären i hamnen har öppet på sommaren. När vi läste sidorna den 28 september 2026 var hamnkrogen stängd för säsongen 2026, och byalaget skrev att restaurang, butik och glasskiosk hade stängt för vintern. Ta med mat om du åker utanför sommaren.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Restaurangen Hanö Hamnkrog (Fisky Business), öns enda restaurang, och affären i hamnen har öppet på sommaren. När vi läste byalagets sida den 20 oktober 2026 hade restaurang, butik och glasskiosk stängt för vintern. Ta med mat om du åker utanför sommaren.</p>
 <!-- KÄLLA: https://fiskybusiness.nu/vandrarhemmet-hanouml.html — "Vandrarhemmet Hanö är ett litet vandrarhem med totalt 20 st bäddar fördelat på fem rum och två stugor"; "I den stora byggnaden (gamla skolan) finns fem rum, ett gemensamt fullt utrustat kök" (läst 2026-09-28) -->
 <!-- KÄLLA: https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html — "Öppet året runt. Förbokning rekommenderas." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.hano.nu/ — "Fyrvaktarbostaden ägs av Hanö Hamn - och Byalag. I östra halvan av huset finns sedan våren 2020 en nyrenoverad fullutrustad 2-rumslägenhet med 4 bäddplatser."; "Huset ligger fritt och högt på fyrberget"; "Bokning görs via hamnmästare Lotta" (läst 2026-09-28) -->

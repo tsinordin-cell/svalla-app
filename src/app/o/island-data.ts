@@ -8390,8 +8390,10 @@ export const ISLANDS: Island[] = [
     region: 'ovriga',
     regionLabel: 'Blekinge',
     emoji: '⚓',
-    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "Engelska kyrkogården är ett minne från åren 1810-1812", "I norr finns strandsporren Bönsäcken", "Idag finns en av Sveriges största avenbokskogar på Hanös södra delar" (läst 2026-09-27)
-    tagline: 'Naturreservat i Hanöbukten — engelsk kyrkogård från Napoleonkrigen, Bönsäcken och avenbokskog.',
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "När du besöker naturreservatet Hanö", "I norr finns strandsporren Bönsäcken", "Idag finns en av Sveriges största avenbokskogar på Hanös södra delar" (läst 2026-10-20)
+    // KÄLLA: https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html — "På ön finns den engelska kyrkogården, ett minne från Napoleonkrigets dagar (1810-1812)" (läst 2026-10-20)
+    // Rättad 2026-10-20: "Hanöbukten" stod inte i någon källa, och tankstrecket bröt mot skrivreglerna.
+    tagline: 'Naturreservat med engelsk kyrkogård från Napoleonkrigens tid, Bönsäcken och avenbokskog.',
     // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Han%C3%B6 — Lantmäteriet Min Karta, sökning "Hanö" → Hanö | Sölvesborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
     lat: 56.0097,
     lng: 14.8478,
@@ -8443,8 +8445,10 @@ export const ISLANDS: Island[] = [
       { method: 'Skärgårdsbåt från Nogersund', from: 'Nogersund (Sölvesborg)', time: '25 min', desc: 'M/F Vitaskär går året runt. 1 september till 31 maj körs linjen som båtpendel med Blekingetrafikens vanliga biljetter. Sommartid köps biljett i kiosken i Nogersund före avgång.', icon: '⛴', url: 'https://www.blekingetrafiken.se/reseinformation/skargardstrafik/solvesborg-skargard/' },
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "Till Nogersund kan du ta dig med buss från Sölvesborg eller med bil."; "Närmaste busshållplats är Nogersunds hamn som trafikeras av linje 2."; "Ta av från E22:an vid trafikplats Listerlandet (47) och följ väg 123 (Hälleviksvägen) till Nogersund." (läst 2026-10-19)
       { method: 'Buss eller bil till Nogersund', from: 'Sölvesborg', time: 'varierar', desc: 'Buss från Sölvesborg till hållplatsen Nogersunds hamn, som trafikeras av linje 2. Med bil: av från E22 vid trafikplats Listerlandet (47) och väg 123 till Nogersund.', icon: '🚌' },
-      // KÄLLA: https://www.visitblekinge.se/en/guest-harbour-hano — "Guest harbor with 74 berths in Hanö Harbor." (läst 2026-10-19)
-      { method: 'Egen båt', from: 'Valfri hamn', time: 'varierar', desc: 'Gästhamnen i Hanö hamn har 74 platser.', icon: '⛵' },
+      // KÄLLA: https://www.visitblekinge.se/en/guest-harbour-hano — "Guest harbor with 74 berths in Hanö Harbor." (läst 2026-10-20)
+      // KÄLLA: https://www.hano.nu/hamnen-33705539 — hamnens egen sida (Hanö Hamn- och Byalag driver hamnen): "Gästplatser: 75 i hela hamnen utom i färjeläget dagtid. Det går inte att boka båtplatser." (läst 2026-10-20)
+      // KÄLLA: https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html — "Gästhamn 75 platser öppet året runt." (läst 2026-10-20). Visit Blekinge skriver 74; hamnens egen uppgift gäller.
+      { method: 'Egen båt', from: 'Valfri hamn', time: 'varierar', desc: 'Gästhamnen har 75 platser i hela hamnen utom i färjeläget dagtid, och platserna går inte att boka.', icon: '⛵' },
     ],
     transport_meta: {
       // UPPSKATTNING: from_city_min 360 = tåg Stockholm–Sölvesborg (ej kontrollerat mot tidtabell) + buss till Nogersund + båt 25 min. Tidigare 240 hade ingen källa.
@@ -8462,8 +8466,11 @@ export const ISLANDS: Island[] = [
       car_parking: 'Allmän parkering vid vändplanen i Nogersunds hamn',
     },
     harbors: [
-      // KÄLLA: https://www.visitblekinge.se/en/guest-harbour-hano — "Guest harbor with 74 berths in Hanö Harbor."; "Hanö Harbor has a Blue Flag."; "WIFI is available in the harbor as well as shower and laundry facilities for boat guests."; "There is a sauna to rent a short distance from the harbor office." (läst 2026-10-19)
-      { name: 'Hanö gästhamn', desc: 'Gästhamn med 74 platser i Hanö hamn, som har Blå flagg. Wifi, dusch och tvätt för båtgäster, och en bastu att hyra en bit från hamnkontoret.', spots: 74, service: ['dusch', 'tvätt', 'wifi', 'bastu'] },
+      // KÄLLA: https://www.visitblekinge.se/en/guest-harbour-hano — "WIFI is available in the harbor as well as shower and laundry facilities for boat guests."; "There is a sauna to rent a short distance from the harbor office." (läst 2026-10-20)
+      // KÄLLA: https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html — "Gästhamn"; "Servicebyggnad med bastu, duschar, toaletter och tvättmaskin." (läst 2026-10-20)
+      // Rättad 2026-10-20: antal platser borttaget (74 hos Visit Blekinge, 75 hos Sölvesborgs kommun). Blå flagg borttagen: Visit Blekinges sida är odaterad och gäller inte säkert 2026.
+      // KÄLLA: https://www.hano.nu/hamnen-33705539 — "Gästplatser: 75 i hela hamnen utom i färjeläget dagtid."; "Gästhamn är bemannad 1 april till 30 september."; "Ingen försäljning av bensin eller diesel." (läst 2026-10-20)
+      { name: 'Hanö gästhamn', desc: 'Gästhamn med 75 platser, bemannad 1 april till 30 september. Servicebyggnad med dusch, toalett och tvätt för båtgäster, wifi i hamnen och en bastu att hyra en bit från hamnkontoret. Ingen försäljning av bensin eller diesel.', spots: 75, service: ['dusch', 'tvätt', 'wifi', 'bastu'] },
     ],
     restaurants: [
       // KÄLLA: https://fiskybusiness.nu/hanouml-hamnkrog.html — "vi är Hanös enda restaurang"; "Fisk n Chips"; "Krögarspätta"; "Fixar du inte fisk har vi även några vegetariska rätter och något för köttätaren."; "därför har vi en egen barnmeny"; "Vi har fullständiga rättigheter" (läst 2026-10-19)
@@ -8479,7 +8486,8 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "På Listershuvud, som påverkats på samma sätt som Hanö, finns också en geologisk stig." (läst 2026-10-19)
       'Kombinera med Listershuvud på fastlandet nära Nogersund. Där finns också en geologisk stig om istiden och Östersjöns strandlinjer.',
     ],
-    related: ['gotland', 'ulvon', 'landsort'],
+    // Rättad 2026-10-20: närliggande öar i Blekinge i stället för Gotland, Ulvön och Landsort.
+    related: ['tjaro', 'aspo-blekinge', 'sturko'],
     tags: ['historia', 'natur', 'naturreservat', 'fågelskådning', 'blekinge', 'dagsutflykt'],
     insiderTips: [
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "Via en stig kan man därifrån ta sig ner till blockstensgrottan Rövarkulan", "I en granitvägg strax intill finns Drakamärket, ett tunt veckat skikt av äldre gnejs, som enligt legenden uppstod när fyren tändes för första gången år 1869. En drake ska då ha bländats av skenet och kraschat in i bergväggen." (läst 2026-10-19)
@@ -8491,6 +8499,9 @@ export const ISLANDS: Island[] = [
     dog_notes: 'Hunden ska vara kopplad i naturreservatet. På vandrarhemmet är djur bara tillåtna i de två små stugorna.',
     // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "Engelska kyrkogården är ett minne från åren 1810-1812, då Hanö fungerade som engelsmännens flottbas i Östersjön under Napoleons blockad."; "I den trolska avenbokskogen i söder ligger de två dolinerna Gamla och Nya Kar, som sägs vara jättars fotavtryck" (läst 2026-10-19)
     did_you_know: 'Under Napoleons blockad 1810 till 1812 var Hanö den brittiska flottans bas i Östersjön. I avenbokskogen i söder ligger två doliner, Gamla och Nya Kar, som enligt sägnen är jättars fotavtryck.',
+    // KÄLLA: https://www.visitblekinge.se/en/guest-harbour-hano — "Restaurant, ice cream kiosk and shop are available during 2 months in the summer."; "Attributes: Beach" (läst 2026-10-20)
+    // KÄLLA: https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html — "En barnvänlig strand finner du cirka 5 minuters promenad norrut från hamnen."; "Klippbadet Vindhalla finner du på öns östra sida." (läst 2026-10-20)
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "tälta mer än två dygn" är förbjudet, alltså får man tälta kortare (läst 2026-10-20)
     amenities: {
       restaurant: true,
       shop: true,
@@ -8498,6 +8509,7 @@ export const ISLANDS: Island[] = [
       beach: true,
       camping: true,
     },
+    // KÄLLA: https://fiskybusiness.nu/vandrarhemmet-hanouml.html — "Kanske har du fiskespöt med dig och jagar öringar på Äspudden"; "Bada, vandra, upptäcka naturen, fågelskåda, fiska" (läst 2026-10-20)
     activity_meta: {
       fiske: true,
     },
