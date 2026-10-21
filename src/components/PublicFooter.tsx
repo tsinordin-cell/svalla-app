@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import SvallaLogo from './SvallaLogo'
 import { prefetchFor } from '@/lib/inloggningsrutter'
+import { ANTAL_OAR } from '@/app/o/island-data'
 
 /**
  * Global footer för publika sidor — visas på /utflykt, /bingo, /aktivitet/*,
@@ -39,7 +40,8 @@ export default function PublicFooter() {
               margin: 0,
               maxWidth: 360,
             }}>
-              Skärgårdens guide. 120+ öar, 200+ krogar och hamnar, färjetider i realtid.
+              {/* 2026-10-21: antalet öar räknas från datan, utan fastlandsorter (stod "120+"). */}
+              Skärgårdens guide. {ANTAL_OAR} öar, 200+ krogar och hamnar, färjetider i realtid.
               Ingen reklam, inga trick — bara skärgården.
             </p>
           </div>

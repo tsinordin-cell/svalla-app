@@ -65,7 +65,7 @@ export const ISLAND_COORDS: IslandCoord[] = [
   // Björkö i Mälaren, där Birka ligger: OSM way/34546894, centroid
   // 59.3254, 17.5615. Nominatim ger 59.3256, 17.5664 för samma ö — källorna
   // skiljer 280 m, vilket ryms i radien.
-  { slug: 'bjorko',            name: 'Björkö',            lat: 59.3254, lng: 17.5615, radiusKm: 2.0 },
+  { slug: 'birka',             name: 'Birka',             lat: 59.3254, lng: 17.5615, radiusKm: 2.0 }, // 2026-10-21: hette bjorko/Björkö; posten är ihopslagen med Birka
   { slug: 'adelsjo',           name: 'Adelsö',            lat: 59.3768, lng: 17.5006, radiusKm: 2.0 },
 
   // ── Södra skärgården ─────────────────────────────────────────────────────

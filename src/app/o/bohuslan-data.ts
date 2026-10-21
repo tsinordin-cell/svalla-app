@@ -650,6 +650,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
   },
   {
     slug: 'fjallbacka',
+    // 2026-10-21: fastlandsort i Tanums kommun (egen text nedan: "ett litet samhälle vid Tanums kust"), ingen ö.
+    slag: 'ort',
     name: 'Fjällbacka',
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
@@ -853,6 +855,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
   },
   {
     slug: 'hamburgsund',
+    // 2026-10-21: ort på båda sidor om sundet, fastlandet och Hamburgö (egen text nedan), räknas inte som ö.
+    slag: 'ort',
     name: 'Hamburgsund',
     region: 'bohuslan',
     regionLabel: 'Bohuslän',

@@ -4523,85 +4523,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     }
   ],
-  "bjorko": [
-    {
-      "url": "https://historiska.se/birka/vad-ar-birka-hovgarden/birka-varldsarvet/",
-      "org": "historiska.se",
-      "vad": "Historiska museet i Stockholm har mer än 100 000 fynd från Birka",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorko.html",
-      "org": "Länsstyrelsen Stockholm",
-      "vad": "Reservatet, som inte är större än 1,6 hektar, ligger på Björkö i Mälaren. I området växer gammal barrskog.; Många av träden är äldre än 200 år.; ha okopplad hund, katt eller annat husdjur; elda",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/",
-      "org": "raa.se",
-      "vad": "Tack vare skriftliga källor vet vi att Ansgar, en ung benediktinermunk, kom till Birka år 830; Här predikade han under ett och ett halvt år",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.raa.se/app/uploads/2023/06/Beslut-Adels%C3%B6-Bj%C3%B6rk%C3%B6-Birka-AB21-RA%C3%84-2021-1675.pdf",
-      "org": "raa.se",
-      "vad": "omgärdat av fornborgen på Borgberget i söder och stadsvallen i nordöst; ett av landets största gravfält med minst 1600 … gravar (PDF)",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/adelsoleden/",
-      "org": "Trafikverket",
-      "vad": "Adelsöleden går mellan Munsö och Adelsö på Mälaröarna. Färjeledens längd är 1 000 meter och överfartstiden är sex minuter. Resan med vägfärjan är avgiftsfri.",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.birkavikingastaden.se/om-birka/",
-      "org": "birkavikingastaden.se",
-      "vad": "Fornlämningsområdet Birka på Björkö och Hovgården på Adelsö utgör tillsammans ett av Sveriges 15 världsarv. Området blev upptaget på Unescos världsarvslista år 1993.",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.birkavikingastaden.se/resa-hit/",
-      "org": "birkavikingastaden.se",
-      "vad": "Båten går från centrala Stockholm (Klara Mälarstrand) och stannar vid bryggorna Nya Kungshatt, Vårby brygga, Jungfrusund och Hovgården (Adelsö).; för att garantera din plats ombord på båten rekommenderar vi att du förbokar din biljett",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.birkavikingastaden.se/hitta-pa-birka/",
-      "org": "birkavikingastaden.se",
-      "vad": "Han brukar kallas för Nordens apostel eftersom det var han som tog hit kristendomen. På Birka hittar du det berömda Ansgarsmonumentet; Ansgarskapellet byggdes cirka år 1930 till minne av missionären Ansgar.",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.birkavikingastaden.se/hitta-pa-birka/gasthamnen/",
-      "org": "birkavikingastaden.se",
-      "vad": "Vattnet runt Björkö räknas som ett fornlämningsområde och därför råder det ankringsförbud i viken samt 50 meter ifrån strandkanten.",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf",
-      "org": "stromma.com",
-      "vad": "7 MAJ — 25 OKTOBER, 2026; Klara Mälarstrand; Hovgården*; Björkö/Birka — Klara Mälarstrand 09:30 → 11:45, 10:00 → 12:00, 10:00 → 12:15; Hovgården 11:50 → Birka 12:15",
-      "last": "2026-09-27",
-      "myndighet": false
-    },
-    {
-      "url": "https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/",
-      "org": "stromma.com",
-      "vad": "Den tar dig genom ett gravfält med klassiska vikingatida gravhögar, Birkas fornborg och avslutas nära eller intill Ansgarskorset.; Guidningen tar ungefär 45-60 minuter och är en promenad på cirka 1-1,5 kilometer.; Kommer du med egen privat båt? Då kan du köpa guidning och entrébiljett till museet separat.",
-      "last": "2026-09-27",
-      "myndighet": false
-    }
-  ],
   "adelsjo": [
     {
       "url": "https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/",
@@ -10871,4 +10792,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 102
+export const OAR_MED_KALLOR = 101

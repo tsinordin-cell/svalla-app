@@ -9,13 +9,13 @@
  * och alla får samma "slump" tills cachen går ut.
  */
 import { NextResponse } from 'next/server'
-import { ALL_ISLANDS } from '@/app/o/island-data'
+import { OAR } from '@/app/o/island-data'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export function GET(req: Request) {
-  const kandidater = ALL_ISLANDS.filter(i => i.slug)
+  const kandidater = OAR.filter(i => i.slug) // 2026-10-21: "Slumpa en ö" ska inte ge Lysekil
   if (kandidater.length === 0) {
     return NextResponse.redirect(new URL('/oar', req.url))
   }
