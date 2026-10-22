@@ -31,13 +31,15 @@ function manadIStockholm(nu: Date = new Date()): { month: number; year: number }
   return { month: Number(iso.slice(5, 7)) - 1, year: Number(iso.slice(0, 4)) }
 }
 
+// Små bokstäver: månadsnamn skrivs med gemener på svenska, och de används mitt i
+// meningar ("i oktober"). Rubriken som visar månaden ensam har text-transform: uppercase.
 const MONTH_NAMES_SV = [
-  'Januari','Februari','Mars','April','Maj','Juni',
-  'Juli','Augusti','September','Oktober','November','December',
+  'januari','februari','mars','april','maj','juni',
+  'juli','augusti','september','oktober','november','december',
 ]
 const MONTH_NAMES_SV_GENITIVE = [
-  'Januaris','Februaris','Mars','Aprils','Majs','Junis',
-  'Julis','Augustis','Septembers','Oktobers','Novembers','Decembers',
+  'januaris','februaris','mars','aprils','majs','junis',
+  'julis','augustis','septembers','oktobers','novembers','decembers',
 ]
 // Index 0 = Jan, 11 = Dec
 const STATUS_ORDER = ['peak', 'open', 'limited'] as const
@@ -73,7 +75,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: `Öppet i skärgården i ${monthName} – vilka öar kan du besöka?`,
     // 2026-10-21: sidan visar öar från alla regioner och byter månad automatiskt; den uppdateras inte för hand varje månad.
-    description: `Se vilka skärgårdsöar som är öppna i ${monthName} ${year} — med restauranger, gästhamnar och service. Visar alltid aktuell månad.`,
+    description: `Se vilka skärgårdsöar som är öppna i ${monthName} ${year} — med restauranger, gästhamnar och service. Sidan visar alltid aktuell månad.`,
     alternates: { canonical: 'https://svalla.se/oppet-nu' },
     openGraph: {
       title: `Vad är öppet i skärgården i ${monthName}?`,

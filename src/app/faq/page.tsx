@@ -34,8 +34,8 @@ const FAQS = [
   },
   {
     q: 'Vilka platser finns på kartan?',
-    // 2026-10-21: regionerna är de som har platser i tabellen restaurants (kontrollerat i databasen samma dag; Höga kusten har ösidor men inga platser på kartan än).
-    a: 'Vi täcker Stockholms skärgård – från Fjäderholmarna och Vaxholm i innerskärgården till Sandhamn, Möja, Utö och Landsort i ytterskärgården – samt Bohuslän, Göteborgs södra skärgård, Gotland och Öland. Det finns restauranger, caféer, barer, bränslestation, vandrarhem och gästhamnar inlagda.',
+    // 2026-10-22: regionerna är de som har platser i tabellen restaurants (kontrollerat i databasen: Göteborgsplatserna ligger i både norra och södra skärgården, Blekinge har 20 platser; Höga kusten har ösidor men inga platser på kartan än).
+    a: 'Vi täcker Stockholms skärgård – från Fjäderholmarna och Vaxholm i innerskärgården till Sandhamn, Möja, Utö och Landsort i ytterskärgården – samt Bohuslän, Göteborgs skärgård, Blekinge, Gotland och Öland. Det finns restauranger, caféer, barer, bränslestationer, vandrarhem och gästhamnar inlagda.',
   },
   {
     q: 'Hur stämmer öppettiderna?',

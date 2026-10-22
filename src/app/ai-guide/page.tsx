@@ -81,7 +81,9 @@ const faqSchema = {
       name: 'Vad skiljer Thorkel från ChatGPT eller Google Maps?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ChatGPT och Google Maps saknar aktuella avgångstider för Waxholmsbolaget, vet inte vilka krogar som faktiskt är öppna just nu, och har inte 200+ kuraterade platser i den svenska skärgården. Thorkel är specialiserad på exakt det.',
+        // 2026-10-22: Thorkel har inga dagsaktuella öppettider (prompten säger "Ring alltid innan"), och Google Maps visar öppettider.
+        // Svaret säger nu bara det Thorkel gör: ösidorna med källor, verktygen get_transit_to_island och plan_route.
+        text: 'ChatGPT och Google Maps är allmänna verktyg. Thorkel är byggd för skärgården: svaren utgår från Svallas ösidor och deras källor, och Thorkel kan hämta de närmaste avgångarna med kollektivtrafik ut till en ö och föreslå stopp längs en rutt.',
       },
     },
   ],
@@ -156,7 +158,7 @@ export default function AIGuidePage() {
           </Link>
 
           <p style={{ marginTop: 14, fontSize: 13, color: 'rgba(255,255,255,0.5)' }}>
-            Gratis att börja · Kräver ett gratis konto
+            Gratis att börja · Kräver ett konto
           </p>
         </div>
       </div>
@@ -235,8 +237,8 @@ export default function AIGuidePage() {
             },
             {
               icon: '🍽',
-              title: 'Rätt restaurang, rätt dag',
-              desc: 'Öppettider varierar i skärgården. Thorkel vet vilka krogar som faktiskt är öppna i dag.',
+              title: 'Krogar längs vägen',
+              desc: 'Öppettider varierar i skärgården. Thorkel föreslår krogar på ön och längs vägen, men ring gärna innan du åker.',
             },
             {
               icon: '🏊',
