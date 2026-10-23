@@ -5,11 +5,11 @@ import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
   title: 'Vanliga frågor',
-  description: 'Svar på de vanligaste frågorna om Svalla – appen för Stockholms skärgård. Hitta krogar, planera turer och logga dina äventyr.',
+  description: 'Svar på de vanligaste frågorna om Svalla – guiden till svenska skärgården. Hitta krogar, planera turer och logga dina äventyr.',
   keywords: ['svalla faq', 'stockholms skärgård app', 'skärgårdskarta', 'hitta krogar skärgård', 'logga båttur'],
   openGraph: {
     title: 'Vanliga frågor – Svalla',
-    description: 'Allt du behöver veta om Svalla och Stockholms skärgård.',
+    description: 'Allt du behöver veta om Svalla och svenska skärgården.',
     url: 'https://svalla.se/faq',
   },
   alternates: { canonical: 'https://svalla.se/faq' },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: 'Vad är Svalla?',
-    a: 'Svalla är en webb-app för Stockholms skärgård. Här hittar du restauranger, caféer, gästhamnar, bränsleställen och sevärdigheter på öarna – oavsett om du tar dig dit med kajak, segelbåt, motorbåt eller färja. Du kan också logga dina turer och spara favoriter.',
+    a: 'Svalla är en webb-app för svenska skärgården, från Bohuslän till Höga kusten. Här hittar du restauranger, caféer, gästhamnar, bränsleställen och sevärdigheter på öarna – oavsett om du tar dig dit med kajak, segelbåt, motorbåt eller färja. Du kan också logga dina turer och spara favoriter.',
   },
   {
     q: 'Kostar det något att använda Svalla?',
@@ -34,7 +34,8 @@ const FAQS = [
   },
   {
     q: 'Vilka platser finns på kartan?',
-    a: 'Vi täcker hela Stockholms skärgård – från Fjäderholmarna och Vaxholm i innerskärgården till Sandhamn, Möja, Utö och Landsort ute i ytterskärgården. Det finns restauranger, caféer, barer, bränslestation, vandrarhem och gästhamnar inlagda.',
+    // 2026-10-22: regionerna är de som har platser i tabellen restaurants (kontrollerat i databasen: Göteborgsplatserna ligger i både norra och södra skärgården, Blekinge har 20 platser; Höga kusten har ösidor men inga platser på kartan än).
+    a: 'Vi täcker Stockholms skärgård – från Fjäderholmarna och Vaxholm i innerskärgården till Sandhamn, Möja, Utö och Landsort i ytterskärgården – samt Bohuslän, Göteborgs skärgård, Blekinge, Gotland och Öland. Det finns restauranger, caféer, barer, bränslestationer, vandrarhem och gästhamnar inlagda.',
   },
   {
     q: 'Hur stämmer öppettiderna?',

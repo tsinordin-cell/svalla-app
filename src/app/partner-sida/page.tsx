@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Icon, { type IconName } from '@/components/Icon'
 import { GUIDES } from '@/app/guider/guides-data'
-import { ALL_ISLANDS } from '@/app/o/island-data'
+import { ALL_ISLANDS, OAR, ANTAL_OAR } from '@/app/o/island-data'
 import { getAdminClient } from '@/lib/supabase-admin'
 
 export const metadata: Metadata = {
@@ -39,7 +39,7 @@ const PUBLIK: { manadsbesokare: string | null; prenumeranter: string | null } = 
 
 const REGIONER_UTANFOR_STHLM = new Set(['bohuslan', 'goteborg', 'ovriga'])
 const HAMNAR = ALL_ISLANDS.reduce((n, o) => n + (o.harbors?.length ?? 0), 0)
-const OAR_UTANFOR = ALL_ISLANDS.filter(o => REGIONER_UTANFOR_STHLM.has(o.region)).length
+const OAR_UTANFOR = OAR.filter(o => REGIONER_UTANFOR_STHLM.has(o.region)).length
 const fmt = (n: number) => n.toLocaleString('sv-SE')
 
 async function antalPlatser(): Promise<number | null> {
@@ -68,7 +68,7 @@ export default async function PartnerSidaPage() {
   const platser = await antalPlatser()
   const S = {
     guides: fmt(GUIDES.length),
-    islands: fmt(ALL_ISLANDS.length),
+    islands: fmt(ANTAL_OAR),
     places: platser ? fmt(platser) : null,
     harbors: fmt(HAMNAR),
   }
