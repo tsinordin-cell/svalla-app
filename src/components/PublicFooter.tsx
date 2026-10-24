@@ -39,7 +39,7 @@ export default function PublicFooter() {
               margin: 0,
               maxWidth: 360,
             }}>
-              Skärgårdens guide. 120+ öar, 200+ krogar och hamnar, färjetider i realtid.
+              Skärgårdens guide med ösidor, krogar, hamnar och båttider från Trafiklab.
               Ingen reklam, inga trick — bara skärgården.
             </p>
           </div>
@@ -106,7 +106,6 @@ export default function PublicFooter() {
             title="Svalla"
             links={[
               { href: '/om', label: 'Om oss' },
-              { href: '/partner-sida', label: 'Annonsera' },
               { href: '/forum', label: 'Forum' },
               { href: '/tips', label: 'Tips & artiklar' },
               { href: '/blogg', label: 'Bloggen' },
