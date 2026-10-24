@@ -64,7 +64,7 @@ const faqSchema = {
       name: 'Vilka öar kan Thorkel planera resor till?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Thorkel täcker 120+ öar i hela Sverige — Stockholms skärgård (Sandhamn, Grinda, Utö, Vaxholm, Finnhamn med flera), Bohuslän, Göteborgs södra skärgård, Gotland, Öland och Höga Kusten. Svalla är inte bara för stockholmare.',
+        text: 'Thorkel täcker öar i hela Sverige — Stockholms skärgård (Sandhamn, Grinda, Utö, Vaxholm, Finnhamn med flera), Bohuslän, Göteborgs södra skärgård, Gotland, Öland och Höga Kusten. Svalla är inte bara för stockholmare.',
       },
     },
     {
@@ -254,7 +254,7 @@ export default function AIGuidePage() {
             },
             {
               icon: '🧭',
-              title: '120+ öar, 6 regioner',
+              title: 'Öar i 6 regioner',
               desc: 'Från Fjäderholmarna (20 min från Stockholm) till Göteborgs södra skärgård, Gotland och Höga Kusten. Thorkel kan hela Sverige.',
             },
           ].map((f, i) => (
