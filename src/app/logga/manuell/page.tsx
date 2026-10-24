@@ -8,6 +8,7 @@ import { analytics } from '@/lib/analytics'
 import { deriveUsername } from '@/lib/username'
 import TagInput from '@/components/TagInput'
 import LocationSearch from '@/components/LocationSearch'
+import { oarForPlats, kortPlats } from '@/lib/loggade-oar'
 
 type TaggedUser = { id: string; username: string; avatar: string | null }
 
@@ -41,6 +42,7 @@ function ManuellForm() {
   const [extraFiles,    setExtraFiles]    = useState<File[]>([])
   const [extraPreviews, setExtraPreviews] = useState<string[]>([])
   const [location, setLocation]             = useState(prefilledPlats)
+  const [platsPunkt, setPlatsPunkt]         = useState<{ lat: number; lng: number } | null>(null)
   const [startLocation, setStartLocation]   = useState('')
   const [caption, setCaption]               = useState('')
   const [boatType, setBoatType]             = useState('')
@@ -330,6 +332,23 @@ function ManuellForm() {
         duration_seconds: parseInt(duration) * 60 || 0,
       })
 
+      // Ön turen gick till hamnar i Min skärgård, som för GPS-turer
+      // (sidan säger "logga en tur, så dyker öarna upp här"). Tyst vid fel.
+      try {
+        const oar = oarForPlats(location, platsPunkt?.lat, platsPunkt?.lng)
+        if (oar.length > 0) {
+          await supabase.from('visited_islands').upsert(
+            oar.map(slug => ({
+              user_id: user.id,
+              island_slug: slug,
+              trip_id: trip.id,
+              visited_at: new Date(startedAtLocal).toISOString(),
+            })),
+            { onConflict: 'user_id,island_slug', ignoreDuplicates: true },
+          )
+        }
+      } catch { /* tyst */ }
+
       // Länka trip till planerad rutt
       if (plannedRouteId) {
         await supabase
@@ -461,7 +480,7 @@ function ManuellForm() {
           </svg>
         </div>
         <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)' }}>Turen är loggad!</h2>
-        <p style={{ fontSize: 14, color: 'var(--txt3)' }}>Välkommen till {location}-gänget.</p>
+        <p style={{ fontSize: 14, color: 'var(--txt3)' }}>Välkommen till {kortPlats(location)}-gänget.</p>
       </div>
     )
   }
@@ -602,7 +621,10 @@ function ManuellForm() {
           {/* ── Plats (required) ── */}
           <LocationSearch
             value={location}
-            onChange={(name) => setLocation(name)}
+            onChange={(name, lat, lon) => {
+              setLocation(name)
+              setPlatsPunkt(typeof lat === 'number' && typeof lon === 'number' ? { lat, lng: lon } : null)
+            }}
             placeholder="Grinda, Sandhamn, Utö…"
             required
             label="Plats"

@@ -4,6 +4,7 @@ import { komprimeraBild } from '@/lib/komprimeraBild'
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import { createClient, BOAT_TYPES, getViewer } from '@/lib/supabase'
+import { oNamn, markeradText } from '@/lib/loggade-oar'
 import { buildRoutePoints } from '@/lib/routeSmooth'
 import { deriveUsername } from '@/lib/username'
 import {
@@ -1718,13 +1719,13 @@ export default function SparaPage() {
                   {newlyVisitedIslands.length === 1 ? 'Ny ö besökt!' : `${newlyVisitedIslands.length} nya öar besökta!`}
                 </div>
                 <div style={{ fontSize: 12, color: '#3d7a5a', marginTop: 1 }}>
-                  Automatiskt inloggat via din GPS-rutt
+                  {markeradText(newlyVisitedIslands.length)}
                 </div>
               </div>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {newlyVisitedIslands.map(slug => {
-                const name = slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+                const name = oNamn(slug)
                 return (
                   <span key={slug} style={{
                     padding: '5px 12px', borderRadius: 20,
