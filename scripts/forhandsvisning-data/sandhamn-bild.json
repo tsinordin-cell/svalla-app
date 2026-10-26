@@ -1,0 +1,19 @@
+{
+  "username": "tsinordin",
+  "trip": {
+    "user_id": "9520b990-4818-45aa-88bc-c21081fdb05a",
+    "location_name": "Sandhamn",
+    "start_location": null,
+    "distance": 0.03,
+    "duration": 1,
+    "duration_seconds": null,
+    "max_speed_knots": 40,
+    "average_speed_knots": 31.9,
+    "boat_type": "Motorbåt",
+    "route_points": [{"lat":59.2868,"lng":18.9091},{"lat":59.2869,"lng":18.9092}],
+    "started_at": "2026-04-24T05:54:05.974+00:00",
+    "pinnar_rating": 1,
+    "image": "https://oiklttwylndesewauytj.supabase.co/storage/v1/object/public/trips/9520b990-4818-45aa-88bc-c21081fdb05a-1777010123727.jpeg",
+    "images": []
+  }
+}

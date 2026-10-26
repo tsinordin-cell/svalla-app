@@ -64,6 +64,44 @@ export function forvaldStil(t: { harBild: boolean; harRutt: boolean }): StilId {
 
 export type Punkt = { lat: number; lng: number }
 
+/** Avstånd i meter mellan två punkter (haversine). */
+export function avstandM(a: Punkt, b: Punkt): number {
+  const R = 6371000
+  const dLat = (b.lat - a.lat) * Math.PI / 180, dLng = (b.lng - a.lng) * Math.PI / 180
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * Math.PI / 180) * Math.cos(b.lat * Math.PI / 180) * Math.sin(dLng / 2) ** 2
+  return 2 * R * Math.asin(Math.sqrt(h))
+}
+
+/**
+ * Duger rutten att visa? Minst två punkter och minst `minM` meter mellan
+ * ytterpunkterna. 2026-10-26: Thomas provade en story med en testtur där start
+ * och stopp låg på samma plats; kortet ritade då en gatukarta i kvartersskala
+ * med en ensam prick. En sådan tur får kort utan karta och inga ruttmallar.
+ */
+export function ruttArAnvandbar(pts: Punkt[] | null | undefined, minM = 150): pts is Punkt[] {
+  if (!Array.isArray(pts) || pts.length < 2) return false
+  const lats = pts.map(p => p.lat), lngs = pts.map(p => p.lng)
+  const sw = { lat: Math.min(...lats), lng: Math.min(...lngs) }
+  const ne = { lat: Math.max(...lats), lng: Math.max(...lngs) }
+  return avstandM(sw, ne) >= minM
+}
+
+/** "25 oktober 2026" i svensk tid, eller null om datumet saknas eller är trasigt. */
+export function datumLang(iso: string | null | undefined): string | null {
+  if (!iso) return null
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return null
+  return new Intl.DateTimeFormat('sv-SE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Stockholm' }).format(d)
+}
+
+/** Rubrik på kortet när turen saknar platsnamn. */
+export function turRubrik(boatType: string | null | undefined): string {
+  if (boatType === 'Segelbåt') return 'Segeltur'
+  if (boatType === 'Kajak') return 'Paddeltur'
+  if (boatType === 'Motorbåt') return 'Båttur'
+  return 'Tur på sjön'
+}
+
 /**
  * SVG-path för rutten inom en ruta W×H med marginalen pad (andel av sidan).
  * Proportionerna behålls: en lång smal rutt blir inte uttänjd. Latitud

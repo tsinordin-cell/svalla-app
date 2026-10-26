@@ -19,6 +19,7 @@ import TripHighlightPrompt from '@/components/TripHighlightPrompt'
 import BackButton from '@/components/BackButton'
 import TripGearAffiliate from '@/components/TripGearAffiliate'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
+import { ruttArAnvandbar } from '@/lib/dela-klistermarken'
 import { getTripWeather, windDirectionLabel, buildWindArrowSamples } from '@/lib/weather'
 import type { Metadata } from 'next'
 import ViewerGate from '@/components/ViewerGate'
@@ -302,7 +303,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  title={trip.location_name ?? 'Min tur'}
  url={`https://svalla.se/tur/${id}`}
  hasPhoto={allPhotos.length > 0}
- hasRoute={!!routePoints}
+ hasRoute={ruttArAnvandbar(routePoints)}
  />
  <TripActions tripId={trip.id} ownerId={trip.user_id} />
  </div>
@@ -412,7 +413,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  url={`https://svalla.se/tur/${id}`}
  variant="pill"
  hasPhoto={allPhotos.length > 0}
- hasRoute={!!routePoints}
+ hasRoute={ruttArAnvandbar(routePoints)}
  />
  </div>
  </div>
