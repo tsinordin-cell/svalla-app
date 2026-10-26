@@ -188,23 +188,23 @@ describe('detectStops', () => {
 
 describe('formatDuration', () => {
   it('formats seconds only', () => {
-    expect(formatDuration(45)).toBe('45s')
+    expect(formatDuration(45)).toBe('45 s')
   })
 
   it('formats minutes only', () => {
-    expect(formatDuration(120)).toBe('2min')
+    expect(formatDuration(120)).toBe('2 min')
   })
 
   it('formats minutes and seconds', () => {
-    expect(formatDuration(90)).toBe('1min 30s')
+    expect(formatDuration(90)).toBe('1 min 30 s')
   })
 
   it('formats hours only', () => {
-    expect(formatDuration(7200)).toBe('2h')
+    expect(formatDuration(7200)).toBe('2 h')
   })
 
   it('formats hours and minutes', () => {
-    expect(formatDuration(3660)).toBe('1h 1min')
+    expect(formatDuration(3660)).toBe('1 h 1 min')
   })
 })
 
@@ -216,15 +216,15 @@ describe('formatDurationMin', () => {
   })
 
   it('formats minutes under 1h', () => {
-    expect(formatDurationMin(45)).toBe('45min')
+    expect(formatDurationMin(45)).toBe('45 min')
   })
 
   it('formats exact hours', () => {
-    expect(formatDurationMin(120)).toBe('2h')
+    expect(formatDurationMin(120)).toBe('2 h')
   })
 
   it('formats hours and minutes', () => {
-    expect(formatDurationMin(75)).toBe('1h 15min')
+    expect(formatDurationMin(75)).toBe('1 h 15 min')
   })
 })
 

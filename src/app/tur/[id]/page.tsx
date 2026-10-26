@@ -260,7 +260,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  }
 
  function fmtDuration(sec: number): string {
- if (sec < 60) return `${sec}s`
+ if (sec < 60) return `${sec} s`
  const min = Math.round(sec / 60)
  if (min < 60) return `${min} min`
  const h = Math.floor(min / 60)
@@ -489,29 +489,13 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  </div>
  )}
 
- {/* Taggade användare */}
- {taggedUsers.length > 0 && (
- <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
- <span style={{ fontSize: 12, color: 'var(--txt3)', fontWeight: 600 }}>Med:</span>
- {taggedUsers.map((u: { id: string; username: string }) => (
- <Link key={u.id} href={`/u/${encodeURIComponent(u.username)}`} style={{ textDecoration: 'none' }}>
- <span style={{
- fontSize: 12, fontWeight: 700, color: 'var(--sea)',
- background: 'rgba(30,92,130,0.08)', borderRadius: 20,
- padding: '4px 10px',
- }}>
- @{u.username}
- </span>
- </Link>
- ))}
- </div>
- )}
-
- {/* Tagga medseglare — hos texten om turen, inte bland knapparna */}
+ {/* Medseglare — hos texten om turen, inte bland knapparna. Servern skickar med
+ taggarna så listan syns direkt; ägaren kan tagga, taggade kan ta bort sig. */}
  <div style={{ marginBottom: 16 }}>
  <TripTagger
  tripId={trip.id}
  tripOwnerId={trip.user_id}
+ initialTags={taggedUsers}
  />
  </div>
 
