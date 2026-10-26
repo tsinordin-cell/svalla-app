@@ -9,7 +9,7 @@
  */
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ALL_ISLANDS } from '../o/island-data'
+import { OAR } from '../o/island-data'
 import EmailSignup from '@/components/EmailSignup'
 import Icon from '@/components/Icon'
 import { todayStockholm } from '@/lib/transitDate'
@@ -31,13 +31,15 @@ function manadIStockholm(nu: Date = new Date()): { month: number; year: number }
   return { month: Number(iso.slice(5, 7)) - 1, year: Number(iso.slice(0, 4)) }
 }
 
+// Små bokstäver: månadsnamn skrivs med gemener på svenska, och de används mitt i
+// meningar ("i oktober"). Rubriken som visar månaden ensam har text-transform: uppercase.
 const MONTH_NAMES_SV = [
-  'Januari','Februari','Mars','April','Maj','Juni',
-  'Juli','Augusti','September','Oktober','November','December',
+  'januari','februari','mars','april','maj','juni',
+  'juli','augusti','september','oktober','november','december',
 ]
 const MONTH_NAMES_SV_GENITIVE = [
-  'Januaris','Februaris','Mars','Aprils','Majs','Junis',
-  'Julis','Augustis','Septembers','Oktobers','Novembers','Decembers',
+  'januaris','februaris','mars','aprils','majs','junis',
+  'julis','augustis','septembers','oktobers','novembers','decembers',
 ]
 // Index 0 = Jan, 11 = Dec
 const STATUS_ORDER = ['peak', 'open', 'limited'] as const
@@ -72,7 +74,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const monthName = MONTH_NAMES_SV[month]
   return {
     title: `Öppet i skärgården i ${monthName} – vilka öar kan du besöka?`,
-    description: `Se vilka öar i Stockholms skärgård och Bohuslän som är öppna i ${monthName} ${year} — med restauranger, gästhamnar och service. Uppdateras varje månad.`,
+    // 2026-10-21: sidan visar öar från alla regioner och byter månad automatiskt; den uppdateras inte för hand varje månad.
+    description: `Se vilka skärgårdsöar som är öppna i ${monthName} ${year} — med restauranger, gästhamnar och service. Sidan visar alltid aktuell månad.`,
     alternates: { canonical: 'https://svalla.se/oppet-nu' },
     openGraph: {
       title: `Vad är öppet i skärgården i ${monthName}?`,
@@ -88,9 +91,9 @@ export default function OppetNuPage() {
   const monthName = MONTH_NAMES_SV[month]
 
   // Samla öar per status
-  const grouped: Record<Status, typeof ALL_ISLANDS> = { peak: [], open: [], limited: [] }
+  const grouped: Record<Status, typeof OAR> = { peak: [], open: [], limited: [] }
 
-  for (const island of ALL_ISLANDS) {
+  for (const island of OAR) { // 2026-10-21: sidan listar öar; fastlandsorterna är inte med
     const seasonal = island.seasonal
     if (!seasonal?.months) continue
     const status = seasonal.months[month] as string

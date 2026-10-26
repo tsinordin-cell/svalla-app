@@ -362,7 +362,7 @@ export default async function DagSlugPage({ params }: Props) {
                     {(r.bookingUrl || r.websiteUrl) && (
                       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                         {r.bookingUrl && (
-                          <a href={r.bookingUrl} target="_blank" rel="noopener noreferrer sponsored"
+                          <a href={r.bookingUrl} target="_blank" rel="noopener noreferrer"
                             style={{
                               display: 'inline-flex', alignItems: 'center', gap: 6,
                               padding: '6px 14px', borderRadius: 999,
