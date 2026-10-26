@@ -1,4 +1,5 @@
 'use client'
+import Icon from '@/components/Icon'
 import { useEffect, useRef, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
 import type { Map as LeafletMap, LayerGroup } from 'leaflet'
@@ -135,7 +136,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
  const isPause = s.type === 'pause'
  const dur = s.durationSeconds > 60
  ? `${Math.round(s.durationSeconds / 60)} min`
- : `${s.durationSeconds}s`
+ : `${s.durationSeconds} s`
  const icon = L.divIcon({
  html: `<div style="width:10px;height:10px;border-radius:50%;background:${isPause ? '#c96e2a' : 'var(--txt3)'};border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.25)"></div>`,
  iconSize: [10, 10], iconAnchor: [5, 5], className: '',
@@ -155,18 +156,18 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
  .bindTooltip(r.name, { direction: 'top', offset: [0, -14] }).addTo(map!)
  })
 
- // Legend: fart + vind
+ // Legend: fart + vind (rubrikerna i var(--txt): hårdkodat #192830 syntes inte mot det mörka glaset, 2026-10-26)
  const LegendControl = L.Control.extend({
  onAdd() {
  const div = L.DomUtil.create('div')
  div.style.cssText = 'background:var(--glass-92);border-radius:10px;padding:8px 10px;font-size:10px;line-height:1.7;backdrop-filter:blur(8px);min-width:115px'
  div.innerHTML = `
- <div style="font-weight:700;margin-bottom:4px;color:#192830">Hastighet</div>
+ <div style="font-weight:700;margin-bottom:4px;color:var(--txt)">Hastighet</div>
  <div><span style="display:inline-block;width:10px;height:3px;background:var(--txt3);border-radius:2px;vertical-align:middle;margin-right:5px"></span>&lt; 2 kn</div>
  <div><span style="display:inline-block;width:10px;height:3px;background:#1e5c82;border-radius:2px;vertical-align:middle;margin-right:5px"></span>2–8 kn</div>
  <div><span style="display:inline-block;width:10px;height:3px;background:#0f9e64;border-radius:2px;vertical-align:middle;margin-right:5px"></span>8–15 kn</div>
  <div><span style="display:inline-block;width:10px;height:3px;background:#c96e2a;border-radius:2px;vertical-align:middle;margin-right:5px"></span>&gt; 15 kn</div>
- <div style="font-weight:700;margin:6px 0 4px;color:#192830">Vind (m/s)</div>
+ <div style="font-weight:700;margin:6px 0 4px;color:var(--txt)">Vind (m/s)</div>
  <div><span style="display:inline-block;width:10px;height:10px;background:#16a34a;border-radius:50%;vertical-align:middle;margin-right:5px"></span>&lt; 5</div>
  <div><span style="display:inline-block;width:10px;height:10px;background:#eab308;border-radius:50%;vertical-align:middle;margin-right:5px"></span>5–10</div>
  <div><span style="display:inline-block;width:10px;height:10px;background:#ea580c;border-radius:50%;vertical-align:middle;margin-right:5px"></span>10–15</div>
@@ -262,7 +263,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
  }}
  title={showWind ? 'Dölj vindpilar' : 'Visa vindpilar'}
  >
- <span aria-hidden style={{ fontSize: 14 }}>🌬</span>
+ <span aria-hidden style={{ display: 'inline-flex' }}><Icon name="wind" size={14} /></span>
  {showWind ? 'Vind på' : 'Vind av'}
  </button>
  )}

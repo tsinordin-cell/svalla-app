@@ -209,13 +209,15 @@ export function restaurantsAlongRoute(
  )
 }
 
+// Svensk skrivregel: mellanslag mellan tal och enhet ("1 h 5 min", "45 s"), samma som
+// delningskorten (formatTid i dela-klistermarken.ts). Ändrat 2026-10-26 från "1h 5min".
 export function formatDuration(seconds: number): string {
  const h = Math.floor(seconds / 3600)
  const m = Math.floor((seconds % 3600) / 60)
  const s = seconds % 60
- if (h > 0) return m > 0 ? `${h}h ${m}min` : `${h}h`
- if (m > 0) return s > 0 ? `${m}min ${s}s` : `${m}min`
- return `${s}s`
+ if (h > 0) return m > 0 ? `${h} h ${m} min` : `${h} h`
+ if (m > 0) return s > 0 ? `${m} min ${s} s` : `${m} min`
+ return `${s} s`
 }
 
 /** Same as formatDuration but takes minutes (as stored on trips.duration) */
@@ -282,8 +284,8 @@ export function formatDurationMin(min: number): string | null {
  if (!min || min <= 0) return null
  const h = Math.floor(min / 60)
  const m = min % 60
- if (h === 0) return `${m}min`
- return m > 0 ? `${h}h ${m}min` : `${h}h`
+ if (h === 0) return `${m} min`
+ return m > 0 ? `${h} h ${m} min` : `${h} h`
 }
 
 // ── Kurs (bearing) ────────────────────────────────────────────────────────────

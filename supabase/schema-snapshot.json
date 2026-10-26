@@ -1,6 +1,6 @@
 {
  "_om": "Ögonblicksbild av public-schemat i Supabase (tabell → kolumner), använd av scripts/schemakontroll.mjs. Uppdatera efter varje migration: kör SQL:en i _sql i Supabase SQL Editor och klistra in resultatet i tabeller.",
- "_hamtad": "2026-09-29",
+ "_hamtad": "2026-09-29 (+ passerade_oar 2026-10-26 ur migrationen)",
  "_sql": "select json_object_agg(table_name, cols) from (select table_name, string_agg(column_name, ',' order by ordinal_position) as cols from information_schema.columns where table_schema='public' group by table_name) t;",
  "tabeller": {
   "account_deletions": "id,user_id_hash,deleted_at",
@@ -30,6 +30,7 @@
   "messages": "id,conversation_id,user_id,content,attachment_type,attachment_url,attachment_meta,created_at",
   "notifications": "id,user_id,actor_id,type,trip_id,read,created_at,related_island_slug,reference_id",
   "partner_inquiries": "id,business_name,contact_name,email,phone,category,island_slug,tier,message,status,source,created_at,contacted_at,stripe_subscription_id,stripe_customer_id,stripe_status,activated_at",
+  "passerade_oar": "user_id,island_slug,trip_id,passerad_at",
   "place_photos": "id,place_id,url,source,source_ref,credit,blurhash,width,height,sort_order,is_hero,created_at,uploaded_by",
   "place_saves": "id,user_id,place_slug,place_name,place_type,lat,lng,image_url,island,notes,created_at",
   "planned_routes": "id,user_id,start_name,end_name,start_lat,start_lng,end_lat,end_lng,interests,suggested_stops,status,trip_id,created_at,updated_at,cached_path,cached_quality,cached_validated,cached_at",

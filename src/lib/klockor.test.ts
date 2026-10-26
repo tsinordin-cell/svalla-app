@@ -16,6 +16,12 @@ describe('visaGlobalaKlockor', () => {
     expect(visaGlobalaKlockor('/planera/3f2a-1234/dela', true)).toBe(false)
   })
 
+  it('döljs på en tursida (dela- och mer-knapparna sitter i hörnet)', () => {
+    expect(visaGlobalaKlockor('/tur/2e9ed8ba-58db-4eee-bc35-6b5c3f746e4e', true)).toBe(false)
+    expect(visaGlobalaKlockor('/tur/abc/redigera', true)).toBe(false)
+    expect(visaGlobalaKlockor('/turer', true)).toBe(true)
+  })
+
   it('döljs på sidor med egna klockor och i meddelanden', () => {
     for (const p of ['/feed', '/rutter', '/platser', '/profil', '/forum', '/u/thomas', '/sok', '/upptack', '/upptack/abc', '/meddelanden', '/meddelanden/42']) {
       expect(visaGlobalaKlockor(p, true), p).toBe(false)

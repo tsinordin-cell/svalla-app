@@ -83,6 +83,26 @@ export default function Nav() {
     return () => document.body.classList.remove('has-app-nav')
   }, [showNav])
 
+  // Beräknas här (före early return) så att hooks alltid körs i samma ordning.
+  const klockorAktiva = visaGlobalaKlockor(path, username !== null)
+  // Klockorna göms när man skrollar nedåt och kommer tillbaka när man skrollar
+  // uppåt (som sidhuvuden i Instagram och Strava), så de aldrig ligger över text.
+  const [klockorDolda, setKlockorDolda] = useState(false)
+  useEffect(() => {
+    setKlockorDolda(false)   // ny sida: visa klockorna igen tills man skrollar
+    if (!klockorAktiva) return
+    let senast = window.scrollY, ack = 0
+    const onScroll = () => {
+      const y = window.scrollY, d = y - senast
+      senast = y
+      if (y < 24) { ack = 0; setKlockorDolda(false); return }
+      ack = (ack > 0) === (d > 0) ? ack + d : d
+      if (ack > 24) setKlockorDolda(true)
+      else if (ack < -12) setKlockorDolda(false)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [klockorAktiva, path])
   if (!showNav) return null
 
   const tabs = [
@@ -157,8 +177,9 @@ export default function Nav() {
   // Visa bells bara på sidor som INTE har egen header med bells
   // /feed, /rutter, /platser, /profil har egna — chatt-sidor lämnar toppen ren
   // /upptack har fullskärms-karta + BookmarkButton i top-right — klockorna krockar
-  // /planera/[id] har avståndsbadgen i hörnet (2026-10-21). Regeln ligger i
-  // src/lib/klockor.ts så att den kan testas utan React.
+  // Regeln ligger i src/lib/klockor.ts så att den kan testas utan React:
+  // /planera/[id] har avståndsbadgen i hörnet (2026-10-21) och /tur/[id] har
+  // dela- och mer-knapparna (2026-10-26); där visas klockorna inte alls.
   const showGlobalBell = visaGlobalaKlockor(path, username !== null)
 
   // revision 2026-10-02: Planera, Logga tur, Flöde och Profil kräver inloggning.
@@ -172,6 +193,10 @@ export default function Nav() {
         <div style={{
           position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 10px)', right: 14, zIndex: 901,
           display: 'flex', gap: 6, alignItems: 'center',
+          transform: klockorDolda ? 'translateY(-72px)' : 'translateY(0)',
+          opacity: klockorDolda ? 0 : 1,
+          transition: 'transform 0.22s ease, opacity 0.18s ease',
+          pointerEvents: klockorDolda ? 'none' : 'auto',
         }}>
           <Link
             href="/"
