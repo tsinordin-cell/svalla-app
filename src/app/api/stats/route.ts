@@ -4,7 +4,7 @@
  */
 import { NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase-admin'
-import { ALL_ISLANDS } from '@/app/o/island-data'
+import { ALL_ISLANDS, ANTAL_OAR } from '@/app/o/island-data'
 
 // INTE force-dynamic: den vinner över revalidate och gjorde rutten helt
 // ocachad, så varje MISS slog fyra gånger mot Supabase. Med enbart
@@ -29,7 +29,7 @@ export async function GET() {
   ])
 
   return NextResponse.json({
-    islands: ALL_ISLANDS.length,
+    islands: ANTAL_OAR,
     places: restaurants.count ?? 0,
     harbors: HAMNAR,
     users: users.count ?? 0,

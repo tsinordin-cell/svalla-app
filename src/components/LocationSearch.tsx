@@ -153,7 +153,7 @@ export default function LocationSearch({
               style={{ width: 16, height: 16, animation: 'spin 0.8s linear infinite' }}>
               <path strokeLinecap="round" d="M12 2a10 10 0 0 1 10 10" />
             </svg>
-          ) : selected ? 'checkmark' : 'search'}
+          ) : <Icon name={selected ? 'check' : 'pin'} size={16} aria-label={selected ? 'Plats vald' : 'Sök plats'} />}
         </div>
       </div>
 

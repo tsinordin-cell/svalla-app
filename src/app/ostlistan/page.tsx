@@ -335,8 +335,8 @@ const OLISTS: OList[] = [
         travel: 'Bil från Stockholm, 60 min',
       },
       {
-        slug: 'bjorko',
-        name: 'Björkö (Birka)',
+        slug: 'birka', // 2026-10-21: /o/bjorko slogs ihop med /o/birka
+        name: 'Birka',
         emoji: '⚔️',
         tagline: 'Sandstrand + vikingatida historia',
         why: 'Björkö har en liten sandstrand och ett av Nordens mest fascinerande arkeologiska platser på samma ö. Unik kombination.',

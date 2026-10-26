@@ -11,14 +11,14 @@
  * gamla godkännandet inte längre, eftersom sluggen jämförs.
  */
 import type { SupabaseClient } from '@supabase/supabase-js'
-import { ALL_ISLANDS, type Island } from '@/app/o/island-data'
+import { OAR, type Island } from '@/app/o/island-data'
 import { arVeckansOdag, isoVecka, valjVeckansO } from '@/lib/mailfloden'
 
 export type VeckansOGodkannande = { slug: string; av: string; tid: string }
 
 /** Öar som kan bli veckans ö: bara de med källbelagd restid. */
 export function veckansOKandidater(): Island[] {
-  return ALL_ISLANDS
+  return OAR // 2026-10-21: veckans ö ska vara en ö, inte en fastlandsort
     .filter(i => i.facts_provenance?.travel_time === 'matt' && i.facts?.travel_time)
     .sort((a, b) => a.slug.localeCompare(b.slug))
 }

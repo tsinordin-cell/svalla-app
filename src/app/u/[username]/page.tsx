@@ -14,7 +14,7 @@ import FollowListButton from '@/components/FollowListSheet'
 import BackButtonInline from '@/components/BackButtonInline'
 import ProfileMoreMenu from '@/components/ProfileMoreMenu'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
-import { ALL_ISLANDS, getIsland } from '@/app/o/island-data'
+import { OAR, ANTAL_OAR, GAMLA_SLUGS, getIsland } from '@/app/o/island-data'
 import ProfileBadgeGrid from '@/components/ProfileBadgeGrid'
 import { isProEnabled } from '@/lib/pro'
 import { formatForumDate } from '@/lib/forum'
@@ -487,7 +487,10 @@ export default async function PublicProfilePage({
 
  {/* ── Visited islands ── */}
  {visitedCount > 0 && (() => {
-   const totalIslands = ALL_ISLANDS.length
+   // 2026-10-21: andelen räknas bland öarna (fastlandsorter och gamla slugs räknas inte dubbelt)
+   const totalIslands = ANTAL_OAR
+   const oarSlugs = new Set(OAR.map(i => i.slug))
+   const visitedOar = new Set((visitedIslandsData ?? []).map(r => GAMLA_SLUGS[r.island_slug] ?? r.island_slug).filter(s => oarSlugs.has(s))).size
    const visitedIslandObjs = (visitedIslandsData ?? [])
      .map(r => getIsland(r.island_slug))
      .filter(Boolean)
@@ -497,10 +500,10 @@ export default async function PublicProfilePage({
  <div style={{ background: 'var(--white)', borderRadius: 18, padding: '14px 16px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
  <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>⚓ Besökta öar</div>
- <span style={{ fontSize: 12, fontWeight: 600, color: '#0f9e64' }}>{visitedCount} / {totalIslands}</span>
+ <span style={{ fontSize: 12, fontWeight: 600, color: '#0f9e64' }}>{visitedOar} / {totalIslands}</span>
  </div>
  <div style={{ height: 5, background: 'rgba(15,158,100,.1)', borderRadius: 4, overflow: 'hidden', marginBottom: 12 }}>
- <div style={{ height: '100%', borderRadius: 4, background: 'linear-gradient(90deg,#0f9e64,#2dc88c)', width: `${Math.min(100, (visitedCount / totalIslands) * 100)}%` }} />
+ <div style={{ height: '100%', borderRadius: 4, background: 'linear-gradient(90deg,#0f9e64,#2dc88c)', width: `${Math.min(100, (visitedOar / totalIslands) * 100)}%` }} />
  </div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
    {visitedIslandObjs.map(island => island && (

@@ -11,6 +11,7 @@ import { IconHelm, IconRoute, IconHome, IconUser, IconPlus } from '@/components/
 import { IconCompass } from '@/components/icons/SvallaIcons'
 import { Home } from '@/components/icons/LucideIcons'
 import { prefetchFor as prefetchUtloggad } from '@/lib/inloggningsrutter'
+import { visaGlobalaKlockor } from '@/lib/klockor'
 
 export default function Nav() {
   const path = usePathname()
@@ -156,10 +157,9 @@ export default function Nav() {
   // Visa bells bara på sidor som INTE har egen header med bells
   // /feed, /rutter, /platser, /profil har egna — chatt-sidor lämnar toppen ren
   // /upptack har fullskärms-karta + BookmarkButton i top-right — klockorna krockar
-  const PAGES_WITH_OWN_BELLS = ['/feed', '/rutter', '/platser', '/profil', '/forum', '/u/', '/sok', '/upptack']
-  const showGlobalBell = username !== null
-    && !PAGES_WITH_OWN_BELLS.some(matchar)
-    && !path.match(/^\/meddelanden/)
+  // /planera/[id] har avståndsbadgen i hörnet (2026-10-21). Regeln ligger i
+  // src/lib/klockor.ts så att den kan testas utan React.
+  const showGlobalBell = visaGlobalaKlockor(path, username !== null)
 
   // revision 2026-10-02: Planera, Logga tur, Flöde och Profil kräver inloggning.
   // För utloggade blev varje prefetch av flikarna en 307 till /logga-in (se

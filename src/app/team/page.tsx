@@ -3,7 +3,7 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import TeamDashboardClient from './TeamDashboardClient'
 import { GUIDES } from '@/app/guider/guides-data'
-import { ALL_ISLANDS } from '@/app/o/island-data'
+import { ANTAL_OAR } from '@/app/o/island-data'
 import { REVENUE_YEARLY_SEK, TRAFFIC_OVERRIDE } from '@/app/admin/malet/config'
 import { baraManniskor } from '@/lib/analytics-filter'
 import { getGsc, summarize } from '@/lib/gsc'
@@ -126,7 +126,7 @@ export default async function TeamPage() {
     revenue: stripeIntakt?.kronor ?? REVENUE_YEARLY_SEK,
     users: usersCount.count ?? 0,
     guides: GUIDES.length,
-    islands: ALL_ISLANDS.length,
+    islands: ANTAL_OAR,
   }
   const merits: RoadmapMerits = {
     daysSinceStart: Math.floor((Date.now() - Date.UTC(2026, 3, 16)) / 86_400_000) + 1,

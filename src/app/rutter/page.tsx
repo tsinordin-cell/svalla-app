@@ -27,7 +27,7 @@ const ISLAND_SECTIONS = [
       'runmaro', 'husaro', 'kymmendo', 'bullero', 'vindo', 'ingaro', 'hasselo',
       'svenska-hogarna', 'huvudskar', 'ekno', 'ormsko', 'norrpada',
       'storholmen', 'storskar',
-      'bjorko', 'adelsjo'],
+      'birka', 'adelsjo'], // 2026-10-21: bjorko → birka (sammanslagen)
   },
   {
     id: 'södra',
