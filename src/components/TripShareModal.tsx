@@ -36,7 +36,9 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  const klister = mall.klistermarke
 
  const cardSrc = `/api/og/share/tur/${tripId}?style=${styleMode}`
- const filnamn = `svalla-${styleMode}.png`
+ // Kort kommer som JPEG, klistermärken som PNG (genomskinliga); filnamnet följer med.
+ const filnamn = `svalla-${styleMode}.${klister ? 'png' : 'jpg'}`
+ const filtyp = klister ? 'image/png' : 'image/jpeg'
 
  // Falttest 19/8 (Tom): att dela en PRIVAT tur gav mottagaren 404
  // ("Borttappad till havs"). #179 fixade DM-modalen (ShareTripModal) men
@@ -84,7 +86,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  const blob = await saveImage()
  if (!blob) { setLoading(false); return }
 
- const file = new File([blob], filnamn, { type: 'image/png' })
+ const file = new File([blob], filnamn, { type: filtyp })
 
  // iOS + Android: native share sheet via Web Share API with file
  // iOS 15+: opens share sheet → Instagram → opens Stories directly
@@ -119,7 +121,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  setLoading(true)
  const blob = await saveImage()
  if (!blob) { setLoading(false); return }
- const file = new File([blob], filnamn, { type: 'image/png' })
+ const file = new File([blob], filnamn, { type: filtyp })
  try {
  if (typeof navigator !== 'undefined' && navigator.canShare?.({ files: [file] })) {
  await navigator.share({ files: [file], title: `${title} – Svalla`, url, text: `Kolla min tur till ${title} på Svalla! ` })
@@ -163,8 +165,9 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  function copyImage() {
  try {
  if (typeof ClipboardItem === 'undefined' || !navigator.clipboard?.write) throw new Error('stöds inte')
+ // Urklipp tar bara PNG. Kort levereras som JPEG, så de ritas om till PNG i en canvas först.
  const item = new ClipboardItem({
- 'image/png': fetch(cardSrc).then(r => { if (!r.ok) throw new Error('fetch'); return r.blob() }),
+ 'image/png': fetch(cardSrc).then(r => { if (!r.ok) throw new Error('fetch'); return r.blob() }).then(somPng),
  })
  navigator.clipboard.write([item])
  .then(() => toast(klister ? 'Klistermärket är kopierat. Klistra in det i din story.' : 'Bilden är kopierad.'))
@@ -172,6 +175,16 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  } catch {
  toast('Kopiering av bilder stöds inte här. Spara bilden i stället.', 'error')
  }
+ }
+
+ /** JPEG → PNG via canvas (urklipp accepterar bara PNG). PNG släpps igenom orört. */
+ async function somPng(blob: Blob): Promise<Blob> {
+ if (blob.type === 'image/png') return blob
+ const bitmap = await createImageBitmap(blob)
+ const canvas = document.createElement('canvas')
+ canvas.width = bitmap.width; canvas.height = bitmap.height
+ canvas.getContext('2d')!.drawImage(bitmap, 0, 0)
+ return new Promise((resolve, reject) => canvas.toBlob(b => b ? resolve(b) : reject(new Error('png')), 'image/png'))
  }
 
  async function copyLink() {

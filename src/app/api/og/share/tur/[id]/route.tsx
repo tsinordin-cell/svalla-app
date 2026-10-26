@@ -1,22 +1,22 @@
 import { ImageResponse } from 'next/og'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import { Buffer } from 'buffer'
-import { arStil, stil, delstrackStaplar, talRutor } from '@/lib/dela-klistermarken'
+import { arStil, stil, delstrackStaplar, talRutor, formatTid } from '@/lib/dela-klistermarken'
 import { computeSplits } from '@/lib/tripSplits'
 import { klisterRutt, klisterTal, klisterRuttTal, klisterDelstrackor, type KlisterData } from './klistermarken'
 import { ogTypsnitt } from '../../../_typsnitt/typsnitt'
+import { unstable_cache } from 'next/cache'
+import { createHash } from 'crypto'
+import sharp from 'sharp'
+import { tripCacheTag } from '@/lib/trip-cache'
+import type { StilId } from '@/lib/dela-klistermarken'
+import type { GpsPoint } from '@/lib/gps'
 
 export const runtime = 'nodejs'
 export const revalidate = 0
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-function fmtDur(mins: number): string {
- if (mins <= 0) return ''
- const h = Math.floor(mins / 60)
- const m = mins % 60
- return h > 0 ? `${h}h ${m > 0 ? `${m}m` : ''}`.trim() : `${m}m`
-}
 
 // Simple lat/lng → SVG path (for photo mode — no projection needed)
 function buildRoutePath(pts: { lat: number; lng: number }[], W: number, H: number): string {
@@ -84,37 +84,98 @@ function buildRoutePathMercator(
 // ── Constants ──────────────────────────────────────────────────────────────
 
 const W = 1080, H = 1920
+// Höj när bildernas utseende ändras i kod, så att cachade bilder ritas om.
+const BILD_VERSION = '2026-10-26b'
 
 // ── Route handler ──────────────────────────────────────────────────────────
 
+type TripRad = {
+ user_id: string; location_name: string | null; start_location: string | null
+ distance: number; duration: number; duration_seconds: number | null
+ max_speed_knots: number | null; average_speed_knots: number | null; boat_type: string | null
+ route_points: unknown; started_at: string | null; pinnar_rating: number | null
+ image: string | null; images: unknown
+}
+
+/**
+ * Bilden hämtas genom RLS (privata turer bara för ägaren), ritas en gång och
+ * cachas per tur, mall och innehåll (2026-10-26, Thomas: korten laddade
+ * långsamt). Kort utan genomskinlighet blir JPEG (kartkortet 1,7 MB → ca 0,3
+ * MB); klistermärken förblir PNG. Cachen töms med samma tagg som tursidan när
+ * turen ändras (/api/revalidate-feed), och nyckeln bär ett avtryck av
+ * innehållet som skyddsnät. Delsträckor bygger på gps_points, som bara ägaren
+ * får läsa, och cachas därför bara för ägaren.
+ */
 export async function GET(
  req: Request,
  { params }: { params: Promise<{ id: string }> }
 ) {
  const { id } = await params
  const begard = new URL(req.url).searchParams.get('style')
- const style = arStil(begard) ? begard : 'photo'
+ const style: StilId = arStil(begard) ? begard : 'photo'
 
  const supabase = await createClient()
- const fonts = await ogTypsnitt()
 
  const { data: trip } = await supabase
  .from('trips')
  .select('user_id, location_name, start_location, distance, duration, duration_seconds, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image, images')
  .eq('id', id)
  .single()
+ if (!trip) return new Response('Turen finns inte', { status: 404 })
 
- const { data: userRow } = trip
- ? await supabase.from('users').select('username').eq('id', trip.user_id).single()
- : { data: null }
+ const { data: userRow } = await supabase.from('users').select('username').eq('id', trip.user_id).single()
+ const username = userRow?.username ?? 'Seglare'
 
+ let punkter: GpsPoint[] = []
+ let agare = false
+ if (style === 'delstrackor') {
+ const { data: { user } } = await supabase.auth.getUser()
+ agare = !!user && user.id === trip.user_id
+ if (!agare) return new Response('Delsträckor visas bara för den som loggade turen', { status: 404 })
+ const { data: rows } = await supabase
+ .from('gps_points')
+ .select('latitude, longitude, speed_knots, heading, recorded_at')
+ .eq('trip_id', id)
+ .order('recorded_at', { ascending: true })
+ .limit(20000)
+ punkter = (rows ?? []).map(r => ({
+ lat: r.latitude as number, lng: r.longitude as number,
+ speedKnots: (r.speed_knots ?? 0) as number, heading: (r.heading ?? null) as number | null,
+ accuracy: 0, recordedAt: r.recorded_at as string,
+ }))
+ }
+
+ const avtryck = createHash('sha1').update(JSON.stringify([trip, username, punkter.length])).digest('hex').slice(0, 12)
+ const bild = await unstable_cache(
+ async () => {
+ const fonts = await ogTypsnitt()
+ const res = await ritaBild({ trip: trip as TripRad, username, punkter, style, fonts })
+ if (!(res instanceof ImageResponse)) return { status: res.status, text: await res.text() }
+ const png = Buffer.from(await res.arrayBuffer())
+ const klister = stil(style).klistermarke
+ const ut = klister ? png : await sharp(png).jpeg({ quality: 86, mozjpeg: true }).toBuffer()
+ return { status: 200, b64: ut.toString('base64'), typ: klister ? 'image/png' : 'image/jpeg' }
+ },
+ ['share-bild', BILD_VERSION, id, style, avtryck, agare ? 'agare' : 'alla'],
+ { tags: [tripCacheTag(id)], revalidate: 86400 },
+ )()
+
+ if (bild.status !== 200 || !bild.b64) return new Response(bild.text ?? 'Kunde inte rita bilden', { status: bild.status })
+ return new Response(Buffer.from(bild.b64, 'base64'), {
+ headers: { 'Content-Type': bild.typ ?? 'image/png', 'Cache-Control': 'private, max-age=3600' },
+ })
+}
+
+async function ritaBild({ trip, username, punkter, style, fonts }: {
+ trip: TripRad; username: string; punkter: GpsPoint[]; style: StilId; fonts: Awaited<ReturnType<typeof ogTypsnitt>>
+}): Promise<ImageResponse | Response> {
  const dist = trip && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)}` : null
- const dur = trip && trip.duration > 4 ? fmtDur(trip.duration) : null
+ const sek = trip.duration_seconds ?? (trip.duration > 0 ? trip.duration * 60 : 0)
+ const dur = sek >= 60 ? formatTid(sek) : null
  const spd = trip && (trip.max_speed_knots ?? 0) >= 0.1 ? `${(trip.max_speed_knots ?? 0).toFixed(1)}` : null
  const avgSpd = trip && (trip.average_speed_knots ?? 0) >= 0.1 ? `${(trip.average_speed_knots ?? 0).toFixed(1)}` : null
  const loc = trip?.location_name ?? null
  const from = trip?.start_location ?? null
- const username = userRow?.username ?? 'Seglare'
  const boatEmoji = trip?.boat_type === 'Segelbåt' ? '' : trip?.boat_type === 'Motorbåt' ? '' : trip?.boat_type === 'Kajak' ? '' : ''
  const boatLabel = trip?.boat_type ?? 'Tur'
  const magisk = trip?.pinnar_rating === 3
@@ -133,7 +194,6 @@ export async function GET(
  // Läggs ovanpå användarens egen bild i Instagram-storyn. Ingen bakgrund,
  // inget användarnamn: bara rutten, talen och loggan, som Stravas.
  if (style === 'rutt' || style === 'tal' || style === 'rutt-tal' || style === 'delstrackor') {
- if (!trip) return new Response('Turen finns inte', { status: 404 })
  if ((style === 'rutt' || style === 'rutt-tal' || style === 'delstrackor') && !routePts) {
  return new Response('Turen har ingen rutt', { status: 404 })
  }
@@ -145,19 +205,7 @@ export async function GET(
  staplar: [],
  }
  if (style === 'delstrackor') {
- // gps_points släpps bara till ägaren (RLS gps_select_own): andra får 404.
- const { data: rows } = await supabase
- .from('gps_points')
- .select('latitude, longitude, speed_knots, heading, recorded_at')
- .eq('trip_id', id)
- .order('recorded_at', { ascending: true })
- .limit(20000)
- const pts = (rows ?? []).map(r => ({
- lat: r.latitude as number, lng: r.longitude as number,
- speedKnots: (r.speed_knots ?? 0) as number, heading: (r.heading ?? null) as number | null,
- accuracy: 0, recordedAt: r.recorded_at as string,
- }))
- const splits = computeSplits(pts)
+ const splits = computeSplits(punkter)
  if (splits.length === 0) return new Response('Turen har inga delsträckor', { status: 404 })
  data.staplar = delstrackStaplar(splits)
  }
@@ -231,7 +279,7 @@ export async function GET(
  const cy = (latToTY(minLat, Z) + latToTY(maxLat, Z)) / 2
  const tx0 = Math.floor(cx) - 2
  const ty0 = Math.floor(cy) - 3
- const COLS = 5, ROWS = 6
+ const COLS = 5, ROWS = 9   // 9 rader: rutorna täcker hela höjden (H), inte bara kartytan (MH)
 
  const gLeft = W / 2 - (cx - tx0) * 256
  const gTop = MH / 2 - (cy - ty0) * 256
@@ -271,7 +319,7 @@ export async function GET(
  {/* ── Map tile layer ── */}
  <div style={{
  position: 'absolute', left: 0, top: 0,
- width: W, height: MH,
+ width: W, height: H,
  overflow: 'hidden', display: 'flex',
  }}>
  {tiles.map(({ dx, dy, src }) =>
@@ -294,13 +342,13 @@ export async function GET(
  style={{ position: 'absolute', left: 0, top: 0 }}
  >
  {/* Outer glow */}
- <path d={mapPath} stroke="rgba(255,100,40,0.30)" strokeWidth={22}
+ <path d={mapPath} stroke="rgba(255,100,40,0.28)" strokeWidth={28}
  fill="none" strokeLinecap="round" strokeLinejoin="round" />
  {/* Mid glow */}
- <path d={mapPath} stroke="rgba(255,120,50,0.60)" strokeWidth={10}
+ <path d={mapPath} stroke="rgba(255,120,50,0.55)" strokeWidth={15}
  fill="none" strokeLinecap="round" strokeLinejoin="round" />
  {/* Sharp line */}
- <path d={mapPath} stroke="#ff5c2e" strokeWidth={5}
+ <path d={mapPath} stroke="#ff5c2e" strokeWidth={8}
  fill="none" strokeLinecap="round" strokeLinejoin="round" />
  {/* Start dot */}
  <circle cx={sx} cy={sy} r={10} fill="#22c55e" stroke="#fff" strokeWidth={3} />

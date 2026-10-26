@@ -26,7 +26,7 @@ export type Stil = {
 }
 
 export const STILAR: Stil[] = [
-  { id: 'photo',       namn: 'Bild',         beskrivning: 'Din bild med plats och tal.',            bredd: 1080, hojd: 1920, klistermarke: false, kraver: 'inget' },
+  { id: 'photo',       namn: 'Bild',         beskrivning: 'Din bild med plats och tal.',            bredd: 1080, hojd: 1920, klistermarke: false, kraver: 'bild' },
   { id: 'map',         namn: 'Karta',        beskrivning: 'Kartan med rutten, plats och tal.',      bredd: 1080, hojd: 1920, klistermarke: false, kraver: 'rutt' },
   { id: 'rutt',        namn: 'Rutt',         beskrivning: 'Bara rutten, på din egen bild.',         bredd: 1080, hojd: 1080, klistermarke: true,  kraver: 'rutt' },
   { id: 'tal',         namn: 'Tal',          beskrivning: 'Distans, tid och fart, på din egen bild.', bredd: 1080, hojd: 1080, klistermarke: true,  kraver: 'inget' },
@@ -55,7 +55,7 @@ export function tillgangligaStilar(t: { harBild: boolean; harRutt: boolean; agar
   })
 }
 
-/** Förvald mall: bild om det finns, annars karta, annars tal. */
+/** Förvald mall: bild om det finns, annars karta, annars tal. En tur utan bild får inget Bild-kort (2026-10-26). */
 export function forvaldStil(t: { harBild: boolean; harRutt: boolean }): StilId {
   if (t.harBild) return 'photo'
   if (t.harRutt) return 'map'

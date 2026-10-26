@@ -10,9 +10,11 @@ describe('stilar', () => {
   })
   it('ger bara det turen har underlag för', () => {
     const bara = tillgangligaStilar({ harBild: false, harRutt: false, agare: false }).map(s => s.id)
-    expect(bara).toEqual(['photo', 'tal'])
+    expect(bara).toEqual(['tal'])
     const gps = tillgangligaStilar({ harBild: false, harRutt: true, agare: true }).map(s => s.id)
-    expect(gps).toEqual(['photo', 'map', 'rutt', 'tal', 'rutt-tal', 'delstrackor'])
+    expect(gps).toEqual(['map', 'rutt', 'tal', 'rutt-tal', 'delstrackor'])
+    const bild = tillgangligaStilar({ harBild: true, harRutt: false, agare: true }).map(s => s.id)
+    expect(bild).toEqual(['photo', 'tal'])
     const annan = tillgangligaStilar({ harBild: true, harRutt: true, agare: false }).map(s => s.id)
     expect(annan).not.toContain('delstrackor')
   })
