@@ -21,16 +21,32 @@ const VIT_SVAG = 'rgba(255,255,255,0.78)'
 const SKUGGA = '0 1px 2px rgba(0,0,0,0.40), 0 6px 24px rgba(0,0,0,0.28)'
 const FONT = 'Inter, system-ui, sans-serif'
 
-function Logga({ storlek = 30 }: { storlek?: number }) {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: Math.round(storlek * 0.4) }}>
-      <svg viewBox="0 0 20 22" width={storlek * 1.25} height={storlek * 1.25} style={{ display: 'flex', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.4))' }}>
-        <line x1="9" y1="20" x2="9" y2="2" stroke={VIT} strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M9,3 L18,18 L9,18 Z" fill={VIT} />
-        <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.6)" />
-        <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.8)" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+/**
+ * Svallas logga: seglet (samma som SvallaLogo.tsx) och ordmärket SVALLA i
+ * Playfair Display, som sajtens rubriker. `pill` lägger en mörk, halvgenomskinlig
+ * platta bakom så att loggan syns på kartor och ljusa bilder (korten); på
+ * klistermärkena ritas den fritt med skugga, som Stravas.
+ */
+export function Logga({ storlek = 34, pill = false }: { storlek?: number; pill?: boolean }) {
+  const ikon = Math.round(storlek * 1.35)
+  const inre = (
+    <div style={{ display: 'flex', alignItems: 'center', gap: Math.round(storlek * 0.42) }}>
+      <svg viewBox="0 0 20 22" width={ikon} height={ikon} style={pill ? { display: 'flex' } : { display: 'flex', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.45))' }}>
+        <line x1="9" y1="20" x2="9" y2="3" stroke={VIT} strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M9,4 L18,18 L9,18 Z" fill={VIT} opacity="0.95" />
+        <path d="M9,8 L1,17 L9,17 Z" fill={VIT} opacity="0.55" />
+        <path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke={VIT} strokeWidth="1.3" fill="none" strokeLinecap="round" opacity="0.8" />
       </svg>
-      <div style={{ fontSize: storlek, fontWeight: 700, letterSpacing: Math.round(storlek * 0.22), color: VIT, textShadow: SKUGGA, display: 'flex' }}>SVALLA</div>
+      <div style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: storlek, fontWeight: 700, letterSpacing: Math.round(storlek * 0.2), color: VIT, display: 'flex', paddingTop: Math.round(storlek * 0.08), ...(pill ? {} : { textShadow: SKUGGA }) }}>SVALLA</div>
+    </div>
+  )
+  if (!pill) return inre
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.48)', border: '1px solid rgba(255,255,255,0.16)', borderRadius: 999,
+      paddingTop: Math.round(storlek * 0.32), paddingBottom: Math.round(storlek * 0.32), paddingLeft: Math.round(storlek * 0.55), paddingRight: Math.round(storlek * 0.8),
+    }}>
+      {inre}
     </div>
   )
 }
@@ -89,7 +105,7 @@ export function klisterRutt(d: KlisterData, W: number, H: number): ReactElement 
       <div style={{ display: 'flex', width: W, height: rh }}>
         {d.rutt ? <Rutt pts={d.rutt} W={W} H={rh} pad={0.09} tjock={34} /> : null}
       </div>
-      <div style={{ display: 'flex', height: 200, alignItems: 'center' }}><Logga storlek={34} /></div>
+      <div style={{ display: 'flex', height: 200, alignItems: 'center' }}><Logga storlek={44} /></div>
     </div>
   )
 }
@@ -108,7 +124,7 @@ export function klisterTal(d: KlisterData, W: number, H: number): ReactElement {
           </div>
         ))}
       </div>
-      <Logga storlek={32} />
+      <Logga storlek={40} />
     </div>
   )
 }
@@ -128,7 +144,7 @@ export function klisterRuttTal(d: KlisterData, W: number, H: number): ReactEleme
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 54, width: IW }}>
         <TalRad tal={d.tal} stor={96} gap={72} />
-        <Logga storlek={28} />
+        <Logga storlek={34} />
       </div>
     </div>
   )
@@ -163,7 +179,7 @@ export function klisterDelstrackor(d: KlisterData, W: number, H: number): ReactE
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 48, width: IW }}>
         <TalRad tal={d.tal.slice(0, 3)} stor={76} gap={64} />
-        <Logga storlek={28} />
+        <Logga storlek={34} />
       </div>
     </div>
   )

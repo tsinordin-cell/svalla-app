@@ -3,7 +3,7 @@ import { createServerSupabaseClient as createClient } from '@/lib/supabase-serve
 import { Buffer } from 'buffer'
 import { arStil, stil, delstrackStaplar, talRutor, formatTid } from '@/lib/dela-klistermarken'
 import { computeSplits } from '@/lib/tripSplits'
-import { klisterRutt, klisterTal, klisterRuttTal, klisterDelstrackor, type KlisterData } from './klistermarken'
+import { klisterRutt, klisterTal, klisterRuttTal, klisterDelstrackor, Logga, type KlisterData } from './klistermarken'
 import { ogTypsnitt } from '../../../_typsnitt/typsnitt'
 import { unstable_cache } from 'next/cache'
 import { createHash } from 'crypto'
@@ -85,7 +85,7 @@ function buildRoutePathMercator(
 
 const W = 1080, H = 1920
 // Höj när bildernas utseende ändras i kod, så att cachade bilder ritas om.
-const BILD_VERSION = '2026-10-26b'
+const BILD_VERSION = '2026-10-26c'
 
 // ── Route handler ──────────────────────────────────────────────────────────
 
@@ -365,6 +365,21 @@ async function ritaBild({ trip, username, punkter, style, fonts }: {
  }} />
  </div>
 
+ {/* ── Överst: Svallas logga och båttyp, på plattor som syns på kartan (2026-10-26) ── */}
+ <div style={{
+ position: 'absolute', top: 72, left: 72, right: 72,
+ display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+ }}>
+ <Logga storlek={34} pill />
+ <div style={{
+ display: 'flex', alignItems: 'center', gap: 10,
+ background: 'rgba(0,0,0,0.48)', borderRadius: 999, padding: '12px 24px',
+ border: '1px solid rgba(255,255,255,0.16)',
+ }}>
+ <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.9)', display: 'flex' }}>{boatLabel}</div>
+ </div>
+ </div>
+
  {/* ── Bottom info panel ── */}
  <div style={{
  position: 'absolute', bottom: 0, left: 0, right: 0,
@@ -372,30 +387,6 @@ async function ritaBild({ trip, username, punkter, style, fonts }: {
  display: 'flex', flexDirection: 'column',
  background: 'linear-gradient(to bottom, transparent 0%, #0a1018 25%)',
  }}>
-
- {/* Top bar inside info panel */}
- <div style={{
- display: 'flex', alignItems: 'center', justifyContent: 'space-between',
- paddingBottom: 32,
- }}>
- <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
- <svg viewBox="0 0 20 22" width={30} height={30} style={{ display: 'flex' }}>
- <line x1="9" y1="20" x2="9" y2="2" stroke="rgba(255,255,255,0.55)" strokeWidth="1.6" strokeLinecap="round"/>
- <path d="M9,3 L18,18 L9,18 Z" fill="rgba(255,255,255,0.55)"/>
- <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.30)"/>
- <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.40)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
- </svg>
- <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.50)' }}>SVALLA</div>
- </div>
- <div style={{
- display: 'flex', alignItems: 'center', gap: 10,
- background: 'rgba(0,0,0,0.45)', borderRadius: 40, padding: '8px 20px',
- border: '1px solid rgba(255,255,255,0.12)',
- }}>
- <div style={{ fontSize: 26 }}>{boatEmoji}</div>
- <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>{boatLabel}</div>
- </div>
- </div>
 
  {/* Location */}
  {locLabel ? (
@@ -519,28 +510,15 @@ async function ritaBild({ trip, username, punkter, style, fonts }: {
  {/* Top bar */}
  <div style={{
  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
- padding: '80px 80px 0', position: 'relative', zIndex: 2,
+ padding: '72px 72px 0', position: 'relative', zIndex: 2,
  }}>
- <div style={{
- display: 'flex', alignItems: 'center', gap: 14,
- background: 'rgba(0,0,0,0.45)', borderRadius: 50, padding: '12px 28px 12px 20px',
- border: '1px solid rgba(255,255,255,0.15)',
- }}>
- <svg viewBox="0 0 20 22" width={42} height={42} style={{ display: 'flex' }}>
- <line x1="9" y1="20" x2="9" y2="2" stroke="rgba(255,255,255,0.90)" strokeWidth="1.6" strokeLinecap="round"/>
- <path d="M9,3 L18,18 L9,18 Z" fill="rgba(255,255,255,0.90)"/>
- <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.55)"/>
- <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.70)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
- </svg>
- <div style={{ fontSize: 32, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.90)', display: 'flex' }}>SVALLA</div>
- </div>
+ <Logga storlek={34} pill />
  <div style={{
  display: 'flex', alignItems: 'center', gap: 12,
- background: 'rgba(0,0,0,0.35)', borderRadius: 40, padding: '10px 24px',
- border: '1px solid rgba(255,255,255,0.12)',
+ background: 'rgba(0,0,0,0.48)', borderRadius: 999, padding: '12px 24px',
+ border: '1px solid rgba(255,255,255,0.16)',
  }}>
- <div style={{ fontSize: 30 }}>{boatEmoji}</div>
- <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>{boatLabel}</div>
+ <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.9)', display: 'flex' }}>{boatLabel}</div>
  </div>
  </div>
 
