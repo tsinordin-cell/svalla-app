@@ -785,7 +785,7 @@ export default async function IslandPage({ params }: Props) {
  <a
  href={r.bookingUrl}
  target="_blank"
- rel="noopener noreferrer sponsored"
+ rel="noopener noreferrer"
  data-svalla-track="booking-click"
  data-place={r.name}
  data-island={island.slug}

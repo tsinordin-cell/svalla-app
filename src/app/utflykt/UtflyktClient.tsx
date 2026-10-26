@@ -8,6 +8,7 @@ import { trackEvent } from '@/lib/analytics'
 import { CHIP_LABEL, type IslandChip } from '@/lib/islandChips'
 import { ALLA_HUB_SLUG, rankDagIslands, type DagHub, type DagIsland } from '@/lib/dagsplan'
 import { MAX_TRANSIT_DAYS_AHEAD } from '@/lib/transitDate'
+import { ingenTrafikText } from '@/lib/ingen-trafik'
 import { packingForSeason, seasonLabel } from './utflykt-data'
 
 /**
@@ -372,7 +373,7 @@ function IslandCard({ island, iso, open, onToggle }: { island: DagIsland; iso: s
           </button>
         ) : island.noTransit ? (
           <span style={{ fontSize: 12.5, color: 'var(--txt3)', lineHeight: 1.5, alignSelf: 'center' }}>
-            Ingen kollektivtrafik hit — egen båt eller taxibåt.
+            {ingenTrafikText(island.noTransit)}
           </span>
         ) : (
           <Link href={`/o/${island.slug}/komma-dit`} style={{ fontSize: 13, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none', alignSelf: 'center' }}>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { ALL_ISLANDS, getIsland } from '@/app/o/island-data'
+import { OAR, ANTAL_OAR, GAMLA_SLUGS, getIsland } from '@/app/o/island-data'
 import { ISLAND_COORDS } from '@/lib/islandCoords'
 import Icon from '@/components/Icon'
 
@@ -14,7 +14,9 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
-const TOTAL_ISLANDS = ALL_ISLANDS.length
+// 2026-10-21: räknar öar, inte fastlandsorter; gamla slugs (bjorko) räknas som sin nya ö.
+const TOTAL_ISLANDS = ANTAL_OAR
+const OAR_SLUGS = new Set(OAR.map(i => i.slug))
 
 // ── Verktyg & spel-sektion: card-stilar ───────────────
 function toolCardStyle(accentColor: string): React.CSSProperties {
@@ -88,9 +90,9 @@ export default async function MinSkargardPage() {
     .maybeSingle()
   const profileUsername = (userProfileRow as { username?: string } | null)?.username
 
-  const savedSlugs = new Set((savedRows ?? []).map(r => r.island_slug))
-  const visitedSlugs = new Set((visitedRows ?? []).map(r => r.island_slug))
-  const visitedCount = visitedSlugs.size
+  const savedSlugs = new Set((savedRows ?? []).map(r => GAMLA_SLUGS[r.island_slug] ?? r.island_slug))
+  const visitedSlugs = new Set((visitedRows ?? []).map(r => GAMLA_SLUGS[r.island_slug] ?? r.island_slug))
+  const visitedCount = Array.from(visitedSlugs).filter(s => OAR_SLUGS.has(s)).length
   const percentVisited = Math.round((visitedCount / TOTAL_ISLANDS) * 100)
 
   // Besökshistorik — grupperad per månad, nyast först

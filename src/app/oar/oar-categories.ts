@@ -1,11 +1,11 @@
 /**
  * Long-tail SEO-kategorier för öar.
- * Varje kategori filtrerar ALL_ISLANDS efter en heuristik (tags + facts + tagline).
+ * Varje kategori filtrerar OAR (öarna, inte fastlandsorterna) efter en heuristik (tags + facts + tagline).
  * Mål: ranka för kommersiell intent som "barnvänliga öar stockholm",
  * "öar nära nynäshamn", "lyxig skärgård".
  */
 
-import { ALL_ISLANDS, type Island } from '../o/island-data'
+import { OAR, type Island } from '../o/island-data'
 
 export type OarCategory = {
   slug: string
@@ -167,5 +167,6 @@ export function getOarCategory(slug: string): OarCategory | undefined {
 export function islandsForCategory(slug: string): Island[] {
   const cat = getOarCategory(slug)
   if (!cat) return []
-  return ALL_ISLANDS.filter(cat.filter)
+  // 2026-10-21: bara öar — fastlandsorterna och Kosterhavet (nationalpark) räknades förut med i "X öar".
+  return OAR.filter(cat.filter)
 }

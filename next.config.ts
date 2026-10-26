@@ -198,6 +198,27 @@ const nextConfig: NextConfig = {
         destination: '/skargardsdatum',
         permanent: false,
       },
+      // /o/bjorko → /o/birka (2026-10-21). Björkö (Birka) och Birka var två
+      // ösidor om samma ö i Mälaren; posterna är ihopslagna under /o/birka.
+      // Permanent (308) så att sökmotorer flyttar över sidan.
+      {
+        source: '/o/bjorko',
+        destination: '/o/birka',
+        permanent: true,
+      },
+      {
+        source: '/o/bjorko/:path*',
+        destination: '/o/birka/:path*',
+        permanent: true,
+      },
+      // /flode → /feed (2026-10-21). Fliken heter "Flöde" i menyn men sidan
+      // ligger på /feed; den som skriver in det svenska namnet fick 404.
+      // Tillfällig (307) tills det är bestämt om /feed ska byta namn.
+      {
+        source: '/flode',
+        destination: '/feed',
+        permanent: false,
+      },
       {
         source: '/evenemang/:path*',
         destination: '/skargardsdatum',

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import PartnerForm from './PartnerForm'
 import SvallaLogo from '@/components/SvallaLogo'
 import Icon, { type IconName } from '@/components/Icon'
-import { ALL_ISLANDS } from '@/app/o/island-data'
+import { ANTAL_OAR } from '@/app/o/island-data'
 import { getAdminClient } from '@/lib/supabase-admin'
 
 /**
@@ -75,7 +75,7 @@ const FAQ: Array<{ q: string; a: React.ReactNode }> = [
 export default async function PartnerPage() {
   const platser = await antalPlatser()
   const STATS = [
-    { num: fmt(ALL_ISLANDS.length), label: 'öar med egen sida' },
+    { num: fmt(ANTAL_OAR), label: 'öar med egen sida' },
     ...(platser ? [{ num: fmt(platser), label: 'platser på kartan' }] : []),
     { num: 'Gratis', label: 'att finnas med' },
   ]

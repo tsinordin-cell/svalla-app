@@ -52,7 +52,9 @@ export default function RegionOar({
               }}>
                 <span style={{ flexShrink: 0, color: 'var(--sea)' }} aria-hidden><Icon name={emojiToIcon(o.emoji)} size={20} /></span>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>{o.name}</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>
+                    {o.name}{o.slag && o.slag !== 'ö' && <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', marginLeft: 6 }}>· {o.slag}</span>}
+                  </div>
                   <div style={{ fontSize: 12, color: 'var(--txt3)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {o.harbors.length > 0 ? o.harbors.map(h => h.name).join(' · ') : o.tagline}
                   </div>

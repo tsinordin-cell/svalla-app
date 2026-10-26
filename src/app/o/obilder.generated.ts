@@ -913,16 +913,6 @@ export const OBILDER: Record<string, Obild> = {
     "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "kalla": "https://commons.wikimedia.org/wiki/File:M%C3%B6rk%C3%B6_kyrka_2021.jpg"
   },
-  "bjorko": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Bj%C3%B6rk%C3%B6_%28powi%29_3.jpg",
-    "bredd": 1200,
-    "hojd": 791,
-    "ar": 2007,
-    "fotograf": "Per Ola Wiberg (Powi), Ekerö, Sweden",
-    "licens": "CC BY 2.0",
-    "licensUrl": "https://creativecommons.org/licenses/by/2.0",
-    "kalla": "https://commons.wikimedia.org/wiki/File:Bj%C3%B6rk%C3%B6_(powi)_3.jpg"
-  },
   "ekno": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Ekn%C3%B6_brygga.jpg/1280px-Ekn%C3%B6_brygga.jpg",
     "bredd": 1200,
@@ -996,4 +986,4 @@ export const OBILDER: Record<string, Obild> = {
 }
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = 97
+export const OAR_MED_BILD = 96
