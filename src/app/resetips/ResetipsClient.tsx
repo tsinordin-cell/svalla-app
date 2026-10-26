@@ -11,10 +11,16 @@ const DIFFICULTY_LABEL: Record<TripDifficulty, string> = {
   krävande: 'Krävande',
 }
 
+// revision P2-4: temaberoende tokens (globals.css). Hexfärgerna gav 2,7–3,1:1 i ljust tema.
 const DIFFICULTY_COLOR: Record<TripDifficulty, string> = {
-  lätt: '#2a9d5c',
-  medel: '#e07b2a',
-  krävande: '#c0392b',
+  lätt: 'var(--ok)',
+  medel: 'var(--varning)',
+  krävande: 'var(--fara)',
+}
+const DIFFICULTY_BG: Record<TripDifficulty, string> = {
+  lätt: 'var(--ok-bg)',
+  medel: 'var(--varning-bg)',
+  krävande: 'var(--fara-bg)',
 }
 
 const STOP_ICONS: Record<string, IconName> = {
@@ -36,9 +42,9 @@ const TRANSPORT_OPTIONS: { key: TransportTag; label: string; icon: IconName }[] 
 ]
 
 const DIFFICULTY_OPTIONS: { key: TripDifficulty; label: string; color: string }[] = [
-  { key: 'lätt',     label: 'Lätt',     color: '#2a9d5c' },
-  { key: 'medel',    label: 'Medel',    color: '#e07b2a' },
-  { key: 'krävande', label: 'Krävande', color: '#c0392b' },
+  { key: 'lätt',     label: 'Lätt',     color: 'var(--ok)' },
+  { key: 'medel',    label: 'Medel',    color: 'var(--varning)' },
+  { key: 'krävande', label: 'Krävande', color: 'var(--fara)' },
 ]
 
 export default function ResetipsClient() {
@@ -256,13 +262,13 @@ export default function ResetipsClient() {
                     {trip.featured && (
                       <span style={{
                         fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
-                        color: '#fff', background: 'var(--sea, #0a7b8c)', padding: '3px 9px', borderRadius: 20,
+                        color: '#fff', background: 'var(--sea-knapp, #1e5c82)', padding: '3px 9px', borderRadius: 20,
                       }}>★ Redaktionens val</span>
                     )}
                     <span style={{
                       fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
                       color: DIFFICULTY_COLOR[trip.difficulty],
-                      background: `${DIFFICULTY_COLOR[trip.difficulty]}18`,
+                      background: DIFFICULTY_BG[trip.difficulty],
                       padding: '3px 9px', borderRadius: 20,
                     }}>
                       {DIFFICULTY_LABEL[trip.difficulty]}
@@ -302,7 +308,8 @@ export default function ResetipsClient() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                     {trip.stops.slice(0, 3).map((stop, i) => (
                       <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'var(--txt2, #555)' }}>
-                        <span style={{ fontSize: 14, flexShrink: 0 }}>{STOP_ICONS[stop.type]}</span>
+                        {/* 2026-10-03: ikonnamnet skrevs ut som text ("sailboat") – nu samma Icon som på rutt-sidan. */}
+                        <span aria-hidden style={{ display: 'inline-flex', flexShrink: 0 }}><Icon name={STOP_ICONS[stop.type] ?? 'pin'} size={14} /></span>
                         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{stop.name}</span>
                       </div>
                     ))}

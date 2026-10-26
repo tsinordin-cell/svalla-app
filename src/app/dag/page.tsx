@@ -174,7 +174,7 @@ export default function DagPage() {
           <Link href="/guide" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             padding: '10px 22px', borderRadius: 50,
-            background: 'var(--sea)', color: '#fff',
+            background: 'var(--sea-knapp)', color: '#fff',
             fontSize: 13, fontWeight: 700, textDecoration: 'none',
           }}>
             Fråga Thorkel →

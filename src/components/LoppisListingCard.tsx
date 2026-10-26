@@ -26,6 +26,7 @@ import LoppisStatusToggle from './LoppisStatusToggle'
 import LoppisOwnerStats from './LoppisOwnerStats'
 import LoppisReportButton from './LoppisReportButton'
 import LoppisBoostButton from './LoppisBoostButton'
+import { isProEnabled } from '@/lib/pro'
 import LoppisSellerTrust from './LoppisSellerTrust'
 import { renderForumBody } from '@/lib/forum-render'
 import { formatForumDate } from '@/lib/forum-utils'
@@ -107,7 +108,8 @@ export default function LoppisListingCard({
               replyCount={ownerStats.replyCount}
             />
           )}
-          <LoppisBoostButton threadId={threadId} boostedUntil={listing.boosted_until ?? null} />
+          {/* Boost kostar pengar. Inga priser på sajten (Max 2026-10-09), så knappen visas bara när Pro är på. */}
+          {isProEnabled() && <LoppisBoostButton threadId={threadId} boostedUntil={listing.boosted_until ?? null} />}
           <Link
             href={`/forum/loppis/${threadId}/redigera`}
             style={{
@@ -354,7 +356,7 @@ export default function LoppisListingCard({
                 href={`/meddelanden/ny?to=${author.id}&about=${threadId}&title=${encodeURIComponent(title)}`}
                 style={{
                   padding: '10px 18px',
-                  background: 'var(--sea)',
+                  background: 'var(--sea-knapp)',
                   color: '#fff',
                   borderRadius: 12,
                   textDecoration: 'none',

@@ -81,7 +81,7 @@ export default async function ForumPage() {
  alignItems: 'center',
  gap: 10,
  padding: '13px 18px',
- background: 'var(--sea)',
+ background: 'var(--sea-knapp)',
  color: '#fff',
  borderRadius: 14,
  textDecoration: 'none',

@@ -57,17 +57,18 @@ export async function POST(
 
   // Notis till annonsens ägare när någon nyspara — skippa om man sparar sin egen
   if (wasNew && ownerId !== user.id) {
-    try {
-      await getAdminClient().from('notifications').insert({
-        user_id: ownerId,
-        actor_id: user.id,
-        type: 'listing_saved',
-        reference_id: id,
-      })
-    } catch (e) {
-      // Notis-fel ska inte blockera spara-operationen
-      console.warn('[loppis-save] notification failed:', e)
-    }
+    // Notis-fel ska inte blockera spara-operationen. Supabase kastar inte vid
+    // fel utan returnerar { error } – därför loggas det explicit (tidigare
+    // svaldes det, och notisen skapades aldrig: typen saknades i databasens
+    // notifications_type_check, se migrationen 20261010000002).
+    const { error: notisFel } = await getAdminClient().from('notifications').insert({
+      user_id: ownerId,
+      actor_id: user.id,
+      type: 'listing_saved',
+      reference_id: id,
+    })
+    // 23505: unikt index – den här personen har redan fått notis om just den här annonsen.
+    if (notisFel && notisFel.code !== '23505') console.warn('[loppis-save] notification failed:', notisFel.message)
   }
 
   return NextResponse.json({ ok: true, saved: true })

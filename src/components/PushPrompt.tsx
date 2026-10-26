@@ -77,7 +77,9 @@ export default function PushPrompt() {
     <div style={{
       position: 'fixed',
       bottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 12px)',
-      left: 12, right: 12, zIndex: 9998,
+      // 2026-10-26: under modaler (delningsrutan 1200, kommentarer 1400) och navet (900).
+      // Med 9998 la sig bannern ovanpå delningsrutans knappar.
+      left: 12, right: 12, zIndex: 850,
       background: 'rgba(26,58,94,0.97)', backdropFilter: 'blur(16px)',
       borderRadius: 20, padding: '16px 18px',
       boxShadow: '0 8px 40px rgba(0,0,0,0.3)',

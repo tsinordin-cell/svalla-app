@@ -137,7 +137,7 @@ export default function IslandKallor({ slug, islandName }: { slug: string; islan
         {kallor.length} {kallor.length === 1 ? 'sida' : 'sidor'} hos {grupper.length}{' '}
         {grupper.length === 1 ? 'källa' : 'källor'}
         {myndigheter > 0 && `, varav ${myndigheter} myndighet eller kommun`}. Vi skriver
-        inga öppettider, avgångstider eller priser utan publicerad prislista, och inget
+        inga priser, och inget
         om årtal, areal eller service utan att någon läst källan.
         {gemensamtDatum
           ? ` Samtliga lästa ${gemensamtDatum}.`

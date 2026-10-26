@@ -4,7 +4,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import PublicFooter from '@/components/PublicFooter'
 import Icon, { type IconName } from '@/components/Icon'
-import { ALL_ISLANDS, type Island } from '../o/island-data'
+import { ALL_ISLANDS, OAR, ANTAL_OAR, type Island } from '../o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from './oar-categories'
 import IslandThumb from '@/components/IslandThumb'
 import { OBILDER } from '@/app/o/obilder.generated'
@@ -38,7 +38,7 @@ const REGION_LABELS: Record<string, string> = {
   mellersta: 'Mellersta skärgården',
   södra: 'Södra skärgården',
   bohuslan: 'Bohuslän',
-  goteborg: 'Göteborgs södra skärgård',
+  goteborg: 'Göteborgs skärgård',
   ovriga: 'Övriga Sverige',
 }
 
@@ -47,8 +47,21 @@ const REGION_TAGLINES: Record<string, string> = {
   mellersta: 'Det klassiska skärgårdslivet — Sandhamn, Möja, Finnhamn.',
   södra: 'Söderskärgården — Utö, Nåttarö, Ornö, Landsort.',
   bohuslan: 'Västkusten — Marstrand, Smögen, Kosterhavet.',
-  goteborg: 'Styrsöbolaget från Saltholmen — Brännö, Styrsö, Vrångö, Donsö.',
+  goteborg: 'Brännö, Styrsö, Vrångö och Donsö i söder, Öckerö och Rörö i norr och Vinga, Göteborgs västligaste punkt.',
   ovriga: 'Höga Kusten, Gotland, Öland och mer — Sverige bortom Stockholmsskärgården.',
+}
+
+// 2026-10-21: regionlistorna visar alla sidor i regionen (öar, fastlandsorter och
+// Kosterhavet), men pillen räknar bara öarna och säger vad resten är.
+const antalOar = (items: Island[]) => items.filter(i => (i.slag ?? 'ö') === 'ö').length
+function ovrigt(items: Island[]): string {
+  const orter = items.filter(i => i.slag === 'ort').length
+  const parker = items.filter(i => i.slag === 'nationalpark').length
+  const delar = [
+    orter ? `${orter} ${orter === 1 ? 'ort' : 'orter'}` : '',
+    parker ? `${parker} nationalpark` : '',
+  ].filter(Boolean)
+  return delar.length ? ` + ${delar.join(' + ')}` : ''
 }
 
 export default function OarIndexPage() {
@@ -76,8 +89,8 @@ export default function OarIndexPage() {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
             name: 'Alla öar i skärgården',
-            numberOfItems: ALL_ISLANDS.length,
-            itemListElement: ALL_ISLANDS.slice(0, 30).map((i, idx) => ({
+            numberOfItems: ANTAL_OAR,
+            itemListElement: OAR.slice(0, 30).map((i, idx) => ({
               '@type': 'ListItem',
               position: idx + 1,
               url: `https://svalla.se/o/${i.slug}`,
@@ -124,7 +137,7 @@ export default function OarIndexPage() {
       }}>
         <div style={{ maxWidth: 920, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ fontSize: 11, opacity: 0.85, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 14 }}>
-            {ALL_ISLANDS.length} öar · Stockholm · Bohuslän · Göteborg · Gotland · Öland · Höga Kusten
+            {ANTAL_OAR} öar · Stockholm · Bohuslän · Göteborg · Gotland · Öland · Höga Kusten
           </div>
           <h1 style={{
             fontSize: 'clamp(36px, 6vw, 56px)',
@@ -140,7 +153,7 @@ export default function OarIndexPage() {
             margin: '0 0 32px', maxWidth: 640,
             color: 'rgba(255,255,255,0.88)',
           }}>
-            Från Arholma i norr till Marstrand på västkusten, Gotlands medeltida Visby och Ulvöns surströmming i Höga Kusten. {ALL_ISLANDS.length} kuraterade öar med restauranger, hamnar, färjetider och våra bästa tips.
+            Från Arholma i norr till Marstrand på västkusten, Gotlands medeltida Visby och Ulvöns surströmming i Höga Kusten. {ANTAL_OAR} kuraterade öar med restauranger, hamnar, färjetider och våra bästa tips.
           </p>
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -205,7 +218,7 @@ export default function OarIndexPage() {
           {([
             { icon: 'anchor'    as IconName, label: 'Spara öar',     desc: 'Bygg din lista över ställen att besöka.', color: '#0a7b8c' },
             { icon: 'map'       as IconName, label: 'Planera turer', desc: 'Få restid, packlista och krogar längs vägen.', color: '#1e5c82' },
-            { icon: 'pin'       as IconName, label: 'Logga besök',   desc: `Se vilka av ${ALL_ISLANDS.length} öar du klarat av.`, color: '#0a7b3c' },
+            { icon: 'pin'       as IconName, label: 'Logga besök',   desc: `Se vilka av ${ANTAL_OAR} öar du klarat av.`, color: '#0a7b3c' },
             { icon: 'star'      as IconName, label: 'Helt gratis',   desc: 'Ingen prenumeration, inga annonser.', color: '#c96e2a' },
           ]).map(b => (
             <div key={b.label}>
@@ -233,7 +246,7 @@ export default function OarIndexPage() {
             Hitta efter vad du vill göra
           </h2>
           <p style={{ fontSize: 15, color: 'var(--txt2)', margin: '0 0 24px' }}>
-            Vi har grupperat de {ALL_ISLANDS.length} öarna efter intresse — välj din typ.
+            Vi har grupperat de {ANTAL_OAR} öarna efter intresse — välj din typ.
           </p>
           <div style={{
             display: 'grid',
@@ -293,7 +306,7 @@ export default function OarIndexPage() {
             color: 'var(--txt)', margin: '0 0 8px',
             fontFamily: "'Playfair Display', Georgia, serif",
           }}>
-            Alla {ALL_ISLANDS.length} öar
+            Alla {ANTAL_OAR} öar
           </h2>
           <p style={{ fontSize: 15, color: 'var(--txt2)', margin: '0 0 20px' }}>
             Skriv namnet, hoppa till en region eller bläddra.
@@ -307,7 +320,7 @@ export default function OarIndexPage() {
             — den är sidans SEO-innehåll och över nätet väger hela sidan ~40 kB
             (brotli), samma som en ösida.
           */}
-          <OarSnabbfilter total={ALL_ISLANDS.length} />
+          <OarSnabbfilter total={ANTAL_OAR} />
           <nav aria-label="Hoppa till region" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
             {(['norra', 'mellersta', 'södra', 'bohuslan', 'goteborg', 'ovriga'] as const)
               .filter(region => (grouped[region] ?? []).length > 0)
@@ -322,7 +335,7 @@ export default function OarIndexPage() {
                     textDecoration: 'none',
                   }}
                 >
-                  {REGION_LABELS[region]} · {(grouped[region] ?? []).length}
+                  {REGION_LABELS[region]} · {antalOar(grouped[region] ?? [])}
                 </a>
               ))}
           </nav>
@@ -343,7 +356,7 @@ export default function OarIndexPage() {
                     fontSize: 11, padding: '3px 10px', borderRadius: 999,
                     background: 'var(--surface-2)', color: 'var(--txt2)', fontWeight: 700,
                   }}>
-                    {items.length} öar
+                    {antalOar(items)} öar{ovrigt(items)}
                   </span>
                 </div>
                 <p style={{ fontSize: 13, color: 'var(--txt2)', margin: '0 0 14px' }}>
@@ -384,7 +397,9 @@ export default function OarIndexPage() {
                           color: 'var(--txt)', marginBottom: 2,
                           overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                         }}>
-                          {i.name}
+                          {i.name}{i.slag && i.slag !== 'ö' && (
+                            <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', marginLeft: 6 }}>· {i.slag}</span>
+                          )}
                         </div>
                         <div style={{
                           fontSize: 12, color: 'var(--txt2)', lineHeight: 1.45,

@@ -171,8 +171,9 @@ export default async function RegionCategoryPage({
     })),
   }
 
+  // revision 2026-10-09: div i stället för main, root-layouten har redan <main>.
   return (
-    <main style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 16px 96px' }}>
+    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 16px 96px' }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
@@ -250,6 +251,6 @@ export default async function RegionCategoryPage({
           ))}
         </ul>
       </section>
-    </main>
+    </div>
   )
 }

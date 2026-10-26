@@ -2,6 +2,7 @@
  * Svalla DM-helpers — hittar eller skapar 1-till-1-konversationer,
  * hämtar inboxlistor, räknar olästa.
  */
+import { arBlockerad } from './blocks'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
 /**
@@ -20,6 +21,10 @@ export async function findOrCreateDM(
   if (currentUserId === otherUserId) return null
 
   try {
+    // 0. Blockering åt något håll: ingen konversation (databasen stoppar
+    //    annars deltagaren tyst och lämnar en tom konversation).
+    if (await arBlockerad(supabase, currentUserId, otherUserId)) return null
+
     // 1. Hitta befintlig 1:1-konversation mellan dessa två användare
     const { data: myParts } = await supabase
       .from('conversation_participants')

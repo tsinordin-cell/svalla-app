@@ -9,7 +9,7 @@
  */
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ALL_ISLANDS } from '../o/island-data'
+import { OAR } from '../o/island-data'
 import EmailSignup from '@/components/EmailSignup'
 import Icon from '@/components/Icon'
 import { todayStockholm } from '@/lib/transitDate'
@@ -31,13 +31,15 @@ function manadIStockholm(nu: Date = new Date()): { month: number; year: number }
   return { month: Number(iso.slice(5, 7)) - 1, year: Number(iso.slice(0, 4)) }
 }
 
+// Små bokstäver: månadsnamn skrivs med gemener på svenska, och de används mitt i
+// meningar ("i oktober"). Rubriken som visar månaden ensam har text-transform: uppercase.
 const MONTH_NAMES_SV = [
-  'Januari','Februari','Mars','April','Maj','Juni',
-  'Juli','Augusti','September','Oktober','November','December',
+  'januari','februari','mars','april','maj','juni',
+  'juli','augusti','september','oktober','november','december',
 ]
 const MONTH_NAMES_SV_GENITIVE = [
-  'Januaris','Februaris','Mars','Aprils','Majs','Junis',
-  'Julis','Augustis','Septembers','Oktobers','Novembers','Decembers',
+  'januaris','februaris','mars','aprils','majs','junis',
+  'julis','augustis','septembers','oktobers','novembers','decembers',
 ]
 // Index 0 = Jan, 11 = Dec
 const STATUS_ORDER = ['peak', 'open', 'limited'] as const
@@ -48,15 +50,16 @@ const STATUS_LABEL: Record<Status, string> = {
   open: 'Öppet',
   limited: 'Begränsad service',
 }
+// revision P2-4: temaberoende tokens (globals.css) – de gamla hexfärgerna gav 3,3–4,3:1.
 const STATUS_COLOR: Record<Status, string> = {
-  peak: '#0a7b8c',
-  open: '#2d8a50',
-  limited: '#b07d20',
+  peak: 'var(--sasong-topp)',
+  open: 'var(--ok)',
+  limited: 'var(--varning)',
 }
 const STATUS_BG: Record<Status, string> = {
-  peak: 'rgba(10,123,140,0.08)',
-  open: 'rgba(45,138,80,0.08)',
-  limited: 'rgba(176,125,32,0.08)',
+  peak: 'var(--sasong-topp-bg)',
+  open: 'var(--ok-bg)',
+  limited: 'var(--varning-bg)',
 }
 const STATUS_ICON: Record<Status, 'sun' | 'check' | 'warning'> = {
   peak: 'sun',
@@ -71,7 +74,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const monthName = MONTH_NAMES_SV[month]
   return {
     title: `Öppet i skärgården i ${monthName} – vilka öar kan du besöka?`,
-    description: `Se vilka öar i Stockholms skärgård och Bohuslän som är öppna i ${monthName} ${year} — med restauranger, gästhamnar och service. Uppdateras varje månad.`,
+    // 2026-10-21: sidan visar öar från alla regioner och byter månad automatiskt; den uppdateras inte för hand varje månad.
+    description: `Se vilka skärgårdsöar som är öppna i ${monthName} ${year} — med restauranger, gästhamnar och service. Sidan visar alltid aktuell månad.`,
     alternates: { canonical: 'https://svalla.se/oppet-nu' },
     openGraph: {
       title: `Vad är öppet i skärgården i ${monthName}?`,
@@ -87,9 +91,9 @@ export default function OppetNuPage() {
   const monthName = MONTH_NAMES_SV[month]
 
   // Samla öar per status
-  const grouped: Record<Status, typeof ALL_ISLANDS> = { peak: [], open: [], limited: [] }
+  const grouped: Record<Status, typeof OAR> = { peak: [], open: [], limited: [] }
 
-  for (const island of ALL_ISLANDS) {
+  for (const island of OAR) { // 2026-10-21: sidan listar öar; fastlandsorterna är inte med
     const seasonal = island.seasonal
     if (!seasonal?.months) continue
     const status = seasonal.months[month] as string
@@ -259,8 +263,8 @@ export default function OppetNuPage() {
                       {island.seasonal?.warning && (
                         <div style={{
                           fontSize: 11,
-                          color: '#b07d20',
-                          background: 'rgba(176,125,32,0.08)',
+                          color: 'var(--varning)',
+                          background: 'var(--varning-bg)',
                           borderRadius: 6,
                           padding: '5px 8px',
                           lineHeight: 1.45,
@@ -340,7 +344,7 @@ export default function OppetNuPage() {
             gap: 6,
             padding: '10px 18px',
             borderRadius: 999,
-            background: 'var(--sea, #1e5c82)',
+            background: 'var(--sea-knapp, #1e5c82)',
             color: '#fff',
             fontWeight: 700,
             fontSize: 13,

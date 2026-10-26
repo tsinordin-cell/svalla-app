@@ -186,6 +186,20 @@ async function filinfo(filnamn) {
  */
 const HANDPLOCKADE = {
   arholma: '1076 Arholma August 2014 - panoramio.jpg',
+  // 2026-10-08: tolv öar som saknade bild. Valda ur kontaktark över hela
+  // Commons-kategorin för ön; bilden visar ön själv, inte en granne.
+  'aspo-blekinge': 'Gäraviken, Aspö, Karlskrona.jpg',
+  asperon: 'Asperö July 2025 01.jpg',
+  bjorko: 'Björkö (powi) 3.jpg',
+  'bla-jungfrun': '0047Blå Jungfruns nationalpark.jpg',
+  djuro: 'DIMG 1020 (6001707836).jpg',
+  dyron: 'Stora Dyrön July 2023 04.jpg',
+  ekno: 'Eknö brygga.jpg',
+  galo: 'Gålö.jpg',
+  'gotska-sandon': 'Bredsandsudde Gotska Sandön.jpg',
+  graddo: 'Gräddö Marina (14568186667).jpg',
+  morko: 'Mörkö kyrka 2021.jpg',
+  vaddo: 'Rönnskärs udde 5.jpg',
   ingaro: 'Ingarö varv.jpg',
   ingmarso: 'Ingsmarsö2.jpg',
   kymmendo: 'Kymmendö2010b.jpg',
@@ -210,6 +224,18 @@ const HANDPLOCKADE = {
  * Varje rad säger vad som var fel. Raderna får inte tas bort utan att någon
  * har tittat på den nya bilden.
  */
+/**
+ * En rad i AVVISADE gäller den fil som avvisades. Har ön sedan fått en
+ * handplockad fil som någon tittat på, är det den som gäller. Därför jämförs
+ * filnamnet: AVVISADE spärrar allt UTOM den handplockade filen.
+ */
+function arHandplockad(slug, b) {
+  const fil = HANDPLOCKADE[slug]
+  if (!fil || !b?.kalla) return false
+  const ur = decodeURIComponent(b.kalla.split('/File:').pop() || '').replace(/_/g, ' ')
+  return ur === fil
+}
+
 const AVVISADE = {
   vaddo: 'Väddö och Häverö skeppslag.jpg är en konturkarta, inte ett foto',
   morko: 'Mörkö location.png är en lägeskarta, inte ett foto',
@@ -231,7 +257,7 @@ function sallaBort(urval) {
   const bort = []
 
   for (const [slug, b] of Object.entries(urval)) {
-    if (AVVISADE[slug]) { bort.push([slug, AVVISADE[slug]]); continue }
+    if (AVVISADE[slug] && !arHandplockad(slug, b)) { bort.push([slug, AVVISADE[slug]]); continue }
     /**
      * Commons API:et hänger på sina egna kampanjparametrar
      * (?utm_source=commons.wikimedia.org&utm_campaign=imageinfo) på varje

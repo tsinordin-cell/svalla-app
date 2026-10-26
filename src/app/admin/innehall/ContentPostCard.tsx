@@ -79,7 +79,7 @@ export default function ContentPostCard({ post, channelColor }: Props) {
           style={{
             padding: '4px 10px', borderRadius: 6,
             border: '1px solid var(--surface-3)',
-            background: copied === 'body' ? 'var(--sea)' : 'transparent',
+            background: copied === 'body' ? 'var(--sea-knapp)' : 'transparent',
             color: copied === 'body' ? '#fff' : 'var(--txt2)',
             fontSize: 11, fontWeight: 600, cursor: 'pointer',
           }}

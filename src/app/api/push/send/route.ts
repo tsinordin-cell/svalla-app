@@ -57,26 +57,15 @@ export async function POST(req: Request) {
   // Sanitize lengths
   const safeTitle = title.trim().slice(0, 100)
   const safeBody  = (body as string).trim().slice(0, 200)
-  const safeUrl   = typeof url === 'string' && url.startsWith('/') ? url.slice(0, 200) : '/feed'
+  // Bara interna sökvägar: "//exempel.se" och "/\\exempel.se" börjar också med "/" men leder bort från sajten.
+  const safeUrl   = typeof url === 'string' && /^\/(?![/\\])/.test(url) ? url.slice(0, 200) : '/feed'
 
-  // Anti-harassment: tillåt alltid push till sig själv, och alltid om det
-  // finns en följ-relation åt något håll (like/comment/follow av någon man
-  // följer eller som följer en). Annars: max 1 push per mottagare per dygn —
-  // räcker för "första like från okänd" utan att möjliggöra spam-storm.
+  // Bara till sig själv (2026-10). Push till andra skickas av servern när en
+  // kontrollerad händelse sker (/api/notifications/insert, /api/push/dm) –
+  // annars kunde vem som helst skicka valfri text och länk till någon annans
+  // telefon. Ingen klientkod anropar längre den här routen för andra.
   if (targetUserId !== user.id) {
-    const { data: follow } = await supabase
-      .from('follows')
-      .select('follower_id')
-      .or(`and(follower_id.eq.${user.id},following_id.eq.${targetUserId}),and(follower_id.eq.${targetUserId},following_id.eq.${user.id})`)
-      .limit(1)
-      .maybeSingle()
-
-    if (!follow) {
-      // Ingen relation → strängare per-target-limit
-      if (!(await checkRateLimit(`push-stranger:${user.id}:${targetUserId}`, 1, 24 * 60 * 60 * 1000))) {
-        return NextResponse.json({ ok: true, sent: 0 }) // tyst drop, ingen feedback till spammern
-      }
-    }
+    return NextResponse.json({ error: 'Push till andra skickas av servern.' }, { status: 403 })
   }
 
   // Hämta alla subscriptions för target-användaren

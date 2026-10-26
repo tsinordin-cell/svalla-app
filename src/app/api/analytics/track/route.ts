@@ -19,6 +19,7 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { arAgentUserAgent } from '@/lib/analytics-filter'
+import { stadaKampanj } from '@/lib/kampanj'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -44,6 +45,8 @@ const KNOWN_EVENTS = new Set([
   'filter_changed', 'bookmark_toggled',
   // Nytt 2026-09-30: vidareklick från ösidor till verksamheter
   'outbound_clicked',
+  // Nytt 2026-10-26: GPS-spårningen i webbläsaren (behörighet, första fixen, släckt skärm, avbrott)
+  'gps_first_fix', 'gps_error', 'gps_hidden', 'gps_abandoned',
 ])
 
 const MAX_PROPS_BYTES = 4096
@@ -75,7 +78,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json().catch(() => null) as
-      | { event?: string; props?: Record<string, unknown>; sessionId?: string; path?: string; ursprung?: string }
+      | { event?: string; props?: Record<string, unknown>; sessionId?: string; path?: string; ursprung?: string; kampanj?: string; besokare?: string }
       | null
 
     if (!body?.event || typeof body.event !== 'string' || !KNOWN_EVENTS.has(body.event)) {
@@ -103,7 +106,13 @@ export async function POST(req: NextRequest) {
       user_id: userId,
       session_id: body.sessionId ?? null,
       path: body.path ?? null,
-      props: body.props ?? {},
+      // Kampanjlänk (?k=) läggs i props, se lib/kampanj.ts. Ingen ny kolumn behövs.
+      props: (() => {
+        const k = stadaKampanj(body.kampanj)
+        // Anonymt besökar-id för återkommande besökare (lib/analytics-events.ts).
+        const b = typeof body.besokare === 'string' && /^[a-z0-9-]{6,40}$/.test(body.besokare) ? body.besokare : null
+        return { ...(body.props ?? {}), ...(k ? { kampanj: k } : {}), ...(b ? { besokare: b } : {}) }
+      })(),
       country_code: req.headers.get('x-vercel-ip-country') ?? null,
       user_agent: ua,
       // Kolumnen heter referer men bär sedan 2026-09-20 klientens document.referrer

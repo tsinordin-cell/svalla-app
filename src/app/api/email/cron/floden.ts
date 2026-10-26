@@ -17,12 +17,13 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { sendEmail, type EmailTemplate } from '@/lib/email'
 import { MAIL_MALLAR } from '@/lib/email-templates.generated'
 import {
-  flodePa, manadsbrevFonster, manadsnyckel, arVeckansOdag, isoVecka, valjVeckansO,
+  flodePa, manadsbrevFonster, manadsnyckel, arVeckansOdag, isoVecka,
 } from '@/lib/mailfloden'
-import { ALL_ISLANDS, getIsland, type Island } from '@/app/o/island-data'
+import { getIsland, type Island } from '@/app/o/island-data'
 import { getGuidesForIsland } from '@/app/guider/guide-island-map'
 import { PUBLICERADE_GUIDER } from '@/app/guider/guides-data'
 import { SCB_OAR, SCB_OAR_KALLA } from '@/app/o/scb-oar.generated'
+import { veckansOFor, hamtaGodkannande } from '@/lib/veckans-o'
 
 const MAX_PER_KORNING = 80
 
@@ -210,12 +211,14 @@ export async function korAvstangdaFloden(
   if (!flodePa('weekly_island')) ut.weekly_island = { sent: 0, errors: 0, skipped: 'avstängt' }
   else if (!arVeckansOdag(today)) ut.weekly_island = { sent: 0, errors: 0, skipped: 'inte tisdag april–september' }
   else {
-    const kandidater = ALL_ISLANDS
-      .filter(i => i.facts_provenance?.travel_time === 'matt' && i.facts?.travel_time)
-      .sort((a, b) => a.slug.localeCompare(b.slug))
-    const o = valjVeckansO(kandidater, today)
+    const o = veckansOFor(today)
+    // Skickas bara efter faktagranskning och godkännande på /admin/veckans-o
+    // (Max 2026-10-08). Godkännandet gäller en vecka och en ö.
+    const godkand = o ? await hamtaGodkannande(service, today) : null
     if (!o) ut.weekly_island = { sent: 0, errors: 0, skipped: 'ingen ö med källbelagd restid' }
-    else {
+    else if (!godkand || godkand.slug !== o.slug) {
+      ut.weekly_island = { sent: 0, errors: 0, skipped: `väntar på godkännande av ${o.slug} på /admin/veckans-o` }
+    } else {
       const nyckel = `weekly_island-${today.getUTCFullYear()}-v${isoVecka(today)}`
       const vars = oVariabler(o)
       const mottagare = await prenumeranter(service)

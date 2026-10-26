@@ -142,7 +142,7 @@ export default function VasterhavetPage() {
  deeperContent={
  <>
  {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
- <RegionOar rubrik="Öar längs Västerhavet" etiketter={['Göteborgs södra skärgård', 'Göteborgs norra skärgård', 'Bohuslän', 'Halland']} />
+ <RegionOar rubrik="Öar längs Västerhavet" etiketter={['Göteborgs södra skärgård', 'Göteborgs norra skärgård', 'Göteborgs skärgård', 'Bohuslän', 'Halland']} />
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
  Halland — sandstränder och moderna marinaer

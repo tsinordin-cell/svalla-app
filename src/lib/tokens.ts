@@ -78,7 +78,7 @@ export const touchTarget = 44
 
 // ─── Kategoripaletter (rutter/platser) ───────────────────────────────────────
 export const categoryColor = {
-  mat:      { bg: '#fff3e6', text: '#c96e2a' },
+  mat:      { bg: '#fff3e6', text: '#a8501a' }, // var #c96e2a: 3,3:1 mot bakgrunden (rester 2026-10-07)
   aktiv:    { bg: '#e6f7ef', text: '#0a7a4a' },
   premium:  { bg: '#f0e6ff', text: '#7850c8' },
   klassisk: { bg: '#e6f0ff', text: '#2a5cc8' },

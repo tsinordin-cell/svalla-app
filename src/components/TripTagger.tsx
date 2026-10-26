@@ -12,15 +12,21 @@ import {
   type TripTag,
 } from '@/lib/tripTags'
 import { avatarGradient, initialsOf } from '@/lib/utils'
+import Icon from '@/components/Icon'
 
 type UserLite = { id: string; username: string; avatar: string | null }
 
 export default function TripTagger({
   tripId,
   tripOwnerId,
+  initialTags,
 }: {
   tripId: string
   tripOwnerId: string
+  // Taggarna servern redan läst (trip-cache.ts), så listan syns direkt utan att
+  // vänta på klienten. 2026-10-26: tursidan visade samma medseglare två gånger
+  // ("Med: @x" från servern och "Medseglare" härifrån); nu bara härifrån.
+  initialTags?: { id: string; username: string }[]
 }) {
   const supabase = useRef(createClient()).current
   // Hämtar besökaren själv i stället för att få den som prop från servern.
@@ -35,8 +41,11 @@ export default function TripTagger({
     })
     return () => { avbruten = true }
   }, [supabase])
-  const [tags, setTags] = useState<TripTag[]>([])
-  const [loading, setLoading] = useState(true)
+  const [tags, setTags] = useState<TripTag[]>(() => (initialTags ?? []).map(t => ({
+    trip_id: tripId, tagged_user_id: t.id, tagged_by_user_id: null, confirmed: true,
+    created_at: '', username: t.username, avatar: null,
+  })))
+  const [loading, setLoading] = useState(!initialTags)
   const [picking, setPicking] = useState(false)
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<UserLite[]>([])
@@ -97,7 +106,7 @@ export default function TripTagger({
   if (tags.length === 0 && !isOwner) return null
 
   return (
-    <div style={{ padding: '14px 16px', borderTop: '1px solid rgba(10,123,140,0.08)' }}>
+    <div style={{ padding: '14px 0 0', borderTop: '1px solid rgba(10,123,140,0.08)' }}>   {/* 2026-10-26: ligger i sidans flöde, samma vänsterkant som texten */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
         <h3 style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', margin: 0, textTransform: 'uppercase', letterSpacing: 0.5 }}>
           Medseglare
@@ -140,8 +149,8 @@ export default function TripTagger({
             </Link>
             {(isOwner || t.tagged_user_id === currentUserId) && (
               <button onClick={() => removeTag(t.tagged_user_id)} aria-label="Ta bort tagg"
-                style={{ border: 'none', background: 'transparent', color: 'var(--txt3)', cursor: 'pointer', fontSize: 12, padding: 0, marginLeft: 2 }}>
-                ✕
+                style={{ border: 'none', background: 'transparent', color: 'var(--txt3)', cursor: 'pointer', fontSize: 12, padding: 0, marginLeft: 2, display: 'inline-flex' }}>
+                <Icon name="x" size={10} />
               </button>
             )}
           </div>

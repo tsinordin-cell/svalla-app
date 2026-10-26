@@ -154,7 +154,7 @@ export default function GoteborgSkargardPage() {
         deeperContent={
           <>
  {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
- <RegionOar rubrik="Öar i Göteborgs skärgård" etiketter={['Göteborgs södra skärgård', 'Göteborgs norra skärgård']} />
+ <RegionOar rubrik="Öar i Göteborgs skärgård" etiketter={['Göteborgs södra skärgård', 'Göteborgs norra skärgård', 'Göteborgs skärgård']} />
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
               Ta dig dit — kollektivtrafik

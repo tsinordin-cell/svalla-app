@@ -34,6 +34,8 @@ export function GET() {
     return {
       slug: o.slug,
       namn: o.name,
+      // 2026-10-21: 'ö', 'ort' (fastlandsort) eller 'nationalpark' — alla ligger under /o/, men bara öarna räknas som öar
+      slag: o.slag ?? 'ö',
       region: o.region,
       url: `${BAS}/o/${o.slug}`,
       antal_kallor: kallor.length,
@@ -51,7 +53,8 @@ export function GET() {
     licens_url: 'https://creativecommons.org/licenses/by/4.0/deed.sv',
     erkannande: 'Svalla, svalla.se',
     kallornas_villkor: 'Varje källa har sina egna villkor. Följ länken.',
-    antal_oar: oar.length,
+    antal_sidor: oar.length,
+    antal_oar: oar.filter((o) => o.slag === 'ö').length,
     antal_kallor: allaKallor.length,
     antal_myndighetskallor: allaKallor.filter((k) => k.myndighet).length,
     oar,

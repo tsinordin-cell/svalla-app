@@ -58,3 +58,12 @@ export function deriveUsername(raw: string | null | undefined, fallback = 'segla
     .slice(0, USERNAME_MAX)
   return cleaned.length >= USERNAME_MIN ? cleaned : fallback
 }
+
+/** Ett ilike-mönster som bara matchar namnet självt (utom skiftläge), eller
+ *  null om det inte går att bygga ett säkert mönster. */
+export function ilikeExakt(namn: string): string | null {
+  // PostgREST gör om * till % i like/ilike, och * går inte att escapa.
+  if (namn.includes('*')) return null
+  // \ % _ är specialtecken i ILIKE; backslash är Postgres standard-escape.
+  return namn.replace(/[\\%_]/g, '\\$&')
+}

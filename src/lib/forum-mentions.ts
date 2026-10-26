@@ -3,7 +3,10 @@
  * Inga React-imports här så filen kan användas både i server-routes och client-render.
  */
 
-export const MENTION_RE = /(^|\s)@([a-zA-Z0-9_]{2,30})\b/g
+import { NAMN_I_OMNAMNANDE } from './omnamnanden'
+
+// Samma namnregel som kommentarerna (omnamnanden.ts): "@max.berg" är max.berg, inte max.
+export const MENTION_RE = new RegExp(`(^|\\s)@(${NAMN_I_OMNAMNANDE})`, 'g')
 
 /**
  * Extraherar alla @-mentions från en text. Returnerar lowercase usernames, deduplicerade.

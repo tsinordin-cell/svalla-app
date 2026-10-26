@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { notFound } from 'next/navigation'
 import { isProEnabled } from '@/lib/pro'
 
 export const metadata: Metadata = {
@@ -17,5 +18,7 @@ export const metadata: Metadata = {
 }
 
 export default function ProLayout({ children }: { children: ReactNode }) {
+  // Inga priser på sajten (Max 2026-10-09). Så länge Pro är av finns /pro inte.
+  if (!isProEnabled()) notFound()
   return <>{children}</>
 }

@@ -428,7 +428,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  }}>
  <div style={{ minWidth: 200 }}>
  <SvallaLogo height={22} color="#ffffff" />
- <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', margin: '12px 0 0', maxWidth: 280, lineHeight: 1.5 }}>
+ <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', margin: '12px 0 0', maxWidth: 280, lineHeight: 1.5 }}>
  Den digitala hamnen för Stockholms skärgård — planera, upptäck och logga dina turer.
  </p>
  </div>
@@ -456,7 +456,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  <div style={{
  maxWidth: 1040, margin: '28px auto 0', paddingTop: 20,
  borderTop: '1px solid rgba(255,255,255,0.1)',
- fontSize: 12, color: 'rgba(255,255,255,0.55)',
+ fontSize: 12, color: 'rgba(255,255,255,0.8)',
  }}>
  © {new Date().getFullYear()} Svalla. Alla rättigheter förbehållna.
  </div>
@@ -546,7 +546,7 @@ function FooterCol({ title, links }: { title: string; links: { label: string; hr
  return (
  <div>
  <div style={{
- fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.55)',
+ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.8)',
  textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10,
  }}>
  {title}

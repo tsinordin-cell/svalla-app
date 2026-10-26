@@ -1,12 +1,11 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 
 /* ─────────────────────────────────────────────────────────────────────────────
  /registrera-krog — Lead form för krogägare
- Sparar till public.business_leads via Supabase (anonym insert)
+ Sparar via /api/registrera-krog (servern validerar och skriver till business_leads)
 ───────────────────────────────────────────────────────────────────────────── */
 
 type Step = 'form' | 'success'
@@ -45,7 +44,6 @@ function Label({ children, required }: { children: React.ReactNode; required?: b
 
 export default function RegistreraKrogPage() {
  const router = useRouter()
- const [supabase] = useState(() => createClient())
  const [step, setStep] = useState<Step>('form')
 
  // Form state
@@ -71,27 +69,26 @@ export default function RegistreraKrogPage() {
 
  setLoading(true); setErr('')
 
- const { error } = await supabase
- .from('business_leads')
- .insert({
- business_name: businessName.trim(),
- business_type: businessType,
- description: description.trim() || null,
- location: location.trim(),
- contact_name: contactName.trim(),
- contact_email: email.trim().toLowerCase(),
- contact_phone: phone.trim() || null,
- website: website.trim() || null,
+ let ok = false
+ try {
+ const res = await fetch('/api/registrera-krog', {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify({
+ businessName, businessType, description, location,
+ contactName, email, phone, website,
+ }),
  })
-
- if (error) {
- console.error('business_leads insert:', error)
- // Graceful degradation — show success even if table doesn't exist yet
- if (error.code === '42P01') {
- setStep('success')
- } else {
- setErr('Något gick fel. Försök igen eller maila oss direkt.')
+ ok = res.ok
+ if (res.status === 429) {
+ setErr('För många anmälningar från din anslutning. Försök igen om en stund.')
+ setLoading(false)
+ return
  }
+ } catch { /* nätverksfel hanteras nedan */ }
+
+ if (!ok) {
+ setErr('Något gick fel. Försök igen eller maila oss direkt.')
  setLoading(false)
  return
  }
@@ -131,7 +128,7 @@ export default function RegistreraKrogPage() {
  fontSize: 16, color: 'rgba(255,255,255,0.65)',
  margin: '0 0 10px', maxWidth: 320, lineHeight: 1.65,
  }}>
- Din ansökan är registrerad. Vi granskar den och återkommer inom 1–2 vardagar.
+ Vi har fått era uppgifter och återkommer via mejl.
  </p>
 
  <div style={{
@@ -141,7 +138,7 @@ export default function RegistreraKrogPage() {
  marginTop: 12, marginBottom: 36, maxWidth: 340,
  }}>
  <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0, lineHeight: 1.55 }}>
- <strong>Early Bird:</strong> De första 20 krogarna får 6 månaders Premium helt gratis.
+ Det kostar ingenting att finnas på Svalla. Är något fel på er sida senare skriver ni bara till info@svalla.se.
  </p>
  </div>
 
@@ -235,7 +232,7 @@ export default function RegistreraKrogPage() {
  animation: 'pulse-dot 2s ease-in-out infinite',
  flexShrink: 0,
  }} />
- Early Bird — 6 månader gratis
+ Kostar ingenting
  </div>
 
  <h1 style={{
@@ -248,12 +245,12 @@ export default function RegistreraKrogPage() {
  fontSize: 15, color: 'rgba(255,255,255,0.60)', margin: 0,
  maxWidth: 300, lineHeight: 1.6,
  }}>
- Nå gäster som redan är ute på vattnet. Gratis grundprofil.
+ Nå gäster som planerar att åka ut. Det kostar ingenting, och ni bestämmer vad som står om er.
  </p>
 
  {/* Value props */}
  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center', marginTop: 4 }}>
- {['GPS-synlig', 'Insikter', 'Gratis start'].map(t => (
+ {['Gratis', 'Syns på ösidan', 'Ni bestämmer'].map(t => (
  <div key={t} style={{
  background: 'rgba(255,255,255,0.07)',
  border: '1px solid rgba(255,255,255,0.10)',
@@ -467,7 +464,7 @@ export default function RegistreraKrogPage() {
  fontSize: 12, color: 'var(--txt3)', textAlign: 'center',
  margin: 0, lineHeight: 1.55,
  }}>
- Vi hör av oss inom 1–2 vardagar. Ingen betalning krävs.
+ Det kostar ingenting. Vi återkommer via mejl.
  </p>
  </form>
  </div>

@@ -135,10 +135,14 @@ export async function getCategoryById(id: string, publik = false): Promise<Forum
   }
 }
 
-export async function getThreadsByCategory(categoryId: string, page = 0): Promise<ForumThread[]> {
+export async function getThreadsByCategory(categoryId: string, page = 0, publik = false): Promise<ForumThread[]> {
   const PAGE_SIZE = 30
   try {
-    const supabase = await createServerSupabaseClient()
+    // publik: cookie-fri klient så kategorisidan kan cachas (rester efter
+    // revisionen, 2026-10-07). Policyn forum_threads_public_read ger
+    // utloggade alla trådar utom spamkön, och spamkön filtreras bort här
+    // ändå — resultatet blir detsamma som med auth-klienten.
+    const supabase = publik ? createPublicSupabaseClient() : await createServerSupabaseClient()
     const { data } = await supabase
       .from('forum_threads')
       .select('id, category_id, user_id, title, body, is_pinned, is_locked, view_count, reply_count, last_reply_at, last_reply_user_id, in_spam_queue, created_at, listing_data')

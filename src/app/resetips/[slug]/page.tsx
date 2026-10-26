@@ -33,10 +33,16 @@ const DIFFICULTY_LABEL: Record<TripDifficulty, string> = {
   krävande: 'Krävande',
 }
 
+// revision P2-4: temaberoende tokens (globals.css). Hexfärgerna gav 2,7–3,1:1 i ljust tema.
 const DIFFICULTY_COLOR: Record<TripDifficulty, string> = {
-  lätt: '#2a9d5c',
-  medel: '#e07b2a',
-  krävande: '#c0392b',
+  lätt: 'var(--ok)',
+  medel: 'var(--varning)',
+  krävande: 'var(--fara)',
+}
+const DIFFICULTY_BG: Record<TripDifficulty, string> = {
+  lätt: 'var(--ok-bg)',
+  medel: 'var(--varning-bg)',
+  krävande: 'var(--fara-bg)',
 }
 
 const STOP_ICONS: Record<string, IconName> = {
@@ -90,7 +96,7 @@ export default async function ResetipsDetailPage({ params }: Props) {
           <span style={{
             fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase',
             color: DIFFICULTY_COLOR[trip.difficulty],
-            background: `${DIFFICULTY_COLOR[trip.difficulty]}18`,
+            background: DIFFICULTY_BG[trip.difficulty],
             padding: '4px 10px', borderRadius: 20,
           }}>
             {DIFFICULTY_LABEL[trip.difficulty]}

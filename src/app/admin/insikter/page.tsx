@@ -347,7 +347,7 @@ function RangeTabs({ current }: { current: RangeKey }) {
             padding: '6px 12px', borderRadius: 6, fontSize: 12, fontWeight: 600,
             textDecoration: 'none',
             color: current === k ? '#fff' : 'var(--txt2)',
-            background: current === k ? 'var(--sea)' : 'transparent',
+            background: current === k ? 'var(--sea-knapp)' : 'transparent',
             transition: 'all 150ms',
           }}
         >

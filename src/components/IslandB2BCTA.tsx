@@ -66,7 +66,7 @@ export default function IslandB2BCTA({ islandName, islandSlug: _islandSlug }: Pr
           margin: '0 0 14px',
           lineHeight: 1.6,
         }}>
-          Lista din restaurang, gästhamn eller upplevelse gratis på Svalla — syns för tusentals båtfolk som planerar hit.
+          Lägg till din krog, gästhamn, ditt boende eller din upplevelse på Svalla. Det kostar ingenting, och du syns för dem som planerar att åka hit.
         </p>
 
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -86,7 +86,7 @@ export default function IslandB2BCTA({ islandName, islandSlug: _islandSlug }: Pr
               whiteSpace: 'nowrap',
             }}
           >
-            Kom igång gratis →
+            Kom med →
           </Link>
           <a
             href={mailHref}

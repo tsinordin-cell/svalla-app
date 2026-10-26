@@ -67,12 +67,14 @@ export default function IslandNavAuth({ islandSlug }: { islandSlug: string }) {
       {/* Döljs under 400 px (globals.css .o-nav-login): på de smalaste telefonerna
           får inte tre länkar plats, och "Kom igång" leder till en sida som har
           "Har redan konto? Logga in". */}
-      <Link href={`/logga-in?returnTo=${returnTo}`} className="o-nav-login" style={{
+      {/* prefetch={false}: ösidorna ska inte förladda inloggningssidan för
+          varje utloggad besökare, de flesta klickar aldrig på länkarna. */}
+      <Link href={`/logga-in?returnTo=${returnTo}`} className="o-nav-login" prefetch={false} style={{
         color: 'rgba(255,255,255,0.85)', fontSize: 12, fontWeight: 600, textDecoration: 'none', whiteSpace: 'nowrap',
       }}>
         Logga in
       </Link>
-      <Link href={`/logga-in?returnTo=${returnTo}&mode=ny`} style={{
+      <Link href={`/logga-in?returnTo=${returnTo}&mode=ny`} prefetch={false} style={{
         ...pill,
         color: '#fff',
         background: 'var(--acc-knapp)',

@@ -5,7 +5,7 @@ import { ALL_ISLANDS, getIsland, type IslandBeach } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon, { type IconName } from '@/components/Icon'
 import IslandPlacesList from '@/components/IslandPlacesList'
-import { getIslandPlaces } from '@/lib/islandPlaces'
+import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
 
 // ISR: badplatserna ur platsdatabasen hämtas vid bygget och uppdateras varje timme.
 export const revalidate = 3600
@@ -71,7 +71,11 @@ export default async function IslandBadPage({ params }: Props) {
 
   // Badplatser ur platsdatabasen (källbelagda texter), utom de som redan står i island-data.
   const beachNames = new Set(beaches.map(b => (isBeachObject(b) ? b.name : b).toLowerCase()))
-  const dbBeaches = (await getIslandPlaces(island, ['beach'])).filter(p => !beachNames.has(p.name.toLowerCase()))
+  const dbBeaches = utanDubbletter(
+    (await getIslandPlaces(island, ['beach'])).filter(p => !beachNames.has(p.name.toLowerCase())),
+    [...beachNames],
+    island.name,
+  )
   const allBeachNames = [...beaches.map(b => (isBeachObject(b) ? b.name : b)), ...dbBeaches.map(p => p.name)]
 
   const badSchema = allBeachNames.length > 0 ? {
@@ -242,7 +246,7 @@ export default async function IslandBadPage({ params }: Props) {
             <li>Enligt allemansrätten får du bada vid en strand som inte hör till någon tomt, och vid en brygga utanför en tomt så länge ägaren inte hindras.</li>
             <li>Håll koll på skyltar för fågel- och sälskyddsområden, där det kan vara förbjudet att gå i land under delar av året.</li>
             <li>Havs- och vattenmyndighetens Badplatsen visar provsvar för de bad som kommunen provtar. Alla bad provtas inte.</li>
-            <li>Hunden får inte springa lös i naturen 1 mars–20 augusti, och i naturreservat ska den alltid vara kopplad.</li>
+            <li>Hunden får inte springa lös i naturen 1 mars–20 augusti. I naturreservat kan föreskrifterna kräva koppel hela året, så läs skyltarna på plats.</li>
           </ul>
         </div>
 
@@ -261,7 +265,7 @@ export default async function IslandBadPage({ params }: Props) {
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
               Thorkel hjälper dig med båttider, lunch och bad.
             </div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver gratis konto — tar 30 sekunder.</div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver ett gratis konto.</div>
           </div>
           <Link href="/planera" prefetch={false} style={{
             display: 'inline-block', background: 'var(--acc-knapp)', color: '#fff',
@@ -275,7 +279,7 @@ export default async function IslandBadPage({ params }: Props) {
         <div style={{ marginTop: 36, display: 'flex', justifyContent: 'center' }}>
           <Link href={`/o/${slug}`} style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'var(--sea)', color: '#fff',
+            background: 'var(--sea-knapp)', color: '#fff',
             fontSize: 14, fontWeight: 700, textDecoration: 'none',
             padding: '12px 28px', borderRadius: 28,
           }}>

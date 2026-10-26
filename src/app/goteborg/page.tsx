@@ -23,8 +23,9 @@ export default async function GoteborgPage() {
       Object.keys(CATEGORIES).map(async k => [k, (await getPlacesForRegionCategory('goteborg', k)).length] as const),
     ),
   )
+  // revision 2026-10-09: div i stället för main, root-layouten har redan <main>.
   return (
-    <main style={{ maxWidth: 960, margin: '0 auto', padding: '32px 16px 96px' }}>
+    <div style={{ maxWidth: 960, margin: '0 auto', padding: '32px 16px 96px' }}>
       <header style={{ marginBottom: 32 }}>
         <h1 style={{ fontSize: 'clamp(32px, 6vw, 56px)', fontWeight: 700, fontFamily: "'Playfair Display', Georgia, serif", margin: 0 }}>
           {region.label}
@@ -38,11 +39,11 @@ export default async function GoteborgPage() {
           <li key={k}>
             <Link href={`/goteborg/${k}`} style={{ display: 'block', padding: 24, background: 'var(--white, #fff)', border: '1px solid var(--border, rgba(0,0,0,0.08))', borderRadius: 12, color: 'inherit', textDecoration: 'none' }}>
               <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "'Playfair Display', Georgia, serif" }}>{c.label}</div>
-              <div style={{ fontSize: 14, color: 'var(--txt-muted, #777)', marginTop: 6 }}>{counts[k]} {counts[k] === 1 ? 'plats' : 'platser'}</div>
+              <div style={{ fontSize: 14, color: 'var(--txt3)', marginTop: 6 }}>{counts[k]} {counts[k] === 1 ? 'plats' : 'platser'}</div>
             </Link>
           </li>
         ))}
       </ul>
-    </main>
+    </div>
   )
 }

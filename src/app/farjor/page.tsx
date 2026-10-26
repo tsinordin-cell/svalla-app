@@ -320,7 +320,7 @@ export default async function FarjorPage() {
                     justifyContent: 'center',
                     height: 40,
                     borderRadius: 10,
-                    background: 'var(--sea)',
+                    background: 'var(--sea-knapp)',
                     color: '#fff',
                     fontSize: 13,
                     fontWeight: 600,
@@ -518,10 +518,12 @@ export default async function FarjorPage() {
 
 function operatorColor(op: string): string {
   switch (op) {
-    case 'Waxholmsbolaget': return '#1e5c82'
-    case 'Cinderella':      return '#c96e2a'
-    case 'SL':              return '#2e7d32'
-    default:                return '#555'
+    // Temafärger, inte fasta: #1e5c82 på mörk yta gav 2,2:1 i mörkt tema och
+    // #c96e2a på det ljusa märket 3,2:1 (rester 2026-10-07).
+    case 'Waxholmsbolaget': return 'var(--sea)'
+    case 'Cinderella':      return 'var(--acc-text)'
+    case 'SL':              return 'var(--ok)'
+    default:                return 'var(--txt2)'
   }
 }
 function operatorBg(op: string): string {

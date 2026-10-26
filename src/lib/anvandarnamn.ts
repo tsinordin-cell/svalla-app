@@ -1,5 +1,6 @@
 import { cache } from 'react'
 import { createPublicSupabaseClient } from './supabase-server'
+import { ilikeExakt } from './username'
 
 /**
  * Användarnamnet i profiladresser (/u/<namn>), revision 2026-10-02.
@@ -17,14 +18,8 @@ import { createPublicSupabaseClient } from './supabase-server'
  * inom en och samma förfrågan.
  */
 
-/** Ett ilike-mönster som bara matchar namnet självt (utom skiftläge), eller
- *  null om det inte går att bygga ett säkert mönster. */
-export function ilikeExakt(namn: string): string | null {
-  // PostgREST gör om * till % i like/ilike, och * går inte att escapa.
-  if (namn.includes('*')) return null
-  // \ % _ är specialtecken i ILIKE; backslash är Postgres standard-escape.
-  return namn.replace(/[\\%_]/g, '\\$&')
-}
+// ilikeExakt bor i username.ts sedan 2026-10 (används även i webbläsaren).
+export { ilikeExakt }
 
 /** Det riktiga användarnamnet (som det står i databasen), eller null. */
 export const hittaAnvandarnamn = cache(async (namn: string): Promise<string | null> => {

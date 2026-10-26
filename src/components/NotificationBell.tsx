@@ -28,6 +28,9 @@ const TYPE_LABEL: Record<string, string> = {
  forum_mention: 'taggade dig i forumet',
  forum_best_answer: 'markerade ditt svar som bäst',
  friend_visit: 'besökte en ö du varit på',
+ message: 'skickade ett meddelande',
+ listing_saved: 'sparade din annons',
+ dm_accepted: 'accepterade din meddelandeförfrågan',
 }
 
 // SVG-ikon per notif-typ — kompletterar avatar med visuell typing-cue
@@ -42,6 +45,9 @@ const TYPE_ICON: Record<string, IconName> = {
  forum_mention: 'atSign',
  forum_best_answer: 'check',
  friend_visit: 'pin',
+ message: 'mail',
+ listing_saved: 'bookmark',
+ dm_accepted: 'mail',
 }
 
 // Bakgrundsfärg på ikon-badge per typ
@@ -252,6 +258,12 @@ export default function NotificationBell() {
  ? `/u/${encodeURIComponent(n.actor_username)}`
  : n.type === 'friend_visit' && n.related_island_slug
  ? `/o/${n.related_island_slug}`
+ : n.type === 'listing_saved' && n.reference_id
+ ? `/forum/loppis/${n.reference_id}`
+ : n.type === 'dm_accepted' && n.reference_id
+ ? `/meddelanden/${n.reference_id}`
+ : n.type === 'message'
+ ? '/meddelanden'
  : n.trip_id
  ? `/tur/${n.trip_id}`
  : '#'

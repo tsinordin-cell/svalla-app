@@ -172,8 +172,10 @@ export default function PlaceFactsSection({
     .filter(Boolean)
   if (fac.length > 0) groups.push({ label: 'Faciliteter', values: fac })
 
-  const seas = seasonality ? SEASONALITY_LABEL[seasonality] : null
-  if (seas) groups.push({ label: 'Säsong', values: [seas] })
+  // Säsongsfältet visas inte längre. Granskningen 2026-10-19 fann "Endast sommar"
+  // på helårsöppna ställen (Seglarhotellet, Tenan, Havshotellet, Gruvbryggan) och
+  // utan källa på nästan alla andra. Fältet saknar källa per rad, så hellre tomt.
+  void seasonality; void SEASONALITY_LABEL
 
   if (groups.length === 0) return null
 

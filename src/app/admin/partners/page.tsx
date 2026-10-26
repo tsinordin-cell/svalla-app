@@ -172,7 +172,7 @@ export default async function AdminPartnersPage() {
                   </span>
                 )}
                 {lead.tier && (
-                  <span style={{ padding: '2px 8px', borderRadius: 999, background: 'var(--sea)', color: '#fff', fontWeight: 700 }}>
+                  <span style={{ padding: '2px 8px', borderRadius: 999, background: 'var(--sea-knapp)', color: '#fff', fontWeight: 700 }}>
                     {TIER_LABEL[lead.tier] || lead.tier}
                   </span>
                 )}

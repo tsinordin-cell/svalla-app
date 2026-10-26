@@ -15,6 +15,7 @@
  * För server-side events (webhook, cron) → använd PostHog server SDK separat.
  */
 
+import { hamtaKampanj } from '@/lib/kampanj'
 import { hasAnalyticsConsent } from '@/components/CookieConsent'
 
 // ─── Event-katalog ────────────────────────────────────────────────────────────
@@ -34,6 +35,14 @@ export type SvallaEvent =
 
   // Trips (logging)
   | { name: 'trip_logging_started'; props: Record<string, never> }
+  // ── GPS-spårning i webbläsaren (2026-10-26) ──────────────────────────────
+  // Varför gav en användare upp efter 40 s utan en punkt (19 okt)? Nekad
+  // behörighet, ingen signal eller otålighet? Det här svarar på det.
+  // seconds räknas från Starta spårning. points = godkända punkter hittills.
+  | { name: 'gps_first_fix';  props: { seconds: number; accuracy_m: number; boat_type: string } }
+  | { name: 'gps_error';      props: { kind: 'denied' | 'timeout' | 'unavailable' | 'other'; seconds: number; points: number } }
+  | { name: 'gps_hidden';     props: { seconds: number; points: number } }      // skärmen släcktes / annan app medan spårningen pågick
+  | { name: 'gps_abandoned';  props: { seconds: number; points: number; phase: 'tracking' | 'paused'; first_fix: boolean } }  // lämnade sidan utan att spara
   | { name: 'trip_logged';          props: { trip_id: string; distance_nm: number; duration_min: number; first_trip: boolean } }
   | { name: 'trip_viewed';          props: { trip_id: string; is_own: boolean } }
   | { name: 'trip_liked';           props: { trip_id: string } }
@@ -141,11 +150,33 @@ export function track<E extends SvallaEvent>(name: E['name'], props: E['props'])
         sessionId,
         path: window.location.pathname,
         ursprung: ursprungForSession(),
+        kampanj: hamtaKampanj() ?? undefined,
+        besokare: besokarId(),
       }),
       // keepalive så event skickas även vid page-unload
       keepalive: true,
     }).catch(() => { /* tyst */ })
   } catch { /* tyst */ }
+}
+
+/**
+ * Anonymt besökar-id i localStorage, för att räkna återkommande besökare per
+ * månad (/admin/kampanjer). Sätts bara här, och track() körs bara med samtycke
+ * till statistik, så id:t skapas aldrig utan samtycke. Slumptal, kopplas inte
+ * till konto eller mejladress.
+ */
+function besokarId(): string | undefined {
+  try {
+    const KEY = 'svalla_besokare'
+    let id = localStorage.getItem(KEY)
+    if (!id) {
+      id = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`
+      localStorage.setItem(KEY, id)
+    }
+    return id
+  } catch {
+    return undefined
+  }
 }
 
 /** Anonym session-id i sessionStorage. Återanvänds över page navigations

@@ -429,7 +429,7 @@ export default async function AdminUsersPage({ searchParams }: PageProps) {
               padding: '8px 14px',
               border: 'none',
               borderRadius: 8,
-              background: 'var(--sea)',
+              background: 'var(--sea-knapp)',
               color: '#fff',
               fontSize: 13,
               fontWeight: 600,

@@ -57,7 +57,7 @@ export default function PlaneraIslands({ islands }: { islands: IslandAlongRoute[
                 <span style={{
                   position: 'absolute', top: -4, right: -4,
                   width: 16, height: 16, borderRadius: '50%',
-                  background: 'var(--sea)', color: '#fff',
+                  background: 'var(--sea-knapp)', color: '#fff',
                   fontSize: 9, fontWeight: 800,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>{idx + 1}</span>

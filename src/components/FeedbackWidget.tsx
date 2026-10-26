@@ -114,8 +114,8 @@ export default function FeedbackWidget() {
           bottom:     'calc(var(--nav-h, 0px) + env(safe-area-inset-bottom, 0px) + 14px)',
           right:      16,
           zIndex:     800,
-          background: 'var(--sea)',
-          color:      'var(--white)',
+          background: 'var(--sea-knapp)',
+          color:      '#fff',   // inte var(--white): den är mörk i mörkt tema
           border:     'none',
           borderRadius: 50,
           padding:    '9px 15px 9px 12px',

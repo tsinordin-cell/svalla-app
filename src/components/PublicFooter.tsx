@@ -39,7 +39,7 @@ export default function PublicFooter() {
               margin: 0,
               maxWidth: 360,
             }}>
-              Skärgårdens guide. 120+ öar, 200+ krogar och hamnar, färjetider i realtid.
+              Skärgårdens guide med ösidor, krogar, hamnar och båttider från Trafiklab.
               Ingen reklam, inga trick — bara skärgården.
             </p>
           </div>
@@ -50,7 +50,7 @@ export default function PublicFooter() {
                 display: 'inline-block',
                 padding: '10px 22px',
                 borderRadius: 999,
-                background: 'var(--acc, #c96e2a)',
+                background: 'var(--acc-knapp, #b5591a)',
                 color: '#fff',
                 fontSize: 13,
                 fontWeight: 700,
@@ -106,7 +106,6 @@ export default function PublicFooter() {
             title="Svalla"
             links={[
               { href: '/om', label: 'Om oss' },
-              { href: '/partner-sida', label: 'Annonsera' },
               { href: '/forum', label: 'Forum' },
               { href: '/tips', label: 'Tips & artiklar' },
               { href: '/blogg', label: 'Bloggen' },
@@ -123,9 +122,9 @@ export default function PublicFooter() {
           paddingTop: 20,
           borderTop: '1px solid rgba(255,255,255,0.08)',
           fontSize: 12,
-          color: 'rgba(255,255,255,0.40)',
+          color: 'rgba(255,255,255,0.6)',
         }}>
-          <span>© {new Date().getFullYear()} Svalla. Stockholms skärgård + Bohuslän.</span>
+          <span>© {new Date().getFullYear()} Svalla. Sveriges samlade skärgårdssida.</span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 16 }}>
             <a
               href="https://www.instagram.com/svalla.app/"

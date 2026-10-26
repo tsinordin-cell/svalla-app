@@ -23,8 +23,8 @@ html{scroll-behavior:smooth}
  --sea-dark:#0d2440; --sea-mid:#1a4a5e;
  --teal:#1e5c82; --teal-light:#2d7aaa;
  --sand:#f4ede0; --sand-light:#faf6f0;
- --white:#ffffff; --ink:#1c2b2e; --muted:#6b8087;
- --accent:#e8924a; --accent-light:#f0a866; --accent-strong:#b5591a; /* vit text på orange: 4,8:1 (revision P2-4) */
+ --white:#ffffff; --ink:#1c2b2e; --muted:#5c6f76; /* var #6b8087: 4,1:1 på vitt, 3,6 på sand */
+ --accent:#e8924a; --accent-light:#f0a866; --accent-strong:#b5591a; /* vit text på orange: 4,8:1 (revision P2-4) */ --accent-pale:#f7c08a; /* orange text på de mörka sektionerna: 4,8:1 på --sea-mid */
  --green:#2a9d5c; --green-light:#3ab870;
  --r:16px; --r-sm:8px;
  --shadow: 0 4px 24px rgba(26,74,94,.12);
@@ -188,7 +188,7 @@ section{padding:100px 40px}
 .how-section::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 Q15 20 30 30 Q45 40 60 30' stroke='%232d7d8a' stroke-width='0.8' fill='none' opacity='0.2'/%3E%3C/svg%3E") repeat;}
 .how-section .section-title{color:var(--white)}
 .how-section .section-sub{color:rgba(255,255,255,.72)}
-.how-section .section-label{color:var(--accent)}
+.how-section .section-label{color:var(--accent-pale)}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;position:relative;z-index:1}
 .step{padding:40px 28px;text-align:center}
 .step-num{width:52px;height:52px;border-radius:50%;background:rgba(232,146,74,.18);border:2px solid rgba(232,146,74,.5);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--accent-light);margin:0 auto 20px;}
@@ -211,7 +211,7 @@ section{padding:100px 40px}
 .split-pane.owner{background:var(--sea-mid);color:var(--white)}
 .split-pane.owner .section-title{color:var(--white)}
 .split-pane.owner .section-sub{color:rgba(255,255,255,.72)}
-.split-pane.owner .section-label{color:var(--accent)}
+.split-pane.owner .section-label{color:var(--accent-pale)}
 .split-features{display:flex;flex-direction:column;gap:16px;margin:28px 0 36px}
 .split-feature{display:flex;align-items:flex-start;gap:12px}
 .split-feature-icon{width:36px;height:36px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--teal);}
@@ -220,7 +220,7 @@ section{padding:100px 40px}
 .split-feature-text h5{font-size:14px;font-weight:600;margin-bottom:3px}
 .split-feature-text p{font-size:13px;color:var(--muted);line-height:1.5}
 .split-pane.owner .split-feature-text h5{color:var(--white)}
-.split-pane.owner .split-feature-text p{color:rgba(255,255,255,.55)}
+.split-pane.owner .split-feature-text p{color:rgba(255,255,255,.75)}
 .stats-section{background:linear-gradient(135deg,var(--sea-dark),var(--sea-mid))}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08)}
 .stat-box{padding:52px 32px;text-align:center;background:transparent;}
@@ -245,7 +245,7 @@ section{padding:100px 40px}
 .app-badge{display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--white);border-radius:var(--r-sm);padding:12px 20px;text-decoration:none;transition:.2s;}
 .app-badge:hover{background:var(--sea);transform:translateY(-2px)}
 .app-badge-icon{font-size:22px}
-.app-badge-text .small{font-size:10px;opacity:.7;display:block}
+.app-badge-text .small{font-size:10px;font-weight:500;display:block}
 .app-badge-text .big{font-size:14px;font-weight:700;display:block}
 footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 32px}
 .footer-inner{max-width:1160px;margin:0 auto}
@@ -324,12 +324,12 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .activity-card{background:var(--white);border-radius:var(--r);padding:32px 28px;box-shadow:var(--shadow);transition:.3s}
 .activity-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .activity-icon{width:48px;height:48px;margin-bottom:16px;color:var(--sea)}
-.activity-card h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--sea);margin-bottom:10px}
+.activity-card h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--teal);margin-bottom:10px}
 .activity-card p{font-size:13.5px;color:var(--muted);line-height:1.65}
 .activity-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
 .gallery-section{background:var(--sea-dark);padding:72px 0;overflow:hidden}
 .gallery-section .section-inner{padding:0 40px;margin-bottom:32px}
-.gallery-section .section-label{color:var(--accent)}
+.gallery-section .section-label{color:var(--accent-pale)}
 .gallery-section .section-title{color:var(--white)}
 .gallery-scroll{display:flex;gap:12px;overflow-x:auto;padding:0 40px 16px;scrollbar-width:none;cursor:grab;user-select:none}
 .gallery-scroll::-webkit-scrollbar{display:none}
@@ -346,14 +346,14 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 /* -- Getting there -- */
 .getting-there-section{background:var(--sea-mid);color:var(--white)}
 .getting-there-section .section-title{color:var(--white)}
-.getting-there-section .section-label{color:var(--accent)}
+.getting-there-section .section-label{color:var(--accent-pale)}
 .getting-there-section .section-sub{color:rgba(255,255,255,.6)}
 .ferry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .ferry-card{background:rgba(255,255,255,.07);border-radius:var(--r);padding:28px 24px;border:1px solid rgba(255,255,255,.1)}
 .ferry-card h4{font-size:17px;font-weight:700;color:#fff;margin-bottom:6px}
-.ferry-card-op{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:14px}
+.ferry-card-op{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-pale);margin-bottom:14px}
 .ferry-routes{list-style:none;display:flex;flex-direction:column;gap:9px}
-.ferry-route{font-size:13px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:8px}
+.ferry-route{font-size:13px;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:8px}
 .ferry-route::before{content:'';font-size:13px;flex-shrink:0}
 @media(max-width:860px){.ferry-routes{flex-direction:row;flex-wrap:wrap;gap:6px}.ferry-route{background:rgba(255,255,255,.08);border-radius:20px;padding:4px 10px;font-size:12px}.ferry-route::before{display:none}}
 /* -- Accommodation -- */
@@ -362,7 +362,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .boende-card{background:var(--white);border-radius:var(--r);padding:28px 24px;box-shadow:var(--shadow);text-align:center;transition:.3s}
 .boende-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .boende-icon{width:44px;height:44px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;color:var(--sea)}
-.boende-card h4{font-size:15px;font-weight:700;color:var(--sea);margin-bottom:8px}
+.boende-card h4{font-size:15px;font-weight:700;color:var(--teal);margin-bottom:8px}
 .boende-card p{font-size:13px;color:var(--muted);line-height:1.6}
 @media(max-width:900px){
  .krog-grid{grid-template-columns:1fr 1fr}
@@ -438,7 +438,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .resetips-card-tagline{font-size:13px;color:var(--muted);line-height:1.55;flex:1;margin-bottom:14px}
 .resetips-card-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
 .resetips-card-meta span{font-size:11px;color:var(--teal);font-weight:600}
-.resetips-card-cta{font-size:13px;color:var(--accent);font-weight:700;text-align:right}
+.resetips-card-cta{font-size:13px;color:var(--accent-strong);font-weight:700;text-align:right}
 
 /* -- Populära guider -- */
 .guides-section{background:var(--sand);padding:100px 40px}
@@ -783,7 +783,7 @@ const LANDING_HTML = `
  <div class="trust-item"><strong>Ingen båt krävs</strong> Kollektivt ända ut</div>
  <div class="trust-divider"></div>
  <!-- PRODUKTREGEL: vårt eget pris (gratis att komma igång) — vi är källan. -->
- <div class="trust-item"><strong>0 kr</strong> Att komma igång</div>
+ <div class="trust-item"><strong>Gratis</strong> Att komma igång</div>
 </div>
 
 <section class="resetips-section" id="resetips">
@@ -1206,7 +1206,7 @@ const LANDING_HTML = `
    </div>
    <div class="thorkel-msg ai">
     <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
-    <div class="thorkel-bubble">Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill jag lägga till det i planen?</div>
+    <div class="thorkel-bubble">Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill du att jag lägger till det i planen?</div>
    </div>
   </div>
  </div>
@@ -1229,7 +1229,7 @@ const LANDING_HTML = `
  <li class="ferry-route">Sandhamn · Gällnö · Nämdö</li>
  <li class="ferry-route">Utö · Nåttarö (via Dalarö)</li>
  </ul>
- <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.4)">Tidtabeller: waxholmsbolaget.se</div>
+ <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.75)">Tidtabeller: waxholmsbolaget.se</div>
  </div>
  <div class="ferry-card reveal reveal-delay-2">
  <div class="ferry-card-op">Pendelbåten</div>
@@ -1240,7 +1240,7 @@ const LANDING_HTML = `
  <li class="ferry-route">Djurö · Ingarö</li>
  <li class="ferry-route">Buss 428 från Slussen</li>
  </ul>
- <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.4)">pendelbaten.se</div>
+ <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.75)">pendelbaten.se</div>
  </div>
  <div class="ferry-card reveal reveal-delay-3">
  <div class="ferry-card-op">SL + Båt</div>
@@ -1251,7 +1251,7 @@ const LANDING_HTML = `
  <li class="ferry-route">Nåttarö · Ornö</li>
  <li class="ferry-route">Pendeltåg J43 från Stockholm</li>
  </ul>
- <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.4)">sl.se · uto.se</div>
+ <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.75)">sl.se · uto.se</div>
  </div>
  </div>
  <div style="text-align:center;margin-top:40px">
@@ -1338,7 +1338,7 @@ const LANDING_HTML = `
  <div class="split-pane explorer reveal">
  <div class="section-label">För utforskaren</div>
  <h2 class="section-title">Din guide ute på vattnet</h2>
- <p class="section-sub">Grundfunktionerna är gratis — för alltid. Premium öppnar upp mer, precis som Strava.</p>
+ <p class="section-sub">Allt du behöver för att planera och logga dina turer, utan kostnad.</p>
  <div class="split-features">
  <div class="split-feature"><div class="split-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="split-feature-text"><h5>Logga turen på 10 sek</h5><p>Foto + plats. Klart. Din dagbok byggs automatiskt.</p></div></div>
  <div class="split-feature"><div class="split-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div><div class="split-feature-text"><h5>Hitta krogar & platser</h5><p>Bastun, bryggor och krogar längs din rutt</p></div></div>
@@ -1349,11 +1349,11 @@ const LANDING_HTML = `
  <div class="split-pane owner reveal reveal-delay-2">
  <div class="section-label">För krogägaren</div>
  <h2 class="section-title">Sätt er krog på kartan</h2>
- <p class="section-sub">Nå gäster som redan är ute på vattnet. Gratis grundprofil, premium om ni vill synas mer.</p>
+ <p class="section-sub">Nå gäster som planerar att åka ut. Det kostar ingenting att finnas med.</p>
  <div class="split-features">
- <div class="split-feature"><div class="split-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="split-feature-text"><h5>GPS-profil på kartan</h5><p>Syns för alla som paddlar eller seglar förbi</p></div></div>
- <div class="split-feature"><div class="split-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="split-feature-text"><h5>Statistik & insikter</h5><p>Se hur gäster hittar er och varifrån de kommer</p></div></div>
- <div class="split-feature"><div class="split-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="8" r="6"/><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/></svg></div><div class="split-feature-text"><h5>Early Bird — 6 månader gratis</h5><p>De första 20 krogarna får Premium gratis</p></div></div>
+ <div class="split-feature"><div class="split-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="split-feature-text"><h5>Er plats på kartan</h5><p>Med adress, kontakt och länk till er webbplats</p></div></div>
+ <div class="split-feature"><div class="split-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="split-feature-text"><h5>Syns på ösidan</h5><p>Där gästerna läser på innan de åker ut</p></div></div>
+ <div class="split-feature"><div class="split-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="8" r="6"/><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/></svg></div><div class="split-feature-text"><h5>Kostar ingenting</h5><p>Ni bestämmer vad som står, och kan be oss ändra när som helst</p></div></div>
  </div>
  <a href="/registrera-krog" class="btn btn-accent btn-lg">Registrera er krog &rarr;</a>
  </div>
@@ -1366,7 +1366,7 @@ const LANDING_HTML = `
  <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">__ANTAL_OAR__</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
  <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
  <!-- PRODUKTREGEL: vårt eget pris (gratis att komma igång) — vi är källan. -->
- <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundfunktioner gratis för alltid</div></div>
+ <div class="stat-box reveal reveal-delay-3"><span class="stat-num">Gratis</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Planera, läsa och logga utan kostnad</div></div>
  </div>
  </div>
 </section>
@@ -1399,7 +1399,7 @@ const LANDING_HTML = `
  <h2 class="section-title reveal">Svalla i fickan</h2>
  <p class="section-sub reveal">Inga nedladdningar. Öppna svalla.se i din mobil och tryck "Lägg till på hemskärmen". Fungerar offline, har push-notiser och känns som en native app.</p>
  <div class="app-badges reveal">
- <a href="/feed" class="app-badge" style="background:var(--accent)">
+ <a href="/feed" class="app-badge" style="background:var(--accent-strong)">
  <span class="app-badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg></span>
  <div class="app-badge-text"><span class="small">Prova direkt i webbläsaren</span><span class="big">Öppna Svalla</span></div>
  </a>

@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { markConversationRead, acceptDMRequest, declineDMRequest, deleteMessage, leaveConversation } from '@/lib/dm'
-import { blockUser } from '@/lib/blocks'
+import { blockUser, arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
 import { absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import { radius, fontWeight, fontSize, space, shadow, duration, easing } from '@/lib/tokens'
@@ -310,6 +310,7 @@ export default function ChatPage() {
       setMessages(prev => prev.filter(m => m.id !== tempId))
       setText(content)
       setPosting(false)
+      toast(arRegelstopp(error) ? BLOCKERAD_TEXT : 'Meddelandet kunde inte skickas. Försök igen.', 'error')
       return
     }
 
@@ -343,16 +344,20 @@ export default function ChatPage() {
       body: JSON.stringify({ conversationId: id, preview, kind }),
     }).catch(() => {})
 
-    // In-app-notiser i notifications-tabellen — separat kanal
+    // In-app-notiser i notifications-tabellen — separat kanal. Vid accept har
+    // inget meddelande skrivits; dm_accepted-notisen skapas i handleAcceptRequest.
+    if (kind === 'accept') return
     const { data: parts } = await supabase
       .from('conversation_participants')
       .select('user_id')
       .eq('conversation_id', id)
       .neq('user_id', me)
     for (const p of parts ?? []) {
-      supabase.from('notifications').insert({
-        user_id: p.user_id, actor_id: me, type: 'message',
-      }).then(() => {})
+      fetch('/api/notifications/insert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetUserId: p.user_id, type: 'message', conversationId: id }),
+      }).catch(() => {})
     }
   }
 
@@ -365,10 +370,11 @@ export default function ChatPage() {
     // Notifiera avsändaren (push + in-app)
     if (conv.created_by && conv.created_by !== me) {
       pushToOthers('Du kan nu skriva fritt', 'accept')
-      supabase.from('notifications').insert({
-        user_id: conv.created_by, actor_id: me, type: 'dm_accepted',
-        reference_id: conv.id,
-      }).then(() => {})
+      fetch('/api/notifications/insert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetUserId: conv.created_by, type: 'dm_accepted', conversationId: conv.id, referenceId: conv.id }),
+      }).catch(() => {})
     }
   }
 
@@ -904,7 +910,7 @@ export default function ChatPage() {
             {/* Send */}
             <button className="press-feedback" type="submit" disabled={!text.trim() || posting} aria-label="Skicka" style={{
               width: 36, height: 36, borderRadius: '50%', border: 'none', flexShrink: 0,
-              background: text.trim() && !posting ? 'var(--sea)' : 'var(--surface-2, rgba(10,40,80,0.08))',
+              background: text.trim() && !posting ? 'var(--sea-knapp)' : 'var(--surface-2, rgba(10,40,80,0.08))',
               color: text.trim() && !posting ? '#fff' : 'var(--txt3)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               cursor: text.trim() && !posting ? 'pointer' : 'default',

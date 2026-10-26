@@ -1,5 +1,5 @@
 /**
- * bohuslan-data.ts — 19 ösidor för Bohuslän-skärgården.
+ * bohuslan-data.ts — ösidor för Bohuslän-skärgården (Vinga flyttades till island-data.ts 2026-10-19, eftersom ön ligger i Göteborgs kommun).
  * Samma struktur som island-data.ts.
  *
  * Källbelagd 2026-09-16. Fram till dess var innehållet skrivet "utifrån allmän
@@ -35,15 +35,16 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     lat: 57.8864,
     lng: 11.5753,
     seoTitle: 'Marstrand 2026 – Carlstens fästning & segling',
-    // KÄLLA: https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Marstrandsön är en bilfri ö men vissa kan ansöka om specialöverfart under ordinarie tider" (läst 2026-09-27)
+    // KÄLLA: https://www.marstrandsfarja.se/fordonstrafik/vad-ar-nyttotrafik — "Till Marstrandsön får endast överföras fordon i nyttotrafik." (läst 2026-10-19)
     seoDescription: 'Guide till Marstrand: Carlstens fästning, bilfria Marstrandsön, Match Cup Sweden och restaurangerna vid hamnen. Hur du tar dig dit och var du bor.',
     description: [
       // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar provisorisk skans efter freden i Roskilde 1658, mindre stenfästning från 1660, bygget 1682 under Erik Dahlberg, färdig 1860, "en av Europas starkaste fästningar", statligt byggnadsminne förvaltat av SFV sedan hösten 1993 — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
       'Marstrand domineras av Carlstens fästning. Efter freden i Roskilde 1658 restes först en provisorisk skans på öns högsta punkt, och två år senare — 1660 — började en mindre fästning i sten att byggas. Den stora anläggningen påbörjades 1682 under Erik Dahlbergs ledning men stod inte helt färdig förrän 1860, då den enligt Statens fastighetsverk betraktades som en av Europas starkaste fästningar. Carlsten är statligt byggnadsminne och förvaltas av Statens fastighetsverk sedan hösten 1993.',
       // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar högst 232 fångar, Lasse-Maja dit 1813, sista fångarna bort 1858 under Krimkriget, världens första roterande fyr 1781, Skeppsgossekårens skola för 200 pojkar samt kustspaningsradar i tornet fram till 1993 — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
       'Fästningen har haft många roller. Den fungerade som fängelse med som mest 232 fångar; den ökände tjuven Lasse-Maja fördes hit 1813, och 1858 flyttades de sista fångarna bort eftersom krigshotet under Krimkriget var stort. På tornet installerades 1781 världens första roterande fyr. I början av 1900-talet drev Skeppsgossekåren en skola för 200 pojkar i fästningen, och ända fram till 1993 fanns en kustspaningsradarstation i tornet.',
-      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar att orten grundades på 1200-talet av Håkon Håkonsson, blev svensk 1658 och på 1500-talet var centrum för sillhandeln i Europa — https://www.vastsverige.com/en/kungalv/products/marstrand/ (läst 2026-09-16)
-      'Orten är äldre än fästningen. Marstrand grundades på 1200-talet av den norske kungen Håkon Håkonsson och blev svenskt först 1658. På 1500-talet var staden ett centrum för sillhandeln i Europa, och sillen avgjorde under lång tid välstånd och fattigdom för invånarna.',
+      // Rättad 2026-10-19: "sillhandeln" ändrat till "sillnäringen", som källan skriver ("herring industry").
+      // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — "Marstrand was founded in the 13th century by the Norwegian king, Håkon Håkonsson, and did not become Swedish until 1658."; "by the 16th century it was the centre of the herring industry in Europe."; "the stocks of herring made the difference between prosperity and poverty for the inhabitants of Marstrand" — https://www.vastsverige.com/en/kungalv/products/marstrand/ (läst 2026-10-19)
+      'Orten är äldre än fästningen. Marstrand grundades på 1200-talet av den norske kungen Håkon Håkonsson och blev svenskt först 1658. På 1500-talet var staden centrum för sillnäringen i Europa, och sillen avgjorde under lång tid välstånd och fattigdom för invånarna.',
       // KÄLLA: https://www.vastsverige.com/kungalv/marstrand/ — "Sommarens seglingshöjdpunkt är när Match Cup Sweden avgörs första veckan i juli", "Längs bryggorna i Sveriges största gästhamn ligger båtarna tätt" (läst 2026-09-27)
       // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "Marstrand is definitely the sailing centre of the whole country" (läst 2026-09-27)
       // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27)
@@ -53,20 +54,27 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: https://www.marstrandsgasthamn.se/sv/Kontakt — "Högsäsong (15 juni - 30 juni och 1 augusti - 15 augusti)", "Högsäsong (1 juli - 31 juli)", "1 maj - 14 juni och 16 augusti - 30 september", "Fredag - Söndag" (läst 2026-09-27). Tidigare stod att hamnkontoret är bemannat dagligen maj–september (vastsverige.com); gästhamnens egen sida anger dagligen bara 15 juni–15 augusti.
       'Seglingen sätter sin prägel på ön. GKSS Match Cup Sweden avgörs i början av juli – 2026 seglades den 29 juni–4 juli – och Turistrådet Västsverige kallar då Marstrand landets segelcentrum. Den kommunala gästhamnen på sydöstra Marstrandsön kallas av samma källa Sveriges största gästhamn och har 275 gästplatser, varav 98 går att förboka. Gästbåtar ligger vid bryggorna G, H, D och E, medan båtar över 15 meters skrovlängd ligger vid Gästkajen, där minsta djup är 3,5 meter. El och vatten ingår i avgiften. Gästhamnskontoret är bemannat dagligen 15 juni–15 augusti och fredag–söndag under resten av perioden maj–september.',
       // KÄLLA: Kungälvs kommun, Marstrandsfärjan — bekräftar att färjan mellan Koön och Marstrand drivs av kommunen och att biljetter och dispensansökningar hanteras där — https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ ; Besöksparkering i Marstrand — https://www.kungalv.se/trafik--gator/parkering/parkeringsplatser-i-marstrand/ ; Samlastning Marstrand — https://www.kungalv.se/trafik--gator/kollektivtrafik/samlastning/ (läst 2026-09-16)
-      // KÄLLA: https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Färjan mellan Koön och Marstrand kallas för Marstrandsfärjan", "Endast fordon i nyttotrafik får färjas över till Marstrandsön", "Inga enkelbiljetter som är köpta hos Västtrafik gäller på marstrandsfärjan", "Alla biljetter gäller tur och retur till och från Marstrandsön" (läst 2026-09-27)
-      'Färjan mellan Koön och Marstrandsön kallas Marstrandsfärjan och drivs av Kungälvs kommun. Biljetterna gäller tur och retur och köps på marstrandsfarja.se eller i kuren vid Koöns färjeläge – Västtrafiks enkelbiljetter gäller inte på färjan, men vissa periodbiljetter för zon B gör det. Besöksparkering finns på Koön och fastlandssidan. Marstrandsön är bilfri: bara fordon i nyttotrafik får färjas över, och den som ska skicka gods dit hänvisas av kommunen till en samlastningstjänst.',
+      // Rättad 2026-10-19: kungalv.se visar bara menyn för WebFetch, så citaten därifrån är bytta mot färjans egen webbplats. "Drivs av Kungälvs kommun", kuren och periodbiljetterna för zon B är borttagna (stod bara på kungalv.se eller i en gammal nyhet).
+      // KÄLLA: https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Färjan mellan Koön och Marstrand kallas för Marstrandsfärjan." (läst 2026-10-19)
+      // KÄLLA: https://www.marstrandsfarja.se/ — "Biljetter gäller tur och retur från färjeläget på Koön till Marstrandsön."; "Västtrafiks enkelbiljetter gäller INTE på färjan!" (läst 2026-10-19)
+      // KÄLLA: https://www.marstrandsfarja.se/fordonstrafik/vad-ar-nyttotrafik — "Till Marstrandsön får endast överföras fordon i nyttotrafik." (läst 2026-10-19)
+      'Färjan mellan Koön och Marstrandsön kallas Marstrandsfärjan. Biljetterna gäller tur och retur och köps på marstrandsfarja.se. Västtrafiks enkelbiljetter gäller inte på färjan. Besöksparkering finns på Koön och fastlandssidan. Marstrandsön är bilfri, eftersom bara fordon i nyttotrafik får föras över, och den som ska skicka gods dit hänvisas av kommunen till en samlastningstjänst.',
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar Societetshuset och Marstrands Varmbadhus samt att kung Oscar II fanns bland badortsgästerna — https://www.vastsverige.com/en/kungalv/products/marstrand/ (läst 2026-09-16)
       'Under 1800-talet fick Marstrand ett andra liv som badort. Societetshuset och Marstrands Varmbadhus drog societeten till ön, och bland gästerna fanns kung Oscar II.',
     ],
     facts: {
-      // KÄLLA: Kungälvs kommun, Marstrandsfärjan — bekräftar färjeförbindelsen Koön–Marstrandsön — https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ (läst 2026-09-16)
-      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6302__0__LINE__20251214__20261212__25ea94b6-c06e-4190-822d-a22d774d80ee__1%2C0__2635889.pdf — "302 Kungälv–Ytterby–Marstrand", "Gäller 14 dec 2025 - 12 dec 2026" (läst 2026-09-27). Restid räknad ur tabellen måndag–fredag: Ytterby station 09.08 → Marstrands färjeläge 09.37 (29 min), Kungälv resecentrum 08.55 → 09.37 (42 min).
-      travel_time: 'Buss 302 från Kungälv (42 min) eller Ytterby station (29 min) till Koön, sedan Marstrandsfärjan över sundet',
-      // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "is spread over the two islands of Koön and Marstrandsön", "small alleys, the spectacular fortress and sea views at every turn" (läst 2026-09-27); https://www.vastsverige.com/kungalv/marstrand/ — "Sveriges största gästhamn" (läst 2026-09-27)
+      // KÄLLA: Kungälvs kommun, Marstrandsfärjan — "Färjan mellan Koön och Marstrand kallas för Marstrandsfärjan." — https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ (läst 2026-10-19)
+      // KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014630200000/ — "Buss 302: Marstrand - Ytterby - Kungälv"; "Marstrands färjeläge A"; "Ytterby station B"; "Kungälv resecentrum 2" (läst 2026-10-20)
+      // Rättad 2026-10-20: Västtrafiks PDF går inte att läsa, så källan är nu linjens HTML-sida hos Västtrafik.
+      // Rättad 2026-10-19: restiderna 42 och 29 minuter borttagna. Västtrafiks PDF går inte att läsa med WebFetch (binärdata), så minuterna kunde inte kontrolleras.
+      travel_time: 'Buss 302 från Kungälv eller Ytterby station till Koön, sedan Marstrandsfärjan över sundet',
+      // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "is spread over the two islands of Koön and Marstrandsön", "small alleys, the spectacular fortress and sea views at every turn" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/kungalv/marstrand/ — "Sveriges största gästhamn" (läst 2026-10-19)
       character: 'Kuststad på Koön och Marstrandsön med fästning, gränder och Sveriges största gästhamn',
-      // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "3 april – 31 maj 2026", "1 juni – 30 juni 2026", "September 2026" (läst 2026-09-27); https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Lågsäsong (september–april)" (läst 2026-09-27)
+      // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "3 april – 31 maj 2026", "1 juni – 30 juni 2026", "September 2026" (läst 2026-09-27)
       season: 'Året runt; Carlstens fästning har öppet april–september (alla dagar juni–augusti)',
-      // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "walk around the whole of Marstrandsön", "Skallens lighthouse" (läst 2026-09-27); https://carlsten.se/oppettider-och-priser/ — "Guidade turer på svenska varje dag kl 12, 14, 15" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "walk around the whole of Marstrandsön", "Skallens lighthouse" (läst 2026-09-27)
+      // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "Guidade turer på svenska varje dag kl 12, 14, 15" (läst 2026-09-27)
       best_for: 'Segling, guidad tur på Carlstens fästning, promenad runt Marstrandsön',
     },
     facts_provenance: {
@@ -81,7 +89,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { icon: '🏰', name: 'Carlstens fästning', desc: 'Statligt byggnadsminne, förvaltat av Statens fastighetsverk sedan 1993. 2026 öppet helger i april–maj och september och alla dagar juni–augusti. Guidade turer på svenska (cirka 45 minuter) ingår i entrén; hundar får följa med kopplade.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar GKSS Match Cup Sweden första veckan i juli och Marstrand som landets segelcentrum då — https://www.vastsverige.com/kungalv/marstrand/ (läst 2026-09-16)
       // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27)
-      { icon: '⛵', name: 'GKSS Match Cup Sweden', desc: 'Avgörs i början av juli (2026: 29 juni–4 juli) — då är Marstrand landets segelcentrum enligt Turistrådet Västsverige.' },
+      // Rättad 2026-10-19: ordet "Marstrand" stod i texten, och mallarna för /bad och /med-barn letar efter "strand". Därför visades seglingstävlingen som bad och barnaktivitet. Samma sak sagd utan ortnamnet.
+      { icon: '⛵', name: 'GKSS Match Cup Sweden', desc: 'Avgörs i början av juli (2026: 29 juni till 4 juli). Då är ön landets segelcentrum enligt Turistrådet Västsverige.' },
       // KÄLLA: https://www.vastsverige.com/en/kungalv/products/marstrand/ — "walk around the whole of Marstrandsön, or take a shorter walk through Smugglarrännan", "Take a break out by Skallens lighthouse and admire the enchanting area where the Skagerrak and Kattegatt meet", "On Koön there are well-marked footpaths, with three levels of difficulty" (läst 2026-09-27)
       { icon: '🥾', name: 'Promenad runt Marstrandsön', desc: 'Gå runt hela Marstrandsön eller ta den kortare vägen genom Smugglarrännan, med paus vid Skallens fyr där Skagerrak och Kattegatt möts. På Koön finns märkta leder i tre svårighetsgrader.' },
     ],
@@ -95,17 +104,24 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrands Kurhotell — bekräftar byggnaden som på 1800-talet inrymde kall- och varmbad, 39 rum, Kungsplanen på Marstrandsön — https://www.vastsverige.com/en/kungalv/products/marstrands-kurhotell/ (läst 2026-09-16)
       // KÄLLA: https://www.marstrandskurhotell.se/ — "Välkommen till Marstrands Kurhotell" (läst 2026-09-27)
       { name: 'Marstrands Kurhotell', type: 'Hotell', desc: 'Hotell i en byggnad som på 1800-talet inrymde kall- och varmbad. 39 rum på Marstrandsön.' },
+      // KÄLLA: https://carlsten.se/carlstens-soldathotell/ — "Bo innaför murarna på Marstrands största sevärdhet"; "I dessa 1700 & 1800-talsbyggnader övernattar ni"; "Rummen på Carlstens Soldathotell är alltifrån enbäddsrum till åttabäddsrum i Kommendanthuset och Donjonen"; "Soldathotellet - Öppet året om!" (läst 2026-10-19)
+      { name: 'Carlstens Soldathotell', type: 'Hotell', desc: 'Hotell innanför murarna på Carlstens fästning, i Kommendantshuset och Donjonen. Rum från enbäddsrum till åttabäddsrum. Öppet året om.', websiteUrl: 'https://www.carlstenssoldathotell.se/' },
     ],
     getting_there: [
       // KÄLLA: Kungälvs kommun, Marstrandsfärjan och Besöksparkering i Marstrand — bekräftar färjan Koön–Marstrandsön och parkering på Koön — https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ och https://www.kungalv.se/trafik--gator/parkering/parkeringsplatser-i-marstrand/ (läst 2026-09-16)
-      // KÄLLA: https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Inga enkelbiljetter som är köpta hos Västtrafik gäller på marstrandsfärjan", "Du köper din biljett i kundservicekuren vid Koöns färjeläge" (läst 2026-09-27); https://www.marstrandsfarja.se/ — "Biljetter gäller tur och retur från färjeläget på Koön till Marstrandsön" (läst 2026-09-27)
-      { method: 'Bil + färja', from: 'Göteborg', desc: 'Kör till Koön och parkera, ta sedan Marstrandsfärjan över sundet. Biljetten gäller tur och retur och köps på marstrandsfarja.se eller i kuren vid Koöns färjeläge; Västtrafiks enkelbiljetter gäller inte på färjan.', icon: '🚗' },
-      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6302__0__LINE__20251214__20261212__25ea94b6-c06e-4190-822d-a22d774d80ee__1%2C0__2635889.pdf — "302 Kungälv–Ytterby–Marstrand", "Marstrands färjeläge", "Gäller 14 dec 2025 - 12 dec 2026", "C Går endast 19 juni - 16 aug." (läst 2026-09-27). Restider räknade ur tabellen (Ytterby station → Marstrands färjeläge 29 min, Kungälv resecentrum → 42 min); måndag–fredag dagtid avgång från Kungälv varje timme (08.55, 09.55, 10.55 …), lördag–söndag 19 juni–16 augusti extra turer så att bussen går varje halvtimme. Linjen går inte från Göteborg, vilket den tidigare texten påstod.
-      { method: 'Buss', from: 'Kungälv / Ytterby', desc: 'Västtrafiks buss 302 går från Kungälv resecentrum (cirka 42 minuter) och Ytterby station (cirka 29 minuter) till Marstrands färjeläge på Koön, på vardagar dagtid en gång i timmen. Från Göteborg byter du till linje 302 i Kungälv eller Ytterby – sök hela resan i Västtrafiks reseplanerare. Tänk på att enkelbiljett för bussen inte gäller på färjan.', icon: '🚌' },
+      // Rättad 2026-10-19: kungalv.se gick inte att läsa (bara menyn), så citatet om kuren är borttaget och uppgiften om kuren struken.
+      // KÄLLA: https://www.marstrandsfarja.se/ — "Biljetter gäller tur och retur från färjeläget på Koön till Marstrandsön."; "Västtrafiks enkelbiljetter gäller INTE på färjan!" (läst 2026-10-19)
+      { method: 'Bil + färja', from: 'Göteborg', desc: 'Kör till Koön och parkera, ta sedan Marstrandsfärjan över sundet. Biljetten gäller tur och retur och köps på marstrandsfarja.se. Västtrafiks enkelbiljetter gäller inte på färjan.', icon: '🚗' },
+      // KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014630200000/ — "Buss 302: Marstrand - Ytterby - Kungälv"; "Marstrands färjeläge A"; "Ytterby station B"; "Kungälv resecentrum 2"; "2025-12-14 till 2026-12-12" (läst 2026-10-20)
+      // KÄLLA: https://www.marstrandsfarja.se/start — "Västtrafiks enkelbiljetter gäller INTE på färjan!" (läst 2026-10-20)
+      // Rättad 2026-10-20: meningen om byte från Göteborg är borttagen, eftersom ingen läsbar källa säger det.
+      // Rättad 2026-10-19: restiderna (42 och 29 minuter) och turtätheten är borttagna. PDF:en går inte att läsa med WebFetch, så uppgifterna kunde inte kontrolleras.
+      { method: 'Buss', from: 'Kungälv / Ytterby', desc: 'Västtrafiks buss 302 går från Kungälv resecentrum och Ytterby station till Marstrands färjeläge på Koön. Sök hela resan i Västtrafiks reseplanerare. Tänk på att enkelbiljett för bussen inte gäller på färjan.', icon: '🚌' },
     ],
     harbors: [
       // KÄLLA: https://www.vastsverige.com/kungalv/produkter/marstrands-gasthamn/ — "På den sydöstra delen av Marstrandsön ligger den kommunala gästhamnen", "I gästhamnen råder det ankringsförbud" (läst 2026-09-27)
-      // KÄLLA: https://www.marstrandsgasthamn.se/sv/Gasthamn — "El och vatten ingår i serviceavgiften och finns på alla bryggor", "Kod till duschar och toalett", "Tvättmaskiner och torktumlare finner du i vår tvättstuga på baksidan gästhamnsbyggnaden", "Bunkring av bränsle är förbjuden inom området kring gästhamnen", "Det är totalt förbjudet att grilla på båten, bryggor och i området kring dessa", "Det råder badförbud i hamnområdet" (läst 2026-09-27); https://www.marstrandsgasthamn.se/sv/ — "275 gästplatser varav 98 bokningsbara", "hamnkontoret@kungalv.se" (läst 2026-09-27). Tidigare källa (en gästhamnsguide som inte är tillåten) borttagen.
+      // KÄLLA: https://www.marstrandsgasthamn.se/sv/Gasthamn — "El och vatten ingår i serviceavgiften och finns på alla bryggor", "Kod till duschar och toalett", "Tvättmaskiner och torktumlare finner du i vår tvättstuga på baksidan gästhamnsbyggnaden", "Bunkring av bränsle är förbjuden inom området kring gästhamnen", "Det är totalt förbjudet att grilla på båten, bryggor och i området kring dessa", "Det råder badförbud i hamnområdet" (läst 2026-09-27)
+      // KÄLLA: https://www.marstrandsgasthamn.se/sv/ — "275 gästplatser varav 98 bokningsbara", "hamnkontoret@kungalv.se" (läst 2026-09-27). Tidigare källa (en gästhamnsguide som inte är tillåten) borttagen.
       { name: 'Marstrands Gästhamn', desc: 'Kommunal gästhamn på sydöstra Marstrandsön med 275 gästplatser, varav 98 går att förboka. El och vatten ingår i avgiften, och tvättstugan har tvättmaskiner, torktumlare och diskstation. Ankring, grillning på båtar och bryggor, bunkring av bränsle och bad är förbjudet i hamnområdet.', fuel: false, service: ['Vatten', 'El', 'Dusch', 'WC', 'Tvätt'] },
     ],
     restaurants: [
@@ -118,24 +134,44 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { name: 'Marstrands Wärdshus', type: 'Restaurang', desc: 'Skaldjurs- och grillrestaurang mitt på kajen på Marstrandsön, med uteterrass vid hamnen.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Johans krog Marstrand — bekräftar "fransk bistro" och adressen Kungsgatan 12 — https://www.vastsverige.com/kungalv/produkter/johans-krog-marstrand/ (läst 2026-09-16)
       // KÄLLA: https://www.johanskrogmarstrand.se/ — "Fransk bistro möter Västkusten" (läst 2026-09-27)
-      { name: 'Johans krog Marstrand', type: 'Restaurang', desc: 'Fransk bistro på Kungsgatan med utservering.' },
-      // KÄLLA: https://carlsten.se/carlstens-vaffelcafe/ — "Du hittar oss vid fästningens entré och du behöver inte köpa entré till fästningen för att komma till oss", "Våfflor, Sallader, Pajer, Smörgåsar", "Tack för säsongen 2026", "Vi öppnar igen till påsken 2027" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/kungalv/produkter/johans-krog-marstrand/ — "Fransk krog i hjärtat av Marstrand med uteservering."; "Johans Krog är en fransk bistro belägen på vackra Marstrand."; "Kungsgatan 12" (läst 2026-10-20)
+      // Rättad 2026-10-20: uteserveringen har nu en källa (Turistrådet Västsverige), och stavningen är rättad.
+      { name: 'Johans krog Marstrand', type: 'Restaurang', desc: 'Fransk bistro på Kungsgatan med uteservering.' },
+      // KÄLLA: https://carlsten.se/carlstens-vaffelcafe/ — "Du hittar oss vid fästningens entré och du behöver inte köpa entré till fästningen för att komma till oss"; "Våfflor, Sallader, Pajer, Smörgåsar"; "Tack för säsongen 2026"; "Vi öppnar igen till påsken 2027." (läst 2026-10-19)
       { name: 'Carlstens Vaffelcafé', type: 'Café', desc: 'Säsongscafé vid ingången till Carlstens fästning, öppet från påsk och under sommaren. Våfflor, pajer, smörgåsar och sallader; fästningsbiljett krävs inte för besök. Säsongen 2026 är avslutad – caféet öppnar igen till påsken 2027.' },
+      // KÄLLA: https://carlsten.se/julbord/ — "Marstrands största julbordsbuffe på Carlstens fästning."; "fredag 27 nov"; "lördag 19 dec"; "söndag 13 dec"; "Vi möter alla gäster vid färjeläget på Marstrandsön för gemensamt fackeltåg (om vädret tillåter) upp till Kungsporten"; "upp till Riddarsalen" (läst 2026-10-19)
+      // KÄLLA: https://carlsten.se/mat-fest-konferens/ — "Riddarsalen, Kruttornet, Batterisalen, Vapenhuset och Lasse-Majas kök"; "Konferens- & event öppet året om" (läst 2026-10-19); samma sida listar Våffelcaféet under Mat, Fest & Konferens, och caféet skriver "Thomas, Nina & Sandra med personal", julbordet "Thomas & Nina Berndtsson" (läst 2026-10-19)
+      { name: 'Carlstens fästning, julbord och fest', type: 'Julbord och fest', desc: 'Restaurangen på fästningen, som också driver Våffelcaféet. Julbord i Riddarsalen på utvalda dagar 27 november–19 december 2026, då gästerna möts vid färjeläget och går i fackeltåg upp till fästningen om vädret tillåter. Fester och konferenser året om, bland annat i Lasse-Majas kök.', websiteUrl: 'https://carlsten.se/mat-fest-konferens/' },
     ],
-    // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27); https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Inga enkelbiljetter som är köpta hos Västtrafik gäller på marstrandsfärjan" (läst 2026-09-27); https://carlsten.se/oppettider-och-priser/ — "Ordinarie guidade turer nedan ges på svenska och ingår i" (läst 2026-09-27)
-    tips: ['Match Cup Sweden avgörs i början av juli (2026: 29 juni–4 juli) — boka boende i god tid om du vill vara på ön då.', 'Köp färjebiljett på marstrandsfarja.se eller vid Koöns färjeläge – Västtrafiks enkelbiljetter gäller inte på Marstrandsfärjan.', 'De guidade turerna på Carlstens fästning ingår i entréavgiften.'],
+    // Rättad 2026-10-19: källraden delad så att varje källa bara citerar sin egen text. Kungälvs kommun ersatt med färjans egen webbplats.
+    // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27)
+    // KÄLLA: https://www.marstrandsfarja.se/ — "Västtrafiks enkelbiljetter gäller INTE på färjan!" (läst 2026-10-19)
+    // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "Ordinarie guidade turer nedan ges på svenska och ingår i" (läst 2026-09-27)
+    tips: ['Match Cup Sweden avgörs i början av juli (2026: 29 juni–4 juli) — boka boende i god tid om du vill vara på ön då.', 'Köp färjebiljett på marstrandsfarja.se. Västtrafiks enkelbiljetter gäller inte på Marstrandsfärjan.', 'De guidade turerna på Carlstens fästning ingår i entréavgiften.'],
     related: ['smogen', 'kungshamn', 'lysekil'],
+    // Tillagd 2026-10-19 så att /bad inte står tom.
+    // KÄLLA: https://www.vastsverige.com/kungalv/marstrand/ — "Ön med fler båtar än de flesta, publikmagnet vid match cup och massor av varma klippor perfekta för salta bad." (läst 2026-10-19)
+    // KÄLLA: https://www.marstrandsgasthamn.se/sv/Gasthamn — "Det råder badförbud i hamnområdet" (läst 2026-09-27)
+    activity_meta: {
+      bad: {
+        beaches: [],
+        note: 'Turistrådet Västsverige beskriver Marstrand som en ö med massor av varma klippor som passar för salta bad. I gästhamnens område är det badförbud.',
+      },
+    },
     tags: ['fästning', 'segling', 'restauranger', 'sommardestination', 'lyx'],
     // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar världens första roterande fyr 1781, högst 232 fångar, Lasse-Maja dit 1813 och att de sista fångarna flyttades 1858 — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
     did_you_know: 'Världens första roterande fyr installerades i Carlstens torn 1781. Fästningen var också fängelse — som mest 232 fångar, bland dem Lasse-Maja som fördes hit 1813 — och de sista fångarna flyttades bort 1858.',
-    // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "3 april – 31 maj 2026", "September 2026", "1 juli – 9 augusti 2026" (läst 2026-09-27); https://www.marstrandsgasthamn.se/sv/Kontakt — "Högsäsong (15 juni - 30 juni och 1 augusti - 15 augusti)", "Högsäsong (1 juli - 31 juli)" (läst 2026-09-27); https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/ — "Lågsäsong (september–april)" (läst 2026-09-27)
+    // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "3 april – 31 maj 2026", "September 2026", "1 juli – 9 augusti 2026" (läst 2026-09-27)
+    // KÄLLA: https://www.marstrandsgasthamn.se/sv/Kontakt — "Högsäsong (15 juni - 30 juni och 1 augusti - 15 augusti)", "Högsäsong (1 juli - 31 juli)" (läst 2026-09-27)
     seasonal: {
       open: 'Året runt – Carlstens fästning april–september',
       peak: 'Mitten av juni–mitten av augusti',
       best: 'Juni eller september',
-      // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27); https://carlsten.se/oppettider-och-priser/ — "Guidade turer på svenska varje dag kl 12, 14, 15", "Öppet helger:" (läst 2026-09-27)
+      // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27)
+      // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "Guidade turer på svenska varje dag kl 12, 14, 15", "Öppet helger:" (läst 2026-09-27)
       bestReason: 'Juni och september ligger till största delen utanför Match Cup-veckan (29 juni–4 juli 2026). I juni har Carlstens fästning öppet alla dagar med guidade turer; i september har den öppet helger.',
-      // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27); https://carlsten.se/carlstens-vaffelcafe/ — "Vi öppnar igen till påsken 2027" (läst 2026-09-27)
+      // KÄLLA: https://gkss.se/sv/nyheter/gkss-match-cup-sweden-2026 — "GKSS Match Cup Sweden seglas 29 juni till 4 juli på Marstrand" (läst 2026-09-27)
+      // KÄLLA: https://carlsten.se/carlstens-vaffelcafe/ — "Vi öppnar igen till påsken 2027." (läst 2026-10-19)
       warning: 'GKSS Match Cup Sweden avgörs i början av juli – boka boende i god tid om du vill vara på ön då. Fästningen anger inga öppettider för oktober–mars, och våffelcaféet öppnar först till påsk.',
       months: ['limited','limited','limited','limited','open','open','peak','peak','open','limited','limited','limited'],
     },
@@ -614,6 +650,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
   },
   {
     slug: 'fjallbacka',
+    // 2026-10-21: fastlandsort i Tanums kommun (egen text nedan: "ett litet samhälle vid Tanums kust"), ingen ö.
+    slag: 'ort',
     name: 'Fjällbacka',
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
@@ -817,6 +855,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
   },
   {
     slug: 'hamburgsund',
+    // 2026-10-21: ort på båda sidor om sundet, fastlandet och Hamburgö (egen text nedan), räknas inte som ö.
+    slag: 'ort',
     name: 'Hamburgsund',
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
@@ -1302,31 +1342,51 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
     emoji: '💡',
-    // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Fyren Pater Noster är 32 meter hög och konstruerades av Nils Gustav von Heidenstam", "År 2015 blev fyren ett" ; https://www.vastsverige.com/tjorn/produkter/pater-noster/ — "Hamneskär, Tjörn", "Fyren är gjord helt i stål och gjutjärn", "Hotellet på Pater Noster har nio väldesignade rum" (läst 2026-09-27)
+    // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Fyren Pater Noster är 32 meter hög och konstruerades av Nils Gustav von Heidenstam", "År 2015 blev fyren ett" (läst 2026-09-27)
+    // KÄLLA: https://www.vastsverige.com/tjorn/produkter/pater-noster/ — "Hamneskär, Tjörn", "Fyren är gjord helt i stål och gjutjärn", "Hotellet på Pater Noster har nio väldesignade rum" (läst 2026-09-27)
     tagline: 'Heidenstams järnfyr på Hamneskär — statligt byggnadsminne och hotell.',
     // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Pater%20Noster — Lantmäteriet Min Karta, sökning "Pater Noster" → Pater Noster | Tjörn | Anläggning (fyren på Hamneskär), SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
     lat: 57.8960,
     lng: 11.4678,
     description: [
-      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Fyren Pater Noster är 32 meter hög och konstruerades av Nils Gustav von Heidenstam", "Pater Noster är latin för Fader vår", "Det sägs att sjömännen bad bönen när de siktade skären", "Starka havsströmmar och förrädiska grund har fått många fartyg att förlisa där." ; https://www.vastsverige.com/tjorn/produkter/pater-noster/ — "Längst ut i havsbandet på en karg och vindpinad plats", "Fyren är gjord helt i stål och gjutjärn" ; https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "Arbetet med att binda ihop landets kuster med fyrar leddes av fyringenjör Gustav von Heidenstam vid Lotsverket", "Pater Noster började lysa den 1 november 1868", "Pater Nosterskären består av 97 öar som breder ut sig från Tjörns sydvästra udde och ner i höjd med Marstrand" (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Fyren Pater Noster är 32 meter hög och konstruerades av Nils Gustav von Heidenstam", "Pater Noster är latin för Fader vår", "Det sägs att sjömännen bad bönen när de siktade skären", "Starka havsströmmar och förrädiska grund har fått många fartyg att förlisa där." (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tjorn/produkter/pater-noster/ — "Längst ut i havsbandet på en karg och vindpinad plats", "Fyren är gjord helt i stål och gjutjärn" (läst 2026-09-27)
+      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "Arbetet med att binda ihop landets kuster med fyrar leddes av fyringenjör Gustav von Heidenstam vid Lotsverket", "Pater Noster började lysa den 1 november 1868", "Pater Nosterskären består av 97 öar som breder ut sig från Tjörns sydvästra udde och ner i höjd med Marstrand" (läst 2026-09-27)
       'Pater Noster är en fyr på den karga klippön Hamneskär, längst ut bland Pater Noster-skären – 97 öar som breder ut sig från Tjörns sydvästra udde ner mot Marstrand. Det 32 meter höga tornet är gjort helt i stål och gjutjärn och konstruerades av Nils Gustav von Heidenstam, fyringenjören som ledde arbetet med att binda ihop Sveriges kuster med fyrar. Fyren tändes den 1 november 1868. Starka havsströmmar och förrädiska grund har fått många fartyg att förlisa vid skären, och namnet är latin för Fader vår: det sägs att sjömännen bad bönen när de siktade skären.',
-      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "Fyren släcktes 1977 och ersattes av kassunfyren Hätteberget", "Efter 30 år i mörker kastar Pater Noster åter sitt sken över havet", "Fyren återinvigdes 26 september 2007 efter en grundlig renovering på fastlandet av frivilliga krafter" ; https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "i början av 2000-talet togs hela fyren iland för en omfattande renovering", "Sommaren 2007 fördes den tillbaka till", "högt kulturhistoriskt värde" ; https://paternoster.se/om-pater-noster — "Under drygt 30 år kämpade den ideella föreningen Pater Nosters Vänner för sin fyr" (läst 2026-09-27)
+      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "Fyren släcktes 1977 och ersattes av kassunfyren Hätteberget", "Efter 30 år i mörker kastar Pater Noster åter sitt sken över havet", "Fyren återinvigdes 26 september 2007 efter en grundlig renovering på fastlandet av frivilliga krafter" (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "i början av 2000-talet togs hela fyren iland för en omfattande renovering", "Sommaren 2007 fördes den tillbaka till", "högt kulturhistoriskt värde" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/om-pater-noster — "Under drygt 30 år kämpade den ideella föreningen Pater Nosters Vänner för sin fyr" (läst 2026-09-27)
       'Pater Noster släcktes 1977 och ersattes av kassunfyren Hätteberget. I början av 2000-talet togs hela fyren iland för en omfattande renovering, som den ideella föreningen Pater Nosters Vänner kämpat för i drygt 30 år. Sommaren 2007 fördes den tillbaka till Hamneskär och återinvigdes den 26 september 2007 – efter 30 år i mörker lyser Pater Noster åter. 2015 förklarades fyren som statligt byggnadsminne med högt kulturhistoriskt värde.',
-      // KÄLLA: https://paternoster.se/om-pater-noster — "År 2020 omvandlade designer på Stylt den gamla bostaden för generationer av fyrvaktare till ett unikt och personligt boutiquehotell" ; https://www.vastsverige.com/tjorn/produkter/pater-noster/ — "tack vare designbyrån", "Stylt Trampoli", "Sommartid går det även bra att boka sovplats där den sköna sängen placerats på klipporna" ; https://paternoster.se/fragor-svar — "På Pater Noster finns nio hotellrum med totalt 22 sovplatser", "Hotellet är öppet för privatgäster från april till november", "Pater Noster är tillgängligt året runt för gruppbokning, konferens och andra evenemang", "Vi kan ta emot upp till 150 dagsgäster och 22 övernattande gäster" ; https://paternoster.se/ — "Vi använder lokala råvaror utifrån säsong och i fyrträdgården odlas grönsaker och örter", "Fisk och skaldjur från Kattegatt och Skagerrak står i fokus", "fått utmärkelser som Världens bästa hotellkoncept, Stora Turismpriset samt The Special One" (läst 2026-09-27)
-      'Fyrbostaden från 1868, där generationer av fyrfamiljer bodde, omvandlades 2020 av designbyrån Stylt Trampoli till hotell. Det har nio rum med totalt 22 sovplatser, och sommartid går det också att boka en säng ute på klipporna. Privatgäster tas emot april–november; grupper, konferenser och fester året runt, med plats för upp till 150 dagsgäster. Köket arbetar med lokala råvaror efter säsong, med fisk och skaldjur från Kattegatt och Skagerrak i fokus, och i fyrträdgården odlas grönsaker och örter. Hotellet uppger själv att det belönats med bland annat Världens bästa hotellkoncept, Stora Turismpriset och The Special One.',
-      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Det går också att gå upp i fyren och beundra utsikten över västerhavet", "Om du inte kommer i egen båt, finns det taxibåtar i Marstrand" ; https://paternoster.se/fragor-svar — "Om du inte är hotellgäst är du välkommen att besöka fyren och den tillhörande utställningen, där entré betalas på plats", "Övriga byggnader på ön är reserverade för vår verksamhet och våra hotellgäster", "Nej, det går ingen reguljär färja till Pater Noster", "Alla våra boendepaket på Pater Noster inkluderar RIB-transport tur och retur från Marstrand eller Rönnäng" ; https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "Ön Hamneskär ligger ungefär fem distansminuter från Marstrand", "Hamneskär har två mycket små naturhamnar" ; https://paternoster.se/ta-dig-hit — "Under den perioden kan du boka dagstur med båt, genom våra samarbetspartners med garanterad hamnplats" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/om-pater-noster — "År 2020 omvandlade designer på Stylt den gamla bostaden för generationer av fyrvaktare till ett unikt och personligt boutiquehotell" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tjorn/produkter/pater-noster/ — "tack vare designbyrån", "Stylt Trampoli", "Sommartid går det även bra att boka sovplats där den sköna sängen placerats på klipporna" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/fragor-svar — "På Pater Noster finns nio hotellrum med totalt 22 sovplatser", "Hotellet är öppet för privatgäster från april till november", "Pater Noster är tillgängligt året runt för gruppbokning, konferens och andra evenemang", "Vi kan ta emot upp till 150 dagsgäster och 22 övernattande gäster" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/ — "Vi använder lokala råvaror utifrån säsong och i fyrträdgården odlas grönsaker och örter", "Fisk och skaldjur från Kattegatt och Skagerrak står i fokus", "fått utmärkelser som Världens bästa hotellkoncept, Stora Turismpriset samt The Special One" (läst 2026-09-27)
+      // Rättad 2026-10-19: "från 1868" ändrat. Hotellet skriver 1868, men Statens fastighetsverk skriver att byggnaderna för fyrpersonalen stod färdiga 1867. Myndighetskällan följs.
+      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "Byggnaderna för fyrpersonalen med familjer stod färdiga 1867." (läst 2026-10-19)
+      'Fyrbostaden, där generationer av fyrfamiljer bodde och som enligt Statens fastighetsverk stod färdig 1867, omvandlades 2020 av designbyrån Stylt Trampoli till hotell. Det har nio rum med totalt 22 sovplatser, och sommartid går det också att boka en säng ute på klipporna. Privatgäster tas emot april–november; grupper, konferenser och fester året runt, med plats för upp till 150 dagsgäster. Köket arbetar med lokala råvaror efter säsong, med fisk och skaldjur från Kattegatt och Skagerrak i fokus, och i fyrträdgården odlas grönsaker och örter. Hotellet uppger själv att det belönats med bland annat Världens bästa hotellkoncept, Stora Turismpriset och The Special One.',
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Det går också att gå upp i fyren och beundra utsikten över västerhavet", "Om du inte kommer i egen båt, finns det taxibåtar i Marstrand" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/fragor-svar — "Om du inte är hotellgäst är du välkommen att besöka fyren och den tillhörande utställningen, där entré betalas på plats", "Övriga byggnader på ön är reserverade för vår verksamhet och våra hotellgäster", "Nej, det går ingen reguljär färja till Pater Noster", "Alla våra boendepaket på Pater Noster inkluderar RIB-transport tur och retur från Marstrand eller Rönnäng" (läst 2026-09-27)
+      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "Ön Hamneskär ligger ungefär fem distansminuter från Marstrand", "Hamneskär har två mycket små naturhamnar" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/ta-dig-hit — "Under den perioden kan du boka dagstur med båt, genom våra samarbetspartners med garanterad hamnplats" (läst 2026-09-27)
       'Besökare kan gå upp i fyren och se ut över västerhavet; den som inte bor på hotellet betalar entré till fyren och utställningen på plats, medan övriga byggnader är reserverade för hotellet och dess gäster. Hamneskär ligger ungefär fem distansminuter från Marstrand och har två mycket små naturhamnar. Reguljär färja finns inte: hotellgäster åker hotellets RIB-båt från Marstrand eller Rönnäng, och andra kommer med egen båt, taxibåt från Marstrand eller sommartid med de dagsturer som hotellets samarbetspartner kör.',
-      // KÄLLA: https://www.vastsverige.com/tjorn/ — "Här väntar tre internationellt kända besöksmål: Skulptur i Pilane, Nordiska Akvarellmuseet och Pater Noster" ; https://paternoster.se/aktiviteter — "Vi är stolta att vara en del av konstinitiativet Tjörn - Island of Art", "Förutom Pater Noster ingår Nordiska Akvarellmuseet i Skärhamn" ; https://paternoster.se/sommarcafet — "besök i fyren och konstutställningen på klipporna" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tjorn/ — "Här väntar tre internationellt kända besöksmål: Skulptur i Pilane, Nordiska Akvarellmuseet och Pater Noster" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/aktiviteter — "Vi är stolta att vara en del av konstinitiativet Tjörn - Island of Art", "Förutom Pater Noster ingår Nordiska Akvarellmuseet i Skärhamn" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/sommarcafet — "besök i fyren och konstutställningen på klipporna" (läst 2026-09-27)
       'Pater Noster ingår i konstinitiativet Tjörn – Island of Art och lyfts av Västsverige fram som ett av Tjörns tre internationellt kända besöksmål, tillsammans med Skulptur i Pilane och Nordiska Akvarellmuseet i Skärhamn. På fyrplatsen visas också en konstutställning på klipporna.',
     ],
     facts: {
       // KÄLLA: https://paternoster.se/ta-dig-hit — "Restid ca 20 min från både Marstrand söder ifrån och Rönnäng norr ifrån." (läst 2026-09-27)
       travel_time: 'Ca 20 min med båt från Marstrand eller Rönnäng',
-      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "en av landets cirka 1 700 kronoholmar" ; https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "År 2015 blev fyren ett" ; https://paternoster.se/besok-oss — "Pater Noster är ett prisbelönt fyrhotell på en avskild ö längst ut i Bohusläns skärgård" (läst 2026-09-27)
+      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "en av landets cirka 1 700 kronoholmar" (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "År 2015 blev fyren ett" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/besok-oss — "Pater Noster är ett prisbelönt fyrhotell på en avskild ö längst ut i Bohusläns skärgård" (läst 2026-09-27)
       character: 'Fyrplats på en kronoholme, statligt byggnadsminne, fyrhotell',
-      // KÄLLA: https://paternoster.se/fragor-svar — "Hotellet är öppet för privatgäster från april till november", "under sommaren (juli-augusti) har vi öppet vårt sommarcafé i Sjöboden" (läst 2026-09-27)
-      season: 'Hotell april–november, sommarcafé juli–augusti',
-      // KÄLLA: https://paternoster.se/ — "Pater Noster erbjuder en unik miljö för allt från exklusiva konferenser och företagsevent" ; https://paternoster.se/besok-oss — "Fira på en fyrö", "Bo i historiska fyrbostaden" (läst 2026-09-27)
+      // Rättad 2026-10-19: hotellets sidor säger både "juli-augusti" och "juli-mitten av augusti". Sidan om transport, som anger det snävare, följs överallt.
+      // KÄLLA: https://paternoster.se/fragor-svar — "Hotellet är öppet för privatgäster från april till november" (läst 2026-10-19)
+      // KÄLLA: https://paternoster.se/ta-dig-hit — "Från juli-mitten av augusti är sommarcaféet öppet." (läst 2026-10-19)
+      season: 'Hotell april till november, sommarcafé från juli till mitten av augusti',
+      // KÄLLA: https://paternoster.se/ — "Pater Noster erbjuder en unik miljö för allt från exklusiva konferenser och företagsevent" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/besok-oss — "Fira på en fyrö", "Bo i historiska fyrbostaden" (läst 2026-09-27)
       best_for: 'Hotellvistelse, fyrbesök, konferens och fest',
     },
     facts_provenance: {
@@ -1336,32 +1396,50 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       best_for: 'bedomning',
     },
     activities: [
-      // KÄLLA: https://paternoster.se/aktiviteter — "Gå upp för trapporna till 32 meters höjd och upplev utsikten högst upp i fyren" ; https://www.vastsverige.com/tjorn/produkter/pater-noster/ — "Den byggdes 1868", "Fyren är gjord helt i stål och gjutjärn" ; https://paternoster.se/fragor-svar — "där entré betalas på plats" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/aktiviteter — "Gå upp för trapporna till 32 meters höjd och upplev utsikten högst upp i fyren" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tjorn/produkter/pater-noster/ — "Den byggdes 1868", "Fyren är gjord helt i stål och gjutjärn" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/fragor-svar — "där entré betalas på plats" (läst 2026-09-27)
       { icon: '💡', name: 'Fyrbestigning', desc: 'Gå upp för trapporna i den 32 meter höga järnfyren från 1868. Den som inte bor på hotellet betalar entré på plats.' },
       // KÄLLA: https://paternoster.se/fragor-svar — "Om du vill sola och bada på ön, rekommenderar vi att du lägger till vid klipporna och ser ön som en naturhamn", "Allemansrätten gäller på ön, men även rätten till hemfrid", "hålla avstånd till hus och gårdsplaner" (läst 2026-09-27)
       { icon: '🏊', name: 'Bad från klipporna', desc: 'Den som vill sola och bada rekommenderas att lägga till vid klipporna och använda ön som naturhamn. Allemansrätten gäller, men håll avstånd till hus och gårdsplaner.' },
       // KÄLLA: https://paternoster.se/aktiviteter — "Paddla ca 2h med guide i havskajak bland kobbar och skär runt Pater Noster", "Vår sälsafari-tur ger dig en unik möjlighet att lära dig mer om dessa fascinerande djur" (läst 2026-09-27)
       { icon: '🛶', name: 'Havskajak och sälsafari', desc: 'Hotellet ordnar guidad paddling i havskajak, ca 2 timmar bland kobbarna runt Pater Noster, och sälsafari med båt. Förfrågan görs till hotellet.' },
-      // KÄLLA: https://paternoster.se/sommarcafet — "Under sommaren 2026 driver vi ett sommarcafé på Pater Noster med fika, kaffe, hembakat samt ett urval av kalla rätter inspirerade av havet och säsongen", "Öppna dagar och tider styrs av vädret och kan variera" ; https://paternoster.se/fragor-svar — "under sommaren (juli-augusti) har vi öppet vårt sommarcafé i Sjöboden" (läst 2026-09-27)
-      { icon: '🍽', name: 'Sommarcaféet i Sjöboden', desc: 'Juli–augusti håller hotellet sommarcafé i Sjöboden med fika, kaffe, hembakat och kalla rätter. Öppettiderna styrs av vädret.' },
+      // KÄLLA: https://paternoster.se/sommarcafet — "Under sommaren 2026 driver vi ett sommarcafé på Pater Noster med fika, kaffe, hembakat samt ett urval av kalla rätter inspirerade av havet och säsongen", "Öppna dagar och tider styrs av vädret och kan variera" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/fragor-svar — "under sommaren (juli-augusti) har vi öppet vårt sommarcafé i Sjöboden" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/ta-dig-hit — "Från juli-mitten av augusti är sommarcaféet öppet." (läst 2026-10-19)
+      { icon: '🍽', name: 'Sommarcaféet i Sjöboden', desc: 'Från juli till mitten av augusti håller hotellet sommarcafé i Sjöboden med fika, kaffe, hembakat och kalla rätter. Öppettiderna styrs av vädret. Säsongen 2026 är slut.' },
     ],
     accommodation: [
-      // KÄLLA: https://paternoster.se/fragor-svar — "På Pater Noster finns nio hotellrum med totalt 22 sovplatser", "Nej, fyra av rummen har privat badrum med dusch och toalett", "Paketet omfattar RIB-transport tur och retur, helpension med frukost, lunch och en fyrarätters skaldjursmiddag, guidad rundvandring på ön samt entré till Pater Noster fyr", "Hotellet är öppet för privatgäster från april till november" ; https://paternoster.se/besok-oss — "I den historiska fyrbostaden från 1868 levde generationer av fyrfamiljer i över 100 år" (läst 2026-09-27)
-      { name: 'Pater Noster', type: 'Hotell', desc: 'Hotell i den historiska fyrbostaden från 1868 med nio rum och 22 sovplatser; fyra rum har eget badrum, övriga delar badrum. I vistelsen ingår RIB-båt tur och retur, helpension, guidad tur och entré till fyren. Öppet för privatgäster april–november.' },
+      // KÄLLA: https://paternoster.se/fragor-svar — "På Pater Noster finns nio hotellrum med totalt 22 sovplatser", "Nej, fyra av rummen har privat badrum med dusch och toalett", "Paketet omfattar RIB-transport tur och retur, helpension med frukost, lunch och en fyrarätters skaldjursmiddag, guidad rundvandring på ön samt entré till Pater Noster fyr", "Hotellet är öppet för privatgäster från april till november" (läst 2026-10-19)
+      // Rättad 2026-10-19: "från 1868" ändrat till 1860-talet. Hotellet skriver 1868, Statens fastighetsverk 1867.
+      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "Byggnaderna för fyrpersonalen med familjer stod färdiga 1867." (läst 2026-10-19)
+      { name: 'Pater Noster', type: 'Hotell', desc: 'Hotell i den historiska fyrbostaden från 1860-talet med nio rum och 22 sovplatser; fyra rum har eget badrum, övriga delar badrum. I vistelsen ingår RIB-båt tur och retur, helpension, guidad tur och entré till fyren. Öppet för privatgäster april–november.' },
     ],
     getting_there: [
-      // KÄLLA: https://paternoster.se/ta-dig-hit — "Restid ca 20 min från både Marstrand söder ifrån och Rönnäng norr ifrån.", "Hemresa är kl 10.30 till samma hamn som vid utresa.", "Bakom Marstrands färjeläge, nedanför Coop på Koön", "Stansvikstappen, sjötapp i Rönnäng" ; https://paternoster.se/fragor-svar — "Vid privat bokning kan du välja att åka från Marstrand kl. 12:00 eller från Rönnäng kl. 12:30", "en överfart med RIB till Pater Noster från Rönnäng på Tjörn brukar upplevas som något mjukare" (läst 2026-09-27)
-      { method: 'RIB-båt för hotellgäster', from: 'Marstrand eller Rönnäng', time: 'ca 20 min', desc: 'Hotellets RIB-båt ingår i vistelsen. Den går kl. 12.00 från Marstrand (bakom färjeläget, nedanför Coop på Koön) eller kl. 12.30 från Rönnäng (Stansvikstappen), och hemresan går kl. 10.30. Från Rönnäng brukar överfarten upplevas som något mjukare.', icon: '⛴', url: 'https://paternoster.se/ta-dig-hit' },
-      // KÄLLA: https://paternoster.se/ta-dig-hit — "Från juli-mitten av augusti är sommarcaféet öppet.", "Erbjuder fasta turer från Marstrand och Skärhamn.", "Erbjuder båttur från Marstrandsön med omnejd." ; https://www.head4waves.se/ — "Under högsäsongen erbjuder vi fasta dagsturer till den fantastiska fyrplatsen Pater Noster" ; https://www.marstrandtransport.se/ — "från Marstrandsön med omnejd ända ut till Pater Noster, Hamneskär med RIB" ; https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Om du inte kommer i egen båt, finns det taxibåtar i Marstrand" (läst 2026-09-27)
-      { method: 'Dagstur med båt (sommar)', from: 'Marstrand eller Skärhamn', desc: 'När sommarcaféet är öppet, juli–mitten av augusti, kan dagsturer med garanterad hamnplats bokas direkt hos hotellets samarbetspartner: Head4Waves kör fasta turer från Marstrand och Skärhamn, Marstrandtransport från Marstrand med omnejd. Taxibåtar finns i Marstrand.', icon: '⛴' },
+      // KÄLLA: https://paternoster.se/ta-dig-hit — "Restid ca 20 min från både Marstrand söder ifrån och Rönnäng norr ifrån.", "Hemresa är kl 10.30 till samma hamn som vid utresa.", "Bakom Marstrands färjeläge, nedanför Coop på Koön", "Stansvikstappen, sjötapp i Rönnäng" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/fragor-svar — "Vid privat bokning kan du välja att åka från Marstrand kl. 12:00 eller från Rönnäng kl. 12:30", "en överfart med RIB till Pater Noster från Rönnäng på Tjörn brukar upplevas som något mjukare" (läst 2026-09-27)
+      // Rättad 2026-10-19: länken borttagen. Mallen visar den som "Köp biljett / Se tidtabell", men RIB-båten ingår i hotellvistelsen och sidan säljer inga biljetter.
+      { method: 'RIB-båt för hotellgäster', from: 'Marstrand eller Rönnäng', time: 'ca 20 min', desc: 'Hotellets RIB-båt ingår i vistelsen. Den går kl. 12.00 från Marstrand (bakom färjeläget, nedanför Coop på Koön) eller kl. 12.30 från Rönnäng (Stansvikstappen), och hemresan går kl. 10.30. Från Rönnäng brukar överfarten upplevas som något mjukare.', icon: '⛴' },
+      // KÄLLA: https://paternoster.se/ta-dig-hit — "Från juli-mitten av augusti är sommarcaféet öppet.", "Erbjuder fasta turer från Marstrand och Skärhamn.", "Erbjuder båttur från Marstrandsön med omnejd." (läst 2026-09-27)
+      // KÄLLA: https://www.head4waves.se/ — "Under högsäsongen erbjuder vi fasta dagsturer till den fantastiska fyrplatsen Pater Noster" (läst 2026-09-27)
+      // KÄLLA: https://www.marstrandtransport.se/ — "från Marstrandsön med omnejd ända ut till Pater Noster, Hamneskär med RIB" (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Om du inte kommer i egen båt, finns det taxibåtar i Marstrand" (läst 2026-09-27)
+      // Rättad 2026-10-19: Head4Waves anger en längre period (1 juni till 30 augusti) än caféets, så dagsturerna knyts inte längre till caféets datum.
+      // KÄLLA: https://www.head4waves.se/ — "Under högsäsongen erbjuder vi fasta dagsturer till den fantastiska fyrplatsen Pater Noster."; "Tider och upphämtning"; "1 Juni - 30 Augusti"; "Avgång från Marstrand:"; "Avgång från Skärhamn:" (läst 2026-10-19)
+      { method: 'Dagstur med båt (sommar)', from: 'Marstrand eller Skärhamn', desc: 'Sommartid kan dagsturer med garanterad hamnplats bokas direkt hos hotellets samarbetspartner. Head4Waves kör fasta turer från Marstrand och Skärhamn och anger perioden 1 juni till 30 augusti. Marstrandtransport kör från Marstrand med omnejd. Taxibåtar finns i Marstrand. Säsongen 2026 är slut.', icon: '⛴' },
     ],
     harbors: [
-      // KÄLLA: https://paternoster.se/fragor-svar — "Gästhamnen är liten och besök får vara max två timmar, och hamnplats kan inte bokas", "används för hotellets verksamhet" ; https://paternoster.se/ta-dig-hit — "Vi ber er meddela oss senast tre timmar innan er planerade ankomsttid" ; https://paternoster.se/sommarcafet — "Hamnen är liten och kräver god sjövana vid blåsigt väder." ; https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Den lilla hamnen har plats för några gästbåtar" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/fragor-svar — "Gästhamnen är liten och besök får vara max två timmar, och hamnplats kan inte bokas", "används för hotellets verksamhet" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/ta-dig-hit — "Vi ber er meddela oss senast tre timmar innan er planerade ankomsttid" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/sommarcafet — "Hamnen är liten och kräver god sjövana vid blåsigt väder." (läst 2026-09-27)
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/pater-noster---ett-hem-vid-horisonten — "Den lilla hamnen har plats för några gästbåtar" (läst 2026-09-27)
       { name: 'Gästhamnen på Hamneskär', desc: 'Liten gästhamn vid fyrplatsen med plats för några gästbåtar. Dagsbesökare får ligga max två timmar i mån av plats; platser kan inte förbokas, och den reserverade platsen används av hotellet. Hotellgäster med egen båt meddelar hotellet senast tre timmar före ankomst. Hamnen kräver god sjövana i blåsigt väder.', fuel: false },
     ],
     restaurants: [
-      // KÄLLA: https://paternoster.se/fragor-svar — "serveras middagen vanligtvis samtidigt för alla i Sjöboden", "under sommaren (juli-augusti) har vi öppet vårt sommarcafé i Sjöboden" ; https://paternoster.se/sommarcafet — "Matupplevelser utöver caféets ordinarie utbud, tillgängliga endast genom förbokning och som gruppbokning", "är vi ingen restaurang för spontana besök" (läst 2026-09-27)
-      { name: 'Sjöboden', type: 'Restaurang och sommarcafé', desc: 'Hotellets matsal och sommarcafé i den gamla sjöboden. Här serveras middag för hotellgästerna, och juli–augusti har sommarcaféet fika, hembakat och kalla rätter. Lunch och middag utöver caféet serveras bara efter förbokning som gruppbokning – hotellet är ingen restaurang för spontana besök.' },
+      // KÄLLA: https://paternoster.se/fragor-svar — "serveras middagen vanligtvis samtidigt för alla i Sjöboden", "under sommaren (juli-augusti) har vi öppet vårt sommarcafé i Sjöboden" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/sommarcafet — "Matupplevelser utöver caféets ordinarie utbud, tillgängliga endast genom förbokning och som gruppbokning", "är vi ingen restaurang för spontana besök" (läst 2026-09-27)
+      // KÄLLA: https://paternoster.se/ta-dig-hit — "Från juli-mitten av augusti är sommarcaféet öppet." (läst 2026-10-19)
+      { name: 'Sjöboden', type: 'Restaurang och sommarcafé', desc: 'Hotellets matsal och sommarcafé i den gamla sjöboden. Här serveras middag för hotellgästerna, och från juli till mitten av augusti har sommarcaféet fika, hembakat och kalla rätter. Lunch och middag utöver caféet serveras bara efter förbokning som gruppbokning. Hotellet är ingen restaurang för spontana besök.' },
     ],
     tips: [
       // KÄLLA: https://paternoster.se/fragor-svar — "Eftersom det inte finns någon mataffär på ön" (läst 2026-09-27)
@@ -1373,93 +1451,36 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     ],
     related: ['marstrand', 'astol', 'dyron'],
     tags: ['fyr', 'fyrhotell', 'byggnadsminne', 'kronoholme'],
-    // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "en av landets cirka 1 700 kronoholmar", "Fanns det fler än tre barn på en fyrplats krävdes skola. Den inreddes på vinden och var också lärarinnebostad.", "Sista året med skola var 1938." ; https://paternoster.se/om-pater-noster — "Fyrfolket bestod av 3 familjer: Fyrmästaren, fyrvaktaren och fyrbiträdet med respektive fru och barn." (läst 2026-09-27)
+    // Tillagd 2026-10-19 så att /med-barn inte säger "Ingen badplats registrerad" när /bad listar bad från klipporna.
+    // KÄLLA: https://paternoster.se/fragor-svar — "Om du vill sola och bada på ön, rekommenderar vi att du lägger till vid klipporna och ser ön som en naturhamn."; "Allemansrätten gäller, men vänligen respektera även rätten till hemfrid för våra hotellgäster." (läst 2026-10-19)
+    activity_meta: {
+      bad: {
+        beaches: [
+          {
+            name: 'Klipporna på Hamneskär',
+            type: 'klippbad',
+            desc: 'Hotellet rekommenderar den som vill sola och bada att lägga till vid klipporna och använda ön som naturhamn. Allemansrätten gäller, men respektera hotellgästernas hemfrid.',
+          },
+        ],
+      },
+    },
+    // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/hamneskar-och-pater-noster — "en av landets cirka 1 700 kronoholmar", "Fanns det fler än tre barn på en fyrplats krävdes skola. Den inreddes på vinden och var också lärarinnebostad.", "Sista året med skola var 1938." (läst 2026-09-27)
+    // KÄLLA: https://paternoster.se/om-pater-noster — "Fyrfolket bestod av 3 familjer: Fyrmästaren, fyrvaktaren och fyrbiträdet med respektive fru och barn." (läst 2026-09-27)
     did_you_know: 'Hamneskär är en av Sveriges cirka 1 700 kronoholmar. Här bodde tre fyrfamiljer – fyrmästarens, fyrvaktarens och fyrbiträdets – och eftersom en fyrplats med fler än tre barn skulle ha skola inreddes en skolsal på vinden. Sista skolåret var 1938.',
     // KÄLLA: https://paternoster.se/fragor-svar — "Hundar är välkomna i våra", "Fyrbiträdesrum Innergård", "behöver hunden hållas kopplad under hela vistelsen", "Hundar får inte vistas i allmänna ytor som Fyrmästarens vardagsrum eller matsal, men Sjöboden är en plats där hunden är välkommen", "För transport med RIB-båt är det ägarens ansvar att hunden har flytväst" (läst 2026-09-27)
     dog_notes: 'Hotellet tar emot hund i rummen Fyrbiträdesrum Innergård. Hunden ska vara kopplad under hela vistelsen och får vara i Sjöboden men inte i Fyrmästarens vardagsrum eller matsal. På RIB-båten ansvarar ägaren för att hunden har flytväst.',
-    // KÄLLA: https://paternoster.se/fragor-svar — "Hotellet är öppet för privatgäster från april till november", "Pater Noster är öppet året runt vid Buy Out (exklusiv bokning av hela hotellet), konferenser och andra gruppbokningar" ; https://paternoster.se/ta-dig-hit — "Från juli-mitten av augusti är sommarcaféet öppet." ; https://www.head4waves.se/ — "Avgång från Skärhamn" (läst 2026-09-27)
+    // KÄLLA: https://paternoster.se/fragor-svar — "Hotellet är öppet för privatgäster från april till november", "Pater Noster är öppet året runt vid Buy Out (exklusiv bokning av hela hotellet), konferenser och andra gruppbokningar" (läst 2026-09-27)
+    // KÄLLA: https://paternoster.se/ta-dig-hit — "Från juli-mitten av augusti är sommarcaféet öppet." (läst 2026-09-27)
+    // KÄLLA: https://www.head4waves.se/ — "Avgång från Skärhamn" (läst 2026-09-27)
     seasonal: {
       open: 'April–November',
       peak: 'Juli–mitten av augusti',
       best: 'Juli–mitten av augusti för dagsbesök',
-      bestReason: 'Hotellet tar emot privatgäster april–november. Sommarcaféet i Sjöboden har öppet juli–mitten av augusti, och då går även dagsturer med båt från Marstrand och Skärhamn.',
+      // Rättad 2026-10-19: dagsturerna har en längre period (Head4Waves: 1 juni till 30 augusti) än caféet.
+      bestReason: 'Hotellet tar emot privatgäster april till november. Sommarcaféet i Sjöboden har öppet från juli till mitten av augusti, och sommartid går dagsturer med båt från Marstrand och Skärhamn.',
       warning: 'December–mars öppnar ön bara för konferenser, gruppbokningar och exklusiv bokning av hela hotellet.',
       months: ['off','off','off','open','open','open','peak','peak','open','open','open','off'],
     },
-  },
-  {
-    slug: 'vinga',
-    name: 'Vinga',
-    region: 'bohuslan',
-    regionLabel: 'Bohuslän',
-    emoji: '🎵',
-    // KÄLLA: Winga Vänner — fadern Carl Gunnar Taube fyrvaktare på Vinga 1889–1905 — https://vinga.nu/ ; Sjöfartsverket, Vinga – Göteborgarnas fyr — båken och fyrarna — https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/vinga--goteborgarnas-fyr/ ; Länsstyrelsen Västra Götaland, Vinga — naturreservat — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
-    tagline: 'Evert Taubes barndomsö — fyr, båk och naturreservat i yttre skärgården.',
-    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vinga — Lantmäteriet Min Karta, sökning "Vinga" → Vinga | Göteborg | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
-    lat: 57.6329,
-    lng: 11.6083,
-    description: [
-      // KÄLLA: Winga Vänner — "Evert Taube tillbringade sin barndom här på Vinga eftersom pappan, Carl Gunnar Taube var fyrvaktare mellan 1889 och 1905" — https://vinga.nu/ ; Sjöfartsverket, Vinga – Göteborgarnas fyr — skalden "delvis växte upp" på fyrplatsen — https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/vinga--goteborgarnas-fyr/ ; Göteborg & Co, Ta dig till skärgården — Vinga i Göteborgs yttre skärgård — https://www.goteborg.com/guider/ta-dig-till-skargarden (läst 2026-09-16)
-      'Vinga ligger i Göteborgs yttre skärgård, längst ut mot havet. Evert Taube tillbringade sin barndom här: hans far Carl Gunnar Taube var fyrvaktare på Vinga mellan 1889 och 1905. Sjöfartsverket beskriver det som att skalden delvis växte upp på fyrplatsen.',
-      // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Vinga — bildat 1987, cirka 559 hektar, "Klipphällar möter buskiga snår av slån, björnbär, nypon och vinbär", sparris, västkustarv, strandkål och marviol, gök och näktergal, Koholmen som häckningsplats — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
-      'Hela ön är naturreservat sedan 1987 och omfattar cirka 559 hektar. Klipphällar möter buskiga snår av slån, björnbär, nypon och vinbär, och i mitten av ön breder ett stort lövbuskage ut sig. På de norra delarna växer sparris, västkustarv, strandkål och marviol. Utöver vind och vågor kan man höra gök och näktergal här, och intilliggande Koholmen är häckningsplats för en mängd fåglar.',
-      // KÄLLA: Sjöfartsverket, Vinga – Göteborgarnas fyr — tornet 29 meter högt och ritat av fyringenjör Emil Karlsson, mittdelen göts i betong av Skånska Cementgjuteriet och "Tornet kläddes med porfyrit bruten på Vinga", automatisering 1975 och avbemannad fyrplats, kvarvarande lotsning, utställningen "Fyrplats Vinga" — https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/vinga--goteborgarnas-fyr/ ; Länsstyrelsen Västra Götaland, Vinga — "Fyrtornet är 29 meter högt och 46 meter över havet", dagliga väderobservationer, "I fyrmästarbostaden finns ett Taube-rum och ett arbetslivsmuseum" — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
-      'Vinga fyr stod klar 1890 och ritades av fyringenjören Emil Karlsson. Tornet är 29 meter högt, 46 meter över havet, och den mellersta delen göts i betong av Skånska Cementgjuteriet och kläddes sedan med porfyrit bruten på Vinga. Fyren automatiserades 1975 och fyrplatsen avbemannades, men lotsverksamheten finns kvar och dagliga väderobservationer görs fortfarande här. I fyrmästarbostaden finns ett Taube-rum och ett arbetslivsmuseum, och Sjöfartsverket hänvisar till utställningen "Fyrplats Vinga" på ön.',
-      // KÄLLA: Sjöfartsverket, Vinga – Göteborgarnas fyr — "En pyramidformad båk har funnits på platsen sedan tidigt 1600-tal och dagens båk byggdes 1857", första fyren 1840–1841, andra fyren 1856, nuvarande torn 1890 — https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/vinga--goteborgarnas-fyr/ (läst 2026-09-16)
-      // OKLART: Västsverige anger 1851 för båken, Sjöfartsverket 1857. Sjöfartsverket som fyrmyndighet följs här.
-      'Vinga har haft sjömärken längre än fyren funnits. En pyramidformad båk har stått på platsen sedan tidigt 1600-tal, och dagens båk byggdes 1857. Den första fyren anlades 1840–1841, en andra fyr uppfördes 1856, och först 1890 kom det torn som står i dag.',
-      // KÄLLA: Winga Vänner, Turbåtar — Strömma från Lilla Bommen, Kungsö från Stenpiren, Silvana och Hönö Båtturer från Hönö Klåva, Emma från Fotö — https://vinga.nu/turbatar/ ; Strömma, Guidad båtutflykt till Vinga — avgång Lilla Bommens hamn, cirka 1 timme 15 minuter enkel väg, två timmar på Vinga — https://www.stromma.com/sv-se/goteborg/utflykter/guidad-batutflykt-till-vinga/ ; Winga Vänner, Uthyrning — Biskopsgården och Fyrmästarbostaden hyrs ut av föreningen medan "Båken hyres ut endast för ceremonier som bröllop och dop", Fyrfolkets By drivs av Vinga Event — https://vinga.nu/uthyrning-av-stugor/ ; Länsstyrelsen Västra Götaland, Vinga — "Sommartid går turbåtar från Hönö och Göteborg till Vinga" — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
-      'Turbåtar till Vinga går sommartid från både Göteborg och Öckeröarna. Strömma avgår från Lilla Bommen och anger själv cirka 1 timme och 15 minuter enkel väg samt två timmar i land på ön. M/S Kungsö går från Stenpiren, Silvana och Hönö Båtturer från Hönö Klåva, och Emma från Fotö. Öns besöksverksamhet drivs av föreningen Winga Vänner. Det finns dessutom övernattningsmöjligheter: Winga Vänner hyr ut Biskopsgården och Fyrmästarbostaden, medan Båken hyrs ut endast för ceremonier som bröllop och dop. Vinga Event driver Fyrfolkets By.',
-      // KÄLLA: Västsverige/Visit Öckerö, Ön Vinga — kiosk med glass, dryck och souvenirer samt grillplatsen "Brända Fläsket" — https://www.vastsverige.com/visitockero/produkter/on-vinga/ ; Länsstyrelsen Västra Götaland, Vinga — informationstavla, rastplats, vandringsled och toalett som besöksanordningar — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
-      'På ön finns kiosk med glass, godis och fika samt grillplatsen "Brända Fläsket". Länsstyrelsen anger informationstavla, rastplats, vandringsled och toalett som besöksanordningar i reservatet.',
-    ],
-    facts: {
-      // KÄLLA: Strömma, Guidad båtutflykt till Vinga — cirka 1 timme 15 minuter enkel väg från Lilla Bommen — https://www.stromma.com/sv-se/goteborg/utflykter/guidad-batutflykt-till-vinga/ (läst 2026-09-16)
-      travel_time: '1 h 15 min med båt från Göteborg',
-      // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Vinga — hela ön är naturreservat sedan 1987 — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
-      character: 'Fyrplats, naturreservat, dagsutflykt',
-      season: 'Sommarsäsong',
-      best_for: 'Dagsutflykt, vis-fans, klippvandring',
-    },
-    facts_provenance: {
-      travel_time: 'matt',
-      character: 'bedomning',
-      season: 'matt',
-      best_for: 'bedomning',
-    },
-    activities: [
-      // KÄLLA: Länsstyrelsen Västra Götaland, Vinga — ordagrant "I fyrmästarbostaden finns ett Taube-rum och ett arbetslivsmuseum" och "Fyrtornet är 29 meter högt och 46 meter över havet"; reservatet listar stig, rastplats och informationstavla — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html ; Sjöfartsverket, Vinga – Göteborgarnas fyr — utställningen "Fyrplats Vinga" — https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/vinga--goteborgarnas-fyr/ (läst 2026-09-16)
-      { icon: '🎵', name: 'Taubemuseet', desc: 'Arbetslivsmuseum med Taube-rum i fyrmästarbostaden; utställningen Fyrplats Vinga.' },
-      { icon: '💡', name: 'Vinga fyr', desc: 'Tornet är 29 meter högt och 46 meter över havet.' },
-      { icon: '🥾', name: 'Klippvandring', desc: 'Stig genom naturreservatet, med rastplats och informationstavla.' },
-    ],
-    accommodation: [
-      // KÄLLA: Winga Vänner, Uthyrning — Biskopsgården med 7 rum och 10 bäddar plus 2 extrabäddar, Fyrmästarbostaden med 3 rum och 7 bäddar, uthyrning till föreningens medlemmar; Fyrfolkets By sköts av Vinga Event — https://vinga.nu/uthyrning/ (läst 2026-09-16)
-      { name: 'Biskopsgården', type: 'Uthyrningshus', desc: 'Hus på Vinga som hyrs ut av föreningen Winga Vänner. Sju rum, tio bäddar plus två extrabäddar. Uthyrning till föreningens medlemmar.' },
-      { name: 'Fyrmästarbostaden', type: 'Uthyrningshus', desc: 'Hus på Vinga som hyrs ut av föreningen Winga Vänner. Tre rum, sju bäddar. Uthyrning till föreningens medlemmar.' },
-      { name: 'Fyrfolkets By', type: 'Uthyrningshus', desc: 'Boende på Vinga som drivs av Vinga Event.' },
-    ],
-    getting_there: [
-      // KÄLLA: Winga Vänner, Turbåtar — Strömma från Lilla Bommen, Kungsö från Stenpiren, Silvana, Hönö Båtturer och Kastor från Hönö Klåva, Emma från Fotö — https://vinga.nu/turbatar/ ; Strömma, Guidad båtutflykt till Vinga — cirka 1 h 15 min enkel väg från Lilla Bommens hamn — https://www.stromma.com/sv-se/goteborg/utflykter/guidad-batutflykt-till-vinga/ (läst 2026-09-16)
-      { method: 'Båt', from: 'Göteborg', time: '1 h 15 min', desc: 'Turbåtar sommartid från Lilla Bommen och Stenpiren i Göteborg samt från Hönö Klåva och Fotö.', icon: '⛴' },
-      // KÄLLA: Västsverige/Visit Öckerö, Ön Vinga — resan från Hönö Klåva tar cirka 30 minuter — https://www.vastsverige.com/visitockero/produkter/on-vinga/ (läst 2026-09-16)
-      { method: 'Båt', from: 'Hönö Klåva', time: '30 min', desc: 'Turbåt från Öckeröarna sommartid.', icon: '⛴' },
-    ],
-    harbors: [
-      // KÄLLA: Winga Vänner, Gästhamn — plats för cirka 30 båtar av normalstorlek, max 40 fot och max djup 2,5 meter, "du är alltid välkommen med egen båt till Vinga, året runt", toaletter, el, soprum, grillplatsen "Brända Fläsket" och kiosk — https://vinga.nu/gasthamn/ ; Länsstyrelsen Västra Götaland, Vinga — "relativt vindskyddad hamn" — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
-      { name: 'Vinga gästhamn', desc: 'Gästhamn som drivs av föreningen Winga Vänner, med plats för cirka 30 båtar (max 40 fot, max djup 2,5 m). Egen båt är välkommen året runt. Länsstyrelsen beskriver hamnen som relativt vindskyddad.' },
-    ],
-    restaurants: [
-      // KÄLLA: Winga Vänner — "I kiosken säljer vi fina souvenirer... Man kan även köpa glass, godis och fika" — https://vinga.nu/ och https://vinga.nu/gasthamn/ ; Länsstyrelsen Västra Götaland, Vinga — "Winga vänner driver en sommaröppen kiosk med souvenirer från Vinga" — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
-      { name: 'Kiosken på Vinga (Winga Vänner)', type: 'Kiosk', desc: 'Kiosk driven av föreningen Winga Vänner. Säljer souvenirer, glass, godis och fika. Sommaröppet.' },
-    ],
-    // KÄLLA: Strömma, Guidad båtutflykt till Vinga — två timmar i land — https://www.stromma.com/sv-se/goteborg/utflykter/guidad-batutflykt-till-vinga/ ; Västsverige/Visit Öckerö, Ön Vinga — cirka fyra timmar på ön med turbåten från Hönö Klåva, kiosk och grillplatsen "Brända Fläsket" — https://www.vastsverige.com/visitockero/produkter/on-vinga/ ; Länsstyrelsen Västra Götaland, Vinga — naturreservat sedan 1987, cirka 559 hektar — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
-    tips: ['Strömma anger två timmar i land, turbåten från Hönö Klåva cirka fyra timmar.', 'På ön finns kiosk med glass och godsaker samt grillplatsen "Brända Fläsket".', 'Ön är naturreservat sedan 1987, cirka 559 hektar.'],
-    related: ['hono', 'styrso', 'donso'],
-    tags: ['evert taube', 'fyr', 'dagsutflykt', 'vis-historia'],
-    // KÄLLA: Winga Vänner — fadern Carl Gunnar Taube var fyrvaktare på Vinga mellan 1889 och 1905 — https://vinga.nu/ ; Länsstyrelsen Västra Götaland, Vinga — Taube-rum i fyrmästarbostaden — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
-    did_you_know: 'Evert Taube tillbringade sin barndom på Vinga — fadern Carl Gunnar Taube var fyrvaktare på ön mellan 1889 och 1905. I fyrmästarbostaden finns i dag ett Taube-rum.',
-    // seasonal utelämnas medvetet: rapporterna ger inget källbelagt innehåll till blocket.
   },
   {
     slug: 'hono',

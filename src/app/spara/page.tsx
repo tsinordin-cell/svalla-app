@@ -4,6 +4,7 @@ import { komprimeraBild } from '@/lib/komprimeraBild'
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import { createClient, BOAT_TYPES, getViewer } from '@/lib/supabase'
+import { oNamn, markeradText } from '@/lib/loggade-oar'
 import { buildRoutePoints } from '@/lib/routeSmooth'
 import { deriveUsername } from '@/lib/username'
 import {
@@ -20,12 +21,13 @@ import { startTracking } from '@/lib/tracker'
 import { toGpsRow, insertGpsRows, fetchAllGpsPoints } from '@/lib/gpsRows'
 import { computeGpsQuality, topSpeedKnots } from '@/lib/gpsQuality'
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
-import { detectVisitedIslands } from '@/lib/islandCoords'
+import { klassaOarPaTuren } from '@/lib/islandCoords'
 import { computeUnlocked, type TripForAch } from '@/lib/achievements'
 import { addTripTag } from '@/lib/tripTags'
 import { buildTripFields } from '@/lib/tripFields'
 import * as Sentry from '@sentry/nextjs'
 import { analytics } from '@/lib/analytics'
+import { track } from '@/lib/analytics-events'
 import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
 import Icon from '@/components/Icon'
@@ -98,6 +100,7 @@ export default function SparaPage() {
 
   // ── Besökta öar ──
   const [newlyVisitedIslands, setNewlyVisitedIslands] = useState<string[]>([])
+  const [passeradeOar, setPasseradeOar] = useState<string[]>([])   // sedda från sjön utan stopp (2026-10-26)
 
   // ── Achievement celebration ──
   const [newAchievements, setNewAchievements] = useState<{ emoji: string; label: string }[]>([])
@@ -130,6 +133,9 @@ export default function SparaPage() {
   const pipelineRef      = useRef<GpsPipeline | null>(null)
   const syncOfflineRef   = useRef<() => void>(() => {})
   const pointsRef        = useRef<GpsPoint[]>([])  // mirror for GPS callback
+  const phaseRef         = useRef<Phase>('setup')  // för mätning vid unmount (2026-10-26)
+  const forstaFixRef     = useRef(false)           // gps_first_fix skickas en gång per start
+  const sekunderSedanStart = useCallback(() => startTimeRef.current ? Math.round((Date.now() - startTimeRef.current.getTime()) / 1000) : 0, [])
   const elapsedRef       = useRef(0)               // mirror for GPS callback (aldrig stale)
   const stopsRef         = useRef<StopEvent[]>([]) // mirror for heartbeat-snapshoten (pauser)
   const wakeLockRef      = useRef<{ released: boolean; release(): Promise<void> } | null>(null)
@@ -195,12 +201,30 @@ export default function SparaPage() {
       if (document.visibilityState === 'visible' && phase === 'tracking') {
         void acquireWakeLock()
       }
+      if (document.visibilityState === 'hidden' && phase === 'tracking') {
+        // Skärmen släcktes eller annan app: webbläsaren pausar GPS:en här.
+        track('gps_hidden', { seconds: sekunderSedanStart(), points: pointsRef.current.length })
+      }
     }
     document.addEventListener('visibilitychange', handleVisibility)
     return () => document.removeEventListener('visibilitychange', handleVisibility)
-  }, [phase, acquireWakeLock])
+  }, [phase, acquireWakeLock, sekunderSedanStart])
 
   useEffect(() => { pointsRef.current = points }, [points])
+  useEffect(() => { phaseRef.current = phase }, [phase])
+
+  // Mätning (2026-10-26): lämnade användaren sidan mitt i spårningen? Fångar både
+  // klientnavigering (unmount) och stängd flik/sidbyte (pagehide). keepalive i track().
+  useEffect(() => {
+    const rapportera = () => {
+      const ph = phaseRef.current
+      if (ph !== 'tracking' && ph !== 'paused') return
+      track('gps_abandoned', { seconds: sekunderSedanStart(), points: pointsRef.current.length, phase: ph, first_fix: forstaFixRef.current })
+      phaseRef.current = 'setup'   // bara en rapport per tur
+    }
+    window.addEventListener('pagehide', rapportera)
+    return () => { window.removeEventListener('pagehide', rapportera); rapportera() }
+  }, [sekunderSedanStart])
   useEffect(() => { elapsedRef.current = elapsed }, [elapsed])
   useEffect(() => { stopsRef.current = stops }, [stops])
 
@@ -374,6 +398,10 @@ export default function SparaPage() {
       (point) => {
         setGpsError('')
         setCurrentAccuracy(point.accuracy)
+        if (!forstaFixRef.current) {
+          forstaFixRef.current = true
+          track('gps_first_fix', { seconds: sekunderSedanStart(), accuracy_m: Math.round(point.accuracy), boat_type: boatType || 'okänd' })
+        }
         // HELA GPS-KEDJAN bor i GpsPipeline (@/lib/gpsPipeline): accuracy-
         // gräns → anomaligrind med återförankring → CV-Kalman → fart ur
         // filtret → medianfilter med rå farthistorik. Samma klass kör
@@ -453,20 +481,26 @@ export default function SparaPage() {
       },
       (errMsg) => {
         const m = errMsg.toLowerCase()
+        let kind: 'denied' | 'timeout' | 'unavailable' | 'other' = 'other'
         if (m.includes('nekad') || m.includes('denied') || m.includes('permission')) {
+          kind = 'denied'
           setGpsError('GPS-åtkomst nekad – tillåt platsdelning i inställningarna.')
         } else if (m.includes('timeout') || m.includes('söker')) {
+          kind = 'timeout'
           setGpsError('Söker GPS-signal… Gå ut om du är inomhus.')
         } else if (m.includes('unavailable') || m.includes('ej tillgänglig')) {
+          kind = 'unavailable'
           setGpsError('GPS-signal ej tillgänglig.')
         } else {
           setGpsError(errMsg || 'GPS-fel – prova att ladda om sidan.')
         }
+        track('gps_error', { kind, seconds: sekunderSedanStart(), points: pointsRef.current.length })
       },
     ).then(stopFn => {
       watchRef.current = stopFn
     }).catch(() => {
       setGpsError('GPS ej tillgängligt på denna enhet.')
+      track('gps_error', { kind: 'unavailable', seconds: sekunderSedanStart(), points: pointsRef.current.length })
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) // elapsedRef används istället för elapsed — behöver inte vara dep
@@ -492,6 +526,7 @@ export default function SparaPage() {
       .then(p => p.length ? clearPoints(p.map(x => x.key)) : undefined)
       .catch(() => {})
     startTimeRef.current = new Date()
+    forstaFixRef.current = false
     lastGpsPtRef.current = null
     pipelineRef.current = new GpsPipeline()
     setBoatType(boat)
@@ -931,21 +966,34 @@ export default function SparaPage() {
       }
     } catch { /* tyst */ }
 
-    // Background: Besökta öar — detektera vilka öar GPS-rutten passerat
+    // Background: öar längs rutten (2026-10-26). Besökt = turen började eller slutade
+    // vid ön, eller ett stopp på minst tio minuter där. Passerad = inom radien utan
+    // stopp; sparas för sig och räknas inte som besök (src/lib/islandCoords.ts).
     Promise.resolve().then(async () => {
       try {
-        const visitedSlugs = detectVisitedIslands(points.map(p => ({ lat: p.lat, lng: p.lng })))
-        if (visitedSlugs.length > 0) {
-          // upsert — ignorera om redan besökt
-          const rows = visitedSlugs.map(slug => ({
+        const { besokta, passerade } = klassaOarPaTuren(
+          points.map(p => ({ lat: p.lat, lng: p.lng })),
+          stops.map(s => ({ lat: s.lat, lng: s.lng, durationSeconds: s.durationSeconds })),
+        )
+        if (besokta.length > 0) {
+          const rows = besokta.map(slug => ({
             user_id:    user.id,
             island_slug: slug,
             trip_id:    tid,
             visited_at: endedAt,
           }))
           await supabase.from('visited_islands').upsert(rows, { onConflict: 'user_id,island_slug', ignoreDuplicates: true })
-          // Visa i done-skärmen vilka nya öar som besöktes
-          setNewlyVisitedIslands(visitedSlugs)
+          setNewlyVisitedIslands(besokta)
+        }
+        if (passerade.length > 0) {
+          const rows = passerade.map(slug => ({
+            user_id:     user.id,
+            island_slug: slug,
+            trip_id:     tid,
+            passerad_at: endedAt,
+          }))
+          await supabase.from('passerade_oar').upsert(rows, { onConflict: 'user_id,island_slug', ignoreDuplicates: true })
+          setPasseradeOar(passerade)
         }
       } catch { /* tyst */ }
     }).catch(() => {})
@@ -1079,7 +1127,7 @@ export default function SparaPage() {
                   key={bt} type="button" onClick={() => setBoatType(bt)}
                   className="py-2 px-1 rounded-xl text-xs font-medium transition-all"
                   style={{
-                    background: boatType === bt ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
+                    background: boatType === bt ? 'var(--sea-knapp)' : 'rgba(10,123,140,0.07)',
                     color: boatType === bt ? '#fff' : 'var(--txt2)',
                   }}
                 >
@@ -1718,13 +1766,13 @@ export default function SparaPage() {
                   {newlyVisitedIslands.length === 1 ? 'Ny ö besökt!' : `${newlyVisitedIslands.length} nya öar besökta!`}
                 </div>
                 <div style={{ fontSize: 12, color: '#3d7a5a', marginTop: 1 }}>
-                  Automatiskt inloggat via din GPS-rutt
+                  {markeradText(newlyVisitedIslands.length)}
                 </div>
               </div>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {newlyVisitedIslands.map(slug => {
-                const name = slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+                const name = oNamn(slug)
                 return (
                   <span key={slug} style={{
                     padding: '5px 12px', borderRadius: 20,
@@ -1736,6 +1784,32 @@ export default function SparaPage() {
                   </span>
                 )
               })}
+            </div>
+          </div>
+        )}
+
+        {/* ── Passerade öar — sedda från sjön utan stopp (2026-10-26) ── */}
+        {passeradeOar.length > 0 && (
+          <div style={{
+            background: 'var(--white)', border: '1px solid rgba(10,123,140,0.12)',
+            borderRadius: 20, padding: '14px 18px',
+          }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>
+              {passeradeOar.length === 1 ? 'Du passerade en ö' : `Du passerade ${passeradeOar.length} öar`}
+            </div>
+            <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2, marginBottom: 10 }}>
+              {passeradeOar.length === 1 ? 'Sedd från sjön. Lägg till nästa gång, så räknas den som besökt.' : 'Sedda från sjön. Lägg till nästa gång, så räknas de som besökta.'}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {passeradeOar.map(slug => (
+                <span key={slug} style={{
+                  padding: '5px 12px', borderRadius: 20,
+                  background: 'transparent', color: 'var(--txt2)', fontSize: 12, fontWeight: 700,
+                  border: '1.5px dashed rgba(10,123,140,0.35)',
+                }}>
+                  {oNamn(slug)}
+                </span>
+              ))}
             </div>
           </div>
         )}
@@ -1893,7 +1967,7 @@ export default function SparaPage() {
                         {label}
                         {isSelected && (
                           <span style={{
-                            background: 'var(--sea)', color: '#fff',
+                            background: 'var(--sea-knapp)', color: '#fff',
                             borderRadius: 10, padding: '1px 7px', fontSize: 9,
                           }}>VALD</span>
                         )}

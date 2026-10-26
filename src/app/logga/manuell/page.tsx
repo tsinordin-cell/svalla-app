@@ -8,6 +8,8 @@ import { analytics } from '@/lib/analytics'
 import { deriveUsername } from '@/lib/username'
 import TagInput from '@/components/TagInput'
 import LocationSearch from '@/components/LocationSearch'
+import DatumTidFalt from '@/components/DatumTidFalt'
+import { oarForPlats, kortPlats } from '@/lib/loggade-oar'
 
 type TaggedUser = { id: string; username: string; avatar: string | null }
 
@@ -41,6 +43,7 @@ function ManuellForm() {
   const [extraFiles,    setExtraFiles]    = useState<File[]>([])
   const [extraPreviews, setExtraPreviews] = useState<string[]>([])
   const [location, setLocation]             = useState(prefilledPlats)
+  const [platsPunkt, setPlatsPunkt]         = useState<{ lat: number; lng: number } | null>(null)
   const [startLocation, setStartLocation]   = useState('')
   const [caption, setCaption]               = useState('')
   const [boatType, setBoatType]             = useState('')
@@ -330,6 +333,23 @@ function ManuellForm() {
         duration_seconds: parseInt(duration) * 60 || 0,
       })
 
+      // Ön turen gick till hamnar i Min skärgård, som för GPS-turer
+      // (sidan säger "logga en tur, så dyker öarna upp här"). Tyst vid fel.
+      try {
+        const oar = oarForPlats(location, platsPunkt?.lat, platsPunkt?.lng)
+        if (oar.length > 0) {
+          await supabase.from('visited_islands').upsert(
+            oar.map(slug => ({
+              user_id: user.id,
+              island_slug: slug,
+              trip_id: trip.id,
+              visited_at: new Date(startedAtLocal).toISOString(),
+            })),
+            { onConflict: 'user_id,island_slug', ignoreDuplicates: true },
+          )
+        }
+      } catch { /* tyst */ }
+
       // Länka trip till planerad rutt
       if (plannedRouteId) {
         await supabase
@@ -345,8 +365,10 @@ function ManuellForm() {
         )
         for (const u of tagged) {
           try {
-            await supabase.from('notifications').insert({
-              user_id: u.id, actor_id: user.id, type: 'tag', trip_id: trip.id,
+            await fetch('/api/notifications/insert', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ targetUserId: u.id, type: 'tag', tripId: trip.id }),
             })
           } catch { /* ignore notification errors */ }
         }
@@ -393,7 +415,7 @@ function ManuellForm() {
             type="button"
             onClick={confirmCrop}
             style={{
-              color: '#fff', background: 'var(--sea)', border: 'none',
+              color: '#fff', background: 'var(--sea-knapp)', border: 'none',
               padding: '8px 18px', borderRadius: 20,
               fontWeight: 700, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit',
             }}
@@ -459,7 +481,7 @@ function ManuellForm() {
           </svg>
         </div>
         <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)' }}>Turen är loggad!</h2>
-        <p style={{ fontSize: 14, color: 'var(--txt3)' }}>Välkommen till {location}-gänget.</p>
+        <p style={{ fontSize: 14, color: 'var(--txt3)' }}>Välkommen till {kortPlats(location)}-gänget.</p>
       </div>
     )
   }
@@ -600,7 +622,10 @@ function ManuellForm() {
           {/* ── Plats (required) ── */}
           <LocationSearch
             value={location}
-            onChange={(name) => setLocation(name)}
+            onChange={(name, lat, lon) => {
+              setLocation(name)
+              setPlatsPunkt(typeof lat === 'number' && typeof lon === 'number' ? { lat, lng: lon } : null)
+            }}
             placeholder="Grinda, Sandhamn, Utö…"
             required
             label="Plats"
@@ -625,19 +650,9 @@ function ManuellForm() {
                 { label: 'Ankrar',     value: endedAtLocal,   set: setEndedAtLocal },
               ] as const).map(({ label, value, set }) => (
                 <div key={label}>
-                  <label style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', display: 'block', marginBottom: 4 }}>{label}</label>
-                  <input
-                    type="datetime-local"
-                    value={value}
-                    onChange={e => set(e.target.value)}
-                    style={{
-                      width: '100%', padding: '10px 8px', borderRadius: 12,
-                      border: '1.5px solid rgba(10,123,140,0.15)',
-                      background: 'var(--white)', fontSize: 13,
-                      color: 'var(--txt)', outline: 'none',
-                      boxSizing: 'border-box', fontFamily: 'inherit',
-                    } as React.CSSProperties}
-                  />
+                  <label htmlFor={`tid-${label}`} style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', display: 'block', marginBottom: 4 }}>{label}</label>
+                  {/* Svenskt format oavsett webbläsarens språk (2026-10-26); trycket öppnar enhetens väljare. */}
+                  <DatumTidFalt id={`tid-${label}`} value={value} onChange={set} />
                 </div>
               ))}
             </div>
@@ -762,7 +777,7 @@ function ManuellForm() {
                           {label}
                           {isSelected && (
                             <span style={{
-                              background: 'var(--sea)', color: '#fff',
+                              background: 'var(--sea-knapp)', color: '#fff',
                               borderRadius: 10, padding: '1px 7px', fontSize: 9,
                             }}>VALD</span>
                           )}
@@ -836,7 +851,7 @@ function ManuellForm() {
                     <button key={bt} type="button" onClick={() => setBoatType(bt === boatType ? '' : bt)}
                       style={{
                         padding: '8px 4px', borderRadius: 10, border: 'none', cursor: 'pointer',
-                        background: boatType === bt ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
+                        background: boatType === bt ? 'var(--sea-knapp)' : 'rgba(10,123,140,0.07)',
                         color: boatType === bt ? '#fff' : 'var(--txt2)',
                         fontSize: 11, fontWeight: 600,
                       }}>

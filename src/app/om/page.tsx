@@ -9,7 +9,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
 import { KALLOR_PER_O } from '@/app/o/kallor.generated'
-import { ALL_ISLANDS } from '@/app/o/island-data'
+import { OAR, ANTAL_OAR } from '@/app/o/island-data'
 
 /**
  * Källsiffrorna räknas fram ur kallor.generated.ts vid varje bygge, så de kan
@@ -21,12 +21,13 @@ function kallsiffror() {
   const listor = Object.values(KALLOR_PER_O)
   const totalt = listor.reduce((n, l) => n + l.length, 0)
   const myndighet = listor.reduce((n, l) => n + l.filter(k => k.myndighet).length, 0)
-  const oarMedKalla = listor.filter(l => l.length > 0).length
+  // 2026-10-21: räknar öarna, inte fastlandsorterna (de har också källor, men kallas inte öar)
+  const oarMedKalla = OAR.filter(o => (KALLOR_PER_O[o.slug] ?? []).length > 0).length
   return {
     totalt,
     myndighetsandel: totalt > 0 ? Math.round((myndighet / totalt) * 100) : 0,
     oarMedKalla,
-    oarTotalt: ALL_ISLANDS.length,
+    oarTotalt: ANTAL_OAR,
   }
 }
 
@@ -268,7 +269,7 @@ export default function OmPage() {
           {/* CTAs */}
           <div style={{ display: 'flex', gap: 12, marginTop: 28, flexWrap: 'wrap' }}>
             <Link href="/upptack" style={{
-              padding: '12px 24px', background: 'var(--sea)', color: '#fff',
+              padding: '12px 24px', background: 'var(--sea-knapp)', color: '#fff',
               borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
             }}>Utforska kartan</Link>
             <Link href="/faq" style={{

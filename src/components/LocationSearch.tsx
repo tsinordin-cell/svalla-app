@@ -1,13 +1,8 @@
 'use client'
 import Icon from '@/components/Icon'
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { svallaOar, norm, type Place } from '@/lib/svalla-oar-sok'
 
-type Place = {
-  display_name: string
-  name: string
-  lat: string
-  lon: string
-}
 
 interface Props {
   value: string
@@ -55,6 +50,8 @@ export default function LocationSearch({
 
   const search = useCallback(async (q: string) => {
     if (q.length < 2) { setSuggestions([]); setOpen(false); return }
+    const egna = svallaOar(q)
+    if (egna.length > 0) { setSuggestions(egna); setOpen(true) }
     setLoading(true)
     try {
       const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&countrycodes=se,no,dk,fi,de,gb,nl,fr,es,it,pl,gr,hr,ee,lv,lt,is&limit=6&format=json&addressdetails=1&accept-language=sv`
@@ -65,9 +62,10 @@ export default function LocationSearch({
       }>
 
       const places: Place[] = data.map(p => {
-        // Use the most human-friendly name: island > village > town > city
+        // Träffens eget namn först (2026-10-26: "Fjäderholmarna" visades som "Lidingö",
+        // för kommunen vann över namnet), annars ö > by > tätort > stad.
         const a = p.address ?? {}
-        const localName = a.island ?? a.village ?? a.town ?? a.city ?? p.name
+        const localName = (p.name && p.name.trim()) || a.island || a.village || a.town || a.city || ''
         const region = a.county ?? ''
         const country = a.country ?? ''
         const parts = [localName, region, country].filter(Boolean)
@@ -77,14 +75,15 @@ export default function LocationSearch({
           lat: p.lat,
           lon: p.lon,
         }
-      })
-      // Deduplicate by name
-      const seen = new Set<string>()
-      const unique = places.filter(p => { if (seen.has(p.name)) return false; seen.add(p.name); return true })
-      setSuggestions(unique)
-      setOpen(unique.length > 0)
+      }).filter(p => p.name)
+      // Dubbletter bort, och Nominatim-träffar som är samma ö som en Svalla-träff
+      const seen = new Set<string>(egna.map(e => norm(e.name)))
+      const unique = places.filter(p => { const k = norm(p.name); if (seen.has(k)) return false; seen.add(k); return true })
+      const alla = [...egna, ...unique].slice(0, 7)
+      setSuggestions(alla)
+      setOpen(alla.length > 0)
     } catch {
-      setSuggestions([])
+      setSuggestions(egna)
     } finally {
       setLoading(false)
     }
@@ -153,7 +152,7 @@ export default function LocationSearch({
               style={{ width: 16, height: 16, animation: 'spin 0.8s linear infinite' }}>
               <path strokeLinecap="round" d="M12 2a10 10 0 0 1 10 10" />
             </svg>
-          ) : selected ? 'checkmark' : 'search'}
+          ) : <Icon name={selected ? 'check' : 'pin'} size={16} aria-label={selected ? 'Plats vald' : 'Sök plats'} />}
         </div>
       </div>
 
@@ -182,13 +181,13 @@ export default function LocationSearch({
                 display: 'flex', alignItems: 'center', gap: 10,
               }}
             >
-              <Icon name="pin" style={{ width: 14, height: 14, flexShrink: 0 }} />
-              <div style={{ minWidth: 0 }}>
+              <Icon name={p.svalla ? 'island' : 'pin'} style={{ width: 14, height: 14, flexShrink: 0, color: p.svalla ? 'var(--sea)' : undefined }} />
+              <div style={{ minWidth: 0, flex: 1 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {p.name}
                 </div>
                 <div style={{ fontSize: 11, color: 'var(--txt3)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {p.display_name}
+                  {p.svalla ? 'Ö på Svalla · räknas i Min skärgård' : p.display_name}
                 </div>
               </div>
             </button>

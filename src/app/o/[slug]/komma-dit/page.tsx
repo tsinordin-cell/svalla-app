@@ -248,10 +248,10 @@ export default async function IslandKommaDitPage({ params }: Props) {
           <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
             {/* KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19. "Halvpris" var fel: 39–114 kr mot 61–186 kr. */}
             {stockholm && (<>
-              <li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen. 7–19 år betalar rabatterat pris (39–114 kr i stället för 61–186 kr).</li>
+              <li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen, och 7–19 år betalar rabatterat pris.</li>
               <li>Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd. Längre ut krävs Waxholmsbolaget-biljett 30 april–13 september; 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken.</li>
               {/* KÄLLA: Waxholmsbolaget linje 24, https://kund.printhuset-sthlm.se/wa/h24.pdf, anmärkning b: "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00" (läst 2026-09-21). Ersätter "Boka sittplats i förväg" – Waxholmsbolaget säljer inga platsbiljetter. */}
-              <li>Vissa bryggor och turer är beställningstrafik. Beställ resan i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00 minst en timme före avgång – annars kan båten gå förbi bryggan.</li>
+              <li>Vissa bryggor och turer är beställningstrafik. Beställ resan i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00. Hur långt i förväg står i linjens tidtabell. Annars kan båten gå förbi bryggan.</li>
             </>)}
             {island.transport_meta && island.transport_meta.car_parking && (
               <li>Parkering: {island.transport_meta.car_parking}</li>
@@ -271,12 +271,12 @@ export default async function IslandKommaDitPage({ params }: Props) {
           <div>
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', fontWeight: 600, marginBottom: 6 }}>AI-planeraren</div>
             <div style={{ fontSize: 18, fontWeight: 700, color: '#fff', marginBottom: 6 }}>
-              Thorkel visar nästa avgång till {island.name}
+              Planera resan till {island.name} med Thorkel
             </div>
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
               Berätta när du vill åka — Thorkel fixar hela planen.
             </div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver gratis konto — tar 30 sekunder.</div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver ett gratis konto.</div>
           </div>
           <Link href="/planera" prefetch={false} style={{
             display: 'inline-block', background: 'var(--acc-knapp)', color: '#fff',
@@ -290,7 +290,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Link href={`/o/${slug}`} style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'var(--sea)', color: '#fff',
+            background: 'var(--sea-knapp)', color: '#fff',
             fontSize: 14, fontWeight: 700, textDecoration: 'none',
             padding: '12px 28px', borderRadius: 28,
           }}>

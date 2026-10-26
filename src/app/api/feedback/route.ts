@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { logger } from '@/lib/logger'
+import { getAdminClient } from '@/lib/supabase-admin'
+import { klientIp } from '@/lib/klientIp'
 import { sendAdminEmail } from '@/lib/email'
 
 /**
@@ -15,6 +17,10 @@ import { sendAdminEmail } from '@/lib/email'
  *
  * Skapa tabellen i Supabase:
  *   Se scripts/MIGRATION_2026_07_03_site_feedback.sql
+ *
+ * Skrivningen görs med tjänsteklienten. Tabellen har ingen öppen
+ * insert-policy (borttagen 2026-10), så valideringen och rate-limiten här
+ * kan inte kringgås genom att skriva direkt med den publika nyckeln.
  *
  * Fält:
  *   feedbackType  – 'fel-info' | 'saknar-info' | 'tips' | 'annat'
@@ -82,7 +88,7 @@ export async function POST(req: NextRequest) {
 
   // ── Rate limit: 10 per IP / timme ────────────────────────────────────────
   const { checkRateLimit } = await import('@/lib/rateLimit')
-  const rateKey = user?.id ?? req.headers.get('x-forwarded-for') ?? 'anon'
+  const rateKey = user?.id ?? klientIp(req)
   if (!(await checkRateLimit(`site-feedback:${rateKey}`, 10, 60 * 60 * 1000))) {
     return NextResponse.json(
       { error: 'För många tips. Vänta lite och försök igen.' },
@@ -91,7 +97,7 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Spara i Supabase ──────────────────────────────────────────────────────
-  const { error: dbError } = await supabase.from('site_feedback').insert({
+  const { error: dbError } = await getAdminClient().from('site_feedback').insert({
     feedback_type: feedbackType,
     message,
     page_url:      pageUrl,

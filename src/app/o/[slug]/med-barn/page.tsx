@@ -5,7 +5,7 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon, { type IconName } from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
-import { getIslandPlaces } from '@/lib/islandPlaces'
+import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!island) notFound()
   return {
     title: `${island.name} med barn – bad, mat och resväg`,
-    description: `${island.name} med barn: badplatser, restauranger, restid och vad barn betalar på båten.`,
+    description: `${island.name} med barn: badplatser, restauranger och hur ni tar er dit.`,
     keywords: [
       `${island.name.toLowerCase()} med barn`,
       `${island.name.toLowerCase()} barnfamilj`,
@@ -85,7 +85,9 @@ export default async function IslandMedBarnPage({ params }: Props) {
     getIslandPlaces(island, ['restaurant', 'cafe', 'bar'], { extraKm: 0 }),
   ])
   const allaBad = [...new Set([...badnamn, ...dbBeaches.filter(p => p.onIsland).map(p => p.name)])]
-  const antalKrogar = Math.max(island.restaurants.length, dbFood.filter(p => p.onIsland).length)
+  // Samma räkning som restaurangsidan (ölistan plus databasens ställen på ön, utan dubbletter).
+  const antalKrogar = island.restaurants.length
+    + utanDubbletter(dbFood.filter(p => !island.restaurants.some(r => r.name.toLowerCase() === p.name.toLowerCase())), island.restaurants.map(r => r.name), island.name).filter(p => p.onIsland).length
   const usesWaxholmsbolaget = (island.transport_meta?.operator ?? '').includes('Waxholmsbolaget')
     || island.getting_there.some(t => `${t.method} ${t.desc}`.includes('Waxholm'))
 
@@ -245,7 +247,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
             <p style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 12, display: 'flex', alignItems: 'flex-start', gap: 6 }}>
               <Icon name="star" size={14} stroke={2} style={{ marginTop: 3 }} />
               {/* KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; läst 2026-09-19 */}
-              <span>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen. 7–19 år betalar rabatterat pris (39–114 kr i stället för 61–186 kr).</span>
+              <span>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen, och 7–19 år betalar rabatterat pris.</span>
             </p>
             )}
           </div>
@@ -284,7 +286,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
               Thorkel hjälper dig med båt, lunch och bad.
             </div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver gratis konto — tar 30 sekunder.</div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver ett gratis konto.</div>
           </div>
           <Link href="/planera" prefetch={false} style={{
             display: 'inline-block', background: 'var(--acc-knapp)', color: '#fff',
@@ -298,7 +300,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Link href={`/o/${slug}`} style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'var(--sea)', color: '#fff',
+            background: 'var(--sea-knapp)', color: '#fff',
             fontSize: 14, fontWeight: 700, textDecoration: 'none',
             padding: '12px 28px', borderRadius: 28,
           }}>

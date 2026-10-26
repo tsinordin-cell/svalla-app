@@ -62,11 +62,14 @@ export default function IslandTabRow({
               padding: '7px 14px', borderRadius: 999,
               fontSize: 12.5, fontWeight: 600,
               textDecoration: 'none',
+              // revision P2-4: den aktiva hjältefliken är alltid nästan vit, så textfärgen måste
+              // vara fast mörk (var(--sea-d) är ljus i mörkt tema: 2,8:1). Listvarianten använder
+              // --sea-knapp, som håller 4,5:1 med vit text i båda temana.
               background: variant === 'hero'
                 ? (aktiv ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.10)')
-                : (aktiv ? 'var(--sea)' : 'var(--white)'),
+                : (aktiv ? 'var(--sea-knapp)' : 'var(--white)'),
               color: variant === 'hero'
-                ? (aktiv ? 'var(--sea-d)' : 'rgba(255,255,255,0.85)')
+                ? (aktiv ? '#1e5c82' : 'rgba(255,255,255,0.85)')
                 : (aktiv ? '#fff' : 'var(--txt2)'),
               border: variant === 'hero'
                 ? '1px solid rgba(255,255,255,0.16)'
