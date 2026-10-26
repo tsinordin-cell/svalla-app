@@ -35,6 +35,14 @@ export type SvallaEvent =
 
   // Trips (logging)
   | { name: 'trip_logging_started'; props: Record<string, never> }
+  // ── GPS-spårning i webbläsaren (2026-10-26) ──────────────────────────────
+  // Varför gav en användare upp efter 40 s utan en punkt (19 okt)? Nekad
+  // behörighet, ingen signal eller otålighet? Det här svarar på det.
+  // seconds räknas från Starta spårning. points = godkända punkter hittills.
+  | { name: 'gps_first_fix';  props: { seconds: number; accuracy_m: number; boat_type: string } }
+  | { name: 'gps_error';      props: { kind: 'denied' | 'timeout' | 'unavailable' | 'other'; seconds: number; points: number } }
+  | { name: 'gps_hidden';     props: { seconds: number; points: number } }      // skärmen släcktes / annan app medan spårningen pågick
+  | { name: 'gps_abandoned';  props: { seconds: number; points: number; phase: 'tracking' | 'paused'; first_fix: boolean } }  // lämnade sidan utan att spara
   | { name: 'trip_logged';          props: { trip_id: string; distance_nm: number; duration_min: number; first_trip: boolean } }
   | { name: 'trip_viewed';          props: { trip_id: string; is_own: boolean } }
   | { name: 'trip_liked';           props: { trip_id: string } }

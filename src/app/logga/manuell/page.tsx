@@ -8,6 +8,7 @@ import { analytics } from '@/lib/analytics'
 import { deriveUsername } from '@/lib/username'
 import TagInput from '@/components/TagInput'
 import LocationSearch from '@/components/LocationSearch'
+import DatumTidFalt from '@/components/DatumTidFalt'
 import { oarForPlats, kortPlats } from '@/lib/loggade-oar'
 
 type TaggedUser = { id: string; username: string; avatar: string | null }
@@ -649,19 +650,9 @@ function ManuellForm() {
                 { label: 'Ankrar',     value: endedAtLocal,   set: setEndedAtLocal },
               ] as const).map(({ label, value, set }) => (
                 <div key={label}>
-                  <label style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', display: 'block', marginBottom: 4 }}>{label}</label>
-                  <input
-                    type="datetime-local"
-                    value={value}
-                    onChange={e => set(e.target.value)}
-                    style={{
-                      width: '100%', padding: '10px 8px', borderRadius: 12,
-                      border: '1.5px solid rgba(10,123,140,0.15)',
-                      background: 'var(--white)', fontSize: 13,
-                      color: 'var(--txt)', outline: 'none',
-                      boxSizing: 'border-box', fontFamily: 'inherit',
-                    } as React.CSSProperties}
-                  />
+                  <label htmlFor={`tid-${label}`} style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', display: 'block', marginBottom: 4 }}>{label}</label>
+                  {/* Svenskt format oavsett webbläsarens språk (2026-10-26); trycket öppnar enhetens väljare. */}
+                  <DatumTidFalt id={`tid-${label}`} value={value} onChange={set} />
                 </div>
               ))}
             </div>

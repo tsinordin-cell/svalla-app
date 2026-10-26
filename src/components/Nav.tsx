@@ -82,6 +82,26 @@ export default function Nav() {
     return () => document.body.classList.remove('has-app-nav')
   }, [showNav])
 
+  // Beräknas här (före early return) så att hooks alltid körs i samma ordning.
+  const klockorAktiva = username !== null && !/^\/(tur|planera)\/[^/]+/.test(path) && !/^\/meddelanden/.test(path)
+  // Klockorna göms när man skrollar nedåt och kommer tillbaka när man skrollar
+  // uppåt (som sidhuvuden i Instagram och Strava), så de aldrig ligger över text.
+  const [klockorDolda, setKlockorDolda] = useState(false)
+  useEffect(() => {
+    setKlockorDolda(false)   // ny sida: visa klockorna igen tills man skrollar
+    if (!klockorAktiva) return
+    let senast = window.scrollY, ack = 0
+    const onScroll = () => {
+      const y = window.scrollY, d = y - senast
+      senast = y
+      if (y < 24) { ack = 0; setKlockorDolda(false); return }
+      ack = (ack > 0) === (d > 0) ? ack + d : d
+      if (ack > 24) setKlockorDolda(true)
+      else if (ack < -12) setKlockorDolda(false)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [klockorAktiva, path])
   if (!showNav) return null
 
   const tabs = [
@@ -157,9 +177,14 @@ export default function Nav() {
   // /feed, /rutter, /platser, /profil har egna — chatt-sidor lämnar toppen ren
   // /upptack har fullskärms-karta + BookmarkButton i top-right — klockorna krockar
   const PAGES_WITH_OWN_BELLS = ['/feed', '/rutter', '/platser', '/profil', '/forum', '/u/', '/sok', '/upptack']
+  // 2026-10-26: tursidan och ruttsidan har egna knappar uppe till höger (dela, mer,
+  // avståndsbadge); klockorna la sig ovanpå dem och över texten när man skrollade.
+  const DETALJSIDA_MED_EGEN_TOPP = /^\/(tur|planera)\/[^/]+/
   const showGlobalBell = username !== null
     && !PAGES_WITH_OWN_BELLS.some(matchar)
     && !path.match(/^\/meddelanden/)
+    && !DETALJSIDA_MED_EGEN_TOPP.test(path)
+
 
   // revision 2026-10-02: Planera, Logga tur, Flöde och Profil kräver inloggning.
   // För utloggade blev varje prefetch av flikarna en 307 till /logga-in (se
@@ -172,6 +197,10 @@ export default function Nav() {
         <div style={{
           position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 10px)', right: 14, zIndex: 901,
           display: 'flex', gap: 6, alignItems: 'center',
+          transform: klockorDolda ? 'translateY(-72px)' : 'translateY(0)',
+          opacity: klockorDolda ? 0 : 1,
+          transition: 'transform 0.22s ease, opacity 0.18s ease',
+          pointerEvents: klockorDolda ? 'none' : 'auto',
         }}>
           <Link
             href="/"

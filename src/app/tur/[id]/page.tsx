@@ -349,6 +349,74 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
  <div style={{ maxWidth: 520, margin: '0 auto', padding: '14px 14px' }}>
 
+ {/* Ordningen 2026-10-26 (Thomas: tursidan ska kännas som de stora apparnas): karta,
+ talen, sedan Gilla/Kommentera/Dela, och först därefter vem, text och detaljer. */}
+ {/* Stats */}
+ {(() => {
+ const stats = [
+ { val: trip.distance >= 0.1 ? trip.distance.toFixed(1) : null, unit: 'NM', label: 'Distans' },
+ { val: durationSecs > 60 ? formatDuration(durationSecs) : null, unit: '', label: 'Tid' },
+ { val: trip.average_speed_knots >= 0.1 ? trip.average_speed_knots.toFixed(1) : null, unit: 'kn', label: 'Snittfart' },
+ { val: trip.max_speed_knots >= 0.1 ? trip.max_speed_knots.toFixed(1) : null, unit: 'kn', label: 'Toppfart' },
+ ].filter(s => s.val !== null)
+ if (stats.length === 0) return null
+ return (
+ <div style={{
+ background: 'linear-gradient(135deg, #091522 0%, #0d2038 100%)',
+ borderRadius: 20,
+ boxShadow: '0 8px 24px rgba(0,0,0,0.28)',
+ display: 'flex',
+ marginBottom: 16,
+ marginTop: 0,
+ overflow: 'hidden',
+ }}>
+ {stats.map(({ val, unit, label }, i) => (
+ <div key={label} style={{
+ flex: 1, padding: '16px 0', textAlign: 'center',
+ borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+ }}>
+ <div style={{
+ fontSize: 22, fontWeight: 750, color: '#fff',
+ lineHeight: 1, letterSpacing: '-0.02em',
+ fontVariantNumeric: 'tabular-nums',
+ display: 'inline-flex', alignItems: 'baseline', gap: 2,
+ }}>
+ {val}
+ {unit && <span style={{ fontSize: 11, fontWeight: 500, color: 'rgba(255,255,255,0.5)', marginLeft: 2 }}>{unit}</span>}
+ {label === 'Toppfart' && val && <span style={{ fontSize: 10, color: 'var(--amber, #c96e2a)', marginLeft: 2 }}>↗</span>}
+ </div>
+ <div style={{
+ fontSize: 10.5, fontWeight: 500, color: 'rgba(255,255,255,0.4)',
+ marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.09em',
+ }}>
+ {label}
+ </div>
+ </div>
+ ))}
+ </div>
+ )
+ })()}
+
+ {/* Social + dela */}
+ <div id="kommentarer" style={{ marginBottom: 18 }}>
+ <div style={{ display: 'flex', gap: 8, paddingBottom: 14, borderBottom: '1px solid rgba(10,123,140,0.08)', alignItems: 'center' }}>
+ <LikeButton tripId={trip.id} />
+ <Comments tripId={trip.id} />
+ {/* Spacer */}
+ <div style={{ flex: 1 }} />
+ {/* RepostButton borttagen 2026-09-29: tabellen reposts finns inte (se PR #409). */}
+ {/* Dela-knapp med text — mer synlig */}
+ <TripShareModal
+ tripId={id}
+ title={trip.location_name ?? 'Min tur'}
+ url={`https://svalla.se/tur/${id}`}
+ variant="pill"
+ hasPhoto={allPhotos.length > 0}
+ hasRoute={!!routePoints}
+ />
+ </div>
+ </div>
+
  {/* ── User row ── */}
  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
  <Link href={`/u/${encodeURIComponent(username)}`} style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', flex: 1 }}>
@@ -439,51 +507,13 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  </div>
  )}
 
- {/* Stats */}
- {(() => {
- const stats = [
- { val: trip.distance >= 0.1 ? trip.distance.toFixed(1) : null, unit: 'NM', label: 'Distans' },
- { val: durationSecs > 60 ? formatDuration(durationSecs) : null, unit: '', label: 'Tid' },
- { val: trip.average_speed_knots >= 0.1 ? trip.average_speed_knots.toFixed(1) : null, unit: 'kn', label: 'Snittfart' },
- { val: trip.max_speed_knots >= 0.1 ? trip.max_speed_knots.toFixed(1) : null, unit: 'kn', label: 'Toppfart' },
- ].filter(s => s.val !== null)
- if (stats.length === 0) return null
- return (
- <div style={{
- background: 'linear-gradient(135deg, #091522 0%, #0d2038 100%)',
- borderRadius: 20,
- boxShadow: '0 8px 24px rgba(0,0,0,0.28)',
- display: 'flex',
- marginBottom: 16,
- marginTop: -20,
- overflow: 'hidden',
- }}>
- {stats.map(({ val, unit, label }, i) => (
- <div key={label} style={{
- flex: 1, padding: '16px 0', textAlign: 'center',
- borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
- }}>
- <div style={{
- fontSize: 22, fontWeight: 750, color: '#fff',
- lineHeight: 1, letterSpacing: '-0.02em',
- fontVariantNumeric: 'tabular-nums',
- display: 'inline-flex', alignItems: 'baseline', gap: 2,
- }}>
- {val}
- {unit && <span style={{ fontSize: 11, fontWeight: 500, color: 'rgba(255,255,255,0.5)', marginLeft: 2 }}>{unit}</span>}
- {label === 'Toppfart' && val && <span style={{ fontSize: 10, color: 'var(--amber, #c96e2a)', marginLeft: 2 }}>↗</span>}
+ {/* Tagga medseglare — hos texten om turen, inte bland knapparna */}
+ <div style={{ marginBottom: 16 }}>
+ <TripTagger
+ tripId={trip.id}
+ tripOwnerId={trip.user_id}
+ />
  </div>
- <div style={{
- fontSize: 10.5, fontWeight: 500, color: 'rgba(255,255,255,0.4)',
- marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.09em',
- }}>
- {label}
- </div>
- </div>
- ))}
- </div>
- )
- })()}
 
  {/* Väder — historiska förhållanden vid turens tidpunkt (ERA5 archive + Marine).
  Visas bara om vi fick minst vind-data, annars hoppas sektionen över. */}
@@ -564,31 +594,6 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  </div>
  </div>
  )}
-
- {/* Social + dela */}
- <div id="kommentarer" style={{ marginBottom: 18 }}>
- <div style={{ display: 'flex', gap: 8, paddingBottom: 14, borderBottom: '1px solid rgba(10,123,140,0.08)', alignItems: 'center' }}>
- <LikeButton tripId={trip.id} />
- <Comments tripId={trip.id} />
- {/* Spacer */}
- <div style={{ flex: 1 }} />
- {/* RepostButton borttagen 2026-09-29: tabellen reposts finns inte (se PR #409). */}
- {/* Dela-knapp med text — mer synlig */}
- <TripShareModal
- tripId={id}
- title={trip.location_name ?? 'Min tur'}
- url={`https://svalla.se/tur/${id}`}
- variant="pill"
- hasPhoto={allPhotos.length > 0}
- hasRoute={!!routePoints}
- />
- </div>
-
- <TripTagger
- tripId={trip.id}
- tripOwnerId={trip.user_id}
- />
- </div>
 
  {/* Trip highlight — flywheel-koppling ö → plats → andras feed */}
  {existingHighlight ? (

@@ -81,6 +81,14 @@ export default async function MinSkargardPage() {
     .eq('user_id', user.id)
     .order('visited_at', { ascending: false })
 
+  // Passerade öar (2026-10-26): sedda från sjön på en GPS-tur utan stopp. Visas
+  // för sig och räknas inte i X av 102 eller märkena. Egen tabell, se migrationen.
+  const { data: passeradeRows } = await supabase
+    .from('passerade_oar')
+    .select('island_slug, passerad_at')
+    .eq('user_id', user.id)
+    .order('passerad_at', { ascending: false })
+
   const { data: userProfileRow } = await supabase
     .from('users')
     .select('username')
@@ -91,6 +99,7 @@ export default async function MinSkargardPage() {
   const savedSlugs = new Set((savedRows ?? []).map(r => r.island_slug))
   const visitedSlugs = new Set((visitedRows ?? []).map(r => r.island_slug))
   const visitedCount = visitedSlugs.size
+  const passeradeSlugs = [...new Set((passeradeRows ?? []).map(r => r.island_slug))].filter(slug => !visitedSlugs.has(slug) && getIsland(slug))
   const percentVisited = Math.round((visitedCount / TOTAL_ISLANDS) * 100)
 
   // Besökshistorik — grupperad per månad, nyast först
@@ -237,7 +246,7 @@ export default async function MinSkargardPage() {
                     {a.label}
                   </div>
                   <div style={{ fontSize: 10, color: 'var(--txt3)', marginTop: 2 }}>
-                    {a.threshold} öar
+                    {a.threshold} {a.threshold === 1 ? 'ö' : 'öar'}
                   </div>
                 </div>
               )
@@ -245,7 +254,7 @@ export default async function MinSkargardPage() {
           </div>
           {next && (
             <div style={{ marginTop: 12, fontSize: 12, color: 'var(--txt2)', textAlign: 'center' }}>
-              {next.threshold - visitedCount} öar till "{next.label}"
+              {next.threshold - visitedCount} {next.threshold - visitedCount === 1 ? 'ö' : 'öar'} till ”{next.label}”
             </div>
           )}
         </section>
@@ -328,6 +337,42 @@ export default async function MinSkargardPage() {
           )}
         </section>
 
+        {/* PASSERADE FRÅN SJÖN (2026-10-26) */}
+        {passeradeSlugs.length > 0 && (
+          <section style={{
+            background: 'var(--white)',
+            border: '1px solid var(--surface-3)',
+            borderRadius: 18, padding: '20px 22px',
+            marginTop: 20,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 6 }}>
+              <h2 style={{ fontSize: 17, fontWeight: 700, margin: 0, color: 'var(--txt)' }}>
+                Passerade från sjön
+              </h2>
+              <span style={{ fontSize: 13, color: 'var(--txt2)' }}>{passeradeSlugs.length}</span>
+            </div>
+            <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 14px' }}>
+              Öar du har kört förbi utan att lägga till. Lägg till nästa gång, så räknas de som besökta.
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {passeradeSlugs.map(slug => {
+                const i = getIsland(slug)!
+                return (
+                  <Link key={slug} href={`/o/${slug}`} style={{
+                    padding: '6px 12px', borderRadius: 999,
+                    background: 'transparent', color: 'var(--txt2)',
+                    border: '1.5px dashed rgba(10,123,140,0.35)',
+                    fontSize: 12, fontWeight: 700, textDecoration: 'none',
+                    display: 'inline-flex', alignItems: 'center', gap: 4,
+                  }}>
+                    {i.name}
+                  </Link>
+                )
+              })}
+            </div>
+          </section>
+        )}
+
         {/* BESÖKSHISTORIK */}
         {visitGroups.length > 0 && (
           <section style={{
@@ -340,7 +385,7 @@ export default async function MinSkargardPage() {
               <h2 style={{ fontSize: 17, fontWeight: 700, margin: 0, color: 'var(--txt)' }}>
                 Din besökshistorik
               </h2>
-              <span style={{ fontSize: 13, color: 'var(--txt2)' }}>{visitedCount} öar</span>
+              <span style={{ fontSize: 13, color: 'var(--txt2)' }}>{visitedCount} {visitedCount === 1 ? 'ö' : 'öar'}</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
               {visitGroups.map(group => (

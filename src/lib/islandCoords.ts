@@ -118,7 +118,7 @@ export const ISLAND_COORD_MAP = Object.fromEntries(
 )
 
 // Haversine distance in km between two coords
-function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+export function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
   const R = 6371
   const dLat = (lat2 - lat1) * Math.PI / 180
   const dLng = (lng2 - lng1) * Math.PI / 180
@@ -139,8 +139,10 @@ export function detectVisitedIslands(
   if (points.length === 0) return []
   const visited = new Set<string>()
 
-  // Sample every 5th point to reduce computation
-  const sample = points.filter((_, i) => i % 5 === 0)
+  // Glesa till högst ca 400 punkter (fast var 5:e förut, vilket hoppade över både
+  // slutpunkten och glesa rutter; rättat 2026-10-26). Första och sista är alltid med.
+  const steg = Math.max(1, Math.floor(points.length / 400))
+  const sample = points.filter((_, i) => i % steg === 0 || i === points.length - 1)
 
   for (const island of ISLAND_COORDS) {
     const radius = island.radiusKm ?? 3.0
@@ -151,4 +153,39 @@ export function detectVisitedIslands(
   }
 
   return [...visited]
+}
+
+/**
+ * Besökt eller passerad (2026-10-26, Thomas: "Vad ser bäst ut? Vad lockar bäst?").
+ *
+ * detectVisitedIslands markerade varje ö inom radien som "besökt", också den
+ * man körde förbi på 500 meter. Nu skiljer vi:
+ * - BESÖKT: turen började eller slutade inom öns radie, eller ett stopp
+ *   (auto-stopp eller paus) på minst BESOK_MIN_S inom radien. Du var där.
+ * - PASSERAD: punkter inom radien utan att du stannade. Du såg ön från sjön.
+ * Bara besökta räknas i Min skärgård (X av 102, märken); passerade listas för
+ * sig som "Passerade från sjön" med uppmaningen att lägga till nästa gång.
+ */
+export const BESOK_MIN_S = 10 * 60
+
+export type StoppPunkt = { lat: number; lng: number; durationSeconds: number }
+
+export function klassaOarPaTuren(
+  points: { lat: number; lng: number }[],
+  stopp: StoppPunkt[] = [],
+): { besokta: string[]; passerade: string[] } {
+  if (points.length === 0) return { besokta: [], passerade: [] }
+  const passerade = detectVisitedIslands(points)
+  if (passerade.length === 0) return { besokta: [], passerade: [] }
+  const forsta = points[0]!, sista = points[points.length - 1]!
+  const inom = (o: IslandCoord, p: { lat: number; lng: number }) => haversineKm(p.lat, p.lng, o.lat, o.lng) <= (o.radiusKm ?? 3.0)
+  const besokta: string[] = []
+  const bara: string[] = []
+  for (const slug of passerade) {
+    const o = ISLAND_COORD_MAP[slug]
+    if (!o) continue
+    const dar = inom(o, forsta) || inom(o, sista) || stopp.some(s => s.durationSeconds >= BESOK_MIN_S && inom(o, s))
+    ;(dar ? besokta : bara).push(slug)
+  }
+  return { besokta, passerade: bara }
 }

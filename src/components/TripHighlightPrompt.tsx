@@ -71,6 +71,17 @@ export default function TripHighlightPrompt({
 }) {
   const supabase = createClient()
   const [candidates, setCandidates] = useState<Candidate[] | null>(null)
+  // "Hoppa över" (2026-10-26): förut gjorde knappen ingenting när ingen onDone
+  // skickats in (tursidan), så frågan kom tillbaka vid varje besök. Nu minns
+  // webbläsaren överhoppet per tur.
+  const skippNyckel = `svalla-hojdpunkt-skippad:${tripId}`
+  const [skippad, setSkippad] = useState(false)
+  useEffect(() => { try { setSkippad(localStorage.getItem(skippNyckel) === '1') } catch { /* privat läge */ } }, [skippNyckel])
+  function skippa() {
+    try { localStorage.setItem(skippNyckel, '1') } catch { /* privat läge */ }
+    setSkippad(true)
+    onDone?.()
+  }
   const [submitting, setSubmitting] = useState<string | null>(null) // slug under save
   const [error, setError] = useState<string | null>(null)
 
@@ -153,6 +164,8 @@ export default function TripHighlightPrompt({
     }
   }
 
+  if (skippad) return null
+
   if (candidates === null) {
     return (
       <div style={{ padding: 24, textAlign: 'center', color: 'var(--txt3)', fontSize: 13 }}>
@@ -226,7 +239,7 @@ export default function TripHighlightPrompt({
       )}
 
       <button
-        onClick={onDone}
+        onClick={skippa}
         disabled={!!submitting}
         style={{
           marginTop: 8, width: '100%',
