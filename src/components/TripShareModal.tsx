@@ -330,8 +330,8 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  />
  {m.klistermarke && (
  <div style={{
- position: 'absolute', top: 10, right: 10, padding: '3px 8px', borderRadius: 999,
- background: 'rgba(0,0,0,0.5)', color: 'rgba(255,255,255,0.85)', fontSize: 9.5, fontWeight: 700, letterSpacing: '0.5px',
+ position: 'absolute', bottom: 10, right: 10, padding: '3px 8px', borderRadius: 999,
+ background: 'rgba(0,0,0,0.55)', color: 'rgba(255,255,255,0.85)', fontSize: 9.5, fontWeight: 700, letterSpacing: '0.5px',
  }}>KLISTERMÄRKE</div>
  )}
  </div>
