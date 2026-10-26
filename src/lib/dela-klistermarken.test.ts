@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { STILAR, arStil, tillgangligaStilar, forvaldStil, ruttPath, ruttStartSlut, formatTid, formatDelTid, delstrackStaplar, talRutor, ruttArAnvandbar, avstandM, datumLang, turRubrik } from './dela-klistermarken'
+import { STILAR, arStil, tillgangligaStilar, forvaldStil, ruttPath, ruttStartSlut, formatTid, formatDelTid, delstrackStaplar, talRutor, ruttArAnvandbar, avstandM, datumLang, turRubrik, harTal } from './dela-klistermarken'
 
 describe('stilar', () => {
   it('känner igen giltiga stilar', () => {
@@ -17,6 +17,14 @@ describe('stilar', () => {
     expect(bild).toEqual(['photo', 'tal'])
     const annan = tillgangligaStilar({ harBild: true, harRutt: true, agare: false }).map(s => s.id)
     expect(annan).not.toContain('delstrackor')
+  })
+  it('en tur utan tal får inget Tal-klistermärke utan kortet utan underlag (2026-10-26)', () => {
+    const inget = tillgangligaStilar({ harBild: false, harRutt: false, agare: true, harTal: false })
+    expect(inget.map(s => s.id)).toEqual(['photo'])
+    expect(inget[0]!.namn).toBe('Kort')
+    expect(forvaldStil({ harBild: false, harRutt: false, harTal: false })).toBe('photo')
+    expect(harTal({ distanceNM: 0, sekunder: 4, toppKn: 0, snittKn: 0 })).toBe(false)
+    expect(harTal({ distanceNM: 3.62, sekunder: 737, toppKn: 22.3, snittKn: 22 })).toBe(true)
   })
   it('väljer förvald mall', () => {
     expect(forvaldStil({ harBild: true, harRutt: true })).toBe('photo')

@@ -19,7 +19,7 @@ import TripHighlightPrompt from '@/components/TripHighlightPrompt'
 import BackButton from '@/components/BackButton'
 import TripGearAffiliate from '@/components/TripGearAffiliate'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
-import { ruttArAnvandbar } from '@/lib/dela-klistermarken'
+import { ruttArAnvandbar, harTal } from '@/lib/dela-klistermarken'
 import { getTripWeather, windDirectionLabel, buildWindArrowSamples } from '@/lib/weather'
 import type { Metadata } from 'next'
 import ViewerGate from '@/components/ViewerGate'
@@ -223,6 +223,8 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
    duration_seconds: trip.duration_seconds ?? null, duration: trip.duration ?? null,
    started_at: trip.started_at ?? null, ended_at: trip.ended_at ?? null,
  })
+ // Något tal att visa i delningsrutan? Samma trösklar som korten (talRutor).
+ const talFinns = harTal({ distanceNM: trip.distance ?? null, sekunder: durationSecs > 0 ? durationSecs : null, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null })
 
  // Fartkurva + delsträckor ur sparade punkter ("det synliga", 2026-09-10).
  // Bara när sidan har riktiga gps_points med fart — route_points-fallbacken
@@ -304,6 +306,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  url={`https://svalla.se/tur/${id}`}
  hasPhoto={allPhotos.length > 0}
  hasRoute={ruttArAnvandbar(routePoints)}
+ hasStats={talFinns}
  />
  <TripActions tripId={trip.id} ownerId={trip.user_id} />
  </div>
@@ -414,6 +417,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  variant="pill"
  hasPhoto={allPhotos.length > 0}
  hasRoute={ruttArAnvandbar(routePoints)}
+ hasStats={talFinns}
  />
  </div>
  </div>
