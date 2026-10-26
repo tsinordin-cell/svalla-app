@@ -1,0 +1,19 @@
+{
+  "username": "tsinordin",
+  "trip": {
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "location_name": null,
+    "start_location": null,
+    "distance": 0,
+    "duration": 0,
+    "duration_seconds": 4,
+    "max_speed_knots": 0,
+    "average_speed_knots": 0,
+    "boat_type": "Motorbåt",
+    "route_points": [{"lat":38.6601,"lng":-121.5202},{"lat":38.66011,"lng":-121.52021}],
+    "started_at": "2026-10-26T13:35:59.144+00:00",
+    "pinnar_rating": null,
+    "image": null,
+    "images": null
+  }
+}

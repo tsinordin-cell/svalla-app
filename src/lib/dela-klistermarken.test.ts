@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { STILAR, arStil, tillgangligaStilar, forvaldStil, ruttPath, ruttStartSlut, formatTid, formatDelTid, delstrackStaplar, talRutor } from './dela-klistermarken'
+import { STILAR, arStil, tillgangligaStilar, forvaldStil, ruttPath, ruttStartSlut, formatTid, formatDelTid, delstrackStaplar, talRutor, ruttArAnvandbar, avstandM, datumLang, turRubrik } from './dela-klistermarken'
 
 describe('stilar', () => {
   it('känner igen giltiga stilar', () => {
@@ -86,5 +86,37 @@ describe('format', () => {
     expect(talRutor({ distanceNM: 3.62, sekunder: 737, toppKn: 22.3, snittKn: 22.0 }).map(r => r.etikett)).toEqual(['DISTANS', 'TID', 'TOPPFART'])
     expect(talRutor({ distanceNM: 0, sekunder: 0, toppKn: 0, snittKn: 0 })).toEqual([])
     expect(talRutor({ distanceNM: 1.5, sekunder: 600, toppKn: null, snittKn: 4.2 }).map(r => r.etikett)).toEqual(['DISTANS', 'TID', 'SNITTFART'])
+  })
+})
+
+describe('ruttArAnvandbar (2026-10-26: testtur på samma plats gav gatukarta med en prick)', () => {
+  it('nekar tomt, en punkt och punkter inom några meter', () => {
+    expect(ruttArAnvandbar(null)).toBe(false)
+    expect(ruttArAnvandbar([])).toBe(false)
+    expect(ruttArAnvandbar([{ lat: 38.66, lng: -121.52 }])).toBe(false)
+    expect(ruttArAnvandbar([{ lat: 38.66000, lng: -121.52000 }, { lat: 38.66005, lng: -121.52004 }])).toBe(false)
+  })
+  it('godkänner Strömkajen–Fjäderholmarna', () => {
+    expect(ruttArAnvandbar([{ lat: 59.329, lng: 18.0775 }, { lat: 59.3325, lng: 18.18 }])).toBe(true)
+  })
+  it('avstandM: Strömkajen–Fjäderholmarna är ungefär 5,8 km', () => {
+    const m = avstandM({ lat: 59.329, lng: 18.0775 }, { lat: 59.3325, lng: 18.18 })
+    expect(m).toBeGreaterThan(5500)
+    expect(m).toBeLessThan(6100)
+  })
+})
+
+describe('datumLang och turRubrik', () => {
+  it('skriver datumet på svenska i svensk tid', () => {
+    expect(datumLang('2026-10-25T23:45:59.293+00:00')).toBe('26 oktober 2026')
+    expect(datumLang('2026-04-24T05:54:05.974+00:00')).toBe('24 april 2026')
+    expect(datumLang(null)).toBeNull()
+    expect(datumLang('trasigt')).toBeNull()
+  })
+  it('rubrik utan platsnamn följer båttypen', () => {
+    expect(turRubrik('Segelbåt')).toBe('Segeltur')
+    expect(turRubrik('Motorbåt')).toBe('Båttur')
+    expect(turRubrik('Kajak')).toBe('Paddeltur')
+    expect(turRubrik(null)).toBe('Tur på sjön')
   })
 })

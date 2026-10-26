@@ -1,0 +1,23 @@
+{
+  "username": "tsinordin",
+  "trip": {
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "location_name": "Fjäderholmarna",
+    "start_location": null,
+    "distance": 3.62,
+    "duration": 12,
+    "duration_seconds": 737,
+    "max_speed_knots": 22.3,
+    "average_speed_knots": 22,
+    "boat_type": "Motorbåt",
+    "route_points": [
+      {"lat":59.32901,"lng":18.077499},{"lat":59.324,"lng":18.079},{"lat":59.323739,"lng":18.079525},{"lat":59.321467,"lng":18.087156},
+      {"lat":59.320487,"lng":18.105208},{"lat":59.320505,"lng":18.104993},{"lat":59.322265,"lng":18.12703},{"lat":59.324023,"lng":18.155147},
+      {"lat":59.330007,"lng":18.175004},{"lat":59.332499,"lng":18.180003}
+    ],
+    "started_at": "2026-10-25T23:45:59.293+00:00",
+    "pinnar_rating": 2,
+    "image": null,
+    "images": null
+  }
+}

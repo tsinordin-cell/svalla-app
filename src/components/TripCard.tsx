@@ -1,4 +1,5 @@
 'use client'
+import { ruttArAnvandbar } from '@/lib/dela-klistermarken'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef } from 'react'
@@ -252,7 +253,8 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
     [trip.image, ...(trip.images ?? [])].filter(Boolean) as string[]
   )).filter((_, i) => !photoErrors.has(i))
 
-  const hasRoute  = routePoints !== null
+  // 2026-10-26: en rutt där alla punkter ligger på samma ställe ger inget kartkort (ruttArAnvandbar).
+  const hasRoute  = ruttArAnvandbar(routePoints)
   const hasPhoto  = allPhotos.length > 0 && !imgErr
   const hasMedia  = hasPhoto || hasRoute
 
