@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import { revalidateTrip } from '@/lib/revalidate-trip'
 import { toast } from '@/components/Toast'
+import { forvaldStil, stil as stilFor, tillgangligaStilar, type StilId } from '@/lib/dela-klistermarken'
 
 interface Props {
  tripId: string
@@ -19,14 +20,25 @@ function isAndroid() {
  return /Android/.test(navigator.userAgent)
 }
 
+// Rutig bakgrund bakom genomskinliga klistermärken, som i bildprogram.
+const RUTIG = 'repeating-conic-gradient(rgba(255,255,255,0.18) 0% 25%, rgba(255,255,255,0.06) 0% 50%) 0 0 / 16px 16px'
+
 export default function TripShareModal({ tripId, title, url, variant = 'icon', hasPhoto = true, hasRoute = false }: Props) {
  const [open, setOpen] = useState(false)
  const [loading, setLoading] = useState(false)
  const [step, setStep] = useState<'main' | 'saved'>('main')
- const [imgLoaded, setImgLoaded] = useState(false)
- const [styleMode, setStyleMode] = useState<'photo' | 'map'>(hasPhoto ? 'photo' : hasRoute ? 'map' : 'photo')
+ const [styleMode, setStyleMode] = useState<StilId>(forvaldStil({ harBild: hasPhoto, harRutt: hasRoute }))
+ // Mallar vars bild inte gick att hämta (t.ex. delsträckor för någon som inte äger turen) göms.
+ const [dolda, setDolda] = useState<StilId[]>([])
+ const [laddade, setLaddade] = useState<StilId[]>([])
+ const mallar = tillgangligaStilar({ harBild: hasPhoto, harRutt: hasRoute, agare: true }).filter(m => !dolda.includes(m.id))
+ const mall = stilFor(styleMode)
+ const klister = mall.klistermarke
 
  const cardSrc = `/api/og/share/tur/${tripId}?style=${styleMode}`
+ // Kort kommer som JPEG, klistermärken som PNG (genomskinliga); filnamnet följer med.
+ const filnamn = `svalla-${styleMode}.${klister ? 'png' : 'jpg'}`
+ const filtyp = klister ? 'image/png' : 'image/jpeg'
 
  // Falttest 19/8 (Tom): att dela en PRIVAT tur gav mottagaren 404
  // ("Borttappad till havs"). #179 fixade DM-modalen (ShareTripModal) men
@@ -52,10 +64,6 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  toast('Turen är nu synlig för alla.', 'success')
  }
 
- // Preload image when modal opens or style changes
- useEffect(() => {
- if (open) setImgLoaded(false)
- }, [open, styleMode])
 
  function handleOpen() {
  setStep('main')
@@ -78,7 +86,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  const blob = await saveImage()
  if (!blob) { setLoading(false); return }
 
- const file = new File([blob], 'svalla-tur.png', { type: 'image/png' })
+ const file = new File([blob], filnamn, { type: filtyp })
 
  // iOS + Android: native share sheet via Web Share API with file
  // iOS 15+: opens share sheet → Instagram → opens Stories directly
@@ -102,7 +110,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  // Fallback: save to device + show guide (older browsers / desktop)
  const a = document.createElement('a')
  a.href = URL.createObjectURL(blob)
- a.download = 'svalla-tur.png'
+ a.download = filnamn
  a.click()
  URL.revokeObjectURL(a.href)
  setLoading(false)
@@ -113,7 +121,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  setLoading(true)
  const blob = await saveImage()
  if (!blob) { setLoading(false); return }
- const file = new File([blob], 'svalla-tur.png', { type: 'image/png' })
+ const file = new File([blob], filnamn, { type: filtyp })
  try {
  if (typeof navigator !== 'undefined' && navigator.canShare?.({ files: [file] })) {
  await navigator.share({ files: [file], title: `${title} – Svalla`, url, text: `Kolla min tur till ${title} på Svalla! ` })
@@ -122,7 +130,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  } else {
  const a = document.createElement('a')
  a.href = URL.createObjectURL(blob)
- a.download = 'svalla-tur.png'
+ a.download = filnamn
  a.click()
  URL.revokeObjectURL(a.href)
  toast('Story-bild sparad!')
@@ -146,10 +154,37 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  if (!blob) return
  const a = document.createElement('a')
  a.href = URL.createObjectURL(blob)
- a.download = 'svalla-tur.png'
+ a.download = filnamn
  a.click()
  URL.revokeObjectURL(a.href)
- toast('Bild sparad!')
+ toast(klister ? 'Klistermärket är sparat.' : 'Bild sparad!')
+ }
+
+ // Kopiera bilden som PNG till urklipp (2026-10-26). Safari kräver att ClipboardItem
+ // skapas i själva klickhanteraren, med ett löfte om datan, inte efter await.
+ function copyImage() {
+ try {
+ if (typeof ClipboardItem === 'undefined' || !navigator.clipboard?.write) throw new Error('stöds inte')
+ // Urklipp tar bara PNG. Kort levereras som JPEG, så de ritas om till PNG i en canvas först.
+ const item = new ClipboardItem({
+ 'image/png': fetch(cardSrc).then(r => { if (!r.ok) throw new Error('fetch'); return r.blob() }).then(somPng),
+ })
+ navigator.clipboard.write([item])
+ .then(() => toast(klister ? 'Klistermärket är kopierat. Klistra in det i din story.' : 'Bilden är kopierad.'))
+ .catch(() => toast('Kunde inte kopiera. Spara bilden i stället.', 'error'))
+ } catch {
+ toast('Kopiering av bilder stöds inte här. Spara bilden i stället.', 'error')
+ }
+ }
+
+ /** JPEG → PNG via canvas (urklipp accepterar bara PNG). PNG släpps igenom orört. */
+ async function somPng(blob: Blob): Promise<Blob> {
+ if (blob.type === 'image/png') return blob
+ const bitmap = await createImageBitmap(blob)
+ const canvas = document.createElement('canvas')
+ canvas.width = bitmap.width; canvas.height = bitmap.height
+ canvas.getContext('2d')!.drawImage(bitmap, 0, 0)
+ return new Promise((resolve, reject) => canvas.toBlob(b => b ? resolve(b) : reject(new Error('png')), 'image/png'))
  }
 
  async function copyLink() {
@@ -236,7 +271,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  {/* Hero — dark background, large centered card */}
  <div style={{
  background: 'linear-gradient(170deg, #0c2030 0%, #071420 100%)',
- padding: '12px 20px 20px',
+ padding: '12px 0 18px',
  display: 'flex',
  flexDirection: 'column',
  alignItems: 'center',
@@ -254,65 +289,61 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  pointerEvents: 'none',
  }} />
 
- {/* Style toggle — only show if both modes are available */}
- {hasPhoto && hasRoute && (
- <div style={{
- display: 'flex', borderRadius: 20, overflow: 'hidden',
- border: '1px solid rgba(255,255,255,0.12)',
- background: 'rgba(0,0,0,0.30)', position: 'relative', zIndex: 1,
- }}>
- {(['photo', 'map'] as const).map(mode => (
- <button
- key={mode}
- onClick={() => setStyleMode(mode)}
+ {/* Mallar (2026-10-26): stora kort att bläddra mellan, som i Stravas delning. Tryck väljer. */}
+ <div
  style={{
- padding: '8px 22px', border: 'none', cursor: 'pointer',
- fontSize: 13, fontWeight: 700, letterSpacing: '0.2px',
- background: styleMode === mode ? 'rgba(255,255,255,0.18)' : 'transparent',
- color: styleMode === mode ? '#fff' : 'rgba(255,255,255,0.45)',
- transition: 'background 0.15s, color 0.15s',
- borderRadius: 20,
+ display: 'flex', gap: 14, overflowX: 'auto', width: '100%', padding: '6px 24px 10px',
+ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch',
+ position: 'relative', zIndex: 1, boxSizing: 'border-box',
  }}
  >
- {mode === 'photo' ? 'Foto' : 'Karta'}
- </button>
- ))}
- </div>
- )}
-
- {/* Large card preview */}
- <div style={{ position: 'relative', width: '50%', maxWidth: 160 }}>
- {/* Spacer — maintains height regardless of load state */}
- <div style={{ width: '100%', aspectRatio: '9/16' }} />
- {/* Skeleton — fades out when image loads */}
+ {mallar.map(m => {
+ const vald = styleMode === m.id
+ const bredd = m.klistermarke ? 190 : 150
+ return (
+ <button
+ key={m.id}
+ onClick={e => { setStyleMode(m.id); e.currentTarget.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' }) }}
+ aria-pressed={vald}
+ aria-label={m.namn}
+ style={{
+ flexShrink: 0, width: bredd, padding: 0, border: 'none', background: 'transparent', cursor: 'pointer',
+ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 9, scrollSnapAlign: 'center',
+ opacity: vald ? 1 : 0.72, transition: 'opacity 0.2s',
+ }}
+ >
  <div style={{
- position: 'absolute', inset: 0, borderRadius: 18,
- background: 'rgba(255,255,255,0.07)',
- animation: 'pulse 1.5s ease-in-out infinite',
- opacity: imgLoaded ? 0 : 1,
- transition: 'opacity 0.35s ease',
- pointerEvents: 'none',
- }} />
- {/* Image — fades in when loaded */}
- <div style={{
- position: 'absolute', inset: 0, borderRadius: 18,
- overflow: 'hidden',
- boxShadow: '0 20px 60px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.07)',
- opacity: imgLoaded ? 1 : 0,
- transition: 'opacity 0.35s ease',
+ width: bredd, height: Math.round(bredd * m.hojd / m.bredd), borderRadius: 18, overflow: 'hidden',
+ background: m.klistermarke ? RUTIG : 'rgba(255,255,255,0.06)',
+ animation: laddade.includes(m.id) ? undefined : 'pulse 1.5s ease-in-out infinite',
+ boxShadow: vald ? '0 0 0 2.5px #fff, 0 16px 40px rgba(0,0,0,0.55)' : '0 0 0 1px rgba(255,255,255,0.12), 0 10px 30px rgba(0,0,0,0.45)',
+ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative',
  }}>
  {/* eslint-disable-next-line @next/next/no-img-element */}
  <img
- src={cardSrc}
- alt="Story-kort"
- onLoad={() => setImgLoaded(true)}
- style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+ src={`/api/og/share/tur/${tripId}?style=${m.id}`}
+ alt={m.namn}
+ loading="lazy"
+ onLoad={() => setLaddade(l => l.includes(m.id) ? l : [...l, m.id])}
+ onError={() => setDolda(d => d.includes(m.id) ? d : [...d, m.id])}
+ style={{ width: '100%', height: '100%', objectFit: m.klistermarke ? 'contain' : 'cover', display: 'block' }}
  />
+ {m.klistermarke && (
+ <div style={{
+ position: 'absolute', bottom: 10, right: 10, padding: '3px 8px', borderRadius: 999,
+ background: 'rgba(0,0,0,0.55)', color: 'rgba(255,255,255,0.85)', fontSize: 9.5, fontWeight: 700, letterSpacing: '0.5px',
+ }}>KLISTERMÄRKE</div>
+ )}
  </div>
+ <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.2px', color: vald ? '#fff' : 'rgba(255,255,255,0.55)', whiteSpace: 'nowrap' }}>{m.namn}</div>
+ </button>
+ )
+ })}
  </div>
 
- <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.38)', fontWeight: 500, letterSpacing: '0.2px' }}>
- Story-bild · 9:16
+ {/* PRODUKTREGEL: 9:16 är kortets bildformat (bredd:höjd, 1080×1920), inget klockslag. */}
+ <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.38)', fontWeight: 500, letterSpacing: '0.2px', textAlign: 'center', padding: '0 12px' }}>
+ {klister ? `Klistermärke med genomskinlig bakgrund · ${mall.beskrivning}` : 'Story-bild · 9:16'}
  </div>
  </div>
 
@@ -346,10 +377,16 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 20, height: 20, flexShrink: 0 }}>
  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
  </svg>
- Dela som Instagram Story
+ {klister ? 'Dela klistermärket' : 'Dela som Instagram Story'}
  </>
  )}
  </button>
+
+ {klister && (
+ <div style={{ fontSize: 12.5, lineHeight: 1.45, color: 'var(--txt2)', padding: '0 4px' }}>
+ Klistermärket läggs ovanpå din egen bild: spara eller kopiera det, öppna en ny story i Instagram med din bild och lägg till klistermärket.
+ </div>
+ )}
 
  {/* Secondary row: WhatsApp + Copy + Native share */}
  <div style={{ display: 'flex', gap: 10 }}>
@@ -383,6 +420,24 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  >
  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} style={{ width: 14, height: 14 }}>
  <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+ </svg>
+ Länk
+ </button>
+
+ <button
+ onClick={copyImage}
+ className="press-feedback"
+ style={{
+ flex: 1, padding: '14px 0', borderRadius: 14,
+ background: 'rgba(10,123,140,0.08)',
+ border: '1.5px solid rgba(10,123,140,0.15)',
+ color: 'var(--sea)', fontSize: 13, fontWeight: 700, cursor: 'pointer',
+ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+ }}
+ >
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} style={{ width: 14, height: 14, flexShrink: 0 }}>
+ <rect x="9" y="9" width="11" height="11" rx="2" />
+ <path strokeLinecap="round" strokeLinejoin="round" d="M5 15V5a2 2 0 012-2h10" />
  </svg>
  Kopiera
  </button>
@@ -422,7 +477,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 12, height: 12 }}>
  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
  </svg>
- Ladda ner bild
+ {klister ? 'Spara klistermärket' : 'Ladda ner bild'}
  </button>
 
  <button onClick={() => setOpen(false)} style={{

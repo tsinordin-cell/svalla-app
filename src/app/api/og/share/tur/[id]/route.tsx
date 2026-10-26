@@ -1,18 +1,22 @@
 import { ImageResponse } from 'next/og'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import { Buffer } from 'buffer'
+import { arStil, stil, delstrackStaplar, talRutor, formatTid } from '@/lib/dela-klistermarken'
+import { computeSplits } from '@/lib/tripSplits'
+import { klisterRutt, klisterTal, klisterRuttTal, klisterDelstrackor, Logga, type KlisterData } from './klistermarken'
+import { ogTypsnitt } from '../../../_typsnitt/typsnitt'
+import { unstable_cache } from 'next/cache'
+import { createHash } from 'crypto'
+import sharp from 'sharp'
+import { tripCacheTag } from '@/lib/trip-cache'
+import type { StilId } from '@/lib/dela-klistermarken'
+import type { GpsPoint } from '@/lib/gps'
 
 export const runtime = 'nodejs'
 export const revalidate = 0
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
-function fmtDur(mins: number): string {
- if (mins <= 0) return ''
- const h = Math.floor(mins / 60)
- const m = mins % 60
- return h > 0 ? `${h}h ${m > 0 ? `${m}m` : ''}`.trim() : `${m}m`
-}
 
 // Simple lat/lng → SVG path (for photo mode — no projection needed)
 function buildRoutePath(pts: { lat: number; lng: number }[], W: number, H: number): string {
@@ -80,35 +84,98 @@ function buildRoutePathMercator(
 // ── Constants ──────────────────────────────────────────────────────────────
 
 const W = 1080, H = 1920
+// Höj när bildernas utseende ändras i kod, så att cachade bilder ritas om.
+const BILD_VERSION = '2026-10-26c'
 
 // ── Route handler ──────────────────────────────────────────────────────────
 
+type TripRad = {
+ user_id: string; location_name: string | null; start_location: string | null
+ distance: number; duration: number; duration_seconds: number | null
+ max_speed_knots: number | null; average_speed_knots: number | null; boat_type: string | null
+ route_points: unknown; started_at: string | null; pinnar_rating: number | null
+ image: string | null; images: unknown
+}
+
+/**
+ * Bilden hämtas genom RLS (privata turer bara för ägaren), ritas en gång och
+ * cachas per tur, mall och innehåll (2026-10-26, Thomas: korten laddade
+ * långsamt). Kort utan genomskinlighet blir JPEG (kartkortet 1,7 MB → ca 0,3
+ * MB); klistermärken förblir PNG. Cachen töms med samma tagg som tursidan när
+ * turen ändras (/api/revalidate-feed), och nyckeln bär ett avtryck av
+ * innehållet som skyddsnät. Delsträckor bygger på gps_points, som bara ägaren
+ * får läsa, och cachas därför bara för ägaren.
+ */
 export async function GET(
  req: Request,
  { params }: { params: Promise<{ id: string }> }
 ) {
  const { id } = await params
- const style = new URL(req.url).searchParams.get('style') ?? 'photo'
+ const begard = new URL(req.url).searchParams.get('style')
+ const style: StilId = arStil(begard) ? begard : 'photo'
 
  const supabase = await createClient()
 
  const { data: trip } = await supabase
  .from('trips')
- .select('user_id, location_name, start_location, distance, duration, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image, images')
+ .select('user_id, location_name, start_location, distance, duration, duration_seconds, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image, images')
  .eq('id', id)
  .single()
+ if (!trip) return new Response('Turen finns inte', { status: 404 })
 
- const { data: userRow } = trip
- ? await supabase.from('users').select('username').eq('id', trip.user_id).single()
- : { data: null }
+ const { data: userRow } = await supabase.from('users').select('username').eq('id', trip.user_id).single()
+ const username = userRow?.username ?? 'Seglare'
 
+ let punkter: GpsPoint[] = []
+ let agare = false
+ if (style === 'delstrackor') {
+ const { data: { user } } = await supabase.auth.getUser()
+ agare = !!user && user.id === trip.user_id
+ if (!agare) return new Response('Delsträckor visas bara för den som loggade turen', { status: 404 })
+ const { data: rows } = await supabase
+ .from('gps_points')
+ .select('latitude, longitude, speed_knots, heading, recorded_at')
+ .eq('trip_id', id)
+ .order('recorded_at', { ascending: true })
+ .limit(20000)
+ punkter = (rows ?? []).map(r => ({
+ lat: r.latitude as number, lng: r.longitude as number,
+ speedKnots: (r.speed_knots ?? 0) as number, heading: (r.heading ?? null) as number | null,
+ accuracy: 0, recordedAt: r.recorded_at as string,
+ }))
+ }
+
+ const avtryck = createHash('sha1').update(JSON.stringify([trip, username, punkter.length])).digest('hex').slice(0, 12)
+ const bild = await unstable_cache(
+ async () => {
+ const fonts = await ogTypsnitt()
+ const res = await ritaBild({ trip: trip as TripRad, username, punkter, style, fonts })
+ if (!(res instanceof ImageResponse)) return { status: res.status, text: await res.text() }
+ const png = Buffer.from(await res.arrayBuffer())
+ const klister = stil(style).klistermarke
+ const ut = klister ? png : await sharp(png).jpeg({ quality: 86, mozjpeg: true }).toBuffer()
+ return { status: 200, b64: ut.toString('base64'), typ: klister ? 'image/png' : 'image/jpeg' }
+ },
+ ['share-bild', BILD_VERSION, id, style, avtryck, agare ? 'agare' : 'alla'],
+ { tags: [tripCacheTag(id)], revalidate: 86400 },
+ )()
+
+ if (bild.status !== 200 || !bild.b64) return new Response(bild.text ?? 'Kunde inte rita bilden', { status: bild.status })
+ return new Response(Buffer.from(bild.b64, 'base64'), {
+ headers: { 'Content-Type': bild.typ ?? 'image/png', 'Cache-Control': 'private, max-age=3600' },
+ })
+}
+
+async function ritaBild({ trip, username, punkter, style, fonts }: {
+ trip: TripRad; username: string; punkter: GpsPoint[]; style: StilId; fonts: Awaited<ReturnType<typeof ogTypsnitt>>
+}): Promise<ImageResponse | Response> {
  const dist = trip && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)}` : null
- const dur = trip && trip.duration > 4 ? fmtDur(trip.duration) : null
+ const sek = trip.duration_seconds ?? (trip.duration > 0 ? trip.duration * 60 : 0)
+ const dur = sek >= 60 ? formatTid(sek) : null
  const spd = trip && (trip.max_speed_knots ?? 0) >= 0.1 ? `${(trip.max_speed_knots ?? 0).toFixed(1)}` : null
  const avgSpd = trip && (trip.average_speed_knots ?? 0) >= 0.1 ? `${(trip.average_speed_knots ?? 0).toFixed(1)}` : null
  const loc = trip?.location_name ?? null
  const from = trip?.start_location ?? null
- const username = userRow?.username ?? 'Seglare'
  const boatEmoji = trip?.boat_type === 'Segelbåt' ? '' : trip?.boat_type === 'Motorbåt' ? '' : trip?.boat_type === 'Kajak' ? '' : ''
  const boatLabel = trip?.boat_type ?? 'Tur'
  const magisk = trip?.pinnar_rating === 3
@@ -122,6 +189,33 @@ export async function GET(
  // Photo: primary image or first from images array
  const photoUrl = trip?.image ?? (Array.isArray(trip?.images) ? (trip!.images as string[])[0] : null) ?? null
  const hasPhoto = !!photoUrl
+
+ // ── KLISTERMÄRKEN (genomskinliga, 2026-10-26) ───────────────────────────
+ // Läggs ovanpå användarens egen bild i Instagram-storyn. Ingen bakgrund,
+ // inget användarnamn: bara rutten, talen och loggan, som Stravas.
+ if (style === 'rutt' || style === 'tal' || style === 'rutt-tal' || style === 'delstrackor') {
+ if ((style === 'rutt' || style === 'rutt-tal' || style === 'delstrackor') && !routePts) {
+ return new Response('Turen har ingen rutt', { status: 404 })
+ }
+ const sekunder = (trip.duration_seconds as number | null) ?? ((trip.duration ?? 0) > 0 ? trip.duration * 60 : null)
+ const data: KlisterData = {
+ plats: locLabel,
+ tal: talRutor({ distanceNM: trip.distance ?? null, sekunder, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null }),
+ rutt: routePts,
+ staplar: [],
+ }
+ if (style === 'delstrackor') {
+ const splits = computeSplits(punkter)
+ if (splits.length === 0) return new Response('Turen har inga delsträckor', { status: 404 })
+ data.staplar = delstrackStaplar(splits)
+ }
+ const mall = stil(style)
+ const el = style === 'rutt' ? klisterRutt(data, mall.bredd, mall.hojd)
+ : style === 'tal' ? klisterTal(data, mall.bredd, mall.hojd)
+ : style === 'rutt-tal' ? klisterRuttTal(data, mall.bredd, mall.hojd)
+ : klisterDelstrackor(data, mall.bredd, mall.hojd)
+ return new ImageResponse(el, { width: mall.bredd, height: mall.hojd, fonts })
+ }
 
  const statBoxes = [
  dist && { val: dist, unit: 'NM', label: 'DISTANS' },
@@ -138,7 +232,7 @@ export async function GET(
  <div style={{
  width: W, height: H,
  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
- fontFamily: 'system-ui, -apple-system, sans-serif',
+ fontFamily: 'Inter, system-ui, sans-serif',
  background: 'linear-gradient(170deg, #060e18 0%, #0a2235 50%, #071420 100%)',
  gap: 28,
  }}>
@@ -158,7 +252,7 @@ export async function GET(
  </div>
  </div>
  ),
- { width: W, height: H }
+ { width: W, height: H, fonts }
  )
  }
 
@@ -185,7 +279,7 @@ export async function GET(
  const cy = (latToTY(minLat, Z) + latToTY(maxLat, Z)) / 2
  const tx0 = Math.floor(cx) - 2
  const ty0 = Math.floor(cy) - 3
- const COLS = 5, ROWS = 6
+ const COLS = 5, ROWS = 9   // 9 rader: rutorna täcker hela höjden (H), inte bara kartytan (MH)
 
  const gLeft = W / 2 - (cx - tx0) * 256
  const gTop = MH / 2 - (cy - ty0) * 256
@@ -217,7 +311,7 @@ export async function GET(
  <div style={{
  width: W, height: H,
  display: 'flex', flexDirection: 'column',
- fontFamily: 'system-ui, -apple-system, sans-serif',
+ fontFamily: 'Inter, system-ui, sans-serif',
  background: '#aad3df', // OSM water color fallback
  overflow: 'hidden', position: 'relative',
  }}>
@@ -225,7 +319,7 @@ export async function GET(
  {/* ── Map tile layer ── */}
  <div style={{
  position: 'absolute', left: 0, top: 0,
- width: W, height: MH,
+ width: W, height: H,
  overflow: 'hidden', display: 'flex',
  }}>
  {tiles.map(({ dx, dy, src }) =>
@@ -248,13 +342,13 @@ export async function GET(
  style={{ position: 'absolute', left: 0, top: 0 }}
  >
  {/* Outer glow */}
- <path d={mapPath} stroke="rgba(255,100,40,0.30)" strokeWidth={22}
+ <path d={mapPath} stroke="rgba(255,100,40,0.28)" strokeWidth={28}
  fill="none" strokeLinecap="round" strokeLinejoin="round" />
  {/* Mid glow */}
- <path d={mapPath} stroke="rgba(255,120,50,0.60)" strokeWidth={10}
+ <path d={mapPath} stroke="rgba(255,120,50,0.55)" strokeWidth={15}
  fill="none" strokeLinecap="round" strokeLinejoin="round" />
  {/* Sharp line */}
- <path d={mapPath} stroke="#ff5c2e" strokeWidth={5}
+ <path d={mapPath} stroke="#ff5c2e" strokeWidth={8}
  fill="none" strokeLinecap="round" strokeLinejoin="round" />
  {/* Start dot */}
  <circle cx={sx} cy={sy} r={10} fill="#22c55e" stroke="#fff" strokeWidth={3} />
@@ -271,6 +365,21 @@ export async function GET(
  }} />
  </div>
 
+ {/* ── Överst: Svallas logga och båttyp, på plattor som syns på kartan (2026-10-26) ── */}
+ <div style={{
+ position: 'absolute', top: 72, left: 72, right: 72,
+ display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+ }}>
+ <Logga storlek={34} pill />
+ <div style={{
+ display: 'flex', alignItems: 'center', gap: 10,
+ background: 'rgba(0,0,0,0.48)', borderRadius: 999, padding: '12px 24px',
+ border: '1px solid rgba(255,255,255,0.16)',
+ }}>
+ <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.9)', display: 'flex' }}>{boatLabel}</div>
+ </div>
+ </div>
+
  {/* ── Bottom info panel ── */}
  <div style={{
  position: 'absolute', bottom: 0, left: 0, right: 0,
@@ -278,30 +387,6 @@ export async function GET(
  display: 'flex', flexDirection: 'column',
  background: 'linear-gradient(to bottom, transparent 0%, #0a1018 25%)',
  }}>
-
- {/* Top bar inside info panel */}
- <div style={{
- display: 'flex', alignItems: 'center', justifyContent: 'space-between',
- paddingBottom: 32,
- }}>
- <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
- <svg viewBox="0 0 20 22" width={30} height={30} style={{ display: 'flex' }}>
- <line x1="9" y1="20" x2="9" y2="2" stroke="rgba(255,255,255,0.55)" strokeWidth="1.6" strokeLinecap="round"/>
- <path d="M9,3 L18,18 L9,18 Z" fill="rgba(255,255,255,0.55)"/>
- <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.30)"/>
- <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.40)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
- </svg>
- <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.50)' }}>SVALLA</div>
- </div>
- <div style={{
- display: 'flex', alignItems: 'center', gap: 10,
- background: 'rgba(0,0,0,0.45)', borderRadius: 40, padding: '8px 20px',
- border: '1px solid rgba(255,255,255,0.12)',
- }}>
- <div style={{ fontSize: 26 }}>{boatEmoji}</div>
- <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>{boatLabel}</div>
- </div>
- </div>
 
  {/* Location */}
  {locLabel ? (
@@ -379,7 +464,7 @@ export async function GET(
 
  </div>
  ),
- { width: W, height: H }
+ { width: W, height: H, fonts }
  )
  }
 
@@ -393,7 +478,7 @@ export async function GET(
  <div style={{
  width: W, height: H,
  display: 'flex', flexDirection: 'column',
- fontFamily: 'system-ui, -apple-system, sans-serif',
+ fontFamily: 'Inter, system-ui, sans-serif',
  background: '#060e18',
  overflow: 'hidden', position: 'relative',
  }}>
@@ -425,28 +510,15 @@ export async function GET(
  {/* Top bar */}
  <div style={{
  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
- padding: '80px 80px 0', position: 'relative', zIndex: 2,
+ padding: '72px 72px 0', position: 'relative', zIndex: 2,
  }}>
- <div style={{
- display: 'flex', alignItems: 'center', gap: 14,
- background: 'rgba(0,0,0,0.45)', borderRadius: 50, padding: '12px 28px 12px 20px',
- border: '1px solid rgba(255,255,255,0.15)',
- }}>
- <svg viewBox="0 0 20 22" width={42} height={42} style={{ display: 'flex' }}>
- <line x1="9" y1="20" x2="9" y2="2" stroke="rgba(255,255,255,0.90)" strokeWidth="1.6" strokeLinecap="round"/>
- <path d="M9,3 L18,18 L9,18 Z" fill="rgba(255,255,255,0.90)"/>
- <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.55)"/>
- <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.70)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
- </svg>
- <div style={{ fontSize: 32, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.90)', display: 'flex' }}>SVALLA</div>
- </div>
+ <Logga storlek={34} pill />
  <div style={{
  display: 'flex', alignItems: 'center', gap: 12,
- background: 'rgba(0,0,0,0.35)', borderRadius: 40, padding: '10px 24px',
- border: '1px solid rgba(255,255,255,0.12)',
+ background: 'rgba(0,0,0,0.48)', borderRadius: 999, padding: '12px 24px',
+ border: '1px solid rgba(255,255,255,0.16)',
  }}>
- <div style={{ fontSize: 30 }}>{boatEmoji}</div>
- <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>{boatLabel}</div>
+ <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.9)', display: 'flex' }}>{boatLabel}</div>
  </div>
  </div>
 
@@ -551,6 +623,6 @@ export async function GET(
  </div>
  </div>
  ),
- { width: W, height: H }
+ { width: W, height: H, fonts }
  )
 }
