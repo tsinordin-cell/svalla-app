@@ -1,6 +1,10 @@
 import { ImageResponse } from 'next/og'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import { Buffer } from 'buffer'
+import { arStil, stil, delstrackStaplar, talRutor } from '@/lib/dela-klistermarken'
+import { computeSplits } from '@/lib/tripSplits'
+import { klisterRutt, klisterTal, klisterRuttTal, klisterDelstrackor, type KlisterData } from './klistermarken'
+import { ogTypsnitt } from '../../../_typsnitt/typsnitt'
 
 export const runtime = 'nodejs'
 export const revalidate = 0
@@ -88,13 +92,15 @@ export async function GET(
  { params }: { params: Promise<{ id: string }> }
 ) {
  const { id } = await params
- const style = new URL(req.url).searchParams.get('style') ?? 'photo'
+ const begard = new URL(req.url).searchParams.get('style')
+ const style = arStil(begard) ? begard : 'photo'
 
  const supabase = await createClient()
+ const fonts = await ogTypsnitt()
 
  const { data: trip } = await supabase
  .from('trips')
- .select('user_id, location_name, start_location, distance, duration, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image, images')
+ .select('user_id, location_name, start_location, distance, duration, duration_seconds, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image, images')
  .eq('id', id)
  .single()
 
@@ -123,6 +129,46 @@ export async function GET(
  const photoUrl = trip?.image ?? (Array.isArray(trip?.images) ? (trip!.images as string[])[0] : null) ?? null
  const hasPhoto = !!photoUrl
 
+ // ── KLISTERMÄRKEN (genomskinliga, 2026-10-26) ───────────────────────────
+ // Läggs ovanpå användarens egen bild i Instagram-storyn. Ingen bakgrund,
+ // inget användarnamn: bara rutten, talen och loggan, som Stravas.
+ if (style === 'rutt' || style === 'tal' || style === 'rutt-tal' || style === 'delstrackor') {
+ if (!trip) return new Response('Turen finns inte', { status: 404 })
+ if ((style === 'rutt' || style === 'rutt-tal' || style === 'delstrackor') && !routePts) {
+ return new Response('Turen har ingen rutt', { status: 404 })
+ }
+ const sekunder = (trip.duration_seconds as number | null) ?? ((trip.duration ?? 0) > 0 ? trip.duration * 60 : null)
+ const data: KlisterData = {
+ plats: locLabel,
+ tal: talRutor({ distanceNM: trip.distance ?? null, sekunder, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null }),
+ rutt: routePts,
+ staplar: [],
+ }
+ if (style === 'delstrackor') {
+ // gps_points släpps bara till ägaren (RLS gps_select_own): andra får 404.
+ const { data: rows } = await supabase
+ .from('gps_points')
+ .select('latitude, longitude, speed_knots, heading, recorded_at')
+ .eq('trip_id', id)
+ .order('recorded_at', { ascending: true })
+ .limit(20000)
+ const pts = (rows ?? []).map(r => ({
+ lat: r.latitude as number, lng: r.longitude as number,
+ speedKnots: (r.speed_knots ?? 0) as number, heading: (r.heading ?? null) as number | null,
+ accuracy: 0, recordedAt: r.recorded_at as string,
+ }))
+ const splits = computeSplits(pts)
+ if (splits.length === 0) return new Response('Turen har inga delsträckor', { status: 404 })
+ data.staplar = delstrackStaplar(splits)
+ }
+ const mall = stil(style)
+ const el = style === 'rutt' ? klisterRutt(data, mall.bredd, mall.hojd)
+ : style === 'tal' ? klisterTal(data, mall.bredd, mall.hojd)
+ : style === 'rutt-tal' ? klisterRuttTal(data, mall.bredd, mall.hojd)
+ : klisterDelstrackor(data, mall.bredd, mall.hojd)
+ return new ImageResponse(el, { width: mall.bredd, height: mall.hojd, fonts })
+ }
+
  const statBoxes = [
  dist && { val: dist, unit: 'NM', label: 'DISTANS' },
  dur && { val: dur, unit: '', label: 'TID' },
@@ -138,7 +184,7 @@ export async function GET(
  <div style={{
  width: W, height: H,
  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
- fontFamily: 'system-ui, -apple-system, sans-serif',
+ fontFamily: 'Inter, system-ui, sans-serif',
  background: 'linear-gradient(170deg, #060e18 0%, #0a2235 50%, #071420 100%)',
  gap: 28,
  }}>
@@ -158,7 +204,7 @@ export async function GET(
  </div>
  </div>
  ),
- { width: W, height: H }
+ { width: W, height: H, fonts }
  )
  }
 
@@ -217,7 +263,7 @@ export async function GET(
  <div style={{
  width: W, height: H,
  display: 'flex', flexDirection: 'column',
- fontFamily: 'system-ui, -apple-system, sans-serif',
+ fontFamily: 'Inter, system-ui, sans-serif',
  background: '#aad3df', // OSM water color fallback
  overflow: 'hidden', position: 'relative',
  }}>
@@ -379,7 +425,7 @@ export async function GET(
 
  </div>
  ),
- { width: W, height: H }
+ { width: W, height: H, fonts }
  )
  }
 
@@ -393,7 +439,7 @@ export async function GET(
  <div style={{
  width: W, height: H,
  display: 'flex', flexDirection: 'column',
- fontFamily: 'system-ui, -apple-system, sans-serif',
+ fontFamily: 'Inter, system-ui, sans-serif',
  background: '#060e18',
  overflow: 'hidden', position: 'relative',
  }}>
@@ -551,6 +597,6 @@ export async function GET(
  </div>
  </div>
  ),
- { width: W, height: H }
+ { width: W, height: H, fonts }
  )
 }
