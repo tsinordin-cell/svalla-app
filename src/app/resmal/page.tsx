@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { ANTAL_OAR } from '@/app/o/island-data'
 
 export const metadata: Metadata = {
  title: 'Alla resmål i Stockholms skärgård',
@@ -25,7 +26,7 @@ const ITEMS: LandingItem[] = [
  title: 'Alla öar',
  description: 'Från Sandhamn och Utö till Finnhamn och Grinda — sök, jämför och hitta din nästa favoritö.',
  href: '/rutter?vy=oar',
- meta: '200+ öar',
+ meta: `${ANTAL_OAR} öar`, // 2026-10-21: räknas från datan, bara öar (stod "200+")
  },
  {
  icon: '🗺️',
