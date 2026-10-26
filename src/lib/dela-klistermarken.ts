@@ -12,6 +12,14 @@
 
 export type StilId = 'photo' | 'map' | 'rutt' | 'tal' | 'rutt-tal' | 'delstrackor'
 
+/**
+ * Höj när bildernas utseende ändras i kod. Ingår i serverns cachenyckel
+ * (route.tsx) och i bildernas URL från delningsrutan, så att varken Vercels
+ * datacache eller webbläsarens cache (max-age 3600) visar ett gammalt kort.
+ * 2026-10-26: efter #500 visade Thomas Chrome det gamla kartkortet i en timme.
+ */
+export const BILD_VERSION = '2026-10-27a'
+
 export type Stil = {
   id: StilId
   namn: string

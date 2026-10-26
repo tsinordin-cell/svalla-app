@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import { revalidateTrip } from '@/lib/revalidate-trip'
 import { toast } from '@/components/Toast'
-import { forvaldStil, stil as stilFor, tillgangligaStilar, type StilId } from '@/lib/dela-klistermarken'
+import { forvaldStil, stil as stilFor, tillgangligaStilar, BILD_VERSION, type StilId } from '@/lib/dela-klistermarken'
 
 interface Props {
  tripId: string
@@ -35,7 +35,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  const mall = stilFor(styleMode)
  const klister = mall.klistermarke
 
- const cardSrc = `/api/og/share/tur/${tripId}?style=${styleMode}`
+ const cardSrc = `/api/og/share/tur/${tripId}?style=${styleMode}&v=${BILD_VERSION}`
  // Kort kommer som JPEG, klistermärken som PNG (genomskinliga); filnamnet följer med.
  const filnamn = `svalla-${styleMode}.${klister ? 'png' : 'jpg'}`
  const filtyp = klister ? 'image/png' : 'image/jpeg'
@@ -321,7 +321,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  }}>
  {/* eslint-disable-next-line @next/next/no-img-element */}
  <img
- src={`/api/og/share/tur/${tripId}?style=${m.id}`}
+ src={`/api/og/share/tur/${tripId}?style=${m.id}&v=${BILD_VERSION}`}
  alt={m.namn}
  loading="lazy"
  onLoad={() => setLaddade(l => l.includes(m.id) ? l : [...l, m.id])}

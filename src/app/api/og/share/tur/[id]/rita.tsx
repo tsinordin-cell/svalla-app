@@ -22,7 +22,7 @@ import { ImageResponse } from 'next/og'
 import type { ReactElement } from 'react'
 import { Buffer } from 'buffer'
 import sharp from 'sharp'
-import { stil, delstrackStaplar, talRutor, formatTid, ruttArAnvandbar, datumLang, turRubrik, type StilId, type Punkt } from '@/lib/dela-klistermarken'
+import { stil, delstrackStaplar, talRutor, formatTid, ruttArAnvandbar, datumLang, turRubrik, BILD_VERSION, type StilId, type Punkt } from '@/lib/dela-klistermarken'
 import { computeSplits } from '@/lib/tripSplits'
 import { klisterRutt, klisterTal, klisterRuttTal, klisterDelstrackor, Logga, type KlisterData } from './klistermarken'
 import type { GpsPoint } from '@/lib/gps'
@@ -39,8 +39,8 @@ type Typsnitt = { name: string; data: ArrayBuffer; weight: 500 | 700 | 800; styl
 
 export const W = 1080
 export const H = 1920
-/** Höj när bildernas utseende ändras i kod, så att cachade bilder ritas om. */
-export const BILD_VERSION = '2026-10-27a'
+/** Versionen ligger i src/lib/dela-klistermarken.ts (delas med delningsrutan). */
+export { BILD_VERSION }
 
 // Instagrams säkra zon för en 1080×1920-story: deras eget gränssnitt ligger
 // över de översta ca 270 och de nedersta ca 380 bildpunkterna.
