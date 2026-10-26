@@ -657,6 +657,15 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    name={r.name}
  />
 
+ {/* Väg att rätta eller ta bort uppgifter (2026-10-07). Platssidorna visar
+     verksamheters kontaktuppgifter, ibland ett mobilnummer. Policyn lovar att
+     den som driver stället kan få det ändrat eller borttaget. */}
+ <p style={{ fontSize: 12.5, color: 'var(--txt3)', margin: '-4px 2px 14px', lineHeight: 1.5 }}>
+   Driver du {r.name}? Skriv till{' '}
+   <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)', fontWeight: 600 }}>info@svalla.se</a>{' '}
+   om du vill ändra eller ta bort något.
+ </p>
+
  {/* ── Mini-karta — visar var platsen ligger, knapp för vägbeskrivning ── */}
  {r.latitude && r.longitude && (
    <PlaceMiniMap
