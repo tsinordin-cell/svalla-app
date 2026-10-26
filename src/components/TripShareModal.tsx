@@ -27,10 +27,10 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  const [open, setOpen] = useState(false)
  const [loading, setLoading] = useState(false)
  const [step, setStep] = useState<'main' | 'saved'>('main')
- const [imgLoaded, setImgLoaded] = useState(false)
  const [styleMode, setStyleMode] = useState<StilId>(forvaldStil({ harBild: hasPhoto, harRutt: hasRoute }))
  // Mallar vars bild inte gick att hämta (t.ex. delsträckor för någon som inte äger turen) göms.
  const [dolda, setDolda] = useState<StilId[]>([])
+ const [laddade, setLaddade] = useState<StilId[]>([])
  const mallar = tillgangligaStilar({ harBild: hasPhoto, harRutt: hasRoute, agare: true }).filter(m => !dolda.includes(m.id))
  const mall = stilFor(styleMode)
  const klister = mall.klistermarke
@@ -62,10 +62,6 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  toast('Turen är nu synlig för alla.', 'success')
  }
 
- // Preload image when modal opens or style changes
- useEffect(() => {
- if (open) setImgLoaded(false)
- }, [open, styleMode])
 
  function handleOpen() {
  setStep('main')
@@ -262,7 +258,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  {/* Hero — dark background, large centered card */}
  <div style={{
  background: 'linear-gradient(170deg, #0c2030 0%, #071420 100%)',
- padding: '12px 20px 20px',
+ padding: '12px 0 18px',
  display: 'flex',
  flexDirection: 'column',
  alignItems: 'center',
@@ -280,74 +276,56 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  pointerEvents: 'none',
  }} />
 
- {/* Mallar (2026-10-26): kort i 9:16 och genomskinliga klistermärken, som Stravas delning */}
- {mallar.length > 1 && (
- <div style={{
- display: 'flex', gap: 10, overflowX: 'auto', maxWidth: '100%', padding: '2px 2px 6px',
- position: 'relative', zIndex: 1, scrollbarWidth: 'none',
- }}>
- {mallar.map(m => (
+ {/* Mallar (2026-10-26): stora kort att bläddra mellan, som i Stravas delning. Tryck väljer. */}
+ <div
+ style={{
+ display: 'flex', gap: 14, overflowX: 'auto', width: '100%', padding: '6px 24px 10px',
+ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch',
+ position: 'relative', zIndex: 1, boxSizing: 'border-box',
+ }}
+ >
+ {mallar.map(m => {
+ const vald = styleMode === m.id
+ const bredd = m.klistermarke ? 190 : 150
+ return (
  <button
  key={m.id}
- onClick={() => setStyleMode(m.id)}
- aria-pressed={styleMode === m.id}
+ onClick={e => { setStyleMode(m.id); e.currentTarget.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' }) }}
+ aria-pressed={vald}
  aria-label={m.namn}
  style={{
- flexShrink: 0, width: 64, padding: 0, border: 'none', background: 'transparent', cursor: 'pointer',
- display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5,
+ flexShrink: 0, width: bredd, padding: 0, border: 'none', background: 'transparent', cursor: 'pointer',
+ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 9, scrollSnapAlign: 'center',
+ opacity: vald ? 1 : 0.72, transition: 'opacity 0.2s',
  }}
  >
  <div style={{
- width: 64, height: Math.round(64 * m.hojd / m.bredd), borderRadius: 10, overflow: 'hidden',
- background: m.klistermarke ? RUTIG : 'rgba(255,255,255,0.07)',
- boxShadow: styleMode === m.id ? '0 0 0 2.5px #fff' : '0 0 0 1px rgba(255,255,255,0.12)',
- display: 'flex', alignItems: 'center', justifyContent: 'center',
+ width: bredd, height: Math.round(bredd * m.hojd / m.bredd), borderRadius: 18, overflow: 'hidden',
+ background: m.klistermarke ? RUTIG : 'rgba(255,255,255,0.06)',
+ animation: laddade.includes(m.id) ? undefined : 'pulse 1.5s ease-in-out infinite',
+ boxShadow: vald ? '0 0 0 2.5px #fff, 0 16px 40px rgba(0,0,0,0.55)' : '0 0 0 1px rgba(255,255,255,0.12), 0 10px 30px rgba(0,0,0,0.45)',
+ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative',
  }}>
  {/* eslint-disable-next-line @next/next/no-img-element */}
  <img
  src={`/api/og/share/tur/${tripId}?style=${m.id}`}
- alt=""
+ alt={m.namn}
  loading="lazy"
+ onLoad={() => setLaddade(l => l.includes(m.id) ? l : [...l, m.id])}
  onError={() => setDolda(d => d.includes(m.id) ? d : [...d, m.id])}
- style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+ style={{ width: '100%', height: '100%', objectFit: m.klistermarke ? 'contain' : 'cover', display: 'block' }}
  />
- </div>
- <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.2px', color: styleMode === m.id ? '#fff' : 'rgba(255,255,255,0.5)', whiteSpace: 'nowrap' }}>{m.namn}</div>
- </button>
- ))}
- </div>
+ {m.klistermarke && (
+ <div style={{
+ position: 'absolute', top: 10, right: 10, padding: '3px 8px', borderRadius: 999,
+ background: 'rgba(0,0,0,0.5)', color: 'rgba(255,255,255,0.85)', fontSize: 9.5, fontWeight: 700, letterSpacing: '0.5px',
+ }}>KLISTERMÄRKE</div>
  )}
-
- {/* Large card preview */}
- <div style={{ position: 'relative', width: klister ? '62%' : '50%', maxWidth: klister ? 200 : 160 }}>
- {/* Spacer — maintains height regardless of load state */}
- <div style={{ width: '100%', aspectRatio: `${mall.bredd}/${mall.hojd}` }} />
- {/* Skeleton — fades out when image loads */}
- <div style={{
- position: 'absolute', inset: 0, borderRadius: 18,
- background: 'rgba(255,255,255,0.07)',
- animation: 'pulse 1.5s ease-in-out infinite',
- opacity: imgLoaded ? 0 : 1,
- transition: 'opacity 0.35s ease',
- pointerEvents: 'none',
- }} />
- {/* Image — fades in when loaded */}
- <div style={{
- position: 'absolute', inset: 0, borderRadius: 18,
- overflow: 'hidden',
- background: klister ? RUTIG : undefined,
- boxShadow: '0 20px 60px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.07)',
- opacity: imgLoaded ? 1 : 0,
- transition: 'opacity 0.35s ease',
- }}>
- {/* eslint-disable-next-line @next/next/no-img-element */}
- <img
- src={cardSrc}
- alt={klister ? 'Klistermärke' : 'Story-kort'}
- onLoad={() => setImgLoaded(true)}
- style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
- />
  </div>
+ <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '0.2px', color: vald ? '#fff' : 'rgba(255,255,255,0.55)', whiteSpace: 'nowrap' }}>{m.namn}</div>
+ </button>
+ )
+ })}
  </div>
 
  {/* PRODUKTREGEL: 9:16 är kortets bildformat (bredd:höjd, 1080×1920), inget klockslag. */}

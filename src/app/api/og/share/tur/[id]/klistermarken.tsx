@@ -4,71 +4,70 @@
  * måste ha display: flex. Ingen bakgrund = genomskinlig PNG.
  *
  * Fyra mallar: rutt, tal, rutt-tal, delstrackor. Se src/lib/dela-klistermarken.ts.
+ *
+ * Formspråk (2026-10-26, Thomas: "lika proffsigt som andra stora appar"): en enda
+ * tjock ruttlinje med runda ändar, vit text med lätt skugga, stora tal med små
+ * spärrade etiketter ovanför, loggan alltid nederst i mitten. Ingen vit kant,
+ * inga start- och slutprickar, inga ramar.
  */
 import type { ReactElement } from 'react'
-import { ruttPath, ruttStartSlut, type Punkt, type Stapel } from '@/lib/dela-klistermarken'
+import { ruttPath, type Punkt, type Stapel } from '@/lib/dela-klistermarken'
 
 export type Tal = { val: string; enhet: string; etikett: string }
 
 const ORANGE = '#ff5c2e'
-const SKUGGA = '0 2px 6px rgba(0,0,0,0.55), 0 0 28px rgba(0,0,0,0.35)'
+const VIT = '#ffffff'
+const VIT_SVAG = 'rgba(255,255,255,0.78)'
+const SKUGGA = '0 1px 2px rgba(0,0,0,0.40), 0 6px 24px rgba(0,0,0,0.28)'
 const FONT = 'Inter, system-ui, sans-serif'
 
-function Logga({ storlek = 34, alpha = 0.95 }: { storlek?: number; alpha?: number }) {
+function Logga({ storlek = 30 }: { storlek?: number }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: Math.round(storlek * 0.35) }}>
-      <svg viewBox="0 0 20 22" width={storlek * 1.2} height={storlek * 1.2} style={{ display: 'flex' }}>
-        <line x1="9" y1="20" x2="9" y2="2" stroke={`rgba(255,255,255,${alpha})`} strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M9,3 L18,18 L9,18 Z" fill={`rgba(255,255,255,${alpha})`} />
-        <path d="M9,7 L1,17 L9,17 Z" fill={`rgba(255,255,255,${alpha * 0.6})`} />
-        <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke={`rgba(255,255,255,${alpha * 0.75})`} strokeWidth="1.4" fill="none" strokeLinecap="round" />
+    <div style={{ display: 'flex', alignItems: 'center', gap: Math.round(storlek * 0.4) }}>
+      <svg viewBox="0 0 20 22" width={storlek * 1.25} height={storlek * 1.25} style={{ display: 'flex', filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.4))' }}>
+        <line x1="9" y1="20" x2="9" y2="2" stroke={VIT} strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M9,3 L18,18 L9,18 Z" fill={VIT} />
+        <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.6)" />
+        <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.8)" strokeWidth="1.4" fill="none" strokeLinecap="round" />
       </svg>
-      <div style={{ fontSize: storlek, fontWeight: 700, letterSpacing: Math.round(storlek * 0.18), color: `rgba(255,255,255,${alpha})`, textShadow: SKUGGA, display: 'flex' }}>SVALLA</div>
+      <div style={{ fontSize: storlek, fontWeight: 700, letterSpacing: Math.round(storlek * 0.22), color: VIT, textShadow: SKUGGA, display: 'flex' }}>SVALLA</div>
     </div>
   )
 }
 
-function Rutt({ pts, W, H, pad, tjock = 1 }: { pts: Punkt[]; W: number; H: number; pad: number; tjock?: number }) {
+/** En tjock linje i Svallas orange med runda ändar, och en knappt synlig mörk kant så att den syns på ljusa bilder. */
+function Rutt({ pts, W, H, pad, tjock = 30 }: { pts: Punkt[]; W: number; H: number; pad: number; tjock?: number }) {
   const d = ruttPath(pts, W, H, pad)
-  const ss = ruttStartSlut(pts, W, H, pad)
-  if (!d || !ss) return null
+  if (!d) return null
   return (
     <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ display: 'flex' }}>
-      <path d={d} stroke="rgba(0,0,0,0.35)" strokeWidth={34 * tjock} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <path d={d} stroke="rgba(255,255,255,0.92)" strokeWidth={26 * tjock} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <path d={d} stroke={ORANGE} strokeWidth={13 * tjock} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx={ss.start[0]} cy={ss.start[1]} r={15 * tjock} fill="#22c55e" stroke="#fff" strokeWidth={5 * tjock} />
-      <circle cx={ss.slut[0]} cy={ss.slut[1]} r={15 * tjock} fill={ORANGE} stroke="#fff" strokeWidth={5 * tjock} />
+      <path d={d} stroke="rgba(0,0,0,0.22)" strokeWidth={tjock + 8} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={d} stroke={ORANGE} strokeWidth={tjock} fill="none" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
 
-function TalRad({ tal, stor = 96 }: { tal: Tal[]; stor?: number }) {
+function Etikett({ text, storlek = 26 }: { text: string; storlek?: number }) {
+  return <div style={{ fontSize: storlek, fontWeight: 700, letterSpacing: Math.round(storlek * 0.12), color: VIT_SVAG, textShadow: SKUGGA, display: 'flex' }}>{text}</div>
+}
+
+function Varde({ val, enhet, storlek }: { val: string; enhet: string; storlek: number }) {
   return (
-    <div style={{ display: 'flex', gap: 56, justifyContent: 'center', alignItems: 'flex-end' }}>
-      {tal.map(t => (
-        <div key={t.etikett} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-          <div style={{ fontSize: Math.round(stor * 0.27), fontWeight: 700, letterSpacing: 3, color: 'rgba(255,255,255,0.85)', textShadow: SKUGGA, display: 'flex' }}>{t.etikett}</div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-            <div style={{ fontSize: stor, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: -2, textShadow: SKUGGA, display: 'flex' }}>{t.val}</div>
-            {t.enhet ? <div style={{ fontSize: Math.round(stor * 0.36), fontWeight: 700, color: 'rgba(255,255,255,0.85)', textShadow: SKUGGA, display: 'flex' }}>{t.enhet}</div> : null}
-          </div>
-        </div>
-      ))}
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: Math.round(storlek * 0.08) }}>
+      <div style={{ fontSize: storlek, fontWeight: 800, color: VIT, lineHeight: 1, letterSpacing: Math.round(-storlek * 0.035), textShadow: SKUGGA, display: 'flex' }}>{val}</div>
+      {enhet ? <div style={{ fontSize: Math.round(storlek * 0.34), fontWeight: 700, color: VIT_SVAG, textShadow: SKUGGA, display: 'flex' }}>{enhet}</div> : null}
     </div>
   )
 }
 
-function TalKolumn({ tal }: { tal: Tal[] }) {
+/** Tal i en rad, vänsterställda, som i en appvy. */
+function TalRad({ tal, stor = 88, gap = 64, justera = 'flex-start' }: { tal: Tal[]; stor?: number; gap?: number; justera?: 'flex-start' | 'center' }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 44 }}>
+    <div style={{ display: 'flex', gap, justifyContent: justera, alignItems: 'flex-end', width: '100%' }}>
       {tal.map(t => (
-        <div key={t.etikett} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-          <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: 4, color: 'rgba(255,255,255,0.85)', textShadow: SKUGGA, display: 'flex' }}>{t.etikett}</div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-            <div style={{ fontSize: 136, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: -4, textShadow: SKUGGA, display: 'flex' }}>{t.val}</div>
-            {t.enhet ? <div style={{ fontSize: 48, fontWeight: 700, color: 'rgba(255,255,255,0.85)', textShadow: SKUGGA, display: 'flex' }}>{t.enhet}</div> : null}
-          </div>
+        <div key={t.etikett} style={{ display: 'flex', flexDirection: 'column', alignItems: justera === 'center' ? 'center' : 'flex-start', gap: 10 }}>
+          <Etikett text={t.etikett} storlek={Math.round(stor * 0.27)} />
+          <Varde val={t.val} enhet={t.enhet} storlek={stor} />
         </div>
       ))}
     </div>
@@ -84,70 +83,88 @@ export type KlisterData = {
 
 /** Bara rutten och loggan. 1080×1080. */
 export function klisterRutt(d: KlisterData, W: number, H: number): ReactElement {
+  const rh = H - 200
   return (
     <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: FONT }}>
-      <div style={{ display: 'flex', width: W, height: H - 160 }}>
-        {d.rutt ? <Rutt pts={d.rutt} W={W} H={H - 160} pad={0.12} tjock={1.3} /> : null}
+      <div style={{ display: 'flex', width: W, height: rh }}>
+        {d.rutt ? <Rutt pts={d.rutt} W={W} H={rh} pad={0.09} tjock={34} /> : null}
       </div>
-      <div style={{ display: 'flex', height: 160, alignItems: 'center' }}><Logga storlek={38} /></div>
+      <div style={{ display: 'flex', height: 200, alignItems: 'center' }}><Logga storlek={34} /></div>
     </div>
   )
 }
 
-/** Talen i en kolumn och loggan. 1080×1080. */
+/** Talen i en kolumn, centrerade, loggan under. 1080×1080. */
 export function klisterTal(d: KlisterData, W: number, H: number): ReactElement {
+  const n = Math.max(1, d.tal.length)
+  const stor = n >= 3 ? 150 : 180
   return (
-    <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 70, fontFamily: FONT }}>
-      <TalKolumn tal={d.tal} />
-      <Logga storlek={38} />
+    <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 60, fontFamily: FONT }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 46 }}>
+        {d.tal.map(t => (
+          <div key={t.etikett} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+            <Etikett text={t.etikett} storlek={30} />
+            <Varde val={t.val} enhet={t.enhet} storlek={stor} />
+          </div>
+        ))}
+      </div>
+      <Logga storlek={32} />
     </div>
   )
 }
 
-/** Plats, rutt, tal och logga. 1080×1350. */
+/** Plats och rutt överst, talen under, loggan nederst. 1080×1350. */
 export function klisterRuttTal(d: KlisterData, W: number, H: number): ReactElement {
-  const stor = d.plats.length > 22 ? 64 : 84
+  const platsStorlek = d.plats.length > 24 ? 60 : d.plats.length > 16 ? 76 : 92
+  const IW = W - 2 * 72
   return (
-    <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', padding: '70px 60px 60px', fontFamily: FONT }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
-        <Logga storlek={28} alpha={0.85} />
-        <div style={{ fontSize: stor, fontWeight: 800, color: '#fff', letterSpacing: -2, lineHeight: 1.05, textAlign: 'center', textShadow: SKUGGA, display: 'flex' }}>{d.plats || 'Svalla-tur'}</div>
+    <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', padding: '84px 72px 72px', fontFamily: FONT }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: IW }}>
+        <Etikett text="LOGGAD MED SVALLA" storlek={26} />
+        <div style={{ fontSize: platsStorlek, fontWeight: 800, color: VIT, letterSpacing: Math.round(-platsStorlek * 0.03), lineHeight: 1.05, textShadow: SKUGGA, display: 'flex' }}>{d.plats || 'Svalla-tur'}</div>
       </div>
-      <div style={{ display: 'flex', width: W - 120, height: 700 }}>
-        {d.rutt ? <Rutt pts={d.rutt} W={W - 120} H={700} pad={0.08} /> : null}
+      <div style={{ display: 'flex', width: IW, height: 620 }}>
+        {d.rutt ? <Rutt pts={d.rutt} W={IW} H={620} pad={0.06} tjock={28} /> : null}
       </div>
-      <TalRad tal={d.tal} stor={92} />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 54, width: IW }}>
+        <TalRad tal={d.tal} stor={96} gap={72} />
+        <Logga storlek={28} />
+      </div>
     </div>
   )
 }
 
-/** Delsträckor som staplar. 1080×1350. */
+/** Delsträckor som staplar: snittfart per sjömil. 1080×1350. */
 export function klisterDelstrackor(d: KlisterData, W: number, H: number): ReactElement {
+  const IW = W - 2 * 72
   const n = Math.max(1, d.staplar.length)
-  const radH = Math.min(84, Math.floor(860 / n))
-  const barMax = W - 120 - 150 - 250
+  const radH = Math.min(78, Math.floor(760 / n))
+  const etikettB = 120, talB = 300
+  const barMax = IW - etikettB - talB - 2 * 24
   return (
-    <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', padding: '70px 60px 60px', fontFamily: FONT }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-        <Logga storlek={28} alpha={0.85} />
-        <div style={{ fontSize: 64, fontWeight: 800, color: '#fff', letterSpacing: -2, textShadow: SKUGGA, display: 'flex' }}>Delsträckor</div>
-        <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: 3, color: 'rgba(255,255,255,0.8)', textShadow: SKUGGA, display: 'flex' }}>{`${d.plats ? d.plats.toUpperCase() + ' · ' : ''}SNITTFART PER SJÖMIL`}</div>
+    <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', padding: '84px 72px 72px', fontFamily: FONT }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: IW }}>
+        <Etikett text={d.plats ? `${d.plats.toUpperCase()} · SNITTFART PER SJÖMIL` : 'SNITTFART PER SJÖMIL'} storlek={26} />
+        <div style={{ fontSize: 84, fontWeight: 800, color: VIT, letterSpacing: -3, lineHeight: 1.05, textShadow: SKUGGA, display: 'flex' }}>Delsträckor</div>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', width: W - 120, gap: Math.max(6, Math.round(radH * 0.22)) }}>
+      <div style={{ display: 'flex', flexDirection: 'column', width: IW, gap: Math.max(8, Math.round(radH * 0.26)) }}>
         {d.staplar.map(s => (
-          <div key={s.etikett} style={{ display: 'flex', alignItems: 'center', height: radH * 0.78, gap: 18 }}>
-            <div style={{ width: 132, fontSize: Math.round(radH * 0.4), fontWeight: 700, color: 'rgba(255,255,255,0.9)', textShadow: SKUGGA, display: 'flex' }}>{s.etikett}</div>
-            <div style={{ display: 'flex', width: barMax, height: radH * 0.5 }}>
-              <div style={{ width: Math.round(barMax * s.andel), height: radH * 0.5, borderRadius: radH * 0.25, background: ORANGE, border: '3px solid rgba(255,255,255,0.85)', display: 'flex' }} />
+          <div key={s.etikett} style={{ display: 'flex', alignItems: 'center', height: radH * 0.74, gap: 24 }}>
+            <div style={{ width: etikettB, fontSize: Math.round(radH * 0.42), fontWeight: 700, color: VIT_SVAG, textShadow: SKUGGA, display: 'flex', whiteSpace: 'nowrap' }}>{s.etikett}</div>
+            <div style={{ display: 'flex', width: barMax, height: radH * 0.56 }}>
+              <div style={{ width: Math.max(radH * 0.56, Math.round(barMax * s.andel)), height: radH * 0.56, borderRadius: radH * 0.28, background: ORANGE, boxShadow: '0 2px 8px rgba(0,0,0,0.25)', display: 'flex' }} />
             </div>
-            <div style={{ width: 250, display: 'flex', justifyContent: 'flex-end', gap: 14, alignItems: 'baseline' }}>
-              <div style={{ fontSize: Math.round(radH * 0.42), fontWeight: 800, color: '#fff', textShadow: SKUGGA, display: 'flex' }}>{s.fart}</div>
-              <div style={{ fontSize: Math.round(radH * 0.32), fontWeight: 600, color: 'rgba(255,255,255,0.75)', textShadow: SKUGGA, display: 'flex' }}>{s.tid}</div>
+            <div style={{ width: talB, display: 'flex', justifyContent: 'flex-end', gap: 16, alignItems: 'baseline' }}>
+              <div style={{ fontSize: Math.round(radH * 0.46), fontWeight: 800, color: VIT, textShadow: SKUGGA, display: 'flex' }}>{s.fart}</div>
+              <div style={{ fontSize: Math.round(radH * 0.34), fontWeight: 600, color: VIT_SVAG, textShadow: SKUGGA, display: 'flex' }}>{s.tid}</div>
             </div>
           </div>
         ))}
       </div>
-      <TalRad tal={d.tal.slice(0, 3)} stor={72} />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 48, width: IW }}>
+        <TalRad tal={d.tal.slice(0, 3)} stor={76} gap={64} />
+        <Logga storlek={28} />
+      </div>
     </div>
   )
 }
