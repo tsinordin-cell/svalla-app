@@ -350,6 +350,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  </div>
  </div>
 
+ {/* PRODUKTREGEL: 9:16 är kortets bildformat (bredd:höjd, 1080×1920), inget klockslag. */}
  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.38)', fontWeight: 500, letterSpacing: '0.2px', textAlign: 'center', padding: '0 12px' }}>
  {klister ? `Klistermärke med genomskinlig bakgrund · ${mall.beskrivning}` : 'Story-bild · 9:16'}
  </div>
