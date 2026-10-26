@@ -2,7 +2,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import { GUIDES } from '@/app/guider/guides-data'
-import { ALL_ISLANDS } from '@/app/o/island-data'
+import { ANTAL_OAR } from '@/app/o/island-data'
 import { TRAFFIC_OVERRIDE, REVENUE_YEARLY_SEK } from './config'
 import MaletClient from './MaletClient'
 import { baraManniskor } from '@/lib/analytics-filter'
@@ -45,7 +45,7 @@ export default async function MaletPage() {
       subs={totalSubs.count ?? 0}
       partners={activePartners.count ?? 0}
       guides={GUIDES.length}
-      islands={ALL_ISLANDS.length}
+      islands={ANTAL_OAR}
       places={places.count ?? 0}
       sessions={TRAFFIC_OVERRIDE > 0 ? TRAFFIC_OVERRIDE : sessions}
       pageviews={pageviews}

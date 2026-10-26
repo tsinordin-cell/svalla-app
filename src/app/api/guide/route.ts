@@ -10,6 +10,7 @@ import { logger } from '@/lib/logger'
 import { fetchTripsResult, type TripSummary } from '@/lib/trafiklab'
 import { getIslandTransit, ISLAND_TRANSIT } from '@/lib/transit-stops'
 import { ALL_ISLANDS } from '@/app/o/island-data'
+import { byggPlatslista, rensaLankar, PLATSLISTA_REGLER, THORKEL_PLATSTYPER, type PlatsRad } from '@/lib/thorkel-platser'
 
 /**
  * Turlista för kontext — sträckor med EGEN BÅT eller charter, mätta i distansminuter (NM).
@@ -740,7 +741,8 @@ async function executeTool(
   const { data: places } = await supabase
     .from('restaurants')
     .select('id, name, latitude, longitude, type, categories, tags, island')
-    .limit(300)
+    .is('hidden_at', null)   // 2026-10-23: förut kom dolda platser med, och bara 300 av ca 700 i godtycklig ordning
+    .limit(2000)
 
   const allPlaces: PlaceInput[] = (places ?? []).map((p: {
     id: string; name: string; latitude: number; longitude: number;
@@ -851,50 +853,28 @@ export async function POST(req: NextRequest) {
       '\nOm relevant: referera till deras tidigare turer när du ger råd.'
   }
 
-  // Fetch bookable/linked restaurants to inject live deep links into system prompt
+  // Platslistan till systemprompten (2026-10-23): alla synliga krogar, kaféer, barer, bastur och boenden
+  // på en ö, med bokningslänk och öppettider. Förut de 80 första i bokstavsordning, dolda platser inräknade.
   const { data: places } = await supabase
     .from('restaurants')
-    .select('id, name, booking_url, island')
-    .order('name', { ascending: true })
-    .limit(80)
+    .select('id, name, island, type, booking_url, opening_hours, endast_medlemmar')
+    .is('hidden_at', null)
+    .in('type', [...THORKEL_PLATSTYPER])
+    .limit(2000)
 
-  const placeList: Array<{ id: string; name: string; island: string | null; booking_url: string | null }> = places ?? []
+  const platslista = byggPlatslista((places ?? []) as PlatsRad[])
+  const placeLinks = platslista.text
 
-  const validPlaceIds = new Set(placeList.map(p => p.id))
-  const validBookingUrls = new Set(placeList.map(p => p.booking_url).filter((x): x is string => !!x))
-
-  const placeLinks = placeList
-    .map(p => {
-      const base = `https://svalla.se/upptack/${p.id}`
-      const booking = p.booking_url ? ` — [Boka bord](${p.booking_url})` : ''
-      return `${p.name}${p.island ? ` (${p.island})` : ''}: ${base}${booking}`
-    })
-    .join('\n')
-
+  // Länkkontroll: platssidor och bokningslänkar ur listan, Svallas egna sidor och ösidor som finns.
+  // /upptack/<id> släpps nu igenom; förut bara /platser/<id>, så varje platslänk ströks.
   function sanitizeLinks(text: string): string {
-    return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (full, label, url) => {
-      const platserMatch = /^https?:\/\/svalla\.se\/platser\/([0-9a-f-]+)/i.exec(url)
-      if (platserMatch && validPlaceIds.has(platserMatch[1]!)) return full
-      if (validBookingUrls.has(url)) return full
-      if (/^https?:\/\/svalla\.se\/(planera|karta|resmal|populara-turer|segelrutter|kom-igang|logga-in)(\/|$|\?)/i.test(url)) return full
-      if (/^\/(planera|karta|resmal|populara-turer|segelrutter|kom-igang|logga-in)(\/|$|\?)/i.test(url)) return full
-      // Ösidor. Tillagt 2026-09-14: /o/ saknades i listan, så VARJE länk Thorkel
-      // skrev till en ösida ströks tyst och blev vanlig text. Instruktionen i
-      // systemprompten om att länka var alltså verkningslös, och Svalla tappade
-      // all intern länkning från guiden. Slugen kontrolleras mot island-data —
-      // en ö som inte finns får fortfarande ingen länk.
-      // Undersidorna motsvarar mapparna i src/app/o/[slug]/ — läggs en ny till
-      // där måste den läggas till här också, annars strippas länken tyst.
-      const oMatch = /^(?:https?:\/\/svalla\.se)?\/o\/([a-z0-9-]+)(?:\/(bad|boende|hamnar|komma-dit|restauranger|aktiviteter|med-barn))?\/?$/i.exec(url)
-      if (oMatch && VALID_ISLAND_SLUGS.has(oMatch[1]!.toLowerCase())) return full
-      return label
-    })
+    return rensaLankar(text, { platsIdn: platslista.idn, bokningslankar: platslista.bokningslankar, oSlugs: VALID_ISLAND_SLUGS })
   }
 
   const followUpProtocol = `\n\nFÖLJDFRÅGOR-PROTOKOLL: Avsluta varje svar med tre korta förslag på vad användaren kan svara eller fråga härnäst. Skriv dem på en ny rad SIST i svaret, exakt på detta format:\nFÖLJDFRÅGOR: Kort alternativ ett | Kort alternativ två | Kort alternativ tre\nMax 8 ord per alternativ. VIKTIGT: Om du ställer en fråga till användaren ska alternativen vara möjliga SVAR på din fråga (t.ex. "Vi är 2 vuxna och 2 barn" eller "Barnen har aldrig seglat"), inte nya frågor. Om du ger information ska alternativen vara naturliga följdfrågor användaren kan vilja ställa.`
 
   const dynamicSystem = (placeLinks
-    ? `${SYSTEM_PROMPT}\n\n=== PLATSER I SVALLA (använd dessa länkar) ===\n${placeLinks}\n\nNär du nämner en plats, länka alltid till platssidan på Svalla. Om bokning finns, visa bokningslänken tydligt.`
+    ? `${SYSTEM_PROMPT}\n\n=== PLATSER I SVALLA (använd dessa länkar) ===\n${placeLinks}\n\n${PLATSLISTA_REGLER}`
     : SYSTEM_PROMPT) + ISLAND_INDEX + tripCtx + followUpProtocol
 
   async function callClaude(msgs: unknown[]): Promise<Response> {

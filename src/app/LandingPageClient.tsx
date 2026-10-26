@@ -1206,7 +1206,7 @@ const LANDING_HTML = `
    </div>
    <div class="thorkel-msg ai">
     <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
-    <div class="thorkel-bubble">Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill jag lägga till det i planen?</div>
+    <div class="thorkel-bubble">Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill du att jag lägger till det i planen?</div>
    </div>
   </div>
  </div>

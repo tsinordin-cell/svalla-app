@@ -5276,136 +5276,6 @@ export const ISLANDS: Island[] = [
 
   },
   {
-    slug: 'bjorko',
-    name: 'Björkö (Birka)',
-    region: 'mellersta',
-    regionLabel: 'Mälaren',
-    emoji: '⚔️',
-    // KÄLLA: https://www.birkavikingastaden.se/om-birka/ — "Området blev upptaget på Unescos världsarvslista år 1993" (läst 2026-09-27)
-    // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "Birka nås med båt över Mälaren"; "Här finns 40 båtplatser" (läst 2026-09-27)
-    // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "besök vårt museum" (läst 2026-09-27)
-    tagline: 'Björkö i Mälaren – ön där vikingastaden Birka låg, världsarv sedan 1993, med museum, gästhamn och båt från Stockholm.',
-    description: [
-      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorko.html — "Reservatet, som inte är större än 1,6 hektar, ligger på Björkö i Mälaren."; "Kommun: Ekerö" (läst 2026-09-27)
-      // KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/ — "Staden anlades på 700-talet och blev en viktig handelsplats"; "övergavs och rollen som"; "fram till slutet av 900-talet" (läst 2026-09-27)
-      // KÄLLA: https://www.birkavikingastaden.se/om-birka/ — "Till Birka kom köpmän och hantverkare med varor från hela Europa och andra delar av världen"; "Under 200 år var Birka en blomstrande tätort" (läst 2026-09-27)
-      'Björkö ligger i Mälaren i Ekerö kommun, och det är här vikingastaden Birka låg. Staden anlades på 700-talet och blev en viktig handelsplats; under omkring 200 år kom köpmän och hantverkare hit med varor från hela Europa och andra delar av världen. Mot slutet av 900-talet övergavs Birka, och Sigtuna tog över rollen.',
-      // KÄLLA: https://www.birkavikingastaden.se/om-birka/ — "Fornlämningsområdet Birka på Björkö och Hovgården på Adelsö utgör tillsammans ett av Sveriges 15 världsarv. Området blev upptaget på Unescos världsarvslista år 1993." (läst 2026-09-27)
-      // KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/ — "där kungen bodde" (läst 2026-09-27)
-      // KÄLLA: https://www.raa.se/app/uploads/2023/06/Beslut-Adels%C3%B6-Bj%C3%B6rk%C3%B6-Birka-AB21-RA%C3%84-2021-1675.pdf — "omgärdat av fornborgen på Borgberget i söder och stadsvallen i nordöst"; "ett av landets största gravfält med minst 1600 … gravar" (PDF) (läst 2026-09-27)
-      // KÄLLA: https://historiska.se/birka/vad-ar-birka-hovgarden/birka-varldsarvet/ — "Historiska museet i Stockholm har mer än 100 000 fynd från Birka" (läst 2026-09-27)
-      'Tillsammans med Hovgården på grannön Adelsö, där kungen bodde, är Birka sedan 1993 ett av Sveriges 15 världsarv. På Björkö ligger det forna stadsområdet, omgärdat av fornborgen på Borgberget i söder och stadsvallen i nordost, och gravfältet Hemlanden – ett av landets största, med minst 1 600 gravar. Historiska museet i Stockholm har mer än 100 000 fynd från Birka.',
-      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Besök den rekonstruerade vikingabyn, ät gott på vikingakrogen Restaurang Särimner, besök vårt museum" (läst 2026-09-27)
-      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorko.html — "Många av träden är äldre än 200 år."; "Skyddat sedan: 1944, beslut reviderat 1991" (läst 2026-09-27)
-      // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "Under lågsäsong (november–april) är museet och restaurangen stängda och det finns ingen ordinarie båttrafik till ön."; "Du kan däremot besöka Birka med egen båt och utforska ön på egen hand – gästhamn finns." (läst 2026-09-27)
-      'På ön finns i dag Birka Vikingastaden med museum, rekonstruerad vikingaby, krog och gästhamn, men också ett litet naturreservat: 1,6 hektar barrskog där många träd är äldre än 200 år, skyddat sedan 1944. Museet och restaurangen är stängda november–april, och då går ingen ordinarie båt – med egen båt kan du ändå lägga till i gästhamnen och utforska ön på egen hand.',
-    ],
-
-    facts: {
-      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "7 MAJ – 25 OKTOBER, 2026"; "Klara Mälarstrand"; "Hovgården*"; "Björkö/Birka" — Klara Mälarstrand 09:30 → 11:45, 10:00 → 12:00, 10:00 → 12:15; Hovgården 11:50 → Birka 12:15 (läst 2026-09-27)
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Välj avgång från Hovgården om du vill ha en kort båtresa till Birka (ca 15 min)." (läst 2026-09-27)
-      travel_time: 'ca 2 h–2 h 15 min med Strömma från Klara Mälarstrand; ca 15 min från Hovgården på Adelsö',
-      // KÄLLA: https://www.birkavikingastaden.se/om-birka/ — "ett av Sveriges 15 världsarv" (läst 2026-09-27)
-      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorko.html — "Karaktär: barrskog" (läst 2026-09-27)
-      character: 'Världsarv, vikingastad, gravfält och gammal barrskog',
-      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "7 MAJ – 25 OKTOBER, 2026" (läst 2026-09-27)
-      // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "Under lågsäsong (november–april) är museet och restaurangen stängda" (läst 2026-09-27)
-      season: 'Maj–oktober (Strömmas båt 7 maj–25 oktober 2026)',
-      // UPPSKATTNING: målgrupp utifrån museum, guidning och Vikingaskolan (källor ovan och nedan)
-      best_for: 'Historia, arkeologi, kultur',
-    },
-    activities: [
-      // KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/ — "Basutställningen berättar den spännande historien om Birka och visar föremål från de arkeologiska utgrävningarna." (läst 2026-09-27)
-      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Här visas spännande kartor från georadarundersökningar samt en runsten som man länge trott var försvunnen men som nyligen hittats." (läst 2026-09-27)
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Museet tar mellan 20-60 minuter att utforska." (läst 2026-09-27)
-      { icon: '⚔️', name: 'Birkas museum', desc: 'Basutställningen visar föremål från de arkeologiska utgrävningarna, kartor från georadarundersökningar och en runsten som länge ansågs försvunnen men som nyligen har hittats. Räkna med 20–60 minuter i museet.' },
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Den tar dig genom ett gravfält med klassiska vikingatida gravhögar, Birkas fornborg och avslutas nära eller intill Ansgarskorset."; "Guidningen tar ungefär 45-60 minuter och är en promenad på cirka 1-1,5 kilometer."; "Kommer du med egen privat båt? Då kan du köpa guidning och entrébiljett till museet separat." (läst 2026-09-27)
-      { icon: '⛏', name: 'Guidad visning', desc: 'Visningen tar 45–60 minuter och är en promenad på 1–1,5 kilometer genom ett gravfält med vikingatida gravhögar, förbi Birkas fornborg och fram till Ansgarskorset. Den ingår i Strömmas paketresa; kommer du med egen båt köper du guidning och museientré separat.' },
-      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "I vår nya Vikingaskola får barnen testa livet som viking. Här finns flera stationer: runskola, mala mjöl och baka bröd"; "strosa runt bland vikingahusen i vår vikingaby" (läst 2026-09-27)
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Under tre veckor i juli finns programpunkten" (läst 2026-09-27)
-      { icon: '🛖', name: 'Vikingabyn', desc: 'Strosa bland de rekonstruerade vikingahusen. I Vikingaskolan får barn prova runskola, mala mjöl och baka bröd, och under tre veckor i juli befolkas byn av utklädda vikingaentusiaster.' },
-      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Ansgarskapellet byggdes cirka år 1930 till minne av missionären Ansgar. Idag är Ansgarskapellet en sommarkyrka" (läst 2026-09-27)
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "promenera bort till Ansgars kapellet som alltid är öppet under säsongen och ligger 20 minuters gångavstånd från museet" (läst 2026-09-27)
-      { icon: '⛪', name: 'Ansgarskapellet', desc: 'Kapellet byggdes omkring 1930 till minne av missionären Ansgar och är i dag en sommarkyrka, öppen under säsongen. Det ligger ungefär 20 minuters promenad från museet.' },
-      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorko.html — "Reservatet, som inte är större än 1,6 hektar, ligger på Björkö i Mälaren. I området växer gammal barrskog."; "Många av träden är äldre än 200 år."; "ha okopplad hund, katt eller annat husdjur"; "elda" (läst 2026-09-27)
-      { icon: '🌲', name: 'Björkö naturreservat', desc: 'Länsstyrelsens reservat på 1,6 hektar med gammal barrskog, där många av träden är äldre än 200 år. Hundar ska vara kopplade och det är förbjudet att elda.' },
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Ja, det finns en badstrand och klippor att bada ifrån." (läst 2026-09-27)
-      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "På ön finns även en barnvänlig badplats för ett dopp i Mälaren." (läst 2026-09-27)
-      { icon: '🏊', name: 'Bad i Mälaren', desc: 'Det finns en barnvänlig badstrand och klippor att bada från.' },
-    ],
-    accommodation: [
-      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Under sommaren (juni-september) kan du övernatta på Birka i ett av våra fina glampingtält. Här sover du bekvämt i ordentliga sängar av hotellstandard." (läst 2026-09-27)
-      { name: 'Glamping på Birka', type: 'Glamping', desc: 'Glampingtält med riktiga sängar juni–september. I paketet ingår logi, middag, frukost, museientré och guidning; det bokas via Strömma.', websiteUrl: 'https://www.birkavikingastaden.se/hitta-pa-birka/' },
-    ],
-    getting_there: [
-      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "TIDTABELL M/S MÄLAR VICTORIA"; "7 MAJ – 25 OKTOBER, 2026"; "22 JUN – 9 AUG"; "21 SEP – 25 OKT"; "Tid på Birka:" (läst 2026-09-27)
-      // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "Båten går från centrala Stockholm (Klara Mälarstrand) och stannar vid bryggorna Nya Kungshatt, Vårby brygga, Jungfrusund och Hovgården (Adelsö)."; "för att garantera din plats ombord på båten rekommenderar vi att du förbokar din biljett" (läst 2026-09-27)
-      { method: 'Strömmas dagstursbåt', from: 'Klara Mälarstrand, Stockholm', time: 'ca 2 h–2 h 15 min', desc: 'M/S Mälar Victoria går 7 maj–25 oktober 2026 med en tur per trafikdag – dagligen 22 juni–28 augusti, annars vissa veckodagar och från 21 september bara lördag och söndag. Båten stannar också vid Nya Kungshatt, Vårby brygga, Jungfrusund och Hovgården, och du får 3 h 15 min på Birka. Förboka under högsommaren.', icon: '⛴' },
-      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/adelsoleden/ — "Adelsöleden går mellan Munsö och Adelsö på Mälaröarna. Färjeledens längd är 1 000 meter och överfartstiden är sex minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27)
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Resa från/till Hovgården måste alltid förbokas"; "Tänk på att Hovgården nås med bilfärja." (läst 2026-09-27)
-      // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "Hovgårdens brygga ligger vid Adelsö kyrka."; "Minst 3 betalande personer per tur krävs." (läst 2026-09-27)
-      { method: 'Bil + båt via Adelsö', from: 'Hovgården, Adelsö', time: 'ca 15 min båt', desc: 'Kör till Munsö och ta Trafikverkets avgiftsfria vägfärja Adelsöleden (sex minuter) till Adelsö. Hovgårdens brygga ligger vid Adelsö kyrka. Strömmas båt därifrån måste alltid förbokas, och Särimner båttaxi kör också till Birka (minst tre betalande per tur).', icon: '🚗' },
-      // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "t.ex. Västerås, Sundbyholm, Strängnäs, Sigtuna, Kungsängen och Kallhäll"; "Det finns även andra rederier med avgångar från olika platser runt Mälaren." (läst 2026-09-27)
-      { method: 'Andra rederier', from: 'Runt Mälaren', desc: 'Andra rederier kör till Birka från bland annat Västerås, Sundbyholm, Strängnäs, Sigtuna, Kungsängen och Kallhäll. Bokning och tidtabeller finns hos respektive rederi.', icon: '⛴' },
-      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/gasthamnen/ — "Vattnet runt Björkö räknas som ett fornlämningsområde och därför råder det ankringsförbud i viken samt 50 meter ifrån strandkanten." (läst 2026-09-27)
-      { method: 'Egen båt', desc: 'Birkas gästhamn har 40 båtplatser. Det är ankringsförbud i viken och inom 50 meter från strandkanten, eftersom vattnet runt Björkö räknas som fornlämningsområde.', icon: '⛵' },
-    ],
-    // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — Klara Mälarstrand 09:30 → Björkö/Birka 11:45 och 10:00 → 12:15 (135 min); Vårby 10:20 → 11:45, 10:50 → 12:15 (85 min) (läst 2026-09-27)
-    // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "cirka 10 minuters promenad från tunnelbanestationen Vårby gård" (läst 2026-09-27)
-    // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Det finns en hel del parkeringsplatser längs med vattnet på norrmälarstrand."; "Gångavstånd till avgångsplats är minst 10 minuter." (läst 2026-09-27)
-    transport_meta: {
-      from_city_min: 135,
-      nearest_hub: 'Vårby brygga (T-bana Vårby gård)',
-      from_nearest_hub_min: 85,
-      operator: 'Strömma',
-      line: 'M/S Mälar Victoria',
-      frequency: 'En tur per trafikdag 7 maj–25 okt 2026; dagligen 22 juni–28 aug',
-      booking_url: 'https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/',
-      car_parking: 'Stockholm: parkering längs Norr Mälarstrand, minst 10 min promenad till Klara Mälarstrand.',
-    },
-    // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/gasthamnen/ — "Under sommarsäsongen finns det både färskvatten, sophantering, dusch och toalett."; "Hamnavgiften betalas till restaraung Särimner" (läst 2026-09-27)
-    // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "Här finns 40 båtplatser" (läst 2026-09-27)
-    harbors: [{ name: 'Birkas gästhamn', desc: 'Gästhamn vid Birka Vikingastaden med 40 båtplatser. Sommartid finns färskvatten, sophantering, dusch och toalett. Hamnavgiften betalas i Restaurang Särimner. Ankringsförbud i viken och inom 50 meter från strand.', spots: 40, fuel: false, service: ['vatten', 'dusch'] }],
-    restaurants: [
-      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Välkommen till vår Vikingakrog vid Mälarens strand! Vi använder närproducerade råvaror så mycket det går" (läst 2026-09-27)
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Inomhus i restaurangen finns 80 sittplatser och ungefär lika på uteserveringen." (läst 2026-09-27)
-      { name: 'Restaurang Särimner', type: 'Restaurang', desc: 'Vikingainspirerad krog vid Mälarens strand med närproducerade råvaror och 80 platser inne och ungefär lika många ute. Stängd november–april.', websiteUrl: 'https://www.birkavikingastaden.se/hitta-pa-birka/' },
-      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Här finns fika, glass och enklare lunch. Öppet dagligen 22 juni–9 augusti 2026." (läst 2026-09-27)
-      { name: 'Café Eldrimner', type: 'Café', desc: 'Fika, glass och enklare lunch vid en uteservering under tak. Öppet dagligen 22 juni–9 augusti 2026.', websiteUrl: 'https://www.birkavikingastaden.se/hitta-pa-birka/' },
-    ],
-    tips: [
-      // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "för att garantera din plats ombord på båten rekommenderar vi att du förbokar din biljett"; "Som gäst i gästhamnen får du 20% rabatt på guidad visning av fornlämningsområdet och entré till museet mot uppvisande av kvitto." (läst 2026-09-27)
-      'Förboka båten under högsommaren. Kommer du med egen båt får du 20 procents rabatt på guidning och museientré om du visar kvittot från gästhamnen.',
-      // KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/ — "På Adelsö, på andra sidan fjärden, ligger Hovgården där kungen bodde" (läst 2026-09-27)
-      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "* Endast förbokning" (läst 2026-09-27)
-      'Kombinera med Adelsö: Hovgården, där kungen bodde, ligger på andra sidan fjärden och ingår i samma världsarv. Strömmas båt stannar där, men bara för den som förbokat.',
-      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "utanför museet finns bord och bänkar under tak"; "Vid gästhamnen och bredvid museet finns grillar att låna, ta med egen kol. Vänligen notera att det råder eldningsförbud på övriga delar av ön." (läst 2026-09-27)
-      'Egen matsäck går bra: utanför museet finns bord och bänkar under tak, och vid gästhamnen och museet finns grillar att låna (ta med kol). På resten av ön är det eldningsförbud.',
-    ],
-    related: ['adelsjo', 'vaxholm', 'fjaderholmarna'],
-    tags: ['UNESCO', 'vikingar', 'historia', 'Mälaren', 'dagstur'],
-    // KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/ — "Tack vare skriftliga källor vet vi att Ansgar, en ung benediktinermunk, kom till Birka år 830"; "Här predikade han under ett och ett halvt år" (läst 2026-09-27)
-    // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Han brukar kallas för Nordens apostel eftersom det var han som tog hit kristendomen. På Birka hittar du det berömda Ansgarsmonumentet"; "Ansgarskapellet byggdes cirka år 1930 till minne av missionären Ansgar." (läst 2026-09-27)
-    did_you_know: 'Munken Ansgar kom till Birka år 830 och predikade här i ett och ett halvt år – han kallas Nordens apostel, eftersom det var han som förde kristendomen hit. På Björkö står Ansgarsmonumentet till minne av hans ankomst, och omkring 1930 byggdes Ansgarskapellet.',
-    // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Du kan besöka museet, shopen, vikingakvarteren och restaurangen"; "Ja, det finns en badstrand och klippor att bada ifrån." (läst 2026-09-27)
-    // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "glampingtält" (läst 2026-09-27)
-    amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
-    seasonal: {
-      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "7 MAJ – 25 OKTOBER, 2026" (läst 2026-09-27)
-      open: 'Maj–Oktober',
-      // UPPSKATTNING: juli är högsäsong – båten går dagligen 22 juni–28 augusti och vikingaprogrammet pågår tre veckor i juli
-      peak: 'Juli',
-      best: 'Juni–augusti',
-      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "22 JUN – 9 AUG"; "10 – 28 AUG" (daglig trafik) (läst 2026-09-27)
-      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Öppet dagligen 22 juni–9 augusti 2026." (läst 2026-09-27)
-      bestReason: 'Mellan 22 juni och 28 augusti går båten från Klara Mälarstrand varje dag, och Café Eldrimner har öppet dagligen 22 juni–9 augusti. I maj, september och oktober går båten bara vissa veckodagar.',
-      // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "Under lågsäsong (november–april) är museet och restaurangen stängda och det finns ingen ordinarie båttrafik till ön." (läst 2026-09-27)
-      warning: 'Museet och restaurangen är stängda november–april, och då går ingen ordinarie båt. Från 21 september går Strömmas båt bara lördagar och söndagar.',
-      // UPPSKATTNING: maj, september och oktober limited eftersom båten då bara går vissa veckodagar
-      months: ['off','off','off','off','limited','open','peak','peak','limited','limited','off','off'],
-    },
-  },
-  {
     slug: 'adelsjo',
     name: 'Adelsö',
     region: 'mellersta',
@@ -5450,7 +5320,7 @@ export const ISLANDS: Island[] = [
     restaurants: [{ name: 'Café Hovgården', type: 'Kafé', desc: 'Kafé mitt i världsarvet Hovgården med kaffe, bakverk, glass och lunch. Öppet under säsong; öppettider och meny varierar.' }],
     // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "Hovgården – Birka: 300 kr tur och retur*" (Särimner båttaxi), "Vägen ner är stängd för fordonstrafik – räkna med cirka 7 minuters promenad till bryggan." (läst 2026-09-27); https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Resa från/till Hovgården måste alltid förbokas" (läst 2026-09-27)
     tips: ['Kombinera med Birka: Strömmas Birkabåt och Särimner båttaxi går från Hovgårdens brygga, och resor från Hovgården måste förbokas.', 'Vägen ner till Hovgårdens brygga är stängd för fordon — räkna med ca 7 minuters promenad från Adelsö kyrka.'],
-    related: ['bjorko', 'vindo', 'fjaderholmarna'],
+    related: ['birka', 'vindo', 'fjaderholmarna'],
     tags: ['kungsgård', 'historia', 'Mälaren', 'medeltid', 'cykling'],
     // KÄLLA: https://stockholmslansmuseum.se/besoksmal/hovgarden/ — "Den är från 1000-talets andra hälft och är den första runstenen som nämner titeln kung." (läst 2026-09-27); https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/ — "Det var här riddarståndet inrättades 1279.", "Birka och Hovgården upptogs på världsarvslistan 1993." (läst 2026-09-27)
     did_you_know: 'Vid Hovgårdens gamla hamn står en runsten från 1000-talets andra hälft, den första runsten som nämner titeln kung. På Alsnö hus, som byggdes där den vikingatida kungsgården låg, inrättades riddarståndet 1279. Sedan 1993 är Hovgården och Birka på grannön Björkö upptagna på Unescos världsarvslista.',
@@ -7423,8 +7293,9 @@ export const ISLANDS: Island[] = [
   // ─── BIRKA ───────────────────────────────────────────────────────────────
   {
     slug: 'birka',
+    // 2026-10-21: den tidigare posten Björkö (Birka), adress /o/bjorko, var samma ö och är ihopslagen hit; den gamla adressen omdirigeras till /o/birka. Region som Adelsö (Mälaren listas under mellersta).
     name: 'Birka',
-    region: 'ovriga',
+    region: 'mellersta',
     regionLabel: 'Mälaren',
     emoji: '⚔️',
     // KÄLLA: https://www.birkavikingastaden.se/om-birka/ — "Området blev upptaget på Unescos världsarvslista år 1993", "en plats som också brukar kallas Sveriges första stad" (läst 2026-09-27); https://www.birkavikingastaden.se/hitta-pa-birka/ — "Besök den rekonstruerade vikingabyn", "besök vårt museum" (läst 2026-09-27)
@@ -7464,6 +7335,14 @@ export const ISLANDS: Island[] = [
       { icon: '🛖', name: 'Vikingakvarteret och Vikingaskolan', desc: 'I det rekonstruerade vikingakvarteret finns hus, vikingabåtar, getter, höns och odlade örter. I Vikingaskolan prövar barn runskola, att mala mjöl och att baka bröd.' },
       // KÄLLA: Länsstyrelsen Stockholm, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorko.html — "Reservatet, som inte är större än 1,6 hektar, ligger på Björkö i Mälaren. I området växer gammal barrskog.", "Många av träden är äldre än 200 år.", "I reservat är det förbjudet att", "ha okopplad hund, katt eller annat husdjur" (läst 2026-09-27)
       { icon: '🌲', name: 'Björkö naturreservat', desc: 'Ett litet reservat på 1,6 hektar med gammal barrskog, där många av träden är äldre än 200 år. Hund ska vara kopplad.' },
+      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Ansgarskapellet byggdes cirka år 1930 till minne av missionären Ansgar. Idag är Ansgarskapellet en sommarkyrka" (läst 2026-09-27)
+      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "promenera bort till Ansgars kapellet som alltid är öppet under säsongen och ligger 20 minuters gångavstånd från museet" (läst 2026-09-27)
+      { icon: '⛪', name: 'Ansgarskapellet', desc: 'Kapellet byggdes omkring 1930 till minne av missionären Ansgar och är i dag en sommarkyrka, öppen under säsongen. Det ligger ungefär 20 minuters promenad från museet.' },
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorko.html — "Reservatet, som inte är större än 1,6 hektar, ligger på Björkö i Mälaren. I området växer gammal barrskog."; "Många av träden är äldre än 200 år."; "ha okopplad hund, katt eller annat husdjur"; "elda" (läst 2026-09-27)
+      { icon: '🌲', name: 'Björkö naturreservat', desc: 'Länsstyrelsens reservat på 1,6 hektar med gammal barrskog, där många av träden är äldre än 200 år. Hundar ska vara kopplade och det är förbjudet att elda.' },
+      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Ja, det finns en badstrand och klippor att bada ifrån." (läst 2026-09-27)
+      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "På ön finns även en barnvänlig badplats för ett dopp i Mälaren." (läst 2026-09-27)
+      { icon: '🏊', name: 'Bad i Mälaren', desc: 'Det finns en barnvänlig badstrand och klippor att bada från.' },
     ],
     accommodation: [
       // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Under sommaren (juni-september) kan du övernatta på Birka i ett av våra fina glampingtält. Här sover du bekvämt i ordentliga sängar av hotellstandard. Logi, middag, frukost, musei-entré och guidning ingår. Bokas via stromma.com." (läst 2026-09-27)
@@ -7475,6 +7354,8 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/adelsoleden/ — "Adelsöleden går mellan Munsö och Adelsö på Mälaröarna. Färjeledens längd är 1 000 meter och överfartstiden är sex minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27)
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Resa från/till Hovgården måste alltid förbokas", "Parkeringsplatser finns vid Hembyggdsgården", "sedan är det ca 10 minuters bilresa ner till Hovgårdens Hembyggdsgård" (läst 2026-09-27); https://www.birkavikingastaden.se/resa-hit/ — "Hovgårdens brygga ligger vid Adelsö kyrka", "Särimner båttaxi erbjuder båtresa till Birka från bland annat Lindby brygga, Sandviken, Södertälje och Rastaholm", "Minst 3 betalande personer per tur krävs" (läst 2026-09-27). «Liten lokalbåt, ca 5 min» och «ca 30 min från Stockholm, väg 261» saknade källa.
       { method: 'Bil + båt', from: 'Hovgården, Adelsö', time: '15–25 min båt', desc: 'Kör till Munsö och ta Trafikverkets avgiftsfria vägfärja till Adelsö (sex minuter), sedan cirka tio minuter till Hovgården. Parkering finns vid hembygdsgården och bryggan ligger vid Adelsö kyrka. Strömmas båt från Hovgården måste alltid förbokas; Särimner båttaxi kör också till Birka (minst tre betalande per tur).', icon: '🚗' },
+      // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "t.ex. Västerås, Sundbyholm, Strängnäs, Sigtuna, Kungsängen och Kallhäll"; "Det finns även andra rederier med avgångar från olika platser runt Mälaren." (läst 2026-09-27)
+      { method: 'Andra rederier', from: 'Runt Mälaren', desc: 'Andra rederier kör till Birka från bland annat Västerås, Sundbyholm, Strängnäs, Sigtuna, Kungsängen och Kallhäll. Bokning och tidtabeller finns hos respektive rederi.', icon: '⛴' },
       // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "Här finns 40 båtplatser" (läst 2026-09-27); https://www.birkavikingastaden.se/hitta-pa-birka/gasthamnen/ — "Vattnet runt Björkö räknas som ett fornlämningsområde och därför råder det ankringsförbud i viken samt 50 meter ifrån strandkanten" (läst 2026-09-27)
       { method: 'Egen båt', desc: 'Birkas gästhamn har 40 båtplatser. Det är ankringsförbud i viken och inom 50 meter från strandkanten, eftersom vattnet runt Björkö räknas som fornlämningsområde.', icon: '⛵' },
     ],
@@ -7508,7 +7389,7 @@ export const ISLANDS: Island[] = [
       'Egen matsäck går bra: utanför museet finns bord och bänkar under tak, och vid gästhamnen och museet finns grillar att låna (ta med kol). På resten av ön är det eldningsförbud.',
     ],
     related: ['adelsjo', 'vaxholm', 'sandhamn'],
-    tags: ['historia', 'UNESCO', 'vikingar', 'arkeologi', 'familjer', 'dagsutflykt', 'mälaren'],
+    tags: ['historia', 'UNESCO', 'vikingar', 'arkeologi', 'familjer', 'dagsutflykt', 'dagstur', 'mälaren', 'Mälaren'],
     insiderTips: [
       // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "* Endast förbokning", "Hovgården*" (läst 2026-09-27); https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Välj avgång från Hovgården om du vill ha en kort båtresa till Birka (ca 15 min)", "Tänk på att Hovgården nås med bilfärja" (läst 2026-09-27). Stod att man från Adelsö tar «den lokala färjan» och slipper guiden – Strömma säljer bara paket med guidning, även från Hovgården.
       'Från Hovgården på Adelsö tar båten ungefär en kvart i stället för drygt två timmar från Klara Mälarstrand – men resan därifrån måste förbokas, och Adelsö nås med vägfärjan från Munsö.',
@@ -7520,6 +7401,20 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Du kan besöka museet, shopen, vikingakvarteren och restaurangen", "Ja, det finns en badstrand och klippor att bada ifrån", "Det finns grusade ytor och vägar vid museiområdet och plana promenadstråk på ön" (läst 2026-09-27); https://www.birkavikingastaden.se/hitta-pa-birka/ — "barnvänlig badplats", "glampingtält" (läst 2026-09-27). accommodation och beach var felaktigt false.
     amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
     activity_meta: { cykel: { rental: false, notes: 'Birka Vikingastaden och Strömma nämner ingen cykeluthyrning; ön har grusvägar och plana promenadstråk.' } },
+    seasonal: {
+      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "7 MAJ – 25 OKTOBER, 2026" (läst 2026-09-27)
+      open: 'Maj–Oktober',
+      // UPPSKATTNING: juli är högsäsong – båten går dagligen 22 juni–28 augusti och vikingaprogrammet pågår tre veckor i juli
+      peak: 'Juli',
+      best: 'Juni–augusti',
+      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "22 JUN – 9 AUG"; "10 – 28 AUG" (daglig trafik) (läst 2026-09-27)
+      // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "Öppet dagligen 22 juni–9 augusti 2026." (läst 2026-09-27)
+      bestReason: 'Mellan 22 juni och 28 augusti går båten från Klara Mälarstrand varje dag, och Café Eldrimner har öppet dagligen 22 juni–9 augusti. I maj, september och oktober går båten bara vissa veckodagar.',
+      // KÄLLA: https://www.birkavikingastaden.se/resa-hit/ — "Under lågsäsong (november–april) är museet och restaurangen stängda och det finns ingen ordinarie båttrafik till ön." (läst 2026-09-27)
+      warning: 'Museet och restaurangen är stängda november–april, och då går ingen ordinarie båt. Från 21 september går Strömmas båt bara lördagar och söndagar.',
+      // UPPSKATTNING: maj, september och oktober limited eftersom båten då bara går vissa veckodagar
+      months: ['off','off','off','off','limited','open','peak','peak','limited','limited','off','off'],
+    },
   },
   // ─── LILLA KARLSÖ ────────────────────────────────────────────────────────
   {
@@ -9381,8 +9276,24 @@ import { BOHUSLAN_ISLANDS } from './bohuslan-data'
 
 export const ALL_ISLANDS: Island[] = [...ISLANDS, ...(BOHUSLAN_ISLANDS as Island[])]
 
+/**
+ * Bara öarna. Fastlandsorterna (slag 'ort': Lysekil, Grebbestad, Kungshamn,
+ * Fjällbacka, Hamburgsund) och nationalparken Kosterhavet har egna sidor under
+ * /o/ men är inga öar, och ska inte räknas när sajten säger "X öar" (Toms
+ * delegation 2026-09-20, genomfört 2026-10-21). Listor över sidor (sitemap,
+ * sök) använder ALL_ISLANDS; allt som kallar sig öar använder OAR/ANTAL_OAR.
+ */
+export const OAR: Island[] = ALL_ISLANDS.filter(i => (i.slag ?? 'ö') === 'ö')
+export const ANTAL_OAR = OAR.length
+
+/** Gamla adresser som pekar på en sammanslagen post. Sparade och besökta öar i databasen kan bära den gamla sluggen. */
+export const GAMLA_SLUGS: Record<string, string> = {
+  bjorko: 'birka', // 2026-10-21: Björkö (Birka) och Birka var samma ö
+}
+
 export function getIsland(slug: string): Island | undefined {
-  return ALL_ISLANDS.find(i => i.slug === slug)
+  const s = GAMLA_SLUGS[slug] ?? slug
+  return ALL_ISLANDS.find(i => i.slug === s)
 }
 
 export function getIslandsByRegion(region: Island['region']): Island[] {

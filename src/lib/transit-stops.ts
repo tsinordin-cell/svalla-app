@@ -353,7 +353,7 @@ export const ISLAND_NO_TRANSIT: Record<string, string> = {
   'asko': 'ingen hållplats inom 5 km',
   'galo': 'närmaste hållplats (Nor, 533 m) kunde inte knytas till ön',
   'morko': 'ingen hållplats inom 5 km',
-  'bjorko': 'närmaste hållplats (Lökholmen, 1398 m) kunde inte knytas till ön',
+  'birka': 'närmaste hållplats (Lökholmen, 1398 m) kunde inte knytas till ön', // 2026-10-21: nyckeln hette bjorko
   'svenska-hogarna': 'ingen hållplats inom 5 km',
   'huvudskar': 'ingen hållplats inom 5 km',
   'hasselo': 'närmaste hållplats (Lökholmen, 4865 m) kunde inte knytas till ön',
