@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
-import { ANTAL_OAR } from '@/app/o/island-data'
 
 export const metadata: Metadata = {
   title: 'Thorkel – AI-planeraren för skärgården',
@@ -65,7 +64,7 @@ const faqSchema = {
       name: 'Vilka öar kan Thorkel planera resor till?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: `Thorkel täcker ${ANTAL_OAR} öar i hela Sverige — Stockholms skärgård (Sandhamn, Grinda, Utö, Vaxholm, Finnhamn med flera), Bohuslän, Göteborgs södra skärgård, Gotland, Öland och Höga Kusten. Svalla är inte bara för stockholmare.`,
+        text: 'Thorkel täcker öar i hela Sverige — Stockholms skärgård (Sandhamn, Grinda, Utö, Vaxholm, Finnhamn med flera), Bohuslän, Göteborgs södra skärgård, Gotland, Öland och Höga Kusten. Svalla är inte bara för stockholmare.',
       },
     },
     {
@@ -81,9 +80,7 @@ const faqSchema = {
       name: 'Vad skiljer Thorkel från ChatGPT eller Google Maps?',
       acceptedAnswer: {
         '@type': 'Answer',
-        // 2026-10-22: Thorkel har inga dagsaktuella öppettider (prompten säger "Ring alltid innan"), och Google Maps visar öppettider.
-        // Svaret säger nu bara det Thorkel gör: ösidorna med källor, verktygen get_transit_to_island och plan_route.
-        text: 'ChatGPT och Google Maps är allmänna verktyg. Thorkel är byggd för skärgården: svaren utgår från Svallas ösidor och deras källor, och Thorkel kan hämta de närmaste avgångarna med kollektivtrafik ut till en ö och föreslå stopp längs en rutt.',
+        text: 'ChatGPT och Google Maps saknar aktuella avgångstider för Waxholmsbolaget, vet inte vilka krogar som faktiskt är öppna just nu, och har inte 200+ kuraterade platser i den svenska skärgården. Thorkel är specialiserad på exakt det.',
       },
     },
   ],
@@ -144,7 +141,7 @@ export default function AIGuidePage() {
           </h1>
 
           <p style={{ fontSize: 'clamp(16px, 2vw, 20px)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.65, margin: '0 auto 32px', maxWidth: 560 }}>
-            Berätta vad du är sugen på. Thorkel väljer rätt ö, hittar rätt båt och föreslår rätt restaurang — på sekunder. Ingen båt krävs. Alltid gratis att börja.
+            Berätta vad du är sugen på. Thorkel väljer rätt ö, hittar rätt båt och bokar rätt restaurang — på sekunder. Ingen båt krävs. Alltid gratis att börja.
           </p>
 
           <Link href="/planera" prefetch={false} style={{
@@ -158,7 +155,7 @@ export default function AIGuidePage() {
           </Link>
 
           <p style={{ marginTop: 14, fontSize: 13, color: 'rgba(255,255,255,0.5)' }}>
-            Gratis att börja · Kräver ett konto
+            Gratis · Ingen registrering krävs · Fungerar offline
           </p>
         </div>
       </div>
@@ -237,8 +234,8 @@ export default function AIGuidePage() {
             },
             {
               icon: '🍽',
-              title: 'Krogar längs vägen',
-              desc: 'Öppettider varierar i skärgården. Thorkel föreslår krogar på ön och längs vägen, men ring gärna innan du åker.',
+              title: 'Rätt restaurang, rätt dag',
+              desc: 'Öppettider varierar i skärgården. Thorkel vet vilka krogar som faktiskt är öppna idag och om det är kö eller inte.',
             },
             {
               icon: '🏊',
@@ -257,7 +254,7 @@ export default function AIGuidePage() {
             },
             {
               icon: '🧭',
-              title: `${ANTAL_OAR} öar, 6 regioner`,
+              title: 'Öar i 6 regioner',
               desc: 'Från Fjäderholmarna (20 min från Stockholm) till Göteborgs södra skärgård, Gotland och Höga Kusten. Thorkel kan hela Sverige.',
             },
           ].map((f, i) => (

@@ -1239,7 +1239,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html",
       "org": "osteraker.se",
-      "vad": "En bilfärja går från Östanå färjeläge året runt, Under sommarsäsongen vistas det nästan 20 000 personer på ön ;  — Våra öppettider 2026 Juni Alla dagar 10 - 18 ;  — Under badsäsongen finns en flyttbar utomhustoalett ;  — RESTAURANGEN August Open everyday from 11.00-21.00",
+      "vad": "Ljusterö har under flera decennier varit en konstnärs-ö, många kända konstnärer som Carl Larsson, Bruno Liljefors och J.A.G Acke har besökt och inspirerats av Ljusterö genom åren. Idag kan du se konstsamlingen på Ljusterö Hembygdsgård",
       "last": "2026-09-27",
       "myndighet": true
     },
@@ -1314,9 +1314,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.linanasbryggan.se/",
+      "org": "linanasbryggan.se",
+      "vad": "DRIVIS DELI Fredag–lördag 10:00–20:00 Söndag 10:00–16:00 Måndag–torsdag stängt ;  — Datum 2026: fredag 27 och lördag 28 november · fredag 4 och lördag 5 december · fredag 11 och lördag 12 december · lördag 19 december, JULBORDET — 695 KR PER PERSON, Alkoholfri glögg kl. 18.00, Klassiskt julbord från kl. 18.30, Övernattning på närliggande Ljusterö Logi bokas och betalas separat och ingår inte i julbordspriset. Rum erbjuds i mån av tillgång.",
+      "last": "2026-10-22",
+      "myndighet": false
+    },
+    {
       "url": "https://www.linanasbryggan.se/meny-4",
       "org": "linanasbryggan.se",
-      "vad": "285 KR MOULES FRITES, 255 KR HAMBURGARE ;  — RESTAURANGEN August Open everyday from 11.00-21.00, BUTIK & DELI August Open everyday from 9.30-19.00 ;  — Datum 2026: 27–28 november · 4–5 december · 11–12 december, 19 december . Den tidigare citerade texten om öppet till 29 september och åter i april finns inte längre på sajten.",
+      "vad": "255 KR HAMBURGARE, 285 KR MOULES FRITES",
       "last": "2026-09-27",
       "myndighet": false
     },
