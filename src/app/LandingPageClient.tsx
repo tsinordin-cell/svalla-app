@@ -494,7 +494,18 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .routes-scroll{grid-template-columns:1fr 1fr}
 .regions-scroll{grid-template-columns:1fr 1fr}
 .guides-grid{grid-template-columns:1fr 1fr}
+/* 2026-10-28: korten är två i bredd på mobil, så rubrikytan blir bara
+   70–116 px. MÄTT i Playwright: "Fjäderholmarna" (137 px) klipptes på alla
+   telefoner, likaså etiketterna INNERSKÄRGÅRDEN och NORRLANDSKUSTEN. Nu
+   ryms allt utan att något ord bryts mitt i från 360 px och uppåt. */
+.dest-card-content,.region-card-content{padding:18px 14px}
+.dest-card-name{font-size:16px}
+.dest-card-region,.region-card-label{font-size:9px;letter-spacing:.05em}
+.dest-card-name,.region-card-name,.route-body h4{overflow-wrap:break-word}
 }
+/* Under 360 px (t.ex. första iPhone SE) ryms inte enordsetiketterna ens så.
+   Där får de brytas hellre än klippas. */
+@media(max-width:359px){.dest-card-region,.region-card-label{overflow-wrap:break-word}}
 
 [data-theme="dark"] body { background: var(--sea-dark) !important; }
 `
@@ -917,7 +928,7 @@ const LANDING_HTML = `
  <div class="dest-card-overlay"></div>
  <div class="dest-card-content">
  <div class="dest-card-region"> Innerskärgården</div>
- <div class="dest-card-name">Fjäderholmarna · Vaxholm · Grinda</div>
+ <div class="dest-card-name">Fjäder&shy;holmarna · Vaxholm · Grinda</div>
  <div class="dest-card-islands"><span class="dest-island">Fjäderholmarna</span><span class="dest-island">Vaxholm</span><span class="dest-island">Grinda</span><span class="dest-island">Finnhamn</span><span class="dest-island">Resarö</span></div>
  </div>
  </a>
@@ -1075,7 +1086,7 @@ const LANDING_HTML = `
  </div>
  <div class="route-card" onclick="location.href='/resetips'">
  <div class="route-img" data-lp-photo="norra" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1502780402662-acc01917174e?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a3a4a,#2a5a6a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Halvdag</div></div>
- <div class="route-body"><h4>Norrskärgårdens pärlor</h4><p>Arholma, Möja och Blidö — den orörda norrskärgården.</p><div class="route-meta"><span> 55 km</span><span> 4 krogar</span><span> 4.7</span></div></div>
+ <div class="route-body"><h4>Norr&shy;skärgårdens pärlor</h4><p>Arholma, Möja och Blidö — den orörda norrskärgården.</p><div class="route-meta"><span> 55 km</span><span> 4 krogar</span><span> 4.7</span></div></div>
  </div>
  </div>
  </div>
