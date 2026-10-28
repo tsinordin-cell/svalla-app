@@ -25,8 +25,8 @@ export const metadata: Metadata = {
 }
 
 // Kortnyckel på startsidan → ö i OBILDER. Bara där motivet faktiskt är platsen
-// kortet handlar om. Kajak, badplatser, Åland och Halland saknar en ö-bild som
-// motsvarar kortet och får hellre ingen bild än fel bild.
+// kortet handlar om. Åland och Halland saknar en ö-bild som motsvarar kortet
+// och får hellre ingen bild än fel bild.
 const COMMONS_FOR_KORT: Record<string, { slug: string; namn: string }> = {
   grinda: { slug: 'grinda', namn: 'Grinda' },
   sandhamn: { slug: 'sandhamn', namn: 'Sandhamn' },
@@ -44,10 +44,43 @@ const COMMONS_FOR_KORT: Record<string, { slug: string; namn: string }> = {
   hogakusten: { slug: 'ulvon', namn: 'Ulvön' },
 }
 
+// Guidekort som inte handlar om en ö: handplockade Commons-foton där motivet är
+// det rubriken lovar, i Stockholms skärgård. Valda 2026-10-27 efter att korten
+// stått som tomma färgrutor (Tom). Går FÖRE Google-fotot: Googles fritextsökning
+// för de här nycklarna ("Kayaking Stockholm archipelago sea", "Badplats klippor
+// …") ger ett godtyckligt platsfoto, inte en kajak eller ett bad.
+const HANDPLOCKADE: Record<string, Bildkalla & { url: string }> = {
+  // "Badplatser i Stockholms skärgård – sandstränder och klippbad". Guiden
+  // nämner Trouville på Sandhamn; bilden visar sandstranden och klipporna där.
+  badplatser: {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Trouville_May_2026_01.jpg/960px-Trouville_May_2026_01.jpg',
+    namn: 'Trouville, Sandhamn',
+    fotograf: 'ArildV',
+    licens: 'CC BY-SA 4.0',
+    licensUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
+    kalla: 'https://commons.wikimedia.org/wiki/File:Trouville_May_2026_01.jpg',
+  },
+  // "Kajak i Stockholms skärgård – guide för nybörjare". Havskajak uppdragen på
+  // stranden vid Sveriges holme, Vikingbåten på väg in mot Stockholm.
+  kajak: {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Sveriges_holme%2C_2017-09-30%2C_06.jpg/960px-Sveriges_holme%2C_2017-09-30%2C_06.jpg',
+    namn: 'Kajak vid Sveriges holme',
+    fotograf: 'Axel Pettersson',
+    licens: 'CC BY-SA 4.0',
+    licensUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
+    kalla: 'https://commons.wikimedia.org/wiki/File:Sveriges_holme,_2017-09-30,_06.jpg',
+  },
+}
+
 export default async function Page() {
   const google = await getLandingPhotos()
   const photoMap: Record<string, string> = { ...google }
   const bildkallor: Bildkalla[] = []
+
+  for (const [kort, { url, ...kalla }] of Object.entries(HANDPLOCKADE)) {
+    photoMap[kort] = url
+    bildkallor.push(kalla)
+  }
 
   for (const [kort, { slug, namn }] of Object.entries(COMMONS_FOR_KORT)) {
     if (photoMap[kort]) continue
