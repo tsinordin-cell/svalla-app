@@ -46,7 +46,7 @@ const KNOWN_EVENTS = new Set([
   // Nytt 2026-09-30: vidareklick från ösidor till verksamheter
   'outbound_clicked',
   // Nytt 2026-10-26: GPS-spårningen i webbläsaren (behörighet, första fixen, släckt skärm, avbrott)
-  'gps_first_fix', 'gps_error', 'gps_hidden', 'gps_abandoned',
+  'gps_first_fix', 'gps_error', 'gps_hidden', 'gps_abandoned', 'passerad_till_besokt',
 ])
 
 const MAX_PROPS_BYTES = 4096

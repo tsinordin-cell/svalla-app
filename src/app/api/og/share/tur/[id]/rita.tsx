@@ -22,7 +22,7 @@ import { ImageResponse } from 'next/og'
 import type { ReactElement } from 'react'
 import { Buffer } from 'buffer'
 import sharp from 'sharp'
-import { stil, delstrackStaplar, talRutor, formatTid, ruttArAnvandbar, datumLang, turRubrik, type StilId, type Punkt } from '@/lib/dela-klistermarken'
+import { stil, delstrackStaplar, talRutor, formatTid, ruttArAnvandbar, datumLang, turRubrik, BILD_VERSION, type StilId, type Punkt } from '@/lib/dela-klistermarken'
 import { computeSplits } from '@/lib/tripSplits'
 import { klisterRutt, klisterTal, klisterRuttTal, klisterDelstrackor, Logga, type KlisterData } from './klistermarken'
 import type { GpsPoint } from '@/lib/gps'
@@ -39,8 +39,8 @@ type Typsnitt = { name: string; data: ArrayBuffer; weight: 500 | 700 | 800; styl
 
 export const W = 1080
 export const H = 1920
-/** Höj när bildernas utseende ändras i kod, så att cachade bilder ritas om. */
-export const BILD_VERSION = '2026-10-27a'
+/** Versionen ligger i src/lib/dela-klistermarken.ts (delas med delningsrutan). */
+export { BILD_VERSION }
 
 // Instagrams säkra zon för en 1080×1920-story: deras eget gränssnitt ligger
 // över de översta ca 270 och de nedersta ca 380 bildpunkterna.
@@ -152,13 +152,21 @@ export async function morkKarta(pts: Punkt[]): Promise<MorkKarta> {
  * beskuren till 9:16. null om bilden inte går att hämta → gradienten i stället.
  */
 export async function hamtaFoto(url: string): Promise<string | null> {
+  // Bara bilder ur Svallas egen lagring. trips.image kan ägaren skriva fritt
+  // (RLS trips_update_own), och servern ska inte hämta godtyckliga adresser
+  // eller avkoda hur stora filer som helst (granskning 2026-10-29).
+  let u: URL
+  try { u = new URL(url) } catch { return null }
+  if (u.protocol !== 'https:' || u.hostname !== 'oiklttwylndesewauytj.supabase.co' || !u.pathname.startsWith('/storage/v1/object/public/')) return null
   try {
     const ctrl = new AbortController()
     const t = setTimeout(() => ctrl.abort(), 8000)
     const res = await fetch(url, { signal: ctrl.signal, next: { revalidate: 86400 } })
     clearTimeout(t)
     if (!res.ok) return null
-    const buf = await sharp(Buffer.from(await res.arrayBuffer()))
+    const ab = await res.arrayBuffer()
+    if (ab.byteLength > 15 * 1024 * 1024) return null
+    const buf = await sharp(Buffer.from(ab), { limitInputPixels: 50_000_000 })
       .rotate()
       .resize(W, H, { fit: 'cover', position: 'centre' })
       .jpeg({ quality: 86, mozjpeg: true })

@@ -12,6 +12,14 @@
 
 export type StilId = 'photo' | 'map' | 'rutt' | 'tal' | 'rutt-tal' | 'delstrackor'
 
+/**
+ * Höj när bildernas utseende ändras i kod. Ingår i serverns cachenyckel
+ * (route.tsx) och i bildernas URL från delningsrutan, så att varken Vercels
+ * datacache eller webbläsarens cache (max-age 3600) visar ett gammalt kort.
+ * 2026-10-26: efter #500 visade Thomas Chrome det gamla kartkortet i en timme.
+ */
+export const BILD_VERSION = '2026-10-27a'
+
 export type Stil = {
   id: StilId
   namn: string
@@ -46,20 +54,33 @@ export function stil(id: StilId): Stil {
  * Vilka mallar som går att göra för en tur. `agare` styr delsträckorna: GPS-
  * punkterna läses bara av ägaren (RLS gps_select_own), så andra får inte den.
  */
-export function tillgangligaStilar(t: { harBild: boolean; harRutt: boolean; agare: boolean; harPunkter?: boolean }): Stil[] {
-  return STILAR.filter(s => {
+export function tillgangligaStilar(t: { harBild: boolean; harRutt: boolean; agare: boolean; harPunkter?: boolean; harTal?: boolean }): Stil[] {
+  const ut = STILAR.filter(s => {
     if (s.kraver === 'bild') return t.harBild
     if (s.kraver === 'rutt') return t.harRutt
     if (s.kraver === 'punkter') return t.agare && t.harRutt && t.harPunkter !== false
+    // Tal-klistermärket utan tal är bara en logga (Thomas testtur på 4 s, 2026-10-26).
+    if (s.id === 'tal') return t.harTal !== false
     return true
   })
+  // Finns inget underlag alls får turen ändå ett kort: Svallas mörka kort med plats och datum.
+  return ut.length > 0 ? ut : [KORT_UTAN_UNDERLAG]
 }
 
-/** Förvald mall: bild om det finns, annars karta, annars tal. En tur utan bild får inget Bild-kort (2026-10-26). */
-export function forvaldStil(t: { harBild: boolean; harRutt: boolean }): StilId {
+/** Bild-mallen ritad utan bild: gradient, plats, datum och de tal som finns. */
+export const KORT_UTAN_UNDERLAG: Stil = { ...STILAR[0]!, namn: 'Kort', beskrivning: 'Plats och datum på Svallas mörka kort.' }
+
+/** Förvald mall: bild om det finns, annars karta, annars tal, annars kortet utan underlag. */
+export function forvaldStil(t: { harBild: boolean; harRutt: boolean; harTal?: boolean }): StilId {
   if (t.harBild) return 'photo'
   if (t.harRutt) return 'map'
-  return 'tal'
+  if (t.harTal !== false) return 'tal'
+  return 'photo'
+}
+
+/** Har turen något tal att visa (samma trösklar som talRutor)? */
+export function harTal(t: { distanceNM: number | null; sekunder: number | null; toppKn: number | null; snittKn: number | null }): boolean {
+  return talRutor(t).length > 0
 }
 
 export type Punkt = { lat: number; lng: number }
@@ -170,9 +191,9 @@ export function delstrackStaplar(splits: { index: number; distanceNM: number; se
 /** Talen som visas på klistermärkena, i den ordning de har plats. */
 export function talRutor(t: { distanceNM: number | null; sekunder: number | null; toppKn: number | null; snittKn: number | null }): { val: string; enhet: string; etikett: string }[] {
   const ut: { val: string; enhet: string; etikett: string }[] = []
-  if (t.distanceNM !== null && t.distanceNM >= 0.1) ut.push({ val: t.distanceNM.toFixed(1), enhet: 'NM', etikett: 'DISTANS' })
+  if (t.distanceNM !== null && t.distanceNM >= 0.1) ut.push({ val: t.distanceNM.toFixed(1).replace('.', ','), enhet: 'NM', etikett: 'DISTANS' })
   if (t.sekunder !== null && t.sekunder >= 60) ut.push({ val: formatTid(t.sekunder), enhet: '', etikett: 'TID' })
-  if (t.toppKn !== null && t.toppKn >= 0.1) ut.push({ val: t.toppKn.toFixed(1), enhet: 'kn', etikett: 'TOPPFART' })
-  else if (t.snittKn !== null && t.snittKn >= 0.1) ut.push({ val: t.snittKn.toFixed(1), enhet: 'kn', etikett: 'SNITTFART' })
+  if (t.toppKn !== null && t.toppKn >= 0.1) ut.push({ val: t.toppKn.toFixed(1).replace('.', ','), enhet: 'kn', etikett: 'TOPPFART' })
+  else if (t.snittKn !== null && t.snittKn >= 0.1) ut.push({ val: t.snittKn.toFixed(1).replace('.', ','), enhet: 'kn', etikett: 'SNITTFART' })
   return ut
 }

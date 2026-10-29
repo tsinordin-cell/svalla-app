@@ -1,5 +1,5 @@
 'use client'
-import { ruttArAnvandbar } from '@/lib/dela-klistermarken'
+import { ruttArAnvandbar, harTal } from '@/lib/dela-klistermarken'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef } from 'react'
@@ -584,7 +584,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             <IconShare size={22} stroke={1.75} />
           </button>
           <div style={{ marginLeft: 'auto' }}>
-            <TripShareModal tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} hasPhoto={hasPhoto} hasRoute={hasRoute} />
+            <TripShareModal tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} hasPhoto={hasPhoto} hasRoute={hasRoute} hasStats={harTal({ distanceNM: trip.distance ?? null, sekunder: (trip.duration ?? 0) > 0 ? trip.duration * 60 : null, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null })} />
           </div>
         </div>
       </div>
