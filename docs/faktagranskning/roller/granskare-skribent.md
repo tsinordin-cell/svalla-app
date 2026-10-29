@@ -42,6 +42,7 @@ KÄLLCACHE OCH FÖRKONTROLL (läs detta först – det sparar kontots användnin
   * "ja": citatet står på sidan. Du måste ändå själv avgöra om citatet stöder HELA påståendet (och att sidan gäller rätt plats och är aktuell). Gör det → KORREKT, och fyll källa/citat/läst ur förkontrollen med skript.
   * "nej", "skiftläge", "ingen-sida", "inget-citat", eller ingen KÄLLA alls: det är här jobbet ligger. Sök i den cachade texten med grep (ordet, siffran, namnet), läs utdraget runt träffen, och öppna sidan i Chromium (las_sida.py) innan du dömer FEL eller OBELAGD. Ett "nej" i förkontrollen är inget fynd i sig.
   * Läs aldrig in en hel cachad sida i ditt sammanhang om ett grep-utdrag räcker.
+- Når du inte en sida (502, "Connection reset", status 0), är det ofta arbetsytans proxy och inte sajten. Prova i den här ordningen: curl med --http1.1, Chromium (las_sida.py), WebFetch (går en annan väg). Först om ingen väg fungerar är raden EJ NÅBAR. utogasthamn.se gav 502 i alla hämtningar 2026-10-29, och proxyns logg visar avbrutna tunnlar dit.
 - Nya källor du hämtar: spara texten i {{B}}/kallcache/ny/ (filnamn: domän och sökväg, t.ex. lansstyrelsen.se__stockholm__besoksmal__naturreservat__grinda.txt) så att Kontrollanten och andra öar kan återanvända den. Skriv inte i index.json.
 - Skriv domarna med ett skript: läs registret och förkontrollen, sätt dom och källkolumner programmatiskt för de rader du bedömt, och skriv tillbaka. Skriv inte ut hela registret i ditt svar.
 

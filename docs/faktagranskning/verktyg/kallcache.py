@@ -66,9 +66,15 @@ def kalla_par(falt):
 def hamta_curl(url, mapp):
     h = hashlib.sha1(url.encode()).hexdigest()[:16]
     ra = os.path.join(mapp, h + '.raw')
-    r = subprocess.run(['curl', '-sS', '-L', '--max-time', '45', '-A', UA, '-o', ra,
-                        '-w', '%{http_code}\t%{content_type}\t%{url_effective}', url],
-                       capture_output=True, text=True)
+    # HTTP/1.1: via arbetsytans proxy återställs vissa HTTP/2-anslutningar
+    # (MÄTT 2026-10-29: kund.printhuset-sthlm.se/sl/v670_670x.pdf). Ett nytt
+    # försök efter ett avbrott fångar tillfälliga fel.
+    for forsok in (1, 2):
+        r = subprocess.run(['curl', '-sS', '-L', '--http1.1', '--max-time', '60', '-A', UA, '-o', ra,
+                            '-w', '%{http_code}\t%{content_type}\t%{url_effective}', url],
+                           capture_output=True, text=True)
+        if r.returncode == 0:
+            break
     if r.returncode != 0:
         return '', {'http': 0, 'slut': '', 'fel': r.stderr.strip()[:160]}
     kod, typ, slut = (r.stdout.split('\t') + ['', '', ''])[:3]
