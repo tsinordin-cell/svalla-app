@@ -36,6 +36,20 @@ på svalla.se/team. Reglerna som gäller för alla: `docs/ARBETSREGLER.md`.
    HTTP-kontroll av alla KÄLLA-URL:er ska vara gröna.
 7. En gren och en PR per batch, pushad en gång. Merge, kontroll i produktion.
 
+## Takt och säkerhetskopiering (Toms beslut 2026-10-29)
+
+- Högst 4 agenter samtidigt. Kontots användningsgräns gäller all
+  Claude-användning på kontot, och tio agenter samtidigt tömde den på en natt.
+- Mitt i en batch får grenen pushas som säkerhetskopia, men bara när den
+  senaste commiten enbart rör `docs/`. Då hoppar Vercel över bygget
+  (`ignoreCommand` i vercel.json). Kontrollera efteråt i Vercel att
+  deploymenten står som Canceled. Datafilerna pushas en gång, när batchen är
+  grön.
+- Verktyg: `verktyg/rendera.py` (sidorna som en besökare ser dem, Chromium),
+  `verktyg/las_sida.py` (en källa i Chromium), `verktyg/applicera.mjs`
+  (lägger in ersättningar, stoppar om texten inte finns exakt en gång),
+  `verktyg/kontrollera_register.py` (registrets form och täckning).
+
 ## Mätningen (MÄTT, mekanisk)
 
 `faktaregister.mjs` läser ödatan med TypeScript-parsern. En **enhet** är en

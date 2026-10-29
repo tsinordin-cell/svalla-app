@@ -2,6 +2,24 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-10-29 — session 1, fortsättning kväll
+
+**Batch 01, steg 1: 4 av 10 register klara (MÄTT, `kontrollera_register.py`).**
+| Ö | Rader | Med befintlig källa | Från datafil / render / restaurants | Olika URL:er |
+|---|---|---|---|---|
+| Fjäderholmarna | 329 | 260 | 264 / 26 / 39 | 17 |
+| Utö | 562 | 383 | 406 / 26 / 130 | 32 |
+| Möja | 646 | 496 | 522 / 32 / 92 | 41 |
+| Sandhamn | 657 | 419 | 454 / 26 / 177 | 39 |
+Alla fyra har 15 kolumner per rad och unika id, varje rad i grundregistret
+har minst en rad i registret, och domkolumnerna är tomma.
+- Igång: Grinda, Vaxholm, Storholmen, Styrsö. Kö: Husarö, sidmallarna.
+- Toms beslut 2026-10-29: se `beslut-tom.md` (säkerhetskopiering av docs,
+  högst 4 agenter, FAQ-dubbletten bort i batch 01:s PR).
+- Nästa: steg 2. Källorna hämtas en gång till en gemensam cache, och
+  citaten i befintliga KÄLLA-rader kontrolleras mekaniskt innan
+  Granskarna dömer.
+
 ## 2026-10-29 — session 1, fortsättning 14:40
 
 **Batch 01, steg 1: avbrutet i natt, återupptaget.**
