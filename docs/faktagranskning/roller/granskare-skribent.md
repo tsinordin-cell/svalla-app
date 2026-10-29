@@ -33,6 +33,17 @@ VERKTYG FÖR ATT LÄSA KÄLLOR
 - JavaScript-tunga sidor (sl.se, waxholmsbolaget.se, naturvardsverket.se, lansstyrelsen.se med flera): hittar du inte citatet med curl/WebFetch, läs sidan i riktig webbläsare: python3 -I {{TOOLS}}/las_sida.py URL [sökord …] (skriver ut sidans synliga text eller raderna med sökorden). Döm aldrig FEL eller OBELAGD på en sida du inte läst så.
 - Sökning: WebSearch för att HITTA rätt primärkälla. Ett sökresultat eller en AI-sammanfattning är aldrig belägg — öppna sidan.
 
+KÄLLCACHE OCH FÖRKONTROLL (läs detta först – det sparar kontots användningsgräns)
+- {{B}}/kallcache/index.json: varje URL som förekommer i registrens KÄLLA-rader är hämtad i dag (curl, PDF via pdftotext, Chromium när det behövdes). För varje URL: textfilen i {{B}}/kallcache/, HTTP-status, slutadress, om den gick till startsidan, metod och läsdatum.
+- {{B}}/forkontroll/{{SLUG}}.forkontroll.tsv: för varje register-id varje par (URL, citat) ur den befintliga KÄLLA-raden och om citatet står ordagrant på sidan i dag: ja / skiftläge / nej / inget-citat / ingen-sida. {{B}}/forkontroll/{{SLUG}}.utan-kalla.txt: id för rader utan någon KÄLLA-URL.
+- Kolumnen "befintlig källa" samlar ALLA KÄLLA-rader ovanför fältet. Avgör själv vilken av dem som faktiskt gäller påståendet.
+- Hur du använder det:
+  * "ja": citatet står på sidan. Du måste ändå själv avgöra om citatet stöder HELA påståendet (och att sidan gäller rätt plats och är aktuell). Gör det → KORREKT, och fyll källa/citat/läst ur förkontrollen med skript.
+  * "nej", "skiftläge", "ingen-sida", "inget-citat", eller ingen KÄLLA alls: det är här jobbet ligger. Sök i den cachade texten med grep (ordet, siffran, namnet), läs utdraget runt träffen, och öppna sidan i Chromium (las_sida.py) innan du dömer FEL eller OBELAGD. Ett "nej" i förkontrollen är inget fynd i sig.
+  * Läs aldrig in en hel cachad sida i ditt sammanhang om ett grep-utdrag räcker.
+- Nya källor du hämtar: spara texten i {{B}}/kallcache/ny/ (filnamn: domän och sökväg, t.ex. lansstyrelsen.se__stockholm__besoksmal__naturreservat__grinda.txt) så att Kontrollanten och andra öar kan återanvända den. Skriv inte i index.json.
+- Skriv domarna med ett skript: läs registret och förkontrollen, sätt dom och källkolumner programmatiskt för de rader du bedömt, och skriv tillbaka. Skriv inte ut hela registret i ditt svar.
+
 KÄLLOR (DEL 5, ordagrant)
 NIVÅ 1 – myndigheten som beslutar: Länsstyrelsen, Naturvårdsverket, sverigesnationalparker.se, Sjöfartsverket, Trafikverket, SMHI, Lantmäteriet, SCB, Havs- och vattenmyndigheten, Riksantikvarieämbetet, Statens fastighetsverk, kommunerna. Länsmuseerna räknas hit för historia. Enda giltiga källan för skyddsstatus, föreskrifter, tillträdesförbud, fartbegränsningar, djup och segelfri höjd.
 NIVÅ 2 – operatören och verksamheten om sig själv: Waxholmsbolaget, SL, Västtrafik, Strömma, Trafikverkets färjor, båttaxibolag, Skärgårdsstiftelsen, STF, varje krogs, gästhamns och butiks egen webbplats. Giltig för egen trafik, egna tjänster, egen säsong. Verksamhetens egen Facebook- eller Instagramsida räknas som nivå 2 för uppgifter om verksamheten själv, om senaste inlägget är högst 12 månader gammalt (skriv inläggets datum i KÄLLA-raden).
