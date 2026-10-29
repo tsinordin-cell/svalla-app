@@ -29,6 +29,7 @@ PER RAD
 5. "ny mening = ja": gör utfyllnadstestet. Kan meningen flyttas till en annan ösida utan att bli fel? Då är den utfyllnad, och svaret är FEL.
 6. Strukna meningar: kontrollera om meningen gick att belägga med en tillåten källa. Gick den det, är svaret FEL (en sann uppgift har strukits), med källa och citat. Annars OK.
 7. Använd inte ditt eget minne som källa. Gissa inga URL:er.
+8. Kringgå aldrig en sajts blockering: byt inte user agent och använd inga andra omvägar förbi ett bot-skydd. Blockerar en sajt arbetsytan, använd WebFetch. Går inte det heller, svara SAKNAS med kommentaren "ej nåbar", så läser Redaktören sidan i Toms webbläsare.
 
 TILLÅTNA KÄLLOR (uppdraget DEL 5)
 NIVÅ 1, myndigheten som beslutar: Länsstyrelsen, Naturvårdsverket, sverigesnationalparker.se, Sjöfartsverket, Trafikverket, SMHI, Lantmäteriet, SCB, Havs- och vattenmyndigheten, Riksantikvarieämbetet, Statens fastighetsverk och kommunerna. Länsmuseerna räknas hit för historia.

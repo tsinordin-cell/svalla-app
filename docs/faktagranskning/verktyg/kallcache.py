@@ -29,7 +29,10 @@ from bs4 import BeautifulSoup
 URL_RE = re.compile(r'https?://[^\s"”“„)>\]]+')
 CIT_RE = re.compile(r'["“„]([^"“”„]{4,}?)["”“]')
 LAST = datetime.date.today().isoformat()
-UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
+# Ingen förklädd user agent: curl och Chromium presenterar sig som de är. En
+# sajt som blockerar arbetsytan läses i stället med WebFetch eller i Toms
+# webbläsare, annars är raden EJ NÅBAR. Att kringgå en sajts bot-skydd är
+# inte tillåtet (beslut 2026-10-29).
 
 
 def norm(s):
@@ -70,7 +73,7 @@ def hamta_curl(url, mapp):
     # (MÄTT 2026-10-29: kund.printhuset-sthlm.se/sl/v670_670x.pdf). Ett nytt
     # försök efter ett avbrott fångar tillfälliga fel.
     for forsok in (1, 2):
-        r = subprocess.run(['curl', '-sS', '-L', '--http1.1', '--max-time', '60', '-A', UA, '-o', ra,
+        r = subprocess.run(['curl', '-sS', '-L', '--http1.1', '--max-time', '60', '-o', ra,
                             '-w', '%{http_code}\t%{content_type}\t%{url_effective}', url],
                            capture_output=True, text=True)
         if r.returncode == 0:
@@ -101,7 +104,7 @@ class Webblasare:
             from playwright.sync_api import sync_playwright
             self.pw = sync_playwright().start()
             self.b = self.pw.chromium.launch()
-            self.ctx = self.b.new_context(locale='sv-SE', user_agent=UA)
+            self.ctx = self.b.new_context(locale='sv-SE')
             self.igang = True
         pg = self.ctx.new_page()
         try:
