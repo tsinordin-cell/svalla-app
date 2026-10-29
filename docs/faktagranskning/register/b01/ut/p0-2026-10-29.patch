@@ -1,0 +1,213 @@
+diff --git a/src/app/api/transit/departures/route.ts b/src/app/api/transit/departures/route.ts
+index 9cf26e6..be7234b 100644
+--- a/src/app/api/transit/departures/route.ts
++++ b/src/app/api/transit/departures/route.ts
+@@ -67,6 +67,7 @@ export async function GET(req: NextRequest) {
+       originName: cfg.originStopName,
+       destName: cfg.destStopName,
+       note: cfg.note ?? null,
++      bestallning: cfg.bestallning ?? null,
+       date: datum,
+       fel,
+       trips,
+diff --git a/src/app/api/transit/last-departure/route.ts b/src/app/api/transit/last-departure/route.ts
+index 5833ab7..74b51cf 100644
+--- a/src/app/api/transit/last-departure/route.ts
++++ b/src/app/api/transit/last-departure/route.ts
+@@ -58,6 +58,7 @@ export async function GET(req: NextRequest) {
+       originName: cfg.originStopName,
+       destName: cfg.destStopName,
+       date: datum,
++      bestallning: cfg.bestallning ?? null,
+       outbound,
+       return: returnTrip,
+       checkedAt: new Date().toISOString(),
+diff --git a/src/app/o/island-data.ts b/src/app/o/island-data.ts
+index 427ab32..b378a2c 100644
+--- a/src/app/o/island-data.ts
++++ b/src/app/o/island-data.ts
+@@ -319,8 +319,9 @@ export const ISLANDS: Island[] = [
+       // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — "30/4 - 4/6 a Sat-Sun Friday"; "7/9 - 27/9 Sat-Sun"; "Strandvägen - kajplats 14 10:00"; "Sandhamn 12:30" (läst 2026-10-20)
+       // KÄLLA: https://kund.printhuset-sthlm.se/wa/s15.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026"; Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 (läst 2026-10-20)
+       // Rättad 2026-10-20: båda sommarlinjerna har gått klart för 2026. Tidtabeller för 2027 är inte kontrollerade, så inga datum för 2027 anges. Seglarhotellets uppgift om 2–3 timmar för linje 15 stämmer inte med tidtabellen och används inte.
+-      { method: 'Cinderellabåten från Strandvägen', from: 'Strandvägen kajplats 14, Stockholm', time: '2 h 30 min', desc: 'Strömmas sommarbåt via Vaxholm och Grinda. Säsongen 2026 gick 30 april till 27 september och är slut.', icon: '⛴', url: 'https://www.stromma.com/en-se/stockholm/cinderella-boats/timetables/' },
+-      { method: 'Waxholmsbåt från Strömkajen', from: 'Strömkajen, Stockholm', time: '3 h 45 min till 4 h 55 min', desc: 'Linje 15 gick 2026 bara 19 juni till 16 augusti, och säsongen är slut. Lång resa rakt ut genom skärgården.', icon: '⛴' },
++      // P0 2026-10-29: FAQ-svaret "Behöver man en egen båt" visar bara method, from och time. Säsongen måste därför stå i method.
++      { method: 'Cinderellabåten från Strandvägen (säsongen 2026: 30 april–27 september)', from: 'Strandvägen kajplats 14, Stockholm', time: '2 h 30 min', desc: 'Strömmas sommarbåt via Vaxholm och Grinda. Säsongen 2026 gick 30 april till 27 september och är slut.', icon: '⛴', url: 'https://www.stromma.com/en-se/stockholm/cinderella-boats/timetables/' },
++      { method: 'Waxholmsbåt från Strömkajen (säsongen 2026: 19 juni–16 augusti)', from: 'Strömkajen, Stockholm', time: '3 h 45 min till 4 h 55 min', desc: 'Linje 15 gick 2026 bara 19 juni till 16 augusti, och säsongen är slut. Lång resa rakt ut genom skärgården.', icon: '⛴' },
+       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamnen i Sandhamn – se hamnavsnittet för service och bokning.', icon: '⛵' },
+     ],
+     harbors: [
+diff --git a/src/components/DepartureWidget.tsx b/src/components/DepartureWidget.tsx
+index 998324b..01dd619 100644
+--- a/src/components/DepartureWidget.tsx
++++ b/src/components/DepartureWidget.tsx
+@@ -50,6 +50,8 @@ interface ApiResponse {
+   originName: string
+   destName: string
+   note: string | null
++  /** P0 2026-10-29: turer som måste beställas i förväg (transit-stops.ts). */
++  bestallning?: string | null
+   trips: TripSummary[]
+   error?: string
+ }
+@@ -190,6 +192,17 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
+             </p>
+           )}
+ 
++          {data.bestallning && (
++            <p role="note" style={{
++              fontSize: 12.5, color: '#fff', fontWeight: 600,
++              margin: '12px 0 0', lineHeight: 1.5,
++              background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.18)',
++              borderRadius: 8, padding: '8px 10px',
++            }}>
++              {data.bestallning}
++            </p>
++          )}
++
+           <div style={{
+             marginTop: 14, paddingTop: 12,
+             borderTop: '1px solid rgba(255,255,255,0.12)',
+diff --git a/src/components/LastBoatPanel.tsx b/src/components/LastBoatPanel.tsx
+index 4cacb56..adf0e28 100644
+--- a/src/components/LastBoatPanel.tsx
++++ b/src/components/LastBoatPanel.tsx
+@@ -47,6 +47,8 @@ interface ApiResponse {
+   slug: string
+   originName: string
+   destName: string
++  /** P0 2026-10-29: turer som måste beställas i förväg (transit-stops.ts). */
++  bestallning?: string | null
+   outbound: TripSummary | null
+   return: TripSummary | null
+   checkedAt: string
+@@ -234,6 +236,16 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
+         </p>
+       )}
+ 
++      {data.bestallning && (
++        <p role="note" style={{
++          fontSize: 12.5, fontWeight: 600, lineHeight: 1.5,
++          margin: '12px 0 0', padding: '8px 10px', borderRadius: 8,
++          background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.18)',
++        }}>
++          {data.bestallning}
++        </p>
++      )}
++
+       <style>{`
+         @keyframes lastBoatPulse {
+           0%, 100% { box-shadow: 0 4px 22px ${glowColor}; }
+diff --git a/src/lib/ferries.ts b/src/lib/ferries.ts
+index 2d9e6b9..c7f1fe6 100644
+--- a/src/lib/ferries.ts
++++ b/src/lib/ferries.ts
+@@ -114,7 +114,10 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
+     name: 'Årsta Brygga – Utö',
+     from: 'Årsta Brygga',
+     to: 'Utö',
+-    stops: ['Årsta Brygga', 'Brandholmen', 'Dalarö', 'Ornö', 'Utö'],
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ" (läst 2026-10-29)
++    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Waxholmsbåt året om till Gruvbryggan." (läst 2026-10-29)
++    // P0 2026-10-29: Brandholmen, Dalarö och Ornö är inte stopp på linje 21 (Årsta–Utö). Dalarö och Ornö har egna linjer (tabell 19 och 20), och de är inte den här rutten.
++    stops: ['Årsta Brygga', 'Utö'],
+     operator: 'Waxholmsbolaget',
+     season: 'Helår',
+     infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
+diff --git a/src/lib/transit-stops.ts b/src/lib/transit-stops.ts
+index add4769..b7813d4 100644
+--- a/src/lib/transit-stops.ts
++++ b/src/lib/transit-stops.ts
+@@ -27,6 +27,13 @@ export interface IslandTransitConfig {
+   originStopName: string
+   /** Kort förklarande ton till resenären. */
+   note?: string
++  /**
++   * P0 2026-10-29: när turer till eller från ön bara går om de beställts i
++   * förväg. ResRobot-svaren som widgetarna visar säger inte det, så en tur
++   * som kräver beställning såg ut som en vanlig avgång. Visas i både
++   * avgångsrutan och "Sista båten". Måste ha KÄLLA-rad ovanför värdet.
++   */
++  bestallning?: string
+ }
+ 
+ /**
+@@ -37,7 +44,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+   sandhamn: {
+     destStopId: '740020694', destStopName: 'Sandhamn brygga',
+     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+-    note: 'Snabbast via buss 434 till Stavsnäs och Waxholmsbåten därifrån.',
++    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — "433 Slussen–Djurö", "Stavsnäs vinterhamn" (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h434.pdf — "Stavsnäs vinterhamn 2)", "2) Endast vissa turer." (läst 2026-10-29)
++    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Du kan åka till Sandhamn med båt från Stavsnäs", "Under sommaren så kan du också åka till Sandhamn från Strömkajen." (läst 2026-10-29)
++    // P0 2026-10-29: noten pekade på buss 434, som bara vissa turer går till Stavsnäs vinterhamn.
++    note: 'Året runt via Stavsnäs vinterhamn: SL-buss 433 från Slussen (även vissa turer med 434) och Waxholmsbåten därifrån. Från Strömkajen går båten bara sommartid.',
+   },
+   grinda: {
+     destStopId: '740098471', destStopName: 'Grinda',
+@@ -51,8 +62,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+   },
+   uto: {
+     destStopId: '740020695', destStopName: 'Utö Gruvbryggan',
+-    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+-    note: 'Pendeltåg till Nynäshamn och Waxholmsbolaget därifrån.',
++    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "21A ÅRSTA – UTÖ" (läst 2026-10-29)
++    // P0-kontroll 2026-10-29: busslinjens nummer är inte belagt för alla perioder och står därför inte i texten.
++    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
++    note: 'Pendeltåg till Västerhaninge, buss till Årsta brygga och Waxholmsbolagets båt, linje 21, året om till Gruvbryggan.',
+   },
+   finnhamn: {
+     destStopId: '740020693', destStopName: 'Finnhamn brygga',
+@@ -70,6 +84,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+     // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1
+     // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.
+     note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Beställ resan i SL-appen" (anmärkningarna B, C och b i tabell 14; fristerna skiljer sig mellan turerna, för C-turerna gäller dagen före) (läst 2026-10-29)
++    // P0 2026-10-29: kortet "Sista båten från Möja" visade en beställningstur utan att säga att den måste beställas.
++    bestallning: 'Flera turer till och från Möja går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 innan du åker.',
+   },
+   husaro: {
+     destStopId: '740020692', destStopName: 'Husarö brygga',
+@@ -160,13 +177,19 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+   },
+   orno: {
+     destStopId: '740034475', destStopName: 'Ornö Kyrka brygga',
+-    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ" (läst 2026-10-29)
++    // P0 2026-10-29: avgångsrutan räknade från Nynäshamns färjeterminal. Ingen av Waxholmsbolagets tabeller för perioden har båt därifrån till Ornö.
++    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+     note: 'Bilfärja från Dalarö — pendeltåg till Handen + buss 839 + färja.',
+   },
+   kymmendo: {
+     destStopId: '740018277', destStopName: 'Kymmendö brygga',
+-    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+-    note: 'Strindbergs ö — Waxholmsbåt från Dalarö eller Nynäshamn.',
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Kymmendö", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Kymmendö" (läst 2026-10-29)
++    // P0 2026-10-29: noten sa "från Dalarö eller Nynäshamn" utan säsong. Från Nynäshamn går båten bara sommartid.
++    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
++    note: 'Strindbergs ö — Waxholmsbolagets båt från Stockholm via Dalarö, linje 19. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
++    bestallning: 'En del turer till och från Kymmendö går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
+   },
+   bullero: {
+     destStopId: '740076413', destStopName: 'Bullerö brygga',
+@@ -223,10 +246,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+     note: 'Buss 852 från Nynäshamn station. Torö nås över bro.',
+   },
+   fjardlang: {
+-    // 118 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
++    // 118 min, 0 byten, uppmätt 2026-08-05 · ren båtresa (sommartid, Nordsydlinjen)
+     destStopId: '740020696', destStopName: 'Fjärdlång brygga',
+-    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+-    note: 'Direkt Waxholmsbåt från Nynäshamn, inga byten.',
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Fjärdlång", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Fjärdlång" (läst 2026-10-29)
++    // P0 2026-10-29: noten sa "Direkt Waxholmsbåt från Nynäshamn" utan säsong. Den båten går bara sommartid.
++    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
++    note: 'Waxholmsbolagets båt från Stockholm via Dalarö, linje 19. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
++    bestallning: 'En del turer till och från Fjärdlång går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
+   },
+   rindo: {
+     // 88 min, 3 byten, uppmätt 2026-08-05

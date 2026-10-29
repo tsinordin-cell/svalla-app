@@ -2,6 +2,39 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-10-29 21:30 — Sandhamn granskad, P0-PR omarbetad efter Kontrollanten
+
+**Sandhamn (MÄTT):** 674 rader (+17 nya). KORREKT 587, OBELAGD 38, DELVIS 25,
+EJ NÅBAR 13, FEL 10, INAKTUELL 1. 22 ersättningar och 12 UPDATE för 5 platser.
+Granskaren: 608 000 tokens, 160 anrop, 53 min. Två P0, se nedan. EJ NÅBAR:
+Instagram (Café Ankaret) och Facebook (Café Strindbergsgården). De läses i
+Toms webbläsare.
+
+**P0-kontrollen (Kontrollanten, MÄTT):** 3 av 6 rader underkändes. Buss 846
+var obelagd sommartid. "Minst två timmar före avgång" är fel för B-turer, där
+det också finns en sista tid samma dag, och för C-turer, som beställs dagen
+före. Premissen "ingen linje till Utö stannar vid Dalarö eller Ornö" var fel,
+eftersom linje 19 och 20 gör det. Kontrollanten hittade också samma felklass
+som på Utö för Kymmendö, Fjärdlång och Ornö (avreseort Nynäshamn).
+**P0-grenen nu (patch: `register/b01/ut/p0-2026-10-29.patch`):**
+- Utö: noten utan busslinjens nummer. ferries.ts wxb-uto: ['Årsta Brygga', 'Utö'],
+  med en rättad kommentar.
+- Möja: beställningsnoten anger ingen frist och hänvisar till anmärkningen i
+  tabell 14.
+- Kymmendö och Fjärdlång: avreseort Stockholm C, linje 19 via Dalarö, och
+  Nordsydlinjen från Nynäshamn sommartid (s40: 22 juni–16 augusti 2026). En
+  beställningsnot hänvisar till tabell 19.
+- Ornö: avreseort Stockholm C (noten om bilfärja är oförändrad och granskas i
+  batch 05).
+- Sandhamn: noten om bussen är rättad (433, vissa turer 434), och resvägarna
+  får säsongens datum (Cinderella 30 april–27 september, linje 15 19 juni–16
+  augusti).
+Prebuild, 705 tester och tsc är gröna. Omkontroll pågår.
+P0-kort på /team: Utö ×2, Möja ×2, Kymmendö/Fjärdlång/Ornö, Sandhamn.
+Vid batchens inläggning hoppas uto.edits.json nr 0 och sandhamn.edits.json
+nr 20 över (de ligger i P0-PR:en). sandhamn.edits.json nr 11 (getting_there)
+måste rebaseras mot P0-ändringen av namnen på resvägarna.
+
 ## 2026-10-29 21:00 — Utö och Möja granskade, fyra P0
 
 **Utö (MÄTT):** 580 rader (+18 nya). KORREKT 530, OBELAGD 22, DELVIS 19, FEL 7,

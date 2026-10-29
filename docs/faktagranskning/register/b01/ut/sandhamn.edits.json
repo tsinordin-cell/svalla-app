@@ -1,0 +1,401 @@
+[
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    slug: 'sandhamn',\n    name: 'Sandhamn',",
+  "ny": "    slug: 'sandhamn',\n    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"Sandön, där Sandhamn ligger\", \"Kommun: Värmdö\" (läst 2026-10-29)\n    name: 'Sandhamn',",
+  "rader": [
+   "sandhamn-0001"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"Sandhamn har sedan 1700-talet varit lots- och tullstation och är nu en seglarmetropol\", \"ålderdomliga tull- och lotsstugor och sommarvillor från sekelskiftet 1900\" (läst 2026-09-27)\n    // KÄLLA: https://sandshotell.se/ — \"Sandhamn i Stockholms ytterskärgård\" (läst 2026-09-27)\n    tagline: 'Seglarort, gammal lots- och tullplats och en by av lotsstugor och sommarvillor i ytterskärgården.',\n    // KÄLLA: https://www.sandhamn.com/sv/restauranger-och-barer/segelsalen (restauranger) (läst 2026-09-27)\n    // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html (\"Den långsträckta stranden i Trouville\") (läst 2026-09-27)\n    // KÄLLA: https://www.ksss.se/hamnar/sandhamn (\"Gästhamnen på Sandhamn består av tre pontonbryggor med mellanliggande kajer framför Seglarhotellet\") (läst 2026-09-27)\n    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ (\"lots- och tullstation\") (läst 2026-09-27)\n    seoTitle: 'Sandhamn 2026 – restauranger, boende & seglarkultur',\n    seoDescription: 'Guide till Sandhamn: restauranger, Trouville-stranden, Seglarhotellet och båt från Stockholm. Lots- och tullplats i Stockholms skärgård.',",
+  "ny": "    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"Sandhamn har sedan 1700-talet varit lots- och tullstation och är nu en seglarmetropol\", \"ålderdomliga tull- och lotsstugor och sommarvillor från sekelskiftet 1900\" (läst 2026-10-29)\n    // KÄLLA: https://sandshotell.se/ — \"Sandhamn i Stockholms ytterskärgård\" (läst 2026-10-29)\n    tagline: 'Seglarort, gammal lots- och tullplats och en by av lotsstugor och sommarvillor i ytterskärgården.',\n    // KÄLLA: https://sandhamns-vardshus.se/ — \"Restaurangen Med en magisk utsikt över hamnen.\" (läst 2026-10-29)\n    // KÄLLA: https://www.sandhamn.com/ — \"Här bor du nära havet, med restaurang, spa, gym och pool inom några steg.\" (läst 2026-10-29)\n    // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html — \"Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida.\" (läst 2026-10-29)\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — \"Ut till Sandhamn går det turer året runt.\", \"Du kan åka till Sandhamn med båt från Stavsnäs\" (läst 2026-10-29)\n    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"Sandhamn har sedan 1700-talet varit lots- och tullstation och är nu en seglarmetropol.\" (läst 2026-10-29)\n    seoTitle: 'Sandhamn 2026 – restauranger, boende & seglarkultur',\n    seoDescription: 'Guide till Sandhamn: restauranger, Trouville-stranden, Seglarhotellet och båtar från Stavsnäs året runt. Lots- och tullplats i Stockholms skärgård.',",
+  "rader": [
+   "sandhamn-0002",
+   "sandhamn-0003",
+   "sandhamn-0004",
+   "sandhamn-0005",
+   "sandhamn-0006",
+   "sandhamn-0007",
+   "sandhamn-0008",
+   "sandhamn-0009",
+   "sandhamn-0010",
+   "sandhamn-0023",
+   "sandhamn-0024",
+   "sandhamn-0025",
+   "sandhamn-0026"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://ksss.se/KSSS/historia/ — \"KSSS grundades i Stockholm 1830 under namnet Svenska Segel Sällskapet\" samt \"aktiv seglingsverksamhet på fjärdarna runt Sandhamn, bidrog till klubbens goda rykte\" (läst 2026-09-30)\n      'Sandhamn hör till de namn i Stockholms skärgård som de flesta känner igen, och seglingen är en stor del av förklaringen. Kungliga Svenska Segel Sällskapet, KSSS, grundades i Stockholm 1830 under namnet Svenska Segel Sällskapet, och sällskapets seglingsverksamhet på fjärdarna runt Sandhamn har följt ön sedan dess. Under sommaren ligger båtarna tätt och hamnlivet håller på långt in på kvällarna.',",
+  "ny": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"Sandön, där Sandhamn ligger\", \"Kommun: Värmdö\", \"Sandhamn har sedan 1700-talet varit lots- och tullstation och är nu en seglarmetropol.\" (läst 2026-10-29)\n      // KÄLLA: https://ksss.se/en/gotlandrunt/ — \"Kungliga Svenska Segel Sällskapet\" (läst 2026-10-29)\n      // KÄLLA: https://ksss.se/KSSS/historia/ — \"KSSS grundades i Stockholm 1830 under namnet Svenska Segel Sällskapet\" (läst 2026-10-29)\n      // KÄLLA: https://www.ksss.se/hamnar/lokholmen — \"I mer än 100 år har Sandhamn och Lökholmen varit basen för KSSS kappseglingsverksamhet.\", \"Lökholmens gästhamn är belägen strax nordost om Sandhamns gästhamn.\" (läst 2026-10-29)\n      // KÄLLA: https://www.ksss.se/hamnar/sandhamn/aktuellt — \"Under våra regattor kan det finnas färre platser tillgänliga för gästande båtar.\" (läst 2026-10-29)\n      'Sandhamn är byn på Sandön i Värmdö kommun, och Stockholms läns museum beskriver den som en seglarmetropol. Kungliga Svenska Segel Sällskapet, KSSS, grundades i Stockholm 1830 under namnet Svenska Segel Sällskapet, och i mer än hundra år har Sandhamn och grannön Lökholmen varit basen för sällskapets kappseglingar. Under KSSS regattor kan det finnas färre platser för gästande båtar i hamnen.',",
+  "rader": [
+   "sandhamn-0090",
+   "sandhamn-0091",
+   "sandhamn-0092",
+   "sandhamn-0093",
+   "sandhamn-0094",
+   "sandhamn-0095",
+   "sandhamn-0096",
+   "sandhamn-0097",
+   "sandhamn-0098"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"Under slutet av 1600-talet upprättades en lotsstation och de bofasta under 1700- och 1800-talen var främst lotsar, tullare och krögare.\" / \"Sandhamn har sedan 1700-talet varit lots- och tullstation\"\n      'Sandhamn är ingen gammal fiskeby utan en gammal lots- och tullplats. En lotsstation upprättades under slutet av 1600-talet, och de bofasta under 1700- och 1800-talen var främst lotsar, tullare och krögare. Sedan 1700-talet har ön varit lots- och tullstation, och den sjöfartsanknutna arbetskulturen syns fortfarande i hur byn är byggd.',\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"Det pampiga gula tullhuset av sten som dominerar hamnen ritades av slottsarkitekten Carl Hårleman och byggdes 1752\", \"I de små 1700-talshusen Bryggstugan och Tullvaktstugan finns ett museum\", \"Den tre kilometer långa och en kilometer breda ön består av sand och åter sand\" (läst 2026-09-27)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — \"Sandön ligger precis på gränsen till öppet hav och blev tidigt en viktig knutpunkt för sjöfarten\" (läst 2026-09-27)\n      'Det gula tullhuset av sten dominerar hamnen. Det ritades av slottsarkitekten Carl Hårleman och byggdes 1752. I de små 1700-talshusen Bryggstugan och Tullvaktstugan finns ett museum. Sandön, där byn ligger, är omkring tre kilometer lång och en kilometer bred och ligger precis på gränsen till öppet hav – därför blev den tidigt en knutpunkt för sjöfarten.',",
+  "ny": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"När Sandhamn redovisas i skattehandlingar från 1500-talet var ön troligen obebodd och endast använd som betesholme.\", \"Under slutet av 1600-talet upprättades en lotsstation och de bofasta under 1700- och 1800-talen var främst lotsar, tullare och krögare.\", \"Sandhamn har sedan 1700-talet varit lots- och tullstation\", \"ålderdomliga tull- och lotsstugor\" (läst 2026-10-29)\n      'Sandhamn växte fram som lots- och tullplats. I skattehandlingar från 1500-talet var ön troligen obebodd och användes bara som betesholme. Under slutet av 1600-talet upprättades en lotsstation, och de bofasta under 1700- och 1800-talen var främst lotsar, tullare och krögare. Sedan 1700-talet har ön varit lots- och tullstation, och den sjöfartsanknutna arbetskulturen syns fortfarande i de ålderdomliga tull- och lotsstugorna kring hamnen.',\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"Det pampiga gula tullhuset av sten som dominerar hamnen ritades av slottsarkitekten Carl Hårleman och byggdes 1752.\", \"I de små 1700-talshusen Bryggstugan och Tullvaktstugan finns ett museum som drivs av föreningen Sandhamns vänner.\", \"Här visas föremål från Sandhamns tid som tull- och lotsstation bland annat från spritsmugglingsperioden på 1920-talet.\", \"Den tre kilometer långa och en kilometer breda ön består av sand och åter sand\" (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — \"I Stockholms yttre skärgård från Sandhamn och söderut.\" (Länsstyrelsen, Fiskeguide Stockholms län) (läst 2026-10-29)\n      'Det gula tullhuset av sten dominerar hamnen. Det ritades av slottsarkitekten Carl Hårleman och byggdes 1752. I de små 1700-talshusen Bryggstugan och Tullvaktstugan finns ett museum som drivs av föreningen Sandhamns vänner, med föremål från tiden som tull- och lotsstation, bland annat från spritsmugglingsperioden på 1920-talet. Sandön, där byn ligger, är tre kilometer lång och en kilometer bred och ligger i Stockholms yttre skärgård.',",
+  "rader": [
+   "sandhamn-0103",
+   "sandhamn-0104",
+   "sandhamn-0105",
+   "sandhamn-0106",
+   "sandhamn-0107",
+   "sandhamn-0108",
+   "sandhamn-0109",
+   "sandhamn-0110",
+   "sandhamn-0111",
+   "sandhamn-0112",
+   "sandhamn-0113",
+   "sandhamn-0114",
+   "sandhamn-0115",
+   "sandhamn-0116",
+   "sandhamn-0117",
+   "sandhamn-0118",
+   "sandhamn-0119"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html — \"Trouville ligger omkring 20 minuters promenad från hamnen.\" (läst 2026-09-27)\n      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/flaskberget.4.18c983316e0536cb189a2c1.html — \"klippbad alldeles vid Sandhamns by\" (läst 2026-09-27)\n      // KÄLLA: https://www.ksss.se/hamnar/sandhamn — \"Från leden norr om Sandön till syd om Lökholmen är fartbegränsningen högst 5 knop. Vi ber er tänka på båtens svall\" (läst 2026-09-27)\n      'Barnfamiljer bör veta att det inte finns någon sandstrand vid hamnen: Trouville ligger omkring tjugo minuters promenad bort, och närmast byn finns klippbadet Fläskberget. Förbi gästhamnen, från leden norr om Sandön till söder om Lökholmen, gäller högst 5 knop, och KSSS ber båtfolket tänka på svallet.',\n      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 (text från Kultur & Fritid, Värmdö kommun) — \"Den naturtyp som man ser över större delen av Sandön är trädklädda sanddynor\", \"måste du åka till Gotska Sandön eller Fårö\", \"Öns växtlighet består till stor del av vindpinade och små tallar, även om de tallar som är över 200 år är ofta smala stammar\" (läst 2026-09-27)\n      'Marken under fötterna är det som gör Sandön ovanlig. Huvuddelen av ön består av trädklädda sanddyner, och i den här delen av landet finns motsvarigheten bara på Gotska Sandön och Fårö. Tallskogen ovanpå dynerna är vindpinad och lågvuxen, och en tall som är över tvåhundra år gammal kan ändå ha en smal stam. Det förklarar både ljuset i skogen och varför stigarna känns mjuka att gå på.',\n      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/sparochleder.4.18c983316e0536cb189a419.html, Spår och leder — \"Den cirka 8 km stigen går runt hela Sandön. Stigen utgår från Sandhamn, passerar sandstranden Trouville och vidare genom den vackra och ljusa tallskogen som är typisk för ön.\"\n      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 (Värmdö kommun) — \"en Natur- och miljöstig 2,5 km, samt stigar på 3,5 km, 5,5 km samt den längsta som är 8 km. De utgår från Sandhamn\" (läst 2026-09-27)\n      // KÄLLA: https://stockholmarchipelagotrail.com/section/section-sandhamn/ — \"The section starts from the quay where the public ferries arrive\" (läst 2026-09-27)\n      'Den som vill gå kan välja längd. Sandhamnsstigen är omkring åtta kilometer och går runt hela Sandön, utgår från Sandhamn, passerar Trouville och fortsätter genom tallskogen. Kortare varianter finns också: en natur- och miljöstig på 2,5 kilometer samt slingor på 3,5 och 5,5 kilometer, alla med start i byn, där också båtarna lägger till.',",
+  "ny": "      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/flaskberget.4.18c983316e0536cb189a2c1.html — \"Ett fint klippbad alldeles vid Sandhamns by.\" (läst 2026-10-29)\n      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html — \"Trouville ligger omkring 20 minuters promenad från hamnen.\" (läst 2026-10-29)\n      // KÄLLA: https://www.ksss.se/hamnar/sandhamn — \"Under högsäsong finns KSSS Tender utanför hamnen för att hjälpa till och lotsa in båtar till rätt plats.\", \"Vi ber er tänka på båtens svall när ni passerar gästhamnen.\" (läst 2026-10-29)\n      'Barnfamiljer bör veta att klippbadet Fläskberget ligger alldeles vid byn, medan sandstranden Trouville ligger omkring tjugo minuters promenad från hamnen. Den som kommer med egen båt möts under högsäsong av KSSS tender utanför hamnen, som lotsar in båtar till rätt plats, och KSSS ber båtfolket tänka på svallet när de passerar gästhamnen.',\n      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 — \"Den naturtyp som man ser över större delen av Sandön är trädklädda sanddynor, för att hitta någon liknande i samma storleksordning i Mellansverige måste du åka till Gotska Sandön eller Fårö.\", \"Öns växtlighet består till stor del av vindpinade och små tallar, även om de tallar som är över 200 år är ofta smala stammar.\" (Naturkartan, sidan om Sandön med Kultur & Fritid på Värmdö kommun som kontakt) (läst 2026-10-29)\n      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/sparochleder.4.18c983316e0536cb189a419.html — \"genom den vackra och ljusa tallskogen som är typisk för ön\" (läst 2026-10-29)\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"På öns sydsida ligger den omtyckta badstranden Trouville.\", \"Här finns också resterna av ett sandtag som in på 1900-talet drevs som en binäring på ön.\", \"Så länge segelskutorna var i bruk såldes sand som barlast och under 1900-talets första hälft som byggmaterial till Stockholm.\" (läst 2026-10-29)\n      'Marken under fötterna är det som gör Sandön ovanlig. Huvuddelen av ön består av trädklädda sanddyner, och i Mellansverige finns något liknande i samma storleksordning bara på Gotska Sandön och Fårö. Tallskogen ovanpå dynerna är vindpinad och lågvuxen, och en tall som är över tvåhundra år gammal kan ändå ha en smal stam. Värmdö kommun beskriver den ljusa tallskogen som typisk för ön. På sydsidan, vid Trouville, finns resterna av ett sandtag som drevs in på 1900-talet: så länge segelskutorna var i bruk såldes sanden som barlast, och under 1900-talets första hälft som byggmaterial till Stockholm.',\n      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/sparochleder.4.18c983316e0536cb189a419.html — \"Den cirka 8 km stigen går runt hela Sandön.\", \"Stigen utgår från Sandhamn, passerar sandstranden Trouville och vidare genom den vackra och ljusa tallskogen som är typisk för ön.\" (läst 2026-10-29)\n      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 — \"en Natur- och miljöstig 2,5 km, samt stigar på 3,5 km, 5,5 km samt den längsta som är 8 km\", \"De utgår från Sandhamn\" (läst 2026-10-29)\n      // KÄLLA: https://stockholmarchipelagotrail.com/section/section-sandhamn/ — \"Easy 8.1 km\", \"The section starts from the quay where the public ferries arrive.\", \"On Sandhamn, the trail is sparsely marked to be in harmony with the many landowners.\" (läst 2026-10-29)\n      'Den som vill gå kan välja längd. Stigen runt hela Sandön är omkring åtta kilometer, utgår från Sandhamn, passerar Trouville och fortsätter genom tallskogen. Kortare varianter finns också: en natur- och miljöstig på 2,5 kilometer samt slingor på 3,5 och 5,5 kilometer, alla med start i byn, där också båtarna lägger till. Stockholm Archipelago Trails etapp på Sandhamn är 8,1 kilometer och klassad som lätt, och den är glest märkt av hänsyn till de många markägarna.',",
+  "rader": [
+   "sandhamn-0127",
+   "sandhamn-0128",
+   "sandhamn-0129",
+   "sandhamn-0130",
+   "sandhamn-0131",
+   "sandhamn-0132",
+   "sandhamn-0133",
+   "sandhamn-0134",
+   "sandhamn-0135",
+   "sandhamn-0136",
+   "sandhamn-0137",
+   "sandhamn-0138",
+   "sandhamn-0139",
+   "sandhamn-0140",
+   "sandhamn-0141",
+   "sandhamn-0142",
+   "sandhamn-0143",
+   "sandhamn-0144",
+   "sandhamn-0145",
+   "sandhamn-0146",
+   "sandhamn-0147",
+   "sandhamn-0148",
+   "sandhamn-0149",
+   "sandhamn-0150",
+   "sandhamn-0151",
+   "sandhamn-0152",
+   "sandhamn-0153"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gronskar.html, naturreservat Grönskär — \"Skyddat sedan: 1965\", \"Storlek: 1,6 hektar varav land 1,1 hektar\", \"en liten, flack och vegetationsfattig ö i det yttersta kustbandet öster om Sandhamn\", \"den kända Grönskärs fyr som är av stort kulturhistoriskt värde\" (läst 2026-09-27)\n      // KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/ — \"Den 26 meter höga fyren har kallats Östersjöns Drottning på grund av sin skönhet. Fyren uppfördes 1770 av granit och sandsten efter ritningar av Carl Fredrik Adelcrantz.\" (läst 2026-09-30)\n      'Öster om Sandhamn ligger Grönskär, som Länsstyrelsen beskriver som en liten, flack och vegetationsfattig ö i det yttersta kustbandet. Ön är naturreservat sedan 1965 och omfattar 1,6 hektar, varav 1,1 hektar land, med Skärgårdsstiftelsen som markägare och förvaltare. Här står Grönskärs fyr: 26 meter hög, uppförd 1770 av granit och sandsten efter ritningar av Carl Fredrik Adelcrantz, och kallad Östersjöns Drottning på grund av sin skönhet.',\n      // KÄLLA: https://skargardsstiftelsen.se/om-skargardsstiftelsen/var-historia/ — \"Sjöfartsverket skänker Grönskärs fyr efter renovering\" (1984); Stiftelsen Stockholms skärgård bildades den 20 mars 1959 (läst 2026-09-30)\n      'Att fyren går att besöka är resultatet av en överlåtelse. Sjöfartsverket skänkte Grönskärs fyr till Skärgårdsstiftelsen 1984 efter en renovering, och stiftelsen har haft hand om den sedan dess. Stiftelsen själv bildades den 20 mars 1959.',",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gronskar.html — \"Grönskär ligger i det yttersta kustbandet 5 kilometer öster om Sandhamn.\", \"Grönskär är en liten, flack och vegetationsfattig ö i det yttersta kustbandet öster om Sandhamn.\", \"Reservatet omfattar endast en mindre del av ön.\", \"Skyddat sedan: 1965\", \"Storlek: 1,6 hektar varav land 1,1 hektar\", \"Markägare: Skärgårdsstiftelsen\", \"Förvaltare: Skärgårdsstiftelsen\" (läst 2026-10-29)\n      // KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/ — \"Den 26 meter höga fyren har kallats Östersjöns Drottning på grund av sin skönhet.\", \"Fyren uppfördes 1770 av granit och sandsten efter ritningar av Carl Fredrik Adelcrantz.\" (läst 2026-10-29)\n      'Fem kilometer öster om Sandhamn ligger Grönskär, som Länsstyrelsen beskriver som en liten, flack och vegetationsfattig ö i det yttersta kustbandet. En mindre del av ön är naturreservat sedan 1965: reservatet omfattar 1,6 hektar, varav 1,1 hektar land, med Skärgårdsstiftelsen som markägare och förvaltare. Här står Grönskärs fyr: 26 meter hög, uppförd 1770 av granit och sandsten efter ritningar av Carl Fredrik Adelcrantz, och kallad Östersjöns Drottning på grund av sin skönhet.',\n      // KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/ — \"1961 släcktes fyren då ökade farter på sjön krävde en fyr i annat läge.\", \"Det blev kasunfyren Revengegrundet som fick ta över.\", \"I mitten av 90-talet genomgick fyren en renovering och kunde åter tändas hösten 2000 och då med grönt sken runt om.\" (läst 2026-10-29)\n      // KÄLLA: https://skargardsstiftelsen.se/om-skargardsstiftelsen/var-historia/ — \"1984 Sjöfartsverket skänker Grönskärs fyr efter renovering till Stiftelsen Stockholms skärgård.\", \"Stiftelsen Stockholms skärgård bildas den 20 mars 1959.\" (läst 2026-10-29)\n      'Fyren släcktes 1961, när ökade farter på sjön krävde en fyr i ett annat läge, och kasunfyren Revengegrundet tog över. Sjöfartsverket skänkte Grönskärs fyr till Skärgårdsstiftelsen 1984 efter en renovering, och stiftelsen har haft hand om den sedan dess. I mitten av 1990-talet renoverades fyren, och hösten 2000 kunde den tändas igen, då med grönt sken runt om. Stiftelsen själv bildades den 20 mars 1959.',",
+  "rader": [
+   "sandhamn-0167",
+   "sandhamn-0168",
+   "sandhamn-0169",
+   "sandhamn-0170",
+   "sandhamn-0171",
+   "sandhamn-0172",
+   "sandhamn-0173",
+   "sandhamn-0174",
+   "sandhamn-0175",
+   "sandhamn-0176",
+   "sandhamn-0177",
+   "sandhamn-0178",
+   "sandhamn-0179",
+   "sandhamn-0180",
+   "sandhamn-0181",
+   "sandhamn-0182",
+   "sandhamn-0183",
+   "sandhamn-0184",
+   "sandhamn-0185",
+   "sandhamn-0186",
+   "sandhamn-0187"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // Rättad 2026-10-19: källraden delad så att varje källa bara citerar sin egen text.\n      // KÄLLA: https://battaxi.se/sandhamnslinjen-2/ — \"Sandhamnslinjen är en direkt reguljär tur som tar dig mellan Stavsnäs och Sandhamn på endast 30 minuter\" (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"STAVSNÄS – SANDHAMN – HAGEDE\": Stavsnäs 09.45 → Sandhamn 10.45, 07.00 → 08.05, 20.12 → 20.50 (läst 2026-09-27)\n      // KÄLLA: https://www.sandhamn.com/en/hitta-hit — \"Year round — including winter\" (läst 2026-09-27)\n      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — \"Strandvägen - kajplats 14\", \"7/9 - 27/9\", Strandvägen 10:00 → Sandhamn 12:30 (läst 2026-09-27)\n      travel_time: 'Från Stavsnäs 30–65 min året runt · 2 tim 30 min med Cinderella från Strandvägen sommartid',",
+  "ny": "      // Rättad 2026-10-29 (faktagranskning b01): restiden mätt i tabell 16, Sandhamnslinjen med sin tidtabellsperiod och Cinderella med säsongen 2026.\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"TORSDAG\", \"20.12\", \"20.50z\", \"SÖNDAG\", \"14.10\", \"15.37z\"; uppmätt i tabellen: snabbast torsdag 38 min, längst söndag 87 min (läst 2026-10-29)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — \"Ut till Sandhamn går det turer året runt.\" (läst 2026-10-29)\n      // KÄLLA: https://battaxi.se/sandhamnslinjen-2/ — \"Sandhamnslinjen är en direkt reguljär tur som tar dig mellan Stavsnäs och Sandhamn på endast 30 minuter!\", \"Höst 2 2026 (21/9-20/12)\" (läst 2026-10-29)\n      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — \"30/4 - 4/6 a\", \"7/9 - 27/9\", \"Strandvägen - kajplats 14\", \"10:00\", \"12:30\" (läst 2026-10-29)\n      travel_time: 'Från Stavsnäs 38–87 min med Waxholmsbåt året runt och 30 min med Sandhamnslinjen · 2 tim 30 min med Cinderella från Strandvägen (säsongen 2026: 30 april–27 september)',",
+  "rader": [
+   "sandhamn-0027",
+   "sandhamn-0028",
+   "sandhamn-0029",
+   "sandhamn-0030",
+   "sandhamn-0031",
+   "sandhamn-0032"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // UPPSKATTNING: bedömning utifrån KSSS gästhamn, Trouville och Sandhamnsstigen (källor ovan)",
+  "ny": "      // BEDÖMNING (visas som Vår bedömning): följer av KSSS gästhamn, Värmdö kommuns sida om Trouville och kommunens stig runt hela Sandön (källor i description och activities)",
+  "rader": [
+   "sandhamn-0042",
+   "sandhamn-0043",
+   "sandhamn-0044"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.sandhamn.com/sv/spa — \"Här kan ni simma i den tempererade poolen, sjunka ner i jacuzzin\", \"Här finns också bastu, gym\", \"Spa och gym har öppet dagligen mellan 08.00–20.00\", \"Icke hotellgäster är välkomna i mån av plats\", \"Värmen från den vedeldade bastun\", \"Bokningar av bastuflotten sker via receptionen\" (läst 2026-09-27)\n      { icon: '🧖', name: 'Spa & Gym', desc: 'Seglarhotellets spa har tempererad pool, jacuzzi, bastu och gym, öppet dagligen 08–20. Den som inte bor på hotellet är välkommen i mån av plats. Vid havet finns vedeldade bastuflottar att boka.' },\n      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/sparochleder.4.18c983316e0536cb189a419.html — \"Den cirka 8 km stigen går runt hela Sandön. Stigen utgår från Sandhamn, passerar sandstranden Trouville\" (läst 2026-09-27)\n      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 — \"en Natur- och miljöstig 2,5 km, samt stigar på 3,5 km, 5,5 km\" (läst 2026-09-27)\n      { icon: '🚶', name: 'Vandring', desc: 'Sandhamnsstigen går runt hela Sandön, cirka 8 km från byn förbi Trouville. Kortare slingor på 2,5, 3,5 och 5,5 km börjar också i byn.' },",
+  "ny": "      // KÄLLA: https://www.sandhamn.com/sv/spa — \"Här kan ni simma i den tempererade poolen, sjunka ner i jacuzzin\", \"Här finns också bastu, gym\", \"Gym: 16-årsgräns\", \"Icke hotellgäster är välkomna i mån av plats.\", \"Bastuflottar vid havet\", \"Värmen från den vedeldade bastun\", \"Bokningar av bastuflotten sker via receptionen.\" (läst 2026-10-29)\n      { icon: '🧖', name: 'Spa & Gym', desc: 'Seglarhotellets spa har tempererad pool, jacuzzi, bastu och gym, med 16-årsgräns i gymmet. Den som inte bor på hotellet är välkommen i mån av plats. Vid havet finns vedeldade bastuflottar som bokas via receptionen.' },\n      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/sparochleder.4.18c983316e0536cb189a419.html — \"Den cirka 8 km stigen går runt hela Sandön.\", \"Stigen utgår från Sandhamn, passerar sandstranden Trouville\" (läst 2026-10-29)\n      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 — \"en Natur- och miljöstig 2,5 km, samt stigar på 3,5 km, 5,5 km\", \"De utgår från Sandhamn\" (läst 2026-10-29)\n      { icon: '🚶', name: 'Vandring', desc: 'Stigen runt hela Sandön är cirka 8 km och går från byn förbi Trouville. Kortare slingor på 2,5, 3,5 och 5,5 km börjar också i byn.' },",
+  "rader": [
+   "sandhamn-0203",
+   "sandhamn-0204",
+   "sandhamn-0205",
+   "sandhamn-0206",
+   "sandhamn-0207",
+   "sandhamn-0208",
+   "sandhamn-0209",
+   "sandhamn-0210",
+   "sandhamn-0211",
+   "sandhamn-0212",
+   "sandhamn-0213",
+   "sandhamn-0214",
+   "sandhamn-0215",
+   "sandhamn-0216",
+   "sandhamn-0217",
+   "sandhamn-0218",
+   "sandhamn-0219",
+   "sandhamn-0220",
+   "sandhamn-0221"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://www.ksss.se/hamnar/sandhamn — gästhamnen \"framför Seglarhotellet\" (läst 2026-09-27)\n    // KÄLLA: https://sandhamns-vardshus.se/boende — \"Missionshuset är öppet året runt för bokning\", \"mitt i Sandhamns by\" (läst 2026-09-27)\n    // KÄLLA: https://sandshotell.se/ — \"terrasser med utsikt över hamninloppet\" (läst 2026-09-27)\n    accommodationIntro: 'På Sandhamn finns Seglarhotellet med spa och restaurang vid gästhamnen, Sandhamns Värdshus B&B i Missionshuset mitt i byn och lägenhetshotellet Sands Hotell vid hamninloppet.',",
+  "ny": "    // KÄLLA: https://www.ksss.se/hamnar/sandhamn — \"Gästhamnen på Sandhamn består av tre pontonbryggor med mellanliggande kajer framför Seglarhotellet.\" (läst 2026-10-29)\n    // KÄLLA: https://www.sandhamn.com/ — \"Här bor du nära havet, med restaurang, spa, gym och pool inom några steg.\" (läst 2026-10-29)\n    // KÄLLA: https://sandhamns-vardshus.se/boende — \"Missionshuset är öppet året runt för bokning\", \"mitt i Sandhamns by\" (läst 2026-10-29)\n    // KÄLLA: https://sandshotell.se/ — \"Sands Hotell är ett konferens- och weekend-hotell i Sandhamn i Stockholms ytterskärgård.\", \"Sands Hotell erbjuder boende i lägenheter och rum\", \"terrasser med utsikt över hamninloppet\" (läst 2026-10-29)\n    accommodationIntro: 'På Sandhamn finns Seglarhotellet med spa och restaurang vid gästhamnen, Sandhamns Värdshus B&B i Missionshuset mitt i byn och Sands Hotell, ett konferens- och weekendhotell med lägenheter och rum och terrasser med utsikt över hamninloppet.',",
+  "rader": [
+   "sandhamn-0453",
+   "sandhamn-0454",
+   "sandhamn-0455",
+   "sandhamn-0456",
+   "sandhamn-0457",
+   "sandhamn-0458",
+   "sandhamn-0459",
+   "sandhamn-0460",
+   "sandhamn-0461"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://sandhamns-vardshus.se/boende — \"På Missionshuset finns det 5 dubbelrum med gemensamma badrum\", \"På gården finns en stuga med eget badrum som vi kallar för Friggan. Här får man ha hund.\", \"I alla våra priser ingår frukost, lakan och handdukar\", \"Missionshuset är öppet året runt för bokning\" (läst 2026-09-27)\n      { name: 'Sandhamns Värdshus', type: 'B&B', desc: 'B&B i Missionshuset, bokningsbart året runt: fem dubbelrum med gemensamma badrum och en stuga med eget badrum där hund är tillåten. Frukost, lakan och handdukar ingår.', websiteUrl: 'https://sandhamns-vardshus.se' },\n      // KÄLLA: https://sandshotell.se/ — \"Sands Hotell erbjuder boende i lägenheter och rum\", \"Hotellet har 15 dubbelrum, 3 enkelrum så totalt 33 bäddar, relaxavdelning med bastu\" (läst 2026-09-27)\n      { name: 'Sands Hotell', type: 'Hotell', desc: 'Lägenhetshotell med hotellservice vid hamninloppet, 15 dubbelrum och 3 enkelrum, totalt 33 bäddar, och relaxavdelning med bastu.', websiteUrl: 'https://sandshotell.se' },",
+  "ny": "      // KÄLLA: https://sandhamns-vardshus.se/boende — \"På Missionshuset finns det 5 dubbelrum med gemensamma badrum.\", \"På gården finns en stuga med eget badrum som vi kallar för Friggan. Här får man ha hund.\", \"I alla våra priser ingår frukost, lakan och handdukar.\", \"Missionshuset är öppet året runt för bokning\", \"Villa Västbanken Tillgänglig för bokning 8/10 - 30/4\", \"Här finns 4 dubbelrum med stort kök\" (läst 2026-10-29)\n      { name: 'Sandhamns Värdshus', type: 'B&B', desc: 'B&B i Missionshuset, bokningsbart året runt: fem dubbelrum med gemensamma badrum och en stuga med eget badrum där hund är tillåten. Frukost, lakan och handdukar ingår. Mellan 8 oktober och 30 april kan även Villa Västbanken med fyra dubbelrum och stort kök bokas.', websiteUrl: 'https://sandhamns-vardshus.se' },\n      // KÄLLA: https://sandshotell.se/ — \"Sands Hotell är ett konferens- och weekend-hotell i Sandhamn i Stockholms ytterskärgård.\", \"Sands Hotell erbjuder boende i lägenheter och rum – från 1 person upp till 8 personer.\", \"Hotellet har 15 dubbelrum, 3 enkelrum så totalt 33 bäddar, relaxavdelning med bastu, uterum och terrasser med utsikt över hamninloppet.\" (läst 2026-10-29)\n      { name: 'Sands Hotell', type: 'Hotell', desc: 'Konferens- och weekendhotell med boende i lägenheter och rum för en till åtta personer: 15 dubbelrum och 3 enkelrum, totalt 33 bäddar, relaxavdelning med bastu och terrasser med utsikt över hamninloppet.', websiteUrl: 'https://sandshotell.se' },",
+  "rader": [
+   "sandhamn-0283",
+   "sandhamn-0284",
+   "sandhamn-0285",
+   "sandhamn-0286",
+   "sandhamn-0287",
+   "sandhamn-0288",
+   "sandhamn-0289",
+   "sandhamn-0290",
+   "sandhamn-0291",
+   "sandhamn-0292",
+   "sandhamn-0293",
+   "sandhamn-0294",
+   "sandhamn-0295",
+   "sandhamn-0296",
+   "sandhamn-0297",
+   "sandhamn-0298",
+   "sandhamn-0299",
+   "sandhamn-0300",
+   "sandhamn-0301",
+   "sandhamn-0302",
+   "sandhamn-0303",
+   "sandhamn-0304"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"STAVSNÄS – SANDHAMN – HAGEDE\": Stavsnäs 20.12 → Sandhamn 20.50 (38 min), 09.45 → 10.45 (60 min), 07.00 → 08.05 (65 min) (läst 2026-09-27)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — \"och då tar resan drygt en timme\", \"Det går flera turer varje dag till Sandhamn\", \"tabell 16\" (läst 2026-09-27)\n      // KÄLLA: https://www.sandhamn.com/en/hitta-hit — \"Year round — including winter\", \"Take bus 433 from Slussen or drive to Stavsnäs Vinterhamn\" (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — \"Stavsnäs vinterhamn\", Slussen 10.15 → Stavsnäs vinterhamn 11.06 (läst 2026-09-27)\n      // Rättad 2026-10-20: snabbaste turen i h16.pdf tar 38 min (Stavsnäs 20.12, Sandhamn 20.50), inte 40.\n      // Kontrollant 2026-10-20: längsta turen i h16.pdf är lördag och söndag 14.10 till 15.37 (87 min).\n      { method: 'Waxholmsbåt från Stavsnäs', from: 'Stavsnäs vinterhamn', time: '38 till 87 min', desc: 'Året runt med Waxholmsbolagets linje 16, flera turer om dagen. Till Stavsnäs tar du SL-buss 433 från Slussen, ungefär en timme, eller bil.', icon: '⛴' },\n      // KÄLLA: Stavsnäs Båttaxi, Sandhamnslinjen, https://battaxi.se/sandhamnslinjen-2/ — \"Sandhamnslinjen är en direkt reguljär tur som tar dig mellan Stavsnäs och Sandhamn på endast 30 minuter\"; \"Bokade biljetter har alltid förtur, men det går även bra att köpa biljett direkt på båten\" (läst 2026-09-21)\n      { method: 'Sandhamnslinjen (Stavsnäs Båttaxi)', from: 'Stavsnäs', time: '30 min', desc: 'Snabbast. Direktbåt från Stavsnäs, egen biljett – förbokade resenärer har förtur, men du kan också köpa ombord.', icon: '🚤', url: 'https://battaxi.se/sandhamnslinjen-2/' },\n      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — \"30/4 - 4/6 a Sat-Sun Friday\"; \"7/9 - 27/9 Sat-Sun\"; \"Strandvägen - kajplats 14 10:00\"; \"Sandhamn 12:30\" (läst 2026-10-20)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s15.pdf — \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\"; Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 (läst 2026-10-20)\n      // Rättad 2026-10-20: båda sommarlinjerna har gått klart för 2026. Tidtabeller för 2027 är inte kontrollerade, så inga datum för 2027 anges. Seglarhotellets uppgift om 2–3 timmar för linje 15 stämmer inte med tidtabellen och används inte.\n      { method: 'Cinderellabåten från Strandvägen', from: 'Strandvägen kajplats 14, Stockholm', time: '2 h 30 min', desc: 'Strömmas sommarbåt via Vaxholm och Grinda. Säsongen 2026 gick 30 april till 27 september och är slut.', icon: '⛴', url: 'https://www.stromma.com/en-se/stockholm/cinderella-boats/timetables/' },\n      { method: 'Waxholmsbåt från Strömkajen', from: 'Strömkajen, Stockholm', time: '3 h 45 min till 4 h 55 min', desc: 'Linje 15 gick 2026 bara 19 juni till 16 augusti, och säsongen är slut. Lång resa rakt ut genom skärgården.', icon: '⛴' },\n      { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamnen i Sandhamn – se hamnavsnittet för service och bokning.', icon: '⛵' },",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"TORSDAG\", \"20.12\", \"20.50z\", \"SÖNDAG\", \"14.10\", \"15.37z\"; uppmätt i tabellen: snabbast torsdag 38 min, längst söndag 87 min (läst 2026-10-29)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — \"Ut till Sandhamn går det turer året runt.\", \"Det går flera turer varje dag till Sandhamn.\", \"tabell 15 (endast sommartid) och tabell 16\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — \"Giltig 17 augusti–12 december 2026\", \"433 Slussen–Djurö\", \"Stavsnäs vinterhamn\"; uppmätt i tabellen: Slussen–Stavsnäs vinterhamn 46–56 min (läst 2026-10-29)\n      // KÄLLA: https://www.sandhamn.com/en/hitta-hit — \"Take bus 433 from Slussen or drive to Stavsnäs Vinterhamn\", \"Take the boat from Stavsnäs Winter Harbour\" (läst 2026-10-29)\n      { method: 'Waxholmsbåt från Stavsnäs', from: 'Stavsnäs vinterhamn', time: '38 till 87 min', desc: 'Året runt med Waxholmsbolagets linje 16, flera turer om dagen. Till Stavsnäs vinterhamn tar du SL-buss 433 från Slussen, 46–56 minuter, eller bil.', icon: '⛴' },\n      // KÄLLA: https://battaxi.se/sandhamnslinjen-2/ — \"Sandhamnslinjen är en direkt reguljär tur som tar dig mellan Stavsnäs och Sandhamn på endast 30 minuter!\", \"Bokade biljetter har alltid förtur, men det går även bra att köpa biljett direkt på båten.\", \"Höst 2 2026 (21/9-20/12)\" (Stavsnäs Båttaxi) (läst 2026-10-29)\n      // KÄLLA: https://battaxi.se/ws/media-library/064f8aced20361f244b2b24e67733021/sandhamn-host-2--26.pdf — \"Höst 2, 2026\", \"21/9- 20/12\", \"Måndag - Torsdag\"; uppmätt i tabellen: från Stavsnäs två turer måndag–torsdag, fyra fredag, tre lördag och fyra söndag (läst 2026-10-29)\n      { method: 'Sandhamnslinjen (Stavsnäs Båttaxi)', from: 'Stavsnäs', time: '30 min', desc: 'Direktbåt Stavsnäs–Sandhamn på 30 minuter, med egen biljett – förbokade resenärer har förtur, men du kan också köpa biljett ombord. Hösten 2026 (21 september–20 december) går två till fyra turer om dagen beroende på veckodag.', icon: '🚤', url: 'https://battaxi.se/sandhamnslinjen-2/' },\n      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — \"STOCKHOLM - VAXHOLM - GRINDA - SANDHAMN\", \"30/4 - 4/6 a\", \"7/9 - 27/9\", \"Strandvägen - kajplats 14\", \"10:00\", \"12:30\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s15.pdf — \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\", \"Strömkajen (Stockholm)\", \"08.30\", \"13.25\", \"10.00\", \"13.45\" (läst 2026-10-29)\n      // Rättad 2026-10-20: båda sommarlinjerna har gått klart för 2026. Tidtabeller för 2027 är inte kontrollerade, så inga datum för 2027 anges. Seglarhotellets uppgift om 2–3 timmar för linje 15 stämmer inte med tidtabellen och används inte.\n      { method: 'Cinderellabåten från Strandvägen (sommar 2026)', from: 'Strandvägen kajplats 14, Stockholm', time: '2 h 30 min', desc: 'Strömmas sommarbåt via Vaxholm och Grinda. Säsongen 2026 gick 30 april till 27 september och är slut.', icon: '⛴', url: 'https://www.stromma.com/en-se/stockholm/cinderella-boats/timetables/' },\n      { method: 'Waxholmsbåt från Strömkajen (sommar 2026)', from: 'Strömkajen, Stockholm', time: '3 h 45 min till 4 h 55 min', desc: 'Linje 15 gick 2026 bara 19 juni till 16 augusti, och säsongen är slut. Lång resa rakt ut genom skärgården.', icon: '⛴' },\n      // KÄLLA: https://www.ksss.se/hamnar/sandhamn — \"Det finns ca 150 gästplatser på Sandhamn.\" (läst 2026-10-29)\n      { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamnen i Sandhamn – se hamnavsnittet för service och bokning.', icon: '⛵' },",
+  "rader": [
+   "sandhamn-0305",
+   "sandhamn-0306",
+   "sandhamn-0307",
+   "sandhamn-0308",
+   "sandhamn-0309",
+   "sandhamn-0310",
+   "sandhamn-0311",
+   "sandhamn-0312",
+   "sandhamn-0313",
+   "sandhamn-0314",
+   "sandhamn-0316",
+   "sandhamn-0317",
+   "sandhamn-0318",
+   "sandhamn-0319",
+   "sandhamn-0320",
+   "sandhamn-0321",
+   "sandhamn-0322",
+   "sandhamn-0323",
+   "sandhamn-0324",
+   "sandhamn-0325",
+   "sandhamn-0326",
+   "sandhamn-0327",
+   "sandhamn-0328",
+   "sandhamn-0329",
+   "sandhamn-0330",
+   "sandhamn-0331",
+   "sandhamn-0332",
+   "sandhamn-0333",
+   "sandhamn-0334",
+   "sandhamn-0335",
+   "sandhamn-0336",
+   "sandhamn-0337",
+   "sandhamn-0338",
+   "sandhamn-0339",
+   "sandhamn-0340",
+   "sandhamn-0341",
+   "sandhamn-0342",
+   "sandhamn-0343",
+   "sandhamn-0344",
+   "sandhamn-0345",
+   "sandhamn-0346",
+   "sandhamn-0347"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.ksss.se/hamnar/sandhamn — \"Det finns ca 150 gästplatser på Sandhamn\", \"Gästhamnen har 20 st bokningsbara platser\", \"Hamnen är öppen från sista helgen i april till sista helgen i oktober\" (läst 2026-09-27)\n      // KÄLLA: https://www.ksss.se/hamnar/sandhamn/aktuellt — \"Vatten på bryggorna och servicehusen med dusch, toalett och tvättstuga är endast öppna maj till september.\"; \"You can find power on pier B and C (Middle and right seen from the hotel) all year round.\" (läst 2026-10-19)\n      { name: 'KSSS Sandhamn', desc: 'KSSS gästhamn framför Seglarhotellet, ca 150 platser, öppen sista helgen i april till sista helgen i oktober. 20 bokningsbara platser via Dockspot. Vatten och servicehus maj–september, el på brygga B och C.', fuel: false, service: ['el', 'vatten', 'dusch', 'tvätt'] },",
+  "ny": "      // KÄLLA: https://www.ksss.se/hamnar/sandhamn — \"Gästhamnen på Sandhamn består av tre pontonbryggor med mellanliggande kajer framför Seglarhotellet.\", \"Det finns ca 150 gästplatser på Sandhamn.\", \"Hamnen är öppen från sista helgen i april till sista helgen i oktober.\", \"Gästhamnen har 20 st bokningsbara platser som bokas via www.dockspot.com\" (läst 2026-10-29)\n      // KÄLLA: https://www.ksss.se/hamnar/sandhamn/aktuellt — \"Vatten på bryggorna och servicehusen med dusch, toalett och tvättstuga är endast öppna maj till september.\", \"Service under lågsäsong och vinter\", \"I nuläget finns ström endast tillgängigt på brygga A (Längst västerut)\", \"Här på Sandhamn har vi en enorm vattenbrist.\", \"Vi har satt en maxgräns på 100L vatten per båt för att se till att våra tankar inte ska ta slut.\" (läst 2026-10-29)\n      { name: 'KSSS Sandhamn', desc: 'KSSS gästhamn framför Seglarhotellet, ca 150 platser, öppen sista helgen i april till sista helgen i oktober. 20 bokningsbara platser via Dockspot. Vatten och servicehus maj–september; under lågsäsong och vinter finns el bara på brygga A, längst västerut. Sandhamn har ont om vatten, och KSSS begränsar påfyllningen till 100 liter per båt.', fuel: false, service: ['el', 'vatten', 'dusch', 'tvätt'] },",
+  "rader": [
+   "sandhamn-0348",
+   "sandhamn-0349",
+   "sandhamn-0350",
+   "sandhamn-0351",
+   "sandhamn-0352",
+   "sandhamn-0353",
+   "sandhamn-0354",
+   "sandhamn-0355",
+   "sandhamn-0356",
+   "sandhamn-0357",
+   "sandhamn-0358",
+   "sandhamn-0359",
+   "sandhamn-0360",
+   "sandhamn-0361"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/sparochleder.4.18c983316e0536cb189a419.html, Spår och leder — \"Den cirka 8 km stigen går runt hela Sandön. Stigen utgår från Sandhamn, passerar sandstranden Trouville\"\n      'Sandhamnsstigen är cirka 8 km och går runt hela Sandön — den utgår från Sandhamn och passerar Trouville, så badet kan läggas in mitt i rundan.',\n      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 (Värmdö kommun) — natur- och miljöstig 2,5 km samt slingor på 3,5 km och 5,5 km\n      'Orkar du inte hela varvet finns kortare slingor: natur- och miljöstigen på 2,5 km samt 3,5 och 5,5 km.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gronskar.html, naturreservat Grönskär — föreskrifterna förbjuder bland annat lösa hundar och tältning utan tillstånd; \"Ibland finns det en fin utställning i fotogenboden.\"\n      'Åker du vidare till Grönskär: reservatet förbjuder lösa hundar och tältning utan tillstånd, och ibland finns en utställning i fotogenboden.',",
+  "ny": "      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/sparochleder.4.18c983316e0536cb189a419.html — \"Den cirka 8 km stigen går runt hela Sandön.\", \"Stigen utgår från Sandhamn, passerar sandstranden Trouville\" (läst 2026-10-29)\n      'Stigen runt hela Sandön är cirka 8 km — den utgår från Sandhamn och passerar Trouville, så badet kan läggas in mitt i rundan.',\n      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/sandon-2 — \"en Natur- och miljöstig 2,5 km, samt stigar på 3,5 km, 5,5 km\" (läst 2026-10-29)\n      'Orkar du inte hela varvet finns kortare slingor: natur- och miljöstigen på 2,5 km samt 3,5 och 5,5 km.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gronskar.html — \"medföra lös hund\", \"utan markägarens eller dennes ombuds tillstånd tälta eller göra upp eld\", \"Ibland finns det en fin utställning i fotogenboden.\" (läst 2026-10-29)\n      'Åker du vidare till Grönskär: reservatet förbjuder lösa hundar, och tältning och eldning kräver markägarens tillstånd. Ibland finns en utställning i fotogenboden.',",
+  "rader": [
+   "sandhamn-0368",
+   "sandhamn-0369",
+   "sandhamn-0370",
+   "sandhamn-0371",
+   "sandhamn-0372",
+   "sandhamn-0373",
+   "sandhamn-0374",
+   "sandhamn-0375",
+   "sandhamn-0376",
+   "sandhamn-0377",
+   "sandhamn-0378"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    tags: ['segling', 'gästhamn', 'restauranger', 'sandstrand', 'sommarfest'],",
+  "ny": "    // KÄLLA: https://www.ksss.se/hamnar/sandhamn — \"Det finns ca 150 gästplatser på Sandhamn.\" (läst 2026-10-29)\n    // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html — \"Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida.\" (läst 2026-10-29)\n    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — \"Sandhamn har sedan 1700-talet varit lots- och tullstation och är nu en seglarmetropol.\" (läst 2026-10-29)\n    // KÄLLA: https://sandhamns-vardshus.se/ — \"Restaurangen Med en magisk utsikt över hamnen.\" (läst 2026-10-29)\n    tags: ['segling', 'gästhamn', 'restauranger', 'sandstrand', 'historia'],",
+  "rader": [
+   "sandhamn-0020",
+   "sandhamn-0021",
+   "sandhamn-0022",
+   "sandhamn-0576",
+   "sandhamn-0577"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.sandhamn.com/en/hitta-hit — \"Total travel time from Stockholm: approx. 1.5 hours\" via buss 433 och båt från Stavsnäs (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf Slussen 10.15 → Stavsnäs vinterhamn 11.06 och https://battaxi.se/sandhamnslinjen-2/ \"på endast 30 minuter\" ger samma storleksordning (läst 2026-09-27)\n      from_city_min: 90,",
+  "ny": "      // KÄLLA: https://battaxi.se/ws/media-library/064f8aced20361f244b2b24e67733021/sandhamn-host-2--26.pdf — \"Buss 433 / 434 från Stockholm\", \"Höst 2, 2026\", \"21/9- 20/12\"; uppmätt i tabellen: Slussen–Sandhamn med anslutande buss och Sandhamnslinjen 82–90 min på de flesta turer (läst 2026-10-29)\n      // KÄLLA: https://www.sandhamn.com/en/hitta-hit — \"Total travel time from Stockholm: approx. 1.5 hours\" (läst 2026-10-29)\n      from_city_min: 90,",
+  "rader": [
+   "sandhamn-0480"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "            // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html — \"Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida\", \"omkring 20 minuters promenad från hamnen\", \"Toaletter sommartid\", \"Badet ägs och sköts av Eknö hemman\", \"Ingen provtagning av badvatten utförs av Värmdö kommun\". Stod \"ca 10 min\", barnvänligt djup, vind och namnets ursprung utan källa.",
+  "ny": "            // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html — \"Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida.\", \"Trouville ligger omkring 20 minuters promenad från hamnen.\", \"Toaletter sommartid\", \"Badet ägs och sköts av Eknö hemman.\", \"Ingen provtagning av badvatten utförs av Värmdö kommun.\" (läst 2026-10-29)",
+  "rader": [
+   "sandhamn-0498",
+   "sandhamn-0499",
+   "sandhamn-0500",
+   "sandhamn-0501",
+   "sandhamn-0502",
+   "sandhamn-0503",
+   "sandhamn-0504",
+   "sandhamn-0505",
+   "sandhamn-0506",
+   "sandhamn-0507"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://www.sandhamnsbageriet.com/ (kafé/bageri) (läst 2026-09-27)",
+  "ny": "    // KÄLLA: https://www.sandhamnsbageriet.com/ — \"Bryggkaffe\", \"Vetesurdegsbröd\" (läst 2026-10-29)",
+  "rader": [
+   "sandhamn-0568"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s15.pdf — \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\": Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — Stavsnäs 20.12, Sandhamn 20.50z; Stavsnäs 07.00, Sandhamn 08.05z (läst 2026-10-20)\n      // KÄLLA: https://battaxi.se/sandhamnslinjen-2/ — \"på endast 30 minuter\" (läst 2026-09-27)\n      'Waxholmsbåten från Strömkajen (linje 15) gick 2026 bara 19 juni till 16 augusti och tog 3 h 45 min till 4 h 55 min, och den säsongen är slut. Året runt går båtarna från Stavsnäs: 38 till 87 minuter med Waxholmsbolaget, beroende på tur, eller 30 minuter med Sandhamnslinjen.',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s15.pdf — \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\", \"10.00\", \"13.45\", \"08.30\", \"13.25\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"20.12\", \"20.50z\", \"14.10\", \"15.37z\"; uppmätt i tabellen: 38 och 87 min (läst 2026-10-29)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — \"Ut till Sandhamn går det turer året runt.\" (läst 2026-10-29)\n      // KÄLLA: https://battaxi.se/sandhamnslinjen-2/ — \"på endast 30 minuter\", \"Höst 2 2026 (21/9-20/12)\" (läst 2026-10-29)\n      'Waxholmsbåten från Strömkajen (linje 15) gick 2026 bara 19 juni till 16 augusti och tog 3 h 45 min till 4 h 55 min, och den säsongen är slut. Året runt går Waxholmsbolagets båtar från Stavsnäs, 38 till 87 minuter beroende på tur, och hösten 2026 (21 september–20 december) går även Sandhamnslinjen, 30 minuter.',",
+  "rader": [
+   "sandhamn-0540",
+   "sandhamn-0541",
+   "sandhamn-0542",
+   "sandhamn-0543",
+   "sandhamn-0544",
+   "sandhamn-0545",
+   "sandhamn-0546",
+   "sandhamn-0547"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      'Sandhamnsstigen runt hela Sandön är omkring 8 kilometer och börjar i byn.',",
+  "ny": "      'Stigen runt hela Sandön är omkring 8 kilometer och börjar i byn.',",
+  "rader": [
+   "sandhamn-0554",
+   "sandhamn-0555",
+   "sandhamn-0556"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Snabbast via buss 434 till Stavsnäs och Waxholmsbåten därifrån.',",
+  "ny": "    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — \"433 Slussen–Djurö\", \"Stavsnäs vinterhamn\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h434.pdf — \"Stavsnäs vinterhamn 2)\", \"2) Endast vissa turer.\" (läst 2026-10-29)\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — \"Du kan åka till Sandhamn med båt från Stavsnäs\", \"Under sommaren så kan du också åka till Sandhamn från Strömkajen.\" (läst 2026-10-29)\n    note: 'Året runt via Stavsnäs vinterhamn: SL-buss 433 från Slussen (även vissa turer med 434) och Waxholmsbåten därifrån. Från Strömkajen går båten bara sommartid.',",
+  "rader": [
+   "sandhamn-0085",
+   "sandhamn-0086"
+  ]
+ },
+ {
+  "fil": "src/app/o/hantverkare-data.ts",
+  "gammal": "    ort: 'Bergs by, Möja',\n    bas: 'Bergs by, Möja',",
+  "ny": "    // KÄLLA: https://kvst.se/ — \"Kyrkvikens sjötransport på Möja\" (läst 2026-10-29)\n    ort: 'Möja',\n    bas: 'Möja',",
+  "rader": [
+   "sandhamn-0260"
+  ]
+ }
+]

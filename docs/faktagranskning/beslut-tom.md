@@ -86,6 +86,22 @@ innehåll som beslutskortet på svalla.se/team.
   Båtshaket". **Förslag:** ersätt med Rånökällan med egen källa (ja), eller
   dölj posten (nej). Att dölja kräver ditt ja.
 
+### 5b. Platser på Sandhamn utan tillåten källa (inget döljs utan ditt ja)
+- **PUB Alma och Sandhamns Glassigaste Ställe:** ingen webbplats, de finns
+  inte i OpenStreetMap, och den enda källan (explorearchipelago.com) finns inte
+  längre. **Förslag:** be någon på ön bekräfta att de finns, annars dölj dem.
+- **Stora Trouvillestranden och Lilla Trouville Stranden:** Värmdö kommun har
+  bara "Trouville". Datafixen 2026-10-19 markerade dem redan som möjliga
+  dubbletter. **Förslag:** dölj båda som dubbletter av Trouville. En färdig
+  sats finns i supabase/datafix/2026-10-19-filmoarna.sql, rad 182–183.
+- Västerudde strand och Bistro Sands har fått belagda namn och texter. Det
+  kräver inget beslut.
+- **Region:** Länsstyrelsen och Waxholmsbolaget placerar Sandhamn i den yttre
+  skärgården, men etiketten säger "Mellersta skärgården". Det hör till beslut 2.
+- **Fartbegränsningen (information):** "högst 5 knop förbi gästhamnen" fanns
+  bara hos KSSS, och ingen sjötrafikföreskrift från Länsstyrelsen hittades.
+  Siffran är struken, men KSSS uppmaning att tänka på svallet står kvar.
+
 ### 6. Mejl till verksamheter (färdiga, på mejlkortet på /team)
 Tills svar finns står den belagda generaliseringen.
 - Runmarö Lanthandel: finns "Runmarö Bryggkiosk"? (storholmen.tom.md)
