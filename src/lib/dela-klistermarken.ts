@@ -191,9 +191,9 @@ export function delstrackStaplar(splits: { index: number; distanceNM: number; se
 /** Talen som visas på klistermärkena, i den ordning de har plats. */
 export function talRutor(t: { distanceNM: number | null; sekunder: number | null; toppKn: number | null; snittKn: number | null }): { val: string; enhet: string; etikett: string }[] {
   const ut: { val: string; enhet: string; etikett: string }[] = []
-  if (t.distanceNM !== null && t.distanceNM >= 0.1) ut.push({ val: t.distanceNM.toFixed(1), enhet: 'NM', etikett: 'DISTANS' })
+  if (t.distanceNM !== null && t.distanceNM >= 0.1) ut.push({ val: t.distanceNM.toFixed(1).replace('.', ','), enhet: 'NM', etikett: 'DISTANS' })
   if (t.sekunder !== null && t.sekunder >= 60) ut.push({ val: formatTid(t.sekunder), enhet: '', etikett: 'TID' })
-  if (t.toppKn !== null && t.toppKn >= 0.1) ut.push({ val: t.toppKn.toFixed(1), enhet: 'kn', etikett: 'TOPPFART' })
-  else if (t.snittKn !== null && t.snittKn >= 0.1) ut.push({ val: t.snittKn.toFixed(1), enhet: 'kn', etikett: 'SNITTFART' })
+  if (t.toppKn !== null && t.toppKn >= 0.1) ut.push({ val: t.toppKn.toFixed(1).replace('.', ','), enhet: 'kn', etikett: 'TOPPFART' })
+  else if (t.snittKn !== null && t.snittKn >= 0.1) ut.push({ val: t.snittKn.toFixed(1).replace('.', ','), enhet: 'kn', etikett: 'SNITTFART' })
   return ut
 }

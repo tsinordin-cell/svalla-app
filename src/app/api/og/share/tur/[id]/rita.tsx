@@ -152,13 +152,21 @@ export async function morkKarta(pts: Punkt[]): Promise<MorkKarta> {
  * beskuren till 9:16. null om bilden inte går att hämta → gradienten i stället.
  */
 export async function hamtaFoto(url: string): Promise<string | null> {
+  // Bara bilder ur Svallas egen lagring. trips.image kan ägaren skriva fritt
+  // (RLS trips_update_own), och servern ska inte hämta godtyckliga adresser
+  // eller avkoda hur stora filer som helst (granskning 2026-10-29).
+  let u: URL
+  try { u = new URL(url) } catch { return null }
+  if (u.protocol !== 'https:' || u.hostname !== 'oiklttwylndesewauytj.supabase.co' || !u.pathname.startsWith('/storage/v1/object/public/')) return null
   try {
     const ctrl = new AbortController()
     const t = setTimeout(() => ctrl.abort(), 8000)
     const res = await fetch(url, { signal: ctrl.signal, next: { revalidate: 86400 } })
     clearTimeout(t)
     if (!res.ok) return null
-    const buf = await sharp(Buffer.from(await res.arrayBuffer()))
+    const ab = await res.arrayBuffer()
+    if (ab.byteLength > 15 * 1024 * 1024) return null
+    const buf = await sharp(Buffer.from(ab), { limitInputPixels: 50_000_000 })
       .rotate()
       .resize(W, H, { fit: 'cover', position: 'centre' })
       .jpeg({ quality: 86, mozjpeg: true })

@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
  const metaUser = bundle!.userRow
 
- const distStr = trip.distance != null && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)} NM` : null
+ const distStr = trip.distance != null && trip.distance >= 0.1 ? `${trip.distance.toFixed(1).replace('.', ',')} NM` : null
  const title = trip.location_name
  ? `${trip.location_name}${distStr ? ` – ${distStr}` : ''}`
  : distStr ? `Tur – ${distStr}` : 'Tur'
@@ -358,10 +358,10 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  {/* Stats */}
  {(() => {
  const stats = [
- { val: trip.distance >= 0.1 ? trip.distance.toFixed(1) : null, unit: 'NM', label: 'Distans' },
+ { val: trip.distance >= 0.1 ? trip.distance.toFixed(1).replace('.', ',') : null, unit: 'NM', label: 'Distans' },
  { val: durationSecs > 60 ? formatDuration(durationSecs) : null, unit: '', label: 'Tid' },
- { val: trip.average_speed_knots >= 0.1 ? trip.average_speed_knots.toFixed(1) : null, unit: 'kn', label: 'Snittfart' },
- { val: trip.max_speed_knots >= 0.1 ? trip.max_speed_knots.toFixed(1) : null, unit: 'kn', label: 'Toppfart' },
+ { val: trip.average_speed_knots >= 0.1 ? trip.average_speed_knots.toFixed(1).replace('.', ',') : null, unit: 'kn', label: 'Snittfart' },
+ { val: trip.max_speed_knots >= 0.1 ? trip.max_speed_knots.toFixed(1).replace('.', ',') : null, unit: 'kn', label: 'Toppfart' },
  ].filter(s => s.val !== null)
  if (stats.length === 0) return null
  return (
