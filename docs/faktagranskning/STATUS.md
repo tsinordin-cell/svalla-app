@@ -20,6 +20,26 @@ har minst en rad i registret, och domkolumnerna är tomma.
   citaten i befintliga KÄLLA-rader kontrolleras mekaniskt innan
   Granskarna dömer.
 
+**Förberedelse steg 2 (MÄTT, `verktyg/kallcache.py`):** 102 olika URL:er i de
+fyra registren, 84 lästa med curl och 18 med Chromium. Två svarar 502
+(utogasthamn.se/gasthamnen/ och /hitta-hit/) – läses om innan någon dom.
+| Ö | Alla citat ordagrant | Citat saknas | Bara URL/skiftläge | Ingen KÄLLA-URL |
+|---|---|---|---|---|
+| Fjäderholmarna | 209 | 22 | 20 | 78 |
+| Utö | 273 | 47 | 23 | 219 |
+| Möja | 325 | 39 | 44 | 238 |
+| Sandhamn | 343 | 34 | 20 | 260 |
+Platsraderna saknar källa i registret, men källorna står i
+`supabase/datafix/*.sql`. `verktyg/datafix_kallor.py` matchar dagens text
+(md5) mot datafix-satserna: 35 av 42 platser har en sats med exakt dagens
+text och källkommentar. Utan: bryggans-lilla-kok-uto, moja-stf-moja-gard,
+rano-brygga (ingen text), sandhamn-sands-hotell, stf-vandrarhem-uto,
+uto-camping-och-stugor, uto-vardshus.
+- /team: två skrivförsök 19:03–19:05 avbröts ("cancelled"). Tom tillfrågad.
+  Steg 2 startar inte förrän /team går att uppdatera.
+- Teknik: klonen är grund och följde bara main. Fetch-refspec för grenen
+  tillagd så att `git status` och stopphooken ser att allt är pushat.
+
 ## 2026-10-29 — session 1, fortsättning 14:40
 
 **Batch 01, steg 1: avbrutet i natt, återupptaget.**

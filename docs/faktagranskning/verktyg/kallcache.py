@@ -159,21 +159,30 @@ def main():
             for u, c in par:
                 citat_per_url[u].add(c)
     urls = sorted(citat_per_url)
-    print(f'{len(urls)} olika URL:er', flush=True)
+    idxp = os.path.join(cache, 'index.json')
+    index = json.load(open(idxp)) if os.path.exists(idxp) else {}
+    nya = [u for u in urls if not (index.get(u, {}).get('tecken') and os.path.exists(os.path.join(cache, index[u]['fil'])))]
+    print(f'{len(urls)} olika URL:er, {len(nya)} nya att hämta, {len(urls) - len(nya)} redan i cachen', flush=True)
 
     with ThreadPoolExecutor(6) as ex:
-        curl = dict(zip(urls, ex.map(lambda u: hamta_curl(u, cache), urls)))
+        curl = dict(zip(nya, ex.map(lambda u: hamta_curl(u, cache), nya)))
 
-    resultat, index = {}, {}
+    resultat = {}
     wb = Webblasare()
     try:
         for u in urls:
-            text, meta = curl[u]
-            metod = 'curl'
+            if u in curl:
+                text, meta = curl[u]
+                metod = 'curl'
+            else:
+                i = index[u]
+                text = open(os.path.join(cache, i['fil'])).read()
+                meta = {'http': i['http'], 'slut': i['slut']}
+                metod = i['metod']
             tn, tl = norm(text), norm(text).lower()
             utfall = {c: finns(c, tn, tl) for c in citat_per_url[u]}
             behover = meta.get('http') != 200 or len(tn) < 400 or any(v in ('nej', 'skiftläge') for v in utfall.values())
-            if behover and not u.lower().split('?')[0].endswith('.pdf'):
+            if behover and 'chromium' not in metod and not u.lower().split('?')[0].endswith('.pdf'):
                 t2, m2 = wb.text(u)
                 if t2:
                     tn2 = norm(t2)
@@ -193,13 +202,14 @@ def main():
             if not norm(text):
                 utfall = {c: 'ingen-sida' for c in utfall}
             index[u] = {'fil': h + '.txt', 'http': meta.get('http'), 'slut': meta.get('slut', ''),
-                        'startsida': startsida(u, meta.get('slut', '')), 'metod': metod, 'last': LAST,
+                        'startsida': startsida(u, meta.get('slut', '')), 'metod': metod,
+                        'last': index.get(u, {}).get('last', LAST) if u not in curl else LAST,
                         'tecken': len(norm(text)), 'fel': meta.get('fel', '')}
             resultat[u] = utfall
             print(f"{metod:13} {meta.get('http')} {u[:90]} {collections.Counter(utfall.values())}", flush=True)
     finally:
         wb.stang()
-    json.dump(index, open(os.path.join(cache, 'index.json'), 'w'), ensure_ascii=False, indent=1)
+    json.dump(index, open(idxp, 'w'), ensure_ascii=False, indent=1)
 
     for slug, lista in rader.items():
         sammanfattning = collections.Counter()
