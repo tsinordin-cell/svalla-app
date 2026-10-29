@@ -2,6 +2,36 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-10-29 20:14 — steg 2: Storholmen granskad, Kontrollanten startad
+
+**Storholmen (MÄTT ur registret):** 223 rader (217 + 6 nya). KORREKT 176,
+DELVIS 23, FEL 14, OBELAGD 10. Åtgärder: BEHÅLL 170, RÄTTA 21, PRECISERA 23,
+STRYK+KOMPENSERA 3, NY 6. 13 ersättningar i island-data.ts, islandCoords.ts,
+transit-stops.ts och kommaDitTitlar.ts (torrkörning: 0 fel). Ingen SQL.
+Granskaren: 475 480 tokens, 126 verktygsanrop, 43 min.
+- Kartnålen låg vid Byholmen i Värmdö, cirka 40 km fel. Rätt läge enligt
+  OSM-relation 9340511.
+- "Hit går ingen kollektivtrafik" är fel: SL:s pendelbåt 80 går dit. Texten
+  kom från ISLAND_NO_TRANSIT, som mättes från den felaktiga nålen. Rutan med
+  live-avgångar försvinner tills Storholmen läggs in i ISLAND_TRANSIT med
+  hållplats-id verifierade mot ResRobot (kräver API-nyckel, öppen punkt).
+- Granskarens bedömning: inget P0. Inget av felen strandar någon eller
+  leder till regelbrott.
+- Till Tom: platsen runmaro-bryggkiosk (se beslut-tom.md).
+- Kontrollant startad: 125 rader (50 ändrade, 45 högrisk, 30 stickprov) och
+  3 strukna. Underlaget byggs av `verktyg/kontrollunderlag.py`.
+  Leveransfiler: `register/b01/ut/`.
+
+**Kodfel funna av Granskaren (rättas i batch 01:s PR, Vakten):**
+- `scripts/generera-kallor.mjs`: när två URL:er står på samma KÄLLA-rad
+  läggs hela raden under den första. Citat hamnar då under fel källa i
+  källistan, på alla öar. Generatorn gör också om " – " till " — " i citat.
+- `komma-dit/page.tsx:84`: Waxholmsbolagets "Praktiska tips" visas för alla
+  öar i norra, mellersta och södra skärgården, även där SL kör.
+- `bad/page.tsx:66`: allt som innehåller ordet "brygga" sorteras in som bad.
+- `page.tsx:203`: isAccessibleForFree är en konstant i JSON-LD.
+- og:description gör regionLabel till gemener ("i lidingös skärgård").
+
 ## 2026-10-29 19:46 — steg 1 klart
 
 **Steg 1 klart (MÄTT): 10 register, 4 768 rader.** Nio öar 4 515 rader och

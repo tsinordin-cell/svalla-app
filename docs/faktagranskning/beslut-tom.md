@@ -15,6 +15,19 @@ innehåll som beslutskortet på svalla.se/team.
    användningsgräns inte tar slut för annan användning.
 3. **De dubbla FAQPage-blocken på ösidorna tas bort i batch 01:s PR.**
 
-## Väntar på Tom
+## Väntar på Tom — batch 01 (samlas här, beslutskortet på /team skapas när fler öar är granskade)
 
-_Inget just nu._
+### 1. Platsen "Runmarö Bryggkiosk" (`runmaro-bryggkiosk`) – mejl och schemaändring
+- **Läget:** ingen tillåten källa nämner en verksamhet med det namnet.
+  Webbplatsen den länkar till är Runmarö Lanthandels, och butiken ligger enligt
+  egen uppgift "ca 200m från Styrsviks brygga", inte vid bryggan Gatan där
+  nålen står. Platsen räknades till Storholmen bara för att Storholmens nål
+  låg fel. Den hör till Runmarö (batch 02).
+- **Förslag:** skicka mejlet i `register/b01/ut/storholmen.tom.md` till
+  info@runmarolanthandel.se (adressen från butikens kontaktsida). Raden står
+  kvar som den är tills svar finns. Beskrivningen är redan tom.
+- **Ja till ersättning (om svaret är nej):** raden görs om till Runmarö
+  Lanthandel med butikens egna uppgifter. Det kräver en ny typ för butik i
+  `restaurants` (**schemaändring**) och en uppmätt nål.
+- **Nej:** raden står kvar utan text, och Runmarös granskning i batch 02 tar
+  ärendet vidare.

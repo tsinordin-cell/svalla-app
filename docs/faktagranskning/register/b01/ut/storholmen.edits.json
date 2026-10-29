@@ -1,0 +1,177 @@
+[
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    slug: 'storholmen',\n    name: 'Storholmen',\n    region: 'mellersta',\n    regionLabel: 'Innerskärgården',\n    emoji: '🌳',\n    // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"Med skärgårdsbåt tar du dig lätt till Storholmen eller Fjäderholmarna\", \"Bägge två är bebyggda, har restaurang och stigar att promenera på\" (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/h80.pdf — \"Ropsten–Storholmen\", \"Giltig 17 augusti–12 december 2026\": Ropsten 07.05 → Storholmen södra 07.33, lördag 08.10 → 08.38 (28 min) (läst 2026-09-27). Stod «vandringsleder och havsbad» tidigare: Lidingö stad nämner inga, och Storholmen finns inte bland stadens badplatser hos Havs- och vattenmyndigheten.\n    tagline: 'Bebodd ö i Lidingös skärgård med sjökrog och promenadstigar – 28 minuter med SL:s pendelbåt 80 från Ropsten',",
+  "ny": "    slug: 'storholmen',\n    // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"Lidingös skärgård utgörs av spridda holmar och småöar som omger Lidingö från och med Storholmen mot Vaxholm i norr\", \"Storholmen överflyttades från Vaxholm kommun till Lidingö stad 2011.\" (läst 2026-10-29)\n    name: 'Storholmen',\n    region: 'mellersta',\n    regionLabel: 'Lidingös skärgård',\n    emoji: '🌳',\n    // Historik: «vandringsleder och havsbad» ströks 2026-09-27 – Lidingö stad nämner inga, och Storholmen finns inte bland stadens badplatser hos Havs- och vattenmyndigheten.\n    // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"Med skärgårdsbåt tar du dig lätt till Storholmen eller Fjäderholmarna, två av Lidingös mer välkända öar. Bägge två är bebyggda, har restaurang och stigar att promenera på.\", \"I mitten på 1980-talet fanns tolv bofasta hushåll på Storholmen, i dag finns cirka 80 permanenta hushåll.\" (läst 2026-10-29)\n    // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Pendelbåtslinjen 80 trafikerar sträckan Ropsten-Nybroplan\", \"Vissa avgångar fortsätter från Ropsten till Storholmen.\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — \"Ropsten–Storholmen\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-10-29); restiden Ropsten–Storholmen södra, 28 min, är uppmätt i tidtabellen och är densamma för alla turer måndag–fredag och lördag, söndag och helgdag.\n    // KÄLLA: https://storholmensjokrog.se/ — \"På ön Storholmen, en kort båtresa från Lidingö, ligger vår sjökrog\" (läst 2026-10-29)\n    tagline: 'Bebodd ö i Lidingös skärgård med sjökrog och promenadstigar – 28 minuter med SL:s pendelbåt 80 från Ropsten',",
+  "rader": [
+   "storholmen-0001",
+   "storholmen-0015",
+   "storholmen-0019",
+   "storholmen-0020",
+   "storholmen-0021",
+   "storholmen-0022",
+   "storholmen-0023",
+   "storholmen-0024",
+   "storholmen-0025",
+   "storholmen-0163",
+   "storholmen-0164",
+   "storholmen-0165",
+   "storholmen-0166",
+   "storholmen-0167",
+   "storholmen-0168",
+   "storholmen-0169",
+   "storholmen-0170"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"dagsverkstorp under Frösviks säteri från 1780-talet\", \"Villa Kassman (”Slottet”) på Storholmen som dock tog form först 1917\", \"den då befintliga sommarvillan från 1909\", \"försäljningen av tomter på Storholmen och grannholmarna påbörjades\", \"mellan cirka 1925 och 1935\", \"Sammanlagt bildades cirka 250 fastigheter för sommarboende. Sportstugor uppfördes över hela Storholmen med grannholmar.\" (läst 2026-09-27)\n      'Historien enligt Lidingö stad: ett dagsverkstorp under Frösviks säteri från 1780-talet, sommarvillor mot slutet av 1800-talet, och bankir Kassmans \"Slottet\", som 1917 byggdes om från en sommarvilla från 1909. Efter Kassmans konkurs i början av 1920-talet såldes tomter på Storholmen och grannholmarna, och mellan cirka 1925 och 1935 bildades omkring 250 fastigheter för sommarboende. I dag bor omkring 80 hushåll här året runt.',",
+  "ny": "      // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"dagsverkstorp under Frösviks säteri från 1780-talet\", \"under 1800-talets senare del, byggdes flera sommarvillor på bland annat Duvholmen, Stora Fjäderholmen, Stora Höggarn och Storholmen\", \"Villa Kassman (”Slottet”) på Storholmen som dock tog form först 1917\", \"Efter bankir Kassmans förvärv av Storholmen 1917 byggdes den då befintliga sommarvillan från 1909 om\", \"Kassmans konkurs vid 1920-talets början då försäljningen av tomter på Storholmen och grannholmarna påbörjades\", \"mellan cirka 1925 och 1935\", \"Sammanlagt bildades cirka 250 fastigheter för sommarboende.\", \"i dag finns cirka 80 permanenta hushåll\" (läst 2026-10-29)\n      'Historien enligt Lidingö stad: ett dagsverkstorp under Frösviks säteri från 1780-talet, sommarvillor under senare delen av 1800-talet, och bankir Kassmans \"Slottet\", som 1917 byggdes om från en sommarvilla från 1909. Efter Kassmans konkurs i början av 1920-talet såldes tomter på Storholmen och grannholmarna, och mellan cirka 1925 och 1935 bildades omkring 250 fastigheter för sommarboende. I dag bor omkring 80 hushåll här året runt.',",
+  "rader": [
+   "storholmen-0073"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Storholmen södra – Mor Annas brygga – Storholmen södra – Storholmen östra – Frösvik – Storholmen norra\" (läst 2026-09-27); https://storholmensjokrog.se/ — \"Storholmen Sjökrog ligger på den östra sidan av Storholmen.\", \"Välj gärna Östra Storholmens brygga – därifrån är det bara någon minuts promenad till restaurangen.\", \"Åker du till Södra Storholmens brygga är det cirka 10 minuters promenad\" (läst 2026-09-27)",
+  "ny": "      // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Storholmen södra – Mor Annas brygga – Storholmen södra – Storholmen östra – Frösvik – Storholmen norra\" (läst 2026-10-29)\n      // KÄLLA: https://storholmensjokrog.se/ — \"Storholmen Sjökrog ligger på den östra sidan av Storholmen.\", \"Välj gärna Östra Storholmens brygga\", \"därifrån är det bara någon minuts promenad till restaurangen.\", \"Åker du till Södra Storholmens brygga är det cirka 10 minuters promenad\" (läst 2026-10-29)",
+  "rader": [
+   "storholmen-0087",
+   "storholmen-0088",
+   "storholmen-0089",
+   "storholmen-0090",
+   "storholmen-0091",
+   "storholmen-0092"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — Ropsten 07.05 → Storholmen södra 07.33, 11.15 → Storholmen östra 11.52; lördag 08.10 → södra 08.38, östra 08.47 (läst 2026-09-27); https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is\" (läst 2026-09-27); https://storholmensjokrog.se/ — öppettider till \"31 Lördag\" i oktober, julbord \"Lördagar 28 nov, 5 dec, 12 dec och 19 dec\" (läst 2026-09-27)\n    // UPPSKATTNING: best_for är en bedömning.\n    facts: { travel_time: '28 min med SL:s pendelbåt 80 från Ropsten till Storholmen södra, 37 min till Storholmen östra', character: 'Bebodd ö, restaurang och promenadstigar, nära stan', season: 'Båten går året runt (vid is inte till alla bryggor); sjökrogen har helgöppet till och med oktober och julbord i december', best_for: 'Dagsutflykt, restaurangbesök, promenad' },\n    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'matt', best_for: 'bedomning' },",
+  "ny": "    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — \"Ropsten–Storholmen\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-10-29); restiderna Ropsten–Storholmen södra 28 min och Ropsten–Storholmen östra 37 min är uppmätta i tidtabellen (måndag–fredag och lördag, söndag och helgdag).\n    // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is.\" (läst 2026-10-29)\n    // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"Lidingös skärgård utgörs av spridda holmar och småöar som omger Lidingö från och med Storholmen\", \"har restaurang och stigar att promenera på\", \"i dag finns cirka 80 permanenta hushåll\" (läst 2026-10-29)\n    // KÄLLA: https://storholmensjokrog.se/ — \"ÖPPETTIDER\", \"Oktober\", \"31 Lördag\", \"Lördagar 28 nov, 5 dec, 12 dec och 19 dec\", \"© 2026 Storholmen Sjökrog.\" (läst 2026-10-29)\n    // UPPSKATTNING: best_for är en bedömning.\n    facts: { travel_time: '28 min med SL:s pendelbåt 80 från Ropsten till Storholmen södra, 37 min till Storholmen östra', character: 'Bebodd ö i Lidingös skärgård, restaurang och promenadstigar', season: 'SL-båten går även vintertid (vid is inte till alla bryggor); sjökrogens säsong 2026: helger till och med 31 oktober och julbord lördagar 28 november–19 december', best_for: 'Dagsutflykt, restaurangbesök, promenad' },\n    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'matt', best_for: 'bedomning' },",
+  "rader": [
+   "storholmen-0034",
+   "storholmen-0035",
+   "storholmen-0036",
+   "storholmen-0038",
+   "storholmen-0039",
+   "storholmen-0040",
+   "storholmen-0178",
+   "storholmen-0179",
+   "storholmen-0180",
+   "storholmen-0181",
+   "storholmen-0182",
+   "storholmen-0183",
+   "storholmen-0184",
+   "storholmen-0185"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://storholmensjokrog.se/ — \"Storholmen Sjökrog ligger på den östra sidan av Storholmen.\" (läst 2026-09-27)\n      { icon: '🍽', name: 'Restaurang', desc: 'Storholmen Sjökrog på östra sidan av ön, en kort promenad från bryggan Storholmen östra. Se restaurangens egen sida för öppettider och bokning.' },",
+  "ny": "      // KÄLLA: https://storholmensjokrog.se/ — \"Storholmen Sjökrog ligger på den östra sidan av Storholmen.\", \"Välj gärna Östra Storholmens brygga\", \"därifrån är det bara någon minuts promenad till restaurangen.\" (läst 2026-10-29)\n      { icon: '🍽', name: 'Restaurang', desc: 'Storholmen Sjökrog på östra sidan av ön, någon minuts promenad från Storholmen östra. Se restaurangens egen sida för öppettider och bokning.' },",
+  "rader": [
+   "storholmen-0098",
+   "storholmen-0205"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — \"Ropsten–Storholmen\", \"Giltig 17 augusti–12 december 2026\", \"Storholmen södra\", \"Storholmen östra\", \"Storholmen norra\": vardagar går bara turerna 11.15, 12.45, 19.40, 21.10 och 22.40 från Ropsten vidare till östra, Frösvik och norra; helger alla turer; Ropsten → norra 50 min (läst 2026-09-27)\n      // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Vissa avgångar fortsätter från Ropsten till Storholmen\", \"Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is\", \"de som kör mellan Ropsten och Storholmen har plats för 15 cyklar\", \"Köpa biljett, SL:s webbplats\" (läst 2026-09-27). Stod tidigare «Waxholmsbolaget från Strömkajen/Nybrokajen sommartid, 40 min» – fel avgångsplats och säsong.\n      { method: 'SL pendelbåt linje 80', from: 'Ropsten', time: '28–50 min', desc: 'Vissa turer på pendelbåt 80 fortsätter från Ropsten via Tranholmen, Ekudden och Sticklinge till Storholmen södra (28 min), Storholmen östra (37 min), Frösvik och Storholmen norra. På vardagar går bara en del av turerna vidare till östra och norra; på helger gör alla det. När det ligger is trafikeras inte Storholmen östra, Frösvik och Storholmen norra. Plats för 15 cyklar ombord. SL-biljett gäller.', icon: '⛴' },\n      // KÄLLA: https://storholmensjokrog.se/ — \"Har du egen båt är du varmt välkommen att lägga till vid vår gästbrygga.\" (läst 2026-09-27)\n      { method: 'Fritidsbåt', from: 'Lidingö eller valfri brygga', desc: 'Storholmen Sjökrog har en gästbrygga för restaurangens gäster. Andra gästplatser har vi inte kunnat belägga.', icon: '⚓' },",
+  "ny": "      // Historik: stod tidigare «Waxholmsbolaget från Strömkajen/Nybrokajen sommartid, 40 min»; ersatt 2026-09-27 med SL:s pendelbåt 80 från Ropsten.\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — \"Ropsten–Storholmen\", \"Giltig 17 augusti–12 december 2026\", \"Storholmen södra\", \"Storholmen östra\", \"Storholmen norra\" (läst 2026-10-29); uppmätt i tidtabellen: restid från Ropsten 28 min till Storholmen södra, 37 min till Storholmen östra och 50 min till Storholmen norra; måndag–fredag fortsätter 5 av 12 turer från Ropsten till Storholmen östra, Frösvik och Storholmen norra, lördag, söndag och helgdag alla 8.\n      // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Vissa avgångar fortsätter från Ropsten till Storholmen. Dessa turer går Ropsten – Tranholmen – Ekudden – Sticklinge brygga – Storholmen södra\", \"Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is.\", \"de som kör mellan Ropsten och Storholmen har plats för 15 cyklar\", \"Köpa biljett, SL:s webbplats.\" (läst 2026-10-29)\n      { method: 'SL pendelbåt linje 80', from: 'Ropsten', time: '28–50 min', desc: 'Vissa turer på pendelbåt 80 fortsätter från Ropsten via Tranholmen, Ekudden och Sticklinge till Storholmen södra (28 min), Storholmen östra (37 min), Frösvik och Storholmen norra. På vardagar går bara en del av turerna vidare till östra och norra; på helger gör alla det. När det ligger is trafikeras inte Storholmen östra, Frösvik och Storholmen norra. Plats för 15 cyklar ombord. SL-biljett gäller.', icon: '⛴' },\n      // KÄLLA: https://storholmensjokrog.se/ — \"På ön Storholmen, en kort båtresa från Lidingö, ligger vår sjökrog\", \"Har du egen båt är du varmt välkommen att lägga till vid vår gästbrygga.\" (läst 2026-10-29)\n      { method: 'Fritidsbåt', from: 'Lidingö eller valfri brygga', desc: 'Storholmen Sjökrog välkomnar den som har egen båt att lägga till vid restaurangens gästbrygga. Andra gästplatser har vi inte kunnat belägga.', icon: '⚓' },",
+  "rader": [
+   "storholmen-0130",
+   "storholmen-0132",
+   "storholmen-0171",
+   "storholmen-0172",
+   "storholmen-0173",
+   "storholmen-0174",
+   "storholmen-0175",
+   "storholmen-0176"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://storholmensjokrog.se/ — \"Har du egen båt är du varmt välkommen att lägga till vid vår gästbrygga.\", \"Storholmen Sjökrog ligger på den östra sidan av Storholmen.\" (läst 2026-09-27)\n      { name: 'Storholmen Sjökrogs gästbrygga', desc: 'Restaurangens gästbrygga på öns östra sida, för den som äter på krogen. El, vatten och bränsle nämns inte.', fuel: false },",
+  "ny": "      // KÄLLA: https://storholmensjokrog.se/ — \"Har du egen båt är du varmt välkommen att lägga till vid vår gästbrygga.\", \"Storholmen Sjökrog ligger på den östra sidan av Storholmen.\" (läst 2026-10-29); sidan nämner inte el, vatten eller bränsle vid bryggan.\n      { name: 'Storholmen Sjökrogs gästbrygga', desc: 'Storholmen Sjökrog, som ligger på öns östra sida, välkomnar den som har egen båt att lägga till vid restaurangens gästbrygga. El, vatten och bränsle nämns inte.' },",
+  "rader": [
+   "storholmen-0135",
+   "storholmen-0136",
+   "storholmen-0138"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: tips 1–2 = https://kund.printhuset-sthlm.se/sl/h80.pdf och https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ (se getting_there); tips 3 = https://storholmensjokrog.se/ (\"Boka bord\", \"Stora sällskap över 15 personer, bästa att ringa\"). Borttaget 2026-09-26: «Kortare restid än Vaxholm … lugnare alternativ» (obelagd jämförelse).\n    tips: [\n      'Båten hit är SL:s pendelbåt 80 från Ropsten, inte Waxholmsbolaget, och SL-biljett gäller. När det ligger is går båten bara till Storholmen södra.',\n      'Ska du till sjökrogen, åk till Storholmen östra. På vardagar går bara en del av turerna dit – kolla tidtabellen, annars är det tio minuters promenad från södra bryggan.',\n      'Boka bord på Storholmen Sjökrog – sällskap över 15 personer ringer helst.',\n    ],",
+  "ny": "    // Historik: borttaget 2026-09-26 «Kortare restid än Vaxholm … lugnare alternativ» (obelagd jämförelse). «inte Waxholmsbolaget» preciserat 2026-10-29: turerna finns hos SL, inte i Waxholmsbolagets tidtabeller; vem som kör fartyget säger ingen tillåten källa.\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — \"Anslutningar med SL-trafiken finns inte längre i tidtabellerna\", \"med bara Waxholmsbolagets trafik\", \"Du hittar all SL-trafik på sl.se\" (läst 2026-10-29) ; https://sl.se/biljetter/sa-koper-du-biljetten — \"Om du ska åka buss, pendelbåt eller någon annan spårvagn/lokalbana kan du inte använda kontanter.\" (läst 2026-10-29)\n    // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Pendelbåtslinjen 80 trafikerar sträckan Ropsten-Nybroplan\", \"Vissa avgångar fortsätter från Ropsten till Storholmen.\", \"Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is.\", \"Köpa biljett, SL:s webbplats.\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — \"Ropsten–Storholmen\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-10-29); att bara en del av turerna måndag–fredag går vidare till Storholmen östra är uppmätt i tidtabellen.\n    // KÄLLA: https://storholmensjokrog.se/ — \"Välj gärna Östra Storholmens brygga\", \"därifrån är det bara någon minuts promenad till restaurangen.\", \"Åker du till Södra Storholmens brygga är det cirka 10 minuters promenad\", \"Boka bord\", \"Stora sällskap över 15 personer, bästa att ringa.\" (läst 2026-10-29)\n    tips: [\n      'Båten hit är SL:s pendelbåt 80 från Ropsten; turerna finns hos SL, inte i Waxholmsbolagets tidtabeller. SL-biljett gäller, och kontanter går inte att använda ombord. När det ligger is går båten bara till Storholmen södra.',\n      'Ska du till sjökrogen, åk till Storholmen östra. På vardagar går bara en del av turerna dit – kolla tidtabellen, annars är det cirka tio minuters promenad från södra bryggan.',\n      'Boka bord på Storholmen Sjökrog – sällskap över 15 personer ringer helst.',\n    ],",
+  "rader": [
+   "storholmen-0141",
+   "storholmen-0147",
+   "storholmen-N001"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    related: ['vaxholm', 'fjaderholmarna', 'moja'],\n    tags: ['bebodd', 'lidingö', 'innerskärgård', 'dagstur', 'restaurang', 'promenad'],",
+  "ny": "    // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"Med skärgårdsbåt tar du dig lätt till Storholmen eller Fjäderholmarna, två av Lidingös mer välkända öar.\", \"från och med Storholmen mot Vaxholm i norr\", \"i dag finns cirka 80 permanenta hushåll\", \"har restaurang och stigar att promenera på\" (läst 2026-10-29)\n    // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Pendelbåtslinjen 80 trafikerar sträckan Ropsten-Nybroplan\", \"Vissa avgångar fortsätter från Ropsten till Storholmen.\" (läst 2026-10-29)\n    related: ['vaxholm', 'fjaderholmarna'],\n    tags: ['bebodd', 'lidingö', 'pendelbåt', 'dagstur', 'restaurang', 'promenad'],",
+  "rader": [
+   "storholmen-0016",
+   "storholmen-0017",
+   "storholmen-0018",
+   "storholmen-0153",
+   "storholmen-0210",
+   "storholmen-0211",
+   "storholmen-0212",
+   "storholmen-N006"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-lidingo-stad.html (läst 2026-09-26) — Lidingö stads registrerade badplatser: \"Fågelöudde\", \"Kottlasjön, badviken\", \"Käppalabadet\", \"Sticklinge udde, Sandviksbadet\", \"Södergarn\"; ingen på Storholmen. https://lidingo.se/kultur-fritid/idrott-och-friluftsliv/bad-och-simhallar/ — \"Lidingö har fina friluftsbad, mest känt är badet vid Fågelöudde\", \"Två gånger varje sommar besiktar vi botten vid våra badplatser\" (läst 2026-09-29).\n    activity_meta: {\n      bad: {\n        beaches: [],\n        note: 'Lidingö stad har ingen kommunal badplats på Storholmen. Stadens badplatser, som provtas och bottenbesiktas under sommaren, ligger på Lidingö: Fågelöudde, Käppalabadet, Sticklinge udde (Sandviksbadet), Södergarn och Kottlasjön. Vattenkvaliteten redovisas på Havs- och vattenmyndighetens sida Badplatsen.',\n      },\n    },",
+  "ny": "    // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-lidingo-stad.html — \"Här ser du badplatserna som kommunen har registrerat.\", \"Fågelöudde\", \"Kottlasjön, badviken\", \"Käppalabadet\", \"Sticklinge udde, Sandviksbadet\", \"Södergarn\" (läst 2026-10-29); ingen av dem ligger på Storholmen.\n    // KÄLLA: https://lidingo.se/kultur-fritid/idrott-och-friluftsliv/bad-och-simhallar/ — \"Vi tar regelbundet prover på vattenkvaliteten under badsäsongen.\", \"Två gånger varje sommar besiktar vi botten vid våra badplatser\", \"Vattenkvalitet vid våra badplatser, Havs- och Vattenmyndighetens webbplats\", \"Sticklinge/Sandvik\", \"Sticklingebadet ligger längst ut på norra Sticklinge och har en fin sandstrand. Här finns en beachvolleybollplan och torrtoalett.\" (läst 2026-10-29)\n    // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Dessa turer går Ropsten – Tranholmen – Ekudden – Sticklinge brygga – Storholmen södra\" (läst 2026-10-29)\n    // KÄLLA: https://nominatim.openstreetmap.org/search?q=Sandviksbadet&countrycodes=se&format=jsonv2 — \"Sandviksbadet, Sticklinge, Lidingö, Lidingö kommun\", \"59.3896259\", \"18.1116365\" (läst 2026-10-29); omkring 150 meter till Sticklinge brygga är uppmätt i OpenStreetMap mot bryggans punkt \"59.3904703\", \"18.1096072\" — https://nominatim.openstreetmap.org/search?q=Sticklinge%20brygga&countrycodes=se&format=jsonv2\n    activity_meta: {\n      bad: {\n        beaches: [],\n        note: 'Lidingö stad har ingen kommunal badplats på Storholmen. Stadens badplatser, som provtas och bottenbesiktas under sommaren, ligger på Lidingö: Fågelöudde, Käppalabadet, Sticklinge udde (Sandviksbadet), Södergarn och Kottlasjön. Badet vid Sticklinge udde ligger längst ut på norra Sticklinge, omkring 150 meter från Sticklinge brygga, där SL-båten mellan Ropsten och Storholmen lägger till. Där finns sandstrand, beachvolleybollplan och torrtoalett. Vattenkvaliteten vid stadens badplatser redovisas på Havs- och vattenmyndighetens webbplats.',\n      },\n    },",
+  "rader": [
+   "storholmen-0199",
+   "storholmen-0200",
+   "storholmen-0201",
+   "storholmen-0202",
+   "storholmen-0203",
+   "storholmen-0204",
+   "storholmen-0156",
+   "storholmen-0157",
+   "storholmen-0158",
+   "storholmen-0159",
+   "storholmen-0160",
+   "storholmen-0161",
+   "storholmen-N002",
+   "storholmen-N003",
+   "storholmen-N004",
+   "storholmen-N005"
+  ]
+ },
+ {
+  "fil": "src/lib/islandCoords.ts",
+  "gammal": "  { slug: 'storholmen',        name: 'Storholmen',        lat: 59.2803, lng: 18.8090, radiusKm: 1.5 },",
+  "ny": "  // RÄTTAD 2026-10-29. Låg på 59.2803, 18.8090 vid Byholmen i Värmdö kommun, omkring 40 km fel (därav \"närmaste hållplats Långvik (Runmarö)\" i transit-stops.ts).\n  // KÄLLA: https://nominatim.openstreetmap.org/lookup?osm_ids=R9340511&format=jsonv2 — \"59.3970411\", \"18.1394645\", \"Storholmen, Sticklinge, Lidingö, Lidingö kommun, Stockholms län, Sverige\" (läst 2026-10-29); öns gränsruta i OpenStreetMap är 59.3932–59.4010, 18.1288–18.1445, och SL-bryggorna Storholmen södra, östra och norra ligger inom 0,5 km från punkten.\n  { slug: 'storholmen',        name: 'Storholmen',        lat: 59.3970, lng: 18.1395, radiusKm: 0.8 },",
+  "rader": [
+   "storholmen-0014"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "  'storholmen': 'närmaste hållplats (Långvik (Runmarö) brygga, 2752 m) kunde inte knytas till ön',",
+  "ny": "  // 'storholmen' borttagen 2026-10-29: mätningen 2026-08-05 gjordes med fel koordinater (59.2803, 18.8090 vid Runmarö). SL:s pendelbåt 80 angör Storholmen södra, östra och norra. Lägg in ön i ISLAND_TRANSIT när hållplats-ID verifierats mot ResRobot.\n  // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Vissa avgångar fortsätter från Ropsten till Storholmen.\" (läst 2026-10-29)",
+  "rader": [
+   "storholmen-0060",
+   "storholmen-0061",
+   "storholmen-0062"
+  ]
+ },
+ {
+  "fil": "src/lib/kommaDitTitlar.ts",
+  "gammal": "  storholmen: { titel: 'Båt till Storholmen: pendelbåt 80 från Ropsten – hur tar man sig dit 2026', hamn: 'Ropsten' },",
+  "ny": "  // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Pendelbåtslinjen 80 trafikerar sträckan Ropsten-Nybroplan\", \"Vissa avgångar fortsätter från Ropsten till Storholmen.\" (läst 2026-10-29)\n  storholmen: { titel: 'Båt till Storholmen: pendelbåt 80 från Ropsten – hur tar man sig dit 2026', hamn: 'Ropsten' },",
+  "rader": [
+   "storholmen-0194",
+   "storholmen-0195"
+  ]
+ }
+]
