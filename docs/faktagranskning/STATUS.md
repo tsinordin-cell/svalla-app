@@ -2,6 +2,36 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-10-29 20:25 — steg 2: piloten Fjäderholmarna klar
+
+**Fjäderholmarna (MÄTT ur registret och Granskarens rapport):** 342 rader (329 +
+13 nya). KORREKT 290, DELVIS 27, OBELAGD 6, FEL 5, MOTSTRIDIG 1. BEHÅLL 289,
+PRECISERA 25, RÄTTA 11, STRYK+KOMPENSERA 4, NY 13. 40 rader ändras. 33
+ersättningar (torrkörning 0 fel) och 4 UPDATE i SQL. Ord 1 304 → 1 463.
+Granskaren: 571 420 tokens, 155 verktygsanrop, 58 min.
+- Fel: säsong 13, fel plats 7 (ö-nålen låg i vattnet, Rökeriets nål i Nacka
+  Strand), faciliteter 7, restid 3, färdsätt 2, superlativ 3, samma uppgift
+  olika 2.
+- Mallfel: validThrough hårdkodat till 2026-10-31 (page.tsx:247),
+  slice(0, 2) i islandFaqs.ts:56 tappar linje 2 i FAQ-svaret, och
+  hantverkarsidan säger att kontrollerade uppgifter saknas trots att ö-posten
+  har dem. Samma obelagda Strömkajen-text står i src/data/guider.ts:358–360
+  (Vakten).
+- **Beslut om radien (Redaktören):** `radiusKm` är GPS-detektionsradien
+  (kommentaren i islandCoords.ts), men islandPlaces lånar den för
+  platslistorna. Typen får ett eget fält `platsRadieKm` som bara
+  islandPlaces läser. Granskarnas uppmätta värden läggs där (Storholmen 0,8,
+  Fjäderholmarna 0,7). radiusKm rörs inte. Storholmens ersättning nr 10 och
+  Fjäderholmarnas nr 31 justeras därefter, när Vakten samlar ändringarna.
+- Huvudet i islandCoords.ts påstår att koordinaterna omkontrollerats mot två
+  källor 2026-08-05. Storholmen låg ändå 40 km fel. Kommentaren uppdateras.
+- Förtydliganden efter piloten finns i `roller/granskare-skribent.md` och är
+  skickade till Granskarna för Möja och Utö: källradsfel ger KORREKT+BEHÅLL,
+  brott mot ARBETSREGLER ger KORREKT+PRECISERA, och radie, mallfel och
+  regionetikett tas centralt. Storholmens 9 DELVIS som bara gällde
+  källraden räknas om innan rapporten.
+- Granskare 5 startad: Sandhamn.
+
 ## 2026-10-29 20:14 — steg 2: Storholmen granskad, Kontrollanten startad
 
 **Storholmen (MÄTT ur registret):** 223 rader (217 + 6 nya). KORREKT 176,

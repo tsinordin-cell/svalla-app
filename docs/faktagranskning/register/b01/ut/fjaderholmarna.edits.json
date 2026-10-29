@@ -1,0 +1,321 @@
+[
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    slug: 'fjaderholmarna',\n    name: 'Fjäderholmarna',\n",
+  "ny": "    slug: 'fjaderholmarna',\n    // KÄLLA: https://www.fjaderholmarna.se/ — \"Fjäderholmarna – Stockholms närmsta skärgårdsöar – är ett populärt och uppskattat besöksmål\" (läst 2026-10-29)\n    name: 'Fjäderholmarna',\n",
+  "rader": [
+   "fjaderholmarna-0001"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://www.fjaderholmarna.se/ — \"Fjäderholmarna – Stockholms närmsta skärgårdsöar – är ett populärt och uppskattat besöksmål\" (läst 2026-09-27)\n    // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Endast 30 minuters båtresa från city\", \"Strandvägen - Kajplatsområde 13\" (läst 2026-09-27)\n    // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — \"under perioden 1 maj\", \"Resan tar ca 25 minuter.\" (läst 2026-09-27). Visitskargarden.se och ResRobot (tidigare källor) är inga operatörer och är strukna.\n    tagline: 'Närmaste skärgårdsöarna från centrala Stockholm — en kort båttur ut.',\n    seoTitle: 'Fjäderholmarna 2026 – dagstur 25–30 min från Stockholm',\n    seoDescription: 'Fjäderholmarna – närmaste skärgårdsupplevelsen från Stockholm. Båt från Slussen och Strandvägen, restauranger, bryggeri och hantverk. Guide till din dagstur.',\n",
+  "ny": "    // KÄLLA: https://www.fjaderholmarna.se/ — \"Fjäderholmarna – Stockholms närmsta skärgårdsöar – är ett populärt och uppskattat besöksmål\"; \"På Fjäderholmarna finns restauranger, kaféer och hantverksateljéer som är öppna under sommarsäsongen.\"; \"(14) Fjäderholmarnas Bryggeri\" (läst 2026-10-29)\n    // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Endast 30 minuters båtresa från city\", \"Strandvägen - Kajplatsområde 13\", \"en perfekt dagsutflykt till Stockholms närmaste skärgårdsö\", \"1 maj – 17 juni & 16 augusti – 12 september:\" (läst 2026-10-29)\n    // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — \"Fjäderholmslinjen går under perioden 1 maj till 13 september 2026.\", \"Resan tar ca 25 minuter.\" (läst 2026-10-29). Visitskargarden.se och ResRobot (tidigare källor) är inga operatörer och är strukna.\n    tagline: 'Närmaste skärgårdsöarna från centrala Stockholm — en kort båttur ut.',\n    seoTitle: 'Fjäderholmarna 2026 – dagstur 25–30 min från Stockholm',\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf (Waxholmsbolaget, linje 2) — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Strömkajen (Stockholm)\"; Fjäderholmarna med X = \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-10-29)\n    seoDescription: 'Fjäderholmarna – närmaste skärgårdsupplevelsen från Stockholm, med restauranger, bryggeri och hantverk. Båt från Slussen och Strandvägen under sommarsäsongen och från Strömkajen vår och höst. Guide till din dagstur.',\n",
+  "rader": [
+   "fjaderholmarna-0002",
+   "fjaderholmarna-0003",
+   "fjaderholmarna-0004",
+   "fjaderholmarna-0005",
+   "fjaderholmarna-0006",
+   "fjaderholmarna-0007"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.fjaderholmarna.se/ — Fjäderholmarnas Krog, Restaurang Rökeriet och Fjäderholmarnas Bryggeri anges som verksamheter på ön, liksom hantverkare (trä, textil, keramik, glas)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — avgång Strandvägen kajplats 13, restid ca 30 minuter\n      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — \"Resan tar ca 25 minuter.\" (läst 2026-09-27)\n      'Fjäderholmarna är det enklaste svaret på frågan hur man snabbt tar sig ut i skärgården. En halvtimme med båt från Strandvägen, eller 25 minuter från Slussen, och du står på en ö med rökeri, krog, bryggeri och hantverkare. Ingen bil och ingen övernattning att boka.',\n",
+  "ny": "      // KÄLLA: https://www.fjaderholmarna.se/ — \"Fjäderholmarna – Stockholms närmsta skärgårdsöar\"; \"(8) Fjäderholmarnas Krog\"; \"(13) Restaurang Rökeriet\"; \"(14) Fjäderholmarnas Bryggeri\"; \"Flertalet hantverkare har ateljéer och butiker på Fjäderholmarna\" (läst 2026-10-29)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Att ta båt till Fjäderholmarna är ett enkelt och uppskattat sätt att uppleva skärgården på nära håll.\"; \"Strandvägen - Kajplatsområde 13\"; \"Endast 30 minuters båtresa från city\"; \"1 maj – 17 juni & 16 augusti – 12 september:\" (läst 2026-10-29)\n      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — \"Fjäderholmslinjen går under perioden 1 maj till 13 september 2026.\"; \"Resan tar ca 25 minuter.\" (läst 2026-10-29)\n      'Fjäderholmarna är Stockholms närmaste skärgårdsöar och ett enkelt sätt att snabbt komma ut i skärgården. Under sommarsäsongen tar båten en halvtimme från Strandvägen eller 25 minuter från Slussen, och du står på en ö med rökeri, krog, bryggeri och hantverkare. Ingen bil och ingen övernattning att boka.',\n",
+  "rader": [
+   "fjaderholmarna-0074",
+   "fjaderholmarna-0075",
+   "fjaderholmarna-0076",
+   "fjaderholmarna-0077",
+   "fjaderholmarna-0078"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/libertas-fagelskyddsomrade (Lidingö stads sida på Naturkartan) — \"Libertas och Rövarns holme är ett fågelskyddsområde där det är landstigningsförbud under fåglarnas häckningstid från 1 april till 15 juli\", \"Stockholms största koloni av silltrut\", \"På Libertas står en fyr som är förklarad som byggnadsminne\" (läst 2026-09-27)\n      'Ögruppen består av fyra öar:",
+  "ny": "      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/libertas-fagelskyddsomrade (Lidingö stads sida på Naturkartan) — \"Libertas och Rövarns holme är ett fågelskyddsområde där det är landstigningsförbud under fåglarnas häckningstid från 1 april till 15 juli\", \"Stockholms största koloni av silltrut\", \"På Libertas står en fyr som är förklarad som byggnadsminne\" (läst 2026-09-27)\n      // KÄLLA: https://catalog.lansstyrelsen.se/store/39/resource/2010__22 (Länsstyrelsen i Stockholms län, Fågel- och sälskydd i Stockholms län, 2010) — \"Libertus\", \"Tillträdesförbud: 1/4 - 15/7\" (läst 2026-10-29); https://geodata.naturvardsverket.se/naturvardsregistret/rest/v3/omrade/nolinks?kommun=0186 — Libertus, djur- och växtskyddsområde, beslutsstatus Gällande, beslut 1982-03-08 (läst 2026-10-29)\n      // KÄLLA: https://share.mediaflow.com/sv/?34CC81JES4 (Lidingö stad, kulturmiljöprogrammet, Libertas fyr, pdf via Hämta dokument) — \"Libertas fyr skyddas sedan 1995 som byggnadsminne enligt kulturmiljölagen.\" (läst 2026-10-29)\n      'Ögruppen består av fyra öar:",
+  "rader": [
+   "fjaderholmarna-0081",
+   "fjaderholmarna-0082",
+   "fjaderholmarna-0083",
+   "fjaderholmarna-0086"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.fjaderholmarna.se/ — \"(1) Waxholmsbolaget\", \"(19) Strömma Kanalbolaget\", \"(20) Fjäderholmslinjen\" (läst 2026-09-27)\n      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — \"Fjäderholmslinjen går under perioden 1 maj till 13 september 2026.\"; \"Alla turer stannar i Nacka Strand vid behov\" (läst 2026-10-20)\n      // Rättad 2026-10-19: säsongen 2026 är slut. Strömmas sida visar nu bara tidtabellen för 2027, så uppgiften om halvtimmestrafik 2026 är ersatt med 2027 års datum.\n      // Rättad 2026-10-20: Strömmas datum för 2026 går inte längre att belägga, så bara Fjäderholmslinjens säsong 2026 anges.\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Strandvägen - Kajplatsområde 13\"; \"Vissa turer stannar även vid Nacka Strand\"; \"Åter maj 2027\"; \"Tidtabell 2027\"; \"18 juni – 15 augusti:\"; \"Varje halvtimme 10:30–17:00\" (läst 2026-10-20)\n      'Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13, och vissa avgångar stannar vid Nacka Strand. Fjäderholmslinjen går från Slussen och stannar i Nacka Strand vid behov. Fjäderholmslinjen gick 2026 från 1 maj till 13 september, och båda sommarbåtarnas säsong för 2026 är slut. Strömma går åter i maj 2027, och mellan 18 juni och 15 augusti 2027 går båten från Strandvägen varje halvtimme mellan 10.30 och 17.00.',\n",
+  "ny": "      // Rättad 2026-10-19/20: säsongen 2026 är slut, och Strömmas datum för 2026 går inte längre att belägga. Rättad 2026-10-29: avgångstiderna struket (inga avgångstider i datafilerna); julbordsbåten, linje 2 och SL-biljett tillagda.\n      // KÄLLA: https://www.fjaderholmarna.se/ — \"(1) Waxholmsbolaget\", \"(19) Strömma Kanalbolaget\", \"(20) Fjäderholmslinjen\" (läst 2026-10-29). http://www.fjaderholmslinjen.se/valkommen/index.asp — \"Fjäderholmslinjen går under perioden 1 maj till 13 september 2026.\"; \"Alla turer stannar i Nacka Strand vid behov\" (läst 2026-10-29)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Strandvägen - Kajplatsområde 13\"; \"Vissa turer stannar även vid Nacka Strand\"; \"Åter maj 2027\"; \"Tidtabell 2027\"; \"18 juni – 15 augusti:\"; \"Varje halvtimme 10:30–17:00\" (läst 2026-10-29)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/julbord/battransport-till-julbordet/ — \"FRÅN NOVEMBER 2026\"; \"Strandvägen - kajplatsområde 14\"; \"Båttransport via Nacka Strand till Fjäderholmarna\"; \"för dig som bokat julbord på någon av restaurangerna på ön\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf (Waxholmsbolaget, linje 2) — \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\", \"Strömkajen (Stockholm)\", Fjäderholmarna med X = \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-10-29). https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Det här gäller året runt ombord på Waxholmsbolagets fartyg i området och för alla sorters SL-biljetter.\"; i listan över de 44 bryggorna: \"Fjäderholmarna\" (läst 2026-10-29, i Chromium)\n      'Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13, och vissa avgångar stannar vid Nacka Strand. Fjäderholmslinjen går från Slussen och stannar i Nacka Strand vid behov. Fjäderholmslinjen gick 2026 från 1 maj till 13 september, och båda sommarbåtarnas säsong för 2026 är slut. Strömma går åter i maj 2027, och mellan 18 juni och 15 augusti 2027 går båten från Strandvägen varje halvtimme på dagen. Från november 2026 går Strömmas julbordsbåt från Strandvägen kajplatsområde 14 via Nacka Strand för den som har bokat julbord på ön. Waxholmsbolagets linje 2 från Strömkajen lägger till vid Fjäderholmarna på vissa turer, och mellan Strömkajen och Fjäderholmarna gäller SL-biljett på Waxholmsbolagets båtar året runt.',\n",
+  "rader": [
+   "fjaderholmarna-0097",
+   "fjaderholmarna-N004",
+   "fjaderholmarna-N005",
+   "fjaderholmarna-N006"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://fjaderholmarnasbryggeri.se/fjaderholmarnas-bryggeri-at-sea — \"offering a wide variety of our beers served directly from the Brite Beer Tanks\", \"You can also grab a bite from our pub menu\", \"We offer Beer Flights\", \"We only accept drop-ins\" (läst 2026-09-27)\n      // KÄLLA: https://fjaderholmarnasbryggeri.se/about — \"in 2014 we were finally ready for take-off and opened our own brewpub at Fjäderholmarna\", \"we opened our bigger production brewery in Bro\" (läst 2026-09-27)\n      'Fjäderholmarnas Bryggeri öppnade sin brewpub på ön 2014. Där serveras ölen direkt från tankarna, med pubmeny och ölprovningar med fyra–fem av bryggeriets egna öl. Man tar bara emot drop-in, utom för sällskap på tio eller fler. Den större produktionen ligger sedan 2020 i Bro norr om Stockholm.',\n",
+  "ny": "      // KÄLLA: https://fjaderholmarnasbryggeri.se/fjaderholmarnas-bryggeri-at-sea — \"offering a wide variety of our beers served directly from the Brite Beer Tanks\", \"You can also grab a bite from our pub menu\", \"we offer Beer Flights\", \"featuring 4–5 of our own brews\", \"We only accept drop-ins.\", \"For parties of 10 people or more, please see the booking link below.\" (läst 2026-10-29)\n      // KÄLLA: https://fjaderholmarnasbryggeri.se/about — \"in 2014 we were finally ready for take-off and opened our own brewpub at Fjäderholmarna\", \"In 2020 we came to a crossroad\", \"we opened our bigger production brewery in Bro, located in a peaceful environment just one hour drive from Fjäderholmarna\" (läst 2026-10-29)\n      'Fjäderholmarnas Bryggeri öppnade sin brewpub på ön 2014. Där serveras ölen direkt från tankarna, med pubmeny och ölprovningar med fyra–fem av bryggeriets egna öl. Man tar bara emot drop-in, utom för sällskap på tio eller fler. Den större produktionen ligger sedan 2020 i Bro, en timmes bilresa från Fjäderholmarna.',\n",
+  "rader": [
+   "fjaderholmarna-0107",
+   "fjaderholmarna-0110"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — \"Hamnbaren\", \"Loftet\", \"FESTVÅNING MAGASINET\", \"FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027\", \"NU SERVERA JULBORD MELLAN 20/11 - 22/12\" (läst 2026-09-27)\n      // KÄLLA: https://www.fjaderholmarna.se/ — \"Förboka bord för att säkra plats!\" (läst 2026-09-27)\n      'Fjäderholmarnas Krog är uppdelad på Krogen, Hamnbaren och Loftet, med festvåningen Magasinet intill. Kungl. Djurgårdens förvaltning råder besökare att förboka bord. Krogen öppnar för sommaren igen 1 maj 2027 och serverar julbord 20 november–22 december.',\n",
+  "ny": "      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — \"Hamnbaren\", \"FESTVÅNING MAGASINET\", \"Fjäderholmarnas Krog & Magasin\", \"FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027.\", \"NU SERVERA JULBORD MELLAN 20/11 - 22/12\" (läst 2026-10-29). https://www.fjaderholmarnaskrog.se/loftet — \"Loftet är en del av vår restaurang och kan abonneras för större sällskap.\" (läst 2026-10-29)\n      // KÄLLA: https://www.fjaderholmarnaskrog.se/ppettider-mellanssong — \"ÖPPETTIDER 2026\", \"Vi har nu stängt och öppnar åter för julbord 20 november till och med 20 december.\" (läst 2026-10-29). Startsidan och öppettidssidan anger olika slutdatum, därför står bara startdatumet.\n      // KÄLLA: https://www.fjaderholmarnaskrog.se/batar-till-och-fran — \"Båtarna till och från ön under det att vi serverar vår julbord går endast i samband med de olika sittningar.\" (läst 2026-10-29)\n      // KÄLLA: https://www.fjaderholmarna.se/ — \"Förboka bord för att säkra plats!\" (läst 2026-10-29)\n      'Fjäderholmarnas Krog är uppdelad på Krogen, Hamnbaren och Loftet, och till krogen hör festvåningen Magasinet. Kungl. Djurgårdens förvaltning råder besökare att förboka bord. Krogen öppnar för sommaren igen 1 maj 2027 och serverar julbord från 20 november 2026. Julbordsbåtarna går bara i samband med sittningarna.',\n",
+  "rader": [
+   "fjaderholmarna-0111",
+   "fjaderholmarna-0112",
+   "fjaderholmarna-0115",
+   "fjaderholmarna-N007"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.fjaderholmarna.se/ — \"Tamano Specialsnickeri\", \"Textiltrycket\", \"Krukmakeriet\", \"Garage by the Sea, (Glashytta)\", \"The Forge, (Smedja)\", \"Fjäderholmarnas Choklad\" (läst 2026-09-27). Strömmas lista för samma säsong har delvis andra namn.\n      'Flera hantverkare har verkstad på ön: snickeri, textiltryck, krukmakeri, glashytta, smedja och chokladtillverkning. Vilka som är på plats varierar mellan säsonger.',\n",
+  "ny": "      // KÄLLA: https://www.fjaderholmarna.se/ — \"Tamano Specialsnickeri\", \"Textiltrycket\", \"Krukmakeriet\", \"Garage by the Sea, (Glashytta)\", \"The Forge, (Smedja)\", \"Fjäderholmarnas Choklad\", \"Flertalet hantverkare har ateljéer och butiker på Fjäderholmarna\", \"Öns hantverkare inbjuder till sommarkurser och workshops.\" (läst 2026-10-29)\n      'Flera hantverkare har verkstad på ön: snickeri, textiltryck, krukmakeri, glashytta, smedja och chokladtillverkning. Öns hantverkare har också sommarkurser och workshops.',\n",
+  "rader": [
+   "fjaderholmarna-0118",
+   "fjaderholmarna-N008"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      'Bad går bra från klipporna, med utsikt över Stockholms inlopp.',\n",
+  "ny": "      // KÄLLA: https://share.mediaflow.com/sv/?K7CCE1YEFB (Lidingö stad, kulturmiljöprogrammet, Stora Fjäderholmen, pdf via Hämta dokument) — \"vyerna över Stockholms inlopp\" (läst 2026-10-29). https://www.fjaderholmarna.se/ — \"Sol och bad vid klipporna.\" (läst 2026-10-29)\n      'Bad går bra från klipporna, med utsikt över Stockholms inlopp.',\n",
+  "rader": [
+   "fjaderholmarna-0120"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Åter maj 2027\"; \"1 maj – 17 juni & 16 augusti – 12 september:\"; \"Varje timme 11:30–14:30\"; \"18 juni – 15 augusti:\"; \"Varje halvtimme 10:30–17:00\" (läst 2026-10-19)\n      'Fjäderholmarna drivs inte året runt. Säsongen 2026 pågick till och med 13 september och är nu slut. Nästa säsong börjar i maj 2027. Enligt Strömmas tidtabell för 2027 går båten varje halvtimme på dagen mellan 18 juni och 15 augusti, och ungefär en gång i timmen före och efter det.',\n",
+  "ny": "      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Åter maj 2027\"; \"1 maj – 17 juni & 16 augusti – 12 september:\"; \"Varje timme 11:30–14:30\"; \"Varje timme 16:30–20:30\"; \"18 juni – 15 augusti:\"; \"Varje halvtimme 10:30–17:00\" (läst 2026-10-29)\n      'Fjäderholmarna drivs inte året runt. Säsongen 2026 pågick till och med 13 september och är nu slut. Nästa säsong börjar i maj 2027. Enligt Strömmas tidtabell för 2027 går båten varje halvtimme på dagen mellan 18 juni och 15 augusti, och varje timme med ett uppehåll mitt på eftermiddagen 1 maj–17 juni och 16 augusti–12 september.',\n",
+  "rader": [
+   "fjaderholmarna-0126"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "Länsstyrelsen samordnar förvaltningen och Kungliga Djurgårdens förvaltning sköter runt 80 procent av marken. Öarna är alltså den yttersta sydspetsen av ett skyddat landskap som börjar långt inne i staden.',\n",
+  "ny": "Länsstyrelsen samordnar förvaltningen och Kungliga Djurgårdens förvaltning sköter runt 80 procent av marken. Öarna ligger alltså i parkens södra del, ute i Stockholms inlopp, och hör till ett skyddat landskap som börjar långt inne i staden.',\n",
+  "rader": [
+   "fjaderholmarna-0149"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      'Att Fjäderholmarna ingår i Kungliga nationalstadsparken är mer än en etikett.",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/kungliga-nationalstadsparken.html — \"Lagen ger områdets samlade natur- och kulturvärden ett långsiktigt grundskydd.\" (läst 2026-10-29). https://share.mediaflow.com/sv/?K7CCE1YEFB (Lidingö stad, kulturmiljöprogrammet, Stora Fjäderholmen, pdf via Hämta dokument) — \"Stora Fjäderholmen med dess strategiska läge i Stockholms inlopp\" (läst 2026-10-29)\n      // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"En grön oas som skär rakt igenom huvudstaden, från Ulriksdal i norr till Djurgården och Fjäderholmarna i söder.\" (läst 2026-10-29)\n      'Att Fjäderholmarna ingår i Kungliga nationalstadsparken är mer än en etikett.",
+  "rader": [
+   "fjaderholmarna-0142",
+   "fjaderholmarna-0149",
+   "fjaderholmarna-0150"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"Fjäderholmarna, som består av de fyra öarna Fjäderholmen, Ängsholmen, Libertas och Rövarns holme\"; öarna ligger inom Lidingö stads område och ingår i Kungliga nationalstadsparken\n      'Administrativt hör Fjäderholmarna till Lidingö stad,",
+  "ny": "      // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"Lidingös skärgård utgörs av spridda holmar och småöar som omger Lidingö\"; \"samt Fjäderholmarna in mot Stockholm i söder\" (läst 2026-10-29). https://www.fjaderholmarna.se/ — \"Fjäderholmarna ligger i Lidingö stad\" (läst 2026-10-29)\n      // KÄLLA: https://lidingo.se/bygga-bo/bygglov/kulturmiljoprogram/ — \"har vi inventerat hela Lidingö\"; under Kulturmiljöer på öarna: \"Stora Fjäderholmen (pdf, 1.3 MB)\", \"Ängsholmen och Libertas (pdf, 1.3 MB)\" (läst 2026-10-29)\n      'Administrativt hör Fjäderholmarna till Lidingö stad,",
+  "rader": [
+   "fjaderholmarna-0166",
+   "fjaderholmarna-0167",
+   "fjaderholmarna-0168",
+   "fjaderholmarna-0169"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Endast 30 minuters båtresa från city\", \"1 maj – 18 juni & 17 augusti – 13 september\" (läst 2026-09-27)\n      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — \"Resan tar ca 25 minuter.\", \"till 13 september 2026\" (läst 2026-09-27)\n",
+  "ny": "      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Endast 30 minuters båtresa från city\", \"Tidtabell 2027\", \"1 maj – 17 juni & 16 augusti – 12 september:\" (läst 2026-10-29)\n      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — \"Resan tar ca 25 minuter.\", \"Fjäderholmslinjen går under perioden 1 maj till 13 september 2026.\" (läst 2026-10-29). https://www.fjaderholmarna.se/artiklar-film-360/kungliga-parker/2025-06-09-fjaderholmarnas-historia.html — \"Fjäderholmarna kan besökas säsongen maj till mitten av september.\" (läst 2026-10-29)\n",
+  "rader": [
+   "fjaderholmarna-0024",
+   "fjaderholmarna-0025"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      travel_time: '25 min från Slussen, 30 min från Strandvägen (maj–sep) · Waxholmsbåt linje 2 vår och höst',\n",
+  "ny": "      travel_time: '25 min från Slussen, 30 min från Strandvägen (maj–mitten av september) · Waxholmsbåt linje 2 vår och höst',\n",
+  "rader": [
+   "fjaderholmarna-0025",
+   "fjaderholmarna-0309",
+   "fjaderholmarna-0312",
+   "fjaderholmarna-0327"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // Rättad 2026-10-19: Jenny Linds ek och verkstadslängorna borttagna (stod bara i en PDF som inte går att läsa).\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Här finns även boulebanor och natursköna promenadstråk.\"; \"det är grusvägar på Fjäderholmarna men det är plan mark utan backar om man håller sig kring området med butiker och restauranger\" (läst 2026-10-19)\n      // KÄLLA: https://www.fjaderholmarna.se/artiklar-film-360/kungliga-parker/2025-06-09-fjaderholmarnas-historia.html — \"På holmarna finns flera stora bergrum och även luftvärnskanoner bevarade\" (läst 2026-10-19)\n      { icon: '🚶', name: 'Promenad runt ön', desc: 'Natursköna promenadstråk runt Stora Fjäderholmen, där bergrum och luftvärnskanoner från marinens tid finns kvar. Kring butikerna och restaurangerna är det plan grusväg.' },\n",
+  "ny": "      // Rättad 2026-10-19: Jenny Linds ek och verkstadslängorna borttagna (stod bara i en PDF som inte går att läsa). Rättad 2026-10-29: runt ön och natursköna strukna (ingen källa respektive värdeord).\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Här finns även boulebanor och natursköna promenadstråk.\"; \"det är grusvägar på Fjäderholmarna men det är plan mark utan backar om man håller sig kring området med butiker och restauranger\" (läst 2026-10-29)\n      // KÄLLA: https://share.mediaflow.com/sv/?K7CCE1YEFB (Lidingö stad, kulturmiljöprogrammet, Stora Fjäderholmen, pdf via Hämta dokument) — \"Längs holmens stigar och vägar står informationsskyltar som markerar\" (läst 2026-10-29). https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"har restaurang och stigar att promenera på\" (läst 2026-10-29)\n      // KÄLLA: https://www.fjaderholmarna.se/artiklar-film-360/kungliga-parker/2025-06-09-fjaderholmarnas-historia.html — \"På holmarna finns flera stora bergrum och även luftvärnskanoner bevarade\" (läst 2026-10-29)\n      { icon: '🚶', name: 'Promenad på ön', desc: 'Stigar och vägar på Stora Fjäderholmen, med informationsskyltar vid natur- och kulturobjekt och bevarade bergrum och luftvärnskanoner från marinens tid. Kring butikerna och restaurangerna är det plan grusväg.' },\n",
+  "rader": [
+   "fjaderholmarna-0182",
+   "fjaderholmarna-0183",
+   "fjaderholmarna-N013"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: Strömma, Båt till Fjäderholmarna, https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Strandvägen - Kajplatsområde 13\"; \"Nacka Strand - Vid Restaurang J\"; \"Endast 30 minuters båtresa från city\"; \"Åter maj 2027\"; \"När du har bokat en viss avgång har du förtur på den\"; \"1 maj – 17 juni & 16 augusti – 12 september:\" (läst 2026-10-19)\n      { method: 'Strömma', from: 'Strandvägen kajplats 13 eller Nacka Strand', time: '30 min', desc: 'Sommarbåten. Säsongen 2026 är slut, och båten går åter från 1 maj 2027. Bokad avgång ger förtur.',",
+  "ny": "      // KÄLLA: Strömma, Båt till Fjäderholmarna, https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Strandvägen - Kajplatsområde 13\"; \"Nacka Strand - Vid Restaurang J\"; \"Endast 30 minuters båtresa från city\"; \"Åter maj 2027\"; \"När du har bokat en viss avgång har du förtur på den\"; \"1 maj – 17 juni & 16 augusti – 12 september:\" (läst 2026-10-29)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/julbord/battransport-till-julbordet/ — \"FRÅN NOVEMBER 2026\"; \"Strandvägen - kajplatsområde 14\"; \"Båttransport via Nacka Strand till Fjäderholmarna\"; \"för dig som bokat julbord på någon av restaurangerna på ön\"; \"Vänligen notera att båtbiljett till Fjäderholmarna numera måste bokas och betalas i förväg\" (läst 2026-10-29)\n      { method: 'Strömma', from: 'Strandvägen kajplats 13 eller Nacka Strand', time: '30 min', desc: 'Sommarbåten. Säsongen 2026 är slut, och båten går åter från 1 maj 2027. Biljetten måste bokas och betalas i förväg, och bokad avgång ger förtur. Från november 2026 går Strömmas julbordsbåt från Strandvägen kajplatsområde 14 via Nacka Strand för den som har bokat julbord på ön.',",
+  "rader": [
+   "fjaderholmarna-N001",
+   "fjaderholmarna-N002",
+   "fjaderholmarna-0256",
+   "fjaderholmarna-0310",
+   "fjaderholmarna-0328"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: Waxholmsbolaget linje 2, https://kund.printhuset-sthlm.se/wa/h2.pdf — \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\", gäller 2 april–18 juni och 17 augusti–12 december 2026; Fjäderholmarna angörs på vissa turer med X = \"trafikeras utan fast avgångstid\" (läst 2026-09-21). Waxholmsbolaget, Alla SL-biljetter gäller mellan 44 bryggor, https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd\"; \"SL-biljetter gäller endast på de linjer som går via Vaxholm\" (läst 2026-09-21). Tidigare källa ResRobot är ingen operatör och är struken.\n      // Rättad 2026-10-19: \"När Strömma inte går\" var fel (tabellen gäller även maj, juni, augusti och september). Uppgiften om SL-biljett är borttagen: Waxholmsbolagets sida kräver JavaScript och tidtabellen säger inget om biljetter.\n      { method: 'Waxholmsbolaget linje 2', from: 'Strömkajen eller Nacka strand', time: '', desc: 'Linje 2 mot Vaxholm lägger till vid Fjäderholmarna på vissa turer, utan fast tid. Tabellen gäller 2 april till 18 juni och 17 augusti till 12 december 2026. Sök resan i SL-appen.', icon: '⛴' },\n",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf (Waxholmsbolaget, linje 2) — \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\"; Fjäderholmarna angörs på vissa turer med X = \"Bryggorna trafikeras utan fast avgångstid.\"; \"Beställ resan i SL-appen\" (läst 2026-10-29). Tidigare källa ResRobot är ingen operatör och är struken.\n      // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt ombord på Waxholmsbolagets fartyg i området och för alla sorters SL-biljetter.\"; i listan under Vilka bryggor ingår i SL-området?: \"Fjäderholmarna\", \"Strömkajen (här stannar även SL:s pendelbåtslinje 84)\" (läst 2026-10-29, i Chromium)\n      // Rättad 2026-10-19: När Strömma inte går var fel (tabellen gäller även maj, juni, augusti och september). Rättad 2026-10-29: SL-biljett tillagd igen – sidan är läst i Chromium och Fjäderholmarna står i listan över de 44 bryggorna.\n      { method: 'Waxholmsbolaget linje 2', from: 'Strömkajen eller Nacka strand', time: '', desc: 'Linje 2 mot Vaxholm lägger till vid Fjäderholmarna på vissa turer, utan fast tid. Tabellen gäller 2 april till 18 juni och 17 augusti till 12 december 2026. SL-biljett gäller året runt på Waxholmsbolagets båtar mellan Strömkajen och Fjäderholmarna. Sök resan i SL-appen.', icon: '⛴' },\n",
+  "rader": [
+   "fjaderholmarna-N003",
+   "fjaderholmarna-0310",
+   "fjaderholmarna-0328"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/stockholm-fjaderholmarna/ — \"35 (1/5-31/9)\", \"boj\", \"1-8 m\", \"Dusch\", \"ingår\", \"Hamnvärd: Sjöstation Fjäderholmarna\" (läst 2026-09-27). Eluttag, färskvatten och toalett är inte markerade. Priserna står bara hos Svenska Gästhamnar, inte i en prislista hos hamnen, och är strukna.\n      // KÄLLA: https://www.fjaderholmarna.se/ — \"Gästhamn och bensinstation\", \"Sjömacken & Gästhamnskontor, 08-716 39 10\" (läst 2026-09-27)\n      // Rättad 2026-10-19: säsongsdatumet borttaget (källan anger \"1/5-31/9\").\n      { name: 'Fjäderholmarnas Gästhamn & Sjömack', desc: '35 gästplatser med förtöjning vid boj, hamndjup 1–8 meter. Dusch ingår; eluttag anges inte. Sjömack med gästhamnskontor.', fuel: true, service: ['dusch'] },\n",
+  "ny": "      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/stockholm-fjaderholmarna/ (Svenska Gästhamnar, aggregator, nivå 3) — \"35 (1/5-31/9)\", \"boj\", \"Dusch ingår\", \"Sjöstation Fjäderholmarna, tel.08-716 39 10\"; Eluttag, Färskvatten och Toalett är markerade med bock (ikon i sidans HTML) (läst 2026-10-29). Priserna står bara hos Svenska Gästhamnar, inte i en prislista hos hamnen, och är strukna.\n      // KÄLLA: https://www.fjaderholmarna.se/ — \"Gästhamn och bensinstation\", \"(21) Sjömacken & Gästhamnskontor\" (läst 2026-10-29)\n      // Rättad 2026-10-19: säsongsdatumet borttaget (källan anger 1/5-31/9). Rättad 2026-10-29: hamndjupet struket (djup kräver Sjöfartsverket), och eluttag anges inte var fel – bocken syns bara som ikon.\n      { name: 'Fjäderholmarnas Gästhamn & Sjömack', desc: '35 gästplatser med förtöjning vid boj. Svenska Gästhamnar anger el, färskvatten, toalett och dusch, och duschen ingår. Hamnvärd är Sjöstation Fjäderholmarna, och i hamnen finns sjömack med gästhamnskontor.', fuel: true, service: ['el', 'vatten', 'toalett', 'dusch'] },\n",
+  "rader": [
+   "fjaderholmarna-0240",
+   "fjaderholmarna-0242",
+   "fjaderholmarna-N009",
+   "fjaderholmarna-N010"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — \"STOCKHOLMS NÄRMASTE SKÄRGÅRDSKROG\", à la carte-meny 2026, öppettider 2026 19 juni–13 september, festvåning Magasinet\n",
+  "ny": "      // KÄLLA: https://www.fjaderholmarnaskrog.se/menyforslag-krogen — \"MENYER KROGEN\", \"A´LA CARTE MENY\" (läst 2026-10-29). https://www.fjaderholmarnaskrog.se/ — \"Hamnbaren\", \"FESTVÅNING MAGASINET\", \"FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027.\" (läst 2026-10-29)\n      // KÄLLA: https://www.fjaderholmarna.se/ — \"På ön finns flera matställen och kaféer, bland annat ett rökeri och en skärgårdskrog.\" (läst 2026-10-29)\n",
+  "rader": [
+   "fjaderholmarna-0186",
+   "fjaderholmarna-0188",
+   "fjaderholmarna-0189"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.rokeriet-fjaderholmarna.se/ — \"1 Maj-13 Sep\", \"11:30-22:30\", \"20 Nov-20 Dec\" (läst 2026-09-27)\n      // KÄLLA: https://www.rokeriet-fjaderholmarna.se/om-rokeriet-fjaderholmarna — \"vår deli och glasskiosk\" (läst 2026-09-27)\n      { name: 'Rökeriet Fjäderholmarna', type: 'Restaurang', desc: 'Egna rökta produkter tillagade på plats, bordsservering samt deli och glasskiosk sommartid.",
+  "ny": "      // KÄLLA: https://www.rokeriet-fjaderholmarna.se/ — \"1 Maj-13 Sep\", \"20 Nov-20 Dec\", \"Julbordet serveras från 20 november till 20 december 2026.\", \"BOKA BORD\" (läst 2026-10-29)\n      // KÄLLA: https://www.rokeriet-fjaderholmarna.se/om-rokeriet-fjaderholmarna — \"med fokus på våra egna rökta produkter, tillagade på plats\", \"vår deli och glasskiosk\" (läst 2026-10-29)\n      { name: 'Rökeriet Fjäderholmarna', type: 'Restaurang', desc: 'Egna rökta produkter tillagade på plats, bordsbokning samt deli och glasskiosk sommartid.",
+  "rader": [
+   "fjaderholmarna-0195"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://fjaderholmarnasbryggeri.se/fjaderholmarnas-bryggeri-at-sea — \"The brewpub opens on 1 May and closes for the season on 13 September.\", \"served directly from the Brite Beer Tanks\", \"We only accept drop-ins.\" (läst 2026-09-27)\n      { name: 'Fjäderholmarnas Bryggeri', type: 'Bar', desc: 'Brewpub med bryggeriets egna öl direkt från tankarna och pubmeny. Bara drop-in. Säsong 1 maj–13 september.', slug: 'fjaderholmarna-bryggeri' },\n",
+  "ny": "      // KÄLLA: https://fjaderholmarnasbryggeri.se/fjaderholmarnas-bryggeri-at-sea — \"The brewpub opens on 1 May and closes for the season on 13 September.\", \"served directly from the Brite Beer Tanks\", \"We only accept drop-ins.\", \"For parties of 10 people or more, please see the booking link below.\" (läst 2026-10-29)\n      { name: 'Fjäderholmarnas Bryggeri', type: 'Bar', desc: 'Brewpub med bryggeriets egna öl direkt från tankarna och pubmeny. Drop-in, men sällskap på tio eller fler kan boka. Säsong 1 maj–13 september.', slug: 'fjaderholmarna-bryggeri' },\n",
+  "rader": [
+   "fjaderholmarna-0203"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.fjaderholmarna.se/ — Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen trafikerar öarna\n      'Tre rederier går hit från olika kajer i stan: Strömma från Strandvägen, Fjäderholmslinjen från Slussen och Waxholmsbolaget från Strömkajen. Välj den kaj som ligger närmast dig.',\n      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — bordsbokning sker online\n",
+  "ny": "      // KÄLLA: https://www.fjaderholmarna.se/ — \"(1) Waxholmsbolaget\", \"(19) Strömma Kanalbolaget\", \"(20) Fjäderholmslinjen\" (läst 2026-10-29)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Strandvägen - Kajplatsområde 13\", \"1 maj – 17 juni & 16 augusti – 12 september:\" (läst 2026-10-29). http://www.fjaderholmslinjen.se/valkommen/index.asp — \"Fjäderholmslinjen går under perioden 1 maj till 13 september 2026.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf (Waxholmsbolaget, linje 2) — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Strömkajen (Stockholm)\" (läst 2026-10-29)\n      'Tre rederier går hit från olika kajer i stan: Strömma från Strandvägen och Fjäderholmslinjen från Slussen under sommarsäsongen, och Waxholmsbolaget från Strömkajen vår och höst. Välj den kaj som ligger närmast dig när flera går.',\n      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — \"Boka Bord på Krogen\" (läst 2026-10-29). https://www.fjaderholmarna.se/ — \"Förboka bord för att säkra plats!\" (läst 2026-10-29)\n",
+  "rader": [
+   "fjaderholmarna-0246",
+   "fjaderholmarna-0250",
+   "fjaderholmarna-0251"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/libertas-fagelskyddsomrade (Lidingö stads sida på Naturkartan) — \"landstigningsförbud under fåglarnas häckningstid från 1 april till 15 juli\", \"Med en bra kikare kan man titta på holmarnas fågelliv från Stora Fjäderholmen\" (läst 2026-09-27)\n",
+  "ny": "      // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/libertas-fagelskyddsomrade (Lidingö stads sida på Naturkartan) — \"landstigningsförbud under fåglarnas häckningstid från 1 april till 15 juli\", \"Med en bra kikare kan man titta på holmarnas fågelliv från Stora Fjäderholmen\" (läst 2026-09-27)\n      // KÄLLA: https://catalog.lansstyrelsen.se/store/39/resource/2010__22 (Länsstyrelsen i Stockholms län, Fågel- och sälskydd i Stockholms län, 2010) — \"Libertus\", \"Tillträdesförbud: 1/4 - 15/7\" (läst 2026-10-29); https://geodata.naturvardsverket.se/naturvardsregistret/rest/v3/omrade/nolinks?kommun=0186 — Libertus, djur- och växtskyddsområde, beslutsstatus Gällande, beslut 1982-03-08 (läst 2026-10-29)\n",
+  "rader": [
+   "fjaderholmarna-0252",
+   "fjaderholmarna-0253"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    related: ['vaxholm', 'grinda', 'bockholmen'],\n    tags: ['nära stan', 'dagstur', 'rökeriet', 'öl', 'mat'],\n",
+  "ny": "    related: ['vaxholm', 'grinda', 'bockholmen'],\n    // KÄLLA: https://www.fjaderholmarna.se/ — \"Stockholms närmsta skärgårdsöar\", \"(13) Restaurang Rökeriet\", \"(14) Fjäderholmarnas Bryggeri\", \"Här njuter man av mat och dryck\" (läst 2026-10-29). https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"en perfekt dagsutflykt till Stockholms närmaste skärgårdsö\" (läst 2026-10-29)\n    tags: ['nära stan', 'dagstur', 'rökeriet', 'öl', 'mat'],\n",
+  "rader": [
+   "fjaderholmarna-0018",
+   "fjaderholmarna-0019",
+   "fjaderholmarna-0020",
+   "fjaderholmarna-0021",
+   "fjaderholmarna-0022"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.rokeriet-fjaderholmarna.se/om-rokeriet-fjaderholmarna — \"under sommarmånaderna även besöka vår deli och glasskiosk, där ni kan ta med er något gott hem\" (läst 2026-09-27)\n      'Rökeriets deli och glasskiosk har öppet under sommarmånaderna – där kan du köpa rökt med dig hem eller ut på klipporna.',\n",
+  "ny": "      // KÄLLA: https://www.rokeriet-fjaderholmarna.se/om-rokeriet-fjaderholmarna — \"under sommarmånaderna även besöka vår deli och glasskiosk, där ni kan ta med er något gott hem\" (läst 2026-10-29)\n      'Rökeriets deli och glasskiosk har öppet under sommarmånaderna – där kan du köpa något att ta med hem eller ut på klipporna.',\n",
+  "rader": [
+   "fjaderholmarna-0323"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — \"Vi accepterar Visa/Mastercard, ej kontanter.\" (läst 2026-09-27)\n      'Strömma och Fjäderholmslinjen säljer egna biljetter.",
+  "ny": "      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — \"Biljetter löses ombord.\", \"Vi accepterar Visa/Mastercard, ej kontanter.\" (läst 2026-10-29)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Boka din båtbiljett till Fjäderholmarna här.\" (läst 2026-10-29). https://www.stromma.com/sv-se/stockholm/julbord/battransport-till-julbordet/ — \"Vänligen notera att båtbiljett till Fjäderholmarna numera måste bokas och betalas i förväg\" (läst 2026-10-29)\n      'Strömma och Fjäderholmslinjen säljer egna biljetter.",
+  "rader": [
+   "fjaderholmarna-0324",
+   "fjaderholmarna-0325",
+   "fjaderholmarna-0326"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // Rättad 2026-10-20: oktober är stängd, november och december har julbord ('limited').\n",
+  "ny": "      // Rättad 2026-10-20: november och december har julbord ('limited'). Rättad 2026-10-29: september och oktober är 'limited' – verksamheterna stänger 13 september, men Waxholmsbolagets linje 2 lägger till på vissa turer till 12 december.\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf (Waxholmsbolaget, linje 2) — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", Fjäderholmarna med X = \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-10-29). https://www.fjaderholmarna.se/artiklar-film-360/kungliga-parker/2025-06-09-fjaderholmarnas-historia.html — \"Fjäderholmarna kan besökas säsongen maj till mitten av september.\" (läst 2026-10-29)\n",
+  "rader": [
+   "fjaderholmarna-0051",
+   "fjaderholmarna-0052"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      open: 'Maj–September',\n      peak: 'Juli–Augusti',\n      best: 'Maj–mitten av september',\n",
+  "ny": "      open: 'Maj–mitten av september',\n      peak: 'Juli–Augusti',\n      best: 'Maj–mitten av september',\n",
+  "rader": [
+   "fjaderholmarna-0013"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "Krogen och Rökeriet serverar julbord från 20 november.',\n      months: ['off','off','off','limited','open','open','peak','peak','open','off','limited','limited'],\n",
+  "ny": "Krogen och Rökeriet serverar julbord från 20 november.',\n      months: ['off','off','off','limited','open','open','peak','peak','limited','limited','limited','limited'],\n",
+  "rader": [
+   "fjaderholmarna-0051",
+   "fjaderholmarna-0052"
+  ]
+ },
+ {
+  "fil": "src/lib/islandCoords.ts",
+  "gammal": "  { slug: 'fjaderholmarna',    name: 'Fjäderholmarna',    lat: 59.3333, lng: 18.1833, radiusKm: 1.5 },\n",
+  "ny": "  // KÄLLA: https://nominatim.openstreetmap.org/lookup?osm_ids=R12694237&format=json — OpenStreetMap-relation 12694237 \"Fjäderholmarna, Skärsätra, Lidingö, Lidingö kommun\", mittpunkt 59.3283805, 18.1751269 (läst 2026-10-29). Den gamla nålen 59.3333, 18.1833 låg i vattnet nordost om ögruppen.\n  { slug: 'fjaderholmarna',    name: 'Fjäderholmarna',    lat: 59.3284, lng: 18.1751, radiusKm: 1.5 },\n",
+  "rader": [
+   "fjaderholmarna-0016"
+  ]
+ },
+ {
+  "fil": "src/lib/islandCoords.ts",
+  "gammal": "lat: 59.3284, lng: 18.1751, radiusKm: 1.5 },\n",
+  "ny": "lat: 59.3284, lng: 18.1751, radiusKm: 0.7 },  // uppmätt 2026-10-29: OSM:s gränsruta 59.3269403–59.3325597 N, 18.1674518–18.1801403 E ryms inom 0,64 km från mittpunkten. Radien styr också turspårningen.\n",
+  "rader": [
+   "fjaderholmarna-0017"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    destStopId: '740034632', destStopName: 'Fjäderholmarna brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Närmaste skärgårdsön — båt direkt från Strömkajen, ca 25 min.',\n",
+  "ny": "    destStopId: '740034632', destStopName: 'Fjäderholmarna brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Fjäderholmarna är Stockholms närmaste skärgårdsö\" (läst 2026-10-29). https://kund.printhuset-sthlm.se/wa/h2.pdf (Waxholmsbolaget, linje 2) — \"Strömkajen (Stockholm)\", Fjäderholmarna med X = \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-10-29)\n    note: 'Närmaste skärgårdsön — Waxholmsbolagets linje 2 från Strömkajen lägger till på vissa turer, utan fast tid vid bryggan.',\n",
+  "rader": [
+   "fjaderholmarna-0066",
+   "fjaderholmarna-0067",
+   "fjaderholmarna-0068"
+  ]
+ }
+]

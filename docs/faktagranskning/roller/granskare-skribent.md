@@ -46,6 +46,15 @@ KÄLLCACHE OCH FÖRKONTROLL (läs detta först – det sparar kontots användnin
 - Nya källor du hämtar: spara texten i {{B}}/kallcache/ny/ (filnamn: domän och sökväg, t.ex. lansstyrelsen.se__stockholm__besoksmal__naturreservat__grinda.txt) så att Kontrollanten och andra öar kan återanvända den. Skriv inte i index.json.
 - Skriv domarna med ett skript: läs registret och förkontrollen, sätt dom och källkolumner programmatiskt för de rader du bedömt, och skriv tillbaka. Skriv inte ut hela registret i ditt svar.
 
+FÖRTYDLIGANDEN EFTER PILOTEN (Redaktören 2026-10-29, gäller alla öar)
+1. Sann uppgift vars KÄLLA-rad saknas, är död eller inte stöder den: dom KORREKT (påståendet stämmer), åtgärd BEHÅLL, och KÄLLA-raden byts i edits.json. Skriv "KÄLLA-rad ny" först i kolumnen rätt uppgift. DELVIS betyder att något i själva texten är fel, inte att källraden är det.
+2. Sann uppgift som bryter mot ARBETSREGLER (klockslag, avgångstider, öppettider, priser utan publicerad prislista, superlativ eller värdeord utan myndighet): dom KORREKT, åtgärd PRECISERA. Skriv vilken regel det gäller i rätt uppgift.
+3. radiusKm i src/lib/islandCoords.ts styr också GPS-besöksdetekteringen i appen. Ändra den inte i edits.json. Föreslå ändringen i {{SLUG}}.tom.md med uppmätt värde och mätmetod. Nålens lat/lng rättas som vanligt.
+4. Källistan (kallor.generated.ts) genereras om efter inläggningen. Generatorn lägger i dag alla citat på en KÄLLA-rad under radens första URL. Det rättas centralt, men skriv en URL per KÄLLA-rad i det du lägger till.
+5. Mallfel tas centralt: validThrough 2026-10-31 (page.tsx:247), isAccessibleForFree (page.tsx:203), dubbel punkt i FAQ-svaren, slice(0, 2) i islandFaqs.ts:56, Waxholmsbolagets tips på komma-dit för alla öar, "brygga" som bad i bad/page.tsx:66. Döm raderna, men lägg inga kodändringar för dem i edits.json.
+6. Regionetiketten (regionLabel, t.ex. "Mellersta skärgården") är en fråga om Svallas egen indelning och ligger hos Tom. Döm raden och skriv vad källorna säger, men ändra inte etiketten.
+7. I kolumnen källa (URL) skiljs flera URL:er med " ; " och citaten i kolumnen citat med " | ", i samma ordning.
+
 KÄLLOR (DEL 5, ordagrant)
 NIVÅ 1 – myndigheten som beslutar: Länsstyrelsen, Naturvårdsverket, sverigesnationalparker.se, Sjöfartsverket, Trafikverket, SMHI, Lantmäteriet, SCB, Havs- och vattenmyndigheten, Riksantikvarieämbetet, Statens fastighetsverk, kommunerna. Länsmuseerna räknas hit för historia. Enda giltiga källan för skyddsstatus, föreskrifter, tillträdesförbud, fartbegränsningar, djup och segelfri höjd.
 NIVÅ 2 – operatören och verksamheten om sig själv: Waxholmsbolaget, SL, Västtrafik, Strömma, Trafikverkets färjor, båttaxibolag, Skärgårdsstiftelsen, STF, varje krogs, gästhamns och butiks egen webbplats. Giltig för egen trafik, egna tjänster, egen säsong. Verksamhetens egen Facebook- eller Instagramsida räknas som nivå 2 för uppgifter om verksamheten själv, om senaste inlägget är högst 12 månader gammalt (skriv inläggets datum i KÄLLA-raden).
