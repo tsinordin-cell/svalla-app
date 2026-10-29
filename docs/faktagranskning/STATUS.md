@@ -35,8 +35,18 @@ Platsraderna saknar källa i registret, men källorna står i
 text och källkommentar. Utan: bryggans-lilla-kok-uto, moja-stf-moja-gard,
 rano-brygga (ingen text), sandhamn-sands-hotell, stf-vandrarhem-uto,
 uto-camping-och-stugor, uto-vardshus.
-- /team: två skrivförsök 19:03–19:05 avbröts ("cancelled"). Tom tillfrågad.
-  Steg 2 startar inte förrän /team går att uppdatera.
+- /team: två skrivförsök 19:03–19:05 avbröts ("cancelled"). Tredje försöket
+  19:19 gick igenom. Batchkortet stämmer.
+- Storholmen klar 19:15: 217 rader, form och täckning OK. Agentens förbrukning
+  (MÄTT, uppgiftsnotisen): 384 568 tokens, 16 min. Första datapunkten för
+  kostnad per ö.
+- Upptäckt av Utvinnaren: FAQ-svaren på komma-dit och med-barn har dubbel
+  punkt ("SL-biljett gäller.."). Rättas i batch 01:s PR.
+- Platsurvalet i baslinjen (radie + 2 km) är vidare än det /restauranger
+  visar (radie + 0,5 km). Måttet är jämförbart före och efter, men alla
+  platser i baslinjen syns inte på alla undersidor.
+- Kö: sidmallarnas Utvinnare startar på nästa lediga plats, sedan
+  Granskarna en ö i taget, högst 4 agenter samtidigt.
 - Teknik: klonen är grund och följde bara main. Fetch-refspec för grenen
   tillagd så att `git status` och stopphooken ser att allt är pushat.
 
