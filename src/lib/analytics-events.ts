@@ -43,6 +43,7 @@ export type SvallaEvent =
   | { name: 'gps_error';      props: { kind: 'denied' | 'timeout' | 'unavailable' | 'other'; seconds: number; points: number } }
   | { name: 'gps_hidden';     props: { seconds: number; points: number } }      // skärmen släcktes / annan app medan spårningen pågick
   | { name: 'gps_abandoned';  props: { seconds: number; points: number; phase: 'tracking' | 'paused'; first_fix: boolean } }  // lämnade sidan utan att spara
+  | { name: 'passerad_till_besokt'; props: { slug: string } }  // flyttade en passerad ö till besökta (2026-10-29)
   | { name: 'trip_logged';          props: { trip_id: string; distance_nm: number; duration_min: number; first_trip: boolean } }
   | { name: 'trip_viewed';          props: { trip_id: string; is_own: boolean } }
   | { name: 'trip_liked';           props: { trip_id: string } }
