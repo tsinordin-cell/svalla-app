@@ -2,6 +2,28 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-10-29 19:46 — steg 1 klart
+
+**Steg 1 klart (MÄTT): 10 register, 4 768 rader.** Nio öar 4 515 rader och
+sidmallarna 253 (`register/b01/mallar.tsv`). Alla har rätt form, inga domar.
+Utvinnarnas förbrukning enligt uppgiftsnotiserna: Storholmen 384 568
+tokens, Styrsö 434 205, Grinda 469 932, Vaxholm 556 048, Husarö 402 378,
+sidmallarna 477 840. För Fjäderholmarna, Utö, Möja och Sandhamn gick
+notiserna förlorade vid containeromstarten.
+
+Mallfel som rättas i batch 01:s PR (ur mallregistret):
+- mall-0015: två identiska FAQPage-block (page.tsx:268–279 och FAQSection).
+- mall-0169, mall-0222: dubbel punkt i FAQ-svaren, komma-dit/page.tsx:104 och
+  med-barn/page.tsx:116 (`join('. ')` efter en text som redan slutar med punkt).
+- Märket "Bekräftad av Svalla" visas när `verifierad !== false`, alltså även
+  när fältet saknas. Det syns inte på någon ö i batch 01, men det är ett
+  falskt påstående som väntar.
+- Storholmen visar både "Hit går ingen kollektivtrafik" och "Ingen egen båt
+  krävs". Granskaren avgör vilket som stämmer.
+
+Steg 2: Granskare kör för Fjäderholmarna (pilot), Storholmen, Möja och Utö.
+Kö: Sandhamn, Grinda, Vaxholm, Styrsö, Husarö, sidmallarna.
+
 ## 2026-10-29 — session 1, fortsättning kväll
 
 **Batch 01, steg 1: 4 av 10 register klara (MÄTT, `kontrollera_register.py`).**
