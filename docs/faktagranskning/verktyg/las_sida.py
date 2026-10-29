@@ -53,7 +53,11 @@ with sync_playwright() as p:
         pg.wait_for_timeout(700)
     synlig = pg.inner_text('body')
     attribut = pg.evaluate(ATTRIBUT)
-    allt = pg.evaluate('() => document.body.textContent')
+    # Text i sidan som inte syns, utan script/style/noscript/svg (noscript
+    # innehåller annars rå HTML).
+    allt = pg.evaluate("""() => { const k = document.body.cloneNode(true);
+      k.querySelectorAll('script, style, noscript, svg, template').forEach(e => e.remove());
+      return k.textContent }""")
     synliga_rader = set(l.strip() for l in synlig.split('\n') if l.strip())
     dold = [l.strip() for l in allt.split('\n') if l.strip() and l.strip() not in synliga_rader and len(l.strip()) > 2]
     print(f'STATUS {r.status if r else "?"} SLUTURL {pg.url} (öppnade {klick} knappar)')
@@ -64,5 +68,5 @@ with sync_playwright() as p:
         for rad in rader:
             rad = rad.strip()
             if rad and (not sok or any(s in rad.lower() for s in sok)):
-                print(rad)
+                print(rad if len(rad) <= 600 else rad[:600] + ' …')
     b.close()

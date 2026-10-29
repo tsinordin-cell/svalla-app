@@ -1,0 +1,23 @@
+[
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "  uto: {\n    destStopId: '740020695', destStopName: 'Utö Gruvbryggan',\n    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',\n    note: 'Pendeltåg till Nynäshamn och Waxholmsbolaget därifrån.',\n  },",
+  "ny": "  uto: {\n    destStopId: '740020695', destStopName: 'Utö Gruvbryggan',\n    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan.\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v846.pdf — \"Västerhaninge station–Årsta (–Årsta slott)\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"21A ÅRSTA – UTÖ\" (läst 2026-10-29)\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Året om: pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbolagets linje 21 till Gruvbryggan.',\n  },",
+  "rader": [
+   "uto-0064",
+   "uto-0065",
+   "uto-0068",
+   "uto-0069",
+   "uto-0070",
+   "uto-0071"
+  ]
+ },
+ {
+  "fil": "src/lib/ferries.ts",
+  "gammal": "    stops: ['Årsta Brygga', 'Brandholmen', 'Dalarö', 'Ornö', 'Utö'],\n    operator: 'Waxholmsbolaget',\n    season: 'Helår',",
+  "ny": "    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"21A ÅRSTA – UTÖ\" (läst 2026-10-29)\n    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Waxholmsbåt året om till Gruvbryggan.\" (läst 2026-10-29)\n    // P0 2026-10-29: stoppen Brandholmen, Dalarö och Ornö finns inte i tabell 21. Dalarö och Ornö trafikeras sommartid av Nordsydlinjen (tabell 40), inte av den här linjen.\n    stops: ['Årsta Brygga', 'Utö'],\n    operator: 'Waxholmsbolaget',\n    season: 'Helår',",
+  "rader": [
+   "uto-P0-farjor"
+  ]
+ }
+]

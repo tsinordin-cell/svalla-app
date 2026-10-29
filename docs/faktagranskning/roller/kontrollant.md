@@ -29,6 +29,7 @@ PER RAD
 5. "ny mening = ja": gör utfyllnadstestet. Kan meningen flyttas till en annan ösida utan att bli fel? Då är den utfyllnad, och svaret är FEL.
 6. Strukna meningar: kontrollera om meningen gick att belägga med en tillåten källa. Gick den det, är svaret FEL (en sann uppgift har strukits), med källa och citat. Annars OK.
 7. Använd inte ditt eget minne som källa. Gissa inga URL:er.
+9. Skicka aldrig en e-postadress, ett namn eller någon annan personuppgift i ett anrop, varken i User-Agent, i andra huvuden, i URL:er eller i formulär. Kräver en tjänst kontaktuppgifter, använd den inte.
 8. Kringgå aldrig en sajts blockering: byt inte user agent och använd inga andra omvägar förbi ett bot-skydd. Blockerar en sajt arbetsytan, använd WebFetch. Går inte det heller, svara SAKNAS med kommentaren "ej nåbar", så läser Redaktören sidan i Toms webbläsare.
 
 TILLÅTNA KÄLLOR (uppdraget DEL 5)

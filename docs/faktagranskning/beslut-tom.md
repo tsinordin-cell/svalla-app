@@ -48,14 +48,49 @@ innehåll som beslutskortet på svalla.se/team.
 - **Nej:** etiketterna byts till belagda namn ö för ö, och regionlistorna
   byggs om. Det är en större ändring av sajtens struktur.
 
-### 3. GPS-radien för Storholmen och Fjäderholmarna (information, inget beslut krävs)
-- Granskarna mätte öarnas storlek i OSM: Storholmen cirka 0,8 km och
-  Fjäderholmarna cirka 0,7 km i radie, mot 1,5 km i dag. Radien i
-  `islandCoords.ts` är GPS-detektionsradien och styr vilka öar som taggas på
-  en loggad tur. Platslistorna lånar samma radie, och därför visas platser
-  på Lidingö som om de låg på ön.
-- **Vad jag gör:** platslistorna får en egen platsradie med de uppmätta
-  värdena. GPS-radien rörs inte. Nålarna rättas: Storholmens låg 40 km fel,
-  och Fjäderholmarnas låg i vattnet.
-- **Om du vill:** säg till om GPS-radien också ska sänkas. Det gör
-  turtaggningen striktare.
+### 3. GPS-radien: turtaggningen missar delar av Möja och Utö (beslut, rör appen)
+- **Läget (MÄTT i OSM och ResRobot 2026-10-29):** radien i `islandCoords.ts`
+  är GPS-detektionsradien och styr vilka öar som taggas på en loggad tur.
+  - **Möja (3,0 km):** Berg (3 019 m), Möjaström (3 291 m) och Södermöja
+    (3 333 m), som är de mest använda bryggorna, ligger utanför. Med 3,5 km
+    kommer alla Möjas bryggor med, och Stora Kalholmen (4 208 m) hålls utanför.
+  - **Utö (3,0 km):** nålen ligger 5,3 km från Gruvbryggan, så den som står i
+    Gruvbyn räknas inte som besökare. Alternativ: (a) 5,5 km med nuvarande
+    nål, eller (b) nålen flyttas till OSM:s punkt för ön och radien blir 7,0 km.
+  - **Storholmen och Fjäderholmarna (1,5 km):** öarna är cirka 0,8 och 0,7 km
+    i radie. Platslistorna lånar radien, så platser på Lidingö visades som om
+    de låg på öarna.
+- **Vad jag gör utan beslut:** platslistorna får en egen platsradie
+  (`platsRadieKm`) med de uppmätta värdena, och nålarna rättas: Storholmens
+  låg 40 km fel och Fjäderholmarnas låg i vattnet. GPS-radien rörs inte.
+- **Förslag:** höj Möja till 3,5 km och Utö enligt (b). Låt Storholmen och
+  Fjäderholmarna stå kvar på 1,5 km tills turtaggningen har prövats.
+- **Ja:** GPS-radierna ändras i batch 01:s PR. **Nej:** inget ändras i
+  turtaggningen.
+
+### 4. Platstyp för camping (schemaändring)
+- Utö camping (`uto-camping-och-stugor`) har typen hotel. Tabellen
+  `restaurants` har ingen typ för camping. **Ja:** ny typ camping i data och
+  kod. **Nej:** typen hotel står kvar.
+- Samma fråga för butiker, se punkt 1.
+
+### 5. Platser på Utö som inte går att belägga (inget raderas utan ditt ja)
+- **Bakgården Utö:** det enda belägget, explorearchipelago.com, omdirigeras
+  nu. Belagt är att det finns ett bageri i Gruvbyn. Texten säger nu bara
+  det. **Förslag:** posten står kvar tills någon på ön bekräftar namnet.
+- **Lilla Haket & Ninas Bod:** namnet finns bara i OpenStreetMap, som bara
+  får belägga läget. Posten ligger cirka 5 m från Bryggans café och bar,
+  så det kan vara samma ställe. **Förslag:** samma som ovan.
+- **Rånö Brygga:** typen är restaurang men posten har ingen text.
+  Länsstyrelsen nämner på Ålö–Rånö bara "Restaurang Rånökällan samt
+  Båtshaket". **Förslag:** ersätt med Rånökällan med egen källa (ja), eller
+  dölj posten (nej). Att dölja kräver ditt ja.
+
+### 6. Mejl till verksamheter (färdiga, på mejlkortet på /team)
+Tills svar finns står den belagda generaliseringen.
+- Runmarö Lanthandel: finns "Runmarö Bryggkiosk"? (storholmen.tom.md)
+- Utö Värdshus: antal hotellrum och bäddar. Utö Bykrog: säsong. (uto.tom.md)
+- Fyra hantverkare som listas under Möja utan att nämna Möja på sina
+  webbplatser: Delsholmen Entreprenad, Anderssons Båtvarv, Jowa Elektriska
+  och Hellström Marin. Svarar de nej försvinner två av dem helt från Svalla,
+  och det är en radering av hela poster. (moja.tom.md)

@@ -1,0 +1,368 @@
+[
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "  uto: {\n    destStopId: '740020695', destStopName: 'Utö Gruvbryggan',\n    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',\n    note: 'Pendeltåg till Nynäshamn och Waxholmsbolaget därifrån.',\n  },",
+  "ny": "  uto: {\n    destStopId: '740020695', destStopName: 'Utö Gruvbryggan',\n    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan.\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v846.pdf — \"Västerhaninge station–Årsta (–Årsta slott)\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"21A ÅRSTA – UTÖ\" (läst 2026-10-29)\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Året om: pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbolagets linje 21 till Gruvbryggan.',\n  },",
+  "rader": [
+   "uto-0064",
+   "uto-0065",
+   "uto-0068",
+   "uto-0069",
+   "uto-0070",
+   "uto-0071"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan.\" (läst 2026-09-27)\n    // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"som har öppet året runt, erbjuder både restaurang, hotell och konferens\", \"Norra delen av Utö är ett naturreservat\" (läst 2026-09-27)\n    seoDescription: 'Guide till Utö: grusvägar att cykla, gruvhistoria och Utö Värdshus. Pendeltåg till Västerhaninge, buss till Årsta brygga och båt året om. Naturreservat i södra skärgården.',",
+  "ny": "    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan.\", \"Reservatet utgör norra delen av Utö samt ett antal öar i omgivande vatten.\" (läst 2026-10-29)\n    // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"som har öppet året runt, erbjuder både restaurang, hotell och konferens\", \"Norra delen av Utö är ett naturreservat\" (läst 2026-09-27)\n    // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-uto-sv/ — \"Utö är en ö i Stockholms södra skärgård på gränsen till ytterskärgården, i Haninge Kommun.\" (läst 2026-10-29)\n    seoDescription: 'Guide till Utö: grusvägar att cykla, gruvhistoria och Utö Värdshus. Pendeltåg till Västerhaninge, buss till Årsta brygga och båt året om. Ö i södra skärgården där norra delen är naturreservat.',",
+  "rader": [
+   "uto-0006"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html, naturreservat Utö — \"Reservatet utgör norra delen av Utö samt ett antal öar i omgivande vatten\" (skyddat 1974, 4 183 hektar varav 653 land; markägare och förvaltare Skärgårdsstiftelsen)",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Reservatet utgör norra delen av Utö samt ett antal öar i omgivande vatten.\", \"Skyddat sedan: 1974\", \"Storlek: 4183 hektar, varav land 653 hektar\", \"Markägare: Skärgårdsstiftelsen\", \"Förvaltare: Skärgårdsstiftelsen\" (läst 2026-10-29)",
+  "rader": [
+   "uto-0105",
+   "uto-0106",
+   "uto-0107",
+   "uto-0108",
+   "uto-0109"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"inom hela reservatet med undantag av Persholmen medföra hund som ej är kopplad. För Persholmen skall hund vara kopplad under tiden 1 mars - 20 augusti och under övrig tid hållas under uppsikt\", \"tälta eller ställa upp husvagn annat än på anvisad plats\", \"för längre tid än två dygn förtöja eller förankra båt vid samma strand\", \"göra upp eld annat än på härför iordningställda och anvisade platser\", \"Tillträdesförbud på Utö skjutfält vissa tider.\" (läst 2026-09-27)\n      'Reservatsföreskrifterna styr mer än man tror. Hund ska hållas kopplad, med undantag för Persholmen utanför perioden 1 mars till 20 augusti. Tältning är bara tillåten på anvisade platser, eldning bara på iordningställda, och en båt får förtöjas högst två dygn vid samma strand. Söder om reservatet ligger skjutfältet, där det vissa tider är tillträdesförbud.',",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"För att skydda Utös naturreservat finns regler du måste följa.\", \"inom hela reservatet med undantag av Persholmen medföra hund som ej är kopplad. För Persholmen skall hund vara kopplad under tiden 1 mars - 20 augusti och under övrig tid hållas under uppsikt\", \"tälta eller ställa upp husvagn annat än på anvisad plats.\", \"göra upp eld annat än på härför iordningställda och anvisade platser\", \"för längre tid än två dygn förtöja eller förankra båt vid samma strand på sådant sätt att andras möjlighet att utnyttja värdefull båt- eller badplats hindras eller försvåras\", \"inom särskilt med bojar markerade badområden åka eller förtöja båt\", \"Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet.\", \"Tillträdesförbud på Utö skjutfält vissa tider.\" (läst 2026-10-29)\n      'I naturreservatet gäller Länsstyrelsens föreskrifter. Hund ska hållas kopplad, med undantag för Persholmen utanför perioden 1 mars till 20 augusti. Tältning är bara tillåten på anvisade platser och eldning bara på iordningställda och anvisade platser. En båt får inte förtöjas eller förankras längre än två dygn vid samma strand om den hindrar andra från att använda en värdefull båt- eller badplats, och inom badområden som är märkta med bojar får man inte åka eller förtöja båt. Söder om reservatet ligger skjutfältet, där det vissa tider är tillträdesförbud.',",
+  "rader": [
+   "uto-0127",
+   "uto-0131",
+   "uto-0132",
+   "uto-N001"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html, naturreservat Ålö-Rånö — skyddat sedan 2008, 2 829 hektar varav land 1 063 hektar, Haninge kommun, Skärgårdsstiftelsen markägare och förvaltare, Natura 2000-områdena SE0110017 Ålö och SE0110118 Rånö Ängsholm; naturtyper \"skärgård, marina miljöer, barrskog, odlingslandskap\", främst hällmarkstallskogar med kalkpåverkad berggrund; \"Storsand på Ålö anses vara en av Stockholms skärgårds finaste sandstränder.\"; Ålö har broförbindelse med Utö (läst 2026-09-30)",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html — \"Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt.\", \"Skyddsform: naturreservat\", \"Skyddat sedan: 2008\", \"Storlek: 2 829 hektar varav land 1 063\", \"Markägare: Skärgårdsstiftelsen\", \"Förvaltare: Skärgårdsstiftelsen\", \"Övrigt: Natura 2000-område SE0110017 Ålö, SE0110118 Rånö Ängsholm\" (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html — \"Karaktär: skärgård, marina miljöer, barrskog, odlingslandskap\", \"Naturen på öarna domineras av skogsmark\", \"Öarnas skogsmark består till stor del hällmarkstallskogar.\", \"Inslaget av kalk i berggrunden på Ålö ger förutsättningar för en artrik flora i både skog och odlingslandskap.\", \"Storsand på Ålö anses vara en av Stockholms skärgårds finaste sandstränder.\" (läst 2026-10-29)",
+  "rader": [
+   "uto-0163",
+   "uto-0164",
+   "uto-0165",
+   "uto-0166",
+   "uto-0167",
+   "uto-0168",
+   "uto-0169",
+   "uto-0170",
+   "uto-0172",
+   "uto-0173",
+   "uto-0174",
+   "uto-0353"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://skargardsstiftelsen.se/om-skargardsstiftelsen/var-historia/ — 1973: \"Hela norra Utö med gruvbyn köps från Ställbergsbolaget\" (läst 2026-09-30)\n      'Att norra Utö är reservat i dag har en konkret förhistoria. 1973 köpte Skärgårdsstiftelsen hela norra Utö med gruvbyn från Ställbergsbolaget, och året därpå fick området sitt reservatsskydd. Ön gick alltså direkt från gruvbolag till naturvårdsförvaltning, utan mellanled.',",
+  "ny": "      // KÄLLA: https://skargardsstiftelsen.se/om-skargardsstiftelsen/var-historia/ — \"Hela norra Utö med gruvbyn köps från Ställbergsbolaget.\", \"Utö Värdshus utarrenderas till krögarparet Anna-Carin och Bengt Mårdstam. Härmed inleds en ny epok där all kommersiell verksamhet successivt kommer att drivas av privatägda skärgårdsföretag.\"; årtalen 1973 och 1986 står som rubriker över citaten (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Skyddat sedan: 1974\" (läst 2026-10-29)\n      'Att norra Utö är reservat i dag har en konkret förhistoria. 1973 köpte Skärgårdsstiftelsen hela norra Utö med gruvbyn från Ställbergsbolaget, och året därpå fick området sitt reservatsskydd. 1986 arrenderade stiftelsen ut Utö Värdshus, och därmed började den kommersiella verksamheten successivt drivas av privatägda skärgårdsföretag.',",
+  "rader": [
+   "uto-0178",
+   "uto-0179",
+   "uto-N004"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"21A ÅRSTA – UTÖ\", \"minst 1 timme innan avgång\"; Årsta brygga–Gruvbryggan 40 min på de flesta turer (t.ex. 11.00–11.40), 55–75 min när båten går via Spränga först, kortast 35 min (20.35–21.10) (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v846.pdf — \"Västerhaninge station–Årsta (–Årsta slott)\"; Västerhaninge station–Årsta brygga 14–17 min (läst 2026-09-27)\n      travel_time: 'Buss 846 till Årsta brygga (14–17 min) + båt 35–75 min, oftast 40 min (tabell 21, 2026; vissa turer förbokas minst 1 tim före avgång)',\n      character: 'Cykel-ö med gruvby och naturreservat',\n      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (läst 2026-09-26) — \"Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens\"; \"Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter\"; \"Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis\"; lansstyrelsen.se Utö: \"Waxholmsbåt året om till Gruvbryggan\"\n      season: 'Året runt – båt året om och Utö Värdshus öppet året runt; fler ställen öppna sommartid',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"21A ÅRSTA – UTÖ\", \"minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00.\"; b står vid avgångar från bryggorna på Utö (Gruvbryggan, Näsudden, Spränga); uppmätt Årsta brygga–Gruvbryggan 40 min på 17 av 28 turer, 55–75 min när båten går via Spränga först, kortast 35 min (20.35–21.10) (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v846.pdf — \"Västerhaninge station–Årsta (–Årsta slott)\"; Västerhaninge station–Årsta brygga 14–17 min (läst 2026-09-27)\n      travel_time: 'Buss 846 till Årsta brygga (14–17 min) + båt 35–75 min, oftast 40 min (tabell 21, 2026; vissa avgångar från bryggorna på Utö beställs minst 1 tim före)',\n      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"Utö är en riktig cykel-ö med möjlighet att hyra dagsvis\", \"I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden.\" (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Reservatet utgör norra delen av Utö samt ett antal öar i omgivande vatten.\" (läst 2026-10-29)\n      character: 'Cykel-ö med gruvby och naturreservat',\n      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens\", \"Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter\" (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan.\" (läst 2026-10-29)\n      season: 'Året runt – båt året om och Utö Värdshus öppet året runt; fler ställen öppna sommartid',",
+  "rader": [
+   "uto-0024",
+   "uto-0026",
+   "uto-0027",
+   "uto-0028",
+   "uto-0030",
+   "uto-0362"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — \"Andra bra ställen är\", \"Baggensfjärden, Ingarö, Ornö, Utö och Torö\", \"Fritt handredskapsfiske gäller på enskilt vatten i Mälaren och skärgården\" (läst 2026-09-27)\n      { icon: '🎣', name: 'Fiske', desc: 'Länsstyrelsens fiskeguide nämner vattnen vid Utö bland platserna för havsöring. I skärgården gäller fritt handredskapsfiske, så med spö behövs inget fiskekort.' },",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — \"Baggensfjärden, Ingarö, Ornö, Utö och Torö.\", \"Fritt handredskapsfiske gäller på enskilt vatten i Mälaren och skärgården.\", \"Fiske får bedrivas av alla med metspö, spinnspö och liknande redskap med lina med max 10 krokar.\", \"Trolling, dragrodd och angel får endast bedrivas med fiskerättsägarens tillstånd (exv TDA-kortet, sid 47) eller på allmänt vatten\", \"I nedanstående vikar är det förbjudet att fiska under perioden 1 april – 15 juni.\", \"Utöfladen (Utös utsida)\", \"Ryssundet (mellan Ålö och Utö)\" (läst 2026-10-29)\n      { icon: '🎣', name: 'Fiske', desc: 'Länsstyrelsens fiskeguide nämner vattnen vid Utö bland platserna för havsöring. I skärgården gäller fritt handredskapsfiske: med metspö eller spinnspö behövs inget fiskekort, men trolling och dragrodd kräver fiskerättsägarens tillstånd utom på allmänt vatten. I Utöfladen på Utös utsida och i Ryssundet mellan Ålö och Utö är det fiskeförbud 1 april–15 juni.' },",
+  "rader": [
+   "uto-0223",
+   "uto-N002",
+   "uto-N003"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v846.pdf — \"Västerhaninge station–Årsta (–Årsta slott)\" (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"Beställ resan i SL-appen, på\" … \"minst 1 timme innan avgång\" (läst 2026-09-27)\n      { method: 'Pendel + buss + båt', from: 'Stockholm City', time: 'båt 35–75 min', desc: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga (14–17 min) och Waxholmsbåt till Gruvbryggan (35–75 min). På flera turer ska resan beställas minst en timme i förväg i SL-appen, på Waxholmsbolagets webb eller via kundtjänst.', icon: '🚆' },",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v846.pdf — \"Västerhaninge station–Årsta (–Årsta slott)\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid\"; uppmätt Västerhaninge station–Årsta brygga 14–17 min (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00.\"; b står vid avgångar från bryggorna på Utö (Gruvbryggan, Näsudden, Spränga) (läst 2026-10-29)\n      { method: 'Pendel + buss + båt', from: 'Stockholm', time: 'båt 35–75 min', desc: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga (14–17 min) och Waxholmsbåt till Gruvbryggan (35–75 min). I tabell 21 är flera avgångar från bryggorna på Utö märkta för beställning: där beställs resan minst en timme före avgång från bryggan, i SL-appen, på Waxholmsbolagets webb eller via kundtjänst.', icon: '🚆' },",
+  "rader": [
+   "uto-0293",
+   "uto-0300"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.utovardshus.se/kontakt/hitta-hit/ — \"Båt utgår även från Nynäshamn till grannön Ålö som har broförbindelse till Utö\" (läst 2026-09-30)\n      'Kommer du från Nynäshamn lägger båten till på Ålö — därifrån går bro över till Utö.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html, naturreservat Utö — hundar kopplade, undantag Persholmen utanför 1 mars–20 augusti\n      'Hunden ska vara kopplad i reservatet. Undantaget är Persholmen utanför perioden 1 mars–20 augusti, då hunden i stället ska hållas under uppsikt.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html, naturreservat Utö — tältning endast på anvisade platser, eldning endast på iordningställda platser, båt högst två dygn vid samma strand\n      'Tälta bara på anvisade platser och elda bara på iordningställda. Kommer du med egen båt får du ligga högst två dygn vid samma strand.',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — \"22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ\" (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html — \"Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt.\" (läst 2026-10-29)\n      'Kommer du från Nynäshamn med Waxholmsbolagets linje 22 lägger båten till på Ålö — därifrån går bro över till Utö.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"inom hela reservatet med undantag av Persholmen medföra hund som ej är kopplad. För Persholmen skall hund vara kopplad under tiden 1 mars - 20 augusti och under övrig tid hållas under uppsikt\" (läst 2026-10-29)\n      'Hunden ska vara kopplad i reservatet. Undantaget är Persholmen utanför perioden 1 mars–20 augusti, då hunden i stället ska hållas under uppsikt.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"tälta eller ställa upp husvagn annat än på anvisad plats.\", \"göra upp eld annat än på härför iordningställda och anvisade platser\", \"för längre tid än två dygn förtöja eller förankra båt vid samma strand på sådant sätt att andras möjlighet att utnyttja värdefull båt- eller badplats hindras eller försvåras\" (läst 2026-10-29)\n      'Tälta bara på anvisade platser och elda bara på iordningställda och anvisade platser. Kommer du med egen båt får du inte ligga längre än två dygn vid samma strand om båten hindrar andra från att använda en värdefull båt- eller badplats.',",
+  "rader": [
+   "uto-0325",
+   "uto-0327",
+   "uto-0328",
+   "uto-0329",
+   "uto-0330",
+   "uto-0331",
+   "uto-0332"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "            // Rättad 2026-10-19: märkningen barnvänlig borttagen, ingen källa säger det om Ålö Storsand.\n            directions: 'Via vandringsleden eller grusvägen och bron över till Ålö, eller med båt.',",
+  "ny": "            // Rättad 2026-10-19: märkningen barnvänlig borttagen, ingen källa säger det om Ålö Storsand.\n            // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ — \"A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö.\" (läst 2026-10-29)\n            // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Tillträdesförbud på Utö skjutfält vissa tider.\" (läst 2026-10-29)\n            directions: 'Via vandringsleden eller grusvägen och bron över till Ålö, eller med båt. Grusvägen går genom Utö skjutfält, där det vissa tider är tillträdesförbud.',",
+  "rader": [
+   "uto-N005"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (läst 2026-09-26) — \"Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens\"; \"Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter\"; \"Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis\"; lansstyrelsen.se Utö: \"Waxholmsbåt året om till Gruvbryggan\"\n      open: 'Året runt',",
+  "ny": "      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens\", \"Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter\" (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan.\" (läst 2026-10-29)\n      open: 'Året runt',",
+  "rader": [
+   "uto-0047",
+   "uto-0362"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/uto/ — \"Här började malmbrytningen redan under medeltiden och fortsatte fram till slutet på 1800-talet.\" (läst 2026-10-19)\n      'Utö präglas av järnet. Järnmalmsbrytning har funnits här till och från under 700 år, med början redan under 1100-talet, och driften fortsatte fram till slutet av 1800-talet. Spåren efter arbetet finns kvar i landskapet: schakt, varphögar och den gamla gruvbyn.',",
+  "ny": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/uto/ — \"Här började malmbrytningen redan under medeltiden och fortsatte fram till slutet på 1800-talet.\" (läst 2026-10-19)\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/uto/ — \"Spåren av gruvbrytningen är fortfarande tydliga i form av dagbrott och stora varpstenshögar.\", \"Trots det togs de gamla schakten upp igen och gruvbrytningen växte stegvis.\" (läst 2026-10-29)\n      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden.\" (läst 2026-10-29)\n      'Utö präglas av järnet. Järnmalmsbrytning har funnits här till och från under 700 år, med början redan under 1100-talet, och driften fortsatte fram till slutet av 1800-talet. Spåren efter arbetet finns kvar i landskapet: schakt, varphögar och den gamla gruvbyn.',",
+  "rader": [
+   "uto-0076"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/sevardheter/hembygdsmuseer/ — \"Utö gruvmuseum\", \"Museet ligger alldeles intill gruvschakten och berättar historien om Utös gruvor.\" (läst 2026-09-27)\n      'Gruvbrytningen var som störst på 1840-talet, då produktionen var drygt 16 000 ton malm om året. Det är ett annat perspektiv på skärgårdsliv än fiskebyar och seglarhamnar: industriellt arbete i en ömiljö. Utö gruvmuseum, alldeles intill gruvschakten, berättar den historien.',",
+  "ny": "      // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/sevardheter/hembygdsmuseer/ — \"Utö gruvmuseum\", \"Museet ligger alldeles intill gruvschakten och berättar historien om Utös gruvor.\" (läst 2026-09-27)\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/uto/ — \"På 1800-talet började ångmaskiner användas för att länspumpa gruvorna och ett järnvägsspår byggdes för transporterna till hamnen.\" (läst 2026-10-29)\n      'Gruvbrytningen var som störst på 1840-talet, då produktionen var drygt 16 000 ton malm om året. På 1800-talet började ångmaskiner användas för att länspumpa gruvorna, och ett järnvägsspår byggdes för transporterna till hamnen. Utö gruvmuseum, alldeles intill gruvschakten, berättar den historien.',",
+  "rader": [
+   "uto-0084",
+   "uto-N008"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"De små enkla trähusen längs med Lurgatan är de mest välbevarade i Gruvbyn.\" (läst 2026-09-27)\n      'I den historiska Gruvbyn finns spår av järnbrytningen, och här står också Sveriges äldsta bevarade väderkvarn. De små trähusen längs Lurgatan är enligt Länsstyrelsen de mest välbevarade i byn.',",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"De små enkla trähusen längs med Lurgatan är de mest välbevarade i Gruvbyn.\", \"På berget väster om byn står den sevärda väderkvarnen som uppfördes 1791.\" (läst 2026-10-29)\n      'I den historiska Gruvbyn finns spår av järnbrytningen, och på berget väster om byn står Sveriges äldsta bevarade väderkvarn. De små trähusen längs Lurgatan är enligt Länsstyrelsen de mest välbevarade i byn.',",
+  "rader": [
+   "uto-0088"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/ — \"Utö kvarn är byggd 1791 och har under lång tid varit både symbol och sjömärke för Utö.\" / \"2001 blev de nio gruvarbetarbostäderna tillsammans med kvarnen byggnadsminne enligt Kulturmiljölagen.\" / kvarnen restaurerades 1982 (läst 2026-09-30)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html, naturreservat Utö — trähusen längs Lurgatan; \"väderkvarnen som uppfördes 1791\"",
+  "ny": "      // KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/drift-och-forvaltning/vara-byggnader/ — \"Utö kvarn är byggd 1791 och har under lång tid varit både symbol och sjömärke för Utö.\", \"1982 stod den färdigrestaurerad med intakt interiör.\", \"2001 blev de nio gruvarbetarbostäderna tillsammans med kvarnen byggnadsminne enligt Kulturmiljölagen.\", \"Gruvarbetarbostäderna utmed Lurgatan uppfördes under sent 1700-tal eller tidigt 1800-tal.\" (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"På berget väster om byn står den sevärda väderkvarnen som uppfördes 1791.\", \"De små enkla trähusen längs med Lurgatan är de mest välbevarade i Gruvbyn.\" (läst 2026-10-29)",
+  "rader": [
+   "uto-0141",
+   "uto-0144",
+   "uto-0363"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.svenskakyrkan.se/haninge/om-uto-kyrka — kyrkan \"uppfördes mellan år 1848 och 1850\", byggd av \"sten som bröts direkt ur gruvorna\"; Utö Gruvbolag betalade 5 000 riksdaler banco och ställde tomten, församlingen bidrog med 11 000 riksdaler banco och dagsverken; \"Utö kyrka är skärgårdens största stenkyrka.\" (läst 2026-09-30)\n      'Utö kyrka uppfördes mellan 1848 och 1850 av sten som bröts direkt ur gruvorna. Utö Gruvbolag betalade 5 000 riksdaler banco och ställde tomten, medan församlingen bidrog med 11 000 riksdaler banco och dagsverken. Svenska kyrkan beskriver den som skärgårdens största stenkyrka — ovanligt monumental för en ö av den här storleken, och en direkt följd av att här fanns en industri som kunde betala.',",
+  "ny": "      // KÄLLA: https://www.svenskakyrkan.se/haninge/om-uto-kyrka — \"Utö kyrka uppfördes mellan år 1848 och 1850.\", \"Utö Kyrka är skärgårdens största stenkyrka, färdigbyggd 1850 av sten som bröts direkt ur gruvorna.\", \"Utö Gruvbolag betalade 5.000 Riksdaler Banco och stod för tomten medan församlingen svarade för 11.000 Riksdaler Banco samt alla dagsverken.\" (läst 2026-10-29)\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/uto/ — \"Gruvbolaget bekostade också kyrkan på Utö som ritades av arkitekten J.F. Åbom.\" (läst 2026-10-29)\n      'Utö kyrka uppfördes mellan 1848 och 1850 av sten som bröts direkt ur gruvorna. Utö Gruvbolag betalade 5 000 riksdaler banco och ställde tomten, medan församlingen bidrog med 11 000 riksdaler banco och dagsverken. Svenska kyrkan beskriver den som skärgårdens största stenkyrka, och enligt Stockholms läns museum ritades den av arkitekten J.F. Åbom.',",
+  "rader": [
+   "uto-0148",
+   "uto-0149",
+   "uto-0150",
+   "uto-0151",
+   "uto-0152",
+   "uto-0153",
+   "uto-0369",
+   "uto-N007"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.svenskakyrkan.se/haninge/om-uto-kyrka — \"Den pampiga orgeln är från 1745 och har ursprungligen stått i Holländska reformerta kyrkan i Stockholm.\"; ett äldre träkapell revs 1698, ett nytt uppfördes 1699 som \"Helga Trefaldighets tempel\", skadades av ryssarna 1719, reparerades 1727 och revs 1874 (läst 2026-09-30)\n      'Orgeln är äldre än kyrkan. Den är från 1745 och har ursprungligen stått i Holländska reformerta kyrkan i Stockholm. Före stenkyrkan fanns ett träkapell som revs 1698 och ett nytt som uppfördes 1699 under namnet Helga Trefaldighets tempel; det skadades av ryssarna 1719, reparerades 1727 och revs först 1874.',",
+  "ny": "      // KÄLLA: https://www.svenskakyrkan.se/haninge/om-uto-kyrka — \"Den pampiga orgeln är från 1745 och har ursprungligen stått i Holländska reformerta kyrkan i Stockholm.\", \"Den äldsta kända var ett träkapell vilket revs år 1698. Året därpå uppfördes ett nytt kapell som fick heta Helga Trefaldighets tempel. Det härjades av ryssarna år 1719 men reparerades år 1727.\", \"Kapellet revs år 1874 och virket användes till en skolhusbyggnad.\" (läst 2026-10-29)\n      'Orgeln är äldre än kyrkan. Den är från 1745 och har ursprungligen stått i Holländska reformerta kyrkan i Stockholm. Före stenkyrkan fanns ett träkapell som revs 1698 och ett nytt som uppfördes 1699 under namnet Helga Trefaldighets tempel; det skadades av ryssarna 1719, reparerades 1727 och revs först 1874, då virket användes till en skolhusbyggnad.',",
+  "rader": [
+   "uto-0157",
+   "uto-0158",
+   "uto-0159",
+   "uto-0160",
+   "uto-0161",
+   "uto-0162",
+   "uto-N006"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-uto-sv/ — \"Det är en ö med ungefär 250 bofasta och med nära 70000 besökare per år.\" (läst 2026-09-27)\n      'Utö har en egen grundskola hela vägen upp. Utö skola har årskurs 1–9 med 22 elever och 7 anställda. Enligt Stockholm Archipelago Trail har ön ungefär 250 bofasta och nära 70 000 besökare per år.',",
+  "ny": "      // KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/MI/MI0812/MI0812A/OarEjBro01 — \"{\"key\":[\"0136Q102\",\"2020\"],\"values\":[\"191\",\"1286\",\"485\"]}\"; POST med Oar=0136Q102, kolumnerna folkbokförda, byggnader, bostadsbyggnader (läst 2026-10-29)\n      // KÄLLA: https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__MI__MI0812__MI0812A/OarEjBro01/ — \"31 december respektive år\" (läst 2026-10-29)\n      // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-uto-sv/ — \"Det är en ö med ungefär 250 bofasta och med nära 70000 besökare per år.\" (läst 2026-10-29)\n      'Utö har en egen grundskola hela vägen upp. Utö skola har årskurs 1–9 med 22 elever och 7 anställda. Enligt SCB var 191 personer folkbokförda på ön den 31 december 2020, och Stockholm Archipelago Trail anger nära 70 000 besökare per år.',",
+  "rader": [
+   "uto-0184"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"Rävstavik och Barnens bad erbjuder långgrunda sandstränder som passar barnfamiljer\", \"Milslånga grusvägar och stigar\" — sidan skriver \"Här finns milslånga grusvägar och stigar\" (läst 2026-09-27)",
+  "ny": "      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"Rävstavik och Barnens bad erbjuder långgrunda sandstränder som passar barnfamiljer\", \"Här finns milslånga grusvägar och stigar som passar både vandrare och cyklister\" (läst 2026-10-29)",
+  "rader": [
+   "uto-0188"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.utogasthamn.se/gasthamnen/ — \"Hos oss finns dusch, bastu och toaletter.\" (läst 2026-09-27)\n      best_for: 'Cykling, vandring, bad, gruvhistoria',",
+  "ny": "      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden.\" (läst 2026-10-29)\n      best_for: 'Cykling, vandring, bad, gruvhistoria',",
+  "rader": [
+   "uto-0033"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.utogasthamn.se/uto-cykeluthyrning/ — \"I Cykelboden har vi över 300 cyklar från Skeppshult\", \"Här finns även barnstolar, sulkys och cykelkärror\", \"Under högsäsong kan du även hyra din cykel på\", \"Du kan välja att lämna tillbaka din cykel på Utö i Cykelboden eller på Ålö vid restaurangen Båtshaket.\" (läst 2026-09-27)\n      { icon: '🚲', name: 'Cykling', desc: 'Cykelboden vid gästhamnen hyr ut över 300 cyklar samt barnstolar och cykelkärror, per dag. Under högsäsong kan cykel också hyras och lämnas vid Båtshaket på Ålö, dit grusvägen går via bron.' },",
+  "ny": "      // KÄLLA: https://www.utogasthamn.se/uto-cykeluthyrning/ — \"I Cykelboden har vi över 300 cyklar från Skeppshult\", \"Här finns även barnstolar, sulkys och cykelkärror\", \"Under högsäsong kan du även hyra din cykel på\", \"Du kan välja att lämna tillbaka din cykel på Utö i Cykelboden eller på Ålö vid restaurangen Båtshaket.\" (läst 2026-09-27)\n      // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ — \"The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there.\" (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html — \"Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt.\" (läst 2026-10-29)\n      { icon: '🚲', name: 'Cykling', desc: 'Cykelboden vid gästhamnen hyr ut över 300 cyklar samt barnstolar och cykelkärror, per dag. Under högsäsong kan cykel också hyras och lämnas vid Båtshaket på Ålö, dit grusvägen går via bron.' },",
+  "rader": [
+   "uto-0197"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    tags: ['cykling', 'havsbastu', 'gruva', 'naturreservat', 'familj'],",
+  "ny": "    tags: ['cykling', 'bastu', 'gruva', 'naturreservat', 'familj'],",
+  "rader": [
+   "uto-0010"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"Sveriges äldsta bevarade väderkvarn\"\n    did_you_know: 'Grundämnet litium upptäcktes i Utö gruvor. I Gruvbyn står Sveriges äldsta bevarade väderkvarn. Gruvdriften var inte obruten: vid rysshärjningarna 1719 brändes all bebyggelse vid gruvorna ned.',",
+  "ny": "    // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"Sveriges äldsta bevarade väderkvarn\"\n    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"På berget väster om byn står den sevärda väderkvarnen som uppfördes 1791.\" (läst 2026-10-29)\n    did_you_know: 'Grundämnet litium upptäcktes i Utö gruvor. På berget väster om Gruvbyn står Sveriges äldsta bevarade väderkvarn. Gruvdriften var inte obruten: vid rysshärjningarna 1719 brändes all bebyggelse vid gruvorna ned.',",
+  "rader": [
+   "uto-0044"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.utogasthamn.se/att-gora/ — \"Persholmen som ligger över den lilla bron nere i hamnen har klippbad\", \"en fin och långgrund sandstrand i en liten vik\" (om Barnens bad), \"Storsand, som är just en stor sandstrand och ligger på skjutfältets mark några kilometer från Gruvbyn. Glöm bara inte att fråga oss i Hamnboden om skjutfältet är öppet\" (läst 2026-09-27)\n      // Rättad 2026-10-19: \"Storsand på södra Utö\" borttaget. Ingen källa säger \"södra Utö\", och det kan vara samma strand som Ålö Storsand.\n      { icon: '🏊', name: 'Bad & stränder', desc: 'Ålö Storsand på grannön Ålö nås med båt eller via vandringsled. Närmare Gruvbyn ligger Barnens bad, en långgrund sandstrand, och klippbad på Persholmen och vid Rävstavik.' },",
+  "ny": "      // KÄLLA: https://www.utogasthamn.se/att-gora/ — \"Persholmen som ligger över den lilla bron nere i hamnen har klippbad\", \"en fin och långgrund sandstrand i en liten vik\" (om Barnens bad), \"Storsand, som är just en stor sandstrand och ligger på skjutfältets mark några kilometer från Gruvbyn. Glöm bara inte att fråga oss i Hamnboden om skjutfältet är öppet\" (läst 2026-09-27)\n      // Rättad 2026-10-19: \"Storsand på södra Utö\" borttaget. Ingen källa säger \"södra Utö\", och det kan vara samma strand som Ålö Storsand.\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Det är allra enklast att ta sig till klippbaden finns vid Rävstavik.\" (läst 2026-10-29)\n      { icon: '🏊', name: 'Bad & stränder', desc: 'Ålö Storsand på grannön Ålö nås med båt eller via vandringsled. Närmare Gruvbyn ligger Barnens bad, en långgrund sandstrand, och klippbad på Persholmen och vid Rävstavik.' },",
+  "rader": [
+   "uto-0214"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      { name: 'Utö Värdshus', type: 'Restaurang', desc: 'Bar och matsalar i det gamla gruvkontoret. À la carte lunch och middag, veranda sommartid.', bookingUrl: 'https://www.utovardshus.se/restaurang/boka-bord-vardshuset/', websiteUrl: 'https://www.utovardshus.se' },",
+  "ny": "      { name: 'Utö Värdshus', type: 'Restaurang', desc: 'Bar och matsalar i det gamla gruvkontoret. À la carte lunch och middag, veranda sommartid.', bookingUrl: 'https://book.easytablebooking.com/book/?id=e0055&lang=auto', websiteUrl: 'https://www.utovardshus.se' },",
+  "rader": [
+   "uto-0229"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.utovardshus.se/boende/vandrarhemmet/ — \"Utö Vandrarhem Skärgården\", \"Vandrarhemmet är i tre plan och har 73 bäddar\" (läst 2026-09-27)\n      { name: 'Utö Vandrarhem Skärgården', type: 'Vandrarhem', desc: 'Vandrarhemsdelen av Utö Värdshus, 73 bäddar i tre plan med gemensamma kök. Bokningsbart online.', websiteUrl: 'https://www.utovardshus.se/boende/vandrarhemmet/' },",
+  "ny": "      // KÄLLA: https://www.utovardshus.se/boende/vandrarhemmet/ — \"Utö Vandrarhem Skärgården\", \"Vandrarhemmet är i tre plan och har 73 bäddar\", \"tillreder sina egna måltider i de gemensamma köken.\", \"som håller öppet under sommarhalvåret (april-oktober).\" (läst 2026-10-29)\n      { name: 'Utö Vandrarhem Skärgården', type: 'Vandrarhem', desc: 'Vandrarhemsdelen av Utö Värdshus, 73 bäddar i tre plan med gemensamma kök. Bokningsbart online. Öppet under sommarhalvåret, april–oktober.', websiteUrl: 'https://www.utovardshus.se/boende/vandrarhemmet/' },",
+  "rader": [
+   "uto-N009"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — badplatserna Rävstavik och Barnens bad",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"En fin strand finns också vid Barnens bad strax norr om Gruvbyn.\" (läst 2026-10-29)\n      // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-uto-sv/ — \"Du kan även ta dig rakt österut, förbi Värdshuset och gruvhålen till Rävstavik där du har en fin utsikt över havet.\" (läst 2026-10-29)\n      // KÄLLA: https://www.utogasthamn.se/att-gora/ — \"ligger på skjutfältets mark några kilometer från Gruvbyn.\" (läst 2026-10-29)",
+  "rader": [
+   "uto-0333"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.svenskakyrkan.se/haninge/om-uto-kyrka — orgeln från 1745, ursprungligen i Holländska reformerta kyrkan i Stockholm (läst 2026-09-30)",
+  "ny": "      // KÄLLA: https://www.svenskakyrkan.se/haninge/om-uto-kyrka — \"Den pampiga orgeln är från 1745 och har ursprungligen stått i Holländska reformerta kyrkan i Stockholm.\" (läst 2026-10-29)",
+  "rader": [
+   "uto-0336",
+   "uto-0337"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      { name: 'Bakfickan Utö', type: 'Bar', desc: 'Utö Värdshus dansställe med musik och dans sommarkvällar. Stängde för säsongen 31 augusti 2026 och öppnar igen 5 juni 2027, på lördagar.', slug: 'bakfickan-uto' },",
+  "ny": "      { name: 'Bakfickan Utö', type: 'Bar', desc: 'Utö Värdshus dansställe med musik och dans sommarkvällar. Stängde för säsongen 31 augusti 2026 och öppnar igen 5 juni 2027.', slug: 'bakfickan-uto' },",
+  "rader": [
+   "uto-0252"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (läst 2026-09-26) — \"Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens\"; \"Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter\"; \"Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis\"; lansstyrelsen.se Utö: \"Waxholmsbåt året om till Gruvbryggan\"\n    accommodationIntro: 'Utö har värdshus med hotell och vandrarhem, camping och stugor som Skärgårdsstiftelsen hyr ut veckovis.',",
+  "ny": "    // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens\", \"Förutom hotell, vandrarhem och camping erbjuder Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis.\" (läst 2026-10-29)\n    accommodationIntro: 'Utö har värdshus med hotell och vandrarhem, camping och stugor som Skärgårdsstiftelsen hyr ut veckovis.',",
+  "rader": [
+   "uto-0423",
+   "uto-0424",
+   "uto-0425"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.utovardshus.se/restaurang/uto-vardshus/ — \"I det gamla gruvkontoret finns Utö Värdshus bar och matsalar … à la carte både lunch och middag … verandan öppen\" på sommaren (läst 2026-09-30)",
+  "ny": "      // KÄLLA: https://www.utovardshus.se/restaurang/uto-vardshus/ — \"I det gamla gruvkontoret finns Utö Värdshus bar och matsalar med marin och hemtrevlig atmosfär.\", \"Här kan du äta à la carte både lunch och middag\", \"På sommaren är den soliga verandan öppen från morgon till kväll\" (läst 2026-10-29)",
+  "rader": [
+   "uto-0379",
+   "uto-0226",
+   "uto-0227",
+   "uto-0228"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.utovardshus.se/restaurang/seglarbaren/ — \"BAREN MITT I HAMNEN\", veranda mot hamninloppet, \"enklare rätter till lunch … kolgrillade rätter till kvällen\" (läst 2026-09-30)",
+  "ny": "      // KÄLLA: https://www.utovardshus.se/restaurang/seglarbaren/ — \"BAREN MITT I HAMNEN\", \"veranda har du första parkett till hela hamninloppet.\", \"Här kan du äta enklare rätter till lunch eller njuta av kolgrillade rätter till kvällen.\" (läst 2026-10-29)",
+  "rader": [
+   "uto-0380",
+   "uto-0233",
+   "uto-0234",
+   "uto-0235",
+   "uto-0236"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (läst 2026-09-26) — \"Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens\"; \"Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter\"; \"Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis\"; lansstyrelsen.se Utö: \"Waxholmsbåt året om till Gruvbryggan\"",
+  "ny": "      // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens\" (läst 2026-10-29)",
+  "rader": [
+   "uto-0464",
+   "uto-0465"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },\n    dog_friendly: true,\n    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"inom hela reservatet med undantag av Persholmen medföra hund som ej är kopplad\" (läst 2026-09-27)",
+  "ny": "    // KÄLLA: https://www.utogasthamn.se/gasthamnen/ — \"Hos oss finns dusch, bastu och toaletter.\" (läst 2026-10-29)\n    // KÄLLA: https://www.utogasthamn.se/kiosk-cafe/ — \"Här finns kiosk, café och restaurang i samma byggnad. Självklart har vi glass, godis, korv och toast men även sushi samt en bar\" (läst 2026-10-29)\n    // KÄLLA: https://skargardsstiftelsen.se/app/uploads/2024/07/Uto-Skargardsstiftelsen-20240724.pdf — \"Här i Gruvbyn finns turistbyrå, gästhamn, bensinmack, livsmedel, bageri, cykeluthyrning, restauranger och shopping.\" (läst 2026-10-29)\n    amenities: { toilets: true, shower: true, cafe: true, grocery: true },\n    dog_friendly: true,\n    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"inom hela reservatet med undantag av Persholmen medföra hund som ej är kopplad\" (läst 2026-09-27)",
+  "rader": [
+   "uto-0480",
+   "uto-0481",
+   "uto-0482",
+   "uto-0483",
+   "uto-0484"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "        // Borttagen 2026-10-19: \"Storsand (södra Utö)\". Ingen källa säger att stranden ligger på södra Utö, och den kan vara samma strand som Ålö Storsand (vägen till Ålö går genom skjutfältet). Märkningen barnvänlig saknade också källa.\n        ],",
+  "ny": "        // Borttagen 2026-10-19: \"Storsand (södra Utö)\". Ingen källa säger att stranden ligger på södra Utö, och den kan vara samma strand som Ålö Storsand (vägen till Ålö går genom skjutfältet). Märkningen barnvänlig saknade också källa.\n          {\n            name: 'Barnens bad',\n            type: 'sandstrand',\n            // KÄLLA: https://www.utogasthamn.se/att-gora/ — \"en fin och långgrund sandstrand i en liten vik.\" (läst 2026-10-29)\n            // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"En fin strand finns också vid Barnens bad strax norr om Gruvbyn.\" (läst 2026-10-29)\n            // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — \"Rävstavik och Barnens bad erbjuder långgrunda sandstränder som passar barnfamiljer\" (läst 2026-10-29)\n            desc: 'Långgrund sandstrand i en liten vik strax norr om Gruvbyn. Skärgårdsstiftelsen beskriver den som lämplig för barnfamiljer.',\n            child_friendly: true,\n            // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-uto-sv/ — \"Från Gruvbryggan kan du ta dig norrut längs grusvägen. Antingen hela vägen till Kroka eller till Barnens bad.\" (läst 2026-10-29)\n            // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-uto-sv/ — \"På Utö finns flera partier där du kan ta dig fram med barnvagn eller med rullstol eller om du har begränsad rörlighet.\" (läst 2026-10-29)\n            directions: 'Grusvägen norrut från Gruvbryggan; den går även med barnvagn.',\n          },\n          {\n            name: 'Rävstavik',\n            type: 'klippbad',\n            // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Det är allra enklast att ta sig till klippbaden finns vid Rävstavik.\" (läst 2026-10-29)\n            // KÄLLA: https://skargardsstiftelsen.se/app/uploads/2024/07/Uto-Skargardsstiftelsen-20240724.pdf — \"Rävstavik. Här är det klippigt och vackert inbjudande.\" (läst 2026-10-29)\n            // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-uto-sv/ — \"Du kan även ta dig rakt österut, förbi Värdshuset och gruvhålen till Rävstavik där du har en fin utsikt över havet.\", \"I Rävstavik är det svårare att ta sig ner till vattnet.\" (läst 2026-10-29)\n            desc: 'Klippbad med utsikt över havet. Länsstyrelsen pekar ut klippbaden vid Rävstavik som de enklaste att ta sig till, men enligt Stockholm Archipelago Trail är det svårare att ta sig ner till vattnet här.',\n            directions: 'Rakt österut från Gruvbryggan, förbi Värdshuset och gruvhålen.',\n          },\n          {\n            name: 'Persholmen',\n            type: 'klippbad',\n            // KÄLLA: https://www.utogasthamn.se/att-gora/ — \"som ligger över den lilla bron nere i hamnen har klippbad.\" (läst 2026-10-29)\n            // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"inom hela reservatet med undantag av Persholmen medföra hund som ej är kopplad. För Persholmen skall hund vara kopplad under tiden 1 mars - 20 augusti och under övrig tid hållas under uppsikt\" (läst 2026-10-29)\n            desc: 'Klippbad på Persholmen, över den lilla bron nere i hamnen. Här ska hunden vara kopplad 1 mars–20 augusti och övrig tid hållas under uppsikt.',\n            // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"I Gruvbyn, där båtarna från Årsta brygga lägger till finns bland annat gästhamn, affär, värdshus, kajak- och cykeluthyrning, konferensanläggning och vandrarhem.\" (läst 2026-10-29)\n            directions: 'Över den lilla bron i hamnen i Gruvbyn.',\n          },\n        ],",
+  "rader": [
+   "uto-0426",
+   "uto-0466",
+   "uto-N010",
+   "uto-N011",
+   "uto-N012",
+   "uto-N013",
+   "uto-N014",
+   "uto-N015"
+  ]
+ }
+]

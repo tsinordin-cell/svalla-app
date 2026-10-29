@@ -2,6 +2,52 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-10-29 21:00 — Utö och Möja granskade, fyra P0
+
+**Utö (MÄTT):** 580 rader (+18 nya). KORREKT 530, OBELAGD 22, DELVIS 19, FEL 7,
+MOTSTRIDIG 2. BEHÅLL 510, RÄTTA 23, PRECISERA 22, STRYK+KOMPENSERA 7, NY 18. 36
+ersättningar och 7 UPDATE. Granskaren: 640 313 tokens, 213 anrop, 57 min.
+**Möja (MÄTT):** 660 rader (+14). KORREKT 578, OBELAGD 24, EJ NÅBAR 19, DELVIS
+18, FEL 16, MOTSTRIDIG 4, INAKTUELL 1. BEHÅLL 558, RÄTTA 40, PRECISERA 20,
+STRYK+KOMPENSERA 10, NY 13. 22 ersättningar och 5 UPDATE. Granskaren: 723 780
+tokens, 204 anrop, 72 min.
+
+**P0 (4 kort på /team, egen gren `p0-uto-2026-10-29` från main):**
+1. Utö, avgångsrutan: hänvisade till båt från Nynäshamn, som inte går nu.
+   Avreseorten blir Stockholm C, med en not om pendeltåg till Västerhaninge,
+   buss 846 och linje 21.
+2. Utö, /farjor: Årsta–Utö visades med stopp vid Brandholmen, Dalarö och
+   Ornö. Tabell 21 nämner inget av dem. stops blir ['Årsta Brygga', 'Utö'].
+3. Möja, Sista båten: en beställningstur (anmärkning B, tabell 14) visades som
+   vanlig avgång. Nytt fält `bestallning` i transit-stops.ts, som returneras
+   av båda API:erna och visas i LastBoatPanel och DepartureWidget.
+4. Möja, avgångsrutan: "14X"-turer som inte finns i tabell 14A. Samma not
+   som åtgärd i dag. Grundorsaken (ResRobot-turer som kräver förbokning)
+   kräver ett ResRobot-anrop med nyckel och är öppen.
+Prebuild, 705 tester och tsc är gröna. Lint-felen i LastBoatPanel
+(emoji, rad 222 och 234) finns redan på main. Kontrollanten för P0 pågår.
+`uto.edits.json` nr 0 ingår i P0-PR:en och hoppas över när batchen läggs in.
+
+**EJ NÅBAR (läses i Toms webbläsare):** Möja 19 rader: wallnermarin.se (466),
+hhmarin.se (TLS-fel och 502), finnhamn.se (403) och Elsäkerhetsverkets
+register. Storholmen: öbildens Commons-sida (429).
+
+**Integritet:** två Granskare (Utö och Möja) skickade kontots e-postadress i
+User-Agent till OpenStreetMaps Nominatim och till Wikimedias API, innan regeln
+om personuppgifter fanns. Regeln finns nu i båda rollinstruktionerna och är
+skickad till alla agenter som kör. Tom informeras.
+
+**Till Vakten (batch 01:s PR):** dagsplan.ts (Nynäshamn → Utö),
+bingo-data.ts:26 ("havsbastu" på Utö), guider.ts:358–360 (Strömkajen),
+HantverkarKort (jämför "moja" utan ö), validThrough (17 öar har "Året runt"),
+källistan publicerar tider och öppettider ur KÄLLA-citaten (alla öar),
+ferries.ts (övriga rutter kontrolleras i fas 3).
+
+**/team:** beslutskortet "TOM BESLUT: Faktagranskning batch 01 – 5 beslut" och
+mejlkortet "TOM/MAX: Mejla 7 verksamheter" är skapade. Två rader med
+uppskattade tider på P0-korten är rättade. Tidsstämplarna på /team sätts nu
+av databasen (now() i svensk tid), inte av mig.
+
 ## 2026-10-29 20:25 — steg 2: piloten Fjäderholmarna klar
 
 **Fjäderholmarna (MÄTT ur registret och Granskarens rapport):** 342 rader (329 +
