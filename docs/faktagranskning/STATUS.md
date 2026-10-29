@@ -47,6 +47,16 @@ uto-camping-och-stugor, uto-vardshus.
   platser i baslinjen syns inte på alla undersidor.
 - Kö: sidmallarnas Utvinnare startar på nästa lediga plats, sedan
   Granskarna en ö i taget, högst 4 agenter samtidigt.
+- Styrsö klar: 501 rader (434 205 tokens, 19 min). Grinda klar: 615 rader
+  (469 932 tokens, 22 min). Båda OK i formkontrollen.
+- Fält som ingen sida läser (MÄTT, grep i src/ utanför datafilerna):
+  amenities, dog_friendly, dog_notes, day_cost. seasonal.peak läses bara av
+  /oppet-nu och insiderTips bara av /med-barn. De raderna får dom men
+  granskas sist.
+- Datafix-källor utökade till 53 platser: 42 har en sats med dagens text.
+- Steg 2 startat med pilot-Granskare för Fjäderholmarna (minsta registret
+  med färdig cache). Instruktionen justeras efter piloten innan de andra
+  öarna startar.
 - Teknik: klonen är grund och följde bara main. Fetch-refspec för grenen
   tillagd så att `git status` och stopphooken ser att allt är pushat.
 
