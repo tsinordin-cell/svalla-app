@@ -6,7 +6,7 @@ import asyncio, json, sys, os
 from playwright.async_api import async_playwright
 UNDER = ['', 'komma-dit', 'restauranger', 'boende', 'bad', 'hamnar', 'med-barn', 'aktiviteter', 'hantverkare']
 OPPNA = """() => { document.querySelectorAll('details').forEach(d => d.open = true);
-  const re = /^(visa (fler|alla|mer|hela)|läs mer)/i; let n = 0;
+  const re = /^(visa (fler|alla|mer|hela)|läs (mer|hela))/i; let n = 0;
   document.querySelectorAll('button').forEach(b => { if (re.test((b.innerText||'').trim())) { b.click(); n++ } });
   return n }"""
 HAMTA = """() => { const m = n => (document.querySelector(`meta[name="${n}"]`)||{}).content || '';

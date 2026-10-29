@@ -57,6 +57,14 @@ uto-camping-och-stugor, uto-vardshus.
 - Steg 2 startat med pilot-Granskare för Fjäderholmarna (minsta registret
   med färdig cache). Instruktionen justeras efter piloten innan de andra
   öarna startar.
+- Vaxholm klar: 695 rader (556 048 tokens, 25 min). Platsernas datafix-källor
+  utökade: 59 av 73 platser har en sats med dagens text.
+- Storholmens förkontroll kördes om efter ett tillfälligt fel vid hämtningen
+  av SL:s h80.pdf: 146 rader har alla citat ordagrant, inga citat saknas.
+- Granskare 2 startad: Storholmen (mest besökt). Rättelse skickad: min
+  instruktion innehöll en kommunuppgift ur minnet, som Granskaren fick
+  besked att bortse från.
+- `verktyg/rendera.py` fäller nu också ut "Läs hela texten".
 - Teknik: klonen är grund och följde bara main. Fetch-refspec för grenen
   tillagd så att `git status` och stopphooken ser att allt är pushat.
 
