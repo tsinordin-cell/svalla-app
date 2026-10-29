@@ -1,6 +1,32 @@
 # STATUS — faktagranskningen
 
-Senaste raden överst. Varje session börjar här.
+Senaste raden överst. Varje session börjar här. Tider är svensk tid.
+
+## 2026-10-29 — session 1, fortsättning 14:40
+
+**Batch 01, steg 1: avbrutet i natt, återupptaget.**
+- 05:25 startade tio Utvinnare (nio öar + sidmallarna). Alla stoppades av
+  kontots 5-timmarsgräns innan något register skrevs (MÄTT: `register/b01/`
+  tom). Gränsen släppte 09:00.
+- Fel i underlaget: de hämtade sidorna saknade synlig text. Ösidorna
+  strömmar in huvudinnehållet efter laddningsskelettet (`loading.tsx`), så
+  HTML:en som hämtades med curl hade ett tomt `<main>`. Rättat: sidorna
+  renderas i Chromium med `verktyg/rendera.py` (81 sidor, 37 593 ord,
+  utfällbara listor öppnade).
+- FAQ: bara första svaret är utfällt på sidan. Alla svar finns ordagrant i
+  sidans FAQPage-JSON-LD, som byggs av samma `getFaqsForIsland`.
+- Körregel: högst 4 agenter samtidigt, så att kontots gräns inte låses för
+  annan användning. Granskarna sparar källor i en gemensam cache och söker
+  citat med grep i stället för att läsa hela sidor.
+- Kö för steg 1: igång Fjäderholmarna, Utö, Möja, Sandhamn. Väntar Grinda,
+  Vaxholm, Storholmen, Styrsö, Husarö, sidmallarna. Agenterna fortsätter
+  från där de stannade.
+- Rollinstruktionerna ligger i `roller/`, verktygen i `verktyg/`.
+- Oväntat, utanför granskningen: varje ösida har två identiska
+  FAQPage-block i JSON-LD, ett från sidmallen (`src/app/o/[slug]/page.tsx`)
+  och ett från `FAQSection`. Inget faktafel.
+- Rättelse: klockslagen i session 1:s rader på /team var uppskattade, inte
+  avlästa. Databasen visar att den senaste uppdateringen gjordes 05:20.
 
 ## 2026-10-29 — session 1
 
