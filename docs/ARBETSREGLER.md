@@ -83,6 +83,12 @@ linjer), kommunen, Skärgårdsstiftelsen, STF, visitskargarden.se, kommunala
 destinationsbolag, och verksamhetens egen webbplats. Som reservkälla för
 gästhamnar: gasthamnsguide.se — märk den som reservkälla.
 
+Verksamhetens egen Facebook- eller Instagramsida räknas som verksamhetens egen
+källa (nivå 2) för uppgifter om verksamheten själv — öppet, säsong, utbud — om
+det senaste inlägget är högst 12 månader gammalt. Skriv inläggets datum i
+KÄLLA-raden. Aldrig för uppgifter om något annat än verksamheten själv.
+(Tom 2026-10-28, faktagranskningen.)
+
 Förbjudna: Wikipedia, bloggar, TripAdvisor, Booking/Airbnb, ruttdirekt,
 rome2rio, moovit, restaurangguider, bokningsplattformar som ensam källa,
 nyhetsartiklar som ensam källa.
@@ -91,7 +97,21 @@ Aldrig i datafilerna: priser utan publicerad prislista, öppettider,
 avgångstider. Superlativ ("bäst", "finast", "mest hyllade") kräver att en
 myndighet eller operatör säger det — annars bort.
 
-TOMT ÄR ALLTID TILLÅTET. Går påståendet inte att belägga, ta bort det.
+ERSÄTT, RADERA INTE (Tom 2026-10-28, ersätter "TOMT ÄR ALLTID TILLÅTET").
+
+- **Lag 2 – ersätt, radera inte.** Ett fel rättas med rätt uppgift. Ordningen
+  är: rätta → precisera eller generalisera → skriv frånvaron ("det finns ingen
+  restaurang på ön; närmaste är …") → stryk och kompensera. Tomt är fortfarande
+  tillåtet för ett enskilt påstående som inte går att belägga, men när något
+  stryks fylls luckan med annat belagt innehåll.
+- **Lag 3 – ingen sida blir tunnare.** Ord och belagda sakuppgifter per sida
+  får inte minska (ord ≥ 95 % av baslinjen i docs/faktagranskning/baslinje.json),
+  och ingen sektion som hade innehåll får bli tom. Utfyllnad räknas inte: en ny
+  mening som kan flyttas till en annan ösida utan att bli fel är utfyllnad.
+- Aldrig "cirka" eller "ungefär" för att slippa källa, aldrig "enligt uppgift",
+  aldrig en obelagd uppgift utbytt mot en annan obelagd.
+
+Metoden och registren: docs/faktagranskning/README.md.
 
 ### Kontrollsteget — så läser man KÄLLA-raderna (MÄTT i Bohuslän 2026-09-16)
 

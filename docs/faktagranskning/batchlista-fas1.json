@@ -1,0 +1,865 @@
+[
+ {
+  "batch": "01",
+  "oar": [
+   {
+    "slug": "storholmen",
+    "namn": "Storholmen",
+    "region": "mellersta",
+    "sessioner90d": 45,
+    "enheter": 53,
+    "platser": 1
+   },
+   {
+    "slug": "moja",
+    "namn": "Möja",
+    "region": "mellersta",
+    "sessioner90d": 26,
+    "enheter": 205,
+    "platser": 9
+   },
+   {
+    "slug": "uto",
+    "namn": "Utö",
+    "region": "södra",
+    "sessioner90d": 20,
+    "enheter": 192,
+    "platser": 14
+   },
+   {
+    "slug": "sandhamn",
+    "namn": "Sandhamn",
+    "region": "mellersta",
+    "sessioner90d": 16,
+    "enheter": 190,
+    "platser": 15
+   },
+   {
+    "slug": "fjaderholmarna",
+    "namn": "Fjäderholmarna",
+    "region": "mellersta",
+    "sessioner90d": 15,
+    "enheter": 159,
+    "platser": 4
+   },
+   {
+    "slug": "grinda",
+    "namn": "Grinda",
+    "region": "mellersta",
+    "sessioner90d": 15,
+    "enheter": 208,
+    "platser": 10
+   },
+   {
+    "slug": "vaxholm",
+    "namn": "Vaxholm",
+    "region": "mellersta",
+    "sessioner90d": 15,
+    "enheter": 182,
+    "platser": 20
+   },
+   {
+    "slug": "styrso",
+    "namn": "Styrsö",
+    "region": "goteborg",
+    "sessioner90d": 15,
+    "enheter": 97,
+    "platser": 17
+   },
+   {
+    "slug": "husaro",
+    "namn": "Husarö",
+    "region": "mellersta",
+    "sessioner90d": 13,
+    "enheter": 68,
+    "platser": 10
+   }
+  ]
+ },
+ {
+  "batch": "02",
+  "oar": [
+   {
+    "slug": "yxlan",
+    "namn": "Yxlan",
+    "region": "norra",
+    "sessioner90d": 12,
+    "enheter": 71,
+    "platser": 5
+   },
+   {
+    "slug": "adelsjo",
+    "namn": "Adelsö",
+    "region": "mellersta",
+    "sessioner90d": 12,
+    "enheter": 70,
+    "platser": 0
+   },
+   {
+    "slug": "blido",
+    "namn": "Blidö",
+    "region": "norra",
+    "sessioner90d": 11,
+    "enheter": 98,
+    "platser": 7
+   },
+   {
+    "slug": "runmaro",
+    "namn": "Runmarö",
+    "region": "mellersta",
+    "sessioner90d": 11,
+    "enheter": 130,
+    "platser": 13
+   },
+   {
+    "slug": "vrango",
+    "namn": "Vrångö",
+    "region": "goteborg",
+    "sessioner90d": 10,
+    "enheter": 65,
+    "platser": 12
+   },
+   {
+    "slug": "karingon",
+    "namn": "Käringön",
+    "region": "bohuslan",
+    "sessioner90d": 10,
+    "enheter": 122,
+    "platser": 2
+   },
+   {
+    "slug": "marstrand",
+    "namn": "Marstrand",
+    "region": "bohuslan",
+    "sessioner90d": 10,
+    "enheter": 131,
+    "platser": 11
+   },
+   {
+    "slug": "rindo",
+    "namn": "Rindö",
+    "region": "mellersta",
+    "sessioner90d": 9,
+    "enheter": 69,
+    "platser": 18
+   },
+   {
+    "slug": "kymmendo",
+    "namn": "Kymmendö",
+    "region": "södra",
+    "sessioner90d": 9,
+    "enheter": 87,
+    "platser": 1
+   }
+  ]
+ },
+ {
+  "batch": "03",
+  "oar": [
+   {
+    "slug": "smaadalaro",
+    "namn": "Smådalarö",
+    "region": "södra",
+    "sessioner90d": 9,
+    "enheter": 98,
+    "platser": 2
+   },
+   {
+    "slug": "ljustero",
+    "namn": "Ljusterö",
+    "region": "mellersta",
+    "sessioner90d": 8,
+    "enheter": 157,
+    "platser": 11
+   },
+   {
+    "slug": "vinga",
+    "namn": "Vinga",
+    "region": "goteborg",
+    "sessioner90d": 8,
+    "enheter": 84,
+    "platser": 2
+   },
+   {
+    "slug": "graddo",
+    "namn": "Gräddö",
+    "region": "norra",
+    "sessioner90d": 7,
+    "enheter": 96,
+    "platser": 7
+   },
+   {
+    "slug": "norrora",
+    "namn": "Norröra",
+    "region": "norra",
+    "sessioner90d": 7,
+    "enheter": 87,
+    "platser": 1
+   },
+   {
+    "slug": "rodloga",
+    "namn": "Rödlöga",
+    "region": "norra",
+    "sessioner90d": 7,
+    "enheter": 108,
+    "platser": 2
+   },
+   {
+    "slug": "svartloga",
+    "namn": "Svartlöga",
+    "region": "norra",
+    "sessioner90d": 7,
+    "enheter": 114,
+    "platser": 0
+   },
+   {
+    "slug": "svenska-hogarna",
+    "namn": "Svenska Högarna",
+    "region": "norra",
+    "sessioner90d": 7,
+    "enheter": 69,
+    "platser": 1
+   },
+   {
+    "slug": "birka",
+    "namn": "Birka",
+    "region": "mellersta",
+    "sessioner90d": 7,
+    "enheter": 129,
+    "platser": 1
+   }
+  ]
+ },
+ {
+  "batch": "04",
+  "oar": [
+   {
+    "slug": "bullero",
+    "namn": "Bullerö",
+    "region": "mellersta",
+    "sessioner90d": 7,
+    "enheter": 81,
+    "platser": 1
+   },
+   {
+    "slug": "ingmarso",
+    "namn": "Ingmarsö",
+    "region": "mellersta",
+    "sessioner90d": 7,
+    "enheter": 102,
+    "platser": 16
+   },
+   {
+    "slug": "svartso",
+    "namn": "Svartsö",
+    "region": "mellersta",
+    "sessioner90d": 7,
+    "enheter": 133,
+    "platser": 9
+   },
+   {
+    "slug": "dalaro",
+    "namn": "Dalarö",
+    "region": "södra",
+    "sessioner90d": 7,
+    "enheter": 132,
+    "platser": 10
+   },
+   {
+    "slug": "tynningo",
+    "namn": "Tynningö",
+    "region": "norra",
+    "sessioner90d": 6,
+    "enheter": 98,
+    "platser": 21
+   },
+   {
+    "slug": "finnhamn",
+    "namn": "Finnhamn",
+    "region": "mellersta",
+    "sessioner90d": 6,
+    "enheter": 179,
+    "platser": 11
+   },
+   {
+    "slug": "vindo",
+    "namn": "Vindö",
+    "region": "mellersta",
+    "sessioner90d": 6,
+    "enheter": 74,
+    "platser": 3
+   },
+   {
+    "slug": "fjardlang",
+    "namn": "Fjärdlång",
+    "region": "södra",
+    "sessioner90d": 6,
+    "enheter": 83,
+    "platser": 0
+   },
+   {
+    "slug": "musko",
+    "namn": "Muskö",
+    "region": "södra",
+    "sessioner90d": 6,
+    "enheter": 69,
+    "platser": 6
+   }
+  ]
+ },
+ {
+  "batch": "05",
+  "oar": [
+   {
+    "slug": "nattaro",
+    "namn": "Nåttarö",
+    "region": "södra",
+    "sessioner90d": 6,
+    "enheter": 141,
+    "platser": 4
+   },
+   {
+    "slug": "orno",
+    "namn": "Ornö",
+    "region": "södra",
+    "sessioner90d": 6,
+    "enheter": 149,
+    "platser": 7
+   },
+   {
+    "slug": "kladesholmen",
+    "namn": "Klädesholmen",
+    "region": "bohuslan",
+    "sessioner90d": 6,
+    "enheter": 124,
+    "platser": 17
+   },
+   {
+    "slug": "arholma",
+    "namn": "Arholma",
+    "region": "norra",
+    "sessioner90d": 5,
+    "enheter": 130,
+    "platser": 6
+   },
+   {
+    "slug": "gallno",
+    "namn": "Gällnö",
+    "region": "mellersta",
+    "sessioner90d": 5,
+    "enheter": 127,
+    "platser": 11
+   },
+   {
+    "slug": "langviksskaret",
+    "namn": "Långviksskär",
+    "region": "mellersta",
+    "sessioner90d": 5,
+    "enheter": 31,
+    "platser": 0
+   },
+   {
+    "slug": "resaro",
+    "namn": "Resarö",
+    "region": "mellersta",
+    "sessioner90d": 5,
+    "enheter": 67,
+    "platser": 19
+   },
+   {
+    "slug": "toro",
+    "namn": "Torö",
+    "region": "södra",
+    "sessioner90d": 5,
+    "enheter": 76,
+    "platser": 3
+   },
+   {
+    "slug": "orust",
+    "namn": "Orust",
+    "region": "bohuslan",
+    "sessioner90d": 5,
+    "enheter": 101,
+    "platser": 1
+   }
+  ]
+ },
+ {
+  "batch": "06",
+  "oar": [
+   {
+    "slug": "lilla-karlso",
+    "namn": "Lilla Karlsö",
+    "region": "ovriga",
+    "sessioner90d": 5,
+    "enheter": 59,
+    "platser": 1
+   },
+   {
+    "slug": "oland",
+    "namn": "Öland",
+    "region": "ovriga",
+    "sessioner90d": 5,
+    "enheter": 76,
+    "platser": 4
+   },
+   {
+    "slug": "singo",
+    "namn": "Singö",
+    "region": "norra",
+    "sessioner90d": 4,
+    "enheter": 63,
+    "platser": 3
+   },
+   {
+    "slug": "vaddo",
+    "namn": "Väddö",
+    "region": "norra",
+    "sessioner90d": 4,
+    "enheter": 78,
+    "platser": 3
+   },
+   {
+    "slug": "ingaro",
+    "namn": "Ingarö",
+    "region": "mellersta",
+    "sessioner90d": 4,
+    "enheter": 73,
+    "platser": 11
+   },
+   {
+    "slug": "morko",
+    "namn": "Mörkö",
+    "region": "södra",
+    "sessioner90d": 4,
+    "enheter": 86,
+    "platser": 3
+   },
+   {
+    "slug": "branno",
+    "namn": "Brännö",
+    "region": "goteborg",
+    "sessioner90d": 4,
+    "enheter": 78,
+    "platser": 16
+   },
+   {
+    "slug": "donso",
+    "namn": "Donsö",
+    "region": "goteborg",
+    "sessioner90d": 4,
+    "enheter": 87,
+    "platser": 16
+   },
+   {
+    "slug": "roro",
+    "namn": "Rörö",
+    "region": "goteborg",
+    "sessioner90d": 4,
+    "enheter": 89,
+    "platser": 9
+   }
+  ]
+ },
+ {
+  "batch": "07",
+  "oar": [
+   {
+    "slug": "astol",
+    "namn": "Åstol",
+    "region": "bohuslan",
+    "sessioner90d": 4,
+    "enheter": 88,
+    "platser": 21
+   },
+   {
+    "slug": "grundsund",
+    "namn": "Grundsund",
+    "region": "bohuslan",
+    "sessioner90d": 4,
+    "enheter": 87,
+    "platser": 9
+   },
+   {
+    "slug": "gullholmen",
+    "namn": "Gullholmen",
+    "region": "bohuslan",
+    "sessioner90d": 4,
+    "enheter": 87,
+    "platser": 8
+   },
+   {
+    "slug": "hamburgsund",
+    "namn": "Hamburgsund",
+    "region": "bohuslan",
+    "sessioner90d": 4,
+    "enheter": 90,
+    "platser": 17
+   },
+   {
+    "slug": "hono",
+    "namn": "Hönö",
+    "region": "bohuslan",
+    "sessioner90d": 4,
+    "enheter": 113,
+    "platser": 20
+   },
+   {
+    "slug": "aspo-blekinge",
+    "namn": "Aspö",
+    "region": "ovriga",
+    "sessioner90d": 4,
+    "enheter": 91,
+    "platser": 0
+   },
+   {
+    "slug": "gotska-sandon",
+    "namn": "Gotska Sandön",
+    "region": "ovriga",
+    "sessioner90d": 4,
+    "enheter": 89,
+    "platser": 1
+   },
+   {
+    "slug": "hemson",
+    "namn": "Hemsön",
+    "region": "ovriga",
+    "sessioner90d": 4,
+    "enheter": 63,
+    "platser": 0
+   },
+   {
+    "slug": "sturko",
+    "namn": "Sturkö",
+    "region": "ovriga",
+    "sessioner90d": 4,
+    "enheter": 94,
+    "platser": 0
+   }
+  ]
+ },
+ {
+  "batch": "08",
+  "oar": [
+   {
+    "slug": "furusund",
+    "namn": "Furusund",
+    "region": "norra",
+    "sessioner90d": 3,
+    "enheter": 121,
+    "platser": 7
+   },
+   {
+    "slug": "djuro",
+    "namn": "Djurö",
+    "region": "mellersta",
+    "sessioner90d": 3,
+    "enheter": 107,
+    "platser": 12
+   },
+   {
+    "slug": "namdo",
+    "namn": "Nämdö",
+    "region": "mellersta",
+    "sessioner90d": 3,
+    "enheter": 115,
+    "platser": 7
+   },
+   {
+    "slug": "asko",
+    "namn": "Askö",
+    "region": "södra",
+    "sessioner90d": 3,
+    "enheter": 72,
+    "platser": 0
+   },
+   {
+    "slug": "galo",
+    "namn": "Gålö",
+    "region": "södra",
+    "sessioner90d": 3,
+    "enheter": 80,
+    "platser": 4
+   },
+   {
+    "slug": "huvudskar",
+    "namn": "Huvudskär",
+    "region": "södra",
+    "sessioner90d": 3,
+    "enheter": 50,
+    "platser": 2
+   },
+   {
+    "slug": "landsort",
+    "namn": "Landsort",
+    "region": "södra",
+    "sessioner90d": 3,
+    "enheter": 140,
+    "platser": 4
+   },
+   {
+    "slug": "kosterhavet",
+    "namn": "Kosterhavet",
+    "region": "bohuslan",
+    "sessioner90d": 3,
+    "enheter": 109,
+    "platser": 7
+   },
+   {
+    "slug": "pater-noster",
+    "namn": "Pater Noster",
+    "region": "bohuslan",
+    "sessioner90d": 3,
+    "enheter": 105,
+    "platser": 0
+   }
+  ]
+ },
+ {
+  "batch": "09",
+  "oar": [
+   {
+    "slug": "smogen",
+    "namn": "Smögen",
+    "region": "bohuslan",
+    "sessioner90d": 3,
+    "enheter": 113,
+    "platser": 23
+   },
+   {
+    "slug": "tjorn",
+    "namn": "Tjörn",
+    "region": "bohuslan",
+    "sessioner90d": 3,
+    "enheter": 118,
+    "platser": 7
+   },
+   {
+    "slug": "gotland",
+    "namn": "Gotland",
+    "region": "ovriga",
+    "sessioner90d": 3,
+    "enheter": 118,
+    "platser": 1
+   },
+   {
+    "slug": "hano",
+    "namn": "Hanö",
+    "region": "ovriga",
+    "sessioner90d": 3,
+    "enheter": 95,
+    "platser": 0
+   },
+   {
+    "slug": "ulvon",
+    "namn": "Ulvön",
+    "region": "ovriga",
+    "sessioner90d": 3,
+    "enheter": 137,
+    "platser": 0
+   },
+   {
+    "slug": "ven",
+    "namn": "Ven",
+    "region": "ovriga",
+    "sessioner90d": 3,
+    "enheter": 143,
+    "platser": 0
+   },
+   {
+    "slug": "fejan",
+    "namn": "Fejan",
+    "region": "norra",
+    "sessioner90d": 2,
+    "enheter": 91,
+    "platser": 4
+   },
+   {
+    "slug": "lido",
+    "namn": "Lidö",
+    "region": "norra",
+    "sessioner90d": 2,
+    "enheter": 101,
+    "platser": 6
+   },
+   {
+    "slug": "ekno",
+    "namn": "Eknö",
+    "region": "mellersta",
+    "sessioner90d": 2,
+    "enheter": 35,
+    "platser": 14
+   }
+  ]
+ },
+ {
+  "batch": "10",
+  "oar": [
+   {
+    "slug": "langskar",
+    "namn": "Långskär",
+    "region": "mellersta",
+    "sessioner90d": 2,
+    "enheter": 33,
+    "platser": 1
+   },
+   {
+    "slug": "storskar",
+    "namn": "Storskär",
+    "region": "mellersta",
+    "sessioner90d": 2,
+    "enheter": 30,
+    "platser": 0
+   },
+   {
+    "slug": "asperon",
+    "namn": "Asperö",
+    "region": "goteborg",
+    "sessioner90d": 2,
+    "enheter": 55,
+    "platser": 17
+   },
+   {
+    "slug": "ockero",
+    "namn": "Öckerö",
+    "region": "goteborg",
+    "sessioner90d": 2,
+    "enheter": 90,
+    "platser": 24
+   },
+   {
+    "slug": "dyron",
+    "namn": "Dyrön",
+    "region": "bohuslan",
+    "sessioner90d": 2,
+    "enheter": 130,
+    "platser": 18
+   },
+   {
+    "slug": "fjallbacka",
+    "namn": "Fjällbacka",
+    "region": "bohuslan",
+    "sessioner90d": 2,
+    "enheter": 105,
+    "platser": 12
+   },
+   {
+    "slug": "grebbestad",
+    "namn": "Grebbestad",
+    "region": "bohuslan",
+    "sessioner90d": 2,
+    "enheter": 130,
+    "platser": 13
+   },
+   {
+    "slug": "kungshamn",
+    "namn": "Kungshamn",
+    "region": "bohuslan",
+    "sessioner90d": 2,
+    "enheter": 92,
+    "platser": 23
+   },
+   {
+    "slug": "lysekil",
+    "namn": "Lysekil",
+    "region": "bohuslan",
+    "sessioner90d": 2,
+    "enheter": 114,
+    "platser": 17
+   }
+  ]
+ },
+ {
+  "batch": "11",
+  "oar": [
+   {
+    "slug": "faro",
+    "namn": "Fårö",
+    "region": "ovriga",
+    "sessioner90d": 2,
+    "enheter": 123,
+    "platser": 1
+   },
+   {
+    "slug": "holmon",
+    "namn": "Holmön",
+    "region": "ovriga",
+    "sessioner90d": 2,
+    "enheter": 127,
+    "platser": 0
+   },
+   {
+    "slug": "tjaro",
+    "namn": "Tjärö",
+    "region": "ovriga",
+    "sessioner90d": 2,
+    "enheter": 124,
+    "platser": 0
+   },
+   {
+    "slug": "trysunda",
+    "namn": "Trysunda",
+    "region": "ovriga",
+    "sessioner90d": 2,
+    "enheter": 113,
+    "platser": 0
+   },
+   {
+    "slug": "visingo",
+    "namn": "Visingsö",
+    "region": "ovriga",
+    "sessioner90d": 2,
+    "enheter": 111,
+    "platser": 0
+   },
+   {
+    "slug": "graskar",
+    "namn": "Gräskö",
+    "region": "norra",
+    "sessioner90d": 1,
+    "enheter": 37,
+    "platser": 0
+   },
+   {
+    "slug": "norrpada",
+    "namn": "Norrpada",
+    "region": "norra",
+    "sessioner90d": 1,
+    "enheter": 37,
+    "platser": 0
+   },
+   {
+    "slug": "hasselo",
+    "namn": "Hasselö",
+    "region": "mellersta",
+    "sessioner90d": 1,
+    "enheter": 40,
+    "platser": 0
+   },
+   {
+    "slug": "ormsko",
+    "namn": "Ormskär",
+    "region": "mellersta",
+    "sessioner90d": 1,
+    "enheter": 29,
+    "platser": 4
+   },
+   {
+    "slug": "yttre-garden",
+    "namn": "Yttre Gården",
+    "region": "södra",
+    "sessioner90d": 1,
+    "enheter": 92,
+    "platser": 5
+   },
+   {
+    "slug": "bla-jungfrun",
+    "namn": "Blå Jungfrun",
+    "region": "ovriga",
+    "sessioner90d": 1,
+    "enheter": 77,
+    "platser": 0
+   }
+  ]
+ }
+]

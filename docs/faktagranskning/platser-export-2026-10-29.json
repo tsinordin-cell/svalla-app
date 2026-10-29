@@ -1,0 +1,6293 @@
+[
+{
+"slug": "ackes",
+"type": "restaurant",
+"island": "Fjällbacka",
+"latitude": 58.59806,
+"longitude": 11.28223,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "aland-distillery-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.23123,
+"longitude": 20.08342,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "algebybadet",
+"type": "beach",
+"island": null,
+"latitude": 59.62173,
+"longitude": 18.38734,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "alice-foodtruck-skarhamn",
+"type": "restaurant",
+"island": "Skärhamn",
+"latitude": 57.98699,
+"longitude": 11.54835,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "allmanna-bastun",
+"type": "sauna",
+"island": null,
+"latitude": 57.71694,
+"longitude": 11.9571,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "andra-pumpviken",
+"type": "beach",
+"island": null,
+"latitude": 58.86719,
+"longitude": 17.91565,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "andys-thai",
+"type": "restaurant",
+"island": "Ellös",
+"latitude": 58.18574,
+"longitude": 11.4696,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "angso-slottsrestaurang",
+"type": "cafe",
+"island": "Engsö",
+"latitude": 59.53291,
+"longitude": 16.85724,
+"ord": 25,
+"hidden": false
+},
+{
+"slug": "arholma-arholma-handel-stugor",
+"type": "cabin",
+"island": "Arholma",
+"latitude": 59.85119,
+"longitude": 19.10806,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "arholma-arholma-pensionat",
+"type": "hotel",
+"island": "Arholma",
+"latitude": 59.85311,
+"longitude": 19.12629,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "arholma-brygga",
+"type": "restaurant",
+"island": "Arholma",
+"latitude": 59.8456,
+"longitude": 19.1124,
+"ord": 22,
+"hidden": true
+},
+{
+"slug": "arholma-dansbana-krog",
+"type": "bar",
+"island": "Arholma",
+"latitude": 59.84997,
+"longitude": 19.10859,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "arholma-gasthamn",
+"type": "harbor",
+"island": "Arholma",
+"latitude": 59.86244,
+"longitude": 19.12396,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "arholma-hamnkrog",
+"type": "restaurant",
+"island": "Arholma",
+"latitude": 59.845,
+"longitude": 19.13,
+"ord": 26,
+"hidden": true
+},
+{
+"slug": "arholma-sjomack",
+"type": "fuel",
+"island": "Arholma",
+"latitude": 59.85125,
+"longitude": 19.10765,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "arholma-stf-arholma",
+"type": "hotel",
+"island": "Arholma",
+"latitude": 59.85987,
+"longitude": 19.12244,
+"ord": 42,
+"hidden": false
+},
+{
+"slug": "arnell-pa-kajen",
+"type": "restaurant",
+"island": "Marstrand",
+"latitude": 57.88851,
+"longitude": 11.5835,
+"ord": 27,
+"hidden": false
+},
+{
+"slug": "arsta-havsbad",
+"type": "beach",
+"island": null,
+"latitude": 59.08142,
+"longitude": 18.16579,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "arsta-havsbads-grillen",
+"type": "restaurant",
+"island": "Årsta Havsbad",
+"latitude": 59.08623,
+"longitude": 18.16596,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "artipelag",
+"type": "restaurant",
+"island": "Värmdö",
+"latitude": 59.3149,
+"longitude": 18.3566,
+"ord": 15,
+"hidden": false
+},
+{
+"slug": "asattra-gard-och-hamn",
+"type": "harbor",
+"island": "Ljusterö",
+"latitude": 59.50458,
+"longitude": 18.63747,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "asattra-marina",
+"type": "harbor",
+"island": "Ljusterö",
+"latitude": 59.50415,
+"longitude": 18.63167,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "asattra-sommarkiosk",
+"type": "cafe",
+"island": "Ljusterö",
+"latitude": 59.513,
+"longitude": 18.632,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "askimsbadet",
+"type": "beach",
+"island": null,
+"latitude": 57.62554,
+"longitude": 11.92638,
+"ord": 51,
+"hidden": false
+},
+{
+"slug": "aspoe-gasthamn",
+"type": "marina",
+"island": "Aspoe",
+"latitude": 56.2645,
+"longitude": 15.3287,
+"ord": 13,
+"hidden": true
+},
+{
+"slug": "aspoe-krogen",
+"type": "restaurant",
+"island": "Aspö",
+"latitude": 56.2645,
+"longitude": 15.3287,
+"ord": 12,
+"hidden": true
+},
+{
+"slug": "aspoe-naturhamn",
+"type": "anchorage",
+"island": "Aspö",
+"latitude": 56.2645,
+"longitude": 15.3287,
+"ord": 12,
+"hidden": true
+},
+{
+"slug": "astol-hamnkrog",
+"type": "restaurant",
+"island": "Åstol",
+"latitude": 57.92,
+"longitude": 11.6,
+"ord": 18,
+"hidden": true
+},
+{
+"slug": "astols-rokeri-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 57.92485,
+"longitude": 11.58915,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "ax-marin-bensin",
+"type": "fuel",
+"island": "Strömstad",
+"latitude": 58.92878,
+"longitude": 11.16983,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "backbybadet",
+"type": "beach",
+"island": null,
+"latitude": 60.17734,
+"longitude": 18.77791,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "bad",
+"type": "beach",
+"island": null,
+"latitude": 58.82933,
+"longitude": 17.87245,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "badberget",
+"type": "beach",
+"island": null,
+"latitude": 59.41332,
+"longitude": 18.7765,
+"ord": 7,
+"hidden": false
+},
+{
+"slug": "badhuset",
+"type": "sauna",
+"island": null,
+"latitude": 57.75032,
+"longitude": 11.64934,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "badplats-farastjarn",
+"type": "beach",
+"island": null,
+"latitude": 57.61131,
+"longitude": 12.0288,
+"ord": 2,
+"hidden": true
+},
+{
+"slug": "badplats-klyftan",
+"type": "beach",
+"island": null,
+"latitude": 58.20976,
+"longitude": 11.42037,
+"ord": 15,
+"hidden": false
+},
+{
+"slug": "badplats-kvarnsjon",
+"type": "beach",
+"island": null,
+"latitude": 59.31329,
+"longitude": 18.39553,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "badplats-sabyviken",
+"type": "beach",
+"island": null,
+"latitude": 59.25335,
+"longitude": 18.52027,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "badviken",
+"type": "beach",
+"island": null,
+"latitude": 59.43385,
+"longitude": 18.30991,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "bagarbordet-finnhamn",
+"type": "cafe",
+"island": "Ingmarsö",
+"latitude": 59.46746,
+"longitude": 18.75721,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "bakfickan-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.64065,
+"longitude": 18.29512,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "bakfickan-uto",
+"type": "bar",
+"island": "Utö",
+"latitude": 58.97,
+"longitude": 18.3265,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "bakgarden-uto",
+"type": "cafe",
+"island": "Utö",
+"latitude": 58.9699,
+"longitude": 18.3255,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "bara-smor-fjallbacka",
+"type": "restaurant",
+"island": "Fjällbacka",
+"latitude": 58.59834,
+"longitude": 11.28257,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "barseback-marina",
+"type": "harbor",
+"island": "Barsebäck",
+"latitude": 55.75667,
+"longitude": 12.90167,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "bassotto-pizza",
+"type": "restaurant",
+"island": "Hälleviksstrand",
+"latitude": 58.11719,
+"longitude": 11.45598,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "bastu-brf-doppingen",
+"type": "sauna",
+"island": null,
+"latitude": 58.8986,
+"longitude": 17.92728,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "bastuhuset",
+"type": "sauna",
+"island": null,
+"latitude": 59.45212,
+"longitude": 18.82309,
+"ord": 7,
+"hidden": false
+},
+{
+"slug": "batebacken",
+"type": "restaurant",
+"island": "Styrsö",
+"latitude": 57.62068,
+"longitude": 11.7683,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "bella-gastis",
+"type": "restaurant",
+"island": "Hunnebostrand",
+"latitude": 58.44222,
+"longitude": 11.295,
+"ord": 27,
+"hidden": false
+},
+{
+"slug": "bergsjobadet",
+"type": "beach",
+"island": null,
+"latitude": 57.74959,
+"longitude": 12.06437,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "best-western-strand-hotel-visby-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.64172,
+"longitude": 18.29254,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "big-buco-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.63877,
+"longitude": 18.29233,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "bistro-lillstromma",
+"type": "restaurant",
+"island": "Värmdö",
+"latitude": null,
+"longitude": null,
+"ord": 18,
+"hidden": false
+},
+{
+"slug": "bistro-sands",
+"type": "restaurant",
+"island": "Sandhamn",
+"latitude": 59.2882,
+"longitude": 18.9115,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "bjorholmen-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.05226,
+"longitude": 11.52154,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "bjorko-birka-vikingastad-bochb",
+"type": "hotel",
+"island": "Björkö",
+"latitude": 59.33,
+"longitude": 17.5333,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "bjorko-gasthamn",
+"type": "marina",
+"island": "Björkö",
+"latitude": 57.7332,
+"longitude": 11.6697,
+"ord": 24,
+"hidden": false
+},
+{
+"slug": "bjorko-sjokrog",
+"type": "restaurant",
+"island": "Björkö",
+"latitude": 57.7392,
+"longitude": 11.6231,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "bjorkuddens-bad",
+"type": "beach",
+"island": null,
+"latitude": 59.24681,
+"longitude": 18.3044,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "bjorviks-havsbad",
+"type": "beach",
+"island": "Ingarö",
+"latitude": 59.22075,
+"longitude": 18.53746,
+"ord": 18,
+"hidden": false
+},
+{
+"slug": "blekets-bastu",
+"type": "sauna",
+"island": "Bleket",
+"latitude": 57.95214,
+"longitude": 11.5632,
+"ord": 47,
+"hidden": false
+},
+{
+"slug": "blido-brygga-bistro",
+"type": "restaurant",
+"island": "Blidö",
+"latitude": 59.63568,
+"longitude": 18.92383,
+"ord": 18,
+"hidden": false
+},
+{
+"slug": "blido-gasthamn",
+"type": "harbor",
+"island": "Blidö",
+"latitude": 59.63574,
+"longitude": 18.92125,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "blido-sommarcafe",
+"type": "cafe",
+"island": "Blidö",
+"latitude": 59.605,
+"longitude": 18.9,
+"ord": 24,
+"hidden": true
+},
+{
+"slug": "blido-vardshus",
+"type": "restaurant",
+"island": "Blidö",
+"latitude": 59.77137,
+"longitude": 19.08008,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "blynasvikens-batklubb",
+"type": "harbor",
+"island": "Vaxholm",
+"latitude": 59.40706,
+"longitude": 18.31948,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "bockholmen-restaurang",
+"type": "restaurant",
+"island": "Bockholmen",
+"latitude": 59.3776,
+"longitude": 18.0529,
+"ord": 51,
+"hidden": false
+},
+{
+"slug": "bokhandlarens-pub",
+"type": "restaurant",
+"island": "Sydkoster",
+"latitude": 58.88436,
+"longitude": 11.04037,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "bovallstrands-marina",
+"type": "harbor",
+"island": "Bovallstrand",
+"latitude": 58.47099,
+"longitude": 11.31435,
+"ord": 41,
+"hidden": false
+},
+{
+"slug": "branno-bastubad",
+"type": "sauna",
+"island": "Brännö",
+"latitude": 57.6231,
+"longitude": 11.7503,
+"ord": 18,
+"hidden": false
+},
+{
+"slug": "branno-brygga",
+"type": "restaurant",
+"island": "Brännö",
+"latitude": 57.6189,
+"longitude": 11.7547,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "branno-husvik-gasthamn",
+"type": "harbor",
+"island": "Brännö",
+"latitude": 57.63535,
+"longitude": 11.76676,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "branno-vardshus",
+"type": "restaurant",
+"island": "Brännö",
+"latitude": 57.64083,
+"longitude": 11.77774,
+"ord": 51,
+"hidden": false
+},
+{
+"slug": "brasserie-angbatsbryggan-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.09835,
+"longitude": 19.94698,
+"ord": 40,
+"hidden": false
+},
+{
+"slug": "bromskar",
+"type": "harbor",
+"island": "Blidö",
+"latitude": 59.62519,
+"longitude": 18.9876,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "brs-lilla-horna",
+"type": "restaurant",
+"island": "Smögen",
+"latitude": 58.35359,
+"longitude": 11.22798,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "brudhall-hotel-restaurant-och-marina-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 59.92095,
+"longitude": 20.91184,
+"ord": 40,
+"hidden": false
+},
+{
+"slug": "bryggan-fjallbacka-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.59826,
+"longitude": 11.28189,
+"ord": 21,
+"hidden": false
+},
+{
+"slug": "bryggan-teno",
+"type": "restaurant",
+"island": "Bogesundslandet",
+"latitude": 59.39257,
+"longitude": 18.33038,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "bryggans-lilla-kok-uto",
+"type": "restaurant",
+"island": "Utö",
+"latitude": 58.96988,
+"longitude": 18.32478,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "bryggcaf-t",
+"type": "restaurant",
+"island": "Bovallstrand",
+"latitude": 58.4758,
+"longitude": 11.32178,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "bullanda-marina",
+"type": "fuel",
+"island": "Bullandö",
+"latitude": 59.2398,
+"longitude": 18.7398,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "bullando-krog",
+"type": "restaurant",
+"island": "Bullandö",
+"latitude": 59.2402,
+"longitude": 18.7402,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "bullero-cafe",
+"type": "restaurant",
+"island": "Bullerö",
+"latitude": 59.2005,
+"longitude": 18.8492,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "burgsviks-krog-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.03049,
+"longitude": 18.27469,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "buskudden",
+"type": "beach",
+"island": null,
+"latitude": 59.44452,
+"longitude": 18.31681,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "byssan",
+"type": "sauna",
+"island": null,
+"latitude": 59.41583,
+"longitude": 18.66542,
+"ord": 16,
+"hidden": false
+},
+{
+"slug": "byxelkroks-hamn-oland",
+"type": "harbor",
+"island": null,
+"latitude": 57.32795,
+"longitude": 17.0069,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "byxelkroks-marina-sea-resort-oland",
+"type": "hotel",
+"island": null,
+"latitude": 57.32596,
+"longitude": 17.00826,
+"ord": 29,
+"hidden": false
+},
+{
+"slug": "caf-obergska",
+"type": "restaurant",
+"island": "Styrsö",
+"latitude": 57.61653,
+"longitude": 11.79323,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "cafe-ankaret",
+"type": "cafe",
+"island": "Sandhamn",
+"latitude": 59.2875,
+"longitude": 18.9108,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "cafe-strindbergsgarden",
+"type": "cafe",
+"island": "Sandhamn",
+"latitude": 59.2891,
+"longitude": 18.9121,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "cafe-truten-rodloga",
+"type": "cafe",
+"island": "Rödlöga",
+"latitude": 59.5919,
+"longitude": 19.1663,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "calmars-veranda",
+"type": "restaurant",
+"island": "Kungshamn",
+"latitude": 58.36138,
+"longitude": 11.2499,
+"ord": 29,
+"hidden": false
+},
+{
+"slug": "circle-k-klintsundet",
+"type": "fuel",
+"island": "Ljusterö",
+"latitude": 59.53858,
+"longitude": 18.74976,
+"ord": 52,
+"hidden": false
+},
+{
+"slug": "clarion-hotel-wisby-gotland",
+"type": "hotel",
+"island": null,
+"latitude": 57.63865,
+"longitude": 18.29099,
+"ord": 24,
+"hidden": false
+},
+{
+"slug": "club-marin-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.09962,
+"longitude": 19.94627,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "creperie-tati-gotland",
+"type": "restaurant",
+"island": "Fårö",
+"latitude": 57.93399,
+"longitude": 19.16305,
+"ord": 23,
+"hidden": false
+},
+{
+"slug": "dalaro-bageri-cafe",
+"type": "cafe",
+"island": "Dalarö",
+"latitude": 59.1322,
+"longitude": 18.4048,
+"ord": 24,
+"hidden": false
+},
+{
+"slug": "dalaro-batklubb",
+"type": "harbor",
+"island": "Dalarö",
+"latitude": 59.13642,
+"longitude": 18.4047,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "dalaro-dalaro-skans-hotell",
+"type": "hotel",
+"island": "Dalarö",
+"latitude": 59.11262,
+"longitude": 18.39004,
+"ord": 7,
+"hidden": true
+},
+{
+"slug": "dalaro-gasthamn-fiskarhamnen",
+"type": "harbor",
+"island": "Dalarö",
+"latitude": 59.12989,
+"longitude": 18.4068,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "dalaro-hamn",
+"type": "harbor",
+"island": "Dalarö",
+"latitude": 59.12955,
+"longitude": 18.4053,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "dalaro-krog",
+"type": "cafe",
+"island": "Dalarö",
+"latitude": 59.13304,
+"longitude": 18.40802,
+"ord": 18,
+"hidden": false
+},
+{
+"slug": "dalaro-skansen",
+"type": "restaurant",
+"island": "Dalarö",
+"latitude": 59.11262,
+"longitude": 18.39004,
+"ord": 25,
+"hidden": true
+},
+{
+"slug": "dalaro-smadalaro-gard",
+"type": "hotel",
+"island": "Dalarö",
+"latitude": 59.1668,
+"longitude": 18.45564,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "dalaro-turistbyra-och-gasthamn-askfatshamnen",
+"type": "harbor",
+"island": "Dalarö",
+"latitude": 59.13511,
+"longitude": 18.40213,
+"ord": 40,
+"hidden": false
+},
+{
+"slug": "dalaro-vardshus",
+"type": "restaurant",
+"island": "Dalarö",
+"latitude": 59.1315,
+"longitude": 18.4072,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "dalenbadet",
+"type": "beach",
+"island": null,
+"latitude": 59.28802,
+"longitude": 18.30676,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "degersand",
+"type": "beach",
+"island": null,
+"latitude": 60.15433,
+"longitude": 19.5973,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "diesel-och-bensin-rosholmens-sjomack",
+"type": "fuel",
+"island": "Smögen",
+"latitude": 58.36177,
+"longitude": 11.24563,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "donners-plats-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.63903,
+"longitude": 18.29118,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "donso-fiskrokeri",
+"type": "restaurant",
+"island": "Donsö",
+"latitude": 57.5983,
+"longitude": 11.7919,
+"ord": 20,
+"hidden": false
+},
+{
+"slug": "donso-gasthamn",
+"type": "harbor",
+"island": "Donsö",
+"latitude": 57.59857,
+"longitude": 11.79297,
+"ord": 50,
+"hidden": false
+},
+{
+"slug": "donso-hamnkrog",
+"type": "restaurant",
+"island": "Donsö",
+"latitude": 57.59857,
+"longitude": 11.79297,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "dykarbaren",
+"type": "bar",
+"island": "Sandhamn",
+"latitude": 59.2888,
+"longitude": 18.9103,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "dyrons-bastu",
+"type": "sauna",
+"island": null,
+"latitude": 57.92359,
+"longitude": 11.61067,
+"ord": 29,
+"hidden": false
+},
+{
+"slug": "dyrons-vardshus-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 57.92915,
+"longitude": 11.60249,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "dyvik-marina",
+"type": "harbor",
+"island": "Ljusterö",
+"latitude": 59.52777,
+"longitude": 18.5117,
+"ord": 53,
+"hidden": false
+},
+{
+"slug": "dyviken",
+"type": "beach",
+"island": null,
+"latitude": 59.28697,
+"longitude": 18.43132,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "ekelofs-mat-bar",
+"type": "restaurant",
+"island": "Smögen",
+"latitude": 58.35347,
+"longitude": 11.22797,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "ekenas-havshotell-koster-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.89517,
+"longitude": 11.04621,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "eklundsnasbadet",
+"type": "beach",
+"island": null,
+"latitude": 59.16866,
+"longitude": 17.59105,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "eksgarden-gardshotell-oland",
+"type": "restaurant",
+"island": null,
+"latitude": 56.6009,
+"longitude": 16.64129,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "ellos-badplats",
+"type": "beach",
+"island": null,
+"latitude": 58.18179,
+"longitude": 11.46582,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "ellos-hamn",
+"type": "harbor",
+"island": "Ellös",
+"latitude": 58.18419,
+"longitude": 11.46577,
+"ord": 51,
+"hidden": false
+},
+{
+"slug": "ellos-havscafe",
+"type": "restaurant",
+"island": "Ellös",
+"latitude": 58.18257,
+"longitude": 11.46716,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "elmsta-udde-gasthamn",
+"type": "harbor",
+"island": "Väddö",
+"latitude": 59.9764,
+"longitude": 18.8105,
+"ord": 53,
+"hidden": false
+},
+{
+"slug": "eriks-bastu",
+"type": "sauna",
+"island": null,
+"latitude": 59.27203,
+"longitude": 18.7275,
+"ord": 5,
+"hidden": true
+},
+{
+"slug": "eriksobadet",
+"type": "beach",
+"island": null,
+"latitude": 59.40406,
+"longitude": 18.30476,
+"ord": 41,
+"hidden": false
+},
+{
+"slug": "everts-sjobod-grebbestad-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.69731,
+"longitude": 11.21951,
+"ord": 29,
+"hidden": false
+},
+{
+"slug": "f-p-von-knorring-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.09867,
+"longitude": 19.94755,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "farnabben",
+"type": "beach",
+"island": null,
+"latitude": 59.31893,
+"longitude": 18.30792,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "farosunds-lanthamn-gotland",
+"type": "harbor",
+"island": null,
+"latitude": 57.8657,
+"longitude": 19.05813,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "fejan-outdoor-vaffelcafe",
+"type": "cafe",
+"island": "Fejan",
+"latitude": 59.74558,
+"longitude": 19.16236,
+"ord": 25,
+"hidden": false
+},
+{
+"slug": "fejan-stf-fejan",
+"type": "hotel",
+"island": "Fejan",
+"latitude": 59.74558,
+"longitude": 19.16236,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "fejans-sjokrog",
+"type": "restaurant",
+"island": "Fejan",
+"latitude": 59.744,
+"longitude": 19.167,
+"ord": 20,
+"hidden": false
+},
+{
+"slug": "fem-knop-ab",
+"type": "restaurant",
+"island": "Skärhamn",
+"latitude": 57.98976,
+"longitude": 11.54645,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "finnhamn",
+"type": "harbor",
+"island": "Finnhamn",
+"latitude": 59.48276,
+"longitude": 18.82653,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "finnhamn-finnhamn-taltplats",
+"type": "hotel",
+"island": "Finnhamn",
+"latitude": 59.47598,
+"longitude": 18.81761,
+"ord": 15,
+"hidden": false
+},
+{
+"slug": "finnhamn-finnhamns-vandrarhem",
+"type": "hotel",
+"island": "Finnhamn",
+"latitude": 59.47944,
+"longitude": 18.82361,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "finnhamns-arkipelag-ab",
+"type": "harbor",
+"island": "Finnhamn",
+"latitude": 59.48277,
+"longitude": 18.8264,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "finnhamns-krog",
+"type": "restaurant",
+"island": "Finnhamn",
+"latitude": 59.48256,
+"longitude": 18.82498,
+"ord": 41,
+"hidden": false
+},
+{
+"slug": "finnhamns-naturreservat",
+"type": "harbor",
+"island": "Finnhamn",
+"latitude": 59.4782,
+"longitude": 18.81971,
+"ord": 47,
+"hidden": false
+},
+{
+"slug": "finnsjogardens-bastu",
+"type": "sauna",
+"island": null,
+"latitude": 57.64034,
+"longitude": 12.13503,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "fiskebacksbadet",
+"type": "beach",
+"island": null,
+"latitude": 57.64843,
+"longitude": 11.84863,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "fiskehamnen-gasthamn",
+"type": "harbor",
+"island": "Lysekil",
+"latitude": 58.27448,
+"longitude": 11.44141,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "fiskmyrans-badstrand",
+"type": "beach",
+"island": null,
+"latitude": 59.261,
+"longitude": 18.42257,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "fjaderholmarna-bryggeri",
+"type": "bar",
+"island": "Fjäderholmarna",
+"latitude": 59.3283,
+"longitude": 18.175,
+"ord": 20,
+"hidden": false
+},
+{
+"slug": "fjaderholmarna-stora-bryggan",
+"type": "harbor",
+"island": "Fjäderholmarna",
+"latitude": 59.32939,
+"longitude": 18.17628,
+"ord": 48,
+"hidden": true
+},
+{
+"slug": "fjaderholmarnas-gasthamn",
+"type": "harbor",
+"island": "Fjäderholmarna",
+"latitude": 59.32909,
+"longitude": 18.17409,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "fjaderholmarnas-krog",
+"type": "restaurant",
+"island": "Fjaderholmarna",
+"latitude": 59.3267,
+"longitude": 18.2217,
+"ord": 7,
+"hidden": true
+},
+{
+"slug": "fjallbacka-bastuforening",
+"type": "sauna",
+"island": "Fjällbacka",
+"latitude": 58.59757,
+"longitude": 11.28138,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "fjallbacka-bensinstation",
+"type": "fuel_station",
+"island": "Fjällbacka",
+"latitude": 58.9234,
+"longitude": 11.2512,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "fjallbacka-gasthamn",
+"type": "marina",
+"island": "Fjällbacka",
+"latitude": 58.5938,
+"longitude": 11.2872,
+"ord": 52,
+"hidden": false
+},
+{
+"slug": "fjallbacka-restaurang",
+"type": "restaurant",
+"island": "Fjallbacka",
+"latitude": 58.9234,
+"longitude": 11.2512,
+"ord": 7,
+"hidden": true
+},
+{
+"slug": "fjallbacka-vardshus",
+"type": "restaurant",
+"island": "Fjällbacka",
+"latitude": 58.5942,
+"longitude": 11.2858,
+"ord": 19,
+"hidden": true
+},
+{
+"slug": "fjordbastun",
+"type": "sauna",
+"island": null,
+"latitude": 58.341,
+"longitude": 11.9066,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "flaskbergets-strand",
+"type": "beach",
+"island": "Sandhamn",
+"latitude": 59.28929,
+"longitude": 18.90512,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "flatons-krog",
+"type": "restaurant",
+"island": "Flatön",
+"latitude": 58.2234,
+"longitude": 11.5155,
+"ord": 18,
+"hidden": true
+},
+{
+"slug": "forsvarsplats-lysekil-hamn",
+"type": "harbor",
+"island": "Lysekil",
+"latitude": 58.26771,
+"longitude": 11.43583,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "foto-bastu",
+"type": "sauna",
+"island": null,
+"latitude": 57.66646,
+"longitude": 11.65378,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "foto-gasthamn",
+"type": "harbor",
+"island": "Fotö",
+"latitude": 57.66715,
+"longitude": 11.65491,
+"ord": 50,
+"hidden": false
+},
+{
+"slug": "framfickan-grinda",
+"type": "cafe",
+"island": "Grinda",
+"latitude": 59.41383,
+"longitude": 18.55664,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "franses-skargardspub",
+"type": "restaurant",
+"island": "Hönö",
+"latitude": 57.68004,
+"longitude": 11.64434,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "fredriksborg-hotell",
+"type": "restaurant",
+"island": "Värmdö",
+"latitude": 59.4,
+"longitude": 18.4415,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "frode-marina-ab",
+"type": "harbor",
+"island": "Vaxholm",
+"latitude": 59.40684,
+"longitude": 18.32861,
+"ord": 41,
+"hidden": false
+},
+{
+"slug": "froken-trulls",
+"type": "restaurant",
+"island": "Orust",
+"latitude": 58.18991,
+"longitude": 11.50205,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "frokens-udde",
+"type": "beach",
+"island": null,
+"latitude": 57.6651,
+"longitude": 12.14281,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "furusund-cafe-kiosk",
+"type": "cafe",
+"island": "Furusund",
+"latitude": 59.6668,
+"longitude": 18.9168,
+"ord": 24,
+"hidden": true
+},
+{
+"slug": "furusund-vardshus",
+"type": "restaurant",
+"island": "Furusund",
+"latitude": 59.6672,
+"longitude": 18.9175,
+"ord": 22,
+"hidden": false
+},
+{
+"slug": "furusunds-brygga-restaurang",
+"type": "restaurant",
+"island": "Furusund",
+"latitude": 59.6623,
+"longitude": 18.9131,
+"ord": 42,
+"hidden": false
+},
+{
+"slug": "furusunds-gasthamn",
+"type": "harbor",
+"island": "Furusund",
+"latitude": 59.66106,
+"longitude": 18.91768,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "fyren",
+"type": "restaurant",
+"island": "Kungshamn",
+"latitude": 58.36186,
+"longitude": 11.24886,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "gallno-bar",
+"type": "bar",
+"island": "Gällnö",
+"latitude": 59.39686,
+"longitude": 18.64469,
+"ord": 13,
+"hidden": true
+},
+{
+"slug": "gallno-brygga",
+"type": "harbor",
+"island": "Gällnö",
+"latitude": 59.39041,
+"longitude": 18.6393,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "gallno-gallno-taltplatser",
+"type": "hotel",
+"island": "Gällnö",
+"latitude": 59.40749,
+"longitude": 18.64264,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "gallno-handelsbod-cafe",
+"type": "cafe",
+"island": "Gällnö",
+"latitude": 59.3969,
+"longitude": 18.6444,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "gallno-krog",
+"type": "restaurant",
+"island": "Gällnö",
+"latitude": 59.3968,
+"longitude": 18.6444,
+"ord": 55,
+"hidden": false
+},
+{
+"slug": "galo-batklubb",
+"type": "harbor",
+"island": "Gålö",
+"latitude": 59.09786,
+"longitude": 18.28972,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "galo-havsbad-restaurang",
+"type": "restaurant",
+"island": "Gålö",
+"latitude": 59.09968,
+"longitude": 18.32208,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "galo-havshotell-och-spa",
+"type": "hotel",
+"island": "Gålö",
+"latitude": 59.09514,
+"longitude": 18.3184,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "gammelgardens-bar-bistro",
+"type": "restaurant",
+"island": "Hunnebostrand",
+"latitude": 58.4313,
+"longitude": 11.29965,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "gardsnas-bastuklubb",
+"type": "sauna",
+"island": null,
+"latitude": 59.62815,
+"longitude": 18.72068,
+"ord": 18,
+"hidden": false
+},
+{
+"slug": "gardsnas-ostra-badplats",
+"type": "beach",
+"island": null,
+"latitude": 59.62478,
+"longitude": 18.73872,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "gasthamn",
+"type": "harbor",
+"island": "Möja",
+"latitude": 59.42828,
+"longitude": 18.91247,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "gasthamn-gratis-kommunala-gastplatser",
+"type": "harbor",
+"island": "Vaxholm",
+"latitude": 59.40647,
+"longitude": 18.34974,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "gasthamn-sandudden-uto",
+"type": "harbor",
+"island": "Utö",
+"latitude": 58.96209,
+"longitude": 18.30419,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "gasthem-enigheten-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.03392,
+"longitude": 20.39577,
+"ord": 47,
+"hidden": false
+},
+{
+"slug": "getfoten-sjokrog",
+"type": "restaurant",
+"island": "Getfoten",
+"latitude": 59.37944,
+"longitude": 18.35817,
+"ord": 13,
+"hidden": true
+},
+{
+"slug": "gittans-kbb-orno",
+"type": "restaurant",
+"island": "Ornö",
+"latitude": 59.05192,
+"longitude": 18.43225,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "gostases",
+"type": "restaurant",
+"island": "Strömstad",
+"latitude": 58.93776,
+"longitude": 11.17074,
+"ord": 29,
+"hidden": false
+},
+{
+"slug": "gotlands-bryggeri-gotland",
+"type": "attraction",
+"island": null,
+"latitude": 57.64169,
+"longitude": 18.29483,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "gotska-sando-naturhamn",
+"type": "anchorage",
+"island": "Gotska Sandön",
+"latitude": 58.4,
+"longitude": 19.2,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "graddo-askens-bryggforening",
+"type": "harbor",
+"island": "Gräddö",
+"latitude": 59.76479,
+"longitude": 19.05187,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "graddo-brygga",
+"type": "harbor",
+"island": "Gräddö",
+"latitude": 59.76787,
+"longitude": 19.03192,
+"ord": 48,
+"hidden": false
+},
+{
+"slug": "grannas-bistro-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.3431,
+"longitude": 19.92834,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "grebbestad-bensinstation",
+"type": "fuel_station",
+"island": "Grebbestad",
+"latitude": 58.68598,
+"longitude": 11.25675,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "grebbestad-gasthamn",
+"type": "harbor",
+"island": "Grebbestad",
+"latitude": 58.68598,
+"longitude": 11.25675,
+"ord": 42,
+"hidden": false
+},
+{
+"slug": "grebbestad-restaurang",
+"type": "restaurant",
+"island": "Grebbestad",
+"latitude": 58.9012,
+"longitude": 11.3234,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "grebbestadsgrannen-bistro-bar-ab",
+"type": "restaurant",
+"island": "Grebbestad",
+"latitude": 58.69253,
+"longitude": 11.25592,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "grebys-restaurang",
+"type": "restaurant",
+"island": "Grebbestad",
+"latitude": 58.68504,
+"longitude": 11.25771,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "grills-havsbad",
+"type": "beach",
+"island": null,
+"latitude": 59.31226,
+"longitude": 18.45799,
+"ord": 14,
+"hidden": false
+},
+{
+"slug": "grinda-gasthamn",
+"type": "harbor",
+"island": "Grinda",
+"latitude": 59.41412,
+"longitude": 18.5571,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "grinda-grinda-sea-lodge",
+"type": "hotel",
+"island": "Grinda",
+"latitude": 59.40668,
+"longitude": 18.56459,
+"ord": 25,
+"hidden": false
+},
+{
+"slug": "grinda-lanthandel-cafe",
+"type": "cafe",
+"island": "Grinda",
+"latitude": 59.4128,
+"longitude": 18.5576,
+"ord": 54,
+"hidden": false
+},
+{
+"slug": "grinda-norra-bryggan",
+"type": "harbor",
+"island": "Grinda",
+"latitude": 59.41904,
+"longitude": 18.55864,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "grinda-sjomack",
+"type": "fuel",
+"island": "Grinda",
+"latitude": 59.41517,
+"longitude": 18.55426,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "grinda-sodra-bryggan",
+"type": "harbor",
+"island": "Grinda",
+"latitude": 59.40729,
+"longitude": 18.55314,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "grinda-strandcafe",
+"type": "cafe",
+"island": "Grinda",
+"latitude": 59.4072,
+"longitude": 18.555,
+"ord": 23,
+"hidden": true
+},
+{
+"slug": "grinda-wardshus",
+"type": "restaurant",
+"island": "Grinda",
+"latitude": 59.41367,
+"longitude": 18.55859,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "grisslehamn-gasthamn",
+"type": "harbor",
+"island": "Singö",
+"latitude": 60.10221,
+"longitude": 18.8012,
+"ord": 53,
+"hidden": false
+},
+{
+"slug": "grisslehamns-marina-och-camping",
+"type": "harbor",
+"island": "Väddö",
+"latitude": 60.10143,
+"longitude": 18.80158,
+"ord": 54,
+"hidden": false
+},
+{
+"slug": "grisslinge-havsbad",
+"type": "beach",
+"island": null,
+"latitude": 59.3126,
+"longitude": 18.45002,
+"ord": 41,
+"hidden": false
+},
+{
+"slug": "grona-vik-badplats",
+"type": "beach",
+"island": null,
+"latitude": 57.65393,
+"longitude": 11.78155,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "gronviksbadet",
+"type": "beach",
+"island": null,
+"latitude": 59.39047,
+"longitude": 18.41412,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "grundsunds-krog",
+"type": "restaurant",
+"island": "Grundsund",
+"latitude": 58.2133,
+"longitude": 11.4192,
+"ord": 13,
+"hidden": false
+},
+{
+"slug": "gruvbryggan",
+"type": "harbor",
+"island": "Utö",
+"latitude": 58.97037,
+"longitude": 18.32343,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "guldbadans-batklubb",
+"type": "harbor",
+"island": "Muskö",
+"latitude": 58.9728,
+"longitude": 18.05973,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "gullholmens-gasthamn",
+"type": "harbor",
+"island": "Gullholmen",
+"latitude": 58.17889,
+"longitude": 11.40389,
+"ord": 48,
+"hidden": false
+},
+{
+"slug": "gullholmens-krog",
+"type": "restaurant",
+"island": "Gullholmen",
+"latitude": 58.1799,
+"longitude": 11.4058,
+"ord": 14,
+"hidden": false
+},
+{
+"slug": "gullmarsbaden",
+"type": "beach",
+"island": null,
+"latitude": 58.2796,
+"longitude": 11.4683,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "gullvivan-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.43222,
+"longitude": 21.05,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "gustavsberg",
+"type": "beach",
+"island": null,
+"latitude": 58.33093,
+"longitude": 11.90469,
+"ord": 18,
+"hidden": false
+},
+{
+"slug": "halleviksstrand-hamn",
+"type": "harbor",
+"island": "Hälleviksstrand",
+"latitude": 58.12278,
+"longitude": 11.44311,
+"ord": 58,
+"hidden": false
+},
+{
+"slug": "halleviksstrands-grill-glasscaf",
+"type": "restaurant",
+"island": "Hälleviksstrand",
+"latitude": 58.12301,
+"longitude": 11.44278,
+"ord": 15,
+"hidden": false
+},
+{
+"slug": "halltorps-gastgiveri-oland",
+"type": "restaurant",
+"island": null,
+"latitude": 56.8006,
+"longitude": 16.58854,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "hamburgsund-gasthamn",
+"type": "harbor",
+"island": "Hamburgsund",
+"latitude": 58.5217,
+"longitude": 11.2694,
+"ord": 50,
+"hidden": true
+},
+{
+"slug": "hamburgsunds-fisk-skaldjur",
+"type": "restaurant",
+"island": "Hamburgsund",
+"latitude": 58.5522,
+"longitude": 11.27023,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "hamburgsunds-gasthamn",
+"type": "harbor",
+"island": "Hamburgsund",
+"latitude": 58.5438,
+"longitude": 11.2772,
+"ord": 50,
+"hidden": false
+},
+{
+"slug": "hamburgsunds-vardshus",
+"type": "restaurant",
+"island": "Hamburgsund",
+"latitude": 58.5434,
+"longitude": 11.2768,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "hamn",
+"type": "harbor",
+"island": "Möja",
+"latitude": 59.42889,
+"longitude": 18.85278,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "hamnboden-uto",
+"type": "restaurant",
+"island": "Utö",
+"latitude": 58.97024,
+"longitude": 18.32467,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "hamncafet-moja",
+"type": "cafe",
+"island": "Möja",
+"latitude": 59.4069,
+"longitude": 18.8858,
+"ord": 15,
+"hidden": false
+},
+{
+"slug": "hamnen-kapellskar-ankommande",
+"type": "harbor",
+"island": "Gräddö",
+"latitude": 59.72312,
+"longitude": 19.06469,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "hamnkafeet-klintehamn-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.38899,
+"longitude": 18.18581,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "hamnkrogen",
+"type": "restaurant",
+"island": "Marstrand",
+"latitude": 57.88743,
+"longitude": 11.58756,
+"ord": 16,
+"hidden": false
+},
+{
+"slug": "hamnkrogen-vaxholm",
+"type": "restaurant",
+"island": "Vaxholm",
+"latitude": 59.40161,
+"longitude": 18.35161,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "hamnmagasinet-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.24174,
+"longitude": 20.32768,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "hampholmens-magasin-pa-en-egen-o-nara-smogen",
+"type": "restaurant",
+"island": "Kungshamn",
+"latitude": 58.35035,
+"longitude": 11.26717,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "hanoe-fishshack",
+"type": "restaurant",
+"island": "Hanoe",
+"latitude": 56.4123,
+"longitude": 15.1234,
+"ord": 13,
+"hidden": true
+},
+{
+"slug": "hanoe-naturhamn",
+"type": "anchorage",
+"island": "Hanoe",
+"latitude": 56.4123,
+"longitude": 15.1234,
+"ord": 14,
+"hidden": true
+},
+{
+"slug": "hanoe-naturreservat",
+"type": "nature",
+"island": "Hanoe",
+"latitude": 56.4123,
+"longitude": 15.1234,
+"ord": 11,
+"hidden": true
+},
+{
+"slug": "harlanda-tjarns-badplats",
+"type": "beach",
+"island": null,
+"latitude": 57.71,
+"longitude": 12.05413,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "haro-krog",
+"type": "restaurant",
+"island": "Harö",
+"latitude": 59.339,
+"longitude": 18.9004,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "hassloe-gasthamn",
+"type": "marina",
+"island": "Hasslö",
+"latitude": 56.2987,
+"longitude": 15.4521,
+"ord": 11,
+"hidden": true
+},
+{
+"slug": "havstenssund-naturhamn",
+"type": "anchorage",
+"island": "Havstenssund",
+"latitude": 58.8734,
+"longitude": 11.2901,
+"ord": 9,
+"hidden": true
+},
+{
+"slug": "hedersviken",
+"type": "beach",
+"island": null,
+"latitude": 60.11149,
+"longitude": 18.82429,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "hemmesta-sjocafe",
+"type": "restaurant",
+"island": "Värmdö",
+"latitude": 59.41017,
+"longitude": 18.49936,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "henrik-s-sjokrog",
+"type": "restaurant",
+"island": "Hunnebostrand",
+"latitude": 58.44175,
+"longitude": 11.29597,
+"ord": 20,
+"hidden": false
+},
+{
+"slug": "himmel-hav",
+"type": "restaurant",
+"island": "Sydkoster",
+"latitude": 58.89517,
+"longitude": 11.04624,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "hjalmars-bar-brygga",
+"type": "restaurant",
+"island": "Hamburgsund",
+"latitude": 58.55292,
+"longitude": 11.2684,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "hoburgen-gotland",
+"type": "nature",
+"island": null,
+"latitude": 56.92034,
+"longitude": 18.1332,
+"ord": 21,
+"hidden": false
+},
+{
+"slug": "hoganas-hamnkrog",
+"type": "restaurant",
+"island": "Höganäs",
+"latitude": 56.1988,
+"longitude": 12.5583,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "hogmarso-sjomack",
+"type": "fuel",
+"island": "Högmarsö",
+"latitude": 59.5802,
+"longitude": 18.8802,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "holmen-kok-bar",
+"type": "restaurant",
+"island": "Saltsjöbaden",
+"latitude": 59.27584,
+"longitude": 18.31573,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "holo-klippbad",
+"type": "beach",
+"island": null,
+"latitude": 59.27996,
+"longitude": 18.68603,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "holo-restaurang",
+"type": "restaurant",
+"island": "Hölö",
+"latitude": 59.02501,
+"longitude": 17.53485,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "hono-bastuforening",
+"type": "sauna",
+"island": "Hönö",
+"latitude": 57.6722,
+"longitude": 11.6403,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "hono-gasthamn",
+"type": "harbor",
+"island": "Hönö",
+"latitude": 57.68333,
+"longitude": 11.65,
+"ord": 50,
+"hidden": false
+},
+{
+"slug": "hono-klava-drivmedel",
+"type": "fuel",
+"island": "Hönö",
+"latitude": 57.6824,
+"longitude": 11.64442,
+"ord": 18,
+"hidden": false
+},
+{
+"slug": "hono-klava-gasthamn",
+"type": "harbor",
+"island": "Hönö",
+"latitude": 57.6722,
+"longitude": 11.6403,
+"ord": 50,
+"hidden": true
+},
+{
+"slug": "hono-pizzeria",
+"type": "restaurant",
+"island": "Hönö",
+"latitude": 57.68237,
+"longitude": 11.64503,
+"ord": 24,
+"hidden": false
+},
+{
+"slug": "hono-sjokrog",
+"type": "restaurant",
+"island": "Hönö",
+"latitude": 57.6722,
+"longitude": 11.6403,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "hoppbryggans-bad",
+"type": "beach",
+"island": null,
+"latitude": 59.24726,
+"longitude": 18.30079,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "hotel-skansen-oland-oland",
+"type": "restaurant",
+"island": null,
+"latitude": 56.64889,
+"longitude": 16.46772,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "hotell-arkipelag-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.09967,
+"longitude": 19.94444,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "hotell-borgholm-oland-oland",
+"type": "restaurant",
+"island": null,
+"latitude": 56.87888,
+"longitude": 16.65767,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "hotell-hamnen-farjestaden-oland",
+"type": "restaurant",
+"island": null,
+"latitude": 56.64956,
+"longitude": 16.46258,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "hotell-magasin1-morbylanga-oland",
+"type": "hotel",
+"island": null,
+"latitude": 56.52791,
+"longitude": 16.37518,
+"ord": 24,
+"hidden": false
+},
+{
+"slug": "hotell-pommern-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.09885,
+"longitude": 19.93871,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "hotell-s-t-clemens-gotland",
+"type": "hotel",
+"island": null,
+"latitude": 57.64304,
+"longitude": 18.29586,
+"ord": 13,
+"hidden": false
+},
+{
+"slug": "hotell-tanumshede-gestgifveri-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.72226,
+"longitude": 11.32408,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "hovasbadet",
+"type": "beach",
+"island": null,
+"latitude": 57.61782,
+"longitude": 11.92311,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "hunnebostrands-kallbadhus",
+"type": "sauna",
+"island": "Hunnebostrand",
+"latitude": 58.44615,
+"longitude": 11.29457,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "husaro-gasthamn-cafe",
+"type": "harbor",
+"island": "Husarö",
+"latitude": 59.5064,
+"longitude": 18.8475,
+"ord": 21,
+"hidden": false
+},
+{
+"slug": "huvudskar-gasthamn",
+"type": "harbor",
+"island": "Huvudskär",
+"latitude": 58.96281,
+"longitude": 18.56818,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "huvudskars-fyrkafe",
+"type": "restaurant",
+"island": "Huvudskär",
+"latitude": 58.96289,
+"longitude": 18.56791,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "hyppelns-hamn",
+"type": "harbor",
+"island": "Hyppeln",
+"latitude": 57.7576,
+"longitude": 11.61537,
+"ord": 40,
+"hidden": false
+},
+{
+"slug": "indigo-restaurant-och-bar-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.10008,
+"longitude": 19.94283,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "ingaro-ingaro-camping",
+"type": "hotel",
+"island": "Ingarö",
+"latitude": 59.29283,
+"longitude": 18.42181,
+"ord": 13,
+"hidden": false
+},
+{
+"slug": "ingmarso-cafe",
+"type": "restaurant",
+"island": "Ingmarsö",
+"latitude": 59.474,
+"longitude": 18.7571,
+"ord": 21,
+"hidden": true
+},
+{
+"slug": "ingmarso-gasthamn",
+"type": "harbor",
+"island": "Ingmarsö",
+"latitude": 59.46624,
+"longitude": 18.75411,
+"ord": 48,
+"hidden": false
+},
+{
+"slug": "ingmarso-ingmarso-bochb",
+"type": "hotel",
+"island": "Ingmarsö",
+"latitude": 59.47368,
+"longitude": 18.75478,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "ingmarso-krog",
+"type": "restaurant",
+"island": "Ingmarsö",
+"latitude": 59.4752,
+"longitude": 18.7445,
+"ord": 46,
+"hidden": false
+},
+{
+"slug": "ingmarso-sommarbutik",
+"type": "cafe",
+"island": "Ingmarsö",
+"latitude": 59.4748,
+"longitude": 18.7438,
+"ord": 6,
+"hidden": false
+},
+{
+"slug": "jeppes-moja",
+"type": "restaurant",
+"island": "Möja",
+"latitude": 59.44129,
+"longitude": 18.91765,
+"ord": 13,
+"hidden": false
+},
+{
+"slug": "johans-krog",
+"type": "restaurant",
+"island": "Marstrand",
+"latitude": 57.887,
+"longitude": 11.58248,
+"ord": 38,
+"hidden": true
+},
+{
+"slug": "kadettbryggan",
+"type": "beach",
+"island": null,
+"latitude": 59.43146,
+"longitude": 18.35393,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "kajmagasinet",
+"type": "restaurant",
+"island": "Lysekil",
+"latitude": 58.27288,
+"longitude": 11.43607,
+"ord": 29,
+"hidden": false
+},
+{
+"slug": "kajplatsen-fisk-grill",
+"type": "restaurant",
+"island": "Hönö",
+"latitude": 57.68128,
+"longitude": 11.64461,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "kallbadhuset",
+"type": "beach",
+"island": null,
+"latitude": 58.22041,
+"longitude": 11.90975,
+"ord": 13,
+"hidden": false
+},
+{
+"slug": "kallbadhuset-i-lysekil",
+"type": "sauna",
+"island": "Lysekil",
+"latitude": 58.26822,
+"longitude": 11.43604,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "kallo-knippla-gasthamn",
+"type": "harbor",
+"island": "Källö-Knippla",
+"latitude": 57.75006,
+"longitude": 11.65389,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "kallunge-gard-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.63292,
+"longitude": 18.59258,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "kallvikens-bastu",
+"type": "sauna",
+"island": "Grinda",
+"latitude": 59.41253,
+"longitude": 18.55681,
+"ord": 23,
+"hidden": false
+},
+{
+"slug": "kalvhagens-bryggforening",
+"type": "harbor",
+"island": "Blidö",
+"latitude": 59.62779,
+"longitude": 18.93947,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "kanten-caf-bar",
+"type": "restaurant",
+"island": "Hunnebostrand",
+"latitude": 58.44154,
+"longitude": 11.29599,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "kareviks-badplats",
+"type": "beach",
+"island": null,
+"latitude": 57.93417,
+"longitude": 11.59117,
+"ord": 22,
+"hidden": false
+},
+{
+"slug": "karingoen-gasthamn",
+"type": "marina",
+"island": "Karingoen",
+"latitude": 58.8134,
+"longitude": 11.2478,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "karingoen-restaurang",
+"type": "restaurant",
+"island": "Karingoen",
+"latitude": 58.8134,
+"longitude": 11.2478,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "karingon-gasthamn",
+"type": "harbor",
+"island": "Käringön",
+"latitude": 58.11333,
+"longitude": 11.36833,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "karingon-krog",
+"type": "restaurant",
+"island": "Käringön",
+"latitude": 58.1132,
+"longitude": 11.3668,
+"ord": 7,
+"hidden": false
+},
+{
+"slug": "karingon-pensionat",
+"type": "restaurant",
+"island": "Käringön",
+"latitude": 58.2467,
+"longitude": 11.4044,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "karlshamn-gasthamn",
+"type": "marina",
+"island": "Karlshamn",
+"latitude": 56.1456,
+"longitude": 15.7234,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "karlskrona-bensin",
+"type": "fuel_station",
+"island": "Karlskrona",
+"latitude": 56.1611,
+"longitude": 15.5898,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "karlskrona-gasthamn",
+"type": "marina",
+"island": "Karlskrona",
+"latitude": 56.1611,
+"longitude": 15.5898,
+"ord": 16,
+"hidden": true
+},
+{
+"slug": "karlskrona-naturreservat",
+"type": "nature",
+"island": "Karlskrona",
+"latitude": 56.1611,
+"longitude": 15.5898,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "karlskrona-restaurang",
+"type": "restaurant",
+"island": "Karlskrona",
+"latitude": 56.1611,
+"longitude": 15.5898,
+"ord": 11,
+"hidden": true
+},
+{
+"slug": "karran",
+"type": "restaurant",
+"island": "Brännö",
+"latitude": 57.64387,
+"longitude": 11.78018,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "kastinget-marina",
+"type": "marina",
+"island": "Karingoen",
+"latitude": 58.8123,
+"longitude": 11.2567,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "katthammarsvik-gasthamn",
+"type": "harbor",
+"island": "Gotland",
+"latitude": 57.43572,
+"longitude": 18.85281,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "kladesholmen-gasthamn",
+"type": "harbor",
+"island": "Klädesholmen",
+"latitude": 57.94544,
+"longitude": 11.5368,
+"ord": 51,
+"hidden": false
+},
+{
+"slug": "kladesholmens-bastu",
+"type": "sauna",
+"island": "Rönnäng",
+"latitude": 57.94897,
+"longitude": 11.54374,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "klapphagen-koster-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.89129,
+"longitude": 11.03978,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "klintan",
+"type": "restaurant",
+"island": "Ljusterö",
+"latitude": 59.511,
+"longitude": 18.627,
+"ord": 14,
+"hidden": true
+},
+{
+"slug": "klintan-sjöstation",
+"type": "fuel",
+"island": "Ljusterö",
+"latitude": 59.5108,
+"longitude": 18.6265,
+"ord": 13,
+"hidden": true
+},
+{
+"slug": "klobbars-gasthem-och-stugor-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 59.95512,
+"longitude": 20.96661,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "klova-hamnkrog",
+"type": "restaurant",
+"island": "Hönö",
+"latitude": 57.68088,
+"longitude": 11.64451,
+"ord": 23,
+"hidden": false
+},
+{
+"slug": "knapen",
+"type": "sauna",
+"island": null,
+"latitude": 59.4133,
+"longitude": 18.67022,
+"ord": 16,
+"hidden": false
+},
+{
+"slug": "knarrholmens-restaurang",
+"type": "restaurant",
+"island": "Knarrholmen",
+"latitude": 57.62572,
+"longitude": 11.82768,
+"ord": 22,
+"hidden": false
+},
+{
+"slug": "kolholm-sand",
+"type": "beach",
+"island": null,
+"latitude": 58.67767,
+"longitude": 11.21434,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "kopmanholms-angbatsbrygga",
+"type": "harbor",
+"island": "Yxlan",
+"latitude": 59.65982,
+"longitude": 18.93,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "korvan",
+"type": "restaurant",
+"island": "Skärhamn",
+"latitude": 57.98905,
+"longitude": 11.54023,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "kosterbaden-och-ventuno-bistro-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.90269,
+"longitude": 11.01685,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "kosterfjaorden-anchorage",
+"type": "anchorage",
+"island": "Kosteröarna",
+"latitude": 58.9145,
+"longitude": 11.0845,
+"ord": 9,
+"hidden": true
+},
+{
+"slug": "kosters-rokeri",
+"type": "restaurant",
+"island": "Sydkoster",
+"latitude": 58.89321,
+"longitude": 11.04815,
+"ord": 41,
+"hidden": false
+},
+{
+"slug": "kristianopel-bensin",
+"type": "fuel_station",
+"island": "Kristianopel",
+"latitude": 56.3845,
+"longitude": 14.9876,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "kristianopel-gasthamn",
+"type": "marina",
+"island": "Kristianopel",
+"latitude": 56.3845,
+"longitude": 14.9876,
+"ord": 11,
+"hidden": true
+},
+{
+"slug": "krogen-sill-sardell-pa-marstrands-on",
+"type": "restaurant",
+"island": "Marstrand",
+"latitude": 57.88303,
+"longitude": 11.58493,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "kronet-by-visby-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.63832,
+"longitude": 18.29559,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "kryssarklubbens-uthamn",
+"type": "harbor",
+"island": "Runmarö",
+"latitude": 59.27207,
+"longitude": 18.72774,
+"ord": 42,
+"hidden": false
+},
+{
+"slug": "ksss-gasthamn-lokholmen-trollsundet",
+"type": "harbor",
+"island": "Sandhamn",
+"latitude": 59.29073,
+"longitude": 18.92807,
+"ord": 57,
+"hidden": false
+},
+{
+"slug": "ksss-gasthamn-sandhamn",
+"type": "harbor",
+"island": "Sandhamn",
+"latitude": 59.28797,
+"longitude": 18.91894,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "kungshamn-gasthamn",
+"type": "harbor",
+"island": "Kungshamn",
+"latitude": 58.36033,
+"longitude": 11.24702,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "kungsparkens-badplats",
+"type": "beach",
+"island": null,
+"latitude": 58.21344,
+"longitude": 11.90305,
+"ord": 46,
+"hidden": false
+},
+{
+"slug": "kvarnen-kok-och-bar-mollosund",
+"type": "restaurant",
+"island": "Mollösund",
+"latitude": 58.07279,
+"longitude": 11.47066,
+"ord": 29,
+"hidden": false
+},
+{
+"slug": "kvarnsand",
+"type": "beach",
+"island": null,
+"latitude": 60.07785,
+"longitude": 18.82614,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "kymmendo-gasthamn-kok",
+"type": "restaurant",
+"island": "Kymmendö",
+"latitude": 59.1112,
+"longitude": 18.4992,
+"ord": 48,
+"hidden": false
+},
+{
+"slug": "kyrkviken",
+"type": "harbor",
+"island": "Möja",
+"latitude": 59.4065,
+"longitude": 18.88375,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "kyrkviken-bar-bistro",
+"type": "restaurant",
+"island": "Ornö",
+"latitude": 59.05175,
+"longitude": 18.43154,
+"ord": 15,
+"hidden": false
+},
+{
+"slug": "la-belle-vie-fjallbacka",
+"type": "restaurant",
+"island": "Fjällbacka",
+"latitude": 58.59809,
+"longitude": 11.2823,
+"ord": 16,
+"hidden": false
+},
+{
+"slug": "lacka-nynashamns-segelsallskap",
+"type": "harbor",
+"island": "Muskö",
+"latitude": 58.94774,
+"longitude": 18.08589,
+"ord": 47,
+"hidden": false
+},
+{
+"slug": "laholmens-fisk-stromstad-ab",
+"type": "restaurant",
+"island": "Strömstad",
+"latitude": 58.93861,
+"longitude": 11.1696,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "landsort-hamncafe",
+"type": "cafe",
+"island": "Landsort",
+"latitude": 58.7412,
+"longitude": 17.8658,
+"ord": 26,
+"hidden": true
+},
+{
+"slug": "landsort-landsort-stugor-vid-fyren",
+"type": "hotel",
+"island": "Landsort",
+"latitude": 58.76852,
+"longitude": 17.85783,
+"ord": 20,
+"hidden": false
+},
+{
+"slug": "landsort-ostra-hamn",
+"type": "harbor",
+"island": "Landsort",
+"latitude": 58.74385,
+"longitude": 17.86785,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "landsort-stf-vandrarhem-landsort",
+"type": "hotel",
+"island": "Landsort",
+"latitude": 58.74136,
+"longitude": 17.8671,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "lange-erik-oland",
+"type": "attraction",
+"island": null,
+"latitude": 57.36703,
+"longitude": 17.09706,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "lange-jan-oland",
+"type": "attraction",
+"island": null,
+"latitude": 56.19604,
+"longitude": 16.39849,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "langedrag-bransle",
+"type": "fuel",
+"island": null,
+"latitude": 57.6628,
+"longitude": 11.8231,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "langestrand",
+"type": "beach",
+"island": null,
+"latitude": 58.31189,
+"longitude": 11.81409,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "langholmens-bastubad-marina-moten",
+"type": "sauna",
+"island": "Hönö",
+"latitude": 57.67982,
+"longitude": 11.65237,
+"ord": 50,
+"hidden": false
+},
+{
+"slug": "langviks-yttre-gasthamn",
+"type": "harbor",
+"island": "Möja",
+"latitude": 59.44302,
+"longitude": 18.92065,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "larsson-karlsson",
+"type": "restaurant",
+"island": "Klädesholmen",
+"latitude": 57.98915,
+"longitude": 11.54033,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "lasses-krog",
+"type": "restaurant",
+"island": "Marstrand",
+"latitude": 57.8858,
+"longitude": 11.58458,
+"ord": 23,
+"hidden": false
+},
+{
+"slug": "lattas-bageri",
+"type": "cafe",
+"island": "Runmarö",
+"latitude": 59.27513,
+"longitude": 18.74312,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "le-comptoir-marstrand",
+"type": "restaurant",
+"island": "Marstrand",
+"latitude": 57.8865,
+"longitude": 11.58479,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "les-poissonniers-moja",
+"type": "restaurant",
+"island": "Möja",
+"latitude": 59.40707,
+"longitude": 18.8856,
+"ord": 23,
+"hidden": false
+},
+{
+"slug": "lida-badplats",
+"type": "beach",
+"island": null,
+"latitude": 59.16138,
+"longitude": 17.88143,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "lido-gasthamn",
+"type": "harbor",
+"island": "Lidö",
+"latitude": 59.77335,
+"longitude": 19.07789,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "lido-lido-vardshus-stf",
+"type": "hotel",
+"island": "Lidö",
+"latitude": 59.77137,
+"longitude": 19.08008,
+"ord": 7,
+"hidden": true
+},
+{
+"slug": "lido-strandservering",
+"type": "cafe",
+"island": "Lidö",
+"latitude": 59.7854,
+"longitude": 19.0656,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "lido-vardshus",
+"type": "restaurant",
+"island": "Lidö",
+"latitude": 59.77137,
+"longitude": 19.08008,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "lilla-haket-ninas-bod",
+"type": "cafe",
+"island": "Utö",
+"latitude": 58.96987,
+"longitude": 18.32472,
+"ord": 14,
+"hidden": false
+},
+{
+"slug": "lilla-karlso-gotland",
+"type": "nature",
+"island": null,
+"latitude": 57.31259,
+"longitude": 18.06318,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "lilla-rudan-badplats",
+"type": "beach",
+"island": null,
+"latitude": 59.16173,
+"longitude": 18.12856,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "lilla-sand",
+"type": "beach",
+"island": null,
+"latitude": 58.91739,
+"longitude": 18.24488,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "lilla-sandarna",
+"type": "beach",
+"island": null,
+"latitude": 59.21544,
+"longitude": 18.52393,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "lilla-skutviken",
+"type": "harbor",
+"island": "Vaxholm",
+"latitude": 59.4075,
+"longitude": 18.34231,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "lilla-trouville-stranden",
+"type": "beach",
+"island": "Sandhamn",
+"latitude": 59.27342,
+"longitude": 18.92444,
+"ord": 40,
+"hidden": false
+},
+{
+"slug": "lilling-cottage-ab",
+"type": "restaurant",
+"island": "Hönö",
+"latitude": 57.68028,
+"longitude": 11.64449,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "linanaesbryggan",
+"type": "restaurant",
+"island": "Ljusterö",
+"latitude": 59.4705,
+"longitude": 18.50633,
+"ord": 23,
+"hidden": false
+},
+{
+"slug": "linanas-gasthamn",
+"type": "harbor",
+"island": "Ljusterö",
+"latitude": 59.47257,
+"longitude": 18.51193,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "ljustero-farjans-krog",
+"type": "restaurant",
+"island": "Ljusterö",
+"latitude": 59.527,
+"longitude": 18.6183,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "ljustero-hamnkrog",
+"type": "restaurant",
+"island": "Ljusterö",
+"latitude": 59.5268,
+"longitude": 18.6195,
+"ord": 21,
+"hidden": true
+},
+{
+"slug": "loka-gasthamn",
+"type": "harbor",
+"island": "Möja",
+"latitude": 59.41067,
+"longitude": 18.89687,
+"ord": 47,
+"hidden": false
+},
+{
+"slug": "loknasudds-gard-och-marina-ab",
+"type": "harbor",
+"island": "Gällnö",
+"latitude": 59.37303,
+"longitude": 18.67877,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "lolo-s-seaside-cafe-och-restaurant-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.35666,
+"longitude": 19.7943,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "lottas-bak-form-surdegsbageri-caf",
+"type": "restaurant",
+"island": "Bleket",
+"latitude": 57.94936,
+"longitude": 11.56669,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "lottorps-restaurang-och-bar-samt-konditori-oland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.16617,
+"longitude": 16.99329,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "lyckans-restaurang-mollosund",
+"type": "restaurant",
+"island": "Mollösund",
+"latitude": 58.0717,
+"longitude": 11.4925,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "lyckans-slip",
+"type": "marina",
+"island": "Skaftö",
+"latitude": 58.245,
+"longitude": 11.46333,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "lysekil-gasthamn",
+"type": "marina",
+"island": "Lysekil",
+"latitude": 58.279,
+"longitude": 11.4388,
+"ord": 14,
+"hidden": true
+},
+{
+"slug": "lysekils-fiskrokeri",
+"type": "restaurant",
+"island": "Lysekil",
+"latitude": 58.2785,
+"longitude": 11.4401,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "lysekils-hamn",
+"type": "harbor",
+"island": "Lysekil",
+"latitude": 58.27021,
+"longitude": 11.43606,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "lysekils-marina-ab-basteviksholmarna",
+"type": "harbor",
+"island": "Lysekil",
+"latitude": 58.31494,
+"longitude": 11.39429,
+"ord": 51,
+"hidden": false
+},
+{
+"slug": "m-s-sunnan-ii-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.10259,
+"longitude": 19.94568,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "madam-koko",
+"type": "restaurant",
+"island": "Kungshamn",
+"latitude": 58.36053,
+"longitude": 11.24839,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "magasinet-gustavsberg",
+"type": "restaurant",
+"island": "Vaxholm",
+"latitude": 59.40327,
+"longitude": 18.35454,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "maldepan",
+"type": "beach",
+"island": null,
+"latitude": 59.40111,
+"longitude": 18.43006,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "marindepan-dalaro",
+"type": "harbor",
+"island": "Dalarö",
+"latitude": 59.1411,
+"longitude": 18.41847,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "marstrand-drivmedel",
+"type": "fuel",
+"island": "Marstrand",
+"latitude": 57.8867,
+"longitude": 11.5853,
+"ord": 9,
+"hidden": true
+},
+{
+"slug": "marstrand-gasthamn",
+"type": "harbor",
+"island": "Marstrand",
+"latitude": 57.8867,
+"longitude": 11.5853,
+"ord": 58,
+"hidden": true
+},
+{
+"slug": "marstrand-vardshus",
+"type": "restaurant",
+"island": "Marstrand",
+"latitude": 57.8836,
+"longitude": 11.5893,
+"ord": 27,
+"hidden": false
+},
+{
+"slug": "marstrands-gasthamn",
+"type": "harbor",
+"island": "Marstrand",
+"latitude": 57.8824,
+"longitude": 11.5901,
+"ord": 58,
+"hidden": false
+},
+{
+"slug": "marstrands-havshotell-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 57.88625,
+"longitude": 11.59048,
+"ord": 21,
+"hidden": false
+},
+{
+"slug": "marstrands-kallbadhus",
+"type": "sauna",
+"island": "Marstrand",
+"latitude": 57.88871,
+"longitude": 11.57853,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "marstrands-vardshus",
+"type": "restaurant",
+"island": "Marstrand",
+"latitude": 57.8867,
+"longitude": 11.5853,
+"ord": 27,
+"hidden": true
+},
+{
+"slug": "mathantverkstan-skargarden",
+"type": "cafe",
+"island": "Vaxholm",
+"latitude": 59.4015,
+"longitude": 18.3548,
+"ord": 14,
+"hidden": true
+},
+{
+"slug": "matjes-pa-knippla",
+"type": "restaurant",
+"island": "Källö-Knippla",
+"latitude": 57.75017,
+"longitude": 11.65372,
+"ord": 42,
+"hidden": false
+},
+{
+"slug": "moja-bageri",
+"type": "cafe",
+"island": "Möja",
+"latitude": 59.40667,
+"longitude": 18.885,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "moja-hamnbar",
+"type": "bar",
+"island": "Möja",
+"latitude": 59.40636,
+"longitude": 18.88452,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "moja-lanthandel-cafe",
+"type": "restaurant",
+"island": "Moja",
+"latitude": 59.4503,
+"longitude": 18.9083,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "moja-lanthandel-kok",
+"type": "restaurant",
+"island": "Möja",
+"latitude": 59.4333,
+"longitude": 18.8833,
+"ord": 25,
+"hidden": true
+},
+{
+"slug": "moja-stf-moja-gard",
+"type": "hotel",
+"island": "Möja",
+"latitude": 59.40835,
+"longitude": 18.88651,
+"ord": 54,
+"hidden": false
+},
+{
+"slug": "molle-hamn-krog",
+"type": "restaurant",
+"island": "Mölle",
+"latitude": 56.282,
+"longitude": 12.4976,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "mollon",
+"type": "beach",
+"island": null,
+"latitude": 58.3259,
+"longitude": 11.81526,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "mollosund-gasthamn",
+"type": "harbor",
+"island": "Mollösund",
+"latitude": 58.07302,
+"longitude": 11.46956,
+"ord": 47,
+"hidden": false
+},
+{
+"slug": "mollosunds-vardshus",
+"type": "restaurant",
+"island": "Mollösund",
+"latitude": 58.0672,
+"longitude": 11.4648,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "morko-morko-stugor",
+"type": "marina",
+"island": "Mörkö",
+"latitude": 59.0479,
+"longitude": 17.69207,
+"ord": 18,
+"hidden": false
+},
+{
+"slug": "mossholmens-marina",
+"type": "harbor",
+"island": "Bleket",
+"latitude": 57.94954,
+"longitude": 11.55695,
+"ord": 51,
+"hidden": false
+},
+{
+"slug": "motorverkstan-bistro-bar",
+"type": "bar",
+"island": "Djurö",
+"latitude": 59.30567,
+"longitude": 18.68676,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "motorverkstan-djuro",
+"type": "bar",
+"island": "Djurö",
+"latitude": 59.3057,
+"longitude": 18.6868,
+"ord": 18,
+"hidden": true
+},
+{
+"slug": "munkens-bageri-djurhamn",
+"type": "cafe",
+"island": "Djurö",
+"latitude": 59.31037,
+"longitude": 18.69794,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "muskan",
+"type": "beach",
+"island": null,
+"latitude": 58.99201,
+"longitude": 17.90167,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "musko-sjokrog",
+"type": "restaurant",
+"island": "Muskö",
+"latitude": 59.0172,
+"longitude": 18.1328,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "musselbaren-on-the-road-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.21574,
+"longitude": 11.90443,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "musselbaren-pa-kleven-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.3528,
+"longitude": 11.22435,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "myrstigsbadet",
+"type": "beach",
+"island": null,
+"latitude": 59.44345,
+"longitude": 18.32239,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "namdö-handelsbod-cafe",
+"type": "cafe",
+"island": "Nämdö",
+"latitude": 59.18522,
+"longitude": 18.70042,
+"ord": 17,
+"hidden": false
+},
+{
+"slug": "namdo-macken",
+"type": "fuel",
+"island": "Nämdö",
+"latitude": 59.18479,
+"longitude": 18.70062,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "namndö-gasthamn",
+"type": "harbor",
+"island": "Nämdö",
+"latitude": 59.18472,
+"longitude": 18.70066,
+"ord": 17,
+"hidden": false
+},
+{
+"slug": "namndo-krog",
+"type": "restaurant",
+"island": "Nämdö",
+"latitude": 59.185,
+"longitude": 18.7003,
+"ord": 22,
+"hidden": false
+},
+{
+"slug": "namndö-restaurang",
+"type": "restaurant",
+"island": "Nämndö",
+"latitude": 59.1849,
+"longitude": 18.7008,
+"ord": 14,
+"hidden": true
+},
+{
+"slug": "nasetbadet",
+"type": "beach",
+"island": null,
+"latitude": 57.61578,
+"longitude": 11.90119,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "nasets-klippbad",
+"type": "beach",
+"island": null,
+"latitude": 59.29673,
+"longitude": 18.6883,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "nasselvikens-batklubb",
+"type": "harbor",
+"island": "Muskö",
+"latitude": 59.02402,
+"longitude": 18.14112,
+"ord": 20,
+"hidden": false
+},
+{
+"slug": "nattaro-krog",
+"type": "restaurant",
+"island": "Nåttarö",
+"latitude": 58.8743,
+"longitude": 18.123,
+"ord": 16,
+"hidden": false
+},
+{
+"slug": "nattaro-nya-gasthamn",
+"type": "harbor",
+"island": "Nåttarö",
+"latitude": 58.88131,
+"longitude": 18.10926,
+"ord": 48,
+"hidden": false
+},
+{
+"slug": "nattaro-stf-nattaro",
+"type": "hotel",
+"island": "Nåttarö",
+"latitude": 58.87938,
+"longitude": 18.1132,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "naturum-ottenby-oland",
+"type": "nature",
+"island": null,
+"latitude": 56.19643,
+"longitude": 16.39894,
+"ord": 17,
+"hidden": false
+},
+{
+"slug": "nickstabadet",
+"type": "beach",
+"island": null,
+"latitude": 58.90566,
+"longitude": 17.9336,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "nickstabadet-mini",
+"type": "beach",
+"island": null,
+"latitude": 58.9024,
+"longitude": 17.93038,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "nimbus-bastu-ockero",
+"type": "sauna",
+"island": "Öckerö",
+"latitude": 57.71018,
+"longitude": 11.66351,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "nogersund-naturhamn",
+"type": "anchorage",
+"island": "Nogersund",
+"latitude": 56.0234,
+"longitude": 15.5467,
+"ord": 14,
+"hidden": true
+},
+{
+"slug": "nord-koster-naturhamn",
+"type": "anchorage",
+"island": "Nord-Koster",
+"latitude": 58.9867,
+"longitude": 11.0634,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "nordvik-marina",
+"type": "marina",
+"island": "Nordvik",
+"latitude": 59.0123,
+"longitude": 11.1567,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "norra-hamnen-5",
+"type": "restaurant",
+"island": "Lysekil",
+"latitude": 58.27775,
+"longitude": 11.42532,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "norra-hamnens-gasthamn",
+"type": "harbor",
+"island": "Lysekil",
+"latitude": 58.27712,
+"longitude": 11.42304,
+"ord": 48,
+"hidden": false
+},
+{
+"slug": "norrbergshamnen",
+"type": "harbor",
+"island": "Vaxholm",
+"latitude": 59.40624,
+"longitude": 18.3495,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "norrhamnen",
+"type": "harbor",
+"island": "Vaxholm",
+"latitude": 59.40523,
+"longitude": 18.35177,
+"ord": 27,
+"hidden": false
+},
+{
+"slug": "norrora-krog",
+"type": "restaurant",
+"island": "Norröra",
+"latitude": 59.6458,
+"longitude": 19.0377,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "norrsund-blido-brygga",
+"type": "harbor",
+"island": "Blidö",
+"latitude": 59.64884,
+"longitude": 18.93822,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "nosunds-vardshus",
+"type": "restaurant",
+"island": "Nösund",
+"latitude": 58.10576,
+"longitude": 11.51051,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "not-the-public-sauna",
+"type": "sauna",
+"island": null,
+"latitude": 59.40786,
+"longitude": 18.97182,
+"ord": 23,
+"hidden": true
+},
+{
+"slug": "nya-ebbas-restaurang-oland",
+"type": "restaurant",
+"island": null,
+"latitude": 56.87947,
+"longitude": 16.65388,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "nynashamn-marinbransle",
+"type": "fuel",
+"island": "Nynäshamn",
+"latitude": 58.9039,
+"longitude": 17.9472,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "nynashamns-gasthamn",
+"type": "harbor",
+"island": "Nynäshamn",
+"latitude": 58.9044,
+"longitude": 17.9467,
+"ord": 25,
+"hidden": false
+},
+{
+"slug": "oaxens-batklubb",
+"type": "harbor",
+"island": "Mörkö",
+"latitude": 59.04799,
+"longitude": 17.68832,
+"ord": 52,
+"hidden": false
+},
+{
+"slug": "ockero-gasthamn",
+"type": "harbor",
+"island": "Öckerö",
+"latitude": 57.70518,
+"longitude": 11.65866,
+"ord": 46,
+"hidden": false
+},
+{
+"slug": "ockero-hamn-drivmedel",
+"type": "fuel",
+"island": "Öckerö",
+"latitude": 57.70518,
+"longitude": 11.65866,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "ockero-hamn-fiskareforening",
+"type": "harbor",
+"island": "Öckerö",
+"latitude": 57.7054,
+"longitude": 11.65796,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "ockero-hamncaf",
+"type": "restaurant",
+"island": "Öckerö",
+"latitude": 57.70496,
+"longitude": 11.65933,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "ockero-vardshus",
+"type": "restaurant",
+"island": "Öckerö",
+"latitude": 57.7042,
+"longitude": 11.6492,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "okrogen-tjocko",
+"type": "restaurant",
+"island": "Tjockö",
+"latitude": 59.74835,
+"longitude": 19.12222,
+"ord": 25,
+"hidden": false
+},
+{
+"slug": "old-smokehouse",
+"type": "restaurant",
+"island": null,
+"latitude": 59.29996,
+"longitude": 18.25807,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "ondas",
+"type": "restaurant",
+"island": "Smögen",
+"latitude": 58.35329,
+"longitude": 11.22686,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "orno-brodbod-deli",
+"type": "cafe",
+"island": "Ornö",
+"latitude": 59.05232,
+"longitude": 18.43337,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "orno-gasthamn-och-stugor",
+"type": "harbor",
+"island": "Ornö",
+"latitude": 59.03461,
+"longitude": 18.37325,
+"ord": 52,
+"hidden": false
+},
+{
+"slug": "orno-hamnkiosk",
+"type": "cafe",
+"island": "Ornö",
+"latitude": 59.0519,
+"longitude": 18.43168,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "orno-krog",
+"type": "restaurant",
+"island": "Ornö",
+"latitude": 59.05175,
+"longitude": 18.43154,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "orno-naturhamn",
+"type": "anchorage",
+"island": "Ornö",
+"latitude": 59.0517,
+"longitude": 18.4334,
+"ord": 13,
+"hidden": true
+},
+{
+"slug": "ornomacken-gasthamn",
+"type": "harbor",
+"island": "Ornö",
+"latitude": 59.05172,
+"longitude": 18.43312,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "ornsand",
+"type": "beach",
+"island": null,
+"latitude": 58.96878,
+"longitude": 18.07607,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "ostersjoviksens-badplats",
+"type": "beach",
+"island": null,
+"latitude": 59.29243,
+"longitude": 18.69436,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "pacos",
+"type": "restaurant",
+"island": "Sydkoster",
+"latitude": 58.89084,
+"longitude": 11.00875,
+"ord": 23,
+"hidden": false
+},
+{
+"slug": "paradiset-stora-jolpan",
+"type": "harbor",
+"island": "Finnhamn",
+"latitude": 59.47868,
+"longitude": 18.81219,
+"ord": 47,
+"hidden": false
+},
+{
+"slug": "pensionat-styrso-skaret",
+"type": "restaurant",
+"island": "Styrsö",
+"latitude": 57.6225,
+"longitude": 11.7833,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "perssons-pa-kajen",
+"type": "restaurant",
+"island": "Hunnebostrand",
+"latitude": 58.43934,
+"longitude": 11.29253,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "pipershuset",
+"type": "restaurant",
+"island": "Hamburgsund",
+"latitude": 58.55278,
+"longitude": 11.27056,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "pizzaverket",
+"type": "restaurant",
+"island": "Hamburgsund",
+"latitude": 58.55184,
+"longitude": 11.26987,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "pizzeria-ljustero",
+"type": "restaurant",
+"island": "Ljusterö",
+"latitude": 59.5275,
+"longitude": 18.62,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "porsangen",
+"type": "beach",
+"island": null,
+"latitude": 59.27022,
+"longitude": 18.46686,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "pub-alma-sandhamn",
+"type": "bar",
+"island": "Sandhamn",
+"latitude": 59.2883,
+"longitude": 18.9112,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "pub-niska-sjokvarteret-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.10519,
+"longitude": 19.94509,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "publik-mat-bar",
+"type": "restaurant",
+"island": "Lysekil",
+"latitude": 58.27652,
+"longitude": 11.42474,
+"ord": 58,
+"hidden": false
+},
+{
+"slug": "radmanby-hamn",
+"type": "harbor",
+"island": "Gräddö",
+"latitude": 59.77357,
+"longitude": 18.977,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "rafsnas-sjokrog",
+"type": "restaurant",
+"island": "Räfsnäs",
+"latitude": 59.75228,
+"longitude": 19.08047,
+"ord": 27,
+"hidden": false
+},
+{
+"slug": "ragnars-kiosk-finnhamn",
+"type": "cafe",
+"island": "Finnhamn",
+"latitude": 59.47967,
+"longitude": 18.81284,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "ragosand",
+"type": "beach",
+"island": null,
+"latitude": 58.57524,
+"longitude": 11.2542,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "rakstabadet",
+"type": "beach",
+"island": null,
+"latitude": 59.22567,
+"longitude": 18.30124,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "ramsmora-varv-och-marina-ab",
+"type": "harbor",
+"island": "Ljusterö",
+"latitude": 59.46104,
+"longitude": 18.57222,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "ramsvik-naturhamn",
+"type": "anchorage",
+"island": "Ramsvik",
+"latitude": 58.8456,
+"longitude": 11.3678,
+"ord": 7,
+"hidden": true
+},
+{
+"slug": "rano-brygga",
+"type": "restaurant",
+"island": "Rånö",
+"latitude": 58.91905,
+"longitude": 18.17788,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "ravstavik",
+"type": "beach",
+"island": null,
+"latitude": 58.96032,
+"longitude": 18.33621,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "relax-bar-bistro",
+"type": "restaurant",
+"island": "Strömstad",
+"latitude": 58.93991,
+"longitude": 11.17269,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "resaro-batklubb",
+"type": "harbor",
+"island": "Resarö",
+"latitude": 59.42473,
+"longitude": 18.33994,
+"ord": 46,
+"hidden": false
+},
+{
+"slug": "resaro-marina",
+"type": "harbor",
+"island": "Resarö",
+"latitude": 59.42629,
+"longitude": 18.34131,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "restaurang-bryggvingen-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.06987,
+"longitude": 11.50123,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "restaurang-fregatten",
+"type": "restaurant",
+"island": "Kungshamn",
+"latitude": 58.35711,
+"longitude": 11.26274,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "restaurang-hamnen-4",
+"type": "restaurant",
+"island": "Smögen",
+"latitude": 58.35329,
+"longitude": 11.22492,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "restaurang-hertigen-grebbestad",
+"type": "restaurant",
+"island": "Grebbestad",
+"latitude": 58.6909,
+"longitude": 11.25547,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "restaurang-horsfjarden",
+"type": "restaurant",
+"island": "Årsta Havsbad",
+"latitude": 59.08322,
+"longitude": 18.16536,
+"ord": 20,
+"hidden": false
+},
+{
+"slug": "restaurang-kastoren-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.25769,
+"longitude": 20.73907,
+"ord": 24,
+"hidden": false
+},
+{
+"slug": "restaurang-kroken",
+"type": "restaurant",
+"island": "Fjällbacka",
+"latitude": 58.59749,
+"longitude": 11.28132,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "restaurang-macri",
+"type": "restaurant",
+"island": "Grebbestad",
+"latitude": 58.68473,
+"longitude": 11.25716,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "restaurang-mamsell",
+"type": "restaurant",
+"island": "Fjällbacka",
+"latitude": 58.5983,
+"longitude": 11.28252,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "restaurang-matilda",
+"type": "restaurant",
+"island": "Fjällbacka",
+"latitude": 58.59828,
+"longitude": 11.28211,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "restaurang-mormors-grona-hus-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.07979,
+"longitude": 20.08997,
+"ord": 46,
+"hidden": false
+},
+{
+"slug": "restaurang-q-skar-grebbestad",
+"type": "restaurant",
+"island": "Grebbestad",
+"latitude": 58.68522,
+"longitude": 11.25694,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "restaurang-seagram-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.02959,
+"longitude": 20.38485,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "restaurang-stora-oset",
+"type": "restaurant",
+"island": "Hyppeln",
+"latitude": 57.75639,
+"longitude": 11.61594,
+"ord": 18,
+"hidden": false
+},
+{
+"slug": "restaurang-telegrafen",
+"type": "restaurant",
+"island": "Grebbestad",
+"latitude": 58.6902,
+"longitude": 11.25683,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "restaurang-tradgardsgatan-26-oland",
+"type": "restaurant",
+"island": null,
+"latitude": 56.87783,
+"longitude": 16.65688,
+"ord": 41,
+"hidden": false
+},
+{
+"slug": "restaurang-villa-solviken",
+"type": "restaurant",
+"island": "Lysekil",
+"latitude": 58.27606,
+"longitude": 11.44129,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "restaurangbiografen-park-ab",
+"type": "restaurant",
+"island": "Strömstad",
+"latitude": 58.93802,
+"longitude": 11.17322,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "rindo-hamn-bed-och-breakfast",
+"type": "harbor",
+"island": "Rindö",
+"latitude": 59.3932,
+"longitude": 18.43497,
+"ord": 48,
+"hidden": false
+},
+{
+"slug": "rindo-kafe",
+"type": "restaurant",
+"island": "Rindö",
+"latitude": 59.3929,
+"longitude": 18.43943,
+"ord": 25,
+"hidden": false
+},
+{
+"slug": "rindo-marina",
+"type": "harbor",
+"island": "Rindö",
+"latitude": 59.39268,
+"longitude": 18.4364,
+"ord": 55,
+"hidden": false
+},
+{
+"slug": "rindo-rindo-hotell",
+"type": "hotel",
+"island": "Rindö",
+"latitude": 59.39132,
+"longitude": 18.43563,
+"ord": 7,
+"hidden": true
+},
+{
+"slug": "risbaren",
+"type": "restaurant",
+"island": "Hönö",
+"latitude": 57.68262,
+"longitude": 11.64632,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "roda-villan",
+"type": "restaurant",
+"island": "Fjäderholmarna",
+"latitude": 59.32835,
+"longitude": 18.17289,
+"ord": 53,
+"hidden": false
+},
+{
+"slug": "rodloga-rodloga-pensionat",
+"type": "hotel",
+"island": "Rödlöga",
+"latitude": 59.59197,
+"longitude": 19.16535,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "rogrunds-sjokrog",
+"type": "restaurant",
+"island": "Rögrund",
+"latitude": 59.16556,
+"longitude": 18.58806,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "rohalla",
+"type": "beach",
+"island": null,
+"latitude": 58.36037,
+"longitude": 11.44831,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "rokeriet-fjaderholmarna",
+"type": "restaurant",
+"island": "Fjäderholmarna",
+"latitude": 59.3208,
+"longitude": 18.1628,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "rokeriet-pa-fjaderholmarna",
+"type": "restaurant",
+"island": "Fjäderholmarna",
+"latitude": 59.32916,
+"longitude": 18.17773,
+"ord": 30,
+"hidden": true
+},
+{
+"slug": "roma-kungsgard-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.51607,
+"longitude": 18.45897,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "ronnangs-hamn",
+"type": "harbor",
+"island": "Rönnäng",
+"latitude": 57.94007,
+"longitude": 11.57891,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "roro-gasthamn",
+"type": "harbor",
+"island": "Rörö",
+"latitude": 57.77331,
+"longitude": 11.6166,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "roro-sjotapp-bensin-diesel",
+"type": "fuel",
+"island": "Rörö",
+"latitude": 57.77201,
+"longitude": 11.61967,
+"ord": 25,
+"hidden": false
+},
+{
+"slug": "roroboa-caf-restaurang",
+"type": "restaurant",
+"island": "Rörö",
+"latitude": 57.77363,
+"longitude": 11.61589,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "rorviksbadet",
+"type": "beach",
+"island": null,
+"latitude": 57.63004,
+"longitude": 11.88144,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "roy-s-delikatesser",
+"type": "restaurant",
+"island": "Smögen",
+"latitude": 58.35315,
+"longitude": 11.22654,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "rudan-norra-strand-lillrudan",
+"type": "beach",
+"island": null,
+"latitude": 59.17154,
+"longitude": 18.13638,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "rudan-strand",
+"type": "beach",
+"island": null,
+"latitude": 59.1659,
+"longitude": 18.13147,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "runmaro-bryggkiosk",
+"type": "cafe",
+"island": "Runmarö",
+"latitude": 59.2945,
+"longitude": 18.7565,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "salt-och-sill-hotell-konferens-och-restaurang-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 57.94993,
+"longitude": 11.54956,
+"ord": 11,
+"hidden": false
+},
+{
+"slug": "salt-sill",
+"type": "restaurant",
+"island": "Klädesholmen",
+"latitude": 57.9772,
+"longitude": 11.5731,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "saltboden-kok-proviant",
+"type": "restaurant",
+"island": "Landsort",
+"latitude": 58.74425,
+"longitude": 17.86535,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "salteriet-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.11023,
+"longitude": 20.68294,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "saltholmen-marina",
+"type": "harbor",
+"island": null,
+"latitude": 57.66101,
+"longitude": 11.84314,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "saltholmens-bastusallskap",
+"type": "sauna",
+"island": null,
+"latitude": 57.6394,
+"longitude": 11.7944,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "saltsjobadens-friluftsbad",
+"type": "beach",
+"island": null,
+"latitude": 59.27514,
+"longitude": 18.31671,
+"ord": 40,
+"hidden": false
+},
+{
+"slug": "salviken",
+"type": "beach",
+"island": null,
+"latitude": 59.87609,
+"longitude": 19.07829,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "sand-namdo-brygga",
+"type": "harbor",
+"island": "Nämdö",
+"latitude": 59.18229,
+"longitude": 18.69295,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "sandbunker-bistro-catering",
+"type": "restaurant",
+"island": "Fjällbacka",
+"latitude": 58.61504,
+"longitude": 11.29095,
+"ord": 29,
+"hidden": false
+},
+{
+"slug": "sandhamn-sandhamns-vardshus",
+"type": "restaurant",
+"island": "Sandhamn",
+"latitude": 59.2895,
+"longitude": 18.91423,
+"ord": 62,
+"hidden": false
+},
+{
+"slug": "sandhamn-sands-hotell",
+"type": "hotel",
+"island": "Sandhamn",
+"latitude": 59.28797,
+"longitude": 18.91472,
+"ord": 41,
+"hidden": false
+},
+{
+"slug": "sandhamns-bageriet",
+"type": "cafe",
+"island": "Sandhamn",
+"latitude": 59.2884,
+"longitude": 18.9118,
+"ord": 24,
+"hidden": false
+},
+{
+"slug": "sandhamns-glassigaste-stalle",
+"type": "cafe",
+"island": "Sandhamn",
+"latitude": 59.2878,
+"longitude": 18.911,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "sandhamns-sjöstation",
+"type": "fuel",
+"island": "Sandhamn",
+"latitude": 59.2893,
+"longitude": 18.9098,
+"ord": 9,
+"hidden": true
+},
+{
+"slug": "sandhamns-vardshus",
+"type": "restaurant",
+"island": "Sandhamn",
+"latitude": 59.2883,
+"longitude": 18.9117,
+"ord": 10,
+"hidden": true
+},
+{
+"slug": "sandstrand",
+"type": "beach",
+"island": null,
+"latitude": 57.65658,
+"longitude": 12.19922,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "sandviks-gasthamn",
+"type": "harbor",
+"island": "Styrsö",
+"latitude": 57.61722,
+"longitude": 11.7615,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "sandviks-hamnkrog-oland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.07152,
+"longitude": 16.85619,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "sankt-hans-cafe-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.6384,
+"longitude": 18.29279,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "schweizerbadet",
+"type": "beach",
+"island": null,
+"latitude": 59.13941,
+"longitude": 18.39412,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "seglarbaren-uto",
+"type": "bar",
+"island": "Utö",
+"latitude": 58.96949,
+"longitude": 18.32625,
+"ord": 37,
+"hidden": false
+},
+{
+"slug": "seglarhotellet-sandhamn",
+"type": "restaurant",
+"island": "Sandhamn",
+"latitude": 59.28785,
+"longitude": 18.91848,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "seglarrestaurangen-sandhamn",
+"type": "restaurant",
+"island": "Sandhamn",
+"latitude": 59.2875,
+"longitude": 18.9255,
+"ord": 23,
+"hidden": true
+},
+{
+"slug": "siarofortet-krog",
+"type": "restaurant",
+"island": "Kyrkogårdsön",
+"latitude": 59.5548,
+"longitude": 18.624,
+"ord": 41,
+"hidden": false
+},
+{
+"slug": "singo-battaxi",
+"type": "harbor",
+"island": "Singö",
+"latitude": 60.17454,
+"longitude": 18.71774,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "singo-camping-grisslehamns-marina-och-camping-ab",
+"type": "harbor",
+"island": "Singö",
+"latitude": 60.15141,
+"longitude": 18.77928,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "sjoboden-toro-ankarudden",
+"type": "restaurant",
+"island": "Torö",
+"latitude": 58.80167,
+"longitude": 17.83694,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "sjogrens-i-backen",
+"type": "restaurant",
+"island": "Grebbestad",
+"latitude": 58.6898,
+"longitude": 11.25684,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "sjomack-musko",
+"type": "fuel",
+"island": "Muskö",
+"latitude": 59.01826,
+"longitude": 18.13249,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "sjomacken-hunnebostrand",
+"type": "fuel",
+"island": "Hunnebostrand",
+"latitude": 58.44135,
+"longitude": 11.29586,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "sjomacken-mollosund",
+"type": "fuel",
+"island": "Mollösund",
+"latitude": 58.07254,
+"longitude": 11.46963,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "skafferiet-hono",
+"type": "restaurant",
+"island": "Hönö",
+"latitude": 57.68053,
+"longitude": 11.64505,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "skalakers-batklubb",
+"type": "harbor",
+"island": "Gålö",
+"latitude": 59.09208,
+"longitude": 18.32086,
+"ord": 47,
+"hidden": false
+},
+{
+"slug": "skarets-krog-caf",
+"type": "restaurant",
+"island": "Smögen",
+"latitude": 58.35312,
+"longitude": 11.22624,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "skargarn-bar-restaurang",
+"type": "restaurant",
+"island": "Rönnäng",
+"latitude": 57.93569,
+"longitude": 11.5754,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "skarhamns-gasthamn",
+"type": "harbor",
+"island": "Skärhamn",
+"latitude": 57.98803,
+"longitude": 11.54492,
+"ord": 46,
+"hidden": false
+},
+{
+"slug": "skatudden-cafe-hamn",
+"type": "restaurant",
+"island": "Nämndö",
+"latitude": 59.185,
+"longitude": 18.7003,
+"ord": 20,
+"hidden": true
+},
+{
+"slug": "skomakarviken",
+"type": "beach",
+"island": null,
+"latitude": 58.48004,
+"longitude": 11.32873,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "slussens-pensionat-bohuslan",
+"type": "restaurant",
+"island": null,
+"latitude": 58.26207,
+"longitude": 11.76163,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "smakbyn-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.23136,
+"longitude": 20.08513,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "smalsjon",
+"type": "beach",
+"island": null,
+"latitude": 59.85306,
+"longitude": 18.41137,
+"ord": 14,
+"hidden": true
+},
+{
+"slug": "smithska-udden",
+"type": "beach",
+"island": null,
+"latitude": 57.6113,
+"longitude": 11.89747,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "smogen-brygghus",
+"type": "bar",
+"island": "Smögen",
+"latitude": 58.3556,
+"longitude": 11.2312,
+"ord": 13,
+"hidden": true
+},
+{
+"slug": "smogen-drivmedel",
+"type": "fuel",
+"island": "Smögen",
+"latitude": 58.36332,
+"longitude": 11.23678,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "smogen-gasthamn",
+"type": "harbor",
+"island": "Smögen",
+"latitude": 58.35329,
+"longitude": 11.22707,
+"ord": 42,
+"hidden": false
+},
+{
+"slug": "smogenbryggar-ns-olhall",
+"type": "restaurant",
+"island": "Smögen",
+"latitude": 58.35453,
+"longitude": 11.22383,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "smogens-gastgiveri",
+"type": "restaurant",
+"island": "Smögen",
+"latitude": 58.35434,
+"longitude": 11.22628,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "smogens-hafvshotell",
+"type": "restaurant",
+"island": "Smögen",
+"latitude": 58.3571,
+"longitude": 11.2212,
+"ord": 46,
+"hidden": false
+},
+{
+"slug": "smogens-hamnkrog",
+"type": "restaurant",
+"island": "Smögen",
+"latitude": 58.3554,
+"longitude": 11.2302,
+"ord": 12,
+"hidden": false
+},
+{
+"slug": "smogens-kallbadhus",
+"type": "sauna",
+"island": "Smögen",
+"latitude": 58.3517,
+"longitude": 11.2222,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "smorvattnets-badplats",
+"type": "beach",
+"island": null,
+"latitude": 57.77947,
+"longitude": 12.10538,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "snar-bar",
+"type": "restaurant",
+"island": "Fjällbacka",
+"latitude": 58.59887,
+"longitude": 11.28194,
+"ord": 40,
+"hidden": false
+},
+{
+"slug": "societetshuset",
+"type": "restaurant",
+"island": "Marstrand",
+"latitude": 57.88829,
+"longitude": 11.57992,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "soderlangholm",
+"type": "harbor",
+"island": "Finnhamn",
+"latitude": 59.48045,
+"longitude": 18.83299,
+"ord": 47,
+"hidden": false
+},
+{
+"slug": "sodermoja-krog",
+"type": "restaurant",
+"island": "Södermöja",
+"latitude": 59.4118,
+"longitude": 18.8815,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "sodersjon",
+"type": "beach",
+"island": null,
+"latitude": 60.1809,
+"longitude": 19.59506,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "sodersunda-brygga",
+"type": "harbor",
+"island": "Runmarö",
+"latitude": 59.27026,
+"longitude": 18.7356,
+"ord": 22,
+"hidden": false
+},
+{
+"slug": "sodersved-havsbad",
+"type": "beach",
+"island": null,
+"latitude": 59.29304,
+"longitude": 18.42252,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "sodra-badet",
+"type": "beach",
+"island": null,
+"latitude": 59.15446,
+"longitude": 18.01347,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "solbrannan",
+"type": "beach",
+"island": null,
+"latitude": 59.45552,
+"longitude": 18.3105,
+"ord": 47,
+"hidden": false
+},
+{
+"slug": "soltuna-resturang-och-cafe-aland",
+"type": "restaurant",
+"island": null,
+"latitude": 60.38592,
+"longitude": 19.84439,
+"ord": 30,
+"hidden": false
+},
+{
+"slug": "sommardrom-skarhamn",
+"type": "restaurant",
+"island": "Skärhamn",
+"latitude": 57.9871,
+"longitude": 11.54537,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "stallplats-rodhamnen",
+"type": "harbor",
+"island": "Hönö",
+"latitude": 57.69786,
+"longitude": 11.64043,
+"ord": 48,
+"hidden": false
+},
+{
+"slug": "stationen-restaurang-stromstad",
+"type": "restaurant",
+"island": "Strömstad",
+"latitude": 58.93642,
+"longitude": 11.17365,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "stavsnäs-batvart-sjomack",
+"type": "fuel",
+"island": "Stavsnäs",
+"latitude": 59.28657,
+"longitude": 18.70432,
+"ord": 16,
+"hidden": false
+},
+{
+"slug": "stavsnäs-hembageri",
+"type": "cafe",
+"island": "Stavsnäs",
+"latitude": 59.2901,
+"longitude": 18.68853,
+"ord": 13,
+"hidden": false
+},
+{
+"slug": "stavsnas-restaurang-bar",
+"type": "restaurant",
+"island": "Värmdö",
+"latitude": 59.27,
+"longitude": 18.6878,
+"ord": 42,
+"hidden": false
+},
+{
+"slug": "stavsnas-vinterhamn",
+"type": "harbor",
+"island": "Värmdö",
+"latitude": 59.28736,
+"longitude": 18.70275,
+"ord": 44,
+"hidden": false
+},
+{
+"slug": "stavsnas-vinterhamn-runmaro",
+"type": "harbor",
+"island": "Runmarö",
+"latitude": 59.28641,
+"longitude": 18.7047,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "stenstrand",
+"type": "beach",
+"island": null,
+"latitude": 58.79912,
+"longitude": 17.80493,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "stf-vandrarhem-uto",
+"type": "hostel",
+"island": "Utö",
+"latitude": 58.96812,
+"longitude": 18.32636,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "stora-hotellet-fjallbacka",
+"type": "restaurant",
+"island": "Fjällbacka",
+"latitude": 58.5983,
+"longitude": 11.28252,
+"ord": 29,
+"hidden": false
+},
+{
+"slug": "stora-karlso-restaurang-gotland",
+"type": "restaurant",
+"island": "Stora Karlsö",
+"latitude": 57.28928,
+"longitude": 17.97033,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "stora-sand",
+"type": "beach",
+"island": null,
+"latitude": 58.91891,
+"longitude": 18.24819,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "stora-sandarna",
+"type": "beach",
+"island": null,
+"latitude": 59.21752,
+"longitude": 18.52828,
+"ord": 41,
+"hidden": false
+},
+{
+"slug": "stora-sandvik",
+"type": "beach",
+"island": null,
+"latitude": 58.97032,
+"longitude": 18.35728,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "stora-trouvillestranden",
+"type": "beach",
+"island": "Sandhamn",
+"latitude": 59.27394,
+"longitude": 18.92215,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "storm-restaurang-biograf",
+"type": "restaurant",
+"island": "Grebbestad",
+"latitude": 58.69032,
+"longitude": 11.25581,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "stormskars-konferens-och-vardshus-aland",
+"type": "restaurant",
+"island": "Vårdö",
+"latitude": 60.34234,
+"longitude": 20.36004,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "storsand",
+"type": "beach",
+"island": null,
+"latitude": 59.04837,
+"longitude": 18.34813,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "strand-hotell-oland",
+"type": "restaurant",
+"island": null,
+"latitude": 56.87869,
+"longitude": 16.6478,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "strandbaren-idoborg",
+"type": "bar",
+"island": "Idöborg",
+"latitude": 59.20433,
+"longitude": 18.76013,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "strande-dyna",
+"type": "beach",
+"island": null,
+"latitude": 58.27662,
+"longitude": 11.83579,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "strandkanten-pa-nord-koster",
+"type": "restaurant",
+"island": "Nordkoster",
+"latitude": 58.89438,
+"longitude": 11.01224,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "stromma-kanalbar",
+"type": "restaurant",
+"island": "Värmdö",
+"latitude": 59.28611,
+"longitude": 18.54833,
+"ord": 19,
+"hidden": false
+},
+{
+"slug": "stromstad-bensinstation",
+"type": "fuel_station",
+"island": "Strömstad",
+"latitude": 58.9456,
+"longitude": 11.1823,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "stromstad-cafe-och-bistro-ab",
+"type": "restaurant",
+"island": "Strömstad",
+"latitude": 58.93876,
+"longitude": 11.17453,
+"ord": 13,
+"hidden": false
+},
+{
+"slug": "stromstad-gasthamn",
+"type": "marina",
+"island": "Strömstad",
+"latitude": 58.9456,
+"longitude": 11.1823,
+"ord": 11,
+"hidden": true
+},
+{
+"slug": "stromstad-gasthamn-drivmedel",
+"type": "fuel",
+"island": "Strömstad",
+"latitude": 58.93784,
+"longitude": 11.17059,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "stromstad-marina-ab",
+"type": "harbor",
+"island": "Strömstad",
+"latitude": 58.9438,
+"longitude": 11.16284,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "stromstad-restaurang",
+"type": "restaurant",
+"island": "Strömstad",
+"latitude": 58.9456,
+"longitude": 11.1823,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "stromstad-sodra-hamn",
+"type": "harbor",
+"island": "Strömstad",
+"latitude": 58.93734,
+"longitude": 11.17173,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "stromstads-bastusallskap",
+"type": "sauna",
+"island": "Strömstad",
+"latitude": 58.93812,
+"longitude": 11.17039,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "stromstads-kallbadhus",
+"type": "sauna",
+"island": "Strömstad",
+"latitude": 58.9375,
+"longitude": 11.16625,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "stromstads-stadshotell",
+"type": "restaurant",
+"island": "Strömstad",
+"latitude": 58.9417,
+"longitude": 11.1711,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "styrso-bratten-bastu",
+"type": "sauna",
+"island": "Styrsö",
+"latitude": 57.61814,
+"longitude": 11.79317,
+"ord": 50,
+"hidden": false
+},
+{
+"slug": "styrso-sjomack",
+"type": "fuel",
+"island": "Styrsö",
+"latitude": 57.61886,
+"longitude": 11.76098,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "styrso-skaret",
+"type": "restaurant",
+"island": "Styrsö",
+"latitude": 57.60388,
+"longitude": 11.79092,
+"ord": 16,
+"hidden": true
+},
+{
+"slug": "styrso-tangen-gasthamn",
+"type": "harbor",
+"island": "Styrsö",
+"latitude": 57.62152,
+"longitude": 11.76837,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "sunnegabet",
+"type": "restaurant",
+"island": "Hamburgsund",
+"latitude": 58.55232,
+"longitude": 11.27025,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "suntrip-bar-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.63246,
+"longitude": 18.33323,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "svangen-runmaro",
+"type": "restaurant",
+"island": "Runmarö",
+"latitude": 59.27588,
+"longitude": 18.74311,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "svartso-gasthamn",
+"type": "harbor",
+"island": "Svartsö",
+"latitude": 59.43801,
+"longitude": 18.65606,
+"ord": 42,
+"hidden": false
+},
+{
+"slug": "svartsö-handelsbod",
+"type": "cafe",
+"island": "Svartsö",
+"latitude": 59.43705,
+"longitude": 18.65822,
+"ord": 33,
+"hidden": false
+},
+{
+"slug": "svartso-krog",
+"type": "restaurant",
+"island": "Svartsö",
+"latitude": 59.4658,
+"longitude": 18.7285,
+"ord": 17,
+"hidden": false
+},
+{
+"slug": "svartso-stf-svartso-skargardshotell",
+"type": "hotel",
+"island": "Svartsö",
+"latitude": 59.45756,
+"longitude": 18.67706,
+"ord": 43,
+"hidden": false
+},
+{
+"slug": "svenska-hogarna-fyrvaktarstugan-svenska-hogarna",
+"type": "hotel",
+"island": "Svenska Högarna",
+"latitude": 59.4417,
+"longitude": 19.5083,
+"ord": 0,
+"hidden": false
+},
+{
+"slug": "syd-koster-gasthamn",
+"type": "marina",
+"island": "Syd-Koster",
+"latitude": 58.8956,
+"longitude": 11.0334,
+"ord": 11,
+"hidden": true
+},
+{
+"slug": "talluddens-bad",
+"type": "beach",
+"island": null,
+"latitude": 59.24583,
+"longitude": 18.30941,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "tangbaren",
+"type": "restaurant",
+"island": "Styrsö",
+"latitude": 57.62074,
+"longitude": 11.76724,
+"ord": 21,
+"hidden": false
+},
+{
+"slug": "tant-anton",
+"type": "restaurant",
+"island": "Kungshamn",
+"latitude": 58.36278,
+"longitude": 11.24754,
+"ord": 22,
+"hidden": false
+},
+{
+"slug": "taste",
+"type": "restaurant",
+"island": "Lysekil",
+"latitude": 58.26905,
+"longitude": 11.43502,
+"ord": 27,
+"hidden": false
+},
+{
+"slug": "tenan-marstrand",
+"type": "restaurant",
+"island": "Marstrand",
+"latitude": 57.88733,
+"longitude": 11.58308,
+"ord": 47,
+"hidden": true
+},
+{
+"slug": "tenobadet",
+"type": "beach",
+"island": null,
+"latitude": 59.39238,
+"longitude": 18.32991,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "thai-corner-knippla",
+"type": "restaurant",
+"island": "Källö-Knippla",
+"latitude": 57.74916,
+"longitude": 11.65389,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "thai-corner-ockero",
+"type": "restaurant",
+"island": "Öckerö",
+"latitude": 57.70754,
+"longitude": 11.65703,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "thairestaurang-prastgarden",
+"type": "restaurant",
+"island": "Kungshamn",
+"latitude": 58.36006,
+"longitude": 11.25065,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "the-old-house-inn",
+"type": "restaurant",
+"island": "Lysekil",
+"latitude": 58.27394,
+"longitude": 11.43579,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "tian",
+"type": "beach",
+"island": null,
+"latitude": 58.88856,
+"longitude": 17.92757,
+"ord": 39,
+"hidden": false
+},
+{
+"slug": "tjurkoe-gasthamn",
+"type": "marina",
+"island": "Tjurkö",
+"latitude": 56.3412,
+"longitude": 15.2156,
+"ord": 9,
+"hidden": true
+},
+{
+"slug": "tjusviks-hamn",
+"type": "harbor",
+"island": "Nämdö",
+"latitude": 59.20231,
+"longitude": 18.68715,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "tofta-strand-gotland",
+"type": "restaurant",
+"island": null,
+"latitude": 57.49147,
+"longitude": 18.12667,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "torgboden-i-bovallstrand",
+"type": "restaurant",
+"island": "Bovallstrand",
+"latitude": 58.47546,
+"longitude": 11.32165,
+"ord": 24,
+"hidden": false
+},
+{
+"slug": "torhamn-bensin",
+"type": "fuel_station",
+"island": "Torhamn",
+"latitude": 56.0845,
+"longitude": 15.6732,
+"ord": 9,
+"hidden": true
+},
+{
+"slug": "torhamn-gasthamn",
+"type": "marina",
+"island": "Torhamn",
+"latitude": 56.0845,
+"longitude": 15.6732,
+"ord": 8,
+"hidden": true
+},
+{
+"slug": "torhamn-restaurang",
+"type": "restaurant",
+"island": "Torhamn",
+"latitude": 56.0845,
+"longitude": 15.6732,
+"ord": 11,
+"hidden": true
+},
+{
+"slug": "toro-ankarudden",
+"type": "restaurant",
+"island": "Torö",
+"latitude": 58.80167,
+"longitude": 17.83694,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "toro-kolgrill-tapas-bar",
+"type": "restaurant",
+"island": "Strömstad",
+"latitude": 58.93903,
+"longitude": 11.17098,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "toro-varv-ab",
+"type": "harbor",
+"island": "Torö",
+"latitude": 58.83347,
+"longitude": 17.87187,
+"ord": 35,
+"hidden": false
+},
+{
+"slug": "torpesand",
+"type": "beach",
+"island": null,
+"latitude": 59.22164,
+"longitude": 18.54981,
+"ord": 28,
+"hidden": false
+},
+{
+"slug": "torsbybadet",
+"type": "beach",
+"island": null,
+"latitude": 59.33483,
+"longitude": 18.48271,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "tralhavsstrand",
+"type": "beach",
+"island": null,
+"latitude": 59.41904,
+"longitude": 18.42043,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "trinntorpsbadet",
+"type": "beach",
+"island": null,
+"latitude": 59.22813,
+"longitude": 18.35716,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "trosa-havsbad",
+"type": "beach",
+"island": null,
+"latitude": 58.87147,
+"longitude": 17.57585,
+"ord": 46,
+"hidden": false
+},
+{
+"slug": "tubbevikens-bad-bastu",
+"type": "sauna",
+"island": "Skärhamn",
+"latitude": 57.9943,
+"longitude": 11.54754,
+"ord": 13,
+"hidden": false
+},
+{
+"slug": "tullhuset-restaurang-hono",
+"type": "restaurant",
+"island": "Hönö",
+"latitude": 57.67938,
+"longitude": 11.6434,
+"ord": 36,
+"hidden": false
+},
+{
+"slug": "tunanas-bastun",
+"type": "sauna",
+"island": null,
+"latitude": 58.9838,
+"longitude": 17.70369,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "utlaengan-naturhamn",
+"type": "anchorage",
+"island": "Utlängan",
+"latitude": 56.3567,
+"longitude": 15.0456,
+"ord": 9,
+"hidden": true
+},
+{
+"slug": "uto-bakficka",
+"type": "restaurant",
+"island": "Utö",
+"latitude": 58.97,
+"longitude": 18.326,
+"ord": 24,
+"hidden": true
+},
+{
+"slug": "uto-bykrog",
+"type": "restaurant",
+"island": "Utö",
+"latitude": 58.95467,
+"longitude": 18.28274,
+"ord": 21,
+"hidden": false
+},
+{
+"slug": "uto-camping-och-stugor",
+"type": "hotel",
+"island": "Utö",
+"latitude": 58.96666,
+"longitude": 18.31781,
+"ord": 53,
+"hidden": false
+},
+{
+"slug": "uto-gasthamn-sjomack",
+"type": "fuel",
+"island": "Utö",
+"latitude": 58.97024,
+"longitude": 18.32467,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "uto-vardshus",
+"type": "hotel",
+"island": "Utö",
+"latitude": 58.96742,
+"longitude": 18.32934,
+"ord": 26,
+"hidden": false
+},
+{
+"slug": "v-holm-marina-ab",
+"type": "harbor",
+"island": "Vaxholm",
+"latitude": 59.40707,
+"longitude": 18.32991,
+"ord": 27,
+"hidden": true
+},
+{
+"slug": "vaddo-vaddo-camping",
+"type": "hotel",
+"island": "Väddö",
+"latitude": 59.98016,
+"longitude": 18.87745,
+"ord": 22,
+"hidden": false
+},
+{
+"slug": "vansviken",
+"type": "beach",
+"island": null,
+"latitude": 58.86811,
+"longitude": 18.12418,
+"ord": 7,
+"hidden": false
+},
+{
+"slug": "varmdo-hamnar-ab",
+"type": "harbor",
+"island": "Runmarö",
+"latitude": 59.28779,
+"longitude": 18.70391,
+"ord": 0,
+"hidden": true
+},
+{
+"slug": "varvet-hogmarso",
+"type": "restaurant",
+"island": "Högmarsö",
+"latitude": 59.5798,
+"longitude": 18.8798,
+"ord": 40,
+"hidden": false
+},
+{
+"slug": "vasterudde-strand",
+"type": "beach",
+"island": "Sandhamn",
+"latitude": 59.29107,
+"longitude": 18.89619,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "vatten-restaurang-kaf",
+"type": "restaurant",
+"island": "Skärhamn",
+"latitude": 57.98789,
+"longitude": 11.53972,
+"ord": 34,
+"hidden": false
+},
+{
+"slug": "vaxholm-vaxholm-harbour-bochb",
+"type": "hotel",
+"island": "Vaxholm",
+"latitude": 59.40226,
+"longitude": 18.34272,
+"ord": 31,
+"hidden": false
+},
+{
+"slug": "vaxholm-waxholms-camping",
+"type": "hotel",
+"island": "Vaxholm",
+"latitude": 59.40515,
+"longitude": 18.30441,
+"ord": 38,
+"hidden": false
+},
+{
+"slug": "vaxholm-waxholms-hotell",
+"type": "hotel",
+"island": "Vaxholm",
+"latitude": 59.40225,
+"longitude": 18.35485,
+"ord": 27,
+"hidden": false
+},
+{
+"slug": "vaxholms-fastning-cafe",
+"type": "cafe",
+"island": "Kastellet",
+"latitude": 59.4032,
+"longitude": 18.3584,
+"ord": 25,
+"hidden": false
+},
+{
+"slug": "vaxholms-hembygdsgards-cafe",
+"type": "cafe",
+"island": "Vaxholm",
+"latitude": 59.40571,
+"longitude": 18.35132,
+"ord": 10,
+"hidden": false
+},
+{
+"slug": "vikens-gasthamn",
+"type": "harbor",
+"island": "Viken",
+"latitude": 56.145,
+"longitude": 12.57,
+"ord": 22,
+"hidden": false
+},
+{
+"slug": "visby-strandbad-gotland",
+"type": "beach",
+"island": null,
+"latitude": 57.64072,
+"longitude": 18.28834,
+"ord": 16,
+"hidden": false
+},
+{
+"slug": "vita-grindarna-djuro",
+"type": "restaurant",
+"island": "Djurö",
+"latitude": 59.3111,
+"longitude": 18.69256,
+"ord": 32,
+"hidden": false
+},
+{
+"slug": "vrango-gasthamn",
+"type": "harbor",
+"island": "Vrångö",
+"latitude": 57.57408,
+"longitude": 11.7763,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "vrango-naturhamn",
+"type": "nature_harbor",
+"island": "Vrångö",
+"latitude": 57.5726,
+"longitude": 11.7812,
+"ord": 16,
+"hidden": true
+},
+{
+"slug": "vrango-skargardscaf",
+"type": "restaurant",
+"island": "Vrångö",
+"latitude": 57.57043,
+"longitude": 11.79053,
+"ord": 45,
+"hidden": false
+},
+{
+"slug": "wagga-lantkok",
+"type": "restaurant",
+"island": "Kungshamn",
+"latitude": 58.37191,
+"longitude": 11.28469,
+"ord": 27,
+"hidden": false
+},
+{
+"slug": "waxholms-camping-servering",
+"type": "restaurant",
+"island": "Vaxholm",
+"latitude": 59.4041,
+"longitude": 18.3488,
+"ord": 15,
+"hidden": true
+},
+{
+"slug": "waxholms-gasthamn-och-rent-under-batbotten-tvatt",
+"type": "harbor",
+"island": "Vaxholm",
+"latitude": 59.4012,
+"longitude": 18.35121,
+"ord": 50,
+"hidden": false
+},
+{
+"slug": "winbergs-kok-bar",
+"type": "restaurant",
+"island": "Vaxholm",
+"latitude": 59.40208,
+"longitude": 18.35351,
+"ord": 27,
+"hidden": false
+},
+{
+"slug": "wolff-s-kitchen-lysekil",
+"type": "restaurant",
+"island": "Lysekil",
+"latitude": 58.27437,
+"longitude": 11.43444,
+"ord": 49,
+"hidden": false
+},
+{
+"slug": "yings-restaurang",
+"type": "restaurant",
+"island": "Lysekil",
+"latitude": 58.27262,
+"longitude": 11.43568,
+"ord": 9,
+"hidden": false
+},
+{
+"slug": "yu-mi",
+"type": "restaurant",
+"island": "Lysekil",
+"latitude": 58.27325,
+"longitude": 11.43711,
+"ord": 8,
+"hidden": false
+},
+{
+"slug": "zivers-veranda",
+"type": "restaurant",
+"island": "Hönö",
+"latitude": 57.67964,
+"longitude": 11.64396,
+"ord": 41,
+"hidden": false
+}
+]

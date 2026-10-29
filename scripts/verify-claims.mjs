@@ -184,8 +184,11 @@ const ARBARANAMN = (rent, rad) => {
  * Fältet renderas som "150 platser" för besökaren. Att siffran saknar
  * citattecken i koden gör den inte mindre till ett påstående om verkligheten.
  *
- * TOMT ÄR ALLTID TILLÅTET. Ett utelämnat fält påstår ingenting och ska aldrig
- * varna. Hellre kort text än fel text.
+ * ERSÄTT, RADERA INTE (faktagranskningen 2026-10-28, Lag 2). Ett utelämnat
+ * fält påstår ingenting och ska aldrig varna — tomt är tillåtet för ett enskilt
+ * påstående som inte går att belägga. Men ett fel rättas med rätt uppgift, och
+ * sidan som helhet får aldrig bli tunnare: stryks något fylls luckan med annat
+ * belagt innehåll. Se docs/ARBETSREGLER.md.
  */
 /**
  * SJÄLVCITERING. En KÄLLA-rad som pekar på svalla.se bevisar ingenting — det är
@@ -635,8 +638,9 @@ function skrivVarningar() {
     3. fältpåstående — bar siffra i datafil, t.ex. spots: 150 (Bullerö-felet)
     4. knop/distans  — fartgränser och avstånd utan belägg
 
-  Kom ihåg: TOMT ÄR ALLTID TILLÅTET. Går siffran inte att belägga — ta bort den.
-  Hellre kort text än fel text.`)
+  Kom ihåg: ERSÄTT, RADERA INTE. Rätta siffran med en belagd uppgift. Går den
+  inte att belägga får den strykas, men sidan får aldrig bli tunnare — fyll
+  luckan med annat belagt innehåll (docs/ARBETSREGLER.md, Lag 2 och 3).`)
 }
 
 if (nya.length === 0) {
