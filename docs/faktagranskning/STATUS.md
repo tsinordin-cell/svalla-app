@@ -65,6 +65,16 @@ uto-camping-och-stugor, uto-vardshus.
   instruktion innehöll en kommunuppgift ur minnet, som Granskaren fick
   besked att bortse från.
 - `verktyg/rendera.py` fäller nu också ut "Läs hela texten".
+- Husarö klar: 293 rader (402 378 tokens, 17 min). Förkontroll: 168 med alla
+  citat ordagrant, 16 saknar citat, 109 utan källa.
+- Vaxholms förkontroll efter omhämtning: 246 / 87 bara URL / 28 saknas / 334
+  utan källa. Proxyfel: kund.printhuset-sthlm.se återställer vissa HTTP/2-
+  anslutningar, och utogasthamn.se ger 502 genom proxyn (avbrutna tunnlar
+  enligt proxyns logg). kallcache.py hämtar nu med --http1.1 och försöker
+  igen. Granskarna prövar curl --http1.1, Chromium och WebFetch innan EJ
+  NÅBAR.
+- Granskare 3 startad: Möja. Kö för steg 2: Utö, Sandhamn, Grinda, Vaxholm,
+  Styrsö, Husarö, sidmallarna.
 - Teknik: klonen är grund och följde bara main. Fetch-refspec för grenen
   tillagd så att `git status` och stopphooken ser att allt är pushat.
 
