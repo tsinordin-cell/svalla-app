@@ -116,7 +116,7 @@ index 2d9e6b9..c7f1fe6 100644
      season: 'Helår',
      infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
 diff --git a/src/lib/transit-stops.ts b/src/lib/transit-stops.ts
-index add4769..b7813d4 100644
+index add4769..3893a55 100644
 --- a/src/lib/transit-stops.ts
 +++ b/src/lib/transit-stops.ts
 @@ -27,6 +27,13 @@ export interface IslandTransitConfig {
@@ -142,7 +142,7 @@ index add4769..b7813d4 100644
 +    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h434.pdf — "Stavsnäs vinterhamn 2)", "2) Endast vissa turer." (läst 2026-10-29)
 +    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Du kan åka till Sandhamn med båt från Stavsnäs", "Under sommaren så kan du också åka till Sandhamn från Strömkajen." (läst 2026-10-29)
 +    // P0 2026-10-29: noten pekade på buss 434, som bara vissa turer går till Stavsnäs vinterhamn.
-+    note: 'Året runt via Stavsnäs vinterhamn: SL-buss 433 från Slussen (även vissa turer med 434) och Waxholmsbåten därifrån. Från Strömkajen går båten bara sommartid.',
++    note: 'Båten från Stavsnäs vinterhamn går året runt. Dit tar du SL-buss 433 från Slussen (även vissa turer med 434). Från Strömkajen går båten bara sommartid.',
    },
    grinda: {
      destStopId: '740098471', destStopName: 'Grinda',
@@ -154,9 +154,9 @@ index add4769..b7813d4 100644
 -    note: 'Pendeltåg till Nynäshamn och Waxholmsbolaget därifrån.',
 +    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-10-29)
 +    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "21A ÅRSTA – UTÖ" (läst 2026-10-29)
-+    // P0-kontroll 2026-10-29: busslinjens nummer är inte belagt för alla perioder och står därför inte i texten.
 +    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
-+    note: 'Pendeltåg till Västerhaninge, buss till Årsta brygga och Waxholmsbolagets båt, linje 21, året om till Gruvbryggan.',
++    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "846 Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga", "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026" (läst 2026-10-31)
++    note: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbolagets båt, linje 21, året om till Gruvbryggan.',
    },
    finnhamn: {
      destStopId: '740020693', destStopName: 'Finnhamn brygga',
@@ -188,7 +188,7 @@ index add4769..b7813d4 100644
 +    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Kymmendö" (läst 2026-10-29)
 +    // P0 2026-10-29: noten sa "från Dalarö eller Nynäshamn" utan säsong. Från Nynäshamn går båten bara sommartid.
 +    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
-+    note: 'Strindbergs ö — Waxholmsbolagets båt från Stockholm via Dalarö, linje 19. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
++    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
 +    bestallning: 'En del turer till och från Kymmendö går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
    },
    bullero: {
@@ -206,7 +206,7 @@ index add4769..b7813d4 100644
 +    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Fjärdlång" (läst 2026-10-29)
 +    // P0 2026-10-29: noten sa "Direkt Waxholmsbåt från Nynäshamn" utan säsong. Den båten går bara sommartid.
 +    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
-+    note: 'Waxholmsbolagets båt från Stockholm via Dalarö, linje 19. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
++    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
 +    bestallning: 'En del turer till och från Fjärdlång går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
    },
    rindo: {

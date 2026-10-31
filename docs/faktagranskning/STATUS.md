@@ -2,6 +2,17 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-10-31 18:20 — återupptaget efter andra avbrottet
+
+Kontots 5-timmarsgräns stoppade alla fyra agenter 2026-10-29 ~21:40. Ingen
+session kördes 30 okt. Allt överlevde: arbetsytan, P0-grenen, registren.
+- P0-omkontrollen var klar: 10 OK, 4 FEL. Rättat i P0-grenen: Kymmendö och
+  Fjärdlång "linje 19 från Dalarö; enstaka turer går från Strömkajen";
+  Sandhamn "året runt" gäller båten, inte bussen; buss 846 tillbaka i
+  Utö-noten med h846 som källa. verify-claims och tsc gröna. Runda 3 pågår.
+- Granskare Grinda (168/615 dömda), Vaxholm och Styrsö återupptagna.
+- Modellen i huvudsessionen bytt till Fable 5.1 av Tom.
+
 ## 2026-10-29 21:30 — Sandhamn granskad, P0-PR omarbetad efter Kontrollanten
 
 **Sandhamn (MÄTT):** 674 rader (+17 nya). KORREKT 587, OBELAGD 38, DELVIS 25,
