@@ -2,6 +2,21 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-10-31 18:50 — P0-PR #504 öppen, blockerad av pausad databas
+
+- P0-kontroll runda 3: 4 av 4 OK, 0 fynd (alla tidtabeller omhämtade i dag,
+  identiska med 29 okt). P0-grenen committad (033b0e0) och pushad en gång.
+  PR #504 öppnad: https://github.com/tsinordin-cell/svalla-app/pull/504.
+- vitest grön. **Vercels förhandsbygge misslyckades**, men inte på
+  ändringarna: `getaddrinfo ENOTFOUND oiklttwylndesewauytj.supabase.co` vid
+  förrendering av /aland/krogar. Supabase-projektet står som INACTIVE
+  (pausat) sedan någon gång före 18:15 i dag. Det blockerar alla byggen,
+  /team-uppdateringar, /upptack och inloggning. Tom tillfrågad om omstart
+  (kontoinställning, kräver hans ja). Ingen ny push eller merge förrän
+  databasen är uppe; sedan begärs bygget om i Vercel utan ny push.
+- Fortsatt kö: Granskare Grinda, Vaxholm, Styrsö pågår. Husarö och
+  sidmallarna väntar på en ledig plats.
+
 ## 2026-10-31 18:20 — återupptaget efter andra avbrottet
 
 Kontots 5-timmarsgräns stoppade alla fyra agenter 2026-10-29 ~21:40. Ingen
