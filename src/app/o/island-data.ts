@@ -319,8 +319,9 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — "30/4 - 4/6 a Sat-Sun Friday"; "7/9 - 27/9 Sat-Sun"; "Strandvägen - kajplats 14 10:00"; "Sandhamn 12:30" (läst 2026-10-20)
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/s15.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026"; Strömkajen 10.00 → Sandhamn 13.45, 08.30 → 13.25 (läst 2026-10-20)
       // Rättad 2026-10-20: båda sommarlinjerna har gått klart för 2026. Tidtabeller för 2027 är inte kontrollerade, så inga datum för 2027 anges. Seglarhotellets uppgift om 2–3 timmar för linje 15 stämmer inte med tidtabellen och används inte.
-      { method: 'Cinderellabåten från Strandvägen', from: 'Strandvägen kajplats 14, Stockholm', time: '2 h 30 min', desc: 'Strömmas sommarbåt via Vaxholm och Grinda. Säsongen 2026 gick 30 april till 27 september och är slut.', icon: '⛴', url: 'https://www.stromma.com/en-se/stockholm/cinderella-boats/timetables/' },
-      { method: 'Waxholmsbåt från Strömkajen', from: 'Strömkajen, Stockholm', time: '3 h 45 min till 4 h 55 min', desc: 'Linje 15 gick 2026 bara 19 juni till 16 augusti, och säsongen är slut. Lång resa rakt ut genom skärgården.', icon: '⛴' },
+      // P0 2026-10-29: FAQ-svaret "Behöver man en egen båt" visar bara method, from och time. Säsongen måste därför stå i method.
+      { method: 'Cinderellabåten från Strandvägen (säsongen 2026: 30 april–27 september)', from: 'Strandvägen kajplats 14, Stockholm', time: '2 h 30 min', desc: 'Strömmas sommarbåt via Vaxholm och Grinda. Säsongen 2026 gick 30 april till 27 september och är slut.', icon: '⛴', url: 'https://www.stromma.com/en-se/stockholm/cinderella-boats/timetables/' },
+      { method: 'Waxholmsbåt från Strömkajen (säsongen 2026: 19 juni–16 augusti)', from: 'Strömkajen, Stockholm', time: '3 h 45 min till 4 h 55 min', desc: 'Linje 15 gick 2026 bara 19 juni till 16 augusti, och säsongen är slut. Lång resa rakt ut genom skärgården.', icon: '⛴' },
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamnen i Sandhamn – se hamnavsnittet för service och bokning.', icon: '⛵' },
     ],
     harbors: [
