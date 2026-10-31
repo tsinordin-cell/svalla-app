@@ -2,6 +2,20 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-10-31 19:00 — Supabase pausat för obetald faktura, inte inaktivitet
+
+- restore_project avvisades: "This organization has unpaid invoices." Tom sa
+  ja till omstart, men den går inte att göra härifrån.
+- MÄTT ur Toms Gmail: faktura PPOHLL-00009 (11,29 USD) förföll 16 okt,
+  kortbetalningen misslyckades, påminnelser 16–29 okt. 30 okt 09:36 svensk
+  tid nedgraderades organisationen till free och alla projekt pausades. En
+  kreditnota på samma faktura utfärdades samtidigt. Datan är säkerhetskopierad
+  enligt Supabase.
+- Kräver Tom: betala/kontrollera fakturorna i Supabase-panelen, sedan
+  avpausa projektet. Ingen automatisk återgång till Pro.
+- Tills dess: /upptack, forum, inloggning och /team nere; inga byggen.
+  P0-PR #504 väntar. Granskningen fortsätter; status loggas här.
+
 ## 2026-10-31 18:50 — P0-PR #504 öppen, blockerad av pausad databas
 
 - P0-kontroll runda 3: 4 av 4 OK, 0 fynd (alla tidtabeller omhämtade i dag,
