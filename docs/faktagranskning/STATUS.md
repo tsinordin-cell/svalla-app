@@ -2,6 +2,18 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-01 00:55 — Grindas P0 godkända och i PR #504; alla nio öar + mallarna har Granskare
+
+- Kontrollant Grinda P0: 5 av 5 OK, 0 fynd. Commit 10d560f på P0-grenen,
+  pushad; PR #504 uppdaterad till "åtta transportfel". Bygget faller tills
+  Supabase är uppe.
+- Granskare startade: Husarö (293 rader) och sidmallarna (253 rader, med
+  kodändringar för de elva kända mallfelen). Vaxholm och Styrsö pågår.
+  Fyra agenter.
+- Kvar i batch 01 efter Granskarna: Kontrollant per ö (Storholmen gjord:
+  9 FEL + 2 SAKNAS, går tillbaka till Granskaren), Vakten (samma fel i hela
+  repot, mått, HTTP-kontroll, renderade sidor), batchens PR och merge.
+
 ## 2026-10-31 23:55 — Grinda granskad, två P0 till
 
 **Grinda (MÄTT):** 616 rader (+1 ny). KORREKT 586, DELVIS 13, FEL 6, INAKTUELL 5,
