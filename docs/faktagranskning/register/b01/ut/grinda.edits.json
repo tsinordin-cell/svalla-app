@@ -1,0 +1,233 @@
+[
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    slug: 'grinda',\n    name: 'Grinda',\n    region: 'mellersta',\n    regionLabel: 'Mellersta skärgården',\n",
+  "ny": "    slug: 'grinda',\n    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"Grinda naturreservat i Stockholms län.\"; \"Naturen är typisk för mellanskärgården.\"; \"Kommun: Värmdö\" (läst 2026-10-29)\n    // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/grinda/ — \"Naturreservat i mellersta skärgården\" (läst 2026-10-29)\n    name: 'Grinda',\n    region: 'mellersta',\n    regionLabel: 'Mellersta skärgården',\n",
+  "rader": [
+   "grinda-0001",
+   "grinda-0016"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — \"Du kan åka till Grinda från Strömkajen, via Vaxholm.\" (läst 2026-09-27)\n    tagline:",
+  "ny": "    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — \"Du kan åka till Grinda från Strömkajen, via Vaxholm.\" (läst 2026-10-29)\n    // KÄLLA: https://grinda.se/mat-fest/wardshuset/ — \"Grinda Wärdshus klassisk skärgårdsmat & stämning sedan 1906\" (läst 2026-10-29)\n    // KÄLLA: https://grinda.se/hamn-mack/gasthamn/ — \"En trygg gästhamn för 100 båtar\" (läst 2026-10-29)\n    tagline:",
+  "rader": [
+   "grinda-0002",
+   "grinda-0004",
+   "grinda-0005",
+   "grinda-0007",
+   "grinda-0008"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"medföra okopplad hund\"; \"Tältning är endast tillåten på tältplatsen nära norra bryggan.\"; \"I Sverige har vi allemansrätt, det innebär att du får utöva friluftsliv och röra dig fritt i naturen så länge du inte stör eller förstör.\" (läst 2026-09-27)\n      'Reservatsföreskrifterna sätter ramarna. Hund ska hållas kopplad, och tältning är endast tillåten på tältplatsen nära norra bryggan. I övrigt gäller allemansrätten: du får röra dig fritt i naturen så länge du inte stör eller förstör.',",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"medföra okopplad hund\"; \"Tältning är endast tillåten på tältplatsen nära norra bryggan.\"; \"elda annat än på anvisad plats\"; \"I Sverige har vi allemansrätt, det innebär att du får utöva friluftsliv och röra dig fritt i naturen så länge du inte stör eller förstör.\" (läst 2026-10-29)\n      'Reservatsföreskrifterna sätter ramarna. Hund ska hållas kopplad, tältning är endast tillåten på tältplatsen nära norra bryggan, och eld får bara göras på anvisad plats. Utöver föreskrifterna gäller allemansrätten: du får röra dig fritt i naturen så länge du inte stör eller förstör.',",
+  "rader": [
+   "grinda-0145"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "Från midsommarveckan bakar lanthandeln nytt bröd och bullar varje dag.',",
+  "ny": "Under högsäsongen, från midsommarveckan, bakar lanthandeln nytt bröd och bullar varje dag.',",
+  "rader": [
+   "grinda-0159"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://grinda.se/ — \"Tredje helgen i oktober har vi vårt återkommande tema och event Eld!\"; \"När löven börjar falla och färgerna skiftar i rostrött och violett.\"; \"tänder vi öppna brasan i Wärdshuset stora salong\" (läst 2026-09-27)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — \"Under sommaren går det flera turer till Grinda varje dag, men Grinda har trafik året om.\" (läst 2026-09-27)\n      'Ön har trafik året om, och wärdshuset håller igång även på hösten. Då tänds brasan i wärdshusets stora salong, och tredje helgen i oktober ordnar Grinda Wärdshus eventet Eld med middagsbuffé, fackeltåg och eldshow.',",
+  "ny": "      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — \"Under sommaren går det flera turer till Grinda varje dag, men Grinda har trafik året om.\" (läst 2026-10-29)\n      // KÄLLA: https://grinda.se/ — \"Vi som lever och bor här ute vet hur fin hösten i skärgården är.\"; \"tänder vi öppna brasan i Wärdshuset stora salong\" (läst 2026-10-29)\n      // KÄLLA: https://grinda.se/evenemang/ — \"17 okt 2026\"; \"Eld-helg\"; \"Oktoberfest\" (läst 2026-10-29)\n      // KÄLLA: https://grinda.se/events/eld-helg/ — \"Tredje helgen i oktober har vi vårt återkommande tema och event Eld!\"; \"På Grinda Wärdshus serverar vi en eldig middagsbuffé och lyser upp höstmörkret med fackeltåg, stor höst brasa och eldshow!\" (läst 2026-10-29)\n      'Ön har trafik året om, och wärdshuset håller igång även på hösten. Då tänds brasan i wärdshusets stora salong, och tredje helgen i oktober ordnar Grinda Wärdshus det återkommande eventet Eld med middagsbuffé, fackeltåg och eldshow; 2026 hölls det den 17 oktober.',",
+  "rader": [
+   "grinda-0166",
+   "grinda-0167",
+   "grinda-0168",
+   "grinda-0169",
+   "grinda-0170",
+   "grinda-0171",
+   "grinda-0172"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — \"Resan från Strömkajen tar ungefär en och en halv timme.\"; \"tabell 11\" (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s11.pdf — \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\"; \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\" — måndag–torsdag t.ex. tur 1402 Strömkajen 07.45, Södra Grinda 09.15 (1 h 30 min); tur 1203 10.40–12.50; tur 1313 13.00–14.45 (tidtabellens siffror är satta i ett eget typsnitt som pdftotext inte avkodar; tiderna är avlästa med teckenmappning, se grinda.md) (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\"; \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\" — från 14 september måndag–torsdag tur 1341 08.15–10.10 Södra Grinda, tur 1201 10.00–12.40 Norra Grinda, tur 1303 14.45–17.00 Södra Grinda (tidtabellens siffror är satta i ett eget typsnitt som pdftotext inte avkodar; tiderna är avlästa med teckenmappning, se grinda.md) (läst 2026-09-27)\n      // KÄLLA: https://grinda.se/hamn-mack/gasthamn/ — \"En trygg gästhamn för 100 båtar\" (läst 2026-09-27)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"Grinda är en strategisk hamn för båtfolket och har många dagsgäster.\" (läst 2026-09-27)\n      travel_time:",
+  "ny": "      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — \"Resan från Strömkajen tar ungefär en och en halv timme.\"; \"titta i tabell 11\"; \"Under sommaren går det flera turer till Grinda varje dag, men Grinda har trafik året om.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s11.pdf — \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\"; \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\" — kortaste restid Strömkajen–Södra eller Norra Grinda 1 h 30 min, uppmätt i tabellens avgångs- och ankomsttider 2026-10-29 (siffrorna är satta i ett eget typsnitt och avlästa med teckenmappning) (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\"; \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\" — längsta restid Strömkajen–Norra Grinda 2 h 40 min, uppmätt i tabellens tider 2026-10-29 (läst 2026-10-29)\n      // KÄLLA: https://grinda.se/hamn-mack/gasthamn/ — \"En trygg gästhamn för 100 båtar\" (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"Grinda är en strategisk hamn för båtfolket och har många dagsgäster.\"; \"Skyddsform: naturreservat\"; \"Grinda har fina barnvänliga bad både vid den södra och norra ångbåtsbryggan.\"; \"En cirka 2,5 km lång natur- och kulturstig leder runt öns sydöstra del.\" (läst 2026-10-29)\n      // KÄLLA: https://grinda.se/hamn-mack/sjomack/ — \"Vår sjömack har öppet året om\" (läst 2026-10-29)\n      // KÄLLA: https://skargardsstiftelsen.se/omraden/grinda/ — \"Sommartid finns även café, lanthandel och aktiviteter för både stora och små.\"; \"Grinda Wärdshus har restaurang, hotellrum och vandrarhem\" (läst 2026-10-29)\n      // KÄLLA: https://grinda.se/en/accommodation/sea-lodge/ — \"Open for individuals and/or families during the high season, from midsummer starting Thursday to end of August.\" (läst 2026-10-29)\n      travel_time:",
+  "rader": [
+   "grinda-0029",
+   "grinda-0030",
+   "grinda-0031",
+   "grinda-0032",
+   "grinda-0033",
+   "grinda-0034",
+   "grinda-0035",
+   "grinda-0036",
+   "grinda-0039",
+   "grinda-0040",
+   "grinda-0041",
+   "grinda-0042",
+   "grinda-0043",
+   "grinda-0044",
+   "grinda-0045",
+   "grinda-0046"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://grinda.se/en/accommodation/sea-lodge/ — \"Grinda Sea Lodge is located in a scenic seaside location on the southern part of the island\"; \"a total of 44 beds in 4- and 2-bed rooms\"; \"Open for individuals and/or families during the high season, from midsummer starting Thursday to mid-August.\"; \"Breakfast is included for those staying overnight\" (läst 2026-09-27)\n      { name: 'Grinda Sea Lodge', type: 'Pensionat', desc: 'Enkelt boende på öns södra sida med 44 bäddar i fyr- och tvåbäddsrum. Öppet för enskilda och familjer från midsommar till mitten av augusti; frukost ingår.', websiteUrl: 'https://grinda.se/en/accommodation/sea-lodge/' },",
+  "ny": "      // KÄLLA: https://grinda.se/en/accommodation/sea-lodge/ — \"Grinda Sea Lodge is located in a scenic seaside location on the southern part of the island\"; \"a total of 44 beds in 4- and 2-bed rooms\"; \"Open for individuals and/or families during the high season, from midsummer starting Thursday to end of August.\"; \"During the early and late summer period only open for larger groups and weddings.\"; \"Breakfast is included for those staying overnight\" (läst 2026-10-29)\n      // KÄLLA: https://grinda.se/aktiviteter/ — \"I vårt nya pensionat Grinda Sea Lodge\" (läst 2026-10-29)\n      { name: 'Grinda Sea Lodge', type: 'Pensionat', desc: 'Enkelt boende på öns södra sida med 44 bäddar i fyr- och tvåbäddsrum. Öppet för enskilda och familjer från midsommar till slutet av augusti, övrig sommartid bara för större grupper och bröllop; frukost ingår.', websiteUrl: 'https://grinda.se/en/accommodation/sea-lodge/' },",
+  "rader": [
+   "grinda-0308",
+   "grinda-0313"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s11.pdf — \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\"; \"Södra Grinda\"; \"Norra Grinda\" — sommaren 2026 måndag–torsdag cirka tio avgångar från Strömkajen, restid 1 h 30 min–2 h 20 min (tidtabellens siffror är satta i ett eget typsnitt som pdftotext inte avkodar; tiderna är avlästa med teckenmappning, se grinda.md) (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\"; \"Södra Grinda\" (läst 2026-09-27)\n      // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Om du till exempel ska resa från Strömkajen till Grinda kan du resa på SL-biljett mellan Strömkajen och Vaxholm och sedan resa på en Waxhomsbolaget-biljett för sträckan mellan Vaxholm och Grinda.\"; \"Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april\"; \"Om din SL-biljett gäller i 30 dagar eller mer kan du resa på den i hela Waxholmsbolagets trafik när det är lågsäsong.\" (läst 2026-09-27)\n      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '1 h 30 min–2 h 40 min', desc: 'Linje 11 via Vaxholm till Södra eller Norra Grinda; sommartid stannar även bland annat linje 14 vid Södra Grinda. SL-biljett gäller till Vaxholm, och för sträckan Vaxholm–Grinda behöver du en Waxholmsbolaget-biljett. Under lågsäsong, 14 september–29 april, gäller SL-biljett för 30 dagar eller mer hela vägen.', icon: '⛴' },\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"Norra och södra bryggan trafikeras året om av Waxholmsbolaget och Cinderella.\" (läst 2026-09-27)\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — \"Ta Waxholmsbåten från Strömkajen vid Grand Hotell eller Cinderellabåten från Nybroviken vid Hotell Diplomat.\" (läst 2026-09-27)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/grinda/ — \"1,5 timmes båttur från Stockholm till Grinda genom skärgården\"; \"Avgår från Strandvägen, Nacka Strand, Vaxholm och fler stopp\" (läst 2026-09-27)\n      { method: 'Cinderellabåt', from: 'Strandvägen', time: 'ca 1,5 tim', desc: 'Strömmas Cinderellabåtar trafikerar också Grinda. Båten avgår från Strandvägen vid Nybroviken och stannar bland annat i Nacka Strand och Vaxholm.', icon: '⛴' },\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — \"Du kan även ta båt från bryggorna Lillsved eller Boda på Värmdö, därifrån tar båtturen endast cirka tio minuter till Grinda. Till dessa bryggor kan du ta dig med bil eller anslutningsbuss från Slussen.\" (läst 2026-09-27)\n      { method: 'Båt från Värmdö',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s11.pdf — \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\"; \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\"; \"Södra Grinda\"; \"Norra Grinda\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\"; \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\"; \"Södra Grinda\"; \"Norra Grinda\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s14.pdf — \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\"; \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\"; \"Södra Grinda\" (läst 2026-10-29)\n      // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Om du till exempel ska resa från Strömkajen till Grinda kan du resa på SL-biljett mellan Strömkajen och Vaxholm och sedan resa på en Waxhomsbolaget-biljett för sträckan mellan Vaxholm och Grinda.\"; \"Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april\" (läst 2026-10-29)\n      // KÄLLA: https://sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar — \"Under lågsäsongen, från 14 september till 29 april, gäller alla SL:s periodbiljetter som har en giltighetstid på 30 dagar eller längre för resor på Waxholmsbolagets båtar.\" (läst 2026-10-29)\n      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '1 h 30 min–2 h 40 min', desc: 'Linje 11 via Vaxholm till Södra eller Norra Grinda. Sommaren 2026 (19 juni–16 augusti) stannade även bland annat linje 14 vid Södra Grinda. SL-biljett gäller till Vaxholm, och för sträckan Vaxholm–Grinda behöver du en Waxholmsbolaget-biljett. Under lågsäsong, 14 september–29 april, gäller SL-biljett för 30 dagar eller mer hela vägen.', icon: '⛴' },\n      // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — \"STOCKHOLM - VAXHOLM - GRINDA - SANDHAMN\"; \"Södra Grinda\"; perioderna \"30/4 - 4/6\" till \"7/9 - 27/9\" (läst 2026-10-29)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/grinda/ — \"Åter april 2027\"; \"1,5 timmes båttur från Stockholm till Grinda genom skärgården\"; \"Avgår från Strandvägen, Nacka Strand, Vaxholm och fler stopp\" (läst 2026-10-29)\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — \"Ta Waxholmsbåten från Strömkajen vid Grand Hotell eller Cinderellabåten från Nybroviken vid Hotell Diplomat.\" (läst 2026-10-29)\n      { method: 'Cinderellabåt', from: 'Strandvägen', time: 'ca 1,5 tim, april–september', desc: 'Strömmas Cinderellabåt angör Södra Grinda under säsong: 2026 gick den 30 april–27 september, och Strömma anger att den är åter i april 2027. Båten avgår från Strandvägen vid Nybroviken och stannar bland annat i Nacka Strand och Vaxholm.', icon: '⛴' },\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — \"Du kan även ta båt från bryggorna Lillsved eller Boda på Värmdö, därifrån tar båtturen endast cirka tio minuter till Grinda. Till dessa bryggor kan du ta dig med bil eller anslutningsbuss från Slussen.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h437.pdf — \"437 Slussen–Lillsved\"; \"Giltig 17 augusti–12 december 2026\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h438.pdf — \"438 Slussen–Boda\"; \"Giltig 17 augusti–12 december 2026\" (läst 2026-10-29)\n      { method: 'Båt från Värmdö',",
+  "rader": [
+   "grinda-0333",
+   "grinda-0334",
+   "grinda-0335",
+   "grinda-0336",
+   "grinda-0337",
+   "grinda-0338",
+   "grinda-0339",
+   "grinda-0340",
+   "grinda-0341",
+   "grinda-0342",
+   "grinda-0343",
+   "grinda-0344",
+   "grinda-0345",
+   "grinda-0346",
+   "grinda-0347",
+   "grinda-0348",
+   "grinda-0349",
+   "grinda-0350",
+   "grinda-0351",
+   "grinda-0352",
+   "grinda-0353",
+   "grinda-0354",
+   "grinda-0355",
+   "grinda-0356",
+   "grinda-0357",
+   "grinda-0358",
+   "grinda-0393",
+   "grinda-0467",
+   "grinda-0468",
+   "grinda-0503"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — hotellet ligger cirka en kilometer från bryggorna, ungefär 15 minuters promenad\n      'Räkna med en kvarts promenad från bryggan upp till hotellet och wärdshuset.',\n      // KÄLLA: https://skargardsstiftelsen.se/omraden/grinda/ — badplatsen Källviken och barnvänliga badstränder\n      'Källviken är ett bra val om ni badar med barn.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html, naturreservat Grinda — \"Utkiksplatsen uppe på Klubbudden är öns högsta punkt med 35 m.\"\n      'Gå upp på Klubbudden — 35 meter, öns högsta punkt, och den bästa överblicken du får på Grinda.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html, naturreservat Grinda — natur- och kulturstigen är cirka 2,5 km och startar vid gården Hemviken\n      'Natur- och kulturstigen är bara 2,5 km och startar vid gården Hemviken.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html, naturreservat Grinda — förbjudet att förankra båt längre än två dygn\n      'Kommer du med egen båt: du får inte ligga förankrad längre än två dygn.',",
+  "ny": "      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — \"Till hotellet och Wärdshuset är det ungefär lika nära från Södra Bryggan som från Norra bryggan, en knapp kilometers promenad (15 min).\" (läst 2026-10-29)\n      'Räkna med en kvarts promenad från bryggan upp till hotellet och wärdshuset.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"Grinda har fina barnvänliga bad både vid den södra och norra ångbåtsbryggan.\"; \"Torrdass finns vid alla badplatser och vid södra ångbåtsbryggan och i Källviken finns anpassade ingångar till badet.\" (läst 2026-10-29)\n      // KÄLLA: https://skargardsstiftelsen.se/omraden/grinda/ — \"slå dig ner på de solvarma klipporna vid Källviken\" (läst 2026-10-29)\n      'Badar ni med barn: de barnvänliga baden ligger vid södra och norra ångbåtsbryggan. Källviken har solvarma klippor och anpassade ingångar till badet.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"Utkiksplatsen uppe på Klubbudden är öns högsta punkt med 35 m.\" (läst 2026-10-29)\n      'Gå upp på Klubbudden — 35 meter, öns högsta punkt, med utkiksplats.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"En cirka 2,5 km lång natur- och kulturstig leder runt öns sydöstra del.\"; \"Stigen startar vid gården Hemviken.\" (läst 2026-10-29)\n      'Natur- och kulturstigen är bara 2,5 km och startar vid gården Hemviken.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"för längre tid än två dygn i följd förankra båt vid samma strand\" (läst 2026-10-29)\n      'Kommer du med egen båt: du får inte ligga förankrad vid samma strand mer än två dygn i följd.',",
+  "rader": [
+   "grinda-0384",
+   "grinda-0385",
+   "grinda-0386",
+   "grinda-0387",
+   "grinda-0388",
+   "grinda-0389",
+   "grinda-0390",
+   "grinda-0391",
+   "grinda-0392"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    related: ['sandhamn', 'finnhamn', 'vaxholm'],\n    tags: ['gästhamn', 'värdshus', 'natur', 'segling', 'romantik'],",
+  "ny": "    related: ['sandhamn', 'finnhamn', 'vaxholm'],\n    // KÄLLA: https://grinda.se/hamn-mack/gasthamn/ — \"En trygg gästhamn för 100 båtar\" (läst 2026-10-29)\n    // KÄLLA: https://skargardsstiftelsen.se/omraden/grinda/ — \"Grinda Wärdshus har restaurang, hotellrum och vandrarhem\"; \"Under sommaren arrangeras aktiviteter som musikkvällar, regattor och grillkvällar.\"; \"Stockholm Archipelago Trail på Grinda\" (läst 2026-10-29)\n    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"Skyddsform: naturreservat\"; \"En cirka 2,5 km lång natur- och kulturstig leder runt öns sydöstra del.\" (läst 2026-10-29)\n    tags: ['gästhamn', 'värdshus', 'natur', 'segling', 'vandring'],",
+  "rader": [
+   "grinda-0026",
+   "grinda-0027",
+   "grinda-0028",
+   "grinda-0525",
+   "grinda-0526",
+   "grinda-N001"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — \"Du kan även ta båt från bryggorna Lillsved eller Boda på Värmdö, därifrån tar båtturen endast cirka tio minuter till Grinda.\"; \"Till dessa bryggor kan du ta dig med bil eller anslutningsbuss från Slussen.\" (läst 2026-09-27)\n    transport_meta: {",
+  "ny": "    // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/ — \"Du kan även ta båt från bryggorna Lillsved eller Boda på Värmdö, därifrån tar båtturen endast cirka tio minuter till Grinda.\"; \"Till dessa bryggor kan du ta dig med bil eller anslutningsbuss från Slussen.\" (läst 2026-10-29)\n    // KÄLLA: https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__MI__MI0812__MI0812A/OarEjBro01/ — \"Befolkning och bebyggelse på öar utan fastlandsförbindelse med bro, per ö\"; \"0120Q115 Grinda\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h437.pdf — \"437 Slussen–Lillsved\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h438.pdf — \"438 Slussen–Boda\" (läst 2026-10-29)\n    transport_meta: {",
+  "rader": [
+   "grinda-0464",
+   "grinda-0465",
+   "grinda-0466"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://stockholmarchipelagotrail.com/section/ (Stockholm Archipelago Trail, ledens egen lista) — \"Section Grinda\", \"Moderate 9.8 km\". (läst 2026-09-30)\n      vandring: { trails: 1, max_km: 9.8, sat: { km: 9.8, difficulty: 'Medel' } },",
+  "ny": "      // KÄLLA: https://www.stockholmarchipelagotrail.com/section/section-grinda/ — \"Section Grinda\"; \"Moderate\"; \"9.8 km\" (läst 2026-10-29)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — \"En cirka 2,5 km lång natur- och kulturstig leder runt öns sydöstra del.\" (läst 2026-10-29)\n      vandring: { trails: 2, max_km: 9.8, sat: { km: 9.8, difficulty: 'Medel' } },",
+  "rader": [
+   "grinda-0510",
+   "grinda-0511",
+   "grinda-0512",
+   "grinda-0513"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://grinda.se/en/accommodation/sea-lodge/ — \"Open for individuals and/or families during the high season, from midsummer starting Thursday to mid-August.\" (läst 2026-09-27)\n      // KÄLLA: https://grinda.se/mat-fest/lanthandel-cafe/ — \"Vi är stolta att kunna erbjuda nybakat bröd och ljuvliga bullar varje dag under högsäsong, fr o m Midsommarveckan.\" (läst 2026-09-27)\n      // KÄLLA: https://grinda.se/ — \"Tredje helgen i oktober har vi vårt återkommande tema och event Eld!\" (läst 2026-09-27)\n      open: 'Året runt (båt och sjömack); fullt utbud midsommar–mitten av augusti',\n      peak: 'Midsommar–mitten av augusti',\n      best: 'Midsommar–augusti',\n      bestReason: 'Från midsommar till mitten av augusti har Grinda Sea Lodge öppet för alla, lanthandeln bakar bröd varje dag och sommartabellen ger flest båtar. Vill du ha lugnare dagar går båten året om, och wärdshuset ordnar höstevent i oktober.',\n      warning: 'Grinda Sea Lodge har bara öppet för enskilda från midsommar till mitten av augusti. Utanför högsäsongen går färre båtar – kolla tabell 11.',\n      // UPPSKATTNING: månadsraden bygger på Sea Lodges högsäsong (midsommar–mitten av augusti), året-runt-trafiken och höstevent i oktober; öppettider för wärdshuset vintertid har vi inte hittat.",
+  "ny": "      // KÄLLA: https://grinda.se/en/accommodation/sea-lodge/ — \"Open for individuals and/or families during the high season, from midsummer starting Thursday to end of August.\" (läst 2026-10-29)\n      // KÄLLA: https://grinda.se/mat-fest/lanthandel-cafe/ — \"Vi är stolta att kunna erbjuda nybakat bröd och ljuvliga bullar varje dag under högsäsong, fr o m Midsommarveckan.\" (läst 2026-10-29)\n      // KÄLLA: https://grinda.se/evenemang/ — \"17 okt 2026\"; \"Eld-helg\"; \"Oktoberfest\" (läst 2026-10-29)\n      open: 'Året runt (båt och sjömack); fullt utbud midsommar–slutet av augusti',\n      peak: 'Midsommar–slutet av augusti',\n      best: 'Midsommar–augusti',\n      bestReason: 'Från midsommar till slutet av augusti har Grinda Sea Lodge öppet för alla, lanthandeln bakar bröd varje dag och sommartabellen ger flest båtar. Vill du ha lugnare dagar går båten året om, och wärdshuset ordnar höstevent i oktober.',\n      warning: 'Grinda Sea Lodge har bara öppet för enskilda från midsommar till slutet av augusti. Utanför högsäsongen går färre båtar – kolla tabell 11.',\n      // UPPSKATTNING: månadsraden bygger på Sea Lodges högsäsong (midsommar–slutet av augusti), året-runt-trafiken, wärdshusets helgöppet i oktober 2026 och höstevent i oktober; öppettider för wärdshuset vintertid har vi inte hittat.",
+  "rader": [
+   "grinda-0021",
+   "grinda-0022",
+   "grinda-0023",
+   "grinda-0074",
+   "grinda-0075",
+   "grinda-0076",
+   "grinda-0077",
+   "grinda-0078",
+   "grinda-0079",
+   "grinda-0080",
+   "grinda-0081",
+   "grinda-0082",
+   "grinda-0083",
+   "grinda-0524",
+   "grinda-0062",
+   "grinda-0063",
+   "grinda-0064",
+   "grinda-0065",
+   "grinda-0066",
+   "grinda-0067",
+   "grinda-0068",
+   "grinda-0069",
+   "grinda-0070",
+   "grinda-0071",
+   "grinda-0072",
+   "grinda-0073"
+  ]
+ },
+ {
+  "fil": "src/app/o/hantverkare-data.ts",
+  "gammal": "    slug: 'oct-entreprenad',\n    namn: 'OCT-Entreprenad Trä & Betong AB',\n    ort: 'Värmdö',",
+  "ny": "    slug: 'oct-entreprenad',\n    namn: 'OCT-Entreprenad Trä & Betong AB',\n    // KÄLLA: https://oct-entreprenad.com/kontakt/ — \"Din byggfirma i Stockholms skärgård\"; \"OCT-Entreprenad Trä & Betong AB\"; \"Finnhamn • Fåglarö • Grinda • Gällnö\" (läst 2026-10-29). Ingen ort eller adress på webbplatsen; Bolagsverkets sida gick inte att läsa (faktagranskning b01 Grinda).\n    ort: 'Stockholms skärgård',",
+  "rader": [
+   "grinda-0288",
+   "grinda-0289",
+   "grinda-0295"
+  ]
+ },
+ {
+  "fil": "src/app/o/hantverkare-data.ts",
+  "gammal": "    bas: 'Värmdö',\n    kalla: { niva: 'egen-sajt', url: 'https://oct-entreprenad.com/kontakt/', last: '2026-09-14',",
+  "ny": "    bas: 'Stockholms skärgård',\n    kalla: { niva: 'egen-sajt', url: 'https://oct-entreprenad.com/kontakt/', last: '2026-10-29',",
+  "rader": [
+   "grinda-0295",
+   "grinda-0296"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Direktbåt med Waxholmsbolaget från Strömkajen sommartid.',",
+  "ny": "    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — \"Du kan åka till Grinda från Strömkajen, via Vaxholm.\"; \"Under sommaren går det flera turer till Grinda varje dag, men Grinda har trafik året om.\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\"; \"Går under perioden 14 september - 12 december.\" (läst 2026-10-29)\n    note: 'Direktbåt med Waxholmsbolaget från Strömkajen, med flest turer sommartid.',",
+  "rader": [
+   "grinda-0088",
+   "grinda-0089"
+  ]
+ }
+]

@@ -2,6 +2,26 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-10-31 23:55 — Grinda granskad, två P0 till
+
+**Grinda (MÄTT):** 616 rader (+1 ny). KORREKT 586, DELVIS 13, FEL 6, INAKTUELL 5,
+OBELAGD 6. BEHÅLL 580, RÄTTA 23, PRECISERA 8, STRYK+KOMPENSERA 4, NY 1. 16
+ersättningar (torrkörning 0 fel) och 8 UPDATE, vars WHERE-villkor inte är
+kontrollerade mot databasen (pausad). Ord 1 590 → 1 633. Granskaren totalt
+(två körningar): ~977 000 tokens.
+**P0 7 och 8 (Grinda):** Cinderellabåten framställdes som trafik året om i
+getting_there, FAQ och båda bryggornas platstexter. Strömma: säsong 30/4–27/9
+2026, bara Södra Grinda, "Åter april 2027" (läst i dag). Och "I övrigt gäller
+allemansrätten" dolde föreskriften om eld bara på anvisad plats
+(Länsstyrelsen). Datafilsraderna ligger i P0-grenen (`p0-grinda.edits.json`
+= grinda.edits.json nr 2 och 7). Platstexterna (grinda.sql, bryggorna) väntar
+på databasen. Kontrollant pågår. Källistan på main har redan klockslag i
+Grindas KÄLLA-rader – Vaktens ärende i batchens PR, inte P0.
+- Kontots gräns slog till en tredje gång ~21:40 29 okt och en fjärde ~22:30
+  31 okt (mitt på dagen Toms tid). Grinda, Vaxholm och Styrsö återupptagna
+  00:40.
+- Vaxholm 155/698 dömda, Styrsö 0/501 när gränsen slog till.
+
 ## 2026-10-31 19:00 — Supabase pausat för obetald faktura, inte inaktivitet
 
 - restore_project avvisades: "This organization has unpaid invoices." Tom sa
