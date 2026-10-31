@@ -50,6 +50,8 @@ interface ApiResponse {
   originName: string
   destName: string
   note: string | null
+  /** P0 2026-10-29: turer som måste beställas i förväg (transit-stops.ts). */
+  bestallning?: string | null
   trips: TripSummary[]
   error?: string
 }
@@ -187,6 +189,17 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
               margin: '14px 0 0', lineHeight: 1.5, fontStyle: 'italic',
             }}>
               {data.note}
+            </p>
+          )}
+
+          {data.bestallning && (
+            <p role="note" style={{
+              fontSize: 12.5, color: '#fff', fontWeight: 600,
+              margin: '12px 0 0', lineHeight: 1.5,
+              background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.18)',
+              borderRadius: 8, padding: '8px 10px',
+            }}>
+              {data.bestallning}
             </p>
           )}
 

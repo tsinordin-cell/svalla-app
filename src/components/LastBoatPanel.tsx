@@ -47,6 +47,8 @@ interface ApiResponse {
   slug: string
   originName: string
   destName: string
+  /** P0 2026-10-29: turer som måste beställas i förväg (transit-stops.ts). */
+  bestallning?: string | null
   outbound: TripSummary | null
   return: TripSummary | null
   checkedAt: string
@@ -231,6 +233,16 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
           margin: '12px 0 0', lineHeight: 1.5, fontWeight: 600,
         }}>
           🏃 Rör på dig — sista båten går snart.
+        </p>
+      )}
+
+      {data.bestallning && (
+        <p role="note" style={{
+          fontSize: 12.5, fontWeight: 600, lineHeight: 1.5,
+          margin: '12px 0 0', padding: '8px 10px', borderRadius: 8,
+          background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.18)',
+        }}>
+          {data.bestallning}
         </p>
       )}
 

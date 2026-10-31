@@ -27,6 +27,13 @@ export interface IslandTransitConfig {
   originStopName: string
   /** Kort förklarande ton till resenären. */
   note?: string
+  /**
+   * P0 2026-10-29: när turer till eller från ön bara går om de beställts i
+   * förväg. ResRobot-svaren som widgetarna visar säger inte det, så en tur
+   * som kräver beställning såg ut som en vanlig avgång. Visas i både
+   * avgångsrutan och "Sista båten". Måste ha KÄLLA-rad ovanför värdet.
+   */
+  bestallning?: string
 }
 
 /**
@@ -37,7 +44,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   sandhamn: {
     destStopId: '740020694', destStopName: 'Sandhamn brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Snabbast via buss 434 till Stavsnäs och Waxholmsbåten därifrån.',
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — "433 Slussen–Djurö", "Stavsnäs vinterhamn" (läst 2026-10-29)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h434.pdf — "Stavsnäs vinterhamn 2)", "2) Endast vissa turer." (läst 2026-10-29)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Du kan åka till Sandhamn med båt från Stavsnäs", "Under sommaren så kan du också åka till Sandhamn från Strömkajen." (läst 2026-10-29)
+    // P0 2026-10-29: noten pekade på buss 434, som bara vissa turer går till Stavsnäs vinterhamn.
+    note: 'Båten från Stavsnäs vinterhamn går året runt. Dit tar du SL-buss 433 från Slussen (även vissa turer med 434). Från Strömkajen går båten bara sommartid.',
   },
   grinda: {
     destStopId: '740098471', destStopName: 'Grinda',
@@ -51,8 +62,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   },
   uto: {
     destStopId: '740020695', destStopName: 'Utö Gruvbryggan',
-    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
-    note: 'Pendeltåg till Nynäshamn och Waxholmsbolaget därifrån.',
+    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-10-29)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "21A ÅRSTA – UTÖ" (läst 2026-10-29)
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "846 Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga", "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026" (läst 2026-10-31)
+    note: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbolagets båt, linje 21, året om till Gruvbryggan.',
   },
   finnhamn: {
     destStopId: '740020693', destStopName: 'Finnhamn brygga',
@@ -70,6 +84,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1
     // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.
     note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Beställ resan i SL-appen" (anmärkningarna B, C och b i tabell 14; fristerna skiljer sig mellan turerna, för C-turerna gäller dagen före) (läst 2026-10-29)
+    // P0 2026-10-29: kortet "Sista båten från Möja" visade en beställningstur utan att säga att den måste beställas.
+    bestallning: 'Flera turer till och från Möja går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 innan du åker.',
   },
   husaro: {
     destStopId: '740020692', destStopName: 'Husarö brygga',
@@ -160,13 +177,19 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   },
   orno: {
     destStopId: '740034475', destStopName: 'Ornö Kyrka brygga',
-    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ" (läst 2026-10-29)
+    // P0 2026-10-29: avgångsrutan räknade från Nynäshamns färjeterminal. Ingen av Waxholmsbolagets tabeller för perioden har båt därifrån till Ornö.
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     note: 'Bilfärja från Dalarö — pendeltåg till Handen + buss 839 + färja.',
   },
   kymmendo: {
     destStopId: '740018277', destStopName: 'Kymmendö brygga',
-    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
-    note: 'Strindbergs ö — Waxholmsbåt från Dalarö eller Nynäshamn.',
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Kymmendö", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Kymmendö" (läst 2026-10-29)
+    // P0 2026-10-29: noten sa "från Dalarö eller Nynäshamn" utan säsong. Från Nynäshamn går båten bara sommartid.
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
+    bestallning: 'En del turer till och från Kymmendö går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
   },
   bullero: {
     destStopId: '740076413', destStopName: 'Bullerö brygga',
@@ -223,10 +246,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     note: 'Buss 852 från Nynäshamn station. Torö nås över bro.',
   },
   fjardlang: {
-    // 118 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+    // 118 min, 0 byten, uppmätt 2026-08-05 · ren båtresa (sommartid, Nordsydlinjen)
     destStopId: '740020696', destStopName: 'Fjärdlång brygga',
-    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
-    note: 'Direkt Waxholmsbåt från Nynäshamn, inga byten.',
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Fjärdlång", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Fjärdlång" (läst 2026-10-29)
+    // P0 2026-10-29: noten sa "Direkt Waxholmsbåt från Nynäshamn" utan säsong. Den båten går bara sommartid.
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
+    bestallning: 'En del turer till och från Fjärdlång går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
   },
   rindo: {
     // 88 min, 3 byten, uppmätt 2026-08-05
