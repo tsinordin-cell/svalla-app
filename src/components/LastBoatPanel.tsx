@@ -49,6 +49,8 @@ interface ApiResponse {
   destName: string
   /** P0 2026-10-29: turer som måste beställas i förväg (transit-stops.ts). */
   bestallning?: string | null
+  /** P0 2026-11-02: brygga utan fast avgångstid (transit-stops.ts). */
+  tidsObs?: string | null
   outbound: TripSummary | null
   return: TripSummary | null
   checkedAt: string
@@ -151,7 +153,12 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
         <h2 id="last-boat-title" style={{
           fontSize: 15, fontWeight: 700, margin: 0, letterSpacing: '-0.2px',
         }}>
-          Sista båten från {islandName} idag
+          {/* P0 2026-11-02: rubriken namnger bryggan där båten i kortet går, alltså
+              första färjebenets avgångshållplats enligt ResRobot. På öar med flera
+              bryggor (Styrsö: Bratten och Tången; Grinda: Norra och Södra) går
+              sista båten olika tider, och destStopName kan vara en grupp av
+              hållplatser eller en busshållplats. */}
+          Sista båten från {bryggnamn(lastTrip.legs[0]?.fromName) || data.destName || islandName} idag
         </h2>
         {isCancelled ? (
           <span style={{
@@ -245,6 +252,15 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
           {data.bestallning}
         </p>
       )}
+      {data.tidsObs && (
+        <p role="note" style={{
+          fontSize: 12.5, fontWeight: 600, lineHeight: 1.5,
+          margin: '12px 0 0', padding: '8px 10px', borderRadius: 8,
+          background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.18)',
+        }}>
+          {data.tidsObs}
+        </p>
+      )}
 
       <style>{`
         @keyframes lastBoatPulse {
@@ -254,6 +270,16 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
       `}</style>
     </section>
   )
+}
+
+/**
+ * ResRobot-namn som "Styrsö Bratten (Göteborg kn)" → "Styrsö Bratten".
+ * normalizeLeg sätter "?" när ResRobot inte ger något namn; det räknas som
+ * tomt, så att rubriken faller tillbaka på destStopName eller öns namn.
+ */
+function bryggnamn(namn: string | undefined): string {
+  const n = (namn ?? '').replace(/\s*\([^()]*\bkn\)\s*$/i, '').trim()
+  return n === '?' ? '' : n
 }
 
 /**

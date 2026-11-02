@@ -52,6 +52,8 @@ interface ApiResponse {
   note: string | null
   /** P0 2026-10-29: turer som måste beställas i förväg (transit-stops.ts). */
   bestallning?: string | null
+  /** P0 2026-11-02: brygga utan fast avgångstid (transit-stops.ts). */
+  tidsObs?: string | null
   trips: TripSummary[]
   error?: string
 }
@@ -200,6 +202,16 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
               borderRadius: 8, padding: '8px 10px',
             }}>
               {data.bestallning}
+            </p>
+          )}
+          {data.tidsObs && (
+            <p role="note" style={{
+              fontSize: 12.5, color: '#fff', fontWeight: 600,
+              margin: '12px 0 0', lineHeight: 1.5,
+              background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.18)',
+              borderRadius: 8, padding: '8px 10px',
+            }}>
+              {data.tidsObs}
             </p>
           )}
 

@@ -34,6 +34,13 @@ export interface IslandTransitConfig {
    * avgångsrutan och "Sista båten". Måste ha KÄLLA-rad ovanför värdet.
    */
   bestallning?: string
+  /**
+   * P0 2026-11-02: när operatören inte har fast avgångstid vid bryggan
+   * (Waxholmsbolagets anmärkning X). Reseplanerarens tider ser då ut som
+   * tidtabellens fast de inte är det. Visas i både avgångsrutan och "Sista
+   * båten". Måste ha KÄLLA-rad ovanför värdet.
+   */
+  tidsObs?: string
 }
 
 /**
@@ -56,8 +63,18 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     note: 'Direktbåt med Waxholmsbolaget från Strömkajen sommartid.',
   },
   vaxholm: {
-    destStopId: '740018045', destStopName: 'Vaxholm Västerhamnsplan',
+    // P0 2026-11-02 (vaxholm-0078): Västerhamnsplan (740018045) är en
+    // busshållplats, och "Sista båten" visade därför SL-buss 670 (20:02) när
+    // sista båten enligt tabell 2B gick 18.25. Nu samma id som ferries.ts,
+    // "VAXHOLM", som enligt Trafiklab är en grupp av hållplatser och inte en
+    // brygga (Kontrollanten 2026-11-02; bryggan heter Vaxholm Hotellkajen,
+    // 740020991). Kortet räknar bara färjor (trafiklab.ts) och namnger bryggan
+    // där båten går. Avgångsrutan visar även buss 670, som noten säger.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "2B VAXHOLM – HÖGANÄS – STOCKHOLM" (läst 2026-10-31)
+    destStopId: '740098250', destStopName: 'Vaxholm',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "2A STOCKHOLM – HÖGANÄS – VAXHOLM", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-10-31)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — "Tekniska högskolan", "Västerhamnsplan", "Giltig 17 augusti–12 december 2026" (läst 2026-10-31)
     note: 'Båt direkt från Strömkajen — eller buss 670 från Tekniska högskolan.',
   },
   uto: {
@@ -76,6 +93,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     destStopId: '740034632', destStopName: 'Fjäderholmarna brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
     note: 'Närmaste skärgårdsön — båt direkt från Strömkajen, ca 25 min.',
+    // P0 2026-11-02 (Kontrollanten, fjaderholmarna-k002/k103): Fjäderholmarna är
+    // märkt X i tabell 2, så tiderna i rutorna är reseplanerarens, inte tidtabellens.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "Fjäderholmarna", "X", "Bryggorna trafikeras utan fast avgångstid.", "Sök hela din resa på sl.se för att få tider för både anslutande SL-trafik och skärgårdstrafiken." (läst 2026-11-02)
+    tidsObs: 'Waxholmsbolaget angör Fjäderholmarna utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',
   },
   moja: {
     destStopId: '740024936', destStopName: 'Möjaström brygga',
@@ -91,6 +112,13 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   husaro: {
     destStopId: '740020692', destStopName: 'Husarö brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    // P0 2026-11-02 (husaro-0078–0080): avgångsrutan visade beställningsturer som
+    // vanliga avgångar. Samma lindring som för Möja tills koden kan läsa ResRobots
+    // anmärkningar.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna b, B och C; för C-turerna gäller dagen före) (läst 2026-10-29)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningen C: dagen före) (läst 2026-10-29)
+    bestallning: 'Flera turer till och från Husarö går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 innan du åker.',
   },
   ingmarso: {
     destStopId: '740034607', destStopName: 'Ingmarsö Norra brygga',
@@ -313,7 +341,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // 14 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
     destStopId: '740001213', destStopName: 'Styrsö Bratten',
     originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
-    note: 'Direkt Styrsöbåt från Saltholmen, kortast överfarten i södra skärgården.',
+    // P0 2026-11-02 (styrso-0075, styrso-0079): tiderna i rutorna gäller bryggan
+    // Bratten. Tången trafikeras bara av linje 282, och dagens sista båt därifrån
+    // går tidigare. "Kortast överfarten i södra skärgården" var obelagt och struket.
+    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — "281 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö", "282 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik", "Gäller 24 aug – 12 dec 2026" (läst 2026-10-31)
+    note: 'Linje 281 och 282 går från Saltholmen till Styrsö Bratten utan byte, och tiderna här gäller Bratten. Från Tången går bara linje 282, och dagens sista båt därifrån går tidigare än från Bratten.',
   },
   donso: {
     // 26 min, 0 byten, uppmätt 2026-08-05 · ren båtresa

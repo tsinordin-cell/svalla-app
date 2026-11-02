@@ -217,7 +217,13 @@ function calcDelayMin(planned: string, rt: string | undefined): number | undefin
 
 function normalizeLeg(raw: ResRobotLeg): TripLeg {
   const product = asProduct(raw.Product)
-  const isWalk = (raw.type ?? '').toUpperCase() === 'WALK' || !product.line
+  // Promenad eller byte: typen säger det, eller benet saknar trafikslag helt.
+  // Ett ben utan linjenummer men med trafikslag, till exempel en färja, är
+  // inte promenad (P0 2026-11-02, Kontrollanten runda 5: annars hämtades
+  // rubrik och tid i "Sista båten" från nästa färjeben).
+  const typ = (raw.type ?? '').toUpperCase()
+  const isWalk = typ === 'WALK' || typ === 'TRSF'
+    || (!product.line && product.catCode == null && product.cls == null)
   const fromTime = (raw.Origin?.time ?? '').slice(0, 5)
   const toTime = (raw.Destination?.time ?? '').slice(0, 5)
   const rtFromTime = raw.Origin?.rtTime ? raw.Origin.rtTime.slice(0, 5) : undefined
@@ -416,10 +422,19 @@ export async function fetchLastTripOfDay(
   // ResRobot max numF=6 — annars returnerar API:t API_PARAM IllegalArgumentException
   // och vi får tomt svar (vilket var orsak till första-release-buggen där alla
   // last-departure-anrop returnerade null).
-  const [afternoonTrips, eveningTrips] = await Promise.all([
-    fetchTrips(originId, destId, 6, { date, time: '14:00' }),
-    fetchTrips(originId, destId, 6, { date, time: '19:00' }),
-  ])
+  // P0 2026-11-02 (faktagranskningen, vaxholm-0078): utan trafikslagsfilter
+  // blev "sista båten" en resa med buss och tunnelbana när den gick senare än
+  // båten – Vaxholm visade 20:02 → Strömkajen, fast sista båten enligt tabell
+  // 2B gick 18.25. Rubriken lovar en båt, så bara färjor räknas (produkt 256).
+  // Byten till buss räknas inte: en resa som innehåller andra trafikslag
+  // skulle fortfarande kunna visa en buss som "sista båten".
+  // Söktiderna är startpunkter för frågan mot ResRobot, inte avgångstider som
+  // visas för någon. Valda i första versionen (uppmätt mot ResRobot: numF=6
+  // per anrop räcker från 14:00 respektive 19:00 till dagens sista tur).
+  const sokFran = ['14:00', '19:00']
+  const [afternoonTrips = [], eveningTrips = []] = await Promise.all(
+    sokFran.map(time => fetchTripsResult(originId, destId, 6, { date, time }, { products: RESROBOT_PRODUKT_FARJA }).then(r => r.trips)),
+  )
 
   // Dedupa på startTime (samma trip kan dyka upp i båda anropen)
   const seen = new Set<string>()
@@ -431,8 +446,17 @@ export async function fetchLastTripOfDay(
     merged.push(t)
   }
 
-  // Filtrera fram resor som FAKTISKT startar idag (ResRobot ger även resor nästa dag)
-  const todaysTrips = merged.filter(t => t.startDate === date)
+  // Filtrera fram resor som FAKTISKT startar idag (ResRobot ger även resor nästa dag),
+  // och bara resor där varje transportben är en färja (products-filtret styr
+  // sökningen, men svaret kontrolleras ändå: catCode 8 = Ferries). Kontrollen
+  // går också över allLegs: normalizeLeg räknar ben utan linjenummer som
+  // promenad, så ett bussben utan `line` skulle annars slinka igenom. Vid sidan
+  // av färjorna godtas bara ben helt utan trafikslag, alltså promenader.
+  const arFarja = (l: TripLeg) => l.catCode === '8' || l.cls === String(RESROBOT_PRODUKT_FARJA)
+  const todaysTrips = merged.filter(t => t.startDate === date
+    && t.legs.length > 0
+    && t.legs.every(arFarja)
+    && t.allLegs.every(l => arFarja(l) || (l.catCode === undefined && l.cls === undefined)))
   if (todaysTrips.length === 0) return null
   // Sortera efter startTime (HH:MM stränger sorterar korrekt) — ta sista
   todaysTrips.sort((a, b) => a.startTime.localeCompare(b.startTime))
