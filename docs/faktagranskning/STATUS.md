@@ -2,6 +2,36 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-02 23:52 — Sidmallarna kontrollerade; omarbete startat
+
+- **Kontrollant sidmallarna (MÄTT):** 143 kid. 98 OK (de 7 strukna
+  meningarna var rätt strukna), 32 FEL, 13 transit-rader som hör till
+  P0-omgångarna. Felen gäller mallogik som slår fel på andra öar än batch 01:s:
+  - Yttre Gården: villkoret ger "Ingen egen båt krävs".
+  - 16 öar utan båt i datan får titeln "Båt och resväg 2026" och en
+    båt-FAQ.
+  - Gotska Sandöns restid från Nynäshamn är fel.
+  - blekingetrafiken.se märks som myndighet.
+  - 83 av 224 guidekopplingar gäller guider som inte nämner ön.
+  - Egennamn blir felstavade av gemener.
+  - Titlarna "Mat, boende" och "Restauranger på" stämmer inte för alla öar.
+  - Hantverkartexten lovar mer än posterna, och "kör hit med båt" står även
+    för Vaxholm.
+  - "Kräver ett gratis konto" stämmer inte.
+  
+  Fyra registerrader gäller text som inte längre finns och blir INAKTUELL.
+- **Omarbete startat:** Skribenten för sidmallarna arbetar i
+  /home/claude/svalla-mallar och åtgärdar varje FEL. transit-stops, trafiklab
+  och islandCoords ingår inte.
+- **Elsäkerhetsverket:** Kontrollanten hittade Jowa Elektriska AB
+  (556774-1250) i registret via sökadressen
+  https://elsakerhetsverket.se/kolla-elforetaget?query=Jowa%20Elektriska
+  (Chromium). EJ NÅBAR-raderna moja-0522 och vaxholm-0265 kan alltså dömas
+  utan att någon skickar formuläret. Frågan till Tom behövs inte längre.
+- Regeln om full kontroll: Kontrollanten tog upp den igen. Redaktörens
+  läsning står kvar (se 23:05): den gäller fynd i batchens stickprov.
+- Agenter nu (fyra): P0 runda 6, Grinda, Möja och Skribent sidmallarna.
+
 ## 2026-11-02 23:39 — Utö kontrollerad; utogasthamn.se läst i Toms Chrome
 
 - **Kontrollant Utö (MÄTT):** 116 OK, 9 FEL, 15 SAKNAS av 140. Beslut per
