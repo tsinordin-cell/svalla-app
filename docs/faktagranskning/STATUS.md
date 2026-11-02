@@ -2,6 +2,26 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 00:13 — Möja kontrollerad
+
+- **Kontrollant Möja (MÄTT):** 158 OK, 7 FEL, 2 SAKNAS (de 3 P0-raderna
+  borträknade). Beslut per fynd i `register/b01/kontroll/moja.beslut.tsv`:
+  - Antalet turer från Sollenkroka ska vara 2–7.
+  - Bussen är 434 Slussen–Överby och stannar vid Sollenkroka bara på vissa
+    turer.
+  - Jowa Elektriska nämner Möja på sin egen sida, så Möja står kvar och
+    mejlfrågan om Möja behövs inte.
+  - 14X-turerna och en blogglänk saknar källa.
+  - Två liverader visade en beställningstur som vanlig avgång. Det täcks av
+    P0 3.
+  - Två strukna gästhamnsuppgifter underkänns: källan (nivå 3, odaterad)
+    motsäger sig själv, så strykningen står.
+  
+  Omarbetet är tillagt hos Skribenten för öarna.
+- Kontrollant Sandhamn startad (182 rader). Agenter nu (fyra): Kontrollant
+  Vaxholm och Sandhamn, Skribent sidmallarna och Skribent öarna.
+- beslut-tom.md: punkt 6 (Jowa) och 7 (sidor bakom inloggning) uppdaterade.
+
 ## 2026-11-03 00:00 — Grinda kontrollerad; omarbete av öarna startat
 
 - **Kontrollant Grinda (MÄTT):** 125 OK, 6 FEL, 1 SAKNAS av 132. Beslut per

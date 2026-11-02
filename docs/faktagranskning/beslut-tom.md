@@ -139,16 +139,25 @@ Tills svar finns står den belagda generaliseringen.
   webbplatser: Delsholmen Entreprenad, Anderssons Båtvarv, Jowa Elektriska
   och Hellström Marin. Svarar de nej försvinner två av dem helt från Svalla,
   och det är en radering av hela poster. (moja.tom.md)
-- Jowa Elektriska listas också under Vaxholm. Frågan läggs i samma mejl.
-  Svarar de nej försvinner /o/vaxholm/hantverkare, där Jowa är enda posten.
-  (vaxholm.tom.md)
+- Jowa Elektriska: för Möja behövs ingen fråga längre, eftersom företaget
+  skriver "Vi arbetar regelbundet på öar som … Möja"
+  (jowael.se/elektriker-skargarden/, Kontrollanten 2026-11-02). Kvar är
+  frågan om Vaxholm. Svarar de nej försvinner /o/vaxholm/hantverkare, där
+  Jowa är enda posten. (vaxholm.tom.md)
 - Bastubryggan Brännö: var ligger bastun? Nålen ligger i vattnet vid Vargö.
   (styrso.tom.md)
 
 ### 7. Sidor som bara går att läsa i en inloggad webbläsare (EJ NÅBAR, blockerar batchen)
-38 rader. Facebook: Café Strindbergsgården (Sandhamn), Vaxholms
-Hembygdsgårds Café. Instagram: Café Ankaret (Sandhamn). Dessutom
-rentunder.se, Bolagsverket (OCT Entreprenads säte), Elsäkerhetsverkets
-register (Jowa), wallnermarin.se, hhmarin.se och finnhamn.se (Möja) och
-bildens filsida på Commons (Storholmen). Redaktören kan läsa dem i din Chrome
-via Claude-tillägget om det är igång; annars behöver du läsa dem.
+Uppdaterat 2026-11-03. Lästa av Redaktören i din Chrome 2026-11-02:
+hhmarin.se, Café Ankarets Instagram, www.utogasthamn.se och bildens filsida
+på Commons. Elsäkerhetsverkets register (Jowa) gick att läsa via en
+sökadress, och finnhamn.se lästes av en Granskare. Kvar:
+- **Facebook** (Claude-tillägget har inte behörighet för domänen): Café
+  Strindbergsgården (Sandhamn) och Vaxholms Hembygdsgårds Café. Ge tillägget
+  behörighet för facebook.com, eller läs sidorna själv: namn, att det är ett
+  kafé, adress och datum för senaste inlägget.
+- **wallnermarin.se och rentunder.se** gav felsida även i din webbläsare.
+  Wallner Marin (9 rader under Möja) får söka annan källa. Hittas ingen
+  hamnar frågan om posten här.
+- **Bolagsverket** (OCT Entreprenads säte, Grinda) är inte läst.
+  Generaliseringen "Stockholms skärgård" står tills vidare.
