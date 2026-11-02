@@ -2,6 +2,26 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 00:00 — Grinda kontrollerad; omarbete av öarna startat
+
+- **Kontrollant Grinda (MÄTT):** 125 OK, 6 FEL, 1 SAKNAS av 132. Beslut per
+  fynd i `register/b01/kontroll/grinda.beslut.tsv`:
+  - Cinderella sades angöra Norra bryggan, men Strömmas tidtabell 2026 har
+    bara Södra Grinda. Det är ett P0-fel (fel brygga), men Cinderella går
+    inte förrän i april 2027, så rättelsen följer med batchen (RESONERAT).
+  - validFrom/validThrough i JSON-LD tas bort i mallarnas ändringar.
+  - Tre KÄLLA-rader täcker inte hela texten.
+  - Waxholmsbolaget vid Norra bryggan behöver källa och en formulering som
+    håller efter 12 december.
+  - STF och Stockholm Archipelago Trail anger olika avstånd till Wärdshuset.
+- **Omarbete av öarna startat (Skribent):** Storholmen (FEL och SAKNAS från
+  29 oktober, de fyra utfyllnadsmeningarna), Fjäderholmarna, Utö och Grinda
+  enligt beslutsfilerna. Dessutom EJ NÅBAR-raderna i Möja, Sandhamn och
+  Vaxholm, med sidorna som lästs i Toms Chrome och Elsäkerhetsverkets
+  sökadress. Facebooksidorna och Rent Under står kvar.
+- Agenter nu (fyra): Kontrollant Möja och Vaxholm, Skribent sidmallarna och
+  Skribent öarna.
+
 ## 2026-11-02 23:56 — Alla P0 godkända; P0-grenen committad lokalt
 
 - **Kontrollant P0 runda 6 (MÄTT):** 3 OK och 1 FEL. Felet gällde bara

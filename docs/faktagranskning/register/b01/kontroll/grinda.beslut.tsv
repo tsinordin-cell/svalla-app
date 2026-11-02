@@ -1,0 +1,9 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-02)
+grinda-k154	grinda-0448	FEL	Omarbete: Cinderella angör bara Södra Grinda enligt Strömmas tidtabell 2026. P0-klass (fel brygga), men Cinderella går inte förrän i april 2027, så rättelsen går med batchen (RESONERAT).
+grinda-k043	grinda-0024	FEL	Mallfel (validFrom/validThrough i JSON-LD): hela openingHoursSpecification tas bort i mallarnas ändringar. Ingen ändring i Grindas data.
+grinda-k082	grinda-0025	FEL	Som k043.
+grinda-k012	grinda-0421	FEL (källa)	Omarbete: KÄLLA-raden ska också belägga \"Waxholmsbolaget året om\" (h11/s11).
+grinda-k153	grinda-0420	FEL (källa)	Omarbete: KÄLLA-raden ska belägga Cinderella (Strömmas tidtabell).
+grinda-k105	grinda-0346	FEL (källa)	Omarbete: septemberslutet står i Strömmas tidtabell-PDF, som ska in i KÄLLA-raden.
+grinda-k021	grinda-0449	SAKNAS (källa)	Omarbete: Waxholmsbolaget vid Norra bryggan beläggs med h11/s11 eller Länsstyrelsen. Ingen tabell efter 12 december 2026 är publicerad, så \"året om\" ska formuleras så att det håller.
+grinda-k037	grinda-0587	OK med anmärkning	Omarbete: STF säger \"en knapp kilometer\" och Stockholm Archipelago Trail cirka 1 500 m mellan Södra bryggan och Wärdshuset. Lös konflikten enligt källreglerna.
