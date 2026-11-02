@@ -2,6 +2,35 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-02 22:26 — Omstart på Opus; P0 11 (Styrsö) och P0 12 (Husarö)
+
+Fable-krediterna tog slut cirka 17:30 och stoppade fyra agenter efter några
+minuter. Inga sparade domar gick förlorade; Kontrollanten för Vaxholms P0 hann
+inte skriva något. Sessionen kör nu Opus 5.5. Fyra nya agenter (högst fyra):
+Kontrollant P0 runda 4 (Vaxholm, Styrsö, Husarö; `kontroll/p0-runda4.*`),
+Granskare Styrsö (fortsätter från 43 domar), Husarö (fortsätter från 57) och
+sidmallarna (0 av 253).
+
+**Läge (MÄTT 22:10):** 3 897 av 4 844 rader har dom (80 %). KORREKT 3 467,
+DELVIS 192, OBELAGD 116, FEL 69, EJ NÅBAR 38, MOTSTRIDIG 8, INAKTUELL 7.
+Supabase fortfarande INACTIVE, så /team uppdateras inte; PR #504 öppen
+(mergeable_state blocked). Toms fråga om läget besvarad i chatten 22:15.
+
+**P0 11 (Styrsö, styrso-0075/0079):** kortet "Sista båten från Styrsö" räknar
+från Bratten. Tången trafikeras bara av linje 282, och sista båten därifrån går
+tidigare (Granskarens uppgift, inte kontrollerad än). Rättat i P0-grenen:
+rubriken i LastBoatPanel visar bryggans namn (destName) för alla öar, och
+Styrsös not säger att tiderna gäller Bratten. "Kortast överfarten i södra
+skärgården" är struken (obelagd superlativ).
+**P0 12 (Husarö, husaro-0078–0080):** avgångsrutan visade beställningsturer
+(b, B och C i tabell 10, 12 och 13) som vanliga avgångar. Granskaren flaggade
+det 2026-10-31; Redaktören såg det först nu. Lindrat som Möja: `bestallning`
+för Husarö i transit-stops.ts. Grundorsaken (ResRobots anmärkningar visas
+inte) är fortfarande öppen och gäller alla öar med beställningsturer.
+P0-grenen är okommitterad: verify-claims, 705 tester och tsc gröna. eslint
+visar två emoji-fel i LastBoatPanel som finns på main sedan tidigare. Hela
+diffen mot main: `register/b01/ut/p0-2026-10-29.patch` (uppdaterad 22:26).
+
 ## 2026-11-02 17:50 — Vaxholm granskad; P0 9 och 10
 
 Supabase fortfarande INACTIVE (MÄTT 17:27). Ett projektdokument

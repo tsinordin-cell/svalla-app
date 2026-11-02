@@ -209,7 +209,7 @@ index 998324b..01dd619 100644
              marginTop: 14, paddingTop: 12,
              borderTop: '1px solid rgba(255,255,255,0.12)',
 diff --git a/src/components/LastBoatPanel.tsx b/src/components/LastBoatPanel.tsx
-index 4cacb56..adf0e28 100644
+index 4cacb56..329b385 100644
 --- a/src/components/LastBoatPanel.tsx
 +++ b/src/components/LastBoatPanel.tsx
 @@ -47,6 +47,8 @@ interface ApiResponse {
@@ -221,7 +221,18 @@ index 4cacb56..adf0e28 100644
    outbound: TripSummary | null
    return: TripSummary | null
    checkedAt: string
-@@ -234,6 +236,16 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
+@@ -149,7 +151,9 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
+         <h2 id="last-boat-title" style={{
+           fontSize: 15, fontWeight: 700, margin: 0, letterSpacing: '-0.2px',
+         }}>
+-          Sista båten från {islandName} idag
++          {/* P0 2026-11-02: rubriken namnger bryggan som tiden gäller. På öar med
++              flera bryggor (Styrsö: Bratten och Tången) går sista båten olika tider. */}
++          Sista båten från {data.destName || islandName} idag
+         </h2>
+         {isCancelled ? (
+           <span style={{
+@@ -234,6 +238,16 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
          </p>
        )}
  
@@ -298,7 +309,7 @@ index b706995..b963811 100644
    // Sortera efter startTime (HH:MM stränger sorterar korrekt) — ta sista
    todaysTrips.sort((a, b) => a.startTime.localeCompare(b.startTime))
 diff --git a/src/lib/transit-stops.ts b/src/lib/transit-stops.ts
-index add4769..9806995 100644
+index add4769..eb6739e 100644
 --- a/src/lib/transit-stops.ts
 +++ b/src/lib/transit-stops.ts
 @@ -27,6 +27,13 @@ export interface IslandTransitConfig {
@@ -354,7 +365,7 @@ index add4769..9806995 100644
    },
    finnhamn: {
      destStopId: '740020693', destStopName: 'Finnhamn brygga',
-@@ -70,6 +89,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -70,10 +89,20 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1
      // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.
      note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',
@@ -364,7 +375,18 @@ index add4769..9806995 100644
    },
    husaro: {
      destStopId: '740020692', destStopName: 'Husarö brygga',
-@@ -160,13 +182,19 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
++    // P0 2026-11-02 (husaro-0078–0080): avgångsrutan visade beställningsturer som
++    // vanliga avgångar. Samma lindring som för Möja tills koden kan läsa ResRobots
++    // anmärkningar.
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna b, B och C; för C-turerna gäller dagen före) (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningen C: dagen före) (läst 2026-10-29)
++    bestallning: 'Flera turer till och från Husarö går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 innan du åker.',
+   },
+   ingmarso: {
+     destStopId: '740034607', destStopName: 'Ingmarsö Norra brygga',
+@@ -160,13 +189,19 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
    },
    orno: {
      destStopId: '740034475', destStopName: 'Ornö Kyrka brygga',
@@ -387,7 +409,7 @@ index add4769..9806995 100644
    },
    bullero: {
      destStopId: '740076413', destStopName: 'Bullerö brygga',
-@@ -223,10 +251,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -223,10 +258,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      note: 'Buss 852 från Nynäshamn station. Torö nås över bro.',
    },
    fjardlang: {
@@ -405,3 +427,16 @@ index add4769..9806995 100644
    },
    rindo: {
      // 88 min, 3 byten, uppmätt 2026-08-05
+@@ -286,7 +325,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+     // 14 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+     destStopId: '740001213', destStopName: 'Styrsö Bratten',
+     originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
+-    note: 'Direkt Styrsöbåt från Saltholmen, kortast överfarten i södra skärgården.',
++    // P0 2026-11-02 (styrso-0075, styrso-0079): tiderna i rutorna gäller bryggan
++    // Bratten. Tången trafikeras bara av linje 282, och dagens sista båt därifrån
++    // går tidigare. "Kortast överfarten i södra skärgården" var obelagt och struket.
++    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — "281 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö", "282 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik", "Gäller 24 aug – 12 dec 2026" (läst 2026-10-31)
++    note: 'Linje 281 och 282 går från Saltholmen till Styrsö Bratten utan byte, och tiderna här gäller Bratten. Från Tången går bara linje 282, och dagens sista båt därifrån går tidigare än från Bratten.',
+   },
+   donso: {
+     // 26 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
