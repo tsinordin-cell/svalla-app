@@ -254,8 +254,51 @@ index 2d9e6b9..c7f1fe6 100644
      operator: 'Waxholmsbolaget',
      season: 'Helår',
      infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
+diff --git a/src/lib/trafiklab.ts b/src/lib/trafiklab.ts
+index b706995..b963811 100644
+--- a/src/lib/trafiklab.ts
++++ b/src/lib/trafiklab.ts
+@@ -416,10 +416,19 @@ export async function fetchLastTripOfDay(
+   // ResRobot max numF=6 — annars returnerar API:t API_PARAM IllegalArgumentException
+   // och vi får tomt svar (vilket var orsak till första-release-buggen där alla
+   // last-departure-anrop returnerade null).
+-  const [afternoonTrips, eveningTrips] = await Promise.all([
+-    fetchTrips(originId, destId, 6, { date, time: '14:00' }),
+-    fetchTrips(originId, destId, 6, { date, time: '19:00' }),
+-  ])
++  // P0 2026-11-02 (faktagranskningen, vaxholm-0078): utan trafikslagsfilter
++  // blev "sista båten" en resa med buss och tunnelbana när den gick senare än
++  // båten – Vaxholm visade 20:02 → Strömkajen, fast sista båten enligt tabell
++  // 2B gick 18.25. Rubriken lovar en båt, så bara färjor räknas (produkt 256).
++  // Byten till buss räknas inte: en resa som innehåller andra trafikslag
++  // skulle fortfarande kunna visa en buss som "sista båten".
++  // Söktiderna är startpunkter för frågan mot ResRobot, inte avgångstider som
++  // visas för någon. Valda i första versionen (uppmätt mot ResRobot: numF=6
++  // per anrop räcker från 14:00 respektive 19:00 till dagens sista tur).
++  const sokFran = ['14:00', '19:00']
++  const [afternoonTrips = [], eveningTrips = []] = await Promise.all(
++    sokFran.map(time => fetchTripsResult(originId, destId, 6, { date, time }, { products: RESROBOT_PRODUKT_FARJA }).then(r => r.trips)),
++  )
+ 
+   // Dedupa på startTime (samma trip kan dyka upp i båda anropen)
+   const seen = new Set<string>()
+@@ -431,8 +440,12 @@ export async function fetchLastTripOfDay(
+     merged.push(t)
+   }
+ 
+-  // Filtrera fram resor som FAKTISKT startar idag (ResRobot ger även resor nästa dag)
+-  const todaysTrips = merged.filter(t => t.startDate === date)
++  // Filtrera fram resor som FAKTISKT startar idag (ResRobot ger även resor nästa dag),
++  // och bara resor där varje transportben är en färja (products-filtret styr
++  // sökningen, men svaret kontrolleras ändå: catCode 8 = Ferries).
++  const todaysTrips = merged.filter(t => t.startDate === date
++    && t.legs.length > 0
++    && t.legs.every(l => l.catCode === '8' || l.cls === String(RESROBOT_PRODUKT_FARJA)))
+   if (todaysTrips.length === 0) return null
+   // Sortera efter startTime (HH:MM stränger sorterar korrekt) — ta sista
+   todaysTrips.sort((a, b) => a.startTime.localeCompare(b.startTime))
 diff --git a/src/lib/transit-stops.ts b/src/lib/transit-stops.ts
-index add4769..3893a55 100644
+index add4769..9806995 100644
 --- a/src/lib/transit-stops.ts
 +++ b/src/lib/transit-stops.ts
 @@ -27,6 +27,13 @@ export interface IslandTransitConfig {
@@ -285,7 +328,19 @@ index add4769..3893a55 100644
    },
    grinda: {
      destStopId: '740098471', destStopName: 'Grinda',
-@@ -51,8 +62,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -45,14 +56,22 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+     note: 'Direktbåt med Waxholmsbolaget från Strömkajen sommartid.',
+   },
+   vaxholm: {
+-    destStopId: '740018045', destStopName: 'Vaxholm Västerhamnsplan',
++    // P0 2026-11-02 (vaxholm-0078): Västerhamnsplan (740018045) är en
++    // busshållplats, och "Sista båten" visade därför SL-buss 670 (20:02) när
++    // sista båten enligt tabell 2B gick 18.25. Nu samma båtbrygga som
++    // ferries.ts, "VAXHOLM" (plats 1 för q=Vaxholm i stop-lookup 2026-10-03).
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "2B VAXHOLM – HÖGANÄS – STOCKHOLM" (läst 2026-10-31)
++    destStopId: '740098250', destStopName: 'Vaxholm',
+     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+     note: 'Båt direkt från Strömkajen — eller buss 670 från Tekniska högskolan.',
    },
    uto: {
      destStopId: '740020695', destStopName: 'Utö Gruvbryggan',
@@ -299,7 +354,7 @@ index add4769..3893a55 100644
    },
    finnhamn: {
      destStopId: '740020693', destStopName: 'Finnhamn brygga',
-@@ -70,6 +84,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -70,6 +89,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1
      // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.
      note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',
@@ -309,7 +364,7 @@ index add4769..3893a55 100644
    },
    husaro: {
      destStopId: '740020692', destStopName: 'Husarö brygga',
-@@ -160,13 +177,19 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -160,13 +182,19 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
    },
    orno: {
      destStopId: '740034475', destStopName: 'Ornö Kyrka brygga',
@@ -332,7 +387,7 @@ index add4769..3893a55 100644
    },
    bullero: {
      destStopId: '740076413', destStopName: 'Bullerö brygga',
-@@ -223,10 +246,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -223,10 +251,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      note: 'Buss 852 från Nynäshamn station. Torö nås över bro.',
    },
    fjardlang: {

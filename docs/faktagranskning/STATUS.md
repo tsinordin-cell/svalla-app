@@ -2,6 +2,31 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-02 17:50 — Vaxholm granskad; P0 9 och 10
+
+Supabase fortfarande INACTIVE (MÄTT 17:27). Ett projektdokument
+`claude/p0-supabase-pausad-2026-11-02.md` från en annan session bekräftar
+läget och listar vad som ska verifieras efter restore.
+
+**Vaxholm (MÄTT):** 702 rader (+7 nya). KORREKT 638, DELVIS 38, OBELAGD 10,
+FEL 9, EJ NÅBAR 6, MOTSTRIDIG 1. 37 ersättningar (island-data.ts,
+guide-island-map.ts; torrkörning 0 fel), 7 UPDATE (WHERE inte kontrollerade
+mot databasen). Slutsvaret gick förlorat i avbrottet; P0 lästa ur registret.
+**P0 9 (kod, alla öar):** kortet "Sista båten från Vaxholm" visade 20:02 →
+Strömkajen, som är SL-buss 670 + tunnelbana. Sista båten enligt tabell 2B går
+18.25. Orsak: Vaxholms mål-id var busshållplatsen Västerhamnsplan, och
+fetchLastTripOfDay sökte utan trafikslagsfilter. Rättat i P0-grenen: id
+740098250 (båtbryggan, samma som ferries.ts) och products=256 + legs-filter
+på catCode 8 i fetchLastTripOfDay – gäller alla öar. verify-claims, 705
+tester och tsc gröna.
+**P0 10 (regel):** "Avgiftsfritt 1 september–30 april" vid Kronängsskolan
+gäller bara kvällar och helger enligt kommunens taxa. Rättat i
+vaxholm.edits.json nr 27 (går in med batchen, inte i P0-grenen: texten är
+sann i den riktning som kan kosta någon böter först när batchen läggs in –
+RESONERAT, Kontrollanten avgör om den ska in i P0-PR:en).
+- Kontrollant P0 Vaxholm pågår. Granskare Styrsö (tredje försöket), Husarö
+  och sidmallarna återupptagna 17:30; ingen av dem hade domar i registret.
+
 ## 2026-11-01 00:55 — Grindas P0 godkända och i PR #504; alla nio öar + mallarna har Granskare
 
 - Kontrollant Grinda P0: 5 av 5 OK, 0 fynd. Commit 10d560f på P0-grenen,

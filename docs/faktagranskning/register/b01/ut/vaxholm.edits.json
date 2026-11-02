@@ -1,0 +1,546 @@
+[
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    slug: 'vaxholm',\n    name: 'Vaxholm',\n    region: 'mellersta',\n    regionLabel: 'Mellersta skärgården',\n    emoji: '🏛️',",
+  "ny": "    slug: 'vaxholm',\n    name: 'Vaxholm',\n    region: 'mellersta',\n    regionLabel: 'Mellersta skärgården',\n    // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm — \"Utöver Vaxön, där stadskärnan ligger, finns flera bebodda öar i kommunen, bland annat Resarö, Rindö och Tynningö.\" (läst 2026-10-31)\n    // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm/historia — \"Vaxholm fick fast landsförbindelse 1926 via Pålsundsbron.\" (läst 2026-10-31)\n    slag: 'ort',\n    emoji: '🏛️',",
+  "rader": [
+   "vaxholm-0011"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://vaxholmsfastning.se/historik/ — \"Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture.\" / \"Gustav Vasa 1548 åt ståthållaren på Stockholms slott att uppföra en ny och kraftigare fästning.\"\n      'Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture. År 1548 gav Gustav Vasa ståthållaren på Stockholms slott i uppdrag att uppföra en ny och kraftigare fästning. Det strategiska läget vid inloppet mot Stockholm är anledningen till att anläggningen finns där den finns.',",
+  "ny": "      // KÄLLA: https://vaxholmsfastning.se/historik/ — \"Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture.\", \"Gustav Vasa 1548 åt ståthållaren på Stockholms slott att uppföra en ny och kraftigare fästning\" (läst 2026-10-31)\n      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell — \"Med sitt strategiska läge vid stadens inlopp började platsen befästas redan på 1500-talet.\" (läst 2026-10-31)\n      'Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture. År 1548 gav Gustav Vasa ståthållaren på Stockholms slott i uppdrag att uppföra en ny och kraftigare fästning. Det strategiska läget vid inloppet mot Stockholm är anledningen till att anläggningen finns där den finns.',",
+  "rader": [
+   "vaxholm-0079",
+   "vaxholm-0080",
+   "vaxholm-0081",
+   "vaxholm-0082",
+   "vaxholm-0083",
+   "vaxholm-0084",
+   "vaxholm-0085",
+   "vaxholm-0086"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://vaxholmsfastning.se/historik/ — \"Den gamla fästningen revs och ersattes med det nuvarande Kastellet under åren 1833-1863.\"\n      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell, Vaxholms kastell — \"Byggår: 1833-1863 på uppdrag av Karl XIV Johan\" (läst 2026-09-30)\n      'Den gamla fästningen revs och ersattes med det nuvarande Kastellet under åren 1833–1863, på uppdrag av Karl XIV Johan. Det är den byggnaden som ligger i sundet i dag, tyngre och mer sluten än man väntar sig av bilderna.',",
+  "ny": "      // KÄLLA: https://vaxholmsfastning.se/historik/ — \"Den gamla fästningen revs och ersattes med det nuvarande Kastellet under åren 1833-1863.\" (läst 2026-10-31)\n      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell — \"Byggår: 1833-1863 på uppdrag av Karl XIV Johan\", \"som en gång kallades ”Stockholms lås”\" (läst 2026-10-31)\n      'Den gamla fästningen revs och ersattes med det nuvarande Kastellet under åren 1833–1863, på uppdrag av Karl XIV Johan. Det är den byggnaden som ligger i sundet i dag, och den kallades en gång ”Stockholms lås”.',",
+  "rader": [
+   "vaxholm-0087",
+   "vaxholm-0088",
+   "vaxholm-0089",
+   "vaxholm-0090",
+   "vaxholm-0091",
+   "vaxholm-N004"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://vaxholmsfastning.se/historik/ — angrepp slogs tillbaka två gånger: \"Första gången var 1612 då danskarna anföll\" och \"andra gången 1719 då ryssarna härjade i Stockholms skärgård\"\n      'Fästningen har slagit tillbaka angrepp två gånger. Första gången var 1612 då danskarna anföll, andra gången 1719 då ryssarna härjade i Stockholms skärgård.',",
+  "ny": "      // KÄLLA: https://vaxholmsfastning.se/historik/ — \"Fästningen har vid två tillfällen slagit tillbaka angrepp mot Stockholm.\", \"Första gången var 1612 då danskarna anföll och andra gången 1719 då ryssarna härjade i Stockholms skärgård.\" (läst 2026-10-31)\n      'Fästningen har slagit tillbaka angrepp två gånger. Första gången var 1612 då danskarna anföll, andra gången 1719 då ryssarna härjade i Stockholms skärgård.',",
+  "rader": [
+   "vaxholm-0092",
+   "vaxholm-0093",
+   "vaxholm-0094"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell, Vaxholms kastell — \"På ön Vaxholmen ett stenkast från skärgårdens huvudstad Vaxholm ligger Vaxholms kastell.\" (läst 2026-09-30)\n      // KÄLLA: https://vaxholmsfastning.se/ — museet låter besökaren följa \"skärgårdsförsvarets 500-åriga historia\" och täcker \"Sveriges försvarshistoria från Gustav Vasa till nutid\" (läst 2026-09-30)\n      'Vaxholms kastell ligger på ön Vaxholmen, ett stenkast från staden Vaxholm, och nås över vattnet. Inne i kastellet finns museet, där utställningarna följer skärgårdsförsvarets 500-åriga historia och Sveriges försvarshistoria från Gustav Vasa till nutid. Utsikten från murarna går ut över sundet åt båda håll.',",
+  "ny": "      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell — \"På ön Vaxholmen ett stenkast från skärgårdens huvudstad Vaxholm ligger Vaxholms kastell.\" (läst 2026-10-31)\n      // KÄLLA: https://vaxholmsfastning.se/ — \"skärgårdsförsvarets 500-åriga historia\", \"Sveriges försvarshistoria från Gustav Vasa till nutid\" (läst 2026-10-31)\n      // KÄLLA: https://vaxholmsfastning.se/besoksinfo/index.php — \"I vår källare får du veta mer om de civila som levde på fästningen under 1890-talet, där kan du också besöka en sekelskiftesbutik.\" (läst 2026-10-31)\n      'Vaxholms kastell ligger på ön Vaxholmen, ett stenkast från staden Vaxholm, och nås över vattnet. Inne i kastellet finns museet, där utställningarna följer skärgårdsförsvarets 500-åriga historia och Sveriges försvarshistoria från Gustav Vasa till nutid. I källaren berättar museet om de civila som levde på fästningen på 1890-talet, och där finns också en sekelskiftesbutik.',",
+  "rader": [
+   "vaxholm-0095",
+   "vaxholm-0096",
+   "vaxholm-0097",
+   "vaxholm-0098",
+   "vaxholm-0099",
+   "vaxholm-0100",
+   "vaxholm-0101",
+   "vaxholm-N005"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\", bryggorna \"Nacka strand\", \"Hasseludden\", \"Gåshaga brygga\" (läst 2026-09-27). Restiden Strömkajen → Vaxholm ank. är 55–82 min på de 34 turerna i tabellen (siffrorna ligger i ett kodat typsnitt i PDF:en och är avkodade och räknade kolumn för kolumn).\n      // KÄLLA: https://assets.ctfassets.net/4l7cjdaypzcu/1WCfe56Z2KZwgDq26t7IO3/9320e22bd9562098960f572bc7b3615f/SLomradet-2026-04-02.pdf — \"SL-biljett gäller alltid för resor med Waxholmsbolaget mellan dessa bryggor\" (läst 2026-09-27)\n      'Båten från Strömkajen tar 55–82 minuter till Vaxholm beroende på tur och stannar på vägen vid bland annat Nacka strand, Hasseludden och Gåshaga brygga. SL-biljetten gäller hela sträckan. Från Vaxholm går linje 11 vidare mot Grinda, Boda och Sollenkroka.',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\", \"Nacka strand\", \"Hasseludden\", \"Gåshaga brygga\" (läst 2026-10-31) Restid Strömkajen → Vaxholm uppmätt tur för tur i tabell 2A: 50–90 min (tur 0389 som angör Vaxholm i omvänd ordning ej räknad), median 70 min.\n      // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt\" (läst 2026-10-31)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\" (läst 2026-10-31)\n      'Enligt Waxholmsbolagets tidtabell för vår och höst 2026 tar båten från Strömkajen 50–90 minuter till Vaxholm beroende på tur. Den stannar på vägen vid bland annat Nacka strand, Hasseludden och Gåshaga brygga, och SL-biljetten gäller hela sträckan. Från Vaxholm går linje 11 vidare mot Grinda, Boda och Sollenkroka.',",
+  "rader": [
+   "vaxholm-0102",
+   "vaxholm-0103",
+   "vaxholm-0104",
+   "vaxholm-0105"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v670_670x.pdf — \"670 Stockholm–Vaxholm\", \"Giltig 14 december 2025–18 juni 2026\", hållplatserna \"Tekniska högskolan\" och \"Västerhamnsplan\" (läst 2026-09-27). Restid 45–58 min (räknat tur för tur); på vardagar dagtid går bussen ungefär var 15:e minut, lördag–söndag var 20:e–30:e minut. Någon utgåva för hösten 2026 finns inte på SL:s tryckeri-URL; tabellen ovan är den senaste som gick att öppna.\n      'Buss 670 går från Tekniska högskolan till Västerhamnsplan i Vaxholm på 45–58 minuter, på vardagar ungefär var femtonde minut dagtid. Med buss åt ena hållet och båt åt det andra fungerar Vaxholm som halvdags- eller heldagsutflykt även på kort varsel.',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — \"Giltig 17 augusti–12 december 2026\", \"Stockholm–Vaxholm\", \"Tekniska högskolan\", \"Västerhamnsplan\" (läst 2026-10-31) Tekniska högskolan → Västerhamnsplan uppmätt tur för tur: 45–58 min måndag–fredag, 45–53 min lördag–söndag; måndag–fredag dagtid avgång ungefär var 15:e minut.\n      'Buss 670 går från Tekniska högskolan till Västerhamnsplan i Vaxholm på 45–58 minuter, på vardagar ungefär var femtonde minut dagtid. Med buss åt ena hållet och båt åt det andra fungerar Vaxholm som halvdags- eller heldagsutflykt även på kort varsel.',",
+  "rader": [
+   "vaxholm-0106",
+   "vaxholm-0107",
+   "vaxholm-0108",
+   "vaxholm-0109",
+   "vaxholm-0110"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.destinationvaxholm.se/events/vaxholms-julmarknad-2025 — \"Den andra helgen i advent, 6 – 7 december, är det åter dags för Vaxholms traditionsenliga julmarknad. Med brända mandlar, hantverk, glögg och granar\", plats \"Rådhustorget\" (läst 2026-09-27)\n      'Andra helgen i advent hålls Vaxholms julmarknad på Rådhustorget, med brända mandlar, hantverk, glögg och granar – 2025 var det 6–7 december. Julmarknaden är ett av de tydligaste skälen att komma hit utanför sommarhalvåret.',",
+  "ny": "      // KÄLLA: https://www.destinationvaxholm.se/events/vaxholms-julmarknad-2025 — \"Den andra helgen i advent, 6 – 7 december, är det åter dags för Vaxholms traditionsenliga julmarknad. Med brända mandlar, hantverk, glögg och granar\", \"Rådhustorget\" (läst 2026-10-31)\n      'Andra helgen i advent hålls Vaxholms julmarknad på Rådhustorget, med brända mandlar, hantverk, glögg och granar – 2025 var det 6–7 december. Destination Vaxholm kallar den traditionsenlig.',",
+  "rader": [
+   "vaxholm-0123",
+   "vaxholm-0124",
+   "vaxholm-0125",
+   "vaxholm-0126",
+   "vaxholm-0127"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/vaxholm/ — \"Kastellet är byggt i granit med mer än två meter tjocka murar och kaserner för över tusen man. Beväpningen utgjordes av 156 kanoner.\", \"kastellet genom artilleriets utveckling blivit omodernt redan när det stod klart\", \"man tar sig dit med en linfärja\" (läst 2026-09-27)\n      'Till kastellet tar man sig med linfärja. Det är byggt i granit med mer än två meter tjocka murar och kaserner för över tusen man, och beväpningen bestod av 156 kanoner. Ändå var det omodernt redan när det stod klart – artilleriet hade hunnit utvecklas under byggtiden.',",
+  "ny": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/vaxholm/ — \"Kastellet är byggt i granit med mer än två meter tjocka murar och kaserner för över tusen man. Beväpningen utgjordes av 156 kanoner.\", \"Olyckligtvis visade det sig att kastellet, genom artilleriets utveckling, hade blivit omodernt redan när det stod klart.\" (läst 2026-10-31)\n      // KÄLLA: https://vaxholmsfastning.se/besoksinfo/index.php — \"med Waxholmsbolaget når du Kastellet året runt.\", \"Kastelletbåten – M/S Djurgården 4\", \"Trafikperioder 2026\" (läst 2026-10-31)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/vaxholm — \"bryggan Kastellet trafikeras även den av Waxholmsbolaget\" (läst 2026-10-31)\n      'Till kastellet tar man sig med båt: Waxholmsbolagets båtar angör bryggan Kastellet året runt, och sommartid går också Kastelletbåten M/S Djurgården 4. Kastellet är byggt i granit med mer än två meter tjocka murar och kaserner för över tusen man, och beväpningen bestod av 156 kanoner. Ändå var det omodernt redan när det stod klart – artilleriet hade hunnit utvecklas under byggtiden.',",
+  "rader": [
+   "vaxholm-0133",
+   "vaxholm-0134",
+   "vaxholm-0135",
+   "vaxholm-0136",
+   "vaxholm-0137",
+   "vaxholm-0138",
+   "vaxholm-0139"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm/historia — \"Vaxholm fick sina första stadsprivilegier år 1647, av drottning Kristina\"; \"Viss bebyggelse har funnits på Vaxön sedan 1200-talets slut\"; omkring 1770 ca 800 invånare; början av 1900-talet ca 2 000 invånare; \"Vaxholm fick sina första reguljära ångbåtsförbindelser c:a 1850\"\n      'Vaxholm fick sina första stadsprivilegier 1647 av drottning Kristina, men bebyggelse har funnits på Vaxön sedan 1200-talets slut. Omkring 1770 bodde här ungefär 800 personer, vid 1900-talets början cirka 2 000. De första reguljära ångbåtsförbindelserna kom omkring 1850 — det var de som gjorde staden till ett utflyktsmål.',",
+  "ny": "      // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm/historia — \"Vaxholm fick sina första stadsprivilegier år 1647, av drottning Kristina.\", \"Viss bebyggelse har funnits på Vaxön sedan 1200-talets slut.\", \"Stadens innevånare, som runt 1770 var c:a 800 personer\", \"Vid början av 1900-talet uppgick folkmängden till c:a 2 000\" (läst 2026-10-31)\n      // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm/historia — \"Vaxholm fick sina första reguljära ångbåtsförbindelser c:a 1850.\", \"Oskar-Fredriksborg - försvarsanläggningen invid Oxdjupet - anlagts på 1870-talet\", \"Det är också vid den tiden som sommargästerna börjar hitta ut till staden\" (läst 2026-10-31)\n      'Vaxholm fick sina första stadsprivilegier 1647 av drottning Kristina, men bebyggelse har funnits på Vaxön sedan 1200-talets slut. Omkring 1770 bodde här ungefär 800 personer, vid 1900-talets början cirka 2 000. De första reguljära ångbåtsförbindelserna kom omkring 1850, och sedan Oskar-Fredriksborg anlagts på 1870-talet började sommargästerna hitta ut till staden.',",
+  "rader": [
+   "vaxholm-0140",
+   "vaxholm-0141",
+   "vaxholm-0142",
+   "vaxholm-0143",
+   "vaxholm-0144",
+   "vaxholm-0145",
+   "vaxholm-0146"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm/historia — landförbindelse via Pålsundsbron 1926; 1974 sammanslagning med Österåker; 1983 blir Vaxholm åter egen kommun och Bogesundslandet och Resarö tillkommer\n      // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm — cirka 12 000 fastboende (2024); \"Kommunen omfattar cirka 70 öar, varav 57 bebodda samt den stora gröna halvön Bogesundslandet\" (läst 2026-10-01)\n      'Att Vaxholm går att nå med buss beror på Pålsundsbron, som gav landförbindelse 1926. Kommunen slogs ihop med Österåker 1974 och blev åter egen 1983, då Bogesundslandet och Resarö tillkom. I dag har kommunen ungefär 12 000 fastboende och omfattar cirka 70 öar, varav 57 bebodda, plus halvön Bogesundslandet.',",
+  "ny": "      // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm/historia — \"Vaxholm fick fast landsförbindelse 1926 via Pålsundsbron.\", \"I och med den stora kommunreformen slogs Vaxholm och Österåker samman 1974.\", \"1983 blev Vaxholm åter en egen kommun som även tillfördes kommundelarna Bogesundslandet och Resarö\" (läst 2026-10-31)\n      // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm — \"Fastboende i kommunen är ca 12 000 personer (2024)\", \"Kommunen omfattar cirka 70 öar, varav 57 bebodda samt den stora gröna halvön Bogesundslandet.\" (läst 2026-10-31)\n      'Att Vaxholm går att nå med buss beror på Pålsundsbron, som gav landförbindelse 1926. Kommunen slogs ihop med Österåker 1974 och blev åter egen 1983, då Bogesundslandet och Resarö tillkom. År 2024 hade kommunen ungefär 12 000 fastboende, och den omfattar cirka 70 öar, varav 57 bebodda, plus halvön Bogesundslandet.',",
+  "rader": [
+   "vaxholm-0147",
+   "vaxholm-0148",
+   "vaxholm-0149",
+   "vaxholm-0150",
+   "vaxholm-0151",
+   "vaxholm-0152",
+   "vaxholm-0153",
+   "vaxholm-0154",
+   "vaxholm-0155"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.svenskakyrkan.se/vaxholm/vaxholms-kyrka — \"År 1760 lades grunden till den nuvarande kyrkan\", färdig 1803 och kallad Gustav Adolfkyrkan efter Gustav III och Gustav IV Adolf; ritad av C F Adelcrantz och Olof Tempelman; det planerade tornet byggdes aldrig utan ersattes av en klockstapel i trä med tre klockor; dopfunt i gotländsk sandsten från slutet av 1300-talet, ursprungligen i Riddarholmskyrkan, överförd omkring 1677; modeller av roslagsbåtar i sidokapellen (läst 2026-09-30)\n      'Vaxholms kyrka tog fyrtiotre år att bygga: grunden lades 1760 och kyrkan stod färdig 1803, med namnet Gustav Adolfkyrkan efter de två kungar som regerade under byggtiden. C F Adelcrantz och Olof Tempelman ritade den, men det planerade tornet blev aldrig byggt — i stället restes en klockstapel av trä med tre klockor. Inne i kyrkan står en dopfunt av gotländsk sandsten från slutet av 1300-talet, ursprungligen i Riddarholmskyrkan och överförd hit omkring 1677, och i sidoskeppen står modeller av roslagsbåtar i glasmontrar.',",
+  "ny": "      // KÄLLA: https://www.svenskakyrkan.se/vaxholm/vaxholms-kyrka — \"År 1760 lades grunden till den nuvarande kyrkan.\", \"Först 1803 var kyrkan färdig och fick namnet Gustav Adolfkyrkan efter de kungar  som regerade under byggtiden, nämligen Gustav III och Gustav IV.\", \"det ståtliga torn som arkitekterna C F Adelcrantz och Olof Tempelman tänkt sig\", \"Istället för torn finns en klockstapel i trä med kyrktupp och tre klockor.\" (läst 2026-10-31)\n      // KÄLLA: https://www.svenskakyrkan.se/vaxholm/vaxholms-kyrka — \"Från sent 1300-tal och gjord i gotländsk sandsten, skänktes till Vaxholm från Riddarholmskyrkan troligtvis runt 1677.\", \"I glasmontrar i sidoskeppen finns modeller av två roslagsbåtar, en skötbåt och en storöka.\" (läst 2026-10-31)\n      'Vaxholms kyrka tog fyrtiotre år att bygga: grunden lades 1760 och kyrkan stod färdig 1803, med namnet Gustav Adolfkyrkan efter de två kungar som regerade under byggtiden. C F Adelcrantz och Olof Tempelman ritade den, men det planerade tornet blev aldrig byggt — i stället finns en klockstapel av trä med tre klockor. Kyrkans dopfunt av gotländsk sandsten är från slutet av 1300-talet och skänktes hit från Riddarholmskyrkan, troligen omkring 1677, och i sidoskeppen står modeller av roslagsbåtar i glasmontrar.',",
+  "rader": [
+   "vaxholm-0156",
+   "vaxholm-0157",
+   "vaxholm-0158",
+   "vaxholm-0159",
+   "vaxholm-0160",
+   "vaxholm-0161",
+   "vaxholm-0162",
+   "vaxholm-0163",
+   "vaxholm-0164",
+   "vaxholm-0165",
+   "vaxholm-0166",
+   "vaxholm-0167",
+   "vaxholm-0168",
+   "vaxholm-0169",
+   "vaxholm-0170"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/rindo-redutt — byggd \"1859–1864\" för att komplettera Vaxholms kastell i försvaret av Stockholms inlopp; domineras av en donjon omgiven av vallar, djup grav och fältvall; innehöll två kaponjärer, \"de första som byggdes i landet\"; sten och tegel; statligt byggnadsminne; \"går att besöka på egen hand\"\n      'På Rindö, granne med Vaxön, ligger Rindö redutt, byggd 1859–1864 för att komplettera kastellet i försvaret av Stockholms inlopp. Anläggningen domineras av en donjon i sten och tegel, omgiven av vallar och en djup grav, och innehöll två kaponjärer — de första som byggdes i landet. Redutten är statligt byggnadsminne och går att besöka på egen hand.',",
+  "ny": "      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/rindo-redutt — \"Rindö redutt, belägen på Rindös norra udde, byggdes 1859–1864 för att komplettera Vaxholms kastell i försvaret av Stockholms inlopp. Anläggningen domineras av en donjon och omges av vallar och en djup grav.\", \"Den domineras av donjonen, dvs ett logement som också är inrättat för strid.\" (läst 2026-10-31)\n      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/rindo-redutt — \"Typiskt för tiden är att redutten har två kaponjärer\", \"Dessa kaponjärer är de första som byggdes i landet.\", \"Statligt byggnadsminne (SBM)\", \"Platsen går att besöka på egen hand.\" (läst 2026-10-31)\n      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/vaxholmsleden/ — \"Vaxholmsleden går mellan Vaxholm och Rindö i Stockholms skärgård.\" (läst 2026-10-31)\n      'På Rindö, granne med Vaxön, ligger Rindö redutt, byggd 1859–1864 för att komplettera kastellet i försvaret av Stockholms inlopp. Anläggningen domineras av en donjon, ett logement som också är inrättat för strid, omgiven av vallar och en djup grav, och den innehöll två kaponjärer — de första som byggdes i landet. Redutten är statligt byggnadsminne och går att besöka på egen hand.',",
+  "rader": [
+   "vaxholm-0177",
+   "vaxholm-0178",
+   "vaxholm-0179",
+   "vaxholm-0180",
+   "vaxholm-0181",
+   "vaxholm-0182",
+   "vaxholm-0183",
+   "vaxholm-0184",
+   "vaxholm-0185"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/oscar-fredriksborg — \"Byggår: 1867-1877\"; anlagt vid Oxdjupet sedan en farled öppnats där efter århundraden av stenblockering; modernt bergfort med tunnelsprängning med nitroglycerin, \"betongen som byggmaterial och pansar som fasadskydd\"; byggnadsminne 2002 (sidan stavar namnet \"Oscar Fredriksborg\" i rubrik och löptext men \"Oskar-Fredriksborg\" i just den meningen); \"Området vid Oscar Fredriksborg är öppet för besök.\" (läst 2026-09-19)\n      'Oscar-Fredriksborg vid Oxdjupet byggdes 1867–1877, sedan en farled öppnats genom sundet efter århundraden av stenblockering. Det var ett modernt bergfort för sin tid, med tunnlar sprängda med nitroglycerin, betong och pansar, och med en låg profil i stället för kastellets höga murar. Anläggningen blev byggnadsminne 2002 och området är öppet för besök.',",
+  "ny": "      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/oscar-fredriksborg — \"Byggår: 1867-1877\", \"Oskar-Fredriksborg byggdes 1867-77 för att stärka det fasta försvaret vid Oxdjupet utanför Vaxholm sedan en segelled öppnats genom försänkningen.\", \"Genom att på 1500-talet börja spärra det djupare Oxdjupet med sten\", \"Man blev därför tvungen att börja plocka upp all sten ur Oxdjupet igen så att sjötrafiken kunde komma fram.\" (läst 2026-10-31)\n      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/oscar-fredriksborg — \"det då toppmoderna bergfortet Oskar-Fredriksborg\", \"en av de första tunnelsprängningarna i riket och den första sprängningen i Sverige där nitroglycerin användes\", \"betongen som byggmaterial och pansar som fasadskydd nyheter inom fortifikationen\", \"Fästningens låga profil, där endast det allra nödvändigaste är exponerat utåt\" (läst 2026-10-31)\n      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/oscar-fredriksborg — \"2002 blev Oskar-Fredriksborg byggnadsminne.\", \"Området vid Oscar Fredriksborg är öppet för besök.\" (läst 2026-10-31)\n      'Oscar-Fredriksborg vid Oxdjupet byggdes 1867–1877, sedan en farled öppnats genom sundet efter århundraden av stenblockering. Det var ett modernt bergfort för sin tid: förbindelsetunneln i berget, Täckta gången, var den första sprängningen i Sverige där nitroglycerin användes, och betong och pansar var nyheter som byggmaterial. Fästningen har en låg profil där bara det allra nödvändigaste är exponerat utåt. Anläggningen blev byggnadsminne 2002 och området är öppet för besök.',",
+  "rader": [
+   "vaxholm-0186",
+   "vaxholm-0187",
+   "vaxholm-0188",
+   "vaxholm-0189",
+   "vaxholm-0190",
+   "vaxholm-0191",
+   "vaxholm-0192",
+   "vaxholm-0193",
+   "vaxholm-0194"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — bildat 2015; \"4341 hektar varav 2 891 hektar land\"; Vaxholms kommun; förvaltare Statens fastighetsverk; naturtyper \"barrskog, ädellövskog, odlingslandskap\"; \"många gamla grova ekar som växer i området, såväl i betesmark som i skogsmiljö\"; Natura 2000-området \"Damstakärret SE0110132 ligger inom området\" (läst 2026-09-30)\n      'Bogesundslandets naturreservat bildades 2015 och är 4 341 hektar, varav 2 891 hektar land — en av de största skyddade ytorna så nära Stockholm. Statens fastighetsverk förvaltar det, och naturtyperna är barrskog, ädellövskog och odlingslandskap. Det som gör området särskilt är mängden gamla grova ekar, både i betesmark och i skogsmiljö. Natura 2000-området Damstakärret ligger inom reservatet.',",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — \"Skyddat sedan: 2015\", \"Skyddsform: naturreservat\", \"Storlek: 4341 hektar varav 2 891 hektar land\", \"Kommun: Vaxholm\", \"Förvaltare: Statens fastighetsverk\", \"Karaktär: barrskog, ädellövskog, odlingslandskap\" (läst 2026-10-31)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — \"Bogesundslandets naturreservat är en halvö i Vaxholms kommun som omges av Stora Värtan i väster, Askrikefjärden i söder och Vaxholmsfjärden i öster.\", \"många gamla grova ekar som växer i området, såväl i betesmark som i skogsmiljö\", \"Övrigt: Natura 2000-område Damstakärret SE0110132 ligger inom området\" (läst 2026-10-31)\n      'Bogesundslandet har varit naturreservat sedan 2015 och är 4 341 hektar, varav 2 891 hektar land – en halvö i Vaxholms kommun mellan Stora Värtan, Askrikefjärden och Vaxholmsfjärden. Statens fastighetsverk förvaltar det, och naturtyperna är barrskog, ädellövskog och odlingslandskap. Det som gör området särskilt är mängden gamla grova ekar, både i betesmark och i skogsmiljö. Natura 2000-området Damstakärret ligger inom reservatet.',",
+  "rader": [
+   "vaxholm-0195",
+   "vaxholm-0196",
+   "vaxholm-0197",
+   "vaxholm-0198",
+   "vaxholm-0199",
+   "vaxholm-0200",
+   "vaxholm-0201",
+   "vaxholm-0202",
+   "vaxholm-N001"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — \"Bogesunds slott, med anor från mitten av 1600-talet, ligger som ett slags centrum på Bogesundslandet. Själva slottet ingår inte i reservatet, men utgör istället ett statligt byggnadsminne. Vid slottsparken finns ett vandrarhem\"; markerade vandringsleder och ridstigar, badplatser, rastplatser med eldstäder och vindskydd; \"I anslutning till området finns två campingplatser och en golfbana\"; föreskrifterna förbjuder att medföra okopplad hund, att \"tälta mer än två dygn i följd annat än på anvisad plats\", att cykla utanför anvisade stigar och att \"rida annat än på vägar och på anvisade ridstigar\" (läst 2026-09-30)\n      'Mitt på Bogesundslandet ligger Bogesunds slott med anor från mitten av 1600-talet. Slottet ingår inte i reservatet utan är statligt byggnadsminne, och vid slottsparken finns ett vandrarhem. I reservatet finns markerade vandringsleder och ridstigar, badplatser och rastplatser med eldstäder och vindskydd, och i anslutning till området två campingplatser och en golfbana. Reglerna är värda att känna till: koppel på hunden, tältning högst två dygn i följd utanför anvisad plats, cykling bara på anvisade stigar och ridning bara på vägar och anvisade ridstigar.',",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — \"Bogesunds slott, med anor från mitten av 1600-talet, ligger som ett slags centrum på Bogesundslandet. Själva slottet ingår inte i reservatet, men utgör istället ett statligt byggnadsminne. Vid slottsparken finns ett vandrarhem\", \"det nät av vandringsleder och ridstigar som finns markerade\", \"Inom reservatet finns det också flera iordningställda badplatser och en rad rastplatser med eldstäder och vindskydd.\", \"I anslutning till området finns två campingplatser och en golfbana.\" (läst 2026-10-31)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — \"I reservatet är det förbjudet att\", \"medföra okopplad hund\", \"tälta mer än två dygn i följd annat än på anvisad plats\", \"elda annat än på anvisad plats\", \"cykla i terrängen annat än på anvisade cykelstigar\", \"rida annat än på vägar och på anvisade ridstigar.\" (läst 2026-10-31)\n      'Mitt på Bogesundslandet ligger Bogesunds slott med anor från mitten av 1600-talet. Slottet ingår inte i reservatet utan är statligt byggnadsminne, och vid slottsparken finns ett vandrarhem. I reservatet finns markerade vandringsleder och ridstigar, badplatser och rastplatser med eldstäder och vindskydd, och i anslutning till området två campingplatser och en golfbana. Reglerna är värda att känna till: koppel på hunden, tältning högst två dygn i följd utanför anvisad plats, eldning bara på anvisad plats, cykling i terrängen bara på anvisade cykelstigar och ridning bara på vägar och anvisade ridstigar.',",
+  "rader": [
+   "vaxholm-0203",
+   "vaxholm-0204",
+   "vaxholm-0205",
+   "vaxholm-0206",
+   "vaxholm-0207",
+   "vaxholm-0208",
+   "vaxholm-0209",
+   "vaxholm-0210",
+   "vaxholm-0211",
+   "vaxholm-0212",
+   "vaxholm-0213",
+   "vaxholm-0214",
+   "vaxholm-0215",
+   "vaxholm-0216",
+   "vaxholm-N002"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — linje 11, \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", Strömkajen → Vaxholm 55–82 min; https://kund.printhuset-sthlm.se/sl/v670_670x.pdf — \"Giltig 14 december 2025–18 juni 2026\", Tekniska högskolan → Västerhamnsplan 45–58 min (läst 2026-09-27)\n      travel_time: 'Båt från Strömkajen 55–82 min (linje 11) eller buss 670 från Tekniska högskolan 45–58 min',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\" (läst 2026-10-31) Strömkajen → Vaxholm ank. uppmätt tur för tur i tabell 11A: 55–82 min (siffrorna ligger i ett kodat typsnitt i PDF:en och är avkodade).\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — \"Giltig 17 augusti–12 december 2026\", \"Tekniska högskolan\", \"Västerhamnsplan\" (läst 2026-10-31) Tekniska högskolan → Västerhamnsplan uppmätt tur för tur: 45–58 min måndag–fredag, 45–53 min lördag–söndag; måndag–fredag dagtid avgång ungefär var 15:e minut.\n      travel_time: 'Båt från Strömkajen 55–82 min (linje 11) eller buss 670 från Tekniska högskolan 45–58 min',",
+  "rader": [
+   "vaxholm-0022",
+   "vaxholm-0023",
+   "vaxholm-0024",
+   "vaxholm-0025",
+   "vaxholm-0026",
+   "vaxholm-0027",
+   "vaxholm-0028"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm/historia — \"Vaxholm fick sina första stadsprivilegier år 1647\", \"Stadskärnans bebyggelse består till övervägande del av trähus\" (läst 2026-09-27)\n      character: 'Stad med stadsprivilegier från 1647, trähuskärna och kastell på egen ö',",
+  "ny": "      // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm/historia — \"Vaxholm fick sina första stadsprivilegier år 1647\", \"Stadskärnans bebyggelse består till övervägande del av trähus\" (läst 2026-10-31)\n      // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell — \"På ön Vaxholmen ett stenkast från skärgårdens huvudstad Vaxholm ligger Vaxholms kastell.\" (läst 2026-10-31)\n      character: 'Stad med stadsprivilegier från 1647, trähuskärna och kastell på egen ö',",
+  "rader": [
+   "vaxholm-0029",
+   "vaxholm-0030",
+   "vaxholm-0031",
+   "vaxholm-0032"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://assets.ctfassets.net/4l7cjdaypzcu/1WCfe56Z2KZwgDq26t7IO3/9320e22bd9562098960f572bc7b3615f/SLomradet-2026-04-02.pdf — \"SL-biljett gäller alltid för resor med Waxholmsbolaget mellan dessa bryggor\" (läst 2026-09-27); https://sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar (renderad med webbläsare, laddar inte med curl) — \"Inom Waxholmsbolagets \"SL-område\" kan du året runt resa på alla SL-biljetter\"\n      season: 'Helår – buss och båt med SL-biljett året runt',",
+  "ny": "      // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt\" (läst 2026-10-31)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/vaxholm — \"under sommaren går det turer många gånger om dagen, och övrig tid på året går det flera per dag\" (läst 2026-10-31)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — \"Giltig 17 augusti–12 december 2026\", \"Lördag, söndag och helgdag\" (läst 2026-10-31)\n      season: 'Helår – buss och båt med SL-biljett året runt',",
+  "rader": [
+   "vaxholm-0034",
+   "vaxholm-0035",
+   "vaxholm-0036",
+   "vaxholm-0037"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://catchrelax.se/ — \"Guidade fisketurer och aktiviteter i Stockholms skärgård & Mälaren sedan 2005\", Villa HelleBo \"5 minuter från Vaxholm\" (läst 2026-09-27)\n      { icon: '🎣', name: 'Fiskeguider', desc: 'catch&relax har ordnat guidade fisketurer i Stockholms skärgård och Mälaren sedan 2005, med bas några minuter från Vaxholm.' },",
+  "ny": "      // KÄLLA: https://catchrelax.se/ — \"Guidade fisketurer och aktiviteter i Stockholms skärgård & Mälaren sedan 2005\", \"Privata möten, luncher och middagar i skärgårdsmiljö i unik villa vid vattnet i underbart västerläge, 5 minuter från Vaxholm.\" (läst 2026-10-31)\n      { icon: '🎣', name: 'Fiskeguider', desc: 'catch&relax har ordnat guidade fisketurer i Stockholms skärgård och Mälaren sedan 2005 och har villan HelleBo vid vattnet fem minuter från Vaxholm.' },",
+  "rader": [
+   "vaxholm-0228",
+   "vaxholm-0229",
+   "vaxholm-0230",
+   "vaxholm-0231"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.destinationvaxholm.se/skargardens-kanotcenter — \"Skärgårdens Kanotcenter och Adventure Hub erbjuder guidade turer, kajak-och cykeluthyrning, gruppaktiviteter och friluftsäventyr året runt\", \"Ingen tidigare paddlingserfarenhet behövs när du paddlar med guide\", \"Resarövägen 10\" (läst 2026-09-27); verksamheten aktiv hösten 2026 enligt https://kanotcenter.com/\n      { icon: '🛶', name: 'Kajakpaddling', desc: 'Skärgårdens Kanotcenter på Resarövägen hyr ut kajaker och har guidade turer året runt – med guide behövs ingen tidigare paddlingserfarenhet.' },",
+  "ny": "      // KÄLLA: https://kanotcenter.com/ — \"Resarövägen 10, Resarö, Stockholm Region\", \"Join our guided kayaking tours throughout the year, or visit during summer for kayak, canoe and SUP rentals.\" (läst 2026-10-31)\n      // KÄLLA: https://www.destinationvaxholm.se/skargardens-kanotcenter — \"Ingen tidigare paddlingserfarenhet behövs när du paddlar med guide\" (läst 2026-10-31)\n      { icon: '🛶', name: 'Kajakpaddling', desc: 'Skärgårdens Kanotcenter har sin kajakbas på Resarövägen på Resarö, med guidade kajakturer året runt och uthyrning av kajak, kanot och SUP sommartid. Med guide behövs ingen tidigare paddlingserfarenhet.' },",
+  "rader": [
+   "vaxholm-0232",
+   "vaxholm-0233",
+   "vaxholm-0234",
+   "vaxholm-0235",
+   "vaxholm-0236"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // \"Skärgårdens mest tillgängliga\" var ett obelagt superlativ och togs bort 2026-09-14.\n    accommodationIntro: 'Vaxholm nås med bil, buss och båt, och boendet finns i staden snarare än utspritt på en ö: hotell, bed & breakfast, vandrarhem och camping.',\n    // KÄLLA: https://www.waxholmshotell.se/; https://kastelletvaxholm.se/ + STF (STF Kastellet Bed & Breakfast, 27 rum, 81 bäddplatser); https://www.vaxholmsbedandbreakfast.se/; svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem; https://waxholmscamping.com/ (läst 2026-09-14). \"Året runt\" på källsidorna gäller båttrafiken respektive Sjövillan, inte B&B:et, och är struket.\n    accommodation: [\n      { name: 'Waxholms Hotell', type: 'Hotell', desc: 'Historiskt hotell vid hamnen med matsal och havsutsikt. Öppet hela året.', websiteUrl: 'https://www.waxholmshotell.se' },\n      { name: 'Kastellet Bed & Breakfast', type: 'B&B', desc: 'STF-anslutet B&B i Vaxholms kastell, 27 rum och totalt 81 bäddplatser; bistro och café sommartid.', websiteUrl: 'https://kastelletvaxholm.se' },\n      { name: 'Vaxholms Bed & Breakfast', type: 'B&B', desc: 'Litet B&B i privat hem i Vaxholm.', websiteUrl: 'https://vaxholmsbedandbreakfast.se' },\n      { name: 'STF Bogesunds Vandrarhem', type: 'Vandrarhem', desc: 'Vandrarhem vid Bogesunds slott utanför Vaxholm.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem/' },\n      { name: 'Waxholms Camping', type: 'Camping', desc: 'Campingplats med stugor på Eriksö — nås med bil.', websiteUrl: 'https://waxholmscamping.com' },\n    ],",
+  "ny": "    // \"Skärgårdens mest tillgängliga\" var ett obelagt superlativ och togs bort 2026-09-14.\n    // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem/ — \"Bogesunds slottsvandrarhem ligger i en härlig slottsmiljö i ett naturreservat, 4 km utanför Vaxholm.\" (läst 2026-10-31)\n    // KÄLLA: https://waxholmscamping.com/ — \"Mitt i naturen, på Eriksö i Vaxholm, hittar du oss\" (läst 2026-10-31)\n    accommodationIntro: 'Vaxholm nås med bil, buss och båt. Hotellet och B&B:t ligger i staden, campingen på Eriksö och vandrarhemmet vid Bogesunds slott fyra kilometer utanför: hotell, bed & breakfast, vandrarhem och camping.',\n    accommodation: [\n      // KÄLLA: https://www.waxholmshotell.se/ — \"Waxholms Hotell har varit hjärtat i skärgårdens huvudstad sedan 1902\", \"Hamngatan 2, 185 32 Vaxholm\", \"Upplev vårt fantastiska skärgårdsbrasseri, Verandan och ta en drink eller två i Nyckelbaren.\", \"Konferensvåningen med inspirande utsikt över havet\" (läst 2026-10-31)\n      { name: 'Waxholms Hotell', type: 'Hotell', desc: 'Hotell på Hamngatan 2 sedan 1902, med skärgårdsbrasseriet Verandan, Nyckelbaren och en konferensvåning med utsikt över havet.', websiteUrl: 'https://www.waxholmshotell.se' },\n      // KÄLLA: https://kastelletvaxholm.se/ — \"I stolt samarbete med STF\", \"Med 27 rum och 81 bäddplatser finns plats för både mindre grupper och större sällskap året runt.\", \"På Vaxholms Kastell bor ni tillsammans i en unik historisk miljö\" (läst 2026-10-31)\n      { name: 'Kastellet Bed & Breakfast', type: 'B&B', desc: 'STF-anslutet B&B i Vaxholms kastell med 27 rum och 81 bäddplatser, för både mindre grupper och större sällskap året runt.', websiteUrl: 'https://kastelletvaxholm.se' },\n      // KÄLLA: https://www.vaxholmsbedandbreakfast.se/ — \"Vaxholms Bed & Breakfast – a small hotel in our home\", \"Välkommen hem till oss\" (läst 2026-10-31)\n      { name: 'Vaxholms Bed & Breakfast', type: 'B&B', desc: 'Litet B&B i privat hem i Vaxholm.', websiteUrl: 'https://vaxholmsbedandbreakfast.se' },\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem/ — \"STF Bogesund Vandrarhem Vaxholm\", \"Omgiven av hästhagar bor du i dubbel- eller flerbäddsrum i de gedigna husen runt Bogesunds Slott.\", \"Bogesunds slottsvandrarhem ligger i en härlig slottsmiljö i ett naturreservat, 4 km utanför Vaxholm.\" (läst 2026-10-31)\n      { name: 'STF Bogesund Vandrarhem Vaxholm', type: 'Vandrarhem', desc: 'Vandrarhem vid Bogesunds slott utanför Vaxholm.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-vaxholm-bogesund-vandrarhem/' },\n      // KÄLLA: https://waxholmscamping.com/ — \"Mitt i naturen, på Eriksö i Vaxholm, hittar du oss\", \"Stugor, camping, tält & glamping 1 maj–30 september.\", \"Hos oss kan du parkera din husbil året runt på våra ställplatser\" (läst 2026-10-31)\n      { name: 'Waxholms Camping', type: 'Camping', desc: 'Campingplats med stugor på Eriksö — nås med bil.', websiteUrl: 'https://waxholmscamping.com' },\n    ],",
+  "rader": [
+   "vaxholm-0268",
+   "vaxholm-0269",
+   "vaxholm-0270",
+   "vaxholm-0271",
+   "vaxholm-0272",
+   "vaxholm-0273",
+   "vaxholm-0274",
+   "vaxholm-0275",
+   "vaxholm-0276",
+   "vaxholm-0277",
+   "vaxholm-0278",
+   "vaxholm-0279",
+   "vaxholm-0280",
+   "vaxholm-0281",
+   "vaxholm-0282",
+   "vaxholm-0283",
+   "vaxholm-0284",
+   "vaxholm-0285",
+   "vaxholm-0286",
+   "vaxholm-0287",
+   "vaxholm-0288",
+   "vaxholm-0289",
+   "vaxholm-0290",
+   "vaxholm-0291",
+   "vaxholm-0292",
+   "vaxholm-0293",
+   "vaxholm-0294",
+   "vaxholm-0295",
+   "vaxholm-0296",
+   "vaxholm-0297",
+   "vaxholm-0298",
+   "vaxholm-0299",
+   "vaxholm-0300",
+   "vaxholm-0444",
+   "vaxholm-0445",
+   "vaxholm-0446"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", Strömkajen → Vaxholm 55–82 min (läst 2026-09-27); https://assets.ctfassets.net/4l7cjdaypzcu/1WCfe56Z2KZwgDq26t7IO3/9320e22bd9562098960f572bc7b3615f/SLomradet-2026-04-02.pdf — \"SL-biljett gäller alltid för resor med Waxholmsbolaget mellan dessa bryggor\" (läst 2026-09-27)\n      { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', time: '55–82 min', desc: 'Waxholmsbolagets linje 11 och flera andra linjer, med stopp på vägen. SL-biljetten gäller mellan Strömkajen och Vaxholm året runt.', icon: '⛴' },\n      { method: 'Bil', from: 'Stockholm', time: '', desc: 'Vaxholm har fast landsförbindelse och nås med bil. Det finns parkeringar i staden.', icon: '🚗' },\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v670_670x.pdf — \"670 Stockholm–Vaxholm\", \"Giltig 14 december 2025–18 juni 2026\", \"Tekniska högskolan\", \"Västerhamnsplan\" (läst 2026-09-27); restid 45–58 min räknad tur för tur\n      { method: 'Buss', from: 'Tekniska högskolan', time: '45–58 min', desc: 'SL-buss 670 från Tekniska högskolan (tunnelbana) till Västerhamnsplan i Vaxholm, vardagar ungefär var 15:e minut dagtid.', icon: '🚌' },",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\", \"Gåshaga brygga\" (läst 2026-10-31) Restid Strömkajen → Vaxholm uppmätt tur för tur i tabell 2A: 50–90 min (tur 0389 som angör Vaxholm i omvänd ordning ej räknad), median 70 min.\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\" (läst 2026-10-31)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/vaxholm — \"De flesta av Waxholmsbolagets båtar med destinationer i mellersta och norra skärgården passerar Vaxholm\" (läst 2026-10-31)\n      // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt\" (läst 2026-10-31)\n      { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', time: '50–90 min', desc: 'Waxholmsbolagets linje 11 och flera andra linjer, med stopp på vägen. SL-biljetten gäller mellan Strömkajen och Vaxholm året runt.', icon: '⛴' },\n      // KÄLLA: https://www.vaxholm.se/kommun--politik/fakta-om-vaxholm/historia — \"Vaxholm fick fast landsförbindelse 1926 via Pålsundsbron.\" (läst 2026-10-31)\n      // KÄLLA: https://www.vaxholm.se/trafik--infrastruktur/trafik-gator-och-parkering/parkering/taxor-och-avgifter — \"Taxa A\", \"Halva Kronängsskolans parkeringsområde\" (läst 2026-10-31)\n      { method: 'Bil', from: 'Stockholm', time: '', desc: 'Vaxholm har fast landsförbindelse och nås med bil. Det finns parkeringar i staden.', icon: '🚗' },\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — \"Giltig 17 augusti–12 december 2026\", \"Stockholm–Vaxholm\", \"Tekniska högskolan\", \"Västerhamnsplan\" (läst 2026-10-31) Tekniska högskolan → Västerhamnsplan uppmätt tur för tur: 45–58 min måndag–fredag, 45–53 min lördag–söndag; måndag–fredag dagtid avgång ungefär var 15:e minut.\n      { method: 'Buss', from: 'Tekniska högskolan', time: '45–58 min', desc: 'SL-buss 670 från Tekniska högskolan (tunnelbana) till Västerhamnsplan i Vaxholm, vardagar ungefär var 15:e minut dagtid.', icon: '🚌' },",
+  "rader": [
+   "vaxholm-0301",
+   "vaxholm-0302",
+   "vaxholm-0303",
+   "vaxholm-0304",
+   "vaxholm-0305",
+   "vaxholm-0306",
+   "vaxholm-0307",
+   "vaxholm-0308",
+   "vaxholm-0309",
+   "vaxholm-0310",
+   "vaxholm-0311",
+   "vaxholm-0312",
+   "vaxholm-0313",
+   "vaxholm-0314",
+   "vaxholm-0315",
+   "vaxholm-0316",
+   "vaxholm-0317",
+   "vaxholm-0318",
+   "vaxholm-0319",
+   "vaxholm-0320"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/waxholm-vaxholm/ — \"Gästhamnen är placerad mitt i centrum\", \"Sjömackarna/Gulf\" (diesel, bensin, gasol), 110 gästplatser; service: färskvatten, toalett, dusch, eluttag (läst 2026-09-27)\n      { name: 'Vaxholms Gästhamn', desc: 'Gästhamn mitt i centrum med 110 gästplatser, servicehus med dusch och toalett, septiktömning och båtbottentvätt. Drivmedel via Sjömackarna/Gulf.', fuel: true, service: ['el', 'vatten', 'dusch', 'toilet'] },",
+  "ny": "      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/waxholm-vaxholm/ — \"Gästhamnen är placerad mitt i centrum\", \"Gästplatser 110\", \"Sjömackarna/Gulf\", \"Färskvatten\" (läst 2026-10-31)\n      // KÄLLA: https://waxholmshamn.se/info-tips/ — \"Toilets and showers are situated in the big red building\", \"Use our grey/black water station to empty your tank.\" (läst 2026-10-31)\n      // KÄLLA: https://waxholmshamn.se/ — \"Book a bottom wash\" (läst 2026-10-31)\n      // KÄLLA: https://waxholmshamn.se/prices/ — \"Electricity\" (läst 2026-10-31)\n      { name: 'Vaxholms Gästhamn', desc: 'Gästhamn mitt i centrum med 110 gästplatser, servicehus med dusch och toalett, septiktömning och båtbottentvätt. Drivmedel via Sjömackarna/Gulf.', fuel: true, service: ['el', 'vatten', 'dusch', 'toilet'] },",
+  "rader": [
+   "vaxholm-0321",
+   "vaxholm-0322",
+   "vaxholm-0323",
+   "vaxholm-0324",
+   "vaxholm-0325",
+   "vaxholm-0326",
+   "vaxholm-0327",
+   "vaxholm-0328",
+   "vaxholm-0329",
+   "vaxholm-0330",
+   "vaxholm-0331",
+   "vaxholm-0332"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\", bryggorna \"Nacka strand\", \"Hasseludden\", \"Gåshaga brygga\"; Strömkajen → Vaxholm 55–82 min (läst 2026-09-27)\n      'Båten från Strömkajen tar 55–82 minuter och går förbi Nacka strand, Hasseludden och Gåshaga på vägen – räkna med en dryg timme.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — reservatet är 4 341 hektar varav 2 891 land; markerade vandringsleder, badplatser, vindskydd och eldstäder (läst 2026-09-30)\n      'Bogesundslandet på fastlandssidan av kommunen är ett stort vandringsområde med markerade leder, badplatser och vindskydd.',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\", \"Nacka strand\", \"Hasseludden\", \"Gåshaga brygga\" (läst 2026-10-31) Restid Strömkajen → Vaxholm uppmätt tur för tur i tabell 2A: 50–90 min (tur 0389 som angör Vaxholm i omvänd ordning ej räknad), median 70 min.\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/vaxholm — \"Båtresan från Strömkajen tar bara en timme\" (läst 2026-10-31)\n      'Båten från Strömkajen tar 50–90 minuter och går förbi Nacka strand, Hasseludden och Gåshaga på vägen – räkna med en dryg timme.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — \"Bogesundslandets naturreservat är en halvö i Vaxholms kommun\", \"Storlek: 4341 hektar varav 2 891 hektar land\", \"det nät av vandringsleder och ridstigar som finns markerade\", \"Inom reservatet finns det också flera iordningställda badplatser och en rad rastplatser med eldstäder och vindskydd.\" (läst 2026-10-31)\n      'Bogesundslandet på fastlandssidan av kommunen är ett stort vandringsområde med markerade leder, badplatser och vindskydd.',",
+  "rader": [
+   "vaxholm-0335",
+   "vaxholm-0336",
+   "vaxholm-0337",
+   "vaxholm-0338",
+   "vaxholm-0339",
+   "vaxholm-0340"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — förbjudet att cykla utanför anvisade stigar och att rida annat än på vägar; okopplad hund förbjuden (läst 2026-09-30)\n      'I Bogesundslandets naturreservat får du bara cykla på anvisade stigar och rida på vägarna, och hunden ska vara kopplad.',",
+  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html — \"I reservatet är det förbjudet att\", \"medföra okopplad hund\", \"elda annat än på anvisad plats\", \"cykla i terrängen annat än på anvisade cykelstigar\", \"rida annat än på vägar och på anvisade ridstigar.\" (läst 2026-10-31)\n      'I Bogesundslandets naturreservat ska hunden vara kopplad, och du får elda bara på anvisad plats, cykla i terrängen bara på anvisade cykelstigar och rida bara på vägar och anvisade ridstigar.',",
+  "rader": [
+   "vaxholm-0343",
+   "vaxholm-0344",
+   "vaxholm-0345",
+   "vaxholm-N003"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://vaxholmsfastning.se/historik/ — \"Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture.\"\n    // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell, Vaxholms kastell — \"Byggår: 1833-1863 på uppdrag av Karl XIV Johan\" (läst 2026-09-30)\n    // KÄLLA: https://vaxholmsfastning.se/historik/ — angreppen 1612 (danskarna) och 1719 (ryssarna) slogs tillbaka",
+  "ny": "    // KÄLLA: https://vaxholmsfastning.se/historik/ — \"Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture.\", \"Gustav Vasa 1548 åt ståthållaren på Stockholms slott att uppföra en ny och kraftigare fästning\", \"Den gamla fästningen revs och ersattes med det nuvarande Kastellet under åren 1833-1863.\" (läst 2026-10-31)\n    // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell — \"Byggår: 1833-1863 på uppdrag av Karl XIV Johan\" (läst 2026-10-31)\n    // KÄLLA: https://vaxholmsfastning.se/historik/ — \"Första gången var 1612 då danskarna anföll och andra gången 1719 då ryssarna härjade i Stockholms skärgård.\" (läst 2026-10-31)",
+  "rader": [
+   "vaxholm-0046",
+   "vaxholm-0047",
+   "vaxholm-0048",
+   "vaxholm-0049",
+   "vaxholm-0050",
+   "vaxholm-0051",
+   "vaxholm-0052",
+   "vaxholm-0053",
+   "vaxholm-0054",
+   "vaxholm-0055"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", Strömkajen → Vaxholm 55–82 min (typvärde ca 60–70) (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/v670_670x.pdf — \"Giltig 14 december 2025–18 juni 2026\", Tekniska högskolan → Västerhamnsplan 45–58 min, vardagar dagtid ungefär var 15:e minut, helger var 20:e–30:e minut (läst 2026-09-27)\n      from_city_min: 65,\n      from_nearest_hub_min: 0,\n      nearest_hub: 'Strömkajen (båt) / Tekniska högskolan (buss 670)',\n      operator: 'Waxholmsbolaget',\n      line: 'Båt linje 11 m.fl. från Strömkajen; buss 670 från Tekniska högskolan',\n      frequency: 'Buss 670 ungefär var 15:e minut vardagar dagtid. Båt flera gånger/dag.',\n      booking_url: 'https://sl.se',\n      // KÄLLA: Vaxholms stad, taxa antagen av kommunfullmäktige 2025 — https://www.vaxholm.se/trafik--infrastruktur/trafik-gator-och-parkering/parkering/taxor-och-avgifter (hämtad 2026-08-06)\n      car_parking: 'Parkering i centrala Vaxholm (zon 1595 och 1596): 40 kr/timme 1 maj–31 augusti, 8–18 vardagar och 8–15 helger. Avgiftsfritt 1 september–30 april gäller halva Kronängsskolans parkeringsområde (zon 1606), där det är parkeringsförbud tisdagar 00–08.',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\" (läst 2026-10-31) Restid Strömkajen → Vaxholm uppmätt tur för tur i tabell 2A: 50–90 min (tur 0389 som angör Vaxholm i omvänd ordning ej räknad), median 70 min.\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/vaxholm — \"Båtresan från Strömkajen tar bara en timme\", \"under sommaren går det turer många gånger om dagen, och övrig tid på året går det flera per dag\", \"De flesta av Waxholmsbolagets båtar med destinationer i mellersta och norra skärgården passerar Vaxholm\" (läst 2026-10-31)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — \"Giltig 17 augusti–12 december 2026\", \"Stockholm–Vaxholm\", \"Tekniska högskolan\", \"Västerhamnsplan\" (läst 2026-10-31) Tekniska högskolan → Västerhamnsplan uppmätt tur för tur: 45–58 min måndag–fredag, 45–53 min lördag–söndag; måndag–fredag dagtid avgång ungefär var 15:e minut.\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\" (läst 2026-10-31)\n      from_city_min: 60,\n      from_nearest_hub_min: 60,\n      nearest_hub: 'Strömkajen (båt) / Tekniska högskolan (buss 670)',\n      operator: 'Waxholmsbolaget',\n      line: 'Båt linje 11 m.fl. från Strömkajen; buss 670 från Tekniska högskolan',\n      frequency: 'Buss 670 ungefär var 15:e minut vardagar dagtid. Båt flera gånger/dag.',\n      booking_url: 'https://sl.se',\n      // KÄLLA: https://www.vaxholm.se/trafik--infrastruktur/trafik-gator-och-parkering/parkering/taxor-och-avgifter — \"fastställda av kommunfullmäktige för år 2025\", \"Taxa A\", \"40 kr/timme\", \"1 maj - 31 augusti\", \"Höst, vinter, vår (kväll och helg):\", \"Halva Kronängsskolans parkeringsområde\", \"1 september - 30 april\", \"Avgiftsfritt\", \"Parkeringsförbud tisdagar\" (läst 2026-10-31)\n      car_parking: 'Parkering i centrala Vaxholm (zon 1595 och 1596) kostar 40 kr/timme dagtid 1 maj–31 augusti enligt kommunens taxa. Halva Kronängsskolans parkeringsområde (zon 1606) är avgiftsfritt kvällar och helger 1 september–30 april; där är det parkeringsförbud tisdagar från midnatt till morgonen.',",
+  "rader": [
+   "vaxholm-0519",
+   "vaxholm-0520",
+   "vaxholm-0521",
+   "vaxholm-0522",
+   "vaxholm-0523",
+   "vaxholm-0525",
+   "vaxholm-0526",
+   "vaxholm-0527",
+   "vaxholm-0528",
+   "vaxholm-0529",
+   "vaxholm-0530",
+   "vaxholm-0531",
+   "vaxholm-0532",
+   "vaxholm-0533",
+   "vaxholm-0534",
+   "vaxholm-0535",
+   "vaxholm-0536",
+   "vaxholm-0537"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.destinationvaxholm.se/skargardens-kanotcenter — \"kajak-och cykeluthyrning\", \"Resarövägen 10\" (läst 2026-09-27)\n      kajak: { difficulty: 'lätt', rental: true, notes: 'Skärgårdens Kanotcenter på Resarövägen hyr ut kajaker och har guidade turer året runt.' },",
+  "ny": "      // KÄLLA: https://kanotcenter.com/ — \"Resarövägen 10, Resarö, Stockholm Region\", \"Join our guided kayaking tours throughout the year, or visit during summer for kayak, canoe and SUP rentals.\" (läst 2026-10-31)\n      kajak: { difficulty: 'lätt', rental: true, notes: 'Skärgårdens Kanotcenter på Resarö har guidade kajakturer året runt och hyr ut kajak, kanot och SUP sommartid.' },",
+  "rader": [
+   "vaxholm-0615",
+   "vaxholm-0616",
+   "vaxholm-0617",
+   "vaxholm-0618",
+   "vaxholm-0619"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "            // KÄLLA: Trafikverket, https://www.trafikverket.se/resa-och-trafik/farjetrafik/vaxholmsleden/ — gratis vägfärja, ca 6 min över 970 m (läst 2026-09-30)\n            directions: 'Rindö nås från Vaxholm med den gratis vägfärjan Vaxholmsleden (ca 6 min) eller egen båt.',",
+  "ny": "          // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/vaxholmsleden/ — \"Vaxholmsleden går mellan Vaxholm och Rindö i Stockholms skärgård.\", \"Färjeledens längd är 970 meter och överfartstiden är sex minuter.\", \"Resan med vägfärjan är avgiftsfri.\" (läst 2026-10-31)\n            directions: 'Rindö nås från Vaxholm med den gratis vägfärjan Vaxholmsleden (ca 6 min) eller egen båt.',",
+  "rader": [
+   "vaxholm-0551",
+   "vaxholm-0552",
+   "vaxholm-0553"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: true },",
+  "ny": "    amenities: { toilets: true, shower: true, cafe: true, grocery: true },",
+  "rader": [
+   "vaxholm-0604",
+   "vaxholm-0605",
+   "vaxholm-0606",
+   "vaxholm-0607",
+   "vaxholm-0608"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v670_670x.pdf — \"670 Stockholm–Vaxholm\", \"Giltig 14 december 2025–18 juni 2026\" (läst 2026-09-27); https://assets.ctfassets.net/4l7cjdaypzcu/1WCfe56Z2KZwgDq26t7IO3/9320e22bd9562098960f572bc7b3615f/SLomradet-2026-04-02.pdf — \"SL-biljett gäller alltid för resor med Waxholmsbolaget mellan dessa bryggor\", med \"Strömkajen\" och \"Vaxholm\" i listan (läst 2026-09-27); https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor (renderad med webbläsare, laddar inte med curl) — \"Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt\"\n      'SL-biljetten gäller både på buss 670 från Tekniska högskolan och på Waxholmsbolagets båtar mellan Strömkajen och Vaxholm, året runt – så välj efter tid och lust, inte pris. Bussen tar 45–58 minuter, båten 55–82 minuter.',\n      // KÄLLA: https://vaxholmsfastning.se/historik/ (läst 2026-08-25) + SFV — blockhus på Vaxholmen i början av 1500-talet (Svante Nilsson Sture), Gustav Vasas nya och kraftigare fästning 1548, nuvarande kastell 1833–1863. Tidigare stod här att 1548 var den FÖRSTA fästningen.\n      'Vaxholmen befästes redan i början av 1500-talet med ett blockhus, och 1548 lät Gustav Vasa uppföra en ny och kraftigare fästning som avvisade både danska och ryska anfall. Det kastell som står här i dag byggdes 1833–1863, sedan stora delar av den gamla fästningen rivits.',\n      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/waxholm-vaxholm/ — avstånd från gästhamnen: Apotek 250 m, Tandläkare 250 m, Läkare 300 m, Livsmedel 300 m, Turistbyrå 400 m (läst 2026-09-27)\n      'Från gästhamnen är det enligt Svenska Gästhamnar 250 meter till apotek och tandläkare, 300 meter till läkare och livsmedelsbutik och 400 meter till turistbyrån.',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — \"Giltig 17 augusti–12 december 2026\", \"Stockholm–Vaxholm\", \"Tekniska högskolan\", \"Västerhamnsplan\" (läst 2026-10-31) Tekniska högskolan → Västerhamnsplan uppmätt tur för tur: 45–58 min måndag–fredag, 45–53 min lördag–söndag; måndag–fredag dagtid avgång ungefär var 15:e minut.\n      // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt\" (läst 2026-10-31)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\" (läst 2026-10-31) Restid Strömkajen → Vaxholm uppmätt tur för tur i tabell 2A: 50–90 min (tur 0389 som angör Vaxholm i omvänd ordning ej räknad), median 70 min.\n      'SL-biljetten gäller både på buss 670 från Tekniska högskolan och på Waxholmsbolagets båtar mellan Strömkajen och Vaxholm, året runt – så välj efter tid och lust, inte pris. Bussen tar 45–58 minuter, båten 50–90 minuter.',\n      // KÄLLA: https://vaxholmsfastning.se/historik/ — \"Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture.\", \"Gustav Vasa 1548 åt ståthållaren på Stockholms slott att uppföra en ny och kraftigare fästning\", \"Första gången var 1612 då danskarna anföll och andra gången 1719 då ryssarna härjade i Stockholms skärgård.\", \"Den gamla fästningen revs och ersattes med det nuvarande Kastellet under åren 1833-1863.\" (läst 2026-10-31)\n      'Vaxholmen befästes redan i början av 1500-talet med ett blockhus, och 1548 gav Gustav Vasa i uppdrag att uppföra en ny och kraftigare fästning. Fästningen slog tillbaka danskarna 1612 och ryssarna 1719. Det kastell som står här i dag byggdes 1833–1863, sedan den gamla fästningen rivits.',\n      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/waxholm-vaxholm/ — \"Apotek 250 m\", \"Tandläkare 250 m\", \"Läkare 300 m\", \"Livsmedel 300 m\", \"Turistbyrå 400 m\" (läst 2026-10-31)\n      'Från gästhamnen är det enligt Svenska Gästhamnar 250 meter till apotek och tandläkare, 300 meter till läkare och livsmedelsbutik och 400 meter till turistbyrån.',",
+  "rader": [
+   "vaxholm-0585",
+   "vaxholm-0586",
+   "vaxholm-0587",
+   "vaxholm-0588",
+   "vaxholm-0589",
+   "vaxholm-0590",
+   "vaxholm-0591",
+   "vaxholm-0592",
+   "vaxholm-0593",
+   "vaxholm-0594",
+   "vaxholm-0595",
+   "vaxholm-0596",
+   "vaxholm-0597",
+   "vaxholm-0598"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-09-27); https://vaxholmsfastning.se/besoksinfo/index.php — \"Öppettider maj-sept\" (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/v670_670x.pdf — buss 670 alla dagar\n      bestReason: 'Buss 670 och båtarna från Strömkajen går hela året. I maj–juni och september har kastellmuseet öppet på helger och båtarna går enligt vår- och hösttabellen.',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\" (läst 2026-10-31)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — \"Giltig 17 augusti–12 december 2026\", \"Lördag, söndag och helgdag\" (läst 2026-10-31)\n      // KÄLLA: https://vaxholmsfastning.se/besoksinfo/index.php — \"Öppettider maj-sept och allmän information säsongen 2026\", \"14/5 - 17/5\", \"13/6 - 14/6\", \"22/6 - 23/8\", \"29/8 - 30/8\", \"5/9 - 6/9\" (läst 2026-10-31)\n      bestReason: 'Buss 670 och båtarna från Strömkajen går hela året. Kastellmuseet hade 2026 öppet på helger från mitten av maj till mitten av juni och i slutet av augusti och början av september, och varje dag från midsommar till slutet av augusti. Under våren och hösten går båtarna enligt vår- och hösttabellen.',",
+  "rader": [
+   "vaxholm-0069",
+   "vaxholm-0070",
+   "vaxholm-0071",
+   "vaxholm-0072"
+  ]
+ },
+ {
+  "fil": "src/app/guider/guide-island-map.ts",
+  "gammal": "  'batsaerhet-guide':                 ['vaxholm', 'sandhamn'],",
+  "ny": "  'batsaerhet-guide':                 ['sandhamn'],",
+  "rader": [
+   "vaxholm-0393"
+  ]
+ },
+ {
+  "fil": "src/app/guider/guide-island-map.ts",
+  "gammal": "  'skargard-tillganglighet':          ['vaxholm', 'fjaderholmarna'],",
+  "ny": "  'skargard-tillganglighet':          ['fjaderholmarna'],",
+  "rader": [
+   "vaxholm-0394"
+  ]
+ },
+ {
+  "fil": "src/app/guider/guide-island-map.ts",
+  "gammal": "  'nacka-skargard-guide':             ['fjaderholmarna', 'vaxholm'],",
+  "ny": "  'nacka-skargard-guide':             ['fjaderholmarna'],",
+  "rader": [
+   "vaxholm-0396"
+  ]
+ },
+ {
+  "fil": "src/app/guider/guide-island-map.ts",
+  "gammal": "  'hyra-bat-utan-korkort-stockholm':  ['fjaderholmarna', 'vaxholm'],",
+  "ny": "  'hyra-bat-utan-korkort-stockholm':  ['fjaderholmarna'],",
+  "rader": [
+   "vaxholm-0398"
+  ]
+ }
+]
