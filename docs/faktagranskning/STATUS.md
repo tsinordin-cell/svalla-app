@@ -2,7 +2,32 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
-## 2026-11-02 23:30 — EJ NÅBAR-källorna i Toms Chrome (Claude i Chrome)
+## 2026-11-02 23:13 — Sidmallarna granskade; P0 15 (hundregeln i nationalparker)
+
+- **Sidmallarna (MÄTT):** 253 rader. KORREKT 145, DELVIS 43, FEL 42,
+  OBELAGD 20, INAKTUELL 3. 72 ersättningar i 16 filer (alla 11 beslutade
+  mallfel, plus bland annat SMHI:s vindbenämningar, väderkoderna för snöbyar,
+  SCB:s kommunnamn och "Lågsäsong" i stället för "Stängt"). Inlagda i
+  arbetskopian /home/claude/svalla-mallar: tsc och verify-claims gröna.
+  Källistan omgenererad där: myndighetsmärkningarna går från 544 till 433, och
+  inga citat med klockslag eller belopp publiceras (före: 148).
+- **P0 15 (mall-0212, alla öar):** badrutan sa bara att hunden inte får
+  springa lös 1 mars–20 augusti och att naturreservat kan kräva koppel. I
+  nationalparker (Ängsö, Kosterhavet) ska hunden alltid vara kopplad enligt
+  Naturvårdsverket. Rättelsen (mallar.edits.json nr 62–63) ligger nu i
+  P0-grenen (`register/b01/ut/p0-mall.edits.json`) och hoppas över när
+  batchen läggs in. Kontrollanten i runda 5 har fått raden (p0-runda5b).
+- **Efter att P0-PR:en är inne, i batchens PR (inte i edits.json):** ta bort
+  'storholmen' ur ISLAND_NO_TRANSIT i transit-stops.ts (sidan säger "Hit går
+  ingen kollektivtrafik", men SL:s pendelbåt 80 går dit), och låt
+  avgångsrutan och kortet "Sista båten" länka till Västtrafik för Göteborgs
+  skärgård i stället för SL (adressen ska läsas innan den läggs in).
+- Kontrollant sidmallarna startad: 136 rader (100 ändrade, 36 högrisk) och 7
+  strukna. Agenter nu (fyra): Kontrollant P0 runda 5, Fjäderholmarna, Utö och
+  sidmallarna.
+- Rättelse: rubriken nedan sa 23:30. Avsnittet skrevs 23:09.
+
+## 2026-11-02 23:09 — EJ NÅBAR-källorna i Toms Chrome (Claude i Chrome)
 
 Lästa och sparade i kallcache/ny (`*.chrome-2026-11-02.txt`), för en
 Granskare som dömer EJ NÅBAR-raderna när en plats blir ledig:

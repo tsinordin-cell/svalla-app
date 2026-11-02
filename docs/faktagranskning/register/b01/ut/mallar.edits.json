@@ -1,0 +1,651 @@
+[
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": " title: island.seoTitle ? `${island.seoTitle}` : `${island.name} 2026 – restauranger, boende & aktiviteter`,\n description: island.seoDescription ?? `Guide till ${island.name}: restauranger, boende, aktiviteter, badplatser och hur du tar dig dit. ${island.tagline}`,",
+  "ny": " // Faktagranskningen 2026-11-02 (mall-0002): \"restauranger\" stämde inte för Husarö (kafé i lanthandeln).\n title: island.seoTitle ? `${island.seoTitle}` : `${island.name} 2026 – mat, boende & aktiviteter`,\n description: island.seoDescription ?? `Guide till ${island.name}: mat, boende, aktiviteter, badplatser och hur du tar dig dit. ${island.tagline}`,",
+  "rader": [
+   "mall-0002"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": " description: `Komplett guide till ${island.name} i ${(island.regionLabel ?? '').toLowerCase()}.`,",
+  "ny": " description: `Guide till ${island.name}${island.regionLabel ? `, ${island.regionLabel}` : ''}.`,",
+  "rader": [
+   "mall-0006"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": "           isAccessibleForFree: true,\n",
+  "ny": "",
+  "rader": [
+   "mall-0008"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": "           ...(island.seasonal ? {\n             openingHoursSpecification: {\n               '@type': 'OpeningHoursSpecification',\n               description: `Säsong: ${island.seasonal.open}. Bäst tid: ${island.seasonal.best}.`,\n               ...(island.seasonal.open !== 'Hela året' ? {\n                 validFrom: '2026-05-01',\n                 validThrough: '2026-10-31',\n               } : {}),\n             },\n           } : {}),\n",
+  "ny": "           // openingHoursSpecification borttagen 2026-11-02 (faktagranskningen mall-0012–0014):\n           // utan opens betyder den \"stängt\" enligt schema.org, en ö har inga öppettider,\n           // och validFrom/validThrough var fasta datum. Säsongen står synligt på sidan.\n",
+  "rader": [
+   "mall-0012",
+   "mall-0013",
+   "mall-0014"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": " <script\n type=\"application/ld+json\"\n dangerouslySetInnerHTML={{ __html: JSON.stringify({\n '@context': 'https://schema.org',\n '@type': 'FAQPage',\n mainEntity: getFaqsForIsland(island).map(faq => ({\n '@type': 'Question',\n name: faq.q,\n acceptedAnswer: { '@type': 'Answer', text: faq.a },\n })),\n }) }}\n />\n",
+  "ny": " {/* FAQPage-blocket borttaget 2026-11-02 (mall-0015): FAQSection längre ner ger samma JSON-LD. */}\n",
+  "rader": [
+   "mall-0015"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": " seglare har besökt {island.name} via Svalla",
+  "ny": " har markerat {island.name} som besökt i Svalla",
+  "rader": [
+   "mall-0018",
+   "mall-0019"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": "     off: 'Stängt', limited: 'Begränsad service', open: 'Öppet', peak: 'Högsäsong',",
+  "ny": "     // 'Stängt' ändrat 2026-11-02 (mall-0112): off-månader är lågsäsong för service, ön är inte stängd.\n     off: 'Lågsäsong', limited: 'Begränsad service', open: 'Öppet', peak: 'Högsäsong',",
+  "rader": [
+   "mall-0112"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": "   Komplett transportguide →",
+  "ny": "   Mer om hur du tar dig hit →",
+  "rader": [
+   "mall-0102"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": "<SectionHeader icon=\"book\" title={`Guider om ${island.name}`} />",
+  "ny": "<SectionHeader icon=\"book\" title={`Guider som tar upp ${island.name}`} />",
+  "rader": [
+   "mall-0103"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": "      Inga diskussioner ännu — bli den första:",
+  "ny": "      Ställ en fråga om {island.name}:",
+  "rader": [
+   "mall-0104"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": ">Båt, färja och transport till {island.name}</div>",
+  "ny": ">Så tar du dig till {island.name}</div>",
+  "rader": [
+   "mall-0096"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": ">Barnvänlig guide till {island.name}</div>",
+  "ny": ">Tips för dig som åker till {island.name} med barn</div>",
+  "rader": [
+   "mall-0097"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": ">Hus, brygga, båt och tomt på {island.name}</div>",
+  "ny": ">Företag med verksamhet på {island.name}</div>",
+  "rader": [
+   "mall-0098",
+   "mall-0099",
+   "mall-0100",
+   "mall-0101"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": " description={`De bästa öarna hittar du inte via Google. Prenumerera och vi visar dig.`}",
+  "ny": " description=\"Säsongsstarter, nya guider och ändrade båtlinjer, när det händer något. Inga annonser.\"",
+  "rader": [
+   "mall-0107"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/page.tsx",
+  "gammal": " Sveriges samlade skärgårdssida",
+  "ny": " Guide till öar i Sverige och på Åland",
+  "rader": [
+   "mall-0111"
+  ]
+ },
+ {
+  "fil": "src/components/IslandWeather.tsx",
+  "gammal": " if (code <= 2) return { icon: 'sun', text: 'Delvis molnigt' }",
+  "ny": " // KÄLLA: https://open-meteo.com/en/docs — \"1 Mainly clear\", \"2 Partly cloudy\", \"85 Slight snow showers\", \"86 Heavy snow showers\" (läst 2026-11-02)\n if (code === 1) return { icon: 'sun', text: 'Mestadels klart' }\n if (code <= 2) return { icon: 'sun', text: 'Delvis molnigt' }",
+  "rader": [
+   "mall-0033"
+  ]
+ },
+ {
+  "fil": "src/components/IslandWeather.tsx",
+  "gammal": " if (code <= 84) return { icon: 'rain', text: 'Regnskurar' }\n if (code <= 99) return { icon: 'cloud', text: 'Åska' }\n return { icon: 'cloud', text: 'Varierat' }",
+  "ny": " if (code <= 84) return { icon: 'rain', text: 'Regnskurar' }\n if (code <= 86) return { icon: 'snow', text: 'Snöbyar' }\n if (code <= 99) return { icon: 'cloud', text: 'Åska' }\n return { icon: 'cloud', text: 'Okänd väderkod' }",
+  "rader": [
+   "mall-0040",
+   "mall-0041"
+  ]
+ },
+ {
+  "fil": "src/components/IslandWeather.tsx",
+  "gammal": "// Beaufort-skala (seglare föredrar detta)\nfunction beaufort(ms: number): string {\n if (ms < 0.3) return 'Lugnt'\n if (ms < 1.6) return 'Svag bris'\n if (ms < 3.4) return 'Lätt bris'\n if (ms < 5.5) return 'God bris'\n if (ms < 8.0) return 'Frisk bris'\n if (ms < 10.8) return 'Frisk vind'\n if (ms < 13.9) return 'Hård vind'\n if (ms < 17.2) return 'Stormvind'\n if (ms < 20.8) return 'Stormvindar'\n return 'Orkanstyrka'\n}",
+  "ny": "// SMHI:s benämningar på land (faktagranskningen 2026-11-02, mall-0023–0031).\n// Tidigare blandades äldre sjöbenämningar och påhittade ord, och allt från 20,8 m/s hette Orkanstyrka.\n// KÄLLA: https://www.smhi.se/kunskapsbanken/meteorologi/vind/skalor-for-vindhastighet — \"Tabellen visar benämning på vindstyrkor.\" (Benämning på land, m/s) (läst 2026-11-02)\n// KÄLLA: https://www.smhi.se/kunskapsbanken/meteorologi/vind/vad-betyder-olika-ord-om-vind — \"Ordet orkan används inom svensk meteorologi i fall då medelvindhastigheten varit minst 32,7 m/s.\" (läst 2026-11-02)\nfunction beaufort(ms: number): string {\n if (ms < 0.3) return 'Lugnt'\n if (ms < 3.4) return 'Svag vind'\n if (ms < 8.0) return 'Måttlig vind'\n if (ms < 13.9) return 'Frisk vind'\n if (ms < 24.5) return 'Hård vind'\n if (ms < 32.7) return 'Storm'\n return 'Orkan'\n}",
+  "rader": [
+   "mall-0023",
+   "mall-0024",
+   "mall-0025",
+   "mall-0026",
+   "mall-0028",
+   "mall-0029",
+   "mall-0030",
+   "mall-0031"
+  ]
+ },
+ {
+  "fil": "src/components/IslandFakta.tsx",
+  "gammal": "const kommunText = (k: string) => (k === 'Gotland' ? 'Region Gotland' : `${k} kommun`)",
+  "ny": "// SCB:s kortnamn som det är: \"${k} kommun\" gav \"Göteborg kommun\" och \"Österåker kommun\" (2026-11-02, mall-0061).\n// Raden heter redan Kommun.\nconst kommunText = (k: string) => (k === 'Gotland' ? 'Region Gotland' : k)",
+  "rader": [
+   "mall-0061"
+  ]
+ },
+ {
+  "fil": "src/components/HantverkarKort.tsx",
+  "gammal": "  const uppringd = h.verifierad !== false\n\n  // Sitter de på den ö besökaren tittar på, eller kör de hit? Skillnaden finns\n  // bara för att vi kontrollerat den — registret hade dem alla som lokala.\n  const basAnnanstans = Boolean(\n    oSlug && h.bas && !h.bas.toLowerCase().includes(oSlug.toLowerCase())\n  )",
+  "ny": "  // Grönt märke bara när en människa ringt, dvs. när verifierad är ett objekt (2026-11-02, mall-0071).\n  const uppringd = typeof h.verifierad === 'object' && h.verifierad !== null\n\n  // Sitter de på den ö besökaren tittar på, eller kör de hit? Skillnaden finns\n  // bara för att vi kontrollerat den — registret hade dem alla som lokala.\n  // Sluggen saknar å, ä, ö: \"Södermöja, Möja\" ska matcha \"moja\" (2026-11-02, mall-0074).\n  const utanDiakrit = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')\n  const basAnnanstans = Boolean(\n    oSlug && h.bas && !utanDiakrit(h.bas).includes(oSlug.toLowerCase().replace(/-/g, ' '))\n  )",
+  "rader": [
+   "mall-0071",
+   "mall-0074",
+   "mall-0075"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/hantverkare/page.tsx",
+  "gammal": "    description: `Behöver du hjälp med huset, bryggan, båten eller tomten på ${n}? Snickare, elektriker, rörmokare och sjötransport med verksamhet på ön. Varje uppgift med källa och läsdatum.`,",
+  "ny": "    // Yrkeslistan stod på alla ösidor, även utan poster (2026-11-02, mall-0234–0237).\n    description: antal > 0\n      ? `Behöver du hjälp med huset, bryggan, båten eller tomten på ${n}? ${antal} företag som själva uppger att de arbetar på ön. Varje uppgift med källa och läsdatum.`\n      : `Vi har ännu inga kontrollerade uppgifter om hantverkare på ${n}.`,",
+  "rader": [
+   "mall-0234",
+   "mall-0235",
+   "mall-0236",
+   "mall-0237"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/hantverkare/page.tsx",
+  "gammal": "      description: `Snickare, elektriker, rörmokare och sjötransport på ${n}.`,",
+  "ny": "      description: antal > 0 ? `${antal} företag som själva uppger att de arbetar på ${n}.` : `Vi har ännu inga kontrollerade uppgifter om hantverkare på ${n}.`,",
+  "rader": [
+   "mall-0234",
+   "mall-0235",
+   "mall-0236",
+   "mall-0237"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/hantverkare/page.tsx",
+  "gammal": "                Uppgifterna kommer från företagens egna webbplatser, öns\n                företagarförening och offentliga register. Varje post visar sin",
+  "ny": "                Uppgifterna kommer från företagens egna webbplatser och, för\n                elföretag, Elsäkerhetsverkets register. Varje post visar sin",
+  "rader": [
+   "mall-0240",
+   "mall-0241"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/hantverkare/page.tsx",
+  "gammal": "be oss ta bort dig. Kostnadsfritt, och du bestämmer vad som står.",
+  "ny": "be oss ta bort dig. Kostnadsfritt, och du kan rätta och komplettera det som står.",
+  "rader": [
+   "mall-0246"
+  ]
+ },
+ {
+  "fil": "src/lib/islandFaqs.ts",
+  "gammal": "  const resor = (island.getting_there ?? []).slice(0, 2)",
+  "ny": "  // Alla färdsätt: slice(0, 2) tappade Waxholmsbolagets linje 2 på Fjäderholmarna,\n  // den enda båten där efter sommarsäsongen (faktagranskningen 2026-11-02, mall-0079).\n  const resor = island.getting_there ?? []",
+  "rader": [
+   "mall-0079"
+  ]
+ },
+ {
+  "fil": "src/lib/islandFaqs.ts",
+  "gammal": "  const krogar = (island.restaurants ?? []).map(r => r.name)",
+  "ny": "  // Typen inom parentes, som på restaurangkorten: Husarös enda ställe är ett kafé (mall-0080).\n  const krogar = (island.restaurants ?? []).map(r => r.type ? `${r.name} (${r.type.toLowerCase()})` : r.name)",
+  "rader": [
+   "mall-0080"
+  ]
+ },
+ {
+  "fil": "src/lib/islandFaqs.ts",
+  "gammal": ". Öppettiderna skiljer sig mellan säsonger, så kolla ställets egen sida innan du åker.`,",
+  "ny": ". Kolla öppettiderna hos stället innan du åker.`,",
+  "rader": [
+   "mall-0081",
+   "mall-0082"
+  ]
+ },
+ {
+  "fil": "src/lib/islandFaqs.ts",
+  "gammal": "      q: `Finns det gästhamn för egen båt på ${n}?`,",
+  "ny": "      q: `Var kan jag lägga till med egen båt på ${n}?`,",
+  "rader": [
+   "mall-0084"
+  ]
+ },
+ {
+  "fil": "src/components/IslandKallor.tsx",
+  "gammal": "        {myndigheter > 0 && `, varav ${myndigheter} myndighet eller kommun`}. Vi skriver\n        inga priser, och inget\n        om årtal, areal eller service utan att någon läst källan.\n        {gemensamtDatum\n          ? ` Samtliga lästa ${gemensamtDatum}.`\n          : senast && ` Senast kontrollerad ${senast}.`} Hittar du något som",
+  "ny": "        {myndigheter > 0 && `, varav ${myndigheter} myndighet eller kommun`}. Priser skriver\n        vi bara ur publicerade prislistor, och uppgifter om årtal, areal och\n        service ska bygga på en källa som någon har läst.\n        {gemensamtDatum\n          ? ` Samtliga lästa ${gemensamtDatum}.`\n          : senast && ` Senast lästa källa: ${senast}.`} Hittar du något som",
+  "rader": [
+   "mall-0088",
+   "mall-0089",
+   "mall-0091"
+  ]
+ },
+ {
+  "fil": "scripts/generera-kallor.mjs",
+  "gammal": "  'riksantikvarieambetet.se', 'kringla.nu', 'sl.se', 'vasttrafik.se',\n  'waxholmsbolaget.se', 'sverigesradio.se', 'scb.se',",
+  "ny": "  'riksantikvarieambetet.se', 'kringla.nu',\n  // sl.se, vasttrafik.se, waxholmsbolaget.se och sverigesradio.se borttagna\n  // 2026-11-02 (faktagranskningen mall-0086): trafikbolag och medieföretag är\n  // NIVÅ 2 i källhierarkin (operatören), inte myndighet eller kommun.\n  'scb.se',",
+  "rader": [
+   "mall-0086",
+   "mall-0087"
+  ]
+ },
+ {
+  "fil": "scripts/generera-kallor.mjs",
+  "gammal": "    if (arTrafikbolagetsTidtabell(u)) return true\n",
+  "ny": "    // Trafikbolagens tryckta tidtabeller räknas inte som myndighet (2026-11-02, mall-0086).\n",
+  "rader": [
+   "mall-0086",
+   "mall-0087"
+  ]
+ },
+ {
+  "fil": "scripts/generera-kallor.mjs",
+  "gammal": "function rensaVad(vad) {\n  if (!vad) return ''\n  return INTERN_ANTECKNING.test(vad) ? '' : vad\n}",
+  "ny": "/**\n * Klockslag och belopp publiceras inte i källistan (arbetsreglerna; källrutan\n * lovar priser bara ur publicerade prislistor). Ett citat med klockslag eller\n * belopp visas inte – adressen räcker (faktagranskningen 2026-11-02).\n */\nconst KLOCKSLAG_ELLER_PRIS = /\\b(?:[01]?\\d|2[0-3])[.:][0-5]\\d\\b|\\d\\s?(?:kr|kronor|SEK)\\b/i\n\nfunction rensaVad(vad) {\n  if (!vad) return ''\n  return INTERN_ANTECKNING.test(vad) || KLOCKSLAG_ELLER_PRIS.test(vad) ? '' : vad\n}",
+  "rader": [
+   "mall-0088"
+  ]
+ },
+ {
+  "fil": "scripts/generera-kallor.mjs",
+  "gammal": "  const delar = rest.split(/\\s+[—–]\\s+/)\n  if (delar.length < 2) return ''\n  let vad = delar.slice(1).join(' — ').replace(/https?:\\/\\/\\S+/g, '').trim()",
+  "ny": "  // Bara första tankstrecket skiljer källan från citatet. Streck inne i citatet\n  // (\"21A ÅRSTA – UTÖ\") ska stå som på sidan, inte bli \" — \" (2026-11-02).\n  const m = rest.match(/\\s+[—–]\\s+/)\n  if (!m || m.index === undefined) return ''\n  let vad = rest.slice(m.index + m[0].length).replace(/https?:\\/\\/\\S+/g, '').trim()",
+  "rader": [
+   "mall-0086"
+  ]
+ },
+ {
+  "fil": "scripts/generera-kallor.mjs",
+  "gammal": "    for (const bit of rest.split(/\\s+;\\s+/)) {",
+  "ny": "    // Också \"; https://…\" utan blanksteg före semikolon: annars hamnade båda\n    // citaten under radens första URL (2026-11-02, se storholmen-0159).\n    for (const bit of rest.split(/\\s+;\\s+|;\\s+(?=https?:\\/\\/)/)) {",
+  "rader": [
+   "mall-0086"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/aktiviteter/page.tsx",
+  "gammal": "  const description = `Allt du kan göra på ${island.name}: ${island.activities.slice(0, 3).map(a => a.name.toLowerCase()).join(', ')} och mer. Komplett aktivitetsguide.`",
+  "ny": "  const description = `Det här kan du göra på ${island.name}: ${island.activities.slice(0, 3).map(a => a.name.toLowerCase()).join(', ')}${island.activities.length > 3 ? ' och mer' : ''}.`",
+  "rader": [
+   "mall-0124",
+   "mall-0125",
+   "mall-0126"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/aktiviteter/page.tsx",
+  "gammal": "                Fullständig guide till {island.name}",
+  "ny": "                Hela guiden till {island.name}",
+  "rader": [
+   "mall-0131"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/restauranger/page.tsx",
+  "gammal": "    title: `Restauranger på ${island.name} – krogar och kaféer`,\n    description: `Restauranger, krogar, barer och kaféer på ${island.name}, med beskrivning och länk till varje ställe.`,",
+  "ny": "    title: `Restauranger på ${island.name}`,\n    description: `Ställen att äta och dricka på ${island.name} som vi har uppgifter om, med beskrivning.`,",
+  "rader": [
+   "mall-0132",
+   "mall-0133",
+   "mall-0134",
+   "mall-0135"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/restauranger/page.tsx",
+  "gammal": "      description: `Restauranger, krogar och kaféer på ${island.name}.`,",
+  "ny": "      description: `Ställen att äta och dricka på ${island.name}.`,",
+  "rader": [
+   "mall-0133"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/restauranger/page.tsx",
+  "gammal": "            ? `Restaurangen på ${island.name} som vi har uppgifter om.`",
+  "ny": "            ? `Ett ställe på ${island.name} som vi har uppgifter om.`",
+  "rader": [
+   "mall-0137"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/boende/page.tsx",
+  "gammal": "    title: `Boende på ${island.name} — hotell, vandrarhem och stugor`,\n    description: `Boende på ${island.name}: hotell, värdshus, vandrarhem, stugor och camping som vi har uppgifter om, med länk till bokning.`,",
+  "ny": "    title: `Boende på ${island.name}`,\n    description: `Boende på ${island.name} som vi har uppgifter om.`,",
+  "rader": [
+   "mall-0143",
+   "mall-0144",
+   "mall-0145",
+   "mall-0146",
+   "mall-0147",
+   "mall-0148"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/boende/page.tsx",
+  "gammal": "      description: `Hotell, vandrarhem och stugor på ${island.name}.`,",
+  "ny": "      description: `Boende på ${island.name}.`,",
+  "rader": [
+   "mall-0143",
+   "mall-0144",
+   "mall-0145"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/boende/page.tsx",
+  "gammal": "            Sök fler boenden hos de stora bokningssajterna:",
+  "ny": "            Sök fler boenden på Booking.com och Airbnb:",
+  "rader": [
+   "mall-0152"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/hamnar/page.tsx",
+  "gammal": "    title: `Gästhamnar på ${island.name} — bryggor och båtplatser`,\n    description: `Gästhamnar, bryggor och båtplatser på ${island.name}: antal platser, bränsle, dusch och el där hamnen själv anger det.`,",
+  "ny": "    title: `Hamnar och bryggor på ${island.name}`,\n    description: `Hamnar och bryggor på ${island.name}: antal platser, bränsle, dusch och el där vi har en källa för det.`,",
+  "rader": [
+   "mall-0154",
+   "mall-0156"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/hamnar/page.tsx",
+  "gammal": "      title: `Gästhamnar på ${island.name}`,\n      description: `Gästhamnar och bryggor på ${island.name}.`,",
+  "ny": "      title: `Hamnar och bryggor på ${island.name}`,\n      description: `Hamnar och bryggor på ${island.name}.`,",
+  "rader": [
+   "mall-0154"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/hamnar/page.tsx",
+  "gammal": "        title={`Gästhamnar på ${island.name}`}",
+  "ny": "        title={`Hamnar på ${island.name}`}",
+  "rader": [
+   "mall-0154"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/hamnar/page.tsx",
+  "gammal": "heading={island.harbors.length > 0 ? `Fler hamnar, bryggor och sjömackar på och nära ${island.name}` : `Hamnar, bryggor och sjömackar på och nära ${island.name}`}",
+  "ny": "heading={island.harbors.length > 0 ? `Fler hamnar och bryggor på och nära ${island.name}` : `Hamnar och bryggor på och nära ${island.name}`}",
+  "rader": [
+   "mall-0159"
+  ]
+ },
+ {
+  "fil": "src/lib/kommaDitTitlar.ts",
+  "gammal": "/** Gemensam titel för öar utan egen titel (oförändrad sedan tidigare). */\nexport function kommaDitTitel(slug: string, namn: string): string {\n  return KOMMA_DIT_TITLAR[slug]?.titel ?? `Hur tar man sig till ${namn}? — Båt, buss, färja 2026`",
+  "ny": "/**\n * Gemensam titel för öar utan egen titel. \"Båt, buss, färja\" stod på alla sådana\n * öar, även utan buss (Fjäderholmarna) och utan färja (2026-11-02, mall-0160–0161).\n */\nexport function kommaDitTitel(slug: string, namn: string): string {\n  return KOMMA_DIT_TITLAR[slug]?.titel ?? `Hur tar man sig till ${namn}? — Båt och resväg 2026`",
+  "rader": [
+   "mall-0160",
+   "mall-0161"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+  "gammal": "  const forsta = island.getting_there[0]\n  const vag = forsta\n    ? `${forsta.method}${forsta.from && !/från/i.test(forsta.method) ? ` från ${forsta.from}` : ''}`\n    : null",
+  "ny": "  // Alla färdsätt, inte bara det första: på Fjäderholmarna var det första en\n  // sommarbåt vars säsong var slut (faktagranskningen 2026-11-02, mall-0164).\n  const vag = island.getting_there.length > 0\n    ? island.getting_there.map(t => t.method).join(', ')\n    : null",
+  "rader": [
+   "mall-0164"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+  "gammal": "  const stockholm = island.region === 'norra' || island.region === 'mellersta' || island.region === 'södra'\n",
+  "ny": "  const stockholm = island.region === 'norra' || island.region === 'mellersta' || island.region === 'södra'\n  // Waxholmsbolagets regler gäller bara öar som bolaget trafikerar; Storholmen\n  // har SL:s pendelbåt 80. Samma test som med-barn/page.tsx (2026-11-02, mall-0174).\n  const usesWaxholmsbolaget = (island.transport_meta?.operator ?? '').includes('Waxholmsbolaget')\n    || island.getting_there.some(t => `${t.method} ${t.desc}`.includes('Waxholm'))\n",
+  "rader": [
+   "mall-0173",
+   "mall-0174"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+  "gammal": "            ? island.getting_there.map(t => `${t.method}: ${t.desc}`).join('. ')\n            : `${island.name} nås med reguljärbåt.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,",
+  "ny": "            ? island.getting_there.map(t => { const s = `${t.method}: ${t.desc}`.trim(); return /[.!?]$/.test(s) ? s : `${s}.` }).join(' ')\n            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,",
+  "rader": [
+   "mall-0168",
+   "mall-0169"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+  "gammal": "                        Köp biljett / Se tidtabell →",
+  "ny": "                        Tidtabell och biljettinformation →",
+  "rader": [
+   "mall-0172"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+  "gammal": "              Restid: {island.facts.travel_time}.{stockholm ? (<>{' '}Se{' '}",
+  "ny": "              Restid: {island.facts.travel_time}.{usesWaxholmsbolaget ? (<>{' '}Se{' '}",
+  "rader": [
+   "mall-0173"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+  "gammal": "        {(stockholm || island.transport_meta?.car_parking) && (",
+  "ny": "        {(usesWaxholmsbolaget || island.transport_meta?.car_parking) && (",
+  "rader": [
+   "mall-0174"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+  "gammal": "            {/* KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19. \"Halvpris\" var fel: 39–114 kr mot 61–186 kr. */}\n            {stockholm && (<>\n              <li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen, och 7–19 år betalar rabatterat pris.</li>",
+  "ny": "            {/* KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Barn som är under 7 år gamla reser utan avgift med annan betalande resenär.\", \"Du räknas som ungdom om du är över 7 år gammal men inte har fyllt 20 år ännu.\", \"Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd.\" (läst 2026-10-29) */}\n            {/* KÄLLA: https://sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar — \"Det är inte lågsäsong. Det vill säga att du reser under perioden 30 april–13 september.\", \"Under lågsäsongen, från 14 september till 29 april, gäller alla SL:s periodbiljetter som har en giltighetstid på 30 dagar eller längre för resor på Waxholmsbolagets båtar.\" (läst 2026-10-29) */}\n            {usesWaxholmsbolaget && (<>\n              <li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med en annan betalande resenär, och 7–19 år betalar rabatterat pris.</li>",
+  "rader": [
+   "mall-0174",
+   "mall-0175",
+   "mall-0176",
+   "mall-0177",
+   "mall-0178",
+   "mall-0179",
+   "mall-0180"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+  "gammal": "              {/* KÄLLA: Waxholmsbolaget linje 24, https://kund.printhuset-sthlm.se/wa/h24.pdf, anmärkning b: \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00\" (läst 2026-09-21). Ersätter \"Boka sittplats i förväg\" – Waxholmsbolaget säljer inga platsbiljetter. */}\n              <li>Vissa bryggor och turer är beställningstrafik. Beställ resan i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00. Hur långt i förväg står i linjens tidtabell. Annars kan båten gå förbi bryggan.</li>",
+  "ny": "              {/* KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"ANMÄRKNING TUR\", \"ANMÄRKNING BRYGGA\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\" (tabell 10, gäller 2 april–18 juni och 17 augusti–12 december 2026; tabell 24 gällde till 1 november) (läst 2026-10-29) */}\n              <li>Vissa bryggor och turer är beställningstrafik. Beställ resan i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00. Vilka turer och bryggor det gäller, och hur långt i förväg, står i anmärkningarna i linjens tidtabell.</li>",
+  "rader": [
+   "mall-0181",
+   "mall-0182",
+   "mall-0183",
+   "mall-0184",
+   "mall-0185",
+   "mall-0186"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+  "gammal": "              Berätta när du vill åka — Thorkel fixar hela planen.",
+  "ny": "              Berätta när du vill åka, så föreslår Thorkel en plan.",
+  "rader": [
+   "mall-0187"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/bad/page.tsx",
+  "gammal": "    title: `Bada på ${island.name} – badplatser och stränder`,\n    description: `Badplatser på och nära ${island.name}: stränder och bad med beskrivning, vägbeskrivning och vad allemansrätten säger om att bada.`,",
+  "ny": "    title: `Bad på och nära ${island.name}`,\n    description: `Badplatser på och nära ${island.name}, med beskrivning och vad allemansrätten säger om att bada.`,",
+  "rader": [
+   "mall-0190",
+   "mall-0191"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/bad/page.tsx",
+  "gammal": "    openGraph: {\n      title: `Bada på ${island.name} – badplatser och stränder`,",
+  "ny": "    openGraph: {\n      title: `Bad på och nära ${island.name}`,",
+  "rader": [
+   "mall-0190"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/bad/page.tsx",
+  "gammal": "    name: `Badplatser på ${island.name}`,",
+  "ny": "    name: `Badplatser på och nära ${island.name}`,",
+  "rader": [
+   "mall-0194"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/bad/page.tsx",
+  "gammal": "            ? `Badplatser på ${island.name} och vad som gäller när du badar i skärgården.`\n            : `Badplatser på och nära ${island.name}, med beskrivning och vägbeskrivning.`",
+  "ny": "            ? `Vad som gäller när du badar vid ${island.name} och i resten av skärgården.`\n            : `Badplatser på och nära ${island.name}, med beskrivning.`",
+  "rader": [
+   "mall-0192",
+   "mall-0193"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/bad/page.tsx",
+  "gammal": "    ['bad', 'klipp', 'sim', 'strand', 'brygga', 'dopp'].some(k =>",
+  "ny": "    // \"brygga\" och \"klipp\" tog med krogar med gästbrygga och vandring över klippor (2026-11-02, mall-0198).\n    ['bad', 'klippbad', 'sim', 'strand', 'dopp'].some(k =>",
+  "rader": [
+   "mall-0198"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/bad/page.tsx",
+  "gammal": "Badplatser i hela skärgården hittar du på <Link",
+  "ny": "Fler badplatser hittar du på <Link",
+  "rader": [
+   "mall-0201"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/bad/page.tsx",
+  "gammal": "          {/* KÄLLA: naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ (\"Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt, eller som är skyddad för fågelliv eller annat\"; \"Det finns inget förbud mot att tillfälligt förtöja eller bada vid en brygga som ligger utanför en tomt\"; \"Håll koll på fågel- och sälskyddsområden\"), havochvatten.se/badplatser-och-badvatten (Badplatsen, provtagning av badvatten), naturvardsverket.se hundar i naturen (koppel 1 mars–20 augusti; alltid i naturreservat) — läst 2026-09-24 */}",
+  "ny": "          {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — \"Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt\", \"Det finns inget förbud mot att tillfälligt förtöja eller bada vid en brygga som ligger utanför en tomt.\", \"Du som lånar bryggan måste däremot se till att den som äger bryggan inte blir hindrad från att använda den.\", \"Vid fågel- eller sälskyddsområden får du inte stiga iland under en viss tid av året.\" (läst 2026-11-02) */}\n          {/* KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten.html — \"Frågor om lagstiftning och webbplatsen Badplatsen\", \"Kommunerna står för provtagning och insamling av data som ligger till grund för informationen.\", \"EU-bad måste provtas och besiktigas regelbundet av kommunerna. Många kommuner provtar och besiktigar även övriga bad.\" (läst 2026-11-02) */}\n          {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/ — \"Under den tiden får hunden inte springa lös.\", \"I alla Sveriges nationalparker ska din hund alltid vara kopplad, oavsett hur bra lydnad du har på din hund.\", \"Ha alltid koppel på hunden när ni vistas i nationalparker eller naturreservat.\" (läst 2026-10-29) */}",
+  "rader": [
+   "mall-0203",
+   "mall-0204",
+   "mall-0205",
+   "mall-0206",
+   "mall-0207",
+   "mall-0208",
+   "mall-0209",
+   "mall-0210",
+   "mall-0211",
+   "mall-0212",
+   "mall-0213"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/bad/page.tsx",
+  "gammal": "<li>Hunden får inte springa lös i naturen 1 mars–20 augusti. I naturreservat kan föreskrifterna kräva koppel hela året, så läs skyltarna på plats.</li>",
+  "ny": "<li>Hunden får inte springa lös i naturen 1 mars–20 augusti. I nationalparker ska den alltid vara kopplad, och i naturreservat kan föreskrifterna kräva koppel hela året, så läs skyltarna på plats.</li>",
+  "rader": [
+   "mall-0211",
+   "mall-0212"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/med-barn/page.tsx",
+  "gammal": "    description: `${island.name} med barn: badplatser, restauranger och hur ni tar er dit.`,",
+  "ny": "    description: `Bad, mat och resväg för dig som åker till ${island.name} med barn.`,",
+  "rader": [
+   "mall-0216",
+   "mall-0217"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/med-barn/page.tsx",
+  "gammal": "      description: `Badplatser, restauranger och resväg för besök på ${island.name} med barn.`,",
+  "ny": "      description: `Bad, mat och resväg för dig som åker till ${island.name} med barn.`,",
+  "rader": [
+   "mall-0216",
+   "mall-0217"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/med-barn/page.tsx",
+  "gammal": "            allaBad.length > 0 ? `Badplatser: ${allaBad.slice(0, 4).join(', ')}.` : null,",
+  "ny": "            allaBad.length > 0 ? `Badplatser på och nära ön: ${allaBad.slice(0, 4).join(', ')}.` : null,",
+  "rader": [
+   "mall-0218"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/med-barn/page.tsx",
+  "gammal": "            ? island.getting_there.map(t => `${t.method}: ${t.desc}`).join('. ')\n            : `${island.name} nås med reguljärbåt. Se Waxholmsbolagets tidtabell för aktuella avgångar.`,",
+  "ny": "            ? island.getting_there.map(t => { const s = `${t.method}: ${t.desc}`.trim(); return /[.!?]$/.test(s) ? s : `${s}.` }).join(' ')\n            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}.`,",
+  "rader": [
+   "mall-0222",
+   "mall-0223"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/med-barn/page.tsx",
+  "gammal": "allaBad.slice(0, 2).join(', ') : 'Ingen badplats registrerad' }",
+  "ny": "allaBad.slice(0, 2).join(', ') : 'Se fliken Bad' }",
+  "rader": [
+   "mall-0224"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/med-barn/page.tsx",
+  "gammal": "              { icon: 'calendar', label: 'Bäst säsong', value: island.facts.season },",
+  "ny": "              { icon: 'calendar', label: 'Säsong', value: island.facts.season },",
+  "rader": [
+   "mall-0228"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/med-barn/page.tsx",
+  "gammal": "              Aktiviteter för barn på {island.name}",
+  "ny": "              Aktiviteter på {island.name}",
+  "rader": [
+   "mall-0229"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/med-barn/page.tsx",
+  "gammal": "              {/* KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; läst 2026-09-19 */}\n              <span>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen, och 7–19 år betalar rabatterat pris.</span>",
+  "ny": "              {/* KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Barn som är under 7 år gamla reser utan avgift med annan betalande resenär.\", \"Du räknas som ungdom om du är över 7 år gammal men inte har fyllt 20 år ännu.\" (läst 2026-10-29) */}\n              <span>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med en annan betalande resenär, och 7–19 år betalar rabatterat pris.</span>",
+  "rader": [
+   "mall-0175",
+   "mall-0176",
+   "mall-0177"
+  ]
+ }
+]

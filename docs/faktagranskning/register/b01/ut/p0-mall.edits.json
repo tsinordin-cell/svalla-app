@@ -1,0 +1,29 @@
+[
+ {
+  "fil": "src/app/o/[slug]/bad/page.tsx",
+  "gammal": "          {/* KÄLLA: naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ (\"Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt, eller som är skyddad för fågelliv eller annat\"; \"Det finns inget förbud mot att tillfälligt förtöja eller bada vid en brygga som ligger utanför en tomt\"; \"Håll koll på fågel- och sälskyddsområden\"), havochvatten.se/badplatser-och-badvatten (Badplatsen, provtagning av badvatten), naturvardsverket.se hundar i naturen (koppel 1 mars–20 augusti; alltid i naturreservat) — läst 2026-09-24 */}",
+  "ny": "          {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — \"Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt\", \"Det finns inget förbud mot att tillfälligt förtöja eller bada vid en brygga som ligger utanför en tomt.\", \"Du som lånar bryggan måste däremot se till att den som äger bryggan inte blir hindrad från att använda den.\", \"Vid fågel- eller sälskyddsområden får du inte stiga iland under en viss tid av året.\" (läst 2026-11-02) */}\n          {/* KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten.html — \"Frågor om lagstiftning och webbplatsen Badplatsen\", \"Kommunerna står för provtagning och insamling av data som ligger till grund för informationen.\", \"EU-bad måste provtas och besiktigas regelbundet av kommunerna. Många kommuner provtar och besiktigar även övriga bad.\" (läst 2026-11-02) */}\n          {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/ — \"Under den tiden får hunden inte springa lös.\", \"I alla Sveriges nationalparker ska din hund alltid vara kopplad, oavsett hur bra lydnad du har på din hund.\", \"Ha alltid koppel på hunden när ni vistas i nationalparker eller naturreservat.\" (läst 2026-10-29) */}",
+  "rader": [
+   "mall-0203",
+   "mall-0204",
+   "mall-0205",
+   "mall-0206",
+   "mall-0207",
+   "mall-0208",
+   "mall-0209",
+   "mall-0210",
+   "mall-0211",
+   "mall-0212",
+   "mall-0213"
+  ]
+ },
+ {
+  "fil": "src/app/o/[slug]/bad/page.tsx",
+  "gammal": "<li>Hunden får inte springa lös i naturen 1 mars–20 augusti. I naturreservat kan föreskrifterna kräva koppel hela året, så läs skyltarna på plats.</li>",
+  "ny": "<li>Hunden får inte springa lös i naturen 1 mars–20 augusti. I nationalparker ska den alltid vara kopplad, och i naturreservat kan föreskrifterna kräva koppel hela året, så läs skyltarna på plats.</li>",
+  "rader": [
+   "mall-0211",
+   "mall-0212"
+  ]
+ }
+]

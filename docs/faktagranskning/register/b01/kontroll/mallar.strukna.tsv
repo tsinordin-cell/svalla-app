@@ -1,0 +1,8 @@
+kid	sida	fil:rad	struken text
+mallar-s001	/o/*	src/app/o/[slug]/page.tsx:203	isAccessibleForFree: true
+mallar-s002	/o/*	src/app/o/[slug]/page.tsx:241-244	'@type': 'OpeningHoursSpecification', description: `Säsong: ${island.seasonal.open}. Bäst tid: ${island.seasonal.best}.`
+mallar-s003	/o/*	src/app/o/[slug]/page.tsx:245-246	validFrom: '2026-05-01'
+mallar-s004	/o/*	src/app/o/[slug]/page.tsx:245,247	validThrough: '2026-10-31'
+mallar-s005	/o/*	src/app/o/[slug]/page.tsx:268-279; src/components/FAQSection.tsx:29-47 (anrop src/app/o/[slug]/page.tsx:1039-1043)	'@type': 'FAQPage', mainEntity: getFaqsForIsland(island).map(…)
+mallar-s006	/o/*	src/app/o/[slug]/page.tsx:1473-1478	De bästa öarna hittar du inte via Google.
+mallar-s007	/o/*/aktiviteter	src/app/o/[slug]/aktiviteter/page.tsx:35,48	Komplett aktivitetsguide.
