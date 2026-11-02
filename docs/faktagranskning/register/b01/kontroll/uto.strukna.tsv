@@ -1,0 +1,8 @@
+kid	sida	fil:rad	struken text
+uto-s001	/o/uto	src/app/o/island-data.ts:470	Det är ett annat perspektiv på skärgårdsliv än fiskebyar och seglarhamnar: industriellt arbete i en ömiljö.
+uto-s002	/o/uto	src/app/o/island-data.ts:498	ovanligt monumental för en ö av den här storleken
+uto-s003	/o/uto	src/app/o/island-data.ts:498	och en direkt följd av att här fanns en industri som kunde betala
+uto-s004	/o/uto	src/app/o/island-data.ts:504	Ön gick alltså direkt från gruvbolag till naturvårdsförvaltning, utan mellanled.
+uto-s005	/o/uto/restauranger, /upptack/uto-bykrog	restaurants.uto-bykrog.description	vid vägen mellan Gruvbyn och Ålö
+uto-s006	/o/uto/restauranger, /upptack/bakgarden-uto	restaurants.bakgarden-uto.description	Under sommaren finns också ett kafé.
+uto-s007	— (datafält; syns inte på ösidorna i renderingen 2026-10-29)	src/app/o/island-data.ts:627	amenities.atm = false → det finns ingen bankomat på ön

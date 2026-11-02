@@ -2,6 +2,47 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-02 23:05 — Styrsö och Husarö granskade; P0 runda 4 gav två fynd; P0 13 och 14
+
+- **Styrsö (MÄTT):** 503 rader (+2 nya). KORREKT 444, FEL 27, DELVIS 25,
+  OBELAGD 7. 31 ersättningar, 1 UPDATE. Inga nya P0. Till Tom: radie 2,0 km,
+  Donsö Hamnkrog → Isbolaget, mejl till Bastubryggan Brännö.
+- **Husarö (MÄTT):** 297 rader (+4 nya). KORREKT 241, DELVIS 23, FEL 13,
+  OBELAGD 12, INAKTUELL 6, MOTSTRIDIG 2. 15 ersättningar, 6 UPDATE (WHERE
+  inte kontrollerade mot databasen). Till Tom: radie 1,5 km, regionetiketten.
+- **P0 13 (Husarö, databasen):** gästhamnens text sa att det går att tanka
+  med kortautomat året runt; verksamheten skriver att macken är stängd i
+  väntan på tillstånd. **P0 14 (Söder-Långholm, databasen):** texten sa att
+  Cinderella trafikerar Finnhamn; Strömmas tidtabell 2026 har ingen brygga
+  där. Båda står i husaro.sql och läggs in direkt när Supabase är uppe. Medan
+  databasen är pausad syns texterna inte.
+- **Kontrollant P0 runda 4 (MÄTT):** 6 OK, 2 FEL. (1) 740098250 är ResRobots
+  grupp "VAXHOLM", inte bryggan (Vaxholm Hotellkajen, 740020991), och
+  påståendet om avgångsrutan var fel: den visar även buss 670, vilket noten
+  säger. (2) Rubriken med destStopName namngav inte bryggan för Grinda
+  (gruppen "GRINDA"; sista båten från Norra och Södra går olika tider) och
+  hade gett busshållplatser som brygga. Rättat: rubriken tar första
+  färjebenets avgångshållplats ur ResRobot, och filtret kontrollerar också
+  allLegs (ett bussben utan linjenummer räknades som promenad). verify-claims,
+  705 tester och tsc gröna. Runda 5 pågår (Vaxholm, filtret, rubriken, P0
+  13–14).
+- **Regeln om full kontroll (Redaktörens läsning):** Kontrollanten menade
+  att två fynd utlöser full kontroll av alla KORREKT-rader. I uppdraget står
+  regeln direkt efter stickprovet ("ett slumpat stickprov på 30 KORREKT-rader
+  per batch. Två fynd eller fler → …") och gäller fynd i stickprovet. Fynd i
+  ändrade rader går tillbaka till Skribenten. Batchens stickprov (30 rader)
+  dras när alla öar är granskade. De 30 per ö i Storholmens underlag är inte
+  batchens stickprov.
+- **Kontrollanter:** underlag klart för åtta öar: ändrade, nya och
+  högriskrader. Källistan kontrolleras mekaniskt av Vakten efter
+  omgenereringen, och EJ NÅBAR-raderna väntar tills sidorna är lästa.
+  Fjäderholmarna (116 rader) och Utö (133) pågår. Kvar: Möja 160, Sandhamn
+  182, Grinda 128, Vaxholm 169, Styrsö 95, Husarö 82, Storholmen efter
+  omarbetning. Kontrollfilerna säkerhetskopieras i `register/b01/kontroll/`.
+- Agenter nu (fyra): Granskare sidmallarna, Kontrollant P0 runda 5,
+  Kontrollant Fjäderholmarna, Kontrollant Utö.
+- beslut-tom.md: punkt 2, 3, 5c, 5d, 6 och 7 uppdaterade eller nya.
+
 ## 2026-11-02 22:26 — Omstart på Opus; P0 11 (Styrsö) och P0 12 (Husarö)
 
 Fable-krediterna tog slut cirka 17:30 och stoppade fyra agenter efter några

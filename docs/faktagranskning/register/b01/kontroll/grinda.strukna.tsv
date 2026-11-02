@@ -1,0 +1,5 @@
+kid	sida	fil:rad	struken text
+grinda-s001	/o/grinda	render:/o/grinda	isAccessibleForFree: true → Grinda kan besökas gratis
+grinda-s002	/aktivitet/kajak	src/app/o/island-data.ts:1024	lätt → kajakpaddlingen vid Grinda är lätt
+grinda-s003	(renderas inte)	src/app/o/island-data.ts:1049	false → det finns ingen bankomat på ön
+grinda-s004	(renderas inte)	src/app/o/island-data.ts:1001	romantik

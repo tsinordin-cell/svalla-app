@@ -1,0 +1,4 @@
+kid	sida	fil:rad	struken text
+storholmen-s001	/o/storholmen	render:/o/storholmen	isAccessibleForFree = true → Storholmen är tillgänglig utan avgift
+storholmen-s002	/o/storholmen	src/app/o/island-data.ts:5872	innerskärgård
+storholmen-s003	/o/storholmen	src/app/o/kallor.generated.ts:4935	Stod tidigare «Waxholmsbolaget från Strömkajen/Nybrokajen sommartid, 40 min» — fel avgångsplats och säsong.

@@ -1,0 +1,215 @@
+[
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    slug: 'husaro',\n    name: 'Husarö',",
+  "ny": "    slug: 'husaro',\n    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Husar%C3%B6 — \"Husarö\", \"Österåker | Natur- och terrängnamn\" (läst 2026-11-02)\n    name: 'Husarö',",
+  "rader": [
+   "husaro-0001"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Husarö är ett gammalt lotssamhälle mellan Ljusterö och Möja. Bebyggelsen är från 1800-talet och ligger tätt samlad vid hemmaviken.\" (läst 2026-09-27)\n    // KÄLLA: https://www.husaro.se/om-husaro/ — \"Utställningar om lotsar hittar du på öns lotsmuseum\" (läst 2026-09-27)\n    tagline: 'Gammalt lotssamhälle mellan Ljusterö och Möja — by från 1800-talet, badvikar och lotsmuseum.',",
+  "ny": "    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Husarö är ett gammalt lotssamhälle mellan Ljusterö och Möja. Bebyggelsen är från 1800-talet och ligger tätt samlad vid hemmaviken.\" (läst 2026-10-29)\n    // KÄLLA: https://www.husaro.se/om-husaro/ — \"Utställningar om lotsar hittar du på öns lotsmuseum\" (läst 2026-10-29)\n    // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Badplatserna Sandholmen, Badviken, Bockholmen och Kallviken är några exempel.\" (läst 2026-10-29)\n    // Rättad 2026-11-02: \"badvikar\" är nu \"badplatser\" – källan nämner badplatser, och bara två av de fyra är vikar.\n    tagline: 'Gammalt lotssamhälle mellan Ljusterö och Möja — by från 1800-talet, badplatser och lotsmuseum.',",
+  "rader": [
+   "husaro-0012",
+   "husaro-0009",
+   "husaro-0010",
+   "husaro-0011",
+   "husaro-0013"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Husarö är ett gammalt lotssamhälle mellan Ljusterö och Möja. Bebyggelsen är från 1800-talet och ligger tätt samlad vid hemmaviken.\", \"Numera finns endast några enstaka bofasta på Husarö men sommartid är det desto livligare.\" (läst 2026-09-27)\n      // KÄLLA: https://www.husaro.se/om-husaro/ — \"Husarö, som ligger i Österåkers kommun, är ungefär 2,5 km lång.\" (läst 2026-09-27)\n      'Husarö är ett gammalt lotssamhälle mellan Ljusterö och Möja, i Österåkers kommun. Byns hus är från 1800-talet och ligger tätt samlade vid hemmaviken. Numera finns bara några enstaka bofasta, men sommartid är det desto livligare.',",
+  "ny": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Husarö är ett gammalt lotssamhälle mellan Ljusterö och Möja. Bebyggelsen är från 1800-talet och ligger tätt samlad vid hemmaviken.\", \"men sommartid är det desto livligare\" (läst 2026-10-29)\n      // KÄLLA: https://www.husaro.se/om-husaro/ — \"Husarö, som ligger i Österåkers kommun, är ungefär 2,5 km lång.\" (läst 2026-10-29)\n      // KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/MI/MI0812/MI0812A/OarEjBro01 — \"0117Q104 Husarö; 2020; 27; 409; 146\" (läst 2026-11-02)\n      // Rättad 2026-11-02: länsmuseets \"några enstaka bofasta\" stod mot SCB:s 27 folkbokförda den 31 december 2020; SCB gäller. SCB-citatet är tabellens rad för Husarö: kod, år, folkbokförda, byggnader, bostadsbyggnader.\n      'Husarö är ett gammalt lotssamhälle mellan Ljusterö och Möja, i Österåkers kommun. Byns hus är från 1800-talet och ligger tätt samlade vid hemmaviken. Den 31 december 2020 var 27 personer folkbokförda på ön enligt SCB, och sommartid är det betydligt livligare.',",
+  "rader": [
+   "husaro-0087",
+   "husaro-0088",
+   "husaro-0082",
+   "husaro-0083",
+   "husaro-0084",
+   "husaro-0085",
+   "husaro-0086"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.husaro.se/om-husaro/ — \"Kulturlandskap med ängar och lövträd, som skiftar under vandringen till vacker tallskog och släta klippor.\" (läst 2026-09-27)",
+  "ny": "      // KÄLLA: https://www.husaro.se/om-husaro/ — \"Kulturlandskap med ängar och lövträd, som skiftar under vandringen till vacker tallskog och släta klippor.\", \"Husarö, som ligger i Österåkers kommun, är ungefär 2,5 km lång.\", \"Till fots kan man gå på upptäcktsfärd på ön.\" (läst 2026-10-29)",
+  "rader": [
+   "husaro-0089",
+   "husaro-0090",
+   "husaro-0091",
+   "husaro-0092",
+   "husaro-0093"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "Ön är ungefär 2,5 km lång — allt nås till fots.",
+  "ny": "Ön är ungefär 2,5 km lång och går att upptäcka till fots.",
+  "rader": [
+   "husaro-0093"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.husaro.se/att-se-och-gora/ — \"Sista lördagen i juli varje år firas Husarödagen med bl.a Husarömaran … skärgårdsmarknad och visning av … i Sundströmska lotsgården.\" (läst 2026-09-27)",
+  "ny": "      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Sista lördagen i juli varje år firas Husarödagen med bland annat Husarömaran, skärgårdsmarknad och visning av lotsmuseet i Sundströmska Lotsgården.\", \"Husarömaran är ett återkommande motionslopp där deltagarna springer runt ön.\" (läst 2026-10-29)",
+  "rader": [
+   "husaro-0101",
+   "husaro-0102",
+   "husaro-0103",
+   "husaro-0104",
+   "husaro-0105"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    facts: {\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Går under perioden 14 september - 12 december.\" (läst 2026-09-27). Restider Strömkajen–Husarö i tabellen (vår/höst 2026): söndag 08.40–11.45 och vardag 17.30–20.35 = 3 tim 5 min; lördag 08.30–11.45 = 3 tim 15 min; måndag–torsdag 08.15–12.10 = 3 tim 55 min.\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-09-27). Via Boda: 08.15–12.10 (3 tim 55 min), 15.30–19.10 (3 tim 40 min), 14.45–18.50 (4 tim 5 min).\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\" (läst 2026-09-27). Åsättra–Husarö t.ex. 14.05–14.50 och 16.10–16.55 = 45 min, 10.50–11.40 = 50 min.\n      travel_time: 'Ca 3–4 tim med Waxholmsbåt från Strömkajen (linje 12/13, snabbast 3 tim 5 min); ca 45–50 min från Åsättra på Ljusterö (linje 10)',\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Bebyggelsen är från 1800-talet och ligger tätt samlad vid hemmaviken.\", \"Numera finns endast några enstaka bofasta på Husarö\" (läst 2026-09-27)\n      // KÄLLA: http://husarohandel.se/ — \"det finns många grusvägar och stigar för vandring och badmöjligheter\" (läst 2026-09-27)\n      character: 'Lotsby från 1800-talet, grusvägar och stigar, några enstaka bofasta',\n      // UPPSKATTNING: säsongen är en bedömning; Waxholmsbolaget trafikerar Husarö året runt (https://stockholmslansmuseum.se/besoksmal/husaro/: \"Waxholmsbolaget trafikerar Husarö hela året.\").\n      season: 'Maj–September',\n      // KÄLLA: https://www.husaro.se/att-se-och-gora/ — \"På Husarö kan du bl.a vandra, bada, fiska.\" (läst 2026-09-27); http://husarohandel.se/ — \"Gästhamnen är en lång pontonbrygga\" (läst 2026-09-27)\n      best_for: 'Vandring, bad och fiske, båtfolk, lotshistoria',\n    },\n    facts_provenance: { travel_time: 'matt' },",
+  "ny": "    facts: {\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-10-31). Restid Strömkajen–Husarö uppmätt i tabellen 2026-10-31: söndag förmiddag 3 tim 5 min (tur 1271), fredag kväll 3 tim 5 min (tur 1227), lördag förmiddag 3 tim 15 min (tur 1251), måndag–torsdag förmiddag 3 tim 55 min (tur 1301).\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-10-31). Via Boda uppmätt i tabellen: måndag–torsdag förmiddag 3 tim 55 min (tur 1341), lördag eftermiddag 3 tim 40 min (tur 1353), måndag och tisdag eftermiddag 4 tim 5 min (tur 1303).\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-10-31). Åsättra–Husarö uppmätt i tabellen: 45–55 min för turer utan beställning (45 min tur 1005 och 1007, 50–55 min tur 1003 och 1023).\n      travel_time: 'Ca 3–4 tim med Waxholmsbåt från Strömkajen (linje 12/13, snabbast 3 tim 5 min); 45–55 min från Åsättra på Ljusterö (linje 10)',\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Bebyggelsen är från 1800-talet och ligger tätt samlad vid hemmaviken.\" (läst 2026-10-29)\n      // KÄLLA: http://husarohandel.se/ — \"det finns många grusvägar och stigar för vandring och badmöjligheter\" (läst 2026-10-29)\n      // KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/MI/MI0812/MI0812A/OarEjBro01 — \"0117Q104 Husarö; 2020; 27; 409; 146\" (läst 2026-11-02)\n      character: 'Lotsby från 1800-talet, grusvägar och stigar, 27 folkbokförda (2020)',\n      // UPPSKATTNING (visas som Vår bedömning): sommarsäsongen följer av att lanthandeln serverar mat under sommarperioden och att scoutgården används främst sommarhalvåret. Båten går hela året.\n      // KÄLLA: https://www.husaro.se/lankar/ — \"Under sommarperioden serveras även lättare maträtter och du kan njuta av en öl eller ett glas vin.\" (läst 2026-10-29)\n      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Scoutgården används framförallt till scoutlägren under sommarhalvåret, men hyrs också ut till konferenser, skolklasser och annan verksamhet.\" (läst 2026-10-29)\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Waxholmsbolaget trafikerar Husarö hela året.\" (läst 2026-10-29)\n      season: 'Maj–September',\n      // KÄLLA: https://www.husaro.se/att-se-och-gora/ — \"På Husarö kan du bl.a vandra, bada, fiska.\" (läst 2026-10-29)\n      // KÄLLA: http://husarohandel.se/ — \"Gästhamnen är en lång pontonbrygga med Y-bommar och mooringlinor och bojar.\" (läst 2026-10-29)\n      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Utställningar om lotsar hittar du på öns lotsmuseum, där du kan ta del av öns historia.\" (läst 2026-10-29)\n      best_for: 'Vandring, bad och fiske, båtfolk, lotshistoria',\n    },\n    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },",
+  "rader": [
+   "husaro-0022",
+   "husaro-0029",
+   "husaro-0030",
+   "husaro-0031",
+   "husaro-0211",
+   "husaro-0212",
+   "husaro-0213",
+   "husaro-0214",
+   "husaro-0215",
+   "husaro-0218",
+   "husaro-0219",
+   "husaro-0220",
+   "husaro-0222",
+   "husaro-0223",
+   "husaro-0224",
+   "husaro-0025",
+   "husaro-0026",
+   "husaro-0027",
+   "husaro-0028"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "Inre delen av hamnen har begränsat djup och rekommenderas inte för segelbåtar. Husarö var officiell lotsplats 1740–1912.' },",
+  "ny": "Husarö Handel rekommenderar inte hamnens inre del för segelbåtar. Husarö var officiell lotsplats 1740–1912.' },",
+  "rader": [
+   "husaro-0127",
+   "husaro-0128"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst\" (läst 2026-09-27); se restider under facts.\n      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Ta bussen från Åkersberga station till Åsättra brygga på Ljusterö. Därifrån tar du färjan vidare till Husarö och våra andra öar.\" (läst 2026-09-27)\n      { method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 3–4 tim', desc: 'Linje 12 och 13 via Vaxholm, snabbast 3 tim 5 min enligt vår- och hösttidtabellen 2026. Kortare båtresa: buss från Åkersberga station till Åsättra brygga på Ljusterö och linje 10 därifrån, ca 45–50 min. Vissa turer angör bara efter beställning (b i tidtabellen).', icon: '⛴' },",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst\" (läst 2026-10-31); se restider under facts.\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\" (läst 2026-10-31). Anmärkningarna b, B och C i tabell 10, 12 och 13 är beställningsturer; C beställs dagen före.\n      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Ta bussen från Åkersberga station till Åsättra brygga på Ljusterö. Därifrån tar du färjan vidare till Husarö och våra andra öar.\" (läst 2026-10-29)\n      { method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 3–4 tim', desc: 'Linje 12 och 13 via Vaxholm, snabbast 3 tim 5 min enligt vår- och hösttidtabellen 2026. Kortare båtresa: buss från Åkersberga station till Åsättra brygga på Ljusterö och linje 10 därifrån, 45–55 min. Vissa turer går eller angör bara efter beställning (b, B eller C i tidtabellen).', icon: '⛴' },",
+  "rader": [
+   "husaro-0168",
+   "husaro-0169",
+   "husaro-0197",
+   "husaro-0284",
+   "husaro-0293",
+   "husaro-0158",
+   "husaro-0159",
+   "husaro-0160",
+   "husaro-0161",
+   "husaro-0162",
+   "husaro-0163",
+   "husaro-0164",
+   "husaro-0165",
+   "husaro-0166",
+   "husaro-0167"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "så elen är avstängd. Nya toaletter i kommunens regi, men inget färskvatten.'",
+  "ny": "så elen är avstängd. Toaletter i kommunens regi, men inget färskvatten.'",
+  "rader": [
+   "husaro-0181"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: http://husarohandel.se/ — \"Tyvärr finns inget färskvatten. Det finns däremot på vår andra mack vid Klintsundet som ligger tvärs över Gälnan.\", \"stängt av elen\" (läst 2026-09-27)",
+  "ny": "      // KÄLLA: http://husarohandel.se/ — \"Tyvärr finns inget färskvatten. Det finns däremot på vår andra mack vid Klintsundet som ligger tvärs över Gälnan.\", \"stängt av elen\" (läst 2026-09-27)\n      // KÄLLA: http://husarohandel.se/husar-handel---om-oss — \"vårt andra ställe på Ljusterö, vid Klintsundet\" (läst 2026-10-29)",
+  "rader": [
+   "husaro-0190"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Du kan söka på hela sträckan Åkersberga–Husarö direkt i SL-appen.\" (läst 2026-09-27); https://kund.printhuset-sthlm.se/wa/h10.pdf — \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\" (läst 2026-09-27)\n      'Kortaste båtresan går från Åsättra på Ljusterö med linje 10, ca 45–50 minuter. Dit går buss från Åkersberga station, och hela sträckan går att söka i SL-appen.',",
+  "ny": "      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Ta bussen från Åkersberga station till Åsättra brygga på Ljusterö.\", \"Du kan söka på hela sträckan Åkersberga–Husarö direkt i SL-appen.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-10-31). Åsättra–Husarö uppmätt i tabellen: 45–55 min för turer utan beställning.\n      'Kortaste båtresan går från Åsättra på Ljusterö med linje 10, 45–55 minuter. Dit går buss från Åkersberga station, och hela sträckan går att söka i SL-appen.',",
+  "rader": [
+   "husaro-0194",
+   "husaro-0192",
+   "husaro-0193",
+   "husaro-0195",
+   "husaro-0196"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    tags: ['bilfri', 'orört', 'segling', 'vandring', 'lugnt'],",
+  "ny": "    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Mellan 1740 och 1912 var Husarö officiell lotsplats och under segelsjöfartens storhetstid vid slutet av 1800-talet arbetade ett 20-tal lotsar på Husarö.\" (läst 2026-10-29)\n    // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Långt ut i Österåkers yttersta skärgård hittar du Husarö.\", \"Badplatserna Sandholmen, Badviken, Bockholmen och Kallviken är några exempel.\" (läst 2026-10-29)\n    // KÄLLA: https://www.husaro.se/att-se-och-gora/ — \"På Husarö kan du bl.a vandra, bada, fiska.\", \"simskola, seglarskola och simtävlingen\" (läst 2026-10-29)\n    // Rättad 2026-11-02: \"bilfri\", \"orört\" och \"lugnt\" saknade källa och är utbytta mot belagda taggar.\n    tags: ['historia', 'ytterskärgård', 'segling', 'vandring', 'bad'],\n    // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Badplatserna Sandholmen, Badviken, Bockholmen och Kallviken är några exempel.\" (läst 2026-10-29)\n    activity_meta: {\n      bad: { beaches: ['Sandholmen', 'Badviken', 'Bockholmen', 'Kallviken'] },\n    },",
+  "rader": [
+   "husaro-0004",
+   "husaro-0005",
+   "husaro-0006",
+   "husaro-0007",
+   "husaro-0008",
+   "husaro-N001",
+   "husaro-N002",
+   "husaro-N003",
+   "husaro-N004",
+   "husaro-0288"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"I den så kallade kung Valdemars jordebok från 1200-talet som är den äldsta seglingsbeskrivningen genom skärgården, finns Husarö med under namnet Husarn.\", \"Mellan 1740 och 1912 var Husarö officiell lotsplats och under segelsjöfartens storhetstid vid slutet av 1800-talet arbetade ett 20-tal lotsar på Husarö.\" (läst 2026-09-27)\n    // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"På ön finns också Elsa Beskows hus där hon hämtat inspiration till boken Puttes äventyr i Blåbärsskogen.\" (läst 2026-09-27); https://www.husaro.se/om-husaro/ — \"Husarö bedöms vara av riksintresse för kulturmiljövården.\" (läst 2026-09-27). OBS: Skärgårdsstiftelsens Lilla Husarn är en annan ö vid Nämdö.\n    did_you_know: 'Husarö finns med redan i kung Valdemars jordebok från 1200-talet, då som \"Husarn\". Ön var officiell lotsplats 1740–1912 med ett tjugotal lotsar när segelsjöfarten var som störst. Elsa Beskow hade sitt sommarhus här, och byn är i dag riksintresse för kulturmiljövården.',",
+  "ny": "    // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"I den så kallade kung Valdemars jordebok från 1200-talet, den äldsta seglingsbeskrivningen genom skärgården, finns Husarö med under namnet Husarn.\", \"Mellan 1740 och 1912 var Husarö officiell lotsplats och under segelsjöfartens storhetstid vid slutet av 1800-talet arbetade ett 20-tal lotsar på Husarö.\" (läst 2026-10-29)\n    // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"På ön finns också Elsa Beskows hus där hon hämtat inspiration till boken Puttes äventyr i Blåbärsskogen.\", \"Än idag kan du se Elsa Beskows hus som står kvar på ön.\" (läst 2026-10-29)\n    // KÄLLA: https://www.osteraker.se/download/18.5f4ce35f18ecbde71802569/1715001988339/Bilaga%202.%20L%C3%A4nsstyrelsens%20underlag,%20daterad%20220124.pdf — \"Följande riksintressen har tagits bort: Husarö-Ingmarsö-Svartsö\" (läst 2026-11-02). Länsstyrelsen i Stockholms läns underlag till Österåkers kommun 2022-01-24; hela namnet är Husarö-Ingmarsö-Svartsö-Gällna-Hjälmö.\n    // Rättad 2026-11-02: \"Elsa Beskow hade sitt sommarhus här\" (källan säger hus) och \"byn är i dag riksintresse för kulturmiljövården\" (riksintresset är borttaget).\n    // OBS: Skärgårdsstiftelsens Lilla Husarn är en annan ö, ett naturreservat mellan Jungfrufjärden och Nämdöfjärden.\n    did_you_know: 'Husarö finns med redan i kung Valdemars jordebok från 1200-talet, då som \"Husarn\". Ön var officiell lotsplats 1740–1912 med ett tjugotal lotsar när segelsjöfarten var som störst. På ön står Elsa Beskows hus, och ön gav henne inspiration till boken Puttes äventyr i Blåbärsskogen. Byn ingick tidigare i riksintresset för kulturmiljövården Husarö–Ingmarsö–Svartsö–Gällna–Hjälmö, men det har tagits bort.',",
+  "rader": [
+   "husaro-0053",
+   "husaro-0054",
+   "husaro-0048",
+   "husaro-0049",
+   "husaro-0050",
+   "husaro-0051",
+   "husaro-0052",
+   "husaro-0207",
+   "husaro-0208",
+   "husaro-0209",
+   "husaro-0237",
+   "husaro-0238"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    seasonal: {\n      open: 'Maj–September',\n      peak: 'Juli',\n      best: 'Juni',\n      // KÄLLA: http://husarohandel.se/ — \"det finns många grusvägar och stigar för vandring och badmöjligheter\" (läst 2026-09-27); https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Badplatserna Sandholmen, Badviken, Bockholmen och Kallviken är några exempel.\" (läst 2026-09-27)\n      bestReason: 'Försommar före högsäsongen: gå grusvägarna och stigarna mellan byn och klipporna och bada vid Sandholmen, Badviken, Bockholmen eller Kallviken.',\n      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],",
+  "ny": "    seasonal: {\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Waxholmsbolaget trafikerar Husarö hela året.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-10-31)\n      // Rättad 2026-11-02: open var 'Maj–September' och januari–april samt november–december visades som Stängt, fast båten går hela året.\n      open: 'Hela året',\n      // UPPSKATTNING: högsäsong och bästa tid är Svallas bedömning (sommarservering, scoutläger, Husarödagen sista lördagen i juli).\n      peak: 'Juli',\n      best: 'Juni',\n      // KÄLLA: http://husarohandel.se/ — \"det finns många grusvägar och stigar för vandring och badmöjligheter\" (läst 2026-10-29)\n      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Badplatserna Sandholmen, Badviken, Bockholmen och Kallviken är några exempel.\" (läst 2026-10-29)\n      bestReason: 'Försommar före högsäsongen: gå grusvägarna och stigarna mellan byn och klipporna och bada vid Sandholmen, Badviken, Bockholmen eller Kallviken.',\n      months: ['limited','limited','limited','limited','limited','open','peak','peak','open','limited','limited','limited'],",
+  "rader": [
+   "husaro-0055",
+   "husaro-0056",
+   "husaro-0057",
+   "husaro-0058",
+   "husaro-0065",
+   "husaro-0066",
+   "husaro-0071",
+   "husaro-0072",
+   "husaro-0059",
+   "husaro-0060",
+   "husaro-0061",
+   "husaro-0062",
+   "husaro-0063",
+   "husaro-0064",
+   "husaro-0067",
+   "husaro-0068",
+   "husaro-0069",
+   "husaro-0070",
+   "husaro-0073"
+  ]
+ }
+]

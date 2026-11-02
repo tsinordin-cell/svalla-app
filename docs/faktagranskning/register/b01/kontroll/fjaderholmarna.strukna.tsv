@@ -1,0 +1,5 @@
+kid	sida	fil:rad	struken text
+fjaderholmarna-s001	/o/fjaderholmarna	render:/o/fjaderholmarna	isAccessibleForFree: true → det kostar inget att besöka Fjäderholmarna
+fjaderholmarna-s002	/o/fjaderholmarna	src/app/o/island-data.ts:1527	Vilka som är på plats varierar mellan säsonger.
+fjaderholmarna-s003	/o/fjaderholmarna, /o/fjaderholmarna/hamnar	src/app/o/island-data.ts:1602	hamndjup 1–8 meter
+fjaderholmarna-s004	/upptack/fjaderholmarnas-gasthamn	restaurants.fjaderholmarnas-gasthamn.description	Hamndjupet är mellan 1 och 8 meter

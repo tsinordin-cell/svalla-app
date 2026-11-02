@@ -1,0 +1,5 @@
+kid	sida	fil:rad	struken text
+p0-s013	/o/kymmendo	src/lib/transit-stops.ts (kymmendo.note)	Strindbergs ö — Waxholmsbåt från Dalarö eller Nynäshamn. (ersatt: Nynäshamn utan säsong)
+p0-s014	/o/fjardlang	src/lib/transit-stops.ts (fjardlang.note)	Direkt Waxholmsbåt från Nynäshamn, inga byten.
+p0-s015	/o/sandhamn	src/lib/transit-stops.ts (sandhamn.note)	Snabbast via buss 434 till Stavsnäs och Waxholmsbåten därifrån.
+p0-s016	/o/uto	src/lib/transit-stops.ts (uto.note)	buss 846 (busslinjens nummer struket ur noten)

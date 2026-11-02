@@ -47,6 +47,9 @@ innehåll som beslutskortet på svalla.se/team.
   belagda indelningen där den finns.
 - **Nej:** etiketterna byts till belagda namn ö för ö, och regionlistorna
   byggs om. Det är en större ändring av sajtens struktur.
+- **Samma fråga på fler öar:** Sandhamn (Länsstyrelsen och Waxholmsbolaget:
+  yttre skärgården) och Husarö (Österåkers kommun: "Långt ut i Österåkers
+  yttersta skärgård") har etiketten "Mellersta skärgården".
 
 ### 3. GPS-radien: turtaggningen missar delar av Möja och Utö (beslut, rör appen)
 - **Läget (MÄTT i OSM och ResRobot 2026-10-29):** radien i `islandCoords.ts`
@@ -63,8 +66,16 @@ innehåll som beslutskortet på svalla.se/team.
 - **Vad jag gör utan beslut:** platslistorna får en egen platsradie
   (`platsRadieKm`) med de uppmätta värdena, och nålarna rättas: Storholmens
   låg 40 km fel och Fjäderholmarnas låg i vattnet. GPS-radien rörs inte.
-- **Förslag:** höj Möja till 3,5 km och Utö enligt (b). Låt Storholmen och
-  Fjäderholmarna stå kvar på 1,5 km tills turtaggningen har prövats.
+  - **Styrsö (saknas i islandCoords.ts, standardradien 3 km används):**
+    platser på Donsö och Brännö räknas som "på Styrsö", och sidan säger 8
+    restauranger där rätt antal är 5. MÄTT 2026-11-02: sydspetsen ligger
+    1,99 km från nålen, Donsös närmaste strand 1,55 km. Med 2,0 km räknas
+    alltså norra Donsö ändå in vid GPS-taggning.
+  - **Husarö (2,0 km):** hela ön ryms inom 1,32 km, och 2,0 km tar med
+    Särsös brygga (1,66 km).
+- **Förslag:** höj Möja till 3,5 km och Utö enligt (b), lägg till Styrsö med
+  2,0 km och sänk Husarö till 1,5 km. Låt Storholmen och Fjäderholmarna stå
+  kvar på 1,5 km tills turtaggningen har prövats.
 - **Ja:** GPS-radierna ändras i batch 01:s PR. **Nej:** inget ändras i
   turtaggningen.
 
@@ -102,6 +113,24 @@ innehåll som beslutskortet på svalla.se/team.
   bara hos KSSS, och ingen sjötrafikföreskrift från Länsstyrelsen hittades.
   Siffran är struken, men KSSS uppmaning att tänka på svallet står kvar.
 
+### 5c. Styrsö: "Donsö Hamnkrog" finns inte (ändrar vilken verksamhet posten gäller)
+- Ingen tillåten källa nämner en Donsö Hamnkrog. Postens webbplats är Donsö
+  hamns, och nålen är densamma som gästhamnens. Donsö hamns egen sida och
+  Västsveriges sammanställning (regionalt destinationsbolag, nivå 3) har
+  Isbolaget i hamnen.
+- **Ja:** posten görs om till Isbolaget Hotell & Restaurang med belagd text
+  och uppmätt nål (färdig text i `register/b01/ut/styrso.tom.md`). **Nej:**
+  posten står kvar utan belägg.
+
+### 5d. Vaxholm: två platser som hänger på sidor bakom inloggning
+- **Vaxholms Hembygdsgårds Café:** enda källan är kaféets Facebooksida.
+  Bekräftar den kaféet (senaste inlägget högst 12 månader gammalt) står
+  posten kvar. Annars föreslås Hembygdsmuseet i Norrhamnen i stället, vilket
+  är en ny post och kräver ditt ja.
+- **Waxholms Gästhamn & Rent Under Båtbotten tvätt:** rentunder.se går inte
+  att läsa härifrån. Har Rent Under ingen tvätt i Vaxholms gästhamn byts
+  namnet till Vaxholms Gästhamn.
+
 ### 6. Mejl till verksamheter (färdiga, på mejlkortet på /team)
 Tills svar finns står den belagda generaliseringen.
 - Runmarö Lanthandel: finns "Runmarö Bryggkiosk"? (storholmen.tom.md)
@@ -110,3 +139,16 @@ Tills svar finns står den belagda generaliseringen.
   webbplatser: Delsholmen Entreprenad, Anderssons Båtvarv, Jowa Elektriska
   och Hellström Marin. Svarar de nej försvinner två av dem helt från Svalla,
   och det är en radering av hela poster. (moja.tom.md)
+- Jowa Elektriska listas också under Vaxholm. Frågan läggs i samma mejl.
+  Svarar de nej försvinner /o/vaxholm/hantverkare, där Jowa är enda posten.
+  (vaxholm.tom.md)
+- Bastubryggan Brännö: var ligger bastun? Nålen ligger i vattnet vid Vargö.
+  (styrso.tom.md)
+
+### 7. Sidor som bara går att läsa i en inloggad webbläsare (EJ NÅBAR, blockerar batchen)
+38 rader. Facebook: Café Strindbergsgården (Sandhamn), Vaxholms
+Hembygdsgårds Café. Instagram: Café Ankaret (Sandhamn). Dessutom
+rentunder.se, Bolagsverket (OCT Entreprenads säte), Elsäkerhetsverkets
+register (Jowa), wallnermarin.se, hhmarin.se och finnhamn.se (Möja) och
+bildens filsida på Commons (Storholmen). Redaktören kan läsa dem i din Chrome
+via Claude-tillägget om det är igång; annars behöver du läsa dem.

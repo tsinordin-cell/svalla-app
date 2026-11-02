@@ -209,7 +209,7 @@ index 998324b..01dd619 100644
              marginTop: 14, paddingTop: 12,
              borderTop: '1px solid rgba(255,255,255,0.12)',
 diff --git a/src/components/LastBoatPanel.tsx b/src/components/LastBoatPanel.tsx
-index 4cacb56..329b385 100644
+index 4cacb56..fc8e94b 100644
 --- a/src/components/LastBoatPanel.tsx
 +++ b/src/components/LastBoatPanel.tsx
 @@ -47,6 +47,8 @@ interface ApiResponse {
@@ -221,18 +221,21 @@ index 4cacb56..329b385 100644
    outbound: TripSummary | null
    return: TripSummary | null
    checkedAt: string
-@@ -149,7 +151,9 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
+@@ -149,7 +151,12 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
          <h2 id="last-boat-title" style={{
            fontSize: 15, fontWeight: 700, margin: 0, letterSpacing: '-0.2px',
          }}>
 -          Sista båten från {islandName} idag
-+          {/* P0 2026-11-02: rubriken namnger bryggan som tiden gäller. På öar med
-+              flera bryggor (Styrsö: Bratten och Tången) går sista båten olika tider. */}
-+          Sista båten från {data.destName || islandName} idag
++          {/* P0 2026-11-02: rubriken namnger bryggan där båten i kortet går, alltså
++              första färjebenets avgångshållplats enligt ResRobot. På öar med flera
++              bryggor (Styrsö: Bratten och Tången; Grinda: Norra och Södra) går
++              sista båten olika tider, och destStopName kan vara en grupp av
++              hållplatser eller en busshållplats. */}
++          Sista båten från {bryggnamn(lastTrip.legs[0]?.fromName) || data.destName || islandName} idag
          </h2>
          {isCancelled ? (
            <span style={{
-@@ -234,6 +238,16 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
+@@ -234,6 +241,16 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
          </p>
        )}
  
@@ -249,6 +252,18 @@ index 4cacb56..329b385 100644
        <style>{`
          @keyframes lastBoatPulse {
            0%, 100% { box-shadow: 0 4px 22px ${glowColor}; }
+@@ -244,6 +261,11 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
+   )
+ }
+ 
++/** ResRobot-namn som "Styrsö Bratten (Göteborg kn)" → "Styrsö Bratten". */
++function bryggnamn(namn: string | undefined): string {
++  return (namn ?? '').replace(/\s*\([^()]*\bkn\)\s*$/i, '').trim()
++}
++
+ /**
+  * Beräknar minuter mellan nu (Europe/Stockholm) och `HH:MM` idag.
+  * Returnerar null om input är ogiltig. Negativt om tiden redan passerat.
 diff --git a/src/lib/ferries.ts b/src/lib/ferries.ts
 index 2d9e6b9..c7f1fe6 100644
 --- a/src/lib/ferries.ts
@@ -266,7 +281,7 @@ index 2d9e6b9..c7f1fe6 100644
      season: 'Helår',
      infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
 diff --git a/src/lib/trafiklab.ts b/src/lib/trafiklab.ts
-index b706995..b963811 100644
+index b706995..a561252 100644
 --- a/src/lib/trafiklab.ts
 +++ b/src/lib/trafiklab.ts
 @@ -416,10 +416,19 @@ export async function fetchLastTripOfDay(
@@ -293,7 +308,7 @@ index b706995..b963811 100644
  
    // Dedupa på startTime (samma trip kan dyka upp i båda anropen)
    const seen = new Set<string>()
-@@ -431,8 +440,12 @@ export async function fetchLastTripOfDay(
+@@ -431,8 +440,17 @@ export async function fetchLastTripOfDay(
      merged.push(t)
    }
  
@@ -301,15 +316,20 @@ index b706995..b963811 100644
 -  const todaysTrips = merged.filter(t => t.startDate === date)
 +  // Filtrera fram resor som FAKTISKT startar idag (ResRobot ger även resor nästa dag),
 +  // och bara resor där varje transportben är en färja (products-filtret styr
-+  // sökningen, men svaret kontrolleras ändå: catCode 8 = Ferries).
++  // sökningen, men svaret kontrolleras ändå: catCode 8 = Ferries). Kontrollen
++  // går också över allLegs: normalizeLeg räknar ben utan linjenummer som
++  // promenad, så ett bussben utan `line` skulle annars slinka igenom. Vid sidan
++  // av färjorna godtas bara ben helt utan trafikslag, alltså promenader.
++  const arFarja = (l: TripLeg) => l.catCode === '8' || l.cls === String(RESROBOT_PRODUKT_FARJA)
 +  const todaysTrips = merged.filter(t => t.startDate === date
 +    && t.legs.length > 0
-+    && t.legs.every(l => l.catCode === '8' || l.cls === String(RESROBOT_PRODUKT_FARJA)))
++    && t.legs.every(arFarja)
++    && t.allLegs.every(l => arFarja(l) || (l.catCode === undefined && l.cls === undefined)))
    if (todaysTrips.length === 0) return null
    // Sortera efter startTime (HH:MM stränger sorterar korrekt) — ta sista
    todaysTrips.sort((a, b) => a.startTime.localeCompare(b.startTime))
 diff --git a/src/lib/transit-stops.ts b/src/lib/transit-stops.ts
-index add4769..eb6739e 100644
+index add4769..0b4d477 100644
 --- a/src/lib/transit-stops.ts
 +++ b/src/lib/transit-stops.ts
 @@ -27,6 +27,13 @@ export interface IslandTransitConfig {
@@ -339,15 +359,18 @@ index add4769..eb6739e 100644
    },
    grinda: {
      destStopId: '740098471', destStopName: 'Grinda',
-@@ -45,14 +56,22 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -45,14 +56,25 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      note: 'Direktbåt med Waxholmsbolaget från Strömkajen sommartid.',
    },
    vaxholm: {
 -    destStopId: '740018045', destStopName: 'Vaxholm Västerhamnsplan',
 +    // P0 2026-11-02 (vaxholm-0078): Västerhamnsplan (740018045) är en
 +    // busshållplats, och "Sista båten" visade därför SL-buss 670 (20:02) när
-+    // sista båten enligt tabell 2B gick 18.25. Nu samma båtbrygga som
-+    // ferries.ts, "VAXHOLM" (plats 1 för q=Vaxholm i stop-lookup 2026-10-03).
++    // sista båten enligt tabell 2B gick 18.25. Nu samma id som ferries.ts,
++    // "VAXHOLM", som enligt Trafiklab är en grupp av hållplatser och inte en
++    // brygga (Kontrollanten 2026-11-02; bryggan heter Vaxholm Hotellkajen,
++    // 740020991). Kortet räknar bara färjor (trafiklab.ts) och namnger bryggan
++    // där båten går. Avgångsrutan visar även buss 670, som noten säger.
 +    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "2B VAXHOLM – HÖGANÄS – STOCKHOLM" (läst 2026-10-31)
 +    destStopId: '740098250', destStopName: 'Vaxholm',
      originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
@@ -365,7 +388,7 @@ index add4769..eb6739e 100644
    },
    finnhamn: {
      destStopId: '740020693', destStopName: 'Finnhamn brygga',
-@@ -70,10 +89,20 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -70,10 +92,20 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1
      // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.
      note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',
@@ -386,7 +409,7 @@ index add4769..eb6739e 100644
    },
    ingmarso: {
      destStopId: '740034607', destStopName: 'Ingmarsö Norra brygga',
-@@ -160,13 +189,19 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -160,13 +192,19 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
    },
    orno: {
      destStopId: '740034475', destStopName: 'Ornö Kyrka brygga',
@@ -409,7 +432,7 @@ index add4769..eb6739e 100644
    },
    bullero: {
      destStopId: '740076413', destStopName: 'Bullerö brygga',
-@@ -223,10 +258,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -223,10 +261,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      note: 'Buss 852 från Nynäshamn station. Torö nås över bro.',
    },
    fjardlang: {
@@ -427,7 +450,7 @@ index add4769..eb6739e 100644
    },
    rindo: {
      // 88 min, 3 byten, uppmätt 2026-08-05
-@@ -286,7 +325,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -286,7 +328,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      // 14 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
      destStopId: '740001213', destStopName: 'Styrsö Bratten',
      originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',

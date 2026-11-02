@@ -1,0 +1,3 @@
+kid	sida	fil:rad	struken text
+p0-s001	/farjor	src/lib/ferries.ts (wxb-uto.stops)	Årsta Brygga → Brandholmen → Dalarö → Ornö → Utö (helår)
+p0-s002	/o/uto (avgångsrutan)	src/lib/transit-stops.ts (uto.note)	Pendeltåg till Nynäshamn och Waxholmsbolaget därifrån.

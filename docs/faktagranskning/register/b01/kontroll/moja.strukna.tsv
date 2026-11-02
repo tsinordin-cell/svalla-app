@@ -1,0 +1,11 @@
+kid	sida	fil:rad	struken text
+moja-s001	/o/moja	src/app/o/island-data.ts:1278	ön har … bilar
+moja-s002	/o/moja/hamnar, /upptack/loka-gasthamn	restaurants.loka-gasthamn.description	ett hamndjup på 1,5–2 meter
+moja-s003	/o/moja/hamnar, /upptack/loka-gasthamn	restaurants.loka-gasthamn.description	hamnens västra del är mycket grund
+moja-s004	/o/moja/hamnar, /upptack/loka-gasthamn	restaurants.loka-gasthamn.description	Y-bommar installeras på gästplatserna
+moja-s005	/o/moja/hamnar, /upptack/loka-gasthamn	restaurants.loka-gasthamn.description	vilket begränsar båtbredden till 2,75 meter inklusive fendrar
+moja-s006	/o/moja, /o/moja/hantverkare	src/app/o/hantverkare-data.ts:252	Totalentreprenad
+moja-s007	/aktivitet/kajak	src/app/o/island-data.ts:1433	difficulty = lätt → kajakpaddling vid Möja är lätt (visas som Lätt)
+moja-s008	(visas inte på /o/moja-sidorna)	src/app/o/island-data.ts:1458	fiske = true → det går att fiska på Möja
+moja-s009	(visas inte på /o/moja-sidorna)	src/app/o/island-data.ts:1461	atm = false → det finns ingen uttagsautomat på ön
+moja-s010	/upptack/kyrkviken (visas inte på /o/moja/hamnar: dubblett av Kyrkviken gästhamn)	restaurants.kyrkviken.description	Hamndjupet är 1,8–2,5 meter
