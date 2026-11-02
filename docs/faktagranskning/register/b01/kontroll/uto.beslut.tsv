@@ -1,0 +1,25 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-02)
+uto-k026	uto-0068	FEL (klockslag i liveraden)	Inte FEL i datafilerna: liveraden är reseplanerarens tider (ögonblicksbild 2026-10-29 med den gamla koden).
+uto-k064	uto-0069	FEL (klockslag i liveraden)	Som k026.
+uto-k101	uto-0070	FEL (klockslag i liveraden)	Som k026.
+uto-k130	uto-0071	FEL (klockslag, resa från Utö)	Som k026. Resan mot \"färjeterminal\" kom av den gamla avreseorten Nynäshamn, som rättas i P0 1 (PR #504).
+uto-k028	uto-0276	SAKNAS (ej nåbar)	OK: Redaktören läste www.utogasthamn.se/camping/ i Toms Chrome 2026-11-02: \"Campingen är av så kallad friluftsmodell och har inga numrerade platser\", \"160:- /plats för tält samt 80:- /person.\"
+uto-k043	uto-0010	SAKNAS (ej nåbar)	OK: www.utogasthamn.se/gasthamnen/ i Toms Chrome 2026-11-02: \"Hos oss finns dusch, bastu och toaletter.\"
+uto-k091	uto-0343	SAKNAS (ej nåbar)	OK: www.utogasthamn.se/gasthamnen/ i Toms Chrome 2026-11-02: \"I Utö Gästhamn finns plats för ca 300 fritidsbåtar med eluttag (230 V EU-koppling) på samtliga platser.\"
+uto-k163	uto-N018	SAKNAS (ej nåbar)	OK: www.utogasthamn.se/gasthamnen/ i Toms Chrome 2026-11-02: \"I den norra hamnen finns sjömacken och det är också där de reguljära Waxholmsbåtarna lägger till.\" Gruvbyn och Haninge kommun: Nominatim (OSM, geometri).
+uto-k093	uto-0456	SAKNAS (läget)	OK: läget belagt som för k163.
+uto-k109	uto-0534	SAKNAS (typ)	Tom: platstyp för camping (beslut 4). Campingsidan heter \"UTÖ CAMPINGPLATS\".
+uto-k038	uto-0065	SAKNAS (kodetikett)	Vakten kontrollerar namnet för 740000001 mekaniskt mot ResRobot via API:t. P0 1, redan kontrollerad.
+uto-k004	uto-0420	SAKNAS	Tom: beslut 5 (Bakgården). Obs: campingsidan nämner \"Bageriet\" vid Bygatan.
+uto-k062	uto-0418	SAKNAS	Tom: beslut 5 (Bakgården).
+uto-k114	uto-0416	SAKNAS	Tom: beslut 5 (Bakgården).
+uto-k019	uto-0403	SAKNAS	Tom: beslut 5 (Lilla Haket).
+uto-k068	uto-0401	SAKNAS	Tom: beslut 5 (Lilla Haket).
+uto-k063	uto-0561	SAKNAS	Tom: beslut 5 (Rånö brygga).
+uto-k098	uto-0559	SAKNAS	Tom: beslut 5 (Rånö brygga).
+uto-k077	uto-0223	FEL	Omarbete: lägg till undantaget \"eller på allmänt vatten\" (Länsstyrelsens fiskeguide).
+uto-k002	uto-N003	FEL (utfyllnad)	Omarbete: den nya meningen kan flyttas till vilken ösida som helst. Ersätt med något som bara gäller Utö, eller låt k077 bära regeln och kompensera på annat sätt.
+uto-k025	uto-0397	FEL	Omarbete: restaurangens eget namn är \"Utö by Krog\"; kommunen beläggs med annan källa.
+uto-k119	uto-0447	FEL	Omarbete: Gruvbryggan är en av Waxholmsbolagets tre bryggor på Utö (den mest trafikerade), inte den enda.
+uto-s005	uto-0399	FEL (struken sann uppgift)	Omarbete: återställ \"vid vägen mellan Gruvbyn och Ålö\" (OSM för läget, Stockholm Archipelago Trail för vägen).
+uto-k102	uto-0383	SAKNAS	Omarbete (Vakten, guide-island-map.ts): guidelistan ska bara ta med guider som nämner Utö; samma fel som på Styrsö.

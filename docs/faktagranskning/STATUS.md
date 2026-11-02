@@ -2,6 +2,28 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-02 23:39 — Utö kontrollerad; utogasthamn.se läst i Toms Chrome
+
+- **Kontrollant Utö (MÄTT):** 116 OK, 9 FEL, 15 SAKNAS av 140. Beslut per
+  fynd i `register/b01/kontroll/uto.beslut.tsv`:
+  - Fyra fynd gällde klockslag i liveraderna och är inte fel i datafilerna.
+    Resan mot "färjeterminal" kom av den gamla avreseorten Nynäshamn, som
+    rättas i P0 1.
+  - Fem rader kunde Kontrollanten inte läsa (utogasthamn.se visar CAPTCHA för
+    arbetsytan). Redaktören läste www.utogasthamn.se i Toms Chrome, där ingen
+    CAPTCHA visades: bastu, cirka 300 platser, sjömacken i norra hamnen och
+    campingen av friluftsmodell står där. Raderna är OK. Sidorna är sparade i
+    kallcache/ny.
+  - Till Tom (redan i beslut 4–5): campingtypen, Bakgården (campingsidan
+    nämner "Bageriet" vid Bygatan), Lilla Haket och Rånö brygga.
+  - Omarbete för Skribenten: fiskeregeln saknar "eller på allmänt vatten", och
+    den nya fiskemeningen är utfyllnad. Restaurangen heter "Utö by Krog".
+    Gruvbryggan är en av tre bryggor, inte den enda. En sann uppgift om läget
+    vid vägen mellan Gruvbyn och Ålö ska tillbaka. Guidelistan tar med guider
+    om andra platser (guide-island-map.ts, samma fel som på Styrsö).
+- Kontrollant Möja startad (160 rader). Agenter nu (fyra): sidmallarna, P0
+  runda 6, Grinda och Möja.
+
 ## 2026-11-02 23:36 — P0 runda 5; Fjäderholmarna kontrollerad; P0 16
 
 - **Kontrollant P0 runda 5 (MÄTT):** 5 OK, 1 FEL, 1 SAKNAS, och runda 5b
