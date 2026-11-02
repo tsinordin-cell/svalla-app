@@ -62,22 +62,39 @@ const latToTY = (lat: number, z: number) => {
   return (1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * 2 ** z
 }
 
-async function hamtaRuta(tx: number, ty: number, z: number): Promise<Buffer | null> {
+/**
+ * En kartruta från OpenStreetMap. Följer OSM:s regler för tile.openstreetmap.org
+ * (operations.osmfoundation.org/policies/tiles, läst 2026-11-02): eget
+ * User-Agent med kontaktadress, och rutor som inte cachas enligt serverns egna
+ * huvuden ska cachas i minst 7 dagar (förut 1 dag). Antalet samtidiga
+ * hämtningar begränsas i morkKarta. Svaret null = rutan saknas (kortet ritas ändå).
+ */
+async function hamtaRuta(tx: number, ty: number, z: number): Promise<{ buf: Buffer | null; status: number }> {
   const max = 2 ** z
-  if (ty < 0 || ty >= max) return null
+  if (ty < 0 || ty >= max) return { buf: null, status: 0 }
   const ntx = ((tx % max) + max) % max
   try {
     const ctrl = new AbortController()
     const t = setTimeout(() => ctrl.abort(), 4000)
     const res = await fetch(`https://tile.openstreetmap.org/${z}/${ntx}/${ty}.png`, {
       headers: { 'User-Agent': 'Svalla/1.0 (+https://svalla.se)' },
-      next: { revalidate: 86400 },
+      next: { revalidate: 7 * 24 * 3600 },
       signal: ctrl.signal,
     })
     clearTimeout(t)
-    if (!res.ok) return null
-    return Buffer.from(await res.arrayBuffer())
-  } catch { return null }
+    if (!res.ok) return { buf: null, status: res.status }
+    return { buf: Buffer.from(await res.arrayBuffer()), status: res.status }
+  } catch { return { buf: null, status: -1 } }
+}
+
+/** Kör jobben med högst n samtidigt, resultaten i samma ordning. */
+async function medHogst<T>(n: number, jobb: (() => Promise<T>)[]): Promise<T[]> {
+  const ut = new Array<T>(jobb.length)
+  let nasta = 0
+  await Promise.all(Array.from({ length: Math.min(n, jobb.length) }, async () => {
+    while (nasta < jobb.length) { const k = nasta++; ut[k] = await jobb[k]!() }
+  }))
+  return ut
 }
 
 /** Var på kortet rutten ska ligga: bandet mellan loggan och panelen. */
@@ -115,11 +132,17 @@ export async function morkKarta(pts: Punkt[]): Promise<MorkKarta> {
   const cols = Math.ceil((px0 + W) / 256) - txStart
   const rows = Math.ceil((py0 + H) / 256) - tyStart
 
-  const jobb: Promise<{ dx: number; dy: number; buf: Buffer | null }>[] = []
+  // Högst 6 samtidiga hämtningar, som en webbläsare mot en värd (inte ~40 på en gång).
+  const jobb: (() => Promise<{ dx: number; dy: number; buf: Buffer | null; status: number }>)[] = []
   for (let dy = 0; dy < rows; dy++) for (let dx = 0; dx < cols; dx++) {
-    jobb.push(hamtaRuta(txStart + dx, tyStart + dy, Z).then(buf => ({ dx, dy, buf })))
+    jobb.push(() => hamtaRuta(txStart + dx, tyStart + dy, Z).then(r => ({ dx, dy, ...r })))
   }
-  const rutor = await Promise.all(jobb)
+  const rutor = await medHogst(6, jobb)
+  const saknade = rutor.filter(r => !r.buf && r.status !== 0)
+  if (saknade.length > 0) {
+    // Syns i Vercels logg: spärr från OSM (403/429) syns här först. Då är det dags för en egen kartleverantör.
+    console.warn(`[kartkort] ${saknade.length} av ${rutor.length} kartrutor saknas (status ${[...new Set(saknade.map(r => r.status))].join(', ')})`)
+  }
 
   // Tre steg med buffert emellan: sharp kör composite sist i en kedja oavsett
   // anropsordning, och ett andra composite() ersätter det första.
@@ -275,7 +298,7 @@ function Panel({ trip, username, kartkalla = false }: { trip: TripRad; username:
       </div>
       {/* OpenStreetMaps licens kräver erkännande på kartbilden (osm.org/copyright). */}
       {kartkalla ? (
-        <div style={{ fontFamily: FONT, fontSize: 15, fontWeight: 500, color: 'rgba(255,255,255,0.38)', marginTop: 14, display: 'flex' }}>Karta © OpenStreetMap-bidragsgivare</div>
+        <div style={{ fontFamily: FONT, fontSize: 17, fontWeight: 500, color: 'rgba(255,255,255,0.58)', marginTop: 14, display: 'flex' }}>Karta © OpenStreetMap-bidragsgivare</div>
       ) : null}
     </div>
   )
