@@ -1,0 +1,313 @@
+From e9dd5f18be8e6ecd80eaef63507d9dba54e41969 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 2 Nov 2026 14:55:55 -0800
+Subject: [PATCH] =?UTF-8?q?P0=209=E2=80=9312,=2015=E2=80=9316:=20sista=20b?=
+ =?UTF-8?q?=C3=A5ten=20bara=20f=C3=A4rjor=20och=20r=C3=A4tt=20brygga,=20be?=
+ =?UTF-8?q?st=C3=A4llning=20Husar=C3=B6,=20hundregeln,=20Fj=C3=A4derholmar?=
+ =?UTF-8?q?na=20utan=20fast=20tid?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- Sista båten räknar bara resor där varje ben med trafikslag är en färja
+  (products=256 och kontroll av allLegs); bussen 670 visades som sista båten
+  från Vaxholm (P0 9).
+- Rubriken namnger bryggan där båten går (första färjebenet enligt ResRobot);
+  Styrsö Tången har tidigare sista båt än Bratten (P0 11).
+- normalizeLeg: en färja utan linjenummer räknas inte som promenad.
+- Husarö: text om beställningsturer i tabell 10, 12 och 13 (P0 12).
+- Badrutan: hund alltid kopplad i nationalparker, enligt Naturvårdsverket (P0 15).
+- Fjäderholmarna: bryggan trafikeras utan fast avgångstid (X i tabell 2),
+  ny text i båda rutorna (P0 16).
+
+Alla rader kontrollerade av en oberoende Kontrollant (P0-omgång 4–6).
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01RFXn8J6woskdrpFDAas8TM
+---
+ src/app/api/transit/departures/route.ts     |  1 +
+ src/app/api/transit/last-departure/route.ts |  1 +
+ src/app/o/[slug]/bad/page.tsx               |  6 ++--
+ src/components/DepartureWidget.tsx          | 12 +++++++
+ src/components/LastBoatPanel.tsx            | 28 ++++++++++++++-
+ src/lib/trafiklab.ts                        | 38 +++++++++++++++++----
+ src/lib/transit-stops.ts                    | 36 +++++++++++++++++--
+ 7 files changed, 110 insertions(+), 12 deletions(-)
+
+diff --git a/src/app/api/transit/departures/route.ts b/src/app/api/transit/departures/route.ts
+index be7234b..b2c2db4 100644
+--- a/src/app/api/transit/departures/route.ts
++++ b/src/app/api/transit/departures/route.ts
+@@ -68,6 +68,7 @@ export async function GET(req: NextRequest) {
+       destName: cfg.destStopName,
+       note: cfg.note ?? null,
+       bestallning: cfg.bestallning ?? null,
++      tidsObs: cfg.tidsObs ?? null,
+       date: datum,
+       fel,
+       trips,
+diff --git a/src/app/api/transit/last-departure/route.ts b/src/app/api/transit/last-departure/route.ts
+index 74b51cf..cb681e4 100644
+--- a/src/app/api/transit/last-departure/route.ts
++++ b/src/app/api/transit/last-departure/route.ts
+@@ -59,6 +59,7 @@ export async function GET(req: NextRequest) {
+       destName: cfg.destStopName,
+       date: datum,
+       bestallning: cfg.bestallning ?? null,
++      tidsObs: cfg.tidsObs ?? null,
+       outbound,
+       return: returnTrip,
+       checkedAt: new Date().toISOString(),
+diff --git a/src/app/o/[slug]/bad/page.tsx b/src/app/o/[slug]/bad/page.tsx
+index d596bf8..bf49582 100644
+--- a/src/app/o/[slug]/bad/page.tsx
++++ b/src/app/o/[slug]/bad/page.tsx
+@@ -241,12 +241,14 @@ export default async function IslandBadPage({ params }: Props) {
+           <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 12 }}>
+             Bra att veta innan du badar
+           </h3>
+-          {/* KÄLLA: naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ ("Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt, eller som är skyddad för fågelliv eller annat"; "Det finns inget förbud mot att tillfälligt förtöja eller bada vid en brygga som ligger utanför en tomt"; "Håll koll på fågel- och sälskyddsområden"), havochvatten.se/badplatser-och-badvatten (Badplatsen, provtagning av badvatten), naturvardsverket.se hundar i naturen (koppel 1 mars–20 augusti; alltid i naturreservat) — läst 2026-09-24 */}
++          {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — "Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt", "Det finns inget förbud mot att tillfälligt förtöja eller bada vid en brygga som ligger utanför en tomt.", "Du som lånar bryggan måste däremot se till att den som äger bryggan inte blir hindrad från att använda den.", "Vid fågel- eller sälskyddsområden får du inte stiga iland under en viss tid av året." (läst 2026-11-02) */}
++          {/* KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten.html — "Frågor om lagstiftning och webbplatsen Badplatsen", "Kommunerna står för provtagning och insamling av data som ligger till grund för informationen.", "EU-bad måste provtas och besiktigas regelbundet av kommunerna. Många kommuner provtar och besiktigar även övriga bad." (läst 2026-11-02) */}
++          {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/ — "Mellan 1 mars och 20 augusti måste du ha extra uppsikt över din hund i naturen. Under den tiden får hunden inte springa lös.", "I alla Sveriges nationalparker ska din hund alltid vara kopplad, oavsett hur bra lydnad du har på din hund.", "I vissa skyddade områden kan det vara förbjudet att ta med hund, kolla upp vad som gäller innan.", "Ofta kopplingstvång i naturreservat", "Läs informationsskylten vid entrén till naturreservatet eller fråga länsstyrelsen eller kommunen för att ta reda på vad som gäller just där." (läst 2026-11-02) */}
+           <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
+             <li>Enligt allemansrätten får du bada vid en strand som inte hör till någon tomt, och vid en brygga utanför en tomt så länge ägaren inte hindras.</li>
+             <li>Håll koll på skyltar för fågel- och sälskyddsområden, där det kan vara förbjudet att gå i land under delar av året.</li>
+             <li>Havs- och vattenmyndighetens Badplatsen visar provsvar för de bad som kommunen provtar. Alla bad provtas inte.</li>
+-            <li>Hunden får inte springa lös i naturen 1 mars–20 augusti. I naturreservat kan föreskrifterna kräva koppel hela året, så läs skyltarna på plats.</li>
++            <li>Hunden får inte springa lös i naturen 1 mars–20 augusti. I alla nationalparker ska den alltid vara kopplad, och i vissa skyddade områden kan det vara förbjudet att ta med hund. I naturreservat är det ofta kopplingstvång, så läs informationsskylten vid entrén eller fråga länsstyrelsen eller kommunen.</li>
+           </ul>
+         </div>
+ 
+diff --git a/src/components/DepartureWidget.tsx b/src/components/DepartureWidget.tsx
+index 01dd619..a966651 100644
+--- a/src/components/DepartureWidget.tsx
++++ b/src/components/DepartureWidget.tsx
+@@ -52,6 +52,8 @@ interface ApiResponse {
+   note: string | null
+   /** P0 2026-10-29: turer som måste beställas i förväg (transit-stops.ts). */
+   bestallning?: string | null
++  /** P0 2026-11-02: brygga utan fast avgångstid (transit-stops.ts). */
++  tidsObs?: string | null
+   trips: TripSummary[]
+   error?: string
+ }
+@@ -202,6 +204,16 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
+               {data.bestallning}
+             </p>
+           )}
++          {data.tidsObs && (
++            <p role="note" style={{
++              fontSize: 12.5, color: '#fff', fontWeight: 600,
++              margin: '12px 0 0', lineHeight: 1.5,
++              background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.18)',
++              borderRadius: 8, padding: '8px 10px',
++            }}>
++              {data.tidsObs}
++            </p>
++          )}
+ 
+           <div style={{
+             marginTop: 14, paddingTop: 12,
+diff --git a/src/components/LastBoatPanel.tsx b/src/components/LastBoatPanel.tsx
+index adf0e28..63c10ba 100644
+--- a/src/components/LastBoatPanel.tsx
++++ b/src/components/LastBoatPanel.tsx
+@@ -49,6 +49,8 @@ interface ApiResponse {
+   destName: string
+   /** P0 2026-10-29: turer som måste beställas i förväg (transit-stops.ts). */
+   bestallning?: string | null
++  /** P0 2026-11-02: brygga utan fast avgångstid (transit-stops.ts). */
++  tidsObs?: string | null
+   outbound: TripSummary | null
+   return: TripSummary | null
+   checkedAt: string
+@@ -151,7 +153,12 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
+         <h2 id="last-boat-title" style={{
+           fontSize: 15, fontWeight: 700, margin: 0, letterSpacing: '-0.2px',
+         }}>
+-          Sista båten från {islandName} idag
++          {/* P0 2026-11-02: rubriken namnger bryggan där båten i kortet går, alltså
++              första färjebenets avgångshållplats enligt ResRobot. På öar med flera
++              bryggor (Styrsö: Bratten och Tången; Grinda: Norra och Södra) går
++              sista båten olika tider, och destStopName kan vara en grupp av
++              hållplatser eller en busshållplats. */}
++          Sista båten från {bryggnamn(lastTrip.legs[0]?.fromName) || data.destName || islandName} idag
+         </h2>
+         {isCancelled ? (
+           <span style={{
+@@ -245,6 +252,15 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
+           {data.bestallning}
+         </p>
+       )}
++      {data.tidsObs && (
++        <p role="note" style={{
++          fontSize: 12.5, fontWeight: 600, lineHeight: 1.5,
++          margin: '12px 0 0', padding: '8px 10px', borderRadius: 8,
++          background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,0.18)',
++        }}>
++          {data.tidsObs}
++        </p>
++      )}
+ 
+       <style>{`
+         @keyframes lastBoatPulse {
+@@ -256,6 +272,16 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
+   )
+ }
+ 
++/**
++ * ResRobot-namn som "Styrsö Bratten (Göteborg kn)" → "Styrsö Bratten".
++ * normalizeLeg sätter "?" när ResRobot inte ger något namn; det räknas som
++ * tomt, så att rubriken faller tillbaka på destStopName eller öns namn.
++ */
++function bryggnamn(namn: string | undefined): string {
++  const n = (namn ?? '').replace(/\s*\([^()]*\bkn\)\s*$/i, '').trim()
++  return n === '?' ? '' : n
++}
++
+ /**
+  * Beräknar minuter mellan nu (Europe/Stockholm) och `HH:MM` idag.
+  * Returnerar null om input är ogiltig. Negativt om tiden redan passerat.
+diff --git a/src/lib/trafiklab.ts b/src/lib/trafiklab.ts
+index b706995..ddf028b 100644
+--- a/src/lib/trafiklab.ts
++++ b/src/lib/trafiklab.ts
+@@ -217,7 +217,13 @@ function calcDelayMin(planned: string, rt: string | undefined): number | undefin
+ 
+ function normalizeLeg(raw: ResRobotLeg): TripLeg {
+   const product = asProduct(raw.Product)
+-  const isWalk = (raw.type ?? '').toUpperCase() === 'WALK' || !product.line
++  // Promenad eller byte: typen säger det, eller benet saknar trafikslag helt.
++  // Ett ben utan linjenummer men med trafikslag, till exempel en färja, är
++  // inte promenad (P0 2026-11-02, Kontrollanten runda 5: annars hämtades
++  // rubrik och tid i "Sista båten" från nästa färjeben).
++  const typ = (raw.type ?? '').toUpperCase()
++  const isWalk = typ === 'WALK' || typ === 'TRSF'
++    || (!product.line && product.catCode == null && product.cls == null)
+   const fromTime = (raw.Origin?.time ?? '').slice(0, 5)
+   const toTime = (raw.Destination?.time ?? '').slice(0, 5)
+   const rtFromTime = raw.Origin?.rtTime ? raw.Origin.rtTime.slice(0, 5) : undefined
+@@ -416,10 +422,19 @@ export async function fetchLastTripOfDay(
+   // ResRobot max numF=6 — annars returnerar API:t API_PARAM IllegalArgumentException
+   // och vi får tomt svar (vilket var orsak till första-release-buggen där alla
+   // last-departure-anrop returnerade null).
+-  const [afternoonTrips, eveningTrips] = await Promise.all([
+-    fetchTrips(originId, destId, 6, { date, time: '14:00' }),
+-    fetchTrips(originId, destId, 6, { date, time: '19:00' }),
+-  ])
++  // P0 2026-11-02 (faktagranskningen, vaxholm-0078): utan trafikslagsfilter
++  // blev "sista båten" en resa med buss och tunnelbana när den gick senare än
++  // båten – Vaxholm visade 20:02 → Strömkajen, fast sista båten enligt tabell
++  // 2B gick 18.25. Rubriken lovar en båt, så bara färjor räknas (produkt 256).
++  // Byten till buss räknas inte: en resa som innehåller andra trafikslag
++  // skulle fortfarande kunna visa en buss som "sista båten".
++  // Söktiderna är startpunkter för frågan mot ResRobot, inte avgångstider som
++  // visas för någon. Valda i första versionen (uppmätt mot ResRobot: numF=6
++  // per anrop räcker från 14:00 respektive 19:00 till dagens sista tur).
++  const sokFran = ['14:00', '19:00']
++  const [afternoonTrips = [], eveningTrips = []] = await Promise.all(
++    sokFran.map(time => fetchTripsResult(originId, destId, 6, { date, time }, { products: RESROBOT_PRODUKT_FARJA }).then(r => r.trips)),
++  )
+ 
+   // Dedupa på startTime (samma trip kan dyka upp i båda anropen)
+   const seen = new Set<string>()
+@@ -431,8 +446,17 @@ export async function fetchLastTripOfDay(
+     merged.push(t)
+   }
+ 
+-  // Filtrera fram resor som FAKTISKT startar idag (ResRobot ger även resor nästa dag)
+-  const todaysTrips = merged.filter(t => t.startDate === date)
++  // Filtrera fram resor som FAKTISKT startar idag (ResRobot ger även resor nästa dag),
++  // och bara resor där varje transportben är en färja (products-filtret styr
++  // sökningen, men svaret kontrolleras ändå: catCode 8 = Ferries). Kontrollen
++  // går också över allLegs: normalizeLeg räknar ben utan linjenummer som
++  // promenad, så ett bussben utan `line` skulle annars slinka igenom. Vid sidan
++  // av färjorna godtas bara ben helt utan trafikslag, alltså promenader.
++  const arFarja = (l: TripLeg) => l.catCode === '8' || l.cls === String(RESROBOT_PRODUKT_FARJA)
++  const todaysTrips = merged.filter(t => t.startDate === date
++    && t.legs.length > 0
++    && t.legs.every(arFarja)
++    && t.allLegs.every(l => arFarja(l) || (l.catCode === undefined && l.cls === undefined)))
+   if (todaysTrips.length === 0) return null
+   // Sortera efter startTime (HH:MM stränger sorterar korrekt) — ta sista
+   todaysTrips.sort((a, b) => a.startTime.localeCompare(b.startTime))
+diff --git a/src/lib/transit-stops.ts b/src/lib/transit-stops.ts
+index 3893a55..cb62c16 100644
+--- a/src/lib/transit-stops.ts
++++ b/src/lib/transit-stops.ts
+@@ -34,6 +34,13 @@ export interface IslandTransitConfig {
+    * avgångsrutan och "Sista båten". Måste ha KÄLLA-rad ovanför värdet.
+    */
+   bestallning?: string
++  /**
++   * P0 2026-11-02: när operatören inte har fast avgångstid vid bryggan
++   * (Waxholmsbolagets anmärkning X). Reseplanerarens tider ser då ut som
++   * tidtabellens fast de inte är det. Visas i både avgångsrutan och "Sista
++   * båten". Måste ha KÄLLA-rad ovanför värdet.
++   */
++  tidsObs?: string
+ }
+ 
+ /**
+@@ -56,8 +63,18 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+     note: 'Direktbåt med Waxholmsbolaget från Strömkajen sommartid.',
+   },
+   vaxholm: {
+-    destStopId: '740018045', destStopName: 'Vaxholm Västerhamnsplan',
++    // P0 2026-11-02 (vaxholm-0078): Västerhamnsplan (740018045) är en
++    // busshållplats, och "Sista båten" visade därför SL-buss 670 (20:02) när
++    // sista båten enligt tabell 2B gick 18.25. Nu samma id som ferries.ts,
++    // "VAXHOLM", som enligt Trafiklab är en grupp av hållplatser och inte en
++    // brygga (Kontrollanten 2026-11-02; bryggan heter Vaxholm Hotellkajen,
++    // 740020991). Kortet räknar bara färjor (trafiklab.ts) och namnger bryggan
++    // där båten går. Avgångsrutan visar även buss 670, som noten säger.
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "2B VAXHOLM – HÖGANÄS – STOCKHOLM" (läst 2026-10-31)
++    destStopId: '740098250', destStopName: 'Vaxholm',
+     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "2A STOCKHOLM – HÖGANÄS – VAXHOLM", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-10-31)
++    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — "Tekniska högskolan", "Västerhamnsplan", "Giltig 17 augusti–12 december 2026" (läst 2026-10-31)
+     note: 'Båt direkt från Strömkajen — eller buss 670 från Tekniska högskolan.',
+   },
+   uto: {
+@@ -76,6 +93,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+     destStopId: '740034632', destStopName: 'Fjäderholmarna brygga',
+     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+     note: 'Närmaste skärgårdsön — båt direkt från Strömkajen, ca 25 min.',
++    // P0 2026-11-02 (Kontrollanten, fjaderholmarna-k002/k103): Fjäderholmarna är
++    // märkt X i tabell 2, så tiderna i rutorna är reseplanerarens, inte tidtabellens.
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "Fjäderholmarna", "X", "Bryggorna trafikeras utan fast avgångstid.", "Sök hela din resa på sl.se för att få tider för både anslutande SL-trafik och skärgårdstrafiken." (läst 2026-11-02)
++    tidsObs: 'Waxholmsbolaget angör Fjäderholmarna utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',
+   },
+   moja: {
+     destStopId: '740024936', destStopName: 'Möjaström brygga',
+@@ -91,6 +112,13 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+   husaro: {
+     destStopId: '740020692', destStopName: 'Husarö brygga',
+     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
++    // P0 2026-11-02 (husaro-0078–0080): avgångsrutan visade beställningsturer som
++    // vanliga avgångar. Samma lindring som för Möja tills koden kan läsa ResRobots
++    // anmärkningar.
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna b, B och C; för C-turerna gäller dagen före) (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningen C: dagen före) (läst 2026-10-29)
++    bestallning: 'Flera turer till och från Husarö går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 innan du åker.',
+   },
+   ingmarso: {
+     destStopId: '740034607', destStopName: 'Ingmarsö Norra brygga',
+@@ -313,7 +341,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+     // 14 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+     destStopId: '740001213', destStopName: 'Styrsö Bratten',
+     originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
+-    note: 'Direkt Styrsöbåt från Saltholmen, kortast överfarten i södra skärgården.',
++    // P0 2026-11-02 (styrso-0075, styrso-0079): tiderna i rutorna gäller bryggan
++    // Bratten. Tången trafikeras bara av linje 282, och dagens sista båt därifrån
++    // går tidigare. "Kortast överfarten i södra skärgården" var obelagt och struket.
++    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — "281 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö", "282 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik", "Gäller 24 aug – 12 dec 2026" (läst 2026-10-31)
++    note: 'Linje 281 och 282 går från Saltholmen till Styrsö Bratten utan byte, och tiderna här gäller Bratten. Från Tången går bara linje 282, och dagens sista båt därifrån går tidigare än från Bratten.',
+   },
+   donso: {
+     // 26 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+-- 
+2.43.0
+

@@ -2,6 +2,30 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-02 23:56 — Alla P0 godkända; P0-grenen committad lokalt
+
+- **Kontrollant P0 runda 6 (MÄTT):** 3 OK och 1 FEL. Felet gällde bara
+  utfyllnadstestet för hundregeln (p0-k073): i sak säger texten exakt det
+  Naturvårdsverket säger. **Redaktörens beslut:** för en mallruta som visas på
+  alla öar betyder utfyllnadstestet att texten ska vara sann på varje ö där
+  den visas, inte att den bara får gälla en ö. Raden godkänns.
+- Därmed är P0 1–16 godkända av en oberoende Kontrollant:
+  - 1–8 ligger i PR #504 (pushad).
+  - 9, 11, 12, 15 och 16 ligger i commit e9dd5f1 på P0-grenen. Den är
+    committad men inte pushad: en push startar ett bygge på Vercel som
+    misslyckas medan Supabase är pausat. Den pushas när databasen är uppe.
+    Säkerhetskopior: `register/b01/ut/p0-e9dd5f1.patch` och
+    `p0-2026-10-29.patch` (hela diffen mot main).
+  - 10 ligger i vaxholm.edits.json och går in med batchen.
+  - 13–14 är databasrättelser i `register/b01/ut/p0-databas.sql`. De läggs in
+    direkt efter att Supabase startats, före batchens övriga SQL.
+- **Att göra efter 19 november (Kontrollanten, RESONERAT):** u-perioden i
+  tabell 2 slutar 19 november. Efter det angör turerna 0405, 0410 och 0414
+  inte Fjäderholmarna, och då ska någon kontrollera att avgångsrutan inte
+  visar dem.
+- Kontrollant Vaxholm startad (169 rader). Agenter nu (fyra): Grinda, Möja,
+  Vaxholm och Skribent sidmallarna.
+
 ## 2026-11-02 23:52 — Sidmallarna kontrollerade; omarbete startat
 
 - **Kontrollant sidmallarna (MÄTT):** 143 kid. 98 OK (de 7 strukna
