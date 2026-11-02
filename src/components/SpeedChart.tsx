@@ -9,6 +9,7 @@
 // Datat är speedSeries() ur src/lib/tripSplits.ts — medel per 5 s av sparade
 // punkter. Ingen tolkning, inga påhittade värden.
 
+import { decimal } from '@/lib/gps'
 import { useMemo, useRef, useState } from 'react'
 import type { SpeedSample } from '@/lib/tripSplits'
 
@@ -93,8 +94,8 @@ export default function SpeedChart({ series, topKn, avgKn }: Props) {
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8, padding: '0 4px 8px', flexWrap: 'wrap' }}>
         <div style={{ fontSize: 12, color: 'var(--txt2)', fontVariantNumeric: 'tabular-nums' }}>
           {hs
-            ? <><b style={{ color: 'var(--txt)', fontSize: 14 }}>{hs.kn.toFixed(1)} kn</b> vid {fmtT(hs.t)}</>
-            : <>{topKn != null && <>Topp <b style={{ color: 'var(--txt)' }}>{topKn.toFixed(1)} kn</b></>}{avgKn != null && <> · Snitt <b style={{ color: 'var(--txt)' }}>{avgKn.toFixed(1)} kn</b></>}</>}
+            ? <><b style={{ color: 'var(--txt)', fontSize: 14 }}>{decimal(hs.kn)} kn</b> vid {fmtT(hs.t)}</>
+            : <>{topKn != null && <>Topp <b style={{ color: 'var(--txt)' }}>{decimal(topKn)} kn</b></>}{avgKn != null && <> · Snitt <b style={{ color: 'var(--txt)' }}>{decimal(avgKn)} kn</b></>}</>}
         </div>
         <button type="button" onClick={() => setTable(v => !v)} aria-pressed={table} style={{
           fontSize: 11, fontWeight: 600, color: 'var(--sea)', background: 'var(--sea-08)',
@@ -118,7 +119,7 @@ export default function SpeedChart({ series, topKn, avgKn }: Props) {
                 ? <tr key={i}><td colSpan={2} style={{ padding: '4px 6px', color: 'var(--txt3)', fontStyle: 'italic' }}>— lucka i inspelningen —</td></tr>
                 : <tr key={i} style={{ borderTop: '1px solid var(--sea-06)' }}>
                     <td style={{ padding: '4px 6px', color: 'var(--txt2)' }}>{fmtT(s.t)}</td>
-                    <td style={{ padding: '4px 6px', textAlign: 'right', color: 'var(--txt)' }}>{s.kn.toFixed(1)}</td>
+                    <td style={{ padding: '4px 6px', textAlign: 'right', color: 'var(--txt)' }}>{decimal(s.kn)}</td>
                   </tr>)}
             </tbody>
           </table>
@@ -129,7 +130,7 @@ export default function SpeedChart({ series, topKn, avgKn }: Props) {
           viewBox={`0 0 ${W} ${H}`}
           style={{ width: '100%', height: 'auto', display: 'block', touchAction: 'pan-y', cursor: 'crosshair' }}
           role="img"
-          aria-label={`Fart över tid. Topp ${(topKn ?? maxKn).toFixed(1)} knop.`}
+          aria-label={`Fart över tid. Topp ${decimal(topKn ?? maxKn)} knop.`}
           onPointerMove={onMove}
           onPointerDown={onMove}
           onPointerLeave={() => setHover(null)}

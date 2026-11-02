@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { STILAR, arStil, tillgangligaStilar, forvaldStil, ruttPath, ruttStartSlut, formatTid, formatDelTid, delstrackStaplar, talRutor, ruttArAnvandbar, avstandM, datumLang, turRubrik, harTal } from './dela-klistermarken'
+import { STILAR, arStil, tillgangligaStilar, forvaldStil, ruttPath, ruttStartSlut, formatTid, formatDelTid, delstrackStaplar, talRutor, ruttArAnvandbar, avstandM, datumLang, turRubrik, harTal, platsRubrik } from './dela-klistermarken'
 
 describe('stilar', () => {
   it('känner igen giltiga stilar', () => {
@@ -126,5 +126,14 @@ describe('datumLang och turRubrik', () => {
     expect(turRubrik('Motorbåt')).toBe('Båttur')
     expect(turRubrik('Kajak')).toBe('Paddeltur')
     expect(turRubrik(null)).toBe('Tur på sjön')
+  })
+})
+
+describe('platsRubrik (2026-11-02)', () => {
+  it('kortar geokodade namn och sätter pil mellan start och mål', () => {
+    expect(platsRubrik({ start_location: 'Strömkajen, Stockholm, Sverige', location_name: 'Fjäderholmarna, Stockholms län, Sverige', boat_type: 'Motorbåt' })).toBe('Strömkajen → Fjäderholmarna')
+    expect(platsRubrik({ start_location: null, location_name: 'Mariefred, Södermanlands län, Sverige', boat_type: null })).toBe('Mariefred')
+    expect(platsRubrik({ start_location: 'Sandhamn', location_name: 'Sandhamn, Värmdö', boat_type: null })).toBe('Sandhamn')
+    expect(platsRubrik({ start_location: null, location_name: null, boat_type: 'Segelbåt' })).toBe('Segeltur')
   })
 })

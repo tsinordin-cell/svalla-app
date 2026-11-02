@@ -22,7 +22,7 @@ import { ImageResponse } from 'next/og'
 import type { ReactElement } from 'react'
 import { Buffer } from 'buffer'
 import sharp from 'sharp'
-import { stil, delstrackStaplar, talRutor, formatTid, ruttArAnvandbar, datumLang, turRubrik, BILD_VERSION, type StilId, type Punkt } from '@/lib/dela-klistermarken'
+import { stil, delstrackStaplar, talRutor, formatTid, ruttArAnvandbar, datumLang, turRubrik, platsRubrik, BILD_VERSION, type StilId, type Punkt } from '@/lib/dela-klistermarken'
 import { computeSplits } from '@/lib/tripSplits'
 import { klisterRutt, klisterTal, klisterRuttTal, klisterDelstrackor, Logga, type KlisterData } from './klistermarken'
 import type { GpsPoint } from '@/lib/gps'
@@ -151,17 +151,22 @@ export async function morkKarta(pts: Punkt[]): Promise<MorkKarta> {
  * struntar i EXIF, så stående mobilbilder låg på sidan, sett 2026-10-26) och
  * beskuren till 9:16. null om bilden inte går att hämta → gradienten i stället.
  */
+/** Värden för Svallas Supabase-lagring, ur miljön (samma som klienten använder). */
+const LAGRINGSVARD = (() => { try { return new URL(process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').hostname } catch { return '' } })() || 'oiklttwylndesewauytj.supabase.co'
+
 export async function hamtaFoto(url: string): Promise<string | null> {
   // Bara bilder ur Svallas egen lagring. trips.image kan ägaren skriva fritt
   // (RLS trips_update_own), och servern ska inte hämta godtyckliga adresser
   // eller avkoda hur stora filer som helst (granskning 2026-10-29).
   let u: URL
   try { u = new URL(url) } catch { return null }
-  if (u.protocol !== 'https:' || u.hostname !== 'oiklttwylndesewauytj.supabase.co' || !u.pathname.startsWith('/storage/v1/object/public/')) return null
+  if (u.protocol !== 'https:' || u.hostname !== LAGRINGSVARD || !u.pathname.startsWith('/storage/v1/object/public/')) return null
   try {
     const ctrl = new AbortController()
     const t = setTimeout(() => ctrl.abort(), 8000)
-    const res = await fetch(url, { signal: ctrl.signal, next: { revalidate: 86400 } })
+    // Ingen datacache här: originalbilder är ofta över Vercels gräns på 2 MB, och det
+    // färdiga kortet cachas ändå i route.tsx (unstable_cache).
+    const res = await fetch(url, { signal: ctrl.signal, cache: 'no-store' })
     clearTimeout(t)
     if (!res.ok) return null
     const ab = await res.arrayBuffer()
@@ -197,10 +202,8 @@ function talFor(trip: TripRad): Tal[] {
 }
 
 /** Panelen med plats, datum, tal och sidfot. Sitter alltid inom den säkra zonen. */
-function Panel({ trip, username }: { trip: TripRad; username: string }) {
-  const plats = trip.start_location && trip.location_name
-    ? `${trip.start_location} → ${trip.location_name}`
-    : (trip.location_name ?? trip.start_location ?? turRubrik(trip.boat_type))
+function Panel({ trip, username, kartkalla = false }: { trip: TripRad; username: string; kartkalla?: boolean }) {
+  const plats = platsRubrik(trip)
   const storlek = plats.length > 26 ? 52 : plats.length > 16 ? 64 : 78
   const datum = datumLang(trip.started_at)
   const under = [trip.boat_type ?? null, datum].filter(Boolean) as string[]
@@ -270,6 +273,10 @@ function Panel({ trip, username }: { trip: TripRad; username: string }) {
         </div>
         <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 700, letterSpacing: 1, color: 'rgba(246,178,107,0.85)', display: 'flex' }}>svalla.se</div>
       </div>
+      {/* OpenStreetMaps licens kräver erkännande på kartbilden (osm.org/copyright). */}
+      {kartkalla ? (
+        <div style={{ fontFamily: FONT, fontSize: 15, fontWeight: 500, color: 'rgba(255,255,255,0.38)', marginTop: 14, display: 'flex' }}>Karta © OpenStreetMap-bidragsgivare</div>
+      ) : null}
     </div>
   )
 }
@@ -314,7 +321,7 @@ async function kartkort(trip: TripRad, username: string, rutt: Punkt[], fonts: T
           <circle cx={ex} cy={ey} r={13} fill={ORANGE} stroke="#fff" strokeWidth={4} />
         </svg>
         <Topp />
-        <Panel trip={trip} username={username} />
+        <Panel trip={trip} username={username} kartkalla />
       </div>
     ),
     { width: W, height: H, fonts },
@@ -386,7 +393,7 @@ export async function ritaBild({ trip, username, punkter, style, fonts }: {
     const sekunder = trip.duration_seconds ?? (trip.duration > 0 ? trip.duration * 60 : null)
     const loc = trip.location_name, from = trip.start_location
     const data: KlisterData = {
-      plats: from && loc ? `${from} → ${loc}` : (loc ?? from ?? ''),
+      plats: loc || from ? platsRubrik(trip) : '',
       tal: talRutor({ distanceNM: trip.distance ?? null, sekunder, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null }),
       rutt,
       staplar: [],

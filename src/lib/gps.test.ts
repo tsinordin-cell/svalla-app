@@ -8,6 +8,7 @@ import {
   maxSpeedKnots,
   detectStops,
   formatDuration,
+  decimal,
   formatDurationMin,
   isGpsAnomaly,
   calculateBearing,
@@ -474,5 +475,13 @@ describe('avgSpeedKnots = distans / rörelsetid', () => {
     const a = seq(61, 10)
     const b = seq(61, 10, 60 + 600, a[60]!.lat)
     expect(movingSeconds([...a, ...b])).toBe(120)
+  })
+})
+
+describe('decimal (2026-11-02)', () => {
+  it('skriver decimalkomma', () => {
+    expect(decimal(22.34)).toBe('22,3')
+    expect(decimal(3.6, 2)).toBe('3,60')
+    expect(decimal(0)).toBe('0,0')
   })
 })

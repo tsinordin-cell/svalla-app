@@ -18,7 +18,7 @@ export type StilId = 'photo' | 'map' | 'rutt' | 'tal' | 'rutt-tal' | 'delstracko
  * datacache eller webbläsarens cache (max-age 3600) visar ett gammalt kort.
  * 2026-10-26: efter #500 visade Thomas Chrome det gamla kartkortet i en timme.
  */
-export const BILD_VERSION = '2026-10-27a'
+export const BILD_VERSION = '2026-11-02a'
 
 export type Stil = {
   id: StilId
@@ -113,6 +113,19 @@ export function datumLang(iso: string | null | undefined): string | null {
   const d = new Date(iso)
   if (Number.isNaN(d.getTime())) return null
   return new Intl.DateTimeFormat('sv-SE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Stockholm' }).format(d)
+}
+
+/**
+ * Rubriken på delningsbilderna: "Start → Mål" eller bara målet, varje plats kortad
+ * till första ledet ("Mariefred, Södermanlands län, Sverige" → "Mariefred"), så att
+ * rubriken inte växer upp över rutten. Snabb-logg sparar platssökningens hela namn
+ * (granskning 2026-11-02). Utan namn: båttypens rubrik (turRubrik).
+ */
+export function platsRubrik(t: { start_location: string | null; location_name: string | null; boat_type: string | null }): string {
+  const kort = (n: string | null) => (n ?? '').split(',')[0]!.trim()
+  const mal = kort(t.location_name), start = kort(t.start_location)
+  if (start && mal && start !== mal) return `${start} → ${mal}`
+  return mal || start || turRubrik(t.boat_type)
 }
 
 /** Rubrik på kortet när turen saknar platsnamn. */

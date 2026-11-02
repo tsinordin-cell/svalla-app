@@ -20,7 +20,7 @@ import { renderMentions } from './Comments'
 import { fontSize, fontWeight } from '@/lib/tokens'
 
 function fmt(n: number, dec = 1) {
-  return n % 1 === 0 ? n.toString() : n.toFixed(dec)
+  return n % 1 === 0 ? n.toString() : n.toFixed(dec).replace('.', ',')   // decimalkomma (2026-11-02)
 }
 
 /**
@@ -756,7 +756,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                       </div>
                       {trip.distance >= 0.1 && (
                         <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.42)', marginTop: 3 }}>
-                          {`${trip.distance.toFixed(1)} NM`}
+                          {`${trip.distance.toFixed(1).replace('.', ',')} NM`}
                         </div>
                       )}
                     </div>
