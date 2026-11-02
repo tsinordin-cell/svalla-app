@@ -168,7 +168,10 @@ export async function GET(
  background: 'rgba(201,110,42,0.20)',
  border: '1px solid rgba(201,110,42,0.40)',
  borderRadius: 20, padding: '5px 14px',
- width: 'fit-content',
+ // satori kan inte 'fit-content' (Vercel: "Invalid value fit-content for setWidth",
+ // länkförhandsvisningen för varje "Magisk tur" gav 500 t.o.m. 2026-10-29). alignSelf
+ // ger samma resultat i en flex-kolumn.
+ alignSelf: 'flex-start',
  }}>
  <div style={{
  width: 14, height: 14, borderRadius: '50%',
