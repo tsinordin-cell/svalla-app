@@ -2,6 +2,26 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-02 23:30 — EJ NÅBAR-källorna i Toms Chrome (Claude i Chrome)
+
+Lästa och sparade i kallcache/ny (`*.chrome-2026-11-02.txt`), för en
+Granskare som dömer EJ NÅBAR-raderna när en plats blir ledig:
+- **hhmarin.se (Möja, 8 rader):** läsbar. Namn, totalentreprenad, adress
+  Norra Stavsudda, telefon, e-post och webbplats står där. Möja nämns inte
+  (mejlfrågan står kvar). "Snickare" står inte ordagrant; sidan säger
+  "själva bygger stora delar av husen".
+- **instagram.com/ankaretsandhamn (Sandhamn, 5 rader):** läsbar inloggad.
+  "Ankaret ⚓ Sandhamn", café, butik och konstgalleri. Senaste inlägget är
+  daterat 28 augusti 2026, alltså inom 12 månader. Ingen gatuadress.
+- **Commons, Storholmens öbild:** beskrivningen är "Linje 80, Storholmen from
+  the south", men filen ligger bara i förgreningskategorin Storholmen.
+- **Inte lästa:** facebook.com (tillägget saknar behörighet för domänen:
+  Café Strindbergsgården, Vaxholms Hembygdsgårds Café). wallnermarin.se och
+  rentunder.se ger Chromes felsida även hos Tom; orsaken är okänd.
+  Elsäkerhetsverkets register visar bara sökformuläret, och sökningen kräver
+  att ett formulär skickas, vilket inte görs utan Toms ja. finnhamn.se lästes
+  av Husarös Granskare i dag och ligger i cachen.
+
 ## 2026-11-02 23:05 — Styrsö och Husarö granskade; P0 runda 4 gav två fynd; P0 13 och 14
 
 - **Styrsö (MÄTT):** 503 rader (+2 nya). KORREKT 444, FEL 27, DELVIS 25,
