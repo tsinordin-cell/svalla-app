@@ -2742,19 +2742,19 @@ export const GUIDES: GuideMeta[] = [
   {
     slug: "nyar-skargarden",
     title: "Nyårsfirande i skärgården 2026 – nyårspaket och båtar på nyår",
-    excerpt: "Nyårsfirande i skärgården 2026: vilka hotell som har publicerat nyårspaket, var bokningen öppnar snart, hur båtarna går på nyår och regler för fyrverkerier.",
+    excerpt: "Nyårsfirande i skärgården 2026: vilka hotell som har publicerat nyårspaket och tar emot bokningar, hur båtarna går på nyår och regler för fyrverkerier.",
     category: "Säsong", emoji: "🎆", readTime: "5 min", fullContent: true,
     faqs: [
-      // KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "NYÅRSPAKET 2026"; https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Meny kommer inom kort."; https://marholmen.se/nyarsfirande/ — "Skriv upp dig på listan för förhandsinformation om när vi öppnar bokningen för Nyår 2026."
-      { q: "Var kan man fira nyår i skärgården 2026?", a: "I slutet av september 2026 hade Smådalarö Gård vid Dalarö publicerat ett nyårspaket för nyår 2026, men menyn var inte klar. På Marholmen i Roslagen öppnar bokningen för nyår 2026 snart, och du kan skriva upp dig för besked. Utö Värdshus, Sandhamn Seglarhotell, Grinda och Waxholms Hotell hade inget nyårspaket publicerat." },
+      // KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Nyårspaket 2026"; https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Meny kommer inom kort."; https://marholmen.se/nyarsfirande/ — "BOKNINGEN ÄR ÖPPEN!" (läst 2026-11-02)
+      { q: "Var kan man fira nyår i skärgården 2026?", a: "I början av november 2026 hade Smådalarö Gård vid Dalarö publicerat ett nyårspaket för nyår 2026, men menyn var inte klar. Marholmen i Roslagen har öppnat bokningen för nyår 2026. Utö Värdshus, Sandhamn Seglarhotell, Grinda och Waxholms Hotell hade inget nyårspaket publicerat." },
       // KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "Nyårsafton torsdag 31 december: trafiken går som en lördag"; https://waxholmsbolaget.se/artikel/helgtrafik — "Onsdag 30 december: trafiken går som en fredag"
       { q: "Hur går båtarna på nyårsafton i skärgården?", a: "Enligt Waxholmsbolaget går trafiken på nyårsafton, torsdag 31 december 2026, som en lördag, och på nyårsdagen, fredag 1 januari 2027, som en söndag. Dagen före nyårsafton går båtarna som en fredag." },
       // KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "Nyårsdagen fredag 1 januari 2027: trafiken går som en söndag"; https://waxholmsbolaget.se/reseplanering/tidtabeller — "Fartygen kan ändras med kort varsel."
       { q: "Hur tar man sig hem från skärgården på nyårsdagen 2027?", a: "På nyårsdagen, fredag 1 januari 2027, går Waxholmsbolagets båtar som en söndag. Sök resan i reseplaneraren i god tid, eftersom fartygen kan ändras med kort varsel." },
       // KÄLLA: https://polisen.se/tjanster-tillstand/tillstand-ansok/fyrverkerier/ — "Många kommuner har lokala bestämmelser om när och var fyrverkerier får avfyras."; https://polisen.se/tjanster-tillstand/tillstand-ansok/fyrverkerier/ — "Åldersgränsen för att köpa, inneha och använda pyrotekniska varor är 18 år."
       { q: "Får man skjuta fyrverkerier på nyår i skärgården?", a: "Du behöver tillstånd från polisen om det finns risk att människor, djur eller egendom skadas, och många kommuner har lokala regler om när och var fyrverkerier får avfyras. Åldersgränsen är 18 år." },
-      // KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Fyrarätters nyårssmiddag"; https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Ett glas mousserande vid 12-slaget"; https://marholmen.se/nyarsfirande/ — "Väljs som tillval till Skärgårdshus och villor och hämtas i restaurangen när du checkar in."
-      { q: "Vad ingår i nyårspaketen i skärgården?", a: "Det varierar. Smådalarö Gårds nyårspaket 2026 omfattar bland annat övernattning, fyrarätters nyårsmiddag, ett glas mousserande vid tolvslaget och frukostbuffé. Marholmen beskriver ett paket med hotellrum och ett alternativ med eget skärgårdshus där en nyårskasse kan bokas som tillval." },
+      // KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Fyrarätters nyårssmiddag"; https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Ett glas mousserande vid 12-slaget"; https://marholmen.se/nyarsfirande/ — "Nyårspaket med boende i eget Hotellhus i två nätter."; https://marholmen.se/nyarsfirande/ — "Nyårspaket med boende i egen villa i två nätter." (läst 2026-11-02)
+      { q: "Vad ingår i nyårspaketen i skärgården?", a: "Det varierar. Smådalarö Gårds nyårspaket 2026 omfattar bland annat övernattning, fyrarätters nyårsmiddag, ett glas mousserande vid tolvslaget och frukostbuffé. Marholmen har paket med hotellrum i en eller två nätter och med eget hotellhus eller villa i två nätter." },
     ],
   },
   {
@@ -4566,8 +4566,8 @@ export const GUIDES: GuideMeta[] = [
       { q: "Är Öland öppet på vintern?", a: "Ja. Oland.se skriver att ön inte är stängd utan bara lugnare. Naturen, fornborgarna och fågeltornet i Ottenby lund kan du besöka året runt, men Borgholms slott, naturum Ottenby och Långe Jan har säsongsöppet." },
       // KÄLLA: https://www.oland.se/resa/cykelfarjan — "Från mitten av juni till mitten av augusti"; https://www.oland.se/resa/cykelfarjan — "Eftersom det råder cykel- och gångförbud på Ölandsbron"; https://www.silverlinjen.se/ — "tur och retur året runt"
       { q: "Hur tar man sig till Öland på vintern?", a: "Med bil eller buss över Ölandsbron från Kalmar. Cykelfärjan Dessi går bara från mitten av juni till mitten av augusti, och på bron är det förbjudet att gå och cykla. Direktbuss mellan Stockholm och Öland går året runt." },
-      // KÄLLA: https://www.borgholmsslott.se/oppettider/ — "1 oktober – 1 november: Dagligen kl. 10-16"; https://www.oland.se/vinterutflykter — "Passa på att gå runt den ståtliga ruinen och speja ut över Kalmarsund."
-      { q: "Är Borgholms slott öppet på vintern?", a: "Nej. Enligt slottets egen sida är säsongen 2026 öppen till och med 1 november. Oland.se tipsar om en vinterpromenad förbi ruinen från Borgholms hamn." },
+      // KÄLLA: https://www.borgholmsslott.se/oppettider/ — "1 oktober – 1 november: Dagligen kl. 10-16" (läst 2026-11-02); https://www.oland.se/vinterutflykter — "Passa på att gå runt den ståtliga ruinen och speja ut över Kalmarsund."
+      { q: "Är Borgholms slott öppet på vintern?", a: "Nej. Slottets säsong 2026 slutade 1 november, och tider för 2027 var inte publicerade i början av november. Oland.se tipsar om en vinterpromenad förbi ruinen från Borgholms hamn." },
       // KÄLLA: https://www.oland.se/kallbada-i-vinter — "Sjöstugan i Borgholm."; https://www.oland.se/kallbada-i-vinter — "Färjestadens hamn."; https://www.oland.se/kallbada-i-vinter — "Bada aldrig ensam!"
       { q: "Var kan man kallbada på Öland?", a: "Oland.se tipsar om Sjöstugan och Kallbadhuset i Borgholm, Färjestadens hamn och Kalvhagens badplats. Bada aldrig ensam." },
     ],

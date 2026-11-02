@@ -10041,41 +10041,41 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- OMSKRIVEN 2026-09-28. Borttaget utan källa eller fel: "Utö Värdshus arrangerar nyårsmiddag och fest med övernattning" (inget nyårspaket publicerat på Utö Värdshus sida), "Sandhamns Värdshus har liknande arrangemang" (inget nyårspaket publicerat på Sandhamn Seglarhotells sida), "ett av de mest eftertraktade nyårspaketen", "nyårspaket på Utö och Sandhamn är fullbokade i september–oktober", "Vaxholm med sina belysta gränder", "vintrarna kan vara torra", påståendet att Waxholmsbolaget kör specialtidtabell och att sista båten går tidigt, samt värdeord. -->
 <!-- KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "Jul- och nyårsveckorna 2026-2027"; "Nyårsafton torsdag 31 december: trafiken går som en lördag" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "NYÅRSPAKET 2026"; "Exklusivt nyårsfirande i Stockholms skärgård" (läst 2026-09-28) -->
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Nyårsfirande i skärgården 2026–2027: här är vad hotell och restauranger i skärgården faktiskt har publicerat om nyår i skärgården när den här guiden skrevs i slutet av september 2026, hur Waxholmsbolagets båtar går på nyårsafton, som i år infaller en torsdag, och vad som gäller för fyrverkerier om du firar nyår i en egen stuga.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Nyårsfirande i skärgården 2026–2027: här är vad hotell och restauranger i skärgården faktiskt har publicerat om nyår i skärgården när vi senast läste deras sidor i början av november 2026, hur Waxholmsbolagets båtar går på nyårsafton, som i år infaller en torsdag, och vad som gäller för fyrverkerier om du firar nyår i en egen stuga.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Nyårsfirande i skärgården 2026: vilka har nyårspaket?</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Många hotell och värdshus publicerar sina nyårspaket först under hösten. Listan nedan tar bara med ställen som på sin egen webbplats visar nyår 2026, alltså nyårsafton 2026 och nyårsdagen 2027. Menyer och slutliga program är i flera fall inte klara ännu, så kontrollera alltid på hotellets egen sida innan du bokar.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Smådalarö Gård – nyårspaket 2026 vid Dalarö</h3>
-<!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "NYÅRSPAKET 2026"; "Exklusivt nyårsfirande i Stockholms skärgård"; "Meny kommer inom kort." (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Nyårspaket 2026"; "Meny kommer inom kort." (läst 2026-11-02) -->
 <!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Övernattning"; "Nyårsdrink med tilltugg i Bloms Bar"; "Fyrarätters nyårssmiddag"; "Eldkorgar & ljushow"; "Ett glas mousserande vid 12-slaget"; "Vickning i Bloms bar"; "Frukostbuffé" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "vi bjuder på en stämningsfull ljusshow med utsikt mot Hemviken"; "Adress Smådalarö Gård AB, 137 70 Dalarö" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smådalarö Gård Hotell &amp; Spa utanför <a href="/o/dalaro">Dalarö</a> har publicerat ett nyårspaket för nyår 2026. I paketet ingår enligt hotellet övernattning, nyårsdrink med tilltugg i Bloms Bar, en fyrarätters nyårsmiddag, eldkorgar och en ljusshow med utsikt mot Hemviken, ett glas mousserande vid tolvslaget, vickning och frukostbuffé. Menyn var ännu inte publicerad i september 2026 – hotellet skriver att den kommer inom kort. Läs mer om ön på <a href="/o/smaadalaro">Smådalarö</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smådalarö Gård Hotell &amp; Spa utanför <a href="/o/dalaro">Dalarö</a> har publicerat ett nyårspaket för nyår 2026. I paketet ingår enligt hotellet övernattning, nyårsdrink med tilltugg i Bloms Bar, en fyrarätters nyårsmiddag, eldkorgar och en ljusshow med utsikt mot Hemviken, ett glas mousserande vid tolvslaget, vickning och frukostbuffé. Menyn var ännu inte publicerad i början av november 2026 – hotellet skriver att den kommer inom kort. Läs mer om ön på <a href="/o/smaadalaro">Smådalarö</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Marholmen i Roslagen – bokningen för nyår 2026 öppnar snart</h3>
-<!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "Nyårsfirande i Stockholms skärgård"; "Skriv upp dig på listan för förhandsinformation om när vi öppnar bokningen för Nyår 2026." (läst 2026-09-28) -->
-<!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "Sylvesters Nyårspaket med boende i hotellrum"; "Boende i eget Skärgårdshus eller villa"; "Väljs som tillval till Skärgårdshus och villor och hämtas i restaurangen när du checkar in." (läst 2026-09-28) -->
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Marholmen i Roslagen – bokningen för nyår 2026 är öppen</h3>
+<!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "BOKNINGEN ÄR ÖPPEN!"; "ge 2027 en magisk start" (läst 2026-11-02) -->
+<!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "Nyårspaket med boende på hotellet med egen balkong eller terrass."; "Nyårspaket med boende i hotellrum i två nätter med egen balkong eller terrass."; "Nyårspaket med boende i eget Hotellhus i två nätter."; "Nyårspaket med boende i egen villa i två nätter." (läst 2026-11-02) -->
 <!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "en ö i Roslagens vackra skärgård bara en timmes bilfärd från Stockholm och Uppsala"; "Marholmen 1, 761 97 Norrtälje" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marholmen är en ö i Roslagens skärgård i Norrtälje kommun, enligt Marholmen en timmes bilfärd från Stockholm och Uppsala. Här har bokningen för nyår 2026 ännu inte öppnat: på nyårssidan kan du skriva upp dig på en lista för att få besked när den gör det. Sidan beskriver två upplägg – ett nyårspaket med boende i hotellrum, och eget skärgårdshus eller villa med självhushåll, där en färdig trerätters nyårskasse kan bokas som tillval och hämtas i restaurangen vid incheckningen.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marholmen är en ö i Roslagens skärgård i Norrtälje kommun, enligt Marholmen en timmes bilfärd från Stockholm och Uppsala. Bokningen för nyår 2026 är öppen. Nyårssidan har fyra paket: hotellrum med egen balkong eller terrass i en eller två nätter, eget hotellhus i två nätter och egen villa i två nätter. Nyårssidan anger inga priser.</p>
 <!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "Vi skjuter själva inga smällare eller fyrverkerier under nyårsafton här på Marholmen och vi ber våra boende gäster att tänka på och i största möjliga mån ta hänsyn till alla våra fyrbenta vänner." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marholmen skjuter själv inte upp några fyrverkerier på nyårsafton och ber gästerna att ta hänsyn till hundar.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Nyår i skärgården: här finns inga nyårspaket publicerade ännu</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera kända skärgårdshotell hade i slutet av september 2026 inte lagt ut något nyårserbjudande för nyår 2026. Det betyder inte att de inte firar nyår – bara att inget var publicerat när vi läste deras sidor. Så här bokar du eller frågar direkt:</p>
-<!-- KÄLLA: https://www.utovardshus.se/erbjudanden/ — "Hösteldarnas Natt"; "17 OKTOBER"; "Vandringsweekend"; "1 SEPTEMBER – 22 NOVEMBER" (läst 2026-09-28) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera kända skärgårdshotell hade i början av november 2026 inte lagt ut något nyårserbjudande för nyår 2026. Det betyder inte att de inte firar nyår – bara att inget var publicerat när vi läste deras sidor. Så här bokar du eller frågar direkt:</p>
+<!-- KÄLLA: https://www.utovardshus.se/erbjudanden/ — "Vandringsweekend"; "1 september – 22 november"; "Fredagskväll i Skärgården"; "Utö Backyard – boendepaket"; inget nyårspaket listat (läst 2026-11-02) -->
 <!-- KÄLLA: https://www.utovardshus.se/oppettider/ — "Vår hotell- och konferensbokning är öppen vardagar 08:00–16:00."; "E-post: receptionen@utovardshus.se" (läst 2026-09-28) -->
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
-<li><strong>Utö Värdshus</strong> på <a href="/o/uto">Utö</a>: erbjudandesidan listade höstpaket som Hösteldarnas Natt den 17 oktober och vandringsweekends 1 september–22 november, men inget nyårspaket. Hotellbokningen nås via telefon och e-post på vardagar enligt värdshusets sida med öppettider.</li>
+<li><strong>Utö Värdshus</strong> på <a href="/o/uto">Utö</a>: erbjudandesidan listade vandringsweekends till och med 22 november och paket inför våren 2027, men inget nyårspaket. Hotellbokningen nås via telefon och e-post på vardagar enligt värdshusets sida med öppettider.</li>
 </ul>
 <!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julafton — "Fira Julafton med oss"; "24 DECEMBER 2026"; "Hos oss väntar ett julbord med guldkant"; "Och dagen därpå fortsätter firandet med vår traditionella kalkonmiddag" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.sandhamn.com/sv — "Sandhamn Seglarhotell har varit en del av livet på Sandhamn i över ett sekel."; "08-574 504 00" (läst 2026-09-28) -->
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
 <li><strong>Sandhamn Seglarhotell</strong> på <a href="/o/sandhamn">Sandhamn</a>: hotellet har publicerat julafton den 24 december 2026 med julbord och kalkonmiddag dagen efter, men inget nyårsfirande. Kontakta receptionen om du vill veta vad som gäller på nyår.</li>
 </ul>
-<!-- KÄLLA: https://www.grinda.se/evenemang/ — "Upptäck evenemang på Grinda, musik, temahelger, familjeaktiviteter och skärgårdsupplevelser mitt i Stockholms skärgård."; "Vilt & Jakt på Wärdshuset" (läst 2026-09-28) -->
+<!-- KÄLLA: https://www.grinda.se/evenemang/ — "Halloween på Grinda – vågar ni gå spökrundan?" (1 nov 2026, sista evenemanget i kalendern; inget i december) (läst 2026-11-02) -->
 <!-- KÄLLA: https://www.waxholmshotell.se/ — "Waxholms Hotell har varit hjärtat i skärgårdens huvudstad sedan 1902"; "Hamngatan 2, 185 32 Vaxholm"; "info@waxholmshotell.se"; "JULBORD" (läst 2026-09-28) -->
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
-<li><strong>Grinda Wärdshus</strong> på <a href="/o/grinda">Grinda</a>: evenemangskalendern sträckte sig till oktober 2026, med Vilt &amp; Jakt på Wärdshuset som sista punkt. Inget nyår fanns med.</li>
+<li><strong>Grinda Wärdshus</strong> på <a href="/o/grinda">Grinda</a>: evenemangskalendern slutade med Halloween på Grinda den 1 november 2026. Inget nyår och inget i december fanns med.</li>
 <li><strong>Waxholms Hotell</strong> i <a href="/o/vaxholm">Vaxholm</a>: hotellet vid Hamngatan har funnits sedan 1902. Startsidan visade julbord men inget nyårserbjudande. Fråga hotellet via e-post.</li>
 </ul>
 
@@ -10113,9 +10113,9 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Bra att veta:</strong>
-<!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "Skriv upp dig på listan för förhandsinformation om när vi öppnar bokningen för Nyår 2026." (läst 2026-09-28) -->
-<!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Detta erbjudande gäller i mån av plats" (läst 2026-09-28) -->
-<p style="margin:8px 0 0;font-size:14px">Nyårspaketen gäller i mån av plats, och på vissa ställen har bokningen inte ens öppnat ännu. Vill du fira nyår i skärgården: skriv upp dig på hotellens listor eller nyhetsbrev och boka när paketen släpps.</p>
+<!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "BOKNINGEN ÄR ÖPPEN!" (läst 2026-11-02) -->
+<!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "i mån av plats" (läst 2026-11-02) -->
+<p style="margin:8px 0 0;font-size:14px">Nyårspaketen gäller i mån av plats. Smådalarö Gård och Marholmen tar emot bokningar, men Smådalarös meny var inte klar i början av november. Övriga hotell i listan hade inget nyårspaket ute – fråga dem direkt eller håll koll på deras nyhetsbrev.</p>
 </div>
 `,
 
@@ -18937,7 +18937,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Skådarskola om vinterfåglar</h3>
 <!-- KÄLLA: https://naturumottenby.se/aktiviteter/skadarskola-vinterfaglar-pa-udden/ — "Skådarskola: Vinterfåglar på udden"; "28 nov kl. 13:00 - 28 nov kl. 15:00"; "Samling utanför naturum, där finns möjlighet att låna kikare."; "i din anmälan skriv om du vill låna kikare"; "Skådarskola är för dig som är ny eller vill lära dig fåglar från grunden." (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturum Ottenby har en skådarskola, "Vinterfåglar på udden", den 28 november kl. 13–15. Samlingen är utanför naturum och du kan låna kikare om du skriver det i anmälan. Skådarskolan är gjord för den som är ny som fågelskådare.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturum Ottenby har en skådarskola, "Vinterfåglar på udden", lördag 28 november 2026 kl. 13–15. Samlingen är utanför naturum och du kan låna kikare om du skriver det i anmälan. Skådarskolan är gjord för den som är ny som fågelskådare.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ottenby på vintern: reservat, fågelstation och naturum</h2>
 <!-- KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/ottenby.html — "På Ölands södra udde, en av Sveriges bästa fågellokaler, ligger naturreservatet Ottenby. Reservatet är ett av de största i Kalmar län och omfattar 995 hektar."; "Inom Ottenby naturreservat är det förbjudet att flyga drönare med stöd av föreskriften om förbud att störa djurlivet."; "Vid udden och vid kungsgården finns två stora parkeringsplatser." (läst 2026-09-27) -->
@@ -18945,10 +18945,10 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://www.ottenby.se/ — "Ottenby fågelstation ägs och drivs av BirdLife Sverige, och har verkat oavbrutet sedan 1946"; "Trafiken av flyttfåglar vid Ottenby är som mest intensiv under april-maj och september-oktober" (läst 2026-09-27) -->
 <!-- KÄLLA: https://www.ottenby.se/guidning-besok/ — "För den som är nyfiken på verksamheten och själv vill uppleva ringmärkning av vilda fåglar går det bra att boka en guidning." (läst 2026-09-27) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ottenby fågelstation drivs av BirdLife Sverige och har varit i gång sedan 1946. Flyttfågelsträcket är som intensivast i april–maj och september–oktober, och på vintern är det i stället havsörn och övervintrande fåglar du ser. Vill du se ringmärkning kan du boka en guidning hos fågelstationen.</p>
-<!-- KÄLLA: https://naturumottenby.se/oppettider/ — "Öppettider 2026"; "Höstlov 24-31 oktober dagligen 11-16"; "Höstlov 24–31 oktober dagligen, insläpp varje heltimme 11-16" (läst 2026-09-27) -->
+<!-- KÄLLA: https://naturumottenby.se/oppettider/ — "Höstlov 24-31 oktober dagligen 11-16"; inga perioder efter 31 oktober publicerade (läst 2026-11-02) -->
 <!-- KÄLLA: https://www.oland.se/olandstips/vinteraktiviteter — "Har du inte besökt Ölands södra udde under vinterhalvåret är det hög tid att göra det nu!" (läst 2026-09-27) -->
 <!-- KÄLLA: https://www.ottenby.se/ — "Fyren Långe Jan är med sina 42 meter Sveriges högsta fyr och är öppen för besök under vår, sommar och höst" (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturum Ottenby och fyren Långe Jan har säsongsöppet. Enligt naturums öppettider för 2026 är höstlovet, 24–31 oktober, den sista perioden med öppet. Långe Jan, som är 42 meter och Sveriges högsta fyr, är öppen på våren, sommaren och hösten. Naturen på udden kan du besöka hela vintern.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturum Ottenby och fyren Långe Jan har säsongsöppet. Naturums öppettider för 2026 slutade med höstlovet 24–31 oktober, och i början av november fanns inga tider för vintern eller 2027 publicerade. Långe Jan, som är 42 meter och Sveriges högsta fyr, är öppen på våren, sommaren och hösten. Naturen på udden kan du besöka hela vintern.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad kan man göra på Öland på vintern?</h2>
 
@@ -18972,9 +18972,9 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gråborg nära Färjestaden är Ölands största fornborg och alltid öppen för besökare. Intill finns kapellruinen S:t Knuts kapell och en grillplats. Eketorps borg längst söderut är tillgänglig året runt, och väster om borgen går Eketorpsleden, 1,6 kilometer över alvaret.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Borgholms slott på vintern</h3>
-<!-- KÄLLA: https://www.borgholmsslott.se/oppettider/ — "Öppettider 2026"; "1 oktober – 1 november: Dagligen kl. 10-16" (läst 2026-09-27) -->
+<!-- KÄLLA: https://www.borgholmsslott.se/oppettider/ — "Öppettider 2026"; "1 oktober – 1 november: Dagligen kl. 10-16"; inga tider för 2027 publicerade (läst 2026-11-02) -->
 <!-- KÄLLA: https://www.oland.se/vinterutflykter — "Starta din tur längs Strandvägen vid kallbadhuset intill hamnen."; "Passa på att gå runt den ståtliga ruinen och speja ut över Kalmarsund."; "Återvänd sedan till Borgholm via Garderobstrappan ner till Slottsskogen." (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Borgholms slott har öppet för besök till och med 1 november 2026 enligt slottets egen sida. Som vinterutflykt föreslår oland.se en promenad som börjar vid hamnen i Borgholm, går förbi slottsruinen med utsikt över Kalmarsund och tillbaka ner genom Slottsskogen. Mer om staden finns i <a href="/guider/borgholm-guide">guiden till Borgholm</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Borgholms slott stängde för säsongen den 1 november 2026, och öppettider för 2027 var ännu inte publicerade på slottets egen sida. Som vinterutflykt föreslår oland.se en promenad som börjar vid hamnen i Borgholm, går förbi slottsruinen med utsikt över Kalmarsund och tillbaka ner genom Slottsskogen. Mer om staden finns i <a href="/guider/borgholm-guide">guiden till Borgholm</a>.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kallbad och skridskor</h3>
 <!-- KÄLLA: https://www.oland.se/kallbada-i-vinter — "Sjöstugan i Borgholm."; "Kallbadhuset i Borgholm."; "Färjestadens hamn."; "Kalvhagens badplats (dubbelkolla med Mörbylånga kommun så stegen är i när isen lagt sig)."; "Bada aldrig ensam!"; "Doppa inte huvudet när det är minusgrader." (läst 2026-09-27) -->
