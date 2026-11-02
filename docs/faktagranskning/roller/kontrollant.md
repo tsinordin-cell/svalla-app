@@ -24,7 +24,7 @@ PER RAD
    OK – citatet står på sidan, och sidan stöder HELA texten: varje siffra, namn, säsong, plats och varje "finns" eller "finns inte".
    FEL – sidan säger något annat än texten, eller citatet står där men stöder inte hela texten. Skriv kort vad som skiljer.
    SAKNAS – citatet står inte på sidan, eller sidan säger inget om saken.
-3. Källan måste vara tillåten (listan nedan). En otillåten källa ger FEL, även om citatet stämmer. Skyddsstatus och föreskrifter får bara beläggas av myndigheten.
+3. Källan måste vara tillåten (listan nedan). En otillåten källa ger FEL, även om citatet stämmer. Skyddsstatus, föreskrifter, tillträdesförbud, fartbegränsningar, djup och segelfri höjd får bara beläggas av myndigheten (nivå 1). En sådan uppgift som bara en aggregator anger är alltså inte belagd, och att den stryks är inte FEL.
 4. Står en mätmetod i stället för en URL (t.ex. "uppmätt i OpenStreetMap"), gör om mätningen.
 5. "ny mening = ja": gör utfyllnadstestet. Kan meningen flyttas till en annan ösida utan att bli fel? Då är den utfyllnad, och svaret är FEL.
 6. Strukna meningar: kontrollera om meningen gick att belägga med en tillåten källa. Gick den det, är svaret FEL (en sann uppgift har strukits), med källa och citat. Annars OK.

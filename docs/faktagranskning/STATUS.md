@@ -2,6 +2,40 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-02 23:36 — P0 runda 5; Fjäderholmarna kontrollerad; P0 16
+
+- **Kontrollant P0 runda 5 (MÄTT):** 5 OK, 1 FEL, 1 SAKNAS, och runda 5b
+  (hundregeln) FEL. Rättat i P0-grenen:
+  - Rubriken gav "Sista båten från ? idag" när ResRobot saknar namn, och en
+    färja utan linjenummer räknades som promenad. Nu tolkas "?" som tomt, och
+    bara typen WALK/TRSF eller ett ben helt utan trafikslag räknas som
+    promenad (normalizeLeg).
+  - Vaxholms not ("buss 670 från Tekniska högskolan") saknade KÄLLA-rad. Nu
+    finns h2.pdf och h670670x.pdf, samma källor som Vaxholms Granskare
+    använde (vaxholm-0075/0076).
+  - Hundregeln sa mindre än Naturvårdsverket. Ny text: alltid koppel i alla
+    nationalparker, hund kan vara förbjuden i vissa skyddade områden, ofta
+    kopplingstvång i naturreservat, och läs skylten eller fråga länsstyrelsen
+    eller kommunen.
+  - P0 13 och 14 (Husarö i databasen) är OK.
+- **P0 16 (Fjäderholmarna):** Kontrollanten för Fjäderholmarna visade att
+  bryggan är märkt X i tabell 2 ("Bryggorna trafikeras utan fast
+  avgångstid"). Avgångsrutan och kortet "Sista båten" visade ändå exakta tider
+  som om de vore tidtabellens. Nytt fält `tidsObs` i transit-stops.ts visas i
+  båda: tiderna kommer från reseplaneraren, var på bryggan i god tid. Andra
+  bryggor med X i batch 01 är inte undersökta än (Vakten).
+- verify-claims, 705 tester och tsc gröna. Kontrollant P0 runda 6 pågår
+  (p0-k071–k074).
+- **Kontrollant Fjäderholmarna (MÄTT):** 106 OK, 13 FEL, 1 SAKNAS av 120.
+  Redaktörens beslut per fynd står i `register/b01/kontroll/fjaderholmarna.beslut.tsv`.
+  Fyra fynd gällde klockslag i liveraderna; de är inte fel i datafilerna och
+  blev P0 16. Två fynd gällde strukna hamndjup och underkänns, eftersom djup
+  enligt DEL 5 bara får beläggas av nivå 1. Regeln är nu tillagd i
+  Kontrollantens instruktion. Omarbete för Skribenten: "Sök resan i
+  SL-appen" (3 rader), julbordsbåtens datum (2), fågelskyddsområdet (1) och
+  luftvärnskanonerna (1). Hållplats-id:t kontrolleras av Vakten.
+- Agenter nu (fyra): Kontrollant Utö, sidmallarna, P0 runda 6 och Grinda.
+
 ## 2026-11-02 23:13 — Sidmallarna granskade; P0 15 (hundregeln i nationalparker)
 
 - **Sidmallarna (MÄTT):** 253 rader. KORREKT 145, DELVIS 43, FEL 42,

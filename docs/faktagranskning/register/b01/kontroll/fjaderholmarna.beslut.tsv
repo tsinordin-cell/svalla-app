@@ -1,0 +1,15 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-02)
+fjaderholmarna-k002	fjaderholmarna-0072	FEL (klockslag i liveraden)	Inte FEL i datafilerna: liveraden är reseplanerarens tider. Sakfrågan (bryggan märkt X utan fast avgångstid) blir P0 16 i P0-grenen (tidsObs).
+fjaderholmarna-k020	fjaderholmarna-0070	FEL (klockslag i liveraden)	Som k002.
+fjaderholmarna-k028	fjaderholmarna-0071	FEL (klockslag i liveraden)	Som k002.
+fjaderholmarna-k103	fjaderholmarna-0073	FEL (klockslag i liveraden)	Som k002.
+fjaderholmarna-k025	fjaderholmarna-0230	FEL	Omarbete: \"Sök resan i SL-appen.\" ersätts med det tabellen säger, \"Sök hela din resa på sl.se\" (h2.pdf).
+fjaderholmarna-k006	fjaderholmarna-0328	FEL	Följer av k025 (samma text på /med-barn).
+fjaderholmarna-k083	fjaderholmarna-0310	FEL	Följer av k025 (samma text på /komma-dit).
+fjaderholmarna-k038	fjaderholmarna-N002	FEL	Omarbete: julbordsbåten 20 november–20 december 2026 enligt Strömmas sida, med slutdatum.
+fjaderholmarna-k058	fjaderholmarna-N004	FEL	Som k038.
+fjaderholmarna-k036	fjaderholmarna-0081	FEL	Omarbete: skyddsstatus bara enligt myndighet (Naturvårdsregistret: Libertus). Rövarns holme och \"fågelskyddsområde\" utan myndighetskälla ska bort eller beläggas.
+fjaderholmarna-k124	fjaderholmarna-0183	FEL	Omarbete: luftvärnskanonerna \"på holmarna\" enligt historiesidan, inte längs stigarna på Stora Fjäderholmen.
+fjaderholmarna-s003	fjaderholmarna-0240	FEL (struken sann uppgift)	Underkänns av Redaktören: djup får enligt DEL 5 bara beläggas av nivå 1. Svenska Gästhamnar är nivå 3, så strykningen står. Regeln är nu tillagd i Kontrollantens instruktion.
+fjaderholmarna-s004	fjaderholmarna-0305	FEL (struken sann uppgift)	Som s003.
+fjaderholmarna-k086	fjaderholmarna-0064	SAKNAS	Kodpåstående (hållplats-id). Vakten kontrollerar namnet för 740034632 mekaniskt mot ResRobot via API:t.
