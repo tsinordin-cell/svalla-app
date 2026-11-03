@@ -2,6 +2,30 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 05:28 — Sandhamn kontrollerad; P0 18
+
+- **Kontrollant Sandhamn (MÄTT):** 153 OK, 21 FEL, 17 SAKNAS av 191. Beslut
+  per fynd i `register/b01/kontroll/sandhamn.beslut.tsv`.
+- **P0 18 (Sandhamn):** avgångsrutan visade turer med anmärkning B och b i
+  tabell 16 som vanliga avgångar. Samma lindring som för Möja och Husarö:
+  `bestallning` för Sandhamn i transit-stops.ts. Okommitterat i P0-grenen;
+  tillagt i P0-omgång 7 (p0-k082).
+- **Omarbete (tillagt hos Skribenten för öarna):**
+  - Restiden från Stavsnäs ("ca 38 minuter" gäller bara en tur).
+  - "Rakt ut genom skärgården".
+  - Källan för Stavsnäs vinterhamn.
+  - Västerudde och "mellersta skärgården" i texten.
+  - Trouville räknas två gånger.
+  - Tre strukna sanna uppgifter ska tillbaka. Bland dem fartgränsen fem knop,
+    som nu har en myndighetskälla: Länsstyrelsens 01FS 2001:138 punkt 135.
+- Löses av sidmallarnas ändringar: myndighetsräkningen i källistan,
+  JSON-LD-säsongen och isAccessibleForFree.
+- Till Tom (redan i beslut 2 och 5b): regionetiketten, PUB Alma, Sandhamns
+  Glassigaste Ställe och Trouville-strändernas namn.
+- Kontrollant Styrsö och Husarö startad (en agent, 177 rader). Agenter nu
+  (fyra): Skribent öarna, Kontrollant P0 7 + sidmallarnas omkontroll,
+  Granskare badkompensation, Kontrollant Styrsö och Husarö.
+
 ## 2026-11-03 05:11 — Vaxholm kontrollerad; P0 17; sidmallarnas omarbete klart
 
 - **Kontrollant Vaxholm (MÄTT):** 161 OK, 7 FEL, 5 SAKNAS av 175 (2 P0-rader

@@ -1,0 +1,39 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-03)
+sandhamn-k025	sandhamn-0089	FEL (beställning)	P0 18 i P0-grenen: text om beställningsturer i tabell 16 i båda rutorna. Kontrolleras i P0-omgång 7.
+sandhamn-k107	sandhamn-0083	FEL (beställning)	P0 18 i P0-grenen: text om beställningsturer i tabell 16 i båda rutorna. Kontrolleras i P0-omgång 7.
+sandhamn-k163	sandhamn-0084	FEL (beställning)	P0 18 i P0-grenen: text om beställningsturer i tabell 16 i båda rutorna. Kontrolleras i P0-omgång 7.
+sandhamn-k022	sandhamn-0497	FEL	Omarbete: \"ca 38 minuter\" från Stavsnäs gäller bara en tur. Skriv spannet enligt tabell 16 (övriga turer 50–87 min, Sandhamnslinjen 30 min) med tidtabellsperioden i KÄLLA-raden.
+sandhamn-k135	sandhamn-0494	FEL	Som k022.
+sandhamn-k003	sandhamn-0495	FEL	Omarbete: \"rakt ut genom skärgården\": direktbåten från Strömkajen gick bara lördag–söndag; andra dagar krävdes byte i Finnhamn (s15).
+sandhamn-k212	sandhamn-0342	FEL	Som k003.
+sandhamn-k106	sandhamn-0314	FEL (källa)	Omarbete: ersätt Seglarhotellet som källa för trafiken med Värmdö kommuns sida om Stavsnäs vinterhamn.
+sandhamn-k123	sandhamn-0306	FEL (källa)	Som k106.
+sandhamn-k044	sandhamn-0516	FEL (källa)	Omarbete: namnet \"Västerudde strand\" har bara OSM som källa, och OSM belägger bara läge. Beskriv läget utan obelagt namn, eller belägg namnet.
+sandhamn-k064	sandhamn-0409	FEL	Omarbete: texten säger \"mellersta skärgården\", men Länsstyrelsen och Waxholmsbolaget säger yttre skärgården.
+sandhamn-k159	sandhamn-0416	FEL	Som k064.
+sandhamn-k224	sandhamn-0019	FEL	Tom: regionetiketten (beslut 2).
+sandhamn-k069	sandhamn-0538	FEL	Omarbete: Trouville räknas två gånger i antalet badplatser. Dubbletterna ligger hos Tom (beslut 5b); räkna så att texten stämmer oavsett.
+sandhamn-k004	sandhamn-0557	FEL	Som k069.
+sandhamn-k037	sandhamn-0385	FEL	Löses av generatorns nya myndighetsmärkning i sidmallarnas ändringar. Vakten kontrollerar antalet efter omgenereringen.
+sandhamn-k079	sandhamn-0013	FEL	Löses av sidmallarnas ändringar: openingHoursSpecification tas bort.
+sandhamn-k190	sandhamn-0011	SAKNAS	Löses av sidmallarnas ändringar: isAccessibleForFree tas bort.
+sandhamn-s001	sandhamn-0097	FEL (struken sann uppgift)	Omarbete: återställ med Stockholm Archipelago Trail som källa (hamnen full av båtgäster på sommaren).
+sandhamn-s004	sandhamn-0131	FEL (struken sann uppgift)	Omarbete: återställ fartbegränsningen med Länsstyrelsens föreskrift 01FS 2001:138 punkt 135 (högst fem knop vid Sandhamn) som källa (nivå 1). Kontrollera att föreskriften gäller i dag.
+sandhamn-s005	sandhamn-0132	FEL (struken sann uppgift)	Som s004.
+sandhamn-s007	sandhamn-0181	FEL (struken sann uppgift)	Omarbete: återställ med Skärgårdsstiftelsen som källa (man kan besöka fyrplatsen på Grönskär).
+sandhamn-k112	sandhamn-0412	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k114	sandhamn-0411	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k125	sandhamn-0414	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k164	sandhamn-0415	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k182	sandhamn-0410	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k161	sandhamn-0413	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k012	sandhamn-0405	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k013	sandhamn-0404	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k073	sandhamn-0407	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k222	sandhamn-0408	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k223	sandhamn-0403	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k165	sandhamn-0406	SAKNAS	Tom: PUB Alma och Sandhamns Glassigaste Ställe (beslut 5b).
+sandhamn-k062	sandhamn-0603	SAKNAS	Tom: Trouville-strändernas namn (beslut 5b). Läget kan beläggas med OSM.
+sandhamn-k070	sandhamn-0524	SAKNAS	Tom: Trouville-strändernas namn (beslut 5b). Läget kan beläggas med OSM.
+sandhamn-k151	sandhamn-0529	SAKNAS	Tom: Trouville-strändernas namn (beslut 5b). Läget kan beläggas med OSM.
+sandhamn-k184	sandhamn-0608	SAKNAS	Tom: Trouville-strändernas namn (beslut 5b). Läget kan beläggas med OSM.
