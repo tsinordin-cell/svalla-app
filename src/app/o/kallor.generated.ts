@@ -534,6 +534,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://www.vaxholm.se/trafik--infrastruktur/trafik-gator-och-parkering/parkering/taxor-och-avgifter",
+      "org": "vaxholm.se",
+      "vad": "fastställda av kommunfullmäktige för år 2025, Taxa A, 40 kr/timme, 1 maj - 31 augusti, Höst, vinter, vår (kväll och helg):, Halva Kronängsskolans parkeringsområde, 1 september - 30 april, Avgiftsfritt, Parkeringsförbud tisdagar",
+      "last": "2026-10-31",
+      "myndighet": true
+    },
+    {
       "url": "https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser",
       "org": "vaxholm.se",
       "vad": "Beläget på södra Rindö i slutet på Grönviksvägen finns detta lilla lokala bad, Sandstrand, Badbrygga, Grillplats, Baja-maja under badsäsong",
@@ -552,13 +559,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "vaxholm.se",
       "vad": "det är förbjudet att medföra okopplad hund i reservatet",
       "last": "2026-11-02",
-      "myndighet": true
-    },
-    {
-      "url": "https://www.vaxholm.se/trafik--infrastruktur/trafik-gator-och-parkering/parkering/taxor-och-avgifter",
-      "org": "Vaxholms stad",
-      "vad": "",
-      "last": "2026-08-06",
       "myndighet": true
     },
     {
