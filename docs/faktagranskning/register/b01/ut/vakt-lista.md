@@ -30,6 +30,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 ## Samma fel på andra ställen
 - "Sök resan i SL-appen" står i Yxlans data och i blogg/[slug]/page.tsx:902.
 - Bloggen cykling-moja-gallno säger "Buss 434 från Slussen till Sollenkroka".
+- "Café Ankaret" står kvar i bloggen (blogg/[slug]/page.tsx:67). Verksamheten heter "Ankaret" (Instagram, läst 2026-11-03).
 - src/data/guider.ts:358–360: obelagd Strömkajen-text.
 - dagsplan.ts: Nynäshamn → Utö.
 - bingo-data.ts:26: "havsbastu" på Utö.
