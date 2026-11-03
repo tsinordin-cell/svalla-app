@@ -320,10 +320,10 @@ index 85440c8..e9cbc45 100644
              </div>
              <Icon name="arrowRight" size={18} stroke={2.2} />
 diff --git a/src/app/o/[slug]/bad/page.tsx b/src/app/o/[slug]/bad/page.tsx
-index d596bf8..87fbcb0 100644
+index d596bf8..aab559a 100644
 --- a/src/app/o/[slug]/bad/page.tsx
 +++ b/src/app/o/[slug]/bad/page.tsx
-@@ -16,6 +16,16 @@ function isBeachObject(b: string | IslandBeach): b is IslandBeach {
+@@ -16,6 +16,42 @@ function isBeachObject(b: string | IslandBeach): b is IslandBeach {
    return typeof b === 'object' && b !== null && 'name' in b
  }
  
@@ -337,10 +337,36 @@ index d596bf8..87fbcb0 100644
 +  return ['bad', 'klippbad', 'simning', 'sandstrand', 'sandstränd', 'stenstrand'].some(k => t.includes(k))
 +}
 +
++/**
++ * Ligger badplatsen på ön enligt sin egen text? Platsdatabasens urval är en cirkel kring ön och fångar
++ * grannöar (Gröna vik "på Brännö", 4,3 km från Styrsö; Kåreviks badplats "på södra Tjörn", 1,4 km från
++ * Dyrön), och öns egen lista kan ha en badplats på grannön (Ålö Storsand på Utö). Rubriken "Badplatser på X"
++ * räknar bara platser på ön (2026-11-03, mall-N004). 'pa': texten säger "på <ön>"; 'annan': texten säger
++ * "på grannön" eller "på <en annan ö i Svalla>"; 'oklar': texten säger inget om vilken ö.
++ */
++function paOrt(namn: string): RegExp {
++  const n = namn.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
++  return new RegExp(`(?:^|[^a-zåäö])på (?:(?:norra|södra|östra|västra|nordöstra|nordvästra|sydöstra|sydvästra) )?${n}s?(?![a-zåäö])`, 'i')
++}
++function lage(text: string, oNamn: string): 'pa' | 'annan' | 'oklar' {
++  if (paOrt(oNamn).test(text)) return 'pa'
++  if (/på grannön/i.test(text) || ALL_ISLANDS.some(o => o.name !== oNamn && paOrt(o.name).test(text))) return 'annan'
++  return 'oklar'
++}
++
++/**
++ * Text för öar utan badplats. "… och i resten av skärgården" bara när öns data lägger den i en skärgård
++ * (regionLabel): Blå Jungfrun (Kalmarsund), Lilla Karlsö (Gotland), Hanö (Blekinge), Adelsö (Mälaren),
++ * Fjällbacka och Grundsund (Bohuslän) gör det inte (2026-11-03, mall-0191 och mall-0192 omarbete 3).
++ */
++function utanBadText(island: { name: string; regionLabel?: string }): string {
++  return `Vad som gäller när du badar vid ${island.name}${/skärgård/i.test(island.regionLabel ?? '') ? ' och i resten av skärgården' : ''}.`
++}
++
  const typeLabel: Record<IslandBeach['type'], { icon: IconName; text: string }> = {
    sandstrand:    { icon: 'waves',    text: 'Sandstrand' },
    klippbad:      { icon: 'mountain', text: 'Klippbad' },
-@@ -33,9 +43,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -33,9 +69,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
    const { slug } = await params
    const island = getIsland(slug)
    if (!island) return {}
@@ -350,7 +376,7 @@ index d596bf8..87fbcb0 100644
 +  // Öar utan badplats och utan bad i aktiviteterna får samma text som undertiteln, inte
 +  // "Badplatser på och nära X" (Långskär, Storskär, Svenska Högarna m.fl.; mall-0191 omarbete 2).
 +  const harBad = (island.activity_meta?.bad?.beaches ?? []).length > 0 || island.activities.some(omBad)
-+  const utanBad = `Vad som gäller när du badar vid ${island.name} och i resten av skärgården.`
++  const utanBad = utanBadText(island)
    return {
 -    title: `Bada på ${island.name} – badplatser och stränder`,
 -    description: `Badplatser på och nära ${island.name}: stränder och bad med beskrivning, vägbeskrivning och vad allemansrätten säger om att bada.`,
@@ -361,7 +387,7 @@ index d596bf8..87fbcb0 100644
      keywords: [
        `bada på ${island.name.toLowerCase()}`,
        `badplatser ${island.name.toLowerCase()}`,
-@@ -45,8 +64,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -45,8 +90,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
        `${island.name.toLowerCase()} swim`,
      ],
      openGraph: {
@@ -372,7 +398,7 @@ index d596bf8..87fbcb0 100644
        url: `https://svalla.se/o/${slug}/bad`,
      },
      alternates: { canonical: `https://svalla.se/o/${slug}/bad` },
-@@ -60,11 +79,12 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -60,11 +105,12 @@ export default async function IslandBadPage({ params }: Props) {
  
    const beaches = island.activity_meta?.bad?.beaches ?? []
    const badNote = island.activity_meta?.bad?.note
@@ -389,7 +415,19 @@ index d596bf8..87fbcb0 100644
        a.name.toLowerCase().includes(k) || a.desc.toLowerCase().includes(k)
      )
    )
-@@ -81,7 +101,7 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -77,11 +123,19 @@ export default async function IslandBadPage({ params }: Props) {
+     island.name,
+   )
+   const allBeachNames = [...beaches.map(b => (isBeachObject(b) ? b.name : b)), ...dbBeaches.map(p => p.name)]
++  // Öns egna badplatser: rubriken säger "nära" eller "på och nära" när någon ligger på en annan ö (mall-N004).
++  const dataAnnan = beaches.filter(b => lage(isBeachObject(b) ? `${b.name} ${b.desc}` : b, island.name) === 'annan').length
++  const dataRubrik = dataAnnan === 0 ? 'på' : dataAnnan === beaches.length ? 'nära' : 'på och nära'
++  // Databasplatser: "på X" bara när platsens text säger det; en plats på en annan ö visar avståndet.
++  const dbLage = dbBeaches.map(p => ({ p, l: lage(p.description ?? p.name, island.name) }))
++  const dbPa = dbLage.filter(x => x.l === 'pa').map(x => ({ ...x.p, onIsland: true }))
++  const dbOvriga = dbLage.filter(x => x.l !== 'pa').map(x => (x.l === 'annan' ? { ...x.p, onIsland: false } : x.p))
++  const ovrigaNara = dbLage.every(x => x.l !== 'oklar')
+ 
    const badSchema = allBeachNames.length > 0 ? {
      '@context': 'https://schema.org',
      '@type': 'ItemList',
@@ -398,13 +436,13 @@ index d596bf8..87fbcb0 100644
      url: `https://svalla.se/o/${slug}/bad`,
      numberOfItems: allBeachNames.length,
      itemListElement: allBeachNames.map((name, i) => ({
-@@ -102,8 +122,11 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -102,8 +156,11 @@ export default async function IslandBadPage({ params }: Props) {
          tab="bad"
          subtitle={
            beaches.length === 0 && dbBeaches.length === 0 && !hasBad
 -            ? `Badplatser på ${island.name} och vad som gäller när du badar i skärgården.`
 -            : `Badplatser på och nära ${island.name}, med beskrivning och vägbeskrivning.`
-+            ? `Vad som gäller när du badar vid ${island.name} och i resten av skärgården.`
++            ? utanBadText(island)
 +            // "med beskrivning" bara när en badplats har beskrivning (2026-11-02, mall-0192 omarbete).
 +            : beaches.some(isBeachObject) || dbBeaches.some(p => p.description)
 +            ? `Badplatser på och nära ${island.name}, med beskrivning.`
@@ -412,7 +450,38 @@ index d596bf8..87fbcb0 100644
          }
        />
  
-@@ -226,7 +249,7 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -124,7 +181,7 @@ export default async function IslandBadPage({ params }: Props) {
+         {beaches.length > 0 && (
+           <div style={{ marginBottom: 32 }}>
+             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 16 }}>
+-              Badplatser på {island.name}
++              Badplatser {dataRubrik} {island.name}
+             </h2>
+             <div style={{ display: 'grid', gap: 16 }}>
+               {beaches.map((beach, i) => (
+@@ -187,11 +244,18 @@ export default async function IslandBadPage({ params }: Props) {
+           </div>
+         )}
+ 
+-        {/* Badplatser ur platsdatabasen */}
++        {/* Badplatser ur platsdatabasen: först de som ligger på ön, sedan övriga (mall-N004) */}
++        <IslandPlacesList
++          places={dbPa}
++          islandName={island.name}
++          heading={beaches.length > 0 && dataRubrik !== 'nära' ? `Fler badplatser på ${island.name}` : `Badplatser på ${island.name}`}
++        />
+         <IslandPlacesList
+-          places={dbBeaches}
++          places={dbOvriga}
+           islandName={island.name}
+-          heading={beaches.length > 0 ? `Fler badplatser på och nära ${island.name}` : `Badplatser på och nära ${island.name}`}
++          heading={ovrigaNara
++            ? `${beaches.length > 0 && dataRubrik === 'nära' ? 'Fler badplatser' : 'Badplatser'} nära ${island.name}`
++            : `${beaches.length > 0 || dbPa.length > 0 ? 'Fler badplatser' : 'Badplatser'} på och nära ${island.name}`}
+         />
+ 
+         {/* Bad-aktiviteter från activities[] */}
+@@ -226,7 +290,7 @@ export default async function IslandBadPage({ params }: Props) {
              boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
            }}>
              <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
@@ -421,7 +490,7 @@ index d596bf8..87fbcb0 100644
              </p>
            </div>
          )}
-@@ -241,12 +264,14 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -241,12 +305,14 @@ export default async function IslandBadPage({ params }: Props) {
            <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 12 }}>
              Bra att veta innan du badar
            </h3>
@@ -438,7 +507,7 @@ index d596bf8..87fbcb0 100644
            </ul>
          </div>
  
-@@ -265,7 +290,9 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -265,7 +331,9 @@ export default async function IslandBadPage({ params }: Props) {
              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
                Thorkel hjälper dig med båttider, lunch och bad.
              </div>
@@ -905,7 +974,7 @@ index 5081eaf..878692b 100644
            <Link href="/planera" prefetch={false} style={{
              display: 'inline-block', background: 'var(--acc-knapp)', color: '#fff',
 diff --git a/src/app/o/[slug]/page.tsx b/src/app/o/[slug]/page.tsx
-index 38f86cc..0044e24 100644
+index 38f86cc..96e07ba 100644
 --- a/src/app/o/[slug]/page.tsx
 +++ b/src/app/o/[slug]/page.tsx
 @@ -24,6 +24,8 @@ import { PUBLICERADE_GUIDER } from '../../guider/guides-data'
@@ -926,7 +995,7 @@ index 38f86cc..0044e24 100644
 + // Badtunnor (Lidö) är inget bad i havet (mall-0002 omarbete 2).
 + // En post vars första mening säger att det saknas på ön, eller pekar till grannön, räknas inte:
 + // Vindö (boende och bad på Djurö), Öckerö (hotell på Hönö). En badstege vid bastun (Bullerö) är ingen badplats (mall-0002 omarbete 3).
-+ const pekarBort = (desc: string) => /^Närmast|grannön|har vi inte kunnat belägga|ingen badplats/i.test(desc.split(/(?<=\.)\s/)[0])
++ const pekarBort = (desc: string) => /^Närmast|grannön|har vi inte kunnat belägga|ingen badplats/i.test(desc.split(/(?<=\.)\s/)[0] ?? '')
 + const harBadData = (island.activity_meta?.bad?.beaches ?? []).length > 0
 +  || island.activities.some(a => !pekarBort(a.desc) && /bad|simning|sandstr[aä]nd|stenstrand/i.test(`${a.name} ${a.desc}`.replace(/badtunn[a-zåäö]*|badsteg[a-zåäö]*/gi, '')))
 + const amnen = [
