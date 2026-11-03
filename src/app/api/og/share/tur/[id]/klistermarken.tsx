@@ -11,13 +11,15 @@
  * inga start- och slutprickar, inga ramar.
  */
 import type { ReactElement } from 'react'
-import { ruttPath, type Punkt, type Stapel } from '@/lib/dela-klistermarken'
+import { ruttPath, ruttStartSlut, type Punkt, type Stapel } from '@/lib/dela-klistermarken'
 
 export type Tal = { val: string; enhet: string; etikett: string }
 
 const ORANGE = '#ff5c2e'
 const VIT = '#ffffff'
 const VIT_SVAG = 'rgba(255,255,255,0.78)'
+const BARNSTEN = '#f6b26b'
+const SERIF = 'Playfair Display, Georgia, serif'
 const SKUGGA = '0 1px 2px rgba(0,0,0,0.40), 0 6px 24px rgba(0,0,0,0.28)'
 const FONT = 'Inter, system-ui, sans-serif'
 
@@ -51,14 +53,22 @@ export function Logga({ storlek = 34, pill = false }: { storlek?: number; pill?:
   )
 }
 
-/** En tjock linje i Svallas orange med runda ändar, och en knappt synlig mörk kant så att den syns på ljusa bilder. */
-function Rutt({ pts, W, H, pad, tjock = 30 }: { pts: Punkt[]; W: number; H: number; pad: number; tjock?: number }) {
+/**
+ * Rutten i samma uttryck som kartkortet (2026-10-29): mörk kant för ljusa bilder,
+ * orange glöd, skarp kärna, vit startprick och orange slutprick.
+ */
+function Rutt({ pts, W, H, pad, tjock = 14 }: { pts: Punkt[]; W: number; H: number; pad: number; tjock?: number }) {
   const d = ruttPath(pts, W, H, pad)
-  if (!d) return null
+  const ss = ruttStartSlut(pts, W, H, pad)
+  if (!d || !ss) return null
+  const r = Math.round(tjock * 1.15)
   return (
     <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ display: 'flex' }}>
-      <path d={d} stroke="rgba(0,0,0,0.22)" strokeWidth={tjock + 8} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={d} stroke="rgba(0,0,0,0.28)" strokeWidth={tjock * 3.2} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={d} stroke="rgba(255,92,46,0.38)" strokeWidth={tjock * 2.3} fill="none" strokeLinecap="round" strokeLinejoin="round" />
       <path d={d} stroke={ORANGE} strokeWidth={tjock} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx={ss.start[0]} cy={ss.start[1]} r={r} fill="#fff" stroke="rgba(0,0,0,0.35)" strokeWidth={4} />
+      <circle cx={ss.slut[0]} cy={ss.slut[1]} r={r + 2} fill={ORANGE} stroke="#fff" strokeWidth={5} />
     </svg>
   )
 }
@@ -71,7 +81,7 @@ function Varde({ val, enhet, storlek }: { val: string; enhet: string; storlek: n
   return (
     <div style={{ display: 'flex', alignItems: 'baseline', gap: Math.round(storlek * 0.08) }}>
       <div style={{ fontSize: storlek, fontWeight: 800, color: VIT, lineHeight: 1, letterSpacing: Math.round(-storlek * 0.035), textShadow: SKUGGA, display: 'flex' }}>{val}</div>
-      {enhet ? <div style={{ fontSize: Math.round(storlek * 0.34), fontWeight: 700, color: VIT_SVAG, textShadow: SKUGGA, display: 'flex' }}>{enhet}</div> : null}
+      {enhet ? <div style={{ fontSize: Math.round(storlek * 0.32), fontWeight: 700, color: BARNSTEN, textShadow: SKUGGA, display: 'flex' }}>{enhet}</div> : null}
     </div>
   )
 }
@@ -103,7 +113,7 @@ export function klisterRutt(d: KlisterData, W: number, H: number): ReactElement 
   return (
     <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: FONT }}>
       <div style={{ display: 'flex', width: W, height: rh }}>
-        {d.rutt ? <Rutt pts={d.rutt} W={W} H={rh} pad={0.09} tjock={34} /> : null}
+        {d.rutt ? <Rutt pts={d.rutt} W={W} H={rh} pad={0.10} tjock={16} /> : null}
       </div>
       <div style={{ display: 'flex', height: 200, alignItems: 'center' }}><Logga storlek={44} /></div>
     </div>
@@ -137,10 +147,10 @@ export function klisterRuttTal(d: KlisterData, W: number, H: number): ReactEleme
     <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', padding: '84px 72px 72px', fontFamily: FONT }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: IW }}>
         <Etikett text="LOGGAD MED SVALLA" storlek={26} />
-        <div style={{ fontSize: platsStorlek, fontWeight: 800, color: VIT, letterSpacing: Math.round(-platsStorlek * 0.03), lineHeight: 1.05, textShadow: SKUGGA, display: 'flex' }}>{d.plats || 'Svalla-tur'}</div>
+        <div style={{ fontFamily: SERIF, fontSize: platsStorlek, fontWeight: 700, color: VIT, letterSpacing: -1, lineHeight: 1.08, textShadow: SKUGGA, display: 'flex' }}>{d.plats || 'Tur på sjön'}</div>
       </div>
       <div style={{ display: 'flex', width: IW, height: 620 }}>
-        {d.rutt ? <Rutt pts={d.rutt} W={IW} H={620} pad={0.06} tjock={28} /> : null}
+        {d.rutt ? <Rutt pts={d.rutt} W={IW} H={620} pad={0.08} tjock={14} /> : null}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 54, width: IW }}>
         <TalRad tal={d.tal} stor={96} gap={72} />
@@ -161,7 +171,7 @@ export function klisterDelstrackor(d: KlisterData, W: number, H: number): ReactE
     <div style={{ width: W, height: H, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', padding: '84px 72px 72px', fontFamily: FONT }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: IW }}>
         <Etikett text={d.plats ? `${d.plats.toUpperCase()} · SNITTFART PER SJÖMIL` : 'SNITTFART PER SJÖMIL'} storlek={26} />
-        <div style={{ fontSize: 84, fontWeight: 800, color: VIT, letterSpacing: -3, lineHeight: 1.05, textShadow: SKUGGA, display: 'flex' }}>Delsträckor</div>
+        <div style={{ fontFamily: SERIF, fontSize: 84, fontWeight: 700, color: VIT, letterSpacing: -1, lineHeight: 1.05, textShadow: SKUGGA, display: 'flex' }}>Delsträckor</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', width: IW, gap: Math.max(8, Math.round(radH * 0.26)) }}>
         {d.staplar.map(s => (

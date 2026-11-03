@@ -18,8 +18,8 @@ import TripTagger from '@/components/TripTagger'
 import TripHighlightPrompt from '@/components/TripHighlightPrompt'
 import BackButton from '@/components/BackButton'
 import TripGearAffiliate from '@/components/TripGearAffiliate'
-import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
-import { ruttArAnvandbar } from '@/lib/dela-klistermarken'
+import { restaurantsAlongRoute, formatDuration, distanceNM, decimal } from '@/lib/gps'
+import { ruttArAnvandbar, harTal } from '@/lib/dela-klistermarken'
 import { getTripWeather, windDirectionLabel, buildWindArrowSamples } from '@/lib/weather'
 import type { Metadata } from 'next'
 import ViewerGate from '@/components/ViewerGate'
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
  const metaUser = bundle!.userRow
 
- const distStr = trip.distance != null && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)} NM` : null
+ const distStr = trip.distance != null && trip.distance >= 0.1 ? `${trip.distance.toFixed(1).replace('.', ',')} NM` : null
  const title = trip.location_name
  ? `${trip.location_name}${distStr ? ` – ${distStr}` : ''}`
  : distStr ? `Tur – ${distStr}` : 'Tur'
@@ -223,6 +223,8 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
    duration_seconds: trip.duration_seconds ?? null, duration: trip.duration ?? null,
    started_at: trip.started_at ?? null, ended_at: trip.ended_at ?? null,
  })
+ // Något tal att visa i delningsrutan? Samma trösklar som korten (talRutor).
+ const talFinns = harTal({ distanceNM: trip.distance ?? null, sekunder: durationSecs > 0 ? durationSecs : null, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null })
 
  // Fartkurva + delsträckor ur sparade punkter ("det synliga", 2026-09-10).
  // Bara när sidan har riktiga gps_points med fart — route_points-fallbacken
@@ -304,6 +306,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  url={`https://svalla.se/tur/${id}`}
  hasPhoto={allPhotos.length > 0}
  hasRoute={ruttArAnvandbar(routePoints)}
+ hasStats={talFinns}
  />
  <TripActions tripId={trip.id} ownerId={trip.user_id} />
  </div>
@@ -355,10 +358,10 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  {/* Stats */}
  {(() => {
  const stats = [
- { val: trip.distance >= 0.1 ? trip.distance.toFixed(1) : null, unit: 'NM', label: 'Distans' },
+ { val: trip.distance >= 0.1 ? trip.distance.toFixed(1).replace('.', ',') : null, unit: 'NM', label: 'Distans' },
  { val: durationSecs > 60 ? formatDuration(durationSecs) : null, unit: '', label: 'Tid' },
- { val: trip.average_speed_knots >= 0.1 ? trip.average_speed_knots.toFixed(1) : null, unit: 'kn', label: 'Snittfart' },
- { val: trip.max_speed_knots >= 0.1 ? trip.max_speed_knots.toFixed(1) : null, unit: 'kn', label: 'Toppfart' },
+ { val: trip.average_speed_knots >= 0.1 ? trip.average_speed_knots.toFixed(1).replace('.', ',') : null, unit: 'kn', label: 'Snittfart' },
+ { val: trip.max_speed_knots >= 0.1 ? trip.max_speed_knots.toFixed(1).replace('.', ',') : null, unit: 'kn', label: 'Toppfart' },
  ].filter(s => s.val !== null)
  if (stats.length === 0) return null
  return (
@@ -414,6 +417,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  variant="pill"
  hasPhoto={allPhotos.length > 0}
  hasRoute={ruttArAnvandbar(routePoints)}
+ hasStats={talFinns}
  />
  </div>
  </div>
@@ -544,7 +548,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  <div style={{ flex: 1, minWidth: 0, display: 'flex', gap: 18, flexWrap: 'wrap' }}>
  <div>
  <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>
- {weather.wind.speedMs.toFixed(1)}
+ {decimal(weather.wind.speedMs)}
  <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', marginLeft: 2 }}>m/s</span>
  </div>
  <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 3, fontWeight: 500 }}>
@@ -555,7 +559,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  {weather.wind.gustMaxMs != null && weather.wind.gustMaxMs > weather.wind.speedMs + 0.5 && (
  <div>
  <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>
- {weather.wind.gustMaxMs.toFixed(1)}
+ {decimal(weather.wind.gustMaxMs)}
  <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', marginLeft: 2 }}>m/s</span>
  </div>
  <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 3, fontWeight: 500 }}>
@@ -567,7 +571,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  {weather.wave && weather.wave.heightM > 0.05 && (
  <div>
  <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>
- {weather.wave.heightM.toFixed(1)}
+ {decimal(weather.wave.heightM)}
  <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', marginLeft: 2 }}>m</span>
  </div>
  <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 3, fontWeight: 500 }}>
@@ -667,7 +671,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  <tr key={sp.index} style={{ borderTop: '1px solid var(--sea-06)' }}>
  <td style={{ padding: '6px 0', color: 'var(--txt2)' }}>{sp.distanceNM === 1 ? sp.index : `${sp.index} (${sp.distanceNM.toFixed(2).replace('.', ',')})`}</td>
  <td style={{ padding: '6px 8px', textAlign: 'right', color: 'var(--txt2)' }}>{fmtMinSec(sp.seconds)}</td>
- <td style={{ padding: '6px 8px', textAlign: 'right', color: 'var(--txt)', fontWeight: 600 }}>{sp.avgKnots.toFixed(1)} kn</td>
+ <td style={{ padding: '6px 8px', textAlign: 'right', color: 'var(--txt)', fontWeight: 600 }}>{decimal(sp.avgKnots)} kn</td>
  <td style={{ padding: '6px 0' }}>
  <div style={{ height: 8, borderRadius: 4, background: 'var(--sea-06)', overflow: 'hidden' }}>
  <div style={{ width: `${Math.max(2, (sp.avgKnots / maxAvg) * 100)}%`, height: '100%', borderRadius: 4, background: 'var(--sea)', opacity: 0.85 }} />

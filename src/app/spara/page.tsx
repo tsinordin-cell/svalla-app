@@ -10,7 +10,7 @@ import { deriveUsername } from '@/lib/username'
 import {
   type GpsPoint, type StopEvent,
   msToKnots, tripDistanceNM, avgSpeedKnots,
-  detectStops, formatDuration, reverseGeocode,
+  detectStops, formatDuration, reverseGeocode, decimal,
   type MovementState, computeMovementState,
   calculateBearing, bearingLabel,
   type LiveInsight, getLiveInsights,
@@ -216,7 +216,10 @@ export default function SparaPage() {
   // Mätning (2026-10-26): lämnade användaren sidan mitt i spårningen? Fångar både
   // klientnavigering (unmount) och stängd flik/sidbyte (pagehide). keepalive i track().
   useEffect(() => {
-    const rapportera = () => {
+    const rapportera = (e?: PageTransitionEvent) => {
+      // Sidan lades i bakåtcachen (bfcache) och kan komma tillbaka med turen igång:
+      // inget avhopp. Övergivna turer räknas ändå säkert i trips (status 'active').
+      if (e?.persisted) return
       const ph = phaseRef.current
       if (ph !== 'tracking' && ph !== 'paused') return
       track('gps_abandoned', { seconds: sekunderSedanStart(), points: pointsRef.current.length, phase: ph, first_fix: forstaFixRef.current })
@@ -1214,7 +1217,7 @@ export default function SparaPage() {
                   fontSize: 64, fontWeight: 700, color: currentSpeed < 0.5 ? 'rgba(255,255,255,.3)' : '#fff',
                   fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: '-2px',
                 }}>
-                  {currentSpeed.toFixed(1)}
+                  {decimal(currentSpeed)}
                 </span>
                 <span style={{ fontSize: 18, color: 'rgba(255,255,255,.4)', fontWeight: 600 }}>kn</span>
               </div>
@@ -1233,7 +1236,7 @@ export default function SparaPage() {
                   fontSize: 64, fontWeight: 700, color: dist < 0.01 ? 'rgba(255,255,255,.3)' : '#fff',
                   fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: '-2px',
                 }}>
-                  {dist.toFixed(2)}
+                  {decimal(dist, 2)}
                 </span>
                 <span style={{ fontSize: 18, color: 'rgba(255,255,255,.4)', fontWeight: 600 }}>nm</span>
               </div>
@@ -1242,8 +1245,8 @@ export default function SparaPage() {
             {/* 3-stat mini row: snitt · max · stopp */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 10, width: '100%', marginTop: 28 }}>
               {[
-                { val: avgSpd.toFixed(1), unit: 'kn', label: 'Snitt' },
-                { val: maxSpd.toFixed(1), unit: 'kn', label: 'Max' },
+                { val: decimal(avgSpd), unit: 'kn', label: 'Snitt' },
+                { val: decimal(maxSpd), unit: 'kn', label: 'Max' },
                 { val: String(stops.filter(s => s.durationSeconds > 60).length), unit: 'st', label: 'Stopp' },
               ].map(({ val, unit, label }) => (
                 <div key={label} style={{
@@ -1381,7 +1384,7 @@ export default function SparaPage() {
               <span style={{ fontSize: 11, fontWeight: 600, color: mv.color, letterSpacing: '.3px' }}>{mv.label}</span>
               {currentSpeed > 0.3 && (
                 <span style={{ fontSize: 11, color: mv.color, opacity: .7, fontWeight: 600 }}>
-                  · {currentSpeed.toFixed(1)} kn
+                  · {decimal(currentSpeed)} kn
                 </span>
               )}
             </div>
@@ -1496,8 +1499,8 @@ export default function SparaPage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', padding: '14px 20px 14px', gap: 0 }}>
             {[
               { val: formatDuration(elapsed), label: 'Tid', align: 'left' as const },
-              { val: currentSpeed.toFixed(1), unit: 'kn', label: 'Hastighet', align: 'center' as const },
-              { val: dist.toFixed(2), unit: 'nm', label: 'Distans', align: 'right' as const },
+              { val: decimal(currentSpeed), unit: 'kn', label: 'Hastighet', align: 'center' as const },
+              { val: decimal(dist, 2), unit: 'NM', label: 'Distans', align: 'right' as const },
             ].map(({ val, unit, label, align }) => (
               <div key={label} style={{ textAlign: align }}>
                 <div style={{
@@ -1829,10 +1832,10 @@ export default function SparaPage() {
             </div>
           )}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 16 }}>
-            <StatRow label="Distans"    val={`${dist.toFixed(2)} NM`} />
+            <StatRow label="Distans"    val={`${decimal(dist, 2)} NM`} />
             <StatRow label="Tid"        val={formatDuration(elapsed)} />
-            <StatRow label="Snittfart"  val={`${avgSpd.toFixed(1)} kn`} />
-            <StatRow label="Toppfart"   val={`${maxSpd.toFixed(1)} kn`} />
+            <StatRow label="Snittfart"  val={`${decimal(avgSpd)} kn`} />
+            <StatRow label="Toppfart"   val={`${decimal(maxSpd)} kn`} />
             <StatRow label="Stopp"      val={`${stops.filter(s => s.type === 'stop').length} st`} />
             <StatRow label="GPS-punkter" val={`${points.length}`} />
           </div>

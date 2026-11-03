@@ -22,7 +22,7 @@ import { ImageResponse } from 'next/og'
 import type { ReactElement } from 'react'
 import { Buffer } from 'buffer'
 import sharp from 'sharp'
-import { stil, delstrackStaplar, talRutor, formatTid, ruttArAnvandbar, datumLang, turRubrik, type StilId, type Punkt } from '@/lib/dela-klistermarken'
+import { stil, delstrackStaplar, talRutor, formatTid, ruttArAnvandbar, datumLang, platsRubrik, BILD_VERSION, type StilId, type Punkt } from '@/lib/dela-klistermarken'
 import { computeSplits } from '@/lib/tripSplits'
 import { klisterRutt, klisterTal, klisterRuttTal, klisterDelstrackor, Logga, type KlisterData } from './klistermarken'
 import type { GpsPoint } from '@/lib/gps'
@@ -39,8 +39,8 @@ type Typsnitt = { name: string; data: ArrayBuffer; weight: 500 | 700 | 800; styl
 
 export const W = 1080
 export const H = 1920
-/** Höj när bildernas utseende ändras i kod, så att cachade bilder ritas om. */
-export const BILD_VERSION = '2026-10-27a'
+/** Versionen ligger i src/lib/dela-klistermarken.ts (delas med delningsrutan). */
+export { BILD_VERSION }
 
 // Instagrams säkra zon för en 1080×1920-story: deras eget gränssnitt ligger
 // över de översta ca 270 och de nedersta ca 380 bildpunkterna.
@@ -62,22 +62,39 @@ const latToTY = (lat: number, z: number) => {
   return (1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * 2 ** z
 }
 
-async function hamtaRuta(tx: number, ty: number, z: number): Promise<Buffer | null> {
+/**
+ * En kartruta från OpenStreetMap. Följer OSM:s regler för tile.openstreetmap.org
+ * (operations.osmfoundation.org/policies/tiles, läst 2026-11-02): eget
+ * User-Agent med kontaktadress, och rutor som inte cachas enligt serverns egna
+ * huvuden ska cachas i minst 7 dagar (förut 1 dag). Antalet samtidiga
+ * hämtningar begränsas i morkKarta. Svaret null = rutan saknas (kortet ritas ändå).
+ */
+async function hamtaRuta(tx: number, ty: number, z: number): Promise<{ buf: Buffer | null; status: number }> {
   const max = 2 ** z
-  if (ty < 0 || ty >= max) return null
+  if (ty < 0 || ty >= max) return { buf: null, status: 0 }
   const ntx = ((tx % max) + max) % max
   try {
     const ctrl = new AbortController()
     const t = setTimeout(() => ctrl.abort(), 4000)
     const res = await fetch(`https://tile.openstreetmap.org/${z}/${ntx}/${ty}.png`, {
       headers: { 'User-Agent': 'Svalla/1.0 (+https://svalla.se)' },
-      next: { revalidate: 86400 },
+      next: { revalidate: 7 * 24 * 3600 },
       signal: ctrl.signal,
     })
     clearTimeout(t)
-    if (!res.ok) return null
-    return Buffer.from(await res.arrayBuffer())
-  } catch { return null }
+    if (!res.ok) return { buf: null, status: res.status }
+    return { buf: Buffer.from(await res.arrayBuffer()), status: res.status }
+  } catch { return { buf: null, status: -1 } }
+}
+
+/** Kör jobben med högst n samtidigt, resultaten i samma ordning. */
+async function medHogst<T>(n: number, jobb: (() => Promise<T>)[]): Promise<T[]> {
+  const ut = new Array<T>(jobb.length)
+  let nasta = 0
+  await Promise.all(Array.from({ length: Math.min(n, jobb.length) }, async () => {
+    while (nasta < jobb.length) { const k = nasta++; ut[k] = await jobb[k]!() }
+  }))
+  return ut
 }
 
 /** Var på kortet rutten ska ligga: bandet mellan loggan och panelen. */
@@ -115,11 +132,17 @@ export async function morkKarta(pts: Punkt[]): Promise<MorkKarta> {
   const cols = Math.ceil((px0 + W) / 256) - txStart
   const rows = Math.ceil((py0 + H) / 256) - tyStart
 
-  const jobb: Promise<{ dx: number; dy: number; buf: Buffer | null }>[] = []
+  // Högst 6 samtidiga hämtningar, som en webbläsare mot en värd (inte ~40 på en gång).
+  const jobb: (() => Promise<{ dx: number; dy: number; buf: Buffer | null; status: number }>)[] = []
   for (let dy = 0; dy < rows; dy++) for (let dx = 0; dx < cols; dx++) {
-    jobb.push(hamtaRuta(txStart + dx, tyStart + dy, Z).then(buf => ({ dx, dy, buf })))
+    jobb.push(() => hamtaRuta(txStart + dx, tyStart + dy, Z).then(r => ({ dx, dy, ...r })))
   }
-  const rutor = await Promise.all(jobb)
+  const rutor = await medHogst(6, jobb)
+  const saknade = rutor.filter(r => !r.buf && r.status !== 0)
+  if (saknade.length > 0) {
+    // Syns i Vercels logg: spärr från OSM (403/429) syns här först. Då är det dags för en egen kartleverantör.
+    console.warn(`[kartkort] ${saknade.length} av ${rutor.length} kartrutor saknas (status ${[...new Set(saknade.map(r => r.status))].join(', ')})`)
+  }
 
   // Tre steg med buffert emellan: sharp kör composite sist i en kedja oavsett
   // anropsordning, och ett andra composite() ersätter det första.
@@ -151,14 +174,27 @@ export async function morkKarta(pts: Punkt[]): Promise<MorkKarta> {
  * struntar i EXIF, så stående mobilbilder låg på sidan, sett 2026-10-26) och
  * beskuren till 9:16. null om bilden inte går att hämta → gradienten i stället.
  */
+/** Värden för Svallas Supabase-lagring, ur miljön (samma som klienten använder). */
+const LAGRINGSVARD = (() => { try { return new URL(process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').hostname } catch { return '' } })() || 'oiklttwylndesewauytj.supabase.co'
+
 export async function hamtaFoto(url: string): Promise<string | null> {
+  // Bara bilder ur Svallas egen lagring. trips.image kan ägaren skriva fritt
+  // (RLS trips_update_own), och servern ska inte hämta godtyckliga adresser
+  // eller avkoda hur stora filer som helst (granskning 2026-10-29).
+  let u: URL
+  try { u = new URL(url) } catch { return null }
+  if (u.protocol !== 'https:' || u.hostname !== LAGRINGSVARD || !u.pathname.startsWith('/storage/v1/object/public/')) return null
   try {
     const ctrl = new AbortController()
     const t = setTimeout(() => ctrl.abort(), 8000)
-    const res = await fetch(url, { signal: ctrl.signal, next: { revalidate: 86400 } })
+    // Ingen datacache här: originalbilder är ofta över Vercels gräns på 2 MB, och det
+    // färdiga kortet cachas ändå i route.tsx (unstable_cache).
+    const res = await fetch(url, { signal: ctrl.signal, cache: 'no-store' })
     clearTimeout(t)
     if (!res.ok) return null
-    const buf = await sharp(Buffer.from(await res.arrayBuffer()))
+    const ab = await res.arrayBuffer()
+    if (ab.byteLength > 15 * 1024 * 1024) return null
+    const buf = await sharp(Buffer.from(ab), { limitInputPixels: 50_000_000 })
       .rotate()
       .resize(W, H, { fit: 'cover', position: 'centre' })
       .jpeg({ quality: 86, mozjpeg: true })
@@ -189,13 +225,12 @@ function talFor(trip: TripRad): Tal[] {
 }
 
 /** Panelen med plats, datum, tal och sidfot. Sitter alltid inom den säkra zonen. */
-function Panel({ trip, username }: { trip: TripRad; username: string }) {
-  const plats = trip.start_location && trip.location_name
-    ? `${trip.start_location} → ${trip.location_name}`
-    : (trip.location_name ?? trip.start_location ?? turRubrik(trip.boat_type))
+function Panel({ trip, username, kartkalla = false }: { trip: TripRad; username: string; kartkalla?: boolean }) {
+  const plats = platsRubrik(trip)
   const storlek = plats.length > 26 ? 52 : plats.length > 16 ? 64 : 78
   const datum = datumLang(trip.started_at)
-  const under = [trip.boat_type ?? null, datum].filter(Boolean) as string[]
+  // "Annat" är förvalet när ingen båttyp valts och ser ut som ett formulärsvar på kortet.
+  const under = [trip.boat_type && trip.boat_type !== 'Annat' ? trip.boat_type : null, datum].filter(Boolean) as string[]
   const tal = talFor(trip)
   const magisk = trip.pinnar_rating === 3
 
@@ -262,6 +297,10 @@ function Panel({ trip, username }: { trip: TripRad; username: string }) {
         </div>
         <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 700, letterSpacing: 1, color: 'rgba(246,178,107,0.85)', display: 'flex' }}>svalla.se</div>
       </div>
+      {/* OpenStreetMaps licens kräver erkännande på kartbilden (osm.org/copyright). */}
+      {kartkalla ? (
+        <div style={{ fontFamily: FONT, fontSize: 17, fontWeight: 500, color: 'rgba(255,255,255,0.58)', marginTop: 14, display: 'flex' }}>Karta © OpenStreetMap-bidragsgivare</div>
+      ) : null}
     </div>
   )
 }
@@ -306,7 +345,7 @@ async function kartkort(trip: TripRad, username: string, rutt: Punkt[], fonts: T
           <circle cx={ex} cy={ey} r={13} fill={ORANGE} stroke="#fff" strokeWidth={4} />
         </svg>
         <Topp />
-        <Panel trip={trip} username={username} />
+        <Panel trip={trip} username={username} kartkalla />
       </div>
     ),
     { width: W, height: H, fonts },
@@ -378,7 +417,7 @@ export async function ritaBild({ trip, username, punkter, style, fonts }: {
     const sekunder = trip.duration_seconds ?? (trip.duration > 0 ? trip.duration * 60 : null)
     const loc = trip.location_name, from = trip.start_location
     const data: KlisterData = {
-      plats: from && loc ? `${from} → ${loc}` : (loc ?? from ?? ''),
+      plats: loc || from ? platsRubrik(trip) : '',
       tal: talRutor({ distanceNM: trip.distance ?? null, sekunder, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null }),
       rutt,
       staplar: [],

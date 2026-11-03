@@ -20,6 +20,14 @@ const TYPE_PLACEHOLDERS: Record<FeedbackType, string> = {
   'annat':       'Skriv vad du har på hjärtat...',
 }
 
+/**
+ * Sidor där den flytande knappen "Tipsa oss" låg över sidans egen fasta knapprad
+ * nertill (Snabb-logg: "Välj bild först"/"Logga tur"; loggningens klarskärm).
+ * Sett 2026-10-26 i 430 px. Formuläret går fortfarande att öppna via
+ * händelsen svalla:openFeedback.
+ */
+const UTAN_FLYTANDE_KNAPP = ['/logga/manuell', '/spara']
+
 export default function FeedbackWidget() {
   const [open, setOpen]       = useState(false)
   const [type, setType]       = useState<FeedbackType>('tips')
@@ -105,8 +113,8 @@ export default function FeedbackWidget() {
 
   return (
     <>
-      {/* ── Flytande knapp ── */}
-      <button
+      {/* ── Flytande knapp ── (inte på sidor med egen fast knapprad nertill, se UTAN_FLYTANDE_KNAPP) */}
+      {!UTAN_FLYTANDE_KNAPP.some(p => pathname === p || pathname?.startsWith(p + '/')) && <button
         onClick={() => setOpen(true)}
         aria-label="Skicka feedback eller tips till Svalla"
         style={{
@@ -144,7 +152,7 @@ export default function FeedbackWidget() {
       >
         <Icon name="quote" size={15} stroke={2} />
         Tipsa oss
-      </button>
+      </button>}
 
       {/* ── Backdrop + modal ── */}
       {open && (

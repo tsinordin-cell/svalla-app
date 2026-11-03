@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { STILAR, arStil, tillgangligaStilar, forvaldStil, ruttPath, ruttStartSlut, formatTid, formatDelTid, delstrackStaplar, talRutor, ruttArAnvandbar, avstandM, datumLang, turRubrik } from './dela-klistermarken'
+import { STILAR, arStil, tillgangligaStilar, forvaldStil, ruttPath, ruttStartSlut, formatTid, formatDelTid, delstrackStaplar, talRutor, ruttArAnvandbar, avstandM, datumLang, turRubrik, harTal, platsRubrik } from './dela-klistermarken'
 
 describe('stilar', () => {
   it('känner igen giltiga stilar', () => {
@@ -17,6 +17,14 @@ describe('stilar', () => {
     expect(bild).toEqual(['photo', 'tal'])
     const annan = tillgangligaStilar({ harBild: true, harRutt: true, agare: false }).map(s => s.id)
     expect(annan).not.toContain('delstrackor')
+  })
+  it('en tur utan tal får inget Tal-klistermärke utan kortet utan underlag (2026-10-26)', () => {
+    const inget = tillgangligaStilar({ harBild: false, harRutt: false, agare: true, harTal: false })
+    expect(inget.map(s => s.id)).toEqual(['photo'])
+    expect(inget[0]!.namn).toBe('Kort')
+    expect(forvaldStil({ harBild: false, harRutt: false, harTal: false })).toBe('photo')
+    expect(harTal({ distanceNM: 0, sekunder: 4, toppKn: 0, snittKn: 0 })).toBe(false)
+    expect(harTal({ distanceNM: 3.62, sekunder: 737, toppKn: 22.3, snittKn: 22 })).toBe(true)
   })
   it('väljer förvald mall', () => {
     expect(forvaldStil({ harBild: true, harRutt: true })).toBe('photo')
@@ -118,5 +126,14 @@ describe('datumLang och turRubrik', () => {
     expect(turRubrik('Motorbåt')).toBe('Båttur')
     expect(turRubrik('Kajak')).toBe('Paddeltur')
     expect(turRubrik(null)).toBe('Tur på sjön')
+  })
+})
+
+describe('platsRubrik (2026-11-02)', () => {
+  it('kortar geokodade namn och sätter pil mellan start och mål', () => {
+    expect(platsRubrik({ start_location: 'Strömkajen, Stockholm, Sverige', location_name: 'Fjäderholmarna, Stockholms län, Sverige', boat_type: 'Motorbåt' })).toBe('Strömkajen → Fjäderholmarna')
+    expect(platsRubrik({ start_location: null, location_name: 'Mariefred, Södermanlands län, Sverige', boat_type: null })).toBe('Mariefred')
+    expect(platsRubrik({ start_location: 'Sandhamn', location_name: 'Sandhamn, Värmdö', boat_type: null })).toBe('Sandhamn')
+    expect(platsRubrik({ start_location: null, location_name: null, boat_type: 'Segelbåt' })).toBe('Segeltur')
   })
 })

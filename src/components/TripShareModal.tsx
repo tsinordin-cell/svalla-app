@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import { revalidateTrip } from '@/lib/revalidate-trip'
 import { toast } from '@/components/Toast'
-import { forvaldStil, stil as stilFor, tillgangligaStilar, type StilId } from '@/lib/dela-klistermarken'
+import { forvaldStil, stil as stilFor, tillgangligaStilar, BILD_VERSION, type StilId } from '@/lib/dela-klistermarken'
 
 interface Props {
  tripId: string
@@ -12,6 +12,8 @@ interface Props {
  variant?: 'icon' | 'pill'
  hasPhoto?: boolean
  hasRoute?: boolean
+ /** Finns distans, tid eller fart att visa? Annars inget Tal-klistermärke (2026-10-26). */
+ hasStats?: boolean
 }
 
 // Detect Android
@@ -23,19 +25,19 @@ function isAndroid() {
 // Rutig bakgrund bakom genomskinliga klistermärken, som i bildprogram.
 const RUTIG = 'repeating-conic-gradient(rgba(255,255,255,0.18) 0% 25%, rgba(255,255,255,0.06) 0% 50%) 0 0 / 16px 16px'
 
-export default function TripShareModal({ tripId, title, url, variant = 'icon', hasPhoto = true, hasRoute = false }: Props) {
+export default function TripShareModal({ tripId, title, url, variant = 'icon', hasPhoto = true, hasRoute = false, hasStats = true }: Props) {
  const [open, setOpen] = useState(false)
  const [loading, setLoading] = useState(false)
  const [step, setStep] = useState<'main' | 'saved'>('main')
- const [styleMode, setStyleMode] = useState<StilId>(forvaldStil({ harBild: hasPhoto, harRutt: hasRoute }))
+ const [styleMode, setStyleMode] = useState<StilId>(forvaldStil({ harBild: hasPhoto, harRutt: hasRoute, harTal: hasStats }))
  // Mallar vars bild inte gick att hämta (t.ex. delsträckor för någon som inte äger turen) göms.
  const [dolda, setDolda] = useState<StilId[]>([])
  const [laddade, setLaddade] = useState<StilId[]>([])
- const mallar = tillgangligaStilar({ harBild: hasPhoto, harRutt: hasRoute, agare: true }).filter(m => !dolda.includes(m.id))
- const mall = stilFor(styleMode)
+ const mallar = tillgangligaStilar({ harBild: hasPhoto, harRutt: hasRoute, agare: true, harTal: hasStats }).filter(m => !dolda.includes(m.id))
+ const mall = mallar.find(m => m.id === styleMode) ?? stilFor(styleMode)
  const klister = mall.klistermarke
 
- const cardSrc = `/api/og/share/tur/${tripId}?style=${styleMode}`
+ const cardSrc = `/api/og/share/tur/${tripId}?style=${styleMode}&v=${BILD_VERSION}`
  // Kort kommer som JPEG, klistermärken som PNG (genomskinliga); filnamnet följer med.
  const filnamn = `svalla-${styleMode}.${klister ? 'png' : 'jpg'}`
  const filtyp = klister ? 'image/png' : 'image/jpeg'
@@ -321,7 +323,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  }}>
  {/* eslint-disable-next-line @next/next/no-img-element */}
  <img
- src={`/api/og/share/tur/${tripId}?style=${m.id}`}
+ src={`/api/og/share/tur/${tripId}?style=${m.id}&v=${BILD_VERSION}`}
  alt={m.namn}
  loading="lazy"
  onLoad={() => setLaddade(l => l.includes(m.id) ? l : [...l, m.id])}
