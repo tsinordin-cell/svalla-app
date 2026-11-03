@@ -35,3 +35,9 @@ update restaurants set description = 'Bastuhuset är en bastu på Stora Kalholme
 -- FÖRE: 'cafe'
 -- KÄLLA: https://mojavardshusochbageri.se/v%C3%A4rdshuset.php — "Möja Värdshus & Bageri är en genuin och hemtrevlig skärgårdsrestaurang med fullskaligt bageri." (läst 2026-10-29)
 update restaurants set type = 'restaurant' where slug = 'moja-bageri' and type = 'cafe';
+
+-- restaurants.bastuhuset.website (moja-0574, FEL)
+-- https://finnhamn.se/ är Finnhamns Arkipelag AB:s sajt för Finnhamn och nämner varken Bastuhuset eller Stora Kalholmen; bastun ligger på Stora Kalholmen (moja-0572, moja-N013). Länken tas bort i stället för att ersättas med en adress som inte är belagd som bastuns egen.
+-- KÄLLA: https://finnhamn.se/ — "Välkommen till Finnhamn", "©2026 Finnhamns Arkipelag AB" (läst 2026-11-03)
+-- FÖRE: 'http://www.finnhamn.se/'
+update restaurants set website = null where slug = 'bastuhuset' and website = 'http://www.finnhamn.se/';

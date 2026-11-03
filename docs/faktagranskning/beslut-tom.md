@@ -109,9 +109,10 @@ innehåll som beslutskortet på svalla.se/team.
   kräver inget beslut.
 - **Region:** Länsstyrelsen och Waxholmsbolaget placerar Sandhamn i den yttre
   skärgården, men etiketten säger "Mellersta skärgården". Det hör till beslut 2.
-- **Fartbegränsningen (information):** "högst 5 knop förbi gästhamnen" fanns
-  bara hos KSSS, och ingen sjötrafikföreskrift från Länsstyrelsen hittades.
-  Siffran är struken, men KSSS uppmaning att tänka på svallet står kvar.
+- **Fartbegränsningen (löst 2026-11-03, inget beslut behövs):** Kontrollanten
+  hittade Länsstyrelsens föreskrift 01FS 2001:138 punkt 135 (omtryck 01FS
+  2018:48, ingen senare ändring av punkten). Fem knop vid Sandhamn är
+  återinfört med den som källa.
 
 ### 5c. Styrsö: "Donsö Hamnkrog" finns inte (ändrar vilken verksamhet posten gäller)
 - Ingen tillåten källa nämner en Donsö Hamnkrog. Postens webbplats är Donsö

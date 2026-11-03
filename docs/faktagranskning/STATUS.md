@@ -2,6 +2,38 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 05:59 — Omarbetet av öarna klart; omkontroll startad
+
+- **Skribent öarna (MÄTT/RESONERAT enligt rapporten):** Storholmen 11,
+  Fjäderholmarna 7, Utö 5, Grinda 6, Möja 5, Vaxholm 10 och Sandhamn 15
+  fynd åtgärdade, plus EJ NÅBAR-raderna. Torrkörningarna av edits.json gav
+  0 fel. Ändringslista: `ut/omarbete-oar.md`. Inga nya P0.
+  - Sandhamn: fem knop återinförd med Länsstyrelsens 01FS 2001:138 punkt 135
+    (omtryck 01FS 2018:48; förteckningen 01FS 2025:1 visar ingen ändring).
+    from_nearest_hub_min 38 → 60 (median i tabell 16A; spannet står i
+    travel_time). Trouville heter nu "Trouville" som hos kommunen.
+  - EJ NÅBAR: Wallner Marin belagd via http://www.wallnermarin.se (https-
+    certifikatet har gått ut). Jowa via Elsäkerhetsverkets sökadress.
+    Hellström Marin och Café Ankaret enligt Redaktörens läsning, och
+    "Sandhamn 310" struken. Kvar: Café Strindbergsgården, Vaxholms
+    Hembygdsgårds Café och Rent Under.
+- **Vid inläggningen:** vaxholm.edits.json nr 30 ligger intill P0 17, och
+  sandhamn.edits.json nr 20 ändrar transit-stops.ts som P0 18. Lägg in efter
+  P0-grenen.
+- **Till Vakten:**
+  - med-barn/page.tsx:87 jämför exakta namn och visar Stora
+    Trouvillestranden.
+  - sandhamn.com står kvar som andrakälla i Sandhamns transport_meta.
+  - Fjäderholmarna har tre KÄLLA-rader med klockslag.
+  - "Sök resan i SL-appen" finns också i Yxlans data och i
+    blogg/[slug]/page.tsx:902.
+  - Bloggen cykling-moja-gallno har "Buss 434 från Slussen till
+    Sollenkroka".
+- **Omkontroll startad:** 107 omarbetade rader och 8 strukna från sju öar
+  (`kontroll/oar-omk.*`). Agenter nu (fyra): Kontrollant Styrsö och Husarö,
+  Kontrollant P0 omgång 9, Skribent sidmallarna (andra rundan) och
+  Kontrollant omkontroll öarna.
+
 ## 2026-11-03 05:56 — Badkompensationen klar
 
 - **Granskare badkompensation (MÄTT):** alla 17 badsidor har minst 95 % av

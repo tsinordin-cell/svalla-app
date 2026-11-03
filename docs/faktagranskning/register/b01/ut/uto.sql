@@ -2,13 +2,33 @@
 -- Kör inte blint: varje UPDATE skriver bara om texten är exakt den som granskades (WHERE ... and <kolumn> = <gammal text>).
 -- Dagens text hämtad med SELECT mot projektet oiklttwylndesewauytj 2026-10-29. Inga rader raderas eller döljs.
 
--- uto-bykrog.description — uto-0397, uto-0399 (OBELAGD: källan explorearchipelago.com omdirigerar till skargardsstiftelsen.se)
--- KÄLLA: https://xn--utbykrogen-fcb.se/ — "Utö by Krog — Skärgårdsrestaurang på Utö" (läst 2026-10-29)
--- KÄLLA: https://xn--utbykrogen-fcb.se/kontakt — "Edesnäs Gård 3, Utö, Stockholms skärgård" (läst 2026-10-29)
--- KÄLLA: https://xn--utbykrogen-fcb.se/kontakt — "Vill du boka bord eller fråga om catering?" (läst 2026-10-29)
--- KÄLLA: https://nominatim.openstreetmap.org/reverse?lat=58.9546699&lon=18.2827434&format=jsonv2&zoom=17&addressdetails=1&accept-language=sv — ""hamlet":"Edesnäs","municipality":"Haninge kommun"" (läst 2026-10-29)
+-- uto-bykrog.description — uto-0397 (namnet: Kontrollanten k025), uto-0399 (återställd: Kontrollanten s005), uto-0398, uto-0400, uto-N016
+-- Omarbete 2026-11-03: restaurangens eget namn "Utö by Krog"; kommunen belagd med SCB i stället för omvänd geokodning; läget vid vägen mellan Gruvbyn och Ålö återställt.
+-- KÄLLA: https://xn--utbykrogen-fcb.se/ — "Utö by Krog — Skärgårdsrestaurang på Utö" (läst 2026-11-03)
+-- KÄLLA: https://xn--utbykrogen-fcb.se/kontakt — "Edesnäs Gård 3, Utö, Stockholms skärgård", "Vill du boka bord eller fråga om catering?" (läst 2026-11-03)
+-- KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/MI/MI0812/MI0812A/OarEjBro01 — "0136Q102", "Utö" (läst 2026-11-03); ön Utö har SCB:s regionkod 0136.
+-- KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy — "0136", "Haninge" (läst 2026-11-03); regionkod 0136 är Haninge.
+-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö", "The section starts either at “Gula Villan” on Utö and heads south along the gravel road" (läst 2026-11-03)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/way/36363579/full — "Stora Landsvägen", "gravel" (läst 2026-11-03); uppmätt i OpenStreetMap 2026-11-03: platsens nål (58.9546699, 18.2827434) ligger 16 m från Stora Landsvägen, som går mot Ålö i sydväst.
+-- KÄLLA: https://skargardsstiftelsen.se/app/uploads/2024/07/Uto-Skargardsstiftelsen-20240724.pdf — "Här i Gruvbyn finns turistbyrå, gästhamn" (läst 2026-11-03)
+-- KÄLLA: https://www.utogasthamn.se/ — "Närmsta bryggan till Utö Gästhamn är Gruvbryggan." (läst i webbläsare (Redaktören) 2026-11-02)
 -- FÖRE: 'Utö Bykrog är en sommaröppen restaurang i Edesnäs på Utö, vid vägen mellan Gruvbyn och Ålö. Adressen är Edesnäs Gård 3.'
-update restaurants set description = 'Utö Bykrog är en restaurang i Edesnäs på Utö i Haninge kommun. Adressen är Edesnäs Gård 3, och restaurangen tar emot bordsbokningar och förfrågningar om catering.', updated_at = now() where slug = 'uto-bykrog' and description = 'Utö Bykrog är en sommaröppen restaurang i Edesnäs på Utö, vid vägen mellan Gruvbyn och Ålö. Adressen är Edesnäs Gård 3.';
+update restaurants set description = 'Utö by Krog är en restaurang i Edesnäs på Utö i Haninge kommun, vid vägen mellan Gruvbyn och Ålö. Adressen är Edesnäs Gård 3, och restaurangen tar emot bordsbokningar och förfrågningar om catering.', updated_at = now() where slug = 'uto-bykrog' and description = 'Utö Bykrog är en sommaröppen restaurang i Edesnäs på Utö, vid vägen mellan Gruvbyn och Ålö. Adressen är Edesnäs Gård 3.';
+
+-- uto-bykrog.name — uto-0392 (DELVIS: restaurangens egen webbplats skriver "Utö by Krog"; "Utö Bykrog" står inte där)
+-- KÄLLA: https://xn--utbykrogen-fcb.se/ — "Utö by Krog — Skärgårdsrestaurang på Utö" (läst 2026-11-03)
+-- FÖRE: 'Utö Bykrog'
+update restaurants set name = 'Utö by Krog', updated_at = now() where slug = 'uto-bykrog' and name = 'Utö Bykrog';
+
+-- gruvbryggan.description — uto-0447 (Kontrollanten k119: Gruvbryggan är inte Waxholmsbolagets enda brygga på Utö), uto-0448, uto-N019
+-- Dagens text: supabase/datafix/2026-10-19-filmoarna.sql rad 225 (datafix-kallor.tsv, matchat med md5 2026-10-29). Databasen är pausad, så WHERE är inte kontrollerat mot den.
+-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Vi angör flera bryggor på Utö. Den mest trafikerade är Gruvbryggan, men lite längre söderut ligger även Näsudden och Spränga." (läst 2026-11-03, i Chromium)
+-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A", "ÅRSTA – UTÖ", "Årsta brygga", "Gruvbryggan (Utö)", "Näsudden (Utö)", "Spränga (Utö)" (läst 2026-11-03)
+-- KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/MI/MI0812/MI0812A/OarEjBro01 — "0136Q102", "Utö" (läst 2026-11-03); ön Utö har SCB:s regionkod 0136.
+-- KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy — "0136", "Haninge" (läst 2026-11-03); regionkod 0136 är Haninge.
+-- KÄLLA: https://www.utogasthamn.se/gasthamnen/ — "I den norra hamnen finns sjömacken och det är också där de reguljära Waxholmsbåtarna lägger till." (läst i webbläsare (Redaktören) 2026-11-02)
+-- FÖRE: 'Gruvbryggan är Waxholmsbolagets brygga på Utö, där båtarna på linje 21 från Årsta brygga lägger till. Bryggan ligger i norra delen av Utö gästhamn, där också sjömacken finns.'
+update restaurants set description = 'Gruvbryggan är den mest trafikerade av Waxholmsbolagets bryggor på Utö i Haninge kommun, och här lägger båtarna på linje 21 från Årsta brygga till. Längre söderut angör båtarna också Näsudden och Spränga. Bryggan ligger i norra delen av Utö gästhamn, där också sjömacken finns.', updated_at = now() where slug = 'gruvbryggan' and description = 'Gruvbryggan är Waxholmsbolagets brygga på Utö, där båtarna på linje 21 från Årsta brygga lägger till. Bryggan ligger i norra delen av Utö gästhamn, där också sjömacken finns.';
 
 -- lilla-haket-ninas-bod.description — uto-0405 (OBELAGD: "kafé" bara i OpenStreetMap); namnet och typen: uto.tom.md
 -- KÄLLA: https://nominatim.openstreetmap.org/reverse?lat=58.9698715&lon=18.3247173&format=jsonv2&zoom=18&addressdetails=1&accept-language=sv — ""road":"Bygatan","hamlet":"Gruvbyn","municipality":"Haninge kommun"" (läst 2026-10-29)

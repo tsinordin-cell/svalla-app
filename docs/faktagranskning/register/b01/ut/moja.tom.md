@@ -23,17 +23,22 @@ Möja. 3.5 täcker alla Möjas bryggor och håller Stora Kalholmen utanför.
 
 ## 2. Hantverkare som listas på Möja utan att själva nämna Möja
 
-Deras egna webbplatser nämner inte Möja eller att de kör dit (moja-0508, moja-0524,
-moja-0536; Hellström Marin gick inte att läsa, moja-0500). Tas moja bort ur `oar`
+Deras egna webbplatser nämner inte Möja eller att de kör dit (moja-0508, moja-0536;
+Hellström Marin, moja-0500: www.hhmarin.se lästes i Toms webbläsare 2026-11-02 och nämner inte Möja). Tas moja bort ur `oar`
 försvinner Delsholmen och Anderssons helt från Svalla (de har bara Möja), så det är
 en radering av hela poster. Tills svar finns står posterna kvar som i dag.
 
-Samma mejl till alla fyra, med företagsnamnet utbytt:
+Jowa Elektriska AB (moja-0524) är struken ur listan 2026-11-03: företagets egen sida
+https://www.jowael.se/elektriker-skargarden/ säger "Vi arbetar regelbundet på öar som Vaxholm,
+Värmdö, Möja, Sandhamn, Blidö, Ljusterö, Norrtälje och Östhammar" och att de har egen
+servicebåt. Jowa står kvar på Möja. Frågan till Jowa om Vaxholm står kvar i vaxholm.tom.md
+(samma mening nämner Vaxholm; Redaktören avgör om den kan stängas).
+
+Samma mejl till de tre som är kvar, med företagsnamnet utbytt:
 
 - Delsholmen Entreprenad AB — micke@delsholmen.se (från delsholmen.se)
 - Anderssons Båtvarv AB — info@anderssonsbatvarv.se (från anderssonsbatvarv.se/Kontakt.htm)
-- Jowa Elektriska AB — info@jowael.se (från jowael.se)
-- Hellström Marin AB — karl@hhmarin.se (från Svallas post, läst på hhmarin.se 2026-09-22; sajten går inte att nå i dag)
+- Hellström Marin AB — karl@hhmarin.se (står på www.hhmarin.se, läst i Toms webbläsare 2026-11-02)
 
 Ämne: Tar ni uppdrag på Möja?
 
@@ -49,6 +54,12 @@ Samma mejl till alla fyra, med företagsnamnet utbytt:
 >
 > Vänliga hälsningar
 > Tom, Svalla
+
+## 3. Wallner Marin (moja-0472–0480) – ingen fråga behövs
+
+Sajten gick att läsa 2026-11-03 över http://www.wallnermarin.se (adressen i datan). https-adressen har ett
+utgånget certifikat, vilket förklarar Chromes felsida. Namn, Södermöja, telefon, båttaxi och sjötransporter,
+dykning och hus och fastigheter står där. Posten står kvar; inget förslag om radering.
 
 ## Inget annat
 

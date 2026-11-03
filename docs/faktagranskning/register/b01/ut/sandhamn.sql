@@ -79,14 +79,43 @@ update restaurants set name = 'Sands Hotells restaurang', updated_at = now() whe
 -- FÖRE: 'Bistro Sands är restaurangen på Sands Hotell på Sandhamn, ett konferens- och weekendhotell med 33 bäddar. Restaurangen har en uteterrass, och hotellet har terrasser med utsikt över hamninloppet.'
 update restaurants set description = 'Sands Hotells restaurang ligger på Sands Hotell i Sandhamn, Värmdö kommun, ett konferens- och weekendhotell med 33 bäddar. Restaurangen har en uteterrass, och hotellet har terrasser med utsikt över hamninloppet.', updated_at = now() where slug = 'bistro-sands' and description = 'Bistro Sands är restaurangen på Sands Hotell på Sandhamn, ett konferens- och weekendhotell med 33 bäddar. Restaurangen har en uteterrass, och hotellet har terrasser med utsikt över hamninloppet.';
 
--- vasterudde-strand.description (register: sandhamn-0521, sandhamn-0522, sandhamn-0523)
--- KÄLLA: https://nominatim.openstreetmap.org/lookup?osm_ids=N3053781979,N794630742,W589299279,W422017054,W329728726&format=jsonv2&addressdetails=1&extratags=1&namedetails=1&accept-language=sv — "Västerudde strand, Sandhamn, Värmdö kommun" (läst 2026-10-29)
--- KÄLLA: https://nominatim.openstreetmap.org/lookup?osm_ids=N3053781979,N794630742,W589299279,W422017054,W329728726&format=jsonv2&addressdetails=1&extratags=1&namedetails=1&accept-language=sv — "59.2910655" (läst 2026-10-29)
--- KÄLLA: https://nominatim.openstreetmap.org/lookup?osm_ids=N3053781979,N794630742,W589299279,W422017054,W329728726&format=jsonv2&addressdetails=1&extratags=1&namedetails=1&accept-language=sv — "18.8961905" (läst 2026-10-29)
+-- vasterudde-strand.name (register: sandhamn-0516) – omarbete 2026-11-03
+-- Namnet "Västerudde strand" finns bara i OpenStreetMap. Stockholm Archipelago Trail kallar udden Västerudden, och stranden ligger vid Sandöns västligaste punkt.
+-- KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-sandhamn/steg-for-steg-vandringsguide-for-etapp-sandhamn/ — "Trouville till Västerudden 3,3 km", "Där kan du gå vänster ut på Västerudd", "Västerudden till ångbåtsbryggan 1,5 km" (Stockholm Archipelago Trail, regional vandringsled) (läst 2026-11-03)
+-- KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-sandhamn/ — "När du kommer till den västra udden så går leden tillbaka via kyrkogården in i samhället." (läst 2026-11-03)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/way/589299279/full — "natural", "beach"; uppmätt: strandens polygon ligger 37 m från Sandöns västligaste kustpunkt (läst 2026-11-03)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/way/24811650/full — "Sandön"; uppmätt: västligaste punkten 59.29050 N, 18.89565 E (läst 2026-11-03)
+-- FÖRE: 'Västerudde strand'
+update restaurants set name = 'Stranden vid Västerudden', updated_at = now() where slug = 'vasterudde-strand' and name = 'Västerudde strand';
+
+-- vasterudde-strand.description (register: sandhamn-0521, sandhamn-0522, sandhamn-0523, sandhamn-N021) – omarbetad 2026-11-03: utan det obelagda namnet
+-- KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-sandhamn/steg-for-steg-vandringsguide-for-etapp-sandhamn/ — "Trouville till Västerudden 3,3 km", "Där kan du gå vänster ut på Västerudd", "Västerudden till ångbåtsbryggan 1,5 km" (Stockholm Archipelago Trail, regional vandringsled) (läst 2026-11-03)
+-- KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-sandhamn/ — "När du kommer till den västra udden så går leden tillbaka via kyrkogården in i samhället." (läst 2026-11-03)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/way/589299279/full — "natural", "beach"; uppmätt: strandens polygon ligger 37 m från Sandöns västligaste kustpunkt (läst 2026-11-03)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/way/24811650/full — "Sandön"; uppmätt: västligaste punkten 59.29050 N, 18.89565 E (läst 2026-11-03)
 -- FÖRE: 'Västerudde strand är en badplats på Sandhamn i Värmdö kommun.'
-update restaurants set description = 'Västerudde strand är en strand på västra delen av Sandön, på Sandhamn i Värmdö kommun.', updated_at = now() where slug = 'vasterudde-strand' and description = 'Västerudde strand är en badplats på Sandhamn i Värmdö kommun.';
+update restaurants set description = 'Stranden vid Västerudden ligger på Sandöns västra udde, på Sandhamn i Värmdö kommun. Från Västerudden är det omkring 1,5 kilometer längs Stockholm Archipelago Trail till ångbåtsbryggan i byn.', updated_at = now() where slug = 'vasterudde-strand' and description = 'Västerudde strand är en badplats på Sandhamn i Värmdö kommun.';
 
 -- vasterudde-strand.website (register: sandhamn-0520)
 -- KÄLLA: ingen – http://www.varmdo.se/ är Värmdö kommuns startsida och hör inte till stranden; kommunens badplatslista har ingen sida för Västerudde (sökt i cachen 2026-10-29).
 -- FÖRE: 'http://www.varmdo.se/'
 update restaurants set website = null, updated_at = now() where slug = 'vasterudde-strand' and website = 'http://www.varmdo.se/';
+
+-- restaurants.sandhamns-glassigaste-stalle.description (register: sandhamn-0409) – omarbete 2026-11-03: bara ordet "mellersta" rättas; övriga uppgifter i posten ligger hos Tom (beslut 5b).
+-- Dagens text är hämtad ur den renderade sidan /o/sandhamn/restauranger (2026-10-29). Databasen är pausad, så WHERE är inte kontrollerat mot den.
+-- KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "I Stockholms yttre skärgård från Sandhamn och söderut." (Länsstyrelsen, Fiskeguide Stockholms län) (läst 2026-11-03)
+-- FÖRE: 'Sandhamns Glassigaste Ställe är ett glasscafé på Sandhamn i Stockholms mellersta skärgård.'
+update restaurants set description = 'Sandhamns Glassigaste Ställe är ett glasscafé på Sandhamn i Stockholms yttre skärgård.', updated_at = now() where slug = 'sandhamns-glassigaste-stalle' and description = 'Sandhamns Glassigaste Ställe är ett glasscafé på Sandhamn i Stockholms mellersta skärgård.';
+
+-- restaurants.pub-alma-sandhamn.description (register: sandhamn-0416) – omarbete 2026-11-03: bara ordet "mellersta" rättas; övriga uppgifter i posten ligger hos Tom (beslut 5b).
+-- Dagens text är hämtad ur den renderade sidan /o/sandhamn/restauranger (2026-10-29). Databasen är pausad, så WHERE är inte kontrollerat mot den.
+-- KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "I Stockholms yttre skärgård från Sandhamn och söderut." (Länsstyrelsen, Fiskeguide Stockholms län) (läst 2026-11-03)
+-- FÖRE: 'PUB Alma är en pub på Sandhamn i Stockholms mellersta skärgård.'
+update restaurants set description = 'PUB Alma är en pub på Sandhamn i Stockholms yttre skärgård.', updated_at = now() where slug = 'pub-alma-sandhamn' and description = 'PUB Alma är en pub på Sandhamn i Stockholms mellersta skärgård.';
+
+-- restaurants.cafe-ankaret.description (sandhamn-0400, sandhamn-0402 STRYK+KOMPENSERA, sandhamn-N018)
+-- Dagens text: supabase/datafix/2026-09-23-vardeord-omgang2.sql rad 7 (datafix-kallor.tsv). Databasen är pausad, så WHERE är inte kontrollerat mot den.
+-- Adressen "Sandhamn 310" kom från explorearchipelago.com, som inte finns längre; kaféets egen Instagram anger ingen gatuadress.
+-- KÄLLA: https://www.instagram.com/ankaretsandhamn/ — "Ankaret ⚓ Sandhamn", "ⒸⒶⒻⒺ • ⓈⒽⓄⓅ • ⒶⓇⓉ ⒼⒶⓁⓁⒺⓇⓎ •", senaste inlägget "den 28 augusti 2026" (läst i webbläsare (Redaktören) 2026-11-02)
+-- FÖRE: 'Café Ankaret är ett kafé i Sandhamn, på adressen Sandhamn 310.'
+update restaurants set description = 'Café Ankaret är ett kafé i Sandhamn som också har butik och konstgalleri.', updated_at = now() where slug = 'cafe-ankaret' and description = 'Café Ankaret är ett kafé i Sandhamn, på adressen Sandhamn 310.';
