@@ -25,6 +25,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
   - slaIhop parar det längsta citatet med det senaste läsdatumet (104 URL:er).
 - Källistan publicerar tider, öppettider och belopp ur KÄLLA-citaten. Arbetskopian för mallarna har en ändring för det; kontrollera den.
 - Fjäderholmarna har tre KÄLLA-rader med klockslag. Grindas KÄLLA-rader på main har också klockslag.
+- Källistan märker operatörer (Waxholmsbolaget, SL) som "Myndighet" (myndighet: true i kallor.generated.ts, MÄTT av Kontrollanten full-01 på /o/grinda). Operatörer är nivå 2.
 
 ## Samma fel på andra ställen
 - "Sök resan i SL-appen" står i Yxlans data och i blogg/[slug]/page.tsx:902.

@@ -1,0 +1,6 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-03)
+f01-k040	grinda-0195	FEL	Omarbete: skriv gradskillnaden som Länsstyrelsen ("Inslaget av lövträd är bitvis ganska stort"), inte "bitvis stort".
+f01-k059	grinda-0390	FEL	Omarbete: "cirka 2,5 km" enligt källan, inte "bara 2,5 km".
+f01-k089	grinda-0078	SAKNAS	Omarbete: "lugnare dagar" utanför sommaren har ingen källa. Stryk påståendet eller skriv det tabellerna belägger (färre turer utanför sommaren, med källa), och kompensera om sidan annars blir tunnare.
+utanför-1	grinda (island-data.ts rad 945, 1075, 1076, 1078, 1079)	FEL (Kontrollanten full-01, MÄTT)	Omarbete: grinda.se säger nu att Sea Lodge har öppet "to end of August"; texterna säger "mitten av augusti". Rätta efter grinda.se med källa, eller skriv säsongen utan datum om sidan inte anger det på svenska.
+utanför-2	src/app/o/kallor.generated.ts (generatorn)	FEL (Kontrollanten full-01, MÄTT)	Till mallarnas Skribent eller Vakten: källistan märker Waxholmsbolaget och SL som "Myndighet" (myndighet: true). Operatörer är nivå 2. Rätta regeln i generatorn.
