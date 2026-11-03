@@ -3,8 +3,8 @@
  * backup-innehall.mjs: exporterar Svallas innehåll ur databasen till JSON-filer.
  *
  * Varför: ödatan och guiderna ligger i git och har därmed historik, men de
- * 699 platserna (tabellen restaurants), turerna, rutterna och evenemangen
- * finns bara i Supabase. Om databasen förloras eller skrivs över av misstag
+ * 699 platserna (tabellen restaurants), turerna och rutterna finns bara i
+ * Supabase. Om databasen förloras eller skrivs över av misstag
  * finns de inte någon annanstans. Supabase egna backuper beror på planen och
  * har inte verifierats (docs/RUNBOOK_BACKUP_RESTORE.md).
  *
@@ -14,6 +14,10 @@
  *
  *   SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... node scripts/backup-innehall.mjs [utkatalog]
  *
+ * SUPABASE_SERVICE_ROLE_KEY är en hemlig nyckel (sb_secret_…) från Supabase →
+ * Project Settings → API Keys. Den gamla anon-nyckeln är avstängd i projektet,
+ * så använd de nya nycklarna.
+ *
  * Körs varje vecka av .github/workflows/backup-innehall.yml.
  */
 import { mkdirSync, writeFileSync } from 'node:fs'
@@ -22,7 +26,9 @@ import { resolve } from 'node:path'
 const URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL
 const NYCKEL = process.env.SUPABASE_SERVICE_ROLE_KEY
 const UT = resolve(process.argv[2] || 'backup')
-const TABELLER = ['restaurants', 'tours', 'routes', 'events']
+// 'events' stod med här men tabellen finns inte (2026-11-03): den gav HTTP 404,
+// och körningen hade blivit röd utan fil även med rätt nycklar.
+const TABELLER = ['restaurants', 'tours', 'routes']
 const SIDA = 1000
 
 // Saknade nycklar är ett fel, inte ett skäl att hoppa över: 26 okt och 2 nov

@@ -22,8 +22,9 @@ Skrivet 2026-11-02 efter att databasen varit nere i tre dygn utan att någon mä
 
 ## Backup
 - Supabase gratisnivå har inga automatiska backuper. Pro har dagliga backuper som sparas i 7 dagar (supabase.com/pricing, läst 2026-11-03).
-- Veckobackupen i GitHub ("Backup av innehåll", måndagar 04:00 UTC, `scripts/backup-innehall.mjs`) exporterar bara innehållet: platser, turer, rutter och evenemang. Användare och turer som användare loggat ingår inte (personuppgifter).
-- Den hade inte sparat något före 2026-11-03: hemligheterna `SUPABASE_URL` och `SUPABASE_SERVICE_ROLE_KEY` saknades i GitHub, och körningen blev ändå grön. Nu blir den röd när de saknas. Kontrollera efter varje körning att det finns en fil under körningens Artifacts.
+- Veckobackupen i GitHub ("Backup av innehåll", måndagar 04:00 UTC, `scripts/backup-innehall.mjs`) exporterar bara innehållet: platser, turer och rutter. Användare och turer som användare loggat ingår inte (personuppgifter).
+- Den hade inte sparat något före 2026-11-03: hemligheterna `SUPABASE_URL` och `SUPABASE_SERVICE_ROLE_KEY` saknades i GitHub, och körningen blev ändå grön. Nu blir den röd när de saknas. Den försökte också läsa tabellen `events`, som inte finns; den är borttagen ur listan. Kontrollera efter varje körning att det finns en fil under körningens Artifacts.
+- `SUPABASE_SERVICE_ROLE_KEY` är en hemlig nyckel (`sb_secret_…`, helst en egen som heter `github-backup` så att den kan spärras utan att röra sajten). Repot är publikt, så filen kan laddas ner av alla som är inloggade på GitHub. Den innehåller det som syns på sajten plus de dolda platserna och anteckningarna om varför de är dolda.
 
 ## Kartrutorna (delningskorten)
 Kartkortet hämtar rutor från tile.openstreetmap.org i servern. OSM:s regler (operations.osmfoundation.org/policies/tiles) följs: eget User-Agent med kontaktadress, rutorna cachas minst 7 dagar, högst 6 samtidiga hämtningar, erkännandet "Karta © OpenStreetMap-bidragsgivare" syns på kortet. Saknade rutor loggas som `[kartkort] … kartrutor saknas (status …)`. Status 403 eller 429 där betyder att OSM begränsar oss: byt då till en kartleverantör med egen nyckel (sajtens övriga kartor använder också OSM:s rutor).
