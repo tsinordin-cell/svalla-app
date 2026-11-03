@@ -209,6 +209,11 @@ export function restaurantsAlongRoute(
  )
 }
 
+/** Tal med decimalkomma, som svensk text skrivs: decimal(22.3) → "22,3" (2026-11-02). */
+export function decimal(n: number, d = 1): string {
+ return n.toFixed(d).replace('.', ',')
+}
+
 // Svensk skrivregel: mellanslag mellan tal och enhet ("1 h 5 min", "45 s"), samma som
 // delningskorten (formatTid i dela-klistermarken.ts). Ändrat 2026-10-26 från "1h 5min".
 export function formatDuration(seconds: number): string {

@@ -80,7 +80,8 @@ export async function GET(
  : trip?.location_name ?? ''
  const username = userRow?.username ?? 'Seglare'
  const boatShapes = boatIconShapes(trip?.boat_type)
- const boatLabel = trip?.boat_type ?? 'Tur'
+ // "Annat" är förvalet när ingen båttyp valts; då säger "Tur" mer.
+ const boatLabel = trip?.boat_type && trip.boat_type !== 'Annat' ? trip.boat_type : 'Tur'
  const magisk = trip?.pinnar_rating === 3
 
  // ── Route SVG path ──────────────────────────────────────────────────────
@@ -168,7 +169,10 @@ export async function GET(
  background: 'rgba(201,110,42,0.20)',
  border: '1px solid rgba(201,110,42,0.40)',
  borderRadius: 20, padding: '5px 14px',
- width: 'fit-content',
+ // satori kan inte 'fit-content' (Vercel: "Invalid value fit-content for setWidth",
+ // länkförhandsvisningen för varje "Magisk tur" gav 500 t.o.m. 2026-10-29). alignSelf
+ // ger samma resultat i en flex-kolumn.
+ alignSelf: 'flex-start',
  }}>
  <div style={{
  width: 14, height: 14, borderRadius: '50%',

@@ -31,7 +31,7 @@ type Props = {
  */
 function windArrowHtml(sample: WindArrowSample): string {
  const color = windColor(sample.speedMs)
- const speedLabel = sample.speedMs.toFixed(1)
+ const speedLabel = sample.speedMs.toFixed(1).replace('.', ',')
  // Ruta 26×26 så pilen får plats med luft runt sig.
  return `
  <div style="
@@ -222,7 +222,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
  })
  L.marker([s.lat, s.lng], { icon, interactive: true, keyboard: false })
  .bindTooltip(
- `${time} · ${s.speedMs.toFixed(1)} m/s från ${windDirectionLabel(s.directionDeg)}`,
+ `${time} · ${s.speedMs.toFixed(1).replace('.', ',')} m/s från ${windDirectionLabel(s.directionDeg)}`,
  { direction: 'top', offset: [0, -10] },
  )
  .addTo(layer)

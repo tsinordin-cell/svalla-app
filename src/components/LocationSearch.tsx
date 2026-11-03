@@ -30,6 +30,7 @@ export default function LocationSearch({
   const inputRef = useRef<HTMLInputElement>(null)
   const timer    = useRef<ReturnType<typeof setTimeout> | null>(null)
   const listRef  = useRef<HTMLDivElement>(null)
+  const senaste  = useRef(0)   // svar på en äldre sökning ignoreras (2026-11-02)
 
   // Sync external value changes (e.g. prefill)
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function LocationSearch({
   }, [])
 
   const search = useCallback(async (q: string) => {
+    const nr = ++senaste.current
     if (q.length < 2) { setSuggestions([]); setOpen(false); return }
     const egna = svallaOar(q)
     if (egna.length > 0) { setSuggestions(egna); setOpen(true) }
@@ -80,12 +82,13 @@ export default function LocationSearch({
       const seen = new Set<string>(egna.map(e => norm(e.name)))
       const unique = places.filter(p => { const k = norm(p.name); if (seen.has(k)) return false; seen.add(k); return true })
       const alla = [...egna, ...unique].slice(0, 7)
+      if (nr !== senaste.current) return
       setSuggestions(alla)
       setOpen(alla.length > 0)
     } catch {
-      setSuggestions(egna)
+      if (nr === senaste.current) setSuggestions(egna)
     } finally {
-      setLoading(false)
+      if (nr === senaste.current) setLoading(false)
     }
   }, [])
 

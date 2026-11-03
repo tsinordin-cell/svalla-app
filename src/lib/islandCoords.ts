@@ -177,15 +177,28 @@ export function klassaOarPaTuren(
   if (points.length === 0) return { besokta: [], passerade: [] }
   const passerade = detectVisitedIslands(points)
   if (passerade.length === 0) return { besokta: [], passerade: [] }
-  const forsta = points[0]!, sista = points[points.length - 1]!
-  const inom = (o: IslandCoord, p: { lat: number; lng: number }) => haversineKm(p.lat, p.lng, o.lat, o.lng) <= (o.radiusKm ?? 3.0)
-  const besokta: string[] = []
-  const bara: string[] = []
-  for (const slug of passerade) {
-    const o = ISLAND_COORD_MAP[slug]
-    if (!o) continue
-    const dar = inom(o, forsta) || inom(o, sista) || stopp.some(s => s.durationSeconds >= BESOK_MIN_S && inom(o, s))
-    ;(dar ? besokta : bara).push(slug)
+  // Varje "ankare" (start, slut, långt stopp) ger högst EN besökt ö: den närmaste
+  // vars radie punkten ligger inom. Radierna överlappar (Vaxholm/Rindö/Resarö,
+  // Ljusterö 4 km), och en start mellan två öar fick förut båda som besökta
+  // (granskning 2026-11-02).
+  const ankare = [points[0]!, points[points.length - 1]!, ...stopp.filter(s => s.durationSeconds >= BESOK_MIN_S)]
+  const besoktSet = new Set<string>()
+  for (const p of ankare) {
+    const o = narmasteOInomRadie(p)
+    if (o) besoktSet.add(o)
   }
-  return { besokta, passerade: bara }
+  const besokta = passerade.filter(s => besoktSet.has(s))
+  // En besökt ö som provtagningen av rutten missat (t.ex. ett stopp mellan två punkter) tas ändå med.
+  for (const s of besoktSet) if (!besokta.includes(s)) besokta.push(s)
+  return { besokta, passerade: passerade.filter(s => !besoktSet.has(s)) }
+}
+
+/** Närmaste ö vars detektionsradie punkten ligger inom, eller null. */
+export function narmasteOInomRadie(p: { lat: number; lng: number }): string | null {
+  let bast: { slug: string; d: number } | null = null
+  for (const o of ISLAND_COORDS) {
+    const d = haversineKm(p.lat, p.lng, o.lat, o.lng)
+    if (d <= (o.radiusKm ?? 3.0) && (!bast || d < bast.d)) bast = { slug: o.slug, d }
+  }
+  return bast?.slug ?? null
 }

@@ -1,5 +1,5 @@
 'use client'
-import { ruttArAnvandbar } from '@/lib/dela-klistermarken'
+import { ruttArAnvandbar, harTal } from '@/lib/dela-klistermarken'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef } from 'react'
@@ -20,7 +20,7 @@ import { renderMentions } from './Comments'
 import { fontSize, fontWeight } from '@/lib/tokens'
 
 function fmt(n: number, dec = 1) {
-  return n % 1 === 0 ? n.toString() : n.toFixed(dec)
+  return n % 1 === 0 ? n.toString() : n.toFixed(dec).replace('.', ',')   // decimalkomma (2026-11-02)
 }
 
 /**
@@ -584,7 +584,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             <IconShare size={22} stroke={1.75} />
           </button>
           <div style={{ marginLeft: 'auto' }}>
-            <TripShareModal tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} hasPhoto={hasPhoto} hasRoute={hasRoute} />
+            <TripShareModal tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} hasPhoto={hasPhoto} hasRoute={hasRoute} hasStats={harTal({ distanceNM: trip.distance ?? null, sekunder: (trip.duration ?? 0) > 0 ? trip.duration * 60 : null, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null })} />
           </div>
         </div>
       </div>
@@ -756,7 +756,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                       </div>
                       {trip.distance >= 0.1 && (
                         <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.42)', marginTop: 3 }}>
-                          {`${trip.distance.toFixed(1)} NM`}
+                          {`${trip.distance.toFixed(1).replace('.', ',')} NM`}
                         </div>
                       )}
                     </div>

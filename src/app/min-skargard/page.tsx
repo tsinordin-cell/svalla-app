@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import PasseradO from '@/components/PasseradO'
 import { redirect } from 'next/navigation'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { OAR, ANTAL_OAR, GAMLA_SLUGS, getIsland } from '@/app/o/island-data'
@@ -87,7 +88,7 @@ export default async function MinSkargardPage() {
   // för sig och räknas inte i X av 102 eller märkena. Egen tabell, se migrationen.
   const { data: passeradeRows } = await supabase
     .from('passerade_oar')
-    .select('island_slug, passerad_at')
+    .select('island_slug, passerad_at, trip_id')
     .eq('user_id', user.id)
     .order('passerad_at', { ascending: false })
 
@@ -101,6 +102,7 @@ export default async function MinSkargardPage() {
   const savedSlugs = new Set((savedRows ?? []).map(r => GAMLA_SLUGS[r.island_slug] ?? r.island_slug))
   const visitedSlugs = new Set((visitedRows ?? []).map(r => GAMLA_SLUGS[r.island_slug] ?? r.island_slug))
   const visitedCount = Array.from(visitedSlugs).filter(s => OAR_SLUGS.has(s)).length
+  const passeradTur = new Map((passeradeRows ?? []).map(r => [GAMLA_SLUGS[r.island_slug] ?? r.island_slug, (r as { trip_id: string | null }).trip_id ?? null]))
   const passeradeSlugs = [...new Set((passeradeRows ?? []).map(r => GAMLA_SLUGS[r.island_slug] ?? r.island_slug))].filter(slug => !visitedSlugs.has(slug) && OAR_SLUGS.has(slug) && getIsland(slug))
   const percentVisited = Math.round((visitedCount / TOTAL_ISLANDS) * 100)
 
@@ -354,23 +356,12 @@ export default async function MinSkargardPage() {
               <span style={{ fontSize: 13, color: 'var(--txt2)' }}>{passeradeSlugs.length}</span>
             </div>
             <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 14px' }}>
-              Öar du har kört förbi utan att lägga till. Lägg till nästa gång, så räknas de som besökta.
+              Öar du har kört förbi utan att lägga till. Gick du i land, tryck så räknas ön som besökt.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {passeradeSlugs.map(slug => {
-                const i = getIsland(slug)!
-                return (
-                  <Link key={slug} href={`/o/${slug}`} style={{
-                    padding: '6px 12px', borderRadius: 999,
-                    background: 'transparent', color: 'var(--txt2)',
-                    border: '1.5px dashed rgba(10,123,140,0.35)',
-                    fontSize: 12, fontWeight: 700, textDecoration: 'none',
-                    display: 'inline-flex', alignItems: 'center', gap: 4,
-                  }}>
-                    {i.name}
-                  </Link>
-                )
-              })}
+              {passeradeSlugs.map(slug => (
+                <PasseradO key={slug} slug={slug} namn={getIsland(slug)!.name} tripId={passeradTur.get(slug) ?? null} />
+              ))}
             </div>
           </section>
         )}

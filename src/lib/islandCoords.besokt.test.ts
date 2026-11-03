@@ -35,6 +35,14 @@ describe('klassaOarPaTuren', () => {
   it('inga punkter → inget', () => {
     expect(klassaOarPaTuren([])).toEqual({ besokta: [], passerade: [] })
   })
+  it('start mellan två öar med överlappande radier → bara den närmaste besökt (2026-11-02)', () => {
+    // 1,1 km från Vaxholm och 1,9 km från Rindö: inom båda radierna (2,0 km)
+    const start = { lat: 59.4015, lng: 18.372 }
+    const r = klassaOarPaTuren([start, { lat: 59.396, lng: 18.30 }, { lat: 59.38, lng: 18.25 }], [])
+    expect(r.besokta).toContain('vaxholm')
+    expect(r.besokta).not.toContain('rindo')
+    expect(r.passerade).toContain('rindo')
+  })
   it('en ö hamnar aldrig i båda listorna', () => {
     const r = klassaOarPaTuren([{ lat: G.lat, lng: G.lng }, { lat: 59.338, lng: 18.19 }, STHLM])
     for (const s of r.besokta) expect(r.passerade).not.toContain(s)
