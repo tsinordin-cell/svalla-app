@@ -2,6 +2,15 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 06:07 — P0-omgång 10: fyra av fem beställningstexter OK
+
+- **P0-omgång 10 (MÄTT):** Sandhamn, Möja, Husarö och Fjärdlång OK. Kymmendö
+  FEL: b-fristen saknades (stopp efter beställning minst en timme före).
+  Rättat. Kontrollanten påpekade också (RESONERAT, inget fel) att "senast
+  kvällen före" kan läsas som sent på kvällen, fast fristen är tidig kväll.
+  Därför står det nu "senast tidigt på kvällen dagen före" i alla fyra
+  texterna. Omgång 11 pågår för de fyra.
+
 ## 2026-11-03 06:06 — Sidmallarnas andra runda klar; kontroll av mallar och badplatser startad
 
 - **Skribent sidmallarna, andra rundan (MÄTT):** alla elva kvarvarande FEL

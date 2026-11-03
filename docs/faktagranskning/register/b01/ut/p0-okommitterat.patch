@@ -42,7 +42,7 @@ index b1128dd..8737667 100644
      },
      {
 diff --git a/src/lib/transit-stops.ts b/src/lib/transit-stops.ts
-index cb62c16..d2f2d1f 100644
+index cb62c16..ae46d7a 100644
 --- a/src/lib/transit-stops.ts
 +++ b/src/lib/transit-stops.ts
 @@ -56,6 +56,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
@@ -51,8 +51,8 @@ index cb62c16..d2f2d1f 100644
      note: 'Båten från Stavsnäs vinterhamn går året runt. Dit tar du SL-buss 433 från Slussen (även vissa turer med 434). Från Strömkajen går båten bara sommartid.',
 +    // P0 2026-11-03 (Kontrollanten, sandhamn-k025/k107/k163): avgångsrutan visade
 +    // turer med anmärkning B och b i tabell 16 som vanliga avgångar.
-+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "16B HAGEDE – SANDHAMN – STAVSNÄS", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna B, b och C: B minst två timmar och b minst en timme före avgång, båda senast på eftermiddagen samma dag; C senast kvällen före resdagen) (läst 2026-10-29)
-+    bestallning: 'En del turer till och från Sandhamn går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast kvällen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "16B HAGEDE – SANDHAMN – STAVSNÄS", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna B, b och C: B minst två timmar och b minst en timme före avgång, båda senast på eftermiddagen samma dag; C senast tidigt på kvällen dagen före resdagen) (läst 2026-10-29)
++    bestallning: 'En del turer till och från Sandhamn går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',
    },
    grinda: {
      destStopId: '740098471', destStopName: 'Grinda',
@@ -61,12 +61,12 @@ index cb62c16..d2f2d1f 100644
      // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.
      note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',
 -    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Beställ resan i SL-appen" (anmärkningarna B, C och b i tabell 14; fristerna skiljer sig mellan turerna, för C-turerna gäller dagen före) (läst 2026-10-29)
-+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Beställ resan i SL-appen" (anmärkningarna B, b och C i tabell 14: B minst två timmar och b minst en timme före avgång, båda senast på eftermiddagen samma dag; C senast kvällen före) (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Beställ resan i SL-appen" (anmärkningarna B, b och C i tabell 14: B minst två timmar och b minst en timme före avgång, båda senast på eftermiddagen samma dag; C senast tidigt på kvällen dagen före) (läst 2026-10-29)
 +    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
 +    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
      // P0 2026-10-29: kortet "Sista båten från Möja" visade en beställningstur utan att säga att den måste beställas.
 -    bestallning: 'Flera turer till och från Möja går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 innan du åker.',
-+    bestallning: 'Flera turer till och från Möja går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast kvällen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 i god tid innan du åker. Långvik och Dragedet trafikeras även av tabell 10 och 12.',
++    bestallning: 'Flera turer till och från Möja går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 i god tid innan du åker. Långvik och Dragedet trafikeras även av tabell 10 och 12.',
    },
    husaro: {
      destStopId: '740020692', destStopName: 'Husarö brygga',
@@ -75,7 +75,7 @@ index cb62c16..d2f2d1f 100644
      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningen C: dagen före) (läst 2026-10-29)
 -    bestallning: 'Flera turer till och från Husarö går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 innan du åker.',
-+    bestallning: 'Flera turer till och från Husarö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast kvällen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',
++    bestallning: 'Flera turer till och från Husarö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',
    },
    ingmarso: {
      destStopId: '740034607', destStopName: 'Ingmarsö Norra brygga',
@@ -84,7 +84,7 @@ index cb62c16..d2f2d1f 100644
      originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
      note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
 -    bestallning: 'En del turer till och från Kymmendö går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
-+    bestallning: 'En del turer till och från Kymmendö går bara om resan har beställts i förväg, beroende på tur senast kvällen före eller minst två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
++    bestallning: 'En del turer till och från Kymmendö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
    },
    bullero: {
      destStopId: '740076413', destStopName: 'Bullerö brygga',
