@@ -613,7 +613,7 @@ index 064bf6d..aad1f7f 100644
                <a href="mailto:info@svalla.se" style={{ fontSize: 14.5, color: 'var(--acc-d)', fontWeight: 600 }}>
                  info@svalla.se
 diff --git a/src/app/o/[slug]/komma-dit/page.tsx b/src/app/o/[slug]/komma-dit/page.tsx
-index 0fc14f4..2d99e41 100644
+index 0fc14f4..4c81da1 100644
 --- a/src/app/o/[slug]/komma-dit/page.tsx
 +++ b/src/app/o/[slug]/komma-dit/page.tsx
 @@ -5,7 +5,8 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
@@ -731,18 +731,19 @@ index 0fc14f4..2d99e41 100644
        />
  
        <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
-@@ -207,7 +234,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -207,7 +234,10 @@ export default async function IslandKommaDitPage({ params }: Props) {
                          display: 'inline-block', marginTop: 10, fontSize: 13, fontWeight: 700,
                          color: 'var(--sea)', textDecoration: 'none',
                        }}>
 -                        Köp biljett / Se tidtabell →
 +                        {/* Tryckta tidtabeller (SL, Västtrafik) har ingen biljettinformation (2026-11-02, mall-0172 omarbete). */}
 +                        {/* Trafikverkets vägfärjor har tidtabell men ingen biljettinformation (Nordöleden; mall-0172 omarbete 2). */}
-+                        {/\.pdf(\?|$)/i.test(lankFor(t.method, t.desc, t.url)!) ? 'Tidtabell (pdf) →' : /trafikverket\.se/i.test(lankFor(t.method, t.desc, t.url)!) ? 'Tidtabell →' : 'Tidtabell och biljettinformation →'}
++                        {/* Västtrafiks linjesidor och Höga Kusten-båtarnas startsida har ingen biljettinformation (mall-0172 omarbete 3). */}
++                        {/\.pdf(\?|$)/i.test(lankFor(t.method, t.desc, t.url)!) ? 'Tidtabell (pdf) →' : /trafikverket\.se|vasttrafik\.se\/reseplanering\/tidtabeller\/linje\/|hkship\.se/i.test(lankFor(t.method, t.desc, t.url)!) ? 'Tidtabell →' : 'Tidtabell och biljettinformation →'}
                        </a>
                      ) : null}
                    </div>
-@@ -225,7 +254,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -225,7 +255,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
              marginBottom: 28,
            }}>
              <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
@@ -751,7 +752,7 @@ index 0fc14f4..2d99e41 100644
                <a href="https://waxholmsbolaget.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>
                  Waxholmsbolagets tidtabell
                </a>{' '}
-@@ -235,7 +264,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -235,7 +265,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
          )}
  
          {/* Praktisk info — visas bara när det finns något som gäller den här ön */}
@@ -760,7 +761,7 @@ index 0fc14f4..2d99e41 100644
          <div style={{
            background: 'linear-gradient(135deg, rgba(10,123,140,0.06) 0%, rgba(26,74,107,0.04) 100%)',
            borderRadius: 16, padding: '22px 20px',
-@@ -246,16 +275,24 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -246,16 +276,24 @@ export default async function IslandKommaDitPage({ params }: Props) {
              Praktiska tips
            </h3>
            <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
@@ -790,7 +791,7 @@ index 0fc14f4..2d99e41 100644
            </ul>
          </div>
          )}
-@@ -274,9 +311,11 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -274,9 +312,11 @@ export default async function IslandKommaDitPage({ params }: Props) {
                Planera resan till {island.name} med Thorkel
              </div>
              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
