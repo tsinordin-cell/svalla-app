@@ -2,6 +2,15 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 04:51 — 5-timmarsgränsen; fyra agenter återupptagna
+
+Kontots 5-timmarsgräns slog till strax efter 00:15 och stoppade alla fyra
+agenter mitt i arbetet (Skribent öarna och sidmallarna, Kontrollant Vaxholm och
+Sandhamn). Gränsen återställdes 03:20. Tom bad 04:51 om ett nytt försök, och
+alla fyra är återupptagna med sitt sammanhang. Arbetsytan, P0-grenen (commit
+e9dd5f1, inte pushad) och scratchpad finns kvar. Supabase fortfarande INACTIVE
+(MÄTT 04:51).
+
 ## 2026-11-03 00:13 — Möja kontrollerad
 
 - **Kontrollant Möja (MÄTT):** 158 OK, 7 FEL, 2 SAKNAS (de 3 P0-raderna
