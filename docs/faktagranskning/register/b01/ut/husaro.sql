@@ -1,8 +1,8 @@
 -- Faktagranskningen batch 01, Husarö (Granskare/Skribent 2026-11-02).
 -- Bara UPDATE. Varje sats skriver över exakt det värde som granskats (gamla värdet i WHERE).
--- OBS: databasen (Supabase) var pausad 2026-11-02. De gamla beskrivningarna i FÖRE/WHERE är återskapade ur supabase/datafix/*.sql
--- och stämmer med md5-summorna i in/db-md5.tsv (2026-10-29); namn, webbplats och koordinater är Utvinnarens värden (2026-10-28).
--- Inget av det är kontrollerat mot databasen. Träffar en sats 0 rader har värdet ändrats sedan dess: kontrollera med SELECT först.
+-- Databasen kontrollerad 2026-11-03 (bara SELECT): FÖRE-värdena i WHERE stämmer i dag för husaro-gasthamn-cafe (description, name,
+-- website, latitude 59.5064, longitude 18.8475) och soderlangholm (description, name). Träffar en sats ändå 0 rader har värdet
+-- ändrats efter 2026-11-03: kontrollera med SELECT först.
 -- Läggs in av huvudsessionen. Inga rader raderas eller döljs.
 
 -- P0 (husaro-0252–0254): beskrivningen säger att det går att tanka året runt, men verksamheten skriver att macken är stängd.
@@ -35,14 +35,16 @@ update restaurants set latitude = 59.5018917, longitude = 18.8454895, updated_at
 update restaurants set website = 'http://husarohandel.se/', updated_at = now()
  where slug = 'husaro-gasthamn-cafe' and website = 'https://www.svenskagasthamnar.se/stockholms-skargard/husaro/';
 
--- restaurants.soderlangholm.description (husaro-0281; övriga uppgifter husaro-0271–0280, 0282 står kvar)
+-- restaurants.soderlangholm.description (husaro-0281 P0 14: Cinderella struken; övriga uppgifter husaro-0271–0280, 0282 kontrollerade igen 2026-11-03)
 -- FÖRE: 'Gästhamnen vid Söder-Långholm i Finnhamn har en 40 meter lång pontonbrygga i viken sydväst om ön, vid farleden, med 30 platser. Här finns dass och sopmaja, medan krog och lanthandel finns på Stora Jolpan. Finnhamn ägs av Skärgårdsstiftelsen och har båttrafik med Cinderella och Waxholmsbåt till Stockholm.'
--- KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/finnhamn-med-paradisviken-och-soder-langholm/ — "Pontonbrygga, 40m, i viken sydväst om Söder-Långholm vid farleden.", "Söder-Långholm – 30 platser", "Tillgång till dass, sopmaja.", "I viken intill farleden på nordostsidan av Stora Jolpan.", "Krogbryggan är öppen för gäster till krogen och lanthandeln", "Finnhamn ägs sedan 1998 av Skärgårdsstiftelsen" (läst 2026-10-29)
--- KÄLLA: https://finnhamn.se/ — "Till sist har vi flytbryggan på Söder Långholm som ligger avskilt på ön mittemot Finnhamn till öster.", "Vandrarhemsviken, den mindre hamnen med ett 20 tal platser med närhet till krog och lanthandel." (läst 2026-11-02)
--- KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=S%C3%B6der-L%C3%A5ngholm — "Söder-Långholm", "Österåker | Natur- och terrängnamn" (läst 2026-11-02)
--- KÄLLA: https://skargardsstiftelsen.se/omraden/finnhamn/ — "Trots sitt läge i mellanskärgården är ön lätt att nå med reguljär skärgårdstrafik från Stockholm." (läst 2026-10-29)
--- KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ" (läst 2026-10-31). Tabellen har Finnhamn som brygga.
--- KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — "STOCKHOLM - VAXHOLM - GRINDA - SANDHAMN", "Hålltider gäller för Vaxholm, Grinda, Gällnö och Sandhamn." (läst 2026-10-29). Ingen brygga i Finnhamn i Cinderellabåtarnas tidtabell 2026.
+-- KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/finnhamn-med-paradisviken-och-soder-langholm/ — "Söder-Långholm – 30 platser", "Pontonbrygga, 40m, i viken sydväst om Söder-Långholm vid farleden.", "Tillgång till dass, sopmaja.", "Finnhamn ägs sedan 1998 av Skärgårdsstiftelsen" (läst 2026-11-03). Aggregator (nivå 3): Länsstyrelsen, Skärgårdsstiftelsen och Finnhamns Arkipelag anger inte bryggans mått, läge eller antal platser och säger inget emot.
+-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/finnhamn.html — "Gästhamn finns i Djupfladen, vid Söder-Långholm och nedanför vandrarhemmet.", "på Stora Jolpan finns bland annat vandrarhem, restaurang, tältplats och handelsbod", "Markägare: Skärgårdsstiftelsen" (läst 2026-11-03). Markägaruppgiften gäller Finnhamns naturreservat.
+-- KÄLLA: https://finnhamn.se/hamnar/ — "På Söderlångholm har vi en flytbrygga för dig som vill ligga lite avskilt men ändå kunna bekvämt ta sig i land. Här finns sopmaja och mulltoa." (läst 2026-11-03)
+-- KÄLLA: https://finnhamn.se/ — "Till sist har vi flytbryggan på Söder Långholm som ligger avskilt på ön mittemot Finnhamn till öster.", "Vandrarhemsviken, den mindre hamnen med ett 20 tal platser med närhet till krog och lanthandel." (läst 2026-11-03)
+-- KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=S%C3%B6der-L%C3%A5ngholm — "Söder-Långholm", "Österåker | Natur- och terrängnamn" (läst 2026-11-03)
+-- KÄLLA: https://skargardsstiftelsen.se/omraden/finnhamn/ — "Finnhamn nås med reguljär båttrafik från Stockholm, året runt med Waxholmsbolaget." (läst 2026-11-03)
+-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ" (läst 2026-11-03). Tabellen har Finnhamn som brygga.
+-- KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — "STOCKHOLM - VAXHOLM - GRINDA - SANDHAMN", "Hålltider gäller för Vaxholm, Grinda, Gällnö och Sandhamn." (läst 2026-11-03). Ingen brygga i Finnhamn i Cinderellabåtarnas tidtabell 2026.
 -- KÄLLA: https://www.stromma.com/en-se/stockholm/cinderella-boats/ — "Sandhamn, Grinda, Gällnö, and Vaxholm." (läst 2026-11-02)
 update restaurants set description = 'Gästhamnen på Söder-Långholm vid Finnhamn i Österåkers kommun är en 40 meter lång pontonbrygga med 30 platser i viken sydväst om ön, vid farleden. Här finns dass och sopmaja, medan krog och lanthandel finns på Stora Jolpan. Finnhamn ägs av Skärgårdsstiftelsen och har båttrafik med Waxholmsbåt till Stockholm.', updated_at = now()
  where slug = 'soderlangholm' and description = 'Gästhamnen vid Söder-Långholm i Finnhamn har en 40 meter lång pontonbrygga i viken sydväst om ön, vid farleden, med 30 platser. Här finns dass och sopmaja, medan krog och lanthandel finns på Stora Jolpan. Finnhamn ägs av Skärgårdsstiftelsen och har båttrafik med Cinderella och Waxholmsbåt till Stockholm.';

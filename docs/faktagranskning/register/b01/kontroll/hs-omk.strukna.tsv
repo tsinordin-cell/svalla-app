@@ -1,0 +1,4 @@
+kid	sida	fil:rad	struken text
+hs-ks01	/o/husaro	render:/o/husaro	isAccessibleForFree: true → Husarö kan besökas utan avgift
+hs-ks02	/o/*	src/app/o/[slug]/page.tsx:203	isAccessibleForFree: true
+hs-ks03	/upptack/vrango-gasthamn (visas inte på /o/styrso-sidorna)	restaurants.vrango-gasthamn.description	Hamndjupet är 3,5–5 meter.

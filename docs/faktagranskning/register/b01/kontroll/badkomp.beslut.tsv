@@ -1,0 +1,8 @@
+kid	fynd	beslut (Redaktören 2026-11-03)
+badkomp-marstrand-N001	FEL	Omarbete: child_friendly får inte bygga på namnet. Ingen källa säger att Barnbadet passar barn, så child_friendly tas bort (eller false) om ingen tillåten källa hittas.
+badkomp-smogen-N003	FEL	Omarbete: återge föreskriften som kommunen skriver den: hunden får inte vara med på ordnad badplats (inte bara inte bada). Det är en regel som kan få någon att göra fel, så ordalydelsen ska följa kommunen.
+badkomp-musko-N004	FEL	Omarbete: kommunen kallar platsen stenstrand och skiljer den från klippbaden. Typen ska vara den som stämmer med källan (stenstrand), och texten får inte säga att den är en kommunal badplats om kommunen inte säger det.
+badkomp-morko-N001	SAKNAS	Redaktören: Länsstyrelsen (nivå 1) räcker för att det finns badklippor på Eriksö. Kravet på kommunens eller HaV:s lista gäller ordnade badplatser. Se till att texten bara säger det Länsstyrelsen säger (badklippor, inte ordnad eller kommunal badplats) och att KÄLLA-raden citerar Länsstyrelsen ordagrant. Nästa Kontrollant prövar raden mot det.
+badkomp-kungshamn-N003	FEL	Omarbete: samma som badkomp-smogen-N003 för Kungshamn. Meningen om Klövvholmen står kvar.
+badkomp-dyron-N001	SAKNAS	Omarbete: Hala vid Sydhamnen finns bara hos Dyröns Samhällsförening, inte hos kommunen eller HaV. Ersätt posten med kommunens badplats på Dyrön (vid norra hamnen) med kommunens text, eller stryk Hala och kompensera med belagd text så att Dyrön når målet i badkompensation.md.
+badkomp-dyron-N002	FEL	Omarbete: samma som badkomp-dyron-N001; kommunens citat gäller badplatsen vid norra hamnen och får bara beskriva den.

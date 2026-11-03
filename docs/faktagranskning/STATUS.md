@@ -2,6 +2,79 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 21:55 — Supabase uppe; alla P0 i produktion; full kontroll startad
+
+- **Supabase** är uppe igen (ACTIVE_HEALTHY). P0 13–14 kördes 21:22 i databasen,
+  med WHERE på den gamla texten, och verifierades med SELECT och på
+  /upptack-sidorna (MÄTT).
+- **#504 mergad** (squash 180a94b) efter grönt förhandsbygge, och
+  produktionsbygget blev grönt. MÄTT i produktion:
+  - avgångs-API:t visar noterna och beställningstexterna för Utö,
+    Kymmendö, Fjärdlång, Ornö, Möja, Husarö, Sandhamn, Styrsö och
+    Fjäderholmarna
+  - Vaxholms sista båt hem är 18:25 från Hotellkajen och bara färja
+  - /farjor visar Årsta Brygga – Utö utan mellanstopp
+  - /o/grinda och /o/grinda/komma-dit har säsongen och eldregeln
+  - /o/sandhamn/komma-dit har säsongerna
+  - /o/kosterhavet/bad och /o/grinda/bad har hundregeln
+  - renderat i Chromium: /o/moja, /o/styrso ("Sista båten från Styrsö
+    Bratten idag") och /o/fjaderholmarna
+- **P0 17 syns inte:** fältet dog_notes läses inte av någon komponent (MÄTT,
+  grep). Rättelsen ligger i datan. Registerrader för dog_notes ska inte
+  räknas som sidtext i Lag 3-måttet (Vakten).
+- **P0 10 fick en egen PR** (#505), eftersom batchen nu dröjer. Texten är den
+  godkända parkeringsdelen av vaxholm.edits.json nr 27. Mergad (4c47693) och
+  verifierad på /o/vaxholm/komma-dit. Vid inläggningen hoppas
+  parkeringsdelen av nr 27 över.
+- **Grindas bryggtexter** (grinda.sql, P0 7) kördes 21:39. Norra är godkänd
+  i omkontrollen. För Södra är trafikuppgifterna godkända och "i Grinda
+  naturreservat" behöver Länsstyrelsen som källa; texten är oförändrad där.
+  Verifierat på /upptack och, efter nästa bygge, på /o/grinda/hamnar.
+- **Fel som jag själv orsakade (MÄTT):** P0 9:s färjefilter gör att
+  `/api/transit/last-departure` inte ger någon hemresa för 34 av 50 öar,
+  bland dem Sandhamn och Utö. Kortet försvinner då, och dagsplaneraren
+  säger "Ingen returresa hittades". För Resarö och Tynningö visas en
+  båtresa som kommer fram nästa morgon. Rättelse i PR #506: benet som rör
+  ön ska vara en båt, och resan ska komma fram samma dag. Testerna är
+  gröna. Förhandsversionen mäts för alla öar och kontrolleras mot
+  tidtabellerna före merge.
+- **/team ikapp:**
+  - de sex gamla P0-korten är stängda
+  - tolv nya P0-kort (P0 7–18), alla stängda efter verifiering
+  - ett kort för felet i Sista båten
+  - rader på batchkortet, fas 1 och huvudkortet
+  - beslutskortet har 9 beslut och mejlkortet 8 verksamheter
+- **Kontrollanter klara:**
+  - mallar-omk2: 7 OK, 5 FEL
+  - badkomp: 59 OK, 5 FEL, 2 SAKNAS
+  - oar-omk: 83 OK, 18 FEL, 14 SAKNAS av 115
+
+  **Skribenten Husarö och Styrsö** åtgärdade 19 fynd på Husarö och 10 på
+  Styrsö, utan nya P0. Beslut per fynd: `kontroll/oar-omk.beslut.tsv`,
+  `mallar-omk2.beslut.tsv` och `badkomp.beslut.tsv`.
+- **Lästa i Toms Chrome 21:46** (för Kontrollanten, i
+  `kontroll/oar-omk2-sidor/`):
+  - www.hhmarin.se: Möja nämns inte
+  - Café Ankarets Instagram: profilen heter "Ankaret ⚓ Sandhamn", senaste
+    inlägget är från 28 augusti 2026 och ingen adress står där
+- **Full kontroll av KORREKT-raderna** (stickprovet gav 2 fel av 30):
+  3 063 rader. Det är de oförändrade KORREKT-rader som inte är högrisk och
+  inte redan finns i någon Kontrollants underlag. De ligger i 28 paket om
+  högst 110 rader, grupperade efter källa (`redaktor/bygg_full.py`,
+  `kontroll/full-NN.*`). Talet 3 349 kl. 06:09 räknade också rader som
+  sedan dess har kontrollerats i omkontrollerna.
+- **Agenter nu (fyra):**
+  - Kontrollant hs-omk (47 rader och 3 strukna)
+  - Skribent öarna runda 2
+  - Skribent mallar och badplatser runda 3 (även HantverkarKort ö/o och
+    "Badplatser på X" bara för platser på ön)
+  - Kontrollant full-01
+- **Till Vakten:**
+  - trips-data.ts:1034 skriver "mellersta"
+  - grinda.edits.json nr 13–14: OCT:s egen sida säger "Ditt lokala
+    byggföretag på Värmdö", vilket Skribenten öarna prövar
+  - dog_notes-raderna i Lag 3-måttet
+
 ## 2026-11-03 06:19 — Styrsö och Husarö kontrollerade
 
 - **Kontrollant Husarö (MÄTT):** 66 OK, 20 FEL, 1 SAKNAS av 87. De flesta

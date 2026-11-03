@@ -1,0 +1,111 @@
+kid	sida	fil:rad	text	källa (URL)	citat	läst	ny mening
+f02-k001	(visas inte på /o/moja-sidorna)	src/app/o/island-data.ts:1461	cafe = true → det finns kafé på ön	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Café med glass och bullar samt cykeluthyrning.	2026-10-29	nej
+f02-k002	/o/moja	src/app/o/island-data.ts:1280	Möja 2026 – … värdshus	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ ; https://mojavardshusochbageri.se/v%C3%A4rdshuset.php	Möja värdshus | Bergs by 600, Möja	2026-10-29	nej
+f02-k003	/o/moja	src/app/o/island-data.ts:1280	Möja 2026 – … bageri	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ ; https://mojavardshusochbageri.se/v%C3%A4rdshuset.php	Möja bageri | Bergs by 600, Möja	2026-10-29	nej
+f02-k004	/o/moja	src/app/o/island-data.ts:1281	värdshus … i Berg	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ ; https://mojavardshusochbageri.se/v%C3%A4rdshuset.php	Möja värdshus | Bergs by 600, Möja	2026-10-29	nej
+f02-k005	/o/moja	src/app/o/island-data.ts:1281	bageri i Berg	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ ; https://mojavardshusochbageri.se/v%C3%A4rdshuset.php	Möja bageri | Bergs by 600, Möja	2026-10-29	nej
+f02-k006	/o/moja	src/app/o/island-data.ts:1483	I juni och augusti har sommarverksamheterna öppet	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ ; https://visitmoja.se/	sommartid dubbleras antalet matställen | Öppet under juni - augusti!	2026-10-29	nej
+f02-k007	/o/moja	src/app/o/island-data.ts:1484	kolla turistföreningens öppettidskalender före resan	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Vill du se öppettider för Möjas krogar och affärer, klicka på ÖPPETTIDERKALENDER	2026-10-29	nej
+f02-k008	/o/moja	src/app/o/island-data.ts:1297	Det går att äta på restaurang året runt på Möja	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Du kan äta på restauranger året runt på Möja	2026-10-29	nej
+f02-k009	/o/moja	src/app/o/island-data.ts:1297	sommartid dubbleras antalet matställen	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	sommartid dubbleras antalet matställen, då finns även pizzeria, glasskiosk, bageri och fiskbod.	2026-10-29	nej
+f02-k010	/o/moja	src/app/o/island-data.ts:1297	sommartid … pizzeria	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	sommartid dubbleras antalet matställen, då finns även pizzeria, glasskiosk, bageri och fiskbod.	2026-10-29	nej
+f02-k011	/o/moja	src/app/o/island-data.ts:1297	sommartid … glasskiosk	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	sommartid dubbleras antalet matställen, då finns även pizzeria, glasskiosk, bageri och fiskbod.	2026-10-29	nej
+f02-k012	/o/moja	src/app/o/island-data.ts:1297	sommartid … bageri	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	sommartid dubbleras antalet matställen, då finns även pizzeria, glasskiosk, bageri och fiskbod.	2026-10-29	nej
+f02-k013	/o/moja	src/app/o/island-data.ts:1297	sommartid … fiskbod	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	sommartid dubbleras antalet matställen, då finns även pizzeria, glasskiosk, bageri och fiskbod.	2026-10-29	nej
+f02-k014	/o/moja	src/app/o/island-data.ts:1297	På ön finns Möja värdshus	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Möja värdshus	2026-10-29	nej
+f02-k015	/o/moja	src/app/o/island-data.ts:1297	På ön finns … Hamnbaren	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Hamnbaren	2026-10-29	nej
+f02-k016	/o/moja	src/app/o/island-data.ts:1297	På ön finns … Les Poissonniers de Möja	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Les Poissonniers de Möja	2026-10-29	nej
+f02-k017	/o/moja	src/app/o/island-data.ts:1297	På ön finns … Jeppes	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Jeppes	2026-10-29	nej
+f02-k018	/o/moja	src/app/o/island-data.ts:1297	På ön finns … Möja bageri	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Möja bageri	2026-10-29	nej
+f02-k019	/o/moja	src/app/o/island-data.ts:1297	Hamncafét serverar glass och bullar	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Café med glass och bullar samt cykeluthyrning.	2026-10-29	nej
+f02-k020	/o/moja	src/app/o/island-data.ts:1297	Hamncafét … hyr ut cyklar	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Café med glass och bullar samt cykeluthyrning.	2026-10-29	nej
+f02-k021	/o/moja	render:/o/moja	På Svalla finns Möja Värdshus & Bageri, Hamnbaren, Les Poissonniers de Möja, Jeppes och Hamncafét. Öppettiderna skiljer sig mellan säsonger, så kolla ställets egen sida innan du åker.	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Här tipsar vi om de restauranger som finns på ön.	2026-10-29	nej
+f02-k022	/o/moja	src/app/o/island-data.ts:1474	Möja – … mat på ön	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Du kan äta på restauranger året runt på Möja	2026-10-29	nej
+f02-k023	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1390	Hamnbaren	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Hamnbaren	2026-10-29	nej
+f02-k024	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1390	Bar	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Hamnbaren	2026-10-29	nej
+f02-k025	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1390	Pizza	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Pizza i en liten mysig sjöbod vid gästhamnen i Kyrkviken.	2026-10-29	nej
+f02-k026	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1390	i en sjöbod	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Pizza i en liten mysig sjöbod vid gästhamnen i Kyrkviken.	2026-10-29	nej
+f02-k027	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1390	vid gästhamnen i Kyrkviken	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Pizza i en liten mysig sjöbod vid gästhamnen i Kyrkviken.	2026-10-29	nej
+f02-k028	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1393	Les Poissonniers de Möja	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Les Poissonniers de Möja	2026-10-29	nej
+f02-k029	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1393	Fisk, skaldjur och dryck	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Ett stycke kontinent i skärgården; Fisk, Skaldjur, Dryck med härlig känsla på ängen i Berg.	2026-10-29	nej
+f02-k030	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1393	på ängen i Berg	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Ett stycke kontinent i skärgården; Fisk, Skaldjur, Dryck med härlig känsla på ängen i Berg.	2026-10-29	nej
+f02-k031	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1396	Jeppes	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Jeppes	2026-10-29	nej
+f02-k032	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1396	Restaurang	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Här tipsar vi om de restauranger som finns på ön.	2026-10-29	nej
+f02-k033	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1396	Restaurang på spritbaronens gamla gård	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	På spritbaronens gamla gård drivs ett bohemt och lite galet ställe.	2026-10-29	nej
+f02-k034	/o/moja, /o/moja/restauranger	src/app/o/island-data.ts:1396	i Långvik	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Charmig lada med lokalt hantverk och konst vid Jeppes i Långvik.	2026-10-29	nej
+f02-k035	/o/moja, /o/moja/restauranger, /o/moja/med-barn	src/app/o/island-data.ts:1398	Hamncafét	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Café med glass och bullar samt cykeluthyrning.	2026-10-29	nej
+f02-k036	/o/moja, /o/moja/restauranger, /o/moja/med-barn	src/app/o/island-data.ts:1398	Café	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Café med glass och bullar samt cykeluthyrning.	2026-10-29	nej
+f02-k037	/o/moja, /o/moja/restauranger, /o/moja/med-barn	src/app/o/island-data.ts:1398	Café med glass och bullar.	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Café med glass och bullar samt cykeluthyrning.	2026-10-29	nej
+f02-k038	/o/moja, /o/moja/restauranger, /o/moja/med-barn	src/app/o/island-data.ts:1398	Hyr även ut cyklar.	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Café med glass och bullar samt cykeluthyrning.	2026-10-29	nej
+f02-k039	/o/moja, /oppet-nu	src/app/o/island-data.ts:1485	juni = open (visas som Öppet)	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ ; https://visitmoja.se/	sommartid dubbleras antalet matställen | Öppet under juni - augusti!	2026-10-29	nej
+f02-k040	/o/moja, /oppet-nu	src/app/o/island-data.ts:1485	augusti = open (visas som Öppet)	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ ; https://visitmoja.se/	sommartid dubbleras antalet matställen | Öppet under juni - augusti!	2026-10-29	nej
+f02-k041	/o/moja/med-barn	render:/o/moja/med-barn	Kaféer och lunchställen på Möja … Hamncafét	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Café med glass och bullar samt cykeluthyrning.	2026-10-29	nej
+f02-k042	/o/moja/med-barn	src/app/o/island-data.ts:1467	Sommartid finns en fiskbod på ön	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	då finns även pizzeria, glasskiosk, bageri och fiskbod	2026-10-29	nej
+f02-k043	/o/moja/med-barn	src/app/o/island-data.ts:1467	Les Poissonniers de Möja i Berg	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Ett stycke kontinent i skärgården; Fisk, Skaldjur, Dryck med härlig känsla på ängen i Berg.	2026-10-29	nej
+f02-k044	/o/moja/med-barn	src/app/o/island-data.ts:1467	serverar fisk och skaldjur	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Ett stycke kontinent i skärgården; Fisk, Skaldjur, Dryck med härlig känsla på ängen i Berg.	2026-10-29	nej
+f02-k045	/o/moja/med-barn	src/app/o/island-data.ts:1469	ombud för … apotek	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	utlämningsställe för Systembolaget (alkohol), Post och Apotek.	2026-10-29	nej
+f02-k046	/upptack/hamncafet-moja (visas inte på /o/moja-sidorna: dubblett av ö-postens Hamncafét)	restaurants.hamncafet-moja.name	Hamncafét Möja	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Hamncafét	2026-10-29	nej
+f02-k047	/upptack/hamncafet-moja (visas inte på /o/moja-sidorna: dubblett av ö-postens Hamncafét)	restaurants.hamncafet-moja.website	https://www.facebook.com/profile.php?id=100065104277412 → Hamncafét Möjas webbplats	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Hamncafét	2026-10-29	nej
+f02-k048	/upptack/hamncafet-moja (visas inte på /o/moja-sidorna: dubblett av ö-postens Hamncafét)	restaurants.hamncafet-moja.description	som också hyr ut cyklar	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Café med glass och bullar samt cykeluthyrning.	2026-10-29	nej
+f02-k049	/upptack/jeppes-moja (visas inte på /o/moja-sidorna: dubblett av ö-postens Jeppes)	restaurants.jeppes-moja.name	Jeppes Gästgiveri	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Jeppes	2026-10-29	nej
+f02-k050	/upptack/jeppes-moja (visas inte på /o/moja-sidorna: dubblett av ö-postens Jeppes)	restaurants.jeppes-moja.type	type = restaurant → Jeppes Gästgiveri är en restaurang	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Här tipsar vi om de restauranger som finns på ön.	2026-10-29	nej
+f02-k051	/upptack/jeppes-moja (visas inte på /o/moja-sidorna: dubblett av ö-postens Jeppes)	restaurants.jeppes-moja.website	https://www.facebook.com/jeppesgastgiveri/ → Jeppes Gästgiveris webbplats	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Jeppes	2026-10-29	nej
+f02-k052	/upptack/jeppes-moja (visas inte på /o/moja-sidorna: dubblett av ö-postens Jeppes)	restaurants.jeppes-moja.description	Jeppes Gästgiveri är en restaurang på spritbaronens gamla gård	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	På spritbaronens gamla gård drivs ett bohemt och lite galet ställe.	2026-10-29	nej
+f02-k053	/upptack/jeppes-moja (visas inte på /o/moja-sidorna: dubblett av ö-postens Jeppes)	restaurants.jeppes-moja.description	i Långvik på Möja	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Charmig lada med lokalt hantverk och konst vid Jeppes i Långvik.	2026-10-29	nej
+f02-k054	/upptack/moja-hamnbar (visas inte på /o/moja-sidorna: dubblett av ö-postens Hamnbaren)	restaurants.moja-hamnbar.name	Möja Hamnbar	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Hamnbaren	2026-10-29	nej
+f02-k055	/upptack/moja-hamnbar (visas inte på /o/moja-sidorna: dubblett av ö-postens Hamnbaren)	restaurants.moja-hamnbar.website	https://www.facebook.com/profile.php?id=100065104277412 → Möja Hamnbars webbplats	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Hamnbaren	2026-10-29	nej
+f02-k056	/upptack/moja-hamnbar (visas inte på /o/moja-sidorna: dubblett av ö-postens Hamnbaren)	restaurants.moja-hamnbar.description	serverar pizza	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Pizza i en liten mysig sjöbod vid gästhamnen i Kyrkviken.	2026-10-29	nej
+f02-k057	/upptack/moja-hamnbar (visas inte på /o/moja-sidorna: dubblett av ö-postens Hamnbaren)	restaurants.moja-hamnbar.description	i en sjöbod	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Pizza i en liten mysig sjöbod vid gästhamnen i Kyrkviken.	2026-10-29	nej
+f02-k058	/upptack/moja-hamnbar (visas inte på /o/moja-sidorna: dubblett av ö-postens Hamnbaren)	restaurants.moja-hamnbar.description	vid gästhamnen i Kyrkviken	https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/	Pizza i en liten mysig sjöbod vid gästhamnen i Kyrkviken.	2026-10-29	nej
+f02-k059	/o/husaro	render:/o/husaro	10 sidor hos 5 källor, varav 2 myndighet eller kommun				nej
+f02-k060	/o/husaro	render:/o/husaro	Samtliga lästa 2026-09-27				nej
+f02-k061	/o/husaro/aktiviteter	render:/o/husaro/aktiviteter	4 aktiviteter och upplevelser på Husarö.				nej
+f02-k062	/o/storholmen	src/app/o/island-data.ts:5841	Vår bedömning			2026-10-29	nej
+f02-k063	/o/storholmen	render:/o/storholmen	5 sidor hos 4 källor, varav 3 myndighet eller kommun.			2026-10-29	nej
+f02-k064	/o/storholmen	render:/o/storholmen	Senast kontrollerad 2026-09-27.			2026-10-29	nej
+f02-k065	/o/storholmen	src/app/o/kallor.generated.ts:4922	Läst 2026-09-26			2026-10-29	nej
+f02-k066	/o/storholmen	src/app/o/kallor.generated.ts:4929	Läst 2026-09-27			2026-10-29	nej
+f02-k067	/o/storholmen	src/app/o/kallor.generated.ts:4936	Läst 2026-09-27			2026-10-29	nej
+f02-k068	/o/storholmen	src/app/o/kallor.generated.ts:4950	Läst 2026-09-27			2026-10-29	nej
+f02-k069	/o/storholmen/aktiviteter	render:/o/storholmen/aktiviteter	2 aktiviteter och upplevelser på Storholmen.			2026-10-29	nej
+f02-k070	/o/storholmen/boende	src/app/o/island-data.ts:5848	Vi har inga boenden registrerade på Storholmen.			2026-10-29	nej
+f02-k071	/o/storholmen/hantverkare	src/app/o/hantverkare-data.ts:473	Vi har ännu inga kontrollerade uppgifter om hantverkare på Storholmen.			2026-10-29	nej
+f02-k072	/o/uto	render:/o/uto	29 sidor hos 13 källor, varav 7 myndighet eller kommun.			2026-10-29	nej
+f02-k073	/o/uto	render:/o/uto	Senast kontrollerad 2026-10-20.			2026-10-29	nej
+f02-k074	/o/uto	render:/o/uto	Glamping i skärgården 2026 – Sandhamn, Utö, Vaxholm och Grinda			2026-10-29	nej
+f02-k075	/o/uto/aktiviteter	render:/o/uto/aktiviteter	6 aktiviteter och upplevelser på Utö.			2026-10-29	nej
+f02-k076	/o/uto/restauranger, /o/uto/med-barn	render:/o/uto/restauranger	8 restauranger, krogar och kaféer på Utö som vi har uppgifter om.			2026-10-29	nej
+f02-k077	/o/vaxholm	src/app/o/island-data.ts:721	best_for: bedomning → Perfekt för märks ≈ Vår bedömning			2026-10-31	nej
+f02-k078	/o/vaxholm	render:/o/vaxholm	26 sidor hos 17 källor			2026-10-31	nej
+f02-k079	/o/vaxholm	render:/o/vaxholm	varav 7 myndighet eller kommun			2026-10-31	nej
+f02-k080	/o/vaxholm	render:/o/vaxholm	Senast kontrollerad 2026-10-01			2026-10-31	nej
+f02-k081	/o/vaxholm	src/app/o/kallor.generated.ts:489	sfv.se — MYNDIGHET			2026-10-31	nej
+f02-k082	/o/vaxholm	src/app/o/kallor.generated.ts:517	Trafikverket — MYNDIGHET			2026-10-31	nej
+f02-k083	/o/vaxholm	src/app/o/kallor.generated.ts:524	vaxholm.se — MYNDIGHET			2026-10-31	nej
+f02-k084	/o/vaxholm	src/app/o/kallor.generated.ts:552	Vaxholms stad — MYNDIGHET			2026-10-31	nej
+f02-k085	/o/vaxholm	src/app/o/kallor.generated.ts:523	Vaxholm fick sina första stadsprivilegier år 1647, av drottning Kristina; Viss bebyggelse har funnits på Vaxön sedan 1200-talets slut; omkring 1770 ca 800 invånare; början av 1900-talet ca 2 000 invånare; Vaxholm fick sina första reguljära ångbåtsförbindelser c:a 1850			2026-10-31	nej
+f02-k086	/o/vaxholm	src/app/o/kallor.generated.ts:530	cirka 12 000 fastboende (2024); "Kommunen omfattar cirka 70 öar, varav 57 bebodda samt den stora gröna halvön Bogesundslandet"			2026-10-31	nej
+f02-k087	/o/vaxholm	src/app/o/kallor.generated.ts:537	Beläget på södra Rindö i slutet på Grönviksvägen finns detta lilla lokala bad, Sandstrand, Badbrygga, Grillplats, Baja-maja under badsäsong			2026-10-31	nej
+f02-k088	/o/vaxholm	src/app/o/kallor.generated.ts:579	Den andra helgen i advent, 6 — 7 december, är det åter dags för Vaxholms traditionsenliga julmarknad. Med brända mandlar, hantverk, glögg och granar, plats Rådhustorget			2026-10-31	nej
+f02-k089	/o/vaxholm	src/app/o/kallor.generated.ts:593	artisan cheeses, bread, jams, kombucha, coffee, ice cream, Söderhamnsplan 1, Shop with handcrafted products, Café with local treats			2026-10-31	nej
+f02-k090	/o/vaxholm	src/app/o/kallor.generated.ts:600	Hamnkrogen har varit vaxholmarnas kvarterskrog sedan 1950-talet. Här är du alltid välkommen för att äta lunch, middag eller ta något att dricka medan du ser ut över båtlivet i gästhamnen., Söderhamnen 10			2026-10-31	nej
+f02-k091	/o/vaxholm	src/app/o/kallor.generated.ts:614	Gästhamnen är placerad mitt i centrum, I Gästhamnen finner du restaurang, bar, café och glasskiosk, flera sjöbodar med kläder, skor, inredning, leksaker och souvenirer, service hus med duschar och toaletter, 110 gästplatser			2026-10-31	nej
+f02-k092	/o/vaxholm	src/app/o/kallor.generated.ts:628	Vaxholms fästnings historia inleddes i början av 1500-talet med ett blockhus på Vaxholmen, byggt av riksföreståndaren Svante Nilsson Sture. / Gustav Vasa 1548 åt ståthållaren på Stockholms slott att uppföra en ny och kraftigare fästning.			2026-10-31	nej
+f02-k093	/o/vaxholm	src/app/o/kallor.generated.ts:635	museet låter besökaren följa "skärgårdsförsvarets 500-åriga historia" och täcker "Sveriges försvarshistoria från Gustav Vasa till nutid"			2026-10-31	nej
+f02-k094	/o/vaxholm	src/app/o/kallor.generated.ts:642	BESÖKSINFO 2026, Hos oss kan du ta del av historien om skärgårdens försvar under 500 år, Visningar med guide ingår i entréavgiften och utgår från museet fr.o.m. 27 juni t.o.m. 16 augusti, cirka 45 minuter			2026-10-31	nej
+f02-k095	/o/vaxholm	src/app/guider/guide-island-map.ts:14	Midsommar i skärgården 2026 – 15 alternativ			2026-10-31	nej
+f02-k096	/o/vaxholm	src/app/guider/guide-island-map.ts:21	Pingst i skärgården – båtarna, öarna och Kristi himmelsfärd			2026-10-31	nej
+f02-k097	/o/vaxholm	src/app/guider/guide-island-map.ts:28	Julbord i skärgården 2026 – på öarna, med båt och på kryssning			2026-10-31	nej
+f02-k098	/o/vaxholm	src/app/guider/guide-island-map.ts:33	Skärgård för seniorer – pensionärsrabatt och tillgängliga båtar			2026-10-31	nej
+f02-k099	/o/vaxholm	src/app/guider/guide-island-map.ts:37	Wakeboard i Stockholm – kabel, klubbar och Cable Park Arlanda			2026-10-31	nej
+f02-k100	/o/vaxholm	src/app/guider/guide-island-map.ts:68	Hyra kajak i Vaxholm – kajak, kanot och SUP, rutter och buss			2026-10-31	nej
+f02-k101	/o/vaxholm	src/app/guider/guide-island-map.ts:69	Hyra kajak i Stockholms skärgård – priser, kanot och Djurgården			2026-10-31	nej
+f02-k102	/o/vaxholm	src/app/guider/guide-island-map.ts:73	Teambuilding med kajak i Stockholm – arrangörer och upplägg			2026-10-31	nej
+f02-k103	/o/vaxholm	src/app/guider/guide-island-map.ts:75	Kickoff med segling i skärgården – kick off i Stockholms skärgård			2026-10-31	nej
+f02-k104	/o/vaxholm	src/app/guider/guide-island-map.ts:76	Workshop i skärgården Stockholm – lokaler och upplägg			2026-10-31	nej
+f02-k105	/o/vaxholm	src/app/guider/guide-island-map.ts:77	Teambuilding i Stockholms skärgård – företagsevent och segling			2026-10-31	nej
+f02-k106	/o/vaxholm	src/app/guider/guide-island-map.ts:78	Segla i Stockholm – segelkurs, seglarskola och kustskepparexamen			2026-10-31	nej
+f02-k107	/o/vaxholm/aktiviteter	render:/o/vaxholm/aktiviteter	5 aktiviteter och upplevelser på Vaxholm.			2026-10-31	nej
+f02-k108	/o/vaxholm/restauranger, /o/vaxholm/med-barn	render:/o/vaxholm/restauranger	7 restauranger, krogar och kaféer på Vaxholm som vi har uppgifter om.			2026-10-31	nej
+f02-k109	/o/fjaderholmarna	src/app/o/island-data.ts:1551	Det är en av förklaringarna till att öarnas kulturmiljö är beskriven i Lidingös kulturmiljöprogram	https://lidingo.se/bygga-bo/bygglov/kulturmiljoprogram/	har vi inventerat hela Lidingö	2026-10-29	nej
+f02-k110	/o/fjaderholmarna	src/app/o/island-data.ts:1551	öarnas kulturmiljö är beskriven i Lidingös kulturmiljöprogram	https://lidingo.se/bygga-bo/bygglov/kulturmiljoprogram/	Stora Fjäderholmen (pdf, 1.3 MB) | Ängsholmen och Libertas (pdf, 1.3 MB)	2026-10-29	nej

@@ -1,0 +1,6 @@
+kid	fynd	beslut (Redaktören 2026-11-03)
+mall-0002	FEL	Omarbete: titel och description får bara nämna det ön har enligt öns egen data. Räkna inte poster blint: en nekande mening ("saknas", "finns inte") får inte ge "boende" eller "badplatser", och poster som ligger på en annan ö (Öckerö: hotell på Hönö) räknas inte. Bullerö: en badstege vid bastun är ingen badplats. Mät alla 101 öar med tsx.
+mall-0166	FEL	Omarbete: (1) nasUtanBat/vag får inte styras av ordet "färjeläge" när datan anger bilväg (Furusund). (2) FAQ-listan "Behöver man en egen båt …" får bara räkna upp förbindelser som går till ön själv (Hamburgsunds linfärja går till Hamburgö, Grebbestads taxibåt till Otterön). (3) Inga klockslag i FAQ:n (Lilla Karlsö 09.00–13.30). Mät alla öar.
+mall-0172	FEL	Omarbete: länktexten "Tidtabell och biljettinformation →" bara där sidan har biljettinformation; Västtrafiks linjesidor (860, 899, TEXP, 290, 326, 361, 381) och hkship.se får "Tidtabell →".
+mall-0191	FEL	Omarbete: "… och i resten av skärgården" bara för öar som ligger i en skärgård enligt öns egen data; Blå Jungfrun och Lilla Karlsö får en text utan skärgård.
+mall-0192	FEL	Omarbete: samma som mall-0191 (undertiteln på badsidan).
