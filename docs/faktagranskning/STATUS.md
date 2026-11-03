@@ -2,6 +2,23 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 06:06 — Sidmallarnas andra runda klar; kontroll av mallar och badplatser startad
+
+- **Skribent sidmallarna, andra rundan (MÄTT):** alla elva kvarvarande FEL
+  är rättade (12 registerrader). Exempel:
+  - Badtunnor räknas inte som bad, och 26 öar utan badplats får en
+    beskrivning om vad som gäller.
+  - Båtfrågan blir "resan" på orter som nås med bil eller buss.
+  - "Ingen egen båt krävs" står bara på öar som nås på väg.
+  - "Segling på" kräver en hamn för besökande båtar.
+  - Kontotexten säger att ruttplaneraren fungerar utan konto.
+  
+  Inget nytt P0. k137 (Styrsös radie) ligger hos Tom. tsc, verify-claims och
+  källkontrollen är gröna. `ut/mallar-arbetskopia.patch` är uppdaterad.
+- **Kontrollant startad** för sidmallarnas andra omarbetning (12 rader) och
+  badkompensationen (66 rader). Agenter nu (fyra): Kontrollant Styrsö och
+  Husarö, P0 omgång 10, omkontroll öarna, och mallar + badplatser.
+
 ## 2026-11-03 06:03 — P0-omgång 9: beställningstexterna omskrivna igen
 
 - **P0-omgång 9 (MÄTT):** alla fem FEL.

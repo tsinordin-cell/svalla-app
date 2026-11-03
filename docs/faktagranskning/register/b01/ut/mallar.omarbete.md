@@ -54,3 +54,17 @@ Inte rörda: src/lib/islandCoords.ts, DepartureWidget/Sista båten, transit-stop
 ## Kontroller (2026-11-03)
 npx tsc --noEmit: 0 fel · node scripts/verify-claims.mjs: exit 0 (2 kända i baslinjen) · node scripts/generera-kallor.mjs --kontroll: aktuell (101 öar, 1 599 källor) · npx vitest run src/lib/kommaDitTitlar.test.ts: 53/53.
 Register: 37 rader omarbetade eller nya (mall-N001 twitter, mall-N002 kompensation), kolumnen kontrollant tom.
+
+## Andra rundan (omkontrollen 2026-11-03: 18 OK, 12 FEL) – mätt mot datan med badkompensationen (81 badplatser på 41 öar)
+- k002 (mall-0192): badtunnor räknas inte som bad (`omBad`); Lidö får undertiteln "Vad som gäller när du badar vid Lidö …". src/app/o/[slug]/bad/page.tsx. MÄTT: 1 ö.
+- k076 (mall-0002): samma undantag i `harBadData`; Lidös beskrivning utan "badplatser". src/app/o/[slug]/page.tsx. MÄTT: 1 ö.
+- k105 (mall-0191): metabeskrivning och og:description blir "Vad som gäller när du badar vid X och i resten av skärgården." på öar utan badplats och utan bad i aktiviteterna. bad/page.tsx. MÄTT: 27 med beskrivning, 48 med namn, 26 utan bad.
+- k016 (mall-0124): "Det här kan du göra på och från X". src/app/o/[slug]/aktiviteter/page.tsx. MÄTT: 101 öar.
+- k082 (mall-0170): "båten" bara när ön inte nås med bil eller buss utan båt (`nasUtanBat`, nu med bro och fast förbindelse som stöd). src/app/o/[slug]/komma-dit/page.tsx, src/components/HantverkarKort.tsx. MÄTT: båten 66, resan 35 (nytt resan på 10, bl.a. Hamburgsund, Grebbestad, Lysekil, Grundsund, Orust, Resarö); företagskorten oförändrade (bara Vaxholm utan "kör hit med båt").
+- k138, k139 (mall-0161, mall-0160): för orter (slag ort) räknas inte båtarna i titeln. komma-dit/page.tsx (`titelFardsatt`). MÄTT: Lysekil och Grebbestad "Bil och buss", Hamburgsund "Resväg".
+- k154 (mall-0166): "Ingen egen båt krävs." bara på öar som nås på väg (27); övriga med allmän trafik "Utan egen båt kommer du dit med trafiken nedan, när den går." (67); FAQ "Nej, inte när trafiken går: …". komma-dit/page.tsx.
+- k098 (mall-0093): "Segling på" kräver en hamn för besökande båtar eller ett seglingsord (`harGasthamn`). src/app/aktivitet/activity-data.ts. MÄTT: 273 → 271 (Eknö, Gräskö).
+- k010 (mall-0189, även mall-0188): "Ruttplaneraren fungerar utan konto. Logga in om du vill spara rutten i dina rutter." komma-dit, bad och med-barn. Alla 101 öar.
+- k099 (mall-0172): länktexten "Tidtabell →" för trafikverket.se (Rörös Nordöleden). komma-dit/page.tsx. MÄTT: 1 länk.
+- k137 (mall-0253): Styrsös radie, hos Tom; inte ändrat.
+- Badkompensationens rader i island-data.ts och bohuslan-data.ts är inte rörda. Kontroller: tsc 0 fel, verify-claims exit 0 (2 kända), generera-kallor omgenererad (1 624 källor, oförändrad mot --kontroll), vitest kommaDitTitlar 53/53.
