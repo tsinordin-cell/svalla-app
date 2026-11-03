@@ -114,7 +114,10 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     name: 'Årsta Brygga – Utö',
     from: 'Årsta Brygga',
     to: 'Utö',
-    stops: ['Årsta Brygga', 'Brandholmen', 'Dalarö', 'Ornö', 'Utö'],
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ" (läst 2026-10-29)
+    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Waxholmsbåt året om till Gruvbryggan." (läst 2026-10-29)
+    // P0 2026-10-29: Brandholmen, Dalarö och Ornö är inte stopp på linje 21 (Årsta–Utö). Dalarö och Ornö har egna linjer (tabell 19 och 20), och de är inte den här rutten.
+    stops: ['Årsta Brygga', 'Utö'],
     operator: 'Waxholmsbolaget',
     season: 'Helår',
     infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',

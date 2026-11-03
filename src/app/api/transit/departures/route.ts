@@ -67,6 +67,8 @@ export async function GET(req: NextRequest) {
       originName: cfg.originStopName,
       destName: cfg.destStopName,
       note: cfg.note ?? null,
+      bestallning: cfg.bestallning ?? null,
+      tidsObs: cfg.tidsObs ?? null,
       date: datum,
       fel,
       trips,

@@ -541,10 +541,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://www.vaxholm.se/download/18.5c921dcc189206be14ab91a7/1689755817286/Lokala%20ordningsfo%CC%88reskrifter.pdf",
+      "org": "vaxholm.se",
+      "vad": "Hundar skall hållas kopplade på offentlig plats inom hela kommunen., Hund, som vistas på offentlig plats, skall dessutom vara försedd med uppgifter om ägarens namn, adress och telefonnummer., Hundar får inte vistas på begravningsplatser och inte heller på anlagd badplats upplåten till allmänt begagnande, eller lekplats (gäller även bollplan), som är offentlig plats., gäller dock inte för ledarhund till synskadad person eller för polishund i tjänst",
+      "last": "2026-11-03",
+      "myndighet": true
+    },
+    {
       "url": "https://www.vaxholm.se/allanyheter/nyhetsarkiv/vadgallernarskahundarvarakopplade.5.117b327517db288a7c818059.html",
       "org": "vaxholm.se",
-      "vad": "Vaxholms föreskrifter anger att hundar ska hållas kopplade på offentliga platser i hela kommunen och att hundar inte får vistas på begravningsplatser eller lekplats som är offentlig plats, det är förbjudet att medföra okopplad hund i reservatet",
-      "last": "2026-09-27",
+      "vad": "det är förbjudet att medföra okopplad hund i reservatet",
+      "last": "2026-11-02",
       "myndighet": true
     },
     {
@@ -665,7 +672,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "för längre tid än två dygn i följd förankra båt vid samma strand; förankra båt längs de strandsträckor som markerats med heldragen linje på karta; framföra motordrivet motorfordon annat än på anvisade vägar; landa med luftfarkost på annat än anvisad plats; på ett för andra störande sätt använda musikanläggning eller musikinstrument.",
-      "last": "2026-09-27",
+      "last": "2026-10-29",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/h437.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "437 Slussen–Lillsved; Giltig 17 augusti–12 december 2026",
+      "last": "2026-10-29",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/h438.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "438 Slussen–Boda; Giltig 17 augusti–12 december 2026",
+      "last": "2026-10-29",
+      "myndighet": true
+    },
+    {
+      "url": "https://sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar",
+      "org": "sl.se",
+      "vad": "Under lågsäsongen, från 14 september till 29 april, gäller alla SL:s periodbiljetter som har en giltighetstid på 30 dagar eller längre för resor på Waxholmsbolagets båtar.",
+      "last": "2026-10-29",
       "myndighet": true
     },
     {
@@ -678,29 +706,29 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor",
       "org": "Waxholmsbolaget",
-      "vad": "Om du till exempel ska resa från Strömkajen till Grinda kan du resa på SL-biljett mellan Strömkajen och Vaxholm och sedan resa på en Waxhomsbolaget-biljett för sträckan mellan Vaxholm och Grinda.; Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april; Om din SL-biljett gäller i 30 dagar eller mer kan du resa på den i hela Waxholmsbolagets trafik när det är lågsäsong.",
-      "last": "2026-09-27",
+      "vad": "Om du till exempel ska resa från Strömkajen till Grinda kan du resa på SL-biljett mellan Strömkajen och Vaxholm och sedan resa på en Waxhomsbolaget-biljett för sträckan mellan Vaxholm och Grinda.; Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april",
+      "last": "2026-10-29",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/s11.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026; 11A STOCKHOLM — VAXHOLM — GRINDA — BODA — SOLLENKROKA — måndag–torsdag t.ex. tur 1402 Strömkajen 07.45, Södra Grinda 09.15 (1 h 30 min); tur 1203 10.40–12.50; tur 1313 13.00–14.45 (tidtabellens siffror är satta i ett eget typsnitt som pdftotext inte avkodar; tiderna är avlästa med teckenmappning, se grinda.md)",
-      "last": "2026-09-27",
+      "last": "2026-10-29",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h11.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026; 11A STOCKHOLM — VAXHOLM — GRINDA — BODA — SOLLENKROKA — från 14 september måndag–torsdag tur 1341 08.15–10.10 Södra Grinda, tur 1201 10.00–12.40 Norra Grinda, tur 1303 14.45–17.00 Södra Grinda (tidtabellens siffror är satta i ett eget typsnitt som pdftotext inte avkodar; tiderna är avlästa med teckenmappning, se grinda.md)",
-      "last": "2026-09-27",
+      "last": "2026-10-29",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/s14.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "14A STOCKHOLM — VAXHOLM — SOLLENKROKA — MÖJA; Södra Grinda",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026; 14A STOCKHOLM — VAXHOLM — SOLLENKROKA — MÖJA; Södra Grinda",
+      "last": "2026-10-29",
       "myndighet": true
     },
     {
@@ -816,17 +844,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf",
+      "org": "stromma.com",
+      "vad": "STOCKHOLM - VAXHOLM - GRINDA - SANDHAMN; Södra Grinda; perioderna 30/4 - 4/6 till 7/9 - 27/9",
+      "last": "2026-10-29",
+      "myndighet": false
+    },
+    {
       "url": "https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/grinda/",
       "org": "stromma.com",
-      "vad": "1,5 timmes båttur från Stockholm till Grinda genom skärgården; Avgår från Strandvägen, Nacka Strand, Vaxholm och fler stopp",
-      "last": "2026-09-27",
+      "vad": "Åter april 2027; 1,5 timmes båttur från Stockholm till Grinda genom skärgården; Avgår från Strandvägen, Nacka Strand, Vaxholm och fler stopp",
+      "last": "2026-10-29",
       "myndighet": false
     },
     {
       "url": "https://www.svenskaturistforeningen.se/boende/stf-grinda-hotell-sea-lodge/",
       "org": "svenskaturistforeningen.se",
       "vad": "Till hotellet och Wärdshuset är det ungefär lika nära från Södra Bryggan som från Norra bryggan, en knapp kilometers promenad (15 min).; Har du större eller tungt bagage kan transport ordnas på förfrågan.; Till Grinda Sea Lodge är Södra bryggan närmast.; Från Norra bryggan till Grinda Sea Lodge är det 30 minuters promenad tvärs över ön",
-      "last": "2026-09-27",
+      "last": "2026-10-29",
       "myndighet": false
     }
   ],

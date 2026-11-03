@@ -58,6 +58,8 @@ export async function GET(req: NextRequest) {
       originName: cfg.originStopName,
       destName: cfg.destStopName,
       date: datum,
+      bestallning: cfg.bestallning ?? null,
+      tidsObs: cfg.tidsObs ?? null,
       outbound,
       return: returnTrip,
       checkedAt: new Date().toISOString(),
