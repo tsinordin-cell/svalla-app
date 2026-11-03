@@ -2,6 +2,30 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 05:51 — P0-omgång 7 och sidmallarnas omkontroll
+
+- **P0-omgång 7 (MÄTT):** båda raderna FEL på ofullständighet, inget sakfel.
+  Vaxholms hundregel saknade kravet på ägaruppgifter på hunden (16 § andra
+  stycket) och undantaget för ledarhund och polishund (15 §). Sandhamns
+  beställningstext nämnde inte fristerna. Båda är omskrivna. Fristerna står i
+  ord, eftersom klockslag inte får stå i texten. Omgång 8 pågår, i samma
+  agent.
+- **Sidmallarnas omkontroll (MÄTT):** 18 OK, 12 FEL av 30. k137 är Styrsös
+  radie (Tom). Övriga 11 är kvarvarande logikfel:
+  - delordet "bad" (badtunnor på Lidö)
+  - "Badplatser på och nära X" på öar utan badplats
+  - aktivitetslistor med platser på andra öar (Vindö, Hamburgsund)
+  - båt-FAQ och titeln "Båt och resväg" där båten går från orten
+    (Hamburgsund, Grebbestad)
+  - "Ingen egen båt krävs" utan säsong (Gotska Sandön, Blå Jungfrun, Lilla
+    Karlsö)
+  - "Segling på" där enda hamnen är en trafikbrygga
+  - "Logga in när du vill … dela" (dela fungerar utan konto)
+  - länktexten på Rörö.
+  
+  Skribenten för sidmallarna återupptas för en andra runda när en plats
+  blir ledig.
+
 ## 2026-11-03 05:28 — Sandhamn kontrollerad; P0 18
 
 - **Kontrollant Sandhamn (MÄTT):** 153 OK, 21 FEL, 17 SAKNAS av 191. Beslut

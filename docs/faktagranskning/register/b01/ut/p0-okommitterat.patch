@@ -1,5 +1,5 @@
 diff --git a/src/app/o/island-data.ts b/src/app/o/island-data.ts
-index bfdcf94..afdc50d 100644
+index bfdcf94..ae6020f 100644
 --- a/src/app/o/island-data.ts
 +++ b/src/app/o/island-data.ts
 @@ -814,8 +814,11 @@ export const ISLANDS: Island[] = [
@@ -10,14 +10,14 @@ index bfdcf94..afdc50d 100644
 -    dog_notes: 'Hunden ska vara kopplad på offentliga platser i hela kommunen och får inte vistas på begravningsplatser eller offentliga lekplatser. Även i Bogesundslandets naturreservat gäller koppel.',
 +    // P0 2026-11-03 (Kontrollanten, vaxholm-k180): ändringen 01FS 1997:142 lade till
 +    // anlagda badplatser i hundförbudet; kommunens nyhetstext nämner dem inte.
-+    // KÄLLA: https://www.vaxholm.se/download/18.5c921dcc189206be14ab91a7/1689755817286/Lokala%20ordningsfo%CC%88reskrifter.pdf — "Hundar skall hållas kopplade på offentlig plats inom hela kommunen.", "Hundar får inte vistas på begravningsplatser och inte heller på anlagd badplats upplåten till allmänt begagnande, eller lekplats (gäller även bollplan), som är offentlig plats." (läst 2026-11-03)
++    // KÄLLA: https://www.vaxholm.se/download/18.5c921dcc189206be14ab91a7/1689755817286/Lokala%20ordningsfo%CC%88reskrifter.pdf — "Hundar skall hållas kopplade på offentlig plats inom hela kommunen.", "Hund, som vistas på offentlig plats, skall dessutom vara försedd med uppgifter om ägarens namn, adress och telefonnummer.", "Hundar får inte vistas på begravningsplatser och inte heller på anlagd badplats upplåten till allmänt begagnande, eller lekplats (gäller även bollplan), som är offentlig plats.", "gäller dock inte för ledarhund till synskadad person eller för polishund i tjänst" (läst 2026-11-03)
 +    // KÄLLA: https://www.vaxholm.se/allanyheter/nyhetsarkiv/vadgallernarskahundarvarakopplade.5.117b327517db288a7c818059.html — "det är förbjudet att medföra okopplad hund i reservatet" (läst 2026-11-02)
-+    dog_notes: 'Hunden ska vara kopplad på offentliga platser i hela kommunen och får inte vistas på begravningsplatser, på anlagda badplatser som är öppna för allmänheten eller på lekplatser och bollplaner som är offentlig plats. Även i Bogesundslandets naturreservat gäller koppel.',
++    dog_notes: 'Hunden ska vara kopplad på offentliga platser i hela kommunen och bära uppgifter om ägarens namn, adress och telefonnummer. Den får inte vistas på begravningsplatser, på anlagda badplatser som är öppna för allmänheten eller på lekplatser och bollplaner som är offentlig plats. Reglerna gäller inte ledarhund till synskadad person eller polishund i tjänst. Även i Bogesundslandets naturreservat gäller koppel.',
      insiderTips: [
        // KÄLLA: https://kund.printhuset-sthlm.se/sl/v670_670x.pdf — "670 Stockholm–Vaxholm", "Giltig 14 december 2025–18 juni 2026" (läst 2026-09-27); https://assets.ctfassets.net/4l7cjdaypzcu/1WCfe56Z2KZwgDq26t7IO3/9320e22bd9562098960f572bc7b3615f/SLomradet-2026-04-02.pdf — "SL-biljett gäller alltid för resor med Waxholmsbolaget mellan dessa bryggor", med "Strömkajen" och "Vaxholm" i listan (läst 2026-09-27); https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor (renderad med webbläsare, laddar inte med curl) — "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt"
        'SL-biljetten gäller både på buss 670 från Tekniska högskolan och på Waxholmsbolagets båtar mellan Strömkajen och Vaxholm, året runt – så välj efter tid och lust, inte pris. Bussen tar 45–58 minuter, båten 55–82 minuter.',
 diff --git a/src/app/o/kallor.generated.ts b/src/app/o/kallor.generated.ts
-index b1128dd..4c71a73 100644
+index b1128dd..8737667 100644
 --- a/src/app/o/kallor.generated.ts
 +++ b/src/app/o/kallor.generated.ts
 @@ -540,11 +540,18 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
@@ -27,7 +27,7 @@ index b1128dd..4c71a73 100644
 +    {
 +      "url": "https://www.vaxholm.se/download/18.5c921dcc189206be14ab91a7/1689755817286/Lokala%20ordningsfo%CC%88reskrifter.pdf",
 +      "org": "vaxholm.se",
-+      "vad": "Hundar skall hållas kopplade på offentlig plats inom hela kommunen., Hundar får inte vistas på begravningsplatser och inte heller på anlagd badplats upplåten till allmänt begagnande, eller lekplats (gäller även bollplan), som är offentlig plats.",
++      "vad": "Hundar skall hållas kopplade på offentlig plats inom hela kommunen., Hund, som vistas på offentlig plats, skall dessutom vara försedd med uppgifter om ägarens namn, adress och telefonnummer., Hundar får inte vistas på begravningsplatser och inte heller på anlagd badplats upplåten till allmänt begagnande, eller lekplats (gäller även bollplan), som är offentlig plats., gäller dock inte för ledarhund till synskadad person eller för polishund i tjänst",
 +      "last": "2026-11-03",
 +      "myndighet": true
 +    },
@@ -42,7 +42,7 @@ index b1128dd..4c71a73 100644
      },
      {
 diff --git a/src/lib/transit-stops.ts b/src/lib/transit-stops.ts
-index cb62c16..e8a170f 100644
+index cb62c16..fdd5dbf 100644
 --- a/src/lib/transit-stops.ts
 +++ b/src/lib/transit-stops.ts
 @@ -56,6 +56,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
@@ -51,8 +51,8 @@ index cb62c16..e8a170f 100644
      note: 'Båten från Stavsnäs vinterhamn går året runt. Dit tar du SL-buss 433 från Slussen (även vissa turer med 434). Från Strömkajen går båten bara sommartid.',
 +    // P0 2026-11-03 (Kontrollanten, sandhamn-k025/k107/k163): avgångsrutan visade
 +    // turer med anmärkning B och b i tabell 16 som vanliga avgångar.
-+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "16B HAGEDE – SANDHAMN – STAVSNÄS", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna B och b) (läst 2026-10-29)
-+    bestallning: 'En del turer till och från Sandhamn går eller stannar bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 innan du åker.',
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "16B HAGEDE – SANDHAMN – STAVSNÄS", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna B, b och C; fristerna skiljer sig, för C gäller dagen före resdag) (läst 2026-10-29)
++    bestallning: 'En del turer till och från Sandhamn går eller stannar bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 innan du åker.',
    },
    grinda: {
      destStopId: '740098471', destStopName: 'Grinda',
