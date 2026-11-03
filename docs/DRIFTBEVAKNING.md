@@ -7,6 +7,7 @@ Skrivet 2026-11-02 efter att databasen varit nere i tre dygn utan att någon mä
 - Kortdragningen för oktoberfakturan misslyckades. Supabase skickade under två veckor mejl om misslyckad betalning, förfallen faktura och "pending shutdown". En del gick till info@svalla.se och nådde aldrig inkorgen; resten hamnade i Gmails flik Uppdateringar och lästes inte.
 - 2026-10-30 nedgraderades organisationen till gratisnivån och projektet pausades. Sajtens sidor fortsatte svara 200 ur cache (/rutter "STALE"), /api/stats visade nollor, och inloggning, loggning, flöde och forum gav fel.
 - Medan projektet var pausat fanns värdnamnet inte i DNS, så **varje Vercel-bygge föll** (regionsidorna prerenderas mot databasen) och ingen rättelse kunde nå produktion.
+- 2026-11-03 betalades resten av fakturan och projektet återställdes (04:19 UTC). Databasen var nere i nästan fyra dygn, från 30 okt 08:36 UTC.
 
 ## Tre lager bevakning
 1. **`/api/health`** (denna rutt): frågar databasen vid varje anrop, ingen cache. 200 `{"ok":true,"db":"ok"}` eller 503 `{"ok":false,"db":"fel"}`, svar inom 4 sekunder. Gå inte via cachade sidor eller /api/stats för att avgöra om databasen lever.
