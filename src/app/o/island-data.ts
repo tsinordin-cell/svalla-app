@@ -788,8 +788,8 @@ export const ISLANDS: Island[] = [
       line: 'Båt linje 11 m.fl. från Strömkajen; buss 670 från Tekniska högskolan',
       frequency: 'Buss 670 ungefär var 15:e minut vardagar dagtid. Båt flera gånger/dag.',
       booking_url: 'https://sl.se',
-      // KÄLLA: Vaxholms stad, taxa antagen av kommunfullmäktige 2025 — https://www.vaxholm.se/trafik--infrastruktur/trafik-gator-och-parkering/parkering/taxor-och-avgifter (hämtad 2026-08-06)
-      car_parking: 'Parkering i centrala Vaxholm (zon 1595 och 1596): 40 kr/timme 1 maj–31 augusti, 8–18 vardagar och 8–15 helger. Avgiftsfritt 1 september–30 april gäller halva Kronängsskolans parkeringsområde (zon 1606), där det är parkeringsförbud tisdagar 00–08.',
+      // KÄLLA: https://www.vaxholm.se/trafik--infrastruktur/trafik-gator-och-parkering/parkering/taxor-och-avgifter — "fastställda av kommunfullmäktige för år 2025", "Taxa A", "40 kr/timme", "1 maj - 31 augusti", "Höst, vinter, vår (kväll och helg):", "Halva Kronängsskolans parkeringsområde", "1 september - 30 april", "Avgiftsfritt", "Parkeringsförbud tisdagar" (läst 2026-10-31)
+      car_parking: 'Parkering i centrala Vaxholm (zon 1595 och 1596) kostar 40 kr/timme dagtid 1 maj–31 augusti enligt kommunens taxa. Halva Kronängsskolans parkeringsområde (zon 1606) är avgiftsfritt kvällar och helger 1 september–30 april; där är det parkeringsförbud tisdagar från midnatt till morgonen.',
     },
     activity_meta: {
       // KÄLLA: https://www.destinationvaxholm.se/skargardens-kanotcenter — "kajak-och cykeluthyrning", "Resarövägen 10" (läst 2026-09-27)
