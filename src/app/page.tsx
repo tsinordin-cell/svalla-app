@@ -10,12 +10,14 @@
  * gav "TOMT resultat" 93 gånger på en vecka. Kort utan Google-foto får nu
  * öns Commons-foto (fri licens, samma bilder som ösidorna). Fotograf och
  * licens listas under "Bildkällor" nederst på sidan — det är licensvillkoret.
- * Google-fotot vinner när det finns.
+ * Ordning: handplockad bild → Google-foto → öns Commons-foto. Listorna och
+ * motiveringen per bild ligger i src/lib/startsidaBilder.ts.
  */
 import type { Metadata } from 'next'
 import { getLandingPhotos } from '@/lib/landingPhotos'
 import { OBILDER } from '@/app/o/obilder.generated'
 import LandingPageClient, { type Bildkalla } from './LandingPageClient'
+import { COMMONS_FOR_KORT, HANDPLOCKADE } from '@/lib/startsidaBilder'
 import { ANTAL_OAR } from '@/app/o/island-data'
 
 export const revalidate = 3600
@@ -24,30 +26,15 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://svalla.se' },
 }
 
-// Kortnyckel på startsidan → ö i OBILDER. Bara där motivet faktiskt är platsen
-// kortet handlar om. Kajak, badplatser, Åland och Halland saknar en ö-bild som
-// motsvarar kortet och får hellre ingen bild än fel bild.
-const COMMONS_FOR_KORT: Record<string, { slug: string; namn: string }> = {
-  grinda: { slug: 'grinda', namn: 'Grinda' },
-  sandhamn: { slug: 'sandhamn', namn: 'Sandhamn' },
-  uto: { slug: 'uto', namn: 'Utö' },
-  fjaderholmarna: { slug: 'fjaderholmarna', namn: 'Fjäderholmarna' },
-  mellersta: { slug: 'moja', namn: 'Möja' },
-  norra: { slug: 'arholma', namn: 'Arholma' },
-  innerskargard: { slug: 'vaxholm', namn: 'Vaxholm' },
-  sodra: { slug: 'orno', namn: 'Ornö' },
-  bohuslan: { slug: 'smogen', namn: 'Smögen' },
-  gotland: { slug: 'gotland', namn: 'Gotland' },
-  oland: { slug: 'oland', namn: 'Öland' },
-  blekinge: { slug: 'hano', namn: 'Hanö' },
-  vasterhav: { slug: 'kosterhavet', namn: 'Kosterhavet' },
-  hogakusten: { slug: 'ulvon', namn: 'Ulvön' },
-}
-
 export default async function Page() {
   const google = await getLandingPhotos()
   const photoMap: Record<string, string> = { ...google }
   const bildkallor: Bildkalla[] = []
+
+  for (const [kort, { url, ...kalla }] of Object.entries(HANDPLOCKADE)) {
+    photoMap[kort] = url
+    bildkallor.push(kalla)
+  }
 
   for (const [kort, { slug, namn }] of Object.entries(COMMONS_FOR_KORT)) {
     if (photoMap[kort]) continue
