@@ -522,7 +522,7 @@ index 814c0c0..65e7b3d 100644
            </div>
          )}
 diff --git a/src/app/o/[slug]/hantverkare/page.tsx b/src/app/o/[slug]/hantverkare/page.tsx
-index 064bf6d..f3bb3d9 100644
+index 064bf6d..aad1f7f 100644
 --- a/src/app/o/[slug]/hantverkare/page.tsx
 +++ b/src/app/o/[slug]/hantverkare/page.tsx
 @@ -4,7 +4,7 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
@@ -590,7 +590,7 @@ index 064bf6d..f3bb3d9 100644
                  </p>
                  <ul style={{ display: 'grid', gap: 10, margin: 0, padding: 0 }}>
 -                  {g.poster.map(h => <HantverkarKort key={h.slug} h={h} oSlug={slug} />)}
-+                  {g.poster.map(h => <HantverkarKort key={h.slug} h={h} oSlug={slug} utanBat={nasUtanBat(island.getting_there)} />)}
++                  {g.poster.map(h => <HantverkarKort key={h.slug} h={h} oSlug={slug} utanBat={nasUtanBat(island.getting_there, island.name)} />)}
                  </ul>
                </section>
              ))}
@@ -599,7 +599,7 @@ index 064bf6d..f3bb3d9 100644
                  </h2>
                  <ul style={{ display: 'grid', gap: 10, margin: 0, padding: 0 }}>
 -                  {ogrupperade.map(h => <HantverkarKort key={h.slug} h={h} oSlug={slug} />)}
-+                  {ogrupperade.map(h => <HantverkarKort key={h.slug} h={h} oSlug={slug} utanBat={nasUtanBat(island.getting_there)} />)}
++                  {ogrupperade.map(h => <HantverkarKort key={h.slug} h={h} oSlug={slug} utanBat={nasUtanBat(island.getting_there, island.name)} />)}
                  </ul>
                </section>
              )}
@@ -613,7 +613,7 @@ index 064bf6d..f3bb3d9 100644
                <a href="mailto:info@svalla.se" style={{ fontSize: 14.5, color: 'var(--acc-d)', fontWeight: 600 }}>
                  info@svalla.se
 diff --git a/src/app/o/[slug]/komma-dit/page.tsx b/src/app/o/[slug]/komma-dit/page.tsx
-index 0fc14f4..76e215e 100644
+index 0fc14f4..2d99e41 100644
 --- a/src/app/o/[slug]/komma-dit/page.tsx
 +++ b/src/app/o/[slug]/komma-dit/page.tsx
 @@ -5,7 +5,8 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
@@ -663,7 +663,7 @@ index 0fc14f4..76e215e 100644
        // Tidigare lovade delningstexten "avgångstider, priser" och buss för alla
        // öar. Sidorna har inga priser. Nu samma text som metabeskrivningen.
        description: beskrivning,
-@@ -80,8 +85,23 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -80,8 +85,27 @@ export default async function IslandKommaDitPage({ params }: Props) {
    // Påståenden som bara är sanna för vissa öar ska inte stå på alla 103.
    // "Ingen egen båt krävs" var hårdkodat även för öar utan reguljärtrafik, och
    // Waxholmsbolagets biljettregler visades på Bohusläns öar (2026-09-21).
@@ -671,12 +671,16 @@ index 0fc14f4..76e215e 100644
 +  // "Egen eller hyrd båt", "Ingen reguljär båt" (Yttre Gården) och "Fritidsbåt" (Storholmen)
 +  // räknades som allmän trafik (2026-11-02, mall-0166 omarbete).
 +  const egenBat = /egen båt|egen eller hyrd båt|fritidsbåt|segelbåt|kajak|charter|ingen reguljär/i
-+  const kollektiva = island.getting_there.filter(t => !egenBat.test(t.method))
++  // Ett färdsätt som utgår från orten själv tar en inte dit: Hamburgsunds linfärja går till Hamburgö,
++  // Grebbestads taxibåt till Otterön (2026-11-03, mall-0166 omarbete 3).
++  const franOrten = (fran?: string) => Boolean(fran && fran.trim().toLowerCase().startsWith(island.name.toLowerCase())
++    && !/[a-zåäö]/i.test(fran.trim().charAt(island.name.length)))
++  const kollektiva = island.getting_there.filter(t => !egenBat.test(t.method) && !franOrten(t.from))
 +  const kollektivt = kollektiva.length > 0
 +  // "Hur lång tid tar båten" stod också på öar som nås med bil och buss (2026-11-02, mall-0170),
 +  // och på orter där båten går därifrån och svaret är bil- eller busstid (Hamburgsund, Grebbestad,
 +  // Lysekil, Grundsund, Orust, Resarö; mall-0170 omarbete 2). Nås orten på väg frågar vi om resan.
-+  const vag = nasUtanBat(island.getting_there)
++  const vag = nasUtanBat(island.getting_there, island.name)
 +  const batlinje = harBat(kollektiva.map(t => t.method)) && !vag
    const stockholm = island.region === 'norra' || island.region === 'mellersta' || island.region === 'södra'
 +  // Waxholmsbolagets regler gäller bara öar som bolaget trafikerar; Storholmen
@@ -688,7 +692,7 @@ index 0fc14f4..76e215e 100644
    const lankFor = (method: string, desc: string, url?: string) => {
      if (url) return url
      const tm = island.transport_meta
-@@ -101,8 +121,8 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -101,8 +125,8 @@ export default async function IslandKommaDitPage({ params }: Props) {
          acceptedAnswer: {
            '@type': 'Answer',
            text: island.getting_there.length > 0
@@ -699,14 +703,15 @@ index 0fc14f4..76e215e 100644
          },
        },
        {
-@@ -111,13 +131,15 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -111,13 +135,16 @@ export default async function IslandKommaDitPage({ params }: Props) {
          acceptedAnswer: {
            '@type': 'Answer',
            text: kollektivt
 -            ? `Nej. ${island.getting_there.filter(t => !/egen båt|segelbåt|kajak|charter/i.test(t.method)).map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}${t.time ? ` (${t.time})` : ''}`).join(', ')}.`
 +            // Utan väg bara när trafiken går: turbåtarna till Gotska Sandön, Blå Jungfrun och Lilla
 +            // Karlsö går bara sommartid (mall-0166 omarbete 2).
-+            ? `${vag ? 'Nej.' : 'Nej, inte när trafiken går:'} ${kollektiva.map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}${t.time ? ` (${t.time})` : ''}`).join(', ')}.`
++            // Inga klockslag: Lilla Karlsös tid "09.00–13.30" är avgång och återkomst, ingen restid (mall-0166 omarbete 3).
++            ? `${vag ? 'Nej.' : 'Nej, inte när trafiken går:'} ${kollektiva.map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}${t.time && !/\b\d{1,2}[.:]\d{2}\b/.test(t.time) ? ` (${t.time})` : ''}`).join(', ')}.`
              : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
          },
        },
@@ -717,7 +722,7 @@ index 0fc14f4..76e215e 100644
          acceptedAnswer: {
            '@type': 'Answer',
            text: `${island.facts.travel_time ? `Restid till ${island.name}: ${island.facts.travel_time}. ` : island.getting_there.filter(t => t.time).map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}: ${t.time}`).join('. ') + (island.getting_there.some(t => t.time) ? '. ' : '')}${island.transport_meta ? `Från närmaste knutpunkt (${island.transport_meta.nearest_hub}): ca ${island.transport_meta.from_nearest_hub_min} minuter.` : ''}`,
-@@ -133,7 +155,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -133,7 +160,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
        <IslandSubPageHeader
          island={island}
          tab="komma-dit"
@@ -726,7 +731,7 @@ index 0fc14f4..76e215e 100644
        />
  
        <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
-@@ -207,7 +229,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -207,7 +234,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
                          display: 'inline-block', marginTop: 10, fontSize: 13, fontWeight: 700,
                          color: 'var(--sea)', textDecoration: 'none',
                        }}>
@@ -737,7 +742,7 @@ index 0fc14f4..76e215e 100644
                        </a>
                      ) : null}
                    </div>
-@@ -225,7 +249,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -225,7 +254,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
              marginBottom: 28,
            }}>
              <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
@@ -746,7 +751,7 @@ index 0fc14f4..76e215e 100644
                <a href="https://waxholmsbolaget.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>
                  Waxholmsbolagets tidtabell
                </a>{' '}
-@@ -235,7 +259,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -235,7 +264,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
          )}
  
          {/* Praktisk info — visas bara när det finns något som gäller den här ön */}
@@ -755,7 +760,7 @@ index 0fc14f4..76e215e 100644
          <div style={{
            background: 'linear-gradient(135deg, rgba(10,123,140,0.06) 0%, rgba(26,74,107,0.04) 100%)',
            borderRadius: 16, padding: '22px 20px',
-@@ -246,16 +270,24 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -246,16 +275,24 @@ export default async function IslandKommaDitPage({ params }: Props) {
              Praktiska tips
            </h3>
            <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
@@ -785,7 +790,7 @@ index 0fc14f4..76e215e 100644
            </ul>
          </div>
          )}
-@@ -274,9 +306,11 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -274,9 +311,11 @@ export default async function IslandKommaDitPage({ params }: Props) {
                Planera resan till {island.name} med Thorkel
              </div>
              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
@@ -899,7 +904,7 @@ index 5081eaf..878692b 100644
            <Link href="/planera" prefetch={false} style={{
              display: 'inline-block', background: 'var(--acc-knapp)', color: '#fff',
 diff --git a/src/app/o/[slug]/page.tsx b/src/app/o/[slug]/page.tsx
-index 38f86cc..06f965f 100644
+index 38f86cc..0044e24 100644
 --- a/src/app/o/[slug]/page.tsx
 +++ b/src/app/o/[slug]/page.tsx
 @@ -24,6 +24,8 @@ import { PUBLICERADE_GUIDER } from '../../guider/guides-data'
@@ -911,18 +916,21 @@ index 38f86cc..06f965f 100644
  import { getHantverkareForIsland } from '../hantverkare-data'
  import IslandTabRow from '@/components/IslandTabRow'
  import IslandKallor from '@/components/IslandKallor'
-@@ -57,9 +59,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -57,9 +59,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
    // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
    // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
    if (!island) notFound()
 + // Bara det ön har i datan: "mat, boende" och "badplatser" stod också på öar utan krogar,
 + // boende eller bad (Långskär, Ormskär, Lilla Karlsö m.fl.; 2026-11-02, mall-0002 omarbete).
 + // Badtunnor (Lidö) är inget bad i havet (mall-0002 omarbete 2).
++ // En post vars första mening säger att det saknas på ön, eller pekar till grannön, räknas inte:
++ // Vindö (boende och bad på Djurö), Öckerö (hotell på Hönö). En badstege vid bastun (Bullerö) är ingen badplats (mall-0002 omarbete 3).
++ const pekarBort = (desc: string) => /^Närmast|grannön|har vi inte kunnat belägga|ingen badplats/i.test(desc.split(/(?<=\.)\s/)[0])
 + const harBadData = (island.activity_meta?.bad?.beaches ?? []).length > 0
-+  || island.activities.some(a => /bad|simning|sandstr[aä]nd|stenstrand/i.test(`${a.name} ${a.desc}`.replace(/badtunn[a-zåäö]*/gi, '')))
++  || island.activities.some(a => !pekarBort(a.desc) && /bad|simning|sandstr[aä]nd|stenstrand/i.test(`${a.name} ${a.desc}`.replace(/badtunn[a-zåäö]*|badsteg[a-zåäö]*/gi, '')))
 + const amnen = [
-+  island.restaurants.length > 0 ? 'mat' : '',
-+  island.accommodation.length > 0 ? 'boende' : '',
++  island.restaurants.some(r => !pekarBort(r.desc)) ? 'mat' : '',
++  island.accommodation.some(a => !pekarBort(a.desc)) ? 'boende' : '',
 +  'aktiviteter',
 + ].filter(Boolean)
 + const beskrAmnen = [...amnen, ...(harBadData ? ['badplatser'] : []), 'hur du tar dig dit']
@@ -935,7 +943,7 @@ index 38f86cc..06f965f 100644
   keywords: [
    `${island.name.toLowerCase()} guide`,
    `${island.name.toLowerCase()} restaurang`,
-@@ -74,7 +88,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -74,7 +91,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   },
   openGraph: {
   title: `${island.name} – ${island.tagline}`,
@@ -944,7 +952,7 @@ index 38f86cc..06f965f 100644
   url: `https://svalla.se/o/${slug}`,
   type: 'article',
   images: [{
-@@ -86,7 +100,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -86,7 +103,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   twitter: {
   card: 'summary_large_image',
   title: `${island.name} – ${island.tagline}`,
@@ -954,7 +962,7 @@ index 38f86cc..06f965f 100644
   images: [`https://svalla.se/api/og/island/${slug}`],
   },
   }
-@@ -183,6 +198,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -183,6 +201,7 @@ export default async function IslandPage({ params }: Props) {
     const coordLat = island.lat ?? ISLAND_COORD_MAP[slug]?.lat
     const coordLng = island.lng ?? ISLAND_COORD_MAP[slug]?.lng
     const hasCoords = !!(coordLat && coordLng)
@@ -962,7 +970,7 @@ index 38f86cc..06f965f 100644
     const scb = SCB_OAR[island.slug]
     const mapsUrl = hasCoords
       ? `https://www.google.com/maps?q=${coordLat},${coordLng}`
-@@ -199,8 +215,17 @@ export default async function IslandPage({ params }: Props) {
+@@ -199,8 +218,17 @@ export default async function IslandPage({ params }: Props) {
             name: island.name,
             description: island.description?.[0] ?? island.tagline,
             url: `https://svalla.se/o/${island.slug}`,
@@ -982,7 +990,7 @@ index 38f86cc..06f965f 100644
             publicAccess: true,
             containedInPlace: {
               '@type': 'Place',
-@@ -238,16 +263,9 @@ export default async function IslandPage({ params }: Props) {
+@@ -238,16 +266,9 @@ export default async function IslandPage({ params }: Props) {
                 longitude: coordLng,
               },
             } : {}),
@@ -1002,7 +1010,7 @@ index 38f86cc..06f965f 100644
           })
         }}
       />
-@@ -265,18 +283,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -265,18 +286,7 @@ export default async function IslandPage({ params }: Props) {
   ],
   }) }}
   />
@@ -1022,7 +1030,7 @@ index 38f86cc..06f965f 100644
  
   {/* ── NAV ─────────────────────────────────────────────────── */}
   {/* revision 2026-10-02: mork-yta = vit fokusring (globals.css), --sea syntes inte här. */}
-@@ -366,8 +373,11 @@ export default async function IslandPage({ params }: Props) {
+@@ -366,8 +376,11 @@ export default async function IslandPage({ params }: Props) {
   <circle cx="12" cy="8" r="2.4" />
   </svg>
   <span>
@@ -1035,7 +1043,7 @@ index 38f86cc..06f965f 100644
   </span>
   </div>
   )}
-@@ -488,7 +498,8 @@ export default async function IslandPage({ params }: Props) {
+@@ -488,7 +501,8 @@ export default async function IslandPage({ params }: Props) {
       off: 'var(--txt2)', limited: 'var(--txt)', open: 'var(--txt)', peak: '#fff',
     }
     const LABEL: Record<string, string> = {
@@ -1045,16 +1053,16 @@ index 38f86cc..06f965f 100644
     }
     const currentMonth = new Date().getMonth() // 0-indexed
     return (
-@@ -844,7 +855,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -844,7 +858,7 @@ export default async function IslandPage({ params }: Props) {
   {/* Hantverk & service — renderar sig själv till null om ön saknar poster
       för ön, vilket är normalfallet tills registret ringts igenom. Se
       hantverkare-data.ts för varför spärren ligger i datalagret och inte här. */}
 - <div data-vidareklick="hantverk"><IslandHantverkare islandSlug={slug} islandName={island.name} /></div>
-+ <div data-vidareklick="hantverk"><IslandHantverkare islandSlug={slug} islandName={island.name} utanBat={nasUtanBat(island.getting_there)} /></div>
++ <div data-vidareklick="hantverk"><IslandHantverkare islandSlug={slug} islandName={island.name} utanBat={nasUtanBat(island.getting_there, island.name)} /></div>
  
   {/* Boende */}
   {island.accommodation.length > 0 && (
-@@ -938,7 +949,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -938,7 +952,7 @@ export default async function IslandPage({ params }: Props) {
     Planera en dag på {island.name} →
    </Link>
    <Link href={`/o/${slug}/komma-dit`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
@@ -1063,7 +1071,7 @@ index 38f86cc..06f965f 100644
    </Link>
   </div>
   </section>
-@@ -1114,7 +1125,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1114,7 +1128,7 @@ export default async function IslandPage({ params }: Props) {
         </div>
         <div style={{ flex: 1 }}>
          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Komma dit</div>
@@ -1072,7 +1080,7 @@ index 38f86cc..06f965f 100644
         </div>
         <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
        </div>
-@@ -1135,7 +1146,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1135,7 +1149,7 @@ export default async function IslandPage({ params }: Props) {
         </div>
         <div style={{ flex: 1 }}>
          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Med barn</div>
@@ -1081,7 +1089,7 @@ index 38f86cc..06f965f 100644
         </div>
         <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
        </div>
-@@ -1160,7 +1171,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1160,7 +1174,7 @@ export default async function IslandPage({ params }: Props) {
         </div>
         <div style={{ flex: 1 }}>
          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Hantverkare &amp; service</div>
@@ -1090,7 +1098,7 @@ index 38f86cc..06f965f 100644
         </div>
         <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
        </div>
-@@ -1247,7 +1258,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1247,7 +1261,7 @@ export default async function IslandPage({ params }: Props) {
       Tidigare två sektioner med samma rubrik "Guider om X" efter varandra. */}
   {(guideLinks.length > 0 || (island.blogLinks && island.blogLinks.length > 0)) && (
    <section style={{ marginBottom: 36 }}>
@@ -1099,7 +1107,7 @@ index 38f86cc..06f965f 100644
     {guideLinks.length > 0 && (
     <div style={{
      display: 'grid',
-@@ -1386,7 +1397,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1386,7 +1400,7 @@ export default async function IslandPage({ params }: Props) {
      /* Inga trådar — visa klickbara startfrågor */
      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 14 }}>
       <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginBottom: 4 }}>
@@ -1108,7 +1116,7 @@ index 38f86cc..06f965f 100644
       </div>
       {[
        `Vad ska man inte missa på ${island.name}?`,
-@@ -1474,7 +1485,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1474,7 +1488,7 @@ export default async function IslandPage({ params }: Props) {
   variant="card"
   source={`o-${island.slug}`}
   title={`Vill du veta mer om ${island.name}?`}
@@ -1117,7 +1125,7 @@ index 38f86cc..06f965f 100644
   />
   </div>
  
-@@ -1497,7 +1508,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1497,7 +1511,7 @@ export default async function IslandPage({ params }: Props) {
   <SvallaLogo height={22} color="rgba(255,255,255,0.7)" />
   </Link>
   <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', margin: 0 }}>
@@ -8150,10 +8158,10 @@ index f7b2383..662f4a7 100644
    ]
  }
 diff --git a/src/components/HantverkarKort.tsx b/src/components/HantverkarKort.tsx
-index 1cf76bc..fc95594 100644
+index 1cf76bc..de8e0a9 100644
 --- a/src/components/HantverkarKort.tsx
 +++ b/src/components/HantverkarKort.tsx
-@@ -31,14 +31,30 @@ function skrivDatum(iso: string): string {
+@@ -31,14 +31,36 @@ function skrivDatum(iso: string): string {
    return m ? `${Number(dag)} ${m} ${ar}` : iso
  }
  
@@ -8164,11 +8172,16 @@ index 1cf76bc..fc95594 100644
 + * Färdsätt som bara tar en till hamnen ("Bil till Långedrag", "Buss från Göteborg")
 + * eller börjar med flyg räknas inte.
 + */
-+export function nasUtanBat(gettingThere: { method: string; desc: string }[]): boolean {
++export function nasUtanBat(gettingThere: { method: string; desc: string }[], namn = ''): boolean {
 +  // En bro eller fast förbindelse i beskrivningen väger tyngre än att färjor också nämns
 +  // (Orust: "Fasta broförbindelser finns åt båda hållen, och dessutom två färjelinjer").
++  // Ett färjeläge med ortens eget namn är en hållplats på orten, ingen överfart: bussen till Furusund
++  // stannar vid "Furusunds färjeläge" (2026-11-03, mall-0166 omarbete 3). Yxlans och Tynningös bussar
++  // går över med färjan från ett annat färjeläge och räknas fortfarande som färja.
++  const namnRe = namn.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
++  const egetFarjelage = namn ? new RegExp(`${namnRe}s? färjeläge[a-zåäö]*`, 'gi') : null
 +  return gettingThere.some(t => /bil|buss/i.test(t.method) && !/ till | från |flyg|båt|färj/i.test(t.method)
-+    && (/broförbindelse|landsförbindelse|vägförbindelse|bron\b|broarna/i.test(t.desc) || !/båt|färj|bilfri/i.test(t.desc)))
++    && (/broförbindelse|landsförbindelse|vägförbindelse|bron\b|broarna/i.test(t.desc) || !/båt|färj|bilfri/i.test(egetFarjelage ? t.desc.replace(egetFarjelage, '') : t.desc)))
 +}
 +
 +export default function HantverkarKort({ h, oSlug, utanBat = false }: { h: Hantverkare; oSlug?: string; utanBat?: boolean }) {
@@ -8179,15 +8192,16 @@ index 1cf76bc..fc95594 100644
  
    // Sitter de på den ö besökaren tittar på, eller kör de hit? Skillnaden finns
    // bara för att vi kontrollerat den — registret hade dem alla som lokala.
-+  // Sluggen saknar å, ä, ö: "Södermöja, Möja" ska matcha "moja" (2026-11-02, mall-0074).
-+  const utanDiakrit = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
++  // Sluggen saknar å, ä, ö: "Södermöja, Möja" ska matcha "moja" (2026-11-02, mall-0074). Intervallet är de
++  // kombinerande diakritiska tecknen efter NFD, skrivet med \u så att det syns i koden (2026-11-03, moja-0478).
++  const utanDiakrit = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
    const basAnnanstans = Boolean(
 -    oSlug && h.bas && !h.bas.toLowerCase().includes(oSlug.toLowerCase())
 +    oSlug && h.bas && !utanDiakrit(h.bas).includes(oSlug.toLowerCase().replace(/-/g, ' '))
    )
  
    return (
-@@ -100,7 +116,7 @@ export default function HantverkarKort({ h, oSlug }: { h: Hantverkare; oSlug?: s
+@@ -100,7 +122,7 @@ export default function HantverkarKort({ h, oSlug }: { h: Hantverkare; oSlug?: s
  
        {basAnnanstans && (
          <p style={{ margin: '9px 0 0', fontSize: 13, color: 'var(--txt2)' }}>
