@@ -2,6 +2,22 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 06:03 — P0-omgång 9: beställningstexterna omskrivna igen
+
+- **P0-omgång 9 (MÄTT):** alla fem FEL.
+  - Dagturer med b eller B ska beställas en eller två timmar före avgång,
+    inte "på eftermiddagen". Den som beställer en halvtimme före en
+    förmiddagsbåt blir kvar.
+  - På Möja och Husarö stannar många turer bara efter beställning (b, c) vid
+    öns bryggor.
+  - Långvik och Dragedet trafikeras också av tabell 10 och 12.
+  - Kymmendö har C-turer (kvällen före) och en fredagstur med B.
+  - Nästan alla turer har b vid Fjärdlång.
+- Alla fem texterna är omskrivna. Fristerna står i ord: "minst en eller två
+  timmar före avgång och senast på eftermiddagen samma dag, eller senast
+  kvällen före". Det står "går eller stannar" där det stämmer, och tabell 10
+  och 12 nämns för Möja. Omgång 10 pågår.
+
 ## 2026-11-03 05:59 — Omarbetet av öarna klart; omkontroll startad
 
 - **Skribent öarna (MÄTT/RESONERAT enligt rapporten):** Storholmen 11,
