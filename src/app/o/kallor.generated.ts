@@ -541,10 +541,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://www.vaxholm.se/download/18.5c921dcc189206be14ab91a7/1689755817286/Lokala%20ordningsfo%CC%88reskrifter.pdf",
+      "org": "vaxholm.se",
+      "vad": "Hundar skall hållas kopplade på offentlig plats inom hela kommunen., Hund, som vistas på offentlig plats, skall dessutom vara försedd med uppgifter om ägarens namn, adress och telefonnummer., Hundar får inte vistas på begravningsplatser och inte heller på anlagd badplats upplåten till allmänt begagnande, eller lekplats (gäller även bollplan), som är offentlig plats., gäller dock inte för ledarhund till synskadad person eller för polishund i tjänst",
+      "last": "2026-11-03",
+      "myndighet": true
+    },
+    {
       "url": "https://www.vaxholm.se/allanyheter/nyhetsarkiv/vadgallernarskahundarvarakopplade.5.117b327517db288a7c818059.html",
       "org": "vaxholm.se",
-      "vad": "Vaxholms föreskrifter anger att hundar ska hållas kopplade på offentliga platser i hela kommunen och att hundar inte får vistas på begravningsplatser eller lekplats som är offentlig plats, det är förbjudet att medföra okopplad hund i reservatet",
-      "last": "2026-09-27",
+      "vad": "det är förbjudet att medföra okopplad hund i reservatet",
+      "last": "2026-11-02",
       "myndighet": true
     },
     {

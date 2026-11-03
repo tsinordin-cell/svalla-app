@@ -56,6 +56,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Du kan åka till Sandhamn med båt från Stavsnäs", "Under sommaren så kan du också åka till Sandhamn från Strömkajen." (läst 2026-10-29)
     // P0 2026-10-29: noten pekade på buss 434, som bara vissa turer går till Stavsnäs vinterhamn.
     note: 'Båten från Stavsnäs vinterhamn går året runt. Dit tar du SL-buss 433 från Slussen (även vissa turer med 434). Från Strömkajen går båten bara sommartid.',
+    // P0 2026-11-03 (Kontrollanten, sandhamn-k025/k107/k163): avgångsrutan visade
+    // turer med anmärkning B och b i tabell 16 som vanliga avgångar.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "16B HAGEDE – SANDHAMN – STAVSNÄS", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna B, b och C: B minst två timmar och b minst en timme före avgång, båda senast på eftermiddagen samma dag; C senast tidigt på kvällen dagen före resdagen) (läst 2026-10-29)
+    bestallning: 'En del turer till och från Sandhamn går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',
   },
   grinda: {
     destStopId: '740098471', destStopName: 'Grinda',
@@ -105,9 +109,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1
     // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.
     note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',
-    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Beställ resan i SL-appen" (anmärkningarna B, C och b i tabell 14; fristerna skiljer sig mellan turerna, för C-turerna gäller dagen före) (läst 2026-10-29)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Beställ resan i SL-appen" (anmärkningarna B, b och C i tabell 14: B minst två timmar och b minst en timme före avgång, båda senast på eftermiddagen samma dag; C senast tidigt på kvällen dagen före) (läst 2026-10-29)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
     // P0 2026-10-29: kortet "Sista båten från Möja" visade en beställningstur utan att säga att den måste beställas.
-    bestallning: 'Flera turer till och från Möja går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 innan du åker.',
+    bestallning: 'Flera turer till och från Möja går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 i god tid innan du åker. Långvik och Dragedet trafikeras även av tabell 10 och 12.',
   },
   husaro: {
     destStopId: '740020692', destStopName: 'Husarö brygga',
@@ -118,7 +124,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna b, B och C; för C-turerna gäller dagen före) (läst 2026-10-29)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningen C: dagen före) (läst 2026-10-29)
-    bestallning: 'Flera turer till och från Husarö går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 innan du åker.',
+    bestallning: 'Flera turer till och från Husarö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',
   },
   ingmarso: {
     destStopId: '740034607', destStopName: 'Ingmarsö Norra brygga',
@@ -217,7 +223,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 2026-10-29: noten sa "från Dalarö eller Nynäshamn" utan säsong. Från Nynäshamn går båten bara sommartid.
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
-    bestallning: 'En del turer till och från Kymmendö går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
+    bestallning: 'En del turer till och från Kymmendö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
   },
   bullero: {
     destStopId: '740076413', destStopName: 'Bullerö brygga',
@@ -281,7 +287,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 2026-10-29: noten sa "Direkt Waxholmsbåt från Nynäshamn" utan säsong. Den båten går bara sommartid.
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
-    bestallning: 'En del turer till och från Fjärdlång går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
+    bestallning: 'De flesta turer stannar vid Fjärdlång bara om resan har beställts i förväg, och någon tur går bara efter beställning. Beställ minst en eller två timmar före avgång, beroende på tur, och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
   },
   rindo: {
     // 88 min, 3 byten, uppmätt 2026-08-05
