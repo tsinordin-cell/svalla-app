@@ -417,5 +417,14 @@
    "sandhamn-0538",
    "sandhamn-0557"
   ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "          // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/flaskberget.4.18c983316e0536cb189a2c1.html — \"Ett fint klippbad alldeles vid Sandhamns by\", \"Badet fick sitt namn efter en skuta lastad med fläsk gick på grund och sjönk där för länge sedan\", \"Toaletter sommartid\", \"Badet ägs och sköts av Eknö hemman\", \"Ingen provtagning av badvatten utförs av Värmdö kommun\" (läst 2026-09-27)",
+  "ny": "          // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/flaskberget.4.18c983316e0536cb189a2c1.html — \"Ett fint klippbad alldeles vid Sandhamns by.\", \"Badet fick sitt namn efter en skuta lastad med fläsk gick på grund och sjönk där för länge sedan.\", \"Toaletter sommartid\", \"Badet ägs och sköts av Eknö hemman.\", \"Ingen provtagning av badvatten utförs av Värmdö kommun\" (läst 2026-11-03)",
+  "rader": [
+   "sandhamn-0538",
+   "sandhamn-0557"
+  ]
  }
 ]

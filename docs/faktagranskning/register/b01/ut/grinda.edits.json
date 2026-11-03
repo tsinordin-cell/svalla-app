@@ -205,7 +205,7 @@
  {
   "fil": "src/app/o/hantverkare-data.ts",
   "gammal": "    slug: 'oct-entreprenad',\n    namn: 'OCT-Entreprenad Trä & Betong AB',\n    ort: 'Värmdö',",
-  "ny": "    slug: 'oct-entreprenad',\n    namn: 'OCT-Entreprenad Trä & Betong AB',\n    // KÄLLA: https://oct-entreprenad.com/kontakt/ — \"Din byggfirma i Stockholms skärgård\"; \"OCT-Entreprenad Trä & Betong AB\"; \"Finnhamn • Fåglarö • Grinda • Gällnö\" (läst 2026-10-29). Ingen ort eller adress på webbplatsen; Bolagsverkets sida gick inte att läsa (faktagranskning b01 Grinda).\n    ort: 'Stockholms skärgård',",
+  "ny": "    slug: 'oct-entreprenad',\n    namn: 'OCT-Entreprenad Trä & Betong AB',\n    // Omarbete 2026-11-03: ort och bas är belagda med företagets egen sida Byggfirma Värmdö, så generaliseringen till Stockholms skärgård (2026-10-29) behövs inte. Ingen gatuadress på webbplatsen.\n    // KÄLLA: https://oct-entreprenad.com/byggfirma-varmdo/ — \"Ditt lokala byggföretag på Värmdö\", \"Vi har lång erfarenhet av byggprojekt i Skärgården, med fokus på Värmdö.\" (läst 2026-11-03, i Chromium; sidan svarade 502 vid första försöket)\n    // KÄLLA: https://oct-entreprenad.com/kontakt/ — \"Din byggfirma i Stockholms skärgård\", \"OCT-Entreprenad Trä & Betong AB\", \"Finnhamn • Fåglarö • Grinda • Gällnö\" (läst 2026-11-03)\n    ort: 'Värmdö',",
   "rader": [
    "grinda-0288",
    "grinda-0289",
@@ -215,7 +215,7 @@
  {
   "fil": "src/app/o/hantverkare-data.ts",
   "gammal": "    bas: 'Värmdö',\n    kalla: { niva: 'egen-sajt', url: 'https://oct-entreprenad.com/kontakt/', last: '2026-09-14',",
-  "ny": "    bas: 'Stockholms skärgård',\n    kalla: { niva: 'egen-sajt', url: 'https://oct-entreprenad.com/kontakt/', last: '2026-10-29',",
+  "ny": "    bas: 'Värmdö',\n    kalla: { niva: 'egen-sajt', url: 'https://oct-entreprenad.com/kontakt/', last: '2026-11-03',",
   "rader": [
    "grinda-0295",
    "grinda-0296"

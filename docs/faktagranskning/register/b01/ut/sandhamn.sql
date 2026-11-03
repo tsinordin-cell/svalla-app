@@ -101,21 +101,28 @@ update restaurants set description = 'Stranden vid Västerudden ligger på Sand�
 -- FÖRE: 'http://www.varmdo.se/'
 update restaurants set website = null, updated_at = now() where slug = 'vasterudde-strand' and website = 'http://www.varmdo.se/';
 
--- restaurants.sandhamns-glassigaste-stalle.description (register: sandhamn-0409) – omarbete 2026-11-03: bara ordet "mellersta" rättas; övriga uppgifter i posten ligger hos Tom (beslut 5b).
--- Dagens text är hämtad ur den renderade sidan /o/sandhamn/restauranger (2026-10-29). Databasen är pausad, så WHERE är inte kontrollerat mot den.
--- KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "I Stockholms yttre skärgård från Sandhamn och söderut." (Länsstyrelsen, Fiskeguide Stockholms län) (läst 2026-11-03)
+-- restaurants.sandhamns-glassigaste-stalle.description (register: sandhamn-0407, sandhamn-0408, sandhamn-0409) – omarbete 2026-11-03 (Redaktörens beslut oar-omk): beskrivningen töms tills Tom svarat (beslut 6), så att ingen obelagd uppgift står kvar. Namnet och posten står kvar. Ingen ny text.
+-- Tom sträng, inte NULL: med NULL skriver src/app/upptack/[id]/page.tsx:142–143 en reservbeskrivning av namn, typ, ö och region, alltså ny text.
+-- KÄLLA: ingen – posten har ingen tillåten källa (explorearchipelago.com finns inte längre; ingen egen webbplats och inget i OpenStreetMap). WHERE kontrollerat mot databasen med SELECT 2026-11-03.
 -- FÖRE: 'Sandhamns Glassigaste Ställe är ett glasscafé på Sandhamn i Stockholms mellersta skärgård.'
-update restaurants set description = 'Sandhamns Glassigaste Ställe är ett glasscafé på Sandhamn i Stockholms yttre skärgård.', updated_at = now() where slug = 'sandhamns-glassigaste-stalle' and description = 'Sandhamns Glassigaste Ställe är ett glasscafé på Sandhamn i Stockholms mellersta skärgård.';
+update restaurants set description = '', updated_at = now() where slug = 'sandhamns-glassigaste-stalle' and description = 'Sandhamns Glassigaste Ställe är ett glasscafé på Sandhamn i Stockholms mellersta skärgård.';
 
--- restaurants.pub-alma-sandhamn.description (register: sandhamn-0416) – omarbete 2026-11-03: bara ordet "mellersta" rättas; övriga uppgifter i posten ligger hos Tom (beslut 5b).
--- Dagens text är hämtad ur den renderade sidan /o/sandhamn/restauranger (2026-10-29). Databasen är pausad, så WHERE är inte kontrollerat mot den.
--- KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "I Stockholms yttre skärgård från Sandhamn och söderut." (Länsstyrelsen, Fiskeguide Stockholms län) (läst 2026-11-03)
+-- restaurants.pub-alma-sandhamn.description (register: sandhamn-0414, sandhamn-0415, sandhamn-0416) – omarbete 2026-11-03 (Redaktörens beslut oar-omk): beskrivningen töms tills Tom svarat (beslut 6), så att ingen obelagd uppgift står kvar. Namnet och posten står kvar. Ingen ny text.
+-- Tom sträng, inte NULL: med NULL skriver src/app/upptack/[id]/page.tsx:142–143 en reservbeskrivning av namn, typ, ö och region, alltså ny text.
+-- KÄLLA: ingen – posten har ingen tillåten källa (explorearchipelago.com finns inte längre; ingen egen webbplats och inget i OpenStreetMap). WHERE kontrollerat mot databasen med SELECT 2026-11-03.
 -- FÖRE: 'PUB Alma är en pub på Sandhamn i Stockholms mellersta skärgård.'
-update restaurants set description = 'PUB Alma är en pub på Sandhamn i Stockholms yttre skärgård.', updated_at = now() where slug = 'pub-alma-sandhamn' and description = 'PUB Alma är en pub på Sandhamn i Stockholms mellersta skärgård.';
+update restaurants set description = '', updated_at = now() where slug = 'pub-alma-sandhamn' and description = 'PUB Alma är en pub på Sandhamn i Stockholms mellersta skärgård.';
 
--- restaurants.cafe-ankaret.description (sandhamn-0400, sandhamn-0402 STRYK+KOMPENSERA, sandhamn-N018)
--- Dagens text: supabase/datafix/2026-09-23-vardeord-omgang2.sql rad 7 (datafix-kallor.tsv). Databasen är pausad, så WHERE är inte kontrollerat mot den.
+-- restaurants.cafe-ankaret.name (register: sandhamn-0395) – omarbete 2026-11-03 (Redaktörens beslut oar-omk): profilen kallar sig "Ankaret ⚓ Sandhamn", inte "Café Ankaret", och namnet ska vara verksamhetens eget. Inget annat belägg för "Café Ankaret" (OpenStreetMap är ingen källa för namn). WHERE kontrollerat mot databasen med SELECT 2026-11-03.
+-- KÄLLA: https://www.instagram.com/ankaretsandhamn/ — "Ankaret ⚓ Sandhamn", "ⒸⒶⒻⒺ • ⓈⒽⓄⓅ • ⒶⓇⓉ ⒼⒶⓁⓁⒺⓇⓎ •", "sᴀɴᴅʜᴀᴍɴ, sᴛᴏᴄᴋʜᴏʟᴍ ᴀʀᴄʜɪᴘᴇʟᴀɢᴏ, sᴡᴇᴅᴇɴ", senaste inlägget 2026-08-28 (verksamhetens egen Instagram, nivå 2; läst i webbläsare (Redaktören) 2026-11-03, inloggad i Toms Chrome, sidtexten i kontroll/oar-omk2-sidor/)
+-- FÖRE: 'Café Ankaret'
+update restaurants set name = 'Ankaret', updated_at = now() where slug = 'cafe-ankaret' and name = 'Café Ankaret';
+
+-- restaurants.cafe-ankaret.description (register: sandhamn-0400, sandhamn-0402 STRYK+KOMPENSERA, sandhamn-N018, sandhamn-N022) – omarbetad 2026-11-03: namnet följer sandhamn-0395, och första meningen säger namn, kafé, ort och kommun (SEO-regeln).
+-- Dagens text: supabase/datafix/2026-09-23-vardeord-omgang2.sql rad 7 (datafix-kallor.tsv); WHERE kontrollerat mot databasen med SELECT 2026-11-03.
 -- Adressen "Sandhamn 310" kom från explorearchipelago.com, som inte finns längre; kaféets egen Instagram anger ingen gatuadress.
--- KÄLLA: https://www.instagram.com/ankaretsandhamn/ — "Ankaret ⚓ Sandhamn", "ⒸⒶⒻⒺ • ⓈⒽⓄⓅ • ⒶⓇⓉ ⒼⒶⓁⓁⒺⓇⓎ •", senaste inlägget "den 28 augusti 2026" (läst i webbläsare (Redaktören) 2026-11-02)
+-- KÄLLA: https://www.instagram.com/ankaretsandhamn/ — "Ankaret ⚓ Sandhamn", "ⒸⒶⒻⒺ • ⓈⒽⓄⓅ • ⒶⓇⓉ ⒼⒶⓁⓁⒺⓇⓎ •", "sᴀɴᴅʜᴀᴍɴ, sᴛᴏᴄᴋʜᴏʟᴍ ᴀʀᴄʜɪᴘᴇʟᴀɢᴏ, sᴡᴇᴅᴇɴ", senaste inlägget 2026-08-28 (verksamhetens egen Instagram, nivå 2; läst i webbläsare (Redaktören) 2026-11-03, inloggad i Toms Chrome, sidtexten i kontroll/oar-omk2-sidor/)
+-- KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn.4.18c983316e0536cb189a2d4.html — "Badplatser i Värmdö", "Trouville, Sandhamn" (Värmdö kommun) (läst 2026-11-03)
+-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — "Sandön, där Sandhamn ligger", "Kommun: Värmdö" (Stockholms läns museum) (läst 2026-11-03)
 -- FÖRE: 'Café Ankaret är ett kafé i Sandhamn, på adressen Sandhamn 310.'
-update restaurants set description = 'Café Ankaret är ett kafé i Sandhamn som också har butik och konstgalleri.', updated_at = now() where slug = 'cafe-ankaret' and description = 'Café Ankaret är ett kafé i Sandhamn, på adressen Sandhamn 310.';
+update restaurants set description = 'Ankaret är ett kafé med butik och konstgalleri i Sandhamn i Värmdö kommun.', updated_at = now() where slug = 'cafe-ankaret' and description = 'Café Ankaret är ett kafé i Sandhamn, på adressen Sandhamn 310.';
