@@ -2,6 +2,24 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 05:56 — Badkompensationen klar
+
+- **Granskare badkompensation (MÄTT):** alla 17 badsidor har minst 95 % av
+  orden igen, till exempel Muskö 78 → 89 och Ven 73 → 139. 19 badplatser med
+  typ och beskrivning (13 nya, 6 som bara var namn) ur kommunernas
+  badplatssidor, Havs- och vattenmyndighetens Badplatsen och Länsstyrelsen.
+  Birka, Huvudskär och Blå Jungfrun fick en notis om vad som saknas och vad
+  som gäller (trappan steg 3). Register:
+  `register/b01/badkompensation.tsv` (66 rader), rapport `ut/badkompensation.md`.
+  Ändringarna ligger i arbetskopian /home/claude/svalla-mallar
+  (`ut/mallar-arbetskopia.patch` uppdaterad).
+- RESONERAT enligt Granskaren, för Kontrollanten att pröva: "Barnbadet" på
+  Marstrand kallas barnvänligt utifrån namnet, och hundförbudet på badplatsen
+  för Klädesholmen och Marstrand kan falla på utfyllnadstestet.
+- Sidmallarnas andra runda är återupptagen. Agenter nu (fyra): Skribent
+  öarna, Kontrollant Styrsö och Husarö, Kontrollant P0 omgång 9, Skribent
+  sidmallarna.
+
 ## 2026-11-03 05:55 — P0-omgång 8: Vaxholm OK; beställningstexterna skärpta
 
 - **P0-omgång 8 (MÄTT):** Vaxholms hundregel (P0 17) är OK.

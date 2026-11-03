@@ -1121,11 +1121,240 @@ index d5f64ad..185e686 100644
              : `${total} restauranger, krogar och kaféer på ${island.name} som vi har uppgifter om.`
          }
        />
+diff --git a/src/app/o/bohuslan-data.ts b/src/app/o/bohuslan-data.ts
+index 489c075..590f032 100644
+--- a/src/app/o/bohuslan-data.ts
++++ b/src/app/o/bohuslan-data.ts
+@@ -154,7 +154,13 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
+     // KÄLLA: https://www.marstrandsgasthamn.se/sv/Gasthamn — "Det råder badförbud i hamnområdet" (läst 2026-09-27)
+     activity_meta: {
+       bad: {
+-        beaches: [],
++        beaches: [
++          // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Promenad runt Marstrandsön.
++          // KÄLLA: https://www.kungalv.se/kultur--fritid/bada/marstrands-badplats/ — "Välkommen till Barnbadet på Marstrandsön", "Sandstrand: Ja", "Badstegar: Ja", "Trampolin: Ja", "Toalett: Ja", "Tillgänglighetsanpassad för personer med funktionsvariation: Nej", "Marstrands badplats ligger på sydsidan av Marstrandsön, cirka 400 meter från färjeläget. Det finns parkeringar på Koön, 100-1000 meter från färjan. Tänk på att det ofta är fullt på de närmsta parkeringarna under högsäsongen.", "Hamngatan, Marstrandsön" (läst 2026-11-03)
++          // KÄLLA: https://www.kungalv.se/kultur--fritid/bada/marstrands-badplats/ — "Alla badstegar sätts ut varje år i mitten av maj månad.", "Det finns däremot några stegar utsatta runt Marstrandsön som ligger i året runt.", "1 badstege på södra Marstrandsön", "1 badstege på norra Marstrandsön", "1 badtrappa och 1 badramp på Hedvigsholmen" (läst 2026-11-03)
++          // KÄLLA: https://www.kungalv.se/kultur--fritid/bada/ — "Marstrands badplats", "Tänk på att det inte är tillåtet med hundar, hästar eller andra djur på kommunala badplatser.", "Vattenprover tas regelbundet på alla kommunala badplatser." (läst 2026-11-03)
++          { name: 'Barnbadet på Marstrandsön', type: 'sandstrand', child_friendly: true, desc: 'Kommunal badplats med sandstrand på sydsidan av Marstrandsön i Kungälvs kommun, cirka 400 meter från färjeläget. Det finns badstegar, trampolin och toalett, men badplatsen är inte tillgänglighetsanpassad. Hundar och andra djur är inte tillåtna på badplatsen.', directions: 'Vid Hamngatan på Marstrandsön. Parkering finns på Koön, 100–1 000 meter från färjan; de närmaste platserna är ofta fulla under högsäsongen.', insider_tip: 'Badstegarna runt ön sätts ut i mitten av maj, men en på södra och en på norra Marstrandsön ligger kvar året runt, liksom en badtrappa och en badramp på Hedvigsholmen.' },
++        ],
+         note: 'Turistrådet Västsverige beskriver Marstrand som en ö med massor av varma klippor som passar för salta bad. I gästhamnens område är det badförbud.',
+       },
+     },
+@@ -289,6 +295,18 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
+       // Månader: gästhamnens taxeperioder (hög v27–31, mellan v25–26 och v32–37) och servicehus 1 apr–31 okt; krogar som Göstas har öppet året om.
+       months: ['limited','limited','limited','open','open','open','peak','open','open','open','limited','limited'],
+     },
++    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Soteleden.
++    activity_meta: {
++      bad: {
++        beaches: [
++          // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/smogen — "Badplatsen Sandö på Smögen", "Sandstrand med bryggor, badstegar och handikapptrappa. Omklädningsrum, toalett och handikapptoalett. Där finns också gillplats och parkering." (läst 2026-11-03)
++          // KÄLLA: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Det finns cirka 20 större kommunala badplatser.", "Hundar får gärna bada men inte på kommunens offentliga badplatser under sommaren", "Smögen - Sandö, Vallevik och herr- och dambadet vid Makrillviken" (läst 2026-11-03)
++          { name: 'Sandö', type: 'sandstrand', desc: 'Kommunal badplats på Smögen i Sotenäs kommun, med sandstrand, bryggor, badstegar och handikapptrappa. Det finns omklädningsrum, toalett och handikapptoalett, grillplats och parkering.', insider_tip: 'Hundar får inte bada på kommunens offentliga badplatser på Smögen under sommaren: Sandö, Vallevik och herr- och dambadet vid Makrillviken.' },
++          // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/smogen — "Herr- och dambadet, Makrillviken", "Klippor med bryggor och badstegar. Omklädningsrum och toalett i vandrarhemmet." (läst 2026-11-03)
++          { name: 'Herr- och dambadet vid Makrillviken', type: 'klippbad', desc: 'Kommunal badplats vid Makrillviken på Smögen i Sotenäs kommun: klippor med bryggor och badstegar. Omklädningsrum och toalett finns i vandrarhemmet.' },
++        ],
++      },
++    },
+   },
+   {
+     slug: 'lysekil',
+@@ -647,6 +665,18 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
+       // Månader: vastsverige anger året-runt-puls; högsäsong jul–aug då TanumStrands hamnservice är bemannad, ostron sep–midsommar.
+       months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
+     },
++    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Gästhamnarna.
++    activity_meta: {
++      bad: {
++        beaches: [
++          // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/grebbestad.html — "Grebbestad är en badplats i Tanums kommun", "2025: ★★★ Utmärkt kvalitet", "2024: ★★ Bra kvalitet", "2023: ★★ Bra kvalitet", "Grus/sandbotten", "Stor gräsmatta som klipps mycket regelbundet.", "Tillsyn två eller fler gånger i veckan under badsäsong.", "Badbrygga finns vid badplatsen." (läst 2026-11-03 i Chromium; uppgifterna laddas med JavaScript)
++          { name: 'Grebbestads badplats', type: 'brygga', desc: 'Badplats i Grebbestad i Tanums kommun, med badbrygga, grus- och sandbotten och en stor gräsmatta. Under badsäsongen är det tillsyn två eller fler gånger i veckan. Havs- och vattenmyndigheten klassade badvattnet som utmärkt 2025 och bra 2023 och 2024.' },
++          // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/tanum-strand.html — "Tanum Strand är en badplats i Tanums kommun", "Berg och grus/sandbotten", "Berg och stor gräsmatta som klipps mycket regelbundet.", "Badbrygga och flyflotte finns vid badplatsen." (läst 2026-11-03 i Chromium; uppgifterna laddas med JavaScript)
++          // KÄLLA: https://www.tanum.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.7664b4813898b7df9845725.html — "På badplatserna vid Badberget i Fjällbacka, Tanum Strand strax söder om Grebbestad, Östad samt Edsviksbadet finns handikappramper" (läst 2026-11-03)
++          { name: 'Tanum Strand', type: 'brygga', desc: 'Badplats vid Tanum Strand strax söder om Grebbestad i Tanums kommun, med badbrygga, flytflotte och handikappramp. Här finns berg och en stor gräsmatta, och botten är berg, grus och sand.' },
++        ],
++      },
++    },
+   },
+   {
+     slug: 'fjallbacka',
+@@ -1335,6 +1365,16 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
+       bestReason: 'Gästhamnen har personal alla dagar vecka 25–33, och sommartid går regelbundna badturer från Kungshamn till Hållöarkipelagen.',
+       months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
+     },
++    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Nordens Ark.
++    activity_meta: {
++      bad: {
++        beaches: [
++          // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn — "Fisketångens badplats i Kungshamn", "Klippbad med sandstrand. Bryggor med badstegar. Handikappramp, omklädningsrum, toalett och handikapptoalett.", "finns också en liten parkering", "Vill du hitta din egen vrå så går du ut på pontonbryggan som leder till", "Klövvholmen!" (läst 2026-11-03)
++          // KÄLLA: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Det finns cirka 20 större kommunala badplatser.", "Hundar får gärna bada men inte på kommunens offentliga badplatser under sommaren", "Kungshamn - Fisketången, Stenbogen och Ramnerer" (läst 2026-11-03)
++          { name: 'Fisketången', type: 'klippbad', desc: 'Kommunal badplats i Kungshamn i Sotenäs kommun: klippbad med sandstrand och bryggor med badstegar. Det finns handikappramp, omklädningsrum, toalett och handikapptoalett, och en liten parkering.', insider_tip: 'Pontonbryggan leder ut till Klövvholmen, där du kan hitta en egen vrå. Hundar får inte bada på kommunens offentliga badplatser i Kungshamn under sommaren: Fisketången, Stenbogen och Ramnerer.' },
++        ],
++      },
++    },
+   },
+   {
+     slug: 'pater-noster',
+@@ -1843,7 +1883,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
+       camping: false,
+     },
+     activity_meta: {
+-      bad: { beaches: [] },
++      bad: {
++        beaches: [
++          // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Sillebua.
++          // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Badplatsen ligger strax efter bron på Koholmens östra sida.", "Om Klädesholmens badplats", "Badplatsen har betongbrygga, en liten sandstrand, klippor, badbrygga och toaletter.", "Badplatsen är inte tillgänglighetsanpassad.", "Badplatsen sköts sommartid av Klädesholmens intresseförening, som också anordnar simskola.", "Parkeringsplats finns till höger efter bron och härifrån är det 100 meter till badet.", "Med buss: Hållplats Klädesholmen östra." (läst 2026-11-03)
++          // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada — "Hund får inte vistas på: Badplats eller lekplats." (läst 2026-11-03)
++          { name: 'Klädesholmens badplats', type: 'sandstrand', desc: 'Badplats på Klädesholmen i Tjörns kommun, strax efter bron på Koholmens östra sida. Här finns betongbrygga, badbrygga, en liten sandstrand, klippor och toaletter. Badplatsen är inte tillgänglighetsanpassad och sköts sommartid av Klädesholmens intresseförening, som också håller simskola.', directions: 'Parkering till höger efter bron, 100 meter från badet. Busshållplats: Klädesholmen östra.', insider_tip: 'Hundar får inte vistas på badplatsen.' },
++        ],
++      },
+     },
+     seasonal: {
+       // KÄLLA: https://kladesholmenvh.se/gasthamn/ — "– Restaurang och hotell öppet året runt" (läst 2026-09-27)
+@@ -2093,7 +2140,16 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
+     amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
+     activity_meta: {
+       // KÄLLA: https://www.dyron.se/se-gora/badplatser/ — "I Nordhamnen ligger en badplats med pontonbrygga och sandstrand", "Sydhamnens badplats heter Hala", "hoppa och dyka från trampolin, klippor och 3-meterstornet" ; https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/vandra/dyrons-vandringsleder — "På öns östra sida finns det längs vandringen en fin sandstrand där man kan rasta och bada" (läst 2026-09-27)
+-      bad: { beaches: ['Nordhamnens badplats med pontonbrygga och sandstrand', 'Hala vid Sydhamnen med trampolin och 3-meterstorn', 'Sandstrand på öns östra sida längs gula leden'] },
++      bad: {
++        beaches: [
++          'Nordhamnens badplats med pontonbrygga och sandstrand',
++          'Sandstrand på öns östra sida längs gula leden',
++          // Badkompensation 2026-11-03 (mall-0198): Hala fick beskrivning; badsidan förlorade kortet Vandring.
++          // KÄLLA: https://www.dyron.se/se-gora/badplatser/ — "Sydhamnens badplats heter Hala. Här finns också en liten sandstrand och brygga, men många av de som söker sig hit vill gärna hoppa och dyka från trampolin, klippor och 3-meterstornet. Här finns också en lättillgänglig badbrygga med stege som passar de lite äldre som har det svårt att ta sig i och ur vattnet." (läst 2026-11-03)
++          // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Dyröns badplats ligger cirka 300 meter österut från färjeläget och Dyröns norra hamn." (Dyrön hör till Tjörns kommun) (läst 2026-11-03)
++          { name: 'Hala vid Sydhamnen', type: 'trampolinbad', desc: 'Badplats vid Sydhamnen på Dyrön i Tjörns kommun, med en liten sandstrand och brygga och med trampolin, klippor och ett 3-meterstorn att hoppa och dyka från. Här finns också en badbrygga med stege för den som har svårt att ta sig i och ur vattnet.' },
++        ],
++      },
+     },
+   },
+ ]
 diff --git a/src/app/o/island-data.ts b/src/app/o/island-data.ts
-index 427ab32..f4cdf30 100644
+index 427ab32..aaaca2d 100644
 --- a/src/app/o/island-data.ts
 +++ b/src/app/o/island-data.ts
-@@ -7562,8 +7562,9 @@ export const ISLANDS: Island[] = [
+@@ -4506,6 +4506,17 @@ export const ISLANDS: Island[] = [
+       // UPPSKATTNING: vintermånaderna är satta till 'limited' i stället för 'off' eftersom buss 845 och stuguthyrningen finns året runt, medan badsäsongen är slut.
+       months: ['limited','limited','limited','limited','open','open','peak','peak','open','limited','limited','limited'],
+     },
++    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Naturreservat.
++    activity_meta: {
++      bad: {
++        beaches: [
++          // KÄLLA: https://www.haninge.se/uppleva-och-gora/simhallar-och-bad/badplatser/ — "Gålö havsbad", "Om badet: Stort bad vid havet med lång strandremsa.", "Toalett: Ja.", "Kiosk sommartid: Ja, och minigolfbana.", "Grillplats: Ja.", "Parkering: Stor parkering.", "Kollektivtrafik: Närmaste busshållplats Skälåker.", "Hundbad: Ja.", "Drift: Gålö havsbad är inte ett kommunalt bad." (läst 2026-11-03)
++          // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/galo/ — "Gålö havsbad har en av skärgårdens längsta sandstränder" (läst 2026-11-03)
++          // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-haninge-kommun/galo-skalaker.html — "Gålö, Skälåker är en badplats i Haninge kommun", "2025: ★★★ Utmärkt kvalitet", "2024: ★★★ Utmärkt kvalitet", "2023: ★★★ Utmärkt kvalitet" (läst 2026-11-03 i Chromium; uppgifterna laddas med JavaScript)
++          { name: 'Gålö havsbad', type: 'sandstrand', desc: 'Badplats vid havet vid Skälåker på Gålö i Haninge kommun, ett stort bad med lång sandstrand. Det finns toalett, grillplats och hundbad, och sommartid kiosk och minigolfbana. Badet drivs inte av kommunen. Havs- och vattenmyndigheten klassade badvattnet som utmärkt 2023, 2024 och 2025.', directions: 'Närmaste busshållplats är Skälåker. Stor parkering.' },
++        ],
++      },
++    },
+   },
+   // ─── TORÖ ────────────────────────────────────────────────────
+   {
+@@ -5217,6 +5228,15 @@ export const ISLANDS: Island[] = [
+       months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+     },
+ 
++    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Kålsö.
++    activity_meta: {
++      bad: {
++        beaches: [
++          // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/erikso.html — "Längs bägge sidor av ön finns vackra, betade strandängar och sköna badklippor.", "Eriksö ligger på sydvästra Mörkö, 6 kilometer nordost om Trosa.", "Kommun: Södertälje", "Förvaltare: Länsstyrelsen", "medföra hund, katt eller annat husdjur som inte är kopplat", "för längre tid än två dygn i följd förankra båt vid samma plats", "för längre tid än två dygn i följd tälta på samma plats", "tag av söderut vid Idala", "Parkering", "Det är långt till närmaste busshållplats, som heter Idala. Därifrån är det 7 km promenad söderut till reservatet." (läst 2026-11-03 i Chromium)
++          { name: 'Badklipporna på Eriksö', type: 'klippbad', desc: 'Badklippor längs båda sidorna av Eriksö på sydvästra Mörkö, i ett naturreservat i Södertälje kommun som Länsstyrelsen förvaltar. I Eriksö naturreservat ska hunden vara kopplad, och du får inte tälta eller förankra båten på samma plats mer än två dygn i följd.', directions: 'Med bil: ta av söderut vid Idala mot Eriksö, skyltat Naturreservat. Parkering finns. Från närmaste busshållplats, Idala, är det 7 km att gå.' },
++        ],
++      },
++    },
+   },
+   {
+     slug: 'musko',
+@@ -5274,6 +5294,18 @@ export const ISLANDS: Island[] = [
+       months: ['limited','limited','limited','limited','open','open','peak','peak','open','limited','limited','limited'],
+     },
+ 
++    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade korten Cykling och Strandängar.
++    activity_meta: {
++      bad: {
++        beaches: [
++          // KÄLLA: https://www.haninge.se/uppleva-och-gora/simhallar-och-bad/badplatser/ — "Björkholmen på Muskö", "Om badet: Litet bad med bryggor vid havet.", "Toalett: Ja, vid campingen.", "Kiosk: Nej.", "Grillplats: Ja.", "Parkering: Liten parkering.", "Kollektivtrafik: Närmaste busshållplats Muskö kyrka.", "Hundbad: Nej." (läst 2026-11-03)
++          // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-haninge-kommun/bjorkholmen-musko.html — "Björkholmen, Muskö är en badplats i Haninge kommun", "2025: ★★★ Utmärkt kvalitet", "2024: ★★★ Utmärkt kvalitet", "2023: ★★★ Utmärkt kvalitet" (läst 2026-11-03 i Chromium; uppgifterna laddas med JavaScript)
++          { name: 'Björkholmen', type: 'brygga', desc: 'Badplats vid havet på Muskö i Haninge kommun: ett litet bad med bryggor och grillplats. Toalett finns vid campingen, men det finns ingen kiosk och inget hundbad. Havs- och vattenmyndigheten klassade badvattnet som utmärkt 2023, 2024 och 2025.', directions: 'Närmaste busshållplats är Muskö kyrka. Parkeringen är liten.' },
++          // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/musko/ — "Här finns flera vackra klippbad och en fin stenstrand.", "Ett annat smultronställe är Brukets stenstrand och och de omgivande klipporna." (läst 2026-11-03)
++          { name: 'Brukets stenstrand', type: 'klippbad', desc: 'Stenstrand med omgivande klippor på Muskö i Haninge kommun. Utöver stenstranden har ön flera klippbad.' },
++        ],
++      },
++    },
+   },
+   {
+     slug: 'adelsjo',
+@@ -5547,6 +5579,18 @@ export const ISLANDS: Island[] = [
+     tags: ['ytterskärgård', 'lotsplats', 'naturhamn', 'segling', 'södra'],
+     // KÄLLA: https://stockholmslansmuseum.se/besoksmal/huvudskar/ — "En så kallad skråstadga skrevs på uppdrag av kungen år 1450 av riksrådet Erengisle Nilsson", "Den är den äldsta kända i sitt slag", "eftersom hundratals fiskare samlades här varje år fanns behov av regler", "För att se till att fiskarna lydde reglerna utsågs en hamnfogde", "På söndagarna var det obligatorisk gudstjänst i öns kapell" (läst 2026-09-27)
+     did_you_know: 'År 1450 skrevs på kungens uppdrag en skråstadga för fiskeläget på Huvudskär, där hundratals säsongsfiskare samlades varje år. Den är den äldsta kända i sitt slag. En hamnfogde såg till att reglerna följdes, och på söndagarna var det obligatorisk gudstjänst i öns kapell.',
++    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Naturhamnar. Ingen badplats finns i
++    // kommunens listor; frånvaron och reservatets regler skrivs i stället (trappan steg 3).
++    activity_meta: {
++      bad: {
++        beaches: [],
++        // KÄLLA: https://www.haninge.se/uppleva-och-gora/simhallar-och-bad/badplatser/ — listan "Badplatser i Haninge" har ingen badplats på Huvudskär (läst 2026-11-03)
++        // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-haninge-kommun.html — "Här ser du badplatserna som kommunen har registrerat."; listan har ingen badplats på Huvudskär (läst 2026-11-03)
++        // KÄLLA: https://skargardsstiftelsen.se/omraden/huvudskar/ — "Huvudskär erbjuder fantastiska möjligheter till båtliv, paddling, bad, naturupplevelser och kulturhistoriska vandringar." (läst 2026-11-03)
++        // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/huvudskar.html — "Reservatet omfattar hela Huvudskärsarkipelagen utom huvudön Ålandsskär", "Markägare: Skärgårdsstiftelsen", "Förvaltare: Skärgårdsstiftelsen", "Öarna består oftast av kala klippor", "medföra hund eller annat husdjur som inte är kopplat", "göra upp öppen eld", "Flera torrdass och sopmajor finns i området." (läst 2026-11-03 i Chromium)
++        note: 'Huvudskär finns inte bland Haninge kommuns badplatser, varken på kommunens webbplats eller hos Havs- och vattenmyndigheten, så det finns inga provsvar för badvattnet här. Skärgårdsstiftelsen, som äger och förvaltar naturreservatet, räknar bad till det man kan göra i området, och öarna består mest av kala klippor. I reservatet, som omfattar alla öar utom huvudön Ålandsskär, ska hunden vara kopplad och öppen eld är förbjuden. Torrdass och sopmajor finns i området.',
++      },
++    },
+   },
+   {
+     slug: 'ekno',
+@@ -6355,6 +6399,17 @@ export const ISLANDS: Island[] = [
+     // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/varldsarvet-sodra-olands-odlingslandskap.html — "I den medeltida Östgötalagen från 1200-talet, finns regler för hur bönderna skulle lägga ut en radbytomt", "Ju bredare tomten var desto större andel hade gården i byns inägojord", "Gårdstypen kallas götisk" (läst 2026-09-27). Stod tidigare «fler soltimmar än nästan hela övriga Sverige» utan källa.
+     did_you_know: 'I en öländsk radby fick gården en bredare tomt mot bygatan ju större andel den hade i byns jord – regler för hur radbytomten skulle läggas ut finns redan i Östgötalagen från 1200-talet.',
+     // seasonal borttaget 2026-09-26: "alvaret blommar med orkidéer", "priser rimliga", "Ölandsbron kan ha kö på fredagar" och stängt november–mars stod utan källa.
++    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Ottenby och Långe Jan.
++    activity_meta: {
++      bad: {
++        beaches: [
++          // KÄLLA: https://www.borgholm.se/badplatser/ — "Här ansvarar kommunen för renhållningen", "Klinta Bodar", "Klinta bodar, strax norr om badet i Köpingsvik.", "Vid badplatserna Klinta Bodar och Sjöstugan finns parkering för rörelsehindrade samt ramp i anslutning till bryggan för att ta sig ned i och upp ur vattnet.", "Du får inte ha med dig hund till allmänna badplatser mellan 1 juni och 31 augusti, enligt kommunens lokala ordningsföreskrifter." (läst 2026-11-03)
++          { name: 'Klinta Bodar', type: 'brygga', desc: 'Badplats strax norr om badet i Köpingsvik i Borgholms kommun på Öland. Vid bryggan finns en ramp för att ta sig ned i och upp ur vattnet, och parkering för rörelsehindrade. Kommunen sköter renhållningen, och här finns också ett särskilt hundbad.', insider_tip: 'Enligt Borgholms kommuns lokala ordningsföreskrifter får hundar inte följa med till allmänna badplatser 1 juni–31 augusti, så hundbadet vid Klinta Bodar är platsen för hunden.' },
++          // KÄLLA: https://www.borgholm.se/badplatser/ — "Sjöstugan", "Sjöstugan i Borgholm, på anvisad plats.", "Vid badplatserna Klinta Bodar och Sjöstugan finns parkering för rörelsehindrade samt ramp i anslutning till bryggan för att ta sig ned i och upp ur vattnet." (läst 2026-11-03)
++          { name: 'Sjöstugan', type: 'brygga', desc: 'Badplats i Borgholm på Öland, Borgholms kommun. Vid bryggan finns en ramp för att ta sig ned i och upp ur vattnet, och parkering för rörelsehindrade. Kommunen sköter renhållningen, och på anvisad plats finns ett hundbad.' },
++        ],
++      },
++    },
+   },
+   // ── Göteborgs skärgård: Vinga (flyttad från bohuslan-data.ts 2026-10-19) ──
+   {
+@@ -7144,7 +7199,9 @@ export const ISLANDS: Island[] = [
+       bad: {
+         beaches: [
+           // KÄLLA: https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Badet Myrholmsmaren ligger vid sjön Stora Maren."; "Bryggor"; "Omklädningshytt"; "Baja-maja under badsäsong"; "Simskola varje sommar (Tynningö Idrottsförening)" (läst 2026-09-27)
+-          { name: 'Myrholmsmaren', type: 'sandstrand', desc: 'Kommunal badplats vid insjön Stora Maren inne på ön: sandstrand, bryggor, grillplats med fasta bänkar, omklädningshytt och bajamaja under badsäsongen. Simskola varje sommar genom Tynningö IF.', child_friendly: true, directions: 'Vid sjön Stora Maren inne på ön' },
++          // KÄLLA: https://www.vaxholm.se/download/18.7540ce651827e350272a8e08/1661434105419/Bilaga%203%20-%20Kulturmilj%C3%B6underlag%20o%20.pdf — "Sammanhängande sötvattensjö (Maren, Myrholmsmaren, Lilla Maren eller även kallad Trollsjön) cirka 1500 m lång och 100 m bred." (PDF, s. 5), "I och med att större delen av strandlinjen är exploaterad med hus, trädgårdar och bryggor", "det finns få allmänna platser att lägga till sin båt eller bada" (PDF, s. 20), "Dagens sjö Stora Maren var vid denna tid en smal havsvik. Det är först under senmedeltid som viken snörs av och bildar en insjö." (PDF, s. 24) (läst 2026-11-03)
++          // Badkompensation 2026-11-03 (mall-0198): sista meningen i desc, andra meningen i directions och insider_tip är nya; badsidan förlorade kortet Sommarvillorna.
++          { name: 'Myrholmsmaren', type: 'sandstrand', desc: 'Kommunal badplats vid insjön Stora Maren inne på ön: sandstrand, bryggor, grillplats med fasta bänkar, omklädningshytt och bajamaja under badsäsongen. Simskola varje sommar genom Tynningö IF. Stora Maren var en smal havsvik och snördes av till en insjö först under senmedeltiden.', child_friendly: true, directions: 'Vid sjön Stora Maren inne på ön. Maren, Myrholmsmaren och Lilla Maren bildar en sammanhängande sötvattensjö, cirka 1 500 meter lång och 100 meter bred.', insider_tip: 'Större delen av strandlinjen runt Tynningö är bebyggd med hus, trädgårdar och bryggor, och det finns få allmänna platser att bada vid havet.' },
+         ],
+       },
+     },
+@@ -7400,7 +7457,18 @@ export const ISLANDS: Island[] = [
+     did_you_know: 'År 830 kom den unge benediktinermunken Ansgar till Birka för att predika kristendomen. Han stannade ett och ett halvt år och flera av stadens invånare lät döpa sig, men Birka blev aldrig ett kristet samhälle – hedningar och kristna levde sida vid sida tills staden övergavs i slutet av 900-talet. Historiska museet har i dag mer än 100 000 fynd från Birka.',
+     // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Du kan besöka museet, shopen, vikingakvarteren och restaurangen", "Ja, det finns en badstrand och klippor att bada ifrån", "Det finns grusade ytor och vägar vid museiområdet och plana promenadstråk på ön" (läst 2026-09-27); https://www.birkavikingastaden.se/hitta-pa-birka/ — "barnvänlig badplats", "glampingtält" (läst 2026-09-27). accommodation och beach var felaktigt false.
+     amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
+-    activity_meta: { cykel: { rental: false, notes: 'Birka Vikingastaden och Strömma nämner ingen cykeluthyrning; ön har grusvägar och plana promenadstråk.' } },
++    activity_meta: {
++      cykel: { rental: false, notes: 'Birka Vikingastaden och Strömma nämner ingen cykeluthyrning; ön har grusvägar och plana promenadstråk.' },
++      // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Dagstur med Strömma. Ingen källa anger
++      // badstrandens typ (sand, grus), därför en notis och ingen badplats med typetikett.
++      bad: {
++        beaches: [],
++        // KÄLLA: https://www.upplevekero.se/se--gora/natur--friluftsliv/badplatser — "Här har vi samlat de kommunala badplatserna.", "Titta därför alltid på vattnet innan du badar. Det är badgästen själv som behöver bedöma om det finns algblomning."; listan har ingen badplats på Björkö (läst 2026-11-03)
++        // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-ekero-kommun.html — "Här ser du badplatserna som kommunen har registrerat."; listan har ingen badplats på Björkö (läst 2026-11-03)
++        // KÄLLA: https://www.birkavikingastaden.se/hitta-pa-birka/ — "På ön finns även en barnvänlig badplats för ett dopp i Mälaren." (läst 2026-11-03)
++        note: 'Badplatsen på Björkö är inte en av Ekerö kommuns kommunala badplatser och finns inte bland kommunens badplatser hos Havs- och vattenmyndigheten, så det finns inga provsvar för vattnet här, och du får själv titta efter algblomning innan du badar.',
++      },
++    },
+     seasonal: {
+       // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "7 MAJ – 25 OKTOBER, 2026" (läst 2026-09-27)
+       open: 'Maj–Oktober',
+@@ -7562,8 +7630,9 @@ export const ISLANDS: Island[] = [
      transport_meta: {
        // UPPSKATTNING: from_city_min 270 = pendeltåg Stockholm City–Nynäshamn ca 1 tim (ej kontrollerat mot 2026 års tabell) + turbåt ca 3 tim 30 min enligt https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/besok-parken/tips-och-guider/turbat-och-boende-pa-gotska-sandon.
        from_city_min: 270,
@@ -1137,8 +1366,89 @@ index 427ab32..f4cdf30 100644
        from_nearest_hub_min: 135,
        // KÄLLA: https://gotland.com/companies/bat-till-gotska-sandon/ — "Du tar dig ut dit med turbåten, M/S Gotska Sandön"; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon — "Gotska Sandöns nationalpark förvaltas av Länsstyrelsen Gotland" (läst 2026-09-27)
        operator: 'Turbåten M/S Gotska Sandön (bokas via nationalparkens bokningstjänst)',
+@@ -7913,7 +7982,19 @@ export const ISLANDS: Island[] = [
+     // KÄLLA: https://www.solkustturer.se/kopia-på-när-ställs-turen-in — "Historia om de nordiska folken", "från 1555 talar ärkebiskopen och kartografen Olaus Magnus om ön Jungfrun som en plats där nordiska häxor under vissa tider av året lär hålla möten", "Blå Jungfrun finns även inritad i Olaus Magnus sjökort Carta Marina från år 1539" (läst 2026-09-27)
+     did_you_know: 'Ärkebiskopen Olaus Magnus skrev 1555 i Historia om de nordiska folken att nordiska häxor under vissa tider av året lär hålla möten på ön Jungfrun för att pröva sina trollkonster. Ön finns också inritad på hans sjökort Carta Marina från 1539.',
+     amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: false },
+-    activity_meta: { bad: { beaches: [] } },
++    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Natur och fåglar. Ingen badplats finns i
++    // kommunens listor; frånvaron och det som gäller i nationalparken skrivs i stället (trappan steg 3).
++    activity_meta: {
++      bad: {
++        beaches: [],
++        // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-oskarshamns-kommun.html — "Här ser du badplatserna som kommunen har registrerat."; listan har ingen badplats på Blå Jungfrun (läst 2026-11-03)
++        // KÄLLA: https://www.oskarshamn.se/kultur-och-fritid/idrott-och-fritid/badplatser/havsbad/ — "Karta över kommunens havsbad"; kommunens åtta havsbad (Bredviken, Dragskär, Gunnarsö, Havslätt, Nötö, Stångehamn Badvägen, Åsvallesund, Vånevik) omfattar inte Blå Jungfrun (läst 2026-11-03)
++        // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark/besok-parken/hitta-hit — "Landstigning sker direkt mot klipporna, eftersom det inte finns några bryggor på ön.", "När Gotlandsfärjan passerar ön kan det bli svallvågor på upp till två meter" (läst 2026-11-03 i Chromium)
++        // KÄLLA: https://www.solkustturer.se/viktigt-att-veta — "Man ska då hålla sig på behörigt avstånd från vattnet eftersom det rullar in stora vågor med risk för att man dras ut i vattnet." (läst 2026-11-03)
++        // KÄLLA: https://www.naturvardsverket.se/4ac67d/globalassets/nfs/2014/nfs-2014-8.pdf — "elda, inklusive att använda grill", "bortföra sten" (NFS 2014:8, 3 §) (läst 2026-11-03)
++        note: 'Varken Oskarshamns kommun eller Havs- och vattenmyndighetens Badplatsen anger någon badplats på Blå Jungfrun, och ön har inga bryggor: båten lägger till direkt mot klipporna. När Gotlandsfärjan passerar kan svallvågorna bli upp till två meter höga, och Solkustturer uppmanar besökare att då hålla avstånd från vattnet eftersom man kan dras ut. I Blå Jungfruns nationalpark är det förbjudet att elda, även med grill, och att ta med sig sten från ön.',
++      },
++    },
+   },
+   // ─── HEMSÖN ──────────────────────────────────────────────────────────────
+   {
+@@ -8138,7 +8219,17 @@ export const ISLANDS: Island[] = [
+       // KÄLLA: https://gotland.com/companies/sudersand/; https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser/ekeviken — "Badplatsen Ekeviken på Fårö är en cirka 900 meter lång, långgrund, sandstrand." (läst 2026-09-27)
+       // KÄLLA: https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser/norsta-aurar — "Badplatsen Norsta Aurar" (läst 2026-09-27)
+       cykel: { rental: true, notes: 'Cykeluthyrning vid Broa Kiosken vid färjeläget på Fårö, juni till augusti.' },
+-      bad: { beaches: ['Sudersandstranden', 'Ekeviken', 'Norsta Aurar'] },
++      bad: {
++        beaches: [
++          'Sudersandstranden',
++          // Badkompensation 2026-11-03 (mall-0198): Ekeviken och Norsta Aurar fick beskrivning; badsidan förlorade kortet Langhammars raukar.
++          // KÄLLA: https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser/ekeviken — "Badplatsen Ekeviken på Fårö är en cirka 900 meter lång, långgrund, sandstrand.", "Slamtoaletter", "Soptunnor", "Livbojar", "Livbåt", "Tillgänglighetsanpassad toalett vid västra parkeringen.", "Skyltning mot badplatsen finns från väg 699, huvudvägen, samt läng väg 702 som ansluter till badplatsen." (läst 2026-11-03)
++          // KÄLLA: https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser — "Nordöstra Fårö" (under både Ekeviken och Norsta Aurar) (läst 2026-11-03)
++          { name: 'Ekeviken', type: 'sandstrand', desc: 'Badplats på nordöstra Fårö i Region Gotland: en cirka 900 meter lång sandstrand med långgrunt vatten. Det finns slamtoaletter, soptunnor, livbojar och livbåt, och en tillgänglighetsanpassad toalett vid västra parkeringen.', directions: 'Skyltat från väg 699, huvudvägen, och längs väg 702 som går fram till badplatsen.' },
++          // KÄLLA: https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser/norsta-aurar — "Badplatsen Norsta Aurar på Fårö är en cirka fem kilometer lång, långgrund, sandstrand som västerut övergår i badplatsen Skär.", "Slamtoaletter", "Soptunna", "Livboj", "Skyltning mot badplatsen saknas, men badplatsen nås till fots från Fårö fyr." (läst 2026-11-03)
++          { name: 'Norsta Aurar', type: 'sandstrand', desc: 'Badplats på nordöstra Fårö i Region Gotland: en cirka fem kilometer lång sandstrand med långgrunt vatten, som västerut övergår i badplatsen Skär. Det finns slamtoaletter, soptunna och livboj.', directions: 'Ingen skyltning leder hit, men badplatsen nås till fots från Fårö fyr.' },
++        ],
++      },
+     },
+     seasonal: {
+       // KÄLLA: https://gotland.com/besoka-uppleva/upptack-norra-gotland/ — "Färjan till Fårö går varje hel och halv timme från Fårösund året runt" (läst 2026-09-27)
+@@ -8818,9 +8909,16 @@ export const ISLANDS: Island[] = [
+     activity_meta: {
+       // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/landskrona/vens-backafall.html — "Cykeluthyrning och buss till andra delar av ön finns i anslutning till färjan i Bäckviken." (läst 2026-09-27)
+       cykel: { rental: true, notes: 'Cykeluthyrning vid färjeläget i Bäckviken' },
+-      // KÄLLA: https://ilandskrona.se/besoka/ven/ven-on-for-hela-familjen/ — "Kyrkbacken med hamn och sandstrand" (läst 2026-09-27)
+-      // KÄLLA: https://www.norreborgshamn.se/ — "Vens trevligaste sandstrand" (läst 2026-09-27)
+-      bad: { beaches: ['Kyrkbackens sandstrand', 'Norreborgs hamn'] },
++      // Badkompensation 2026-11-03 (mall-0198): badplatserna fick beskrivning ur Landskrona stads badplatssidor;
++      // "Norreborgs hamn" heter Norreborg hos staden. Badsidan förlorade kortet Cykla eller vandra runt ön.
++      bad: {
++        beaches: [
++          // KÄLLA: https://www.landskrona.se/uppleva-och-gora/idrott-motion-och-friluftsliv/badplatser/badplats-kyrkbacken/ — "Kyrkbacken har en sandstrand och vattnet är långgrunt.", "Badplatsen ligger på den nordvästra sidan av Ven i anslutning till Kyrkbackens hamn. Sandstranden är kort och området vid stranden består främst av gräsytor. Stranden är cirka 50-100 meter lång.", "För din säkerhet finns livboj tillgänglig året om. Badplatsen har inga badvakter.", "Brygga", "Avgiftsfri toalett / HWC", "Här finns fyra fasta grillplatser.", "Få parkeringsmöjligheter. Vi rekommenderas att inte ta bilen med till Ven.", "Hundar får varken vistas eller bada på allmänna badplatser under badsäsongen, perioden 1 maj – 30 september." (läst 2026-11-03)
++          { name: 'Kyrkbackens sandstrand', type: 'sandstrand', desc: 'Badplats på nordvästra Ven i Landskrona stad, vid Kyrkbackens hamn: en kort sandstrand, cirka 50–100 meter, med långgrunt vatten och gräsytor runt om. Det finns brygga, toalett, fyra fasta grillplatser och livboj året om, men inga badvakter.', directions: 'Vid Kyrkbackens hamn. Parkeringsplatserna är få, och Landskrona stad rekommenderar att du inte tar bilen till Ven.', insider_tip: 'Hundar får varken vistas eller bada på badplatsen 1 maj–30 september.' },
++          // KÄLLA: https://www.landskrona.se/uppleva-och-gora/idrott-motion-och-friluftsliv/badplatser/badplats-norreborg/ — "Norreborg är en av tre badplatser på ön Ven. Badar du här får du uppleva fin sandstrand. Här finns också gott om möjlighet att få skugga.", "För din säkerhet finns livboj tillgänglig året om. Badplatsen har inga badvakter.", "Brygga", "Avgiftsfri toalett / HWC", "Här finns två fasta grillplatser.", "en strandrullstol till utlåning", "Under sommarens badsäsong, 15 juni-15 augusti, kan den lånas", "Kontakta Landskrona stads kontaktcenter", "Hundar får varken vistas eller bada på allmänna badplatser under badsäsongen, perioden 1 maj – 30 september." (läst 2026-11-03)
++          { name: 'Norreborg', type: 'sandstrand', desc: 'Badplats på Ven i Landskrona stad, en av öns tre badplatser, med sandstrand och gott om skugga. Det finns brygga, toalett, två fasta grillplatser och livboj året om, men inga badvakter.', insider_tip: 'Under badsäsongen 15 juni–15 augusti kan du låna en strandrullstol här via Landskrona stads kontaktcenter. Hundar får varken vistas eller bada på badplatsen 1 maj–30 september.' },
++        ],
++      },
+     },
+   },
+   // ─── TJÄRÖ ───────────────────────────────────────────────────────────────
+@@ -9042,8 +9140,18 @@ export const ISLANDS: Island[] = [
+     did_you_know: 'Var tionde svensk yrkesfiskare bor i Öckerö kommun, och tillsammans med kollegorna i Fiskebäck landar de 75 procent av all fisk som fångas i Sverige.',
+     // KÄLLA: https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/badplatser/hjalviks-badplats — "Sandstrand, gräs och klippor" (läst 2026-09-27). accommodation: true står kvar obelagd, se ockero.md.
+     amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
+-    // KÄLLA: https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/badplatser/hjalviks-badplats — "Hjälviks badplats ligger på Öckerö", "Sandstrand, gräs och klippor" (läst 2026-09-27)
+-    activity_meta: { bad: { beaches: ['Hjälviks badplats (sandstrand och klippor, nordvästra Öckerö)'] } },
++    // Badkompensation 2026-11-03 (mall-0198): Hjälviks badplats fick beskrivning; badsidan förlorade kortet Rördammen och hällmarkerna.
++    activity_meta: {
++      bad: {
++        beaches: [
++          // KÄLLA: https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/badplatser/hjalviks-badplats — "Hjälviks badplats ligger på Öckerö.", "I området Prästängen finns det fotbollsplaner och en inomhushall Göstahallen, ishall, lekpark, skatepark och motionsspår.", "Det finns en stor avgiftsbelagd parkering.", "Hundförbud från 1 maj till 30 september", "Eldningsförbud (fast grillplats får användas)", "Volleybollplan", "Toalett (WC och för funktionshindrade)", "Ramp för funktionshindrade", "Sandstrand, gräs och klippor", "Räddningsutrustning", "Tre parkeringsplatser för funktionshindrade vid badplatsen", "Kommunal badplats inom gulmarkerat område" (läst 2026-11-03)
++          // KÄLLA: https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/badplatser — "Från den 1 maj till den 30 september råder det hundförbud på alla kommunala badplatser i Öckerö kommun. Det gäller även kopplade hundar." (läst 2026-11-03)
++          // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Hj%C3%A4lvik — Lantmäteriet Min karta: Hjälvik | Öckerö | Hav och sjö, E 298585 N 6402489 (SWEREF 99 TM) (läst 2026-11-03)
++          // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96cker%C3%B6 — Lantmäteriet Min karta: Öckerö | Öckerö | Trakt, E 300242 N 6401598; Hjälvik ligger 1,7 km väster och 0,9 km norr om traktens punkt, uppmätt i Lantmäteriets Min karta (läst 2026-11-03)
++          { name: 'Hjälviks badplats', type: 'sandstrand', desc: 'Kommunal badplats på nordvästra Öckerö i Öckerö kommun, med sandstrand, gräs och klippor. Det finns toalett, även för funktionshindrade, ramp för funktionshindrade, volleybollplan och räddningsutrustning.', directions: 'I området Prästängen, där det också finns fotbollsplaner, lekpark och skatepark. Stor avgiftsbelagd parkering, varav tre platser för funktionshindrade vid badplatsen.', insider_tip: 'Hundförbud 1 maj–30 september, även för kopplade hundar. Det är eldningsförbud på badplatsen, men den fasta grillplatsen får användas.' },
++        ],
++      },
++    },
+   },
+   // ─── RÖRÖ ────────────────────────────────────────────────────────────────
+   {
 diff --git a/src/app/o/kallor.generated.ts b/src/app/o/kallor.generated.ts
-index f7b2383..50cb709 100644
+index f7b2383..662f4a7 100644
 --- a/src/app/o/kallor.generated.ts
 +++ b/src/app/o/kallor.generated.ts
 @@ -46,13 +46,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
@@ -3575,21 +3885,15 @@ index f7b2383..50cb709 100644
        "org": "Kajak & Uteliv",
 -      "vad": "Vi utgår från våra två kajakbaser i Stockholms norra skärgård, Gräddö och Furusund, På vår kajakbas på Gräddö har vi en välsorterad kajakbutik ;  — Vi hyr ut havskajaker i olika storlekar, Stand Up paddlebrädor och kanadensare, här har vi verksamhet året runt för bokade uthyrningar och guidade turer och kurser ;  — Bokning är nödvändig minst 24 timmar innan avfärd. .  — kanoter och stand up paddle-boards för uthyrning . Tidigare källa visitskargarden.se ersatt med företagets egen sida.",
 +      "vad": "Vi utgår från våra två kajakbaser i Stockholms norra skärgård, Gräddö och Furusund, På vår kajakbas på Gräddö har vi en välsorterad kajakbutik",
-+      "last": "2026-09-27",
-+      "myndighet": false
-+    },
-+    {
-+      "url": "https://www.kajak-uteliv.com/hyra-kajak/",
-+      "org": "kajak-uteliv.com",
-+      "vad": "Vi hyr ut havskajaker i olika storlekar, Stand Up paddlebrädor och kanadensare, här har vi verksamhet året runt för bokade uthyrningar och guidade turer och kurser",
        "last": "2026-09-27",
        "myndighet": false
      },
      {
-       "url": "https://www.kajak-uteliv.com/kajakbasen-graddo/",
+-      "url": "https://www.kajak-uteliv.com/kajakbasen-graddo/",
++      "url": "https://www.kajak-uteliv.com/hyra-kajak/",
        "org": "kajak-uteliv.com",
 -      "vad": "Bokning är nödvändig minst 24 timmar innan avfärd., Vi har några parkeringsplatser vi hyr ut till våra kunder som är ute över natten",
-+      "vad": "Bokning är nödvändig minst 24 timmar innan avfärd. .  — kanoter och stand up paddle-boards för uthyrning . Tidigare källa visitskargarden.se ersatt med företagets egen sida.",
++      "vad": "Vi hyr ut havskajaker i olika storlekar, Stand Up paddlebrädor och kanadensare, här har vi verksamhet året runt för bokade uthyrningar och guidade turer och kurser",
        "last": "2026-09-27",
        "myndighet": false
 -    }
@@ -3600,9 +3904,9 @@ index f7b2383..50cb709 100644
 -      "url": "https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/vaddo-kanal.pdf",
 -      "org": "norrtalje.se",
 -      "vad": "Arbetet med att anlägga nuvarande Väddö kanal påbörjades år 1819, Under perioden 1820-1831 arbetade 2930 man från Hälsinge, Upplands, Värmlands och Västmanlands regementen med grävandet av Väddö kanal, Kanalen öppnades för trafik 1835, och 1840 invigdes den officiellt av Karl XIV Johan, omkring 22 000 passerande båtar per år, I anslutning till Älmstabron ligger tätorten Älmsta (eller Elmsta) som är Väddös största samhälle. Den större delen av Älmsta ligger på fastlandet . «Slussen vid Älmsta» saknar källa — kanalen beskrivs utan sluss av både kommunen och Destination Roslagen.",
-+      "url": "https://kund.printhuset-sthlm.se/sl/h631.pdf",
-+      "org": "SL buss 631",
-+      "vad": "Norrtälje–Rådmansö–Norrtälje, Giltig 17 augusti–12 december 2026, Gräddö torg, Räfsnäs brygga  (restid Norrtälje busstation → Räfsnäs brygga 36–53 min, 8 turer må–fr, 4 lör, 2 sön, räknat); SL buss 676,  — Stockholm–Norrtälje, Tekniska högskolan, Norrtälje busstation",
++      "url": "https://www.kajak-uteliv.com/kajakbasen-graddo/",
++      "org": "kajak-uteliv.com",
++      "vad": "Bokning är nödvändig minst 24 timmar innan avfärd. .  — kanoter och stand up paddle-boards för uthyrning . Tidigare källa visitskargarden.se ersatt med företagets egen sida.",
        "last": "2026-09-27",
 -      "myndighet": true
 +      "myndighet": false
@@ -3611,20 +3915,26 @@ index f7b2383..50cb709 100644
 -      "url": "https://kund.printhuset-sthlm.se/sl/h676676x.pdf",
 -      "org": "SL 676",
 -      "vad": "676 Stockholm–Norrtälje, Giltig 17 augusti–12 december 2026 (t.ex. Tekniska högskolan 09.50 → Norrtälje busstation 11.01); SL 637,  — 637 Norrtälje–Singö, Giltig 17 augusti–12 december 2026 (Norrtälje busstation 11.11 → Älmsta busstation 11.47) ;  — en halvtimmes bilfärd från Norrtälje . «ca 90 min med bil från Stockholm» saknade källa.",
-+      "url": "https://kund.printhuset-sthlm.se/wa/h31.pdf",
-+      "org": "Waxholmsbolaget linje 31",
-+      "vad": "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026 . «April–Oktober» stämde inte: campingen, krogen och sjömacken har öppet året runt och linje 31 har tabell april–december.",
++      "url": "https://kund.printhuset-sthlm.se/sl/h631.pdf",
++      "org": "SL buss 631",
++      "vad": "Norrtälje–Rådmansö–Norrtälje, Giltig 17 augusti–12 december 2026, Gräddö torg, Räfsnäs brygga  (restid Norrtälje busstation → Räfsnäs brygga 36–53 min, 8 turer må–fr, 4 lör, 2 sön, räknat); SL buss 676,  — Stockholm–Norrtälje, Tekniska högskolan, Norrtälje busstation",
        "last": "2026-09-27",
 -      "myndighet": true
--    },
 +      "myndighet": false
-+    }
-+  ],
-+  "vaddo": [
+     },
      {
 -      "url": "https://kund.printhuset-sthlm.se/sl/h637.pdf",
 -      "org": "SL buss 637",
 -      "vad": "637 Norrtälje–Singö, Giltig 17 augusti–12 december 2026, Norrtälje busstation, Älmsta busstation, Grisslehamns färjeläge . Räknat: Norrtälje busstation → Älmsta 36–38 min; må–fr 22 turer (varav en natt mot lördag), lör/sön/helgdag 13.",
++      "url": "https://kund.printhuset-sthlm.se/wa/h31.pdf",
++      "org": "Waxholmsbolaget linje 31",
++      "vad": "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026 . «April–Oktober» stämde inte: campingen, krogen och sjömacken har öppet året runt och linje 31 har tabell april–december.",
++      "last": "2026-09-27",
++      "myndighet": false
++    }
++  ],
++  "vaddo": [
++    {
 +      "url": "https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/vaddo-kanal.pdf",
 +      "org": "norrtalje.se",
 +      "vad": "Arbetet med att anlägga nuvarande Väddö kanal påbörjades år 1819, Under perioden 1820-1831 arbetade 2930 man från Hälsinge, Upplands, Värmlands och Västmanlands regementen med grävandet av Väddö kanal, Kanalen öppnades för trafik 1835, och 1840 invigdes den officiellt av Karl XIV Johan, omkring 22 000 passerande båtar per år, I anslutning till Älmstabron ligger tätorten Älmsta (eller Elmsta) som är Väddös största samhälle. Den större delen av Älmsta ligger på fastlandet . «Slussen vid Älmsta» saknar källa – kanalen beskrivs utan sluss av både kommunen och Destination Roslagen.",
@@ -3684,34 +3994,47 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -3665,14 +3875,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3665,37 +3875,37 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/galo/",
        "org": "haninge.se",
 -      "vad": "I närheten ligger även Stegsholms gård med café, bageri och försäljning av kött från gården. ;  — Helgöppet med start 1/5, Öppet Onsdag — Söndag 24/6 — 9/8 ;  — Området passar också för paddling, cykling, fiske och fågelskådning.",
+-      "last": "2026-09-27",
 +      "vad": "Under andra världskriget hade försvaret en hemlig sälstation i Långgarnsviken där sälar tränades för att spåra ubåtar och minor. Sälarnas gamla bassäng finns kvar, och i dag erbjuder området både boende och konferensmöjligheter.",
-       "last": "2026-09-27",
++      "last": "2026-11-03",
        "myndighet": true
      },
      {
        "url": "https://www.haninge.se/uppleva-och-gora/simhallar-och-bad/badplatser/",
        "org": "haninge.se",
 -      "vad": "Stort bad vid havet med lång strandremsa., Ja, och minigolfbana., Stor parkering., Gålö havsbad är inte ett kommunalt bad. ;  — finns en populär anläggning med camping, skärgårdskrog, äventyrsgolf och kajakuthyrning, Gålö är ett naturreservat som förvaltas av ;  — Storlek: 3834 hektar varav land 1756 hektar, Flera vandringsleder utgår från Skälåker och Stegsholm, Vid Nor på mellersta Gålö kan du se en fornborg och flera jättegrytor",
-+      "vad": "Stort bad vid havet med lång strandremsa., Ja, och minigolfbana., Stor parkering., Gålö havsbad är inte ett kommunalt bad.",
-       "last": "2026-09-27",
+-      "last": "2026-09-27",
++      "vad": "Gålö havsbad, Om badet: Stort bad vid havet med lång strandremsa., Toalett: Ja., Kiosk sommartid: Ja, och minigolfbana., Grillplats: Ja., Parkering: Stor parkering., Kollektivtrafik: Närmaste busshållplats Skälåker., Hundbad: Ja., Drift: Gålö havsbad är inte ett kommunalt bad.",
++      "last": "2026-11-03",
        "myndighet": true
      },
-@@ -3684,18 +3894,11 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     {
+-      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html",
+-      "org": "Länsstyrelsen Stockholm",
+-      "vad": "Vandringsleden mot Havtornsudd från Skälåker går till stora delar längs stranden., Det är småskaligt med en mosaik av åkermarker, ekhagar, lundar och betade havsstrandängar, gärna längs stigen som börjar vid Stegsholms parkering",
+-      "last": "2026-09-27",
++      "url": "https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-haninge-kommun/galo-skalaker.html",
++      "org": "havochvatten.se",
++      "vad": "Gålö, Skälåker är en badplats i Haninge kommun, 2025: ★★★ Utmärkt kvalitet, 2024: ★★★ Utmärkt kvalitet, 2023: ★★★ Utmärkt kvalitet",
++      "last": "2026-11-03",
        "myndighet": true
      },
      {
 -      "url": "https://kund.printhuset-sthlm.se/sl/v845.pdf",
 -      "org": "SL (tryckt tidtabell)",
 -      "vad": "Västerhaninge station–Gålö, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026, Tidtabellen är anpassad till pendeltåg från Stockholm vid . Lördag, söndag: Västerhaninge station 09.18 → Skälåker 09.42 och 11.18 → 11.43; måndag–fredag når bara 18.05-turen Skälåker (18.31). Sommartabellen 19/6–16/8 fanns inte som PDF.",
--      "last": "2026-09-27",
--      "myndighet": true
--    },
--    {
++      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html",
++      "org": "Länsstyrelsen Stockholm",
++      "vad": "Vandringsleden mot Havtornsudd från Skälåker går till stora delar längs stranden., Det är småskaligt med en mosaik av åkermarker, ekhagar, lundar och betade havsstrandängar, gärna längs stigen som börjar vid Stegsholms parkering",
+       "last": "2026-09-27",
+       "myndighet": true
+     },
+     {
 -      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
 -      "org": "SL (tryckt tidtabell)",
 -      "vad": "Handens station–Dalarö (–Smådalarö), Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026; måndag–fredag Handens station 09.14 → Gålövägen 09.32 (18 min) .  — Alla bussar till Dalarö stannar vid Gålö handel, strax utanför reservatet i norr.",
@@ -3724,7 +4047,7 @@ index f7b2383..50cb709 100644
      },
      {
        "url": "https://galohavsbad.se/",
-@@ -3714,22 +3917,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3714,22 +3924,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://galohavsbad.se/bo/stugor/",
        "org": "galohavsbad.se",
@@ -3754,7 +4077,7 @@ index f7b2383..50cb709 100644
        "myndighet": false
      },
      {
-@@ -3739,10 +3942,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3739,10 +3949,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -3780,21 +4103,25 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -3790,13 +4007,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "last": "2026-09-27",
-       "myndighet": true
+@@ -3785,15 +4009,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      },
+     {
+       "url": "https://www.sjofartsverket.se/sv/tjanster/kanaler-slussar-broar/tottnasbron/",
+-      "org": "sjofartsverket.se",
+-      "vad": "1 juni - 31 augusti; Broöppning kan erhållas dagligen varje hel timme kl 0800 - 2000",
+-      "last": "2026-09-27",
+-      "myndighet": true
+-    },
 -    {
 -      "url": "https://kund.printhuset-sthlm.se/sl/v852.pdf",
 -      "org": "SL (tryckt tidtabell)",
 -      "vad": "852 Nynäshamns station–Torö; Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026; Nynäshamns station 06.26 09.11 11.08; Ankarudden 07.05 09.51 11.49; Tidtabellen är anpassad till pendeltåg från Stockholm",
--      "last": "2026-09-27",
--      "myndighet": true
--    },
-     {
-       "url": "https://www.trafikverket.se/om-oss/nyheter/lansnyheter/stockholm/20262/2026-04/vi-bygger-om-och-forbattrar-tottnasbron/",
-       "org": "Trafikverket",
-@@ -3821,7 +4031,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
++      "org": "sjofartsverket.se",
++      "vad": "1 juni - 31 augusti; Broöppning kan erhållas dagligen varje hel timme kl 0800 - 2000",
+       "last": "2026-09-27",
+       "myndighet": true
+     },
+@@ -3821,7 +4038,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://sjobodentoro.se/oppettider/",
        "org": "sjobodentoro.se",
@@ -3810,7 +4137,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -3830,7 +4047,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3830,7 +4054,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.haninge.se/uppleva-och-gora/besok-och-upplev-haninge/platser-att-besoka/fjardlang/",
        "org": "haninge.se",
@@ -3819,7 +4146,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -3841,20 +4058,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3841,20 +4065,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -3840,7 +4167,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://orno.se/om-orno/orno-oar/fjallang/",
        "org": "orno.se",
-@@ -3865,58 +4068,79 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3865,58 +4075,79 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://skargardsstiftelsen.se/omraden/fjardlang/",
        "org": "Skärgårdsstiftelsen",
@@ -3935,7 +4262,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -3927,6 +4151,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3927,6 +4158,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -3949,7 +4276,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://stockholmslansmuseum.se/besoksmal/oscar-fredriksborgs-fastning/",
        "org": "stockholmslansmuseum.se",
-@@ -3944,7 +4175,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3944,7 +4182,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vaxholmsfastning.se/",
        "org": "vaxholmsfastning.se",
@@ -3965,7 +4292,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -3953,21 +4191,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3953,21 +4198,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sjalbottna-ostra-lagno.html",
        "org": "Länsstyrelsen Stockholm",
@@ -3992,7 +4319,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -3978,10 +4216,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3978,10 +4223,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-28",
        "myndighet": false
      },
@@ -4011,7 +4338,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -3991,6 +4236,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3991,6 +4243,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "offering a 24 km hike close to the sea, The lake Träsket, the lighthouse and Stortallen, an old pine tree are all worth a visit in their own right., it follows the local printed tourist map, Plan your hike based on when you can catch the bus back from the furthest southern point you reach.",
        "last": "2026-09-27",
        "myndighet": false
@@ -4025,7 +4352,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "kymmendo": [
-@@ -4001,13 +4253,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4001,13 +4260,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -4039,7 +4366,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://sok.riksarkivet.se/sbl/Presentation.aspx?id=34518&forceOrdinarySite=true",
        "org": "sok.riksarkivet.se",
-@@ -4015,13 +4260,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4015,13 +4267,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -4053,7 +4380,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.explorearchipelago.com/sv/sthlm/sodra-skargarden/kymmendo",
        "org": "explorearchipelago.com",
-@@ -4098,13 +4336,27 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4098,13 +4343,27 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Djuren betar över hela ön så håll hundarna kopplade. Stäng de grindar ni öppnar och elda inte öppna eldar pga av bränder kan uppkomma, det tar lång tid innan vi kan få ut brandkåren hit.",
        "last": "2026-09-27",
        "myndighet": false
@@ -4082,7 +4409,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -4115,10 +4367,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4115,10 +4374,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -4115,7 +4442,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -4132,7 +4405,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4132,7 +4412,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/att-gora-i-parken/sevardheter/jaktstugan",
        "org": "Sveriges Nationalparker",
@@ -4124,7 +4451,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -4167,42 +4440,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4167,42 +4447,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/att-gora-i-parken/aktiviteter/fagelskadning",
        "org": "Sveriges Nationalparker",
@@ -4182,23 +4509,23 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4211,42 +4491,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4211,42 +4498,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c3748572/1732515661464/Landsbygdsutveckling%20p%C3%A5%20Djur%C3%B6%20genom%20projektet%20Bygd%20f%C3%B6r%20Bygd.pdf",
        "org": "Länsstyrelsen",
 -      "vad": "På Vindö bor omkring 400 personer permanent, Norrut på Vindö finns utspridda villaområden och ett stort antal fritidshus, Särskilt hög koncentration av områden med stor betydelse för den biologiska mångfalden finns på Djurö och Vindö, stora sammanhängande barrskogsområden;  — liksom Djurö och Vindö bebyggts med stora fritidshusområden",
--      "last": "2026-09-27",
--      "myndighet": true
--    },
--    {
--      "url": "https://kund.printhuset-sthlm.se/sl/h434.pdf",
--      "org": "SL (tryckt tidtabell)",
--      "vad": "434 Slussen–Överby, Giltig 17 augusti–12 december 2026, Vindö skola, Sollenkroka brygga 07.12 … 08.16 09.00 09.59 10.59, Överby brygga 07.24 08.29 10.13 12.02 14.09 14.48, Endast vissa turer  — Slussen–Sollenkroka brygga 64–78 min, Slussen–Överby brygga 71–87 min (alla dagtyper). Tidigare källa v433_434.pdf finns inte längre.",
 +      "vad": "På Vindö bor omkring 400 personer permanent, Norrut på Vindö finns utspridda villaområden och ett stort antal fritidshus, Särskilt hög koncentration av områden med stor betydelse för den biologiska mångfalden finns på Djurö och Vindö, stora sammanhängande barrskogsområden",
        "last": "2026-09-27",
        "myndighet": true
      },
      {
+-      "url": "https://kund.printhuset-sthlm.se/sl/h434.pdf",
+-      "org": "SL (tryckt tidtabell)",
+-      "vad": "434 Slussen–Överby, Giltig 17 augusti–12 december 2026, Vindö skola, Sollenkroka brygga 07.12 … 08.16 09.00 09.59 10.59, Överby brygga 07.24 08.29 10.13 12.02 14.09 14.48, Endast vissa turer  — Slussen–Sollenkroka brygga 64–78 min, Slussen–Överby brygga 71–87 min (alla dagtyper). Tidigare källa v433_434.pdf finns inte längre.",
+-      "last": "2026-09-27",
+-      "myndighet": true
+-    },
+-    {
 -      "url": "https://kund.printhuset-sthlm.se/sl/v434.pdf",
 -      "org": "SL (tryckt tidtabell)",
 -      "vad": "Giltig 14 december 2025–18 juni 2026;  — Giltig 19 juni–16 augusti 2026;  — Giltig 17 augusti–12 december 2026;  — Öppettider 2026, 1 Maj - 31 Maj, 8 Juni - 9 Aug., 10 Aug.- 27 Sept.;  — Från Sollenkroka Brygga går båttrafik till bland annat Norra och Södra Stavsudda samt Möja",
@@ -4235,7 +4562,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -4260,14 +4533,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4260,14 +4540,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://alstensmacken.com/sollenkroka-marina",
        "org": "alstensmacken.com",
@@ -4273,53 +4600,54 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4280,24 +4574,38 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "last": "2026-09-27",
+@@ -4281,18 +4582,18 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
-+    {
+     {
+-      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+-      "org": "SL (tryckt tidtabell)",
+-      "vad": "Handens station–Dalarö (–Smådalarö), 1) Endast vissa turer., Tidtabellen är anpassad till pendeltåg från Stockholm vid, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026  — 14 ankomster till Smådalarö måndag–fredag och 9 lördag–söndag i tabellen.",
 +      "url": "https://www.haninge.se/uppleva-och-gora/idrott-och-friluftsliv/friluft-och-natur/bad/",
 +      "org": "haninge.se",
 +      "vad": "Schweizerbadet på Dalarö",
-+      "last": "2026-09-27",
-+      "myndighet": true
-+    },
-     {
-       "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
-       "org": "SL (tryckt tidtabell)",
-       "vad": "Handens station–Dalarö (–Smådalarö), 1) Endast vissa turer., Tidtabellen är anpassad till pendeltåg från Stockholm vid, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026  — 14 ankomster till Smådalarö måndag–fredag och 9 lördag–söndag i tabellen.",
        "last": "2026-09-27",
--      "myndighet": true
-+      "myndighet": false
-+    },
-+    {
-+      "url": "https://www.smadalarogard.se/hotellet/om-oss/var-historia/",
-+      "org": "smadalarogard.se",
-+      "vad": "Grunden till den stora rörelsen på Smådalarö Gård lades av löjtnanten Carl Christian Gyldener, som tillsammans med tullinspektören Nils Sondell arrenderade halva Smådalarö i 20 år, tillsammans startade herrarna produktion av både öl och brännvin, därför fick han 1750 ett eget arrendekontrakt på livstid, År 1802 förvärvade Blom, endast 40 år gammal, den stora egendomen ”Tyresö skärgårdsdel” från grevinnan Brita Bonde för 12.000 riksdaler banco, Kofferdikaptenen Carl Peter Blom, som stod färdigt år 1810",
-+      "last": "2026-09-27",
-+      "myndighet": false
+       "myndighet": true
      },
      {
 -      "url": "https://kund.printhuset-sthlm.se/wa/h19.pdf",
 -      "org": "Waxholmsbolaget (tryckt tidtabell)",
 -      "vad": "STOCKHOLM — DALARÖ — ORNÖ (ÖSTRA SIDAN) — UTÖ, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026",
-+      "url": "https://www.smadalarogard.se/spa/",
-+      "org": "smadalarogard.se",
-+      "vad": "Smådalarö Spa är 2000 kvm stort, 4 pooler, 2 inne & 2 ute, 3 olika bastur - ångbastu, torrbastu & ett sanarium, infinity-poolen som sträcker ut sig mot Hemviken, Spabehandlingar signerat Kerstin Florian",
++      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
++      "org": "SL (tryckt tidtabell)",
++      "vad": "Handens station–Dalarö (–Smådalarö), 1) Endast vissa turer., Tidtabellen är anpassad till pendeltåg från Stockholm vid, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026  — 14 ankomster till Smådalarö måndag–fredag och 9 lördag–söndag i tabellen.",
        "last": "2026-09-27",
 -      "myndighet": true
 +      "myndighet": false
      },
      {
--      "url": "https://www.smadalarogard.se/hotellet/om-oss/var-historia/",
-+      "url": "https://www.smadalarogard.se/hotellet/gasthamn/",
-       "org": "smadalarogard.se",
--      "vad": "Grunden till den stora rörelsen på Smådalarö Gård lades av löjtnanten Carl Christian Gyldener, som tillsammans med tullinspektören Nils Sondell arrenderade halva Smådalarö i 20 år, tillsammans startade herrarna produktion av både öl och brännvin, därför fick han 1750 ett eget arrendekontrakt på livstid, År 1802 förvärvade Blom, endast 40 år gammal, den stora egendomen ”Tyresö skärgårdsdel” från grevinnan Brita Bonde för 12.000 riksdaler banco, Kofferdikaptenen Carl Peter Blom, som stod färdigt år 1810",
-+      "vad": "Här finns 30 gästplatser vid bryggan",
+       "url": "https://www.smadalarogard.se/hotellet/om-oss/var-historia/",
+@@ -4301,6 +4602,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -4325,42 +4633,56 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
++    {
++      "url": "https://www.smadalarogard.se/spa/",
++      "org": "smadalarogard.se",
++      "vad": "Smådalarö Spa är 2000 kvm stort, 4 pooler, 2 inne & 2 ute, 3 olika bastur - ångbastu, torrbastu & ett sanarium, infinity-poolen som sträcker ut sig mot Hemviken, Spabehandlingar signerat Kerstin Florian",
++      "last": "2026-09-27",
++      "myndighet": false
++    },
++    {
++      "url": "https://www.smadalarogard.se/hotellet/gasthamn/",
++      "org": "smadalarogard.se",
++      "vad": "Här finns 30 gästplatser vid bryggan",
++      "last": "2026-09-27",
++      "myndighet": false
++    },
+     {
+       "url": "https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/",
+       "org": "smadalarogard.se",
+@@ -4325,42 +4640,56 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.smadalarogard.se/hotellet/aktiviteter/se-gora/",
        "org": "smadalarogard.se",
@@ -4386,7 +4714,18 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4394,13 +4716,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4376,8 +4705,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     {
+       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/erikso.html",
+       "org": "Länsstyrelsen Stockholm",
+-      "vad": "Längs bägge sidor av ön finns vackra, betade strandängar och sköna badklippor. Slingrande grusvägar och ett myller av skogsstigar gör det lätt att upptäcka Eriksö till fots eller på cykel., Promenera till Grönvik med en enkel grillplats",
+-      "last": "2026-09-27",
++      "vad": "Längs bägge sidor av ön finns vackra, betade strandängar och sköna badklippor., Eriksö ligger på sydvästra Mörkö, 6 kilometer nordost om Trosa., Kommun: Södertälje, Förvaltare: Länsstyrelsen, medföra hund, katt eller annat husdjur som inte är kopplat, för längre tid än två dygn i följd förankra båt vid samma plats, för längre tid än två dygn i följd tälta på samma plats, tag av söderut vid Idala, Parkering, Det är långt till närmaste busshållplats, som heter Idala. Därifrån är det 7 km promenad söderut till reservatet.",
++      "last": "2026-11-03",
+       "myndighet": true
+     },
+     {
+@@ -4394,13 +4723,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -4400,7 +4739,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.sodertalje.se/kommun-och-politik/om-kommunen/sodertaljes-kommundelar/holo-morko/se-och-gora-i-holo-morko/",
        "org": "sodertalje.se",
-@@ -4450,6 +4765,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4450,6 +4772,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -4414,7 +4753,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://skansholmen.com/boende/",
        "org": "skansholmen.com",
-@@ -4465,9 +4787,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4465,9 +4794,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": false
      },
      {
@@ -4427,13 +4766,14 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4476,56 +4798,63 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4476,56 +4805,70 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/musko/",
        "org": "haninge.se",
 -      "vad": "Med bil tar resan ungefär 1 timme från Stockholm via Muskötunneln. ;  — Ösmo centrum–Muskö, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026 (buss året runt; lördag Ösmo centrum 10.04 → Hyttan 10.43) ;  — Grytholmens friluftsmuseum har öppet under sommaren. ;  — I Arbottna hittar du våtmarken Maren som är ett paradis för fåglar.",
+-      "last": "2026-09-27",
 +      "vad": "Redan sedan 1500-talet har flottan haft sin bas här. Under rysshärjningarna 1719 blev galärsoldaterna belägrade av svenskarna och grävde en kanal för att fly. En passage som idag är en uppskattad sjöväg.",
-       "last": "2026-09-27",
++      "last": "2026-11-03",
        "myndighet": true
      },
      {
@@ -4448,10 +4788,18 @@ index f7b2383..50cb709 100644
 -      "url": "https://kund.printhuset-sthlm.se/sl/v849.pdf",
 -      "org": "SL (tryckt tidtabell)",
 -      "vad": "Ösmo centrum–Muskö, Tidtabellen är anpassad till pendeltåg från Stockholm, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026 . Restid räknad ur tabellen: lördag Ösmo station 10.07 → Hyttan 10.43 (36 min), lördag Ösmo centrum 10.04 → Hyttan 10.43 (39 min), måndag–fredag Ösmo centrum 13.53 → Hyttan 14.36 (43 min). Sommartabellen 19/6–16/8 fanns inte som PDF.",
+-      "last": "2026-09-27",
 +      "url": "https://www.haninge.se/uppleva-och-gora/simhallar-och-bad/badplatser/",
 +      "org": "haninge.se",
-+      "vad": "Björkholmen på Muskö, Litet bad med bryggor vid havet., Närmaste busshållplats Muskö kyrka. (grillplats: Ja)",
-       "last": "2026-09-27",
++      "vad": "Björkholmen på Muskö, Om badet: Litet bad med bryggor vid havet., Toalett: Ja, vid campingen., Kiosk: Nej., Grillplats: Ja., Parkering: Liten parkering., Kollektivtrafik: Närmaste busshållplats Muskö kyrka., Hundbad: Nej.",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
++    {
++      "url": "https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-haninge-kommun/bjorkholmen-musko.html",
++      "org": "havochvatten.se",
++      "vad": "Björkholmen, Muskö är en badplats i Haninge kommun, 2025: ★★★ Utmärkt kvalitet, 2024: ★★★ Utmärkt kvalitet, 2023: ★★★ Utmärkt kvalitet",
++      "last": "2026-11-03",
        "myndighet": true
      },
      {
@@ -4503,7 +4851,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4534,28 +4863,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4534,28 +4877,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/",
        "org": "raa.se",
@@ -4538,7 +4886,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -4566,17 +4895,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4566,17 +4909,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -4572,7 +4920,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -4590,7 +4933,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4590,7 +4947,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.upplevekero.se/se--gora/vara-varldsarv/birka--hovgarden/6-saker-att-gora-pa-hovgarden",
        "org": "upplevekero.se",
@@ -4588,7 +4936,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4599,7 +4949,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4599,7 +4963,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html",
        "org": "Länsstyrelsen Stockholm",
@@ -4597,7 +4945,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -4618,23 +4968,44 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4618,23 +4982,44 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -4648,7 +4996,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -4648,28 +5019,84 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4648,28 +5033,84 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.igk.se/restaurang/",
        "org": "igk.se",
@@ -4737,13 +5085,31 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4708,21 +5135,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4705,25 +5146,39 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     }
+   ],
+   "huvudskar": [
++    {
++      "url": "https://www.haninge.se/uppleva-och-gora/simhallar-och-bad/badplatser/",
++      "org": "haninge.se",
++      "vad": "listan \"Badplatser i Haninge\" har ingen badplats på Huvudskär",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
++    {
++      "url": "https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-haninge-kommun.html",
++      "org": "havochvatten.se",
++      "vad": "Här ser du badplatserna som kommunen har registrerat.; listan har ingen badplats på Huvudskär",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
      {
        "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/huvudskar.html",
        "org": "Länsstyrelsen Stockholm",
 -      "vad": "Fågellivet är rikt i Huvudskärs naturreservat med många häckande sjöfågelarter som ejder, svärta, tobisgrissla, labb, skrak och vigg samt olika arter av vitfågel, I angränsande områden häckar tordmule;  — Området är också populärt för fågelskådning och naturfotografering",
+-      "last": "2026-09-27",
 +      "vad": "Reservatet omfattar hela Huvudskärsarkipelagen utom huvudön Ålandsskär, och ligger tio kilometer sydost om Ornö, Huvudskärs naturreservat omfattar ett skärgårdsområde med omkring 200 öar och skär, Öarna består oftast av kala klippor med sparsam vegetation, mest enbuskar, ljung och kråkris, På Ålandskär finns fyr och byggnader, Skyddat sedan: 1974",
-       "last": "2026-09-27",
++      "last": "2026-11-03",
        "myndighet": true
      },
      {
@@ -4758,11 +5124,13 @@ index f7b2383..50cb709 100644
        "url": "https://skargardsstiftelsen.se/omraden/huvudskar/",
        "org": "Skärgårdsstiftelsen",
 -      "vad": "Huvudskär ligger längst ut i Haninges ytterskärgård, sydost om Ornö;  — Reservatet omfattar hela Huvudskärsarkipelagen utom huvudön Ålandsskär, och ligger tio kilometer sydost om Ornö, Huvudskärs naturreservat omfattar ett skärgårdsområde med omkring 200 öar och skär, Öarna består oftast av kala klippor med sparsam vegetation, mest enbuskar, ljung och kråkris, På Ålandskär finns fyr och byggnader, Skyddat sedan: 1974",
+-      "last": "2026-09-27",
 +      "vad": "idag finns det inte längre några fastboende, Det som en gång var tullhus och lotshus fungerar idag som vandrarhem och här finns även lägenheter och rum att hyra, i fladen mellan Ålandsskär och Lökskär blir det ibland fullt med båtar",
-       "last": "2026-09-27",
++      "last": "2026-11-03",
        "myndighet": false
      },
-@@ -4736,60 +5163,81 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     {
+@@ -4736,60 +5191,81 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
    ],
    "ekno": [
      {
@@ -4858,7 +5226,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4798,7 +5246,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4798,7 +5274,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html",
        "org": "Länsstyrelsen Stockholm",
@@ -4867,7 +5235,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -4809,10 +5257,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4809,10 +5285,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -4893,7 +5261,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      }
-@@ -4837,7 +5299,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4837,7 +5327,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c37487ba/1732515932045/Sk%C3%A4rg%C3%A5rdsfakta%20%E2%80%93%20Grafiska%20kartor%202019.pdf",
        "org": "Länsstyrelsen",
@@ -4902,7 +5270,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -4855,25 +5317,25 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4855,25 +5345,25 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -4938,7 +5306,7 @@ index f7b2383..50cb709 100644
        "myndighet": false
      }
    ],
-@@ -4885,6 +5347,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4885,6 +5375,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -4952,7 +5320,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/langviksskar.html",
        "org": "Länsstyrelsen Stockholm",
-@@ -4902,14 +5371,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4902,14 +5399,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.explorearchipelago.com/sv/sthlm/sodra-skargarden/langviksskar/langviksskar-hallskar",
        "org": "explorearchipelago.com",
@@ -4969,7 +5337,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4925,28 +5394,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4925,28 +5422,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/",
        "org": "lidingo.se",
@@ -5003,7 +5371,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4969,7 +5438,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4969,7 +5466,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/langviksskar.html",
        "org": "Länsstyrelsen Stockholm",
@@ -5012,7 +5380,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      }
-@@ -5043,14 +5512,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5043,14 +5540,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://bistroruben.se/oppet/",
        "org": "bistroruben.se",
@@ -5029,7 +5397,7 @@ index f7b2383..50cb709 100644
        "last": "2026-10-20",
        "myndighet": false
      },
-@@ -5120,14 +5589,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5120,14 +5617,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://mfulvon.se/turlistor",
        "org": "mfulvon.se",
@@ -5046,7 +5414,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5162,7 +5631,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5162,7 +5659,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://ulvohamnkrog.se/",
        "org": "ulvohamnkrog.se",
@@ -5055,7 +5423,7 @@ index f7b2383..50cb709 100644
        "last": "2026-10-20",
        "myndighet": false
      },
-@@ -5248,7 +5717,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5248,7 +5745,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.destinationgotland.se/allt-om-resan/farjeterminaler/",
        "org": "destinationgotland.se",
@@ -5064,11 +5432,18 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5381,30 +5850,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5381,30 +5878,37 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
 -      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/varldsarvet-sodra-olands-odlingslandskap.html",
++      "url": "https://www.borgholm.se/badplatser/",
++      "org": "borgholm.se",
++      "vad": "Här ansvarar kommunen för renhållningen, Klinta Bodar, Klinta bodar, strax norr om badet i Köpingsvik., Vid badplatserna Klinta Bodar och Sjöstugan finns parkering för rörelsehindrade samt ramp i anslutning till bryggan för att ta sig ned i och upp ur vattnet., Du får inte ha med dig hund till allmänna badplatser mellan 1 juni och 31 augusti, enligt kommunens lokala ordningsföreskrifter.",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
++    {
 +      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/bodakustens-ostra.html",
        "org": "Länsstyrelsen Kalmar län",
 -      "vad": "I den medeltida Östgötalagen från 1200-talet, finns regler för hur bönderna skulle lägga ut en radbytomt, Ju bredare tomten var desto större andel hade gården i byns inägojord, Gårdstypen kallas götisk . Stod tidigare «fler soltimmar än nästan hela övriga Sverige» utan källa.",
@@ -5103,7 +5478,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -5415,17 +5884,38 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5415,17 +5919,38 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -5144,7 +5519,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5439,14 +5929,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5439,14 +5964,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.oland.se/",
        "org": "oland.se",
@@ -5161,7 +5536,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5460,7 +5950,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5460,7 +5985,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.oland.se/skordefest",
        "org": "oland.se",
@@ -5170,7 +5545,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5504,7 +5994,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5504,7 +6029,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://vinga.nu/",
        "org": "vinga.nu",
@@ -5179,7 +5554,7 @@ index f7b2383..50cb709 100644
        "last": "2026-10-19",
        "myndighet": false
      },
-@@ -5569,7 +6059,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5569,7 +6094,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.brannoforeningen.se/kulturevenemang/dans-pa-branno-brygga/",
        "org": "brannoforeningen.se",
@@ -5188,7 +5563,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5583,7 +6073,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5583,7 +6108,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://brannovardshus.se/oppettider",
        "org": "brannovardshus.se",
@@ -5197,7 +5572,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5601,6 +6091,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5601,6 +6126,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -5211,7 +5586,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.goteborg.com/platser/branno-vardshus-pensionat-baggen",
        "org": "goteborg.com",
-@@ -5618,28 +6115,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5618,28 +6150,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.styrsobolaget.se/dans-pa-branno-brygga/",
        "org": "styrsobolaget.se",
@@ -5244,7 +5619,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -5753,14 +6250,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5753,14 +6285,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://kusthotelletstyrso.se/",
        "org": "kusthotelletstyrso.se",
@@ -5261,7 +5636,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5788,7 +6285,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5788,7 +6320,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://transdev.se/wp-content/uploads/sites/5/2026/07/Hosttidtabell-281-282-Liggande-A3.pdf",
        "org": "transdev.se",
@@ -5270,7 +5645,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -5808,13 +6305,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5808,13 +6340,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -5284,7 +5659,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.goteborg.com/platser/vrango",
        "org": "goteborg.com",
-@@ -5825,7 +6315,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5825,7 +6350,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.goteborg.com/guider/ta-dig-till-skargarden",
        "org": "goteborg.com",
@@ -5293,7 +5668,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5874,7 +6364,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5874,7 +6399,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.svenskagasthamnar.se/goteborgs-skargard/vrango/",
        "org": "svenskagasthamnar.se",
@@ -5302,7 +5677,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5884,6 +6374,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5884,6 +6409,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "TEMPO GÖTEBORG VRÅNGÖ; VRÅNGÖ HAMN",
        "last": "2026-09-27",
        "myndighet": false
@@ -5316,7 +5691,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "donso": [
-@@ -5974,7 +6471,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5974,7 +6506,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://transdev.se/wp-content/uploads/sites/5/2026/07/Hosttidtabell-281-282-Liggande-A3.pdf",
        "org": "transdev.se",
@@ -5325,7 +5700,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -6039,7 +6536,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6039,7 +6571,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://transdev.se/wp-content/uploads/sites/5/2026/07/Hosttidtabell-283-Liggande-A4.pdf",
        "org": "transdev.se",
@@ -5334,7 +5709,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -6152,13 +6649,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6152,13 +6684,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -5348,7 +5723,16 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/tynningoleden/",
        "org": "Trafikverket",
-@@ -6181,23 +6671,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6170,7 +6695,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "url": "https://www.vaxholm.se/download/18.7540ce651827e350272a8e08/1661434105419/Bilaga%203%20-%20Kulturmilj%C3%B6underlag%20o%20.pdf",
+       "org": "vaxholm.se",
+       "vad": "snickarmästare Munthe förvärvade Höganäs, den så kallade Fyrkanten år 1874. Han började per omgående arrendera ut mark och sälja avstyckade tomter för sommarhus. Försäljningen ökade efter att ångbåtstrafiken till Höganäs etablerades år 1877.; Som mest hade Tynningö ett tjugotal samtidigt trafikerade bryggor.; Här finns en rik uppsättning av sommarvillor uppförda 1870–1920 i välexponerade lägen på klippor och tomter utmed vattnet till vilka man tog sig med ångbåt.; Tynningö norra delar ligger inom riksintresse för kulturmiljövården (PDF, kap. 02, 03 och 06)",
+-      "last": "2026-09-27",
++      "last": "2026-11-03",
+       "myndighet": true
+     },
+     {
+@@ -6181,23 +6706,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -5377,51 +5761,67 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6218,7 +6701,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6218,38 +6736,38 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.tynningo.se/information-2/tidtabell-for-buss-och-batar/",
        "org": "tynningo.se",
 -      "vad": "Tidtabell för buss Norra Lagnö — Gustavsberg 424V och 424H",
 +      "vad": "Tidtabell för buss Norra Lagnö – Gustavsberg 424V och 424H",
-+      "last": "2026-09-27",
-+      "myndighet": false
+       "last": "2026-09-27",
+       "myndighet": false
+-    }
+-  ],
+-  "djuro": [
 +    },
-+    {
+     {
+-      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/hamnskogen-eriksberg.html",
+-      "org": "Länsstyrelsen Stockholm",
+-      "vad": "Hamnskogen-Eriksbergs naturreservat är ett kommunalt reservat som omfattar cirka 35 hektar skärgårdsnatur, i huvudsak skog.; Områdets variation med tät och öppnare skog och vida utblickar över fjärdar ger stora upplevelsevärden.; Bad/badplats; Vandringsled; De som besöker reservatet med bil kan parkera i Björkås eller på två mindre parkeringar",
 +      "url": "https://kund.printhuset-sthlm.se/wa/h2.pdf",
 +      "org": "Waxholmsbolaget (tryckt tidtabell)",
 +      "vad": "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026",
-+      "last": "2026-09-27",
+       "last": "2026-09-27",
+-      "myndighet": true
 +      "myndighet": false
-+    },
-+    {
+     },
+     {
+-      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Djur%C3%B6",
+-      "org": "minkarta.lantmateriet.se",
+-      "vad": "Lantmäteriet Min Karta, sökning \"Djurö\" → Djurö | Värmdö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+-      "last": "2026-09-29",
+-      "myndighet": true
+-    },
 +      "url": "https://kund.printhuset-sthlm.se/wa/h4.pdf",
 +      "org": "Waxholmsbolaget (tryckt tidtabell)",
 +      "vad": "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång",
-       "last": "2026-09-27",
-       "myndighet": false
-     }
-@@ -6238,20 +6735,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "last": "2026-09-29",
-       "myndighet": true
-     },
--    {
++      "last": "2026-09-27",
++      "myndighet": false
++    }
++  ],
++  "djuro": [
+     {
 -      "url": "https://kund.printhuset-sthlm.se/sl/h433.pdf",
 -      "org": "SL (tryckt tidtabell)",
 -      "vad": "Slussen–Djurö; Giltig 17 augusti–12 december 2026; Stavsnäs vinterhamn; Djurönäset; Djurö södra; Djurö kyrka; Djurö skola; Björkås; BYNS GÅRD — måndag–fredag Slussen 08.18, Byns gård 09.20; lördag och söndag dagtid slutar 433 vid Stavsnäs vinterhamn",
--      "last": "2026-09-27",
--      "myndighet": true
--    },
--    {
++      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/hamnskogen-eriksberg.html",
++      "org": "Länsstyrelsen Stockholm",
++      "vad": "Hamnskogen-Eriksbergs naturreservat är ett kommunalt reservat som omfattar cirka 35 hektar skärgårdsnatur, i huvudsak skog.; Områdets variation med tät och öppnare skog och vida utblickar över fjärdar ger stora upplevelsevärden.; Bad/badplats; Vandringsled; De som besöker reservatet med bil kan parkera i Björkås eller på två mindre parkeringar",
+       "last": "2026-09-27",
+       "myndighet": true
+     },
+     {
 -      "url": "https://kund.printhuset-sthlm.se/sl/h434.pdf",
 -      "org": "SL (tryckt tidtabell)",
 -      "vad": "Slussen–Överby; Giltig 17 augusti–12 december 2026 — måndag–fredag Slussen 08.47, Byns gård 09.46; lördag, söndag och helgdag Slussen 09.45, Byns gård 10.44, därefter varje timme",
 -      "last": "2026-09-27",
--      "myndighet": true
--    },
++      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Djur%C3%B6",
++      "org": "minkarta.lantmateriet.se",
++      "vad": "Lantmäteriet Min Karta, sökning \"Djurö\" → Djurö | Värmdö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
++      "last": "2026-09-29",
+       "myndighet": true
+     },
      {
-       "url": "https://www.varmdo.se/kommunochpolitik/kartorochkommunfakta/historia.4.3251048d16e2a7e784837027.html",
-       "org": "varmdo.se",
-@@ -6315,6 +6798,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6315,6 +6833,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -5442,10 +5842,17 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.svenskakyrkan.se/djuro-moja-namdo/kyrkor",
        "org": "svenskakyrkan.se",
-@@ -6331,6 +6828,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6331,6 +6863,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      }
    ],
    "birka": [
++    {
++      "url": "https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-ekero-kommun.html",
++      "org": "havochvatten.se",
++      "vad": "Här ser du badplatserna som kommunen har registrerat.; listan har ingen badplats på Björkö",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
 +    {
 +      "url": "https://historiska.se/birka/vad-ar-birka-hovgarden/birka-varldsarvet/",
 +      "org": "historiska.se",
@@ -5456,7 +5863,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorko.html",
        "org": "Länsstyrelsen Stockholm",
-@@ -6348,14 +6852,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6348,14 +6894,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/",
        "org": "raa.se",
@@ -5473,13 +5880,14 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6376,35 +6880,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6376,51 +6922,58 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.birkavikingastaden.se/hitta-pa-birka/",
        "org": "birkavikingastaden.se",
 -      "vad": "Välkommen till vår Vikingakrog vid Mälarens strand! Vi använder närproducerade råvaror så mycket det går ;  — Inomhus i restaurangen finns 80 sittplatser och ungefär lika på uteserveringen, Ingen förbokning behövs förutom för grupper på över 20 personer, Barnmeny med köttbullar och pannkakor finns alltid ;  — Under lågsäsong (november–april) är museet och restaurangen stängda",
+-      "last": "2026-09-27",
 +      "vad": "Under sommaren (juni-september) kan du övernatta på Birka i ett av våra fina glampingtält. Här sover du bekvämt i ordentliga sängar av hotellstandard. Logi, middag, frukost, musei-entré och guidning ingår. Bokas via stromma.com.",
-       "last": "2026-09-27",
++      "last": "2026-11-03",
        "myndighet": false
      },
      {
@@ -5513,8 +5921,16 @@ index f7b2383..50cb709 100644
 +      "vad": "I priset ingår båtresa med Strömma Kanalbolaget tur och retur, entré till museet och guidad visning av fornlämningsområdet, Avgår från flera platser: Klara Mälarstrand, Nya Kungshatt, Jungfrusund & Vårby, Båt: M/S Mälar Victoria, Ombord på både M/S Mälar Victoria finns café ombord . «Från Stadshusbron» och «lunch ingår» var fel.",
        "last": "2026-09-27",
        "myndighet": false
++    },
++    {
++      "url": "https://www.upplevekero.se/se--gora/natur--friluftsliv/badplatser",
++      "org": "upplevekero.se",
++      "vad": "Här har vi samlat de kommunala badplatserna., Titta därför alltid på vattnet innan du badar. Det är badgästen själv som behöver bedöma om det finns algblomning.; listan har ingen badplats på Björkö",
++      "last": "2026-11-03",
++      "myndighet": false
      }
-@@ -6413,14 +6917,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+   ],
+   "lilla-karlso": [
      {
        "url": "https://www.lansstyrelsen.se/download/18.2c30d6f167c5e8e7c0179a/1545313306910/Lilla%20Karls%C3%B6%20SE0340025.pdf",
        "org": "Länsstyrelsen",
@@ -5531,7 +5947,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6434,14 +6938,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6434,14 +6987,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.destinationgotland.se/resa/",
        "org": "destinationgotland.se",
@@ -5555,7 +5971,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6457,14 +6968,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6457,14 +7017,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lansstyrelsen.se/gotland/besoksmal/nationalparker/gotska-sandons-nationalpark.html",
        "org": "Länsstyrelsen Gotland",
@@ -5572,7 +5988,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6478,82 +6989,82 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6478,82 +7038,82 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon",
        "org": "Sveriges Nationalparker",
@@ -5679,7 +6095,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.karlskrona.se/hitta-verksamheter/badplatser/aspo-havsbad",
        "org": "karlskrona.se",
-@@ -6578,21 +7089,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6578,21 +7138,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/aspoleden/",
        "org": "Trafikverket",
@@ -5718,7 +6134,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6606,21 +7131,42 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6606,21 +7180,42 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.visitkarlskrona.se/sv/drottningskarskastell",
        "org": "visitkarlskrona.se",
@@ -5739,16 +6155,16 @@ index f7b2383..50cb709 100644
        "org": "visitkarlskrona.se",
 -      "vad": "För de stora örlogsskeppen är inloppet mellan Aspö och Tjurkö det enda sättet att nå Karlskrona. ;  — Drottningskärs kastell är en del av världsarvet Örlogsstaden Karlskrona, Själva fastigheten förvaltas av Statens fastighetsverk ;  — Aspö kyrka stod färdig 1891., Aspö kyrka är uppförd i nygotisk stil.",
 +      "vad": "I november 1679 besöker Karl XI skärgårdsöarna Aspö, Tjurkö och Trossö och ger militären och arkitekten Erik Dahlbergh i uppdrag att uppföra skansar på holmar vid Aspö och Tjurkö, 1897 föreslår man att ett nytt fort ska uppföras på Aspö, batteri Ellenabben 1970",
-       "last": "2026-09-27",
-       "myndighet": false
-     },
++      "last": "2026-09-27",
++      "myndighet": false
++    },
 +    {
 +      "url": "https://www.visitkarlskrona.se/sv/aspo-kyrka",
 +      "org": "visitkarlskrona.se",
 +      "vad": "Aspö kyrka stod färdig 1891., Aspö kyrka är uppförd i nygotisk stil.",
-+      "last": "2026-09-27",
-+      "myndighet": false
-+    },
+       "last": "2026-09-27",
+       "myndighet": false
+     },
 +    {
 +      "url": "https://www.visitkarlskrona.se/sv/gasthamn-lokanabben-aspo",
 +      "org": "visitkarlskrona.se",
@@ -5764,7 +6180,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6632,10 +7178,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6632,10 +7227,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": false
      },
      {
@@ -5778,7 +6194,7 @@ index f7b2383..50cb709 100644
        "myndighet": false
      },
      {
-@@ -6647,13 +7193,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6647,13 +7242,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      }
    ],
    "sturko": [
@@ -5792,7 +6208,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.karlskrona.se/globalassets/kommun-och-politik/det-har-ar-karlskrona/dokument/folkmangd-2024.pdf",
        "org": "karlskrona.se",
-@@ -6664,7 +7203,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6664,7 +7252,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.karlskrona.se/hitta-verksamheter/badplatser/sturko/",
        "org": "karlskrona.se",
@@ -5801,7 +6217,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6682,6 +7221,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6682,6 +7270,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -5815,7 +6231,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://caravanclub.se/camping/sturko/",
        "org": "caravanclub.se",
-@@ -6692,7 +7238,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6692,7 +7287,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.ica.se/butiker/nara/karlskrona/ica-nara-sturkohallen-1003743/",
        "org": "ica.se",
@@ -5824,7 +6240,17 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6736,7 +7282,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6733,10 +7328,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     }
+   ],
+   "bla-jungfrun": [
++    {
++      "url": "https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-oskarshamns-kommun.html",
++      "org": "havochvatten.se",
++      "vad": "Här ser du badplatserna som kommunen har registrerat.; listan har ingen badplats på Blå Jungfrun",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
      {
        "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/nationalparker/bla-jungfrun.html",
        "org": "Länsstyrelsen Kalmar län",
@@ -5833,13 +6259,14 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6750,42 +7296,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6750,45 +7352,59 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.naturvardsverket.se/4ac67d/globalassets/nfs/2014/nfs-2014-8.pdf",
        "org": "Naturvårdsverket",
 -      "vad": "Tillstånd krävs dock inte för övernattning högst en natt i följd på, anvisad plats under perioden 20 juni–20 augusti, uppföra enklare anläggning för övernattning vid Sikhamn, sätta upp tält, vindskydd eller liknande anordning ;  — Mellan 27 juni och 16 augusti kan ni övernatta en natt i vindskydd på Blå Jungfrun. Det finns plats för 8 personer, fördelat på 2 vindskydd., Vindskydd: Ingen kostnad för att övernatta.",
+-      "last": "2026-09-27",
 +      "vad": "Tillstånd krävs dock inte för övernattning högst en natt i följd på, anvisad plats under perioden 20 juni–20 augusti, uppföra enklare anläggning för övernattning vid Sikhamn, sätta upp tält, vindskydd eller liknande anordning",
-       "last": "2026-09-27",
++      "last": "2026-11-03",
        "myndighet": true
      },
      {
@@ -5862,8 +6289,9 @@ index f7b2383..50cb709 100644
        "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/bla-jungfrun-nationalpark/besok-parken/hitta-hit",
        "org": "Sveriges Nationalparker",
 -      "vad": "Turerna arrangeras av Solkustturer. Båtresan tar cirka 1,5 timme. ;  — Högsäsong: 27 juni-27 augusti, kl 9-15.15 (3 tim och 15 min på Blå Jungfrun), kl 9-16.15 (4 tim och 15 min på Blå Jungfrun) ;  — är det färre än 20 bokade ställs turen in ;  — ca 15% av turerna får ställas in",
+-      "last": "2026-09-27",
 +      "vad": "Båten avgår från Ölandskajen i Oskarshamns hamn på fastlandet och från Södra piren i Byxelkroks hamn på Öland, Landstigning sker direkt mot klipporna, eftersom det inte finns några bryggor på ön",
-       "last": "2026-09-27",
++      "last": "2026-11-03",
        "myndighet": true
      },
      {
@@ -5889,30 +6317,41 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6799,42 +7352,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
++    {
++      "url": "https://www.oskarshamn.se/kultur-och-fritid/idrott-och-fritid/badplatser/havsbad/",
++      "org": "oskarshamn.se",
++      "vad": "Karta över kommunens havsbad; kommunens åtta havsbad (Bredviken, Dragskär, Gunnarsö, Havslätt, Nötö, Stångehamn Badvägen, Åsvallesund, Vånevik) omfattar inte Blå Jungfrun",
++      "last": "2026-11-03",
++      "myndighet": false
++    },
+     {
+       "url": "https://www.solkustturer.se/kopia-på-när-ställs-turen-in",
+       "org": "solkustturer.se",
+@@ -6799,42 +7415,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.solkustturer.se/_files/ugd/046547_2f4115c8d26147979f40538cdd1e2a95.pdf",
        "org": "solkustturer.se",
 -      "vad": "fyller 100 år som nationalpark ;  — Båten avgår från Ölandskajen i Oskarshamns hamn på fastlandet och från Södra piren i Byxelkroks hamn på Öland, Landstigning sker direkt mot klipporna, eftersom det inte finns några bryggor på ön",
 +      "vad": "Program M/S Solkust säsongen 2026, Försäsong 9, 16, 23 och 31 maj, Högsäsong: 27 juni-27 augusti, Eftersäsong: 29 augusti-26 september lördagar",
-+      "last": "2026-09-27",
-+      "myndighet": false
-+    },
-+    {
-+      "url": "https://www.solkustturer.se/kopia-på-labryrinten",
-+      "org": "solkustturer.se",
-+      "vad": "Mellan 27 juni och 16 augusti kan ni övernatta en natt i vindskydd på Blå Jungfrun. Det finns plats för 8 personer, fördelat på 2 vindskydd., Vindskydd: Ingen kostnad för att övernatta.",
        "last": "2026-09-27",
        "myndighet": false
      },
      {
-       "url": "https://www.solkustturer.se/viktigt-att-veta",
+-      "url": "https://www.solkustturer.se/viktigt-att-veta",
++      "url": "https://www.solkustturer.se/kopia-på-labryrinten",
        "org": "solkustturer.se",
 -      "vad": "Turer till Blå Jungfrun bör man förboka eftersom de alltid är fullsatta vid bra väder ;  — Avvikelser från Turlista informeras på hemsida eller mejl kvällen innan avsedd tur innan kl 18 undantagsvis samma morgon",
-+      "vad": "Det finns inga moderniteter som restaurang eller café. Det finns dessutom inga bryggor",
++      "vad": "Mellan 27 juni och 16 augusti kan ni övernatta en natt i vindskydd på Blå Jungfrun. Det finns plats för 8 personer, fördelat på 2 vindskydd., Vindskydd: Ingen kostnad för att övernatta.",
        "last": "2026-09-27",
        "myndighet": false
      },
++    {
++      "url": "https://www.solkustturer.se/viktigt-att-veta",
++      "org": "solkustturer.se",
++      "vad": "Man ska då hålla sig på behörigt avstånd från vattnet eftersom det rullar in stora vågor med risk för att man dras ut i vattnet.",
++      "last": "2026-11-03",
++      "myndighet": false
++    },
      {
        "url": "https://www.solkustturer.se/kopia-på-mytologi",
        "org": "solkustturer.se",
@@ -5947,7 +6386,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -6857,21 +7417,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6857,21 +7480,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/hemsoleden/",
        "org": "Trafikverket",
@@ -5979,7 +6418,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6885,42 +7452,56 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6885,42 +7515,56 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://se.hemsofastning.se/naturupplevelse/",
        "org": "se.hemsofastning.se",
@@ -6043,7 +6482,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -6929,7 +7510,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6929,35 +7573,42 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://dokument.gotland.se:443/IntegrationService.svc/doc/content/55284",
        "org": "dokument.gotland.se",
@@ -6052,7 +6491,15 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6943,21 +7524,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     {
+       "url": "https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser/norsta-aurar",
+       "org": "gotland.se",
+-      "vad": "Badplatsen Norsta Aurar på Fårö är en cirka fem kilometer lång, långgrund, sandstrand, Skyltning mot badplatsen saknas, men badplatsen nås till fots från Fårö fyr.",
+-      "last": "2026-09-27",
++      "vad": "Badplatsen Norsta Aurar på Fårö är en cirka fem kilometer lång, långgrund, sandstrand som västerut övergår i badplatsen Skär., Slamtoaletter, Soptunna, Livboj, Skyltning mot badplatsen saknas, men badplatsen nås till fots från Fårö fyr.",
++      "last": "2026-11-03",
+       "myndighet": true
+     },
      {
        "url": "https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/allmant-om-region-gotlands-badplatser",
        "org": "gotland.se",
@@ -6065,8 +6512,16 @@ index f7b2383..50cb709 100644
        "url": "https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser/ekeviken",
        "org": "gotland.se",
 -      "vad": "Se eventuell skyltning.",
-+      "vad": "Badplatsen Ekeviken på Fårö är en cirka 900 meter lång, långgrund, sandstrand.",
-       "last": "2026-09-27",
+-      "last": "2026-09-27",
++      "vad": "Badplatsen Ekeviken på Fårö är en cirka 900 meter lång, långgrund, sandstrand., Slamtoaletter, Soptunnor, Livbojar, Livbåt, Tillgänglighetsanpassad toalett vid västra parkeringen., Skyltning mot badplatsen finns från väg 699, huvudvägen, samt läng väg 702 som ansluter till badplatsen.",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
++    {
++      "url": "https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser",
++      "org": "gotland.se",
++      "vad": "Nordöstra Fårö (under både Ekeviken och Norsta Aurar)",
++      "last": "2026-11-03",
        "myndighet": true
      },
      {
@@ -6077,7 +6532,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6999,7 +7580,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6999,7 +7650,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://bergmancenter.se/",
        "org": "bergmancenter.se",
@@ -6086,7 +6541,7 @@ index f7b2383..50cb709 100644
        "last": "2026-10-19",
        "myndighet": false
      },
-@@ -7127,21 +7708,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7127,21 +7778,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22cdc/1732538244407/Trysunda.pdf",
        "org": "Länsstyrelsen",
@@ -6111,7 +6566,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -7153,31 +7734,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7153,31 +7804,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -6155,7 +6610,7 @@ index f7b2383..50cb709 100644
        "myndighet": false
      },
      {
-@@ -7188,23 +7769,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7188,23 +7839,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": false
      },
      {
@@ -6191,7 +6646,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7225,7 +7813,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7225,7 +7883,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://trysundavandrarhem.se/bo",
        "org": "trysundavandrarhem.se",
@@ -6200,7 +6655,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7239,26 +7827,12 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7239,26 +7897,12 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://trysundavandrarhem.se/sk%C3%A4rg%C3%A5rdscaf%C3%A9t/",
        "org": "trysundavandrarhem.se",
@@ -6228,7 +6683,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html",
        "org": "Länsstyrelsen Blekinge",
-@@ -7273,6 +7847,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7273,6 +7917,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -6249,24 +6704,10 @@ index f7b2383..50cb709 100644
      {
        "url": "https://fiskybusiness.nu/vandrarhemmet-hanouml.html",
        "org": "fiskybusiness.nu",
-@@ -7310,38 +7898,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-     }
-   ],
-   "svartloga": [
--    {
--      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Svartl%C3%B6ga",
--      "org": "minkarta.lantmateriet.se",
--      "vad": "Lantmäteriet Min Karta, sökning \"Svartlöga\" → Svartlöga | Norrtälje | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
--      "last": "2026-09-29",
--      "myndighet": true
--    },
--    {
--      "url": "https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/svartloga---rodloga.pdf",
--      "org": "norrtalje.se",
--      "vad": "Den första noteringen om fast bosättning på Svartlöga är från år 1576.; Bebyggelsen har varit belägen på samma plats sedan ön koloniserades, på den sydöstra sidan av ön.; Det står dock klart att det var strömmingsfisket ute på fiskeskärden, säljakten och sjöfågel och dess ägg som var huvudnäring.; Den sista turen ut till havsbandet var år 1928.; År 1928 fick ön en regelbunden ångbåtstrafik (Norrtälje kommun, Kulturmiljöutredning nr 4, 2016)",
--      "last": "2026-09-27",
--      "myndighet": true
--    },
+@@ -7324,27 +7982,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "last": "2026-09-27",
+       "myndighet": true
+     },
 -    {
 -      "url": "https://kund.printhuset-sthlm.se/wa/s26.pdf",
 -      "org": "Waxholmsbolaget (tryckt tidtabell)",
@@ -6279,24 +6720,19 @@ index f7b2383..50cb709 100644
 -      "org": "Waxholmsbolaget (tryckt tidtabell)",
 -      "vad": "GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026; 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — RÖDLÖGA — onsdag tur 2819 Furusund 14.10, Svartlöga 14.55; fredag, lördag och söndag Furusund 10.05, Svartlöga 11.50; lördag retur tur 2852 Svartlöga 13.10, Furusund 15.00",
 -      "last": "2026-09-27",
-+    {
-+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Svartl%C3%B6ga",
-+      "org": "minkarta.lantmateriet.se",
-+      "vad": "Lantmäteriet Min Karta, sökning \"Svartlöga\" → Svartlöga | Norrtälje | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
-+      "last": "2026-09-29",
-       "myndighet": true
-     },
-     {
+-      "myndighet": true
+-    },
+-    {
 -      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
 -      "org": "Waxholmsbolaget (tryckt tidtabell)",
 -      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026 — tur 2621 måndag–torsdag Strömkajen 08.45, Svartlöga 12.40b; lördag tur 2651 08.45–12.40b, retur tur 2652 Svartlöga 14.15, Strömkajen 18.15",
-+      "url": "https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/svartloga---rodloga.pdf",
-+      "org": "norrtalje.se",
-+      "vad": "Den första noteringen om fast bosättning på Svartlöga är från år 1576.; Bebyggelsen har varit belägen på samma plats sedan ön koloniserades, på den sydöstra sidan av ön.; Det står dock klart att det var strömmingsfisket ute på fiskeskärden, säljakten och sjöfågel och dess ägg som var huvudnäring.; Den sista turen ut till havsbandet var år 1928.; År 1928 fick ön en regelbunden ångbåtstrafik (Norrtälje kommun, Kulturmiljöutredning nr 4, 2016)",
-       "last": "2026-09-27",
-       "myndighet": true
-     },
-@@ -7383,7 +7950,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+-      "last": "2026-09-27",
+-      "myndighet": true
+-    },
+     {
+       "url": "https://www.explorearchipelago.com/sthlm/outer-archipelago/svartloga",
+       "org": "explorearchipelago.com",
+@@ -7383,7 +8020,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lassashagar.se/uthyrning/",
        "org": "lassashagar.se",
@@ -6305,7 +6741,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7393,6 +7960,27 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7393,6 +8030,27 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Svartlöga var en av få skärgårdsöar som klarade sig från ryssarnas härjningar 1719. Grunden runt ön är förrädiska och enligt traditionen skrämde öns säljägare bort inkräktarna med sina bössor.",
        "last": "2026-09-27",
        "myndighet": false
@@ -6333,7 +6769,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "visingo": [
-@@ -7625,7 +8213,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7625,7 +8283,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://ilandskrona.se/besoka/ven/tychobrahe-museet/besoka-museet/",
        "org": "ilandskrona.se",
@@ -6342,7 +6778,28 @@ index f7b2383..50cb709 100644
        "last": "2026-10-19",
        "myndighet": false
      },
-@@ -7660,7 +8248,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7643,6 +8301,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "last": "2026-09-27",
+       "myndighet": false
+     },
++    {
++      "url": "https://www.landskrona.se/uppleva-och-gora/idrott-motion-och-friluftsliv/badplatser/badplats-kyrkbacken/",
++      "org": "landskrona.se",
++      "vad": "Kyrkbacken har en sandstrand och vattnet är långgrunt., Badplatsen ligger på den nordvästra sidan av Ven i anslutning till Kyrkbackens hamn. Sandstranden är kort och området vid stranden består främst av gräsytor. Stranden är cirka 50-100 meter lång., För din säkerhet finns livboj tillgänglig året om. Badplatsen har inga badvakter., Brygga, Avgiftsfri toalett / HWC, Här finns fyra fasta grillplatser., Få parkeringsmöjligheter. Vi rekommenderas att inte ta bilen med till Ven., Hundar får varken vistas eller bada på allmänna badplatser under badsäsongen, perioden 1 maj – 30 september.",
++      "last": "2026-11-03",
++      "myndighet": false
++    },
++    {
++      "url": "https://www.landskrona.se/uppleva-och-gora/idrott-motion-och-friluftsliv/badplatser/badplats-norreborg/",
++      "org": "landskrona.se",
++      "vad": "Norreborg är en av tre badplatser på ön Ven. Badar du här får du uppleva fin sandstrand. Här finns också gott om möjlighet att få skugga., För din säkerhet finns livboj tillgänglig året om. Badplatsen har inga badvakter., Brygga, Avgiftsfri toalett / HWC, Här finns två fasta grillplatser., en strandrullstol till utlåning, Under sommarens badsäsong, 15 juni-15 augusti, kan den lånas, Kontakta Landskrona stads kontaktcenter, Hundar får varken vistas eller bada på allmänna badplatser under badsäsongen, perioden 1 maj – 30 september.",
++      "last": "2026-11-03",
++      "myndighet": false
++    },
+     {
+       "url": "https://www.norreborgshamn.se/",
+       "org": "norreborgshamn.se",
+@@ -7660,7 +8332,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://ventrafiken.se/tidtabell/",
        "org": "ventrafiken.se",
@@ -6351,7 +6808,7 @@ index f7b2383..50cb709 100644
        "last": "2026-10-19",
        "myndighet": false
      },
-@@ -7680,13 +8268,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7680,13 +8352,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      }
    ],
    "tjaro": [
@@ -6365,7 +6822,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tjaro.html",
        "org": "Länsstyrelsen Blekinge",
-@@ -7701,6 +8282,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7701,6 +8366,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -6379,28 +6836,54 @@ index f7b2383..50cb709 100644
      {
        "url": "https://tjaro.com/hotell-vandrarhem/",
        "org": "tjaro.com",
-@@ -7760,16 +8348,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7755,15 +8427,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     {
+       "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96cker%C3%B6",
+       "org": "minkarta.lantmateriet.se",
+-      "vad": "Lantmäteriet Min Karta, sökning \"Öckerö\" → Öckerö | Öckerö | Natur- och terrängnamn, SWEREF 99 TM omräknat till WGS 84",
+-      "last": "2026-09-29",
++      "vad": "Lantmäteriet Min karta: Öckerö | Öckerö | Trakt, E 300242 N 6401598; Hjälvik ligger 1,7 km väster och 0,9 km norr om traktens punkt, uppmätt i Lantmäteriets Min karta",
++      "last": "2026-11-03",
        "myndighet": true
      },
      {
 -      "url": "https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/naturomraden-och-naturreservat/ockero-naturomrade-och-motionsspar",
-+      "url": "https://www.ockero.se/kommun-och-politik/statistik",
-       "org": "ockero.se",
+-      "org": "ockero.se",
 -      "vad": "Rördammen (1), en av kommunens största våtmarker, enkelbeckasin, näktergal, vattenrall och rörhöna, Vid dammen finns högt uppsatta holkar och i dessa brukar det häcka tornfalk, I vikarna finns vidsträckta klapperstensfält, här växer den sällsynta strandvallmon, Motionsspåret har grusunderlag och är 4600 meter långt",
-+      "vad": "Folkmängd per 2025-12-31, Befolkning per ö, 3569 3498 3559, 12771 12865",
-       "last": "2026-09-27",
+-      "last": "2026-09-27",
++      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Hj%C3%A4lvik",
++      "org": "minkarta.lantmateriet.se",
++      "vad": "Lantmäteriet Min karta: Hjälvik | Öckerö | Hav och sjö, E 298585 N 6402489 (SWEREF 99 TM)",
++      "last": "2026-11-03",
        "myndighet": true
      },
      {
--      "url": "https://www.ockero.se/kommun-och-politik/statistik",
+@@ -7774,37 +8446,51 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "myndighet": true
+     },
+     {
+-      "url": "https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/badplatser/hjalviks-badplats",
 +      "url": "https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/naturomraden-och-naturreservat/ockero-naturomrade-och-motionsspar",
        "org": "ockero.se",
--      "vad": "Folkmängd per 2025-12-31, Befolkning per ö, 3569 3498 3559, 12771 12865",
+-      "vad": "Hjälviks badplats ligger på Öckerö, Sandstrand, gräs och klippor, Toalett (WC och för funktionshindrade), Volleybollplan, Hundförbud från 1 maj till 30 september",
 +      "vad": "Rördammen (1), en av kommunens största våtmarker, enkelbeckasin, näktergal, vattenrall och rörhöna, Vid dammen finns högt uppsatta holkar och i dessa brukar det häcka tornfalk, I vikarna finns vidsträckta klapperstensfält, här växer den sällsynta strandvallmon, Motionsspåret har grusunderlag och är 4600 meter långt",
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -7783,28 +8371,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
++    {
++      "url": "https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/badplatser/hjalviks-badplats",
++      "org": "ockero.se",
++      "vad": "Hjälviks badplats ligger på Öckerö., I området Prästängen finns det fotbollsplaner och en inomhushall Göstahallen, ishall, lekpark, skatepark och motionsspår., Det finns en stor avgiftsbelagd parkering., Hundförbud från 1 maj till 30 september, Eldningsförbud (fast grillplats får användas), Volleybollplan, Toalett (WC och för funktionshindrade), Ramp för funktionshindrade, Sandstrand, gräs och klippor, Räddningsutrustning, Tre parkeringsplatser för funktionshindrade vid badplatsen, Kommunal badplats inom gulmarkerat område",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
++    {
++      "url": "https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/badplatser",
++      "org": "ockero.se",
++      "vad": "Från den 1 maj till den 30 september råder det hundförbud på alla kommunala badplatser i Öckerö kommun. Det gäller även kopplade hundar.",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
      {
        "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/honoleden/",
        "org": "Trafikverket",
@@ -6438,7 +6921,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7825,7 +8413,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7825,7 +8511,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://skargardshotellethono.se/",
        "org": "skargardshotellethono.se",
@@ -6447,7 +6930,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7837,16 +8425,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7837,16 +8523,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": false
      },
      {
@@ -6482,7 +6965,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -7862,49 +8464,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7862,49 +8562,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/naturomraden-och-naturreservat/roro-naturreservat",
        "org": "ockero.se",
@@ -6545,7 +7028,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7915,24 +8517,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7915,24 +8615,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": false
      },
@@ -6586,7 +7069,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -8046,7 +8655,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8046,7 +8753,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://visitholmon.com/gora/vandra-2/",
        "org": "visitholmon.com",
@@ -6595,7 +7078,28 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -8178,17 +8787,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8157,6 +8864,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "last": "2026-10-19",
+       "myndighet": true
+     },
++    {
++      "url": "https://www.kungalv.se/kultur--fritid/bada/marstrands-badplats/",
++      "org": "kungalv.se",
++      "vad": "Välkommen till Barnbadet på Marstrandsön, Sandstrand: Ja, Badstegar: Ja, Trampolin: Ja, Toalett: Ja, Tillgänglighetsanpassad för personer med funktionsvariation: Nej, Marstrands badplats ligger på sydsidan av Marstrandsön, cirka 400 meter från färjeläget. Det finns parkeringar på Koön, 100-1000 meter från färjan. Tänk på att det ofta är fullt på de närmsta parkeringarna under högsäsongen., Hamngatan, Marstrandsön",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
++    {
++      "url": "https://www.kungalv.se/kultur--fritid/bada/",
++      "org": "kungalv.se",
++      "vad": "Marstrands badplats, Tänk på att det inte är tillåtet med hundar, hästar eller andra djur på kommunala badplatser., Vattenprover tas regelbundet på alla kommunala badplatser.",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
+     {
+       "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Marstrand",
+       "org": "minkarta.lantmateriet.se",
+@@ -8178,17 +8899,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-16",
        "myndighet": true
      },
@@ -6614,7 +7118,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -8373,6 +8975,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8373,6 +9087,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Fransk krog i hjärtat av Marstrand med uteservering.; Johans Krog är en fransk bistro belägen på vackra Marstrand.; Kungsgatan 12",
        "last": "2026-10-20",
        "myndighet": false
@@ -6628,21 +7132,29 @@ index f7b2383..50cb709 100644
      }
    ],
    "smogen": [
-@@ -8404,13 +9013,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "last": "2026-09-27",
+@@ -8405,10 +9126,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
--    {
+     {
 -      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf",
 -      "org": "Västtrafik (tidtabell)",
 -      "vad": "Smögen–Kungshamn–Uddevalla–Trollhättan, Linjen trafikeras av Vy Buss., Gäller 14 dec 2025 - 12 dec 2026, Smögen busstation 08.47 10.47 12.47 14.47 16.47 18.47 20.47 23.07, 09.19 11.19 13.19 15.19 17.19 19.19 21.39 — t.ex. lör/sön Uddevalla central 09.19 → Smögen busstation 10.47 (88 min); Torp Terminalen 09.35 → Smögen 10.47 (72 min)",
 -      "last": "2026-09-27",
--      "myndighet": true
--    },
++      "url": "https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/smogen",
++      "org": "sotenas.se",
++      "vad": "Badplatsen Sandö på Smögen, Sandstrand med bryggor, badstegar och handikapptrappa. Omklädningsrum, toalett och handikapptoalett. Där finns också gillplats och parkering.",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
++    {
++      "url": "https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html",
++      "org": "sotenas.se",
++      "vad": "Det finns cirka 20 större kommunala badplatser., Hundar får gärna bada men inte på kommunens offentliga badplatser under sommaren, Smögen - Sandö, Vallevik och herr- och dambadet vid Makrillviken",
++      "last": "2026-11-03",
+       "myndighet": true
+     },
      {
-       "url": "https://gostasfiskekrog.se/",
-       "org": "gostasfiskekrog.se",
-@@ -8487,6 +9089,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8487,6 +9215,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Göstas Fiskekrog is located next to the fish shop, Göstas Fiskbutik",
        "last": "2026-09-27",
        "myndighet": false
@@ -6656,7 +7168,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "lysekil": [
-@@ -8525,20 +9134,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8525,20 +9260,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -6677,7 +7189,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.bohuslansmuseum.se/samlingar-och-historia/gamla-historiska-artiklar/badorten-lysekil/",
        "org": "Bohusläns museum",
-@@ -8598,7 +9193,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8598,7 +9319,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.havetshus.se/besok-oss/oppettider/",
        "org": "havetshus.se",
@@ -6686,7 +7198,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -8626,7 +9221,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8626,7 +9347,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.sivikscampinglysekil.se/",
        "org": "sivikscampinglysekil.se",
@@ -6695,7 +7207,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -8685,6 +9280,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8685,6 +9406,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "bekräftar adressen Norra Hamngatan 5 i Lysekil och menyn med skaldjur, fiskrätter, inlagd sill och moules frites",
        "last": "2026-09-16",
        "myndighet": false
@@ -6716,7 +7228,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "kosterhavet": [
-@@ -8723,20 +9332,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8723,20 +9458,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -6737,7 +7249,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.ekenashavshotell.se/",
        "org": "ekenashavshotell.se",
-@@ -8841,6 +9436,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8841,9 +9562,37 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Restaurangen ligger alldeles vid havet i en ombyggd gammal sjöbod vid Västra Bryggan på Nordkoster, Menyn består till stor del av rätter från havet",
        "last": "2026-09-27",
        "myndighet": false
@@ -6758,11 +7270,27 @@ index f7b2383..50cb709 100644
      }
    ],
    "grebbestad": [
-@@ -8872,20 +9481,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "last": "2026-09-27",
++    {
++      "url": "https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/grebbestad.html",
++      "org": "havochvatten.se",
++      "vad": "Grebbestad är en badplats i Tanums kommun, 2025: ★★★ Utmärkt kvalitet, 2024: ★★ Bra kvalitet, 2023: ★★ Bra kvalitet, Grus/sandbotten, Stor gräsmatta som klipps mycket regelbundet., Tillsyn två eller fler gånger i veckan under badsäsong., Badbrygga finns vid badplatsen.",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
++    {
++      "url": "https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/tanum-strand.html",
++      "org": "havochvatten.se",
++      "vad": "Tanum Strand är en badplats i Tanums kommun, Berg och grus/sandbotten, Berg och stor gräsmatta som klipps mycket regelbundet., Badbrygga och flyflotte finns vid badplatsen.",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
+     {
+       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html",
+       "org": "Länsstyrelsen Västra Götaland",
+@@ -8873,17 +9622,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
--    {
+     {
 -      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4877__0__LINE__20260817__20261212__9d26ba47-e7c4-4a38-b1c9-09f2b69a0feb__2%2C0__2767448.pdf",
 -      "org": "Västtrafik (tidtabell)",
 -      "vad": "Havstenssund–Tanumshede och omvänt, Gäller 17 aug - 12 dec 2026, Tanumshede centrum 06.55 13.30 15.50, Grebbestad busstation 07.09 07.46 13.40 16.00 — 13.30 → 13.40 = 10 min, 06.55 → 07.09 = 14 min",
@@ -6774,12 +7302,14 @@ index f7b2383..50cb709 100644
 -      "org": "Västtrafik (tidtabell)",
 -      "vad": "Tanumshede–Grebbestad–Sportshopen och omvänt — Tanumshede centrum 09.05 → Grebbestad busstation 09.23 = 18 min",
 -      "last": "2026-09-27",
--      "myndighet": true
--    },
++      "url": "https://www.tanum.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.7664b4813898b7df9845725.html",
++      "org": "tanum.se",
++      "vad": "På badplatserna vid Badberget i Fjällbacka, Tanum Strand strax söder om Grebbestad, Östad samt Edsviksbadet finns handikappramper",
++      "last": "2026-11-03",
+       "myndighet": true
+     },
      {
-       "url": "https://bistroskafferiet.se/",
-       "org": "bistroskafferiet.se",
-@@ -8931,7 +9526,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8931,7 +9673,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://tanumstrand.se/gasthamn/",
        "org": "tanumstrand.se",
@@ -6788,7 +7318,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -8990,6 +9585,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8990,6 +9732,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Vitlycke museum - porten till världsarvet, Vi är en del av Västra Götalandsregionens kulturförvaltning",
        "last": "2026-09-27",
        "myndighet": false
@@ -6809,7 +7339,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "fjallbacka": [
-@@ -9014,13 +9623,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9014,13 +9770,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -6823,7 +7353,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.brygganfjallbacka.se/",
        "org": "Bryggan Fjällbacka",
-@@ -9081,7 +9683,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9081,7 +9830,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "url": "https://www.vastsverige.com/en/tanum/aktiviteter/paddling/paddla-fjallbacka/",
        "org": "vastsverige.com",
        "vad": "rutten namnger Kråkholmen, Köttöarna, Porsholmen, Valö, Dannholmen och Hjärterön i skyddat vatten",
@@ -6832,7 +7362,7 @@ index f7b2383..50cb709 100644
        "myndighet": false
      },
      {
-@@ -9098,6 +9700,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9098,6 +9847,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-16",
        "myndighet": false
      },
@@ -6846,7 +7376,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.vastsverige.com/en/tanum/produkter/stora-hotellet-fjallbacka/",
        "org": "vastsverige.com",
-@@ -9106,9 +9715,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9106,9 +9862,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": false
      },
      {
@@ -6859,19 +7389,10 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -9127,32 +9736,18 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "vad": "Bildat: 2003, Areal: cirka 121 hektar, Allra mest känt är området för sina blåsippor, De blommar här i stora mängder under våren innan lövträdens krontak sluter sig i ek- och bokskog, Området är kuperat med gott om block och lodräta stup, På flera platser finns så kallad krattekskog, hävdade kulturmarker, Du hittar det sällsynta och hotade gräset råglosta i reservatet, Här vittnar fällda träd och stubbar om att det finns bäver i området, En av lederna följer den gamla landsvägen, som var i bruk ännu under 1930-talet, Naturvårdsförvaltare: Västkuststiftelsen, Området ingår i EU:s ekologiska nätverk av skyddade områden, Natura 2000",
-       "last": "2026-09-27",
+@@ -9136,23 +9892,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
--    },
--    {
--      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Grundsund",
--      "org": "minkarta.lantmateriet.se",
--      "vad": "Lantmäteriet Min Karta, sökning \"Grundsund\" → Grundsund | Lysekil | Tätort, SWEREF 99 TM omräknat till WGS 84",
--      "last": "2026-09-29",
--      "myndighet": true
--    },
--    {
+     },
+     {
 -      "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/gullmarsleden/",
 -      "org": "Trafikverket",
 -      "vad": "Gullmarsleden går mellan Finnsbo, Lysekil och Skår, Uddevalla i Gullmarsfjorden, Färjeledens längd är 1850 meter och överfartstiden är tio minuter, Resan med vägfärjan är avgiftsfri",
@@ -6883,15 +7404,9 @@ index f7b2383..50cb709 100644
 -      "org": "Västtrafik (tidtabell)",
 -      "vad": "847 Lysekil–Skaftö, Gäller 1 jan - 12 dec 2026 utom 15 juni - 16 aug",
 -      "last": "2026-09-27",
-+    },
-+    {
-+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Grundsund",
-+      "org": "minkarta.lantmateriet.se",
-+      "vad": "Lantmäteriet Min Karta, sökning \"Grundsund\" → Grundsund | Lysekil | Tätort, SWEREF 99 TM omräknat till WGS 84",
-+      "last": "2026-09-29",
-       "myndighet": true
-     },
-     {
+-      "myndighet": true
+-    },
+-    {
 -      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4845__0__LINE__20260817__20261212__1fb56a4f-7e7e-4e3c-8b26-b834a4887c8a__1%2C0__2789942.pdf",
 -      "org": "Västtrafik (tidtabell)",
 -      "vad": "Grundsund–Fiskebäckskil–Bokenäs–Uddevalla, Torp Terminalen, Gäller 17 aug - 12 dec 2026",
@@ -6901,7 +7416,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -9166,7 +9761,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9166,7 +9908,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.pellesrokeri.com/",
        "org": "pellesrokeri.com",
@@ -6910,7 +7425,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9201,7 +9796,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9201,7 +9943,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/en/things-to-do/explore-the-west-coast-by-boat/ferry-lines/route-map-lysekiluddevallaljungskile/",
        "org": "vastsverige.com",
@@ -6919,7 +7434,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9215,7 +9810,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9215,7 +9957,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/lysekil/produkter/skafto-vandrarhem/",
        "org": "vastsverige.com",
@@ -6928,7 +7443,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9232,6 +9827,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9232,6 +9974,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Östra kajen 20, 45179 Grundsund",
        "last": "2026-09-27",
        "myndighet": false
@@ -6949,7 +7464,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "hamburgsund": [
-@@ -9270,13 +9879,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9270,13 +10026,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -6963,7 +7478,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://gasthamnsbolaget.se/en/guest-harbours-in-bohuslan/hamburgsund-guest-harbour/",
        "org": "gasthamnsbolaget.se",
-@@ -9325,6 +9927,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9325,6 +10074,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Udden 1",
        "last": "2026-09-27",
        "myndighet": false
@@ -6977,7 +7492,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "karingon": [
-@@ -9349,20 +9958,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9349,20 +10105,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -6998,7 +7513,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.destinationkaringon.online/upplev",
        "org": "destinationkaringon.online",
-@@ -9387,7 +9982,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9387,7 +10129,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.destinationkaringon.online/%C3%A4ta-dricka",
        "org": "destinationkaringon.online",
@@ -7007,7 +7522,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9488,6 +10083,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9488,6 +10230,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "På Käringön föddes fiskarsonen Olof Knape år 1664, Olof gick till sjöss åtta år gammal, År 1700 blev han handplockad som amiralitetskapten av kung Karl XII, främst var han involverad i kaparverksamheten som pågick, Olof blev så småningom adlad till Olof Strömstierna, och namnet återfinns idag på flera platser på Käringön",
        "last": "2026-09-27",
        "myndighet": false
@@ -7028,7 +7543,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "orust": [
-@@ -9529,7 +10138,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9529,7 +10285,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.orust.se/jobb-och-foretagande/foretag-stod-och-radgivning/fakta-om-naringslivet",
        "org": "orust.se",
@@ -7037,7 +7552,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -9571,7 +10180,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9571,7 +10327,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.hallberg-rassy.com/sv/nyheter/oeppet-varv",
        "org": "hallberg-rassy.com",
@@ -7046,7 +7561,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9692,14 +10301,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9692,14 +10448,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn",
        "org": "tjorn.se",
@@ -7063,7 +7578,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -9724,13 +10333,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9724,13 +10480,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -7077,7 +7592,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.akvarellmuseet.org/om/historia",
        "org": "akvarellmuseet.org",
-@@ -9755,14 +10357,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9755,14 +10504,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://digitaltmuseum.se/021015874271/almobron-i-bohuslan-paseglad-av-bulkfartyget-star-clipper-i-januari-198",
        "org": "digitaltmuseum.se",
@@ -7094,7 +7609,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9804,7 +10406,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9804,7 +10553,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/tjorn/",
        "org": "vastsverige.com",
@@ -7103,7 +7618,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9842,6 +10444,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9842,6 +10591,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Menyn är inspirerad av Västkusten med fräscha råvaror från såväl land som hav och av södra Frankrike med sina Provencalska smaker",
        "last": "2026-09-27",
        "myndighet": false
@@ -7117,21 +7632,33 @@ index f7b2383..50cb709 100644
      }
    ],
    "kungshamn": [
-@@ -9887,13 +10496,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "last": "2026-09-27",
+@@ -9869,8 +10625,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     {
+       "url": "https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn",
+       "org": "sotenas.se",
+-      "vad": "Klippbad med sandstrand. Bryggor med badstegar. Handikappramp, omklädningsrum, toalett och handikapptoalett, Klippbad med badstegar, hopptorn och trampolin, Ramnerer",
+-      "last": "2026-09-27",
++      "vad": "Fisketångens badplats i Kungshamn, Klippbad med sandstrand. Bryggor med badstegar. Handikappramp, omklädningsrum, toalett och handikapptoalett., finns också en liten parkering, Vill du hitta din egen vrå så går du ut på pontonbryggan som leder till, Klövvholmen!",
++      "last": "2026-11-03",
        "myndighet": true
      },
--    {
+     {
+@@ -9888,10 +10644,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "myndighet": true
+     },
+     {
 -      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4860__0__LINE__20251214__20261212__9f3324f3-f11e-41b4-82f9-35990c574266__1%2C0__2611184.pdf",
 -      "org": "Västtrafik (tidtabell)",
 -      "vad": "Smögen–Kungshamn–Uddevalla–Trollhättan, Kungshamns busstation, Uddevalla central, Gäller 14 dec 2025 - 12 dec 2026, Linjen trafikeras av Vy Buss",
 -      "last": "2026-09-27",
--      "myndighet": true
--    },
++      "url": "https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html",
++      "org": "sotenas.se",
++      "vad": "Det finns cirka 20 större kommunala badplatser., Hundar får gärna bada men inte på kommunens offentliga badplatser under sommaren, Kungshamn - Fisketången, Stenbogen och Ramnerer",
++      "last": "2026-11-03",
+       "myndighet": true
+     },
      {
-       "url": "https://fyrenkungshamn.se/",
-       "org": "fyrenkungshamn.se",
-@@ -9956,6 +10558,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9956,6 +10712,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "most of them having a balcony or terrace with fantastic views over the coast of Bohuslän, The hotel's renowned restaurant is well situated, with a great view of the Kungshamn inlet",
        "last": "2026-09-27",
        "myndighet": false
@@ -7145,7 +7672,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "pater-noster": [
-@@ -10018,7 +10627,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10018,7 +10781,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://paternoster.se/ta-dig-hit",
        "org": "paternoster.se",
@@ -7154,7 +7681,7 @@ index f7b2383..50cb709 100644
        "last": "2026-10-19",
        "myndighet": false
      },
-@@ -10063,7 +10672,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10063,7 +10826,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/ersdalen.html",
        "org": "Länsstyrelsen Västra Götaland",
        "vad": "bildat 1999, cirka 529 hektar på nordvästra Hönö i Öckerö kommun, \"Strandlinjen är sönderskuren i vikar och uddar och här finns ett rikt fågelliv\", hedar och lavklädda hällar, skalrik jord, grusade stigar, klippformationen Kröckle Kyrka, Kråkudden med fågelskådarskydd, grillplats, torrdass, bad, informationstavla och cykelled",
@@ -7163,7 +7690,7 @@ index f7b2383..50cb709 100644
        "myndighet": true
      },
      {
-@@ -10101,10 +10710,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10101,10 +10864,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -7182,7 +7709,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10115,13 +10731,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10115,13 +10885,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": false
      },
@@ -7196,7 +7723,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.havskatten.com/",
        "org": "havskatten.com",
-@@ -10132,7 +10741,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10132,7 +10895,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://honoklavahamn.se/",
        "org": "honoklavahamn.se",
@@ -7205,7 +7732,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10146,7 +10755,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10146,7 +10909,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://honoklavahamn.se/gasthamn/",
        "org": "honoklavahamn.se",
@@ -7214,7 +7741,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10160,14 +10769,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10160,14 +10923,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://skargardshotellethono.se/",
        "org": "skargardshotellethono.se",
@@ -7231,7 +7758,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10178,10 +10787,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10178,10 +10941,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -7250,7 +7777,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10236,13 +10852,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10236,13 +11006,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -7264,7 +7791,7 @@ index f7b2383..50cb709 100644
      {
        "url": "https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/",
        "org": "Bohusläns museum",
-@@ -10267,14 +10876,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10267,14 +11030,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.gullholmsbaden.se/?page_id=360",
        "org": "gullholmsbaden.se",
@@ -7288,7 +7815,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10288,7 +10904,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10288,7 +11058,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/sodrabohuslan/produkter/gullholmen-och-harmano/?site=5",
        "org": "Västsverige",
@@ -7297,7 +7824,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10302,9 +10918,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10302,9 +11072,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/",
        "org": "Västsverige",
@@ -7315,7 +7842,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "kladesholmen": [
-@@ -10325,7 +10948,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10325,7 +11102,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn",
        "org": "tjorn.se",
@@ -7324,21 +7851,29 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -10343,13 +10966,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "last": "2026-09-27",
+@@ -10344,10 +11121,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
--    {
+     {
 -      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf",
 -      "org": "Västtrafik (tidtabell)",
 -      "vad": "Tjörn–Stenungsund/Göteborg, Gäller 14 dec 2025 - 12 dec 2026, Klädesholmen östra 08.33 09.33 10.33 11.33 12.33 13.33 14.33 15.33 16.33 17.33 18.33 19.33 20.33 21.33 22.33, Stenungsunds station 09.28 10.28 11.28 12.28 13.28 14.28 15.28 16.28 17.28 18.28 19.28 20.28 21.28 22.28 23.28, Klädesholmen östra 05.03 06.03 06.33 07.03 07.33 08.33, Nils Ericson Terminalen 06.02 06.35 07.05 07.20 07.32 07.35 08.05 — lör/sön Klädesholmen östra 08.33 → Stenungsunds station 09.28 (55 min); vardagar Klädesholmen östra 06.03 → Nils Ericson Terminalen 07.35 (92 min)",
 -      "last": "2026-09-27",
--      "myndighet": true
--    },
++      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser",
++      "org": "tjorn.se",
++      "vad": "Badplatsen ligger strax efter bron på Koholmens östra sida., Om Klädesholmens badplats, Badplatsen har betongbrygga, en liten sandstrand, klippor, badbrygga och toaletter., Badplatsen är inte tillgänglighetsanpassad., Badplatsen sköts sommartid av Klädesholmens intresseförening, som också anordnar simskola., Parkeringsplats finns till höger efter bron och härifrån är det 100 meter till badet., Med buss: Hållplats Klädesholmen östra.",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
++    {
++      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada",
++      "org": "tjorn.se",
++      "vad": "Hund får inte vistas på: Badplats eller lekplats.",
++      "last": "2026-11-03",
+       "myndighet": true
+     },
      {
-       "url": "https://kladesholmen.com/",
-       "org": "kladesholmen.com",
-@@ -10374,7 +10990,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10374,7 +11158,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://kladesholmenvh.se/gasthamn/",
        "org": "kladesholmenvh.se",
@@ -7347,7 +7882,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10402,7 +11018,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10402,7 +11186,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.saltosill.se/aktiviteter/bad-och-bastubaten/",
        "org": "saltosill.se",
@@ -7356,7 +7891,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10451,7 +11067,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10451,7 +11235,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/tjorn/produkter/house-of-herrings/",
        "org": "vastsverige.com",
@@ -7365,7 +7900,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10461,6 +11077,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10461,6 +11245,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Platser: 35, Gästhamnen har formen av en gryta vilket gör att vinden inte stör., Båtkran, dusch, el, livsmedel, mastkran, restaurang, toalett och båtramp. Sugtömning av latrin. Miljöstation. Nära till mataffär.",
        "last": "2026-09-27",
        "myndighet": false
@@ -7379,7 +7914,7 @@ index f7b2383..50cb709 100644
      }
    ],
    "astol": [
-@@ -10499,27 +11122,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10499,27 +11290,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -7407,89 +7942,78 @@ index f7b2383..50cb709 100644
      {
        "url": "https://astol.se/besok-astol/",
        "org": "astol.se",
-@@ -10582,62 +11184,48 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10582,6 +11352,27 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "The restaurant is booming with activity from April to September, In summertime, the hotel’s musicians gather in the afternoons at the very end of the northern pier",
        "last": "2026-09-27",
        "myndighet": false
--    }
--  ],
--  "dyron": [
--    {
--      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stora%20Dyr%C3%B6n",
--      "org": "minkarta.lantmateriet.se",
--      "vad": "Lantmäteriet Min Karta, sökning \"Stora Dyrön\" → Stora Dyrön | Tjörn | Trakt, SWEREF 99 TM omräknat till WGS 84",
--      "last": "2026-09-29",
--      "myndighet": true
--    },
--    {
--      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/vandra/dyrons-vandringsleder",
--      "org": "tjorn.se",
--      "vad": "Den gula leden går runt hela ön och är cirka 5 kilometer, Den blå leden går över bergen från norr till söder och är 1,6 kilometer, Medelsvår, Från Sydhamnen går det att med rullstol och barnvagn ta sig västerut en bit längs leden fram till bastun, Längs med leden finns en rad olika rastplatser med bord och bänkar, en fantastisk utsikt över havet med öarna Marstrand och Åstol och fyren Pater Noster, På öns östra sida finns det längs vandringen en fin sandstrand där man kan rasta och bada",
--      "last": "2026-09-27",
--      "myndighet": true
--    },
--    {
--      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/hund-i-naturen",
--      "org": "tjorn.se",
--      "vad": "Hundar ska alltid hållas kopplade utomhus på offentliga platser där människor samlas, Här får hundar inte vistas, 1 mars och 20 augusti",
--      "last": "2026-09-27",
--      "myndighet": true
-     },
-     {
-       "url": "https://www.vasttrafik.se/resa-med-oss/under-resan/husdjur/",
-       "org": "Västtrafik",
-       "vad": "Ha djuret i koppel, bur eller väska, Vid resa med båt ska husdjur vara på styrbord",
-       "last": "2026-09-27",
--      "myndighet": true
-+      "myndighet": false
-     },
-     {
-       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf",
-       "org": "Västtrafik (tidtabell)",
--      "vad": "Rönnäng–Tjörnekalv–Dyrön–Åstol–Rönnäng, Gäller 14 dec 2025 - 12 dec 2026 utom 15 juni - 16 aug, C Turen måste förbeställas på tel: 0304-601242",
-+      "vad": "Rönnäng–Tjörnekalv–Dyrön–Åstol–Rönnäng, Gäller 14 dec 2025 - 12 dec 2026 utom 15 juni - 16 aug",
-       "last": "2026-09-27",
--      "myndighet": true
-+      "myndighet": false
-     },
-     {
-       "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf",
-       "org": "Västtrafik (tidtabell)",
--      "vad": "Nils Ericson Terminalen, J Efter Aröd fortsätter bussen som ny tur mot Bäckevik, Rönnäng och, Gäller 14 dec 2025 - 12 dec 2026",
-+      "vad": "Tjörn–Stenungsund/Göteborg, Nils Ericson Terminalen, J Efter Aröd fortsätter bussen som ny tur mot Bäckevik, Rönnäng och, Gäller 14 dec 2025 - 12 dec 2026",
-       "last": "2026-09-27",
-+      "myndighet": false
-+    }
-+  ],
-+  "dyron": [
++    },
 +    {
-+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stora%20Dyr%C3%B6n",
-+      "org": "minkarta.lantmateriet.se",
-+      "vad": "Lantmäteriet Min Karta, sökning \"Stora Dyrön\" → Stora Dyrön | Tjörn | Trakt, SWEREF 99 TM omräknat till WGS 84",
-+      "last": "2026-09-29",
++      "url": "https://www.vasttrafik.se/resa-med-oss/under-resan/husdjur/",
++      "org": "Västtrafik",
++      "vad": "Ha djuret i koppel, bur eller väska, Vid resa med båt ska husdjur vara på styrbord",
++      "last": "2026-09-27",
++      "myndighet": false
++    },
++    {
++      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf",
++      "org": "Västtrafik (tidtabell)",
++      "vad": "Rönnäng–Tjörnekalv–Dyrön–Åstol–Rönnäng, Gäller 14 dec 2025 - 12 dec 2026 utom 15 juni - 16 aug",
++      "last": "2026-09-27",
++      "myndighet": false
++    },
++    {
++      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf",
++      "org": "Västtrafik (tidtabell)",
++      "vad": "Tjörn–Stenungsund/Göteborg, Nils Ericson Terminalen, J Efter Aröd fortsätter bussen som ny tur mot Bäckevik, Rönnäng och, Gäller 14 dec 2025 - 12 dec 2026",
++      "last": "2026-09-27",
++      "myndighet": false
+     }
+   ],
+   "dyron": [
+@@ -10607,38 +11398,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
+-      "url": "https://www.vasttrafik.se/resa-med-oss/under-resan/husdjur/",
+-      "org": "Västtrafik",
+-      "vad": "Ha djuret i koppel, bur eller väska, Vid resa med båt ska husdjur vara på styrbord",
+-      "last": "2026-09-27",
+-      "myndighet": true
+-    },
+-    {
+-      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6361__1__LINE__20251214__20261212__7486a72d-1af2-4dec-a855-76147a8b68fb__0%2C0__2631548.pdf",
+-      "org": "Västtrafik (tidtabell)",
+-      "vad": "Rönnäng–Tjörnekalv–Dyrön–Åstol–Rönnäng, Gäller 14 dec 2025 - 12 dec 2026 utom 15 juni - 16 aug, C Turen måste förbeställas på tel: 0304-601242",
+-      "last": "2026-09-27",
+-      "myndighet": true
+-    },
+-    {
+-      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6208__0__LINE__20251214__20261212__943570e0-dc73-40ba-8902-068c3d54c30d__0%2C0__2597259.pdf",
+-      "org": "Västtrafik (tidtabell)",
+-      "vad": "Nils Ericson Terminalen, J Efter Aröd fortsätter bussen som ny tur mot Bäckevik, Rönnäng och, Gäller 14 dec 2025 - 12 dec 2026",
+-      "last": "2026-09-27",
+-      "myndighet": true
+-    },
+-    {
 -      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6326__0__LINE__20260817__20260930__3f059e68-c41c-44bf-bb36-b0b087de0549__1%2C0__2778882.pdf",
 -      "org": "Västtrafik (tidtabell)",
 -      "vad": "Dyrön — Rökan — Rörtången, Gäller 17 aug - 30 sept 2026",
-+      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/vandra/dyrons-vandringsleder",
-+      "org": "tjorn.se",
-+      "vad": "Den gula leden går runt hela ön och är cirka 5 kilometer, Den blå leden går över bergen från norr till söder och är 1,6 kilometer, Medelsvår, Från Sydhamnen går det att med rullstol och barnvagn ta sig västerut en bit längs leden fram till bastun, Längs med leden finns en rad olika rastplatser med bord och bänkar, en fantastisk utsikt över havet med öarna Marstrand och Åstol och fyren Pater Noster, På öns östra sida finns det längs vandringen en fin sandstrand där man kan rasta och bada",
-       "last": "2026-09-27",
-       "myndighet": true
-     },
-     {
+-      "last": "2026-09-27",
+-      "myndighet": true
+-    },
+-    {
 -      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/6326__0__LINE__20261001__20261031__5c843cab-c0f3-4630-88cc-c2a33e730dbc__1%2C0__2778908.pdf",
 -      "org": "Västtrafik (tidtabell)",
 -      "vad": "Gäller 1 okt - 31 okt 2026, Resan måste förbeställas senast tre timmar före avgång",
-+      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/hund-i-naturen",
+-      "last": "2026-09-27",
++      "url": "https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser",
 +      "org": "tjorn.se",
-+      "vad": "Hundar ska alltid hållas kopplade utomhus på offentliga platser där människor samlas, Här får hundar inte vistas, 1 mars och 20 augusti",
-       "last": "2026-09-27",
++      "vad": "Dyröns badplats ligger cirka 300 meter österut från färjeläget och Dyröns norra hamn. (Dyrön hör till Tjörns kommun)",
++      "last": "2026-11-03",
        "myndighet": true
      },
-@@ -10651,7 +11239,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     {
+@@ -10651,7 +11414,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.dyron.se/se-gora/mufflonfar/",
        "org": "dyron.se",
@@ -7498,7 +8022,18 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10763,7 +11351,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10693,8 +11456,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     {
+       "url": "https://www.dyron.se/se-gora/badplatser/",
+       "org": "dyron.se",
+-      "vad": "I Nordhamnen ligger en badplats med pontonbrygga och sandstrand, Badplatsen är mycket populär bland barnfamiljer, Sydhamnens badplats heter Hala, Här finns också en liten sandstrand och brygga, hoppa och dyka från trampolin, klippor och 3-meterstornet, Här finns också en lättillgänglig badbrygga med stege",
+-      "last": "2026-09-27",
++      "vad": "Sydhamnens badplats heter Hala. Här finns också en liten sandstrand och brygga, men många av de som söker sig hit vill gärna hoppa och dyka från trampolin, klippor och 3-meterstornet. Här finns också en lättillgänglig badbrygga med stege som passar de lite äldre som har det svårt att ta sig i och ur vattnet.",
++      "last": "2026-11-03",
+       "myndighet": false
+     },
+     {
+@@ -10763,7 +11526,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/tjorn/se-och-gora/bilfria-oar/",
        "org": "vastsverige.com",
@@ -7507,7 +8042,7 @@ index f7b2383..50cb709 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10794,6 +11382,41 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10794,6 +11557,41 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Sugtömning av latrin",
        "last": "2026-09-27",
        "myndighet": false
