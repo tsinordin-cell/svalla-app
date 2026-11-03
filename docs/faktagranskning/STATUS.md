@@ -2,6 +2,30 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 06:19 — Styrsö och Husarö kontrollerade
+
+- **Kontrollant Husarö (MÄTT):** 66 OK, 20 FEL, 1 SAKNAS av 87. De flesta
+  gäller restider:
+  - "Snabbast 3 tim 5 min" gäller först från 2 november, eftersom vår- och
+    hösttabellen har turer på 2 tim 20 min.
+  - Åsättra–Husarö tar 35–60 min.
+  - "Ca 3–4 tim" täcker inte spannet.
+  
+  Dessutom "mellersta skärgården" i löptext, Söder-Långholms uppgifter och
+  avgiftsmeningen. oct-entreprenad.com gick inte att nå.
+- **Kontrollant Styrsö (MÄTT):** 85 OK, 10 FEL av 95:
+  - Skäret tar 13–36 min.
+  - Gröna vik (Brännö) hamnar i JSON-LD som Styrsös badplats.
+  - Kommunen skriver "vattnet är strömt i farleden".
+  - "Den södra delen av skärgårdens centralort".
+  - Djupet 3,5–5 m har bara nivå 3 som källa.
+- Beslut per fynd i `kontroll/husaro.beslut.tsv` och `styrso.beslut.tsv`.
+  Ett förslag på etiketter i avgångsrutan (husaro-k080) utgår: P0 12:s text
+  är godkänd.
+- **Skribent startad** för Husarö och Styrsö. Agenter nu (fyra):
+  omkontroll öarna, mallar + badplatser, stickprovet och Skribent Husarö och
+  Styrsö.
+
 ## 2026-11-03 06:09 — Alla P0 1–18 godkända; batchens stickprov dras
 
 - **P0-omgång 11 (MÄTT):** Sandhamn, Möja, Husarö och Kymmendö OK.

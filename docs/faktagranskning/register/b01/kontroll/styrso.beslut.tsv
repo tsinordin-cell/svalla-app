@@ -1,0 +1,11 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-03)
+styrso-k033	styrso-0020	FEL (restid)	Omarbete: Skäret 13–36 min, inte 13–35 (en lördagstur i omvänd riktning).
+styrso-k061	styrso-0021	FEL (restid)	Omarbete: Skäret 13–36 min, inte 13–35 (en lördagstur i omvänd riktning).
+styrso-k120	styrso-0022	FEL (restid)	Omarbete: Skäret 13–36 min, inte 13–35 (en lördagstur i omvänd riktning).
+styrso-k028	styrso-0435	FEL (restid)	Omarbete: Skäret 13–36 min, inte 13–35 (en lördagstur i omvänd riktning).
+styrso-k051	styrso-0420	FEL (restid)	Omarbete: Skäret 13–36 min, inte 13–35 (en lördagstur i omvänd riktning).
+styrso-k042	styrso-0422	FEL	Omarbete: Gröna vik ligger på Brännö men hamnar i JSON-LD \"Badplatser på Styrsö\". Rätta i ödatan om den står där; räknas den in via radien hör det till Toms beslut om radien, och då ska mallens räkning bara ta badplatser som ligger på ön.
+styrso-k001	styrso-0423	FEL	Som k042.
+styrso-k015	styrso-0139	FEL	Omarbete: följ kommunen (nivå 1), \"vattnet är strömt i farleden\", i stället för nivå 3:s \"kan vara\".
+styrso-k110	styrso-0080	FEL	Omarbete: källan säger \"den södra delen av skärgårdens centralort\", inte \"områdets centralort\".
+styrso-k039	styrso-0493	FEL	Omarbete: djupet 3,5–5 m har bara nivå 3 som källa; djup får bara beläggas av nivå 1. Stryk och kompensera.
