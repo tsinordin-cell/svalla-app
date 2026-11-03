@@ -2,6 +2,36 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 05:11 — Vaxholm kontrollerad; P0 17; sidmallarnas omarbete klart
+
+- **Kontrollant Vaxholm (MÄTT):** 161 OK, 7 FEL, 5 SAKNAS av 175 (2 P0-rader
+  utgår). Beslut per fynd i `register/b01/kontroll/vaxholm.beslut.tsv`.
+  Omarbetet är tillagt hos Skribenten för öarna.
+- **P0 17 (Vaxholm, hundregeln):** dog_notes sa att hunden inte får vara på
+  begravningsplatser eller lekplatser. Ändringen 01FS 1997:142 av kommunens
+  ordningsföreskrifter lade till anlagda allmänna badplatser. Redaktören
+  läste PDF:en själv (pdftotext). Rättat i P0-grenen (okommitterat,
+  `register/b01/ut/p0-okommitterat.patch`). Kontrolleras i P0-omgång 7.
+- **Sidmallarnas omarbete (Skribent):** 31 av 32 FEL åtgärdade. k020
+  (Styrsös radie) väntar på Tom. 4 rader är INAKTUELL, och det finns 2 nya
+  rader. tsc, verify-claims och källkontrollen är gröna. Diffen för
+  arbetskopian /home/claude/svalla-mallar ligger i
+  `register/b01/ut/mallar-arbetskopia.patch`. Omkontroll (30 rader)
+  startad i samma agent som P0 7.
+- **LAG 3 – badsidorna:** det rättade badfiltret gör 17 badsidor tunnare
+  (t.ex. Muskö 78 → 25 öspecifika ord, Ven 73 → 18). En Granskare lägger
+  nu till belagda badplatser ur kommunernas källor i ödatan, så att varje
+  sida är tillbaka på minst 95 %.
+- **Fynd utanför uppdraget (till Vakten):** generera-kallor.mjs parar det
+  längsta citatet för en URL med det senaste läsdatumet, så att 104 URL:er
+  visar ett citat från en annan läsning än datumet. Aktivitetssidorna
+  /aktivitet/<typ>/<ö> använder fortfarande ordmatchning. De gamla
+  passagerna i visited_islands räknas som besök; att flytta dem är en
+  databasändring (Tom).
+- Agenter nu (fyra): Skribent öarna (med Möja och Vaxholm tillagda),
+  Kontrollant Sandhamn, Kontrollant P0 7 + sidmallarnas omkontroll, och
+  Granskare badkompensation.
+
 ## 2026-11-03 04:51 — 5-timmarsgränsen; fyra agenter återupptagna
 
 Kontots 5-timmarsgräns slog till strax efter 00:15 och stoppade alla fyra
