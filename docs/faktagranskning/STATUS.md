@@ -2,6 +2,24 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 06:09 — Alla P0 1–18 godkända; batchens stickprov dras
+
+- **P0-omgång 11 (MÄTT):** Sandhamn, Möja, Husarö och Kymmendö OK.
+  Därmed är alla P0 1–18 godkända av en oberoende Kontrollant.
+- **P0-grenen** (`p0-uto-2026-10-29`):
+  - 033b0e0 och 10d560f är pushade (PR #504).
+  - e9dd5f1 och 7ef27fd är committade lokalt men inte pushade: en push
+    startar ett bygge som misslyckas medan Supabase är pausat.
+  - Säkerhetskopior: `ut/p0-lokala-commits.patch` och
+    `ut/p0-2026-10-29.patch` (hela diffen mot main).
+  - P0 10 följer med batchen, och P0 13–14 i `ut/p0-databas.sql`.
+- **Batchens stickprov:** 30 slumpade rader (frö 20261103) ur 3 349
+  oförändrade KORREKT-rader som inte är högrisk, i alla registren
+  (`kontroll/stickprov-b01.*`). Två fynd eller fler i stickprovet utlöser
+  full kontroll av batchens KORREKT-rader. Kontrollant startad.
+- Agenter nu (fyra): Kontrollant Styrsö och Husarö, omkontroll öarna,
+  mallar + badplatser, stickprovet.
+
 ## 2026-11-03 06:07 — P0-omgång 10: fyra av fem beställningstexter OK
 
 - **P0-omgång 10 (MÄTT):** Sandhamn, Möja, Husarö och Fjärdlång OK. Kymmendö

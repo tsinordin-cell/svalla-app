@@ -46,7 +46,7 @@ index d596bf8..bf49582 100644
          </div>
  
 diff --git a/src/app/o/island-data.ts b/src/app/o/island-data.ts
-index 427ab32..bfdcf94 100644
+index 427ab32..ae6020f 100644
 --- a/src/app/o/island-data.ts
 +++ b/src/app/o/island-data.ts
 @@ -319,8 +319,9 @@ export const ISLANDS: Island[] = [
@@ -61,7 +61,21 @@ index 427ab32..bfdcf94 100644
        { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamnen i Sandhamn – se hamnavsnittet för service och bokning.', icon: '⛵' },
      ],
      harbors: [
-@@ -873,8 +874,8 @@ export const ISLANDS: Island[] = [
+@@ -813,8 +814,11 @@ export const ISLANDS: Island[] = [
+     },
+     amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: true },
+     dog_friendly: true,
+-    // KÄLLA: https://www.vaxholm.se/allanyheter/nyhetsarkiv/vadgallernarskahundarvarakopplade.5.117b327517db288a7c818059.html — "Vaxholms föreskrifter anger att hundar ska hållas kopplade på offentliga platser i hela kommunen och att hundar inte får vistas på begravningsplatser eller lekplats som är offentlig plats", "det är förbjudet att medföra okopplad hund i reservatet" (läst 2026-09-27)
+-    dog_notes: 'Hunden ska vara kopplad på offentliga platser i hela kommunen och får inte vistas på begravningsplatser eller offentliga lekplatser. Även i Bogesundslandets naturreservat gäller koppel.',
++    // P0 2026-11-03 (Kontrollanten, vaxholm-k180): ändringen 01FS 1997:142 lade till
++    // anlagda badplatser i hundförbudet; kommunens nyhetstext nämner dem inte.
++    // KÄLLA: https://www.vaxholm.se/download/18.5c921dcc189206be14ab91a7/1689755817286/Lokala%20ordningsfo%CC%88reskrifter.pdf — "Hundar skall hållas kopplade på offentlig plats inom hela kommunen.", "Hund, som vistas på offentlig plats, skall dessutom vara försedd med uppgifter om ägarens namn, adress och telefonnummer.", "Hundar får inte vistas på begravningsplatser och inte heller på anlagd badplats upplåten till allmänt begagnande, eller lekplats (gäller även bollplan), som är offentlig plats.", "gäller dock inte för ledarhund till synskadad person eller för polishund i tjänst" (läst 2026-11-03)
++    // KÄLLA: https://www.vaxholm.se/allanyheter/nyhetsarkiv/vadgallernarskahundarvarakopplade.5.117b327517db288a7c818059.html — "det är förbjudet att medföra okopplad hund i reservatet" (läst 2026-11-02)
++    dog_notes: 'Hunden ska vara kopplad på offentliga platser i hela kommunen och bära uppgifter om ägarens namn, adress och telefonnummer. Den får inte vistas på begravningsplatser, på anlagda badplatser som är öppna för allmänheten eller på lekplatser och bollplaner som är offentlig plats. Reglerna gäller inte ledarhund till synskadad person eller polishund i tjänst. Även i Bogesundslandets naturreservat gäller koppel.',
+     insiderTips: [
+       // KÄLLA: https://kund.printhuset-sthlm.se/sl/v670_670x.pdf — "670 Stockholm–Vaxholm", "Giltig 14 december 2025–18 juni 2026" (läst 2026-09-27); https://assets.ctfassets.net/4l7cjdaypzcu/1WCfe56Z2KZwgDq26t7IO3/9320e22bd9562098960f572bc7b3615f/SLomradet-2026-04-02.pdf — "SL-biljett gäller alltid för resor med Waxholmsbolaget mellan dessa bryggor", med "Strömkajen" och "Vaxholm" i listan (läst 2026-09-27); https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor (renderad med webbläsare, laddar inte med curl) — "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt"
+       'SL-biljetten gäller både på buss 670 från Tekniska högskolan och på Waxholmsbolagets båtar mellan Strömkajen och Vaxholm, året runt – så välj efter tid och lust, inte pris. Bussen tar 45–58 minuter, båten 55–82 minuter.',
+@@ -873,8 +877,8 @@ export const ISLANDS: Island[] = [
        // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — "Grinda har fina barnvänliga bad både vid den södra och norra ångbåtsbryggan. Ytterligare ett fint bad finns vid Källviken. Grillplatser finns vid södra ångbåtsbryggan och vid tältplatsen."; "Torrdass finns vid alla badplatser och vid södra ångbåtsbryggan och i Källviken finns anpassade ingångar till badet." (läst 2026-09-27)
        // KÄLLA: https://skargardsstiftelsen.se/omraden/grinda/ — "slå dig ner på de solvarma klipporna vid Källviken" (läst 2026-09-27)
        'Det finns barnvänliga bad vid både södra och norra ångbåtsbryggan och ett tredje bad vid Källviken, där klipporna ligger i solen. Alla badplatser har torrdass, och i Källviken finns anpassade ingångar till badet. Grillplatser finns vid södra ångbåtsbryggan och vid tältplatsen.',
@@ -72,7 +86,7 @@ index 427ab32..bfdcf94 100644
        // KÄLLA: https://skargardsstiftelsen.se/omraden/grinda/ — "Grinda lanbruk där kor, hästar och andra djur betar och bidrar till det levande kulturlandskapet" (läst 2026-09-27)
        // KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/jordbruken-och-angarna/ — "Grinda lantbruk" (läst 2026-09-27)
        'På Grinda finns ett jordbruk, Grinda lantbruk, där kor, hästar och andra djur betar och bidrar till det levande kulturlandskapet. Det är ett av Skärgårdsstiftelsens jordbruk i skärgården.',
-@@ -951,15 +952,19 @@ export const ISLANDS: Island[] = [
+@@ -951,15 +955,19 @@ export const ISLANDS: Island[] = [
        { name: 'Grinda Camping', type: 'Camping', desc: 'Tältplatsen på norra Grinda är den enda platsen i reservatet där tältning är tillåten. Ingen förbokning krävs; avgiften ger tillgång till sophantering, torrdass och dusch.', websiteUrl: 'https://grinda.se/en/accommodation/camping/' },
      ],
      getting_there: [
@@ -102,10 +116,31 @@ index 427ab32..bfdcf94 100644
        // KÄLLA: https://grinda.se/hamn-mack/gasthamn/ — "Det finns det 28 st bokningsbara platser i gästhamnen"; "Förtöjning sker på boj eller mooringlina." (läst 2026-09-27)
        // KÄLLA: https://grinda.se/hamn-mack/sakerhet-service/ — "El finns på alla bryggor, eftersom vi befinner oss på en ö så är tillgången begränsad 24 uttag / båtar kan använda elen samtidigt." (läst 2026-09-27)
 diff --git a/src/app/o/kallor.generated.ts b/src/app/o/kallor.generated.ts
-index f7b2383..b1128dd 100644
+index f7b2383..8737667 100644
 --- a/src/app/o/kallor.generated.ts
 +++ b/src/app/o/kallor.generated.ts
-@@ -665,7 +665,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -540,11 +540,18 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "last": "2026-09-30",
+       "myndighet": true
+     },
++    {
++      "url": "https://www.vaxholm.se/download/18.5c921dcc189206be14ab91a7/1689755817286/Lokala%20ordningsfo%CC%88reskrifter.pdf",
++      "org": "vaxholm.se",
++      "vad": "Hundar skall hållas kopplade på offentlig plats inom hela kommunen., Hund, som vistas på offentlig plats, skall dessutom vara försedd med uppgifter om ägarens namn, adress och telefonnummer., Hundar får inte vistas på begravningsplatser och inte heller på anlagd badplats upplåten till allmänt begagnande, eller lekplats (gäller även bollplan), som är offentlig plats., gäller dock inte för ledarhund till synskadad person eller för polishund i tjänst",
++      "last": "2026-11-03",
++      "myndighet": true
++    },
+     {
+       "url": "https://www.vaxholm.se/allanyheter/nyhetsarkiv/vadgallernarskahundarvarakopplade.5.117b327517db288a7c818059.html",
+       "org": "vaxholm.se",
+-      "vad": "Vaxholms föreskrifter anger att hundar ska hållas kopplade på offentliga platser i hela kommunen och att hundar inte får vistas på begravningsplatser eller lekplats som är offentlig plats, det är förbjudet att medföra okopplad hund i reservatet",
+-      "last": "2026-09-27",
++      "vad": "det är förbjudet att medföra okopplad hund i reservatet",
++      "last": "2026-11-02",
+       "myndighet": true
+     },
+     {
+@@ -665,7 +672,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html",
        "org": "Länsstyrelsen Stockholm",
        "vad": "för längre tid än två dygn i följd förankra båt vid samma strand; förankra båt längs de strandsträckor som markerats med heldragen linje på karta; framföra motordrivet motorfordon annat än på anvisade vägar; landa med luftfarkost på annat än anvisad plats; på ett för andra störande sätt använda musikanläggning eller musikinstrument.",
@@ -135,7 +170,7 @@ index f7b2383..b1128dd 100644
        "myndighet": true
      },
      {
-@@ -678,29 +699,29 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -678,29 +706,29 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor",
        "org": "Waxholmsbolaget",
@@ -171,7 +206,7 @@ index f7b2383..b1128dd 100644
        "myndighet": true
      },
      {
-@@ -815,18 +836,25 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -815,18 +843,25 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-30",
        "myndighet": false
      },
@@ -395,7 +430,7 @@ index b706995..ddf028b 100644
    // Sortera efter startTime (HH:MM stränger sorterar korrekt) — ta sista
    todaysTrips.sort((a, b) => a.startTime.localeCompare(b.startTime))
 diff --git a/src/lib/transit-stops.ts b/src/lib/transit-stops.ts
-index add4769..cb62c16 100644
+index add4769..ae46d7a 100644
 --- a/src/lib/transit-stops.ts
 +++ b/src/lib/transit-stops.ts
 @@ -27,6 +27,20 @@ export interface IslandTransitConfig {
@@ -419,7 +454,7 @@ index add4769..cb62c16 100644
  }
  
  /**
-@@ -37,7 +51,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -37,7 +51,15 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
    sandhamn: {
      destStopId: '740020694', destStopName: 'Sandhamn brygga',
      originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
@@ -429,10 +464,14 @@ index add4769..cb62c16 100644
 +    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Du kan åka till Sandhamn med båt från Stavsnäs", "Under sommaren så kan du också åka till Sandhamn från Strömkajen." (läst 2026-10-29)
 +    // P0 2026-10-29: noten pekade på buss 434, som bara vissa turer går till Stavsnäs vinterhamn.
 +    note: 'Båten från Stavsnäs vinterhamn går året runt. Dit tar du SL-buss 433 från Slussen (även vissa turer med 434). Från Strömkajen går båten bara sommartid.',
++    // P0 2026-11-03 (Kontrollanten, sandhamn-k025/k107/k163): avgångsrutan visade
++    // turer med anmärkning B och b i tabell 16 som vanliga avgångar.
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "16B HAGEDE – SANDHAMN – STAVSNÄS", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna B, b och C: B minst två timmar och b minst en timme före avgång, båda senast på eftermiddagen samma dag; C senast tidigt på kvällen dagen före resdagen) (läst 2026-10-29)
++    bestallning: 'En del turer till och från Sandhamn går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',
    },
    grinda: {
      destStopId: '740098471', destStopName: 'Grinda',
-@@ -45,14 +63,27 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -45,14 +67,27 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      note: 'Direktbåt med Waxholmsbolaget från Strömkajen sommartid.',
    },
    vaxholm: {
@@ -463,7 +502,7 @@ index add4769..cb62c16 100644
    },
    finnhamn: {
      destStopId: '740020693', destStopName: 'Finnhamn brygga',
-@@ -62,6 +93,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -62,6 +97,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      destStopId: '740034632', destStopName: 'Fjäderholmarna brygga',
      originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
      note: 'Närmaste skärgårdsön — båt direkt från Strömkajen, ca 25 min.',
@@ -474,13 +513,15 @@ index add4769..cb62c16 100644
    },
    moja: {
      destStopId: '740024936', destStopName: 'Möjaström brygga',
-@@ -70,10 +105,20 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -70,10 +109,22 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1
      // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.
      note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',
-+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Beställ resan i SL-appen" (anmärkningarna B, C och b i tabell 14; fristerna skiljer sig mellan turerna, för C-turerna gäller dagen före) (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Beställ resan i SL-appen" (anmärkningarna B, b och C i tabell 14: B minst två timmar och b minst en timme före avgång, båda senast på eftermiddagen samma dag; C senast tidigt på kvällen dagen före) (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
++    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
 +    // P0 2026-10-29: kortet "Sista båten från Möja" visade en beställningstur utan att säga att den måste beställas.
-+    bestallning: 'Flera turer till och från Möja går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 innan du åker.',
++    bestallning: 'Flera turer till och från Möja går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 i god tid innan du åker. Långvik och Dragedet trafikeras även av tabell 10 och 12.',
    },
    husaro: {
      destStopId: '740020692', destStopName: 'Husarö brygga',
@@ -491,11 +532,11 @@ index add4769..cb62c16 100644
 +    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna b, B och C; för C-turerna gäller dagen före) (läst 2026-10-29)
 +    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
 +    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningen C: dagen före) (läst 2026-10-29)
-+    bestallning: 'Flera turer till och från Husarö går bara om resan har beställts i förväg, och hur tidigt den måste beställas skiljer sig mellan turerna. För en del turer gäller dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 innan du åker.',
++    bestallning: 'Flera turer till och från Husarö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',
    },
    ingmarso: {
      destStopId: '740034607', destStopName: 'Ingmarsö Norra brygga',
-@@ -160,13 +205,19 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -160,13 +211,19 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
    },
    orno: {
      destStopId: '740034475', destStopName: 'Ornö Kyrka brygga',
@@ -514,11 +555,11 @@ index add4769..cb62c16 100644
 +    // P0 2026-10-29: noten sa "från Dalarö eller Nynäshamn" utan säsong. Från Nynäshamn går båten bara sommartid.
 +    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
 +    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
-+    bestallning: 'En del turer till och från Kymmendö går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
++    bestallning: 'En del turer till och från Kymmendö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
    },
    bullero: {
      destStopId: '740076413', destStopName: 'Bullerö brygga',
-@@ -223,10 +274,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -223,10 +280,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      note: 'Buss 852 från Nynäshamn station. Torö nås över bro.',
    },
    fjardlang: {
@@ -532,11 +573,11 @@ index add4769..cb62c16 100644
 +    // P0 2026-10-29: noten sa "Direkt Waxholmsbåt från Nynäshamn" utan säsong. Den båten går bara sommartid.
 +    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
 +    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
-+    bestallning: 'En del turer till och från Fjärdlång går bara om resan har beställts i förväg. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 innan du åker.',
++    bestallning: 'De flesta turer stannar vid Fjärdlång bara om resan har beställts i förväg, och någon tur går bara efter beställning. Beställ minst en eller två timmar före avgång, beroende på tur, och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
    },
    rindo: {
      // 88 min, 3 byten, uppmätt 2026-08-05
-@@ -286,7 +341,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
+@@ -286,7 +347,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
      // 14 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
      destStopId: '740001213', destStopName: 'Styrsö Bratten',
      originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
