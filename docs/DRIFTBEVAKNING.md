@@ -20,6 +20,11 @@ Skrivet 2026-11-02 efter att databasen varit nere i tre dygn utan att någon mä
 - Fakturor och varningar från Supabase och Vercel ska nå en inkorg som läses. Ett Gmail-filter (från `supabase` eller `vercel`, ord som invoice, payment, overdue, quota, restricted, paused) med "Markera alltid som viktigt" och "Kategorisera som Primär" räcker.
 - Gratisnivån pausar och begränsar projekt; sajten har redan gått över dess egress-kvot en gång. Se över användningen (Supabase → Usage) efter varje större ändring av hur sidor hämtar data.
 
+## Backup
+- Supabase gratisnivå har inga automatiska backuper. Pro har dagliga backuper som sparas i 7 dagar (supabase.com/pricing, läst 2026-11-03).
+- Veckobackupen i GitHub ("Backup av innehåll", måndagar 04:00 UTC, `scripts/backup-innehall.mjs`) exporterar bara innehållet: platser, turer, rutter och evenemang. Användare och turer som användare loggat ingår inte (personuppgifter).
+- Den hade inte sparat något före 2026-11-03: hemligheterna `SUPABASE_URL` och `SUPABASE_SERVICE_ROLE_KEY` saknades i GitHub, och körningen blev ändå grön. Nu blir den röd när de saknas. Kontrollera efter varje körning att det finns en fil under körningens Artifacts.
+
 ## Kartrutorna (delningskorten)
 Kartkortet hämtar rutor från tile.openstreetmap.org i servern. OSM:s regler (operations.osmfoundation.org/policies/tiles) följs: eget User-Agent med kontaktadress, rutorna cachas minst 7 dagar, högst 6 samtidiga hämtningar, erkännandet "Karta © OpenStreetMap-bidragsgivare" syns på kortet. Saknade rutor loggas som `[kartkort] … kartrutor saknas (status …)`. Status 403 eller 429 där betyder att OSM begränsar oss: byt då till en kartleverantör med egen nyckel (sajtens övriga kartor använder också OSM:s rutor).
 

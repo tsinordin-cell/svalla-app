@@ -25,9 +25,12 @@ const UT = resolve(process.argv[2] || 'backup')
 const TABELLER = ['restaurants', 'tours', 'routes', 'events']
 const SIDA = 1000
 
+// Saknade nycklar är ett fel, inte ett skäl att hoppa över: 26 okt och 2 nov
+// blev körningen grön utan att något sparades, och ingen märkte det.
 if (!URL || !NYCKEL) {
-  console.log('SUPABASE_URL eller SUPABASE_SERVICE_ROLE_KEY saknas, ingen backup gjord.')
-  process.exit(0)
+  console.error('✗ SUPABASE_URL eller SUPABASE_SERVICE_ROLE_KEY saknas, ingen backup gjord.')
+  console.error('  Lägg in dem i GitHub under Settings → Secrets and variables → Actions.')
+  process.exit(1)
 }
 
 mkdirSync(UT, { recursive: true })
