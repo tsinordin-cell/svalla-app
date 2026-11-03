@@ -22,7 +22,7 @@ import { ImageResponse } from 'next/og'
 import type { ReactElement } from 'react'
 import { Buffer } from 'buffer'
 import sharp from 'sharp'
-import { stil, delstrackStaplar, talRutor, formatTid, ruttArAnvandbar, datumLang, turRubrik, platsRubrik, BILD_VERSION, type StilId, type Punkt } from '@/lib/dela-klistermarken'
+import { stil, delstrackStaplar, talRutor, formatTid, ruttArAnvandbar, datumLang, platsRubrik, BILD_VERSION, type StilId, type Punkt } from '@/lib/dela-klistermarken'
 import { computeSplits } from '@/lib/tripSplits'
 import { klisterRutt, klisterTal, klisterRuttTal, klisterDelstrackor, Logga, type KlisterData } from './klistermarken'
 import type { GpsPoint } from '@/lib/gps'
@@ -229,7 +229,8 @@ function Panel({ trip, username, kartkalla = false }: { trip: TripRad; username:
   const plats = platsRubrik(trip)
   const storlek = plats.length > 26 ? 52 : plats.length > 16 ? 64 : 78
   const datum = datumLang(trip.started_at)
-  const under = [trip.boat_type ?? null, datum].filter(Boolean) as string[]
+  // "Annat" är förvalet när ingen båttyp valts och ser ut som ett formulärsvar på kortet.
+  const under = [trip.boat_type && trip.boat_type !== 'Annat' ? trip.boat_type : null, datum].filter(Boolean) as string[]
   const tal = talFor(trip)
   const magisk = trip.pinnar_rating === 3
 

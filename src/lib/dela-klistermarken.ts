@@ -18,7 +18,7 @@ export type StilId = 'photo' | 'map' | 'rutt' | 'tal' | 'rutt-tal' | 'delstracko
  * datacache eller webbläsarens cache (max-age 3600) visar ett gammalt kort.
  * 2026-10-26: efter #500 visade Thomas Chrome det gamla kartkortet i en timme.
  */
-export const BILD_VERSION = '2026-11-02a'
+export const BILD_VERSION = '2026-11-03a'
 
 export type Stil = {
   id: StilId

@@ -80,7 +80,8 @@ export async function GET(
  : trip?.location_name ?? ''
  const username = userRow?.username ?? 'Seglare'
  const boatShapes = boatIconShapes(trip?.boat_type)
- const boatLabel = trip?.boat_type ?? 'Tur'
+ // "Annat" är förvalet när ingen båttyp valts; då säger "Tur" mer.
+ const boatLabel = trip?.boat_type && trip.boat_type !== 'Annat' ? trip.boat_type : 'Tur'
  const magisk = trip?.pinnar_rating === 3
 
  // ── Route SVG path ──────────────────────────────────────────────────────
