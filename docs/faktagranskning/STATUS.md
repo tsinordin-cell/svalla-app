@@ -2,6 +2,25 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-03 05:55 — P0-omgång 8: Vaxholm OK; beställningstexterna skärpta
+
+- **P0-omgång 8 (MÄTT):** Vaxholms hundregel (P0 17) är OK.
+- Sandhamns beställningstext var FEL. Kvällsturer med anmärkning b måste
+  beställas senast på eftermiddagen samma dag. Den som ser kvällsbåten i
+  kortet "Sista båten" och kollar tabellen på kvällen är för sent ute
+  (RESONERAT).
+- Samma risk finns på Möja och Husarö, så alla fem beställningstexterna är
+  omskrivna:
+  - Sandhamn, Möja och Husarö: "för en del gäller dagen före, för andra,
+    bland dem kvällsturer, senast på eftermiddagen samma dag" och "i god tid
+    innan du åker".
+  - Kymmendö och Fjärdlång: "i god tid".
+  Omgång 9 pågår (p0-k101–k105).
+- **Takten:** en femte agent startades av misstag (andra rundan för
+  sidmallarna). Den stoppades direkt och återupptas när en plats blir
+  ledig. Agenter nu (fyra): Skribent öarna, Granskare badkompensation,
+  Kontrollant Styrsö och Husarö, Kontrollant P0 omgång 9.
+
 ## 2026-11-03 05:51 — P0-omgång 7 och sidmallarnas omkontroll
 
 - **P0-omgång 7 (MÄTT):** båda raderna FEL på ofullständighet, inget sakfel.
