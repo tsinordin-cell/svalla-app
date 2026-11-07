@@ -264,6 +264,12 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
         </p>
       )}
 
+      {/* Sista båten 2026-11-07 (Kontrollanten, sb-omk2, MÄTT): ResRobot visade en
+          lördagstur från Möja som inte finns i Waxholmsbolagets tabell 14 för lördag. */}
+      <p style={{ fontSize: 11.5, lineHeight: 1.45, margin: '10px 0 0', opacity: 0.85 }}>
+        Tiden kommer från Trafiklabs reseplanerare och kan avvika från operatörens tidtabell. Kontrollera sista turen där innan du åker.
+      </p>
+
       <style>{`
         @keyframes lastBoatPulse {
           0%, 100% { box-shadow: 0 4px 22px ${glowColor}; }
