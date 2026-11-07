@@ -2,6 +2,38 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-08 00:35 — full kontroll 01–10 klara; rättelse av räkningen
+
+- **Läget (MÄTT i kontrollfilerna):** 1 100 av 3 063 rader är klara: 983 OK,
+  110 FEL och 7 SAKNAS. Inget P0. 1 963 rader är kvar i paket 11–28.
+- **Rättelse:** posten 00:03 sa att 2 322 rader var kvar. Rätt var 2 513
+  (550 klara efter paket 05). Talen till Tom i chatten efter paket 04–08
+  (631–1 071) var för höga på samma sätt; rätt var 440, 550, 660, 770 och 880.
+- **full-06:** 103 OK och 7 FEL. Styrsös historia har bara goteborg.com
+  (nivå 3) och svenskakyrkan.se (nivå 2) som källor, och namnet
+  Långesandsbron står inte i källan. Hemviken på Grinda beläggs av
+  Skärgårdsstiftelsen. f06-k096 omprövas (sidan lästes med curl efter en
+  verifieringssida).
+- **full-07:** 88 OK, 21 FEL och 1 SAKNAS. 20 fel gäller Fjäderholmarnas
+  historia; förvaltaren räknas som nivå 2 och belägger inte historia.
+- **full-08:** 108 OK och 2 FEL: Möjas rekommenderade månader saknar källa,
+  och källistan på /o/storholmen visar avgångstider ur KÄLLA-citat. Utanför
+  raderna: djupet i Kyrkvikens DB-text kräver nivå 1.
+- **full-09:** 110 OK. Anmärkningar: Grinda Wärdshus "vid Södra bryggan",
+  Utös gruvhistoria ("Kanske … 1100-talet") och bildkrediter (Commons
+  filsida belägger fotograf, datum och licens).
+- **full-10:** 101 OK, 6 FEL och 3 SAKNAS:
+  - Vaxholm: bussen och Pålsundsbron, gästhamnen och "nästan helt byggd i
+    trä" (kommunen: "till övervägande del")
+  - Sandhamn: "värdshus" i den källbelagda karaktären
+  - Grinda Wärdshus "sedan 1906": bolagets sida, nivå 2
+  - Storholmen Sjökrog: säsongen och citat som inte längre står på sidan
+- **Redaktörens beslut:** året då en verksamhet själv startade får beläggas
+  av dess sida (verksamheten om sig själv). Husets eller platsens ålder är
+  historia och kräver nivå 1.
+- **Agenter nu (fyra):** Kontrollanter full-11, full-12, full-13 och
+  full-14. Paket 09 och 10 tog 18 och 19 minuter var (MÄTT).
+
 ## 2026-11-08 00:03 — full kontroll 04–05 och omkontrollen av öarna klara; omarbetet samlas
 
 - **full-04:** 82 OK, 27 FEL och 1 SAKNAS. Av felen gäller 21 Vaxholms

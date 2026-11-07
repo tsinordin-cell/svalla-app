@@ -25,7 +25,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
   - slaIhop parar det längsta citatet med det senaste läsdatumet (104 URL:er).
 - Källistan publicerar tider, öppettider och belopp ur KÄLLA-citaten. Arbetskopian för mallarna har en ändring för det; kontrollera den.
 - Fjäderholmarna har tre KÄLLA-rader med klockslag. Grindas KÄLLA-rader på main har också klockslag.
-- Storholmen: källistan visar avgångstider ur SL-posten ("Ropsten 07.05 → Storholmen södra 07.33 …"), i src/app/o/kallor.generated.ts strax före rad 4949 (MÄTT av Kontrollanten full-10, 2026-11-08).
+- Storholmen: källistan visar avgångstider ur SL-posten ("Ropsten 07.05 → Storholmen södra 07.33 …"), i src/app/o/kallor.generated.ts strax före rad 4949 (MÄTT av Kontrollanterna full-08, f08-k107 och utanför-3, och full-10, 2026-11-08). Dela KÄLLA-raderna per URL och ta bort klockslagen ur citaten.
 - Källistans räkning ("N sidor hos M källor, varav K myndighet eller kommun") räknar trafikbolagen som myndighet och delar upp samma organisation på flera källor (vaxholm.se och "Vaxholms stad", Länsstyrelsens varianter, haninge.se med underdomäner). Fem rader i full-02 (k059, k063, k072, k078, k079). Rättas i generatorn; raderna mäts om efter inläggningen ovanpå main.
 - Källistan märker operatörer (Waxholmsbolaget, SL) som "Myndighet" (myndighet: true i kallor.generated.ts, MÄTT av Kontrollanten full-01 på /o/grinda). Operatörer är nivå 2.
 
