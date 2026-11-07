@@ -185,7 +185,7 @@ export default function StockholmsSkargardPage() {
  Ytterskärgården — för den erfarne seglaren
  </h3>
  <p>
- Ytterskärgården kräver respekt och planering, men belönar med oförglömliga upplevelser. <strong>Sandhamn</strong> är skärgårdens mest ikoniska destination — hem för Kungliga Svenska Segelällskapet (KSSS) och det legendariska Sandhamns Värdshus. Hit tar det ungefär 31 sjömil från Stockholm (ca 57 km), vilket med god vind tar 5–8 timmar att segl. Det är värt varje minut.
+ Ytterskärgården kräver respekt och planering, men belönar med oförglömliga upplevelser. <strong>Sandhamn</strong> är skärgårdens mest ikoniska destination — hem för Kungliga Svenska Segelsällskapet (KSSS) och det legendariska Sandhamns Värdshus. Hit tar det ungefär 31 sjömil från Stockholm (ca 57 km), vilket med god vind tar 5–8 timmar att segla. Det är värt varje minut.
  </p>
  <p>
  <strong>Utö</strong> i söder är unik — en före detta gruva som idag är en pittoresk by med Utö Värdshus, där du kan njuta av middag med havet som doplats. <strong>Landsort</strong> ligger ännu längre söderut och är Sveriges sydligaste punkt till sjöss — en rå och vacker destination för erfarna seglare. <strong>Huvudskär</strong> erbjuder ungefär samma vildmark och känsla av äventyr längre västerut, med små vikar och ankringsplatser som bara finns på kartan för den som vet var de ska titta.

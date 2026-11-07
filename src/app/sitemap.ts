@@ -169,6 +169,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/farjor`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/vintertidtabeller`,      lastModified: now, priority: 0.7, changeFrequency: 'weekly' as const },
     { url: `${base}/skargardsdatum`,         lastModified: now, priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: `${base}/guide/stockholm`,        lastModified: now, priority: 0.6, changeFrequency: 'monthly' as const },
     { url: `${base}/statistik`,              lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
     // Stockholm Archipelago Trail — pelarsida för hela leden, 22 etapper
     { url: `${base}/stockholm-archipelago-trail`, lastModified: now, priority: 0.9, changeFrequency: 'monthly' as const },

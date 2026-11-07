@@ -758,9 +758,8 @@ function KomIgangInner() {
  </button>
 
  <p style={{ fontSize: 12, color: 'var(--txt3)', textAlign: 'center', margin: '6px 0 0', lineHeight: 1.5 }}>
- Genom att skapa ett konto godkänner du våra{' '}
- <a href="/villkor" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>villkor</a>
- {' '}och{' '}
+ {/* /villkor fanns aldrig (404 till 2026-11-07). Användarvillkor är inte skrivna; tills de finns länkar vi bara integritetspolicyn. */}
+ Genom att skapa ett konto godkänner du vår{' '}
  <a href="/integritetspolicy" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>integritetspolicy</a>.
  </p>
  </form>
