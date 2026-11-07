@@ -49,15 +49,17 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
         )}
       </div>
 
-      {/* Stort emoji-badge till höger */}
-      <div style={{
+      {/* Stort emoji-badge till höger. Emojin kommer från ACHIEVEMENTS via achievementEvents.ts;
+          saknas den visas pokalen. (Till 2026-11-07 stod här texten "getIconForEvent(ev.type)"
+          utan klamrar, en platshållare som aldrig byttes ut, så kortet visade koden i klartext.) */}
+      <div aria-hidden style={{
         width: 56, height: 56, borderRadius: '50%', flexShrink: 0,
         background: 'linear-gradient(135deg,#e8a020,#c96e2a)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         fontSize: 28,
         boxShadow: '0 4px 14px rgba(201,110,42,0.35)',
       }}>
-        getIconForEvent(ev.type)
+        {ev.emoji || '🏆'}
       </div>
     </article>
   )
