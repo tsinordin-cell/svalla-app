@@ -380,6 +380,8 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     destStopId: '740034529', destStopName: 'Orrlunda (Tynningö) brygga',
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     // P0 2026-11-07 (Kontrollanten, sb2-k004): vägfärjan går från Lagnö på Värmdö, inte från Bogesund.
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — "670  Stockholm–Vaxholm" (läst 2026-11-07)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h4.pdf — "4A STOCKHOLM – VAXHOLM – RAMSÖSUND – ÅLSTÄKET", "Vaxholm avg.", "Norra Tynningö" (läst 2026-11-07)
     // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/tynningoleden/ — "Tynningöleden går mellan Lagnö på Värmdö och Tynningö i Stockholms skärgård." (läst 2026-11-07)
     note: 'Buss till Vaxholm och båt över. Tynningö har också vägfärja från Lagnö på Värmdö.',
     // Sista båten 2026-11-07 (Kontrollanten, sb-k005): kortet visade en tur från
