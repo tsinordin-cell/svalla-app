@@ -2,7 +2,7 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
-## 2026-11-08 00:15 — full kontroll 04–05 och omkontrollen av öarna klara; omarbetet samlas
+## 2026-11-08 00:03 — full kontroll 04–05 och omkontrollen av öarna klara; omarbetet samlas
 
 - **full-04:** 82 OK, 27 FEL och 1 SAKNAS. Av felen gäller 21 Vaxholms
   fästnings historia, som bara har vaxholmsfastning.se som källa. Sidan
