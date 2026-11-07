@@ -9998,8 +9998,8 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">På västkusten arrangerar Team Marstrand julmarknad 28–29 november 2026 i Strandverket på Marstrand, med utställare som säljer lokalt hantverk, delikatesser och julklappar. Se <a href="/o/marstrand">Marstrand</a> och fler marknader i guiden <a href="/guider/julmarknad-havet">Julmarknad vid havet</a>.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Julmarknad på Sandhamn</h3>
-<!-- KÄLLA: https://www.sandhamn.com/sv/jullov-julmarknad — "Just nu arbetar vi med årets upplägg för jullovet och vår julmarknad på Sandhamn."; "Program, datum och mer information publiceras här så snart allt är på plats." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn Hotell &amp; Restaurang planerar en julmarknad och aktiviteter under jullovet, men när guiden skrevs var datum och program inte publicerade. Hotellet lägger ut dem på sin webbplats när de är klara.</p>
+<!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julmarknad — "Lördagen den 28 november välkomnar vi dig till julmarknad på Sandhamn."; "Julmarknad och aktiviteter kl. 11.00–15.00"; "Vi lagar lunch över öppen eld på våra OFYR-grillar."; "I Orangeriet serverar vi varma och kalla drycker."; "Mer information om utställare och aktiviteter kommer närmare julmarknaden." (läst 2026-11-07) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn Seglarhotell har julmarknad lördag 28 november 2026 kl. 11–15. Hotellet lagar lunch över öppen eld, och i Orangeriet serveras varma och kalla drycker. Vilka utställare som kommer publiceras närmare marknaden.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julafton i skärgården</h2>
 <!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julafton — "Fira Julafton med oss"; "24 december 2026"; "Och dagen därpå fortsätter firandet med vår traditionella kalkonmiddag" (läst 2026-09-28) -->
@@ -10023,8 +10023,8 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — "Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period."; "Tänk på att tidtabellerna visar hur trafiken är planerad. Fartygen kan ändras med kort varsel." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hösttidtabellerna gäller till och med lördag 12 december 2026. Därefter byter Waxholmsbolaget till nästa tidtabell – bolaget byter fyra gånger om året, och vissa linjer går bara under delar av en period. Sök resan i Waxholmsbolagets eller SL:s reseplanerare nära resdagen, eftersom fartyg kan bytas med kort varsel.</p>
 <!-- KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "I samband med storhelger som till exempel jul, påsk och midsommar går båtarna lite annorlunda än den veckodag som helgen eller klämdagen infaller på." (läst 2026-09-28) -->
-<!-- KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "Jul- och nyårsveckorna 2025-2026"; "Julafton onsdag 24 december: trafiken går som en lördag"; "Juldagen torsdag 25 december: trafiken går som en söndag" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid storhelger som jul går båtarna som en annan veckodag än den dag det är i kalendern. Waxholmsbolaget publicerar en lista över vilken veckodags tidtabell som gäller. När guiden skrevs gällde listan julen 2025–2026: då gick trafiken på julafton som en lördag och på juldagen som en söndag. Kolla sidan om helgtrafik när listan för julen 2026 är ute.</p>
+<!-- KÄLLA: https://waxholmsbolaget.se/artikel/helgtrafik — "Jul- och nyårsveckorna 2026-2027"; "Onsdag 23 december: trafiken går som en fredag"; "Julafton torsdag 24 december: trafiken går som en lördag"; "Juldagen fredag 25 december: trafiken går som en söndag"; "Annandag jul lördag 26 december: trafiken går som en söndag" (läst 2026-11-07) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid storhelger som jul går båtarna som en annan veckodag än den dag det är i kalendern. Julen 2026 går Waxholmsbolagets båtar onsdag 23 december som en fredag, på julafton, torsdag 24 december, som en lördag och på juldagen och annandag jul, 25 och 26 december, som en söndag. Hela listan för jul och nyår finns på Waxholmsbolagets sida om helgtrafik.</p>
 <!-- KÄLLA: https://waxholmsbolaget.se/att-resa-med-oss/fore-och-under-resan — "Under vintertidtabellen (december till april) har vissa fartyg bara försäljning av varma och kalla drycker ombord."; "Vänthallarna i Vaxholm och Stavsnäs håller öppet den tid som det finns båtavgångar under dagen." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Under vintertidtabellen, december till april, säljer vissa fartyg bara varma och kalla drycker ombord – ta med matsäck om resan är lång. I Vaxholm och Stavsnäs finns vänthallar som är öppna så länge det går båtar under dagen.</p>
 <!-- KÄLLA: https://waxholmsbolaget.se/nyheter-och-trafikinfo — "Nu under lågsäsong kan du resa med Waxholmsbolaget med SL-biljetter som gäller i 30 dagar eller mer." (läst 2026-09-28) -->
@@ -10060,6 +10060,10 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "Vi skjuter själva inga smällare eller fyrverkerier under nyårsafton här på Marholmen och vi ber våra boende gäster att tänka på och i största möjliga mån ta hänsyn till alla våra fyrbenta vänner." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marholmen skjuter själv inte upp några fyrverkerier på nyårsafton och ber gästerna att ta hänsyn till hundar.</p>
 
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sandhamn Seglarhotell – nyårspaket 2026 på Sandhamn</h3>
+<!-- KÄLLA: https://www.sandhamn.com/sv/kalender/nyarafton — "Nyårsfirande"; "31 DECEMBER 2026"; "en festlig fyrarätters supé"; "I vårt nyårspaket ingår boende med frukost, ett glas bubbel på nyårsafton och nyårssupé."; "Vill ni stanna lite längre finns även paket för två eller tre nätter."; "Det går också att boka endast nyårssupén för 1 350 kr per person." (läst 2026-11-07) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn Seglarhotell på <a href="/o/sandhamn">Sandhamn</a> har publicerat nyårsfirande den 31 december 2026. I nyårspaketet ingår enligt hotellet boende med frukost, ett glas bubbel på nyårsafton och en fyrarätters nyårssupé. Det finns också paket för två eller tre nätter, och det går att boka bara nyårssupén, för 1 350 kronor per person.</p>
+
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Nyår i skärgården: här finns inga nyårspaket publicerade ännu</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera kända skärgårdshotell hade i början av november 2026 inte lagt ut något nyårserbjudande för nyår 2026. Det betyder inte att de inte firar nyår – bara att inget var publicerat när vi läste deras sidor. Så här bokar du eller frågar direkt:</p>
 <!-- KÄLLA: https://www.utovardshus.se/erbjudanden/ — "Vandringsweekend"; "1 september – 22 november"; "Fredagskväll i Skärgården"; "Utö Backyard – boendepaket"; inget nyårspaket listat (läst 2026-11-02) -->
@@ -10067,16 +10071,11 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
 <li><strong>Utö Värdshus</strong> på <a href="/o/uto">Utö</a>: erbjudandesidan listade vandringsweekends till och med 22 november och paket inför våren 2027, men inget nyårspaket. Hotellbokningen nås via telefon och e-post på vardagar enligt värdshusets sida med öppettider.</li>
 </ul>
-<!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julafton — "Fira Julafton med oss"; "24 DECEMBER 2026"; "Hos oss väntar ett julbord med guldkant"; "Och dagen därpå fortsätter firandet med vår traditionella kalkonmiddag" (läst 2026-09-28) -->
-<!-- KÄLLA: https://www.sandhamn.com/sv — "Sandhamn Seglarhotell har varit en del av livet på Sandhamn i över ett sekel."; "08-574 504 00" (läst 2026-09-28) -->
-<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
-<li><strong>Sandhamn Seglarhotell</strong> på <a href="/o/sandhamn">Sandhamn</a>: hotellet har publicerat julafton den 24 december 2026 med julbord och kalkonmiddag dagen efter, men inget nyårsfirande. Kontakta receptionen om du vill veta vad som gäller på nyår.</li>
-</ul>
 <!-- KÄLLA: https://www.grinda.se/evenemang/ — "Halloween på Grinda – vågar ni gå spökrundan?" (1 nov 2026, sista evenemanget i kalendern; inget i december) (läst 2026-11-02) -->
 <!-- KÄLLA: https://www.waxholmshotell.se/ — "Waxholms Hotell har varit hjärtat i skärgårdens huvudstad sedan 1902"; "Hamngatan 2, 185 32 Vaxholm"; "info@waxholmshotell.se"; "JULBORD" (läst 2026-09-28) -->
 <ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
 <li><strong>Grinda Wärdshus</strong> på <a href="/o/grinda">Grinda</a>: evenemangskalendern slutade med Halloween på Grinda den 1 november 2026. Inget nyår och inget i december fanns med.</li>
-<li><strong>Waxholms Hotell</strong> i <a href="/o/vaxholm">Vaxholm</a>: hotellet vid Hamngatan har funnits sedan 1902. Startsidan visade julbord men inget nyårserbjudande. Fråga hotellet via e-post.</li>
+<li><strong>Waxholms Hotell</strong> i <a href="/o/vaxholm">Vaxholm</a>: hotellet vid Hamngatan har funnits sedan 1902. Startsidan visade inget nyårserbjudande. Fråga hotellet via e-post.</li>
 </ul>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur går båtarna på nyårsafton 2026?</h2>
@@ -10115,7 +10114,8 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <strong style="color:var(--sea)">Bra att veta:</strong>
 <!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "BOKNINGEN ÄR ÖPPEN!" (läst 2026-11-02) -->
 <!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "i mån av plats" (läst 2026-11-02) -->
-<p style="margin:8px 0 0;font-size:14px">Nyårspaketen gäller i mån av plats. Smådalarö Gård och Marholmen tar emot bokningar, men Smådalarös meny var inte klar i början av november. Övriga hotell i listan hade inget nyårspaket ute – fråga dem direkt eller håll koll på deras nyhetsbrev.</p>
+<!-- KÄLLA: https://www.sandhamn.com/sv/kalender/nyarafton — "BOKA NYÅRSPAKETET" (läst 2026-11-07) -->
+<p style="margin:8px 0 0;font-size:14px">Nyårspaketen gäller i mån av plats. Smådalarö Gård, Marholmen och Sandhamn Seglarhotell tar emot bokningar, men Smådalarös meny var inte klar i början av november. Övriga hotell i listan hade inget nyårspaket ute – fråga dem direkt eller håll koll på deras nyhetsbrev.</p>
 </div>
 `,
 
@@ -19077,7 +19077,8 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://marstrandsmarknad.com/ — "JULMARKNAD · 28–29 NOVEMBER 2026" (läst 2026-09-27) -->
 <!-- KÄLLA: https://www.destinationvaxholm.se/anmalan — "Datum: Lördag 5 dec och söndag 6 dec 2026" (läst 2026-09-27) -->
 <!-- KÄLLA: https://www.medeltidsveckan.se/en/medieval-jule-christmas/ — "Welcome to a historic Yule atmosphere in the St. Nicolai ruin 4-6 December 2026." (läst 2026-09-27) -->
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Vill du fira jul i skärgården eller gå på julmarknad vid havet finns flera datum klara för 2026: Marstrand 28–29 november, Vaxholm 5–6 december och Medeltida jul i Visby 4–6 december. Här listar vi bara julmarknader där arrangören själv har publicerat datum, plus julbord och julafton på öarna. Kolla alltid arrangörens sida innan du åker.</p>
+<!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julmarknad — "Lördagen den 28 november välkomnar vi dig till julmarknad på Sandhamn." (läst 2026-11-07) -->
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Vill du fira jul i skärgården eller gå på julmarknad vid havet finns flera datum klara för 2026: Marstrand 28–29 november, Sandhamn 28 november, Vaxholm 5–6 december och Medeltida jul i Visby 4–6 december. Här listar vi bara julmarknader där arrangören själv har publicerat datum, plus julbord och julafton på öarna. Kolla alltid arrangörens sida innan du åker.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julmarknader vid havet 2026</h2>
 
@@ -19103,9 +19104,9 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://gotland.com/jul-pa-gotland/ — "Under adventshelgerna hittar du de mysiga julbodarna på Stora torget."; "Weekendpaketet innehåller personbiljett tur och retur med färjan och boende i 2 nätter." (läst 2026-09-27) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Under adventshelgerna står det också julbodar på Stora torget. Gotland.com länkar till weekendpaket med färjebiljett tur och retur och två nätters boende. Mer om ön finns i <a href="/guider/gotland-guide">Gotlandsguiden</a>.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Julmarknad på Sandhamn – datum inte klart</h3>
-<!-- KÄLLA: https://www.sandhamn.com/sv/jullov-julmarknad — "Just nu arbetar vi med årets upplägg för jullovet och vår julmarknad på Sandhamn."; "Program, datum och mer information publiceras här så snart allt är på plats." (läst 2026-09-27) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn Seglarhotell har julmarknad på Sandhamn, men när vi läste deras sida hade datumet för 2026 ännu inte publicerats. Hotellet skriver att program och datum kommer på sidan så snart allt är klart.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Julmarknad på Sandhamn – 28 november 2026</h3>
+<!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julmarknad — "Lördagen den 28 november välkomnar vi dig till julmarknad på Sandhamn."; "Julmarknad och aktiviteter kl. 11.00–15.00"; "Vi lagar lunch över öppen eld på våra OFYR-grillar."; "I Orangeriet serverar vi varma och kalla drycker."; "Mer information om utställare och aktiviteter kommer närmare julmarknaden." (läst 2026-11-07) -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn Seglarhotell har julmarknad lördag 28 november 2026 kl. 11–15, med lunch lagad över öppen eld och varma och kalla drycker i Orangeriet. Utställarna presenteras närmare marknaden.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fira jul i skärgården – julbord och julafton vid havet</h2>
 <!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julbord — "26 NOVEMBER - 24 DECEMBER 2026"; "Julbordet serveras kvällstid" (läst 2026-09-27) -->
