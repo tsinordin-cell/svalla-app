@@ -114,6 +114,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
     // P0 2026-10-29: kortet "Sista båten från Möja" visade en beställningstur utan att säga att den måste beställas.
     bestallning: 'Flera turer till och från Möja går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 i god tid innan du åker. Långvik och Dragedet trafikeras även av tabell 10 och 12.',
+    // Sista båten 2026-11-07 (Kontrollanten, sb-k007): tur 1414 angör Möjaström
+    // utan fast tid (X), och kortet visade reseplanerarens beräknade tid.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Möjaström (Möja)", "X", "Bryggorna trafikeras utan fast avgångstid." (läst 2026-11-07)
+    tidsObs: 'Waxholmsbolaget angör Möjaström på flera turer utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',
   },
   husaro: {
     destStopId: '740020692', destStopName: 'Husarö brygga',
@@ -376,6 +380,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     destStopId: '740034529', destStopName: 'Orrlunda (Tynningö) brygga',
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     note: 'Buss till Vaxholm och båt över. Tynningö har också vägfärja från Bogesund.',
+    // Sista båten 2026-11-07 (Kontrollanten, sb-k005): kortet visade en tur från
+    // Norehill, som i tabell 4 är märkt Xb (ingen fast tid, bara efter beställning).
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h4.pdf — "Norehill (Tynningö)", "Xb", "Orrlunda (Tynningö)", "Norra Tynningö", "Bryggorna trafikeras utan fast avgångstid.", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (läst 2026-11-07)
+    bestallning: 'På en del turer stannar båten vid bryggorna på Tynningö bara om resan har beställts i förväg, minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 4 i god tid innan du åker.',
+    tidsObs: 'Waxholmsbolaget angör Norehill på Tynningö på flera turer utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',
   },
   djuro: {
     // 80 min, 1 byten, uppmätt 2026-08-05
