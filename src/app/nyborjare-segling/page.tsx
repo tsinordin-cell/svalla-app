@@ -187,13 +187,13 @@ export default function NyborjareSeglingPage() {
  I Sverige är vanliga vägar in i seglingen <strong>Förarintyg och Kustskepparintyg</strong> (utfärdas av NFB / Nämnden för båtlivsutbildning), <strong>SSF-utbildningar</strong> (Svenska Seglarförbundet) och kurser hos lokala segelsällskap. Stegen kan se ut så här:
  </p>
  <ul style={{ margin: '12px 0', paddingLeft: 20 }}>
- // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
+ {/* UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) */}
  <li><strong>Grundläggande (förarintyg-nivå):</strong> Knopar, sjövägsregler, säkerhet, grundläggande navigation. Cirka 2–3 dagar eller några kvällar. Kostnad cirka 2 000–4 000 kr.</li>
  <li><strong>Kustskepparintyg:</strong> Kustnavigation, terrestrisk navigation, väder, kollisionsregler. Bredare kurs, cirka 4–6 dagar. Kostnad cirka 3 000–6 000 kr.</li>
  <li><strong>RYA Day Skipper:</strong> Internationell standard som ofta krävs av charterbolag. Praktisk del 5 dagar + teoridel. Kostnad cirka 8 000–15 000 kr.</li>
  </ul>
  <p>
- // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
+ {/* UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) */}
  <strong>Lokala segelsällskap</strong> erbjuder ofta kurser till lägre pris (ibland 1 500–3 000 kr) och är fantastiska för att träffa andra nybörjare och få mentorskap. <strong>KSSS</strong> (Kungliga Svenska Segelsällskapet) är Sveriges största klubb med stor utbildningsverksamhet. Klassiska klubbar finns i hela landet.
  </p>
  <p>
@@ -222,7 +222,7 @@ export default function NyborjareSeglingPage() {
  Charterbåt som övningsväg
  </h3>
  <p>
- // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
+ {/* UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) */}
  Du behöver inte köpa direkt. Många charterbolag runt Sverige erbjuder båtar för veckosegling från cirka 8 000–15 000 kr/vecka (lågsäsong) till 20 000–40 000 kr/vecka (högsäsong). Perfekt för att prova innan du köper. Kraven är vanligen ett intyg (t.ex. förarintyg/Day Skipper) eller att du bokar med en erfaren skeppare ombord.
  </p>
 
@@ -317,7 +317,7 @@ export default function NyborjareSeglingPage() {
  Vad kostar det att köpa sin första segelbåt?
  </h3>
  <p>
- // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
+ {/* UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) */}
  En begagnad klassiker som H-båt eller Albin 25 kostar typiskt 30 000–100 000 kr. En välhållen Folkbåt eller Maxi 77 kostar ofta 80 000–200 000 kr. Billigare båtar finns från 10 000–20 000 kr men kräver att du noggrant kontrollerar skick (köl, skrov, rigg, motor) före köp. Räkna även med försäkring (~500–2 000 kr/år), underhåll (~2 000–8 000 kr/år) och hamnplats (~3 000–10 000 kr/år beroende på ort).
  </p>
  </>

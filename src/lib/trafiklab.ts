@@ -114,6 +114,12 @@ export interface TripSummary {
   startDate: string
   /** Ankomsttid HH:MM (sista leg). */
   endTime: string
+  /**
+   * Datum YYYY-MM-DD för ankomsten (sista benets Destination). Sista båten
+   * 2026-11-03: en resa som kommer fram nästa morgon är ingen väg hem i dag.
+   * Tom om ResRobot inte anger det.
+   */
+  endDate?: string
   /** Antal byten = legs - 1 (förenkling). */
   changes: number
   /** Endast transport-legs (utan walks) — det användaren bryr sig om. */
@@ -351,6 +357,8 @@ export async function fetchTripsResult(
       const last = legs[legs.length - 1] ?? allLegs[allLegs.length - 1]
       // Datum kommer från ResRobot's första Origin — det är där resan startar.
       const startDate = (t.LegList?.Leg?.[0]?.Origin?.date ?? '').slice(0, 10)
+      const rawLegs = t.LegList?.Leg ?? []
+      const endDate = (rawLegs[rawLegs.length - 1]?.Destination?.date ?? '').slice(0, 10)
       const cancelled = legs.some(l => l.cancelled)
       const maxDelayMin = legs.reduce((max, l) => {
         const d = l.delayMin ?? 0
@@ -363,6 +371,7 @@ export async function fetchTripsResult(
         startTime,
         startDate,
         endTime,
+        endDate: endDate || undefined,
         changes: Math.max(0, legs.length - 1),
         legs,
         allLegs,
@@ -399,10 +408,11 @@ export async function fetchTrips(
 /**
  * Hämtar dagens SISTA avgång från `originId` till `destId`.
  *
- * Strategi: ResRobot v2.1 har max numF=6, så vi gör TVÅ parallella anrop
- * med olika start-tider (14:00 + 19:00) och slår ihop. Det fångar både
- * eftermiddagsavgångar och sena kvällsturer — viktigt för öar med tät
- * trafik där 6 trips från 14:00 inte sträcker sig till kvällens sista.
+ * Strategi: ResRobot v2.1 har max numF=6, så vi frågar från två start-tider
+ * (14:00 + 19:00) och slår ihop. Det fångar både eftermiddagsavgångar och
+ * sena kvällsturer — viktigt för öar med tät trafik där 6 trips från 14:00
+ * inte sträcker sig till kvällens sista. Varje start-tid frågas både med
+ * bara färjor och med alla trafikslag (se kommentaren i funktionen).
  *
  * Returnerar null om ingen kvarvarande avgång finns idag (sista båten har
  * redan gått, eller helt enkelt ingen ytterligare båt idag).
@@ -414,51 +424,61 @@ export async function fetchLastTripOfDay(
   originId: string,
   destId: string,
   todayISO?: string, // YYYY-MM-DD — defaultar till idag i Europe/Stockholm
+  /** Vilken ände av resan som är ön: 'start' för hemresan, 'slut' för resan dit. */
+  on: 'start' | 'slut' = 'start',
 ): Promise<TripSummary | null> {
   // Stockholm timezone — Vercel kör i UTC, vi måste explicit konvertera
   const date = todayISO ?? new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Stockholm' })
 
-  // Två parallella anrop: 14:00 fångar eftermiddag, 19:00 fångar sena kvällsturer.
+  // Två söktider: 14:00 fångar eftermiddag, 19:00 fångar sena kvällsturer.
   // ResRobot max numF=6 — annars returnerar API:t API_PARAM IllegalArgumentException
   // och vi får tomt svar (vilket var orsak till första-release-buggen där alla
   // last-departure-anrop returnerade null).
-  // P0 2026-11-02 (faktagranskningen, vaxholm-0078): utan trafikslagsfilter
-  // blev "sista båten" en resa med buss och tunnelbana när den gick senare än
-  // båten – Vaxholm visade 20:02 → Strömkajen, fast sista båten enligt tabell
-  // 2B gick 18.25. Rubriken lovar en båt, så bara färjor räknas (produkt 256).
-  // Byten till buss räknas inte: en resa som innehåller andra trafikslag
-  // skulle fortfarande kunna visa en buss som "sista båten".
   // Söktiderna är startpunkter för frågan mot ResRobot, inte avgångstider som
   // visas för någon. Valda i första versionen (uppmätt mot ResRobot: numF=6
   // per anrop räcker från 14:00 respektive 19:00 till dagens sista tur).
+  //
+  // Varje söktid frågas två gånger:
+  //  - bara färjor (produkt 256). P0 2026-11-02 (faktagranskningen,
+  //    vaxholm-0078): utan filter blev "sista båten" från Vaxholm en resa med
+  //    buss och tunnelbana som gick senare än båten (20:02 i stället för 18.25).
+  //    Med filtret kommer båten med även när bussarna går tätare.
+  //  - alla trafikslag. Sista båten 2026-11-03 (MÄTT i produktion efter P0 9):
+  //    med bara färjor gav sökningen ingen resa alls för 34 av 50 öar, till
+  //    exempel Sandhamn (båt till Stavsnäs och buss 433) och Utö (båt, buss
+  //    och pendeltåg), och kortet försvann. Hemresan får fortsätta med buss
+  //    eller tåg, men benet som lämnar ön måste vara en båt (valjSistaBaten).
   const sokFran = ['14:00', '19:00']
-  const [afternoonTrips = [], eveningTrips = []] = await Promise.all(
-    sokFran.map(time => fetchTripsResult(originId, destId, 6, { date, time }, { products: RESROBOT_PRODUKT_FARJA }).then(r => r.trips)),
-  )
+  const svar = await Promise.all([
+    ...sokFran.map(time => fetchTripsResult(originId, destId, 6, { date, time }, { products: RESROBOT_PRODUKT_FARJA }).then(r => r.trips)),
+    ...sokFran.map(time => fetchTripsResult(originId, destId, 6, { date, time }).then(r => r.trips)),
+  ])
+  return valjSistaBaten(svar.flat(), date, on)
+}
 
-  // Dedupa på startTime (samma trip kan dyka upp i båda anropen)
-  const seen = new Set<string>()
-  const merged: TripSummary[] = []
-  for (const t of [...afternoonTrips, ...eveningTrips]) {
-    const key = `${t.startDate}T${t.startTime}`
-    if (seen.has(key)) continue
-    seen.add(key)
-    merged.push(t)
-  }
-
-  // Filtrera fram resor som FAKTISKT startar idag (ResRobot ger även resor nästa dag),
-  // och bara resor där varje transportben är en färja (products-filtret styr
-  // sökningen, men svaret kontrolleras ändå: catCode 8 = Ferries). Kontrollen
-  // går också över allLegs: normalizeLeg räknar ben utan linjenummer som
-  // promenad, så ett bussben utan `line` skulle annars slinka igenom. Vid sidan
-  // av färjorna godtas bara ben helt utan trafikslag, alltså promenader.
-  const arFarja = (l: TripLeg) => l.catCode === '8' || l.cls === String(RESROBOT_PRODUKT_FARJA)
-  const todaysTrips = merged.filter(t => t.startDate === date
+/**
+ * Väljer dagens sista båt ur ResRobots resor (exporteras för tester).
+ *
+ * En resa räknas när den startar och kommer fram samma dag, och när benet
+ * som rör ön är en färja: första transportbenet på hemresan ('start'),
+ * sista på resan dit ('slut'). Övriga ben får vara buss eller tåg. Ben med
+ * trafikslag räknas aldrig som promenad (normalizeLeg), så ett bussben kan
+ * inte gömma sig bakom en promenad.
+ *
+ * Bland giltiga resor vinner den senaste båten (benet som rör ön). Går
+ * flera resor med samma båt väljs den som kommer fram först på hemresan och
+ * den som startar senast på resan dit.
+ */
+export function valjSistaBaten(resor: TripSummary[], date: string, on: 'start' | 'slut'): TripSummary | null {
+  const arFarja = (l: TripLeg | undefined) => !!l && (l.catCode === '8' || l.cls === String(RESROBOT_PRODUKT_FARJA))
+  const oBen = (t: TripSummary) => (on === 'start' ? t.legs[0] : t.legs[t.legs.length - 1])
+  const giltiga = resor.filter(t => t.startDate === date
+    && (!t.endDate || t.endDate === date)
     && t.legs.length > 0
-    && t.legs.every(arFarja)
-    && t.allLegs.every(l => arFarja(l) || (l.catCode === undefined && l.cls === undefined)))
-  if (todaysTrips.length === 0) return null
-  // Sortera efter startTime (HH:MM stränger sorterar korrekt) — ta sista
-  todaysTrips.sort((a, b) => a.startTime.localeCompare(b.startTime))
-  return todaysTrips[todaysTrips.length - 1] ?? null
+    && arFarja(oBen(t)))
+  if (giltiga.length === 0) return null
+  const batTid = (t: TripSummary) => (on === 'start' ? oBen(t)!.fromTime : oBen(t)!.toTime)
+  giltiga.sort((a, b) => batTid(a).localeCompare(batTid(b))
+    || (on === 'start' ? b.endTime.localeCompare(a.endTime) : a.startTime.localeCompare(b.startTime)))
+  return giltiga[giltiga.length - 1] ?? null
 }

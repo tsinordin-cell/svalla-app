@@ -208,7 +208,9 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
             </div>
           )}
           <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.65)', marginTop: 4, fontVariantNumeric: 'tabular-nums' }}>
-            → {lastTrip.endTime} {data.originName.split(' ').slice(-1)[0]}
+            {/* Sista båten 2026-11-03: hemresan kan sluta med buss eller tåg, så
+                ankomsten namnges efter sista benets hållplats, inte reseplanerarens mål. */}
+            → {lastTrip.endTime} {bryggnamn(lastTrip.legs[lastTrip.legs.length - 1]?.toName) || data.originName.split(' ').slice(-1)[0]}
           </div>
         </div>
 
@@ -261,6 +263,12 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
           {data.tidsObs}
         </p>
       )}
+
+      {/* Sista båten 2026-11-07 (Kontrollanten, sb-omk2, MÄTT): ResRobot visade en
+          lördagstur från Möja som inte finns i Waxholmsbolagets tabell 14 för lördag. */}
+      <p style={{ fontSize: 11.5, lineHeight: 1.45, margin: '10px 0 0', opacity: 0.85 }}>
+        Tiden kommer från Trafiklabs reseplanerare och kan avvika från operatörens tidtabell. Kontrollera sista turen där innan du åker.
+      </p>
 
       <style>{`
         @keyframes lastBoatPulse {
