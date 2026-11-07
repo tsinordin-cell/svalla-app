@@ -32,6 +32,7 @@ VERKTYG FÖR ATT LÄSA KÄLLOR
 - PDF: curl -o fil.pdf URL och pdftotext fil.pdf - (läs GÄLLER-raden i tidtabeller).
 - JavaScript-tunga sidor (sl.se, waxholmsbolaget.se, naturvardsverket.se, lansstyrelsen.se med flera): hittar du inte citatet med curl/WebFetch, läs sidan i riktig webbläsare: python3 -I {{TOOLS}}/las_sida.py URL [sökord …] (skriver ut sidans synliga text eller raderna med sökorden). Döm aldrig FEL eller OBELAGD på en sida du inte läst så.
 - Sökning: WebSearch för att HITTA rätt primärkälla. Ett sökresultat eller en AI-sammanfattning är aldrig belägg — öppna sidan.
+- OpenStreetMap: overpass-api.de nås inte genom arbetsytans proxy, men api.openstreetmap.org gör det (MÄTT 2026-11-08).
 
 KÄLLCACHE OCH FÖRKONTROLL (läs detta först – det sparar kontots användningsgräns)
 - {{B}}/kallcache/index.json: varje URL som förekommer i registrens KÄLLA-rader är hämtad i dag (curl, PDF via pdftotext, Chromium när det behövdes). För varje URL: textfilen i {{B}}/kallcache/, HTTP-status, slutadress, om den gick till startsidan, metod och läsdatum.
