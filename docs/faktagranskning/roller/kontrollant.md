@@ -40,6 +40,17 @@ SVAG, bara för koordinater och geometri: OpenStreetMap.
 FÖRBJUDNA: Wikipedia, Wikimedia (utom bildens egen filsida för frågan om vad bilden föreställer), bloggar, TripAdvisor, Booking, Airbnb, Google Maps och Google Places, ruttdirekt, rome2rio, moovit, restaurangguider, nyhetsartiklar som ensam källa, konkurrenter, AI-sammanfattningar, svalla.se och sidor som kopierat svalla.se, eget minne.
 Aldrig i texten: klockslag, avgångstider, öppettider eller priser utan publicerad prislista. Ett klockslag i texten är FEL.
 
+FÖRTYDLIGANDEN EFTER BATCH 01 (Redaktören 2026-11-08)
+- Ett museum eller en verksamhet som drivs av ett bolag är nivå 2 och belägger inte historia. Detsamma gäller förvaltare och markägare (Skärgårdsstiftelsen, De Kungliga Slotten / Kungliga Djurgårdsförvaltningen) och Svenska kyrkans församlingar. Året då en verksamhet själv startade får beläggas av dess sida. Stockholmskällan räknas som Stockholms stad, nivå 1.
+- Lokala turistföreningar (till exempel Möja turistförening, visitmoja.se) är nivå 3. En rad med nivå 3-källa är OK om källan stöder raden och ingen nivå 1–2-källa som du har läst säger emot. Ser du att en nivå 1–2-källa täcker raden, skriv det i kommentaren.
+- Graden och förbehållen ska vara källans. "Nästan helt" stöds inte av "till övervägande del", och en text som saknar källans "kanske" är säkrare än källan. Båda är FEL.
+- Varje led i en uppräkning, varje orsakssamband och varje namn ska stå i källan. En märkning som "Källbelagd" gäller allt den står vid.
+- Klockslag i löptext är FEL, även när de står i samma mening som den rad du prövar.
+- Visar en sida en verifieringssida i Chromium, svara SAKNAS med kommentaren "ej nåbar" och läs den inte med curl eller ett annat verktyg i stället. Försök aldrig ta dig förbi en CAPTCHA, en inloggning eller en certifikatvarning.
+- Källistans räkning ("N sidor hos M källor, varav K myndighet eller kommun") och dess länktexter har kända generatorfel: trafikbolagen räknas som myndighet, samma organisation delas på flera källor och hela KÄLLA-raden hamnar under den första URL:en. Svara FEL för dem bara om talen eller citaten inte stämmer med datan.
+- Rader med fil:rad "restaurants.<slug>.<kolumn>" är texter i databasen. Rader med "render:/…" är text som sajten bygger av datan. Rader med "(renderas inte)" är datafält som inte visas; döm dem ändå mot källan.
+- Rader utan källa är uppgifter om Svallas egen data. Pröva dem mot repot eller den publicerade sidan och svara OK eller FEL med vad du mätte.
+
 LEVERANS
 {{K}}/{{SLUG}}.kontroll.tsv, tabbseparerad, med rubrikraden:
 kid	svar	citat från sidan	källa du läste	kommentar
