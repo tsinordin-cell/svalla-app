@@ -31,6 +31,9 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 ## Samma fel på andra ställen
 - "Sök resan i SL-appen" står i Yxlans data och i blogg/[slug]/page.tsx:902.
 - Bloggen cykling-moja-gallno säger "Buss 434 från Slussen till Sollenkroka".
+- Sea Lodge "till mitten av augusti" står kvar i guide-content.ts:12998–12999 (grinda.se: slutet av augusti).
+- Hantverkarsidan för Möja: OCT Entreprenad (moja-N015, kompensation för Lag 3) står först i datafilen och visas därför före företagen med bas på Möja. Sortera så att företag med bas på ön kommer först, om det går utan att röra fler poster.
+- Styrsö: nio KORREKT-rader har Brattens Wärdshus som enda källa för historien (styrso-0043–0046, 0048, 0049, 0105, 0114, 0117). De ligger i den fulla kontrollen och ska få FEL där.
 - "Café Ankaret" står kvar i bloggen (blogg/[slug]/page.tsx:67). Verksamheten heter "Ankaret" (Instagram, läst 2026-11-03).
 - src/data/guider.ts:358–360: obelagd Strömkajen-text.
 - dagsplan.ts: Nynäshamn → Utö.

@@ -426,5 +426,13 @@
    "sandhamn-0538",
    "sandhamn-0557"
   ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.dykarbaren.se/ — \"DYKARBAREN SANDHAMN\", \"Vi erbjuder endast bordsbokning inomhus då vår uteservering inte helt går att vädersäkra\", \"Öppet 2026 säsong maj – september\" (läst 2026-09-27)\n      { name: 'Dykarbaren', type: 'Bar', desc: 'Bar och restaurang i Sandhamn med inne- och uteservering. Säsong maj–september.', websiteUrl: 'https://dykarbaren.se' },",
+  "ny": "      // KÄLLA: https://www.dykarbaren.se/ — \"DYKARBAREN SANDHAMN\", \"Vi erbjuder endast bordsbokning inomhus då vår uteservering inte helt går att vädersäkra\", \"Öppet 2026 säsong maj – september\" (läst 2026-11-07)\n      { name: 'Dykarbaren', type: 'Bar', desc: 'Bar och restaurang i Sandhamn med inne- och uteservering. Säsong maj–september. Bord bokas bara inomhus, eftersom uteserveringen inte helt går att vädersäkra.', websiteUrl: 'https://dykarbaren.se' },",
+  "rader": [
+   "sandhamn-N023"
+  ]
  }
 ]

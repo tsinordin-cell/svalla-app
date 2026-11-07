@@ -283,5 +283,13 @@
    "moja-0522",
    "vaxholm-0265"
   ]
+ },
+ {
+  "fil": "src/app/o/hantverkare-data.ts",
+  "gammal": "    orgnr: '556955-5856',\n    oar: [\n      'blido', 'finnhamn', 'grinda', 'gallno', 'husaro', 'ingmarso',\n      'ljustero', 'yxlan', 'angso',\n    ],",
+  "ny": "    orgnr: '556955-5856',\n    // Möja tillagd 2026-11-07 (Lag 3 på /o/moja/hantverkare): företagets egen sida nämner Möja bland orterna där de genomför projekt.\n    // KÄLLA: https://oct-entreprenad.com/byggfirma-varmdo/ — \"Det gör att vi kan planera och genomföra projekt på ett sätt som är både hållbart och effektivt för området – oavsett om du bor i Nacka, Gustavsberg, Ingarö, Djurö, Storö eller Möja.\" (läst 2026-11-07)\n    oar: [\n      'blido', 'finnhamn', 'grinda', 'gallno', 'husaro', 'ingmarso',\n      'ljustero', 'yxlan', 'angso', 'moja',\n    ],",
+  "rader": [
+   "moja-N015"
+  ]
  }
 ]
