@@ -1,0 +1,7 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-07)
+f03-k026	uto-0188	FEL	Omarbete: "som binder ihop ön" står inte hos Skärgårdsstiftelsen. Skriv det källan säger ("milslånga grusvägar och stigar"), eller belägg tillägget med en annan tillåten källa.
+f03-k028	uto-0362	FEL	Omarbete (KÄLLA-rad) och generatorn: citatet om Waxholmsbåt året om står hos Länsstyrelsen, inte hos Skärgårdsstiftelsen. Dela KÄLLA-raden så att varje URL har sina egna citat. Generatorfelet (hela raden hamnar under den första URL:en) står redan på Vaktens lista.
+f03-k087	fjaderholmarna-0313	FEL	Omarbete: "Stora Fjäderholmen" i badplatsens namn är inte belagt av källan ("Sol och bad vid klipporna."). Belägg läget med en tillåten källa eller ge platsen ett namn utan ö.
+f03-k096	fjaderholmarna-0063	FEL	Omarbete: "Juli–Augusti" som högsäsong stöds inte. Strömma ger tätast trafik 18 juni–15 augusti och bryggeriet utökade öppettider juni–augusti; skriv perioden som källorna anger den.
+f03-k101	fjaderholmarna-0050	FEL	Omarbete: månadskalendern får inte visa hela augusti som högsäsong när Strömmas täta tabell slutar 15 augusti. Följ källan (eller visa augusti som delvis).
+f03-k104	fjaderholmarna-0096	FEL	Omarbete: meningen i island-data.ts:1514 (publicerad på /o/fjaderholmarna) innehåller klockslag ("mellan 10.30 och 17.00"). Skriv om utan klockslag.
