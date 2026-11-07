@@ -2,6 +2,37 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-07 20:05 — veckokvoten tog slut 3 nov; arbetet återupptaget
+
+- **Uppehållet:** veckokvoten tog slut på kvällen 3 nov. Då avbröts tre
+  agenter: Skribenten för mallarna (runda 3), Kontrollanten för full-02 och
+  Skribenten för runda 3. Alla tre är återupptagna i dag med SendMessage.
+- **Tom valde i dag** samma takt som förut för den fulla kontrollen: Opus och
+  fyra agenter.
+- **Paket full-01 är klart:** 107 OK, 2 FEL och 1 SAKNAS, alla på Grinda.
+  Kontrollanten fann också två fel utanför paketet: Sea Lodge har öppet till
+  slutet av augusti enligt grinda.se (texten säger mitten), och källistan
+  märker Waxholmsbolaget och SL som "Myndighet". Besluten står i
+  `full-01.beslut.tsv`.
+- **Omkontrollen hs-omk:** 42 OK och 8 FEL. Felen gäller Styrsös ötext
+  (biblioteket har flyttat, källa för vården, bilförbudet), en källa för
+  restiden och Husarös regionetikett (Toms beslut 2). Besluten står i
+  `hs-omk.beslut.tsv`.
+- **Kontrollen av #506 (sb-omk), tio öar:** 6 OK och 4 FEL.
+  - Möja visar Möjaström (X) och Tynningö visar Norehill (Xb) utan not. Det
+    kan få någon att missa båten. Därför fick #506 commit a1a29dd: tidsObs
+    för Möja och Tynningö, och en text om beställning för Tynningö (källor
+    h14 och h4, lästa 2026-11-07). Omkontrollen sb-omk2 görs när
+    förhandsbygget är klart. Den gäller också Tynningös not om "vägfärja
+    från Bogesund", som saknar källa.
+  - Resarö visar en för tidig båt, och Ljusterö döljs. Ingen av dem
+    strandsätter någon, och båda finns i produktion redan. De går till fas 3
+    (en brygga per ö, ResRobot saknar beställningsanmärkningar).
+- **Projektdokumentet** `claude/komma-dit-titlar-2026-11-07.md` (en annan
+  session, i dag) föreslår första och sista avgång i komma-dit-sidornas
+  beskrivning och FAQ-schema. Det krockar med regeln om inga klockslag i
+  löptext. Meddelat Tom.
+
 ## 2026-11-03 21:55 — Supabase uppe; alla P0 i produktion; full kontroll startad
 
 - **Supabase** är uppe igen (ACTIVE_HEALTHY). P0 13–14 kördes 21:22 i databasen,
