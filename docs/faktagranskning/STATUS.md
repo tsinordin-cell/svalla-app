@@ -2,6 +2,30 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-08 00:15 — full kontroll 04–05 och omkontrollen av öarna klara; omarbetet samlas
+
+- **full-04:** 82 OK, 27 FEL och 1 SAKNAS. Av felen gäller 21 Vaxholms
+  fästnings historia, som bara har vaxholmsfastning.se som källa. Sidan
+  drivs av Vaxholms Fästnings Museum AB, som är nivå 2 och inte belägger
+  historia; SFV täcker bara 1833–1863. Fem fel gäller Lilla Trouville
+  (Toms beslut 6).
+- **full-05:** 82 OK, 27 FEL och 1 SAKNAS. Av felen gäller 26 Möja på
+  källnivå: visitmoja.se ges ut av Möja turistförening.
+  **Redaktörens beslut:** lokala turistföreningar räknas som nivå 3. De får
+  användas bara när nivå 1–2 saknas. Tio rader täcks av Värmdö kommuns
+  Möja-PDF. Tolkningen står i Kontrollantens mall från paket 06.
+- **oar-omk2:** 60 OK, 6 FEL och 1 SAKNAS. "Året runt" för Sandhamns restid
+  gäller bara vår och höst, och Grindas sommartabell slutar i mitten av
+  augusti. Två strykningar står kvar: Sandhamn "mellersta" (nivå 1 säger
+  yttre) och Utös trollingmening (ny utfyllnad). Raden som saknas beror på
+  att battaxi.se har ogiltigt certifikat även i Toms Chrome; varningen
+  kringgås inte.
+- **Plan:** omarbetet av öarna samlas tills den fulla kontrollen är klar, med
+  en Skribentrunda och en omkontroll per ögrupp i stället för många små.
+  Inget av fynden är P0. Mallarnas runda 4 pågår. Full kontroll 06–08 pågår,
+  och 2 322 av 3 063 rader är kvar.
+- Mallen för full kontroll ligger i `redaktor/full-prompt.txt`.
+
 ## 2026-11-07 22:15 — #506 mergad och verifierad; P0 19 Tynningö
 
 - **#506 mergad** (squash 236d33a) efter tre omgångar hos Kontrollanten:
