@@ -73,8 +73,12 @@ innehåll som beslutskortet på svalla.se/team.
     alltså norra Donsö ändå in vid GPS-taggning.
   - **Husarö (2,0 km):** hela ön ryms inom 1,32 km, och 2,0 km tar med
     Särsös brygga (1,66 km).
+  - **Grinda (2,5 km):** Grindas längsta punkt ligger 1,32 km från nålen och
+    närmaste strand 0,27 km, så 2,5 km-cirkeln tar med annan land, bland
+    annat Storön och Västerholmen (MÄTT i OSM 2026-11-08). En besökare där
+    taggas alltså som Grindabesökare.
 - **Förslag:** höj Möja till 3,5 km och Utö enligt (b), lägg till Styrsö med
-  2,0 km och sänk Husarö till 1,5 km. Låt Storholmen och Fjäderholmarna stå
+  2,0 km och sänk Husarö och Grinda till 1,5 km. Låt Storholmen och Fjäderholmarna stå
   kvar på 1,5 km tills turtaggningen har prövats.
 - **Ja:** GPS-radierna ändras i batch 01:s PR. **Nej:** inget ändras i
   turtaggningen.
