@@ -48,8 +48,8 @@ export async function GET(req: NextRequest) {
 
   // Parallella anrop — outbound och return är oberoende
   const [outbound, returnTrip] = await Promise.all([
-    fetchLastTripOfDay(cfg.originStopId, cfg.destStopId, datum ?? undefined),
-    fetchLastTripOfDay(cfg.destStopId, cfg.originStopId, datum ?? undefined),
+    fetchLastTripOfDay(cfg.originStopId, cfg.destStopId, datum ?? undefined, 'slut'),
+    fetchLastTripOfDay(cfg.destStopId, cfg.originStopId, datum ?? undefined, 'start'),
   ])
 
   return NextResponse.json(
