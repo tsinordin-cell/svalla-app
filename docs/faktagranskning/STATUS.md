@@ -2,6 +2,41 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-07 22:15 — #506 mergad och verifierad; P0 19 Tynningö
+
+- **#506 mergad** (squash 236d33a) efter tre omgångar hos Kontrollanten:
+  - sb-omk gav 6 OK och 4 FEL
+  - sb-omk2 gav 3 OK och 2 FEL. Ett av dem blev P0 19: vägfärjan till
+    Tynningö går från Lagnö, inte Bogesund (Trafikverket).
+  - sb-omk3 gav 2 OK och 1 FEL. Felet var en källa som saknades på raden;
+    den lades till enligt Kontrollantens mätning (SL 670 och tabell 4).
+
+  Main (#507, #509) slogs in i grenen, och 720 tester och tsc var gröna.
+- **MÄTT i produktion (lördag kväll):**
+  - Kortet har en resa för 21 av 50 öar, bland dem Sandhamn, Utö, Vaxholm,
+    Resarö och Styrsö, och alla kommer fram samma dag.
+  - Tynningöns not säger Lagnö, och Bogesund finns inte på /o/tynningo.
+  - Kortet syntes inte renderat i kväll, eftersom sista båten redan hade
+    gått. Kortets kod och API-svaren är kontrollerade.
+- **Risk:** ResRobot visar på lördagar en båt från Möjaström 19:27 som inte
+  finns i Waxholmsbolagets lördagstabell 14 (Kontrollanten, MÄTT för
+  7 och 14 november). Kortet visar den med texten om att tiden kan avvika.
+  Frågan ligger på mejlkortet (ring kundtjänst; waxholmsbolaget.se/kontakt
+  har ingen e-postadress).
+- **mallar-omk3:** 19 OK, 4 FEL och 1 SAKNAS. Felen gäller Bullerös
+  badstege, klockslag i undertiteln för Lilla Karlsö och Blå Jungfrun, och
+  att Härmanö huvud och Tanum Strand räknas som "på" ön. Det som saknas är
+  länktexterna för hkship.se och battaxi.se. Marstrands "barnvänlig" är OK.
+  Besluten står i `mallar-omk3.beslut.tsv`. Mallarnas runda 4 pågår.
+- **Full kontroll:**
+  - full-02 gav 98 OK och 12 FEL
+  - full-03 gav 104 OK och 6 FEL
+
+  Besluten står i `full-02.beslut.tsv` och `full-03.beslut.tsv`. full-04 och
+  full-05 pågår.
+- **Omarbete runda 3 är klar** (35 rader). Omkontrollen oar-omk2 pågår och
+  gäller runda 2 och 3 (61 rader och 6 strukna).
+
 ## 2026-11-07 20:05 — veckokvoten tog slut 3 nov; arbetet återupptaget
 
 - **Uppehållet:** veckokvoten tog slut på kvällen 3 nov. Då avbröts tre
