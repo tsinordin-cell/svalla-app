@@ -53,6 +53,11 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Hantverkarsidan säger att kontrollerade uppgifter saknas trots att posten har dem.
 - HantverkarKort: ö/o-jämförelsen. Skribenten för mallarna, runda 3.
 
+## Från mallarnas Skribent, runda 3 (2026-11-07)
+- Komma-dit-FAQ:n visar avgångstider ur öarnas data på 23 öar, ingen av dem i batch 01. Det är klockslag i löptext och ska bort i mallen eller i öarnas batchar.
+- Ortnamnet står dubbelt i FAQ-listan på 13 öar ("från Stavsnäs från Stavsnäs vinterhamn").
+- Askö och Yttre Gården får fortfarande "boende" (RESONERAT). Radien lägger grannöars platser under "på och nära" utan avstånd (Yttre Gården, Asperö).
+
 ## Data som inte visas
 - dog_notes läses inte av någon komponent (MÄTT 2026-11-03). Registerrader för dog_notes räknas inte som sidtext i Lag 3-måttet.
 

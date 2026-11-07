@@ -1,6 +1,6 @@
-# Badkompensation – batch 01 (2026-11-03)
+# Badkompensation – batch 01 (2026-11-03, omarbetad 2026-11-03/07 efter omkontrollen)
 
-Granskare och skribent: badsidornas kompensation efter mall-0198 (filtret i `src/app/o/[slug]/bad/page.tsx` tog bort kort som inte handlade om bad). Arbetskopia: /home/claude/svalla-mallar (bara `src/app/o/island-data.ts` och `src/app/o/bohuslan-data.ts` ändrade av mig, inget committat). Register: /home/claude/svalla-app/docs/faktagranskning/register/b01/badkompensation.tsv (66 rader, dom KORREKT, åtgärd NY).
+Granskare och skribent: badsidornas kompensation efter mall-0198 (filtret i `src/app/o/[slug]/bad/page.tsx` tog bort kort som inte handlade om bad). Arbetskopia: /home/claude/svalla-mallar (bara `src/app/o/island-data.ts` och `src/app/o/bohuslan-data.ts` ändrade av mig, inget committat). Register: /home/claude/svalla-app/docs/faktagranskning/register/b01/badkompensation.tsv (67 rader efter omarbetet, dom KORREKT, åtgärd NY).
 
 ## Mått
 
@@ -16,10 +16,10 @@ MÄTT med tsx (/tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/s
 | Öckerö | 95 | 48 | 91 | 108 | 108 | OK |
 | Tynningö | 131 | 83 | 125 | 139 | 139 | OK |
 | Gålö | 60 | 33 | 57 | 84 | 84 | OK |
-| Dyrön | 119 | 86 | 114 | 127 | 127 | OK |
+| Dyrön | 119 | 86 | 114 | 158 | 158 | OK |
 | Klädesholmen | 72 | 46 | 69 | 103 | 103 | OK |
-| Kungshamn | 33 | 12 | 32 | 66 | 66 | OK |
-| Smögen | 33 | 11 | 32 | 79 | 79 | OK |
+| Kungshamn | 33 | 12 | 32 | 78 | 78 | OK |
+| Smögen | 33 | 11 | 32 | 91 | 91 | OK |
 | Mörkö | 42 | 25 | 40 | 93 | 93 | OK |
 | Huvudskär | 35 | 0 | 34 | 0 | 70 | OK |
 | Blå Jungfrun | 35 | 0 | 34 | 0 | 71 | OK |
@@ -28,7 +28,9 @@ MÄTT med tsx (/tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/s
 
 Alla 17 når målet. Birka, Huvudskär och Blå Jungfrun når det genom en notis (B), inte genom badplatser (A = 13, 0, 0).
 
-Kontroller i arbetskopian efter ändringen (MÄTT): `npx tsc --noEmit` utan fel; `node scripts/verify-claims.mjs` "inga NYA påståenden utan källa" (samma 14 varningar i guide-content.ts som före); `node scripts/generera-kallor.mjs` "101 av 101", 1 624 källor (1 599 före). Alla 168 citat i de 46 nya KÄLLA-raderna och alla 202 URL–citat-par i registret står ordagrant i den sparade sidtexten (skript: work-badkomp/bin/kolla_data.py och kolla_register.py).
+Omarbetet efter omkontrollen (MÄTT med samma skript, work-mallar3/skript/matt.ts, 2026-11-03): Dyrön 127 → 158, Kungshamn 66 → 78, Smögen 79 → 91; Marstrand (90), Muskö (89) och Mörkö (93) oförändrade. Övriga öar oförändrade. Se avsnittet "Omarbete efter omkontrollen" sist.
+
+Kontroller i arbetskopian efter ändringen (MÄTT, 2026-11-03; efter omarbetet se sista avsnittet): `npx tsc --noEmit` utan fel; `node scripts/verify-claims.mjs` "inga NYA påståenden utan källa" (samma 14 varningar i guide-content.ts som före); `node scripts/generera-kallor.mjs` "101 av 101", 1 624 källor (1 599 före). Alla 168 citat i de 46 nya KÄLLA-raderna och alla 202 URL–citat-par i registret står ordagrant i den sparade sidtexten (skript: work-badkomp/bin/kolla_data.py och kolla_register.py).
 
 Sidtexterna är sparade i kallcache/ny/ (curl som domän__sökväg.txt, Chromium som .chromium.txt). Havs- och vattenmyndighetens klassificering och badvattenprofil laddas med JavaScript och syns bara när sidan läses i Chromium (las_sida.py); med curl saknas de ibland.
 
@@ -49,9 +51,10 @@ Fil: `src/app/o/island-data.ts`. Kompensation för mall-0198 (korten "Cykling" o
 - **badkomp-musko-N003** · activity_meta.bad.beaches[0].directions (ny) · rad 5303  
   Text: Närmaste busshållplats är Muskö kyrka. Parkeringen är liten.  
   Källa: https://www.haninge.se/uppleva-och-gora/simhallar-och-bad/badplatser/ — "Kollektivtrafik: Närmaste busshållplats Muskö kyrka.", "Parkering: Liten parkering." (läst 2026-11-03)  
-- **badkomp-musko-N004** · activity_meta.bad.beaches[1].name + type (ny; etikett Klippbad) · rad 5305  
-  Text: Brukets stenstrand – stenstrand med klippor (etikett Klippbad)  
-  Källa: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/musko/ — "Ett annat smultronställe är Brukets stenstrand och och de omgivande klipporna." (läst 2026-11-03)  
+- **badkomp-musko-N004** · activity_meta.bad.beaches[1].name + type (ny; etikett Stenstrand) · rad 5305  
+  Text: Brukets stenstrand – stenstrand med klippor (etikett Stenstrand)  
+  Källa: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/musko/ — "Här finns flera vackra klippbad och en fin stenstrand.", "Ett annat smultronställe är Brukets stenstrand och och de omgivande klipporna." (läst 2026-11-03)  
+  Not (omkontroll: FEL): typen var klippbad. Kommunen kallar platsen stenstrand och skiljer den från klippbaden. Ny typ `stenstrand` i IslandBeach (island-data.ts:57) och etiketten Stenstrand i badsidan. Texten (N005) säger inte att platsen är en kommunal badplats.  
 - **badkomp-musko-N005** · activity_meta.bad.beaches[1].desc (ny) · rad 5305  
   Text: Stenstrand med omgivande klippor på Muskö i Haninge kommun. Utöver stenstranden har ön flera klippbad.  
   Källa: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/musko/ — "Ett annat smultronställe är Brukets stenstrand och och de omgivande klipporna.", "Här finns flera vackra klippbad och en fin stenstrand." (läst 2026-11-03)  
@@ -80,11 +83,12 @@ Fil: `src/app/o/island-data.ts`. Kompensation för mall-0198 (kortet "Kålsö" f
 
 - **badkomp-morko-N001** · activity_meta.bad.beaches[0].name + type (ny; etikett Klippbad) · rad 5236  
   Text: Badklipporna på Eriksö – klippbad  
-  Källa: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/erikso.html — "Längs bägge sidor av ön finns vackra, betade strandängar och sköna badklippor." (läst 2026-11-03)  
+  Källa: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/erikso.html — "Längs bägge sidor av ön finns vackra, betade strandängar och sköna badklippor." (läst 2026-11-03 i Chromium)  
+  Not (omkontroll: SAKNAS; Redaktören: Länsstyrelsen räcker för badklippor): texten säger bara badklippor, inte ordnad eller kommunal badplats. Alla citat i KÄLLA-raden står ordagrant på reservatssidan.  
 - **badkomp-morko-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 5236  
   Text: Badklippor längs båda sidorna av Eriksö på sydvästra Mörkö, i ett naturreservat i Södertälje kommun som Länsstyrelsen förvaltar. I Eriksö naturreservat ska hunden vara kopplad, och du får inte tälta eller förankra båten på samma plats mer än två dygn i följd.  
-  Källa: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/erikso.html — "Längs bägge sidor av ön finns vackra, betade strandängar och sköna badklippor.", "Eriksö ligger på sydvästra Mörkö, 6 kilometer nordost om Trosa.", "Kommun: Södertälje", "Förvaltare: Länsstyrelsen", "medföra hund, katt eller annat husdjur som inte är kopplat", "för längre tid än två dygn i följd förankra båt vid samma plats", "för längre tid än två dygn i följd tälta på samma plats" (läst 2026-11-03)  
-  Not: Föreskrifterna är Länsstyrelsens (reservatssidan, läs i Chromium).  
+  Källa: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/erikso.html — "Längs bägge sidor av ön finns vackra, betade strandängar och sköna badklippor.", "Eriksö ligger på sydvästra Mörkö, 6 kilometer nordost om Trosa.", "Kommun: Södertälje", "Förvaltare: Länsstyrelsen", "Skyddsform: naturreservat", "I reservatet är det förbjudet att:", "medföra hund, katt eller annat husdjur som inte är kopplat", "för längre tid än två dygn i följd förankra båt vid samma plats", "för längre tid än två dygn i följd tälta på samma plats" (läst 2026-11-03 i Chromium)  
+  Not: "Skyddsform: naturreservat" och "I reservatet är det förbjudet att:" tillagda i KÄLLA-raden; texten oförändrad.  
 - **badkomp-morko-N003** · activity_meta.bad.beaches[0].directions (ny) · rad 5236  
   Text: Med bil: ta av söderut vid Idala mot Eriksö, skyltat Naturreservat. Parkering finns. Från närmaste busshållplats, Idala, är det 7 km att gå.  
   Källa: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/erikso.html — "tag av söderut vid Idala", "Naturreservat", "Parkering", "Det är långt till närmaste busshållplats, som heter Idala. Därifrån är det 7 km promenad söderut till reservatet." (läst 2026-11-03)  
@@ -267,77 +271,82 @@ Fil: `src/app/o/island-data.ts`. Kompensation för mall-0198 (kortet "Natur och 
 
 Fil: `src/app/o/bohuslan-data.ts`. Kompensation för mall-0198 (kortet "Promenad runt Marstrandsön" försvann ur Bad och vattenliv).
 
-- **badkomp-marstrand-N001** · activity_meta.bad.beaches[0].name + type + child_friendly (ny; etiketterna Sandstrand och Barnvänlig) · rad 162  
+- **badkomp-marstrand-N001** · activity_meta.bad.beaches[0].name + type + child_friendly (ny; etiketterna Sandstrand och Barnvänlig) · rad 164  
   Text: Barnbadet på Marstrandsön – sandstrand, barnvänlig  
   Källa: https://www.kungalv.se/kultur--fritid/bada/marstrands-badplats/ — "Välkommen till Barnbadet på Marstrandsön", "Sandstrand: Ja" (läst 2026-11-03)  
-  Not: Barnvänlig: kommunen kallar badplatsen Barnbadet.  
-- **badkomp-marstrand-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 162  
+  Källa: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-kungalvs-kommun/marstrand-strandverket.html — "Marstrand strandverket är en badplats i Kungälvs kommun.", "Badstege, barnbad, hoppmöjlighet" (läst 2026-11-03 i Chromium)  
+  Källa: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-kungalvs-kommun.html — "Här ser du badplatserna som kommunen har registrerat.", "Marstrand strandverket" (läst 2026-11-03)  
+  Not (omkontroll: FEL): Barnvänlig byggde förut på namnet. Nu belagt av HaV ("barnbad"); Marstrand strandverket är den enda badplatsen på Marstrand bland Kungälvs 10 registrerade, och kommunens sida beskriver samma bad (badstegar, trampolin). Kommunens egen sida säger inget om barn.  
+- **badkomp-marstrand-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 164  
   Text: Kommunal badplats med sandstrand på sydsidan av Marstrandsön i Kungälvs kommun, cirka 400 meter från färjeläget. Det finns badstegar, trampolin och toalett, men badplatsen är inte tillgänglighetsanpassad. Hundar och andra djur är inte tillåtna på badplatsen.  
   Källa: https://www.kungalv.se/kultur--fritid/bada/ — "Marstrands badplats", "Vattenprover tas regelbundet på alla kommunala badplatser.", "Tänk på att det inte är tillåtet med hundar, hästar eller andra djur på kommunala badplatser." (läst 2026-11-03)  
   Källa: https://www.kungalv.se/kultur--fritid/bada/marstrands-badplats/ — "Sandstrand: Ja", "Marstrands badplats ligger på sydsidan av Marstrandsön, cirka 400 meter från färjeläget.", "Badstegar: Ja", "Trampolin: Ja", "Toalett: Ja", "Tillgänglighetsanpassad för personer med funktionsvariation: Nej" (läst 2026-11-03)  
-- **badkomp-marstrand-N003** · activity_meta.bad.beaches[0].directions (ny) · rad 162  
+- **badkomp-marstrand-N003** · activity_meta.bad.beaches[0].directions (ny) · rad 164  
   Text: Vid Hamngatan på Marstrandsön. Parkering finns på Koön, 100–1 000 meter från färjan; de närmaste platserna är ofta fulla under högsäsongen.  
   Källa: https://www.kungalv.se/kultur--fritid/bada/marstrands-badplats/ — "Hamngatan, Marstrandsön", "Det finns parkeringar på Koön, 100-1000 meter från färjan. Tänk på att det ofta är fullt på de närmsta parkeringarna under högsäsongen." (läst 2026-11-03)  
-- **badkomp-marstrand-N004** · activity_meta.bad.beaches[0].insider_tip (ny) · rad 162  
+- **badkomp-marstrand-N004** · activity_meta.bad.beaches[0].insider_tip (ny) · rad 164  
   Text: Badstegarna runt ön sätts ut i mitten av maj, men en på södra och en på norra Marstrandsön ligger kvar året runt, liksom en badtrappa och en badramp på Hedvigsholmen.  
   Källa: https://www.kungalv.se/kultur--fritid/bada/marstrands-badplats/ — "Alla badstegar sätts ut varje år i mitten av maj månad.", "Det finns däremot några stegar utsatta runt Marstrandsön som ligger i året runt.", "1 badstege på södra Marstrandsön", "1 badstege på norra Marstrandsön", "1 badtrappa och 1 badramp på Hedvigsholmen" (läst 2026-11-03)  
 
-### Smögen (smogen) – 33 → 11 → 79 ord
+### Smögen (smogen) – 33 → 11 → 91 ord
 
 Fil: `src/app/o/bohuslan-data.ts`. Kompensation för mall-0198 (kortet "Soteleden" försvann ur Bad och vattenliv).
 
-- **badkomp-smogen-N001** · activity_meta.bad.beaches[0].name + type (ny; etikett Sandstrand) · rad 304  
+- **badkomp-smogen-N001** · activity_meta.bad.beaches[0].name + type (ny; etikett Sandstrand) · rad 307  
   Text: Sandö – sandstrand  
   Källa: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/smogen — "Badplatsen Sandö på Smögen", "Sandstrand med bryggor, badstegar och handikapptrappa." (läst 2026-11-03)  
-- **badkomp-smogen-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 304  
+- **badkomp-smogen-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 307  
   Text: Kommunal badplats på Smögen i Sotenäs kommun, med sandstrand, bryggor, badstegar och handikapptrappa. Det finns omklädningsrum, toalett och handikapptoalett, grillplats och parkering.  
   Källa: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Det finns cirka 20 större kommunala badplatser.", "Smögen - Sandö, Vallevik och herr- och dambadet vid Makrillviken" (läst 2026-11-03)  
   Källa: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/smogen — "Sandstrand med bryggor, badstegar och handikapptrappa. Omklädningsrum, toalett och handikapptoalett. Där finns också gillplats och parkering." (läst 2026-11-03)  
   Not: "gillplats" på kommunens sida är skrivfel för grillplats.  
-- **badkomp-smogen-N003** · activity_meta.bad.beaches[0].insider_tip (ny) · rad 304  
-  Text: Hundar får inte bada på kommunens offentliga badplatser på Smögen under sommaren: Sandö, Vallevik och herr- och dambadet vid Makrillviken.  
-  Källa: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Hundar får gärna bada men inte på kommunens offentliga badplatser under sommaren", "Smögen - Sandö, Vallevik och herr- och dambadet vid Makrillviken" (läst 2026-11-03)  
-- **badkomp-smogen-N004** · activity_meta.bad.beaches[1].name + type (ny; etikett Klippbad) · rad 306  
+- **badkomp-smogen-N003** · activity_meta.bad.beaches[0].insider_tip (ny, omskriven) · rad 307  
+  Text: Enligt Sotenäs kommuns lokala ordningsföreskrifter får hundar inte vistas på Sandö, Vallevik och herr- och dambadet vid Makrillviken från 1 maj till 30 september. Resten av året ska hunden vara kopplad där.  
+  Källa: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "inte får ha hunden med dig när du uppehåller dig på ordnad badplats.", "Smögen - Sandö, Vallevik och herr- och dambadet vid Makrillviken" (läst 2026-11-03 i Chromium)  
+  Källa: https://www.sotenas.se/download/18.4238e10118c6050f88a47254/1703149528362/G%C3%A4llande%20lokala%20ordningsf%C3%B6reskrifter%20KF%202022-03-23%20Lst%202022-05-02.pdf — "Allmänna lokala ordningsföreskrifter för Sotenäs kommun", "Under tiden f r om 1 maj t o m 30 sept får hundar inte vistas på i § 3 i dessa föreskrifter", "Hundar ska hållas kopplade på begravningsplatser och badplatser vilka är angivna i § 3 i", "Smögen – Sandö, Vallevik och herr- och dambadet vid Makrillviken" (läst 2026-11-03)  
+  Not (omkontroll: FEL): förut "Hundar får inte bada …", för snävt. Föreskrifterna (KF 2022-03-23 § 33, i kraft 2 maj 2022) är nivå 1. Undantaget för ledarhund och polishund i tjänst (16 §) är inte återgivet.  
+- **badkomp-smogen-N004** · activity_meta.bad.beaches[1].name + type (ny; etikett Klippbad) · rad 309  
   Text: Herr- och dambadet vid Makrillviken – klippbad  
   Källa: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/smogen — "Herr- och dambadet, Makrillviken", "Klippor med bryggor och badstegar." (läst 2026-11-03)  
-- **badkomp-smogen-N005** · activity_meta.bad.beaches[1].desc (ny) · rad 306  
+- **badkomp-smogen-N005** · activity_meta.bad.beaches[1].desc (ny) · rad 309  
   Text: Kommunal badplats vid Makrillviken på Smögen i Sotenäs kommun: klippor med bryggor och badstegar. Omklädningsrum och toalett finns i vandrarhemmet.  
   Källa: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Smögen - Sandö, Vallevik och herr- och dambadet vid Makrillviken" (läst 2026-11-03)  
   Källa: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/smogen — "Klippor med bryggor och badstegar. Omklädningsrum och toalett i vandrarhemmet." (läst 2026-11-03)  
 
-### Kungshamn (kungshamn) – 33 → 12 → 66 ord
+### Kungshamn (kungshamn) – 33 → 12 → 78 ord
 
 Fil: `src/app/o/bohuslan-data.ts`. Kompensation för mall-0198 (kortet "Nordens Ark" försvann ur Bad och vattenliv).
 
-- **badkomp-kungshamn-N001** · activity_meta.bad.beaches[0].name + type (ny; etikett Klippbad) · rad 1374  
+- **badkomp-kungshamn-N001** · activity_meta.bad.beaches[0].name + type (ny; etikett Klippbad) · rad 1378  
   Text: Fisketången – klippbad  
   Källa: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn — "Fisketångens badplats i Kungshamn", "Klippbad med sandstrand." (läst 2026-11-03)  
-- **badkomp-kungshamn-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 1374  
+- **badkomp-kungshamn-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 1378  
   Text: Kommunal badplats i Kungshamn i Sotenäs kommun: klippbad med sandstrand och bryggor med badstegar. Det finns handikappramp, omklädningsrum, toalett och handikapptoalett, och en liten parkering.  
   Källa: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Det finns cirka 20 större kommunala badplatser.", "Kungshamn - Fisketången, Stenbogen och Ramnerer" (läst 2026-11-03)  
   Källa: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn — "Klippbad med sandstrand. Bryggor med badstegar. Handikappramp, omklädningsrum, toalett och handikapptoalett.", "finns också en liten parkering" (läst 2026-11-03)  
-- **badkomp-kungshamn-N003** · activity_meta.bad.beaches[0].insider_tip (ny) · rad 1374  
-  Text: Pontonbryggan leder ut till Klövvholmen, där du kan hitta en egen vrå. Hundar får inte bada på kommunens offentliga badplatser i Kungshamn under sommaren: Fisketången, Stenbogen och Ramnerer.  
+- **badkomp-kungshamn-N003** · activity_meta.bad.beaches[0].insider_tip (ny, omskriven) · rad 1378  
+  Text: Pontonbryggan leder ut till Klövvholmen, där du kan hitta en egen vrå. Enligt Sotenäs kommuns lokala ordningsföreskrifter får hundar inte vistas på Fisketången, Stenbogen och Ramnerer från 1 maj till 30 september. Resten av året ska hunden vara kopplad där.  
   Källa: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn — "Vill du hitta din egen vrå så går du ut på pontonbryggan som leder till", "Klövvholmen!" (läst 2026-11-03)  
-  Källa: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Hundar får gärna bada men inte på kommunens offentliga badplatser under sommaren", "Kungshamn - Fisketången, Stenbogen och Ramnerer" (läst 2026-11-03)  
-
+  Källa: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "inte får ha hunden med dig när du uppehåller dig på ordnad badplats.", "Kungshamn - Fisketången, Stenbogen och Ramnerer" (läst 2026-11-03 i Chromium)  
+  Källa: https://www.sotenas.se/download/18.4238e10118c6050f88a47254/1703149528362/G%C3%A4llande%20lokala%20ordningsf%C3%B6reskrifter%20KF%202022-03-23%20Lst%202022-05-02.pdf — "Under tiden f r om 1 maj t o m 30 sept får hundar inte vistas på i § 3 i dessa föreskrifter", "Hundar ska hållas kopplade på begravningsplatser och badplatser vilka är angivna i § 3 i", "Kungshamn – Fisketången, Stenbogen och Ramnerer" (läst 2026-11-03)  
+  Not (omkontroll: FEL): samma som Smögen; meningen om Klövvholmen står kvar.  
 ### Grebbestad (grebbestad) – 30 → 0 → 73 ord
 
 Fil: `src/app/o/bohuslan-data.ts`. Kompensation för mall-0198 (kortet "Gästhamnarna" försvann ur Bad och vattenliv).
 
-- **badkomp-grebbestad-N001** · activity_meta.bad.beaches[0].name + type (ny; etikett Badbrygga) · rad 673  
+- **badkomp-grebbestad-N001** · activity_meta.bad.beaches[0].name + type (ny; etikett Badbrygga) · rad 676  
   Text: Grebbestads badplats – badbrygga  
   Källa: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/grebbestad.html — "Grebbestad är en badplats i Tanums kommun", "Badbrygga finns vid badplatsen." (läst 2026-11-03)  
   Not: HaV-sidans badvattenprofil laddas med JavaScript: läs i Chromium.  
-- **badkomp-grebbestad-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 673  
+- **badkomp-grebbestad-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 676  
   Text: Badplats i Grebbestad i Tanums kommun, med badbrygga, grus- och sandbotten och en stor gräsmatta. Under badsäsongen är det tillsyn två eller fler gånger i veckan. Havs- och vattenmyndigheten klassade badvattnet som utmärkt 2025 och bra 2023 och 2024.  
   Källa: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/grebbestad.html — "Grebbestad är en badplats i Tanums kommun", "Badbrygga finns vid badplatsen.", "Grus/sandbotten", "Stor gräsmatta som klipps mycket regelbundet.", "Tillsyn två eller fler gånger i veckan under badsäsong.", "2025: ★★★ Utmärkt kvalitet", "2024: ★★ Bra kvalitet", "2023: ★★ Bra kvalitet" (läst 2026-11-03)  
   Not: Läs i Chromium.  
-- **badkomp-grebbestad-N003** · activity_meta.bad.beaches[1].name + type (ny; etikett Badbrygga) · rad 676  
+- **badkomp-grebbestad-N003** · activity_meta.bad.beaches[1].name + type (ny; etikett Badbrygga) · rad 679  
   Text: Tanum Strand – badbrygga  
   Källa: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/tanum-strand.html — "Tanum Strand är en badplats i Tanums kommun", "Badbrygga och flyflotte finns vid badplatsen." (läst 2026-11-03)  
   Not: Läs i Chromium.  
-- **badkomp-grebbestad-N004** · activity_meta.bad.beaches[1].desc (ny) · rad 676  
+- **badkomp-grebbestad-N004** · activity_meta.bad.beaches[1].desc (ny) · rad 679  
   Text: Badplats vid Tanum Strand strax söder om Grebbestad i Tanums kommun, med badbrygga, flytflotte och handikappramp. Här finns berg och en stor gräsmatta, och botten är berg, grus och sand.  
   Källa: https://www.tanum.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.7664b4813898b7df9845725.html — "På badplatserna vid Badberget i Fjällbacka, Tanum Strand strax söder om Grebbestad, Östad samt Edsviksbadet finns handikappramper" (läst 2026-11-03)  
   Källa: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/tanum-strand.html — "Badbrygga och flyflotte finns vid badplatsen.", "Berg och stor gräsmatta som klipps mycket regelbundet.", "Berg och grus/sandbotten" (läst 2026-11-03)  
@@ -347,39 +356,39 @@ Fil: `src/app/o/bohuslan-data.ts`. Kompensation för mall-0198 (kortet "Gästham
 
 Fil: `src/app/o/bohuslan-data.ts`. Kompensation för mall-0198 (kortet "Sillebua" försvann ur Bad och vattenliv).
 
-- **badkomp-kladesholmen-N001** · activity_meta.bad.beaches[0].name + type (ny; etikett Sandstrand) · rad 1891  
+- **badkomp-kladesholmen-N001** · activity_meta.bad.beaches[0].name + type (ny; etikett Sandstrand) · rad 1895  
   Text: Klädesholmens badplats – sandstrand  
   Källa: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Om Klädesholmens badplats", "Badplatsen har betongbrygga, en liten sandstrand, klippor, badbrygga och toaletter." (läst 2026-11-03)  
-- **badkomp-kladesholmen-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 1891  
+- **badkomp-kladesholmen-N002** · activity_meta.bad.beaches[0].desc (ny) · rad 1895  
   Text: Badplats på Klädesholmen i Tjörns kommun, strax efter bron på Koholmens östra sida. Här finns betongbrygga, badbrygga, en liten sandstrand, klippor och toaletter. Badplatsen är inte tillgänglighetsanpassad och sköts sommartid av Klädesholmens intresseförening, som också håller simskola.  
   Källa: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Om Klädesholmens badplats", "Badplatsen ligger strax efter bron på Koholmens östra sida.", "Badplatsen har betongbrygga, en liten sandstrand, klippor, badbrygga och toaletter.", "Badplatsen är inte tillgänglighetsanpassad.", "Badplatsen sköts sommartid av Klädesholmens intresseförening, som också anordnar simskola." (läst 2026-11-03)  
-- **badkomp-kladesholmen-N003** · activity_meta.bad.beaches[0].directions (ny) · rad 1891  
+- **badkomp-kladesholmen-N003** · activity_meta.bad.beaches[0].directions (ny) · rad 1895  
   Text: Parkering till höger efter bron, 100 meter från badet. Busshållplats: Klädesholmen östra.  
   Källa: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Parkeringsplats finns till höger efter bron och härifrån är det 100 meter till badet.", "Med buss: Hållplats Klädesholmen östra." (läst 2026-11-03)  
-- **badkomp-kladesholmen-N004** · activity_meta.bad.beaches[0].insider_tip (ny) · rad 1891  
+- **badkomp-kladesholmen-N004** · activity_meta.bad.beaches[0].insider_tip (ny) · rad 1895  
   Text: Hundar får inte vistas på badplatsen.  
   Källa: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada — "Hund får inte vistas på: Badplats eller lekplats." (läst 2026-11-03)  
 
-### Dyrön (dyron) – 119 → 86 → 127 ord
+### Dyrön (dyron) – 119 → 86 → 158 ord
 
 Fil: `src/app/o/bohuslan-data.ts`. Kompensation för mall-0198 (kortet "Vandring" försvann ur Bad och vattenliv).
 
-- **badkomp-dyron-N001** · activity_meta.bad.beaches[2].name + type (ny; strängen 'Hala vid Sydhamnen med trampolin och 3-meterstorn' blev badplats med beskrivning, etikett Trampolinbad) · rad 2150  
-  Text: Hala vid Sydhamnen – trampolinbad  
-  Tidigare KÄLLA-rad: KÄLLA: https://www.dyron.se/se-gora/badplatser/ — "Sydhamnens badplats heter Hala", "hoppa och dyka från trampolin, klippor och 3-meterstornet" (läst 2026-09-27)  
-  Källa: https://www.dyron.se/se-gora/badplatser/ — "Sydhamnens badplats heter Hala.", "hoppa och dyka från trampolin, klippor och 3-meterstornet" (läst 2026-11-03)  
-  Not: dyron.se drivs av Dyröns samhällsförening, som enligt Tjörns kommun sköter öns badplats (nivå 2).  
-- **badkomp-dyron-N002** · activity_meta.bad.beaches[2].desc (ny) · rad 2150  
-  Text: Badplats vid Sydhamnen på Dyrön i Tjörns kommun, med en liten sandstrand och brygga och med trampolin, klippor och ett 3-meterstorn att hoppa och dyka från. Här finns också en badbrygga med stege för den som har svårt att ta sig i och ur vattnet.  
-  Källa: https://www.dyron.se/se-gora/badplatser/ — "Sydhamnens badplats heter Hala. Här finns också en liten sandstrand och brygga, men många av de som söker sig hit vill gärna hoppa och dyka från trampolin, klippor och 3-meterstornet. Här finns också en lättillgänglig badbrygga med stege som passar de lite äldre som har det svårt att ta sig i och ur vattnet." (läst 2026-11-03)  
-  Källa: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Dyröns badplats ligger cirka 300 meter österut från färjeläget och Dyröns norra hamn." (läst 2026-11-03)  
-  Not: Tjörns kommuns sida belägger att Dyrön hör till Tjörns kommun.  
+- **badkomp-dyron-N001** · activity_meta.bad.beaches[2].name + type (ny; ersätter Hala vid Sydhamnen, etikett Sandstrand) · rad 2154  
+  Text: Dyröns badplats – sandstrand  
+  Källa: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Dyröns badplats ligger cirka 300 meter österut från färjeläget och Dyröns norra hamn.", "Dyröns badplats har en liten sandstrand, badbryggor och klippor. Toalett finns vid småbåtshamnen." (läst 2026-11-03 i Chromium)  
+  Not (omkontroll: SAKNAS): Hala vid Sydhamnen fanns bara hos Dyröns samhällsförening, inte hos kommunen eller HaV; posten är ersatt med kommunens badplats. RESONERAT: den kan vara samma plats som strängen "Nordhamnens badplats med pontonbrygga och sandstrand", men ingen källa säger det, så strängen står kvar.  
+- **badkomp-dyron-N002** · activity_meta.bad.beaches[2].desc (ny, omskriven) · rad 2154  
+  Text: Badplats i Tjörns kommun, cirka 300 meter öster om färjeläget och Dyröns norra hamn, med en liten sandstrand, badbryggor och klippor. Badplatsen är delvis tillgänglighetsanpassad med en bred trappa som sluttar svagt ner i vattnet, och toalett finns vid småbåtshamnen. Dyröns samhällsförening sköter badplatsen sommartid och håller simskola.  
+  Källa: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Dyröns badplats ligger cirka 300 meter österut från färjeläget och Dyröns norra hamn.", "Dyröns badplats har en liten sandstrand, badbryggor och klippor. Toalett finns vid småbåtshamnen.", "Badplatsen är delvis tillgänglighetsanpassad med en bred trappa svagt sluttande ner i vattnet.", "Badplatsen sköts sommartid av Dyröns samhällsförening, som också anordnar simskola." (läst 2026-11-03 i Chromium)  
+- **badkomp-dyron-N003** · activity_meta.bad.beaches[2].directions (ny) · rad 2154  
+  Text: Färjan från Rönnängs brygga går till Dyröns norra hamn. Parkeringen i Rönnäng är begränsad, och sommartid hänvisas besökare till parkeringen vid Tjörns ishall, cirka 20 minuters promenad från färjan.  
+  Källa: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Med buss: Hållplats, Rönnängs brygga – färja vidare till Dyröns norra hamn.", "Från Rönnängs brygga går en personfärja till Tjörnekalv, Åstol och Dyrön.", "Parkeringsmöjligheterna i Rönnäng är begränsade och besökare hänvisas sommartid till parkeringen vid Tjörns ishall (ca 20 min promenad till färjan)." (läst 2026-11-03 i Chromium)  
 ## Ändrat i befintligt innehåll (utöver nya fält)
 
 - **Ven:** strängen `'Norreborgs hamn'` heter nu `Norreborg`, som badplatsen heter hos Landskrona stad ("Badplats Norreborg"); Norreborgs hamn är gästhamnen. KÄLLA-raderna ilandskrona.se ("Kyrkbacken med hamn och sandstrand") och norreborgshamn.se ("Vens trevligaste sandstrand", en superlativ från hamnens egen sida) är borttagna; stadens badplatssidor ersätter dem.
 - **Öckerö:** strängen `'Hjälviks badplats (sandstrand och klippor, nordvästra Öckerö)'` blev badplatsen `Hjälviks badplats` med beskrivning. "Nordvästra" är nu belagt med egen mätning i Lantmäteriets Min karta (Hjälvik, Hav och sjö, E 298585 N 6402489; Öckerö, Trakt, E 300242 N 6401598: 1,7 km väster och 0,9 km norr). Den gamla KÄLLA-raden (läst 2026-09-27) är ersatt.
 - **Fårö:** strängarna `'Ekeviken'` och `'Norsta Aurar'` blev badplatser med beskrivning, samma namn. `'Sudersandstranden'` står kvar som sträng (Region Gotlands lista har ingen Sudersand).
-- **Dyrön:** strängen `'Hala vid Sydhamnen med trampolin och 3-meterstorn'` blev badplatsen `Hala vid Sydhamnen` och ligger nu sist i listan, så att den befintliga KÄLLA-raden står inom fem rader från de två strängar som är kvar. Med-barn-sidans "Badmöjligheter" (de två första namnen) visar därför Nordhamnen och sandstranden på östra sidan.
+- **Dyrön:** strängen `'Hala vid Sydhamnen med trampolin och 3-meterstorn'` blev först badplatsen `Hala vid Sydhamnen`; efter omkontrollen är den ersatt med kommunens `Dyröns badplats` (sist i listan). Citaten om Hala är strukna ur KÄLLA-raden ovanför `bad`, som nu bara stöder de två strängarna. Med-barn-sidans "Badmöjligheter" (de två första namnen) visar Nordhamnen och sandstranden på östra sidan. Aktiviteten Bad (bohuslan-data.ts:2075) nämner fortfarande Hala med dyron.se som källa; den hör till Dyröns egen granskning.
 - **Tynningö:** Myrholmsmaren fick en sista mening i desc, en andra mening i directions och ett insidertips; resten av posten är oförändrad.
 - **Birka:** `activity_meta` fick `bad` bredvid `cykel`, som är oförändrad.
 
@@ -398,5 +407,22 @@ Fil: `src/app/o/bohuslan-data.ts`. Kompensation för mall-0198 (kortet "Vandring
 ## Inte gjort
 
 - Inga öar saknade badsida: /o/[slug]/bad byggs för alla öar och länkas från varje ösida ("Mer om …").
-- Inga sidmallar, transit-stops.ts, trafiklab.ts, ferries.ts eller islandCoords.ts är ändrade. kallor.generated.ts är omgenererad med scripts/generera-kallor.mjs, som uppdraget säger.
+- Inga sidmallar, transit-stops.ts, trafiklab.ts, ferries.ts eller islandCoords.ts är ändrade. kallor.generated.ts är omgenererad med scripts/generera-kallor.mjs, som uppdraget säger. (Första rundan. I omarbetet ändrades badsidans mall, se sista avsnittet och mall-N004.)
 - Inget committat. Före-kopior av datafilerna ligger i work-badkomp/ (island-data.fore.ts, bohuslan-data.fore.ts).
+
+## Omarbete efter omkontrollen (badkomp.beslut.tsv, Redaktören 2026-11-03)
+
+Gjort 2026-11-03 (läsningar) och slutfört 2026-11-07 (kontroller). Arbetskopia: /home/claude/svalla-mallar, inget committat. Detaljer per registerrad: ut/mallar.omarbete3.md.
+
+| Rad | Fynd | Åtgärd |
+|---|---|---|
+| badkomp-marstrand-N001 | FEL: Barnvänlig byggde på namnet | Står kvar, nu belagt av HaV: "Badstege, barnbad, hoppmöjlighet" (Marstrand strandverket, enda badplatsen på Marstrand i Kungälvs HaV-lista). KÄLLA-rad till HaV tillagd. |
+| badkomp-smogen-N003 | FEL: hundregeln för snäv | Omskriven efter de lokala ordningsföreskrifterna (PDF, nivå 1): hundar får inte vistas på badplatserna 1 maj–30 september, kopplade resten av året. |
+| badkomp-kungshamn-N003 | FEL: samma | Samma; Klövvholmen står kvar. |
+| badkomp-musko-N004 | FEL: typen klippbad | Typen stenstrand (ny i IslandBeach, etikett Stenstrand). Ingen text om kommunal badplats. |
+| badkomp-morko-N001 | SAKNAS (Redaktören: Länsstyrelsen räcker) | Text oförändrad; KÄLLA-raden prövad i Chromium och kompletterad med "Skyddsform: naturreservat" och "I reservatet är det förbjudet att:" (även N002). |
+| badkomp-dyron-N001, N002 | SAKNAS, FEL: Hala bara hos samhällsföreningen | Ersatt med kommunens "Dyröns badplats" med kommunens text; ny rad N003 (vägbeskrivning). |
+
+Följdändring i badsidan (MÄTT): dubblettkontrollen gjorde "Dyröns badplats" (och redan förut "Klädesholmens badplats") till "badplats" och tog bort Kåreviks badplats ur listan. Ett sådant namn jämförs nu bara exakt (src/app/o/[slug]/bad/page.tsx, mall-N004), så Dyrön behåller och Klädesholmen får tillbaka "Badplatser nära …: Kåreviks badplats".
+
+Kontroller efter omarbetet (2026-11-07): `npx tsc --noEmit` 0 fel; `node scripts/verify-claims.mjs` exit 0, samma utdata som efter badkompensationen; `node scripts/generera-kallor.mjs` omgenererad, 101 av 101 öar, 1 627 källor (+3: HaV Marstrand strandverket, Sotenäs ordningsföreskrifter för Smögen och Kungshamn), `--kontroll` aktuell; alla 82 URL–citat-par i de ändrade registerraderna står i den sida som lästes (work-mallar3/skript/kolla_citat.py); kontrollera_register.py: inga formfel.
