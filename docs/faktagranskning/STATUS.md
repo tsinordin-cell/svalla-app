@@ -2,6 +2,29 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-08 00:48 — full kontroll 11–13 klara; regeln om organisationens egna uppgifter
+
+- **Läget (MÄTT):** 1 430 av 3 063 rader är klara. Kontrollanterna gav
+  1 276 OK, 146 FEL och 8 SAKNAS. Inget P0. Paket 14–17 pågår.
+- **full-11:** 103 OK och 7 FEL. Sandhamn: hotellets sida belägger inte
+  "i ytterskärgården", namnet Bistro Sands står inte på hotellets sidor och
+  SCB-raden Sandön behöver länsmuseets citat. Styrsö: högsäsongen "Juli",
+  september som "Öppet" och "Maj–Juni eller September" saknar stöd.
+- **full-12:** 108 OK och 2 FEL. Husarö: "Juli" som högsäsong saknar stöd,
+  och med-barn-sidans fel finns redan i mallarnas register (mall-0224 och
+  mall-0229).
+- **full-13:** 82 OK, 27 FEL och 1 SAKNAS. 16 fel gäller Utö kyrkas historia
+  med svenskakyrkan.se som enda källa, 2 Levins badhotell (utovardshus.se),
+  1 Grönskärs renovering och 8 Skärgårdsstiftelsens egna uppgifter. Nålen
+  för Gruvbryggan ligger cirka 100 m från OSM:s Gruvbryggan.
+- **Redaktörens beslut:** uppgifter om organisationen själv (när den
+  bildades, vad den äger eller driver och sedan när) får beläggas av dess
+  egen sida. De 8 raderna om Skärgårdsstiftelsen räknas därför som OK.
+  Byggnaders, platsers och föremåls historia kräver nivå 1, även när
+  verksamheten äger dem. En tillskriven självbeskrivning ("X beskriver sig
+  som …") är OK för ägarens egen egendom eller verksamhet. Regeln står i
+  `redaktor/full-prompt.txt` från paket 17 och i båda rollfilerna.
+
 ## 2026-11-08 00:35 — full kontroll 01–10 klara; rättelse av räkningen
 
 - **Läget (MÄTT i kontrollfilerna):** 1 100 av 3 063 rader är klara: 983 OK,
