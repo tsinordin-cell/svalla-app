@@ -320,46 +320,51 @@ index 85440c8..e9cbc45 100644
              </div>
              <Icon name="arrowRight" size={18} stroke={2.2} />
 diff --git a/src/app/o/[slug]/bad/page.tsx b/src/app/o/[slug]/bad/page.tsx
-index d596bf8..9ced35d 100644
+index d596bf8..0fd77de 100644
 --- a/src/app/o/[slug]/bad/page.tsx
 +++ b/src/app/o/[slug]/bad/page.tsx
-@@ -5,7 +5,7 @@ import { ALL_ISLANDS, getIsland, type IslandBeach } from '../../island-data'
+@@ -5,7 +5,8 @@ import { ALL_ISLANDS, getIsland, type IslandBeach } from '../../island-data'
  import IslandSubPageHeader from '@/components/IslandSubPageHeader'
  import Icon, { type IconName } from '@/components/Icon'
  import IslandPlacesList from '@/components/IslandPlacesList'
 -import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
 +import { getIslandPlaces, utanDubbletter, normaliseraPlatsnamn } from '@/lib/islandPlaces'
++import { omBad } from '@/lib/mallRegler'
  
  // ISR: badplatserna ur platsdatabasen hämtas vid bygget och uppdateras varje timme.
  export const revalidate = 3600
-@@ -16,10 +16,47 @@ function isBeachObject(b: string | IslandBeach): b is IslandBeach {
+@@ -16,10 +17,51 @@ function isBeachObject(b: string | IslandBeach): b is IslandBeach {
    return typeof b === 'object' && b !== null && 'name' in b
  }
  
-+/**
-+ * Handlar aktiviteten om bad? "strand" fångade ortnamn och strandängar (mall-0198), och
-+ * delordet "bad" gav "Badplatser på och nära Lidö" av värdshusets badtunnor, som inte är
-+ * något bad i havet (2026-11-02, mall-0192 omarbete 2).
++/*
++ * Handlar aktiviteten om bad? omBad i src/lib/mallRegler.ts, samma regel som ösidan: "strand" fångade
++ * ortnamn och strandängar (mall-0198), badtunnor gav "Badplatser på och nära Lidö" (mall-0192 omarbete 2),
++ * och badstegen vid bastun gav "Badplatser på och nära Bullerö" fast ön saknar badplats (2026-11-07,
++ * mall-0191 och mall-0192 omarbete 4). En post som säger att ön saknar badplats räknas inte heller.
 + */
-+function omBad(a: { name: string; desc: string }): boolean {
-+  const t = `${a.name} ${a.desc}`.toLowerCase().replace(/badtunn[a-zåäö]*/g, '')
-+  return ['bad', 'klippbad', 'simning', 'sandstrand', 'sandstränd', 'stenstrand'].some(k => t.includes(k))
-+}
 +
 +/**
 + * Ligger badplatsen på ön enligt sin egen text? Platsdatabasens urval är en cirkel kring ön och fångar
 + * grannöar (Gröna vik "på Brännö", 4,3 km från Styrsö; Kåreviks badplats "på södra Tjörn", 1,4 km från
 + * Dyrön), och öns egen lista kan ha en badplats på grannön (Ålö Storsand på Utö). Rubriken "Badplatser på X"
-+ * räknar bara platser på ön (2026-11-03, mall-N004). 'pa': texten säger "på <ön>"; 'annan': texten säger
-+ * "på grannön" eller "på <en annan ö i Svalla>"; 'oklar': texten säger inget om vilken ö.
++ * räknar bara platser på ön (2026-11-03, mall-N004). 'pa': texten säger "på <ön>", i öns egen lista också
++ * "på ön", "på öns" eller "runt ön"; 'annan': texten säger "på grannön", "på <en annan ö i Svalla>",
++ * "<väderstreck> om <ön>", "nära <ön>" eller "utanför <ön>" (Tanum Strand "strax söder om Grebbestad");
++ * 'oklar': texten säger inget om vilken ö. En oklar plats räknas inte som på ön: den står under
++ * "på och nära" och får etiketten "Badplats på eller nära X" (Härmanö huvud stod som "Badplats på
++ * Gullholmen"; 2026-11-07, mall-N004 omarbete 4).
 + */
++const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 +function paOrt(namn: string): RegExp {
-+  const n = namn.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-+  return new RegExp(`(?:^|[^a-zåäö])på (?:(?:norra|södra|östra|västra|nordöstra|nordvästra|sydöstra|sydvästra) )?${n}s?(?![a-zåäö])`, 'i')
++  return new RegExp(`(?:^|[^a-zåäö])på (?:(?:norra|södra|östra|västra|nordöstra|nordvästra|sydöstra|sydvästra) )?${esc(namn)}s?(?![a-zåäö])`, 'i')
 +}
-+function lage(text: string, oNamn: string): 'pa' | 'annan' | 'oklar' {
-+  if (paOrt(oNamn).test(text)) return 'pa'
-+  if (/på grannön/i.test(text) || ALL_ISLANDS.some(o => o.name !== oNamn && paOrt(o.name).test(text))) return 'annan'
++function naraOrt(namn: string): RegExp {
++  return new RegExp(`(?:^|[^a-zåäö])(?:(?:norr|söder|öster|väster|nordost|nordväst|sydost|sydväst) om|nära|utanför) ${esc(namn)}s?(?![a-zåäö])`, 'i')
++}
++function lage(text: string, oNamn: string, egen = false): 'pa' | 'annan' | 'oklar' {
++  if (paOrt(oNamn).test(text) || (egen && /(?:^|[^a-zåäö])(?:på öns?|runt ön)(?![a-zåäö])/i.test(text))) return 'pa'
++  if (/på grannön/i.test(text) || naraOrt(oNamn).test(text) || ALL_ISLANDS.some(o => o.name !== oNamn && paOrt(o.name).test(text))) return 'annan'
 +  return 'oklar'
 +}
 +
@@ -380,7 +385,7 @@ index d596bf8..9ced35d 100644
    brygga:        { icon: 'anchor',   text: 'Badbrygga' },
    trampolinbad:  { icon: 'star',     text: 'Trampolinbad' },
    badvik:        { icon: 'water',    text: 'Badvik' },
-@@ -33,9 +70,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -33,9 +75,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
    const { slug } = await params
    const island = getIsland(slug)
    if (!island) return {}
@@ -401,7 +406,7 @@ index d596bf8..9ced35d 100644
      keywords: [
        `bada på ${island.name.toLowerCase()}`,
        `badplatser ${island.name.toLowerCase()}`,
-@@ -45,8 +91,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -45,8 +96,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
        `${island.name.toLowerCase()} swim`,
      ],
      openGraph: {
@@ -412,7 +417,7 @@ index d596bf8..9ced35d 100644
        url: `https://svalla.se/o/${slug}/bad`,
      },
      alternates: { canonical: `https://svalla.se/o/${slug}/bad` },
-@@ -60,28 +106,39 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -60,28 +111,41 @@ export default async function IslandBadPage({ params }: Props) {
  
    const beaches = island.activity_meta?.bad?.beaches ?? []
    const badNote = island.activity_meta?.bad?.note
@@ -441,9 +446,11 @@ index d596bf8..9ced35d 100644
      island.name,
    )
    const allBeachNames = [...beaches.map(b => (isBeachObject(b) ? b.name : b)), ...dbBeaches.map(p => p.name)]
-+  // Öns egna badplatser: rubriken säger "nära" eller "på och nära" när någon ligger på en annan ö (mall-N004).
-+  const dataAnnan = beaches.filter(b => lage(isBeachObject(b) ? `${b.name} ${b.desc}` : b, island.name) === 'annan').length
-+  const dataRubrik = dataAnnan === 0 ? 'på' : dataAnnan === beaches.length ? 'nära' : 'på och nära'
++  // Öns egna badplatser: "på" bara när varje plats ligger på ön enligt sin text, "nära" när alla ligger på en
++  // annan ö, annars "på och nära" (mall-N004 omarbete 4).
++  const dataLage = beaches.map(b => lage(isBeachObject(b) ? `${b.name} ${b.desc}` : b, island.name, true))
++  const dataAnnan = dataLage.filter(l => l === 'annan').length
++  const dataRubrik = dataLage.every(l => l === 'pa') ? 'på' : dataAnnan === beaches.length ? 'nära' : 'på och nära'
 +  // Databasplatser: "på X" bara när platsens text säger det; en plats på en annan ö visar avståndet.
 +  const dbLage = dbBeaches.map(p => ({ p, l: lage(p.description ?? p.name, island.name) }))
 +  const dbPa = dbLage.filter(x => x.l === 'pa').map(x => ({ ...x.p, onIsland: true }))
@@ -458,7 +465,7 @@ index d596bf8..9ced35d 100644
      url: `https://svalla.se/o/${slug}/bad`,
      numberOfItems: allBeachNames.length,
      itemListElement: allBeachNames.map((name, i) => ({
-@@ -102,8 +159,11 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -102,8 +166,11 @@ export default async function IslandBadPage({ params }: Props) {
          tab="bad"
          subtitle={
            beaches.length === 0 && dbBeaches.length === 0 && !hasBad
@@ -472,7 +479,7 @@ index d596bf8..9ced35d 100644
          }
        />
  
-@@ -124,7 +184,7 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -124,7 +191,7 @@ export default async function IslandBadPage({ params }: Props) {
          {beaches.length > 0 && (
            <div style={{ marginBottom: 32 }}>
              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 16 }}>
@@ -481,7 +488,18 @@ index d596bf8..9ced35d 100644
              </h2>
              <div style={{ display: 'grid', gap: 16 }}>
                {beaches.map((beach, i) => (
-@@ -187,11 +247,18 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -178,7 +245,9 @@ export default async function IslandBadPage({ params }: Props) {
+                   }}>
+                     <div>
+                       <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)' }}>{beach}</div>
+-                      <div style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 3 }}>Badplats på {island.name}</div>
++                      <div style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 3 }}>
++                        {dataLage[i] === 'pa' ? `Badplats på ${island.name}` : dataLage[i] === 'annan' ? `Badplats nära ${island.name}` : `Badplats på eller nära ${island.name}`}
++                      </div>
+                     </div>
+                   </div>
+                 )
+@@ -187,11 +256,18 @@ export default async function IslandBadPage({ params }: Props) {
            </div>
          )}
  
@@ -503,7 +521,7 @@ index d596bf8..9ced35d 100644
          />
  
          {/* Bad-aktiviteter från activities[] */}
-@@ -226,7 +293,7 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -226,7 +302,7 @@ export default async function IslandBadPage({ params }: Props) {
              boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
            }}>
              <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
@@ -512,7 +530,7 @@ index d596bf8..9ced35d 100644
              </p>
            </div>
          )}
-@@ -241,12 +308,14 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -241,12 +317,14 @@ export default async function IslandBadPage({ params }: Props) {
            <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 12 }}>
              Bra att veta innan du badar
            </h3>
@@ -529,7 +547,7 @@ index d596bf8..9ced35d 100644
            </ul>
          </div>
  
-@@ -265,7 +334,9 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -265,7 +343,9 @@ export default async function IslandBadPage({ params }: Props) {
              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
                Thorkel hjälper dig med båttider, lunch och bad.
              </div>
@@ -704,20 +722,21 @@ index 064bf6d..aad1f7f 100644
                <a href="mailto:info@svalla.se" style={{ fontSize: 14.5, color: 'var(--acc-d)', fontWeight: 600 }}>
                  info@svalla.se
 diff --git a/src/app/o/[slug]/komma-dit/page.tsx b/src/app/o/[slug]/komma-dit/page.tsx
-index 0fc14f4..4c81da1 100644
+index 0fc14f4..d2e159e 100644
 --- a/src/app/o/[slug]/komma-dit/page.tsx
 +++ b/src/app/o/[slug]/komma-dit/page.tsx
-@@ -5,7 +5,8 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
+@@ -5,7 +5,9 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
  import IslandSubPageHeader from '@/components/IslandSubPageHeader'
  import Icon from '@/components/Icon'
  import { emojiToIcon } from '@/lib/iconMap'
 -import { kommaDitTitel } from '@/lib/kommaDitTitlar'
 +import { harBat, kommaDitTitel } from '@/lib/kommaDitTitlar'
 +import { nasUtanBat } from '@/components/HantverkarKort'
++import { KLOCKSLAG, utanKlockslag } from '@/lib/mallRegler'
  
  type Props = { params: Promise<{ slug: string }> }
  
-@@ -35,11 +36,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -35,21 +37,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
    // ALLA öar, även Bohuslän och Göteborg (Käringön: båt från Tuvesvik).
    // Uppmätt i Search Console 2026-09-23 (6 400 visningar). Nu byggs den av
    // öns egna färdsätt och operatör.
@@ -730,13 +749,18 @@ index 0fc14f4..4c81da1 100644
 +    ? island.getting_there.map(t => t.method).join(', ')
      : null
    const operator = island.transport_meta?.operator ?? null
++  const restid = utanKlockslag(island.facts.travel_time ?? '')
 +  // Båtar från en fastlandsort går därifrån, inte dit: Hamburgsunds linfärja till Hamburgö,
 +  // Grebbestads taxibåt till Otterön (2026-11-02, mall-0160–0161 omarbete 2).
 +  const titelFardsatt = island.getting_there.map(t => t.method).filter(m => island.slag !== 'ort' || !harBat([m]))
    const beskrivning = [
      `Så tar du dig till ${island.name}`,
      vag ? `: ${vag}` : '',
-@@ -49,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+     '.',
+-    island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : '',
++    // Restiden utan klockslag: Lilla Karlsö "båten till ön avgår 09.00", Blå Jungfrun "avgång 09.00, hemma 15.15 eller 16.15" (mall-0166 omarbete 4).
++    restid ? ` Restid: ${restid}.` : '',
+     operator && !(vag ?? '').toLowerCase().includes(operator.toLowerCase()) ? ` Trafik: ${operator}.` : '',
    ].join('')
    return {
      // Egen titel med färdsätt och hamn för öarna i src/lib/kommaDitTitlar.ts.
@@ -745,7 +769,7 @@ index 0fc14f4..4c81da1 100644
      description: beskrivning,
      keywords: [
        `hur tar man sig till ${island.name.toLowerCase()}`,
-@@ -62,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -62,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
        `how to get to ${island.name.toLowerCase()} sweden`,
      ],
      openGraph: {
@@ -754,7 +778,7 @@ index 0fc14f4..4c81da1 100644
        // Tidigare lovade delningstexten "avgångstider, priser" och buss för alla
        // öar. Sidorna har inga priser. Nu samma text som metabeskrivningen.
        description: beskrivning,
-@@ -80,8 +85,27 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -80,8 +88,30 @@ export default async function IslandKommaDitPage({ params }: Props) {
    // Påståenden som bara är sanna för vissa öar ska inte stå på alla 103.
    // "Ingen egen båt krävs" var hårdkodat även för öar utan reguljärtrafik, och
    // Waxholmsbolagets biljettregler visades på Bohusläns öar (2026-09-21).
@@ -780,30 +804,34 @@ index 0fc14f4..4c81da1 100644
 +  // för att säga att bolaget inte går dit (2026-11-02, mall-0174 omarbete).
 +  const usesWaxholmsbolaget = (island.transport_meta?.operator ?? '').includes('Waxholmsbolaget')
 +    || kollektiva.some(t => `${t.method} ${t.desc}`.includes('Waxholm'))
++  // Restiden och tiderna i mallens texter utan klockslag ur datan (undertitel, FAQ; mall-0166 omarbete 4).
++  const restid = utanKlockslag(island.facts.travel_time ?? '')
++  const tider = island.getting_there.filter(t => t.time && !KLOCKSLAG.test(t.time))
    const lankFor = (method: string, desc: string, url?: string) => {
      if (url) return url
      const tm = island.transport_meta
-@@ -101,8 +125,8 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -101,8 +131,8 @@ export default async function IslandKommaDitPage({ params }: Props) {
          acceptedAnswer: {
            '@type': 'Answer',
            text: island.getting_there.length > 0
 -            ? island.getting_there.map(t => `${t.method}: ${t.desc}`).join('. ')
 -            : `${island.name} nås med reguljärbåt.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
 +            ? island.getting_there.map(t => { const s = `${t.method}: ${t.desc}`.trim(); return /[.!?]$/.test(s) ? s : `${s}.` }).join(' ')
-+            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
++            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}.${restid ? ` Restid: ${restid}.` : ''}`,
          },
        },
        {
-@@ -111,13 +135,16 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -111,16 +141,19 @@ export default async function IslandKommaDitPage({ params }: Props) {
          acceptedAnswer: {
            '@type': 'Answer',
            text: kollektivt
 -            ? `Nej. ${island.getting_there.filter(t => !/egen båt|segelbåt|kajak|charter/i.test(t.method)).map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}${t.time ? ` (${t.time})` : ''}`).join(', ')}.`
+-            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
 +            // Utan väg bara när trafiken går: turbåtarna till Gotska Sandön, Blå Jungfrun och Lilla
 +            // Karlsö går bara sommartid (mall-0166 omarbete 2).
 +            // Inga klockslag: Lilla Karlsös tid "09.00–13.30" är avgång och återkomst, ingen restid (mall-0166 omarbete 3).
 +            ? `${vag ? 'Nej.' : 'Nej, inte när trafiken går:'} ${kollektiva.map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}${t.time && !/\b\d{1,2}[.:]\d{2}\b/.test(t.time) ? ` (${t.time})` : ''}`).join(', ')}.`
-             : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}.${island.facts.travel_time ? ` Restid: ${island.facts.travel_time}.` : ''}`,
++            : `Vi har inte kunnat belägga någon reguljär förbindelse till ${island.name}.${restid ? ` Restid: ${restid}.` : ''}`,
          },
        },
        {
@@ -812,38 +840,43 @@ index 0fc14f4..4c81da1 100644
 +        name: `Hur lång tid tar ${batlinje ? 'båten' : 'resan'} till ${island.name}?`,
          acceptedAnswer: {
            '@type': 'Answer',
-           text: `${island.facts.travel_time ? `Restid till ${island.name}: ${island.facts.travel_time}. ` : island.getting_there.filter(t => t.time).map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}: ${t.time}`).join('. ') + (island.getting_there.some(t => t.time) ? '. ' : '')}${island.transport_meta ? `Från närmaste knutpunkt (${island.transport_meta.nearest_hub}): ca ${island.transport_meta.from_nearest_hub_min} minuter.` : ''}`,
-@@ -133,7 +160,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+-          text: `${island.facts.travel_time ? `Restid till ${island.name}: ${island.facts.travel_time}. ` : island.getting_there.filter(t => t.time).map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}: ${t.time}`).join('. ') + (island.getting_there.some(t => t.time) ? '. ' : '')}${island.transport_meta ? `Från närmaste knutpunkt (${island.transport_meta.nearest_hub}): ca ${island.transport_meta.from_nearest_hub_min} minuter.` : ''}`,
++          text: `${restid ? `Restid till ${island.name}: ${restid}. ` : tider.map(t => `${t.method}${t.from ? ` från ${t.from}` : ''}: ${t.time}`).join('. ') + (tider.length > 0 ? '. ' : '')}${island.transport_meta ? `Från närmaste knutpunkt (${island.transport_meta.nearest_hub}): ca ${island.transport_meta.from_nearest_hub_min} minuter.` : ''}`,
+         },
+       },
+     ],
+@@ -133,7 +166,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
        <IslandSubPageHeader
          island={island}
          tab="komma-dit"
 -        subtitle={`${island.facts.travel_time ? `Restid: ${island.facts.travel_time}.` : ''}${kollektivt ? `${island.facts.travel_time ? ' ' : ''}Ingen egen båt krävs.` : ''}`}
-+        subtitle={`${island.facts.travel_time ? `Restid: ${island.facts.travel_time}.` : ''}${kollektivt ? `${island.facts.travel_time ? ' ' : ''}${vag ? 'Ingen egen båt krävs.' : 'Utan egen båt kommer du dit med trafiken nedan, när den går.'}` : ''}`}
++        subtitle={`${restid ? `Restid: ${restid}.` : ''}${kollektivt ? `${restid ? ' ' : ''}${vag ? 'Ingen egen båt krävs.' : 'Utan egen båt kommer du dit med trafiken nedan, när den går.'}` : ''}`}
        />
  
        <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
-@@ -207,7 +234,10 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -207,7 +240,11 @@ export default async function IslandKommaDitPage({ params }: Props) {
                          display: 'inline-block', marginTop: 10, fontSize: 13, fontWeight: 700,
                          color: 'var(--sea)', textDecoration: 'none',
                        }}>
 -                        Köp biljett / Se tidtabell →
 +                        {/* Tryckta tidtabeller (SL, Västtrafik) har ingen biljettinformation (2026-11-02, mall-0172 omarbete). */}
 +                        {/* Trafikverkets vägfärjor har tidtabell men ingen biljettinformation (Nordöleden; mall-0172 omarbete 2). */}
-+                        {/* Västtrafiks linjesidor och Höga Kusten-båtarnas startsida har ingen biljettinformation (mall-0172 omarbete 3). */}
-+                        {/\.pdf(\?|$)/i.test(lankFor(t.method, t.desc, t.url)!) ? 'Tidtabell (pdf) →' : /trafikverket\.se|vasttrafik\.se\/reseplanering\/tidtabeller\/linje\/|hkship\.se/i.test(lankFor(t.method, t.desc, t.url)!) ? 'Tidtabell →' : 'Tidtabell och biljettinformation →'}
++                        {/* Västtrafiks linjesidor har ingen biljettinformation (mall-0172 omarbete 3). Höga Kusten-båtarnas startsida har
++                            ingen tidtabell, så Ulvön länkar direkt till turlistan (pdf) (mall-0172 omarbete 4). */}
++                        {/\.pdf(\?|$)/i.test(lankFor(t.method, t.desc, t.url)!) ? 'Tidtabell (pdf) →' : /trafikverket\.se|vasttrafik\.se\/reseplanering\/tidtabeller\/linje\//i.test(lankFor(t.method, t.desc, t.url)!) ? 'Tidtabell →' : 'Tidtabell och biljettinformation →'}
                        </a>
                      ) : null}
                    </div>
-@@ -225,7 +255,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -225,7 +262,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
              marginBottom: 28,
            }}>
              <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
 -              Restid: {island.facts.travel_time}.{stockholm ? (<>{' '}Se{' '}
-+              Restid: {island.facts.travel_time}.{usesWaxholmsbolaget ? (<>{' '}Se{' '}
++              Restid: {restid}.{usesWaxholmsbolaget ? (<>{' '}Se{' '}
                <a href="https://waxholmsbolaget.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>
                  Waxholmsbolagets tidtabell
                </a>{' '}
-@@ -235,7 +265,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -235,7 +272,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
          )}
  
          {/* Praktisk info — visas bara när det finns något som gäller den här ön */}
@@ -852,7 +885,7 @@ index 0fc14f4..4c81da1 100644
          <div style={{
            background: 'linear-gradient(135deg, rgba(10,123,140,0.06) 0%, rgba(26,74,107,0.04) 100%)',
            borderRadius: 16, padding: '22px 20px',
-@@ -246,16 +276,24 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -246,16 +283,24 @@ export default async function IslandKommaDitPage({ params }: Props) {
              Praktiska tips
            </h3>
            <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
@@ -882,7 +915,7 @@ index 0fc14f4..4c81da1 100644
            </ul>
          </div>
          )}
-@@ -274,9 +312,11 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -274,9 +319,11 @@ export default async function IslandKommaDitPage({ params }: Props) {
                Planera resan till {island.name} med Thorkel
              </div>
              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
@@ -996,7 +1029,7 @@ index 5081eaf..878692b 100644
            <Link href="/planera" prefetch={false} style={{
              display: 'inline-block', background: 'var(--acc-knapp)', color: '#fff',
 diff --git a/src/app/o/[slug]/page.tsx b/src/app/o/[slug]/page.tsx
-index 38f86cc..96e07ba 100644
+index 38f86cc..f8ded0d 100644
 --- a/src/app/o/[slug]/page.tsx
 +++ b/src/app/o/[slug]/page.tsx
 @@ -24,6 +24,8 @@ import { PUBLICERADE_GUIDER } from '../../guider/guides-data'
@@ -1008,7 +1041,15 @@ index 38f86cc..96e07ba 100644
  import { getHantverkareForIsland } from '../hantverkare-data'
  import IslandTabRow from '@/components/IslandTabRow'
  import IslandKallor from '@/components/IslandKallor'
-@@ -57,9 +59,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -32,6 +34,7 @@ import Hopfallbart from '@/components/Hopfallbart'
+ import IslandFoto from '@/components/IslandFoto'
+ import IslandFakta from '@/components/IslandFakta'
+ import { SCB_OAR, SCB_OAR_KALLA } from '../scb-oar.generated'
++import { pekarBort, omBad, boendeOrd } from '@/lib/mallRegler'
+ 
+ type Props = { params: Promise<{ slug: string }> }
+ 
+@@ -57,9 +60,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
    // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
    // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
    if (!island) notFound()
@@ -1017,12 +1058,13 @@ index 38f86cc..96e07ba 100644
 + // Badtunnor (Lidö) är inget bad i havet (mall-0002 omarbete 2).
 + // En post vars första mening säger att det saknas på ön, eller pekar till grannön, räknas inte:
 + // Vindö (boende och bad på Djurö), Öckerö (hotell på Hönö). En badstege vid bastun (Bullerö) är ingen badplats (mall-0002 omarbete 3).
-+ const pekarBort = (desc: string) => /^Närmast|grannön|har vi inte kunnat belägga|ingen badplats/i.test(desc.split(/(?<=\.)\s/)[0] ?? '')
-+ const harBadData = (island.activity_meta?.bad?.beaches ?? []).length > 0
-+  || island.activities.some(a => !pekarBort(a.desc) && /bad|simning|sandstr[aä]nd|stenstrand/i.test(`${a.name} ${a.desc}`.replace(/badtunn[a-zåäö]*|badsteg[a-zåäö]*/gi, '')))
++ // Reglerna ligger i src/lib/mallRegler.ts, så att badsidan räknar bad på samma sätt (mall-0191 och mall-0192 omarbete 4).
++ const harBadData = (island.activity_meta?.bad?.beaches ?? []).length > 0 || island.activities.some(omBad)
++ // "boende" bara för övernattning under tak; har ön bara tält-, camping- eller ställplatser står "tältning"
++ // (Askö, Yttre Gården, Torö; utanför-2, mall-0003 omarbete 4). Regeln: boendeOrd i src/lib/mallRegler.ts.
 + const amnen = [
 +  island.restaurants.some(r => !pekarBort(r.desc)) ? 'mat' : '',
-+  island.accommodation.some(a => !pekarBort(a.desc)) ? 'boende' : '',
++  boendeOrd(island.accommodation),
 +  'aktiviteter',
 + ].filter(Boolean)
 + const beskrAmnen = [...amnen, ...(harBadData ? ['badplatser'] : []), 'hur du tar dig dit']
@@ -1035,7 +1077,7 @@ index 38f86cc..96e07ba 100644
   keywords: [
    `${island.name.toLowerCase()} guide`,
    `${island.name.toLowerCase()} restaurang`,
-@@ -74,7 +91,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -74,7 +93,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   },
   openGraph: {
   title: `${island.name} – ${island.tagline}`,
@@ -1044,7 +1086,7 @@ index 38f86cc..96e07ba 100644
   url: `https://svalla.se/o/${slug}`,
   type: 'article',
   images: [{
-@@ -86,7 +103,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -86,7 +105,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   twitter: {
   card: 'summary_large_image',
   title: `${island.name} – ${island.tagline}`,
@@ -1054,7 +1096,7 @@ index 38f86cc..96e07ba 100644
   images: [`https://svalla.se/api/og/island/${slug}`],
   },
   }
-@@ -183,6 +201,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -183,6 +203,7 @@ export default async function IslandPage({ params }: Props) {
     const coordLat = island.lat ?? ISLAND_COORD_MAP[slug]?.lat
     const coordLng = island.lng ?? ISLAND_COORD_MAP[slug]?.lng
     const hasCoords = !!(coordLat && coordLng)
@@ -1062,7 +1104,7 @@ index 38f86cc..96e07ba 100644
     const scb = SCB_OAR[island.slug]
     const mapsUrl = hasCoords
       ? `https://www.google.com/maps?q=${coordLat},${coordLng}`
-@@ -199,8 +218,17 @@ export default async function IslandPage({ params }: Props) {
+@@ -199,8 +220,17 @@ export default async function IslandPage({ params }: Props) {
             name: island.name,
             description: island.description?.[0] ?? island.tagline,
             url: `https://svalla.se/o/${island.slug}`,
@@ -1082,7 +1124,7 @@ index 38f86cc..96e07ba 100644
             publicAccess: true,
             containedInPlace: {
               '@type': 'Place',
-@@ -238,16 +266,9 @@ export default async function IslandPage({ params }: Props) {
+@@ -238,16 +268,9 @@ export default async function IslandPage({ params }: Props) {
                 longitude: coordLng,
               },
             } : {}),
@@ -1102,7 +1144,7 @@ index 38f86cc..96e07ba 100644
           })
         }}
       />
-@@ -265,18 +286,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -265,18 +288,7 @@ export default async function IslandPage({ params }: Props) {
   ],
   }) }}
   />
@@ -1122,7 +1164,7 @@ index 38f86cc..96e07ba 100644
  
   {/* ── NAV ─────────────────────────────────────────────────── */}
   {/* revision 2026-10-02: mork-yta = vit fokusring (globals.css), --sea syntes inte här. */}
-@@ -366,8 +376,11 @@ export default async function IslandPage({ params }: Props) {
+@@ -366,8 +378,11 @@ export default async function IslandPage({ params }: Props) {
   <circle cx="12" cy="8" r="2.4" />
   </svg>
   <span>
@@ -1135,7 +1177,7 @@ index 38f86cc..96e07ba 100644
   </span>
   </div>
   )}
-@@ -488,7 +501,8 @@ export default async function IslandPage({ params }: Props) {
+@@ -488,7 +503,8 @@ export default async function IslandPage({ params }: Props) {
       off: 'var(--txt2)', limited: 'var(--txt)', open: 'var(--txt)', peak: '#fff',
     }
     const LABEL: Record<string, string> = {
@@ -1145,7 +1187,7 @@ index 38f86cc..96e07ba 100644
     }
     const currentMonth = new Date().getMonth() // 0-indexed
     return (
-@@ -844,7 +858,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -844,7 +860,7 @@ export default async function IslandPage({ params }: Props) {
   {/* Hantverk & service — renderar sig själv till null om ön saknar poster
       för ön, vilket är normalfallet tills registret ringts igenom. Se
       hantverkare-data.ts för varför spärren ligger i datalagret och inte här. */}
@@ -1154,7 +1196,7 @@ index 38f86cc..96e07ba 100644
  
   {/* Boende */}
   {island.accommodation.length > 0 && (
-@@ -938,7 +952,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -938,7 +954,7 @@ export default async function IslandPage({ params }: Props) {
     Planera en dag på {island.name} →
    </Link>
    <Link href={`/o/${slug}/komma-dit`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
@@ -1163,7 +1205,7 @@ index 38f86cc..96e07ba 100644
    </Link>
   </div>
   </section>
-@@ -1114,7 +1128,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1114,7 +1130,7 @@ export default async function IslandPage({ params }: Props) {
         </div>
         <div style={{ flex: 1 }}>
          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Komma dit</div>
@@ -1172,7 +1214,7 @@ index 38f86cc..96e07ba 100644
         </div>
         <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
        </div>
-@@ -1135,7 +1149,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1135,7 +1151,7 @@ export default async function IslandPage({ params }: Props) {
         </div>
         <div style={{ flex: 1 }}>
          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Med barn</div>
@@ -1181,7 +1223,7 @@ index 38f86cc..96e07ba 100644
         </div>
         <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
        </div>
-@@ -1160,7 +1174,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1160,7 +1176,7 @@ export default async function IslandPage({ params }: Props) {
         </div>
         <div style={{ flex: 1 }}>
          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Hantverkare &amp; service</div>
@@ -1190,7 +1232,7 @@ index 38f86cc..96e07ba 100644
         </div>
         <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
        </div>
-@@ -1247,7 +1261,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1247,7 +1263,7 @@ export default async function IslandPage({ params }: Props) {
       Tidigare två sektioner med samma rubrik "Guider om X" efter varandra. */}
   {(guideLinks.length > 0 || (island.blogLinks && island.blogLinks.length > 0)) && (
    <section style={{ marginBottom: 36 }}>
@@ -1199,7 +1241,7 @@ index 38f86cc..96e07ba 100644
     {guideLinks.length > 0 && (
     <div style={{
      display: 'grid',
-@@ -1386,7 +1400,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1386,7 +1402,7 @@ export default async function IslandPage({ params }: Props) {
      /* Inga trådar — visa klickbara startfrågor */
      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 14 }}>
       <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginBottom: 4 }}>
@@ -1208,7 +1250,7 @@ index 38f86cc..96e07ba 100644
       </div>
       {[
        `Vad ska man inte missa på ${island.name}?`,
-@@ -1474,7 +1488,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1474,7 +1490,7 @@ export default async function IslandPage({ params }: Props) {
   variant="card"
   source={`o-${island.slug}`}
   title={`Vill du veta mer om ${island.name}?`}
@@ -1217,7 +1259,7 @@ index 38f86cc..96e07ba 100644
   />
   </div>
  
-@@ -1497,7 +1511,7 @@ export default async function IslandPage({ params }: Props) {
+@@ -1497,7 +1513,7 @@ export default async function IslandPage({ params }: Props) {
   <SvallaLogo height={22} color="rgba(255,255,255,0.7)" />
   </Link>
   <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', margin: 0 }}>
@@ -1287,7 +1329,7 @@ index d5f64ad..185e686 100644
          }
        />
 diff --git a/src/app/o/bohuslan-data.ts b/src/app/o/bohuslan-data.ts
-index 489c075..2391d3b 100644
+index 489c075..fe2ab2e 100644
 --- a/src/app/o/bohuslan-data.ts
 +++ b/src/app/o/bohuslan-data.ts
 @@ -154,7 +154,15 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
@@ -1364,7 +1406,19 @@ index 489c075..2391d3b 100644
    },
    {
      slug: 'pater-noster',
-@@ -1843,7 +1887,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
+@@ -1701,7 +1745,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
+     },
+     activity_meta: {
+       // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html — "Prova vid Skottarn, Gullholmsbaden, Grindebacken eller Härmanö huvud. Du kan också bada från Ångbåtsbryggan på Gullholmen och det finns flera badstegar på klipporna väster om kyrkan." (läst 2026-09-27)
+-      bad: { beaches: ['Skottarn', 'Gullholmsbaden', 'Grindebacken', 'Härmanö huvud', 'Ångbåtsbryggan på Gullholmen', 'Badstegar på klipporna väster om kyrkan'] },
++      // Rättad 2026-11-07 (mall-N004 omarbete 4): Härmanö huvud ligger på grannön Härmanö, inte på Gullholmen; badsidan visar den som nära.
++      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html — "Stig till Härmanö huvud"; "Stigen leder vidare till Härmanö huvud, med badplats och utkiksplats."; "Det finns fina uppmärkta stigar på Härmanö" (läst 2026-11-07)
++      // KÄLLA: https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ — "Ön ligger skyddad mellan huvudön Orust ett stycke åt öster och den större Hermanö alldeles intill." (läst 2026-11-07)
++      bad: { beaches: ['Skottarn', 'Gullholmsbaden', 'Grindebacken', 'Härmanö huvud på grannön Härmanö', 'Ångbåtsbryggan på Gullholmen', 'Badstegar på klipporna väster om kyrkan'] },
+     },
+   },
+ 
+@@ -1843,7 +1890,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
        camping: false,
      },
      activity_meta: {
@@ -1380,7 +1434,7 @@ index 489c075..2391d3b 100644
      },
      seasonal: {
        // KÄLLA: https://kladesholmenvh.se/gasthamn/ — "– Restaurang och hotell öppet året runt" (läst 2026-09-27)
-@@ -2092,8 +2143,17 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
+@@ -2092,8 +2146,17 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
      dog_notes: 'Hunden får följa med på Västtrafiks färja i koppel, bur eller väska och ska vara på styrbordssidan. Enligt Tjörns ordningsstadga ska hundar hållas kopplade på offentliga platser där människor samlas och får inte vistas på badplatser eller lekplatser, och 1 mars–20 augusti får hunden inte springa lös i skog och mark.',
      amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
      activity_meta: {
@@ -1401,7 +1455,7 @@ index 489c075..2391d3b 100644
    },
  ]
 diff --git a/src/app/o/island-data.ts b/src/app/o/island-data.ts
-index 427ab32..deb04a9 100644
+index 427ab32..edf2826 100644
 --- a/src/app/o/island-data.ts
 +++ b/src/app/o/island-data.ts
 @@ -54,7 +54,7 @@ export type IslandBeach = {
@@ -1485,7 +1539,18 @@ index 427ab32..deb04a9 100644
    },
    {
      slug: 'ekno',
-@@ -6355,6 +6399,17 @@ export const ISLANDS: Island[] = [
+@@ -6048,7 +6092,9 @@ export const ISLANDS: Island[] = [
+       // Rättad 2026-10-19: perioden är 15 juni till 16 augusti enligt turlistan, inte hela juni till augusti. Säsongen 2026 är slut.
+       // Rättad 2026-10-20: restiden följer nu rederiets egen turlista (45 min från Mjällomslandet, 2 h från Ullånger), och parkeringen förtydligad. Höga Kustens två sidor ger olika besked om Mjällomslandet, så bara rederiets uppgift används.
+       // KÄLLA: https://hkship.se/pdf/turlista.pdf — "Fri parkering i Ullånger, Docksta och Barsta"; "ULVÖN 2026"; "Dagliga turer med m/s Kusttrafik"; "15 juni – 16 augusti"; "09.30 Ullånger"; "10.45 Mjällomslandet"; "11.30 Ulvöhamn" (läst 2026-10-20)
+-      { method: 'Höga Kusten-båtarna', from: 'Ullånger, Docksta eller Mjällomslandet', time: '45 min till 2 h beroende på hamn', desc: 'Dagliga turer med m/s Kusttrafik, byggd 1908. År 2026 gick de 15 juni till 16 augusti, och säsongen är slut. Turen startar i Ullånger och går via Docksta och Mjällomslandet. Rederiet anger fri parkering i Ullånger och Docksta.', icon: '⛴', url: 'https://www.hkship.se/' },
++      // Rättad 2026-11-07 (mall-0172 omarbete 4): länken går direkt till turlistan, som startsidans meny "Turlistor" öppnar (onclick location.href='https://www.hkship.se/pdf/turlista.pdf'); startsidan har ingen tidtabell.
++      // KÄLLA: https://www.hkship.se/pdf/turlista.pdf — "ULVÖN"; "2026"; "Dagliga turer med m/s Kusttrafik"; "15 juni – 16 augusti"; "Avgång"; "Pris" (läst 2026-11-07)
++      { method: 'Höga Kusten-båtarna', from: 'Ullånger, Docksta eller Mjällomslandet', time: '45 min till 2 h beroende på hamn', desc: 'Dagliga turer med m/s Kusttrafik, byggd 1908. År 2026 gick de 15 juni till 16 augusti, och säsongen är slut. Turen startar i Ullånger och går via Docksta och Mjällomslandet. Rederiet anger fri parkering i Ullånger och Docksta.', icon: '⛴', url: 'https://www.hkship.se/pdf/turlista.pdf' },
+     ],
+     harbors: [
+       // KÄLLA: https://www.hogakusten.com/sv/gasthamn-ulvo-hotell — "har i dag cirka 70 gästplatser alla med tillgång till färskvatten och el"; "ett djup på fyra meter och en nyrenoverad servicebyggnad med toaletter, duschar, kök och tvättstuga"; "Ett stenkast bort finns även handelsbod och sjömack med diesel, och bensin"; "Bastu" (läst 2026-09-27)
+@@ -6355,6 +6401,17 @@ export const ISLANDS: Island[] = [
      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/varldsarvet-sodra-olands-odlingslandskap.html — "I den medeltida Östgötalagen från 1200-talet, finns regler för hur bönderna skulle lägga ut en radbytomt", "Ju bredare tomten var desto större andel hade gården i byns inägojord", "Gårdstypen kallas götisk" (läst 2026-09-27). Stod tidigare «fler soltimmar än nästan hela övriga Sverige» utan källa.
      did_you_know: 'I en öländsk radby fick gården en bredare tomt mot bygatan ju större andel den hade i byns jord – regler för hur radbytomten skulle läggas ut finns redan i Östgötalagen från 1200-talet.',
      // seasonal borttaget 2026-09-26: "alvaret blommar med orkidéer", "priser rimliga", "Ölandsbron kan ha kö på fredagar" och stängt november–mars stod utan källa.
@@ -1503,7 +1568,7 @@ index 427ab32..deb04a9 100644
    },
    // ── Göteborgs skärgård: Vinga (flyttad från bohuslan-data.ts 2026-10-19) ──
    {
-@@ -7144,7 +7199,9 @@ export const ISLANDS: Island[] = [
+@@ -7144,7 +7201,9 @@ export const ISLANDS: Island[] = [
        bad: {
          beaches: [
            // KÄLLA: https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Badet Myrholmsmaren ligger vid sjön Stora Maren."; "Bryggor"; "Omklädningshytt"; "Baja-maja under badsäsong"; "Simskola varje sommar (Tynningö Idrottsförening)" (läst 2026-09-27)
@@ -1514,7 +1579,7 @@ index 427ab32..deb04a9 100644
          ],
        },
      },
-@@ -7400,7 +7457,18 @@ export const ISLANDS: Island[] = [
+@@ -7400,7 +7459,18 @@ export const ISLANDS: Island[] = [
      did_you_know: 'År 830 kom den unge benediktinermunken Ansgar till Birka för att predika kristendomen. Han stannade ett och ett halvt år och flera av stadens invånare lät döpa sig, men Birka blev aldrig ett kristet samhälle – hedningar och kristna levde sida vid sida tills staden övergavs i slutet av 900-talet. Historiska museet har i dag mer än 100 000 fynd från Birka.',
      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Du kan besöka museet, shopen, vikingakvarteren och restaurangen", "Ja, det finns en badstrand och klippor att bada ifrån", "Det finns grusade ytor och vägar vid museiområdet och plana promenadstråk på ön" (läst 2026-09-27); https://www.birkavikingastaden.se/hitta-pa-birka/ — "barnvänlig badplats", "glampingtält" (läst 2026-09-27). accommodation och beach var felaktigt false.
      amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
@@ -1534,7 +1599,7 @@ index 427ab32..deb04a9 100644
      seasonal: {
        // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "7 MAJ – 25 OKTOBER, 2026" (läst 2026-09-27)
        open: 'Maj–Oktober',
-@@ -7562,8 +7630,9 @@ export const ISLANDS: Island[] = [
+@@ -7562,8 +7632,9 @@ export const ISLANDS: Island[] = [
      transport_meta: {
        // UPPSKATTNING: from_city_min 270 = pendeltåg Stockholm City–Nynäshamn ca 1 tim (ej kontrollerat mot 2026 års tabell) + turbåt ca 3 tim 30 min enligt https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/besok-parken/tips-och-guider/turbat-och-boende-pa-gotska-sandon.
        from_city_min: 270,
@@ -1546,7 +1611,7 @@ index 427ab32..deb04a9 100644
        from_nearest_hub_min: 135,
        // KÄLLA: https://gotland.com/companies/bat-till-gotska-sandon/ — "Du tar dig ut dit med turbåten, M/S Gotska Sandön"; https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon — "Gotska Sandöns nationalpark förvaltas av Länsstyrelsen Gotland" (läst 2026-09-27)
        operator: 'Turbåten M/S Gotska Sandön (bokas via nationalparkens bokningstjänst)',
-@@ -7913,7 +7982,19 @@ export const ISLANDS: Island[] = [
+@@ -7913,7 +7984,19 @@ export const ISLANDS: Island[] = [
      // KÄLLA: https://www.solkustturer.se/kopia-på-när-ställs-turen-in — "Historia om de nordiska folken", "från 1555 talar ärkebiskopen och kartografen Olaus Magnus om ön Jungfrun som en plats där nordiska häxor under vissa tider av året lär hålla möten", "Blå Jungfrun finns även inritad i Olaus Magnus sjökort Carta Marina från år 1539" (läst 2026-09-27)
      did_you_know: 'Ärkebiskopen Olaus Magnus skrev 1555 i Historia om de nordiska folken att nordiska häxor under vissa tider av året lär hålla möten på ön Jungfrun för att pröva sina trollkonster. Ön finns också inritad på hans sjökort Carta Marina från 1539.',
      amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: false },
@@ -1567,7 +1632,7 @@ index 427ab32..deb04a9 100644
    },
    // ─── HEMSÖN ──────────────────────────────────────────────────────────────
    {
-@@ -8138,7 +8219,17 @@ export const ISLANDS: Island[] = [
+@@ -8138,7 +8221,17 @@ export const ISLANDS: Island[] = [
        // KÄLLA: https://gotland.com/companies/sudersand/; https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser/ekeviken — "Badplatsen Ekeviken på Fårö är en cirka 900 meter lång, långgrund, sandstrand." (läst 2026-09-27)
        // KÄLLA: https://gotland.se/kultur-och-fritid/idrott-motion-och-friluftsliv/bad--och-besoksplatser/region-gotlands-badplatser/norsta-aurar — "Badplatsen Norsta Aurar" (läst 2026-09-27)
        cykel: { rental: true, notes: 'Cykeluthyrning vid Broa Kiosken vid färjeläget på Fårö, juni till augusti.' },
@@ -1586,7 +1651,7 @@ index 427ab32..deb04a9 100644
      },
      seasonal: {
        // KÄLLA: https://gotland.com/besoka-uppleva/upptack-norra-gotland/ — "Färjan till Fårö går varje hel och halv timme från Fårösund året runt" (läst 2026-09-27)
-@@ -8818,9 +8909,16 @@ export const ISLANDS: Island[] = [
+@@ -8818,9 +8911,16 @@ export const ISLANDS: Island[] = [
      activity_meta: {
        // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/landskrona/vens-backafall.html — "Cykeluthyrning och buss till andra delar av ön finns i anslutning till färjan i Bäckviken." (läst 2026-09-27)
        cykel: { rental: true, notes: 'Cykeluthyrning vid färjeläget i Bäckviken' },
@@ -1606,7 +1671,7 @@ index 427ab32..deb04a9 100644
      },
    },
    // ─── TJÄRÖ ───────────────────────────────────────────────────────────────
-@@ -9042,8 +9140,18 @@ export const ISLANDS: Island[] = [
+@@ -9042,8 +9142,18 @@ export const ISLANDS: Island[] = [
      did_you_know: 'Var tionde svensk yrkesfiskare bor i Öckerö kommun, och tillsammans med kollegorna i Fiskebäck landar de 75 procent av all fisk som fångas i Sverige.',
      // KÄLLA: https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/badplatser/hjalviks-badplats — "Sandstrand, gräs och klippor" (läst 2026-09-27). accommodation: true står kvar obelagd, se ockero.md.
      amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
@@ -1628,7 +1693,7 @@ index 427ab32..deb04a9 100644
    // ─── RÖRÖ ────────────────────────────────────────────────────────────────
    {
 diff --git a/src/app/o/kallor.generated.ts b/src/app/o/kallor.generated.ts
-index f7b2383..6cbccef 100644
+index f7b2383..561a2fe 100644
 --- a/src/app/o/kallor.generated.ts
 +++ b/src/app/o/kallor.generated.ts
 @@ -46,13 +46,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
@@ -4283,20 +4348,22 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -3790,13 +4014,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "last": "2026-09-27",
-       "myndighet": true
-     },
+@@ -3786,14 +4010,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     {
+       "url": "https://www.sjofartsverket.se/sv/tjanster/kanaler-slussar-broar/tottnasbron/",
+       "org": "sjofartsverket.se",
+-      "vad": "1 juni - 31 augusti; Broöppning kan erhållas dagligen varje hel timme kl 0800 - 2000",
+-      "last": "2026-09-27",
+-      "myndighet": true
+-    },
 -    {
 -      "url": "https://kund.printhuset-sthlm.se/sl/v852.pdf",
 -      "org": "SL (tryckt tidtabell)",
 -      "vad": "852 Nynäshamns station–Torö; Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026; Nynäshamns station 06.26 09.11 11.08; Ankarudden 07.05 09.51 11.49; Tidtabellen är anpassad till pendeltåg från Stockholm",
--      "last": "2026-09-27",
--      "myndighet": true
--    },
-     {
-       "url": "https://www.trafikverket.se/om-oss/nyheter/lansnyheter/stockholm/20262/2026-04/vi-bygger-om-och-forbattrar-tottnasbron/",
-       "org": "Trafikverket",
++      "vad": "1 juni - 31 augusti; Broöppning kan erhållas dagligen varje hel timme kl 0800 - 2000",
+       "last": "2026-09-27",
+       "myndighet": true
+     },
 @@ -3821,7 +4038,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://sjobodentoro.se/oppettider/",
@@ -4313,7 +4380,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -3830,28 +4054,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -3830,7 +4054,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.haninge.se/uppleva-och-gora/besok-och-upplev-haninge/platser-att-besoka/fjardlang/",
        "org": "haninge.se",
@@ -4322,13 +4389,10 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-     {
--      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/fjardlang.html",
--      "org": "Länsstyrelsen Stockholm",
--      "vad": "Beslut och skötselplan Fjärdlångs naturreservat 1986, Storlek: 5 089 hektar, varav 557 hektar land, de stora öarna Fjärdlång, Ängsön-Marskär, Långholmen-Bockholmen och ett antal mindre öar, kobbar och skär, Förvaltare: Skärgårdsstiftelsen och USF-Ö Fastighet AB, I reservatet finns skogar som varit orörda länge, På Fjärdlång har delar av det gamla odlingslandskapet restaurerats och sköts genom betesdrift. Kobbar, skär och mellanliggande vatten är värdefulla för sjöfågel. . «Förvaltas av Skärgårdsstiftelsen» var ofullständigt, «öster om Dalarö» och «ett tag av … finaste» saknade källa.",
--      "last": "2026-09-27",
--      "myndighet": true
--    },
+@@ -3841,20 +4065,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "last": "2026-09-27",
+       "myndighet": true
+     },
 -    {
 -      "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
 -      "org": "SL buss 839",
@@ -4340,12 +4404,12 @@ index f7b2383..6cbccef 100644
 -      "url": "https://kund.printhuset-sthlm.se/wa/h19.pdf",
 -      "org": "Waxholmsbolaget linje 19",
 -      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, 19A STOCKHOLM — DALARÖ — ORNÖ (ÖSTRA SIDAN) — UTÖ, Dalarö avg., Fjärdlång, Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst . Räknat Dalarö avg. → Fjärdlång: ons 09.00–10.35, fre 12.00–13.22, 16.05–17.15, 19.00–20.10, lör 09.55–11.05, 13.55–15.00 (2/4–18/6), 14.45–15.45 (17/8–12/12), 17.10–18.00 (2/4–18/6), sön 10.40/10.55–11.45, 15.00–15.50 = 50 min–1 h 35 min; tis 09.00–10.35 bara 8/5–18/6 och 17/8–13/9. Fredag från Strömkajen 16.25 → Fjärdlång 20.10. Turerna ons 09.00, lör 17.10 (2/4–7/5), sön 10.40 och 15.00 (2/4–7/5 och 14/9–12/12) samt fre 19.00 (17/8–13/9) angör Fjärdlång bara efter beställning (b). Tidigare källrad pekade på v19.pdf; h19.pdf är den tabell Waxholmsbolaget länkar för perioden.",
-+      "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/fjardlang.html",
-+      "org": "Länsstyrelsen Stockholm",
-+      "vad": "Beslut och skötselplan Fjärdlångs naturreservat 1986, Storlek: 5 089 hektar, varav 557 hektar land, de stora öarna Fjärdlång, Ängsön-Marskär, Långholmen-Bockholmen och ett antal mindre öar, kobbar och skär, Förvaltare: Skärgårdsstiftelsen och USF-Ö Fastighet AB, I reservatet finns skogar som varit orörda länge, På Fjärdlång har delar av det gamla odlingslandskapet restaurerats och sköts genom betesdrift. Kobbar, skär och mellanliggande vatten är värdefulla för sjöfågel. . «Förvaltas av Skärgårdsstiftelsen» var ofullständigt, «öster om Dalarö» och «ett tag av … finaste» saknade källa.",
-       "last": "2026-09-27",
-       "myndighet": true
-     },
+-      "last": "2026-09-27",
+-      "myndighet": true
+-    },
+     {
+       "url": "https://orno.se/om-orno/orno-oar/fjallang/",
+       "org": "orno.se",
 @@ -3865,58 +4075,79 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://skargardsstiftelsen.se/omraden/fjardlang/",
@@ -5030,7 +5094,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -4534,49 +4877,63 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -4534,28 +4877,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/",
        "org": "raa.se",
@@ -5062,37 +5126,29 @@ index f7b2383..6cbccef 100644
        "org": "birkavikingastaden.se",
 -      "vad": "Under lågsäsong (november–april) är museet och restaurangen stängda och det finns ingen ordinarie båttrafik till ön. ;  — Varje år på Kristi himmelsfärdsdag invigs Adelsö vandringsled ;  — Öppet alla dagar mellan kl. 11–16. Öppet även jul och nyår.",
 +      "vad": "Båten går från centrala Stockholm (Klara Mälarstrand) och stannar vid bryggorna Nya Kungshatt, Vårby brygga, Jungfrusund och Hovgården (Adelsö).",
-+      "last": "2026-09-27",
-+      "myndighet": false
-+    },
-+    {
-+      "url": "https://www.cafehovgarden.se/",
-+      "org": "cafehovgarden.se",
-+      "vad": "Mitt i världsarvet, kom & njut av gott kaffe, bakverk, kulglass mjukglass och en bit mat!, Våra öppettider varierar över säsongen likaså menyn!, Tack alla för 2026!",
-+      "last": "2026-09-27",
-+      "myndighet": false
-+    },
+       "last": "2026-09-27",
+       "myndighet": false
+     },
+@@ -4566,17 +4909,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "last": "2026-09-27",
+       "myndighet": false
+     },
 +    {
 +      "url": "https://kund.printhuset-sthlm.se/sl/v312.pdf",
 +      "org": "SL (tryckt tidtabell)",
 +      "vad": "Ringlinje. (buss 312 på Adelsö)",
-       "last": "2026-09-27",
-       "myndighet": false
-     },
++      "last": "2026-09-27",
++      "myndighet": false
++    },
      {
--      "url": "https://www.cafehovgarden.se/",
--      "org": "cafehovgarden.se",
--      "vad": "Mitt i världsarvet, kom & njut av gott kaffe, bakverk, kulglass mjukglass och en bit mat!, Våra öppettider varierar över säsongen likaså menyn!, Tack alla för 2026!",
-+      "url": "https://stockholmslansmuseum.se/besoksmal/hovgarden/",
-+      "org": "stockholmslansmuseum.se",
-+      "vad": "Här bodde kungen som härskade över Birka. Sedan 1993 har Hovgården tillsammans med Birka status som världsarv., Under medeltiden låg kung Magnus Ladulås sommarpalats Alsnöhus här, Den blev byggd redan i slutet 1100-talet med långhus och smalare kor.",
-       "last": "2026-09-27",
-       "myndighet": false
-     },
-     {
--      "url": "https://stockholmslansmuseum.se/besoksmal/hovgarden/",
--      "org": "stockholmslansmuseum.se",
+       "url": "https://stockholmslansmuseum.se/besoksmal/hovgarden/",
+       "org": "stockholmslansmuseum.se",
 -      "vad": "Här bodde kungen som härskade över Birka. Sedan 1993 har Hovgården tillsammans med Birka status som världsarv., Under medeltiden låg kung Magnus Ladulås sommarpalats Alsnöhus här, Den blev byggd redan i slutet 1100-talet med långhus och smalare kor. ;  — Vid medeltidskyrkan finns flera större gravhögar. De tre största kallas Kungshögarna.",
++      "vad": "Här bodde kungen som härskade över Birka. Sedan 1993 har Hovgården tillsammans med Birka status som världsarv., Under medeltiden låg kung Magnus Ladulås sommarpalats Alsnöhus här, Den blev byggd redan i slutet 1100-talet med långhus och smalare kor.",
++      "last": "2026-09-27",
++      "myndighet": false
++    },
++    {
 +      "url": "https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/",
 +      "org": "stromma.com",
 +      "vad": "Resa från/till Hovgården måste alltid förbokas, Välj avgång från Hovgården om du vill ha en kort båtresa till Birka (ca 15 min).",
@@ -5584,7 +5640,21 @@ index f7b2383..6cbccef 100644
        "last": "2026-10-20",
        "myndighet": false
      },
-@@ -5120,14 +5617,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5061,6 +5558,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "last": "2026-09-27",
+       "myndighet": false
+     },
++    {
++      "url": "https://www.hkship.se/pdf/turlista.pdf",
++      "org": "hkship.se",
++      "vad": "ULVÖN; 2026; Dagliga turer med m/s Kusttrafik; 15 juni – 16 augusti; Avgång; Pris",
++      "last": "2026-11-07",
++      "myndighet": false
++    },
+     {
+       "url": "https://www.hogakusten.com/sv/stader-platser/ulvon",
+       "org": "hogakusten.com",
+@@ -5120,14 +5624,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://mfulvon.se/turlistor",
        "org": "mfulvon.se",
@@ -5601,7 +5671,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5162,7 +5659,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5162,7 +5666,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://ulvohamnkrog.se/",
        "org": "ulvohamnkrog.se",
@@ -5610,7 +5680,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-10-20",
        "myndighet": false
      },
-@@ -5248,7 +5745,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5248,7 +5752,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.destinationgotland.se/allt-om-resan/farjeterminaler/",
        "org": "destinationgotland.se",
@@ -5619,7 +5689,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5381,30 +5878,37 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5381,30 +5885,37 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -5665,7 +5735,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -5415,17 +5919,38 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5415,17 +5926,38 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -5706,7 +5776,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5439,14 +5964,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5439,14 +5971,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.oland.se/",
        "org": "oland.se",
@@ -5723,7 +5793,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5460,7 +5985,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5460,7 +5992,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.oland.se/skordefest",
        "org": "oland.se",
@@ -5732,7 +5802,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5504,7 +6029,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5504,7 +6036,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://vinga.nu/",
        "org": "vinga.nu",
@@ -5741,7 +5811,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-10-19",
        "myndighet": false
      },
-@@ -5569,7 +6094,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5569,7 +6101,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.brannoforeningen.se/kulturevenemang/dans-pa-branno-brygga/",
        "org": "brannoforeningen.se",
@@ -5750,7 +5820,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5583,7 +6108,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5583,7 +6115,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://brannovardshus.se/oppettider",
        "org": "brannovardshus.se",
@@ -5759,7 +5829,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5601,6 +6126,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5601,6 +6133,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -5773,7 +5843,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.goteborg.com/platser/branno-vardshus-pensionat-baggen",
        "org": "goteborg.com",
-@@ -5618,28 +6150,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5618,28 +6157,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.styrsobolaget.se/dans-pa-branno-brygga/",
        "org": "styrsobolaget.se",
@@ -5806,7 +5876,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -5753,14 +6285,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5753,14 +6292,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://kusthotelletstyrso.se/",
        "org": "kusthotelletstyrso.se",
@@ -5823,7 +5893,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5788,7 +6320,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5788,7 +6327,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://transdev.se/wp-content/uploads/sites/5/2026/07/Hosttidtabell-281-282-Liggande-A3.pdf",
        "org": "transdev.se",
@@ -5832,7 +5902,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -5808,13 +6340,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5808,13 +6347,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -5846,7 +5916,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.goteborg.com/platser/vrango",
        "org": "goteborg.com",
-@@ -5825,7 +6350,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5825,7 +6357,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.goteborg.com/guider/ta-dig-till-skargarden",
        "org": "goteborg.com",
@@ -5855,7 +5925,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5874,7 +6399,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5874,7 +6406,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.svenskagasthamnar.se/goteborgs-skargard/vrango/",
        "org": "svenskagasthamnar.se",
@@ -5864,7 +5934,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -5884,6 +6409,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5884,6 +6416,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "TEMPO GÖTEBORG VRÅNGÖ; VRÅNGÖ HAMN",
        "last": "2026-09-27",
        "myndighet": false
@@ -5878,7 +5948,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "donso": [
-@@ -5974,7 +6506,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -5974,7 +6513,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://transdev.se/wp-content/uploads/sites/5/2026/07/Hosttidtabell-281-282-Liggande-A3.pdf",
        "org": "transdev.se",
@@ -5887,7 +5957,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -6039,7 +6571,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6039,7 +6578,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://transdev.se/wp-content/uploads/sites/5/2026/07/Hosttidtabell-283-Liggande-A4.pdf",
        "org": "transdev.se",
@@ -5896,7 +5966,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -6152,13 +6684,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6152,13 +6691,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -5910,7 +5980,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/tynningoleden/",
        "org": "Trafikverket",
-@@ -6170,7 +6695,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6170,7 +6702,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "url": "https://www.vaxholm.se/download/18.7540ce651827e350272a8e08/1661434105419/Bilaga%203%20-%20Kulturmilj%C3%B6underlag%20o%20.pdf",
        "org": "vaxholm.se",
        "vad": "snickarmästare Munthe förvärvade Höganäs, den så kallade Fyrkanten år 1874. Han började per omgående arrendera ut mark och sälja avstyckade tomter för sommarhus. Försäljningen ökade efter att ångbåtstrafiken till Höganäs etablerades år 1877.; Som mest hade Tynningö ett tjugotal samtidigt trafikerade bryggor.; Här finns en rik uppsättning av sommarvillor uppförda 1870–1920 i välexponerade lägen på klippor och tomter utmed vattnet till vilka man tog sig med ångbåt.; Tynningö norra delar ligger inom riksintresse för kulturmiljövården (PDF, kap. 02, 03 och 06)",
@@ -5919,7 +5989,7 @@ index f7b2383..6cbccef 100644
        "myndighet": true
      },
      {
-@@ -6181,23 +6706,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6181,23 +6713,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -5948,7 +6018,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6218,7 +6736,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6218,7 +6743,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.tynningo.se/information-2/tidtabell-for-buss-och-batar/",
        "org": "tynningo.se",
@@ -5971,7 +6041,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -6238,20 +6770,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6238,20 +6777,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -5992,7 +6062,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.varmdo.se/kommunochpolitik/kartorochkommunfakta/historia.4.3251048d16e2a7e784837027.html",
        "org": "varmdo.se",
-@@ -6315,6 +6833,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6315,6 +6840,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -6013,7 +6083,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.svenskakyrkan.se/djuro-moja-namdo/kyrkor",
        "org": "svenskakyrkan.se",
-@@ -6331,6 +6863,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6331,6 +6870,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      }
    ],
    "birka": [
@@ -6034,7 +6104,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorko.html",
        "org": "Länsstyrelsen Stockholm",
-@@ -6348,14 +6894,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6348,14 +6901,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/",
        "org": "raa.se",
@@ -6051,7 +6121,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6376,51 +6922,58 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6376,51 +6929,58 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.birkavikingastaden.se/hitta-pa-birka/",
        "org": "birkavikingastaden.se",
@@ -6118,7 +6188,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6434,14 +6987,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6434,14 +6994,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.destinationgotland.se/resa/",
        "org": "destinationgotland.se",
@@ -6142,7 +6212,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6457,14 +7017,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6457,14 +7024,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lansstyrelsen.se/gotland/besoksmal/nationalparker/gotska-sandons-nationalpark.html",
        "org": "Länsstyrelsen Gotland",
@@ -6159,7 +6229,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6478,82 +7038,82 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6478,82 +7045,82 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon",
        "org": "Sveriges Nationalparker",
@@ -6266,7 +6336,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.karlskrona.se/hitta-verksamheter/badplatser/aspo-havsbad",
        "org": "karlskrona.se",
-@@ -6578,21 +7138,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6578,21 +7145,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/aspoleden/",
        "org": "Trafikverket",
@@ -6305,7 +6375,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6606,21 +7180,42 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6606,21 +7187,42 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.visitkarlskrona.se/sv/drottningskarskastell",
        "org": "visitkarlskrona.se",
@@ -6326,16 +6396,16 @@ index f7b2383..6cbccef 100644
        "org": "visitkarlskrona.se",
 -      "vad": "För de stora örlogsskeppen är inloppet mellan Aspö och Tjurkö det enda sättet att nå Karlskrona. ;  — Drottningskärs kastell är en del av världsarvet Örlogsstaden Karlskrona, Själva fastigheten förvaltas av Statens fastighetsverk ;  — Aspö kyrka stod färdig 1891., Aspö kyrka är uppförd i nygotisk stil.",
 +      "vad": "I november 1679 besöker Karl XI skärgårdsöarna Aspö, Tjurkö och Trossö och ger militären och arkitekten Erik Dahlbergh i uppdrag att uppföra skansar på holmar vid Aspö och Tjurkö, 1897 föreslår man att ett nytt fort ska uppföras på Aspö, batteri Ellenabben 1970",
-       "last": "2026-09-27",
-       "myndighet": false
-     },
++      "last": "2026-09-27",
++      "myndighet": false
++    },
 +    {
 +      "url": "https://www.visitkarlskrona.se/sv/aspo-kyrka",
 +      "org": "visitkarlskrona.se",
 +      "vad": "Aspö kyrka stod färdig 1891., Aspö kyrka är uppförd i nygotisk stil.",
-+      "last": "2026-09-27",
-+      "myndighet": false
-+    },
+       "last": "2026-09-27",
+       "myndighet": false
+     },
 +    {
 +      "url": "https://www.visitkarlskrona.se/sv/gasthamn-lokanabben-aspo",
 +      "org": "visitkarlskrona.se",
@@ -6351,7 +6421,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6632,10 +7227,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6632,10 +7234,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": false
      },
      {
@@ -6365,7 +6435,7 @@ index f7b2383..6cbccef 100644
        "myndighet": false
      },
      {
-@@ -6647,13 +7242,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6647,13 +7249,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      }
    ],
    "sturko": [
@@ -6379,7 +6449,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.karlskrona.se/globalassets/kommun-och-politik/det-har-ar-karlskrona/dokument/folkmangd-2024.pdf",
        "org": "karlskrona.se",
-@@ -6664,7 +7252,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6664,7 +7259,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.karlskrona.se/hitta-verksamheter/badplatser/sturko/",
        "org": "karlskrona.se",
@@ -6388,7 +6458,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6682,6 +7270,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6682,6 +7277,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -6402,7 +6472,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://caravanclub.se/camping/sturko/",
        "org": "caravanclub.se",
-@@ -6692,7 +7287,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6692,7 +7294,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.ica.se/butiker/nara/karlskrona/ica-nara-sturkohallen-1003743/",
        "org": "ica.se",
@@ -6411,7 +6481,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6733,10 +7328,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6733,10 +7335,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      }
    ],
    "bla-jungfrun": [
@@ -6430,7 +6500,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6750,45 +7352,59 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6750,45 +7359,59 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.naturvardsverket.se/4ac67d/globalassets/nfs/2014/nfs-2014-8.pdf",
        "org": "Naturvårdsverket",
@@ -6498,7 +6568,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.solkustturer.se/kopia-på-när-ställs-turen-in",
        "org": "solkustturer.se",
-@@ -6799,42 +7415,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6799,42 +7422,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.solkustturer.se/_files/ugd/046547_2f4115c8d26147979f40538cdd1e2a95.pdf",
        "org": "solkustturer.se",
@@ -6557,7 +6627,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -6857,21 +7480,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6857,21 +7487,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/hemsoleden/",
        "org": "Trafikverket",
@@ -6589,7 +6659,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -6885,42 +7515,56 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6885,42 +7522,56 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://se.hemsofastning.se/naturupplevelse/",
        "org": "se.hemsofastning.se",
@@ -6653,7 +6723,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -6929,35 +7573,42 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6929,35 +7580,42 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://dokument.gotland.se:443/IntegrationService.svc/doc/content/55284",
        "org": "dokument.gotland.se",
@@ -6703,7 +6773,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -6999,7 +7650,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -6999,7 +7657,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://bergmancenter.se/",
        "org": "bergmancenter.se",
@@ -6712,7 +6782,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-10-19",
        "myndighet": false
      },
-@@ -7127,21 +7778,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7127,21 +7785,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22cdc/1732538244407/Trysunda.pdf",
        "org": "Länsstyrelsen",
@@ -6737,7 +6807,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -7153,31 +7804,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7153,31 +7811,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -6781,7 +6851,7 @@ index f7b2383..6cbccef 100644
        "myndighet": false
      },
      {
-@@ -7188,23 +7839,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7188,23 +7846,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": false
      },
      {
@@ -6817,7 +6887,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7225,7 +7883,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7225,7 +7890,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://trysundavandrarhem.se/bo",
        "org": "trysundavandrarhem.se",
@@ -6826,7 +6896,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7239,26 +7897,12 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7239,26 +7904,12 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://trysundavandrarhem.se/sk%C3%A4rg%C3%A5rdscaf%C3%A9t/",
        "org": "trysundavandrarhem.se",
@@ -6854,7 +6924,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html",
        "org": "Länsstyrelsen Blekinge",
-@@ -7273,6 +7917,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7273,6 +7924,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -6875,7 +6945,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://fiskybusiness.nu/vandrarhemmet-hanouml.html",
        "org": "fiskybusiness.nu",
-@@ -7324,27 +7982,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7324,27 +7989,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -6903,7 +6973,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.explorearchipelago.com/sthlm/outer-archipelago/svartloga",
        "org": "explorearchipelago.com",
-@@ -7383,7 +8020,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7383,7 +8027,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.lassashagar.se/uthyrning/",
        "org": "lassashagar.se",
@@ -6912,7 +6982,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7393,6 +8030,27 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7393,6 +8037,27 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Svartlöga var en av få skärgårdsöar som klarade sig från ryssarnas härjningar 1719. Grunden runt ön är förrädiska och enligt traditionen skrämde öns säljägare bort inkräktarna med sina bössor.",
        "last": "2026-09-27",
        "myndighet": false
@@ -6940,7 +7010,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "visingo": [
-@@ -7625,7 +8283,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7625,7 +8290,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://ilandskrona.se/besoka/ven/tychobrahe-museet/besoka-museet/",
        "org": "ilandskrona.se",
@@ -6949,7 +7019,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-10-19",
        "myndighet": false
      },
-@@ -7643,6 +8301,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7643,6 +8308,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -6970,7 +7040,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.norreborgshamn.se/",
        "org": "norreborgshamn.se",
-@@ -7660,7 +8332,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7660,7 +8339,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://ventrafiken.se/tidtabell/",
        "org": "ventrafiken.se",
@@ -6979,15 +7049,10 @@ index f7b2383..6cbccef 100644
        "last": "2026-10-19",
        "myndighet": false
      },
-@@ -7675,18 +8347,11 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "url": "https://ventrafiken.se/kontaktuppgifter/",
-       "org": "ventrafiken.se",
-       "vad": "Åk tåg eller buss till oss! Bussarna stannar precis utanför terminalen och hållplatsen heter Skeppsbron.",
--      "last": "2026-09-27",
--      "myndighet": false
--    }
--  ],
--  "tjaro": [
+@@ -7680,13 +8359,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+     }
+   ],
+   "tjaro": [
 -    {
 -      "url": "https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn/",
 -      "org": "blekingetrafiken.se",
@@ -6995,15 +7060,10 @@ index f7b2383..6cbccef 100644
 -      "last": "2026-09-27",
 -      "myndighet": true
 -    },
-+      "last": "2026-09-27",
-+      "myndighet": false
-+    }
-+  ],
-+  "tjaro": [
      {
        "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tjaro.html",
        "org": "Länsstyrelsen Blekinge",
-@@ -7701,6 +8366,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7701,6 +8373,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -7017,7 +7077,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://tjaro.com/hotell-vandrarhem/",
        "org": "tjaro.com",
-@@ -7755,15 +8427,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7755,15 +8434,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96cker%C3%B6",
        "org": "minkarta.lantmateriet.se",
@@ -7039,7 +7099,7 @@ index f7b2383..6cbccef 100644
        "myndighet": true
      },
      {
-@@ -7774,37 +8446,51 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7774,37 +8453,51 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -7102,7 +7162,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7825,7 +8511,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7825,7 +8518,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://skargardshotellethono.se/",
        "org": "skargardshotellethono.se",
@@ -7111,7 +7171,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7837,16 +8523,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7837,16 +8530,30 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": false
      },
      {
@@ -7146,7 +7206,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -7862,49 +8562,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7862,49 +8569,49 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/naturomraden-och-naturreservat/roro-naturreservat",
        "org": "ockero.se",
@@ -7209,7 +7269,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -7915,24 +8615,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -7915,24 +8622,31 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": false
      },
@@ -7250,7 +7310,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -8046,7 +8753,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8046,7 +8760,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://visitholmon.com/gora/vandra-2/",
        "org": "visitholmon.com",
@@ -7259,7 +7319,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -8150,6 +8857,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8150,6 +8864,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-16",
        "myndighet": true
      },
@@ -7273,7 +7333,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.kungalv.se/trafik--gator/kollektivtrafik/marstrandsfarjan/",
        "org": "kungalv.se",
-@@ -8157,6 +8871,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8157,6 +8878,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-10-19",
        "myndighet": true
      },
@@ -7294,7 +7354,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Marstrand",
        "org": "minkarta.lantmateriet.se",
-@@ -8178,17 +8906,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8178,17 +8913,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-16",
        "myndighet": true
      },
@@ -7313,7 +7373,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -8373,6 +9094,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8373,6 +9101,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Fransk krog i hjärtat av Marstrand med uteservering.; Johans Krog är en fransk bistro belägen på vackra Marstrand.; Kungsgatan 12",
        "last": "2026-10-20",
        "myndighet": false
@@ -7327,7 +7387,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "smogen": [
-@@ -8405,10 +9133,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8405,10 +9140,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -7356,7 +7416,7 @@ index f7b2383..6cbccef 100644
        "myndighet": true
      },
      {
-@@ -8487,6 +9229,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8487,6 +9236,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Göstas Fiskekrog is located next to the fish shop, Göstas Fiskbutik",
        "last": "2026-09-27",
        "myndighet": false
@@ -7370,7 +7430,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "lysekil": [
-@@ -8525,20 +9274,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8525,20 +9281,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": true
      },
@@ -7391,7 +7451,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.bohuslansmuseum.se/samlingar-och-historia/gamla-historiska-artiklar/badorten-lysekil/",
        "org": "Bohusläns museum",
-@@ -8598,7 +9333,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8598,7 +9340,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.havetshus.se/besok-oss/oppettider/",
        "org": "havetshus.se",
@@ -7400,7 +7460,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -8626,7 +9361,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8626,7 +9368,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.sivikscampinglysekil.se/",
        "org": "sivikscampinglysekil.se",
@@ -7409,7 +7469,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -8685,6 +9420,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8685,6 +9427,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "bekräftar adressen Norra Hamngatan 5 i Lysekil och menyn med skaldjur, fiskrätter, inlagd sill och moules frites",
        "last": "2026-09-16",
        "myndighet": false
@@ -7430,7 +7490,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "kosterhavet": [
-@@ -8723,20 +9472,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8723,20 +9479,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -7451,7 +7511,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.ekenashavshotell.se/",
        "org": "ekenashavshotell.se",
-@@ -8841,9 +9576,37 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8841,9 +9583,37 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Restaurangen ligger alldeles vid havet i en ombyggd gammal sjöbod vid Västra Bryggan på Nordkoster, Menyn består till stor del av rätter från havet",
        "last": "2026-09-27",
        "myndighet": false
@@ -7489,7 +7549,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/tjurpanneomradet.html",
        "org": "Länsstyrelsen Västra Götaland",
-@@ -8873,17 +9636,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8873,17 +9643,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -7511,7 +7571,7 @@ index f7b2383..6cbccef 100644
        "myndighet": true
      },
      {
-@@ -8931,7 +9687,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8931,7 +9694,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://tanumstrand.se/gasthamn/",
        "org": "tanumstrand.se",
@@ -7520,7 +7580,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -8990,6 +9746,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -8990,6 +9753,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Vitlycke museum - porten till världsarvet, Vi är en del av Västra Götalandsregionens kulturförvaltning",
        "last": "2026-09-27",
        "myndighet": false
@@ -7541,7 +7601,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "fjallbacka": [
-@@ -9014,13 +9784,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9014,13 +9791,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -7555,7 +7615,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.brygganfjallbacka.se/",
        "org": "Bryggan Fjällbacka",
-@@ -9081,7 +9844,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9081,7 +9851,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "url": "https://www.vastsverige.com/en/tanum/aktiviteter/paddling/paddla-fjallbacka/",
        "org": "vastsverige.com",
        "vad": "rutten namnger Kråkholmen, Köttöarna, Porsholmen, Valö, Dannholmen och Hjärterön i skyddat vatten",
@@ -7564,7 +7624,7 @@ index f7b2383..6cbccef 100644
        "myndighet": false
      },
      {
-@@ -9098,6 +9861,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9098,6 +9868,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-16",
        "myndighet": false
      },
@@ -7578,7 +7638,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.vastsverige.com/en/tanum/produkter/stora-hotellet-fjallbacka/",
        "org": "vastsverige.com",
-@@ -9106,9 +9876,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9106,9 +9883,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": false
      },
      {
@@ -7591,12 +7651,10 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      }
-@@ -9136,23 +9906,9 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
-       "myndighet": true
-     },
+@@ -9138,21 +9915,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
--      "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/gullmarsleden/",
--      "org": "Trafikverket",
+       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/gullmarsleden/",
+       "org": "Trafikverket",
 -      "vad": "Gullmarsleden går mellan Finnsbo, Lysekil och Skår, Uddevalla i Gullmarsfjorden, Färjeledens längd är 1850 meter och överfartstiden är tio minuter, Resan med vägfärjan är avgiftsfri",
 -      "last": "2026-09-27",
 -      "myndighet": true
@@ -7612,13 +7670,11 @@ index f7b2383..6cbccef 100644
 -      "url": "https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/4845__0__LINE__20260817__20261212__1fb56a4f-7e7e-4e3c-8b26-b834a4887c8a__1%2C0__2789942.pdf",
 -      "org": "Västtrafik (tidtabell)",
 -      "vad": "Grundsund–Fiskebäckskil–Bokenäs–Uddevalla, Torp Terminalen, Gäller 17 aug - 12 dec 2026",
-+      "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/gullmarsleden/",
-+      "org": "Trafikverket",
 +      "vad": "Gullmarsleden går mellan Finnsbo, Lysekil och Skår, Uddevalla i Gullmarsfjorden, Färjeledens längd är 1850 meter och överfartstiden är tio minuter, Resan med vägfärjan är avgiftsfri",
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -9166,7 +9922,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9166,7 +9929,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.pellesrokeri.com/",
        "org": "pellesrokeri.com",
@@ -7627,7 +7683,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9201,7 +9957,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9201,7 +9964,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/en/things-to-do/explore-the-west-coast-by-boat/ferry-lines/route-map-lysekiluddevallaljungskile/",
        "org": "vastsverige.com",
@@ -7636,7 +7692,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9215,7 +9971,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9215,7 +9978,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/lysekil/produkter/skafto-vandrarhem/",
        "org": "vastsverige.com",
@@ -7645,7 +7701,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9232,6 +9988,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9232,6 +9995,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Östra kajen 20, 45179 Grundsund",
        "last": "2026-09-27",
        "myndighet": false
@@ -7666,7 +7722,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "hamburgsund": [
-@@ -9270,13 +10040,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9270,13 +10047,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -7680,7 +7736,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://gasthamnsbolaget.se/en/guest-harbours-in-bohuslan/hamburgsund-guest-harbour/",
        "org": "gasthamnsbolaget.se",
-@@ -9325,6 +10088,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9325,6 +10095,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Udden 1",
        "last": "2026-09-27",
        "myndighet": false
@@ -7694,7 +7750,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "karingon": [
-@@ -9349,20 +10119,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9349,20 +10126,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -7715,7 +7771,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.destinationkaringon.online/upplev",
        "org": "destinationkaringon.online",
-@@ -9387,7 +10143,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9387,7 +10150,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.destinationkaringon.online/%C3%A4ta-dricka",
        "org": "destinationkaringon.online",
@@ -7724,7 +7780,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9488,6 +10244,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9488,6 +10251,20 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "På Käringön föddes fiskarsonen Olof Knape år 1664, Olof gick till sjöss åtta år gammal, År 1700 blev han handplockad som amiralitetskapten av kung Karl XII, främst var han involverad i kaparverksamheten som pågick, Olof blev så småningom adlad till Olof Strömstierna, och namnet återfinns idag på flera platser på Käringön",
        "last": "2026-09-27",
        "myndighet": false
@@ -7745,7 +7801,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "orust": [
-@@ -9529,7 +10299,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9529,7 +10306,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.orust.se/jobb-och-foretagande/foretag-stod-och-radgivning/fakta-om-naringslivet",
        "org": "orust.se",
@@ -7754,7 +7810,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -9571,7 +10341,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9571,7 +10348,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.hallberg-rassy.com/sv/nyheter/oeppet-varv",
        "org": "hallberg-rassy.com",
@@ -7763,7 +7819,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9692,14 +10462,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9692,14 +10469,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn",
        "org": "tjorn.se",
@@ -7780,7 +7836,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -9724,13 +10494,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9724,13 +10501,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -7794,7 +7850,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.akvarellmuseet.org/om/historia",
        "org": "akvarellmuseet.org",
-@@ -9755,14 +10518,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9755,14 +10525,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://digitaltmuseum.se/021015874271/almobron-i-bohuslan-paseglad-av-bulkfartyget-star-clipper-i-januari-198",
        "org": "digitaltmuseum.se",
@@ -7811,7 +7867,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9804,7 +10567,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9804,7 +10574,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/tjorn/",
        "org": "vastsverige.com",
@@ -7820,7 +7876,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -9842,6 +10605,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9842,6 +10612,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Menyn är inspirerad av Västkusten med fräscha råvaror från såväl land som hav och av södra Frankrike med sina Provencalska smaker",
        "last": "2026-09-27",
        "myndighet": false
@@ -7834,7 +7890,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "kungshamn": [
-@@ -9869,8 +10639,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9869,8 +10646,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn",
        "org": "sotenas.se",
@@ -7845,7 +7901,7 @@ index f7b2383..6cbccef 100644
        "myndighet": true
      },
      {
-@@ -9888,10 +10658,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9888,10 +10665,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -7867,7 +7923,7 @@ index f7b2383..6cbccef 100644
        "myndighet": true
      },
      {
-@@ -9956,6 +10733,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -9956,6 +10740,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "most of them having a balcony or terrace with fantastic views over the coast of Bohuslän, The hotel's renowned restaurant is well situated, with a great view of the Kungshamn inlet",
        "last": "2026-09-27",
        "myndighet": false
@@ -7881,7 +7937,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "pater-noster": [
-@@ -10018,7 +10802,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10018,7 +10809,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://paternoster.se/ta-dig-hit",
        "org": "paternoster.se",
@@ -7890,7 +7946,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-10-19",
        "myndighet": false
      },
-@@ -10063,7 +10847,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10063,7 +10854,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/ersdalen.html",
        "org": "Länsstyrelsen Västra Götaland",
        "vad": "bildat 1999, cirka 529 hektar på nordvästra Hönö i Öckerö kommun, \"Strandlinjen är sönderskuren i vikar och uddar och här finns ett rikt fågelliv\", hedar och lavklädda hällar, skalrik jord, grusade stigar, klippformationen Kröckle Kyrka, Kråkudden med fågelskådarskydd, grillplats, torrdass, bad, informationstavla och cykelled",
@@ -7899,7 +7955,7 @@ index f7b2383..6cbccef 100644
        "myndighet": true
      },
      {
-@@ -10101,10 +10885,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10101,10 +10892,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -7918,7 +7974,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10115,13 +10906,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10115,13 +10913,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-29",
        "myndighet": false
      },
@@ -7932,7 +7988,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.havskatten.com/",
        "org": "havskatten.com",
-@@ -10132,7 +10916,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10132,7 +10923,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://honoklavahamn.se/",
        "org": "honoklavahamn.se",
@@ -7941,7 +7997,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10146,7 +10930,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10146,7 +10937,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://honoklavahamn.se/gasthamn/",
        "org": "honoklavahamn.se",
@@ -7950,7 +8006,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10160,14 +10944,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10160,14 +10951,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://skargardshotellethono.se/",
        "org": "skargardshotellethono.se",
@@ -7967,7 +8023,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10178,10 +10962,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10178,10 +10969,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": false
      },
@@ -7986,7 +8042,16 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10236,13 +11027,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10219,7 +11017,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html",
+       "org": "Länsstyrelsen Västra Götaland",
+       "vad": "Husen står tätt tillsammans, vilket beror på att Gullholmen fram till 1999 var en så kallad kronoholme., På öns norra del ligger Stenstugan, som är ett av de äldsta husen på ön. Det är idag museum.",
+-      "last": "2026-09-27",
++      "last": "2026-11-07",
+       "myndighet": true
+     },
+     {
+@@ -10236,18 +11034,11 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -8000,7 +8065,13 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/",
        "org": "Bohusläns museum",
-@@ -10267,14 +11051,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+       "vad": "bekräftar äldsta säkra belägg 1588, ca 100 hus och ca 400 invånare år 1800 samt drygt 800 invånare 1910",
+-      "last": "2026-09-27",
++      "last": "2026-11-07",
+       "myndighet": false
+     },
+     {
+@@ -10267,14 +11058,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.gullholmsbaden.se/?page_id=360",
        "org": "gullholmsbaden.se",
@@ -8024,7 +8095,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10288,7 +11079,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10288,7 +11086,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/sodrabohuslan/produkter/gullholmen-och-harmano/?site=5",
        "org": "Västsverige",
@@ -8033,7 +8104,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10302,9 +11093,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10302,9 +11100,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/",
        "org": "Västsverige",
@@ -8051,7 +8122,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "kladesholmen": [
-@@ -10325,7 +11123,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10325,7 +11130,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn",
        "org": "tjorn.se",
@@ -8060,7 +8131,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": true
      },
-@@ -10344,10 +11142,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10344,10 +11149,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -8082,7 +8153,7 @@ index f7b2383..6cbccef 100644
        "myndighet": true
      },
      {
-@@ -10374,7 +11179,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10374,7 +11186,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://kladesholmenvh.se/gasthamn/",
        "org": "kladesholmenvh.se",
@@ -8091,7 +8162,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10402,7 +11207,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10402,7 +11214,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.saltosill.se/aktiviteter/bad-och-bastubaten/",
        "org": "saltosill.se",
@@ -8100,7 +8171,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10451,7 +11256,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10451,7 +11263,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/tjorn/produkter/house-of-herrings/",
        "org": "vastsverige.com",
@@ -8109,7 +8180,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10461,6 +11266,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10461,6 +11273,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Platser: 35, Gästhamnen har formen av en gryta vilket gör att vinden inte stör., Båtkran, dusch, el, livsmedel, mastkran, restaurang, toalett och båtramp. Sugtömning av latrin. Miljöstation. Nära till mataffär.",
        "last": "2026-09-27",
        "myndighet": false
@@ -8123,7 +8194,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "astol": [
-@@ -10499,27 +11311,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10499,27 +11318,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "last": "2026-09-27",
        "myndighet": true
      },
@@ -8151,7 +8222,7 @@ index f7b2383..6cbccef 100644
      {
        "url": "https://astol.se/besok-astol/",
        "org": "astol.se",
-@@ -10582,6 +11373,27 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10582,6 +11380,27 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "The restaurant is booming with activity from April to September, In summertime, the hotel’s musicians gather in the afternoons at the very end of the northern pier",
        "last": "2026-09-27",
        "myndighet": false
@@ -8179,7 +8250,7 @@ index f7b2383..6cbccef 100644
      }
    ],
    "dyron": [
-@@ -10607,38 +11419,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10607,38 +11426,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "myndighet": true
      },
      {
@@ -8222,7 +8293,7 @@ index f7b2383..6cbccef 100644
        "myndighet": true
      },
      {
-@@ -10651,7 +11435,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10651,7 +11442,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.dyron.se/se-gora/mufflonfar/",
        "org": "dyron.se",
@@ -8231,7 +8302,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10763,7 +11547,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10763,7 +11554,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
      {
        "url": "https://www.vastsverige.com/tjorn/se-och-gora/bilfria-oar/",
        "org": "vastsverige.com",
@@ -8240,7 +8311,7 @@ index f7b2383..6cbccef 100644
        "last": "2026-09-27",
        "myndighet": false
      },
-@@ -10794,6 +11578,41 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
+@@ -10794,6 +11585,41 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
        "vad": "Sugtömning av latrin",
        "last": "2026-09-27",
        "myndighet": false
