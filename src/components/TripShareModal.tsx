@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { createClient } from '@/lib/supabase'
 import { revalidateTrip } from '@/lib/revalidate-trip'
 import { toast } from '@/components/Toast'
@@ -229,8 +230,12 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  <>
  {trigger}
 
- {open && (
- <div role="dialog" aria-modal="true" aria-label="Dela tur" style={{
+ {/* Portal till document.body: i flödet ligger knappen i ett TripCard (will-change: transform,
+ overflow: hidden), som annars blir ram för position: fixed, så rutan hamnade inuti kortet
+ (sett 2026-11-07). stopPropagation: React-händelser bubblar genom portalen till kortets
+ onClick, som öppnar tursidan. */}
+ {open && typeof document !== 'undefined' && createPortal(
+ <div role="dialog" aria-modal="true" aria-label="Dela tur" onClick={e => e.stopPropagation()} style={{
  position: 'fixed', inset: 0, zIndex: 1200,
  display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
  }}>
@@ -589,7 +594,8 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  )}
 
  </div>
- </div>
+ </div>,
+ document.body,
  )}
 
  <style>{`

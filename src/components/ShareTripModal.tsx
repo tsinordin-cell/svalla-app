@@ -5,6 +5,8 @@
  */
 import { arBlockerad, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import Icon from '@/components/Icon'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
@@ -162,12 +164,16 @@ export default function ShareTripModal({ trip, onClose }: Props) {
    toast('Turen ar nu synlig for alla.', 'success')
  }
 
- return (
- <>
+ // Portal till document.body: TripCard (will-change: transform, overflow: hidden) blir annars
+ // ram för position: fixed och klipper rutan. Omslaget stoppar klick från att bubbla genom
+ // portalen till kortets onClick, som annars öppnar tursidan vid varje tryck i rutan.
+ if (typeof document === 'undefined') return null
+ return createPortal(
+ <div onClick={e => e.stopPropagation()}>
  {/* Backdrop */}
  <div
  onClick={onClose}
- style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 300 }}
+ style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 1200 }}
  />
  {/* Sheet */}
  <div
@@ -175,7 +181,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
  aria-modal="true"
  aria-label="Skicka som meddelande"
  style={{
- position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 301,
+ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1201,
  background: 'var(--white)', borderRadius: '20px 20px 0 0',
  maxHeight: '75vh', display: 'flex', flexDirection: 'column',
  boxShadow: '0 -4px 32px rgba(0,30,50,0.20)',
@@ -211,8 +217,8 @@ export default function ShareTripModal({ trip, onClose }: Props) {
  width: 32, height: 32, borderRadius: '50%', border: 'none',
  background: 'rgba(10,123,140,0.07)', cursor: 'pointer',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
- fontSize: 16, color: 'var(--txt3)',
- }}>✕</button>
+ color: 'var(--txt3)',
+ }}><Icon name="x" size={16} stroke={2} /></button>
  </div>
 
  {/* Tabs */}
@@ -318,6 +324,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
  </div>
  </div>
  <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
- </>
+ </div>,
+ document.body,
  )
 }
