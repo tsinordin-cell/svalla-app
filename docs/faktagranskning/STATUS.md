@@ -2,6 +2,36 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-08 23:46 — full kontroll klar; Toms beslut 1–8; omarbete runda 4 pågår
+
+- **Full kontroll klar (MÄTT):** alla 3 063 KORREKT-rader i 28 paket. Kontrollanterna
+  gav 2 738 OK, 301 FEL och 24 SAKNAS. Det enda P0 är P0 20. full-28 gav
+  79 OK, 12 FEL och 2 SAKNAS. De flesta av de felen är mallfel som går till
+  mallarnas runda 5: grannöar räknas som ön, "Österåker kommun",
+  "inga boenden" på Brännö, filtret för badplatser och sidtiteln. Utanför
+  mallarna: Bakfickans nål ligger 365 m fel, och buss 670 saknar belägg för
+  sommaren.
+- **Toms beslut 1–8 (i chatten):** se beslut-tom.md. Punkt 9 (Facebook)
+  återstår.
+- **Containern startades om 23:4x.** Agenternas arbete låg kvar på disk, och
+  inget gick förlorat.
+- **P0 20:** Kontrollanten gav 164 OK och 3 FEL: linjenumret 846 hade
+  strukits, båten från Strömkajen hade fel källa, och en restid stod i samma
+  mening som "året om". Alla tre är rättade, och informationstavlorna har
+  lagts till. Commit 22e82d7 är pushad; prebuild, tsc och 720 tester går
+  igenom. En ny Kontrollant prövar nu rättelserna, och del 2 (guiderna,
+  mejlutskicket, SAT-sidan och AI-guidens prompt) skrivs parallellt.
+- **Omarbete runda 4:**
+  - Fjäderholmarna: 31 ändrade och 6 nya rader, 40 poster, torrkörning
+    0 fel.
+  - Grinda: 43 ändrade och 15 nya rader, 20 poster, torrkörning 0 fel.
+    Villans år är nu 1907 enligt Länsstyrelsens reservatsbeslut.
+  - Båda väntar på omkontroll. Möja och Vaxholm pågår.
+  - Länsstyrelsen står nu uttryckligen som nivå 1 för historia i
+    förtydligande 8.
+- **Agenter nu (fyra):** Kontrollanten för omkontrollen av P0 20, Granskaren
+  för P0 20 del 2 och Skribenterna för Möja och Vaxholm.
+
 ## 2026-11-08 22:49 — full kontroll 25–27 klara; omarbete runda 4 startar
 
 - **Läget (MÄTT):** 2 970 av 3 063 rader är klara. Kontrollanterna gav
