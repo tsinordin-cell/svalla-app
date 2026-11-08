@@ -2,6 +2,41 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-08 22:49 — full kontroll 25–27 klara; omarbete runda 4 startar
+
+- **Läget (MÄTT):** 2 970 av 3 063 rader är klara. Kontrollanterna gav
+  2 659 OK, 289 FEL och 22 SAKNAS. Paket 28 (93 rader) pågår.
+- **full-25:** 101 OK och 9 FEL.
+  - Säkerhet: /aktivitet/kajak visar Vaxholm som Lätt bredvid "Uthyrning:
+    Ja", men källan säger "ingen erfarenhet behövs" bara om guidade turer.
+    Det räknas inte som P0, men rättas först i Vaxholms omarbete, och märket
+    prövas på alla öar.
+  - Roland Svenssons museum: föremålens ursprung har bara museets sida som
+    källa.
+  - Bryggeriet i Bro: "sedan 2020" står inte i källan.
+  - Grindas juni som Högsäsong saknar stöd.
+- **full-26:** 93 OK, 10 FEL och 7 SAKNAS.
+  - Ingen radie passar Vaxholm: Eriksöbadet på Vaxön ligger 2,7 km från
+    nålen, medan Tenö utanför Vaxön ligger inom 2 km.
+  - Fem nålar ligger fel.
+  - Väderrutans vindbenämningar stämmer inte med SMHI.
+  - Utö: "hela vandringen" till Storsand saknar stöd. Det fyndet ingår nu
+    i P0 20.
+- **full-27:** 89 OK och 21 FEL, de flesta källfel där texten stämmer
+  enligt mätning i OSM.
+  - KSSS gästhamn ligger på Lökholmen intill Sandhamn, inte på Sandhamn.
+  - Kastellets kafé och Tenöbadet räknas som "på Vaxholm".
+  - Mallen skriver "Göteborg kommun".
+- **P0 20:** Granskaren har rättat åtta strängar i Utö-posten. Enligt
+  Försvarsmaktens veckoblad gäller förbudet hela dygnen 6–10 november 2026.
+  Samma brist på sex ställen i bloggen läggs till i samma rättelse. Därefter
+  prövar Kontrollanten ändringarna, och rättelsen går i PR:en från grenen
+  p0-20-uto-skjutfalt-2026-11-08.
+- **Omarbete runda 4:** Skribentens instruktion finns i
+  `ut/redaktor/omarbete4-prompt.txt`. Arbetslistorna byggs av
+  `samla_omarbete.py` ur besluten. Fjäderholmarna och Grinda har startat,
+  eftersom paket 28 inte har några rader för dem.
+
 ## 2026-11-08 22:01 — full kontroll 23–24 klara; P0 20 (Utö skjutfält)
 
 - **P0 20:** /o/uto beskriver vägen till Ålö som "en grusväg genom ett
