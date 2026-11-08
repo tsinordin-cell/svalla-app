@@ -2,6 +2,31 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-08 01:23 — full kontroll 17–18 klara
+
+- **Läget (MÄTT):** 1 980 av 3 063 rader är klara. Kontrollanterna gav
+  1 763 OK, 207 FEL och 10 SAKNAS. Inget P0. Paket 19–22 pågår.
+- **full-17:** 105 OK och 5 FEL.
+  - Fiskeboas nål på Donsö ligger 210 m fel; OSM-noden i KÄLLA-raden är
+    Isbolaget.
+  - Bogesunds slott ligger "som ett slags centrum" enligt Länsstyrelsen,
+    inte mitt på halvön.
+  - Öppettidsmeningen i FAQ:n finns redan i mallarnas register (mall-0081).
+  - Två Möjarader bygger på svenskagasthamnar.se och är bara mätta med
+    curl; Chromium får 502 från proxyn. De beläggs med nivå 2 i stället och
+    omprövas.
+- **full-18:** 90 OK, 19 FEL och 1 SAKNAS.
+  - Brattens historia på Styrsö (8 rader) har bara krogarnas sidor som
+    källa, och två av raderna säger mer än källan.
+  - Vaxholms kyrkas historia (9 rader) har bara församlingen som källa.
+  - Biblioteket på Styrsö hör inte till en skola enligt kommunen.
+  - Möja bageri: källan säger att man började baka 1951, inte att man har
+    bakat sedan dess.
+- **WebFetch:** verktyget nekar URL:er som inte kommit från Tom
+  (PROVENANCE_REQUIRED). Det är ingen spärr från sajten. Kontrollanternas
+  mall säger det nu, liksom att trafik prövas mot operatören och att
+  api.openstreetmap.org begränsar takten.
+
 ## 2026-11-08 01:06 — full kontroll 14–16 klara
 
 - **Läget (MÄTT):** 1 760 av 3 063 rader är klara. Kontrollanterna gav
