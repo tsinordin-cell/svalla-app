@@ -2,6 +2,36 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-08 22:01 — full kontroll 23–24 klara; P0 20 (Utö skjutfält)
+
+- **P0 20:** /o/uto beskriver vägen till Ålö som "en grusväg genom ett
+  aktivt militärt skjutfält", och att "man ska hålla sig på grusvägen hela
+  vägen". Texten nämner inte att skjutfältet vissa tider har
+  tillträdesförbud (Länsstyrelsen: "Tillträdesförbud på Utö skjutfält
+  vissa tider"). Hittat av Kontrollanten i paket 24 (f24-k059). Det räknas
+  som P0 efter samma prövning som P0 17 (hundförbudet i Vaxholm): en
+  utelämnad regel kan få besökaren att bryta mot den. Eget kort på /team.
+  Granskaren skriver in förbudet med nivå 1-källa på alla ställen på
+  /o/uto där vägen beskrivs. Rättelsen går i en egen liten PR efter
+  Kontrollantens prövning.
+- **Läget (MÄTT):** 2 640 av 3 063 rader är klara. Kontrollanterna gav
+  2 376 OK, 249 FEL och 15 SAKNAS. Paket 25–27 pågår, och 28 väntar på en
+  ledig plats.
+- **full-23:** 102 OK och 8 FEL.
+  - Grönskärs reservat omfattar bara en mindre del av ön, men texten gör
+    hela ön till reservat.
+  - "Längsta leden" (Möja) och "två leder" (Utö) är inte belagda.
+  - "Ofta fullbokat" har tappat "ofta".
+  - Grindas kalender stämmer inte med tabellerna.
+  - Storholmens nål (islandCoords.ts) ligger vid Runmarö och är redan FEL
+    i registret.
+- **full-24:** 102 OK och 8 FEL.
+  - P0 20 (se ovan).
+  - Nålarna för Bryggans lilla kök (Utö) och Café Sjöstugan (Värmdö)
+    ligger fel.
+  - Libertas landstigningsförbud har bara naturkartan.se som källa.
+  - Husarös kalender stämmer inte med tabell h10.
+
 ## 2026-11-08 21:48 — full kontroll 21–22 klara
 
 - **Läget (MÄTT):** 2 420 av 3 063 rader är klara. Kontrollanterna gav
