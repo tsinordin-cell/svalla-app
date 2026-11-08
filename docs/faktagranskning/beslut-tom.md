@@ -39,6 +39,10 @@ innehåll som beslutskortet på svalla.se/team.
 8. **Vaxholm:** "Waxholms Gästhamn & Rent Under Båtbotten tvätt" byter namn
    till Vaxholms Gästhamn om ingen källa bekräftar båttvätten före batch 01:s
    PR.
+9. **Facebook:** Tom ger Claude-tillägget i Chrome behörighet för
+   facebook.com. Redaktören läser sedan Café Strindbergsgårdens och Vaxholms
+   Hembygdsgårds Cafés sidor: namn, att det är ett kafé, adress och datum för
+   senaste inlägget.
 
 ## Väntar på Tom — batch 01 (samlas här, beslutskortet på /team skapas när fler öar är granskade)
 
@@ -181,7 +185,7 @@ Tills svar finns står den belagda generaliseringen.
 - Bastubryggan Brännö: var ligger bastun? Nålen ligger i vattnet vid Vargö.
   (styrso.tom.md)
 
-### 7. Sidor som bara går att läsa i en inloggad webbläsare (EJ NÅBAR, blockerar batchen)
+### 7. (BESLUTAT 2026-11-08, Facebook) Sidor som bara går att läsa i en inloggad webbläsare (EJ NÅBAR, blockerar batchen)
 Uppdaterat 2026-11-03. Lästa av Redaktören i din Chrome 2026-11-02:
 hhmarin.se, Café Ankarets Instagram, www.utogasthamn.se och bildens filsida
 på Commons. Elsäkerhetsverkets register (Jowa) gick att läsa via en
