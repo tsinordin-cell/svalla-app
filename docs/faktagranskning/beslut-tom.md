@@ -28,6 +28,17 @@ innehåll som beslutskortet på svalla.se/team.
    Fjäderholmarna står kvar på 1,5 km. Ändringarna görs i batch 01:s PR.
 4. **Platstyper:** bara typen camping läggs till nu (Utö camping). Butik och
    kiosk/foodtruck tas i fas 2.
+5. **Utö:** Rånö Brygga görs om till Restaurang Rånökällan med egen källa.
+   Bakgården och Lilla Haket & Ninas Bod står kvar tills någon på ön
+   bekräftar dem.
+6. **Sandhamn:** Stora Trouvillestranden och Lilla Trouville Stranden döljs
+   som dubbletter av Trouville. PUB Alma och Sandhamns Glassigaste Ställe
+   döljs om ingen bekräftar dem före batch 01:s PR.
+7. **Styrsö:** "Donsö Hamnkrog" görs om till Isbolaget Hotell & Restaurang,
+   med belagd text och uppmätt nål (styrso.tom.md).
+8. **Vaxholm:** "Waxholms Gästhamn & Rent Under Båtbotten tvätt" byter namn
+   till Vaxholms Gästhamn om ingen källa bekräftar båttvätten före batch 01:s
+   PR.
 
 ## Väntar på Tom — batch 01 (samlas här, beslutskortet på /team skapas när fler öar är granskade)
 
@@ -107,7 +118,7 @@ innehåll som beslutskortet på svalla.se/team.
   eller kiosk. **Ja:** ny typ i data och kod. **Nej:** typen restaurant står
   kvar. Texten säger foodtruck i båda fallen.
 
-### 5. Platser på Utö som inte går att belägga (inget raderas utan ditt ja)
+### 5. (BESLUTAT 2026-11-08) Platser på Utö som inte går att belägga (inget raderas utan ditt ja)
 - **Bakgården Utö:** det enda belägget, explorearchipelago.com, omdirigeras
   nu. Belagt är att det finns ett bageri i Gruvbyn. Texten säger nu bara
   det. **Förslag:** posten står kvar tills någon på ön bekräftar namnet.
@@ -119,7 +130,7 @@ innehåll som beslutskortet på svalla.se/team.
   Båtshaket". **Förslag:** ersätt med Rånökällan med egen källa (ja), eller
   dölj posten (nej). Att dölja kräver ditt ja.
 
-### 5b. Platser på Sandhamn utan tillåten källa (inget döljs utan ditt ja)
+### 5b. (BESLUTAT 2026-11-08) Platser på Sandhamn utan tillåten källa (inget döljs utan ditt ja)
 - **PUB Alma och Sandhamns Glassigaste Ställe:** ingen webbplats, de finns
   inte i OpenStreetMap, och den enda källan (explorearchipelago.com) finns inte
   längre. **Förslag:** be någon på ön bekräfta att de finns, annars dölj dem.
@@ -136,7 +147,7 @@ innehåll som beslutskortet på svalla.se/team.
   2018:48, ingen senare ändring av punkten). Fem knop vid Sandhamn är
   återinfört med den som källa.
 
-### 5c. Styrsö: "Donsö Hamnkrog" finns inte (ändrar vilken verksamhet posten gäller)
+### 5c. (BESLUTAT 2026-11-08) Styrsö: "Donsö Hamnkrog" finns inte (ändrar vilken verksamhet posten gäller)
 - Ingen tillåten källa nämner en Donsö Hamnkrog. Postens webbplats är Donsö
   hamns, och nålen är densamma som gästhamnens. Donsö hamns egen sida och
   Västsveriges sammanställning (regionalt destinationsbolag, nivå 3) har
@@ -145,7 +156,7 @@ innehåll som beslutskortet på svalla.se/team.
   och uppmätt nål (färdig text i `register/b01/ut/styrso.tom.md`). **Nej:**
   posten står kvar utan belägg.
 
-### 5d. Vaxholm: två platser som hänger på sidor bakom inloggning
+### 5d. (BESLUTAT 2026-11-08, Rent Under) Vaxholm: två platser som hänger på sidor bakom inloggning
 - **Vaxholms Hembygdsgårds Café:** enda källan är kaféets Facebooksida.
   Bekräftar den kaféet (senaste inlägget högst 12 månader gammalt) står
   posten kvar. Annars föreslås Hembygdsmuseet i Norrhamnen i stället, vilket
