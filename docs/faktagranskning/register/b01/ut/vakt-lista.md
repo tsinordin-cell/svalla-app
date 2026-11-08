@@ -53,8 +53,9 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - bad/page.tsx:66: allt som innehåller "brygga" sorteras in som bad.
 - page.tsx:203: isAccessibleForFree är en konstant.
 - og:description gör regionLabel till gemener; regionLabel i og/twitter är Toms beslut 2.
-- validThrough: hårdkodat datum och "Året runt" på 17 öar.
+- validThrough: hårdkodat datum och "Året runt" på 17 öar. Fjäderholmarna: 2026-10-31 i JSON-LD mot 13 september i källan (MÄTT, full-20).
 - islandFaqs.ts:56: slice(0, 2) tappar linje 2.
+- FAQ:n om krogar räknar bara ödatans poster (4 på Sandhamn) medan restaurangsidan visar 10, och "Segelsalen, Sandhamn Seglarhotell" läses som två ställen (full-20 k084).
 - Hantverkarsidan säger att kontrollerade uppgifter saknas trots att posten har dem.
 - HantverkarKort: ö/o-jämförelsen. Skribenten för mallarna, runda 3.
 - /o/vaxholm/hamnar visar märket "✓ toilet" på engelska (MÄTT av Kontrollanten full-15).

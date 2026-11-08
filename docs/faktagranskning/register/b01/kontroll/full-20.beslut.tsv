@@ -1,0 +1,14 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-08)
+f20-k004	moja-0020	SAKNAS (MÄTT)	Mallfel som redan finns i mallarnas register: isAccessibleForFree är ett fast värde på alla ösidor (mall-0008, page.tsx:203). Kontrollera i mallarnas omkontroll att arbetskopian rättar det.
+f20-k043	sandhamn-0061	FEL (MÄTT)	Omarbete (Sandhamn, Gotland Runt): KSSS belägger att målet är i Sandhamn men inte ordet "kvar", och ingen källa säger var målet låg före 2024. Stryk "kvar" eller belägg det.
+f20-k048	sandhamn-0123	FEL (MÄTT)	Som f20-k043.
+f20-k062	uto-0344	OK med anmärkning	Omarbete (KÄLLA-rad): byt till de meningar på SAT-sidan som bär raden.
+f20-k072	vaxholm-0008	FEL (MÄTT)	Omarbete (Vaxholm): Waxholmsbolaget belägger dagstur men inte övernattning. Lägg till fästningens besöksinformation ("Kastellets Bed & Breakfast … öppet året runt"), verksamheten om sin egen tjänst, som källa för weekendresa.
+f20-k073	vaxholm-0068	SAKNAS (MÄTT)	Omarbete (Vaxholm, best): ingen källa anger bästa tid. Som f11-k047 (Styrsö): skriv rådet utifrån det källorna anger, till exempel museets öppettider per säsong utan klockslag, eller stryk och kompensera.
+f20-k079	vaxholm-0040	SAKNAS (MÄTT)	Omarbete (Vaxholm): "första skärgårdsbesöket" är ett råd utan stöd. Ett råd ska följa av belagda uppgifter, till exempel att Vaxholm nås med buss och båt året runt. Skriv det så, eller stryk och kompensera.
+f20-k084	sandhamn-0380	OK med anmärkning	Vaktens lista: FAQ:n om krogar räknar bara ödatans poster (4 på Sandhamn), medan restaurangsidan visar 10, och "Segelsalen, Sandhamn Seglarhotell" läses som två ställen. Kontrollera mot mallarnas arbetskopia.
+f20-k089	sandhamn-0394	OK med anmärkning	Som f11-k008: databasposten Bistro Sands finns kvar, men namnet går inte att belägga och posten står inte längre i ödatan. Avgörs i samma omarbete.
+utanför-1	fjaderholmarna (JSON-LD validThrough)	FEL (Kontrollanten, MÄTT)	Vaktens lista, punkten om validThrough: Fjäderholmarnas JSON-LD anger 2026-10-31, men källan säger 13 september. Datumet är hårdkodat i src/app/o/[slug]/page.tsx.
+utanför-2	sandhamn-0208 (island-data.ts:290)	FEL (Kontrollanten, MÄTT)	Ingen ny åtgärd: klockslaget "öppet dagligen 08–20" tas bort i sandhamn.edits.json (PRECISERA).
+utanför-3	sandhamn-0131 (island-data.ts:242–243)	FEL (Kontrollanten, RESONERAT)	Ingen ny åtgärd: fartgränsen beläggs i omarbetet med Länsstyrelsens sjötrafikföreskrifter i stället för KSSS (PRECISERA i sandhamn.edits.json).
+utanför-4	vrango ("Hamndjupet är 3,5–5 meter")	anmärkning (Kontrollanten)	Vrångö ingår i batch 02. Djupet kräver nivå 1 och prövas där.
