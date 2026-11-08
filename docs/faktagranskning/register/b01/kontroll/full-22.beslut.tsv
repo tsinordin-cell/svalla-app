@@ -1,0 +1,13 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-08)
+f22-k002	uto-0339	OK med anmärkning	Vaktens lista: FAQ-svaret "Finns det restaurang på Utö?" räknar in Bakfickan, som är bar och dansställe. FAQ:n ska bara räkna verksamheter som serverar mat.
+f22-k035	vaxholm-0182	FEL (MÄTT)	Omarbete (Vaxholm, Rindö redutt): SFV skriver att redutten "har" två kaponjärer. Skriv "har"; "innehöll" kan läsas som att de inte finns kvar.
+f22-k049	husaro-0256	SAKNAS (MÄTT)	Omarbete (Husarö, KÄLLA-rad): Skärgårdsstiftelsens sida om Finnhamn nämner inte Husarö. Belägg avståndet med en egen mätning (cirka 3,0 km i OpenStreetMap), med metoden i KÄLLA-raden.
+f22-k062	moja-0488	SAKNAS (MÄTT)	Omarbete (Möja, hantverkare): "AB" står inte på företagets sida. Skriv namnet som företaget själv skriver det, eller belägg bolagsformen med Bolagsverket.
+f22-k065	moja-0491	FEL (MÄTT)	Mallfel som redan står på Vaktens lista: HantverkarKort.tsx jämför "möja" med sluggen "moja", så alla kort med bas på Möja får "kör hit med båt". Kontrollera i mallarnas omkontroll att arbetskopian rättar det.
+f22-k084	sandhamn-0204	FEL (MÄTT)	Ingen ny åtgärd: klockslaget i Spa & Gym-meningen tas bort genom sandhamn-0208 (PRECISERA i sandhamn.edits.json). Pröva meningen i omkontrollen.
+f22-k085	sandhamn-0205	FEL (MÄTT)	Ingen ny åtgärd: klockslaget i Spa & Gym-meningen tas bort genom sandhamn-0208 (PRECISERA i sandhamn.edits.json). Pröva meningen i omkontrollen.
+f22-k086	sandhamn-0206	FEL (MÄTT)	Ingen ny åtgärd: klockslaget i Spa & Gym-meningen tas bort genom sandhamn-0208 (PRECISERA i sandhamn.edits.json). Pröva meningen i omkontrollen.
+f22-k087	sandhamn-0207	FEL (MÄTT)	Ingen ny åtgärd: klockslaget i Spa & Gym-meningen tas bort genom sandhamn-0208 (PRECISERA i sandhamn.edits.json). Pröva meningen i omkontrollen.
+f22-k094	styrso-0238	FEL	Omarbete (Styrsö): "fler platser finns i Styrsö Sandvik" har bara Tångbaren som källa, och den belägger bara sina egna platser. Belägg med hamnens egen sida eller kommunen.
+utanför-1	mallar (src/components/IslandWeather.tsx:24)	FEL (Kontrollanten, MÄTT)	Vaktens lista: väderkoderna 85–86 (snöbyar) visas som "Åska". Rätta gränserna så att 80–82 blir regnskurar, 85–86 snöbyar och 95–99 åska.
+utanför-2	styrso-0204 (island-data.ts:6629)	FEL (Kontrollanten, MÄTT)	Omarbete (Styrsö, Guesthouse Styrsö Tången): byggåret 1904 för jugendvillan stöds bara av goteborg.com (nivå 3), och byggår är historia. Belägg med nivå 1 eller skriv utan årtal. stbnb.se leder i dag till guesthouse-styrso.se; byt URL i KÄLLA-raderna och i databasens webbplatsfält om posten finns där (felklass 14).
