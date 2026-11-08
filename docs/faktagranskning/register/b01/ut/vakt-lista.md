@@ -44,6 +44,8 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Storholmen står i ISLAND_NO_TRANSIT ("Hit går ingen kollektivtrafik"), fast SL:s pendelbåt 80 går dit. Ta bort den.
 - Västtrafiks länkar för Göteborgsöarna.
 - Andra bryggor än Fjäderholmarna som har X ("utan fast avgångstid") i Waxholmsbolagets tabeller saknar tidsObs.
+- Svårighetsgraden för kajak: Vaxholm visar Lätt bredvid "Uthyrning: Ja", fast källan säger "ingen erfarenhet behövs" bara om guidade turer (full-25 k069). Pröva märket på de andra öarna.
+- Fas 2: /upptack/styrso-bratten-bastu visar hamntexten "Klubb- eller föreningshamn" (full-25).
 - Hållplats-id: kontrollera namnen för Fjäderholmarna (740034632) och Utö Centralstation.
 
 ## Mallar och komponenter (kontrollera om Skribenten redan rättat dem)
