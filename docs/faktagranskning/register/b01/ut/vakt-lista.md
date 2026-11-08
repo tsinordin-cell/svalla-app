@@ -57,6 +57,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - islandFaqs.ts:56: slice(0, 2) tappar linje 2.
 - Hantverkarsidan säger att kontrollerade uppgifter saknas trots att posten har dem.
 - HantverkarKort: ö/o-jämförelsen. Skribenten för mallarna, runda 3.
+- /o/vaxholm/hamnar visar märket "✓ toilet" på engelska (MÄTT av Kontrollanten full-15).
 
 ## Från mallarnas Skribent, runda 3 (2026-11-07)
 - Komma-dit-FAQ:n visar avgångstider ur öarnas data på 23 öar, ingen av dem i batch 01. Det är klockslag i löptext och ska bort i mallen eller i öarnas batchar.

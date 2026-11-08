@@ -62,7 +62,7 @@ def main():
             flaggor = []
             if re.search(r'Toms beslut', beslut):
                 flaggor.append('TOM')
-            if re.search(r'[Oo]mprövas', beslut):
+            if re.search(r'[Oo]mprövas|slutomkontroll', beslut):
                 flaggor.append('OMPROVAS')
             if fynd.startswith('OK'):
                 flaggor.append('ANM')

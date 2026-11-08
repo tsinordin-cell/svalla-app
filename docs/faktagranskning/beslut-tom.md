@@ -88,6 +88,10 @@ innehåll som beslutskortet på svalla.se/team.
   `restaurants` har ingen typ för camping. **Ja:** ny typ camping i data och
   kod. **Nej:** typen hotel står kvar.
 - Samma fråga för butiker, se punkt 1.
+- Kärran på Styrsö (`karran`) har typen restaurant, men Göteborg & Co kallar
+  den "en rosa foodtruck" (MÄTT 2026-11-08). Typlistan har ingen foodtruck
+  eller kiosk. **Ja:** ny typ i data och kod. **Nej:** typen restaurant står
+  kvar. Texten säger foodtruck i båda fallen.
 
 ### 5. Platser på Utö som inte går att belägga (inget raderas utan ditt ja)
 - **Bakgården Utö:** det enda belägget, explorearchipelago.com, omdirigeras
