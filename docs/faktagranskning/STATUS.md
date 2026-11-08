@@ -2,6 +2,28 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-08 21:30 — full kontroll 19–20 klara efter femtimmarsgränsen
+
+- **Avbrott:** kontots femtimmarsgräns stoppade paket 19–22 i natt efter
+  01:23. De återupptogs 21:23 där de slutade (19 hade 88 rader, 20 hade
+  98, 21 och 22 inga).
+- **Läget (MÄTT):** 2 200 av 3 063 rader är klara. Kontrollanterna gav
+  1 967 OK, 220 FEL och 13 SAKNAS. Inget P0. Paket 21–24 pågår.
+- **full-19:** 100 OK och 10 FEL.
+  - Möja: länsmuseet skriver "mellanskärgård", inte "mellersta skärgård"
+    (hör till Toms beslut 2). Roland Svenssons levnadsår har bara museets
+    sida som källa.
+  - Möjas vandrarhem har typen hotel och byter till hostel. Boendesidan
+    hämtar bara hotel och ska då ta med hostel (Vaktens lista).
+  - Vaxholms kalender ger olika etiketter för samma läge, och
+    vår- och hösttabellen gäller 2 april–18 juni, inte "maj–juni".
+- **full-20:** 104 OK, 3 FEL och 3 SAKNAS. "Ligger kvar" om Gotland Runts
+  mål, Vaxholms "bästa tid" och "första skärgårdsbesöket" saknar stöd.
+  isAccessibleForFree finns redan i mallarnas register.
+- **Redaktörens beslut:** en PDF som läses med pdftotext -layout räknas som
+  läst, även för FEL och SAKNAS. Webbläsarregeln gäller HTML-sidor som
+  byggs med JavaScript. Står nu i full-prompt.txt.
+
 ## 2026-11-08 01:23 — full kontroll 17–18 klara
 
 - **Läget (MÄTT):** 1 980 av 3 063 rader är klara. Kontrollanterna gav
