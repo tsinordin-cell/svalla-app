@@ -329,6 +329,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://kund.printhuset-sthlm.se/wa/h19.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, 19A STOCKHOLM — DALARÖ — ORNÖ (ÖSTRA SIDAN) — UTÖ, Strömkajen (Stockholm), Gruvbryggan (Utö), Går under perioden 17 augusti - 13 september.",
+      "last": "2026-11-08",
+      "myndighet": true
+    },
+    {
       "url": "https://kund.printhuset-sthlm.se/wa/h21.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, 21A ÅRSTA — UTÖ, minst 1 timme innan avgång; Årsta brygga–Gruvbryggan 40 min på de flesta turer (t.ex. 11.00–11.40), 55–75 min när båten går via Spränga först, kortast 35 min (20.35–21.10)",
@@ -420,13 +427,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.utogasthamn.se/hitta-hit/",
-      "org": "utogasthamn.se",
-      "vad": "Under sommarmånaderna går det att ta sig till Utö med färja från Strömkajen i centrala Stockholm.",
-      "last": "2026-11-08",
-      "myndighet": false
-    },
-    {
       "url": "https://www.utogasthamn.se/gasthamnen/",
       "org": "utogasthamn.se",
       "vad": "plats för ca 300 fritidsbåtar med eluttag … på samtliga platser, dusch, bastu och toaletter, tvättstuga att hyra, fylla på färskvatten, I den norra hamnen finns sjömacken",
@@ -437,6 +437,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.utogasthamn.se/camping/",
       "org": "utogasthamn.se",
       "vad": "Campingen är av så kallad friluftsmodell och har inga numrerade platser, På campingen finns en servicestuga med toaletter, duschar och ett enklare kök, Du anmäler dig och betalar i Hamnboden",
+      "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.utogasthamn.se/hitta-hit/",
+      "org": "utogasthamn.se",
+      "vad": "Väl vid bryggan finns en parkeringsplats som betalas via appen",
       "last": "2026-09-27",
       "myndighet": false
     },
