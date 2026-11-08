@@ -43,6 +43,8 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Grindas transit-not "Direktbåt med Waxholmsbolaget från Strömkajen sommartid": linje 11 går året om enligt tabellen.
 - Storholmen står i ISLAND_NO_TRANSIT ("Hit går ingen kollektivtrafik"), fast SL:s pendelbåt 80 går dit. Ta bort den.
 - Västtrafiks länkar för Göteborgsöarna.
+- Klockslag i ödatan på öar utanför batch 01: Lilla Karlsö (syns på sajten), Askö och Finnhamns hamnpost (full-28). Sök klockslagsmönster i hela island-data.ts.
+- Lilla Karlsös fotograffält innehåller hela licenstexten, som visas i alt-text och bildtext (full-28 k013).
 - Andra bryggor än Fjäderholmarna som har X ("utan fast avgångstid") i Waxholmsbolagets tabeller saknar tidsObs.
 - Svårighetsgraden för kajak: Vaxholm visar Lätt bredvid "Uthyrning: Ja", fast källan säger "ingen erfarenhet behövs" bara om guidade turer (full-25 k069). Pröva märket på de andra öarna.
 - Fas 2: /upptack/styrso-bratten-bastu visar hamntexten "Klubb- eller föreningshamn" (full-25).
