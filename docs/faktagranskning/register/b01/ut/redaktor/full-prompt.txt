@@ -19,6 +19,7 @@ UNDERLAG OCH LEVERANS
 - Klockslag i löptext är FEL, även när de står i samma mening som den rad du prövar.
 - Trafikuppgifter (båt, buss, färja, var en båt angör) prövas mot operatörens egen tabell eller sida, inte mot en verksamhets vägbeskrivning.
 - svenskagasthamnar.se ger 502 i Chromium genom arbetsytans proxy men svarar med curl --http1.1. Ett FEL- eller SAKNAS-fynd som bara bygger på curl markeras "curl, ej webbläsare" i kommentaren. WebFetch nekar URL:er som inte kommit från användaren; försök inte igen.
+- En PDF läst med pdftotext -layout räknas som läst, även för FEL och SAKNAS. Webbläsarregeln gäller HTML-sidor som byggs med JavaScript.
 - api.openstreetmap.org svarar 429 efter några anrop i följd. Vänta några sekunder mellan anropen. overpass-api.de nås inte genom proxyn.
 - Skriv inga filer i repot (/home/claude/svalla-app); tillfälliga filer hör hemma i full-NN-sidor/.
 - Når du inte en sida (spärr, CAPTCHA, felsida, inloggning, certifikatfel), svara SAKNAS med kommentaren "ej nåbar". Försök aldrig ta dig förbi en CAPTCHA, en inloggning eller en certifikatvarning. battaxi.se har ogiltigt certifikat även i en vanlig webbläsare (2026-11-07). Visar en sida en verifieringssida i Chromium (till exempel "Vänligen vänta medan din förfrågan verifieras"), räkna sidan som ej nåbar och läs den inte med curl eller ett annat verktyg i stället; det vore att gå runt sajtens kontroll.
