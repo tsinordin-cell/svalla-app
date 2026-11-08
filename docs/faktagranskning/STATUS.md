@@ -2,6 +2,26 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-08 21:48 — full kontroll 21–22 klara
+
+- **Läget (MÄTT):** 2 420 av 3 063 rader är klara. Kontrollanterna gav
+  2 172 OK, 233 FEL och 15 SAKNAS. Inget P0. Paket 23–26 pågår och 27–28
+  väntar.
+- **full-21:** 104 OK och 6 FEL.
+  - mall-0004: sidtiteln "Guide till X: restauranger, boende …" visas på 89
+    ösidor, även där något saknas. Samma villkor som mall-0002 och mall-0003.
+  - Brännö Värdshus bageri är tillfälligt stängt enligt egen sida.
+  - Husets historia för Dykarbaren och Brännö Värdshus kräver nivå 1.
+  - Husarö: "i byn" om ängarna saknar stöd.
+- **full-22:** 101 OK, 7 FEL och 2 SAKNAS.
+  - IslandWeather.tsx visar väderkoderna 85–86 (snöbyar) som "Åska".
+  - FAQ:n räknar Bakfickan på Utö som restaurang.
+  - Rindö redutt "har" två kaponjärer, inte "innehöll".
+  - Spa & Gym-meningen på Sandhamn har ett klockslag; det rättas redan genom
+    sandhamn-0208.
+  - Guesthouse Styrsö Tångens byggår 1904 har bara nivå 3. stbnb.se leder
+    till guesthouse-styrso.se.
+
 ## 2026-11-08 21:30 — full kontroll 19–20 klara efter femtimmarsgränsen
 
 - **Avbrott:** kontots femtimmarsgräns stoppade paket 19–22 i natt efter
