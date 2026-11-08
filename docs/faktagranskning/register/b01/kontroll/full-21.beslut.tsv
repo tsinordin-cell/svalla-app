@@ -1,0 +1,9 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-08)
+f21-k046	mall-0004	FEL (MÄTT)	Mallarnas Skribent och Vaktens lista: mall-0004 (page.tsx:61–62) visar "Guide till X: restauranger, boende, aktiviteter, badplatser …" på 89 ösidor, även där sidan säger att det saknas restauranger, boende eller badplatser (/o/bla-jungfrun, /o/lilla-karlso, /o/ekno, /o/svenska-hogarna). Samma villkor som för mall-0002 och mall-0003 ska gälla här.
+f21-k053	husaro-0089	FEL (MÄTT)	Omarbete (Husarö): husaro.se säger inte att ängarna och lövträden finns "i byn". Stryk "i byn" eller belägg det, också i island-data.ts:3757.
+f21-k081	sandhamn-0585	FEL	Omarbete (Sandhamn, Dykarbaren): Omarbete: husets historia (byggår, tidigare användning) kräver nivå 1. Verksamhetens egen sida är nivå 2. Belägg med Riksantikvarieämbetet, länsmuseet eller kommunen, eller skriv på den nivå som går att belägga, och kompensera om sidan blir tunnare.
+f21-k083	sandhamn-0587	FEL	Som f21-k081.
+f21-k088	styrso-0325	FEL	Omarbete (Brännö Värdshus, "gamla lotsbostaden"): Omarbete: husets historia (byggår, tidigare användning) kräver nivå 1. Verksamhetens egen sida är nivå 2. Belägg med Riksantikvarieämbetet, länsmuseet eller kommunen, eller skriv på den nivå som går att belägga, och kompensera om sidan blir tunnare.
+f21-k092	styrso-0329	FEL (MÄTT)	Omarbete (Brännö Värdshus, bageriet): verksamhetens egen sida säger "Bageriet är tyvärr tillfälligt stängt men väntas öppna igen inom kort!" vastsverige.com (nivå 3) får inte användas mot den. Skriv det verksamheten anger när Skribenten läser sidan, med läsdatum. Omprövas i slutomkontrollen.
+f21-k100	styrso-0473	OK (Kontrollantens gränsfall)	Redaktörens beslut: OK. När föreningens bastu invigdes är föreningen om det den själv driver (regeln om organisationens egna uppgifter).
+utanför-1	sandhamn-0356 (island-data.ts:329)	FEL (Kontrollanten, MÄTT)	Ingen ny åtgärd: "el på brygga B och C" är redan INAKTUELL med åtgärden RÄTTA i registret.

@@ -51,6 +51,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - /aktivitet/<typ>/<ö> använder fortfarande ordmatchning.
 - komma-dit/page.tsx:84: Waxholmsbolagets "Praktiska tips" visas även där SL kör.
 - bad/page.tsx:66: allt som innehåller "brygga" sorteras in som bad.
+- mall-0004 (page.tsx:61–62): "Guide till X: restauranger, boende …" visas på 89 ösidor även där något saknas; samma villkor som mall-0002 och mall-0003 (full-21 k046).
 - IslandWeather.tsx:24 visar väderkoderna 85–86 (snöbyar) som "Åska" (full-22).
 - FAQ-svaret "Finns det restaurang på …?" räknar in barer och dansställen, till exempel Bakfickan på Utö (full-22 k002).
 - boende/page.tsx:80 hämtar bara typen hotel. Möjas vandrarhem byter till hostel (full-19 k036), så mallen ska ta med hostel.
