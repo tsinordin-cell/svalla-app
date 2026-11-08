@@ -1,6 +1,6 @@
 -- Faktagranskning batch 01 – Fjäderholmarna (Granskare/Skribent, 2026-10-29).
 -- Körs av huvudsessionen. Varje UPDATE skriver bara över exakt det granskade värdet (gamla värdet i WHERE).
--- Kontrollerat med SELECT 2026-10-29: varje WHERE-villkor träffar exakt en rad.
+-- Kontrollerat med SELECT 2026-10-29 och igen 2026-11-08 (omarbete 4): varje WHERE-villkor träffar exakt en rad.
 
 -- restaurants.rokeriet-fjaderholmarna.latitude/longitude (fjaderholmarna-0290)
 -- FÖRE: latitude 59.3208, longitude 18.1628 – ligger i Nacka Strand (Augustendalsvägen), 1,1 km från ön
@@ -29,3 +29,9 @@ update restaurants set name = 'Fjäderholmarnas Bryggeri'
 -- KÄLLA: https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=59.3290854&lon=18.174088&zoom=18 — "Lidingö kommun" (omvänd geokodning av postens egen koordinat, läst 2026-10-29)
 update restaurants set description = 'Fjäderholmarnas gästhamn ligger på Stora Fjäderholmen i Lidingö kommun, utanför Blockhusudden vid inloppet till Stockholm. Hamnen har 35 gästplatser med förtöjning vid boj. Svenska Gästhamnar anger el, färskvatten, toalett och dusch, och duschen ingår. Hamnvärd är Sjöstation Fjäderholmarna.'
  where slug = 'fjaderholmarnas-gasthamn' and description = 'Gästhamnen ligger på Stora Fjäderholmen utanför Blockhusudden vid inloppet till Stockholm och har 35 gästplatser med förtöjning vid boj. Hamndjupet är mellan 1 och 8 meter, och dusch ingår. Hamnvärd är Sjöstation Fjäderholmarna.';
+
+-- restaurants.fjaderholmarnas-gasthamn.latitude/longitude (fjaderholmarna-0300) – INGEN UPDATE (omarbete 4, 2026-11-08)
+-- Nålen 59.3290854, 18.174088 står kvar (SELECT 2026-11-08). Läget är belagt med förvaltarens karta och uppmätt i OpenStreetMap.
+-- KÄLLA: https://www.fjaderholmarna.se/ — "Gästhamn och bensinstation"; "(21) Sjömacken & Gästhamnskontor" (läst 2026-11-08)
+-- KÄLLA: https://www.fjaderholmarna.se/images/18.4424fd3b169d894aad314cb/1726135060421/Karta%20Fj%C3%A4derholmarna%201500.webp — "FJÄDERHOLMARNAS HAMN" (text i kartbilden, läst 2026-11-08); kartan har norr nedåt, och gästhamnens bryggor med ankarsymbol ligger på norra stranden mellan (14) Bryggeriet, (15) Chokladen, (16) och (21) Sjömacken & Gästhamnskontor.
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/way/118316335 — "pier"; "mooring"; "yes" (taggarna man_made=pier, mooring=yes, floating=yes, läst 2026-11-08); uppmätt 2026-11-08: nålen ligger 10 m från flytbryggan, 47 m väster om Fjäderholmarna choklad (node 3237779486) och 69 m öster om bränslestationen (node 10951900819, seamark fuel_station). OSM:s punkt för gästhamnen (node 2421931536) ligger 116 m österut vid Stora Kajen, där kartan har Strömmas och Fjäderholmslinjens bryggor (19, 20).

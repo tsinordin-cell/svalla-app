@@ -15,9 +15,23 @@ innehåll som beslutskortet på svalla.se/team.
    användningsgräns inte tar slut för annan användning.
 3. **De dubbla FAQPage-blocken på ösidorna tas bort i batch 01:s PR.**
 
+## Beslutat 2026-11-08 (Tom, i chatten, batch 01)
+
+1. **Runmarö Bryggkiosk:** posten står kvar tills butiken har svarat på mejlet.
+   Den hör till Runmarö och tas vidare i batch 02.
+2. **Regionerna:** etiketterna är Svallas egen navigationsindelning, inte en
+   sakuppgift. Det skrivs in i ARBETSREGLER. Där en kommun eller myndighet har
+   en egen indelning nämns den i texten, med källa.
+3. **GPS-radierna:** ja, enligt förslaget. Möja får 3,5 km. Utö får 7,0 km,
+   och nålen flyttas till OSM:s punkt för ön (alternativ b). Styrsö läggs till
+   med 2,0 km. Husarö och Grinda sänks till 1,5 km. Storholmen och
+   Fjäderholmarna står kvar på 1,5 km. Ändringarna görs i batch 01:s PR.
+4. **Platstyper:** bara typen camping läggs till nu (Utö camping). Butik och
+   kiosk/foodtruck tas i fas 2.
+
 ## Väntar på Tom — batch 01 (samlas här, beslutskortet på /team skapas när fler öar är granskade)
 
-### 1. Platsen "Runmarö Bryggkiosk" (`runmaro-bryggkiosk`) – mejl och schemaändring
+### 1. (BESLUTAT 2026-11-08) Platsen "Runmarö Bryggkiosk" (`runmaro-bryggkiosk`) – mejl och schemaändring
 - **Läget:** ingen tillåten källa nämner en verksamhet med det namnet.
   Webbplatsen den länkar till är Runmarö Lanthandels, och butiken ligger enligt
   egen uppgift "ca 200m från Styrsviks brygga", inte vid bryggan Gatan där
@@ -32,7 +46,7 @@ innehåll som beslutskortet på svalla.se/team.
 - **Nej:** raden står kvar utan text, och Runmarös granskning i batch 02 tar
   ärendet vidare.
 
-### 2. Regionetiketterna ("Mellersta skärgården" m.fl.) – Svallas indelning eller sakuppgift?
+### 2. (BESLUTAT 2026-11-08) Regionetiketterna ("Mellersta skärgården" m.fl.) – Svallas indelning eller sakuppgift?
 - **Läget:** ingen tillåten källa placerar Fjäderholmarna i "Mellersta
   skärgården". Det enda belagda är Lidingö stads egen indelning: Lidingös
   skärgård omfattar holmarna "från och med Storholmen mot Vaxholm i norr …
@@ -51,7 +65,7 @@ innehåll som beslutskortet på svalla.se/team.
   yttre skärgården) och Husarö (Österåkers kommun: "Långt ut i Österåkers
   yttersta skärgård") har etiketten "Mellersta skärgården".
 
-### 3. GPS-radien: turtaggningen missar delar av Möja och Utö (beslut, rör appen)
+### 3. (BESLUTAT 2026-11-08) GPS-radien: turtaggningen missar delar av Möja och Utö (beslut, rör appen)
 - **Läget (MÄTT i OSM och ResRobot 2026-10-29):** radien i `islandCoords.ts`
   är GPS-detektionsradien och styr vilka öar som taggas på en loggad tur.
   - **Möja (3,0 km):** Berg (3 019 m), Möjaström (3 291 m) och Södermöja
@@ -83,7 +97,7 @@ innehåll som beslutskortet på svalla.se/team.
 - **Ja:** GPS-radierna ändras i batch 01:s PR. **Nej:** inget ändras i
   turtaggningen.
 
-### 4. Platstyp för camping (schemaändring)
+### 4. (BESLUTAT 2026-11-08) Platstyp för camping (schemaändring)
 - Utö camping (`uto-camping-och-stugor`) har typen hotel. Tabellen
   `restaurants` har ingen typ för camping. **Ja:** ny typ camping i data och
   kod. **Nej:** typen hotel står kvar.
