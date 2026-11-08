@@ -2,6 +2,31 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-08 01:06 — full kontroll 14–16 klara
+
+- **Läget (MÄTT):** 1 760 av 3 063 rader är klara. Kontrollanterna gav
+  1 568 OK, 183 FEL och 9 SAKNAS. Inget P0. Paket 17–20 pågår.
+- **full-14:** 100 OK och 10 FEL. Historien om Grinda Wärdshus byggnad,
+  Grönskärs fyr och Utö kvarn har bara Skärgårdsstiftelsen som källa. Två
+  rader om byggnadsminne och lagskydd på Utö saknar nivå 1. Grindas
+  platsradie 2,5 km tar med annan land; Grindas mätning ligger nu i Toms
+  beslut 3 (förslag 1,5 km). Ägarens beskrivning av egna byggnader i dag
+  (stil, höjd, material, antal) är OK.
+- **full-15:** 100 OK och 10 FEL. Grinda Wärdshus historia (8 rader),
+  Dykarbarens "helt" som fallit bort och Kärran som är en foodtruck (Toms
+  beslut 4, tillägg). Utanför raderna: Ålö ingår i naturreservatet
+  Ålö-Rånö och är inget eget reservat, och "kalkpåverkad berggrund" står
+  inte hos Länsstyrelsen. Möjas båt och buss i STF:s vägbeskrivning ska
+  beläggas av operatören och omprövas.
+- **full-16:** 92 OK, 17 FEL och 1 SAKNAS. Möja kyrkas historia (13 rader)
+  har bara församlingen som källa, och sidan anger både 1768 och 1769.
+  Grinda sjömacks text har klockslag. Systembolagets ombud på Möja är Coop
+  Berg. grinda.se säger nu att Wärdshusets exteriör renoveras från augusti
+  2026 och att nypremiären planeras till maj 2027.
+- **Inför fas 2:** platssidan /upptack visar core_experience, menu och tags,
+  som inte ingår i fas 1. Antalen för batch 01:s platser står på fas
+  2-kortet.
+
 ## 2026-11-08 00:48 — full kontroll 11–13 klara; regeln om organisationens egna uppgifter
 
 - **Läget (MÄTT):** 1 430 av 3 063 rader är klara. Kontrollanterna gav
