@@ -55,6 +55,8 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - bad/page.tsx:66: allt som innehåller "brygga" sorteras in som bad.
 - mall-0004 (page.tsx:61–62): "Guide till X: restauranger, boende …" visas på 89 ösidor även där något saknas; samma villkor som mall-0002 och mall-0003 (full-21 k046).
 - IslandWeather.tsx:24 visar väderkoderna 85–86 (snöbyar) som "Åska" (full-22).
+- IslandWeather.tsx: vindbenämningarna stämmer inte med SMHI:s skala från 10,8 m/s och uppåt (full-26 k089), och att vindriktningen anges varifrån det blåser saknar källa (k090).
+- Platslistor med radie: ingen cirkel passar Vaxholm (Eriksöbadet på Vaxön 2,7 km från nålen, Tenö utanför Vaxön inom 2 km). Bygg listan på polygon eller ö-fält (full-26 k052). Styrsös lista räknar in Donsö och Brännö (k037).
 - FAQ-svaret "Finns det restaurang på …?" räknar in barer och dansställen, till exempel Bakfickan på Utö (full-22 k002).
 - boende/page.tsx:80 hämtar bara typen hotel. Möjas vandrarhem byter till hostel (full-19 k036), så mallen ska ta med hostel.
 - page.tsx:203: isAccessibleForFree är en konstant.
