@@ -54,6 +54,8 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - komma-dit/page.tsx:84: Waxholmsbolagets "Praktiska tips" visas även där SL kör.
 - bad/page.tsx:66: allt som innehåller "brygga" sorteras in som bad.
 - mall-0004 (page.tsx:61–62): "Guide till X: restauranger, boende …" visas på 89 ösidor även där något saknas; samma villkor som mall-0002 och mall-0003 (full-21 k046).
+- IslandFakta.tsx:20 tappar genitiv-s:et ("Göteborg kommun"); kommunen skriver "Göteborgs Stad". Pröva alla kommunnamn (full-27 k020).
+- Platser på grannöar räknas som "på" ön: KSSS gästhamn på Lökholmen (Sandhamn), fästningskaféet på Vaxholmen och Tenöbadet (Vaxholm) (full-27).
 - IslandWeather.tsx:24 visar väderkoderna 85–86 (snöbyar) som "Åska" (full-22).
 - IslandWeather.tsx: vindbenämningarna stämmer inte med SMHI:s skala från 10,8 m/s och uppåt (full-26 k089), och att vindriktningen anges varifrån det blåser saknar källa (k090).
 - Platslistor med radie: ingen cirkel passar Vaxholm (Eriksöbadet på Vaxön 2,7 km från nålen, Tenö utanför Vaxön inom 2 km). Bygg listan på polygon eller ö-fält (full-26 k052). Styrsös lista räknar in Donsö och Brännö (k037).
