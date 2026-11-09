@@ -127,6 +127,23 @@ innehåll som beslutskortet på svalla.se/team.
 - **Förslag:** byt till den minsta omslutande cirkeln. **Ja:** cirkeln byts i
   batch 01:s PR. **Nej:** alternativ b står kvar.
 
+### 6b. (NY 2026-11-09, väntar på Tom) Sandhamn: Café Strindbergsgården saknar källa
+- **Läget:** postens enda källa är kaféets Facebooksida. I din Chrome visar
+  den bara "Det här innehållet är inte tillgängligt just nu". Ingen egen
+  webbplats, inget aktivt Instagramkonto och ingen kommunsida nämner kaféet,
+  och namnet finns bara hos restaurangguider och bloggar.
+- **I Strindbergsgården i dag:** Strindberg's Champagne Club, med egen
+  webbplats: "Champagnebar, restaurang och medlemsklubb", med säte i
+  Strindbergsgården (strindbergs.se, läst 2026-11-09).
+- **Alternativ:**
+  - Dölj posten tills någon bekräftar kaféet.
+  - Gör om posten till Strindberg's Champagne Club, som du gjorde med
+    Isbolaget och Rånökällan.
+  - Låt posten stå kvar.
+- **Förslag:** gör om den, om klubbens sida visar att restaurangen är öppen
+  för besökare och inte bara för medlemmar. Annars döljs den. Detaljerna står
+  i register/b01/ut/sandhamn.tom.md, punkt 1.
+
 ### 4. (BESLUTAT 2026-11-08) Platstyp för camping (schemaändring)
 - Utö camping (`uto-camping-och-stugor`) har typen hotel. Tabellen
   `restaurants` har ingen typ för camping. **Ja:** ny typ camping i data och
