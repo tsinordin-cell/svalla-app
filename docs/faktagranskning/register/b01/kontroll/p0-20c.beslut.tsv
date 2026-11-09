@@ -3,3 +3,5 @@ p20c-k044	vandring/page.tsx:115	FEL (MÄTT)	Granskaren rättar: M/F Ulvön går 
 p20c-e06	vandring/page.tsx:115	FEL (MÄTT)	Som p20c-k044.
 utanför-1	dagsplanen	Anmärkning (MÄTT)	Ingen åtgärd i P0 20. Bullerö under Nynäshamn tas i P0 22. Gotska Sandön (säsongsbåt) och Yttre Gården (ingen reguljär båt) hör till planerarens fas och står på Vaktens lista.
 utanför-2	vandring/page.tsx:39	Anmärkning (MÄTT)	Ingen åtgärd i P0 20. "Utö och Nåttarö är söder om Nynäshamn" är fel för Utö och står på Vaktens lista för vandringssidans fas.
+p20c-k044-r	vandring/page.tsx:115	OK (MÄTT)	Godkänd. Del 3 går ut i en egen PR efter #515.
+p20c-e06-r	vandring/page.tsx:115	OK (MÄTT)	Godkänd.
