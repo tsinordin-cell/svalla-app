@@ -290,7 +290,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "inom hela reservatet med undantag av Persholmen medföra hund som ej är kopplad. För Persholmen skall hund vara kopplad under tiden 1 mars - 20 augusti och under övrig tid hållas under uppsikt, tälta eller ställa upp husvagn annat än på anvisad plats, för längre tid än två dygn förtöja eller förankra båt vid samma strand, göra upp eld annat än på härför iordningställda och anvisade platser, Tillträdesförbud på Utö skjutfält vissa tider.",
-      "last": "2026-11-08",
+      "last": "2026-11-09",
       "myndighet": true
     },
     {
@@ -326,13 +326,6 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "utoskola.haninge.se",
       "vad": "Elever 22, Årskurs 1–9, Personal 7",
       "last": "2026-09-30",
-      "myndighet": true
-    },
-    {
-      "url": "https://kund.printhuset-sthlm.se/wa/h19.pdf",
-      "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, 19A STOCKHOLM — DALARÖ — ORNÖ (ÖSTRA SIDAN) — UTÖ, Strömkajen (Stockholm), Gruvbryggan (Utö), Går under perioden 17 augusti - 13 september.",
-      "last": "2026-11-08",
       "myndighet": true
     },
     {
