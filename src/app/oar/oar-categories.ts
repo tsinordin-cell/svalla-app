@@ -149,9 +149,17 @@ export const OAR_CATEGORIES: OarCategory[] = [
   {
     slug: 'nara-nynashamn',
     title: 'Skärgårdsöar nära Nynäshamn',
-    hero: 'Söder om Stockholm — öar från Nynäshamn',
-    description: 'Pendeltåg från Stockholm + båt från Nynäshamn. Utö, Nåttarö, Ornö, Fjärdlång. Söderskärgården är glesare och billigare än norr.',
-    intro: 'Söderskärgården är ofta glömd — fel. Härifrån går färjor till Utö, Nåttarö, Ornö och fler. Pendeltåget tar dig till Nynäshamn på en timme. Här är öarna i den södra änden.',
+    // Rättad 2026-11-09 (P0 20 del 3): båten från Nynäshamn går inte till Utö, Ornö eller Fjärdlång vår och höst, och Waxholmsbolagets båtar är inga färjor. Pendeltågets restid är uppmätt i SL:s tabell.
+    hero: 'Söder om Stockholm — öar nära Nynäshamn',
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ", "Rånö" (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ" (läst 2026-11-09)
+    // KÄLLA: https://ornosjotrafik.se/ — "Bilfärja mellan Ornö och Dalarö", "Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Fjärdlång" (läst 2026-11-09)
+    description: 'Båt från Nynäshamn till Nåttarö, från Årsta brygga till Utö och från Dalarö till Ornö och Fjärdlång. Söderskärgården är glesare och billigare än norr.',
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Giltig från och med 17 augusti till och med 12 december 2026."; uppmätt i tabellen: avg Stockholm City–Nynäshamn 59–65 min (läst 2026-11-09)
+    intro: 'Söderskärgården är ofta glömd — fel. Från Nynäshamn går Waxholmsbolagets båt till Nåttarö, Rånö och Ålö, till Utö går båten året om från Årsta brygga i Haninge och till Ornö och Fjärdlång från Dalarö. Pendeltåget från Stockholm City till Nynäshamn tar 59–65 minuter. Här är öarna i den södra änden.',
     filter: (i) => {
       const t = `${i.facts.travel_time} ${i.getting_there.map(g => g.from || '').join(' ')}`.toLowerCase()
       return t.includes('nynäs') || i.region === 'södra'

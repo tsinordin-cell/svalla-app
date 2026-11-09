@@ -81,7 +81,12 @@ const OLISTS: OList[] = [
         emoji: '🏖️',
         tagline: 'Sandstrand och cykeltur',
         why: 'Skärgårdens enda riktiga sandstrand vid Alsvik. Cykeluthyrning på ön, lugnt badvatten och ett värdshus för middagen.',
-        travel: 'Pendeltåg till Nynäshamn + båt, ca 2,5 h',
+        // Rättad 2026-11-09 (P0 20 del 3): båten till Utö går från Årsta brygga, inte från Nynäshamn.
+        // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
+        // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ"; uppmätt i tabellen: Årsta brygga–Gruvbryggan (Utö) 35–75 min (läst 2026-11-09)
+        travel: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga + båt 35–75 min',
       },
       {
         slug: 'moja',
@@ -229,7 +234,11 @@ const OLISTS: OList[] = [
         emoji: '🏖️',
         tagline: 'Sandstrand och ljus skärgårdsnatt',
         why: 'Utö Värdshus, sandstranden vid Alsvik och cykelturen i skymningen. Passar par som vill ha natur och lite aktivitet.',
-        travel: 'Pendeltåg till Nynäshamn + båt',
+        // Rättad 2026-11-09 (P0 20 del 3): båten till Utö går från Årsta brygga, inte från Nynäshamn.
+        // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
+        // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+        travel: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga + båt',
       },
       {
         slug: 'finnhamn',
@@ -316,7 +325,12 @@ const OLISTS: OList[] = [
         emoji: '🏖️',
         tagline: 'Skärgårdens enda riktiga sandstrand',
         why: 'Alsviksbadet är en 300 meter lång sandstrand med grunt och varmt vatten. Unik i Stockholms skärgård. Cykla hit från bryggan på 15 minuter.',
-        travel: 'Pendeltåg till Nynäshamn + Waxholmsbåt, ca 2,5 h',
+        // Rättad 2026-11-09 (P0 20 del 3): båten till Utö går från Årsta brygga, inte från Nynäshamn.
+        // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
+        // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ"; uppmätt i tabellen: Årsta brygga–Gruvbryggan (Utö) 35–75 min (läst 2026-11-09)
+        travel: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga + Waxholmsbåt 35–75 min',
         badge: 'Bästa sandstranden',
       },
       {

@@ -53,7 +53,11 @@ export const HIKES: Hike[] = [
     durationMin: 3,
     durationMax: 4.5,
     difficulty: 'medel',
-    transport: 'Pendeltåg linje 43 → Nynäshamn → pendelbåt Utö',
+    // Rättad 2026-11-09 (P0 20 del 3): båten till Utö går från Årsta brygga, inte från Nynäshamn.
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Västerhaninge", "Giltig från och med 17 augusti till och med 12 december 2026." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+    transport: 'Pendeltåg linje 43 → Västerhaninge → buss 846 → Årsta brygga → båt till Utö',
     carRequired: false,
     ferryRequired: true,
     hasBathing: true,

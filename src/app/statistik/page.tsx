@@ -53,8 +53,10 @@ const SECTIONS = [
       { label: 'Waxholmsbolagets bryggor', value: '150+', note: 'I Stockholms skärgård och längs Mälarens stränder', source: 'Svalla — uppskattning ur tidtabellerna (2026-08)' },
       { label: 'Waxholmsbolagets linjer', value: '30+', note: 'Reguljär kollektivtrafik på vatten, sommar och helår', source: 'Svalla — uppskattning ur tidtabellerna (2026-08)' },
       { label: 'Cinderellabåtarnas säsong', value: 'ca 5 månader', note: 'Maj–september, från Strömkajen till ytterskärgården', source: 'Strömma/Cinderella' },
-      // KÄLLA: SL:s tidtabell för pendeltågslinjen Stockholm City–Nynäshamn, restid 60 min. Sajten angav tidigare ca 55 min.
-      { label: 'Pendeltåg till Nynäshamn', value: 'ca 60 min', note: 'Från Stockholm City — utgångspunkt för Utö och södra skärgården', source: 'SL (tidtabell)' },
+      // Rättad 2026-11-09 (P0 20 del 3): Nynäshamn är inte utgångspunkt för Utö; båten därifrån går till Nåttarö, Rånö och Ålö. Restiden är uppmätt i SL:s tabell (tidigare "ca 60 min").
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Giltig från och med 17 augusti till och med 12 december 2026."; uppmätt i tabellen: avg Stockholm City–Nynäshamn 59–65 min (läst 2026-11-09)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ", "Rånö" (läst 2026-11-09)
+      { label: 'Pendeltåg till Nynäshamn', value: '59–65 min', note: 'Från Stockholm City — utgångspunkt för båten till Nåttarö, Rånö och Ålö', source: 'SL (tidtabell)' },
     ],
   },
   {

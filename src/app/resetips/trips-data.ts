@@ -141,8 +141,12 @@ export const TRIPS: Trip[] = [
     title: 'Utö på cykel — gruvan, bastun och havet',
     tagline: 'Cykla runt en av skärgårdens vackraste öar med stopp vid gruvmuseum och havsbastu.',
     duration: 'Heldag (10–12 timmar)',
-    startPoint: 'Årsta havsbad (bil) eller Nynäshamn (tåg)',
-    transport: 'Bil/tåg + färja + cykel',
+    // Rättad 2026-11-09 (P0 20 del 3): båten från Nynäshamn går vår och höst till Ålö, inte till Utö. Året om går båten till Utö från Årsta brygga.
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året.", "Till Årsta brygga kommer du med pendeltåg och sedan buss." (läst 2026-11-09)
+    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Bil: Nynäsvägen (väg 73) söderut. Skyltad avfart mot Årsta brygga.", "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga", "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026" (läst 2026-11-09)
+    startPoint: 'Årsta brygga i Haninge (bil, eller pendeltåg till Västerhaninge + buss 846)',
+    transport: 'Bil eller tåg och buss + båt + cykel',
     transportTags: ['tåg', 'båt', 'cykel'] as TransportTag[],
     season: 'Maj–September',
     difficulty: 'medel',
@@ -150,10 +154,21 @@ export const TRIPS: Trip[] = [
     description: 'Utö är en av de stora skärgårdsöarna med riktigt karaktär — en aktiv järngruva på 1700-talet, cykelleder genom barrskog och havsbastu som håller hög klass.',
     stops: [
       {
-        name: 'Färjan till Utö',
+        // Rättad 2026-11-09 (P0 20 del 3): båten från Nynäshamn går till Ålö vår och höst och till Gruvbryggan bara sommartid. Vägen från Ålö går genom skjutfältet.
+        // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
+        name: 'Båten till Utö',
         type: 'transport',
-        desc: 'Avgår från Årsta brygga (~40 min med snabbåt) eller Nynäshamn (~1 tim).',
-        tip: 'Från Stockholm: pendeltåg till Nynäshamn, sedan Waxholmsbolagets båt — eller bil till Årsta brygga.',
+        // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året.", "Under sommaren går även Nord/Sydlinjen via Utö." (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ"; uppmätt i tabellen: Årsta brygga–Gruvbryggan (Utö) 35–75 min (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Gruvbryggan (Utö)"; uppmätt i tabellen: Nynäshamn–Gruvbryggan (Utö) 80 min (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ"; uppmätt i tabellen: ingen brygga på Utö (läst 2026-11-09)
+        // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html — "Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt." (läst 2026-11-09)
+        desc: 'Waxholmsbolagets båt går året om från Årsta brygga i Haninge till Gruvbryggan, 35–75 minuter enligt höst- och vårtidtabellen (tabell 21). Sommartid går också Nord/Sydlinjen från Nynäshamn till Gruvbryggan, 1 timme och 20 minuter (2026: 22 juni–16 augusti). Vår och höst går båten från Nynäshamn i stället till grannön Ålö, som har bro till Utö.',
+        // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
+        // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Bil: Nynäsvägen (väg 73) söderut. Skyltad avfart mot Årsta brygga.", "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet.", "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" (läst 2026-11-09)
+        // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there.", "It passes through an active military firing range, which is located on both sides of the road." (läst 2026-11-09)
+        // KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ — "Skjutfält och förbud", "Utö skjutfält", "Observera att verksamheten kan ändras med kort varsel. Det är alltid informationstavlorna på plats som gäller i första hand." (läst 2026-11-09)
+        tip: 'Från Stockholm: pendeltåg till Västerhaninge och buss 846 till Årsta brygga, eller bil till Årsta brygga. Kommer du via Ålö går grusvägen till Gruvbryggan genom Utö skjutfält, där det vissa tider är tillträdesförbud. Information om förbuden finns på Försvarsmaktens webbplats under Skjutfält och förbud eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
