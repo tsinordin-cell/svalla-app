@@ -19,6 +19,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
   - Övriga UPDATE körs efter batchens merge, med SELECT före och efter.
 
 ## Generatorn och källistan
+- Klockslag i källistan (uto-omk4, MÄTT i repot 2026-11-09): "vad" i kallor.generated.ts kommer ordagrant ur KÄLLA-citaten och visas på ösidan. I main har 7 öar i batch 01 och 64 andra öar klockslag där (124 rader utanför batch 01). Batch 01:s Skribenter rensar sina egna citat. Mallarnas runda 5 gör så att generera-kallor.mjs ersätter klockslag i "vad" med … och att --kontroll larmar om ett klockslag.
 - `scripts/generera-kallor.mjs`:
   - När två URL:er står på samma KÄLLA-rad hamnar hela raden under den första.
   - " – " görs om till " — " i citat.
@@ -53,6 +54,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Hållplats-id: kontrollera namnen för Fjäderholmarna (740034632) och Utö Centralstation.
 
 ## Mallar och komponenter (kontrollera om Skribenten redan rättat dem)
+- MÅSTE IN FÖRE BATCH 01:S PR: platslistan ska låta ö-fältet gå före radien (ett ifyllt ö-fält som inte är öns namn ger onIsland = false). Annars visas Rånökällan som krog på Utö på /o/uto/restauranger och /o/uto/med-barn (uto-omk4 uo4046).
 - Utö (omarbete 4, MÄTT): med GPS-radien 7,0 km från den nya nålen (Toms beslut 3b) hamnar Ålö brygga (5,09 km) och Rånö färjeläge (5,77 km) innanför, så en tur dit taggas som Utö. islandPlaces räknar Rånökällan (ö-fältet Rånö, 5,82 km) som "på Utö", eftersom onIsland är ö-fältet eller avståndet ≤ radien. Ingen cirkel löser det: Stora Sandvik (6,00 km) och Rävstavik (4,47 km) ligger på Utö men saknar ö-fält. Skribentens förslag: ett ifyllt ö-fält som inte är öns namn ger onIsland = false (samma fix behövs för Vaxholm och Styrsö).
 - med-barn/page.tsx:87 jämför exakta namn och visar Stora Trouvillestranden. Toms beslut 6 avgör om posten ska döljas.
 - /aktivitet/<typ>/<ö> använder fortfarande ordmatchning.

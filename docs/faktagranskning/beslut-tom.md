@@ -112,6 +112,21 @@ innehåll som beslutskortet på svalla.se/team.
 - **Ja:** GPS-radierna ändras i batch 01:s PR. **Nej:** inget ändras i
   turtaggningen.
 
+### 3c. (NY 2026-11-09, väntar på Tom) Utös GPS-cirkel – rättelse av mitt förslag i punkt 3
+- **Vad som saknades i förslaget:** alternativ b (OSM:s punkt för ön,
+  58.9476, 18.2623, och 7,0 km) når också Ålö brygga (5,09 km) och Rånö
+  färjeläge (5,77 km). En tur dit taggas alltså som ett besök på Utö. Det stod
+  inte i förslaget. (MÄTT 2026-11-09 i OSM.)
+- **Alternativ:** öns minsta omslutande cirkel. Mittpunkten 58.9482, 18.3006
+  ligger på land, och radien är 5,3 km. Den täcker hela Utö: den längsta
+  strandpunkten ligger 5,25 km bort, uppmätt i relationens 3 839 strandnoder.
+  Ålö brygga (7,00 km), Rånö färjeläge (7,73 km) och Rånökällan (7,80 km)
+  hamnar utanför, och Gruvbryggan ligger 2,85 km från mitten. (MÄTT 2026-11-09.)
+- **Platslistan** visar i dag Rånökällan som krog på Utö. Det rättas i
+  mallarnas runda 5 oavsett ditt svar.
+- **Förslag:** byt till den minsta omslutande cirkeln. **Ja:** cirkeln byts i
+  batch 01:s PR. **Nej:** alternativ b står kvar.
+
 ### 4. (BESLUTAT 2026-11-08) Platstyp för camping (schemaändring)
 - Utö camping (`uto-camping-och-stugor`) har typen hotel. Tabellen
   `restaurants` har ingen typ för camping. **Ja:** ny typ camping i data och
