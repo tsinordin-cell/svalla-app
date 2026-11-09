@@ -290,7 +290,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html",
       "org": "Länsstyrelsen Stockholm",
       "vad": "inom hela reservatet med undantag av Persholmen medföra hund som ej är kopplad. För Persholmen skall hund vara kopplad under tiden 1 mars - 20 augusti och under övrig tid hållas under uppsikt, tälta eller ställa upp husvagn annat än på anvisad plats, för längre tid än två dygn förtöja eller förankra båt vid samma strand, göra upp eld annat än på härför iordningställda och anvisade platser, Tillträdesförbud på Utö skjutfält vissa tider.",
-      "last": "2026-09-27",
+      "last": "2026-11-09",
       "myndighet": true
     },
     {
@@ -308,9 +308,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://kund.printhuset-sthlm.se/sl/h846.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "Västerhaninge station–Årsta (–Årsta slott), Tidtabellen är anpassad till pendeltåg från Stockholm vid, Giltig 18 mars–18 juni samt 17 augusti–12 december 2026; uppmätt i tabellen: Västerhaninge station–Årsta brygga 14–17 min på alla 48 turer",
+      "last": "2026-11-08",
+      "myndighet": true
+    },
+    {
       "url": "https://kund.printhuset-sthlm.se/sl/v846.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Västerhaninge station–Årsta (–Årsta slott), Tidtabellen är anpassad till pendeltåg från Stockholm vid, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026; Västerhaninge station–Årsta brygga 14–17 min enligt tabellen",
+      "vad": "Västerhaninge station–Årsta (–Årsta slott); Västerhaninge station–Årsta brygga 14–17 min",
       "last": "2026-09-27",
       "myndighet": true
     },
@@ -329,10 +336,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://kund.printhuset-sthlm.se/wa/h22.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 12 DECEMBER 2026, 22A NYNÄSHAMN — NÅTTARÖ — ÅLÖ",
+      "last": "2026-11-08",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/",
+      "org": "forsvarsmakten.se",
+      "vad": "Skjutfält och förbud, När vi gör det är skjutfältet avlyst, alltså stängt för allmänheten., Observera att verksamheten kan ändras med kort varsel. Det är alltid informationstavlorna på plats som gäller i första hand., Utö skjutfält",
+      "last": "2026-11-08",
+      "myndighet": false
+    },
+    {
       "url": "https://skargardsstiftelsen.se/omraden/uto/",
       "org": "Skärgårdsstiftelsen",
       "vad": "Utö Värdshus, som har öppet året runt, erbjuder både restaurang, hotell och konferens; Sommartid sjuder ön av liv med restauranger, caféer, butiker och aktiviteter; Skärgårdsstiftelsen flera stugor och hus som hyrs ut veckovis; lansstyrelsen.se Utö: Waxholmsbåt året om till Gruvbryggan",
-      "last": "2026-09-27",
+      "last": "2026-11-08",
       "myndighet": false
     },
     {
@@ -353,14 +374,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/",
       "org": "stockholmarchipelagotrail.com",
       "vad": "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö., The distance is 4.6 km along the gravel road, It takes about 90 minutes to walk between the sections., Never leave the gravel road until you reach the next section.",
-      "last": "2026-09-27",
+      "last": "2026-11-08",
       "myndighet": false
     },
     {
       "url": "https://stockholmarchipelagotrail.com/sv/section/etapp-uto-sv/",
       "org": "stockholmarchipelagotrail.com",
       "vad": "Etapp Utö är en utmanande etapp som har allt. Denna 18,4 km långa etapp, Från Gruvbryggan kan du ta dig norrut längs grusvägen. Antingen hela vägen till Kroka eller till Barnens bad.",
-      "last": "2026-09-27",
+      "last": "2026-11-08",
       "myndighet": false
     },
     {
@@ -385,17 +406,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.utogasthamn.se/uto-cykeluthyrning/",
+      "url": "https://www.utogasthamn.se/att-gora/",
       "org": "utogasthamn.se",
-      "vad": "I Cykelboden har vi över 300 cyklar från Skeppshult, Här finns även barnstolar, sulkys och cykelkärror, Under högsäsong kan du även hyra din cykel på, Du kan välja att lämna tillbaka din cykel på Utö i Cykelboden eller på Ålö vid restaurangen Båtshaket.",
-      "last": "2026-09-27",
+      "vad": "Persholmen som ligger över den lilla bron nere i hamnen har klippbad., Ytterligare en bit från hamnen finns Barnens bad, en fin och långgrund sandstrand i en liten vik.",
+      "last": "2026-11-08",
       "myndighet": false
     },
     {
-      "url": "https://www.utogasthamn.se/hitta-hit/",
+      "url": "https://www.utogasthamn.se/uto-cykeluthyrning/",
       "org": "utogasthamn.se",
-      "vad": "Under sommarmånaderna går det att ta sig till Utö med färja från Strömkajen i centrala Stockholm.",
-      "last": "2026-09-27",
+      "vad": "I Cykelboden har vi över 300 cyklar från Skeppshult, Här finns även barnstolar, sulkys och cykelkärror, Under högsäsong kan du även hyra din cykel på Båtshaket på Ålö., Du kan välja att lämna tillbaka din cykel på Utö i Cykelboden eller på Ålö vid restaurangen Båtshaket., Cykelhyran gäller per dag, inte 24 timmar.",
+      "last": "2026-11-08",
       "myndighet": false
     },
     {
@@ -406,16 +427,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.utogasthamn.se/att-gora/",
+      "url": "https://www.utogasthamn.se/camping/",
       "org": "utogasthamn.se",
-      "vad": "Persholmen som ligger över den lilla bron nere i hamnen har klippbad, en fin och långgrund sandstrand i en liten vik (om Barnens bad), Storsand, som är just en stor sandstrand och ligger på skjutfältets mark några kilometer från Gruvbyn. Glöm bara inte att fråga oss i Hamnboden om skjutfältet är öppet",
+      "vad": "Campingen är av så kallad friluftsmodell och har inga numrerade platser, På campingen finns en servicestuga med toaletter, duschar och ett enklare kök, Du anmäler dig och betalar i Hamnboden",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
-      "url": "https://www.utogasthamn.se/camping/",
+      "url": "https://www.utogasthamn.se/hitta-hit/",
       "org": "utogasthamn.se",
-      "vad": "Campingen är av så kallad friluftsmodell och har inga numrerade platser, På campingen finns en servicestuga med toaletter, duschar och ett enklare kök, Du anmäler dig och betalar i Hamnboden",
+      "vad": "Väl vid bryggan finns en parkeringsplats som betalas via appen",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -429,8 +450,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.utovardshus.se/kontakt/hitta-hit/",
       "org": "utovardshus.se",
-      "vad": "Waxholmsbåtar trafikerar linjen Utö — Årsta Brygga dagligen / Båt utgår även från Nynäshamn till grannön Ålö som har broförbindelse till Utö",
-      "last": "2026-09-30",
+      "vad": "Waxholmsbåtar trafikerar linjen Utö — Årsta Brygga dagligen. / Båt utgår även från Nynäshamn till grannön Ålö som har broförbindelse till Utö.",
+      "last": "2026-11-08",
       "myndighet": false
     },
     {
