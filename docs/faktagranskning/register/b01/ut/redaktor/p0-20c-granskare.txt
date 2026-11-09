@@ -1,0 +1,57 @@
+Du är GRANSKAREN OCH SKRIBENTEN för två P0-rättelser i Svallas faktagranskning: P0 20 del 3 (Utö) och P0 21 (Landsort, Ornö och Huvudskär). Skriv på svenska. Dagens datum är 2026-11-09, och det är läsdatum för allt du öppnar.
+
+LÄS FÖRST
+1. /home/claude/svalla-app/docs/faktagranskning/roller/granskare-skribent.md, hela, med FÖRTYDLIGANDEN EFTER PILOTEN och EFTER BATCH 01. Källhierarkin, KÄLLA-formatet, arbetsreglerna och DEL 6 (rättelse, precisering, stryk och kompensera) gäller.
+2. Den godkända formuleringen från del 1 och 2, som redan är publicerad. Läs den i en ren kopia av main: /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/main-kopia (2a31087). Ändra ingenting där. Exempel finns i src/app/o/island-data.ts (Utö, rad 477–620), src/app/blogg/[slug]/page.tsx (rad 425, 438, 1518, 2149 och 2180), src/app/guider/[slug]/guide-content.ts (rad 36, 603 och 3619) och src/app/guider/guides-data.ts (rad 1754). KÄLLA-raderna där visar vilka sidor som belägger vad. Du ska läsa varje källa själv i dag. Citaten skrivs ordagrant och läsdatum är 2026-11-09.
+
+BAKGRUND
+P0 är ett fel som kan göra att någon blir stående eller bryter mot en regel. Det rättas samma dag i en egen PR.
+- P0 20: båten från Nynäshamn går inte till Utö by utan till grannön Ålö. Enligt Waxholmsbolagets tabell 22 gäller det 2 april–18 juni och 17 augusti–12 december 2026. Därifrån går vägen till Gruvbryggan genom Utö skjutfält, där det vissa tider är tillträdesförbud. Året om går båten till Utö från Årsta brygga (tabell 21), dit SL:s buss 846 går från Västerhaninge. Sommartid går enligt Waxholmsbolaget också Nord/Sydlinjen via Utö. Del 1 och 2 har rättat ösidan, bloggen, guiderna, ett mejl, SAT-sidan och AI-guiden. Kvar är texter som säger att man tar sig till Utö via Nynäshamn.
+- P0 21: andra texter anger Nynäshamn som avreseort för båtar som inte går därifrån. Waxholmsbolaget skriver till exempel att båtarna till Landsort går från Ankaruddens brygga.
+
+ARBETSLISTA P0 20 DEL 3 (Utö). Radnumren gäller main 2a31087.
+a. src/app/resetips/trips-data.ts, resetipset uto-cykeldag (rad 140–190): startPoint (144), transport (145), första stoppet "Färjan till Utö" (name, desc 155, tip 156, bookingUrl) och resources om de behövs. Sidan är svalla.se/resetips/uto-cykeldag.
+b. src/app/aktivitet/vandring/hike-data.ts:56, transport för Utö.
+c. src/app/aktivitet/vandring/hike-descriptions.ts:17, Utös första tips.
+d. src/app/aktivitet/vandring/page.tsx:39 (FAQ-svaret) och :115 (body).
+e. src/app/oar/oar-categories.ts:152–154, kategorin nara-nynashamn (hero, description och intro).
+f. src/app/ostlistan/page.tsx:84, 232 och 317, travel-fälten för Utö.
+g. src/app/stockholms-skargard/page.tsx:47, meningen "Nås med Waxholmsbolaget från Nynäshamn, ca 90 min.", och :49, meta 'Södra skärgården · Via Nynäshamn · 90 min'.
+h. src/app/stockholm-archipelago-trail/page.tsx:77, FAQ-svaret.
+i. src/app/statistik/page.tsx:57, noten "utgångspunkt för Utö och södra skärgården".
+j. Sök själv efter fler texter som leder till Utö via Nynäshamn: git grep -n -i "nynäs" i src/ och emails/ i main-kopia, och läs varje träff som rör Utö. Hoppa över det som del 1 och 2 redan har rättat eller bedömt. Det gäller island-data.ts 497 och 616, bloggens rader ovan, guide-content.ts 36, 603, 3595, 3619, 7835, 8235, 8735 och 9260 samt guides-data.ts 1747 och 1754. Hoppa också över src/data/guider.ts, som ingen fil importerar. Nämn den i rapporten. Seglingsrutter för egen båt (till exempel api/guide/route.ts 67 och 122) gäller inte P0 20.
+
+ARBETSLISTA P0 21. Pröva först varje text mot operatörens egen sida eller tabell. Står det rätt, ändrar du inget och skriver det i rapporten.
+k. Landsort: src/app/aktivitet/vandring/hike-data.ts:245 och hike-descriptions.ts:102, båda "Pendelbåt från Nynäshamn". src/app/resetips/trips-data.ts, landsort-sydligaste-fyren (rad 1152–1198): startPoint och första stoppet (name, desc och tip).
+l. Ornö: src/app/ostlistan/page.tsx:290 och 291, "Nås med vägfärja från Nynäshamn" och "Bil till Nynäshamn + vägfärja".
+m. Huvudskär: src/app/resetips/trips-data.ts, huvudskar-fyrstationen (rad 1338–1385): startPoint, meningen "Nås med Waxholmsbolagets linjer via Nynäshamn" i description, och första stoppets desc och tip.
+n. Läs också getting_there för Landsort, Ornö och Huvudskär i src/app/o/island-data.ts. Säger någon av dem fel avreseort, ta med den i P0 21. Annars nämner du dem bara i rapporten.
+
+VAD SOM SKA PRÖVAS I EN ÄNDRAD STRÄNG
+- Varje ny eller ändrad mening.
+- Varje uppgift om trafik, avreseort, restid och säkerhet i samma sträng, även i meningar du inte ändrar. Det är högriskklasser. Är en sådan uppgift fel, rättar du den. Går den inte att belägga, stryker du den och kompenserar med belagt innehåll.
+- Andra meningar i strängen, till exempel om natur, mat eller pris, rör du inte. De prövas i sidans egen fas. Ta inte med dem i underlaget.
+- Ändra så lite som möjligt. Formuleringen om skjutfältet ska vara densamma som i del 1 och 2. Där texten leder genom skjutfältet eller pekar på Nynäshamn som väg till Utö, ska den säga tre saker: att det vissa tider är tillträdesförbud, att information finns på Försvarsmaktens webbplats under Skjutfält och förbud eller på telefon 010-823 30 00, och att informationstavlorna på plats gäller i första hand. I korta fält, som travel, startPoint, transport och meta, räcker det att ange rätt avreseort. Ett exempel är "Pendeltåg till Västerhaninge, buss 846 till Årsta brygga + båt". Den längre förklaringen står då i en längre text på samma sida, om sidan har en.
+- Aldrig klockslag, avgångstider eller priser. Restider får bara stå om operatörens tabell belägger dem. Ange i så fall spannet som tabellen ger, inte ett påhittat medelvärde.
+- Kalla inte Waxholmsbolagets passagerarbåtar för färja eller vägfärja om källan inte gör det, eftersom det kan få läsaren att tro att bilen kan följa med.
+- Trafik beläggs av operatören: Waxholmsbolagets resmålssidor och tabeller (PDF:er på kund.printhuset-sthlm.se/wa/, till exempel h21.pdf och h22.pdf) och SL för buss och pendeltåg. Länsstyrelsen och kommunen är nivå 1 och får användas för vägbeskrivningen. Tillträdesförbudet beläggs bara av Försvarsmakten (nivå 1). Huvudskär, Ornö och Landsort: läs operatörens sida för resmålet och den tabell som gäller nu.
+
+SKRIV ÄNDRINGARNA
+- Två edits-filer: /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/p0-20c/edits.json och /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/p0-21/edits.json. Varje fil är en lista med {"fil", "gammal", "ny", "rader"}. "fil" är sökvägen i repot. "gammal" ska stå ordagrant och exakt en gång i filen i main-kopia. "rader" är de kid i underlaget som posten gäller. En sträng som handlar om både Utö och Landsort eller Ornö (d, e och h) hör till P0 20 del 3.
+- Lägg en KÄLLA-rad ovanför varje ändrad sträng i formatet // KÄLLA: URL — "citat" (läst 2026-11-09). Använd en URL per rad och inga klockslag i citaten. I JSX används {/* KÄLLA: … */}.
+- Två underlag: p0-20c/underlag.tsv och p0-21/underlag.tsv. De är tabbseparerade med rubrikraden kid, sida, fil:rad, slutlig text, KÄLLA (URL), citat (ordagrant), läst och ny mening (ja/nej). Varje påstående får en egen rad, med id p20c-k001 … respektive p21-k001 …. sida är den publicerade adressen, till exempel /resetips/uto-cykeldag.
+- Strykningar skriver du i p0-20c/strukna.tsv och p0-21/strukna.tsv med kid, sida, fil:rad, struken text och skäl. Filen ska ha en rubrikrad även om den är tom.
+- Spara varje källa du läser i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/p0-20c/kallor/.
+
+KONTROLLERA SJÄLV INNAN DU LÄMNAR ÖVER
+- Torrkör med node /home/claude/svalla-app/docs/faktagranskning/verktyg/applicera.mjs /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/main-kopia <edits.json> --torr för båda filerna. Varje post ska gå in utan fel.
+- Pröva syntaxen i en egen kopia, inte i main-kopia. Kör mkdir -p p0-20c/torr && git -C main-kopia archive HEAD | tar -x -C p0-20c/torr, länka node_modules (ln -s /home/claude/svalla-app/node_modules p0-20c/torr/node_modules), applicera båda filerna där utan --torr och kör npx tsc --noEmit -p . och node scripts/verify-claims.mjs i den kopian.
+- Kontrollera med skript att varje citat står ordagrant i den sparade källtexten och att ingen ny text innehåller ett klockslag.
+
+LEVERERA
+- Skriv p0-20c/rapport.md, högst 60 rader. Den ska ha en rad per ändrad sträng (fil:rad, vad som ändrats, källa), de träffar i steg j och n som du bedömt och lämnat orörda med skäl, och torrkörningens resultat. Samma sak gäller P0 21 i ett eget avsnitt.
+- Commita inte, pusha inte och ändra inget i repot eller i databasen.
+
+Skicka aldrig en e-postadress, ett namn eller någon annan personuppgift i ett anrop. Kringgå aldrig en sajts blockering och byt inte user agent. WebFetch nekar URL:er som inte kommit från användaren, så använd curl -sSL --http1.1 eller Chromium: python3 -I /home/claude/svalla-app/docs/faktagranskning/verktyg/las_sida.py URL [sökord …]. En PDF läses med curl -o fil.pdf och pdftotext -layout. Försvarsmaktens lista Skjutfält och förbud visar posten Utö skjutfält först efter "Visa fler resultat".
+
+Avsluta med en rapport på högst 10 rader. Skriv hur många strängar och påståenden varje P0 har, vilka P0 21-texter som visade sig vara rätt och vad torrkörningen gav.

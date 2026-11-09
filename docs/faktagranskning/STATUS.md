@@ -2,6 +2,39 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-09 05:00 — P0 20 del 2 i produktion; P0 20 del 3 och P0 21; runda 4b
+
+- **P0 20 del 2:** klart och verifierat. PR #514 är mergad som 2a31087.
+  - Kontrollanten gav 117 OK och 4 FEL i första omgången och 32 OK och
+    1 FEL i omkontrollen. Det sista felet var en ny mening om Nord/Sydlinjen
+    från Nynäshamn som bara Stockholm Archipelago Trail belade. Meningen är
+    struken.
+  - I produktionen (MÄTT med curl) syns alla 13 ändrade texter, i sex guider
+    och på SAT-sidan.
+- **P0 20 del 3 och P0 21:** fler sidor anger Nynäshamn som väg till Utö:
+  - resetipset uto-cykeldag, vandringssidan och östlistan
+  - kategorin öar nära Nynäshamn och Stockholms skärgård-sidan
+  - SAT-sidans FAQ, statistiksidan och dagsplaneraren (/utflykt)
+
+  P0 21 gäller Landsort, Ornö och Huvudskär, där Nynäshamn anges som
+  avreseort för båtar som inte går därifrån. En Granskare arbetar med båda.
+  src/data/guider.ts importeras inte av någon fil och visas inte på sajten.
+- **Omkontroll runda 4:**
+  - Möja: 83 OK, 10 FEL och 3 SAKNAS (96 rader).
+  - Vaxholm: 121 OK, 5 FEL och 0 SAKNAS (126 rader).
+
+  Besluten står i kontroll/moja-omk4.beslut.tsv och vaxholm-omk4.beslut.tsv.
+  Redaktören läste tre sidor i Toms Chrome:
+  - PerMobilen och Jeppes Gästgiveri på Facebook
+  - Svenska Gästhamnars sida om Möja–Löka, som ger 502 i arbetsytan
+- **Ny tolkning (punkt 19 i båda rollfilerna):** det som den nuvarande
+  verksamheten har gjort i sin egen verksamhet eller på sin egendom är
+  verksamheten om sig själv, om meningen är tillskriven. Exempel är nya ägare
+  ett visst år och en större matsal.
+- **Runda 4b** pågår för Fjäderholmarna, Grinda, Möja och Vaxholm, med en
+  Skribent. Sandhamns Skribent (runda 4) har startat, och Utös Skribent
+  arbetar. main-kopian är uppdaterad till 2a31087.
+
 ## 2026-11-09 03:42 — P0 20 del 1 i produktion; Toms beslut klara
 
 - **P0 20 del 1:** klart och verifierat. PR #513 är mergad som 85f7415.

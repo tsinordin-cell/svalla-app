@@ -36,8 +36,9 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Hantverkarsidan för Möja: OCT Entreprenad (moja-N015, kompensation för Lag 3) står först i datafilen och visas därför före företagen med bas på Möja. Sortera så att företag med bas på ön kommer först, om det går utan att röra fler poster.
 - Styrsö: nio KORREKT-rader har Brattens Wärdshus som enda källa för historien (styrso-0043–0046, 0048, 0049, 0105, 0114, 0117). De ligger i den fulla kontrollen och ska få FEL där.
 - "Café Ankaret" står kvar i bloggen (blogg/[slug]/page.tsx:67). Verksamheten heter "Ankaret" (Instagram, läst 2026-11-03).
-- src/data/guider.ts:358–360: obelagd Strömkajen-text.
-- dagsplan.ts: Nynäshamn → Utö.
+- src/data/guider.ts:358–360: obelagd Strömkajen-text. Filen importeras inte av någon annan fil och visas inte på sajten (MÄTT 2026-11-09).
+- dagsplan.ts: Nynäshamn → Utö. Tas i P0 20 del 3 (2026-11-09).
+- Vaxholms fästning 1548: guides-data.ts:927, guide-content.ts:2495 och trips-data.ts:215 bygger på vaxholmsfastning.se/historik ("kraftigare fästning 1548"). Länsmuseet och RAÄ säger emot (vaxholm-omk4, utanför batchen). Det hör till guidernas och resetipsens fas.
 - bingo-data.ts:26: "havsbastu" på Utö.
 - src/app/resetips/trips-data.ts:1034: "mellersta" om Husarö (Toms beslut 2).
 - Grindas transit-not "Direktbåt med Waxholmsbolaget från Strömkajen sommartid": linje 11 går året om enligt tabellen.
@@ -60,7 +61,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Platser på grannöar räknas som "på" ön: KSSS gästhamn på Lökholmen (Sandhamn), fästningskaféet på Vaxholmen och Tenöbadet (Vaxholm) (full-27).
 - IslandWeather.tsx:24 visar väderkoderna 85–86 (snöbyar) som "Åska" (full-22).
 - IslandWeather.tsx: vindbenämningarna stämmer inte med SMHI:s skala från 10,8 m/s och uppåt (full-26 k089), och att vindriktningen anges varifrån det blåser saknar källa (k090).
-- Platslistor med radie: ingen cirkel passar Vaxholm (Eriksöbadet på Vaxön 2,7 km från nålen, Tenö utanför Vaxön inom 2 km). Bygg listan på polygon eller ö-fält (full-26 k052). Styrsös lista räknar in Donsö och Brännö (k037).
+- Platslistor med radie: ingen cirkel passar Vaxholm (Eriksöbadet på Vaxön 2,7 km från nålen, Tenö utanför Vaxön inom 2 km). Bygg listan på polygon eller ö-fält (full-26 k052). Styrsös lista räknar in Donsö och Brännö (k037). Platslistan bygger i dag på ö-fält eller en radie på 2,0 km. Tenö ligger 1,74 km från Vaxholms mittpunkt (vaxholm-omk4 vo4011, MÄTT), så Vaxholms radie i runda 5 måste vara kortare än så.
 - FAQ-svaret "Finns det restaurang på …?" räknar in barer och dansställen, till exempel Bakfickan på Utö (full-22 k002).
 - boende/page.tsx:80 hämtar bara typen hotel. Möjas vandrarhem byter till hostel (full-19 k036), så mallen ska ta med hostel.
 - page.tsx:203: isAccessibleForFree är en konstant.
@@ -89,3 +90,6 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 ## Toms beslut som påverkar inläggningen
 - Beslut 2 (regioner), 3 (GPS-radier), 4 (camping), 5–8 (enskilda poster) och 9 (Facebook).
 - visited_islands: gamla passager räknas som besök. Att flytta dem är en databasändring och kräver Tom.
+
+## Verktyg
+- las_sida.py klickar sig bort till /our-story/ på kanotcenter.com. Sådana sidor läses utan klick (kontroll/vaxholm-omk4-sidor/skript/las_utan_klick.py i Redaktörens arbetsyta).

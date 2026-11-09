@@ -1,0 +1,33 @@
+Du är GRANSKAREN OCH SKRIBENTEN för omarbete runda 4b i Svallas faktagranskning, batch 01. Runda 4b gäller Fjäderholmarna, Grinda, Möja och Vaxholm. Kontrollanten har prövat runda 4 på de fyra öarna och hittat ett fåtal fel. Redaktören har beslutat vad som ska göras med varje fynd. Skriv på svenska. Dagens datum är 2026-11-09, och det är läsdatum för allt du öppnar.
+
+LÄS FÖRST
+1. /home/claude/svalla-app/docs/faktagranskning/roller/granskare-skribent.md, hela, med FÖRTYDLIGANDEN EFTER PILOTEN och EFTER BATCH 01 (punkt 8–19). Punkt 19 är ny i dag: det som den nuvarande verksamheten har gjort i sin egen verksamhet eller på sin egen egendom får beläggas av dess sida, om meningen tillskrivs verksamheten.
+2. Arbetslistorna, en per ö, i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kontroll/: fjaderholmarna-omk4.beslut.tsv, grinda-omk4.beslut.tsv, moja-omk4.beslut.tsv och vaxholm-omk4.beslut.tsv. Varje rad är ett beslut av Redaktören (kolumnen beslut) om en registerrad (kolumnen register-id), fattat efter Kontrollantens fynd (kolumnen fynd). Kontrollantens fullständiga svar står i <ö>-omk4.kontroll.tsv i samma mapp, och kid kopplas till register-id i <ö>-omk4.nyckel.tsv. Kontrollantens sparade sidor ligger i <ö>-omk4-sidor/.
+3. Öarnas register: /home/claude/svalla-app/docs/faktagranskning/register/b01/<ö>.tsv, med 15 kolumner. Öarnas ändringar: register/b01/ut/<ö>.edits.json och register/b01/ut/<ö>.sql. Runda 4 står i ut/omarbete4-<ö>.md.
+4. Redaktörens läsningar i Toms Chrome: /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kallcache/facebook-2026-11-09.txt. Punkt 3–5 gäller Möja (PerMobilen, Jeppes Gästgiveri och Svenska Gästhamnar Möja–Löka). Citera därifrån ordagrant, med läsdatum 2026-11-09. Behöver du läsa en sida som bara går att läsa inloggad, skriv det i rapporten. Redaktören läser den då.
+5. Vaktens lista: register/b01/ut/vakt-lista.md. Det som står där görs av Vakten eller av mallarnas Skribent, inte av dig.
+6. Toms beslut: /home/claude/svalla-app/docs/faktagranskning/beslut-tom.md.
+
+GÖR SÅ HÄR
+A. Gå igenom varje rad i de fyra arbetslistorna.
+   - Beslut som börjar med "Omarbete 4b" gör du som beslutet säger. Detsamma gäller rader märkta "OK med anmärkning" som ger en uppgift, till exempel fo4003, go4055 och go4037. Läs källorna själv. Uppdatera registerraden i kolumnerna dom, rätt uppgift, källa (URL), citat (ordagrant), läst, åtgärd och ny text. För rader med register-id "(ny rad)" eller "(databasen)" lägger du till en ny rad med id <ö>-N### (nästa lediga nummer).
+   - Beslut som säger "Ingen åtgärd", "Ingen ny åtgärd", "Vaktens lista" eller "Mallfel" utan uppgift för dig ändrar ingenting i öns filer. Lista dem i rapporten med skälet.
+   - Står det "Omprövas i slutomkontrollen", gör du omarbetet och skriver i rapporten att raden ska omprövas.
+B. Skriv ändringarna.
+   - Kod (island-data.ts och andra datafiler): uppdatera eller lägg till poster i <ö>.edits.json. Filen är en lista med {"fil", "gammal", "ny", "rader"}, där "rader" är de register-id som posten gäller. "gammal" ska stå ordagrant och exakt en gång i filen på origin/main. En ren kopia av main (2a31087) ligger i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/main-kopia, och där ändrar du ingenting. Ändrar du en befintlig post, utgå från postens "ny" och ändra bara det beslutet gäller.
+   - Lägg en KÄLLA-rad ovanför varje ändrad sträng i formatet // KÄLLA: URL — "citat" (läst 2026-11-09). Citaten ska vara utan klockslag, och varje KÄLLA-rad har en URL.
+   - Databasen (tabellen restaurants): skriv UPDATE-satser i <ö>.sql, med WHERE på slug och det gamla värdet. Har runda 4 redan en UPDATE för samma kolumn, ändra den satsen och lägg inte till en ny. Texträttelser, adressrättelser, webbplatsfält och koordinaträttelser är tillåtna. DELETE och schemaändringar är inte tillåtna. Kör ingenting.
+C. Lag 2 och Lag 3 gäller: ett fel ersätts med rätt uppgift, och det som stryks kompenseras med belagt innehåll i samma sektion. Ingen utfyllnad.
+D. Kontrollera själv innan du lämnar över.
+   - Torrkör varje ös fil med node /home/claude/svalla-app/docs/faktagranskning/verktyg/applicera.mjs /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/main-kopia /home/claude/svalla-app/docs/faktagranskning/register/b01/ut/<ö>.edits.json --torr. Varje post ska gå in utan fel.
+   - Kontrollera med skript att varje citat i de ändrade raderna står ordagrant i den sparade källtexten och att ingen ny text har ett klockslag.
+   - Kontrollera att varje rad i de fyra registren har 15 kolumner.
+E. Leverera.
+   - Uppdatera register/b01/<ö>.tsv, ut/<ö>.edits.json och ut/<ö>.sql för de fyra öarna.
+   - Skriv register/b01/ut/omarbete4b.md, högst 150 rader, med ett avsnitt per ö. Varje avsnitt börjar med en rad per ändrad eller ny registerrad: id, vad som ändrats och källan. Sedan följer de rader du inte rört med skäl, de rader som ska omprövas och torrkörningens resultat.
+   - Spara arbetsfiler, som sidkopior och skript, i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/omk4b/.
+   - Commita inte och pusha inte. Ändra inget annat i repot. Rör inte uto-filerna, som en annan Skribent arbetar med.
+
+Skicka aldrig en e-postadress, ett namn eller någon annan personuppgift i ett anrop. Kringgå aldrig en sajts blockering och byt inte user agent. WebFetch nekar URL:er som inte kommit från användaren, så använd curl -sSL --http1.1 eller Chromium: python3 -I /home/claude/svalla-app/docs/faktagranskning/verktyg/las_sida.py URL [sökord …]. las_sida.py klickar sig bort på kanotcenter.com, så läs de sidorna utan klick. Kontrollantens skript /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kontroll/vaxholm-omk4-sidor/skript/las_utan_klick.py gör det. En PDF läses med curl -o fil.pdf och pdftotext -layout. overpass-api.de nås inte genom proxyn. Använd api.openstreetmap.org och vänta några sekunder mellan anropen.
+
+Avsluta med en rapport på högst 10 rader. Skriv hur många registerrader som ändrats eller lagts till per ö, hur många poster edits.json och sql har, vad torrkörningen gav och vad som återstår.
