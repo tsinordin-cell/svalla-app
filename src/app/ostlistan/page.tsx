@@ -287,8 +287,10 @@ const OLISTS: OList[] = [
         name: 'Ornö',
         emoji: '🌲',
         tagline: 'Stor ö med riktig natur',
-        why: 'En av de större öarna med skogar och stigar. Bra för hunden att verkligen röra på sig. Nås med vägfärja från Nynäshamn.',
-        travel: 'Bil till Nynäshamn + vägfärja',
+        // Rättad 2026-11-09 (P0 21): bilfärjan till Ornö går från Dalarö, inte från Nynäshamn, och den drivs av Ornö Sjötrafik.
+        // KÄLLA: https://ornosjotrafik.se/ — "ORNÖ SJÖTRAFIK AB", "Bilfärja mellan Ornö och Dalarö", "Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö." (läst 2026-11-09)
+        why: 'En av de större öarna med skogar och stigar. Bra för hunden att verkligen röra på sig. Nås med Ornö Sjötrafiks bilfärja från Dalarö.',
+        travel: 'Bil till Dalarö + bilfärja till Hässelmara',
       },
       {
         slug: 'ljustero',

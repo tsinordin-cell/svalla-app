@@ -458,7 +458,9 @@ export default async function FarjorPage() {
               {[
                 { name: 'Färja 16', desc: 'Stavsnäs vinterhamn → Sandhamn, ca 50 min' },
                 { name: 'Färja 17-1', desc: 'Stavsnäs vinterhamn → Nämdö' },
-                { name: 'Färja 40', desc: 'Nynäshamn → Fjärdlång, ca 1 tim 50 min utan byten' },
+                // Rättad 2026-11-09 (P0 21): linje 40 är Nord/Sydlinjen, som bara går sommartid. Vår och höst går båten till Fjärdlång från Dalarö (tabell 19).
+                // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Fjärdlång"; uppmätt i tabellen: Nynäshamn–Fjärdlång 110 min, utan byte (läst 2026-11-09)
+                { name: 'Färja 40', desc: 'Sommartid (2026: 22 juni–16 augusti): Nord/Sydlinjen Nynäshamn → Fjärdlång, 1 tim 50 min utan byten' },
                 { name: 'Färja 941', desc: 'Vaxholm → Rindö, vägfärja, avgiftsfri' },
                 { name: 'Färja 31-1', desc: 'Räfsnäs brygga → Lidö, ca 15 min' },
               ].map(l => (

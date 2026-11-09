@@ -1154,7 +1154,12 @@ export const TRIPS: Trip[] = [
     title: 'Landsort — Stockholmsskärgårdens sydligaste punkt',
     tagline: 'Fyren vid världens ände — en av landets vackraste öar och ett historiskt fyrsläge.',
     duration: 'Heldag (tidigt start)',
-    startPoint: 'Nynäshamn (bil/tåg + båt)',
+    // Rättad 2026-11-09 (P0 21): båten till Landsort går från Ankaruddens brygga, inte från Nynäshamn.
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — "Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden." (läst 2026-11-09)
+    // KÄLLA: https://nynashamn.se/uppleva/skargard--batliv/turbatar — "I södra Nynäshamn finns Ankarudden, där du kan ta båten till Landsort, den sydligaste utposten av vår skärgård. Ankarudden är enkelt att nå med buss eller egen bil." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — "Nynäshamns station–Torö", "ANKARUDDEN", "Giltig 17 augusti–12 december 2026" (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Giltig från och med 17 augusti till och med 12 december 2026." (läst 2026-11-09)
+    startPoint: 'Ankaruddens brygga (bil, eller pendeltåg till Nynäshamn + buss 852)',
     transport: 'Tåg/bil + båt',
     transportTags: ['tåg', 'bil', 'båt'] as TransportTag[],
     season: 'Juni–Augusti',
@@ -1162,9 +1167,14 @@ export const TRIPS: Trip[] = [
     description: 'Landsort är den sydligaste bebodda punkten i Stockholms skärgård med en av Sveriges vackraste fyrstationer. Lång resväg men en upplevelse utöver det vanliga.',
     stops: [
       {
-        name: 'Tåg till Nynäshamn + båt till Landsort',
+        // Rättad 2026-11-09 (P0 21): båten går från Ankarudden, dit buss 852 går från Nynäshamn. Restiderna är uppmätta i tabellerna.
+        // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — "Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden.", "Landsort ligger på ön Öja." (läst 2026-11-09)
+        name: 'Tåg och buss till Ankarudden + båt till Landsort',
         type: 'transport',
-        desc: 'Pendeltåg från Stockholm C (ca 1 tim). Waxholmsbåt via Öja till Landsort.',
+        // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Giltig från och med 17 augusti till och med 12 december 2026."; uppmätt i tabellen: avg Stockholm City–Nynäshamn 59–65 min (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — "Nynäshamns station–Torö", "ANKARUDDEN", "Giltig 17 augusti–12 december 2026"; uppmätt i tabellen: Nynäshamns station–Ankarudden 35–43 min (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/wa/h29.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "29A ANKARUDDEN – LANDSORT"; uppmätt i tabellen: Ankarudden–Landsort 30 min på alla turer (läst 2026-11-09)
+        desc: 'Pendeltåg från Stockholm City till Nynäshamn (59–65 min), buss 852 till Ankarudden (35–43 min) och Waxholmsbolagets båt till Landsort på ön Öja (30 min enligt tabell 29).',
         tip: 'Mycket begränsat med avgångar — planera och verifiera tidtabellen noga. Tur-och-retur samma dag kräver tidigt start.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
@@ -1340,19 +1350,31 @@ export const TRIPS: Trip[] = [
     title: 'Huvudskär — ytterskärgårdens fyrtorn',
     tagline: 'En av Stockholmsskärgårdens mest dramatiska fyrstationer, mitt i öppet hav.',
     duration: 'Heldag (tidigt start krävs)',
-    startPoint: 'Nynäshamn (bil/tåg)',
+    // Rättad 2026-11-09 (P0 21): ingen båt går från Nynäshamn till Huvudskär. Sommarbåten gick från Dalarö.
+    // KÄLLA: https://www.dalarosjotransporter.se/kontakt/ — "Avg från Dalarö Hotellbrygga" (läst 2026-11-09)
+    // KÄLLA: https://skargardsstiftelsen.se/omraden/huvudskar/ — "Hit tar du dig med egen båt eller taxibåt. Under sommaren finns även vissa säsongsanpassade båtturer från Dalarö." (läst 2026-11-09)
+    startPoint: 'Dalarö (sommarbåt) eller egen båt/taxibåt',
     transport: 'Tåg/bil + båt',
     transportTags: ['tåg', 'bil', 'båt'] as TransportTag[],
     season: 'Juni–Augusti',
     difficulty: 'krävande',
-    description: 'Huvudskär är en liten ö med ett imponerande fyrtorn i ytterskärgården söder om Stockholm. Nås med Waxholmsbolagets linjer via Nynäshamn — lång resväg men en unik upplevelse.',
+    // Rättad 2026-11-09 (P0 21): Waxholmsbolaget har ingen tabell med Huvudskär och båten gick inte från Nynäshamn. "Lång resväg men en unik upplevelse" är struket (obelagd restid och värdeord).
+    // KÄLLA: https://www.dalarosjotransporter.se/kontakt/ — "Under sommaren 2026 kommer vi återigen att trafikera Dalarö - Huvudskär på torsdagar och söndagar mellan 14 juni-16 augusti i samband med att vandrarhemmet byter gäster." (läst 2026-11-09)
+    // KÄLLA: https://skargardsstiftelsen.se/omraden/huvudskar/ — "Hit tar du dig med egen båt eller taxibåt. Under sommaren finns även vissa säsongsanpassade båtturer från Dalarö." (läst 2026-11-09)
+    description: 'Huvudskär är en liten ö med ett imponerande fyrtorn i ytterskärgården söder om Stockholm. Sommaren 2026 gick Dalarö Sjötransporters båt från Dalarö till Huvudskär på torsdagar och söndagar mellan 14 juni och 16 augusti; annars tar man sig hit med egen båt eller taxibåt.',
     stops: [
       {
-        name: 'Tåg till Nynäshamn + båt',
+        // Rättad 2026-11-09 (P0 21): båten till Huvudskär gick från Dalarö, inte från Nynäshamn, och Waxholmsbolaget har ingen tabell med Huvudskär.
+        // KÄLLA: https://www.dalarosjotransporter.se/kontakt/ — "Avg från Dalarö Hotellbrygga" (läst 2026-11-09)
+        name: 'Båt från Dalarö',
         type: 'transport',
-        desc: 'Pendeltåg från Stockholm C (ca 1 tim). Waxholmsbåt mot Huvudskär — lång tur.',
-        tip: 'Mycket begränsade avgångar och lång restid. Planera noggrant och verifiera tidtabellen.',
-        bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
+        // KÄLLA: https://www.dalarosjotransporter.se/kontakt/ — "Under sommaren 2026 kommer vi återigen att trafikera Dalarö - Huvudskär på torsdagar och söndagar mellan 14 juni-16 augusti i samband med att vandrarhemmet byter gäster.", "Avg från Dalarö Hotellbrygga" (läst 2026-11-09)
+        // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "Rudsjöterrassen–Dalarö (–Smådalarö)", "Giltig 17 augusti–12 december 2026" (läst 2026-11-09)
+        // KÄLLA: https://skargardsstiftelsen.se/omraden/huvudskar/ — "Hit tar du dig med egen båt eller taxibåt. Under sommaren finns även vissa säsongsanpassade båtturer från Dalarö." (läst 2026-11-09)
+        desc: 'Sommaren 2026 körde Dalarö Sjötransporter båt från Dalarö Hotellbrygga till Huvudskär på torsdagar och söndagar mellan 14 juni och 16 augusti. Till Dalarö går SL:s buss 839. Utanför båtens säsong tar du dig hit med egen båt eller taxibåt.',
+        // KÄLLA: https://www.dalarosjotransporter.se/kontakt/ — "Under sommaren 2026 kommer vi återigen att trafikera Dalarö - Huvudskär på torsdagar och söndagar mellan 14 juni-16 augusti i samband med att vandrarhemmet byter gäster.", "Bokningen är ej giltig förrän betalning erlagts.", "Om rederiet ställer in turen pga av hårda vindar/haveri" (läst 2026-11-09)
+        tip: 'Båten gick bara två dagar i veckan, platserna bokades och betalades i förväg, och turen kunde ställas in vid hård vind. Kontrollera Dalarö Sjötransporters sida inför nästa säsong.',
+        bookingUrl: 'https://www.dalarosjotransporter.se/kontakt/',
       },
       {
         name: 'Huvudskärs fyrtorn',
@@ -1373,12 +1395,16 @@ export const TRIPS: Trip[] = [
       {
         name: 'Medtagen matsäck',
         type: 'mat',
-        desc: 'Ingen service — ta med allt. Köp mat i Nynäshamn innan avfärd.',
+        // Rättad 2026-11-09 (P0 21): avfärden till Huvudskär är inte från Nynäshamn.
+        desc: 'Ingen service — ta med allt. Köp mat innan avfärd.',
       },
     ],
     resources: [
-      { label: 'Waxholmsbolagets tidtabell (södra linjen)', url: 'https://waxholmsbolaget.se/tidtabeller' },
-      { label: 'SL — pendeltåg till Nynäshamn', url: 'https://sl.se' },
+      // Rättad 2026-11-09 (P0 21): Waxholmsbolagets tabell och pendeltåget till Nynäshamn leder inte till Huvudskär.
+      // KÄLLA: https://www.dalarosjotransporter.se/kontakt/ — "RESA TILL HUVUDSKÄR", "Under sommaren 2026 kommer vi återigen att trafikera Dalarö - Huvudskär på torsdagar och söndagar mellan 14 juni-16 augusti i samband med att vandrarhemmet byter gäster." (läst 2026-11-09)
+      // KÄLLA: https://skargardsstiftelsen.se/omraden/huvudskar/ — "Hit tar du dig med egen båt eller taxibåt. Under sommaren finns även vissa säsongsanpassade båtturer från Dalarö." (läst 2026-11-09)
+      { label: 'Dalarö Sjötransporter — resa till Huvudskär', url: 'https://www.dalarosjotransporter.se/kontakt/' },
+      { label: 'Skärgårdsstiftelsen — Huvudskär', url: 'https://skargardsstiftelsen.se/omraden/huvudskar/' },
     ],
     islandSlugs: ['huvudskar'],
   },

@@ -242,7 +242,12 @@ export const HIKES: Hike[] = [
     durationMin: 1.5,
     durationMax: 2,
     difficulty: 'lätt',
-    transport: 'Pendelbåt från Nynäshamn (kontrollera aktuell tidtabell)',
+    // Rättad 2026-11-09 (P0 21): båten till Landsort går från Ankaruddens brygga, inte från Nynäshamn.
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — "Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — "Nynäshamns station–Torö", "ANKARUDDEN", "Giltig 17 augusti–12 december 2026" (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Giltig från och med 17 augusti till och med 12 december 2026." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h29.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "29A ANKARUDDEN – LANDSORT" (läst 2026-11-09)
+    transport: 'Pendeltåg till Nynäshamn, buss 852 till Ankarudden och båt därifrån (kontrollera aktuell tidtabell)',
     carRequired: false,
     ferryRequired: true,
     hasBathing: true,

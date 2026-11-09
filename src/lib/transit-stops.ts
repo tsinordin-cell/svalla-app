@@ -206,7 +206,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   landsort: {
     destStopId: '740024878', destStopName: 'Landsort brygga',
     originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
-    note: 'Pendeltåg till Nynäshamn + buss 858 till Ankarudden + båt.',
+    // Rättad 2026-11-09 (P0 21): buss 858 går Grödby–Nynäshamn, inte till Ankarudden. Det är 852 som går dit.
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — "Nynäshamns station–Torö", "ANKARUDDEN", "Giltig 17 augusti–12 december 2026" (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h858.pdf — "Grödby–Nynäshamn (Sandhamn)" (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — "Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden." (läst 2026-11-09)
+    note: 'Pendeltåg till Nynäshamn + buss 852 till Ankarudden + båt.',
   },
   nattaro: {
     destStopId: '740024875', destStopName: 'Nåttarö brygga',

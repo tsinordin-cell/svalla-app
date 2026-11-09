@@ -6160,8 +6160,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://nynashamn.se/uppleva/skargard--batliv/turbatar",
       "org": "nynashamn.se",
-      "vad": "Waxholmsbolaget (båt till Nåttarö, Aspö, Rånö, Ålö och Landsort); Vid Fiskehamnen i Nynäshamn, nära parkeringsplatser och kollektivtrafik, finner du Waxholmsbolagets båtar",
-      "last": "2026-09-27",
+      "vad": "Waxholmsbolaget (båt till Nåttarö, Aspö, Rånö, Ålö och Landsort), Vid Fiskehamnen i Nynäshamn, nära parkeringsplatser och kollektivtrafik, finner du Waxholmsbolagets båtar som tar dig direkt till öar som Nåttarö, Aspö, Rånö och Ålö., I södra Nynäshamn finns Ankarudden, där du kan ta båten till Landsort, den sydligaste utposten av vår skärgård. Ankarudden är enkelt att nå med buss eller egen bil.",
+      "last": "2026-11-09",
       "myndighet": true
     },
     {
@@ -6183,6 +6183,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "sjofartsverket.se",
       "vad": "112 från mobilen, kanal 16 på VHF-radion. Skydda mobilen från vatten.; Se därför alltid till att ha uppdaterade sjökort, både i pappersformat och digitalt.; Meddela anhöriga dina planer och håll dem underrättade om förändringar i din planerade rutt.",
       "last": "2026-09-27",
+      "myndighet": true
+    },
+    {
+      "url": "https://waxholmsbolaget.se/reseplanering/resmal/landsort",
+      "org": "Waxholmsbolaget",
+      "vad": "Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden.",
+      "last": "2026-11-09",
       "myndighet": true
     },
     {
