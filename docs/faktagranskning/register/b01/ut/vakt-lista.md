@@ -30,6 +30,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Källistan märker operatörer (Waxholmsbolaget, SL) som "Myndighet" (myndighet: true i kallor.generated.ts, MÄTT av Kontrollanten full-01 på /o/grinda). Operatörer är nivå 2.
 
 ## Samma fel på andra ställen
+- Utös historia på fler ställen (omarbete 4): blogg/[slug]/page.tsx:445 (1100-talet utan förbehåll, kyrkan "1848–1850", orgeln "stod ursprungligen i") och guide-content.ts:3653 (1100-talet). Ösidan bär nu länsmuseets förbehåll och nivå 1-källor.
 - "Sök resan i SL-appen" står i Yxlans data och i blogg/[slug]/page.tsx:902.
 - Bloggen cykling-moja-gallno säger "Buss 434 från Slussen till Sollenkroka".
 - Sea Lodge "till mitten av augusti" står kvar i guide-content.ts:12998–12999 (grinda.se: slutet av augusti).
@@ -52,6 +53,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Hållplats-id: kontrollera namnen för Fjäderholmarna (740034632) och Utö Centralstation.
 
 ## Mallar och komponenter (kontrollera om Skribenten redan rättat dem)
+- Utö (omarbete 4, MÄTT): med GPS-radien 7,0 km från den nya nålen (Toms beslut 3b) hamnar Ålö brygga (5,09 km) och Rånö färjeläge (5,77 km) innanför, så en tur dit taggas som Utö. islandPlaces räknar Rånökällan (ö-fältet Rånö, 5,82 km) som "på Utö", eftersom onIsland är ö-fältet eller avståndet ≤ radien. Ingen cirkel löser det: Stora Sandvik (6,00 km) och Rävstavik (4,47 km) ligger på Utö men saknar ö-fält. Skribentens förslag: ett ifyllt ö-fält som inte är öns namn ger onIsland = false (samma fix behövs för Vaxholm och Styrsö).
 - med-barn/page.tsx:87 jämför exakta namn och visar Stora Trouvillestranden. Toms beslut 6 avgör om posten ska döljas.
 - /aktivitet/<typ>/<ö> använder fortfarande ordmatchning.
 - komma-dit/page.tsx:84: Waxholmsbolagets "Praktiska tips" visas även där SL kör.
