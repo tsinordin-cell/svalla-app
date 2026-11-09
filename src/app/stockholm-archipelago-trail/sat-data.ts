@@ -68,8 +68,11 @@ export const SAT_SECTIONS: SatSection[] = [
   { name: 'Fjärdlång', km: 11.7, difficulty: 'Medel', island: 'fjardlang' },
   { name: 'Utö', km: 18.4, difficulty: 'Krävande', island: 'uto',
     note: 'Gruvhistoria, östkust och naturreservat.' },
+  // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ — "The Utö – Ålö Connector is the link between the Stockholm Archipelago Trail sections on Utö and Ålö, following a gravel road and passing through a military firing range."; "Never leave the gravel road until you reach the next section." (läst 2026-11-09)
+  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" (läst 2026-11-09)
+  // KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ — "Skjutfält och förbud"; "Utö skjutfält"; "Det är alltid informationstavlorna på plats som gäller i första hand." (läst 2026-11-09)
   { name: 'Utö–Ålö förbindelse', km: 4.6, difficulty: 'Lätt', island: 'uto',
-    note: 'Länken mellan Utö och Ålö.' },
+    note: 'Länken mellan Utö och Ålö. Den följer en grusväg genom Utö skjutfält, och enligt leden ska man hålla sig på grusvägen hela vägen. Vissa tider är det tillträdesförbud på skjutfältet: information om förbuden finns på Försvarsmaktens webbplats under Skjutfält och förbud eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.' },
   { name: 'Ålö', km: 13.2, difficulty: 'Krävande', island: null },
   { name: 'Rånö', km: 12, difficulty: 'Lätt', island: null },
   { name: 'Nåttarö', km: 9.5, difficulty: 'Krävande', island: 'nattaro',

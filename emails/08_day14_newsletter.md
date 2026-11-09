@@ -40,8 +40,14 @@ Sandstränder och klippbad vid Grinda Sea Lodge på öns södra sida, och båt �
 
 :::ruta
 <!-- KÄLLA: src/app/o/island-data.ts (uto) — skargardsstiftelsen.se/omraden/uto: "I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden", "Cykla längs grusvägarna", "Ålö Storsand, som nås med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder." Tidigare stod "broförbundna grannön" och "en av Sveriges finaste sandstränder" (rättad 2026-09-29) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Här finns också Utö gruvor från järnmalmsbrytningen som funnits till och från under 700 år med början redan under 1100-talet."; "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" (läst 2026-11-09) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden."; "Cykla längs grusvägarna"; "Ålö Storsand, som nås med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder." (läst 2026-11-09) -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ — "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö." (läst 2026-11-09) -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ — "Skjutfält och förbud"; "Utö skjutfält"; "Det är alltid informationstavlorna på plats som gäller i första hand." (läst 2026-11-09) -->
+<!-- KÄLLA: https://www.utogasthamn.se/att-gora/ — "Glöm bara inte att fråga oss i Hamnboden om skjutfältet är öppet om du planerar att åka dit." (läst 2026-11-09) -->
+<!-- KÄLLA: https://www.utogasthamn.se/oppet-och-kontakt/ — "stänger Hamnboden för året" (läst 2026-11-09) -->
 ### Utö
-Järngruvor sedan medeltiden och grusvägar att cykla på. Ålö Storsand, som du når med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder.
+Järngruvor sedan medeltiden och grusvägar att cykla på. Ålö Storsand, som du når med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder. Leden från Utö går genom Utö skjutfält, där det vissa tider är tillträdesförbud. Information om förbuden finns på Försvarsmaktens webbplats under Skjutfält och förbud eller på telefon 010-823 30 00, och när Hamnboden i Utö gästhamn har öppet kan du också fråga där om skjutfältet är öppet. På plats gäller informationstavlorna i första hand.
 
 [Guiden →](https://svalla.se/o/uto)
 :::
