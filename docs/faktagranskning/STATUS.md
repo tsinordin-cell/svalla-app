@@ -2,6 +2,36 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-09 19:20 — runda 4b klar; Utö omkontrollerad; P0 20 del 3, P0 21 och P0 22
+
+- **Femtimmarsgränsen** stoppade alla fyra agenter i morse, någon gång efter
+  04:57. Arbetet låg kvar på disk, och agenterna återupptogs 18:24.
+- **Utö, runda 4:** 75 registerrader, 35 poster och 20 UPDATE.
+  - P0 20:s text står kvar (MÄTT: 50 av 51 rader ordagrant).
+  - Omkontrollen gav 72 OK, 2 FEL och 1 SAKNAS. Felen gäller
+    båtföreskriften ("hindras eller försvåras") och kyrkans öppethållande.
+    Den nya GPS-radien når dessutom Rånö.
+  - Ny fråga till Tom: 3c (Utös GPS-cirkel). Platslistan måste låta
+    ö-fältet gå före radien före batch 01:s PR (Vaktens lista).
+- **Runda 4b** är klar för Fjäderholmarna, Grinda, Möja, Vaxholm och Utö:
+  47 registerrader, och torrkörningen gav 0 fel för alla fem öar.
+  - De fem nya eller ändrade WHERE-villkoren i moja.sql och vaxholm.sql
+    träffar var sin rad (MÄTT med SELECT 19:1x).
+  - Omkontrollen 4b (46 rader och 1 struken) startar när en plats blir
+    ledig.
+  - Fjäderholmarnas post 31 satte GPS-radien till 0,7 km mot Toms beslut 3.
+    Storholmens Skribent rättar den till 1,5 km med platsRadieKm 0,7.
+- **Klockslag i källistan:** citaten i kallor.generated.ts visas på
+  ösidorna. Öarnas Skribenter rensar sina citat, och mallarnas runda 5 gör
+  så att generatorn aldrig visar klockslag.
+- **P0 20 del 3 och P0 21** är skrivna och ligger hos Kontrollanten.
+  - Del 3: 20 strängar och dagsplaneraren, 71 påståenden och 28 strykningar.
+  - P0 21: 21 strängar, 51 påståenden och 23 strykningar.
+- **P0 22 (Bullerö):** avgångsrutan räknar från Nynäshamn färjeterminal,
+  men Bullerölinjen går från Stavsnäs. Granskaren arbetar.
+- **Sandhamn och Styrsö:** Skribenterna arbetar. Storholmen och Husarö har
+  färdiga instruktioner.
+
 ## 2026-11-09 05:00 — P0 20 del 2 i produktion; P0 20 del 3 och P0 21; runda 4b
 
 - **P0 20 del 2:** klart och verifierat. PR #514 är mergad som 2a31087.
