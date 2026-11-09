@@ -2,6 +2,30 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-09 03:42 — P0 20 del 1 i produktion; Toms beslut klara
+
+- **P0 20 del 1:** klart och verifierat. PR #513 är mergad som 85f7415.
+  - Kontrollen gick i tre omgångar. Den första gav 164 OK och 3 FEL, den
+    andra 43 OK och 2 FEL, och den sista 2 OK och 0 FEL.
+  - Båda FEL i andra omgången gällde meningen om båten från Strömkajen.
+    Tabell 19 har bara en fredagstur, och dess period har passerat. Meningen
+    står nu som Länsstyrelsens uppgift om sommarturer.
+  - I produktionen (MÄTT med curl) nämns förbudet och informationstavlorna
+    14 gånger på /o/uto, 4 på /o/uto/bad och 12 på /blogg/uto-guide.
+  - Del 2 (guiderna, mejlutskicket, SAT-sidan och AI-guidens prompt)
+    skrivs nu.
+- **Toms beslut 9:** Facebook lästes i Toms Chrome.
+  - Vaxholms Hembygdsgårds Café är belagt. Senaste inlägget är från
+    17 september 2026.
+  - Café Strindbergsgårdens sida går inte att läsa ("Det här innehållet är
+    inte tillgängligt just nu"). Sandhamns Skribent söker en annan källa.
+- **Femtimmarsgränsen** stoppade fyra agenter strax före midnatt. De
+  återupptogs 03:12.
+- **Omarbete runda 4:** omkontrollen av Fjäderholmarna och Grinda pågår,
+  liksom Skribenterna för Möja och Vaxholm. Utö kan starta nu när P0 20
+  ligger i main. Utös poster nr 9, 10, 21, 24 och 27 måste läggas ovanpå
+  P0 20. main-kopian är uppdaterad till 85f7415.
+
 ## 2026-11-08 23:46 — full kontroll klar; Toms beslut 1–8; omarbete runda 4 pågår
 
 - **Full kontroll klar (MÄTT):** alla 3 063 KORREKT-rader i 28 paket. Kontrollanterna
