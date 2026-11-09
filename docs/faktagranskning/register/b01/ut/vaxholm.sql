@@ -95,3 +95,11 @@ update restaurants set name = 'Vaxholms Gästhamn' where slug = 'waxholms-gastha
 -- KÄLLA: https://www.frode.se/kontaktsida — "Björkstigen 4", "59E24´25.17", "18E19´44.23" (läst 2026-11-09, curl med HTTP/1.1; Chromium fick 502 från proxyn) Uppmätt: nålen ligger på OSM-byggnaden way 161229614 "addr:street=Björkstigen", "addr:housenumber=4" (6 m från dess mittpunkt) och 26 m från verksamhetens egen GPS-angivelse, inne på Vaxön.
 -- restaurants.waxholms-gasthamn-och-rent-under-batbotten-tvatt.latitude/.longitude (vaxholm-0677; namnet byts i satsen ovan, Toms beslut 8)
 -- KÄLLA: https://waxholmshamn.se/ — "Vaxholms Gästhamn", "In the middle of Vaxholm - In the middle of Skärgården", "Västerhamnen" (läst 2026-11-09) Uppmätt: nålen ligger i hamnbassängen 47 m från OSM-noden 282188948 "leisure=marina" (namnet stavat "Västerhammen" i OSM) och 85 m från noden 282186126 "name=Waxholms Gästhamn Café".
+
+-- restaurants.vaxholms-fastning-cafe.formatted_address (vaxholm-N025; omarbete 4b, utanför-1)
+-- /upptack/vaxholms-fastning-cafe visar adressen "Trädgårdsgatan 19, 185 32 Vaxholm" (läst 2026-11-09), som är Vaxholms Hembygdsgårds Cafés adress
+--   (https://www.facebook.com/vaxholmshembygdsgardscafe/: "Trädgårdsgatan 19, Vaxholm, Sweden, 185 32", läst av Redaktören i Toms Chrome 2026-11-09, kallcache/facebook-2026-11-09.txt punkt 2).
+--   Kaféet finns i receptionen till Vaxholms fästnings museum på Kastellet, och museet anger adressen Kastellet 185 99 Vaxholm. Bara adressfältet ändras.
+-- FÖRE: 'Trädgårdsgatan 19, 185 32 Vaxholm' (som sidan visar fältet 2026-11-09; inte prövat med SELECT, eftersom inget körs mot databasen i omarbete 4b – kör SELECT före)
+-- KÄLLA: https://www.vaxholmsfastning.se/besoksinfo/ — "Vaxholms Fästnings Museum | Kastellet 185 99 Vaxholm" (läst 2026-11-09)
+update restaurants set formatted_address = 'Kastellet, 185 99 Vaxholm' where slug = 'vaxholms-fastning-cafe' and formatted_address = 'Trädgårdsgatan 19, 185 32 Vaxholm';
