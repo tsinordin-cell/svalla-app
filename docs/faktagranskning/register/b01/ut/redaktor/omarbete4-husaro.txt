@@ -1,0 +1,36 @@
+Du är GRANSKAREN OCH SKRIBENTEN för Husarö (husaro) i Svallas faktagranskning, batch 01, omarbete runda 4. Det är den samlade omarbetningen efter den fulla kontrollen av batchens KORREKT-rader. Skriv på svenska. Dagens datum är 2026-11-09.
+
+LÄS FÖRST
+1. /home/claude/svalla-app/docs/faktagranskning/roller/granskare-skribent.md, hela. Läs också FÖRTYDLIGANDEN EFTER PILOTEN och EFTER BATCH 01 (punkt 8–18). Det som står där gäller: källhierarkin, KÄLLA-formatet, arbetsreglerna, DEL 6 (rättelse, precisering, stryk och kompensera) och verktygen.
+2. Arbetslistan: /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/redaktor/omarbete-ko/husaro.tsv. Varje rad är ett beslut av Redaktören (kolumnen beslut) om en registerrad (kolumnen register-id), fattat efter Kontrollantens fynd (kolumnen fynd). Kontrollantens fullständiga svar står i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kontroll/<fil>.kontroll.tsv, och kid kopplas till register-id i <fil>.nyckel.tsv.
+3. Öns register: /home/claude/svalla-app/docs/faktagranskning/register/b01/husaro.tsv, med 15 kolumner. Öns ändringar: register/b01/ut/husaro.edits.json och register/b01/ut/husaro.sql. Tidigare omarbeten: ut/omarbete-oar.md, ut/omarbete-oar2.md och ut/omarbete-runda3.md.
+4. Vaktens lista: register/b01/ut/vakt-lista.md. Det som står där görs av Vakten eller av mallarnas Skribent, inte av dig.
+5. Toms beslut: /home/claude/svalla-app/docs/faktagranskning/beslut-tom.md. Rader som väntar på Tom rör du inte.
+
+GÖR SÅ HÄR
+A. Gå igenom varje rad i arbetslistan.
+   - Beslut som börjar med "Omarbete": gör det beslutet säger. Läs källorna själv. Citat skrivs ordagrant, och läsdatum är dagen du läser. Uppdatera registerraden i kolumnerna dom, rätt uppgift, källa (URL), citat (ordagrant), läst, åtgärd och ny text. Finns ingen registerrad för påståendet, som för utanför-rader, lägger du till en ny rad med id husaro-N### (nästa lediga nummer).
+   - Beslut som säger "Ingen åtgärd", "Ingen ny åtgärd", "Mallfel", "Mallarnas …", "Vaktens lista", "Fas 2", "Toms beslut" eller "Hör till P0": ingen ändring i öns filer. Lista dem i rapporten med skälet.
+   - Flaggan OMPROVAS: gör omarbetet och skriv i rapporten att raden ska omprövas i slutomkontrollen.
+B. Skriv ändringarna.
+   - Kod (island-data.ts, transit-stops.ts, islandCoords.ts, hantverkare-data.ts med flera): uppdatera eller lägg till poster i husaro.edits.json. Filen är en lista med {"fil", "gammal", "ny", "rader"}, där "rader" är de register-id som posten gäller. "gammal" ska stå ordagrant och exakt en gång i filen på origin/main. En ren kopia av main ligger i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/main-kopia; ändra ingenting där. Main har fått flera PR:er sedan registret byggdes, bland dem #504, #505, #506, #513 och #514. Kontrollera därför ALLA öns befintliga poster mot kopian och rätta "gammal" där main har ändrats, utan att ändra vad posten gör. Poster som Vaktens lista säger ska hoppas över (redan i main) tar du bort ur filen och listar i rapporten.
+   - Lägg en KÄLLA-rad ovanför varje ändrad sträng, i formatet // KÄLLA: URL — "citat" (läst ÅÅÅÅ-MM-DD). Inga klockslag i citaten och en URL per KÄLLA-rad.
+   - Databasen (tabellen restaurants): skriv UPDATE-satser i husaro.sql, med WHERE på slug och det gamla värdet. Texträttelser och koordinaträttelser är tillåtna, men inga DELETE och inga schemaändringar. Kör ingenting.
+C. Lag 2 och Lag 3: fel ersätts med rätt. Stryks något, kompenseras det med belagt innehåll i samma sektion. Ingen utfyllnad.
+D. Kontrollera själv innan du lämnar över.
+   - Torrkör med node /home/claude/svalla-app/docs/faktagranskning/verktyg/applicera.mjs /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/main-kopia /home/claude/svalla-app/docs/faktagranskning/register/b01/ut/husaro.edits.json --torr. Varje post ska gå in utan fel.
+   - Kontrollera med skript att varje citat i de ändrade raderna står ordagrant i den sparade källtexten.
+   - Kontrollera att varje rad i registret har 15 kolumner.
+E. Leverera.
+   - Uppdatera register/b01/husaro.tsv, ut/husaro.edits.json och ut/husaro.sql.
+   - Skriv register/b01/ut/omarbete4-husaro.md, högst 120 rader. Där står först en rad per ändrad eller ny registerrad (id, vad som ändrats och källan). Sedan följer de rader du inte rört, med skäl, de rader som ska omprövas och torrkörningens resultat.
+   - Spara arbetsfiler, som sidkopior och skript, i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/omk4-husaro/.
+   - Commita inte och pusha inte. Ändra inget annat i repot.
+
+Skicka aldrig en e-postadress, ett namn eller någon annan personuppgift i ett anrop. Kringgå aldrig en sajts blockering och byt inte user agent. WebFetch nekar URL:er som inte kommit från användaren, så använd las_sida.py (Chromium) eller curl. overpass-api.de nås inte genom proxyn; använd api.openstreetmap.org med paus mellan anropen.
+
+Avsluta med en rapport på högst 10 rader: hur många registerrader som ändrats eller lagts till, hur många poster edits.json och sql har, vad torrkörningen gav och vad som återstår.
+
+SÄRSKILT FÖR HUSARÖ
+- Toms beslut 3 (beslut-tom.md, "Beslutat 2026-11-08"): Husarös GPS-radie sänks från 2,0 till 1,5 km i src/lib/islandCoords.ts (rad 42 i main-kopia). Skriv en post i husaro.edits.json som bara ändrar Husarös rad. Ovanför ska en kommentar med mätningen stå: enligt beslutet ryms hela ön inom 1,32 km och Särsös brygga ligger 1,66 km bort. Gör om mätningen själv i dag och skriv dina egna värden. Ändra inte typen IslandCoord.
+- Källistan på ösidan visar KÄLLA-citaten ("vad" i src/app/o/kallor.generated.ts), och där syns klockslag ur gamla citat. För ön gäller det rad 3169, 3176 och 3183 i main-kopians kallor.generated.ts. Ta bort klockslagen ur de KÄLLA-citaten. Behåll resten ordagrant och skriv … där text utelämnas. Leta upp KÄLLA-raden i island-data.ts eller transit-stops.ts som raden kommer ifrån, och ändra den i öns edits.json. Ändra inte kallor.generated.ts, eftersom den genereras vid inläggningen.

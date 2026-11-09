@@ -1,0 +1,35 @@
+Du är GRANSKAREN OCH SKRIBENTEN för P0 22 i Svallas faktagranskning: avgångsrutan på svalla.se/o/bullero. Skriv på svenska. Dagens datum är 2026-11-09, och det är läsdatum för allt du öppnar.
+
+LÄS FÖRST
+- /home/claude/svalla-app/docs/faktagranskning/roller/granskare-skribent.md, hela, med förtydligandena (punkt 8–19). Källhierarkin, KÄLLA-formatet och DEL 6 gäller.
+- En ren kopia av main ligger i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/main-kopia, och där ändrar du ingenting. Läs src/lib/transit-stops.ts (bullero, rad 232–236, och ISLAND_NO_TRANSIT, rad 429 och framåt), src/components/DepartureWidget.tsx och src/app/api/transit/departures/route.ts. Där ser du hur rutan visas och vad som händer när en ö står i ISLAND_NO_TRANSIT.
+
+FELET (MÄTT av Redaktören 2026-11-09)
+- https://svalla.se/api/transit/departures?dest=bullero ger originName "Nynäshamn färjeterminal", 0 resor och noten "Naturreservat i ytterskärgården — taxibåt eller charterturer.". Rutan på /o/bullero visar alltså "Från Nynäshamn färjeterminal".
+- Sidans egen text säger att Bullerölinjen går från Stavsnäs vinterhamn, att Stavsnäs Båttaxi kör den på uppdrag av Länsstyrelsen från maj till en bit in i oktober och att alla avgångar ska förbokas. Bullerö beskrivs där som huvudentré till Nämdöskärgårdens nationalpark.
+- P0 är ett fel som kan göra att någon blir stående. Det rättas i dag i en egen PR.
+
+GÖR SÅ HÄR
+1. Läs operatörens och myndighetens egna sidor om hur man tar sig till Bullerö och om Bullerös skyddsform. Skyddsformen (naturreservat eller nationalpark) beläggs bara av nivå 1, alltså Naturvårdsverket, sverigesnationalparker.se eller Länsstyrelsen.
+2. Bestäm hur rutan ska bli rätt.
+   - Går det att ange en ursprungshållplats i Stavsnäs som Trafiklab har trafik från till Bullerö, gör det. Belägg hållplatsen och mät den, som de andra posterna i transit-stops.ts gör.
+   - Har Trafiklab ingen sådan trafik, flytta Bullerö från ISLAND_TRANSIT till ISLAND_NO_TRANSIT. Texten där ska vara belagd och säga hur man faktiskt tar sig dit.
+   - Kontrollera i DepartureWidget och api-routen vad sidan visar efter ändringen, så att den inte säger "ingen kollektivtrafik" om det går en förbokad turbåt. Formulera texten efter det.
+3. Pröva också noterna för Nåttarö, Torö och Muskö, de andra öarna där rutan räknar från Nynäshamn färjeterminal. Pröva mot operatörens tabell eller sida (Waxholmsbolaget och SL). Är en not fel, ta med rättelsen. Är den rätt, skriv det i rapporten.
+4. Inga klockslag, inga avgångstider och inga priser. Kalla inte en passagerarbåt för färja om källan inte gör det.
+
+LEVERANS i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/p0-22/
+- edits.json: en lista med {"fil", "gammal", "ny", "rader"}. "gammal" ska stå ordagrant och exakt en gång i filen i main-kopia, och "rader" är kid i underlaget. Lägg en KÄLLA-rad ovanför varje ändrad sträng i formatet // KÄLLA: URL — "citat" (läst 2026-11-09), med en URL per rad och utan klockslag.
+- underlag.tsv, tabbseparerad med rubrikraden kid, sida, fil:rad, slutlig text, KÄLLA (URL), citat (ordagrant), läst och ny mening (ja/nej). Varje påstående får en egen rad, med kid p22-k001 och framåt. Sidan är den publicerade adressen, till exempel /o/bullero.
+- strukna.tsv med kid (p22-s001 …), sida, fil:rad, struken text och skäl. Filen ska ha en rubrikrad även om den är tom.
+- rapport.md, högst 30 rader.
+- Spara källorna i p0-22/kallor/.
+
+KONTROLLERA SJÄLV
+- Torrkör med node /home/claude/svalla-app/docs/faktagranskning/verktyg/applicera.mjs /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/main-kopia <edits.json> --torr. Varje post ska gå in utan fel.
+- Pröva syntaxen i en egen kopia. Kör mkdir -p p0-22/torr && git -C main-kopia archive HEAD | tar -x -C p0-22/torr, länka node_modules (ln -s /home/claude/svalla-app/node_modules p0-22/torr/node_modules), applicera där utan --torr och kör npx tsc --noEmit -p . och npx vitest run src/lib.
+- Kontrollera med skript att varje citat står ordagrant i den sparade källtexten.
+
+Commita inte, pusha inte och ändra inget i repot eller i databasen. Skicka aldrig en e-postadress, ett namn eller någon annan personuppgift i ett anrop. Kringgå aldrig en sajts blockering och byt inte user agent. WebFetch nekar URL:er som inte kommit från användaren, så använd curl -sSL --http1.1 eller Chromium: python3 -I /home/claude/svalla-app/docs/faktagranskning/verktyg/las_sida.py URL [sökord …]. battaxi.se har ogiltigt certifikat, och det ska du inte gå runt. Facebook och Instagram kräver inloggning. Behöver du en sådan sida, skriv det i rapporten, så läser Redaktören den.
+
+Avsluta med en rapport på högst 8 rader: vad som ändras, antal påståenden och strykningar, vad som visade sig vara rätt och vad torrkörningen gav.
