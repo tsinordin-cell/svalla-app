@@ -31,6 +31,10 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Källistan märker operatörer (Waxholmsbolaget, SL) som "Myndighet" (myndighet: true i kallor.generated.ts, MÄTT av Kontrollanten full-01 på /o/grinda). Operatörer är nivå 2.
 
 ## Samma fel på andra ställen
+- Från P0 22 (Granskaren, utanför uppdraget):
+  - /o/bullero "Ta sig dit" säger buss 434. SL:s tabeller till 12 december har 433 till Stavsnäs vinterhamn och 434 bara "Endast vissa turer". Pröva mot sommartabellen i Bullerös batch.
+  - Fotraden i avgångsrutan för Nåttarö säger "Från Nynäshamn färjeterminal". Kommunen skriver att Waxholmsbolagets båtar går från Fiskehamnen, och tabell 22 säger bara "Nynäshamn". Pröva brygga och hållplats i Nåttarös batch.
+  - Rutan säger "Hit går ingen kollektivtrafik … egen båt eller taxibåt" för Lilla Karlsö, som har turbåt, och för öar vars hållplats inte kunde knytas, till exempel Birka. P0 22 lägger till en egen gren för Bullerö i ingen-trafik.ts, och samma gren kan användas för dem.
 - Dagsplaneraren (/utflykt, Nynäshamn) efter P0 21 (MÄTT av Kontrollanten): Gotska Sandön visas året om fast båten är säsongsbåt (29/5–30/8), och Yttre Gården har ingen reguljär båt. Planerarens fas.
 - Resetipset huvudskar-fyrstationen: "Heldag (tidigt start krävs)" står kvar, fast båten vände direkt på torsdagar sommaren 2026 (p0-21, MÄTT). Resetipsens fas.
 - Vandringssidan, body (aktivitet/vandring/page.tsx:115): P0 20 del 3 rättar Utö, Nåttarö, Landsort, Trysunda, Ulvön och Gotland i strängen. Inte prövat än: Västtrafiks båtlinjer (Vrångö, Styrsö och Donsö), buss 302/312 till Marstrand, SJ/Norrtåg till Härnösand och Kramfors samt "busstrafiken är gles". Det hör till sidans fas. Samma sida rad 39: "Utö och Nåttarö är söder om Nynäshamn", men Utö ligger nordost om Nynäshamn (RESONERAT av Granskaren).
