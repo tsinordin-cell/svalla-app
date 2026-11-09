@@ -1,3 +1,4 @@
+import { decimal } from '@/lib/gps'
 import { notFound } from 'next/navigation'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Metadata } from 'next'
@@ -63,7 +64,7 @@ function buildSpaghettiPath(
 }
 
 function fmtDist(nm: number) {
- return nm >= 1000 ? `${(nm / 1000).toFixed(1)}k` : nm.toFixed(0)
+ return nm >= 1000 ? `${decimal(nm / 1000)}k` : nm.toFixed(0)
 }
 function fmtDur(mins: number) {
  const h = Math.floor(mins / 60)
@@ -215,10 +216,10 @@ export default async function WrappedPage({ params }: Props) {
  {/* ── Highlights ── */}
  <div style={{ marginTop: 16, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
  {[
- { icon: '', val: `${maxSpeed.toFixed(1)} kn`, label: 'Toppfart' },
+ { icon: '', val: `${decimal(maxSpeed)} kn`, label: 'Toppfart' },
  { icon: '', val: magiskCount.toString(), label: 'Magiska turer' },
  { icon: '📍', val: uniqueLocs.toString(), label: 'Unika platser' },
- { icon: '🏆', val: `${(totalDist / Math.max(trips.length, 1)).toFixed(1)} nm`, label: 'Snitttur' },
+ { icon: '🏆', val: `${decimal(totalDist / Math.max(trips.length, 1))} nm`, label: 'Snitttur' },
  ].map(h => (
  <div key={h.label} style={{ background: 'var(--white)', borderRadius: 16, padding: '14px 14px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)' }}>
  <div style={{ fontSize: 22, marginBottom: 6 }}>{h.icon}</div>
@@ -257,7 +258,7 @@ export default async function WrappedPage({ params }: Props) {
  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
  {t.location_name ?? t.caption ?? 'Tur'}
  </div>
- <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 1 }}>{(t.max_speed_knots ?? 0).toFixed(1)} kn toppfart</div>
+ <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 1 }}>{decimal(t.max_speed_knots ?? 0)} kn toppfart</div>
  </div>
  </Link>
  ))}

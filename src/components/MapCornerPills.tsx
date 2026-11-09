@@ -9,6 +9,7 @@
 // DestinationPill låg här tidigare men användes bara av UpptackClient, som
 // togs bort 2026-08-02 (död kod). Finns i git-historiken om den behövs.
 
+import { decimal } from '@/lib/gps'
 import { useEffect, useRef, useState } from 'react'
 import {
   fetchWeatherAt,
@@ -137,7 +138,7 @@ export function WeatherPill({ lat, lng }: { lat: number; lng: number }) {
   const desc = weatherDesc(data.weatherCode, data.isDay)
 
   return (
-    <PillShell ariaLabel={`Väder: ${data.temp}°, ${data.windSpeed} m/s ${windDirLabel(data.windDir)}${place ? ', ' + place : ''}`}>
+    <PillShell ariaLabel={`Väder: ${data.temp}°, ${decimal(data.windSpeed)} m/s ${windDirLabel(data.windDir)}${place ? ', ' + place : ''}`}>
       {/* Väderdata — rad 1 */}
       <span style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
@@ -155,7 +156,7 @@ export function WeatherPill({ lat, lng }: { lat: number; lng: number }) {
               <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
             </svg>
             <span style={{ fontSize: 11.5, fontWeight: 700, letterSpacing: '-0.1px' }}>
-              {data.windSpeed.toFixed(1)} m/s {windDirLabel(data.windDir)}
+              {decimal(data.windSpeed)} m/s {windDirLabel(data.windDir)}
             </span>
           </span>
         </span>

@@ -1,3 +1,4 @@
+import { decimal } from '@/lib/gps'
 import Icon from '@/components/Icon'
 import type { RouteForecast } from '@/lib/routeForecast'
 
@@ -78,11 +79,11 @@ export default function RouteWeatherStrip({ forecast }: { forecast: RouteForecas
             </div>
           ) : (
             <div style={{ fontSize: 13, color: 'var(--txt)', marginTop: 2 }}>
-              <strong>{forecast.summary.avgSpeedMs} m/s</strong>
+              <strong>{decimal(forecast.summary.avgSpeedMs)} m/s</strong>
               <span style={{ color: 'var(--txt3)' }}> ({forecast.summary.avgSpeedKnots} knop)</span>
               {forecast.summary.maxGustMs !== null && (
                 <span style={{ marginLeft: 8 }}>
-                  · byar till <strong>{forecast.summary.maxGustMs} m/s</strong>
+                  · byar till <strong>{decimal(forecast.summary.maxGustMs)} m/s</strong>
                 </span>
               )}
             </div>
@@ -119,7 +120,7 @@ export default function RouteWeatherStrip({ forecast }: { forecast: RouteForecas
                     <WindArrow directionDeg={wp.forecast.directionDeg} size={28} />
                   </div>
                   <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt)' }}>
-                    {wp.forecast.directionCompass} {wp.forecast.speedMs}
+                    {wp.forecast.directionCompass} {decimal(wp.forecast.speedMs)}
                     <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)' }}> m/s</span>
                   </div>
                 </>

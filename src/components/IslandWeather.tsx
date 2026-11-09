@@ -1,5 +1,6 @@
 'use client'
 // Väderwidget för ö-sidor — hämtar data från Open-Meteo (gratis, ingen API-nyckel)
+import { decimal } from '@/lib/gps'
 import { useEffect, useState } from 'react'
 import Icon from './Icon'
 
@@ -111,7 +112,7 @@ export default function IslandWeather({ lat, lng }: { lat: number; lng: number; 
  <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
  <Icon name="wind" size={13} style={{ color: 'rgba(255,255,255,.9)' }} aria-hidden />
  <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,.9)' }}>
- {weather.windSpeed} m/s {windDirLabel(weather.windDir)}
+ {decimal(weather.windSpeed)} m/s {windDirLabel(weather.windDir)}
  </span>
  </div>
 

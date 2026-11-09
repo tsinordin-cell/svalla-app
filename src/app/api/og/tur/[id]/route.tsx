@@ -1,3 +1,4 @@
+import { decimal } from '@/lib/gps'
 import { ImageResponse } from 'next/og'
 import { createClient } from '@/lib/supabase'
 
@@ -71,10 +72,10 @@ export async function GET(
  : { data: null }
 
  // ── Stats ──────────────────────────────────────────────────────────────
- const dist = trip && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)}` : null
+ const dist = trip && trip.distance >= 0.1 ? decimal(trip.distance) : null
  const dur = trip && trip.duration > 0 ? fmtDur(trip.duration) : null
- const speed = trip && (trip.max_speed_knots ?? 0) >= 0.1 ? `${(trip.max_speed_knots ?? 0).toFixed(1)}` : null
- const avgSpd = trip && (trip.average_speed_knots ?? 0) >= 0.1 ? `${(trip.average_speed_knots ?? 0).toFixed(1)}` : null
+ const speed = trip && (trip.max_speed_knots ?? 0) >= 0.1 ? decimal(trip.max_speed_knots ?? 0) : null
+ const avgSpd = trip && (trip.average_speed_knots ?? 0) >= 0.1 ? decimal(trip.average_speed_knots ?? 0) : null
  const locLabel = trip?.start_location && trip?.location_name
  ? `${trip.start_location} → ${trip.location_name}`
  : trip?.location_name ?? ''

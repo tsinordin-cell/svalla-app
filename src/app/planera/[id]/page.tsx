@@ -285,7 +285,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  const isFar = stop.distance_from_line_km > 5
  const distLabel = stop.distance_from_line_km < 1
  ? '<1 km'
- : `${stop.distance_from_line_km} km`
+ : `${String(stop.distance_from_line_km).replace('.', ',')} km`
  return (
  <Link key={stop.id} href={`/upptack/${stop.id}`} style={{ textDecoration: 'none' }}>
  <div style={{

@@ -1,5 +1,6 @@
 'use client'
 
+import { decimal } from '@/lib/gps'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
@@ -85,9 +86,9 @@ export default function ForumTripAttachment({ id }: { id: string }) {
     )
   }
 
-  const distanceNm = trip.distance ? (trip.distance / 1.852).toFixed(1) : null
+  const distanceNm = trip.distance ? decimal(trip.distance) : null
   const durMin = trip.duration ? Math.round(trip.duration / 60) : null
-  const durDisplay = durMin ? (durMin >= 60 ? `${Math.floor(durMin / 60)}h ${durMin % 60}m` : `${durMin}m`) : null
+  const durDisplay = durMin ? (durMin >= 60 ? `${Math.floor(durMin / 60)} h ${durMin % 60} min` : `${durMin} min`) : null
   const route = trip.start_location && trip.location_name
     ? `${trip.start_location} → ${trip.location_name}`
     : trip.location_name ?? trip.start_location ?? ''

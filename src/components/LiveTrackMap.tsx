@@ -1,5 +1,6 @@
 'use client'
 
+import { decimal } from '@/lib/gps'
 import { useEffect, useRef, useState } from 'react'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 import { speedRuns } from '@/lib/speedColor'
@@ -304,7 +305,7 @@ export default function LiveTrackMap({
           letterSpacing: '0.02em',
           boxShadow: '0 2px 8px rgba(0,0,0,0.20)',
         }}>
-          {speed.toFixed(1)} kn
+          {decimal(speed)} kn
         </div>
       )}
 

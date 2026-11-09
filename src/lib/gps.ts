@@ -347,7 +347,7 @@ export function getLiveInsights(
  if (dist >= 10 && dist < 10.5) out.push({ key: '10nm', iconKey: 'flag', text: '10 NM — bra jobbat!' })
  if (dist >= 25 && dist < 25.5) out.push({ key: '25nm', iconKey: 'trophy', text: '25 NM — en riktig långtur!' })
  if (dist >= 50 && dist < 50.5) out.push({ key: '50nm', iconKey: 'star', text: '50 NM! Legendarisk tur.' })
- if (maxSpd >= 15) out.push({ key: 'fast', iconKey: 'wind', text: `Toppfart ${maxSpd.toFixed(1)} kn!` })
+ if (maxSpd >= 15) out.push({ key: 'fast', iconKey: 'wind', text: `Toppfart ${decimal(maxSpd)} kn!` })
  if (elapsed >= 3600 && elapsed < 3700) out.push({ key: '1h', iconKey: 'clock', text: '1 timme på vattnet!' })
  if (elapsed >= 7200 && elapsed < 7300) out.push({ key: '2h', iconKey: 'clock', text: '2 timmar aktiv segling.' })
  if (stops.length === 1) out.push({ key: 'stop1', iconKey: 'pin', text: 'Första stoppet noterat.' })

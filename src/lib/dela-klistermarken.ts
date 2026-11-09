@@ -18,7 +18,7 @@ export type StilId = 'photo' | 'map' | 'rutt' | 'tal' | 'rutt-tal' | 'delstracko
  * datacache eller webbläsarens cache (max-age 3600) visar ett gammalt kort.
  * 2026-10-26: efter #500 visade Thomas Chrome det gamla kartkortet i en timme.
  */
-export const BILD_VERSION = '2026-11-03a'
+export const BILD_VERSION = '2026-11-08a'
 
 export type Stil = {
   id: StilId
@@ -196,7 +196,7 @@ export function delstrackStaplar(splits: { index: number; distanceNM: number; se
   return urval.map(s => ({
     etikett: s.distanceNM < 0.995 ? `${s.index} (${s.distanceNM.toFixed(2).replace('.', ',')})` : String(s.index),
     tid: formatDelTid(s.seconds),
-    fart: `${s.avgKnots.toFixed(1)} kn`,
+    fart: `${s.avgKnots.toFixed(1).replace('.', ',')} kn`,
     andel: Math.max(0.06, s.avgKnots / topp),
   }))
 }

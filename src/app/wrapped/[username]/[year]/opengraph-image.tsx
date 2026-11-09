@@ -1,3 +1,4 @@
+import { decimal } from '@/lib/gps'
 import { ImageResponse } from 'next/og'
 import { createClient } from '@/lib/supabase'
 import type { Trip } from '@/lib/supabase'
@@ -8,7 +9,7 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 function fmtDist(nm: number) {
- return nm >= 1000 ? `${(nm / 1000).toFixed(1)}k` : nm.toFixed(0)
+ return nm >= 1000 ? `${decimal(nm / 1000)}k` : nm.toFixed(0)
 }
 function fmtDur(mins: number) {
  const h = Math.floor(mins / 60)

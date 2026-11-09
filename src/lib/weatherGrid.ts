@@ -231,7 +231,7 @@ export function windArrowHTML(w: WeatherPoint): string {
  fill="${color}" stroke="${color}" stroke-width="1" stroke-linejoin="round"/>
  </svg>
  <span style="background:${color};color:#fff;font-size:10px;font-weight:700;line-height:1.2;padding:1px 6px;border-radius:7px;box-shadow:0 1px 2px rgba(0,0,0,0.18);white-space:nowrap;font-family:system-ui,-apple-system,sans-serif;letter-spacing:.2px;">
- ${w.windSpeed.toFixed(1)}
+ ${w.windSpeed.toFixed(1).replace('.', ',')}
  </span>
  </div>
  `
@@ -377,7 +377,7 @@ export function windPopupHTML(w: WeatherPoint): string {
  </div>
  <div style="padding:8px 10px;border-radius:10px;background:${color};color:#fff;">
  <div style="font-size:13px;font-weight:700;letter-spacing:.2px;">
- ${w.windSpeed.toFixed(1)} m/s · ${windDirLabel(w.windDir)}
+ ${w.windSpeed.toFixed(1).replace('.', ',')} m/s · ${windDirLabel(w.windDir)}
  </div>
  <div style="font-size:11px;opacity:.92;margin-top:2px;font-weight:600;">
  ${beaufortLabel(w.windSpeed)}

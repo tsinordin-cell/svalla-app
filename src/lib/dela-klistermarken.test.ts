@@ -82,7 +82,7 @@ describe('format', () => {
       { index: 2, distanceNM: 1, seconds: 235, avgKnots: 15.3 },
       { index: 3, distanceNM: 0.67, seconds: 175, avgKnots: 13.8 },
     ])
-    expect(st[0]).toEqual({ etikett: '1', tid: '2:43', fart: '22.0 kn', andel: 1 })
+    expect(st[0]).toEqual({ etikett: '1', tid: '2:43', fart: '22,0 kn', andel: 1 })
     expect(st[1]!.andel).toBeCloseTo(15.3 / 22, 3)
     expect(st[2]!.etikett).toBe('3 (0,67)')
   })

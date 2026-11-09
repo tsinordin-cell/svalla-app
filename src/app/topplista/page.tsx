@@ -1,3 +1,4 @@
+import { decimal } from '@/lib/gps'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -184,7 +185,7 @@ export default async function ToplistaPage() {
           title="Veckans topp — Nautiska mil"
           subtitle="Senaste 7 dagarna"
           rows={weekTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
-          formatValue={v => `${v.toFixed(1)} NM`}
+          formatValue={v => `${decimal(v)} NM`}
           emptyText="Ingen har loggat denna vecka än"
           accentColor="#c96e2a"
         />
@@ -194,7 +195,7 @@ export default async function ToplistaPage() {
           title="Månadens topp — Nautiska mil"
           subtitle="Senaste 30 dagarna"
           rows={monthTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}${r.magic > 0 ? ` · ${r.magic} magiska` : ''}` }))}
-          formatValue={v => `${v.toFixed(1)} NM`}
+          formatValue={v => `${decimal(v)} NM`}
           emptyText="Ingen har loggat denna månad än"
           accentColor="#2d7d8a"
         />
@@ -237,7 +238,7 @@ export default async function ToplistaPage() {
             title="Alltime — Toppfart"
             subtitle="Högsta uppmätta hastighet"
             rows={allTopSpeed.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.maxSpeed, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
-            formatValue={v => `${v.toFixed(1)} kn`}
+            formatValue={v => `${decimal(v)} kn`}
             emptyText="Inga hastighetsvärden tillgängliga"
             accentColor="#7a40c9"
           />
