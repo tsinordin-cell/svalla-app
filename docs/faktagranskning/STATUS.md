@@ -2,7 +2,7 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
-## 2026-11-09 19:20 — runda 4b klar; Utö omkontrollerad; P0 20 del 3, P0 21 och P0 22
+## 2026-11-09 19:17 — runda 4b klar; Utö omkontrollerad; P0 20 del 3, P0 21 och P0 22
 
 - **Femtimmarsgränsen** stoppade alla fyra agenter i morse, någon gång efter
   04:57. Arbetet låg kvar på disk, och agenterna återupptogs 18:24.
@@ -16,7 +16,7 @@ Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 - **Runda 4b** är klar för Fjäderholmarna, Grinda, Möja, Vaxholm och Utö:
   47 registerrader, och torrkörningen gav 0 fel för alla fem öar.
   - De fem nya eller ändrade WHERE-villkoren i moja.sql och vaxholm.sql
-    träffar var sin rad (MÄTT med SELECT 19:1x).
+    träffar var sin rad (MÄTT med SELECT strax före 19:17).
   - Omkontrollen 4b (46 rader och 1 struken) startar när en plats blir
     ledig.
   - Fjäderholmarnas post 31 satte GPS-radien till 0,7 km mot Toms beslut 3.
