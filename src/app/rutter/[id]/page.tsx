@@ -1,3 +1,4 @@
+import { kastaVidDatabasfel } from '@/lib/databasfel'
 import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
@@ -39,7 +40,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
   const supabase = createPublicSupabaseClient()
-  const { data } = await supabase.from('tours').select('title, usp, start_location, destination, best_for, cover_image').eq('id', id).single()
+  const { data, error } = await supabase.from('tours').select('title, usp, start_location, destination, best_for, cover_image').eq('id', id).single()
+  kastaVidDatabasfel(error, 'rutter/[id] metadata')
   if (!data) return { title: { absolute: 'Rutt – Svalla' } }
   const desc = data.usp ?? `Segelrutt ${data.start_location} → ${data.destination}.`
   const keywords = [
@@ -80,7 +82,9 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
   const { data, error } = await supabase.from('tours').select(
     'id, title, start_location, destination, transport_types, duration_label, best_for, highlights, food_stops, season, usp, hamn_profil, bad_profil, log_suggestions, insider_tip, waypoints'
   ).eq('id', id).single()
-  if (error || !data) notFound()
+  // Databasfel kastas, så att den cachade sidan står kvar vid ett avbrott (src/lib/databasfel.ts).
+  kastaVidDatabasfel(error, 'rutter/[id]')
+  if (!data) notFound()
   const t = data as Tour
 
   const foodStops = Array.isArray(t.food_stops) ? t.food_stops : []

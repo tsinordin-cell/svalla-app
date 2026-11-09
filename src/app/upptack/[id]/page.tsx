@@ -1,3 +1,4 @@
+import { kastaVidDatabasfel } from '@/lib/databasfel'
 import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import type { Restaurant } from '@/lib/supabase'
 import Image from 'next/image'
@@ -73,7 +74,10 @@ async function fetchRestaurant(rawIdOrSlug: string, columns: string) {
   const supabase = createPublicSupabaseClient()
   const isUuid = UUID_RE.test(idOrSlug)
   const col = isUuid ? 'id' : 'slug'
-  const { data } = await supabase.from('restaurants').select(columns).eq(col, idOrSlug).maybeSingle()
+  const { data, error } = await supabase.from('restaurants').select(columns).eq(col, idOrSlug).maybeSingle()
+  // Databasfel kastas, så att den cachade platssidan står kvar vid ett avbrott i stället
+  // för att bli 404 (avbrottet 30 okt–3 nov; src/lib/databasfel.ts).
+  kastaVidDatabasfel(error, 'upptack/[id]')
   return data
 }
 

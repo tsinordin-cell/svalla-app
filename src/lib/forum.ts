@@ -5,6 +5,7 @@
  *     Använd '@/lib/forum-categories' för statisk data i klient-komponenter.
  */
 
+import { kastaVidDatabasfel } from '@/lib/databasfel'
 import { createPublicSupabaseClient, createServerSupabaseClient } from '@/lib/supabase-server'
 
 // Re-exportera typer + statisk data från den client-säkra filen
@@ -245,26 +246,25 @@ export async function getThreadsByIsland(
 }
 
 export async function getThreadById(id: string, publik = false): Promise<ForumThread | null> {
-  try {
-    const supabase = publik ? createPublicSupabaseClient() : await createServerSupabaseClient()
-    const { data: thread } = await supabase
-      .from('forum_threads')
-      .select('*')
-      .eq('id', id)
-      .eq('in_spam_queue', false)
-      .single()
-    if (!thread) return null
+  // Databasfel kastas vidare (2026-11-08). Förut fångades allt och gav null, så trådsidan
+  // blev 404 under ett avbrott och ersatte den cachade sidan. Saknad tråd ger fortfarande null.
+  const supabase = publik ? createPublicSupabaseClient() : await createServerSupabaseClient()
+  const { data: thread, error } = await supabase
+    .from('forum_threads')
+    .select('*')
+    .eq('id', id)
+    .eq('in_spam_queue', false)
+    .single()
+  kastaVidDatabasfel(error, 'forum_threads')
+  if (!thread) return null
 
-    const { data: author } = await supabase
-      .from('users')
-      .select('id, username, avatar')
-      .eq('id', thread.user_id)
-      .single()
+  const { data: author } = await supabase
+    .from('users')
+    .select('id, username, avatar')
+    .eq('id', thread.user_id)
+    .single()
 
-    return { ...thread, author } as ForumThread
-  } catch {
-    return null
-  }
+  return { ...thread, author } as ForumThread
 }
 
 export async function getPostsByThread(

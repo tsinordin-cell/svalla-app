@@ -1,3 +1,4 @@
+import { kastaVidDatabasfel } from '@/lib/databasfel'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -97,12 +98,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
  let slug = rawSlug
  try { slug = decodeURIComponent(rawSlug) } catch { /* slå upp som den är */ }
  const supabase = await createServerSupabaseClient()
- const { data } = await supabase
+ const { data, error } = await supabase
  .from('restaurants')
  .select('name, core_experience, description, image_url')
  .eq('slug', slug)
  .single()
 
+ kastaVidDatabasfel(error, 'plats/[slug] metadata')
  if (!data) return { title: { absolute: 'Plats – Svalla' } }
 
  const desc = data.core_experience || (data.description?.slice(0, 155) ?? '')
@@ -131,7 +133,9 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  .eq('slug', slug)
  .single()
 
- if (error || !data) notFound()
+ // Databasfel kastas i stället för 404 (src/lib/databasfel.ts).
+ kastaVidDatabasfel(error, 'plats/[slug]')
+ if (!data) notFound()
 
  const p = data as Plats
 
