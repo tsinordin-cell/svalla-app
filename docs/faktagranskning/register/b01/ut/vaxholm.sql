@@ -101,5 +101,5 @@ update restaurants set name = 'Vaxholms Gästhamn' where slug = 'waxholms-gastha
 --   (https://www.facebook.com/vaxholmshembygdsgardscafe/: "Trädgårdsgatan 19, Vaxholm, Sweden, 185 32", läst av Redaktören i Toms Chrome 2026-11-09, kallcache/facebook-2026-11-09.txt punkt 2).
 --   Kaféet finns i receptionen till Vaxholms fästnings museum på Kastellet, och museet anger adressen Kastellet 185 99 Vaxholm. Bara adressfältet ändras.
 -- FÖRE: 'Trädgårdsgatan 19, 185 32 Vaxholm' (som sidan visar fältet 2026-11-09; inte prövat med SELECT, eftersom inget körs mot databasen i omarbete 4b – kör SELECT före)
--- KÄLLA: https://www.vaxholmsfastning.se/besoksinfo/ — "Vaxholms Fästnings Museum | Kastellet 185 99 Vaxholm" (läst 2026-11-09)
+-- KÄLLA: https://www.vaxholmsfastning.se/besoksinfo/ — "Vaxholms Fästnings Museum", "Kastellet 185 99 Vaxholm" (läst 2026-11-09)
 update restaurants set formatted_address = 'Kastellet, 185 99 Vaxholm' where slug = 'vaxholms-fastning-cafe' and formatted_address = 'Trädgårdsgatan 19, 185 32 Vaxholm';

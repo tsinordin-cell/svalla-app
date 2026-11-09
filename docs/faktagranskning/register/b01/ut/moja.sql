@@ -83,7 +83,7 @@ update restaurants set website = null where slug = 'bastuhuset' and website = 'h
 -- FÖRE: 'https://www.facebook.com/profile.php?id=100065104277412'
 -- KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — "Hamncafét", "Café med glass och bullar samt cykeluthyrning.", "Hamnbaren" (läst 2026-11-09)
 -- KÄLLA: https://www.facebook.com/profile.php?id=100067003784963 — "Möja Hamncafé", "Enkelt café och cykeluthyrning i Kyrkviken på Möja" (läst 2026-11-09, i Chromium utan inloggning; adressen leder till facebook.com/people/Möja-Hamncafé/100067003784963/); senaste inlägget 7 augusti 2026.
--- KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — "MÖJA HAMNCAFÉ (Kyrkviken)" (läst 2026-11-09); länken går till https://www.facebook.com/profile.php?id=100067003784963
+-- KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — "MÖJA HAMNCAFÉ (Kyrkviken)" (läst 2026-11-09); länken går till kaféets Facebookprofil (id 100067003784963), MÄTT i sidans HTML
 update restaurants set website = 'https://www.facebook.com/profile.php?id=100067003784963' where slug = 'hamncafet-moja' and website = 'https://www.facebook.com/profile.php?id=100065104277412';
 
 -- restaurants.hamncafet-moja.latitude/.longitude (moja-0580, FEL → RÄTTA; omarbete 4b, mo4008)
