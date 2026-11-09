@@ -74,6 +74,13 @@ update restaurants set formatted_address = 'Grönviksvägen, Rindö' where slug 
 -- KÄLLA: https://api.openstreetmap.org/api/0.6/way/142454383/full — "amenity=restaurant", "name=Bryggan på Tenö" (läst 2026-11-09) Uppmätt: byggnadens mittpunkt (medelvärdet av wayens noder) 59.392279, 18.328248, 125 m från den gamla nålen.
 update restaurants set latitude = 59.392279, longitude = 18.328248 where slug = 'bryggan-teno' and latitude = 59.39257 and longitude = 18.33038;
 
+-- restaurants.waxholms-gasthamn-och-rent-under-batbotten-tvatt.name (vaxholm-0674), Toms beslut 8. Slugen ändras inte.
+-- FÖRE: 'Waxholms Gästhamn & Rent Under Båtbotten tvätt'
+-- Ingen källa bekräftar Rent Unders båttvätt: gästhamnens egen bokningssida (Waxholms Hamn AB) beskriver båtbottentvätten som gästhamnens egen och nämner inte Rent Under. Hamnens startsida skriver "Vaxholms Gästhamn" i rubriken och "Waxholms Gästhamn" i sidfoten; namnet följer rubriken och Toms beslut. Beskrivningen nämner inte Rent Under och står kvar.
+-- KÄLLA: https://waxholmshamn.se/sv/ — "Välkommen till Vaxholms Gästhamn", "Mitt i Vaxholm – Mitt i Skärgården" (läst 2026-11-09)
+-- KÄLLA: https://waxholmsgasthamn.bokamera.se/ — "Waxholms Gästhamn & Drive in Boatwash", "Vår båtbottentvätt finns i Waxholms Gästhamn" (läst 2026-11-09)
+update restaurants set name = 'Vaxholms Gästhamn' where slug = 'waxholms-gasthamn-och-rent-under-batbotten-tvatt' and name = 'Waxholms Gästhamn & Rent Under Båtbotten tvätt';
+
 -- ----- Källor utan ändring i databasen (texten och värdena stämmer; bara källan är ny). Inga satser. -----
 -- restaurants.vaxholms-hembygdsgards-cafe: name, type, website, description (vaxholm-0428, vaxholm-0429, vaxholm-0432, vaxholm-0433). Toms beslut 9: Facebooksidan läst av Redaktören i Toms Chrome 2026-11-09, avskrift i kallcache/facebook-2026-11-09.txt, punkt 2. Senaste inlägget är daterat 17 september 2026.
 -- KÄLLA: https://www.facebook.com/vaxholmshembygdsgardscafe/ — "Vaxholms Hembygdsgårds Café", "Kafé", "Trädgårdsgatan 19, Vaxholm, Sweden, 185 32", "Öppet helger i maj och dagligen från 1 juni." (läst 2026-11-09)
@@ -86,5 +93,5 @@ update restaurants set latitude = 59.392279, longitude = 18.328248 where slug = 
 -- KÄLLA: https://api.openstreetmap.org/api/0.6/node/10683559020 — "name=Vaxholm Bed&Breakfast", "tourism=guest_house", "addr:street=Drottninggatan", "addr:housenumber=7" (läst 2026-11-09) Uppmätt: noden ligger 0 m från nålen, inne på Vaxön 136 m från stranden.
 -- restaurants.frode-marina-ab.latitude/.longitude (vaxholm-0477)
 -- KÄLLA: https://www.frode.se/kontaktsida — "Björkstigen 4", "59E24´25.17", "18E19´44.23" (läst 2026-11-09, curl med HTTP/1.1; Chromium fick 502 från proxyn) Uppmätt: nålen ligger på OSM-byggnaden way 161229614 "addr:street=Björkstigen", "addr:housenumber=4" (6 m från dess mittpunkt) och 26 m från verksamhetens egen GPS-angivelse, inne på Vaxön.
--- restaurants.waxholms-gasthamn-och-rent-under-batbotten-tvatt.latitude/.longitude (vaxholm-0677; namnet hör till Toms beslut 8)
+-- restaurants.waxholms-gasthamn-och-rent-under-batbotten-tvatt.latitude/.longitude (vaxholm-0677; namnet byts i satsen ovan, Toms beslut 8)
 -- KÄLLA: https://waxholmshamn.se/ — "Vaxholms Gästhamn", "In the middle of Vaxholm - In the middle of Skärgården", "Västerhamnen" (läst 2026-11-09) Uppmätt: nålen ligger i hamnbassängen 47 m från OSM-noden 282188948 "leisure=marina" (namnet stavat "Västerhammen" i OSM) och 85 m från noden 282186126 "name=Waxholms Gästhamn Café".

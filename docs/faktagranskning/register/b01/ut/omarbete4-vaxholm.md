@@ -3,7 +3,7 @@
 Alla källor lästa 2026-11-09 (kajaksidorna även 2026-11-08): Chromium (las_sida.py; kanotcenter.com utan klick, eftersom las_sida.py klickar sig till /our-story/), curl och pdftotext/pdfplumber för PDF:er, curl med HTTP/1.1 för frode.se (Chromium fick 502 från proxyn), OpenStreetMaps API med paus mellan anropen. Ingen verifieringssida visades. Facebook lästes inte här: Toms beslut 9, avskriften i kallcache/facebook-2026-11-09.txt (punkt 2). Sidkopior, OSM-data och skript: /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/omk4-vaxholm/ (texterna även i kallcache/ny/).
 Kortnamn: SFV = sfv.se/…/vaxholms-kastell. LM = stockholmslansmuseum.se/besoksmal/vaxholms-fastning/ (länsmuseet). RAÄ = Riksantikvarieämbetets post L2014:2913, pub.raa.se/dokumentation/9181fdb5-…/visning (PDF). BeBR = Bebyggelseregistret, byggnad 21400000444853 (historik ur Stockholms läns museums kyrkokaraktärisering). KOM = vaxholm.se/…/historia. KAN = kanotcenter.com (FAQ på startsidan).
 
-## Ändrade och nya registerrader (118 rader med läst 2026-11-09, varav 16 nya)
+## Ändrade och nya registerrader (123 rader med läst 2026-11-09, varav 16 nya)
 Säkerhet först: kajak
 - vaxholm-0615: DELVIS, PRECISERA: Lätt gäller bara paddling med guide. Förbehållet skrivs i notes, som /aktivitet/kajak visar direkt ovanför märket; difficulty står kvar, eftersom kortet visar allt utom lätt/medel som Svår och ingen källa belägger Medel. Källa: destinationvaxholm.se, KAN.
 - vaxholm-N009: ny mening i notes: den som hyr får före start paddlingsintroduktion, säkerhetsgenomgång och ruttförslag efter erfarenhet och väder. Källa: KAN.
@@ -58,7 +58,9 @@ Vaxholms kyrka (nivå 1: BeBR; församlingen bara för nuläget)
 - vaxholm-0449, 0457, 0676: KORREKT, KÄLLA-rad ny (mätning mot OSM-relationen 4121363 Vaxön): nålarna ligger i vattnet 29, 23 och 34 m från Vaxöns strand; Norrhamnen 4 m från OSM-noden Norrhamnen.
 - vaxholm-0655: KORREKT, KÄLLA-rad ny: OSM-noden Vaxholm Bed&Breakfast (Drottninggatan 7) ligger 0 m från nålen.
 - vaxholm-0477: KORREKT, KÄLLA-rad ny: frode.se anger besöksadressen Björkstigen 4 och en GPS-position; nålen ligger på OSM-byggnaden Björkstigen 4, 26 m från GPS-positionen. Nålen behöver inte flyttas.
-- vaxholm-0677: KORREKT, KÄLLA-rad ny: Waxholms Gästhamn anger "Västerhamnen"; nålen ligger 47 m från OSM:s marina där (stavad "Västerhammen"). Namnet: se Toms beslut 8 nedan.
+- vaxholm-0677: KORREKT, KÄLLA-rad ny: Waxholms Gästhamn anger "Västerhamnen"; nålen ligger 47 m från OSM:s marina där (stavad "Västerhammen").
+- vaxholm-0674 (Toms beslut 8, Redaktörens besked 2026-11-09): FEL, RÄTTA i databasen: namnet "Waxholms Gästhamn & Rent Under Båtbotten tvätt" → "Vaxholms Gästhamn". Ingen källa bekräftar Rent Unders tvätt; gästhamnens egen bokningssida beskriver båtbottentvätten som sin egen ("Waxholms Gästhamn & Drive in Boatwash", "Vår båtbottentvätt finns i Waxholms Gästhamn"). Hamnen skriver "Vaxholms Gästhamn" i rubriken ("Välkommen till Vaxholms Gästhamn") och "Waxholms Gästhamn" i sidfoten; namnet följer rubriken och beslutet. Slugen ändras inte. Beskrivningen nämner inte Rent Under och står kvar. Källa: waxholmshamn.se/sv/, waxholmsgasthamn.bokamera.se.
+- vaxholm-0675–0683: postens övriga rader har en not om namnbytet; 0680–0683 (beskrivningen) lästa igen.
 - vaxholm-0650 (f18-k097, ANM): KORREKT, KÄLLA-rad: citatet rättat till ordagrant "inspirerande" (stod "inspirande") i KÄLLA-raden i edits.json nr 21 och i citatkolumnen för hotellets rader 0273, 0641, 0642, 0645–0651; alla fyra citat lästa igen. Källa: waxholmshotell.se.
 - vaxholm-0428, 0429, 0432, 0433 (Vaxholms Hembygdsgårds Café, Toms beslut 9): EJ NÅBAR → KORREKT: namn, kategori Kafé, adressen Trädgårdsgatan 19 och säsongen; senaste inlägget 17 september 2026. Oberoende stöd: kommunens badplatssida nämner "Hembygdsgårdens café". KÄLLA i vaxholm.sql (kommentar).
 
@@ -66,27 +68,26 @@ Vaxholms kyrka (nivå 1: BeBR; församlingen bara för nuläget)
 - vaxholm-0355, 0356 (f02-k078, k079): Generatorn (Vakten) räknar trafikbolagen som myndighet och delar organisationer; mäts om efter inläggningen.
 - full-15 utanför-3 (Hamnkrogen: core_experience, menu, tags): fas 2.
 - vaxholm-0021 (f26-k052), 0421 (f27-k053), 0561 (f27-k073): mallarnas platslista och Vaktens lista (polygon eller ö-fält i stället för cirkel). Inget i öns data.
-- Namnet "Waxholms Gästhamn & Rent Under Båtbotten tvätt" (TOM-flaggan på 0676, 0677): rörs inte; avgörs enligt Toms beslut 8 (fynd nedan).
 
 ## Omprövas i slutomkontrollen
 - vaxholm-0069 (OMPROVAS i arbetslistan): bussen året runt med SL:s tre tabeller, ny källa s670670x.pdf.
 - full-18 anm-1 (OMPROVAS) / vaxholm-0165: dopfuntsmeningen är struken; pröva att ingen text säger att funten står i kyrkan.
 - Tidsbundet (förtydligande 15): bestReason (0069–0072) och kaféets säsong läses om före publiceringen.
 
-## edits.json (42 poster) och SQL (10 UPDATE)
+## edits.json (42 poster) och SQL (11 UPDATE)
 - nr 27: parkeringsdelen bort, eftersom den redan finns i main (Vaktens lista, P0 10/#505). "gammal" och "ny" slutar nu före car_parking; resten av posten läggs in. Inga andra poster låg i main: P0 9 var kod utanför filen, och nr 30 (intill P0 17) matchar main.
 - Main-kopian uppdaterades 2026-11-08 18:43 (PR #513, Utö). Den rör inga Vaxholm-rader; alla 42 "gammal" står exakt en gång i main.
 - Ändrade poster: 1, 2, 3, 5, 7, 10, 11, 12, 15, 20, 21 (hotellets KÄLLA-rad), 24, 26 ("gammal" utökad med did_you_know-raden), 28, 31, 32 ("gammal" utökad med best och months). Nya poster 37–41: seoDescription (KÄLLA), best_for, Stadspromenaden, insiderTips[3], Grönviksbadet (child_friendly bort).
-- vaxholm.sql: 2 nya UPDATE (gronviksbadet.formatted_address; bryggan-teno lat/lng) och ett kommentarsavsnitt "Källor utan ändring" (kaféet, fästningskaféet, Norrhamnen, Norrbergshamnen, B&B, Frodé, gästhamnen). SELECT 2026-11-09: alla 10 satsers WHERE träffar exakt en rad. Inget kört.
+- vaxholm.sql: 3 nya UPDATE (gronviksbadet.formatted_address; bryggan-teno lat/lng; namnet på gästhamnen, WHERE på slug och gamla namnet) och ett kommentarsavsnitt "Källor utan ändring" (kaféet, fästningskaféet, Norrhamnen, Norrbergshamnen, B&B, Frodé, gästhamnen). SELECT 2026-11-09: alla 11 satsers WHERE träffar exakt en rad. Inget kört.
 
 ## Kontroller (MÄTT)
 - Torrkörning: `applicera.mjs main-kopia vaxholm.edits.json --torr` → 42 ersättningar ok, 0 fel. TypeScript-parsern: 0 syntaxfel i island-data.ts och guide-island-map.ts efter inläggning.
-- Citat: 118 registerrader och 55 KÄLLA-rader (edits.json och sql) med läst 2026-11-09; 361 citat står ordagrant i dagens sparade källtext (citatkoll.py; blanktecken normaliserade, OSM-taggar ur XML). En URL per KÄLLA-rad. Inga klockslag i KÄLLA-citaten (två GPS-angivelser i SQL-kommentaren för Frodé).
+- Citat: 123 registerrader och 57 KÄLLA-rader (edits.json och sql) med läst 2026-11-09; 380 citat står ordagrant i dagens sparade källtext (citatkoll.py; blanktecken normaliserade, OSM-taggar ur XML). En URL per KÄLLA-rad. Inga klockslag i KÄLLA-citaten (två GPS-angivelser i SQL-kommentaren för Frodé).
 - Registret: 719 rader, alla 15 kolumner; kontrollera_register.py: inga formfel, 0 grundrader utan motsvarighet.
 - Lag 3: Vaxholm-blocket 2 079 → 2 242 ord (107,8 %). description +88, activity_meta +31, seasonal +23, did_you_know +13, facts +5, activities +4, tips +4, insiderTips −5 (rättelser; inget struket utan ersättning).
 
 ## För Redaktören och Vakten
-- Toms beslut 8 (MÄTT): gästhamnens egen bokningssida (waxholmsgasthamn.bokamera.se, Waxholms Hamn AB) har "Waxholms Gästhamn & Drive in Boatwash" och "Vår båtbottentvätt finns i Waxholms Gästhamn". Båttvätten finns alltså, men som gästhamnens egen; Rent Under nämns inte. Startsidan kallar hamnen "Vaxholms Gästhamn".
+- Gästhamnens nya namn (0674) syns först när vaxholm.sql körts. Bloggens länkar till /upptack/waxholms-gasthamn-och-rent-under-batbotten-tvatt fungerar, eftersom slugen står kvar.
 - Samma obelagda historia på andra ställen: blogg/[slug]/page.tsx:372 (KÄLLA-noten: blockhus, Sture, 1548) och :389 (kyrkan: tornet, dopfunten "inne i kyrkan").
 - Länsmuseet anger Rindö redutt 1858–1863 och Oscar-Fredriksborg 1870–1877; SFV, som förvaltar dem, 1859–1864 och 1867–1877. Ösidan följer SFV (inte ändrat, inte i arbetslistan).
 - Kaféets opening_hours i databasen ("Juni–Augusti", ons–sön) stämmer inte med Facebooksidan; fältet visas inte (verified_at saknas). Fas 2.
