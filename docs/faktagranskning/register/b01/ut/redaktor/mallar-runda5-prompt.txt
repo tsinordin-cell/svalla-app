@@ -1,0 +1,71 @@
+Du är GRANSKAREN OCH SKRIBENTEN för sidmallarna i Svallas faktagranskning, batch 01, runda 5. Det är den sista mallrundan före batchens PR. Skriv på svenska. Dagens datum är 2026-11-09, och det är läsdatum för allt du öppnar.
+
+LÄS FÖRST
+1. /home/claude/svalla-app/docs/faktagranskning/roller/granskare-skribent.md, hela, med förtydligandena (punkt 8–19).
+2. Förra rundan: /home/claude/svalla-app/docs/faktagranskning/register/b01/ut/mallar.omarbete4.md och mallar.omarbete3.md. Registret är register/b01/mallar.tsv (15 kolumner).
+3. Vaktens lista, register/b01/ut/vakt-lista.md: avsnitten "Generatorn och källistan", "Mallar och komponenter" och "Från mallarnas Skribent, runda 3".
+4. Arbetslistan från den fulla kontrollen: /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/redaktor/omarbete-ko/ovrigt.tsv. Kontrollanternas svar står i kontroll/full-NN.kontroll.tsv, och nyckeln i kontroll/full-NN.nyckel.tsv.
+5. Toms beslut: /home/claude/svalla-app/docs/faktagranskning/beslut-tom.md, särskilt punkt 2 (regionerna är Svallas indelning), 3 (GPS-radierna), 3c (ännu obesvarad) och 4 (typen camping).
+
+ARBETSKOPIA
+Mallarnas tidigare rundor ligger som ocommittade ändringar i /home/claude/svalla-mallar, som bygger på en äldre main. Main är nu 2a31087, efter #504–#506, #513 och #514. Ändra inget i /home/claude/svalla-mallar, för den är säkerhetskopian. Gör så här:
+- git -C /home/claude/svalla-mallar diff HEAD > /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/mallar5/runda1-4.patch
+- git -C /home/claude/svalla-app fetch -q origin && git -C /home/claude/svalla-app worktree add --detach /home/claude/svalla-mallar5 origin/main
+- git -C /home/claude/svalla-mallar5 apply --3way <patchen>. Lös konflikterna så att både main och rundorna 1–4 behålls. Generera om src/app/o/kallor.generated.ts (node scripts/generera-kallor.mjs) och src/lib/email-templates.generated.ts om mejlmallen berörs. Länka node_modules: ln -s /home/claude/svalla-app/node_modules /home/claude/svalla-mallar5/node_modules.
+- Kontrollera att rundorna 1–4 finns kvar efter inläggningen. Kör tsc, verify-claims och vitest, och jämför med main innan du ändrar något nytt.
+
+A. MÅSTE IN FÖRE BATCH 01:S PR (gör dessa först)
+A1. Platslistan (src/lib/islandPlaces.ts med flera): ett ifyllt ö-fält som inte är öns eget namn ska ge onIsland = false, även inom radien. Det tar bort Rånökällan från Utö, platser på Donsö och Brännö från Styrsö och platser på grannöar från Vaxholm, Sandhamn och Husarö. Pröva alla 101 öar före och efter, och lista vilka platser som försvinner eller tillkommer.
+A2. Typen IslandCoord får fältet platsRadieKm?: number, och platslistan använder platsRadieKm ?? radiusKm. Öarnas egna Skribenter sätter värdena i sina poster för islandCoords.ts, bland andra Grinda 1.4, Storholmen 0.8 och Fjäderholmarna 0.7. Ändra inte öarnas rader i islandCoords.ts.
+A3. Källistan: scripts/generera-kallor.mjs ska ersätta klockslag i "vad" med … och --kontroll ska larma om ett klockslag står kvar. I main har 7 öar i batch 01 och 64 andra öar klockslag där (uto-omk4, MÄTT). Generera om och räkna hur många rader som ändras.
+A4. Toms beslut 4, typen camping: koden ska stödja typen 'camping' för platser, med etikett, ikon, filter och de sidor som listar boende eller platser. Utö camping får typen genom en UPDATE i uto.sql, som körs först när koden stöder den. Undersök om typen också begränsas i databasen (enum eller check-villkor). Gör den det, skriv migreringen i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/mallar5/camping-migrering.sql och kör den inte. Toms beslut 4 godkänner schemaändringen.
+
+B. FYNDEN FRÅN DEN FULLA KONTROLLEN OCH VAKTENS LISTA
+Gå igenom ovrigt.tsv och avsnittet "Mallar och komponenter" och åtgärda varje mallfel. Kortfattat gäller det:
+- Rubrikerna "Guide till X: restauranger, boende …" och "… restauranger, boende & aktiviteter" (mall-0001, mall-0004, mall-0005): visa bara de delar som ön har.
+- "boende" i titel och beskrivning: bara övernattning under tak räknas, annars "tältning" (mall-0003 och utanför-2). Boendesidan ska ta med hostel och andra typer än hotel (mall-0149: Brännö och Möja).
+- Badplatserna:
+  - Nyckelordsfiltret missar "Sandstränderna" (mall-0199: Askö).
+  - "Badplatser på och nära" visar bara platser inom platsradien (mall-0094).
+  - "Badplats på X" sätts på grannöar (mall-0196: Gullholmen).
+  - "Bad och vattenliv på X" står över kort om andra platser (mall-0198).
+  - bad/page.tsx:66 sorterar in allt med "brygga" som bad.
+- IslandWeather.tsx:
+  - Väderkoderna 85–86 visas som Åska. 80–82 ska bli regnskurar, 85–86 snöbyar och 95–99 åska.
+  - Vindbenämningarna ska följa SMHI:s skala, med källa (mall-0027).
+  - Att vindriktningen anges varifrån det blåser ska beläggas (mall-0042).
+- "Mer om service och regler finns under Hamnar" visas bara när hamnsidan har innehållet (mall-0085).
+- Fotograffältet för Lilla Karlsö innehåller hela licenstexten (mall-0059). Fältet ska bara ha namnet, och licensen visas för sig.
+- IslandFakta.tsx:20 tappar genitiv-s:et i kommunnamn. Pröva alla kommunnamn mot kommunernas egna namn.
+- FAQ-svaren:
+  - "Finns det restaurang på …" räknar in barer och dansställen.
+  - FAQ:n om krogar räknar bara ödatans poster, medan restaurangsidan visar fler.
+  - islandFaqs.ts:56 slice(0, 2) tappar linje 2.
+  - Komma-dit-FAQ:n visar klockslag ur öarnas data.
+  - Ortnamnet står dubbelt ("från Stavsnäs från Stavsnäs vinterhamn").
+- Övrigt:
+  - /o/vaxholm/hamnar visar märket "✓ toilet" på engelska.
+  - Kajakens svårighetsgrad ("Lätt" bredvid "Uthyrning: Ja") ska komma ur data med källa, inte vara fast.
+  - Rubriken "Aktiviteter för barn" på Sandhamn (sandhamn-0539).
+  - komma-dit/page.tsx:84 visar Waxholmsbolagets "Praktiska tips" även där SL kör.
+  - isAccessibleForFree är en konstant.
+  - validThrough är hårdkodat.
+  - Hantverkarsidan säger att kontrollerade uppgifter saknas trots att posten har dem.
+- Står ett fel både i mallen och i en ös data, rättar du mallen. Öns data rättas av öns Skribent, och det skriver du i rapporten.
+- Gör det som går att belägga och mäta. En sakuppgift i en mall (till exempel SMHI:s skala) kräver en KÄLLA-rad.
+- Kan något inte rättas utan ett beslut som är Toms, skriv det i rapporten under "Till Redaktören".
+
+C. MÄT
+- Rendera de berörda sidorna för alla 101 öar med tsx före och efter, som i runda 4 (work-mallar4/matt/). Spara i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/mallar5/matt/.
+- Lag 3: ingen sida får hamna under 95 % av ordantalet före. Strukna obelagda ord kompenseras med belagt innehåll.
+- Kör npx tsc --noEmit, node scripts/verify-claims.mjs, node scripts/generera-kallor.mjs --kontroll och npx vitest run src/lib. Lägg tester i src/lib för A1–A3.
+
+LEVERANS
+- Ändringarna ligger ocommittade i /home/claude/svalla-mallar5. Spara hela ändringen mot origin/main som /home/claude/svalla-app/docs/faktagranskning/register/b01/ut/mallar-arbetskopia.patch, som ersätter den gamla (git -C /home/claude/svalla-mallar5 diff origin/main).
+- Uppdatera register/b01/mallar.tsv: en rad per ändrat påstående, med id mall-N### för nya rader.
+- Skriv register/b01/ut/mallar.omarbete5.md, högst 120 rader. Där står en rad per ändrad registerrad eller mallfix (fil:rad, vad, källa och MÄTT-resultat). Sedan följer det som inte är gjort med skäl, "Till Redaktören" och kontrollernas resultat.
+- Commita inte och pusha inte. Ändra inget i /home/claude/svalla-app utom docs-filerna ovan, och inget i databasen.
+
+Skicka aldrig en e-postadress, ett namn eller någon annan personuppgift i ett anrop. Kringgå aldrig en sajts blockering och byt inte user agent. WebFetch nekar URL:er som inte kommit från användaren, så använd curl -sSL --http1.1 eller Chromium: python3 -I /home/claude/svalla-app/docs/faktagranskning/verktyg/las_sida.py URL [sökord …].
+
+Avsluta med en rapport på högst 12 rader: vad som är gjort i A och B, vad som återstår, Lag 3 och kontrollernas resultat.
