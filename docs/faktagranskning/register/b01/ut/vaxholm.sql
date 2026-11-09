@@ -59,3 +59,32 @@ update restaurants set description = 'Resarö Marina ligger på Resarö strax ut
 -- KÄLLA: https://www.resarobatklubb.se/ — "Resarö Båtklubb, bildad 1972 och med hemort på Resarö i Vaxholm, är en allmännyttig ideell förening", "i de 4 hamnarna finns totalt 236 båtplatser" (läst 2026-11-03)
 -- FÖRE: 'Ytterbygårds bryggor ligger på Ytterby på södra Resarö, strax efter Resarö Marina på Sjöviksvägen. Vid inseglingen har man Tallholmen rakt söderut, och det finns ett par stenar att se upp för mellan Marieskäret och Resarö Marina. Hamnen har 120 båtplatser och sjösättningsramp, färskvatten, el och grillplats.'
 update restaurants set description = 'Ytterbygårds bryggor ligger på Ytterby på södra Resarö, strax efter Resarö Marina på Sjöviksvägen. Vid inseglingen har man Tallholmen rakt söderut. Hamnen har 120 båtplatser och sjösättningsramp, färskvatten, el och grillplats. Bryggorna hör till Resarö Båtklubb, en ideell förening bildad 1972 med hemort på Resarö, som har 236 båtplatser i sina fyra hamnar.' where slug = 'resaro-batklubb' and description = 'Ytterbygårds bryggor ligger på Ytterby på södra Resarö, strax efter Resarö Marina på Sjöviksvägen. Vid inseglingen har man Tallholmen rakt söderut, och det finns ett par stenar att se upp för mellan Marieskäret och Resarö Marina. Hamnen har 120 båtplatser och sjösättningsramp, färskvatten, el och grillplats.';
+
+-- ===== Omarbete runda 4 (Granskare och Skribent, 2026-11-09) =====
+-- WHERE-villkoren i alla satser i filen kontrollerade med SELECT 2026-11-09: varje sats träffar exakt en rad. Inget kört.
+
+-- restaurants.gronviksbadet.formatted_address (vaxholm-N024; full-07 utanför-1)
+-- FÖRE: 'Ensjövägen 90, 603 66 Norrköping' (Google Places; adressen ligger i Norrköping, inte vid badet)
+-- KÄLLA: https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Beläget på södra Rindö i slutet på Grönviksvägen finns detta lilla lokala bad." (läst 2026-11-09)
+update restaurants set formatted_address = 'Grönviksvägen, Rindö' where slug = 'gronviksbadet' and formatted_address = 'Ensjövägen 90, 603 66 Norrköping';
+
+-- restaurants.bryggan-teno.latitude/.longitude (vaxholm-0438)
+-- FÖRE: 59.39257, 18.33038 (nålen stod på stranden Tenöbadet, OSM way 161248340, 4 m)
+-- KÄLLA: https://tenorok.se/om-oss — "Tenö Rök & Brygga är en havsnära restaurang på Bogesundslandet, precis vid Tenöbadet.", "över tidigare Bryggan på Tenö" (läst 2026-11-09)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/way/142454383/full — "amenity=restaurant", "name=Bryggan på Tenö" (läst 2026-11-09) Uppmätt: byggnadens mittpunkt (medelvärdet av wayens noder) 59.392279, 18.328248, 125 m från den gamla nålen.
+update restaurants set latitude = 59.392279, longitude = 18.328248 where slug = 'bryggan-teno' and latitude = 59.39257 and longitude = 18.33038;
+
+-- ----- Källor utan ändring i databasen (texten och värdena stämmer; bara källan är ny). Inga satser. -----
+-- restaurants.vaxholms-hembygdsgards-cafe: name, type, website, description (vaxholm-0428, vaxholm-0429, vaxholm-0432, vaxholm-0433). Toms beslut 9: Facebooksidan läst av Redaktören i Toms Chrome 2026-11-09, avskrift i kallcache/facebook-2026-11-09.txt, punkt 2. Senaste inlägget är daterat 17 september 2026.
+-- KÄLLA: https://www.facebook.com/vaxholmshembygdsgardscafe/ — "Vaxholms Hembygdsgårds Café", "Kafé", "Trädgårdsgatan 19, Vaxholm, Sweden, 185 32", "Öppet helger i maj och dagligen från 1 juni." (läst 2026-11-09)
+-- KÄLLA: https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Hembygdsgårdens café som ligger mitt emot badplatsen på andra sidan viken", "Offentlig toalett finns i närheten av hembygdsgården på Trädgårdsgatan" (läst 2026-11-09)
+-- restaurants.vaxholms-fastning-cafe.description, "Kastellet nås året runt" (vaxholm-0426)
+-- KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Mellan dessa bryggor kan du året runt resa med Waxholmsbolaget på alla sorters SL-biljetter:", "Kastellet" (läst 2026-11-09)
+-- restaurants.norrhamnen.island (vaxholm-0449), restaurants.norrbergshamnen.island (vaxholm-0457), restaurants.waxholms-gasthamn-och-rent-under-batbotten-tvatt.island (vaxholm-0676)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/relation/4121363/full — "name=Vaxön", "place=island" (läst 2026-11-09) Uppmätt mot Vaxöns strandlinje (relationens yttre ring, 514 noder): Norrhamnens nål ligger i vattnet 29 m från stranden, Norrbergshamnens 23 m och gästhamnens 34 m; Norrhamnens nål ligger 4 m från OSM-noden 364733434 "name=Norrhamnen".
+-- restaurants.vaxholm-vaxholm-harbour-bochb.latitude/.longitude (vaxholm-0655)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/node/10683559020 — "name=Vaxholm Bed&Breakfast", "tourism=guest_house", "addr:street=Drottninggatan", "addr:housenumber=7" (läst 2026-11-09) Uppmätt: noden ligger 0 m från nålen, inne på Vaxön 136 m från stranden.
+-- restaurants.frode-marina-ab.latitude/.longitude (vaxholm-0477)
+-- KÄLLA: https://www.frode.se/kontaktsida — "Björkstigen 4", "59E24´25.17", "18E19´44.23" (läst 2026-11-09, curl med HTTP/1.1; Chromium fick 502 från proxyn) Uppmätt: nålen ligger på OSM-byggnaden way 161229614 "addr:street=Björkstigen", "addr:housenumber=4" (6 m från dess mittpunkt) och 26 m från verksamhetens egen GPS-angivelse, inne på Vaxön.
+-- restaurants.waxholms-gasthamn-och-rent-under-batbotten-tvatt.latitude/.longitude (vaxholm-0677; namnet hör till Toms beslut 8)
+-- KÄLLA: https://waxholmshamn.se/ — "Vaxholms Gästhamn", "In the middle of Vaxholm - In the middle of Skärgården", "Västerhamnen" (läst 2026-11-09) Uppmätt: nålen ligger i hamnbassängen 47 m från OSM-noden 282188948 "leisure=marina" (namnet stavat "Västerhammen" i OSM) och 85 m från noden 282186126 "name=Waxholms Gästhamn Café".
