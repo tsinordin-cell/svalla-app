@@ -1,5 +1,6 @@
 'use client'
 
+import { decimal } from '@/lib/gps'
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
 import { komprimeraBild } from '@/lib/komprimeraBild'
 import { useParams, useRouter } from 'next/navigation'
@@ -1265,7 +1266,7 @@ function TripBubble({ meta }: { meta: TripMeta }) {
           </div>
           {meta.distance != null && meta.distance > 0 && (
             <div style={{ fontSize: fontSize.caption, color: 'var(--sea)', fontWeight: fontWeight.medium, marginTop: 3 }}>
-              {meta.distance.toFixed(1)} NM
+              {decimal(meta.distance)} NM
             </div>
           )}
         </div>

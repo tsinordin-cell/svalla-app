@@ -1,5 +1,6 @@
 'use client'
 
+import { decimal } from '@/lib/gps'
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import Icon from '@/components/Icon'
@@ -158,9 +159,9 @@ export default function TripPickerModal({ open, onClose, onSelect }: Props) {
             </div>
           ) : (
             trips.map(t => {
-              const distanceNm = t.distance ? (t.distance / 1.852).toFixed(1) : null
+              const distanceNm = t.distance ? decimal(t.distance) : null
               const durMin = t.duration ? Math.round(t.duration / 60) : null
-              const durDisplay = durMin ? (durMin >= 60 ? `${Math.floor(durMin / 60)}h ${durMin % 60}m` : `${durMin}m`) : null
+              const durDisplay = durMin ? (durMin >= 60 ? `${Math.floor(durMin / 60)} h ${durMin % 60} min` : `${durMin} min`) : null
               const dateStr = t.started_at
                 ? new Date(t.started_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })
                 : ''

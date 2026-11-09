@@ -1,4 +1,5 @@
 'use client'
+import { decimal } from '@/lib/gps'
 import { useEffect, useState } from 'react'
 import {
   fetchWeatherAt, fetchPlaceName, weatherDesc, windDirLabel,
@@ -58,7 +59,7 @@ export default function FeedWeatherRow() {
         <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
         <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
       </svg>
-      <span style={{ flexShrink: 0 }}>{data.windSpeed.toFixed(1)} m/s {windDirLabel(data.windDir)}</span>
+      <span style={{ flexShrink: 0 }}>{decimal(data.windSpeed)} m/s {windDirLabel(data.windDir)}</span>
       {place && (
         <>
           <span style={{ opacity: 0.4, flexShrink: 0 }}>·</span>

@@ -10,6 +10,7 @@
  *     <Avatar ... />
  *   </ProfileTeaserPopover>
  */
+import { decimal } from '@/lib/gps'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -20,7 +21,7 @@ const LONG_PRESS_MS = 480
 const MOVE_TOLERANCE_PX = 8
 
 function fmt(n: number, dec = 1) {
-  return n % 1 === 0 ? n.toString() : n.toFixed(dec)
+  return n % 1 === 0 ? n.toString() : decimal(n, dec)
 }
 
 export default function ProfileTeaserPopover({

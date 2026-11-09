@@ -1,5 +1,6 @@
 'use client'
 
+import { decimal } from '@/lib/gps'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -339,7 +340,7 @@ export default function KlubbPage() {
  </div>
  <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>
  @{t.username} · {timeAgo(t.created_at)}
- {t.distance ? ` · ${t.distance.toFixed(1)} nm` : ''}
+ {t.distance ? ` · ${decimal(t.distance)} nm` : ''}
  </div>
  </div>
  </div>

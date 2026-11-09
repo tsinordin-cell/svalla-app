@@ -1,3 +1,4 @@
+import { kastaVidDatabasfel } from '@/lib/databasfel'
 import { cache } from 'react'
 import { createPublicSupabaseClient } from './supabase-server'
 import { ilikeExakt } from './username'
@@ -24,13 +25,16 @@ export { ilikeExakt }
 /** Det riktiga användarnamnet (som det står i databasen), eller null. */
 export const hittaAnvandarnamn = cache(async (namn: string): Promise<string | null> => {
   const supabase = createPublicSupabaseClient()
-  const { data: exakt } = await supabase
+  const { data: exakt, error } = await supabase
     .from('users').select('username').eq('username', namn).maybeSingle()
+  // Databasfel kastas i stället för null, som annars gör profilsidan till 404 (src/lib/databasfel.ts).
+  kastaVidDatabasfel(error, 'users.username')
   if (exakt?.username) return exakt.username as string
 
   const monster = ilikeExakt(namn)
   if (!monster) return null
-  const { data } = await supabase
+  const { data, error: fel2 } = await supabase
     .from('users').select('username').ilike('username', monster).limit(2)
+  kastaVidDatabasfel(fel2, 'users.username ilike')
   return data?.length === 1 ? ((data[0]?.username as string | undefined) ?? null) : null
 })

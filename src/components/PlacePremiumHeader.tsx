@@ -10,6 +10,7 @@
  *
  * Server Component — interaktiviteten ligger i <PlaceActionPill> (klient).
  */
+import { decimal } from '@/lib/gps'
 import PlaceActionPill from './PlaceActionPill'
 import { regionEtikett } from '@/lib/regionEtikett'
 
@@ -267,7 +268,7 @@ function RatingPill({ value, count, source, color, bg, border }: {
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/>
       </svg>
       <span style={{ fontWeight: 800, color: 'var(--txt)', letterSpacing: '-0.01em' }}>
-        {value.toFixed(1)}
+        {decimal(value)}
       </span>
       {typeof count === 'number' && count > 0 && (
         <span style={{ color: 'var(--txt3)' }}>

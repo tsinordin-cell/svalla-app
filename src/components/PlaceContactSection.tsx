@@ -7,6 +7,7 @@
  *
  * Server Component — inga interaktiva delar utöver native <a href>-länkar.
  */
+import { decimal } from '@/lib/gps'
 import Link from 'next/link'
 
 interface Props {
@@ -123,7 +124,7 @@ export default function PlaceContactSection({
           }}
         >
           <span style={{ fontSize: 18, fontWeight: 800, color: '#b48000', minWidth: 36 }}>
-            {googleRating!.toFixed(1)}
+            {decimal(googleRating!)}
           </span>
           <span aria-hidden style={{ display: 'inline-flex', gap: 2 }}>
             {Array.from({ length: 5 }, (_, i) => (

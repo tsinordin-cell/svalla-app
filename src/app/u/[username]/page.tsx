@@ -1,3 +1,4 @@
+import { kastaVidDatabasfel } from '@/lib/databasfel'
 import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import { hittaAnvandarnamn } from '@/lib/anvandarnamn'
 import type { Trip } from '@/lib/supabase'
@@ -123,7 +124,8 @@ export default async function PublicProfilePage({
  .select('id, username, avatar, bio, website, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields')
  .eq('username', username)
  .single()
- if (userErr || !userRow) notFound()
+ kastaVidDatabasfel(userErr, 'u/[username]')
+ if (!userRow) notFound()
 
  // Ingen auth här. Villkoret "visa DM-knappen" räknas ut i DmButton på
  // klienten i stället. auth.getUser() läser cookies, vilket gjorde hela

@@ -1,4 +1,5 @@
 'use client'
+import { decimal } from '@/lib/gps'
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase'
 import Icon from '@/components/Icon'
@@ -106,9 +107,10 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
 
  if (fetching) return null
 
- const avgRating = reviews.length > 0
- ? (reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1)
+ const avgNum = reviews.length > 0
+ ? Number((reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1))
  : null
+ const avgRating = avgNum != null ? decimal(avgNum) : null
 
  return (
  <div style={{ marginTop: 28 }}>
@@ -123,7 +125,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
  <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--sea)' }}>{avgRating}</span>
  <div style={{ display: 'flex', gap: 2 }}>
  {[1,2,3,4,5].map(i => (
- <span key={i} style={{ fontSize: 14, color: parseFloat(avgRating) >= i ? '#e8a020' : '#dde8ec' }}> </span>
+ <span key={i} style={{ fontSize: 14, color: (avgNum ?? 0) >= i ? '#e8a020' : '#dde8ec' }}> </span>
  ))}
  </div>
  <span style={{ fontSize: 12, color: 'var(--txt3)' }}>({reviews.length})</span>

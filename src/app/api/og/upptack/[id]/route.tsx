@@ -13,6 +13,7 @@
  * Edge runtime = snabb cold start (sociala medier scraper:ar tål inte
  * lambda-spinup).
  */
+import { decimal } from '@/lib/gps'
 import { ImageResponse } from 'next/og'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { regionEtikett } from '@/lib/regionEtikett'
@@ -121,7 +122,7 @@ export async function GET(
   const locationLabel = locationParts.join(' · ')
 
   const hasGoogleRating = typeof data.google_rating === 'number' && data.google_rating > 0
-  const ratingValue = hasGoogleRating ? (data.google_rating as number).toFixed(1) : null
+  const ratingValue = hasGoogleRating ? decimal(data.google_rating as number) : null
   const ratingCount = (data.google_ratings_total as number | null) ?? 0
 
   return new ImageResponse(

@@ -5,6 +5,7 @@
  * Renderar hero-stats, top-tur, båtfördelning, platser, månad/streak
  * samt en "share"-knapp som kopierar en sammanfattningstext.
  */
+import { decimal } from '@/lib/gps'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -53,8 +54,8 @@ export default function InsikterPage() {
  const label = scope === 'all' ? 'hela mitt äventyr' : `${scope}`
  const txt =
  `Min Svalla Wrapped (${label}):\n` +
- `${insights.total_trips} turer · ${Math.round(insights.total_nm)} NM · ⏱ ${insights.total_hours.toFixed(1)} h\n` +
- `🏆 ${insights.magic_count} magiska turer · 🚀 Topp ${insights.top_speed.toFixed(1)} kn\n` +
+ `${insights.total_trips} turer · ${Math.round(insights.total_nm)} NM · ⏱ ${decimal(insights.total_hours)} h\n` +
+ `🏆 ${insights.magic_count} magiska turer · 🚀 Topp ${decimal(insights.top_speed)} kn\n` +
  (insights.most_active_month ? `📅 Mest aktiv: ${insights.most_active_month.label}\n` : '') +
  `→ svalla.se${username ? `/u/${encodeURIComponent(username)}` : ''}`
  try {
@@ -211,7 +212,7 @@ export default function InsikterPage() {
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
  <HeroStat label="Turer" value={String(insights.total_trips)} />
  <HeroStat label="Nautiska mil" value={Math.round(insights.total_nm).toLocaleString('sv-SE')} />
- <HeroStat label="Timmar" value={insights.total_hours.toFixed(1)} />
+ <HeroStat label="Timmar" value={decimal(insights.total_hours)} />
  </div>
  </div>
  </div>
@@ -239,8 +240,8 @@ export default function InsikterPage() {
  {insights.top_nm_trip.location_name ?? 'Okänd plats'}
  </div>
  <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
- {(insights.top_nm_trip.distance ?? 0).toFixed(1)} NM · {Math.round((insights.top_nm_trip.duration ?? 0) / 60)} h
- {insights.top_nm_trip.max_speed_knots ? ` · topp ${insights.top_nm_trip.max_speed_knots.toFixed(1)} kn` : ''}
+ {decimal(insights.top_nm_trip.distance ?? 0)} NM · {Math.round((insights.top_nm_trip.duration ?? 0) / 60)} h
+ {insights.top_nm_trip.max_speed_knots ? ` · topp ${decimal(insights.top_nm_trip.max_speed_knots)} kn` : ''}
  </div>
  </div>
  <svg viewBox="0 0 24 24" fill="none" stroke="#c0d4dc" strokeWidth={2} style={{ width: 14, height: 14, flexShrink: 0 }}>
@@ -252,7 +253,7 @@ export default function InsikterPage() {
 
  {/* Nyckelstats-grid */}
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10, marginBottom: 18 }}>
- <SmallStat emoji="trendingUp" label="Topphastighet" value={`${insights.top_speed.toFixed(1)} kn`} />
+ <SmallStat emoji="trendingUp" label="Topphastighet" value={`${decimal(insights.top_speed)} kn`} />
  <SmallStat emoji="star" label="Magiska turer" value={String(insights.magic_count)} />
  <SmallStat emoji="calendar" label="Aktiva dagar" value={String(insights.active_days)} />
  <SmallStat emoji="trophy" label="Längsta streak" value={`${insights.longest_streak_weeks} v`} />
