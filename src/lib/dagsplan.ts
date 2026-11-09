@@ -32,6 +32,13 @@ export type DagHub = {
   keywords: string[]
   /** Kuraterade slugs (från gamla /utflykt). Bara sådana som finns behålls. */
   extra: string[]
+  /**
+   * Öar som aldrig visas under startpunkten, oavsett Trafiklab, ösidans text
+   * eller extra (P0 20 del 3, 2026-11-09). Ordet "nynäshamn" i en ös Ta sig
+   * dit-text betyder inte att båten går därifrån, till exempel när texten
+   * säger att båten från Nynäshamn går till Ålö.
+   */
+  exclude?: string[]
 }
 
 export const ALLA_HUB_SLUG = 'alla'
@@ -51,6 +58,12 @@ export const DAG_HUBS: DagHub[] = [
   {
     slug: 'nynashamn', label: 'Nynäshamn', name: 'Nynäshamn',
     originIds: [NYNASHAMN_ID], keywords: ['nynäshamn'],
+    // P0 20 del 3 (2026-11-09): båten från Nynäshamn går vår och höst till Ålö, inte till Utö (tabell 22).
+    // Bara Nord/Sydlinjen går sommartid från Nynäshamn till Gruvbryggan, och planeraren visar ingen säsong.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ"; uppmätt i tabellen: ingen brygga på Utö (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Gruvbryggan (Utö)" (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+    exclude: ['uto'],
     // P0 21 (2026-11-09): Ornö och Fjärdlång nås från Nynäshamn bara med Nord/Sydlinjen sommartid; vår och höst från Dalarö (tabell 19, Ornö Sjötrafik).
     // Utö utesluts sedan P0 20 del 3 (exclude) och står inte heller här.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Ornö Kyrka", "Fjärdlång" (läst 2026-11-09)
@@ -125,6 +138,7 @@ const REGION_LABEL: Record<Island['region'], string> = {
 }
 
 function hubMatch(island: Island, hub: DagHub): number | null {
+  if (hub.exclude?.includes(island.slug)) return null
   const transit = ISLAND_TRANSIT[island.slug]
   if (transit && hub.originIds.includes(transit.originStopId)) return 2
   if (hub.keywords.length > 0) {

@@ -36,7 +36,17 @@ const FAQ_ITEMS = [
     // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com (läst 2026-09-18).
     // Öarnas egna rundslingor (Utö ~8 km, Finnhamn ~4 km) är kortare än öns SAT-etapp
     // (Utö 18,4 km, Finnhamn 10,1 km) — det är två olika leder på samma ö.
-    a: 'De bästa öarna för vandring i Stockholms skärgård är Utö, Finnhamn, Grinda, Sandhamn, Nåttarö, Möja och Arholma. Alla nås med Waxholmsbolaget eller pendelbåt från Nynäshamn. Utö och Nåttarö är söder om Nynäshamn; de övriga i mellersta eller norra skärgården. Observera att många öar har två olika leder: öns egen rundslinga (Utö ca 8 km, Finnhamn ca 4 km) och öns etapp av Stockholm Archipelago Trail, som är betydligt längre (Utö 18,4 km, Finnhamn 10,1 km).',
+    // Rättad 2026-11-09 (P0 20 del 3): båten till Utö går från Årsta brygga; från Nynäshamn går båten till Nåttarö och Ålö.
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ" (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ" (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Finnhamn" (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h30.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "30A SIMPNÄS – ARHOLMA" (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — "Grinda är ett av Waxholmsbolagets populäraste utflyktsmål", "Grinda har trafik året om" (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/sandhamn — "Ut till Sandhamn går det turer året runt." (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja." (läst 2026-11-09)
+    a: 'De bästa öarna för vandring i Stockholms skärgård är Utö, Finnhamn, Grinda, Sandhamn, Nåttarö, Möja och Arholma. Alla nås med Waxholmsbolagets båtar: till Utö går båten från Årsta brygga i Haninge, dit buss 846 går från Västerhaninge, och till Nåttarö från Nynäshamn. Utö och Nåttarö är söder om Nynäshamn; de övriga i mellersta eller norra skärgården. Observera att många öar har två olika leder: öns egen rundslinga (Utö ca 8 km, Finnhamn ca 4 km) och öns etapp av Stockholm Archipelago Trail, som är betydligt längre (Utö 18,4 km, Finnhamn 10,1 km).',
   },
   {
     q: 'Vilken skärgårdsö är bäst för vandring?',
@@ -112,7 +122,20 @@ const GUIDES = [
   },
   {
     title: 'Kan man vandra utan bil?',
-    body: 'Ja — och för Stockholms skärgård är det faktiskt enklare utan bil. Waxholmsbolaget har linjer till de flesta öar i mellersta och norra skärgården. Till södra öar (Utö, Nåttarö, Landsort) tar du pendeltåg linje 43 från Stockholm City till Nynäshamn, ca 65 min, och sedan pendelbåt. Bohuslän: Västtrafik har båtlinjer till södra skärgårdens öar (Vrångö, Styrsö, Donsö). Till Marstrand tar du buss 302/312 från Göteborg. Gotland: Destination Gotland kör färja Nynäshamn–Visby (~3h15). Höga kusten: SJ/Norrtåg till Härnösand och Kramfors — lokal busstrafik finns men är gles. Till Trysunda och Ulvön krävs sommarbåt.',
+    // Rättad 2026-11-09 (P0 20 del 3): båten till Utö går från Årsta brygga och båten till Landsort från Ankarudden. Pendeltågets restid är uppmätt i SL:s tabell. Prövade i samma sträng: Gotland (Destination Gotlands turlista) och Trysunda och Ulvön (det går båt även vintertid).
+    // KÄLLA: https://waxholmsbolaget.se/om-oss — "Waxholmsbolaget ansvarar för den kollektiva skattesubventionerade sjötrafiken i Stockholms skärgård.", "Under sommaren trafikerar vi 299 bryggor, allt från den norra till den södra skärgården, samt den inre mellanskärgården." (läst 2026-11-09)
+    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Giltig från och med 17 augusti till och med 12 december 2026."; uppmätt i tabellen: avg Stockholm City–Nynäshamn 59–65 min (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ" (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — "Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — "Nynäshamns station–Torö", "ANKARUDDEN", "Giltig 17 augusti–12 december 2026" (läst 2026-11-09)
+    // KÄLLA: https://www.destinationgotland.se/turlista/ — "Nynäshamn-Visby", "3 h 15 min", "3 h 35 min" (läst 2026-11-09)
+    // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/trysunda.html — "Sommartid går det dagliga passagerarbåtar från Köpmanholmen till Trysunda. Under vintern är turlistan begränsad." (läst 2026-11-09)
+    // KÄLLA: https://www.mfulvon.se/ovrigt/angoringsbryggor — "Alla våra turer till Strängöarna, Trysunda och Ulvön utgår från Köpmanholmens färjeläge." (läst 2026-11-09)
+    // KÄLLA: https://www.mfulvon.se/ — "RES MED OSS TILL HÖGA KUSTENS SKÄRGÅRD", "Turlista 1 nov - 23 dec 2026" (läst 2026-11-09)
+    body: 'Ja — och för Stockholms skärgård är det faktiskt enklare utan bil. Waxholmsbolaget ansvarar för den kollektiva sjötrafiken i Stockholms skärgård och trafikerar sommartid bryggor från den norra till den södra skärgården. Till Utö tar du pendeltåg till Västerhaninge, buss 846 till Årsta brygga och båt därifrån. Till Nåttarö tar du pendeltåg linje 43 från Stockholm City till Nynäshamn, 59–65 minuter, och båt därifrån, och till Landsort pendeltåg till Nynäshamn, buss 852 till Ankarudden och båt därifrån. Bohuslän: Västtrafik har båtlinjer till södra skärgårdens öar (Vrångö, Styrsö, Donsö). Till Marstrand tar du buss 302/312 från Göteborg. Gotland: Destination Gotland kör färja Nynäshamn–Visby, och enligt turlistan för 9 november 2026 tar överfarten 3 h 15 min eller 3 h 35 min. Höga kusten: SJ/Norrtåg till Härnösand och Kramfors — lokal busstrafik finns men är gles. Till Trysunda går passagerarbåtar från Köpmanholmen dagligen sommartid och med begränsad turlista på vintern, och båten M/F Ulvön, som går från Köpmanholmen till Ulvön, har turlista även för 1 november–23 december 2026.',
   },
   {
     title: 'Vilka vandringar passar barn?',

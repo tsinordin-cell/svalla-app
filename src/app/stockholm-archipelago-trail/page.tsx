@@ -74,7 +74,15 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Hur tar jag mig till etapperna?',
-    a: 'Med reguljär skärgårdstrafik. Waxholmsbolaget trafikerar merparten av mellersta och norra skärgården. Till de södra öarna — Utö, Nåttarö och Landsort — tar du pendeltåg till Nynäshamn och därefter pendelbåt. Kontrollera alltid sista avgången hem innan du börjar gå.',
+    // Rättad 2026-11-09 (P0 20 del 3): båten till Utö går från Årsta brygga och båten till Landsort från Ankarudden, inte från Nynäshamn.
+    // KÄLLA: https://waxholmsbolaget.se/om-oss — "Waxholmsbolaget ansvarar för den kollektiva skattesubventionerade sjötrafiken i Stockholms skärgård.", "Under sommaren trafikerar vi 299 bryggor, allt från den norra till den södra skärgården, samt den inre mellanskärgården." (läst 2026-11-09)
+    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ" (läst 2026-11-09)
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — "Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden." (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — "Nynäshamns station–Torö", "ANKARUDDEN", "Giltig 17 augusti–12 december 2026" (läst 2026-11-09)
+    a: 'Med reguljär skärgårdstrafik. Waxholmsbolaget ansvarar för den kollektiva sjötrafiken i Stockholms skärgård och trafikerar sommartid bryggor från den norra till den södra skärgården. Till Utö tar du pendeltåg till Västerhaninge och buss 846 till Årsta brygga, där båten går. Till Nåttarö går båten från Nynäshamn och till Landsort från Ankaruddens brygga, dit SL:s buss 852 går från Nynäshamn. Kontrollera alltid sista avgången hem innan du börjar gå.',
   },
 ]
 

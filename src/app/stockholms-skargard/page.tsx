@@ -44,9 +44,13 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🏝️',
  title: 'Utö',
- description: 'Södra skärgårdens unika ö — en före detta järngruva med pittoresk by. Utö Värdshus, cykelleder och naturreservat. Nås med Waxholmsbolaget från Nynäshamn, ca 90 min. Fantastisk höstdestination när trängseln försvunnit.',
+ // Rättad 2026-11-09 (P0 20 del 3): båten till Utö går från Årsta brygga, inte från Nynäshamn. Restiden är tabellens spann.
+ // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
+ // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+ // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ"; uppmätt i tabellen: Årsta brygga–Gruvbryggan (Utö) 35–75 min (läst 2026-11-09)
+ description: 'Södra skärgårdens unika ö — en före detta järngruva med pittoresk by. Utö Värdshus, cykelleder och naturreservat. Nås året om med Waxholmsbolaget från Årsta brygga i Haninge, 35–75 min. Fantastisk höstdestination när trängseln försvunnit.',
  href: '/uto',
- meta: 'Södra skärgården · Via Nynäshamn · 90 min',
+ meta: 'Södra skärgården · Via Årsta brygga · 35–75 min',
  },
  {
  icon: '🏰',

@@ -14,7 +14,12 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     // Utö-etappen är 18,4 km och klassas som krävande. Öns egen rundslinga är ~8 km.
     body: 'Utö har Stockholms skärgårds mest varierade vandringsstig. De ~8 km passerar järngruvor med anor från medeltiden — möjligen Sveriges äldsta — en gammal kvarn, öppna skogspartier och havsklippor mot Östersjön — allt på en och samma ö. En fullständig dag som kombinerar historia, naturreservat och möjligheten att avsluta med middag på Utö Värdshus. Vill du gå längre går Stockholm Archipelago Trail över ön i en 18,4 km lång etapp.',
     tips: [
-      'Pendeltåg linje 43 till Nynäshamn, sedan pendelbåt — ingen bil krävs.',
+      // Rättad 2026-11-09 (P0 20 del 3): båten till Utö går från Årsta brygga, inte från Nynäshamn.
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Västerhaninge" (läst 2026-11-09)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
+      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
+      'Pendeltåg linje 43 till Västerhaninge, buss 846 till Årsta brygga och sedan Waxholmsbolagets båt till Gruvbryggan — ingen bil krävs.',
       'Boka bord på Utö Värdshus i förväg under juni–augusti.',
       'Gruvorna är markerade längs leden — ta en paus och läs skyltarna.',
       'Bönsäckan-stranden är ett bra badbetapp halvvägs.',
