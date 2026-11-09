@@ -34,7 +34,7 @@ def oslug(text):
 
 
 def filer():
-    namn = ['oar-omk2'] + [f'full-{n:02d}' for n in range(2, 29)] + ['mallar-omk3']
+    namn = ['oar-omk2'] + [f'full-{n:02d}' for n in range(2, 29)] + ['mallar-omk3', 'redaktor-09']
     for n in namn:
         p = os.path.join(K, f'{n}.beslut.tsv')
         if os.path.exists(p):
