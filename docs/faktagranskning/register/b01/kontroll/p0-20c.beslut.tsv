@@ -1,0 +1,5 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-09)
+p20c-k044	vandring/page.tsx:115	FEL (MÄTT)	Granskaren rättar: M/F Ulvön går från Köpmanholmens färjeläge enligt operatören (mfulvon.se/ovrigt/angoringsbryggor). Kontrollanten prövar raden igen innan del 3 går ut.
+p20c-e06	vandring/page.tsx:115	FEL (MÄTT)	Som p20c-k044.
+utanför-1	dagsplanen	Anmärkning (MÄTT)	Ingen åtgärd i P0 20. Bullerö under Nynäshamn tas i P0 22. Gotska Sandön (säsongsbåt) och Yttre Gården (ingen reguljär båt) hör till planerarens fas och står på Vaktens lista.
+utanför-2	vandring/page.tsx:39	Anmärkning (MÄTT)	Ingen åtgärd i P0 20. "Utö och Nåttarö är söder om Nynäshamn" är fel för Utö och står på Vaktens lista för vandringssidans fas.

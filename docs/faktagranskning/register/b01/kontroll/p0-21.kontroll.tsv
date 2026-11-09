@@ -1,0 +1,93 @@
+kid	svar	citat från sidan	källa du läste	kommentar
+p21-k001	OK	43 43X Bålsta–Nynäshamn | Giltig från och med 17 augusti till och med 12 december 2026.	https://kund.printhuset-sthlm.se/sl/h4343x.pdf (pdftotext -layout)	
+p21-k002	OK	Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden. | 852 Nynäshamns station–Torö | ANKARUDDEN	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium) ; https://kund.printhuset-sthlm.se/sl/h852.pdf	
+p21-k003	OK	Båtarna till Landsort går från Ankaruddens brygga. | 29A ANKARUDDEN – LANDSORT	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium) ; https://kund.printhuset-sthlm.se/wa/h29.pdf	
+p21-k004	OK	Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	
+p21-k005	OK	852 Nynäshamns station–Torö | ANKARUDDEN | Nynäshamns station 06.26 … Ankarudden 07.05	https://kund.printhuset-sthlm.se/sl/h852.pdf (pdftotext -layout)	
+p21-k006	OK	Båtarna till Landsort går från Ankaruddens brygga.	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	
+p21-k007	OK	I södra Nynäshamn finns Ankarudden, där du kan ta båten till Landsort … Ankarudden är enkelt att nå med buss eller egen bil.	https://nynashamn.se/uppleva/skargard--batliv/turbatar (curl)	
+p21-k008	OK	43 43X Bålsta–Nynäshamn | 852 Nynäshamns station–Torö | ANKARUDDEN	https://kund.printhuset-sthlm.se/sl/h4343x.pdf ; https://kund.printhuset-sthlm.se/sl/h852.pdf (pdftotext -layout)	
+p21-k009	OK	Båtarna till Landsort går från Ankaruddens brygga. … det går SL-trafik mellan Nynäshamn och Ankarudden. | 852 Nynäshamns station–Torö | ANKARUDDEN	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium) ; https://kund.printhuset-sthlm.se/sl/h852.pdf	
+p21-k010	OK	43 43X Bålsta–Nynäshamn | avg Stockholm City … Nynäshamn	https://kund.printhuset-sthlm.se/sl/h4343x.pdf (pdftotext -layout)	
+p21-k011	OK	43 43X Bålsta–Nynäshamn | Giltig från och med 17 augusti till och med 12 december 2026.	https://kund.printhuset-sthlm.se/sl/h4343x.pdf (pdftotext -layout och -bbox)	MÄTT: 59–65 min (se p20c-k038; en kolumn parad RESONERAT).
+p21-k012	OK	852 Nynäshamns station–Torö | ANKARUDDEN | Giltig 17 augusti–12 december 2026	https://kund.printhuset-sthlm.se/sl/h852.pdf (pdftotext -layout)	
+p21-k013	OK	852 Nynäshamns station–Torö | Nynäshamns station 06.26 … Ankarudden 07.05	https://kund.printhuset-sthlm.se/sl/h852.pdf (pdftotext -layout)	MÄTT med skript: Nynäshamns station→Ankarudden 35–43 min (21 turer); åter 34–41 min.
+p21-k014	OK	Båtarna till Landsort går från Ankaruddens brygga. | 29A ANKARUDDEN – LANDSORT	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium) ; https://kund.printhuset-sthlm.se/wa/h29.pdf	
+p21-k015	OK	Landsort ligger på ön Öja.	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	
+p21-k016	OK	29A ANKARUDDEN – LANDSORT | Ankarudden 07.10 … Landsort 07.40	https://kund.printhuset-sthlm.se/wa/h29.pdf (pdftotext -layout)	MÄTT med skript: 30 min på alla 16 turer åt båda håll. Obs: Waxholmsbolagets Landsortssida säger 'ungefär 35 minuter'; texten anger tabellen, så inget fel.
+p21-k017	OK	43 43X Bålsta–Nynäshamn	https://kund.printhuset-sthlm.se/sl/h4343x.pdf (pdftotext -layout)	
+p21-k018	OK	852 Nynäshamns station–Torö | ANKARUDDEN | Giltig 17 augusti–12 december 2026	https://kund.printhuset-sthlm.se/sl/h852.pdf (pdftotext -layout)	
+p21-k019	OK	Båtarna till Landsort går från Ankaruddens brygga.	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	
+p21-k020	OK	ORNÖ SJÖTRAFIK AB | Bilfärja mellan Ornö och Dalarö | Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö.	https://ornosjotrafik.se/ (curl)	
+p21-k021	OK	Bilfärja mellan Ornö och Dalarö | Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö.	https://ornosjotrafik.se/ (curl)	Obs (inget fel): sidan säger också 'Alla fordon ska bokas i båda riktningarna.', vilket texten inte nämner.
+p21-k022	OK	Avg från Dalarö Hotellbrygga | Under sommaren finns även vissa säsongsanpassade båtturer från Dalarö.	https://www.dalarosjotransporter.se/kontakt/ (curl) ; https://skargardsstiftelsen.se/omraden/huvudskar/ (curl)	
+p21-k023	OK	Hit tar du dig med egen båt eller taxibåt.	https://skargardsstiftelsen.se/omraden/huvudskar/ (curl)	
+p21-k024	OK	Under sommaren 2026 kommer vi återigen att trafikera Dalarö - Huvudskär på torsdagar och söndagar mellan 14 juni-16 augusti i samband med att vandrarhemmet byter gäster.	https://www.dalarosjotransporter.se/kontakt/ (curl)	Obs (inget fel): sidan listar också extra turer 21/8, 23/8, 28/8, 30/8, 4/9 och 6/9.
+p21-k025	OK	Hit tar du dig med egen båt eller taxibåt.	https://skargardsstiftelsen.se/omraden/huvudskar/ (curl)	
+p21-k026	OK	Avg från Dalarö Hotellbrygga	https://www.dalarosjotransporter.se/kontakt/ (curl)	
+p21-k027	OK	Under sommaren 2026 kommer vi återigen att trafikera Dalarö - Huvudskär på torsdagar och söndagar mellan 14 juni-16 augusti … | Avg från Dalarö Hotellbrygga	https://www.dalarosjotransporter.se/kontakt/ (curl)	Obs (inget fel): extra turer 21/8–6/9 finns också på sidan.
+p21-k028	OK	839 Rudsjöterrassen–Dalarö (–Smådalarö) | Hotellbryggan | Giltig 17 augusti–12 december 2026	https://kund.printhuset-sthlm.se/sl/h839.pdf (pdftotext -layout)	
+p21-k029	OK	Hit tar du dig med egen båt eller taxibåt. Under sommaren finns även vissa säsongsanpassade båtturer från Dalarö.	https://skargardsstiftelsen.se/omraden/huvudskar/ (curl)	
+p21-k030	OK	… trafikera Dalarö - Huvudskär på torsdagar och söndagar mellan 14 juni-16 augusti …	https://www.dalarosjotransporter.se/kontakt/ (curl)	
+p21-k031	OK	Boka via mail …, samtidigt som ni betalar via swish. | Bokningen är ej giltig förrän betalning erlagts.	https://www.dalarosjotransporter.se/kontakt/ (curl)	
+p21-k032	OK	Om rederiet ställer in turen pga av hårda vindar/haveri, återbetalas hela summan för biljetterna.	https://www.dalarosjotransporter.se/kontakt/ (curl)	
+p21-k033	OK	Resa till Huvudskär :: dalarosjotransporter (sidans titel och meny)	https://www.dalarosjotransporter.se/kontakt/ (curl)	
+p21-k034	OK	Resa till Huvudskär | Under sommaren 2026 kommer vi återigen att trafikera Dalarö - Huvudskär …	https://www.dalarosjotransporter.se/kontakt/ (curl)	
+p21-k035	OK	Huvudskär | Skärgårdsstiftelsen | Hit tar du dig med egen båt eller taxibåt.	https://skargardsstiftelsen.se/omraden/huvudskar/ (curl)	
+p21-k036	OK	GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026 | 40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE | Fjärdlång	https://kund.printhuset-sthlm.se/wa/s40.pdf (pdftotext -layout)	
+p21-k037	OK	40B … Nynäshamn 09.30 … Fjärdlång 11.20	https://kund.printhuset-sthlm.se/wa/s40.pdf (pdftotext -layout)	MÄTT: Nynäshamn→Fjärdlång 110 min på samma tur, utan byte (40A åter 110 min).
+p21-k038	OK	Vid Fiskehamnen i Nynäshamn, nära parkeringsplatser och kollektivtrafik, finner du Waxholmsbolagets båtar som tar dig direkt till öar som Nåttarö, Aspö, Rånö och Ålö.	https://nynashamn.se/uppleva/skargard--batliv/turbatar (curl)	
+p21-k039	OK	Waxholmsbolaget (båt till Nåttarö, Aspö, Rånö, Ålö och Landsort)	https://nynashamn.se/uppleva/skargard--batliv/turbatar (curl)	MÄTT: 'Yttre Gården' förekommer inte på sidan; tabell 22 har ingen sådan brygga.
+p21-k040	OK	I södra Nynäshamn finns Ankarudden, där du kan ta båten till Landsort … | Båtarna till Landsort går från Ankaruddens brygga.	https://nynashamn.se/uppleva/skargard--batliv/turbatar (curl) ; https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	
+p21-k041	OK	Vid Fiskehamnen i Nynäshamn … Waxholmsbolagets båtar som tar dig direkt till öar som Nåttarö, Aspö, Rånö och Ålö.	https://nynashamn.se/uppleva/skargard--batliv/turbatar (curl)	
+p21-k042	OK	Waxholmsbolaget (båt till Nåttarö, Aspö, Rånö, Ålö och Landsort)	https://nynashamn.se/uppleva/skargard--batliv/turbatar (curl)	MÄTT: 'Yttre Gården' förekommer inte på sidan.
+p21-k043	OK	I södra Nynäshamn finns Ankarudden, där du kan ta båten till Landsort … | Båtarna till Landsort går från Ankaruddens brygga.	https://nynashamn.se/uppleva/skargard--batliv/turbatar (curl) ; https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	
+p21-k044	OK	Vid Fiskehamnen i Nynäshamn … Waxholmsbolagets båtar som tar dig direkt till öar som Nåttarö, Aspö, Rånö och Ålö.	https://nynashamn.se/uppleva/skargard--batliv/turbatar (curl)	
+p21-k045	OK	Waxholmsbolaget (båt till Nåttarö, Aspö, Rånö, Ålö och Landsort)	https://nynashamn.se/uppleva/skargard--batliv/turbatar (curl)	MÄTT: 'Yttre Gården' förekommer inte på sidan.
+p21-k046	OK	I södra Nynäshamn finns Ankarudden, där du kan ta båten till Landsort … | Båtarna till Landsort går från Ankaruddens brygga.	https://nynashamn.se/uppleva/skargard--batliv/turbatar (curl) ; https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	
+p21-k047	OK	19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ | Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö. | linjeförteckning 17/8–12/12: 22 Nynäshamn - Nåttarö - Ålö är enda linjen från Nynäshamn; 19 och 20 går Dalarö–Ornö	kod: kopia/src/lib/dagsplan.ts (tsx) ; https://kund.printhuset-sthlm.se/wa/h19.pdf ; https://ornosjotrafik.se/ ; https://waxholmsbolaget.linjetidtabeller.se/ (länkad från waxholmsbolaget.se/reseplanering/tidtabeller)	MÄTT: Ornö finns inte i planerarens lista för Nynäshamn. Obs utanför underlaget (MÄTT i koden): listan har kvar Bullerö med Trafiklab-origin 'Nynäshamn färjeterminal' (transit-stops.ts:236–240), fast öns egen Ta sig dit-text anger Bullerölinjen från Stavsnäs vinterhamn; Gotska Sandön, med båt bara 29 maj–30 augusti (samma skäl som Utö uteslöts för); och Yttre Gården (bara kajak eller egen båt, 'Ingen reguljär båt').
+p21-k048	OK	19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ | Fjärdlång	kod: kopia/src/lib/dagsplan.ts (tsx) ; https://kund.printhuset-sthlm.se/wa/h19.pdf	MÄTT: Fjärdlång finns inte i listan för Nynäshamn.
+p21-k049	OK	GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026 | 40B … | Ornö Kyrka | Fjärdlång	https://kund.printhuset-sthlm.se/wa/s40.pdf ; https://kund.printhuset-sthlm.se/wa/h22.pdf ; https://waxholmsbolaget.linjetidtabeller.se/	MÄTT för vår, höst och sommar; vintertabellen (13/12–1/4) är inte läst, så 'bara sommartid' är RESONERAT för vintern.
+p21-k050	OK	Båtarna till Landsort går från Ankaruddens brygga … SL-trafik mellan Nynäshamn och Ankarudden. | 852 Nynäshamns station–Torö | ANKARUDDEN	kod: kopia/src/lib/dagsplan.ts (tsx) ; https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium) ; https://kund.printhuset-sthlm.se/sl/h852.pdf	MÄTT: Landsort står kvar (Trafiklab-origin Nynäshamn, styrka 2).
+p21-k051	OK	22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ	kod: kopia/src/lib/dagsplan.ts (tsx) ; https://kund.printhuset-sthlm.se/wa/h22.pdf	MÄTT: Nåttarö står kvar (styrka 2).
+p21-s001	OK	Båtarna till Landsort går från Ankaruddens brygga.	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	
+p21-s002	OK	Båtarna till Landsort går från Ankaruddens brygga.	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	
+p21-s003	OK	Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	Tåg till Nynäshamn och bil står kvar i ny startPoint.
+p21-s004	OK	852 Nynäshamns station–Torö | ANKARUDDEN	https://kund.printhuset-sthlm.se/sl/h852.pdf	Bussen saknades; ny rubrik har den.
+p21-s005	OK	avg Stockholm City → Nynäshamn 59–65 min	https://kund.printhuset-sthlm.se/sl/h4343x.pdf	Står kvar som 59–65 min från Stockholm City.
+p21-s006	OK	Landsort ligger på ön Öja.	https://waxholmsbolaget.se/reseplanering/resmal/landsort (Chromium)	Båten går inte 'via Öja'; 'på ön Öja' står kvar.
+p21-s007	OK	858 Grödby–Nynäshamn (Sandhamn) | … Nynäshamns station … Sjögången	https://kund.printhuset-sthlm.se/sl/h858.pdf (pdftotext -layout)	Linje 858 går inte till Ankarudden (ordet saknas i hela tabellen, MÄTT); den strukna uppgiften gick inte att belägga.
+p21-s008	OK	Bilfärja mellan Ornö och Dalarö | Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö.	https://ornosjotrafik.se/	
+p21-s009	OK	Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö.	https://ornosjotrafik.se/	
+p21-s010	OK	Hit tar du dig med egen båt eller taxibåt. Under sommaren finns även vissa säsongsanpassade båtturer från Dalarö.	https://skargardsstiftelsen.se/omraden/huvudskar/	
+p21-s011	OK	linjeförteckning 17/8–12/12: ingen linje med Huvudskär | Hit tar du dig med egen båt eller taxibåt.	https://waxholmsbolaget.linjetidtabeller.se/ ; https://skargardsstiftelsen.se/omraden/huvudskar/	
+p21-s012	OK	(ingen källa för 'lång resväg'; 'unik upplevelse' är värdeord)	https://www.dalarosjotransporter.se/kontakt/	
+p21-s013	OK	Avg från Dalarö Hotellbrygga	https://www.dalarosjotransporter.se/kontakt/	
+p21-s014	OK	linjeförteckning: ingen linje med Huvudskär | Avg från Dalarö Hotellbrygga	https://waxholmsbolaget.linjetidtabeller.se/ ; https://www.dalarosjotransporter.se/kontakt/	
+p21-s015	OK	(ersatt av belagda uppgifter om två dagar i veckan, förbokning och inställda turer)	https://www.dalarosjotransporter.se/kontakt/	
+p21-s016	OK	linjeförteckning: ingen linje med Huvudskär	https://waxholmsbolaget.linjetidtabeller.se/	
+p21-s017	OK	Avg från Dalarö Hotellbrygga	https://www.dalarosjotransporter.se/kontakt/	
+p21-s018	OK	linjeförteckning: ingen linje med Huvudskär | Avg från Dalarö Hotellbrygga	https://waxholmsbolaget.linjetidtabeller.se/ ; https://www.dalarosjotransporter.se/kontakt/	
+p21-s019	OK	GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026 | Nynäshamn → Fjärdlång 110 min	https://kund.printhuset-sthlm.se/wa/s40.pdf	Restiden står kvar, nu med säsong.
+p21-s020	OK	Vid Fiskehamnen … till öar som Nåttarö, Aspö, Rånö och Ålö. | I södra Nynäshamn finns Ankarudden, där du kan ta båten till Landsort	https://nynashamn.se/uppleva/skargard--batliv/turbatar	Landsort går från Ankarudden, inte Fiskehamnen; står kvar i ny text.
+p21-s021	OK	Vid Fiskehamnen … till öar som Nåttarö, Aspö, Rånö och Ålö. | I södra Nynäshamn finns Ankarudden …	https://nynashamn.se/uppleva/skargard--batliv/turbatar	
+p21-s022	OK	Vid Fiskehamnen … till öar som Nåttarö, Aspö, Rånö och Ålö. | I södra Nynäshamn finns Ankarudden …	https://nynashamn.se/uppleva/skargard--batliv/turbatar	
+p21-s023	OK	linjeförteckning 17/8–12/12: från Nynäshamn bara linje 22 (Nåttarö, Ålö); Ornö och Fjärdlång i 19/20 från Dalarö; 40B sommartid	https://waxholmsbolaget.linjetidtabeller.se/ ; https://kund.printhuset-sthlm.se/wa/h19.pdf ; https://kund.printhuset-sthlm.se/wa/s40.pdf ; kod (tsx)	Strykningen är riktig.
+p21-e01	OK	ny: 'Pendeltåg till Nynäshamn, buss 852 till Ankarudden och båt därifrån (kontrollera aktuell tidtabell)'	edits.json post 1	
+p21-e02	OK	ny: 'Båten går från Ankaruddens brygga strax söder om Nynäshamn, dit buss 852 går från Nynäshamns station — kontrollera tidtabell.'	edits.json post 2	
+p21-e03	OK	ny: startPoint 'Ankaruddens brygga (bil, eller pendeltåg till Nynäshamn + buss 852)'	edits.json post 3 ; kopia trips-data.ts:1177–1179	Obs: oförändrat i samma objekt: transport 'Tåg/bil + båt' och taggar utan 'buss' (bussen 852 behövs).
+p21-e04	OK	ny desc med 59–65 min, 35–43 min och 30 min enligt tabell 29	edits.json post 4	Inget sant struket ('ca 1 tim' står kvar som 59–65 min), inga klockslag.
+p21-e05	OK	ny: 'Pendeltåg till Nynäshamn + buss 852 till Ankarudden + båt.'	edits.json post 5	
+p21-e06	OK	ny: 'Nås med Ornö Sjötrafiks bilfärja från Dalarö.' | 'Bil till Dalarö + bilfärja till Hässelmara'	edits.json post 6 ; kopia ostlistan/page.tsx (Ornö-posten)	Obs: källan säger att alla fordon ska bokas i båda riktningarna.
+p21-e07	OK	ny: startPoint 'Dalarö (sommarbåt) eller egen båt/taxibåt'	edits.json post 7 ; kopia trips-data.ts:1367–1373 ; https://www.dalarosjotransporter.se/kontakt/	Obs: oförändrat i samma objekt: duration 'Heldag (tidigt start krävs)' och transport 'Tåg/bil + båt'. Källan: 'på torsdagar vänder båten direkt åter mot Dalarö', så en heldag gick bara på söndagar; till Dalarö går buss, inte tåg.
+p21-e08	OK	ny description om sommaren 2026 och egen båt eller taxibåt	edits.json post 8 ; https://skargardsstiftelsen.se/omraden/huvudskar/	Struket 'via Nynäshamn' var fel, 'lång resväg …' obelagt. Obs: oförändrade 'en liten ö'; Skärgårdsstiftelsen: 'en ögrupp … med nära 200 öar'.
+p21-e09	OK	ny stopp 'Båt från Dalarö' med desc, tip och bookingUrl	edits.json post 9	Varje faktamening har belägg (k026–k033); 'Kontrollera … inför nästa säsong' är en uppmaning. Inga klockslag.
+p21-e10	OK	ny: 'Ingen service — ta med allt. Köp mat innan avfärd.'	edits.json post 10	
+p21-e11	OK	nya resurslänkar: Dalarö Sjötransporter och Skärgårdsstiftelsen	edits.json post 11	
+p21-e12	OK	ny: 'Sommartid (2026: 22 juni–16 augusti): Nord/Sydlinjen Nynäshamn → Fjärdlång, 1 tim 50 min utan byten'	edits.json post 12	Restid är längd, inget klockslag.
+p21-e13	OK	ny: 'Enligt Nynäshamns kommun går Waxholmsbolagets båtar från Fiskehamnen till öar som Nåttarö, Aspö, Rånö och Ålö, men inte till Yttre Gården, och båten till Landsort går från Ankarudden i södra Nynäshamn.'	edits.json post 13	
+p21-e14	OK	samma mening i guide-content.ts	edits.json post 14	
+p21-e15	OK	samma mening i guides-data.ts	edits.json post 15	
+p21-e16	OK	ny: extra: ['nattaro', 'landsort']	edits.json post 16	MÄTT med tsx: Ornö och Fjärdlång syns inte under Nynäshamn.
+p21-e17	OK	ny 'vad' för nynashamn.se, last 2026-11-09	edits.json post 17	Inga klockslag (MÄTT).
+p21-e18	OK	ny källpost Waxholmsbolaget/landsort	edits.json post 18 ; kopia src/components/IslandKallor.tsx	Inga klockslag (MÄTT). Obs: 'myndighet': true visar etiketten MYNDIGHET för Waxholmsbolaget, som är operatör (nivå 2); samma sak gäller redan många SL- och Waxholmsbolagsposter.
