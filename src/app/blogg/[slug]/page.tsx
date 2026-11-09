@@ -269,7 +269,11 @@ Tio saker du kan göra i Stockholms skärgård på sommaren, var och en med var 
 
 ## 1. Bada på en sandstrand
 - [Trouville](/upptack/stora-trouvillestranden) på Sandhamn är en lång strand med vit sand, cirka 20 minuters promenad från hamnen.
-- Ålö Storsand på grannön till Utö nås med båt eller via vandringsled.
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (Skärgårdsstiftelsen), läst 2026-11-08 — "Ålö Storsand, som nås med båt eller via vandringsled" -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö." -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
+- Ålö Storsand på grannön till Utö nås med båt eller via vandringsled. Leden från Utö går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats, och på plats gäller informationstavlorna i första hand.
 - Torsviken på Gällnö har sandstrand och tältplats.
 - Vid Källviken på Grinda finns en badplats.
 
@@ -412,9 +416,19 @@ Bogesundslandets naturreservat, 4 341 hektar varav 2 891 på land, har markerade
  emoji: '🚲',
  tags: ['Utö', 'Utö gruvor', 'Cykla på Utö', 'Södra skärgården', 'Stockholms skärgård'],
  faqs: [
-   { q: 'Hur tar man sig till Utö?', a: 'Enligt Länsstyrelsen tar du pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan på Utö. Båt går också från Nynäshamn till grannön Ålö, som har broförbindelse till Utö.' },
+   // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan."; "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00"
+   // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf (SL, linje 846), läst 2026-11-08 — "846 Västerhaninge station–Årsta (–Årsta slott)"; "Årsta brygga"
+   // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf (Waxholmsbolaget, tabell 22), läst 2026-11-08 — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"; "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ"
+   // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt."
+   // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there."; "It passes through an active military firing range, which is located on both sides of the road."
+   // KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand."
+   { q: 'Hur tar man sig till Utö?', a: 'Enligt Länsstyrelsen tar du pendeltåg till Västerhaninge, buss till Årsta brygga och Waxholmsbåt året om till Gruvbryggan på Utö. Bussen är SL:s linje 846 Västerhaninge station–Årsta, med hållplats vid Årsta brygga. Båt går också från Nynäshamn till grannön Ålö, som har broförbindelse till Utö. Vägen från Ålö till Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.' },
    { q: 'Kan man hyra cykel på Utö?', a: 'Ja. Skärgårdsstiftelsen beskriver Utö som en cykel-ö med cykeluthyrning dagsvis, och Utö gästhamn hyr ut cyklar vid hamnen.' },
-   { q: 'Var badar man på Utö?', a: 'Skärgårdsstiftelsen nämner Ålö Storsand, som nås med båt eller via vandringsled, samt badplatserna Rävstavik och Barnens bad.' },
+   // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (Skärgårdsstiftelsen), läst 2026-11-08 — "Rävstavik och Barnens bad erbjuder långgrunda sandstränder som passar barnfamiljer, medan Ålö Storsand, som nås med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder."
+   // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö."
+   // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00"
+   // KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand."
+   { q: 'Var badar man på Utö?', a: 'Skärgårdsstiftelsen nämner Ålö Storsand, som nås med båt eller via vandringsled, samt badplatserna Rävstavik och Barnens bad. Leden från Utö till Ålö går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats, och på plats gäller informationstavlorna i första hand.' },
  ],
  content: `
 <!-- KÄLLA: källorna finns ordagrant i src/app/o/island-data.ts (uto): lansstyrelsen.se Utö naturreservat (gruvor "till och från under 700 år med början redan under 1100-talet"; reservatet norra delen, skyddat 1974, 4 183 ha; skjutfält i södra delen; väderkvarnen 1791; hundar kopplade; tältning endast anvisade platser; båt högst två dygn vid samma strand; resväg "Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan", läst 2026-09-21), kulturarvstockholm.se Utö gruvor (gruvdriften upphörde 1879; ryssarna förstörde gruvorna 1719; befolkningsmax 446 på 1840-talet), skargardsstiftelsen.se/omraden/uto ("Sveriges äldsta bevarade väderkvarn", "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis", Ålö Storsand "nås med båt eller via vandringsled", Rävstavik och Barnens bad), skargardsstiftelsen.se byggnader (kvarnen byggd 1791, byggnadsminne 2001), svenskakyrkan.se/haninge/om-uto-kyrka (byggd 1848–1850 av sten från gruvorna, orgel från 1745), utovardshus.se (resväg; Utö Värdshus i gamla gruvkontoret, à la carte lunch och middag; Seglarbaren mitt i hamnen), utogasthamn.se (ca 300 fritidsbåtar med el, dusch, bastu, sjömack i norra hamnen; Hamnboden kiosk, café och restaurang; cykeluthyrning), SL linje 846 Västerhaninge–Årsta, Waxholmsbolaget tabell 21 Årsta–Utö. Tidigare version (borttagen 2026-09-24) angav "pendelfartyg från Nynäshamn ca 1,5 timmar" (Utö nås från Årsta brygga; Nynäshamnsbåten går till Ålö), en namngiven kock, cykelpris och naturhamnar utan källa. -->
@@ -422,6 +436,10 @@ Bogesundslandets naturreservat, 4 341 hektar varav 2 891 på land, har markerade
 
 ## Ta dig dit
 Året runt: pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt till Gruvbryggan på Utö. Båt går också från Nynäshamn till grannön Ålö, som har broförbindelse till Utö. Alla avgångar: [Båt till Utö](/o/uto/komma-dit).
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there."; "It passes through an active military firing range, which is located on both sides of the road." -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Observera att verksamheten kan ändras med kort varsel. Det är alltid informationstavlorna på plats som gäller i första hand." -->
+Vägen mellan Ålö och Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud. Information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00. Verksamheten kan ändras med kort varsel, och på plats gäller informationstavlorna i första hand.
 
 ## Gruvorna och Gruvbyn
 Järnmalm bröts på Utö till och från i omkring 700 år, med början redan på 1100-talet, och gruvdriften upphörde helt 1879. Sommaren 1719 förstörde den ryska flottan gruvorna. I Gruvbyn står trähusen längs Lurgatan och väderkvarnen från 1791 – Sveriges äldsta bevarade, och byggnadsminne sedan 2001 tillsammans med nio gruvarbetarbostäder. Utö kyrka byggdes 1848–1850 av sten från gruvorna, och orgeln från 1745 stod ursprungligen i Holländska reformerta kyrkan i Stockholm.
@@ -430,7 +448,12 @@ Järnmalm bröts på Utö till och från i omkring 700 år, med början redan p�
 Skärgårdsstiftelsen beskriver Utö som en riktig cykel-ö med milslånga grusvägar, och cyklar hyrs dagsvis vid hamnen.
 
 ## Bada
-- **Ålö Storsand** på grannön Ålö, som nås med båt eller via vandringsled.
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (Skärgårdsstiftelsen), läst 2026-11-08 — "Ålö Storsand, som nås med båt eller via vandringsled" -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Storsand på Ålö anses vara en av Stockholms skärgårds finaste sandstränder." -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö." -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
+- **Ålö Storsand** på grannön Ålö, som nås med båt eller via vandringsled. Leden från Utö går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats, och på plats gäller informationstavlorna i första hand.
 - [Rävstavik](/upptack/ravstavik).
 - **Barnens bad.**
 
@@ -639,16 +662,28 @@ Kortare turer som går med barnvagn eller rullstol:
 - Från Spränga söderut längs leden till våtmarken.
 
 ### Vidare till Ålö
-En förbindelseled på 4,6 kilometer, klassad som lätt, går från Utö till Ålö. Etappen på Ålö är 13,2 kilometer och klassas som utmanande.
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "Easy"; "4.6 km"; "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö."; "Never leave the gravel road until you reach the next section." -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/section-alo/ (Stockholm Archipelago Trail), läst 2026-11-08 — "Challenging"; "13.2 km" -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Skjutfält och förbud"; "Utö skjutfält"; "Observera att verksamheten kan ändras med kort varsel. Det är alltid informationstavlorna på plats som gäller i första hand." -->
+En förbindelseled på 4,6 kilometer, klassad som lätt, går från Utö till Ålö. Den följer en grusväg genom Utö skjutfält, ett aktivt militärt skjutfält, och enligt leden ska man hålla sig på grusvägen hela vägen. Vissa tider är det tillträdesförbud på skjutfältet. Information om förbuden finns på Försvarsmaktens webbplats under Skjutfält och förbud eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand. Etappen på Ålö är 13,2 kilometer och klassas som utmanande.
 
 ### Regler på Utö
 Norra delen av Utö är naturreservat, södra delen skjutfält. I reservatet ska hunden vara kopplad (undantag på Persholmen utanför perioden 1 mars–20 augusti), tält får bara stå på anvisade platser och eld bara göras upp på iordningställda platser. Mer om ön: [Utö guide](/blogg/uto-guide).
 
 ### Ta dig till Utö
 Pendeltåg till Västerhaninge och buss 846 till Årsta brygga, 14–17 minuter. Bussen är anpassad till pendeltågen. Därifrån tar Waxholmsbåten 35–75 minuter till Gruvbryggan enligt höst- och vårtidtabellen. På flera turer ska resan beställas i SL-appen, på Waxholmsbolagets webb eller via kundtjänst minst en timme före avgång. Från Nynäshamn går båt till grannön Ålö, som har broförbindelse till Utö. Alla avgångar: [Båt till Utö](/o/uto/komma-dit).
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there."; "It passes through an active military firing range, which is located on both sides of the road." -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
+Vägen från Ålö till Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.
 
 ## Kombinera öarna
 Enligt Stockholm Archipelago Trail passar etapperna Ornö, Fjärdlång och Utö ihop, liksom Utö, Ålö, Rånö och Nåttarö. Under mars–september ska hundar vara kopplade längs leden. Fler leder: [Vandring i Stockholms skärgård](/blogg/vandring-skargard-guide).
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The Utö – Ålö Connector is the link between the Stockholm Archipelago Trail sections on Utö and Ålö, following a gravel road and passing through a military firing range." -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
+Mellan etapperna Utö och Ålö går förbindelseleden genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats, och på plats gäller informationstavlorna i första hand.
  `,
  },
 
@@ -1475,7 +1510,12 @@ Mer: [Möja](/blogg/dolda-parlor-moja).
 ## Utö – pendeltåg, buss och båt
 - **Resväg:** pendeltåg till Västerhaninge och buss 846 till Årsta brygga, 14–17 minuter. Bussen är anpassad till pendeltågen. Waxholmsbåten därifrån tar 35–75 minuter till Gruvbryggan enligt höst- och vårtidtabellen, och går året om.
 - **Beställ:** på flera turer ska resan beställas i SL-appen, på Waxholmsbolagets webb eller via kundtjänst minst en timme före avgång, senast klockan 17.
-- **Från Nynäshamn:** båt går till grannön Ålö, som har broförbindelse till Utö.
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf (Waxholmsbolaget, tabell 22), läst 2026-11-08 — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"; "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ" -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt." -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there."; "It passes through an active military firing range, which is located on both sides of the road." -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
+- **Från Nynäshamn:** båt går till grannön Ålö, som har broförbindelse till Utö. Vägen från Ålö till Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.
 - **På ön:** gruvbyn med Sveriges äldsta bevarade väderkvarn, cykeluthyrning dagsvis, Utö Värdshus, Seglarbaren i hamnen och Hamnboden.
 
 Mer: [Utö guide](/blogg/uto-guide).
@@ -1578,7 +1618,12 @@ Enligt Länsstyrelsen har Grinda barnvänliga bad vid både den södra och den n
 Haninge kommun beskriver Nåttarö med gott om barnvänliga, långgrunda sandstränder, bland annat Storsand och den mer avskilda Skarsand. Vid kajkanten där båten lägger till finns en badstrand, och till Storsand är det cirka 1,5 kilometer på grusväg norrut. Invid ångbåtsbryggan ligger en snorkelled som är utmärkt med gula bojor och har skyltar under vattnet om livet där. Anpassat torrdass finns nära ångbåtsbryggan och torrdass vid Storsand. På ön finns vandrarhem, stugor, restaurang, tältplats och handelsbod. Waxholmsbolaget går från Nynäshamn, en båtresa på ungefär en halvtimme.
 
 ### [Utö](/o/uto)
-Skärgårdsstiftelsen nämner badplatserna [Rävstavik](/upptack/ravstavik) och Barnens bad, och Ålö Storsand på grannön, som du når med båt eller via vandringsled. Utö beskrivs som en cykel-ö där cyklar hyrs dagsvis. Vid [Seglarbaren](/upptack/seglarbaren-uto) i hamnen finns en lekplats intill uteserveringen. Dit tar du dig med pendeltåg till Västerhaninge, buss till Årsta brygga och Waxholmsbåt till Gruvbryggan, året om. Mer: [Utö guide](/blogg/uto-guide).
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (Skärgårdsstiftelsen), läst 2026-11-08 — "Rävstavik och Barnens bad erbjuder långgrunda sandstränder som passar barnfamiljer, medan Ålö Storsand, som nås med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder."; "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis" -->
+<!-- KÄLLA: https://www.utovardshus.se/restaurang/seglarbaren/ (Utö Värdshus), läst 2026-11-08 — "BAREN MITT I HAMNEN"; "Intill Seglarbarens uteservering finns en lekplats" -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö." -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan."; "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
+Skärgårdsstiftelsen nämner badplatserna [Rävstavik](/upptack/ravstavik) och Barnens bad, och Ålö Storsand på grannön, som du når med båt eller via vandringsled. Leden från Utö till Ålö går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats, och på plats gäller informationstavlorna i första hand. Utö beskrivs som en cykel-ö där cyklar hyrs dagsvis. Vid [Seglarbaren](/upptack/seglarbaren-uto) i hamnen finns en lekplats intill uteserveringen. Dit tar du dig med pendeltåg till Västerhaninge, buss till Årsta brygga och Waxholmsbåt till Gruvbryggan, året om. Mer: [Utö guide](/blogg/uto-guide).
 
 ### [Tynningö](/o/tynningo) – Myrholmsmaren
 Badet vid sjön Stora Maren inne på ön sköts av Tynningö Idrottsförening, som har simskola varje sommar. Här finns sandstrand, bryggor, grillplats, omklädningshytt och Baja-maja under badsäsongen. Waxholmsbolagets linje 4 lägger till vid Norra Tynningö.
@@ -1654,7 +1699,12 @@ Mer: [Möja](/blogg/dolda-parlor-moja).
 ## Utö
 - **Båt:** pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan, 35–75 minuter. På flera turer ska resan beställas minst en timme före avgång. [Båt till Utö](/o/uto/komma-dit).
 - **Bo:** Utö Värdshus har rum i Kvarnvillan (8 dubbelrum) och Stenhotellet (10 rum), hotellstugor och ett vandrarhem.
-- **Gör:** Utö är en cykel-ö där cykel hyrs dagsvis. Ålö Storsand på grannön nås med båt eller via vandringsled, och Stockholm Archipelago Trail på Utö är 18,4 kilometer.
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (Skärgårdsstiftelsen), läst 2026-11-08 — "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis"; "Ålö Storsand, som nås med båt eller via vandringsled" -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-uto-sv/ (Stockholm Archipelago Trail), läst 2026-11-08 — "Denna 18,4 km långa etapp" -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö." -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
+- **Gör:** Utö är en cykel-ö där cykel hyrs dagsvis. Ålö Storsand på grannön nås med båt eller via vandringsled, och Stockholm Archipelago Trail på Utö är 18,4 kilometer. Leden från Utö till Ålö går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats, och på plats gäller informationstavlorna i första hand.
 
 Mer: [Utö guide](/blogg/uto-guide).
 
@@ -1882,7 +1932,12 @@ Etappen på [Utö](/o/uto) börjar vid Gruvbryggan, där det finns affärer, vä
 Båten går året om från Årsta brygga och tar 35–75 minuter till Gruvbryggan enligt Waxholmsbolagets höst- och vårtidtabell. På flera turer ska resan beställas minst en timme före avgång. Alla avgångar: [Båt till Utö](/o/uto/komma-dit).
 
 ### Ålö – 13,2 km, utmanande
-Ålö ligger söder om Utö. Etappen ska gås motsols, och leden skriver att du behöver kunna gå i alla miljöer och klara dig själv. Från Utö går en förbindelseled på 4,6 kilometer, klassad som lätt. Båt går från Nynäshamn via Nåttarö och Rånö till bryggan vid Båtshaket, där du sommartid kan äta och hyra cykel.
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/section-alo/ (Stockholm Archipelago Trail), läst 2026-11-08 — "Ålö is a scenic island south of Utö"; "this section should be hiked counterclockwise"; "you need to be able to walk in all terrains and be self-sufficient"; "You can travel to Ålö from Nynäshamn via Rånö and Nåttarö."; "At the dock where the Waxholmsbåten arrives, you will find Båtshaket"; "In the summer, you can eat and rent bikes at Båtshaket." -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "Easy"; "The distance is 4.6 km along the gravel road"; "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö." -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf (Waxholmsbolaget, tabell 22), läst 2026-11-08 — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"; "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ" -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
+Ålö ligger söder om Utö. Etappen ska gås motsols, och leden skriver att du behöver kunna gå i alla miljöer och klara dig själv. Från Utö går en förbindelseled på 4,6 kilometer, klassad som lätt, längs en grusväg genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats, och på plats gäller informationstavlorna i första hand. Båt går från Nynäshamn via Nåttarö och Rånö till bryggan vid Båtshaket, där du sommartid kan äta och hyra cykel.
 
 ### Ornö – 34,1 km, medel
 Ornö är den längsta etappen på hela leden. Den är märkt som två dagsetapper som båda börjar vid Hässelmara, där bilfärjan från Dalarö lägger till, och slutar i hamnen vid Ornö kyrka. SL-bussen går på asfaltsvägen mellan Lättinge, Hässelmara och Skinnardal, och för en övernattning pekar leden på Ornö Skärgårdshotell i Brunnsviken eller Sundby B&B. Mer om ön: [Vandring på Ornö och Utö](/blogg/vandring-orno-uto).
@@ -2086,7 +2141,12 @@ Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt år
 
 ### Ålö – båt från Nynäshamn
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 2008"; "Skyddsform: naturreservat"; "Reservatet omfattar öarna Ålö och Rånö"; "Storsand på Ålö anses vara en av Stockholms skärgårds finaste sandstränder". Sträckan Gruvbryggan till Ålö gick inte att belägga (uppgifterna går isär mellan 12 och 14 km) och är struken. -->
-Båt går från Nynäshamn via Nåttarö och Rånö till Ålö, som har broförbindelse med Utö. Från Gruvbryggan på Utö kan du cykla dit längs grusvägen. Ålö ingår i naturreservatet Ålö-Rånö, och Ålö Storsand nås med båt eller via vandringsled. På sommaren kan du äta och hyra cykel vid Båtshaket.
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/section-alo/ (Stockholm Archipelago Trail), läst 2026-11-08 — "You can travel to Ålö from Nynäshamn via Rånö and Nåttarö."; "By bike, you can cycle 12 km to Utö Gruvbryggan along the gravel road."; "In the summer, you can eat and rent bikes at Båtshaket." -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt."; "Naturreservatet omfattar öarna Ålö och Rånö med omgivande öar och marina miljöer."; "Skyddsform: naturreservat" -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there."; "It passes through an active military firing range, which is located on both sides of the road." -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
+Båt går från Nynäshamn via Nåttarö och Rånö till Ålö, som har broförbindelse med Utö. Från Gruvbryggan på Utö kan du cykla dit längs grusvägen, som går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand. Ålö ingår i naturreservatet Ålö-Rånö, och Ålö Storsand nås med båt eller via vandringsled. På sommaren kan du äta och hyra cykel vid Båtshaket.
 
 ### Ornö – cirka 30 minuter från Dalarö
 SL-buss till Dalarö och bilfärjan till Hässelmara. Ornö är södra skärgårdens största ö. I Kyrkviken finns museum, bibliotek och cykeluthyrning, och från Sundby gård går en drygt sex kilometer lång rundslinga. [Vandring på Ornö och Utö](/blogg/vandring-orno-uto).
@@ -2110,7 +2170,14 @@ Under högsäsong går turbåt från Stavsnäs vinterhamn till Bullerö, entrén
      // KÄLLA: stromma.com Fjäderholmarna, Waxholmsbolaget tabell 2 och 21, Waxholmsbolaget och sl.se om SL-biljetter i skärgårdstrafiken, lansstyrelsen.se Utö – se KÄLLA-kommentaren i content.
      { q: 'Hur lång tid tar båten till Fjäderholmarna?', a: 'Strömmas båt från Strandvägen tar cirka 30 minuter under sommarhalvåret. Vår och höst lägger Waxholmsbolagets linje 2 till vid Fjäderholmarna på vissa turer.' },
      { q: 'Gäller SL-kortet på Waxholmsbåtarna?', a: 'SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd. 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik. Övrig tid behövs Waxholmsbolaget-biljett längre ut.' },
-     { q: 'Hur tar man sig till Utö utan bil?', a: 'Med pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan, 35–75 minuter. Från Nynäshamn går båt till grannön Ålö, som har bro till Utö.' },
+     // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan."; "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00"
+     // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf (SL, linje 846), läst 2026-11-08 — "Västerhaninge station–Årsta (–Årsta slott)"; "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026"
+     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf (Waxholmsbolaget, tabell 21), läst 2026-11-08 — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"; "21A ÅRSTA – UTÖ"; uppmätt i tabellen: Årsta brygga–Gruvbryggan 35–75 min
+     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf (Waxholmsbolaget, tabell 22), läst 2026-11-08 — "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ"
+     // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt."
+     // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there."; "It passes through an active military firing range, which is located on both sides of the road."
+     // KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand."
+     { q: 'Hur tar man sig till Utö utan bil?', a: 'Med pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan, 35–75 minuter enligt höst- och vårtidtabellen. Från Nynäshamn går båt till grannön Ålö, som har bro till Utö. Vägen från Ålö till Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.' },
    ],
  },
 

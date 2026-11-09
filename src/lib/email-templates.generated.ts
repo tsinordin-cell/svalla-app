@@ -402,8 +402,14 @@ Sandstränder och klippbad vid Grinda Sea Lodge på öns södra sida, och båt �
 
 :::ruta
 <!-- KÄLLA: src/app/o/island-data.ts (uto) — skargardsstiftelsen.se/omraden/uto: "I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden", "Cykla längs grusvägarna", "Ålö Storsand, som nås med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder." Tidigare stod "broförbundna grannön" och "en av Sveriges finaste sandstränder" (rättad 2026-09-29) -->
+<!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Här finns också Utö gruvor från järnmalmsbrytningen som funnits till och från under 700 år med början redan under 1100-talet."; "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" (läst 2026-11-09) -->
+<!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ — "I den historiska Gruvbyn finns spår av järnbrytning som påbörjades redan under medeltiden."; "Cykla längs grusvägarna"; "Ålö Storsand, som nås med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder." (läst 2026-11-09) -->
+<!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ — "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö." (läst 2026-11-09) -->
+<!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ — "Skjutfält och förbud"; "Utö skjutfält"; "Det är alltid informationstavlorna på plats som gäller i första hand." (läst 2026-11-09) -->
+<!-- KÄLLA: https://www.utogasthamn.se/att-gora/ — "Glöm bara inte att fråga oss i Hamnboden om skjutfältet är öppet om du planerar att åka dit." (läst 2026-11-09) -->
+<!-- KÄLLA: https://www.utogasthamn.se/oppet-och-kontakt/ — "stänger Hamnboden för året" (läst 2026-11-09) -->
 ### Utö
-Järngruvor sedan medeltiden och grusvägar att cykla på. Ålö Storsand, som du når med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder.
+Järngruvor sedan medeltiden och grusvägar att cykla på. Ålö Storsand, som du når med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder. Leden från Utö går genom Utö skjutfält, där det vissa tider är tillträdesförbud. Information om förbuden finns på Försvarsmaktens webbplats under Skjutfält och förbud eller på telefon 010-823 30 00, och när Hamnboden i Utö gästhamn har öppet kan du också fråga där om skjutfältet är öppet. På plats gäller informationstavlorna i första hand.
 
 [Guiden →](https://svalla.se/o/uto)
 :::
@@ -474,73 +480,65 @@ Ses därute.
 `,
   manadsbrev: `---
 trigger: första tisdagen i månaden, oktober–mars (bara om manad stämmer)
-manad: 2026-10
+manad: 2026-11
 layout: fullt
 subject_options:
-  - "Två timmar på Saltkråkan innan båten slutar gå för året"
-preheader: Sista båtarna från stan, höstlovet och hur många som bor kvar på öarna när sommaren är slut.
+  - "Julbord ute på öarna, och båten som tar dig dit"
+preheader: De första julborden i skärgården dukas upp 20 november. Så tar du dig dit när vintertrafiken närmar sig.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# Oktober vid havet
+# November vid havet
 
-Sommargästerna har åkt hem, men båtarna går fortfarande. Den 1 november gör några av dem sin sista tur för året, så oktober är sista chansen i år att åka direkt från stan ut till ett par av de yttre öarna.
+Sommarlinjerna har slutat och vintertidtabellen närmar sig. Samtidigt börjar julborden ute på öarna.
 
-## Saltkråkan, en sista gång i år
+## Julbord ute på öarna
 
-<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — Waxholmsbolaget tabell 26, "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026": lördag tur 2651 Strömkajen 08.45 → Norröra 12.15; lördag tur 2652 Norröra 14.40 → Strömkajen 18.15; "Vid jul, nyår, påsk, midsommar samt övriga storhelger förekommer förändringar i trafiken." (läst 2026-09-29) -->
-<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Saltkråkan är framför allt inspelat på Norröra."; "Det finns varken livsmedelsbutiker eller restauranger på öarna" (läst 2026-09-29) -->
-<!-- KÄLLA: https://www.norrora.se/gronomraden/ — "totalt på ön ca 7 km stigar" (läst 2026-09-29) -->
-<!-- KÄLLA: alla helgons dag 2026 = lördag 31 oktober, räknas fram i src/lib/arsdatum.ts -->
-Norröra är ön där Saltkråkan spelades in. På en lördag i oktober går båten från Strömkajen 08.45 och är framme 12.15. Hem går den 14.40 och är tillbaka i stan 18.15. Det ger dig knappt två och en halv timme och ungefär sju kilometer stigar. Ta med matsäck, för på ön finns varken affär eller restaurang.
+<!-- KÄLLA: https://www.fjaderholmarnaskrog.se/ — "NU SERVERA JULBORD MELLAN 20/11 - 22/12" (läst 2026-11-07) -->
+<!-- KÄLLA: https://www.rokeriet-fjaderholmarna.se/julbord — "Julbordet hålls från 20 november till 20 december 2026" (läst 2026-11-07) -->
+<!-- KÄLLA: https://www.stromma.com/sv-se/stockholm/julbord/jul-pa-kastellet/ — "Mellan 25 november och 22 december 2026"; "I biljetten ingår: båtresa tur & retur"; "Du kan välja att resa från Strandvägen i Stockholm, Nacka Strand, Gåshaga eller Vaxholm." (läst 2026-11-07) -->
+<!-- KÄLLA: https://www.sandhamn.com/sv/kalender — "JULBORD"; "26 NOVEMBER - 24 DECEMBER 2026" (läst 2026-11-07) -->
+<!-- KÄLLA: https://www.utovardshus.se/julbord/ — "27 november – 19 december"; "Till varje sittning finns en ordinarie båt som passar tur och retur." (läst 2026-09-29; sidan gick inte att läsa om 2026-11-07) -->
+<!-- KÄLLA: https://www.isbolaget.com/hogtid-frukost — "JULBORDSDATUM 2026"; "LÖRDAG 28 NOVEMBER FRÅN KL. 18.00" (läst 2026-11-07) -->
+De första julborden i skärgården dukas upp 20 november på Fjäderholmarna, både på Fjäderholmarnas Krog och på Rökeriet. Sedan följer Vaxholms kastell 25 november, Sandhamn Seglarhotell 26 november, Utö Värdshus 27 november och Isbolaget på Donsö dagen efter.
 
-Tabellen gäller till och med 1 november. Den sista lördagen, 31 oktober, är alla helgons dag, och vid storhelger kan Waxholmsbolaget ändra turerna. Åk hellre en lördag tidigare, eller kontrollera just den dagen.
+Två saker skiljer dem från ett julbord i stan. På kastellet ingår båten i biljetten, från Strandvägen, Nacka Strand, Gåshaga eller Vaxholm. Och till Utö Värdshus finns det enligt värdshuset en ordinarie båt som passar varje sittning, både dit och hem.
 
-[Norröra på Svalla](https://svalla.se/o/norrora)
+Vi har samlat alla julbord vi har kunnat kontrollera, med datum, priser för 2026 och hur du tar dig dit.
+
+[Julbord i skärgården 2026](https://svalla.se/guider/julbord-skargarden)
 
 ## Det här ändras nu
 
-<!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Norrsund - Arholma Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Grinda - Boda - Sollenkroka Gäller:2026-08-17till2026-12-12" (läst 2026-09-28) -->
-<!-- KÄLLA: https://grinda.se/oppettider/ — "Grinda stugby har öppet med start strax innan månadssskiftet april / maj till 3.e helgen i oktober" (läst 2026-09-28) -->
-<!-- KÄLLA: https://www.waxholmsbolaget.se/reseplanering/resmal/grinda — "Grinda har trafik året om" (läst 2026-09-28) -->
-<!-- KÄLLA: https://explorearchipelago.se/sv/sthlm/inre-skargarden/fjaderholmarna — "Fjäderholmarna är säsongsöppet mellan april och september." (läst 2026-09-28) -->
-<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — turerna till Arholma har anmärkning "Går under perioden 2 april - 18 juni."; https://kund.printhuset-sthlm.se/wa/h30.pdf — Simpnäs–Arholma till "12 DECEMBER 2026" (läst 2026-09-30) -->
-- Waxholmsbolagets linjer från Stockholm till Rödlöga och Blidösundet går till och med 1 november. Linjen mot Arholma går i höst bara till Gräskö, så till Arholma åker du med passbåten från Simpnäs.
-- Linjen från Stockholm via Vaxholm och Grinda till Sollenkroka har höstturer till 12 december.
-- Grinda Stugby stänger efter tredje helgen i oktober. Grinda har ändå båttrafik året om.
-- Fjäderholmarnas säsong är april till september.
+<!-- KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Stockholm - Vaxholm - Norrsund - Rödlöga Gäller:2026-08-17till2026-11-01"; "Stockholm - Vaxholm - Blidösundet Gäller:2026-08-17till2026-11-01" (läst 2026-09-28; tabellerna listas inte längre 2026-11-07) -->
+<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h30.pdf — "30A SIMPNÄS – ARHOLMA"; "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-11-07) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Norröra eller Söderöra." (läst 2026-11-07) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/nyheter-och-trafikinfo — "Till och med lördagen den 12 december gäller hösttidtabeller i vår trafik." (läst 2026-11-07) -->
+<!-- KÄLLA: https://waxholmsbolaget.se/nyheter-och-trafikinfo/lagsasongen-igang — "Till och den 29 april 2027 kan du som har en SL-biljett som gäller för 30 dagar eller längre resa i hela Waxholmsbolagets trafik." (läst 2026-11-07) -->
+- Tidtabellerna för båtarna från Stockholm till Rödlöga och Blidösundet gällde till och med 1 november. Till Arholma åker du nu med passbåten från Simpnäs, och till Norröra och Söderöra från Köpmanholm på Yxlan.
+- Hösttidtabellerna gäller till och med lördag 12 december. Sedan kommer vintertidtabellen.
+- Har du en SL-biljett för 30 dagar eller längre gäller den i hela Waxholmsbolagets trafik fram till 29 april 2027.
 
-## Höstlovet
+Hur båtarna går när isen lägger sig, med istabeller, svävare och isvägar, står i vår guide om vintertrafiken.
 
-<!-- KÄLLA: https://meetingspublic.stockholm.se/welcome-sv/namnder-styrelser/utbildningsnamnden/mote-2022-11-17/agenda/bilaga-1-larotider-2024-2027-gr-o-grsarpdf?downloadMode=open — "Höstlov, vecka 44: 26 - 30 oktober" (läst 2026-09-29) -->
-<!-- KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — "Färjorna går året runt från Saltholmen"; "En Västtrafikbiljett för zon A gäller hela vägen på spårvagn, buss och färja." (läst 2026-09-29) -->
-I Stockholms kommunala skolor är höstlovet vecka 44, alltså 26 till 30 oktober. I guiden står vilka båtar som går den veckan och vad som har stängt.
+[Vintertrafiken i skärgården](https://svalla.se/guider/vintertrafik-skargarden)
 
-Bor du i Göteborg är den södra skärgården det enklaste lovet: färjorna från Saltholmen går året runt, och en Västtrafikbiljett för zon A gäller hela vägen på spårvagn, buss och färja.
+## Tre julmarknader vid vattnet
 
-[Höstlov vid havet](https://svalla.se/guider/hostlov-vid-havet)
-
-## Hur många bor kvar?
-
-<!-- KÄLLA: https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__MI__MI0812__MI0812A/OarEjBro01/ — SCB, "Befolkning och bebyggelse på öar utan fastlandsförbindelse med bro, per ö", 31 december 2020: Möja 203, Sandön 118, Arholma 40 folkbokförda (hämtad 2026-09-29) -->
-När sista sommarbåten har gått är det de fast boende som är kvar. Enligt SCB var 203 personer folkbokförda på Möja, 118 på Sandön där Sandhamn ligger och 40 på Arholma. Siffrorna gäller 31 december 2020, det senaste året i SCB:s statistik per ö.
-
-Nu står de siffrorna på öarnas sidor på Svalla, tillsammans med kommun och antal byggnader.
-
-[Se Möja](https://svalla.se/o/moja)
-
-## Nytt på Svalla
-
-- **Din dag i skärgården.** Välj var du startar och vilken dag du vill åka, så ser du vilka öar du hinner till och när båtarna går just den dagen. [Planera en dag](https://svalla.se/utflykt)
-- **Sök bland alla öar.** Listan över öar har fått ett sökfält. [Alla öar](https://svalla.se/oar)
+<!-- KÄLLA: https://marstrandsmarknad.com/ — "JULMARKNAD · 28–29 NOVEMBER 2026"; "Inomhus i Strandverkets varma, historiska miljö"; "ÖPPET LÖRDAG 11.00–16.00 · SÖNDAG 11.00–15.00" (läst 2026-11-07) -->
+<!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julmarknad — "Lördagen den 28 november välkomnar vi dig till julmarknad på Sandhamn."; "Julmarknad och aktiviteter kl. 11.00–15.00" (läst 2026-11-07) -->
+<!-- KÄLLA: https://www.destinationvaxholm.se/events/vaxholms-julmarknad-2026 — "Den andra helgen i advent, 5 – 6 december, är det åter dags för Vaxholms traditionsenliga julmarknad." (läst 2026-11-07) -->
+- **Marstrand**, helgen 28 och 29 november, inomhus i Strandverket.
+- **Sandhamn**, lördag 28 november klockan 11–15.
+- **Vaxholm**, andra advent, 5 och 6 december.
 
 :::knapp
-[Planera en dag i oktober](https://svalla.se/utflykt)
+[Planera en dag i november](https://svalla.se/utflykt)
 :::
 
 :::signatur
 Ses därute.
-*Nästa brev kommer i november. Svara gärna på det här mejlet om du undrar något om en ö, så svarar vi.*
+*Nästa brev kommer i december. Svara gärna på det här mejlet om du undrar något om en ö, så svarar vi.*
 :::
 `,
   day60: `---

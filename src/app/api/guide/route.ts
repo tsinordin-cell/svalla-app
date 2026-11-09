@@ -22,6 +22,15 @@ import { byggPlatslista, rensaLankar, PLATSLISTA_REGLER, THORKEL_PLATSTYPER, typ
  * måste du ta buss tillbaka. En besökare hade missat båten.
  *
  * Raderna är korrekta som seglingssträckor. Felet var att de saknade etikett.
+ *
+ * Raden "Cykel Utö+Ålö" (2026-11-09, P0 20): grusvägen mellan öarna går genom
+ * Utö skjutfält. Raden säger därför att det vissa tider är tillträdesförbud och
+ * var man får veta om det. Källorna står här, utanför prompttexten.
+ * KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ — "The Utö – Ålö Connector is the link between the Stockholm Archipelago Trail sections on Utö and Ålö, following a gravel road and passing through a military firing range." (läst 2026-11-09)
+ * KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" (läst 2026-11-09)
+ * KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ — "Skjutfält och förbud"; "Utö skjutfält"; "Det är alltid informationstavlorna på plats som gäller i första hand." (läst 2026-11-09)
+ * KÄLLA: https://www.utogasthamn.se/att-gora/ — "Glöm bara inte att fråga oss i Hamnboden om skjutfältet är öppet om du planerar att åka dit." (läst 2026-11-09)
+ * KÄLLA: https://www.utogasthamn.se/oppet-och-kontakt/ — "stänger Hamnboden för året" (läst 2026-11-09)
  */
 const TOUR_CONTEXT = `
 VIKTIGT OM DEN HÄR LISTAN: varje rad är en sträcka för EGEN BÅT eller charter,
@@ -79,7 +88,7 @@ Kajak Grinda runt: Äventyrare, halvdag/heldag, öcirkel, klipphopp.
 Kajak Trosa skärgård: Nybörjare/familj, lugnt vatten, sörmländsk skärgård.
 Kajak Ingarö kust: Intermediär, halvdag, kuperad kust, fin utsikt.
 Kajak Ornö runt: Äventyrare, heldag, varierad kust, naturhamnar.
-Cykel Utö+Ålö: Äventyrare/par, cykel+bad, öarna via bro, klippbad. Hyra cykel på Utö.
+Cykel Utö+Ålö: Äventyrare/par, cykel+bad, öarna via bro, klippbad. Hyra cykel på Utö. Grusvägen mellan öarna går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats under Skjutfält och förbud, på telefon 010-823 30 00 och i Hamnboden i Utö gästhamn när den har öppet, och på plats gäller informationstavlorna i första hand.
 Cykel Möja: Par/familj, halvdag, bilfri ö, sol och väg längs havet.
 Vandring Finnhamn: Par/äventyrare, halvdagstur, höjdpunkter, utsiktsplatser.
 Vandring Ornö: Äventyrare, skogsridåer, halvdag, bra stigar.
