@@ -99,7 +99,10 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   landsort: {
     body: 'Landsort är Östersjöns sydligaste punkt och en av Stockholms skärgårds historiskt rikaste öar. Den korta leden (~4 km) tar dig till fyren och ut på klippor där havsbilden öppnar sig åt alla håll. En unik kombination av marinhistoria och dramatisk natur.',
     tips: [
-      'Pendelbåt från Nynäshamn — kontrollera tidtabell.',
+      // Rättad 2026-11-09 (P0 21): båten till Landsort går från Ankaruddens brygga, inte från Nynäshamn.
+      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — "Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden." (läst 2026-11-09)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — "Nynäshamns station–Torö", "ANKARUDDEN", "Giltig 17 augusti–12 december 2026" (läst 2026-11-09)
+      'Båten går från Ankaruddens brygga strax söder om Nynäshamn, dit buss 852 går från Nynäshamns station — kontrollera tidtabell.',
       'Fyren kan besökas — kolla öppettider.',
       'Bra badplatser längs södra klippkusten.',
     ],

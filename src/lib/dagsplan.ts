@@ -51,7 +51,12 @@ export const DAG_HUBS: DagHub[] = [
   {
     slug: 'nynashamn', label: 'Nynäshamn', name: 'Nynäshamn',
     originIds: [NYNASHAMN_ID], keywords: ['nynäshamn'],
-    extra: ['uto', 'nattaro', 'orno', 'fjardlang', 'landsort'],
+    // P0 21 (2026-11-09): Ornö och Fjärdlång nås från Nynäshamn bara med Nord/Sydlinjen sommartid; vår och höst från Dalarö (tabell 19, Ornö Sjötrafik).
+    // Utö utesluts sedan P0 20 del 3 (exclude) och står inte heller här.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Ornö Kyrka", "Fjärdlång" (läst 2026-11-09)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Fjärdlång" (läst 2026-11-09)
+    // KÄLLA: https://ornosjotrafik.se/ — "Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö." (läst 2026-11-09)
+    extra: ['nattaro', 'landsort'],
   },
   {
     slug: 'vaxholm', label: 'Vaxholm', name: 'Vaxholm',
