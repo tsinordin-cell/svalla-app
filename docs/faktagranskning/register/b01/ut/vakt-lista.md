@@ -62,6 +62,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Hållplats-id: kontrollera namnen för Fjäderholmarna (740034632) och Utö Centralstation.
 
 ## Mallar och komponenter (kontrollera om Skribenten redan rättat dem)
+- src/app/aktivitet/vandring/page.tsx visas inte på sajten (MÄTT 2026-11-10). /aktivitet/vandring byggs av aktivitet/[type]/page.tsx, vars generateStaticParams innehåller vandring. Sidan har titeln "Vandring i skärgården — 84 öar att välja mellan" och saknar vandring/page.tsx:s FAQ och brödtext. Utvecklingen avgör vilken sida som ska gälla, och innehållet prövas sedan i vandringssidans fas.
 - MÅSTE IN FÖRE BATCH 01:S PR: platslistan ska låta ö-fältet gå före radien (ett ifyllt ö-fält som inte är öns namn ger onIsland = false). Annars visas Rånökällan som krog på Utö på /o/uto/restauranger och /o/uto/med-barn (uto-omk4 uo4046).
 - Utö (omarbete 4, MÄTT): med GPS-radien 7,0 km från den nya nålen (Toms beslut 3b) hamnar Ålö brygga (5,09 km) och Rånö färjeläge (5,77 km) innanför, så en tur dit taggas som Utö. islandPlaces räknar Rånökällan (ö-fältet Rånö, 5,82 km) som "på Utö", eftersom onIsland är ö-fältet eller avståndet ≤ radien. Ingen cirkel löser det: Stora Sandvik (6,00 km) och Rävstavik (4,47 km) ligger på Utö men saknar ö-fält. Skribentens förslag: ett ifyllt ö-fält som inte är öns namn ger onIsland = false (samma fix behövs för Vaxholm och Styrsö).
 - med-barn/page.tsx:87 jämför exakta namn och visar Stora Trouvillestranden. Toms beslut 6 avgör om posten ska döljas.
