@@ -144,6 +144,18 @@ innehåll som beslutskortet på svalla.se/team.
   för besökare och inte bara för medlemmar. Annars döljs den. Detaljerna står
   i register/b01/ut/sandhamn.tom.md, punkt 1.
 
+### 6c. (NY 2026-11-10, väntar på Tom) Sandhamn: posten "Bistro Sands"
+- **Läget:** posten är en restaurang med namnet Bistro Sands och webbplatsen
+  sandshotell.se. Hotellets webbplats nämner ingen "Bistro Sands" och ingen
+  restaurang som är öppen för allmänheten. Restaurangen nämns bara bland
+  hotellets möteslokaler ("restaurangen med uteterassen"). Menyn har ingen
+  punkt för restaurang eller mat. Redaktören läste sidan i din Chrome
+  2026-11-10, eftersom den ger 502 i arbetsytan.
+- **Sands Hotell** finns redan som egen post (typ hotell).
+- **Förslag:** dölj posten bistro-sands. **Ja** betyder att den döljs i
+  batch 01:s databassatser. **Nej** betyder att den står kvar som den är tills
+  någon bekräftar restaurangen.
+
 ### 4. (BESLUTAT 2026-11-08) Platstyp för camping (schemaändring)
 - Utö camping (`uto-camping-och-stugor`) har typen hotel. Tabellen
   `restaurants` har ingen typ för camping. **Ja:** ny typ camping i data och

@@ -1,0 +1,10 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-10)
+so4001	sandhamn-0421	FEL (MÄTT)	Toms beslut (ny fråga 6c): sandshotell.se nämner ingen "Bistro Sands" och ingen restaurang som är öppen för allmänheten. Restaurangen nämns bara som en lokal för möten (Redaktören läste sidan i Toms Chrome 2026-11-10, kallcache punkt 6). Sands Hotell finns redan som egen post. Förslaget är att dölja posten bistro-sands. Rör inte posten förrän Tom svarat.
+so4033	sandhamn-0419	FEL (MÄTT)	Som so4001. Nålen ligger dessutom 168 m från hotellet, vilket blir ointressant om posten döljs.
+so4039	sandhamn-0418	FEL (MÄTT)	Som so4001.
+so4003	sandhamn-0557	FEL (MÄTT)	Omarbete 4b: "Stranden vid Västerudden" som badplats bärs bara av OSM, som är en svag källa. Kommunens badplatslista för Sandhamn har Trouville och Fläskberget. Stryk Västerudden ur öns badplatsdata och kompensera i samma sektion med belagt innehåll, till exempel kommunens beskrivning av Fläskberget.
+so4056	sandhamn-0078	FEL (RESONERAT)	Omarbete 4b: stryk bisatsen "alltså andra halvan av juni och första halvan av september" och skriv perioden som värdshuset skriver den. Den engelska sidan säger att värdshuset är stängt 12 januari–6 mars, utan årtal. Ta med det om meningen påstår något om vintern.
+so4s03	sandhamn-0566	FEL (MÄTT)	Omarbete 4b: strykningen var fel. amenities.toilets = true står kvar, med Värmdö kommun som källa ("Toaletter sommartid").
+so4s04	sandhamn-0567	FEL (MÄTT)	Omarbete 4b: strykningen var fel. amenities.shower = true står kvar, med KSSS servicehus (gästhamnen) som källa ("dusch maj–september").
+so4008, so4011, so4013, so4019, so4020, so4022, so4034, so4041	sandhamn-0428–0435	SAKNAS (ej nåbar)	Toms beslut 6b. Café Strindbergsgårdens Facebooksida visar "Det här innehållet är inte tillgängligt just nu" även i Toms Chrome. Raderna väntar på Toms svar: ersätt, dölj eller låt stå.
+so4015	sandhamn-0539	SAKNAS (MÄTT)	Mallarnas runda 5. Rubriken "Aktiviteter för barn på {ö}" och urvalet via ordet "strand" (med-barn/page.tsx rad 70–72 och 177) står redan på mallarnas lista.

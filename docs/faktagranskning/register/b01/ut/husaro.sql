@@ -54,3 +54,13 @@ update restaurants set description = 'Gästhamnen på Söder-Långholm vid Finnh
 -- KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=S%C3%B6der-L%C3%A5ngholm — "Söder-Långholm", "Österåker | Natur- och terrängnamn" (läst 2026-11-02). Sökningen på Söderlångholm ger ingen träff.
 update restaurants set name = 'Söder-Långholm', updated_at = now()
  where slug = 'soderlangholm' and name = 'Söderlångholm';
+
+-- Omarbete runda 4 (2026-11-10): källor för två värden som står kvar. Inga nya UPDATE. Databasen är inte läst i den här rundan;
+-- koordinaterna kommer ur platsexporten 2026-10-29 (docs/faktagranskning/platser-export-2026-10-29.json).
+
+-- restaurants.finnhamn.island och avståndet till Husarö (husaro-0256, full-22 f22-k049). Värdet står kvar; ingen UPDATE.
+-- KÄLLA: https://skargardsstiftelsen.se/omraden/finnhamn/ — "Paradisviken, Vandrarhemsviken och Söder Långholm." (läst 2026-11-10)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/map?bbox=18.815,59.474,18.845,59.488 — "name=Finnhamn", "amenity=ferry_terminal" (läst 2026-11-10); uppmätt i OpenStreetMap 2026-11-10 (haversine): platsens koordinat 59.48276, 18.82653 ligger 14 m från Finnhamns brygga (nod 2927541101) och 2,88 km från Husarös nål (59.5064, 18.8475).
+
+-- restaurants.soderlangholm.latitude/longitude, 3,0 km från Husarö (husaro-0268, full-26 f26-k084). Värdet står kvar; ingen UPDATE.
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/map?bbox=18.815,59.474,18.845,59.488 — "name=Söder Långholm", "leisure=marina" (läst 2026-11-10); uppmätt i OpenStreetMap 2026-11-10 (haversine): platsens koordinat 59.48045, 18.83299 ligger 68 m från noden Söder Långholm (nod 4028481185) och 3,00 km från Husarös nål (59.5064, 18.8475).

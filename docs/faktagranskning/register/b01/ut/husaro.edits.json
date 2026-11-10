@@ -36,21 +36,26 @@
  {
   "fil": "src/app/o/island-data.ts",
   "gammal": "      // KÄLLA: https://www.husaro.se/om-husaro/ — \"Kulturlandskap med ängar och lövträd, som skiftar under vandringen till vacker tallskog och släta klippor.\" (läst 2026-09-27)",
-  "ny": "      // KÄLLA: https://www.husaro.se/om-husaro/ — \"Kulturlandskap med ängar och lövträd, som skiftar under vandringen till vacker tallskog och släta klippor.\", \"Husarö, som ligger i Österåkers kommun, är ungefär 2,5 km lång.\", \"Till fots kan man gå på upptäcktsfärd på ön.\" (läst 2026-10-29)",
+  "ny": "      // KÄLLA: https://www.husaro.se/om-husaro/ — \"Kulturlandskap med ängar och lövträd, som skiftar under vandringen till vacker tallskog och släta klippor.\", \"Västra delen av ön är i stort sett obebyggd, medan den östra delen är mer bebyggd.\", \"Husarö, som ligger i Österåkers kommun, är ungefär 2,5 km lång.\", \"Till fots kan man gå på upptäcktsfärd på ön.\" (läst 2026-11-10)",
   "rader": [
    "husaro-0089",
    "husaro-0090",
    "husaro-0091",
    "husaro-0092",
-   "husaro-0093"
+   "husaro-0093",
+   "husaro-N006"
   ]
  },
  {
   "fil": "src/app/o/island-data.ts",
-  "gammal": "Ön är ungefär 2,5 km lång — allt nås till fots.",
-  "ny": "Ön är ungefär 2,5 km lång och går att upptäcka till fots.",
+  "gammal": "Naturmässigt är Husarö varierad: kulturlandskap med ängar och lövträd i byn, tallskog och släta klippor längre ut. Ön är ungefär 2,5 km lång — allt nås till fots.",
+  "ny": "Naturmässigt är Husarö varierad: på en vandring skiftar kulturlandskapet med ängar och lövträd till tallskog och släta klippor. Västra delen av ön är i stort sett obebyggd och den östra mer bebyggd. Ön är ungefär 2,5 km lång och går att upptäcka till fots.",
   "rader": [
-   "husaro-0093"
+   "husaro-0089",
+   "husaro-0090",
+   "husaro-0091",
+   "husaro-0093",
+   "husaro-N006"
   ]
  },
  {
@@ -97,11 +102,13 @@
  },
  {
   "fil": "src/app/o/island-data.ts",
-  "gammal": "Inre delen av hamnen har begränsat djup och rekommenderas inte för segelbåtar. Husarö var officiell lotsplats 1740–1912.' },",
-  "ny": "Husarö Handel rekommenderar inte hamnens inre del för segelbåtar. Husarö var officiell lotsplats 1740–1912.' },",
+  "gammal": "      // KÄLLA: http://husarohandel.se/ — \"Gästhamnen är en lång pontonbrygga med Y-bommar och mooringlinor och bojar. Inre delen av hamnen har begränsat djupgående och rekommenderas inte för segelbåtar.\" (läst 2026-09-27); https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Mellan 1740 och 1912 var Husarö officiell lotsplats\" (läst 2026-09-27)\n      { icon: '⛵', name: 'Segling', desc: 'Gästhamnen vid ångbåtsbryggan är en lång pontonbrygga med Y-bommar, mooringlinor och bojar. Inre delen av hamnen har begränsat djup och rekommenderas inte för segelbåtar. Husarö var officiell lotsplats 1740–1912.' },",
+  "ny": "      // Rättad 2026-11-10: \"Inre delen av hamnen har begränsat djup\" är struket. Djup kräver nivå 1 (Sjöfartsverket), och enda källan var gästhamnens egen sida. Gästhamnens eget råd står kvar, och bokningen och avgiften kompenserar.\n      // KÄLLA: http://husarohandel.se/ — \"Gästhamnen är en lång pontonbrygga med Y-bommar och mooringlinor och bojar.\", \"Inre delen av hamnen\", \"rekommenderas inte för segelbåtar.\", \"Boka gästhamnsplats via Dockspot\", \"Avgift är beroende av säsong\" (läst 2026-11-10)\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Mellan 1740 och 1912 var Husarö officiell lotsplats\" (läst 2026-11-10)\n      { icon: '⛵', name: 'Segling', desc: 'Gästhamnen vid ångbåtsbryggan är en lång pontonbrygga med Y-bommar, mooringlinor och bojar. Husarö Handel rekommenderar inte hamnens inre del för segelbåtar. Gästplats bokas via Dockspot, och avgiften beror på säsongen. Husarö var officiell lotsplats 1740–1912.' },",
   "rader": [
    "husaro-0127",
-   "husaro-0128"
+   "husaro-0128",
+   "husaro-N007",
+   "husaro-N008"
   ]
  },
  {
@@ -137,16 +144,17 @@
  },
  {
   "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: http://husarohandel.se/ — \"Tyvärr finns inget färskvatten. Det finns däremot på vår andra mack vid Klintsundet som ligger tvärs över Gälnan.\", \"stängt av elen\" (läst 2026-09-27)",
-  "ny": "      // KÄLLA: http://husarohandel.se/ — \"Tyvärr finns inget färskvatten. Det finns däremot på vår andra mack vid Klintsundet som ligger tvärs över Gälnan.\", \"stängt av elen\" (läst 2026-09-27)\n      // KÄLLA: http://husarohandel.se/husar-handel---om-oss — \"vårt andra ställe på Ljusterö, vid Klintsundet\" (läst 2026-10-29)",
+  "gammal": "      // KÄLLA: http://husarohandel.se/ — \"Tyvärr finns inget färskvatten. Det finns däremot på vår andra mack vid Klintsundet som ligger tvärs över Gälnan.\", \"stängt av elen\" (läst 2026-09-27)\n      'Gästhamnen har inget färskvatten och elen är avstängd så länge hamnen är obemannad — fyll vatten innan, till exempel vid Husarö Handels andra mack vid Klintsundet på Ljusterö.',",
+  "ny": "      // KÄLLA: http://husarohandel.se/ — \"Tyvärr finns inget färskvatten. Det finns däremot på vår andra mack vid Klintsundet som ligger tvärs över Gälnan.\", \"stängt av elen\", \"Gästhamnnen är obemannad för tillfället\" (läst 2026-11-10)\n      // KÄLLA: http://husarohandel.se/husar-handel---om-oss — \"vårt andra ställe på Ljusterö, vid Klintsundet\" (läst 2026-11-10)\n      'Gästhamnen har inget färskvatten och elen är avstängd så länge hamnen är obemannad — fyll vatten innan, till exempel vid Husarö Handels andra mack vid Klintsundet på Ljusterö, tvärs över Gälnan.',",
   "rader": [
-   "husaro-0190"
+   "husaro-0190",
+   "husaro-N005"
   ]
  },
  {
   "fil": "src/app/o/island-data.ts",
   "gammal": "      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Du kan söka på hela sträckan Åkersberga–Husarö direkt i SL-appen.\" (läst 2026-09-27); https://kund.printhuset-sthlm.se/wa/h10.pdf — \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\" (läst 2026-09-27)\n      'Kortaste båtresan går från Åsättra på Ljusterö med linje 10, ca 45–50 minuter. Dit går buss från Åkersberga station, och hela sträckan går att söka i SL-appen.',",
-  "ny": "      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Ta bussen från Åkersberga station till Åsättra brygga på Ljusterö.\", \"Du kan söka på hela sträckan Åkersberga–Husarö direkt i SL-appen.\" (läst 2026-11-03)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Beställ resan i SL-appen, på\" (läst 2026-11-03). Åsättra–Husarö uppmätt tur för tur: 35–60 min, 16 av 19 turer 45–55 min; de kortaste (C-turerna 1001 och 1021) och den längsta (B-turen 1011) går bara efter beställning.\n      'Kortaste båtresan går från Åsättra på Ljusterö med linje 10: 35–60 minuter enligt vår- och hösttidtabellen 2026, de flesta turer 45–55 minuter. De kortaste turerna och den längsta går bara om resan har beställts i förväg. Dit går buss från Åkersberga station, och hela sträckan går att söka i SL-appen.',",
+  "ny": "      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Ta bussen från Åkersberga station till Åsättra brygga på Ljusterö.\", \"Du kan söka på hela sträckan Åkersberga–Husarö direkt i SL-appen.\" (läst 2026-11-10)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Beställ resan i SL-appen, på\" (läst 2026-11-10). Åsättra–Husarö uppmätt tur för tur: 35–60 min, 16 av 19 turer 45–55 min; de kortaste (C-turerna 1001 och 1021) och den längsta (B-turen 1011) går bara efter beställning.\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Lillsved avg.\", \"Hummelmora (Ljusterö)\" (läst 2026-11-10). Uppmätt tur för tur i samma vår- och hösttabell: till Husarö tar båten 1 tim 22 min eller mer från Lillsved (snabbast tur 1203) och 50 min eller mer från Hummelmora på Ljusterö (tur 1203).\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ\", \"Boda brygga avg.\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-10). Uppmätt tur för tur: Boda brygga–Husarö 1 tim 15 min eller mer (snabbast tur 1375). Från Strömkajen tar resan 2 tim 20 min eller mer, se facts.\n      'Kortaste båtresan går från Åsättra på Ljusterö med linje 10: 35–60 minuter enligt vår- och hösttidtabellen 2026, de flesta turer 45–55 minuter. De kortaste turerna och den längsta går bara om resan har beställts i förväg. Dit går buss från Åkersberga station, och hela sträckan går att söka i SL-appen.',",
   "rader": [
    "husaro-0194",
    "husaro-0192",
@@ -194,7 +202,7 @@
  {
   "fil": "src/app/o/island-data.ts",
   "gammal": "    seasonal: {\n      open: 'Maj–September',\n      peak: 'Juli',\n      best: 'Juni',\n      // KÄLLA: http://husarohandel.se/ — \"det finns många grusvägar och stigar för vandring och badmöjligheter\" (läst 2026-09-27); https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Badplatserna Sandholmen, Badviken, Bockholmen och Kallviken är några exempel.\" (läst 2026-09-27)\n      bestReason: 'Försommar före högsäsongen: gå grusvägarna och stigarna mellan byn och klipporna och bada vid Sandholmen, Badviken, Bockholmen eller Kallviken.',\n      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],",
-  "ny": "    seasonal: {\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Waxholmsbolaget trafikerar Husarö hela året.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-10-31)\n      // Rättad 2026-11-02: open var 'Maj–September' och januari–april samt november–december visades som Stängt, fast båten går hela året.\n      open: 'Hela året',\n      // UPPSKATTNING: högsäsong och bästa tid är Svallas bedömning (sommarservering, scoutläger, Husarödagen sista lördagen i juli).\n      peak: 'Juli',\n      best: 'Juni',\n      // KÄLLA: http://husarohandel.se/ — \"det finns många grusvägar och stigar för vandring och badmöjligheter\" (läst 2026-10-29)\n      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Badplatserna Sandholmen, Badviken, Bockholmen och Kallviken är några exempel.\" (läst 2026-10-29)\n      bestReason: 'Försommar före högsäsongen: gå grusvägarna och stigarna mellan byn och klipporna och bada vid Sandholmen, Badviken, Bockholmen eller Kallviken.',\n      months: ['limited','limited','limited','limited','limited','open','peak','peak','open','limited','limited','limited'],",
+  "ny": "    seasonal: {\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Waxholmsbolaget trafikerar Husarö hela året.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-10-31)\n      // Rättad 2026-11-02: open var 'Maj–September' och januari–april samt november–december visades som Stängt, fast båten går hela året.\n      open: 'Hela året',\n      // Rättad 2026-11-10: peak var 'Juli'. Ingen källa anger någon högsäsong för ön; länsmuseet skriver att det är livligare sommartid.\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/husaro/ — \"Numera finns endast några enstaka bofasta på Husarö, men sommartid är det desto livligare.\" (läst 2026-11-10)\n      peak: 'Sommar',\n      // UPPSKATTNING: bästa tid är Svallas bedömning (försommar, med stigar och badplatser).\n      best: 'Juni',\n      // KÄLLA: http://husarohandel.se/ — \"det finns många grusvägar och stigar för vandring och badmöjligheter\" (läst 2026-10-29)\n      // KÄLLA: https://www.osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html — \"Badplatserna Sandholmen, Badviken, Bockholmen och Kallviken är några exempel.\" (läst 2026-10-29)\n      bestReason: 'Försommar: gå grusvägarna och stigarna mellan byn och klipporna och bada vid Sandholmen, Badviken, Bockholmen eller Kallviken.',\n      // Svallas skala (rättad 2026-11-10): Öppet juni–augusti, då det enligt länsmuseet är livligare sommartid och lanthandeln serverar lättare maträtter under sommarperioden. Begränsad service övriga månader: båten går hela året, och maj, september och oktober har samma vår- och hösttabell (tabell 10 och 13 gäller 2 april–18 juni och 17 augusti–12 december 2026). Ingen månad har en belagd högsäsong.\n      // KÄLLA: https://www.husaro.se/lankar/ — \"Under sommarperioden serveras även lättare maträtter och du kan njuta av en öl eller ett glas vin.\" (läst 2026-11-10)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-10)\n      months: ['limited','limited','limited','limited','limited','open','open','open','limited','limited','limited','limited'],",
   "rader": [
    "husaro-0055",
    "husaro-0056",
@@ -215,6 +223,25 @@
    "husaro-0069",
    "husaro-0070",
    "husaro-0073"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.husaro.se/om-husaro/ — \"Husarö, som ligger i Österåkers kommun, är ungefär 2,5 km lång.\", \"Kulturlandskap med ängar och lövträd, som skiftar under vandringen till vacker tallskog och släta klippor.\" (läst 2026-09-27)\n      { icon: '🚶', name: 'Vandring', desc: 'Ön är bara 2,5 km lång men skiftar från ängar och lövträd i byn till tallskog och släta klippor.' },",
+  "ny": "      // KÄLLA: https://www.husaro.se/om-husaro/ — \"Husarö, som ligger i Österåkers kommun, är ungefär 2,5 km lång.\", \"Till fots kan man gå på upptäcktsfärd på ön.\", \"Kulturlandskap med ängar och lövträd, som skiftar under vandringen till vacker tallskog och släta klippor.\" (läst 2026-11-10)\n      { icon: '🚶', name: 'Vandring', desc: 'Ön är ungefär 2,5 km lång, och under vandringen skiftar kulturlandskapet med ängar och lövträd till tallskog och släta klippor.' },",
+  "rader": [
+   "husaro-0107",
+   "husaro-0108",
+   "husaro-0109",
+   "husaro-0110"
+  ]
+ },
+ {
+  "fil": "src/lib/islandCoords.ts",
+  "gammal": "  { slug: 'husaro',            name: 'Husarö',            lat: 59.5064, lng: 18.8475, radiusKm: 2.0 },",
+  "ny": "  // radiusKm styr GPS-taggningen och sänks från 2,0 till 1,5 km enligt Toms beslut 3 (2026-11-08). Uppmätt 2026-11-10 i OpenStreetMaps API (haversine) från nålen: hela Husarö ryms inom 1,32 km (längsta avstånd till strandlinjen 1,317 km bland 604 noder i ytterringarna i relation 11665504), och Särsös brygga (nod 12953540454, ferry_terminal) ligger 1,66 km bort, alltså innanför 2,0 km men utanför 1,5 km.\n  { slug: 'husaro',            name: 'Husarö',            lat: 59.5064, lng: 18.8475, radiusKm: 1.5 },",
+  "rader": [
+   "husaro-0015"
   ]
  }
 ]
