@@ -1,0 +1,14 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-10)
+ma5001	mall-N004	FEL (RESONERAT)	Omarbete 6 (registret): raden ska beskriva databaslistorna som de är efter runda 5 (en plats utan ö-fält utanför platsradien står under "nära X" med avstånd).
+ma5011	mall-N005	FEL (MÄTT)	Omarbete 6: meningsdelningen får inte klippa vid förkortningar (kl., t.ex., bl.a., m.fl., ca, s.k.), och klockslag utan minuter efter "kl." ("kl. 08–18") ska fångas. Mät på alla öar och lägg test i src/lib.
+ma5013	mall-0219	FEL (MÄTT)	Omarbete 6: med barn-sidan ska jämföra slug, som restaurangsidan gör, så att samma ställe inte räknas två gånger.
+ma5014	mall-0080	FEL (MÄTT)	Omarbete 6: utanDubbletter ska jämföra slug och namn utan diakritiska tecken. Bakfickan på Utö ska inte stå som "Uto Bakficka (restaurang)".
+ma5021	mall-0229	FEL (MÄTT)	Omarbete 6: "utanför <ort>" ska ge "nära" även när orten inte är öns namn (Nordens Ark utanför Hunnebostrand på Kungshamn).
+ma5022	mall-0042	FEL (RESONERAT)	Omarbete 6: att vindriktningen anges varifrån det blåser ska beläggas med nivå 1 (SMHI) eller inte påstås. Registerraden ska beskriva koden som den är (decimal(weather.windSpeed)).
+ma5025	mall-N010	FEL (MÄTT)	Omarbete 6: regressionen från ö-fältsregeln. Mät alla platser på alla öar där ö-fältet nämner en annan ort men platsen ligger nära nålen, och avgör varje fall med källa: annan ö (står kvar som "nära"), samma ö under annat namn (OFALT_SOM_GALLER_ON med KÄLLA) eller fel ö-fält (UPDATE med KÄLLA, körs inte).
+ma5026	mall-N006	FEL (MÄTT)	Omarbete 6: fardsattFran ska inte skriva "från <from>" när from inte är en ort ("Varierar", "Valfri hamn"). Mät alla värden på from.
+ma5027	mall-0198	FEL (MÄTT)	Omarbete 6: ett kort som beskriver både platser på ön och på en grannö ska inte avgöras av första meningen.
+ma5029	mall-N009	FEL (MÄTT)	Omarbete 6: klockslagsregeln i generatorn och i --kontroll ska fånga mönstren som Kontrollanten fann ("08.15–12.00 m.fl.", "kl.11.30", "–24:00", "kl 0800 - 2000", "kl 1300", "alla dagar 11 - 16", "vid 22-tiden"), utan att ta årtal och andra tal.
+ma5032	mall-0027	FEL (MÄTT)	Omarbete 6 (registret): raden ska visa koden som den är (ms < 13.9) med SMHI:s skala som källa.
+utanför-1	(komma-dit)	FEL (MÄTT, utanför raderna)	Omarbete 6: komma-dit-korten visar klockslag ur öarnas data (Lilla Karlsö "09.00–13.30"). Samma regel som i FAQ:n ska gälla korten.
+utanför-2	(Vaxholms kajakgrad)	Anmärkning (MÄTT)	Omarbete 6: kodkommentaren beskriver difficultyFor för Vaxholm, men den finns inte. Rätta kommentaren eller koden.

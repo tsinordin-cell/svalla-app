@@ -2,6 +2,54 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-10 18:55 — alla öar omarbetade; slutomkontrollen startad
+
+- **Femtimmarsgränsen** stoppade fyra agenter i går kväll. Arbetet låg kvar
+  på disk, och agenterna återupptogs 17:22.
+- **Omkontroller i dag (MÄTT):**
+  - Sandhamn: 48 OK, 7 FEL och 9 SAKNAS av 64 rader. Nya frågor till Tom:
+    6b (Café Strindbergsgården) och 6c (Bistro Sands).
+  - Styrsö: 109 OK och 4 FEL av 113 rader.
+  - Storholmen, Husarö och runda 4c: 53 OK och 2 FEL av 55 rader. Båda
+    felen kom från Redaktörens underlag. Fjäderholmarnas platsradie mättes
+    från den gamla nålen, och prompten saknade tillägget om verksamhetens
+    startår (Möja bageri 1951). Båda prövas igen i slutomkontrollen.
+  - Mallarnas runda 4 och 5: 21 OK och 11 FEL av 32 rader. Bland felen finns
+    meningsfragment i FAQ:n, klockslag kvar i källistan på sju öar och
+    Smådalarö Gård som "0,2 km från Smådalarö". Mallarnas runda 6 rättar dem.
+- **Klara rundor:** Storholmen och Husarö (runda 4), runda 4c, mallarnas
+  runda 5, Styrsös och Sandhamns runda 4b. SELECT före UPDATE: alla 35
+  satser i sandhamn.sql och vaxholm.sql träffar de rader de ska.
+- **Sammanslagningen är provad** i /home/claude/svalla-slut: main 1be6e12,
+  mallarnas patch och alla nio öars edits-filer.
+  - 17 poster i guide-island-map.ts från Styrsö och Vaxholm ersattes av
+    mallarnas omskrivning och är borttagna ur edits-filerna. Mallarnas
+    version tar också bort Styrsö och Vaxholm från de 17 guiderna (MÄTT).
+  - tsc, verify-claims, källistan, schemakontrollen, cache-vakten och
+    uppskattningarna går igenom. 744 av 746 tester går igenom. De två som
+    fallerar väntar sig Styrsös gamla radie och Fjäderholmarnas gamla nål.
+    De rättas i runda 6 och runda 4e.
+- **Fel i kontrollurvalet (MÄTT):** 373 registerrader har aldrig
+  kontrollerats.
+  - 253 av dem var öarnas stickprov. De togs bort ur öarnas underlag när
+    batchen fick ett gemensamt stickprov, men den fulla kontrollen räknade
+    allt som stod i en nyckelfil som kontrollerat.
+  - Resten är 35 högriskrader, 28 ändrade rader, 49 rader som kom in i
+    registren senare och 8 mallrader som nu är kontrollerade.
+  - Alla kontrolleras före batchens PR: slut-01 (112 rader, högrisk först),
+    slut-03, slut-04 och slut-05 (253 rader).
+- **Registret har inte alltid följt med ändringarna (MÄTT):** 158 av
+  batchens 356 slutliga texter (poster i edits-filerna och slutliga
+  databasvärden) innehåller ord eller tal som ingen Kontrollant har svarat OK
+  på i den formen. De kontrolleras i den form de skeppas, med texten och
+  KÄLLA-raderna ur edits- och sql-filerna.
+- **Pågår:** slut-01 och slut-03, mallarnas runda 6 och runda 4e (Utö,
+  Styrsö, Fjäderholmarna och Sandhamn).
+- **Lärdomar till nästa batch:** kontrollerat är det som står i en
+  kontrollfil, inte det som står i en nyckelfil. Kontrollantens prompt ska
+  peka på roller/kontrollant.md och inte på en äldre kopia. Slutkontrollen
+  ska göras mot det som skeppas.
+
 ## 2026-11-09 19:17 — runda 4b klar; Utö omkontrollerad; P0 20 del 3, P0 21 och P0 22
 
 - **Femtimmarsgränsen** stoppade alla fyra agenter i morse, någon gång efter

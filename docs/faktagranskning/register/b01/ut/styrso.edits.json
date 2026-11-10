@@ -1,445 +1,333 @@
 [
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "    // KÄLLA: https://www.goteborg.com/platser/styrso — \"cirka 1400 bofasta invånare\"; \"Skärgårdsbåten anlöper vid tre olika bryggor: Styrsö Bratten, Styrsö Tången och Styrsö Skäret\"; \"På Styrsö finns fyra små samhällen med olika karaktärer\"; \"Det finns en broförbindelse mellan Styrsö och Donsö\" (läst 2026-09-27)\n    tagline: 'Bilfri ö med 1 400 invånare i Göteborgs södra skärgård — tre bryggor, fyra små samhällen och bro till Donsö.',",
-  "ny": "    // KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/MI/MI0812/MI0812A/OarEjBro01 — \"Befolkning, antal folkbokförda\"; \"1480Q102\"; \"2020\"; \"1341\" (värden i svaret på en fråga med Oar=1480Q102 Styrsö och Tid=2020; 2020 är tabellens senaste år) (läst 2026-11-07)\n    // KÄLLA: https://www.goteborg.com/platser/styrso — \"Skärgårdsbåten anlöper vid tre olika bryggor: Styrsö Bratten, Styrsö Tången och Styrsö Skäret\"; \"På Styrsö finns fyra små samhällen med olika karaktärer\"; \"Det finns en broförbindelse mellan Styrsö och Donsö\"; \"En bilfri ö full av historia och skärgårdscharm\" (läst 2026-10-31)\n    // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Mobilitets-%20och%20parkeringsutredning/$File/Mobilitets-%20och%20parkeringutredning.pdf — \"Eftersom biltrafik inte är tillåten på ön måste parkering för bil anordnas på fastlandet\" (Göteborgs Stad, mobilitets- och parkeringsutredning 2019-04-29) (läst 2026-11-07)\n    tagline: 'Bilfri ö med drygt 1 300 invånare i Göteborgs södra skärgård — tre bryggor, fyra små samhällen och bro till Donsö.',",
-  "rader": [
-   "styrso-0010",
-   "styrso-0011",
-   "styrso-0012",
-   "styrso-0013",
-   "styrso-0014",
-   "styrso-0015"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Styrsö är den södra delen av skärgårdens centralort med cirka 1400 bofasta invånare\"; \"Det är förbjudet att köra bil på Styrsö, de flesta använder därför lastmopeder och golfbilar som transportmedel\" (läst 2026-09-27)\n      // KÄLLA: https://www.brattenswardshus.se/historia/ — \"Styrsö Bratten är centralpunkten i Södra Skärgården. Här finns vårdcentral, folktandvård, äldreboendet Styrsö Hemmet, samt ett stycke upp på ön högstadieskola med centralbibliotek\" (läst 2026-09-27)\n      'Styrsö har omkring 1 400 invånare året om och är södra skärgårdens centralort. Vid Bratten finns vårdcentral, folktandvård och äldreboende, och en bit upp på ön högstadieskola med bibliotek. Det är förbjudet att köra bil här — de flesta tar sig fram med lastmoped eller golfbil.',",
-  "ny": "      // Rättad 2026-11-07 (Kontrollanten hs-k001/k019/k038): Brattens Wärdshus är en krogs webbplats och belägger inte vården, skolan eller biblioteket; folkbiblioteket har flyttat från Styrsöskolan till Brattenvägen 48; bilförbudet beläggs av kommunen.\n      // KÄLLA: https://goteborg.se/wps/portal/start/omsorg-och-stod/aldre/boenden-for-aldre/vard-och-omsorgsboende/hitta-vard--och-omsorgsboende?id=2371 — \"Södra Skärgårdens Vård- och omsorgsboende ligger på Styrsö i Göteborgs södra skärgård och drivs av Göteborgs Stad\"; \"det lugn som bara kan uppstå på en bilfri ö\"; \"Södra Skärgården ligger fem minuters promenad från färjeläget Styrsö Bratten där färjorna 281 och 282 lägger till.\"; \"Boenden för äldre\" (läst 2026-11-07)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Styrsö är den södra delen av skärgårdens centralort\"; \"de flesta använder därför lastmopeder och golfbilar som transportmedel\" (läst 2026-11-07)\n      // KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/MI/MI0812/MI0812A/OarEjBro01 — \"Befolkning, antal folkbokförda\"; \"1480Q102\"; \"2020\"; \"1341\" (värden i svaret på en fråga med Oar=1480Q102 Styrsö och Tid=2020; 2020 är tabellens senaste år) (läst 2026-11-07)\n      // KÄLLA: https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__MI__MI0812__MI0812A/OarEjBro01/ — \"Befolkning, antal folkbokförda:\"; \"31 december respektive år\" (referenstiden) (läst 2026-11-07)\n      // KÄLLA: https://www.1177.se/hitta-vard/kontaktkort/Narhalsan-Styrso-vardcentral-Styrso/ — \"Brattenvägen 13, 43084, Styrsö\"; \"Båt till Styrsö Bratten. Följ Brattenvägen cirka 150 m. På höger sida ligger vårdcentralen.\" (läst 2026-11-07)\n      // KÄLLA: https://www.1177.se/hitta-vard/kontaktkort/Folktandvarden-Styrso-Goteborg-Styrso/ — \"Folktandvården Styrsö Göteborg, Styrsö\"; \"Brattenvägen 13, 430 84, Styrsö\" (läst 2026-11-07)\n      // KÄLLA: https://goteborg.se/wps/portal/enheter/styrsoskolan — \"Styrsöskolan F-9\" (läst 2026-11-07)\n      // KÄLLA: https://goteborg.se/sodraskargardensbibliotek — \"Södra Skärgårdens bibliotek på Styrsö är en mötesplats för barn och vuxna\"; \"Brattenvägen 48\" (läst 2026-11-09)\n      // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Mobilitets-%20och%20parkeringsutredning/$File/Mobilitets-%20och%20parkeringutredning.pdf — \"Eftersom biltrafik inte är tillåten på ön måste parkering för bil anordnas på fastlandet\" (Göteborgs Stad, mobilitets- och parkeringsutredning 2019-04-29) (läst 2026-11-07)\n      'Styrsö är en bilfri ö i Göteborgs södra skärgård och utgör den södra delen av skärgårdens centralort, med 1 341 folkbokförda invånare enligt SCB (31 december 2020). Vid Bratten finns vårdcentral och folktandvård på Brattenvägen 13 och Göteborgs Stads äldreboende Södra Skärgården, fem minuters promenad från färjeläget. Styrsöskolan har förskoleklass till årskurs 9, och Södra Skärgårdens bibliotek finns på Brattenvägen 48. Det är förbjudet att köra bil här — de flesta tar sig fram med lastmoped eller golfbil.',",
-  "rader": [
-   "styrso-0080",
-   "styrso-0081",
-   "styrso-0082",
-   "styrso-0083",
-   "styrso-0084",
-   "styrso-0085",
-   "styrso-0086",
-   "styrso-0087",
-   "styrso-0088",
-   "styrso-N007",
-   "styrso-N008"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Från öns högsta punkt, Stora Rös, kan du njuta av en storslagen utsikt över hela skärgården. Härifrån kan du vandra på naturstigarna till Brännholmsviken och Styrsö Skäret\" (läst 2026-09-27)\n      'Från öns högsta punkt, Stora Rös, ser man ut över hela skärgården, och därifrån går naturstigar till Brännholmsviken och Styrsö Skäret. Över Långesandsbron kan du gå eller cykla vidare till Donsö.',\n      // KÄLLA: https://www.brattenswardshus.se/historia/ — \"Långesandsbron\"; \"Bron som förbinder Styrsö och Donsö\" (läst 2026-09-27)\n      // KÄLLA: https://kusthotelletstyrso.se/historia/ — \"År 1893 invigdes Styrsö Havsbad\"; \"I början av 1900-talet spelade Styrsö även en viktig roll i vården av tuberkulossjuka barn\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"En kort promenad från Bratten hittas sedan augusti 2025\" (läst 2026-09-27)\n      'Badortstiden syns fortfarande vid Bratten. 1893 invigdes Styrsö Havsbad, och i början av 1900-talet vårdades tuberkulossjuka barn i sanatorier på ön. I dag ligger Kusthotellet Styrsö, öppnat i augusti 2025, en kort promenad från Bratten.',",
-  "ny": "      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Från öns högsta punkt, Stora Rös, kan du njuta av en storslagen utsikt över hela skärgården. Härifrån kan du vandra på naturstigarna till Brännholmsviken och Styrsö Skäret\"; \"Det finns en broförbindelse mellan Styrsö och Donsö så du kan promenera och cykla emellan de två öarna\" (läst 2026-11-09)\n      // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"I söder ligger resterna av Styrsös äldsta kyrkoplats. Denna del har också ett flertal lämningar från förhistorisk tid och 1500-talets sillfiskeperiod.\"; \"Ett kapell fanns redan vid denna tid på Styrsö vid Brännholmsviken i söder.\"; \"1974 inkorporerades Södra Skärgården med Göteborg och samma år byggdes en bro mellan Styrsö och Donsö.\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-09)\n      // Namnet Långesandsbron står bara på krogens historiksida; kommunen och Lantmäteriets ortnamn (sökt 2026-11-09) har det inte, så bron står utan namn.\n      'Från öns högsta punkt, Stora Rös, ser man ut över hela skärgården, och därifrån går naturstigar till Brännholmsviken och Styrsö Skäret. På södra Styrsö ligger resterna av öns äldsta kyrkoplats, och redan på 1500-talet fanns ett kapell vid Brännholmsviken. Där finns också lämningar från förhistorisk tid och från sillfisket på 1500-talet. Över bron till Donsö, byggd 1974, kan du gå eller cykla vidare.',\n      // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"Styrsö Bratten har bebyggelse som påminner om badortstiden\"; \"Styrsö Bratten med sina relativt stora och påkostade sommarvillor\"; \"de anläggningar som tillhörde badortstiden 1850–1930 är till stor del borta\"; \"Söder om Styrsö Bratten startades också en anstalt för ”skrofulösa barn” på 1890-talet.\"; \"Den tillkom genom donationer och utvecklades till ett ”Kustsanatorium” som bl a omfattade en stor tegelbyggnad uppförd 1908.\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-09)\n      // KÄLLA: https://www.raa.se/app/uploads/2024/04/Vastra-Gotaland-O_riksintressen.pdf — \"Styrsö Bratten är det bästa exemplet på badortslivets bebyggelse.\" (Riksantikvarieämbetet, riksintresse för kulturmiljövården Styrsö [O 7]) (läst 2026-11-09)\n      // KÄLLA: https://kusthotelletstyrso.se/hitta-till-oss/ — \"Kusthotellet ligger på nära gångavstånd från hållplatsen Styrsö Skäret.\" (läst 2026-11-10)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Skärgårdsbåten anlöper vid tre olika bryggor: Styrsö Bratten, Styrsö Tången och Styrsö Skäret.\"; \"En kort promenad från Bratten hittas sedan augusti 2025 Kusthotellet Styrsö\" (läst 2026-11-10)\n      'Vid Bratten finns bebyggelse som påminner om badortstiden, med relativt stora sommarvillor, men anläggningarna från badortsåren 1850–1930 är till stor del borta. Söder om Bratten startades på 1890-talet en anstalt för ”skrofulösa barn”, som utvecklades till ett kustsanatorium med en stor tegelbyggnad från 1908. I dag ligger Kusthotellet Styrsö, öppnat i augusti 2025, nära bryggan Styrsö Skäret.',",
-  "rader": [
-   "styrso-0114",
-   "styrso-0115",
-   "styrso-0116",
-   "styrso-0117",
-   "styrso-0118",
-   "styrso-0119",
-   "styrso-0120",
-   "styrso-0121",
-   "styrso-0122",
-   "styrso-0123",
-   "styrso-N018",
-   "styrso-N019",
-   "styrso-N020",
-   "styrso-N021",
-   "styrso-N022"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://transdev.se/wp-content/uploads/sites/5/2026/07/Hosttidtabell-281-282-Liggande-A3.pdf — \"23/08 2026 - 12/12 2026\"; \"281 Stenpiren-Saltholmen-Köpstadsö-Styrsö Bratten-Donsö-Vrångö och omvänt\"; \"282 Stenpiren-Saltholmen-Köpstadsö-Styrsö Bratten-Styrsö Tången-Brännö Husvik och omvänt\"; \"Styrsö Bratten - 05:34 - - 06:26 07:16 - 08:11 08:59 09:39 10:17\". Vardagar enligt tabellen (avläst): Saltholmen 06:09→Bratten 06:26, 07:54→08:11, 09:25→09:39, 11:20→11:44; Saltholmen 07:24→Skäret 07:39; Saltholmen 05:47→Tången 06:12, 08:35→09:09, 09:53→10:28 (läst 2026-09-27)\n      travel_time: '15–25 min med båt 281/282 från Saltholmen till Bratten eller Skäret, 25–35 min till Tången',",
-  "ny": "      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — \"281 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö\"; \"282 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik\"; \"Gäller 24 aug – 12 dec 2026\"; \"( ) Anlöps i omvänd riktning.\" (läst 2026-11-03). Restiden är uppmätt i tabellen som skillnaden mellan avgång Saltholmen och ankomst vid bryggan för samtliga turer måndag–söndag; spridningen beror på om turen går via Asperö Östra och Köpstadsö. Längsta resan till Skäret, 36 min, är en tidig lördagstur på linje 281 som går till Vrångö först och angör Skäret i omvänd riktning.\n      travel_time: '14–30 min till Bratten, 13–36 min till Skäret och 24–41 min till Tången med båt 281/282 från Saltholmen, beroende på tur',",
-  "rader": [
-   "styrso-0018",
-   "styrso-0019",
-   "styrso-0020",
-   "styrso-0021",
-   "styrso-0022",
-   "styrso-0420",
-   "styrso-0435"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.goteborg.com/platser/styrso — \"En bilfri ö full av historia och skärgårdscharm\"; \"Tången är det traditionella fiskeläget\" (läst 2026-09-27)\n      character: 'Bilfri ö med fiskeläge, kyrkby och badortsvillor',",
-  "ny": "      // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"Inom norra delen finns fyra bebyggelsegrupper som har olika karaktär: jordbruksbyn med kyrkan mitt på ön, strandområdet vid Halsvik, fiskeläget i Tången och f d badortsområdet kring Bratten.\"; \"Runt havsbadet byggdes stora sommarvillor som ägdes av göteborgsfamiljer.\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-09)\n      // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Mobilitets-%20och%20parkeringsutredning/$File/Mobilitets-%20och%20parkeringutredning.pdf — \"Eftersom biltrafik inte är tillåten på ön måste parkering för bil anordnas på fastlandet\" (Göteborgs Stad, mobilitets- och parkeringsutredning 2019-04-29) (läst 2026-11-09)\n      character: 'Bilfri ö med fiskeläge, kyrkby och badortsvillor',",
-  "rader": [
-   "styrso-0023",
-   "styrso-0024",
-   "styrso-0025",
-   "styrso-0026"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Färjorna går året runt från Saltholmen\" (läst 2026-09-27)\n      // KÄLLA: https://kusthotelletstyrso.se/ — \"Hos oss finns plats för både avkoppling och gemenskap – året runt\" (läst 2026-09-27)\n      season: 'Året runt',",
-  "ny": "      // KÄLLA: https://guesthouse-styrso.se/ — \"We are open for bookings for the summer season June – August 2026\" (läst 2026-11-10)\n      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20261213__20270606__95d872ec-b99b-40c5-b0db-6cda6c7d2b17__1,0__2871349.html — \"Gäller 13 dec 2026 – 6 jun 2027\"; \"Linjen trafikeras av Styrsöbolaget.\" (läst 2026-11-10)\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Färjorna går året runt från Saltholmen\" (läst 2026-11-10)\n      // KÄLLA: https://kusthotelletstyrso.se/ — \"Hos oss finns plats för både avkoppling och gemenskap – året runt.\" (läst 2026-11-10)\n      // Juni–augusti är samma säsong som seasonal.best och months (källorna ovanför seasonal). Fältet visas som \"Säsong\" på ösidan och som \"Bäst säsong\" på /med-barn.\n      season: 'Juni–augusti; båtar och Kusthotellet året runt',",
-  "rader": [
-   "styrso-0027",
-   "styrso-0438"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Beger du dig istället till färjeläget Styrsö Bratten hittar du\" (läst 2026-09-27)\n      { icon: '🍽', name: 'Bratten\\'s Wärdshus', desc: 'Restaurang och kafé vid färjeläget Bratten.' },",
-  "ny": "      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Beger du dig istället till färjeläget Styrsö Bratten hittar du Brattens Wärdshus där du kan kila om för både mat och fika\" (läst 2026-10-31)\n      { icon: '🍽', name: 'Bratten\\'s Wärdshus', desc: 'Restaurang och kafé vid färjeläget Bratten.' },",
-  "rader": [
-   "styrso-0125",
-   "styrso-0126"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.goteborg.com/platser/styrso-brattenbadet/ — \"Badet ligger cirka 300 meter från färjeläget Styrsö Bratten\"; \"Vid badplatsen finns en mindre sandstrand, brygga med badstegar, klippor och en gräsyta\"; \"vattnet kan vara strömt i farleden utanför badplatsen\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Utterviksbadet ligger i nordväst, en kilometer från hållplatsen Styrsö Tången\"; \"Utterviksbadet med bryggor och badvänliga klippor\" (läst 2026-09-27)\n      { icon: '🏖', name: 'Bad', desc: 'Brattenbadet, 300 meter från Bratten, har liten sandstrand, brygga med badstegar och klippor — men vattnet kan vara strömt i farleden utanför. Utterviksbadet i nordväst, en kilometer från Tången, har bryggor och klippor.' },",
-  "ny": "      // KÄLLA: https://goteborg.se/wps/portal/start/uppleva-och-gora/idrott-motion-och-friluftsliv/simma-och-bada/badplatser/hitta-badplatser-utomhusbad?id=3700 — \"Vid Styrsö Bratten kan du bada från strand eller brygga, cirka 300 meter från färjeläget\"; \"Var försiktig - vattnet är strömt i farleden!\" (läst 2026-11-03)\n      // KÄLLA: https://www.goteborg.com/platser/styrso-brattenbadet/ — \"Badet ligger cirka 300 meter från färjeläget Styrsö Bratten\"; \"Vid badplatsen finns en mindre sandstrand, brygga med badstegar, klippor och en gräsyta\" (läst 2026-11-03)\n      // KÄLLA: https://goteborg.se/wps/portal/start/uppleva-och-gora/idrott-motion-och-friluftsliv/simma-och-bada/badplatser/hitta-badplatser-utomhusbad?id=3701 — \"Närmaste hållplats: Styrsö Tången. Från hållplatsen är det 1,2 kilometer till badplatsen\"; \"en liten strand för de minsta och en badholme med bryggdäck och badstegar för de större\" (läst 2026-11-02)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Utterviksbadet ligger i nordväst\" (läst 2026-10-31)\n      { icon: '🏖', name: 'Bad', desc: 'Brattenbadet, 300 meter från Bratten, har liten sandstrand, brygga med badstegar och klippor — men vattnet är strömt i farleden utanför. Utterviksbadet i nordväst, 1,2 kilometer från bryggan i Tången, har en liten strand och en badholme med bryggdäck och badstegar.' },",
-  "rader": [
-   "styrso-0142",
-   "styrso-0143",
-   "styrso-0139"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.goteborg.com/platser/kusthotellet-styrso — \"med 50 rum, varav 10 sviter, restaurang, wellness-område, uppvärmd utomhuspool och gym\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"En kort promenad från Bratten hittas sedan augusti 2025\" (läst 2026-09-27)\n      { name: 'Kusthotellet Styrsö', type: 'Hotell', desc: 'Hotell en kort promenad från Bratten, öppnat i augusti 2025: 50 rum varav 10 sviter, restaurang, spa, uppvärmd utomhuspool och gym. Öppet året runt.', websiteUrl: 'https://kusthotelletstyrso.se/' },",
-  "ny": "      // KÄLLA: https://www.goteborg.com/platser/kusthotellet-styrso — \"med 50 rum, varav 10 sviter, restaurang, wellness-område, uppvärmd utomhuspool och gym\" (läst 2026-10-31)\n      // KÄLLA: https://kusthotelletstyrso.se/hitta-till-oss/ — \"Kusthotellet ligger på nära gångavstånd från hållplatsen Styrsö Skäret\" (läst 2026-11-02)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"En kort promenad från Bratten hittas sedan augusti 2025 Kusthotellet Styrsö\" (läst 2026-10-31)\n      // KÄLLA: https://kusthotelletstyrso.se/ — \"Skärgårdshotell med spa, restaurang och havet runt knuten\"; \"Hos oss finns plats för både avkoppling och gemenskap - året runt\" (läst 2026-10-31)\n      { name: 'Kusthotellet Styrsö', type: 'Hotell', desc: 'Hotell nära bryggan Styrsö Skäret, öppnat i augusti 2025: 50 rum varav 10 sviter, restaurang, spa, uppvärmd utomhuspool och gym. Öppet året runt.', websiteUrl: 'https://kusthotelletstyrso.se/' },",
-  "rader": [
-   "styrso-0192"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://stbnb.se/ — \"We are open for bookings for the summer season June – August 2026\"; \"four bedrooms, kitchen and a bathroom. We can accommodate up to 10 guests\"; \"a six minute walk from the ferry station Tången\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/styrso-tangen-bed-breakfast/ — \"inrymt i en vacker jugendvilla från 1904\" (läst 2026-09-27)\n      { name: 'Guesthouse Styrsö Tången', type: 'Pensionat', desc: 'Övervåningen i en jugendvilla från 1904: fyra sovrum, kök och badrum för upp till tio gäster. Sex minuters promenad från Tången. Sommarsäsong juni–augusti.', websiteUrl: 'https://stbnb.se/' },",
-  "ny": "      // KÄLLA: https://guesthouse-styrso.se/ — \"Guesthouse Styrsö Tången\"; \"We are open for bookings for the summer season June – August 2026\"; \"Our guesthouse is located upstairs in an old art noveau villa and has a private entrance, four bedrooms, kitchen and a bathroom. We can accommodate up to 10 guests\"; \"We are situated a six minute walk from the ferry station Tången\" (läst 2026-11-09)\n      // Adressen stbnb.se leder i dag till guesthouse-styrso.se. Byggåret 1904 står bara hos Göteborg & Co (nivå 3) och är struket.\n      { name: 'Guesthouse Styrsö Tången', type: 'Pensionat', desc: 'Övervåningen i en gammal jugendvilla, med egen entré: fyra sovrum, kök och badrum för upp till tio gäster. Sex minuters promenad från Tången. Hyrs ut under sommarsäsongen (2026: juni–augusti).', websiteUrl: 'https://guesthouse-styrso.se/' },",
-  "rader": [
-   "styrso-0204",
-   "styrso-0205",
-   "styrso-0206",
-   "styrso-0207",
-   "styrso-0208",
-   "styrso-0209",
-   "styrso-0210",
-   "styrso-0211",
-   "styrso-0212",
-   "styrso-N023"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Spårvagn 11, samt linje 9 under sommaren, restid cirka 35 minuter\"; \"Buss 114, Ö-snabben, restid cirka 25 minuter\"; \"281, Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö\"; \"283, Saltholmen–Asperö–Brännö Rödsten\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/kusthotellet-styrso — \"bara cirka 1 timma från centrala Göteborg\" (läst 2026-09-27)\n      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: 'ca 1 h totalt', desc: 'Spårvagn 11 (även 9 på sommaren) eller buss 114 Ö-snabben till Saltholmen, sedan båt 281 eller 282 — 15–35 minuter beroende på brygga. Linje 283 går inte till Styrsö.', icon: '🚋' },\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"två turer per dag måndag till fredag, samt även lördag och söndag under sommaren\" (läst 2026-09-27)\n      { method: 'Båt direkt', from: 'Stenpiren (centrala Göteborg)', time: 'ca 1 h', desc: 'Några turer på linje 281 och 282 går direkt från Stenpiren utan byte — två om dagen på vardagar, fler på sommaren.', icon: '⛴' },",
-  "ny": "      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5011__0__LINE__20260817__20261212__b12f79f1-93d4-4a88-b34d-85ab15ce566e__0%2C0__2777978.pdf — \"11 Saltholmen–Ekedal–Centrum–Bergsjön och omvänt\"; \"Gäller 17 aug - 12 dec 2026\" (läst 2026-10-31)\n      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5114__0__LINE__20251214__20261212__58f1a45c-85a0-4090-a8fc-de0115454495__1%2C0__2662665.pdf — \"114 Saltholmen–Brunnsparken och omvänt\"; \"Gäller 14 dec 2025 - 12 dec 2026 utom 1 juni - 23 aug\" (läst 2026-10-31)\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Spårvagn 11, samt linje 9 under sommaren, restid cirka 35 minuter\"; \"Buss 114, Ö-snabben, restid cirka 25 minuter\" (läst 2026-10-31)\n      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — \"281 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö\"; \"282 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik\"; \"Gäller 24 aug – 12 dec 2026\" (läst 2026-10-31). Båtens restid uppmätt i tabellen, se facts.travel_time.\n      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5283__0__LINE__20260824__20261212__247f5756-c8cb-4894-9e61-df69039cf68b__0%2C0__.pdf — \"Saltholmen–Asperö–Brännö Rödsten och omvänt\" (läst 2026-10-31)\n      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: 'ca 1 h totalt', desc: 'Spårvagn 11 (även 9 på sommaren) eller buss 114 Ö-snabben till Saltholmen — bussen går vardagar och lördagar men inte 1 juni–23 augusti — sedan båt 281 eller 282, 13–41 minuter beroende på brygga och tur. Linje 283 går inte till Styrsö.', icon: '🚋' },\n      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — \"Linje 283 från Stenpiren och Lindholmspiren. Båtbyte på Saltholmen.\"; \"282 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik\"; \"Gäller 24 aug – 12 dec 2026\" (läst 2026-10-31)\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"två turer per dag måndag till fredag, samt även lördag och söndag under sommaren\" (läst 2026-10-31)\n      { method: 'Båt direkt', from: 'Stenpiren (centrala Göteborg)', time: 'ca 1 h', desc: 'På vardagar går en eftermiddagstur på linje 282 från Stenpiren till Bratten och Tången utan byte; morgonturen från Stenpiren går med linje 283 och båtbyte på Saltholmen. Tillbaka går en morgon- och en eftermiddagstur utan byte till Stenpiren (hösttidtabellen 24 augusti–12 december 2026). Sommaren 2026 gick turer från Stenpiren även lördag och söndag.', icon: '⛴' },",
-  "rader": [
-   "styrso-0213",
-   "styrso-0214",
-   "styrso-0215",
-   "styrso-0216",
-   "styrso-0217",
-   "styrso-0218",
-   "styrso-0219",
-   "styrso-0220",
-   "styrso-0221",
-   "styrso-0222",
-   "styrso-0223",
-   "styrso-0224",
-   "styrso-0225",
-   "styrso-0226",
-   "styrso-0227",
-   "styrso-0228",
-   "styrso-0229",
-   "styrso-0230",
-   "styrso-0253",
-   "styrso-0418",
-   "styrso-0419",
-   "styrso-0436"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Beger du dig istället till färjeläget Styrsö Bratten hittar du\" (läst 2026-09-27)\n      // KÄLLA: https://www.brattenswardshus.se/restaurang/ — \"Vi har även glutenfri pizza\"; \"Rödspätta, pommes, remouladsås, sallad\" (läst 2026-09-27)\n      // KÄLLA: https://www.brattenswardshus.se/kontakta-oss/ — \"Bratten’s Wärdhus ligger bara några meter från hållplatsen\" (läst 2026-09-27)",
-  "ny": "      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Beger du dig istället till färjeläget Styrsö Bratten hittar du Brattens Wärdshus där du kan kila om för både mat och fika\" (läst 2026-10-31)\n      // KÄLLA: https://www.brattenswardshus.se/restaurang/ — \"Färska handskalade räkor, ägg, majonäs\"; \"Rödspätta, pommes, remouladsås, sallad\"; \"Vi har även glutenfri pizza\"; \"Hamburgartallrik\" (läst 2026-10-31)\n      // KÄLLA: https://www.brattenswardshus.se/kontakta-oss/ — \"Bratten’s Wärdhus ligger bara några meter från hållplatsen\" (läst 2026-10-31)",
-  "rader": [
-   "styrso-0153",
-   "styrso-0155",
-   "styrso-0158"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://tangbaren.se/ — \"Belägen på en brygga över havet\"; \"Flera gånger i veckan lägger fiskebåtar till vid vår brygga\"; \"Just nu tar vi inga bokningar utan endast drop in\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/tangbaren-styrso/ — \"Tångbaren har öppet under sommarsäsongen och arbetar med drop-in\" (läst 2026-09-27)\n      { name: 'Tångbaren', type: 'Fisk & skaldjur', desc: 'Fisk- och skaldjursrestaurang på en brygga i Tången, med ostronbar och deli. Fiskebåtar levererar till bryggan flera gånger i veckan. Drop-in.', open_season: 'Sommarsäsong', websiteUrl: 'https://tangbaren.se/' },",
-  "ny": "      // KÄLLA: https://tangbaren.se/ — \"Tångbaren är en modern fisk- och skaldjursrestaurang med fokus på färska råvaror från havet\"; \"Belägen på en brygga över havet\"; \"Utöver restaurangdelen erbjuder vi också en skaldjur- och ostronbar\"; \"Flera gånger i veckan lägger fiskebåtar till vid vår brygga\" (läst 2026-10-31)\n      // KÄLLA: https://tangbaren.se/ — \"Under lågsäsong (vår fram till midsommar) tar vi emot bordsbokningar för alla sällskapsstorlekar\"; \"Under högsäsong (från midsommar till 23 augusti) har vi ett högre tryck i restaurangen och tar därför endast emot bokningar för sällskap om 10 personer eller fler\"; \"Mindre sällskap hänvisas till drop in\" (läst 2026-10-31)\n      // KÄLLA: https://www.goteborg.com/platser/tangbaren-styrso/ — \"Vägg i vägg med restaurangen ligger även Tångbarens deli\" (läst 2026-10-31)\n      { name: 'Tångbaren', type: 'Fisk & skaldjur', desc: 'Fisk- och skaldjursrestaurang på en brygga i Tången, med skaldjurs- och ostronbar och deli. Fiskebåtar levererar till bryggan flera gånger i veckan. Under högsäsongen, midsommar till 23 augusti, går det bara att boka bord för sällskap om minst tio personer — mindre sällskap kommer på drop-in. På våren tar restaurangen bordsbokningar för alla sällskap.', open_season: 'Vår och sommar', websiteUrl: 'https://tangbaren.se/' },",
-  "rader": [
-   "styrso-0165",
-   "styrso-0166",
-   "styrso-0169",
-   "styrso-0170"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: http://www.batebacken.se/ — \"Lokalen har plats för drygt 40 personer\"; \"uteservering med plats för ytterligare cirka 40 personer\" (läst 2026-09-27)\n      { name: 'Båtebackens caférestaurang', type: 'Caférestaurang', desc: 'Liten skärgårdskrog vid kajkanten i Tången, med skaldjur, enklare rätter och hembakat. Drygt 40 platser inne och lika många ute.', websiteUrl: 'http://www.batebacken.se/' },",
-  "ny": "      // KÄLLA: http://www.batebacken.se/ — \"Tätt inpå kajkanten, omgivet av det gamla fiskarsamhället hittar du vår lilla skärgårdskrog på Styrsö Tången\"; \"framförallt skaldjur\"; \"kanske vill du ha något hembakat till\"; \"Lokalen har plats för drygt 40 personer\"; \"uteservering med plats för ytterligare cirka 40 personer\" (läst 2026-10-31)\n      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Nere vid färjeläget Styrsö Tången hittar du Båtebackens Caférestaurang med enklare rätter och hembakta bullar\" (läst 2026-10-31)\n      { name: 'Båtebackens caférestaurang', type: 'Caférestaurang', desc: 'Liten skärgårdskrog vid kajkanten i Tången, med skaldjur, enklare rätter och hembakat. Drygt 40 platser inne och lika många ute.', websiteUrl: 'http://www.batebacken.se/' },",
-  "rader": [
-   "styrso-0177",
-   "styrso-0178",
-   "styrso-0179"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.ica.se/butiker/nara/goteborg/ica-tangen-1003744/ — \"ICA Tången\"; \"Styrsö Hamnväg 30, Styrsö\"; \"Butiken öppet: Söndag 10 till 18\" (läst 2026-09-27)\n      'ICA Tången vid Styrsö Hamnväg har öppet alla dagar i veckan och är också apoteksombud — handla proviant där.',",
-  "ny": "      // KÄLLA: https://www.ica.se/butiker/nara/goteborg/ica-tangen-1003744/ — \"ICA Tången Styrsö Hamnväg 30, Styrsö\"; \"Butiken öppet: Måndag-fredag\"; \"Butiken öppet: Lördag\"; \"Butiken öppet: Söndag\"; \"Apoteksombud\" (läst 2026-10-31)\n      'ICA Tången vid Styrsö Hamnväg har öppet alla dagar i veckan och är också apoteksombud — handla proviant där.',",
-  "rader": [
-   "styrso-0245",
-   "styrso-0246",
-   "styrso-0247",
-   "styrso-0248"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "    tags: ['göteborg', 'södra skärgård', 'restaurang', 'bilfritt', 'styrsöbolaget', 'fiskeläge'],",
-  "ny": "    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20261213__20270606__95d872ec-b99b-40c5-b0db-6cda6c7d2b17__1,0__2871349.html — \"Linjen trafikeras av Styrsöbolaget.\" (läst 2026-11-02)\n    tags: ['göteborg', 'södra skärgård', 'restaurang', 'bilfritt', 'styrsöbolaget', 'fiskeläge'],\n    // Tillagd 2026-11-02 (faktagranskningen) så att /med-barn inte säger \"Ingen badplats registrerad\" och /bad visar öns egna kommunala badplatser.\n    activity_meta: {\n      bad: {\n        beaches: [\n          {\n            name: 'Brattenbadet',\n            type: 'sandstrand',\n            // KÄLLA: https://goteborg.se/wps/portal/start/uppleva-och-gora/idrott-motion-och-friluftsliv/simma-och-bada/badplatser/hitta-badplatser-utomhusbad?id=3700 — \"Vid Styrsö Bratten kan du bada från strand eller brygga, cirka 300 meter från färjeläget\"; \"Var försiktig - vattnet är strömt i farleden!\"; \"Toalett öppen under badsäsong\"; \"Hund tillåtet Ja\" (läst 2026-11-02)\n            // KÄLLA: https://www.goteborg.com/platser/styrso — \"I en vik på öns norra sida ligger Brattenbadet\" (läst 2026-10-31)\n            // KÄLLA: https://www.goteborg.com/platser/styrso-brattenbadet/ — \"Vid badplatsen finns en mindre sandstrand, brygga med badstegar, klippor och en gräsyta\" (läst 2026-10-31)\n            desc: 'Liten sandstrand och brygga med badstegar i en vik på öns norra sida. Vattnet är strömt i farleden utanför. Toaletten är öppen under badsäsongen, och hundar är tillåtna.',\n            directions: 'Cirka 300 meter från färjeläget Styrsö Bratten.',\n          },\n          {\n            name: 'Utterviksbadet',\n            type: 'sandstrand',\n            // KÄLLA: https://goteborg.se/wps/portal/start/uppleva-och-gora/idrott-motion-och-friluftsliv/simma-och-bada/badplatser/hitta-badplatser-utomhusbad?id=3701 — \"en liten strand för de minsta och en badholme med bryggdäck och badstegar för de större\"; \"Friluftstoalett öppen 15 maj-15 september\"; \"Närmaste hållplats: Styrsö Tången. Från hållplatsen är det 1,2 kilometer till badplatsen\"; \"Hund tillåtet Ja\" (läst 2026-11-02)\n            // KÄLLA: https://www.goteborg.com/platser/styrso — \"Utterviksbadet ligger i nordväst\" (läst 2026-10-31)\n            desc: 'Liten strand för de minsta och en badholme med bryggdäck och badstegar för de större, på öns nordvästra sida. Friluftstoaletterna är öppna 15 maj–15 september, och hundar är tillåtna.',\n            directions: '1,2 kilometer från bryggan Styrsö Tången.',\n          },\n        ],\n      },\n    },",
-  "rader": [
-   "styrso-0008",
-   "styrso-N001",
-   "styrso-N002",
-   "styrso-0422",
-   "styrso-0423",
-   "styrso-0437"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      open: 'Hela året',\n      peak: 'Juli',\n      best: 'Maj–Juni eller September',\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Färjorna går året runt från Saltholmen\" (läst 2026-09-27)\n      // KÄLLA: https://tangbaren.se/ — \"högsäsong (från midsommar till 23 augusti)\"; \"har vi ett högre tryck i restaurangen\" (läst 2026-09-27)\n      bestReason: 'Båtarna går året runt och Kusthotellet har öppet året om. Tångbarens högsäsong är midsommar till 23 augusti, då trycket är högst — i maj–juni och september är det lugnare på bryggorna.',\n      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],",
-  "ny": "      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20261213__20270606__95d872ec-b99b-40c5-b0db-6cda6c7d2b17__1,0__2871349.html — \"Gäller 13 dec 2026 - 6 jun 2027\" (läst 2026-11-02)\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Färjorna går året runt från Saltholmen\" (läst 2026-11-09)\n      open: 'Hela året',\n      // KÄLLA: https://styrsobolaget.se/tidtabeller/ — \"För södra skärgårdstrafiken är sommarturlistan förlängd och startar därför tidigare och slutar senare än övrig kollektivtrafik.\" (läst 2026-11-09)\n      // Ingen källa anger en högsäsong för hela ön; Tångbarens högsäsong (midsommar–23 augusti) gäller krogen. Fältet säger därför bara sommaren, då båtarna har sommarturlista och säsongsverksamheterna har öppet.\n      peak: 'Sommar',\n      best: 'Juni–augusti',\n      // KÄLLA: https://guesthouse-styrso.se/ — \"We are open for bookings for the summer season June – August 2026\" (läst 2026-11-09)\n      // KÄLLA: https://goteborg.se/wps/portal/start/uppleva-och-gora/idrott-motion-och-friluftsliv/simma-och-bada/badplatser/hitta-badplatser-utomhusbad?id=3701 — \"Friluftstoalett öppen 15 maj-15 september\" (läst 2026-11-09)\n      // KÄLLA: https://tangbaren.se/ — \"Under lågsäsong (vår fram till midsommar) tar vi emot bordsbokningar för alla sällskapsstorlekar.\"; \"Under högsäsong (från midsommar till 23 augusti) har vi ett högre tryck i restaurangen och tar därför endast emot bokningar för sällskap om 10 personer eller fler.\" (läst 2026-11-09)\n      // KÄLLA: https://kusthotelletstyrso.se/ — \"Hos oss finns plats för både avkoppling och gemenskap – året runt.\" (läst 2026-11-09)\n      bestReason: 'Gästhuset i Tången hyrs ut juni–augusti (2026), Utterviksbadets friluftstoaletter är öppna 15 maj–15 september och Tångbaren har högsäsong från midsommar till 23 augusti, då bara sällskap om minst tio personer kan boka bord. Båtarna går och Kusthotellet har öppet året runt.',\n      // KÄLLA: https://www.vastsverige.com/visitockero/oppetnu-restaurangguidegoteborgsskargard/ — \"Tångbaren – Styrsö Tången - Stängt för säsongen\"; \"Båtebacken Café restaurang – Styrsö Tången - Stängt för säsongen men...\"; \"Kusthotellet Styrsö - Öppet alla dagar\" (läst 2026-11-09)\n      // Svallas skala: Öppet juni–augusti, då gästhuset hyrs ut, Tångbaren har låg- och högsäsong och Utterviksbadets friluftstoaletter är öppna. Begränsad service övriga månader: båtarna och Kusthotellet året runt, Tångbaren och Båtebacken stängda för säsongen hösten 2026. Ingen månad har en belagd högsäsong för hela ön.\n      months: ['limited','limited','limited','limited','limited','open','open','open','limited','limited','limited','limited'],",
-  "rader": [
-   "styrso-0051",
-   "styrso-0052",
-   "styrso-0053",
-   "styrso-0054",
-   "styrso-0055",
-   "styrso-0056",
-   "styrso-0057",
-   "styrso-0058",
-   "styrso-0059",
-   "styrso-0060",
-   "styrso-0061",
-   "styrso-0062",
-   "styrso-0063",
-   "styrso-0064",
-   "styrso-0065",
-   "styrso-0066",
-   "styrso-0067",
-   "styrso-0068",
-   "styrso-0069",
-   "styrso-0070",
-   "styrso-N030",
-   "styrso-N031"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'segelkurs-goteborg':               ['styrso', 'vrango'],",
-  "ny": "  'segelkurs-goteborg':               ['vrango'],",
-  "rader": [
-   "styrso-0269"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'konferens-bohuslan':               ['styrso', 'branno'],",
-  "ny": "  'konferens-bohuslan':               ['branno'],",
-  "rader": [
-   "styrso-0270"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'hyra-bat-marstrand':               ['styrso', 'branno'],",
-  "ny": "  'hyra-bat-marstrand':               ['branno'],",
-  "rader": [
-   "styrso-0271"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'hyra-kajak-bohuslan':              ['styrso', 'branno', 'vrango'],",
-  "ny": "  'hyra-kajak-bohuslan':              ['branno', 'vrango'],",
-  "rader": [
-   "styrso-0272"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'bohuslan-skargard-guide':          ['styrso', 'branno', 'vrango', 'donso'],",
-  "ny": "  'bohuslan-skargard-guide':          ['branno', 'vrango', 'donso'],",
-  "rader": [
-   "styrso-0273"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'bohuslan-vs-hoga-kusten':          ['styrso', 'branno', 'ulvon'],",
-  "ny": "  'bohuslan-vs-hoga-kusten':          ['branno', 'ulvon'],",
-  "rader": [
-   "styrso-0274"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'vinter-bohuslan':             ['styrso', 'branno'],",
-  "ny": "  'vinter-bohuslan':             ['branno'],",
-  "rader": [
-   "styrso-0275"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'hummersafari-bohuslan':            ['styrso', 'vrango'],",
-  "ny": "  'hummersafari-bohuslan':            ['vrango'],",
-  "rader": [
-   "styrso-0276"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'midsommar-bohuslan':               ['styrso', 'branno'],",
-  "ny": "  'midsommar-bohuslan':               ['branno'],",
-  "rader": [
-   "styrso-0277"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'hyra-stuga-marstrand-bohuslan':    ['styrso', 'branno'],",
-  "ny": "  'hyra-stuga-marstrand-bohuslan':    ['branno'],",
-  "rader": [
-   "styrso-0278"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'dagstur-marstrand':                ['styrso', 'branno'],",
-  "ny": "  'dagstur-marstrand':                ['branno'],",
-  "rader": [
-   "styrso-0279"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'camping-kust-sverige':             ['uto', 'oland', 'styrso'],",
-  "ny": "  'camping-kust-sverige':             ['uto', 'oland'],",
-  "rader": [
-   "styrso-0280"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'isbad-vinterbad-sverige':          ['styrso', 'branno'],",
-  "ny": "  'isbad-vinterbad-sverige':          ['branno'],",
-  "rader": [
-   "styrso-0281"
-  ]
- },
- {
-  "fil": "src/app/guider/guide-island-map.ts",
-  "gammal": "  'hundstrand-sverige':               ['oland', 'styrso'],",
-  "ny": "  'hundstrand-sverige':               ['oland'],",
-  "rader": [
-   "styrso-0282"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Det äldsta är Byn med kyrkan från 1752, gårdar och gammal odlingsmark. Tången är det traditionella fiskeläget med tät bebyggelse och slingrande smala vägar. I Halsvik satte de välbeställda skutskepparna sin prägel på bebyggelsen och Bratten fick de fina sommargästerna\" (läst 2026-09-27)\n      'Ön består av fyra små samhällen. Äldst är Byn, med kyrkan från 1752, gårdar och gammal odlingsmark. Tången är det traditionella fiskeläget med tät bebyggelse och smala, slingrande vägar, i Halsvik byggde de välbeställda skutskepparna, och Bratten blev sommargästernas del av ön.',\n",
-  "ny": "      // Rättad 2026-11-09 (omarbete 4, f06-k047–k059): platsens historia beläggs nu av Göteborgs Stad i stället för Göteborg & Co. Sista meningen omskriven 2026-11-10 (omarbete 4b, st4019): badorten och sommargästområdet är två led, som i källan.\n      // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"Inom norra delen finns fyra bebyggelsegrupper som har olika karaktär: jordbruksbyn med kyrkan mitt på ön, strandområdet vid Halsvik, fiskeläget i Tången och f d badortsområdet kring Bratten.\"; \"På 1500-talet var Styrsös invånare fiskarbönder.\"; \"Ön var delad mellan tre gårdar\"; \"Bebyggelsen låg i huvudsak inom nuvarande Kyrkbyn\"; \"Den ersattes med en ny av sten 1751\"; \"Kyrkbyn eller Styrsö by ligger ungefär mitt på ön intill Styrsö gärde med f d åkermarken.\"; \"Halsviksområdet ligger sydväst om byn vid stranden och härifrån bedrevs byns fiske.\"; \"en grupp sjöbodar vid vattnet\"; \"I Halsvik bosatte sig flera skeppare och där uppfördes relativt stora bostadshus.\"; \"Under 1800-talet blev Tången ett tätt bebyggt fiskeläge med flera bryggor längs stranden.\"; \"Bebyggelsen ligger tätt längs smala krokiga vägar.\"; \"Styrsö Bratten med sina relativt stora och påkostade sommarvillor är en värdefull miljö som visar att detta var södra skärgårdens viktigaste badort och mest fashionabla sommargästområde.\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-10)\n      // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Planbeskrivning/$File/Planbeskrivning.pdf — \"Den ersattes med en ny av sten 1751\"; \"Kyrkbyn med gärdet och den gamla vägen utgör en värdefull miljö där den agrara prägeln och delar av 1700-talsbebyggelsen finns kvar.\" (Göteborgs Stad, planbeskrivning för Styrsö Tångenväg, granskning december 2019) (läst 2026-11-10)\n      // Svenska kyrkan (församlingen, nivå 2) skriver \"byggd 1752\" och \"beslöt man 1752 … invigdes 1754\", Göteborgs Stad att stenkyrkan ersatte träkyrkan 1751. Därför står 1750-talet.\n      'På norra Styrsö finns fyra bebyggelsegrupper med olika karaktär. På 1500-talet var öborna fiskarbönder, ön var delad mellan tre gårdar och bebyggelsen låg i huvudsak i Kyrkbyn mitt på ön. Där finns stenkyrkan från 1750-talet, gärdet och den gamla vägen, och delar av 1700-talsbebyggelsen står kvar. Från stranden i Halsvik, där en grupp sjöbodar ligger vid vattnet, bedrevs byns fiske, och där bosatte sig flera skeppare. Tången blev under 1800-talet ett tätt bebyggt fiskeläge med smala, krokiga vägar. Bratten, med sina relativt stora och påkostade sommarvillor, var enligt Göteborgs Stad södra skärgårdens viktigaste badort och mest fashionabla sommargästområde.',\n",
-  "rader": [
-   "styrso-0089",
-   "styrso-0090",
-   "styrso-0091",
-   "styrso-0092",
-   "styrso-0093",
-   "styrso-0094",
-   "styrso-0095",
-   "styrso-0096",
-   "styrso-0097",
-   "styrso-0098",
-   "styrso-0099",
-   "styrso-N009",
-   "styrso-N010",
-   "styrso-N011",
-   "styrso-N012"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: http://www.batebacken.se/ — \"Båtebackens Caferestaurang ligger på Styrsö Tången intill Snobbrännan på Nordvästra Styrsö\"; \"När solen går ner bakom Känsö Torn då vet vi att nu är det högsommar\"; \"bortom farleden ser du bl.a. öarna Brännö och Känsö\" (läst 2026-09-27)\n      // KÄLLA: https://www.brattenswardshus.se/historia/ — \"Tången var ursprungligen öns fiskhamn\" (läst 2026-09-27)\n      'Tången ligger inte på södra spetsen utan på öns nordvästra sida, och var ursprungligen öns fiskhamn. Vid kajkanten ligger Båtebackens caférestaurang med utsikt över farleden Snobbrännan och öarna Brännö och Känsö — på högsommaren går solen ner bakom Känsö torn.',\n",
-  "ny": "      // KÄLLA: http://www.batebacken.se/ — \"Tätt inpå kajkanten, omgivet av det gamla fiskarsamhället hittar du vår lilla skärgårdskrog på Styrsö Tången\"; \"Båtebackens Caferestaurang ligger på Styrsö Tången intill Snobbrännan\"; \"bortom farleden ser du bl.a. öarna Brännö och Känsö\"; \"När solen går ner bakom Känsö Torn då vet vi att nu är det högsommar\" (läst 2026-11-10)\n      // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"Tången ligger på öns norra sida. Det är ett fiskeläge som vuxit fram i anslutning till hamnen.\"; \"Vid Tången minskade fisket men verksamheten finns delvis kvar vid en ny hamn i Sandvik.\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-10)\n      // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Planbeskrivning/$File/Planbeskrivning.pdf — \"Vid Tången minskade\"; \"delvis kvar vid en ny hamn i Sandvik\" (Göteborgs Stad, planbeskrivning för Styrsö Tångenväg, granskning december 2019) (läst 2026-11-10)\n      // KÄLLA: https://www.raa.se/app/uploads/2024/04/Vastra-Gotaland-O_riksintressen.pdf — \"Den senare utvecklingen för fisket med tätare bebyggelse och koncentrationen kring hamnen framträder särskilt väl vid Styrsö Tången.\" (Riksantikvarieämbetet, riksintresse för kulturmiljövården Styrsö [O 7]) (läst 2026-11-10)\n      'Tången ligger inte på södra spetsen utan på öns norra sida och är ett fiskeläge som vuxit fram kring hamnen. Fisket har minskat, men verksamheten finns delvis kvar vid den nyare hamnen i Sandvik. Vid kajkanten ligger Båtebackens caférestaurang med utsikt över farleden Snobbrännan och öarna Brännö och Känsö — på högsommaren går solen ner bakom Känsö torn.',\n",
-  "rader": [
-   "styrso-0104",
-   "styrso-0105",
-   "styrso-N017"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://tangbaren.se/batplatser/ — \"Hos Tångbaren hittar du 12 stycken gästplatser med akterförtöjning\"; \"nere i Styrsö Sandvik, en kort promenad ifrån oss\" (läst 2026-09-27)\n      { name: 'Tångens gästhamn', desc: 'Gästhamn vid Styrsö Tången, med toalett och dusch vid Båtebacken (betalning i restaurangen). Tångbaren har 12 egna gästplatser med akterförtöjning, och fler platser finns i Styrsö Sandvik en kort promenad bort.', service: ['toalett', 'dusch'] },\n",
-  "ny": "      // KÄLLA: https://tangbaren.se/batplatser/ — \"Hos Tångbaren hittar du 12 stycken gästplatser med akterförtöjning\" (läst 2026-11-09)\n      // KÄLLA: https://styrsohamn.se/ — \"Styrsö Sandvikshamnen\"; \"Sandvikshamnen erbjuder ett 50 tal båtplatser designerade till gästbåtar.\"; \"I Sandvikshamnen får båtgäster tillgång till toaletter, duschar, el, färskvatten, sugtömmning samt en miljöstation.\" (läst 2026-11-09)\n      // KÄLLA: https://api.openstreetmap.org/api/0.6/map?bbox=11.7570,57.6150,11.7700,57.6225 — \"Styrsö Sandvikshamn\"; \"Styrsö Tången\" (läst 2026-11-09); uppmätt (haversine): marinan Styrsö Sandvikshamn (node 1484105382) ligger 557 m fågelvägen sydväst om marinan Styrsö Tången (node 3711149062).\n      { name: 'Tångens gästhamn', desc: 'Gästhamn vid Styrsö Tången, med toalett och dusch vid Båtebacken (betalning i restaurangen). Tångbaren har 12 egna gästplatser med akterförtöjning. Drygt en halv kilometer sydväst om Tången ligger Styrsö Sandvikshamnen, med ett 50-tal gästplatser och toaletter, duschar, el, färskvatten, sugtömning och miljöstation.', service: ['toalett', 'dusch'] },\n",
-  "rader": [
-   "styrso-0238",
-   "styrso-N024",
-   "styrso-N025"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: http://www.batebacken.se/ — \"När solen går ner bakom Känsö Torn då vet vi att nu är det högsommar\" (läst 2026-09-27)\n      'På högsommaren går solen ner bakom Känsö torn sett från kajen i Tången — ta en kvällsbåt och ät vid Båtebacken eller Tångbaren.',\n",
-  "ny": "      // KÄLLA: http://www.batebacken.se/ — \"När solen går ner bakom Känsö Torn då vet vi att nu är det högsommar\"; \"Tätt inpå kajkanten, omgivet av det gamla fiskarsamhället hittar du vår lilla skärgårdskrog på Styrsö Tången\" (läst 2026-11-09)\n      // KÄLLA: https://tangbaren.se/batplatser/ — \"i hamnen vid Styrsö Tången precis vid oss\" (läst 2026-11-09)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Skärgårdsbåten anlöper vid tre olika bryggor: Styrsö Bratten, Styrsö Tången och Styrsö Skäret\" (läst 2026-11-09)\n      // Stod \"ta en kvällsbåt\" om högsommaren, men tabellerna för sommaren 2027 är inte publicerade (Styrsöbolagets tidtabellssida 2026-11-09 har hösttabellen 24 augusti–12 december 2026).\n      'På högsommaren går solen ner bakom Känsö torn sett från kajen i Tången, där Båtebacken och Tångbaren ligger. Stannar du till kvällen, kontrollera i Västtrafiks tidtabell när sista båten går från Styrsö Tången.',\n",
-  "rader": [
-   "styrso-0242",
-   "styrso-0243",
-   "styrso-0244",
-   "styrso-N026"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "    // KÄLLA: https://www.goteborg.com/platser/styrso — \"Det äldsta är Byn med kyrkan från 1752\" (läst 2026-09-27)\n    // KÄLLA: https://www.brattenswardshus.se/historia/ — \"Under 1700-talet och tidigt 1800-tal låg här trankokeri och sillsalteri\"; \"Den kända Madam Öberg\"; \"1969 eldades hotell, restaurang och en del övrig bebyggelse upp\" (läst 2026-09-27)\n    // KÄLLA: https://kusthotelletstyrso.se/historia/ — \"År 1893 invigdes Styrsö Havsbad\" (läst 2026-09-27)\n    did_you_know: 'Vid Bratten låg under 1700-talet och tidigt 1800-tal trankokeri och sillsalteri. Madam Öbergs gästgiveri drog sedan hit de första turisterna, 1893 invigdes Styrsö Havsbad, och Bratten blev badort med hotell och restaurang — tills byggnaderna eldades upp 1969. Kyrkan i Byn är från 1752.',\n",
-  "ny": "    // Rättad 2026-11-09 (omarbete 4, f18-k052–k056, f26-k025, f06-k047): krogens och hotellets historiksidor belägger inte platsens historia. Trankokeriet, Madam Öberg och 1893 finns inte i nivå 1-källorna, och enligt Göteborgs Stad förstördes badrestaurangen vid en brand 1960 (krogens sida: 1969).\n    // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"På Styrsö Bratten, där det fanns ett sillsalteri och ett värdshus sedan 1700-talet, började en badort att utvecklas i mitten av 1800-talet.\"; \"Bratten hade en större anläggning för sillsalteri och ett värdshus, Öbergska värdshuset.\"; \"Till Bratten kom de första sommargästerna redan 1845\"; \"Från 1869 när en ångbåtslinje öppnats mellan Styrsö och Göteborg utvecklades Bratten till en fashionabel badort.\"; \"Styrsö Hafsbad\"; \"omfattande rörelse med restaurang, hotell, park och badhus av olika slag\"; \"Efter 1930-talet förändrades öns karaktär delvis.\"; \"Badorten vid Bratten avvecklades och den stora badrestaurangen förstördes vid en brand 1960.\"; \"en kyrka av trä\"; \"Den ersattes med en ny av sten 1751\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-09)\n    // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Planbeskrivning/$File/Planbeskrivning.pdf — \"Till Bratten kom de första sommargästerna redan 1845 och badbassäng anlades på 1850-talet.\"; \"Badorten vid Bratten avvecklades succesivt under denna period och den stora badrestaurangen förstördes vid en brand 1960.\"; \"Den ersattes med en ny av sten 1751\" (Göteborgs Stad, planbeskrivning för Styrsö Tångenväg, granskning december 2019) (läst 2026-11-09)\n    // Svenska kyrkan (församlingen, nivå 2) skriver \"byggd 1752\" och \"beslöt man 1752 … invigdes 1754\", Göteborgs Stad att stenkyrkan ersatte träkyrkan 1751. Därför står 1750-talet.\n    did_you_know: 'Vid Bratten fanns sedan 1700-talet ett sillsalteri och ett värdshus, Öbergska värdshuset. De första sommargästerna kom 1845, och sedan en ångbåtslinje till Göteborg öppnats 1869 växte Bratten till en badort; kring sekelskiftet 1900 var Styrsö Hafsbad en omfattande rörelse med restaurang, hotell, park och badhus. Badorten avvecklades efter 1930-talet, och den stora badrestaurangen förstördes vid en brand 1960. Kyrkan i Kyrkbyn byggdes i sten på 1750-talet och ersatte en kyrka av trä.',\n",
-  "rader": [
-   "styrso-0043",
-   "styrso-0044",
-   "styrso-0045",
-   "styrso-0046",
-   "styrso-0047",
-   "styrso-0048",
-   "styrso-0049",
-   "styrso-0050",
-   "styrso-N013",
-   "styrso-N014",
-   "styrso-N015",
-   "styrso-N016"
-  ]
- },
- {
-  "fil": "src/lib/islandCoords.ts",
-  "gammal": "  { slug: 'langskar',          name: 'Långskär',          lat: 59.1835, lng: 18.8514, radiusKm: 2.5 },\n",
-  "ny": "  { slug: 'langskar',          name: 'Långskär',          lat: 59.1835, lng: 18.8514, radiusKm: 2.5 },\n\n  // ── Göteborgs södra skärgård ──────────────────────────────────────────────\n  // Tillagd 2026-11-09 enligt Toms beslut 3 (2026-11-08). Nålen är densamma som i island-data.ts (Lantmäteriets ortnamn Styrsö, trakt).\n  // KÄLLA: https://api.openstreetmap.org/api/0.6/relation/6429433/full — \"Styrsö\"; \"island\" (läst 2026-11-09); uppmätt 2026-11-09 (haversine) i relationens 1 423 strandnoder: öns längsta strandpunkt ligger 1 988 m från nålen 57.6152, 11.7757 (node 3571400197), så 2,0 km täcker hela Styrsö. Bryggorna (OSM-noder): Tången 781 m, Bratten 1 106 m, Skäret 1 548 m.\n  // Grannöarnas närmaste strand (relationerna 10129624, 10129623, 11048170, 10250729 och 10250730, /full i samma API, lästa samma dag): Vargö 1 044 m, Känsö 1 317 m, Donsö 1 544 m, Köpstadsö 1 697 m och Brännö 1 805 m, alltså innanför radien. Donsö färjeläge (node 639186627) ligger 2 018 m bort, utanför. Radien styr GPS-taggningen och platslistorna (islandPlaces); utan raden gällde standardradien 3 km.\n  { slug: 'styrso',            name: 'Styrsö',            lat: 57.6152, lng: 11.7757, radiusKm: 2.0 },\n",
-  "rader": [
-   "styrso-0284",
-   "styrso-0299",
-   "styrso-0309",
-   "styrso-0318",
-   "styrso-0395",
-   "styrso-0409",
-   "styrso-0435",
-   "styrso-N032"
-  ]
- }
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "    // KÄLLA: https://www.goteborg.com/platser/styrso — \"cirka 1400 bofasta invånare\"; \"Skärgårdsbåten anlöper vid tre olika bryggor: Styrsö Bratten, Styrsö Tången och Styrsö Skäret\"; \"På Styrsö finns fyra små samhällen med olika karaktärer\"; \"Det finns en broförbindelse mellan Styrsö och Donsö\" (läst 2026-09-27)\n    tagline: 'Bilfri ö med 1 400 invånare i Göteborgs södra skärgård — tre bryggor, fyra små samhällen och bro till Donsö.',",
+    "ny": "    // KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/MI/MI0812/MI0812A/OarEjBro01 — \"Befolkning, antal folkbokförda\"; \"1480Q102\"; \"2020\"; \"1341\" (värden i svaret på en fråga med Oar=1480Q102 Styrsö och Tid=2020; 2020 är tabellens senaste år) (läst 2026-11-07)\n    // KÄLLA: https://www.goteborg.com/platser/styrso — \"Skärgårdsbåten anlöper vid tre olika bryggor: Styrsö Bratten, Styrsö Tången och Styrsö Skäret\"; \"På Styrsö finns fyra små samhällen med olika karaktärer\"; \"Det finns en broförbindelse mellan Styrsö och Donsö\"; \"En bilfri ö full av historia och skärgårdscharm\" (läst 2026-10-31)\n    // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Mobilitets-%20och%20parkeringsutredning/$File/Mobilitets-%20och%20parkeringutredning.pdf — \"Eftersom biltrafik inte är tillåten på ön måste parkering för bil anordnas på fastlandet\" (Göteborgs Stad, mobilitets- och parkeringsutredning 2019-04-29) (läst 2026-11-07)\n    tagline: 'Bilfri ö med drygt 1 300 invånare i Göteborgs södra skärgård — tre bryggor, fyra små samhällen och bro till Donsö.',",
+    "rader": [
+      "styrso-0010",
+      "styrso-0011",
+      "styrso-0012",
+      "styrso-0013",
+      "styrso-0014",
+      "styrso-0015"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Styrsö är den södra delen av skärgårdens centralort med cirka 1400 bofasta invånare\"; \"Det är förbjudet att köra bil på Styrsö, de flesta använder därför lastmopeder och golfbilar som transportmedel\" (läst 2026-09-27)\n      // KÄLLA: https://www.brattenswardshus.se/historia/ — \"Styrsö Bratten är centralpunkten i Södra Skärgården. Här finns vårdcentral, folktandvård, äldreboendet Styrsö Hemmet, samt ett stycke upp på ön högstadieskola med centralbibliotek\" (läst 2026-09-27)\n      'Styrsö har omkring 1 400 invånare året om och är södra skärgårdens centralort. Vid Bratten finns vårdcentral, folktandvård och äldreboende, och en bit upp på ön högstadieskola med bibliotek. Det är förbjudet att köra bil här — de flesta tar sig fram med lastmoped eller golfbil.',",
+    "ny": "      // Rättad 2026-11-07 (Kontrollanten hs-k001/k019/k038): Brattens Wärdshus är en krogs webbplats och belägger inte vården, skolan eller biblioteket; folkbiblioteket har flyttat från Styrsöskolan till Brattenvägen 48; bilförbudet beläggs av kommunen.\n      // KÄLLA: https://goteborg.se/wps/portal/start/omsorg-och-stod/aldre/boenden-for-aldre/vard-och-omsorgsboende/hitta-vard--och-omsorgsboende?id=2371 — \"Södra Skärgårdens Vård- och omsorgsboende ligger på Styrsö i Göteborgs södra skärgård och drivs av Göteborgs Stad\"; \"det lugn som bara kan uppstå på en bilfri ö\"; \"Södra Skärgården ligger fem minuters promenad från färjeläget Styrsö Bratten där färjorna 281 och 282 lägger till.\"; \"Boenden för äldre\" (läst 2026-11-07)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Styrsö är den södra delen av skärgårdens centralort\"; \"de flesta använder därför lastmopeder och golfbilar som transportmedel\" (läst 2026-11-07)\n      // KÄLLA: https://api.scb.se/OV0104/v1/doris/sv/ssd/MI/MI0812/MI0812A/OarEjBro01 — \"Befolkning, antal folkbokförda\"; \"1480Q102\"; \"2020\"; \"1341\" (värden i svaret på en fråga med Oar=1480Q102 Styrsö och Tid=2020; 2020 är tabellens senaste år) (läst 2026-11-07)\n      // KÄLLA: https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__MI__MI0812__MI0812A/OarEjBro01/ — \"Befolkning, antal folkbokförda:\"; \"31 december respektive år\" (referenstiden) (läst 2026-11-07)\n      // KÄLLA: https://www.1177.se/hitta-vard/kontaktkort/Narhalsan-Styrso-vardcentral-Styrso/ — \"Brattenvägen 13, 43084, Styrsö\"; \"Båt till Styrsö Bratten. Följ Brattenvägen cirka 150 m. På höger sida ligger vårdcentralen.\" (läst 2026-11-07)\n      // KÄLLA: https://www.1177.se/hitta-vard/kontaktkort/Folktandvarden-Styrso-Goteborg-Styrso/ — \"Folktandvården Styrsö Göteborg, Styrsö\"; \"Brattenvägen 13, 430 84, Styrsö\" (läst 2026-11-07)\n      // KÄLLA: https://goteborg.se/wps/portal/enheter/styrsoskolan — \"Styrsöskolan F-9\" (läst 2026-11-07)\n      // KÄLLA: https://goteborg.se/sodraskargardensbibliotek — \"Södra Skärgårdens bibliotek på Styrsö är en mötesplats för barn och vuxna\"; \"Brattenvägen 48\" (läst 2026-11-09)\n      // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Mobilitets-%20och%20parkeringsutredning/$File/Mobilitets-%20och%20parkeringutredning.pdf — \"Eftersom biltrafik inte är tillåten på ön måste parkering för bil anordnas på fastlandet\" (Göteborgs Stad, mobilitets- och parkeringsutredning 2019-04-29) (läst 2026-11-07)\n      'Styrsö är en bilfri ö i Göteborgs södra skärgård och utgör den södra delen av skärgårdens centralort, med 1 341 folkbokförda invånare enligt SCB (31 december 2020). Vid Bratten finns vårdcentral och folktandvård på Brattenvägen 13 och Göteborgs Stads äldreboende Södra Skärgården, fem minuters promenad från färjeläget. Styrsöskolan har förskoleklass till årskurs 9, och Södra Skärgårdens bibliotek finns på Brattenvägen 48. Det är förbjudet att köra bil här — de flesta tar sig fram med lastmoped eller golfbil.',",
+    "rader": [
+      "styrso-0080",
+      "styrso-0081",
+      "styrso-0082",
+      "styrso-0083",
+      "styrso-0084",
+      "styrso-0085",
+      "styrso-0086",
+      "styrso-0087",
+      "styrso-0088",
+      "styrso-N007",
+      "styrso-N008"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Från öns högsta punkt, Stora Rös, kan du njuta av en storslagen utsikt över hela skärgården. Härifrån kan du vandra på naturstigarna till Brännholmsviken och Styrsö Skäret\" (läst 2026-09-27)\n      'Från öns högsta punkt, Stora Rös, ser man ut över hela skärgården, och därifrån går naturstigar till Brännholmsviken och Styrsö Skäret. Över Långesandsbron kan du gå eller cykla vidare till Donsö.',\n      // KÄLLA: https://www.brattenswardshus.se/historia/ — \"Långesandsbron\"; \"Bron som förbinder Styrsö och Donsö\" (läst 2026-09-27)\n      // KÄLLA: https://kusthotelletstyrso.se/historia/ — \"År 1893 invigdes Styrsö Havsbad\"; \"I början av 1900-talet spelade Styrsö även en viktig roll i vården av tuberkulossjuka barn\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"En kort promenad från Bratten hittas sedan augusti 2025\" (läst 2026-09-27)\n      'Badortstiden syns fortfarande vid Bratten. 1893 invigdes Styrsö Havsbad, och i början av 1900-talet vårdades tuberkulossjuka barn i sanatorier på ön. I dag ligger Kusthotellet Styrsö, öppnat i augusti 2025, en kort promenad från Bratten.',",
+    "ny": "      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Från öns högsta punkt, Stora Rös, kan du njuta av en storslagen utsikt över hela skärgården. Härifrån kan du vandra på naturstigarna till Brännholmsviken och Styrsö Skäret\"; \"Det finns en broförbindelse mellan Styrsö och Donsö så du kan promenera och cykla emellan de två öarna\" (läst 2026-11-09)\n      // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"I söder ligger resterna av Styrsös äldsta kyrkoplats. Denna del har också ett flertal lämningar från förhistorisk tid och 1500-talets sillfiskeperiod.\"; \"Ett kapell fanns redan vid denna tid på Styrsö vid Brännholmsviken i söder.\"; \"1974 inkorporerades Södra Skärgården med Göteborg och samma år byggdes en bro mellan Styrsö och Donsö.\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-09)\n      // Namnet Långesandsbron står bara på krogens historiksida; kommunen och Lantmäteriets ortnamn (sökt 2026-11-09) har det inte, så bron står utan namn.\n      'Från öns högsta punkt, Stora Rös, ser man ut över hela skärgården, och därifrån går naturstigar till Brännholmsviken och Styrsö Skäret. På södra Styrsö ligger resterna av öns äldsta kyrkoplats, och redan på 1500-talet fanns ett kapell vid Brännholmsviken. Där finns också lämningar från förhistorisk tid och från sillfisket på 1500-talet. Över bron till Donsö, byggd 1974, kan du gå eller cykla vidare.',\n      // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"Styrsö Bratten har bebyggelse som påminner om badortstiden\"; \"Styrsö Bratten med sina relativt stora och påkostade sommarvillor\"; \"de anläggningar som tillhörde badortstiden 1850–1930 är till stor del borta\"; \"Söder om Styrsö Bratten startades också en anstalt för ”skrofulösa barn” på 1890-talet.\"; \"Den tillkom genom donationer och utvecklades till ett ”Kustsanatorium” som bl a omfattade en stor tegelbyggnad uppförd 1908.\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-09)\n      // KÄLLA: https://www.raa.se/app/uploads/2024/04/Vastra-Gotaland-O_riksintressen.pdf — \"Styrsö Bratten är det bästa exemplet på badortslivets bebyggelse.\" (Riksantikvarieämbetet, riksintresse för kulturmiljövården Styrsö [O 7]) (läst 2026-11-09)\n      // KÄLLA: https://kusthotelletstyrso.se/hitta-till-oss/ — \"Kusthotellet ligger på nära gångavstånd från hållplatsen Styrsö Skäret.\" (läst 2026-11-10)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Skärgårdsbåten anlöper vid tre olika bryggor: Styrsö Bratten, Styrsö Tången och Styrsö Skäret.\"; \"En kort promenad från Bratten hittas sedan augusti 2025 Kusthotellet Styrsö\" (läst 2026-11-10)\n      'Vid Bratten finns bebyggelse som påminner om badortstiden, med relativt stora sommarvillor, men anläggningarna från badortsåren 1850–1930 är till stor del borta. Söder om Bratten startades på 1890-talet en anstalt för ”skrofulösa barn”, som utvecklades till ett kustsanatorium med en stor tegelbyggnad från 1908. I dag ligger Kusthotellet Styrsö, öppnat i augusti 2025, nära bryggan Styrsö Skäret.',",
+    "rader": [
+      "styrso-0114",
+      "styrso-0115",
+      "styrso-0116",
+      "styrso-0117",
+      "styrso-0118",
+      "styrso-0119",
+      "styrso-0120",
+      "styrso-0121",
+      "styrso-0122",
+      "styrso-0123",
+      "styrso-N018",
+      "styrso-N019",
+      "styrso-N020",
+      "styrso-N021",
+      "styrso-N022"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://transdev.se/wp-content/uploads/sites/5/2026/07/Hosttidtabell-281-282-Liggande-A3.pdf — \"23/08 2026 - 12/12 2026\"; \"281 Stenpiren-Saltholmen-Köpstadsö-Styrsö Bratten-Donsö-Vrångö och omvänt\"; \"282 Stenpiren-Saltholmen-Köpstadsö-Styrsö Bratten-Styrsö Tången-Brännö Husvik och omvänt\"; \"Styrsö Bratten - 05:34 - - 06:26 07:16 - 08:11 08:59 09:39 10:17\". Vardagar enligt tabellen (avläst): Saltholmen 06:09→Bratten 06:26, 07:54→08:11, 09:25→09:39, 11:20→11:44; Saltholmen 07:24→Skäret 07:39; Saltholmen 05:47→Tången 06:12, 08:35→09:09, 09:53→10:28 (läst 2026-09-27)\n      travel_time: '15–25 min med båt 281/282 från Saltholmen till Bratten eller Skäret, 25–35 min till Tången',",
+    "ny": "      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — \"281 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö\"; \"282 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik\"; \"Gäller 24 aug – 12 dec 2026\"; \"( ) Anlöps i omvänd riktning.\" (läst 2026-11-03). Restiden är uppmätt i tabellen som skillnaden mellan avgång Saltholmen och ankomst vid bryggan för samtliga turer måndag–söndag; spridningen beror på om turen går via Asperö Östra och Köpstadsö. Längsta resan till Skäret, 36 min, är en tidig lördagstur på linje 281 som går till Vrångö först och angör Skäret i omvänd riktning.\n      travel_time: '14–30 min till Bratten, 13–36 min till Skäret och 24–41 min till Tången med båt 281/282 från Saltholmen, beroende på tur',",
+    "rader": [
+      "styrso-0018",
+      "styrso-0019",
+      "styrso-0020",
+      "styrso-0021",
+      "styrso-0022",
+      "styrso-0420",
+      "styrso-0435"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.goteborg.com/platser/styrso — \"En bilfri ö full av historia och skärgårdscharm\"; \"Tången är det traditionella fiskeläget\" (läst 2026-09-27)\n      character: 'Bilfri ö med fiskeläge, kyrkby och badortsvillor',",
+    "ny": "      // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"Inom norra delen finns fyra bebyggelsegrupper som har olika karaktär: jordbruksbyn med kyrkan mitt på ön, strandområdet vid Halsvik, fiskeläget i Tången och f d badortsområdet kring Bratten.\"; \"Runt havsbadet byggdes stora sommarvillor som ägdes av göteborgsfamiljer.\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-09)\n      // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Mobilitets-%20och%20parkeringsutredning/$File/Mobilitets-%20och%20parkeringutredning.pdf — \"Eftersom biltrafik inte är tillåten på ön måste parkering för bil anordnas på fastlandet\" (Göteborgs Stad, mobilitets- och parkeringsutredning 2019-04-29) (läst 2026-11-09)\n      character: 'Bilfri ö med fiskeläge, kyrkby och badortsvillor',",
+    "rader": [
+      "styrso-0023",
+      "styrso-0024",
+      "styrso-0025",
+      "styrso-0026"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Färjorna går året runt från Saltholmen\" (läst 2026-09-27)\n      // KÄLLA: https://kusthotelletstyrso.se/ — \"Hos oss finns plats för både avkoppling och gemenskap – året runt\" (läst 2026-09-27)\n      season: 'Året runt',",
+    "ny": "      // KÄLLA: https://guesthouse-styrso.se/ — \"We are open for bookings for the summer season June – August 2026\" (läst 2026-11-10)\n      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20261213__20270606__95d872ec-b99b-40c5-b0db-6cda6c7d2b17__1,0__2871349.html — \"Gäller 13 dec 2026 – 6 jun 2027\"; \"Linjen trafikeras av Styrsöbolaget.\" (läst 2026-11-10)\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Färjorna går året runt från Saltholmen\" (läst 2026-11-10)\n      // KÄLLA: https://kusthotelletstyrso.se/ — \"Hos oss finns plats för både avkoppling och gemenskap – året runt.\" (läst 2026-11-10)\n      // Juni–augusti är samma säsong som seasonal.best och months (källorna ovanför seasonal). Fältet visas som \"Säsong\" på ösidan och som \"Bäst säsong\" på /med-barn.\n      season: 'Juni–augusti; båtar och Kusthotellet året runt',",
+    "rader": [
+      "styrso-0027",
+      "styrso-0438"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Beger du dig istället till färjeläget Styrsö Bratten hittar du\" (läst 2026-09-27)\n      { icon: '🍽', name: 'Bratten\\'s Wärdshus', desc: 'Restaurang och kafé vid färjeläget Bratten.' },",
+    "ny": "      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Beger du dig istället till färjeläget Styrsö Bratten hittar du Brattens Wärdshus där du kan kila om för både mat och fika\" (läst 2026-10-31)\n      { icon: '🍽', name: 'Bratten\\'s Wärdshus', desc: 'Restaurang och kafé vid färjeläget Bratten.' },",
+    "rader": [
+      "styrso-0125",
+      "styrso-0126"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.goteborg.com/platser/styrso-brattenbadet/ — \"Badet ligger cirka 300 meter från färjeläget Styrsö Bratten\"; \"Vid badplatsen finns en mindre sandstrand, brygga med badstegar, klippor och en gräsyta\"; \"vattnet kan vara strömt i farleden utanför badplatsen\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Utterviksbadet ligger i nordväst, en kilometer från hållplatsen Styrsö Tången\"; \"Utterviksbadet med bryggor och badvänliga klippor\" (läst 2026-09-27)\n      { icon: '🏖', name: 'Bad', desc: 'Brattenbadet, 300 meter från Bratten, har liten sandstrand, brygga med badstegar och klippor — men vattnet kan vara strömt i farleden utanför. Utterviksbadet i nordväst, en kilometer från Tången, har bryggor och klippor.' },",
+    "ny": "      // KÄLLA: https://goteborg.se/wps/portal/start/uppleva-och-gora/idrott-motion-och-friluftsliv/simma-och-bada/badplatser/hitta-badplatser-utomhusbad?id=3700 — \"Vid Styrsö Bratten kan du bada från strand eller brygga, cirka 300 meter från färjeläget\"; \"Var försiktig - vattnet är strömt i farleden!\" (läst 2026-11-03)\n      // KÄLLA: https://www.goteborg.com/platser/styrso-brattenbadet/ — \"Badet ligger cirka 300 meter från färjeläget Styrsö Bratten\"; \"Vid badplatsen finns en mindre sandstrand, brygga med badstegar, klippor och en gräsyta\" (läst 2026-11-03)\n      // KÄLLA: https://goteborg.se/wps/portal/start/uppleva-och-gora/idrott-motion-och-friluftsliv/simma-och-bada/badplatser/hitta-badplatser-utomhusbad?id=3701 — \"Närmaste hållplats: Styrsö Tången. Från hållplatsen är det 1,2 kilometer till badplatsen\"; \"en liten strand för de minsta och en badholme med bryggdäck och badstegar för de större\" (läst 2026-11-02)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Utterviksbadet ligger i nordväst\" (läst 2026-10-31)\n      { icon: '🏖', name: 'Bad', desc: 'Brattenbadet, 300 meter från Bratten, har liten sandstrand, brygga med badstegar och klippor — men vattnet är strömt i farleden utanför. Utterviksbadet i nordväst, 1,2 kilometer från bryggan i Tången, har en liten strand och en badholme med bryggdäck och badstegar.' },",
+    "rader": [
+      "styrso-0142",
+      "styrso-0143",
+      "styrso-0139"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.goteborg.com/platser/kusthotellet-styrso — \"med 50 rum, varav 10 sviter, restaurang, wellness-område, uppvärmd utomhuspool och gym\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"En kort promenad från Bratten hittas sedan augusti 2025\" (läst 2026-09-27)\n      { name: 'Kusthotellet Styrsö', type: 'Hotell', desc: 'Hotell en kort promenad från Bratten, öppnat i augusti 2025: 50 rum varav 10 sviter, restaurang, spa, uppvärmd utomhuspool och gym. Öppet året runt.', websiteUrl: 'https://kusthotelletstyrso.se/' },",
+    "ny": "      // KÄLLA: https://www.goteborg.com/platser/kusthotellet-styrso — \"med 50 rum, varav 10 sviter, restaurang, wellness-område, uppvärmd utomhuspool och gym\" (läst 2026-10-31)\n      // KÄLLA: https://kusthotelletstyrso.se/hitta-till-oss/ — \"Kusthotellet ligger på nära gångavstånd från hållplatsen Styrsö Skäret\" (läst 2026-11-02)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"En kort promenad från Bratten hittas sedan augusti 2025 Kusthotellet Styrsö\" (läst 2026-10-31)\n      // KÄLLA: https://kusthotelletstyrso.se/ — \"Skärgårdshotell med spa, restaurang och havet runt knuten\"; \"Hos oss finns plats för både avkoppling och gemenskap - året runt\" (läst 2026-10-31)\n      { name: 'Kusthotellet Styrsö', type: 'Hotell', desc: 'Hotell nära bryggan Styrsö Skäret, öppnat i augusti 2025: 50 rum varav 10 sviter, restaurang, spa, uppvärmd utomhuspool och gym. Öppet året runt.', websiteUrl: 'https://kusthotelletstyrso.se/' },",
+    "rader": [
+      "styrso-0192"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://stbnb.se/ — \"We are open for bookings for the summer season June – August 2026\"; \"four bedrooms, kitchen and a bathroom. We can accommodate up to 10 guests\"; \"a six minute walk from the ferry station Tången\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/styrso-tangen-bed-breakfast/ — \"inrymt i en vacker jugendvilla från 1904\" (läst 2026-09-27)\n      { name: 'Guesthouse Styrsö Tången', type: 'Pensionat', desc: 'Övervåningen i en jugendvilla från 1904: fyra sovrum, kök och badrum för upp till tio gäster. Sex minuters promenad från Tången. Sommarsäsong juni–augusti.', websiteUrl: 'https://stbnb.se/' },",
+    "ny": "      // KÄLLA: https://guesthouse-styrso.se/ — \"Guesthouse Styrsö Tången\"; \"We are open for bookings for the summer season June – August 2026\"; \"Our guesthouse is located upstairs in an old art noveau villa and has a private entrance, four bedrooms, kitchen and a bathroom. We can accommodate up to 10 guests\"; \"We are situated a six minute walk from the ferry station Tången\" (läst 2026-11-09)\n      // Adressen stbnb.se leder i dag till guesthouse-styrso.se. Byggåret 1904 står bara hos Göteborg & Co (nivå 3) och är struket.\n      { name: 'Guesthouse Styrsö Tången', type: 'Pensionat', desc: 'Övervåningen i en gammal jugendvilla, med egen entré: fyra sovrum, kök och badrum för upp till tio gäster. Sex minuters promenad från Tången. Hyrs ut under sommarsäsongen (2026: juni–augusti).', websiteUrl: 'https://guesthouse-styrso.se/' },",
+    "rader": [
+      "styrso-0204",
+      "styrso-0205",
+      "styrso-0206",
+      "styrso-0207",
+      "styrso-0208",
+      "styrso-0209",
+      "styrso-0210",
+      "styrso-0211",
+      "styrso-0212",
+      "styrso-N023"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Spårvagn 11, samt linje 9 under sommaren, restid cirka 35 minuter\"; \"Buss 114, Ö-snabben, restid cirka 25 minuter\"; \"281, Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö\"; \"283, Saltholmen–Asperö–Brännö Rödsten\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/kusthotellet-styrso — \"bara cirka 1 timma från centrala Göteborg\" (läst 2026-09-27)\n      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: 'ca 1 h totalt', desc: 'Spårvagn 11 (även 9 på sommaren) eller buss 114 Ö-snabben till Saltholmen, sedan båt 281 eller 282 — 15–35 minuter beroende på brygga. Linje 283 går inte till Styrsö.', icon: '🚋' },\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"två turer per dag måndag till fredag, samt även lördag och söndag under sommaren\" (läst 2026-09-27)\n      { method: 'Båt direkt', from: 'Stenpiren (centrala Göteborg)', time: 'ca 1 h', desc: 'Några turer på linje 281 och 282 går direkt från Stenpiren utan byte — två om dagen på vardagar, fler på sommaren.', icon: '⛴' },",
+    "ny": "      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5011__0__LINE__20260817__20261212__b12f79f1-93d4-4a88-b34d-85ab15ce566e__0%2C0__2777978.pdf — \"11 Saltholmen–Ekedal–Centrum–Bergsjön och omvänt\"; \"Gäller 17 aug - 12 dec 2026\" (läst 2026-10-31)\n      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5114__0__LINE__20251214__20261212__58f1a45c-85a0-4090-a8fc-de0115454495__1%2C0__2662665.pdf — \"114 Saltholmen–Brunnsparken och omvänt\"; \"Gäller 14 dec 2025 - 12 dec 2026 utom 1 juni - 23 aug\" (läst 2026-10-31)\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Spårvagn 11, samt linje 9 under sommaren, restid cirka 35 minuter\"; \"Buss 114, Ö-snabben, restid cirka 25 minuter\" (läst 2026-10-31)\n      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — \"281 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö\"; \"282 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik\"; \"Gäller 24 aug – 12 dec 2026\" (läst 2026-10-31). Båtens restid uppmätt i tabellen, se facts.travel_time.\n      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5283__0__LINE__20260824__20261212__247f5756-c8cb-4894-9e61-df69039cf68b__0%2C0__.pdf — \"Saltholmen–Asperö–Brännö Rödsten och omvänt\" (läst 2026-10-31)\n      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: 'ca 1 h totalt', desc: 'Spårvagn 11 (även 9 på sommaren) eller buss 114 Ö-snabben till Saltholmen — bussen går vardagar och lördagar men inte 1 juni–23 augusti — sedan båt 281 eller 282, 13–41 minuter beroende på brygga och tur. Linje 283 går inte till Styrsö.', icon: '🚋' },\n      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — \"Linje 283 från Stenpiren och Lindholmspiren. Båtbyte på Saltholmen.\"; \"282 Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Styrsö Tången–Brännö Husvik\"; \"Gäller 24 aug – 12 dec 2026\" (läst 2026-10-31)\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"två turer per dag måndag till fredag, samt även lördag och söndag under sommaren\" (läst 2026-10-31)\n      { method: 'Båt direkt', from: 'Stenpiren (centrala Göteborg)', time: 'ca 1 h', desc: 'På vardagar går en eftermiddagstur på linje 282 från Stenpiren till Bratten och Tången utan byte; morgonturen från Stenpiren går med linje 283 och båtbyte på Saltholmen. Tillbaka går en morgon- och en eftermiddagstur utan byte till Stenpiren (hösttidtabellen 24 augusti–12 december 2026). Sommaren 2026 gick turer från Stenpiren även lördag och söndag.', icon: '⛴' },",
+    "rader": [
+      "styrso-0213",
+      "styrso-0214",
+      "styrso-0215",
+      "styrso-0216",
+      "styrso-0217",
+      "styrso-0218",
+      "styrso-0219",
+      "styrso-0220",
+      "styrso-0221",
+      "styrso-0222",
+      "styrso-0223",
+      "styrso-0224",
+      "styrso-0225",
+      "styrso-0226",
+      "styrso-0227",
+      "styrso-0228",
+      "styrso-0229",
+      "styrso-0230",
+      "styrso-0253",
+      "styrso-0418",
+      "styrso-0419",
+      "styrso-0436"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Beger du dig istället till färjeläget Styrsö Bratten hittar du\" (läst 2026-09-27)\n      // KÄLLA: https://www.brattenswardshus.se/restaurang/ — \"Vi har även glutenfri pizza\"; \"Rödspätta, pommes, remouladsås, sallad\" (läst 2026-09-27)\n      // KÄLLA: https://www.brattenswardshus.se/kontakta-oss/ — \"Bratten’s Wärdhus ligger bara några meter från hållplatsen\" (läst 2026-09-27)",
+    "ny": "      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Beger du dig istället till färjeläget Styrsö Bratten hittar du Brattens Wärdshus där du kan kila om för både mat och fika\" (läst 2026-10-31)\n      // KÄLLA: https://www.brattenswardshus.se/restaurang/ — \"Färska handskalade räkor, ägg, majonäs\"; \"Rödspätta, pommes, remouladsås, sallad\"; \"Vi har även glutenfri pizza\"; \"Hamburgartallrik\" (läst 2026-10-31)\n      // KÄLLA: https://www.brattenswardshus.se/kontakta-oss/ — \"Bratten’s Wärdhus ligger bara några meter från hållplatsen\" (läst 2026-10-31)",
+    "rader": [
+      "styrso-0153",
+      "styrso-0155",
+      "styrso-0158"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://tangbaren.se/ — \"Belägen på en brygga över havet\"; \"Flera gånger i veckan lägger fiskebåtar till vid vår brygga\"; \"Just nu tar vi inga bokningar utan endast drop in\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/tangbaren-styrso/ — \"Tångbaren har öppet under sommarsäsongen och arbetar med drop-in\" (läst 2026-09-27)\n      { name: 'Tångbaren', type: 'Fisk & skaldjur', desc: 'Fisk- och skaldjursrestaurang på en brygga i Tången, med ostronbar och deli. Fiskebåtar levererar till bryggan flera gånger i veckan. Drop-in.', open_season: 'Sommarsäsong', websiteUrl: 'https://tangbaren.se/' },",
+    "ny": "      // KÄLLA: https://tangbaren.se/ — \"Tångbaren är en modern fisk- och skaldjursrestaurang med fokus på färska råvaror från havet\"; \"Belägen på en brygga över havet\"; \"Utöver restaurangdelen erbjuder vi också en skaldjur- och ostronbar\"; \"Flera gånger i veckan lägger fiskebåtar till vid vår brygga\" (läst 2026-10-31)\n      // KÄLLA: https://tangbaren.se/ — \"Under lågsäsong (vår fram till midsommar) tar vi emot bordsbokningar för alla sällskapsstorlekar\"; \"Under högsäsong (från midsommar till 23 augusti) har vi ett högre tryck i restaurangen och tar därför endast emot bokningar för sällskap om 10 personer eller fler\"; \"Mindre sällskap hänvisas till drop in\" (läst 2026-10-31)\n      // KÄLLA: https://www.goteborg.com/platser/tangbaren-styrso/ — \"Vägg i vägg med restaurangen ligger även Tångbarens deli\" (läst 2026-10-31)\n      { name: 'Tångbaren', type: 'Fisk & skaldjur', desc: 'Fisk- och skaldjursrestaurang på en brygga i Tången, med skaldjurs- och ostronbar och deli. Fiskebåtar levererar till bryggan flera gånger i veckan. Under högsäsongen, midsommar till 23 augusti, går det bara att boka bord för sällskap om minst tio personer — mindre sällskap kommer på drop-in. På våren tar restaurangen bordsbokningar för alla sällskap.', open_season: 'Vår och sommar', websiteUrl: 'https://tangbaren.se/' },",
+    "rader": [
+      "styrso-0165",
+      "styrso-0166",
+      "styrso-0169",
+      "styrso-0170"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: http://www.batebacken.se/ — \"Lokalen har plats för drygt 40 personer\"; \"uteservering med plats för ytterligare cirka 40 personer\" (läst 2026-09-27)\n      { name: 'Båtebackens caférestaurang', type: 'Caférestaurang', desc: 'Liten skärgårdskrog vid kajkanten i Tången, med skaldjur, enklare rätter och hembakat. Drygt 40 platser inne och lika många ute.', websiteUrl: 'http://www.batebacken.se/' },",
+    "ny": "      // KÄLLA: http://www.batebacken.se/ — \"Tätt inpå kajkanten, omgivet av det gamla fiskarsamhället hittar du vår lilla skärgårdskrog på Styrsö Tången\"; \"framförallt skaldjur\"; \"kanske vill du ha något hembakat till\"; \"Lokalen har plats för drygt 40 personer\"; \"uteservering med plats för ytterligare cirka 40 personer\" (läst 2026-10-31)\n      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Nere vid färjeläget Styrsö Tången hittar du Båtebackens Caférestaurang med enklare rätter och hembakta bullar\" (läst 2026-10-31)\n      { name: 'Båtebackens caférestaurang', type: 'Caférestaurang', desc: 'Liten skärgårdskrog vid kajkanten i Tången, med skaldjur, enklare rätter och hembakat. Drygt 40 platser inne och lika många ute.', websiteUrl: 'http://www.batebacken.se/' },",
+    "rader": [
+      "styrso-0177",
+      "styrso-0178",
+      "styrso-0179"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.ica.se/butiker/nara/goteborg/ica-tangen-1003744/ — \"ICA Tången\"; \"Styrsö Hamnväg 30, Styrsö\"; \"Butiken öppet: Söndag 10 till 18\" (läst 2026-09-27)\n      'ICA Tången vid Styrsö Hamnväg har öppet alla dagar i veckan och är också apoteksombud — handla proviant där.',",
+    "ny": "      // KÄLLA: https://www.ica.se/butiker/nara/goteborg/ica-tangen-1003744/ — \"ICA Tången Styrsö Hamnväg 30, Styrsö\"; \"Butiken öppet: Måndag-fredag\"; \"Butiken öppet: Lördag\"; \"Butiken öppet: Söndag\"; \"Apoteksombud\" (läst 2026-10-31)\n      'ICA Tången vid Styrsö Hamnväg har öppet alla dagar i veckan och är också apoteksombud — handla proviant där.',",
+    "rader": [
+      "styrso-0245",
+      "styrso-0246",
+      "styrso-0247",
+      "styrso-0248"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "    tags: ['göteborg', 'södra skärgård', 'restaurang', 'bilfritt', 'styrsöbolaget', 'fiskeläge'],",
+    "ny": "    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20261213__20270606__95d872ec-b99b-40c5-b0db-6cda6c7d2b17__1,0__2871349.html — \"Linjen trafikeras av Styrsöbolaget.\" (läst 2026-11-02)\n    tags: ['göteborg', 'södra skärgård', 'restaurang', 'bilfritt', 'styrsöbolaget', 'fiskeläge'],\n    // Tillagd 2026-11-02 (faktagranskningen) så att /med-barn inte säger \"Ingen badplats registrerad\" och /bad visar öns egna kommunala badplatser.\n    activity_meta: {\n      bad: {\n        beaches: [\n          {\n            name: 'Brattenbadet',\n            type: 'sandstrand',\n            // KÄLLA: https://goteborg.se/wps/portal/start/uppleva-och-gora/idrott-motion-och-friluftsliv/simma-och-bada/badplatser/hitta-badplatser-utomhusbad?id=3700 — \"Vid Styrsö Bratten kan du bada från strand eller brygga, cirka 300 meter från färjeläget\"; \"Var försiktig - vattnet är strömt i farleden!\"; \"Toalett öppen under badsäsong\"; \"Hund tillåtet Ja\" (läst 2026-11-02)\n            // KÄLLA: https://www.goteborg.com/platser/styrso — \"I en vik på öns norra sida ligger Brattenbadet\" (läst 2026-10-31)\n            // KÄLLA: https://www.goteborg.com/platser/styrso-brattenbadet/ — \"Vid badplatsen finns en mindre sandstrand, brygga med badstegar, klippor och en gräsyta\" (läst 2026-10-31)\n            desc: 'Liten sandstrand och brygga med badstegar i en vik på öns norra sida. Vattnet är strömt i farleden utanför. Toaletten är öppen under badsäsongen, och hundar är tillåtna.',\n            directions: 'Cirka 300 meter från färjeläget Styrsö Bratten.',\n          },\n          {\n            name: 'Utterviksbadet',\n            type: 'sandstrand',\n            // KÄLLA: https://goteborg.se/wps/portal/start/uppleva-och-gora/idrott-motion-och-friluftsliv/simma-och-bada/badplatser/hitta-badplatser-utomhusbad?id=3701 — \"en liten strand för de minsta och en badholme med bryggdäck och badstegar för de större\"; \"Friluftstoalett öppen 15 maj-15 september\"; \"Närmaste hållplats: Styrsö Tången. Från hållplatsen är det 1,2 kilometer till badplatsen\"; \"Hund tillåtet Ja\" (läst 2026-11-02)\n            // KÄLLA: https://www.goteborg.com/platser/styrso — \"Utterviksbadet ligger i nordväst\" (läst 2026-10-31)\n            desc: 'Liten strand för de minsta och en badholme med bryggdäck och badstegar för de större, på öns nordvästra sida. Friluftstoaletterna är öppna 15 maj–15 september, och hundar är tillåtna.',\n            directions: '1,2 kilometer från bryggan Styrsö Tången.',\n          },\n        ],\n      },\n    },",
+    "rader": [
+      "styrso-0008",
+      "styrso-N001",
+      "styrso-N002",
+      "styrso-0422",
+      "styrso-0423",
+      "styrso-0437"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      open: 'Hela året',\n      peak: 'Juli',\n      best: 'Maj–Juni eller September',\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Färjorna går året runt från Saltholmen\" (läst 2026-09-27)\n      // KÄLLA: https://tangbaren.se/ — \"högsäsong (från midsommar till 23 augusti)\"; \"har vi ett högre tryck i restaurangen\" (läst 2026-09-27)\n      bestReason: 'Båtarna går året runt och Kusthotellet har öppet året om. Tångbarens högsäsong är midsommar till 23 augusti, då trycket är högst — i maj–juni och september är det lugnare på bryggorna.',\n      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],",
+    "ny": "      // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20261213__20270606__95d872ec-b99b-40c5-b0db-6cda6c7d2b17__1,0__2871349.html — \"Gäller 13 dec 2026 - 6 jun 2027\" (läst 2026-11-02)\n      // KÄLLA: https://www.goteborg.com/guider/ta-dig-till-skargarden — \"Färjorna går året runt från Saltholmen\" (läst 2026-11-09)\n      open: 'Hela året',\n      // KÄLLA: https://styrsobolaget.se/tidtabeller/ — \"För södra skärgårdstrafiken är sommarturlistan förlängd och startar därför tidigare och slutar senare än övrig kollektivtrafik.\" (läst 2026-11-09)\n      // Ingen källa anger en högsäsong för hela ön; Tångbarens högsäsong (midsommar–23 augusti) gäller krogen. Fältet säger därför bara sommaren, då båtarna har sommarturlista och säsongsverksamheterna har öppet.\n      peak: 'Sommar',\n      best: 'Juni–augusti',\n      // KÄLLA: https://guesthouse-styrso.se/ — \"We are open for bookings for the summer season June – August 2026\" (läst 2026-11-09)\n      // KÄLLA: https://goteborg.se/wps/portal/start/uppleva-och-gora/idrott-motion-och-friluftsliv/simma-och-bada/badplatser/hitta-badplatser-utomhusbad?id=3701 — \"Friluftstoalett öppen 15 maj-15 september\" (läst 2026-11-09)\n      // KÄLLA: https://tangbaren.se/ — \"Under lågsäsong (vår fram till midsommar) tar vi emot bordsbokningar för alla sällskapsstorlekar.\"; \"Under högsäsong (från midsommar till 23 augusti) har vi ett högre tryck i restaurangen och tar därför endast emot bokningar för sällskap om 10 personer eller fler.\" (läst 2026-11-09)\n      // KÄLLA: https://kusthotelletstyrso.se/ — \"Hos oss finns plats för både avkoppling och gemenskap – året runt.\" (läst 2026-11-09)\n      bestReason: 'Gästhuset i Tången hyrs ut juni–augusti (2026), Utterviksbadets friluftstoaletter är öppna 15 maj–15 september och Tångbaren har högsäsong från midsommar till 23 augusti, då bara sällskap om minst tio personer kan boka bord. Båtarna går och Kusthotellet har öppet året runt.',\n      // KÄLLA: https://www.vastsverige.com/visitockero/oppetnu-restaurangguidegoteborgsskargard/ — \"Tångbaren – Styrsö Tången - Stängt för säsongen\"; \"Båtebacken Café restaurang – Styrsö Tången - Stängt för säsongen men...\"; \"Kusthotellet Styrsö - Öppet alla dagar\" (läst 2026-11-09)\n      // Svallas skala: Öppet juni–augusti, då gästhuset hyrs ut, Tångbaren har låg- och högsäsong och Utterviksbadets friluftstoaletter är öppna. Begränsad service övriga månader: båtarna och Kusthotellet året runt, Tångbaren och Båtebacken stängda för säsongen hösten 2026. Ingen månad har en belagd högsäsong för hela ön.\n      months: ['limited','limited','limited','limited','limited','open','open','open','limited','limited','limited','limited'],",
+    "rader": [
+      "styrso-0051",
+      "styrso-0052",
+      "styrso-0053",
+      "styrso-0054",
+      "styrso-0055",
+      "styrso-0056",
+      "styrso-0057",
+      "styrso-0058",
+      "styrso-0059",
+      "styrso-0060",
+      "styrso-0061",
+      "styrso-0062",
+      "styrso-0063",
+      "styrso-0064",
+      "styrso-0065",
+      "styrso-0066",
+      "styrso-0067",
+      "styrso-0068",
+      "styrso-0069",
+      "styrso-0070",
+      "styrso-N030",
+      "styrso-N031"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Det äldsta är Byn med kyrkan från 1752, gårdar och gammal odlingsmark. Tången är det traditionella fiskeläget med tät bebyggelse och slingrande smala vägar. I Halsvik satte de välbeställda skutskepparna sin prägel på bebyggelsen och Bratten fick de fina sommargästerna\" (läst 2026-09-27)\n      'Ön består av fyra små samhällen. Äldst är Byn, med kyrkan från 1752, gårdar och gammal odlingsmark. Tången är det traditionella fiskeläget med tät bebyggelse och smala, slingrande vägar, i Halsvik byggde de välbeställda skutskepparna, och Bratten blev sommargästernas del av ön.',\n",
+    "ny": "      // Rättad 2026-11-09 (omarbete 4, f06-k047–k059): platsens historia beläggs nu av Göteborgs Stad i stället för Göteborg & Co. Sista meningen omskriven 2026-11-10 (omarbete 4b, st4019): badorten och sommargästområdet är två led, som i källan.\n      // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"Inom norra delen finns fyra bebyggelsegrupper som har olika karaktär: jordbruksbyn med kyrkan mitt på ön, strandområdet vid Halsvik, fiskeläget i Tången och f d badortsområdet kring Bratten.\"; \"På 1500-talet var Styrsös invånare fiskarbönder.\"; \"Ön var delad mellan tre gårdar\"; \"Bebyggelsen låg i huvudsak inom nuvarande Kyrkbyn\"; \"Den ersattes med en ny av sten 1751\"; \"Kyrkbyn eller Styrsö by ligger ungefär mitt på ön intill Styrsö gärde med f d åkermarken.\"; \"Halsviksområdet ligger sydväst om byn vid stranden och härifrån bedrevs byns fiske.\"; \"en grupp sjöbodar vid vattnet\"; \"I Halsvik bosatte sig flera skeppare och där uppfördes relativt stora bostadshus.\"; \"Under 1800-talet blev Tången ett tätt bebyggt fiskeläge med flera bryggor längs stranden.\"; \"Bebyggelsen ligger tätt längs smala krokiga vägar.\"; \"Styrsö Bratten med sina relativt stora och påkostade sommarvillor är en värdefull miljö som visar att detta var södra skärgårdens viktigaste badort och mest fashionabla sommargästområde.\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-10)\n      // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Planbeskrivning/$File/Planbeskrivning.pdf — \"Den ersattes med en ny av sten 1751\"; \"Kyrkbyn med gärdet och den gamla vägen utgör en värdefull miljö där den agrara prägeln och delar av 1700-talsbebyggelsen finns kvar.\" (Göteborgs Stad, planbeskrivning för Styrsö Tångenväg, granskning december 2019) (läst 2026-11-10)\n      // Svenska kyrkan (församlingen, nivå 2) skriver \"byggd 1752\" och \"beslöt man 1752 … invigdes 1754\", Göteborgs Stad att stenkyrkan ersatte träkyrkan 1751. Därför står 1750-talet.\n      'På norra Styrsö finns fyra bebyggelsegrupper med olika karaktär. På 1500-talet var öborna fiskarbönder, ön var delad mellan tre gårdar och bebyggelsen låg i huvudsak i Kyrkbyn mitt på ön. Där finns stenkyrkan från 1750-talet, gärdet och den gamla vägen, och delar av 1700-talsbebyggelsen står kvar. Från stranden i Halsvik, där en grupp sjöbodar ligger vid vattnet, bedrevs byns fiske, och där bosatte sig flera skeppare. Tången blev under 1800-talet ett tätt bebyggt fiskeläge med smala, krokiga vägar. Bratten, med sina relativt stora och påkostade sommarvillor, var enligt Göteborgs Stad södra skärgårdens viktigaste badort och mest fashionabla sommargästområde.',\n",
+    "rader": [
+      "styrso-0089",
+      "styrso-0090",
+      "styrso-0091",
+      "styrso-0092",
+      "styrso-0093",
+      "styrso-0094",
+      "styrso-0095",
+      "styrso-0096",
+      "styrso-0097",
+      "styrso-0098",
+      "styrso-0099",
+      "styrso-N009",
+      "styrso-N010",
+      "styrso-N011",
+      "styrso-N012"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: http://www.batebacken.se/ — \"Båtebackens Caferestaurang ligger på Styrsö Tången intill Snobbrännan på Nordvästra Styrsö\"; \"När solen går ner bakom Känsö Torn då vet vi att nu är det högsommar\"; \"bortom farleden ser du bl.a. öarna Brännö och Känsö\" (läst 2026-09-27)\n      // KÄLLA: https://www.brattenswardshus.se/historia/ — \"Tången var ursprungligen öns fiskhamn\" (läst 2026-09-27)\n      'Tången ligger inte på södra spetsen utan på öns nordvästra sida, och var ursprungligen öns fiskhamn. Vid kajkanten ligger Båtebackens caférestaurang med utsikt över farleden Snobbrännan och öarna Brännö och Känsö — på högsommaren går solen ner bakom Känsö torn.',\n",
+    "ny": "      // KÄLLA: http://www.batebacken.se/ — \"Tätt inpå kajkanten, omgivet av det gamla fiskarsamhället hittar du vår lilla skärgårdskrog på Styrsö Tången\"; \"Båtebackens Caferestaurang ligger på Styrsö Tången intill Snobbrännan\"; \"bortom farleden ser du bl.a. öarna Brännö och Känsö\"; \"När solen går ner bakom Känsö Torn då vet vi att nu är det högsommar\" (läst 2026-11-10)\n      // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"Tången ligger på öns norra sida. Det är ett fiskeläge som vuxit fram i anslutning till hamnen.\"; \"Vid Tången minskade fisket men verksamheten finns delvis kvar vid en ny hamn i Sandvik.\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-10)\n      // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Planbeskrivning/$File/Planbeskrivning.pdf — \"Vid Tången minskade\"; \"delvis kvar vid en ny hamn i Sandvik\" (Göteborgs Stad, planbeskrivning för Styrsö Tångenväg, granskning december 2019) (läst 2026-11-10)\n      // KÄLLA: https://www.raa.se/app/uploads/2024/04/Vastra-Gotaland-O_riksintressen.pdf — \"Den senare utvecklingen för fisket med tätare bebyggelse och koncentrationen kring hamnen framträder särskilt väl vid Styrsö Tången.\" (Riksantikvarieämbetet, riksintresse för kulturmiljövården Styrsö [O 7]) (läst 2026-11-10)\n      'Tången ligger inte på södra spetsen utan på öns norra sida och är ett fiskeläge som vuxit fram kring hamnen. Fisket har minskat, men verksamheten finns delvis kvar vid den nyare hamnen i Sandvik. Vid kajkanten ligger Båtebackens caférestaurang med utsikt över farleden Snobbrännan och öarna Brännö och Känsö — på högsommaren går solen ner bakom Känsö torn.',\n",
+    "rader": [
+      "styrso-0104",
+      "styrso-0105",
+      "styrso-N017"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://tangbaren.se/batplatser/ — \"Hos Tångbaren hittar du 12 stycken gästplatser med akterförtöjning\"; \"nere i Styrsö Sandvik, en kort promenad ifrån oss\" (läst 2026-09-27)\n      { name: 'Tångens gästhamn', desc: 'Gästhamn vid Styrsö Tången, med toalett och dusch vid Båtebacken (betalning i restaurangen). Tångbaren har 12 egna gästplatser med akterförtöjning, och fler platser finns i Styrsö Sandvik en kort promenad bort.', service: ['toalett', 'dusch'] },\n",
+    "ny": "      // KÄLLA: https://tangbaren.se/batplatser/ — \"Hos Tångbaren hittar du 12 stycken gästplatser med akterförtöjning\" (läst 2026-11-09)\n      // KÄLLA: https://styrsohamn.se/ — \"Styrsö Sandvikshamnen\"; \"Sandvikshamnen erbjuder ett 50 tal båtplatser designerade till gästbåtar.\"; \"I Sandvikshamnen får båtgäster tillgång till toaletter, duschar, el, färskvatten, sugtömmning samt en miljöstation.\" (läst 2026-11-09)\n      // KÄLLA: https://api.openstreetmap.org/api/0.6/map?bbox=11.7570,57.6150,11.7700,57.6225 — \"Styrsö Sandvikshamn\"; \"Styrsö Tången\" (läst 2026-11-09); uppmätt (haversine): marinan Styrsö Sandvikshamn (node 1484105382) ligger 557 m fågelvägen sydväst om marinan Styrsö Tången (node 3711149062).\n      { name: 'Tångens gästhamn', desc: 'Gästhamn vid Styrsö Tången, med toalett och dusch vid Båtebacken (betalning i restaurangen). Tångbaren har 12 egna gästplatser med akterförtöjning. Drygt en halv kilometer sydväst om Tången ligger Styrsö Sandvikshamnen, med ett 50-tal gästplatser och toaletter, duschar, el, färskvatten, sugtömning och miljöstation.', service: ['toalett', 'dusch'] },\n",
+    "rader": [
+      "styrso-0238",
+      "styrso-N024",
+      "styrso-N025"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: http://www.batebacken.se/ — \"När solen går ner bakom Känsö Torn då vet vi att nu är det högsommar\" (läst 2026-09-27)\n      'På högsommaren går solen ner bakom Känsö torn sett från kajen i Tången — ta en kvällsbåt och ät vid Båtebacken eller Tångbaren.',\n",
+    "ny": "      // KÄLLA: http://www.batebacken.se/ — \"När solen går ner bakom Känsö Torn då vet vi att nu är det högsommar\"; \"Tätt inpå kajkanten, omgivet av det gamla fiskarsamhället hittar du vår lilla skärgårdskrog på Styrsö Tången\" (läst 2026-11-09)\n      // KÄLLA: https://tangbaren.se/batplatser/ — \"i hamnen vid Styrsö Tången precis vid oss\" (läst 2026-11-09)\n      // KÄLLA: https://www.goteborg.com/platser/styrso — \"Skärgårdsbåten anlöper vid tre olika bryggor: Styrsö Bratten, Styrsö Tången och Styrsö Skäret\" (läst 2026-11-09)\n      // Stod \"ta en kvällsbåt\" om högsommaren, men tabellerna för sommaren 2027 är inte publicerade (Styrsöbolagets tidtabellssida 2026-11-09 har hösttabellen 24 augusti–12 december 2026).\n      'På högsommaren går solen ner bakom Känsö torn sett från kajen i Tången, där Båtebacken och Tångbaren ligger. Stannar du till kvällen, kontrollera i Västtrafiks tidtabell när sista båten går från Styrsö Tången.',\n",
+    "rader": [
+      "styrso-0242",
+      "styrso-0243",
+      "styrso-0244",
+      "styrso-N026"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "    // KÄLLA: https://www.goteborg.com/platser/styrso — \"Det äldsta är Byn med kyrkan från 1752\" (läst 2026-09-27)\n    // KÄLLA: https://www.brattenswardshus.se/historia/ — \"Under 1700-talet och tidigt 1800-tal låg här trankokeri och sillsalteri\"; \"Den kända Madam Öberg\"; \"1969 eldades hotell, restaurang och en del övrig bebyggelse upp\" (läst 2026-09-27)\n    // KÄLLA: https://kusthotelletstyrso.se/historia/ — \"År 1893 invigdes Styrsö Havsbad\" (läst 2026-09-27)\n    did_you_know: 'Vid Bratten låg under 1700-talet och tidigt 1800-tal trankokeri och sillsalteri. Madam Öbergs gästgiveri drog sedan hit de första turisterna, 1893 invigdes Styrsö Havsbad, och Bratten blev badort med hotell och restaurang — tills byggnaderna eldades upp 1969. Kyrkan i Byn är från 1752.',\n",
+    "ny": "    // Rättad 2026-11-09 (omarbete 4, f18-k052–k056, f26-k025, f06-k047): krogens och hotellets historiksidor belägger inte platsens historia. Trankokeriet, Madam Öberg och 1893 finns inte i nivå 1-källorna, och enligt Göteborgs Stad förstördes badrestaurangen vid en brand 1960 (krogens sida: 1969).\n    // KÄLLA: https://goteborgsstadsmuseum.se/uploads/2021/05/bevarandeprogram_gbg_vol_2_del_2.pdf — \"På Styrsö Bratten, där det fanns ett sillsalteri och ett värdshus sedan 1700-talet, började en badort att utvecklas i mitten av 1800-talet.\"; \"Bratten hade en större anläggning för sillsalteri och ett värdshus, Öbergska värdshuset.\"; \"Till Bratten kom de första sommargästerna redan 1845\"; \"Från 1869 när en ångbåtslinje öppnats mellan Styrsö och Göteborg utvecklades Bratten till en fashionabel badort.\"; \"Styrsö Hafsbad\"; \"omfattande rörelse med restaurang, hotell, park och badhus av olika slag\"; \"Efter 1930-talet förändrades öns karaktär delvis.\"; \"Badorten vid Bratten avvecklades och den stora badrestaurangen förstördes vid en brand 1960.\"; \"en kyrka av trä\"; \"Den ersattes med en ny av sten 1751\" (Göteborgs Stad, Kulturhistoriskt värdefull bebyggelse i Göteborg – ett program för bevarande, del II) (läst 2026-11-09)\n    // KÄLLA: https://www5.goteborg.se/prod/fastighetskontoret/etjanst/planobygg.nsf/vyFiler/Styrs%C3%B6%20-%20Bost%C3%A4der%20och%20teknisk%20anl%C3%A4ggning%20vid%20Styrs%C3%B6%20T%C3%A5ngenv%C3%A4g-Plan%20standardf%C3%B6rfarande%20-%20granskning-Planbeskrivning/$File/Planbeskrivning.pdf — \"Till Bratten kom de första sommargästerna redan 1845 och badbassäng anlades på 1850-talet.\"; \"Badorten vid Bratten avvecklades succesivt under denna period och den stora badrestaurangen förstördes vid en brand 1960.\"; \"Den ersattes med en ny av sten 1751\" (Göteborgs Stad, planbeskrivning för Styrsö Tångenväg, granskning december 2019) (läst 2026-11-09)\n    // Svenska kyrkan (församlingen, nivå 2) skriver \"byggd 1752\" och \"beslöt man 1752 … invigdes 1754\", Göteborgs Stad att stenkyrkan ersatte träkyrkan 1751. Därför står 1750-talet.\n    did_you_know: 'Vid Bratten fanns sedan 1700-talet ett sillsalteri och ett värdshus, Öbergska värdshuset. De första sommargästerna kom 1845, och sedan en ångbåtslinje till Göteborg öppnats 1869 växte Bratten till en badort; kring sekelskiftet 1900 var Styrsö Hafsbad en omfattande rörelse med restaurang, hotell, park och badhus. Badorten avvecklades efter 1930-talet, och den stora badrestaurangen förstördes vid en brand 1960. Kyrkan i Kyrkbyn byggdes i sten på 1750-talet och ersatte en kyrka av trä.',\n",
+    "rader": [
+      "styrso-0043",
+      "styrso-0044",
+      "styrso-0045",
+      "styrso-0046",
+      "styrso-0047",
+      "styrso-0048",
+      "styrso-0049",
+      "styrso-0050",
+      "styrso-N013",
+      "styrso-N014",
+      "styrso-N015",
+      "styrso-N016"
+    ]
+  },
+  {
+    "fil": "src/lib/islandCoords.ts",
+    "gammal": "  { slug: 'langskar',          name: 'Långskär',          lat: 59.1835, lng: 18.8514, radiusKm: 2.5 },\n",
+    "ny": "  { slug: 'langskar',          name: 'Långskär',          lat: 59.1835, lng: 18.8514, radiusKm: 2.5 },\n\n  // ── Göteborgs södra skärgård ──────────────────────────────────────────────\n  // Tillagd 2026-11-09 enligt Toms beslut 3 (2026-11-08). Nålen är densamma som i island-data.ts (Lantmäteriets ortnamn Styrsö, trakt).\n  // KÄLLA: https://api.openstreetmap.org/api/0.6/relation/6429433/full — \"Styrsö\"; \"island\" (läst 2026-11-09); uppmätt 2026-11-09 (haversine) i relationens 1 423 strandnoder: öns längsta strandpunkt ligger 1 988 m från nålen 57.6152, 11.7757 (node 3571400197), så 2,0 km täcker hela Styrsö. Bryggorna (OSM-noder): Tången 781 m, Bratten 1 106 m, Skäret 1 548 m.\n  // Grannöarnas närmaste strand (relationerna 10129624, 10129623, 11048170, 10250729 och 10250730, /full i samma API, lästa samma dag): Vargö 1 044 m, Känsö 1 317 m, Donsö 1 544 m, Köpstadsö 1 697 m och Brännö 1 805 m, alltså innanför radien. Donsö färjeläge (node 639186627) ligger 2 018 m bort, utanför. Radien styr GPS-taggningen och platslistorna (islandPlaces); utan raden gällde standardradien 3 km.\n  { slug: 'styrso',            name: 'Styrsö',            lat: 57.6152, lng: 11.7757, radiusKm: 2.0 },\n",
+    "rader": [
+      "styrso-0284",
+      "styrso-0299",
+      "styrso-0309",
+      "styrso-0318",
+      "styrso-0395",
+      "styrso-0409",
+      "styrso-0435",
+      "styrso-N032"
+    ]
+  }
 ]

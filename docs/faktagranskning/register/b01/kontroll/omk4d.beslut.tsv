@@ -1,0 +1,8 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-10)
+od4021	fjaderholmarna-0017	FEL (MÄTT)	Underlagsfel (Redaktören): raden visade platsRadieKm utan att nålen flyttas till 59.3284, 18.1751 (fjaderholmarna-0016, samma rad i islandCoords.ts). Kontrollanten mätte därför från den gamla nålen. Från den nya nålen ligger ögruppen inom 0,54 km enligt Kontrollantens egen mätning, så 0,7 km räcker. Ingen ändring. Prövas igen i slutomkontrollen tillsammans med fjaderholmarna-0016 och hela raden i islandCoords.ts.
+od4015	moja-0619	FEL (RESONERAT)	Underlagsfel (Redaktören): omk4d-prompten hade regeln om verksamheten om sig själv utan tillägget från 2026-11-09 om verksamhetens eget startår (granskare-skribent.md punkt 19 och kontrollant.md). Texten ändras inte nu. Prövas igen i slutomkontrollen med hela regeln. Blir svaret FEL igen, stryks årtalet och kompenseras.
+od4023	uto-0143	OK med anmärkning	Omarbete 4e (Utö, KÄLLA-rad): antalet gruvarbetarbostäder och byggnadsminnet är historia och skyddsstatus och ska beläggas av nivå 1. Lägg Bebyggelseregistret (RAÄ) som KÄLLA. Prövas igen i slutomkontrollen.
+od4004	uto-0330	OK med anmärkning	Omarbete 4e (Utö, föreskrift): Länsstyrelsens föreskrifter om tältning gäller i naturreservatet. Skriv regeln i reservatets sammanhang så att den inte läses som en regel för hela Utö. P0 20:s skjutfältstext rörs inte. Prövas igen i slutomkontrollen.
+od4034	uto-0331	OK med anmärkning	Som od4004, för eldningen.
+od4001	storholmen-0040	OK med anmärkning (RESONERAT)	Ingen åtgärd. "Året runt" följer av Lidingö stads text om vintertrafiken och SL:s tabell.
+od4052	husaro-0063	OK med anmärkning (RESONERAT)	Ingen åtgärd. Begränsad service i september stöds av macken, gästhamnen och lanthandeln.
