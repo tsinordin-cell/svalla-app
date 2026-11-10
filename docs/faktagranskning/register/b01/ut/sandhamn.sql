@@ -178,3 +178,27 @@ update restaurants set hidden_at = now(), hidden_reason = 'Dubblett av Trouville
 -- Körs bara om ingen har bekräftat posten före batch 01:s PR (Toms beslut 6). Redaktören avgör.
 -- update restaurants set hidden_at = now(), hidden_reason = 'Ingen tillåten källa bekräftar att glasscaféet finns (Toms beslut 6, faktagranskning b01)'
 --   where slug = 'sandhamns-glassigaste-stalle' and hidden_at is null;
+
+-- ════════════════════════════════════════════════════════════════════════
+-- OMARBETE 4B (Granskaren/Skribenten 2026-11-10)
+-- Inget är kört, inte heller SELECT. WHERE bygger på registret (sandhamn-0517: type beach) och på platsexporten
+-- docs/faktagranskning/platser-export-2026-10-29.json (island 'Sandhamn' för KSSS gästhamn på Lökholmen). Kör SELECT före.
+-- ════════════════════════════════════════════════════════════════════════
+
+-- vasterudde-strand.type (register: sandhamn-0517, sandhamn-0557, sandhamn-0538) – Redaktörens beslut so4003
+-- Att platsen är en badplats vilar bara på OpenStreetMap (natural=beach), som bara får belägga läge och geometri. Värmdö kommuns
+-- badplatslista har för Sandhamn bara Trouville och Fläskberget, och Stockholm Archipelago Trail nämner Västerudden bara som en
+-- punkt på leden. Med typen nature (naturplats) står posten, namnet och beskrivningen kvar, men platsen räknas inte längre som
+-- badplats på /o/sandhamn/bad och /o/sandhamn/med-barn. Kompensationen står i island-data: bad.note och Fläskbergets vägbeskrivning
+-- (sandhamn.edits.json nr 22 och 23, sandhamn-N040 och sandhamn-N038).
+-- KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo.4.18c983316e0536cb189a176.html — "Badplatser i Värmdö kommun", "Trouville, Sandhamn", "Fläskberget" (läst 2026-11-10)
+-- KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-sandhamn/steg-for-steg-vandringsguide-for-etapp-sandhamn/ — "Trouville till Västerudden", "Där kan du gå vänster ut på Västerudd för att sedan komma tillbaka till samma plats" (läst 2026-11-10)
+-- FÖRE: 'beach'
+update restaurants set type = 'nature', updated_at = now() where slug = 'vasterudde-strand' and type = 'beach';
+
+-- ksss-gasthamn-lokholmen-trollsundet.island (register: sandhamn-N039) – Redaktörens tillägg 2026-11-10
+-- Mallarnas runda 5 låter ett ifyllt ö-fält gå före radien i platslistan. Gästhamnen ligger på Lökholmen, inte på Sandön (MÄTT i OSM
+-- 2026-11-09: nålen inuti Lökholmen, 507 m från Sandön; sandhamn-0595). Ersätter anteckningen i omarbete 4 om att fältet står kvar.
+-- KÄLLA: https://www.ksss.se/hamnar/lokholmen — "I yttre havsbandet intill Sandhamn ligger Lökholmen.", "På Lökholmen finns plats för ca 200 båtar. Den första delen, Trollsundet", "Lökholmens gästhamn är belägen strax nordost om Sandhamns gästhamn." (läst 2026-11-10)
+-- FÖRE: 'Sandhamn' (platsexporten 2026-10-29; inte prövat med SELECT)
+update restaurants set island = 'Lökholmen', updated_at = now() where slug = 'ksss-gasthamn-lokholmen-trollsundet' and island = 'Sandhamn';

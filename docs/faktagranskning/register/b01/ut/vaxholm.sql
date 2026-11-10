@@ -103,3 +103,15 @@ update restaurants set name = 'Vaxholms Gästhamn' where slug = 'waxholms-gastha
 -- FÖRE: 'Trädgårdsgatan 19, 185 32 Vaxholm' (som sidan visar fältet 2026-11-09; inte prövat med SELECT, eftersom inget körs mot databasen i omarbete 4b – kör SELECT före)
 -- KÄLLA: https://www.vaxholmsfastning.se/besoksinfo/ — "Vaxholms Fästnings Museum", "Kastellet 185 99 Vaxholm" (läst 2026-11-09)
 update restaurants set formatted_address = 'Kastellet, 185 99 Vaxholm' where slug = 'vaxholms-fastning-cafe' and formatted_address = 'Trädgårdsgatan 19, 185 32 Vaxholm';
+
+-- ════════════════════════════════════════════════════════════════════════
+-- OMARBETE 4B, REDAKTÖRENS TILLÄGG (Granskaren/Skribenten för Sandhamn, 2026-11-10)
+-- Inget är kört, inte heller SELECT. Kör SELECT före.
+-- ════════════════════════════════════════════════════════════════════════
+
+-- restaurants.tenobadet.island (vaxholm-N026)
+-- Mallarnas runda 5 låter ett ifyllt ö-fält gå före radien i platslistan. Ö-fältet är tomt, så radien (2,0 km) räknar badet till Vaxholm.
+-- Kommunen placerar badet på Bogesundslandet, samma ö-fält som grannposten bryggan-teno (vaxholm-0436).
+-- FÖRE: null (platsexporten docs/faktagranskning/platser-export-2026-10-29.json; inte prövat med SELECT)
+-- KÄLLA: https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "I Tenöreservatet på Bogesund ligger denna badplats som är en av Vaxholms mest besökta.", "Du når detta bad efter att du kört över Pålsundsbron från Vaxön till Bogesundslandet." (läst 2026-11-10)
+update restaurants set island = 'Bogesundslandet' where slug = 'tenobadet' and island is null;
