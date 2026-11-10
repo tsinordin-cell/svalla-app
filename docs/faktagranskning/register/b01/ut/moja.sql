@@ -4,6 +4,7 @@
 -- SELECT 2026-11-09: varje WHERE nedan träffar exakt en rad (Supabase, bara SELECT).
 -- Omarbete 4b (2026-11-09): satserna för loka-gasthamn.description, moja-bageri.description och hamncafet-moja.website är ändrade och
 --   hamncafet-moja.latitude/.longitude är ny. Inget har körts mot databasen i omarbete 4b, så deras WHERE är inte prövade med SELECT. Kör SELECT före.
+-- Omarbete 4c (2026-11-10): bara det nya värdet i satsen för moja-bageri.description är ändrat; WHERE är samma. Inget har körts mot databasen.
 
 -- restaurants.loka-gasthamn.description (moja-0407, moja-0408, moja-0409, moja-0413, moja-0414, moja-N005, moja-N006, moja-N007, moja-N008, moja-N009)
 -- Omarbete runda 4 (full-08 utanför-1): ingen nivå 1–2-källa anger antal gästplatser eller Y-bommar. Kommunen nämner bara bryggan och gästhamnen;
@@ -64,11 +65,13 @@ update restaurants set type = 'restaurant' where slug = 'moja-bageri' and type =
 -- Sidan säger att bageriets historia börjar 1951 och att ny bageriutrustning köptes 2019 för att återta bageripositionen, inte att det har bakats där sedan 1951.
 -- Omarbete 4b (mo4014, granskare-skribent.md punkt 19): ägarbytet 2019, renoveringen för en större matsal och utrustningen är verksamheten om sig själv
 --   och står tillskrivna värdshuset. Rummen går bara att boka 18 juni–15 augusti enligt bokningssidan, som inte anger år; raden läses om före publiceringen.
+-- Omarbete 4c (ob4022, Redaktörens beslut): startåret 1951 står som bageriets startår enligt värdshuset (verksamheten om sig själv), och
+--   «då man började baka bröd i fastigheten» är struket, så att meningen inte blir en uppgift om fastighetens historia.
 -- FÖRE: 'Möja Värdshus & Bageri ligger nära Kyrkviken på Möja, där det har bakats sedan 1951. Nuvarande ägare tog över 2019, byggde en större matsal och köpte in ny bageriutrustning. Här finns också rum att boka.'
--- KÄLLA: https://mojavardshusochbageri.se/ — "Möja bageris historia tar sin början 1951", "börjar baka bröd i fastigheten", "Nuvarande fastighetsägare tog över verksamheten 2019 och gjorde då en omfattande renovering för att möjliggöra en större matsal", "investera i ny bageriutrustning för att återta bageripositionen." (läst 2026-11-09)
--- KÄLLA: https://mojavardshusochbageri.se/boka-bord.php — "Det går att boka boende hos oss via Booking.com mellan den 18e juni till den 15e augusti.", "Stängt för säsongen alla andra samtliga datum." (läst 2026-11-09)
+-- KÄLLA: https://mojavardshusochbageri.se/ — "Möja bageris historia tar sin början 1951", "Nuvarande fastighetsägare tog över verksamheten 2019 och gjorde då en omfattande renovering för att möjliggöra en större matsal", "investera i ny bageriutrustning för att återta bageripositionen." (läst 2026-11-10)
+-- KÄLLA: https://mojavardshusochbageri.se/boka-bord.php — "Det går att boka boende hos oss via Booking.com mellan den 18e juni till den 15e augusti.", "Stängt för säsongen alla andra samtliga datum." (läst 2026-11-10)
 -- KÄLLA: https://api.openstreetmap.org/api/0.6/relation/8719765/full — "Kyrkviken" (läst 2026-11-09); uppmätt i OpenStreetMap: nålen ligger på land, 54 m från vikens kant.
-update restaurants set description = 'Möja Värdshus & Bageri ligger nära Kyrkviken på Möja. Bageriets historia tar enligt värdshuset sin början 1951, då man började baka bröd i fastigheten. Enligt värdshuset tog nuvarande fastighetsägare över verksamheten 2019, gjorde då en omfattande renovering för en större matsal och investerade i ny bageriutrustning för att återta bageripositionen. Här finns också rum, som bara går att boka 18 juni–15 augusti.' where slug = 'moja-bageri' and description = 'Möja Värdshus & Bageri ligger nära Kyrkviken på Möja, där det har bakats sedan 1951. Nuvarande ägare tog över 2019, byggde en större matsal och köpte in ny bageriutrustning. Här finns också rum att boka.';
+update restaurants set description = 'Möja Värdshus & Bageri ligger nära Kyrkviken på Möja. Enligt värdshuset startade bageriet 1951, och 2019 tog nuvarande fastighetsägare över verksamheten, gjorde en omfattande renovering för en större matsal och investerade i ny bageriutrustning för att återta bageripositionen. Här finns också rum, som bara går att boka 18 juni–15 augusti.' where slug = 'moja-bageri' and description = 'Möja Värdshus & Bageri ligger nära Kyrkviken på Möja, där det har bakats sedan 1951. Nuvarande ägare tog över 2019, byggde en större matsal och köpte in ny bageriutrustning. Här finns också rum att boka.';
 
 -- restaurants.bastuhuset.website (moja-0574, FEL)
 -- https://finnhamn.se/ är Finnhamns Arkipelag AB:s sajt för Finnhamn och nämner varken bastun eller Stora Kalholmen; bastun ligger på Stora Kalholmen (moja-0572, moja-N013). Länken tas bort i stället för att ersättas med en adress som inte är belagd som bastuns egen.
