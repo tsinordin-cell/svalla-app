@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { ingenTrafikText } from './ingen-trafik'
+import { ingenTrafikText, vagDitText } from './ingen-trafik'
 import { ISLAND_NO_TRANSIT } from './transit-stops'
 
 describe('ingenTrafikText', () => {
@@ -16,5 +16,16 @@ describe('ingenTrafikText', () => {
   })
   it('ger en text för varje ö i listan', () => {
     for (const skal of Object.values(ISLAND_NO_TRANSIT)) expect(ingenTrafikText(skal).length).toBeGreaterThan(20)
+  })
+  it('säger hur man tar sig till Bullerö och inte "ingen kollektivtrafik" (P0 22)', () => {
+    const t = ingenTrafikText(ISLAND_NO_TRANSIT['bullero']!)
+    expect(t).toContain('Stavsnäs vinterhamn')
+    expect(t).not.toMatch(/ingen kollektivtrafik/i)
+    expect(vagDitText(ISLAND_NO_TRANSIT['bullero']!)).toBe(t)
+  })
+  it('ändrar inte texten för de andra öarna i listan (P0 22)', () => {
+    for (const [slug, skal] of Object.entries(ISLAND_NO_TRANSIT)) {
+      if (slug !== 'bullero') expect(vagDitText(skal)).toBeNull()
+    }
   })
 })

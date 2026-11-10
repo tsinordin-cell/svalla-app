@@ -17,6 +17,7 @@
  * komplext. Initial render visas via skeleton.
  */
 import { useEffect, useState } from 'react'
+import { vagDitText } from '@/lib/ingen-trafik'
 
 interface TripLeg {
   category: string
@@ -54,6 +55,8 @@ interface ApiResponse {
   bestallning?: string | null
   /** P0 2026-11-02: brygga utan fast avgångstid (transit-stops.ts). */
   tidsObs?: string | null
+  /** P0 22 (2026-11-09): skälet ur ISLAND_NO_TRANSIT när error är 'no_transit'. */
+  skal?: string
   trips: TripSummary[]
   error?: string
 }
@@ -99,6 +102,25 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
   // Uppmätt: ingen kollektivtrafik når ön. Att visa ingenting alls vore tyst
   // snarare än sant — besökaren står kvar med frågan obesvarad.
   if (data && data.error === 'no_transit') {
+    // P0 22 (2026-11-09): Bullerö står i listan för att Trafiklab saknar resor dit,
+    // fast Bullerölinjen går dit under säsongen. För sådana öar säger rutan nu hur man
+    // tar sig dit. Texten och dess KÄLLA-rader står i ISLAND_NO_TRANSIT i transit-stops.ts.
+    const vagDit = data.skal ? vagDitText(data.skal) : null
+    if (vagDit) {
+      return (
+        <div style={{
+          border: '1px solid var(--border)', borderRadius: 14,
+          padding: '16px 18px', background: 'var(--white)',
+        }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>
+            Båttider till {islandName} visas inte här
+          </div>
+          <div style={{ fontSize: 13.5, color: 'var(--txt2)', lineHeight: 1.55 }}>
+            {vagDit}
+          </div>
+        </div>
+      )
+    }
     return (
       <div style={{
         border: '1px solid var(--border)', borderRadius: 14,

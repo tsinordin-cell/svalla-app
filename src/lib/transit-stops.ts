@@ -233,11 +233,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
     bestallning: 'En del turer till och från Kymmendö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
   },
-  bullero: {
-    destStopId: '740076413', destStopName: 'Bullerö brygga',
-    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
-    note: 'Naturreservat i ytterskärgården — taxibåt eller charterturer.',
-  },
+  // bullero flyttades 2026-11-09 till ISLAND_NO_TRANSIT (P0 22); se kommentaren där.
 
   // ── Tillagda 2026-08-05 ────────────────────────────────────────────────
   // Varje rad nedan är UPPMÄTT, inte hämtad ur specen. Metoden:
@@ -429,6 +425,11 @@ export function getIslandTransit(slug: string): IslandTransitConfig | null {
  *
  * Mätt 2026-08-05 med /api/transit/stop-lookup. Kontrollera om ny brygga
  * tillkommer; Waxholmsbolaget lägger till och drar in bryggor mellan säsonger.
+ *
+ * P0 22 (2026-11-09): en ö kan också stå här för att Trafiklab saknar resor dit,
+ * fast en turbåt går dit under säsongen (Bullerö). Skälet innehåller då
+ * UTAN_RESOR_I_TRAFIKLAB, och rutorna visar texten efter " — " i stället för
+ * "ingen kollektivtrafik" (ingen-trafik.ts).
  */
 export const ISLAND_NO_TRANSIT: Record<string, string> = {
   'lilla-karlso': 'ingen hållplats inom 5 km — ön nås bara med Naturskyddsföreningens turbåt från Klintehamn',
@@ -448,6 +449,20 @@ export const ISLAND_NO_TRANSIT: Record<string, string> = {
   'langskar': 'närmaste hållplats (Bullerö brygga, 1799 m) kunde inte knytas till ön',
   // Ommätt 2026-09-28 med rättade koordinater (islandCoords.ts).
   'storskar': 'närmaste hållplats (Särsö brygga, 3979 m) kunde inte knytas till ön',
+  // P0 2026-11-09 (P0 22): Bullerö stod i ISLAND_TRANSIT med Nynäshamns färjeterminal
+  // som ursprung och noten "Naturreservat i ytterskärgården — taxibåt eller
+  // charterturer.". Turbåten går från Stavsnäs vinterhamn, och ön ingår sedan 2025 i
+  // Nämdöskärgårdens nationalpark.
+  // Uppmätt 2026-11-09 med /api/transit/stop-lookup: Bullerö brygga (740076413) finns
+  // i Trafiklab men gav 0 resor dit från Stavsnäs vinterhamn (740001312), Stavsnäs by
+  // (740024823), Nynäshamns färjeterminal, Strömkajen och Centralen, och 0 resor
+  // därifrån till Stavsnäs vinterhamn. Kontroll samma dag: Stavsnäs vinterhamn till
+  // Sandhamn brygga gav 4 resor. Bullerölinjen går inte i november, så mät om när den
+  // går. Har Trafiklab resor från Stavsnäs vinterhamn då, flytta tillbaka ön till
+  // ISLAND_TRANSIT med Stavsnäs vinterhamn som ursprung.
+  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — "Bullerö är nationalparkens entré.", "Skyddat sedan: 2025", "Skyddsform: Nationalpark", "Under högsäsongen går turbåt till entrén på Bullerö från Stavsnäs vinterhamn på Värmdö.", "Med egen båt, taxibåt eller genom att åka med någon chartrad tur går det att besöka området året om." (läst 2026-11-09)
+  // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/besok-parken/hitta-hit — "Nationalparkens huvudentré ligger på Bullerö. Dit kan du ta dig med egen båt.", "Samtliga båtlinjer utgår från Stavsnäs vinterhamn.", "Du kan resa med Bullerölinjen till nationalparkens huvudentré på Bullerö från maj till en bit in i oktober.", "Stavsnäs båttaxi driver turlinjerna. På deras webbplats finns aktuella tidtabeller. Där kan du också boka plats på båtarna" (läst 2026-11-09)
+  'bullero': 'Bullerö brygga har inga resor i Trafiklab — Från maj till en bit in i oktober går turbåten Bullerölinjen från Stavsnäs vinterhamn. Tidtabell och platsbokning finns på Stavsnäs båttaxis webbplats. Med egen båt, taxibåt eller en chartrad tur kan du ta dig dit året om',
 }
 
 export function getIslandNoTransitReason(slug: string): string | null {
