@@ -1,0 +1,4 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-10)
+p22-e10	DepartureWidget.tsx (kommentar)	FEL (MÄTT)	Redaktören strök bisatsen ", och rutan sa "Hit går ingen kollektivtrafik"" i kodkommentaren, eftersom Kontrollanten fann att den saknar belägg. Det är en mekanisk strykning, och resten av kommentaren och koden är oförändrad. Därmed godkänd: PR #517.
+alla övriga	—	29 OK	Godkänd.
+k002	battaxi.se	Anmärkning (MÄTT)	Operatörens hösttidtabell ("Period: 17/8 - 11/10") stöder "en bit in i oktober", men linjesidan säger "maj till september". Texten står kvar och prövas mot 2027 års tidtabell i Bullerös batch.
