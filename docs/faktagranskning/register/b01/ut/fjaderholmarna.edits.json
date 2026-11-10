@@ -313,7 +313,7 @@
  {
   "fil": "src/lib/islandCoords.ts",
   "gammal": "lat: 59.3284, lng: 18.1751, radiusKm: 1.5 },\n",
-  "ny": "lat: 59.3284, lng: 18.1751, radiusKm: 0.7 },  // uppmätt 2026-10-29: OSM:s gränsruta 59.3269403–59.3325597 N, 18.1674518–18.1801403 E ryms inom 0,64 km från mittpunkten. Radien styr också turspårningen.\n",
+  "ny": "lat: 59.3284, lng: 18.1751, radiusKm: 1.5, platsRadieKm: 0.7 },  // radiusKm styr GPS-taggningen och står kvar på 1,5 km enligt Toms beslut 3 (2026-11-08). platsRadieKm styr platslistan och är uppmätt 2026-10-29: OSM:s gränsruta 59.3269403–59.3325597 N, 18.1674518–18.1801403 E ryms inom 0,64 km från mittpunkten. Fältet läggs till i IslandCoord av mallarnas runda 5.\n",
   "rader": [
    "fjaderholmarna-0017"
   ]

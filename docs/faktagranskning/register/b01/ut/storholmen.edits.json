@@ -47,7 +47,7 @@
  {
   "fil": "src/app/o/island-data.ts",
   "gammal": "    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — Ropsten 07.05 → Storholmen södra 07.33, 11.15 → Storholmen östra 11.52; lördag 08.10 → södra 08.38, östra 08.47 (läst 2026-09-27); https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is\" (läst 2026-09-27); https://storholmensjokrog.se/ — öppettider till \"31 Lördag\" i oktober, julbord \"Lördagar 28 nov, 5 dec, 12 dec och 19 dec\" (läst 2026-09-27)\n    // UPPSKATTNING: best_for är en bedömning.\n    facts: { travel_time: '28 min med SL:s pendelbåt 80 från Ropsten till Storholmen södra, 37 min till Storholmen östra', character: 'Bebodd ö, restaurang och promenadstigar, nära stan', season: 'Båten går året runt (vid is inte till alla bryggor); sjökrogen har helgöppet till och med oktober och julbord i december', best_for: 'Dagsutflykt, restaurangbesök, promenad' },\n    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'matt', best_for: 'bedomning' },",
-  "ny": "    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — \"Ropsten–Storholmen\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-10-29); restiderna Ropsten–Storholmen södra 28 min och Ropsten–Storholmen östra 37 min är uppmätta i tidtabellen (måndag–fredag och lördag, söndag och helgdag).\n    // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is.\" (läst 2026-10-29)\n    // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"Lidingös skärgård utgörs av spridda holmar och småöar som omger Lidingö från och med Storholmen\", \"har restaurang och stigar att promenera på\", \"i dag finns cirka 80 permanenta hushåll\" (läst 2026-10-29)\n    // KÄLLA: https://storholmensjokrog.se/ — \"ÖPPETTIDER\", \"Oktober\", \"31 Lördag\", \"Lördagar 28 nov, 5 dec, 12 dec och 19 dec\", \"© 2026 Storholmen Sjökrog.\" (läst 2026-10-29)\n    // UPPSKATTNING: best_for är en bedömning.\n    facts: { travel_time: '28 min med SL:s pendelbåt 80 från Ropsten till Storholmen södra, 37 min till Storholmen östra', character: 'Bebodd ö i Lidingös skärgård, restaurang och promenadstigar', season: 'SL-båten går även vintertid (vid is inte till alla bryggor); sjökrogens säsong 2026: helger till och med 31 oktober och julbord lördagar 28 november–19 december', best_for: 'Dagsutflykt, restaurangbesök, promenad' },\n    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'matt', best_for: 'bedomning' },",
+  "ny": "    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — \"Ropsten–Storholmen\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-10-29); restiderna Ropsten–Storholmen södra 28 min och Ropsten–Storholmen östra 37 min är uppmätta i tidtabellen (måndag–fredag och lördag, söndag och helgdag).\n    // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Båten åker inte till Storholmen östra, Frösvik och Storholmen norra under vintertid om det ligger is.\" (läst 2026-10-29)\n    // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — \"Lidingös skärgård utgörs av spridda holmar och småöar som omger Lidingö från och med Storholmen\", \"har restaurang och stigar att promenera på\", \"i dag finns cirka 80 permanenta hushåll\" (läst 2026-10-29)\n    // KÄLLA: https://storholmensjokrog.se/ — \"Skärgårdsrestaurang utanför Lidingö\" (sidans titel), \"Boka bord\", \"Tack för en fantastisk säsong! Vi tar nu en liten paus och öppnar igen den 28 november med julbord varje lördag fram till jul.\", \"Lördagar 28 nov, 5 dec, 12 dec och 19 dec\", \"29 Söndag – Jultallrik\" (läst 2026-11-10)\n    // UPPSKATTNING: best_for är en bedömning.\n    facts: { travel_time: '28 min med SL:s pendelbåt 80 från Ropsten till Storholmen södra, 37 min till Storholmen östra', character: 'Bebodd ö i Lidingös skärgård, restaurang och promenadstigar', season: 'SL-båten går även vintertid (vid is inte till alla bryggor); sjökrogen har julbord lördagar 28 november–19 december 2026 och jultallrik söndag 29 november', best_for: 'Dagsutflykt, restaurangbesök, promenad' },\n    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'matt', best_for: 'bedomning' },",
   "rader": [
    "storholmen-0034",
    "storholmen-0035",
@@ -62,14 +62,16 @@
    "storholmen-0182",
    "storholmen-0183",
    "storholmen-0184",
-   "storholmen-0185"
+   "storholmen-0185",
+   "storholmen-0042"
   ]
  },
  {
   "fil": "src/app/o/island-data.ts",
   "gammal": "      // KÄLLA: https://storholmensjokrog.se/ — \"Storholmen Sjökrog ligger på den östra sidan av Storholmen.\" (läst 2026-09-27)\n      { icon: '🍽', name: 'Restaurang', desc: 'Storholmen Sjökrog på östra sidan av ön, en kort promenad från bryggan Storholmen östra. Se restaurangens egen sida för öppettider och bokning.' },",
-  "ny": "      // KÄLLA: https://storholmensjokrog.se/ — \"Storholmen Sjökrog ligger på den östra sidan av Storholmen.\", \"Välj gärna Östra Storholmens brygga\", \"därifrån är det bara någon minuts promenad till restaurangen.\" (läst 2026-10-29)\n      { icon: '🍽', name: 'Restaurang', desc: 'Storholmen Sjökrog på östra sidan av ön, någon minuts promenad från Storholmen östra. Se restaurangens egen sida för öppettider och bokning.' },",
+  "ny": "      // KÄLLA: https://storholmensjokrog.se/ — \"Skärgårdsrestaurang utanför Lidingö\" (sidans titel), \"Vår meny\", \"Boka bord\", \"Storholmen Sjökrog ligger på den östra sidan av Storholmen.\", \"Välj gärna Östra Storholmens brygga\", \"därifrån är det bara någon minuts promenad till restaurangen.\", \"För aktuella öppettider och event, följ oss gärna på våra sociala medier eller kontakta oss direkt.\" (läst 2026-11-10)\n      { icon: '🍽', name: 'Restaurang', desc: 'Storholmen Sjökrog på östra sidan av ön, någon minuts promenad från Storholmen östra. Se restaurangens egen sida för öppettider och bokning.' },",
   "rader": [
+   "storholmen-0096",
    "storholmen-0098",
    "storholmen-0205"
   ]
@@ -152,7 +154,7 @@
  {
   "fil": "src/lib/islandCoords.ts",
   "gammal": "  { slug: 'storholmen',        name: 'Storholmen',        lat: 59.2803, lng: 18.8090, radiusKm: 1.5 },",
-  "ny": "  // RÄTTAD 2026-10-29. Låg på 59.2803, 18.8090 vid Byholmen i Värmdö kommun, omkring 40 km fel (därav \"närmaste hållplats Långvik (Runmarö)\" i transit-stops.ts).\n  // KÄLLA: https://nominatim.openstreetmap.org/lookup?osm_ids=R9340511&format=jsonv2 — \"59.3970411\", \"18.1394645\", \"Storholmen, Sticklinge, Lidingö, Lidingö kommun, Stockholms län, Sverige\" (läst 2026-10-29); öns gränsruta i OpenStreetMap är 59.3932–59.4010, 18.1288–18.1445, och SL-bryggorna Storholmen södra, östra och norra ligger inom 0,5 km från punkten.\n  { slug: 'storholmen',        name: 'Storholmen',        lat: 59.3970, lng: 18.1395, radiusKm: 0.8 },",
+  "ny": "  // RÄTTAD 2026-10-29. Låg på 59.2803, 18.8090 vid Byholmen i Värmdö kommun, omkring 40 km fel (därav \"närmaste hållplats Långvik (Runmarö)\" i transit-stops.ts).\n  // KÄLLA: https://nominatim.openstreetmap.org/lookup?osm_ids=R9340511&format=jsonv2 — \"59.3970411\", \"18.1394645\", \"Storholmen, Sticklinge, Lidingö, Lidingö kommun, Stockholms län, Sverige\" (läst 2026-10-29); öns gränsruta i OpenStreetMap är 59.3932–59.4010, 18.1288–18.1445, och SL-bryggorna Storholmen södra, östra och norra ligger inom 0,5 km från punkten.\n  // radiusKm styr GPS-taggningen och står kvar på 1,5 km enligt Toms beslut 3 (2026-11-08). platsRadieKm styr platslistan och är uppmätt: gränsrutans hörn ligger högst 0,75 km från punkten (haversine, beräknat 2026-11-10), så 0,8 km täcker ön. Fältet läggs till i IslandCoord av mallarnas runda 5.\n  { slug: 'storholmen',        name: 'Storholmen',        lat: 59.3970, lng: 18.1395, radiusKm: 1.5, platsRadieKm: 0.8 },",
   "rader": [
    "storholmen-0014"
   ]
@@ -160,7 +162,7 @@
  {
   "fil": "src/lib/transit-stops.ts",
   "gammal": "  'storholmen': 'närmaste hållplats (Långvik (Runmarö) brygga, 2752 m) kunde inte knytas till ön',",
-  "ny": "  // 'storholmen' borttagen 2026-10-29: mätningen 2026-08-05 gjordes med fel koordinater (59.2803, 18.8090 vid Runmarö). SL:s pendelbåt 80 angör Storholmen södra, östra och norra. Lägg in ön i ISLAND_TRANSIT när hållplats-ID verifierats mot ResRobot.\n  // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — \"Vissa avgångar fortsätter från Ropsten till Storholmen.\" (läst 2026-10-29)",
+  "ny": "  // 'storholmen' borttagen 2026-10-29: mätningen 2026-08-05 gjordes med fel koordinater (59.2803, 18.8090 vid Runmarö). SL:s pendelbåt 80 angör Storholmen södra, östra och norra. Lägg in ön i ISLAND_TRANSIT när hållplats-ID verifierats mot ResRobot.\n  // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — \"Ropsten–Storholmen\", \"Pendelbåt\", \"Storholmen södra\", \"Storholmen östra\", \"Storholmen norra\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-10)",
   "rader": [
    "storholmen-0060",
    "storholmen-0061",
@@ -174,6 +176,16 @@
   "rader": [
    "storholmen-0194",
    "storholmen-0195"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://storholmensjokrog.se/ (läst 2026-09-26) — \"SEDAN 2018\", \"Vår terrass sträcker sig ut mot vattnet\", \"rätter med säsongens bästa råvaror\", meny med bl.a. \"Stekt strömming\", \"Fish and Chips\", \"Moules Frites\", \"För barnen\", \"skräddarsydd catering\", \"Hyr hela restaurangen\"\n      // KÄLLA: https://storholmensjokrog.se/ — \"ÖPPETTIDER\", \"Oktober\", \"Julens smaker i Stockholms skärgård\", \"Lördagar 28 nov, 5 dec, 12 dec och 19 dec\", \"Ta SL-båten från Ropsten\" (läst 2026-09-27)\n      { name: 'Storholmen Sjökrog', type: 'Restaurang', desc: 'Sjökrog på Storholmen sedan 2018, med terrass ut mot vattnet och meny efter säsong – till exempel stekt strömming, fish and chips och moules frites – och barnmeny. Tar också catering och går att hyra för fester, och dukar upp julbord i december.', websiteUrl: 'https://www.storholmensjokrog.se/', open_season: '2026: helger till och med oktober, julbord lördagar 28 november–19 december' },\n",
+  "ny": "      // Rättad 2026-11-10: krogens helgöppet i oktober 2026 står inte längre på sidan. Säsongen är slut, och krogen öppnar igen 28 november med julbord. Öppettiderna på sidan har klockslag och skrivs inte här.\n      // KÄLLA: https://storholmensjokrog.se/ — \"Skärgårdsrestaurang utanför Lidingö\" (sidans titel), \"SEDAN 2018\", \"Vår terrass sträcker sig ut mot vattnet\", \"Här serverar vi rätter med säsongens bästa råvaror\", \"Stekt strömming\", \"Fish and Chips\", \"Moules Frites\", \"För barnen\", \"Vi erbjuder skräddarsydd catering\", \"Hyr hela restaurangen\" (läst 2026-11-10)\n      // KÄLLA: https://storholmensjokrog.se/ — \"Julens smaker i Stockholms skärgård\", \"en varm krog där vi dukar upp för jul\", \"Tack för en fantastisk säsong! Vi tar nu en liten paus och öppnar igen den 28 november med julbord varje lördag fram till jul.\", \"Lördagar 28 nov, 5 dec, 12 dec och 19 dec\", \"29 Söndag – Jultallrik\" (läst 2026-11-10)\n      { name: 'Storholmen Sjökrog', type: 'Restaurang', desc: 'Sjökrog på Storholmen sedan 2018, med terrass ut mot vattnet och meny efter säsong – till exempel stekt strömming, fish and chips och moules frites – och barnmeny. Tar också catering och går att hyra för fester, och dukar upp julbord i december.', websiteUrl: 'https://www.storholmensjokrog.se/', open_season: '28 november–19 december 2026: julbord lördagar, jultallrik söndag 29 november' },\n",
+  "rader": [
+   "storholmen-0101",
+   "storholmen-0113",
+   "storholmen-0114"
   ]
  }
 ]
