@@ -38,13 +38,13 @@ lidingo.se/…/batpendla/ (curl), SL:s tabell 80 (kund.printhuset-sthlm.se/sl/h8
   ön i ISLAND_TRANSIT kräver hållplats-ID från ResRobot och är inte gjort.
 - Nr 13 (ny): krogposten (restaurants[0]). open_season enligt rad 0113 och två nya KÄLLA-rader (läst 2026-11-10) i stället för raderna
   från 2026-09-26/27. Beskrivningen är oförändrad. Lagd sist i filen så att numren 0–12 står kvar.
-- De 13 tidigare posterna: «gammal» står exakt en gång i main-kopian f7eee24, så ingen behövde rättas. Vaktens lista nämner ingen
+- De 13 tidigare posterna: «gammal» står exakt en gång i main-kopian (f7eee24 och 1be6e12), så ingen behövde rättas. Vaktens lista nämner ingen
   Storholmenpost som redan finns i main, så ingen post är borttagen.
 
 ## Källistans klockslag (rad 4984 och 4998 i main-kopians kallor.generated.ts)
 - 4984 (lidingo.se, lidingo-skargard) genereras ur KÄLLA-raden vid tagline (island-data.ts:5864). 4998 (SL, h80.pdf) genereras ur KÄLLA-raden
-  vid facts (island-data.ts:5879). Båda raderna ersätts helt av nr 0 och nr 3, med en URL per KÄLLA-rad och utan klockslag.
-- MÄTT 2026-11-10: generera-kallor.mjs på en kopia av main f7eee24 med öns edits ger 9 källor för Storholmen och 0 klockslag i «vad».
+  vid facts (island-data.ts:5879; samma rader i f7eee24 och 1be6e12). Båda raderna ersätts helt av nr 0 och nr 3, med en URL per KÄLLA-rad och utan klockslag.
+- MÄTT 2026-11-10: generera-kallor.mjs på en kopia av main 1be6e12 med öns edits ger 9 källor för Storholmen och 0 klockslag i «vad».
   kallor.generated.ts är inte ändrad.
 
 ## Rader som inte rörts, med skäl
@@ -65,11 +65,11 @@ lidingo.se/…/batpendla/ (curl), SL:s tabell 80 (kund.printhuset-sthlm.se/sl/h8
   säger att turerna finns hos SL och inte i Waxholmsbolagets tidtabeller, vilket fortfarande stämmer.
 
 ## Torrkörning och kontroller
-- node applicera.mjs main-kopia ut/storholmen.edits.json --torr (main-kopia f7eee24): 14 ersättningar ok, 0 fel.
+- node applicera.mjs main-kopia ut/storholmen.edits.json --torr (main-kopia 1be6e12, efter #517): 14 ersättningar ok, 0 fel (samma mot f7eee24).
 - Efter inläggning i en kopia: island-data.ts, islandCoords.ts, transit-stops.ts och kommaDitTitlar.ts utan syntaxfel (repots typescript).
 - Citat (skript/kolla_citat.py): 33 citat i KÄLLA-rader lästa 2026-11-10 och 29 citat i 13 registerrader lästa 2026-11-10 står ordagrant
   i de sparade källtexterna. Inga klockslag, en URL per KÄLLA-rad, och alla registerrader har 15 kolumner.
-- Lag 3 (faktaregister.mjs --mat storholmen): main f7eee24 566 ord, 53 enheter, 48 med källa. Med öns edits 654 ord, 56 enheter och 52
+- Lag 3 (faktaregister.mjs --mat storholmen): main 1be6e12 (island-data.ts som i f7eee24) 566 ord, 53 enheter, 48 med källa. Med öns edits 654 ord, 56 enheter och 52
   med källa: OK. De ändrade strängarna (season och open_season) har 33 ord mot 36 före.
 
 ## Fjäderholmarna: GPS-radien (Toms beslut 3)
@@ -77,4 +77,4 @@ lidingo.se/…/batpendla/ (curl), SL:s tabell 80 (kund.printhuset-sthlm.se/sl/h8
   kvar enligt beslutet, och att platsRadieKm är uppmätt 2026-10-29 (gränsrutan ryms inom 0,64 km från mittpunkten).
 - Registerrad fjaderholmarna-0017: rätt uppgift och ny text säger samma sak («radiusKm: 1.5 (oförändrad, Toms beslut 3), platsRadieKm: 0.7»).
   Dom FEL och åtgärd RÄTTA står kvar. Inget annat i Fjäderholmarnas filer är ändrat.
-- Torrkörning mot f7eee24: 40 ersättningar ok, 0 fel. islandCoords.ts utan syntaxfel efter nr 30–31.
+- Torrkörning mot main-kopian 1be6e12: 40 ersättningar ok, 0 fel. islandCoords.ts utan syntaxfel efter nr 30–31.
