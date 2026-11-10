@@ -1,0 +1,7 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-10)
+st4001	styrso-0438	FEL (MÄTT och RESONERAT)	Omarbete 4b: facts.season ("Bäst säsong: Året runt") säger emot öns egen seasonal.best ("Juni–augusti"), och källorna säger bara att trafik och hotell finns året runt. Gör facts.season samstämmigt med seasonal.best, eller skriv det källorna säger (trafik året runt) utan "bäst".
+st4091	styrso-0062	FEL (MÄTT)	Omarbete 4b: oktober har inget stöd för open. Källorna skiljer inte oktober från september och november, som båda är limited. Sätt oktober till limited.
+st4081	styrso-0105	FEL (MÄTT)	Omarbete 4b: skriv "öns norra sida" som bevarandeprogrammet (nivå 1), inte "nordvästra".
+st4019	styrso-0099	FEL (MÄTT och RESONERAT)	Omarbete 4b: skriv om meningen så att den följer källan ordagrant i sak: "viktigaste badort" och "mest fashionabla sommargästområde" är två skilda led.
+st4039	styrso-N022	OK med anmärkning	Omarbete 4b (KÄLLA-rad): lägg kusthotelletstyrso.se/hitta-till-oss/ som källa för "nära bryggan Styrsö Skäret".
+radien	styrso-0318	Anmärkning (MÄTT)	Ingen åtgärd. Med radien 2,0 km försvinner Brännö Värdshus (2,9 km) från /o/styrso/restauranger. Det är rätt, eftersom värdshuset ligger på Brännö.
