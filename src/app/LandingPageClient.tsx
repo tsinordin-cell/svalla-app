@@ -619,7 +619,7 @@ const LANDING_HTML = `
  <a href="/segelkurs" class="nav-dd-link">Alla kurser →</a>
  </div>
  <div>
- <div class="nav-dd-section">Utvalda partner</div>
+ <div class="nav-dd-section">Utvalt</div>
  <a href="https://sjobris-stockholm.se/?ref=svalla" target="_blank" rel="noopener" class="nav-dd-partner"><span class="nav-dd-partner-ikon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10.5" y1="2" x2="11.5" y2="16.5"/><path d="M10.5 2 L19 15.5 L11.5 16.5 Z"/><path d="M10.5 6 L3 16.5 L11.5 16.5"/><path d="M2.5 16.5 Q7 19 12 20 Q17 19 21.5 16.5"/></svg></span><span>Sjöbris Stockholm<small>Seglarkurser från Dalarö</small></span></a>
  </div>
  </div></div>
@@ -747,7 +747,7 @@ const LANDING_HTML = `
  <a href="/segelkurs/goteborg" class="mob-acc-link">Segelkurser i Göteborg och Bohuslän</a>
  <a href="/aktivitet/kajak" class="mob-acc-link">Kajak</a>
  <a href="/upplevelser?kategori=guidade" class="mob-acc-link">Guidade turer</a>
- <div class="mob-acc-section">Utvalda partner</div>
+ <div class="mob-acc-section">Utvalt</div>
  <a href="https://sjobris-stockholm.se/?ref=svalla" target="_blank" rel="noopener" class="mob-acc-link">Sjöbris Stockholm, Dalarö</a>
  <a href="/segelkurs" class="mob-acc-link" style="font-weight:600;color:var(--sea,#0a7b8c)">Alla kurser →</a>
  </div>
@@ -1204,7 +1204,7 @@ const LANDING_HTML = `
  <a href="/segelkurs/goteborg" class="kurs-ruta"><b>Segelkurser</b><span>Göteborg och Bohuslän</span></a>
  <a href="/aktivitet/kajak" class="kurs-ruta"><b>Kajak</b><span>Kurser och turer</span></a>
  <a href="/upplevelser?kategori=guidade" class="kurs-ruta"><b>Guidade turer</b><span>Med skeppare eller guide</span></a>
- <a href="https://sjobris-stockholm.se/?ref=svalla" target="_blank" rel="noopener" class="kurs-ruta kurs-partner"><b>Sjöbris, Dalarö</b><span>Svalla-partner</span></a>
+ <a href="https://sjobris-stockholm.se/?ref=svalla" target="_blank" rel="noopener" class="kurs-ruta kurs-partner"><b>Sjöbris, Dalarö</b><span>Seglarkurser från Dalarö</span></a>
  </div>
  </div>
 </section>

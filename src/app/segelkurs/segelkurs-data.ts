@@ -49,7 +49,6 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         namn: 'Sjöbris Stockholm',
         ort: 'Dalarö, södra skärgården',
         url: 'https://sjobris-stockholm.se/?ref=svalla',
-        partner: true,
         // KÄLLA: sjobris-stockholm.se — "Du lär dig grunderna i seglingen ... under tre dagar", "max 4 deltagare"; skärgårdssegling dag "max 5 deltagare"; två dagar med "övernattning i naturhamn"; "Vi utgår från Dalarö" (läst 2026-11-10)
         kalla: 'sjobris-stockholm.se',
         last: '2026-11-10',
