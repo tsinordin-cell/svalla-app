@@ -116,14 +116,14 @@ export default async function SegelkursSlugPage({ params }: Props) {
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {page.anordnare.map(a => (
-                <article key={a.namn} style={{ background: 'var(--white)', borderRadius: 14, padding: '20px', border: a.partner ? '2px solid var(--accent)' : '1px solid var(--surface-3)' }}>
+                <article key={a.namn} style={{ background: 'var(--white)', borderRadius: 14, padding: '20px', border: a.partner ? '2px solid var(--acc)' : '1px solid var(--surface-3)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
                     <div>
                       <h3 style={{ fontWeight: 700, fontSize: 18, color: 'var(--ink)', margin: '0 0 4px' }}>{a.namn}</h3>
                       <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>{a.ort}</div>
                     </div>
                     {a.partner && (
-                      <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.06em', background: 'var(--accent)', color: 'var(--white)', borderRadius: 8, padding: '4px 9px' }}>SVALLA-PARTNER</span>
+                      <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.06em', background: 'var(--acc-knapp)', color: 'var(--white)', borderRadius: 8, padding: '4px 9px' }}>SVALLA-PARTNER</span>
                     )}
                   </div>
                   {a.kurser.map(k => (
