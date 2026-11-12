@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { LUCKOR, AR, oppnaLuckor } from '@/lib/julkalender'
+import { JulkalenderVisad, JulkalenderLoggaIn } from './JulkalenderMatning'
 
 export const metadata: Metadata = {
   title: `Svallas julkalender ${AR}: 24 luckor om skärgården`,
@@ -32,6 +32,7 @@ export default async function JulkalenderPage({ searchParams }: Props) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
+      <JulkalenderVisad dag={oppna} inloggad={inloggad} />
       <div style={{ background: 'linear-gradient(180deg,#a9c4dd 0%,#d9dfe9 70%,#eee2e0 100%)', padding: 'calc(env(safe-area-inset-top, 0px) + 28px) 20px 40px' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
           <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '.18em', color: '#b5591a', marginBottom: 10 }}>1–24 DECEMBER {AR}</div>
@@ -40,9 +41,9 @@ export default async function JulkalenderPage({ searchParams }: Props) {
             En lucka om dagen med tips om skärgården i vinter. Luckorna öppnas en i taget, och missade luckor går att öppna i efterhand.
           </p>
           {!inloggad && (
-            <Link href={loginUrl} style={{ display: 'inline-block', marginTop: 20, background: '#b5591a', color: '#fff', padding: '12px 22px', borderRadius: 50, fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>
+            <JulkalenderLoggaIn dag={oppna} href={loginUrl} style={{ display: 'inline-block', marginTop: 20, background: '#b5591a', color: '#fff', padding: '12px 22px', borderRadius: 50, fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>
               Skapa konto och öppna dagens lucka →
-            </Link>
+            </JulkalenderLoggaIn>
           )}
           {inloggad && oppna === 0 && (
             <p style={{ marginTop: 18, fontSize: 15, color: '#0f2f40', fontWeight: 600 }}>Första luckan öppnas 1 december.</p>
@@ -73,11 +74,11 @@ export default async function JulkalenderPage({ searchParams }: Props) {
             }
             if (!inloggad) {
               return (
-                <Link key={dag} href={loginUrl} style={{ ...bas, textDecoration: 'none', color: 'inherit' }}>
+                <JulkalenderLoggaIn key={dag} dag={dag} href={loginUrl} style={{ ...bas, textDecoration: 'none', color: 'inherit' }}>
                   {nummer}
                   <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>Skapa konto för att öppna</div>
                   <div style={{ marginTop: 'auto', fontSize: 13, fontWeight: 700, color: '#b5591a' }}>Öppna →</div>
-                </Link>
+                </JulkalenderLoggaIn>
               )
             }
             if (!lucka) {

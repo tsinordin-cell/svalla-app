@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { kalenderPagar, oppnaLuckor } from '@/lib/julkalender'
+import { track } from '@/lib/analytics-events'
 
 /**
  * Litet svävande paket med skylt uppe till vänster i startsidans himmel (2026-11-12).
@@ -20,7 +21,7 @@ export default function JulkalenderSkylt() {
   if (dag === null) return null
 
   return (
-    <Link href="/julkalender" className="julskylt" aria-label={`Svallas julkalender, öppna lucka ${dag}`}>
+    <Link href="/julkalender" className="julskylt" aria-label={`Svallas julkalender, öppna lucka ${dag}`} onClick={() => track('julkalender_klick', { plats: 'startsida', dag })}>
       <style>{`
         .julskylt{position:absolute;top:78px;left:22px;z-index:50;display:flex;align-items:center;gap:6px;text-decoration:none;animation:julsva 3.2s ease-in-out infinite;transform-origin:8px 0}
         .julskylt span{background:rgba(255,255,255,.92);border-radius:8px;padding:4px 8px;color:#0f2f40;font-size:11.5px;font-weight:600;line-height:1.2;white-space:nowrap}
