@@ -413,21 +413,23 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Fishing net ────────────────────────────────────────────────────── */
     const fishingNet = (x: number, y: number) => {
-      const nw = W < 600 ? szH * 0.090 : W * 0.062, nh = szH * 0.048
-      const postExtra = szH * 0.012, ropeOff = szH * 0.006
-      const cols = 13, rows = 7
+      // Halva storleken (Max 2026-11-12): nätet var mer än dubbelt så stort som stugan bredvid
+      const NAT = 0.5
+      const nw = (W < 600 ? szH * 0.090 : W * 0.062) * NAT, nh = szH * 0.048 * NAT
+      const postExtra = szH * 0.012 * NAT, ropeOff = szH * 0.006 * NAT
+      const cols = 9, rows = 5, floats = 4
       // Drying posts
-      cx.strokeStyle = '#4a3010'; cx.lineWidth = 2.2
+      cx.strokeStyle = '#4a3010'; cx.lineWidth = 1.65
       cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - nh - postExtra); cx.stroke()
       cx.beginPath(); cx.moveTo(x + nw, y); cx.lineTo(x + nw, y - nh - postExtra); cx.stroke()
       // Top rope line
-      cx.strokeStyle = 'rgba(160,125,70,0.88)'; cx.lineWidth = 1.5
+      cx.strokeStyle = 'rgba(160,125,70,0.88)'; cx.lineWidth = 1.1
       cx.beginPath(); cx.moveTo(x, y - nh - ropeOff); cx.lineTo(x + nw, y - nh - ropeOff); cx.stroke()
       // Cork floats
       cx.fillStyle = '#d47818'
-      for (let i = 0; i <= 6; i++) {
-        const fx = x + i * nw / 6
-        cx.beginPath(); cx.ellipse(fx, y - nh - ropeOff, 2.8, 1.8, 0, 0, Math.PI * 2); cx.fill()
+      for (let i = 0; i <= floats; i++) {
+        const fx = x + i * nw / floats
+        cx.beginPath(); cx.ellipse(fx, y - nh - ropeOff, 2.0, 1.3, 0, 0, Math.PI * 2); cx.fill()
       }
       // Pre-compute node positions with organic irregularity
       const nodeX = (col: number, row: number): number => {
@@ -610,7 +612,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Dock — left island (flytta höger på mobil för att matcha bredare ö)
       dock(W < 600 ? W * 0.312 : W * 0.222, wb)
 
-      // Fishing net — drying on shore, larger and visible
+      // Fishing net — drying on shore (halva storleken sedan 2026-11-12)
       fishingNet(W * 0.178, wb * 0.995)
 
       // Flagpole — Swedish flag
