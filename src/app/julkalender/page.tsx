@@ -28,7 +28,7 @@ export default async function JulkalenderPage({ searchParams }: Props) {
   const supabase = await createServerSupabaseClient()
   const { data: { user } } = await supabase.auth.getUser()
   const inloggad = !!user
-  const loginUrl = '/logga-in?returnTo=/julkalender'
+  const loginUrl = '/logga-in?mode=ny&returnTo=/julkalender'
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
