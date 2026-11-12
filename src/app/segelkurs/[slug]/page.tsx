@@ -45,6 +45,21 @@ export default async function SegelkursSlugPage({ params }: Props) {
     })),
   } : null
 
+  const courseSchema = page.anordnare && page.anordnare.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: page.anordnare.flatMap(a => a.kurser.map(k => ({ a, k }))).map(({ a, k }, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Course',
+        name: k.namn,
+        description: k.fakta.join(', '),
+        provider: { '@type': 'Organization', name: a.namn, url: a.url.split('?')[0] },
+      },
+    })),
+  } : null
+
   const breadcrumb = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -58,6 +73,7 @@ export default async function SegelkursSlugPage({ params }: Props) {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      {courseSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
 
       {/* Header */}
@@ -92,6 +108,52 @@ export default async function SegelkursSlugPage({ params }: Props) {
           ))}
         </section>
 
+        {/* Seglarskolor med kontrollerade uppgifter (inga priser) */}
+        {page.anordnare && page.anordnare.length > 0 && (
+          <section style={{ marginBottom: 48 }}>
+            <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 20 }}>
+              Seglarskolor och kurser
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {page.anordnare.map(a => (
+                <article key={a.namn} style={{ background: 'var(--white)', borderRadius: 14, padding: '20px', border: a.partner ? '2px solid var(--accent)' : '1px solid var(--surface-3)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
+                    <div>
+                      <h3 style={{ fontWeight: 700, fontSize: 18, color: 'var(--ink)', margin: '0 0 4px' }}>{a.namn}</h3>
+                      <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>{a.ort}</div>
+                    </div>
+                    {a.partner && (
+                      <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.06em', background: 'var(--accent)', color: 'var(--white)', borderRadius: 8, padding: '4px 9px' }}>SVALLA-PARTNER</span>
+                    )}
+                  </div>
+                  {a.kurser.map(k => (
+                    <div key={k.namn} style={{ borderTop: '1px solid var(--surface-3)', marginTop: 12, paddingTop: 12 }}>
+                      <div style={{ fontWeight: 600, fontSize: 15, color: 'var(--ink)', marginBottom: 8 }}>{k.namn}</div>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                        {k.fakta.map(f => (
+                          <span key={f} style={{ fontSize: 12.5, background: 'var(--surface-2)', borderRadius: 8, padding: '3px 9px', color: 'var(--ink)' }}>{f}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginTop: 14 }}>
+                    <span style={{ fontSize: 12, color: 'var(--sea)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="check" size={12} stroke={2} />Källa: {a.kalla}, läst {a.last}</span>
+                    <a href={a.url} target="_blank" rel="noopener noreferrer" style={{
+                      background: a.partner ? 'var(--sea)' : 'var(--white)', color: a.partner ? 'var(--white)' : 'var(--sea)',
+                      border: '1px solid var(--sea)', borderRadius: 50, padding: '8px 16px', fontSize: 13.5, fontWeight: 700, textDecoration: 'none',
+                    }}>
+                      {a.partner ? `Boka hos ${a.namn.split(' ')[0]} →` : `Till ${a.namn.replace(/ \(.*\)$/, '')} →`}
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p style={{ fontSize: 13, color: 'var(--ink-muted)', marginTop: 14 }}>
+              Har du en seglarskola eller ska något ändras? Skriv till <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a>.
+            </p>
+          </section>
+        )}
+
         {/* Kurstyper */}
         {page.kurstyper.length > 0 && (
           <section style={{ marginBottom: 48 }}>
@@ -105,9 +167,6 @@ export default async function SegelkursSlugPage({ params }: Props) {
                     <div>
                       <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--ink)', marginBottom: 4 }}>{k.name}</div>
                       <div style={{ fontSize: 12, color: 'var(--ink-muted)' }}>{k.level} · {k.length}</div>
-                    </div>
-                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                      <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--sea)' }}>{k.price}</div>
                     </div>
                   </div>
                   <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.7, margin: '0 0 10px' }}>{k.desc}</p>
