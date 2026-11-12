@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react'
 /* ─────────────────────────────────────────────────────────────────────────────
    HeroAnimation — En stilla vik i Stockholms skärgård
    6 varianter: klar sommardag | gyllene timmen | midnattssol | storm | dimma | vinter
-   Vinter (6) läggs ovanpå sommarscenen: snö, is, isbrytande färja, skridskoåkare
-   och snögubbe. Fiskarna under ytan är desamma. Varianterna 1–5 är oförändrade.
+   Vinter (6) läggs ovanpå sommarscenen: snö, is, skridskoåkare och snögubbe.
+   Ingen färja eller segelbåtar på vintern. Fiskarna under ytan är desamma. Varianterna 1–5 är oförändrade.
 ───────────────────────────────────────────────────────────────────────────── */
 
 export type HeroVariant = 1 | 2 | 3 | 4 | 5 | 6
@@ -171,11 +171,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     let boats: Boat[] = [], birds: Bird[] = [], fish: Fish[] = [], whales: Whale[] = []
     let bubbles: Bubble[] = []
     let ferry: Ferry = { x: 0, spd: 0, ph: 0 }
-    // Vinter: snöflingor, skridskoåkare och isflak (används bara när VINTER)
+    // Vinter: snöflingor och skridskoåkare (används bara när VINTER)
     let flingor: { x: number; y: number; r: number; s: number; d: number }[] = []
     let skridsko: { cx: number; cy: number; rx: number; ry: number; p: number; v: number; col: string }[] = []
-    let isflak: { x: number; y: number; w: number; h: number; a: number; vy: number }[] = []
-    let flakTimer = 0
 
     /* ── Layout ─────────────────────────────────────────────────────────── */
     const WL = () => H * 0.58
@@ -288,7 +286,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
           { cx: W * 0.68, cy: iy + H * 0.012, rx: W * 0.050, ry: H * 0.005, p: 2, v: -0.45, col: '#1c5aa6' },
           { cx: W * 0.33, cy: iy + H * 0.004, rx: W * 0.045, ry: H * 0.005, p: 1, v: 0.40, col: '#e5a33b' },
         ]
-        isflak = []
       }
     }
 
@@ -744,29 +741,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       const sprickor = ([[0.04, 0.35, 0.11, 0.65], [0.22, 0.20, 0.28, 0.80], [0.40, 0.55, 0.49, 0.30], [0.86, 0.30, 0.94, 0.72]] as [number, number, number, number][])
       ;(mobil ? sprickor.slice(3) : sprickor).forEach(([a, b, c2, d]) => {
         cx.beginPath(); cx.moveTo(W * a, wb + ih * b); cx.lineTo(W * (a + c2) / 2, wb + ih * (b + 0.15)); cx.lineTo(W * c2, wb + ih * d); cx.stroke()
-      })
-    }
-
-    // Rännan bakom färjan och isflaken som bryts loss vid fören
-    const drawRanna = (dt: number) => {
-      const mobil = W < 600
-      const wb = WL(), rh = mobil ? H * 0.014 : H * 0.024
-      const fram = Math.max(-200, ferry.x - 60)
-      cx.fillStyle = th.water[0]
-      cx.fillRect(fram, wb - 3, W - fram + 10, rh)
-      cx.fillStyle = 'rgba(255,255,255,0.10)'; cx.fillRect(fram, wb - 3, W - fram + 10, 2)
-      flakTimer += dt
-      if (flakTimer > (mobil ? 700 : 260) && ferry.x > -60 && ferry.x < W + 40) {
-        flakTimer = 0
-        isflak.push({ x: ferry.x - 64 + (Math.random() - 0.5) * 16, y: wb + (Math.random() - 0.3) * rh, w: (mobil ? 5 : 8) + Math.random() * (mobil ? 7 : 14), h: (mobil ? 3 : 4) + Math.random() * (mobil ? 2 : 4), a: (Math.random() - 0.5), vy: (Math.random() - 0.5) * 0.4 })
-        if (isflak.length > (mobil ? 14 : 60)) isflak.shift()
-      }
-      isflak.forEach(f => {
-        f.y += f.vy * dt * 0.01; f.vy *= 0.985
-        cx.save(); cx.translate(f.x, f.y); cx.rotate(f.a)
-        cx.fillStyle = '#eef5fa'; cx.fillRect(-f.w / 2, -f.h / 2, f.w, f.h)
-        cx.strokeStyle = 'rgba(120,150,175,0.55)'; cx.lineWidth = 0.8; cx.strokeRect(-f.w / 2, -f.h / 2, f.w, f.h)
-        cx.restore()
       })
     }
 
@@ -1246,7 +1220,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     const drawFerry = (dt: number) => {
       ferry.x -= ferry.spd * dt * 0.001
       ferry.ph += 0.8 * dt * 0.001
-      if (ferry.x < -200) { ferry.x = W + 200; isflak = [] }
+      if (ferry.x < -200) ferry.x = W + 200
       const wy  = wave(ferry.x)
       const bob = Math.sin(ferry.ph * 0.7) * 1.2
       const tilt = Math.sin(ferry.ph * 0.55) * 0.35 * (Math.PI / 180)
@@ -1386,11 +1360,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       else drawWaterShimmer()
       drawUnderwater()
       drawParticles()
-      // Vinter på mobil: ingen färja, ränna eller isflak, så att scenen hålls lugn (Max 2026-11-12)
-      const vinterMobil = VINTER && W < 600
-      if (VINTER && !vinterMobil) drawRanna(dt)
+      // Vinter: ingen färja, ränna eller isflak på någon skärm, så att scenen hålls lugn (Max 2026-11-12)
       if (VINTER) drawSkridsko(dt)
-      if (!vinterMobil) drawFerry(dt)
+      if (!VINTER) drawFerry(dt)
       if (!VINTER) drawBoats(dt)
       drawFish(dt)
       drawWhales(dt)
