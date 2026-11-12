@@ -11,80 +11,117 @@ export type SegelkursSub = {
   readTime: string
   tags: string[]
   intro: string[]
-  kurstyper: { name: string; length: string; level: string; certificate: string; price: string; desc: string }[]
+  kurstyper: { name: string; length: string; level: string; certificate: string; price?: string; desc: string }[]
   faqs: SegelkursFAQ[]
+  /** Seglarskolor med kontrollerade uppgifter. Inga priser (Svallas regel). */
+  anordnare?: Seglarskola[]
+}
+
+export type Seglarskola = {
+  namn: string
+  ort: string
+  url: string
+  partner?: boolean
+  /** Lyfts fram överst med egen ram (utan partnertext) */
+  utvald?: boolean
+  beskrivning?: string
+  /** Källa och datum då uppgifterna lästes på anordnarens egen sida */
+  kalla: string
+  last: string
+  kurser: { namn: string; fakta: string[] }[]
 }
 
 export const SEGELKURS_SUBS: SegelkursSub[] = [
   {
     slug: 'stockholms-skargard',
-    title: 'Segelkurs i Stockholms skärgård 2026 – nybörjare och avancerad',
-    h1: 'Segelkurs i Stockholms skärgård',
-    metaDescription: 'Hitta segelkurs i Stockholms skärgård. Nybörjarkurser, kustskepparintyg och veckolånga segeläventyr. Priser och de bästa segelskolorna nära Stockholm.',
-    excerpt: 'Stockholms skärgård kombinerar vackert vatten med en av Europas tätaste koncentrationer av segelsällskap och segelskolor. Perfekt för din första eller femtonde kurs.',
+    title: 'Segelkurs i Stockholm och skärgården: seglarskolor jämförda',
+    h1: 'Segelkurs i Stockholm och skärgården',
+    metaDescription: 'Seglarkurser i Stockholm och skärgården jämförda: nybörjarkurser, seglarintyg och kurser där du bor ombord. Uppgifterna är kontrollerade mot seglarskolornas egna sidor.',
+    excerpt: 'Seglarskolor i Stockholmsområdet på ett ställe, från en kvälls prova på till kurser där du bor ombord. Varje uppgift är kontrollerad mot seglarskolans egen sida, med källa och datum.',
     location: 'Stockholm',
     emoji: '⛵',
-    readTime: '8 min',
-    tags: ['Nybörjare välkommen', 'Kustskepparintyg', 'Veckolånga kurser', 'Dagskurser'],
+    readTime: '6 min',
+    tags: ['Nybörjare välkommen', 'Seglarintyg', 'Bo ombord', 'Små grupper'],
     intro: [
-      'Stockholm har fler segelsällskap per capita än nästan någon annan stad i världen. Det ger ett exceptionellt utbud av segelkurser – från korta helgkurser för nybörjare till veckolånga kustskepparintyget (KA) och offshore-segling mot Gotland.',
-      'Innerskärgårdens vatten är idealiskt för nybörjare. Smala sund och skyddade vikar gör att du kan öva manövrar utan att oroa dig för hård vind och vind. De flesta segelskolorna i Stockholm startar sina kurser från Saltsjöbaden, Lidingö eller Vaxholm.',
-      'Kursutbudet är brett. Vill du bara lära dig grunderna på en dag eller helg finns det. Vill du ta förarintyget (SBF/SSRS) tar det 2–3 helger. Kustskepparintyget (KA) kräver 5–7 dagars teori och praktik ombord.',
+      'Vill du lära dig segla i södra skärgården utgår Sjöbris Stockholm från Dalarö, med små grupper och en eldriven segelbåt. Här finns också seglarkurser i Nynäshamn, på Riddarfjärden mitt i stan och i Viggbyholm i Täby.',
+      'Vi skriver inga priser. Kontrollera alltid aktuella datum och villkor hos seglarskolan innan du bokar, och hör av dig till info@svalla.se om något inte stämmer.',
     ],
-    kurstyper: [
+    kurstyper: [],
+    anordnare: [
       {
-        name: 'Introduktionskurs segeln',
-        length: '1 dag (6–8 h)',
-        level: 'Nybörjare',
-        certificate: 'Intyg om kursdeltagande',
-        // KÄLLA: Stockholms Segelsällskap, helgkurs nybörjare C55, kurstider 2026 — stockholmssegelsallskap.se/traning-kappsegling/seglarskola (avläst 2026-08-11)
-        price: '4 400 kr (2 700 kr för studerande)',
-        desc: 'Grunderna i kurssegling: vind, manövrar, ankring och säkerhet. Perfekt för dig som aldrig seglat förut. Grupper om 4–6 deltagare på en segelbåt med instruktör.',
+        namn: 'Sjöbris Stockholm',
+        ort: 'Dalarö, södra skärgården',
+        url: 'https://sjobris-stockholm.se/?ref=svalla',
+        utvald: true,
+        // KÄLLA: sjobris-stockholm.se — "från och med 2026 driver vi vår egen verksamhet", "Vi utgår från Dalarö", Terezza "Arcona 36 från 1987 ... Sedan 2025 är hon eldriven och laddas fossilfritt av solen" (läst 2026-11-10)
+        beskrivning: 'Karin Modigh och Ulrika Lewander driver Sjöbris från Dalarö sedan 2026. Kurserna har små grupper, och båten Terezza, en Arcona 36 från 1987, är eldriven sedan 2025 och laddas av solen.',
+        // KÄLLA: sjobris-stockholm.se — "Du lär dig grunderna i seglingen ... under tre dagar", "max 4 deltagare"; skärgårdssegling dag "max 5 deltagare"; två dagar med "övernattning i naturhamn"; "Vi utgår från Dalarö" (läst 2026-11-10)
+        kalla: 'sjobris-stockholm.se',
+        last: '2026-11-10',
+        kurser: [
+          { namn: 'Seglarkurs för nybörjare', fakta: ['Nybörjare', '3 dagar', 'Max 4 deltagare'] },
+          { namn: 'Skärgårdssegling, en dag', fakta: ['En dag', 'Max 5 deltagare'] },
+          { namn: 'Skärgårdssegling, två dagar', fakta: ['Två dagar', 'Övernattning i naturhamn'] },
+        ],
       },
       {
-        name: 'Förarintyg (SBF/SSRS)',
-        length: '2–3 helger',
-        level: 'Nybörjare till medel',
-        certificate: 'Förarintyget – erkänt av de flesta hyrbåtsbolag',
-        // KÄLLA: Safety & Navigationsgruppen — sngruppen.se/kurs/forarbevis-och-forarintyg-bat-stockholm (avläst 2026-08-11)
-        price: 'från 1 995 kr + litteratur ca 400 kr',
-        desc: 'Teoretisk genomgång av sjövägsregler, säkerhet och navigation plus praktik ombord. Med förarintyget kan du hyra de flesta motorbåtar och lättare segelbåtar.',
+        namn: 'Sailstar',
+        ort: 'Viggbyholm, Täby',
+        url: 'https://www.sailstar.se/',
+        // KÄLLA: sailstar.se — Prova-på "1 kväll, 2 timmar Max 4 deltagare"; Grundkurs segling "3 dagar Max 4 deltagare per båt Seglarintyg 1"; stor båt "4 dagar, 3 nätter Max 6 deltagare Seglarintyg 1 och 2"; Kombivecka "6 dagar, 5 nätter Max 6 deltagare" (läst 2026-11-12)
+        kalla: 'sailstar.se',
+        last: '2026-11-12',
+        kurser: [
+          { namn: 'Prova på att segla', fakta: ['Nybörjare', '1 kväll, 2 timmar', 'Max 4 deltagare'] },
+          { namn: 'Grundkurs segling', fakta: ['Nybörjare', '3 dagar', 'Max 4 per båt', 'Seglarintyg 1'] },
+          { namn: 'Grundkurs segling, stor båt', fakta: ['4 dagar, 3 nätter', 'Bo ombord', 'Max 6 deltagare', 'Seglarintyg 1 och 2'] },
+          { namn: 'Kombivecka nivå 1 och 2, stor båt', fakta: ['6 dagar, 5 nätter', 'Bo ombord', 'Max 6 deltagare'] },
+        ],
       },
       {
-        name: 'Kustskepparintyget (KA)',
-        length: '5–7 dagar (kurs + examen)',
-        level: 'Medel – kräver viss segling',
-        certificate: 'Kustskepparintyget – internationellt erkänt',
-        // KÄLLA: Safety & Navigationsgruppen, båtpraktik ingår — sngruppen.se/kurs/kustskepparintyg-kurs (avläst 2026-08-11)
-        price: 'från 2 995 kr + litteratur ca 700 kr',
-        desc: 'Det mest erkända segel-certifikatet i Sverige. Täcker navigation, meteorologi, ankring, kajhantering och offshore-segling. Slutar med teoriprov och praktisk examen.',
+        namn: 'Stockholms Segelsällskap (SSS)',
+        ort: 'Västerbrohamnen, centrala Stockholm',
+        url: 'https://www.stockholmssegelsallskap.se/traning-kappsegling/seglarskola/',
+        // KÄLLA: stockholmssegelsallskap.se — "Helgkurs nybörjare C55 (ungdom/vuxen)", "lördag och söndag", "ca 9-16.30", "Västerbrohamnen", "ungefär 12 deltagare", "C55:or som seglas av 3-4 personer", "Förkunskapskrav: inga" (läst 2026-11-12)
+        kalla: 'stockholmssegelsallskap.se',
+        last: '2026-11-12',
+        kurser: [
+          { namn: 'Helgkurs nybörjare i C55', fakta: ['Ungdom och vuxen', 'Lördag och söndag', 'Ungefär 12 deltagare', '3 till 4 per båt', 'Inga förkunskaper'] },
+        ],
       },
       {
-        name: 'Offshore-segling och bluewater',
-        length: '7–14 dagar',
-        level: 'Avancerad',
-        certificate: 'Offshoresegel-certifikat (SSRS/RYA)',
-        price: 'Prisuppgift hos arrangören — varierar kraftigt med längd och destination',
-        desc: 'Seglar från Stockholm mot Gotland, Åland eller utomlands. Dygns-navigering, vakt-system och bluewater-teknik. Kräver KA eller likvärdig erfarenhet.',
+        namn: 'The Green Trails',
+        ort: 'Marinan i Nynäshamn, södra skärgården',
+        url: 'https://www.thegreentrails.com/sv/seglingskurser-i-stockholm/',
+        // KÄLLA: thegreentrails.com/sv/seglingskurser-i-stockholm — "teorikursen online + Nynäshamn", nybörjare "heldag i skärgården", PLUS "kväll + två dagar", seglarintyg 2 "två dagar med övernattning", intensiv 1+2 "tre dagar med övernattningar", "Ingen tidigare erfarenhet krävs" (läst 2026-11-12)
+        kalla: 'thegreentrails.com',
+        last: '2026-11-12',
+        kurser: [
+          { namn: 'Nybörjarkurs, seglarintyg 1', fakta: ['Nybörjare', 'Teori online och en heldag'] },
+          { namn: 'Nybörjarkurs PLUS, seglarintyg 1', fakta: ['Nybörjare', 'Kväll och två dagar', 'Även navigering och sjömärken'] },
+          { namn: 'Fortsättningskurs, seglarintyg 2', fakta: ['Fortsättning', 'Två dagar', 'Övernattning på båten'] },
+          { namn: 'Intensivkurs, seglarintyg 1 och 2', fakta: ['Tre dagar', 'Övernattningar ombord'] },
+        ],
       },
     ],
     faqs: [
       {
-        q: 'Kan man lära sig segla utan förkunskaper i Stockholms skärgård?',
-        a: 'Ja, absolut. Stockholms innerskärgård med sina skyddade sund är perfekta för nybörjare. Introduktionskurser och helgkurser finns hos många segelsällskap och segelskolor. Du lär dig grunderna på en dag.',
+        q: 'Behöver jag ha seglat förut?',
+        a: 'Nej. Sjöbris nybörjarkurs lär dig grunderna under tre dagar, och nybörjarkurserna hos Sailstar, Stockholms Segelsällskap och The Green Trails kräver inga förkunskaper enligt seglarskolorna själva.',
       },
       {
-        q: 'Hur lång tid tar det att ta kustskepparintyget (KA) i Stockholm?',
-        a: 'KA-kursen tar normalt 5–7 dagar intensivt, eller 2–4 helger uppdelade. Räkna sedan med självstudier inför teoriprovet. Totalt 3–6 månader från nybörjare till godkänd KA.',
+        q: 'Vad är Seglarintyg 1?',
+        // KÄLLA: thegreentrails.com/sv/seglingskurser-i-stockholm — "NFB, seglarintyg 1: Att kunna hantera en mindre segelbåt i skyddade kustnära farvatten i gott väder", "Efter kursen har du möjlighet att skriva ett prov för seglarintyg 1" (läst 2026-11-12)
+        a: 'Ett intyg från Nämnden för Båtlivsutbildning (NFB). Målet är att kunna hantera en mindre segelbåt i skyddade kustnära farvatten i gott väder. Hos till exempel The Green Trails kan du skriva provet efter kursen.',
       },
       {
-        q: 'Var hittar man bra segelkurser i Stockholm?',
-        a: 'Svenska Seglarförbundets hemsida listar certifierade segelsällskap med kursverksamhet. KSSS (Kungliga Svenska Segelsällskapet) i Djurgården och Stockholms Segelsällskap (SSS) är bland de mest aktiva kursarrangörerna i Stockholmsregionen.',
+        q: 'Kan jag bo ombord under kursen?',
+        a: 'Ja. Sjöbris skärgårdssegling över två dagar övernattar i en naturhamn. Sailstar har kurser på fyra och sex dagar på en stor båt, och The Green Trails har övernattning på fortsättnings- och intensivkursen.',
       },
       {
-        q: 'Vad kostar en segelkurs i Stockholm?',
-        // KÄLLA: SSS helgkurs (stockholmssegelsallskap.se), Safety & Navigationsgruppen (sngruppen.se) — avlästa 2026-08-11
-        a: 'Nybörjarhelgkurs hos Stockholms Segelsällskap: 4 400 kr (2 700 kr för studerande). Förarintyg: från 1 995 kr plus litteratur. Kustskepparintyg: från 2 995 kr plus litteratur, båtpraktik ingår. Offshore-kurser prissätts per arrangör och varierar kraftigt med längd och destination.',
+        q: 'Hur tar jag mig till Sjöbris på Dalarö utan bil?',
+        // KÄLLA: SL tidtabell 839 (se Dalarö-sidans källor) — Handens station → Hotellbryggan 33–40 min
+        a: 'Med pendeltåg till Handen och sedan buss 839, 33 till 40 minuter från Handens station. Se Dalarösidan på Svalla för nästa avgångar.',
       },
     ],
   },
