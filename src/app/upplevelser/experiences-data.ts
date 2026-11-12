@@ -3,6 +3,9 @@
 // Lägg in ert partner_id nedan (t.ex. 'ABC123') så spåras alla bokningar automatiskt.
 export const GYG_PARTNER_ID = '' // ← fyll i ert ID när ni fått det
 
+/** Sant först när en provisionslänk faktiskt är aktiv. Styr upplysningen om provision (visas bara då). */
+export const PROVISION_AKTIV = GYG_PARTNER_ID !== ''
+
 /** Bygger GYG-länk med affiliate-tagg om partner_id är satt */
 export function gygUrl(path: string): string {
   const base = `https://www.getyourguide.com${path}`
