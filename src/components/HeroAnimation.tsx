@@ -3,10 +3,12 @@ import { useEffect, useRef } from 'react'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    HeroAnimation — En stilla vik i Stockholms skärgård
-   5 varianter: klar sommardag | gyllene timmen | midnattssol | storm | dimma
+   6 varianter: klar sommardag | gyllene timmen | midnattssol | storm | dimma | vinter
+   Vinter (6) läggs ovanpå sommarscenen: snö, is, isbrytande färja, skridskoåkare
+   och snögubbe. Fiskarna under ytan är desamma. Varianterna 1–5 är oförändrade.
 ───────────────────────────────────────────────────────────────────────────── */
 
-export type HeroVariant = 1 | 2 | 3 | 4 | 5
+export type HeroVariant = 1 | 2 | 3 | 4 | 5 | 6
 
 interface Theme {
   sky: [string, string, string, string]
@@ -120,6 +122,26 @@ const THEMES: Record<HeroVariant, Theme> = {
     seabedTint:   'rgba(20,40,58,',
     shimmer:      '240,248,255',
   },
+  6: {
+    // Vinter (2026-11-12): blek vinterhimmel, snötäckta öar, nästan stilla vatten under isen
+    sky:          ['#a9c4dd','#bccfe2','#d9dfe9','#eee2e0'],
+    sunX: 0.73,   sunY: 0.12, sunR: 0.028,
+    sunInner:     '#fff8ea', sunOuter: '#f6d9a8',
+    glowA: 0.35,  glowColor: '255,228,190',
+    water:        ['#2a6f9e','#1d5a8a','#124474','#0a2a50'],
+    waterFade:    'rgba(10,42,80,',
+    waterHighlight:'rgba(255,255,255,0.10)',
+    farIsland:    'rgba(214,225,235,0.78)',
+    islandGreen:  '#eef3f7',
+    rockColor:    '#a3acb3',
+    pineTrunk:    '#4e3018', pineBody: '#234a20', pineTop: '#2e5e2a',
+    overlay:      ['rgba(5,20,40,0.02)','rgba(5,20,40,0.06)','rgba(5,20,40,0.10)','rgba(5,20,40,0.06)','rgba(5,20,40,0.03)'],
+    waveSpeed: 0.30, waveAmp: 0.05,
+    birdColor:    'rgba(60,75,90,0.55)',
+    underwaterRay:'180,205,225',
+    seabedTint:   'rgba(10,30,55,',
+    shimmer:      '255,255,255',
+  },
 }
 
 type BoatType = 'sail'
@@ -142,12 +164,18 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     if (!cx) return
 
     const th = THEMES[variant]
+    const VINTER = variant === 6
 
     let W = 0, H = 0, dpr = 1, szH = 0
     let raf = 0, last = 0, t = 0
     let boats: Boat[] = [], birds: Bird[] = [], fish: Fish[] = [], whales: Whale[] = []
     let bubbles: Bubble[] = []
     let ferry: Ferry = { x: 0, spd: 0, ph: 0 }
+    // Vinter: snöflingor, skridskoåkare och isflak (används bara när VINTER)
+    let flingor: { x: number; y: number; r: number; s: number; d: number }[] = []
+    let skridsko: { cx: number; cy: number; rx: number; ry: number; p: number; v: number; col: string }[] = []
+    let isflak: { x: number; y: number; w: number; h: number; a: number; vy: number }[] = []
+    let flakTimer = 0
 
     /* ── Layout ─────────────────────────────────────────────────────────── */
     const WL = () => H * 0.58
@@ -246,6 +274,22 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         r: 0.7 + rnd() * 1.4, spd: 1.4 + rnd() * 2.8,
         ph: rnd() * Math.PI * 2, a: 0.06 + rnd() * 0.10,
       }))
+      if (VINTER) {
+        const wl = WL()
+        flingor = Array.from({ length: isMobile ? 70 : 160 }, () => ({
+          x: rnd() * W, y: rnd() * wl, r: 0.8 + rnd() * 2.0, s: 14 + rnd() * 26, d: rnd() * 6,
+        }))
+        const iy = wl + H * 0.028
+        skridsko = isMobile ? [
+          { cx: W * 0.62, cy: iy, rx: W * 0.10, ry: H * 0.006, p: 0, v: 0.35, col: '#c0392b' },
+          { cx: W * 0.30, cy: iy + H * 0.010, rx: W * 0.07, ry: H * 0.004, p: 2, v: -0.42, col: '#1c5aa6' },
+        ] : [
+          { cx: W * 0.64, cy: iy, rx: W * 0.075, ry: H * 0.008, p: 0, v: 0.35, col: '#c0392b' },
+          { cx: W * 0.68, cy: iy + H * 0.012, rx: W * 0.050, ry: H * 0.005, p: 2, v: -0.45, col: '#1c5aa6' },
+          { cx: W * 0.33, cy: iy + H * 0.004, rx: W * 0.045, ry: H * 0.005, p: 1, v: 0.40, col: '#e5a33b' },
+        ]
+        isflak = []
+      }
     }
 
     /* ── Resize ─────────────────────────────────────────────────────────── */
@@ -343,6 +387,12 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.beginPath()
       cx.moveTo(x, y - h*1.30); cx.lineTo(x + w2*0.60, y - h*0.38); cx.lineTo(x - w2*0.60, y - h*0.38); cx.closePath()
       cx.fillStyle = th.pineTop; cx.fill()
+      if (VINTER) {
+        cx.fillStyle = 'rgba(248,251,253,0.95)'
+        cx.beginPath(); cx.moveTo(x, y - h*1.30); cx.lineTo(x + w2*0.26, y - h*0.92); cx.lineTo(x - w2*0.26, y - h*0.92); cx.closePath(); cx.fill()
+        cx.beginPath(); cx.moveTo(x - w2*0.62, y - h*0.40); cx.lineTo(x + w2*0.62, y - h*0.40); cx.lineTo(x + w2*0.40, y - h*0.52); cx.lineTo(x - w2*0.40, y - h*0.52); cx.closePath(); cx.fill()
+        cx.beginPath(); cx.moveTo(x - w2, y); cx.lineTo(x + w2, y); cx.lineTo(x + w2*0.75, y - h*0.10); cx.lineTo(x - w2*0.75, y - h*0.10); cx.closePath(); cx.fill()
+      }
     }
 
     /* ── Faluröd cottage ────────────────────────────────────────────────── */
@@ -360,8 +410,12 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.closePath(); cx.fill()
       cx.fillStyle = '#ede8dc'
       cx.fillRect(x - cw*0.15, y + ch*0.20, cw*0.30, ch*0.32)
-      cx.fillStyle = 'rgba(120,185,218,0.50)'
+      cx.fillStyle = VINTER ? 'rgba(246,201,95,0.85)' : 'rgba(120,185,218,0.50)'
       cx.fillRect(x - cw*0.13, y + ch*0.22, cw*0.26, ch*0.28)
+      if (VINTER) {
+        cx.fillStyle = '#fbfdff'
+        cx.beginPath(); cx.moveTo(x - cw/2 - 3, y + 1); cx.lineTo(x + cw/2 + 3, y + 1); cx.lineTo(x, y - ch*0.62 - 2); cx.closePath(); cx.fill()
+      }
     }
 
     /* ── Bastu / sauna ──────────────────────────────────────────────────── */
@@ -613,7 +667,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       dock(W < 600 ? W * 0.312 : W * 0.222, wb)
 
       // Fishing net — drying on shore (halva storleken sedan 2026-11-12)
-      fishingNet(W * 0.178, wb * 0.995)
+      if (!VINTER) fishingNet(W * 0.178, wb * 0.995)
 
       // Flagpole — Swedish flag
       flagpole(W * 0.120, wb * 0.950)
@@ -648,11 +702,107 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
       // Sauna with short dock + ladder on right side
       sauna(W * 0.740, W < 600 ? wb * 0.935 : wb * 0.968)
+      if (VINTER) snogubbe(W < 600 ? W * 0.665 : W * 0.690, wb * 0.962)
       saunaDock(W * 0.758, wb)
       ladder(W * 0.772, wb)
 
 
       cx.restore()
+    }
+
+    /* ── VINTER (variant 6) ─────────────────────────────────────────────── */
+    const snogubbe = (x: number, y: number) => {
+      const k = szH / 800
+      cx.fillStyle = '#fdfefe'
+      ;[[0, -12, 12], [0, -30, 9], [0, -43, 6]].forEach(([dx, dy, r]) => {
+        cx.beginPath(); cx.arc(x + dx * k, y + dy * k, r * k, 0, Math.PI * 2); cx.fill()
+      })
+      cx.fillStyle = '#e07a1f'
+      cx.beginPath(); cx.moveTo(x + k, y - 43 * k); cx.lineTo(x + 8 * k, y - 42 * k); cx.lineTo(x + k, y - 41 * k); cx.closePath(); cx.fill()
+      cx.fillStyle = '#222'
+      ;[[-2, -45], [2, -45], [0, -32], [0, -27]].forEach(([dx, dy]) => {
+        cx.beginPath(); cx.arc(x + dx * k, y + dy * k, 1.1 * k, 0, Math.PI * 2); cx.fill()
+      })
+      cx.fillStyle = '#c0392b'; cx.fillRect(x - 6 * k, y - 39 * k, 12 * k, 3 * k)
+      cx.fillStyle = '#2b2b2b'; cx.fillRect(x - 5 * k, y - 52 * k, 10 * k, 3 * k); cx.fillRect(x - 3.5 * k, y - 59 * k, 7 * k, 7 * k)
+      cx.strokeStyle = '#5a3a1a'; cx.lineWidth = 1.5 * k
+      cx.beginPath(); cx.moveTo(x - 8 * k, y - 30 * k); cx.lineTo(x - 17 * k, y - 36 * k)
+      cx.moveTo(x + 8 * k, y - 30 * k); cx.lineTo(x + 17 * k, y - 36 * k); cx.stroke()
+    }
+
+    // Isen ligger som ett band över vattenytan; vattnet och fiskarna syns under den
+    const drawIs = () => {
+      const wb = WL(), ih = H * 0.055
+      const g = cx.createLinearGradient(0, wb - 2, 0, wb + ih)
+      g.addColorStop(0, '#e8f0f6'); g.addColorStop(0.6, '#d5e4ee'); g.addColorStop(1, 'rgba(195,216,231,0.92)')
+      cx.fillStyle = g; cx.fillRect(0, wb - 2, W, ih + 2)
+      const ug = cx.createLinearGradient(0, wb + ih, 0, wb + ih + H * 0.03)
+      ug.addColorStop(0, 'rgba(210,228,240,0.30)'); ug.addColorStop(1, 'rgba(210,228,240,0)')
+      cx.fillStyle = ug; cx.fillRect(0, wb + ih, W, H * 0.03)
+      cx.strokeStyle = 'rgba(255,255,255,0.70)'; cx.lineWidth = 1
+      ;[[0.04, 0.35, 0.11, 0.65], [0.22, 0.20, 0.28, 0.80], [0.40, 0.55, 0.49, 0.30], [0.86, 0.30, 0.94, 0.72]].forEach(([a, b, c2, d]) => {
+        cx.beginPath(); cx.moveTo(W * a, wb + ih * b); cx.lineTo(W * (a + c2) / 2, wb + ih * (b + 0.15)); cx.lineTo(W * c2, wb + ih * d); cx.stroke()
+      })
+    }
+
+    // Rännan bakom färjan och isflaken som bryts loss vid fören
+    const drawRanna = (dt: number) => {
+      const wb = WL(), rh = H * 0.024
+      const fram = Math.max(-200, ferry.x - 60)
+      cx.fillStyle = th.water[0]
+      cx.fillRect(fram, wb - 3, W - fram + 10, rh)
+      cx.fillStyle = 'rgba(255,255,255,0.10)'; cx.fillRect(fram, wb - 3, W - fram + 10, 2)
+      flakTimer += dt
+      if (flakTimer > 260 && ferry.x > -60 && ferry.x < W + 40) {
+        flakTimer = 0
+        isflak.push({ x: ferry.x - 64 + (Math.random() - 0.5) * 16, y: wb + (Math.random() - 0.3) * rh, w: 8 + Math.random() * 14, h: 4 + Math.random() * 4, a: (Math.random() - 0.5), vy: (Math.random() - 0.5) * 0.4 })
+        if (isflak.length > 60) isflak.shift()
+      }
+      isflak.forEach(f => {
+        f.y += f.vy * dt * 0.01; f.vy *= 0.985
+        cx.save(); cx.translate(f.x, f.y); cx.rotate(f.a)
+        cx.fillStyle = '#eef5fa'; cx.fillRect(-f.w / 2, -f.h / 2, f.w, f.h)
+        cx.strokeStyle = 'rgba(120,150,175,0.55)'; cx.lineWidth = 0.8; cx.strokeRect(-f.w / 2, -f.h / 2, f.w, f.h)
+        cx.restore()
+      })
+    }
+
+    const skridskoakare = (x: number, y: number, col: string, dir: number, ph: number) => {
+      const k = szH / 800
+      cx.save(); cx.translate(x, y); cx.scale(dir * 0.9 * k, 0.9 * k)
+      const b = Math.sin(ph * 6) * 0.5
+      cx.strokeStyle = '#1f2a33'; cx.lineWidth = 2.4; cx.lineCap = 'round'
+      cx.beginPath(); cx.moveTo(0, -14); cx.lineTo(-5 - b * 3, 0); cx.moveTo(0, -14); cx.lineTo(6 + b * 3, -1); cx.stroke()
+      cx.fillStyle = col
+      cx.beginPath(); cx.moveTo(-4, -14); cx.lineTo(4, -14); cx.lineTo(6, -27); cx.lineTo(-2, -28); cx.closePath(); cx.fill()
+      cx.fillStyle = '#f1c9a5'; cx.beginPath(); cx.arc(2, -32, 4, 0, Math.PI * 2); cx.fill()
+      cx.fillStyle = col; cx.fillRect(-2, -37, 8, 3)
+      cx.strokeStyle = col; cx.lineWidth = 2
+      cx.beginPath(); cx.moveTo(1, -24); cx.lineTo(-9, -19 - b * 4); cx.moveTo(3, -24); cx.lineTo(13, -21 + b * 4); cx.stroke()
+      cx.strokeStyle = '#cfd8de'; cx.lineWidth = 1.4
+      cx.beginPath(); cx.moveTo(-9 - b * 3, 1); cx.lineTo(-1 - b * 3, 1); cx.moveTo(2 + b * 3, 0); cx.lineTo(10 + b * 3, 0); cx.stroke()
+      cx.restore()
+    }
+
+    const drawSkridsko = (dt: number) => {
+      skridsko.forEach(sk => {
+        sk.p += sk.v * dt * 0.001
+        cx.strokeStyle = 'rgba(150,175,195,0.45)'; cx.lineWidth = 0.8
+        cx.beginPath(); cx.ellipse(sk.cx, sk.cy, sk.rx, sk.ry, 0, 0, Math.PI * 2); cx.stroke()
+        const dir = -Math.sin(sk.p) * sk.v > 0 ? 1 : -1
+        skridskoakare(sk.cx + Math.cos(sk.p) * sk.rx, sk.cy + Math.sin(sk.p) * sk.ry, sk.col, dir, sk.p)
+      })
+    }
+
+    // Snön faller bara ovanför isen
+    const drawSno = (dt: number) => {
+      const wb = WL()
+      cx.fillStyle = 'rgba(255,255,255,0.88)'
+      flingor.forEach(f => {
+        f.y += f.s * dt * 0.001; f.x += Math.sin(t * 0.6 + f.d) * 0.25
+        if (f.y > wb + H * 0.02) { f.y = -4; f.x = Math.random() * W }
+        cx.beginPath(); cx.arc(f.x, f.y, f.r, 0, Math.PI * 2); cx.fill()
+      })
     }
 
     /* ── Water ───────────────────────────────────────────────────────────── */
@@ -1091,7 +1241,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     const drawFerry = (dt: number) => {
       ferry.x -= ferry.spd * dt * 0.001
       ferry.ph += 0.8 * dt * 0.001
-      if (ferry.x < -200) ferry.x = W + 200
+      if (ferry.x < -200) { ferry.x = W + 200; isflak = [] }
       const wy  = wave(ferry.x)
       const bob = Math.sin(ferry.ph * 0.7) * 1.2
       const tilt = Math.sin(ferry.ph * 0.55) * 0.35 * (Math.PI / 180)
@@ -1227,16 +1377,19 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawFarIslands()
       drawNearIslands()
       drawWater()
-      drawWaterShimmer()
+      if (VINTER) drawIs()
+      else drawWaterShimmer()
       drawUnderwater()
       drawParticles()
+      if (VINTER) { drawRanna(dt); drawSkridsko(dt) }
       drawFerry(dt)
-      drawBoats(dt)
+      if (!VINTER) drawBoats(dt)
       drawFish(dt)
       drawWhales(dt)
       drawBubbles(dt)
       drawOverlay()
       drawBirds(dt)
+      if (VINTER) drawSno(dt)
     }
 
     // ── Loopen: högst en åt gången (revision 2026-10-02) ──────────────────
