@@ -65,6 +65,13 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-dd-link:hover{color:#fff;background:rgba(255,255,255,.07)}
 .nav-dd-divider{height:1px;background:rgba(255,255,255,.08);margin:6px 8px}
 .nav-dd-section{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:10px 14px 4px}
+.nav-dd-mega{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:10px;width:540px}
+.nav-dd-kurs{display:flex;gap:10px;align-items:center;white-space:normal}
+.nav-dd-kurs small{display:block;font-size:11.5px;font-weight:400;color:rgba(255,255,255,.55);margin-top:2px}
+.nav-dd-partner{display:flex;gap:10px;align-items:center;border:1px solid var(--accent);border-radius:10px;padding:10px 12px;margin:4px 6px;color:#fff;text-decoration:none;white-space:normal;transition:.14s}
+.nav-dd-partner:hover{background:rgba(255,255,255,.07)}
+.nav-dd-partner small{display:block;font-size:11.5px;color:rgba(255,255,255,.6);margin-top:2px}
+.nav-dd-partner-ikon{width:32px;height:32px;flex:0 0 32px;border-radius:8px;background:rgba(201,106,43,.18);display:flex;align-items:center;justify-content:center;color:var(--accent)}
 @media(max-width:900px){.nav-dd-panel{display:none}}
 /* Mobile-drawer accordion */
 .mob-acc{border-bottom:1px solid rgba(255,255,255,.06)}
@@ -327,6 +334,14 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .activity-card h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--teal);margin-bottom:10px}
 .activity-card p{font-size:13.5px;color:var(--muted);line-height:1.65}
 .activity-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.kurser-section{background:var(--white);padding-top:0}
+.kurser-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.kurs-ruta{display:block;background:var(--white);border:1px solid rgba(30,92,130,.15);border-radius:var(--r);padding:16px 18px;text-decoration:none;color:inherit;transition:.2s}
+.kurs-ruta:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.kurs-ruta b{display:block;font-family:'Playfair Display',serif;font-size:17px;color:var(--teal);margin-bottom:3px}
+.kurs-ruta span{font-size:13px;color:var(--muted)}
+.kurs-ruta.kurs-partner{border:2px solid var(--accent)}
+.kurs-ruta.kurs-partner span{color:var(--accent-strong);font-weight:600}
 .gallery-section{background:var(--sea-dark);padding:72px 0;overflow:hidden}
 .gallery-section .section-inner{padding:0 40px;margin-bottom:32px}
 .gallery-section .section-label{color:var(--accent-pale)}
@@ -490,6 +505,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 @media(max-width:600px){
 .resetips-section,.guides-section,.thorkel-section,.faq-section{padding:56px 20px}
 .routes-section{padding:56px 20px}
+.kurser-section{padding:0 20px 56px}
 .resetips-grid{grid-template-columns:1fr}
 .routes-scroll{grid-template-columns:1fr 1fr}
 .regions-scroll{grid-template-columns:1fr 1fr}
@@ -588,6 +604,24 @@ const LANDING_HTML = `
  <div class="nav-dd-section">Boka en upplevelse</div>
  <a href="/upplevelser?kategori=guidade" class="nav-dd-link">Guidade turer</a>
  <a href="/upplevelser" class="nav-dd-link">Alla upplevelser →</a>
+ </div></div>
+ </li>
+ <li class="nav-dropdown">
+ <a href="/segelkurs">Kurser</a>
+ <div class="nav-dd-panel"><div class="nav-dd-inner nav-dd-mega">
+ <div>
+ <div class="nav-dd-section">Kurser</div>
+ <a href="/segelkurs/stockholms-skargard" class="nav-dd-link nav-dd-kurs"><span>Segelkurser<small>Stockholms skärgård</small></span></a>
+ <a href="/segelkurs/goteborg" class="nav-dd-link nav-dd-kurs"><span>Segelkurser<small>Göteborg och Bohuslän</small></span></a>
+ <a href="/aktivitet/kajak" class="nav-dd-link nav-dd-kurs"><span>Kajak<small>Kurser och turer</small></span></a>
+ <a href="/upplevelser?kategori=guidade" class="nav-dd-link nav-dd-kurs"><span>Guidade turer<small>Med skeppare eller guide</small></span></a>
+ <div class="nav-dd-divider"></div>
+ <a href="/segelkurs" class="nav-dd-link">Alla kurser →</a>
+ </div>
+ <div>
+ <div class="nav-dd-section">Utvalda partner</div>
+ <a href="https://sjobris-stockholm.se/?ref=svalla" target="_blank" rel="noopener" class="nav-dd-partner"><span class="nav-dd-partner-ikon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10.5" y1="2" x2="11.5" y2="16.5"/><path d="M10.5 2 L19 15.5 L11.5 16.5 Z"/><path d="M10.5 6 L3 16.5 L11.5 16.5"/><path d="M2.5 16.5 Q7 19 12 20 Q17 19 21.5 16.5"/></svg></span><span>Sjöbris Stockholm<small>Seglarkurser från Dalarö</small></span></a>
+ </div>
  </div></div>
  </li>
  <li class="nav-dropdown">
@@ -704,6 +738,18 @@ const LANDING_HTML = `
  <a href="/skargardsdatum" class="mob-acc-link">Skärgårdens datum</a>
  <a href="/bingo" class="mob-acc-link">Skärgårdsbingo 2026</a>
  <a href="/upplevelser" class="mob-acc-link" style="font-weight:600;color:var(--sea,#0a7b8c)">Alla upplevelser →</a>
+ </div>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head">Kurser<span class="mob-acc-chev">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/segelkurs/stockholms-skargard" class="mob-acc-link">Segelkurser i Stockholms skärgård</a>
+ <a href="/segelkurs/goteborg" class="mob-acc-link">Segelkurser i Göteborg och Bohuslän</a>
+ <a href="/aktivitet/kajak" class="mob-acc-link">Kajak</a>
+ <a href="/upplevelser?kategori=guidade" class="mob-acc-link">Guidade turer</a>
+ <div class="mob-acc-section">Utvalda partner</div>
+ <a href="https://sjobris-stockholm.se/?ref=svalla" target="_blank" rel="noopener" class="mob-acc-link">Sjöbris Stockholm, Dalarö</a>
+ <a href="/segelkurs" class="mob-acc-link" style="font-weight:600;color:var(--sea,#0a7b8c)">Alla kurser →</a>
  </div>
  </div>
  <div class="mob-acc">
@@ -1142,6 +1188,23 @@ const LANDING_HTML = `
  <div class="activity-tags"><span class="chip">Bilfria öar</span><span class="chip">Uthyrning</span><span class="chip">Familjefärd</span></div>
  <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide &rarr;</div>
  </a>
+ </div>
+ </div>
+</section>
+
+<section class="kurser-section" id="kurser">
+ <div class="section-inner">
+ <div class="section-header reveal">
+ <div class="section-label">Kurser</div>
+ <h2 class="section-title">Lär dig något nytt på sjön</h2>
+ <p class="section-sub">Kurser för nybörjare och vana, kontrollerade mot anordnarna.</p>
+ </div>
+ <div class="kurser-grid reveal">
+ <a href="/segelkurs/stockholms-skargard" class="kurs-ruta"><b>Segelkurser</b><span>Stockholms skärgård</span></a>
+ <a href="/segelkurs/goteborg" class="kurs-ruta"><b>Segelkurser</b><span>Göteborg och Bohuslän</span></a>
+ <a href="/aktivitet/kajak" class="kurs-ruta"><b>Kajak</b><span>Kurser och turer</span></a>
+ <a href="/upplevelser?kategori=guidade" class="kurs-ruta"><b>Guidade turer</b><span>Med skeppare eller guide</span></a>
+ <a href="https://sjobris-stockholm.se/?ref=svalla" target="_blank" rel="noopener" class="kurs-ruta kurs-partner"><b>Sjöbris, Dalarö</b><span>Svalla-partner</span></a>
  </div>
  </div>
 </section>
