@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { EXPERIENCES, getExperience } from '../experiences-data'
+import { EXPERIENCES, PROVISION_AKTIV, getExperience } from '../experiences-data'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -193,8 +193,8 @@ export default async function UpplevelseDetailPage({ params }: Props) {
           </Link>
         </div>
 
-        {/* Disclaimer */}
-        <p style={{
+        {/* Upplysning om provision: visas bara när just den här länken ger provision */}
+        {PROVISION_AKTIV && exp.affiliateType === 'getyourguide' && <p style={{
           fontSize: 12,
           color: 'var(--txt3, #aaa)',
           lineHeight: 1.6,
@@ -203,7 +203,7 @@ export default async function UpplevelseDetailPage({ params }: Props) {
           marginBottom: 0,
         }}>
           Svalla kan få provision när du bokar via våra länkar. Det påverkar inte priset du betalar.
-        </p>
+        </p>}
       </article>
     </div>
   )
