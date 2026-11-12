@@ -714,13 +714,13 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     const snogubbe = (x: number, y: number) => {
       const k = szH / 800
       cx.fillStyle = '#fdfefe'
-      ;[[0, -12, 12], [0, -30, 9], [0, -43, 6]].forEach(([dx, dy, r]) => {
+      ;([[0, -12, 12], [0, -30, 9], [0, -43, 6]] as [number, number, number][]).forEach(([dx, dy, r]) => {
         cx.beginPath(); cx.arc(x + dx * k, y + dy * k, r * k, 0, Math.PI * 2); cx.fill()
       })
       cx.fillStyle = '#e07a1f'
       cx.beginPath(); cx.moveTo(x + k, y - 43 * k); cx.lineTo(x + 8 * k, y - 42 * k); cx.lineTo(x + k, y - 41 * k); cx.closePath(); cx.fill()
       cx.fillStyle = '#222'
-      ;[[-2, -45], [2, -45], [0, -32], [0, -27]].forEach(([dx, dy]) => {
+      ;([[-2, -45], [2, -45], [0, -32], [0, -27]] as [number, number][]).forEach(([dx, dy]) => {
         cx.beginPath(); cx.arc(x + dx * k, y + dy * k, 1.1 * k, 0, Math.PI * 2); cx.fill()
       })
       cx.fillStyle = '#c0392b'; cx.fillRect(x - 6 * k, y - 39 * k, 12 * k, 3 * k)
@@ -740,7 +740,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       ug.addColorStop(0, 'rgba(210,228,240,0.30)'); ug.addColorStop(1, 'rgba(210,228,240,0)')
       cx.fillStyle = ug; cx.fillRect(0, wb + ih, W, H * 0.03)
       cx.strokeStyle = 'rgba(255,255,255,0.70)'; cx.lineWidth = 1
-      ;[[0.04, 0.35, 0.11, 0.65], [0.22, 0.20, 0.28, 0.80], [0.40, 0.55, 0.49, 0.30], [0.86, 0.30, 0.94, 0.72]].forEach(([a, b, c2, d]) => {
+      ;([[0.04, 0.35, 0.11, 0.65], [0.22, 0.20, 0.28, 0.80], [0.40, 0.55, 0.49, 0.30], [0.86, 0.30, 0.94, 0.72]] as [number, number, number, number][]).forEach(([a, b, c2, d]) => {
         cx.beginPath(); cx.moveTo(W * a, wb + ih * b); cx.lineTo(W * (a + c2) / 2, wb + ih * (b + 0.15)); cx.lineTo(W * c2, wb + ih * d); cx.stroke()
       })
     }
