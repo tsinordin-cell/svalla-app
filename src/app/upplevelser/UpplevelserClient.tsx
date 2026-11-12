@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { EXPERIENCES, type ExperienceCategory } from './experiences-data'
+import { EXPERIENCES, PROVISION_AKTIV, type ExperienceCategory } from './experiences-data'
 
 const CATEGORY_LABELS: Record<string, string> = {
   ribbåtstur: 'Ribbåtsturer',
@@ -277,8 +277,8 @@ export default function UpplevelserPage() {
         ))}
       </div>
 
-      {/* Disclaimer */}
-      <p style={{
+      {/* Upplysning om provision: visas bara när en provisionslänk är aktiv */}
+      {PROVISION_AKTIV && <p style={{
         textAlign: 'center',
         fontSize: 12,
         color: 'var(--txt3, #888)',
@@ -288,7 +288,7 @@ export default function UpplevelserPage() {
         lineHeight: 1.6,
       }}>
         Svalla kan få provision när du bokar via våra länkar. Det påverkar inte priset du betalar.
-      </p>
+      </p>}
     </div>
   )
 }
