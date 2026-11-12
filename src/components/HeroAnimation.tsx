@@ -133,7 +133,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     waterHighlight:'rgba(255,255,255,0.10)',
     farIsland:    'rgba(138,162,186,0.78)',   // mörkare än himlen så att bodarna syns stå på öar
     islandGreen:  '#eef3f7',
-    rockColor:    '#a3acb3',
+    rockColor:    '#e3e9ee',   // snötäckt klippa (Max 2026-11-12)
     pineTrunk:    '#4e3018', pineBody: '#234a20', pineTop: '#2e5e2a',
     overlay:      ['rgba(5,20,40,0.02)','rgba(5,20,40,0.06)','rgba(5,20,40,0.10)','rgba(5,20,40,0.06)','rgba(5,20,40,0.03)'],
     waveSpeed: 0.30, waveAmp: 0.05,
@@ -274,6 +274,10 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       }))
       if (VINTER) {
         const wl = WL()
+        // Alla fiskar och tumlare håller sig under isen hela tiden (Max 2026-11-12)
+        const isBotten = wl + (isMobile ? H * 0.032 : H * 0.055) + H * 0.025
+        fish.forEach(f => { const min = isBotten + f.sz * 1.2; if (f.y < min) f.y = min + rnd() * H * 0.04 })
+        whales.forEach(w => { const min = isBotten + w.sz * 1.0; if (w.y < min) w.y = min + rnd() * H * 0.03 })
         flingor = Array.from({ length: isMobile ? 40 : 160 }, () => ({
           x: rnd() * W, y: rnd() * wl, r: 0.8 + rnd() * 2.0, s: 14 + rnd() * 26, d: rnd() * 6,
         }))
