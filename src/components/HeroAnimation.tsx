@@ -276,13 +276,13 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       }))
       if (VINTER) {
         const wl = WL()
-        flingor = Array.from({ length: isMobile ? 70 : 160 }, () => ({
+        flingor = Array.from({ length: isMobile ? 40 : 160 }, () => ({
           x: rnd() * W, y: rnd() * wl, r: 0.8 + rnd() * 2.0, s: 14 + rnd() * 26, d: rnd() * 6,
         }))
         const iy = wl + H * 0.028
+        // Mobil: en enda åkare, långt från färjan, så att scenen inte blir rörig
         skridsko = isMobile ? [
-          { cx: W * 0.62, cy: iy, rx: W * 0.10, ry: H * 0.006, p: 0, v: 0.35, col: '#c0392b' },
-          { cx: W * 0.30, cy: iy + H * 0.010, rx: W * 0.07, ry: H * 0.004, p: 2, v: -0.42, col: '#1c5aa6' },
+          { cx: W * 0.22, cy: iy - H * 0.004, rx: W * 0.08, ry: H * 0.003, p: 2, v: -0.40, col: '#1c5aa6' },
         ] : [
           { cx: W * 0.64, cy: iy, rx: W * 0.075, ry: H * 0.008, p: 0, v: 0.35, col: '#c0392b' },
           { cx: W * 0.68, cy: iy + H * 0.012, rx: W * 0.050, ry: H * 0.005, p: 2, v: -0.45, col: '#1c5aa6' },
@@ -732,7 +732,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     // Isen ligger som ett band över vattenytan; vattnet och fiskarna syns under den
     const drawIs = () => {
-      const wb = WL(), ih = H * 0.055
+      const mobil = W < 600
+      const wb = WL(), ih = mobil ? H * 0.032 : H * 0.055
       const g = cx.createLinearGradient(0, wb - 2, 0, wb + ih)
       g.addColorStop(0, '#e8f0f6'); g.addColorStop(0.6, '#d5e4ee'); g.addColorStop(1, 'rgba(195,216,231,0.92)')
       cx.fillStyle = g; cx.fillRect(0, wb - 2, W, ih + 2)
@@ -740,23 +741,25 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       ug.addColorStop(0, 'rgba(210,228,240,0.30)'); ug.addColorStop(1, 'rgba(210,228,240,0)')
       cx.fillStyle = ug; cx.fillRect(0, wb + ih, W, H * 0.03)
       cx.strokeStyle = 'rgba(255,255,255,0.70)'; cx.lineWidth = 1
-      ;([[0.04, 0.35, 0.11, 0.65], [0.22, 0.20, 0.28, 0.80], [0.40, 0.55, 0.49, 0.30], [0.86, 0.30, 0.94, 0.72]] as [number, number, number, number][]).forEach(([a, b, c2, d]) => {
+      const sprickor = ([[0.04, 0.35, 0.11, 0.65], [0.22, 0.20, 0.28, 0.80], [0.40, 0.55, 0.49, 0.30], [0.86, 0.30, 0.94, 0.72]] as [number, number, number, number][])
+      ;(mobil ? sprickor.slice(3) : sprickor).forEach(([a, b, c2, d]) => {
         cx.beginPath(); cx.moveTo(W * a, wb + ih * b); cx.lineTo(W * (a + c2) / 2, wb + ih * (b + 0.15)); cx.lineTo(W * c2, wb + ih * d); cx.stroke()
       })
     }
 
     // Rännan bakom färjan och isflaken som bryts loss vid fören
     const drawRanna = (dt: number) => {
-      const wb = WL(), rh = H * 0.024
+      const mobil = W < 600
+      const wb = WL(), rh = mobil ? H * 0.014 : H * 0.024
       const fram = Math.max(-200, ferry.x - 60)
       cx.fillStyle = th.water[0]
       cx.fillRect(fram, wb - 3, W - fram + 10, rh)
       cx.fillStyle = 'rgba(255,255,255,0.10)'; cx.fillRect(fram, wb - 3, W - fram + 10, 2)
       flakTimer += dt
-      if (flakTimer > 260 && ferry.x > -60 && ferry.x < W + 40) {
+      if (flakTimer > (mobil ? 700 : 260) && ferry.x > -60 && ferry.x < W + 40) {
         flakTimer = 0
-        isflak.push({ x: ferry.x - 64 + (Math.random() - 0.5) * 16, y: wb + (Math.random() - 0.3) * rh, w: 8 + Math.random() * 14, h: 4 + Math.random() * 4, a: (Math.random() - 0.5), vy: (Math.random() - 0.5) * 0.4 })
-        if (isflak.length > 60) isflak.shift()
+        isflak.push({ x: ferry.x - 64 + (Math.random() - 0.5) * 16, y: wb + (Math.random() - 0.3) * rh, w: (mobil ? 5 : 8) + Math.random() * (mobil ? 7 : 14), h: (mobil ? 3 : 4) + Math.random() * (mobil ? 2 : 4), a: (Math.random() - 0.5), vy: (Math.random() - 0.5) * 0.4 })
+        if (isflak.length > (mobil ? 14 : 60)) isflak.shift()
       }
       isflak.forEach(f => {
         f.y += f.vy * dt * 0.01; f.vy *= 0.985
@@ -787,8 +790,10 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     const drawSkridsko = (dt: number) => {
       skridsko.forEach(sk => {
         sk.p += sk.v * dt * 0.001
-        cx.strokeStyle = 'rgba(150,175,195,0.45)'; cx.lineWidth = 0.8
-        cx.beginPath(); cx.ellipse(sk.cx, sk.cy, sk.rx, sk.ry, 0, 0, Math.PI * 2); cx.stroke()
+        if (W >= 600) {
+          cx.strokeStyle = 'rgba(150,175,195,0.45)'; cx.lineWidth = 0.8
+          cx.beginPath(); cx.ellipse(sk.cx, sk.cy, sk.rx, sk.ry, 0, 0, Math.PI * 2); cx.stroke()
+        }
         const dir = -Math.sin(sk.p) * sk.v > 0 ? 1 : -1
         skridskoakare(sk.cx + Math.cos(sk.p) * sk.rx, sk.cy + Math.sin(sk.p) * sk.ry, sk.col, dir, sk.p)
       })
