@@ -13,6 +13,18 @@ const HeroAnimation = dynamic(() => import('@/components/HeroAnimation'), {
  loading: () => null,
 })
 
+// Startsidans säsong (2026-11-12): vintermotiv (variant 6) 1 december till sista februari,
+// annars sommarmotivet (variant 1) precis som förut. ?sasong=vinter eller ?sasong=sommar
+// tvingar fram ett av dem, för att kunna titta i förväg.
+const startsidansVariant = (): 1 | 6 => {
+ if (typeof window === 'undefined') return 1
+ const val = new URLSearchParams(window.location.search).get('sasong')
+ if (val === 'vinter') return 6
+ if (val === 'sommar') return 1
+ const m = new Date().getMonth()
+ return m === 11 || m <= 1 ? 6 : 1
+}
+
 const LANDING_CSS = `
 /* 2026-09-21: @import av Google Fonts borttagen. CSP:n (style-src 'self') blockerade den på varje
    sidvisning — den laddade aldrig, gav bara ett konsolfel. Playfair Display kommer från next/font i layout.tsx. */
@@ -1840,7 +1852,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
      och Googlebot ser hela LANDING_HTML i initial HTML — kritiskt för
      indexering. */}
  <Suspense fallback={null}>
-   <HeroAnimation />
+   <HeroAnimation variant={startsidansVariant()} />
  </Suspense>
  </div>
  <style>{`

@@ -36,6 +36,12 @@ const VARIANTS: { id: HeroVariant; name: string; desc: string; emoji: string }[]
  emoji: '🌫️',
  desc: 'Silvergrå dimma, blek vinterljus, lugna långsamma vågor. Stilla och meditativ.',
  },
+ {
+ id: 6,
+ name: 'Vinter',
+ emoji: '',
+ desc: 'Snötäckta öar, is på fjärden, en färja som bryter is, skridskoåkare och en snögubbe. Fiskarna simmar under isen. Visas 1 december till sista februari.',
+ },
 ]
 
 export default function HeroPreviewPage() {
