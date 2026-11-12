@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, Suspense } from 'react'
+import JulkalenderSkylt from '@/components/JulkalenderSkylt'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
@@ -1860,6 +1861,8 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  .hero { position: relative; z-index: 1; background: transparent !important; }
  `}</style>
  <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML.split('__ANTAL_OAR__').join(String(antalOar)).replace('<footer>', bildkallorHtml(bildkallor) + '<footer>') }} />
+ {/* Julkalendern: litet paket med skylt uppe till vänster i himlen, 1–24 december */}
+ <JulkalenderSkylt />
  </div>
  </>
  )
