@@ -1386,8 +1386,11 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       else drawWaterShimmer()
       drawUnderwater()
       drawParticles()
-      if (VINTER) { drawRanna(dt); drawSkridsko(dt) }
-      drawFerry(dt)
+      // Vinter på mobil: ingen färja, ränna eller isflak, så att scenen hålls lugn (Max 2026-11-12)
+      const vinterMobil = VINTER && W < 600
+      if (VINTER && !vinterMobil) drawRanna(dt)
+      if (VINTER) drawSkridsko(dt)
+      if (!vinterMobil) drawFerry(dt)
       if (!VINTER) drawBoats(dt)
       drawFish(dt)
       drawWhales(dt)
