@@ -131,7 +131,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     water:        ['#2a6f9e','#1d5a8a','#124474','#0a2a50'],
     waterFade:    'rgba(10,42,80,',
     waterHighlight:'rgba(255,255,255,0.10)',
-    farIsland:    'rgba(214,225,235,0.78)',
+    farIsland:    'rgba(138,162,186,0.78)',   // mörkare än himlen så att bodarna syns stå på öar
     islandGreen:  '#eef3f7',
     rockColor:    '#a3acb3',
     pineTrunk:    '#4e3018', pineBody: '#234a20', pineTop: '#2e5e2a',
@@ -712,7 +712,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── VINTER (variant 6) ─────────────────────────────────────────────── */
     const snogubbe = (x: number, y: number) => {
-      const k = szH / 800
+      const k = szH / 800 / 3   // en tredjedel av ursprunglig storlek (Max 2026-11-12)
       cx.fillStyle = '#fdfefe'
       ;([[0, -12, 12], [0, -30, 9], [0, -43, 6]] as [number, number, number][]).forEach(([dx, dy, r]) => {
         cx.beginPath(); cx.arc(x + dx * k, y + dy * k, r * k, 0, Math.PI * 2); cx.fill()
