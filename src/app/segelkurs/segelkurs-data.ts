@@ -22,6 +22,9 @@ export type Seglarskola = {
   ort: string
   url: string
   partner?: boolean
+  /** Lyfts fram överst med egen ram (utan partnertext) */
+  utvald?: boolean
+  beskrivning?: string
   /** Källa och datum då uppgifterna lästes på anordnarens egen sida */
   kalla: string
   last: string
@@ -40,7 +43,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
     readTime: '6 min',
     tags: ['Nybörjare välkommen', 'Seglarintyg', 'Bo ombord', 'Små grupper'],
     intro: [
-      'Här finns seglarkurser från Dalarö och Nynäshamn i södra skärgården till Riddarfjärden mitt i stan och Viggbyholm i Täby. Nybörjarkurserna hos alla seglarskolor nedan kräver inga förkunskaper.',
+      'Vill du lära dig segla i södra skärgården utgår Sjöbris Stockholm från Dalarö, med små grupper och en eldriven segelbåt. Här finns också seglarkurser i Nynäshamn, på Riddarfjärden mitt i stan och i Viggbyholm i Täby.',
       'Vi skriver inga priser. Kontrollera alltid aktuella datum och villkor hos seglarskolan innan du bokar, och hör av dig till info@svalla.se om något inte stämmer.',
     ],
     kurstyper: [],
@@ -49,6 +52,9 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         namn: 'Sjöbris Stockholm',
         ort: 'Dalarö, södra skärgården',
         url: 'https://sjobris-stockholm.se/?ref=svalla',
+        utvald: true,
+        // KÄLLA: sjobris-stockholm.se — "från och med 2026 driver vi vår egen verksamhet", "Vi utgår från Dalarö", Terezza "Arcona 36 från 1987 ... Sedan 2025 är hon eldriven och laddas fossilfritt av solen" (läst 2026-11-10)
+        beskrivning: 'Karin Modigh och Ulrika Lewander driver Sjöbris från Dalarö sedan 2026. Kurserna har små grupper, och båten Terezza, en Arcona 36 från 1987, är eldriven sedan 2025 och laddas av solen.',
         // KÄLLA: sjobris-stockholm.se — "Du lär dig grunderna i seglingen ... under tre dagar", "max 4 deltagare"; skärgårdssegling dag "max 5 deltagare"; två dagar med "övernattning i naturhamn"; "Vi utgår från Dalarö" (läst 2026-11-10)
         kalla: 'sjobris-stockholm.se',
         last: '2026-11-10',
@@ -56,18 +62,6 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
           { namn: 'Seglarkurs för nybörjare', fakta: ['Nybörjare', '3 dagar', 'Max 4 deltagare'] },
           { namn: 'Skärgårdssegling, en dag', fakta: ['En dag', 'Max 5 deltagare'] },
           { namn: 'Skärgårdssegling, två dagar', fakta: ['Två dagar', 'Övernattning i naturhamn'] },
-        ],
-      },
-      {
-        namn: 'Vind o Vatten',
-        ort: 'Dalarö (Östra Vadviken), södra skärgården',
-        url: 'https://vindovatten.se/sv/seglarkurs-steg-1/',
-        // KÄLLA: vindovatten.se/sv/seglarkurs-steg-1 — "Under tre dagar", "9.00-17.00 under tre dagar i följd", "ni är aldrig mer än fyra deltagare ombord", "Kursen ges som dagkurs, ej övernattning ombord", "kurser för kvinnor ... och mixade grupper", "efter kursen kan du examineras för Seglarintyg steg 1"; steg 2 "boende ombord" (läst 2026-11-12)
-        kalla: 'vindovatten.se',
-        last: '2026-11-12',
-        kurser: [
-          { namn: 'Seglarkurs steg 1, nybörjare', fakta: ['Nybörjare', '3 dagar, 9 till 17', 'Max 4 deltagare', 'Dagkurs', 'Kvinnor eller mixad grupp', 'Prov för Seglarintyg 1 efteråt'] },
-          { namn: 'Seglarkurs steg 2', fakta: ['Fortsättning', 'Boende ombord'] },
         ],
       },
       {
@@ -113,19 +107,19 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
     faqs: [
       {
         q: 'Behöver jag ha seglat förut?',
-        a: 'Nej. Nybörjarkurserna hos Sjöbris, Vind o Vatten, Sailstar, Stockholms Segelsällskap och The Green Trails kräver inga förkunskaper enligt seglarskolorna själva.',
+        a: 'Nej. Sjöbris nybörjarkurs lär dig grunderna under tre dagar, och nybörjarkurserna hos Sailstar, Stockholms Segelsällskap och The Green Trails kräver inga förkunskaper enligt seglarskolorna själva.',
       },
       {
         q: 'Vad är Seglarintyg 1?',
-        // KÄLLA: vindovatten.se/sv/seglarkurs-steg-1 — "Efter kursen kan du skriva ett prov för Seglarintyg steg 1 och få intyget registrerat hos Nämnden för Båtlivsutbildning", "appen NFB Båtintyg" (läst 2026-11-12)
-        a: 'Ett intyg du kan ta efter en grundkurs. Hos Vind o Vatten skriver du prov efter kursen, och intyget registreras hos Nämnden för Båtlivsutbildning i appen NFB Båtintyg.',
+        // KÄLLA: thegreentrails.com/sv/seglingskurser-i-stockholm — "NFB, seglarintyg 1: Att kunna hantera en mindre segelbåt i skyddade kustnära farvatten i gott väder", "Efter kursen har du möjlighet att skriva ett prov för seglarintyg 1" (läst 2026-11-12)
+        a: 'Ett intyg från Nämnden för Båtlivsutbildning (NFB). Målet är att kunna hantera en mindre segelbåt i skyddade kustnära farvatten i gott väder. Hos till exempel The Green Trails kan du skriva provet efter kursen.',
       },
       {
         q: 'Kan jag bo ombord under kursen?',
-        a: 'Ja, hos flera. Sailstar har kurser på fyra och sex dagar på en stor båt, The Green Trails har övernattning på fortsättnings- och intensivkursen, Vind o Vatten har boende ombord på steg 2 och Sjöbris skärgårdssegling över två dagar övernattar i naturhamn.',
+        a: 'Ja. Sjöbris skärgårdssegling över två dagar övernattar i en naturhamn. Sailstar har kurser på fyra och sex dagar på en stor båt, och The Green Trails har övernattning på fortsättnings- och intensivkursen.',
       },
       {
-        q: 'Hur tar jag mig till Dalarö utan bil?',
+        q: 'Hur tar jag mig till Sjöbris på Dalarö utan bil?',
         // KÄLLA: SL tidtabell 839 (se Dalarö-sidans källor) — Handens station → Hotellbryggan 33–40 min
         a: 'Med pendeltåg till Handen och sedan buss 839, 33 till 40 minuter från Handens station. Se Dalarösidan på Svalla för nästa avgångar.',
       },

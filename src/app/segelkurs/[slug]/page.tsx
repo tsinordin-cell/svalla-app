@@ -116,7 +116,7 @@ export default async function SegelkursSlugPage({ params }: Props) {
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {page.anordnare.map(a => (
-                <article key={a.namn} style={{ background: 'var(--white)', borderRadius: 14, padding: '20px', border: a.partner ? '2px solid var(--acc)' : '1px solid var(--surface-3)' }}>
+                <article key={a.namn} style={{ background: 'var(--white)', borderRadius: 14, padding: '20px', border: a.partner || a.utvald ? '2px solid var(--acc)' : '1px solid var(--surface-3)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
                     <div>
                       <h3 style={{ fontWeight: 700, fontSize: 18, color: 'var(--ink)', margin: '0 0 4px' }}>{a.namn}</h3>
@@ -126,6 +126,9 @@ export default async function SegelkursSlugPage({ params }: Props) {
                       <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.06em', background: 'var(--acc-knapp)', color: 'var(--white)', borderRadius: 8, padding: '4px 9px' }}>SVALLA-PARTNER</span>
                     )}
                   </div>
+                  {a.beskrivning && (
+                    <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.65, margin: '12px 0 0' }}>{a.beskrivning}</p>
+                  )}
                   {a.kurser.map(k => (
                     <div key={k.namn} style={{ borderTop: '1px solid var(--surface-3)', marginTop: 12, paddingTop: 12 }}>
                       <div style={{ fontWeight: 600, fontSize: 15, color: 'var(--ink)', marginBottom: 8 }}>{k.namn}</div>
@@ -139,10 +142,10 @@ export default async function SegelkursSlugPage({ params }: Props) {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginTop: 14 }}>
                     <span style={{ fontSize: 12, color: 'var(--sea)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="check" size={12} stroke={2} />Källa: {a.kalla}, läst {a.last}</span>
                     <a href={a.url} target="_blank" rel="noopener noreferrer" style={{
-                      background: a.partner ? 'var(--sea)' : 'var(--white)', color: a.partner ? 'var(--white)' : 'var(--sea)',
+                      background: a.partner || a.utvald ? 'var(--sea)' : 'var(--white)', color: a.partner || a.utvald ? 'var(--white)' : 'var(--sea)',
                       border: '1px solid var(--sea)', borderRadius: 50, padding: '8px 16px', fontSize: 13.5, fontWeight: 700, textDecoration: 'none',
                     }}>
-                      {a.partner ? `Boka hos ${a.namn.split(' ')[0]} →` : `Till ${a.namn.replace(/ \(.*\)$/, '')} →`}
+                      {a.partner || a.utvald ? `Boka hos ${a.namn.split(' ')[0]} →` : `Till ${a.namn.replace(/ \(.*\)$/, '')} →`}
                     </a>
                   </div>
                 </article>
