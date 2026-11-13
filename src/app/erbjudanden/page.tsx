@@ -29,7 +29,7 @@ const ITEMS: LandingItem[] = [
  meta: 'Lågsäsong',
  },
  {
- icon: '',
+ icon: 'sailboat',
  title: 'Seglingscharter',
  description: 'Bareboat, skeppare-med-båt eller kurser — veckopaket från maj till september.',
  href: '/segelrutter',
@@ -60,7 +60,7 @@ export default function ErbjudandenPage() {
  heroGradient={['#c96e2a', '#d98246']}
  eyebrow="Erbjudanden"
  title="Aktuella paket & erbjudanden"
- tagline="Kurerade paket från skärgårdens operatörer — boende, segelcharter, kurser och guidade turer. Uppdateras löpande."
+ tagline="Utvalda paket från skärgårdens operatörer — boende, segelcharter, kurser och guidade turer. Uppdateras löpande."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7" />

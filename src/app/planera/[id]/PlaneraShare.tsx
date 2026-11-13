@@ -13,7 +13,7 @@ export default function PlaneraShare({ routeId, startName, endName }: Props) {
  const [hasNativeShare, setHasNativeShare] = useState(false)
  const url = `https://svalla.se/planera/${routeId}`
  const routeLabel = startName && endName ? `${startName} → ${endName}` : 'den här skärgårdsrutten'
- const shareText = `Kolla in ${routeLabel} på Svalla`
+ const shareText = `Kolla in ${routeLabel} på Svalla.\n\nSkapa ett gratis konto på Svalla så kan du spara öar och planera dina egna turer.`
 
  useEffect(() => {
  setHasNativeShare(!!navigator.share)

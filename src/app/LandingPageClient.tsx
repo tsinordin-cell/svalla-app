@@ -815,8 +815,8 @@ const LANDING_HTML = `
 <section class="hero" style="background:transparent">
  <div class="hero-top">
 <h1 class="hero-title">
- Planera din perfekta<br>
- <em>dag i skärgården</em>
+ Planera din<br>
+ <em>skärgårdsvistelse</em>
  </h1>
  <p class="hero-sub">
  Öar, krogar, badplatser och båttider – samlat för en dag i skärgården.

@@ -40,7 +40,7 @@ const ITEMS: LandingItem[] = [
  meta: 'Gratis',
  },
  {
- icon: '',
+ icon: 'ship',
  title: 'Karlskrona — marinstad',
  description: 'Världsarvsstad och Östersjöns stolthet. Gästhamnen i Stumholmen är en naturlig mötesplats för seglare.',
  href: '/upptack',
@@ -58,7 +58,7 @@ const ITEMS: LandingItem[] = [
  href: '/krogar-och-mat',
  },
  {
- icon: '',
+ icon: 'sailboat',
  title: 'Etapp på ostkustseglingen',
  description: 'Blekinge är en naturlig etapp om du seglar längs kusten mot Gotland eller Danmark. Logga varje dag.',
  href: '/logga-in',

@@ -31,9 +31,14 @@ interface Props {
    * vit på vit botten på alla plats- och guidesidor och syntes inte.
    */
   variant?: 'mork' | 'ljus'
+  /** Text på knappen. Standard "Dela". */
+  etikett?: string
 }
 
-export default function ShareButton({ title, description, url, surface = 'place', entityId, variant = 'mork' }: Props) {
+/** Följer med i delningen så att mottagaren får veta att Svalla är gratis (Claes 2026-11-13). */
+const KONTO_TIPS = 'Skapa ett gratis konto på Svalla så kan du spara öar och planera dina egna turer.'
+
+export default function ShareButton({ title, description, url, surface = 'place', entityId, variant = 'mork', etikett = 'Dela' }: Props) {
   const ljus = variant === 'ljus'
   const [toast, setToast] = useState<string | null>(null)
   const [pressed, setPressed] = useState(false)
@@ -54,7 +59,7 @@ export default function ShareButton({ title, description, url, surface = 'place'
       try {
         await navigator.share({
           title,
-          text: description,
+          text: [description, KONTO_TIPS].filter(Boolean).join('\n\n'),
           url: shareUrl,
         })
         return
@@ -86,29 +91,30 @@ export default function ShareButton({ title, description, url, surface = 'place'
         style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: 7,
-          padding: '9px 16px',
-          background: ljus ? 'rgba(10,123,140,0.08)' : 'rgba(255,255,255,0.15)',
-          color: ljus ? 'var(--sea, #1e5c82)' : '#fff',
+          gap: 8,
+          padding: '11px 20px',
+          // Revision 2026-11-13 (Claes): tydligare. Ljus variant är nu fylld havsblå, mörk variant vit med blå text.
+          background: ljus ? 'var(--sea, #1e5c82)' : '#fff',
+          color: ljus ? '#fff' : 'var(--sea, #1e5c82)',
           borderRadius: 50,
-          border: ljus ? '1px solid rgba(10,123,140,0.28)' : '1px solid rgba(255,255,255,0.25)',
-          backdropFilter: ljus ? undefined : 'blur(4px)',
-          fontSize: 13,
-          fontWeight: 600,
+          border: 'none',
+          boxShadow: '0 3px 10px rgba(0,30,45,0.18)',
+          fontSize: 14,
+          fontWeight: 700,
           cursor: 'pointer',
           whiteSpace: 'nowrap',
           transition: 'opacity 120ms ease',
           opacity: pressed ? 0.75 : 1,
         }}
       >
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
-          stroke="currentColor" strokeWidth={2.2}
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+          stroke="currentColor" strokeWidth={2.4}
           strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
           <polyline points="16 6 12 2 8 6"/>
           <line x1="12" y1="2" x2="12" y2="15"/>
         </svg>
-        Dela
+        {etikett}
       </button>
 
       {/* Toast — fixed bottom center, fade in/out */}

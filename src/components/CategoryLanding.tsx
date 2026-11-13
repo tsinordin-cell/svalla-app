@@ -80,6 +80,8 @@ export type CategoryLandingProps = {
  cta?: { label: string; href: string; secondaryLabel?: string; secondaryHref?: string }
  /** Relaterade sidor längst ner. */
  related?: RelatedLink[]
+ /** Knapp direkt under rubriken, för sidor där besökaren oftast vill vidare direkt (t.ex. kartan). */
+ heroCta?: { label: string; href: string }
 }
 
 export default function CategoryLanding(props: CategoryLandingProps) {
@@ -96,6 +98,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  deeperContent,
  cta = { label: 'Öppna kartan', href: '/kom-igang' },
  related,
+ heroCta,
  } = props
 
  // Se kommentaren vid HIGHLIGHTS GRID nedan.
@@ -213,6 +216,30 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  >
  {tagline}
  </p>
+ {heroCta && (
+ <Link
+ href={heroCta.href}
+ prefetch={prefetchFor(heroCta.href)}
+ style={{
+ display: 'inline-flex',
+ alignItems: 'center',
+ gap: 8,
+ marginTop: 18,
+ height: 46,
+ padding: '0 22px',
+ borderRadius: 12,
+ background: '#fff',
+ color: heroGradient[0],
+ fontSize: 15,
+ fontWeight: 700,
+ textDecoration: 'none',
+ boxShadow: '0 4px 14px rgba(0,0,0,0.15)',
+ }}
+ >
+ <Icon name="map" size={18} stroke={2} />
+ {heroCta.label} →
+ </Link>
+ )}
  </div>
  </header>
 

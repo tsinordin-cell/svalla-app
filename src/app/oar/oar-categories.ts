@@ -10,6 +10,8 @@ import { OAR, type Island } from '../o/island-data'
 export type OarCategory = {
   slug: string
   title: string
+  /** Kort rubrik på en rad för korten på /oar (Claes 2026-11-13). */
+  kort: string
   hero: string
   description: string
   intro: string
@@ -20,6 +22,7 @@ export type OarCategory = {
 export const OAR_CATEGORIES: OarCategory[] = [
   {
     slug: 'barnvanliga',
+    kort: 'Barnvänliga öar',
     title: 'Barnvänliga öar i skärgården',
     hero: 'Skärgårdsöar som är perfekta för familjer',
     description: 'Hitta öar med sandstränder, lugna stigar, korta restider och boende som passar familjer med små barn. Vi har samlat de öar där hela familjen får plats.',
@@ -37,7 +40,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
       Öar som bara nås med egen båt, segelbåt eller kajak är inte med, hur fina
       de än är. Det ger 24 öar i stället för 46.
 
-      Det riktiga svaret är en kurerad flagga per ö, satt av någon som varit
+      Det riktiga svaret är en utvald flagga per ö, satt av någon som varit
       där — sidan säger "Svalla-utvalda", och det ska vara sant. Tills dess är
       det här den ärligaste heuristiken datan räcker till.
     */
@@ -54,6 +57,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
   },
   {
     slug: 'dagstur-stockholm',
+    kort: 'Dagstur från Stockholm',
     title: 'Öar du kan göra dagstur till från Stockholm',
     hero: 'Skärgårdsöar — dagstur från Stockholm',
     description: 'Öar du tar dig till på morgonen och hem på kvällen. Färjebåt eller pendelbåt från Strömkajen, Stavsnäs eller Nynäshamn. Inga övernattningar — bara perfekta dagsutflykter.',
@@ -69,6 +73,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
   },
   {
     slug: 'utan-bil',
+    kort: 'Öar utan bil',
     title: 'Skärgårdsöar utan bil — kollektivt och med båt',
     hero: 'Öar du når utan bil',
     description: 'Pendelbåt från Strömkajen och Slussen tar dig direkt ut i skärgården. Här är öarna där du inte behöver bil eller bilfärja för att komma fram.',
@@ -81,6 +86,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
   },
   {
     slug: 'segling',
+    kort: 'Öar för segling',
     title: 'Bästa öarna för segling',
     hero: 'Öar för seglare — gästhamnar, vindskydd och klassiker',
     description: 'Öar med välutrustade gästhamnar, säkra ankarplatser och seglartradition. Från Sandhamns klassiska KSSS-hamn till Bohusläns yttre kobbar.',
@@ -92,6 +98,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
   },
   {
     slug: 'romantiska',
+    kort: 'Romantiska skärgårdsöar',
     title: 'Romantiska skärgårdsöar — för en weekend till två',
     hero: 'Öar för romantiska weekends',
     description: 'Stilla värdshus, havsutsikt, gourmetkök och plats att vara två. De öar där en weekend räcker för att bygga om hela förhållandet.',
@@ -106,6 +113,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
   },
   {
     slug: 'cykling',
+    kort: 'Öar för cykling',
     title: 'Skärgårdsöar för cykling',
     hero: 'Cykelöar i skärgården',
     description: 'Öar med markerade cykelleder, cykeluthyrning vid hamnen och plats nog att fylla en hel dag på två hjul.',
@@ -115,6 +123,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
   },
   {
     slug: 'havsbastu',
+    kort: 'Öar med havsbastu',
     title: 'Skärgårdsöar med havsbastu',
     hero: 'Bada bastu — och hoppa rätt i havet',
     description: 'Öar med bastu vid havskanten. Basta, hoppa i, basta igen. De bästa platserna för en av Sveriges mest underskattade upplevelser.',
@@ -124,6 +133,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
   },
   {
     slug: 'avskild',
+    kort: 'Avskilda öar',
     title: 'Avskilda skärgårdsöar — bort från turistflocken',
     hero: 'Öar bort från turistflocken',
     description: 'Yttre skärgården och de mindre öarna. Färre besökare, mer natur, lugn ända ut. För dig som vill verkligen komma bort.',
@@ -139,6 +149,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
     // ASCII-slug. 'krogö' gav 404/500: Next matchar inte den percent-kodade
     // förfrågan mot en statisk param med å/ä/ö. Ändra inte tillbaka.
     slug: 'krogar',
+    kort: 'Öar med bra krogar',
     title: 'Skärgårdsöar med riktigt bra krogar',
     hero: 'Öar för matälskare',
     description: 'Värdshus, gastronomi och bryggrestauranger värda att åka för. Sandhamn, Utö, Marstrand — men också mindre kända.',
@@ -148,6 +159,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
   },
   {
     slug: 'nara-nynashamn',
+    kort: 'Öar nära Nynäshamn',
     title: 'Skärgårdsöar nära Nynäshamn',
     // Rättad 2026-11-09 (P0 20 del 3): båten från Nynäshamn går inte till Utö, Ornö eller Fjärdlång vår och höst, och Waxholmsbolagets båtar är inga färjor. Pendeltågets restid är uppmätt i SL:s tabell.
     hero: 'Söder om Stockholm — öar nära Nynäshamn',

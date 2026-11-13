@@ -332,7 +332,7 @@ export default function OppetNuPage() {
         }}>
           <div>
             <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)', marginBottom: 4 }}>
-              <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2, marginRight: 6 }}><Icon name="pin" size={16} /></span>Hitta din ö — kuraterade listor
+              <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2, marginRight: 6 }}><Icon name="pin" size={16} /></span>Hitta din ö — utvalda listor
             </div>
             <div style={{ fontSize: 13, color: 'var(--txt2)' }}>
               Barnvänliga, romantiska, seglarfavoriter och mer — handplockade rekommendationer.

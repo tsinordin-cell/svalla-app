@@ -5,10 +5,10 @@ import { UPPLÄGG, WEATHER_TAG, tagColor } from './dag-data'
 
 export const metadata: Metadata = {
   title: 'Dagsupplägg i skärgården — vad gör man idag?',
-  description: 'Kurerade dagsupplägg för Stockholms skärgård — familj, par, seglare och nybörjare. Aktuellt väder och direktlänkar till öarna.',
+  description: 'Utvalda dagsupplägg för Stockholms skärgård — familj, par, seglare och nybörjare. Aktuellt väder och direktlänkar till öarna.',
   openGraph: {
     title: 'Dagsupplägg i skärgården',
-    description: 'Vad gör man idag i skärgården? Kurerade upplägg för alla typer av utflykter.',
+    description: 'Vad gör man idag i skärgården? Utvalda upplägg för alla typer av utflykter.',
     url: 'https://svalla.se/dag',
   },
   alternates: { canonical: 'https://svalla.se/dag' },
@@ -46,7 +46,7 @@ export default function DagPage() {
             fontSize: 15, color: 'rgba(255,255,255,0.75)',
             margin: '0 0 16px', lineHeight: 1.55, maxWidth: 520,
           }}>
-            Tio kurerade dagsupplägg för alla typer av utflykter — barnfamiljer,
+            Utvalda dagsupplägg för alla typer av utflykter — barnfamiljer,
             seglare, par och nybörjare.
           </p>
 

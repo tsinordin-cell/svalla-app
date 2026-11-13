@@ -74,7 +74,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🧭',
  title: 'Populära turer',
- description: 'Kurerade turer som andra seglare loggat — från dagsutflykter till fleradagsrundor.',
+ description: 'Utvalda turer som andra seglare loggat — från dagsutflykter till fleradagsrundor.',
  href: '/populara-turer',
  },
 ]
@@ -85,7 +85,7 @@ export default function ResmalPage() {
  heroGradient={['#1e5c82', '#2d7d8a']}
  eyebrow="Alla resmål"
  title="Hela Stockholms skärgård, samlad"
- tagline="Öar, krogar, hamnar, bastur, vandringsleder och aktiviteter — kurerat, sökbart och alltid uppdaterat av skärgårdsfolk själva."
+ tagline="Öar, krogar, hamnar, bastur, vandringsleder och aktiviteter — utvalt, sökbart och alltid uppdaterat av skärgårdsfolk själva."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <circle cx="12" cy="10" r="3" />
@@ -98,12 +98,12 @@ export default function ResmalPage() {
  Stockholms skärgård består av över 30 000 öar, kobbar och skär utspridda från Arholma i norr till Landsort i söder. Svalla samlar allt du behöver för att hitta rätt — oavsett om du söker en dagsutflykt till en krog i ytterskärgården eller planerar en tvåveckors seglats genom mellanskärgården.
  </p>
  <p>
- Under varje kategori hittar du <strong>kurerade listor</strong>, interaktiv karta och erfarenheter från andra användare. Allt är tillgängligt utan inloggning — men med konto kan du spara favoriter, logga dina turer och följa hur andra upplever skärgården.
+ Under varje kategori hittar du <strong>utvalda listor</strong>, interaktiv karta och erfarenheter från andra användare. Allt är tillgängligt utan inloggning — men med konto kan du spara favoriter, logga dina turer och följa hur andra upplever skärgården.
  </p>
  </>
  }
  itemsTitle="Vad letar du efter?"
- itemsDescription="Varje kategori har sin egen sida med kurerat innehåll, karta och tips."
+ itemsDescription="Varje kategori har sin egen sida med utvalt innehåll, karta och tips."
  items={ITEMS}
  deeperContent={
  <>

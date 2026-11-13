@@ -59,7 +59,7 @@ const ITEMS: LandingItem[] = [
     href: '/boende/bb',
   },
   {
-    icon: '',
+    icon: 'sailboat',
     title: 'Sova på båten',
     description: 'Gästhamnar med komfort eller naturhamnar utan folk — båten är Sveriges vanligaste skärgårdsboende.',
     href: '/hamnar-och-bryggor',

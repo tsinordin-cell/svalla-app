@@ -33,14 +33,14 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '',
+ icon: 'sailboat',
  title: 'Segla till Gotland',
  description: 'En av Östersjöns klassiska segelresor. Logga hela passagen med GPS — varje timme, varje vindskift, varje soluppgång.',
  href: '/logga-in',
  meta: 'Klassiker',
  },
  {
- icon: '',
+ icon: 'castle',
  title: 'Visby innerstad',
  description: 'Världsarv med medeltida ringmur, krogar och uteliv. Gästhamnen ligger direkt nedanför staden.',
  href: '/upptack',
@@ -58,7 +58,7 @@ const ITEMS: LandingItem[] = [
  href: '/platser?kategori=naturhamn',
  },
  {
- icon: '',
+ icon: 'beach',
  title: 'Fårö',
  description: 'Ingmar Bergmans ö. Avsides natur, raukar och lugna vatten. Nå hit från Fårösund.',
  href: '/upptack',

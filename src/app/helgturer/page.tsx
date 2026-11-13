@@ -63,7 +63,7 @@ export default function HelgturerPage() {
           color: 'var(--txt2)',
           margin: '0 0 24px',
         }}>
-          Vi kuraterar färdiga 2–3-dagars rutter i skärgården — boende, krogar,
+          Vi sätter ihop färdiga 2–3-dagars rutter i skärgården — boende, krogar,
           hamnar och rutten knuten ihop. Kom tillbaka snart, eller börja med
           våra dagsutflykter under tiden.
         </p>

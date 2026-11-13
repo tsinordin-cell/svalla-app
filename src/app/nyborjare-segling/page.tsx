@@ -40,7 +40,7 @@ const ITEMS: LandingItem[] = [
  title: 'Välj din första båt',
  description: 'Folkbåt eller plastklassiker? Vad passar nybörjare och var kan du hyra eller köpa.',
  href: '/nyborjare-segling?avsnitt=bat',
- icon: '',
+ icon: 'sailboat',
  meta: 'Albin 25, H-båt, Folkbåt',
  },
  {

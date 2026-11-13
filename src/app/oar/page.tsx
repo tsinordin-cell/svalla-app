@@ -153,7 +153,7 @@ export default function OarIndexPage() {
             margin: '0 0 32px', maxWidth: 640,
             color: 'rgba(255,255,255,0.88)',
           }}>
-            Från Arholma i norr till Marstrand på västkusten, Gotlands medeltida Visby och Ulvöns surströmming i Höga Kusten. {ANTAL_OAR} kuraterade öar med restauranger, hamnar, färjetider och våra bästa tips.
+            Upplev Stockholms örika skärgård, västkustens salta bad och kala klippor, eller Gotlands medeltida Visby. Här hittar du restauranger, hamnar, färjetider och våra bästa tips, samlat på ett ställe.
           </p>
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -243,10 +243,10 @@ export default function OarIndexPage() {
             color: 'var(--txt)', margin: '0 0 8px',
             fontFamily: "'Playfair Display', Georgia, serif",
           }}>
-            Hitta efter vad du vill göra
+            Vad vill du göra?
           </h2>
           <p style={{ fontSize: 15, color: 'var(--txt2)', margin: '0 0 24px' }}>
-            Vi har grupperat de {ANTAL_OAR} öarna efter intresse — välj din typ.
+            Välj det som passar dig, så visar vi öarna.
           </p>
           <div style={{
             display: 'grid',
@@ -270,16 +270,9 @@ export default function OarIndexPage() {
                 <div style={{ fontSize: 11, color: 'var(--acc)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 6 }}>
                   {c.count} öar
                 </div>
-                {/*
-                  Kortrubriken kortas eftersom "Skärgårdsöar" redan står i
-                  sidans egen rubrik. Men ordet måste BYTAS, inte strippas:
-                  ströks det utan ersättning blev fem av tio rubriker
-                  meningsfragment — "för cykling", "utan bil — kollektivt och
-                  med båt", "med havsbastu". Samma ersättning används på
-                  /oar/[kategori].
-                */}
-                <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)', marginBottom: 4, fontFamily: "'Playfair Display', Georgia, serif" }}>
-                  {c.title.replace('Skärgårdsöar', 'Öar').replace(' i skärgården', '')}
+                {/* Kort rubrik på en rad (fältet kort i oar-categories.ts), Claes 2026-11-13. */}
+                <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)', marginBottom: 4, fontFamily: "'Playfair Display', Georgia, serif", whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {c.kort}
                 </div>
                 <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
                   {c.hero.split(' — ')[0]}
@@ -295,7 +288,7 @@ export default function OarIndexPage() {
               textDecoration: 'none',
             }}
           >
-            Alla 10 kategorier →
+            Alla kategorier →
           </Link>
         </section>
 

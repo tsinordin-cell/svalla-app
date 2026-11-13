@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
   title: 'Populära turer i Stockholms skärgård',
-  description: 'Kurerade dagsturer, helgturer och fleradagsrutter i Stockholms skärgård. Från Strömkajen, Dalarö, Stavsnäs och Vaxholm.',
+  description: 'Utvalda dagsturer, helgturer och fleradagsrutter i Stockholms skärgård. Från Strömkajen, Dalarö, Stavsnäs och Vaxholm.',
   keywords: [
     'skärgårdstur stockholm',
     'dagstur skärgården',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Populära turer — Svalla',
-    description: 'Kurerade rutter i Stockholms skärgård.',
+    description: 'Utvalda rutter i Stockholms skärgård.',
     url: 'https://svalla.se/populara-turer',
   },
   alternates: { canonical: 'https://svalla.se/populara-turer' },
@@ -24,42 +24,42 @@ export const metadata: Metadata = {
 // länkkontroll 3/9).
 const ITEMS: LandingItem[] = [
   {
-    icon: '',
+    icon: 'compass',
     title: 'Dagstur: Vaxholm–Grinda',
     description: 'Lunch på Grinda Wärdshus, bad och åter samma dag. Klassisk förstatur för nya seglare.',
     href: '/o/grinda',
     meta: '6–8 timmar',
   },
   {
-    icon: '',
+    icon: 'sailboat',
     title: 'Helgtur: Stockholm–Sandhamn',
     description: 'Två dagar, en övernattning, full skärgårdsupplevelse. Perfekt för lördag-söndag.',
     href: '/o/sandhamn',
     meta: '2 dagar',
   },
   {
-    icon: '',
+    icon: 'compass',
     title: 'Mellanskärgården-rundan',
     description: 'Finnhamn, Möja, Svartsö — 3–4 dagar genom mellanskärgårdens vackraste vatten.',
     href: '/o/finnhamn',
     meta: '3–4 dagar',
   },
   {
-    icon: '',
+    icon: 'wind',
     title: 'Ytterskärgården (vindröst)',
     description: 'Huvudskär, Sandhamn, Rödlöga — kräver erfarenhet, ger evighetsminnen.',
     href: '/o/huvudskar',
     meta: '5–7 dagar',
   },
   {
-    icon: '',
+    icon: 'paddle',
     title: 'Kajaktur: Möja runt',
     description: 'En dag i kajak runt Möja med bryggstopp för fika och bad. Paddelbart året runt.',
     href: '/o/moja',
     meta: '1 dag',
   },
   {
-    icon: '',
+    icon: 'compass',
     title: 'Dalarö–Utö–Dalarö',
     description: 'Snabb motorbåtstur söderöver — lunch på Utö, hem innan solnedgång.',
     href: '/o/uto',
@@ -72,7 +72,7 @@ export default function PopularaTurerPage() {
     <CategoryLanding
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Populära turer"
-      title="Kurerade rutter"
+      title="Utvalda rutter"
       tagline="Dagsturer, helgturer och fleradagsrutter i Stockholms skärgård — varje tur leder till målöns sida med hamnar, restauranger och praktisk info."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -105,7 +105,7 @@ export default function PopularaTurerPage() {
             Saknar din favorittur?
           </h2>
           <p>
-            Logga den i Svalla-appen och tagga den som &quot;delningsbar&quot; — den hamnar automatiskt i sökningen och kan bli utvald här. Populära turer är kurerade av redaktionen men bygger helt på användar-data.
+            Logga den i Svalla-appen och tagga den som &quot;delningsbar&quot; — den hamnar automatiskt i sökningen och kan bli utvald här. Populära turer är utvalda av redaktionen men bygger helt på användar-data.
           </p>
         </>
       }

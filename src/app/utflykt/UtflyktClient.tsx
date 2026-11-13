@@ -138,7 +138,7 @@ export default function UtflyktClient({ islands, hubs }: Props) {
     const title = `Din dag i skärgården${hubInfo && hub !== ALLA_HUB_SLUG ? ` från ${hubInfo.label}` : ''}`
     trackEvent('dagsplan_delad', { hub, datum, vill: vill.join(',') })
     try {
-      if (navigator.share) { await navigator.share({ title, url }); return }
+      if (navigator.share) { await navigator.share({ title, text: 'Skapa ett gratis konto på Svalla så kan du spara öar och planera dina egna turer.', url }); return }
       await navigator.clipboard.writeText(url)
       setToast('Länken är kopierad')
     } catch {

@@ -39,7 +39,7 @@ const ITEMS: LandingItem[] = [
     meta: 'Gratis',
   },
   {
-    icon: '',
+    icon: 'castle',
     title: 'Marstrand — fästningsön',
     description: 'Carlstens fästning, glada gästhamnen och Bohusläns mest kända seglarmål. Logga ankomsten.',
     href: '/upptack',
@@ -57,7 +57,7 @@ const ITEMS: LandingItem[] = [
     href: '/krogar-och-mat',
   },
   {
-    icon: '',
+    icon: 'island',
     title: 'Tjörn och Orust',
     description: 'Bohusläns stora öar med hundratals naturhamnar. Perfekt för flerdagars rutt norrut.',
     href: '/logga-in',

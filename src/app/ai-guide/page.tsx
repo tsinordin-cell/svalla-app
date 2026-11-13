@@ -80,7 +80,7 @@ const faqSchema = {
       name: 'Vad skiljer Thorkel från ChatGPT eller Google Maps?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'ChatGPT och Google Maps saknar aktuella avgångstider för Waxholmsbolaget, vet inte vilka krogar som faktiskt är öppna just nu, och har inte 200+ kuraterade platser i den svenska skärgården. Thorkel är specialiserad på exakt det.',
+        text: 'ChatGPT och Google Maps saknar aktuella avgångstider för Waxholmsbolaget, vet inte vilka krogar som faktiskt är öppna just nu, och har inte 200+ utvalda platser i den svenska skärgården. Thorkel är specialiserad på exakt det.',
       },
     },
   ],

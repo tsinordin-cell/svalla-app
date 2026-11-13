@@ -28,7 +28,7 @@ const ITEMS: LandingItem[] = [
  href: '/platser?kategori=bastu',
  },
  {
- icon: '',
+ icon: 'bathtub',
  title: 'Elbastur & spa',
  description: 'Moderna spabastur i hotell och badhus — för den som vill hoppa över vedhuggningen.',
  href: '/platser?kategori=spa',
