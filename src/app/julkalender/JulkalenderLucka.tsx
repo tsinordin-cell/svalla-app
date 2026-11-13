@@ -43,6 +43,7 @@ export default function JulkalenderLucka({ lucka, idag, stil, nummerFarg }: {
   const unika = lucka.kallor.filter((k, i, a) => a.findIndex(x => x.url === k.url) === i)
   return (
     <details
+      className="julLucka"
       open={idag}
       onToggle={e => {
         if ((e.currentTarget as HTMLDetailsElement).open) {
@@ -50,7 +51,7 @@ export default function JulkalenderLucka({ lucka, idag, stil, nummerFarg }: {
           track('julkalender_lucka_oppnad', { dag: lucka.dag })
         }
       }}
-      style={{ ...stil, gridColumn: idag ? '1 / -1' : undefined }}
+      style={stil}
     >
       <summary style={{ listStyle: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 6 }}>
         <div style={{ fontSize: 26, fontWeight: 800, color: nummerFarg, lineHeight: 1 }}>{lucka.dag}</div>
@@ -76,6 +77,7 @@ export default function JulkalenderLucka({ lucka, idag, stil, nummerFarg }: {
         </div>
       )}
       <DelaLucka dag={lucka.dag} titel={lucka.titel} />
+      <style>{`.julLucka[open]{grid-column:1 / -1}.julLucka[open] p{font-size:15px;max-width:620px}`}</style>
     </details>
   )
 }

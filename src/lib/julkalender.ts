@@ -76,7 +76,7 @@ export const LUCKOR: Lucka[] = [
     dag: 4,
     titel: "Visste du: havet fryser vid olika temperaturer",
     teaser: "Varför fryser havet vid olika temperaturer längs Sveriges kust?",
-    text: "Saltet i havet gör att isen bildas först när vattnet är under noll grader. I Bottenviken är salthalten bara 3 till 4 gram per kilo havsvatten, och fryspunkten ligger strax under noll. I Skagerack, med en salthalt kring 30 promille, fryser vattnet vid cirka minus 2 grader. Även isen blir olika: längs norrlandskusten hård och glasklar, i Skageracks saltare vatten grynig och porös.",
+    text: "Saltet i havet gör att isen bildas först när vattnet är under noll grader. I Bottenviken är salthalten bara 3 till 4 gram per kilo havsvatten, och fryspunkten ligger strax under noll. I Skagerack, med kring 30 gram salt per kilo, fryser vattnet vid cirka minus 2 grader. Även isen blir olika: längs norrlandskusten hård och glasklar, i Skageracks saltare vatten grynig och porös.",
     lank: "/guider/vinter-i-skargarden",
     lankText: "Läs om vinter i skärgården",
     kallor: [

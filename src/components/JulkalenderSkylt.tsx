@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { kalenderPagar, oppnaLuckor } from '@/lib/julkalender'
+import { kalenderPagar, oppnaLuckor, FORHANDS_KOD } from '@/lib/julkalender'
 import { track } from '@/lib/analytics-events'
 
 /**
@@ -11,9 +11,14 @@ import { track } from '@/lib/analytics-events'
  */
 export default function JulkalenderSkylt() {
   const [dag, setDag] = useState<number | null>(null)
+  const [href, setHref] = useState('/julkalender')
 
   useEffect(() => {
-    const forhand = new URLSearchParams(window.location.search).get('julkalender') === '1'
+    const sp = new URLSearchParams(window.location.search)
+    // Förhandslänken (?forhand=kod) visar paketet och tar med koden in i kalendern
+    const kod = sp.get('forhand') === FORHANDS_KOD
+    const forhand = sp.get('julkalender') === '1' || kod
+    if (kod) setHref(`/julkalender?forhand=${FORHANDS_KOD}`)
     if (kalenderPagar()) setDag(oppnaLuckor())
     else if (forhand) setDag(new Date().getMonth() === 11 ? Math.min(new Date().getDate(), 24) : 1)
   }, [])
@@ -21,7 +26,7 @@ export default function JulkalenderSkylt() {
   if (dag === null) return null
 
   return (
-    <Link href="/julkalender" className="julskylt" aria-label={`Svallas julkalender, öppna lucka ${dag}`} onClick={() => track('julkalender_klick', { plats: 'startsida', dag })}>
+    <Link href={href} className="julskylt" aria-label={`Svallas julkalender, öppna lucka ${dag}`} onClick={() => { if (href === '/julkalender') track('julkalender_klick', { plats: 'startsida', dag }) }}>
       <style>{`
         .julskylt{position:absolute;top:78px;left:22px;z-index:50;display:flex;align-items:center;gap:6px;text-decoration:none;animation:julsva 3.2s ease-in-out infinite;transform-origin:8px 0}
         .julskylt span{background:rgba(255,255,255,.92);border-radius:8px;padding:4px 8px;color:#0f2f40;font-size:11.5px;font-weight:600;line-height:1.2;white-space:nowrap}
