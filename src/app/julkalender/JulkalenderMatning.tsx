@@ -12,11 +12,12 @@ export function JulkalenderVisad({ dag, inloggad }: { dag: number; inloggad: boo
 }
 
 /** Inloggningslänk som mäter klicket (utloggade → konto → tillbaka till kalendern). */
-export function JulkalenderLoggaIn({ dag, href, style, children }: {
+export function JulkalenderLoggaIn({ dag, href, style, children, plats = 'sidan_logga_in' }: {
   dag: number; href: string; style?: React.CSSProperties; children: React.ReactNode
+  plats?: 'sidan_logga_in' | 'lucksida_logga_in'
 }) {
   return (
-    <Link href={href} style={style} onClick={() => track('julkalender_klick', { plats: 'sidan_logga_in', dag })}>
+    <Link href={href} style={style} onClick={() => track('julkalender_klick', { plats, dag })}>
       {children}
     </Link>
   )

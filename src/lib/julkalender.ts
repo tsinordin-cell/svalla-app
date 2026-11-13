@@ -21,6 +21,8 @@ export type Lucka = {
   dag: number
   titel: string
   text: string
+  /** Kort lockande rad som även utloggade ser. Får inte innehålla fakta som inte står i text. */
+  teaser: string
   lank?: string
   lankText?: string
   /** Primärkällor som visas som klickbara länkar under luckan */
@@ -39,6 +41,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 1,
     titel: "Välkommen till Svallas julkalender",
+    teaser: "Så fungerar Svallas julkalender, och var du hittar källan till allt vi skriver.",
     text: "Varje dag fram till julafton öppnas en ny lucka med tips om skärgården i vinter, från Bottenviken till Bohuslän. Uppgifterna har vi kontrollerat hos arrangörer, kommuner, myndigheter och turistorganisationer, och under varje lucka ser du källan. Hittar du något som inte stämmer, mejla info@svalla.se.",
     lank: "/guider/jul-skargarden",
     lankText: "Läs Svallas guide till jul i skärgården",
@@ -47,6 +50,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 2,
     titel: "Julmarknader vid havet andra advent",
+    teaser: "Två julmarknader i kuststäder samma helg, med datum och tider.",
     text: "Andra advent blir det julmarknad i flera kuststäder. I Vaxholm fylls Rådhustorget med brända mandlar, hantverk och granar lördag 5 och söndag 6 december. Samma helg är det julmarknad i Karlskrona, på Blekinge museum och Bergqvistska gården, kl. 10 till 16 båda dagarna.",
     lank: "/o/vaxholm",
     lankText: "Läs mer om Vaxholm",
@@ -58,6 +62,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 3,
     titel: "Julbord ute på öarna",
+    teaser: "Tre ställen ute på öarna som dukar julbord, och hur du tar dig dit.",
     text: "Flera restauranger ute på öarna dukar julbord i december. Utö Värdshus serverar julbord 27 november till 19 december, och Waxholmsbåten från Årsta brygga tar cirka 40 minuter till Gruvbryggan. Sandhamn Seglarhotell har julbord vissa dagar i veckan 26 november till 24 december. Rökeriet på Fjäderholmarna har julbord till 20 december, och båtresan dit tar ungefär 25 minuter.",
     lank: "/guider/julbord-skargarden",
     lankText: "Läs Svallas guide till julbord i skärgården",
@@ -70,6 +75,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 4,
     titel: "Visste du: havet fryser vid olika temperaturer",
+    teaser: "Varför fryser havet vid olika temperaturer längs Sveriges kust?",
     text: "Saltet i havet gör att isen bildas först när vattnet är under noll grader. I Bottenviken är salthalten bara 3 till 4 gram per kilo havsvatten, och fryspunkten ligger strax under noll. I Skagerack, med en salthalt kring 30 promille, fryser vattnet vid cirka minus 2 grader. Även isen blir olika: längs norrlandskusten hård och glasklar, i Skageracks saltare vatten grynig och porös.",
     lank: "/guider/vinter-i-skargarden",
     lankText: "Läs om vinter i skärgården",
@@ -81,6 +87,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 5,
     titel: "Fyra öar du når med båt i december",
+    teaser: "Fyra öar du kan åka båt till även mitt i vintern.",
     text: "Till flera öar går båtarna hela vintern. Till Vaxholm tar båten från Strömkajen en timme, och utanför sommaren går det flera turer per dag. Ut till Sandhamn går det turer året runt. Waxholmsbåten går året om från Årsta brygga till Gruvbryggan på Utö, och till Finnhamn finns reguljär båttrafik året runt med Waxholmsbolaget.",
     lank: "/guider/vinter-i-skargarden",
     lankText: "Läs om vinter i skärgården",
@@ -94,6 +101,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 6,
     titel: "Färja till ön, även i vinter",
+    teaser: "Två öar utanför Stockholm där färjan går även i december.",
     text: "Det är inte bara i Stockholms skärgård som båtarna går i december. Ventrafiken kör färja mellan Landskrona och Ven året runt, och överfarten från Skeppsbron tar cirka 30 minuter. I Höga kusten har M/F Ulvön turlistor för hela december, även för 24 till 31 december. Turlistorna gäller med reservation för väder och is, så kolla din avgång innan du åker.",
     lank: "/o/ven",
     lankText: "Läs mer om Ven",
@@ -106,6 +114,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 7,
     titel: "Kallbad vid havet i vinter",
+    teaser: "Var du kan kallbada vid havet hela vintern.",
     text: "Malmö stad skriver att det går att kallbada året om på Ribersborgs och Sibbarps kallbadhus, och på stadens badplatser finns förstärkta vinterbadtrappor vid vissa bryggor under vinterhalvåret. Bada aldrig ensam, och gå inte i vattnet om du är osäker på hur kroppen reagerar på kylan.",
     lank: "https://malmo.se/Uppleva-och-gora/Bada-och-simma/Strander-och-badplatser/Vinterbadbryggor.html",
     lankText: "Se vinterbadbryggorna hos Malmö stad",
@@ -116,6 +125,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 8,
     titel: "De som har jour även på julafton",
+    teaser: "Om dem som är redo att rycka ut även på julafton.",
     text: "Medan vi firar jul finns det frivilliga som är redo att rycka ut. Sjöräddningssällskapets 2 500 frivilliga sjöräddare har jour dygnet runt, året om, och inom 15 minuter är räddningen på väg när larmet går. Sällskapets vd har beskrivit det som att rycka ut \"sommar som vinter, under julafton som på en vanlig tisdag\". Ett varmt tack till alla som står redo.",
     lank: "https://www.sjoraddning.se/om-oss",
     lankText: "Läs mer om Sjöräddningssällskapet",
@@ -128,6 +138,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 9,
     titel: "Julmarknader tredje advent",
+    teaser: "Julmarknader på tre platser under tredje advent.",
     text: "Tredje advent blir det flera julmarknader. På Artipelag i Gustavsberg fylls Artboxen med konsthantverk och design 12 och 13 december. På Skeppsholmen i Stockholm har Skeppsholmsgårdens julmarknad sjö och hantverkstema, lördag och söndag kl. 11 till 17. I Härnösand är det julmarknad bland de historiska byggnaderna på Murberget söndag 13 december.",
     lank: "https://artipelag.se/pa-gang/aktivitet/julmarknad-pa-artipelag/",
     lankText: "Läs om julmarknaden på Artipelag",
@@ -143,6 +154,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 10,
     titel: "Julbord på Carlstens fästning",
+    teaser: "Ett julbord som börjar med fackeltåg upp till en fästning.",
     text: "På Marstrand möts julbordsgästerna vid färjeläget för ett gemensamt fackeltåg upp till Carlstens fästning, om vädret tillåter. Där väntar glögg och pepparkaka och sedan julbord i Riddarsalen. I december serveras julbordet även 11, 12, 13, 18 och 19 december, enligt fästningens kalender för 2026.",
     lank: "/o/marstrand",
     lankText: "Läs mer om Marstrand",
@@ -153,6 +165,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 11,
     titel: "Höga Kusten i vinterskrud",
+    teaser: "Så kan du vandra längs Höga Kusten när snön ligger.",
     text: "Höga Kusten är inte bara en sommarplats. På vintern går det att vandra med eller utan snöskor, och vintertid rekommenderas Östra Bergsstigen, som utgår från Naturum Höga Kusten. Snöskor kan hyras bland annat hos FriluftsByn och Skutskepparn i Barsta. Ha extra säkerhetsmarginal: ledmarkeringarna är anlagda för barmark, och mobiltäckningen är dålig i delar av Höga Kusten.",
     lank: "/guider/hoga-kusten-guide",
     lankText: "Läs Svallas guide till Höga Kusten",
@@ -167,6 +180,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 12,
     titel: "Bastu och vinterdopp på Hyppeln",
+    teaser: "En bastu på bryggan som går att boka även i vinter.",
     text: "På Hyppeln finns en bastutunna vid Evas brygga i gästhamnen. Den går att boka året runt, men oktober till mars bara helger och lov. Bokning och betalning sker i förväg på Hyppelns webbplats. Barn under 15 år får bara bada tillsammans med vuxna. Bada aldrig ensam i vinterhavet.",
     lank: "https://hyppeln.com/hamnen/bastu-i-hamnen/",
     lankText: "Boka bastun på Hyppeln",
@@ -177,6 +191,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 13,
     titel: "Luciatåg i skärgården",
+    teaser: "Ett luciatåg i skärgården, i dag.",
     text: "Glad Lucia! På Artipelag på Värmdö går ett traditionellt luciatåg i foajén i dag söndag 13 december, liksom i går, öppet för alla besökare. I Artboxen intill pågår samtidigt julmarknad med konsthantverk, design och julklappar från utvalda utställare.",
     lank: "https://artipelag.se/pa-gang/aktivitet/julmarknad-pa-artipelag/",
     lankText: "Läs mer hos Artipelag",
@@ -190,6 +205,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 14,
     titel: "Isvett i skärgården",
+    teaser: "Det du behöver veta innan du går ut på isen.",
     text: "Gå aldrig ut på isen om du inte är säker på att den håller. Issäkerhetsrådet anger att kärnis ska vara minst 10 cm tjock, men i skärgården och på havet är isen mer riskabel: saltis är svagare än insjöis och ger inte ifrån sig tydliga ljud när den tunnar ut. Var aldrig ensam på isen, ha isdubbar med dig och berätta var du ska och när du kommer tillbaka.",
     lank: "https://www.issakerhet.se/isvett/",
     lankText: "Läs Issäkerhetsrådets isvett",
@@ -204,6 +220,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 15,
     titel: "Bil på havet: Luleås isvägar",
+    teaser: "Vägar som plogas ut på havet. Ett tips att planera för.",
     text: "Ett tips att planera för efter jul. När isen utanför Luleå är tillräckligt tjock plogas cirka 30 km isvägar ut till Hindersön, Storbrändön, Sandön och Junkön. Enligt Luleå kommun öppnas vägarna i regel i slutet av januari eller början av februari, och de kan tillfälligt stängas vid kraftigt snöfall, svår dimma eller mycket flödvatten. Max 30 km i timmen, och kolla kommunens statussida innan du kör ut.",
     lank: "https://www.lulea.se/boende--gator/gator-och-trafik/isvagar.html",
     lankText: "Se isvägarnas status hos Luleå kommun",
@@ -218,6 +235,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 16,
     titel: "Julbord ombord från Stockholm",
+    teaser: "Julbord ombord på klassiska skärgårdsfartyg.",
     text: "Julbord med skärgården utanför fönstret. Strömma Kanalbolagets julbordskryssningar avgår från Nybrokajen och Strandvägen i centrala Stockholm, och du väljer mellan lunch på cirka 2,5 timmar och middag på cirka 3 timmar. I år är sex klassiska skärgårdsfartyg med. Kryssningarna går ända till 26 december, och 24 till 26 december avgår lunchen kl. 13 och middagen kl. 18.",
     lank: "https://www.stromma.com/sv-se/stockholm/julbord/julbordskryssningar-i-stockholms-skargard/",
     lankText: "Läs mer hos Strömma",
@@ -232,6 +250,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 17,
     titel: "Gotland i vinter",
+    teaser: "Det här behöver du veta om du ska till Gotland kring jul.",
     text: "Gotland är en ö att besöka även i vinter, men planera resan i god tid kring jul. Destination Gotlands terminaler i Visby, Nynäshamn och Oskarshamn håller stängt på julafton. Väl på ön tar vägfärjan dig från Fårösund till Broa på Fårö på sex minuter.",
     lank: "/guider/vinter-gotland",
     lankText: "Läs om Gotland i vinter",
@@ -243,6 +262,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 18,
     titel: "Gråsälen i vinterhavet",
+    teaser: "Sveriges största säl och vad som händer på isen i vår.",
     text: "Gråsälen är den största av Sveriges tre sälarter, och en hanne kan bli upp till 3 meter lång. Den kan dyka flera hundra meter och äter mest fisk som strömming. Om några månader är det dags för kutarna: i Östersjön föds de i februari och mars, gärna på isen, med en vit och ullig päls.",
     lank: "https://www.havochvatten.se/arter-och-livsmiljoer/arter-och-naturtyper/grasal.html",
     lankText: "Läs mer om gråsälen hos Havs- och vattenmyndigheten",
@@ -254,6 +274,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 19,
     titel: "Logga din vintertur",
+    teaser: "Spara dina turer från hösten och vintern.",
     text: "Har du varit ute med båten i höst eller vinter? Spara turen i Svalla med Logga tur, så har du den kvar när du planerar nästa säsong.",
     lank: "/logga",
     lankText: "Logga en tur",
@@ -262,6 +283,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 20,
     titel: "Nyår i skärgården",
+    teaser: "Två ställen i skärgården där du kan fira in det nya året.",
     text: "Om elva dagar är det nyårsafton, och flera hotell i skärgården har nyårspaket. Sandhamn Seglarhotell firar 31 december med bubbel och en fyrarätters supé. På Marholmen i Roslagens skärgård finns nyårspaket med boende på hotellet, i eget hotellhus eller i villa.",
     lank: "/guider/nyar-skargarden",
     lankText: "Läs Svallas guide till nyår i skärgården",
@@ -273,6 +295,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 21,
     titel: "Vintersolståndet",
+    teaser: "Årets kortaste dag, och hur stor skillnaden är mellan norr och söder.",
     text: "I dag, måndag 21 december, är det vintersolstånd och årets kortaste dag. I sydligaste Sverige är solen uppe ungefär sju timmar, och några mil norr om Pajala och Gällivare råder polarnatt. Efter i dag börjar dagarna bli längre igen.",
     lank: "/guider/vinter-i-skargarden",
     lankText: "Läs om vintern i skärgården",
@@ -284,6 +307,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 22,
     titel: "Så går båtarna i jul och nyår",
+    teaser: "Så går båtarna under jul och nyår.",
     text: "Ska du ut i skärgården i jul? Waxholmsbolagets båtar går lite annorlunda kring helgerna. Onsdag 23 december går trafiken som en fredag, julafton som en lördag och juldagen och annandag jul som söndagar. Nyårsafton går som en lördag och nyårsdagen som en söndag. Kundtjänst svarar dygnet runt på 08 600 10 00. I Göteborg, Mölndal och Partille kör Västtrafik julafton som en söndag.",
     lank: "https://waxholmsbolaget.se/artikel/helgtrafik",
     lankText: "Se Waxholmsbolagets helgtrafik",
@@ -296,6 +320,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 23,
     titel: "Visste du: julgranen kan bli fiskhem",
+    teaser: "Vad en gammal julgran kan göra för fisken.",
     text: "Visste du att gamla julgranar kan bli lekplats för fisk? Buntade till så kallade risvasar och sänkta i vattnet ger de fisken något att leka på och ynglen skydd. Innan du lägger ut en: Sportfiskarna skriver att det krävs tillstånd från markägaren, och att det ska stämmas av med länsstyrelsen och kommunen.",
     lank: "https://www.sportfiskarna.se/om-oss/aktuellt/nyheter/nyhet/sa-bygger-man-en-risvase/",
     lankText: "Läs mer om risvasar hos Sportfiskarna",
@@ -307,6 +332,7 @@ export const LUCKOR: Lucka[] = [
   {
     dag: 24,
     titel: "Julafton på Sandhamn",
+    teaser: "God jul från Svalla, och ett julaftonstips från Sandhamn.",
     text: "På julafton den 24 december 2026 dukar Sandhamn Seglarhotell upp julbord med klassiska rätter, och kanske dyker tomten upp. Dagen därpå fortsätter firandet med hotellets traditionella kalkonmiddag.",
     lank: "/o/sandhamn",
     lankText: "Läs mer om Sandhamn",
@@ -349,4 +375,10 @@ export function oppnaLuckor(nu: Date = new Date(), testdag?: number): number {
 export function kalenderPagar(nu: Date = new Date()): boolean {
   const { ar, manad, dag } = idagSverige(nu)
   return ar === AR && manad === 12 && dag >= 1 && dag <= 24
+}
+
+/** true efter julafton (från 25 december 2026): kalendern visas som avslutad. */
+export function kalenderSlut(nu: Date = new Date()): boolean {
+  const { ar, manad, dag } = idagSverige(nu)
+  return ar > AR || (ar === AR && manad === 12 && dag > 24)
 }
