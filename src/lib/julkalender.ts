@@ -49,7 +49,7 @@ export const LUCKOR: Lucka[] = [
   },
   {
     dag: 2,
-    titel: "Julmarknader vid havet andra advent",
+    titel: "Julmarknader andra advent",
     teaser: "Två julmarknader i kuststäder samma helg, med datum och tider.",
     text: "Andra advent blir det julmarknad i flera kuststäder. I Vaxholm fylls Rådhustorget med brända mandlar, hantverk och granar lördag 5 och söndag 6 december. Samma helg är det julmarknad i Karlskrona, på Blekinge museum och Bergqvistska gården, kl. 10 till 16 båda dagarna.",
     lank: "/o/vaxholm",
@@ -333,7 +333,7 @@ export const LUCKOR: Lucka[] = [
     dag: 24,
     titel: "Julafton på Sandhamn",
     teaser: "God jul från Svalla, och ett julaftonstips från Sandhamn.",
-    text: "På julafton den 24 december 2026 dukar Sandhamn Seglarhotell upp julbord med klassiska rätter, och kanske dyker tomten upp. Dagen därpå fortsätter firandet med hotellets traditionella kalkonmiddag.",
+    text: "God jul från oss på Svalla, Max och Thomas! Tack för att du har öppnat luckorna med oss. Vill du fira i skärgården: på julafton den 24 december 2026 dukar Sandhamn Seglarhotell upp julbord med klassiska rätter, och kanske dyker tomten upp. Dagen därpå fortsätter firandet med hotellets traditionella kalkonmiddag.",
     lank: "/o/sandhamn",
     lankText: "Läs mer om Sandhamn",
     kallor: [
