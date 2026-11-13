@@ -173,6 +173,10 @@ export default async function ActivityTypePage({ params }: Props) {
               </li>
             ))}
           </ul>
+          {/* Claes 2026-11-13: länk vidare till guiderna */}
+          <Link href="/guider" style={{ display: 'inline-block', marginTop: 14, fontSize: 13, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none' }}>
+            Se alla våra guider →
+          </Link>
         </div>
 
         {/* Favoriter */}
