@@ -6020,7 +6020,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.hogakusten.com/sv/stader-platser/ulvon — "Ulvöarna ligger 30 km söder om Örnsköldsvik"; "Ulvön är vår skärgårds största turistiska besöksmål med stora kulturella värden tack vare välbevarade sjöbodar, bostadshus och gistvallar"; "kallas ibland för Bottenhavets pärla eller Norrlands Sandhamn" (läst 2026-09-27)
       // KÄLLA: https://www.ulvomuseum.com/surstromming/ — "alltsedan samhällets etablering från slutet av 1500-talet" (läst 2026-09-27)
       // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/stormyran-pa-ulvon.html — "Här hittar du blomsterrika våtmarker nära havet på Norra Ulvön"; "Cirka en kilometer norrut ligger kulturreservatet Sandvikens fiskeläge" (läst 2026-09-27)
-      'Ulvöarna ligger i Höga Kustens skärgård, omkring 30 km från Örnsköldsvik, och är skärgårdens största besöksmål. Ulvöhamn var en gång Norrlands största fiskeläge och kallas ibland Bottenhavets pärla eller Norrlands Sandhamn. Samhället växte fram i slutet av 1500-talet, och längs hamngatan står sjöbodar, bostadshus och gistvallar kvar. Ön består av Norra och Södra Ulvön; på den norra ligger också kulturreservatet Sandvikens fiskeläge.',
+      'Ulvöarna ligger på Höga Kustens skärgård, omkring 30 km från Örnsköldsvik, och är skärgårdens största besöksmål. Ulvöhamn var en gång Norrlands största fiskeläge och kallas ibland Bottenhavets pärla eller Norrlands Sandhamn. Samhället växte fram i slutet av 1500-talet, och längs hamngatan står sjöbodar, bostadshus och gistvallar kvar. Ön består av Norra och Södra Ulvön; på den norra ligger också kulturreservatet Sandvikens fiskeläge.',
       // KÄLLA: https://smakasverige.jordbruksverket.se/produkter/produktarkiv/surstromming.413.html — "Ulvö Gamla Salteri var först att konsumentförpacka surströmming i plåtburkar. Detta skedde ca. 1890"; "På burkarna stod det Surströmming från Ulvön"; "Idag finns endast ett salteri kvar på Ulvön, Ulvö Lilla Salteri" (läst 2026-09-27)
       // KÄLLA: https://www.ulvomuseum.com/surstromming/ — "Surströmmingsakademien har sitt säte i Ulvöhamn" (läst 2026-09-27)
       'Ulvön räknas som surströmmingens centrum i Sverige. Ulvö Gamla Salteri var omkring 1890 först med att sälja surströmming i plåtburk, med texten Surströmming från Ulvön på burken. Enligt Jordbruksverket finns i dag ett salteri kvar på ön, Ulvö Lilla Salteri, och Surströmmingsakademien har sitt säte i Ulvöhamn.',
@@ -6050,7 +6050,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/stormyran-pa-ulvon.html — "norr om Norrsand på nordöstra delen av Norra Ulvön" (läst 2026-09-27)
       { icon: '🏖', name: 'Norrsand', desc: 'Badstranden Norrsand ligger på nordöstra Norra Ulvön, och fler sandstränder finns längs Ulvöleden på öns östra sida.' },
       // KÄLLA: https://www.hogakusten.com/sv/gasthamn-ulvo-hotell — "Välkommen till en av de större gästhamnarna i Höga Kusten"; "har i dag cirka 70 gästplatser"; "ett djup på fyra meter"; "Gästhamnen är öppen och bemannad med hamnvärd under sommaren" (läst 2026-09-27)
-      { icon: '⛵', name: 'Båtliv', desc: 'Gästhamnen nedanför Ulvö Hotell är en av de större i Höga Kusten, med cirka 70 gästplatser och fyra meters djup. Hamnvärd sommartid.' },
+      { icon: '⛵', name: 'Båtliv', desc: 'Gästhamnen nedanför Ulvö Hotell är en av de större på Höga Kusten, med cirka 70 gästplatser och fyra meters djup. Hamnvärd sommartid.' },
     ],
     accommodation: [
       // KÄLLA: https://ulvohotell.se/sv/vanliga-fragor — "Vi öppnar för säsongen under valborgshelgen"; "15 juni startar högsäsongen, som pågår fram till den 15 augusti"; "har vi åter öppet fredag-lördag fram till sista oktober"; "ett stort gym och en mycket trevlig bastu med havsutsikt som är gratis att använda för våra hotellgäster" (läst 2026-09-27)
@@ -6093,7 +6093,7 @@ export const ISLANDS: Island[] = [
     ],
     harbors: [
       // KÄLLA: https://www.hogakusten.com/sv/gasthamn-ulvo-hotell — "har i dag cirka 70 gästplatser alla med tillgång till färskvatten och el"; "ett djup på fyra meter och en nyrenoverad servicebyggnad med toaletter, duschar, kök och tvättstuga"; "Ett stenkast bort finns även handelsbod och sjömack med diesel, och bensin"; "Bastu" (läst 2026-09-27)
-      { name: 'Gästhamn Ulvö Hotell', desc: 'En av de större gästhamnarna i Höga Kusten, nedanför Ulvö Hotell: cirka 70 gästplatser med färskvatten och el, fyra meters djup och servicebyggnad med toaletter, duschar, kök och tvättstuga. Bastu finns, och diesel och bensin säljs vid sjömacken ett stenkast bort. Hamnvärd sommartid.', spots: 70, fuel: true, service: ['el', 'vatten', 'dusch', 'tvätt', 'bränsle'] },
+      { name: 'Gästhamn Ulvö Hotell', desc: 'En av de större gästhamnarna på Höga Kusten, nedanför Ulvö Hotell: cirka 70 gästplatser med färskvatten och el, fyra meters djup och servicebyggnad med toaletter, duschar, kök och tvättstuga. Bastu finns, och diesel och bensin säljs vid sjömacken ett stenkast bort. Hamnvärd sommartid.', spots: 70, fuel: true, service: ['el', 'vatten', 'dusch', 'tvätt', 'bränsle'] },
     ],
     restaurants: [
       // KÄLLA: https://ulvohotell.se/sv/restaurang — "Ulvö Hotells kök har en förkärlek till det lokala"; "Och ja, självklart serverar vi även surströmming!"; "Skärgårdsbuffé"; "Endast öppet under Juli månad" (läst 2026-09-27)
@@ -8309,7 +8309,7 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/trysunda.html — "Ta med sig hund som inte är kopplad"; https://www.mfulvon.se/bra-att-veta — "husdjur är tillåtna ombord på MF Minerva samt i nedre salong på MF Ulvön" (läst 2026-09-27)
     dog_notes: 'Hela ön ingår i naturreservatet, där hundar måste vara kopplade. Husdjur får följa med utan extra kostnad på M/F Minerva och i nedre salongen på M/F Ulvön.',
     // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/varldsarvet-hoga-kusten.html — "Landet i Höga Kusten/Kvarkens skärgård stiger med 8-8,5 millimeter per år", "Så den landhöjning som vi märker av är numera bara 5 millimeter per år", "Höga Kusten blev isfritt för ungefär 10 500 år sedan"; https://trysunda.se/historia/ — "Trysunda hette från början Trijzundsön genom att tre öppna sund gick ihop. Genom landhöjningen är numera bara ett sund öppet." (läst 2026-09-27)
-    did_you_know: 'Trysunda hette från början Trijzundsön, efter de tre sund som möttes vid fiskeläget. Landhöjningen har stängt två av dem. Landet i Höga Kusten stiger med 8–8,5 mm per år, men eftersom havsytan samtidigt stiger märks numera bara cirka 5 mm per år.',
+    did_you_know: 'Trysunda hette från början Trijzundsön, efter de tre sund som möttes vid fiskeläget. Landhöjningen har stängt två av dem. Landet på Höga Kusten stiger med 8–8,5 mm per år, men eftersom havsytan samtidigt stiger märks numera bara cirka 5 mm per år.',
     amenities: {
       restaurant: true,
       shop: true,
