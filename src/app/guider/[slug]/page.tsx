@@ -235,6 +235,17 @@ export default async function GuidePage({ params }: Props) {
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 16, lineHeight: 1.65, margin: 0, maxWidth: 600 }}>
             {guide.excerpt}
           </p>
+          {/* Dela direkt i toppen (Claes 2026-11-13: dela-knappen ska synas tydligare) */}
+          <div style={{ marginTop: 20 }}>
+            <ShareButton
+              title={guide.title}
+              description={guide.excerpt}
+              url={`https://svalla.se/guider/${guide.slug}`}
+              surface="guide-hero"
+              entityId={guide.slug}
+              etikett="Dela guiden"
+            />
+          </div>
         </div>
 
         {/* Wave bottom */}
