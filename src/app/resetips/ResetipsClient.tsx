@@ -113,10 +113,23 @@ export default function ResetipsClient() {
 
       {/* Hero */}
       <section style={{
-        background: 'linear-gradient(135deg, #1a3a5c 0%, #1e5c47 100%)',
+        background: 'linear-gradient(170deg, #0d2440 0%, #1e5c82 50%, #2d7d8a 100%)',   // samma som /oar (Claes: inte blå till grön)
         padding: '72px 24px 56px',
         textAlign: 'center',
+        position: 'relative',
       }}>
+        <Link
+          href="/"
+          style={{
+            position: 'absolute', top: 18, left: 18,
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            padding: '8px 14px', borderRadius: 999,
+            background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.22)',
+            color: '#fff', fontSize: 13, fontWeight: 600, textDecoration: 'none',
+          }}
+        >
+          ← Startsidan
+        </Link>
         <p style={{
           fontSize: 12, fontWeight: 700, letterSpacing: '0.12em',
           textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 12,
