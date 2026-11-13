@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { LUCKOR, AR, oppnaLuckor } from '@/lib/julkalender'
+import { LUCKOR, AR, oppnaLuckor, kalenderSlut, FORHANDS_KOD } from '@/lib/julkalender'
+import JulkalenderLucka from './JulkalenderLucka'
+import JulkalenderFramsteg from './JulkalenderFramsteg'
 import { JulkalenderVisad, JulkalenderLoggaIn } from './JulkalenderMatning'
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: `Svallas julkalender ${AR}: 24 luckor om skärgården`,
   description: 'En lucka om dagen 1–24 december med tips om skärgården i vinter. Skapa ett gratis konto och öppna dagens lucka.',
   alternates: { canonical: 'https://svalla.se/julkalender' },
@@ -16,23 +19,36 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
-type Props = { searchParams: Promise<{ testdag?: string }> }
+type Props = { searchParams: Promise<{ testdag?: string; forhand?: string }> }
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const sp = await searchParams
+  // Förhandslänken ska aldrig indexeras
+  return sp.forhand ? { ...metadata, robots: { index: false, follow: false } } : metadata
+}
 
 export default async function JulkalenderPage({ searchParams }: Props) {
   const sp = await searchParams
   // Förhandsvisning: ?testdag=N fungerar bara utanför produktion
   const tillatTest = process.env.VERCEL_ENV !== 'production'
   const testdag = tillatTest && sp.testdag ? Number(sp.testdag) : undefined
-  const oppna = oppnaLuckor(new Date(), testdag)
+  // Förhandslänk (t.ex. till rådgivare): alla luckor öppna, som i december, utan inloggning
+  const forhand = sp.forhand === FORHANDS_KOD
+  const oppna = forhand ? 24 : oppnaLuckor(new Date(), testdag)
 
   const supabase = await createServerSupabaseClient()
   const { data: { user } } = await supabase.auth.getUser()
-  const inloggad = !!user
+  const inloggad = forhand || !!user
   const loginUrl = '/logga-in?mode=ny&returnTo=/julkalender'
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
-      <JulkalenderVisad dag={oppna} inloggad={inloggad} />
+      {!forhand && <JulkalenderVisad dag={oppna} inloggad={!!user} />}
+      {forhand && (
+        <div style={{ background: '#0f2f40', color: '#fff', textAlign: 'center', fontSize: 14, padding: '10px 16px' }}>
+          Förhandsvisning: så här ser kalendern ut i december. Alla luckor är öppna här, på svalla.se öppnas de en per dag 1 till 24 december för inloggade.
+        </div>
+      )}
       <div style={{ background: 'linear-gradient(180deg,#a9c4dd 0%,#d9dfe9 70%,#eee2e0 100%)', padding: 'calc(env(safe-area-inset-top, 0px) + 28px) 20px 40px' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
           <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '.18em', color: '#b5591a', marginBottom: 10 }}>1–24 DECEMBER {AR}</div>
@@ -52,6 +68,17 @@ export default async function JulkalenderPage({ searchParams }: Props) {
       </div>
 
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '28px 16px' }}>
+        {!forhand && kalenderSlut() && (
+          <div style={{ background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 16, padding: '18px 18px', marginBottom: 16 }}>
+            <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--ink)' }}>Kalendern är slut. Skärgården är inte det.</div>
+            <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.6, margin: '6px 0 10px' }}>Alla 24 luckor finns kvar här. Vill du vidare finns våra guider.</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              <Link href="/guider/nyar-skargarden" style={{ fontSize: 14, fontWeight: 700, color: 'var(--sea)' }}>Nyår i skärgården →</Link>
+              <Link href="/guider/vinter-i-skargarden" style={{ fontSize: 14, fontWeight: 700, color: 'var(--sea)' }}>Vinter i skärgården →</Link>
+            </div>
+          </div>
+        )}
+        {inloggad && !forhand && <JulkalenderFramsteg oppna={oppna} />}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: 12 }}>
           {Array.from({ length: 24 }, (_, i) => i + 1).map(dag => {
             const lucka = LUCKOR.find(l => l.dag === dag)
@@ -76,7 +103,9 @@ export default async function JulkalenderPage({ searchParams }: Props) {
               return (
                 <JulkalenderLoggaIn key={dag} dag={dag} href={loginUrl} style={{ ...bas, textDecoration: 'none', color: 'inherit' }}>
                   {nummer}
-                  <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>Skapa konto för att öppna</div>
+                  {lucka && <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>{lucka.titel}</div>}
+                  {lucka && <div style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.5 }}>{lucka.teaser}</div>}
+                  <div style={{ fontSize: 12, color: 'var(--ink-muted)' }}>Skapa ett gratis konto för att läsa hela luckan</div>
                   <div style={{ marginTop: 'auto', fontSize: 13, fontWeight: 700, color: '#b5591a' }}>Öppna →</div>
                 </JulkalenderLoggaIn>
               )
@@ -89,22 +118,7 @@ export default async function JulkalenderPage({ searchParams }: Props) {
                 </div>
               )
             }
-            return (
-              <details key={dag} open={idag} style={{ ...bas, gridColumn: idag ? '1 / -1' : undefined }}>
-                <summary style={{ listStyle: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {nummer}
-                  <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>{lucka.titel}</div>
-                  {lucka.reklam && <span style={{ alignSelf: 'flex-start', fontSize: 11, fontWeight: 700, background: '#fff3e6', color: '#a8501a', borderRadius: 6, padding: '2px 7px' }}>REKLAM</span>}
-                </summary>
-                <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.65, margin: '6px 0 0' }}>{lucka.text}</p>
-                {lucka.lank && (
-                  <a href={lucka.lank} style={{ fontSize: 14, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none', marginTop: 4 }}>
-                    {lucka.lankText ?? 'Läs mer'} →
-                  </a>
-                )}
-                {lucka.kalla && <div style={{ fontSize: 12, color: 'var(--sea)', marginTop: 4 }}>Källa: {lucka.kalla}</div>}
-              </details>
-            )
+            return <JulkalenderLucka key={dag} lucka={lucka} idag={idag} stil={bas} nummerFarg="#c0392b" />
           })}
         </div>
         <p style={{ fontSize: 13, color: 'var(--ink-muted)', textAlign: 'center', marginTop: 24 }}>

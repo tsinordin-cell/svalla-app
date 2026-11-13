@@ -36,8 +36,10 @@ export type SvallaEvent =
   // Trips (logging)
   | { name: 'trip_logging_started'; props: Record<string, never> }
   // ── Julkalendern (2026-11-12): ger den nya konton och dagliga besök? ────
-  | { name: 'julkalender_klick'; props: { plats: 'startsida' | 'flode' | 'sidan_logga_in'; dag: number } }
+  | { name: 'julkalender_klick'; props: { plats: 'startsida' | 'flode' | 'sidan_logga_in' | 'lucksida_logga_in'; dag: number } }
   | { name: 'julkalender_lucka_visad'; props: { dag: number; inloggad: boolean } }
+  | { name: 'julkalender_lucka_oppnad'; props: { dag: number } }
+  | { name: 'julkalender_delad'; props: { dag: number } }
   // ── GPS-spårning i webbläsaren (2026-10-26) ──────────────────────────────
   // Varför gav en användare upp efter 40 s utan en punkt (19 okt)? Nekad
   // behörighet, ingen signal eller otålighet? Det här svarar på det.
