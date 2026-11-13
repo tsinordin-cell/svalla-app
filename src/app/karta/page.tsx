@@ -27,28 +27,24 @@ const ITEMS: LandingItem[] = [
  title: 'Krogar & caféer',
  description: 'Från Fjäderholmarnas Krog i inloppet till Utö Värdshus längs kanalen. Filtrera på öppettider, bokningsbart och årstid.',
  href: '/krogar-och-mat',
- meta: '100+ platser',
  },
  {
  icon: 'anchor',
  title: 'Hamnar & bryggor',
  description: 'Gästhamnar med el och dusch, naturhamnar i skyddade vikar, besöksbryggor vid krog eller bara öppna klippor att förtöja vid.',
  href: '/hamnar-och-bryggor',
- meta: '80+ platser',
  },
  {
  icon: 'swim',
  title: 'Bastu & bad',
  description: 'Publika bastun, bastuflottar och klassiska klippbad. Vinterbad i Saltsjön, sommarbad i Trälhavet.',
  href: '/bastu-och-bad',
- meta: '40+ platser',
  },
  {
  icon: '⛽',
  title: 'Bränslemackar',
  description: 'Sjömackar, diesel och bensin — var du kan tanka båten mellan Nynäshamn och Arholma.',
  href: '/hamnar-och-bryggor',
- meta: '20+ mackar',
  },
  {
  icon: '🏕️',
@@ -89,7 +85,7 @@ export default function KartaPage() {
  </>
  }
  itemsTitle="Vad du hittar på kartan"
- itemsDescription="Sex kategorier som täcker allt skärgårdsfolk behöver — från morgonfika till kvällsankring."
+ itemsDescription="Kategorier som täcker allt skärgårdsfolk behöver — från morgonfika till kvällsankring."
  items={ITEMS}
  deeperContent={
  <>

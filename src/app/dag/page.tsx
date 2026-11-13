@@ -46,7 +46,7 @@ export default function DagPage() {
             fontSize: 15, color: 'rgba(255,255,255,0.75)',
             margin: '0 0 16px', lineHeight: 1.55, maxWidth: 520,
           }}>
-            Tio utvalda dagsupplägg för alla typer av utflykter — barnfamiljer,
+            Utvalda dagsupplägg för alla typer av utflykter — barnfamiljer,
             seglare, par och nybörjare.
           </p>
 

@@ -17,7 +17,7 @@ const ITEMS: LandingItem[] = [
   { icon: '⛴', title: 'Sandhamn — sommarens klassiker', description: 'KSSS-hamnen full av segelbåtar, fantastisk sandstrand och Sandhamns Värdshus. Boka bord tidigt — fullt varje helg i juli.', href: '/o/sandhamn', meta: 'Jun–Aug' },
   { icon: '🏊', title: 'Badplatser i skärgården', description: 'Sandstränder och klippbad i Stockholms skärgård – och hur du tar dig dit med båt, bana eller buss. Fakta från kommunerna och Havs- och vattenmyndigheten.', href: '/blogg/basta-badplatserna', meta: 'Sommarguide' },
   { icon: '🚢', title: 'Ingen båt krävs', description: 'Waxholmsbolaget, Pendelbåten och SL tar dig ut till de flesta öarna direkt från Stockholm. Sommartidtabeller gäller jun–aug.', href: '/farjor', meta: 'Gratis med SL' },
-  { icon: '🍽️', title: 'Skärgårdskrogar öppna nu', description: 'Grinda Wärdshus, Utö Värdshus, Finnhamns Café — krogar med sommaröppet. Boka bord via Svalla.', href: '/krogar-och-mat', meta: '60+ krogar' },
+  { icon: '🍽️', title: 'Skärgårdskrogar öppna nu', description: 'Grinda Wärdshus, Utö Värdshus, Finnhamns Café — krogar med sommaröppet. Boka bord via Svalla.', href: '/krogar-och-mat', meta: 'Sommaröppet' },
   { icon: '🏕️', title: 'Övernatta i naturen', description: 'Allemansrätten ger rätt att tälta — Utö camping, Arholma och Finnhamn är populäraste sommarplatserna.', href: '/boende', meta: 'Camping & stugor' },
   { icon: '🚲', title: 'Cykelöar utan bil', description: 'Möja, Gällnö och Utö är bilfria — hyr cykel vid bryggan och utforska hela ön på ett par timmar.', href: '/aktivitet/cykla', meta: 'Familjefavorit' },
 ]
