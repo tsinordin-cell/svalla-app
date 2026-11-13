@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { kalenderPagar, oppnaLuckor, FORHANDS_KOD } from '@/lib/julkalender'
+import { kalenderPagar, kalenderSynlig, oppnaLuckor, FORHANDS_KOD } from '@/lib/julkalender'
 import { track } from '@/lib/analytics-events'
 
 /**
@@ -20,13 +20,13 @@ export default function JulkalenderSkylt() {
     const forhand = sp.get('julkalender') === '1' || kod
     if (kod) setHref(`/julkalender?forhand=${FORHANDS_KOD}`)
     if (kalenderPagar()) setDag(oppnaLuckor())
-    else if (forhand) setDag(new Date().getMonth() === 11 ? Math.min(new Date().getDate(), 24) : 1)
+    else if (kalenderSynlig() || forhand) setDag(0)
   }, [])
 
   if (dag === null) return null
 
   return (
-    <Link href={href} className="julskylt" aria-label={`Svallas julkalender, öppna lucka ${dag}`} onClick={() => { if (href === '/julkalender') track('julkalender_klick', { plats: 'startsida', dag }) }}>
+    <Link href={href} className="julskylt" aria-label={dag === 0 ? 'Svallas julkalender öppnar 1 december' : `Svallas julkalender, öppna lucka ${dag}`} onClick={() => { if (href === '/julkalender') track('julkalender_klick', { plats: 'startsida', dag }) }}>
       <style>{`
         .julskylt{position:absolute;top:78px;left:22px;z-index:50;display:flex;align-items:center;gap:6px;text-decoration:none;animation:julsva 3.2s ease-in-out infinite;transform-origin:8px 0}
         .julskylt span{background:rgba(255,255,255,.92);border-radius:8px;padding:4px 8px;color:#0f2f40;font-size:11.5px;font-weight:600;line-height:1.2;white-space:nowrap}
@@ -44,9 +44,9 @@ export default function JulkalenderSkylt() {
         <rect x="4" y="16" width="36" height="9" rx="2" fill="#d94a3a" />
         <rect x="19" y="16" width="6" height="36" fill="#f2c230" />
         <path d="M22 16 C14 6 8 12 16 16 M22 16 C30 6 36 12 28 16" stroke="#f2c230" strokeWidth="3" fill="none" />
-        <text x="22" y="45" textAnchor="middle" fontSize="15" fontWeight="700" fill="#fff" fontFamily="Georgia">{dag}</text>
+        <text x="22" y="45" textAnchor="middle" fontSize="15" fontWeight="700" fill="#fff" fontFamily="Georgia">{dag || 1}</text>
       </svg>
-      <span>Svallas julkalender <b>→</b></span>
+      <span>{dag === 0 ? 'Svallas julkalender öppnar 1 december' : 'Svallas julkalender'} <b>→</b></span>
     </Link>
   )
 }

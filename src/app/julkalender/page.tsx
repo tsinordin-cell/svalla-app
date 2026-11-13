@@ -58,7 +58,7 @@ export default async function JulkalenderPage({ searchParams }: Props) {
           </p>
           {!inloggad && (
             <JulkalenderLoggaIn dag={oppna} href={loginUrl} style={{ display: 'inline-block', marginTop: 20, background: '#b5591a', color: '#fff', padding: '12px 22px', borderRadius: 50, fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>
-              Skapa konto och öppna dagens lucka →
+              {oppna === 0 ? 'Skapa konto nu så är du redo 1 december →' : 'Skapa konto och öppna dagens lucka →'}
             </JulkalenderLoggaIn>
           )}
           {inloggad && oppna === 0 && (
