@@ -777,6 +777,90 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       })
     }
 
+    // Pimplare på isen (2026-11-13, idé från Max): sitter vid ett hål, rycker i spöet,
+    // draget guppar under isen och en abborre kommer fram, nosar, simmar iväg och kommer tillbaka.
+    // Bara på större skärmar, så att mobilen hålls lugn.
+    const pimpel = { t: 0, fx: 0, fy: 0, dir: -1, state: 'vila' as 'in' | 'nos' | 'ut' | 'vila', tim: 1.5, wig: 0 }
+    const drawPimpel = (dt: number) => {
+      if (W < 600) return
+      const s = dt * 0.001
+      pimpel.t += s
+      const k = szH / 800
+      const wb = WL(), ih = H * 0.055
+      const hx = W * 0.85, isy = wb + ih * 0.35
+      // Draget: snabbt ryck upp, sedan långsamt ner (period 2,6 s)
+      const p = (pimpel.t % 2.6) / 2.6
+      const lyft = p < 0.12 ? p / 0.12 : p < 0.18 ? 1 : 1 - (p - 0.18) / 0.82
+      const jy = wb + ih + H * 0.11 - lyft * H * 0.035
+
+      // Hålet
+      cx.fillStyle = 'rgba(28,63,89,0.85)'
+      cx.beginPath(); cx.ellipse(hx, isy, 7 * k, 2.2 * k, 0, 0, Math.PI * 2); cx.fill()
+
+      // Personen på en låda, till vänster om hålet
+      cx.save(); cx.translate(hx - 22 * k, isy); cx.scale(0.9 * k, 0.9 * k)
+      cx.fillStyle = '#3d5a73'; cx.fillRect(-8, -12, 16, 12)
+      cx.fillStyle = '#233445'; cx.fillRect(2, -9, 12, 4); cx.fillRect(11, -9, 3, 9)
+      cx.fillStyle = '#b8402f'; cx.beginPath(); cx.moveTo(-6, -12); cx.lineTo(6, -12); cx.lineTo(5, -29); cx.lineTo(-5, -29); cx.closePath(); cx.fill()
+      cx.fillStyle = '#f1c9a5'; cx.beginPath(); cx.arc(0, -33, 4, 0, Math.PI * 2); cx.fill()
+      cx.fillStyle = '#2f6f8f'; cx.beginPath(); cx.arc(0, -34.5, 4.3, Math.PI, 0); cx.fill()
+      cx.fillStyle = '#ffffff'; cx.beginPath(); cx.arc(0, -39.5, 1.5, 0, Math.PI * 2); cx.fill()
+      cx.strokeStyle = '#b8402f'; cx.lineWidth = 2.6; cx.lineCap = 'round'
+      cx.beginPath(); cx.moveTo(2, -24); cx.lineTo(10, -20); cx.stroke()
+      cx.restore()
+
+      // Spöet och linan ner genom hålet
+      const handX = hx - 22 * k + 9 * k, handY = isy - 18 * k
+      const topX = hx - 2 * k, topY = isy - 26 * k - lyft * 5 * k
+      cx.strokeStyle = '#2a2a2a'; cx.lineWidth = 1.4 * k
+      cx.beginPath(); cx.moveTo(handX, handY); cx.lineTo(topX, topY); cx.stroke()
+      cx.strokeStyle = 'rgba(255,255,255,0.75)'; cx.lineWidth = 0.7
+      cx.beginPath(); cx.moveTo(topX, topY); cx.lineTo(hx, isy); cx.stroke()
+      cx.strokeStyle = 'rgba(255,255,255,0.45)'
+      cx.beginPath(); cx.moveTo(hx, wb + ih); cx.lineTo(hx, jy - 5 * k); cx.stroke()
+      // Draget
+      cx.fillStyle = '#d8b23a'
+      cx.beginPath(); cx.moveTo(hx - 2 * k, jy - 5 * k); cx.lineTo(hx + 2 * k, jy - 5 * k); cx.lineTo(hx + 1.3 * k, jy + 3 * k); cx.lineTo(hx - 1.3 * k, jy + 3 * k); cx.closePath(); cx.fill()
+
+      // Abborren
+      const f = pimpel
+      f.tim += s; f.wig += s * (f.state === 'nos' ? 14 : 8)
+      const golv = wb + ih + H * 0.02
+      if (f.state === 'vila') { if (f.tim > 2.5) { f.state = 'in'; f.tim = 0; f.fx = W + 40 * k; f.fy = jy + H * 0.03 } }
+      else if (f.state === 'in') {
+        const tx = hx + 22 * k
+        f.dir = -1; f.fx += (tx - f.fx) * Math.min(1, s * 0.9); f.fy += (jy + 4 * k - f.fy) * s * 1.5
+        if (Math.abs(f.fx - tx) < 2 * k) { f.state = 'nos'; f.tim = 0 }
+      } else if (f.state === 'nos') {
+        f.fx = hx + 20 * k + Math.sin(f.tim * 3) * 2.5 * k; f.fy += (jy + 4 * k - f.fy) * s * 3
+        if (f.tim > 2.6) { f.state = 'ut'; f.tim = 0 }
+      } else {
+        f.dir = 1; f.fx += s * 90 * k; f.fy += Math.sin(f.tim * 2) * 0.2
+        if (f.fx > W + 60 * k) { f.state = 'vila'; f.tim = 0 }
+      }
+      if (f.state !== 'vila') {
+        const fy = Math.max(golv, f.fy)
+        cx.save(); cx.translate(f.fx, fy); cx.scale((f.dir === -1 ? 1 : -1) * 0.75 * k, 0.75 * k)
+        const w = Math.sin(f.wig) * 0.18
+        cx.fillStyle = '#6f8f5a'; cx.beginPath(); cx.ellipse(0, 0, 18, 7, 0, 0, Math.PI * 2); cx.fill()
+        cx.save(); cx.translate(16, 0); cx.rotate(w)
+        cx.fillStyle = '#c8673a'; cx.beginPath(); cx.moveTo(0, 0); cx.lineTo(10, -6); cx.lineTo(10, 6); cx.closePath(); cx.fill()
+        cx.restore()
+        cx.fillStyle = '#4e6b3e'; for (let i = -9; i <= 8; i += 5) cx.fillRect(i, -6, 2, 9)
+        cx.fillStyle = '#c8673a'; cx.beginPath(); cx.moveTo(-2, -6); cx.lineTo(5, -12); cx.lineTo(8, -6); cx.closePath(); cx.fill()
+        cx.fillStyle = '#ffffff'; cx.beginPath(); cx.arc(-12, -1.5, 2, 0, Math.PI * 2); cx.fill()
+        cx.fillStyle = '#1b2a33'; cx.beginPath(); cx.arc(-12.4, -1.5, 1.1, 0, Math.PI * 2); cx.fill()
+        cx.restore()
+        if (f.state === 'nos') {
+          cx.fillStyle = 'rgba(255,255,255,0.5)'
+          for (let i = 0; i < 3; i++) {
+            const q = (pimpel.t * 1.2 + i * 0.33) % 1
+            cx.beginPath(); cx.arc(hx + 8 * k, fy - 8 * k - q * 18 * k, (1 + q) * k, 0, Math.PI * 2); cx.fill()
+          }
+        }
+      }
+    }
+
     // Snön faller bara ovanför isen
     const drawSno = (dt: number) => {
       const wb = WL()
@@ -1366,6 +1450,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawParticles()
       // Vinter: ingen färja, ränna eller isflak på någon skärm, så att scenen hålls lugn (Max 2026-11-12)
       if (VINTER) drawSkridsko(dt)
+      if (VINTER) drawPimpel(dt)
       if (!VINTER) drawFerry(dt)
       if (!VINTER) drawBoats(dt)
       drawFish(dt)
