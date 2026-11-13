@@ -153,7 +153,7 @@ export default function OarIndexPage() {
             margin: '0 0 32px', maxWidth: 640,
             color: 'rgba(255,255,255,0.88)',
           }}>
-            Upplev allt från Stockholms örika skärgård till västkustens salta bad och kala klippor och Gotlands medeltida Visby. Här hittar du restauranger, hamnar, färjetider och våra bästa tips, samlat på ett ställe.
+            Upplev Stockholms örika skärgård, västkustens salta bad och kala klippor, eller Gotlands medeltida Visby. Här hittar du restauranger, hamnar, färjetider och våra bästa tips, samlat på ett ställe.
           </p>
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
