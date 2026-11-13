@@ -22,8 +22,9 @@ const startsidansVariant = (): 1 | 6 => {
  const val = new URLSearchParams(window.location.search).get('sasong')
  if (val === 'vinter') return 6
  if (val === 'sommar') return 1
- const m = new Date().getMonth()
- return m === 11 || m <= 1 ? 6 : 1
+ // Vinter 13 november till och med februari (Max 2026-11-13: starta vintern direkt, julkalendern visas redan nu)
+ const nu = new Date(), m = nu.getMonth()
+ return m === 11 || m <= 1 || (m === 10 && nu.getDate() >= 13) ? 6 : 1
 }
 
 const LANDING_CSS = `

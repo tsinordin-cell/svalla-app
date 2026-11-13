@@ -371,7 +371,13 @@ export function oppnaLuckor(nu: Date = new Date(), testdag?: number): number {
   return Math.min(dag, 24)
 }
 
-/** true när julkalendern ska synas på startsidan (1–24 december). */
+/** true från 13 november: paketet syns på startsidan så att folk hinner skapa konto före 1 december. */
+export function kalenderSynlig(nu: Date = new Date()): boolean {
+  const { ar, manad, dag } = idagSverige(nu)
+  return ar === AR && ((manad === 11 && dag >= 13) || (manad === 12 && dag <= 24))
+}
+
+/** true när julkalendern pågår (1–24 december): kortet i flödet visas då. */
 export function kalenderPagar(nu: Date = new Date()): boolean {
   const { ar, manad, dag } = idagSverige(nu)
   return ar === AR && manad === 12 && dag >= 1 && dag <= 24
