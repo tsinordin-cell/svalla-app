@@ -32,6 +32,9 @@ export default function JulkalenderSkylt() {
         .julskylt span{background:rgba(255,255,255,.92);border-radius:8px;padding:4px 8px;color:#0f2f40;font-size:11.5px;font-weight:600;line-height:1.2;white-space:nowrap}
         .julskylt b{color:#b5591a;font-weight:700}
         @keyframes julsva{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-3px) rotate(2deg)}}
+        .julskylt svg{width:15px;height:20px;flex-shrink:0}
+        @media (min-width:1000px){.julskylt{top:90px;left:28px;gap:9px}.julskylt svg{width:30px;height:40px}.julskylt span{font-size:16px;padding:6px 12px;border-radius:10px}}
+        @media (min-width:1400px){.julskylt{top:96px;left:32px;gap:12px}.julskylt svg{width:45px;height:60px}.julskylt span{font-size:20px;padding:8px 16px;border-radius:12px}}
         @media (max-width:600px){.julskylt{top:68px;left:14px}.julskylt span{font-size:11px}}
         @media (prefers-reduced-motion: reduce){.julskylt{animation:none}}
       `}</style>
