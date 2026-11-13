@@ -31,6 +31,8 @@ export default function JulkalenderSkylt() {
         .julskylt{position:absolute;top:78px;left:22px;z-index:50;display:flex;align-items:center;gap:6px;text-decoration:none;animation:julsva 3.2s ease-in-out infinite;transform-origin:8px 0}
         .julskylt span{background:rgba(255,255,255,.92);border-radius:8px;padding:4px 8px;color:#0f2f40;font-size:11.5px;font-weight:600;line-height:1.2;white-space:nowrap}
         .julskylt b{color:#b5591a;font-weight:700}
+        .julskylt i{font-style:normal}.julskylt .kort{display:none}
+        @media (min-width:600px) and (max-width:999px){.julskylt .lang{display:none}.julskylt .kort{display:inline}}
         @keyframes julsva{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-3px) rotate(2deg)}}
         .julskylt svg{width:15px;height:20px;flex-shrink:0}
         @media (min-width:1000px){.julskylt{top:90px;left:28px;gap:9px}.julskylt svg{width:30px;height:40px}.julskylt span{font-size:16px;padding:6px 12px;border-radius:10px}}
@@ -46,7 +48,7 @@ export default function JulkalenderSkylt() {
         <path d="M22 16 C14 6 8 12 16 16 M22 16 C30 6 36 12 28 16" stroke="#f2c230" strokeWidth="3" fill="none" />
         <text x="22" y="45" textAnchor="middle" fontSize="15" fontWeight="700" fill="#fff" fontFamily="Georgia">{dag || 1}</text>
       </svg>
-      <span>{dag === 0 ? 'Svallas julkalender öppnar 1 december' : 'Svallas julkalender'} <b>→</b></span>
+      <span>{dag === 0 ? <><i className="lang">Svallas julkalender öppnar 1 december</i><i className="kort">Julkalender 1 december</i></> : 'Svallas julkalender'} <b>→</b></span>
     </Link>
   )
 }
