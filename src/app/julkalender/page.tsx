@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { LUCKOR, AR, oppnaLuckor } from '@/lib/julkalender'
+import { LUCKOR, AR, oppnaLuckor, FORHANDS_KOD } from '@/lib/julkalender'
 import { JulkalenderVisad, JulkalenderLoggaIn } from './JulkalenderMatning'
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: `Svallas julkalender ${AR}: 24 luckor om skärgården`,
   description: 'En lucka om dagen 1–24 december med tips om skärgården i vinter. Skapa ett gratis konto och öppna dagens lucka.',
   alternates: { canonical: 'https://svalla.se/julkalender' },
@@ -16,23 +16,36 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
-type Props = { searchParams: Promise<{ testdag?: string }> }
+type Props = { searchParams: Promise<{ testdag?: string; forhand?: string }> }
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const sp = await searchParams
+  // Förhandslänken ska aldrig indexeras
+  return sp.forhand ? { ...metadata, robots: { index: false, follow: false } } : metadata
+}
 
 export default async function JulkalenderPage({ searchParams }: Props) {
   const sp = await searchParams
   // Förhandsvisning: ?testdag=N fungerar bara utanför produktion
   const tillatTest = process.env.VERCEL_ENV !== 'production'
   const testdag = tillatTest && sp.testdag ? Number(sp.testdag) : undefined
-  const oppna = oppnaLuckor(new Date(), testdag)
+  // Förhandslänk (t.ex. till rådgivare): alla luckor öppna, som i december, utan inloggning
+  const forhand = sp.forhand === FORHANDS_KOD
+  const oppna = forhand ? 24 : oppnaLuckor(new Date(), testdag)
 
   const supabase = await createServerSupabaseClient()
   const { data: { user } } = await supabase.auth.getUser()
-  const inloggad = !!user
+  const inloggad = forhand || !!user
   const loginUrl = '/logga-in?mode=ny&returnTo=/julkalender'
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
-      <JulkalenderVisad dag={oppna} inloggad={inloggad} />
+      {!forhand && <JulkalenderVisad dag={oppna} inloggad={!!user} />}
+      {forhand && (
+        <div style={{ background: '#0f2f40', color: '#fff', textAlign: 'center', fontSize: 14, padding: '10px 16px' }}>
+          Förhandsvisning: så här ser kalendern ut i december. Alla luckor är öppna här, på svalla.se öppnas de en per dag 1 till 24 december för inloggade.
+        </div>
+      )}
       <div style={{ background: 'linear-gradient(180deg,#a9c4dd 0%,#d9dfe9 70%,#eee2e0 100%)', padding: 'calc(env(safe-area-inset-top, 0px) + 28px) 20px 40px' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
           <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '.18em', color: '#b5591a', marginBottom: 10 }}>1–24 DECEMBER {AR}</div>
@@ -98,11 +111,22 @@ export default async function JulkalenderPage({ searchParams }: Props) {
                 </summary>
                 <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.65, margin: '6px 0 0' }}>{lucka.text}</p>
                 {lucka.lank && (
-                  <a href={lucka.lank} style={{ fontSize: 14, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none', marginTop: 4 }}>
+                  <a href={lucka.lank} {...(lucka.lank.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ fontSize: 14, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none', marginTop: 4 }}>
                     {lucka.lankText ?? 'Läs mer'} →
                   </a>
                 )}
-                {lucka.kalla && <div style={{ fontSize: 12, color: 'var(--sea)', marginTop: 4 }}>Källa: {lucka.kalla}</div>}
+                {lucka.kallor.length > 0 && (
+                  <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 6, lineHeight: 1.6 }}>
+                    {lucka.kallor.length === 1 ? 'Källa: ' : 'Källor: '}
+                    {lucka.kallor.filter((k, i, a) => a.findIndex(x => x.url === k.url) === i).map((k, i) => (
+                      <span key={k.url}>
+                        {i > 0 && ', '}
+                        <a href={k.url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>{k.namn}</a>
+                      </span>
+                    ))}
+                    {' '}(kontrollerad {lucka.kallor[0]?.last})
+                  </div>
+                )}
               </details>
             )
           })}
