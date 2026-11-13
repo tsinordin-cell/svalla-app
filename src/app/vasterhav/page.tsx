@@ -42,7 +42,7 @@ const ITEMS: LandingItem[] = [
  meta: 'Gratis',
  },
  {
- icon: '',
+ icon: 'sailboat',
  title: 'Kustsegling & passager',
  description: 'Från Hallandskusten upp till norska gränsen — vindinfo, ströminformation och djupdata för varje etapp.',
  href: '/segelrutter',
@@ -60,13 +60,13 @@ const ITEMS: LandingItem[] = [
  href: '/platser?kategori=naturhamn',
  },
  {
- icon: '',
+ icon: 'map',
  title: 'Logga dina turer',
  description: 'Spåra din färd med GPS, dokumentera väder och vind, och dela turen med seglare som känner Västerhavet.',
  href: '/logga-in',
  },
  {
- icon: '',
+ icon: 'island',
  title: 'Orust & Tjörn',
  description: 'Två av Skandinaviens mest seglartäta öar — med service, varv och ett rikt seglarliv hela sommaren.',
  href: '/logga-in',

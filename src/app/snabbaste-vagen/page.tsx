@@ -24,41 +24,41 @@ export const metadata: Metadata = {
 // länkkontroll 3/9).
 const ITEMS: LandingItem[] = [
   {
-    icon: '',
+    icon: 'navigation',
     title: 'Stockholm → Sandhamn',
     description: 'Via Kanholmsfjärden — ca 45 min med RIB, 1,5 h med förträngare. Tankning i Stavsnäs.',
     href: '/o/sandhamn',
     meta: '~ 45 min',
   },
   {
-    icon: '',
+    icon: 'navigation',
     title: 'Stockholm → Grinda',
     description: 'Via Vaxholm och Tynningö — 30 min på rätt båt. Populär lunchutflykt.',
     href: '/o/grinda',
     meta: '~ 30 min',
   },
   {
-    icon: '',
+    icon: 'navigation',
     title: 'Stockholm → Utö',
     description: 'Söderut genom Jungfrufjärden — 50 min med RIB. Tankning i Dalarö.',
     href: '/o/uto',
     meta: '~ 50 min',
   },
   {
-    icon: '',
+    icon: 'navigation',
     title: 'Stockholm → Finnhamn',
     description: 'Nordöstra farleden via Möja — 55 min. Populär helgdestination.',
     href: '/o/finnhamn',
     meta: '~ 55 min',
   },
   {
-    icon: '',
+    icon: 'fuel',
     title: 'Tankställen på vägen',
     description: 'Alla sjöbensin-mackar längs populära rutter med öppettider och priser.',
     href: '/hamnar-och-bryggor',
   },
   {
-    icon: '',
+    icon: 'warning',
     title: 'Hastighetsbegränsningar',
     description: 'Var du måste sakta ner — skyltade fartbegränsningar, hamnar, badplatser.',
     href: '/tips?kategori=hastighet',

@@ -29,7 +29,7 @@ const ITEMS: LandingItem[] = [
  meta: 'Lågsäsong',
  },
  {
- icon: '',
+ icon: 'sailboat',
  title: 'Seglingscharter',
  description: 'Bareboat, skeppare-med-båt eller kurser — veckopaket från maj till september.',
  href: '/segelrutter',

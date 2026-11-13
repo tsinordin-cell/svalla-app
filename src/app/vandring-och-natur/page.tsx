@@ -22,13 +22,13 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '',
+    icon: 'walk',
     title: 'Roslagsleden',
     description: '19 etapper mellan Danderyd och Grisslehamn — skärgårdsnära hela vägen. Tält, vandrarhem, buss hem.',
     href: '/platser?kategori=roslagsleden',
   },
   {
-    icon: '',
+    icon: 'walk',
     title: 'Sörmlandsleden (skärgårdsdelar)',
     // KÄLLA: Länsstyrelsen Stockholm — Tyresta nationalpark bildad 1993, "ett par mil söder om Stockholms centrum" (läst 2026-09-14). "40 minuter" är ingen myndighetssiffra, borttagen.
     description: 'Tyresta nationalpark och kuststräckorna söderut — vildmark ett par mil från city.',
@@ -47,13 +47,13 @@ const ITEMS: LandingItem[] = [
     href: '/platser?kategori=fagelskydd',
   },
   {
-    icon: '',
+    icon: 'tent',
     title: 'Tältning & vindskydd',
     description: 'Anvisade tältplatser och vindskydd på öarna — allemansrätt gäller men inte överallt.',
     href: '/platser?kategori=taltning',
   },
   {
-    icon: '',
+    icon: 'binoculars',
     title: 'Utsiktspunkter',
     description: 'Höjder, fyrar och klippor med bäst sikt — perfekt för soluppgång, solnedgång och vinddygd.',
     href: '/platser?kategori=utsikt',

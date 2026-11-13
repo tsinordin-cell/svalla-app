@@ -24,42 +24,42 @@ export const metadata: Metadata = {
 // länkkontroll 3/9).
 const ITEMS: LandingItem[] = [
   {
-    icon: '',
+    icon: 'compass',
     title: 'Dagstur: Vaxholm–Grinda',
     description: 'Lunch på Grinda Wärdshus, bad och åter samma dag. Klassisk förstatur för nya seglare.',
     href: '/o/grinda',
     meta: '6–8 timmar',
   },
   {
-    icon: '',
+    icon: 'sailboat',
     title: 'Helgtur: Stockholm–Sandhamn',
     description: 'Två dagar, en övernattning, full skärgårdsupplevelse. Perfekt för lördag-söndag.',
     href: '/o/sandhamn',
     meta: '2 dagar',
   },
   {
-    icon: '',
+    icon: 'compass',
     title: 'Mellanskärgården-rundan',
     description: 'Finnhamn, Möja, Svartsö — 3–4 dagar genom mellanskärgårdens vackraste vatten.',
     href: '/o/finnhamn',
     meta: '3–4 dagar',
   },
   {
-    icon: '',
+    icon: 'wind',
     title: 'Ytterskärgården (vindröst)',
     description: 'Huvudskär, Sandhamn, Rödlöga — kräver erfarenhet, ger evighetsminnen.',
     href: '/o/huvudskar',
     meta: '5–7 dagar',
   },
   {
-    icon: '',
+    icon: 'paddle',
     title: 'Kajaktur: Möja runt',
     description: 'En dag i kajak runt Möja med bryggstopp för fika och bad. Paddelbart året runt.',
     href: '/o/moja',
     meta: '1 dag',
   },
   {
-    icon: '',
+    icon: 'compass',
     title: 'Dalarö–Utö–Dalarö',
     description: 'Snabb motorbåtstur söderöver — lunch på Utö, hem innan solnedgång.',
     href: '/o/uto',

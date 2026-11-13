@@ -32,14 +32,14 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '',
+ icon: 'sailboat',
  title: 'Segla från Sverige till Åland',
  description: 'En av Östersjöns klassiska segelpassager. Logga hela turen med GPS — från Stockholms skärgård till Ålands hav.',
  href: '/logga-in',
  meta: 'Klassiker',
  },
  {
- icon: '',
+ icon: 'ship',
  title: 'Mariehamn',
  description: 'Ålands huvudstad och naturliga mötesplats för seglare. Välutrustad gästhamn, restauranger och tullfri handel.',
  href: '/upptack',

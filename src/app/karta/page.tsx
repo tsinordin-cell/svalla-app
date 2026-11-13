@@ -30,14 +30,14 @@ const ITEMS: LandingItem[] = [
  meta: '100+ platser',
  },
  {
- icon: '',
+ icon: 'anchor',
  title: 'Hamnar & bryggor',
  description: 'Gästhamnar med el och dusch, naturhamnar i skyddade vikar, besöksbryggor vid krog eller bara öppna klippor att förtöja vid.',
  href: '/hamnar-och-bryggor',
  meta: '80+ platser',
  },
  {
- icon: '',
+ icon: 'swim',
  title: 'Bastu & bad',
  description: 'Publika bastun, bastuflottar och klassiska klippbad. Vinterbad i Saltsjön, sommarbad i Trälhavet.',
  href: '/bastu-och-bad',
@@ -107,7 +107,8 @@ export default function KartaPage() {
  </p>
  </>
  }
- cta={{ label: '️ Öppna kartan', href: '/kom-igang' }}
+ heroCta={{ label: 'Öppna kartan', href: '/upptack' }}
+ cta={{ label: 'Skapa gratis konto', href: '/kom-igang' }}
  related={[
  { label: 'Alla resmål', href: '/resmal' },
  { label: 'Populära turer', href: '/populara-turer' },

@@ -40,31 +40,31 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '',
+    icon: 'anchor',
     title: 'Gästhamnar på öarna',
     description: 'Varje ö-sida har hamnarna med service och, där kommunen publicerar det, djup och antal platser. Bohuslän: 19 öar, 25 namngivna gästhamnar.',
     href: '/bohuslan#oar',
   },
   {
-    icon: '',
+    icon: 'map',
     title: 'Gästhamnar i kartan',
     description: 'De gästhamnar vi hittills lagt in i utforskaren, som kartvy. I dag mest Stockholms skärgård — Bohuslän saknas ännu.',
     href: '/upptack?typ=hamn',
   },
   {
-    icon: '',
+    icon: 'anchor',
     title: 'Naturhamnar och allemansrätten',
     description: 'Vad Naturvårdsverket säger om att ankra, låna brygga och ligga över natten — och var du inte får gå i land.',
     href: '/hamnar-och-bryggor#naturhamnar',
   },
   {
-    icon: '',
+    icon: 'fuel',
     title: 'Sjömackar',
     description: 'Bränsle och septiktömning i utforskaren. Öppettider varierar med säsong — ring innan du räknar med dem.',
     href: '/upptack?typ=bensin',
   },
   {
-    icon: '',
+    icon: 'bird',
     title: 'Fågelskyddsområden',
     description: 'Öar och vikar med tillträdesförbud under häckningstid. Datumen står på skyltarna och i länsstyrelsens föreskrifter — de varierar mellan områden.',
     href: '/vandring-och-natur',
