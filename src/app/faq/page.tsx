@@ -47,7 +47,7 @@ const FAQS = [
   },
   {
     q: 'Hur fungerar ruttguiden?',
-    a: 'Under "Rutter" hittar du kuraterade rutter som passar olika båttyper och reslängder – från halvdagstur till flerdagarssegling. Varje rutt har rekommenderade stopp, insidertips och en interaktiv karta.',
+    a: 'Under "Rutter" hittar du utvalda rutter som passar olika båttyper och reslängder – från halvdagstur till flerdagarssegling. Varje rutt har rekommenderade stopp, insidertips och en interaktiv karta.',
   },
   {
     q: 'Kan jag logga mina egna turer?',

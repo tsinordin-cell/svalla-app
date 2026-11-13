@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
   title: 'Populära turer i Stockholms skärgård',
-  description: 'Kurerade dagsturer, helgturer och fleradagsrutter i Stockholms skärgård. Från Strömkajen, Dalarö, Stavsnäs och Vaxholm.',
+  description: 'Utvalda dagsturer, helgturer och fleradagsrutter i Stockholms skärgård. Från Strömkajen, Dalarö, Stavsnäs och Vaxholm.',
   keywords: [
     'skärgårdstur stockholm',
     'dagstur skärgården',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Populära turer — Svalla',
-    description: 'Kurerade rutter i Stockholms skärgård.',
+    description: 'Utvalda rutter i Stockholms skärgård.',
     url: 'https://svalla.se/populara-turer',
   },
   alternates: { canonical: 'https://svalla.se/populara-turer' },
@@ -72,7 +72,7 @@ export default function PopularaTurerPage() {
     <CategoryLanding
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Populära turer"
-      title="Kurerade rutter"
+      title="Utvalda rutter"
       tagline="Dagsturer, helgturer och fleradagsrutter i Stockholms skärgård — varje tur leder till målöns sida med hamnar, restauranger och praktisk info."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -105,7 +105,7 @@ export default function PopularaTurerPage() {
             Saknar din favorittur?
           </h2>
           <p>
-            Logga den i Svalla-appen och tagga den som &quot;delningsbar&quot; — den hamnar automatiskt i sökningen och kan bli utvald här. Populära turer är kurerade av redaktionen men bygger helt på användar-data.
+            Logga den i Svalla-appen och tagga den som &quot;delningsbar&quot; — den hamnar automatiskt i sökningen och kan bli utvald här. Populära turer är utvalda av redaktionen men bygger helt på användar-data.
           </p>
         </>
       }

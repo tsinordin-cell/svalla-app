@@ -128,7 +128,7 @@ export default function ResetipsClient() {
           fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: 700,
           color: '#fff', margin: '0 0 16px', lineHeight: 1.2,
         }}>
-          Kuraterade skärgårdsrutter
+          Utvalda skärgårdsrutter
         </h1>
         <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.8)', maxWidth: 580, margin: '0 auto', lineHeight: 1.6 }}>
           Kompletta dagsrutter med stopp, tips och praktisk info — planerade av folk som faktiskt gjort dem.

@@ -242,7 +242,7 @@ export default async function PlaneraPage() {
             </svg>
           </span>
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Utforska kurerade turer</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Utforska utvalda turer</div>
             <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Redaktionella rutter med waypoints, svårighetsgrad och tips.</div>
           </div>
           <Link href="/rutter" style={{
