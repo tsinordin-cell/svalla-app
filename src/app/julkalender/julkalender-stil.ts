@@ -66,7 +66,7 @@ export const JULKALENDER_CSS = `
 .jk-cta:hover{background:#b5591a}
 .jk-nedrakning{display:inline-flex;gap:10px;align-items:baseline;margin-top:22px;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-size:14px;color:rgba(245,244,239,.9)}
 .jk-nedrakning b{font-family:var(--font-display),'Playfair Display',Georgia,serif;font-size:22px;color:#f0b97f}
-.jk-landskap{position:relative;z-index:1;display:block;width:100%;height:auto;margin-top:26px}
+.jk-landskap{position:relative;z-index:1;display:block;width:calc(100% + 40px);max-width:none;height:auto;margin:26px -20px -1px}
 .jk-forhand{background:#0f2f40;color:#fff;text-align:center;font-size:14px;padding:10px 16px}
 .jk-wrap{max-width:1080px;margin:0 auto;padding:30px 16px 0}
 .jk-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;grid-auto-flow:dense}
