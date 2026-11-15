@@ -31,6 +31,8 @@ export default function JulkalenderSkylt() {
         .julskylt{position:absolute;top:78px;left:22px;z-index:50;display:flex;align-items:center;gap:6px;text-decoration:none;animation:julsva 3.2s ease-in-out infinite;transform-origin:8px 0}
         .julskylt span{background:rgba(255,255,255,.92);border-radius:8px;padding:4px 8px;color:#0f2f40;font-size:11.5px;font-weight:600;line-height:1.2;white-space:nowrap}
         .julskylt b{color:#b5591a;font-weight:700}
+        /* Paketet göms när en meny är öppen, annars hamnar det ovanpå menyn (Max 2026-11-15) */
+        body:has(.nav-dropdown:hover) .julskylt,body:has(.nav-dropdown:focus-within) .julskylt{opacity:0;pointer-events:none;transition:opacity .15s}
         .julskylt i{font-style:normal}.julskylt .kort{display:none}
         @media (min-width:600px) and (max-width:999px){.julskylt{top:58px;left:14px}.julskylt span{font-size:11px}.julskylt .lang{display:none}.julskylt .kort{display:inline}}
         @keyframes julsva{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-3px) rotate(2deg)}}
