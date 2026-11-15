@@ -4,6 +4,7 @@ import Link from 'next/link'
 import FeedTabs from '@/components/FeedTabs'
 import StoriesStrip from '@/components/StoriesStrip'
 import LoppisFeedBanner from '@/components/LoppisFeedBanner'
+import NewsletterOptInBanner from '@/components/NewsletterOptInBanner'
 import SvallaLogo from '@/components/SvallaLogo'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
@@ -317,6 +318,9 @@ export default async function FeedPage(
 
  {/* ── Loppis-banner (one-time announcement, dismissible) ── */}
  {!!user && <SilentBoundary><LoppisFeedBanner /></SilentBoundary>}
+
+ {/* ── Frågan om månadsbrevet (samtycke, se NewsletterOptInBanner) ── */}
+ {!!user && <SilentBoundary><NewsletterOptInBanner /></SilentBoundary>}
 
  {/* ── Säsong-driven verktygs-banner ── */}
  {!!user && <SeasonToolBanner />}
