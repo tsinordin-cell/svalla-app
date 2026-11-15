@@ -112,7 +112,7 @@ innehåll som beslutskortet på svalla.se/team.
 - **Ja:** GPS-radierna ändras i batch 01:s PR. **Nej:** inget ändras i
   turtaggningen.
 
-### 3c. (NY 2026-11-09, väntar på Tom) Utös GPS-cirkel – rättelse av mitt förslag i punkt 3
+### 3c. (AVGJORT 2026-11-16) Utös GPS-cirkel – rättelse av mitt förslag i punkt 3
 - **Vad som saknades i förslaget:** alternativ b (OSM:s punkt för ön,
   58.9476, 18.2623, och 7,0 km) når också Ålö brygga (5,09 km) och Rånö
   färjeläge (5,77 km). En tur dit taggas alltså som ett besök på Utö. Det stod
@@ -126,8 +126,17 @@ innehåll som beslutskortet på svalla.se/team.
   mallarnas runda 5 oavsett ditt svar.
 - **Förslag:** byt till den minsta omslutande cirkeln. **Ja:** cirkeln byts i
   batch 01:s PR. **Nej:** alternativ b står kvar.
+- **Toms svar 2026-11-16 00:36:** "Vad är bäst för svalla som produkt och
+  våra användare?" Tom lämnade valet till det som är bäst för produkten.
+- **Redaktörens val: byt till den minsta omslutande cirkeln.** Den täcker hela
+  Utö med större marginal vid den yttersta stranden (50 m mot 3 m), och den
+  taggar inte turer till Rånö eller båtar som bara passerar inom 7 km.
+  Nackdelen: en tur som slutar vid Ålö brygga, dit linje 22 går och därifrån
+  bron leder till Utö, räknas inte som Utö om spåret slutar där. Det löses på
+  sikt med öns verkliga form (polygon) i stället för en cirkel, i appens spår.
+  Utös Skribent mäter cirkeln igen och lägger in den i batch 01:s PR.
 
-### 6b. (NY 2026-11-09, väntar på Tom) Sandhamn: Café Strindbergsgården saknar källa
+### 6b. (BESLUTAT 2026-11-16: ersätt) Sandhamn: Café Strindbergsgården saknar källa
 - **Läget:** postens enda källa är kaféets Facebooksida. I din Chrome visar
   den bara "Det här innehållet är inte tillgängligt just nu". Ingen egen
   webbplats, inget aktivt Instagramkonto och ingen kommunsida nämner kaféet,
@@ -143,8 +152,11 @@ innehåll som beslutskortet på svalla.se/team.
 - **Förslag:** gör om den, om klubbens sida visar att restaurangen är öppen
   för besökare och inte bara för medlemmar. Annars döljs den. Detaljerna står
   i register/b01/ut/sandhamn.tom.md, punkt 1.
+- **Toms beslut 2026-11-16 00:36: Ersätt.** Posten görs om till Strindberg's
+  Champagne Club med belagda uppgifter från klubbens egen sida, även om vem
+  som får komma in. Sluggen står kvar, så att adressen inte ändras.
 
-### 6c. (NY 2026-11-10, väntar på Tom) Sandhamn: posten "Bistro Sands"
+### 6c. (BESLUTAT 2026-11-16: nej) Sandhamn: posten "Bistro Sands"
 - **Läget:** posten är en restaurang med namnet Bistro Sands och webbplatsen
   sandshotell.se. Hotellets webbplats nämner ingen "Bistro Sands" och ingen
   restaurang som är öppen för allmänheten. Restaurangen nämns bara bland
@@ -155,6 +167,10 @@ innehåll som beslutskortet på svalla.se/team.
 - **Förslag:** dölj posten bistro-sands. **Ja** betyder att den döljs i
   batch 01:s databassatser. **Nej** betyder att den står kvar som den är tills
   någon bekräftar restaurangen.
+- **Toms beslut 2026-11-16 00:36: Nej.** Posten står kvar med namnet Bistro
+  Sands och sin text, som Bakgården enligt beslut 5. Omdöpningen till "Sands
+  Hotells restaurang" i sandhamn.sql tas bort. Nålen flyttas ändå till
+  hotellets byggnad (sandhamn-0420), eftersom den gamla låg 168 m bort.
 
 ### 4. (BESLUTAT 2026-11-08) Platstyp för camping (schemaändring)
 - Utö camping (`uto-camping-och-stugor`) har typen hotel. Tabellen
