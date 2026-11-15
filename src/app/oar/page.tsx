@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import SidHuvud from '@/components/SidHuvud'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import PublicFooter from '@/components/PublicFooter'
@@ -100,34 +101,8 @@ export default function OarIndexPage() {
         }}
       />
 
-      <nav style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
-        padding: '18px 24px 16px',
-      }}>
-        <div style={{ maxWidth: 1080, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <SvallaLogo height={26} color="#ffffff" />
-          </Link>
-          <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
-            <Link href="/logga-in" style={{ color: 'rgba(255,255,255,0.85)', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>
-              Logga in
-            </Link>
-            <Link href="/kom-igang" style={{
-              padding: '8px 18px',
-              borderRadius: 999,
-              background: 'rgba(255,255,255,0.15)',
-              border: '1px solid rgba(255,255,255,0.25)',
-              color: '#fff',
-              fontSize: 13, fontWeight: 700,
-              textDecoration: 'none',
-              backdropFilter: 'blur(8px)',
-            }}>
-              Kom igång gratis
-            </Link>
-          </div>
-        </div>
-      </nav>
 
+      <SidHuvud />
       {/* HERO */}
       <header style={{
         background: 'linear-gradient(170deg, #0d2440 0%, #1e5c82 50%, #2d7d8a 100%)',

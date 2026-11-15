@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import SidHuvud from '@/components/SidHuvud'
 import { TRIPS, type TripDifficulty, type TransportTag } from './trips-data'
 import Icon, { type IconName } from '@/components/Icon'
 
@@ -111,6 +112,7 @@ export default function ResetipsClient() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg, #f8f7f4)', paddingBottom: 80 }}>
 
+      <SidHuvud />
       {/* Hero */}
       <section style={{
         background: 'linear-gradient(170deg, #0d2440 0%, #1e5c82 50%, #2d7d8a 100%)',   // samma som /oar (Claes: inte blå till grön)
@@ -118,18 +120,6 @@ export default function ResetipsClient() {
         textAlign: 'center',
         position: 'relative',
       }}>
-        <Link
-          href="/"
-          style={{
-            position: 'absolute', top: 18, left: 18,
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            padding: '8px 14px', borderRadius: 999,
-            background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.22)',
-            color: '#fff', fontSize: 13, fontWeight: 600, textDecoration: 'none',
-          }}
-        >
-          ← Startsidan
-        </Link>
         <p style={{
           fontSize: 12, fontWeight: 700, letterSpacing: '0.12em',
           textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 12,

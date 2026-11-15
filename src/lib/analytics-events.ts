@@ -40,6 +40,8 @@ export type SvallaEvent =
   | { name: 'julkalender_lucka_visad'; props: { dag: number; inloggad: boolean } }
   | { name: 'julkalender_lucka_oppnad'; props: { dag: number } }
   | { name: 'julkalender_delad'; props: { dag: number } }
+  // ── Thorkels frågor till nya besökare (2026-11-15, Claes idé) ───────────
+  | { name: 'forsta_besok'; props: { steg: 'visad' | 'ja' | 'nej' | 'klar' | 'konto'; fraga?: string; svar?: string } }
   // ── GPS-spårning i webbläsaren (2026-10-26) ──────────────────────────────
   // Varför gav en användare upp efter 40 s utan en punkt (19 okt)? Nekad
   // behörighet, ingen signal eller otålighet? Det här svarar på det.

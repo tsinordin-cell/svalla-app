@@ -1,3 +1,4 @@
+import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import type { ReactNode, CSSProperties } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
@@ -21,15 +22,6 @@ function resolveIcon(raw?: string): IconName | null {
 }
 // Alla kategori- och filterlänkar är publika — ingen inloggning krävs
 
-const siteNavLinkStyle: CSSProperties = {
- color: 'rgba(255,255,255,0.85)',
- fontSize: 14,
- fontWeight: 500,
- textDecoration: 'none',
- padding: '8px 12px',
- borderRadius: 8,
- whiteSpace: 'nowrap',
-}
 
 /**
  * CategoryLanding — delad mall för SEO-landningssidor under dropdown-menyn.
@@ -90,7 +82,8 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  title,
  eyebrow,
  tagline,
- heroGradient = ['#1e5c82', '#2d7d8a'],
+ // Claes 2026-11-15: samma blå grundfärg på hela sajten. Sidornas egna färger (orange, grönt, brunt) används inte längre.
+ heroGradient: _egenFarg,
  intro,
  items,
  itemsTitle = 'Populärt just nu',
@@ -100,53 +93,16 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  related,
  heroCta,
  } = props
+ void _egenFarg
+ const heroGradient: [string, string] = ['#1e5c82', '#2d7d8a']
 
  // Se kommentaren vid HIGHLIGHTS GRID nedan.
  const nagonHarIkon = items.some(it => resolveIcon(it.icon) !== null)
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 0 }}>
- {/* WEBBPLATS-NAV — markerar sidan som "hemsida", inte app */}
- {/* revision 2026-10-02: mork-yta = vit fokusring på mörk botten (globals.css) */}
- <nav
- className="mork-yta"
- style={{
- background: heroGradient[0],
- borderBottom: '1px solid rgba(255,255,255,0.08)',
- padding: '14px 20px',
- }}
- >
- <div style={{
- maxWidth: 1040, margin: '0 auto',
- display: 'flex', alignItems: 'center', justifyContent: 'space-between',
- gap: 12, flexWrap: 'wrap', rowGap: 10,
- }}>
- <Link href="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
- <SvallaLogo height={22} color="#ffffff" />
- </Link>
- {/*
-   flexWrap: lankraden Karta/Resmal/Turer/Logga in/Kom igang ar 434 px
-   bred. I en 390 px-vy lag "Kom igang" — sidans primara knapp — utanfor
-   hogerkanten, och hela sidan fick horisontell scroll. Nu lagger sig
-   lankarna pa egen rad under loggan i stallet.
- */}
- <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexWrap: 'wrap', rowGap: 6, justifyContent: 'flex-end', flex: '1 1 auto' }}>
- <Link href="/karta" style={siteNavLinkStyle}>Karta</Link>
- <Link href="/resmal" style={siteNavLinkStyle}>Resmål</Link>
- <Link href="/populara-turer" style={siteNavLinkStyle}>Turer</Link>
- <Link href="/logga-in" style={siteNavLinkStyle}>Logga in</Link>
- <Link href="/kom-igang" style={{
- ...siteNavLinkStyle,
- background: '#fff',
- color: heroGradient[0],
- fontWeight: 700,
- padding: '8px 16px',
- borderRadius: 22,
- marginLeft: 6,
- }}>Kom igång →</Link>
- </div>
- </div>
- </nav>
+ {/* Gemensamt sidhuvud för alla publika undersidor (Claes 2026-11-15) */}
+ <SidHuvud />
 
  {/* HERO */}
  <header
