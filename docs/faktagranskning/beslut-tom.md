@@ -112,7 +112,7 @@ innehåll som beslutskortet på svalla.se/team.
 - **Ja:** GPS-radierna ändras i batch 01:s PR. **Nej:** inget ändras i
   turtaggningen.
 
-### 3c. (AVGJORT 2026-11-16) Utös GPS-cirkel – rättelse av mitt förslag i punkt 3
+### 3c. (BESLUTAT 2026-11-16: byt) Utös GPS-cirkel – rättelse av mitt förslag i punkt 3
 - **Vad som saknades i förslaget:** alternativ b (OSM:s punkt för ön,
   58.9476, 18.2623, och 7,0 km) når också Ålö brygga (5,09 km) och Rånö
   färjeläge (5,77 km). En tur dit taggas alltså som ett besök på Utö. Det stod
@@ -135,6 +135,7 @@ innehåll som beslutskortet på svalla.se/team.
   bron leder till Utö, räknas inte som Utö om spåret slutar där. Det löses på
   sikt med öns verkliga form (polygon) i stället för en cirkel, i appens spår.
   Utös Skribent mäter cirkeln igen och lägger in den i batch 01:s PR.
+- **Tom 2026-11-16 00:53:** "låter bra". Beslutet är att byta.
 
 ### 6b. (BESLUTAT 2026-11-16: ersätt) Sandhamn: Café Strindbergsgården saknar källa
 - **Läget:** postens enda källa är kaféets Facebooksida. I din Chrome visar
