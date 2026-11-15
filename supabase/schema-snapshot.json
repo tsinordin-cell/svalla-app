@@ -1,6 +1,6 @@
 {
  "_om": "Ögonblicksbild av public-schemat i Supabase (tabell → kolumner), använd av scripts/schemakontroll.mjs. Uppdatera efter varje migration: kör SQL:en i _sql i Supabase SQL Editor och klistra in resultatet i tabeller.",
- "_hamtad": "2026-09-29 (+ passerade_oar 2026-10-26 ur migrationen)",
+ "_hamtad": "2026-09-29 (+ passerade_oar 2026-10-26 ur migrationen) (+ email_log.last_event,event_at ur migrationen 20261108000000, körs av Tom)",
  "_sql": "select json_object_agg(table_name, cols) from (select table_name, string_agg(column_name, ',' order by ordinal_position) as cols from information_schema.columns where table_schema='public' group by table_name) t;",
  "tabeller": {
   "account_deletions": "id,user_id_hash,deleted_at",
@@ -14,7 +14,7 @@
   "comments": "id,user_id,trip_id,content,created_at",
   "conversation_participants": "conversation_id,user_id,role,joined_at,last_read_at,muted",
   "conversations": "id,is_group,title,club_id,created_by,status,created_at,last_message_at,last_message_preview,last_message_user_id",
-  "email_log": "id,email,template,resend_id,sent_at,user_id,error,created_at",
+  "email_log": "id,email,template,resend_id,sent_at,user_id,error,created_at,last_event,event_at",
   "email_subscribers": "id,email,source,preferences,confirmed,unsubscribed,user_id,created_at,confirmed_at,unsubscribed_at",
   "email_unsubscribes": "email,unsubscribed_at,ip,user_agent,source_template",
   "follows": "id,follower_id,following_id,created_at",
@@ -58,6 +58,7 @@
   "trips": "id,user_id,boat_type,distance,duration,average_speed_knots,max_speed_knots,image,route_id,started_at,ended_at,created_at,caption,location_name,pinnar_rating,start_location,ai_summary,route_points,images,planned_route_id,deleted_at,visibility,status,gps_quality,duration_seconds",
   "user_presence": "user_id,current_chat_id,updated_at",
   "users": "id,username,email,avatar,created_at,bio,nationality,experience_years,vessel_type,vessel_model,vessel_name,home_port,sailing_region,public_fields,is_admin,boat_type,website,onboarded_at,home_port_lat,home_port_lng",
-  "visited_islands": "id,user_id,island_slug,trip_id,visited_at"
+  "visited_islands": "id,user_id,island_slug,trip_id,visited_at",
+  "user_blocks": "blocker_id,blocked_id,created_at"
  }
 }

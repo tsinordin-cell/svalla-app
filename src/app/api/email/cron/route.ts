@@ -17,6 +17,7 @@ import { cronBehorig } from '@/lib/cronAuth'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { sendEmail } from '@/lib/email'
 import { korAvstangdaFloden } from './floden'
+import { hamtaEngagemang } from './engagemang'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -503,6 +504,12 @@ async function handle(req: Request) {
   // Månadsbrev, dag 60/90, sparad ö, veckans ö. Skickar ingenting förrän
   // flödet står i EMAIL_AUTOMATIK — se src/lib/mailfloden.ts.
   Object.assign(results, await korAvstangdaFloden(service, today))
+
+  // ── 6. Öppningar och klick från Resend till email_log (2026-11-08) ────────
+  // Läser bara. Kräver kolumnerna last_event/event_at; saknas de blir det
+  // skipped med felet, inget annat påverkas.
+  const eng = await hamtaEngagemang(service)
+  results.engagemang = { sent: eng.uppdaterade, errors: eng.errors, details: eng.skipped ? { skipped: eng.skipped } : undefined }
 
   return NextResponse.json({ ok: true, today: today.toISOString().slice(0, 10), results })
 }
