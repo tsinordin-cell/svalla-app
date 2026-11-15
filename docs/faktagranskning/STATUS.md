@@ -2,6 +2,26 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+## 2026-11-16 00:35 — arbetet återupptaget efter veckogränsen
+
+- **Kontots veckogräns** stoppade alla fyra agenter på kvällen 10 november.
+  Arbetet låg kvar på disk och återupptogs 2026-11-16 00:25.
+- **Main har gått vidare** till ffeb8e1 (#518–#534). Mallarnas arbetskopia
+  (/home/claude/svalla-mallar5) är flyttad dit, och rundorna 1–5 är pålagda
+  igen med git apply --3way utan konflikter (40 filer).
+  ut/mallar-arbetskopia.patch är nu samma ändring mot ffeb8e1.
+- **Sammanslagningen på nya main (MÄTT):** mallarnas patch och alla nio öars
+  edits-filer går in utan fel i /home/claude/svalla-slut. tsc,
+  verify-claims, källistan, schemakontrollen, cache-vakten och
+  uppskattningarna går igenom. 744 av 746 tester går igenom. De två som
+  fallerar är desamma som förut (Styrsös radie och Fjäderholmarnas nål) och
+  rättas i runda 6 och runda 4e.
+- **Pågår:** slut-01, mallarnas runda 6 och runda 4e. Tre agenter åt gången,
+  så att mer av kontots kvot blir kvar till Tom. slut-03 har 22 av 90 rader
+  klara och fortsätter när en plats blir ledig.
+- **Lokala arbetskopior** (svalla-slut, svalla-mallar5) committas inte och
+  pushas inte före batchens PR. Kod och data pushas en gång per batch.
+
 ## 2026-11-10 18:55 — alla öar omarbetade; slutomkontrollen startad
 
 - **Femtimmarsgränsen** stoppade fyra agenter i går kväll. Arbetet låg kvar

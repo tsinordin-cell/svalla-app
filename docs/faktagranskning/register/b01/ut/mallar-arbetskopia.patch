@@ -1912,7 +1912,7 @@ index 489c075..fe2ab2e 100644
    },
  ]
 diff --git a/src/app/o/island-data.ts b/src/app/o/island-data.ts
-index 49fb8df..3f2d143 100644
+index 7718177..82aba80 100644
 --- a/src/app/o/island-data.ts
 +++ b/src/app/o/island-data.ts
 @@ -54,7 +54,7 @@ export type IslandBeach = {
