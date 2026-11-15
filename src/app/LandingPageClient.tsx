@@ -73,7 +73,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-dropdown > a::after{content:'\\25BE';font-size:9px;margin-left:6px;opacity:.55;transition:.18s;display:inline-block;line-height:1}
 .nav-dropdown:hover > a::after{opacity:1;transform:translateY(1px)}
 .nav-dd-panel{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-4px);padding-top:14px;min-width:240px;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:50}
-.nav-dd-inner{background:rgba(10,28,40,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.nav-dd-inner{background:rgba(10,28,40,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px;box-shadow:0 18px 50px rgba(0,0,0,.45);max-height:calc(100vh - 100px);overflow-y:auto;overscroll-behavior:contain}
 .nav-dropdown:hover .nav-dd-panel,.nav-dropdown:focus-within .nav-dd-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 .nav-dd-link{display:block;color:rgba(255,255,255,.82);text-decoration:none;font-family:'Inter',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.01em;padding:9px 14px;border-radius:8px;transition:.14s;white-space:nowrap}
 .nav-dd-link:hover{color:#fff;background:rgba(255,255,255,.07)}
