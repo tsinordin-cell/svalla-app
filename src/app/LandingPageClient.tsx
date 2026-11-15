@@ -653,9 +653,9 @@ const LANDING_HTML = `
  </div></div>
  </li>
  <li class="nav-dropdown">
- <a href="/krogar-och-mat">Krogar</a>
+ <a href="/krogar-och-mat">Mat &amp; dryck</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
- <a href="/krogar-och-mat" class="nav-dd-link">Alla krogar</a>
+ <a href="/krogar-och-mat" class="nav-dd-link">Alla restauranger och caféer</a>
  <div class="nav-dd-divider"></div>
  <a href="/krogar-och-mat?typ=skargardskrog" class="nav-dd-link">Skärgårdskrogar</a>
  <a href="/krogar-och-mat?typ=fine-dining" class="nav-dd-link">Fine dining</a>
@@ -779,9 +779,9 @@ const LANDING_HTML = `
  </div>
  </div>
  <div class="mob-acc">
- <button class="mob-acc-head">Krogar<span class="mob-acc-chev">›</span></button>
+ <button class="mob-acc-head">Mat &amp; dryck<span class="mob-acc-chev">›</span></button>
  <div class="mob-acc-body">
- <a href="/krogar-och-mat" class="mob-acc-link">Alla krogar</a>
+ <a href="/krogar-och-mat" class="mob-acc-link">Alla restauranger och caféer</a>
  <a href="/krogar-och-mat?typ=skargardskrog" class="mob-acc-link">Skärgårdskrogar</a>
  <a href="/krogar-och-mat?typ=fine-dining" class="mob-acc-link">Fine dining</a>
  <a href="/krogar-och-mat?typ=cafe" class="mob-acc-link">Caféer &amp; bagerier</a>
@@ -819,7 +819,7 @@ const LANDING_HTML = `
  <em>skärgårdsvistelse</em>
  </h1>
  <p class="hero-sub">
- Öar, krogar, badplatser och båttider – samlat för en dag i skärgården.
+ Öar, krogar, badplatser och båttider, samlat på ett ställe.
  </p>
  </div>
  <div class="hero-bottom">
@@ -828,14 +828,19 @@ const LANDING_HTML = `
  <button type="submit">Sök</button>
  </form>
  <div style="text-align:center;margin-bottom:12px;display:flex;flex-direction:column;align-items:center;gap:10px">
- <a href="/utflykt" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Planera din dag i skärgården &rarr;</a>
+ <a href="/utflykt" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Planera din tur &rarr;</a>
+ <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+  <a href="/farjor" style="color:#fff;font-size:12.5px;font-weight:600;text-decoration:none;padding:6px 14px;border-radius:20px;background:rgba(13,36,64,.35);border:1px solid rgba(255,255,255,.18)">Utan egen båt: färjor och dagsturer</a>
+  <a href="/hamnar-och-bryggor" style="color:#fff;font-size:12.5px;font-weight:600;text-decoration:none;padding:6px 14px;border-radius:20px;background:rgba(13,36,64,.35);border:1px solid rgba(255,255,255,.18)">Med egen båt: hamnar och rutter</a>
+ </div>
+ <div style="font-size:12.5px;color:rgba(255,255,255,.8)">Gratis konto: spara öar, planera turer och logga dina besök. <a href="/kom-igang" style="color:#fff;font-weight:700">Kom igång &rarr;</a></div>
  </div>
  <div class="hero-search-hint">
  Populärt just nu:
  <span onclick="location.href='/o/gallno'">Gällnö</span>
  <span onclick="location.href='/o/ulvon'">Ulvön</span>
  <span onclick="location.href='/o/marstrand'">Marstrand</span>
- <span onclick="location.href='/o/gotland'">Gotland</span>
+ <span onclick="location.href='/o/sandhamn'">Sandhamn</span>
  </div>
  <div class="hero-scroll">
  <div class="hero-scroll-line"></div>
@@ -847,9 +852,9 @@ const LANDING_HTML = `
 <div class="trust-bar">
  <div class="trust-item"><strong data-stat="islands">__ANTAL_OAR__</strong> Öar med guider</div>
  <div class="trust-divider"></div>
- <div class="trust-item"><strong data-stat="places">200+</strong> Krogar &amp; hamnar kartlagda</div>
+ <div class="trust-item"><strong data-stat="places">200+</strong> Platser på kartan</div>
  <div class="trust-divider"></div>
- <div class="trust-item"><strong>Arholma &rarr; Marstrand</strong> Stockholm, Bohuslän + Gotland</div>
+ <div class="trust-item"><strong>Hela Sverige</strong> Skärgård, kust och öar</div>
  <div class="trust-divider"></div>
  <div class="trust-item"><strong>Ingen båt krävs</strong> Kollektivt ända ut</div>
  <div class="trust-divider"></div>
@@ -1094,7 +1099,7 @@ const LANDING_HTML = `
     <div class="region-card-bg" data-lp-photo="vasterhav" style="background:linear-gradient(160deg,#08182e,#1a3a5a,#2a5a80)"></div>
     <div class="region-card-overlay"></div>
     <div class="region-card-content">
-     <div class="region-card-label">Västerhavet</div>
+     <div class="region-card-label">Västkusten</div>
      <div class="region-card-name">Västerhavet</div>
      <div class="region-card-sub">Kattegatt · Skagerrak · segling</div>
     </div>
@@ -1122,35 +1127,7 @@ const LANDING_HTML = `
  </div>
 </section>
 
-<section class="routes-section" id="rutter">
- <div class="section-inner">
- <div class="section-header reveal" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
- <div>
- <div class="section-label">Populära rutter</div>
- <h2 class="section-title">Utforska på din tur</h2>
- </div>
- <a href="/resetips" class="btn btn-teal">Alla dagsplaner &rarr;</a>
- </div>
- <div class="routes-scroll reveal">
- <div class="route-card" onclick="location.href='/resetips'">
- <div class="route-img" data-lp-photo="innerskargard" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1530870110042-98b2cb110834?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a4a5e,#24697f);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">2 dagar</div></div>
- <div class="route-body"><h4>Stockholms innerskärgård</h4><p>Klassisk paddlingsrutt via Vaxholm, Grinda och Finnhamn. 5 krogar längs vägen.</p><div class="route-meta"><span> 48 km</span><span> 5 krogar</span><span> 4.8</span></div></div>
- </div>
- <div class="route-card" onclick="location.href='/resetips'">
- <div class="route-img" data-lp-photo="sandhamn" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1571051180813-b94b09ddc2d6?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#2d4a2e,#3a6040);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">3 dagar</div></div>
- <div class="route-body"><h4>Yttre skärgården & Sandhamn</h4><p>Seglarturen längs leden till Sandhamn. Ikoniska stopp på vägen.</p><div class="route-meta"><span> 72 km</span><span> 7 krogar</span><span> 4.9</span></div></div>
- </div>
- <div class="route-card" onclick="location.href='/resetips'">
- <div class="route-img" data-lp-photo="uto" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#3a1a1a,#6a2a2e);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"><div class="route-tag">1 dag</div></div>
- <div class="route-body"><h4>Utö – vandring & mat</h4><p>Dag-tur till Utö med vandring och lunch på värdshuset. Perfekt för nybörjare.</p><div class="route-meta"><span>8 km</span><span>2 krogar</span><span>&#x2605; 4.9</span></div></div>
- </div>
- <div class="route-card" onclick="location.href='/resetips'">
- <div class="route-img" data-lp-photo="norra" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1502780402662-acc01917174e?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a3a4a,#2a5a6a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Halvdag</div></div>
- <div class="route-body"><h4>Norr&shy;skärgårdens pärlor</h4><p>Arholma, Möja och Blidö — den orörda norrskärgården.</p><div class="route-meta"><span> 55 km</span><span> 4 krogar</span><span> 4.7</span></div></div>
- </div>
- </div>
- </div>
-</section>
+
 
 <section class="activities-section" id="aktiviteter">
  <div class="section-inner">
@@ -1163,7 +1140,7 @@ const LANDING_HTML = `
  <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="activity-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
  <svg class="activity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 14.5 Q12 12 22.5 14.5 Q12 17 1.5 14.5 Z"/><ellipse cx="11.5" cy="14.5" rx="3.5" ry="1.1"/><line x1="3.5" y1="9.5" x2="20.5" y2="19.5"/><path d="M3.5 9.5 Q1.5 8 2 11 Q2.5 12 3.5 9.5"/><path d="M20.5 19.5 Q22.5 21 22 18 Q21.5 17 20.5 19.5"/><circle cx="11.5" cy="12.5" r="1.6"/></svg>
  <h3>Kajak & Paddling</h3>
- <p>Stockholms skärgård är ett av världens bästa paddlingslandskap. Paddla ut till öar utan fast förbindelse och hitta platser som ingen annan ser.</p>
+ <p>Stockholms skärgård är ett fint landskap att paddla i. Paddla ut till öar utan fast förbindelse och hitta platser som ingen annan ser.</p>
  <div class="activity-tags"><span class="chip">Nybörjarvänligt</span><span class="chip">Uthyrning</span><span class="chip">Guideturer</span></div>
  <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide &rarr;</div>
  </a>
@@ -1171,13 +1148,13 @@ const LANDING_HTML = `
  <svg class="activity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="10.5" y1="2" x2="11.5" y2="16.5"/><line x1="11.5" y1="16.5" x2="19" y2="15.5" stroke-width="1.2"/><path d="M10.5 2 L19 15.5 L11.5 16.5 Z"/><path d="M10.5 6 L3 16.5 L11.5 16.5"/><line x1="2.5" y1="16.5" x2="21.5" y2="16.5"/><path d="M2.5 16.5 Q7 19 12 20 Q17 19 21.5 16.5"/><path d="M12 20 L11.5 22.5 L12.5 22.5" stroke-width="1.6"/></svg>
  <h3>Segling & Båtliv</h3>
  <p>Segla längs klassiska leder mot Sandhamn eller ankra i stilla naturhamnar. Svalla visar gästhamnar, bränsle och övernattningsplatser längs vägen.</p>
- <div class="activity-tags"><span class="chip">Gästhamnar</span><span class="chip">Bränsle</span><span class="chip">Sjökortet</span></div>
+ <div class="activity-tags"><span class="chip">Gästhamnar</span><span class="chip">Bränsle</span></div>
  <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide &rarr;</div>
  </a>
  <a href="/blogg/basta-badplatserna" class="activity-card reveal reveal-delay-3" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
  <svg class="activity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17 L5 14 L7 15.5 L9 11 L12 13 L14 9.5 L17 13 L19 12 L22 17 Z"/><line x1="1" y1="17" x2="23" y2="17"/><path d="M2 19.5 C3.5 17.5 6 18.5 7.5 19.5 C9 20.5 11 20.5 12.5 19.5 C14 18.5 16 18.5 17.5 19.5 C19 20.5 21 20.5 22 19.5" stroke-width="1.1"/><circle cx="17" cy="6" r="2.5"/><path d="M17 8.5 L17 11" stroke-width="1.4"/><path d="M14 10 L20 10" stroke-width="1.1"/></svg>
  <h3>Bad & Klippor</h3>
- <p>Hundratals badplatser på klippor och sandstränder. Hitta dolda badvikar och populära badstugor med GPS-koordinater direkt på kartan.</p>
+ <p>Hundratals badplatser på klippor och sandstränder. Hitta dolda badvikar och populära bastur med GPS-koordinater direkt på kartan.</p>
  <div class="activity-tags"><span class="chip">Klippbad</span><span class="chip">Bastu</span><span class="chip">Sandstrand</span></div>
  <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide &rarr;</div>
  </a>
@@ -1223,48 +1200,7 @@ const LANDING_HTML = `
  </div>
 </section>
 
-<section class="gallery-section" id="galleri">
- <div class="section-inner reveal">
-  <div class="section-label">Inspiration</div>
-  <!-- Galleriet visar PLATSER, inte teman. Klippbad och Kajak & paddling togs
-      bort 2026-09-23 (Max): de är aktiviteter, inte ställen man reser till, och
-      hörde inte hemma bland öar och regioner. -->
-  <h2 class="section-title" style="font-size:clamp(24px,3vw,36px);margin-bottom:4px">Skärgårdslivet på bild</h2>
-  <p style="color:rgba(255,255,255,.55);font-size:14px;margin-top:6px">Klicka för att utforska — foton hämtade direkt från platsen</p>
- </div>
- <div class="gallery-scroll" id="galleryScroll">
-  <a href="/o/sandhamn" class="gallery-item">
-   <div class="gallery-item-bg" data-lp-photo="sandhamn" style="background-color:#1a3a5e"></div>
-   <div class="gallery-item-overlay"></div>
-   <div class="gallery-item-label"><div class="gallery-item-title">Sandhamn</div><div class="gallery-item-sub">Stockholms skärgård · Ytterskärgård</div></div>
-  </a>
-  <a href="/o/uto" class="gallery-item">
-   <div class="gallery-item-bg" data-lp-photo="uto" style="background-color:#2a1a08"></div>
-   <div class="gallery-item-overlay"></div>
-   <div class="gallery-item-label"><div class="gallery-item-title">Utö</div><div class="gallery-item-sub">Södra skärgården · Naturreservat</div></div>
-  </a>
-  <a href="/bohuslan" class="gallery-item">
-   <div class="gallery-item-bg" data-lp-photo="bohuslan" style="background-color:#0a1428"></div>
-   <div class="gallery-item-overlay"></div>
-   <div class="gallery-item-label"><div class="gallery-item-title">Bohuslän</div><div class="gallery-item-sub">Västkusten · Smögen &amp; Fjällbacka</div></div>
-  </a>
-  <a href="/gotland" class="gallery-item">
-   <div class="gallery-item-bg" data-lp-photo="gotland" style="background-color:#2a1a08"></div>
-   <div class="gallery-item-overlay"></div>
-   <div class="gallery-item-label"><div class="gallery-item-title">Gotland</div><div class="gallery-item-sub">Östersjön · Visby &amp; Fårö</div></div>
-  </a>
-  <a href="/aland" class="gallery-item">
-   <div class="gallery-item-bg" data-lp-photo="aland" style="background-color:#081a28"></div>
-   <div class="gallery-item-overlay"></div>
-   <div class="gallery-item-label"><div class="gallery-item-title">Åland</div><div class="gallery-item-sub">Finland · Östersjön · Mariehamn</div></div>
-  </a>
-  <a href="/o/furusund" class="gallery-item">
-   <div class="gallery-item-bg" data-lp-photo="norra" style="background-color:#1e1038"></div>
-   <div class="gallery-item-overlay"></div>
-   <div class="gallery-item-label"><div class="gallery-item-title">Norra skärgården</div><div class="gallery-item-sub">Furusund · Arholma · Blidö</div></div>
-  </a>
- </div>
-</section>
+
 
 <section class="thorkel-section" id="thorkel">
  <div class="thorkel-inner">
