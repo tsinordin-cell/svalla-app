@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { LUCKOR, AR, oppnaLuckor, kalenderSlut, FORHANDS_KOD } from '@/lib/julkalender'
+import { LUCKOR, AR, oppnaLuckor, kalenderSlut, FORHANDS_KOD, idagSverige } from '@/lib/julkalender'
+import SvallaLogo from '@/components/SvallaLogo'
+import { JULKALENDER_CSS, LANDSKAP_SVG, tonFor, ikonFor } from './julkalender-stil'
 import JulkalenderLucka from './JulkalenderLucka'
 import JulkalenderFramsteg from './JulkalenderFramsteg'
 import { JulkalenderVisad, JulkalenderLoggaIn } from './JulkalenderMatning'
@@ -41,35 +43,51 @@ export default async function JulkalenderPage({ searchParams }: Props) {
   const inloggad = forhand || !!user
   const loginUrl = '/logga-in?mode=ny&returnTo=/julkalender'
 
+  // Nedräkning till första luckan (svensk tid)
+  const { ar, manad, dag: idagDag } = idagSverige()
+  const dagarKvar = oppna === 0 && ar === AR
+    ? Math.round((Date.UTC(AR, 11, 1) - Date.UTC(ar, manad - 1, idagDag)) / 86400000)
+    : 0
+
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
+    <div className="jk">
+      <style dangerouslySetInnerHTML={{ __html: JULKALENDER_CSS }} />
       {!forhand && <JulkalenderVisad dag={oppna} inloggad={!!user} />}
       {forhand && (
-        <div style={{ background: '#0f2f40', color: '#fff', textAlign: 'center', fontSize: 14, padding: '10px 16px' }}>
+        <div className="jk-forhand">
           Förhandsvisning: så här ser kalendern ut i december. Alla luckor är öppna här, på svalla.se öppnas de en per dag 1 till 24 december för inloggade.
         </div>
       )}
-      <div style={{ background: 'linear-gradient(180deg,#a9c4dd 0%,#d9dfe9 70%,#eee2e0 100%)', padding: 'calc(env(safe-area-inset-top, 0px) + 28px) 20px 40px' }}>
-        <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '.18em', color: '#b5591a', marginBottom: 10 }}>1–24 DECEMBER {AR}</div>
-          <h1 style={{ fontSize: 'clamp(28px, 6vw, 44px)', fontWeight: 800, color: '#0f2f40', margin: '0 0 10px' }}>Svallas julkalender</h1>
-          <p style={{ fontSize: 16, color: '#36515f', lineHeight: 1.6, margin: '0 auto', maxWidth: 520 }}>
+
+      <header className="jk-hero">
+        <div className="jk-stjarnor" />
+        <div className="jk-sno" />
+        <div className="jk-sno b" />
+        <div className="jk-top">
+          <Link href="/" aria-label="Svalla, till startsidan"><SvallaLogo height={30} /></Link>
+          <Link href="/" className="jk-hem">← Till svalla.se</Link>
+        </div>
+        <div className="jk-inner">
+          <div className="jk-eyebrow">1 TILL 24 DECEMBER {AR}</div>
+          <h1 className="jk-h1">Svallas <em>julkalender</em></h1>
+          <p className="jk-ingress">
             En lucka om dagen med tips om skärgården i vinter. Luckorna öppnas en i taget, och missade luckor går att öppna i efterhand.
           </p>
           {!inloggad && (
-            <JulkalenderLoggaIn dag={oppna} href={loginUrl} style={{ display: 'inline-block', marginTop: 20, background: '#b5591a', color: '#fff', padding: '12px 22px', borderRadius: 50, fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>
+            <JulkalenderLoggaIn dag={oppna} href={loginUrl} className="jk-cta">
               {oppna === 0 ? 'Skapa konto nu så är du redo 1 december →' : 'Skapa konto och öppna dagens lucka →'}
             </JulkalenderLoggaIn>
           )}
-          {inloggad && oppna === 0 && (
-            <p style={{ marginTop: 18, fontSize: 15, color: '#0f2f40', fontWeight: 600 }}>Första luckan öppnas 1 december.</p>
+          {oppna === 0 && dagarKvar > 0 && (
+            <div><div className="jk-nedrakning"><b>{dagarKvar}</b> {dagarKvar === 1 ? 'dag kvar till första luckan' : 'dagar kvar till första luckan'}</div></div>
           )}
         </div>
-      </div>
+        <div dangerouslySetInnerHTML={{ __html: LANDSKAP_SVG }} />
+      </header>
 
-      <div style={{ maxWidth: 760, margin: '0 auto', padding: '28px 16px' }}>
+      <div className="jk-wrap">
         {!forhand && kalenderSlut() && (
-          <div style={{ background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 16, padding: '18px 18px', marginBottom: 16 }}>
+          <div className="jk-kort">
             <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--ink)' }}>Kalendern är slut. Skärgården är inte det.</div>
             <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.6, margin: '6px 0 10px' }}>Alla 24 luckor finns kvar här. Vill du vidare finns våra guider.</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -79,51 +97,61 @@ export default async function JulkalenderPage({ searchParams }: Props) {
           </div>
         )}
         {inloggad && !forhand && <JulkalenderFramsteg oppna={oppna} />}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: 12 }}>
+        <div className="jk-grid">
           {Array.from({ length: 24 }, (_, i) => i + 1).map(dag => {
             const lucka = LUCKOR.find(l => l.dag === dag)
             const harOppnat = dag <= oppna
             const idag = dag === oppna
-            const bas: React.CSSProperties = {
-              borderRadius: 14, padding: '14px 14px 16px', minHeight: 120,
-              border: idag ? '2px solid #c96e2a' : '1px solid var(--surface-3)',
-              background: 'var(--white)', display: 'flex', flexDirection: 'column', gap: 6,
-            }
-            const nummer = <div style={{ fontSize: 26, fontWeight: 800, color: harOppnat ? '#c0392b' : '#9aa9b3', lineHeight: 1 }}>{dag}</div>
+            const klass = `jk-dorr${dag === 24 ? ' jk-stor' : ''}${idag ? ' jk-idag' : ''}${harOppnat ? '' : ' jk-last'}`
+            const ton = dag === 24 ? 'rod' : tonFor(dag)
+            const topp = (
+              <>
+                <span className="jk-ikon" dangerouslySetInnerHTML={{ __html: ikonFor(dag) }} />
+                {idag && <span className="jk-idag-etikett">IDAG</span>}
+                <div className="jk-nr">{dag}</div>
+              </>
+            )
 
             if (!harOppnat) {
               return (
-                <div key={dag} style={{ ...bas, background: 'var(--surface-2)' }}>
-                  {nummer}
-                  <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>Öppnas {dag} december</div>
+                <div key={dag} className={klass} data-ton={ton}>
+                  {topp}
+                  {dag === 24 && <div className="jk-titel">Julafton</div>}
+                  <div className="jk-las">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>
+                    Öppnas {dag} december
+                  </div>
+                  <span className="jk-rosett" />
                 </div>
               )
             }
             if (!inloggad) {
               return (
-                <JulkalenderLoggaIn key={dag} dag={dag} href={loginUrl} style={{ ...bas, textDecoration: 'none', color: 'inherit' }}>
-                  {nummer}
-                  {lucka && <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>{lucka.titel}</div>}
-                  {lucka && <div style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.5 }}>{lucka.teaser}</div>}
-                  <div style={{ fontSize: 12, color: 'var(--ink-muted)' }}>Skapa ett gratis konto för att läsa hela luckan</div>
-                  <div style={{ marginTop: 'auto', fontSize: 13, fontWeight: 700, color: '#b5591a' }}>Öppna →</div>
+                <JulkalenderLoggaIn key={dag} dag={dag} href={loginUrl} className={klass} data-ton={ton}>
+                  {topp}
+                  {lucka && <div className="jk-titel">{lucka.titel}</div>}
+                  {lucka && <div className="jk-teaser">{lucka.teaser}</div>}
+                  <div className="jk-litet">Skapa ett gratis konto för att läsa hela luckan</div>
+                  <div className="jk-oppna">Öppna →</div>
                 </JulkalenderLoggaIn>
               )
             }
             if (!lucka) {
               return (
-                <div key={dag} style={bas}>
-                  {nummer}
-                  <div style={{ fontSize: 13, color: 'var(--ink-muted)' }}>Kommer snart</div>
+                <div key={dag} className={klass} data-ton={ton}>
+                  {topp}
+                  <div className="jk-litet">Kommer snart</div>
                 </div>
               )
             }
-            return <JulkalenderLucka key={dag} lucka={lucka} idag={idag} stil={bas} nummerFarg="#c0392b" />
+            return <JulkalenderLucka key={dag} lucka={lucka} idag={idag} klass={klass} ton={ton} topp={topp} />
           })}
         </div>
-        <p style={{ fontSize: 13, color: 'var(--ink-muted)', textAlign: 'center', marginTop: 24 }}>
-          Svalla skriver inga priser. Hittar du något som inte stämmer, skriv till <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a>.
-        </p>
+        <div className="jk-fot">
+          <Link href="/" className="jk-fot-logga" aria-label="Svalla"><SvallaLogo height={26} color="#0a2540" /></Link>
+          <div>Gjord i skärgården, för alla som längtar ut på vattnet även i vinter.</div>
+          <div>Svalla skriver inga priser. Hittar du något som inte stämmer, skriv till <a href="mailto:info@svalla.se">info@svalla.se</a>.</div>
+        </div>
       </div>
     </div>
   )
