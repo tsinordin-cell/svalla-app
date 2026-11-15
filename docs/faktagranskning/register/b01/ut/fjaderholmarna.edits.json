@@ -399,5 +399,13 @@
   "rader": [
    "fjaderholmarna-0313"
   ]
+ },
+ {
+  "fil": "src/lib/svalla-oar-sok.test.ts",
+  "gammal": "    expect(parseFloat(t[0]!.lat)).toBeCloseTo(59.3333, 3)",
+  "ny": "    expect(parseFloat(t[0]!.lat)).toBeCloseTo(59.3284, 3)",
+  "rader": [
+   "fjaderholmarna-0016"
+  ]
  }
 ]
