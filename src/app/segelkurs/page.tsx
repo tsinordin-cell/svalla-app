@@ -1,3 +1,4 @@
+import SidHuvud from '@/components/SidHuvud'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { GUIDES } from '@/app/guider/guides-data'
@@ -77,10 +78,11 @@ export default function SegelkursPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
 
+      <SidHuvud />
       {/* Header */}
       <div style={{ background: 'var(--grad-sea-hero)', padding: '0 20px 48px', paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <div style={{marginBottom: 12}} aria-hidden><Icon name="sailboat" size={40} /></div>
+          <div style={{ marginBottom: 12, color: '#fff' }} aria-hidden><Icon name="sailboat" size={40} /></div>
           <h1 style={{ fontSize: 'clamp(26px, 5vw, 40px)', fontWeight: 800, color: 'var(--white)', margin: '0 0 12px' }}>
             Segelkurs i Sverige
           </h1>
