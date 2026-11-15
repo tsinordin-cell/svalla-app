@@ -2,7 +2,7 @@
 /**
  * ForstaBesok: Thorkel hälsar nya besökare välkomna och ställer tre snabba frågor
  * (Claes Dahlstrand 2026-11-15). Visas som en liten ruta längst ner, aldrig som ett
- * fönster som täcker sidan, efter 20 sekunder eller på andra sidvisningen.
+ * fönster som täcker sidan, efter 10 sekunder eller på andra sidvisningen.
  * Bara för utloggade, bara en gång per webbläsare, aldrig på inloggnings- och appsidor.
  * Svaren sparas bara i den här webbläsaren (localStorage) och skickas som anonyma
  * händelser till statistiken. Konto skapas först om besökaren själv väljer det.
@@ -43,7 +43,7 @@ export default function ForstaBesok() {
         if (avbruten || data.session) return
         // Vänta tills cookiebannern är besvarad, så att två rutor aldrig ligger ovanpå varandra
         const visa = () => { if (avbruten) return; if (!localStorage.getItem('svalla_cookie_consent')) { timer = setTimeout(visa, 5000); return }; setLage('halsning'); track('forsta_besok', { steg: 'visad' }) }
-        if (visningar >= 2) visa(); else timer = setTimeout(visa, 20000)
+        if (visningar >= 2) visa(); else timer = setTimeout(visa, 10000)
       }).catch(() => {})
     } catch { /* privat läge: visa inget */ }
     return () => { avbruten = true; if (timer) clearTimeout(timer) }
