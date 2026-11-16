@@ -66,21 +66,9 @@ update restaurants set latitude = 59.2879473, updated_at = now() where slug = 'b
 -- FÖRE: 18.9115
 update restaurants set longitude = 18.914614, updated_at = now() where slug = 'bistro-sands' and longitude = 18.9115;
 
--- bistro-sands.name (register: sandhamn-0417; omarbete 4: sandhamn-0418, sandhamn-0419, sandhamn-0421, sandhamn-0394)
--- Omarbete 4 (2026-11-09): namnet Bistro Sands står inte på hotellets startsida eller på /hotell/ (Chromium, 0 träffar på "bistro"), och sidan länkar inte till något Instagram- eller Facebookkonto. Hotellet själv skriver bara "restaurangen", så namnet blir Sands Hotells restaurang. Att dölja posten kräver Tom (inte föreslaget).
--- KÄLLA: https://sandshotell.se/ — "restaurangen med uteterassen samt ett orangeri" (läst 2026-11-09)
--- KÄLLA: https://sandshotell.se/ — "Sands Hotell är ett konferens- och weekend-hotell i Sandhamn" (läst 2026-11-09)
--- FÖRE: 'Bistro Sands'
-update restaurants set name = 'Sands Hotells restaurang', updated_at = now() where slug = 'bistro-sands' and name = 'Bistro Sands';
-
--- bistro-sands.description (register: sandhamn-0422, sandhamn-0423, sandhamn-0424, sandhamn-0425, sandhamn-0426, sandhamn-0427)
--- KÄLLA: https://sandshotell.se/ — "Sands Hotell är ett konferens- och weekend-hotell i Sandhamn" (läst 2026-11-09)
--- KÄLLA: https://sandshotell.se/ — "33 bäddar" (läst 2026-11-09)
--- KÄLLA: https://sandshotell.se/ — "restaurangen med uteterassen samt ett orangeri" (läst 2026-11-09)
--- KÄLLA: https://sandshotell.se/ — "terrasser med utsikt över hamninloppet" (läst 2026-11-09)
--- KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — "Kommun: Värmdö" (Värmdö kommun i stället för Nominatim, omarbete 4) (läst 2026-11-09)
--- FÖRE: 'Bistro Sands är restaurangen på Sands Hotell på Sandhamn, ett konferens- och weekendhotell med 33 bäddar. Restaurangen har en uteterrass, och hotellet har terrasser med utsikt över hamninloppet.'
-update restaurants set description = 'Sands Hotells restaurang ligger på Sands Hotell i Sandhamn, Värmdö kommun, ett konferens- och weekendhotell med 33 bäddar. Restaurangen har en uteterrass, och hotellet har terrasser med utsikt över hamninloppet.', updated_at = now() where slug = 'bistro-sands' and description = 'Bistro Sands är restaurangen på Sands Hotell på Sandhamn, ett konferens- och weekendhotell med 33 bäddar. Restaurangen har en uteterrass, och hotellet har terrasser med utsikt över hamninloppet.';
+-- bistro-sands.name och .description (register: sandhamn-0417 och sandhamn-0422) – Toms beslut 6c (2026-11-16): posten står kvar med
+-- namnet Bistro Sands och sin text, som Bakgården enligt beslut 5. Satserna för namn och beskrivning är borttagna (omarbete 4e, 2026-11-16).
+-- Nålen flyttas ändå till hotellets byggnad (sandhamn-0420, de två satserna ovanför).
 
 -- vasterudde-strand.name (register: sandhamn-0516) – omarbete 2026-11-03
 -- Namnet "Västerudde strand" finns bara i OpenStreetMap. Stockholm Archipelago Trail kallar udden Västerudden, och stranden ligger vid Sandöns västligaste punkt.
@@ -202,3 +190,50 @@ update restaurants set type = 'nature', updated_at = now() where slug = 'vasteru
 -- KÄLLA: https://www.ksss.se/hamnar/lokholmen — "I yttre havsbandet intill Sandhamn ligger Lökholmen.", "På Lökholmen finns plats för ca 200 båtar. Den första delen, Trollsundet", "Lökholmens gästhamn är belägen strax nordost om Sandhamns gästhamn." (läst 2026-11-10)
 -- FÖRE: 'Sandhamn' (platsexporten 2026-10-29; inte prövat med SELECT)
 update restaurants set island = 'Lökholmen', updated_at = now() where slug = 'ksss-gasthamn-lokholmen-trollsundet' and island = 'Sandhamn';
+
+-- ════════════════════════════════════════════════════════════════════════
+-- OMARBETE 4E (Granskaren/Skribenten 2026-11-16)
+-- Toms beslut 6b (2026-11-16, "Ersätt"): posten cafe-strindbergsgarden görs om till Strindberg's Champagne Club med uppgifter från klubbens
+-- egen sida. Sluggen står kvar. FÖRE-värdena är lästa med SELECT 2026-11-16 (bara läsning). endast_medlemmar står kvar som false, eftersom
+-- klubben skriver att alla är välkomna till restaurangen. Kvar från kaféet utan sats (Redaktören avgör): menu, opening_hours, categories,
+-- facilities, tags och Google-uppgifterna (google_place_id, betyg och bilder).
+-- Toms beslut 6c (2026-11-16, "Nej"): bistro-sands står kvar med namn och text; satserna är borttagna ovan, nålens satser står kvar.
+-- ════════════════════════════════════════════════════════════════════════
+
+-- cafe-strindbergsgarden.name (register: sandhamn-0428)
+-- KÄLLA: https://strindbergs.se/ — "Strindberg's Champagne Club", "Champagnebar, restaurang och medlemsklubb för alla skärgårds- och champagneälskare." (läst 2026-11-16)
+-- FÖRE: 'Café Strindbergsgården'
+update restaurants set name = 'Strindberg''s Champagne Club', updated_at = now() where slug = 'cafe-strindbergsgarden' and name = 'Café Strindbergsgården';
+
+-- cafe-strindbergsgarden.type (register: sandhamn-0429)
+-- Klubben kallar sig champagnebar, restaurang och medlemsklubb, och gästerna kommer till restaurangen. Typen restaurant passar; bar finns också
+-- i tabellens typer, medlemsklubb inte.
+-- KÄLLA: https://strindbergs.se/ — "Champagnebar, restaurang och medlemsklubb för alla skärgårds- och champagneälskare.", "Alla är välkomna till restauragen!" (läst 2026-11-16)
+-- FÖRE: 'cafe'
+update restaurants set type = 'restaurant', updated_at = now() where slug = 'cafe-strindbergsgarden' and type = 'cafe';
+
+-- cafe-strindbergsgarden.latitude/.longitude (register: sandhamn-0431)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/node/13780498735 — "name=Strindberg's Champagne Club", "amenity=restaurant" (läst 2026-11-16); nodens läge 59.2890639, 18.9138771, uppmätt 2026-11-16 (haversine): 101 m öster om den gamla nålen.
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/node/864623405 — "name=Strindbergsgården" (läst 2026-11-16); uppmätt 2026-11-16: 10 m från den nya nålen.
+-- KÄLLA: https://strindbergs.se/ — "Restaurangen och klubbhuset ligger i hamnen på Sandhamn.", "Strindbergsgården, Sandhamn 111, Sandhamn" (läst 2026-11-16)
+-- FÖRE: 59.2891, 18.9121
+update restaurants set latitude = 59.2890639, longitude = 18.9138771, updated_at = now() where slug = 'cafe-strindbergsgarden' and latitude = 59.2891 and longitude = 18.9121;
+
+-- cafe-strindbergsgarden.website (register: sandhamn-0432)
+-- KÄLLA: https://strindbergs.se/ — "Strindberg's Champagne Club", "Restaurangen och klubbhuset ligger i hamnen på Sandhamn." (läst 2026-11-16)
+-- FÖRE: 'http://www.facebook.com/cafestrindbergsgarden'
+update restaurants set website = 'https://strindbergs.se/', updated_at = now() where slug = 'cafe-strindbergsgarden' and website = 'http://www.facebook.com/cafestrindbergsgarden';
+
+-- cafe-strindbergsgarden.description (register: sandhamn-0433, sandhamn-0434, sandhamn-0435, sandhamn-N041, sandhamn-N042)
+-- Säsongen läses om före publiceringen (förtydligande 15).
+-- KÄLLA: https://strindbergs.se/ — "Champagnebar, restaurang och medlemsklubb för alla skärgårds- och champagneälskare.", "Strindbergsgården, där restaurangen och klubben har sitt säte", "Restaurangen och klubbhuset ligger i hamnen på Sandhamn.", "Strindbergsgården, Sandhamn 111, Sandhamn" (läst 2026-11-16)
+-- KÄLLA: https://strindbergs.se/ — "Måste jag vara medlem för att komma som gäst?", "Alla är välkomna till restauragen! Medlemskapet innebär att man dessutom får inbjudningar och andra typer av erbjudanden.", "Medlemskapet är kostnadsfritt." (läst 2026-11-16)
+-- KÄLLA: https://strindbergs.se/ — "Restaurangen har nu stängt efter sommarsäsongen 2026. Vi har ännu inte planerat in datum för öppning under 2027." (läst 2026-11-16)
+-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — "Kommun: Värmdö" (läst 2026-11-16)
+-- FÖRE: 'Café Strindbergsgården är ett kafé i Sandhamn, på adressen Sandhamn 109.'
+update restaurants set description = 'Strindberg''s Champagne Club är en champagnebar, restaurang och medlemsklubb i Strindbergsgården, Sandhamn 111, i hamnen på Sandhamn i Värmdö kommun. Klubben skriver att alla är välkomna till restaurangen och att medlemskapet, som är kostnadsfritt, dessutom ger inbjudningar och andra erbjudanden. Restaurangen har stängt efter sommarsäsongen 2026, och klubben har ännu inte planerat in datum för öppning under 2027.', updated_at = now() where slug = 'cafe-strindbergsgarden' and description = 'Café Strindbergsgården är ett kafé i Sandhamn, på adressen Sandhamn 109.';
+
+-- cafe-strindbergsgarden.formatted_address (register: sandhamn-N043)
+-- KÄLLA: https://strindbergs.se/ — "Strindbergsgården, Sandhamn 111, Sandhamn" (läst 2026-11-16)
+-- FÖRE: 'Sandhamn 109, 130 39 Sandhamn'
+update restaurants set formatted_address = 'Strindbergsgården, Sandhamn 111, Sandhamn', updated_at = now() where slug = 'cafe-strindbergsgarden' and formatted_address = 'Sandhamn 109, 130 39 Sandhamn';
