@@ -160,7 +160,7 @@ export default function GoteborgSkargardPage() {
               Ta dig dit: kollektivtrafik
             </h2>
             <p>
-              <strong>Södra skärgården</strong>: Spårvagn linje 11 till Saltholmen (slutstation). Därifrån avgår <strong>linje 281</strong> (Saltholmen till Vrångö via Donsö) och <strong>linje 282</strong> (Saltholmen till Styrsö/Brännö). Båtarna avgår även från Stenpiren i city, längre restid men mer centralt. Samma Västtrafik-biljett gäller på spårvagn och båt.
+              <strong>Södra skärgården</strong>: Spårvagn linje 11 till Saltholmen (slutstation). Därifrån avgår <strong>linje 281</strong> (Saltholmen till Vrångö via Donsö) och <strong>linje 282</strong> (Saltholmen till Styrsö/Brännö). Båtarna avgår även från Stenpiren i city, längre restid men mer centralt. Samma Västtrafikbiljett gäller på spårvagn och båt.
             </p>
             <p>
               <strong>Till Marstrand</strong>: Västtrafik buss 302 eller 312 från Göteborgs centralstation till Koön (~1h), sedan Marstrandsfärjan (ingår i biljetten) till ön. Bil är förbjuden på Marstrandsön.
@@ -170,7 +170,7 @@ export default function GoteborgSkargardPage() {
               Marstrand: Bohusläns seglarstad
             </h2>
             <p>
-              <strong>Marstrand</strong> är en av Sveriges mest kända segeldestinationer och med rätta. Carlstens fästning från 1600-talet dominerar ön och syns från sjön på långt håll. Gästhamnen på öns lä-sida är välutrustad men sommartid tät. Boka bryggplats i förväg eller ankra i de lugna vikarna strax norr om ön. Marstrand är en naturlig etapp om du seglar längs Bohuslänleden norrut.
+              <strong>Marstrand</strong> är en av Sveriges mest kända segeldestinationer och med rätta. Carlstens fästning från 1600-talet dominerar ön och syns från sjön på långt håll. Gästhamnen på öns läsida är välutrustad men sommartid tät. Boka bryggplats i förväg eller ankra i de lugna vikarna strax norr om ön. Marstrand är en naturlig etapp om du seglar längs Bohuslänleden norrut.
             </p>
             <p>
               Runt Marstrand finns också dolda pärlor: <strong>Koön</strong> med sitt sund, <strong>Tjuvkil</strong> med den enkla gästbryggan och hela arkipelagen av mindre öar och holmar som omger fästningsstaden. Det tar dagar att utforska allt ordentligt, och Svalla hjälper dig dokumentera varje stopp med GPS och foton.

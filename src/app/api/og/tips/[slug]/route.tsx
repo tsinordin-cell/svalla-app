@@ -24,8 +24,8 @@ export async function GET(
     .eq('published', true)
     .maybeSingle()
 
-  const title = article?.title ?? 'Tips & guider — Svalla'
-  const excerpt = article?.excerpt ?? 'Redaktionellt innehåll om Stockholms skärgård — bryggor, rutter och båtliv.'
+  const title = article?.title ?? 'Tips & guider | Svalla'
+  const excerpt = article?.excerpt ?? 'Redaktionellt innehåll om Stockholms skärgård: bryggor, rutter och båtliv.'
   const category = article?.category ?? 'Guide'
   const author = article?.author_name ?? 'Svalla-redaktionen'
   const readingMin = article?.reading_min ?? null

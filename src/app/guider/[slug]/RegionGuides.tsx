@@ -52,7 +52,7 @@ export const REGION_META: Record<GuideRegion, { title: string; description: stri
   },
   sydkusten: {
     title: 'Guider till Sydkusten & Halland: Karlskrona, Varberg och Båstad',
-    description: 'Guider till Sveriges sydkust: Karlskrona UNESCO-världsarv, Varbergs fästning, Grebbestad och Halmstad. Tips för hela sydkusten.',
+    description: 'Guider till Sveriges sydkust: Karlskrona Unescovärldsarv, Varbergs fästning, Grebbestad och Halmstad. Tips för hela sydkusten.',
     keywords: 'guider sydkusten, karlskrona guide, varberg guide halland',
   },
   utlandet: {

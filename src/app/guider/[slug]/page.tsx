@@ -357,7 +357,7 @@ export default async function GuidePage({ params }: Props) {
             source={`guide-${slug}-bottom`}
             variant="inline"
             title="Få nya guider som denna i inkorgen"
-            description="Vi skriver om skärgårdsöar, öppettider och insider-tips du inte hittar på TripAdvisor. Gratis."
+            description="Vi skriver om skärgårdsöar, öppettider och insidertips du inte hittar på TripAdvisor. Gratis."
             buttonLabel="Skriv upp mig →"
           />
         </div>

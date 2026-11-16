@@ -145,7 +145,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   marstrand: {
     body: 'Marstrand är en bilfri ö med Carlstens fästning som dominerande landmärke och en av Bohusläns mest välbevarade stadsmiljöer. Rundan runt ön (~3 km) kombinerar fästningshistoria med havsvy och en av de bästa matscenerna i regionen. Nås enkelt med buss och färja.',
     tips: [
-      'Buss 302 mot Ytterby, sedan tåg in till Göteborg, eller ta Marstrandsexpressen direkt. Marstrandsfärjan ingår i Västtrafik-biljetten.',
+      'Buss 302 mot Ytterby, sedan tåg in till Göteborg, eller ta Marstrandsexpressen direkt. Marstrandsfärjan ingår i Västtrafikbiljetten.',
       'Boka bord på restaurang i god tid under midsommar och regattaveckor.',
       'Fästningen kan besökas med guidade turer sommartid.',
     ],
@@ -170,7 +170,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'mollosund': {
-    body: 'Mollösund på Orust är en av Bohusläns bäst bevarade gamla fiskehamnar. De snävt packade trä-husen, de målade sjöbodarna och den lugna hamnen ger en autentisk känsla som är sällsynt längs den annars turistifierade kusten. Vandringen följer kustlinjen med omväxlande vy.',
+    body: 'Mollösund på Orust är en av Bohusläns bäst bevarade gamla fiskehamnar. De snävt packade trähusen, de målade sjöbodarna och den lugna hamnen ger en autentisk känsla som är sällsynt längs den annars turistifierade kusten. Vandringen följer kustlinjen med omväxlande vy.',
     tips: [
       'Bil eller lokal buss från Stenungsund.',
       'Restaurang och café i byn, bra matupplevelse.',
@@ -282,7 +282,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'marstrand-goteborg': {
     body: 'Marstrand med Carlstens fästning är Bohusläns klassiskaste dagsmål och en av de bäst tillgängliga historiska miljöerna i västra Sverige. Rundan runt den bilfria ön (~3 km) kombinerar fästningshistoria med havsvy och ett rikt restaurangutsläpp.',
     tips: [
-      'Buss 302/312 från Göteborg C, sedan Marstrandsfärjan (ingår i Västtrafik-biljetten).',
+      'Buss 302/312 från Göteborg C, sedan Marstrandsfärjan (ingår i Västtrafikbiljetten).',
       'Boka restaurang i förväg under sommarsäsongen.',
       'Fästningen erbjuder guidade turer sommartid.',
     ],
@@ -302,7 +302,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Digerhuvud på Fårö har de mest dramatiska raukarna i Sverige, kalkstenskolonner upp till tio meter höga som reser sig ur havet som ett surrealistiskt landskap. Den korta leden (~3 km) tar dig längs strandlinjen förbi formationer som ser ut som skulpturer. En halvdag som stannar kvar länge.',
     tips: [
       'Destination Gotland Nynäshamn → Visby, sedan bil till Fårö (nödvändigt).',
-      'Fårösund till Fårö-färjan ingår inte i Destination Gotland-biljetten.',
+      'Fårösund till Fåröfärjan ingår inte i Destination Gotland-biljetten.',
       'Maj och september är bäst, sommaren är het och torr.',
     ],
   },
@@ -347,7 +347,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Langhammars på Fårö är öns vildaste rauklandskap: tystare och mer exponerat än Digerhuvud, och nästan alltid folktomt. Raukarna här är lägre men spridda längs en längre strandremsa, vilket ger en annan känsla av vandring i ett unikt landskap.',
     tips: [
       'Bil krävs, Langhammars nås via väg på Fårö.',
-      'Kombinera med Digerhuvud och Sudersand för en full Fårö-dag.',
+      'Kombinera med Digerhuvud och Sudersand för en full Fårödag.',
       'Ingen servering. Ta med matsäck.',
     ],
   },
@@ -412,7 +412,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     // KÄLLA: Länsstyrelsen Västernorrland (lansstyrelsen.se, naturreservatet Trysunda) — fiskeläget grundat av Gävlefiskare på 1500-talet, kapell från 1600-talet, Ångermanlandskustens bäst bevarade fiskeläge. Även Maringuiden.
     body: 'Trysunda är en liten fiskehamnsö med Ångermanlandskustens bäst bevarade fiskeläge, grundat av Gävlefiskare på 1500-talet, med fiskarkapell från 1600-talet, nådd med sommarbåt. Den korta leden (~3 km) ger stor känsla: tyst, välhållen och med en hamnatmosfär som är genuint annorlunda. En av de starkaste upplevelserna längs Höga kusten.',
     tips: [
-      'Sommarbåt från Kramfors-hållet. Kontrollera aktuella tidtabeller.',
+      'Sommarbåt från Kramforshållet. Kontrollera aktuella tidtabeller.',
       'Restaurang och café öppet sommartid.',
       'Boka boende i god tid, ön har begränsad kapacitet.',
     ],
@@ -421,7 +421,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   ulvon: {
     body: 'Ulvön är mest känd för surströmming men vandringen runt ön (~6 km) är en av Höga kustens bästa. Leden går längs dramatisk klippkust med vy mot Bottenhavet och passerar det välbevarade fiskeläget Ulvöhamn.',
     tips: [
-      'Sommarbåt från Kramfors-hållet. Kontrollera tidtabell.',
+      'Sommarbåt från Kramforshållet. Kontrollera tidtabell.',
       'Ulvöhamns kapell är ett av de vackraste i Norrland.',
       'Surströmmingens säsong är i slutet av augusti.',
     ],
@@ -520,7 +520,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'karlskrona-stadsvandring': {
-    body: 'Karlskrona är UNESCO-världsarv och en av Europas bäst bevarade örlogsstäder. Stadsvandringen (~3 km) tar dig förbi Amiralitetskyrkan, marinmuseerna och ut mot den yttre skärgårdens siluett. En kulturvandring som är lika informativ som vacker.',
+    body: 'Karlskrona är Unescovärldsarv och en av Europas bäst bevarade örlogsstäder. Stadsvandringen (~3 km) tar dig förbi Amiralitetskyrkan, marinmuseerna och ut mot den yttre skärgårdens siluett. En kulturvandring som är lika informativ som vacker.',
     tips: [
       'Direkt tåg till Karlskrona C (~4h30 från Stockholm).',
       'Marinmuseum och Blekinge museum är bra komplement till vandringen.',
@@ -546,7 +546,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   nogersund: {
-    body: 'Nogersund är avresehamnen för Hanö-båten och en charmig fiskehamn i sig med en kort promenad längs vattnet. En bra uppvärmning eller avslutning för en Hanö-dag.',
+    body: 'Nogersund är avresehamnen för Hanöbåten och en charmig fiskehamn i sig med en kort promenad längs vattnet. En bra uppvärmning eller avslutning för en Hanödag.',
     tips: [
       'SJ → Sölvesborg, sedan buss.',
       'Sommarbåten till Hanö avgår härifrån. Kolla tidtabell.',
@@ -561,7 +561,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     tips: [
       'Tåg → Kalmar, sedan buss KLT norrut på Öland.',
       'Tillgängligheten är god, bra för alla åldrar.',
-      'Kombinera med ett stopp vid Böda camping-området.',
+      'Kombinera med ett stopp vid Böda campingområdet.',
     ],
   },
 
@@ -688,7 +688,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'osterlen-kust': {
-    body: 'Österlen i sydöstra Skåne är ett kulturlandskap med välmarkerade kustleder, rapsfält och ett oändligt öppet landskap mot Östersjön. Skåneleden Österlen-rutten tar dig längs kustlinjen med regelbundna stopp i charmerande fiskebyar.',
+    body: 'Österlen i sydöstra Skåne är ett kulturlandskap med välmarkerade kustleder, rapsfält och ett oändligt öppet landskap mot Östersjön. Skåneleden Österlenrutten tar dig längs kustlinjen med regelbundna stopp i charmerande fiskebyar.',
     tips: [
       'Bil rekommenderas för att nå olika startpunkter.',
       'Bäst i maj under rapssäsongen.',
@@ -762,14 +762,14 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'asko-sormland': {
     body: 'Askö är Naturvårdsverkets forskningsstation och öppen för besök under sommarhalvåret. En stilla och nästan folktomt ö med välhållen natur och ett unikt läge som en av Östersjöns bäst dokumenterade öar.',
     tips: [
-      'Båt från Nyköping-hållet. Kontrollera aktuell tidtabell.',
+      'Båt från Nyköpingshållet. Kontrollera aktuell tidtabell.',
       'Forskarstationen är synlig från leden.',
       'Ta med mat och vatten.',
     ],
   },
 
   'bergholmen-trosa': {
-    body: 'Bergholmen / Trosaön nära Trosa är en lättillgänglig kustpromenad med havsvy och skog som sträcker sig mot strandlinjen. Bra som ett kortare tilläggsalternativ till ett Trosa-besök.',
+    body: 'Bergholmen / Trosaön nära Trosa är en lättillgänglig kustpromenad med havsvy och skog som sträcker sig mot strandlinjen. Bra som ett kortare tilläggsalternativ till ett Trosabesök.',
     tips: [
       'Tåg → Vagnhärad, sedan buss till Trosa.',
     ],
@@ -837,7 +837,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'harstena': {
-    body: 'Härstena i S:t Anna skärgård är en kringla-formad ö med välbevarad byatmosfär och leder längs en dramatisk klippkust. En av de mer avlägsna men belönande öar att nå med sommarbåt.',
+    body: 'Härstena i S:t Anna skärgård är en kringelformad ö med välbevarad byatmosfär och leder längs en dramatisk klippkust. En av de mer avlägsna men belönande öar att nå med sommarbåt.',
     tips: [
       'Sommarbåt från Fyrudden.',
       'Byns historia som fiskesamhälle är välbevarad.',
@@ -1034,7 +1034,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'tjoloholm': {
-    body: 'Tjolöholms slottspark söder om Kungsbacka kombinerar ett engelskt-gotiskt slott med kustvy mot Kattegatt och välskött parkmark med naturstigar.',
+    body: 'Tjolöholms slottspark söder om Kungsbacka kombinerar ett engelskgotiskt slott med kustvy mot Kattegatt och välskött parkmark med naturstigar.',
     tips: [
       'Bil eller pendeltåg → Kungsbacka, sedan buss.',
       'Slottet kan besökas under guidade turer.',

@@ -28,13 +28,13 @@ export async function GET(
  : { data: null },
  ])
 
- const title = thread?.title ?? 'Forum — Svalla'
+ const title = thread?.title ?? 'Forum | Svalla'
  const body = thread?.body ?? ''
  const excerpt = body.length > 150 ? body.slice(0, 150) + '…' : body
  const catName = cat?.name ?? 'Forum'
  const catIcon = cat?.icon ?? ''
  const replies = thread?.reply_count ?? 0
- const username = author?.username ?? 'Svalla-användare'
+ const username = author?.username ?? 'Svallaanvändare'
 
  const titleSize = title.length > 65 ? 38 : title.length > 45 ? 46 : title.length > 30 ? 54 : 60
 

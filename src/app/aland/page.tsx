@@ -65,7 +65,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: '📱',
  title: 'Logga hela resan',
- description: 'Avgång från Sverige, Åland-vistelsen och hemresan. Spara alla turer och se din totala statistik.',
+ description: 'Avgång från Sverige, Ålandsvistelsen och hemresan. Spara alla turer och se din totala statistik.',
  href: '/logga-in',
  },
 ]
@@ -270,7 +270,7 @@ export default function AlandPage() {
  Vad kostar gästhamn i Mariehamn?
  </h3>
  <p>
- Gästhamnarna i Mariehamn kostar normalt 150 till 250 kronor per natt beroende på båtens längd. De flesta hamnar inkluderar el och dusch i priset. Det är värt att höra av sig dagen innan för att säkra en bra plats under högsäsong (juli-augusti). Mindre gästhamnar ute på öarna som Föglö och Kökar kan vara något billigare och erbjuder ofta en mer intim känsla, perfekt om du vill längre bort från huvudstaden.
+ Gästhamnarna i Mariehamn kostar normalt 150 till 250 kronor per natt beroende på båtens längd. De flesta hamnar inkluderar el och dusch i priset. Det är värt att höra av sig dagen innan för att säkra en bra plats under högsäsong (juli till augusti). Mindre gästhamnar ute på öarna som Föglö och Kökar kan vara något billigare och erbjuder ofta en mer intim känsla, perfekt om du vill längre bort från huvudstaden.
  </p>
  </>
  }

@@ -42,7 +42,7 @@ export async function POST(req: Request) {
 
   const payload = JSON.stringify({
     title: 'Ny på Svalla: Min dag',
-    body: 'Få tre stopp föreslagna från din position. Krog, lunch, middag — på 30 sek.',
+    body: 'Få tre stopp föreslagna från din position. Krog, lunch, middag, på 30 sek.',
     url: '/dag',
     tag: 'dag-launch',
   })

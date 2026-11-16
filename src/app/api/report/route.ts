@@ -86,7 +86,7 @@ export async function POST(req: Request) {
   const targetLabel = TARGET_TYPE_LABELS[targetType as ReportTargetType] ?? targetType
   const reasonLabel = REASON_LABELS[reason as ReportReason] ?? reason
   sendAdminEmail({
-    subject: `🚨 Ny anmälan på Svalla — ${reasonLabel}`,
+    subject: `🚨 Ny anmälan på Svalla | ${reasonLabel}`,
     html: `
       <h2 style="margin:0 0 16px;font-family:sans-serif">Ny anmälan</h2>
       <table style="border-collapse:collapse;font-family:sans-serif;font-size:14px">

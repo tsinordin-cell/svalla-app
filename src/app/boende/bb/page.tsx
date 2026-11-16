@@ -142,7 +142,7 @@ export default function BBPage() {
             Sök B&amp;B och pensionat direkt
           </h2>
           <p style={{ margin: '0 0 14px' }}>
-            Hitta personliga boenden med frukost i skärgården. Affiliate-samarbeten är på gång, klickar du nu går du direkt till sökningen.
+            Hitta personliga boenden med frukost i skärgården. Affiliatesamarbeten är på gång, klickar du nu går du direkt till sökningen.
           </p>
           {/* Booking.com: lägg till &aid=AFFILIATE_ID | Airbnb: lägg till ?s_af=AFFILIATE_TOKEN */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

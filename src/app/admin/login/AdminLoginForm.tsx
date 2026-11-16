@@ -40,7 +40,7 @@ export default function AdminLoginForm() {
       // Cookien är satt — gå till destinationen
       router.replace(returnTo)
     } catch {
-      setError('Nätverksfel — försök igen')
+      setError('Nätverksfel: försök igen')
       setStatus('error')
     }
   }

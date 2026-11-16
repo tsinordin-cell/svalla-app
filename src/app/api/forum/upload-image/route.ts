@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
   // Rate limit
   const { checkRateLimit } = await import('@/lib/rateLimit')
   if (!(await checkRateLimit(`forum-upload:${user.id}`, 10, 5 * 60_000))) {
-    return NextResponse.json({ error: 'För många uppladdningar — vänta en stund.' }, { status: 429 })
+    return NextResponse.json({ error: 'För många uppladdningar, vänta en stund.' }, { status: 429 })
   }
 
   let file: File | null = null

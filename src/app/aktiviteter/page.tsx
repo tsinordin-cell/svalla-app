@@ -101,7 +101,7 @@ export default function AktiviteterPage() {
       {
         '@type': 'Question',
         name: 'Vad är bästa aktiviteten för en barnfamilj vid havet?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Bad och snorkling är lättast. Du behöver bara ett par badkläder. Motorbåt är nästa steg. Kajak passar från 4 till 5 år i double-kajak med vuxen. Gotland är överlag mer familjevänligt: varmaste vattnet, längsta stränderna och många barnaktiviteter.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bad och snorkling är lättast. Du behöver bara ett par badkläder. Motorbåt är nästa steg. Kajak passar från 4 till 5 år i dubbelkajak med vuxen. Gotland är överlag mer familjevänligt: varmaste vattnet, längsta stränderna och många barnaktiviteter.' },
       },
       {
         '@type': 'Question',
@@ -217,7 +217,7 @@ export default function AktiviteterPage() {
             Fiske är en av de mest tillgängliga aktiviteterna längs kusten. Här är det viktiga att förstå: <strong>i havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort</strong>. För andra redskap än handredskap skiljer sig reglerna mellan olika områden, och Länsstyrelsen i Stockholms fiskeguide påpekar att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap. I mindre sjöar, åar och vattendrag behöver du tillstånd från fiskerättsägaren, och oftast köper du då ett fiskekort.
           </p>
           <p>
-            <strong>Havsöring</strong> är en premium-fisk som finns längs hela västkusten och Gotland. Den är fredad och bör släppas tillbaka om du inte har särskild tillåtelse. <strong>Torsk</strong> och <strong>makrill</strong> fiskas från båt i djupare vatten. <strong>Strömming</strong> är gratis och rolig att fiska från brygga eller båt året runt.
+            <strong>Havsöring</strong> är en premiumfisk som finns längs hela västkusten och Gotland. Den är fredad och bör släppas tillbaka om du inte har särskild tillåtelse. <strong>Torsk</strong> och <strong>makrill</strong> fiskas från båt i djupare vatten. <strong>Strömming</strong> är gratis och rolig att fiska från brygga eller båt året runt.
           </p>
           {/* KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Fiskemetoden får inte vara angeldonsfiske eller kräva användande av båt, exempelvis dragrodd eller trolling."; "Trolling, dragrodd och angel får endast bedrivas med fiskerättsägarens tillstånd (exv TDA-kortet, sid 47) eller på allmänt vatten"; "det krävs fiskekort eller tillstånd för trolling, dragrodd och angel fiske på Mälaren och i skärgården" (läst 2026-11-16) */}
           {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "Det är förbjudet för fritidsfiskare att sälja fångst från havet." (läst 2026-11-16) */}
@@ -313,7 +313,7 @@ export default function AktiviteterPage() {
             Vad är bästa aktiviteten för en barnfamilj?
           </h3>
           <p>
-            <strong>Bad och snorkling</strong> är lättast. Du behöver bara ett par badkläder och ett barn kan börja från 2 till 3 år. <strong>Motorbåt</strong> är nästa steg, många hyra för dagen och åker mellan badplatser. <strong>Kajak</strong> passar från 4 till 5 år (i double-kajak med vuxen) men kräver övning. <strong>Segling</strong> är fantastisk med barn, en 25-fots husbåt med två barn är lagom utmanande.
+            <strong>Bad och snorkling</strong> är lättast. Du behöver bara ett par badkläder och ett barn kan börja från 2 till 3 år. <strong>Motorbåt</strong> är nästa steg, många hyra för dagen och åker mellan badplatser. <strong>Kajak</strong> passar från 4 till 5 år (i dubbelkajak med vuxen) men kräver övning. <strong>Segling</strong> är fantastisk med barn, en 25-fots husbåt med två barn är lagom utmanande.
           </p>
           <p>
             Gotland är överlag mer familjevänligt än Stockholms skärgård: varmaste vattnet, längsta stränderna och många barnaktiviteter på land.

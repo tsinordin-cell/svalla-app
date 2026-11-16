@@ -143,7 +143,7 @@ export default function StugorPage() {
             Sök och boka stuga direkt
           </h2>
           <p style={{ margin: '0 0 14px' }}>
-            Hitta och boka stugor hos de stora plattformarna. Affiliate-samarbeten är på gång, klickar du nu går du direkt till sökningen.
+            Hitta och boka stugor hos de stora plattformarna. Affiliatesamarbeten är på gång, klickar du nu går du direkt till sökningen.
           </p>
           {/* Airbnb: lägg till ?s_af=AFFILIATE_TOKEN | Stugknuten: kontakta dem för partnerkod */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

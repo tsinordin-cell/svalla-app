@@ -1050,7 +1050,7 @@ const LANDING_HTML = `
  <a href="/blogg/vandring-orno-uto" class="activity-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
  <svg class="activity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.8 15.04-8.2 17.04Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
  <h3>Vandring & Natur</h3>
- <p>Utö, Möja och Ornö har markerade vandringsleder genom urbergslandskap och gammal skog, korta dagturer och flerdagarsäventyr.</p>
+ <p>Utö, Möja och Ornö har markerade vandringsleder genom urbergslandskap och gammal skog, korta dagsturer och flerdagarsäventyr.</p>
  <div class="activity-tags"><span class="chip">Markerade leder</span><span class="chip">Naturreservat</span><span class="chip">Fågelskådning</span></div>
  <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide &rarr;</div>
  </a>

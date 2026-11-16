@@ -205,7 +205,7 @@ async function forsokLagaPlats(
       console.error(`[places/photo] Kunde inte spara farska foton for ${placeId}: ${error.message}`)
       return null
     }
-    console.log(`[places/photo] Lagade ${placeId} — ${namn.length} nya foton`)
+    console.log(`[places/photo] Lagade ${placeId}, ${namn.length} nya foton`)
 
     const encoded = Buffer.from(namn[0]!, 'utf-8').toString('base64url')
     const q = new URLSearchParams({ w: String(maxWidth) })

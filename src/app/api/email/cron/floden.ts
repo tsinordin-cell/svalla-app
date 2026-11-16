@@ -209,7 +209,7 @@ export async function korAvstangdaFloden(
 
   // ── Veckans ö (tisdagar april–september) ────────────────────────────
   if (!flodePa('weekly_island')) ut.weekly_island = { sent: 0, errors: 0, skipped: 'avstängt' }
-  else if (!arVeckansOdag(today)) ut.weekly_island = { sent: 0, errors: 0, skipped: 'inte tisdag april–september' }
+  else if (!arVeckansOdag(today)) ut.weekly_island = { sent: 0, errors: 0, skipped: 'inte tisdag april till september' }
   else {
     const o = veckansOFor(today)
     // Skickas bara efter faktagranskning och godkännande på /admin/veckans-o

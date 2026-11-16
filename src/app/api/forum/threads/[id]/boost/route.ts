@@ -25,7 +25,7 @@ async function ensureOwnerOrAdmin(id: string) {
     .eq('id', id).single()
   if (!thread) return { err: NextResponse.json({ error: 'Annonsen hittades inte.' }, { status: 404 }) }
   if (thread.category_id !== 'loppis') {
-    return { err: NextResponse.json({ error: 'Endast Loppis-annonser kan boostas.' }, { status: 400 }) }
+    return { err: NextResponse.json({ error: 'Endast loppisannonser kan boostas.' }, { status: 400 }) }
   }
   const isOwner = thread.user_id === user.id
   const isAdmin = user.email === ADMIN_EMAIL

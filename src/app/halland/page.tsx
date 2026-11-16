@@ -127,7 +127,7 @@ export default function HallandPage() {
               Halland är en av Sveriges mest varierade kustslätt, och en region som alltför ofta förbises till förmån för Bohuslän i norr och Skåne i söder. <strong>Långa sandstränder, en medeltida fästningsstad och levande sommarbyer</strong> ger en kustupplevelse som är annorlunda och genuint vacker. Från Kungsbackafjorden i norr till Båstad och Laholmsbukten i söder sträcker sig nästan 15 mil av kattegattskust.
             </p>
             <p>
-              Varberg dominerar med sin välbevarade 1200-talsfästning som reser sig direkt ur klippan vid havet. Gästhamnen ligger i fästningens omedelbara närhet, ett unikt läge som ger en historisk atmosfär utan motstycke längs svenska kusten. Tylösand utanför Halmstad är känt som Sveriges strand-mekka med surfing, beachvolleyboll och ett aktivt nattliv under sommarmånaderna.
+              Varberg dominerar med sin välbevarade 1200-talsfästning som reser sig direkt ur klippan vid havet. Gästhamnen ligger i fästningens omedelbara närhet, ett unikt läge som ger en historisk atmosfär utan motstycke längs svenska kusten. Tylösand utanför Halmstad är känt som Sveriges strandmekka med surfing, beachvolleyboll och ett aktivt nattliv under sommarmånaderna.
             </p>
             <p>
               Med Svalla loggar du alla etapper längs Kattegatt, hittar gästhamnar, stränder och krogar på kartan och kan följa andra båtfolks turer längs samma välbesökta kust. Halland är ett perfekt mellanstopp på väg norrut mot Bohuslän eller söderut mot Öresund och Danmark.
@@ -165,7 +165,7 @@ export default function HallandPage() {
               Tylösand och Hallands stränder
             </h2>
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-              Tylösand: Sveriges strand-mekka
+              Tylösand: Sveriges strandmekka
             </h3>
             <p>
               Tylösand utanför Halmstad är en av Sveriges mest kända strandorter: lång vit sandstrand, surfing och ett aktivt sommarliv. <strong>Tylösand Hotel</strong> är ett ikoniskt hotell och restaurang med lång historia. Under juli och tidig augusti är stranden fullpackad, men det finns utrymme för alla längs den långa kusten.

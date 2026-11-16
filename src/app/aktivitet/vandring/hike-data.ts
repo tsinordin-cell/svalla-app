@@ -1171,7 +1171,7 @@ export const HIKES: Hike[] = [
     suitableForChildren: true,
     suitableForDogs: true,
     bestSeason: 'Helår',
-    tagline: 'UNESCO-världsarv och örlogsstad, en kulturvandring som också är riktig natur.',
+    tagline: 'Unescovärldsarv och örlogsstad, en kulturvandring som också är riktig natur.',
   },
   {
     slug: 'solvesborg-kust',
@@ -2429,7 +2429,7 @@ export const REGIONS: RegionMeta[] = [
   {
     id: 'gotland',
     name: 'Gotland',
-    shortDesc: 'Raukar, kalksten och ett unikt ljus, Gotlands kustnatur saknar motstycke i Sverige. Bäst maj-juni och september.',
+    shortDesc: 'Raukar, kalksten och ett unikt ljus, Gotlands kustnatur saknar motstycke i Sverige. Bäst maj till juni och september.',
     relatedUrl: '/gotland',
   },
   {
@@ -2441,7 +2441,7 @@ export const REGIONS: RegionMeta[] = [
   {
     id: 'blekinge',
     name: 'Blekinge skärgård',
-    shortDesc: 'Frodig, grön och genuint underbesökt, Karlskronas UNESCO-världsarv och Hanös ödesliga naturhamn.',
+    shortDesc: 'Frodig, grön och genuint underbesökt, Karlskronas Unescovärldsarv och Hanös ödesliga naturhamn.',
     relatedUrl: '/blekinge-skargard',
   },
   {

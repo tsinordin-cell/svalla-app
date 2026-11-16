@@ -129,7 +129,7 @@ const ADMIN_TOOLS: AdminTool[] = [
     href:  '/admin/oar-trafik',
     icon:  <IcoTarget color="#0a7b3c" />,
     title: 'Besök per ö',
-    desc:  'Underlag till anspråksmejlen — vilka öar får trafik',
+    desc:  'Underlag till anspråksmejlen: vilka öar får trafik',
     badge: 'NY',
     color: '#0a7b3c',
   },
@@ -137,7 +137,7 @@ const ADMIN_TOOLS: AdminTool[] = [
     href:  '/admin/koordinater',
     icon:  <IcoMapPin color="#1d4ed8" />,
     title: 'Koordinatkorrigering',
-    desc:  'Drag-and-drop karta — rätta platser som hamnat i vattnet',
+    desc:  'Drag-and-drop karta: rätta platser som hamnat i vattnet',
     badge: 'NY',
     color: '#1d4ed8',
   },
@@ -160,7 +160,7 @@ const ADMIN_TOOLS: AdminTool[] = [
   {
     href:  '/admin/forum',
     icon:  <IcoChatBubbles color="#0a7b8c" />,
-    title: 'Forum — spam-kö',
+    title: 'Forum: spam-kö',
     desc:  'Granska och godkänn nya användares trådar och svar',
     badge: null,
     color: '#0a7b8c',
@@ -168,8 +168,8 @@ const ADMIN_TOOLS: AdminTool[] = [
   {
     href:  '/admin/partners',
     icon:  <IcoHandshake color="#c96e2a" />,
-    title: 'Partner-leads',
-    desc:  'B2B-förfrågningar från /partner — status, mailsvar',
+    title: 'Partnerleads',
+    desc:  'B2B-förfrågningar från /partner: status, mailsvar',
     badge: 'NY',
     color: '#c96e2a',
   },
@@ -177,7 +177,7 @@ const ADMIN_TOOLS: AdminTool[] = [
     href:  '/admin/subscribers',
     icon:  <IcoMail color="#0a7b3c" />,
     title: 'E-postlista',
-    desc:  'Nyhetsbrevsprenumeranter — export till Resend',
+    desc:  'Nyhetsbrevsprenumeranter: export till Resend',
     badge: 'NY',
     color: '#0a7b3c',
   },
@@ -193,7 +193,7 @@ const ADMIN_TOOLS: AdminTool[] = [
     href:  '/admin/routes',
     icon:  <IcoRoute color="#0369a1" />,
     title: 'Rutt-kvalitet',
-    desc:  'Precomputed vs grid vs waypoint — topp failing-par och rapporter',
+    desc:  'Precomputed vs grid vs waypoint: topp failing-par och rapporter',
     badge: null,
     color: '#0369a1',
   },
@@ -209,7 +209,7 @@ const ADMIN_TOOLS: AdminTool[] = [
     href:  '/admin/insikter',
     icon:  <IcoBarChart color="#0a7b8c" />,
     title: 'Insikter',
-    desc:  'Topp-platser, klick-funnel, sökanalytics — egen data, parallellt med PostHog',
+    desc:  'Topp-platser, klickfunnel, sökanalytics: egen data, parallellt med PostHog',
     badge: 'NY',
     color: '#0a7b8c',
   },
@@ -308,7 +308,7 @@ export default async function AdminPage() {
           Admin
         </h1>
         <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 24px' }}>
-          Svalla.se — interna verktyg
+          Svalla.se, interna verktyg
         </p>
 
         {/* ── Stats: senaste 7 dagar ──────────────────────────── */}
@@ -318,7 +318,7 @@ export default async function AdminPage() {
         }}>
           <StatCard label="Turer (7d)" value={stats.tripsWeek} sub={`${stats.tripsToday} idag`} color="#1d4ed8" />
           <StatCard label="Nya seglare" value={stats.newUsersWeek} sub={`${stats.totalUsers} totalt`} color="#0a7b3c" />
-          <StatCard label="Partner-leads" value={stats.newPartnersWeek} sub={`${stats.pendingPartners} obesvarade`} color="#c96e2a" linkTo="/admin/partners" />
+          <StatCard label="Partnerleads" value={stats.newPartnersWeek} sub={`${stats.pendingPartners} obesvarade`} color="#c96e2a" linkTo="/admin/partners" />
           <StatCard label="E-postnya" value={stats.newSubsWeek} sub={`${stats.totalSubs} aktiva`} color="#7c3aed" linkTo="/admin/subscribers" />
         </div>
 

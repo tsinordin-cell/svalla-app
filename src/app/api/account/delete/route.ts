@@ -229,8 +229,8 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           from: process.env.EMAIL_FROM ?? 'hello@svalla.se',
           to: userEmail,
-          subject: 'Ditt Svalla-konto har raderats',
-          text: 'Hej,\n\nDitt Svalla-konto har raderats permanent. All din personliga data har tagits bort enligt GDPR.\n\nTack för tiden hos oss. Du är välkommen tillbaka när som helst.\n\n— Svalla',
+          subject: 'Ditt Svallakonto har raderats',
+          text: 'Hej,\n\nDitt Svallakonto har raderats permanent. All din personliga data har tagits bort enligt GDPR.\n\nTack för tiden hos oss. Du är välkommen tillbaka när som helst.\n\n— Svalla',
         }),
       })
     } catch (e) {

@@ -1,5 +1,5 @@
 ---
-trigger: tisdagar april–september, en ö per vecka
+trigger: tisdagar april till september, en ö per vecka
 layout: fullt
 subject_options:
   - "Veckans ö: {{island_name}}"

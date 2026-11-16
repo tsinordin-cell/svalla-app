@@ -185,7 +185,7 @@ export default function BohuslanPage() {
  Ta dig dit: kollektivtrafik
  </h2>
  <p>
- <strong>Till Marstrand</strong>: Västtrafik buss 302 eller 312 från Göteborgs centralstation till Koön (~1h), sedan Marstrandsfärjan (ingår i Västtrafik-biljetten) till ön. Bil är förbjuden på Marstrandsön.
+ <strong>Till Marstrand</strong>: Västtrafik buss 302 eller 312 från Göteborgs centralstation till Koön (~1h), sedan Marstrandsfärjan (ingår i Västtrafikbiljetten) till ön. Bil är förbjuden på Marstrandsön.
  </p>
  <p>
  <strong>Till Smögen/Kungshamn</strong>: Västtrafik buss 870 eller 871 från Uddevalla. <strong>Till Fjällbacka och Hamburgsund</strong>: Västtrafik buss 875. <strong>Till Grebbestad</strong>: buss 875 eller 878 från Tanumshede. <strong>Till Strömstad</strong>: tåg från Göteborg ca 1,5h (SJ/Västtrafik), sedan lokalbuss till skärgården.
@@ -201,7 +201,7 @@ export default function BohuslanPage() {
  Marstrand och Carlstens fästning
  </h3>
  <p>
- Marstrand är Sveriges seglarvärld i miniatyr. Ön, känd sedan 1600-talet som befäst position, lockar tiotusentals seglare varje sommar. <strong>Carlstens fästning</strong> dominerar öns bergiga västra strand och är idag en populär besöksmål och foto-spot.
+ Marstrand är Sveriges seglarvärld i miniatyr. Ön, känd sedan 1600-talet som befäst position, lockar tiotusentals seglare varje sommar. <strong>Carlstens fästning</strong> dominerar öns bergiga västra strand och är idag en populär besöksmål och fotospot.
  </p>
  <p>
  Juli är Mastrands högsäsong, så högsta säsong att du måste boka gästhamns plats flera veckor i förväg för att få ett ställe. Framboende båtar ligger nästan kant i kant. Detta är ofta Sveriges tätaste seglartrafik. Alternativ: ankar på naturhamnarna runt ön eller använd en av de mindre privata bryggorna.
@@ -235,7 +235,7 @@ export default function BohuslanPage() {
  Fjällbacka är födelseorten för kriminalförfattaren <strong>Camilla Läckberg</strong>. Hennes böcker har gjort denna lilla stad världskänd bland skandinaviska kriminalläsare. Men Fjällbacka är också känt för något annat: <strong>Ingrid Bergmans ö</strong>, där den svenska filmstjärnan tillbringade somrar.
  </p>
  <p>
- En kort segeltur från Fjällbacka ligger den lilla privata ön som Bergman älskade. Det är en vacker dag-segling och en vacker anledning att stanna här några dagar.
+ En kort segeltur från Fjällbacka ligger den lilla privata ön som Bergman älskade. Det är en vacker dagssegling och en vacker anledning att stanna här några dagar.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Grebbestad, Hamburgsund och Strömstad

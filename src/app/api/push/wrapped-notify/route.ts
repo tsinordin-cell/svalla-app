@@ -112,7 +112,7 @@ export async function GET(req: Request) {
  const nm = stats.nm >= 10 ? `${Math.round(stats.nm)} nm` : `${stats.nm.toFixed(1)} nm`
  const payload = JSON.stringify({
  title: `Din säsong ${year} är redo `,
- body: `${stats.count} turer · ${nm} — se din helårssummering`,
+ body: `${stats.count} turer · ${nm}, se din helårssummering`,
  url: `/wrapped/${username}/${year}`,
  })
 

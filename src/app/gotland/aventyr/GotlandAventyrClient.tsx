@@ -116,7 +116,7 @@ const ADVENTURES = [
     icon: 'bike',
     intro: 'Östra Gotland är tystare, grönare och mer avskilt än västkusten. Cykeln till Ljugarn längs östkusten är en av Gotlands vackraste dagsrutter.',
     body: 'Från Visby söderut genom det gotländska inlandet: förbi Roma klosterruin, vidare längs alvar och enbuskshagmark. Vägen passerar ett pärlband av medeltida kyrkor; det finns inget bättre sätt att förstå varför Gotland har fler medeltidskyrkor per kvadratkilometer än något annat område i Norden. Alvaret vid Lojsta är ruttens höjdpunkt: öppet, vindpinat och fullt av blomster i maj. Ljugarn vid kusten är målet: ett pittoreskt fiskeläge med träbryggor och Ljugarn Krog som serverar mat på en altan med direktutsikt mot havet.',
-    practicalInfo: 'Hyr cykel vid hamnen i Visby. Buss tillbaka från Ljugarn på kvällen. Mellannivå-cyklister. Planera 7 till 8 h.',
+    practicalInfo: 'Hyr cykel vid hamnen i Visby. Buss tillbaka från Ljugarn på kvällen. Cyklister på mellannivå. Planera 7 till 8 h.',
   },
 ] as const
 

@@ -188,11 +188,11 @@ export default async function InsikterPage({ searchParams }: PageProps) {
           <KpiCard label="Events totalt" value={total} color="#0a7b8c" />
           <KpiCard label="Unika sessioner" value={sessions.size} color="#1d4ed8" />
           <KpiCard label="Inloggade användare" value={users.size} color="#0a7b3c" />
-          <KpiCard label="Plats-visningar" value={actionFunnel.placeView} color="#c96e2a" />
+          <KpiCard label="Platsvisningar" value={actionFunnel.placeView} color="#c96e2a" />
         </div>
 
         {/* Klick-funnel */}
-        <Section title="Klick-funnel på plats-sidor">
+        <Section title="Klickfunnel på plats-sidor">
           <p style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 0, marginBottom: 14 }}>
             Andel av plats-visningar som leder till en handling. Höga värden = sidan konverterar.
           </p>
@@ -203,9 +203,9 @@ export default async function InsikterPage({ searchParams }: PageProps) {
         </Section>
 
         {/* Topp-platser */}
-        <Section title="Topp 10 — mest besökta platser">
+        <Section title="Topp 10: mest besökta platser">
           {topPlaceIds.length === 0 ? (
-            <Empty text="Inga place_viewed-events än. Vänta tills någon besöker en plats-sida." />
+            <Empty text="Inga place_viewed-events än. Vänta tills någon besöker en platssida." />
           ) : (
             <ol style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {topPlaceIds.map(([id, count], idx) => {
@@ -255,7 +255,7 @@ export default async function InsikterPage({ searchParams }: PageProps) {
         </Section>
 
         {/* Topp-sökningar */}
-        <Section title="Topp 10 — sökningar">
+        <Section title="Topp 10: sökningar">
           {topQueries.length === 0 ? (
             <Empty text="Inga search_performed-events än." />
           ) : (
@@ -276,7 +276,7 @@ export default async function InsikterPage({ searchParams }: PageProps) {
         </Section>
 
         {/* Event-fördelning */}
-        <Section title="Event-fördelning">
+        <Section title="Eventfördelning">
           {topEvents.length === 0 ? (
             <Empty text="Inga events i perioden." />
           ) : (

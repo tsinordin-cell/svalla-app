@@ -82,7 +82,7 @@ export default async function AdminForumPage({
               Admin
             </div>
             <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
-              Forum — spam-kö
+              Forum: spam-kö
               {((threadCount ?? 0) + (postCount ?? 0)) > 0 && (
                 <span style={{
                   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',

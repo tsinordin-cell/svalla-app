@@ -51,7 +51,7 @@ export async function POST(request: Request) {
 
   if (error) {
     console.error('[partner-inquiry] insert failed', error)
-    return NextResponse.json({ error: 'Kunde inte spara — försök igen' }, { status: 500 })
+    return NextResponse.json({ error: 'Kunde inte spara: försök igen' }, { status: 500 })
   }
 
   return NextResponse.json({ ok: true })

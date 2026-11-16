@@ -129,7 +129,7 @@ export default function HamnarOchBryggorPage() {
             Att välja rätt hamn är halva resan. Storm från väst? Sök lä i öst. Fullt i Sandhamn? Det finns oftast en vik i närheten. Här samlar vi det vi faktiskt kan belägga: vad <strong>allemansrätten</strong> säger om att ankra och låna brygga, hur <strong>VHF-kanal 16</strong> och kustradion fungerar, och fem gästhamnar där uppgifterna kommer från hamnen, kommunen eller destinationsbolaget.
           </p>
           <p>
-            <strong>Gästhamnar</strong> har serviceplatser med el, vatten, dusch och toalett och ofta krog eller butik. <strong>Naturhamnar</strong> är vikar där du ankrar eller lägger tamp i berget: utan service, men också utan avgift. Hamnarna på varje ö hittar du på ö-sidorna; Bohusläns öar är samlade på <Link href="/bohuslan#oar">Bohuslän-sidan</Link>.
+            <strong>Gästhamnar</strong> har serviceplatser med el, vatten, dusch och toalett och ofta krog eller butik. <strong>Naturhamnar</strong> är vikar där du ankrar eller lägger tamp i berget: utan service, men också utan avgift. Hamnarna på varje ö hittar du på ö-sidorna; Bohusläns öar är samlade på <Link href="/bohuslan#oar">Bohusläns sida</Link>.
           </p>
           <p>
             Vi skriver inga hamnpriser utan prislista och inga öppettider utan källa. Saknas något: säg till, vi lägger till det med källa.

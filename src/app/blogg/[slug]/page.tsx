@@ -1529,14 +1529,14 @@ Mer: [Sandhamn guide](/blogg/sandhamn-guide-2026).
 
 ## Biljetter och cykel
 - **SL-biljett** gäller mellan Strömkajen och Vaxholm med omnejd, på linjer som går via Vaxholm. Till Vaxholm räcker alltså SL-biljetten.
-- **Längre ut** behövs Waxholmsbolaget-biljett 30 april till 13 september, till exempel på sträckan Vaxholm till Grinda. 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik.
-- **Köp** Waxholmsbolaget-biljetten i SL-appen eller ombord. Strömma, Cinderella och Sandhamnslinjen har egna biljetter.
+- **Längre ut** behövs Waxholmsbolagets biljett 30 april till 13 september, till exempel på sträckan Vaxholm till Grinda. 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik.
+- **Köp** Waxholmsbolagets biljett i SL-appen eller ombord. Strömma, Cinderella och Sandhamnslinjen har egna biljetter.
 - **Cykel:** en vanlig cykel får följa med ombord på Waxholmsbåten i mån av plats, utan extra kostnad.
 - Alla restider per ö finns under Komma dit, till exempel [Båt till Grinda](/o/grinda/komma-dit) och [Båt till Utö](/o/uto/komma-dit).
    `,
    faqs: [
      // KÄLLA: waxholmsbolaget.se (SL-biljetter mellan 44 bryggor), sl.se (biljetter i Waxholmsbolagets skärgårdsbåtar), Waxholmsbolaget tabell 11 och 21, SL linje 670 och 846 – se KÄLLA-kommentaren i content.
-     { q: 'Gäller SL-kortet på Waxholmsbåten?', a: 'SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd. Längre ut behövs Waxholmsbolaget-biljett 30 april till 13 september, medan SL-periodbiljetter på 30 dagar eller mer gäller i hela trafiken 14 september till 29 april.' },
+     { q: 'Gäller SL-kortet på Waxholmsbåten?', a: 'SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd. Längre ut behövs Waxholmsbolagets biljett 30 april till 13 september, medan SL-periodbiljetter på 30 dagar eller mer gäller i hela trafiken 14 september till 29 april.' },
      { q: 'Hur lång tid tar båten till Vaxholm?', a: 'Waxholmsbolagets båt från Strömkajen tar ungefär en timme. Buss 670 från Tekniska högskolan är ett alternativ.' },
      { q: 'Kan man göra dagstur till Utö?', a: 'Ja. Pendeltåg till Västerhaninge, buss 846 till Årsta brygga på 14 till 17 minuter och Waxholmsbåt till Gruvbryggan på 35 till 75 minuter. På flera turer ska resan beställas minst en timme före avgång.' },
    ],
@@ -2162,14 +2162,14 @@ Under högsäsong går turbåt från Stavsnäs vinterhamn till Bullerö, entrén
 
 ## Biljetter på Waxholmsbåten
 - SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd, på de linjer som går via Vaxholm.
-- 30 april till 13 september behövs Waxholmsbolaget-biljett utanför det området, till exempel på sträckan Vaxholm till Grinda.
+- 30 april till 13 september behövs Waxholmsbolagets biljett utanför det området, till exempel på sträckan Vaxholm till Grinda.
 - 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik.
-- Waxholmsbolaget-biljetter köps i SL-appen eller ombord. Strömma, Cinderella och Sandhamnslinjen har egna biljetter.
+- Waxholmsbolagets biljetter köps i SL-appen eller ombord. Strömma, Cinderella och Sandhamnslinjen har egna biljetter.
    `,
    faqs: [
      // KÄLLA: stromma.com Fjäderholmarna, Waxholmsbolaget tabell 2 och 21, Waxholmsbolaget och sl.se om SL-biljetter i skärgårdstrafiken, lansstyrelsen.se Utö – se KÄLLA-kommentaren i content.
      { q: 'Hur lång tid tar båten till Fjäderholmarna?', a: 'Strömmas båt från Strandvägen tar cirka 30 minuter under sommarhalvåret. Vår och höst lägger Waxholmsbolagets linje 2 till vid Fjäderholmarna på vissa turer.' },
-     { q: 'Gäller SL-kortet på Waxholmsbåtarna?', a: 'SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd. 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik. Övrig tid behövs Waxholmsbolaget-biljett längre ut.' },
+     { q: 'Gäller SL-kortet på Waxholmsbåtarna?', a: 'SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd. 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik. Övrig tid behövs Waxholmsbolagets biljett längre ut.' },
      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan."; "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00"
      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf (SL, linje 846), läst 2026-11-08 — "Västerhaninge station–Årsta (–Årsta slott)"; "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026"
      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf (Waxholmsbolaget, tabell 21), läst 2026-11-08 — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"; "21A ÅRSTA – UTÖ"; uppmätt i tabellen: Årsta brygga–Gruvbryggan 35–75 min
@@ -2606,7 +2606,7 @@ export default async function BloggPostPage({
      Få nya guider som denna i inkorgen
    </h3>
    <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.7, margin: '0 0 22px', maxWidth: 480 }}>
-     Vi skriver om Stockholms skärgård: öppna öar, öppettider och insider-tips du inte hittar på TripAdvisor. Inga annonser. Inga länklistor. Bara skärgård.
+     Vi skriver om Stockholms skärgård: öppna öar, öppettider och insidertips du inte hittar på TripAdvisor. Inga annonser. Inga länklistor. Bara skärgård.
    </p>
    <EmailSignup
      source={`blogg-${slug}-bottom`}

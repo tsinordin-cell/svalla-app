@@ -132,7 +132,7 @@ async function notifyPlaceSavers(placeSlug: string, placeName: string, byUserId:
 
   const payload = JSON.stringify({
     title: `${senderName} just nu på ${placeName}`,
-    body: 'En plats du sparat — färska intryck i feeden.',
+    body: 'En plats du sparat, färska intryck i feeden.',
     url: `/plats/${placeSlug}`,
     tag: `highlight-${placeSlug}`,
   })
