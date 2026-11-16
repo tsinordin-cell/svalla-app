@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DEPARTURES, sortRegions, requiresLock, isLandlocked, haversineKm, type Departure, type Interest } from '@/lib/planner-client'
 import Icon, { type IconName } from '@/components/Icon'
+import { track } from '@/lib/analytics-events'
 
 const INTERESTS: { value: Interest; label: string; iconName: IconName }[] = [
  { value: 'krog', label: 'Krog & mat',       iconName: 'utensils' },
@@ -42,6 +43,10 @@ export default function PlaneraNyClient() {
  const controller = new AbortController()
  const timeoutId = setTimeout(() => controller.abort(), 15_000)
 
+ track('route_planned', {
+ distance_nm: Math.round(haversineKm(startDep.lat, startDep.lng, endDep.lat, endDep.lng) / 1.852),
+ interests,
+ })
  try {
  const res = await fetch('/api/planera/create', {
  method: 'POST',
@@ -74,6 +79,7 @@ export default function PlaneraNyClient() {
  setStep('interests')
  return
  }
+ track('route_saved', { route_id: json.id })
  router.push(`/planera/${json.id}`)
  } catch (e) {
  clearTimeout(timeoutId)
