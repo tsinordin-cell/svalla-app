@@ -49,7 +49,7 @@ export default function PartnerLeadActions({ id, status, email, businessName }: 
     startTransition(() => router.refresh())
   }
 
-  const subject = encodeURIComponent(`Svalla.se — om er anmälan`)
+  const subject = encodeURIComponent(`Svalla.se, om er anmälan`)
   const body = encodeURIComponent(`Hej!
 
 Tack för att ni är intresserade av ett partnerskap med Svalla.se. Jag heter Tom och är grundare här.

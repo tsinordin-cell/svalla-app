@@ -18,10 +18,10 @@ export async function PATCH(
     const trimBody  = (body  ?? '').trim()
 
     if (trimTitle.length < 5 || trimTitle.length > 200) {
-      return NextResponse.json({ error: 'Ogiltig rubrik (5–200 tecken).' }, { status: 400 })
+      return NextResponse.json({ error: 'Ogiltig rubrik (5 till 200 tecken).' }, { status: 400 })
     }
     if (trimBody.length < 10 || trimBody.length > 10000) {
-      return NextResponse.json({ error: 'Ogiltig text (10–10 000 tecken).' }, { status: 400 })
+      return NextResponse.json({ error: 'Ogiltig text (10 till 10 000 tecken).' }, { status: 400 })
     }
 
     // Verifiera ägarskap

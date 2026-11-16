@@ -25,7 +25,7 @@ const ADVENTURES = [
     icon: 'castle',
     intro: 'Ingenstans på Åland är historiens tyngd mer påtaglig än bland Bomarsunds kolossala stenväggar.',
     body: 'Bomarsund var ett gigantiskt ryskt fästningsverk påbörjat på 1830-talet, tänkt att bli ett av Östersjöns mest formidabla försvar. Men 1854, bara tjugo år efter att bygget startade, bombades det sönder av en brittisk-fransk flotta under Krimkriget. Det som återstår är häpnadsväckande i sin skala: stenblock stora som bilar, murar som är meter tjocka och vallgravar fortfarande synliga i terrängen. Platsen är aldrig stängd och kostar inget att besöka. Informationsskyltar på svenska och engelska förklarar geopolitiken bakom bygget. Kombinera med Kastelholm samma dag, bara 15 minuters bilresa åtskiljer dem.',
-    practicalInfo: 'Alltid öppet, gratis inträde. Info-skyltar på svenska och engelska. Ta bil eller cykel från Kastelholm, ca 15 min.',
+    practicalInfo: 'Alltid öppet, gratis inträde. Informationsskyltar på svenska och engelska. Ta bil eller cykel från Kastelholm, ca 15 min.',
   },
   {
     id: 3,

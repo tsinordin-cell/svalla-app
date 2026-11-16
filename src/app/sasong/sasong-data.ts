@@ -78,7 +78,7 @@ export const SEASONS: Season[] = [
       'Nackdelen: trängsel. Sandhamn, Grinda, Smögen och Marstrand kan vara överfulla i juli. För dem som vill ha lugn. Välj en yttre eller mindre känd ö, eller besök i juni eller sena augusti.',
     ],
     whatChanges: [
-      'Färjor: högsta frekvens, fler avgångar, Cinderella-båtarna går',
+      'Färjor: högsta frekvens, fler avgångar, Cinderellabåtarna går',
       'Restauranger: alla öppna, längsta öppettider, oftast bokningskrav på populära krogar',
       'Boende: dyrast och svårast att få: boka månader i förväg',
       'Bad: vattnet 16 till 22 °C, sandstränder och klippvikar',
@@ -105,7 +105,7 @@ export const SEASONS: Season[] = [
     tagline: 'Skärgårdens vackraste säsong: varma färger, lugna bryggor och svamp i skogen.',
     intro: [
       'Hösten är den underskattade säsongen. Trafiken har dragit sig tillbaka efter augusti, vädret är ofta stabilt och färgerna i lövskogen, speciellt på öar med björk och asp, är spektakulära. September är ofta en av årets vackraste månader i Stockholms skärgård.',
-      'Vattnet är fortfarande varmt från sommaren (15 till 18 °C i september) men svalnar snabbt. Restauranger och boende börjar stänga successivt under september till oktober. I november är det mest helår-verksamheter kvar.',
+      'Vattnet är fortfarande varmt från sommaren (15 till 18 °C i september) men svalnar snabbt. Restauranger och boende börjar stänga successivt under september till oktober. I november är det mest helårsverksamheter kvar.',
       'Höst är perfekt för dem som söker en lugn skärgårdsupplevelse med samma vackra natur som på sommaren, men utan trängsel. Svampplockning, vandring och kajakpaddling i stilla vatten är säsongens höjdpunkter.',
     ],
     whatChanges: [
@@ -143,7 +143,7 @@ export const SEASONS: Season[] = [
     whatChanges: [
       'Färjor: minimal trafik: endast skolskjuts och pendlartrafik på vissa linjer',
       'Restauranger: nästan alla stängda, undantag på året-runt-öar',
-      'Boende: vandrarhem och hotell med helår-verksamhet, t.ex. Sandhamns Seglarhotell',
+      'Boende: vandrarhem och hotell med helårsverksamhet, t.ex. Sandhamns Seglarhotell',
       'Is: i kalla vintrar fryser delar av innerskärgården: kräver lokal kunskap',
       'Bastu: havsbastu med isvak är vinterns höjdpunkt på Sandhamn och vissa andra öar',
     ],

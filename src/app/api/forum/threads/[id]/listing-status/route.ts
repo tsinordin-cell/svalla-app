@@ -49,7 +49,7 @@ export async function PATCH(
     return NextResponse.json({ error: 'Du är inte ägare till denna annons.' }, { status: 403 })
   }
   if (thread.category_id !== 'loppis') {
-    return NextResponse.json({ error: 'Endast Loppis-trådar har status.' }, { status: 400 })
+    return NextResponse.json({ error: 'Endast loppistrådar har status.' }, { status: 400 })
   }
 
   const currentListing = (thread.listing_data ?? {}) as Record<string, unknown>

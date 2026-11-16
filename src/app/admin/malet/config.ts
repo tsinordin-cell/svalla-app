@@ -34,6 +34,6 @@ export const TIMELINE: { period: string; text: string }[] = [
     text:
       'Exit-brief och scenariomodell skapad. Tagline satt till "Sveriges samlade skärgårdssida". ' +
       'Beslut: bygg mot scenario BAS, håll dörren öppen mot PLATTFORM. ' +
-      'Noll betalande partners — det är den enda siffra som betyder något just nu.',
+      'Noll betalande partners. Det är den enda siffra som betyder något just nu.',
   },
 ]

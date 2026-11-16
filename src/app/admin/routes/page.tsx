@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { getAdminClient } from '@/lib/supabase-admin'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Rutt-kvalitet — Admin · Svalla' },
+  title: { absolute: 'Rutt-kvalitet: Admin · Svalla' },
   robots: { index: false, follow: false },
 }
 
@@ -123,11 +123,11 @@ export default async function AdminRoutesPage() {
       <section style={{ marginBottom: 36 }}>
         <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 4 }}>Topp 30 par som behöver precomputas</h2>
         <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 0 14px' }}>
-          Grid-keys (0.05° ≈ 5–6 km). Sorterat efter antal träffar — högst på topp = störst payoff.
+          Grid-keys (0.05° ≈ 5 till 6 km). Sorterat efter antal träffar, högst på topp = störst payoff.
         </p>
         {topFailing.length === 0 ? (
           <div style={{ padding: 24, background: 'var(--white)', borderRadius: 12, color: 'var(--txt3)', fontSize: 14, textAlign: 'center', border: '1px solid var(--border, rgba(10,123,140,0.12))' }}>
-            Inga failing-par senaste 30 dagar — pipelinen håller.
+            Inga failing-par senaste 30 dagar, pipelinen håller.
           </div>
         ) : (
           <div style={{ background: 'var(--white)', borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border, rgba(10,123,140,0.12))' }}>

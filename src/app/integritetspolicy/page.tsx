@@ -54,7 +54,7 @@ export default function IntegritetspolicyPage() {
             <li>Tillhandahålla och förbättra Svallas tjänster</li>
             <li>Möjliggöra inloggning och kontosäkerhet</li>
             <li>Visa dina loggade turer och sparade platser</li>
-            <li>Skicka push-notiser om du valt att aktivera dessa</li>
+            <li>Skicka pushnotiser om du valt att aktivera dessa</li>
             <li>Skicka nyhetsbrevet till dig som har valt att prenumerera. Att ha ett konto räcker inte för att få nyhetsbrevet, du väljer det själv. Varje brev har en länk där du avregistrerar dig</li>
             <li>Analysera anonym användningsstatistik för att förbättra appen</li>
           </ul>

@@ -59,7 +59,7 @@ const ITEMS: LandingItem[] = [
  },
  {
  title: 'Förstå vind och väder',
- description: 'SMHI sjöprognos, Beaufort-skalan och hur du läser vädret som nybörjare.',
+ description: 'SMHI sjöprognos, Beaufortskalan och hur du läser vädret som nybörjare.',
  href: '/nyborjare-segling?avsnitt=vader',
  icon: '🌬️',
  meta: 'Beaufort 0 till 4 för nybörjare',
@@ -95,7 +95,7 @@ export default function NyborjareSeglingPage() {
     { '@type': 'HowToStep', position: 2, name: 'Välj din första båt', text: 'Börja med en stabil och enkel båt: Nordisk Folkbåt, H-båt eller Albin 25. Charterbåt är ett bra alternativ innan köp, kostar 8 000 till 40 000 kr/vecka beroende på säsong.' },
     { '@type': 'HowToStep', position: 3, name: 'Börja i rätt vatten', text: 'Lugna revir för nybörjare: Mälaren, inre Stockholms skärgård (Saltsjön) och inre delar av Bohuslän. Undvik öppet hav tills du byggt upp rutin.' },
     { '@type': 'HowToStep', position: 4, name: 'Förbered checklista och säkerhetsutrustning', text: 'Flytväst alltid ombord. VHF-radio på kanal 16 (nödkanal). Färdplan till någon iland. Sjökort och kompass. Första hjälpen-kit.' },
-    { '@type': 'HowToStep', position: 5, name: 'Förstå vind och väder', text: 'Lär dig läsa SMHI:s sjöprognos och Beaufort-skalan. Beaufort 0 till 4 är bra för nybörjare. Respektera stormvarningar, vädret på öppet vatten kan ändras snabbt.' },
+    { '@type': 'HowToStep', position: 5, name: 'Förstå vind och väder', text: 'Lär dig läsa SMHI:s sjöprognos och Beaufortskalan. Beaufort 0 till 4 är bra för nybörjare. Respektera stormvarningar, vädret på öppet vatten kan ändras snabbt.' },
     { '@type': 'HowToStep', position: 6, name: 'Logga din första tur', text: 'Spara turen, se statistik och dela med andra seglare. Varje tur bygger erfarenhet: logga rutt, väder och lärdomar för att utvecklas snabbare.' },
    ],
   },
@@ -188,7 +188,7 @@ export default function NyborjareSeglingPage() {
  </p>
  <ul style={{ margin: '12px 0', paddingLeft: 20 }}>
  {/* UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) */}
- <li><strong>Grundläggande (förarintyg-nivå):</strong> Knopar, sjövägsregler, säkerhet, grundläggande navigation. Cirka 2 till 3 dagar eller några kvällar. Kostnad cirka 2 000 till 4 000 kr.</li>
+ <li><strong>Grundläggande (förarintygsnivå):</strong> Knopar, sjövägsregler, säkerhet, grundläggande navigation. Cirka 2 till 3 dagar eller några kvällar. Kostnad cirka 2 000 till 4 000 kr.</li>
  <li><strong>Kustskepparintyg:</strong> Kustnavigation, terrestrisk navigation, väder, kollisionsregler. Bredare kurs, cirka 4 till 6 dagar. Kostnad cirka 3 000 till 6 000 kr.</li>
  <li><strong>RYA Day Skipper:</strong> Internationell standard som ofta krävs av charterbolag. Praktisk del 5 dagar + teoridel. Kostnad cirka 8 000 till 15 000 kr.</li>
  </ul>
@@ -267,7 +267,7 @@ export default function NyborjareSeglingPage() {
  Mälaren
  </h3>
  <p>
- Ett av Europas finaste inlandsvatten. Stort, skyddat och med många hamnar och boende-alternativ. Perfekt för längre turer utan alltför stor våg.
+ Ett av Europas finaste inlandsvatten. Stort, skyddat och med många hamnar och boendealternativ. Perfekt för längre turer utan alltför stor våg.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Inre Stockholms skärgård
@@ -279,7 +279,7 @@ export default function NyborjareSeglingPage() {
  Lugna delar av Bohuslän
  </h3>
  <p>
- Från Göteborg och norrut. Marstrand, Tjörn och Lysekil-området är klassiska målpunkter med gott om hamnar och bra service. Notera att Bohuslän blir snabbt mer öppet ju längre ut du kommer. Börja innanför öarna.
+ Från Göteborg och norrut. Marstrand, Tjörn och Lysekilsområdet är klassiska målpunkter med gott om hamnar och bra service. Notera att Bohuslän blir snabbt mer öppet ju längre ut du kommer. Börja innanför öarna.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Vänern

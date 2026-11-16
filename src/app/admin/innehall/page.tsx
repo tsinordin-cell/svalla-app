@@ -52,7 +52,7 @@ export default async function AdminContentPage() {
         </Link>
 
         <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--sea)', margin: '0 0 4px' }}>
-          Sociala medier — färdiga inlägg
+          Sociala medier: färdiga inlägg
         </h1>
         <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 24px' }}>
           Kopiera, anpassa, posta. Inga superlativ, inga fake-claims.
@@ -88,9 +88,9 @@ export default async function AdminContentPage() {
           </h2>
           <ul style={{ margin: 0, paddingLeft: 18, color: 'var(--txt2)', fontSize: 13, lineHeight: 1.7 }}>
             <li><strong>Reddit:</strong> Inga emojis, ingen säljjargong. Var beredd att svara på kommentarer i 24 h. Kolla subreddit-regler först.</li>
-            <li><strong>FB-grupper:</strong> Många kräver godkännande från admin. Skicka privatmeddelande först — &quot;är det OK om jag delar X?&quot;</li>
+            <li><strong>FB-grupper:</strong> Många kräver godkännande från admin. Skicka privatmeddelande först, &quot;är det OK om jag delar X?&quot;</li>
             <li><strong>Instagram:</strong> Foto + kort text. Länk i bio (caption-länkar är inte klickbara). Story stayar 24 h, Reels är permanent.</li>
-            <li><strong>Tajming:</strong> Tisdag-torsdag förmiddag är generellt bäst för text-baserade inlägg. Helger för IG.</li>
+            <li><strong>Tajming:</strong> Tisdag till torsdag förmiddag är generellt bäst för text-baserade inlägg. Helger för IG.</li>
             <li><strong>Spårning:</strong> Lägg till <code>?utm_source=reddit&amp;utm_campaign=2026summer</code> i länkar om du vill mäta vad som drar trafik.</li>
           </ul>
         </div>

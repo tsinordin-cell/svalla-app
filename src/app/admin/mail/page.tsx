@@ -53,11 +53,11 @@ const BESKRIVNING: Record<EmailTemplate, string> = {
   day3_newsletter: 'Dag 3 efter prenumeration',
   day14_newsletter: 'Dag 14 efter prenumeration',
   day30_newsletter: 'Dag 30 efter prenumeration',
-  manadsbrev: 'Första tisdagen i månaden okt–mars, bara om mallens manad stämmer. Går bara till bekräftade prenumeranter',
+  manadsbrev: 'Första tisdagen i månaden okt till mars, bara om mallens manad stämmer. Går bara till bekräftade prenumeranter',
   day60: 'Konto + 60 dagar utan tur och utan sparad ö. Går till konton: kräver samtycke innan det slås på',
   day90: 'Konto + 90 dagar utan tur och utan sparad ö. Går till konton: kräver samtycke innan det slås på',
   saved_island: 'Dagen efter att en användare sparat en ö (en gång per ö). Går till konton: kräver samtycke innan det slås på',
-  weekly_island: 'Tisdagar april–september, en ö per vecka. Går bara till bekräftade prenumeranter',
+  weekly_island: 'Tisdagar april till september, en ö per vecka. Går bara till bekräftade prenumeranter',
 }
 
 const ORDNING: EmailTemplate[] = [

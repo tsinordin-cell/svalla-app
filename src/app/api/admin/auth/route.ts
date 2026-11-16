@@ -31,7 +31,7 @@ function safeEqual(a: string, b: string): boolean {
 
 export async function POST(req: Request) {
   if (!ADMIN_PASSWORD) {
-    console.error('[admin/auth] ADMIN_PASSWORD env saknas — admin är inte konfigurerad')
+    console.error('[admin/auth] ADMIN_PASSWORD env saknas: admin är inte konfigurerad')
     return NextResponse.json({ error: 'Admin auth not configured' }, { status: 503 })
   }
 

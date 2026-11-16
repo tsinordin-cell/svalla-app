@@ -148,7 +148,7 @@ export default function HotellPage() {
             Sök och boka direkt
           </h2>
           <p style={{ margin: '0 0 14px' }}>
-            Jämför lediga rum och priser hos de stora bokningssajterna. Affiliate-samarbeten är på gång, klickar du nu går du direkt till sökningen.
+            Jämför lediga rum och priser hos de stora bokningssajterna. Affiliatesamarbeten är på gång, klickar du nu går du direkt till sökningen.
           </p>
           {/* Booking.com: lägg till &aid=AFFILIATE_ID i URL:en när partnerkonto är aktivt */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

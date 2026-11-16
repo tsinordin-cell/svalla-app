@@ -59,7 +59,7 @@ function LoggaChoice() {
           Hur vill du logga?
         </h1>
         <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', margin: 0, lineHeight: 1.5 }}>
-          Spåra live för full GPS-data, eller snabb-logga en bild
+          Spåra live för full GPS-data, eller snabblogga en bild
         </p>
       </div>
 

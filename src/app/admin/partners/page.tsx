@@ -87,7 +87,7 @@ export default async function AdminPartnersPage() {
         </Link>
 
         <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--sea)', margin: '0 0 4px' }}>
-          Partner-leads
+          Partnerleads
         </h1>
         <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 24px' }}>
           B2B-förfrågningar från /partner

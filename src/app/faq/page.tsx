@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: 'Vad är Svalla?',
-    a: 'Svalla är en webb-app för svenska skärgården, från Bohuslän till Höga kusten. Här hittar du restauranger, caféer, gästhamnar, bränsleställen och sevärdigheter på öarna: oavsett om du tar dig dit med kajak, segelbåt, motorbåt eller färja. Du kan också logga dina turer och spara favoriter.',
+    a: 'Svalla är en webbapp för svenska skärgården, från Bohuslän till Höga kusten. Här hittar du restauranger, caféer, gästhamnar, bränsleställen och sevärdigheter på öarna: oavsett om du tar dig dit med kajak, segelbåt, motorbåt eller färja. Du kan också logga dina turer och spara favoriter.',
   },
   {
     q: 'Kostar det något att använda Svalla?',
@@ -30,7 +30,7 @@ const FAQS = [
   },
   {
     q: 'Hur lägger jag till Svalla på hemskärmen?',
-    a: 'iOS (Safari): tryck på dela-ikonen och välj "Lägg till på hemskärmen". Android (Chrome): tryck på ⋮-menyn och välj "Installera app" eller "Lägg till på startskärmen".',
+    a: 'iOS (Safari): tryck på delaikonen och välj "Lägg till på hemskärmen". Android (Chrome): tryck på ⋮-menyn och välj "Installera app" eller "Lägg till på startskärmen".',
   },
   {
     q: 'Vilka platser finns på kartan?',

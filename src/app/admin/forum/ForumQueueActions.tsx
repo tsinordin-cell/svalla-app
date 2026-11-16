@@ -31,7 +31,7 @@ export default function ForumQueueActions({
         marginTop: 10, fontSize: 12, fontWeight: 600,
         color: done === 'approved' ? 'var(--sea)' : 'var(--txt3)',
       }}>
-        {done === 'approved' ? '✓ Godkänd — visas nu i forumet' : '✓ Borttagen'}
+        {done === 'approved' ? '✓ Godkänd: visas nu i forumet' : '✓ Borttagen'}
       </div>
     )
   }

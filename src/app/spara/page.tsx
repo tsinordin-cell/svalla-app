@@ -1537,7 +1537,7 @@ export default function SparaPage() {
                 <line x1="12" y1="18" x2="12.01" y2="18"/>
               </svg>
               <div style={{ flex: 1 }}>
-                <strong>Lås inte skärmen.</strong> Webb-version pausar GPS när telefonen sover. Lägg Svalla på hemskärmen för bästa stöd.
+                <strong>Lås inte skärmen.</strong> Webbversionen pausar GPS när telefonen sover. Lägg Svalla på hemskärmen för bästa stöd.
               </div>
               <button
                 onClick={dismissWebBanner}

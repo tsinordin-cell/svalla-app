@@ -64,7 +64,7 @@ export async function POST(request: Request) {
   // Duplicate → returnera framgång ändå (bra UX, ingen läckage)
   if (error && !isDuplicate) {
     console.error('[subscribe] insert failed', error)
-    return NextResponse.json({ error: 'Kunde inte spara — försök igen' }, { status: 500 })
+    return NextResponse.json({ error: 'Kunde inte spara: försök igen' }, { status: 500 })
   }
 
   // Segment (2026-10-02): svaret på "Vad stämmer bäst?" kommer i ett andra

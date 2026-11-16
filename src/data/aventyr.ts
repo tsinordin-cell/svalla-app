@@ -43,7 +43,7 @@ export const GOTLAND: Destination = {
   introTitle: '8 äventyr på Gotland: för turisten utan och med bil',
   introDescription: 'Färdiga förslag uppdelade efter transportsätt. Bil-tunga upplevelser längs Gotlands ytter- och innerlandskap, samt cykel- och busstillvalsärenden som funkar utan egen bil.',
   metaTitle: '8 äventyr på Gotland: guide för bilist, cyklist och bussresenär | Svalla',
-  metaDescription: '8 handplockade Gotlands-äventyr fördelade efter transport. Med bil till Färö och Lummelunda, med cykel runt norra Gotland, med buss till Roma och Tofta.',
+  metaDescription: '8 handplockade Gotlandsäventyr fördelade efter transport. Med bil till Färö och Lummelunda, med cykel runt norra Gotland, med buss till Roma och Tofta.',
   aventyr: [
     {
       slug: 'faro-dagstur',
@@ -78,7 +78,7 @@ export const GOTLAND: Destination = {
     {
       slug: 'raukar-ostkusten',
       title: 'Raukar längs ostkusten: Folhammar och Ljugarn',
-      beskrivning: 'Gotlands östra kust är ett av Sveriges geologiskt mest dramatiska landskap. Folhammars rauk-fält söder om Ljugarn är klassiskt, knubbiga kalkstenformationer mot havet. Kombinera med bad i Ljugarn (en av Gotlands populäraste badorter) och lunch i samhället.',
+      beskrivning: 'Gotlands östra kust är ett av Sveriges geologiskt mest dramatiska landskap. Folhammars raukfält söder om Ljugarn är klassiskt, knubbiga kalkstenformationer mot havet. Kombinera med bad i Ljugarn (en av Gotlands populäraste badorter) och lunch i samhället.',
       transport: 'bil',
       ungefarTid: 'Heldag: 60 min från Visby',
       bastaManad: 'Juni till september',
@@ -88,7 +88,7 @@ export const GOTLAND: Destination = {
     {
       slug: 'visby-stadsvandring',
       title: 'Visby: medeltidsstaden till fots',
-      beskrivning: 'Visby är ett av Europas bäst bevarade medeltida stadsmiljöer och UNESCO-världsarv sedan 1995. Hela innerstaden går att gå runt på några timmar. Ringmuren, ruinerna av flera medeltida kyrkor och de smala gränderna är poängen. Botaniska trädgården är gratis och vacker. Buss från Visby flygplats tar dig till stadskärnan på tio minuter.',
+      beskrivning: 'Visby är ett av Europas bäst bevarade medeltida stadsmiljöer och Unescovärldsarv sedan 1995. Hela innerstaden går att gå runt på några timmar. Ringmuren, ruinerna av flera medeltida kyrkor och de smala gränderna är poängen. Botaniska trädgården är gratis och vacker. Buss från Visby flygplats tar dig till stadskärnan på tio minuter.',
       transport: 'kollektivt',
       ungefarTid: 'Halvdag: kollektivt från flygplats eller färjeterminal',
       bastaManad: 'Maj till september',
@@ -108,7 +108,7 @@ export const GOTLAND: Destination = {
     {
       slug: 'norra-gotland-cykel',
       title: 'Cykla runt norra Gotland: flerdagars rundtur',
-      beskrivning: 'Norra Gotland är cyklarens dröm: platta vägar, små samhällen, fyrar och badstränder. En klassisk rundtur går Visby, Slite, Lärbro, Fårösund och tillbaka, ungefär 150 kilometer som du fördelar på två-tre dagar. Hyr cykel i Visby, packa lätt och övernatta längs vägen. Bilfärja till Färö ingår i upplevelsen.',
+      beskrivning: 'Norra Gotland är cyklarens dröm: platta vägar, små samhällen, fyrar och badstränder. En klassisk rundtur går Visby, Slite, Lärbro, Fårösund och tillbaka, ungefär 150 kilometer som du fördelar på två till tre dagar. Hyr cykel i Visby, packa lätt och övernatta längs vägen. Bilfärja till Färö ingår i upplevelsen.',
       transport: 'cykel',
       ungefarTid: '2 till 3 dagar: start och slut i Visby',
       bastaManad: 'Maj till september',
@@ -191,7 +191,7 @@ export const ALAND: Destination = {
     {
       slug: 'lemland-lumparland-cykel',
       title: 'Cykla Lemland och Lumparland: sydöstra hörnet',
-      beskrivning: 'Två relativt små kommuner sydost om Mariehamn som hänger ihop med bro. Cykla genom låglandskap, små byar och längs Lumparns kust. Lemland har medeltida kyrka och Granö-tornet med utsikt. En halvdagstur till heldagstur beroende på hur många avstickare du gör.',
+      beskrivning: 'Två relativt små kommuner sydost om Mariehamn som hänger ihop med bro. Cykla genom låglandskap, små byar och längs Lumparns kust. Lemland har medeltida kyrka och Granötornet med utsikt. En halvdagstur till heldagstur beroende på hur många avstickare du gör.',
       transport: 'cykel',
       ungefarTid: 'Halvdag: start och slut i Mariehamn',
       bastaManad: 'Maj till september',
@@ -211,7 +211,7 @@ export const ALAND: Destination = {
     {
       slug: 'mariehamn-stadsvandring',
       title: 'Mariehamn: stadsvandring till fots',
-      beskrivning: 'Mariehamn är Nordens minsta huvudstad med drygt 11 000 invånare och en stadsmiljö som går att utforska på en eftermiddag. Esplanaden, Sjöfartsmuseet med fyrmästaren Pommern i hamnen, gågatan Torggatan och den sjöbods-färgade Östra hamnen. Allt nås till fots. Bra som half-day-aktivitet före eller efter andra äventyr.',
+      beskrivning: 'Mariehamn är Nordens minsta huvudstad med drygt 11 000 invånare och en stadsmiljö som går att utforska på en eftermiddag. Esplanaden, Sjöfartsmuseet med fyrmästaren Pommern i hamnen, gågatan Torggatan och den sjöbodsfärgade Östra hamnen. Allt nås till fots. Bra som half-day-aktivitet före eller efter andra äventyr.',
       transport: 'kollektivt',
       ungefarTid: 'Halvdag: start var som helst i centrum',
       bastaManad: 'Maj till september',
@@ -234,7 +234,7 @@ export const OLAND: Destination = {
     {
       slug: 'sodra-oland-unesco',
       title: 'Södra Öland: UNESCO-landskap och fyren Långe Jan',
-      beskrivning: 'Södra Öland är UNESCO-världsarv sedan 2000, ett kulturlandskap där människor bott och brukat jorden i tusentals år. Mosaiken av byar, alvar, vångar och kustområden ses bäst med bil eftersom du behöver röra dig över ett stort område. Långe Jan, Sveriges högsta fyr (cirka 42 meter), står vid sydspetsen. Klättra upp i klart väder för dramatisk utsikt.',
+      beskrivning: 'Södra Öland är Unescovärldsarv sedan 2000, ett kulturlandskap där människor bott och brukat jorden i tusentals år. Mosaiken av byar, alvar, vångar och kustområden ses bäst med bil eftersom du behöver röra dig över ett stort område. Långe Jan, Sveriges högsta fyr (cirka 42 meter), står vid sydspetsen. Klättra upp i klart väder för dramatisk utsikt.',
       transport: 'bil',
       ungefarTid: 'Heldag: räkna 90 min ner från Borgholm',
       bastaManad: 'Maj till oktober',
@@ -274,7 +274,7 @@ export const OLAND: Destination = {
     {
       slug: 'alvaret-stora-alvaret',
       title: 'Stora Alvaret: Europas största alvarsteppe',
-      beskrivning: 'En kalkstenslandskap utan motsvarighet i Sverige: flata, karga och blommande på våren. Stora Alvaret täcker stora delar av södra Öland och är hem för sällsynta orkidéer (väl synliga i maj-juni) och fågelliv. Du kör genom det med bil eller stannar vid någon utsiktspunkt. Visningar arrangeras under sommaren.',
+      beskrivning: 'En kalkstenslandskap utan motsvarighet i Sverige: flata, karga och blommande på våren. Stora Alvaret täcker stora delar av södra Öland och är hem för sällsynta orkidéer (väl synliga i maj till juni) och fågelliv. Du kör genom det med bil eller stannar vid någon utsiktspunkt. Visningar arrangeras under sommaren.',
       transport: 'bil',
       ungefarTid: 'Halvdag: 60 min från Borgholm',
       bastaManad: 'Maj till juni (orkidéer)',

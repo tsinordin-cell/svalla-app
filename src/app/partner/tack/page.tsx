@@ -4,7 +4,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
   title: 'Tack: du är nu partner',
-  description: 'Tack för att du blev Svalla-partner. Vi hör av oss inom 24 timmar.',
+  description: 'Tack för att du blev Svallapartner. Vi hör av oss inom 24 timmar.',
   robots: { index: false, follow: false },
 }
 
@@ -49,7 +49,7 @@ export default function PartnerTackPage() {
             Välkommen som partner
           </h1>
           <p style={{ fontSize: 16, color: 'var(--txt2)', lineHeight: 1.6, margin: '0 0 24px' }}>
-            Tack för att du blev Svalla-partner. Din betalning är registrerad och vi hör av oss inom 24 timmar för att aktivera din profilsida.
+            Tack för att du blev Svallapartner. Din betalning är registrerad och vi hör av oss inom 24 timmar för att aktivera din profilsida.
           </p>
 
           <div style={{

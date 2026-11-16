@@ -97,7 +97,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       },
       {
         q: 'Vilken årstid är bäst för teambuilding i skärgården?',
-        a: 'Maj till september är bäst för aktiviteter utomhus (segling, kajak, klippor). Maj och september är ofta bättre än juli: bättre väder, inga semestrar i laget och lägre priser. Oktober till november passar för inomhus-konferens med naturupplevelse runt om.',
+        a: 'Maj till september är bäst för aktiviteter utomhus (segling, kajak, klippor). Maj och september är ofta bättre än juli: bättre väder, inga semestrar i laget och lägre priser. Oktober till november passar för inomhuskonferens med naturupplevelse runt om.',
       },
       {
         q: 'Behöver deltagarna kunna segla för en segelregatta?',
@@ -115,13 +115,13 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
     title: 'Teambuilding i Göteborg och Bohuslän 2026: aktiviteter och event',
     h1: 'Teambuilding i Göteborg och Bohuslän',
     metaDescription: 'Teambuilding i Göteborg och Bohuslän: segling, klipphoppning, ostron och skärgårdskonferens. Allt för företagsevent på västkusten.',
-    excerpt: 'Bohuslänska klippor och Västerhavet ger en vildare backdrop än Stockholms skärgård. Perfekt för event som kräver "wow-faktor" och äkta naturupplevelse.',
+    excerpt: 'Bohuslänska klippor och Västerhavet ger en vildare backdrop än Stockholms skärgård. Perfekt för event som kräver "wowfaktor" och äkta naturupplevelse.',
     location: 'Göteborg',
     emoji: '🌊',
     readTime: '7 min',
-    tags: ['Klippmiljö', 'Västerhavet', 'Skaldjur & AW', 'Norrskärgård till Göteborg'],
+    tags: ['Klippmiljö', 'Västerhavet', 'Skaldjur & AW', 'Norra skärgården till Göteborg'],
     intro: [
-      'Bohuslän erbjuder en teambuilding-upplevelse som Stockholms skärgård inte kan matcha: råa, öppna klippor mot Västerhavet, traditionella fisklägen och Nordens bästa skaldjur direkt vid kajen. Det ger event en naturlig "häftighet" utan att du behöver anstränga dig.',
+      'Bohuslän erbjuder en teambuildingupplevelse som Stockholms skärgård inte kan matcha: råa, öppna klippor mot Västerhavet, traditionella fisklägen och Nordens bästa skaldjur direkt vid kajen. Det ger event en naturlig "häftighet" utan att du behöver anstränga dig.',
       'Göteborg som utgångspunkt är ett stort plus. Med Lindholmens Tech-kluster och flera stora arbetsgivare bor ofta hela laget i stan, vilket eliminerar restid. Styrsöbolaget från Saltholmen når sydskärgårdens öar på 20 till 40 minuter.',
       'Skaldjursupplevelsen är unik. Att avsluta ett teambuildingevent med hummermiddag i Smögen eller ostronprovning på Grebbestad är inte möjligt någon annanstans i Sverige. Sådana minnen sätter sig och stärker lagkänslan bortom programmet.',
     ],
@@ -171,7 +171,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       },
       {
         q: 'Är Bohuslän bättre eller sämre än Stockholm för teambuilding?',
-        a: 'Bohuslän är vildare och mer "Instagram-värdig" med sina klippor och öppet hav. Stockholm har större utbud av konferensanläggningar och fler aktivitetsleverantörer. Välj Bohuslän om du vill ha WOW-faktor och natur; Stockholm för ett mer strukturerat program med fler alternativ.',
+        a: 'Bohuslän är vildare och mer "Instagramvärdig" med sina klippor och öppet hav. Stockholm har större utbud av konferensanläggningar och fler aktivitetsleverantörer. Välj Bohuslän om du vill ha WOW-faktor och natur; Stockholm för ett mer strukturerat program med fler alternativ.',
       },
       {
         q: 'Vad kostar teambuilding i Göteborg?',
@@ -186,7 +186,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
     title: 'Teambuilding segling: seglarregatta och offshore 2026',
     h1: 'Teambuilding segling: regatta och kappsegling för ditt team',
     metaDescription: 'Segelregatta som teambuilding. Hur funkar det, vad kostar det och vilka leverantörer erbjuder professionella seglarprogram i Sverige?',
-    excerpt: 'En segelregatta kräver kommunikation, ledarskap och förtroende i realtid. Inget annat teambuilding-format triggar dessa kompetenser lika effektivt.',
+    excerpt: 'En segelregatta kräver kommunikation, ledarskap och förtroende i realtid. Inget annat teambuildingformat triggar dessa kompetenser lika effektivt.',
     location: 'Sverige',
     emoji: '🏆',
     readTime: '7 min',
@@ -194,7 +194,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
     intro: [
       'Segling är det enda idrott där fem person på en båt måste kommunicera i realtid under press, med konsekvenser direkt synliga i farten och kursföringen. Det gör segelregattan till ett av de mest evidensbaserade formaten för teamutveckling.',
       'Upplägget är enkelt: gruppen delas i lag, varje lag får en instruktörsbåt som co-skipper och sedan kör ni ett lopp. Inga förkunskaper behövs: instruktören tar hand om säkerheten, laget tar hand om strategi och kommunikation. Vinnaren korar vid prisudelning på kvällen.',
-      'Format varierar från halvdagsregatter (4 h, inga övernattningar) till flerdagsresor längs Bohuslänska kusten. Det kortare formatet passar kickoff och AW. Det längre passar ledningsgrupper och projekt-team som behöver tid utan telefonen.',
+      'Format varierar från halvdagsregatter (4 h, inga övernattningar) till flerdagsresor längs Bohuslänska kusten. Det kortare formatet passar kickoff och AW. Det längre passar ledningsgrupper och projektteam som behöver tid utan telefonen.',
     ],
     activities: [
       {
@@ -232,7 +232,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       },
       {
         q: 'Hur lång tid tar en segeltävling?',
-        a: 'Halvdag-format: 4 h på vattnet plus 1 h briefing/prisudelning = ca 6 h totalt. Heldagsformat med lunch ombord tar 8 till 9 h. Offshore-regatter sträcker sig 2 till 5 dagar.',
+        a: 'Halvdag-format: 4 h på vattnet plus 1 h briefing/prisudelning = ca 6 h totalt. Heldagsformat med lunch ombord tar 8 till 9 h. Offshoreregatter sträcker sig 2 till 5 dagar.',
       },
       {
         q: 'Vad kostar en segelregatta för ett team?',
@@ -253,7 +253,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
     readTime: '6 min',
     tags: ['Alla erfarenhetsnivåer', 'Naturupplevelse', 'Halv- och heldagsformat', 'Grupper 6 till 40 pers'],
     intro: [
-      'Kajakpaddling är troligen det enklaste teambuilding-formatet att genomföra logistiskt: ingen charterbåt, inga licenskrav, inga komplicerade säkerhetsbriefer. Guide och kajaker finns på plats, man paddlar iväg och är tillbaka på lunch. Trots enkelheten skapar det starka lagupplevelser.',
+      'Kajakpaddling är troligen det enklaste teambuildingformatet att genomföra logistiskt: ingen charterbåt, inga licenskrav, inga komplicerade säkerhetsbriefer. Guide och kajaker finns på plats, man paddlar iväg och är tillbaka på lunch. Trots enkelheten skapar det starka lagupplevelser.',
       'Utan motorljud försvinner möjligheten att undvika samtal. Tandemkajakens 3 knop tvingar fram lugn, lyssnande och synkronisering. Grupper som sällan pratar om något annat än projektstatus hittar sig ofta i genuint samtal ute på vattnet.',
       'Formaten är flexibla. Halvdag (4 h) passar utmärkt som aktivitetsdel i ett konferensprogram. Heldag med picknick i naturhamn ger en komplett utomhusdag. Paddlingsäventyret kan kombineras med orientering, mat på eld eller bastu i slutet.',
     ],
@@ -275,7 +275,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       {
         icon: '🔥',
         name: 'Paddling + mat på eld',
-        text: 'Paddla till naturhamn, laga mat på Primus eller öppen eld och ät lunch ute i skärgården. Kombinationen av rörelse och gemensam matlagning ger en av de mest minnesvärda teambuilding-dagarna.',
+        text: 'Paddla till naturhamn, laga mat på Primus eller öppen eld och ät lunch ute i skärgården. Kombinationen av rörelse och gemensam matlagning ger en av de mest minnesvärda teambuildingdagarna.',
         // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '600 till 1 000 kr/person',
       },
@@ -321,7 +321,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       {
         icon: '📋',
         name: 'Heldagskonferens med aktiviteter',
-        text: 'Workshops och presentationer på förmiddagen, aktiviteter (segling, kajak, orientering) på eftermiddagen, middag och avslutning på kvällen. Det klassiska skärgårds-konferensprogrammet.',
+        text: 'Workshops och presentationer på förmiddagen, aktiviteter (segling, kajak, orientering) på eftermiddagen, middag och avslutning på kvällen. Det klassiska skärgårdskonferensprogrammet.',
         // UPPSKATTNING: spann över flera arrangörer, ej hämtat per aktör (2026-08)
         priceRange: '2 000 till 4 500 kr/person (inkl. mat, aktiviteter, transport)',
       },
@@ -359,7 +359,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
         name: 'Utö Wärdshus',
         location: 'Utö, ca 2h med Waxholmsbolaget',
         capacity: '10 till 80 personer',
-        description: 'Historisk anläggning på södra ytterskärgårdens mest exklusiva ö. Cykel, bastu, sjösättning och ro-båt ingår för gästerna. Mer avskilt och fokuserat än Grinda.',
+        description: 'Historisk anläggning på södra ytterskärgårdens mest exklusiva ö. Cykel, bastu, sjösättning och roddbåt ingår för gästerna. Mer avskilt och fokuserat än Grinda.',
         type: 'Konferensanläggning',
       },
     ],
@@ -379,7 +379,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       },
       {
         q: 'Vad ska man tänka på vid konferens i skärgården jämfört med hotellet i stan?',
-        a: 'Planera logistiken minutiöst, sista båten hem går vid en viss tid. Mobilsignalen kan vara svag (ofta en bonus för fokus). Ta med extra kläder, skärgårdsväder ändras snabbt. Boka backup-aktiviteter för dåligt väder.',
+        a: 'Planera logistiken minutiöst, sista båten hem går vid en viss tid. Mobilsignalen kan vara svag (ofta en bonus för fokus). Ta med extra kläder, skärgårdsväder ändras snabbt. Boka reservaktiviteter för dåligt väder.',
       },
     ],
   },

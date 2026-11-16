@@ -145,7 +145,7 @@ export default function FiskSkaldjurPage() {
       related={[
         { label: 'Värdshus & restauranger', href: '/krogar-och-mat/vardshus-restauranger' },
         { label: 'Fika & café', href: '/krogar-och-mat/fika-cafe' },
-        { label: 'Take-away & kiosker', href: '/krogar-och-mat/take-away-kiosker' },
+        { label: 'Takeaway & kiosker', href: '/krogar-och-mat/take-away-kiosker' },
         { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
         { label: 'Populära öar', href: '/o' },
       ]}

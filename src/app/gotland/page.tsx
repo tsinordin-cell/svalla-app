@@ -216,7 +216,7 @@ export default function GotlandPage() {
  Visby: medeltidens pärla
  </h3>
  <p>
- Visby är Gotlands hjärta och en av Nordens viktigaste medeltida städer. <strong>Hansestaden Visby</strong> är UNESCO-världsarv sedan 1995, och <strong>ringmuren</strong> från ~1250 är dess mest ikoniska element. Den går runt gamla stan och är nästan helt bevarad. Gästhamnen ligger direkt innanför muren, en spektakulär ankomst när du seglar in från Östersjön och ser de gotiska spirorna stiga upp över hamnen.
+ Visby är Gotlands hjärta och en av Nordens viktigaste medeltida städer. <strong>Hansestaden Visby</strong> är Unescovärldsarv sedan 1995, och <strong>ringmuren</strong> från ~1250 är dess mest ikoniska element. Den går runt gamla stan och är nästan helt bevarad. Gästhamnen ligger direkt innanför muren, en spektakulär ankomst när du seglar in från Östersjön och ser de gotiska spirorna stiga upp över hamnen.
  </p>
  <p>
  Restaurang- och krogscenen i Visby har blommat ut under de senaste åren. <strong>Strandgatan är krogstråket</strong>, här finns allt från klassiska gotländska krogar till moderna restauranger. I juli är hamnen oftast fullbelagd under Almedalen (högsummarfestivalen), så boka gästhamn i god tid, eller ring via VHF innan du ankommer för att höra om plats finns.

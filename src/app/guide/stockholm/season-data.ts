@@ -81,7 +81,7 @@ export const SEASON_GUIDES: SeasonGuide[] = [
       'Hummerfiskets öppnande mot slutet av månaden',
       'Segling med bättre väder än juli (färre åskväder)',
       'Kajakpaddling inför säsongsslut',
-      'Sista middag på favorit-krogen innan höstschema',
+      'Sista middag på favoritkrogen innan höstschema',
     ],
     tips: [
       'Åk ut sista augustiveckan för de bästa kombinationerna: fullt öppet, men lite lugnare.',
@@ -148,7 +148,7 @@ export const SEASON_GUIDES: SeasonGuide[] = [
     month: 'November',
     monthIndex: 11,
     tagline: 'Vinter i skärgården, för den som vill ha den helt för sig själv.',
-    intro: 'November är inte för alla, och det är precis vad som gör det speciellt. En dag i november-skärgården är en upplevelse som få turister känner till. Vaxholm med sin historia, Utö med sin havsbastu och Fjäderholmarna med sin rökeriet håller öppet. Resten av skärgården är ditt.',
+    intro: 'November är inte för alla, och det är precis vad som gör det speciellt. En dag i novemberskärgården är en upplevelse som få turister känner till. Vaxholm med sin historia, Utö med sin havsbastu och Fjäderholmarna med sin rökeriet håller öppet. Resten av skärgården är ditt.',
     // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
     weather: 'Medeltemperatur 3 till 7°C. Mörkt tidigt, solnedgång runt 15:30. Möjlighet till frost och is mot slutet av månaden. Regn och blåst är vanligt.',
     openIslands: ['vaxholm', 'uto', 'fjaderholmarna'],

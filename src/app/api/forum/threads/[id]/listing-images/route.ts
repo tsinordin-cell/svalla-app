@@ -41,7 +41,7 @@ export async function PATCH(
 
   if (images.length !== body.images.length) {
     return NextResponse.json({
-      error: `Ogiltiga bild-URL:er — endast Supabase Storage tillåts (max ${MAX_IMAGES}).`,
+      error: `Ogiltiga bild-URL:er, endast Supabase Storage tillåts (max ${MAX_IMAGES}).`,
     }, { status: 400 })
   }
 
@@ -65,7 +65,7 @@ export async function PATCH(
     return NextResponse.json({ error: 'Du är inte ägare till denna annons.' }, { status: 403 })
   }
   if (thread.category_id !== 'loppis') {
-    return NextResponse.json({ error: 'Endast Loppis-trådar kan ha bilder via detta API.' }, { status: 400 })
+    return NextResponse.json({ error: 'Endast loppistrådar kan ha bilder via detta API.' }, { status: 400 })
   }
 
   const currentListing = (thread.listing_data ?? {}) as Record<string, unknown>

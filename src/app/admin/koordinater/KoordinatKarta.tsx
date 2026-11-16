@@ -467,7 +467,7 @@ export default function KoordinatKarta({ places }: { places: Place[] }) {
             >
               {saveState === 'saving' ? 'Sparar...'
                : saveState === 'saved' ? '✓ Sparat!'
-               : saveState === 'error' ? '✗ Fel — försök igen'
+               : saveState === 'error' ? '✗ Fel: försök igen'
                : 'Spara koordinater'}
             </button>
 

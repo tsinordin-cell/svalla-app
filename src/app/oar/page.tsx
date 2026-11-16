@@ -46,7 +46,7 @@ const REGION_LABELS: Record<string, string> = {
 const REGION_TAGLINES: Record<string, string> = {
   norra: 'Tystare, lugnare, längre ut. Från Arholma till Blidö.',
   mellersta: 'Det klassiska skärgårdslivet: Sandhamn, Möja, Finnhamn.',
-  södra: 'Söderskärgården: Utö, Nåttarö, Ornö, Landsort.',
+  södra: 'Södra skärgården: Utö, Nåttarö, Ornö, Landsort.',
   bohuslan: 'Västkusten: Marstrand, Smögen, Kosterhavet.',
   goteborg: 'Brännö, Styrsö, Vrångö och Donsö i söder, Öckerö och Rörö i norr och Vinga, Göteborgs västligaste punkt.',
   ovriga: 'Höga Kusten, Gotland, Öland och mer, Sverige bortom Stockholmsskärgården.',

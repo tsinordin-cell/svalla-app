@@ -129,7 +129,7 @@ export default function BoendePage() {
             Att sova ute i skärgården är en av Sveriges starkaste reseupplevelser. Inget busbrus, inga gatlyktor: bara vågljud, måsar och sikten hela vägen till horisonten.
           </p>
           <p>
-            Utbudet spänner från klassiska värdshus på öar som Sandhamn och Utö till modernt designad arkitektur och enkla självhushållsstugor. Denna sida samlar kategorierna: klicka dig vidare för att hitta specifika objekt med bilder, priser och omdömen från Svalla-användare.
+            Utbudet spänner från klassiska värdshus på öar som Sandhamn och Utö till modernt designad arkitektur och enkla självhushållsstugor. Denna sida samlar kategorierna: klicka dig vidare för att hitta specifika objekt med bilder, priser och omdömen från Svallaanvändare.
           </p>
         </>
       }
@@ -141,7 +141,7 @@ export default function BoendePage() {
             När bör man boka?
           </h2>
           <p>
-            Juli och midsommarhelgen bokar ut sig redan i januari på de mest eftertraktade ställena, <em>Sandhamn Seglarhotell, Utö Värdshus, Grinda Wärdshus</em>. För juni eller september bokas det oftast 1 till 2 månader i förväg. Off-season (okt till april) är nästan alltid möjligt med några dagars varsel, och många ställen har då låga veckopriser.
+            Juli och midsommarhelgen bokar ut sig redan i januari på de mest eftertraktade ställena, <em>Sandhamn Seglarhotell, Utö Värdshus, Grinda Wärdshus</em>. För juni eller september bokas det oftast 1 till 2 månader i förväg. Lågsäsong (okt till april) är nästan alltid möjligt med några dagars varsel, och många ställen har då låga veckopriser.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Tänk på färjeturen

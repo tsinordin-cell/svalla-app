@@ -2,16 +2,16 @@
 trigger: cron 1 oktober kl 09:00
 layout: fullt
 subject_options:
-  - "{{first_name}} — {{visited_count}} öar. Vi har räknat 🍂"
+  - "{{first_name}}, {{visited_count}} öar. Vi har räknat 🍂"
   - "Din skärgårdssommar i siffror"
-  - "Tack för i år — här är kvittot"
-preheader: Din sommar i siffror — och varför vintern är skärgårdens hemliga säsong.
+  - "Tack för i år: här är kvittot"
+preheader: Din sommar i siffror, och varför vintern är skärgårdens hemliga säsong.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
 # {{first_name}}: {{visited_count}} öar. Vi har räknat.
 
-Säsongen är slut, båtarna glesar ut och skärgården byter till vinterläge. Innan vi drar in landgången: här är din sommar, svart på vitt. Inga uppskattningar, inga påhitt — bara dina egna loggade turer.
+Säsongen är slut, båtarna glesar ut och skärgården byter till vinterläge. Innan vi drar in landgången: här är din sommar, svart på vitt. Inga uppskattningar, inga påhitt, bara dina egna loggade turer.
 
 :::panel
 ### Ditt år på vattnet
@@ -20,7 +20,7 @@ Säsongen är slut, båtarna glesar ut och skärgården byter till vinterläge. 
 
 :::kort
 ### Hela historien finns kvar
-Rutterna på sjökortet, statistiken, dina sparade öar — allt ligger i profilen och nollställs aldrig. I februari, när mörkret är som tätast, är det här du öppnar.
+Rutterna på sjökortet, statistiken, dina sparade öar, allt ligger i profilen och nollställs aldrig. I februari, när mörkret är som tätast, är det här du öppnar.
 
 [Öppna Min skärgård →](https://svalla.se/min-skargard)
 :::
@@ -28,10 +28,10 @@ Rutterna på sjökortet, statistiken, dina sparade öar — allt ligger i profil
 ## Vintern är skärgårdens hemliga säsong
 
 :::ruta
-### Vi stänger inte — vi växlar ner
-- **Live väder och vind** — för dig som tar varje fönster som ges
-- **Vinterhamnar** — vilka som har plats för båten på land
-- **Planera nästa år** — spara öar nu, så ligger listan färdig när isarna släpper
+### Vi stänger inte: vi växlar ner
+- **Live väder och vind**: för dig som tar varje fönster som ges
+- **Vinterhamnar**: vilka som har plats för båten på land
+- **Planera nästa år**: spara öar nu, så ligger listan färdig när isarna släpper
 :::
 
 Vi hörs i april när säsongen vänder. Tills dess ligger allt kvar precis där du lämnade det.
@@ -41,7 +41,7 @@ Vi hörs i april när säsongen vänder. Tills dess ligger allt kvar precis där
 :::
 
 :::signatur
-Tack för i år — det var ett nöje att ha dig ombord.
+Tack för i år. Det var ett nöje att ha dig ombord.
 — Team Svalla
 *Känner du någon som borde varit med i somras? Vidarebefordra gärna. Vi lovar att vara lika trevliga mot dem.*
 :::

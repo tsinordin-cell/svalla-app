@@ -89,7 +89,7 @@ export async function POST(req: Request) {
 
   if (insertError) {
     console.error('[partner-checkout] insert error', insertError)
-    return NextResponse.json({ error: 'Kunde inte spara — försök igen' }, { status: 500 })
+    return NextResponse.json({ error: 'Kunde inte spara: försök igen' }, { status: 500 })
   }
 
   // Skapa Stripe customer

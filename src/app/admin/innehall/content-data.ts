@@ -24,7 +24,7 @@ export const CONTENT_POSTS: ContentPost[] = [
     id: 'reddit-1',
     channel: 'reddit',
     audience: 'r/sweden',
-    hook: 'Byggt en gratis guide till Stockholms skärgård — 84 öar, restauranger, hamnar och färjetider på en sida',
+    hook: 'Byggt en gratis guide till Stockholms skärgård: 84 öar, restauranger, hamnar och färjetider på en sida',
     body: `Hej r/sweden,
 
 Byggt en sida för folk som vill till skärgården men inte vet vart. Allt är gratis och ingen registrering krävs.
@@ -38,7 +38,7 @@ Vad finns:
 
 Inga ads, ingen tracking utöver det Vercel/Supabase ger. Ingen e-post krävs. Bygger det här själv för att jag tycker den info som finns idag är spridd över för många sidor.
 
-Skriv vad ni saknar — jag lägger till.
+Skriv vad ni saknar. Jag lägger till.
 
 ${BASE}`,
     link: BASE,
@@ -48,7 +48,7 @@ ${BASE}`,
     id: 'reddit-2',
     channel: 'reddit',
     audience: 'r/sverige',
-    hook: 'Vart är det värt att åka i sommar — har samlat 84 öar med restauranger och färjetider på ett ställe',
+    hook: 'Vart är det värt att åka i sommar: har samlat 84 öar med restauranger och färjetider på ett ställe',
     body: `Tjena!
 
 Har en sida som samlar all info om Stockholms och Bohusläns skärgård. Tanken är att man inte ska behöva googla 5 olika sidor för att planera en dagsutflykt.
@@ -69,7 +69,7 @@ ${BASE}/utflykt om man vill testa direkt.`,
     id: 'reddit-3',
     channel: 'reddit',
     audience: 'r/sailing',
-    hook: 'Free Sweden archipelago app — guest harbors, fuel stops, weather and route planning for Stockholm + Bohuslän',
+    hook: 'Free Sweden archipelago app: guest harbors, fuel stops, weather and route planning for Stockholm + Bohuslän',
     body: `Hi r/sailing,
 
 I built a Swedish archipelago app focused on what cruisers actually need: guest harbors, fuel, restaurants, ferry schedules and shelter info. 84 islands across Stockholm archipelago and Bohuslän.
@@ -83,7 +83,7 @@ What works:
 
 Free, no signup required. Swedish UI but you can navigate visually.
 
-${BASE}/upptack — interactive map`,
+${BASE}/upptack: interactive map`,
     link: `${BASE}/upptack`,
     notes: 'Engelsk text. Posta till r/sailing eller r/boating internationellt. Måndag/onsdag är bäst.',
   },
@@ -96,9 +96,9 @@ ${BASE}/upptack — interactive map`,
     hook: 'Byggt en gratis guide till skärgården',
     body: `Hej alla!
 
-Har lagt ner det senaste året på att bygga en sida som samlar all info man behöver för en skärgårdsutflykt — restauranger, hamnar, färjetider och cykelvägar — på ett ställe.
+Har lagt ner det senaste året på att bygga en sida som samlar all info man behöver för en skärgårdsutflykt, restauranger, hamnar, färjetider och cykelvägar, på ett ställe.
 
-Tanken kommer från att jag själv tröttnade på att leta runt på 5–6 olika sidor varje gång jag skulle planera en dagstur.
+Tanken kommer från att jag själv tröttnade på att leta runt på 5 till 6 olika sidor varje gång jag skulle planera en dagstur.
 
 På sidan finns:
 - 84 öar med egna guider (restauranger, hamnar, boende, transporttider)
@@ -106,9 +106,9 @@ På sidan finns:
 - Waxholmsbolagets färjetider
 - En utflyktsplanerare som ger packlista + tips utifrån start och destination
 
-Helt gratis, ingen reg krävs. Driver inget kommersiellt — bara byggt för att jag själv saknar det.
+Helt gratis, ingen reg krävs. Driver inget kommersiellt, bara byggt för att jag själv saknar det.
 
-Säg gärna till om något saknas eller är fel — jag uppdaterar löpande.
+Säg gärna till om något saknas eller är fel. Jag uppdaterar löpande.
 
 ${BASE}`,
     link: BASE,
@@ -121,7 +121,7 @@ ${BASE}`,
     hook: 'Karta över alla gästhamnar med bränsle och service',
     body: `Hej båtfolk,
 
-Har samlat alla gästhamnar i Stockholms och Bohusläns skärgård på en karta — med info om bränsle, el, vatten, tvätt och antal platser per hamn.
+Har samlat alla gästhamnar i Stockholms och Bohusläns skärgård på en karta: med info om bränsle, el, vatten, tvätt och antal platser per hamn.
 
 ${BASE}/upptack
 
@@ -129,16 +129,16 @@ Lätt att se vilka hamnar som tar emot långa båtar, var det finns dieseln, och
 
 Är på mobilen ute på sjön är det enklare än att bläddra i en pärm. Det är gratis och ingen reg krävs.
 
-Säg till om jag missar någon hamn eller om ni vet om service ändrats — uppdaterar manuellt.`,
+Säg till om jag missar någon hamn eller om ni vet om service ändrats, uppdaterar manuellt.`,
     link: `${BASE}/upptack`,
-    notes: 'För båtgrupper, främst. Vissa grupper kräver att man frågar admin innan reklam — gör en privatchat först.',
+    notes: 'För båtgrupper, främst. Vissa grupper kräver att man frågar admin innan reklam. Gör en privatchat först.',
   },
   {
     id: 'fb-3',
     channel: 'facebook',
     audience: 'Stuga & Sommarboende',
-    hook: 'Skärgårdsbingo — 25 utmaningar att bocka av i sommar',
-    body: `Inför sommaren — har lagt upp en skärgårdsbingo med 25 utmaningar. Mix av öar, klassiker och svårare grejer.
+    hook: 'Skärgårdsbingo: 25 utmaningar att bocka av i sommar',
+    body: `Inför sommaren, har lagt upp en skärgårdsbingo med 25 utmaningar. Mix av öar, klassiker och svårare grejer.
 
 Några exempel:
 - Cykla runt Utö
@@ -185,19 +185,19 @@ Länk i bio → Svalla.se`,
 📍 Vaxholm
 📍 Möja
 
-(Polls eller "Tap to vote") — sedan länk till Svalla.se/o/[slug]
+(Polls eller "Tap to vote"), sedan länk till Svalla.se/o/[slug]
 
-CTA: Svalla.se — guide + restauranger + färjetider`,
+CTA: Svalla.se, guide + restauranger + färjetider`,
     notes: 'För Story. Använd polls eller swipe-up. Stayar 24h.',
   },
   {
     id: 'ig-3',
     channel: 'instagram',
     audience: 'Reels',
-    hook: 'Skärgårdsbingo — 25 utmaningar',
-    body: `Reels-text (3–5 sek per slide):
+    hook: 'Skärgårdsbingo: 25 utmaningar',
+    body: `Reels-text (3 till 5 sek per slide):
 
-1. "Inför sommaren — skärgårdsbingo"
+1. "Inför sommaren: skärgårdsbingo"
 2. "25 utmaningar"
 3. "Cykla runt Utö ✓"
 4. "Bada från en klippa ✓"

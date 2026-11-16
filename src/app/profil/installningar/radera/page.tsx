@@ -68,11 +68,11 @@ export default async function RaderaKontoPage() {
             margin: 0, padding: '0 0 0 18px',
             fontSize: 14, color: 'var(--txt2)', lineHeight: 1.7,
           }}>
-            <li>Profil, profilbild, båt-info och hemmahamn</li>
+            <li>Profil, profilbild, båtinfo och hemmahamn</li>
             <li>Alla loggade turer (inkl. GPS-rutter och foton)</li>
-            <li>Följ-relationer, bokmärken, gilla-markeringar</li>
+            <li>Följ-relationer, bokmärken, gillamarkeringar</li>
             <li>Privata meddelanden</li>
-            <li>Push-prenumerationer och notiser</li>
+            <li>Pushprenumerationer och notiser</li>
             <li>Aktiv prenumeration avslutas hos Stripe</li>
           </ul>
         </div>

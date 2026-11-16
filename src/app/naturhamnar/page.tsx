@@ -141,7 +141,7 @@ export default function NaturhamnarPage() {
       {
         '@type': 'Question',
         name: 'Vilka naturhamnar är bäst för nybörjare i Stockholms skärgård?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Möja, Svartsö och inre Nämdö-området är fina för första ankringen. De ligger relativt nära Stockholm, har gott om skyddade vikar för olika vindar och flera har samhälle/butik nära.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Möja, Svartsö och inre Nämdöområdet är fina för första ankringen. De ligger relativt nära Stockholm, har gott om skyddade vikar för olika vindar och flera har samhälle/butik nära.' },
       },
       {
         '@type': 'Question',
@@ -218,7 +218,7 @@ export default function NaturhamnarPage() {
             Vilka naturhamnar är bäst för nybörjare?
           </h3>
           <p>
-            <strong>Möja, Svartsö och inre Nämdö-området</strong> är fina för dina första ankringar. De ligger relativt nära Stockholm, har gott om skyddade vikar för olika vindar och flera har samhälle/butik nära ifall något oförutsett händer. Öva i lugnt väder och dagsljus innan du tar dig längre ut.
+            <strong>Möja, Svartsö och inre Nämdöområdet</strong> är fina för dina första ankringar. De ligger relativt nära Stockholm, har gott om skyddade vikar för olika vindar och flera har samhälle/butik nära ifall något oförutsett händer. Öva i lugnt väder och dagsljus innan du tar dig längre ut.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

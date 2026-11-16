@@ -85,13 +85,13 @@ export default async function OarTrafikPage() {
           Senaste {DAGAR} dygnen · {totalt.toLocaleString('sv-SE')} sidvisningar fördelat på {rader.length} öar
         </p>
         <p style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic', margin: '0 0 24px', lineHeight: 1.6 }}>
-          Kräver cookie-consent, så detta är ett golv — verklig trafik är högre.
+          Kräver cookie-consent, så detta är ett golv, verklig trafik är högre.
           Använd siffrorna som underlag till anspråksmejl: &quot;er sida fick X besök förra månaden&quot;.
         </p>
 
         {rader.length === 0 ? (
           <div style={{ ...kort, textAlign: 'center' as const, color: 'var(--txt2)', fontSize: 14 }}>
-            Ingen ö-trafik registrerad än. page_viewed-eventet driftsattes 2026-08-21 —
+            Ingen ö-trafik registrerad än. page_viewed-eventet driftsattes 2026-08-21
             ge det några dagar att samla data.
           </div>
         ) : (

@@ -101,7 +101,7 @@ export const TRIPS: Trip[] = [
     season: 'Juni till Augusti',
     difficulty: 'lätt',
     featured: true,
-    description: 'Sandhamn är målet om du vill känna den riktiga ytterskärgården. Cinderellabåten från Strandvägen tar dig dit på cirka 2,5 timmar, resan är en del av upplevelsen. Väl framme väntar Trouville-stranden, KSSS-hamnen och Sandhamns Värdshus.',
+    description: 'Sandhamn är målet om du vill känna den riktiga ytterskärgården. Cinderellabåten från Strandvägen tar dig dit på cirka 2,5 timmar, resan är en del av upplevelsen. Väl framme väntar Trouvillestranden, KSSS-hamnen och Sandhamns Värdshus.',
     stops: [
       {
         name: 'Cinderellabåten från Strandvägen',
@@ -116,7 +116,7 @@ export const TRIPS: Trip[] = [
         desc: 'Kungliga Svenska Segel Sällskapets hemmahamn. Hundratals segelbåtar och en levande marina.',
       },
       {
-        name: 'Trouville-stranden',
+        name: 'Trouvillestranden',
         type: 'bad',
         desc: 'Sandhamns bästa badstrand med vit sand. 10 minuter promenad från hamnen.',
         tip: 'Ta med picknick, stranden är lång och det finns gott om plats.',
@@ -679,7 +679,7 @@ export const TRIPS: Trip[] = [
       {
         name: 'Gustavsbergs Porslinsmuseum',
         type: 'kultur',
-        desc: 'Historien om det ikoniska Gustavsberg-porslinet och nutida design. Butik på plats.',
+        desc: 'Historien om det ikoniska Gustavsbergsporslinet och nutida design. Butik på plats.',
         tip: 'Öppettider varierar, verifiera via museets hemsida.',
         bookingUrl: 'https://www.porslinsmuseet.se',
       },
@@ -1352,7 +1352,7 @@ export const TRIPS: Trip[] = [
   {
     slug: 'morko-sodra-skargarden',
     title: 'Mörkö: södra skärgårdens dolda pärla',
-    tagline: 'Stor ö i Södertälje-skärgården med fin natur och lugn stämning, nås med bil och bro.',
+    tagline: 'Stor ö i Södertäljeskärgården med fin natur och lugn stämning, nås med bil och bro.',
     duration: 'Halvdag till heldag',
     startPoint: 'Södertälje (bil)',
     transport: 'Bil',

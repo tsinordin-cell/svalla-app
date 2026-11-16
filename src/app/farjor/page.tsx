@@ -84,7 +84,7 @@ const faqJsonLd = {
     {
       '@type': 'Question',
       name: 'Kan man ta SL-kortet med Waxholmsbolaget?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolaget-biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.' }, // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19
+      acceptedAnswer: { '@type': 'Answer', text: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolagets biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.' }, // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19
     },
     {
       '@type': 'Question',
@@ -299,7 +299,7 @@ export default async function FarjorPage() {
                     }}>
                       <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', whiteSpace: 'nowrap' }}>
                         {departureLabel(d.time)}
-                        {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{'\u2013'}{d.arrival}</span>}
+                        {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{' till '}{d.arrival}</span>}
                       </div>
                       <div style={{ fontSize: 12, color: 'var(--txt2)', textAlign: 'right' }}>
                         {d.to}
@@ -494,7 +494,7 @@ export default async function FarjorPage() {
               {
                 q: 'Kan man ta SL-kortet med Waxholmsbolaget?',
                 // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19. "SL Access" finns inte längre som namn; Utö går från Årsta brygga, inte Nynäshamn.
-                a: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolaget-biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.',
+                a: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolagets biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.',
               },
               {
                 q: 'Vad skiljer Cinderella från Waxholmsbolaget?',

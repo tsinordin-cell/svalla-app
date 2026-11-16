@@ -55,7 +55,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Du är inte ägare till denna annons.' }, { status: 403 })
   }
   if (thread.category_id !== 'loppis') {
-    return NextResponse.json({ error: 'Endast Loppis-annonser kan boostas.' }, { status: 400 })
+    return NextResponse.json({ error: 'Endast loppisannonser kan boostas.' }, { status: 400 })
   }
 
   const stripe = new Stripe(stripeKey)
@@ -83,6 +83,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ url: session.url })
   } catch (err) {
     console.error('[loppis-boost-checkout] stripe error:', err)
-    return NextResponse.json({ error: 'Stripe-fel — försök igen.' }, { status: 500 })
+    return NextResponse.json({ error: 'Stripe-fel, försök igen.' }, { status: 500 })
   }
 }

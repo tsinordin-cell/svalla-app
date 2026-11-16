@@ -36,7 +36,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
     tags: ['Motorbåt & segelbåt', 'Inget körkort krävs', 'Dagshyra', 'Övernattning ombord'],
     intro: [
       'Stockholms skärgård med sina 30 000 öar är ett av världens bästa och mest tillgängliga vatten för båtuthyrning. Du hyr en motorbåt i Djurgårdsbrunnsviken, Nacka eller Vaxholm, och om 30 minuter är du ute bland öarna. De flesta hyrbåtsbolag kräver inget båtkörkort, bara att du tar en kort introduktion om hur den specifika båten fungerar.',
-      'Skärgårdens geografi är perfekt för nybörjare. Innerskärgårdens smala sund och välkartlagda farleder gör att du navigerar säkert med en vanlig sjökort-app. Välj ö efter intresse: Sandhamn för seglarstämning, Grinda för familjedag, Utö för vildmarkskänsla.',
+      'Skärgårdens geografi är perfekt för nybörjare. Innerskärgårdens smala sund och välkartlagda farleder gör att du navigerar säkert med en vanlig sjökortsapp. Välj ö efter intresse: Sandhamn för seglarstämning, Grinda för familjedag, Utö för vildmarkskänsla.',
       'Räkna alltid med bränsle utöver hyran. De flesta bolag hyr ut tomma tankar och du betalar för det du förbrukar. Boka tidigt: juli är fullbokat hos de flesta aktörer redan i april.',
     ],
     priceTable: [
@@ -97,7 +97,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
     title: 'Hyra båt i Göteborg och Bohuslän 2026: guide och priser',
     h1: 'Hyra båt i Göteborg och Bohuslän',
     metaDescription: 'Hyra båt i Göteborg och Bohuslän. Klippmiljöer, Västerhavet och Nordens bästa skaldjur. Priser, licenskrav och de bästa hyrbåtsbolagen i Göteborg.',
-    excerpt: 'Bohuslänska klippor och öppet hav ger en unik hyrbåts-upplevelse. Paddla bland kobbar, fiska räkor och ankra i fjälliga vikar längs Norges grannkust.',
+    excerpt: 'Bohuslänska klippor och öppet hav ger en unik hyrbåtsupplevelse. Paddla bland kobbar, fiska räkor och ankra i fjälliga vikar längs Norges grannkust.',
     location: 'Göteborg',
     emoji: '🌊',
     readTime: '7 min',
@@ -105,7 +105,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
     intro: [
       'Bohuslän är ett mer krävande men oförglömligt vatten att hyra båt i. Västerhavet ger riktiga dyningar och vindbyar som inte Stockholms innerskärgård matchar: vilket innebär att viss erfarenhet av öppet vatten rekommenderas, särskilt om du vill ut mot ytterskärgården.',
       'Belöningen är enorm: råa klipphällar, pittoreska fisklägen, Nordens bästa skaldjur direkt från båten och en natur som ser ut som den gjordes för att fotograferas. Smögen, Kungshamn och Lysekil nås enkelt med hyrbåt från Göteborg.',
-      'Från Göteborg kan du välja söderskärgården (Styrsö, Vrångö) för lugnare vatten, eller köra norrut mot Marstrand och Bohuslänska klippmiljöer. Heldagstur norrut längs kusten är en av Sveriges vackraste upplevelser på vattnet.',
+      'Från Göteborg kan du välja södra skärgården (Styrsö, Vrångö) för lugnare vatten, eller köra norrut mot Marstrand och Bohuslänska klippmiljöer. Heldagstur norrut längs kusten är en av Sveriges vackraste upplevelser på vattnet.',
     ],
     priceTable: [
       // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
@@ -115,7 +115,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       { type: 'Segelbåt (28 till 38 fot)', price: '3 000 till 7 000 kr/dag', note: 'Optimalt för Bohuslän, vind och klippor.' },
     ],
     tips: [
-      { icon: '🌊', heading: 'Respektera Västerhavet', text: 'Bohuslän är mer exponerat än Stockholms skärgård. Kolla vindprognoser noga. Välj innerskärgård-rutter om du är ovan vid Västerhavet.' },
+      { icon: '🌊', heading: 'Respektera Västerhavet', text: 'Bohuslän är mer exponerat än Stockholms skärgård. Kolla vindprognoser noga. Välj innerskärgårdsrutter om du är ovan vid Västerhavet.' },
       { icon: '🦐', heading: 'Fiska räkor', text: 'Räkor fiskas med Buren eller köps direkt av fiskebåtar längs kusten. Färska räkor direkt ombord är en Bohuslänsk klassiker du inte får missa.' },
       { icon: '⚓', heading: 'Planera naturhamnsstoppar', text: 'Bohuslän har hundratals naturhamnar. Sjökort och appen Naturkartan pekar ut de bästa. Strandskyddslagen är något striktare på Västkusten. Följ skyltar.' },
     ],
@@ -220,12 +220,12 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
     slug: 'hoga-kusten',
     title: 'Hyra båt vid Höga Kusten 2026: fjärdar och klippor',
     h1: 'Hyra båt vid Höga Kusten',
-    metaDescription: 'Hyra båt vid Höga Kusten i Ångermanland. UNESCO-världsarv, djupa fjärdar och klippor. Priser, upplägget och varför Höga Kusten är Sveriges vackraste vatten norröver.',
+    metaDescription: 'Hyra båt vid Höga Kusten i Ångermanland. Unescovärldsarv, djupa fjärdar och klippor. Priser, upplägget och varför Höga Kusten är Sveriges vackraste vatten norröver.',
     excerpt: 'Höga Kustens djupa fjärdar och dramatiska klippor bildar ett av Norrlands mäktigaste vatten. Lugnt, avsides och fantastiskt.',
     location: 'Höga Kusten',
     emoji: '🏔',
     readTime: '6 min',
-    tags: ['UNESCO-världsarv', 'Djupa fjärdar', 'Lugnt vatten', 'Skuleskogen'],
+    tags: ['Unescovärldsarv', 'Djupa fjärdar', 'Lugnt vatten', 'Skuleskogen'],
     intro: [
       'Höga Kusten kallas ofta "det okända paradiset". UNESCO-klassade för världens högsta landhöjningshastighet efter istiden: klipporna stiger upp till 286 meter rakt ur havet, och de djupa fjärdarna ger en majestätisk känsla som Stockholms skärgård inte kan matcha.',
       'Vattnet är lugnt och skyddat i fjärdarna, med minimalt med båttrafik jämfört med söder. Det gör Höga Kusten till ett utmärkt mål för nybörjare och familjer: lägre risk, stort utrymme, otrolig natur.',
@@ -237,7 +237,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       { type: 'Kabinbåt (7 till 9 m)', price: '1 500 till 3 000 kr/dag', note: 'Övernattning ombord, komfort.' },
     ],
     tips: [
-      { icon: '🌲', heading: 'Kombinera med Skuleskogen', text: 'Ta upp till Skuleskogen-nationalparken och vandra. Det tar 2 h med bil från hamn. Kombinationen båt + vandring ger en unik Höga Kusten-upplevelse.' },
+      { icon: '🌲', heading: 'Kombinera med Skuleskogen', text: 'Ta upp till Skuleskogens nationalpark och vandra. Det tar 2 h med bil från hamn. Kombinationen båt + vandring ger en unik Höga Kusten-upplevelse.' },
       { icon: '🦅', heading: 'Fågellivet', text: 'Havsörnen är vanlig längs Höga Kusten. Sommarsäsongen (juni till aug) ger bäst chans att se örnar längs klippbrädden.' },
     ],
     faqs: [

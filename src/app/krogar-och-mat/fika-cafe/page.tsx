@@ -44,7 +44,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🏝',
     title: 'Fjäderholmarna',
-    description: 'Närmast Stockholm med café-alternativ i hantverksbyns miljö. Perfekt för en halvdagsutflykt med fika som mål, 25 minuter från Slussen.',
+    description: 'Närmast Stockholm med caféalternativ i hantverksbyns miljö. Perfekt för en halvdagsutflykt med fika som mål, 25 minuter från Slussen.',
     href: '/o/fjaderholmarna',
     meta: 'Fjäderholmarna · Säsong: maj till sep',
   },
@@ -132,7 +132,7 @@ export default function FikaCafePage() {
       related={[
         { label: 'Värdshus & restauranger', href: '/krogar-och-mat/vardshus-restauranger' },
         { label: 'Fisk & skaldjur', href: '/krogar-och-mat/fisk-skaldjur' },
-        { label: 'Take-away & kiosker', href: '/krogar-och-mat/take-away-kiosker' },
+        { label: 'Takeaway & kiosker', href: '/krogar-och-mat/take-away-kiosker' },
         { label: 'Boende', href: '/boende' },
         { label: 'Populära öar', href: '/o' },
       ]}

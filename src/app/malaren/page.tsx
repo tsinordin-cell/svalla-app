@@ -88,7 +88,7 @@ export default function MalarenPage() {
  {
  '@type': 'Question',
  name: 'Vilka är de bästa kafébryggorpå Mälaren?',
- acceptedAnswer: { '@type': 'Answer', text: 'Mariefred, Kärnbo, Björnö och bryggor längs Ekerö-öarna är kända för sin välkomstkultur och goda fika. Öppettider och service står på respektive bryggas eller kafés egen sida. Vi länkar dit där vi har källa.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Mariefred, Kärnbo, Björnö och bryggor längs Ekerööarna är kända för sin välkomstkultur och goda fika. Öppettider och service står på respektive bryggas eller kafés egen sida. Vi länkar dit där vi har källa.' },
  },
  {
  '@type': 'Question',
@@ -207,7 +207,7 @@ export default function MalarenPage() {
  </p>
  <p>
  <strong>Vilka är de bästa kafébryggorpå Mälaren?</strong><br />
- Mariefred, Kärnbo, Björnö och bryggor längs Ekerö-öarna är kända för sin välkomstkultur och goda fika. Öppettider och service står på respektive bryggas eller kafés egen sida. Vi länkar dit där vi har källa.
+ Mariefred, Kärnbo, Björnö och bryggor längs Ekerööarna är kända för sin välkomstkultur och goda fika. Öppettider och service står på respektive bryggas eller kafés egen sida. Vi länkar dit där vi har källa.
  </p>
  <p>
  <strong>Är Mälaren bra för nybörjarseglare?</strong><br />

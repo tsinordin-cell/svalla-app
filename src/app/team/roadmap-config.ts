@@ -18,14 +18,14 @@ export const STAGES: Stage[] = [
   { n: 0, name: 'Grunden', value: 'Bygget', tagline: 'Produkten, innehållet och faktan på plats.' },
   { n: 1, name: 'Bevis', value: '1 MSEK', tagline: 'Någon betalar. Någon läser varje månad.' },
   { n: 2, name: 'Fäste', value: '3 MSEK', tagline: 'Återkommande intäkt och bevisad tillväxt.' },
-  { n: 3, name: 'Marknadsledare', value: '5 MSEK', tagline: 'Sveriges samlade skärgårdssida. Exit 2028–2029.' },
+  { n: 3, name: 'Marknadsledare', value: '5 MSEK', tagline: 'Sveriges samlade skärgårdssida. Exit 2028 till 2029.' },
 ]
 
-export const EXIT_GOAL = { range: '3–5 MSEK', year: '2028–2029' }
+export const EXIT_GOAL = { range: '3 till 5 MSEK', year: '2028 till 2029' }
 
 /** Mål per steg: [Bevis, Fäste, Marknadsledare]. Viktigast först. */
 export const KPIS: { key: KpiKey; label: string; unit?: string; targets: [number, number, number]; why: string }[] = [
-  { key: 'partners', label: 'Betalande partners', targets: [3, 15, 40], why: 'Återkommande B2B-intäkt värderas 3–5x. Den enskilt viktigaste siffran.' },
+  { key: 'partners', label: 'Betalande partners', targets: [3, 15, 40], why: 'Återkommande B2B-intäkt värderas 3 till 5x. Den enskilt viktigaste siffran.' },
   { key: 'subs', label: 'E-postprenumeranter', targets: [1_000, 5_000, 15_000], why: 'Ägd publik. Köparen betalar för den.' },
   { key: 'sessions', label: 'Besökare per månad', targets: [15_000, 60_000, 150_000], why: 'Det största av Google-klick och egna besök. Verklig siffra är högre, eftersom alla inte godkänner statistik.' },
   { key: 'revenue', label: 'Intäkt senaste 12 mån', unit: 'kr', targets: [100_000, 500_000, 1_500_000], why: 'Hämtas från Stripe: betalningar minus återbetalningar. Köparen värderar på intäkt, inte på trafik.' },

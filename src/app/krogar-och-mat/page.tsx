@@ -43,7 +43,7 @@ const ITEMS: LandingItem[] = [
   },
   {
     icon: '🍦',
-    title: 'Take-away och kiosker',
+    title: 'Takeaway och kiosker',
     description: 'Glass vid bryggan, räksmörgåsar i hamnen och lanthandeln som räddar middagen. Enkelt, gott och utan bokning.',
     href: '/krogar-och-mat/take-away-kiosker',
   },
@@ -82,13 +82,13 @@ export default function KrogarOchMatPage() {
  Tips från oss som seglat
  </h2>
  <p>
- <strong>Ring alltid innan.</strong> Skärgårdskrogar drivs ofta av en handfull personer: en mattkurs, en barnförkylning eller storm kan stänga köket på en timme. De flesta har bokning via sin Facebook-sida. Svalla länkar direkt till operatörens bokningssystem när det finns.
+ <strong>Ring alltid innan.</strong> Skärgårdskrogar drivs ofta av en handfull personer: en mattkurs, en barnförkylning eller storm kan stänga köket på en timme. De flesta har bokning via sin Facebooksida. Svalla länkar direkt till operatörens bokningssystem när det finns.
  </p>
  <p>
  <strong>Ankra rätt.</strong> Populära krogar som Grinda Wärdshus och Sandhamns Värdshus har fullt på bryggan från lunch på helger i juli. Kolla alternativa naturhamnar inom gångavstånd, finns ofta listat på platssidan.
  </p>
  <p>
- <strong>Prova något utanför topp-10.</strong> Svalla-användare rankar många mindre ställen, t.ex. caféer på Norrpada eller hemmasnickrade matställen i norra skärgården: lika högt som klassikerna, till halva priset.
+ <strong>Prova något utanför topp-10.</strong> Svallaanvändare rankar många mindre ställen, t.ex. caféer på Norrpada eller hemmasnickrade matställen i norra skärgården: lika högt som klassikerna, till halva priset.
  </p>
  </>
  }

@@ -16,7 +16,7 @@ export async function PATCH(
     const { body } = await req.json()
     const trimBody = (body ?? '').trim()
     if (trimBody.length < 1 || trimBody.length > 10000) {
-      return NextResponse.json({ error: 'Ogiltigt svar (1–10 000 tecken).' }, { status: 400 })
+      return NextResponse.json({ error: 'Ogiltigt svar (1 till 10 000 tecken).' }, { status: 400 })
     }
 
     // Verifiera att posten tillhör inloggad användare

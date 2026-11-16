@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import AdminLoginForm from './AdminLoginForm'
 
 export const metadata: Metadata = {
-  title: 'Admin — logga in',
+  title: 'Admin: logga in',
   robots: { index: false, follow: false },
 }
 
@@ -46,7 +46,7 @@ export default function AdminLoginPage() {
             Svalla Admin
           </h1>
           <p style={{ fontSize: 13, color: '#6b8087', margin: '6px 0 0' }}>
-            Skyddad zon — ange lösenord
+            Skyddad zon: ange lösenord
           </p>
         </div>
 

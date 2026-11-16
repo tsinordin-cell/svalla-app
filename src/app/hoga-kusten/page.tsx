@@ -80,7 +80,7 @@ export default function HogaKustenPage() {
       {
         '@type': 'Question',
         name: 'Vad är Höga Kusten känt för?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Höga Kusten är ett Unesco-klassat världsarv känt för sina dramatiska klippor, djupa fjordar och den pågående landhöjningen, en av världens kraftigaste. Skuleskogens nationalpark, Ulvön med surströmmingstraditionen och de unika naturhamnarna gör kusten till ett mål utöver det vanliga för båtfolk och vandrare.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Höga Kusten är ett Unescoklassat världsarv känt för sina dramatiska klippor, djupa fjordar och den pågående landhöjningen, en av världens kraftigaste. Skuleskogens nationalpark, Ulvön med surströmmingstraditionen och de unika naturhamnarna gör kusten till ett mål utöver det vanliga för båtfolk och vandrare.' },
       },
       {
         '@type': 'Question',
@@ -115,7 +115,7 @@ export default function HogaKustenPage() {
         heroGradient={['#0a1828', '#1a3a58']}
         eyebrow="Höga Kusten"
         title="Norrlands dramatiska klippkust"
-        tagline="Unesco-klassat världsarv med dramatiska klippor, urskog och Ulvöns surströmmingstradition | Svalla hjälper dig utforska varje vik längs Norrlandskusten."
+        tagline="Unescoklassat världsarv med dramatiska klippor, urskog och Ulvöns surströmmingstradition | Svalla hjälper dig utforska varje vik längs Norrlandskusten."
         heroIcon={
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <circle cx="12" cy="12" r="10" />
@@ -126,7 +126,7 @@ export default function HogaKustenPage() {
         intro={
           <>
             <p>
-              Höga Kusten är en av Sveriges mest dramatiska kustlinjer, och ett av världens få Unesco-klassade kustlandskapsarv. <strong>Branta klippor, djupa fjordar och urskog ner till vattnet</strong> skapar en miljö som skiljer sig helt från resten av Skandinaviens kuster. Från Härnösand i söder till Örnsköldsvik i norr sträcker sig en kust som fortfarande höjer sig ur havet med upp till åtta millimeter per år, ett av de kraftigaste landhöjningsområdena i världen.
+              Höga Kusten är en av Sveriges mest dramatiska kustlinjer, och ett av världens få Unescoklassade kustlandskapsarv. <strong>Branta klippor, djupa fjordar och urskog ner till vattnet</strong> skapar en miljö som skiljer sig helt från resten av Skandinaviens kuster. Från Härnösand i söder till Örnsköldsvik i norr sträcker sig en kust som fortfarande höjer sig ur havet med upp till åtta millimeter per år, ett av de kraftigaste landhöjningsområdena i världen.
             </p>
             <p>
               Höga Kusten är legendarisk bland naturälskare och äventyrssökare. Skuleskogens nationalpark, med urskog och klippväggar som stupar rakt ner i havet, är ett naturupplevelse av rang. Ulvön är känt världen över som surströmmingstraditionen hemort, varje år i tredje veckan i augusti samlas hundratals båtar i Ulvöhamn för premiären. Bönhamn med sina röda sjöbodar är ett av Norrlands vackraste fiskelägen och ett favoritankringsställe för seglare.
@@ -154,7 +154,7 @@ export default function HogaKustenPage() {
               <strong>Till Härnösand</strong>: SJ och Norrtåg trafikerar Stockholm till Härnösand, ca 4,5 till 5 timmar. Till <strong>Kramfors</strong> och <strong>Örnsköldsvik</strong>: Norrtåg. Expressbuss: <strong>Y-buss</strong> kör Stockholm, Härnösand, Kramfors, Örnsköldsvik direkt. Lokaltrafik på land sköts av <strong>Din Tur</strong> (dintur.se).
             </p>
             <p>
-              <strong>Till Ulvön utan egen båt</strong>: passagerarbåtar avgår sommartid från Docksta och Kramfors-sidan till Ulvöhamn. Du behöver alltså ingen segelbåt för att besöka Höga Kustens pärlö.
+              <strong>Till Ulvön utan egen båt</strong>: passagerarbåtar avgår sommartid från Docksta och Kramforssidan till Ulvöhamn. Du behöver alltså ingen segelbåt för att besöka Höga Kustens pärlö.
             </p>
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
@@ -222,7 +222,7 @@ export default function HogaKustenPage() {
               Vad är Höga Kusten känt för?
             </h3>
             <p>
-              Höga Kusten är ett <strong>Unesco-klassat världsarv</strong> känt för dramatiska klippor, djupa fjordar och den pågående landhöjningen. Skuleskogens nationalpark och Ulvöns surströmmingstradition är höjdpunkterna.
+              Höga Kusten är ett <strong>Unescoklassat världsarv</strong> känt för dramatiska klippor, djupa fjordar och den pågående landhöjningen. Skuleskogens nationalpark och Ulvöns surströmmingstradition är höjdpunkterna.
             </p>
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
               Hur tar man sig till Höga Kusten med båt?

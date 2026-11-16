@@ -49,7 +49,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: '💎',
  title: 'Svalla Pro',
- description: 'Låt Svalla hjälpa dig planera och få tillgång till Pro-features som offline-karta och export.',
+ description: 'Låt Svalla hjälpa dig planera och få tillgång till Profunktioner som offlinekarta och export.',
  href: '/pro',
  },
 ]
@@ -73,7 +73,7 @@ export default function ErbjudandenPage() {
  intro={
  <>
  <p>
- Skärgårdens operatörer lägger upp säsongspaket, weekend-deals och lågsäsongsrabatter löpande. Här listar vi de erbjudanden operatörerna själva publicerat, med länk till källan. Pris och villkor gäller hos operatören.
+ Skärgårdens operatörer lägger upp säsongspaket, helgerbjudanden och lågsäsongsrabatter löpande. Här listar vi de erbjudanden operatörerna själva publicerat, med länk till källan. Pris och villkor gäller hos operatören.
  </p>
  <p>
  Vi tar ingen kickback. Vi länkar direkt till operatörens bokningssida. Priser och villkor gäller som angivet av operatören.

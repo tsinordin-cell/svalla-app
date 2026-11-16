@@ -62,7 +62,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Vilka vandringar passar barn?',
-    a: 'Grinda, Sandhamn och Finnhamn är de mest barnvänliga i Stockholms skärgård: korta leder, tydliga stigar och café i närheten. På Gotland är Lummelunda (grottor) ett givet barn-stopp. I Bohuslän passar Marstrand med Carlstens fästning utmärkt.',
+    a: 'Grinda, Sandhamn och Finnhamn är de mest barnvänliga i Stockholms skärgård: korta leder, tydliga stigar och café i närheten. På Gotland är Lummelunda (grottor) ett givet barnstopp. I Bohuslän passar Marstrand med Carlstens fästning utmärkt.',
   },
   {
     q: 'Kan man ta med hund på skärgårdsvandring?',
@@ -143,11 +143,11 @@ const GUIDES = [
   },
   {
     title: 'Behöver man boka färja?',
-    body: 'Stockholms skärgård: Waxholmsbolaget kräver inte bokning: betala ombord med SL-kort, app eller kontant. Under midsommar och den första julihelgen kan båtarna bli fullsatta. Gotland: Destination Gotland kräver ALLTID bokning under sommarsäsongen. Boka minst 6 till 8 veckor i förväg för juli. Bohuslän: Västtrafiks linjer till södra skärgårdens öar kräver inte bokning. Marstrandsfärjan ingår i Västtrafik-biljetten. Höga kusten: Sommarbåtarna till Trysunda och Ulvön körs av lokala aktörer. Kontrollera respektive operatör.',
+    body: 'Stockholms skärgård: Waxholmsbolaget kräver inte bokning: betala ombord med SL-kort, app eller kontant. Under midsommar och den första julihelgen kan båtarna bli fullsatta. Gotland: Destination Gotland kräver ALLTID bokning under sommarsäsongen. Boka minst 6 till 8 veckor i förväg för juli. Bohuslän: Västtrafiks linjer till södra skärgårdens öar kräver inte bokning. Marstrandsfärjan ingår i Västtrafikbiljetten. Höga kusten: Sommarbåtarna till Trysunda och Ulvön körs av lokala aktörer. Kontrollera respektive operatör.',
   },
   {
     title: 'Vad ska man tänka på för att inte missa sista båten hem?',
-    body: 'Det händer, och det är inte kul. En grundregel: kolla alltid den sista avgångstiden INNAN du börjar vandra, inte när du börjar bli trött. Tips: sätt ett larm 45 minuter före sista avgång, stå vid bryggan minst 10 minuter tidigt (de går på sekunden), ha en backup-plan (gästhamn, vandrarhem eller tältplats finns på många öar). I juli och augusti kan extra avgångar köras, men räkna inte med det.',
+    body: 'Det händer, och det är inte kul. En grundregel: kolla alltid den sista avgångstiden INNAN du börjar vandra, inte när du börjar bli trött. Tips: sätt ett larm 45 minuter före sista avgång, stå vid bryggan minst 10 minuter tidigt (de går på sekunden), ha en reservplan (gästhamn, vandrarhem eller tältplats finns på många öar). I juli och augusti kan extra avgångar köras, men räkna inte med det.',
   },
 ]
 

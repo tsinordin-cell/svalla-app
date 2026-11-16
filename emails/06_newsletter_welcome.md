@@ -2,10 +2,10 @@
 trigger: newsletter_subscribe
 layout: fullt
 subject_options:
-  - "Välkommen — nu har du en insider i skärgården 🌊"
+  - "Välkommen: nu har du en insider i skärgården 🌊"
   - "Det som faktiskt händer därute"
   - "Din första öinsider är på väg"
-preheader: Det som öppnat, det som ändrats och det ingen karta visar – när det händer.
+preheader: Det som öppnat, det som ändrats och det ingen karta visar, när det händer.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
@@ -15,10 +15,10 @@ Vi hör av oss när det händer något: vad som öppnat, vad som ändrats och va
 
 :::kort
 ### Det här kommer i brevet
-- **Öppet just nu** — vad som faktiskt går att besöka den här månaden
-- **Hamnar och krogar** — vad som öppnat, stängt eller bytt ägare
-- **Väderfönster** — ser vi en riktigt bra helg skickar vi ett extra tips
-- **Insidertips** — lägen och timing som inte syns på en karta
+- **Öppet just nu**: vad som faktiskt går att besöka den här månaden
+- **Hamnar och krogar**: vad som öppnat, stängt eller bytt ägare
+- **Väderfönster**: ser vi en riktigt bra helg skickar vi ett extra tips
+- **Insidertips**: lägen och timing som inte syns på en karta
 :::
 
 ## Bra ställen att börja
@@ -33,7 +33,7 @@ Vilka öar som är i säsong, vad som har fullservice och vad som drar ner. Uppd
 :::ruta
 ### Hitta din ö
 <!-- KÄLLA: src/app/o/island-data.ts — 84 publicerade öguider (räknat 2026-08) -->
-84 öguider. Filtrera på barnvänligt, bilfritt, segling, romantiskt — eller bläddra och låt dig överraskas.
+84 öguider. Filtrera på barnvänligt, bilfritt, segling, romantiskt, eller bläddra och låt dig överraskas.
 
 [svalla.se/oar →](https://svalla.se/oar)
 :::
@@ -45,7 +45,7 @@ Vad som är bäst när. Inklusive de veckor då turisterna åkt hem och öarna �
 [svalla.se/sasong →](https://svalla.se/sasong)
 :::
 
-Nästa nummer kommer om två veckor. Undrar du något om en specifik ö innan dess — svara på det här mejlet. Vi läser allt, och vi svarar som folk.
+Nästa nummer kommer om två veckor. Undrar du något om en specifik ö innan dess, svara på det här mejlet. Vi läser allt, och vi svarar som folk.
 
 :::knapp
 [Se vad som är öppet nu](https://svalla.se/oppet-nu)

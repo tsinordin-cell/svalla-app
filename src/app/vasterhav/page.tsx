@@ -178,7 +178,7 @@ export default function VasterhavetPage() {
  Västerhavet kulminerar i norr vid Skagerrak. <strong>Kosterhavets nationalpark</strong> (Sveriges första marina nationalpark, 2009) ligger här och skyddar ett unikt marint ekosystem, bland annat Kosterrännan som är cirka 247 m djup och Sveriges djupaste havsdal. <strong>Strömstad</strong> är naturlig utgångspunkt för segling mot Norge.
  </p>
  <p>
- Segling i Skagerrak kräver respekt för väder och sjö. <strong>Tidvattenamplituden</strong> är liten jämfört med oceaner: normalt cirka 10 cm i Skagerrak och 5 cm i Kattegatt enligt SMHI, men kan tillfälligt nå 30 till 40 cm i Skagerrak och 20 cm i Kattegatt. Vid Kosteröarna brukar skillnaden mellan hög- och lågvatten ligga på 20 till 30 cm. Vinden, lufttryck och havsströmmar kan dock ha större effekt på vattenståndet än själva tidvattnet. Hvaler-skärgården på norska sidan är ett populärt resmål för dem som vill kombinera Sverige och Norge.
+ Segling i Skagerrak kräver respekt för väder och sjö. <strong>Tidvattenamplituden</strong> är liten jämfört med oceaner: normalt cirka 10 cm i Skagerrak och 5 cm i Kattegatt enligt SMHI, men kan tillfälligt nå 30 till 40 cm i Skagerrak och 20 cm i Kattegatt. Vid Kosteröarna brukar skillnaden mellan hög- och lågvatten ligga på 20 till 30 cm. Vinden, lufttryck och havsströmmar kan dock ha större effekt på vattenståndet än själva tidvattnet. Hvalerskärgården på norska sidan är ett populärt resmål för dem som vill kombinera Sverige och Norge.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

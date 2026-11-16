@@ -47,13 +47,13 @@ export async function PATCH(
     return NextResponse.json({ error: 'Du är inte ägare.' }, { status: 403 })
   }
   if (thread.category_id !== 'loppis') {
-    return NextResponse.json({ error: 'Endast Loppis-trådar har listing_data.' }, { status: 400 })
+    return NextResponse.json({ error: 'Endast loppistrådar har listing_data.' }, { status: 400 })
   }
 
   // Validering
   const title = typeof body.title === 'string' ? body.title.trim() : ''
   if (title.length < 5 || title.length > 200) {
-    return NextResponse.json({ error: 'Rubrik måste vara 5–200 tecken.' }, { status: 400 })
+    return NextResponse.json({ error: 'Rubrik måste vara 5 till 200 tecken.' }, { status: 400 })
   }
   const bodyText = typeof body.body === 'string' ? body.body.trim() : ''
   if (bodyText.length > 10000) {

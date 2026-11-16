@@ -22,7 +22,7 @@ const VARIANTS: { id: HeroVariant; name: string; desc: string; emoji: string }[]
  id: 3,
  name: 'Midnattssol',
  emoji: '🌒',
- desc: 'Djup indigo-lila himmel, låg blek sol precis vid horisonten. Mystisk skärgårdsnatt, unik och dramatisk.',
+ desc: 'Djup indigolila himmel, låg blek sol precis vid horisonten. Mystisk skärgårdsnatt, unik och dramatisk.',
  },
  {
  id: 4,
