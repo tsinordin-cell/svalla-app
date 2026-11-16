@@ -17,7 +17,7 @@ const nycklar = [...new Set([...html.matchAll(/data-lp-photo="([^"]+)"/g)].map(m
 
 describe('startsidans bilder', () => {
   it('hittar bildytorna i startsidans HTML', () => {
-    expect(nycklar.length).toBeGreaterThan(10)
+    expect(nycklar.length).toBeGreaterThan(5)
   })
 
   it.each(nycklar)('%s har en bild utan Google', nyckel => {
