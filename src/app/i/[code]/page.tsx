@@ -17,11 +17,11 @@ export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
  title: { absolute: 'Inbjudan till Svalla' },
- description: 'Du har blivit inbjuden till Svalla — sociala loggboken för båtliv och skärgård.',
+ description: 'Du har blivit inbjuden till Svalla | sociala loggboken för båtliv och skärgård.',
  robots: { index: false, follow: false },
  openGraph: {
  title: 'Inbjudan till Svalla',
- description: 'Du har blivit inbjuden till Svalla — sociala loggboken för båtliv och skärgård.',
+ description: 'Du har blivit inbjuden till Svalla | sociala loggboken för båtliv och skärgård.',
  type: 'website',
  },
 }
@@ -124,7 +124,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
  </div>
  </div>
  <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55, margin: 0 }}>
- Du kan fortfarande skapa ett konto — be personen som delade länken om en ny.
+ Du kan fortfarande skapa ett konto, be personen som delade länken om en ny.
  </p>
  <Link href="/kom-igang" style={{
  display: 'block', marginTop: 14, padding: 12, borderRadius: 12,

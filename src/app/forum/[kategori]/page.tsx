@@ -47,11 +47,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  if (!cat) notFound()
  const canonicalUrl = `https://svalla.se/forum/${kategori}`
  return {
-  title: { absolute: `${cat.name} – Svalla Forum` },
+  title: { absolute: `${cat.name} | Svalla Forum` },
   description: cat.description ?? undefined,
   alternates: { canonical: canonicalUrl },
   openGraph: {
-   title: `${cat.name} – Svalla Forum`,
+   title: `${cat.name} | Svalla Forum`,
    description: cat.description ?? undefined,
    url: canonicalUrl,
    type: 'website',
@@ -84,7 +84,7 @@ export default async function ForumKategoriPage({ params }: Props) {
  const jsonLd = {
  '@context': 'https://schema.org',
  '@type': 'DiscussionForum',
- name: `${cat.name} — Svalla Forum`,
+ name: `${cat.name} | Svalla Forum`,
  url: `https://svalla.se/forum/${cat.id}`,
  description: cat.description ?? undefined,
  inLanguage: 'sv',

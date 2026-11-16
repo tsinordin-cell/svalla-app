@@ -35,7 +35,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🏡',
     title: 'Enkla boenden för första skärgårdsresan',
-    description: 'Finnhamn STF-vandrarhem är ett av de bäst tillgängliga — prisvärt, välhållet och lätt att nå med båt från Stockholm.',
+    description: 'Finnhamn STF-vandrarhem är ett av de bäst tillgängliga: prisvärt, välhållet och lätt att nå med båt från Stockholm.',
     href: '/o/finnhamn/boende',
   },
   {
@@ -68,7 +68,7 @@ export default function HotellPage() {
       '@context': 'https://schema.org',
       '@type': 'LodgingBusiness',
       name: 'Hotell och vandrarhem i Stockholms skärgård',
-      description: 'Hotell, värdshus och vandrarhem i Stockholms skärgård — nära havet, hamnen och skärgårdens bästa restauranger.',
+      description: 'Hotell, värdshus och vandrarhem i Stockholms skärgård: nära havet, hamnen och skärgårdens bästa restauranger.',
       url: 'https://svalla.se/boende/hotell-vandrarhem',
       areaServed: {
         '@type': 'Place',
@@ -130,42 +130,42 @@ export default function HotellPage() {
             Klassiska värdshus i skärgården
           </h2>
           <p>
-            Skärgårdens värdshus är en kategori för sig — historiska byggnader i gamla lotsstationer och fiskelägen som kombinerar restaurang, bar och boende. <strong>Utö Värdshus</strong> och <strong>Sandhamns Värdshus</strong> rankas år efter år bland Sveriges bästa, och Grinda Wärdshus är känt för sin mat och naturnära läge. Boka restaurang och rum separat — de bokar ut i olika takt.
+            Skärgårdens värdshus är en kategori för sig, historiska byggnader i gamla lotsstationer och fiskelägen som kombinerar restaurang, bar och boende. <strong>Utö Värdshus</strong> och <strong>Sandhamns Värdshus</strong> rankas år efter år bland Sveriges bästa, och Grinda Wärdshus är känt för sin mat och naturnära läge. Boka restaurang och rum separat. De bokar ut i olika takt.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
-            Vandrarhem — det billigaste sättet att sova ute
+            Vandrarhem: det billigaste sättet att sova ute
           </h2>
           <p>
-            STF driver vandrarhem på Finnhamn, Möja och Svartsö. Priserna börjar kring 300–500 kr/natt i delat rum, 800–1 200 kr för eget rum. Självhushåll med gemensamt kök. Perfekt för den som vill ha ett basläger och spendera dagarna ute på ön. Boka i förväg — Finnhamn är ett av de populäraste alternativen.
+            STF driver vandrarhem på Finnhamn, Möja och Svartsö. Priserna börjar kring 300 till 500 kr/natt i delat rum, 800 till 1 200 kr för eget rum. Självhushåll med gemensamt kök. Perfekt för den som vill ha ett basläger och spendera dagarna ute på ön. Boka i förväg, Finnhamn är ett av de populäraste alternativen.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Tips för spontan övernattning
           </h2>
           <p>
-            September och maj är de bästa månaderna för spontana hotellbokningar — säsongen är lång nog för bra upplevelser men kortsäsongspriserna gäller fortfarande. Vaxholm och Sandhamn har boenden som tar emot gäster med kort varsel, medan de mer avlägsna öarna kräver bokning.
+            September och maj är de bästa månaderna för spontana hotellbokningar, säsongen är lång nog för bra upplevelser men kortsäsongspriserna gäller fortfarande. Vaxholm och Sandhamn har boenden som tar emot gäster med kort varsel, medan de mer avlägsna öarna kräver bokning.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '40px 0 8px' }}>
             Sök och boka direkt
           </h2>
           <p style={{ margin: '0 0 14px' }}>
-            Jämför lediga rum och priser hos de stora bokningssajterna. Affiliate-samarbeten är på gång — klickar du nu går du direkt till sökningen.
+            Jämför lediga rum och priser hos de stora bokningssajterna. Affiliate-samarbeten är på gång, klickar du nu går du direkt till sökningen.
           </p>
           {/* Booking.com: lägg till &aid=AFFILIATE_ID i URL:en när partnerkonto är aktivt */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <a href="https://www.booking.com/searchresults.sv.html?ss=Sandhamn" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,78,122,0.06)', border: '1px solid rgba(30,78,122,0.18)', color: '#1e4e7a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Booking.com — Sandhamn</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Booking.com, Sandhamn</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.booking.com/searchresults.sv.html?ss=Ut%C3%B6" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,78,122,0.06)', border: '1px solid rgba(30,78,122,0.18)', color: '#1e4e7a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Booking.com — Utö</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Booking.com, Utö</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.booking.com/searchresults.sv.html?ss=Vaxholm" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,78,122,0.06)', border: '1px solid rgba(30,78,122,0.18)', color: '#1e4e7a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Booking.com — Vaxholm</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Booking.com, Vaxholm</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.booking.com/searchresults.sv.html?ss=Grinda" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,78,122,0.06)', border: '1px solid rgba(30,78,122,0.18)', color: '#1e4e7a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Booking.com — Grinda</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Booking.com, Grinda</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.stfturisten.se/sv/hitta/vandrarhem/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,78,122,0.06)', border: '1px solid rgba(30,78,122,0.18)', color: '#1e4e7a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>STF Turisten — Vandrarhem i skärgården</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>STF Turisten: Vandrarhem i skärgården</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
           </div>
         </>

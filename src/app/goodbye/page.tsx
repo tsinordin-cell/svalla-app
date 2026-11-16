@@ -29,7 +29,7 @@ export default function GoodbyePage() {
           margin: '0 0 14px',
           letterSpacing: '-0.5px',
         }}>
-          Hej då — och tack
+          Hej då, och tack
         </h1>
         <p style={{ fontSize: 16, lineHeight: 1.65, opacity: 0.92, margin: '0 0 28px' }}>
           Ditt konto och din data är raderade. En bekräftelse skickades till din e-post.

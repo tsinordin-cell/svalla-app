@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Jämför öar i skärgården — vilken passar dig?',
-  description: 'Sandhamn eller Grinda? Möja eller Utö? Jämför öar i Stockholms skärgård sida vid sida — fakta, bästa-för, hur man tar sig dit.',
+  title: 'Jämför öar i skärgården, vilken passar dig?',
+  description: 'Sandhamn eller Grinda? Möja eller Utö? Jämför öar i Stockholms skärgård sida vid sida: fakta, bästa-för, hur man tar sig dit.',
   keywords: ['jämför skärgårdsöar', 'sandhamn eller grinda', 'utö eller möja', 'vilken ö stockholms skärgård'],
   openGraph: {
     title: 'Jämför öar i Stockholms skärgård',
-    description: 'Sida vid sida — fakta, restider, bästa-för.',
+    description: 'Sida vid sida: fakta, restider, bästa-för.',
     url: 'https://svalla.se/jamfor',
   },
   alternates: { canonical: 'https://svalla.se/jamfor' },
@@ -45,7 +45,7 @@ export default function JamforIndex() {
           </h1>
           <p style={{ fontSize: 16, opacity: 0.85, maxWidth: 560 }}>
             Står du och väljer mellan två destinationer? Här är 10 jämförelser för att hjälpa
-            dig fatta beslutet — fakta sida vid sida, ärligt.
+            dig fatta beslutet: fakta sida vid sida, ärligt.
           </p>
         </div>
       </header>

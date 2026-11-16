@@ -85,7 +85,7 @@ function NyTradForm() {
             Tråden är inskickad!
           </h2>
           <p style={{ fontSize: 14, color: 'var(--txt3)', lineHeight: 1.6, margin: '0 0 20px' }}>
-            Den granskas kort av en moderator innan den visas i <strong>{catName}</strong>. Det brukar gå snabbt — tack för ditt tålamod!
+            Den granskas kort av en moderator innan den visas i <strong>{catName}</strong>. Det brukar gå snabbt, tack för ditt tålamod!
           </p>
           <Link href={`/forum/${pendingKategori}`} style={{
             display: 'inline-block', padding: '12px 24px',
@@ -239,7 +239,7 @@ function NyTradForm() {
             <textarea
               value={body}
               onChange={e => setBody(e.target.value)}
-              placeholder="Berätta mer — ju mer detaljer, desto bättre svar får du…"
+              placeholder="Berätta mer: ju mer detaljer, desto bättre svar får du…"
               rows={7}
               style={{ ...fieldBase, resize: 'vertical', lineHeight: 1.65 }}
               onFocus={e => { e.target.style.borderColor = 'var(--sea)'; e.target.style.boxShadow = '0 0 0 3px rgba(10,123,140,0.10)' }}

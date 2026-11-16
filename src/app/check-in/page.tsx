@@ -134,7 +134,7 @@ function CheckInPage() {
 
       <div style={{ maxWidth: 520, margin: '0 auto', padding: 16 }}>
         <p style={{ fontSize: 13, color: 'var(--txt3)', lineHeight: 1.5, margin: '0 0 16px' }}>
-          Snabbt sätt att säga &quot;jag är här&quot; — utan full turlogg. Bra för krog-stopp, bryggor, uppe-på-ön-bilder.
+          Snabbt sätt att säga &quot;jag är här&quot;, utan full turlogg. Bra för krog-stopp, bryggor, uppe-på-ön-bilder.
         </p>
 
         {/* Position */}

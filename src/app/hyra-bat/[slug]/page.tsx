@@ -98,7 +98,7 @@ export default async function HyraBatSlugPage({ params }: Props) {
         {page.priceTable.length > 0 && (
           <section style={{ marginBottom: 48 }}>
             <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 16 }}>
-              Priser – hyra båt {page.location.includes('Stockholm') ? 'i ' : page.location.startsWith('G') || page.location.startsWith('H') || page.location.startsWith('B') ? 'i ' : 'på '}{page.location}
+              Priser, hyra båt {page.location.includes('Stockholm') ? 'i ' : page.location.startsWith('G') || page.location.startsWith('H') || page.location.startsWith('B') ? 'i ' : 'på '}{page.location}
             </h2>
             {page.priceObserved ? (
               <Prisobservation antal={page.priceObserved.antal} kallor={page.priceObserved.kallor} hamtad={page.priceObserved.hamtad} />
@@ -131,7 +131,7 @@ export default async function HyraBatSlugPage({ params }: Props) {
               Exempel på båtar att hyra just nu
             </h2>
             <p style={{ fontSize: 13, color: 'var(--ink-muted)', marginBottom: 16, lineHeight: 1.6 }}>
-              Verkliga annonser med avläst pris — inte typexempel. Aktuellt pris och tillgänglighet ser du hos förmedlaren.
+              Verkliga annonser med avläst pris, inte typexempel. Aktuellt pris och tillgänglighet ser du hos förmedlaren.
             </p>
             <div style={{ background: 'var(--white)', borderRadius: 14, border: '1px solid var(--surface-3)', overflow: 'hidden' }}>
               {page.exampleBoats.map((b, i) => (
@@ -190,7 +190,7 @@ export default async function HyraBatSlugPage({ params }: Props) {
         {/* Fler hyra-bat-guider */}
         <section style={{ marginBottom: 48 }}>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--ink)', marginBottom: 16 }}>
-            Hyra båt – fler destinationer
+            Hyra båt: fler destinationer
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {otherPages.slice(0, 4).map(s => (

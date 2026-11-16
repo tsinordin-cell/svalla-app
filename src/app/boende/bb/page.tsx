@@ -23,7 +23,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '☕',
     title: 'Charmiga boenden nära vattnet',
-    description: 'Mindre B&B och pensionat längs kusterna och på öarna — ofta familjedrivna med en personlig prägel som saknar motstycke i de större hotellen.',
+    description: 'Mindre B&B och pensionat längs kusterna och på öarna, ofta familjedrivna med en personlig prägel som saknar motstycke i de större hotellen.',
     href: '/resmal',
   },
   {
@@ -35,7 +35,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🏛',
     title: 'Små pensionat i skärgården',
-    description: 'Pensionat med halvpension eller frukost ingår — du slipper planera alla måltider och kan lägga fokus på upplevelserna istället.',
+    description: 'Pensionat med halvpension eller frukost ingår. Du slipper planera alla måltider och kan lägga fokus på upplevelserna istället.',
     href: '/o/vaxholm/boende',
   },
   {
@@ -52,7 +52,7 @@ export default function BBPage() {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       name: 'B&B och pensionat i skärgården',
-      description: 'Familjedrivna B&B och pensionat i Stockholms skärgård — frukost ingår, nära havet och lokalbefolkningen.',
+      description: 'Familjedrivna B&B och pensionat i Stockholms skärgård: frukost ingår, nära havet och lokalbefolkningen.',
       url: 'https://svalla.se/boende/bb',
     },
     {
@@ -68,7 +68,7 @@ export default function BBPage() {
       '@context': 'https://schema.org',
       '@type': 'BedAndBreakfast',
       name: 'B&B och pensionat i Stockholms skärgård',
-      description: 'Familjedrivna B&B och pensionat i Stockholms skärgård — frukost ingår, nära havet och lokalbefolkningen.',
+      description: 'Familjedrivna B&B och pensionat i Stockholms skärgård: frukost ingår, nära havet och lokalbefolkningen.',
       url: 'https://svalla.se/boende/bb',
       areaServed: {
         '@type': 'Place',
@@ -124,33 +124,33 @@ export default function BBPage() {
             Vad skiljer B&B från hotell i skärgården?
           </h2>
           <p>
-            Ett B&B i skärgården är oftast ett familjehus eller en ombyggd gård med 3–8 rum. Frukost ingår nästan alltid och serveras gemensamt — ibland på en veranda med havsutsikt. Det personliga mötet med värdparet är en del av upplevelsen, och de ger ofta de bästa lokaltipsen om bad, vandringar och restauranger.
+            Ett B&B i skärgården är oftast ett familjehus eller en ombyggd gård med 3 till 8 rum. Frukost ingår nästan alltid och serveras gemensamt, ibland på en veranda med havsutsikt. Det personliga mötet med värdparet är en del av upplevelsen, och de ger ofta de bästa lokaltipsen om bad, vandringar och restauranger.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Bästa tiderna för B&B-besök
           </h2>
           <p>
-            B&B och pensionat i skärgården håller ofta öppet ett par veckor längre in på hösten jämfört med de stora värdshusena. Tidig september är en av de bästa tiderna — lugnet har lagt sig, priserna sjunker och många B&B tar emot gäster med ett par dagars varsel. Maj är också undervärderat — frisk luft, ingen folkträngsel och de flesta B&B är öppna.
+            B&B och pensionat i skärgården håller ofta öppet ett par veckor längre in på hösten jämfört med de stora värdshusena. Tidig september är en av de bästa tiderna: lugnet har lagt sig, priserna sjunker och många B&B tar emot gäster med ett par dagars varsel. Maj är också undervärderat: frisk luft, ingen folkträngsel och de flesta B&B är öppna.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Att tänka på när du bokar
           </h2>
           <p>
-            Många B&B i skärgården tar inte kortbetalning — fråga i förväg. Avbokning är ofta strängare än på hotell; det är vanligt med full betalning vid bokning under högsäsong. Kolla alltid om frukost verkligen ingår och om det finns parkering eller om du måste ta dig ut med färja.
+            Många B&B i skärgården tar inte kortbetalning. Fråga i förväg. Avbokning är ofta strängare än på hotell; det är vanligt med full betalning vid bokning under högsäsong. Kolla alltid om frukost verkligen ingår och om det finns parkering eller om du måste ta dig ut med färja.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '40px 0 8px' }}>
             Sök B&amp;B och pensionat direkt
           </h2>
           <p style={{ margin: '0 0 14px' }}>
-            Hitta personliga boenden med frukost i skärgården. Affiliate-samarbeten är på gång — klickar du nu går du direkt till sökningen.
+            Hitta personliga boenden med frukost i skärgården. Affiliate-samarbeten är på gång, klickar du nu går du direkt till sökningen.
           </p>
           {/* Booking.com: lägg till &aid=AFFILIATE_ID | Airbnb: lägg till ?s_af=AFFILIATE_TOKEN */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <a href="https://www.booking.com/searchresults.sv.html?ss=Stockholms+sk%C3%A4rg%C3%A5rd&nflt=ht_id%3D21" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(92,58,30,0.06)', border: '1px solid rgba(92,58,30,0.18)', color: '#5c3a1e', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Booking.com — B&amp;B i skärgården</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Booking.com, B&amp;B i skärgården</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.airbnb.com/s/Stockholms-sk%C3%A4rg%C3%A5rd/homes" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(92,58,30,0.06)', border: '1px solid rgba(92,58,30,0.18)', color: '#5c3a1e', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Airbnb — Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Airbnb: Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
           </div>
         </>

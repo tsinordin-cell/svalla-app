@@ -12,16 +12,16 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     // KÄLLA: Stockholms läns museum (stockholmslansmuseum.se/besoksmal/uto) — brytning från medeltiden, möjligen redan 1100-talet, nedlagd 1879; möjligen Sveriges äldsta järngruvor.
     // KÄLLA: Stockholm Archipelago Trail, stockholmarchipelagotrail.com (läst 2026-09-18):
     // Utö-etappen är 18,4 km och klassas som krävande. Öns egen rundslinga är ~8 km.
-    body: 'Utö har Stockholms skärgårds mest varierade vandringsstig. De ~8 km passerar järngruvor med anor från medeltiden — möjligen Sveriges äldsta — en gammal kvarn, öppna skogspartier och havsklippor mot Östersjön — allt på en och samma ö. En fullständig dag som kombinerar historia, naturreservat och möjligheten att avsluta med middag på Utö Värdshus. Vill du gå längre går Stockholm Archipelago Trail över ön i en 18,4 km lång etapp.',
+    body: 'Utö har Stockholms skärgårds mest varierade vandringsstig. De ~8 km passerar järngruvor med anor från medeltiden, möjligen Sveriges äldsta, en gammal kvarn, öppna skogspartier och havsklippor mot Östersjön, allt på en och samma ö. En fullständig dag som kombinerar historia, naturreservat och möjligheten att avsluta med middag på Utö Värdshus. Vill du gå längre går Stockholm Archipelago Trail över ön i en 18,4 km lång etapp.',
     tips: [
       // Rättad 2026-11-09 (P0 20 del 3): båten till Utö går från Årsta brygga, inte från Nynäshamn.
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Västerhaninge" (läst 2026-11-09)
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
       // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
-      'Pendeltåg linje 43 till Västerhaninge, buss 846 till Årsta brygga och sedan Waxholmsbolagets båt till Gruvbryggan — ingen bil krävs.',
-      'Boka bord på Utö Värdshus i förväg under juni–augusti.',
-      'Gruvorna är markerade längs leden — ta en paus och läs skyltarna.',
+      'Pendeltåg linje 43 till Västerhaninge, buss 846 till Årsta brygga och sedan Waxholmsbolagets båt till Gruvbryggan, ingen bil krävs.',
+      'Boka bord på Utö Värdshus i förväg under juni till augusti.',
+      'Gruvorna är markerade längs leden. Ta en paus och läs skyltarna.',
       'Bönsäckan-stranden är ett bra badbetapp halvvägs.',
     ],
   },
@@ -31,17 +31,17 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     // Finnhamn-etappen är 10,1 km, klassad som medel. Öns egen rundslinga är ~4 km.
     body: 'Finnhamn i mellersta skärgården är den ö folk rekommenderar för vänner som aldrig vandrat i skärgården. De 4 km är välmarkerade, stigarna är tydliga och utsikten mot omgivande öar är svår att slå. STF-vandrarhemskaféet gör att du kan ta det lugnt med lunch utan att behöva planera matsäck. Stockholm Archipelago Trail går också över ön, i en längre etapp på 10,1 km.',
     tips: [
-      'Waxholmsbolaget linje 10 från Strömkajen — räkna med 2 timmars båtresa.',
+      'Waxholmsbolaget linje 10 från Strömkajen. Räkna med 2 timmars båtresa.',
       'Klippbadet på öns södra sida passar utmärkt som avslutning.',
-      'Hundar är välkomna — kolla STF:s regler för vandrarhemsområdet.',
+      'Hundar är välkomna. Kolla STF:s regler för vandrarhemsområdet.',
     ],
   },
 
   grinda: {
-    body: 'Grinda är öen som gör konverteringen — folk som aldrig vandrat i skärgården förstår det direkt när de kliver av färjan. Den 3 km långa leden kombinerar öppen tallskog med havsvy och slutar vid en av de få sandstränder som finns i Stockholms skärgård. STF-gästgården i hamnen är en av de bästa i skärgården.',
+    body: 'Grinda är öen som gör konverteringen, folk som aldrig vandrat i skärgården förstår det direkt när de kliver av färjan. Den 3 km långa leden kombinerar öppen tallskog med havsvy och slutar vid en av de få sandstränder som finns i Stockholms skärgård. STF-gästgården i hamnen är en av de bästa i skärgården.',
     tips: [
-      'Waxholmsbolaget från Strömkajen (~1h40) — köp SL-biljett.',
-      'Sandstranden är sällsynt i skärgårdssammanhang — passa på att bada.',
+      'Waxholmsbolaget från Strömkajen (~1h40), köp SL-biljett.',
+      'Sandstranden är sällsynt i skärgårdssammanhang. Passa på att bada.',
       'Boka lunch på STF Grinda Wärdshus i förväg under högsommar.',
     ],
   },
@@ -50,35 +50,35 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Sandhamn i yttre skärgården är lika mycket en plats som en vandring. Rundan runt ön (~5 km) bjuder på färgglada fiskebyggnader, Trouvillestranden och miljöer som inte förändrats sedan segelns guldålder. Avsluta med middag på Sandhamns Värdshus för en dag som sitter kvar länge.',
     tips: [
       'Waxholmsbolaget linje 12 från Strömkajen (~2h30).',
-      'Undvik midsommar och första julihelen — ön är då fullpackad.',
-      'Trouvillestranden är populär — ta en tidig morgonpromenad dit.',
+      'Undvik midsommar och första julihelen, ön är då fullpackad.',
+      'Trouvillestranden är populär. Ta en tidig morgonpromenad dit.',
     ],
   },
 
   nattaro: {
-    body: 'Nåttarö naturreservat är vad Stockholms skärgård var innan den moderniserades. Inget folktoget, ingen bryggrestaurang — bara gammal barrskog, klippor och havet längs en ~8 km led. En av de få öar i Stockholms skärgård som fortfarande ger en känsla av verklig vildmark.',
+    body: 'Nåttarö naturreservat är vad Stockholms skärgård var innan den moderniserades. Inget folktoget, ingen bryggrestaurang: bara gammal barrskog, klippor och havet längs en ~8 km led. En av de få öar i Stockholms skärgård som fortfarande ger en känsla av verklig vildmark.',
     tips: [
-      'Pendelbåt från Nynäshamn — kontrollera tidtabellen, trafiken är glesare än till de centrala öarna.',
-      'Packa med all mat och dryck — ingen service på ön.',
-      'Delar av reservatet har restriktioner för hundar — kontrollera Länsstyrelsens webbplats.',
+      'Pendelbåt från Nynäshamn. Kontrollera tidtabellen, trafiken är glesare än till de centrala öarna.',
+      'Packa med all mat och dryck, ingen service på ön.',
+      'Delar av reservatet har restriktioner för hundar. Kontrollera Länsstyrelsens webbplats.',
     ],
   },
 
   moja: {
-    body: 'Möja är en av få öar i Stockholms skärgård med ett levande, helårsbebott samhälle. Vandringen längs öns vägar och stigar ger en inblick i ett skärgårdsliv som försvunnit från de flesta turistöar — bakgårdar, fiskebryggor och en gammal skola. En vandring som berättar en historia.',
+    body: 'Möja är en av få öar i Stockholms skärgård med ett levande, helårsbebott samhälle. Vandringen längs öns vägar och stigar ger en inblick i ett skärgårdsliv som försvunnit från de flesta turistöar: bakgårdar, fiskebryggor och en gammal skola. En vandring som berättar en historia.',
     tips: [
       'Waxholmsbolaget från Strömkajen (~2h30).',
       'Möja Krog har enklare lunch sommartid.',
-      'Leden är mer varierad än på Grinda och Finnhamn — bra bekväma skor rekommenderas.',
+      'Leden är mer varierad än på Grinda och Finnhamn, bra bekväma skor rekommenderas.',
     ],
   },
 
   arholma: {
     // KÄLLA: sjofartsverket.se, Arholma båk — känningsbåk från 1768 som aldrig haft fyrljus och som tjänade som lotsutkik fram till 1875. Ön har ingen fyr.
-    body: 'Arholma är norra skärgårdens yttersta ö och en hel dag i sig. Båken från 1768 — en känningsbåk utan fyrljus, som tjänade som lotsutkik fram till 1875 — och havsklipporna mot öppet hav skapar en stämning som är svår att hitta närmre Stockholm.',
+    body: 'Arholma är norra skärgårdens yttersta ö och en hel dag i sig. Båken från 1768, en känningsbåk utan fyrljus, som tjänade som lotsutkik fram till 1875, och havsklipporna mot öppet hav skapar en stämning som är svår att hitta närmre Stockholm.',
     tips: [
-      'Räkna med 3–4 timmars restid vardera väg — planera för en tidig start.',
-      'Ta med extra mat — utbudet på ön är begränsat.',
+      'Räkna med 3 till 4 timmars restid vardera väg. Planera för en tidig start.',
+      'Ta med extra mat, utbudet på ön är begränsat.',
       'Kontrollera aktuella reservatsregler för hundar.',
     ],
   },
@@ -88,15 +88,15 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     tips: [
       'Waxholmsbolaget från Strömkajen (~2h).',
       'Perfekt att kombinera med ett klippbad på öns sydöstra sida.',
-      'Bra för familjer med yngre barn — stigarna är tydliga och terrängen hanteras.',
+      'Bra för familjer med yngre barn, stigarna är tydliga och terrängen hanteras.',
     ],
   },
 
   gallno: {
-    body: 'Gällnö naturreservat har ett tydligt dubbelliv: tät barrskog inåt ön och öppna havsklippor mot yttersidan. Den ~5 km långa leden tar dig igenom båda — en kontrast som är karaktäristisk för mellersta skärgården. Bra kafévagnsdrift vid hamnen sommartid.',
+    body: 'Gällnö naturreservat har ett tydligt dubbelliv: tät barrskog inåt ön och öppna havsklippor mot yttersidan. Den ~5 km långa leden tar dig igenom båda, en kontrast som är karaktäristisk för mellersta skärgården. Bra kafévagnsdrift vid hamnen sommartid.',
     tips: [
       'Waxholmsbolaget från Strömkajen (~2h).',
-      'Reservatets regler är specifika — läs skyltarna vid bryggan.',
+      'Reservatets regler är specifika. Läs skyltarna vid bryggan.',
       'Leden är lättgången och passar familjer.',
     ],
   },
@@ -107,8 +107,8 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
       // Rättad 2026-11-09 (P0 21): båten till Landsort går från Ankaruddens brygga, inte från Nynäshamn.
       // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — "Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden." (läst 2026-11-09)
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — "Nynäshamns station–Torö", "ANKARUDDEN", "Giltig 17 augusti–12 december 2026" (läst 2026-11-09)
-      'Båten går från Ankaruddens brygga strax söder om Nynäshamn, dit buss 852 går från Nynäshamns station — kontrollera tidtabell.',
-      'Fyren kan besökas — kolla öppettider.',
+      'Båten går från Ankaruddens brygga strax söder om Nynäshamn, dit buss 852 går från Nynäshamns station. Kontrollera tidtabell.',
+      'Fyren kan besökas. Kolla öppettider.',
       'Bra badplatser längs södra klippkusten.',
     ],
   },
@@ -116,11 +116,11 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── BOHUSLÄN ──────────────────────────────────────────────────────────
 
   nordkoster: {
-    body: 'Nordkoster är centrum av Sveriges första marina nationalpark och en av landets bästa vandringsöar. De ~8 km längs leden tar dig runt dramatiska klippavsatser mot Västerhavet — ett landskap som ser ut som det är hämtat från en atlantisk nationalpark. Kombineras bäst med ett besök på systerön Sydkoster.',
+    body: 'Nordkoster är centrum av Sveriges första marina nationalpark och en av landets bästa vandringsöar. De ~8 km längs leden tar dig runt dramatiska klippavsatser mot Västerhavet, ett landskap som ser ut som det är hämtat från en atlantisk nationalpark. Kombineras bäst med ett besök på systerön Sydkoster.',
     tips: [
-      'Tåg Göteborg → Strömstad, sedan båt till Koster (~3–4h totalt).',
-      'Boka boende i god tid — ön är populär under sommaren.',
-      'Ta med alla väder-alternativ — havsvindar kan vara starka.',
+      'Tåg Göteborg → Strömstad, sedan båt till Koster (~3 till 4h totalt).',
+      'Boka boende i god tid, ön är populär under sommaren.',
+      'Ta med alla väder-alternativ, havsvindar kan vara starka.',
     ],
   },
 
@@ -134,10 +134,10 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   fjallbacka: {
-    body: 'Fjällbacka och Grötöarkipelagen kombinerar dramatisk bohuslänsklippor med kulturhistoria och skärgårdsatmosfär. Kändisbyns hamn är bara starten — vandringen fortsätter ut mot exponerade havsbranter med vy mot de yttersta kobbarna. En av Bohusläns bästa halvdagar.',
+    body: 'Fjällbacka och Grötöarkipelagen kombinerar dramatisk bohuslänsklippor med kulturhistoria och skärgårdsatmosfär. Kändisbyns hamn är bara starten, vandringen fortsätter ut mot exponerade havsbranter med vy mot de yttersta kobbarna. En av Bohusläns bästa halvdagar.',
     tips: [
       'Buss 875 från Göteborg (~2h30) eller bil.',
-      'Besök Kungsklyftan — en imponerande klippspricka i bykärnan.',
+      'Besök Kungsklyftan, en imponerande klippspricka i bykärnan.',
       'Ingrid Bergmans minnesplats vid hamnen är ett välkänt stopp.',
     ],
   },
@@ -145,18 +145,18 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   marstrand: {
     body: 'Marstrand är en bilfri ö med Carlstens fästning som dominerande landmärke och en av Bohusläns mest välbevarade stadsmiljöer. Rundan runt ön (~3 km) kombinerar fästningshistoria med havsvy och en av de bästa matscenerna i regionen. Nås enkelt med buss och färja.',
     tips: [
-      'Buss 302 mot Ytterby, sedan tåg in till Göteborg — eller ta Marstrandsexpressen direkt. Marstrandsfärjan ingår i Västtrafik-biljetten.',
+      'Buss 302 mot Ytterby, sedan tåg in till Göteborg, eller ta Marstrandsexpressen direkt. Marstrandsfärjan ingår i Västtrafik-biljetten.',
       'Boka bord på restaurang i god tid under midsommar och regattaveckor.',
       'Fästningen kan besökas med guidade turer sommartid.',
     ],
   },
 
   'vrango-bohuslan': {
-    body: 'Vrångö i södra Göteborgs skärgård är ett bilfritt naturreservat med råa klippor som möter Västerhavet direkt. De 4 km är korta men intensiva — strandklippor, havsstrimma och marin natur i varje steg. En av de bäst tillgängliga vilda öarna i Sverige.',
+    body: 'Vrångö i södra Göteborgs skärgård är ett bilfritt naturreservat med råa klippor som möter Västerhavet direkt. De 4 km är korta men intensiva: strandklippor, havsstrimma och marin natur i varje steg. En av de bäst tillgängliga vilda öarna i Sverige.',
     tips: [
       'Spårvagn linje 11 → Saltholmen, sedan båt linje 281.',
       'Klipporna på öns västra sida är fantastiska vid solnedgång.',
-      'Ingen servering på ön — ta med mat och vatten.',
+      'Ingen servering på ön. Ta med mat och vatten.',
     ],
   },
 
@@ -173,22 +173,22 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Mollösund på Orust är en av Bohusläns bäst bevarade gamla fiskehamnar. De snävt packade trä-husen, de målade sjöbodarna och den lugna hamnen ger en autentisk känsla som är sällsynt längs den annars turistifierade kusten. Vandringen följer kustlinjen med omväxlande vy.',
     tips: [
       'Bil eller lokal buss från Stenungsund.',
-      'Restaurang och café i byn — bra matupplevelse.',
+      'Restaurang och café i byn, bra matupplevelse.',
       'Inre Kustleden passerar Mollösund om du vill vandra längre.',
     ],
   },
 
   hamburgsund: {
-    body: 'Hamburgsund norrut längs Bohuslän har havsklippor med Norges kust på horisonten och en kustled som följer den exponerade yttersidan av Bohuslän. En av de mer dramatiska halvdagslederna i regionen — känslan av öppet hav är konstant.',
+    body: 'Hamburgsund norrut längs Bohuslän har havsklippor med Norges kust på horisonten och en kustled som följer den exponerade yttersidan av Bohuslän. En av de mer dramatiska halvdagslederna i regionen, känslan av öppet hav är konstant.',
     tips: [
       'Buss 875 från Göteborg (~3h) eller bil.',
       'Café och restaurang i byn.',
-      'Kombinera gärna med Fjällbacka på samma tur — de ligger nära.',
+      'Kombinera gärna med Fjällbacka på samma tur. De ligger nära.',
     ],
   },
 
   grebbestad: {
-    body: 'Grebbestad är Bohusläns ostroncentrum och kustlederna runt byn kombinerar klipplandskap med havsvy och en stark matkultur. Vandringen längs klipporna ger en känsla av exponerat Västerhav — och det finns gott om ursäkter att avsluta med ostron i byn.',
+    body: 'Grebbestad är Bohusläns ostroncentrum och kustlederna runt byn kombinerar klipplandskap med havsvy och en stark matkultur. Vandringen längs klipporna ger en känsla av exponerat Västerhav, och det finns gott om ursäkter att avsluta med ostron i byn.',
     tips: [
       'Buss 878 från Göteborg (~3h) eller bil.',
       'Grebbestads ostronodlingar är besöksvärda.',
@@ -197,10 +197,10 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   smogen: {
-    body: 'Smögens välkända brygga är utgångspunkten för en kort vandring (~3 km) längs klippor med Västerhavets dramatiska ljus. Välbesökt men med god anledning — utsikten och den bohuslänskaffekultur som väntar i byn rättfärdigar trängsel.',
+    body: 'Smögens välkända brygga är utgångspunkten för en kort vandring (~3 km) längs klippor med Västerhavets dramatiska ljus. Välbesökt men med god anledning, utsikten och den bohuslänskaffekultur som väntar i byn rättfärdigar trängsel.',
     tips: [
       'Buss 861 från Göteborg Nils Ericsonterminalen (~2h) eller bil.',
-      'Bryggan är störst under midsommar och juli — kom tidigt.',
+      'Bryggan är störst under midsommar och juli. Kom tidigt.',
       'Havsbadsanläggningen Smögens Hafvsbad är ett välkänt stopp.',
     ],
   },
@@ -208,20 +208,20 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── GÖTEBORGS SKÄRGÅRD ────────────────────────────────────────────────
 
   'vrango-goteborg': {
-    body: 'Vrångö längst söderut i Göteborgs skärgård är ett bilfritt naturreservat med direktkontakt med Västerhavet. Klipporna på öns västra sida är råa och obearbetade — en känsla av vildmark som är svår att tro att den nås med spårvagn och pendelbåt från centrala Göteborg.',
+    body: 'Vrångö längst söderut i Göteborgs skärgård är ett bilfritt naturreservat med direktkontakt med Västerhavet. Klipporna på öns västra sida är råa och obearbetade, en känsla av vildmark som är svår att tro att den nås med spårvagn och pendelbåt från centrala Göteborg.',
     tips: [
       'Spårvagn linje 11 → Saltholmen, båt linje 281/282.',
-      'Ta med mat — ingen servering på ön.',
+      'Ta med mat, ingen servering på ön.',
       'Stranden på öns södra del är populär för bad.',
     ],
   },
 
   styrso: {
-    body: 'Styrsö i södra Göteborgs skärgård har ett välkänt värdshus och badklippor som gör sig bäst i kvällsljuset. Den 3 km långa leden tar dig runt öns mjuka natur — böljande landskap i kontrast mot Vrångös råa klippor. Bra alternativ för en kortare dag.',
+    body: 'Styrsö i södra Göteborgs skärgård har ett välkänt värdshus och badklippor som gör sig bäst i kvällsljuset. Den 3 km långa leden tar dig runt öns mjuka natur, böljande landskap i kontrast mot Vrångös råa klippor. Bra alternativ för en kortare dag.',
     tips: [
       'Spårvagn linje 11 → Saltholmen, båt linje 282.',
       'Styrsö Skäret värdshus är välkänt för mat med havsutsikt.',
-      'Bilfri ö — Göteborgsborna tar sig hit för att koppla av.',
+      'Bilfri ö, Göteborgsborna tar sig hit för att koppla av.',
     ],
   },
 
@@ -229,16 +229,16 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Donsö är Göteborgs skärgårds fiskehamn par excellence. Rökeriet, bystigarna och den äkta skärgårdsatmosfären skiljer den från de mer turistifierade öarna. En vandring som lär dig mer om hur Göteborgs skärgård faktiskt lever än om hur den ser ut på Instagram.',
     tips: [
       'Spårvagn linje 11 → Saltholmen, båt linje 281.',
-      'Donsö Rökeri säljer lokalt rökt fisk — ett naturligt stopp.',
-      'Ön är aktiv med fiskebåtstrafik — en annan stämning än grannöarna.',
+      'Donsö Rökeri säljer lokalt rökt fisk, ett naturligt stopp.',
+      'Ön är aktiv med fiskebåtstrafik, en annan stämning än grannöarna.',
     ],
   },
 
   'aspero': {
-    body: 'Asperö är den lugna grannen i södra skärgården — bilfri, enkel och med välvalda badklippor längs den korta leden. Perfekt för en halvdag när du vill ha skärgårdskaraktär utan att planera för en hel dag.',
+    body: 'Asperö är den lugna grannen i södra skärgården: bilfri, enkel och med välvalda badklippor längs den korta leden. Perfekt för en halvdag när du vill ha skärgårdskaraktär utan att planera för en hel dag.',
     tips: [
       'Spårvagn linje 11 → Saltholmen, båt linje 282.',
-      'Ingen servering — ta med matsäck.',
+      'Ingen servering. Ta med matsäck.',
       'Lätt att kombinera med Styrsö på samma tur.',
     ],
   },
@@ -248,7 +248,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     tips: [
       'Spårvagn linje 11 → Saltholmen, båt linje 282.',
       'Perfekt att kombinera med Styrsö eller Asperö.',
-      'Ingen servering — ta med mat.',
+      'Ingen servering. Ta med mat.',
     ],
   },
 
@@ -256,7 +256,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Hönö / Klåva nås med buss och erbjuder en varierad kustlinje med gott om service i byn. En bra halvdagsvandring i norra Göteborgs skärgård som passar dem som inte vill ta sig lika långt söderut.',
     tips: [
       'Buss 301 från Göteborg → Öckerö (~1h).',
-      'Bra serviceutbud i byn — restaurang och café.',
+      'Bra serviceutbud i byn, restaurang och café.',
       'Kombinera gärna med Öckerö eller Björkö på fastlandet.',
     ],
   },
@@ -289,7 +289,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   kungsbackafjord: {
-    body: 'Kungsbackafjorden vid gränsen Göteborg–Halland erbjuder fjordnatur i en lugn halvdagsled längs vattenlinjen. Nästintill turistfritt och genuint grönt — ett bra alternativ när de mer välkända öarna känns överfulla.',
+    body: 'Kungsbackafjorden vid gränsen Göteborg till Halland erbjuder fjordnatur i en lugn halvdagsled längs vattenlinjen. Nästintill turistfritt och genuint grönt, ett bra alternativ när de mer välkända öarna känns överfulla.',
     tips: [
       'Pendeltåg Göteborg → Kungsbacka (~30 min), sedan vandring mot fjorden.',
       'Bra för tidig vår och höst när skärgårdsöarna är stängda.',
@@ -299,16 +299,16 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── GOTLAND ──────────────────────────────────────────────────────────
 
   'digerhuvud-faro': {
-    body: 'Digerhuvud på Fårö har de mest dramatiska raukarna i Sverige — kalkstenskolonner upp till tio meter höga som reser sig ur havet som ett surrealistiskt landskap. Den korta leden (~3 km) tar dig längs strandlinjen förbi formationer som ser ut som skulpturer. En halvdag som stannar kvar länge.',
+    body: 'Digerhuvud på Fårö har de mest dramatiska raukarna i Sverige, kalkstenskolonner upp till tio meter höga som reser sig ur havet som ett surrealistiskt landskap. Den korta leden (~3 km) tar dig längs strandlinjen förbi formationer som ser ut som skulpturer. En halvdag som stannar kvar länge.',
     tips: [
       'Destination Gotland Nynäshamn → Visby, sedan bil till Fårö (nödvändigt).',
-      'Fårösund–Fårö-färjan ingår inte i Destination Gotland-biljetten.',
-      'Maj och september är bäst — sommaren är het och torr.',
+      'Fårösund till Fårö-färjan ingår inte i Destination Gotland-biljetten.',
+      'Maj och september är bäst, sommaren är het och torr.',
     ],
   },
 
   lickershamn: {
-    body: 'Vid Lickershamn på Gotlands nordvästkust reser sig Jungfrun — Gotlands mest fotograferade raukar — ensam ur havet som ett landmärke. Den korta leden (~2 km) tar dig längs strandlinjen med kalkstenslandskapet som konstant sällskap. Nås med buss från Visby utan bil.',
+    body: 'Vid Lickershamn på Gotlands nordvästkust reser sig Jungfrun, Gotlands mest fotograferade raukar, ensam ur havet som ett landmärke. Den korta leden (~2 km) tar dig längs strandlinjen med kalkstenslandskapet som konstant sällskap. Nås med buss från Visby utan bil.',
     tips: [
       'Buss från Visby (~45 min) eller bil.',
       'Parkeringen vid Lickershamn kan vara full i juli.',
@@ -321,7 +321,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     tips: [
       'Buss 61 från Visby (~30 min).',
       'Boka entré i förväg under högsommar.',
-      'Ta med ett lager extra — grottan håller ca 8°C oavsett utomhustemperatur.',
+      'Ta med ett lager extra, grottan håller ca 8°C oavsett utomhustemperatur.',
     ],
   },
 
@@ -329,7 +329,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Holmhallar på södra Gotland ger känslan av att befinna sig i världens ände. Ett gammalt fyr, råa stränder och vidsträckt naturmark längs Östersjön skapar en stämning som är svår att hitta på öns mer turistifierade delar. En halvdagsvandring för den som söker ensamhet.',
     tips: [
       'Bil eller cykel från Visby (~1h söderut).',
-      'Ingen servering — ta med mat och vatten.',
+      'Ingen servering. Ta med mat och vatten.',
       'Stranden är bra för bad men nå dit tidigt i juli.',
     ],
   },
@@ -339,29 +339,29 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     tips: [
       'Bil krävs för att ta sig till Fårö och Sudersand.',
       'Sommarcaféet vid stranden har öppet under sommarsäsongen.',
-      'Sandstormar kan förekomma — ta med solskydd.',
+      'Sandstormar kan förekomma. Ta med solskydd.',
     ],
   },
 
   'langhammars-faro': {
-    body: 'Langhammars på Fårö är öns vildaste rauklandskap — tystare och mer exponerat än Digerhuvud, och nästan alltid folktomt. Raukarna här är lägre men spridda längs en längre strandremsa, vilket ger en annan känsla av vandring i ett unikt landskap.',
+    body: 'Langhammars på Fårö är öns vildaste rauklandskap: tystare och mer exponerat än Digerhuvud, och nästan alltid folktomt. Raukarna här är lägre men spridda längs en längre strandremsa, vilket ger en annan känsla av vandring i ett unikt landskap.',
     tips: [
-      'Bil krävs — Langhammars nås via väg på Fårö.',
+      'Bil krävs, Langhammars nås via väg på Fårö.',
       'Kombinera med Digerhuvud och Sudersand för en full Fårö-dag.',
-      'Ingen servering — ta med matsäck.',
+      'Ingen servering. Ta med matsäck.',
     ],
   },
 
   'hellvi-gotland': {
     body: 'Hellvi på norra Gotland är en lugn och välmarkerad kustsida med bra badmöjligheter och enkel tillgänglighet från Visby med buss. Landsbygdskaraktären och det stilla kustlandskapet gör den till en bra halvdag utan turistträngsel.',
     tips: [
-      'Buss från Visby norrut (~1h) — kontrollera aktuell linje på gotlandskollektivtrafik.se.',
+      'Buss från Visby norrut (~1h), kontrollera aktuell linje på gotlandskollektivtrafik.se.',
       'Hellvi kyrka är en av Gotlands välbevarade medeltidskyrkor.',
     ],
   },
 
   'petesviken-gotland': {
-    body: 'Petesviken på Gotlands östkust är ett stilla landskap med fågelrika strandängar och havsvy mot fastlandet. Lite känt och genuint fint — en av de platser på Gotland som ännu inte blivit turistifierade.',
+    body: 'Petesviken på Gotlands östkust är ett stilla landskap med fågelrika strandängar och havsvy mot fastlandet. Lite känt och genuint fint, en av de platser på Gotland som ännu inte blivit turistifierade.',
     tips: [
       'Bil (~45 min från Visby).',
       'Bra för fågelskådning under vår och höst.',
@@ -372,7 +372,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'gnisvard-gotland': {
     body: 'Gnisvärd söder om Visby är känt för sina kittade sten och raukar längs Gotlands västkust. Den korta vandringen (~3 km) kombineras naturligt med ett kaféstopp i byn och är lätt att nå med cykel från Visby.',
     tips: [
-      'Buss från Visby söderut (~30 min) eller cykel — kontrollera linje på gotlandskollektivtrafik.se.',
+      'Buss från Visby söderut (~30 min) eller cykel, kontrollera linje på gotlandskollektivtrafik.se.',
       'Gnisvärd har ett välkänt café.',
       'Solnedgången över havet är fantastisk härifrån.',
     ],
@@ -389,39 +389,39 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── HÖGA KUSTEN ───────────────────────────────────────────────────────
 
   skuleskogen: {
-    body: 'Skuleskogen är Höga kustens hjärta och ett av de mest dramatiska naturreservaten i Skandinavien. UNESCO-klassade bergsidor reser sig direkt ur havet — ett landskap format av landisens avsmältning och landets fortsatta landhöjning. Spårnätet på 30 km rymmer allt från korta utflykter till flerdagsvandringar.',
+    body: 'Skuleskogen är Höga kustens hjärta och ett av de mest dramatiska naturreservaten i Skandinavien. UNESCO-klassade bergsidor reser sig direkt ur havet, ett landskap format av landisens avsmältning och landets fortsatta landhöjning. Spårnätet på 30 km rymmer allt från korta utflykter till flerdagsvandringar.',
     tips: [
       'SJ/Norrtåg → Härnösand eller Kramfors, sedan lokal buss eller bil.',
       // KÄLLA: SVT Västernorrland 2023-05-22 "Vandringsled genom Slåttdalsskrevan stängs av säkerhetsskäl" (Länsstyrelsen Västernorrland: risk för fallande sten, leden omdragen) + sverigesnationalparker.se (200 m lång, 30 m djup)
-      'Slåttdalsskrevan — en 200 m lång och 30 m djup klippspricka — är ett måste, men leden GENOM skrevan är stängd sedan 2023 av säkerhetsskäl. Den ses från norra och södra änden.',
+      'Slåttdalsskrevan, en 200 m lång och 30 m djup klippspricka, är ett måste, men leden GENOM skrevan är stängd sedan 2023 av säkerhetsskäl. Den ses från norra och södra änden.',
       'Planera minst en heldag; etapperna längs Höga kustenleden är krävande.',
       'Ta med övernattningsutrustning för ett autentiskt naturupplevelse.',
     ],
   },
 
   rotsidan: {
-    body: 'Rotsidan längs Höga kustenleden är en av ledens finaste delar — strandnära urskog med dramatisk bergskaraktär och havsvy hela vägen. De ~8 km är tekniskt medel men belönar med ett landskap som är unikt i Sverige.',
+    body: 'Rotsidan längs Höga kustenleden är en av ledens finaste delar, strandnära urskog med dramatisk bergskaraktär och havsvy hela vägen. De ~8 km är tekniskt medel men belönar med ett landskap som är unikt i Sverige.',
     tips: [
       'SJ/Norrtåg → Härnösand, sedan lokal buss eller bil.',
-      'Del av Höga kustenleden — kan ingå i en längre etappvandring.',
+      'Del av Höga kustenleden. Kan ingå i en längre etappvandring.',
       'Bra skor är viktiga; terrängen är ojämn längs klippkusten.',
     ],
   },
 
   trysunda: {
     // KÄLLA: Länsstyrelsen Västernorrland (lansstyrelsen.se, naturreservatet Trysunda) — fiskeläget grundat av Gävlefiskare på 1500-talet, kapell från 1600-talet, Ångermanlandskustens bäst bevarade fiskeläge. Även Maringuiden.
-    body: 'Trysunda är en liten fiskehamnsö med Ångermanlandskustens bäst bevarade fiskeläge — grundat av Gävlefiskare på 1500-talet, med fiskarkapell från 1600-talet — nådd med sommarbåt. Den korta leden (~3 km) ger stor känsla — tyst, välhållen och med en hamnatmosfär som är genuint annorlunda. En av de starkaste upplevelserna längs Höga kusten.',
+    body: 'Trysunda är en liten fiskehamnsö med Ångermanlandskustens bäst bevarade fiskeläge, grundat av Gävlefiskare på 1500-talet, med fiskarkapell från 1600-talet, nådd med sommarbåt. Den korta leden (~3 km) ger stor känsla: tyst, välhållen och med en hamnatmosfär som är genuint annorlunda. En av de starkaste upplevelserna längs Höga kusten.',
     tips: [
-      'Sommarbåt från Kramfors-hållet — kontrollera aktuella tidtabeller.',
+      'Sommarbåt från Kramfors-hållet. Kontrollera aktuella tidtabeller.',
       'Restaurang och café öppet sommartid.',
-      'Boka boende i god tid — ön har begränsad kapacitet.',
+      'Boka boende i god tid, ön har begränsad kapacitet.',
     ],
   },
 
   ulvon: {
     body: 'Ulvön är mest känd för surströmming men vandringen runt ön (~6 km) är en av Höga kustens bästa. Leden går längs dramatisk klippkust med vy mot Bottenhavet och passerar det välbevarade fiskeläget Ulvöhamn.',
     tips: [
-      'Sommarbåt från Kramfors-hållet — kontrollera tidtabell.',
+      'Sommarbåt från Kramfors-hållet. Kontrollera tidtabell.',
       'Ulvöhamns kapell är ett av de vackraste i Norrland.',
       'Surströmmingens säsong är i slutet av augusti.',
     ],
@@ -430,7 +430,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'hogakustenleden': {
     body: 'Höga kustenleden (130 km, UNESCO) är ett av Sveriges mest kompletta vandringsäventyr längs havslinjen. Leden sträcker sig från Härnösand till Örnsköldsvik längs dramatisk kustterräng med extrema höjdskillnader och urskogssektioner.',
     tips: [
-      'Dela upp i etapper — de flesta vandrar 2–5 dagar.',
+      'Dela upp i etapper. De flesta vandrar 2 till 5 dagar.',
       'Tjockeby, Noraström och Bönhamn är bra basstationer.',
       'Maj och september ger bäst förhållanden.',
     ],
@@ -439,7 +439,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'norahamn-hoga-kusten': {
     body: 'Norrfällsviken och Norahamn längs Höga kustenleden kombinerar dramatisk kustterräng med välbevarad fiskemiljö. Klipporna reser sig direkt från havet och leden bjuder på kontinuerliga vyer mot Bottenhavet.',
     tips: [
-      'Del av Höga kustenleden — kan ingå i etappvandring.',
+      'Del av Höga kustenleden. Kan ingå i etappvandring.',
       'Norahamn är ett pittoreskt fiskeläge med gästbrygga.',
     ],
   },
@@ -448,7 +448,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Bönhamn är ett välbevarat fiskeläge vid Höga kustenleden med karaktäristiska röda bodar längs klippbrynet. Vandringen runt halvön är kort men dramatisk med havsutsikt åt båda håll.',
     tips: [
       'Bil rekommenderas eller del av längre etappvandring längs Höga kustenleden.',
-      'Rödbodsmiljön fotograferas flitigt — kom tidigt på morgonen.',
+      'Rödbodsmiljön fotograferas flitigt. Kom tidigt på morgonen.',
     ],
   },
 
@@ -463,7 +463,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'ornskoldsvik-hoga-kusten': {
     body: 'Örnsköldsvik är norra ändpunkten av Höga kustenleden och har ett tydligt naturreservatsnät runt staden. Skuleskogens södra entré nås härifrån och ger direkttillgång till ledens mest dramatiska sektioner.',
     tips: [
-      'Tåg till Örnsköldsvik — bra förbindelser från Stockholm och Umeå.',
+      'Tåg till Örnsköldsvik, bra förbindelser från Stockholm och Umeå.',
       'Skuleskogen börjar precis söder om staden.',
     ],
   },
@@ -471,11 +471,11 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── BLEKINGE ──────────────────────────────────────────────────────────
 
   'hano': {
-    body: 'Hanö är Blekinges mest mytomspunna ö — en unik engelsk kyrkogård från Napoleonskrigen, fågelrika strandängar och råa ankringsplatser längs en orörd kustlinje. Nås med sommarbåt från Nogersund och ger en känsla av att ha kommit till en annan tid.',
+    body: 'Hanö är Blekinges mest mytomspunna ö: en unik engelsk kyrkogård från Napoleonskrigen, fågelrika strandängar och råa ankringsplatser längs en orörd kustlinje. Nås med sommarbåt från Nogersund och ger en känsla av att ha kommit till en annan tid.',
     tips: [
-      'Sommarbåt från Nogersund — kontrollera aktuell tidtabell.',
+      'Sommarbåt från Nogersund. Kontrollera aktuell tidtabell.',
       'Den engelska begravningsplatsen är ett unikt historiskt stopp.',
-      'Ingen permanent service på ön — ta med matsäck.',
+      'Ingen permanent service på ön. Ta med matsäck.',
     ],
   },
 
@@ -512,10 +512,10 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'ronneby-skargard': {
-    body: 'Ronneby skärgård är geologiskt unik med sin serpentinsten — en rödbrun, skimrande bergart som ger kustlandskapet en dramatisk karaktär som saknar motstycke längs den svenska kusten. En sevärdhet för naturintresserade.',
+    body: 'Ronneby skärgård är geologiskt unik med sin serpentinsten: en rödbrun, skimrande bergart som ger kustlandskapet en dramatisk karaktär som saknar motstycke längs den svenska kusten. En sevärdhet för naturintresserade.',
     tips: [
       'SJ → Ronneby, sedan bil eller lokal buss.',
-      'Ta med kamera — serpentinstenen är fotogenisk.',
+      'Ta med kamera, serpentinstenen är fotogenisk.',
     ],
   },
 
@@ -533,7 +533,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Sölvesborg på Blekinges västra kust är en bra utgångspunkt vid cykelleden EuroVelo 10 (Östersjöleden), med en enkel kustpromenad och gott om service. Halvstaden har ett charmigt centrum och strandlinjen ger direkt havsutsikt.',
     tips: [
       'SJ → Sölvesborg (~3h30 från Stockholm).',
-      'Cykelleden EuroVelo 10 (Östersjöleden) passerar här — havsnära etapper åt båda håll.',
+      'Cykelleden EuroVelo 10 (Östersjöleden) passerar här, havsnära etapper åt båda håll.',
     ],
   },
 
@@ -549,7 +549,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Nogersund är avresehamnen för Hanö-båten och en charmig fiskehamn i sig med en kort promenad längs vattnet. En bra uppvärmning eller avslutning för en Hanö-dag.',
     tips: [
       'SJ → Sölvesborg, sedan buss.',
-      'Sommarbåten till Hanö avgår härifrån — kolla tidtabell.',
+      'Sommarbåten till Hanö avgår härifrån. Kolla tidtabell.',
       'Restaurang och café i byn.',
     ],
   },
@@ -557,10 +557,10 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── ÖLAND ─────────────────────────────────────────────────────────────
 
   'trollskogen-oland': {
-    body: 'Trollskogen på norra Öland är ett av Sveriges märkligaste naturlandskap — gammal urskog med vridna, vindpinade träd precis vid strandlinjen, som om skogen håller på att trilla ut i havet. Kontrasten mellan den knotiga granskogen och det öppna alvaret utanför är unik i Sverige.',
+    body: 'Trollskogen på norra Öland är ett av Sveriges märkligaste naturlandskap: gammal urskog med vridna, vindpinade träd precis vid strandlinjen, som om skogen håller på att trilla ut i havet. Kontrasten mellan den knotiga granskogen och det öppna alvaret utanför är unik i Sverige.',
     tips: [
       'Tåg → Kalmar, sedan buss KLT norrut på Öland.',
-      'Tillgängligheten är god — bra för alla åldrar.',
+      'Tillgängligheten är god, bra för alla åldrar.',
       'Kombinera med ett stopp vid Böda camping-området.',
     ],
   },
@@ -570,7 +570,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     tips: [
       'Tåg → Kalmar, sedan buss KLT söderut på Öland.',
       'Ottenby fågelstation har öppet och erbjuder ringmärkning.',
-      'Bäst under vår- och höstmigration (april–maj, aug–okt).',
+      'Bäst under vår- och höstmigration (april till maj, aug till okt).',
     ],
   },
 
@@ -578,22 +578,22 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Borgholm och det dramatiska ruinslottet dominerar centrala Ölands kustlinje. Vandringen runt slottsruinen och längs Borgholms strandkant kombinerar kulturhistoria med kustvy mot Kalmarsund och Gotland i fjärran.',
     tips: [
       'Tåg → Kalmar, sedan buss KLT till Borgholm.',
-      'Borgholms slott kan besökas — öppet sommarsäsong.',
-      'Solliden-palatset (kungafamiljen) ligger intill — kan ses utifrån.',
+      'Borgholms slott kan besökas, öppet sommarsäsong.',
+      'Solliden-palatset (kungafamiljen) ligger intill, kan ses utifrån.',
     ],
   },
 
   'stora-alvaret': {
-    body: 'Ölands alvar är UNESCO-klassat och ett av Europas mest unika öppna landskap — ett kalkstensflak utan träd som sträcker sig mil efter mil med vidsträckt himmel och en natur som saknar motstycke i Sverige. Midsommarblomstringen är legendarisk.',
+    body: 'Ölands alvar är UNESCO-klassat och ett av Europas mest unika öppna landskap, ett kalkstensflak utan träd som sträcker sig mil efter mil med vidsträckt himmel och en natur som saknar motstycke i Sverige. Midsommarblomstringen är legendarisk.',
     tips: [
       'Bil rekommenderas för att nå de bästa alvarpartierna.',
-      'Bäst i maj–juni under blomsterperioden.',
-      'Känslig flora — håll dig till markerade stigar.',
+      'Bäst i maj till juni under blomsterperioden.',
+      'Känslig flora. Håll dig till markerade stigar.',
     ],
   },
 
   'byrum-oland': {
-    body: 'Bysrum rassbrant på nordvästra Öland är ett dramatiskt naturlandskap med sandraviner som rasat ut mot havet. En geologisk kuriosa som ger en annorlunda känsla — vind och sand i ett öppet, exponerat landskap.',
+    body: 'Bysrum rassbrant på nordvästra Öland är ett dramatiskt naturlandskap med sandraviner som rasat ut mot havet. En geologisk kuriosa som ger en annorlunda känsla: vind och sand i ett öppet, exponerat landskap.',
     tips: [
       'Bil rekommenderas.',
       'Kombinera med Trollskogen som ligger nära.',
@@ -626,7 +626,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'lerkaka-oland': {
-    body: 'Lerkaka på östra Öland är känt för en av öns bäst bevarade väderkvarnsrader — sju vindkvarnar i rad längs alvarkanten med havsvy mot Kalmarsund. Inte en lång vandring men en stark visuell upplevelse.',
+    body: 'Lerkaka på östra Öland är känt för en av öns bäst bevarade väderkvarnsrader, sju vindkvarnar i rad längs alvarkanten med havsvy mot Kalmarsund. Inte en lång vandring men en stark visuell upplevelse.',
     tips: [
       'Bil rekommenderas.',
       'Fotografera i morgon- eller kvällsljus för bäst effekt.',
@@ -643,7 +643,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── SKÅNE ─────────────────────────────────────────────────────────────
 
   kullaberg: {
-    body: 'Kullaberg i nordvästra Skåne är ett av Sveriges mest dramatiska kustlandskap — 70 meter höga klippavsatser mot Öresund och Kattegatt, fyrar och en unik geologi som inte finns någon annanstans i Sverige. Naturreservatet är välskött med ett nätverk av markerade leder.',
+    body: 'Kullaberg i nordvästra Skåne är ett av Sveriges mest dramatiska kustlandskap: 70 meter höga klippavsatser mot Öresund och Kattegatt, fyrar och en unik geologi som inte finns någon annanstans i Sverige. Naturreservatet är välskött med ett nätverk av markerade leder.',
     tips: [
       'Bil rekommenderas; kollektivtrafik finns men är gles.',
       'Mölle fyren ger en av de bästa utsikterna längs hela Skåneleden.',
@@ -655,7 +655,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Hovs Hallar i nordvästra Skåne är ett dramatiskt klipplandskap längs Skåneleden med klippformationer och havsklippor som ger en oväntad vildmarkskänsla i södra Sverige.',
     tips: [
       'Bil rekommenderas.',
-      'Del av Skåneleden — kan kombineras med Kullaberg.',
+      'Del av Skåneleden. Kan kombineras med Kullaberg.',
     ],
   },
 
@@ -663,8 +663,8 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Sandhammaren på sydöstra Skåne är ett dynamiskt dynlandskap med ständigt rörlig sand och ett av Skånes bäst kända havslandskap. Vandringen längs stranden och dynerna ger en vild, exponerad känsla.',
     tips: [
       'Bil eller buss från Ystad.',
-      'Bra fågelskådning — Sandhammarens fågelstation är aktiv.',
-      'Dynerna förflyttas — håll dig till markerade stigar.',
+      'Bra fågelskådning, Sandhammarens fågelstation är aktiv.',
+      'Dynerna förflyttas. Håll dig till markerade stigar.',
     ],
   },
 
@@ -674,12 +674,12 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     tips: [
       'Buss från Simrishamn.',
       'Nationalparkscentrum vid ingången ger information om flora och fauna.',
-      'Bra för familjer — lagom svår klättring.',
+      'Bra för familjer, lagom svår klättring.',
     ],
   },
 
   'ales-stenar': {
-    body: 'Ales stenar på sydkusten av Skåne är ett av de mest imponerande forntidsminnena i Sverige — ett stenskepp om 67 meter längs krönet av en klippa med panorama mot Östersjön. Kortvandringen dit är enkel men upplevelsen är stark.',
+    body: 'Ales stenar på sydkusten av Skåne är ett av de mest imponerande forntidsminnena i Sverige, ett stenskepp om 67 meter längs krönet av en klippa med panorama mot Östersjön. Kortvandringen dit är enkel men upplevelsen är stark.',
     tips: [
       'Buss från Ystad eller Simrishamn.',
       'Informationscenter nere vid parkeringen.',
@@ -708,8 +708,8 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'falsterbo': {
     body: 'Falsterbo halvö i sydvästra Skåne är en av Europas viktigaste fågelstationer under höstmigration. Vandringen längs strandlinjen kombineras naturligt med ett besök vid fågelstationen för den som är intresserad av natur.',
     tips: [
-      'Buss från Malmö (~50 min) — linje 100 eller SkåneExpressen 15.',
-      'Bäst under september–oktober för fågelskådning.',
+      'Buss från Malmö (~50 min), linje 100 eller SkåneExpressen 15.',
+      'Bäst under september till oktober för fågelskådning.',
       'Ljunghusen och Skanör är charmiga byar längs halvön.',
     ],
   },
@@ -734,11 +734,11 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── SÖRMLAND ──────────────────────────────────────────────────────────
 
   stendorren: {
-    body: 'Stendörren naturreservat i Sörmland är ett av de mest dramatiska kustlandskapen längs Östersjöns västra kust. En hängbro, klippstränder och hav som omger ett labyrinthiskt ölandskap — känt bland vandrare men ännu inte massbetucket.',
+    body: 'Stendörren naturreservat i Sörmland är ett av de mest dramatiska kustlandskapen längs Östersjöns västra kust. En hängbro, klippstränder och hav som omger ett labyrinthiskt ölandskap, känt bland vandrare men ännu inte massbetucket.',
     tips: [
       'Tåg → Nyköping, sedan lokal buss (kontrollera tidtabell).',
-      'Hängbron är ett fotograferat landmärke — gå tidigt för lugn.',
-      'Bra för mer erfarna vandrare — terrängen är utmanande på delar.',
+      'Hängbron är ett fotograferat landmärke, gå tidigt för lugn.',
+      'Bra för mer erfarna vandrare, terrängen är utmanande på delar.',
     ],
   },
 
@@ -755,14 +755,14 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Mörkö nås via bro från fastlandet och har en blandad skog och klippkust som är genuint Sörmlandsk. Lite känt utanför regionen men välkomnande för den som söker lugn vandring utan färjor och planering.',
     tips: [
       'Tåg → Södertälje, sedan buss via bron till ön.',
-      'Ingen servering — ta med matsäck.',
+      'Ingen servering. Ta med matsäck.',
     ],
   },
 
   'asko-sormland': {
     body: 'Askö är Naturvårdsverkets forskningsstation och öppen för besök under sommarhalvåret. En stilla och nästan folktomt ö med välhållen natur och ett unikt läge som en av Östersjöns bäst dokumenterade öar.',
     tips: [
-      'Båt från Nyköping-hållet — kontrollera aktuell tidtabell.',
+      'Båt från Nyköping-hållet. Kontrollera aktuell tidtabell.',
       'Forskarstationen är synlig från leden.',
       'Ta med mat och vatten.',
     ],
@@ -779,17 +779,17 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Sörmlandsledens kustdel är ett av de mer krävande och belönande vandringsalternativen längs Östersjöns västra sida. De välkarterade etapperna tar dig längs kust och inlandsvatten i en natur som är relativt okänd utanför regionen.',
     tips: [
       'Ta del av Sörmlandsledens kartmaterial.',
-      'Planera övernattning — etapperna är långa.',
-      'Bäst maj–juni och september.',
+      'Planera övernattning, etapperna är långa.',
+      'Bäst maj till juni och september.',
     ],
   },
 
   'bravikenbranten': {
     // KÄLLA: Länsstyrelsen Östergötland, Bråvikenbranten naturreservat (2007, 181,6 ha), läst 2026-09-14
-    body: 'Bråvikenbranten är Bråvikens branta nordsida i Norrköpings kommun, naturreservat sedan 2007. Här står grova tallar och knotiga torrträd på klippängar med kalkgynnad flora, och två grottor — Rövargrottan och Kopparbogrottan — ligger längs leden. Sörmlandsleden går genom området; leden från parkeringen till Kopparbo är 5,5 km och beskrivs av Länsstyrelsen som särskilt krävande, med branta stigningar. Utsiktsplats med vindskydd och grillplats på vägen.',
+    body: 'Bråvikenbranten är Bråvikens branta nordsida i Norrköpings kommun, naturreservat sedan 2007. Här står grova tallar och knotiga torrträd på klippängar med kalkgynnad flora, och två grottor, Rövargrottan och Kopparbogrottan, ligger längs leden. Sörmlandsleden går genom området; leden från parkeringen till Kopparbo är 5,5 km och beskrivs av Länsstyrelsen som särskilt krävande, med branta stigningar. Utsiktsplats med vindskydd och grillplats på vägen.',
     tips: [
-      'Parkering Skvättan har bara sju platser — kom tidigt eller ta bussen Krokek–Kvarsebo (600 m promenad).',
-      'Kopparbogrottan har djupa sprickor och trånga passager — gå inte in ensam.',
+      'Parkering Skvättan har bara sju platser. Kom tidigt eller ta bussen Krokek till Kvarsebo (600 m promenad).',
+      'Kopparbogrottan har djupa sprickor och trånga passager, gå inte in ensam.',
       'Ca 6 km från Kolmårdens djurpark via väg 903.',
     ],
   },
@@ -804,7 +804,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── ÖSTERGÖTLAND ──────────────────────────────────────────────────────
 
   'sant-anna-kust': {
-    body: 'S:t Anna skärgård är en av Sveriges vackraste — 6 000 öar och kobbar i ett öppet, vindpinat landskap utan motorvägar och massolyckor. Vandringen längs kusten och på de tillgängliga öarna ger en känsla av äkta skärgård långt från turistflöden.',
+    body: 'S:t Anna skärgård är en av Sveriges vackraste: 6 000 öar och kobbar i ett öppet, vindpinat landskap utan motorvägar och massolyckor. Vandringen längs kusten och på de tillgängliga öarna ger en känsla av äkta skärgård långt från turistflöden.',
     tips: [
       'Bil eller buss till S:t Anna-hållet, sedan sommarbåt.',
       'Boka båt i förväg under sommarsäsong.',
@@ -861,7 +861,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'atvidaberg-kust': {
-    body: 'Åtvidabergs kust är en östgötsk kustsida med varierat landskap och leder längs Östersjöns västra fjordar. Lugnt och genuint — bra alternativ för den som söker östgötsk natur utan turistbroschyrer.',
+    body: 'Åtvidabergs kust är en östgötsk kustsida med varierat landskap och leder längs Östersjöns västra fjordar. Lugnt och genuint, bra alternativ för den som söker östgötsk natur utan turistbroschyrer.',
     tips: [
       'Bil rekommenderas.',
     ],
@@ -918,7 +918,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'mörbylånga-kust': {
-    body: 'Mörbylånga på västra Öland har ett flackt kustlandskap längs Kalmarsund med alvarnaturen bakom och vattnet framför — en ölandsk kustupplevelse i en mer lättgången terräng.',
+    body: 'Mörbylånga på västra Öland har ett flackt kustlandskap längs Kalmarsund med alvarnaturen bakom och vattnet framför, en ölandsk kustupplevelse i en mer lättgången terräng.',
     tips: [
       'Tåg → Kalmar, sedan buss på Öland.',
     ],
@@ -953,7 +953,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     tips: [
       'Sommarbåt från Oskarshamn eller Byxelkrok på Öland.',
       'Guidning på ön sommartid.',
-      'Begränsad tillgång — kolla antal besökare.',
+      'Begränsad tillgång. Kolla antal besökare.',
     ],
   },
 
@@ -963,7 +963,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Haverdal naturreservat norr om Halmstad är ett dramatiskt dynlandskap längs Kattegatts kust med vandringsleder genom dynerna och längs den exponerade sandstranden. En av Hallands bästa naturupplevelser.',
     tips: [
       'Tåg → Halmstad, sedan buss norrut (~30 min).',
-      'Dynerna är känsliga — håll dig till markerade spår.',
+      'Dynerna är känsliga. Håll dig till markerade spår.',
       'Badmöjligheter längs stranden sommartid.',
     ],
   },
@@ -978,7 +978,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'kungsbackafjord-halland': {
-    body: 'Kungsbackakusten söder om Göteborg har en varierad kustlinje med klippstränder och leder som ansluter till Kattegattleden — en av Sveriges nyare kustleder längs hela Hallands kuststräcka.',
+    body: 'Kungsbackakusten söder om Göteborg har en varierad kustlinje med klippstränder och leder som ansluter till Kattegattleden, en av Sveriges nyare kustleder längs hela Hallands kuststräcka.',
     tips: [
       'Pendeltåg Göteborg → Kungsbacka.',
       'Del av Kattegattleden för den som vill vandra längre.',
@@ -989,7 +989,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Fjärås Bräcka söder om Kungsbacka är ett dramatiskt isräfsat backlandskap med havsvy och en känsla av forntid i ett unikt geologiskt landskap längs Hallands kust.',
     tips: [
       'Bil rekommenderas.',
-      'Geologiskt intressant — ta med karta.',
+      'Geologiskt intressant. Ta med karta.',
     ],
   },
 
@@ -1005,7 +1005,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Falkenbergs kustled längs Kattegatts sandiga strandlinje kombinerar lättvandrad kustterräng med god service i den charmiga kuststaden.',
     tips: [
       'Tåg → Falkenberg.',
-      'Laxfiske i Ätran är välkänt — bra komplement till vandringen.',
+      'Laxfiske i Ätran är välkänt, bra komplement till vandringen.',
     ],
   },
 
@@ -1013,7 +1013,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
     body: 'Laholmsbukten söder om Falkenberg är Hallands mest exponerade sandstrandssträcka med kattegattsvindarna som konstant sällskap längs kustleden.',
     tips: [
       'Bil rekommenderas.',
-      'Bäst under lågsäsong — populärt sommarområde.',
+      'Bäst under lågsäsong, populärt sommarområde.',
     ],
   },
 

@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const verb = activity.shortName.toLowerCase()
   return {
-    title: `${activity.name} på ${island.name} — guide, tips och bästa säsong`,
+    title: `${activity.name} på ${island.name}: guide, tips och bästa säsong`,
     description: `${verb} på ${island.name}: vad du kan göra, var du startar och vad du behöver packa. ${island.tagline}`,
     keywords: [`${verb} ${island.name.toLowerCase()}`, `${island.name.toLowerCase()} ${verb}`, `${verb} skärgården`, (island.regionLabel ?? '').toLowerCase()],
     alternates: { canonical: `https://svalla.se/aktivitet/${activity.slug}/${island.slug}` },
@@ -165,7 +165,7 @@ export default async function ActivityIslandPage({ params }: Props) {
           borderRadius: 14, padding: '20px 22px', marginBottom: 28,
         }}>
           <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 10px' }}>
-            Packlista — {activity.shortName.toLowerCase()}
+            Packlista, {activity.shortName.toLowerCase()}
           </h2>
           <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 8 }}>
             {activity.whatToBring.map(item => (

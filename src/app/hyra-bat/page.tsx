@@ -9,7 +9,7 @@ import { emojiToIcon } from '@/lib/iconMap'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Hyra båt i Sverige 2026 – guide till båtuthyrning',
+  title: 'Hyra båt i Sverige 2026: guide till båtuthyrning',
   description: 'Komplett guide till båtuthyrning i Sverige. Priser, licenskrav och de bästa hyrbåtsbolagen i Stockholms skärgård, Göteborg, Gotland och Bohuslän.',
   keywords: [
     'hyra båt',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/hyra-bat' },
   openGraph: {
-    title: 'Hyra båt i Sverige 2026 – komplett guide',
+    title: 'Hyra båt i Sverige 2026: komplett guide',
     description: 'Priser, licenskrav och de bästa hyrbåtsbolagen i Stockholms skärgård, Göteborg, Gotland och Bohuslän.',
     url: 'https://svalla.se/hyra-bat',
     type: 'website',
@@ -40,11 +40,11 @@ const FAQ_ITEMS = [
   {
     q: 'Vad kostar det att hyra båt i Sverige?',
     // KÄLLA: observerat i 18 öppna annonser hos Ship O'Hoi och Click&Boat, Stockholm, avlästa 2026-08-10
-    a: 'I öppna annonser för Stockholm (avlästa 10 augusti 2026) låg små motorbåtar på 995–5 869 kr/dag, mellanklassen 6–8 m på 2 250–7 337 kr/dag och segelbåt 31–36 fot på 5 000–5 890 kr/dag. Spannen är breda för att samma båtstorlek kan kosta flera gånger mer hos en förmedlare än en annan — jämför alltid. Bränsle tillkommer nästan alltid.',
+    a: 'I öppna annonser för Stockholm (avlästa 10 augusti 2026) låg små motorbåtar på 995 till 5 869 kr/dag, mellanklassen 6 till 8 m på 2 250 till 7 337 kr/dag och segelbåt 31 till 36 fot på 5 000 till 5 890 kr/dag. Spannen är breda för att samma båtstorlek kan kosta flera gånger mer hos en förmedlare än en annan, jämför alltid. Bränsle tillkommer nästan alltid.',
   },
   {
     q: 'Kan man övernatta ombord när man hyr båt?',
-    a: 'Ja. Kajutbåtar och segelbåtar hyrs ofta för flerdagarsturer med övernattning ombord. Ankring i naturhamnar är gratis. Gästhamnar kostar 100–350 kr/natt. Fråga hyrbåtsbolaget om flerdagspriser – de är ofta lägre än enkel dagshyra multiplicerat.',
+    a: 'Ja. Kajutbåtar och segelbåtar hyrs ofta för flerdagarsturer med övernattning ombord. Ankring i naturhamnar är gratis. Gästhamnar kostar 100 till 350 kr/natt. Fråga hyrbåtsbolaget om flerdagspriser. De är ofta lägre än enkel dagshyra multiplicerat.',
   },
   {
     q: 'Vilken plats är bäst för nybörjare att hyra båt i Sverige?',
@@ -102,7 +102,7 @@ export default function HyraBatPage() {
         {/* Intro */}
         <section style={{ marginBottom: 48 }}>
           <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: '0 0 16px' }}>
-            Sverige har närmare 45 000 km kustlinje räknat med öarna, och 221 800 öar (SCB) – och du behöver inget körkort för att utforska dem med hyrbåt. En vanlig motorbåt, en sjökortsapp och en halvdag är allt som krävs för en minnesvärd dag bland öarna. Det är en av landets mest underskattade upplevelser.
+            Sverige har närmare 45 000 km kustlinje räknat med öarna, och 221 800 öar (SCB), och du behöver inget körkort för att utforska dem med hyrbåt. En vanlig motorbåt, en sjökortsapp och en halvdag är allt som krävs för en minnesvärd dag bland öarna. Det är en av landets mest underskattade upplevelser.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: 0 }}>
             Den här guiden täcker hyra båt i alla Nordens viktigaste vatten: Stockholms skärgård, Göteborg och Bohuslän, Gotland och Höga Kusten. Välj destination nedan för priser, licenskrav och de bästa hyrbåtsbolagen.
@@ -143,10 +143,10 @@ export default function HyraBatPage() {
           <div style={{ background: 'var(--white)', borderRadius: 14, border: '1px solid var(--surface-3)', overflow: 'hidden' }}>
             {[
               // KÄLLA: observerat i 18 öppna annonser hos Ship O'Hoi och Click&Boat, Stockholm, avlästa 2026-08-10
-              { type: 'Liten motorbåt (4–6 m)', price: '995–5 869 kr/dag', note: '4 annonser — lägst hos Ship O\'Hoi, högst hos Click&Boat' },
-              { type: 'Mellanstor motorbåt (6–8 m)', price: '2 250–7 337 kr/dag', note: '9 annonser, kajut i övre delen' },
-              { type: 'Segelbåt 31–36 fot', price: '5 000–5 890 kr/dag', note: '3 annonser, kräver seglingsvana' },
-              { type: 'Segelbåt 45–46 fot', price: '9 000–14 000 kr/dag', note: '4 annonser, havskryssare' },
+              { type: 'Liten motorbåt (4 till 6 m)', price: '995 till 5 869 kr/dag', note: '4 annonser: lägst hos Ship O\'Hoi, högst hos Click&Boat' },
+              { type: 'Mellanstor motorbåt (6 till 8 m)', price: '2 250 till 7 337 kr/dag', note: '9 annonser, kajut i övre delen' },
+              { type: 'Segelbåt 31 till 36 fot', price: '5 000 till 5 890 kr/dag', note: '3 annonser, kräver seglingsvana' },
+              { type: 'Segelbåt 45 till 46 fot', price: '9 000 till 14 000 kr/dag', note: '4 annonser, havskryssare' },
             ].map((row, i) => (
               <div key={i} style={{
                 display: 'grid', gridTemplateColumns: '1fr auto',
@@ -161,7 +161,7 @@ export default function HyraBatPage() {
               </div>
             ))}
           </div>
-          <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 8, lineHeight: 1.5 }}>Bränsle tillkommer alltid. Priser varierar med säsong och bolag – juli är 20–30% dyrare.</p>
+          <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 8, lineHeight: 1.5 }}>Bränsle tillkommer alltid. Priser varierar med säsong och bolag, juli är 20 till 30% dyrare.</p>
         </section>
 
         {/* Förmedlare vi hämtat priser från */}
@@ -182,7 +182,7 @@ export default function HyraBatPage() {
               {
                 namn: 'Click&Boat',
                 url: 'https://www.clickandboat.com/se/hyra-bat/sverige/stockholms-l%C3%A4n',
-                text: 'Marknadsplats där privatpersoner och företag hyr ut. Störst utbud, men mest skepparcharter per tur — vid vår avläsning var få annonser ren dygnshyra, och priserna låg klart högre än hos fasta uthyrare.',
+                text: 'Marknadsplats där privatpersoner och företag hyr ut. Störst utbud, men mest skepparcharter per tur: vid vår avläsning var få annonser ren dygnshyra, och priserna låg klart högre än hos fasta uthyrare.',
               },
             ].map((f, i) => (
               <a key={i} href={f.url} target="_blank" rel="noopener noreferrer"

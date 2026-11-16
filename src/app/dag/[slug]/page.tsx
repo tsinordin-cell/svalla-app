@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const plan = UPPLÄGG.find(u => u.slug === slug)
   if (!plan) return {}
   const island = getIsland(slug)
-  const title = `Dagstur till ${plan.name} — vad göra, mat & transport`
+  const title = `Dagstur till ${plan.name}: vad göra, mat & transport`
   const description = `Komplett dagstursguide till ${plan.name}: ${plan.desc} ${plan.duration}, ${plan.distance}.`
   return {
     title,
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         images: [{
           url: `https://svalla.se/api/og/island/${slug}`,
           width: 1200, height: 630,
-          alt: `${plan.name} — dagstur i Stockholms skärgård`,
+          alt: `${plan.name}, dagstur i Stockholms skärgård`,
         }],
       } : {}),
     },

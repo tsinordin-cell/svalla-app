@@ -6,12 +6,12 @@ import BingoClient from './BingoClient'
 import { BINGO_ITEMS } from './bingo-data'
 
 export const metadata: Metadata = {
-  title: 'Skärgårdsbingo 2026 — 25 utmaningar för en perfekt sommar',
+  title: 'Skärgårdsbingo 2026 till 25 utmaningar för en perfekt sommar',
   description: 'Skärgårdens bingobricka: 25 öar, aktiviteter och utmaningar att bocka av i sommar. Sandhamn, havsbastu, sandstrand, fyr, säl. Dela din bricka.',
   keywords: ['skärgårdsbingo', 'sommarutmaning skärgård', 'svalla bingo', 'bucket list skärgård', 'sommar 2026 stockholm'],
   alternates: { canonical: 'https://svalla.se/bingo' },
   openGraph: {
-    title: 'Skärgårdsbingo 2026 — 25 utmaningar',
+    title: 'Skärgårdsbingo 2026 till 25 utmaningar',
     description: 'Hur många kan du bocka av i sommar?',
     url: 'https://svalla.se/bingo',
   },
@@ -46,7 +46,7 @@ export default function BingoPage() {
             Skärgårdsbingo
           </h1>
           <p style={{ fontSize: 16, lineHeight: 1.55, marginTop: 12, maxWidth: 640, opacity: 0.92 }}>
-            25 utmaningar — öar, aktiviteter och klassiker. Bocka av allt eftersom du gör dem. Dina markeringar sparas på enheten.
+            25 utmaningar: öar, aktiviteter och klassiker. Bocka av allt eftersom du gör dem. Dina markeringar sparas på enheten.
           </p>
         </div>
       </header>

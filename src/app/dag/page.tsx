@@ -4,8 +4,8 @@ import IslandWeather from '@/components/IslandWeather'
 import { UPPLÄGG, WEATHER_TAG, tagColor } from './dag-data'
 
 export const metadata: Metadata = {
-  title: 'Dagsupplägg i skärgården — vad gör man idag?',
-  description: 'Utvalda dagsupplägg för Stockholms skärgård — familj, par, seglare och nybörjare. Aktuellt väder och direktlänkar till öarna.',
+  title: 'Dagsupplägg i skärgården, vad gör man idag?',
+  description: 'Utvalda dagsupplägg för Stockholms skärgård: familj, par, seglare och nybörjare. Aktuellt väder och direktlänkar till öarna.',
   openGraph: {
     title: 'Dagsupplägg i skärgården',
     description: 'Vad gör man idag i skärgården? Utvalda upplägg för alla typer av utflykter.',
@@ -46,7 +46,7 @@ export default function DagPage() {
             fontSize: 15, color: 'rgba(255,255,255,0.75)',
             margin: '0 0 16px', lineHeight: 1.55, maxWidth: 520,
           }}>
-            Utvalda dagsupplägg för alla typer av utflykter — barnfamiljer,
+            Utvalda dagsupplägg för alla typer av utflykter: barnfamiljer,
             seglare, par och nybörjare.
           </p>
 
@@ -62,7 +62,7 @@ export default function DagPage() {
           fontSize: 14, color: 'var(--txt2)', lineHeight: 1.7,
           margin: '0 0 28px', maxWidth: 620,
         }}>
-          Upplägg för dagstur från Stockholm — med Waxholmsbåten, egna båten eller
+          Upplägg för dagstur från Stockholm: med Waxholmsbåten, egna båten eller
           hyrbåt. Alla avstånd är sjömil från Stockholm om inget annat anges.
           Vädret ovan gäller innerskärgården just nu.
         </p>
@@ -168,8 +168,8 @@ export default function DagPage() {
           <p style={{
             fontSize: 14, color: 'var(--txt2)', margin: '0 0 14px', lineHeight: 1.6,
           }}>
-            Thorkel är skeppare från Möja. Berätta vad du vill göra — barnfamilj,
-            romantisk kväll, segling från Ingarö — så svarar han konkret.
+            Thorkel är skeppare från Möja. Berätta vad du vill göra: barnfamilj,
+            romantisk kväll, segling från Ingarö, så svarar han konkret.
           </p>
           <Link href="/guide" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -194,7 +194,7 @@ export default function DagPage() {
               Planera en rutt
             </div>
             <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.4 }}>
-              Välj start, mål och intressen — Svalla hittar stopp längs vägen.
+              Välj start, mål och intressen | Svalla hittar stopp längs vägen.
             </div>
           </div>
           <Link href="/planera/ny" style={{
@@ -220,7 +220,7 @@ export default function DagPage() {
               Nästa avgång
             </div>
             <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.4 }}>
-              Waxholmsbolaget och Cinderellabåtarna — tidtabeller och linjer.
+              Waxholmsbolaget och Cinderellabåtarna, tidtabeller och linjer.
             </div>
           </div>
           <Link href="/farjor" style={{

@@ -26,42 +26,42 @@ import Icon from '@/components/Icon'
 // SEO-metadata per region
 export const REGION_META: Record<GuideRegion, { title: string; description: string; keywords: string }> = {
   stockholm: {
-    title: 'Guider till Stockholms skärgård – allt du behöver veta',
+    title: 'Guider till Stockholms skärgård: allt du behöver veta',
     description: 'Kompletta guider till Stockholms skärgård: Waxholmsbolaget, bästa öar, kajakpaddling, havsbastu och övernattning. Allt samlat på ett ställe.',
     keywords: 'guider stockholms skärgård, stockholms skärgård tips, vad göra stockholms skärgård',
   },
   goteborg: {
-    title: 'Guider till Göteborg & Bohuslän – kust och skärgård',
+    title: 'Guider till Göteborg & Bohuslän: kust och skärgård',
     description: 'Guider till Bohusläns klippkust: Marstrand, Smögen, Koster, hummersafari och ostronsäsong. Allt om Västkustens skärgård.',
     keywords: 'guider bohuslän, guider göteborg skärgård, bohuslän tips klippkust',
   },
   gotland: {
-    title: 'Guider till Gotland – raukar, Visby och sommarlivet',
+    title: 'Guider till Gotland: raukar, Visby och sommarlivet',
     description: 'Allt om Gotland: färja, Visby medeltidsstad, raukar på Fårö, badplatser och cykelleder. Kompletta guider för sommarsemestern.',
     keywords: 'guider gotland, gotland tips semestern, vad göra gotland',
   },
   oland: {
-    title: 'Guider till Öland – Alvaret, Böda sand och cykelleder',
+    title: 'Guider till Öland: Alvaret, Böda sand och cykelleder',
     description: 'Allt om Öland: Ölandsbron, Alvaret, Böda sand, Borgholm och de bästa cykelled. Guider för din Ölandssemester.',
     keywords: 'guider öland, öland tips, vad göra öland cykling',
   },
   hogakusten: {
-    title: 'Guider till Höga Kusten – UNESCO-världsarvet i Norrland',
+    title: 'Guider till Höga Kusten: UNESCO-världsarvet i Norrland',
     description: 'Guider till Höga Kusten: Skuleskogen, klippor, surströmming och Ulvön. Allt du behöver veta om Norrlandskusten.',
     keywords: 'guider höga kusten, höga kusten tips, skuleskogen vandring',
   },
   sydkusten: {
-    title: 'Guider till Sydkusten & Halland – Karlskrona, Varberg och Båstad',
+    title: 'Guider till Sydkusten & Halland: Karlskrona, Varberg och Båstad',
     description: 'Guider till Sveriges sydkust: Karlskrona UNESCO-världsarv, Varbergs fästning, Grebbestad och Halmstad. Tips för hela sydkusten.',
     keywords: 'guider sydkusten, karlskrona guide, varberg guide halland',
   },
   utlandet: {
-    title: 'Guider till Åland & Bornholm – skärgård utomlands',
+    title: 'Guider till Åland & Bornholm: skärgård utomlands',
     description: 'Guider till Åland och Bornholm: färja från Stockholm, vad du kan göra och varför dessa öar är värda ett besök.',
     keywords: 'guide åland, åland från stockholm, bornholm guide från sverige',
   },
   sverige: {
-    title: 'Praktiska guider för kustsemestern – allemansrätten, packlistan & mer',
+    title: 'Praktiska guider för kustsemestern: allemansrätten, packlistan & mer',
     description: 'Praktiska guider för alla som ska ut till kusten: allemansrätten, packlistan, hyra båt och vad det kostar. Gäller hela Sverige.',
     keywords: 'praktiska guider skärgård, allemansrätten sjön, packlista skärgård',
   },

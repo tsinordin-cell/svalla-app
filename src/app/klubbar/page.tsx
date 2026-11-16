@@ -153,7 +153,7 @@ export default function KlubbarPage() {
  <EmptyState
  icon="user"
  title="Logga in för dina klubbar"
- body="Klubbar är privata gemenskaper — en för seglarklubben, en för familjen, en för ditt båtmässa-gäng."
+ body="Klubbar är privata gemenskaper: en för seglarklubben, en för familjen, en för ditt båtmässa-gäng."
  cta={{ href: '/logga-in', label: 'Logga in' }}
  />
  )}

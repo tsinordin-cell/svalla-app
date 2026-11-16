@@ -4,7 +4,7 @@ import { ALL_ISLANDS } from '@/app/o/island-data'
 import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
-  title: 'Kajak i Stockholms skärgård — guide för nybörjare och erfarna',
+  title: 'Kajak i Stockholms skärgård: guide för nybörjare och erfarna',
   description: 'Allt om kajakpaddling i skärgården: bästa öar, säkerhetstips, utrustning och uthyrning. Perfekt för nybörjare och erfarna paddlare.',
   keywords: [
     'kajak stockholms skärgård',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/aktivitet/kajak' },
   openGraph: {
-    title: 'Kajak i Stockholms skärgård — guide för nybörjare och erfarna',
+    title: 'Kajak i Stockholms skärgård: guide för nybörjare och erfarna',
     description: 'Hitta de bästa öarna för kajakpaddling, var du hyr kajak och vad du behöver veta om säkerhet i skärgårdens vatten.',
     url: 'https://svalla.se/aktivitet/kajak',
     type: 'website',
@@ -35,31 +35,31 @@ const kajakOar = ALL_ISLANDS.filter(i => i.activity_meta?.kajak?.rental)
 const FAQ_ITEMS = [
   {
     q: 'Kan nybörjare paddla kajak i Stockholms skärgård?',
-    a: 'Ja — innerskärgårdens lugna vikar och sund är utmärkta för nybörjare. Börja med en guidad tur eller hyr kajak vid en av de etablerade uthyrningsplatserna på Sandhamn, Utö eller Grinda. Undvik öppet vatten och passa på vindar. Halvdagsturer på 2–4 timmar är lagom för första gången.',
+    a: 'Ja, innerskärgårdens lugna vikar och sund är utmärkta för nybörjare. Börja med en guidad tur eller hyr kajak vid en av de etablerade uthyrningsplatserna på Sandhamn, Utö eller Grinda. Undvik öppet vatten och passa på vindar. Halvdagsturer på 2 till 4 timmar är lagom för första gången.',
   },
   {
     q: 'Var hyr man kajak i Stockholms skärgård?',
-    a: 'Kajak hyrs vid hamnen på Sandhamn, Utö, Grinda, Vaxholm och Möja. Priset ligger på 300–500 kr för halvdag och 500–800 kr för heldag. På sommaren, boka i förväg — uthyrningen tar slut tidigt på populära dagar. Utö har störst utbud med ca 50 kajaker.',
+    a: 'Kajak hyrs vid hamnen på Sandhamn, Utö, Grinda, Vaxholm och Möja. Priset ligger på 300 till 500 kr för halvdag och 500 till 800 kr för heldag. På sommaren, boka i förväg, uthyrningen tar slut tidigt på populära dagar. Utö har störst utbud med ca 50 kajaker.',
   },
   {
     q: 'Vilken utrustning behöver man för kajak i skärgården?',
-    a: 'Flytväst är obligatorisk och ingår alltid i uthyrningen. Paddeljacka eller våtdräkt rekommenderas för tidigt på säsongen (maj–juni) när vattnet är kallt. Ta med solskydd, vatten, lätt mat och en drybag för värdesaker. En visselpipa och mobiltelefon i vattentätt fodral är bra säkerhetsutrustning.',
+    a: 'Flytväst är obligatorisk och ingår alltid i uthyrningen. Paddeljacka eller våtdräkt rekommenderas för tidigt på säsongen (maj till juni) när vattnet är kallt. Ta med solskydd, vatten, lätt mat och en drybag för värdesaker. En visselpipa och mobiltelefon i vattentätt fodral är bra säkerhetsutrustning.',
   },
   {
     q: 'Hur svårt är det att paddla kajak i skärgården?',
-    a: 'Grunderna i kajakpaddling lär man sig på 15–20 minuter. Det fysiskt krävande är att paddla mot vind — på en lugn dag i innerskärgården klarar de flesta 8–12 km bekvämt. Yttre skärgården med starka vindbyar och öppet vatten är för erfarna paddlare.',
+    a: 'Grunderna i kajakpaddling lär man sig på 15 till 20 minuter. Det fysiskt krävande är att paddla mot vind, på en lugn dag i innerskärgården klarar de flesta 8 till 12 km bekvämt. Yttre skärgården med starka vindbyar och öppet vatten är för erfarna paddlare.',
   },
   {
     q: 'Vad kostar det att paddla kajak i skärgården?',
-    a: 'Kajakhyrning kostar 300–500 kr för halvdag (4 h) och 500–800 kr för heldag. Guidade turer med instruktör kostar 600–1 200 kr per person. Många aktörer erbjuder familjepaket. Räkna också med eventuell färjebiljett till ön.',
+    a: 'Kajakhyrning kostar 300 till 500 kr för halvdag (4 h) och 500 till 800 kr för heldag. Guidade turer med instruktör kostar 600 till 1 200 kr per person. Många aktörer erbjuder familjepaket. Räkna också med eventuell färjebiljett till ön.',
   },
   {
     q: 'Är kajak i skärgården säkert för barn?',
-    a: 'Ja, för barn över ca 5–6 år. De flesta uthyrningsplatser erbjuder tandemkajak där ett barn sitter med en vuxen. Livräddningsväst i barnstorlek ingår alltid. Håll dig i skyddade vikar och välj lugna dagar. Lugnast är innerskärgårdens sund i juli och augusti.',
+    a: 'Ja, för barn över ca 5 till 6 år. De flesta uthyrningsplatser erbjuder tandemkajak där ett barn sitter med en vuxen. Livräddningsväst i barnstorlek ingår alltid. Håll dig i skyddade vikar och välj lugna dagar. Lugnast är innerskärgårdens sund i juli och augusti.',
   },
   {
     q: 'Vilka leder är bäst för kajakpaddling i skärgården?',
-    a: 'Populära kajakleder: Sandhamn-runda (5–7 km), Grinda–Finnhamn (10 km), Utö–Ålö–Rånö (15 km), Vaxholm–Resarö–Rindö (8 km). Alla dessa leder håller sig i relativt skyddade vatten. Skärgårdsstiftelsens naturhamnar längs leden är perfekta rastplatser.',
+    a: 'Populära kajakleder: Sandhamn-runda (5 till 7 km), Grinda till Finnhamn (10 km), Utö, Ålö, Rånö (15 km), Vaxholm, Resarö, Rindö (8 km). Alla dessa leder håller sig i relativt skyddade vatten. Skärgårdsstiftelsens naturhamnar längs leden är perfekta rastplatser.',
   },
 ]
 
@@ -67,12 +67,12 @@ const STEG = [
   {
     nr: 1,
     titel: 'Välj ö och boka uthyrning',
-    text: 'Sandhamn, Utö och Grinda är de enklaste startpunkterna med etablerad uthyrning. Boka uthyrning i förväg online — speciellt i juli. Kontrollera väderprognoser (vindstyrka under 5 m/s är bra för nybörjare).',
+    text: 'Sandhamn, Utö och Grinda är de enklaste startpunkterna med etablerad uthyrning. Boka uthyrning i förväg online, speciellt i juli. Kontrollera väderprognoser (vindstyrka under 5 m/s är bra för nybörjare).',
   },
   {
     nr: 2,
     titel: 'Ta dig till ön',
-    text: 'Ta Waxholmsbolaget från Strömkajen eller Stavsnäs. Kajaken väntar vid uthyrningsstället vid hamnen — du behöver inte ta med något eget.',
+    text: 'Ta Waxholmsbolaget från Strömkajen eller Stavsnäs. Kajaken väntar vid uthyrningsstället vid hamnen. Du behöver inte ta med något eget.',
   },
   {
     nr: 3,
@@ -82,12 +82,12 @@ const STEG = [
   {
     nr: 4,
     titel: 'Paddla!',
-    text: 'Börja med att paddla en kort sträcka från hamnen för att testa. Håll dig nära strandlinjen och i lä. En halvdag ger dig 8–12 km beroende på vind och paustid.',
+    text: 'Börja med att paddla en kort sträcka från hamnen för att testa. Håll dig nära strandlinjen och i lä. En halvdag ger dig 8 till 12 km beroende på vind och paustid.',
   },
   {
     nr: 5,
     titel: 'Lämna tillbaka och ät',
-    text: 'Lämna kajaken i tid — uthyrningsplatser har strikta återlämningstider. Avsluta med lunch eller fika på ön innan du tar båten tillbaka.',
+    text: 'Lämna kajaken i tid, uthyrningsplatser har strikta återlämningstider. Avsluta med lunch eller fika på ön innan du tar båten tillbaka.',
   },
 ]
 
@@ -130,7 +130,7 @@ export default function KajakPage() {
   const speakable = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'Kajak i Stockholms skärgård — guide för nybörjare och erfarna',
+    name: 'Kajak i Stockholms skärgård: guide för nybörjare och erfarna',
     url: 'https://svalla.se/aktivitet/kajak',
     speakable: {
       '@type': 'SpeakableSpecification',
@@ -167,7 +167,7 @@ export default function KajakPage() {
             Kajak i Stockholms skärgård
           </h1>
           <p style={{ color: 'var(--white)', opacity: 0.9, fontSize: 17, lineHeight: 1.65, margin: 0, maxWidth: 580 }}>
-            Paddla bland tusentals öar, klippor och naturhamnar. Stockholms skärgård är ett av Europas bästa kajakrevir — nås direkt med kollektivtrafik.
+            Paddla bland tusentals öar, klippor och naturhamnar. Stockholms skärgård är ett av Europas bästa kajakrevir, nås direkt med kollektivtrafik.
           </p>
           <div style={{ display: 'flex', gap: 10, marginTop: 20, flexWrap: 'wrap' }}>
             {['Nybörjarvänligt', 'Uthyrning på plats', 'Direktbåt från stan', 'Barn OK från 5 år'].map(t => (
@@ -182,7 +182,7 @@ export default function KajakPage() {
         {/* Intro-text */}
         <section style={{ marginBottom: 40 }}>
           <p id="kajak-intro" style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: 0 }}>
-            Stockholms skärgård är ett av världens mest tillgängliga kajakrevir. Du tar Waxholmsbåten ut till en ö, hyr kajak vid hamnen och paddlar bland klippor och naturhamnar — utan att behöva ta med något eget. Innerskärgårdens skyddade vatten är perfekta för nybörjare, medan ytterskärgårdens öppna fjärdar erbjuder mer utmanande paddling för den erfarne.
+            Stockholms skärgård är ett av världens mest tillgängliga kajakrevir. Du tar Waxholmsbåten ut till en ö, hyr kajak vid hamnen och paddlar bland klippor och naturhamnar, utan att behöva ta med något eget. Innerskärgårdens skyddade vatten är perfekta för nybörjare, medan ytterskärgårdens öppna fjärdar erbjuder mer utmanande paddling för den erfarne.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: '16px 0 0' }}>
             Kajakpaddling är en av de aktiviteter som ger skärgården ett helt nytt perspektiv. Du kommer nära klipporna, kan anlöpa naturhamnar som är omöjliga med motorbåt och rör dig i din egen takt. En halvdag räcker för en minnesvärd upplevelse.

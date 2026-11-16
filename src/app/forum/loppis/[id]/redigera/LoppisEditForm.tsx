@@ -164,7 +164,7 @@ export default function LoppisEditForm({ threadId, initial }: Props) {
           borderRadius: 10,
           lineHeight: 1.5,
         }}>
-          Bilder, status och boost ändras direkt på annons-vyn — det här formuläret rör titel, pris, specs och beskrivning.
+          Bilder, status och boost ändras direkt på annons-vyn. Det här formuläret rör titel, pris, specs och beskrivning.
         </p>
 
         <div style={sectionCard}>
@@ -184,7 +184,7 @@ export default function LoppisEditForm({ threadId, initial }: Props) {
             inputMode="numeric"
             value={price}
             onChange={(e) => setPrice(e.target.value.replace(/[^0-9 ]/g, ''))}
-            placeholder="t.ex. 150000 — lämna tomt för 'pris på förfrågan'"
+            placeholder="t.ex. 150000: lämna tomt för 'pris på förfrågan'"
             style={fieldBase}
           />
         </div>

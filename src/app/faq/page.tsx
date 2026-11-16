@@ -5,10 +5,10 @@ import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
   title: 'Vanliga frågor',
-  description: 'Svar på de vanligaste frågorna om Svalla – guiden till svenska skärgården. Hitta krogar, planera turer och logga dina äventyr.',
+  description: 'Svar på de vanligaste frågorna om Svalla | guiden till svenska skärgården. Hitta krogar, planera turer och logga dina äventyr.',
   keywords: ['svalla faq', 'stockholms skärgård app', 'skärgårdskarta', 'hitta krogar skärgård', 'logga båttur'],
   openGraph: {
-    title: 'Vanliga frågor – Svalla',
+    title: 'Vanliga frågor | Svalla',
     description: 'Allt du behöver veta om Svalla och svenska skärgården.',
     url: 'https://svalla.se/faq',
   },
@@ -18,15 +18,15 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: 'Vad är Svalla?',
-    a: 'Svalla är en webb-app för svenska skärgården, från Bohuslän till Höga kusten. Här hittar du restauranger, caféer, gästhamnar, bränsleställen och sevärdigheter på öarna – oavsett om du tar dig dit med kajak, segelbåt, motorbåt eller färja. Du kan också logga dina turer och spara favoriter.',
+    a: 'Svalla är en webb-app för svenska skärgården, från Bohuslän till Höga kusten. Här hittar du restauranger, caféer, gästhamnar, bränsleställen och sevärdigheter på öarna: oavsett om du tar dig dit med kajak, segelbåt, motorbåt eller färja. Du kan också logga dina turer och spara favoriter.',
   },
   {
     q: 'Kostar det något att använda Svalla?',
-    a: 'Grundfunktionerna – kartan, platssökningen och ruttguiden – är helt gratis. Skapa ett konto för att logga turer, spara platser och följa andra användare.',
+    a: 'Grundfunktionerna, kartan, platssökningen och ruttguiden, är helt gratis. Skapa ett konto för att logga turer, spara platser och följa andra användare.',
   },
   {
     q: 'Behöver jag ladda ner en app?',
-    a: 'Nej. Svalla är en progressiv webbapp (PWA). Öppna svalla.se i din mobilwebbläsare och tryck "Lägg till på hemskärmen" – sedan fungerar den precis som en vanlig app, även offline.',
+    a: 'Nej. Svalla är en progressiv webbapp (PWA). Öppna svalla.se i din mobilwebbläsare och tryck "Lägg till på hemskärmen": sedan fungerar den precis som en vanlig app, även offline.',
   },
   {
     q: 'Hur lägger jag till Svalla på hemskärmen?',
@@ -35,7 +35,7 @@ const FAQS = [
   {
     q: 'Vilka platser finns på kartan?',
     // 2026-10-22: regionerna är de som har platser i tabellen restaurants (kontrollerat i databasen: Göteborgsplatserna ligger i både norra och södra skärgården, Blekinge har 20 platser; Höga kusten har ösidor men inga platser på kartan än).
-    a: 'Vi täcker Stockholms skärgård – från Fjäderholmarna och Vaxholm i innerskärgården till Sandhamn, Möja, Utö och Landsort i ytterskärgården – samt Bohuslän, Göteborgs skärgård, Blekinge, Gotland och Öland. Det finns restauranger, caféer, barer, bränslestationer, vandrarhem och gästhamnar inlagda.',
+    a: 'Vi täcker Stockholms skärgård, från Fjäderholmarna och Vaxholm i innerskärgården till Sandhamn, Möja, Utö och Landsort i ytterskärgården, samt Bohuslän, Göteborgs skärgård, Blekinge, Gotland och Öland. Det finns restauranger, caféer, barer, bränslestationer, vandrarhem och gästhamnar inlagda.',
   },
   {
     q: 'Hur stämmer öppettiderna?',
@@ -47,7 +47,7 @@ const FAQS = [
   },
   {
     q: 'Hur fungerar ruttguiden?',
-    a: 'Under "Rutter" hittar du utvalda rutter som passar olika båttyper och reslängder – från halvdagstur till flerdagarssegling. Varje rutt har rekommenderade stopp, insidertips och en interaktiv karta.',
+    a: 'Under "Rutter" hittar du utvalda rutter som passar olika båttyper och reslängder, från halvdagstur till flerdagarssegling. Varje rutt har rekommenderade stopp, insidertips och en interaktiv karta.',
   },
   {
     q: 'Kan jag logga mina egna turer?',

@@ -4,7 +4,7 @@ import { ANTAL_OAR } from '@/app/o/island-data'
 
 export const metadata: Metadata = {
  title: 'Karta över Stockholms skärgård',
- description: 'Interaktiv karta över krogar, bryggor, bastun, badplatser och sevärdheter i Stockholms skärgård — från Arholma till Landsort.',
+ description: 'Interaktiv karta över krogar, bryggor, bastun, badplatser och sevärdheter i Stockholms skärgård, från Arholma till Landsort.',
  keywords: [
  'karta stockholms skärgård',
  'skärgårdskarta',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
  'skärgårdsöar karta',
  ],
  openGraph: {
- title: { absolute: 'Karta över Stockholms skärgård — Svalla' },
+ title: { absolute: 'Karta över Stockholms skärgård | Svalla' },
  description: 'Interaktiv karta med krogar, bryggor, bastun och badplatser i hela Stockholms skärgård.',
  url: 'https://svalla.se/karta',
  },
@@ -43,19 +43,19 @@ const ITEMS: LandingItem[] = [
  {
  icon: '⛽',
  title: 'Bränslemackar',
- description: 'Sjömackar, diesel och bensin — var du kan tanka båten mellan Nynäshamn och Arholma.',
+ description: 'Sjömackar, diesel och bensin. Var du kan tanka båten mellan Nynäshamn och Arholma.',
  href: '/hamnar-och-bryggor',
  },
  {
  icon: '🏕️',
  title: 'Natur & vandring',
- description: 'Naturreservat, tältplatser, vandringsleder och utsiktsplatser — från Ornö till Bullerö.',
+ description: 'Naturreservat, tältplatser, vandringsleder och utsiktsplatser, från Ornö till Bullerö.',
  href: '/vandring-och-natur',
  },
  {
  icon: 'island',
  title: 'Alla öar',
- description: 'Sandhamn, Utö, Möja, Grinda, Finnhamn, Arholma — klassiker och mindre kända smultronställen.',
+ description: 'Sandhamn, Utö, Möja, Grinda, Finnhamn, Arholma, klassiker och mindre kända smultronställen.',
  href: '/resmal',
  meta: `${ANTAL_OAR} öar`, // 2026-10-21: räknas från datan, bara öar (stod "200+")
  },
@@ -67,7 +67,7 @@ export default function KartaPage() {
  heroGradient={['#1e5c82', '#2d7d8a']}
  eyebrow="Karta"
  title="Kartan över Stockholms skärgård"
- tagline="Krogar, bryggor, bastun, badplatser och sevärdheter — utvalda av skärgårdsfolk, filtrerbara efter säsong, aktivitet och erbjudande."
+ tagline="Krogar, bryggor, bastun, badplatser och sevärdheter: utvalda av skärgårdsfolk, filtrerbara efter säsong, aktivitet och erbjudande."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M9 3l6 3 6-3v15l-6 3-6-3-6 3V6l6-3z" />
@@ -77,15 +77,15 @@ export default function KartaPage() {
  intro={
  <>
  <p>
- Skärgården är stor — över 30 000 öar sträcker sig från Arholma i norr till Landsort i söder. Att hitta rätt krog, närmaste gästhamn eller en badplats som inte är full i juli kräver lokalkännedom. Svallas karta samlar alla de platserna på ett ställe, utvalda av människor som faktiskt seglar där.
+ Skärgården är stor, över 30 000 öar sträcker sig från Arholma i norr till Landsort i söder. Att hitta rätt krog, närmaste gästhamn eller en badplats som inte är full i juli kräver lokalkännedom. Svallas karta samlar alla de platserna på ett ställe, utvalda av människor som faktiskt seglar där.
  </p>
  <p>
- Kartan är <strong>öppen för alla</strong> — ingen inloggning krävs för att utforska. Med konto kan du dessutom spara favoriter, logga dina besök och se recensioner från andra seglare.
+ Kartan är <strong>öppen för alla</strong>, ingen inloggning krävs för att utforska. Med konto kan du dessutom spara favoriter, logga dina besök och se recensioner från andra seglare.
  </p>
  </>
  }
  itemsTitle="Vad du hittar på kartan"
- itemsDescription="Kategorier som täcker allt skärgårdsfolk behöver — från morgonfika till kvällsankring."
+ itemsDescription="Kategorier som täcker allt skärgårdsfolk behöver, från morgonfika till kvällsankring."
  items={ITEMS}
  deeperContent={
  <>
@@ -93,13 +93,13 @@ export default function KartaPage() {
  Hur kartan fungerar
  </h2>
  <p>
- Varje punkt på kartan är en <strong>verifierad plats</strong> — vi accepterar inte ogranskade inlägg. Klickar du på en marker får du öppettider, kontakt, bild och ev. bokningslänk direkt. Med konto kan du även se <strong>recensioner</strong> från andra seglare och <strong>markera att du varit där</strong>.
+ Varje punkt på kartan är en <strong>verifierad plats</strong>, vi accepterar inte ogranskade inlägg. Klickar du på en marker får du öppettider, kontakt, bild och ev. bokningslänk direkt. Med konto kan du även se <strong>recensioner</strong> från andra seglare och <strong>markera att du varit där</strong>.
  </p>
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
  Offline i båten
  </h2>
  <p>
- Mobiltäckning är nyckfull i ytterskärgården. När du är inloggad cachas kartan automatiskt så du kan slå upp krogar och hamnar även utan signal. Ingen särskild app krävs — Svalla fungerar direkt i webbläsaren.
+ Mobiltäckning är nyckfull i ytterskärgården. När du är inloggad cachas kartan automatiskt så du kan slå upp krogar och hamnar även utan signal. Ingen särskild app krävs | Svalla fungerar direkt i webbläsaren.
  </p>
  </>
  }
