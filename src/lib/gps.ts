@@ -225,6 +225,21 @@ export function formatDuration(seconds: number): string {
  return `${s} s`
 }
 
+/**
+ * Löpande tid som klocka: "0:33", "10:54", "1:02:07". För räknaren i spårningsvyn,
+ * där "10 min 54 s" inte får plats på en rad bredvid hastighet och distans
+ * (sett 2026-11-15: "s" hamnade ensamt på en egen rad). Färdiga turer skrivs
+ * fortfarande med formatDuration ("12 min 17 s").
+ */
+export function formatKlocka(seconds: number): string {
+  const sek = Math.max(0, Math.floor(seconds))
+  const h = Math.floor(sek / 3600)
+  const m = Math.floor((sek % 3600) / 60)
+  const s = sek % 60
+  const ss = String(s).padStart(2, '0')
+  return h > 0 ? `${h}:${String(m).padStart(2, '0')}:${ss}` : `${m}:${ss}`
+}
+
 /** Same as formatDuration but takes minutes (as stored on trips.duration) */
 // ── Anomalidetektering ────────────────────────────────────────────────────────
 /**
