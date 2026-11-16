@@ -206,6 +206,86 @@ export const TRIPS: Trip[] = [
   },
 
   {
+    // Ny 2026-11-16: första dagsplanen på västkusten. Alla uppgifter lästa 2026-11-16.
+    // KÄLLA: https://www.vastsverige.com/kungalv/marstrand/ — "Strax norr om Göteborg ligger Marstrand.", "Längst ut i väster i Kungälvs kommun", "Efter en kort färjetur över sundet befinner du dig på själva Marstrandsön"
+    // KÄLLA: https://carlsten.se/vagbeskrivning/ — "Eftersom biltrafik är förbjuden på Marstrandsön får du som åker du bil eller buss ta personfärjan från Koön till Marstrandsön."
+    slug: 'marstrand-fastning-och-klippor',
+    title: 'Marstrand: fästningen, klipporna och havet',
+    tagline: 'Buss från Göteborg, två minuter med färjan och en bilfri ö med fästning, vandringsled och bad.',
+    duration: 'Heldag',
+    startPoint: 'Nils Ericsonterminalen, Göteborg',
+    transport: 'Buss + färja',
+    transportTags: ['buss', 'båt'] as TransportTag[],
+    // KÄLLA: https://carlsten.se/oppettider-och-priser/ — 2026: "1 juni – 30 juni 2026 Öppet alla dagar", "1 juli – 9 augusti 2026 Öppet alla dagar", "10 – 23 augusti 2026 Öppet alla dagar", "24 – 31 augusti 2026 Öppet: 11.00 – 17.00"
+    season: 'Juni till augusti',
+    // KÄLLA: https://www.vastsverige.com/kungalv/leder/marstrand-vandringsleder/ — "huvudleden runt ön har svårighetsgrad lätt"
+    difficulty: 'lätt',
+    description: 'Marstrand ligger strax norr om Göteborg, längst ut i Kungälvs kommun. Du tar bussen till Koön och personfärjan över sundet till Marstrandsön, där det inte går några bilar. På toppen ligger Carlstens fästning, och runt hela ön går en vandringsled med flera ställen för ett dopp från klipporna.',
+    stops: [
+      {
+        // KÄLLA: https://www.vastsverige.com/kungalv/leder/marstrand-vandringsleder/ — "Hållplatsen heter Marstrands färjeläge.", "från Nils Ericson Terminalen i Göteborg till Marstrands färjeläge"
+        // KÄLLA: https://carlsten.se/vagbeskrivning/ — bussen "går dagligen från Nils Ericsonsterminalen vid Göteborgs centralstation", "på Koön endast 30 meter från färjeläget"
+        // Linjenummer och restid anges inte: källorna anger olika linjer (302 och Marstrands Express).
+        name: 'Buss till Marstrands färjeläge',
+        type: 'transport',
+        desc: 'Bussen går från Nils Ericsonterminalen i Göteborg till hållplatsen Marstrands färjeläge på Koön, en kort bit från färjan.',
+        tip: 'Sök resan i Västtrafiks reseplanerare innan du åker.',
+        bookingUrl: 'https://www.vasttrafik.se',
+      },
+      {
+        // KÄLLA: https://www.vastsverige.com/kungalv/produkter/farja-koon-marstrand/ — "Marstrandsfärjan avgår regelbundet dygnet runt och tar endast två minuter. Sena kvällar och nätter behöver färjan förbeställas", "Det är Kungälvs kommun som ansvarar för Marstrandsfärjan."
+        // KÄLLA: https://carlsten.se/vagbeskrivning/ — "Dagtid går den varje kvart", "Restid: ca 2 minuter."
+        // KÄLLA: https://www.marstrandsfarja.se — "Biljetter gäller tur och retur från färjeläget på Koön till Marstrandsön."
+        name: 'Färjan över till Marstrandsön',
+        type: 'transport',
+        desc: 'Personfärjan går dygnet runt och överfarten tar ungefär två minuter. Dagtid går den varje kvart.',
+        tip: 'Biljetten köper du på marstrandsfarja.se och den gäller tur och retur från Koön. Sena kvällar och nätter behöver färjan beställas i förväg.',
+        bookingUrl: 'https://www.marstrandsfarja.se',
+      },
+      {
+        // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand — "Fästningen har även fungerat som fängelse och som mest satt här 232 fångar. Den mest beryktade var 'Lasse-Maja'", "Tre fängelseceller från mitten av 1800-talet finns bevarade"
+        // KÄLLA: https://carlsten.se/oppettider-och-priser/ — "Ordinarie guidade turer nedan ges på svenska och ingår i entréavgiften till fästningen. En guidad tur tar ca 45 minuter."
+        // KÄLLA: https://carlsten.se/vagbeskrivning/ — "går du enklast åt höger längs kajen. Efter ca 200 meter svänger du vänster in på Kungsgatan.", "Sista biten på Kungsgatan är en brant backe."
+        name: 'Carlstens fästning',
+        type: 'kultur',
+        desc: 'Fästningen ligger högst upp på ön och var också ett fängelse. Den mest kända fången var tjuven Lasse Maja, och tre fängelseceller från mitten av 1800-talet finns bevarade. De ordinarie guidade turerna är på svenska, ingår i entrén och tar ungefär 45 minuter.',
+        tip: 'Från färjan går du höger längs kajen och sedan uppför Kungsgatan. Sista biten är en brant backe. Kolla öppettider och tider för guidade turer innan du åker.',
+        bookingUrl: 'https://carlsten.se/oppettider-och-priser/',
+      },
+      {
+        // KÄLLA: https://carlsten.se/carlstens-vaffelcafe/ — "Du hittar oss vid fästningens entré och du behöver inte köpa entré till fästningen för att komma till oss.", "Våfflor, Sallader, Pajer, Smörgåsar, Glass, Kaffe", "Vi öppnar igen till påsken 2027."
+        name: 'Fika på Carlstens våffelcafé',
+        type: 'mat',
+        desc: 'Caféet ligger vid fästningens entré och du behöver inte köpa entré för att komma dit. Våfflor, pajer, sallad och smörgåsar.',
+        tip: 'Caféet har säsongsöppet. Säsongen 2027 börjar till påsk.',
+        bookingUrl: 'https://carlsten.se/carlstens-vaffelcafe/',
+      },
+      {
+        // KÄLLA: https://www.vastsverige.com/kungalv/leder/marstrand-vandringsleder/ — "Vandringsleden runt hela ön är cirka 5 kilometer lång och tar en timme utan stopp", "beskåda de sällsynta, röda näckrosorna i Näckrosdammen", "Nålsögat, en trång passage mellan två klippblock", "vid Skallens fyr och beskådar mötet mellan de två haven Skagerrak och Kattegatt", "Bitvis kan det vara svårt att se vart leden går."
+        // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/marstrand.html — "Runt Marstrand går en fem kilometer lång vandringsled."
+        name: 'Vandringsleden runt ön',
+        type: 'natur',
+        desc: 'Leden runt Marstrandsön är ungefär fem kilometer och tar en timme utan stopp. På vägen finns Näckrosdammen, den smala passagen Nålsögat och Skallens fyr, där du ser ut över mötet mellan Skagerrak och Kattegatt.',
+        tip: 'Bitvis kan det vara svårt att se vart leden går, så ta med ledkartan från Västsverige.',
+        bookingUrl: 'https://www.vastsverige.com/kungalv/leder/marstrand-vandringsleder/',
+      },
+      {
+        // KÄLLA: https://www.vastsverige.com/kungalv/leder/marstrand-vandringsleder/ — "kan du stanna till på flera ställen för ett dopp i havet", "nakenbadet vid Svarte Udde", "vid Strandverket finns ett bad anpassat för barn"
+        name: 'Bad från klipporna',
+        type: 'bad',
+        desc: 'Längs leden finns flera ställen för ett dopp. Vid Svarte Udde ligger ett nakenbad, och vid Strandverket finns ett bad anpassat för barn.',
+      },
+    ],
+    resources: [
+      { label: 'Västtrafiks reseplanerare', url: 'https://www.vasttrafik.se' },
+      { label: 'Marstrandsfärjan: biljetter och tidtabell', url: 'https://www.marstrandsfarja.se' },
+      { label: 'Carlstens fästning: öppettider', url: 'https://carlsten.se/oppettider-och-priser/' },
+      { label: 'Vandra på Marstrand (Västsverige)', url: 'https://www.vastsverige.com/kungalv/leder/marstrand-vandringsleder/' },
+    ],
+    islandSlugs: ['marstrand'],
+  },
+
+  {
     slug: 'vaxholm-klassiker',
     title: 'Vaxholm på en dag — fästning, hav och lunch',
     tagline: 'Skärgårdens port — en heldagsklassiker med båt från Stockholm.',
