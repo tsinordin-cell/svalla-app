@@ -456,7 +456,8 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 /* -- Resetips / Dagsplaner -- */
 .resetips-section{background:var(--white);padding:100px 40px}
 .resetips-section .section-header{margin-bottom:56px}
-.resetips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.resetips-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:1100px){.resetips-grid{grid-template-columns:1fr 1fr}}
 .resetips-card{border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column;border:1px solid rgba(26,74,94,.07)}
 .resetips-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
 .resetips-card-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;overflow:hidden}
@@ -867,16 +868,16 @@ const LANDING_HTML = `
   <div class="section-header reveal">
    <div class="section-label">Dagsplaner & Resetips</div>
    <h2 class="section-title">Utvalda turer i skärgården</h2>
-   <p class="section-sub">Kuraterade dagsplaner med allt du behöver — färja, mat, bad och dolda pärlor längs vägen.</p>
+   <p class="section-sub">Kuraterade dagsplaner med allt du behöver: färja, mat, bad och dolda pärlor längs vägen.</p>
   </div>
   <div class="resetips-grid">
    <a href="/resetips/djuro-grinda-dagstur" class="resetips-card reveal reveal-delay-1">
     <div class="resetips-card-img" data-lp-photo="grinda" style="background:linear-gradient(160deg,#0c1e10,#1a4a2a,#2a7a40)">
      <span class="resetips-card-badge">Populär</span>
-     <span class="resetips-card-season">Maj–Sep</span>
+     <span class="resetips-card-season">Maj till sep</span>
     </div>
     <div class="resetips-card-body">
-     <div class="resetips-card-title">Bil, glass och båt — Djurö till Grinda</div>
+     <div class="resetips-card-title">Bil, glass och båt: Djurö till Grinda</div>
      <div class="resetips-card-tagline">Bil till Djurö, båt över till Grinda och lunch på Grinda Wärdshus.</div>
      <div class="resetips-card-meta">
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
@@ -889,15 +890,15 @@ const LANDING_HTML = `
    <a href="/resetips/sandhamn-ytterskargard" class="resetips-card reveal reveal-delay-2">
     <div class="resetips-card-img" data-lp-photo="sandhamn" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
      <span class="resetips-card-badge">Klassiker</span>
-     <span class="resetips-card-season">Maj–Sep</span>
+     <span class="resetips-card-season">Maj till sep</span>
     </div>
     <div class="resetips-card-body">
      <div class="resetips-card-title">Sandhamn med Cinderellabåten</div>
      <!-- KÄLLA: Strömma, Cinderellabåtarna 2026, https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — 30/4–27/9, Strandvägen 10:00 → Sandhamn 12:30. Länsstyrelsen Stockholm, Utö, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "I Gruvbyn kan du strosa mellan gamla vackra byggnader"; "långa sandstränder och badvänliga klippor" (lästa 2026-09-21) -->
-     <div class="resetips-card-tagline">Två och en halv timme ut från Strandvägen – sandstränder och KSSS-hamnen full av segelbåtar.</div>
+     <div class="resetips-card-tagline">Två och en halv timme ut från Strandvägen, med sandstränder och KSSS-hamnen full av segelbåtar.</div>
      <div class="resetips-card-meta">
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
-      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Cinderellabåten (linjebåt — ingen egen båt krävs)</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Cinderellabåten (linjebåt, ingen egen båt krävs)</span>
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Lätt</span>
      </div>
      <div class="resetips-card-cta">Läs dagsplanen →</div>
@@ -906,15 +907,32 @@ const LANDING_HTML = `
    <a href="/resetips/uto-cykeldag" class="resetips-card reveal reveal-delay-3">
     <div class="resetips-card-img" data-lp-photo="uto" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
      <span class="resetips-card-badge">Naturupplevelse</span>
-     <span class="resetips-card-season">Maj–Sep</span>
+     <span class="resetips-card-season">Maj till sep</span>
     </div>
     <div class="resetips-card-body">
      <div class="resetips-card-title">Utö på cykel</div>
-     <div class="resetips-card-tagline">Gruvbyns gamla hus, långa sandstränder och badvänliga klippor – med cykeln från Gruvbryggan.</div>
+     <div class="resetips-card-tagline">Gruvbyns gamla hus, långa sandstränder och badvänliga klippor, med cykeln från Gruvbryggan.</div>
      <div class="resetips-card-meta">
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg>Tåg + färja</span>
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Medel</span>
+     </div>
+     <div class="resetips-card-cta">Läs dagsplanen →</div>
+    </div>
+   </a>
+   <!-- KÄLLA: dagsplanen marstrand-fastning-och-klippor i src/app/resetips/trips-data.ts (källor lästa 2026-11-16) -->
+   <a href="/resetips/marstrand-fastning-och-klippor" class="resetips-card reveal reveal-delay-4">
+    <div class="resetips-card-img" data-lp-photo="marstrand" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
+     <span class="resetips-card-badge">Västkusten</span>
+     <span class="resetips-card-season">Jun till aug</span>
+    </div>
+    <div class="resetips-card-body">
+     <div class="resetips-card-title">Marstrand: fästning och klippbad</div>
+     <div class="resetips-card-tagline">Buss från Göteborg, två minuter med färjan och en bilfri ö med fästning, vandringsled och bad.</div>
+     <div class="resetips-card-meta">
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Buss + färja</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Lätt</span>
      </div>
      <div class="resetips-card-cta">Läs dagsplanen →</div>
     </div>
