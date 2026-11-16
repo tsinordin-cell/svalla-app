@@ -1,0 +1,8 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-16)
+sl06-k001	fjaderholmarna-0323	FEL	Omarbete 4f (Fjäderholmarna): ledet "eller ut på klipporna" står inte i källan. Skriv det Rökeriet skriver.
+sl06-k006	fjaderholmarna-N001,fjaderholmarna-N002,fjaderholmarna-0256,fjaderholmarna-0310,fjaderholmarna-0328	FEL	Omarbete 4f (Fjäderholmarna): Strömma skriver "Kajplatsområde 13". Att biljetten ska bokas och betalas i förväg står bara för julbordet; skriv det som Strömma skriver för sommarbåten.
+sl06-k011	fjaderholmarna-0081,fjaderholmarna-0082,fjaderholmarna-0083,fjaderholmarna-0084,fjaderholmarna-0085,fjaderholmarna-0086	FEL	Omarbete 4f (Fjäderholmarna), FÖRST: ändringen smalnar av förbudet till Libertas, men Naturvårdsregistrets gräns och radens egen källa omfattar både Libertas och Rövarns holme. Skulle bli P0 om den publicerades; main och produktionen säger rätt (båda öarna). Återställ båda öarna med nivå 1-källa.
+sl06-k012	fjaderholmarna-0096,fjaderholmarna-0097,fjaderholmarna-N004,fjaderholmarna-N005,fjaderholmarna-N006	FEL	Som k006 (Kajplatsområde 13).
+sl06-k019	fjaderholmarna-0016	FEL	Registret inaktuellt: den slutliga raden har platsRadieKm 0.7 och stämmer mot OSM enligt Kontrollanten. Ingen ändring.
+sl06-k022	fjaderholmarna-0137,fjaderholmarna-0138	FEL	Omarbete 4f (Fjäderholmarna): 1985 beläggs bara av förvaltaren. Skriv det nivå 1 belägger (1982 och renoveringen) eller stryk och kompensera.
+sl06-k031	fjaderholmarna-0129,fjaderholmarna-0130,fjaderholmarna-0131	FEL	Omarbete 4f (Fjäderholmarna): 1381 och namnets ursprung ska beläggas av nivå 1, med nivå 1:s förbehåll ("antagligen", "förmodligen").
