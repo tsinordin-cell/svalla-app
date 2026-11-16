@@ -138,7 +138,7 @@ export default function ForstaBesok() {
         <>
           <p className="fb-text">Hej, kul att du hittat Svalla! Får jag ställa tre snabba frågor, så att sidan passar dig bättre?</p>
           <div className="fb-knappar">
-            <button type="button" className="fb-ja" onClick={() => { track('forsta_besok', { steg: 'ja' }); setLage('fraga') }}>Ja, självklart</button>
+            <button type="button" className="fb-ja" onClick={() => { track('forsta_besok', { steg: 'ja' }); setLage('fraga') }}>Ja, självklart!</button>
             <button type="button" className="fb-nej" onClick={() => stang('nej')}>Ta mig ut i skärgården direkt</button>
           </div>
         </>
