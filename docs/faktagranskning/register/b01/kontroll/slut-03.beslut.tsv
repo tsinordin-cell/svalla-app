@@ -1,0 +1,7 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-16)
+sl03-k029	fjaderholmarna-0128	FEL	Omarbete 4f (Fjäderholmarna): förvaltningens sida (nivå 2) belägger inte platsens historia. Belägg med nivå 1 eller stryk och kompensera.
+sl03-k034	husaro-0069	FEL	Omarbete 4f (Husarö): källorna säger inte var vägarna och stigarna går. Skriv det källorna säger.
+sl03-k038	fjaderholmarna-0056	FEL	Omarbete 4f (Fjäderholmarna): texten säger att båtsäsongen är slut, men Waxholmsbolagets tabell h2 lägger till vid Fjäderholmarna till 12 december 2026. Trafiken beläggs av operatörerna.
+sl03-k056	fjaderholmarna-0140	FEL	Som k029 (renoveringen och öppnandet 1985).
+sl03-k060	fjaderholmarna-0162	FEL	Som k029 (markföroreningarna), och säkerhetsuppgiften ska beläggas av myndigheten.
+sl03-k077	vaxholm-0664	FEL	Omarbete 4f (Vaxholm): Waxholms Camping ska få typen camping (Toms beslut 4), med UPDATE i vaxholm.sql som för Utö camping.
