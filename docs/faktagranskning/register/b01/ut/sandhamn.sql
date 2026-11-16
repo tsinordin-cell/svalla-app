@@ -237,3 +237,17 @@ update restaurants set description = 'Strindberg''s Champagne Club är en champa
 -- KÄLLA: https://strindbergs.se/ — "Strindbergsgården, Sandhamn 111, Sandhamn" (läst 2026-11-16)
 -- FÖRE: 'Sandhamn 109, 130 39 Sandhamn'
 update restaurants set formatted_address = 'Strindbergsgården, Sandhamn 111, Sandhamn', updated_at = now() where slug = 'cafe-strindbergsgarden' and formatted_address = 'Sandhamn 109, 130 39 Sandhamn';
+
+-- cafe-strindbergsgarden: fält som gällde kaféet (Redaktören 2026-11-16, Toms beslut 6b "Ersätt")
+-- Platssidorna (upptack/[id]/page.tsx och plats/[slug]/page.tsx) visar menu, opening_hours, categories, facilities, best_for,
+-- tags, Google-betyget och bilderna. Värdena nedan gällde Café Strindbergsgården och går inte att belägga för klubben, så de töms.
+-- Inga nya uppgifter skrivs. seasonality (summer_only) står kvar: klubben skriver att restaurangen "har nu stängt efter
+-- sommarsäsongen 2026" (https://strindbergs.se/, läst 2026-11-16). images (ett allmänt Unsplash-foto) står kvar.
+-- FÖRE-värdena är lästa med SELECT 2026-11-16.
+update restaurants set menu = null, updated_at = now() where slug = 'cafe-strindbergsgarden' and menu = 'Kaffe, te, hembakat, enkel lunch.';
+update restaurants set opening_hours = null, updated_at = now() where slug = 'cafe-strindbergsgarden' and opening_hours = 'Juni–Augusti: dagligen 10–16.';
+update restaurants set categories = '{}', updated_at = now() where slug = 'cafe-strindbergsgarden' and categories = '{cafe,coffee,hidden_gem}';
+update restaurants set facilities = '{}', updated_at = now() where slug = 'cafe-strindbergsgarden' and facilities = '{cafe}';
+update restaurants set best_for = '{}', updated_at = now() where slug = 'cafe-strindbergsgarden' and best_for = '{couples,family,day_trip}';
+update restaurants set tags = '{sandhamn,strindberg}', updated_at = now() where slug = 'cafe-strindbergsgarden' and tags = '{sandhamn,strindberg,kultur,fika}';
+update restaurants set google_place_id = null, google_photo_refs = null, google_rating = null, google_ratings_total = null, google_rating_updated = null, image_url = null, updated_at = now() where slug = 'cafe-strindbergsgarden' and google_place_id = 'ChIJ0wJoUwR09UYR5LcGchumH5Y';
