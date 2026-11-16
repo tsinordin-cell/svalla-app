@@ -8,6 +8,7 @@ import {
   maxSpeedKnots,
   detectStops,
   formatDuration,
+  formatKlocka,
   decimal,
   formatDurationMin,
   isGpsAnomaly,
@@ -182,6 +183,19 @@ describe('detectStops', () => {
     const stops = detectStops(pts)
     expect(stops[0]!.lat).toBe(59.5)
     expect(stops[0]!.lng).toBe(19.0)
+  })
+})
+
+// ── formatKlocka ──────────────────────────────────────────────────────────────
+
+describe('formatKlocka', () => {
+  it('skriver löpande tid som klocka, utan radbrytande enheter', () => {
+    expect(formatKlocka(0)).toBe('0:00')
+    expect(formatKlocka(33)).toBe('0:33')
+    expect(formatKlocka(654)).toBe('10:54')
+    expect(formatKlocka(3727)).toBe('1:02:07')
+    expect(formatKlocka(-5)).toBe('0:00')
+    expect(formatKlocka(59.9)).toBe('0:59')
   })
 })
 

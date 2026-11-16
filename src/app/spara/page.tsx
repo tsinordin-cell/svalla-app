@@ -10,7 +10,7 @@ import { deriveUsername } from '@/lib/username'
 import {
   type GpsPoint, type StopEvent,
   msToKnots, tripDistanceNM, avgSpeedKnots,
-  detectStops, formatDuration, reverseGeocode, decimal,
+  detectStops, formatDuration, formatKlocka, reverseGeocode, decimal,
   type MovementState, computeMovementState,
   calculateBearing, bearingLabel,
   type LiveInsight, getLiveInsights,
@@ -48,9 +48,13 @@ function haptic(pattern: number | number[]) {
 // ── Compress image before upload ──────────────────────────────────────────────
 
 // ── Movement state label/color ────────────────────────────────────────────────
-function movementMeta(state: MovementState): { label: string; color: string; bg: string } {
+// 'SEGLING' är rörelseläget "i fart" för alla båttyper. Etiketten ska inte säga
+// "segling" när någon kör motorbåt eller paddlar (sett 2026-11-15).
+const SEGLANDE = new Set(['Segelbåt', 'Katamaran', 'Segeljolle'])
+const PADDLANDE = new Set(['Kajak', 'SUP'])
+function movementMeta(state: MovementState, boatType = ''): { label: string; color: string; bg: string } {
   switch (state) {
-    case 'SEGLING':  return { label: 'SEGLING',  color: 'var(--green)', bg: 'rgba(15,158,100,.12)' }
+    case 'SEGLING':  return { label: SEGLANDE.has(boatType) ? 'SEGLING' : PADDLANDE.has(boatType) ? 'PADDLAR' : 'I FART',  color: 'var(--green)', bg: 'rgba(15,158,100,.12)' }
     case 'DRIFTAR':  return { label: 'DRIFTAR',  color: 'var(--sea)', bg: 'rgba(30,92,130,.12)' }
     case 'ANKRAT':   return { label: 'ANKRAT',   color: 'var(--acc)', bg: 'rgba(201,110,42,.12)' }
     case 'STILLA':   return { label: 'STILLA',   color: 'var(--txt3)', bg: 'rgba(122,157,171,.12)' }
@@ -1158,7 +1162,7 @@ export default function SparaPage() {
 
   // ── TRACKING / PAUSED — Strava-inspirerad immersiv vy ────────────────────
   if (phase === 'tracking' || phase === 'paused') {
-    const mv = movementMeta(movementState)
+    const mv = movementMeta(movementState, boatType)
     const isTracking = phase === 'tracking'
 
     // ── EXPANDED STATS VIEW — overlay above map (LiveTrackMap stays mounted) ──
@@ -1197,7 +1201,7 @@ export default function SparaPage() {
               fontSize: 72, fontWeight: 700, color: '#ffffff',
               fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: '-3px',
             }}>
-              {formatDuration(elapsed)}
+              {formatKlocka(elapsed)}
             </div>
           </div>
 
@@ -1498,7 +1502,7 @@ export default function SparaPage() {
           {/* 3-col stats */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', padding: '14px 20px 14px', gap: 0 }}>
             {[
-              { val: formatDuration(elapsed), label: 'Tid', align: 'left' as const },
+              { val: formatKlocka(elapsed), label: 'Tid', align: 'left' as const },
               { val: decimal(currentSpeed), unit: 'kn', label: 'Hastighet', align: 'center' as const },
               { val: decimal(dist, 2), unit: 'NM', label: 'Distans', align: 'right' as const },
             ].map(({ val, unit, label, align }) => (
