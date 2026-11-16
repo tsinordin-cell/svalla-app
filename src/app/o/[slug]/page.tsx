@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
  return {
- title: island.seoTitle ? `${island.seoTitle}` : `${island.name} 2026 – restauranger, boende & aktiviteter`,
+ title: island.seoTitle ? `${island.seoTitle}` : `${island.name} 2026: restauranger, boende & aktiviteter`,
  description: island.seoDescription ?? `Guide till ${island.name}: restauranger, boende, aktiviteter, badplatser och hur du tar dig dit. ${island.tagline}`,
  keywords: [
   `${island.name.toLowerCase()} guide`,
@@ -73,19 +73,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  canonical: `https://svalla.se/o/${slug}`,
  },
  openGraph: {
- title: `${island.name} – ${island.tagline}`,
+ title: `${island.name}, ${island.tagline}`,
  description: `Komplett guide till ${island.name} i ${(island.regionLabel ?? '').toLowerCase()}.`,
  url: `https://svalla.se/o/${slug}`,
  type: 'article',
  images: [{
  url: `https://svalla.se/api/og/island/${slug}`,
  width: 1200, height: 630,
- alt: `${island.name} — ${island.tagline}`,
+ alt: `${island.name}, ${island.tagline}`,
  }],
  },
  twitter: {
  card: 'summary_large_image',
- title: `${island.name} – ${island.tagline}`,
+ title: `${island.name}, ${island.tagline}`,
  description: `Guide till ${island.name} i ${(island.regionLabel ?? '').toLowerCase()}.`,
  images: [`https://svalla.se/api/og/island/${slug}`],
  },
@@ -115,9 +115,9 @@ export const revalidate = 3600
 
 // Öar med egna äventyrssidor
 const ADVENTURE_PAGES: Record<string, { url: string; title: string; desc: string }> = {
-  gotland: { url: '/gotland/aventyr', title: 'Äventyr på Gotland', desc: '10 utvalda rundor – bil, cykel och kollektivt' },
-  aland:   { url: '/aland/aventyr',   title: 'Äventyr på Åland',   desc: '10 utvalda rundor – bil, cykel och kollektivt' },
-  oland:   { url: '/oland/aventyr',   title: 'Äventyr på Öland',   desc: '10 utvalda rundor – bil, cykel och buss' },
+  gotland: { url: '/gotland/aventyr', title: 'Äventyr på Gotland', desc: '10 utvalda rundor: bil, cykel och kollektivt' },
+  aland:   { url: '/aland/aventyr',   title: 'Äventyr på Åland',   desc: '10 utvalda rundor: bil, cykel och kollektivt' },
+  oland:   { url: '/oland/aventyr',   title: 'Äventyr på Öland',   desc: '10 utvalda rundor: bil, cykel och buss' },
 }
 
 export default async function IslandPage({ params }: Props) {
@@ -1338,7 +1338,7 @@ export default async function IslandPage({ params }: Props) {
    </div>
    <div>
     <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#e8924a' }}>Community</div>
-    <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>Forum — {island.name}</div>
+    <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>Forum, {island.name}</div>
    </div>
    <Link
     href={`/forum/o/${island.slug}`}
@@ -1386,7 +1386,7 @@ export default async function IslandPage({ params }: Props) {
     /* Inga trådar — visa klickbara startfrågor */
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 14 }}>
      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginBottom: 4 }}>
-      Inga diskussioner ännu — bli den första:
+      Inga diskussioner ännu: bli den första:
      </div>
      {[
       `Vad ska man inte missa på ${island.name}?`,

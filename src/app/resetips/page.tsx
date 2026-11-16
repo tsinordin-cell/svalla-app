@@ -3,11 +3,11 @@ import ResetipsClient from './ResetipsClient'
 
 export const metadata: Metadata = {
   title: 'Resetips & dagsrutter i skärgården',
-  description: 'Utvalda dagsrutter i Stockholms skärgård — från Fjäderholmarna till Arholma. Med stopp, tips och praktisk info.',
+  description: 'Utvalda dagsrutter i Stockholms skärgård, från Fjäderholmarna till Arholma. Med stopp, tips och praktisk info.',
   alternates: { canonical: 'https://svalla.se/resetips' },
   openGraph: {
-    title: 'Resetips & dagsrutter i skärgården – Svalla',
-    description: 'Utvalda dagsrutter i Stockholms skärgård — från Fjäderholmarna till Arholma.',
+    title: 'Resetips & dagsrutter i skärgården | Svalla',
+    description: 'Utvalda dagsrutter i Stockholms skärgård, från Fjäderholmarna till Arholma.',
     url: 'https://svalla.se/resetips',
   },
 }

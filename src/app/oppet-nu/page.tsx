@@ -73,13 +73,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const { month, year } = manadIStockholm()
   const monthName = MONTH_NAMES_SV[month]
   return {
-    title: `Öppet i skärgården i ${monthName} – vilka öar kan du besöka?`,
+    title: `Öppet i skärgården i ${monthName}, vilka öar kan du besöka?`,
     // 2026-10-21: sidan visar öar från alla regioner och byter månad automatiskt; den uppdateras inte för hand varje månad.
-    description: `Se vilka skärgårdsöar som är öppna i ${monthName} ${year} — med restauranger, gästhamnar och service. Sidan visar alltid aktuell månad.`,
+    description: `Se vilka skärgårdsöar som är öppna i ${monthName} ${year}: med restauranger, gästhamnar och service. Sidan visar alltid aktuell månad.`,
     alternates: { canonical: 'https://svalla.se/oppet-nu' },
     openGraph: {
       title: `Vad är öppet i skärgården i ${monthName}?`,
-      description: `Uppdaterad guide till öppna öar i skärgården — högsäsong, fullt öppet och begränsad service i ${monthName}.`,
+      description: `Uppdaterad guide till öppna öar i skärgården: högsäsong, fullt öppet och begränsad service i ${monthName}.`,
       url: 'https://svalla.se/oppet-nu',
       type: 'website',
     },
@@ -145,7 +145,7 @@ export default function OppetNuPage() {
             marginLeft: 'auto',
             marginRight: 'auto',
           }}>
-            {totalOpen} öar med säsongsdata — se vad som är högsäsong, öppet och vad som har begränsad service just nu.
+            {totalOpen} öar med säsongsdata: se vad som är högsäsong, öppet och vad som har begränsad service just nu.
           </p>
         </div>
       </div>
@@ -332,10 +332,10 @@ export default function OppetNuPage() {
         }}>
           <div>
             <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)', marginBottom: 4 }}>
-              <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2, marginRight: 6 }}><Icon name="pin" size={16} /></span>Hitta din ö — utvalda listor
+              <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2, marginRight: 6 }}><Icon name="pin" size={16} /></span>Hitta din ö: utvalda listor
             </div>
             <div style={{ fontSize: 13, color: 'var(--txt2)' }}>
-              Barnvänliga, romantiska, seglarfavoriter och mer — handplockade rekommendationer.
+              Barnvänliga, romantiska, seglarfavoriter och mer, handplockade rekommendationer.
             </div>
           </div>
           <Link href="/ostlistan" style={{

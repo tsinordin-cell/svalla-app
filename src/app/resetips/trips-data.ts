@@ -39,13 +39,13 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'djuro-grinda-dagstur',
-    title: 'Bil, glass och båt — Djurö till Grinda',
+    title: 'Bil, glass och båt: Djurö till Grinda',
     tagline: 'En av skärgårdens bästa dagsrutter med bil, brygga och lunchstopp på Grinda.',
     duration: 'Heldag (ca 8 timmar)',
     startPoint: 'Stockholm city',
     transport: 'Bil + båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Maj till September',
     difficulty: 'lätt',
     featured: true,
     description: 'En perfekt skärgårdsdag som kombinerar det bästa av land och vatten. Du kör till Djurö, utforskar bilmuseet, hämtar glass vid Sollenkroka brygga och kliver ombord på båten till Grinda för lunch på wärdshuset.',
@@ -54,14 +54,14 @@ export const TRIPS: Trip[] = [
         name: 'Djurö bilmuseum',
         type: 'kultur',
         desc: 'Över 60 veteranbilar i en gammal lada mitt i skärgårdslandskapet. Oväntat bra och barnvänligt.',
-        tip: 'Öppnar kl 11 — kom inte för tidigt. Beräkna 1–1,5 timme.',
+        tip: 'Öppnar kl 11. Kom inte för tidigt. Beräkna 1 till 1,5 timme.',
         bookingUrl: 'https://www.djurobil.se',
       },
       {
         name: 'Glassbaren vid Sollenkroka brygga',
         type: 'mat',
         desc: 'Klassisk skärgårdsglass med utsikt mot båttrafiken.',
-        tip: 'Köp glassen och sätt dig på bryggan — det är halva upplevelsen.',
+        tip: 'Köp glassen och sätt dig på bryggan. Det är halva upplevelsen.',
       },
       {
         name: 'Båten från Sollenkroka till Grinda',
@@ -92,22 +92,22 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'sandhamn-ytterskargard',
-    title: 'Sandhamn — ytterskärgårdens pärla',
+    title: 'Sandhamn: ytterskärgårdens pärla',
     tagline: 'Lång båtresa, fantastisk strand och KSSS-hamnen med segelbåtar.',
     duration: 'Heldag (10 timmar)',
     startPoint: 'Strömkajen, Stockholm',
     transport: 'Båt (Cinderellabåten)',
     transportTags: ['båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'lätt',
     featured: true,
-    description: 'Sandhamn är målet om du vill känna den riktiga ytterskärgården. Cinderellabåten från Strandvägen tar dig dit på cirka 2,5 timmar — resan är en del av upplevelsen. Väl framme väntar Trouville-stranden, KSSS-hamnen och Sandhamns Värdshus.',
+    description: 'Sandhamn är målet om du vill känna den riktiga ytterskärgården. Cinderellabåten från Strandvägen tar dig dit på cirka 2,5 timmar, resan är en del av upplevelsen. Väl framme väntar Trouville-stranden, KSSS-hamnen och Sandhamns Värdshus.',
     stops: [
       {
         name: 'Cinderellabåten från Strandvägen',
         type: 'transport',
         desc: 'Avgår från Strandvägen kaj 14 (Nybroplan). Cirka 2,5 timmar med stopp längs vägen. Servering ombord och magnifik utsikt.',
-        tip: 'Boka biljett i förväg under högsäsong — sittplatser på däck tar slut tidigt.',
+        tip: 'Boka biljett i förväg under högsäsong, sittplatser på däck tar slut tidigt.',
         bookingUrl: 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/',
       },
       {
@@ -119,18 +119,18 @@ export const TRIPS: Trip[] = [
         name: 'Trouville-stranden',
         type: 'bad',
         desc: 'Sandhamns bästa badstrand med vit sand. 10 minuter promenad från hamnen.',
-        tip: 'Ta med picknick — stranden är lång och det finns gott om plats.',
+        tip: 'Ta med picknick, stranden är lång och det finns gott om plats.',
       },
       {
         name: 'Lunch på Sandhamns Värdshus',
         type: 'mat',
         desc: 'Skärgårdsrätter och stor uteservering.',
-        tip: 'Boka bord — fullsatt nästan varje dag i juli.',
+        tip: 'Boka bord, fullsatt nästan varje dag i juli.',
         bookingUrl: 'https://www.sandhamn.com',
       },
     ],
     resources: [
-      { label: 'Cinderellabåtarna — tidtabell och biljetter (Strömma)', url: 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/' },
+      { label: 'Cinderellabåtarna: tidtabell och biljetter (Strömma)', url: 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/' },
       { label: 'Sandhamns Värdshus', url: 'https://www.sandhamn.com' },
     ],
     islandSlugs: ['sandhamn'],
@@ -138,9 +138,9 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'uto-cykeldag',
-    title: 'Utö på cykel — gruvan, bastun och havet',
+    title: 'Utö på cykel: gruvan, bastun och havet',
     tagline: 'Cykla runt en av skärgårdens vackraste öar med stopp vid gruvmuseum och havsbastu.',
-    duration: 'Heldag (10–12 timmar)',
+    duration: 'Heldag (10 till 12 timmar)',
     // Rättad 2026-11-09 (P0 20 del 3): båten från Nynäshamn går vår och höst till Ålö, inte till Utö. Året om går båten till Utö från Årsta brygga.
     // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året.", "Till Årsta brygga kommer du med pendeltåg och sedan buss." (läst 2026-11-09)
     // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Bil: Nynäsvägen (väg 73) söderut. Skyltad avfart mot Årsta brygga.", "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
@@ -148,10 +148,10 @@ export const TRIPS: Trip[] = [
     startPoint: 'Årsta brygga i Haninge (bil, eller pendeltåg till Västerhaninge + buss 846)',
     transport: 'Bil eller tåg och buss + båt + cykel',
     transportTags: ['tåg', 'båt', 'cykel'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Maj till September',
     difficulty: 'medel',
     featured: true,
-    description: 'Utö är en av de stora skärgårdsöarna med riktigt karaktär — en aktiv järngruva på 1700-talet, cykelleder genom barrskog och havsbastu som håller hög klass.',
+    description: 'Utö är en av de stora skärgårdsöarna med riktigt karaktär: en aktiv järngruva på 1700-talet, cykelleder genom barrskog och havsbastu som håller hög klass.',
     stops: [
       {
         // Rättad 2026-11-09 (P0 20 del 3): båten från Nynäshamn går till Ålö vår och höst och till Gruvbryggan bara sommartid. Vägen från Ålö går genom skjutfältet.
@@ -163,7 +163,7 @@ export const TRIPS: Trip[] = [
         // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Gruvbryggan (Utö)"; uppmätt i tabellen: Nynäshamn–Gruvbryggan (Utö) 80 min (läst 2026-11-09)
         // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ"; uppmätt i tabellen: ingen brygga på Utö (läst 2026-11-09)
         // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html — "Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt." (läst 2026-11-09)
-        desc: 'Waxholmsbolagets båt går året om från Årsta brygga i Haninge till Gruvbryggan, 35–75 minuter enligt höst- och vårtidtabellen (tabell 21). Sommartid går också Nord/Sydlinjen från Nynäshamn till Gruvbryggan, 1 timme och 20 minuter (2026: 22 juni–16 augusti). Vår och höst går båten från Nynäshamn i stället till grannön Ålö, som har bro till Utö.',
+        desc: 'Waxholmsbolagets båt går året om från Årsta brygga i Haninge till Gruvbryggan, 35 till 75 minuter enligt höst- och vårtidtabellen (tabell 21). Sommartid går också Nord/Sydlinjen från Nynäshamn till Gruvbryggan, 1 timme och 20 minuter (2026: 22 juni till 16 augusti). Vår och höst går båten från Nynäshamn i stället till grannön Ålö, som har bro till Utö.',
         // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
         // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Bil: Nynäsvägen (väg 73) söderut. Skyltad avfart mot Årsta brygga.", "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet.", "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" (läst 2026-11-09)
         // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there.", "It passes through an active military firing range, which is located on both sides of the road." (läst 2026-11-09)
@@ -180,15 +180,15 @@ export const TRIPS: Trip[] = [
       {
         name: 'Utö Gruvmuseum',
         type: 'kultur',
-        desc: 'Sveriges äldsta järngruva, aktiv 1150–1879. Öppen för besökare sommar.',
-        tip: 'Öppettider varierar — verifiera via Utö Värdshus hemsida.',
+        desc: 'Sveriges äldsta järngruva, aktiv 1150 till 1879. Öppen för besökare sommar.',
+        tip: 'Öppettider varierar, verifiera via Utö Värdshus hemsida.',
         bookingUrl: 'https://www.utovardshus.se',
       },
       {
         name: 'Havsbastu på Utö Värdshus',
         type: 'bad',
         desc: 'En av skärgårdens finaste havsbastuupplevelser. Kvällspass med solnedgången är bäst.',
-        tip: 'Boka bastutid i förväg — kvällspassen fylls snabbt.',
+        tip: 'Boka bastutid i förväg, kvällspassen fylls snabbt.',
         bookingUrl: 'https://www.utovardshus.se/aktiviteter',
       },
       {
@@ -200,7 +200,7 @@ export const TRIPS: Trip[] = [
     ],
     resources: [
       { label: 'Waxholmsbolagets tidtabell (Utö)', url: 'https://waxholmsbolaget.se/tidtabeller' },
-      { label: 'Utö Värdshus — bokning och aktiviteter', url: 'https://www.utovardshus.se' },
+      { label: 'Utö Värdshus: bokning och aktiviteter', url: 'https://www.utovardshus.se' },
     ],
     islandSlugs: ['uto'],
   },
@@ -287,9 +287,9 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'vaxholm-klassiker',
-    title: 'Vaxholm på en dag — fästning, hav och lunch',
-    tagline: 'Skärgårdens port — en heldagsklassiker med båt från Stockholm.',
-    duration: 'Halvdag–heldag (5–8 timmar)',
+    title: 'Vaxholm på en dag: fästning, hav och lunch',
+    tagline: 'Skärgårdens port, en heldagsklassiker med båt från Stockholm.',
+    duration: 'Halvdag till heldag (5 till 8 timmar)',
     startPoint: 'Strömkajen, Stockholm',
     transport: 'Båt',
     transportTags: ['båt'] as TransportTag[],
@@ -301,14 +301,14 @@ export const TRIPS: Trip[] = [
         name: 'Waxholmsbåten från Strömkajen',
         type: 'transport',
         desc: '75 minuter genom den inre skärgården. Avgår varje timme.',
-        tip: 'Sitt på däck oavsett väder — utsikten är värd det.',
+        tip: 'Sitt på däck oavsett väder, utsikten är värd det.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
         name: 'Vaxholms fästning',
         type: 'kultur',
         // KÄLLA: vaxholmsfastning.se/historik (2026-08-25) + SFV — blockhus i borjan av 1500-talet, Gustav Vasas nya och kraftigare fastning 1548, kastellet 1833-1863
-        desc: 'Fästningsö med museum — platsen befästes i början av 1500-talet, Gustav Vasas kraftigare fästning kom 1548 och dagens kastell byggdes 1833–1863. Nås med liten färja från hamnen.',
+        desc: 'Fästningsö med museum: platsen befästes i början av 1500-talet, Gustav Vasas kraftigare fästning kom 1548 och dagens kastell byggdes 1833 till 1863. Nås med liten färja från hamnen.',
         tip: 'Guidad tur tar 45 min och är väl värd pengarna.',
         bookingUrl: 'https://www.vaxholmsfastning.se',
       },
@@ -337,21 +337,21 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'fjaderholmarna-snabbtur',
-    title: 'Fjäderholmarna — skärgård på en timme från stan',
+    title: 'Fjäderholmarna: skärgård på en timme från stan',
     tagline: 'Närmaste skärgårdsön från city. Perfekt för en spontan eftermiddag.',
-    duration: 'Halvdag (3–4 timmar)',
+    duration: 'Halvdag (3 till 4 timmar)',
     startPoint: 'Slussen eller Nybroplan, Stockholm',
     transport: 'Båt',
     transportTags: ['båt'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Maj till September',
     difficulty: 'lätt',
-    description: 'Fjäderholmarna är Stockholms närmaste skärgårdsö — 25 minuter med båt från Slussen. Hantverksbod, bryggerier, klippbad. Inget behöver bokas i förväg.',
+    description: 'Fjäderholmarna är Stockholms närmaste skärgårdsö, 25 minuter med båt från Slussen. Hantverksbod, bryggerier, klippbad. Inget behöver bokas i förväg.',
     stops: [
       {
         name: 'Fjäderholmsbåten från Slussen',
         type: 'transport',
         desc: '25 minuter. Avgår varje halvtimme under sommaren.',
-        tip: 'Betala ombord med kort — inga förhandsköp nödvändiga.',
+        tip: 'Betala ombord med kort, inga förhandsköp nödvändiga.',
         bookingUrl: 'https://stromma.com/stockholm/fjaderholmarna',
       },
       {
@@ -369,12 +369,12 @@ export const TRIPS: Trip[] = [
         name: 'Lunch på Fjäderholmarnas Krog',
         type: 'mat',
         desc: 'Räkor, grillad fisk och skärgårdsklassiker.',
-        tip: 'Boka bord — populärt med stockholmare på lunch.',
+        tip: 'Boka bord, populärt med stockholmare på lunch.',
         bookingUrl: 'https://www.fjaderholmarnas.se',
       },
     ],
     resources: [
-      { label: 'Fjäderholmsbåtarna — avgångstider', url: 'https://stromma.com/stockholm/fjaderholmarna' },
+      { label: 'Fjäderholmsbåtarna: avgångstider', url: 'https://stromma.com/stockholm/fjaderholmarna' },
       { label: 'Fjäderholmarnas Krog', url: 'https://www.fjaderholmarnas.se' },
     ],
     islandSlugs: ['fjaderholmarna'],
@@ -382,28 +382,28 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'finnhamn-naturdag',
-    title: 'Finnhamn — vandring, bad och stillhet',
+    title: 'Finnhamn: vandring, bad och stillhet',
     tagline: 'En av skärgårdens bästa öar för vandring och naturupplevelser utan folkmassor.',
     duration: 'Heldag eller övernattning',
     startPoint: 'Strömkajen, Stockholm',
     transport: 'Båt',
     transportTags: ['båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'medel',
-    description: 'Finnhamn är ett av skärgårdens bästa naturmål — stor nog för en dags vandring, liten nog för att känna att du har ön för dig själv.',
+    description: 'Finnhamn är ett av skärgårdens bästa naturmål: stor nog för en dags vandring, liten nog för att känna att du har ön för dig själv.',
     stops: [
       {
         name: 'Waxholmsbåten till Finnhamn',
         type: 'transport',
-        desc: 'Waxholmsbåtens direktbåt från Strömkajen går bara 19 juni–16 augusti och tar då 3 tim 45 min eller mer; Cinderella från Strandvägen går till 27 september. Fantastisk utsikt längs hela rutten.',
-        tip: 'Kolla tidtabellen noga — begränsat med avgångar på vardagar.',
+        desc: 'Waxholmsbåtens direktbåt från Strömkajen går bara 19 juni till 16 augusti och tar då 3 tim 45 min eller mer; Cinderella från Strandvägen går till 27 september. Fantastisk utsikt längs hela rutten.',
+        tip: 'Kolla tidtabellen noga, begränsat med avgångar på vardagar.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
         name: 'Vandring runt norra Finnhamn',
         type: 'natur',
         desc: 'Välmarkerade leder genom barrskog och ut på klippor med havsvy. Ca 6 km.',
-        tip: 'Ta med karta — sidostigar kan förvirra.',
+        tip: 'Ta med karta, sidostigar kan förvirra.',
       },
       {
         name: 'Klippbad på östra udden',
@@ -414,7 +414,7 @@ export const TRIPS: Trip[] = [
         name: 'Lunch på Finnhamnsgården',
         type: 'mat',
         desc: 'Enkel husmanskost och kaffe i ett gammalt skärgårdslanderi.',
-        tip: 'Kom senast 13.00 — de stänger tidigt och har begränsat med mat.',
+        tip: 'Kom senast 13.00. De stänger tidigt och har begränsat med mat.',
       },
     ],
     resources: [
@@ -425,13 +425,13 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'moja-autentisk-skargard',
-    title: 'Möja — äkta skärgård utan turistfällan',
+    title: 'Möja: äkta skärgård utan turistfällan',
     tagline: 'En av de sista öarna med fast befolkning och genuin skärgårdskultur.',
     duration: 'Heldag eller övernattning',
     startPoint: 'Strömkajen, Stockholm',
     transport: 'Båt',
     transportTags: ['båt'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Maj till September',
     difficulty: 'lätt',
     description: 'Möja är en av de få öar i Stockholms skärgård med en levande lokal befolkning året om. Här finns byhandel, vandringsleder och en känsla av att uppleva hur livet faktiskt ser ut i skärgården.',
     stops: [
@@ -445,7 +445,7 @@ export const TRIPS: Trip[] = [
         name: 'Möja byhandel',
         type: 'kultur',
         desc: 'En av skärgårdens sista riktiga lanthandlar. Köp med dig lokala produkter.',
-        tip: 'Öppettider varierar — verifiera via telefon eller på plats.',
+        tip: 'Öppettider varierar, verifiera via telefon eller på plats.',
       },
       {
         name: 'Vandring till Möjas sydspets',
@@ -456,7 +456,7 @@ export const TRIPS: Trip[] = [
         name: 'Möja Café',
         type: 'mat',
         desc: 'Hembakade bullar och enkel lunch. Öppen sommarsäsong.',
-        tip: 'Kontrollera öppettiderna i förväg — de varierar.',
+        tip: 'Kontrollera öppettiderna i förväg. De varierar.',
       },
     ],
     resources: [
@@ -467,21 +467,21 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'dalaro-sommarklassiker',
-    title: 'Dalarö — historia, bad och sommarhäng',
+    title: 'Dalarö: historia, bad och sommarhäng',
     tagline: 'Pittoresk skärgårdsstad med stockhusvillor, kajakuthyrning och härliga bad.',
-    duration: 'Halvdag–heldag (4–8 timmar)',
+    duration: 'Halvdag till heldag (4 till 8 timmar)',
     startPoint: 'Stockholm (bil via E18)',
     transport: 'Bil',
     transportTags: ['bil'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Maj till September',
     difficulty: 'lätt',
-    description: 'Dalarö är en av de mest välbevarade skärgårdssamhällena i Stockholms skärgård. En timmes bilresa och du är framme — utan att behöva ta båt.',
+    description: 'Dalarö är en av de mest välbevarade skärgårdssamhällena i Stockholms skärgård. En timmes bilresa och du är framme, utan att behöva ta båt.',
     stops: [
       {
         name: 'Bil till Dalarö',
         type: 'transport',
         desc: 'Ca 1 timme bil från Stockholm via E18/E20. Parkering vid Dalarö hamn.',
-        tip: 'Kom tidigt på sommarlördagar — parkering fylls upp.',
+        tip: 'Kom tidigt på sommarlördagar, parkering fylls upp.',
       },
       {
         name: 'Dalarö hamn och gamla stan',
@@ -498,7 +498,7 @@ export const TRIPS: Trip[] = [
         name: 'Kajaktur från Dalarö',
         type: 'aktivitet',
         desc: 'Uthyrning vid hamnen. Paddla ut till närmaste holmar.',
-        tip: 'Bra för nybörjare — lugnt inre skärgårdsvatten.',
+        tip: 'Bra för nybörjare, lugnt inre skärgårdsvatten.',
       },
     ],
     resources: [
@@ -509,13 +509,13 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'arholma-norrut',
-    title: 'Arholma — norrut till yttersta skärgård',
+    title: 'Arholma: norrut till yttersta skärgård',
     tagline: 'Stockholmsskärgårdens nordligaste punkt med fyr, vilt liv och ödslighet.',
     duration: 'Heldag eller övernattning',
     startPoint: 'Norrtälje (bil + båt)',
     transport: 'Bil + färja',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'krävande',
     description: 'Arholma är yttersta punkten i Stockholms norra skärgård. Färre turister, vildare natur och en känsla av att vara riktigt långt borta.',
     stops: [
@@ -523,15 +523,15 @@ export const TRIPS: Trip[] = [
         name: 'Bil till Simpnäs + färja',
         type: 'transport',
         desc: 'Ca 1,5 tim bil norr om Stockholm till Simpnäs. Färja till Arholma därifrån.',
-        tip: 'Kolla Arholma Båttrafiks tidtabell — avgångarna är begränsade.',
+        tip: 'Kolla Arholma Båttrafiks tidtabell, avgångarna är begränsade.',
         bookingUrl: 'https://www.arholmabattrafik.se',
       },
       {
         name: 'Arholma båk',
         type: 'kultur',
         // KÄLLA: Sjöfartsverket — Arholma båk 1768, Pehr Ridderstad, 12,5 m, optisk telegraf 1809 (2026-08-24)
-        desc: 'En av Roslagens mest kända sjömärken — en båk (inte fyr) byggd 1768 av Pehr Ridderstad. 12,5 meter hög och har bland annat tjänat som optisk telegraf. Klättra upp för havsutsikt.',
-        tip: 'Öppen för besökare under sommaren — verifiera tider via lokala turistbyråer.',
+        desc: 'En av Roslagens mest kända sjömärken, en båk (inte fyr) byggd 1768 av Pehr Ridderstad. 12,5 meter hög och har bland annat tjänat som optisk telegraf. Klättra upp för havsutsikt.',
+        tip: 'Öppen för besökare under sommaren, verifiera tider via lokala turistbyråer.',
       },
       {
         name: 'Klippbad på norra udden',
@@ -542,17 +542,17 @@ export const TRIPS: Trip[] = [
         name: 'Vandring runt ön',
         type: 'natur',
         desc: 'Markerade leder runt Arholma, ca 8 km. Passerar fågelkolonier och naturhamnar.',
-        tip: 'Häckningssäsong mars–juli — håll dig till lederna.',
+        tip: 'Häckningssäsong mars till juli. Håll dig till lederna.',
       },
       {
         name: 'Arholma Krog',
         type: 'mat',
         desc: 'Enda restaurangen på ön. Enkel mat och lokalt fiske.',
-        tip: 'Stänger tidigt — planera för lunch, inte middag.',
+        tip: 'Stänger tidigt. Planera för lunch, inte middag.',
       },
     ],
     resources: [
-      { label: 'Arholma Båttrafik — tidtabell', url: 'https://www.arholmabattrafik.se' },
+      { label: 'Arholma Båttrafik: tidtabell', url: 'https://www.arholmabattrafik.se' },
       { label: 'Roslagen turistinfo', url: 'https://www.roslagen.se' },
     ],
     islandSlugs: ['arholma'],
@@ -560,15 +560,15 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'nattaro-vild-natur',
-    title: 'Nåttarö — naturreservat och sälar',
+    title: 'Nåttarö: naturreservat och sälar',
     tagline: 'Södra skärgårdens vildaste naturreservat med sälar, klippbad och tystnad.',
     duration: 'Heldag',
     startPoint: 'Nynäshamn (bil/tåg)',
     transport: 'Tåg/bil + båt',
     transportTags: ['tåg', 'bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'medel',
-    description: 'Nåttarö är ett av de bäst bevarade naturreservaten i Stockholms skärgård. Inga bilar, inga restauranger — bara klippor, barrskog och tystnad.',
+    description: 'Nåttarö är ett av de bäst bevarade naturreservaten i Stockholms skärgård. Inga bilar, inga restauranger: bara klippor, barrskog och tystnad.',
     stops: [
       {
         name: 'Tåg till Nynäshamn + båt',
@@ -586,18 +586,18 @@ export const TRIPS: Trip[] = [
       {
         name: 'Vandring genom naturreservatet',
         type: 'natur',
-        desc: 'Välmarkerade leder genom orörda skogar. Ca 5–7 km.',
+        desc: 'Välmarkerade leder genom orörda skogar. Ca 5 till 7 km.',
       },
       {
         name: 'Picknick med havsutsikt',
         type: 'mat',
-        desc: 'Inga restauranger — ta med allt. Köp räkor vid Nynäshamns hamn.',
+        desc: 'Inga restauranger. Ta med allt. Köp räkor vid Nynäshamns hamn.',
         tip: 'Eldplatser finns men ta med egen ved.',
       },
     ],
     resources: [
       { label: 'Waxholmsbolagets tidtabell', url: 'https://waxholmsbolaget.se/tidtabeller' },
-      { label: 'SL — pendeltåg till Nynäshamn', url: 'https://sl.se' },
+      { label: 'SL: pendeltåg till Nynäshamn', url: 'https://sl.se' },
     ],
     islandSlugs: [],
   },
@@ -606,16 +606,16 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'ljustero-cykel-och-bad',
-    title: 'Ljusterö — cykel, bad och värdshus',
-    tagline: 'Buss och färja norr om stan — en lugn ö med cykelleder och ett av skärgårdens äldsta värdshus.',
-    duration: 'Heldag (8–9 timmar)',
+    title: 'Ljusterö: cykel, bad och värdshus',
+    tagline: 'Buss och färja norr om stan, en lugn ö med cykelleder och ett av skärgårdens äldsta värdshus.',
+    duration: 'Heldag (8 till 9 timmar)',
     startPoint: 'Tekniska högskolan, Stockholm',
     transport: 'Buss + färja + cykel',
     transportTags: ['buss', 'båt', 'cykel'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Maj till September',
     difficulty: 'lätt',
     featured: true,
-    description: 'Ljusterö når du enkelt med buss 670 från Stockholm utan att behöva bil. Ön är stor och kuperad — perfekt för cykling — med Ljusterö Värdshus som naturliga middag.',
+    description: 'Ljusterö når du enkelt med buss 670 från Stockholm utan att behöva bil. Ön är stor och kuperad, perfekt för cykling, med Ljusterö Värdshus som naturliga middag.',
     stops: [
       {
         name: 'Buss 670 från Tekniska högskolan',
@@ -628,7 +628,7 @@ export const TRIPS: Trip[] = [
         name: 'Färja till Ljusterö',
         type: 'transport',
         desc: 'Kort färjetur på ca 5 minuter. Gratis att ta med cykel.',
-        tip: 'Schema kan variera — verifiera via Ljusterö Färjerederi.',
+        tip: 'Schema kan variera, verifiera via Ljusterö Färjerederi.',
         bookingUrl: 'https://www.ljustero.com',
       },
       {
@@ -651,7 +651,7 @@ export const TRIPS: Trip[] = [
       },
     ],
     resources: [
-      { label: 'SL — buss 670 tidtabell', url: 'https://sl.se' },
+      { label: 'SL: buss 670 tidtabell', url: 'https://sl.se' },
       { label: 'Ljusterö Värdshus', url: 'https://www.ljusteroviardshus.se' },
     ],
     islandSlugs: ['ljustero'],
@@ -659,9 +659,9 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'gustavsberg-porslin-och-skargard',
-    title: 'Gustavsberg — porslin, design och Hemmesta sjöäng',
-    tagline: 'Buss till Värmdö — porslinets hemort och ett av Stockholms bästa friluftsområden.',
-    duration: 'Halvdag–heldag (5–8 timmar)',
+    title: 'Gustavsberg: porslin, design och Hemmesta sjöäng',
+    tagline: 'Buss till Värmdö, porslinets hemort och ett av Stockholms bästa friluftsområden.',
+    duration: 'Halvdag till heldag (5 till 8 timmar)',
     startPoint: 'Slussen, Stockholm',
     transport: 'Buss',
     transportTags: ['buss'] as TransportTag[],
@@ -680,7 +680,7 @@ export const TRIPS: Trip[] = [
         name: 'Gustavsbergs Porslinsmuseum',
         type: 'kultur',
         desc: 'Historien om det ikoniska Gustavsberg-porslinet och nutida design. Butik på plats.',
-        tip: 'Öppettider varierar — verifiera via museets hemsida.',
+        tip: 'Öppettider varierar, verifiera via museets hemsida.',
         bookingUrl: 'https://www.porslinsmuseet.se',
       },
       {
@@ -693,11 +693,11 @@ export const TRIPS: Trip[] = [
         type: 'natur',
         // Hemmesta sjöäng är INTE naturreservat — kommunalt skött våtmarks-/rekreationsområde (KÄLLA: Värmdö kommun, naturreservat, läst 2026-09-14). Ordet borttaget.
         desc: 'Vackert våtmarksområde med vandringsleder och badmöjligheter. Ca 3 km buss/promenad från centrum.',
-        tip: 'Bra för barnfamiljer — grunt och barnvänligt bad.',
+        tip: 'Bra för barnfamiljer, grunt och barnvänligt bad.',
       },
     ],
     resources: [
-      { label: 'SL — buss 428 tidtabell', url: 'https://sl.se' },
+      { label: 'SL: buss 428 tidtabell', url: 'https://sl.se' },
       { label: 'Gustavsbergs Porslinsmuseum', url: 'https://www.porslinsmuseet.se' },
     ],
     islandSlugs: [],
@@ -705,13 +705,13 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'runmaro-obefort-skargard',
-    title: 'Runmarö — orörd skärgård och klippbad',
-    tagline: 'En av Stockholms skärgårds mest underskattade öar — vacker, lugn och utan folkmassor.',
+    title: 'Runmarö: orörd skärgård och klippbad',
+    tagline: 'En av Stockholms skärgårds mest underskattade öar: vacker, lugn och utan folkmassor.',
     duration: 'Heldag',
     startPoint: 'Stavsnäs, Värmdö (bil)',
     transport: 'Bil + båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'medel',
     description: 'Runmarö nås med Waxholmsbåten från Stavsnäs och ger en autentisk skärgårdsupplevelse utan de stora turistflödena. Bra vandringsleder och fantastiska klippbad.',
     stops: [
@@ -719,7 +719,7 @@ export const TRIPS: Trip[] = [
         name: 'Bil till Stavsnäs + båt',
         type: 'transport',
         desc: 'Ca 1 timme bil till Stavsnäs. Waxholmsbolagets båt avgår därifrån till Runmarö.',
-        tip: 'Boka biljett via Waxholmsbolagets app. Schema kan variera — verifiera tidtabell.',
+        tip: 'Boka biljett via Waxholmsbolagets app. Schema kan variera, verifiera tidtabell.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
@@ -736,7 +736,7 @@ export const TRIPS: Trip[] = [
         name: 'Picknick eller Runmarö Butik',
         type: 'mat',
         desc: 'Enkel lanthandel på ön med grundvaror. Ta gärna med egen mat.',
-        tip: 'Öppettider kan vara begränsade — verifiera lokalt.',
+        tip: 'Öppettider kan vara begränsade, verifiera lokalt.',
       },
     ],
     resources: [
@@ -747,13 +747,13 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'orno-stor-och-varierad',
-    title: 'Ornö — Stockholms hemliga stora ö',
-    tagline: 'Stor, varierad och relativt okänd — perfekt för er som vill ha ön lite för er själva.',
+    title: 'Ornö: Stockholms hemliga stora ö',
+    tagline: 'Stor, varierad och relativt okänd, perfekt för er som vill ha ön lite för er själva.',
     duration: 'Heldag eller övernattning',
     startPoint: 'Dalarö (bil)',
     transport: 'Bil + färja',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Maj till September',
     difficulty: 'medel',
     description: 'Ornö är en av de större öarna i Stockholms södra skärgård och nås med färja från Dalarö. Varierad natur, bra vandringsleder och en handfull lokala ställen.',
     stops: [
@@ -761,13 +761,13 @@ export const TRIPS: Trip[] = [
         name: 'Bil till Dalarö + färja till Ornö',
         type: 'transport',
         desc: 'Ca 1 timme bil från Stockholm. Färjan till Ornö avgår från Dalarö.',
-        tip: 'Schema kan variera — verifiera avgångstider via Waxholmsbolaget.',
+        tip: 'Schema kan variera, verifiera avgångstider via Waxholmsbolaget.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
         name: 'Vandring längs Ornöleden',
         type: 'natur',
-        desc: 'Markerade leder som täcker öns olika biotoper — skog, öppen mark och kust.',
+        desc: 'Markerade leder som täcker öns olika biotoper: skog, öppen mark och kust.',
       },
       {
         name: 'Bad vid Ornös östra klippor',
@@ -778,7 +778,7 @@ export const TRIPS: Trip[] = [
         name: 'Ornö Lanthandel',
         type: 'mat',
         desc: 'Enkel butik med lokala produkter. Grillkorv och glass sommartid.',
-        tip: 'Öppettider varierar — kolla lokalt.',
+        tip: 'Öppettider varierar. Kolla lokalt.',
       },
     ],
     resources: [
@@ -789,21 +789,21 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'galo-sandstrand-och-sol',
-    title: 'Gålö — sandstrand och familjedags-pärla',
+    title: 'Gålö: sandstrand och familjedags-pärla',
     tagline: 'En av få sandstränder i Stockholms skärgård. Barnvänligt och lättillgängligt med bil.',
-    duration: 'Halvdag–heldag (4–7 timmar)',
+    duration: 'Halvdag till heldag (4 till 7 timmar)',
     startPoint: 'Stockholm (bil via Nynäsvägen)',
     transport: 'Bil',
     transportTags: ['bil'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'lätt',
-    description: 'Gålö är ett undantag i klippskärgården — här finns faktisk sandstrand. Nås med bil och kort färja. Perfekt för barnfamiljer och de som vill ha lite mer "strandkänsla".',
+    description: 'Gålö är ett undantag i klippskärgården. Här finns faktisk sandstrand. Nås med bil och kort färja. Perfekt för barnfamiljer och de som vill ha lite mer "strandkänsla".',
     stops: [
       {
         name: 'Bil till Gålö',
         type: 'transport',
         desc: 'Ca 45 minuter söder om Stockholm via Nynäsvägen. Skyltat från Handen.',
-        tip: 'Parkering kan ta slut tidiga lördagar i juli — kom före 10.',
+        tip: 'Parkering kan ta slut tidiga lördagar i juli. Kom före 10.',
       },
       {
         name: 'Gålö Sandstrand',
@@ -819,7 +819,7 @@ export const TRIPS: Trip[] = [
       {
         name: 'Picknick eller lunch vid stranden',
         type: 'mat',
-        desc: 'Begränsad servering vid stranden — ta med egen mat och dryck.',
+        desc: 'Begränsad servering vid stranden. Ta med egen mat och dryck.',
       },
     ],
     resources: [
@@ -830,21 +830,21 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'kymmendo-strindbergs-o',
-    title: 'Kymmendö — Strindbergs ö i skärgården',
+    title: 'Kymmendö: Strindbergs ö i skärgården',
     tagline: 'Den lilla ö där August Strindberg hämtade inspiration till Hemsöborna.',
     duration: 'Heldag',
     startPoint: 'Trosa eller Stav (bil + båt)',
     transport: 'Bil + charter/privat båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'krävande',
-    description: 'Kymmendö är en liten ö söder om Stockholm med stark litterär koppling — August Strindberg bodde här och hämtade inspiration till Hemsöborna. Nås bäst med privat båt eller chartrad tur.',
+    description: 'Kymmendö är en liten ö söder om Stockholm med stark litterär koppling, August Strindberg bodde här och hämtade inspiration till Hemsöborna. Nås bäst med privat båt eller chartrad tur.',
     stops: [
       {
         name: 'Charter från Trosa',
         type: 'transport',
         desc: 'Chartertur till Kymmendö avgår från Trosa eller Stav. Boka i förväg.',
-        tip: 'Inga reguljära linjer — kolla lokala båtcharterföretag i Södertälje/Trosa-trakten.',
+        tip: 'Inga reguljära linjer. Kolla lokala båtcharterföretag i Södertälje/Trosa-trakten.',
       },
       {
         name: 'Strindbergs Kymmendö',
@@ -859,7 +859,7 @@ export const TRIPS: Trip[] = [
       {
         name: 'Medtagen picknick',
         type: 'mat',
-        desc: 'Ingen servering på ön — ta med allt du behöver.',
+        desc: 'Ingen servering på ön. Ta med allt du behöver.',
         tip: 'Köp med dig räkor eller smörgåsar från Trosa innan du åker.',
       },
     ],
@@ -871,13 +871,13 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'svartso-ost-och-lantliv',
-    title: 'Svartsö — ostpigan och äkta lantliv',
+    title: 'Svartsö: ostpigan och äkta lantliv',
     tagline: 'En liten ö känd för sin lokala ostproduktion och genuina skärgårdskaraktär.',
     duration: 'Heldag',
     startPoint: 'Strömkajen, Stockholm',
     transport: 'Båt',
     transportTags: ['båt'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Maj till September',
     difficulty: 'lätt',
     description: 'Svartsö är liten, vacker och känd för sin lokala ostproducent. Waxholmsbåten tar dig hit på drygt 2 timmar. En perfekt ö om du vill ha autentisk skärgård utan att ta dig för långt.',
     stops: [
@@ -885,20 +885,20 @@ export const TRIPS: Trip[] = [
         name: 'Waxholmsbåten till Svartsö',
         type: 'transport',
         desc: 'Drygt 2 timmar från Strömkajen. Begränsat antal avgångar.',
-        tip: 'Ta morgonbåten — kvällsbåten kan vara tidig.',
+        tip: 'Ta morgonbåten, kvällsbåten kan vara tidig.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
         name: 'Svartsö Lanthandel',
         type: 'mat',
         desc: 'Charmig butik med lokala produkter, ost och delikatessen från ön.',
-        tip: 'Öppettider varierar säsongsvis — verifiera i förväg.',
+        tip: 'Öppettider varierar säsongsvis, verifiera i förväg.',
       },
       {
-        name: 'Ostpigan — lokal ostproduktion',
+        name: 'Ostpigan: lokal ostproduktion',
         type: 'kultur',
         desc: 'Lokal ostproducent på ön. Köp med dig handgjord ost direkt från producenten.',
-        tip: 'Kontakta i förväg om du vill besöka — öppet för besök kan variera.',
+        tip: 'Kontakta i förväg om du vill besöka, öppet för besök kan variera.',
       },
       {
         name: 'Vandring och klippbad',
@@ -914,13 +914,13 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'furusund-klassisk-sommar',
-    title: 'Furusund — klassisk sommarskärgård i norr',
+    title: 'Furusund: klassisk sommarskärgård i norr',
     tagline: 'Charmig samhälle i norra Stockholms skärgård med bryggliv och sommarstämning.',
-    duration: 'Halvdag–heldag',
+    duration: 'Halvdag till heldag',
     startPoint: 'Norrtälje (bil)',
     transport: 'Bil',
     transportTags: ['bil'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'lätt',
     description: 'Furusund är ett av norra skärgårdens mest levande sommarsamhällen. Bil hela vägen, bra parkering och ett trevligt hamn- och bryggsliv när det är som bäst.',
     stops: [
@@ -928,7 +928,7 @@ export const TRIPS: Trip[] = [
         name: 'Bil till Furusund',
         type: 'transport',
         desc: 'Ca 1,5 timme norr om Stockholm via E18 och Norrtälje.',
-        tip: 'Parkeringen vid hamnen kan vara full på sommarlördagar — kom tidigt.',
+        tip: 'Parkeringen vid hamnen kan vara full på sommarlördagar. Kom tidigt.',
       },
       {
         name: 'Furusunds hamn',
@@ -943,7 +943,7 @@ export const TRIPS: Trip[] = [
       {
         name: 'Lunch eller middag på Furusund Värdshus',
         type: 'mat',
-        desc: 'Klassiskt skärgårdsvärdshus i Hotell Furusund — byggnaden är ett tullhus från 1800-talet som började serva mat 1950. Hög kvalitet (86 p i Falstaff Guide Nordics 2026) och fin utsikt.',
+        desc: 'Klassiskt skärgårdsvärdshus i Hotell Furusund, byggnaden är ett tullhus från 1800-talet som började serva mat 1950. Hög kvalitet (86 p i Falstaff Guide Nordics 2026) och fin utsikt.',
         tip: 'Boka bord i förväg på helger.',
         bookingUrl: 'https://hotellfurusund.se',
       },
@@ -956,15 +956,15 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'ingarso-klassisk-skargard',
-    title: 'Ingmarsö — klassisk skärgård utan bilar',
+    title: 'Ingmarsö: klassisk skärgård utan bilar',
     tagline: 'Bilfri ö med cyklar, naturhamnar och ett lugn som är sällsynt nära stan.',
     duration: 'Heldag eller övernattning',
     startPoint: 'Stavsnäs, Värmdö (bil)',
     transport: 'Bil + båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'lätt',
-    description: 'Ingmarsö är en bilfri ö i Stockholms skärgård. Hyr cykel vid bryggan och utforska ön på egna villkor — naturhamnar, klippbad och lokalt café.',
+    description: 'Ingmarsö är en bilfri ö i Stockholms skärgård. Hyr cykel vid bryggan och utforska ön på egna villkor: naturhamnar, klippbad och lokalt café.',
     stops: [
       {
         name: 'Bil till Stavsnäs + båt',
@@ -975,8 +975,8 @@ export const TRIPS: Trip[] = [
       {
         name: 'Cykelhyra vid bryggan',
         type: 'aktivitet',
-        desc: 'Cyklar hyrs vid bryggan — perfekt sätt att utforska ön utan bil.',
-        tip: 'Begränsat antal cyklar — kom tidigt eller ring i förväg.',
+        desc: 'Cyklar hyrs vid bryggan, perfekt sätt att utforska ön utan bil.',
+        tip: 'Begränsat antal cyklar. Kom tidigt eller ring i förväg.',
       },
       {
         name: 'Naturhamn och klippbad',
@@ -987,7 +987,7 @@ export const TRIPS: Trip[] = [
         name: 'Ingmarsö Café',
         type: 'mat',
         desc: 'Litet café med hembakat och enkel lunch. Sommaröppet.',
-        tip: 'Öppettider varierar — verifiera lokalt.',
+        tip: 'Öppettider varierar, verifiera lokalt.',
       },
     ],
     resources: [
@@ -998,13 +998,13 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'nando-tradition-och-tystnad',
-    title: 'Nämdö — tradition, tystnad och äkta skärgårdsliv',
+    title: 'Nämdö: tradition, tystnad och äkta skärgårdsliv',
     tagline: 'En av Stockholms skärgårds mest avskilda öar med fast befolkning och lång historia.',
     duration: 'Heldag',
     startPoint: 'Stavsnäs, Värmdö (bil)',
     transport: 'Bil + båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'medel',
     description: 'Nämdö är en storslagen ö med fast befolkning, gamla fiskelägen och fantastisk natur. En av de öar i Stockholms skärgård som fortfarande känns genuint levande.',
     stops: [
@@ -1012,7 +1012,7 @@ export const TRIPS: Trip[] = [
         name: 'Bil till Stavsnäs + båt',
         type: 'transport',
         desc: 'Ca 1 timme bil. Waxholmsbåten till Nämdö.',
-        tip: 'Begränsat med avgångar — kolla tidtabellen noga.',
+        tip: 'Begränsat med avgångar. Kolla tidtabellen noga.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
@@ -1023,12 +1023,12 @@ export const TRIPS: Trip[] = [
       {
         name: 'Vandring på Nämdö',
         type: 'natur',
-        desc: 'Leder genom gammal kulturmark och ut mot klippkusten. Ca 5–8 km.',
+        desc: 'Leder genom gammal kulturmark och ut mot klippkusten. Ca 5 till 8 km.',
       },
       {
         name: 'Bad och picknick',
         type: 'bad',
-        desc: 'Ta med mat — begränsad service på ön. Bad från klippor längs sydkusten.',
+        desc: 'Ta med mat, begränsad service på ön. Bad från klippor längs sydkusten.',
       },
     ],
     resources: [
@@ -1039,13 +1039,13 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'smaadalaro-sol-och-hav',
-    title: 'Smådalarö — det lilla samhällets charm',
+    title: 'Smådalarö: det lilla samhällets charm',
     tagline: 'Pittoreskt samhälle söder om Dalarö med gästhamn, krog och klippbad.',
-    duration: 'Halvdag–heldag',
+    duration: 'Halvdag till heldag',
     startPoint: 'Stockholm (bil)',
     transport: 'Bil',
     transportTags: ['bil'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'lätt',
     description: 'Smådalarö är en liten pärla i Stockholms södra skärgård. Bil hela vägen, charmig gästhamn och ett av de trevligaste klippbaden i södra skärgården.',
     stops: [
@@ -1058,7 +1058,7 @@ export const TRIPS: Trip[] = [
         name: 'Smådalarö Gård Hotell & Spa',
         type: 'mat',
         desc: 'Smådalarö Gård är ett av Sveriges största spahotell, med restaurangen Brasserie & Bränneri som har skärgårdsmeny och egen brännerikällare.',
-        tip: 'Boka bord i förväg på helger — populärt resmål.',
+        tip: 'Boka bord i förväg på helger, populärt resmål.',
         bookingUrl: 'https://www.smadalarogard.se',
       },
       {
@@ -1080,21 +1080,21 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'vindo-badparadiset',
-    title: 'Vindö — skärgårdens badparadis med bro',
+    title: 'Vindö: skärgårdens badparadis med bro',
     tagline: 'Bilfritt paradis nära Stavsnäs med fantastiska klippbad och sandstränder.',
-    duration: 'Halvdag–heldag',
+    duration: 'Halvdag till heldag',
     startPoint: 'Stavsnäs, Värmdö (bil)',
     transport: 'Bil + kort bro/båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'lätt',
-    description: 'Vindö nås via Stavsnäs och är känt för sina varierade badmöjligheter — klippbad, naturhamnar och en av de bättre "hängplatserna" i skärgårdens inre delar.',
+    description: 'Vindö nås via Stavsnäs och är känt för sina varierade badmöjligheter: klippbad, naturhamnar och en av de bättre "hängplatserna" i skärgårdens inre delar.',
     stops: [
       {
         name: 'Bil till Stavsnäs + bro/färja till Vindö',
         type: 'transport',
         desc: 'Ca 1 timme bil till Stavsnäs. Kort överfart till Vindö.',
-        tip: 'Verifiera överfartsmöjligheter lokalt — det finns både privat och kommunal trafik.',
+        tip: 'Verifiera överfartsmöjligheter lokalt. Det finns både privat och kommunal trafik.',
       },
       {
         name: 'Klippbad på Vindö',
@@ -1109,7 +1109,7 @@ export const TRIPS: Trip[] = [
       {
         name: 'Picknick',
         type: 'mat',
-        desc: 'Begränsad service på ön — ta med mat. Stavsnäs på fastlandet har caféer och restauranger som alternativ före/efter besöket.',
+        desc: 'Begränsad service på ön. Ta med mat. Stavsnäs på fastlandet har caféer och restauranger som alternativ före/efter besöket.',
       },
     ],
     resources: [],
@@ -1118,27 +1118,27 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'husaro-avskild-parla',
-    title: 'Husarö — en av skärgårdens mest avskilda öar',
-    tagline: 'Liten, tyst och vacker — Husarö kräver lite mer planering men ger det tillbaka dubbelt.',
+    title: 'Husarö: en av skärgårdens mest avskilda öar',
+    tagline: 'Liten, tyst och vacker, Husarö kräver lite mer planering men ger det tillbaka dubbelt.',
     duration: 'Heldag',
     startPoint: 'Åsättra (Ljusterö) eller Stavsnäs',
     transport: 'Bil + båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'medel',
-    description: 'Husarö är en liten ö i mellersta Stockholms skärgård med begränsade båtförbindelser. Det gör den avskild och tyst — perfekt för er som söker en dag utan folkmassor.',
+    description: 'Husarö är en liten ö i mellersta Stockholms skärgård med begränsade båtförbindelser. Det gör den avskild och tyst, perfekt för er som söker en dag utan folkmassor.',
     stops: [
       {
         name: 'Bil till Åsättra + Waxholmsbåt till Husarö',
         type: 'transport',
         desc: 'Snabbast: kör till Åsättra brygga på Ljusterö (ca 1 tim 15 min från Stockholm) och ta Waxholmsbåten över till Husarö. Alternativt från Stavsnäs.',
-        tip: 'Begränsade avgångar — verifiera tidtabellen via Waxholmsbolaget innan avfärd.',
+        tip: 'Begränsade avgångar, verifiera tidtabellen via Waxholmsbolaget innan avfärd.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
         name: 'Vandring runt Husarö',
         type: 'natur',
-        desc: 'Liten ö med enkel vandringsled runt hela ön. Ca 3–4 km.',
+        desc: 'Liten ö med enkel vandringsled runt hela ön. Ca 3 till 4 km.',
       },
       {
         name: 'Klippbad',
@@ -1161,21 +1161,21 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'rodloga-ytterskargard-aventyr',
-    title: 'Rödlöga — ytterskärgård och vind i håret',
+    title: 'Rödlöga: ytterskärgård och vind i håret',
     tagline: 'En av Stockholmsskärgårdens yttersta öar. Vild, vacker och värd varje timme det tar att ta sig dit.',
     duration: 'Heldag (tidigt start krävs)',
     startPoint: 'Norrtälje (bil + båt)',
     transport: 'Bil + båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'krävande',
     description: 'Rödlöga ligger i ytterskärgårdens norra del. Det kräver planering att ta sig dit, men belöningen är en av de mest storslagna naturupplevelserna i hela Stockholms skärgård.',
     stops: [
       {
         name: 'Bil till Norrtälje + lång båttur',
         type: 'transport',
-        desc: 'Waxholmsbåt från Norrtälje till Rödlöga. Resan kan ta 2–3 timmar.',
-        tip: 'Avgångarna är mycket begränsade — planera minst en vecka i förväg och verifiera via Waxholmsbolaget.',
+        desc: 'Waxholmsbåt från Norrtälje till Rödlöga. Resan kan ta 2 till 3 timmar.',
+        tip: 'Avgångarna är mycket begränsade. Planera minst en vecka i förväg och verifiera via Waxholmsbolaget.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
@@ -1186,13 +1186,13 @@ export const TRIPS: Trip[] = [
       {
         name: 'Klippbad i ytterskärgården',
         type: 'bad',
-        desc: 'Öppna klippor med riktigt klart vatten. Inga turister — bara du och havet.',
+        desc: 'Öppna klippor med riktigt klart vatten. Inga turister, bara du och havet.',
       },
       {
         name: 'Medtagen mat',
         type: 'mat',
         desc: 'Ingen service på ön. Packa mat för hela dagen.',
-        tip: 'Ta med rejäl matsäck — du är långt från närmaste butik.',
+        tip: 'Ta med rejäl matsäck. Du är långt från närmaste butik.',
       },
     ],
     resources: [
@@ -1203,13 +1203,13 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'fejan-fyr-och-havsutsikt',
-    title: 'Fejan — sjökrog, gammal karantänstation och havsutsikt',
-    tagline: 'Liten ö i Roslagens skärgård med historisk karantänstation — idag sjökrog och pensionat.',
+    title: 'Fejan: sjökrog, gammal karantänstation och havsutsikt',
+    tagline: 'Liten ö i Roslagens skärgård med historisk karantänstation, idag sjökrog och pensionat.',
     duration: 'Heldag eller övernattning',
     startPoint: 'Norrtälje / Räfsnäs (bil + båt)',
     transport: 'Bil + båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Maj till September',
     difficulty: 'medel',
     description: 'Fejan ligger i Roslagens skärgård utanför Norrtäljeviken nära Ålands hav. Karantänstationen byggdes på 1800-talet och var i drift fram till 1930-talet. Sedan 2013 driver Skärgårdsstiftelsen ön som sjökrog, pensionat och konferensanläggning.',
     stops: [
@@ -1233,7 +1233,7 @@ export const TRIPS: Trip[] = [
         name: 'Lunch eller middag på Fejan',
         type: 'mat',
         desc: 'Sjökrog med skärgårdsmat och fina vyer mot vattnet. Pensionat med övernattningsmöjligheter.',
-        tip: 'Boka i förväg — populärt resmål.',
+        tip: 'Boka i förväg, populärt resmål.',
         bookingUrl: 'https://fejan.com',
       },
     ],
@@ -1246,8 +1246,8 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'landsort-sydligaste-fyren',
-    title: 'Landsort — Stockholmsskärgårdens sydligaste punkt',
-    tagline: 'Fyren vid världens ände — en av landets vackraste öar och ett historiskt fyrsläge.',
+    title: 'Landsort: Stockholmsskärgårdens sydligaste punkt',
+    tagline: 'Fyren vid världens ände, en av landets vackraste öar och ett historiskt fyrsläge.',
     duration: 'Heldag (tidigt start)',
     // Rättad 2026-11-09 (P0 21): båten till Landsort går från Ankaruddens brygga, inte från Nynäshamn.
     // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — "Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden." (läst 2026-11-09)
@@ -1257,7 +1257,7 @@ export const TRIPS: Trip[] = [
     startPoint: 'Ankaruddens brygga (bil, eller pendeltåg till Nynäshamn + buss 852)',
     transport: 'Tåg/bil + båt',
     transportTags: ['tåg', 'bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'krävande',
     description: 'Landsort är den sydligaste bebodda punkten i Stockholms skärgård med en av Sveriges vackraste fyrstationer. Lång resväg men en upplevelse utöver det vanliga.',
     stops: [
@@ -1269,15 +1269,15 @@ export const TRIPS: Trip[] = [
         // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Giltig från och med 17 augusti till och med 12 december 2026."; uppmätt i tabellen: avg Stockholm City–Nynäshamn 59–65 min (läst 2026-11-09)
         // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — "Nynäshamns station–Torö", "ANKARUDDEN", "Giltig 17 augusti–12 december 2026"; uppmätt i tabellen: Nynäshamns station–Ankarudden 35–43 min (läst 2026-11-09)
         // KÄLLA: https://kund.printhuset-sthlm.se/wa/h29.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "29A ANKARUDDEN – LANDSORT"; uppmätt i tabellen: Ankarudden–Landsort 30 min på alla turer (läst 2026-11-09)
-        desc: 'Pendeltåg från Stockholm City till Nynäshamn (59–65 min), buss 852 till Ankarudden (35–43 min) och Waxholmsbolagets båt till Landsort på ön Öja (30 min enligt tabell 29).',
-        tip: 'Mycket begränsat med avgångar — planera och verifiera tidtabellen noga. Tur-och-retur samma dag kräver tidigt start.',
+        desc: 'Pendeltåg från Stockholm City till Nynäshamn (59 till 65 min), buss 852 till Ankarudden (35 till 43 min) och Waxholmsbolagets båt till Landsort på ön Öja (30 min enligt tabell 29).',
+        tip: 'Mycket begränsat med avgångar. Planera och verifiera tidtabellen noga. Tur-och-retur samma dag kräver tidigt start.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
         name: 'Landsorts fyr',
         type: 'kultur',
         desc: 'En av Östersjöns viktigaste fyrstationer sedan 1600-talet. Stilrent och historiskt.',
-        tip: 'Fyren och museet kan ha begränsade öppettider — verifiera via Landsorts Fyrby.',
+        tip: 'Fyren och museet kan ha begränsade öppettider, verifiera via Landsorts Fyrby.',
         bookingUrl: 'https://www.landsort.com',
       },
       {
@@ -1298,7 +1298,7 @@ export const TRIPS: Trip[] = [
     ],
     resources: [
       { label: 'Waxholmsbolagets tidtabell', url: 'https://waxholmsbolaget.se/tidtabeller' },
-      { label: 'SL — pendeltåg till Nynäshamn', url: 'https://sl.se' },
+      { label: 'SL: pendeltåg till Nynäshamn', url: 'https://sl.se' },
       { label: 'Landsorts Fyrby', url: 'https://www.landsort.com' },
     ],
     islandSlugs: ['landsort'],
@@ -1306,15 +1306,15 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'grinda-paddling-och-lunch',
-    title: 'Grinda — kajak, lunch och naturhamn',
+    title: 'Grinda: kajak, lunch och naturhamn',
     tagline: 'Paddla runt ön på förmiddagen, ät lunch på wärdshuset och ta ett dopp på eftermiddagen.',
     duration: 'Heldag',
     startPoint: 'Strömkajen, Stockholm',
     transport: 'Båt',
     transportTags: ['båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'medel',
-    description: 'Grinda är en av de mest kompletta dagsmålen i Stockholms skärgård — kajak, vandring, lunch och bad allt på samma ö. Waxholmsbåten tar dig dit på drygt en timme.',
+    description: 'Grinda är en av de mest kompletta dagsmålen i Stockholms skärgård: kajak, vandring, lunch och bad allt på samma ö. Waxholmsbåten tar dig dit på drygt en timme.',
     stops: [
       {
         name: 'Waxholmsbåten till Grinda',
@@ -1326,7 +1326,7 @@ export const TRIPS: Trip[] = [
         name: 'Kajaktur runt Grinda',
         type: 'aktivitet',
         desc: 'Guidning och uthyrning från Grinda Wärdshus brygga. Ca 3 timmar runt ön.',
-        tip: 'Boka i förväg — kajaker tar slut tidigt på högsommar.',
+        tip: 'Boka i förväg, kajaker tar slut tidigt på högsommar.',
         bookingUrl: 'https://grinda.se/aktiviteter',
       },
       {
@@ -1344,20 +1344,20 @@ export const TRIPS: Trip[] = [
     ],
     resources: [
       { label: 'Waxholmsbolagets tidtabell', url: 'https://waxholmsbolaget.se/tidtabeller' },
-      { label: 'Grinda Wärdshus — bokning och kajak', url: 'https://grinda.se' },
+      { label: 'Grinda Wärdshus: bokning och kajak', url: 'https://grinda.se' },
     ],
     islandSlugs: ['grinda'],
   },
 
   {
     slug: 'morko-sodra-skargarden',
-    title: 'Mörkö — södra skärgårdens dolda pärla',
-    tagline: 'Stor ö i Södertälje-skärgården med fin natur och lugn stämning — nås med bil och bro.',
-    duration: 'Halvdag–heldag',
+    title: 'Mörkö: södra skärgårdens dolda pärla',
+    tagline: 'Stor ö i Södertälje-skärgården med fin natur och lugn stämning, nås med bil och bro.',
+    duration: 'Halvdag till heldag',
     startPoint: 'Södertälje (bil)',
     transport: 'Bil',
     transportTags: ['bil'] as TransportTag[],
-    season: 'Maj–September',
+    season: 'Maj till September',
     difficulty: 'lätt',
     description: 'Mörkö nås med bil via bro och erbjuder fin natur och klippbad utan de stora turistflödena. En bra dagsutflykt för dem som bor söder om Stockholm.',
     stops: [
@@ -1381,7 +1381,7 @@ export const TRIPS: Trip[] = [
       {
         name: 'Picknick',
         type: 'mat',
-        desc: 'Begränsad servering på ön — ta med mat. Södertälje har bra matbutiker längs vägen.',
+        desc: 'Begränsad servering på ön. Ta med mat. Södertälje har bra matbutiker längs vägen.',
       },
     ],
     resources: [
@@ -1392,29 +1392,29 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'bullero-naturreservat',
-    title: 'Bullerö — orörd nationalparksö i ytterskärgården',
-    tagline: 'Ett av Stockholms skärgårds bäst bevarade naturreservat — vild natur och nästan inga turister.',
+    title: 'Bullerö: orörd nationalparksö i ytterskärgården',
+    tagline: 'Ett av Stockholms skärgårds bäst bevarade naturreservat, vild natur och nästan inga turister.',
     duration: 'Heldag',
     startPoint: 'Stavsnäs, Värmdö (bil)',
     transport: 'Bil + båt',
     transportTags: ['bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'krävande',
     // KÄLLA: Naturvårdsverket 2025-09-05 — Nämdöskärgårdens nationalpark invigd; Bullerö naturreservat uppgick i parken (läst 2026-08-23)
-    description: 'Bullerö ligger i Nämdöskärgårdens nationalpark — Sveriges 31:a, invigd 2025 — och nås med privat båt eller chartrad tur från Stavsnäs. Ön är skyddad och känd för sitt rika fågelliv, öppna hällmarker och storslagna havsvyer.',
+    description: 'Bullerö ligger i Nämdöskärgårdens nationalpark, Sveriges 31:a, invigd 2025, och nås med privat båt eller chartrad tur från Stavsnäs. Ön är skyddad och känd för sitt rika fågelliv, öppna hällmarker och storslagna havsvyer.',
     stops: [
       {
         name: 'Båt från Stavsnäs',
         type: 'transport',
         desc: 'Bullerö trafikeras sommartid av Waxholmsbolaget från Stavsnäs vinterhamn. Verifiera aktuell tidtabell innan avfärd. Privat båt eller charter är alternativ.',
-        tip: 'Avgångarna kan vara begränsade — planera resan i förväg.',
+        tip: 'Avgångarna kan vara begränsade. Planera resan i förväg.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
         name: 'Vandring på Bullerö',
         type: 'natur',
         desc: 'Öppna hällmarker, gammal skog och fågelkolonier. Markerade leder runt reservatet.',
-        tip: 'Håll dig till lederna under häckningstiden för att inte störa fåglarna — perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti.',
+        tip: 'Håll dig till lederna under häckningstiden för att inte störa fåglarna: perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti.',
       },
       {
         name: 'Fågelskådning',
@@ -1429,12 +1429,12 @@ export const TRIPS: Trip[] = [
       {
         name: 'Medtagen matsäck',
         type: 'mat',
-        desc: 'Ingen service på ön — packa mat och vatten för hela dagen.',
+        desc: 'Ingen service på ön. Packa mat och vatten för hela dagen.',
         tip: 'Köp med dig mat i Stavsnäs eller Gustavsberg på vägen.',
       },
     ],
     resources: [
-      { label: 'Sveriges Nationalparker — Nämdöskärgårdens nationalpark', url: 'https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark' },
+      { label: 'Sveriges Nationalparker: Nämdöskärgårdens nationalpark', url: 'https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark' },
       { label: 'Stockholms skärgårdsstiftelse', url: 'https://www.skargardsstiftelsen.se' },
     ],
     islandSlugs: ['bullero'],
@@ -1442,7 +1442,7 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'huvudskar-fyrstationen',
-    title: 'Huvudskär — ytterskärgårdens fyrtorn',
+    title: 'Huvudskär: ytterskärgårdens fyrtorn',
     tagline: 'En av Stockholmsskärgårdens mest dramatiska fyrstationer, mitt i öppet hav.',
     duration: 'Heldag (tidigt start krävs)',
     // Rättad 2026-11-09 (P0 21): ingen båt går från Nynäshamn till Huvudskär. Sommarbåten gick från Dalarö.
@@ -1451,7 +1451,7 @@ export const TRIPS: Trip[] = [
     startPoint: 'Dalarö (sommarbåt) eller egen båt/taxibåt',
     transport: 'Tåg/bil + båt',
     transportTags: ['tåg', 'bil', 'båt'] as TransportTag[],
-    season: 'Juni–Augusti',
+    season: 'Juni till Augusti',
     difficulty: 'krävande',
     // Rättad 2026-11-09 (P0 21): Waxholmsbolaget har ingen tabell med Huvudskär och båten gick inte från Nynäshamn. "Lång resväg men en unik upplevelse" är struket (obelagd restid och värdeord).
     // KÄLLA: https://www.dalarosjotransporter.se/kontakt/ — "Under sommaren 2026 kommer vi återigen att trafikera Dalarö - Huvudskär på torsdagar och söndagar mellan 14 juni-16 augusti i samband med att vandrarhemmet byter gäster." (läst 2026-11-09)
@@ -1475,7 +1475,7 @@ export const TRIPS: Trip[] = [
         name: 'Huvudskärs fyrtorn',
         type: 'kultur',
         desc: 'Kraftfull fyr med utsikt över öppet Östersjön. Historisk fyrmiljö med välbevarade byggnader.',
-        tip: 'Verifiera om fyren är öppen för besökare — det varierar säsong till säsong.',
+        tip: 'Verifiera om fyren är öppen för besökare. Det varierar säsong till säsong.',
       },
       {
         name: 'Vandring runt ön',
@@ -1491,15 +1491,15 @@ export const TRIPS: Trip[] = [
         name: 'Medtagen matsäck',
         type: 'mat',
         // Rättad 2026-11-09 (P0 21): avfärden till Huvudskär är inte från Nynäshamn.
-        desc: 'Ingen service — ta med allt. Köp mat innan avfärd.',
+        desc: 'Ingen service. Ta med allt. Köp mat innan avfärd.',
       },
     ],
     resources: [
       // Rättad 2026-11-09 (P0 21): Waxholmsbolagets tabell och pendeltåget till Nynäshamn leder inte till Huvudskär.
       // KÄLLA: https://www.dalarosjotransporter.se/kontakt/ — "RESA TILL HUVUDSKÄR", "Under sommaren 2026 kommer vi återigen att trafikera Dalarö - Huvudskär på torsdagar och söndagar mellan 14 juni-16 augusti i samband med att vandrarhemmet byter gäster." (läst 2026-11-09)
       // KÄLLA: https://skargardsstiftelsen.se/omraden/huvudskar/ — "Hit tar du dig med egen båt eller taxibåt. Under sommaren finns även vissa säsongsanpassade båtturer från Dalarö." (läst 2026-11-09)
-      { label: 'Dalarö Sjötransporter — resa till Huvudskär', url: 'https://www.dalarosjotransporter.se/kontakt/' },
-      { label: 'Skärgårdsstiftelsen — Huvudskär', url: 'https://skargardsstiftelsen.se/omraden/huvudskar/' },
+      { label: 'Dalarö Sjötransporter: resa till Huvudskär', url: 'https://www.dalarosjotransporter.se/kontakt/' },
+      { label: 'Skärgårdsstiftelsen: Huvudskär', url: 'https://skargardsstiftelsen.se/omraden/huvudskar/' },
     ],
     islandSlugs: ['huvudskar'],
   },

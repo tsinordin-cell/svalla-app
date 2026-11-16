@@ -57,7 +57,7 @@ export default function PlaceNotFound() {
           fontSize: 15, color: 'var(--txt2)',
           margin: 0, lineHeight: 1.55,
         }}>
-          Den här hamnen, krogen eller naturhamnen finns inte i Svalla — eller har bytt URL. Inga problem, det finns hundratals andra att upptäcka.
+          Den här hamnen, krogen eller naturhamnen finns inte i Svalla | eller har bytt URL. Inga problem, det finns hundratals andra att upptäcka.
         </p>
       </div>
 

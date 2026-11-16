@@ -32,7 +32,7 @@ function kallsiffror() {
 }
 
 export const metadata: Metadata = {
-  title: { absolute: 'Om Svalla – så bygger vi Sveriges skärgårdsguide' },
+  title: { absolute: 'Om Svalla | så bygger vi Sveriges skärgårdsguide' },
   description: 'Svalla är en digital guide till svenska skärgården, byggd av skärgårdsälskare med stöd av Thorkel, vår AI-skeppare. Läs om hur vi samlar data, verifierar fakta och tänker kring innehållet.',
   alternates: { canonical: 'https://svalla.se/om' },
   openGraph: {

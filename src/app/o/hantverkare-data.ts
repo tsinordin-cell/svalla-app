@@ -208,7 +208,7 @@ export const HANTVERKARE: Hantverkare[] = [
       reservation: 'Kontaktsidan visar info@ som text men länkarna pekar mot andra adresser.' },
     verifierad: false,
     noteringar:
-      'Egna båtar och pråmar för material och personal — ovanligt, gör dem relevanta för yttre öar. ' +
+      'Egna båtar och pråmar för material och personal: ovanligt, gör dem relevanta för yttre öar. ' +
       'Kontaktsidan visar info@ som text men länkarna pekar mot andra adresser; bekräfta vilken som gäller. ' +
       'Ölistan är företagets egen uppgift, inte verifierad av oss.',
   },
@@ -237,7 +237,7 @@ export const HANTVERKARE: Hantverkare[] = [
       // KÄLLA: http://www.wallnermarin.se/priser/ (läst 2026-09-22)
       'dykarbete 2 000 kr etablering inkl en timme och 1 000 kr/h därefter, bärgning 1 350 kr/h. ' +
       // KÄLLA: http://www.wallnermarin.se/priser/ (läst 2026-09-22) — företagets egna fasta priser
-      'Fast pris Möja–Sollenkroka: 1 200 kr med båt, 2 000 kr med svävare, ink 6 % moms. ' +
+      'Fast pris Möja till Sollenkroka: 1 200 kr med båt, 2 000 kr med svävare, ink 6 % moms. ' +
       // KÄLLA: http://www.wallnermarin.se/priser/ (läst 2026-09-22) — egna villkor
       'Tiden räknas från att de lämnar hemmahamn tills de är hemma igen. 50 % påslag efter 22.00 ' +
       'eller före 05.00. Upphandlad leverantör av skolskjuts med båt och ISGÅENDE FARTYG åt ' +
@@ -275,7 +275,7 @@ export const HANTVERKARE: Hantverkare[] = [
     verifierad: false,
     noteringar:
       'Långviksnäs 208, 130 43 Möja. Anger själva att de är bofasta på Möja och jobbar året runt. ' +
-      'Stugbygge, BRYGGOR och renoveringar — en av få på ön som uttryckligen anger bryggarbete.',
+      'Stugbygge, BRYGGOR och renoveringar, en av få på ön som uttryckligen anger bryggarbete.',
   },
   {
     slug: 'kyrkvikens-sjotransport',
@@ -309,7 +309,7 @@ export const HANTVERKARE: Hantverkare[] = [
     noteringar:
       'Möja Löka 505, 130 43 Möja. Auktoriserad service, förvaring och försäljning av Yamaha ' +
       'utombordare samt YFM fyrhjulingar med vagnar. MEDLEM I SWEBOAT. ' +
-      'Öppet mån–fre 08.00–17.00, stängt helger. Fler nummer på sidan: 070-656 49 49, 070-256 41 68.',
+      'Öppet mån till fre 08.00 till 17.00, stängt helger. Fler nummer på sidan: 070-656 49 49, 070-256 41 68.',
   },
   {
     slug: 'vahine',
@@ -322,7 +322,7 @@ export const HANTVERKARE: Hantverkare[] = [
     webb: 'https://www.vahine.se',
     oar: ['moja'],
     kalla: { niva: 'egen-sajt', url: 'https://www.vahine.se', last: '2026-09-22',
-      reservation: 'Företagets egen sida anger två olika telefonnummer — 070 538 84 48 i brödtexten och 070 539 73 23 i sidfoten. Vi publicerar inget av dem förrän någon frågat.' },
+      reservation: 'Företagets egen sida anger två olika telefonnummer, 070 538 84 48 i brödtexten och 070 539 73 23 i sidfoten. Vi publicerar inget av dem förrän någon frågat.' },
     verifierad: false,
     noteringar: 'Ramsmora 818, 130 43 Möja. Båttaxi för upp till 7 personer, båten Lisa. Inget pris publicerat.',
   },
@@ -360,10 +360,10 @@ export const HANTVERKARE: Hantverkare[] = [
     kalla: { niva: 'egen-sajt', url: 'https://hhmarin.se', last: '2026-09-22' },
     verifierad: false,
     noteringar:
-      'OBS: kommunens register klassar dem som båtvarv på grund av firmanamnet "Marin". Det är fel — ' +
+      'OBS: kommunens register klassar dem som båtvarv på grund av firmanamnet "Marin". Det är fel: ' +
       'de är byggentreprenörer. Bygger hus i Stockholms skärgård sedan 2007, oftast totalentreprenad ' +
-      'utifrån arkitektritningar. Referenser de själva anger: Tham & Videgård i Stavsnäs 2018–20 och ' +
-      'på Krokholmen 2014–15, Rönneberga Konferens på Gistholmen med 21 stugor 2017–20. ' +
+      'utifrån arkitektritningar. Referenser de själva anger: Tham & Videgård i Stavsnäs 2018 till 20 och ' +
+      'på Krokholmen 2014 till 15, Rönneberga Konferens på Gistholmen med 21 stugor 2017 till 20. ' +
       'Publicerade i El Croquis och på omslaget till Arkitektur nr 4 2017. Gustav: 070-492 50 39.',
   },
   {
@@ -380,7 +380,7 @@ export const HANTVERKARE: Hantverkare[] = [
     verifierad: false,
     noteringar:
       'Snickeri, renovering av altan och kök, tillbyggnad, service och underhåll av båt, trädgård och tomt. ' +
-      'Registret placerade dem på Möja — deras egen sida säger Stavsudda-området.',
+      'Registret placerade dem på Möja, deras egen sida säger Stavsudda-området.',
   },
   {
     slug: 'rb-rorteknik',
@@ -395,7 +395,7 @@ export const HANTVERKARE: Hantverkare[] = [
     sakerVatten: { last: '2026-09-22' },
     verifierad: false,
     noteringar:
-      'Kallar sig auktoriserat VVS-företag och visar Säker Vattens märke på egen sida — bekräftat mot ' +
+      'Kallar sig auktoriserat VVS-företag och visar Säker Vattens märke på egen sida: bekräftat mot ' +
       'Säker Vattens eget register som VVS-Företag i Gustavsberg. Två oberoende källor. ' +
       'Erbjuder uttryckligen båttransport för VVS-tjänster till öar. Kontor: 08-570 198 80.',
   },
@@ -414,10 +414,10 @@ export const HANTVERKARE: Hantverkare[] = [
     behorighetKalla: 'https://www.elsakerhetsverket.se/kollaelforetaget/foretagsregister/?foretag=11039774&sok=1',
     verifierad: false,
     noteringar:
-      'Registrerat elinstallationsföretag hos Elsäkerhetsverket — företaget länkar själva till sin post ' +
+      'Registrerat elinstallationsföretag hos Elsäkerhetsverket: företaget länkar själva till sin post ' +
       'i registret, vilket gör behörigheten kontrollerbar för besökaren. Verksamma sedan 2003. ' +
       'F-skatt och fullförsäkrat enligt egen sida. Ny filial i Herräng sedan augusti 2025 (0175-105 75). ' +
-      'Öppet mån–tors 06.45–16.00, fre 06.45–13.30.',
+      'Öppet mån till tors 06.45 till 16.00, fre 06.45 till 13.30.',
   },
   {
     slug: 'anderssons-batvarv',

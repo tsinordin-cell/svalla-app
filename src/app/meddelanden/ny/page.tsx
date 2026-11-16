@@ -113,7 +113,7 @@ function NyKonversationInner() {
  // Loppis-pre-fill: spara intro-text i sessionStorage så
  // /meddelanden/[id]-sidan kan plocka upp den och förlada textarea.
  if (aboutThreadId && aboutTitle && typeof window !== 'undefined') {
- const intro = `Hej! Jag är intresserad av din annons "${aboutTitle}" — finns den fortfarande?\n\nhttps://svalla.se/forum/loppis/${aboutThreadId}`
+ const intro = `Hej! Jag är intresserad av din annons "${aboutTitle}", finns den fortfarande?\n\nhttps://svalla.se/forum/loppis/${aboutThreadId}`
  try {
  sessionStorage.setItem(`dm-prefill:${res.id}`, intro)
  } catch { /* ignore */ }
@@ -197,7 +197,7 @@ function NyKonversationInner() {
  Du följer inte någon ännu
  </h2>
  <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 18, lineHeight: 1.5 }}>
- Hitta folk att följa i flödet — sen kan du skriva till dem.
+ Hitta folk att följa i flödet, sen kan du skriva till dem.
  </p>
  <Link href="/feed" style={{
  display: 'inline-block', padding: '10px 22px', borderRadius: 14,

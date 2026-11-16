@@ -142,7 +142,7 @@ export default function UtflyktClient({ islands, hubs }: Props) {
       await navigator.clipboard.writeText(url)
       setToast('Länken är kopierad')
     } catch {
-      setToast('Kunde inte kopiera — markera adressen i adressfältet')
+      setToast('Kunde inte kopiera: markera adressen i adressfältet')
     }
   }
 
@@ -191,12 +191,12 @@ export default function UtflyktClient({ islands, hubs }: Props) {
           </label>
         </div>
         <p style={{ fontSize: 12.5, color: 'var(--txt3)', margin: '10px 0 0', lineHeight: 1.5 }}>
-          Båttider går att hämta upp till {MAX_TRANSIT_DAYS_AHEAD} dagar fram — längre fram saknar Trafiklab ofta tidtabell.
+          Båttider går att hämta upp till {MAX_TRANSIT_DAYS_AHEAD} dagar fram, längre fram saknar Trafiklab ofta tidtabell.
         </p>
       </Steg>
 
       {/* 3. Vad vill du */}
-      <Steg nr={3} rubrik="Vad vill du göra?" hint="Valfritt — välj flera, alla måste finnas på ön.">
+      <Steg nr={3} rubrik="Vad vill du göra?" hint="Valfritt. Välj flera, alla måste finnas på ön.">
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {VILL.map(v => (
             <Pill key={v.chip} active={vill.includes(v.chip)} onClick={() => toggleVill(v.chip)} icon={v.icon}>
@@ -229,7 +229,7 @@ export default function UtflyktClient({ islands, hubs }: Props) {
 
         {ranked.length === 0 && utanFilter.length > 0 && (
           <div style={{ background: 'var(--acc-l)', border: '1px solid rgba(201,110,42,0.25)', borderRadius: 14, padding: '14px 16px', fontSize: 13.5, color: 'var(--txt2)', lineHeight: 1.55, marginBottom: 16 }}>
-            Ta bort ett önskemål så dyker öarna upp igen — {utanFilter.length} {utanFilter.length === 1 ? 'ö nås' : 'öar nås'} härifrån utan filter.
+            Ta bort ett önskemål så dyker öarna upp igen, {utanFilter.length} {utanFilter.length === 1 ? 'ö nås' : 'öar nås'} härifrån utan filter.
           </div>
         )}
         {ranked.length === 0 && utanFilter.length === 0 && hub !== ALLA_HUB_SLUG && (
@@ -264,7 +264,7 @@ export default function UtflyktClient({ islands, hubs }: Props) {
       <details style={{ marginTop: 24, background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 14, padding: '4px 18px' }}>
         <summary style={{ cursor: 'pointer', padding: '12px 0', fontSize: 14, fontWeight: 700, color: 'var(--txt)', listStyle: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
           <Icon name="backpack" size={16} stroke={2.2} />
-          Packlista — {seasonLabel(month).toLowerCase()}
+          Packlista, {seasonLabel(month).toLowerCase()}
         </summary>
         <ul style={{ margin: '0 0 14px', paddingLeft: 20, fontSize: 13.5, color: 'var(--txt2)', lineHeight: 1.7 }}>
           {packingForSeason(month).map(p => <li key={p}>{p}</li>)}
@@ -435,7 +435,7 @@ function Battider({ slug, name, iso }: { slug: string; name: string; iso: string
     return <div style={box}>Ingen kollektivtrafik går till {name}. Egen båt eller taxibåt.</div>
   }
   if (dep.fel) {
-    return <div style={box}>Trafiklab svarade inte just nu — försök igen om en stund. <Link href={`/o/${slug}/komma-dit`} style={{ color: '#9be59c', fontWeight: 700 }}>Så tar du dig till {name} →</Link></div>
+    return <div style={box}>Trafiklab svarade inte just nu, försök igen om en stund. <Link href={`/o/${slug}/komma-dit`} style={{ color: '#9be59c', fontWeight: 700 }}>Så tar du dig till {name} →</Link></div>
   }
   if (dep.error) {
     return <div style={box}>Trafiklab har inga tider för {name} den här dagen. <Link href={`/o/${slug}/komma-dit`} style={{ color: '#9be59c', fontWeight: 700 }}>Så tar du dig hit →</Link></div>
@@ -467,11 +467,11 @@ function Battider({ slug, name, iso }: { slug: string; name: string; iso: string
           <span style={{ fontWeight: 800, fontVariantNumeric: 'tabular-nums' }}>{hem.startTime}</span> från {last.destName} · framme {hem.endTime} ({fmtMin(hem.durationMin)})
         </div>
       ) : (
-        <div style={{ opacity: 0.9 }}>Ingen returresa hittades i Trafiklab för den dagen — kontrollera hos operatören innan du åker.</div>
+        <div style={{ opacity: 0.9 }}>Ingen returresa hittades i Trafiklab för den dagen. Kontrollera hos operatören innan du åker.</div>
       )}
       {dep.note && <div style={{ marginTop: 10, fontSize: 12.5, opacity: 0.85 }}>{dep.note}</div>}
       <div style={{ marginTop: 10, fontSize: 11.5, opacity: 0.7 }}>
-        Källa: Trafiklab (ResRobot){hamtat ? `, hämtat ${hamtat}` : ''}. Tider kan ändras — kontrollera hos operatören.
+        Källa: Trafiklab (ResRobot){hamtat ? `, hämtat ${hamtat}` : ''}. Tider kan ändras. Kontrollera hos operatören.
       </div>
     </div>
   )

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
   return {
-    title: `${island.name} med barn – bad, mat och resväg`,
+    title: `${island.name} med barn: bad, mat och resväg`,
     description: `${island.name} med barn: badplatser, restauranger och hur ni tar er dit.`,
     keywords: [
       `${island.name.toLowerCase()} med barn`,
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `dagstur med barn ${island.name.toLowerCase()}`,
     ],
     openGraph: {
-      title: `${island.name} med barn – bad, mat och resväg`,
+      title: `${island.name} med barn: bad, mat och resväg`,
       description: `Badplatser, restauranger och resväg för besök på ${island.name} med barn.`,
       url: `https://svalla.se/o/${slug}/med-barn`,
     },
@@ -102,7 +102,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
           '@type': 'Answer',
           text: [
             allaBad.length > 0 ? `Badplatser: ${allaBad.slice(0, 4).join(', ')}.` : null,
-            antalKrogar > 0 ? `${antalKrogar === 1 ? 'En restaurang eller ett kafé' : `${antalKrogar} restauranger och kaféer`} som vi har uppgifter om.` : 'Vi har inga restauranger registrerade på ön – ta med matsäck om du är osäker.',
+            antalKrogar > 0 ? `${antalKrogar === 1 ? 'En restaurang eller ett kafé' : `${antalKrogar} restauranger och kaféer`} som vi har uppgifter om.` : 'Vi har inga restauranger registrerade på ön. Ta med matsäck om du är osäker.',
             island.facts.travel_time ? `Restid: ${island.facts.travel_time}.` : null,
           ].filter(Boolean).join(' '),
         },
@@ -142,7 +142,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
           marginBottom: 28,
         }}>
           <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', marginBottom: 16 }}>
-            Snabbfakta — {island.name} med barn
+            Snabbfakta, {island.name} med barn
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 14 }}>
             {([
@@ -152,7 +152,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
               // syntes live på /o/moja/med-barn 2026-09-23.
               { icon: 'waves', label: 'Badmöjligheter', value: allaBad.length > 0 ? allaBad.slice(0, 2).join(', ') : 'Ingen badplats registrerad' },
               // "1 krogar och caféer" stod live på varje ö med exakt ett ställe.
-              { icon: 'utensils', label: 'Restauranger', value: antalKrogar === 1 ? 'En krog eller kafé' : antalKrogar > 1 ? `${antalKrogar} krogar och kaféer` : 'Ingen registrerad – ta med matsäck' },
+              { icon: 'utensils', label: 'Restauranger', value: antalKrogar === 1 ? 'En krog eller kafé' : antalKrogar > 1 ? `${antalKrogar} krogar och kaféer` : 'Ingen registrerad: ta med matsäck' },
               { icon: 'navigation', label: 'Cykling', value: island.activity_meta?.cykel?.rental ? 'Cykeluthyrning finns' : (island.activity_meta?.cykel ? 'Cykelleder finns' : 'Kontrollera lokalt') },
               { icon: 'calendar', label: 'Bäst säsong', value: island.facts.season },
               { icon: 'users', label: 'Passar', value: island.facts.best_for },
@@ -236,7 +236,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
                   </span>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--txt)', marginBottom: 4 }}>
-                      {t.method}{t.time ? ` — ${t.time}` : ''}
+                      {t.method}{t.time ? `, ${t.time}` : ''}
                     </div>
                     <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6 }}>{t.desc}</div>
                   </div>
@@ -247,7 +247,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
             <p style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 12, display: 'flex', alignItems: 'flex-start', gap: 6 }}>
               <Icon name="star" size={14} stroke={2} style={{ marginTop: 3 }} />
               {/* KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; läst 2026-09-19 */}
-              <span>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen, och 7–19 år betalar rabatterat pris.</span>
+              <span>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen, och 7 till 19 år betalar rabatterat pris.</span>
             </p>
             )}
           </div>

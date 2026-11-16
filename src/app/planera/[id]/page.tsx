@@ -88,14 +88,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  .eq('status', 'published')
  .single()
 
- if (!data) return { title: { absolute: 'Rutt — Svalla' } }
+ if (!data) return { title: { absolute: 'Rutt | Svalla' } }
  const desc = `Planerad skärgårdsrutt från ${data.start_name} till ${data.end_name} med stopp längs vägen.`
  const ogImage = `https://svalla.se/api/og/planera/${id}`
  return {
  title: `${data.start_name} → ${data.end_name}`,
  description: desc,
  openGraph: {
- title: `${data.start_name} → ${data.end_name} — Svalla`,
+ title: `${data.start_name} → ${data.end_name} | Svalla`,
  description: desc,
  images: [{ url: ogImage, width: 1200, height: 630, alt: `${data.start_name} → ${data.end_name}` }],
  url: `https://svalla.se/planera/${id}`,
@@ -103,7 +103,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  },
  twitter: {
  card: 'summary_large_image',
- title: `${data.start_name} → ${data.end_name} — Svalla`,
+ title: `${data.start_name} → ${data.end_name} | Svalla`,
  description: desc,
  images: [ogImage],
  },

@@ -44,8 +44,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
  const distStr = trip.distance != null && trip.distance >= 0.1 ? `${trip.distance.toFixed(1).replace('.', ',')} NM` : null
  const title = trip.location_name
- ? `${trip.location_name}${distStr ? ` – ${distStr}` : ''}`
- : distStr ? `Tur – ${distStr}` : 'Tur'
+ ? `${trip.location_name}${distStr ? `: ${distStr}` : ''}`
+ : distStr ? `Tur: ${distStr}` : 'Tur'
  const desc = `${metaUser?.username ?? 'En seglare'} loggade en ${trip.boat_type?.toLowerCase() ?? 'tur'}${distStr ? ` på ${distStr}` : ''}${trip.location_name ? ` till ${trip.location_name}` : ''}.`
 
  // Dynamisk OG-bild — alltid genererad, oavsett om turen har foto eller inte
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  // CLAUDE.md punkt 1 innan den tas bort igen.
  alternates: { canonical: `https://svalla.se/tur/${id}` },
  openGraph: {
- title: `${title} – Svalla`,
+ title: `${title} | Svalla`,
  description: desc,
  images: [{ url: ogImageUrl, width: 1200, height: 630, alt: title }],
  url: `https://svalla.se/tur/${id}`,
@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  },
  twitter: {
  card: 'summary_large_image',
- title: `${title} – Svalla`,
+ title: `${title} | Svalla`,
  description: desc,
  images: [ogImageUrl],
  },

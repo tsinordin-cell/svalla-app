@@ -9,7 +9,7 @@ import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Min skärgård',
-  description: 'Dina sparade öar, dina besökta öar och nästa äventyr — allt på ett ställe.',
+  description: 'Dina sparade öar, dina besökta öar och nästa äventyr, allt på ett ställe.',
   robots: { index: false, follow: false },
 }
 
@@ -55,9 +55,9 @@ function ToolIcon({ name, color }: { name: 'navigation' | 'trophy' | 'compass' |
 const ACHIEVEMENTS = [
   { threshold: 1,  iconName: 'anchor'    as const, label: 'Första turen',     sub: 'Du har satt foten i skärgården' },
   { threshold: 5,  iconName: 'waves'     as const, label: 'Skärgårds-novis',  sub: '5 öar besökta' },
-  { threshold: 10, iconName: 'compass'   as const, label: 'Skärgårdsräv',     sub: '10 öar — börjar vana' },
-  { threshold: 20, iconName: 'navigation' as const,label: 'Halvvägs',         sub: '20 öar — sällsynt' },
-  { threshold: 35, iconName: 'sailboat'  as const, label: 'Skärgårdsmästare', sub: '35 öar — sällsynt sällskap' },
+  { threshold: 10, iconName: 'compass'   as const, label: 'Skärgårdsräv',     sub: '10 öar: börjar vana' },
+  { threshold: 20, iconName: 'navigation' as const,label: 'Halvvägs',         sub: '20 öar: sällsynt' },
+  { threshold: 35, iconName: 'sailboat'  as const, label: 'Skärgårdsmästare', sub: '35 öar: sällsynt sällskap' },
   { threshold: 60, iconName: 'trophy'    as const, label: 'Skärgårdskung',    sub: 'Få har gjort detta' },
 ] as const
 
@@ -214,7 +214,7 @@ export default async function MinSkargardPage() {
                   {nearestIsland.name}
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--txt2)' }}>
-                  {nearestUnvisited!.distance.toFixed(0)} km från Stockholm — {nearestIsland.tagline}
+                  {nearestUnvisited!.distance.toFixed(0)} km från Stockholm, {nearestIsland.tagline}
                 </div>
               </div>
               <Icon name="arrowRight" size={18} style={{ color: 'var(--acc, #c96e2a)' }} />
@@ -493,7 +493,7 @@ export default async function MinSkargardPage() {
             <Link href="/oar" style={toolCardStyle('#0a7b8c')}>
               <ToolIcon name="map" color="#0a7b8c" />
               <div style={toolLabelStyle}>Hitta din ö</div>
-              <div style={toolDescStyle}>10 kategorier — barnvänliga, lyx, lugn</div>
+              <div style={toolDescStyle}>10 kategorier: barnvänliga, lyx, lugn</div>
             </Link>
 
             <Link href="/jamfor" style={toolCardStyle('#c96e2a')}>

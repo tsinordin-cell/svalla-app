@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     'båtturer stockholm',
   ],
   openGraph: {
-    title: 'Populära turer — Svalla',
+    title: 'Populära turer | Svalla',
     description: 'Utvalda rutter i Stockholms skärgård.',
     url: 'https://svalla.se/populara-turer',
   },
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
   {
     icon: 'compass',
-    title: 'Dagstur: Vaxholm–Grinda',
+    title: 'Dagstur: Vaxholm till Grinda',
     description: 'Lunch på Grinda Wärdshus, bad och åter samma dag. Klassisk förstatur för nya seglare.',
     href: '/o/grinda',
-    meta: '6–8 timmar',
+    meta: '6 till 8 timmar',
   },
   {
     icon: 'sailboat',
-    title: 'Helgtur: Stockholm–Sandhamn',
+    title: 'Helgtur: Stockholm till Sandhamn',
     description: 'Två dagar, en övernattning, full skärgårdsupplevelse. Perfekt för lördag-söndag.',
     href: '/o/sandhamn',
     meta: '2 dagar',
@@ -40,16 +40,16 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'compass',
     title: 'Mellanskärgården-rundan',
-    description: 'Finnhamn, Möja, Svartsö — 3–4 dagar genom mellanskärgårdens vackraste vatten.',
+    description: 'Finnhamn, Möja, Svartsö, 3 till 4 dagar genom mellanskärgårdens vackraste vatten.',
     href: '/o/finnhamn',
-    meta: '3–4 dagar',
+    meta: '3 till 4 dagar',
   },
   {
     icon: 'wind',
     title: 'Ytterskärgården (vindröst)',
-    description: 'Huvudskär, Sandhamn, Rödlöga — kräver erfarenhet, ger evighetsminnen.',
+    description: 'Huvudskär, Sandhamn, Rödlöga: kräver erfarenhet, ger evighetsminnen.',
     href: '/o/huvudskar',
-    meta: '5–7 dagar',
+    meta: '5 till 7 dagar',
   },
   {
     icon: 'paddle',
@@ -60,10 +60,10 @@ const ITEMS: LandingItem[] = [
   },
   {
     icon: 'compass',
-    title: 'Dalarö–Utö–Dalarö',
-    description: 'Snabb motorbåtstur söderöver — lunch på Utö, hem innan solnedgång.',
+    title: 'Dalarö, Utö, Dalarö',
+    description: 'Snabb motorbåtstur söderöver: lunch på Utö, hem innan solnedgång.',
     href: '/o/uto',
-    meta: '5–7 timmar',
+    meta: '5 till 7 timmar',
   },
 ]
 
@@ -73,7 +73,7 @@ export default function PopularaTurerPage() {
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Populära turer"
       title="Utvalda rutter"
-      tagline="Dagsturer, helgturer och fleradagsrutter i Stockholms skärgård — varje tur leder till målöns sida med hamnar, restauranger och praktisk info."
+      tagline="Dagsturer, helgturer och fleradagsrutter i Stockholms skärgård: varje tur leder till målöns sida med hamnar, restauranger och praktisk info."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <circle cx="12" cy="12" r="10" />
@@ -83,7 +83,7 @@ export default function PopularaTurerPage() {
       intro={
         <>
           <p>
-            Den bästa skärgårdsturen är ofta den någon annan redan testat. Här samlar vi Svalla-användares mest delade rutter — allt från klassiska halvdags-rundor till ambitiösa flerdagsseglatser ut i ytterskärgården.
+            Den bästa skärgårdsturen är ofta den någon annan redan testat. Här samlar vi Svalla-användares mest delade rutter, allt från klassiska halvdags-rundor till ambitiösa flerdagsseglatser ut i ytterskärgården.
           </p>
           <p>
             Varje tur har <strong>karta, tid, stopp, boendetips och säsongsnoteringar</strong>. Många är loggade med GPS i Svalla och visar faktisk hastighet, distans och väder vid tillfället. Klicka dig in för att se varianter och kopiera rutten till din egen planering.
@@ -105,7 +105,7 @@ export default function PopularaTurerPage() {
             Saknar din favorittur?
           </h2>
           <p>
-            Logga den i Svalla-appen och tagga den som &quot;delningsbar&quot; — den hamnar automatiskt i sökningen och kan bli utvald här. Populära turer är utvalda av redaktionen men bygger helt på användar-data.
+            Logga den i Svalla-appen och tagga den som &quot;delningsbar&quot;, den hamnar automatiskt i sökningen och kan bli utvald här. Populära turer är utvalda av redaktionen men bygger helt på användar-data.
           </p>
         </>
       }

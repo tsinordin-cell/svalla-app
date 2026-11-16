@@ -105,14 +105,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
  .single()
 
  kastaVidDatabasfel(error, 'plats/[slug] metadata')
- if (!data) return { title: { absolute: 'Plats – Svalla' } }
+ if (!data) return { title: { absolute: 'Plats | Svalla' } }
 
  const desc = data.core_experience || (data.description?.slice(0, 155) ?? '')
  return {
  title: `${data.name}`,
  description: desc,
  openGraph: {
- title: `${data.name} – Svalla`,
+ title: `${data.name} | Svalla`,
  description: desc,
  images: data.image_url ? [data.image_url] : [],
  },
@@ -337,7 +337,7 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  }}>
  <Icon name="globe" size={22} style={{ color: 'var(--txt)' }} aria-hidden />
  <p style={{ fontSize: 13, color: 'var(--txt3)', fontStyle: 'italic', margin: 0 }}>
- Meny finns på restaurangens hemsida – länk saknas ännu.
+ Meny finns på restaurangens hemsida, länk saknas ännu.
  </p>
  </div>
  )}

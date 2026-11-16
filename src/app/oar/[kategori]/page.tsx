@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cat) return {}
   const count = islandsForCategory(kategori).length
   return {
-    title: `${cat.title} — ${count} öar`,
+    title: `${cat.title}, ${count} öar`,
     description: cat.description,
     keywords: cat.searchTerms,
     alternates: { canonical: `https://svalla.se/oar/${cat.slug}` },
@@ -127,7 +127,7 @@ export default async function OarCategoryPage({ params }: Props) {
             borderRadius: 14, padding: '32px 24px', textAlign: 'center',
             color: 'var(--txt2)',
           }}>
-            Vi hittade inga öar för denna kategori — säg till om någon saknas.
+            Vi hittade inga öar för denna kategori, säg till om någon saknas.
           </div>
         ) : (
           (['norra', 'mellersta', 'södra', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {

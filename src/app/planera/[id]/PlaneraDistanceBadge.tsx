@@ -81,7 +81,7 @@ export default function PlaneraDistanceBadge({
 
   return (
     <div
-      title={showSea ? 'Faktisk sjöledsdistans' : 'Fågelväg — faktisk sjöväg kan vara längre'}
+      title={showSea ? 'Faktisk sjöledsdistans' : 'Fågelväg: faktisk sjöväg kan vara längre'}
       style={{
         flexShrink: 0,
         background: showSea ? 'rgba(34,197,94,0.22)' : 'rgba(255,255,255,0.15)',

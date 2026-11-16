@@ -62,7 +62,7 @@ const FOR_FILTERS = [
 
 const TIME_FILTERS = [
   { value: 'alla',    label: 'All tid' },
-  { value: 'snabb',   label: '2–4h' },
+  { value: 'snabb',   label: '2 till 4h' },
   { value: 'halvdag', label: 'Halvdag' },
   { value: 'heldag',  label: 'Heldag' },
   { value: 'weekend', label: 'Weekend' }]
@@ -72,7 +72,7 @@ const TIME_VALUES = new Set(TIME_FILTERS.map(f => f.value))
 
 function durationMatch(label: string, filter: string): boolean {
   const l = label.toLowerCase()
-  if (filter === 'snabb')   return l.includes('2–4') || l.includes('timmar') || l.includes('kvällstur')
+  if (filter === 'snabb')   return l.includes('2 till 4') || l.includes('timmar') || l.includes('kvällstur')
   if (filter === 'halvdag') return l.includes('halvdag')
   if (filter === 'heldag')  return l.includes('heldag') && !l.includes('dagar')
   if (filter === 'weekend') return l.includes('dagar') || l.includes('weekend')

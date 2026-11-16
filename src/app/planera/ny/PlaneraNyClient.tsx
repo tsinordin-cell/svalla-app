@@ -270,7 +270,7 @@ export default function PlaneraNyClient() {
  <div>
  <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>Vart ska du?</h1>
  <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 20px' }}>
- Från <strong>{startDep?.name}</strong> — välj destination.
+ Från <strong>{startDep?.name}</strong>, välj destination.
  </p>
  <DepartureGrid
  onSelect={(d) => { setEndDep(d); setStep('interests') }}
@@ -286,7 +286,7 @@ export default function PlaneraNyClient() {
  <div>
  <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>Vad vill du uppleva?</h1>
  <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 20px' }}>
- Välj ett eller flera intressen — vi föreslår stopp längs vägen.
+ Välj ett eller flera intressen. Vi föreslår stopp längs vägen.
  </p>
 
  {/* Rutt-sammanfattning */}

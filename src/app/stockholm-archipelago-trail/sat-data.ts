@@ -48,15 +48,15 @@ export const SAT_SECTIONS: SatSection[] = [
     note: 'Kortaste etappen i norr. Gamla badortsvillor längs Furusundsleden.' },
   { name: 'Yxlan', km: 24, difficulty: 'Medel', island: 'yxlan',
     note: 'Ledens längsta sammanhängande etapp efter Ornö.' },
-  { name: 'Rodd Finnhamn–Ingmarsö', km: 0.4, difficulty: 'Lätt', island: null,
-    note: 'Roddbåtar på var sida om sundet. Du drar båten över själv — och tillbaka åt nästa vandrare.' },
+  { name: 'Rodd Finnhamn till Ingmarsö', km: 0.4, difficulty: 'Lätt', island: null,
+    note: 'Roddbåtar på var sida om sundet. Du drar båten över själv, och tillbaka åt nästa vandrare.' },
   { name: 'Finnhamn', km: 10.1, difficulty: 'Medel', island: 'finnhamn' },
   { name: 'Ingmarsö', km: 9.8, difficulty: 'Medel', island: 'ingmarso',
     note: 'Öppna betesmarker och blandskog. Kopplar ihop med Finnhamn via roddbåtarna.' },
   { name: 'Brottö', km: 1, difficulty: 'Lätt', island: null,
     note: 'Ledens kortaste etapp.' },
   { name: 'Svartsö', km: 17.9, difficulty: 'Lätt', island: 'svartso',
-    note: 'Lång men lätt — den längsta etappen som klassas som lätt.' },
+    note: 'Lång men lätt. Den längsta etappen som klassas som lätt.' },
   { name: 'Möja', km: 13.8, difficulty: 'Lätt', island: 'moja' },
   { name: 'Grinda', km: 9.8, difficulty: 'Medel', island: 'grinda' },
   { name: 'Sandhamn', km: 8.1, difficulty: 'Lätt', island: 'sandhamn',
@@ -71,7 +71,7 @@ export const SAT_SECTIONS: SatSection[] = [
   // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ — "The Utö – Ålö Connector is the link between the Stockholm Archipelago Trail sections on Utö and Ålö, following a gravel road and passing through a military firing range."; "Never leave the gravel road until you reach the next section." (läst 2026-11-09)
   // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" (läst 2026-11-09)
   // KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ — "Skjutfält och förbud"; "Utö skjutfält"; "Det är alltid informationstavlorna på plats som gäller i första hand." (läst 2026-11-09)
-  { name: 'Utö–Ålö förbindelse', km: 4.6, difficulty: 'Lätt', island: 'uto',
+  { name: 'Utö till Ålö förbindelse', km: 4.6, difficulty: 'Lätt', island: 'uto',
     note: 'Länken mellan Utö och Ålö. Den följer en grusväg genom Utö skjutfält, och enligt leden ska man hålla sig på grusvägen hela vägen. Vissa tider är det tillträdesförbud på skjutfältet: information om förbuden finns på Försvarsmaktens webbplats under Skjutfält och förbud eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.' },
   { name: 'Ålö', km: 13.2, difficulty: 'Krävande', island: null },
   { name: 'Rånö', km: 12, difficulty: 'Lätt', island: null },

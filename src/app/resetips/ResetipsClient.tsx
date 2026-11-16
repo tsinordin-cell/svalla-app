@@ -134,7 +134,7 @@ export default function ResetipsClient() {
           Utvalda skärgårdsrutter
         </h1>
         <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.8)', maxWidth: 580, margin: '0 auto', lineHeight: 1.6 }}>
-          Kompletta dagsrutter med stopp, tips och praktisk info — planerade av folk som faktiskt gjort dem.
+          Kompletta dagsrutter med stopp, tips och praktisk info, planerade av folk som faktiskt gjort dem.
         </p>
       </section>
 
@@ -170,7 +170,7 @@ export default function ResetipsClient() {
         {/* Transport */}
         <div>
           <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: 'var(--txt3, #aaa)', marginBottom: 7 }}>
-            Transport — välj ett eller flera
+            Transport: välj ett eller flera
           </p>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
             {TRANSPORT_OPTIONS.map(({ key, label, icon }) => (

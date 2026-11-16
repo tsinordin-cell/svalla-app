@@ -26,7 +26,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
     title: 'Barnvänliga öar i skärgården',
     hero: 'Skärgårdsöar som är perfekta för familjer',
     description: 'Hitta öar med sandstränder, lugna stigar, korta restider och boende som passar familjer med små barn. Vi har samlat de öar där hela familjen får plats.',
-    intro: 'Skärgården är fantastisk med barn — men inte alla öar passar lika bra. Här finns bara öar som beskrivs som familj- eller barnvänliga eller har sandstrand, och som går att nå med reguljär båt, buss, färja eller bil. Öar som kräver egen båt är inte med, hur fina de än är. Restid och färdsätt står vid varje ö.',
+    intro: 'Skärgården är fantastisk med barn, men inte alla öar passar lika bra. Här finns bara öar som beskrivs som familj- eller barnvänliga eller har sandstrand, och som går att nå med reguljär båt, buss, färja eller bil. Öar som kräver egen båt är inte med, hur fina de än är. Restid och färdsätt står vid varje ö.',
     /*
       Filtret var en textsökning som inte hade med sidans löfte att göra.
       Taggen `naturreservat` räckte för att räknas som barnvänlig — så Svenska
@@ -59,9 +59,9 @@ export const OAR_CATEGORIES: OarCategory[] = [
     slug: 'dagstur-stockholm',
     kort: 'Dagstur från Stockholm',
     title: 'Öar du kan göra dagstur till från Stockholm',
-    hero: 'Skärgårdsöar — dagstur från Stockholm',
-    description: 'Öar du tar dig till på morgonen och hem på kvällen. Färjebåt eller pendelbåt från Strömkajen, Stavsnäs eller Nynäshamn. Inga övernattningar — bara perfekta dagsutflykter.',
-    intro: 'En dagstur kräver att du är hemma till middag. Det betyder restid på max 2 h enkel väg, regelbundna båtar och tillräckligt på ön för att fylla 4–6 timmar. Det är öarna nedan.',
+    hero: 'Skärgårdsöar: dagstur från Stockholm',
+    description: 'Öar du tar dig till på morgonen och hem på kvällen. Färjebåt eller pendelbåt från Strömkajen, Stavsnäs eller Nynäshamn. Inga övernattningar, bara perfekta dagsutflykter.',
+    intro: 'En dagstur kräver att du är hemma till middag. Det betyder restid på max 2 h enkel väg, regelbundna båtar och tillräckligt på ön för att fylla 4 till 6 timmar. Det är öarna nedan.',
     filter: (i) => {
       const t = (i.facts.travel_time ?? '').toLowerCase()
       // Inkluderar grovt: "1 h", "1,5 h", "2 h" — exkluderar längre
@@ -74,7 +74,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
   {
     slug: 'utan-bil',
     kort: 'Öar utan bil',
-    title: 'Skärgårdsöar utan bil — kollektivt och med båt',
+    title: 'Skärgårdsöar utan bil: kollektivt och med båt',
     hero: 'Öar du når utan bil',
     description: 'Pendelbåt från Strömkajen och Slussen tar dig direkt ut i skärgården. Här är öarna där du inte behöver bil eller bilfärja för att komma fram.',
     intro: 'Du behöver inte bil för att uppleva skärgården. Waxholmsbolagets båtar går direkt från Strömkajen, och flera öar nås med SL-buss + båt från Slussen. Här är öarna där det funkar.',
@@ -88,9 +88,9 @@ export const OAR_CATEGORIES: OarCategory[] = [
     slug: 'segling',
     kort: 'Öar för segling',
     title: 'Bästa öarna för segling',
-    hero: 'Öar för seglare — gästhamnar, vindskydd och klassiker',
+    hero: 'Öar för seglare: gästhamnar, vindskydd och klassiker',
     description: 'Öar med välutrustade gästhamnar, säkra ankarplatser och seglartradition. Från Sandhamns klassiska KSSS-hamn till Bohusläns yttre kobbar.',
-    intro: 'En seglares-ö behöver mer än fina vyer — den behöver hamn, bränsle, service och plats för fler än din båt. Här är öarna där seglare faktiskt åker.',
+    intro: 'En seglares-ö behöver mer än fina vyer. Den behöver hamn, bränsle, service och plats för fler än din båt. Här är öarna där seglare faktiskt åker.',
     filter: (i) => i.harbors.length > 0
       || i.tags.some(t => ['segling', 'gästhamn'].includes(t))
       || i.activities.some(a => a.name.toLowerCase().includes('segl')),
@@ -99,10 +99,10 @@ export const OAR_CATEGORIES: OarCategory[] = [
   {
     slug: 'romantiska',
     kort: 'Romantiska skärgårdsöar',
-    title: 'Romantiska skärgårdsöar — för en weekend till två',
+    title: 'Romantiska skärgårdsöar: för en weekend till två',
     hero: 'Öar för romantiska weekends',
     description: 'Stilla värdshus, havsutsikt, gourmetkök och plats att vara två. De öar där en weekend räcker för att bygga om hela förhållandet.',
-    intro: 'Skärgården är som gjord för weekends till två — om du väljer rätt ö. Sandhamns Seglarhotell, Utö Värdshus, Pater Noster i Bohuslän. Spa, restaurang, vyer. Inga turistflockar.',
+    intro: 'Skärgården är som gjord för weekends till två, om du väljer rätt ö. Sandhamns Seglarhotell, Utö Värdshus, Pater Noster i Bohuslän. Spa, restaurang, vyer. Inga turistflockar.',
     filter: (i) => {
       const acc = i.accommodation.map(a => a.name + ' ' + a.type).join(' ').toLowerCase()
       const restNames = i.restaurants.map(r => r.name + ' ' + r.type).join(' ').toLowerCase()
@@ -125,19 +125,19 @@ export const OAR_CATEGORIES: OarCategory[] = [
     slug: 'havsbastu',
     kort: 'Öar med havsbastu',
     title: 'Skärgårdsöar med havsbastu',
-    hero: 'Bada bastu — och hoppa rätt i havet',
+    hero: 'Bada bastu, och hoppa rätt i havet',
     description: 'Öar med bastu vid havskanten. Basta, hoppa i, basta igen. De bästa platserna för en av Sveriges mest underskattade upplevelser.',
-    intro: 'Havsbastu är skärgårdens bästa hemlighet. Dörren går rätt ut mot havet — du basta, hoppa i, basta igen. Här är öarna där det är bra utfört.',
+    intro: 'Havsbastu är skärgårdens bästa hemlighet. Dörren går rätt ut mot havet. Du basta, hoppa i, basta igen. Här är öarna där det är bra utfört.',
     filter: (i) => i.tags.includes('havsbastu') || i.activities.some(a => a.name.toLowerCase().includes('bastu')),
     searchTerms: ['havsbastu skärgården', 'bada bastu öster', 'utö bastu'],
   },
   {
     slug: 'avskild',
     kort: 'Avskilda öar',
-    title: 'Avskilda skärgårdsöar — bort från turistflocken',
+    title: 'Avskilda skärgårdsöar: bort från turistflocken',
     hero: 'Öar bort från turistflocken',
     description: 'Yttre skärgården och de mindre öarna. Färre besökare, mer natur, lugn ända ut. För dig som vill verkligen komma bort.',
-    intro: 'Sandhamn och Vaxholm är full i juli. Det här är öarna där du faktiskt kan vara ifred — yttre skärgården, små öar, lite längre att åka men värt det.',
+    intro: 'Sandhamn och Vaxholm är full i juli. Det här är öarna där du faktiskt kan vara ifred: yttre skärgården, små öar, lite längre att åka men värt det.',
     filter: (i) => {
       const t = `${i.facts.character} ${i.tagline}`.toLowerCase()
       return t.includes('lugn') || t.includes('avskild') || t.includes('orörd') || t.includes('yttersk')
@@ -152,7 +152,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
     kort: 'Öar med bra krogar',
     title: 'Skärgårdsöar med riktigt bra krogar',
     hero: 'Öar för matälskare',
-    description: 'Värdshus, gastronomi och bryggrestauranger värda att åka för. Sandhamn, Utö, Marstrand — men också mindre kända.',
+    description: 'Värdshus, gastronomi och bryggrestauranger värda att åka för. Sandhamn, Utö, Marstrand, men också mindre kända.',
     intro: 'Vissa åker till skärgården för att simma, andra för att äta. Här är öarna där krogarna är så bra att de är destinationen, inte bonusen.',
     filter: (i) => i.restaurants.length >= 3 && i.restaurants.some(r => r.type === 'Restaurang'),
     searchTerms: ['bästa krogen skärgården', 'mat skärgården', 'sandhamn restaurang'],
@@ -162,7 +162,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
     kort: 'Öar nära Nynäshamn',
     title: 'Skärgårdsöar nära Nynäshamn',
     // Rättad 2026-11-09 (P0 20 del 3): båten från Nynäshamn går inte till Utö, Ornö eller Fjärdlång vår och höst, och Waxholmsbolagets båtar är inga färjor. Pendeltågets restid är uppmätt i SL:s tabell.
-    hero: 'Söder om Stockholm — öar nära Nynäshamn',
+    hero: 'Söder om Stockholm: öar nära Nynäshamn',
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ", "Rånö" (läst 2026-11-09)
     // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
     // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan." (läst 2026-11-09)
@@ -171,7 +171,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Fjärdlång" (läst 2026-11-09)
     description: 'Båt från Nynäshamn till Nåttarö, från Årsta brygga till Utö och från Dalarö till Ornö och Fjärdlång. Söderskärgården är glesare och billigare än norr.',
     // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Giltig från och med 17 augusti till och med 12 december 2026."; uppmätt i tabellen: avg Stockholm City–Nynäshamn 59–65 min (läst 2026-11-09)
-    intro: 'Söderskärgården är ofta glömd — fel. Från Nynäshamn går Waxholmsbolagets båt till Nåttarö, Rånö och Ålö, till Utö går båten året om från Årsta brygga i Haninge och till Ornö och Fjärdlång från Dalarö. Pendeltåget från Stockholm City till Nynäshamn tar 59–65 minuter. Här är öarna i den södra änden.',
+    intro: 'Söderskärgården är ofta glömd, fel. Från Nynäshamn går Waxholmsbolagets båt till Nåttarö, Rånö och Ålö, till Utö går båten året om från Årsta brygga i Haninge och till Ornö och Fjärdlång från Dalarö. Pendeltåget från Stockholm City till Nynäshamn tar 59 till 65 minuter. Här är öarna i den södra änden.',
     filter: (i) => {
       const t = `${i.facts.travel_time} ${i.getting_there.map(g => g.from || '').join(' ')}`.toLowerCase()
       return t.includes('nynäs') || i.region === 'södra'

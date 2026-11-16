@@ -248,8 +248,8 @@ export default async function IslandKommaDitPage({ params }: Props) {
           <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
             {/* KÄLLA: waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter; waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19. "Halvpris" var fel: 39–114 kr mot 61–186 kr. */}
             {stockholm && (<>
-              <li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen, och 7–19 år betalar rabatterat pris.</li>
-              <li>Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd. Längre ut krävs Waxholmsbolaget-biljett 30 april–13 september; 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken.</li>
+              <li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med betalande vuxen, och 7 till 19 år betalar rabatterat pris.</li>
+              <li>Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd. Längre ut krävs Waxholmsbolaget-biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken.</li>
               {/* KÄLLA: Waxholmsbolaget linje 24, https://kund.printhuset-sthlm.se/wa/h24.pdf, anmärkning b: "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00" (läst 2026-09-21). Ersätter "Boka sittplats i förväg" – Waxholmsbolaget säljer inga platsbiljetter. */}
               <li>Vissa bryggor och turer är beställningstrafik. Beställ resan i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00. Hur långt i förväg står i linjens tidtabell. Annars kan båten gå förbi bryggan.</li>
             </>)}
@@ -274,7 +274,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
               Planera resan till {island.name} med Thorkel
             </div>
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
-              Berätta när du vill åka — Thorkel fixar hela planen.
+              Berätta när du vill åka, Thorkel fixar hela planen.
             </div>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver ett gratis konto.</div>
           </div>

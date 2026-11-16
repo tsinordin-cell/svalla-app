@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: antal > 0
-      ? `Hantverkare och service på ${n} — ${antal} företag`
+      ? `Hantverkare och service på ${n}: ${antal} företag`
       : `Hantverkare och service på ${n}`,
     description: `Behöver du hjälp med huset, bryggan, båten eller tomten på ${n}? Snickare, elektriker, rörmokare och sjötransport med verksamhet på ön. Varje uppgift med källa och läsdatum.`,
     keywords: [
@@ -124,7 +124,7 @@ export default async function IslandHantverkarePage({ params }: Props) {
                 företagarförening och offentliga register. Varje post visar sin
                 källa och när vi läste den.{' '}
                 <strong>Vi kan inte garantera att en uppgift är aktuell</strong>{' '}
-                — ring och bekräfta innan du beställer arbete. Svalla förmedlar
+               , ring och bekräfta innan du beställer arbete. Svalla förmedlar
                 inga uppdrag och har ingen affärsrelation med företagen.
                 {' '}Ser du ett fel, eller vill du inte synas här?{' '}
                 <a href="mailto:info@svalla.se" style={{ color: 'var(--acc-d)' }}>info@svalla.se</a>

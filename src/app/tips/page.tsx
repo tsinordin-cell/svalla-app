@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Redaktionella guider, tips och berättelser från Stockholms skärgård. Var du äter, bor, badar och lägger till.',
   keywords: ['skärgård guide', 'stockholms skärgård tips', 'sthlmare tipsar', 'skärgård artiklar'],
   openGraph: {
-    title: 'Sthlmare tipsar — Svalla',
+    title: 'Sthlmare tipsar | Svalla',
     description: 'Redaktionella guider, tips och berättelser från Stockholms skärgård.',
     url: 'https://svalla.se/tips',
   },
@@ -201,7 +201,7 @@ function EmptyState() {
         Inga artiklar publicerade ännu
       </div>
       <div style={{ fontSize: 13, lineHeight: 1.5, maxWidth: 400, margin: '0 auto' }}>
-        Vi fyller på med guider och tips från Stockholms skärgård. Kom tillbaka snart — eller följ oss för uppdateringar.
+        Vi fyller på med guider och tips från Stockholms skärgård. Kom tillbaka snart, eller följ oss för uppdateringar.
       </div>
     </div>
   )
