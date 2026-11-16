@@ -1225,10 +1225,9 @@ img {
   border-color: rgba(255, 255, 255, 0.07);
 }
 
-/* ── Leaflet dark-mode: lyfta upp Carto dark_all så havet syns ── */
-[data-theme="dark"] .leaflet-tile-pane {
-  filter: brightness(1.45) contrast(0.92) saturate(1.15);
-}
+/* Leaflet i mörkt tema: filtret brightness(1.45) som lyfte CARTO:s mörka tiles är borttaget
+   2026-11-15. Sedan 3 sept är bas-lagret OSM:s ljusa tiles även i mörkt tema (map-tiles.ts),
+   och filtret blekte då ur alla kartor i mörkt tema (sett i spårningsvyn). */
 
 /* ── Feed desktop layout ── */
 .feed-layout-wrap {
