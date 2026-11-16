@@ -18,19 +18,19 @@ export function packingForSeason(month: number): string[] {
       'Mössa + halsduk + vantar (det blåser ute på sjön)',
       'Termoflaska med varmt',
       // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
-      'Stark ficklampa — det blir mörkt 15:30',
+      'Stark ficklampa: det blir mörkt 15:30',
       'Reservbatteri till mobilen (kyla tar batteri)',
-      'Boka boende inomhus — inte alla öar har vinteröppet',
+      'Boka boende inomhus: inte alla öar har vinteröppet',
     ]
   }
   // Tidig vår
   if (month >= 3 && month <= 4) {
     return [
       'Vindtät jacka + lager (temperaturen kan svänga 10°C)',
-      'Vattentät kängor — leriga stigar',
+      'Vattentät kängor: leriga stigar',
       'Solglasögon (vårsolen är bländande)',
-      'Termoflaska med varmt — ute är det fortfarande svalt',
-      'Kolla färjetiderna — många avgångar är glesare än sommartid',
+      'Termoflaska med varmt: ute är det fortfarande svalt',
+      'Kolla färjetiderna: många avgångar är glesare än sommartid',
     ]
   }
   // Sommar
@@ -40,8 +40,8 @@ export function packingForSeason(month: number): string[] {
       'Solglasögon + keps/hatt',
       'Badkläder + handduk',
       'Vattenflaska (1 L per person)',
-      'Myggmedel (juli–augusti)',
-      'Lättare regnjacka — vädret kan slå om',
+      'Myggmedel (juli till augusti)',
+      'Lättare regnjacka: vädret kan slå om',
       'Bekväma skor som tål klippor',
     ]
   }
@@ -51,8 +51,8 @@ export function packingForSeason(month: number): string[] {
     'Vatten- och vindtäta skor',
     'Lager du kan ta av (lufttemperaturen växlar)',
     'Termos med varmt',
-    'Pannlampa — det skymmer tidigt',
-    'Boka — många restauranger stänger efter september',
+    'Pannlampa: det skymmer tidigt',
+    'Boka: många restauranger stänger efter september',
   ]
 }
 

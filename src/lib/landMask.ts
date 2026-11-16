@@ -48,7 +48,7 @@ const R = landRaster as {
 }
 
 if (R.format !== 'land-raster-v1') {
-  throw new Error(`landMask: oväntat rasterformat "${R.format}" — kör scripts/build-land-raster.mjs`)
+  throw new Error(`landMask: oväntat rasterformat "${R.format}", kör scripts/build-land-raster.mjs`)
 }
 
 // Avkoda base64 → bitfält en gång vid modul-load (~1 MB).

@@ -39,7 +39,7 @@ export function classifyCoordError(lat: number, lng: number): string {
   if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
     return 'Ogiltig koordinat (inte ett tal)'
   }
-  if (lat === 0 && lng === 0) return 'Null Island — koordinat saknas'
+  if (lat === 0 && lng === 0) return 'Null Island: koordinat saknas'
   if (lng > 21) return 'Hamnar i Åbolands skärgård (Finland)'
   if (lng < 12 && lat > 58) return 'Hamnar på västkusten eller Norge'
   if (lat < 58.6) return 'För långt söderut (Småland eller Östersjön)'
@@ -72,7 +72,7 @@ export function assertInArchipelago(
 ): void {
   if (!isInArchipelago(lat, lng)) {
     const reason = classifyCoordError(lat, lng)
-    throw new InvalidCoordError(lat, lng, `${context} — ${reason}`)
+    throw new InvalidCoordError(lat, lng, `${context}: ${reason}`)
   }
 }
 

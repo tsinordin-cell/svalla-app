@@ -128,7 +128,7 @@ export const KALLA_HELGDAGAR =
 export function midsommardagen(ar: number): Arsdatum {
   return bygg(
     forstaVeckodagFran(utc(ar, 5, 20), 6),
-    'lördagen 20–26 juni (lag 1989:253 om allmänna helgdagar)',
+    'lördagen 20 till 26 juni (lag 1989:253 om allmänna helgdagar)',
     KALLA_HELGDAGAR,
   )
 }
@@ -138,7 +138,7 @@ export function midsommarafton(ar: number): Arsdatum {
   const md = midsommardagen(ar).datum
   return bygg(
     utc(ar, 5, md.getUTCDate() - 1),
-    'fredagen före midsommardagen, dvs. 19–25 juni',
+    'fredagen före midsommardagen, dvs. 19 till 25 juni',
     KALLA_HELGDAGAR,
   )
 }
@@ -150,7 +150,7 @@ export function midsommarafton(ar: number): Arsdatum {
 export function allaHelgonsDag(ar: number): Arsdatum {
   return bygg(
     forstaVeckodagFran(utc(ar, 9, 31), 6),
-    'lördagen 31 oktober–6 november (lag 1989:253)',
+    'lördagen 31 oktober till 6 november (lag 1989:253)',
     KALLA_HELGDAGAR,
   )
 }

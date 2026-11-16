@@ -329,7 +329,7 @@ export default function NyAnnonsPage() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="t.ex. Comfort 32 från 1979 — välhållen klassiker"
+            placeholder="t.ex. Comfort 32 från 1979: välhållen klassiker"
             maxLength={200}
             required
             style={{ ...fieldBase, marginBottom: 14 }}
@@ -341,7 +341,7 @@ export default function NyAnnonsPage() {
             inputMode="numeric"
             value={price}
             onChange={(e) => setPrice(e.target.value.replace(/[^0-9 ]/g, ''))}
-            placeholder="t.ex. 150000 — lämna tomt för 'pris på förfrågan'"
+            placeholder="t.ex. 150000: lämna tomt för 'pris på förfrågan'"
             style={fieldBase}
           />
         </div>
@@ -403,7 +403,7 @@ export default function NyAnnonsPage() {
         <div style={sectionCard}>
           <label style={labelStyle}>Specifikationer · {specs.length}/12</label>
           <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 12px', lineHeight: 1.5 }}>
-            Lägg till tekniska detaljer — modell, årsmodell, längd, motor osv.
+            Lägg till tekniska detaljer: modell, årsmodell, längd, motor osv.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {specs.map((s, i) => (

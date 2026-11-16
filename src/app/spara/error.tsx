@@ -23,7 +23,7 @@ export default function Error({
         Kunde inte spara turen
       </h2>
       <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 24px', maxWidth: 300, lineHeight: 1.5 }}>
-        Något gick fel vid sparandet. Din data är inte förlorad — försök igen.
+        Något gick fel vid sparandet. Din data är inte förlorad, försök igen.
       </p>
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
         <button

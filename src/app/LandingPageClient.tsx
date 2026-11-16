@@ -956,7 +956,7 @@ const LANDING_HTML = `
  <div class="section-header reveal">
  <div class="section-label">Utforska skärgården</div>
  <h2 class="section-title">Välj din del av skärgården</h2>
- <p class="section-sub">Från Stockholms skärgård till Blekinges kust och Västerhavet — varje region har sin karaktär och sina gömda skatter.</p>
+ <p class="section-sub">Från Stockholms skärgård till Blekinges kust och Västerhavet, varje region har sin karaktär och sina gömda skatter.</p>
  </div>
  <div class="destinations-grid">
  <a href="/o/vaxholm" class="dest-card reveal reveal-delay-1">
@@ -1023,7 +1023,7 @@ const LANDING_HTML = `
  <div class="section-header reveal">
  <div class="section-label">Se & Göra</div>
  <h2 class="section-title">Skärgårdslivet är mer än mat</h2>
- <p class="section-sub">Från klippbad och kajakpaddling till vandring och fiske — skärgården erbjuder aktiviteter för alla smaker och alla säsonger.</p>
+ <p class="section-sub">Från klippbad och kajakpaddling till vandring och fiske, skärgården erbjuder aktiviteter för alla smaker och alla säsonger.</p>
  </div>
  <div class="activities-grid">
  <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="activity-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
@@ -1050,7 +1050,7 @@ const LANDING_HTML = `
  <a href="/blogg/vandring-orno-uto" class="activity-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
  <svg class="activity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.8 15.04-8.2 17.04Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
  <h3>Vandring & Natur</h3>
- <p>Utö, Möja och Ornö har markerade vandringsleder genom urbergslandskap och gammal skog — korta dagturer och flerdagarsäventyr.</p>
+ <p>Utö, Möja och Ornö har markerade vandringsleder genom urbergslandskap och gammal skog, korta dagturer och flerdagarsäventyr.</p>
  <div class="activity-tags"><span class="chip">Markerade leder</span><span class="chip">Naturreservat</span><span class="chip">Fågelskådning</span></div>
  <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide &rarr;</div>
  </a>
@@ -1080,7 +1080,7 @@ const LANDING_HTML = `
   <div class="reveal">
    <div class="thorkel-label">AI-planeraren</div>
    <h2 class="section-title">Thorkel planerar din perfekta skärgårdsdag</h2>
-   <p class="section-sub">Berätta vad du är sugen på — Thorkel föreslår öar, båtar, krogar och bad utifrån Svallas ösidor. Gratis, men kräver ett konto.</p>
+   <p class="section-sub">Berätta vad du är sugen på: Thorkel föreslår öar, båtar, krogar och bad utifrån Svallas ösidor. Gratis, men kräver ett konto.</p>
    <!-- 2026-09-28: knapparna gick till /planera (båtruttplaneraren, kräver inloggning). Thorkel bor på /guide; dagsplaneraren /utflykt är öppen för alla. -->
    <div style="display:flex;flex-wrap:wrap;gap:10px">
     <a href="/guide" class="btn btn-accent btn-lg">Prata med Thorkel &rarr;</a>
@@ -1095,7 +1095,7 @@ const LANDING_HTML = `
    <div class="thorkel-msg ai">
     <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
     <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-    <div class="thorkel-bubble">Perfekt val: <b>Grinda</b>. Waxholmsbåten (linjebåt — ingen båt krävs) från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu — fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20. Vill du att jag bokar bordet?</div>
+    <div class="thorkel-bubble">Perfekt val: <b>Grinda</b>. Waxholmsbåten (linjebåt: ingen båt krävs) från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu, fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20. Vill du att jag bokar bordet?</div>
    </div>
    <div class="thorkel-msg user">
     <div class="thorkel-av u">Du</div>
@@ -1103,7 +1103,7 @@ const LANDING_HTML = `
    </div>
    <div class="thorkel-msg ai">
     <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
-    <div class="thorkel-bubble">Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill du att jag lägger till det i planen?</div>
+    <div class="thorkel-bubble">Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14 till 19. Det är 20 min med lokalbåten. Vill du att jag lägger till det i planen?</div>
    </div>
   </div>
  </div>
@@ -1116,37 +1116,37 @@ const LANDING_HTML = `
   <div class="section-header reveal">
    <div class="section-label">Vanliga frågor</div>
    <h2 class="section-title">Allt du undrar om skärgården</h2>
-   <p class="section-sub">Svar på de vanligaste frågorna — från vilken ö som passar bäst till hur du tar dig dit.</p>
+   <p class="section-sub">Svar på de vanligaste frågorna, från vilken ö som passar bäst till hur du tar dig dit.</p>
   </div>
   <div class="faq-list">
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Vilken ö passar barnfamiljer bäst?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Grinda och Vaxholm är toppalternativen — sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen. Utö i söder har en lång sandstrand och cykelleder som passar hela familjen.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Grinda och Vaxholm är toppalternativen: sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen. Utö i söder har en lång sandstrand och cykelleder som passar hela familjen.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Hur lång tid tar båten till Sandhamn?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Cinderellabåten går från Strandvägen kajplats 14 — inte Strömkajen, som är Waxholmsbolagets kaj — och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april–27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48–59 minuter) och sedan Sandhamnslinjen på 30 minuter. Totalt drygt 1 timme 20 minuter med bra anslutning.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Cinderellabåten går från Strandvägen kajplats 14, inte Strömkajen, som är Waxholmsbolagets kaj, och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april till 27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48 till 59 minuter) och sedan Sandhamnslinjen på 30 minuter. Totalt drygt 1 timme 20 minuter med bra anslutning.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Kan man tälta i skärgården?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Ja — allemansrätten ger rätt att tälta i naturen i upp till 1–2 nätter på samma plats. Håll minst 150 meter avstånd från närmaste bostad och lämna naturen som du fann den. Under torrperioder kan eldningsförbud gälla — kontrollera alltid MSB:s webbplats innan.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Ja, allemansrätten ger rätt att tälta i naturen i upp till 1 till 2 nätter på samma plats. Håll minst 150 meter avstånd från närmaste bostad och lämna naturen som du fann den. Under torrperioder kan eldningsförbud gälla. Kontrollera alltid MSB:s webbplats innan.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Vad är det bästa alternativet till Sandhamn?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Grinda är det populäraste alternativet — kortare båttid (1,5 timmar), lika vacker och utan turisttrycket. Utö i söder är perfekt för de som vill ha mer natur och cykling. Möja är ett dolt alternativ för den som söker äkta skärgårdsstämning utan bryggrestauranger.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Grinda är det populäraste alternativet: kortare båttid (1,5 timmar), lika vacker och utan turisttrycket. Utö i söder är perfekt för de som vill ha mer natur och cykling. Möja är ett dolt alternativ för den som söker äkta skärgårdsstämning utan bryggrestauranger.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Vilken månad är bäst att besöka skärgården?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Juli är peak-säsong med varmast vatten (runt 20°C) men också mest folk. Juni och tidig augusti är lika vackra men lugnare. September–oktober rekommenderas för vandrare — höstfärger, inga köer och öppna krogar. Maj–juni har de längsta dagarna och det klaraste vattnet.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Juli är peak-säsong med varmast vatten (runt 20°C) men också mest folk. Juni och tidig augusti är lika vackra men lugnare. September till oktober rekommenderas för vandrare: höstfärger, inga köer och öppna krogar. Maj till juni har de längsta dagarna och det klaraste vattnet.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Hur mycket kostar en dagstur till Fjäderholmarna?<span class="faq-icon">+</span></button>
     <!-- KÄLLA: operatörernas namn och avgångsplatser verifierade 2026-08-12. Priserna borttagna — Strömmas sida är en JS-app som inte gick att avläsa, och tredjepartssiffror duger inte. Tidigare påstods 175–220 kr ENKEL; tredjepartskällor anger ~185 kr TUR OCH RETUR, så vårt påstående var sannolikt dubbelt för dyrt. Det gamla rådet "ta SL-buss 80 till Lidingö och fika billigare på ön" var nonsens — Fjäderholmarna nås inte via Lidingö. -->
-<div class="faq-a"><div class="faq-a-inner">Två rederier kör: Strömma från Nybrokajen och Fjäderholmslinjen från Slussen — se aktuellt biljettpris hos respektive. Överfarten är skärgårdens kortaste, runt 25 minuter. Vad dagen kostar styrs mest av restaurangvalet: medhavd matsäck gör den billig, lunch på krogen gör den till en riktig utflykt.</div></div>
+<div class="faq-a"><div class="faq-a-inner">Två rederier kör: Strömma från Nybrokajen och Fjäderholmslinjen från Slussen, se aktuellt biljettpris hos respektive. Överfarten är skärgårdens kortaste, runt 25 minuter. Vad dagen kostar styrs mest av restaurangvalet: medhavd matsäck gör den billig, lunch på krogen gör den till en riktig utflykt.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Måste man ha egen båt för att använda Svalla?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Absolut inte. Svalla är byggt för alla — oavsett om du reser med Waxholmsbåten, Cinderellabåten, pendeltåg + färja eller bil. <a href="/utflykt">Dagsplaneraren</a> visar öar som nås med kollektivtrafik från din startpunkt, med restid och båttider för dagen. Ingen båt krävs, någonsin.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Absolut inte. Svalla är byggt för alla: oavsett om du reser med Waxholmsbåten, Cinderellabåten, pendeltåg + färja eller bil. <a href="/utflykt">Dagsplaneraren</a> visar öar som nås med kollektivtrafik från din startpunkt, med restid och båttider för dagen. Ingen båt krävs, någonsin.</div></div>
    </div>
   </div>
  </div>
@@ -1187,12 +1187,12 @@ const LANDING_HTML = `
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"Vilken ö passar barnfamiljer bäst?","acceptedAnswer":{"@type":"Answer","text":"Grinda och Vaxholm är toppalternativen — sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen."}},
-    {"@type":"Question","name":"Hur lång tid tar båten till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Cinderellabåten går från Strandvägen kajplats 14, inte Strömkajen, och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april-27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnetuter, och sedan Sandhamnslinjen på 30 minuter."}},
-    {"@type":"Question","name":"Kan man tälta i skärgården?","acceptedAnswer":{"@type":"Answer","text":"Ja — allemansrätten ger rätt att tälta i naturen i upp till 1–2 nätter. Håll minst 150 meter avstånd från närmaste bostad."}},
-    {"@type":"Question","name":"Vad är det bästa alternativet till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Grinda är det populäraste alternativet — kortare båttid, lika vacker och utan turisttrycket. Utö i söder är perfekt för mer natur och cykling."}},
-    {"@type":"Question","name":"Vilken månad är bäst att besöka skärgården?","acceptedAnswer":{"@type":"Answer","text":"Juli är peak-säsong med varmast vatten men mest folk. September–oktober är bäst för vandrare — höstfärger och inga köer."}},
-    {"@type":"Question","name":"Hur mycket kostar en dagstur till Fjäderholmarna?","acceptedAnswer":{"@type":"Answer","text":"Överfarten är skärgårdens kortaste och biljetten bokas hos rederiet — se deras aktuella pris. Vad dagen kostar styrs mest av restaurangvalet: med medhavd matsäck blir det billigt, med lunch på krogen blir det en riktig utflykt."}}
+    {"@type":"Question","name":"Vilken ö passar barnfamiljer bäst?","acceptedAnswer":{"@type":"Answer","text":"Grinda och Vaxholm är toppalternativen: sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen."}},
+    {"@type":"Question","name":"Hur lång tid tar båten till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Cinderellabåten går från Strandvägen kajplats 14, inte Strömkajen, och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april-27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, 48 till 59 min beroende på tid på dygnetuter, och sedan Sandhamnslinjen på 30 minuter."}},
+    {"@type":"Question","name":"Kan man tälta i skärgården?","acceptedAnswer":{"@type":"Answer","text":"Ja, allemansrätten ger rätt att tälta i naturen i upp till 1 till 2 nätter. Håll minst 150 meter avstånd från närmaste bostad."}},
+    {"@type":"Question","name":"Vad är det bästa alternativet till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Grinda är det populäraste alternativet: kortare båttid, lika vacker och utan turisttrycket. Utö i söder är perfekt för mer natur och cykling."}},
+    {"@type":"Question","name":"Vilken månad är bäst att besöka skärgården?","acceptedAnswer":{"@type":"Answer","text":"Juli är peak-säsong med varmast vatten men mest folk. September till oktober är bäst för vandrare, höstfärger och inga köer."}},
+    {"@type":"Question","name":"Hur mycket kostar en dagstur till Fjäderholmarna?","acceptedAnswer":{"@type":"Answer","text":"Överfarten är skärgårdens kortaste och biljetten bokas hos rederiet, se deras aktuella pris. Vad dagen kostar styrs mest av restaurangvalet: med medhavd matsäck blir det billigt, med lunch på krogen blir det en riktig utflykt."}}
   ]
 }
 </script>
@@ -1256,7 +1256,7 @@ function toggleFaq(btn){
  </div>
  </div>
  <div class="footer-bottom">
- <span>© 2026 Svalla — Alla rättigheter förbehållna</span>
+ <span>© 2026 Svalla | Alla rättigheter förbehållna</span>
  <div class="footer-flags"><svg viewBox="0 0 20 14" width="22" height="15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px"><rect width="20" height="14" fill="#006AA7"/><rect x="6" width="2" height="14" fill="#FECC02"/><rect y="6" width="20" height="2" fill="#FECC02"/></svg></div>
  <div class="footer-social">
  <a href="https://www.instagram.com/svalla.app/" target="_blank" rel="me noopener noreferrer" title="Svalla på Instagram" aria-label="Svalla på Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
@@ -1292,7 +1292,7 @@ function bildkallorHtml(k: Bildkalla[]): string {
     `${esc(b.namn)}: <a href="${esc(b.kalla)}" rel="noopener noreferrer" target="_blank">${esc(b.fotograf)}</a>, ` +
     (b.licensUrl ? `<a href="${esc(b.licensUrl)}" rel="noopener noreferrer license" target="_blank">${esc(b.licens)}</a>` : esc(b.licens))
   ).join(' · ')
-  return `<section aria-label="Bildkällor" style="max-width:1160px;margin:0 auto;padding:28px 24px 36px;font-size:12px;line-height:1.7;color:var(--txt3)"><strong style="font-weight:600">Bildkällor</strong> (Wikimedia Commons) – ${rader}</section>`
+  return `<section aria-label="Bildkällor" style="max-width:1160px;margin:0 auto;padding:28px 24px 36px;font-size:12px;line-height:1.7;color:var(--txt3)"><strong style="font-weight:600">Bildkällor</strong> (Wikimedia Commons): ${rader}</section>`
 }
 
 export default function LandingPageClient({ photoMap, bildkallor = [], antalOar }: { photoMap?: Record<string, string>; bildkallor?: Bildkalla[]; antalOar: number }) {

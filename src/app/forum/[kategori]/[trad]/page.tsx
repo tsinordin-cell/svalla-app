@@ -92,7 +92,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     } else {
       titleParts.push(priceStr)
     }
-    const title = `${titleParts.join(' — ')} | Svalla Loppis`
+    const title = `${titleParts.join(': ')} | Svalla Loppis`
 
     // SEO-description med relevanta sök-termer
     const descParts: string[] = [`Säljes på Svalla Loppis: ${priceStr}`]
@@ -134,17 +134,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = thread.body.slice(0, 160)
   const ogImage = `/api/og/forum/${trad}`
   return {
-    title: { absolute: `${thread.title} — Svalla Forum` },
+    title: { absolute: `${thread.title} | Svalla Forum` },
     description,
     alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: `${thread.title} — Svalla Forum`,
+      title: `${thread.title} | Svalla Forum`,
       description,
       url: canonicalUrl,
       images: [{ url: ogImage, width: 1200, height: 630, alt: thread.title }],
       type: 'article',
     },
-    twitter: { card: 'summary_large_image', title: `${thread.title} — Svalla Forum`, description, images: [ogImage] },
+    twitter: { card: 'summary_large_image', title: `${thread.title} | Svalla Forum`, description, images: [ogImage] },
   }
 }
 
@@ -239,7 +239,7 @@ export default async function ForumTradPage({ params }: Props) {
     },
     isPartOf: {
       '@type': 'DiscussionForum',
-      name: `${cat.name} — Svalla Forum`,
+      name: `${cat.name} | Svalla Forum`,
       url: `https://svalla.se/forum/${kategori}`,
     },
   }
@@ -551,7 +551,7 @@ export default async function ForumTradPage({ params }: Props) {
                 <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z" />
               </svg>
             </div>
-            Inga svar ännu — var den första att svara!
+            Inga svar ännu. Var den första att svara!
           </div>
         )}
 

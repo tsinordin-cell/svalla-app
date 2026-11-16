@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   description: 'Utforska Gotlands bästa äventyr: Fårö-dagstur, Lummelundagrottan, raukar, medeltidsstaden Visby och cykelleder.',
   alternates: { canonical: 'https://svalla.se/gotland/aventyr' },
   openGraph: {
-    title: '10 äventyr på Gotland – Svalla',
-    description: 'Gotlands bästa äventyr – med bil, kollektivt eller cykel.',
+    title: '10 äventyr på Gotland | Svalla',
+    description: 'Gotlands bästa äventyr: med bil, kollektivt eller cykel.',
     url: 'https://svalla.se/gotland/aventyr',
   },
 }

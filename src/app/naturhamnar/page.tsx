@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Naturhamnar i Stockholms skärgård — Ankringsguide',
-  description: 'Guide till naturhamnar i Stockholms skärgård 2026. Möja, Nämdö, Ornö, Nåttarö, Grinda och fler — vindskydd och läge för varje ankringsplats. Gratis ankring via allemansrätten.',
+  title: 'Naturhamnar i Stockholms skärgård: Ankringsguide',
+  description: 'Guide till naturhamnar i Stockholms skärgård 2026. Möja, Nämdö, Ornö, Nåttarö, Grinda och fler, vindskydd och läge för varje ankringsplats. Gratis ankring via allemansrätten.',
   keywords: [
     'naturhamnar stockholms skärgård',
     'ankra stockholms skärgård',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     'allemansrätten segling',
   ],
   openGraph: {
-    title: 'Naturhamnar i Stockholms skärgård — Ankringsguide',
+    title: 'Naturhamnar i Stockholms skärgård: Ankringsguide',
     description: 'Hitta de bästa naturhamnarna i Stockholms skärgård. Gratis ankring och skyddade vikar för seglare.',
     url: 'https://svalla.se/naturhamnar',
   },
@@ -54,14 +54,14 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🌿',
     title: 'Ålö',
-    description: 'Naturreservat granne med Utö i södra skärgården, brobunden till Utö — kombinera gärna med middag på Utö Värdshus.',
+    description: 'Naturreservat granne med Utö i södra skärgården, brobunden till Utö, kombinera gärna med middag på Utö Värdshus.',
     href: '/o/uto',
     meta: 'Södra skärgården · Nära Utö',
   },
   {
     icon: '💧',
     title: 'Svartsö',
-    description: 'Ö i mellanskärgården med många vikar. Lanthandel i byn — lätt att handla mat.',
+    description: 'Ö i mellanskärgården med många vikar. Lanthandel i byn, lätt att handla mat.',
     href: '/o/svartso',
     meta: 'Mellanskärgården · Butik på ön',
   },
@@ -82,7 +82,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🏝️',
     title: 'Nåttarö',
-    description: 'Naturreservat i södra skärgården med långa sandstränder — ovanligt för Stockholms skärgård.',
+    description: 'Naturreservat i södra skärgården med långa sandstränder, ovanligt för Stockholms skärgård.',
     href: '/o/nattaro',
     meta: 'Södra skärgården · Sandstränder',
   },
@@ -96,21 +96,21 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🌲',
     title: 'Ängsö',
-    description: 'Nationalpark i norra skärgården. Tillträdesförbud i delar av parken under häckningstid — datumen står i nationalparkens föreskrifter.',
+    description: 'Nationalpark i norra skärgården. Tillträdesförbud i delar av parken under häckningstid, datumen står i nationalparkens föreskrifter.',
     href: '/vandring-och-natur',
     meta: 'Norra skärgården · Nationalpark',
   },
   {
     icon: '⚓',
     title: 'Ornö',
-    description: 'Ornö har butik och flera restauranger — bra bas för längre turer.',
+    description: 'Ornö har butik och flera restauranger, bra bas för längre turer.',
     href: '/o/orno',
     meta: 'Södra mellanskärgården · Vacker vik',
   },
   {
     icon: '🦅',
     title: 'Huvudskär',
-    description: 'Yttre skärgården öster om Ornö. Öppen kust — kräver bra väderprognos.',
+    description: 'Yttre skärgården öster om Ornö. Öppen kust, kräver bra väderprognos.',
     href: '/o/huvudskar',
     meta: 'Yttre skärgården · Öppen kust',
   },
@@ -131,7 +131,7 @@ export default function NaturhamnarPage() {
       {
         '@type': 'Question',
         name: 'Vad är en naturhamn?',
-        acceptedAnswer: { '@type': 'Answer', text: 'En naturhamn är en ankringsplats utan formell infrastruktur — ingen hamnadministration, ingen gästbok, ingen avgift. Du ankrar fritt på en skyddad vika där djupet räcker och botten håller. Naturhamnar är ofta mer vilda och autentiska än gästhamnar.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'En naturhamn är en ankringsplats utan formell infrastruktur: ingen hamnadministration, ingen gästbok, ingen avgift. Du ankrar fritt på en skyddad vika där djupet räcker och botten håller. Naturhamnar är ofta mer vilda och autentiska än gästhamnar.' },
       },
       {
         '@type': 'Question',
@@ -147,7 +147,7 @@ export default function NaturhamnarPage() {
         '@type': 'Question',
         name: 'Hur djup ska en naturhamn vara?',
         // UPPSKATTNING: typiskt djupgående för kölbåtar i skärgårdsstorlek (2026-08)
-        acceptedAnswer: { '@type': 'Answer', text: 'För typiska kölbåtar (1,4–1,8 m djupgående) vill du gärna ha minst 3 meter där du ankrar. Östersjön har ingen reell tidvattendynamik — vattenståndet styrs av vind och lufttryck och varierar oftast bara några decimeter.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'För typiska kölbåtar (1,4 till 1,8 m djupgående) vill du gärna ha minst 3 meter där du ankrar. Östersjön har ingen reell tidvattendynamik, vattenståndet styrs av vind och lufttryck och varierar oftast bara några decimeter.' },
       },
     ],
   }
@@ -167,7 +167,7 @@ export default function NaturhamnarPage() {
       heroGradient={['#0a4a5e', '#0a7b8c']}
       eyebrow="Naturhamnar"
       title="Ankra fritt i skärgården"
-      tagline="Möja, Nämdö, Ornö, Nåttarö och fler — skyddade vikar, läge och vindskydd."
+      tagline="Möja, Nämdö, Ornö, Nåttarö och fler: skyddade vikar, läge och vindskydd."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M12 2v20" />
@@ -178,21 +178,21 @@ export default function NaturhamnarPage() {
       intro={
         <>
           <p>
-            En naturhamn är en ankringsplats utan gästhamnens infrastruktur — ingen strömbox, ingen reception, inget pris att betala. Istället får du <strong>gratis förtöjning, skyddade vikar och allemansrätten</strong> på din sida. Det är seglingslivet i sin renaste form.
+            En naturhamn är en ankringsplats utan gästhamnens infrastruktur: ingen strömbox, ingen reception, inget pris att betala. Istället får du <strong>gratis förtöjning, skyddade vikar och allemansrätten</strong> på din sida. Det är seglingslivet i sin renaste form.
           </p>
           <p>
-            Skillnaden mellan naturhamn och gästhamn är enkel men avgörande. Gästhamnen ger service, men också köer, avgifter och sommartrafik. Naturhamnar ger tystnad och frihet — du ankrar där det är säkert och tillåtet. Från <strong>Furusund i norr till Landsort i söder</strong> finns hundratals lämpliga vikar i Stockholms skärgård.
+            Skillnaden mellan naturhamn och gästhamn är enkel men avgörande. Gästhamnen ger service, men också köer, avgifter och sommartrafik. Naturhamnar ger tystnad och frihet. Du ankrar där det är säkert och tillåtet. Från <strong>Furusund i norr till Landsort i söder</strong> finns hundratals lämpliga vikar i Stockholms skärgård.
           </p>
           <p>
-            Vilken naturhamn passar dig? Det beror på <strong>djup, vindkvartal och tid på året</strong>. En bra naturhamn skyddar mot vinden från det håll prognosen säger, har gott djup och en botten där ankaret håller — typiskt sand eller lera. Östersjön har ingen tidvattendynamik att tala om (vattenståndet styrs av vind och lufttryck och varierar oftast bara några decimeter), så &quot;djup vid lågvattnet&quot; är inte samma sak som på västkusten.
+            Vilken naturhamn passar dig? Det beror på <strong>djup, vindkvartal och tid på året</strong>. En bra naturhamn skyddar mot vinden från det håll prognosen säger, har gott djup och en botten där ankaret håller, typiskt sand eller lera. Östersjön har ingen tidvattendynamik att tala om (vattenståndet styrs av vind och lufttryck och varierar oftast bara några decimeter), så &quot;djup vid lågvattnet&quot; är inte samma sak som på västkusten.
           </p>
           <p>
-            Allemansrätten ger dig rätt att tillfälligt ankra och vistas i skärgården, men också skyldigheter. Ta hand om miljön. Lämna inget efter dig. Respektera fågelskyddsområden (landstigningsförbud under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter) i många reservat) och privatägd mark. En naturhamn är en förmån — behandla den så.
+            Allemansrätten ger dig rätt att tillfälligt ankra och vistas i skärgården, men också skyldigheter. Ta hand om miljön. Lämna inget efter dig. Respektera fågelskyddsområden (landstigningsförbud under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti, datumen står på skyltarna och i länsstyrelsens föreskrifter) i många reservat) och privatägd mark. En naturhamn är en förmån, behandla den så.
           </p>
         </>
       }
       itemsTitle="Populära naturhamnar i Stockholms skärgård"
-      itemsDescription="Tolv öar från norra till södra skärgården där seglare brukar ligga för ankar. Vilken vik som skyddar mot vilken vind, djup och botten läser du av på sjökortet och med lod — vi anger inte det utan källa."
+      itemsDescription="Tolv öar från norra till södra skärgården där seglare brukar ligga för ankar. Vilken vik som skyddar mot vilken vind, djup och botten läser du av på sjökortet och med lod. Vi anger inte det utan källa."
       items={ITEMS}
       deeperContent={
         <>
@@ -204,14 +204,14 @@ export default function NaturhamnarPage() {
             Vad är en naturhamn?
           </h3>
           <p>
-            En naturhamn är en ankringsplats utan formell infrastruktur — ingen hamnadministration, ingen gästbok, ingen avgift. Du ankrar fri och frivilligt på en skyddad vika där djupet räcker och botten håller. Naturhamnar är ofta mindre, mer vilda och långt mer autentiska än gästhamnar. De är Sveriges sätt att säga att skärgården tillhör alla.
+            En naturhamn är en ankringsplats utan formell infrastruktur: ingen hamnadministration, ingen gästbok, ingen avgift. Du ankrar fri och frivilligt på en skyddad vika där djupet räcker och botten håller. Naturhamnar är ofta mindre, mer vilda och långt mer autentiska än gästhamnar. De är Sveriges sätt att säga att skärgården tillhör alla.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Är det gratis att ankra i naturhamnar?
           </h3>
           <p>
-            Ja, helt gratis. Det finns inga avgifter, ingen elmätare och ingen reception. Du ankrar där du vill, så länge du respekterar allemansrätten och inte ligger över privata ägodelar. Naturhamnar är en av de sista möjligheterna för seglare att vara helt obunden av ekonomi och administration — en gåva från Sveriges allemansrätt och skärgårdskultur.
+            Ja, helt gratis. Det finns inga avgifter, ingen elmätare och ingen reception. Du ankrar där du vill, så länge du respekterar allemansrätten och inte ligger över privata ägodelar. Naturhamnar är en av de sista möjligheterna för seglare att vara helt obunden av ekonomi och administration, en gåva från Sveriges allemansrätt och skärgårdskultur.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -226,25 +226,25 @@ export default function NaturhamnarPage() {
           </h3>
           {/* UPPSKATTNING: typiskt djupgående för kölbåtar i skärgårdsstorlek (2026-08) */}
           <p>
-            För typiska kölbåtar (1,4–1,8 m djupgående) vill du gärna ha minst 3 meter där du ligger för ankar, gärna mer för marginal vid vindändring. Östersjön har ingen reell tidvattendynamik — vattenståndet varierar med vind och lufttryck, oftast bara några decimeter. Lita inte blint på sjökortet; lodningar kan ha ändrats. Mät själv med ekolod eller lod när du går in.
+            För typiska kölbåtar (1,4 till 1,8 m djupgående) vill du gärna ha minst 3 meter där du ligger för ankar, gärna mer för marginal vid vindändring. Östersjön har ingen reell tidvattendynamik: vattenståndet varierar med vind och lufttryck, oftast bara några decimeter. Lita inte blint på sjökortet; lodningar kan ha ändrats. Mät själv med ekolod eller lod när du går in.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Vad ska jag tänka på när jag ankrar i en naturhamn?
           </h3>
           <p>
-            <strong>Väder först:</strong> En naturhamn skyddar bara från vissa vindkvartal. Kolla prognos och planera reträtt. <strong>Djup:</strong> Mät själv — sjökort kan vara gamla. <strong>Botten:</strong> Sand och lera ger oftast bäst grepp för ankaret. Undvik hård botten med berg, alger eller grus. <strong>Ankare och kätting:</strong> Lägg ut tillräcklig kättinglängd i förhållande till djupet (riktmärke 4–5 gånger vattendjupet i bra väder, mer i hård vind). Vanliga ankartyper i skärgården är Bruce, Delta och plogankare. <strong>Allemansrätten:</strong> Respektera privatägd mark, lämna inget skräp och visa hänsyn mot grannar i viken.
+            <strong>Väder först:</strong> En naturhamn skyddar bara från vissa vindkvartal. Kolla prognos och planera reträtt. <strong>Djup:</strong> Mät själv, sjökort kan vara gamla. <strong>Botten:</strong> Sand och lera ger oftast bäst grepp för ankaret. Undvik hård botten med berg, alger eller grus. <strong>Ankare och kätting:</strong> Lägg ut tillräcklig kättinglängd i förhållande till djupet (riktmärke 4 till 5 gånger vattendjupet i bra väder, mer i hård vind). Vanliga ankartyper i skärgården är Bruce, Delta och plogankare. <strong>Allemansrätten:</strong> Respektera privatägd mark, lämna inget skräp och visa hänsyn mot grannar i viken.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Kan jag ha hundar och barn i en naturhamn?
           </h3>
           <p>
-            Ja. Många naturhamnar är fina för barnfamiljer och hundägare — de ligger lugnt, långt från båttrafik och har ofta klippor eller småstränder att gå iland på. Tänk på koppeltvång (1 mars–20 augusti i naturen, men lokala regler kan vara strängare i naturreservat) och respektera privatägd mark vid ankringsplatsen.
+            Ja. Många naturhamnar är fina för barnfamiljer och hundägare. De ligger lugnt, långt från båttrafik och har ofta klippor eller småstränder att gå iland på. Tänk på koppeltvång (1 mars till 20 augusti i naturen, men lokala regler kan vara strängare i naturreservat) och respektera privatägd mark vid ankringsplatsen.
           </p>
         </>
       }
-      cta={{ label: 'Allemansrätten på vatten — vad som gäller', href: '/hamnar-och-bryggor#naturhamnar' }}
+      cta={{ label: 'Allemansrätten på vatten: vad som gäller', href: '/hamnar-och-bryggor#naturhamnar' }}
       related={[
         { label: 'Dagsturer från Stockholm', href: '/dagsturer' },
         { label: 'Barnvänliga öar', href: '/barnvanliga-oar' },

@@ -8,7 +8,7 @@ import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
-  title: 'Skärgården året om – guider per säsong',
+  title: 'Skärgården året om: guider per säsong',
   description: 'Vad förändras i skärgården mellan vår, sommar, höst och vinter? Praktiska guider för varje säsong med tips, väder och öar att besöka.',
   alternates: { canonical: 'https://svalla.se/sasong' },
   openGraph: {
@@ -70,7 +70,7 @@ export default function SasongIndex() {
               Skärgården året om
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 16, lineHeight: 1.6, margin: 0, maxWidth: 580 }}>
-              Vad förändras i skärgården mellan säsongerna? Praktiska guider för vår, sommar, höst och vinter — vad du ska tänka på och vilka öar är öppna.
+              Vad förändras i skärgården mellan säsongerna? Praktiska guider för vår, sommar, höst och vinter, vad du ska tänka på och vilka öar är öppna.
             </p>
           </div>
 

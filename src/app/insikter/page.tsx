@@ -161,7 +161,7 @@ export default function InsikterPage() {
  <div style={{ textAlign: 'center', padding: '60px 20px' }}>
  <Icon name="sailboat" size={48} style={{ color: 'var(--txt3)', marginBottom: 12, display: 'block' }} />
  <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 16 }}>
- {scope === 'all' ? 'Inga turer än — logga din första och kom tillbaka!' : `Inga turer loggade under ${scope}.`}
+ {scope === 'all' ? 'Inga turer än, logga din första och kom tillbaka!' : `Inga turer loggade under ${scope}.`}
  </p>
  <Link href="/logga" style={{
  display: 'inline-block', padding: '10px 22px', borderRadius: 14,

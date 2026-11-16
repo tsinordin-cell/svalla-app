@@ -67,7 +67,7 @@ export default function InvitePage() {
       try {
         await navigator.share({
           title: 'Gå med på Svalla',
-          text: 'Strava för båtfolk — här är min inbjudningslänk:',
+          text: 'Strava för båtfolk: här är min inbjudningslänk:',
           url,
         })
       } catch { /* användare avbröt */ }

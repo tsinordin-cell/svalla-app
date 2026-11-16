@@ -15,7 +15,7 @@ describe('arAgentUserAgent', () => {
     expect(arAgentUserAgent('Mozilla/5.0 HeadlessChrome/120')).toBe(true)
     expect(arAgentUserAgent('Googlebot/2.1 (+http://www.google.com/bot.html)')).toBe(true)
   })
-  it('släpper igenom vanliga webbläsare — "Mobile" innehåller inte bot', () => {
+  it('släpper igenom vanliga webbläsare: "Mobile" innehåller inte bot', () => {
     expect(arAgentUserAgent(MAC)).toBe(false)
     expect(arAgentUserAgent(IPHONE)).toBe(false)
     expect(arAgentUserAgent(null)).toBe(false)

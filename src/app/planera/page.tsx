@@ -9,9 +9,9 @@ import WeatherPillServer from '@/components/WeatherPillServer'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt',
-  description: 'Välj start, mål och intressen. Svalla hittar de bästa stoppen längs din rutt — krogar, bastun, bryggor och naturupplevelser.',
+  description: 'Välj start, mål och intressen. Svalla hittar de bästa stoppen längs din rutt: krogar, bastun, bryggor och naturupplevelser.',
   openGraph: {
-    title: 'Planera din skärgårdsrutt — Svalla',
+    title: 'Planera din skärgårdsrutt | Svalla',
     description: 'Smart ruttplanerare för Stockholms skärgård.',
     url: 'https://svalla.se/planera',
   },
@@ -88,7 +88,7 @@ export default async function PlaneraPage() {
             Planera din skärgårdsrutt
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.72)', margin: '0 0 20px', lineHeight: 1.55 }}>
-            Välj start, mål och intressen — vi hittar krogar, bastun och bryggor längs vägen.
+            Välj start, mål och intressen. Vi hittar krogar, bastun och bryggor längs vägen.
           </p>
           <Link href="/planera/ny" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -137,7 +137,7 @@ export default async function PlaneraPage() {
                 <div style={{ flex: 1 }}>
                   <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>Planera en rutt utan att logga in</p>
                   <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 14px', lineHeight: 1.5 }}>
-                    Testa ruttplaneringen direkt — se hur Svalla hittar krogar, hamnar och stopp längs vägen. Logga in när du vill spara och dela.
+                    Testa ruttplaneringen direkt: se hur Svalla hittar krogar, hamnar och stopp längs vägen. Logga in när du vill spara och dela.
                   </p>
                   <div style={{
                     background: 'rgba(10,123,140,0.04)', borderRadius: 12, padding: '12px 16px',
@@ -219,7 +219,7 @@ export default async function PlaneraPage() {
           <ThorkelAvatar size={56} />
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 3 }}>Fråga Thorkel</div>
-            <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.45 }}>Berätta vad du letar efter — vår skärgårdsguide svarar på sekunder.</div>
+            <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.45 }}>Berätta vad du letar efter, vår skärgårdsguide svarar på sekunder.</div>
           </div>
           <Link href="/guide" style={{
             fontSize: 12, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none',

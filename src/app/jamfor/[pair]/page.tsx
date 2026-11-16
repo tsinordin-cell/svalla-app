@@ -124,10 +124,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!a || !b) return {}
   return {
     title: `${a.name} eller ${b.name}? Jämför öarna`,
-    description: `Sandhamn eller Grinda? Vi jämför ${a.name} och ${b.name} sida vid sida — restider, restauranger, bästa-för, fakta. Hjälper dig välja rätt skärgårdsdestination.`.replace('Sandhamn eller Grinda? ', ''),
+    description: `Sandhamn eller Grinda? Vi jämför ${a.name} och ${b.name} sida vid sida: restider, restauranger, bästa-för, fakta. Hjälper dig välja rätt skärgårdsdestination.`.replace('Sandhamn eller Grinda? ', ''),
     keywords: [`${a.name.toLowerCase()} eller ${b.name.toLowerCase()}`, `${a.name.toLowerCase()} vs ${b.name.toLowerCase()}`, 'jämför skärgårdsöar'],
     openGraph: {
-      title: `${a.name} vs ${b.name} — vilken passar dig?`,
+      title: `${a.name} vs ${b.name}, vilken passar dig?`,
       description: `Jämför ${a.name} och ${b.name} sida vid sida.`,
       url: `https://svalla.se/jamfor/${pair}`,
     },
@@ -250,7 +250,7 @@ export default async function ComparisonPage({ params }: Props) {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
             name: `${islandA.name} eller ${islandB.name}? Jämförelse`,
-            description: `Jämför ${islandA.name} och ${islandB.name} — aktiviteter, boende, transport och karaktär. Hitta vilken ö som passar dig bäst.`,
+            description: `Jämför ${islandA.name} och ${islandB.name}: aktiviteter, boende, transport och karaktär. Hitta vilken ö som passar dig bäst.`,
             url: `https://svalla.se/jamfor/${pair}`,
             hasPart: [
               {
@@ -301,7 +301,7 @@ export default async function ComparisonPage({ params }: Props) {
             {islandA.name} eller {islandB.name}?
           </h1>
           <p style={{ fontSize: 16, opacity: 0.85, marginTop: 12, maxWidth: 540, marginLeft: 'auto', marginRight: 'auto' }}>
-            Två öar, två upplevelser. Här är vad som skiljer dem — så du kan välja rätt.
+            Två öar, två upplevelser. Här är vad som skiljer dem, så du kan välja rätt.
           </p>
         </div>
       </header>

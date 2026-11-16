@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!hike) return {}
   const region = REGIONS.find(r => r.id === hike.region)
   return {
-    title: `Vandra ${hike.name} — guide, led och tips`,
-    description: `${hike.tagline} ${hike.distanceKm > 0 ? `${hike.distanceKm} km, ` : ''}${hike.durationMin}–${hike.durationMax} timmar. ${hike.transport}.`,
+    title: `Vandra ${hike.name}: guide, led och tips`,
+    description: `${hike.tagline} ${hike.distanceKm > 0 ? `${hike.distanceKm} km, ` : ''}${hike.durationMin} till ${hike.durationMax} timmar. ${hike.transport}.`,
     keywords: [
       `vandra ${hike.name.toLowerCase()}`,
       `vandring ${hike.name.toLowerCase()}`,
@@ -58,7 +58,7 @@ const DIFFICULTY_COLOR: Record<string, string> = {
 }
 
 const DIFFICULTY_DESC: Record<string, string> = {
-  'lätt': 'Passar alla — inklusive barn och de som inte vandrar ofta. Tydlig stig, liten höjdskillnad.',
+  'lätt': 'Passar alla, inklusive barn och de som inte vandrar ofta. Tydlig stig, liten höjdskillnad.',
   'medel': 'Kräver bekväma skor. Kan ha ojämn terräng, rotstupor och kortare branter.',
   'krävande': 'Längre led eller brantare terräng. Kräver vandringskängor och erfarenhet.',
 }
@@ -117,7 +117,7 @@ export default async function VandringHikePage({ params }: Props) {
       amenityFeature: [
         { '@type': 'LocationFeatureSpecification', name: 'Längd', value: `${hike.distanceKm} km` },
         { '@type': 'LocationFeatureSpecification', name: 'Svårighet', value: hike.difficulty },
-        { '@type': 'LocationFeatureSpecification', name: 'Uppskattad tid', value: `${hike.durationMin}–${hike.durationMax} timmar` },
+        { '@type': 'LocationFeatureSpecification', name: 'Uppskattad tid', value: `${hike.durationMin} till ${hike.durationMax} timmar` },
         { '@type': 'LocationFeatureSpecification', name: 'Bästa säsong', value: hike.bestSeason },
         ...(hike.hasBathing ? [{ '@type': 'LocationFeatureSpecification', name: 'Badmöjligheter', value: true }] : []),
         ...(hike.hasRestaurant ? [{ '@type': 'LocationFeatureSpecification', name: 'Restaurang', value: true }] : []),
@@ -206,7 +206,7 @@ export default async function VandringHikePage({ params }: Props) {
             <div style={{ background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 12, padding: '14px 16px' }}>
               <div style={{ fontSize: 11, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 4 }}>Tid</div>
               <div style={{ fontSize: 18, color: 'var(--txt)', fontWeight: 700 }}>
-                {hike.durationMin}–{hike.durationMax} h
+                {hike.durationMin} till {hike.durationMax} h
               </div>
             </div>
             <div style={{ background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 12, padding: '14px 16px' }}>
@@ -326,9 +326,9 @@ export default async function VandringHikePage({ params }: Props) {
             </h2>
             <div style={{ display: 'grid', gap: 8 }}>
               {[
-                { label: 'Bad längs vägen', value: hike.hasBathing ? 'Ja — det finns badplatser längs leden' : 'Inga markerade badplatser längs leden' },
-                { label: 'Mat och dryck', value: hike.hasRestaurant && hike.hasCafe ? 'Restaurang och café finns' : hike.hasRestaurant ? 'Restaurang finns' : hike.hasCafe ? 'Café finns' : 'Ingen servering — ta med mat och vatten' },
-                { label: 'Hund', value: hike.suitableForDogs ? 'Hund välkommen — kontrollera alltid lokala reservatsregler' : 'Kontrollera lokala regler — kan ha begränsningar' },
+                { label: 'Bad längs vägen', value: hike.hasBathing ? 'Ja: det finns badplatser längs leden' : 'Inga markerade badplatser längs leden' },
+                { label: 'Mat och dryck', value: hike.hasRestaurant && hike.hasCafe ? 'Restaurang och café finns' : hike.hasRestaurant ? 'Restaurang finns' : hike.hasCafe ? 'Café finns' : 'Ingen servering: ta med mat och vatten' },
+                { label: 'Hund', value: hike.suitableForDogs ? 'Hund välkommen: kontrollera alltid lokala reservatsregler' : 'Kontrollera lokala regler: kan ha begränsningar' },
                 { label: 'Barn', value: hike.suitableForChildren ? 'Passar familjer med barn' : 'Bättre lämpad för vuxna och äldre barn med vandringsvana' },
                 { label: 'Region', value: regionLabel },
               ].map(row => (
@@ -360,7 +360,7 @@ export default async function VandringHikePage({ params }: Props) {
               Planera hela dagen kring {hike.name}
             </h2>
             <p style={{ fontSize: 13, lineHeight: 1.6, opacity: 0.92, margin: '0 0 16px' }}>
-              Thorkel sätter ihop färjor, tider och mat — du berättar bara vad du vill.
+              Thorkel sätter ihop färjor, tider och mat. Du berättar bara vad du vill.
             </p>
             <Link
               href="/thorkel"

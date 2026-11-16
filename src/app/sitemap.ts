@@ -410,7 +410,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ['planned_routes', plannedRoutesErr], ['forum_categories', forumCatsErr],
       ['forum_threads', forumThreadsErr],
     ] as const) {
-      if (err) console.error(`[sitemap] frågan mot ${namn} misslyckades — de sidorna utelämnas:`, err)
+      if (err) console.error(`[sitemap] frågan mot ${namn} misslyckades: de sidorna utelämnas:`, err)
     }
 
     platsPages = (restaurants ?? []).map((r: { id: string; slug?: string; updated_at?: string }) => ({
@@ -480,7 +480,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // (exceed_egress_quota) och sitemapen krympte från 2 492 till 1 728 URL:er
     // utan att något larmade: 774 sidor försvann ur Google och det upptäcktes
     // först vid en manuell länkkontroll två dygn senare.
-    console.error('[sitemap] Supabase svarade inte — dynamiska sidor utelämnade:', err)
+    console.error('[sitemap] Supabase svarade inte: dynamiska sidor utelämnade:', err)
   }
 
   const alla: MetadataRoute.Sitemap = [

@@ -6,12 +6,12 @@ import PublicFooter from '@/components/PublicFooter'
 import { ACTIVITY_LIST, islandsForActivity } from './activity-data'
 
 export const metadata: Metadata = {
-  title: 'Aktiviteter i skärgården — segling, cykling, bad, vandring, mat',
-  description: 'Hitta segling, cykling, bad, vandring och bra mat i Stockholms skärgård och Bohuslän. Vägledning per aktivitet och ö — vad du ska packa, bästa säsong och vilka öar som passar.',
+  title: 'Aktiviteter i skärgården: segling, cykling, bad, vandring, mat',
+  description: 'Hitta segling, cykling, bad, vandring och bra mat i Stockholms skärgård och Bohuslän. Vägledning per aktivitet och ö: vad du ska packa, bästa säsong och vilka öar som passar.',
   alternates: { canonical: 'https://svalla.se/aktivitet' },
   openGraph: {
     title: 'Aktiviteter i skärgården',
-    description: 'Segling, cykling, bad, vandring och mat — guide per aktivitet och ö.',
+    description: 'Segling, cykling, bad, vandring och mat, guide per aktivitet och ö.',
     url: 'https://svalla.se/aktivitet',
   },
 }
@@ -50,7 +50,7 @@ export default function ActivityIndexPage() {
             Aktiviteter i skärgården
           </h1>
           <p style={{ fontSize: 16, lineHeight: 1.55, marginTop: 12, maxWidth: 640, opacity: 0.92 }}>
-            Välj aktivitet — vi visar vilka öar som passar bäst, vad du behöver packa och när det är bästa säsong.
+            Välj aktivitet. Vi visar vilka öar som passar bäst, vad du behöver packa och när det är bästa säsong.
           </p>
         </div>
       </header>

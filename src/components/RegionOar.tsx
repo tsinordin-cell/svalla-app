@@ -35,7 +35,7 @@ export default function RegionOar({
       </h2>
       {oar.length === 0 ? (
         <p>
-          Vi har ännu inga ö-sidor här. Vet du en ö som borde vara med — <Link href="/tips">tipsa oss</Link>.
+          Vi har ännu inga ö-sidor här. Vet du en ö som borde vara med: <Link href="/tips">tipsa oss</Link>.
         </p>
       ) : (
         <>

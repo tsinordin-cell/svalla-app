@@ -88,7 +88,7 @@ export default function PlaceFAQSection({
     const datum = new Date(hoursVerifiedAt).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })
     faqs.push({
       q: `När har ${name} öppet?`,
-      a: `Enligt uppgifter kontrollerade ${datum}: ${openingHours}. Tiderna kan ändras under säsongen – kontrollera ${websiteUrl ? 'hemsidan' : 'med platsen'} före besöket.`,
+      a: `Enligt uppgifter kontrollerade ${datum}: ${openingHours}. Tiderna kan ändras under säsongen. Kontrollera ${websiteUrl ? 'hemsidan' : 'med platsen'} före besöket.`,
     })
   }
 

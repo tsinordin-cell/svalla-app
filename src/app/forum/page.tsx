@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Diskutera segling, fiske, motorbåt och skärgårdsliv med andra båtentusiaster.',
   alternates: { canonical: 'https://svalla.se/forum' },
   openGraph: {
-    title: 'Svalla Forum – skärgårdsliv och båtliv',
+    title: 'Svalla Forum: skärgårdsliv och båtliv',
     description: 'Diskutera segling, fiske, motorbåt och skärgårdsliv med andra båtentusiaster.',
     url: 'https://svalla.se/forum',
     type: 'website',
@@ -178,7 +178,7 @@ export default async function ForumPage() {
      <circle cx="11" cy="11" r="8" />
      <path d="M21 21l-4.35-4.35" />
     </svg>
-    Hitta din ö — visa alla öforum
+    Hitta din ö: visa alla öforum
    </summary>
    <div style={{
     display: 'flex',
@@ -298,7 +298,7 @@ export default async function ForumPage() {
  lineHeight: 1.5,
  }}>
  <strong style={{ color: 'var(--txt2)' }}>Välkommen till Svalla Forum!</strong>{' '}
- Diskutera skärgårdsliv med andra båtentusiaster. Håll en trevlig ton — vi är alla ute för att njuta av havet.
+ Diskutera skärgårdsliv med andra båtentusiaster. Håll en trevlig ton. Vi är alla ute för att njuta av havet.
  </div>
  </div>
  )

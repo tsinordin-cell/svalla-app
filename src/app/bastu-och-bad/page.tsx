@@ -13,7 +13,7 @@ export const metadata: Metadata = {
  'havsbad skärgård',
  ],
  openGraph: {
- title: 'Bastu & bad i Stockholms skärgård — Svalla',
+ title: 'Bastu & bad i Stockholms skärgård | Svalla',
  description: 'Publika bastur, badklippor och vinterbad i skärgården.',
  url: 'https://svalla.se/bastu-och-bad',
  },
@@ -24,37 +24,37 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🪵',
  title: 'Vedeldade bastur',
- description: 'Klassiska vedbastur på öarna — bokning, drop-in och vinterbas. Ofta med bryggdopp.',
+ description: 'Klassiska vedbastur på öarna: bokning, drop-in och vinterbas. Ofta med bryggdopp.',
  href: '/platser?kategori=bastu',
  },
  {
  icon: 'bathtub',
  title: 'Elbastur & spa',
- description: 'Moderna spabastur i hotell och badhus — för den som vill hoppa över vedhuggningen.',
+ description: 'Moderna spabastur i hotell och badhus, för den som vill hoppa över vedhuggningen.',
  href: '/platser?kategori=spa',
  },
  {
  icon: '🛟',
  title: 'Bastuflottar',
- description: 'Flytande bastur du hyr en kväll eller vecka — kör dit med båt eller paddla ut.',
+ description: 'Flytande bastur du hyr en kväll eller vecka. Kör dit med båt eller paddla ut.',
  href: '/platser?kategori=bastuflotte',
  },
  {
  icon: '🧊',
  title: 'Vinterbad & isvak',
- description: 'Organiserade vinterbad, isvakar och klubbar som samlas året runt — hjärtvänligt dopp.',
+ description: 'Organiserade vinterbad, isvakar och klubbar som samlas året runt, hjärtvänligt dopp.',
  href: '/platser?kategori=vinterbad',
  },
  {
  icon: 'beach',
  title: 'Sandstränder',
- description: 'Björnö, Trosa, Dalarö och fler — breda sandstränder med parkering och badvakter.',
+ description: 'Björnö, Trosa, Dalarö och fler, breda sandstränder med parkering och badvakter.',
  href: '/platser?kategori=sandstrand',
  },
  {
  icon: '🪨',
  title: 'Klippbad',
- description: 'Mjuka graniklippor, släta badhällar och djupa hopp — skärgårdens signatur.',
+ description: 'Mjuka graniklippor, släta badhällar och djupa hopp, skärgårdens signatur.',
  href: '/platser?kategori=klippbad',
  },
 ]
@@ -65,7 +65,7 @@ export default function BastuOchBadPage() {
  heroGradient={['#1e5c82', '#2d7d8a']}
  eyebrow="Bastu & bad"
  title="Dopp, svett, upprepa"
- tagline="Publika bastur, bastuflottar, badklippor och sandstränder — året runt, från morgondopp till vedbastu i decembermörker."
+ tagline="Publika bastur, bastuflottar, badklippor och sandstränder: året runt, från morgondopp till vedbastu i decembermörker."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M17 14c.3-1-.5-1.9-1.4-2-.5-.1-1-.3-1.5-.6" />
@@ -77,10 +77,10 @@ export default function BastuOchBadPage() {
  intro={
  <>
  <p>
- Bastukultur och skärgård hör ihop. Saltvattnet runt Stockholms skärgård håller <strong>8–10°C från november till maj</strong> — perfekt temperaturkontrast till en vedeldad 80-gradig bastu. Och sommaren? Då är vattnet 18–23° och dopp och dagbad är vardag.
+ Bastukultur och skärgård hör ihop. Saltvattnet runt Stockholms skärgård håller <strong>8 till 10°C från november till maj</strong>, perfekt temperaturkontrast till en vedeldad 80-gradig bastu. Och sommaren? Då är vattnet 18 till 23° och dopp och dagbad är vardag.
  </p>
  <p>
- Här samlar vi bastur och badplatser i skärgården som vi har källa för — från klassiker som Nacka Strandbad och Hasseluddens Yasuragi till mindre lokala bastuklubbar du bara hittar genom lokalbefolkningen.
+ Här samlar vi bastur och badplatser i skärgården som vi har källa för, från klassiker som Nacka Strandbad och Hasseluddens Yasuragi till mindre lokala bastuklubbar du bara hittar genom lokalbefolkningen.
  </p>
  </>
  }
@@ -92,13 +92,13 @@ export default function BastuOchBadPage() {
  Bastuetik i korthet
  </h2>
  <p>
- I publika bastur gäller oftast: <strong>duscha innan</strong>, <strong>handduk på laven</strong>, <strong>lugnt samtal</strong>, <strong>fråga innan bad</strong>. Många traditionella bastur har separata herrar/dam-tider — kolla alltid på platssidan eller ring i förväg.
+ I publika bastur gäller oftast: <strong>duscha innan</strong>, <strong>handduk på laven</strong>, <strong>lugnt samtal</strong>, <strong>fråga innan bad</strong>. Många traditionella bastur har separata herrar/dam-tider. Kolla alltid på platssidan eller ring i förväg.
  </p>
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
- Vinterbadare — börja mjukt
+ Vinterbadare: börja mjukt
  </h2>
  <p>
- Om du är ny på kalla bad: börja i september när vattnet fortfarande är 14–16°C och sänk dig successivt genom hösten. Aldrig ensam, aldrig berusad, aldrig längre än kroppen säger till. Alla våra bastu- och vinterbadplatser listar om de har livräddningsutrustning och hur djupet ser ut.
+ Om du är ny på kalla bad: börja i september när vattnet fortfarande är 14 till 16°C och sänk dig successivt genom hösten. Aldrig ensam, aldrig berusad, aldrig längre än kroppen säger till. Alla våra bastu- och vinterbadplatser listar om de har livräddningsutrustning och hur djupet ser ut.
  </p>
  </>
  }

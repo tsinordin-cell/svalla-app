@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { hummerpremiar, surstrommingspremiar, kraftpremiar, midsommardagen, midsommarafton, allaHelgonsDag } from './arsdatum'
 
-describe('hummerpremiar — HaV: första måndagen efter 20 september', () => {
+describe('hummerpremiar: HaV: första måndagen efter 20 september', () => {
   it('2026 = måndag 21 september (HaV:s egen sida)', () => {
     expect(hummerpremiar(2026).iso).toBe('2026-09-21')
     expect(hummerpremiar(2026).text).toBe('måndag 21 september 2026')
@@ -9,7 +9,7 @@ describe('hummerpremiar — HaV: första måndagen efter 20 september', () => {
   it('2027 = 27 september (HaV:s egen sida)', () => {
     expect(hummerpremiar(2027).iso).toBe('2027-09-27')
   })
-  it('när 20 september själv är en måndag är premiären veckan efter — "efter", inte "från"', () => {
+  it('när 20 september själv är en måndag är premiären veckan efter: "efter", inte "från"', () => {
     // 2021-09-20 var en måndag
     expect(new Date('2021-09-20').getUTCDay()).toBe(1)
     expect(hummerpremiar(2021).iso).toBe('2021-09-27')
@@ -19,7 +19,7 @@ describe('hummerpremiar — HaV: första måndagen efter 20 september', () => {
   })
 })
 
-describe('surstrommingspremiar — Isof: tredje torsdagen i augusti', () => {
+describe('surstrommingspremiar: Isof: tredje torsdagen i augusti', () => {
   it('2026 = torsdag 20 augusti', () => {
     expect(surstrommingspremiar(2026).iso).toBe('2026-08-20')
     expect(surstrommingspremiar(2026).datum.getUTCDay()).toBe(4)
@@ -29,7 +29,7 @@ describe('surstrommingspremiar — Isof: tredje torsdagen i augusti', () => {
   })
 })
 
-describe('kraftpremiar — Isof: första onsdagen i augusti, av tradition', () => {
+describe('kraftpremiar: Isof: första onsdagen i augusti, av tradition', () => {
   it('2026 = onsdag 5 augusti', () => {
     expect(kraftpremiar(2026).iso).toBe('2026-08-05')
   })
@@ -38,7 +38,7 @@ describe('kraftpremiar — Isof: första onsdagen i augusti, av tradition', () =
   })
 })
 
-describe('midsommar — lag 1989:253: lördagen 20–26 juni', () => {
+describe('midsommar: lag 1989:253: lördagen 20 till 26 juni', () => {
   it('2026: midsommardagen 20 juni, midsommarafton 19 juni', () => {
     expect(midsommardagen(2026).iso).toBe('2026-06-20')
     expect(midsommarafton(2026).iso).toBe('2026-06-19')
@@ -49,7 +49,7 @@ describe('midsommar — lag 1989:253: lördagen 20–26 juni', () => {
   })
 })
 
-describe('allaHelgonsDag — lag 1989:253: lördagen 31 okt–6 nov', () => {
+describe('allaHelgonsDag: lag 1989:253: lördagen 31 okt till 6 nov', () => {
   it('2026 = 31 oktober', () => {
     expect(allaHelgonsDag(2026).iso).toBe('2026-10-31')
   })

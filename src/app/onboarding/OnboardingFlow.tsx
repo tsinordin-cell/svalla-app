@@ -676,7 +676,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         <h2 style={HEADING}>Logga dina turer</h2>
         <p style={SUBTITLE}>
           Spåra rutten med GPS direkt från telefonen. Distans, tid, fart och rutt
-          sparas automatiskt — som ett digitalt loggbok-uppslag.
+          sparas automatiskt, som ett digitalt loggbok-uppslag.
         </p>
         <ChartRouteIllustration/>
         <NavHint label="Logga"/>
@@ -715,7 +715,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         <h2 style={HEADING}>Pejla in skärgården</h2>
         <p style={SUBTITLE}>
           Hitta krogar, gästbryggor, bastur och bensinmackar längs hela kusten.
-          Sökbart sjökort med riktiga koordinater — inga gissningar.
+          Sökbart sjökort med riktiga koordinater, inga gissningar.
         </p>
         <MapMarkersIllustration/>
         <NavHint label="Utforska"/>
@@ -826,7 +826,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         <CompassProgress current={step}/>
         <h2 style={HEADING}>Sätt din kurs</h2>
         <p style={{ ...SUBTITLE, marginBottom: 20 }}>
-          Tre snabba frågor — allt kan ändras senare.
+          Tre snabba frågor, allt kan ändras senare.
         </p>
 
         {/* ── Båttyp ── */}
@@ -996,7 +996,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           ...PRIMARY_BTN(saving), width: '100%',
           padding: '17px 20px', fontSize: 16, marginBottom: 16,
         }}>
-          {saving ? 'Sparar…' : <>Lägg från kaj — logga första turen <ArrowRightIcon size={18}/></>}
+          {saving ? 'Sparar…' : <>Lägg från kaj: logga första turen <ArrowRightIcon size={18}/></>}
         </button>
 
         {/* Nav-genvägar */}

@@ -204,7 +204,7 @@ export default function PlaneraRouteSection({
       const kvot = omvagsKvot!.toFixed(1).replace('.', ',')
       return {
         tone: 'warning' as const,
-        label: 'Ovanligt lång omväg — stäm av mot sjökort',
+        label: 'Ovanligt lång omväg: stäm av mot sjökort',
         desc: `Sjövägen vi hittat är ${kvot} gånger längre än fågelvägen (${Math.round(routeKm)} km mot ${Math.round(haversineDistKm)} km). Rutten håller sig i vatten hela vägen, men en så stor omväg beror oftast på att vår kustlinjedata stängt en passage som i verkligheten är farbar. Använd den inte som planeringsunderlag utan att stämma av mot sjökort.`,
       }
     }
@@ -219,7 +219,7 @@ export default function PlaneraRouteSection({
       return { tone: 'success' as const, label: 'Beräknad sjöled', desc: 'Beräknad i verifierat vatten (50 m-upplösning) och kontrollerad mot kustlinjen. Följ sjökort för djup och farled.' }
     }
     if (quality === 'waypoint') {
-      return { tone: 'warning' as const, label: 'Approximerad rutt (streckad linje)', desc: 'Grov sjöled via huvudleder. Streckad linje signalerar att rutten är preliminär — verifiera mot sjökort innan avgång.' }
+      return { tone: 'warning' as const, label: 'Approximerad rutt (streckad linje)', desc: 'Grov sjöled via huvudleder. Streckad linje signalerar att rutten är preliminär, verifiera mot sjökort innan avgång.' }
     }
     // 2026-08-05: kommentaren här sa tidigare att 'unavailable' aldrig
     // returneras från API:t. Det stämde inte — Stadshuskajen→Sandhamn ger
@@ -230,7 +230,7 @@ export default function PlaneraRouteSection({
       const texter: Record<UnavailableReason, { label: string; desc: string }> = {
         lock_required: {
           label: 'Mellan hamnarna ligger en sluss',
-          desc: 'Mälaren och Saltsjön är skilda vattenytor med olika nivå. En båt tar sig mellan dem genom Slussen eller Hammarbyslussen, och en slussning är ingen sjöled som går att rita. Sträckan är fullt farbar — vi ritar bara ingen linje för den.',
+          desc: 'Mälaren och Saltsjön är skilda vattenytor med olika nivå. En båt tar sig mellan dem genom Slussen eller Hammarbyslussen, och en slussning är ingen sjöled som går att rita. Sträckan är fullt farbar. Vi ritar bara ingen linje för den.',
         },
         outside_coverage: {
           label: 'Utanför vår verifierade kustlinje',
@@ -238,7 +238,7 @@ export default function PlaneraRouteSection({
         },
         harbour_not_in_water: {
           label: 'Vi hittar inget farbart vatten vid bryggan',
-          desc: 'Någon av positionerna ligger inte i öppet vatten i vår kustlinjedata. Det är troligen ett fel i vår hamnkoordinat — rapportera gärna rutten nedan så rättar vi den.',
+          desc: 'Någon av positionerna ligger inte i öppet vatten i vår kustlinjedata. Det är troligen ett fel i vår hamnkoordinat, rapportera gärna rutten nedan så rättar vi den.',
         },
         no_sea_route: {
           label: 'Ingen sammanhängande vattenväg hittad',
@@ -246,7 +246,7 @@ export default function PlaneraRouteSection({
         },
         landlocked: {
           label: 'Insjöhamn utan förbindelse med havet',
-          desc: 'Någon av hamnarna ligger i en insjö som saknar farbar förbindelse med skärgården. Det är inget fel — det finns helt enkelt ingen sjöväg att rita. Båten behöver trailas mellan vattnen.',
+          desc: 'Någon av hamnarna ligger i en insjö som saknar farbar förbindelse med skärgården. Det är inget fel. Det finns helt enkelt ingen sjöväg att rita. Båten behöver trailas mellan vattnen.',
         },
         same_harbour: {
           label: 'Start och mål är samma hamn',
@@ -332,9 +332,9 @@ export default function PlaneraRouteSection({
                 const bro = p.oppningsbarBro
                   ? ` ${p.oppningsbarBro.namn} öppnas ${p.oppningsbarBro.oppettider} (${p.oppningsbarBro.kontakt}).`
                   : ''
-                return `${p.namn} — ${bitar.join(', ')}.${bro}`
+                return `${p.namn}, ${bitar.join(', ')}.${bro}`
               }).join(' ')} Kontrollera att din båt tar sig igenom innan du
-              planerar efter rutten, och läs av aktuellt sjökort — djupet
+              planerar efter rutten, och läs av aktuellt sjökort: djupet
               varierar med vattenstånd.
             </span>
           </div>
@@ -435,7 +435,7 @@ export default function PlaneraRouteSection({
                       opacity: reportReason.trim().length < 3 ? 0.5 : 1,
                       fontFamily: 'inherit',
                     }}>
-                    {reportState === 'sending' ? 'Skickar…' : reportState === 'sent' ? 'Tack — sparat' : 'Skicka rapport'}
+                    {reportState === 'sending' ? 'Skickar…' : reportState === 'sent' ? 'Tack: sparat' : 'Skicka rapport'}
                   </button>
                   {reportState === 'error' && (
                     <span style={{ fontSize: 12, color: '#c0392b' }}>Kunde inte skicka. Försök igen.</span>

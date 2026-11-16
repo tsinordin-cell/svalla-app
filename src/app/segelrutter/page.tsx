@@ -18,8 +18,8 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 // UPPMÄTT (Svalla, fågelvägen, 2026-08-23 och 2026-09-13): Strömkajen–Sandhamn 31,8 NM; Sandhamn–Visby 101 NM; Visby–Hoburgen–Karlskrona 140 NM; Karlskrona–Falsterbo–Malmö 120 NM. Sjövägen längs kusten är längre.
 
 export const metadata: Metadata = {
- title: 'Segelrutter – skärgården, Gotland och Bohuslän',
- description: 'Segla Stockholms skärgård, ostkusten, Gotland Runt och Bohuslän – distanser, kappseglingens bana och regler för förarintyg och sjöräddning, med källa.',
+ title: 'Segelrutter: skärgården, Gotland och Bohuslän',
+ description: 'Segla Stockholms skärgård, ostkusten, Gotland Runt och Bohuslän: distanser, kappseglingens bana och regler för förarintyg och sjöräddning, med källa.',
  keywords: [
  'segelrutter sverige',
  'segla ostkusten',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
  'kappsegling sandhamn',
  ],
  openGraph: {
- title: 'Segelrutter – skärgården, Gotland och Bohuslän',
+ title: 'Segelrutter: skärgården, Gotland och Bohuslän',
  description: 'Distanser, Gotland Runt-banan och vad som gäller för förarintyg och sjöräddning.',
  url: 'https://svalla.se/segelrutter',
  },
@@ -42,14 +42,14 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'anchor',
  title: 'Naturhamnar i Stockholms skärgård',
- description: 'Ankringsplatser för natten – var du ligger skyddat och vad som gäller i reservaten.',
+ description: 'Ankringsplatser för natten. Var du ligger skyddat och vad som gäller i reservaten.',
  href: '/naturhamnar',
  meta: 'Stockholms skärgård',
  },
  {
  icon: 'sailboat',
  title: 'Börja segla',
- description: 'För dig som ska ut för första gången – båt, besättning och vad du behöver kunna.',
+ description: 'För dig som ska ut för första gången: båt, besättning och vad du behöver kunna.',
  href: '/nyborjare-segling',
  meta: 'Nybörjare',
  },
@@ -65,42 +65,42 @@ const ITEMS: LandingItem[] = [
  title: 'Gotland',
     // UPPSKATTNING: 100 sjömil är vår egen storcirkelberäkning Sandhamn–Visby ur koordinaterna 59,29 N 18,92 O och 57,64 N 18,29 O, avrundat. Ingen myndighet publicerar sträckan fågelvägen. (2026-09)
     // KÄLLA: https://www.ksss.se/en/gotlandrunt/ (KSSS, arrangör) — banan är omkring 350 NM, läst 2026-09-29
- description: 'Stockholm–Visby är ungefär 100 sjömil fågelvägen från Sandhamn. Kappseglingen Gotland Runt är omkring 350.',
+ description: 'Stockholm till Visby är ungefär 100 sjömil fågelvägen från Sandhamn. Kappseglingen Gotland Runt är omkring 350.',
  href: '/gotland',
  meta: 'Östersjön',
  },
  {
  icon: 'waves',
  title: 'Bohuslän',
- description: 'Granitkust, fiskelägen och Kosterhavet – Sveriges första marina nationalpark.',
+ description: 'Granitkust, fiskelägen och Kosterhavet, Sveriges första marina nationalpark.',
  href: '/bohuslan',
  meta: 'Västkusten',
  },
  {
  icon: 'wind',
  title: 'Västerhavet',
- description: 'Kattegatt och Skagerrak – seglingen utanför Bohuslän och Halland.',
+ description: 'Kattegatt och Skagerrak, seglingen utanför Bohuslän och Halland.',
  href: '/vasterhav',
  meta: 'Västkusten',
  },
  {
  icon: 'map',
  title: 'Blekinge skärgård',
- description: 'Sydostkustens skärgård – en naturlig etapp på väg söderut längs ostkusten.',
+ description: 'Sydostkustens skärgård, en naturlig etapp på väg söderut längs ostkusten.',
  href: '/blekinge-skargard',
  meta: 'Sydost',
  },
  {
  icon: 'building',
  title: 'Mälaren',
- description: 'Insjösegling in från Stockholm – skyddade vatten och slott längs stränderna.',
+ description: 'Insjösegling in från Stockholm, skyddade vatten och slott längs stränderna.',
  href: '/malaren',
  meta: 'Insjö',
  },
  {
  icon: 'navigation',
  title: 'Turer och rutter',
- description: 'Dagsturer och längre turer med båt, filtrerade efter tid och typ – segling ingår.',
+ description: 'Dagsturer och längre turer med båt, filtrerade efter tid och typ, segling ingår.',
  href: '/rutter',
  meta: 'Alla',
  },
@@ -118,7 +118,7 @@ export default function SegelrutterPage() {
  },
  {
  '@type': 'Question',
- name: 'Hur långt är det att segla Stockholm–Malmö längs ostkusten?',
+ name: 'Hur långt är det att segla Stockholm till Malmö längs ostkusten?',
  acceptedAnswer: { '@type': 'Answer', text: 'Fågelvägen via Sandhamn, Visby, Hoburgen, Karlskrona och Falsterbo är det omkring 390 sjömil, uppmätt av Svalla. Sjövägen längs kusten är längre. Det finns ingen officiellt märkt segelled hela vägen.' },
  },
  {
@@ -149,7 +149,7 @@ export default function SegelrutterPage() {
  heroGradient={['#1e5c82', '#2d7d8a']}
  eyebrow="Segelrutter"
  title="Segelrutter i Sverige"
- tagline="Stockholms skärgård, ostkusten ner till Malmö, Gotland Runt och Bohuslän – distanser och regler med källa."
+ tagline="Stockholms skärgård, ostkusten ner till Malmö, Gotland Runt och Bohuslän, distanser och regler med källa."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M2 20h20" />
@@ -161,7 +161,7 @@ export default function SegelrutterPage() {
  intro={
  <>
  <p>
- Det finns ingen officiellt märkt segelled längs den svenska kusten. Det som finns är farleder, sjökort och vägar som seglare tagit i generationer: ut genom Stockholms skärgård till Sandhamn, över till Gotland, söderut längs ostkusten – eller norrut längs Bohuslän på västkusten.
+ Det finns ingen officiellt märkt segelled längs den svenska kusten. Det som finns är farleder, sjökort och vägar som seglare tagit i generationer: ut genom Stockholms skärgård till Sandhamn, över till Gotland, söderut längs ostkusten, eller norrut längs Bohuslän på västkusten.
  </p>
  <p>
  Här är distanserna vi kunnat mäta, banan för kappseglingen Gotland Runt och det du måste veta om förarintyg och sjöräddning. För ankringsplatser, gästhamnar och enskilda öar går du vidare till sidorna nedan.
@@ -169,31 +169,31 @@ export default function SegelrutterPage() {
  </>
  }
  itemsTitle="Segla vidare"
- itemsDescription="Regioner, naturhamnar och kurser – sidor med mer om varje område."
+ itemsDescription="Regioner, naturhamnar och kurser, sidor med mer om varje område."
  items={ITEMS}
  deeperContent={
  <>
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Ostkusten Stockholm–Malmö
+ Ostkusten Stockholm till Malmö
  </h2>
  <p>
  Den klassiska långfärden går ut till Sandhamn, över Östersjön till Visby, runt Gotlands sydspets vid Hoburgen och vidare till Karlskrona, och sedan längs Skånes kust runt Falsterbo till Malmö. Fågelvägen, uppmätt av Svalla, är etapperna ungefär:
  </p>
  <ul style={{ margin: '8px 0 12px', paddingLeft: '20px' }}>
- <li>Strömkajen–Sandhamn: 32 sjömil</li>
- <li>Sandhamn–Visby: 101 sjömil över öppet hav</li>
- <li>Visby–Hoburgen–Karlskrona: 140 sjömil</li>
- <li>Karlskrona–Falsterbo–Malmö: 120 sjömil</li>
+ <li>Strömkajen till Sandhamn: 32 sjömil</li>
+ <li>Sandhamn till Visby: 101 sjömil över öppet hav</li>
+ <li>Visby, Hoburgen, Karlskrona: 140 sjömil</li>
+ <li>Karlskrona, Falsterbo, Malmö: 120 sjömil</li>
  </ul>
  <p>
- Totalt omkring 390 sjömil – sjövägen längs kusten blir längre. Många delar upp sträckan över flera somrar.
+ Totalt omkring 390 sjömil, sjövägen längs kusten blir längre. Många delar upp sträckan över flera somrar.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
  Gotland Runt
  </h2>
  <p>
- KSSS kappsegling seglades första gången 1937. Sedan 2024 går starten på Gråskärsfjärden söder om Sandön. Banan går norrut längs ytterskärgården till Svenska Högarna, Stockholms skärgårds östligaste utpost, och sedan söderut över öppet hav runt Gotland, med mål vid Sandhamn – omkring 350 sjömil. Den kortare Visbybanan är 245 sjömil.
+ KSSS kappsegling seglades första gången 1937. Sedan 2024 går starten på Gråskärsfjärden söder om Sandön. Banan går norrut längs ytterskärgården till Svenska Högarna, Stockholms skärgårds östligaste utpost, och sedan söderut över öppet hav runt Gotland, med mål vid Sandhamn, omkring 350 sjömil. Den kortare Visbybanan är 245 sjömil.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -207,9 +207,9 @@ export default function SegelrutterPage() {
  Innan du kastar loss
  </h2>
  <ul style={{ margin: '8px 0 12px', paddingLeft: '20px' }}>
- <li><strong>Förarintyg</strong> – krävs inte för fritidsbåt under tolv meter och smalare än fyra meter, enligt Transportstyrelsen. Över det krävs skepparexamen, kustskepparexamen eller högre, och vattenskoter kräver förarbevis. Du som för båten ansvarar alltid för att den är sjövärdig.</li>
- <li><strong>Navigationsvarningar</strong> – Sjöfartsverket publicerar gällande varningar för svenska farvatten. Kolla dem innan en längre segling.</li>
- <li><strong>Sjökort</strong> – Sjöfartsverket ger ut Sveriges officiella sjökort, i papper och digitalt.</li>
+ <li><strong>Förarintyg</strong>: krävs inte för fritidsbåt under tolv meter och smalare än fyra meter, enligt Transportstyrelsen. Över det krävs skepparexamen, kustskepparexamen eller högre, och vattenskoter kräver förarbevis. Du som för båten ansvarar alltid för att den är sjövärdig.</li>
+ <li><strong>Navigationsvarningar</strong>, Sjöfartsverket publicerar gällande varningar för svenska farvatten. Kolla dem innan en längre segling.</li>
+ <li><strong>Sjökort</strong>: Sjöfartsverket ger ut Sveriges officiella sjökort, i papper och digitalt.</li>
  </ul>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>

@@ -19,13 +19,13 @@ describe('timeAgo', () => {
     expect(timeAgo(msAgo(0))).toBe('Just nu')
   })
 
-  it('returns minutes for 1–59 min ago', () => {
+  it('returns minutes for 1 till 59 min ago', () => {
     expect(timeAgo(msAgo(1 * MIN))).toBe('1 min sedan')
     expect(timeAgo(msAgo(30 * MIN))).toBe('30 min sedan')
     expect(timeAgo(msAgo(59 * MIN))).toBe('59 min sedan')
   })
 
-  it('returns hours for 1–23 h ago', () => {
+  it('returns hours for 1 till 23 h ago', () => {
     expect(timeAgo(msAgo(1 * HOUR))).toBe('1h sedan')
     expect(timeAgo(msAgo(12 * HOUR))).toBe('12h sedan')
     expect(timeAgo(msAgo(23 * HOUR))).toBe('23h sedan')
@@ -35,7 +35,7 @@ describe('timeAgo', () => {
     expect(timeAgo(msAgo(1 * DAY))).toBe('Igår')
   })
 
-  it('returns days for 2–6 days ago', () => {
+  it('returns days for 2 till 6 days ago', () => {
     expect(timeAgo(msAgo(2 * DAY))).toBe('2 dagar sedan')
     expect(timeAgo(msAgo(6 * DAY))).toBe('6 dagar sedan')
   })

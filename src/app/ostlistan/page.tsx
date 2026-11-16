@@ -7,11 +7,11 @@ import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
-  title: 'Bästa öarna i Stockholms skärgård 2026 – listor per tema',
-  description: 'Utvalda ö-listor för barnfamiljer, dagsturister, seglare och romantiska par. Hitta rätt ö i Stockholms skärgård – 2026.',
+  title: 'Bästa öarna i Stockholms skärgård 2026: listor per tema',
+  description: 'Utvalda ö-listor för barnfamiljer, dagsturister, seglare och romantiska par. Hitta rätt ö i Stockholms skärgård, 2026.',
   alternates: { canonical: 'https://svalla.se/ostlistan' },
   openGraph: {
-    title: 'Bästa öarna i Stockholms skärgård – listor per tema',
+    title: 'Bästa öarna i Stockholms skärgård: listor per tema',
     description: 'Barnfamiljer, dagsturister, seglare, romantik och hundvänliga öar. Hitta rätt ö i Stockholms skärgård 2026.',
     url: 'https://svalla.se/ostlistan',
     type: 'website',
@@ -54,7 +54,7 @@ const OLISTS: OList[] = [
         name: 'Fjäderholmarna',
         emoji: '⛵',
         tagline: '25 minuter från Stockholm',
-        why: 'Korta båtturen gör den perfekt för de minsta. Lugn hamn, kaféer och en liten naturslinga — inga bilar, inga faror.',
+        why: 'Korta båtturen gör den perfekt för de minsta. Lugn hamn, kaféer och en liten naturslinga: inga bilar, inga faror.',
         travel: 'Waxholmsbåt från Strömkajen, 25 min',
         badge: 'Kortaste turen',
       },
@@ -86,7 +86,7 @@ const OLISTS: OList[] = [
         // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
         // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
         // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ"; uppmätt i tabellen: Årsta brygga–Gruvbryggan (Utö) 35–75 min (läst 2026-11-09)
-        travel: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga + båt 35–75 min',
+        travel: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga + båt 35 till 75 min',
       },
       {
         slug: 'moja',
@@ -101,7 +101,7 @@ const OLISTS: OList[] = [
   {
     id: 'dagstur',
     title: 'Bästa dagsturer från Stockholm',
-    subtitle: 'Åk på morgonen, hem på kvällen — hela skärgårdsupplevelsen på en dag.',
+    subtitle: 'Åk på morgonen, hem på kvällen, hela skärgårdsupplevelsen på en dag.',
     seoKeyword: 'dagstur skärgård stockholm 2026',
     emoji: '☀️',
     color: '#1a4a6b',
@@ -111,7 +111,7 @@ const OLISTS: OList[] = [
         name: 'Fjäderholmarna',
         emoji: '⛵',
         tagline: 'Halv dag räcker',
-        why: '25-minuters båttur + 3 timmar på ön. Hinner äta lunch, gå naturstigen och ta hem souvenirer — och vara hemma till middag.',
+        why: '25-minuters båttur + 3 timmar på ön. Hinner äta lunch, gå naturstigen och ta hem souvenirer, och vara hemma till middag.',
         travel: 'Waxholmsbåt från Strömkajen, 25 min',
         badge: 'Snabbaste',
       },
@@ -165,7 +165,7 @@ const OLISTS: OList[] = [
         emoji: '⛵',
         tagline: 'Seglarsverige centrum',
         why: 'KSSS-bas, Match Cup Sweden, välskött gästhamn och restauranger som förstår seglare. Det självklara målet för alla som seglar i Stockholms skärgård.',
-        travel: 'Segla ut — ca 50 nm från Stockholm',
+        travel: 'Segla ut: ca 50 nm från Stockholm',
         badge: 'Seglarhotellet',
       },
       {
@@ -197,7 +197,7 @@ const OLISTS: OList[] = [
         name: 'Bullerö',
         emoji: '🏝️',
         tagline: 'Naturhavn för fri ankring',
-        why: 'Naturreservat utan service — ankar fritt bland klipporna. En av skärgårdens vackraste anchorages för den som vill ha total stillhet.',
+        why: 'Naturreservat utan service, ankar fritt bland klipporna. En av skärgårdens vackraste anchorages för den som vill ha total stillhet.',
         travel: 'Segla ut mot yttre skärgården',
         badge: 'Bästa ankring',
       },
@@ -261,7 +261,7 @@ const OLISTS: OList[] = [
   {
     id: 'hund',
     title: 'Bästa hundvänliga öarna',
-    subtitle: 'Öar med plats för hunden — och regler du behöver känna till.',
+    subtitle: 'Öar med plats för hunden, och regler du behöver känna till.',
     seoKeyword: 'hundvänliga öar stockholms skärgård',
     emoji: '🐕',
     color: '#5a4a2b',
@@ -280,7 +280,7 @@ const OLISTS: OList[] = [
         name: 'Möja',
         emoji: '🌾',
         tagline: 'Bilfri med lugna byvägar',
-        why: 'Få bilar, lugnt tempo och byvägar att promenera längs. Hunden kan röra sig fritt utanför kopplingstvångstiden (20 aug–1 mars).',
+        why: 'Få bilar, lugnt tempo och byvägar att promenera längs. Hunden kan röra sig fritt utanför kopplingstvångstiden (20 aug till 1 mars).',
         travel: 'Waxholmsbåt, 1 h 45 min',
       },
       {
@@ -314,7 +314,7 @@ const OLISTS: OList[] = [
   {
     id: 'sandstrand',
     title: 'Öarna med bäst sandstränder',
-    subtitle: 'Stockholms skärgård är klippor — men det finns undantag.',
+    subtitle: 'Stockholms skärgård är klippor, men det finns undantag.',
     seoKeyword: 'öar sandstrand stockholm skärgård',
     emoji: '🏖️',
     color: '#8a6a1a',
@@ -330,7 +330,7 @@ const OLISTS: OList[] = [
         // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — "Västerhaninge station–Årsta (–Årsta slott)", "Årsta brygga" (läst 2026-11-09)
         // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/uto — "Men från Årsta brygga i Haninge går det att resa till Utö sju till åtta gånger om dagen sommartid, lite mer sällan övrig tid på året." (läst 2026-11-09)
         // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ"; uppmätt i tabellen: Årsta brygga–Gruvbryggan (Utö) 35–75 min (läst 2026-11-09)
-        travel: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga + Waxholmsbåt 35–75 min',
+        travel: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga + Waxholmsbåt 35 till 75 min',
         badge: 'Bästa sandstranden',
       },
       {
@@ -338,7 +338,7 @@ const OLISTS: OList[] = [
         name: 'Gålö',
         emoji: '🏖️',
         tagline: 'Lättillgänglig sandstrand med bil',
-        why: 'Gålö Havsbad — en av regionens mest populära sandstränder, nåbar med bil på 40 minuter. Full service, parkering och camping.',
+        why: 'Gålö Havsbad: en av regionens mest populära sandstränder, nåbar med bil på 40 minuter. Full service, parkering och camping.',
         travel: 'Bil från Stockholm, 40 min',
         badge: 'Enklast att nå',
       },
@@ -347,7 +347,7 @@ const OLISTS: OList[] = [
         name: 'Torö',
         emoji: '🌊',
         tagline: 'Klapperstensstrand i naturreservat',
-        why: 'Dramatisk klapperstensstrand längs sydkusten — geologiskt unik. Inte klassisk sandstrand men ett av länets vackraste klippstrandlandskap.',
+        why: 'Dramatisk klapperstensstrand längs sydkusten, geologiskt unik. Inte klassisk sandstrand men ett av länets vackraste klippstrandlandskap.',
         travel: 'Bil från Stockholm, 60 min',
       },
       {
@@ -371,7 +371,7 @@ const OLISTS: OList[] = [
   {
     id: 'september',
     title: 'Bästa öarna i september',
-    subtitle: 'Havet är 17–19°C, köerna är borta och restaurangerna tar emot dig.',
+    subtitle: 'Havet är 17 till 19°C, köerna är borta och restaurangerna tar emot dig.',
     seoKeyword: 'skärgård september bästa öar',
     emoji: '🍂',
     color: '#7a3a1a',
@@ -390,7 +390,7 @@ const OLISTS: OList[] = [
         name: 'Utö',
         emoji: '🏖️',
         tagline: 'Värdshuset öppet, stranden tom',
-        why: 'Utö Värdshus tar emot gäster till och med 5 oktober. Alsviksstranden är din i september — havstemperaturen håller kvar till slutet av månaden.',
+        why: 'Utö Värdshus tar emot gäster till och med 5 oktober. Alsviksstranden är din i september, havstemperaturen håller kvar till slutet av månaden.',
         travel: 'Pendeltåg + båt, ca 2,5 h',
       },
       {
@@ -406,7 +406,7 @@ const OLISTS: OList[] = [
         name: 'Vaxholm',
         emoji: '🏰',
         tagline: 'Skärgårdsstad med helårsliv',
-        why: 'Vaxholm är öppet hela året. September är lugnt och vackert — fästningen öppen, restaurangerna tillgängliga och kajpromenaden ensam din.',
+        why: 'Vaxholm är öppet hela året. September är lugnt och vackert: fästningen öppen, restaurangerna tillgängliga och kajpromenaden ensam din.',
         travel: 'Waxholmsbåt, 55 min',
       },
       {
@@ -423,7 +423,7 @@ const OLISTS: OList[] = [
   {
     id: 'budget',
     title: 'Bästa öarna på budget',
-    subtitle: 'Skärgård behöver inte kosta skjortan — om du väljer rätt.',
+    subtitle: 'Skärgård behöver inte kosta skjortan, om du väljer rätt.',
     seoKeyword: 'billig skärgård stockholm budget ö',
     emoji: '💰',
     color: '#1a5a3a',
@@ -444,14 +444,14 @@ const OLISTS: OList[] = [
         emoji: '🏰',
         tagline: 'Dag ut för lite pengar',
         // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
-        why: 'Fästningen kostar runt 80 kr. Räksmörgåsen är skärgårdens bästa köp. Allt annat är gratis — promenaden, fästningsparken och hamnluften.',
+        why: 'Fästningen kostar runt 80 kr. Räksmörgåsen är skärgårdens bästa köp. Allt annat är gratis: promenaden, fästningsparken och hamnluften.',
         travel: 'Waxholmsbåt, 55 min',
       },
       {
         slug: 'ljustero',
         name: 'Ljusterö',
         emoji: '🏞️',
-        tagline: 'Norra skärgården med bil och bro — gratis',
+        tagline: 'Norra skärgården med bil och bro: gratis',
         why: 'Broförbunden utan färjakostnad. Ta med mat, parkera gratis och vandra längs kusten. En hel dag i norra skärgården utan att spendera en krona om du vill.',
         travel: 'Bil via bro, ingen färjakostnad',
         badge: 'Billigast med bil',
@@ -570,10 +570,10 @@ export default function OstlistanPage() {
             fontWeight: 800, color: '#fff',
             margin: '0 0 16px', lineHeight: 1.15,
           }}>
-            Hitta rätt ö — för just din resa
+            Hitta rätt ö: för just din resa
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 16, lineHeight: 1.65, margin: '0 0 28px', maxWidth: 580 }}>
-            Vi har sorterat Stockholms skärgårds bästa öar efter vad du söker — barnfamilj, dagstur, segling, romantik eller hundvänlighet. Välj din lista nedan.
+            Vi har sorterat Stockholms skärgårds bästa öar efter vad du söker: barnfamilj, dagstur, segling, romantik eller hundvänlighet. Välj din lista nedan.
           </p>
 
           {/* Snabbnavigering */}

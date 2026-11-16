@@ -670,7 +670,7 @@ export default function ProfilPage() {
                 {badgesToShow.map(a => {
                   const unlocked = unlockedAch.includes(a)
                   return (
-                    <div key={a.id} title={`${a.label} — ${a.desc}`} style={{
+                    <div key={a.id} title={`${a.label}, ${a.desc}`} style={{
                       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                       gap: 4, padding: '9px 4px 7px',
                       borderRadius: 14,

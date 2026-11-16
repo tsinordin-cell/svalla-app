@@ -130,7 +130,7 @@ export default function AffiliateLink({
         textUnderlineOffset: 2,
         ...style,
       }}
-      title={`Annons — ${programDef.brand}`}
+      title={`Annons, ${programDef.brand}`}
     >
       {children}
     </a>

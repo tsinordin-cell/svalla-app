@@ -88,7 +88,7 @@ export const EXPERIENCES: Experience[] = [
     description: 'Två timmar rakt ut i skärgården i hög fart. Avgår från Stockholm city och kräver ingen förkunskap.',
     bookingUrl: gygUrl('/stockholm-l50/stockholm-rib-speed-boat-tour-of-the-archipelago-t418650/'),
     affiliateType: 'getyourguide',
-    season: 'Maj–September',
+    season: 'Maj till September',
   },
   {
     slug: 'rib-battur-skargardso',
@@ -105,7 +105,7 @@ export const EXPERIENCES: Experience[] = [
     description: 'RIB-tur som lägger till vid en ö så att du hinner sätta foten i land. Avgår från Värmdö.',
     bookingUrl: gygUrl('/varmdo-municipality-l400/speed-boat-tour-and-archipelago-island-visit-t604814/'),
     affiliateType: 'getyourguide',
-    season: 'Maj–September',
+    season: 'Maj till September',
   },
 
   // ── Kajak ───────────────────────────────────────────────────────────────
@@ -116,7 +116,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Stockholm: Kajaktur på Skärgårdsöarna och picknick utomhus',
     provider: 'Via GetYourGuide',
     category: 'kajak',
-    duration: '4–8 timmar',
+    duration: '4 till 8 timmar',
     priceSource: 'https://www.getyourguide.com/stockholm-l50/stockholm-archipelago-kayak-tour-and-picnic-on-the-island-t332691/',
     priceCheckedAt: '2026-08-06',
     price: 'från 1 390 SEK',
@@ -125,7 +125,7 @@ export const EXPERIENCES: Experience[] = [
     description: 'Heldag i kajak mellan öarna med picknick på en klippa. Liten grupp och guide hela vägen.',
     bookingUrl: gygUrl('/stockholm-l50/stockholm-archipelago-kayak-tour-and-picnic-on-the-island-t332691/'),
     affiliateType: 'getyourguide',
-    season: 'Maj–September',
+    season: 'Maj till September',
   },
   {
     slug: 'kajak-toast-on-the-water',
@@ -134,7 +134,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Kajakpaddling i skärgården & Toast on the Water i solnedgången',
     provider: 'Skärgårdens Kanotcenter, via GetYourGuide',
     category: 'kajak',
-    duration: '3–4,5 timmar',
+    duration: '3 till 4,5 timmar',
     priceSource: 'https://www.getyourguide.com/skargardens-kanotcenter-l165170/from-vaxholm-stockholm-archipelago-sunset-kayak-tour-t413685/',
     priceCheckedAt: '2026-08-06',
     price: 'från 1 090 SEK',
@@ -143,7 +143,7 @@ export const EXPERIENCES: Experience[] = [
     description: 'Kvällspaddling från Vaxholm med tilltugg på vattnet när solen går ner. Privat alternativ finns.',
     bookingUrl: gygUrl('/skargardens-kanotcenter-l165170/from-vaxholm-stockholm-archipelago-sunset-kayak-tour-t413685/'),
     affiliateType: 'getyourguide',
-    season: 'Maj–September',
+    season: 'Maj till September',
   },
   {
     slug: 'sjalvstyrd-kajaktur-stockholm',
@@ -158,10 +158,10 @@ export const EXPERIENCES: Experience[] = [
     price: 'från 290 SEK',
     rating: 4.8,
     reviews: 415,
-    description: 'Billigaste vägen ut i en kajak — du paddlar själv, utan guide. Bra första gång på vattnet.',
+    description: 'Billigaste vägen ut i en kajak. Du paddlar själv, utan guide. Bra första gång på vattnet.',
     bookingUrl: gygUrl('/sv-se/stockholm-l50/stockholm-sjalvstyrd-kajak-tur-t192339/'),
     affiliateType: 'getyourguide',
-    season: 'Maj–September',
+    season: 'Maj till September',
   },
   {
     slug: 'hyr-kajak-sup-grinda',
@@ -170,14 +170,14 @@ export const EXPERIENCES: Experience[] = [
     name: 'Hyr kajak eller SUP på Grinda',
     provider: 'Grinda (hamnkontoret)',
     category: 'kajak',
-    duration: '0–2 tim upp till 48 tim',
+    duration: '0 till 2 tim upp till 48 tim',
     priceSource: 'https://grinda.se/aktiviteter/',
     priceCheckedAt: '2026-08-06',
-    price: 'från 270 kr (0–2 tim), 570 kr heldag, 770 kr per dygn',
-    description: 'Uthyrning, inte guidad tur — du hämtar kajaken i hamnkontoret och paddlar på egen hand. Runt ön finns vikar du får helt för dig själv.',
+    price: 'från 270 kr (0 till 2 tim), 570 kr heldag, 770 kr per dygn',
+    description: 'Uthyrning, inte guidad tur. Du hämtar kajaken i hamnkontoret och paddlar på egen hand. Runt ön finns vikar du får helt för dig själv.',
     bookingUrl: 'https://grinda.se/aktiviteter/',
     affiliateType: 'direct',
-    season: 'Maj–September',
+    season: 'Maj till September',
   },
 
   // ── Segling ─────────────────────────────────────────────────────────────
@@ -188,7 +188,7 @@ export const EXPERIENCES: Experience[] = [
     name: 'Stockholm: Segling i skärgårdslandskapet + tid på en ö',
     provider: 'Via GetYourGuide',
     category: 'segling',
-    duration: '5–9 timmar',
+    duration: '5 till 9 timmar',
     priceSource: 'https://www.getyourguide.com/stockholm-l50/stockholm-archipelago-island-tour-with-lunch-via-sailboat-t415640/',
     priceCheckedAt: '2026-08-06',
     price: 'från 1 650 SEK',
@@ -196,7 +196,7 @@ export const EXPERIENCES: Experience[] = [
     description: 'Segling i liten grupp med tid i land på en ö, och upphämtning i staden. Ingen seglingsvana krävs.',
     bookingUrl: gygUrl('/stockholm-l50/stockholm-archipelago-island-tour-with-lunch-via-sailboat-t415640/'),
     affiliateType: 'getyourguide',
-    season: 'Maj–September',
+    season: 'Maj till September',
   },
   {
     slug: 'dagsutflykt-segelbat',
@@ -213,7 +213,7 @@ export const EXPERIENCES: Experience[] = [
     description: 'Hel dag ombord med skeppare. Det dyraste alternativet i listan, och det som tar dig längst ut.',
     bookingUrl: gygUrl('/stockholm-l50/full-day-stockholm-archipelago-sailing-tour-t10185/'),
     affiliateType: 'getyourguide',
-    season: 'Maj–September',
+    season: 'Maj till September',
   },
 
   // ── Kulturtur och sightseeing ───────────────────────────────────────────
@@ -233,7 +233,7 @@ export const EXPERIENCES: Experience[] = [
     description: 'Listans mest bokade tur med bred marginal. Två timmar med guide, utan att du behöver planera något.',
     bookingUrl: gygUrl('/stockholm-l50/stockholm-archipelago-boat-tour-t811343/'),
     affiliateType: 'getyourguide',
-    season: 'April–Oktober',
+    season: 'April till Oktober',
   },
   {
     slug: 'guidad-tur-klassisk-trabat',
@@ -251,7 +251,7 @@ export const EXPERIENCES: Experience[] = [
     description: 'Samma vatten som kryssningen, men i en gammal träbåt. Högre betyg och knappt dyrare.',
     bookingUrl: gygUrl('/stockholm-l50/stockholm-guided-archipelago-tour-by-classic-wooden-boat-t1030725/'),
     affiliateType: 'getyourguide',
-    season: 'Maj–September',
+    season: 'Maj till September',
   },
 
   // ── Naturtur ────────────────────────────────────────────────────────────
@@ -259,7 +259,7 @@ export const EXPERIENCES: Experience[] = [
     slug: 'skargardsdag-cykel-lunch-uto',
     islandSlug: 'uto',
     islandName: 'Utö',
-    name: 'Skärgårdsdag – Cykel & Lunch',
+    name: 'Skärgårdsdag: Cykel & Lunch',
     provider: 'Utö Värdshus',
     category: 'naturtur',
     duration: 'Heldag',
@@ -269,7 +269,7 @@ export const EXPERIENCES: Experience[] = [
     description: 'Cykel för hela dagen och dagens lunch ingår. Du hämtar cykeln i Hamnboden och rullar genom gruvbyn ut mot havet.',
     bookingUrl: 'https://www.utovardshus.se/erbjudanden_paket/skargardsdag-cykel-lunch/',
     affiliateType: 'direct',
-    season: 'Juni–September',
+    season: 'Juni till September',
   },
 ]
 

@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!activity) return {}
   const islandCount = islandsForActivity(activity.slug).length
   return {
-    title: `${activity.name} i skärgården — ${islandCount} öar att välja mellan`,
+    title: `${activity.name} i skärgården, ${islandCount} öar att välja mellan`,
     description: `Hitta de bästa öarna för ${activity.name.toLowerCase()} i Stockholms och Bohusläns skärgård. ${activity.description.split('.')[0]}.`,
     keywords: [`${activity.name.toLowerCase()} skärgården`, `${activity.name.toLowerCase()} stockholm`, `${activity.name.toLowerCase()} bohuslän`, 'skärgården'],
     alternates: { canonical: `https://svalla.se/aktivitet/${activity.slug}` },
@@ -79,7 +79,7 @@ export default async function ActivityTypePage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: `Bästa öar för ${activity.name.toLowerCase()} i skärgården`,
-    description: `Rankade öar för ${activity.name.toLowerCase()} — baserat på tillgänglighet, upplevelse och säsong.`,
+    description: `Rankade öar för ${activity.name.toLowerCase()}: baserat på tillgänglighet, upplevelse och säsong.`,
     url: `https://svalla.se/aktivitet/${activity.slug}`,
     numberOfItems: featuredIslands.length,
     itemListElement: featuredIslands.map((island, idx) => ({
@@ -189,7 +189,7 @@ export default async function ActivityTypePage({ params }: Props) {
               <span style={{ fontSize: 12, color: 'var(--txt3)' }}>Swipa →</span>
             </div>
             <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '4px 0 14px' }}>
-              De {featuredIslands.length} bästa öarna för {activity.shortName.toLowerCase()} — rankade efter upplevelse och tillgänglighet
+              De {featuredIslands.length} bästa öarna för {activity.shortName.toLowerCase()}, rankade efter upplevelse och tillgänglighet
             </p>
             {/* Scroll-wrapper med fade-ut på höger kant */}
             <div style={{ position: 'relative' }}>
@@ -329,7 +329,7 @@ export default async function ActivityTypePage({ params }: Props) {
             background: 'var(--white)', border: '1px solid var(--surface-3)',
             borderRadius: 12, padding: '24px', color: 'var(--txt2)', fontSize: 14,
           }}>
-            Vi hittade inga öar som matchar — säg till om någon ö har {activity.shortName.toLowerCase()} så lägger vi till den.
+            Vi hittade inga öar som matchar, säg till om någon ö har {activity.shortName.toLowerCase()} så lägger vi till den.
           </div>
         )}
 

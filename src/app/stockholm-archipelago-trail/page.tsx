@@ -9,7 +9,7 @@ import { SAT_SECTIONS, SAT_TOTAL_KM, SAT_SUM_KM, SAT_ISLANDS, SAT_URL, type SatD
 import { prefetchFor } from '@/lib/inloggningsrutter' // revision 2026-10-02: ingen prefetch av /planera
 
 export const metadata: Metadata = {
-  title: 'Stockholm Archipelago Trail — alla 22 etapper, längd och svårighet',
+  title: 'Stockholm Archipelago Trail: alla 22 etapper, längd och svårighet',
   description:
     'Hela Stockholm Archipelago Trail: 270 km vandringsled över 20 öar från Arholma till Landsort. Etapp för etapp med längd, svårighetsgrad och hur du tar dig dit.',
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/stockholm-archipelago-trail' },
   openGraph: {
-    title: 'Stockholm Archipelago Trail — alla 22 etapper',
+    title: 'Stockholm Archipelago Trail: alla 22 etapper',
     description:
       '270 km över 20 öar, från Arholma i norr till Landsort i söder. Varje etapp nås med reguljär skärgårdstrafik.',
     url: 'https://svalla.se/stockholm-archipelago-trail',
@@ -40,7 +40,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Måste man gå hela leden?',
-    a: 'Nej, och de flesta gör det inte. Leden är inte sammanhängande på land — varje ö är en egen etapp som du når med båt. Det gör att den fungerar lika bra som en enskild dagsvandring som ett längre projekt över flera säsonger.',
+    a: 'Nej, och de flesta gör det inte. Leden är inte sammanhängande på land, varje ö är en egen etapp som du når med båt. Det gör att den fungerar lika bra som en enskild dagsvandring som ett längre projekt över flera säsonger.',
   },
   {
     q: 'Vilken etapp är längst?',
@@ -50,7 +50,7 @@ const FAQ_ITEMS = [
   {
     q: 'Vilken etapp är svårast?',
     // KÄLLA: stockholmarchipelagotrail.com/section (läst 2026-09-17)
-    a: 'Tre etapper klassas som krävande: Utö (18,4 km), Ålö (13,2 km) och Nåttarö (9,5 km). Notera att Nåttarö är kort men ändå krävande — längd och svårighet följs inte åt på den här leden. Svartsö är tvärtom 17,9 km och klassas som lätt.',
+    a: 'Tre etapper klassas som krävande: Utö (18,4 km), Ålö (13,2 km) och Nåttarö (9,5 km). Notera att Nåttarö är kort men ändå krävande, längd och svårighet följs inte åt på den här leden. Svartsö är tvärtom 17,9 km och klassas som lätt.',
   },
   {
     q: 'Vad är roddbåtarna mellan Finnhamn och Ingmarsö?',
@@ -60,7 +60,7 @@ const FAQ_ITEMS = [
   {
     q: 'Är någon del av leden avstängd?',
     // KÄLLA: stockholmarchipelagotrail.com/news/the-north-end-of-rano-closed-until-2027 (publicerad 2026-08-18, läst 2026-09-17)
-    a: 'Ja. Den norra delen av Rånö är avstängd på grund av skogsarbete, från början av september 2026 till slutet av 2026, och området uppges vara påverkat till 2027. Kontrollera alltid ledens egen nyhetssida innan du åker — avstängningar och omledningar tillkommer löpande.',
+    a: 'Ja. Den norra delen av Rånö är avstängd på grund av skogsarbete, från början av september 2026 till slutet av 2026, och området uppges vara påverkat till 2027. Kontrollera alltid ledens egen nyhetssida innan du åker, avstängningar och omledningar tillkommer löpande.',
   },
   {
     q: 'Finns det något vandringspass?',
@@ -70,7 +70,7 @@ const FAQ_ITEMS = [
   {
     q: 'När på året går det att vandra leden?',
     // KÄLLA: stockholmarchipelagotrail.com/news/the-off-season-in-the-stockholm-archipelago (publicerad 2025-10-20, läst 2026-09-17)
-    a: 'Leden går att vandra året runt, men lågsäsongen blir gradvis mer krävande. Skärgårdstrafiken glesas ut kraftigt utanför sommarsäsongen och service på öarna stänger. Maj–juni och september är de bekvämaste månaderna: framkomlig trafik, öppna kaféer och varken mygg eller trängsel.',
+    a: 'Leden går att vandra året runt, men lågsäsongen blir gradvis mer krävande. Skärgårdstrafiken glesas ut kraftigt utanför sommarsäsongen och service på öarna stänger. Maj till juni och september är de bekvämaste månaderna: framkomlig trafik, öppna kaféer och varken mygg eller trängsel.',
   },
   {
     q: 'Hur tar jag mig till etapperna?',
@@ -111,13 +111,13 @@ export default function StockholmArchipelagoTrailPage() {
   const itemListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Stockholm Archipelago Trail — alla etapper',
+    name: 'Stockholm Archipelago Trail: alla etapper',
     url: 'https://svalla.se/stockholm-archipelago-trail',
     numberOfItems: SAT_SECTIONS.length,
     itemListElement: SAT_SECTIONS.map((s, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      name: `${s.name} — ${s.km} km`,
+      name: `${s.name}, ${s.km} km`,
       ...(s.island ? { url: `https://svalla.se/o/${s.island}` } : {}),
     })),
   }
@@ -181,7 +181,7 @@ export default function StockholmArchipelagoTrailPage() {
               maxWidth: 640, opacity: 0.92, margin: '0 0 20px',
             }}>
               {SAT_TOTAL_KM} kilometer över {SAT_ISLANDS} öar, från Arholma i norr till Landsort
-              i söder. Ingen av etapperna sitter ihop på land — varje ö är sin egen vandring, och
+              i söder. Ingen av etapperna sitter ihop på land: varje ö är sin egen vandring, och
               båten är det som binder ihop dem.
             </p>
             <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
@@ -303,7 +303,7 @@ export default function StockholmArchipelagoTrailPage() {
               {[
                 {
                   t: 'Båten är en del av vandringen',
-                  b: 'Etapperna sitter inte ihop. Du går en ö, tar båten, går nästa. Det betyder att tidtabellen styr dagen lika mycket som benen gör — och att sista avgången hem är det första du ska kontrollera, inte det sista.',
+                  b: 'Etapperna sitter inte ihop. Du går en ö, tar båten, går nästa. Det betyder att tidtabellen styr dagen lika mycket som benen gör, och att sista avgången hem är det första du ska kontrollera, inte det sista.',
                 },
                 {
                   t: 'Längd och svårighet följs inte åt',
@@ -397,7 +397,7 @@ export default function StockholmArchipelagoTrailPage() {
                 stockholmarchipelagotrail.com
               </a>
               . Vi har kontrollerat samtliga 22 etapper mot respektive etapps egen sida den
-              18 september 2026 — alla stämde.
+              18 september 2026, alla stämde.
             </p>
             <p style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.6, margin: '0 0 8px' }}>
               En detalj värd att nämna: lägger man ihop de 22 etapperna blir summan {SAT_SUM_KM} km,

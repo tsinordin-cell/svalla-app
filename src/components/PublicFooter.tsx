@@ -40,7 +40,7 @@ export default function PublicFooter() {
               maxWidth: 360,
             }}>
               Skärgårdens guide med ösidor, krogar, hamnar och båttider från Trafiklab.
-              Ingen reklam, inga trick — bara skärgården.
+              Ingen reklam, inga trick, bara skärgården.
             </p>
           </div>
           <div style={{ flex: '0 0 auto' }}>

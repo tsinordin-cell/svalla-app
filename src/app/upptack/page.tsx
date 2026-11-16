@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Utforska bryggor, krogar, naturhamnar och populära seglarleder i skärgården.',
   alternates: { canonical: 'https://svalla.se/upptack' },
   openGraph: {
-    title: 'Utforska skärgården – Svalla',
+    title: 'Utforska skärgården | Svalla',
     description: 'Utforska bryggor, krogar, naturhamnar och populära seglarleder i skärgården.',
     url: 'https://svalla.se/upptack',
     type: 'website',

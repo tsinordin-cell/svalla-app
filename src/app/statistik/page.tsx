@@ -4,7 +4,7 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
-  title: 'Statistik om Stockholms skärgård — fakta, siffror och data',
+  title: 'Statistik om Stockholms skärgård: fakta, siffror och data',
   description: 'Fakta och statistik om Stockholms skärgård: antal öar, besökare, trafik, natur och säsong. Verifierade siffror med källhänvisningar.',
   keywords: [
     'statistik stockholms skärgård',
@@ -37,7 +37,7 @@ const SECTIONS = [
       { label: 'Antal öar, holmar och skär', value: 'ca 30 000', note: 'Varav ca 200 med bofasta året runt', source: 'Länsstyrelsen Stockholm (Skärgårdsfakta)' },
       // KÄLLA: uppmätt storcirkel — Stockholm–Svenska Högarna 82 km (österut), Arholma–Landsort 141 km (nord–syd). Tidigare siffror var omkastade.
       { label: 'Utbredning österut', value: 'ca 80 km', note: 'Från Stockholms innerstad till ytterskärgården (Svenska Högarna)', source: 'Uppmätt (storcirkel)' },
-      { label: 'Nord–sydlig längd', value: 'ca 140 km', note: 'Från Arholma i norr till Landsort i söder', source: 'Uppmätt (storcirkel)' },
+      { label: 'Nord till sydlig längd', value: 'ca 140 km', note: 'Från Arholma i norr till Landsort i söder', source: 'Uppmätt (storcirkel)' },
       { label: 'Total vattenarea', value: 'ca 6 000 km²', note: 'Inklusive fjärdar, sund och öppna havsområden', source: 'SCB' },
       { label: 'Djupaste punkt', value: 'ca 459 m', note: 'I Landsortsdjupet, Östersjöns djupaste punkt', source: 'SMHI' },
     ],
@@ -50,13 +50,13 @@ const SECTIONS = [
     border: 'rgba(45,122,92,0.18)',
     stats: [
       // UPPSKATTNING (2026-08-25): Waxholmsbolaget publicerar inga sammanräknade siffror för antal bryggor eller linjer. Siffrorna är våra egna, räknade ur tidtabellerna, och krediterades tidigare felaktigt bolaget.
-      { label: 'Waxholmsbolagets bryggor', value: '150+', note: 'I Stockholms skärgård och längs Mälarens stränder', source: 'Svalla — uppskattning ur tidtabellerna (2026-08)' },
-      { label: 'Waxholmsbolagets linjer', value: '30+', note: 'Reguljär kollektivtrafik på vatten, sommar och helår', source: 'Svalla — uppskattning ur tidtabellerna (2026-08)' },
-      { label: 'Cinderellabåtarnas säsong', value: 'ca 5 månader', note: 'Maj–september, från Strömkajen till ytterskärgården', source: 'Strömma/Cinderella' },
+      { label: 'Waxholmsbolagets bryggor', value: '150+', note: 'I Stockholms skärgård och längs Mälarens stränder', source: 'Svalla | uppskattning ur tidtabellerna (2026-08)' },
+      { label: 'Waxholmsbolagets linjer', value: '30+', note: 'Reguljär kollektivtrafik på vatten, sommar och helår', source: 'Svalla | uppskattning ur tidtabellerna (2026-08)' },
+      { label: 'Cinderellabåtarnas säsong', value: 'ca 5 månader', note: 'Maj till september, från Strömkajen till ytterskärgården', source: 'Strömma/Cinderella' },
       // Rättad 2026-11-09 (P0 20 del 3): Nynäshamn är inte utgångspunkt för Utö; båten därifrån går till Nåttarö, Rånö och Ålö. Restiden är uppmätt i SL:s tabell (tidigare "ca 60 min").
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Giltig från och med 17 augusti till och med 12 december 2026."; uppmätt i tabellen: avg Stockholm City–Nynäshamn 59–65 min (läst 2026-11-09)
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ", "Rånö" (läst 2026-11-09)
-      { label: 'Pendeltåg till Nynäshamn', value: '59–65 min', note: 'Från Stockholm City — utgångspunkt för båten till Nåttarö, Rånö och Ålö', source: 'SL (tidtabell)' },
+      { label: 'Pendeltåg till Nynäshamn', value: '59 till 65 min', note: 'Från Stockholm City: utgångspunkt för båten till Nåttarö, Rånö och Ålö', source: 'SL (tidtabell)' },
     ],
   },
   {
@@ -68,11 +68,11 @@ const SECTIONS = [
     stats: [
       { label: 'Naturreservat i skärgården', value: 'ca 150', note: 'Förvaltas av Länsstyrelsen och Skärgårdsstiftelsen', source: 'Länsstyrelsen Stockholm' },
       // KÄLLA: Skärgårdsstiftelsen, Vanliga frågor (skargardsstiftelsen.se/faq/, läst 2026-08-25): "12 000 hektar landmark och 20 000 hektar vatten", fördelat på 36 områden, ca 12 % av landmarken i Stockholms skärgård. Sidan Drift och förvaltning säger "drygt 11 procent av marken". Sajten angav tidigare 23 000 ha land.
-      { label: 'Land som förvaltas av Skärgårdsstiftelsen', value: 'ca 12 000 ha', note: 'Plus ca 20 000 ha vatten, fördelat på 36 områden — ca 12 % av skärgårdens landmark', source: 'Skärgårdsstiftelsen' },
-      { label: 'Salthalt i ytterskärgården', value: '6–7 ‰', note: 'Bräckt vatten — lägre än Nordsjöns ca 35 ‰', source: 'SMHI' },
-      { label: 'Medelvattentemperatur juli', value: '18–22 °C', note: 'I ytskiktet i innerskärgården vid god sommar', source: 'SMHI' },
+      { label: 'Land som förvaltas av Skärgårdsstiftelsen', value: 'ca 12 000 ha', note: 'Plus ca 20 000 ha vatten, fördelat på 36 områden: ca 12 % av skärgårdens landmark', source: 'Skärgårdsstiftelsen' },
+      { label: 'Salthalt i ytterskärgården', value: '6 till 7 ‰', note: 'Bräckt vatten: lägre än Nordsjöns ca 35 ‰', source: 'SMHI' },
+      { label: 'Medelvattentemperatur juli', value: '18 till 22 °C', note: 'I ytskiktet i innerskärgården vid god sommar', source: 'SMHI' },
       // UPPSKATTNING (2026-08-25): ArtDatabanken/SLU publicerar ingen artsumma för Stockholms skärgård som område. Siffran är vår egen sammanställning och krediterades tidigare felaktigt ArtDatabanken.
-      { label: 'Fågelarter i skärgården', value: 'ca 200', note: 'Häckande och rastande arter, inkl. ejder, sillgrissla, havsörn', source: 'Svalla — egen sammanställning (2026-08)' },
+      { label: 'Fågelarter i skärgården', value: 'ca 200', note: 'Häckande och rastande arter, inkl. ejder, sillgrissla, havsörn', source: 'Svalla | egen sammanställning (2026-08)' },
     ],
   },
   {
@@ -83,10 +83,10 @@ const SECTIONS = [
     border: 'rgba(139,94,60,0.18)',
     stats: [
       // UPPSKATTNING (2026-08-25): varken SMHI, Sjöfartsverket, Waxholmsbolaget eller Skärgårdsstiftelsen publicerar dessa som statistik — det är redaktionella bedömningar som tidigare bar myndigheternas namn.
-      { label: 'Navigeringssäsong', value: 'maj–september', note: 'Ca 5 månader av full aktivitet. Islossning mars–april i innerskärgården', source: 'Svalla — redaktionell bedömning (2026-08)' },
-      { label: 'Populäraste månaden', value: 'juli', note: 'Störst besökartryck, flest avgångar, flest uthyrda båtar och kajaker', source: 'Svalla — redaktionell bedömning (2026-08)' },
-      { label: 'Midsommarhelgen', value: 'topphelgen', note: 'Högst nyttjandegrad av naturhamnar, bryggor och restauranger under hela året', source: 'Svalla — redaktionell bedömning (2026-08)' },
-      { label: 'Eldningsförbud', value: 'varierar per år', note: 'Utfärdas av länsstyrelsen vid torka — kontrollera alltid på krisinformation.se', source: 'Länsstyrelsen Stockholm' },
+      { label: 'Navigeringssäsong', value: 'maj till september', note: 'Ca 5 månader av full aktivitet. Islossning mars till april i innerskärgården', source: 'Svalla | redaktionell bedömning (2026-08)' },
+      { label: 'Populäraste månaden', value: 'juli', note: 'Störst besökartryck, flest avgångar, flest uthyrda båtar och kajaker', source: 'Svalla | redaktionell bedömning (2026-08)' },
+      { label: 'Midsommarhelgen', value: 'topphelgen', note: 'Högst nyttjandegrad av naturhamnar, bryggor och restauranger under hela året', source: 'Svalla | redaktionell bedömning (2026-08)' },
+      { label: 'Eldningsförbud', value: 'varierar per år', note: 'Utfärdas av länsstyrelsen vid torka. Kontrollera alltid på krisinformation.se', source: 'Länsstyrelsen Stockholm' },
     ],
   },
 ]
@@ -108,7 +108,7 @@ const faqSchema = {
       name: 'Hur stor är Stockholms skärgård?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Skärgården sträcker sig ca 140 km i nord–sydlig riktning (från Arholma i norr till Landsort i söder) och ca 80 km österut från Stockholm till ytterskärgården. Den totala vattenarealen är ca 6 000 km².',
+        text: 'Skärgården sträcker sig ca 140 km i nord till sydlig riktning (från Arholma i norr till Landsort i söder) och ca 80 km österut från Stockholm till ytterskärgården. Den totala vattenarealen är ca 6 000 km².',
       },
     },
     {
@@ -116,7 +116,7 @@ const faqSchema = {
       name: 'Hur djupt är Östersjön i Stockholms skärgård?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Östersjöns djupaste punkt, Landsortsdjupet, ligger i skärgårdens södra ytterkant och mäter ca 459 meter (SMHI). I innerskärgårdens sund och fjärdar är djupet betydligt lägre, ofta 5–30 meter.',
+        text: 'Östersjöns djupaste punkt, Landsortsdjupet, ligger i skärgårdens södra ytterkant och mäter ca 459 meter (SMHI). I innerskärgårdens sund och fjärdar är djupet betydligt lägre, ofta 5 till 30 meter.',
       },
     },
     {
@@ -132,7 +132,7 @@ const faqSchema = {
       name: 'Hur salt är vattnet i Stockholms skärgård?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Vattnet i Stockholms skärgård är bräckt med en salthalt på ca 6–7 promille i ytterskärgården. Det är betydligt lägre än Nordsjöns ca 35 promille men högre än Finska vikens innersta delar. Salthalten minskar ju längre in mot Stockholm man kommer.',
+        text: 'Vattnet i Stockholms skärgård är bräckt med en salthalt på ca 6 till 7 promille i ytterskärgården. Det är betydligt lägre än Nordsjöns ca 35 promille men högre än Finska vikens innersta delar. Salthalten minskar ju längre in mot Stockholm man kommer.',
       },
     },
   ],
@@ -190,13 +190,13 @@ export default function StatistikPage() {
             Statistik om Stockholms skärgård
           </h1>
           <p id="statistik-intro" style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', lineHeight: 1.65, maxWidth: 620, margin: '0 0 24px' }}>
-            Stockholms skärgård omfattar ca 30 000 öar, holmar och skär och sträcker sig ca 140 km från Arholma i norr till Landsort i söder. Här samlar vi verifierade fakta och siffror om geografi, kollektivtrafik, natur och säsong — med källhänvisningar.
+            Stockholms skärgård omfattar ca 30 000 öar, holmar och skär och sträcker sig ca 140 km från Arholma i norr till Landsort i söder. Här samlar vi verifierade fakta och siffror om geografi, kollektivtrafik, natur och säsong, med källhänvisningar.
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {[
               { label: '~30 000 öar', sub: 'Stockholms skärgård' },
               { label: '~200 bebodda', sub: 'Bofasta året runt' },
-              { label: '~140 km', sub: 'Nord–sydlig längd' },
+              { label: '~140 km', sub: 'Nord till sydlig längd' },
               { label: '~6 000 km²', sub: 'Total area' },
             ].map(chip => (
               <div key={chip.label} style={{ background: 'rgba(255,255,255,0.12)', borderRadius: 12, padding: '10px 16px', backdropFilter: 'blur(4px)' }}>
@@ -253,9 +253,9 @@ export default function StatistikPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
               { q: 'Hur många öar finns det i Stockholms skärgård?', a: 'Ca 30 000 öar, holmar och skär enligt Länsstyrelsen Stockholm. Av dessa har ca 200 bofasta året runt. Resten är allt från klippor knappt synliga ovan ytan till stora öar med skog och jordbruksmark.' },
-              { q: 'Hur stor är Stockholms skärgård?', a: 'Skärgården sträcker sig ca 140 km i nord–sydlig riktning (från Arholma i norr till Landsort i söder) och ca 80 km österut från Stockholm till ytterskärgården. Den totala vattenarealen är ca 6 000 km².' },
-              { q: 'Hur djupt är vattnet i skärgården?', a: 'Östersjöns djupaste punkt, Landsortsdjupet, ligger i skärgårdens södra ytterkant och mäter ca 459 meter. I innerskärgårdens sund och fjärdar är djupet ofta 5–30 meter.' },
-              { q: 'Hur salt är vattnet i Stockholms skärgård?', a: 'Bräckt vatten med ca 6–7 promille salt i ytterskärgården — betydligt lägre än Nordsjöns ca 35 promille. Salthalten minskar ju längre in mot Stockholm man kommer.' },
+              { q: 'Hur stor är Stockholms skärgård?', a: 'Skärgården sträcker sig ca 140 km i nord till sydlig riktning (från Arholma i norr till Landsort i söder) och ca 80 km österut från Stockholm till ytterskärgården. Den totala vattenarealen är ca 6 000 km².' },
+              { q: 'Hur djupt är vattnet i skärgården?', a: 'Östersjöns djupaste punkt, Landsortsdjupet, ligger i skärgårdens södra ytterkant och mäter ca 459 meter. I innerskärgårdens sund och fjärdar är djupet ofta 5 till 30 meter.' },
+              { q: 'Hur salt är vattnet i Stockholms skärgård?', a: 'Bräckt vatten med ca 6 till 7 promille salt i ytterskärgården, betydligt lägre än Nordsjöns ca 35 promille. Salthalten minskar ju längre in mot Stockholm man kommer.' },
             ].map((faq, i) => (
               <div key={i} style={{ background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 14, padding: '18px 20px' }}>
                 <div style={{ fontWeight: 700, color: 'var(--txt)', marginBottom: 8, fontSize: 14 }}>{faq.q}</div>
@@ -277,7 +277,7 @@ export default function StatistikPage() {
               { name: 'SMHI', url: 'https://www.smhi.se', desc: 'Vattentemperatur, salthalt, Landsortsdjupet' },
               { name: 'Waxholmsbolaget', url: 'https://www.waxholmsbolaget.se', desc: 'Antal bryggor och linjer' },
               { name: 'Skärgårdsstiftelsen', url: 'https://skargardsstiftelsen.se', desc: 'Förvaltad mark, naturreservat' },
-              { name: 'SCB — Statistikmyndigheten', url: 'https://www.scb.se', desc: 'Areal och administrativa data' },
+              { name: 'SCB: Statistikmyndigheten', url: 'https://www.scb.se', desc: 'Areal och administrativa data' },
               { name: 'ArtDatabanken / SLU', url: 'https://www.artdatabanken.se', desc: 'Fågelarter och biologisk mångfald' },
             ].map(s => (
               <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" style={{

@@ -104,10 +104,10 @@ describe('ruttArAnvandbar (2026-10-26: testtur på samma plats gav gatukarta med
     expect(ruttArAnvandbar([{ lat: 38.66, lng: -121.52 }])).toBe(false)
     expect(ruttArAnvandbar([{ lat: 38.66000, lng: -121.52000 }, { lat: 38.66005, lng: -121.52004 }])).toBe(false)
   })
-  it('godkänner Strömkajen–Fjäderholmarna', () => {
+  it('godkänner Strömkajen till Fjäderholmarna', () => {
     expect(ruttArAnvandbar([{ lat: 59.329, lng: 18.0775 }, { lat: 59.3325, lng: 18.18 }])).toBe(true)
   })
-  it('avstandM: Strömkajen–Fjäderholmarna är ungefär 5,8 km', () => {
+  it('avstandM: Strömkajen till Fjäderholmarna är ungefär 5,8 km', () => {
     const m = avstandM({ lat: 59.329, lng: 18.0775 }, { lat: 59.3325, lng: 18.18 })
     expect(m).toBeGreaterThan(5500)
     expect(m).toBeLessThan(6100)

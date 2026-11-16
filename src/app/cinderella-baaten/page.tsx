@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Cinderellabåten — Tidtabell, hållplatser & biljetter 2026',
-  description: 'Cinderellabåtarna går från Strandvägen i Stockholm till Sandhamn via Vaxholm, Grinda och Gällnö. Restider, hållplatser och säsong 2026 — enligt operatören Strömma.',
+  title: 'Cinderellabåten: Tidtabell, hållplatser & biljetter 2026',
+  description: 'Cinderellabåtarna går från Strandvägen i Stockholm till Sandhamn via Vaxholm, Grinda och Gällnö. Restider, hållplatser och säsong 2026, enligt operatören Strömma.',
   keywords: [
     'cinderella båten',
     'cinderellabåten',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     'båt sandhamn tidtabell',
   ],
   openGraph: {
-    title: 'Cinderellabåten — Tidtabell, hållplatser & biljetter 2026',
+    title: 'Cinderellabåten: Tidtabell, hållplatser & biljetter 2026',
     description: 'Komplett guide till Cinderellabåten: tidtabell 2026, alla hållplatser, priser och tips för resan till Sandhamn och Vaxholm.',
     url: 'https://svalla.se/cinderella-baaten',
   },
@@ -80,7 +80,7 @@ export default function CinderellaBaatenPage() {
         name: 'Kör Cinderellabåten hela året?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Strömma anger säsongen till slutet av april till slutet av september. Exakta datum varierar år från år — se Strömmas tidtabell. Utanför säsong nås Sandhamn via Stavsnäs med Waxholmsbolaget.',
+          text: 'Strömma anger säsongen till slutet av april till slutet av september. Exakta datum varierar år från år, se Strömmas tidtabell. Utanför säsong nås Sandhamn via Stavsnäs med Waxholmsbolaget.',
         },
       },
       {
@@ -112,7 +112,7 @@ export default function CinderellaBaatenPage() {
         heroGradient={['#0a2240', '#1a4a7a']}
         eyebrow="Cinderellabåten"
         title="Strandvägen → Sandhamn"
-        tagline="Strömmas skärgårdslinje — hållplatser, restider och säsong 2026."
+        tagline="Strömmas skärgårdslinje: hållplatser, restider och säsong 2026."
         heroIcon={
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M2 20h20M5 20V9l7-6 7 6v11M9 20v-5h6v5" />
@@ -121,10 +121,10 @@ export default function CinderellaBaatenPage() {
         intro={
           <>
             <p>
-              <strong>Cinderellabåtarna</strong> drivs av <strong>Strömma</strong> — inte av Waxholmsbolaget, som många tror. De avgår från Strandvägen i centrala Stockholm och går ut till Sandhamn via Vaxholm, Grinda och Gällnö. Resan till Sandhamn tar 2 timmar och 30 minuter enligt operatören.
+              <strong>Cinderellabåtarna</strong> drivs av <strong>Strömma</strong>: inte av Waxholmsbolaget, som många tror. De avgår från Strandvägen i centrala Stockholm och går ut till Sandhamn via Vaxholm, Grinda och Gällnö. Resan till Sandhamn tar 2 timmar och 30 minuter enligt operatören.
             </p>
             <p>
-              Säsongen löper från <strong>slutet av april till slutet av september</strong>. Avgångstiderna varierar per datum, och vi publicerar dem inte här — en kopia skulle bli inaktuell utan att vi märkte det. Aktuella tider finns hos <a href="https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/" target="_blank" rel="noopener noreferrer">Strömma</a>.
+              Säsongen löper från <strong>slutet av april till slutet av september</strong>. Avgångstiderna varierar per datum, och vi publicerar dem inte här, en kopia skulle bli inaktuell utan att vi märkte det. Aktuella tider finns hos <a href="https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/" target="_blank" rel="noopener noreferrer">Strömma</a>.
             </p>
             <p>
               Biljetter köps hos Strömma. SL-kort och Waxholmsbolagets pendlarkort gäller inte, eftersom linjen inte ingår i den upphandlade skärgårdstrafiken. Ombord finns café och bar öppna under hela resan.
@@ -174,14 +174,14 @@ export default function CinderellaBaatenPage() {
               </table>
             </div>
             <p style={{ fontSize: 12, color: 'var(--txt-secondary)', marginTop: 8 }}>
-              * Restider enligt Strömma. Avgångstiderna varierar per datum — se <a href="https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/" target="_blank" rel="noopener noreferrer">Strömmas tidtabell</a>. Vi publicerar inga klockslag vi inte kan hålla aktuella.
+              * Restider enligt Strömma. Avgångstiderna varierar per datum: se <a href="https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/" target="_blank" rel="noopener noreferrer">Strömmas tidtabell</a>. Vi publicerar inga klockslag vi inte kan hålla aktuella.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 8px' }}>
               Priser 2026
             </h3>
             <p>
-              Enligt Strömma kostar resan <strong>från 255 kr</strong> till Sandhamn och <strong>från 235 kr</strong> till Grinda eller Gällnö. Rabatter och barnpriser anges av operatören och varierar mellan säsonger — vi återger dem inte här.
+              Enligt Strömma kostar resan <strong>från 255 kr</strong> till Sandhamn och <strong>från 235 kr</strong> till Grinda eller Gällnö. Rabatter och barnpriser anges av operatören och varierar mellan säsonger. Vi återger dem inte här.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 8px' }}>
@@ -213,7 +213,7 @@ export default function CinderellaBaatenPage() {
               Kör Cinderella hela året?
             </h3>
             <p>
-              Nej — säsongen är <strong>slutet av april till slutet av september</strong> enligt Strömma. Utanför säsong nås Sandhamn via Stavsnäs med Waxholmsbolaget.
+              Nej: säsongen är <strong>slutet av april till slutet av september</strong> enligt Strömma. Utanför säsong nås Sandhamn via Stavsnäs med Waxholmsbolaget.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -221,7 +221,7 @@ export default function CinderellaBaatenPage() {
             </h3>
             <p>
               {/* KÄLLA: Strömmas FAQ (stromma.com) 2026-08-23: cykel i mån av plats, plats garanteras aldrig, avgift betalas vid ombordstigning, el- och lastcyklar tillåts inte; husdjur ej i restaurangdelen */}
- Ja, med begränsningar. Hundar får följa med men inte vistas i restaurang- och serveringsdelarna. Vanliga cyklar tas med i mån av plats mot en avgift som betalas vid ombordstigning — plats kan inte bokas eller garanteras, och el- och lastcyklar tillåts inte. Under högsäsong (juli–aug) är det klokt att ha en reservplan om cykelplatserna är fulla.
+ Ja, med begränsningar. Hundar får följa med men inte vistas i restaurang- och serveringsdelarna. Vanliga cyklar tas med i mån av plats mot en avgift som betalas vid ombordstigning: plats kan inte bokas eller garanteras, och el- och lastcyklar tillåts inte. Under högsäsong (juli till aug) är det klokt att ha en reservplan om cykelplatserna är fulla.
             </p>
           </>
         }

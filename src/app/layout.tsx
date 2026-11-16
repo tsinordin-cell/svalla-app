@@ -29,8 +29,8 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Svalla – Sveriges samlade skärgårdssida',
-    template: '%s – Svalla',
+    default: 'Svalla | Sveriges samlade skärgårdssida',
+    template: '%s | Svalla',
   },
   // Meta description = "underrubriken" under titeln i Googles resultat. PR #173
   // (2026-08-21) bytte taglinen till "Sveriges samlade skärgårdssida" och
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   // ("Logga dina båtturer … följ andra seglare"). Rättad 2026-09-29 (kort
   // 52376ae5) till samma text som OG, utökad så att inga sökord försvinner
   // (båt, restauranger, kusten finns kvar).
-  description: 'Allt om svenska öar — öprofiler, restauranger, aktiviteter, båttider och ruttplanering för skärgårdsresan längs hela kusten, från Bohuslän till Höga kusten.',
+  description: 'Allt om svenska öar: öprofiler, restauranger, aktiviteter, båttider och ruttplanering för skärgårdsresan längs hela kusten, från Bohuslän till Höga kusten.',
   keywords: ['skärgård', 'båtliv', 'segla', 'logga tur', 'skärgårdsrestaurang', 'Sverige', 'Stockholm'],
   authors: [{ name: 'Svalla' }],
   creator: 'Svalla',
@@ -49,21 +49,21 @@ export const metadata: Metadata = {
     locale: 'sv_SE',
     url: 'https://svalla.se',
     siteName: 'Svalla',
-    title: 'Svalla – Sveriges samlade skärgårdssida',
-    description: 'Allt om svenska öar — öprofiler, restauranger, aktiviteter och ruttplanering för skärgårdsresan.',
+    title: 'Svalla | Sveriges samlade skärgårdssida',
+    description: 'Allt om svenska öar: öprofiler, restauranger, aktiviteter och ruttplanering för skärgårdsresan.',
     images: [
       {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Svalla – Sveriges samlade skärgårdssida',
+        alt: 'Svalla | Sveriges samlade skärgårdssida',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Svalla – Sveriges samlade skärgårdssida',
-    description: 'Allt om svenska öar — öprofiler, restauranger, aktiviteter och ruttplanering för skärgårdsresan.',
+    title: 'Svalla | Sveriges samlade skärgårdssida',
+    description: 'Allt om svenska öar: öprofiler, restauranger, aktiviteter och ruttplanering för skärgårdsresan.',
     images: ['/opengraph-image'],
   },
   manifest: '/manifest.json',

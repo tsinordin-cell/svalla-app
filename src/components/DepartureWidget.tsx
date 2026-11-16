@@ -178,7 +178,7 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
 
       {!loading && error && (
         <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0 }}>
-          Tidtabellinfo ej tillgänglig just nu — prova{' '}
+          Tidtabellinfo ej tillgänglig just nu: prova{' '}
           <a href="https://sl.se/sv/reseplaneraren" target="_blank" rel="noopener noreferrer"
              style={{ color: '#ffd28a', textDecoration: 'underline' }}>
             sl.se

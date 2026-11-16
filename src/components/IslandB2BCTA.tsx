@@ -14,12 +14,12 @@ interface Props {
 }
 
 export default function IslandB2BCTA({ islandName, islandSlug: _islandSlug }: Props) {
-  const mailSubject = encodeURIComponent(`Partnerförfrågan – ${islandName}`)
+  const mailSubject = encodeURIComponent(`Partnerförfrågan: ${islandName}`)
   const mailHref = `mailto:info@svalla.se?subject=${mailSubject}`
 
   return (
     <section
-      aria-label={`Aktör på ${islandName} – lista din verksamhet`}
+      aria-label={`Aktör på ${islandName}: lista din verksamhet`}
       style={{
         margin: '48px 0 0',
         background: 'linear-gradient(135deg, rgba(26,74,107,0.05) 0%, rgba(10,123,140,0.05) 100%)',

@@ -10,13 +10,13 @@ function pt(i: number, lat: number, lng: number, kn: number, dev: number | null 
     rawLat: lat, rawLng: lng, deviceSpeedKnots: dev }
 }
 
-describe('tripDistanceNM — ∫ Doppler-fart dt (beslut 2026-09-11)', () => {
+describe('tripDistanceNM: ∫ Doppler-fart dt (beslut 2026-09-11)', () => {
   it('10 kn i 360 s = 1,00 NM, samma som positionerna på en rak linje', () => {
     const pts = Array.from({ length: 361 }, (_, i) => pt(i, 59.3 + (i * 5.14444) / M_PER_DEG, 18, 10))
     expect(tripDistanceNM(pts)).toBeCloseTo(1.0, 3)
     expect(totalDistanceNM(pts)).toBeCloseTo(1.0, 2)
   })
-  it('stilla med ±5 m positionsbrus: positionerna ger sträcka, Doppler ger 0 — båten vid bojen', () => {
+  it('stilla med ±5 m positionsbrus: positionerna ger sträcka, Doppler ger 0: båten vid bojen', () => {
     let seed = 7
     const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647 - 0.5 }
     const pts = Array.from({ length: 300 }, (_, i) => pt(i, 59.3 + (rnd() * 10) / M_PER_DEG, 18 + (rnd() * 10) / M_PER_DEG, 0))
@@ -40,7 +40,7 @@ describe('tripDistanceNM — ∫ Doppler-fart dt (beslut 2026-09-11)', () => {
 describe('Toms bilturer som facit', () => {
   const load = (id: string, t0: string) =>
     replayTrack(parseFixture(readFileSync(`${__dirname}/__fixtures__/trip-${id}.txt`, 'utf8'), Date.parse(t0))).points
-  it('2,7 mi-turen: bilen 2,30–2,39 NM — ∫Doppler träffar, positionssumman gör det inte', () => {
+  it('2,7 mi-turen: bilen 2,30 till 2,39 NM: ∫Doppler träffar, positionssumman gör det inte', () => {
     const pts = load('5fa4cf65', '2026-09-11T00:22:42.945Z')
     const d = tripDistanceNM(pts)
     expect(d).toBeGreaterThanOrEqual(2.30)

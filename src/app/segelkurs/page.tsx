@@ -9,7 +9,7 @@ import Icon from '@/components/Icon'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Segelkurs Sverige 2026 – hitta rätt kurs för din nivå',
+  title: 'Segelkurs Sverige 2026: hitta rätt kurs för din nivå',
   description: 'Hitta segelkurs i Sverige. Nybörjarkurser, kustskepparintyget och seglarskola för barn. Jämför kurser i Stockholm, Göteborg och Bohuslän.',
   keywords: [
     'segelkurs',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/segelkurs' },
   openGraph: {
-    title: 'Segelkurs Sverige 2026 – hitta rätt kurs',
+    title: 'Segelkurs Sverige 2026: hitta rätt kurs',
     description: 'Nybörjarkurser, kustskepparintyget och seglarskola för barn. Hitta rätt segelkurs för din nivå.',
     url: 'https://svalla.se/segelkurs',
     type: 'website',
@@ -39,11 +39,11 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Vad är skillnaden på förarintyg och kustskepparintyget?',
-    a: 'Förarintyget (SBF/SSRS) ger rätt att föra de flesta fritidsbåtar och tar 2–3 helger. Kustskepparintyget (KA) är ett internationellt erkänt certifikat för segling upp till 200 sjömil offshore och tar 5–7 dagar mer intensivt. KA är vad hyrbåtsbolag och offshore-seglare kräver.',
+    a: 'Förarintyget (SBF/SSRS) ger rätt att föra de flesta fritidsbåtar och tar 2 till 3 helger. Kustskepparintyget (KA) är ett internationellt erkänt certifikat för segling upp till 200 sjömil offshore och tar 5 till 7 dagar mer intensivt. KA är vad hyrbåtsbolag och offshore-seglare kräver.',
   },
   {
     q: 'Hur lång tid tar det att ta kustskepparintyget?',
-    a: 'Kursen tar 5–7 dagar (intensiv) eller 2–4 helger uppdelade. Självstudier inför teoriprovet tillkommer. Räkna totalt 3–6 månader om du läser i lugn takt vid sidan av jobbet.',
+    a: 'Kursen tar 5 till 7 dagar (intensiv) eller 2 till 4 helger uppdelade. Självstudier inför teoriprovet tillkommer. Räkna totalt 3 till 6 månader om du läser i lugn takt vid sidan av jobbet.',
   },
   {
     q: 'Var hittar man segelkurser i Sverige?',
@@ -87,7 +87,7 @@ export default function SegelkursPage() {
             Segelkurs i Sverige
           </h1>
           <p style={{ color: 'var(--white)', opacity: 0.9, fontSize: 17, lineHeight: 1.65, margin: 0, maxWidth: 580 }}>
-            Hitta rätt kurs för din nivå – från nybörjare som aldrig seglat till kustskepparintyget och offshore-segling.
+            Hitta rätt kurs för din nivå, från nybörjare som aldrig seglat till kustskepparintyget och offshore-segling.
           </p>
           <div style={{ display: 'flex', gap: 10, marginTop: 20, flexWrap: 'wrap' }}>
             {['Nybörjare välkommen', 'Kustskepparintyget', 'Seglarskola barn', 'Stockholm & Göteborg'].map(t => (
@@ -102,7 +102,7 @@ export default function SegelkursPage() {
         {/* Intro */}
         <section style={{ marginBottom: 48 }}>
           <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: '0 0 16px' }}>
-            Segling är en av få aktiviteter där du lär dig hantera vind, vatten och navigering på en gång – och sedan har en livslång kompetens som öppnar upp hela Sveriges kust och skärgård. Sverige har över 400 segelsällskap som erbjuder kurser, från gratis provsegling till avancerade offshore-certifikat.
+            Segling är en av få aktiviteter där du lär dig hantera vind, vatten och navigering på en gång, och sedan har en livslång kompetens som öppnar upp hela Sveriges kust och skärgård. Sverige har över 400 segelsällskap som erbjuder kurser, från gratis provsegling till avancerade offshore-certifikat.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: 0 }}>
             Välj kurs nedan utifrån nivå eller plats. Nybörjare börjar med introduktionskurser; den som vill hyra båt tar förarintyget; den som vill segla självständigt längs kusten siktar på kustskepparintyget.
@@ -142,10 +142,10 @@ export default function SegelkursPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
               { step: 1, name: 'Introduktionskurs / Prova-på', time: '1 dag', note: 'Inget certifikat', color: '#22c55e' },
-              { step: 2, name: 'Grön flagg / Seglarbok', time: '2–5 dagar', note: 'Erkänd av Svenska Seglarförbundet', color: '#22c55e' },
-              { step: 3, name: 'Förarintyget (SBF/SSRS)', time: '2–3 helger', note: 'Krav hos de flesta hyrbåtsbolag', color: '#eab308' },
-              { step: 4, name: 'Kustskepparintyget (KA)', time: '5–7 dagar', note: 'Internationellt erkänt, krav för offshore', color: '#f97316' },
-              { step: 5, name: 'Offshore-certifikat', time: '7–14 dagar', note: 'Bluewater och långdistanssegling', color: '#ef4444' },
+              { step: 2, name: 'Grön flagg / Seglarbok', time: '2 till 5 dagar', note: 'Erkänd av Svenska Seglarförbundet', color: '#22c55e' },
+              { step: 3, name: 'Förarintyget (SBF/SSRS)', time: '2 till 3 helger', note: 'Krav hos de flesta hyrbåtsbolag', color: '#eab308' },
+              { step: 4, name: 'Kustskepparintyget (KA)', time: '5 till 7 dagar', note: 'Internationellt erkänt, krav för offshore', color: '#f97316' },
+              { step: 5, name: 'Offshore-certifikat', time: '7 till 14 dagar', note: 'Bluewater och långdistanssegling', color: '#ef4444' },
             ].map((s, i) => (
               <div key={i} style={{
                 background: 'var(--white)', borderRadius: 12, padding: '14px 18px',

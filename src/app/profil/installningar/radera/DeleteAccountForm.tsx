@@ -53,7 +53,7 @@ export default function DeleteAccountForm() {
       // Redirect till goodbye-sida
       router.replace('/goodbye')
     } catch {
-      setError('Nätverksfel — försök igen')
+      setError('Nätverksfel: försök igen')
       setLoading(false)
     }
   }

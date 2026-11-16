@@ -18,11 +18,11 @@ import UtflyktClient from './UtflyktClient'
  */
 
 export const metadata: Metadata = {
-  title: 'Planera din dag i skärgården — utflykt med båttider, öar och tips',
-  description: 'Välj var du startar, vilken dag och vad du vill göra — bad, krog, barn, natur. Få öar som nås därifrån, restid från ösidan och båttider för dagen från Trafiklab, inklusive sista båten hem.',
+  title: 'Planera din dag i skärgården: utflykt med båttider, öar och tips',
+  description: 'Välj var du startar, vilken dag och vad du vill göra: bad, krog, barn, natur. Få öar som nås därifrån, restid från ösidan och båttider för dagen från Trafiklab, inklusive sista båten hem.',
   alternates: { canonical: 'https://svalla.se/utflykt' },
   openGraph: {
-    title: 'Din dag i skärgården — Svalla',
+    title: 'Din dag i skärgården | Svalla',
     description: 'Välj start, dag och vad du vill göra. Få öar, restid och båttider för dagen.',
     url: 'https://svalla.se/utflykt',
   },
@@ -61,7 +61,7 @@ export default function UtflyktPage() {
           </h1>
           <p style={{ fontSize: 16, lineHeight: 1.55, marginTop: 12, maxWidth: 640, opacity: 0.92 }}>
             Välj var du startar, vilken dag och vad du vill göra. Du får öarna som nås därifrån,
-            restiden från ösidan och båttiderna för just den dagen — med sista båten hem.
+            restiden från ösidan och båttiderna för just den dagen, med sista båten hem.
             Ingen inloggning behövs.
           </p>
         </div>

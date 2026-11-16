@@ -10,13 +10,13 @@ import EmailSignup from '@/components/EmailSignup'
 // stämmer: vad brevet handlar om, inga annonser, avregistrering när man vill.
 
 export const metadata: Metadata = {
-  title: 'Svallanyheter – nyhetsbrevet om skärgården',
-  description: 'Nya guider, säsongsstarter och ändringar som påverkar turen ut – när det händer något. Gratis, inga annonser.',
+  title: 'Svallanyheter: nyhetsbrevet om skärgården',
+  description: 'Nya guider, säsongsstarter och ändringar som påverkar turen ut, när det händer något. Gratis, inga annonser.',
   alternates: { canonical: 'https://svalla.se/nyhetsbrev' },
 }
 
 const INNEHALL = [
-  { t: 'Säsongen drar igång', d: 'När krogar, gästhamnar och sommarlinjer öppnar – med länk till den som driver dem.' },
+  { t: 'Säsongen drar igång', d: 'När krogar, gästhamnar och sommarlinjer öppnar, med länk till den som driver dem.' },
   { t: 'Nya och uppdaterade guider', d: 'Öar, badplatser och färdvägar, med källan angiven för varje uppgift.' },
   { t: 'Ändringar som påverkar resan', d: 'Nya tidtabeller och linjer som flyttas, så att du inte står på fel brygga.' },
 ]
@@ -31,7 +31,7 @@ export default function NyhetsbrevPage() {
             Svallanyheter
           </div>
           <h1 style={{ fontSize: 'clamp(28px, 5vw, 42px)', fontWeight: 800, color: '#fff', margin: '0 0 16px', lineHeight: 1.2, textWrap: 'balance' }}>
-            Skärgården i inkorgen – när det händer något
+            Skärgården i inkorgen: när det händer något
           </h1>
           <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.8)', margin: '0 auto 36px', lineHeight: 1.6, maxWidth: 480 }}>
             Nya guider, säsongsstarter och ändringar som påverkar turen ut. Gratis och utan annonser.

@@ -87,7 +87,7 @@ export default function ForumRealtimeListener({ threadId, initialCount: _initial
         }
       `}</style>
       <Icon name="trendingUp" size={14} stroke={2.4} />
-      {newCount === 1 ? '1 nytt svar — visa' : `${newCount} nya svar — visa`}
+      {newCount === 1 ? '1 nytt svar: visa' : `${newCount} nya svar: visa`}
     </button>
   )
 }

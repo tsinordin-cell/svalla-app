@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = getIsland(slug)
   if (!island) return {}
   return {
-    title: `Bada på ${island.name} – badplatser och stränder`,
+    title: `Bada på ${island.name}, badplatser och stränder`,
     description: `Badplatser på och nära ${island.name}: stränder och bad med beskrivning, vägbeskrivning och vad allemansrätten säger om att bada.`,
     keywords: [
       `bada på ${island.name.toLowerCase()}`,
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${island.name.toLowerCase()} swim`,
     ],
     openGraph: {
-      title: `Bada på ${island.name} – badplatser och stränder`,
+      title: `Bada på ${island.name}, badplatser och stränder`,
       description: `Badplatser på och nära ${island.name}.`,
       url: `https://svalla.se/o/${slug}/bad`,
     },
@@ -248,7 +248,7 @@ export default async function IslandBadPage({ params }: Props) {
             <li>Enligt allemansrätten får du bada vid en strand som inte hör till någon tomt, och vid en brygga utanför en tomt så länge ägaren inte hindras.</li>
             <li>Håll koll på skyltar för fågel- och sälskyddsområden, där det kan vara förbjudet att gå i land under delar av året.</li>
             <li>Havs- och vattenmyndighetens Badplatsen visar provsvar för de bad som kommunen provtar. Alla bad provtas inte.</li>
-            <li>Hunden får inte springa lös i naturen 1 mars–20 augusti. I alla nationalparker ska den alltid vara kopplad, och i vissa skyddade områden kan det vara förbjudet att ta med hund. I naturreservat är det ofta kopplingstvång, så läs informationsskylten vid entrén eller fråga länsstyrelsen eller kommunen.</li>
+            <li>Hunden får inte springa lös i naturen 1 mars till 20 augusti. I alla nationalparker ska den alltid vara kopplad, och i vissa skyddade områden kan det vara förbjudet att ta med hund. I naturreservat är det ofta kopplingstvång, så läs informationsskylten vid entrén eller fråga länsstyrelsen eller kommunen.</li>
           </ul>
         </div>
 

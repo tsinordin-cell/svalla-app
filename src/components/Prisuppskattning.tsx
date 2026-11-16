@@ -43,7 +43,7 @@ export default function Prisuppskattning({
       </span>
       <div style={{ flex: 1 }}>
         <div style={{ fontWeight: 700, marginBottom: 3, color: 'var(--sea, #0a7b8c)' }}>
-          Prisspannen är Svallas uppskattning — inte en prislista
+          Prisspannen är Svallas uppskattning: inte en prislista
         </div>
         <p style={{ margin: 0 }}>
           Vi har inte hämtat priserna från enskilda {vad}. Spannen ska ge dig en

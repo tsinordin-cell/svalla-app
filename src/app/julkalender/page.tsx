@@ -10,11 +10,11 @@ import { JulkalenderVisad, JulkalenderLoggaIn } from './JulkalenderMatning'
 
 const metadata: Metadata = {
   title: `Svallas julkalender ${AR}: 24 luckor om skärgården`,
-  description: 'En lucka om dagen 1–24 december med tips om skärgården i vinter. Skapa ett gratis konto och öppna dagens lucka.',
+  description: 'En lucka om dagen 1 till 24 december med tips om skärgården i vinter. Skapa ett gratis konto och öppna dagens lucka.',
   alternates: { canonical: 'https://svalla.se/julkalender' },
   openGraph: {
     title: `Svallas julkalender ${AR}`,
-    description: 'En lucka om dagen 1–24 december med tips om skärgården i vinter.',
+    description: 'En lucka om dagen 1 till 24 december med tips om skärgården i vinter.',
     url: 'https://svalla.se/julkalender',
   },
 }

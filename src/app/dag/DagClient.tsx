@@ -123,7 +123,7 @@ export default function DagClient({ pool, loadError }: { pool: DagPoolEntry[]; l
       setSavedId(json.id)
       track('dag_plan_saved', { plan_id: json.id, stops: stops.length })
     } catch {
-      setError('Kunde inte spara — kontrollera anslutning.')
+      setError('Kunde inte spara. Kontrollera anslutning.')
       track('dag_save_failed', { reason: 'network' })
     } finally {
       setSaving(false)
@@ -142,7 +142,7 @@ export default function DagClient({ pool, loadError }: { pool: DagPoolEntry[]; l
             Min dag
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: 14, margin: 0, lineHeight: 1.55, maxWidth: 560 }}>
-            En komplett skärgårdsdag på 30 sekunder. Vi föreslår tre stopp från din position — fika, lunch, middag — med tider, avstånd och boknings­länkar.
+            En komplett skärgårdsdag på 30 sekunder. Vi föreslår tre stopp från din position, fika, lunch, middag, med tider, avstånd och boknings­länkar.
           </p>
         </div>
       </div>
@@ -153,7 +153,7 @@ export default function DagClient({ pool, loadError }: { pool: DagPoolEntry[]; l
           <section style={{ background: 'var(--white)', borderRadius: 16, padding: '24px 22px', boxShadow: '0 2px 12px rgba(0,45,60,0.06)', marginBottom: 16 }}>
             <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>1. Var är du nu?</h2>
             <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 16px', lineHeight: 1.5 }}>
-              Vi använder din position bara här — sparar inget, skickar inget vidare.
+              Vi använder din position bara här: sparar inget, skickar inget vidare.
             </p>
             <button
               onClick={requestGPS}
@@ -243,7 +243,7 @@ export default function DagClient({ pool, loadError }: { pool: DagPoolEntry[]; l
                   Inga öppna stopp i närheten just nu
                 </div>
                 <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0, lineHeight: 1.55 }}>
-                  Prova en annan startpunkt eller kolla igen i sommarsäsong (maj–september).
+                  Prova en annan startpunkt eller kolla igen i sommarsäsong (maj till september).
                 </p>
               </div>
             )}
@@ -299,7 +299,7 @@ export default function DagClient({ pool, loadError }: { pool: DagPoolEntry[]; l
                 )}
 
                 <p style={{ fontSize: 12, color: 'var(--txt3)', textAlign: 'center', margin: '4px 0 0', lineHeight: 1.5 }}>
-                  Förslagen baseras på 175 verifierade krogar, hamnar och naturhamnar. Säsong kan stänga vissa platser — dubbelkolla via boknings­länken.
+                  Förslagen baseras på 175 verifierade krogar, hamnar och naturhamnar. Säsong kan stänga vissa platser, dubbelkolla via boknings­länken.
                 </p>
               </div>
             )}
@@ -366,7 +366,7 @@ function StopCard({ stop, idx }: { stop: DagStop; idx: number }) {
         )}
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-            {stop.arrival}–{stop.departure} · Stopp {idx}
+            {stop.arrival} till {stop.departure} · Stopp {idx}
           </div>
           <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', marginTop: 2 }}>
             {stop.name}

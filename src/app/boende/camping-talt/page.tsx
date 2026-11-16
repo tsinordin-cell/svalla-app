@@ -41,7 +41,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🗺',
     title: 'Att tänka på innan du tältar',
-    description: 'Regler varierar mellan naturreservat, privat mark och campingplatser. Kontrollera alltid innan du sätter upp tältet — allemansrätten har begränsningar.',
+    description: 'Regler varierar mellan naturreservat, privat mark och campingplatser. Kontrollera alltid innan du sätter upp tältet, allemansrätten har begränsningar.',
     href: '/vandring-och-natur',
   },
 ]
@@ -68,7 +68,7 @@ export default function CampingPage() {
       '@context': 'https://schema.org',
       '@type': 'Campground',
       name: 'Camping och tältplatser i Stockholms skärgård',
-      description: 'Campingplatser och tältvänliga öar i Stockholms skärgård — nära bad, vandring och paddling.',
+      description: 'Campingplatser och tältvänliga öar i Stockholms skärgård: nära bad, vandring och paddling.',
       url: 'https://svalla.se/boende/camping-talt',
       areaServed: {
         '@type': 'Place',
@@ -131,19 +131,19 @@ export default function CampingPage() {
             Allemansrätten och dess gränser
           </h2>
           <p>
-            I Sverige får du tälta på mark du inte äger — men inte hur som helst. Du ska välja en plats tillräckligt långt från bostadshus så att de boende inte kan se dig från sitt fönster, och inte ligga kvar mer än ett par nätter på samma plats. I naturreservat gäller reservatets egna föreskrifter, som kan förbjuda tältning helt eller begränsa den till anvisade platser. Fågelskyddsområden med landstigningsförbud under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter) gäller på en del öar.
+            I Sverige får du tälta på mark du inte äger, men inte hur som helst. Du ska välja en plats tillräckligt långt från bostadshus så att de boende inte kan se dig från sitt fönster, och inte ligga kvar mer än ett par nätter på samma plats. I naturreservat gäller reservatets egna föreskrifter, som kan förbjuda tältning helt eller begränsa den till anvisade platser. Fågelskyddsområden med landstigningsförbud under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti, datumen står på skyltarna och i länsstyrelsens föreskrifter) gäller på en del öar.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Campingplatser med service
           </h2>
           <p>
-            Vill du ha el, dusch och toaletter finns det etablerade campingplatser på bland annat <strong>Utö</strong>, <strong>Arholma</strong> och <strong>Nåttarö</strong>. Dessa bokas i förväg under sommaren — speciellt midsommar och tredje veckan i juli är fullbokade tidigt.
+            Vill du ha el, dusch och toaletter finns det etablerade campingplatser på bland annat <strong>Utö</strong>, <strong>Arholma</strong> och <strong>Nåttarö</strong>. Dessa bokas i förväg under sommaren, speciellt midsommar och tredje veckan i juli är fullbokade tidigt.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Packlista för tältning i skärgård
           </h2>
           <p>
-            Tänk på det viktigaste: vatten för minst en dag (vattenkällor på öar är begränsade), sopor hem (ingenstans att lämna dem), sovsäck anpassad för 8–12°C nätter även i juli, och vattentät tältduk. En gasbrännare är att föredra framför öppen eld — eldningsförbud gäller ofta under torr sommar.
+            Tänk på det viktigaste: vatten för minst en dag (vattenkällor på öar är begränsade), sopor hem (ingenstans att lämna dem), sovsäck anpassad för 8 till 12°C nätter även i juli, och vattentät tältduk. En gasbrännare är att föredra framför öppen eld, eldningsförbud gäller ofta under torr sommar.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '40px 0 8px' }}>
             Hitta campingplatser
@@ -153,10 +153,10 @@ export default function CampingPage() {
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <a href="https://www.camping.se/campingar/?region=stockholms-lan" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(26,92,58,0.06)', border: '1px solid rgba(26,92,58,0.18)', color: '#1a5c3a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>camping.se — Stockholms län</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>camping.se, Stockholms län</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.naturkartan.se/sv" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(26,92,58,0.06)', border: '1px solid rgba(26,92,58,0.18)', color: '#1a5c3a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Naturkartan — friluftsplatser i skärgården</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Naturkartan: friluftsplatser i skärgården</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
           </div>
         </>

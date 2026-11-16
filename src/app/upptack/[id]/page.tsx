@@ -144,7 +144,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  const region = regionEtikett(data.archipelago_region)
  const plats = [data.island, region].filter(Boolean).join(', ')
  const desc = data.description
-   ?? `${data.name}${typOrd ? ` – ${typOrd}` : ''}${plats ? `, ${plats}` : ''}. Läge och karta på Svalla.`
+   ?? `${data.name}${typOrd ? `: ${typOrd}` : ''}${plats ? `, ${plats}` : ''}. Läge och karta på Svalla.`
  const keywords = [
  data.name?.toLowerCase(),
  typOrd && data.island ? `${typOrd} ${data.island.toLowerCase()}` : null,
@@ -173,7 +173,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  keywords,
  alternates: { canonical: `${SITE}/upptack/${canonicalPath}` },
  openGraph: {
- title: `${data.name} – Svalla`,
+ title: `${data.name} | Svalla`,
  description: desc,
  images: [{ url: ogUrl, width: ogWidth, height: ogHeight, alt: data.name }],
  url: `${SITE}/upptack/${canonicalPath}`,
@@ -182,7 +182,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  },
  twitter: {
  card: 'summary_large_image',
- title: `${data.name} – Svalla`,
+ title: `${data.name} | Svalla`,
  description: desc,
  images: [ogUrl],
  },
@@ -506,7 +506,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
        Ex: "Bistro Sands — Restaurang på Sandhamn" */}
    <PlaceHeroGallery
      photos={placePhotos}
-     alt={`${r.name}${typeLabel ? ' — ' + typeLabel : ''}${r.island ? ' på ' + r.island : ''}`}
+     alt={`${r.name}${typeLabel ? ': ' + typeLabel : ''}${r.island ? ' på ' + r.island : ''}`}
    />
 
    {/* Back button — over carousel.

@@ -38,7 +38,7 @@ describe('qualityToConfidence', () => {
 
 // ── findSeaPathWithQuality — safety invariants ──────────────────────────────
 
-describe('findSeaPathWithQuality — safety invariants', () => {
+describe('findSeaPathWithQuality: safety invariants', () => {
   it('returnerar aldrig quality: "straight" (borttagen 2026-05-23)', () => {
     const result = findSeaPathWithQuality(59.32, 18.10, 59.30, 18.55)
     const validQualities: RouteQuality[] = ['precomputed', 'grid', 'waypoint', 'unavailable']
@@ -66,7 +66,7 @@ describe('findSeaPathWithQuality — safety invariants', () => {
 
 // ── findSeaPath legacy — backwards compat for planner.ts ────────────────────
 
-describe('findSeaPath (legacy) — backwards compat', () => {
+describe('findSeaPath (legacy): backwards compat', () => {
   it('returnerar alltid Array<[number, number]> (aldrig null) för planner.ts', () => {
     const path = findSeaPath(59.33, 18.07, 59.29, 18.92)
     expect(Array.isArray(path)).toBe(true)

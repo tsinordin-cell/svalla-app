@@ -205,7 +205,7 @@ export async function getLandingPhotos(): Promise<Record<string, string>> {
   if (felAlder !== null && felAlder < FEL_BACKOFF_MS) {
     const kvar = Math.round((FEL_BACKOFF_MS - felAlder) / 60000)
     console.warn(
-      `[landing-photos] hoppar over Google — senaste forsoket misslyckades totalt, ` +
+      `[landing-photos] hoppar over Google: senaste forsoket misslyckades totalt, ` +
       `sparren slapper om ${kvar} min. Anvander ${db ? 'gammal karta ur app_kv' : 'tom karta'}.`
     )
     const fallback = db?.data ?? {}
@@ -227,7 +227,7 @@ export async function getLandingPhotos(): Promise<Record<string, string>> {
   })
 
   if (Object.keys(photoMap).length === 0) {
-    console.error('[landing-photos] TOMT resultat —', PLACES_TO_FETCH.length, 'förfrågningar gav noll foton')
+    console.error('[landing-photos] TOMT resultat', PLACES_TO_FETCH.length, 'förfrågningar gav noll foton')
     // 2026-08-20: tidigare returnerade den har grenen UTAN att satta
     // memCache — varje request pa instansen gjorde da om alla 19 anropen.
     // Nu negativ-cachas felet (5 min) och en utgangen DB-karta ar battre

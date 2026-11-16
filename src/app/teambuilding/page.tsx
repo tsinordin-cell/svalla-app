@@ -8,7 +8,7 @@ import Icon from '@/components/Icon'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Teambuilding i skärgården – aktiviteter, regatta och konferens',
+  title: 'Teambuilding i skärgården: aktiviteter, regatta och konferens',
   description: 'Hitta det bästa teambuilding-eventet i skärgården. Segelregatta, kajak, konferensanläggningar och AW på öarna i Stockholm och Göteborg.',
   keywords: [
     'teambuilding skärgården',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/teambuilding' },
   openGraph: {
-    title: 'Teambuilding i skärgården – aktiviteter, regatta och konferens',
+    title: 'Teambuilding i skärgården: aktiviteter, regatta och konferens',
     description: 'Segelregatta, kajak, konferens och AW på öarna. Hitta det bästa teambuilding-eventet för ditt team.',
     url: 'https://svalla.se/teambuilding',
     type: 'website',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 }
 
 const AKTIVITETER = [
-  { emoji: '⛵', name: 'Segelregatta', desc: 'Tävla i lag på havet – kräver kommunikation och strategi i realtid.', slug: 'segling' },
+  { emoji: '⛵', name: 'Segelregatta', desc: 'Tävla i lag på havet, kräver kommunikation och strategi i realtid.', slug: 'segling' },
   { emoji: '🛶', name: 'Kajakpaddling', desc: 'Paddla i naturhamnar. Alla erfarenhetsnivåer, halvdag eller heldag.', slug: 'kajak' },
   { emoji: '🏢', name: 'Konferens på ö', desc: 'Mötesrum med havsutsikt. Helpension och aktiviteter i ett paket.', slug: 'konferens' },
 ]
@@ -52,11 +52,11 @@ const FAQ_ITEMS = [
   {
     q: 'Hur mycket kostar teambuilding i skärgården?',
     // UPPSKATTNING: spann över flera arrangörer, ej hämtat per aktör (2026-08)
-    a: 'Halvdagsevent med en aktivitet: 800–1 500 kr/person. Heldagsevent med mat och aktiviteter: 1 500–3 500 kr/person. Konferenspaket med övernattning: 2 500–5 000 kr/person/natt. AW-format (4 h, enbart middag): 400–900 kr/person.',
+    a: 'Halvdagsevent med en aktivitet: 800 till 1 500 kr/person. Heldagsevent med mat och aktiviteter: 1 500 till 3 500 kr/person. Konferenspaket med övernattning: 2 500 till 5 000 kr/person/natt. AW-format (4 h, enbart middag): 400 till 900 kr/person.',
   },
   {
     q: 'Kan man ordna teambuilding i skärgården på vintern?',
-    a: 'Ja, men utbudet minskar. Fjäderholmarnas Krog och Vaxholm Hotell har konferenslokaler öppna hela året. Vinteraktiviteter som isfiske, vinterbastu och skärgårdsboule är tillgängliga hos vissa leverantörer. Sommarsäsong (maj–september) ger störst utbud.',
+    a: 'Ja, men utbudet minskar. Fjäderholmarnas Krog och Vaxholm Hotell har konferenslokaler öppna hela året. Vinteraktiviteter som isfiske, vinterbastu och skärgårdsboule är tillgängliga hos vissa leverantörer. Sommarsäsong (maj till september) ger störst utbud.',
   },
   {
     q: 'Behöver man anlita en event-byrå för teambuilding i skärgården?',

@@ -16,7 +16,7 @@ const TYPE_LABELS: Record<FeedbackType, string> = {
 const TYPE_PLACEHOLDERS: Record<FeedbackType, string> = {
   'fel-info':    'Beskriv vad som är fel och hur det borde stå...',
   'saknar-info': 'Vad saknar du? Vilken ö eller sida gäller det?',
-  'tips':        'Dela ditt förslag — stora som små mottages med glädje!',
+  'tips':        'Dela ditt förslag, stora som små mottages med glädje!',
   'annat':       'Skriv vad du har på hjärtat...',
 }
 
@@ -106,7 +106,7 @@ export default function FeedbackWidget() {
       setDone(true)
       setTimeout(() => setOpen(false), 2800)
     } catch {
-      setError('Nätverksfel — kontrollera anslutningen och försök igen.')
+      setError('Nätverksfel. Kontrollera anslutningen och försök igen.')
       setLoading(false)
     }
   }

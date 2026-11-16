@@ -150,10 +150,10 @@ export function formatEventDate(startsAt: string, endsAt: string | null): string
   const sameDay = s.toDateString() === e.toDateString()
   if (sameDay) {
     const eStr = e.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })
-    return `${sStr} – ${eStr}`
+    return `${sStr}: ${eStr}`
   }
   const eStr = e.toLocaleString('sv-SE', {
     day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit',
   })
-  return `${sStr} – ${eStr}`
+  return `${sStr}: ${eStr}`
 }

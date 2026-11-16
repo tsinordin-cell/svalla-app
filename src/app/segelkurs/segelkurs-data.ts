@@ -128,7 +128,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
 
   {
     slug: 'goteborg',
-    title: 'Segelkurs i Göteborg och Bohuslän 2026 – guide',
+    title: 'Segelkurs i Göteborg och Bohuslän 2026: guide',
     h1: 'Segelkurs i Göteborg och Bohuslän',
     metaDescription: 'Hitta segelkurs i Göteborg och Bohuslän. Lär dig segla i Västerhavet och längs den bohuslänska klippkusten. Nybörjarkurser och avancerat.',
     excerpt: 'Att segla i Bohuslän är att segla i ett av Skandinaviens vackraste och mest utmanande vatten. Kurserna här formar riktiga seglare snabbare än lugna innerskärgårdar.',
@@ -137,23 +137,23 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
     readTime: '7 min',
     tags: ['Västerhavet', 'Bohuslän klippmiljö', 'Utmanande seglarvatten', 'Kustskepparintyg'],
     intro: [
-      'Göteborg och Bohuslän är den perfekta platsen att ta nästa steg i seglingen. Västerhavet är mer krävande än innerskärgårdar med starkare vindbyar och vågor som faktiskt "räknas" – det formar bättre seglare på kortare tid.',
+      'Göteborg och Bohuslän är den perfekta platsen att ta nästa steg i seglingen. Västerhavet är mer krävande än innerskärgårdar med starkare vindbyar och vågor som faktiskt "räknas", det formar bättre seglare på kortare tid.',
       'Göteborg har ett levande segelsällskapsliv. GKSS (Göteborgs Kungliga Segel Sällskap) i Långedrag och Marstrands Segelsällskap är bland de mest aktiva kursarrangörerna på västkusten. Med bil når du Bohuslänska kursanläggningar längs kusten norrut mot Smögen.',
-      'Kurssäsongen i Göteborg är längre än många tror – maj till september med bra väder. Sommarkurser med övernattning ombord längs Bohusläns kust är populärt och ger ett komprimerat lärande mitt i naturupplevelsen.',
+      'Kurssäsongen i Göteborg är längre än många tror, maj till september med bra väder. Sommarkurser med övernattning ombord längs Bohusläns kust är populärt och ger ett komprimerat lärande mitt i naturupplevelsen.',
     ],
     kurstyper: [
       {
-        name: 'Segelnybörjare – Göteborg',
-        length: '1–2 dagar',
+        name: 'Segelnybörjare: Göteborg',
+        length: '1 till 2 dagar',
         level: 'Nybörjare',
         certificate: 'Kursbevis',
         // KÄLLA: GKSS vuxenkurser 2026 — gkss.se/sv/seglarskola/vuxenkurser (avläst 2026-08-11)
-        price: '5 100–6 600 kr (weekend Långedrag 5 100, veckokurs 5 500, Marstrand med boende 5 600–6 600)',
+        price: '5 100 till 6 600 kr (weekend Långedrag 5 100, veckokurs 5 500, Marstrand med boende 5 600 till 6 600)',
         desc: 'Grundkurs i segling på Göteborgs skogsrika och klipprikt hav. Mindre grupper, erfarna instruktörer. Sätter fokus på manövrar i Västerhavet.',
       },
       {
         name: 'Kustskepparintyget Bohuslän',
-        length: '5–7 dagar',
+        length: '5 till 7 dagar',
         level: 'Medel',
         certificate: 'Kustskepparintyget (KA)',
         // KÄLLA: Safety & Navigationsgruppen, distanskurs — sngruppen.se/kurs/kustskepparintyg-pa-distans-online (avläst 2026-08-11)
@@ -164,7 +164,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
     faqs: [
       {
         q: 'Är det svårare att lära sig segla i Bohuslän jämfört med Stockholms skärgård?',
-        a: 'Ja. Västerhavet och Bohuslänsk kust är mer utmanande med starkare och mer variabla vindar. Nybörjare lär sig snabbare – men det kräver mer av instruktör och båt. Kom med rätt inställning: det är en intensivare men mer givande segling.',
+        a: 'Ja. Västerhavet och Bohuslänsk kust är mer utmanande med starkare och mer variabla vindar. Nybörjare lär sig snabbare, men det kräver mer av instruktör och båt. Kom med rätt inställning: det är en intensivare men mer givande segling.',
       },
       {
         q: 'Var i Göteborg hittar man segelkurser?',
@@ -175,18 +175,18 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
 
   {
     slug: 'nyborgare',
-    title: 'Segelkurs nybörjare 2026 – kom igång med segling',
-    h1: 'Segelkurs för nybörjare – lär dig segla från grunden',
+    title: 'Segelkurs nybörjare 2026: kom igång med segling',
+    h1: 'Segelkurs för nybörjare: lär dig segla från grunden',
     metaDescription: 'Segelkurs för nybörjare i Sverige. Allt du behöver veta om din första segelkurs: vad du lär dig, hur lång tid det tar och vad det kostar.',
-    excerpt: 'Du behöver inga förkunskaper för att börja segla. En dag räcker för att förstå grunderna – en helg räcker för att manövrera självständigt.',
+    excerpt: 'Du behöver inga förkunskaper för att börja segla. En dag räcker för att förstå grunderna, en helg räcker för att manövrera självständigt.',
     location: 'Sverige',
     emoji: '🎓',
     readTime: '7 min',
     tags: ['Noll förkunskaper', 'Från 1 dag', 'Familjevänligt', 'Hela Sverige'],
     intro: [
-      'Att lära sig segla är enklare än de flesta tror. Grunderna – hur vinden fungerar, hur man trimmar segel, hur man manövrerar i hamn – tar en dag att förstå och en helg att bli bekväm med. Det är inte raketvetenskap, det är intuitivt när man väl är ute på vattnet.',
+      'Att lära sig segla är enklare än de flesta tror. Grunderna, hur vinden fungerar, hur man trimmar segel, hur man manövrerar i hamn, tar en dag att förstå och en helg att bli bekväm med. Det är inte raketvetenskap, det är intuitivt när man väl är ute på vattnet.',
       'De flesta segelsällskap i Sverige välkomnar nybörjare med öppna armar. Kurserna är lågtröskelliga: du behöver inga egna kläder (låna av segelsällskapet), ingen utrustning och inga förkunskaper. Ta med dig nyfikenhet och skor med vit sula.',
-      'Välj en kurs som passar din ambitionsnivå. Vill du bara prova segling? Boka en introduktionskurs (1 dag). Vill du ta förarintyget och kunna hyra båt? Räkna med 2–3 helger. Vill du segla självständigt på längre turer? Kustskepparintyget tar 6–12 månader med rätt studietakt.',
+      'Välj en kurs som passar din ambitionsnivå. Vill du bara prova segling? Boka en introduktionskurs (1 dag). Vill du ta förarintyget och kunna hyra båt? Räkna med 2 till 3 helger. Vill du segla självständigt på längre turer? Kustskepparintyget tar 6 till 12 månader med rätt studietakt.',
     ],
     kurstyper: [
       {
@@ -194,21 +194,21 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '1 dag',
         level: 'Absolut nybörjare',
         certificate: 'Kursbevis',
-        price: 'Ofta gratis eller symbolisk avgift på klubbarnas prova-på-dagar — hör med din lokala klubb',
-        desc: 'Du sitter med på en segelbåt med instruktör och en liten grupp. Ingen teori, ingen press – du provar rodret och känner vinden. Perfekt för att avgöra om segling är rätt för dig.',
+        price: 'Ofta gratis eller symbolisk avgift på klubbarnas prova-på-dagar: hör med din lokala klubb',
+        desc: 'Du sitter med på en segelbåt med instruktör och en liten grupp. Ingen teori, ingen press. Du provar rodret och känner vinden. Perfekt för att avgöra om segling är rätt för dig.',
       },
       {
         name: 'Grön-kurs / Nybörjarkurs',
-        length: '2–3 dagar eller 1 helg',
+        length: '2 till 3 dagar eller 1 helg',
         level: 'Nybörjare',
         certificate: 'Grön flagg / Seglarbok',
         // KÄLLA: SSS helgkurs (stockholmssegelsallskap.se) och GKSS vuxenkurser (gkss.se), avlästa 2026-08-11
-        price: '4 400–6 600 kr hos SSS och GKSS',
+        price: '4 400 till 6 600 kr hos SSS och GKSS',
         desc: 'Systematisk genomgång av segling från grunden. Teori och praktik varvas. Du lär dig terminologi, manövrar, sjövägsregler och hur du tar dig in och ut ur hamn.',
       },
       {
         name: 'Förarintyget (SBF/SSRS)',
-        length: '2–3 helger',
+        length: '2 till 3 helger',
         level: 'Nybörjare till medel',
         certificate: 'Förarintyget',
         // KÄLLA: Safety & Navigationsgruppen — sngruppen.se/kurs/forarbevis-och-forarintyg-bat-stockholm (avläst 2026-08-11)
@@ -219,7 +219,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
     faqs: [
       {
         q: 'Hur gammal måste man vara för att gå segelkurs?',
-        a: 'Barn från 7–8 år kan börja i seglarskola (Optimistbåten). Vuxenkurser börjar normalt från 14–16 år. Ingen övre åldersgräns – många börjar segla i 50- och 60-årsåldern.',
+        a: 'Barn från 7 till 8 år kan börja i seglarskola (Optimistbåten). Vuxenkurser börjar normalt från 14 till 16 år. Ingen övre åldersgräns, många börjar segla i 50- och 60-årsåldern.',
       },
       {
         q: 'Vad behöver man ha med sig till en segelkurs?',
@@ -231,50 +231,50 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
       },
       {
         q: 'Hur lång tid tar det att kunna segla självständigt?',
-        a: 'Grunderna lär du dig på en dag. Att segla självständigt, kort tur i känt vatten: 1–2 helger. Förarintyget och att kunna hyra båt: 2–3 månader. Kustskepparintyget och självständig navigation: 6–18 månader beroende på studietakt.',
+        a: 'Grunderna lär du dig på en dag. Att segla självständigt, kort tur i känt vatten: 1 till 2 helger. Förarintyget och att kunna hyra båt: 2 till 3 månader. Kustskepparintyget och självständig navigation: 6 till 18 månader beroende på studietakt.',
       },
     ],
   },
 
   {
     slug: 'barn-ungdomar',
-    title: 'Segelkurs för barn och ungdomar 2026 – seglarskola',
-    h1: 'Segelkurs för barn och ungdomar – seglarskolan',
+    title: 'Segelkurs för barn och ungdomar 2026: seglarskola',
+    h1: 'Segelkurs för barn och ungdomar: seglarskolan',
     metaDescription: 'Segelkurs och seglarskola för barn och ungdomar i Sverige. Optimistbåten, Zoom8 och ungdomssegling. Hitta rätt kurs för ditt barn.',
-    excerpt: 'Barn som seglar lär sig samarbete, naturförståelse och självförtroende. Seglarskolan är en av de bästa sommaraktiviteterna för barn 7–15 år.',
+    excerpt: 'Barn som seglar lär sig samarbete, naturförståelse och självförtroende. Seglarskolan är en av de bästa sommaraktiviteterna för barn 7 till 15 år.',
     location: 'Sverige',
     emoji: '⛵',
     readTime: '6 min',
-    tags: ['7–15 år', 'Optimistbåten', 'Sommarseglarskola', 'Hela Sverige'],
+    tags: ['7 till 15 år', 'Optimistbåten', 'Sommarseglarskola', 'Hela Sverige'],
     intro: [
-      'Seglarskolan är en av Sveriges mest klassiska sommaraktiviteter för barn. Sedan 1960-talet har segelsällskap runt om i landet erbjudit veckolånga kurser där barn 7–15 år lär sig segla i Optimistbåten – en liten, säker enbarnsbåt designad för just denna åldersgrupp.',
+      'Seglarskolan är en av Sveriges mest klassiska sommaraktiviteter för barn. Sedan 1960-talet har segelsällskap runt om i landet erbjudit veckolånga kurser där barn 7 till 15 år lär sig segla i Optimistbåten: en liten, säker enbarnsbåt designad för just denna åldersgrupp.',
       'Utöver segling lär sig barnen samarbete, naturförståelse och problemlösning. Att sköta en båt ensam, läsa vinden och navigera till en brygga ger ett genuint självförtroende som stannar kvar.',
-      'De flesta segelsällskap i Sverige erbjuder seglarskola under juni, juli och augusti. Kurser är normalt 5 dagar (mån–fre) med undervisning 9–16. Äldre ungdomar (13–17 år) kan gå vidare till tävlingssegling eller kustseglarkurs.',
+      'De flesta segelsällskap i Sverige erbjuder seglarskola under juni, juli och augusti. Kurser är normalt 5 dagar (mån till fre) med undervisning 9 till 16. Äldre ungdomar (13 till 17 år) kan gå vidare till tävlingssegling eller kustseglarkurs.',
     ],
     kurstyper: [
       {
-        name: 'Seglarskolan Optimistbåt (7–12 år)',
-        length: '5 dagar (mån–fre)',
+        name: 'Seglarskolan Optimistbåt (7 till 12 år)',
+        length: '5 dagar (mån till fre)',
         level: 'Nybörjare',
         certificate: 'Seglarbok / Grön flagg',
         // KÄLLA: KSSS seglarskola 2026, 4–5-dagarsläger 8–12 år — ksss.se/lager/seglarskola (avläst 2026-08-11)
-        price: '2 900–3 300 kr per lägervecka hos KSSS',
-        desc: 'Barnet lär sig segla ensam i Optimistbåten under instruktörer i medseglingsbåt. Säker, pedagogisk och väldigt rolig. Normalt 6–10 barn per grupp.',
+        price: '2 900 till 3 300 kr per lägervecka hos KSSS',
+        desc: 'Barnet lär sig segla ensam i Optimistbåten under instruktörer i medseglingsbåt. Säker, pedagogisk och väldigt rolig. Normalt 6 till 10 barn per grupp.',
       },
       {
-        name: 'Juniortävling och Zoom8 (11–15 år)',
+        name: 'Juniortävling och Zoom8 (11 till 15 år)',
         length: 'Veckolång kurs eller säsongsprogram',
-        level: 'Medel – viss segling',
+        level: 'Medel: viss segling',
         certificate: 'Gul flagg / Seniorflagg',
-        price: 'Terminsavgift varierar per klubb — se klubbens seglarsektion',
+        price: 'Terminsavgift varierar per klubb: se klubbens seglarsektion',
         desc: 'Barn som kan grunderna avancerar till tävlingsklasser som Zoom8 och 29er. Fokus på kappsegling, taktik och träning i grupp. Inträdesbiljett till ungdomssegling på riksnivå.',
       },
       {
-        name: 'Kustseglarkurs för ungdomar (15–18 år)',
-        length: '5–7 dagar ombord',
+        name: 'Kustseglarkurs för ungdomar (15 till 18 år)',
+        length: '5 till 7 dagar ombord',
         level: 'Medel till avancerad',
         certificate: 'Kustseglarcertifikat',
-        price: 'Varierar per klubb och kurslängd — se klubbens seglarsektion',
+        price: 'Varierar per klubb och kurslängd: se klubbens seglarsektion',
         desc: 'Ungdomar seglar i sällskap med instruktör längs kusten, övernattning ombord. Lär sig navigation, vakt och oceanseglingens grunder. Steg mot förarintyg och KA.',
       },
     ],
@@ -289,12 +289,12 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
       },
       {
         q: 'Var hittar man seglarskola för barn i Sverige?',
-        a: 'Svenska Seglarförbundets hemsida har en sökfunktion för alla lokala segelsällskap med seglarskola. Över 400 segelsällskap erbjuder seglarskola på somrarna. Boka tidigt – populära seglarskolor är fullbokade redan i mars.',
+        a: 'Svenska Seglarförbundets hemsida har en sökfunktion för alla lokala segelsällskap med seglarskola. Över 400 segelsällskap erbjuder seglarskola på somrarna. Boka tidigt, populära seglarskolor är fullbokade redan i mars.',
       },
       {
         q: 'Vad kostar seglarskolan?',
         // KÄLLA: KSSS seglarskola 2026 — ksss.se/lager/seglarskola (avläst 2026-08-11)
-        a: 'KSSS seglarskola för 8–12-åringar kostar 2 900–3 300 kr för en lägervecka på 4–5 dagar (2026). Priser varierar mellan klubbar. Utrustning som flytväst lånas ofta av sällskapet. Fråga om familjerabatt om flera barn går kursen.',
+        a: 'KSSS seglarskola för 8 till 12-åringar kostar 2 900 till 3 300 kr för en lägervecka på 4 till 5 dagar (2026). Priser varierar mellan klubbar. Utrustning som flytväst lånas ofta av sällskapet. Fråga om familjerabatt om flera barn går kursen.',
       },
     ],
   },

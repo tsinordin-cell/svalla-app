@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Barnvänliga öar i Stockholms skärgård — Guide för familjer',
+ title: 'Barnvänliga öar i Stockholms skärgård: Guide för familjer',
  description: 'De bästa barnvänliga öarna i Stockholms skärgård. Sandstränder, lugnt vatten, restauranger för familjer och enkla färjeförbindelser. Grinda, Finnhamn, Möja och fler.',
  keywords: [
  'barnvänliga öar',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
  'grunt vatten öar',
  ],
  openGraph: {
- title: 'Barnvänliga öar i Stockholms skärgård — Guide för familjer',
+ title: 'Barnvänliga öar i Stockholms skärgård: Guide för familjer',
  description: 'De bästa barnvänliga öarna i Stockholms skärgård. Sandstränder, lugnt vatten, restauranger för familjer och enkla färjeförbindelser.',
  url: 'https://svalla.se/barnvanliga-oar',
  },
@@ -49,7 +49,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'ship',
     title: 'Fjäderholmarna',
-    description: 'Närmast Stockholm — cirka 25 min från Strömkajen/Slussen. Flera restauranger och hantverksbutiker. Bra första skärgårdstur med små barn.',
+    description: 'Närmast Stockholm, cirka 25 min från Strömkajen/Slussen. Flera restauranger och hantverksbutiker. Bra första skärgårdstur med små barn.',
     href: '/o/fjaderholmarna',
     meta: 'Närmast Stockholm',
   },
@@ -63,7 +63,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'sailboat',
     title: 'Sandhamn',
-    description: 'Legendär seglardestination med flera restauranger och badmöjligheter. Längre resa — passar äldre barn och familjer som gillar liv och rörelse.',
+    description: 'Legendär seglardestination med flera restauranger och badmöjligheter. Längre resa, passar äldre barn och familjer som gillar liv och rörelse.',
     href: '/o/sandhamn',
     meta: 'Klassisk destination',
   },
@@ -81,13 +81,13 @@ export default function BarnvanligaOarPage() {
  },
  {
  '@type': 'Question',
- name: 'Vilken ö passar yngre barn (1–5 år) i skärgården?',
- acceptedAnswer: { '@type': 'Answer', text: 'Fjäderholmarna är bra start för små barn — cirka 25 min från Strömkajen/Slussen. Vill du något längre bort är Grinda klassikern: cirka 1h 45 min med Waxholmsbåten, lugnt vatten och barnvänligt värdshus.' },
+ name: 'Vilken ö passar yngre barn (1 till 5 år) i skärgården?',
+ acceptedAnswer: { '@type': 'Answer', text: 'Fjäderholmarna är bra start för små barn, cirka 25 min från Strömkajen/Slussen. Vill du något längre bort är Grinda klassikern: cirka 1h 45 min med Waxholmsbåten, lugnt vatten och barnvänligt värdshus.' },
  },
  {
  '@type': 'Question',
  name: 'Hur reser man med barn till skärgården?',
- acceptedAnswer: { '@type': 'Answer', text: 'Från Stockholm går Waxholmsbåtarna från Strömkajen direkt till Grinda, Möja, Sandhamn och fler öar. Restider: ~25 min till Fjäderholmarna, 1h 45 min till Grinda, 2,5–3 tim till Sandhamn. Åk när barnen är pigga.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Från Stockholm går Waxholmsbåtarna från Strömkajen direkt till Grinda, Möja, Sandhamn och fler öar. Restider: ~25 min till Fjäderholmarna, 1h 45 min till Grinda, 2,5 till 3 tim till Sandhamn. Åk när barnen är pigga.' },
  },
  {
  '@type': 'Question',
@@ -112,7 +112,7 @@ export default function BarnvanligaOarPage() {
  heroGradient={['#1a5c3a', '#2d7d5a']}
  eyebrow="Barnvänliga öar"
  title="Skärgård för hela familjen"
- tagline="Öar med sandstränder, grunt vatten och enkla färjeförbindelser — perfekt med barn."
+ tagline="Öar med sandstränder, grunt vatten och enkla färjeförbindelser, perfekt med barn."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -123,13 +123,13 @@ export default function BarnvanligaOarPage() {
  intro={
  <>
  <p>
- Stockholms skärgård är ett drömäventyr för familjer med barn. Men vilka öar är egentligen bäst lämpade för mindre barn, och hur planerar man en familjeresa utan stress? I denna guide presenterar vi de <strong>mest barnvänliga öarna</strong> i Stockholms skärgård — ställen där grunt vatten, sandstränder och familjevänliga restauranger gör det enkelt att njuta tillsammans.
+ Stockholms skärgård är ett drömäventyr för familjer med barn. Men vilka öar är egentligen bäst lämpade för mindre barn, och hur planerar man en familjeresa utan stress? I denna guide presenterar vi de <strong>mest barnvänliga öarna</strong> i Stockholms skärgård: ställen där grunt vatten, sandstränder och familjevänliga restauranger gör det enkelt att njuta tillsammans.
  </p>
  <p>
- Det viktigaste när man väljer ö för familjer är <strong>grunt vatten för baning</strong>, <strong>sandstränder för leksaker och lekar</strong>, och <strong>nära färjeförbindelser</strong> för att undvika långa båtturer med rastlösa barn. Många öar erbjuder också restauranger där barnmenyer finns — ett stort plus när energinivåerna börjar sjunka. Säsongen för familjäventyr löper från maj till september, med juli som högsäsong.
+ Det viktigaste när man väljer ö för familjer är <strong>grunt vatten för baning</strong>, <strong>sandstränder för leksaker och lekar</strong>, och <strong>nära färjeförbindelser</strong> för att undvika långa båtturer med rastlösa barn. Många öar erbjuder också restauranger där barnmenyer finns, ett stort plus när energinivåerna börjar sjunka. Säsongen för familjäventyr löper från maj till september, med juli som högsäsong.
  </p>
  <p>
- Oavsett om ditt barn är två eller tolv år gammal, Stockholms skärgård erbjuder något speciellt för alla. Några öar passar för första gången på sjön — som Fjäderholmarna bara 15 minuter från Slussen. Andra, som Möja och Finnhamn, passar perfekt för äldre barn som vill kombinera utforskning med äventyr. Och öar som Grinda och Sandhamn är klassiker som hela familjen älskar.
+ Oavsett om ditt barn är två eller tolv år gammal, Stockholms skärgård erbjuder något speciellt för alla. Några öar passar för första gången på sjön, som Fjäderholmarna bara 15 minuter från Slussen. Andra, som Möja och Finnhamn, passar perfekt för äldre barn som vill kombinera utforskning med äventyr. Och öar som Grinda och Sandhamn är klassiker som hela familjen älskar.
  </p>
  </>
  }
@@ -146,28 +146,28 @@ export default function BarnvanligaOarPage() {
  Vilka öar har sandstrand?
  </h3>
  <p>
- <strong>Grinda</strong> har en av skärgårdens finaste sandstränder — perfekt för att bygga slott och leka. <strong>Fjäderholmarna</strong> ligger närmare och har klipp- och småbarnsbad. <strong>Möja</strong> har flera mindre badvikar längs kusten, och <strong>Utö</strong> har den fina sandstranden Stora Sand. <strong>Sandhamn</strong> har också flera fina strandbad om man tar sig hela vägen ut.
+ <strong>Grinda</strong> har en av skärgårdens finaste sandstränder, perfekt för att bygga slott och leka. <strong>Fjäderholmarna</strong> ligger närmare och har klipp- och småbarnsbad. <strong>Möja</strong> har flera mindre badvikar längs kusten, och <strong>Utö</strong> har den fina sandstranden Stora Sand. <strong>Sandhamn</strong> har också flera fina strandbad om man tar sig hela vägen ut.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Vilken ö passar yngre barn (1–5 år)?
+ Vilken ö passar yngre barn (1 till 5 år)?
  </h3>
  <p>
- <strong>Fjäderholmarna</strong> är bra start för små barn — cirka 25 minuter från Strömkajen/Slussen, restauranger och hantverk samlat på liten yta. Vill du längre ut är <strong>Grinda</strong> klassikern: cirka 1h 45 min med Waxholmsbåten, lugnt vatten och barnvänligt värdshus. <strong>Finnhamn</strong> är också barnvänligt med STF-vandrarhem och vacker natur.
+ <strong>Fjäderholmarna</strong> är bra start för små barn: cirka 25 minuter från Strömkajen/Slussen, restauranger och hantverk samlat på liten yta. Vill du längre ut är <strong>Grinda</strong> klassikern: cirka 1h 45 min med Waxholmsbåten, lugnt vatten och barnvänligt värdshus. <strong>Finnhamn</strong> är också barnvänligt med STF-vandrarhem och vacker natur.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Hur reser man med barn till skärgården?
  </h3>
  <p>
- Från Stockholm går Waxholmsbåtarna från Strömkajen direkt till Grinda, Möja, Sandhamn med flera öar. Restider: cirka 25 min till Fjäderholmarna, drygt 1 tim till Vaxholm, 1h 45 min till Grinda och 2,5–3 tim till Sandhamn (snabbåt från Stavsnäs är betydligt snabbare). Många familjer hyr också mindre båt för flexibilitet. Planera resan så att ni åker när barnen är pigga.
+ Från Stockholm går Waxholmsbåtarna från Strömkajen direkt till Grinda, Möja, Sandhamn med flera öar. Restider: cirka 25 min till Fjäderholmarna, drygt 1 tim till Vaxholm, 1h 45 min till Grinda och 2,5 till 3 tim till Sandhamn (snabbåt från Stavsnäs är betydligt snabbare). Många familjer hyr också mindre båt för flexibilitet. Planera resan så att ni åker när barnen är pigga.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Vilka öar har restauranger för barnfamiljer?
  </h3>
  <p>
- <strong>Grinda Wärdshus</strong> är legendariskt för familjer — barnen älskar miljön och menyn erbjuder klassiska familjerätter. <strong>Fjäderholmarna</strong> har flera restauranger alla med barnmeny. <strong>Sandhamns Värdshus</strong> är en klassiker om du orkar längre båttur. <strong>Utö Värdshus</strong> erbjuder mysig middag med en helt annan känsla än inre skärgården. De flesta större öar har någon form av kiosk eller enkel matservering under sommaren.
+ <strong>Grinda Wärdshus</strong> är legendariskt för familjer, barnen älskar miljön och menyn erbjuder klassiska familjerätter. <strong>Fjäderholmarna</strong> har flera restauranger alla med barnmeny. <strong>Sandhamns Värdshus</strong> är en klassiker om du orkar längre båttur. <strong>Utö Värdshus</strong> erbjuder mysig middag med en helt annan känsla än inre skärgården. De flesta större öar har någon form av kiosk eller enkel matservering under sommaren.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '28px 0 12px' }}>
@@ -178,7 +178,7 @@ export default function BarnvanligaOarPage() {
  Packa smart
  </h3>
  <p>
- Solskydd, bad- och omklädningskläder, snacks och rikligt med vatten är basics. Glöm inte flytväst för barn — krav på passagerarbåt och alltid sunt förnuft. Ta gärna med ett par badskor eller skor som tål vatten för klippor och stenar.
+ Solskydd, bad- och omklädningskläder, snacks och rikligt med vatten är basics. Glöm inte flytväst för barn, krav på passagerarbåt och alltid sunt förnuft. Ta gärna med ett par badskor eller skor som tål vatten för klippor och stenar.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -192,7 +192,7 @@ export default function BarnvanligaOarPage() {
  Välj rätt tid
  </h3>
  <p>
- Juni är ofta härligt för familjer — vattnet börjar bli badbart men turisttrycket är lägre. Juli är högsäsong — vackert väder men trångt. <strong>Augusti</strong> är ett hett tips: vattnet är som varmast, en del barnfamiljer har börjat förbereda skolstart och det blir lugnare på öarna.
+ Juni är ofta härligt för familjer, vattnet börjar bli badbart men turisttrycket är lägre. Juli är högsäsong, vackert väder men trångt. <strong>Augusti</strong> är ett hett tips: vattnet är som varmast, en del barnfamiljer har börjat förbereda skolstart och det blir lugnare på öarna.
  </p>
  </>
  }

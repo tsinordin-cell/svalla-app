@@ -43,7 +43,7 @@ export default function Prisobservation({
         </div>
         <p style={{ margin: 0 }}>
           Priserna kommer från annonser hos {kallor}, avlästa {hamtad}. Samma
-          båtstorlek kan kosta flera gånger mer hos en förmedlare än en annan —
+          båtstorlek kan kosta flera gånger mer hos en förmedlare än en annan
           jämför alltid innan du bokar. Bränsle tillkommer nästan alltid.
         </p>
       </div>

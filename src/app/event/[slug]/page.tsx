@@ -204,7 +204,7 @@ export default function EventDetailPage() {
               Deltagare ({ev.going_count ?? 0})
             </h3>
             {attendees.filter(a => a.status === 'going').length === 0 && (
-              <p style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic' }}>Ingen anmäld ännu — bli först.</p>
+              <p style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic' }}>Ingen anmäld ännu, bli först.</p>
             )}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {attendees.filter(a => a.status === 'going').map(a => (

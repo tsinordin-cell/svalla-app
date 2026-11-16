@@ -50,7 +50,7 @@ function trip(overrides: Partial<InsightTrip> = {}): InsightTrip {
 
 // ── Basic aggregates ──────────────────────────────────────────────────────────
 
-describe('computeInsights — basic aggregates', () => {
+describe('computeInsights: basic aggregates', () => {
   it('returns zero-state for empty trip list', async () => {
     const r = await computeInsights(mockSupa([]), 'u1')
     expect(r.total_trips).toBe(0)
@@ -98,7 +98,7 @@ describe('computeInsights — basic aggregates', () => {
 
 // ── top_nm_trip ───────────────────────────────────────────────────────────────
 
-describe('computeInsights — top_nm_trip', () => {
+describe('computeInsights: top_nm_trip', () => {
   it('returns the trip with the highest distance', async () => {
     const big = trip({ id: 'big', distance: 50 })
     const r = await computeInsights(mockSupa([trip({ distance: 10 }), big, trip({ distance: 5 })]), 'u1')
@@ -113,7 +113,7 @@ describe('computeInsights — top_nm_trip', () => {
 
 // ── boat_breakdown ────────────────────────────────────────────────────────────
 
-describe('computeInsights — boat_breakdown', () => {
+describe('computeInsights: boat_breakdown', () => {
   it('counts boat types and calculates share', async () => {
     const trips = [
       trip({ boat_type: 'Segelbåt' }),
@@ -147,7 +147,7 @@ describe('computeInsights — boat_breakdown', () => {
 
 // ── top_places ────────────────────────────────────────────────────────────────
 
-describe('computeInsights — top_places', () => {
+describe('computeInsights: top_places', () => {
   it('ranks places by visit count', async () => {
     const trips = [
       trip({ location_name: 'Sandhamn' }),
@@ -174,7 +174,7 @@ describe('computeInsights — top_places', () => {
 
 // ── most_active_month ─────────────────────────────────────────────────────────
 
-describe('computeInsights — most_active_month', () => {
+describe('computeInsights: most_active_month', () => {
   it('identifies the month with most trips', async () => {
     const trips = [
       trip({ created_at: '2024-07-01T10:00:00Z' }),
@@ -194,7 +194,7 @@ describe('computeInsights — most_active_month', () => {
 
 // ── active_days ───────────────────────────────────────────────────────────────
 
-describe('computeInsights — active_days', () => {
+describe('computeInsights: active_days', () => {
   it('counts unique sailing days', async () => {
     const trips = [
       trip({ created_at: '2024-07-01T08:00:00Z' }),
@@ -208,7 +208,7 @@ describe('computeInsights — active_days', () => {
 
 // ── sunrise / sunset trips ────────────────────────────────────────────────────
 
-describe('computeInsights — sunrise_trips and sunset_trips (UTC)', () => {
+describe('computeInsights: sunrise_trips and sunset_trips (UTC)', () => {
   it('counts sunrise trips (started_at UTC hour < 7)', async () => {
     const trips = [
       trip({ started_at: '2024-07-01T05:30:00Z' }),  // 05:30 UTC → sunrise
@@ -232,7 +232,7 @@ describe('computeInsights — sunrise_trips and sunset_trips (UTC)', () => {
 
 // ── longest_streak_weeks ──────────────────────────────────────────────────────
 
-describe('computeInsights — longest_streak_weeks', () => {
+describe('computeInsights: longest_streak_weeks', () => {
   it('returns 0 for empty trips', async () => {
     const r = await computeInsights(mockSupa([]), 'u1')
     expect(r.longest_streak_weeks).toBe(0)
@@ -290,7 +290,7 @@ describe('computeInsights — longest_streak_weeks', () => {
 
 // ── unique_boat_types ─────────────────────────────────────────────────────────
 
-describe('computeInsights — unique_boat_types', () => {
+describe('computeInsights: unique_boat_types', () => {
   it('counts distinct non-null boat types', async () => {
     const trips = [
       trip({ boat_type: 'Segelbåt' }),
@@ -305,7 +305,7 @@ describe('computeInsights — unique_boat_types', () => {
 
 // ── scope: year ───────────────────────────────────────────────────────────────
 
-describe('computeInsights — scope year', () => {
+describe('computeInsights: scope year', () => {
   it('sets scope and year on the result', async () => {
     const r = await computeInsights(mockSupa([trip()]), 'u1', 'year', 2024)
     expect(r.scope).toBe('year')

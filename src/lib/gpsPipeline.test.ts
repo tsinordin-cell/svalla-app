@@ -13,13 +13,13 @@ import { replayTrack, parseFixture } from './gpsReplay'
 const T0 = Date.parse('2026-09-10T19:07:20.286Z')
 const fixture = parseFixture(readFileSync(__dirname + '/__fixtures__/trip-15b47ab2.txt', 'utf8'), T0)
 
-describe('GpsPipeline — Toms fälttest 2026-09-10 som facit', () => {
+describe('GpsPipeline: Toms fälttest 2026-09-10 som facit', () => {
   it('fixturen är komplett: 887 fixar, 17,6 minuter', () => {
     expect(fixture.length).toBe(887)
     expect((fixture.at(-1)!.ts - fixture[0]!.ts) / 1000).toBeCloseTo(1054.1, 0)
   })
 
-  it('uppspelning ger exakt det som sparades: 15,03 NM längs spåret (nu 14,81 som ∫Doppler), 49,1 kn snitt; topp 75,6 (10 s) där 76,7 var en ensam punkt — nu 75,8/77,7 med Doppler', () => {
+  it('uppspelning ger exakt det som sparades: 15,03 NM längs spåret (nu 14,81 som ∫Doppler), 49,1 kn snitt; topp 75,6 (10 s) där 76,7 var en ensam punkt: nu 75,8/77,7 med Doppler', () => {
     const res = replayTrack(fixture)
     expect(res.points.length).toBe(883)
     expect(res.rejectedAccuracy).toBe(0)
@@ -79,13 +79,13 @@ describe('GpsPipeline — Toms fälttest 2026-09-10 som facit', () => {
   })
 })
 
-describe('fart vid stopp — Doppler i stället för filterfart (beslut 2026-09-11)', () => {
+describe('fart vid stopp: Doppler i stället för filterfart (beslut 2026-09-11)', () => {
   const fixture = parseFixture(readFileSync(__dirname + '/__fixtures__/trip-06c13078.txt', 'utf8'), Date.parse('2026-09-11T14:58:19.643Z'))
   const points = replayTrack(fixture).points
   const t0 = Date.parse(points[0]!.recordedAt)
   const at = (s: number) => points.find(p => Math.round((Date.parse(p.recordedAt) - t0) / 1000) === s)!
 
-  it('hårt stopp 1 177–1 202 s: visad fart följer Doppler, inte 15,6 kn när bilen står stilla', () => {
+  it('hårt stopp 1 177 till 1 202 s: visad fart följer Doppler, inte 15,6 kn när bilen står stilla', () => {
     // Uppmätt med filterfart: 15,6 kn vid 1 182 s (Doppler 0), under 1 kn först
     // vid 1 187 s, sedan 1,5 kn i 4 s stillastående. Medianen (3 sampel) får
     // släpa högst 1 s.
@@ -109,7 +109,7 @@ describe('fart vid stopp — Doppler i stället för filterfart (beslut 2026-09-
   })
 })
 
-describe('Doppler betros först när den levt — telefon som alltid säger 0 kör som förut', () => {
+describe('Doppler betros först när den levt: telefon som alltid säger 0 kör som förut', () => {
   const T0 = Date.parse('2026-09-11T10:00:00.000Z')
   const mPerS = 5 * 0.514444   // 5 kn norrut
   const fix = (i: number, doppler: number | null): RawFix => ({ lat: 59.3 + (i * mPerS) / 111_320, lng: 18, accuracyM: 5, ts: T0 + i * 1000, deviceSpeedKn: doppler, heading: 0 })

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Öland — Solön vid Östersjön',
+  title: 'Öland: Solön vid Östersjön',
   description: 'Guide till Öland: Borgholm slottsruin, Alvaret, Trollskogen, Långe Jan och Ölandsbron. Utforska Solön med bil, cykel och kollektivt.',
   keywords: [
     'öland guide',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     'öland äventyr',
   ],
   openGraph: {
-    title: 'Öland — Solön vid Östersjön',
+    title: 'Öland: Solön vid Östersjön',
     description: 'Utforska Ölands Alvaret, Borgholm, Trollskogen och Långe Jan med Svalla.',
     url: 'https://svalla.se/oland',
   },
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
   {
     icon: '🏰',
-    title: 'Borgholm — öns hjärta',
-    description: 'Borgholms slottsruin dominerar stadens silhuett. Botaniska trädgården Solliden, marknaden och krogen — allt på ett ställe.',
+    title: 'Borgholm: öns hjärta',
+    description: 'Borgholms slottsruin dominerar stadens silhuett. Botaniska trädgården Solliden, marknaden och krogen, allt på ett ställe.',
     href: '/oland/aventyr',
     meta: 'Populärt',
   },
   {
     icon: '🌿',
-    title: 'Alvaret — UNESCO-världsarv',
+    title: 'Alvaret: UNESCO-världsarv',
     description: 'Det stora alvaret är ett av Europas mest unika landskap. Kalkstenshed, ovanlig flora och ett stämningsfullt ljus som är svårt att beskriva.',
     href: '/oland/aventyr',
   },
@@ -58,7 +58,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🚲',
     title: 'Cykla längs Öland',
-    description: 'Öland är perfekt för cykling — platt landskap, cykelvägar längs hela ön och naturhamnar att rasta vid längs vägen.',
+    description: 'Öland är perfekt för cykling: platt landskap, cykelvägar längs hela ön och naturhamnar att rasta vid längs vägen.',
     href: '/oland/aventyr',
   },
   {
@@ -77,22 +77,22 @@ export default function OlandPage() {
       {
         '@type': 'Question',
         name: 'Hur tar man sig till Öland?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Öland nås enklast via Ölandsbron från Kalmar — en av Europas längsta broar på 6 km. Med bil från Stockholm tar det ca 4 timmar. Kalmar nås med tåg från Stockholm (ca 3,5 h), och därifrån går buss över bron till Borgholm och vidare söderut. Under sommaren trafikeras ön av fler lokalbussar.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Öland nås enklast via Ölandsbron från Kalmar, en av Europas längsta broar på 6 km. Med bil från Stockholm tar det ca 4 timmar. Kalmar nås med tåg från Stockholm (ca 3,5 h), och därifrån går buss över bron till Borgholm och vidare söderut. Under sommaren trafikeras ön av fler lokalbussar.' },
       },
       {
         '@type': 'Question',
         name: 'Vad är Alvaret på Öland?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Alvaret är en av Europas största kalkstenshedar och ett UNESCO-världsarv sedan 2000. Det är ett öppet, vindpinat landskap med tunn jord direkt på kalkstensberget — ett unikt ekosystem med ovanliga växter och djur. Somliga jämför det med afrikansk savann. Bäst besökt på försommaren när blommorna slår ut.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Alvaret är en av Europas största kalkstenshedar och ett UNESCO-världsarv sedan 2000. Det är ett öppet, vindpinat landskap med tunn jord direkt på kalkstensberget, ett unikt ekosystem med ovanliga växter och djur. Somliga jämför det med afrikansk savann. Bäst besökt på försommaren när blommorna slår ut.' },
       },
       {
         '@type': 'Question',
         name: 'När är bästa tid att besöka Öland?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Juni är Ölands bästa månad — Alvaret blommar, turisttrycket är ännu hanterbart och dagarna långa. Juli är högsäsong med sommarmarknad i Borgholm och fullt liv men också köer. Maj och september erbjuder ro, billigare priser och ett annat Öland — mer vindpinat och avsides. Undvik sista veckan i juli om du vill slippa trängsel.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Juni är Ölands bästa månad: Alvaret blommar, turisttrycket är ännu hanterbart och dagarna långa. Juli är högsäsong med sommarmarknad i Borgholm och fullt liv men också köer. Maj och september erbjuder ro, billigare priser och ett annat Öland, mer vindpinat och avsides. Undvik sista veckan i juli om du vill slippa trängsel.' },
       },
       {
         '@type': 'Question',
         name: 'Vad är Trollskogen på Öland?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Trollskogen är ett naturreservat i norra Öland med urgamla, knotiga tallar formade av havsvindar under hundratals år. Träden har en surrealistisk, sagolikt vriden form — därav namnet. Reservatet är också känt för sina strandängar och fågellivet. Ingång finns nära byn Byxelkrok.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Trollskogen är ett naturreservat i norra Öland med urgamla, knotiga tallar formade av havsvindar under hundratals år. Träden har en surrealistisk, sagolikt vriden form, därav namnet. Reservatet är också känt för sina strandängar och fågellivet. Ingång finns nära byn Byxelkrok.' },
       },
     ],
   }
@@ -112,7 +112,7 @@ export default function OlandPage() {
         heroGradient={['#6b3a1a', '#8b5524']}
         eyebrow="Öland"
         title="Solön vid Östersjön"
-        tagline="Alvaret, Borgholms slottsruin, Trollskogen och Långe Jan — Öland är ett landskap till sig självt. Utforska ön med Svalla."
+        tagline="Alvaret, Borgholms slottsruin, Trollskogen och Långe Jan, Öland är ett landskap till sig självt. Utforska ön med Svalla."
         heroIcon={
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <circle cx="12" cy="12" r="5" />
@@ -129,13 +129,13 @@ export default function OlandPage() {
         intro={
           <>
             <p>
-              Öland är annorlunda. <strong>En lång, smal ö</strong> vid Östersjökusten med ett landskap som ingenstans ser ut som i resten av Sverige — kalkstensheden Alvaret sträcker sig mil efter mil, Trollskogen kryper längs nordkusten och Borgholms slottsruin reser sig mot himlen som en vittring av ett mäktigt förflutet.
+              Öland är annorlunda. <strong>En lång, smal ö</strong> vid Östersjökusten med ett landskap som ingenstans ser ut som i resten av Sverige: kalkstensheden Alvaret sträcker sig mil efter mil, Trollskogen kryper längs nordkusten och Borgholms slottsruin reser sig mot himlen som en vittring av ett mäktigt förflutet.
             </p>
             <p>
-              Ölandsbron binder samman ön med fastlandet — 6 kilometer lång, en av Europas längsta. Men känslan av att vara på en ö finns kvar. Kalmarsund glittrar till väster, Östersjön öppnar sig i öster, och vinden blåser nästan alltid. Det är ett landskap som kräver tid — och belönar den som tar sig tid.
+              Ölandsbron binder samman ön med fastlandet: 6 kilometer lång, en av Europas längsta. Men känslan av att vara på en ö finns kvar. Kalmarsund glittrar till väster, Östersjön öppnar sig i öster, och vinden blåser nästan alltid. Det är ett landskap som kräver tid, och belönar den som tar sig tid.
             </p>
             <p>
-              Svalla hjälper dig hitta de bästa platserna på ön, planera dina utflykter och utforska Öland i din egen takt — om du reser med bil, cykel eller buss spelar ingen roll. Kartan visar vägen, och äventyren väntar.
+              Svalla hjälper dig hitta de bästa platserna på ön, planera dina utflykter och utforska Öland i din egen takt: om du reser med bil, cykel eller buss spelar ingen roll. Kartan visar vägen, och äventyren väntar.
             </p>
           </>
         }
@@ -171,7 +171,7 @@ export default function OlandPage() {
                 <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
                   <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Utforska mer</div>
                   <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 3, fontFamily: "'Playfair Display', Georgia, serif" }}>Äventyr på Öland</div>
-                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.72)' }}>10 utvalda rundor – bil, cykel och kollektivt</div>
+                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.72)' }}>10 utvalda rundor: bil, cykel och kollektivt</div>
                 </div>
                 <div style={{ width: 34, height: 34, flexShrink: 0, borderRadius: 10, background: 'rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -183,43 +183,43 @@ export default function OlandPage() {
               Ta dig till Öland
             </h2>
             <p>
-              Öland nås enklast med bil via <strong>Ölandsbron</strong> från Kalmar — 6 kilometer lång, och en upplevelse i sig. Från Stockholm är det drygt 4 timmar söderut på E4:an och sedan vidare mot Kalmar. Med tåg tar det ungefär 3,5 timmar till Kalmar, och därifrån går buss över bron.
+              Öland nås enklast med bil via <strong>Ölandsbron</strong> från Kalmar: 6 kilometer lång, och en upplevelse i sig. Från Stockholm är det drygt 4 timmar söderut på E4:an och sedan vidare mot Kalmar. Med tåg tar det ungefär 3,5 timmar till Kalmar, och därifrån går buss över bron.
             </p>
             <p>
-              Under sommarmånaderna trafikeras ön av fler lokalbussar, men Öland lämpar sig bäst för bilresande eller cykling. Ön är 137 kilometer lång och bara 16 kilometer som bredast — en perfekt cykelö om du har tid att ta det i lugn takt. Längs hela öns västra sida löper en cykelväg med utsikt över Kalmarsund.
+              Under sommarmånaderna trafikeras ön av fler lokalbussar, men Öland lämpar sig bäst för bilresande eller cykling. Ön är 137 kilometer lång och bara 16 kilometer som bredast, en perfekt cykelö om du har tid att ta det i lugn takt. Längs hela öns västra sida löper en cykelväg med utsikt över Kalmarsund.
             </p>
             <p>
-              Busstrafiken på ön drivs av <strong>Kalmar Länstrafik (KLT)</strong> — linje 101 och 106 går över Ölandsbron från Kalmar till Borgholm. Sommartid körs även linjer söderut längs ön mot Mörbylånga och Ottenby (vid Långe Jan). Vill du slippa tågbyte kör <strong>Silverlinjen</strong> direktbussar Stockholm–Borgholm, restid ca 5 timmar, utan omstigning — boka på <a href="https://www.silverlinjen.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal, #1e5c82)' }}>silverlinjen.se</a>.
-            </p>
-
-            <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
-              Borgholm — öns huvudort
-            </h2>
-            <p>
-              Borgholm är Ölands centrum och sommarens hjärta. <strong>Borgholms slottsruin</strong> dominerar kullen ovanför staden — en av Sveriges mest imponerande ruiner, byggd på 1200-talet och förstörd i en brand 1806. I dag är ruinen öppen för besök och ger en fantastisk utsikt över Kalmarsund. I det intilliggande <strong>Solliden</strong> — kungafamiljens sommarresidens — finns en botanisk trädgård öppen för allmänheten under sommaren.
-            </p>
-            <p>
-              Borgholms sommarmarknad i juli är en av Sveriges mest besökta — tiotusentals människor samlas för marknadsstånd, konserter och folkliv. Det är högsäsongens höjdpunkt, och om du vill undvika trängsel är det också en bra anledning att besöka i juni eller augusti i stället. Stadens hamn och strandpromenad erbjuder restauranger och caféer med utsikt.
+              Busstrafiken på ön drivs av <strong>Kalmar Länstrafik (KLT)</strong>, linje 101 och 106 går över Ölandsbron från Kalmar till Borgholm. Sommartid körs även linjer söderut längs ön mot Mörbylånga och Ottenby (vid Långe Jan). Vill du slippa tågbyte kör <strong>Silverlinjen</strong> direktbussar Stockholm till Borgholm, restid ca 5 timmar, utan omstigning: boka på <a href="https://www.silverlinjen.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal, #1e5c82)' }}>silverlinjen.se</a>.
             </p>
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
-              Södra Öland — Alvaret och Långe Jan
+              Borgholm: öns huvudort
             </h2>
             <p>
-              Södra Öland och det stora Alvaret är UNESCO-världsarv sedan år 2000 — ett av Europas mest unika landskap. Kalkstensberget sticker upp i ytan, jorden är tunn och vindpinad, och en unik flora av orkidéer, backtimjan och sällsynta mossor klär marken. Det är svårt att beskriva Alvaret i ord — det måste upplevas. Ljuset är annorlunda här, himlen vidare.
+              Borgholm är Ölands centrum och sommarens hjärta. <strong>Borgholms slottsruin</strong> dominerar kullen ovanför staden: en av Sveriges mest imponerande ruiner, byggd på 1200-talet och förstörd i en brand 1806. I dag är ruinen öppen för besök och ger en fantastisk utsikt över Kalmarsund. I det intilliggande <strong>Solliden</strong>, kungafamiljens sommarresidens, finns en botanisk trädgård öppen för allmänheten under sommaren.
             </p>
             <p>
-              Vid öns sydspets reser sig <strong>Långe Jan</strong> — Sveriges högsta fyr på 42 meter. Fyren byggdes 1785 och är fortfarande aktiv. Du kan klättra upp och få en milsvid utsikt över Östersjön och Alvarets kustlinje. Området runt Långe Jan är ett naturreservat med rikt fågelliv — på höst- och vårflyttningen samlas tusentals fåglar längs kusten.
+              Borgholms sommarmarknad i juli är en av Sveriges mest besökta: tiotusentals människor samlas för marknadsstånd, konserter och folkliv. Det är högsäsongens höjdpunkt, och om du vill undvika trängsel är det också en bra anledning att besöka i juni eller augusti i stället. Stadens hamn och strandpromenad erbjuder restauranger och caféer med utsikt.
             </p>
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
-              Norra Öland — Trollskogen och Byxelkrok
+              Södra Öland: Alvaret och Långe Jan
             </h2>
             <p>
-              I norra Öland hittar du <strong>Trollskogen</strong>, ett naturreservat med urgamla tallar formade av havsvindar under sekler. Träden är knotiga, vridna och sagolika — det är lätt att förstå varifrån namnet kommer. Strandängarna och skogen skapar ett landskap som är fantastiskt att vandra i, och fågellivet är rikt. Reservatet nås från byn Byxelkrok vid nordspetsen.
+              Södra Öland och det stora Alvaret är UNESCO-världsarv sedan år 2000, ett av Europas mest unika landskap. Kalkstensberget sticker upp i ytan, jorden är tunn och vindpinad, och en unik flora av orkidéer, backtimjan och sällsynta mossor klär marken. Det är svårt att beskriva Alvaret i ord. Det måste upplevas. Ljuset är annorlunda här, himlen vidare.
             </p>
             <p>
-              <strong>Byxelkrok</strong> är Ölands nordligaste samhälle, litet och avsides med en småbåtshamn och några restauranger. Härifrån kan du fortsätta ut till <strong>Neptuni åkrar</strong>, ett område med unika kalkstensformationer som skapades för tusentals år sedan av havet. Det är Öland vid sitt mest avsides — och sitt mest storslagna.
+              Vid öns sydspets reser sig <strong>Långe Jan</strong>, Sveriges högsta fyr på 42 meter. Fyren byggdes 1785 och är fortfarande aktiv. Du kan klättra upp och få en milsvid utsikt över Östersjön och Alvarets kustlinje. Området runt Långe Jan är ett naturreservat med rikt fågelliv, på höst- och vårflyttningen samlas tusentals fåglar längs kusten.
+            </p>
+
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
+              Norra Öland: Trollskogen och Byxelkrok
+            </h2>
+            <p>
+              I norra Öland hittar du <strong>Trollskogen</strong>, ett naturreservat med urgamla tallar formade av havsvindar under sekler. Träden är knotiga, vridna och sagolika. Det är lätt att förstå varifrån namnet kommer. Strandängarna och skogen skapar ett landskap som är fantastiskt att vandra i, och fågellivet är rikt. Reservatet nås från byn Byxelkrok vid nordspetsen.
+            </p>
+            <p>
+              <strong>Byxelkrok</strong> är Ölands nordligaste samhälle, litet och avsides med en småbåtshamn och några restauranger. Härifrån kan du fortsätta ut till <strong>Neptuni åkrar</strong>, ett område med unika kalkstensformationer som skapades för tusentals år sedan av havet. Det är Öland vid sitt mest avsides, och sitt mest storslagna.
             </p>
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -229,28 +229,28 @@ export default function OlandPage() {
               Hur tar man sig till Öland?
             </h3>
             <p>
-              Öland nås enklast via Ölandsbron från Kalmar — en av Europas längsta broar på 6 km. Med bil från Stockholm tar det ca 4 timmar. Kalmar nås med tåg från Stockholm (ca 3,5 h), och därifrån går buss över bron till Borgholm och vidare söderut. Under sommaren trafikeras ön av fler lokalbussar.
+              Öland nås enklast via Ölandsbron från Kalmar, en av Europas längsta broar på 6 km. Med bil från Stockholm tar det ca 4 timmar. Kalmar nås med tåg från Stockholm (ca 3,5 h), och därifrån går buss över bron till Borgholm och vidare söderut. Under sommaren trafikeras ön av fler lokalbussar.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
               Vad är Alvaret på Öland?
             </h3>
             <p>
-              Alvaret är en av Europas största kalkstenshedar och ett UNESCO-världsarv sedan 2000. Det är ett öppet, vindpinat landskap med tunn jord direkt på kalkstensberget — ett unikt ekosystem med ovanliga växter och djur. Somliga jämför det med afrikansk savann. Bäst besökt på försommaren när blommorna slår ut.
+              Alvaret är en av Europas största kalkstenshedar och ett UNESCO-världsarv sedan 2000. Det är ett öppet, vindpinat landskap med tunn jord direkt på kalkstensberget, ett unikt ekosystem med ovanliga växter och djur. Somliga jämför det med afrikansk savann. Bäst besökt på försommaren när blommorna slår ut.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
               När är bästa tid att besöka Öland?
             </h3>
             <p>
-              Juni är Ölands bästa månad — Alvaret blommar, turisttrycket är ännu hanterbart och dagarna långa. Juli är högsäsong med sommarmarknad i Borgholm och fullt liv, men också köer. Maj och september erbjuder ro, billigare priser och ett annat Öland — mer vindpinat och avsides. Undvik sista veckan i juli om du vill slippa trängsel.
+              Juni är Ölands bästa månad: Alvaret blommar, turisttrycket är ännu hanterbart och dagarna långa. Juli är högsäsong med sommarmarknad i Borgholm och fullt liv, men också köer. Maj och september erbjuder ro, billigare priser och ett annat Öland, mer vindpinat och avsides. Undvik sista veckan i juli om du vill slippa trängsel.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
               Vad är Trollskogen på Öland?
             </h3>
             <p>
-              Trollskogen är ett naturreservat i norra Öland med urgamla, knotiga tallar formade av havsvindar under hundratals år. Träden har en surrealistisk, sagolikt vriden form — därav namnet. Reservatet är också känt för sina strandängar och fågellivet. Ingång finns nära byn Byxelkrok.
+              Trollskogen är ett naturreservat i norra Öland med urgamla, knotiga tallar formade av havsvindar under hundratals år. Träden har en surrealistisk, sagolikt vriden form, därav namnet. Reservatet är också känt för sina strandängar och fågellivet. Ingång finns nära byn Byxelkrok.
             </p>
           </>
         }

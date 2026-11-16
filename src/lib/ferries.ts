@@ -73,7 +73,7 @@ export type FerryDeparturesResult = {
 export const SEED_FERRY_ROUTES: FerryRoute[] = [
   {
     id: 'wxb-vaxholm',
-    name: 'Strömkajen – Vaxholm',
+    name: 'Strömkajen: Vaxholm',
     from: 'Strömkajen',
     to: 'Vaxholm',
     stops: ['Strömkajen', 'Nacka strand', 'Gåshaga brygga', 'Ramsö', 'Tynningö', 'Vaxholm'],
@@ -83,17 +83,17 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
   },
   {
     id: 'wxb-grinda',
-    name: 'Strömkajen – Grinda',
+    name: 'Strömkajen: Grinda',
     from: 'Strömkajen',
     to: 'Grinda',
     stops: ['Strömkajen', 'Vaxholm', 'Ramsö', 'Vindö', 'Grinda'],
     operator: 'Waxholmsbolaget',
-    season: 'Sommar (maj–sep)',
+    season: 'Sommar (maj till sep)',
     infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
   },
   {
     id: 'cinderella-sandhamn',
-    name: 'Strandvägen – Sandhamn',
+    name: 'Strandvägen: Sandhamn',
     from: 'Strandvägen',
     to: 'Sandhamn',
     // RÄTTAD 2026-08-05. Kommentaren här sa "Strömkajen och Strandvägen är
@@ -106,12 +106,12 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     // saknades. Strömma listar Vaxholm, Grinda, Gällnö och Sandhamn.
     stops: ['Strandvägen', 'Vaxholm', 'Grinda', 'Gällnö', 'Sandhamn'],
     operator: 'Cinderella',
-    season: 'Sommar (slutet av april–slutet av september)',
+    season: 'Sommar (slutet av april till slutet av september)',
     infoUrl: 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/',
   },
   {
     id: 'wxb-uto',
-    name: 'Årsta Brygga – Utö',
+    name: 'Årsta Brygga: Utö',
     from: 'Årsta Brygga',
     to: 'Utö',
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ" (läst 2026-10-29)
@@ -124,7 +124,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
   },
   {
     id: 'wxb-finnhamn',
-    name: 'Strömkajen – Finnhamn',
+    name: 'Strömkajen: Finnhamn',
     from: 'Strömkajen',
     to: 'Finnhamn',
     stops: ['Strömkajen', 'Vaxholm', 'Ljusterö', 'Husarö', 'Finnhamn'],
@@ -134,7 +134,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
   },
   {
     id: 'wxb-moja',
-    name: 'Sollenkroka – Möja',
+    name: 'Sollenkroka: Möja',
     from: 'Sollenkroka',
     to: 'Möja',
     stops: ['Sollenkroka', 'Svartsö', 'Norra Stavsudda', 'Berg (Möja)'],

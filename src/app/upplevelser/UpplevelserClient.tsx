@@ -69,7 +69,7 @@ export default function UpplevelserPage() {
           margin: '0 auto',
           lineHeight: 1.6,
         }}>
-          Ribbåtsturer, fisketurer, kajakäventyr och mer i Stockholms skärgård — boka direkt med lokala aktörer.
+          Ribbåtsturer, fisketurer, kajakäventyr och mer i Stockholms skärgård. Boka direkt med lokala aktörer.
         </p>
       </section>
 
@@ -127,7 +127,7 @@ export default function UpplevelserPage() {
       }}>
         {filtered.length === 0 ? (
           <p style={{ color: 'var(--txt2, #555)', gridColumn: '1 / -1' }}>
-            Inga upplevelser i den här kategorin än — fler kommer snart.
+            Inga upplevelser i den här kategorin än, fler kommer snart.
           </p>
         ) : filtered.map(exp => (
           <article

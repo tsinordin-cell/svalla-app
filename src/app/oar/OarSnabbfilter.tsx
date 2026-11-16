@@ -81,7 +81,7 @@ export default function OarSnabbfilter({ total }: { total: number }) {
       </div>
       <p aria-live="polite" style={{ fontSize: 13, color: 'var(--txt2)', margin: '8px 0 0' }}>
         {q === ''
-          ? `${total} öar — eller hoppa direkt till en region nedan.`
+          ? `${total} öar, eller hoppa direkt till en region nedan.`
           : visade === 0
             ? `Ingen ö matchar "${q}". Prova ett kortare ord eller bläddra per region.`
             : `${visade} av ${total} öar matchar.`}

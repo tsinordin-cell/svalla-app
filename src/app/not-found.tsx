@@ -36,7 +36,7 @@ export default function NotFound() {
         fontSize: 11, fontWeight: 700, color: 'rgba(30,92,130,0.5)',
         letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 12,
       }}>
-        404 — Borttappad till havs
+        404: Borttappad till havs
       </div>
 
       <h1 style={{

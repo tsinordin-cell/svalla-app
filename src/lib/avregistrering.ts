@@ -71,9 +71,9 @@ let varnatOmNyckel = false
 export function avregLank(email: string, secret: string | undefined = process.env.UNSUBSCRIBE_SECRET): string {
   if (!secret) {
     if (process.env.VERCEL_ENV === 'production') {
-      console.error('[avregistrering] UNSUBSCRIBE_SECRET saknas i produktion – mejlet får en osignerad länk')
+      console.error('[avregistrering] UNSUBSCRIBE_SECRET saknas i produktion: mejlet får en osignerad länk')
     } else if (!varnatOmNyckel) {
-      console.warn('[avregistrering] UNSUBSCRIBE_SECRET saknas – skickar osignerade länkar')
+      console.warn('[avregistrering] UNSUBSCRIBE_SECRET saknas: skickar osignerade länkar')
       varnatOmNyckel = true
     }
     return `${BAS}?email=${encodeURIComponent(normaliseraEpost(email))}`
