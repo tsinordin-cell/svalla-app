@@ -129,7 +129,7 @@ const OLISTS: OList[] = [
         name: 'Grinda',
         emoji: '🌿',
         tagline: 'Natur och värdshus',
-        why: 'Direktbåt (1h 20 min), lunch på Grinda Wärdshus, runt-öpromenad (4 km) och bad. Perfekt dagsutflykt för den som vill ha natur.',
+        why: 'Direktbåt (1h 20 min), lunch på Grinda Wärdshus, promenad runt ön (4 km) och bad. Perfekt dagsutflykt för den som vill ha natur.',
         travel: 'Waxholmsbåt från Strömkajen, 1 h 20 min',
       },
       {
@@ -225,7 +225,7 @@ const OLISTS: OList[] = [
         name: 'Sandhamn',
         emoji: '⛵',
         tagline: 'Seglarhotell och Trouville-strand',
-        why: 'Seglarhotellets restaurang, promenad längs Trouville-stranden i solnedgången och havsluft. Passar par som gillar lite mer liv och rörelse.',
+        why: 'Seglarhotellets restaurang, promenad längs Trouvillestranden i solnedgången och havsluft. Passar par som gillar lite mer liv och rörelse.',
         travel: 'Snabbåt via Stavsnäs, 40 min',
       },
       {
@@ -307,7 +307,7 @@ const OLISTS: OList[] = [
         emoji: '🏞️',
         tagline: 'Skogspromenader nära Stockholm',
         why: 'Norra skärgården, nås med bil och bro. Stora skogsområden och lite turism. Utmärkt för hundpromenader utan trängseln.',
-        travel: 'Bil via Norrtälje-hållet + bro',
+        travel: 'Bil via Norrtäljehållet + bro',
       },
     ],
   },
@@ -434,7 +434,7 @@ const OLISTS: OList[] = [
         emoji: '⛵',
         tagline: 'Billigast att nå',
         // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
-        why: 'Waxholmsbåt tur-retur kostar runt 150 kr med SL-kort. Ta med picknick, vandra runt naturstigen och bad gratis från klipporna.',
+        why: 'Waxholmsbåt tur och retur kostar runt 150 kr med SL-kort. Ta med picknick, vandra runt naturstigen och bad gratis från klipporna.',
         travel: 'SL-kort gäller med tilläggsbiljett, 25 min',
         badge: 'Lägst kostnad',
       },

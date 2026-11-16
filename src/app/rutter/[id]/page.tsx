@@ -339,7 +339,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
           }}>
             <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--acc)', marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                <Icon name="star" size={14} stroke={2} />Insider-tip
+                <Icon name="star" size={14} stroke={2} />Insidertips
               </span>
             </div>
             <p style={{ fontSize: 13, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>{t.insider_tip}</p>
@@ -348,7 +348,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
 
         {/* Log suggestions */}
         {t.log_suggestions.length > 0 && (
-          <Section title={<><Icon name="edit" size={13} stroke={2} />Tur-logg: tänk på det här</>}>
+          <Section title={<><Icon name="edit" size={13} stroke={2} />Turlogg: tänk på det här</>}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {t.log_suggestions.map((s) => (
                 <div key={s} style={{

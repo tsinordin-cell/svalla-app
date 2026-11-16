@@ -80,7 +80,7 @@ export default function VandringOchNaturPage() {
             Stockholms skärgård är inte bara vatten: många öar har riktig vildmarkskänsla med hällmarker, barrskog och klippor som stupar rakt ner i havet. <strong>Roslagsleden</strong> tar dig från Danderyds tunnelbana till Grisslehamn på 19 etapper, och <strong>Sörmlandsleden</strong> börjar mitt i Tyresta nationalpark, allt inom buss- eller båtavstånd från Slussen.
           </p>
           <p>
-            Här listar vi leder, naturreservat och bra stopp-punkter: med tält- och vindskyddstips, vattenpåfyllning och väderindikatorer. Allemansrätten är grunden, men några platser har egna regler du ska känna till.
+            Här listar vi leder, naturreservat och bra stopp: med tält- och vindskyddstips, vattenpåfyllning och väderindikatorer. Allemansrätten är grunden, men några platser har egna regler du ska känna till.
           </p>
         </>
       }

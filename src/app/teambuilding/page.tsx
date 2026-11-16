@@ -9,7 +9,7 @@ export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'Teambuilding i skärgården: aktiviteter, regatta och konferens',
-  description: 'Hitta det bästa teambuilding-eventet i skärgården. Segelregatta, kajak, konferensanläggningar och AW på öarna i Stockholm och Göteborg.',
+  description: 'Hitta det bästa teambuildingeventet i skärgården. Segelregatta, kajak, konferensanläggningar och AW på öarna i Stockholm och Göteborg.',
   keywords: [
     'teambuilding skärgården',
     'teambuilding stockholm skärgård',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://svalla.se/teambuilding' },
   openGraph: {
     title: 'Teambuilding i skärgården: aktiviteter, regatta och konferens',
-    description: 'Segelregatta, kajak, konferens och AW på öarna. Hitta det bästa teambuilding-eventet för ditt team.',
+    description: 'Segelregatta, kajak, konferens och AW på öarna. Hitta det bästa teambuildingeventet för ditt team.',
     url: 'https://svalla.se/teambuilding',
     type: 'website',
   },
@@ -59,8 +59,8 @@ const FAQ_ITEMS = [
     a: 'Ja, men utbudet minskar. Fjäderholmarnas Krog och Vaxholm Hotell har konferenslokaler öppna hela året. Vinteraktiviteter som isfiske, vinterbastu och skärgårdsboule är tillgängliga hos vissa leverantörer. Sommarsäsong (maj till september) ger störst utbud.',
   },
   {
-    q: 'Behöver man anlita en event-byrå för teambuilding i skärgården?',
-    a: 'Inte alltid. Enklare event (AW på Fjäderholmarna, kajak en halvdag) bokar du direkt med anläggningen. För mer komplexa program med segelregatta, konferens och övernattning är det värt att anlita en lokal event-arrangör som koordinerar alla delar.',
+    q: 'Behöver man anlita en eventbyrå för teambuilding i skärgården?',
+    a: 'Inte alltid. Enklare event (AW på Fjäderholmarna, kajak en halvdag) bokar du direkt med anläggningen. För mer komplexa program med segelregatta, konferens och övernattning är det värt att anlita en lokal eventarrangör som koordinerar alla delar.',
   },
 ]
 

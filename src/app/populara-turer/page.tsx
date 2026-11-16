@@ -33,7 +33,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'sailboat',
     title: 'Helgtur: Stockholm till Sandhamn',
-    description: 'Två dagar, en övernattning, full skärgårdsupplevelse. Perfekt för lördag-söndag.',
+    description: 'Två dagar, en övernattning, full skärgårdsupplevelse. Perfekt för lördag till söndag.',
     href: '/o/sandhamn',
     meta: '2 dagar',
   },
@@ -83,7 +83,7 @@ export default function PopularaTurerPage() {
       intro={
         <>
           <p>
-            Den bästa skärgårdsturen är ofta den någon annan redan testat. Här samlar vi Svalla-användares mest delade rutter, allt från klassiska halvdags-rundor till ambitiösa flerdagsseglatser ut i ytterskärgården.
+            Den bästa skärgårdsturen är ofta den någon annan redan testat. Här samlar vi Svallaanvändares mest delade rutter, allt från klassiska halvdagsrundor till ambitiösa flerdagsseglatser ut i ytterskärgården.
           </p>
           <p>
             Varje tur har <strong>karta, tid, stopp, boendetips och säsongsnoteringar</strong>. Många är loggade med GPS i Svalla och visar faktisk hastighet, distans och väder vid tillfället. Klicka dig in för att se varianter och kopiera rutten till din egen planering.
@@ -99,13 +99,13 @@ export default function PopularaTurerPage() {
             Planera med Svalla
           </h2>
           <p>
-            Den som skapar konto kan <strong>spara turer som favoriter</strong>, exportera GPX för kartplotter och få påminnelser när vädret är rätt. Pro-användare får offline-karta, vindprognoser och fler rutter än de listade.
+            Den som skapar konto kan <strong>spara turer som favoriter</strong>, exportera GPX för kartplotter och få påminnelser när vädret är rätt. Pro-användare får offlinekarta, vindprognoser och fler rutter än de listade.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Saknar din favorittur?
           </h2>
           <p>
-            Logga den i Svalla-appen och tagga den som &quot;delningsbar&quot;, den hamnar automatiskt i sökningen och kan bli utvald här. Populära turer är utvalda av redaktionen men bygger helt på användar-data.
+            Logga den i Svallaappen och tagga den som &quot;delningsbar&quot;, den hamnar automatiskt i sökningen och kan bli utvald här. Populära turer är utvalda av redaktionen men bygger helt på användardata.
           </p>
         </>
       }

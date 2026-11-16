@@ -24,9 +24,9 @@ const PRO_FEATURES = [
   { icon: 'stats', label: 'Utökad statistik och årssammanfattning' },
   { icon: 'map',   label: 'Offline-kartor i appen' },
   { icon: 'badge', label: 'Pro-märke på din profil' },
-  { icon: 'bell',  label: 'Prioriterade push-notiser' },
+  { icon: 'bell',  label: 'Prioriterade pushnotiser' },
   { icon: 'theme', label: 'Profilbakgrunder och teman' },
-  { icon: 'badge', label: 'Boosta dina Loppis-annonser: visas först i listan' },
+  { icon: 'badge', label: 'Boosta dina loppisannonser: visas först i listan' },
 ]
 
 function ProPageInner() {

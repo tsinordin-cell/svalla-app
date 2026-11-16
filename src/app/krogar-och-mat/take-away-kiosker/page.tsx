@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Take-away, kiosker och lanthandlar i skärgården',
+  title: 'Takeaway, kiosker och lanthandlar i skärgården',
   description: 'Glass, räksmörgåsar, hamburgare och lanthandlar i Stockholms skärgård. Enkelt och gott utan bokning, för barnfamiljen och snabbstoppen i hamnen.',
   keywords: [
     'glass skärgård',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'hamburgare skärgård',
   ],
   openGraph: {
-    title: 'Take-away, kiosker och lanthandlar i skärgården',
+    title: 'Takeaway, kiosker och lanthandlar i skärgården',
     description: 'Glass, räksmörgåsar och lanthandlar, enkla stopp utan bokning längs skärgårdsrutten.',
     url: 'https://svalla.se/krogar-och-mat/take-away-kiosker',
   },
@@ -62,7 +62,7 @@ export default function TakeAwayKioskerPage() {
     <CategoryLanding
       heroGradient={['#7a3c0a', '#b8641a']}
       eyebrow="KROGAR & MAT · TAKE-AWAY & KIOSKER"
-      title="Take-away och kiosker"
+      title="Takeaway och kiosker"
       tagline="Glass vid bryggan, räksmörgåsar i hamnen och lanthandeln som räddar middagen, enkelt och gott utan bokning."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>

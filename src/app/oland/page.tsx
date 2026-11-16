@@ -39,7 +39,7 @@ const ITEMS: LandingItem[] = [
   },
   {
     icon: '🌿',
-    title: 'Alvaret: UNESCO-världsarv',
+    title: 'Alvaret: Unescovärldsarv',
     description: 'Det stora alvaret är ett av Europas mest unika landskap. Kalkstenshed, ovanlig flora och ett stämningsfullt ljus som är svårt att beskriva.',
     href: '/oland/aventyr',
   },
@@ -82,7 +82,7 @@ export default function OlandPage() {
       {
         '@type': 'Question',
         name: 'Vad är Alvaret på Öland?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Alvaret är en av Europas största kalkstenshedar och ett UNESCO-världsarv sedan 2000. Det är ett öppet, vindpinat landskap med tunn jord direkt på kalkstensberget, ett unikt ekosystem med ovanliga växter och djur. Somliga jämför det med afrikansk savann. Bäst besökt på försommaren när blommorna slår ut.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Alvaret är en av Europas största kalkstenshedar och ett Unescovärldsarv sedan 2000. Det är ett öppet, vindpinat landskap med tunn jord direkt på kalkstensberget, ett unikt ekosystem med ovanliga växter och djur. Somliga jämför det med afrikansk savann. Bäst besökt på försommaren när blommorna slår ut.' },
       },
       {
         '@type': 'Question',
@@ -206,7 +206,7 @@ export default function OlandPage() {
               Södra Öland: Alvaret och Långe Jan
             </h2>
             <p>
-              Södra Öland och det stora Alvaret är UNESCO-världsarv sedan år 2000, ett av Europas mest unika landskap. Kalkstensberget sticker upp i ytan, jorden är tunn och vindpinad, och en unik flora av orkidéer, backtimjan och sällsynta mossor klär marken. Det är svårt att beskriva Alvaret i ord. Det måste upplevas. Ljuset är annorlunda här, himlen vidare.
+              Södra Öland och det stora Alvaret är Unescovärldsarv sedan år 2000, ett av Europas mest unika landskap. Kalkstensberget sticker upp i ytan, jorden är tunn och vindpinad, och en unik flora av orkidéer, backtimjan och sällsynta mossor klär marken. Det är svårt att beskriva Alvaret i ord. Det måste upplevas. Ljuset är annorlunda här, himlen vidare.
             </p>
             <p>
               Vid öns sydspets reser sig <strong>Långe Jan</strong>, Sveriges högsta fyr på 42 meter. Fyren byggdes 1785 och är fortfarande aktiv. Du kan klättra upp och få en milsvid utsikt över Östersjön och Alvarets kustlinje. Området runt Långe Jan är ett naturreservat med rikt fågelliv, på höst- och vårflyttningen samlas tusentals fåglar längs kusten.
@@ -236,7 +236,7 @@ export default function OlandPage() {
               Vad är Alvaret på Öland?
             </h3>
             <p>
-              Alvaret är en av Europas största kalkstenshedar och ett UNESCO-världsarv sedan 2000. Det är ett öppet, vindpinat landskap med tunn jord direkt på kalkstensberget, ett unikt ekosystem med ovanliga växter och djur. Somliga jämför det med afrikansk savann. Bäst besökt på försommaren när blommorna slår ut.
+              Alvaret är en av Europas största kalkstenshedar och ett Unescovärldsarv sedan 2000. Det är ett öppet, vindpinat landskap med tunn jord direkt på kalkstensberget, ett unikt ekosystem med ovanliga växter och djur. Somliga jämför det med afrikansk savann. Bäst besökt på försommaren när blommorna slår ut.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

@@ -54,7 +54,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'fuel',
     title: 'Tankställen på vägen',
-    description: 'Alla sjöbensin-mackar längs populära rutter med öppettider och priser.',
+    description: 'Alla sjöbensinmackar längs populära rutter med öppettider och priser.',
     href: '/hamnar-och-bryggor',
   },
   {

@@ -141,7 +141,7 @@ export default function VardshusRestaurangerPage() {
       related={[
         { label: 'Fisk & skaldjur', href: '/krogar-och-mat/fisk-skaldjur' },
         { label: 'Fika & café', href: '/krogar-och-mat/fika-cafe' },
-        { label: 'Take-away & kiosker', href: '/krogar-och-mat/take-away-kiosker' },
+        { label: 'Takeaway & kiosker', href: '/krogar-och-mat/take-away-kiosker' },
         { label: 'Boende', href: '/boende' },
         { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
       ]}

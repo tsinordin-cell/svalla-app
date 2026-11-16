@@ -223,7 +223,7 @@ async function FerriesView() {
                   }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', whiteSpace: 'nowrap' }}>
                       {departureLabel(d.time)}
-                      {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{'\u2013'}{d.arrival}</span>}
+                      {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{' till '}{d.arrival}</span>}
                     </div>
                     <div style={{ fontSize: 11, color: 'var(--txt2)', textAlign: 'right' }}>
                       {d.to}

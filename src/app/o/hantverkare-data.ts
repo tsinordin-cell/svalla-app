@@ -370,7 +370,7 @@ export const HANTVERKARE: Hantverkare[] = [
     slug: 'delsholmen-entreprenad',
     namn: 'Delsholmen Entreprenad AB',
     ort: 'Stavsudda',
-    bas: 'Västra Delsholmen, Stavsudda-området',
+    bas: 'Västra Delsholmen, Stavsuddaområdet',
     yrken: ['snickare', 'batmekaniker'],
     telefon: '073-999 09 74',
     epost: 'micke@delsholmen.se',
@@ -380,7 +380,7 @@ export const HANTVERKARE: Hantverkare[] = [
     verifierad: false,
     noteringar:
       'Snickeri, renovering av altan och kök, tillbyggnad, service och underhåll av båt, trädgård och tomt. ' +
-      'Registret placerade dem på Möja, deras egen sida säger Stavsudda-området.',
+      'Registret placerade dem på Möja, deras egen sida säger Stavsuddaområdet.',
   },
   {
     slug: 'rb-rorteknik',

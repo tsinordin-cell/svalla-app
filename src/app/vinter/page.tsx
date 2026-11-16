@@ -51,7 +51,7 @@ export default function VinterPage() {
           <>
             <h2 style={{ fontSize: 20, fontWeight: 700, margin: '28px 0 12px' }}>Vad är öppet på vintern?</h2>
             <p><strong>Fjäderholmarna</strong> är det enda storskaliga alternativet med helårsöppet restaurang och aktiviteter. Waxholmsbolaget kör innerskärgårdslinjer hela vintern.</p>
-            <p>Bastun på <strong>Finnhamn</strong> och <strong>Utö</strong> håller säsongsöppet. Kontrollera aktuella tider. Kombinationen is-bad + bastu är en upplevelse utöver det vanliga.</p>
+            <p>Bastun på <strong>Finnhamn</strong> och <strong>Utö</strong> håller säsongsöppet. Kontrollera aktuella tider. Kombinationen isbad + bastu är en upplevelse utöver det vanliga.</p>
             <h2 style={{ fontSize: 20, fontWeight: 700, margin: '28px 0 12px' }}>Vanliga frågor om vintern i skärgården</h2>
             <h3 style={{ fontSize: 16, fontWeight: 700, margin: '16px 0 6px' }}>Hur kall är skärgården på vintern?</h3>
             <p>Medeltemperaturen i januari är runt −3°C i Stockholms skärgård. Klä dig i lager, havsvindar gör det kallare än termometern visar.</p>

@@ -80,7 +80,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🌊',
  title: 'Fjäderholmarna',
- description: 'Närmaste skärgårdsupplevelsen, bara 25 min med Cinderella från Slussen. Öppen hela säsongen från vår till sen höst. Restauranger, konsthantverksbutiker och härliga klippbad. Utmärkt dagsutflykt även för icke-båtfolk.',
+ description: 'Närmaste skärgårdsupplevelsen, bara 25 min med Cinderella från Slussen. Öppen hela säsongen från vår till sen höst. Restauranger, konsthantverksbutiker och härliga klippbad. Utmärkt dagsutflykt även för dem utan båt.',
  href: '/platser?kategori=naturhamn',
  meta: 'Innerskärgården · 25 min · Öppen apr till okt',
  },

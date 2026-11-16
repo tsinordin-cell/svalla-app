@@ -54,7 +54,7 @@ const DEFAULT_PICKS: readonly [Pick, Pick, Pick] = [
     program: 'watski',
     linkId: 'watski-multitool',
     title: 'Leatherman Wave Plus',
-    subtitle: 'Klassiskt multi-tool för ombord',
+    subtitle: 'Klassiskt multiverktyg för ombord',
     deepLink: 'https://watski.se/verktyg/leatherman-wave-plus',
     iconKind: 'tool',
   },

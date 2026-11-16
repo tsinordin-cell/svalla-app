@@ -228,7 +228,7 @@ export default async function RegionCategoryPage({
                   {p.endast_medlemmar && <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt-muted, #555)' }}>Endast medlemmar</div>}
                   {p.google_rating != null && (
                     <div style={{ fontSize: 14, color: 'var(--txt-muted, #555)', marginTop: 4 }}>
-                      Google-betyg {p.google_rating.toFixed(1).replace('.', ',')} {p.google_ratings_total != null && <span style={{ opacity: 0.7 }}>({p.google_ratings_total} recensioner)</span>}
+                      ★ {p.google_rating.toFixed(1).replace('.', ',')} på Google {p.google_ratings_total != null && <span style={{ opacity: 0.7 }}>({p.google_ratings_total} recensioner)</span>}
                     </div>
                   )}
                 </div>

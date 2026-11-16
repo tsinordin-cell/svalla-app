@@ -1612,7 +1612,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
             <label className="svt-field-label">Anteckningar</label>
             <textarea
               value={notes} onChange={e => setNotes(e.target.value)}
-              placeholder="Fler instruktioner — steg för att återskapa buggen, var i appen det gäller, vad som ska hända…"
+              placeholder="Fler instruktioner: steg för att återskapa buggen, var i appen det gäller, vad som ska hända…"
               rows={3} className="svt-input"
               style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.5 }}
             />
@@ -1692,7 +1692,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
                 <>
                   <IcoImage size={22} color="var(--txt3)" />
                   <span style={{ fontWeight: 600 }}>Dra hit en bild, klistra in med ⌘V, eller klicka</span>
-                  <span style={{ fontSize: 11, color: 'var(--txt3)' }}>Skärmdump på buggen — laddas upp när uppgiften skapas</span>
+                  <span style={{ fontSize: 11, color: 'var(--txt3)' }}>Skärmdump på buggen: laddas upp när uppgiften skapas</span>
                 </>
               )}
             </div>
@@ -2274,7 +2274,7 @@ function TaskDetail({
                   <textarea
                     value={notes}
                     onChange={e => setNotes(e.target.value)}
-                    placeholder="Fler instruktioner — steg för att återskapa buggen, var i appen det gäller, vad som ska hända…"
+                    placeholder="Fler instruktioner: steg för att återskapa buggen, var i appen det gäller, vad som ska hända…"
                     rows={5} className="svt-input" autoFocus
                     style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.55 }}
                   />
@@ -2452,7 +2452,7 @@ function RoutinesPanel({ routines, projectById, memberById, onToggleDone, onDele
     return (
       <div className="svt-card" style={{ padding: 28, textAlign: 'center', color: 'var(--txt3)', fontSize: 13 }}>
         Inga rutiner ännu. Skapa en uppgift och välj <b>Varje vecka</b>, <b>Varje månad</b> eller
-        <b> Varje kvartal</b> i formuläret — då hamnar den här i stället för på tavlan.
+        <b> Varje kvartal</b> i formuläret, då hamnar den här i stället för på tavlan.
       </div>
     )
   }
@@ -2634,7 +2634,7 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
 
       {showForm && (
         <div style={{ ...surface, padding: 16, marginBottom: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Titel — t.ex. 'Faktagranska guide-utkast'" className="svt-input" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
+          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Titel, t.ex. 'Faktagranska guide-utkast'" className="svt-input" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
           <textarea value={content} onChange={e => setContent(e.target.value)} placeholder="Själva prompten…" rows={5} className="svt-input" style={{ ...inputStyle, resize: 'vertical', fontFamily: 'ui-monospace, monospace' }} />
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <input value={tagsInput} onChange={e => setTagsInput(e.target.value)} placeholder="Taggar, kommaseparerat" className="svt-input" style={{ ...inputStyle, flex: 1, minWidth: 140 }} />
@@ -2653,7 +2653,7 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
       {filtered.length === 0 ? (
         <div className="svt-empty-col" style={{ padding: '36px 12px' }}>
           <IcoPrompt color="var(--txt3)" />
-          Inga promptar än — lägg till den första.
+          Inga promptar än. Lägg till den första.
         </div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 14 }}>

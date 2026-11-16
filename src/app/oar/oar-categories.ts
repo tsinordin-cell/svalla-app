@@ -169,9 +169,9 @@ export const OAR_CATEGORIES: OarCategory[] = [
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ" (läst 2026-11-09)
     // KÄLLA: https://ornosjotrafik.se/ — "Bilfärja mellan Ornö och Dalarö", "Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö." (läst 2026-11-09)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Fjärdlång" (läst 2026-11-09)
-    description: 'Båt från Nynäshamn till Nåttarö, från Årsta brygga till Utö och från Dalarö till Ornö och Fjärdlång. Söderskärgården är glesare och billigare än norr.',
+    description: 'Båt från Nynäshamn till Nåttarö, från Årsta brygga till Utö och från Dalarö till Ornö och Fjärdlång. Södra skärgården är glesare och billigare än norr.',
     // KÄLLA: https://kund.printhuset-sthlm.se/sl/h4343x.pdf — "Bålsta–Nynäshamn", "Giltig från och med 17 augusti till och med 12 december 2026."; uppmätt i tabellen: avg Stockholm City–Nynäshamn 59–65 min (läst 2026-11-09)
-    intro: 'Söderskärgården är ofta glömd, fel. Från Nynäshamn går Waxholmsbolagets båt till Nåttarö, Rånö och Ålö, till Utö går båten året om från Årsta brygga i Haninge och till Ornö och Fjärdlång från Dalarö. Pendeltåget från Stockholm City till Nynäshamn tar 59 till 65 minuter. Här är öarna i den södra änden.',
+    intro: 'Södra skärgården är ofta glömd, fel. Från Nynäshamn går Waxholmsbolagets båt till Nåttarö, Rånö och Ålö, till Utö går båten året om från Årsta brygga i Haninge och till Ornö och Fjärdlång från Dalarö. Pendeltåget från Stockholm City till Nynäshamn tar 59 till 65 minuter. Här är öarna i den södra änden.',
     filter: (i) => {
       const t = `${i.facts.travel_time} ${i.getting_there.map(g => g.from || '').join(' ')}`.toLowerCase()
       return t.includes('nynäs') || i.region === 'södra'

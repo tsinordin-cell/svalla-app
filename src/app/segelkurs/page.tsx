@@ -102,7 +102,7 @@ export default function SegelkursPage() {
         {/* Intro */}
         <section style={{ marginBottom: 48 }}>
           <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: '0 0 16px' }}>
-            Segling är en av få aktiviteter där du lär dig hantera vind, vatten och navigering på en gång, och sedan har en livslång kompetens som öppnar upp hela Sveriges kust och skärgård. Sverige har över 400 segelsällskap som erbjuder kurser, från gratis provsegling till avancerade offshore-certifikat.
+            Segling är en av få aktiviteter där du lär dig hantera vind, vatten och navigering på en gång, och sedan har en livslång kompetens som öppnar upp hela Sveriges kust och skärgård. Sverige har över 400 segelsällskap som erbjuder kurser, från gratis provsegling till avancerade offshorecertifikat.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: 0 }}>
             Välj kurs nedan utifrån nivå eller plats. Nybörjare börjar med introduktionskurser; den som vill hyra båt tar förarintyget; den som vill segla självständigt längs kusten siktar på kustskepparintyget.

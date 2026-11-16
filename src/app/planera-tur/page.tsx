@@ -76,7 +76,7 @@ export default function PlaneraTurPage() {
       intro={
         <>
           <p>
-            Att planera en skärgårdstur brukar betyda att öppna fem fönster samtidigt: Waxholmsbolagets tidtabell, Booking.com, SMHI, en Facebook-grupp för tips. Svalla samlar det du behöver i <strong>ett flöde</strong>.
+            Att planera en skärgårdstur brukar betyda att öppna fem fönster samtidigt: Waxholmsbolagets tidtabell, Booking.com, SMHI, en Facebookgrupp för tips. Svalla samlar det du behöver i <strong>ett flöde</strong>.
           </p>
           <p>
             Ny: <strong>Fråga Thorkel</strong>, vår skärgårdsguide. Berätta vad du vill (familj med barn, romantisk helg, segling från Ingarö) och få ett personligt förslag med restauranger och bokningslänkar på 10 sekunder.
@@ -92,7 +92,7 @@ export default function PlaneraTurPage() {
             Det smarta med Svalla
           </h2>
           <p>
-            Med konto får du <strong>live-data</strong>: aktuella färjetider från Trafiklab, väder från SMHI, och tripplaner som uppdateras om en färja ställs in. Du kan även <strong>följa andra</strong>, om en segelbåtskompis just seglat samma rutt ser du deras stopp och rekommendationer.
+            Med konto får du <strong>livedata</strong>: aktuella färjetider från Trafiklab, väder från SMHI, och tripplaner som uppdateras om en färja ställs in. Du kan även <strong>följa andra</strong>, om en segelbåtskompis just seglat samma rutt ser du deras stopp och rekommendationer.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Utan konto

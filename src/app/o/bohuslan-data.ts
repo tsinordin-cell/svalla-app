@@ -30,7 +30,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🏰',
     // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar Carlsten som statligt byggnadsminne på Marstrand — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
     // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar sillhandelns centrum på 1500-talet — https://www.vastsverige.com/en/kungalv/products/marstrand/ ; att Match Cup Sweden avgörs första veckan i juli — https://www.vastsverige.com/kungalv/marstrand/ (läst 2026-09-16)
-    tagline: 'Carlstens fästning, sillstadens gränder och match-racing första veckan i juli.',
+    tagline: 'Carlstens fästning, sillstadens gränder och matchracing första veckan i juli.',
     // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Marstrand — Lantmäteriet Min Karta, sökning "Marstrand" → Marstrand | Kungälv | Tätort, SWEREF 99 TM omräknat till WGS 84 (läst 2026-09-29)
     lat: 57.8864,
     lng: 11.5753,
@@ -355,7 +355,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     accommodation: [
       // KÄLLA: https://strandflickorna.com/ — "Vi erbjuder tre charmiga sekelskifteshotell och två unika hideaways - hotellrum som vilar på pålar i havet"; "Havshotellet är vårt genuina skärgårdshotell med egen havstomt"; "I vår lilla bistro-restaurang" (läst 2026-09-27)
       // KÄLLA: https://www.vastsverige.com/en/lysekil/produkter/strandflickornas-havshotell/ — "Badpaviljongen gives you a combination of outdoor spa bath with a relaxation room and sauna"; "you have access to a private pier" (läst 2026-09-27)
-      { name: 'Strandflickorna', type: 'Hotell', desc: 'Tre sekelskifteshotell vid havet i Lysekil, bland dem Havshotellet med egen havstomt och brygga, samt två hotellrum på pålar i havet. Bistro-restaurang och spa med utomhusbad och bastu.' },
+      { name: 'Strandflickorna', type: 'Hotell', desc: 'Tre sekelskifteshotell vid havet i Lysekil, bland dem Havshotellet med egen havstomt och brygga, samt två hotellrum på pålar i havet. Bistrorestaurang och spa med utomhusbad och bastu.' },
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Hotel Lysekil — bekräftar namnet, Rosvikstorg 1 i Lysekils södra hamn, anor från 1952 och restaurangen My Italian Friend i huset — https://www.vastsverige.com/lysekil/produkter/hotell-lysekil/ (läst 2026-09-16)
       // Egen webbplats hotellysekil.se kontrollerad 2026-09-27 (Rosvikstorg 1, restaurangen My Italian Friend) – sidan kräver webbläsare, så citaten tas från vastsverige.com ovan.
       { name: 'Hotel Lysekil', type: 'Hotell', desc: 'Hotell vid Lysekils södra hamn med anor från 1952. Restaurangen My Italian Friend ligger i huset.' },
@@ -691,7 +691,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: https://gasthamnsbolaget.se/boende-i-bohuslan/badholmens-vandrarhem/ — "Öppet året runt" (läst 2026-09-27); https://www.vastsverige.com/en/tanum/accomodation/marinas/ — "Harbour office open during summer" (läst 2026-09-27); https://www.vastsverige.com/en/tanum/service/travel-tanum/ — "a fee is charged from June 15 to August 15 between 9:00 AM and 6:00 PM" (läst 2026-09-27)
       season: 'Året runt · högsäsong mitten av juni till mitten av augusti, då hamnkontoret är öppet och parkeringen i centrum avgiftsbelagd',
       // KÄLLA: https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ — "Vettebergsleden är en stadsnära rundslinga som tar dig upp på Vetteberget och runt samhället" (läst 2026-09-27); https://www.vastsverige.com/en/tanum/fjallbacka/guided-tours-in-fjallbacka/ — "The tour starts at Ingrid Bergman Square" (läst 2026-09-27); https://www.vastsverige.com/en/tanum/aktiviteter/paddling/paddla-fjallbacka/ — "Explore idyllic Fjällbacka in the best way - by kayak!" (läst 2026-09-27)
-      best_for: 'Vandring på Vetteberget, guidade Läckberg-vandringar, skärgårdsturer och paddling',
+      best_for: 'Vandring på Vetteberget, guidade Läckbergsvandringar, skärgårdsturer och paddling',
     },
     facts_provenance: {
       travel_time: 'matt',
@@ -1061,7 +1061,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: https://www.orust.se/kommun-och-politik/kommunfakta — "Orust kommun har drygt 15 000 invånare.", "Själva Orust är västkustens största ö.", "kanske antalet människor i kommunen närmar sig 40 000 personer" (läst 2026-09-27)
       // KÄLLA: https://www.orust.se/jobb-och-foretagande/foretag-stod-och-radgivning/fakta-om-naringslivet — "är Sveriges tredje största ö" (läst 2026-09-27)
       // KÄLLA: https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf — "Tio-i-topp. Statistiska öar i Sverige, efter areal i hektar.", "Gotland Gotlands län 296 800", "Öland Kalmar län 134 300", "Södertörn Stockholms län 120 700", "Orust Västra Götalands län 34 400" (läst 2026-09-27)
-      'Orust är västkustens största ö, cirka 28 kilometer i väst-östlig och 25 kilometer i nord-sydlig riktning. Orust kommun kallar den Sveriges tredje största ö; i SCB:s statistik, där även Södertörn räknas som ö, kommer Orust på fjärde plats med 34 400 hektar, efter Gotland, Öland och Södertörn. Kommunen har drygt 15 000 invånare, och sommartid kan antalet människor i kommunen närma sig 40 000. Ön har en stark varvstradition. Hallberg-Rassy har sina rötter i det varv Harry Hallberg grundade i Kungsviken 1943; verksamheten flyttade till Ellös i mitten av 1960-talet. Efter samgåendet med Christoph Rassys varv 1972 drivs det som Hallberg-Rassy Varvs AB och har levererat omkring 9 800 båtar. Najad flyttade tillbaka sin produktion till Henån 2022.',
+      'Orust är västkustens största ö, cirka 28 kilometer i västöstlig och 25 kilometer i nordsydlig riktning. Orust kommun kallar den Sveriges tredje största ö; i SCB:s statistik, där även Södertörn räknas som ö, kommer Orust på fjärde plats med 34 400 hektar, efter Gotland, Öland och Södertörn. Kommunen har drygt 15 000 invånare, och sommartid kan antalet människor i kommunen närma sig 40 000. Ön har en stark varvstradition. Hallberg-Rassy har sina rötter i det varv Harry Hallberg grundade i Kungsviken 1943; verksamheten flyttade till Ellös i mitten av 1960-talet. Efter samgåendet med Christoph Rassys varv 1972 drivs det som Hallberg-Rassy Varvs AB och har levererat omkring 9 800 båtar. Najad flyttade tillbaka sin produktion till Henån 2022.',
       // KÄLLA: Turistrådet Västsverige (vastsverige.com), Mollösund — sydvästra spetsen av Orust, sillfisket från 1500-talet och Bohusläns främsta fiskecentrum inom hundra år, fyren på Gallebergs udde, träskulpturen av fiskarkvinna med barn vid Klockeberget, kyrkan färdig 1866, väderkvarnen från 1700-talet i bruk till 1929, hamnen byggd under andra världskriget — https://www.vastsverige.com/en/orust/products/mollosund/ (läst 2026-09-16)
       // KÄLLA: Orust kommun, Kommunfakta — Henån är centralort med cirka 3 000 invånare — https://www.orust.se/kommun-och-politik/kommunfakta (läst 2026-09-16)
       'Mollösund ligger på Orusts sydvästra spets. Sillfisket började här på 1500-talet, och inom hundra år var Mollösund Bohusläns främsta fiskecentrum. Fyra landmärken präglar byn: fyren på Gallebergs udde, träskulpturen av en fiskarkvinna med barn vid utsiktsplatsen Klockeberget, kyrkan som stod färdig 1866 och väderkvarnen från 1700-talet, som var i bruk ända till 1929. Nuvarande hamn byggdes under andra världskriget. Henån är kommunens centralort med omkring 3 000 invånare.',
@@ -1558,7 +1558,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: https://www.tullhuset.se/ — "Á la carte", "Skärgårdslunch", "Smakmeny", "Skaldjursbuffé", "Tullhuset håller öppet dagligen!", "Vi ses på Hönö Klåva!" (läst 2026-09-27)
       { name: 'Tullhuset', type: 'Restaurang', desc: 'Fisk- och skaldjursrestaurang i Hönö Klåva. À la carte, skärgårdslunch på vardagar, smakmeny och skaldjursbuffé.' },
       // KÄLLA: https://skargardshotellethono.se/en/home/ — "Skafferiet Restaurant", "Skärgårdshotellet Hönö is open all year round for hotel guests, diners, conferences and meetings" (läst 2026-09-27); https://skargardshotellethono.se/ — "Varmt välkomna på frukost, lunch, middag", "lokala och i säsong" (läst 2026-09-27)
-      { name: 'Skafferiet', type: 'Restaurang', desc: 'Skärgårdshotellets restaurang i Hönö Klåva. Serverar frukost, lunch och middag med lokala och säsongsbetonade råvaror, öppen även för icke-boende.' },
+      { name: 'Skafferiet', type: 'Restaurang', desc: 'Skärgårdshotellets restaurang i Hönö Klåva. Serverar frukost, lunch och middag med lokala och säsongsbetonade råvaror, öppen även för dem som inte bor där.' },
       // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Är du sugen på hembakt bröd, goda sallader, hamburgare, varma smörgåsar och hemlagade pajer med en fantastisk havsutsikt nere vid kajen ska du bege dig till Zivers Veranda."
       { name: 'Zivers Veranda', type: 'Café', desc: 'Kafé och matställe nere vid kajen i Hönö Klåva. Hembakt bröd, sallader, hamburgare, varma smörgåsar och hemlagade pajer.' },
       // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard (Göteborg & Co, stadens officiella besöksguide), läst 2026-09-29 : "Franses skärgårdspub. Den historiska miljön … har lokalen i många år hyst ett vadbinderi … Nu njuter du av vällagad mat, livemusik och aktiviteter. Har du hund finns det dessutom en egen hundmeny."
@@ -1678,7 +1678,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: Västsverige, "Färja Tuvesvik – Gullholmen – Käringön" — parkering vid Tuvesvik betalas med kort eller SMS, kontanter tas inte emot — https://www.vastsverige.com/orust/produkter/farja-tuvesvik-gullholmen-karingon/ (läst 2026-09-16)
       'Parkera vid Tuvesvik och ta färjan över: parkeringen betalas med kort eller SMS, kontanter tas inte emot.',
       // KÄLLA: https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ — "Färjeläget ligger i Gullholmens hamn på nordöstra Hermanö och därifrån går en bro över till Gullholmen." (läst 2026-09-27)
-      'Färjan lägger till på Härmanö-sidan av hamnen, till själva Gullholmen går du över bron.',
+      'Färjan lägger till på Härmanösidan av hamnen, till själva Gullholmen går du över bron.',
     ],
     related: ['marstrand', 'karingon', 'orust'],
     tags: ['bohuslän', 'historisk', 'bilfritt', 'fiskeläge', 'fotografi', 'familjer'],
