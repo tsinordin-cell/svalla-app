@@ -7,6 +7,7 @@ import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import ThorkelRouteCard from '@/components/thorkel/ThorkelRouteCard'
 import { THORKEL } from '@/lib/thorkel/persona'
 import { THORKEL_COPY } from '@/lib/thorkel/copy'
+import { track } from '@/lib/analytics-events'
 import type { PlanData, TransitData } from '@/app/api/guide/route'
 
 type Message = {
@@ -217,6 +218,7 @@ function GuideContent() {
     // Add user message + empty assistant slot immediately for streaming display
     setMessages([...apiMessages, { role: 'assistant', content: '' }])
     setLoading(true)
+    track('thorkel_fraga', { tecken: msg.length, sida: 'guide' })
 
     try {
       const res = await fetch('/api/guide', {
