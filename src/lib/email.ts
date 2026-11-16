@@ -62,6 +62,40 @@ function parseFrontmatter(raw: string): ParsedTemplate {
   return { meta, body: match[2] }
 }
 
+/**
+ * Förnamnet ur namnet användaren skrev vid registreringen (auth-profilens full_name).
+ * Användarnamn som "claes.dahlstrand" eller e-postliknande värden ger tomt, så att
+ * mejlet hellre hoppar över tilltalet än låter som en maskin (Max 2026-11-16).
+ */
+export function fornamnUrNamn(namn: unknown): string {
+  if (typeof namn !== 'string') return ''
+  const forsta = namn.trim().split(/\s+/)[0] ?? ''
+  if (!forsta || forsta.toLowerCase() === 'där' || /[@\d_.]/.test(forsta) || forsta.length > 30) return ''
+  return forsta.charAt(0).toLocaleUpperCase('sv-SE') + forsta.slice(1)
+}
+
+/** Utan förnamn: "{{first_name}}, alla åker" blir "Alla åker", "Hej {{first_name}}" blir "Hej". */
+export function utanNamn(t: string): string {
+  return t
+    .replace(/Hej \{\{\s*first_name\s*\}\}/g, 'Hej')
+    .replace(/\{\{\s*first_name\s*\}\}\s*(?:,|:|—|–)\s*(?=\{\{)/g, '')
+    .replace(/\{\{\s*first_name\s*\}\}\s*(?:,|:|—|–)\s*(\p{L})/gu, (_, c: string) => c.toLocaleUpperCase('sv-SE'))
+}
+
+/** Hämta förnamnet från profilen via e-postadressen. Tomt om det inte finns. */
+async function hamtaFornamn(epost: string, url: string, nyckel: string): Promise<string> {
+  const h = { apikey: nyckel, Authorization: `Bearer ${nyckel}` }
+  const r = await fetch(`${url}/rest/v1/users?email=ilike.${encodeURIComponent(epost)}&select=id&limit=1`, { headers: h })
+  if (!r.ok) return ''
+  const rader = await r.json() as Array<{ id: string }>
+  const id = rader[0]?.id
+  if (!id) return ''
+  const a = await fetch(`${url}/auth/v1/admin/users/${id}`, { headers: h })
+  if (!a.ok) return ''
+  const u = await a.json() as { user_metadata?: Record<string, unknown> }
+  return fornamnUrNamn(u.user_metadata?.full_name ?? u.user_metadata?.name)
+}
+
 /** Substituera {{first_name}}, {{temp}} osv */
 function substitute(template: string, vars: Record<string, string | number | undefined>): string {
   return template.replace(/\{\{\s*([a-z_]+)\s*\}\}/g, (_, key) => {
@@ -303,7 +337,8 @@ function build(
   vars: Record<string, string | number | undefined>,
   logoSrc?: string,
 ): { subject: string; html: string; meta: Frontmatter } {
-  const raw = MAIL_MALLAR[template]
+  const mall = MAIL_MALLAR[template]
+  const raw = vars.first_name ? mall : utanNamn(mall)
   const { meta, body } = parseFrontmatter(raw)
   // avreg_url sätts av sendEmail (signerad länk). I förhandsvisningen på
   // /admin/mail finns ingen mottagare – då pekar länken på utskicksinställningarna.
@@ -356,6 +391,11 @@ export async function sendEmail(opts: {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) return { ok: false, error: 'RESEND_API_KEY saknas' }
 
+  // Förnamnet tas från profilen (namnet vid registreringen), inte från användarnamnet.
+  // Ett användarnamn som "claes.dahlstrand" i rubriken lät som en maskin (Max 2026-11-16).
+  const angivet = opts.vars?.first_name
+  let fornamn = typeof angivet === 'string' ? fornamnUrNamn(angivet) : ''
+
   // Respektera unsubscribes. Fail-open vid DB-fel (logga + skicka ändå) så
   // ett tillfälligt Supabase-problem inte blockerar alla mail.
   try {
@@ -372,6 +412,8 @@ export async function sendEmail(opts: {
       } else {
         console.error('[email] unsubscribe-kontrollen svarade', r.status, '- skickar anda')
       }
+      const profilnamn = await hamtaFornamn(opts.to, supabaseUrl, serviceKey).catch(() => '')
+      if (profilnamn) fornamn = profilnamn
     }
   } catch {
     // fail-open: skicka ändå
@@ -379,7 +421,7 @@ export async function sendEmail(opts: {
 
   // Signerad avregistreringslänk (src/lib/avregistrering.ts). & blir &amp; i HTML.
   const avreg = avregLank(opts.to)
-  const vars = { email: opts.to, ...opts.vars, avreg_url: avreg.replace(/&/g, '&amp;') }
+  const vars = { email: opts.to, ...opts.vars, first_name: fornamn, avreg_url: avreg.replace(/&/g, '&amp;') }
   // Loggan bäddas in inline (cid:) → syns även med externa bilder avstängda.
   const { subject, html, meta } = build(opts.template, vars, `cid:${LOGO_CID}`)
   const from = process.env.EMAIL_FROM || meta.from || 'Svalla <info@svalla.se>'
