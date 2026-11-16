@@ -4,7 +4,7 @@
 -- ingen fråga är körd mot databasen.
 --
 -- Bakgrund: sedan runda 5 går ö-fältet före avståndet (islandPlaces.ts, arPaOn). En plats vars ö-fält är postorten och inte
--- ön hamnar då under "i närheten" på sin egen ö. Bland de 77 placeringar (67 platser på 23 öar) där ö-fältet är en annan ort
+-- ön hamnar då under "i närheten" på sin egen ö. Bland de 76 placeringar (66 platser på 23 öar) där ö-fältet är en annan ort
 -- men platsen ligger inom platsradien från nålen är det här det enda fallet där ö-fältet är fel (listan och besluten:
 -- register/b01/ut/mallar.omarbete6.md, punkt 6).
 
