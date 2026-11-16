@@ -4,6 +4,7 @@ import { createClient, getViewer } from '@/lib/supabase'
 import Link from 'next/link'
 import { timeAgoShort } from '@/lib/utils'
 import Icon, { type IconName } from '@/components/Icon'
+import { getIsland } from '@/app/o/island-data'
 
 type Notif = {
  id: string
@@ -70,6 +71,8 @@ export default function NotificationBell() {
  const [open, setOpen] = useState(false)
  const [userId, setUserId] = useState<string | null>(null)
  const ref = useRef<HTMLDivElement>(null)
+ const knappRef = useRef<HTMLButtonElement>(null)
+ const [panelGeo, setPanelGeo] = useState<{ top: number; right: number; width: number }>({ top: 60, right: 12, width: 300 })
 
  const unread = notifs.filter(n => !n.read).length
 
@@ -161,7 +164,21 @@ export default function NotificationBell() {
  return (
  <div ref={ref} style={{ position: 'relative' }}>
  <button
- onClick={() => { setOpen(o => !o); if (!open && unread > 0) markAllRead() }}
+ ref={knappRef}
+ onClick={() => {
+ const rect = knappRef.current?.getBoundingClientRect()
+ const vw = window.innerWidth
+ const bredd = Math.min(300, vw - 24)
+ if (rect) {
+ // högerkant i linje med klockan, men aldrig utanför skärmen
+ const right = Math.min(Math.max(12, vw - rect.right), vw - 12 - bredd)
+ setPanelGeo({ top: rect.bottom + 8, right, width: bredd })
+ } else {
+ setPanelGeo({ top: 60, right: 12, width: bredd })
+ }
+ setOpen(o => !o)
+ if (!open && unread > 0) markAllRead()
+ }}
  aria-label={unread > 0 ? `${unread} olästa notiser` : 'Notiser'}
  aria-expanded={open}
  className="press-feedback"
@@ -191,8 +208,12 @@ export default function NotificationBell() {
 
  {open && (
  <div style={{
- position: 'absolute', top: 46, right: 0, zIndex: 200,
- width: 300, maxHeight: 420, overflowY: 'auto',
+ /* Panelen låg absolut med right:0 och 300 px bredd. På /profil sitter klockan
+    mitt i sidhuvudet, så panelen stack ut till vänster om skärmen och namnen
+    klipptes (Toms skärmdump 2026-11-17). Nu fast position räknad från klockans
+    läge, alltid minst 12 px från kanterna. */
+ position: 'fixed', top: panelGeo.top, right: panelGeo.right, zIndex: 200,
+ width: panelGeo.width, maxHeight: 'min(420px, calc(100vh - 100px))', overflowY: 'auto',
  background: 'var(--white)', borderRadius: 18,
  boxShadow: '0 8px 40px rgba(0,30,50,0.18)',
  border: '1px solid rgba(10,123,140,0.10)',
@@ -313,7 +334,7 @@ export default function NotificationBell() {
  </div>
  <div style={{ flex: 1, minWidth: 0 }}>
  <span style={{ fontSize: 13, color: 'var(--txt)', lineHeight: 1.4 }}>
- <strong>{n.actor_username}</strong> {TYPE_LABEL[n.type] ?? 'gjorde något'}
+ <strong>{n.actor_username}</strong> {n.type === 'friend_visit' && n.related_island_slug ? `besökte ${getIsland(n.related_island_slug)?.name ?? n.related_island_slug}, en ö du varit på` : (TYPE_LABEL[n.type] ?? 'gjorde något')}
  </span>
  <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{timeAgoShort(n.created_at)}</div>
  </div>
