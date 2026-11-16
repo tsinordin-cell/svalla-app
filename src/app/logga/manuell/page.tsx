@@ -316,6 +316,7 @@ function ManuellForm() {
         average_speed_knots: 0,
         max_speed_knots:     0,
         route_id:       routeId,
+        planned_route_id: plannedRouteId,
         started_at:     new Date(startedAtLocal).toISOString(),
         ended_at:       new Date(endedAtLocal).toISOString(),
       }).select('id').single()
@@ -350,7 +351,8 @@ function ManuellForm() {
         }
       } catch { /* tyst */ }
 
-      // Länka trip till planerad rutt
+      // Länka rutten till turen (bara egen rutt går att uppdatera, RLS;
+      // trips.planned_route_id ovan gäller alltid och är det ruttsidan läser).
       if (plannedRouteId) {
         await supabase
           .from('planned_routes')
