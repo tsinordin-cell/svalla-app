@@ -31,15 +31,30 @@ export default function Nav() {
         if (channelRef.current) { supabase.removeChannel(channelRef.current); channelRef.current = null }
         return
       }
-      supabase
-        .from('users')
-        .select('username, avatar')
-        .eq('id', session.user.id)
-        .single()
-        .then(({ data }) => {
-          setUsername(data?.username ?? session.user.email?.split('@')[0] ?? null)
-          setAvatar(data?.avatar ?? null)
-        })
+      // Aliaset kommer från users-raden. Saknas raden (post-signup har inte
+      // hunnit skapa den vid första sessionen) försöker vi en gång till efter
+      // två sekunder. Tidigare föll vi tillbaka på e-postens lokaldel, vilket
+      // visade början av mejladressen i navigeringen ("claes.da" för en
+      // användare med alias "claes", 2026-11-16). E-posten ska inte synas.
+      const hamtaProfil = (forsok: number) => {
+        supabase
+          .from('users')
+          .select('username, avatar')
+          .eq('id', session.user.id)
+          .maybeSingle()
+          .then(({ data }) => {
+            if (data?.username) {
+              setUsername(data.username)
+              setAvatar(data.avatar ?? null)
+            } else if (forsok < 1) {
+              setTimeout(() => hamtaProfil(forsok + 1), 2000)
+            } else {
+              setUsername('')
+              setAvatar(null)
+            }
+          })
+      }
+      hamtaProfil(0)
     })
 
     return () => {
@@ -135,7 +150,9 @@ export default function Nav() {
     },
     {
       href: '/profil',
-      label: username ? username.slice(0, 8) : 'Profil',
+      // Hela aliaset; span-elementet nedan kortar med … när det inte får plats.
+      // Hårdkapningen till åtta tecken (till 2026-11-16) klippte "claes.da" utan …
+      label: username || 'Profil',
       icon: (active: boolean) => (
         <div style={{ position: 'relative' }}>
           {username ? (

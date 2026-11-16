@@ -97,16 +97,42 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Spara i Supabase ──────────────────────────────────────────────────────
-  const { error: dbError } = await getAdminClient().from('site_feedback').insert({
+  const service = getAdminClient()
+  const { data: sparad, error: dbError } = await service.from('site_feedback').insert({
     feedback_type: feedbackType,
     message,
     page_url:      pageUrl,
     user_id:       user?.id ?? null,
-  })
+  }).select('id').single()
 
   if (dbError) {
     logger.error('api/feedback', 'insert failed', { error: dbError.message })
     return NextResponse.json({ error: 'Kunde inte spara feedbacken' }, { status: 500 })
+  }
+
+  // ── Kort på /team (2026-11-16) ──────────────────────────────────────────
+  // Testare (Claes) ska kunna rapportera fel i sajten i stället för på
+  // WhatsApp. Varje feedback blir ett kort i ATT GÖRA utan ägare, med sidan
+  // och avsändaren, så att det ligger i samma backlog som allt annat.
+  // Misslyckas kortet sparas feedbacken ändå (den finns i site_feedback och
+  // i admin-mejlet nedan).
+  try {
+    let avsandare = 'Anonym besökare'
+    if (user) {
+      const { data: profil } = await service.from('users').select('username').eq('id', user.id).maybeSingle()
+      avsandare = profil?.username ? `@${profil.username}` : 'Inloggad användare'
+    }
+    const sidvag = (() => { try { return pageUrl ? new URL(pageUrl).pathname : '(okänd sida)' } catch { return pageUrl ?? '(okänd sida)' } })()
+    const rubrik = message.replace(/\s+/g, ' ').slice(0, 70) + (message.length > 70 ? '…' : '')
+    await service.from('team_tasks').insert({
+      title: `FEEDBACK ${TYPE_LABELS[feedbackType] ?? feedbackType}: ${rubrik}`,
+      description: `${message}\n\nSida: ${pageUrl ?? '(okänd)'}\nFrån: ${avsandare}\nVia: Tyck till-knappen ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC (site_feedback ${sparad?.id ?? '?'})\n\nSidväg: ${sidvag}`,
+      status: 'todo',
+      priority: feedbackType === 'fel-info' ? 'high' : 'normal',
+      created_by: user?.id ?? null,
+    })
+  } catch (e) {
+    logger.error('api/feedback', 'team_tasks insert failed', { error: e instanceof Error ? e.message : String(e) })
   }
 
   // ── Skicka admin-mail ─────────────────────────────────────────────────────
