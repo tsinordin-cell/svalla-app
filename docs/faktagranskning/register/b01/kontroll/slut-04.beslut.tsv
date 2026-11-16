@@ -1,0 +1,10 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-16)
+sl04-k004	vaxholm-0281	FEL	Registret inaktuellt: den slutliga texten stöds av källan enligt Kontrollanten. Ingen ändring.
+sl04-k005	vaxholm-0134	FEL	Registret inaktuellt: den slutliga texten stöds av källan enligt Kontrollanten. Ingen ändring.
+sl04-k016	moja-0622	FEL	Omarbete 4f (Möja): beskrivningen av Möja värdshus ska tillskrivas ("Enligt värdshuset …"), även "bakats sedan 1951".
+sl04-k036	sandhamn-0153	FEL	Omarbete 4f (Utö): "där också båtarna lägger till" ska beläggas med operatörens tabell, inte ledens vägbeskrivning.
+sl04-k037	uto-0076	FEL	Omarbete 4f (Utö): länsmuseet nämner dagbrott och varpstenshögar som syns i dag, inte schakt. Skriv det museet skriver.
+sl04-k074	grinda-0090	SAKNAS	Inte P0 (MÄTT av Redaktören 2026-11-16): svalla.se/api/transit/departures?dest=grinda ger turer till "Grinda Södra bryggan (Värmdö kn)" med Waxholmsbolagets linje 13, så ID:t 740098471 är Grinda Södra brygga. Omarbete 4f (Grinda): rutan bör säga Södra bryggan, och noten "Direktbåt … sommartid" stämmer inte med att linje 13 går i november.
+utanför-k087	(mall)	OK med kommentar	Mall: /o/styrso/med-barn visar "Ingen badplats registrerad" och listar samtidigt två bad. Prövas i förhandsversionen och rättas i mallarna.
+utanför-k038	(Styrsö, Vrångö gästhamn)	OK med kommentar	Omarbete 4f: hamndjupet kommer från en aggregator; djup beläggs bara av nivå 1.
+utanför-k067	(Vaxholm)	OK med kommentar	Omarbete 4f: SFV-citatet i KÄLLA-raden finns inte längre på sfv.se; byt citat eller källa.
