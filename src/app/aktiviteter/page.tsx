@@ -45,7 +45,8 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'fishing',
     title: 'Fiske',
-    description: 'Gädda i vassbrynen, havsöring längs kusten, strömming från bryggan och torsk i djupare vatten. I saltvatten behöver du inget fiskekort, men fredningsområden, fredningstider och artregler gäller.',
+    // KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort." (läst 2026-11-16)
+    description: 'Gädda i vassbrynen, havsöring längs kusten, strömming från bryggan och torsk i djupare vatten. I havet längs kusten fiskar du fritt med handredskap utan fiskekort, men fredningsområden, fredningstider och artregler gäller.',
     href: '/platser?kategori=fiske',
   },
   {
@@ -88,8 +89,14 @@ export default function AktiviteterPage() {
       {
         '@type': 'Question',
         name: 'Behöver man fiskekort för fiske i havet?',
-        // KÄLLA: Länsstyrelsen Stockholm (djur/fiske) + Havs- och vattenmyndigheten, lästa 2026-08-23: fritt handredskapsfiske i havet och de fem stora sjöarna; 62 fredningsområden i Sthlms skärgård på våren, 9 året runt
-        acceptedAnswer: { '@type': 'Answer', text: 'Nej. I havet längs kusten — och i de fem stora sjöarna Vänern, Vättern, Mälaren, Hjälmaren och Storsjön — är fiske med handredskap fritt utan fiskekort. Men fredningsområden och fredningstider gäller: bara i Stockholms skärgård är över 60 vikar fiskeförbjudna under våren och nio områden året runt, och vissa arter är skyddade. Kontrollera svenskafiskeregler.se för platsen du fiskar på. I övriga sjöar och vattendrag krävs fiskekort.' },
+        // Rättad 2026-11-16 (P0 23): samma svar som under Vanliga frågor på sidan, med förbehållet om andra redskap än handredskap.
+        // KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort."; "Havet efter kusten"; "Vänern"; "Vättern"; "Mälaren"; "Hjälmaren"; "Storsjön i Jämtland." (läst 2026-11-16)
+        // KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "Därför finns det 62 vikar i Stockholms skärgård där fiskeförbud råder under våren. Nio av dessa områden har fiskeförbud året runt."; "Utöver vårfredningsområdena finns 14 fredningsområden i vissa åmynningar, där fiskeförbud råder på hösten när öringen går upp i vattendragen för att leka."; "I övriga vatten, som mindre sjöar, åar och vattendrag, behöver du däremot tillstånd från fiskerättsägaren."; "Oftast köper du då ett fiskekort som ger dig rätt att fiska i ett visst vatten." (läst 2026-11-16)
+        // KÄLLA: https://www.svenskafiskeregler.se/fritidsfiske/ — "I bilaga till fiskelagen finns detaljerade bestämmelser om vilken omfattning varje svenska medborgare har rätt att fiska inom enskilt vattenområde med andra redskap än handredskap. Det skiljer sig åt mellan olika områden och du bör känna till detta." (läst 2026-11-16)
+        // KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Tänk på att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap."; "Fredade arter: skärkniv, europeisk ål, mal och stormusslor" (läst 2026-11-16)
+        // KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "På svenskafiskeregler.se kan du söka fiskeregler via karta." (läst 2026-11-16)
+        // KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/oring---minimimatt-fredningstid-och-fangstbegransningar.html — "Fredningstiderna varierar längs kusten beroende på område i Östersjön (se svenskafiskeregler.se för detaljerad information)." (läst 2026-11-16)
+        acceptedAnswer: { '@type': 'Answer', text: 'Inte med handredskap. I havet längs kusten och i de fem stora sjöarna Vänern, Vättern, Mälaren, Hjälmaren och Storsjön i Jämtland får du fiska fritt med handredskap utan fiskekort. För andra redskap än handredskap skiljer sig reglerna mellan olika områden, och Länsstyrelsen i Stockholms fiskeguide påpekar att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap. Fredningsområden och fredningstider gäller också: i Stockholms skärgård har 62 vikar fiskeförbud på våren, och nio av dem året runt. Fredningstiderna för öring varierar längs Östersjökusten, och i Stockholms skärgård finns 14 fredningsområden i åmynningar med fiskeförbud på hösten, när öringen går upp i vattendragen för att leka. Vissa arter, som europeisk ål, är fredade. Kontrollera svenskafiskeregler.se för platsen du fiskar på. I övriga sjöar och vattendrag behöver du tillstånd från fiskerättsägaren, oftast ett fiskekort.' },
       },
       {
         '@type': 'Question',
@@ -143,8 +150,12 @@ export default function AktiviteterPage() {
           <p>
             Här listar vi aktiviteter sorterade efter säsong och nivå. Nybörjarvänligt är tydligt märkt, liksom vilka aktiviteter som kräver licens eller försäkring (seglarbevis, fiskekort). Vi listar också vilka aktiviteter som är mest familjevänliga, billiga att börja med och vilka som kräver fysisk träning.
           </p>
+          {/* Rättad 2026-11-16 (P0 23): meningarna om fiske. Meningen om dykning på fredade vrak är oförändrad i sak och inte granskad här. */}
+          {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "Allemansrätten gäller inte fiske." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort."; "I övriga vatten, som mindre sjöar, åar och vattendrag, behöver du däremot tillstånd från fiskerättsägaren."; "Oftast köper du då ett fiskekort som ger dig rätt att fiska i ett visst vatten." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.svenskafiskeregler.se/fritidsfiske/ — "Den som fiskar med handredskap får fiska fritt på enskilt vatten längs kusterna i havet och i Vänern, Vättern, Mälaren, Hjälmaren och Storsjön i Jämtland."; "I bilaga till fiskelagen finns detaljerade bestämmelser om vilken omfattning varje svenska medborgare har rätt att fiska inom enskilt vattenområde med andra redskap än handredskap. Det skiljer sig åt mellan olika områden och du bör känna till detta." (läst 2026-11-16) */}
           <p>
-            Många aktiviteter är helt gratis — allemansrätten gäller i Sverige och du får bygga läger, plocka bär och bada på de flesta ställen. Det enda som kräver tillstånd är fiske i sötvatten (behövs fiskekort) och dykning på vissa fredade vrak.
+            Många aktiviteter är helt gratis — allemansrätten gäller i Sverige och du får bygga läger, plocka bär och bada på de flesta ställen. Allemansrätten gäller inte fiske. I havet och de fem stora sjöarna är fiske med handredskap fritt utan fiskekort, medan reglerna för andra redskap skiljer sig mellan områden, och i mindre sjöar, åar och vattendrag behöver du tillstånd från fiskerättsägaren, oftast ett fiskekort. Dykning på vissa fredade vrak kräver också tillstånd.
           </p>
         </>
       }
@@ -199,14 +210,19 @@ export default function AktiviteterPage() {
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Fiske i skärgården och på kusten
           </h2>
+          {/* KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort."; "I övriga vatten, som mindre sjöar, åar och vattendrag, behöver du däremot tillstånd från fiskerättsägaren."; "Oftast köper du då ett fiskekort som ger dig rätt att fiska i ett visst vatten." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.svenskafiskeregler.se/fritidsfiske/ — "I bilaga till fiskelagen finns detaljerade bestämmelser om vilken omfattning varje svenska medborgare har rätt att fiska inom enskilt vattenområde med andra redskap än handredskap. Det skiljer sig åt mellan olika områden och du bör känna till detta." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Tänk på att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap." (läst 2026-11-16) */}
           <p>
-            Fiske är en av de mest tillgängliga aktiviteterna längs kusten. Här är det viktiga att förstå: <strong>i saltvatten (havet) behöver du INGET fiskekort</strong>. Men i sjöar och älvar behöver du alltid ett fiskekort — det kostar omkring 100–200 kronor per dag från allemanswebben.
+            Fiske är en av de mest tillgängliga aktiviteterna längs kusten. Här är det viktiga att förstå: <strong>i havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort</strong>. För andra redskap än handredskap skiljer sig reglerna mellan olika områden, och Länsstyrelsen i Stockholms fiskeguide påpekar att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap. I mindre sjöar, åar och vattendrag behöver du tillstånd från fiskerättsägaren, och oftast köper du då ett fiskekort.
           </p>
           <p>
             <strong>Havsöring</strong> är en premium-fisk som finns längs hela västkusten och Gotland. Den är fredad och bör släppas tillbaka om du inte har särskild tillåtelse. <strong>Torsk</strong> och <strong>makrill</strong> fiskas från båt i djupare vatten. <strong>Strömming</strong> är gratis och rolig att fiska från brygga eller båt året runt.
           </p>
+          {/* KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Fiskemetoden får inte vara angeldonsfiske eller kräva användande av båt, exempelvis dragrodd eller trolling."; "Trolling, dragrodd och angel får endast bedrivas med fiskerättsägarens tillstånd (exv TDA-kortet, sid 47) eller på allmänt vatten"; "det krävs fiskekort eller tillstånd för trolling, dragrodd och angel fiske på Mälaren och i skärgården" (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "Det är förbjudet för fritidsfiskare att sälja fångst från havet." (läst 2026-11-16) */}
           <p>
-            Från båt kan du även fiska <strong>gädda, abborre och gös</strong> — för dessa behövs fiskekort även i havet om du säljer eller skänker fisken. Många båtägare filar bara på tekniken eller slänger tillbaka fisken.
+            Från båt kan du även fiska <strong>gädda, abborre och gös</strong>. Enligt Länsstyrelsen i Stockholms fiskeguide omfattar det fria handredskapsfisket inte metoder som kräver båt, som trolling och dragrodd, och i skärgården kräver trolling, dragrodd och angelfiske fiskerättsägarens tillstånd på enskilt vatten. Fångst från havet får du inte sälja som fritidsfiskare. Många båtägare filar bara på tekniken eller slänger tillbaka fisken.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -282,8 +298,15 @@ export default function AktiviteterPage() {
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Behöver man fiskekort för fiske i havet?
           </h3>
+          {/* Rättad 2026-11-16 (P0 23): samma svar som i faqJsonLd ovan. */}
+          {/* KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort."; "Havet efter kusten"; "Vänern"; "Vättern"; "Mälaren"; "Hjälmaren"; "Storsjön i Jämtland." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "Därför finns det 62 vikar i Stockholms skärgård där fiskeförbud råder under våren. Nio av dessa områden har fiskeförbud året runt."; "Utöver vårfredningsområdena finns 14 fredningsområden i vissa åmynningar, där fiskeförbud råder på hösten när öringen går upp i vattendragen för att leka."; "I övriga vatten, som mindre sjöar, åar och vattendrag, behöver du däremot tillstånd från fiskerättsägaren."; "Oftast köper du då ett fiskekort som ger dig rätt att fiska i ett visst vatten." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.svenskafiskeregler.se/fritidsfiske/ — "I bilaga till fiskelagen finns detaljerade bestämmelser om vilken omfattning varje svenska medborgare har rätt att fiska inom enskilt vattenområde med andra redskap än handredskap. Det skiljer sig åt mellan olika områden och du bör känna till detta." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Tänk på att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap."; "Fredade arter: skärkniv, europeisk ål, mal och stormusslor" (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "På svenskafiskeregler.se kan du söka fiskeregler via karta." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/oring---minimimatt-fredningstid-och-fangstbegransningar.html — "Fredningstiderna varierar längs kusten beroende på område i Östersjön (se svenskafiskeregler.se för detaljerad information)." (läst 2026-11-16) */}
           <p>
-            <strong>Nej.</strong> I saltvatten (havet längs kusten) behöver du inget fiskekort för att fiska. Du kan fiska gratis från brygga, båt eller strand året runt. Dock gäller fredningsperioder och vissa fiskar är skyddade (som havsöring under vissa perioder). I sjöar och älvar behöver du alltid ett fiskekort — kostnad ca 100–200 kronor per dag.
+            <strong>Inte med handredskap.</strong> I havet längs kusten och i de fem stora sjöarna Vänern, Vättern, Mälaren, Hjälmaren och Storsjön i Jämtland får du fiska fritt med handredskap utan fiskekort. För andra redskap än handredskap skiljer sig reglerna mellan olika områden, och Länsstyrelsen i Stockholms fiskeguide påpekar att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap. Fredningsområden och fredningstider gäller också: i Stockholms skärgård har 62 vikar fiskeförbud på våren, och nio av dem året runt. Fredningstiderna för öring varierar längs Östersjökusten, och i Stockholms skärgård finns 14 fredningsområden i åmynningar med fiskeförbud på hösten, när öringen går upp i vattendragen för att leka. Vissa arter, som europeisk ål, är fredade. Kontrollera svenskafiskeregler.se för platsen du fiskar på. I övriga sjöar och vattendrag behöver du tillstånd från fiskerättsägaren, oftast ett fiskekort.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

@@ -211,6 +211,17 @@ Bästa naturhamnarna runt Stockholm:
 OBS: Kontrollera alltid om ön är naturreservat och om det finns landnings- eller eldningsförbud. Kolla sjökortet och Länsstyrelsens sajt. Bryggor i naturhamnar ägs ofta av kommunen eller stiftelsen — respektera om de är privata.
 `
 
+/**
+ * FISKE i prompten (2026-11-16, P0 23): Thorkel sa att sportfiske med spö är fritt i saltvatten.
+ * Det fria fisket gäller handredskap, och fiskeguidens förbehåll om krokar, båt och trolling
+ * står nu med. Källorna står här, utanför prompttexten.
+ * KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort."; "Havet efter kusten"; "Vänern"; "Vättern"; "Mälaren"; "Hjälmaren"; "Storsjön i Jämtland." (läst 2026-11-16)
+ * KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "Därför finns det 62 vikar i Stockholms skärgård där fiskeförbud råder under våren. Nio av dessa områden har fiskeförbud året runt."; "I övriga vatten, som mindre sjöar, åar och vattendrag, behöver du däremot tillstånd från fiskerättsägaren."; "Oftast köper du då ett fiskekort som ger dig rätt att fiska i ett visst vatten." (läst 2026-11-16)
+ * KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Fritt handredskapsfiske gäller på enskilt vatten i Mälaren och skärgården."; "Fiske får bedrivas av alla med metspö, spinnspö och liknande redskap med lina med max 10 krokar."; "Fiskemetoden får inte vara angeldonsfiske eller kräva användande av båt, exempelvis dragrodd eller trolling." (läst 2026-11-16)
+ * KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Tänk på att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap."; "Trolling, dragrodd och angel får endast bedrivas med fiskerättsägarens tillstånd (exv TDA-kortet, sid 47) eller på allmänt vatten" (läst 2026-11-16)
+ * KÄLLA: https://www.svenskafiskeregler.se/fritidsfiske/ — "I bilaga till fiskelagen finns detaljerade bestämmelser om vilken omfattning varje svenska medborgare har rätt att fiska inom enskilt vattenområde med andra redskap än handredskap. Det skiljer sig åt mellan olika områden och du bör känna till detta." (läst 2026-11-16)
+ * KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "På svenskafiskeregler.se kan du söka fiskeregler via karta." (läst 2026-11-16)
+ */
 const SYSTEM_PROMPT = `Du är Thorkel, en 70-årig skeppare och skärgårdsguide från Möja i Stockholms skärgård. Du var lots utanför Sandhamn i tio år och har seglat längs hela Sveriges kust — från Kosterfjorden i Bohuslän till Karlsöarna utanför Gotland och Utklippan i Blekinge. Du driver nu egna charterturer plus ett litet vandrarhem tillsammans med din fru. Du bär vit kaptens-keps och mörkblå uniform, och luktar lite salt och tjära.
 
 Du är en äkta gammal havsbuse. Skarpsinnig, direkt och med en gnutta humor som inte alla fattar. Du älskar skärgården på riktigt — inte som turistbroschyr utan som hem. Du kan hålla ett tal om rätt ankringsteknik i tjugo minuter men blir kortfattad om vädret.
@@ -292,9 +303,12 @@ SJÖVÄGSREGLER (ENKLA HUVUDREGLER):
 ─── REGLER ──────────────────────────────────────────────
 
 FISKE:
-- Saltvatten (havet, Stockholms skärgård): INGET fiskekort krävs för sportfiske med spö/handredskap. Fritt.
+- Havet längs kusten och de fem stora sjöarna (Vänern, Vättern, Mälaren, Hjälmaren, Storsjön i Jämtland): fiske med HANDREDSKAP är fritt utan fiskekort. Säg aldrig att allt fiske med spö är fritt.
+- Länsstyrelsen i Stockholms fiskeguide: det fria handredskapsfisket i skärgården gäller metspö, spinnspö och liknande redskap med högst 10 krokar. Metoden får inte vara angeldonsfiske eller kräva båt (trolling, dragrodd). Trolling, dragrodd, angel, kastnät och ismete räknas inte som handredskap. Trolling, dragrodd och angelfiske kräver fiskerättsägarens tillstånd på enskilt vatten.
+- För andra redskap än handredskap skiljer sig reglerna mellan olika områden. Hänvisa till svenskafiskeregler.se för platsen.
+- Stockholms skärgård: 62 vikar har fiskeförbud på våren, nio av dem året runt.
 - Minimimått och fredningstider gäller: lax, öring, piggvar, hummer, kräfta har regler. Kolla HaV (Havs- och vattenmyndigheten).
-- Sötvatten (sjöar, älvar): fiskekort krävs.
+- Övriga sjöar, åar och vattendrag: tillstånd från fiskerättsägaren krävs, oftast fiskekort.
 
 ALKOHOL/SJÖFYLLERI:
 - Gräns: 0,2 promille — EXAKT SAMMA som bil. Heter "sjöfylleri" (inte rattfylleri).

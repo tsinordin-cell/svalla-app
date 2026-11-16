@@ -2219,11 +2219,13 @@ export const GUIDES: GuideMeta[] = [
   {
     slug: "barnvanliga-aktiviteter-skargarden",
     title: "Barnvänliga aktiviteter i skärgården – familjevänliga sevärdheter",
-    excerpt: "Familjevänliga aktiviteter och sevärdheter i skärgården: snorkelleder, Vaxholms kastell, Nåttarö, fiske utan fiskekort och Hitta Ut i Göteborgs skärgård.",
+    // KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort." (läst 2026-11-16)
+    excerpt: "Familjevänliga aktiviteter och sevärdheter i skärgården: snorkelleder, Vaxholms kastell, Nåttarö, fiske med handredskap utan fiskekort och Hitta Ut i Göteborgs skärgård.",
     category: "Aktivitet", emoji: "🎯", readTime: "6 min", fullContent: true,
     faqs: [
       // KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — "Du får bada vid stränder, paddla kajak och åka båt."; https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/snorkelleder/ — "De skyltade undervattenslederna är ca 200 meter långa och går som mest på tre meters djup."
-      { q: "Vad kan man göra i skärgården med barn?", a: "Bada, paddla och åka båt enligt allemansrätten, snorkla längs de skyltade snorkellederna på Björnö och Nåttarö, fiska med spö utan fiskekort och besöka sevärdheter som Vaxholms kastell, Drottninggrottan på Nåttarö och fyren på Landsort." },
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort." (läst 2026-11-16)
+      { q: "Vad kan man göra i skärgården med barn?", a: "Bada, paddla och åka båt enligt allemansrätten, snorkla längs de skyltade snorkellederna på Björnö och Nåttarö, fiska med handredskap utan fiskekort och besöka sevärdheter som Vaxholms kastell, Drottninggrottan på Nåttarö och fyren på Landsort." },
       // KÄLLA: https://skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/ — "Observera att öppettiderna skiljer sig mellan sommar och vinter- och lågsäsong."
       { q: "Hur hittar man familjevänliga aktiviteter och sevärdheter för en skärgårdsresa?", a: "Välj ett mål som nås med reguljär båt och kombinera gärna en sevärdhet med bad. På Skärgårdsstiftelsens områden i Stockholms skärgård finns snorkelleder, lägerplatser, naturstigar och skärgårdsjordbruk, men öppettiderna skiljer sig mellan sommar och lågsäsong." },
       // KÄLLA: https://www.vaxholmsfastning.se/ — "Vi erbjuder kostnadsfria barnaktiviteter för åldrarna 4 –15 år under våra öppettider"; https://www.goteborg.com/guider/sommarparlor-i-goteborgs-skargard — "Aktiviteten är gratis, öppen dygnet runt och passar alla."
