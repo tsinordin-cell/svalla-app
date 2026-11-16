@@ -4607,8 +4607,8 @@ export const GUIDES: GuideMeta[] = [
   },
   {
     slug: "julmarknad-havet",
-    title: "Fira jul i skärgården: julmarknader och julbord vid havet",
-    excerpt: "Fira jul i skärgården och vid kusten 2026: julmarknader i Marstrand, Sandhamn, Vaxholm och Visby med datum från arrangörerna, plus julbord och julafton på öarna.",
+    title: "Julmarknad 2026 i Vaxholm, Sandhamn, Marstrand och Visby: datum",
+    excerpt: "Julmarknader vid havet 2026: Marstrand 28 till 29 november, Sandhamn 28 november, Vaxholm 5 till 6 december och Medeltida jul i Visby 4 till 6 december, med datum från arrangörerna. Plus julbord och julafton på öarna.",
     category: "Säsong", emoji: "🎄", readTime: "5 min", fullContent: true,
     faqs: [
       // KÄLLA: https://www.sandhamn.com/sv/kalender/julafton — "Fira Julafton med oss"; https://www.sandhamn.com/sv/kalender/julafton — "Och dagen därpå fortsätter firandet med vår traditionella kalkonmiddag"; https://www.rokeriet-fjaderholmarna.se/julbord — "Julbordet hålls från 20 november till 20 december 2026"; https://carlsten.se/julbord/ — "Välkommen på Julbord på Carlstens Fästning 2026"
