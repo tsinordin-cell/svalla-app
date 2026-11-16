@@ -21,6 +21,8 @@ export type TripSaveInput = {
   locationName: string
   routePoints: unknown
   isPrivate: boolean
+  /** Planerad rutt (/planera/<id>) som turen gjordes efter. 2026-11-16. */
+  plannedRouteId?: string | null
 }
 
 export function buildTripFields(i: TripSaveInput) {
@@ -48,5 +50,6 @@ export function buildTripFields(i: TripSaveInput) {
     route_points:         i.routePoints,
     status:               'done' as const,
     visibility:           i.isPrivate ? ('private' as const) : ('public' as const),
+    planned_route_id:     i.plannedRouteId ?? null,
   }
 }
