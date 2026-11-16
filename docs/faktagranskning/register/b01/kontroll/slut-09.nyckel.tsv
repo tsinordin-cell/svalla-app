@@ -1,0 +1,35 @@
+kid	register-id	urval
+sl09-k001	uto-0074,uto-0076	ARTEFAKT:uto:edit:10
+sl09-k002	styrso-0008,styrso-N001,styrso-N002,styrso-0422,styrso-0423,styrso-0437	ARTEFAKT:styrso:edit:15
+sl09-k003	uto-0178,uto-0179,uto-N004	ARTEFAKT:uto:edit:4
+sl09-k004	uto-0293,uto-0300	ARTEFAKT:uto:edit:7
+sl09-k005	styrso-0192	ARTEFAKT:styrso:edit:8
+sl09-k006	uto-0163,uto-0164,uto-0165,uto-0166,uto-0167,uto-0168,uto-0169,uto-0170,uto-0172,uto-0173,uto-0174,uto-0353,uto-N025	ARTEFAKT:uto:edit:3
+sl09-k007	storholmen-0016,storholmen-0017,storholmen-0018,storholmen-0153,storholmen-0210,storholmen-0211,storholmen-0212,storholmen-N006	ARTEFAKT:storholmen:edit:8
+sl09-k008	uto-0006	ARTEFAKT:uto:edit:0
+sl09-k009	storholmen-0194,storholmen-0195	ARTEFAKT:storholmen:edit:12
+sl09-k010		ARTEFAKT:styrso:sql:donso-hamnkrog.latitude
+sl09-k011	styrso-0089,styrso-0090,styrso-0091,styrso-0092,styrso-0093,styrso-0094,styrso-0095,styrso-0096,styrso-0097,styrso-0098,styrso-0099,styrso-N009,styrso-N010,styrso-N011,styrso-N012	ARTEFAKT:styrso:edit:17
+sl09-k012	storholmen-0130,storholmen-0132,storholmen-0171,storholmen-0172,storholmen-0173,storholmen-0174,storholmen-0175,storholmen-0176	ARTEFAKT:storholmen:edit:5
+sl09-k013	storholmen-0101,storholmen-0113,storholmen-0114	ARTEFAKT:storholmen:edit:13
+sl09-k014	styrso-0177,styrso-0178,styrso-0179	ARTEFAKT:styrso:edit:13
+sl09-k015	uto-0325,uto-0327,uto-0328,uto-0329,uto-0330,uto-0331,uto-0332	ARTEFAKT:uto:edit:8
+sl09-k016	storholmen-0034,storholmen-0035,storholmen-0036,storholmen-0038,storholmen-0039,storholmen-0040,storholmen-0178,storholmen-0179,storholmen-0180,storholmen-0181,storholmen-0182,storholmen-0183,storholmen-0184,storholmen-0185,storholmen-0042	ARTEFAKT:storholmen:edit:3
+sl09-k017		ARTEFAKT:styrso:sql:donso-hamnkrog.longitude
+sl09-k018	styrso-0204,styrso-0205,styrso-0206,styrso-0207,styrso-0208,styrso-0209,styrso-0210,styrso-0211,styrso-0212,styrso-N023	ARTEFAKT:styrso:edit:9
+sl09-k019	sandhamn-N043	ARTEFAKT:sandhamn:sql:cafe-strindbergsgarden.formatted_address
+sl09-k020	styrso-0027,styrso-0438	ARTEFAKT:styrso:edit:5
+sl09-k021	styrso-0284,styrso-0299,styrso-0309,styrso-0318,styrso-0395,styrso-0409,styrso-0435,styrso-N032	ARTEFAKT:styrso:edit:22
+sl09-k022	storholmen-0073	ARTEFAKT:storholmen:edit:1
+sl09-k023	styrso-0245,styrso-0246,styrso-0247,styrso-0248	ARTEFAKT:styrso:edit:14
+sl09-k024	styrso-0165,styrso-0166,styrso-0169,styrso-0170	ARTEFAKT:styrso:edit:12
+sl09-k025	storholmen-0135,storholmen-0136,storholmen-0138	ARTEFAKT:storholmen:edit:6
+sl09-k026	sandhamn-0433,sandhamn-0434,sandhamn-0435,sandhamn-N041,sandhamn-N042	ARTEFAKT:sandhamn:sql:cafe-strindbergsgarden.description
+sl09-k027	styrso-0238,styrso-N024,styrso-N025	ARTEFAKT:styrso:edit:19
+sl09-k028	uto-0127,uto-0131,uto-0132,uto-N001	ARTEFAKT:uto:edit:2
+sl09-k029	uto-0223,uto-N002,uto-N003	ARTEFAKT:uto:edit:6
+sl09-k030	styrso-0142,styrso-0143,styrso-0139	ARTEFAKT:styrso:edit:7
+sl09-k031		ARTEFAKT:sandhamn:sql:cafe-strindbergsgarden.menu
+sl09-k032	storholmen-0141,storholmen-0147,storholmen-N001	ARTEFAKT:storholmen:edit:7
+sl09-k033	storholmen-0001,storholmen-0015,storholmen-0019,storholmen-0020,storholmen-0021,storholmen-0022,storholmen-0023,storholmen-0024,storholmen-0025,storholmen-0163,storholmen-0164,storholmen-0165,storholmen-0166,storholmen-0167,storholmen-0168,storholmen-0169,storholmen-0170	ARTEFAKT:storholmen:edit:0
+sl09-k034	uto-0024,uto-0026,uto-0027,uto-0028,uto-0030,uto-0362	ARTEFAKT:uto:edit:5
