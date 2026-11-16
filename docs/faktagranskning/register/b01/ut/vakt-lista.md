@@ -108,3 +108,8 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 
 ## Verktyg
 - las_sida.py klickar sig bort till /our-story/ på kanotcenter.com. Sådana sidor läses utan klick (kontroll/vaxholm-omk4-sidor/skript/las_utan_klick.py i Redaktörens arbetsyta).
+
+## Från P0 23 (2026-11-16)
+- /aktiviteter: två uppgifter om havsöringens fredning är fel (page.tsx i main, "fredad och bör släppas tillbaka" och "fredad 1 oktober–31 mars i de flesta områden"; enligt HaV gäller tiden Skagerrak och Kattegatt). Inte P0, eftersom de är strängare än reglerna. Rättas när sidan granskas.
+- aktivitet/activity-data.ts:87: "60 fredningsområden … sju året runt"; Länsstyrelsen anger 62 och nio, kartan 2024 har 11 namn i röd text. Rättas när sidan granskas.
+- Batch 01:s Utö-ändring (uto.edits.json, aktivitetskortet Fiske) bygger på den gamla texten. Vid inläggningen ska P0 23:s text i main stå kvar.
