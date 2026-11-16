@@ -1,6 +1,7 @@
 'use client'
 export const dynamic = 'force-dynamic'
 import { useState, useEffect, useRef, Suspense } from 'react'
+import SuggestedUsers from '@/components/SuggestedUsers'
 import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { analytics } from '@/lib/analytics'
@@ -423,6 +424,11 @@ function SokPageInner() {
  {/* ── Empty state ── */}
  {!query && (
  <div style={{ padding: '24px 0 20px' }}>
+
+ {/* Seglare att följa: alla konton, med orsak och Följ-knapp (2026-11-16). Visas bara inloggad. */}
+ <div style={{ marginBottom: 28 }}>
+ <SuggestedUsers variant="lista" max={8} />
+ </div>
 
  {/* Aktiva seglare */}
  {activeSailors.length > 0 && (
