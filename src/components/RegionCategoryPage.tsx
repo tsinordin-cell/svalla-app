@@ -15,22 +15,22 @@ type RegionInfo = { label: string; description: string; koder: string[]; sokvag?
 export const REGIONS = {
   goteborg: {
     label: 'Göteborgs skärgård',
-    description: 'Göteborgs södra och norra skärgård — Brännö, Donsö, Vrångö, Styrsö, Hönö, Öckerö och Källö-Knippla.',
+    description: 'Göteborgs södra och norra skärgård: Brännö, Donsö, Vrångö, Styrsö, Hönö, Öckerö och Källö-Knippla.',
     koder: ['goteborg'],
   },
   bohuslan: {
     label: 'Bohuslän',
-    description: 'Från Marstrand i söder till Strömstad i norr — Käringön, Smögen, Fjällbacka, Grebbestad och Kosteröarna.',
+    description: 'Från Marstrand i söder till Strömstad i norr: Käringön, Smögen, Fjällbacka, Grebbestad och Kosteröarna.',
     koder: ['bohuslan', 'bohuslan_nord'],
   },
   aland: {
     label: 'Åland',
-    description: 'Mariehamn, Eckerö, Kökar, Föglö, Brändö och de yttre öarna — den åländska skärgården samlad.',
+    description: 'Mariehamn, Eckerö, Kökar, Föglö, Brändö och de yttre öarna. Den åländska skärgården samlad.',
     koder: ['aland'],
   },
   oland: {
     label: 'Öland',
-    description: 'Borgholm, Mörbylånga, Färjestaden, Byxelkrok, Sandvik och Löttorp — hela Öland norr till söder.',
+    description: 'Borgholm, Mörbylånga, Färjestaden, Byxelkrok, Sandvik och Löttorp, hela Öland norr till söder.',
     koder: ['oland'],
   },
   gotland: {
@@ -41,7 +41,7 @@ export const REGIONS = {
   hogakusten: {
     label: 'Höga Kusten',
     // KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14)
-    description: 'Härnösand, Ulvön, Kramfors, Höga Kusten-leden och Skuleskogens nationalpark — Norrlands dramatiska klippkust.',
+    description: 'Härnösand, Ulvön, Kramfors, Höga Kusten-leden och Skuleskogens nationalpark, Norrlands dramatiska klippkust.',
     koder: ['hogakusten'],
     // Nyckeln (och koden i databasen) är hogakusten, men sidorna ligger på
     // /hoga-kusten — /hogakusten omdirigeras med 308.
@@ -49,7 +49,7 @@ export const REGIONS = {
   },
   halland: {
     label: 'Halland',
-    description: 'Tylösand, Varberg fästning, Falkenberg, Båstad och Laholmsbukten — Hallands långa sandstrand och fästningsstad.',
+    description: 'Tylösand, Varberg fästning, Falkenberg, Båstad och Laholmsbukten, Hallands långa sandstrand och fästningsstad.',
     koder: ['halland'],
   },
 } satisfies Record<string, RegionInfo>
@@ -95,7 +95,7 @@ export const CATEGORIES: Record<string, { label: string; types: string[]; intro:
   bastu: {
     label: 'Bastu och kallbadhus',
     types: ['sauna'],
-    intro: 'Bastur, badhus och kallbadhus i området. Vissa drivs av föreningar och är bara öppna för medlemmar – det står i så fall på platsens sida.',
+    intro: 'Bastur, badhus och kallbadhus i området. Vissa drivs av föreningar och är bara öppna för medlemmar. Det står i så fall på platsens sida.',
     metaTitle: r => `Bastu & kallbadhus ${iPa(r)} ${r}`,
     metaDesc: r => `Bastur och kallbadhus ${iPa(r)} ${r} med position och kontaktuppgifter.`,
   },

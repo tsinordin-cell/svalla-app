@@ -43,7 +43,7 @@ export default function IslandFoto({ slug, islandName }: { slug: string; islandN
             en bildkvot som sprack 8 september. */}
         <img
           src={b.url}
-          alt={`${islandName} — foto av ${b.fotograf}`}
+          alt={`${islandName}, foto av ${b.fotograf}`}
           width={b.bredd}
           height={b.hojd}
           loading="lazy"

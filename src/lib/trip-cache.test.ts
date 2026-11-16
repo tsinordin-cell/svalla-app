@@ -45,14 +45,14 @@ const PRIVATE_TRIP = { id: 'priv-1', user_id: 'u1', visibility: 'private', statu
 
 import { getCachedPublicTripBundle, loadTripBundle, tripCacheTag } from './trip-cache'
 
-describe('trip-cache — en tursida, per betraktare', () => {
+describe('trip-cache: en tursida, per betraktare', () => {
   it('publik tur hämtas ur cachen med tagg trip:<id>', async () => {
     const b = await getCachedPublicTripBundle('pub-1')
     expect(b?.trip.id).toBe('pub-1')
     expect(tagsSeen.at(-1)).toEqual([tripCacheTag('pub-1')])
   })
 
-  it('privat tur är null för anon — cachen innehåller aldrig privat data', async () => {
+  it('privat tur är null för anon: cachen innehåller aldrig privat data', async () => {
     const b = await getCachedPublicTripBundle('priv-1')
     expect(b).toBeNull()
   })
@@ -68,7 +68,7 @@ describe('trip-cache — en tursida, per betraktare', () => {
     expect(await loadTripBundle('del-1', ownerClient)).toBeNull()
   })
 
-  it('taggen är stabil per tur — det är den revalidateTag måste träffa', () => {
+  it('taggen är stabil per tur: det är den revalidateTag måste träffa', () => {
     expect(tripCacheTag('abc')).toBe('trip:abc')
   })
 })

@@ -485,7 +485,7 @@ function findPathViaWaypoints(
     if (!validation.ok) {
       logger.info(
         'seaPathfinder',
-        `waypoint-tier rutt rejected — korsar land vid ${validation.crossesAt}`,
+        `waypoint-tier rutt rejected, korsar land vid ${validation.crossesAt}`,
       )
       return null
     }

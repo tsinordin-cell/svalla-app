@@ -32,7 +32,7 @@ export default function RouteDisclaimer() {
       </span>
       <div style={{ flex: 1 }}>
         <div style={{ fontWeight: 700, marginBottom: 3, color: '#c05010' }}>
-          Rutten är ett förslag — inte en navigationsanvisning
+          Rutten är ett förslag: inte en navigationsanvisning
         </div>
         <p style={{ margin: '0 0 4px' }}>
           Använd alltid uppdaterat sjökort, GPS, VHF och kontrollera väder innan

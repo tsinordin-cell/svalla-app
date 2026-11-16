@@ -90,7 +90,7 @@ describe('removeSpeedOutliers', () => {
     expect(removeSpeedOutliers(pts)).toHaveLength(1)
   })
 
-  it('FÄLTTEST 2026-09-10: bil i 49 kn snitt behålls — 30-kn-taket gav route_points=null och ingen karta i flödet', () => {
+  it('FÄLTTEST 2026-09-10: bil i 49 kn snitt behålls: 30-kn-taket gav route_points=null och ingen karta i flödet', () => {
     // 60 kn rakt norrut, 1 Hz, 30 punkter
     const t0 = Date.parse('2026-09-10T19:07:20Z')
     const pts = Array.from({ length: 30 }, (_, i) => ({

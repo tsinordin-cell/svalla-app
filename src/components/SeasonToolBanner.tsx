@@ -26,7 +26,7 @@ function pickBanner(): Banner {
     return {
       id: 'bingo-2026',
       title: 'Skärgårdsbingo 2026',
-      body: '25 utmaningar att bocka av i sommar — segla, äta räkor, spotta säl.',
+      body: '25 utmaningar att bocka av i sommar: segla, äta räkor, spotta säl.',
       href: '/bingo',
       cta: 'Spela →',
       accent: '#7c3aed',
@@ -38,7 +38,7 @@ function pickBanner(): Banner {
     return {
       id: 'utflykt-vår',
       title: 'Planera vårens första utflykt',
-      body: 'Få restid, packlista och krogar — välj ö och vi gör resten.',
+      body: 'Få restid, packlista och krogar. Välj ö och vi gör resten.',
       href: '/utflykt',
       cta: 'Planera →',
       accent: '#0a7b8c',
@@ -50,7 +50,7 @@ function pickBanner(): Banner {
     return {
       id: 'jamfor-höst',
       title: 'Bestäm dig till nästa år',
-      body: 'Jämför öar du inte hann besöka — Sandhamn vs Möja, Utö vs Grinda.',
+      body: 'Jämför öar du inte hann besöka: Sandhamn vs Möja, Utö vs Grinda.',
       href: '/jamfor',
       cta: 'Jämför →',
       accent: '#c96e2a',
@@ -61,7 +61,7 @@ function pickBanner(): Banner {
   return {
     id: 'forum-vinter',
     title: 'Diskutera båt & skärgård',
-    body: 'Vinterförvaring, vårplanering, frågor som behöver svar — forumet är öppet.',
+    body: 'Vinterförvaring, vårplanering, frågor som behöver svar, forumet är öppet.',
     href: '/forum',
     cta: 'Gå med →',
     accent: '#1d4ed8',

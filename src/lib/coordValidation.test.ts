@@ -166,7 +166,7 @@ describe('parseCoordString', () => {
   })
 
   describe('DMS format', () => {
-    it("parses degrees–minutes–seconds format", () => {
+    it("parses degrees, minutes, seconds format", () => {
       // 59°17'00"N 18°55'00"E ≈ 59.2833, 18.9167 (Sandhamn area)
       const r = parseCoordString("59°17'00\"N 18°55'00\"E")
       expect(r).not.toBeNull()

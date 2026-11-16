@@ -23,7 +23,7 @@ export default function ProfileBadgeGrid({ unlockedIds }: { unlockedIds: string[
         {badgesToShow.map(a => {
           const unlocked = unlockedIds.includes(a.id)
           return (
-            <div key={a.id} title={`${a.label} — ${a.desc}`} style={{
+            <div key={a.id} title={`${a.label}, ${a.desc}`} style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
               gap: 4, padding: '9px 4px 7px',
               borderRadius: 14,

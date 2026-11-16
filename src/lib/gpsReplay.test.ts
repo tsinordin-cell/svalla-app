@@ -21,7 +21,7 @@ function fixes(n: number, speedKn: number, noiseM = 0, seed = 1): RawFix[] {
   }))
 }
 
-describe('replayTrack — samma kedja som /spara, körd i efterhand', () => {
+describe('replayTrack: samma kedja som /spara, körd i efterhand', () => {
   it('rak kurs 12 kn utan brus: distans ±2 %, medelfart ±0,5 kn', () => {
     const res = replayTrack(fixes(300, 12))
     const trueNM = 299 * 12 * 0.514444 / 1852
@@ -56,7 +56,7 @@ describe('replayTrack — samma kedja som /spara, körd i efterhand', () => {
     expect(res.points.length).toBe(49)
   })
 
-  it('FÄLTTEST 2026-09-10: bil i 70 mph (61 kn) i 5 min — inga punkter kastas, ingen lucka', () => {
+  it('FÄLTTEST 2026-09-10: bil i 70 mph (61 kn) i 5 min: inga punkter kastas, ingen lucka', () => {
     const res = replayTrack(fixes(300, 61))
     expect(res.rejectedAnomaly).toBe(0)
     expect(res.points.length).toBe(300)
@@ -66,7 +66,7 @@ describe('replayTrack — samma kedja som /spara, körd i efterhand', () => {
     expect(Math.abs(mean - 61)).toBeLessThan(0.5)
   })
 
-  it('ihållande hopp (referensen är fel) ger återförankring efter 3 — inte en evig lucka', () => {
+  it('ihållande hopp (referensen är fel) ger återförankring efter 3: inte en evig lucka', () => {
     const f = fixes(60, 5)
     // från fix 20 flyttar hela spåret 5 km norrut och fortsätter
     for (let i = 20; i < 60; i++) f[i]!.lat += 5000 / 111_320
@@ -113,7 +113,7 @@ describe('replayTrack — samma kedja som /spara, körd i efterhand', () => {
   // avgör. 2026-09-11: fälttestet avgjorde — ∫Doppler-fart träffade bilens
   // trippmätare (2,341 mot 2,30–2,39 NM) där positionssumman låg 3 % över.
   // trips.distance är nu tripDistanceNM; testet nedan låser den fixen.
-  it('brus ±5 m vid 3 kn — FIXAT 2026-09-11: ∫Doppler ger rätt distans, positionssumman blåses upp 1,4–1,8×', () => {
+  it('brus ±5 m vid 3 kn: FIXAT 2026-09-11: ∫Doppler ger rätt distans, positionssumman blåses upp 1,4 till 1,8×', () => {
     const res = replayTrack(fixes(300, 3, 5))
     const trueNM = 299 * 3 * 0.514444 / 1852
     const tail = res.points.slice(-100)

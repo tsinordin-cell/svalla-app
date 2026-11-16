@@ -34,10 +34,10 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
         body: JSON.stringify({ targetType, targetId, reason, note: note.trim() || undefined }),
       })
       const json = await res.json()
-      if (!res.ok) { setErr(json.error ?? 'Fel — försök igen'); setBusy(false); return }
+      if (!res.ok) { setErr(json.error ?? 'Fel: försök igen'); setBusy(false); return }
       setDone(json.already ? 'already' : 'sent')
     } catch {
-      setErr('Nätverksfel — försök igen')
+      setErr('Nätverksfel: försök igen')
     }
     setBusy(false)
   }

@@ -100,7 +100,7 @@ export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props)
           maxWidth: 320,
           lineHeight: 1.4,
         }}>
-          Inga bilder ännu — kom ihåg att lägga till din egen om du har varit här.
+          Inga bilder ännu. Kom ihåg att lägga till din egen om du har varit här.
         </div>
       </div>
     )

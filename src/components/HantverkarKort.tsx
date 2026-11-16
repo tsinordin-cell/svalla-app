@@ -100,7 +100,7 @@ export default function HantverkarKort({ h, oSlug }: { h: Hantverkare; oSlug?: s
 
       {basAnnanstans && (
         <p style={{ margin: '9px 0 0', fontSize: 13, color: 'var(--txt2)' }}>
-          <Icon name="ship" size={14} stroke={2} /> Baserade i {h.bas} — kör hit med båt
+          <Icon name="ship" size={14} stroke={2} /> Baserade i {h.bas}, kör hit med båt
         </p>
       )}
 

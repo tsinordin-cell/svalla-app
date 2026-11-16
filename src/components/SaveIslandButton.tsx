@@ -116,7 +116,7 @@ export default function SaveIslandButton({ islandSlug, islandName, variant = 'pi
       <button
         onClick={toggle}
         disabled={loading}
-        aria-label={saved ? `${islandName} sparad — tryck för att ta bort` : `Spara ${islandName}`}
+        aria-label={saved ? `${islandName} sparad: tryck för att ta bort` : `Spara ${islandName}`}
         style={{
           display: 'inline-flex', alignItems: 'center', gap: 8,
           padding: '10px 18px',
@@ -151,7 +151,7 @@ export default function SaveIslandButton({ islandSlug, islandName, variant = 'pi
             zIndex: 9999, animation: 'svalla-fade-in .2s ease',
           }}
         >
-          {islandName} sparad — se din lista i <a href="/min-skargard" style={{ color: '#ffb27a', textDecoration: 'underline' }}>Min skärgård</a>
+          {islandName} sparad: se din lista i <a href="/min-skargard" style={{ color: '#ffb27a', textDecoration: 'underline' }}>Min skärgård</a>
         </div>
       )}
     </>

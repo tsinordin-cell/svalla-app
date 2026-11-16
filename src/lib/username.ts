@@ -36,7 +36,7 @@ export function validateUsername(raw: string): string | null {
   if (!trimmed || trimmed.length < USERNAME_MIN) return `Aliaset måste vara minst ${USERNAME_MIN} tecken.`
   if (trimmed.length > USERNAME_MAX) return `Aliaset får max vara ${USERNAME_MAX} tecken.`
   if (trimmed.includes(' ')) return 'Aliaset får inte innehålla mellanslag.'
-  if (looksLikeEmail(trimmed)) return 'Aliaset får inte vara en e-postadress — det visas publikt på din profil.'
+  if (looksLikeEmail(trimmed)) return 'Aliaset får inte vara en e-postadress. Det visas publikt på din profil.'
   if (!USERNAME_RE.test(trimmed)) return 'Bara a-z, siffror och _ . - är tillåtna.'
   return null
 }

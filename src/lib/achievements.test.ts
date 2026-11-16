@@ -186,7 +186,7 @@ describe('summer 2026 achievements', () => {
   const summerTrip = trip({ created_at: '2026-06-15T10:00:00Z', pinnar_rating: 3 })
   const winterTrip = trip({ created_at: '2026-02-01T10:00:00Z' })
 
-  it('s26_first: unlocks for a trip in may–aug 2026', () => {
+  it('s26_first: unlocks for a trip in may till aug 2026', () => {
     const unlocked = computeUnlocked([summerTrip])
     expect(unlocked.some(a => a.id === 's26_first')).toBe(true)
   })

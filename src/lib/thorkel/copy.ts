@@ -6,7 +6,7 @@
 export const THORKEL_COPY = {
   intros: [
     'Hej. Thorkel heter jag. Lots och skeppare. Vad vill du göra i skärgården?',
-    'Thorkel här. Säg vad du vill göra — jag föreslår något.',
+    'Thorkel här. Säg vad du vill göra. Jag föreslår något.',
     'Skeppare från Möja. Vad planerar du?',
   ],
   placeholders: [
@@ -33,6 +33,6 @@ export const THORKEL_COPY = {
   errors: {
     offline:   'Anslutningen tappades. Prova igen om en minut.',
     rateLimit: 'Thorkel har pratat mycket idag. Kom tillbaka om en stund.',
-    notLoggedIn: 'Du behöver logga in för att prata med mig — jag sparar mina bästa tips till mina egna seglare.',
+    notLoggedIn: 'Du behöver logga in för att prata med mig. Jag sparar mina bästa tips till mina egna seglare.',
   },
 } as const

@@ -84,7 +84,7 @@ describe('distanceNM', () => {
 // ── totalDistanceNM ───────────────────────────────────────────────────────────
 
 describe('totalDistanceNM (GpsPoint[])', () => {
-  it('returns 0 for 0–1 points', () => {
+  it('returns 0 for 0 till 1 points', () => {
     expect(totalDistanceNM([])).toBe(0)
     expect(totalDistanceNM([gpt(59.3, 18.0, 5)])).toBe(0)
   })
@@ -335,7 +335,7 @@ describe('computeMovementState', () => {
     expect(computeMovementState(pts)).toBe('SEGLING')
   })
 
-  it('returns DRIFTAR when avg speed 0.25–0.8 kn', () => {
+  it('returns DRIFTAR when avg speed 0.25 till 0.8 kn', () => {
     const pts = Array.from({ length: 12 }, () => gpt(59.3, 18.0, 0.5))
     expect(computeMovementState(pts)).toBe('DRIFTAR')
   })
@@ -375,7 +375,7 @@ describe('getLiveInsights', () => {
     expect(ins.some(i => i.key === 'fast')).toBe(true)
   })
 
-  it('triggers 1h insight when elapsed is in 3600–3699s window', () => {
+  it('triggers 1h insight when elapsed is in 3600 till 3699s window', () => {
     const pts = Array.from({ length: 10 }, () => gpt(59.3, 18.0, 5))
     const ins = getLiveInsights(pts, 3650, [])
     expect(ins.some(i => i.key === '1h')).toBe(true)

@@ -30,6 +30,6 @@ describe('egna titlar för komma-dit-sidorna', () => {
   }
 
   it('öar utan egen titel behåller den gemensamma', () => {
-    expect(kommaDitTitel('sandhamn', 'Sandhamn')).toBe('Hur tar man sig till Sandhamn? — Båt, buss, färja 2026')
+    expect(kommaDitTitel('sandhamn', 'Sandhamn')).toBe('Hur tar man sig till Sandhamn? Båt, buss, färja 2026')
   })
 })

@@ -114,7 +114,7 @@ const errM = (a: { lat: number; lng: number }, b: { lat: number; lng: number }) 
   Math.hypot((a.lat - b.lat) * 111320, (a.lng - b.lng) * 111320 * Math.cos(59.3 * Math.PI / 180))
 const pathM = (p: { lat: number; lng: number }[]) => { let d = 0; for (let i = 1; i < p.length; i++) d += errM(p[i]!, p[i - 1]!); return d }
 
-describe('CvGpsKalmanFilter — hastighet i modellen, ingen släpning', () => {
+describe('CvGpsKalmanFilter: hastighet i modellen, ingen släpning', () => {
   it('första fixen returneras oförändrad', () => {
     const f = new CvGpsKalmanFilter()
     const r = f.update(59.3, 18.1, 5, 1_700_000_000_000)
@@ -130,7 +130,7 @@ describe('CvGpsKalmanFilter — hastighet i modellen, ingen släpning', () => {
     expect(e / n).toBeLessThan(5)
   })
 
-  it('slingrande led 12 kn, brus ±5 m: medelfel < 12 m och distans 95–115 % av sann', () => {
+  it('slingrande led 12 kn, brus ±5 m: medelfel < 12 m och distans 95 till 115 % av sann', () => {
     const { truth, meas } = synth(12, 900, 5, true)
     const f = new CvGpsKalmanFilter()
     const out = meas.map(m => f.update(m.lat, m.lng, 5, m.ts))

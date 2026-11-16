@@ -41,7 +41,7 @@ describe('computeSplits', () => {
     for (const x of s) expect(x.avgKnots).toBeLessThan(15)   // buggen gav 400+ kn här
     expect(s[0]!.seconds + s[1]!.seconds).toBeGreaterThan(900 * 0.7)   // luckan ligger i de två första
   })
-  it('paus mitt i en delsträcka sänker snittfarten — det är sant, inte fel', () => {
+  it('paus mitt i en delsträcka sänker snittfarten: det är sant, inte fel', () => {
     const a = track(200, 10)
     const b = track(200, 10, 200 + 300).map(p => ({ ...p, lat: p.lat + (199 * 10 * 0.514444) / 111_320 }))
     const s = computeSplits([...a, ...b])
@@ -89,15 +89,15 @@ describe('Toms biltest som facit', () => {
     expect(s.filter(x => x === null).length).toBe(1)
     expect(s.at(-1)!.t).toBe(1050)
   })
-  it('rörelsetid = hela spannet 1 054 s — bilen rullade även under 158 s-luckan (5 km i 63 kn)', () => {
+  it('rörelsetid = hela spannet 1 054 s: bilen rullade även under 158 s-luckan (5 km i 63 kn)', () => {
     // "15 min" som sparades 10/9 var tick-räknaren som stannat i bakgrunden, inte rörelsetiden.
     expect(movingSeconds(points)).toBe(1054)
   })
 })
 
-describe('20,5 mi-turen (1 305 fixar) — det som verifierades i produktion 11/9', () => {
+describe('20,5 mi-turen (1 305 fixar): det som verifierades i produktion 11/9', () => {
   const points = replayTrack(parseFixture(readFileSync(__dirname + '/__fixtures__/trip-06c13078.txt', 'utf8'), Date.parse('2026-09-11T14:58:19.643Z'))).points
-  it('18 delsträckor vars tid summerar till hela spannet — inte 1 000 punkter avhuggna', () => {
+  it('18 delsträckor vars tid summerar till hela spannet: inte 1 000 punkter avhuggna', () => {
     const s = computeSplits(points)
     expect(s.length).toBe(18)
     expect(s.reduce((a, x) => a + x.seconds, 0)).toBe(1314)

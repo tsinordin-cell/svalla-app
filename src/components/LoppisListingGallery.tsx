@@ -104,7 +104,7 @@ export default function LoppisListingGallery({ images, alt, status = 'aktiv' }: 
           >
             <Image
               src={src}
-              alt={`${alt} — bild ${i + 1}`}
+              alt={`${alt}: bild ${i + 1}`}
               fill
               sizes="(max-width: 760px) 100vw, 720px"
               style={{ objectFit: 'cover' }}

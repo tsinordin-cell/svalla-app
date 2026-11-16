@@ -231,7 +231,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
  <line x1="12" y1="9" x2="12" y2="13"/>
  <line x1="12" y1="17" x2="12.01" y2="17"/>
  </svg>
- <span>Skiss längs vägpunkter — inte navigationsrutt. Verifiera mot sjökort.</span>
+ <span>Skiss längs vägpunkter, inte navigationsrutt. Verifiera mot sjökort.</span>
  </div>
 
  {/* Stop-lista (klickbar legend) */}

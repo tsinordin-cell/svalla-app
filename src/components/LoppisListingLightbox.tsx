@@ -164,7 +164,7 @@ export default function LoppisListingLightbox({
           >
             <Image
               src={src}
-              alt={`${alt} — bild ${i + 1}`}
+              alt={`${alt}: bild ${i + 1}`}
               fill
               sizes="100vw"
               style={{ objectFit: 'contain' }}

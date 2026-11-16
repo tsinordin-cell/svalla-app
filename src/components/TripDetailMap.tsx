@@ -164,13 +164,13 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
  div.innerHTML = `
  <div style="font-weight:700;margin-bottom:4px;color:var(--txt)">Hastighet</div>
  <div><span style="display:inline-block;width:10px;height:3px;background:var(--txt3);border-radius:2px;vertical-align:middle;margin-right:5px"></span>&lt; 2 kn</div>
- <div><span style="display:inline-block;width:10px;height:3px;background:#1e5c82;border-radius:2px;vertical-align:middle;margin-right:5px"></span>2–8 kn</div>
- <div><span style="display:inline-block;width:10px;height:3px;background:#0f9e64;border-radius:2px;vertical-align:middle;margin-right:5px"></span>8–15 kn</div>
+ <div><span style="display:inline-block;width:10px;height:3px;background:#1e5c82;border-radius:2px;vertical-align:middle;margin-right:5px"></span>2 till 8 kn</div>
+ <div><span style="display:inline-block;width:10px;height:3px;background:#0f9e64;border-radius:2px;vertical-align:middle;margin-right:5px"></span>8 till 15 kn</div>
  <div><span style="display:inline-block;width:10px;height:3px;background:#c96e2a;border-radius:2px;vertical-align:middle;margin-right:5px"></span>&gt; 15 kn</div>
  <div style="font-weight:700;margin:6px 0 4px;color:var(--txt)">Vind (m/s)</div>
  <div><span style="display:inline-block;width:10px;height:10px;background:#16a34a;border-radius:50%;vertical-align:middle;margin-right:5px"></span>&lt; 5</div>
- <div><span style="display:inline-block;width:10px;height:10px;background:#eab308;border-radius:50%;vertical-align:middle;margin-right:5px"></span>5–10</div>
- <div><span style="display:inline-block;width:10px;height:10px;background:#ea580c;border-radius:50%;vertical-align:middle;margin-right:5px"></span>10–15</div>
+ <div><span style="display:inline-block;width:10px;height:10px;background:#eab308;border-radius:50%;vertical-align:middle;margin-right:5px"></span>5 till 10</div>
+ <div><span style="display:inline-block;width:10px;height:10px;background:#ea580c;border-radius:50%;vertical-align:middle;margin-right:5px"></span>10 till 15</div>
  <div><span style="display:inline-block;width:10px;height:10px;background:#dc2626;border-radius:50%;vertical-align:middle;margin-right:5px"></span>&gt; 15</div>
  `
  return div

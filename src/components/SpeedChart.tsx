@@ -116,7 +116,7 @@ export default function SpeedChart({ series, topKn, avgKn }: Props) {
             </thead>
             <tbody>
               {series.map((s, i) => s === null
-                ? <tr key={i}><td colSpan={2} style={{ padding: '4px 6px', color: 'var(--txt3)', fontStyle: 'italic' }}>— lucka i inspelningen —</td></tr>
+                ? <tr key={i}><td colSpan={2} style={{ padding: '4px 6px', color: 'var(--txt3)', fontStyle: 'italic' }}>— lucka i inspelningen</td></tr>
                 : <tr key={i} style={{ borderTop: '1px solid var(--sea-06)' }}>
                     <td style={{ padding: '4px 6px', color: 'var(--txt2)' }}>{fmtT(s.t)}</td>
                     <td style={{ padding: '4px 6px', textAlign: 'right', color: 'var(--txt)' }}>{decimal(s.kn)}</td>

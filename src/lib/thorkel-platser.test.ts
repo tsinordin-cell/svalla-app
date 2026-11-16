@@ -10,7 +10,7 @@ const rad = (r: Partial<PlatsRad> & { id: string }): PlatsRad => ({
 
 describe('byggPlatslista', () => {
   const lista = byggPlatslista([
-    rad({ id: FINNHAMN_ID, name: 'Finnhamns Krog', island: 'Finnhamn', booking_url: 'http://www.finnhamn.se', opening_hours: 'Juni–Augusti: dagligen 12–21.' }),
+    rad({ id: FINNHAMN_ID, name: 'Finnhamns Krog', island: 'Finnhamn', booking_url: 'http://www.finnhamn.se', opening_hours: 'Juni till Augusti: dagligen 12 till 21.' }),
     rad({ id: GRINDA_ID, name: 'Grinda Wärdshus', island: 'Grinda', booking_url: 'https://grinda.se/mat-fest/wardshuset/' }),
     rad({ id: 'a', name: 'Bastu utan ö', island: null, type: 'sauna' }),
     rad({ id: 'b', name: '  ', island: 'Grinda' }),
@@ -32,7 +32,7 @@ describe('byggPlatslista', () => {
   it('tar med bokningslänk, öppettider och medlemsmärkning', () => {
     const rader = lista.text.split('\n')
     expect(rader[1]).toBe(`Grinda Wärdshus (Grinda, krog): ${platsUrl(GRINDA_ID)} · Boka bord: https://grinda.se/mat-fest/wardshuset/`)
-    expect(rader[0]).toContain('Öppettider enligt Svalla: Juni–Augusti: dagligen 12–21.')
+    expect(rader[0]).toContain('Öppettider enligt Svalla: Juni till Augusti: dagligen 12 till 21.')
     expect(rader[2]).toContain('(Utö, boende)')
     expect(rader[2]).toContain('Boka: https://utovardshus.se')
     expect(rader[3]).toContain('Endast för medlemmar')

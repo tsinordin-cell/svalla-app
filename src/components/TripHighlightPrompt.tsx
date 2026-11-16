@@ -159,7 +159,7 @@ export default function TripHighlightPrompt({
       }
       onDone?.()
     } catch {
-      setError('Anslutningsfel — försök igen.')
+      setError('Anslutningsfel, försök igen.')
       setSubmitting(null)
     }
   }

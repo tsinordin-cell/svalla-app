@@ -24,22 +24,22 @@
  * inte har någon buss.
  */
 export const KOMMA_DIT_TITLAR: Record<string, { titel: string; hamn: string }> = {
-  karingon: { titel: 'Båt och färja till Käringön från Tuvesvik – hur tar man sig dit 2026', hamn: 'Tuvesvik' },
-  vrango: { titel: 'Färja till Vrångö: båt 281 från Saltholmen – hur tar man sig dit 2026', hamn: 'Saltholmen' },
-  branno: { titel: 'Färja till Brännö från Saltholmen – hur tar man sig dit 2026', hamn: 'Saltholmen' },
-  orno: { titel: 'Färja till Ornö från Dalarö – bilfärja och båt, hur tar man sig dit 2026', hamn: 'Dalarö' },
-  storholmen: { titel: 'Båt till Storholmen: pendelbåt 80 från Ropsten – hur tar man sig dit 2026', hamn: 'Ropsten' },
-  ingmarso: { titel: 'Båt till Ingmarsö från Strömkajen och Åsättra – hur tar man sig dit 2026', hamn: 'Åsättra' },
-  bullero: { titel: 'Båt till Bullerö från Stavsnäs – Bullerölinjen, hur tar man sig dit 2026', hamn: 'Stavsnäs' },
-  yxlan: { titel: 'Färja till Yxlan från Furusund – bil, buss och båt: hur tar man sig dit 2026', hamn: 'Furusund' },
-  svartso: { titel: 'Båt till Svartsö från Strömkajen – hur tar man sig dit 2026', hamn: 'Strömkajen' },
-  runmaro: { titel: 'Båt till Runmarö från Stavsnäs – hur tar man sig dit 2026', hamn: 'Stavsnäs' },
-  gullholmen: { titel: 'Färja till Gullholmen från Tuvesvik – hur tar man sig dit 2026', hamn: 'Tuvesvik' },
-  moja: { titel: 'Båt till Möja från Sollenkroka och Strömkajen – hur tar man sig dit 2026', hamn: 'Sollenkroka' },
-  birka: { titel: 'Båt till Birka från Stockholm – hur tar man sig dit 2026', hamn: 'Stockholm' },
+  karingon: { titel: 'Båt och färja till Käringön från Tuvesvik: hur tar man sig dit 2026', hamn: 'Tuvesvik' },
+  vrango: { titel: 'Färja till Vrångö: båt 281 från Saltholmen: hur tar man sig dit 2026', hamn: 'Saltholmen' },
+  branno: { titel: 'Färja till Brännö från Saltholmen: hur tar man sig dit 2026', hamn: 'Saltholmen' },
+  orno: { titel: 'Färja till Ornö från Dalarö: bilfärja och båt, hur tar man sig dit 2026', hamn: 'Dalarö' },
+  storholmen: { titel: 'Båt till Storholmen: pendelbåt 80 från Ropsten: hur tar man sig dit 2026', hamn: 'Ropsten' },
+  ingmarso: { titel: 'Båt till Ingmarsö från Strömkajen och Åsättra: hur tar man sig dit 2026', hamn: 'Åsättra' },
+  bullero: { titel: 'Båt till Bullerö från Stavsnäs: Bullerölinjen, hur tar man sig dit 2026', hamn: 'Stavsnäs' },
+  yxlan: { titel: 'Färja till Yxlan från Furusund: bil, buss och båt: hur tar man sig dit 2026', hamn: 'Furusund' },
+  svartso: { titel: 'Båt till Svartsö från Strömkajen: hur tar man sig dit 2026', hamn: 'Strömkajen' },
+  runmaro: { titel: 'Båt till Runmarö från Stavsnäs: hur tar man sig dit 2026', hamn: 'Stavsnäs' },
+  gullholmen: { titel: 'Färja till Gullholmen från Tuvesvik: hur tar man sig dit 2026', hamn: 'Tuvesvik' },
+  moja: { titel: 'Båt till Möja från Sollenkroka och Strömkajen: hur tar man sig dit 2026', hamn: 'Sollenkroka' },
+  birka: { titel: 'Båt till Birka från Stockholm: hur tar man sig dit 2026', hamn: 'Stockholm' },
 }
 
 /** Gemensam titel för öar utan egen titel (oförändrad sedan tidigare). */
 export function kommaDitTitel(slug: string, namn: string): string {
-  return KOMMA_DIT_TITLAR[slug]?.titel ?? `Hur tar man sig till ${namn}? — Båt, buss, färja 2026`
+  return KOMMA_DIT_TITLAR[slug]?.titel ?? `Hur tar man sig till ${namn}? Båt, buss, färja 2026`
 }

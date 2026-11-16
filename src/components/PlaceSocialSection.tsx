@@ -143,7 +143,7 @@ export default function PlaceSocialSection({
  <div style={{ flex: 1 }}>
  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>Checka in här</div>
  <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 1 }}>
- Snabbt &quot;jag är här&quot; — utan full turlogg
+ Snabbt &quot;jag är här&quot;: utan full turlogg
  </div>
  </div>
  <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
