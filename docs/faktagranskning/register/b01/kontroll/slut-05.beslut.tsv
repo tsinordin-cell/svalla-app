@@ -1,0 +1,14 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-16)
+sl05-k004	mall-0226	FEL	Mallarnas runda 7: "Cykelleder finns" bara när datan nämner cykelleder (som mo6-01 k034).
+sl05-k007	mall-0231	FEL	Mallarnas runda 7: Thorkel-texten om båttider bara där Thorkel har båtdata (som mo6-01 k036).
+sl05-k013	mall-0155	FEL	Registret inaktuellt: den slutliga texten stämmer med datan eller källan enligt Kontrollanten. Ingen ändring.
+sl05-k034	moja-0388	FEL	Generatorns räkning (42 sidor hos 24 källor i slutkoden). Prövas i förhandsversionen efter mallarnas runda 6.
+sl05-k037	fjaderholmarna-0265	FEL	Registret inaktuellt: den slutliga texten stämmer med datan eller källan enligt Kontrollanten. Ingen ändring.
+sl05-k044	fjaderholmarna-0060	FEL	Omarbete 4f (Fjäderholmarna): "kort" säsong är inte källans grad. Skriv säsongen som källan anger den.
+sl05-k051	mall-0239	FEL	Registret inaktuellt: den slutliga texten stämmer med datan eller källan enligt Kontrollanten. Ingen ändring.
+sl05-k056	moja-0572	FEL	Omarbete 4f (Möja): radien är 3,5 km (Toms beslut 3), inte 3 km.
+sl05-k060	mall-0215	FEL	Som k007.
+sl05-k062	vaxholm-0601	SAKNAS	Omarbete 4f (Vaxholm): högsäsong juli–augusti saknar källa. Belägg eller skriv det källorna säger.
+utanför-1	(Vaxholm, magasinet-gustavsberg)	MÄTT	Omarbete 4f (Vaxholm): platssidan talar om "Gustavsbergs hamn" fast stället ligger i Vaxholm.
+utanför-2	(Möja, bastuhuset)	MÄTT	Omarbete 4f (Möja): Bastuhusets sida visar adress och hemsida på Finnhamn, och OSM placerar bastun på Stora Kalholmen. Avgör med källa var bastun ligger och om posten hör till Möja (se också slut-01 k050).
+utanför-3	(Jowa)	RESONERAT	Omarbete 4f: Jowas sida säger "bas i Upplands Väsby", posten anger Rosersberg.

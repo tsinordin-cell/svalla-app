@@ -1,0 +1,21 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-16)
+mo01-k001	mall-0155	FEL	Registret inaktuellt: den nya texten i mallkoden stöds av källan enligt Kontrollanten. Ingen ändring.
+mo01-k004	mall-0083	FEL	Mallarnas runda 7: boende-FAQ:n ska inte svara "Ja. På Svalla finns …" när boendet ligger på en annan ö eller ort (Vindö, Öckerö).
+mo01-k012	mall-0162	FEL	Registret inaktuellt: den nya texten i mallkoden stöds av källan enligt Kontrollanten. Ingen ändring.
+mo01-k013	mall-0239	FEL	Registret inaktuellt: den nya texten i mallkoden stöds av källan enligt Kontrollanten. Ingen ändring.
+mo01-k016	mall-0056	FEL	Registret inaktuellt: den nya texten i mallkoden stöds av källan enligt Kontrollanten. Ingen ändring.
+mo01-k021	mall-0127	FEL	Mallarnas runda 7: "Aktiviteter på X" och räkningarna ska inte räkna poster på andra platser (Vindö, Norröra, Gullholmen, Kungshamn).
+mo01-k034	mall-0226	FEL	Mallarnas runda 7: "Cykelleder finns" ska bara visas när datan nämner cykelleder.
+mo01-k035	mall-0128	FEL	Som k021.
+mo01-k036	mall-0215	FEL	Mallarnas runda 7: Thorkel-texten om båttider ska bara visas där Thorkel har båtdata och ska inte leda till en sida som saknar båttider.
+mo01-k038	mall-0095	FEL	Registret inaktuellt: den nya texten i mallkoden stöds av källan enligt Kontrollanten. Ingen ändring.
+mo01-k040	mall-0136	FEL	Mallarnas runda 7: krogräkningen ska inte räkna butiker som restauranger, krogar och kaféer.
+mo01-k042	mall-0135	FEL	Mallarnas runda 7: restaurangsidans metabeskrivning ska inte lova ställen där sidan säger att inga finns.
+mo01-k043	mall-0212	FEL	Registret inaktuellt: den nya texten i mallkoden stöds av källan enligt Kontrollanten. Ingen ändring.
+mo01-k045	mall-0185	FEL	Registret inaktuellt: den nya texten i mallkoden stöds av källan enligt Kontrollanten. Ingen ändring.
+mo01-k046	mall-N012	FEL	Mallarnas runda 7: klockslagsregeln ska fånga timintervall som "(05–21)" i turtäthet.
+mo01-k048	mall-0231	FEL	Som k036.
+mo01-k049	mall-0123	FEL	Som k021.
+mo01-k055	mall-0219	FEL	Som k040.
+mo01-k056	mall-0163	FEL	Registret inaktuellt: den nya texten i mallkoden stöds av källan enligt Kontrollanten. Ingen ändring.
+mo01-k057	mall-0122	FEL	Som k021.
