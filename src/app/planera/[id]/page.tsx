@@ -130,6 +130,23 @@ export default async function PlaneraIdPage({ params }: Props) {
  const hasOwner = !!route.user_id
  const ownsRoute = !!session && route.user_id === session.user.id
 
+ // Har den som tittar gjort turen? trips.planned_route_id sätts av både GPS-
+ // och manuell loggning (2026-11-16); planned_routes.trip_id bara när rutten
+ // är ens egen (RLS). Utloggad: visa rutt-ägarens tur om den finns.
+ let doneTripId: string | null = route.trip_id ?? null
+ if (session) {
+ const { data: egenTur } = await supabase
+ .from('trips')
+ .select('id')
+ .eq('planned_route_id', route.id)
+ .eq('user_id', session.user.id)
+ .is('deleted_at', null)
+ .order('created_at', { ascending: false })
+ .limit(1)
+ .maybeSingle()
+ if (egenTur?.id) doneTripId = egenTur.id
+ }
+
  const stops: ScoredStop[] = Array.isArray(route.suggested_stops) ? route.suggested_stops : []
  const interests: string[] = Array.isArray(route.interests) ? route.interests : []
 
@@ -377,7 +394,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  )}
 
  {/* CTA */}
- <PlaneraCTA routeId={route.id} hasDoneIt={!!route.trip_id} />
+ <PlaneraCTA routeId={route.id} doneTripId={doneTripId} />
  {/* Avslut utan GPS: markera öarna längs rutten som besökta */}
  <PlaneraMarkVisited routeId={route.id} slugs={islands.map(i => i.slug)} names={islands.map(i => i.name)} />
 
