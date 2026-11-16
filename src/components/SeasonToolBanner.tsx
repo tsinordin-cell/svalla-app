@@ -19,7 +19,7 @@ type Banner = {
 
 const STORAGE_KEY = 'svalla_dismissed_banners'
 
-function pickBanner(): Banner {
+function pickBanner(): Banner | null {
   const month = new Date().getMonth() + 1 // 1-12
   // Maj–augusti: skärgårdsbingo (sommarutmaning)
   if (month >= 5 && month <= 8) {
@@ -57,16 +57,9 @@ function pickBanner(): Banner {
       icon: 'check',
     }
   }
-  // November–februari: forum + community
-  return {
-    id: 'forum-vinter',
-    title: 'Diskutera båt & skärgård',
-    body: 'Vinterförvaring, vårplanering, frågor som behöver svar, forumet är öppet.',
-    href: '/forum',
-    cta: 'Gå med →',
-    accent: '#1d4ed8',
-    icon: 'users',
-  }
+  // November–februari: ingen banner. Forumet ligger still (beslut 2026-10-13)
+  // och vinterblocket VinterIFlodet visar det som gäller i vinter.
+  return null
 }
 
 export default function SeasonToolBanner() {
@@ -74,6 +67,7 @@ export default function SeasonToolBanner() {
   const [dismissed, setDismissed] = useState<boolean | null>(null) // null = ej hydrerad än
 
   useEffect(() => {
+    if (!banner) return
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
       const list: string[] = raw ? JSON.parse(raw) : []
@@ -81,11 +75,12 @@ export default function SeasonToolBanner() {
     } catch {
       setDismissed(false)
     }
-  }, [banner.id])
+  }, [banner])
 
   function handleDismiss(e: React.MouseEvent) {
     e.preventDefault()
     e.stopPropagation()
+    if (!banner) return
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
       const list: string[] = raw ? JSON.parse(raw) : []
@@ -95,7 +90,7 @@ export default function SeasonToolBanner() {
     setDismissed(true)
   }
 
-  if (dismissed !== false) return null  // null = ej hydrerad → render inget för att undvika layout-flash
+  if (!banner || dismissed !== false) return null  // null = ej hydrerad → render inget för att undvika layout-flash
 
   return (
     <Link

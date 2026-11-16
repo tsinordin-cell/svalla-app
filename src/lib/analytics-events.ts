@@ -77,8 +77,13 @@ export type SvallaEvent =
   | { name: 'place_viewed';         props: { place_id: string } }
 
   // Planera
-  | { name: 'route_planned';        props: { distance_nm: number; stops: number; interests: string[] } }
+  // route_planned: användaren tryckte "Planera" (fågelvägen start–mål; stoppen
+  // räknas på servern och är inte kända här). route_saved: servern svarade med id.
+  | { name: 'route_planned';        props: { distance_nm: number; interests: string[] } }
   | { name: 'route_saved';          props: { route_id: string } }
+
+  // Thorkel (AI-guiden). tecken = frågans längd; ingen frågetext loggas.
+  | { name: 'thorkel_fraga';        props: { tecken: number; sida: 'overlay' | 'guide' } }
 
   // Min dag
   | { name: 'dag_pill_clicked';     props: { from: 'upptack_topbar' | 'feed' | 'island_page' | 'other' } }

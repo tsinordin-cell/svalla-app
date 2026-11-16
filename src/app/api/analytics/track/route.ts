@@ -49,6 +49,8 @@ const KNOWN_EVENTS = new Set([
   'gps_first_fix', 'gps_error', 'gps_hidden', 'gps_abandoned', 'passerad_till_besokt',
   // Nytt 2026-11-12: julkalendern (klick på paketet/kortet/inloggning, visade luckor)
   'julkalender_klick', 'julkalender_lucka_visad', 'julkalender_lucka_oppnad', 'julkalender_delad',
+  // Nytt 2026-11-16: frågor till Thorkel (längd och sida, ingen text)
+  'thorkel_fraga',
 ])
 
 const MAX_PROPS_BYTES = 4096
