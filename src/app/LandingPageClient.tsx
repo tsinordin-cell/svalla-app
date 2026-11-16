@@ -1095,15 +1095,16 @@ const LANDING_HTML = `
    <div class="thorkel-msg ai">
     <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
     <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-    <div class="thorkel-bubble">Perfekt val: <b>Grinda</b>. Waxholmsbåten (linjebåt: ingen båt krävs) från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu, fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20. Vill du att jag bokar bordet?</div>
+    <!-- KÄLLA: samma som Grinda i guide-content.ts: waxholmsbolaget.se (Strömkajen via Vaxholm), lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html ("fina barnvänliga bad både vid den södra och norra ångbåtsbryggan"). Thorkel bokar inget, han hämtar avgångar via get_transit_to_island. Omskrivet 2026-11-16. -->
+    <div class="thorkel-bubble">Då föreslår jag <b>Grinda</b>. Waxholmsbolagets båt från Strömkajen via Vaxholm tar ungefär en och en halv timme, och ön har trafik året om. På ön ligger Grinda Wärdshus, och det finns bad vid både den södra och den norra ångbåtsbryggan. Vill du se dagens avgångar?</div>
    </div>
    <div class="thorkel-msg user">
     <div class="thorkel-av u">Du</div>
-    <div class="thorkel-bubble">Ja tack! Finns det en bastu också?</div>
+    <div class="thorkel-bubble">Ja tack!</div>
    </div>
    <div class="thorkel-msg ai">
     <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
-    <div class="thorkel-bubble">Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14 till 19. Det är 20 min med lokalbåten. Vill du att jag lägger till det i planen?</div>
+    <div class="thorkel-bubble">Här är de närmaste avgångarna till Grinda, hämtade från Trafiklab just nu. Kolla gärna när sista båten går hem innan ni åker.</div>
    </div>
   </div>
  </div>
