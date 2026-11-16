@@ -13,6 +13,7 @@ import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SeasonToolBanner from '@/components/SeasonToolBanner'
 import JulkalenderFlodeKort from '@/components/JulkalenderFlodeKort'
+import VinterIFlodet from '@/components/VinterIFlodet'
 import SilentBoundary from '@/components/SilentBoundary'
 import FeedWeatherRow from '@/components/FeedWeatherRow'
 import SuggestedUsers from '@/components/SuggestedUsers'
@@ -255,6 +256,9 @@ export default async function FeedPage(
 
  {/* Julkalendern 1–24 december: kort överst för inloggade */}
  {!!user && <SilentBoundary><JulkalenderFlodeKort /></SilentBoundary>}
+
+ {/* Vinterläge nov–mars: vintertrafik, planera sommaren, Thorkel (VinterIFlodet) */}
+ <VinterIFlodet />
 
  {/* Loppis-banner: visas en gång per användare, dismissible */}
  <LoppisFeedBanner />
