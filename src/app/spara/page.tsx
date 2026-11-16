@@ -126,6 +126,16 @@ export default function SparaPage() {
   const pauseStartRef    = useRef<Date | null>(null)
   const fileRef          = useRef<HTMLInputElement>(null)
   const startTimeRef     = useRef<Date | null>(null)
+  // Planerad rutt (?planned_route_id=) från "Starta turen nu" på /planera/<id>.
+  // Läses från URL:en vid montering: useSearchParams kräver Suspense-gräns
+  // och sidan är redan stor. 2026-11-16: länken tappades tidigare helt i GPS-flödet.
+  const plannedRouteIdRef = useRef<string | null>(null)
+  useEffect(() => {
+    try {
+      const v = new URLSearchParams(window.location.search).get('planned_route_id')
+      plannedRouteIdRef.current = v && /^[0-9a-f-]{36}$/i.test(v) ? v : null
+    } catch { /* ignorera */ }
+  }, [])
   const lastGpsPtRef     = useRef<{ lat: number; lng: number; ts: number } | null>(null)
   // FALTTEST 2026-09-03 (Tom, bil): anomaligrinden och fartberakningen jamforde
   // FORRA punktens UTJAMNADE lage mot NYA punktens RA lage. Kalman-gain ar ~0.044,
@@ -818,6 +828,7 @@ export default function SparaPage() {
       userId: user.id, boatType, distanceNM: dist, elapsedSeconds: elapsed,
       avgKnots: avgSpd, maxKnots: maxSpd, uploadedUrls, startedAt, endedAt,
       pinnar, caption, locationName, routePoints, isPrivate,
+      plannedRouteId: plannedRouteIdRef.current,
     })
     const { data: trip, error: tripErr } = tripId
       ? await supabase.from('trips').update(tripFields).eq('id', tripId).select('id').single()
@@ -835,6 +846,11 @@ export default function SparaPage() {
 
     const tid = trip.id
     setTripId(tid)
+    // Länka rutten till turen (bara ägarens rutt går att uppdatera, RLS;
+    // trips.planned_route_id ovan gäller alltid och är det ruttsidan läser).
+    if (plannedRouteIdRef.current) {
+      await supabase.from('planned_routes').update({ trip_id: tid }).eq('id', plannedRouteIdRef.current)
+    }
     // 21/8: snapshot och offline-buffert rensas forst EFTER att sparet
     // verifierats pa servern (langre ner) — tidigare rensades de har, sa
     // ett misslyckat batch-skriv gav en "sparad" tur utan spar och utan
