@@ -539,6 +539,12 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 @media(max-width:359px){.dest-card-region,.region-card-label{overflow-wrap:break-word}}
 
 [data-theme="dark"] body { background: var(--sea-dark) !important; }
+/* Tätare startsida (2026-11-16): mindre luft mellan delarna. */
+.resetips-section,.destinations-section,.activities-section,.thorkel-section,.faq-section{padding-top:64px;padding-bottom:64px}
+.section-header{margin-bottom:36px}
+.split-section{min-height:0}
+.split-pane{padding:56px 60px}
+@media(max-width:600px){.resetips-section,.destinations-section,.activities-section,.thorkel-section,.faq-section{padding-top:44px;padding-bottom:44px}.split-pane{padding:36px 20px}}
 `
 
 const LANDING_HTML = `
