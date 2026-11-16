@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
+import { DEPARTURES } from '@/lib/planner-client'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    /onboarding — Premium skärgårds-tour
@@ -14,9 +15,9 @@ import { track } from '@/lib/analytics-events'
    2. TOUR_LOG   — "Logga turer" — illustrerat sjökort med GPS-rutt.
    3. TOUR_MAP   — "Hitta krogar, bryggor, bastur" — sjökort med markörer.
    4. TOUR_COMM  — "Möt skärgårdsbor" — två båtar möts på vatten + forum-bubblor.
-   5. BAT        — Snabb personalisering: båttyp.
-   6. PORT       — Hemmavatten (med skärgårds-chips).
-   7. FOLLOW     — Följ aktiva seglare.
+   5. BAT        — Båttyp (krävs; "Utan egen båt" finns).
+   6. HAMN       — Hemmahamn, fritext med förslag (går att hoppa över).
+   7. FOLJ       — Följ aktiva seglare (hoppas över om inga förslag).
    8. DONE       — "Klar för avgång" — båt seglar mot horisonten.
 
    Maritime känsla i varje pixel. Inga emojis. Allt är SVG.
@@ -36,9 +37,9 @@ interface Props {
   suggestions: Suggestion[]
 }
 
-type Step = 'welcome' | 'tour_log' | 'tour_map' | 'tour_app' | 'personalise' | 'done'
+type Step = 'welcome' | 'tour_log' | 'tour_map' | 'tour_app' | 'bat' | 'hamn' | 'folj' | 'done'
 
-const TOUR_STEPS: Step[] = ['welcome', 'tour_log', 'tour_map', 'tour_app', 'personalise', 'done']
+const TOUR_STEPS: Step[] = ['welcome', 'tour_log', 'tour_map', 'tour_app', 'bat', 'hamn', 'folj', 'done']
 const TOTAL_STEPS = TOUR_STEPS.length
 const stepIdx = (s: Step) => TOUR_STEPS.indexOf(s)
 
@@ -412,6 +413,24 @@ const BOAT_OPTIONS = [
   { value: 'Charter',  label: 'Utan egen båt', Icon: CharterIcon, desc: 'Hyr, åk med, eller besätter' },
 ]
 
+/** "åkersberga" → "Åkersberga"; "  Vaxholm " → "Vaxholm". Högst 60 tecken. */
+function normaliseraHamn(v: string): string {
+  const t = v.trim().replace(/\s+/g, ' ').slice(0, 60)
+  if (t.length < 2) return ''
+  return t.charAt(0).toUpperCase() + t.slice(1)
+}
+
+/** Förslag under fältet: vanliga hamnar när det är tomt, annars träffar i
+ *  planerarens avgångsplatser och de vanliga hamnarna. Högst 6. */
+function hamnForslagFor(skrivet: string): string[] {
+  const q = skrivet.trim().toLowerCase()
+  if (q.length === 0) return COMMON_PORTS.slice(0, 6)
+  const alla = Array.from(new Set([...COMMON_PORTS, ...DEPARTURES.map(d => d.name)]))
+  const borjar = alla.filter(n => n.toLowerCase().startsWith(q))
+  const innehaller = alla.filter(n => !n.toLowerCase().startsWith(q) && n.toLowerCase().includes(q))
+  return [...borjar, ...innehaller].filter(n => n.toLowerCase() !== q).slice(0, 6)
+}
+
 const COMMON_PORTS = [
   'Stockholm', 'Vaxholm', 'Saltsjöbaden', 'Värmdö',
   'Sandhamn', 'Marstrand', 'Smögen', 'Göteborg',
@@ -560,17 +579,13 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
     if (idx < TOTAL_STEPS - 1) goTo(TOUR_STEPS[idx + 1]!)
   }
 
-  /* Spara personalisering — båttyp + hemmahamn i ett anrop */
-  const handleSavePersonalise = async () => {
-    setSaving(true)
-    setError('')
+  /* Spara båt (steg 5) och hemmahamn (steg 6) var för sig. */
+  const handleSaveBoat = async () => {
+    if (!boatType) return
+    setSaving(true); setError('')
     try {
-      const updates: Record<string, string> = {}
-      if (boatType) { updates.boat_type = boatType; updates.vessel_model = boatType }
-      if (homePort.trim().length >= 2) updates.home_port = homePort.trim()
-      if (Object.keys(updates).length > 0) {
-        await supabase.from('users').update(updates).eq('id', userId)
-      }
+      const { error: e } = await supabase.from('users').update({ boat_type: boatType, vessel_model: boatType }).eq('id', userId)
+      if (e) throw new Error('Kunde inte spara. Försök igen.')
       setSaving(false)
       goNext()
     } catch (e) {
@@ -578,6 +593,25 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
       setSaving(false)
     }
   }
+
+  const handleSavePort = async () => {
+    setSaving(true); setError('')
+    try {
+      const hamn = normaliseraHamn(homePort)
+      if (hamn) {
+        const { error: e } = await supabase.from('users').update({ home_port: hamn }).eq('id', userId)
+        if (e) throw new Error('Kunde inte spara. Försök igen.')
+      }
+      setSaving(false)
+      // Inga seglare att föreslå → hoppa direkt till avgång.
+      goTo(suggestions.length > 0 ? 'folj' : 'done')
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Något gick fel')
+      setSaving(false)
+    }
+  }
+
+  const hamnForslag = hamnForslagFor(homePort)
 
   /* Toggle follow + trigga notiser/push */
   const toggleFollow = (id: string) => {
@@ -816,32 +850,29 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
   )
 
   /* ════════════════════════════════════════════════════════════════════════
-     STEG 5 — PERSONALISERA (båt + hamn + följ — allt på en skärm)
+     STEG 5 — BÅT (ett val, krävs: alla fyra täcker alla)
+     2026-11-16: förut låg båt, hamn och följ på en skärm, allt valfritt.
+     Senaste 90 dagarna: 15 klara onboardingar, 8 med båt, 7 med hamn.
+     Nu ett steg per fråga, båten måste väljas, hamnen går att hoppa över.
   ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'personalise') return (
+  if (step === 'bat') return (
     <>
       <style>{KEYFRAMES}</style>
       <SeaBackdrop/>
       <div key={animKey} style={CARD}>
         <CompassProgress current={step}/>
-        <h2 style={HEADING}>Sätt din kurs</h2>
+        <h2 style={HEADING}>Hur tar du dig ut?</h2>
         <p style={{ ...SUBTITLE, marginBottom: 20 }}>
-          Tre snabba frågor, allt kan ändras senare.
+          Styr vad du får se först: turer, rutter och platser som passar dig. Går att ändra i profilen.
         </p>
-
-        {/* ── Båttyp ── */}
-        <div style={{
-          fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.75)',
-          textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 10,
-        }}>Hur tar du dig ut?</div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 20 }}>
-          {BOAT_OPTIONS.map(({ value, label, Icon }) => {
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 22 }}>
+          {BOAT_OPTIONS.map(({ value, label, Icon, desc }) => {
             const active = boatType === value
             return (
               <button key={value} onClick={() => setBoatType(value)} type="button"
                 style={{
                   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-                  padding: '14px 10px', borderRadius: 14, border: 'none',
+                  padding: '16px 10px 14px', borderRadius: 14, border: 'none',
                   cursor: 'pointer', fontFamily: 'inherit',
                   background: active
                     ? 'linear-gradient(135deg, rgba(30,92,130,0.60), rgba(45,125,138,0.52))'
@@ -850,24 +881,59 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
                   transition: 'all 0.18s',
                 }}>
                 <div style={{ opacity: active ? 1 : 0.7 }}><Icon/></div>
-                <span style={{ fontSize: 12.5, fontWeight: 700, color: active ? '#fff' : 'rgba(255,255,255,0.72)' }}>
+                <span style={{ fontSize: 13, fontWeight: 700, color: active ? '#fff' : 'rgba(255,255,255,0.72)' }}>
                   {label}
+                </span>
+                <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.48)', textAlign: 'center', lineHeight: 1.3 }}>
+                  {desc}
                 </span>
               </button>
             )
           })}
         </div>
 
-        {/* ── Hemmahamn ── */}
-        <div style={{
-          fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.75)',
-          textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 10,
-        }}>Hemmahamn (valfritt)</div>
+        {error && (
+          <div style={{
+            marginBottom: 12, padding: '10px 14px',
+            background: 'rgba(239,68,68,0.10)', color: 'rgba(255,180,180,0.95)',
+            fontSize: 13, fontWeight: 600, borderRadius: 12,
+            border: '1px solid rgba(239,68,68,0.25)',
+          }}>{error}</div>
+        )}
+
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
+          <button onClick={handleSaveBoat} disabled={saving || !boatType} style={PRIMARY_BTN(saving || !boatType)}>
+            {saving ? 'Sparar…' : <>Nästa <ArrowRightIcon/></>}
+          </button>
+        </div>
+      </div>
+    </>
+  )
+
+  /* ════════════════════════════════════════════════════════════════════════
+     STEG 6 — HEMMAHAMN (fritext med förslag; går att hoppa över)
+     Fritext med flit: hemmahamnen är ofta en klubbhamn eller brygga som
+     inte finns i någon lista (Svinninge, Bosön, Raksta i dagens data).
+     Förslagen kommer från avgångsplatserna i planeraren och vanliga hamnar.
+  ═══════════════════════════════════════════════════════════════════════ */
+  if (step === 'hamn') return (
+    <>
+      <style>{KEYFRAMES}</style>
+      <SeaBackdrop/>
+      <div key={animKey} style={CARD}>
+        <CompassProgress current={step}/>
+        <h2 style={HEADING}>{boatType === 'Charter' ? 'Var brukar du ge dig ut?' : 'Var ligger båten?'}</h2>
+        <p style={{ ...SUBTITLE, marginBottom: 20 }}>
+          Hemmahamnen visas på din profil och hjälper oss föreslå seglare och turer nära dig.
+        </p>
         <input
           type="text"
           value={homePort}
           onChange={e => setHomePort(e.target.value)}
-          placeholder="t.ex. Vaxholm, Marstrand…"
+          placeholder="t.ex. Vaxholm, Svinninge, Marstrand…"
+          autoComplete="off"
+          aria-label="Hemmahamn"
           style={{
             width: '100%', boxSizing: 'border-box',
             padding: '13px 16px', borderRadius: 12,
@@ -877,8 +943,8 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
             outline: 'none', transition: 'border-color 0.2s', marginBottom: 10,
           }}
         />
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 22 }}>
-          {['Vaxholm', 'Sandhamn', 'Marstrand', 'Stockholm', 'Göteborg', 'Nynäshamn'].map(p => (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 22, minHeight: 32 }}>
+          {hamnForslag.map(p => (
             <button key={p} onClick={() => setHomePort(p)} type="button"
               style={{
                 padding: '6px 12px', borderRadius: 999,
@@ -891,13 +957,42 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           ))}
         </div>
 
+        {error && (
+          <div style={{
+            marginBottom: 12, padding: '10px 14px',
+            background: 'rgba(239,68,68,0.10)', color: 'rgba(255,180,180,0.95)',
+            fontSize: 13, fontWeight: 600, borderRadius: 12,
+            border: '1px solid rgba(239,68,68,0.25)',
+          }}>{error}</div>
+        )}
+
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
+          <button onClick={handleSavePort} disabled={saving} style={PRIMARY_BTN(saving)}>
+            {saving ? 'Sparar…' : homePort.trim().length >= 2 ? <>Nästa <ArrowRightIcon/></> : <>Hoppa över <ArrowRightIcon/></>}
+          </button>
+        </div>
+      </div>
+    </>
+  )
+
+  /* ════════════════════════════════════════════════════════════════════════
+     STEG 7 — FÖLJ SEGLARE (hoppas över automatiskt om inga förslag finns)
+  ═══════════════════════════════════════════════════════════════════════ */
+  if (step === 'folj') return (
+    <>
+      <style>{KEYFRAMES}</style>
+      <SeaBackdrop/>
+      <div key={animKey} style={CARD}>
+        <CompassProgress current={step}/>
+        <h2 style={HEADING}>Följ några seglare</h2>
+        <p style={{ ...SUBTITLE, marginBottom: 20 }}>
+          Deras turer dyker upp i ditt flöde. Du kan följa och sluta följa när som helst.
+        </p>
+
         {/* ── Följ seglare ── */}
         {suggestions.length > 0 && (
           <>
-            <div style={{
-              fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.75)',
-              textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 10,
-            }}>Följ några seglare</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 22 }}>
               {suggestions.slice(0, 3).map(s => {
                 const isFollowing = followIds.has(s.id)
@@ -941,6 +1036,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           </>
         )}
 
+
         {error && (
           <div style={{
             marginBottom: 12, padding: '10px 14px',
@@ -952,8 +1048,8 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
 
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
-          <button onClick={handleSavePersonalise} disabled={saving} style={PRIMARY_BTN(saving)}>
-            {saving ? 'Sparar…' : <>Sätt kurs <ArrowRightIcon/></>}
+          <button onClick={goNext} disabled={saving} style={PRIMARY_BTN(saving)}>
+            {followIds.size > 0 ? <>Sätt kurs <ArrowRightIcon/></> : <>Hoppa över <ArrowRightIcon/></>}
           </button>
         </div>
       </div>
