@@ -1,0 +1,18 @@
+Du är KONTROLLANTEN för en P0-rättelse i Svallas faktagranskning: P0 25, texterna om Bromskär på Blidö. Ditt jobb är att hitta fel, inte att bekräfta. Skriv på svenska. Dagens datum är 2026-11-17, och det är läsdatum för allt du öppnar.
+
+Bakgrund (det enda du behöver veta om ärendet): P0 är ett fel som kan stranda någon. Det rättas samma dag i en egen PR. Sajten sa att linje 28 angör Bromskär på Blidö, men bryggan är avstängd till juni 2027 enligt Waxholmsbolagets tabell 28. Rättelsen skriver om texterna på /o/blido och i en guide.
+
+INSTRUKTIONEN
+Läs /home/claude/svalla-app/docs/faktagranskning/roller/kontrollant.md, hela, med förtydligandena efter batch 01, och följ den. Platshållarna: {{SLUG}} = p0-25, {{NAMN}} = P0 25, {{BATCH}} = P0 25, {{DATUM}} = 2026-11-17, {{K}} = /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kontroll, {{B}} = /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01, {{TOOLS}} = /home/claude/svalla-app/docs/faktagranskning/verktyg. Trafikuppgifter beläggs av operatörens egna tabeller (Waxholmsbolagets och SL:s PDF:er på kund.printhuset-sthlm.se/wa/ och /sl/, Västtrafiks tabeller); en PDF läst med pdftotext -layout räknas som läst.
+
+UNDERLAG
+- {{K}}/p0-25.underlag.tsv (5 påståenden) och {{K}}/p0-25.strukna.tsv (5 strukna). Pröva varje rad.
+- Gammal och ny text: /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/p0-25/edits.json (2 poster med "fil", "gammal" och "ny"). Läs bara den filen i p0-25/. Kontrollera också att ingen text i src/ (git grep -n Bromskär i main-kopian med posterna applicerade i en egen kopia) säger att en båt angör Bromskär i dag, och att inga klockslag eller priser har tillkommit. Pröva dessutom (P0?) om texterna kring raderna i island-data.ts nära Blidö-posten, guide-content.ts runt rad 17215 och 17219 och guides-data.ts runt rad 4130 bygger på Waxholmsbolagets tabeller 24 och 26 som bara gällde till 1 november 2026, och om de säger att en båt går som inte går i dag.
+- Main finns orörd i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/main-kopia (läs bara).
+
+LEVERANS
+- {{K}}/p0-25.kontroll.tsv med rubrikraden ur instruktionen och en rad per kid i underlaget och i strukna-filen. Skriv filen efter varje källa. Spara sidorna i {{K}}/p0-25-sidor/.
+- Öppna inte p0-25/rapport.md, p0-25/kallor/, p0-25/torr/, registren, nyckelfiler, beslutsfiler eller andra agenters mappar. Skriv inga filer i repot.
+- Når du inte en sida, svara SAKNAS med kommentaren "ej nåbar". Kringgå aldrig blockeringar, CAPTCHA, inloggning eller certifikatvarningar. Skicka aldrig personuppgifter i anrop.
+
+Slutsvar på högst 8 rader: antal OK, FEL och SAKNAS, och varje FEL eller SAKNAS med kid och en mening. Skilj på MÄTT och RESONERAT.
