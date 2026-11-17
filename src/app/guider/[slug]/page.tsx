@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { GUIDES } from '../guides-data'
 import { getGuideContent } from './guide-content'
+import { utanHtmlKommentarer } from '@/lib/htmlKommentarer'
 import GuideUppskattning from '@/components/GuideUppskattning'
 import { getIsland } from '../../o/island-data'
 import { GUIDE_ISLAND_MAP } from '../guide-island-map'
@@ -109,7 +110,10 @@ export default async function GuidePage({ params }: Props) {
   const guide = GUIDES.find(g => g.slug === slug)
   if (!guide) notFound()
 
-  const content = getGuideContent(slug)
+  // Källkommentarerna ska stanna i guide-content.ts. De strippas här, innan
+  // HTML:en renderas och innan strängen kan bli en prop till en klientkomponent,
+  // så att de inte följer med i sidan eller i RSC-payloaden.
+  const content = utanHtmlKommentarer(getGuideContent(slug))
 
   // Relaterade guider — topic-aware: topic-match > category-match
   // Ger starkare topisk auktoritet än ren kategori-matchning

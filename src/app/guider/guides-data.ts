@@ -3638,7 +3638,7 @@ export const GUIDES: GuideMeta[] = [
   },
   {
     slug: "vinter-gotland",
-    title: "Gotland på vintern 2026: Visby i vinter och vad som har öppet",
+    title: "Gotland på vintern 2026/27: Visby i vinter och vad som har öppet",
     excerpt: "Gotland på vintern: färjan och flyget året runt, Visby i vinter med museum, julmarknad och restauranger, skidspår när det snöar och vad som har öppet.",
     category: "Säsong", emoji: "❄️", readTime: "7 min", fullContent: true,
     faqs: [
@@ -4571,7 +4571,7 @@ export const GUIDES: GuideMeta[] = [
   },
   {
     slug: "vinter-oland",
-    title: "Öland på vintern 2026: havsörn, alvar och vinterutflykter",
+    title: "Öland på vintern 2026/27: havsörn, alvar och vinterutflykter",
     excerpt: "Öland på vintern: här ser du havsörn vid Ottenby, vandrar i Trollskogen och på alvaret, kallbadar och besöker fornborgar. Så tar du dig dit utan cykelfärja.",
     category: "Säsong", emoji: "❄", readTime: "7 min", fullContent: true,
     faqs: [
@@ -5007,7 +5007,7 @@ export const GUIDES: GuideMeta[] = [
     excerpt: "Julbord i skärgården 2026: Sandhamn, Utö, Vaxholm, Fjäderholmarna, Donsö och Marstrand med datum och priser från ställenas egna sidor, hur du tar dig dit i december och vad du gör om båten inte går.",
     category: "Säsong", emoji: "🎄", readTime: "7 min", fullContent: true,
     faqs: [
-      // KÄLLA: https://www.sandhamn.com/sv/kalender/julbord — "26 november - 24 december 2026"; https://www.utovardshus.se/julbord/ — "27 november – 19 december"; https://www.fjaderholmarnaskrog.se/ — "NU SERVERA JULBORD MELLAN 20/11 - 22/12"; https://www.waxholmshotell.se/julbord — "26 nov - 24 dec 2026"; https://www.isbolaget.com/hogtid-frukost — "JULBORDSDATUM 2026"; https://www.isbolaget.com/hogtid-frukost — "LÖRDAG 28 NOVEMBER FRÅN KL. 18.00" (läst 2026-11-07); https://grandmarstrand.se/julbord/ — "Julbordet serveras i perioden 26/11- 19/12" (läst 2026-09-29)
+      // KÄLLA: https://www.sandhamn.com/sv/kalender/julbord — "26 november - 24 december 2026"; https://www.utovardshus.se/julbord/ — "27 november – 19 december"; https://www.fjaderholmarnaskrog.se/ — "VÅRT JULBORD SERVERAS MELLAN 20/11 - 20/12"; https://www.waxholmshotell.se/julbord — "26 nov - 24 dec 2026"; https://www.isbolaget.com/hogtid-frukost — "JULBORDSDATUM 2026"; https://www.isbolaget.com/hogtid-frukost — "LÖRDAG 28 NOVEMBER FRÅN KL. 18.00" (läst 2026-11-07); https://grandmarstrand.se/julbord/ — "Julbordet serveras i perioden 26/11- 19/12" (läst 2026-09-29)
       { q: "Var finns julbord ute på öarna i skärgården 2026?", a: "I Stockholms skärgård på Sandhamn Seglarhotell (26 november till 24 december), Utö Värdshus (27 november till 19 december), Waxholms Hotell och Vaxholms kastell i Vaxholm, och Fjäderholmarnas Krog och Rökeriet på Fjäderholmarna. I Göteborgs skärgård har Isbolaget på Donsö julbord från 28 november, och på Marstrand serverar Grand Hotel julbord 26 november till 19 december." },
       // KÄLLA: https://www.sandhamn.com/sv/kalender/julbord — "Pris: torsdag 1 095 kr · fredag 1 195 kr · lördag 1 295 kr Barn: under 3 år gratis · 3–12 år 450 kr"; https://www.utovardshus.se/julbord/ — "Julbord på Utö fr. 895 kr/person"; https://www.isbolaget.com/hogtid-frukost — "Julbord vuxen: 895 kr" (läst 2026-09-29)
       { q: "Vad kostar julbord i skärgården 2026?", a: "Det varierar. På Sandhamn Seglarhotell kostar julbordet 1 095 till 1 295 kr beroende på veckodag, och barn 3 till 12 år betalar 450 kr. Utö Värdshus börjar på 895 kr per person och Isbolaget på Donsö tar 895 kr för vuxna. Priserna är de ställena själva har publicerat för 2026." },
@@ -5053,7 +5053,7 @@ export const GUIDES: GuideMeta[] = [
       { q: "Var kan man basta vid havet i november?", a: "Lilla Sauna vid Fredriksstrandsbadet i Vaxholm har öppet alla dagar 06.00 till 23.00 året runt. Seglarhotellets spa på Sandhamn tar emot gäster som inte bor på hotellet i mån av plats, och Kajkanten på Vrångö har en relaxflotte med vedeldad bastu och ett kallbadspaket för november till mars." },
       // KÄLLA: https://stockholmarchipelagotrail.com/sv/news/lag-sasong-i-stockholms-skargard/ — "Det betyder att vattnet stängs av i slutet av oktober"; "Alla handpumpar fungerar dock året runt."; "Spoltoaletter stängs också av under samma period" (läst 2026-09-30). BERÄKNAT: solnedgång Stockholm 30 nov ca 14.57 (NOAA:s solformel).
       { q: "Vad ska man tänka på när man vandrar i skärgården i november?", a: "Enligt Stockholm Archipelago Trail stängs vattnet och spoltoaletterna av i slutet av oktober, men handpumparna fungerar året runt, så ta med mat, vatten och kläder för att klara dig själv. Dagsljuset är kort: enligt vår uträkning går solen ner ungefär 14.57 i Stockholm i slutet av november." },
-      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — "NU SERVERA JULBORD MELLAN 20/11 - 22/12"; https://kusthotelletstyrso.se/jul-2026/ — "från 20 november till 20 december"; https://marstrandsmarknad.com/ — "Julmarknad · 28–29 november 2026" (läst 2026-09-29/30)
+      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — "VÅRT JULBORD SERVERAS MELLAN 20/11 - 20/12"; https://kusthotelletstyrso.se/jul-2026/ — "från 20 november till 20 december"; https://marstrandsmarknad.com/ — "Julmarknad · 28–29 november 2026" (läst 2026-09-29/30)
       { q: "När börjar julborden i skärgården?", a: "De första julborden i skärgården dukas upp 20 november, på Fjäderholmarnas Krog och Kusthotellet på Styrsö. Helgen 28 till 29 november är det julmarknad på Marstrand." },
     ],
   },
