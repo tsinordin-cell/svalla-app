@@ -5928,6 +5928,284 @@ export const ISLANDS: Island[] = [
     related: ['sandskar'],
     tags: ['norrbotten', 'kalix', 'fyr', 'naturreservat'],
   },
+  // ─── SKÅNE OCH HALLAND ───────────────────────────────────────
+  {
+    slug: 'hallands-vadero',
+    name: 'Hallands Väderö',
+    region: 'ovriga',
+    regionLabel: 'Skånes kust',
+    emoji: '🦭',
+    // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "Kommun: Båstad"; "Runt ön ses ofta knubbsälar ligga och vila på klipporna." (läst 2026-11-17)
+    tagline: 'Naturreservat utanför Torekov i Båstads kommun, där knubbsälar ofta vilar på klipporna runt ön.',
+    seoTitle: 'Hallands Väderö: turbåt, sälar och regler',
+    // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På sommaren går de från Torekov och Båstad till Sandhamn på ön, övrig tid på året måste du beställa båttur." (läst 2026-11-17)
+    seoDescription: 'På sommaren går turbåtar från Torekov och Båstad till Hallands Väderö. Vandringsleder, sälar, utemuseet och reglerna i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Hallands%20V%C3%A4der%C3%B6 — Lantmäteriet Min Karta, sökning "Hallands Väderö" → Hallands Väderö | Båstad | Natur- och terrängnamn, SWEREF 99 TM 350297/6257682 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 56.4399,
+    lng: 12.5717,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "Kommun: Båstad"; "Skyddstyp: Naturreservat och Natura 2000"; "Förvaltare: Länsstyrelsen Skåne"; "På den cirka 3 km långa ön finns flera vandringsleder att välja på." (läst 2026-11-17)
+      'Hallands Väderö ligger i Båstads kommun. Ön är naturreservat, ingår i Natura 2000 och förvaltas av Länsstyrelsen Skåne. Den är cirka 3 kilometer lång och har flera vandringsleder.',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "Runt ön ses ofta knubbsälar ligga och vila på klipporna."; "I ett av öns äldsta hus, "Lotsstugan", även kallad "Stenhuggarehuset", finns Hallands Väderös utemuseum." (läst 2026-11-17)
+      'Runt ön ser man ofta knubbsälar som vilar på klipporna. I Lotsstugan, ett av öns äldsta hus, finns Hallands Väderös utemuseum.',
+      // KÄLLA: https://www.lansstyrelsen.se/download/18.1e9f682716e44cbf6f5cb7d/1618590550398/folder_Hallands%20V%C3%A4der%C3%B6_NR_BushLife_tgh.pdf — "Skären runt ön är den enda plats i Kattegatt där de tre alkorna sillgrissla, tobisgrissla och tordmule häckar." (läst 2026-11-17)
+      'Skären runt ön är den enda platsen i Kattegatt där alla tre alkorna sillgrissla, tobisgrissla och tordmule häckar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På sommaren går de från Torekov och Båstad till Sandhamn på ön" (läst 2026-11-17)
+      travel_time: 'Turbåt från Torekov och Båstad på sommaren',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "Skyddstyp: Naturreservat och Natura 2000" (läst 2026-11-17)
+      character: 'Naturreservat och Natura 2000',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "övrig tid på året måste du beställa båttur" (läst 2026-11-17)
+      season: 'Sommar med turbåt, annars beställd båttur',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På den cirka 3 km långa ön finns flera vandringsleder att välja på."; "Runt ön ses ofta knubbsälar" (läst 2026-11-17)
+      best_for: 'Vandring och sälar',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På den cirka 3 km långa ön finns flera vandringsleder att välja på." (läst 2026-11-17)
+      { icon: '🥾', name: 'Vandringsleder', desc: 'Flera vandringsleder på den cirka 3 kilometer långa ön.' },
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "I ett av öns äldsta hus, "Lotsstugan", även kallad "Stenhuggarehuset", finns Hallands Väderös utemuseum." (läst 2026-11-17)
+      { icon: '🏛️', name: 'Utemuseet i Lotsstugan', desc: 'Hallands Väderös utemuseum finns i ett av öns äldsta hus.' },
+      // KÄLLA: https://www.lansstyrelsen.se/download/18.1e9f682716e44cbf6f5cb7d/1618590550398/folder_Hallands%20V%C3%A4der%C3%B6_NR_BushLife_tgh.pdf — "Det finns flera fina sandstränder vid Sandhamn och Kappelhamn" (läst 2026-11-17)
+      { icon: '🏖️', name: 'Sandstränder', desc: 'Det finns sandstränder vid Sandhamn och Kappelhamn.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På sommaren går de från Torekov och Båstad till Sandhamn på ön, övrig tid på året måste du beställa båttur." (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Torekov och Båstad', desc: 'Enligt Länsstyrelsen går Väderötrafikens turbåtar på sommaren från Torekov och Båstad till Sandhamn på ön. Resten av året måste du beställa båttur.', icon: '⛴️' },
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "I Torekov och Båstad finns både busstation och parkering i närheten av hamnen." (läst 2026-11-17)
+      { method: 'Buss och bil', from: 'Torekov och Båstad', desc: 'I Torekov och Båstad finns busstation och parkering nära hamnen.', icon: '🚌' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "elda utomhus: såväl öppen eld som eldning i stormkök, spritkök, gasolkök, grillar eller motsvarande" (läst 2026-11-17)
+      'Du får inte elda utomhus i reservatet. Det gäller även stormkök, spritkök, gasolkök och grillar.',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "tälta eller övernatta utomhus på ön"; "ta med okopplad hund eller annat lösgående husdjur" (läst 2026-11-17)
+      'Du får inte tälta eller övernatta utomhus på ön, och hunden ska vara kopplad.',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "framföra cyklar, mountainbikes (terränggående cyklar) eller liknande"; "ankra i Sandhamnsbukten"; "dra upp båtar på sandstränderna" (läst 2026-11-17)
+      'Du får inte cykla på ön, ankra i Sandhamnsbukten eller dra upp båtar på sandstränderna.',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "vara i sälskyddsområdet (gäller hela året)"; "vara i fågelskyddsområdena mellan 1 april och 15 juli."; "Det är tillåtet att ankra längs kusten, med undantag för Sandhamn och i områden som har tillträdesförbud" (läst 2026-11-17)
+      'Du får inte vara i sälskyddsområdet under någon del av året, och inte i fågelskyddsområdena 1 april till 15 juli. I områden med tillträdesförbud får du inte heller ankra. Se Länsstyrelsens karta.',
+    ],
+    related: ['ven'],
+    tags: ['skåne', 'båstad', 'torekov', 'sälar', 'naturreservat'],
+  },
+  {
+    slug: 'nidingen',
+    name: 'Nidingen',
+    region: 'ovriga',
+    regionLabel: 'Hallands skärgård',
+    emoji: '🗼',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Efter freden vid Brömsebro, år 1645, kom Nidingen under svensk administration och blev därmed Sveriges första fyrplats." (läst 2026-11-17)
+    tagline: 'Fyrön i Kungsbacka kommun som blev Sveriges första fyrplats efter freden vid Brömsebro 1645.',
+    seoTitle: 'Nidingen: Sveriges första fyrplats',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Nidingen nås endast med båt. Sommartid går båtturer till Nidingen."; "1834 byggdes två sexkantiga fyrtorn, dessa är idag byggnadsminnen." (läst 2026-11-17)
+    seoDescription: 'Nidingen nås bara med båt. Fyrtornen från 1834, fågelstationen och vad som gäller under häckningstiden i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Nidingen — Lantmäteriet Min Karta, sökning "Nidingen" → Nidingen | Kungsbacka | Natur- och terrängnamn, SWEREF 99 TM 313373/6355451 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.3038,
+    lng: 11.9019,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Ön är belägen sydväst om Malön utanför Onsalahalvöns sydspets i Kungsbacka kommun."; "Ön är cirka en kilometer lång och trehundra meter bred"; "idag finns inga fast boende på ön." (läst 2026-11-17)
+      'Nidingen ligger sydväst om Malön, utanför Onsalahalvöns sydspets i Kungsbacka kommun. Ön är cirka en kilometer lång och trehundra meter bred. I dag bor ingen fast på ön.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Efter freden vid Brömsebro, år 1645, kom Nidingen under svensk administration och blev därmed Sveriges första fyrplats."; "1834 byggdes två sexkantiga fyrtorn, dessa är idag byggnadsminnen." (läst 2026-11-17)
+      'Efter freden vid Brömsebro 1645 kom Nidingen under svensk administration och blev Sveriges första fyrplats. År 1834 byggdes två sexkantiga fyrtorn, som i dag är byggnadsminnen.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Göteborgs Ornitologiska Förening håller i verksamheten"; "Dessutom finns Sveriges enda koloni av tretåig mås här." (läst 2026-11-17)
+      'På ön finns en fågelstation som Göteborgs Ornitologiska Förening driver. Enligt Länsstyrelsen finns här Sveriges enda koloni av tretåig mås.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Areal: 725 hektar, varav ön är på 13,5 hektar"; "Skyddat sedan: 1980"; "Området ingår i Natura 2000" (läst 2026-11-17)
+      'Naturreservatet är skyddat sedan 1980 och är 725 hektar, varav ön är 13,5 hektar. Det ingår i Natura 2000.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Nidingen nås endast med båt." (läst 2026-11-17)
+      travel_time: 'Bara med båt',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "1834 byggdes två sexkantiga fyrtorn, dessa är idag byggnadsminnen." (läst 2026-11-17)
+      character: 'Fyrö och naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Sommartid går båtturer till Nidingen." (läst 2026-11-17)
+      season: 'Båtturer sommartid',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "1834 byggdes två sexkantiga fyrtorn"; "På ön finns sedan drygt 30 år tillbaka en fågelstation." (läst 2026-11-17)
+      best_for: 'Fyrar och fåglar',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "1834 byggdes två sexkantiga fyrtorn, dessa är idag byggnadsminnen." (läst 2026-11-17)
+      { icon: '🗼', name: 'Fyrtornen', desc: 'Två sexkantiga fyrtorn från 1834, i dag byggnadsminnen.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Nidingen nås endast med båt. Sommartid går båtturer till Nidingen." (läst 2026-11-17)
+      { method: 'Båt', from: 'Kungsbacka kommun', desc: 'Nidingen nås bara med båt. Enligt Länsstyrelsen går det båtturer till ön sommartid.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "under tiden den 1 april till den 15 juli årligen landa med båt eller vistas på Nidingen eller inom det omgivande vattenområdet intill ett avstånd av 100 meter från stranden med undantag av öns sydvästra del och intilliggande vattenområde" (läst 2026-11-17)
+      '1 april till 15 juli får du inte landa med båt, vara på ön eller i vattnet inom 100 meter från stranden. Undantaget är öns sydvästra del och vattnet intill den.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "tälta,"; "att elda."; "medföra ej kopplad hund eller annat lösgående husdjur" (läst 2026-11-17)
+      'Du får inte tälta eller elda, och hunden ska vara kopplad.',
+    ],
+    related: ['malon', 'vendelso'],
+    tags: ['halland', 'kungsbacka', 'fyr', 'fåglar', 'naturreservat'],
+  },
+  {
+    slug: 'vendelso',
+    name: 'Vendelsö',
+    region: 'ovriga',
+    regionLabel: 'Hallands skärgård',
+    emoji: '🏝️',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I naturreservatet Vendelsöarna i Varbergs kommun ingår Vendelsö och sex mindre öar."; "klipplandskap med strandgrottor" (läst 2026-11-17)
+    tagline: 'Ö i Varbergs kommun med strandgrottor på södra delen och sex mindre öar med sandstränder runt omkring.',
+    seoTitle: 'Vendelsö i Halland: båt, stränder och regler',
+    // KÄLLA: https://www.fjordexpress.se/?lang=sv — "Stenudden (Åsa) ⇄ Vendelsö"; "Gottskär ⇄ Vendelsö"; "Bua ⇄ Vendelsö" (läst 2026-11-17)
+    seoDescription: 'Fjordexpress har rutter till Vendelsö från Bua, Åsa och Gottskär. Gästbryggan, strandgrottorna och reglerna i naturreservatet Vendelsöarna.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vendels%C3%B6 — Lantmäteriet Min Karta, sökning "Vendelsö" → Vendelsö | Varberg | Natur- och terrängnamn, SWEREF 99 TM 326187/6354678 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.3019,
+    lng: 12.1149,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I naturreservatet Vendelsöarna i Varbergs kommun ingår Vendelsö och sex mindre öar." (läst 2026-11-17)
+      'Vendelsö ligger i Varbergs kommun. I naturreservatet Vendelsöarna ingår Vendelsö och sex mindre öar.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Missa inte att besöka södra Vendelsö, här finns ett fantastiskt klipplandskap med strandgrottor"; "På några höjdpartier kan man hitta rösen från bronsåldern" (läst 2026-11-17)
+      'På södra Vendelsö finns ett klipplandskap med strandgrottor. På några höjdpartier på Vendelsö finns rösen från bronsåldern.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Öarna når man med egen båt och alla sex öarna har fina sandstränder!" (läst 2026-11-17)
+      'De sex mindre öarna runt Vendelsö har alla sandstränder och nås med egen båt.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Areal: 1582 hektar varav 262 hektar är landareal"; "Skyddat sedan: 2002, utvidgat 2015" (läst 2026-11-17)
+      'Reservatet är skyddat sedan 2002, utvidgades 2015 och är 1582 hektar, varav 262 hektar land.',
+    ],
+    facts: {
+      // KÄLLA: https://www.fjordexpress.se/?lang=sv — "Stenudden (Åsa) ⇄ Vendelsö"; "Gottskär ⇄ Vendelsö"; "Bua ⇄ Vendelsö" (läst 2026-11-17)
+      travel_time: 'Fjordexpress eller egen båt',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I naturreservatet Vendelsöarna i Varbergs kommun ingår Vendelsö och sex mindre öar." (läst 2026-11-17)
+      character: 'Naturreservat med sju öar',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Det är tillåtet att tälta i reservatet men inte mer än två dygn." (läst 2026-11-17)
+      season: 'Tältning högst två dygn',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "alla sex öarna har fina sandstränder!"; "klipplandskap med strandgrottor" (läst 2026-11-17)
+      best_for: 'Stränder och klippor',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Missa inte att besöka södra Vendelsö, här finns ett fantastiskt klipplandskap med strandgrottor" (läst 2026-11-17)
+      { icon: '🪨', name: 'Strandgrottorna', desc: 'Klipplandskap med strandgrottor på södra Vendelsö.' },
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I Stavders hamn kan du sjösätta om du har egen mindre båt eller kajak." (läst 2026-11-17)
+      { icon: '🛶', name: 'Kajak', desc: 'I Stavders hamn kan du sjösätta en egen mindre båt eller kajak.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.fjordexpress.se/?lang=sv — "Stenudden (Åsa) ⇄ Vendelsö"; "Gottskär ⇄ Vendelsö"; "Bua ⇄ Vendelsö" (läst 2026-11-17)
+      { method: 'Båt', from: 'Bua, Åsa och Gottskär', desc: 'Fjordexpress har rutter till Vendelsö från Bua, Stenudden i Åsa och Gottskär. Se på fjordexpress.se vilka turer som är schemalagda innan du åker.', icon: '⛴️' },
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "På Vendelsö finns brygga för gästande båtar. Gästande båtar ska lägga till på yttersidan av bryggan" (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Varbergs kommun', desc: 'På Vendelsö finns en brygga för gästande båtar. Lägg till på bryggans yttersida.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Det är tillåtet att tälta i reservatet men inte mer än två dygn." (läst 2026-11-17)
+      'Du får tälta i reservatet, men inte mer än två dygn.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "elda annat än på anvisad plats,"; "medföra okopplad hund," (läst 2026-11-17)
+      'Du får bara elda på anvisad plats, och hunden ska vara kopplad.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "under tiden 1 april"; "31 juli årligen färdas eller uppehålla sig i vattenområdet i Älmö sund och på stränderna kring Älmö sund samt landstiga på del av Knarrskär eller befara vattenområdet inom 100 meter från ön, enligt markeringar på beslutskartan" (läst 2026-11-17)
+      '1 april till 31 juli får du inte färdas eller uppehålla dig i Älmö sund eller på stränderna kring sundet. Under samma tid får du inte gå i land på delar av Knarrskär eller åka i vattnet inom 100 meter från ön. Se beslutskartan.',
+    ],
+    related: ['nidingen', 'balgo', 'malon'],
+    tags: ['halland', 'varberg', 'stränder', 'naturreservat'],
+  },
+  {
+    slug: 'balgo',
+    name: 'Balgö',
+    region: 'ovriga',
+    regionLabel: 'Hallands skärgård',
+    emoji: '🐸',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Hallands viktigaste lokal för strandpadda"; "Kommun: Varberg" (läst 2026-11-17)
+    tagline: 'Naturreservat i Varbergs kommun och Hallands viktigaste lokal för strandpadda.',
+    seoTitle: 'Balgö: naturreservat med sälar och strandpadda',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Du behöver ha tillgång till egen båt för att ta dig till reservatet."; "I Balgöfjorden finns ett bestånd av knubbsäl" (läst 2026-11-17)
+    seoDescription: 'Till Balgö behöver du egen båt. Sälarna i Balgöfjorden, strandpaddan och vad som gäller i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Balg%C3%B6 — Lantmäteriet Min Karta, sökning "Balgö" → Balgö | Varberg | Natur- och terrängnamn, SWEREF 99 TM 328824/6339216 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.1642,
+    lng: 12.1692,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Kommun: Varberg"; "På ön finns både klapperstensfält och strandvallar." (läst 2026-11-17)
+      'Balgö ligger i Varbergs kommun. På ön finns klapperstensfält och strandvallar.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "I Balgöfjorden finns ett bestånd av knubbsäl"; "Även gråsäl förekommer i området."; "Hallands viktigaste lokal för strandpadda" (läst 2026-11-17)
+      'I Balgöfjorden finns knubbsäl, och även gråsäl förekommer i området. Balgö är Hallands viktigaste lokal för strandpadda.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Areal: 2200 hektar varav 250 hektar land"; "Skyddat sedan: 1950" (läst 2026-11-17)
+      'Reservatet är skyddat sedan 1950 och är 2200 hektar, varav 250 hektar land.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Du behöver ha tillgång till egen båt för att ta dig till reservatet." (läst 2026-11-17)
+      travel_time: 'Bara med egen båt',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Skyddat sedan: 1950" (läst 2026-11-17)
+      character: 'Naturreservat sedan 1950',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "råder tillträdesförbud i delar av reservatet under tiden 1 april till 31 juli" (läst 2026-11-17)
+      season: 'Tillträdesförbud i delar 1 april till 31 juli',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "I Balgöfjorden finns ett bestånd av knubbsäl" (läst 2026-11-17)
+      best_for: 'Sälar och natur',
+    },
+    activities: [],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Du behöver ha tillgång till egen båt för att ta dig till reservatet." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Varbergs kommun', desc: 'Du behöver egen båt för att ta dig till reservatet.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "råder tillträdesförbud i delar av reservatet under tiden 1 april till 31 juli." (läst 2026-11-17)
+      'I delar av reservatet är det tillträdesförbud 1 april till 31 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Öarna Lilla och Stora Både är sälskyddsområden och här råder tillträdesförbud mellan 15 maj och 15 juli." (läst 2026-11-17)
+      'Lilla och Stora Både är sälskyddsområden med tillträdesförbud 15 maj till 15 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "tälta,"; "elda,"; "samt att medföra hund." (läst 2026-11-17)
+      'Du får inte tälta, elda eller ta med hund.',
+    ],
+    related: ['vendelso'],
+    tags: ['halland', 'varberg', 'sälar', 'naturreservat'],
+  },
+  {
+    slug: 'malon',
+    name: 'Malön',
+    region: 'ovriga',
+    regionLabel: 'Hallands skärgård',
+    emoji: '🪨',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Malön i Kungsbacka kommun är en karg, flack ö som består av gräshedar och stora klapperstensfält." (läst 2026-11-17)
+    tagline: 'Karg och flack ö i Kungsbacka kommun med gräshedar, klapperstensfält och ett röse från bronsåldern.',
+    seoTitle: 'Malön i Kungsbacka: naturreservat och regler',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Området nås endast med båt och lämplig angöringsplats är sandstranden på östra sidan." (läst 2026-11-17)
+    seoDescription: 'Malön nås bara med båt, och sandstranden på östra sidan är en lämplig plats att lägga till. Malöros och reglerna i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Mal%C3%B6n — Lantmäteriet Min Karta, sökning "Malön" → Malön | Kungsbacka | Natur- och terrängnamn, SWEREF 99 TM 317061/6359586 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.3424,
+    lng: 11.9600,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Malön i Kungsbacka kommun är en karg, flack ö som består av gräshedar och stora klapperstensfält." (läst 2026-11-17)
+      'Malön i Kungsbacka kommun är en karg och flack ö med gräshedar och stora klapperstensfält.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "I nordöst finns ett stort bronsåldersröse som kallas Malöros." (läst 2026-11-17)
+      'I nordöst finns ett stort bronsåldersröse som kallas Malöros.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Areal: 107 hektar"; "Skyddat sedan: 1965"; "Förvaltare: Onsala sockens skifteslag" (läst 2026-11-17)
+      'Reservatet är skyddat sedan 1965, är 107 hektar och förvaltas av Onsala sockens skifteslag.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Området nås endast med båt" (läst 2026-11-17)
+      travel_time: 'Bara med båt',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "en karg, flack ö som består av gräshedar och stora klapperstensfält" (läst 2026-11-17)
+      character: 'Karg och flack ö',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Skyddat sedan: 1965" (läst 2026-11-17)
+      season: 'Naturreservat sedan 1965',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "I nordöst finns ett stort bronsåldersröse som kallas Malöros." (läst 2026-11-17)
+      best_for: 'Natur och fornlämningar',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "I nordöst finns ett stort bronsåldersröse som kallas Malöros." (läst 2026-11-17)
+      { icon: '🪨', name: 'Malöros', desc: 'Ett stort röse från bronsåldern i nordöst.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Området nås endast med båt och lämplig angöringsplats är sandstranden på östra sidan." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Kungsbacka kommun', desc: 'Malön nås bara med båt. En lämplig plats att lägga till är sandstranden på östra sidan.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "medföra okopplad hund,"; "tälta samt"; "elda." (läst 2026-11-17)
+      'Du får inte tälta eller elda, och hunden ska vara kopplad.',
+    ],
+    related: ['nidingen', 'vendelso'],
+    tags: ['halland', 'kungsbacka', 'fornlämningar', 'naturreservat'],
+  },
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',
