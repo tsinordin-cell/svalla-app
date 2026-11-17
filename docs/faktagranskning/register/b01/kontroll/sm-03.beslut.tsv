@@ -1,0 +1,51 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-17)
+sm03-k001	uto-0399	OK	OK
+sm03-k002	sandhamn-0084	FEL	P0 24 (egen PR i dag): rutorna visar en beställningstur eller en tur utan fast tid som om den gick utan vidare. Rättas och kontrolleras i P0 24.
+sm03-k003	fjaderholmarna-0056	OK	OK
+sm03-k004	sandhamn-0431	OK	OK
+sm03-k005	vaxholm-0354	OK	OK
+sm03-k006	sandhamn-0089	FEL	P0 24 (egen PR i dag): rutorna visar en beställningstur eller en tur utan fast tid som om den gick utan vidare. Rättas och kontrolleras i P0 24.
+sm03-k007	uto-0197	OK	OK
+sm03-k008	fjaderholmarna-0126	OK	OK
+sm03-k009	sandhamn-0422	SAKNAS	Toms beslut 6c (2026-11-16): Bistro Sands står kvar som det är.
+sm03-k010	grinda-0090	OK	OK
+sm03-k011	mall-0050	FEL	P0 24 (egen PR i dag): rutorna visar en beställningstur eller en tur utan fast tid som om den gick utan vidare. Rättas och kontrolleras i P0 24. (Västtrafik-länken)
+sm03-k012	fjaderholmarna-0082	OK	OK
+sm03-k013	moja-0619	OK	OK
+sm03-k014	mall-N040	OK	OK
+sm03-k015	uto-N040	OK	OK
+sm03-k016	styrso-N040	OK	OK
+sm03-k017	uto-0096	OK	OK
+sm03-k018	fjaderholmarna-0083	OK	OK
+sm03-k019	mall-N023	FEL	RÄTTAS i rättelserundan (Lag 3, andra omgången): meningen är sann men klarar inte utfyllnadstestet. Den får stå kvar som upplysning men räknas inte i Lag 3; sidan kompenseras med uppgifter som bara gäller den platsen.
+sm03-k020	mall-0057	FEL	P0 24 (egen PR i dag): rutorna visar en beställningstur eller en tur utan fast tid som om den gick utan vidare. Rättas och kontrolleras i P0 24. (Västtrafik-länken)
+sm03-k021	styrso-N038	OK	OK
+sm03-k022	grinda-0449	OK	OK
+sm03-k023	styrso-N036	OK	OK
+sm03-k024	fjaderholmarna-0207	OK	OK
+sm03-k025	styrso-N035	FEL	RÄTTAS i rättelserundan: stryk "enklare rätter" och skriv platserna som källan anger dem ("cirka 40").
+sm03-k026	styrso-N039	OK	OK
+sm03-k027	sandhamn-0419	OK	OK
+sm03-k028	fjaderholmarna-0001	OK	OK
+sm03-k029	sandhamn-0417	SAKNAS	Toms beslut 6c (2026-11-16): Bistro Sands står kvar som det är.
+sm03-k030	moja-0620	FEL	Löses när moja.sql körs: det nya värdet (sm03-k013) är rätt enligt Kontrollanten. Vakten kör satsen med SELECT före och efter.
+sm03-k031	sandhamn-0418	OK	OK
+sm03-k032	mall-0048	FEL	P0 24 (egen PR i dag): rutorna visar en beställningstur eller en tur utan fast tid som om den gick utan vidare. Rättas och kontrolleras i P0 24. (Västtrafik-länken)
+sm03-k033	fjaderholmarna-0089	OK	OK
+sm03-k034	grinda-0088	OK	OK
+sm03-k035	fjaderholmarna-0165	OK	OK
+sm03-k036	styrso-N037	OK	OK
+sm03-k037	moja-0622	FEL	Löses när moja.sql körs: det nya värdet (sm03-k013) är rätt enligt Kontrollanten. Vakten kör satsen med SELECT före och efter.
+sm03-k038	fjaderholmarna-0081	OK	OK
+sm03-k039	fjaderholmarna-N001	OK	OK
+sm03-k040	mall-0049	FEL	P0 24 (egen PR i dag): rutorna visar en beställningstur eller en tur utan fast tid som om den gick utan vidare. Rättas och kontrolleras i P0 24. (Västtrafik-länken)
+sm03-k041	grinda-0025	SAKNAS	OK efter Redaktörens läsning i Toms Chrome 2026-11-17: grinda.se/hamn-mack/sjomack/ "Vår sjömack har öppet året om", "Sjömacken är öppen året om då den är utrustad med kortautomat dom tider som macken är obemannad dock stängd mellan 22.00 – 05.00."
+sm03-k042	grinda-0400	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sm03-k043	mall-N022	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sm03-k044	grinda-0401	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sm03-k045	moja-0621	FEL	Löses när moja.sql körs: det nya värdet (sm03-k013) är rätt enligt Kontrollanten. Vakten kör satsen med SELECT före och efter.
+sm03-k046	grinda-0089	OK	OK
+sm03-k047	sandhamn-0083	FEL	P0 24 (egen PR i dag): rutorna visar en beställningstur eller en tur utan fast tid som om den gick utan vidare. Rättas och kontrolleras i P0 24.
+sm03-k048	mall-N041	OK	OK
+sm03-k049	grinda-0024	SAKNAS	OK efter Redaktörens läsning i Toms Chrome 2026-11-17: grinda.se/hamn-mack/sjomack/ "Vår sjömack har öppet året om", "Sjömacken är öppen året om då den är utrustad med kortautomat dom tider som macken är obemannad dock stängd mellan 22.00 – 05.00."
+sm03-s01	fjaderholmarna-0162	OK	OK
