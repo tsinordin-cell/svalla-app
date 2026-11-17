@@ -128,3 +128,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - /aktivitet/kajak: övriga obelagda meningar ("uthyrningen tar slut tidigt", leder och km, "15 till 20 minuter").
 - Högmarsö (2 platser) och Rosholmens sjömack: läget är inte avgjort.
 - Thorkel-knappen leder till /guide, som kräver konto. Sidan säger det. Prövas utloggad i förhandsversionen.
+
+## Från mallarnas runda 8 (2026-11-17)
+- PublicFooter, Nav och PlaneraNyClient (tillbaka-steget) länkar till /planera, som kräver inloggning. Ingen text där påstår något annat; pröva flödet utloggad i förhandsversionen.
+- Platskortens beskrivningar ingick inte i Lag 3-mätningen med riktiga namn (bara namn, ö, typ, läge). Mät om i förhandsversionen mot den riktiga databasen.

@@ -612,7 +612,7 @@ index dc903ac..030d83f 100644
              </div>
              <Icon name="arrowRight" size={18} stroke={2.2} />
 diff --git a/src/app/o/[slug]/bad/page.tsx b/src/app/o/[slug]/bad/page.tsx
-index 257126b..507a9f9 100644
+index 257126b..d7874c1 100644
 --- a/src/app/o/[slug]/bad/page.tsx
 +++ b/src/app/o/[slug]/bad/page.tsx
 @@ -5,7 +5,10 @@ import { ALL_ISLANDS, getIsland, type IslandBeach } from '../../island-data'
@@ -687,7 +687,7 @@ index 257126b..507a9f9 100644
        url: `https://svalla.se/o/${slug}/bad`,
      },
      alternates: { canonical: `https://svalla.se/o/${slug}/bad` },
-@@ -57,31 +86,51 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -57,31 +86,54 @@ export default async function IslandBadPage({ params }: Props) {
    const { slug } = await params
    const island = getIsland(slug)
    if (!island) notFound()
@@ -704,7 +704,10 @@ index 257126b..507a9f9 100644
    const badActivities = island.activities.filter(a =>
 -    ['bad', 'klipp', 'sim', 'strand', 'brygga', 'dopp'].some(k =>
 +    // "brygga" och "klipp" tog med krogar med gästbrygga och vandring över klippor (2026-11-02, mall-0198).
-+    ['bad', 'klippbad', 'sim', 'sandstrand', 'sandstränd', 'stenstrand', 'dopp'].some(k =>
++    // "dyk" (dykning hör till vattenlivet) sedan mallarnas runda 8 (2026-11-17, mall-N024): Dalarö "Vrakdykning" och
++    // Kosterhavet "Snorkling och dykning" visades på main och föll bort med mall-0198. Båda korten är lästa mot källan.
++    // "snork" tas inte med: Nåttarös kort "Länets första snorkelled" stämmer inte med Länsstyrelsen (Vaktens lista).
++    ['bad', 'klippbad', 'sim', 'sandstrand', 'sandstränd', 'stenstrand', 'dopp', 'dyk'].some(k =>
        a.name.toLowerCase().includes(k) || a.desc.toLowerCase().includes(k)
      )
    )
@@ -745,7 +748,7 @@ index 257126b..507a9f9 100644
      url: `https://svalla.se/o/${slug}/bad`,
      numberOfItems: allBeachNames.length,
      itemListElement: allBeachNames.map((name, i) => ({
-@@ -102,8 +151,11 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -102,8 +154,11 @@ export default async function IslandBadPage({ params }: Props) {
          tab="bad"
          subtitle={
            beaches.length === 0 && dbBeaches.length === 0 && !hasBad
@@ -759,7 +762,7 @@ index 257126b..507a9f9 100644
          }
        />
  
-@@ -124,7 +176,7 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -124,7 +179,7 @@ export default async function IslandBadPage({ params }: Props) {
          {beaches.length > 0 && (
            <div style={{ marginBottom: 32 }}>
              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 16 }}>
@@ -768,7 +771,7 @@ index 257126b..507a9f9 100644
              </h2>
              <div style={{ display: 'grid', gap: 16 }}>
                {beaches.map((beach, i) => (
-@@ -178,7 +230,9 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -178,7 +233,9 @@ export default async function IslandBadPage({ params }: Props) {
                    }}>
                      <div>
                        <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)' }}>{beach}</div>
@@ -779,7 +782,7 @@ index 257126b..507a9f9 100644
                      </div>
                    </div>
                  )
-@@ -187,21 +241,32 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -187,21 +244,32 @@ export default async function IslandBadPage({ params }: Props) {
            </div>
          )}
  
@@ -820,7 +823,7 @@ index 257126b..507a9f9 100644
                  <div key={i} style={{
                    background: 'var(--white)', borderRadius: 14,
                    padding: '18px 20px',
-@@ -216,7 +281,7 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -216,7 +284,7 @@ export default async function IslandBadPage({ params }: Props) {
                ))}
              </div>
            </div>
@@ -829,7 +832,7 @@ index 257126b..507a9f9 100644
  
          {/* Om inga baddata finns */}
          {beaches.length === 0 && badActivities.length === 0 && dbBeaches.length === 0 && (
-@@ -226,7 +291,7 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -226,7 +294,7 @@ export default async function IslandBadPage({ params }: Props) {
              boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
            }}>
              <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
@@ -838,7 +841,7 @@ index 257126b..507a9f9 100644
              </p>
            </div>
          )}
-@@ -260,21 +325,26 @@ export default async function IslandBadPage({ params }: Props) {
+@@ -260,21 +328,26 @@ export default async function IslandBadPage({ params }: Props) {
            gap: 20, flexWrap: 'wrap' as const,
          }}>
            <div>
@@ -854,13 +857,13 @@ index 257126b..507a9f9 100644
 -            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver ett gratis konto.</div>
 +            {/* Båttider bara där Thorkel har båtdata (ISLAND_TRANSIT, 49 öar), och då leder knappen till Thorkel (/guide),
 +                inte till ruttplaneraren, som inte ger båttider (mo01-k036, k048, sl05-k007, k060; mallarnas runda 7,
-+                2026-11-17). Thorkels API kräver inloggning, och båtverktyget hämtar "de 3 nästa faktiska kollektivtrafik-resorna från fastlandet" (src/app/api/guide/route.ts). Ruttplaneraren fungerar utan
-+                konto (2026-11-02, mall-0189); inloggning behövs för att spara rutten (/api/planera/claim), och dess
++                2026-11-17). Thorkels API kräver inloggning, och båtverktyget hämtar "de 3 nästa faktiska kollektivtrafik-resorna från fastlandet" (src/app/api/guide/route.ts). Ruttplaneraren (/planera/ny) fungerar utan
++                konto (2026-11-02, mall-0189; middleware.ts skyddar bara ruttlistan /planera, mallarnas runda 8); inloggning behövs för att spara rutten (/api/planera/claim), och dess
 +                intressen är bland annat krog, bad och brygga (src/app/planera/ny/PlaneraNyClient.tsx). */}
 +            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>{thorkelBat ? 'Thorkel kräver ett gratis konto. Han hämtar de tre nästa resorna hit med kollektivtrafik från fastlandet.' : 'Ruttplaneraren fungerar utan konto. Logga in om du vill spara rutten i dina rutter.'}</div>
            </div>
 -          <Link href="/planera" prefetch={false} style={{
-+          <Link href={thorkelBat ? `/guide?fraga=${encodeURIComponent(`Hur tar jag mig till ${island.name}?`)}` : '/planera'} prefetch={false} style={{
++          <Link href={thorkelBat ? `/guide?fraga=${encodeURIComponent(`Hur tar jag mig till ${island.name}?`)}` : '/planera/ny'} prefetch={false} style={{
              display: 'inline-block', background: 'var(--acc-knapp)', color: '#fff',
              fontSize: 14, fontWeight: 700, textDecoration: 'none',
              padding: '12px 28px', borderRadius: 50, flexShrink: 0,
@@ -1176,7 +1179,7 @@ index eada894..63a107e 100644
                <a href="mailto:info@svalla.se" style={{ fontSize: 14.5, color: 'var(--acc-d)', fontWeight: 600 }}>
                  info@svalla.se
 diff --git a/src/app/o/[slug]/komma-dit/page.tsx b/src/app/o/[slug]/komma-dit/page.tsx
-index 29fe4df..2d26740 100644
+index 29fe4df..afa96d1 100644
 --- a/src/app/o/[slug]/komma-dit/page.tsx
 +++ b/src/app/o/[slug]/komma-dit/page.tsx
 @@ -5,7 +5,10 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
@@ -1235,7 +1238,7 @@ index 29fe4df..2d26740 100644
        // Tidigare lovade delningstexten "avgångstider, priser" och buss för alla
        // öar. Sidorna har inga priser. Nu samma text som metabeskrivningen.
        description: beskrivning,
-@@ -80,8 +91,40 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -80,8 +91,49 @@ export default async function IslandKommaDitPage({ params }: Props) {
    // Påståenden som bara är sanna för vissa öar ska inte stå på alla 103.
    // "Ingen egen båt krävs" var hårdkodat även för öar utan reguljärtrafik, och
    // Waxholmsbolagets biljettregler visades på Bohusläns öar (2026-09-21).
@@ -1263,6 +1266,15 @@ index 29fe4df..2d26740 100644
 +  // för att säga att bolaget inte går dit (2026-11-02, mall-0174 omarbete).
 +  const usesWaxholmsbolaget = (island.transport_meta?.operator ?? '').includes('Waxholmsbolaget')
 +    || kollektiva.some(t => `${t.method} ${t.desc}`.includes('Waxholm'))
++  // SL:s egna biljettregler där ön nås med SL men inte med Waxholmsbolaget (bussar, pendelbåt). Ersätter Waxholmsbolagets
++  // tips, som main visade på alla Stockholmsöar (mall-0174; Lag 3, mallarnas runda 8, 2026-11-17).
++  const slTrafik = !usesWaxholmsbolaget && (island.transport_meta?.operator === 'SL'
++    || kollektiva.some(t => /\bSL\b|SL-buss|\/sl\//.test(`${t.method} ${t.desc} ${t.url ?? ''}`)))
++  // Ön nås (också) med egen båt: ett färdsätt med egen båt, eller en text som säger att man annars tar egen båt (Bullerö
++  // "Övrig tid: egen båt eller taxibåt"). Då visas allemansrättens regler för båt i stället för Waxholmsbolagets tips, på
++  // öar som bolaget inte trafikerar (runda 8). Öar utan allmän trafik har alltid fått dem (mall-0174 omarbete).
++  const egenBatFard = !kollektivt || (!usesWaxholmsbolaget && island.getting_there.some(t => egenBat.test(t.method)
++    || (/egen båt/i.test(t.desc) && !/ingen egen båt|utan egen båt/i.test(t.desc))))
 +  // Restiden och tiderna i mallens texter utan klockslag ur datan (undertitel, FAQ; mall-0166 omarbete 4).
 +  const restid = utanKlockslag(island.facts.travel_time ?? '')
 +  const tider = island.getting_there.filter(t => t.time && !harKlockslag(t.time))
@@ -1277,7 +1289,7 @@ index 29fe4df..2d26740 100644
    const lankFor = (method: string, desc: string, url?: string) => {
      if (url) return url
      const tm = island.transport_meta
-@@ -101,8 +144,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -101,8 +153,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
          acceptedAnswer: {
            '@type': 'Answer',
            text: island.getting_there.length > 0
@@ -1289,7 +1301,7 @@ index 29fe4df..2d26740 100644
          },
        },
        {
-@@ -111,16 +155,19 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -111,16 +164,19 @@ export default async function IslandKommaDitPage({ params }: Props) {
          acceptedAnswer: {
            '@type': 'Answer',
            text: kollektivt
@@ -1313,7 +1325,7 @@ index 29fe4df..2d26740 100644
          },
        },
      ],
-@@ -133,7 +180,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -133,7 +189,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
        <IslandSubPageHeader
          island={island}
          tab="komma-dit"
@@ -1322,7 +1334,7 @@ index 29fe4df..2d26740 100644
        />
  
        <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
-@@ -165,10 +212,12 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -165,10 +221,12 @@ export default async function IslandKommaDitPage({ params }: Props) {
                  </a>
                )}
              </div>
@@ -1336,7 +1348,7 @@ index 29fe4df..2d26740 100644
            </div>
          )}
  
-@@ -179,7 +228,8 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -179,7 +237,8 @@ export default async function IslandKommaDitPage({ params }: Props) {
                Hur tar man sig till {island.name}?
              </h2>
              <div style={{ display: 'grid', gap: 12 }}>
@@ -1346,7 +1358,7 @@ index 29fe4df..2d26740 100644
                  <div key={i} style={{
                    background: 'var(--white)', borderRadius: 14, padding: '18px 20px',
                    boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
-@@ -198,16 +248,21 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -198,16 +257,21 @@ export default async function IslandKommaDitPage({ params }: Props) {
                          </span>
                        )}
                      </div>
@@ -1372,7 +1384,7 @@ index 29fe4df..2d26740 100644
                        </a>
                      ) : null}
                    </div>
-@@ -225,7 +280,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -225,7 +289,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
              marginBottom: 28,
            }}>
              <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
@@ -1381,16 +1393,16 @@ index 29fe4df..2d26740 100644
                <a href="https://waxholmsbolaget.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>
                  Waxholmsbolagets tidtabell
                </a>{' '}
-@@ -235,7 +290,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -235,7 +299,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
          )}
  
          {/* Praktisk info — visas bara när det finns något som gäller den här ön */}
 -        {(stockholm || island.transport_meta?.car_parking) && (
-+        {(usesWaxholmsbolaget || parkering || !kollektivt) && (
++        {(usesWaxholmsbolaget || slTrafik || parkering || egenBatFard) && (
          <div style={{
            background: 'linear-gradient(135deg, rgba(10,123,140,0.06) 0%, rgba(26,74,107,0.04) 100%)',
            borderRadius: 16, padding: '22px 20px',
-@@ -246,16 +301,24 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -246,16 +310,35 @@ export default async function IslandKommaDitPage({ params }: Props) {
              Praktiska tips
            </h3>
            <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
@@ -1406,23 +1418,34 @@ index 29fe4df..2d26740 100644
 -              <li>Vissa bryggor och turer är beställningstrafik. Beställ resan i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00. Hur långt i förväg står i linjens tidtabell. Annars kan båten gå förbi bryggan.</li>
 +              {/* KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "ANMÄRKNING TUR", "ANMÄRKNING BRYGGA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00" (tabell 10, gäller 2 april–18 juni och 17 augusti–12 december 2026; tabell 24 gällde till 1 november) (läst 2026-10-29) */}
 +              <li>Vissa bryggor och turer är beställningstrafik. Beställ resan i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00. Vilka turer och bryggor det gäller, och hur långt i förväg, står i anmärkningarna i linjens tidtabell.</li>
++            </>)}
++            {/* SL:s biljettregler (mall-N020, N021; mallarnas runda 8, 2026-11-17). Inga priser. */}
++            {/* KÄLLA: https://sl.se/biljetter/sortiment-och-regler/rabatter — "Barn som är under 7 år får åka med gratis när de reser med en annan person som har en giltig biljett.", "Den som är över 18 år och har en SL-biljett får utan kostnad ta med sig upp till sex stycken barn som fyllt 7 men inte 12 år. Det här gäller alla dagar i veckan året om.", "Den som är under 20 eller över 65 kan alltid köpa biljett till ett rabatterat pris." (läst 2026-11-17) */}
++            {/* KÄLLA: https://sl.se/biljetter/res-med-betalkort — "Du kan blippa ditt betalkort i alla olika delar av SL‑trafiken.", "Blippa ditt betalkort och köp en enkelbiljett till vuxenpris. Om du vill resa till rabatterat pris måste du ställa in det här på sl.se senast dagen innan du ska resa.", "Biljetten är giltig i 75 minuter från att du blippade betalkortet första gången under resan." (läst 2026-11-17) */}
++            {slTrafik && (<>
++              <li>Barn under 7 år åker gratis med SL när de reser med någon som har giltig biljett. Den som är över 18 år och har en SL-biljett får dessutom ta med upp till sex barn som fyllt 7 men inte 12 år utan kostnad, alla dagar året om.</li>
++              <li>Den som är under 20 eller över 65 år kan alltid köpa SL-biljett till rabatterat pris.</li>
++              <li>Du kan blippa ditt betalkort i alla delar av SL-trafiken och köpa en enkelbiljett till vuxenpris. Den gäller i 75 minuter från första blippen under resan. Vill du resa till rabatterat pris med betalkortet ställer du in det på sl.se senast dagen innan.</li>
              </>)}
 -            {island.transport_meta && island.transport_meta.car_parking && (
 -              <li>Parkering: {island.transport_meta.car_parking}</li>
 +            {parkering && (
 +              <li>Parkering: {parkering}</li>
              )}
-+            {/* Öar utan allmän trafik nås med egen båt eller kajak. Ersätter Waxholmsbolagets
-+                regler, som visades på Yttre Gården fast bolaget inte går dit (2026-11-02, mall-0174 omarbete). */}
-+            {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — "Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt", "I nationalparker och naturreservat kan det till exempel finnas särskilda regler om att elda, tälta eller förtöja en båt.", "Vid fågel- eller sälskyddsområden får du inte stiga iland under en viss tid av året." (läst 2026-11-03) */}
-+            {!kollektivt && (<>
++            {/* Öar som nås med egen båt eller kajak. Ersätter Waxholmsbolagets regler, som visades på Yttre Gården fast bolaget
++                inte går dit (2026-11-02, mall-0174 omarbete). Sedan runda 8 också där egen båt är ett av färdsätten (egenBatFard),
++                med reglerna för att ligga för ankar och om skyddade områden (mall-N022, N023; 2026-11-17). */}
++            {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — "Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt", "Det finns inte heller någon regel för hur länge du får ligga för ankar på samma plats. Man brukar använda sig av samma princip som för tältning, och det är något enstaka dygn.", "Om du har tänkt att ligga för ankar eller förtöja en längre tid vid någon annans strand behöver du fråga markägaren om lov." (läst 2026-11-17) */}
++            {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — "I nationalparker, naturreservat och i andra skyddade områden gäller särskilda regler. Reglerna kan begränsa allemansrätten.", "I nationalparker och naturreservat kan det till exempel finnas särskilda regler om att elda, tälta eller förtöja en båt. Vid fågel- eller sälskyddsområden får du inte stiga iland under en viss tid av året. Det kan även vara förbjudet att vistas på vattnet inom ett visst avstånd från stranden. Förbuden märks ofta ut med gula eller röd/gula skyltar." (läst 2026-11-17) */}
++            {egenBatFard && (<>
 +              <li>Med egen båt eller kajak får du enligt allemansrätten gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte hör till någon tomt.</li>
-+              <li>I nationalparker och naturreservat kan det finnas särskilda regler, till exempel om att förtöja en båt, och vid fågel- och sälskyddsområden får du inte gå i land under en viss tid av året.</li>
++              <li>Det finns ingen regel för hur länge du får ligga för ankar på samma plats; brukligt är något enstaka dygn, som för tältning. Vill du ligga för ankar eller förtöja längre vid någon annans strand behöver du fråga markägaren om lov.</li>
++              <li>I nationalparker, naturreservat och andra skyddade områden gäller särskilda regler som kan begränsa allemansrätten, till exempel om att förtöja en båt. Vid fågel- och sälskyddsområden får du inte gå i land under en viss tid av året, och det kan vara förbjudet att vara på vattnet inom ett visst avstånd från stranden. Förbuden märks ofta ut med gula eller röd/gula skyltar.</li>
 +            </>)}
            </ul>
          </div>
          )}
-@@ -274,9 +337,11 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -274,11 +357,15 @@ export default async function IslandKommaDitPage({ params }: Props) {
                Planera resan till {island.name} med Thorkel
              </div>
              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
@@ -1430,14 +1453,19 @@ index 29fe4df..2d26740 100644
 +              Berätta när du vill åka, så föreslår Thorkel en plan.
              </div>
 -            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver ett gratis konto.</div>
-+            {/* Knappen leder till ruttplaneraren, som fungerar utan konto (2026-11-02, mall-0189). Dela
-+                går också utan konto; inloggning behövs för att spara rutten i dina rutter (/api/planera/claim). */}
++            {/* Knappen leder till ruttplaneraren /planera/ny, som fungerar utan konto (2026-11-02, mall-0189). Dela
++                går också utan konto; inloggning behövs för att spara rutten i dina rutter (/api/planera/claim).
++                Inte /planera: src/middleware.ts skyddar exakt /planera (ruttlistan) och skickar en utloggad besökare
++                till inloggningen; bara /planera/ny och /planera/<id> är publika (mallarnas runda 8, 2026-11-17). */}
 +            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Ruttplaneraren fungerar utan konto. Logga in om du vill spara rutten i dina rutter.</div>
            </div>
-           <Link href="/planera" prefetch={false} style={{
+-          <Link href="/planera" prefetch={false} style={{
++          <Link href="/planera/ny" prefetch={false} style={{
              display: 'inline-block', background: 'var(--acc-knapp)', color: '#fff',
+             fontSize: 14, fontWeight: 700, textDecoration: 'none',
+             padding: '12px 28px', borderRadius: 50, flexShrink: 0,
 diff --git a/src/app/o/[slug]/med-barn/page.tsx b/src/app/o/[slug]/med-barn/page.tsx
-index 4043749..98658c1 100644
+index 4043749..468150c 100644
 --- a/src/app/o/[slug]/med-barn/page.tsx
 +++ b/src/app/o/[slug]/med-barn/page.tsx
 @@ -5,7 +5,11 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
@@ -1635,13 +1663,13 @@ index 4043749..98658c1 100644
 -            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>Kräver ett gratis konto.</div>
 +            {/* Båttider bara där Thorkel har båtdata (ISLAND_TRANSIT, 49 öar), och då leder knappen till Thorkel (/guide),
 +                inte till ruttplaneraren, som inte ger båttider (mo01-k036, k048, sl05-k007, k060; mallarnas runda 7,
-+                2026-11-17). Thorkels API kräver inloggning, och båtverktyget hämtar "de 3 nästa faktiska kollektivtrafik-resorna från fastlandet" (src/app/api/guide/route.ts). Ruttplaneraren fungerar utan
-+                konto (2026-11-02, mall-0189); inloggning behövs för att spara rutten (/api/planera/claim), och dess
++                2026-11-17). Thorkels API kräver inloggning, och båtverktyget hämtar "de 3 nästa faktiska kollektivtrafik-resorna från fastlandet" (src/app/api/guide/route.ts). Ruttplaneraren (/planera/ny) fungerar utan
++                konto (2026-11-02, mall-0189; middleware.ts skyddar bara ruttlistan /planera, mallarnas runda 8); inloggning behövs för att spara rutten (/api/planera/claim), och dess
 +                intressen är bland annat krog, bad och brygga (src/app/planera/ny/PlaneraNyClient.tsx). */}
 +            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginTop: 6 }}>{thorkelBat ? 'Thorkel kräver ett gratis konto. Han hämtar de tre nästa resorna hit med kollektivtrafik från fastlandet.' : 'Ruttplaneraren fungerar utan konto. Logga in om du vill spara rutten i dina rutter.'}</div>
            </div>
 -          <Link href="/planera" prefetch={false} style={{
-+          <Link href={thorkelBat ? `/guide?fraga=${encodeURIComponent(`Hur tar jag mig till ${island.name}?`)}` : '/planera'} prefetch={false} style={{
++          <Link href={thorkelBat ? `/guide?fraga=${encodeURIComponent(`Hur tar jag mig till ${island.name}?`)}` : '/planera/ny'} prefetch={false} style={{
              display: 'inline-block', background: 'var(--acc-knapp)', color: '#fff',
              fontSize: 14, fontWeight: 700, textDecoration: 'none',
              padding: '12px 28px', borderRadius: 50, flexShrink: 0,
@@ -11289,7 +11317,7 @@ index 0000000..9990c38
 +})
 diff --git a/src/lib/klockslagStrykning.ts b/src/lib/klockslagStrykning.ts
 new file mode 100644
-index 0000000..fc26ccf
+index 0000000..bd87bdb
 --- /dev/null
 +++ b/src/lib/klockslagStrykning.ts
 @@ -0,0 +1,50 @@
@@ -11304,8 +11332,9 @@ index 0000000..fc26ccf
 + * Beslut C: på batch 01:s nio öar stryks klockslagen alltid, och sidorna kompenseras med belagt innehåll i öarnas data.
 + * På andra öar stryks de bara på de sidor som efter strykningen har minst 95 % av ordantalet på main ce275b2 (Lag 3).
 + * På övriga sidor skjuts strykningen upp till öns egen batch och står på Vaktens lista: UPPSKJUTEN_STRYKNING nedan.
-+ * Listan är mätt (mallarnas runda 7, 2026-11-17): alla 101 öar och de fyra sidtyperna renderade med tsx, med strykning
-+ * på alla sidor, och ordantalet jämfört med main ce275b2 (platsdatabasen: låtsasdatabasen utan dolda platser).
++ * Listan är mätt (mallarnas runda 8, 2026-11-17): alla 101 öar och de fyra sidtyperna renderade med tsx, med strykning
++ * på alla sidor, och ordantalet jämfört med main ce275b2. Platsdatabasen: SELECT ur restaurants 2026-11-17 (riktiga namn,
++ * dolda platser borttagna; runda 7 mätte med en låtsasdatabas, vilket gav 53 sidor i stället för 44).
 + * När en ö granskas tas dess rader bort här.
 + */
 +export type KlockslagsSida = 'ösidan' | 'komma-dit' | 'boende' | 'med-barn'
@@ -11314,29 +11343,28 @@ index 0000000..fc26ccf
 +export const BATCH_01 = new Set(['fjaderholmarna', 'grinda', 'husaro', 'moja', 'sandhamn', 'storholmen', 'styrso', 'uto', 'vaxholm'])
 +
 +/** Sidor utanför batch 01 där strykningen skjuts upp ("<slug>/<sida>"), eftersom sidan annars hamnar under 95 % av main. */
-+// Mätt 2026-11-17 (mallarnas runda 7): kommentaren visar ordantalet med strykning mot main ce275b2 (under 95 %).
++// Mätt 2026-11-17 (mallarnas runda 8, med den riktiga platsdatabasen och runda 8:s kompensation): kommentaren visar
++// ordantalet med strykning mot main ce275b2 (under 95 %).
 +export const UPPSKJUTEN_STRYKNING = new Set<string>([
-+  'arholma/med-barn',  // med-barn 338/360 ord
-+  'asko/ösidan', 'asko/komma-dit', 'asko/boende', 'asko/med-barn',  // ösidan 1125/1209 ord, komma-dit 201/309 ord, boende 189/220 ord, med-barn 230/252 ord
-+  'asperon/komma-dit', 'asperon/boende', 'asperon/med-barn',  // komma-dit 213/228 ord, boende 175/208 ord, med-barn 329/367 ord
-+  'bla-jungfrun/ösidan', 'bla-jungfrun/komma-dit', 'bla-jungfrun/boende', 'bla-jungfrun/med-barn',  // ösidan 1752/1897 ord, komma-dit 271/319 ord, boende 206/261 ord, med-barn 354/408 ord
-+  'djuro/komma-dit', 'djuro/boende', 'djuro/med-barn',  // komma-dit 247/360 ord, boende 205/235 ord, med-barn 354/389 ord
-+  'ekno/ösidan', 'ekno/boende', 'ekno/med-barn',  // ösidan 997/1058 ord, boende 147/168 ord, med-barn 216/238 ord
-+  'fjardlang/ösidan', 'fjardlang/boende', 'fjardlang/med-barn',  // ösidan 1688/1777 ord, boende 265/281 ord, med-barn 283/302 ord
++  'asko/ösidan', 'asko/boende', 'asko/med-barn',  // ösidan 1125/1209 ord, boende 189/220 ord, med-barn 230/252 ord
++  'asperon/komma-dit', 'asperon/boende', 'asperon/med-barn',  // komma-dit 213/228 ord, boende 175/208 ord, med-barn 340/367 ord
++  'bla-jungfrun/ösidan', 'bla-jungfrun/boende', 'bla-jungfrun/med-barn',  // ösidan 1752/1897 ord, boende 206/261 ord, med-barn 354/408 ord
++  'djuro/boende', 'djuro/med-barn',  // boende 205/235 ord, med-barn 365/389 ord
++  'ekno/ösidan', 'ekno/boende',  // ösidan 997/1058 ord, boende 147/168 ord
++  'fjardlang/ösidan', 'fjardlang/boende',  // ösidan 1688/1777 ord, boende 265/281 ord
 +  'gotska-sandon/ösidan', 'gotska-sandon/boende',  // ösidan 1631/1741 ord, boende 268/295 ord
-+  'huvudskar/komma-dit', 'huvudskar/boende',  // komma-dit 209/308 ord, boende 187/208 ord
-+  'kymmendo/boende', 'kymmendo/med-barn',  // boende 218/244 ord, med-barn 275/299 ord
-+  'landsort/med-barn',  // med-barn 338/365 ord
-+  'lido/ösidan', 'lido/komma-dit', 'lido/boende', 'lido/med-barn',  // ösidan 1816/1955 ord, komma-dit 333/365 ord, boende 242/297 ord, med-barn 327/385 ord
++  'huvudskar/boende',  // boende 187/208 ord
++  'kymmendo/boende',  // boende 218/244 ord
++  'landsort/boende',  // boende 218/244 ord
++  'lido/ösidan', 'lido/komma-dit', 'lido/boende', 'lido/med-barn',  // ösidan 1816/1955 ord, komma-dit 333/365 ord, boende 242/297 ord, med-barn 338/385 ord
 +  'lilla-karlso/boende',  // boende 192/208 ord
-+  'nattaro/boende',  // boende 235/248 ord
++  'nattaro/boende',  // boende 234/247 ord
 +  'pater-noster/boende', 'pater-noster/med-barn',  // boende 210/235 ord, med-barn 341/359 ord
-+  'resaro/komma-dit', 'resaro/boende', 'resaro/med-barn',  // komma-dit 347/387 ord, boende 218/273 ord, med-barn 328/386 ord
-+  'rodloga/ösidan', 'rodloga/komma-dit', 'rodloga/boende', 'rodloga/med-barn',  // ösidan 1875/2006 ord, komma-dit 301/353 ord, boende 232/307 ord, med-barn 292/367 ord
++  'resaro/komma-dit', 'resaro/boende', 'resaro/med-barn',  // komma-dit 347/387 ord, boende 218/273 ord, med-barn 339/386 ord
++  'rodloga/ösidan', 'rodloga/komma-dit', 'rodloga/boende', 'rodloga/med-barn',  // ösidan 1875/2006 ord, komma-dit 301/353 ord, boende 231/306 ord, med-barn 303/367 ord
 +  'svartloga/ösidan', 'svartloga/komma-dit', 'svartloga/boende', 'svartloga/med-barn',  // ösidan 1633/1855 ord, komma-dit 333/397 ord, boende 219/306 ord, med-barn 332/410 ord
-+  'svartso/boende',  // boende 217/238 ord
 +  'tjaro/komma-dit', 'tjaro/boende', 'tjaro/med-barn',  // komma-dit 300/327 ord, boende 271/313 ord, med-barn 380/415 ord
-+  'vrango/boende', 'vrango/med-barn',  // boende 230/255 ord, med-barn 277/307 ord
++  'vrango/boende', 'vrango/med-barn',  // boende 230/255 ord, med-barn 288/307 ord
 +])
 +
 +/** Stryker mallarna klockslagen på den här sidan? */
