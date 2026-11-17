@@ -120,3 +120,11 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - "Linje 9 sommartid" står för Donsö och Brännö i island-data.ts (getting_there) och i kallor.generated.ts, utanför batchen.
 - FAQ-texten "ring direkt på +46 31 97 17 32" på /upptack/donso-hamnkrog ska följa med telefonnumret när styrso.sql körts. Kontrollera efter UPDATE.
 - Husarö "Hela året": Waxholmsbolagets tabeller gäller bara till 2026-12-12. Mallens slutdatum 31 oktober 2026 i JSON-LD är fel och ska prövas.
+
+## Från mallarnas runda 7 (2026-11-17)
+- Klockslag i fritext i öarnas data (tips, insiderTips, hamn- och krogtexter) på öar utanför batch 01: ösidan 23 öar och med barn 20 (till exempel Arholma "med avgång 09.30", Eknö "16.40", Ven "20.55", Finnhamns hamn "(08 till 18)"). Rättas när varje ö granskas.
+- Avgångstider står kvar på 53 sidor på 21 öar utanför batch 01 enligt Toms beslut 10 (src/lib/klockslagStrykning.ts). Stryks och kompenseras när ön granskas.
+- Vindriktning ur Open-Meteo visas fortfarande i MapCornerPills, FeedWeatherRow och WeatherPillServer utan nivå 1-belägg.
+- /aktivitet/kajak: övriga obelagda meningar ("uthyrningen tar slut tidigt", leder och km, "15 till 20 minuter").
+- Högmarsö (2 platser) och Rosholmens sjömack: läget är inte avgjort.
+- Thorkel-knappen leder till /guide, som kräver konto. Sidan säger det. Prövas utloggad i förhandsversionen.
