@@ -1,0 +1,172 @@
+[
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"839 Handens station–Dalarö (–Smådalarö)\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid\" Handens station; Handens station → Hotellbryggan 33–40 min, alla dagar (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v869.pdf — \"869 Globen–Dalarö\", \"Lördag, söndag och helgdag\", \"Ingen trafik\"; Slakthuset (Globen) → Hotellbryggan 46–50 min, fyra turer vardagar (läst 2026-09-27)\n      travel_time: 'Buss 839 från Handens station 33 till 40 min, alla dagar (buss 869 från Slakthuset/Globen vardagar, 46 till 50 min)',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Haninge centrum\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.\", \"Måndag–fredag\", \"Lördag, söndag helgdag\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h869.pdf — \"869 Globen–Dalarö\", \"Lördag, söndag och helgdag\", \"Ingen trafik\", \"Giltig 18 mars–18 juni samt 17 augusti–12 december 2026\" (läst 2026-11-17); Slakthuset (Globen) → Hotellbryggan 46 till 50 min, fyra turer måndag till fredag\n      travel_time: 'Pendeltåg till Handen och buss 839 från Rudsjöterrassen, 33 till 39 min till Hotellbryggan alla dagar (SL:s tabell till 12 december 2026); buss 869 från Slakthuset/Globen vardagar, 46 till 50 min',",
+  "rader": [
+   "p26-k001",
+   "p26-k002"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — trafik alla dagar året runt enligt tabellen; https://www.svenskagasthamnar.se/stockholms-skargard/dalaro-askfatshamnen/ — gästplatser \"40 (15/5-15/9)\" (läst 2026-09-27)\n      season: 'Året runt med buss och bil; gästhamnssäsong 15 maj till 15 september',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/s839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Giltig 19 juni–16 augusti 2026\", \"Måndag–fredag\", \"Lördag\", \"Söndag och helgdag\" (läst 2026-11-17)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Giltig 17 augusti–12 december 2026\", \"Måndag–fredag\", \"Lördag, söndag helgdag\" (läst 2026-11-17); s839 och h839 har turer alla dagar från 19 juni till 12 december 2026\n      // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/dalaro/ — \"Dalarö når du enkelt med bil eller bus från Haninge och Stockholm.\" (läst 2026-11-17)\n      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/dalaro-askfatshamnen/ — gästplatser \"40 (15/5-15/9)\" (läst 2026-09-27)\n      season: 'Buss 839 alla dagar i SL:s tabeller för 19 juni till 12 december 2026, och Dalarö nås också med bil; gästhamnssäsong 15 maj till 15 september',",
+  "rader": [
+   "p26-k003"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://smadalarogard.se/ — \"Smådalarö Gård Hotell & Spa\", \"Ett av Sveriges största spahotell i Stockholms skärgård\", \"Spa, aktiviteter, närodlad mat och personlig service\" (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/v839.pdf — \"839 Handens station–Dalarö (–Smådalarö)\", \"Endast vissa turer\" (läst 2026-09-27)",
+  "ny": "    // KÄLLA: https://smadalarogard.se/ — \"Smådalarö Gård Hotell & Spa\", \"Ett av Sveriges största spahotell i Stockholms skärgård\", \"Spa, aktiviteter, närodlad mat och personlig service\" (läst 2026-09-27)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"1) Endast vissa turer.\" (läst 2026-11-17)",
+  "rader": [
+   "p26-k004"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"839 Handens station–Dalarö (–Smådalarö)\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid\" Handens station, \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\"; Handens station → Hotellbryggan 33–40 min (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/v869.pdf — \"869 Globen–Dalarö\", \"Ingen trafik\" lördag, söndag och helgdag; 46–50 min (läst 2026-09-27). Pendeltågets restid Stockholm C–Handen är inte belagd (ingen aktuell tryckt tabell för linje 43 hittades).\n      { method: 'Pendeltåg + Buss', from: 'Handens station', time: '33 till 40 min', desc: 'Pendeltåg till Handens station, sedan SL-buss 839 till Dalarö (Hotellbryggan), alla dagar och anpassad till tågen. Buss 869 går vardagar från Slakthuset vid Globen (46 till 50 min).', icon: '🚌' },",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Haninge centrum\", \"Hotellbryggan\", \"Alla hållplatser för buss 839 mot Smådalarö finns ovan.\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.\", \"Måndag–fredag\", \"Lördag, söndag helgdag\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37). Handens station finns inte bland hållplatserna.\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h869.pdf — \"869 Globen–Dalarö\", \"SLAKTHUSET (GLOBEN)\", \"Ingen trafik\", \"Giltig 18 mars–18 juni samt 17 augusti–12 december 2026\" (läst 2026-11-17); Slakthuset (Globen) → Hotellbryggan 46 till 50 min. Pendeltågets restid Stockholm C till Handen är inte belagd (ingen aktuell tryckt tabell för linje 43 hittades).\n      { method: 'Pendeltåg + Buss', from: 'Rudsjöterrassen', time: '33 till 39 min', desc: 'Pendeltåg till Handen, sedan SL-buss 839 från Rudsjöterrassen via Haninge centrum till Dalarö (Hotellbryggan), alla dagar. Enligt SL:s tabell till 12 december 2026 stannar bussen inte vid Handens station, men tiderna är anpassade till pendeltågen från Stockholm där. Buss 869 går vardagar från Slakthuset vid Globen (46 till 50 min).', icon: '🚌' },",
+  "rader": [
+   "p26-k005",
+   "p26-k006",
+   "p26-k007"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"839 Handens station–Dalarö (–Smådalarö)\", \"Lördag, söndag helgdag\" med turer hela dagen (läst 2026-09-27)\n      'Buss 839 från Handens station går alla dagar och tar 33 till 40 minuter till Hotellbryggan. Du behöver varken bil eller båt för en dagstur hit.',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Hotellbryggan\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.\", \"Måndag–fredag\", \"Lördag, söndag helgdag\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)\n      'Buss 839 från Rudsjöterrassen går alla dagar och tar 33 till 39 minuter till Hotellbryggan (SL:s tabell till 12 december 2026). Tiderna är anpassade till pendeltågen från Stockholm vid Handens station. Du behöver varken bil eller båt för en dagstur hit.',",
+  "rader": [
+   "p26-k008",
+   "p26-k009"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/dalaro-askfatshamnen/ — gästplatser \"40 (15/5-15/9)\" (läst 2026-09-27); https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-haninge-kommun/havsbadet-schweizerbadet-dalaro.html — \"10 Bajamajor + 1 Handikapp finns 1 juni - 15 september\" (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/v839.pdf — trafik alla dagar\n      bestReason: 'Buss 839 går hela året, men gästplatserna i Askfatshamnen gäller 15 maj till 15 september och Schweizerbadet har full service 1 juni till 15 september. Juni och första halvan av september ligger inom båda.',",
+  "ny": "      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/dalaro-askfatshamnen/ — gästplatser \"40 (15/5-15/9)\" (läst 2026-09-27); https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-haninge-kommun/havsbadet-schweizerbadet-dalaro.html — \"10 Bajamajor + 1 Handikapp finns 1 juni - 15 september\" (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/s839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Giltig 19 juni–16 augusti 2026\", \"Måndag–fredag\", \"Lördag\", \"Söndag och helgdag\" (läst 2026-11-17)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Giltig 17 augusti–12 december 2026\", \"Måndag–fredag\", \"Lördag, söndag helgdag\" (läst 2026-11-17); s839 och h839 har turer alla dagar från 19 juni till 12 december 2026\n      bestReason: 'Buss 839 går alla dagar i SL:s tabeller för 19 juni till 12 december 2026, men gästplatserna i Askfatshamnen gäller 15 maj till 15 september och Schweizerbadet har full service 1 juni till 15 september. Juni och första halvan av september ligger inom båda.',",
+  "rader": [
+   "p26-k010"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.stegsholmsgard.se/ — \"vi finns på Gålö i Haninge som är en halvö i Stockholms södra skärgård\" (läst 2026-09-27); https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — \"Med bil från Nynäsvägen (väg 73), avfart mot Dalarö. Efter 10 km avfart mot Gålö.\" (läst 2026-09-27); https://galohavsbad.se/om-oss/oppettider-och-omradeskarta/ — \"Endast 35 km söder om Stockholm\" (läst 2026-09-27)\n      'Gålö är en halvö i Stockholms södra skärgård i Haninge kommun, ungefär 35 km söder om Stockholm. Med bil tar man väg 73 (Nynäsvägen), avfarten mot Dalarö och efter 10 km avfarten mot Gålö. SL-bussar går från Västerhaninge och Handen.',",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — \"Västerhaninge station–Gålö\", \"Giltig 18 mars–18 juni samt 17 augusti–12 december 2026\" (läst 2026-11-17)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Haninge centrum\", \"Gålövägen\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17)\n      // KÄLLA: https://www.stegsholmsgard.se/ — \"vi finns på Gålö i Haninge som är en halvö i Stockholms södra skärgård\" (läst 2026-09-27); https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — \"Med bil från Nynäsvägen (väg 73), avfart mot Dalarö. Efter 10 km avfart mot Gålö.\" (läst 2026-09-27); https://galohavsbad.se/om-oss/oppettider-och-omradeskarta/ — \"Endast 35 km söder om Stockholm\" (läst 2026-09-27)\n      'Gålö är en halvö i Stockholms södra skärgård i Haninge kommun, ungefär 35 km söder om Stockholm. Med bil tar man väg 73 (Nynäsvägen), avfarten mot Dalarö och efter 10 km avfarten mot Gålö. SL-buss 845 går från Västerhaninge station ut på Gålö, och buss 839 från Rudsjöterrassen via Haninge centrum mot Dalarö stannar vid Gålövägen.',",
+  "rader": [
+   "p26-k011",
+   "p26-k012"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v845.pdf — \"Västerhaninge station–Gålö\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\"; lördag Västerhaninge station 09.18 → Skälåker 09.42 (24 min) (läst 2026-09-27); https://galohavsbad.se/om-oss/oppettider-och-omradeskarta/ — \"Endast 35 km söder om Stockholm\" (läst 2026-09-27)",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — \"Västerhaninge station–Gålö\", \"Skälåker\", \"Giltig 18 mars–18 juni samt 17 augusti–12 december 2026\" (läst 2026-11-17); Västerhaninge station → Skälåker 24 till 26 min (MÄTT i tabellen)\n      // KÄLLA: https://galohavsbad.se/om-oss/oppettider-och-omradeskarta/ — \"Endast 35 km söder om Stockholm\" (läst 2026-09-27)",
+  "rader": [
+   "p26-k013"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v845.pdf — \"Västerhaninge station–Gålö\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid\" (läst 2026-09-27). Lördag, söndag: Västerhaninge station 09.18 → Skälåker 09.42 och 11.18 → 11.43; måndag–fredag når bara 18.05-turen Skälåker (18.31). Sommartabellen 19/6–16/8 fanns inte som PDF.",
+  "ny": "      // KÄLLA: https://galohavsbad.se/om-oss/kontakta-oss/ — \"För att åka hela vägen rekommenderas att ni tar buss 845 från Västerhaninge.\", \"Stationen ni vill åka till är Skälåker.\" (läst 2026-11-17)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — \"Västerhaninge station–Gålö\", \"Skälåker 1)\", \"1) Endast vissa turer.\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid\", \"Giltig 18 mars–18 juni samt 17 augusti–12 december 2026\" (läst 2026-11-17). Västerhaninge station → Skälåker 24 till 26 min; måndag till fredag når en tur Skälåker, lördag, söndag och helgdag två (MÄTT i tabellen).",
+  "rader": [
+   "p26-k014"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"Handens station–Dalarö (–Smådalarö)\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\"; måndag–fredag Handens station 09.14 → Gålövägen 09.32 (18 min) (läst 2026-09-27). https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — \"Alla bussar till Dalarö stannar vid Gålö handel, strax utanför reservatet i norr.\" (läst 2026-09-27)\n      { method: 'Buss', from: 'Handens station', time: 'ca 18 min', desc: 'SL-buss 839 (Handen till Dalarö/Smådalarö) till hållplats Gålövägen, strax utanför reservatet i norr. Därifrån går buss 845 vidare ut på halvön.', icon: '🚌' },",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Gålövägen\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17); Rudsjöterrassen → Gålövägen 16 till 19 min (MÄTT i tabellen: måndag till fredag 18 till 19, lördag, söndag och helgdag 16 till 18)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — \"Gålövägen\", \"Västerhaninge station–Gålö\" (läst 2026-11-17)\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — \"Alla bussar till Dalarö stannar vid Gålö handel, strax utanför reservatet i norr.\" (läst 2026-09-27)\n      { method: 'Buss', from: 'Rudsjöterrassen', time: '16 till 19 min', desc: 'Pendeltåg till Handen och SL-buss 839 (Rudsjöterrassen till Dalarö/Smådalarö) till hållplats Gålövägen, strax utanför reservatet i norr. Bussens tider är anpassade till pendeltågen vid Handens station (SL:s tabell till 12 december 2026). Därifrån går buss 845 vidare ut på halvön.', icon: '🚌' },",
+  "rader": [
+   "p26-k015",
+   "p26-k016",
+   "p26-k017"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://skargardsstiftelsen.se/omraden/galo/ — \"kombinera bad, vandring och naturupplevelser året runt\" (läst 2026-09-27); https://galohavsbad.se/bo/stugor/ — \"Besök oss året om\" (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/v845.pdf — \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\" (läst 2026-09-27)",
+  "ny": "      // KÄLLA: https://skargardsstiftelsen.se/omraden/galo/ — \"kombinera bad, vandring och naturupplevelser året runt\" (läst 2026-09-27); https://galohavsbad.se/bo/stugor/ — \"Besök oss året om\" (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — \"Giltig 18 mars–18 juni samt 17 augusti–12 december 2026\" (läst 2026-11-17); buss 845 går bara under de perioderna och belägger inte året runt\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/s839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Gålövägen\", \"Giltig 19 juni–16 augusti 2026\" (läst 2026-11-17)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Gålövägen\", \"Måndag–fredag\", \"Lördag, söndag helgdag\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17); buss 839 stannar vid Gålövägen alla dagar från 19 juni till 12 december 2026",
+  "rader": [
+   "p26-k018"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // UPPSKATTNING: vintermånaderna är satta till 'limited' i stället för 'off' eftersom buss 845 och stuguthyrningen finns året runt, medan badsäsongen är slut.",
+  "ny": "      // UPPSKATTNING: vintermånaderna är satta till 'limited' i stället för 'off' eftersom buss 839 stannar vid Gålövägen alla dagar i SL:s tabeller (19 juni till 12 december 2026) och stuguthyrningen finns året runt, medan badsäsongen är slut.",
+  "rader": [
+   "p26-k018"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"Handens station 06.14 07.14 07.44 08.14 09.14\", \"Hotellbryggan 05.46 06.50 07.50 08.23 08.50 09.51\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\" (läst 2026-09-27)\n      { method: 'Buss + båt', from: 'Handens station', time: 'ca 36 till 39 min till Dalarö', desc: 'SL-buss 839 Handens station till Dalarö (hållplats Hotellbryggan), därefter Waxholmsbåt linje 19 till Kymmendö.', icon: '🚌' },",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Hotellbryggan\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)\n      { method: 'Buss + båt', from: 'Rudsjöterrassen', time: '33 till 39 min till Dalarö', desc: 'Pendeltåg till Handen och SL-buss 839 från Rudsjöterrassen till Dalarö (hållplats Hotellbryggan), därefter Waxholmsbåt linje 19 till Kymmendö. Bussens tider är anpassade till pendeltågen vid Handens station (SL:s tabell till 12 december 2026).', icon: '🚌' },",
+  "rader": [
+   "p26-k019",
+   "p26-k020"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/ — \"Smådalarö Gård Hotell & Spa ligger idylliskt i Hemviken i Stockholms skärgård\", \"Med bil når du Smådalarö Gård Hotell & Spa på 50 min från Stockholm city\", \"som går från Haninge Centrum hela vägen till vår grind\" (läst 2026-09-27)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"Handens station–Dalarö (–Smådalarö)\" (läst 2026-09-27)\n      // KÄLLA: https://www.haninge.se/uppleva-och-gora/idrott-och-friluftsliv/utomhusaktiviteter/ — \"Smådalarö golf\", \"9-hålsbana i skärgårdsmiljö\" (läst 2026-09-27)\n      // KÄLLA: https://www.smadalarogard.se/hotellet/om-oss/var-historia/ — \"Grunden till den stora rörelsen på Smådalarö Gård lades av löjtnanten Carl Christian Gyldener, som tillsammans med tullinspektören Nils Sondell arrenderade halva Smådalarö i 20 år\", \"tillsammans startade herrarna produktion av både öl och brännvin\", \"därför fick han 1750 ett eget arrendekontrakt på livstid\", \"År 1802 förvärvade Blom, endast 40 år gammal, den stora egendomen ”Tyresö skärgårdsdel” från grevinnan Brita Bonde för 12.000 riksdaler banco\", \"Kofferdikaptenen Carl Peter Blom\", \"som stod färdigt år 1810\" (läst 2026-09-27)\n      'Smådalarö ligger vid Hemviken i Haninge kommun, bortom Dalarö i Stockholms södra skärgård. Med bil tar resan från Stockholms city omkring 50 minuter, och SL-buss 839 går från Handens station via Dalarö ända fram till Smådalarö Gårds grind. Platsen har lång historia: på 1700-talet arrenderade löjtnanten Carl Christian Gyldener och tullinspektören Nils Sondell halva Smådalarö, startade produktion av öl och brännvin, och 1750 fick Gyldener ett eget arrendekontrakt på livstid. År 1802 köpte kofferdikaptenen Carl Peter Blom hela egendomen \"Tyresö skärgårdsdel\" av grevinnan Brita Bonde för 12 000 riksdaler banco, och 1810 stod hans herrgård på Smådalarö klar.',",
+  "ny": "      // KÄLLA: https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/ — \"Smådalarö Gård Hotell & Spa ligger idylliskt i Hemviken i Stockholms skärgård\", \"Med bil når du Smådalarö Gård Hotell & Spa på 50 min från Stockholm city\", \"som går från Haninge Centrum hela vägen till vår grind\" (läst 2026-11-17)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Haninge centrum\", \"1) Endast vissa turer.\", \"Alla hållplatser för buss 839 mot Smådalarö finns ovan.\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17)\n      // KÄLLA: https://www.haninge.se/uppleva-och-gora/idrott-och-friluftsliv/utomhusaktiviteter/ — \"Smådalarö golf\", \"9-hålsbana i skärgårdsmiljö\" (läst 2026-09-27)\n      // KÄLLA: https://www.smadalarogard.se/hotellet/om-oss/var-historia/ — \"Grunden till den stora rörelsen på Smådalarö Gård lades av löjtnanten Carl Christian Gyldener, som tillsammans med tullinspektören Nils Sondell arrenderade halva Smådalarö i 20 år\", \"tillsammans startade herrarna produktion av både öl och brännvin\", \"därför fick han 1750 ett eget arrendekontrakt på livstid\", \"År 1802 förvärvade Blom, endast 40 år gammal, den stora egendomen ”Tyresö skärgårdsdel” från grevinnan Brita Bonde för 12.000 riksdaler banco\", \"Kofferdikaptenen Carl Peter Blom\", \"som stod färdigt år 1810\" (läst 2026-09-27)\n      'Smådalarö ligger vid Hemviken i Haninge kommun, bortom Dalarö i Stockholms södra skärgård. Med bil tar resan från Stockholms city omkring 50 minuter, och vissa turer med SL-buss 839 går från Rudsjöterrassen via Haninge centrum och Dalarö ända fram till Smådalarö Gårds grind. Platsen har lång historia: på 1700-talet arrenderade löjtnanten Carl Christian Gyldener och tullinspektören Nils Sondell halva Smådalarö, startade produktion av öl och brännvin, och 1750 fick Gyldener ett eget arrendekontrakt på livstid. År 1802 köpte kofferdikaptenen Carl Peter Blom hela egendomen \"Tyresö skärgårdsdel\" av grevinnan Brita Bonde för 12 000 riksdaler banco, och 1810 stod hans herrgård på Smådalarö klar.',",
+  "rader": [
+   "p26-k021"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"Handens station–Dalarö (–Smådalarö)\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\" (läst 2026-09-27) — restid Handens station → Smådalarö 45–53 min enligt tabellen (t.ex. 06.14–06.59 helg, 14.47–15.40 vardag).\n    facts: { travel_time: '50 min med bil från Stockholm city, 45 till 55 min med buss 839 från Handens station', character: 'Spahotell i herrgårdsmiljö från 1810, nås med bil och SL-buss', season: 'Helår', best_for: 'Spahelg, konferens, dagspa, golf' },",
+  "ny": "    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17); Rudsjöterrassen → Smådalarö 45 till 54 min (MÄTT i tabellen: måndag till fredag 49 till 54, lördag, söndag och helgdag 45 till 50)\n    facts: { travel_time: '50 min med bil från Stockholm city, 45 till 54 min med buss 839 från Rudsjöterrassen (SL:s tabell till 12 december 2026)', character: 'Spahotell i herrgårdsmiljö från 1810, nås med bil och SL-buss', season: 'Helår', best_for: 'Spahelg, konferens, dagspa, golf' },",
+  "rader": [
+   "p26-k022"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"Handens station–Dalarö (–Smådalarö)\", \"1) Endast vissa turer.\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\" (läst 2026-09-27) — 14 ankomster till Smådalarö måndag–fredag och 9 lördag–söndag i tabellen.\n      { method: 'Pendeltåg + buss 839', from: 'Handens station', time: '45 till 55 min', desc: 'SL-buss 839 går från Handens station via Dalarö till Smådalarö och är anpassad till pendeltåget från Stockholm. Bara vissa turer går hela vägen till Smådalarö: i tabellen för 14 december 2025 till 18 juni och 17 augusti till 12 december 2026 är det 14 turer måndag till fredag och 9 på helger.', icon: '🚌', url: 'https://kund.printhuset-sthlm.se/sl/v839.pdf' },",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Haninge centrum\", \"1) Endast vissa turer.\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.\", \"Måndag–fredag\", \"Lördag, söndag helgdag\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17); 14 turer till Smådalarö måndag till fredag och 9 lördag, söndag och helgdag; Rudsjöterrassen → Smådalarö 45 till 54 min (MÄTT i tabellen)\n      { method: 'Pendeltåg + buss 839', from: 'Rudsjöterrassen', time: '45 till 54 min', desc: 'Pendeltåg till Handen, sedan SL-buss 839 från Rudsjöterrassen via Haninge centrum och Dalarö till Smådalarö. Bussens tider är anpassade till pendeltåget från Stockholm vid Handens station. Bara vissa turer går hela vägen till Smådalarö: i SL:s tabell för 17 augusti till 12 december 2026 är det 14 turer måndag till fredag och 9 på lördagar, söndagar och helgdagar.', icon: '🚌', url: 'https://kund.printhuset-sthlm.se/sl/h839.pdf' },",
+  "rader": [
+   "p26-k023",
+   "p26-k024",
+   "p26-k025"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"1) Endast vissa turer.\", \"Alla hållplatser för buss 839 mot Smådalarö finns ovan.\" (läst 2026-09-27)",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"1) Endast vissa turer.\", \"Alla hållplatser för buss 839 mot Smådalarö finns ovan.\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17)",
+  "rader": [
+   "p26-k026"
+  ]
+ },
+ {
+  "fil": "src/app/guider/[slug]/guide-content.ts",
+  "gammal": "<!-- KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"839 Handens station–Dalarö (–Smådalarö)\", Handens station → Dalarö 33–40 min (läst 2026-10-10); https://ornosjotrafik.se/ — \"Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö.\" / \"Alla fordon ska bokas i båda riktningarna.\" (läst 2026-09-27); Waxholmsbolaget linje 20, https://kund.printhuset-sthlm.se/wa/h20.pdf — \"20A DALARÖ – ORNÖ (VÄSTRA SIDAN)\", \"Dalarö 06.30 08.30 12.30 15.30 16.30 18.30\" / \"Hässelmara (Ornö) 06.55 08.55 12.55 15.55 16.55 18.55\", \"Avgången körs av Ornö Bilfärja\" (läst 2026-09-27); linje 19, https://kund.printhuset-sthlm.se/wa/h19.pdf — \"19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ\" (läst 2026-09-27) -->\n<p style=\"font-size:16px;line-height:1.8;color:var(--txt2)\"><strong>Hur du tar dig dit:</strong> SL-buss 839 från Handens station till Dalarö tar 33 till 40 minuter. Ornö Sjötrafiks bilfärja går från Hotellbryggan i Dalarö till Hässelmara på 25 minuter, och alla fordon ska bokas i båda riktningarna. Waxholmsbolagets linje 19 från Strömkajen angör Ornös östra sida på väg till Utö. Mer på <a href=\"/o/orno/komma-dit\">Ornö: komma dit</a>.</p>",
+  "ny": "<!-- KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37) -->\n<!-- KÄLLA: https://ornosjotrafik.se/ — \"Avgår från Hässelmara brygga på Ornö och Hotellbryggan på Dalarö.\" / \"Alla fordon ska bokas i båda riktningarna.\" (läst 2026-09-27); Waxholmsbolaget linje 20, https://kund.printhuset-sthlm.se/wa/h20.pdf — \"20A DALARÖ – ORNÖ (VÄSTRA SIDAN)\", \"Dalarö 06.30 08.30 12.30 15.30 16.30 18.30\" / \"Hässelmara (Ornö) 06.55 08.55 12.55 15.55 16.55 18.55\", \"Avgången körs av Ornö Bilfärja\" (läst 2026-09-27); linje 19, https://kund.printhuset-sthlm.se/wa/h19.pdf — \"19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ\" (läst 2026-09-27) -->\n<p style=\"font-size:16px;line-height:1.8;color:var(--txt2)\"><strong>Hur du tar dig dit:</strong> Ta pendeltåget till Handen och SL-buss 839 från Rudsjöterrassen till Dalarö. Bussen tar 33 till 39 minuter enligt SL:s tabell till 12 december 2026, och tiderna är anpassade till pendeltågen vid Handens station. Ornö Sjötrafiks bilfärja går från Hotellbryggan i Dalarö till Hässelmara på 25 minuter, och alla fordon ska bokas i båda riktningarna. Waxholmsbolagets linje 19 från Strömkajen angör Ornös östra sida på väg till Utö. Mer på <a href=\"/o/orno/komma-dit\">Ornö: komma dit</a>.</p>",
+  "rader": [
+   "p26-k027"
+  ]
+ },
+ {
+  "fil": "src/app/segelkurs/segelkurs-data.ts",
+  "gammal": "        // KÄLLA: SL tidtabell 839 (se Dalarö-sidans källor) — Handens station → Hotellbryggan 33–40 min\n        a: 'Med pendeltåg till Handen och sedan buss 839, 33 till 40 minuter från Handens station. Se Dalarösidan på Svalla för nästa avgångar.',",
+  "ny": "        // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Hotellbryggan\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)\n        a: 'Med pendeltåg till Handen och sedan buss 839 från Rudsjöterrassen, som enligt SL:s tabell till 12 december 2026 tar 33 till 39 minuter till Hotellbryggan i Dalarö. Bussens tider är anpassade till pendeltågen vid Handens station. Se Dalarösidan på Svalla för nästa avgångar.',",
+  "rader": [
+   "p26-k028"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Buss 839 från Handen pendelstation tar dig till Dalarö.',",
+  "ny": "    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"839 Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-17)\n    note: 'Pendeltåg till Handen, sedan buss 839 från Rudsjöterrassen till Dalarö.',",
+  "rader": [
+   "p26-k029"
+  ]
+ }
+]
