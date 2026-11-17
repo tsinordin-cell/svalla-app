@@ -4979,7 +4979,20 @@ export const GUIDES: GuideMeta[] = [
       { q: "Hur bokar man bord på Michelinkrogarna vid havet?", a: "Direkt hos restaurangen. Michelinguiden anger att krogarna sköter sin egen bordsbokning och hänvisar till restaurangens webbplats eller telefon." },
     ],
   },
-  { slug: "sandhamn-vaxholm-grinda-host", title: "Sandhamn, Vaxholm och Grinda på hösten: guide till tre klassiker", excerpt: "Stockholms tre mest omtyckta öar är ännu bättre på hösten. Färre folk, lövfärger och öppen service. Vad du gör och hur du tar dig dit i september till oktober.", category: "Säsong", emoji: "🍁", readTime: "9 min", fullContent: true, faqs: [{ q: 'Är Sandhamn, Vaxholm och Grinda öppna på hösten?', a: 'Ja, alla tre håller öppet hela hösten. Vaxholm fungerar som en stad hela året. Sandhamns Värdshus och Grinda Wärdshus har höstöppet med reducerade tider. Kolla respektive hemsida.' }, { q: 'Vilken av öarna passar bäst för ett höstbesök?', a: 'Vaxholm är säkraste valet (alltid liv och öppet). Grinda passar dig som vill ha tyst och vacker natur. Sandhamn är lite mer livlig och seglarnas favorit även på hösten.' }, { q: 'Hur tar man sig dit på hösten?', a: 'Waxholmsbolaget kör till alla tre hela hösten. Vaxholm: Waxholmsbåt från Strömkajen, ca 1 tim. Grinda: linje 11, ca 1h 45 min. Sandhamn: via Stavsnäs med buss + Waxholmsbåt, totalt ca 2h.' }] },
+  {
+    slug: "sandhamn-vaxholm-grinda-host",
+    title: "Sandhamn, Vaxholm och Grinda på hösten: båtar och öppettider",
+    excerpt: "Hösten på Sandhamn, Vaxholm och Grinda: Waxholmsbolagets hösttidtabell, vilka krogar som har helgöppet eller stängt, fästningens vinteröppettider och Grindas säsongsslut, enligt verksamheterna själva.",
+    category: "Säsong", emoji: "🍁", readTime: "5 min", fullContent: true,
+    faqs: [
+      // KÄLLA: https://www.sandhamns-vardshus.se/ — "Öppet varje dag från mitten av juni till mitten på september."; "Annan tid på året är restaurangen främst öppen helger."; puben "Öppet året runt." (läst 2026-11-17); https://grinda.se/oppettider/ — "Under säsong kan våra öppettider variera med kort varsel."; stugbyn "till 3.e helgen i oktober" (läst 2026-11-17); https://vaxholmsfastning.se/ — "Under vinterhalvåret håller vi endast öppet i samband med särskilda evenemang och lovaktiviteter." (läst 2026-11-17)
+      { q: "Är Sandhamn, Vaxholm och Grinda öppna på hösten?", a: "Delvis. Sandhamns Värdshus har restaurangen daglig till mitten av september och sedan främst helger, men puben året runt. Grinda Wärdshus visar öppettiderna dag för dag i sin kalender och stugbyn stänger tredje helgen i oktober. Vaxholms fästning har under vinterhalvåret bara öppet vid evenemang och lov." },
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", Strömkajen → Vaxholm 55–82 min, → Grinda ca 1 h 30 min till 2 h 40 min (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/h433.pdf — Slussen → Stavsnäs vinterhamn ca 50 min (läst 2026-09-27); https://battaxi.se/sandhamnslinjen-2/ — "på endast 30 minuter" (läst 2026-09-27)
+      { q: "Hur tar man sig dit på hösten?", a: "Waxholmsbolagets hösttidtabell gäller 17 augusti till 12 december 2026. Linje 11 från Strömkajen tar 55 till 82 minuter till Vaxholm och 1 timme 30 minuter till 2 timmar 40 minuter till Grinda. Till Sandhamn: SL-buss 433 från Slussen till Stavsnäs på ungefär 50 minuter, sedan Sandhamnslinjen på 30 minuter eller Waxholmsbolaget på drygt en timme." },
+      // KÄLLA: https://www.waxholmshotell.se/matochdryck — restaurangen "är öppen maj till augusti!" (läst 2026-09-28); https://www.destinationvaxholm.se/en/sv/midsommar-vaxholm — "Camilles Trädgård, Mathantverkstan i Skärgården, Roddarhuset & Bistro"; "Vaxholms Hembygdsgårds café" (läst 2026-11-17)
+      { q: "Var äter man i Vaxholm på hösten?", a: "Waxholms Hotells restaurang är enligt hotellet öppen maj till augusti, så inte på hösten. Destination Vaxholm nämner Camilles Trädgård, Mathantverkstan i Skärgården, Roddarhuset & Bistro och hembygdsgårdens café; höstöppettiderna står på deras egna sidor." },
+    ],
+  },
   {
     slug: "camping-host-skargard",
     title: "Höstcamping i skärgården: tälta i skärgården på hösten",
