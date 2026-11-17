@@ -11,7 +11,7 @@
 -- KÄLLA: https://www.magasinetwaxholm.se/hem/bistro.html — "Vi har nu stängt restaurangen för vintern.", "Öppnar åter våren 2027" (läst 2026-10-31)
 -- KÄLLA: https://visitstockholm.com/o/magasinet-i-vaxholm/ — "Magasinet, located on the waterfront in idyllic Vaxholm" (läst 2026-10-31)
 -- KÄLLA: https://www.openstreetmap.org/query?lat=59.40327&lon=18.35454 — "Ö Vaxön", "Administrativ gräns (nivå 7) Vaxholms kommun" (läst 2026-10-31)
-update restaurants set description = 'Magasinet i Waxholm är en bistro vid vattnet på Fiskaregatan 1 i Vaxholm, Vaxholms kommun. I den gamla smedjan finns också inredningsbutik, festlokal och yogastudio. Bistron har stängt för vintern 2026–2027 och öppnar igen våren 2027.' where slug = 'magasinet-gustavsberg' and description = 'Magasinet ligger vid vattnet på Fiskaregatan 1 i Vaxholm.';
+update restaurants set description = 'Magasinet i Waxholm är en bistro vid vattnet på Fiskaregatan 1 i Vaxholm, Vaxholms kommun. I den gamla smedjan finns också inredningsbutik, festlokal och yogastudio. Bistron har stängt för vintern 2026 till 2027 och öppnar igen våren 2027.' where slug = 'magasinet-gustavsberg' and description = 'Magasinet ligger vid vattnet på Fiskaregatan 1 i Vaxholm.';
 
 -- restaurants.vaxholms-fastning-cafe.island (vaxholm-0420)
 -- FÖRE: 'Kastellet'

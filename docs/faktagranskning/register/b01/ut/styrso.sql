@@ -9,7 +9,7 @@
 -- FÖRE: 'Kärran är en restaurang på Brännö i Göteborgs södra skärgård.'
 -- KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — "Det är en rosa foodtruck som serverar asiatiska rätter med en svensk touch, hemmagjorda bakverk, juicer och iskaffe. Foodtrucken hittas på Varpevägen 3 på Brännö, med utsikt över Gärdet och hamninloppet, öppet april-september." (läst 2026-10-31)
 -- KÄLLA: https://www.goteborg.com/platser/branno — "Brännö är en levande skärgårdsö i södra delen av Göteborgs skärgård" (läst 2026-10-31)
-update restaurants set description = 'Kärran är en rosa foodtruck på Varpevägen 3 på Brännö i Göteborgs södra skärgård. Den serverar asiatiska rätter med en svensk touch, hemmagjorda bakverk, juicer och iskaffe och har öppet april–september.', updated_at = now() where slug = 'karran' and description = 'Kärran är en restaurang på Brännö i Göteborgs södra skärgård.';
+update restaurants set description = 'Kärran är en rosa foodtruck på Varpevägen 3 på Brännö i Göteborgs södra skärgård. Den serverar asiatiska rätter med en svensk touch, hemmagjorda bakverk, juicer och iskaffe och har öppet april till september.', updated_at = now() where slug = 'karran' and description = 'Kärran är en restaurang på Brännö i Göteborgs södra skärgård.';
 
 -- restaurants.vrango-gasthamn.description (styrso-0493 STRYK+KOMPENSERA; nya uppgifter styrso-N003–N006; första meningen enligt SEO-regeln)
 -- FÖRE: 'Vrångö gästhamn har plats för cirka 130 gästande båtar och en dagbrygga för kortare besök, och hamnen ligger väl skyddad för vind och vågor. Hamndjupet är 3,5–5 meter. I gästhamnen finns toaletter, duschar, tvättmaskin, sopkärl, miljöstation och sugtömning, och i hamnen finns mataffär och matställen.'
