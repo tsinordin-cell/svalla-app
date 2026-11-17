@@ -4127,7 +4127,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.grisslehamnsmarina.se/singo-sjokrog/ — "Krogen är just nu stängd i väntan på beviljat serveringstillstånd" (läst 2026-09-27)
       'Handla i Singöaffären, som har fullsortiment av dagligvaror och är apoteks- och Systembolagsombud, Singö sjökrog (Grisslehamns Marina) är just nu stängd i väntan på serveringstillstånd.',
     ],
-    related: ['arholma', 'vaddo', 'norrora'],
+    related: ['arholma', 'vaddo', 'norrora', 'graso'],
     tags: ['kyrka', 'vandring', 'bad', 'norra', 'kulturhistoria'],
     // KÄLLA: https://www.svenskakyrkan.se/roslagens-ostra-pastorat/singo-kyrka — "Skeppet tros vara ett av de äldsta i Stockholms län och är en gåva till församlingen från Norrtäljeborgaren Eric Brant och hans hustru Maria Tillman år 1752"; "Den okände sjömannen hittades en stormig dag vid Eskiln på Singös ostkust" (läst 2026-09-27)
     did_you_know: 'Votivskeppet i Singö kyrka tros vara ett av de äldsta i Stockholms län. Det skänktes 1752 av Norrtäljeborgaren Eric Brant och hans hustru Maria Tillman, året innan kyrkan stod klar. På kyrkogården finns Den okände sjömannens grav, prydd med en livboj: sjömannen hittades en stormig dag vid Eskiln på Singös ostkust med handen kring livbojens tåg.',
@@ -4394,7 +4394,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/vaddo-kanal.pdf — "Längs kanalen finns promenadstigar som har sin grund i de dragvägar", "Skutorna drogs igenom kanalen, ofta med hjälp av dragdjur" (läst 2026-09-27). «Kryssningen tar 45 minuter» saknade källa.
       'Gå längs Väddö kanal vid Älmsta: promenadstigarna följer de gamla dragvägarna, där skutorna drogs genom kanalen, ofta med hjälp av dragdjur.',
     ],
-    related: ['singo', 'blido', 'norrora'],
+    related: ['singo', 'blido', 'norrora', 'graso'],
     tags: ['lindy hop', 'kanal', 'Roslagens', 'norra', 'kultur'],
     // KÄLLA: https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/vaddo-kanal.pdf — "Den första kanalanläggningen byggdes vid den lägsta tröskeln mellan Kistahavet och Storfjärden", "Arbetet med att anlägga nuvarande Väddö kanal påbörjades år 1819", "Kanalen öppnades för trafik 1835, och 1840 invigdes den officiellt av Karl XIV Johan", "Vaxholmsbolaget trafikerade kanalen för färd mot Öregrund och Östhammar fram till 1950-talet" (läst 2026-09-27); https://roslagen.se/oar/vaddo-roslagens-storsta-o/ — "Sin nuvarande sträckning fick kanalen 1899–1902" (läst 2026-09-27). «18 km» och «Samuel Owens ångdrivna mudderverk» saknade tillåten källa – strukna.
     did_you_know: 'Den första kanalen genom Väddö byggdes troligen redan på 1200 till 1300-talen vid tröskeln mellan Kistahavet och Storfjärden. Dagens kanal påbörjades 1819, grävdes 1820 till 1831 av 2 930 soldater och öppnades för trafik 1835; Karl XIV Johan invigde den officiellt 1840. Sin nuvarande sträckning fick kanalen 1899 till 1902, och Vaxholmsbolaget trafikerade den mot Öregrund och Östhammar fram till 1950-talet.',
@@ -4407,6 +4407,172 @@ export const ISLANDS: Island[] = [
       bestReason: 'I juli pågår Herräng Dance Camp (2027: 3 till 31 juli), dit dansare från över 70 länder kommer. Den som vill uppleva kanalen och Grisslehamn utan lägerveckorna kan välja juni.',
       warning: 'Under Herräng Dance Camp i juli kommer dansare från över 70 länder till Herräng. Boka boende i området i god tid. Buss 637 går glesare på helger (hösten 2026: 13 turer mot 22 på vardagar).',
       months: ['limited','limited','limited','limited','open','open','peak','open','open','open','limited','limited'],
+    },
+  },
+  // ─── GRÄSÖ ───────────────────────────────────────────────────
+  {
+    slug: 'graso',
+    name: 'Gräsö',
+    region: 'ovriga',
+    regionLabel: 'Roslagen',
+    emoji: '🌲',
+    // KÄLLA: https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf — "Bottenhavets största ö är Gräsö." (läst 2026-11-17)
+    // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "Resan med vägfärjan är avgiftsfri." (läst 2026-11-17)
+    // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html — "Skyddsår: 1982" (läst 2026-11-17)
+    tagline: 'Bottenhavets största ö. Avgiftsfri vägfärja från Öregrund, sandstrand vid Gräsöbadet och naturreservat med eldstad vid Kattskär.',
+    seoTitle: 'Gräsö: färja från Öregrund, bad och camping',
+    // KÄLLA: https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf — "Bottenhavets största ö är Gräsö." (läst 2026-11-17)
+    seoDescription: 'Gräsö är Bottenhavets största ö. Så tar du dig dit med avgiftsfri vägfärja från Öregrund, var du badar och vad som gäller i naturreservaten.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gr%C3%A4s%C3%B6 — Lantmäteriet Min Karta, sökning "Gräsö" → Gräsö | Östhammar | Trakt, SWEREF 99 TM 694391/6694384 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 60.3392,
+    lng: 18.5223,
+    description: [
+      // KÄLLA: https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf — "Bottenhavets största ö är Gräsö."; tabell 5.1 "Gräsö Östhammar 705 636 -69"; "vid utgången av 2020" (läst 2026-11-17)
+      'Gräsö i Östhammars kommun är Bottenhavets största ö. Vid utgången av 2020 var 636 personer folkbokförda på ön.',
+      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "Gräsöleden går mellan Öregrund och Gräsö"; "Färjeledens längd är 1000 meter och överfartstiden är fem minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-11-17)
+      'Du kommer hit med Trafikverkets vägfärja Gräsöleden från Öregrund. Överfarten är 1000 meter, tar fem minuter och är avgiftsfri.',
+      // KÄLLA: https://www.orskarsfyr.se/hitta-hit.html — "På Gräsö kör du mot Örskärssund, 22 km till vägs ände." (läst 2026-11-17)
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "Örskär ligger norr om Gräsö och nås med båt från Örskärssund." (läst 2026-11-17)
+      'På Gräsö är det 22 kilometer till vägs ände vid Örskärssund. Därifrån går båten till Örskär.',
+    ],
+    facts: {
+      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "överfartstiden är fem minuter" (läst 2026-11-17)
+      travel_time: 'Vägfärja från Öregrund, fem minuter',
+      // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "bada från klippor och härlig sandstrand" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html — "Skyddsår: 1982" (läst 2026-11-17)
+      character: 'Stor ö med badstränder och naturreservat',
+      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "Vecka 25–33 Två färjor trafikerar leden alla dagar" (sidan uppdaterad 7 maj 2026, läst 2026-11-17)
+      season: 'Två färjor alla dagar vecka 25 till 33 enligt Trafikverkets sommarupplägg',
+      // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Gräsöbadet arrenderas av Östhammars kommun" (läst 2026-11-17)
+      // KÄLLA: https://grasobadenscamping.se/ — "Vi har ca 400 platser för husvagn, husbil eller tält" (läst 2026-11-17)
+      best_for: 'Bad, naturreservat och camping',
+    },
+    activities: [
+      // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Gräsöbadet arrenderas av Östhammars kommun"; "bada från klippor och härlig sandstrand"; "Därefter ligger badet cirka 1 km norrut på Gräsö" (läst 2026-11-17)
+      { icon: '🏖', name: 'Gräsöbadet', desc: 'Badet ligger cirka en kilometer norr om färjeläget och har klippor och sandstrand. Östhammars kommun arrenderar badet.' },
+      // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Storsand ligger strax söder om Mårtensboda … består av sand, grus och släta klippor." (läst 2026-11-17)
+      { icon: '🏖', name: 'Storsand', desc: 'Storsand ligger strax söder om Mårtensboda och har sand, grus och släta klippor.' },
+      // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Kattskär ingår i Gräsö gårds naturreservat"; "Här finns en eldstad med vedförråd … Det är inte tillåtet att elda på andra platser i reservatet." (läst 2026-11-17)
+      { icon: '🔥', name: 'Eldstad vid Kattskär', desc: 'Vid Kattskär i Gräsö gårds naturreservat finns en eldstad med vedförråd. På andra platser i reservatet är det inte tillåtet att elda.' },
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html — "Skyddsår: 1982"; "Areal: 313 ha" (läst 2026-11-17)
+      { icon: '🌿', name: 'Gräsö gårds naturreservat', desc: 'Reservatet bildades 1982 och är 313 hektar.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://grasobadenscamping.se/ — "Vi har ca 400 platser för husvagn, husbil eller tält"; "Vi har stängt för säsongen och öppnar åter i slutet av april -27." (läst 2026-11-17)
+      { name: 'Gräsöbadens Camping', type: 'Camping', desc: 'Cirka 400 platser för husvagn, husbil eller tält. Campingen öppnar igen i slutet av april 2027.', websiteUrl: 'https://grasobadenscamping.se/' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_811_260817_261212.pdf — "811 Uppsala - Alunda - Gimo - Östhammar - Öregrund"; "17 augusti - 12 december 2026"; ändhållplats "Öregrund färjeläget" (läst 2026-11-17)
+      { method: 'Buss', from: 'Uppsala', desc: 'UL:s buss 811 går från Uppsala via Alunda, Gimo och Östhammar till Öregrund färjeläget. Tidtabellen gäller 17 augusti till 12 december 2026.', icon: '🚌', url: 'https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_811_260817_261212.pdf' },
+      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "Gräsöleden går mellan Öregrund och Gräsö"; "Färjeledens längd är 1000 meter och överfartstiden är fem minuter. Resan med vägfärjan är avgiftsfri."; "Vecka 25–33 Två färjor trafikerar leden alla dagar"; "Med vår app Trafikinfo Färjerederiet får du tillgång till tidtabeller och trafikinformation. Du kan även kalla på färjan direkt i appen." (läst 2026-11-17)
+      { method: 'Vägfärja', from: 'Öregrund', time: '5 min', desc: 'Trafikverkets vägfärja Gräsöleden går mellan Öregrund och Gräsö. Överfarten är 1000 meter och avgiftsfri. Enligt Trafikverkets sommarupplägg trafikerar två färjor leden alla dagar vecka 25 till 33. Tidtabellen finns i appen Trafikinfo Färjerederiet, där du också kan kalla på färjan.', icon: '⛴', url: 'https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/' },
+      // KÄLLA: https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf — "854 Öregrund - Norra Gräsö"; "Helgfri måndag - fredag"; "A Turen körs endast skoldagar"; "U … Turen måste förbeställas på tel. 018-617 57 02 senast 3 tim. före avresa" (läst 2026-11-17)
+      { method: 'Buss på ön', from: 'Öregrund', desc: 'UL:s buss 854 går helgfria vardagar mellan Öregrund och Örskärssund på norra Gräsö. Alla turer körs antingen bara skoldagar eller måste förbeställas per telefon senast tre timmar före avresa. Tidtabellen gäller 17 augusti till 12 december 2026.', icon: '🚌', url: 'https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html — föreskrift 4 "Medföra hund som inte är kopplad"; 5 "Göra upp eld annat än på särskilt anvisade platser"; 6 "Tälta eller förtöja båt utanför anvisade platser mer än ett dygn i följd" (läst 2026-11-17)
+      'I Gräsö gårds naturreservat ska hunden vara kopplad och eld får bara göras på anvisade platser. Du får inte tälta eller förtöja mer än ett dygn i följd utanför anvisade platser.',
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-ostra-skargard.html — "medföra ej kopplad hund under tiden 1 mars - 20 augusti"; "ett flertal djurskyddsområden med landstigningsförbud" (läst 2026-11-17)
+      'I naturreservatet Gräsö östra skärgård ska hunden vara kopplad 1 mars till 20 augusti, och flera djurskyddsområden har landstigningsförbud.',
+    ],
+    related: ['orskar', 'singo', 'vaddo'],
+    tags: ['roslagen', 'östhammar', 'bad', 'naturreservat', 'vägfärja', 'camping'],
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "bada från klippor och härlig sandstrand"; "Därefter ligger badet cirka 1 km norrut på Gräsö" (läst 2026-11-17)
+          { name: 'Gräsöbadet', desc: 'Klippor och sandstrand cirka en kilometer norr om färjeläget. Östhammars kommun arrenderar badet.', type: 'sandstrand' },
+          // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Storsand ligger strax söder om Mårtensboda … består av sand, grus och släta klippor." (läst 2026-11-17)
+          { name: 'Storsand', desc: 'Sand, grus och släta klippor strax söder om Mårtensboda.', type: 'sandstrand' },
+        ],
+      },
+    },
+  },
+  // ─── ÖRSKÄR ──────────────────────────────────────────────────
+  {
+    slug: 'orskar',
+    name: 'Örskär',
+    region: 'ovriga',
+    regionLabel: 'Roslagen',
+    emoji: '🗼',
+    // KÄLLA: https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/ — "den nuvarande fyren som tändes 1740"; "ritades av den kände arkitekten Carl Hårleman. Fyren är unik eftersom den helt saknar trappor" (läst 2026-11-17)
+    // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Här växer arton av landets orkidéarter." (läst 2026-11-17)
+    tagline: 'Fyrön norr om Gräsö. Carl Hårlemans fyr från 1740 saknar trappor, och arton av landets orkidéarter växer i naturreservatet.',
+    seoTitle: 'Örskär: fyren, båten och naturreservatet',
+    // KÄLLA: https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/ — "den nuvarande fyren som tändes 1740"; "Fyren är unik eftersom den helt saknar trappor" (läst 2026-11-17)
+    seoDescription: 'Örskärs fyr från 1740 saknar trappor. Så tar du dig till Örskär med båt från Örskärssund på Gräsö, och vad som gäller i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96rsk%C3%A4r — Lantmäteriet Min Karta, sökning "Örskär" → Örskär | Östhammar | Natur- och terrängnamn, SWEREF 99 TM 686419/6714367 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 60.5221,
+    lng: 18.3968,
+    description: [
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "Örskär ligger norr om Gräsö och nås med båt från Örskärssund." (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Skyddstyp: Naturreservat, Natura 2000" (läst 2026-11-17)
+      'Örskär ligger norr om Gräsö och nås med båt från Örskärssund. Ön är naturreservat.',
+      // KÄLLA: https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/ — "den nuvarande fyren som tändes 1740 … Den är 36,5 meter hög och ritades av den kände arkitekten Carl Hårleman. Fyren är unik eftersom den helt saknar trappor"; "Fyren automatiserades 1978 och avbemannades året därpå." (läst 2026-11-17)
+      'Örskärs fyr tändes 1740, är 36,5 meter hög och ritades av Carl Hårleman. Fyren saknar trappor. Den automatiserades 1978 och avbemannades året därpå.',
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Här växer arton av landets orkidéarter."; "Bästa baden finns på klipporna i öster" (läst 2026-11-17)
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "Vid Bodalsträsket kan man höra gölgrodorna spela i maj – juni." (läst 2026-11-17)
+      'På ön växer arton av landets orkidéarter. Vid Bodalsträsket kan du höra gölgrodorna spela i maj och juni, och de bästa baden finns på klipporna i öster.',
+    ],
+    facts: {
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "nås med båt från Örskärssund" (läst 2026-11-17)
+      travel_time: 'Båt från Örskärssund på norra Gräsö',
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Skyddstyp: Naturreservat, Natura 2000" (läst 2026-11-17)
+      character: 'Fyrö och naturreservat',
+      // KÄLLA: https://www.orskarsfyr.se/dagsturer/ — "DAGSTURERNA har slutat gå för denna säsong! Välkomna åter till Maj 2027" (läst 2026-11-17)
+      season: 'Dagsturerna börjar igen i maj 2027',
+      // KÄLLA: https://www.orskarsfyr.se/dagsturer/ — "Fyren går att besöka under dagsturen." (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Här växer arton av landets orkidéarter."; "Bästa baden finns på klipporna i öster" (läst 2026-11-17)
+      best_for: 'Fyrbesök, vandring, orkidéer och klippbad',
+    },
+    activities: [
+      // KÄLLA: https://www.orskarsfyr.se/dagsturer/ — "Fyren går att besöka under dagsturen." (läst 2026-11-17)
+      // KÄLLA: https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/ — "Den är 36,5 meter hög"; "Fyren är unik eftersom den helt saknar trappor" (läst 2026-11-17)
+      { icon: '🗼', name: 'Örskärs fyr', desc: 'Fyren går att besöka under dagsturen. Den är 36,5 meter hög och saknar trappor.' },
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar-english/ — "Nature and Culture Trail, 2.5 km"; "All destinations: … about 8 km"; "The trails are marked with blue and yellow ribbons around the trees." (läst 2026-11-17)
+      { icon: '🚶', name: 'Vandring', desc: 'Natur- och kulturstigen är 2,5 kilometer, och en slinga till alla mål är cirka 8 kilometer. Lederna är märkta med blå och gula band.' },
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Här växer arton av landets orkidéarter." (läst 2026-11-17)
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "Vid Bodalsträsket kan man höra gölgrodorna spela i maj – juni." (läst 2026-11-17)
+      { icon: '🌿', name: 'Orkidéer och gölgrodor', desc: 'Arton av landets orkidéarter växer på Örskär. Vid Bodalsträsket kan du höra gölgrodorna spela i maj och juni.' },
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Bästa baden finns på klipporna i öster" (läst 2026-11-17)
+      { icon: '🏊', name: 'Klippbad', desc: 'De bästa baden finns på klipporna i öster.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.orskarsfyr.se/l-genheter-stugor/ — "På fyrplatsen finns fyra boenden att hyra under perioden 6/5-26/9"; "fasta vistelser på två till sju dagar" (läst 2026-11-17)
+      { name: 'Boende på fyrplatsen', type: 'Lägenheter och stugor', desc: 'Örskärs fyr hyr ut fyra boenden på fyrplatsen under säsongen, för vistelser på två till sju dagar.', websiteUrl: 'https://www.orskarsfyr.se/l-genheter-stugor/' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.orskarsfyr.se/hitta-hit.html — "På Gräsö kör du mot Örskärssund, 22 km till vägs ände." (läst 2026-11-17)
+      { method: 'Bil till Örskärssund', from: 'Gräsö', desc: 'Ta vägfärjan från Öregrund till Gräsö. På Gräsö är det 22 kilometer till vägs ände vid Örskärssund.', icon: '🚗', url: 'https://www.orskarsfyr.se/hitta-hit.html' },
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "du kan åka med någon av de fasta båtturer som körs av Örskärs fyr … I andra hand går det att boka båttransport med Tommy Mattson som kör turer i mån av tid" (läst 2026-11-17)
+      // KÄLLA: https://www.orskarsfyr.se/dagsturer/ — "DAGSTURERNA har slutat gå för denna säsong! Välkomna åter till Maj 2027" (läst 2026-11-17)
+      { method: 'Båt', from: 'Örskärssund', desc: 'De fasta båtturerna körs av Örskärs fyr. I andra hand går det att boka båttransport med en privat båtförare i mån av tid. Dagsturerna har slutat för säsongen och börjar igen i maj 2027.', icon: '⛴', url: 'https://www.orskarsfyr.se/dagsturer/' },
+      // KÄLLA: https://www.orskarsfyr.se/hitta-hit.html — "busstiderna inte matchar båttiderna" (läst 2026-11-17)
+      // KÄLLA: https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf — "Helgfri måndag - fredag" (läst 2026-11-17)
+      { method: 'Buss', from: 'Öregrund', desc: 'Busstiderna matchar inte båttiderna. UL:s buss 854 till Örskärssund går inte på helger.', icon: '🚌', url: 'https://www.orskarsfyr.se/hitta-hit.html' },
+    ],
+    harbors: [],
+    restaurants: [
+      // KÄLLA: https://www.orskarsfyr.se/restaurang-och-kiosk.html — "Restaurangen ligger i den gamla fyrmästarbostaden"; "STÄNGT för säsongen. Öppnar igen i maj 2027."; "För att äta oss hos måste man alltid boka." (läst 2026-11-17)
+      { name: 'Restaurangen på Örskärs fyr', type: 'Restaurang', desc: 'Restaurangen ligger i den gamla fyrmästarbostaden och öppnar igen i maj 2027. Du måste alltid boka.', websiteUrl: 'https://www.orskarsfyr.se/restaurang-och-kiosk.html', book_required: true },
+    ],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — föreskrift 2 "Medföra hund som inte är kopplad"; 3 "Göra upp eld" (läst 2026-11-17)
+      'I reservatet ska hunden vara kopplad och du får inte göra upp eld.',
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — föreskrift 5 "Utan markägares tillstånd tälta mer än två dygn"; 6 "förtöja eller förankra båt vid samma strand för längre tid än två dygn" (läst 2026-11-17)
+      'Utan markägarens tillstånd får du inte tälta mer än två dygn eller förtöja vid samma strand längre än två dygn.',
+    ],
+    related: ['graso', 'arholma'],
+    tags: ['roslagen', 'östhammar', 'fyr', 'naturreservat', 'orkidéer', 'vandring'],
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Bästa baden finns på klipporna i öster" (läst 2026-11-17)
+          { name: 'Klipporna i öster', desc: 'De bästa baden på Örskär finns på klipporna i öster.', type: 'klippbad' },
+        ],
+      },
     },
   },
   // ─── ASKÖ ────────────────────────────────────────────────────

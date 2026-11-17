@@ -982,8 +982,28 @@ export const OBILDER: Record<string, Obild> = {
     "licens": "CC BY-SA 4.0",
     "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "kalla": "https://commons.wikimedia.org/wiki/File:Stora_Dyr%C3%B6n_July_2023_04.jpg"
+  },
+  "graso": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Gr%C3%A4s%C3%B61801.jpg/1280px-Gr%C3%A4s%C3%B61801.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2018,
+    "fotograf": "Ulkl",
+    "licens": "Public domain",
+    "licensUrl": null,
+    "kalla": "https://commons.wikimedia.org/wiki/File:Gr%C3%A4s%C3%B61801.jpg"
+  },
+  "orskar": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Uppland_%C3%96rsk%C3%A4r_Lighthouse_%2814164387552%29.jpg/1280px-Uppland_%C3%96rsk%C3%A4r_Lighthouse_%2814164387552%29.jpg",
+    "bredd": 1200,
+    "hojd": 1600,
+    "ar": 2014,
+    "fotograf": "Peyman Zehtab Fard",
+    "licens": "CC BY 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Uppland_%C3%96rsk%C3%A4r_Lighthouse_(14164387552).jpg"
   }
 }
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = 96
+export const OAR_MED_BILD = 98
