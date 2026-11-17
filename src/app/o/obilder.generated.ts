@@ -1012,8 +1012,28 @@ export const OBILDER: Record<string, Obild> = {
     "licens": "CC BY 2.5",
     "licensUrl": "https://creativecommons.org/licenses/by/2.5",
     "kalla": "https://commons.wikimedia.org/wiki/File:Harstena_-_KMB_-_16000300022260.jpg"
+  },
+  "ringso": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Rings%C3%B6_-_KMB_-_16000700011323.jpg",
+    "bredd": 1200,
+    "hojd": 780,
+    "ar": 1997,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Rings%C3%B6_-_KMB_-_16000700011323.jpg"
+  },
+  "stendorren": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Stend%C3%B6rrens_naturreservat_utsikt_%C3%B6ver_sk%C3%A4rg%C3%A5rden.jpg/1280px-Stend%C3%B6rrens_naturreservat_utsikt_%C3%B6ver_sk%C3%A4rg%C3%A5rden.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2021,
+    "fotograf": "Tulipasylvestris",
+    "licens": "CC0",
+    "licensUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Stend%C3%B6rrens_naturreservat_utsikt_%C3%B6ver_sk%C3%A4rg%C3%A5rden.jpg"
   }
 }
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = 99
+export const OAR_MED_BILD = 101

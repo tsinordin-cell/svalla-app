@@ -214,6 +214,9 @@ const HANDPLOCKADE = {
   orskar: 'Uppland Örskär Lighthouse (14164387552).jpg',
   // 2026-11-17: Harstena, flygfoto 1991 från Riksantikvarieämbetet. Granskad med ögonen: inga människor.
   harstena: 'Harstena - KMB - 16000300022260.jpg',
+  // 2026-11-17: Ringsö (flygfoto 1997, RAÄ) och Stendörren. Bägge granskade med ögonen: inga människor.
+  ringso: 'Ringsö - KMB - 16000700011323.jpg',
+  stendorren: 'Stendörrens naturreservat utsikt över skärgården.jpg',
 }
 
 /**

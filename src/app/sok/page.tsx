@@ -249,7 +249,7 @@ function SokPageInner() {
  id: i.slug,
  title: i.name,
  // 2026-10-21: typetiketten säger "Ö"; för fastlandsorter och Kosterhavet står det i undertiteln vad posten är
- subtitle: `${i.slag === 'ort' ? 'Ort · ' : i.slag === 'nationalpark' ? 'Nationalpark · ' : ''}${i.regionLabel ?? ''} · ${i.tagline.slice(0, 50)}${i.tagline.length > 50 ? '…' : ''}`,
+ subtitle: `${i.slag === 'ort' ? 'Ort · ' : i.slag === 'nationalpark' ? 'Nationalpark · ' : i.slag === 'naturreservat' ? 'Naturreservat · ' : ''}${i.regionLabel ?? ''} · ${i.tagline.slice(0, 50)}${i.tagline.length > 50 ? '…' : ''}`,
  href: `/o/${i.slug}`,
  }))
 

@@ -4028,6 +4028,109 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     }
   ],
+  "hartso": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "förtöja eller ankra upp båt mer än två dygn i följd vid samma plats, med följande undantag: Detta gäller inte dem som hyr övernattningsstugor inom reservatet och har sina båtar förankrade vid särskilt iordningsställd båtplats.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Harts%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Hartsö\" → Hartsö | Nyköping | Trakt, SWEREF 99 TM 643882/6511396 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "ringso": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "På södra Ringsö finns sandstränder och möjlighet att bada från klippor.; Vid djupsundet ligger Österbodarna, gamla fiskebodar, som har restaurerats; Skyddsår: 1980 / Areal: 2044,5 hektar",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Rings%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Ringsö\" → Ringsö | Nyköping | Trakt, SWEREF 99 TM 641390/6512305 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "savo": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "De före detta lotsbostäderna används idag som vandrarhem; Eftersom får och kor går fria på ön är det bäst att använda tältplatserna som ligger innanför staket.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=S%C3%A4v%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Sävö\" → Sävö | Nyköping | Trakt, SWEREF 99 TM 643223/6516933 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "stendorren": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "Övernattning är förbjudet i området innanför den röda linjen på kartan, förutom i båt.; Nej, du får inte använda drönare i naturreservatet … Om du vill använda drönare behöver du söka dispens",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stend%C3%B6rren",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Stendörren\" → Stendörren | Nyköping | Bebyggelse, SWEREF 99 TM 638935/6513976 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "kramo": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "Kommun: Trosa; Trosa kommun har bildat och förvaltar naturreservatet.; På ön Grytan finns flera jättegrytor från senaste istiden.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kr%C3%A5m%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kråmö\" → Kråmö | Trosa | Natur- och terrängnamn, SWEREF 99 TM 652647/6525074 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kramoskargardsby.se/general-6",
+      "org": "kramoskargardsby.se",
+      "vad": "Skärgårdstrafik i Trosa 2026; 2026 trafikerar vi 11 juni till 2 augusti samt 6 - 9 augusti.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "fagelskar": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "Fågelskär är en ö som ligger cirka tre kilometer utanför Oxelösund.; en populär tältplats. Här finns soptunnor och utedass.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=F%C3%A5gelsk%C3%A4r",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Fågelskär\" → Fågelskär | Oxelösund | Natur- och terrängnamn, SWEREF 99 TM 627149/6504161 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
@@ -11259,4 +11362,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 107
+export const OAR_MED_KALLOR = 113
