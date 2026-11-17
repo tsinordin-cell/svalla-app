@@ -1,6 +1,6 @@
 # Lag 3, andra omgången, del B (2026-11-17)
 
-Granskare och skribent. Läsdatum 2026-11-17 för allt. Leverans: ut/lag3-b.edits.json (26 poster), lag3-b.tsv (28 rader, lag3b-N001 till N028), rättelserna i moja.tsv och vaxholm.tsv ("Runda 11"). Källtexter: scratchpad/b01/lag3b/kallor/; skript och mätfiler: lag3b/skript/, lag3b/matt/.
+Granskare och skribent. Läsdatum 2026-11-17 för allt. Leverans: ut/lag3-b.edits.json (30 poster), lag3-b.tsv (32 rader, lag3b-N001 till N032), rättelserna i moja.tsv och vaxholm.tsv ("Runda 11"). Källtexter: scratchpad/b01/lag3b/kallor/; skript och mätfiler: lag3b/skript/, lag3b/matt/.
 MÄTT = renderat med mallar10:s matt10.tsx och mätdatabasen mallar8/data/db-riktig.json, räknat med lag3_10.py. main = origin/main 6c4407d (main har flyttat från 65ec7c3: en commit om Lilla Karlsö). Före = main + mallar-arbetskopia.patch + de tio filerna; efter = före + lag3-b.edits.json, källistan omgenererad.
 
 ## Sidorna (ord main / före / efter, andel av main)
@@ -43,3 +43,8 @@ MÄTT = renderat med mallar10:s matt10.tsx och mätdatabasen mallar8/data/db-rik
 - Möja hantverkare (N025 till N027): minsta malländring: Kallniva fick nivån 'elregister' (hantverkare-data.ts) och KALL_TEXT raden «Enligt Elsäkerhetsverkets register» (HantverkarKort.tsx). Nya poster: Lundahls Installation AB (Långviknäs, telefon och e-post ur registret) och Alk,S Elservice Handelsbolag (Norrsundshage), båda med registrets detaljsida som källa och behörighet bekräftad. Enskilda firman med personnamn är utelämnad. MÄTT: 629 → 662 av 734 (90,2 %), brist 36 ord kvar; inga fler belagda företag.
 - Brännö (N028): klockslagen var dansens tid (arrangörens sida, läst i dag), inte en avgångstid. Strukna ändå i description och aktivitetskortet, eftersom KÄLLA-citatet skulle behöva innehålla klockslaget (förtydligande 14). KÄLLA-raderna är lästa i dag utan klockslag. Ösidan 1860 → 2017, aktiviteter 260 → 347. Kvar utanför uppdraget: seasonal-KÄLLA-raden har fortfarande citat med klockslag (läst 2026-09-27).
 - Kontroller igen: 26 poster, 0 fel; källistan --kontroll aktuell (1 923); tsc 0 fel; verify-claims exit 0; vitest 795 gröna; 108 av 108 citat ordagrant; under 95 %: 24 sidor, ingen ny. Kopian borttagen.
+
+## Redaktörens beslut 2 (2026-11-17)
+- Möja hantverkare (N029 till N031): malländring, valfritt fält hantverk_text i Island som hantverkarsidan visar under «Näringsliv på X». Möjas text ur Värmdö kommuns Möjafolder (nivå 1, copyright 2018): runt 60 företag (båtvarv, snickeri, affärer, hantverkare, vandrarhem, krogar); varvet på Drängsholmen vid Långviksnäs, etablerat 1949, ett fåtal specialbeställda båtar om året. Personnamnet i källan är utelämnat. MÄTT: 662 → 755 av 734 (102,9 %).
+- Brännö seasonal (N032): KÄLLA-raden utan klockslag, läst i dag, en URL per rad (Brännöföreningen, brannovardshus.se/oppettider).
+- Kontroller: 30 poster, 0 fel; källistan aktuell (1 923); tsc 0 fel; verify-claims exit 0; vitest 795 gröna; 121 av 121 citat ordagrant. Under 95 %: 23 sidor, batch 01: 0, inga av mina. Kopian borttagen.
