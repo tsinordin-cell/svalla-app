@@ -7703,15 +7703,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso",
       "org": "naturskyddsforeningengotland.se",
-      "vad": "Turlista Lilla Karlsö 2026, Avgång kl. 09.00 från, Återresa och ankomst till Djupvik senast kl. 13.30, Pris 890 kr / person (minst 4 betalande) - max 6 personer., Förbokning och betalning krävs minst 4 dagar i förväg, Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland",
+      "vad": "Turlista Lilla Karlsö 2026, Avgång kl. 09.00 från, Återresa och ankomst till Djupvik senast kl. 13.30, max 6 personer., Förbokning och betalning krävs minst 4 dagar i förväg, Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/",
       "org": "storakarlso.se",
-      "vad": "Båten till Stora Karlsö avgår från Klintehamn och båtresan tar ungefär 35 minuter, I priset ingår båtresa t/r samt guidad tur på ön",
-      "last": "2026-09-27",
+      "vad": "Båten till Stora Karlsö avgår från Klintehamn",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/",
+      "org": "storakarlso.se",
+      "vad": "En guidad tur med våra kunniga guider erbjuds till alla våra besökare och ingår i priset för resan.",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
