@@ -31,43 +31,18 @@ export const metadata: Metadata = {
 }
 
 const ITEMS: LandingItem[] = [
- {
- icon: 'sailboat',
- title: 'Segla från Sverige till Åland',
- description: 'En av Östersjöns klassiska segelpassager. Logga hela turen med GPS, från Stockholms skärgård till Ålands hav.',
- href: '/logga-in',
- meta: 'Klassiker',
- },
- {
- icon: 'ship',
- title: 'Mariehamn',
- description: 'Ålands huvudstad och naturliga mötesplats för seglare. Välutrustad gästhamn, restauranger och tullfri handel.',
- href: '/upptack',
- },
- {
- icon: '🏕️',
- title: 'Skärgårdshavets naturhamnar',
- description: '6 500 öar i skärgårdshavet erbjuder oändliga ankringsplatser, många helt orörda och tillgängliga med allemansrätten.',
- href: '/platser?kategori=naturhamn',
- },
- {
- icon: 'utensils',
- title: 'Åländska krogar',
- description: 'Från Mariehamns restauranger till gamla handelshus ute i skärgården, unikt utbud med finsk-svensk karaktär.',
- href: '/krogar-och-mat',
- },
- {
- icon: 'map',
- title: 'Skärgårdshavets karta',
- description: 'Navigera bland öar, grunder och smala sund med Svallas interaktiva karta och inbyggda GPS-spårning.',
- href: '/upptack',
- },
- {
- icon: '📱',
- title: 'Logga hela resan',
- description: 'Avgång från Sverige, Ålandsvistelsen och hemresan. Spara alla turer och se din totala statistik.',
- href: '/logga-in',
- },
+  {
+    icon: 'map',
+    title: 'Alla öar på Svalla',
+    description: 'Ösidor längs hela svenska kusten med hur du tar dig dit och vad som finns på ön.',
+    href: '/oar',
+  },
+  {
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
+  },
 ]
 
 export default function AlandPage() {

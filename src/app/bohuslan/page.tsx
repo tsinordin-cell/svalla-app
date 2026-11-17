@@ -50,36 +50,36 @@ const ITEMS: LandingItem[] = [
  description: 'Marstrand, Smögen, Koster, Käringön, Gullholmen, Åstol … varje ö med gästhamn, service och källa. Listan finns längre ner på sidan.',
  href: '/bohuslan#oar',
  },
- {
- icon: '🦞',
- title: 'Hummerkrogar',
- description: 'Säsong i september till oktober. Smögen, Fjällbacka, Grebbestad och Kungshamn är klassiska stoppunkter.',
- href: '/krogar-och-mat',
- },
- {
- icon: 'sailboat',
- title: 'Segelrutter längs kusten',
- description: 'Från Göteborgs skärgård norrut. De klassiska lederna etapp för etapp.',
- href: '/segelrutter',
- },
+  {
+    icon: '🏰',
+    title: 'Marstrand',
+    description: 'Ösidan om Marstrand: så tar du dig dit och vad som finns på ön.',
+    href: '/o/marstrand',
+  },
+  {
+    icon: '🦞',
+    title: 'Smögen',
+    description: 'Ösidan om Smögen: så tar du dig dit och vad som finns på ön.',
+    href: '/o/smogen',
+  },
+  {
+    icon: '⛵',
+    title: 'Segelrutter längs kusten',
+    description: 'Distanser och regler för segling längs Bohuslän, samlade på en sida.',
+    href: '/segelrutter',
+  },
  {
  icon: 'anchor',
  title: 'Naturhamnar och allemansrätten',
  description: 'Vad som gäller när du ankrar i en vik eller lånar en brygga, och var du inte får gå i land under häckningstiden.',
  href: '/hamnar-och-bryggor#naturhamnar',
  },
- {
- icon: 'map',
- title: 'Logga dina turer',
- description: 'Spara din färd längs kusten med bilder och dela med vänner som också seglar Bohuslän. Kräver gratis konto.',
- href: '/logga-in',
- },
- {
- icon: 'castle',
- title: 'Marstrand & Carlstens fästning',
- description: 'Sommarens seglarmötesplats: Sveriges största gästhamn enligt Turistrådet Västsverige, och fästningen från 1660 ovanför.',
- href: '/o/marstrand',
- },
+  {
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
+  },
 ]
 
 export default function BohuslanPage() {

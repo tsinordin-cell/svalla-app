@@ -39,36 +39,36 @@ const ITEMS: LandingItem[] = [
  href: '/blekinge-skargard#oar',
  meta: 'Gratis',
  },
- {
- icon: 'ship',
- title: 'Karlskrona: marinstad',
- description: 'Världsarvsstad och Östersjöns stolthet. Gästhamnen i Stumholmen är en naturlig mötesplats för seglare.',
- href: '/upptack',
- },
- {
- icon: '🏕️',
- title: 'Hanö och ytterskärgården',
- description: 'Blekinges utpostar mot öppet hav, råa öar med unik fågelrik natur och lugna ankringsplatser.',
- href: '/platser?kategori=naturhamn',
- },
- {
- icon: 'utensils',
- title: 'Krogar längs kusten',
- description: 'Från fiskrökerier i Ronneby skärgård till vällagad mat i Karlskronas restauranger.',
- href: '/krogar-och-mat',
- },
- {
- icon: 'sailboat',
- title: 'Etapp på ostkustseglingen',
- description: 'Blekinge är en naturlig etapp om du seglar längs kusten mot Gotland eller Danmark. Logga varje dag.',
- href: '/logga-in',
- },
- {
- icon: '📱',
- title: 'Logga dina turer',
- description: 'GPS-spårning, foton och anteckningar. Spara minnen från Blekinges skärgård.',
- href: '/logga-in',
- },
+  {
+    icon: '🐦',
+    title: 'Hanö',
+    description: 'Ösidan om Hanö: så tar du dig dit och vad som finns på ön.',
+    href: '/o/hano',
+  },
+  {
+    icon: '🗼',
+    title: 'Utklippan',
+    description: 'Ösidan om Utklippan: så tar du dig dit och vad som finns på ön.',
+    href: '/o/utklippan',
+  },
+  {
+    icon: '⛵',
+    title: 'Segelrutter längs ostkusten',
+    description: 'Distanser och regler för segling längs ostkusten ner till Malmö, samlade på en sida.',
+    href: '/segelrutter',
+  },
+  {
+    icon: '⚓',
+    title: 'Gästhamnar och naturhamnar',
+    description: 'Hamnar längs svenska kusten, bland annat i Blekinge.',
+    href: '/hamnar-och-bryggor',
+  },
+  {
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
+  },
 ]
 
 export default function BlekingeSkargardPage() {
