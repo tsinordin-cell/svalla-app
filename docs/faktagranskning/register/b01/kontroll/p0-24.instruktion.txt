@@ -1,0 +1,18 @@
+Du är KONTROLLANTEN för en P0-rättelse i Svallas faktagranskning: P0 24, rutorna "Sista båten" och avgångarna på ösidorna. Ditt jobb är att hitta fel, inte att bekräfta. Skriv på svenska. Dagens datum är 2026-11-17, och det är läsdatum för allt du öppnar.
+
+Bakgrund (det enda du behöver veta om ärendet): P0 är ett fel som kan stranda någon. Det rättas samma dag i en egen PR. Rutan "Sista båten" kunde peka ut en beställningstur (som bara går om man beställt) som dagens sista båt, och Göteborgsöarna hänvisade till SL.se. Rättelsen lägger till noter om beställningsturer per ö och länkar till rätt operatör.
+
+INSTRUKTIONEN
+Läs /home/claude/svalla-app/docs/faktagranskning/roller/kontrollant.md, hela, med förtydligandena efter batch 01, och följ den. Platshållarna: {{SLUG}} = p0-24, {{NAMN}} = P0 24, {{BATCH}} = P0 24, {{DATUM}} = 2026-11-17, {{K}} = /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kontroll, {{B}} = /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01, {{TOOLS}} = /home/claude/svalla-app/docs/faktagranskning/verktyg. Trafikuppgifter beläggs av operatörens egna tabeller (Waxholmsbolagets och SL:s PDF:er på kund.printhuset-sthlm.se/wa/ och /sl/, Västtrafiks tabeller); en PDF läst med pdftotext -layout räknas som läst.
+
+UNDERLAG
+- {{K}}/p0-24.underlag.tsv (85 påståenden) och {{K}}/p0-24.strukna.tsv (4 strukna). Pröva varje rad.
+- Gammal och ny text: /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/p0-24/edits.json (poster med "fil", "gammal" och "ny"). Läs bara den filen i p0-24/. Kontrollera också för varje ö att noten stämmer med dagens tabell (vilka turer, vilka bryggor, vilka frister), att ingen ö med beställningsturer i de lästa tabellerna saknar not, att länkarna går till en sida som finns och till rätt operatör, och att inga klockslag eller priser har tillkommit i publicerad text.
+- Main finns orörd i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/main-kopia (läs bara).
+
+LEVERANS
+- {{K}}/p0-24.kontroll.tsv med rubrikraden ur instruktionen och en rad per kid i underlaget och i strukna-filen. Skriv filen efter varje källa. Spara sidorna i {{K}}/p0-24-sidor/.
+- Öppna inte p0-24/rapport.md, p0-24/kallor/, p0-24/torr/, registren, nyckelfiler, beslutsfiler eller andra agenters mappar. Skriv inga filer i repot.
+- Når du inte en sida, svara SAKNAS med kommentaren "ej nåbar". Kringgå aldrig blockeringar, CAPTCHA, inloggning eller certifikatvarningar. Skicka aldrig personuppgifter i anrop.
+
+Slutsvar på högst 8 rader: antal OK, FEL och SAKNAS, och varje FEL eller SAKNAS med kid och en mening. Skilj på MÄTT och RESONERAT.

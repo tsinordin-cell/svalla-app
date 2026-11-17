@@ -1,0 +1,564 @@
+[
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  tidsObs?: string\n}\n",
+    "ny": "  tidsObs?: string\n  /**\n   * P0 24 (2026-11-17): var resenären ser om turen i rutan kräver beställning,\n   * till exempel \"Waxholmsbolagets tabell 16\". Rutorna visar den direkt under\n   * tiderna. ResRobot-svaret säger inte vilka turer som kräver beställning\n   * (trafiklab.ts läser inga anmärkningar), och \"Sista båten\" pekade därför ut\n   * en beställningstur som dagens sista båt. Måste ha KÄLLA-rad ovanför värdet.\n   */\n  bestallningTabell?: string\n  /**\n   * P0 24 (2026-11-17): reseplaneraren som rutorna länkar till, när den inte\n   * följer av ursprunget (getReseplanerare). Måste ha KÄLLA-rad ovanför värdet.\n   */\n  reseplanerare?: Reseplanerare\n}\n\n/** P0 24 (2026-11-17): länken i rutorna när en tur är inställd eller tiderna saknas. */\nexport interface Reseplanerare {\n  /** Visas i texten, till exempel \"Västtrafiks reseplanerare\". */\n  namn: string\n  url: string\n}\n",
+    "rader": [
+      "p24-k003"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',\n  },\n",
+    "ny": "Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',\n    // P0 24 (2026-11-17): \"Sista båten från Sandhamn idag\" visade på torsdagar tur 1612, som har\n    // anmärkning B i 16B, fast sista turen utan beställning den dagen är 1630.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"16B HAGEDE – SANDHAMN – STAVSNÄS\", \"ANMÄRKNING TUR\", \"Beställ resan i SL-appen, på\" (läst 2026-11-17)\n    bestallningTabell: 'Waxholmsbolagets tabell 16',\n  },\n",
+    "rader": [
+      "p24-k003"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "Långvik och Dragedet trafikeras även av tabell 10 och 12.',\n",
+    "ny": "Långvik och Dragedet trafikeras även av tabell 10 och 12.',\n    // P0 24 (2026-11-17, Kontrollanten): avgångsrutan visade en resa med tur 1441, som angör\n    // Möjaström med Xb (ingen fast tid, bara efter beställning). Rutan visar Möjaström, som bara\n    // tabell 14 trafikerar.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"14B MÖJA – SOLLENKROKA – VAXHOLM – STOCKHOLM\", \"Möjaström (Möja)\", \"Beställ resan i SL-appen, på\" (läst 2026-11-17)\n    bestallningTabell: 'Waxholmsbolagets tabell 14',\n",
+    "rader": [
+      "p24-k004"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n",
+    "ny": "Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Beställ resan i SL-appen, på\" (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Beställ resan i SL-appen, på\" (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ\", \"Beställ resan i SL-appen, på\" (läst 2026-11-17)\n    bestallningTabell: 'Waxholmsbolagets tabell 10, 12 eller 13',\n",
+    "rader": [
+      "p24-k005"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',\n  },\n  // bullero",
+    "ny": "Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ\", \"Kymmendö\", \"Beställ resan i SL-appen, på\" (läst 2026-11-17)\n    bestallningTabell: 'Waxholmsbolagets tabell 19',\n  },\n  // bullero",
+    "rader": [
+      "p24-k006"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',\n  },\n  rindo: {",
+    "ny": "Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ\", \"Fjärdlång\", \"Beställ resan i SL-appen, på\" (läst 2026-11-17)\n    bestallningTabell: 'Waxholmsbolagets tabell 19',\n  },\n  rindo: {",
+    "rader": [
+      "p24-k007"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 4 i god tid innan du åker.',\n",
+    "ny": "Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 4 i god tid innan du åker.',\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h4.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"4A STOCKHOLM – VAXHOLM – RAMSÖSUND – ÅLSTÄKET\", \"Orrlunda (Tynningö)\", \"Beställ resan i SL-appen, på\" (läst 2026-11-17)\n    bestallningTabell: 'Waxholmsbolagets tabell 4',\n",
+    "rader": [
+      "p24-k008"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "    note: 'Skärgårdsbåt från Karlskrona. Aspö hör till världsarvet Örlogsstaden Karlskrona.',\n",
+    "ny": "    note: 'Skärgårdsbåt från Karlskrona. Aspö hör till världsarvet Örlogsstaden Karlskrona.',\n    // P0 24 (2026-11-17): rutorna länkade till SL:s reseplanerare. Överfarten Karlskrona–Aspö är\n    // Trafikverkets vägfärja Aspöleden. RESONERAT, inte mätt: vilket bolag ResRobot anger för båtbenet\n    // kunde inte läsas utan nyckel; sidan nedan gäller överfarten i vilket fall.\n    // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/aspoleden/ — \"Aspöleden går mellan Karlskrona och Aspö i Karlskrona skärgård.\" (läst 2026-11-17)\n    reseplanerare: { namn: 'Trafikverkets sida om Aspöleden', url: 'https://www.trafikverket.se/resa-och-trafik/farjetrafik/aspoleden/' },\n",
+    "rader": [
+      "p24-k015"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "export function getIslandTransit(slug: string): IslandTransitConfig | null {\n  return ISLAND_TRANSIT[slug] ?? null\n}\n",
+    "ny": "export function getIslandTransit(slug: string): IslandTransitConfig | null {\n  return ISLAND_TRANSIT[slug] ?? null\n}\n\n// P0 24 (2026-11-17): rutorna länkade till https://sl.se/sv/reseplaneraren, som i dag visar\n// \"Sidan kunde inte hittas\". På sl.se/reseplanering går länken under \"Sök din resa med oss\" till\n// startsidan, där sökrutan finns (MÄTT i Chromium 2026-11-17).\n// KÄLLA: https://sl.se/reseplanering — \"Sök din resa med oss\", \"Använd vår reseplanerare för att hitta din resa.\" (läst 2026-11-17)\n// KÄLLA: https://sl.se/ — \"Sök resa\", \"Vart vill du åka?\" (läst 2026-11-17)\n// KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — \"Sök hela din resa på sl.se för att få tider för både\" (läst 2026-11-17)\nexport const SL_RESEPLANERARE: Reseplanerare = { namn: 'SL:s reseplanerare', url: 'https://sl.se/' }\n\n// P0 24 (2026-11-17): öarna med Saltholmen som ursprung (Brännö, Styrsö, Donsö, Vrångö, Asperö)\n// trafikeras av Västtrafik, men rutorna sa \"kolla SL.se\" och länkade till SL.\n// KÄLLA: https://www.vasttrafik.se/reseplanering/reseplaneraren/ — \"Här kan du söka en resa från Start till Slut. Du kan söka mellan hållplatser, adresser eller platser.\" (läst 2026-11-17)\n// KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/ — \"Här finns Västtrafiks tidtabeller. Du hittat tidtabeller för buss, tåg, spårvagn, båt och förbeställd trafik.\" (läst 2026-11-17)\n// KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — \"Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö\", \"Brännö Rödsten\", \"Asperö\", \"Gäller 24 aug – 12 dec 2026\" (läst 2026-11-17)\nexport const VASTTRAFIK_RESEPLANERARE: Reseplanerare = { namn: 'Västtrafiks reseplanerare', url: 'https://www.vasttrafik.se/reseplanering/reseplaneraren/' }\n\n/**\n * P0 24 (2026-11-17): reseplaneraren för ön. Öns eget värde går först, sedan\n * ursprunget (Saltholmen och Göteborg C är Västtrafiks), annars SL.\n */\nexport function getReseplanerare(slug: string): Reseplanerare {\n  const cfg = getIslandTransit(slug)\n  if (cfg?.reseplanerare) return cfg.reseplanerare\n  if (cfg && (cfg.originStopId === SALTHOLMEN_ID || cfg.originStopId === GOTEBORG_C_ID)) return VASTTRAFIK_RESEPLANERARE\n  return SL_RESEPLANERARE\n}\n",
+    "rader": [
+      "p24-k009",
+      "p24-k010",
+      "p24-k011",
+      "p24-k012",
+      "p24-k013",
+      "p24-k014"
+    ]
+  },
+  {
+    "fil": "src/components/LastBoatPanel.tsx",
+    "gammal": "import { useEffect, useState } from 'react'\n",
+    "ny": "import { useEffect, useState } from 'react'\nimport { getIslandTransit, getReseplanerare } from '@/lib/transit-stops'\n",
+    "rader": [
+      "p24-k001"
+    ]
+  },
+  {
+    "fil": "src/components/LastBoatPanel.tsx",
+    "gammal": "  const dur = formatDuration(lastTrip.durationMin)\n",
+    "ny": "  const dur = formatDuration(lastTrip.durationMin)\n  // P0 24 (2026-11-17): se bestallningTabell och getReseplanerare i transit-stops.ts.\n  const bestallningTabell = getIslandTransit(islandSlug)?.bestallningTabell ?? null\n  const reseplanerare = getReseplanerare(islandSlug)\n",
+    "rader": [
+      "p24-k001",
+      "p24-k009"
+    ]
+  },
+  {
+    "fil": "src/components/LastBoatPanel.tsx",
+    "gammal": "      {isCancelled && (\n        <p style={{\n          fontSize: 12, color: 'rgba(255,255,255,0.85)',\n          margin: '12px 0 0', lineHeight: 1.5, fontWeight: 600,\n        }}>\n          ⚠️ Sista avgången är inställd: kolla{' '}\n          <a href=\"https://sl.se/sv/reseplaneraren\" target=\"_blank\" rel=\"noopener noreferrer\"\n             style={{ color: '#fde68a', textDecoration: 'underline' }}>\n            SL.se\n          </a> för alternativ.\n        </p>\n      )}\n",
+    "ny": "      {/* P0 24 (2026-11-17, Kontrollanten MÄTT): rutan visade en torsdag 20:50 från Sandhamn,\n          som är tur 1612 med anmärkning B i Waxholmsbolagets tabell 16: den går bara om resan\n          har beställts i förväg. Utan beställning gick sista båten 17:35 (tur 1630). ResRobot\n          säger inte vilka turer som kräver beställning, så på öar med bestallningTabell står\n          det direkt under tiden. KÄLLA-raderna står vid värdet i transit-stops.ts. */}\n      {bestallningTabell && (\n        <p role=\"note\" style={{\n          fontSize: 12.5, fontWeight: 700, lineHeight: 1.5,\n          margin: '10px 0 0', padding: '8px 10px', borderRadius: 8,\n          background: 'rgba(0,0,0,0.30)', border: '1px solid rgba(253,230,138,0.55)',\n        }}>\n          Tiden kan gälla en tur som bara går eller stannar här om resan har beställts i förväg. Är det så, går sista båten utan beställning tidigare. Se turens anmärkning i {bestallningTabell}.\n        </p>\n      )}\n\n      {isCancelled && (\n        <p style={{\n          fontSize: 12, color: 'rgba(255,255,255,0.85)',\n          margin: '12px 0 0', lineHeight: 1.5, fontWeight: 600,\n        }}>\n          {/* P0 24 (2026-11-17): länken gick till SL även på Västtrafiks öar. */}\n          ⚠️ Sista avgången är inställd: kolla{' '}\n          <a href={reseplanerare.url} target=\"_blank\" rel=\"noopener noreferrer\"\n             style={{ color: '#fde68a', textDecoration: 'underline' }}>\n            {reseplanerare.namn}\n          </a> för alternativ.\n        </p>\n      )}\n",
+    "rader": [
+      "p24-k001",
+      "p24-k002",
+      "p24-k009",
+      "p24-k010",
+      "p24-k015"
+    ]
+  },
+  {
+    "fil": "src/components/DepartureWidget.tsx",
+    "gammal": " * från fastlandet med byten + ankomsttid. Klickar man på en resa öppnas\n * SL.se reseplaneraren i ny flik (vi kan inte sälja biljett själva).\n",
+    "ny": " * från fastlandet med byten + ankomsttid. Klickar man på en resa öppnas\n * operatörens reseplanerare i ny flik (getReseplanerare i transit-stops.ts;\n * till 2026-11-17 alltid SL:s, även på Västtrafiks öar).\n",
+    "rader": [
+      "p24-k009"
+    ]
+  },
+  {
+    "fil": "src/components/DepartureWidget.tsx",
+    "gammal": "import { vagDitText } from '@/lib/ingen-trafik'\n",
+    "ny": "import { vagDitText } from '@/lib/ingen-trafik'\nimport { getIslandTransit, getReseplanerare } from '@/lib/transit-stops'\n",
+    "rader": [
+      "p24-k016"
+    ]
+  },
+  {
+    "fil": "src/components/DepartureWidget.tsx",
+    "gammal": "    return () => { cancelled = true; clearInterval(id) }\n  }, [islandSlug])\n\n  // Om servern säger",
+    "ny": "    return () => { cancelled = true; clearInterval(id) }\n  }, [islandSlug])\n\n  // P0 24 (2026-11-17): se bestallningTabell och getReseplanerare i transit-stops.ts.\n  const reseplanerare = getReseplanerare(islandSlug)\n  const bestallningTabell = getIslandTransit(islandSlug)?.bestallningTabell ?? null\n\n  // Om servern säger",
+    "rader": [
+      "p24-k016",
+      "p24-k009"
+    ]
+  },
+  {
+    "fil": "src/components/DepartureWidget.tsx",
+    "gammal": "          Tidtabellinfo ej tillgänglig just nu: prova{' '}\n          <a href=\"https://sl.se/sv/reseplaneraren\" target=\"_blank\" rel=\"noopener noreferrer\"\n             style={{ color: '#ffd28a', textDecoration: 'underline' }}>\n            sl.se\n          </a>.\n",
+    "ny": "          Tidtabellinfo ej tillgänglig just nu: prova{' '}\n          <a href={reseplanerare.url} target=\"_blank\" rel=\"noopener noreferrer\"\n             style={{ color: '#ffd28a', textDecoration: 'underline' }}>\n            {reseplanerare.namn}\n          </a>.\n",
+    "rader": [
+      "p24-k009",
+      "p24-k010",
+      "p24-k015"
+    ]
+  },
+  {
+    "fil": "src/components/DepartureWidget.tsx",
+    "gammal": "          Inga avgångar hittade just nu. Försök igen senare eller{' '}\n          <a href=\"https://sl.se/sv/reseplaneraren\"\n             target=\"_blank\" rel=\"noopener noreferrer\"\n             style={{ color: '#ffd28a', textDecoration: 'underline' }}>\n            öppna SL-reseplaneraren\n          </a>.\n",
+    "ny": "          Inga avgångar hittade just nu. Försök igen senare eller öppna{' '}\n          <a href={reseplanerare.url}\n             target=\"_blank\" rel=\"noopener noreferrer\"\n             style={{ color: '#ffd28a', textDecoration: 'underline' }}>\n            {reseplanerare.namn}\n          </a>.\n",
+    "rader": [
+      "p24-k009",
+      "p24-k010",
+      "p24-k015"
+    ]
+  },
+  {
+    "fil": "src/components/DepartureWidget.tsx",
+    "gammal": "              <TripRow key={i} trip={t} originName={data.originName} destName={data.destName} />\n            ))}\n          </div>\n",
+    "ny": "              <TripRow key={i} trip={t} originName={data.originName} destName={data.destName} reseplanerareUrl={reseplanerare.url} />\n            ))}\n          </div>\n\n          {/* P0 24 (2026-11-17, Kontrollanten MÄTT på /o/moja): rutan visade en resa 14:45 till\n              Möjaström med ankomst 18:49. Den genomgående turen 1441 (onsdag och torsdag) har Xb vid\n              Möjaström i Waxholmsbolagets tabell 14: ingen fast tid, och resan måste beställas.\n              ResRobot säger inte vilka turer som kräver beställning, så på öar med bestallningTabell\n              står det direkt under tiderna. KÄLLA-raderna står vid värdet i transit-stops.ts. */}\n          {bestallningTabell && (\n            <p role=\"note\" style={{\n              fontSize: 12.5, color: '#fff', fontWeight: 700,\n              margin: '10px 0 0', lineHeight: 1.5,\n              background: 'rgba(0,0,0,0.30)', border: '1px solid rgba(255,210,138,0.55)',\n              borderRadius: 8, padding: '8px 10px',\n            }}>\n              Någon av turerna ovan kan vara en tur som bara går eller stannar vid bryggan om resan har beställts i förväg. Se turens anmärkning i {bestallningTabell}.\n            </p>\n          )}\n",
+    "rader": [
+      "p24-k016",
+      "p24-k004"
+    ]
+  },
+  {
+    "fil": "src/components/DepartureWidget.tsx",
+    "gammal": "            <a\n              href=\"https://sl.se/sv/reseplaneraren\"\n              target=\"_blank\" rel=\"noopener noreferrer\"\n              style={{\n                fontSize: 12, fontWeight: 700, color: '#ffd28a',\n                textDecoration: 'none',\n              }}\n            >\n              Se alla avgångar →\n            </a>\n",
+    "ny": "            <a\n              href={reseplanerare.url}\n              target=\"_blank\" rel=\"noopener noreferrer\"\n              style={{\n                fontSize: 12, fontWeight: 700, color: '#ffd28a',\n                textDecoration: 'none',\n              }}\n            >\n              Öppna {reseplanerare.namn} →\n            </a>\n",
+    "rader": [
+      "p24-k009",
+      "p24-k010",
+      "p24-k015"
+    ]
+  },
+  {
+    "fil": "src/components/DepartureWidget.tsx",
+    "gammal": "function TripRow({ trip, originName, destName }: { trip: TripSummary; originName: string; destName: string }) {\n  const operatorList = [...new Set(trip.legs.map(l => l.operator).filter(Boolean))].join(' · ') || 'Kollektivt'\n  const hasFerry = trip.legs.some(l => l.category.toLowerCase().includes('färja'))\n  const tripUrl = `https://sl.se/sv/reseplaneraren`\n",
+    "ny": "function TripRow({ trip, originName, destName, reseplanerareUrl }: { trip: TripSummary; originName: string; destName: string; reseplanerareUrl: string }) {\n  const operatorList = [...new Set(trip.legs.map(l => l.operator).filter(Boolean))].join(' · ') || 'Kollektivt'\n  const hasFerry = trip.legs.some(l => l.category.toLowerCase().includes('färja'))\n  const tripUrl = reseplanerareUrl\n",
+    "rader": [
+      "p24-k009",
+      "p24-k010",
+      "p24-k015"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  runmaro: {\n    destStopId: '740023240', destStopName: 'Långvik (Runmarö) brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',\n  },\n",
+    "ny": "  runmaro: {\n    destStopId: '740023240', destStopName: 'Långvik (Runmarö) brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1612 (B) i 16B och 23B, 1613 och 1665 (b) i 16A.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"Långvik (Runmarö)\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\" (vid Långvik (Runmarö): B (turen går bara efter beställning), b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h23.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"23B RUNMARÖ – STAVSNÄS\", \"Långvik (Runmarö)\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\" (vid Långvik (Runmarö): B (turen går bara efter beställning)) (läst 2026-11-17)\n    bestallning: 'Några turer till och från Långvik på Runmarö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 eller 23 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 16 eller 23',\n  },\n",
+    "rader": [
+      "p24-k017",
+      "p24-k018",
+      "p24-k019"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  namdo: {\n    // 107 min, 2 byten, uppmätt 2026-08-05\n    destStopId: '740021549', destStopName: 'Östanvik (Nämdö) brygga',\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Buss från Slussen till Stavsnäs vinterhamn, sedan Waxholmsbåt ut till Nämdö.',\n  },\n",
+    "ny": "  namdo: {\n    // 107 min, 2 byten, uppmätt 2026-08-05\n    destStopId: '740021549', destStopName: 'Östanvik (Nämdö) brygga',\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Buss från Slussen till Stavsnäs vinterhamn, sedan Waxholmsbåt ut till Nämdö.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1708 (B) i 17B; C på 1711, 1713, 1731, 1712, 1714, 1732; b på 1707, 1727, 1766.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h17.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"17A STAVSNÄS – NÄMDÖ – SALTSJÖBADEN – STOCKHOLM\", \"Östanvik (Nämdö)\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Östanvik (Nämdö): B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'En del turer till och från Östanvik på Nämdö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 17 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 17',\n  },\n",
+    "rader": [
+      "p24-k020",
+      "p24-k021",
+      "p24-k022"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  landsort: {\n    destStopId: '740024878', destStopName: 'Landsort brygga',\n    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',\n    // Rättad 2026-11-09 (P0 21): buss 858 går Grödby–Nynäshamn, inte till Ankarudden. Det är 852 som går dit.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — \"Nynäshamns station–Torö\", \"ANKARUDDEN\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-09)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h858.pdf — \"Grödby–Nynäshamn (Sandhamn)\" (läst 2026-11-09)\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — \"Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden.\" (läst 2026-11-09)\n    note: 'Pendeltåg till Nynäshamn + buss 852 till Ankarudden + båt.',\n  },\n",
+    "ny": "  landsort: {\n    destStopId: '740024878', destStopName: 'Landsort brygga',\n    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',\n    // Rättad 2026-11-09 (P0 21): buss 858 går Grödby–Nynäshamn, inte till Ankarudden. Det är 852 som går dit.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — \"Nynäshamns station–Torö\", \"ANKARUDDEN\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-09)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h858.pdf — \"Grödby–Nynäshamn (Sandhamn)\" (läst 2026-11-09)\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/landsort — \"Båtarna till Landsort går från Ankaruddens brygga. Den ligger strax söder om Nynäshamn, och det går SL-trafik mellan Nynäshamn och Ankarudden.\" (läst 2026-11-09)\n    note: 'Pendeltåg till Nynäshamn + buss 852 till Ankarudden + båt.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 2908 (B) i 29B; 2907, 2957, 2977 (B) i 29A.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h29.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"29A ANKARUDDEN – LANDSORT\", \"Landsort\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\" (vid Landsort: B (turen går bara efter beställning)) (läst 2026-11-17)\n    bestallning: 'Några turer till och från Landsort går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 29 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 29',\n  },\n",
+    "rader": [
+      "p24-k023",
+      "p24-k024",
+      "p24-k025"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  arholma: {\n    destStopId: '740024314', destStopName: 'Arholma brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Yttersta ön i norra skärgården, båt från Simpnäs (buss 631 från Norrtälje).',\n  },\n",
+    "ny": "  arholma: {\n    destStopId: '740024314', destStopName: 'Arholma brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Yttersta ön i norra skärgården, båt från Simpnäs (buss 631 från Norrtälje).',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 3014 och 3078 (B) i 30B, 3013 och 3077 (B) i 30A, 3001 och 3002 (C).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h30.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"30A SIMPNÄS – ARHOLMA\", \"Arholma\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"resdag.\" (vid Arholma: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'Några turer till och från Arholma går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 30 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 30',\n  },\n",
+    "rader": [
+      "p24-k026",
+      "p24-k027",
+      "p24-k028"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  furusund: {\n    destStopId: '740025063', destStopName: 'Furusund brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Knutpunkten för norra skärgården, buss 626/634 från Norrtälje.',\n  },\n",
+    "ny": "  furusund: {\n    destStopId: '740025063', destStopName: 'Furusund brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Knutpunkten för norra skärgården, buss 626/634 från Norrtälje.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 2868, 2820 och 2882 (B) i 28B, 2501 och 2502 (B) i tabell 25; tabell 28 är avsnittet 1 oktober till 12 december i h28.pdf.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h25.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"25A FURUSUND – HÖGMARSÖ – SOLÖ\", \"Furusund\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\" (vid Furusund: B (turen går bara efter beställning)) (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA\", \"Furusund\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"resdag.\" (vid Furusund: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'En del turer till och från Furusund går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 25 eller 28 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 25 eller 28',\n  },\n",
+    "rader": [
+      "p24-k029",
+      "p24-k030",
+      "p24-k031"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  norrora: {\n    destStopId: '740034551', destStopName: 'Norröra brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Saltkråkan-ön, Waxholmsbåt från Furusund.',\n  },\n",
+    "ny": "  norrora: {\n    destStopId: '740034551', destStopName: 'Norröra brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Saltkråkan-ön, Waxholmsbåt från Furusund.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 2868 och 2820 (B) i 28B; B, b eller C på 11 av 14 turer i 28A och 6 av 17 i 28B (avsnittet 1 oktober till 12 december).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA\", \"Norröra\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Norröra: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'En del turer till och från Norröra går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 28',\n  },\n",
+    "rader": [
+      "p24-k035",
+      "p24-k036",
+      "p24-k037"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  graskar: {\n    // Uppmätt 2026-09-28 med /api/transit/stop-lookup: Gräskö brygga ligger 564 m från\n    // Lantmäteriets ortnamnspunkt. Provresa från Stockholm: buss 676 och 634 via\n    // Norrtälje, sista biten med färja linje 28. Tidigare stod ön felaktigt som\n    // \"ingen hållplats inom 5 km\" eftersom koordinaten låg vid Möja.\n    destStopId: '740034555', destStopName: 'Gräskö brygga',\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Buss via Norrtälje och Waxholmsbolagets linje 28 sista biten.',\n  },\n",
+    "ny": "  graskar: {\n    // Uppmätt 2026-09-28 med /api/transit/stop-lookup: Gräskö brygga ligger 564 m från\n    // Lantmäteriets ortnamnspunkt. Provresa från Stockholm: buss 676 och 634 via\n    // Norrtälje, sista biten med färja linje 28. Tidigare stod ön felaktigt som\n    // \"ingen hållplats inom 5 km\" eftersom koordinaten låg vid Möja.\n    destStopId: '740034555', destStopName: 'Gräskö brygga',\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Buss via Norrtälje och Waxholmsbolagets linje 28 sista biten.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 2868 och 2820 (B) i 28B; B, b eller C på 11 av 13 turer i 28A och 5 av 14 i 28B (avsnittet 1 oktober till 12 december).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA\", \"Gräskö\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Gräskö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'En del turer till och från Gräskö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 28',\n  },\n",
+    "rader": [
+      "p24-k038",
+      "p24-k039",
+      "p24-k040"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  fejan: {\n    destStopId: '740018278', destStopName: 'Fejan brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n  },\n",
+    "ny": "  fejan: {\n    destStopId: '740018278', destStopName: 'Fejan brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 3108 och 3110 (B) i 31B; 2 av 10 turer i 31A och 8 av 12 i 31B har B, b, C eller c.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"31A RÄFSNÄS – TJOCKÖ – FEJAN\", \"Fejan\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Fejan: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före), c (bryggan, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'En del turer till och från Fejan går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 31',\n  },\n",
+    "rader": [
+      "p24-k041",
+      "p24-k042",
+      "p24-k043"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  lido: {\n    // 160 min, 3 byten, uppmätt 2026-08-05\n    destStopId: '740034559', destStopName: 'Lidö brygga',\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Buss till Räfsnäs brygga via Norrtälje, sedan kort båttur över till Lidö.',\n  },\n",
+    "ny": "  lido: {\n    // 160 min, 3 byten, uppmätt 2026-08-05\n    destStopId: '740034559', destStopName: 'Lidö brygga',\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Buss till Räfsnäs brygga via Norrtälje, sedan kort båttur över till Lidö.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): alla 7 turer med tid vid Lidö i 31A har b; i 31B tur 3110 (B), 3150 och 3170 (C), 3106 och 3112 (b), men 3152 och 3182 stannar utan anmärkning (rättat efter Kontrollanten, k044).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"31A RÄFSNÄS – TJOCKÖ – FEJAN\", \"Lidö\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Lidö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'Många turer till och från Lidö går eller stannar där bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 31',\n  },\n",
+    "rader": [
+      "p24-k044",
+      "p24-k045",
+      "p24-k046"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  uto: {\n    destStopId: '740020695', destStopName: 'Utö Gruvbryggan',\n    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan.\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"21A ÅRSTA – UTÖ\" (läst 2026-10-29)\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — \"846 Västerhaninge station–Årsta (–Årsta slott)\", \"Årsta brygga\", \"Giltig 18 mars–18 juni samt 17 augusti–12 december 2026\" (läst 2026-10-31)\n    note: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbolagets båt, linje 21, året om till Gruvbryggan.',\n  },\n",
+    "ny": "  uto: {\n    destStopId: '740020695', destStopName: 'Utö Gruvbryggan',\n    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — \"Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan.\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"21A ÅRSTA – UTÖ\" (läst 2026-10-29)\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf — \"846 Västerhaninge station–Årsta (–Årsta slott)\", \"Årsta brygga\", \"Giltig 18 mars–18 juni samt 17 augusti–12 december 2026\" (läst 2026-10-31)\n    note: 'Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbolagets båt, linje 21, året om till Gruvbryggan.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 18 av 28 turer i 21A har b vid Gruvbryggan, inga i 21B. Tur 1936 (B) i tabell 19 går bara 17 augusti till 13 september och står därför inte med (rättat efter Kontrollanten, k047, k048).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"21A ÅRSTA – UTÖ\", \"Gruvbryggan (Utö)\", \"Beställ resan i SL-appen, på\", \"minst 1 timme innan avgång\" (vid Gruvbryggan (Utö): b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    bestallning: 'I Waxholmsbolagets tabell 21, som gäller till 12 december 2026, har en del turer till Gruvbryggan på Utö anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 21 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 21',\n  },\n",
+    "rader": [
+      "p24-k047",
+      "p24-k048",
+      "p24-k049"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  dalaro: {\n    destStopId: '740001036', destStopName: 'Dalarö Hotellbryggan',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Buss 839 från Handen pendelstation tar dig till Dalarö.',\n  },\n",
+    "ny": "  dalaro: {\n    destStopId: '740001036', destStopName: 'Dalarö Hotellbryggan',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Buss 839 från Handen pendelstation tar dig till Dalarö.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 2006, 2022, 2014, 2094 (B) i 20B, 1904, 1926, 1936 (B) i 19B; C på några turer. Tabellerna kallar bryggan Dalarö.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ\", \"Dalarö\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"resdag.\" (vid Dalarö: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h20.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"20A DALARÖ – ORNÖ (VÄSTRA SIDAN)\", \"Dalarö\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"resdag.\" (vid Dalarö: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'En del turer till och från Dalarö går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 19 eller 20',\n  },\n",
+    "rader": [
+      "p24-k050",
+      "p24-k051",
+      "p24-k052"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  finnhamn: {\n    destStopId: '740020693', destStopName: 'Finnhamn brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n  },\n",
+    "ny": "  finnhamn: {\n    destStopId: '740020693', destStopName: 'Finnhamn brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 54 av 106 turer i 10, 12 och 13 har B, b, C eller c; tur 1318 (B) i 13B.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Finnhamn\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Finnhamn: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Finnhamn\", \"Beställ resan i SL-appen, på\", \"minst 1 timme innan avgång\" (vid Finnhamn: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"13B HUSARÖ – SÖDRA INGMARSÖ – BODA – VAXHOLM – STOCKHOLM\", \"Finnhamn\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Finnhamn: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), c (bryggan, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'En stor del av turerna till och från Finnhamn går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 10, 12 eller 13',\n  },\n",
+    "rader": [
+      "p24-k053",
+      "p24-k054",
+      "p24-k055"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  ingmarso: {\n    destStopId: '740034607', destStopName: 'Ingmarsö Norra brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n  },\n",
+    "ny": "  ingmarso: {\n    destStopId: '740034607', destStopName: 'Ingmarsö Norra brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 16 av 18 turer i 10A, 4 av 19 i 10B och 5 av 15 i 12A; inga i 12B.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Norra Ingmarsö\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Norra Ingmarsö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Norra Ingmarsö\", \"Beställ resan i SL-appen, på\", \"minst 1 timme innan avgång\" (vid Norra Ingmarsö: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    bestallning: 'En del turer till och från Norra Ingmarsö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 10 eller 12',\n  },\n",
+    "rader": [
+      "p24-k056",
+      "p24-k057",
+      "p24-k058"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  svartso: {\n    destStopId: '740024872', destStopName: 'Svartsö Norra brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',\n  },\n",
+    "ny": "  svartso: {\n    destStopId: '740024872', destStopName: 'Svartsö Norra brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 19 av 19 turer i 10B, 14 av 18 i 10A (1073 och 1075 utan anmärkning) och 4 av 14 i 12A; inga i 12B och 13B (rättat efter Kontrollanten, k059).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Norra Svartsö\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Norra Svartsö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Norra Svartsö\", \"Beställ resan i SL-appen, på\", \"minst 1 timme innan avgång\" (vid Norra Svartsö: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    bestallning: 'En stor del av turerna till och från Norra Svartsö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 10 eller 12',\n  },\n",
+    "rader": [
+      "p24-k059",
+      "p24-k060",
+      "p24-k061"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  gallno: {\n    destStopId: '740024302', destStopName: 'Gällnö brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',\n  },\n",
+    "ny": "  gallno: {\n    destStopId: '740024302', destStopName: 'Gällnö brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 12 av 35 turer i 11A, 3 av 33 i 11B, 1 av 6 i 14A.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\", \"Gällnö\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Gällnö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"Gällnö\", \"Beställ resan i SL-appen, på\", \"minst 1 timme innan avgång\" (vid Gällnö: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    bestallning: 'En del turer till och från Gällnö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 14 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 11 eller 14',\n  },\n",
+    "rader": [
+      "p24-k062",
+      "p24-k063",
+      "p24-k064"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  grinda: {\n    destStopId: '740098471', destStopName: 'Grinda',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Direktbåt med Waxholmsbolaget från Strömkajen sommartid.',\n  },\n",
+    "ny": "  grinda: {\n    destStopId: '740098471', destStopName: 'Grinda',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Direktbåt med Waxholmsbolaget från Strömkajen sommartid.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1477 (b) i 11A och 1475 (b) i 13B; inga vid Norra Grinda.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\", \"Södra Grinda\", \"Beställ resan i SL-appen, på\", \"minst 1 timme innan avgång\" (vid Södra Grinda: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"13B HUSARÖ – SÖDRA INGMARSÖ – BODA – VAXHOLM – STOCKHOLM\", \"Södra Grinda\", \"Beställ resan i SL-appen, på\", \"minst 1 timme innan avgång\" (vid Södra Grinda: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    bestallning: 'Någon tur stannar vid Södra Grinda bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 13 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 11 eller 13',\n  },\n",
+    "rader": [
+      "p24-k065",
+      "p24-k066",
+      "p24-k067"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  ljustero: {\n    destStopId: '740020573', destStopName: 'Åsättra (Ljusterö) brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Bilfärja från Östanå, buss 626 + bilfärja Östanå till Ljusterö.',\n  },\n",
+    "ny": "  ljustero: {\n    destStopId: '740020573', destStopName: 'Åsättra (Ljusterö) brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Bilfärja från Östanå, buss 626 + bilfärja Östanå till Ljusterö.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1011 (B), 1001, 1021, 1002, 1042, 1020 (C).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Åsättra brygga\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"resdag.\" (vid Åsättra brygga: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'Några turer till och från Åsättra brygga går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 10',\n  },\n",
+    "rader": [
+      "p24-k068",
+      "p24-k069",
+      "p24-k070"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  resaro: {\n    destStopId: '740034517', destStopName: 'Ytterby (Resarö) brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Bilbro från Vaxholm, buss 670 + 689 från Tekniska högskolan.',\n  },\n",
+    "ny": "  resaro: {\n    destStopId: '740034517', destStopName: 'Ytterby (Resarö) brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Bilbro från Vaxholm, buss 670 + 689 från Tekniska högskolan.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 19 av 27 turer i 5A och 13 av 34 i 5B har b.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"5A STOCKHOLM – VAXHOLM – STEGESUND – VIKINGSBORG\", \"Ytterby (Resarö)\", \"Beställ resan i SL-appen, på\", \"minst 1 timme innan avgång\" (vid Ytterby (Resarö): b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    bestallning: 'Många turer till och från Ytterby på Resarö stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 5 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 5',\n  },\n",
+    "rader": [
+      "p24-k071",
+      "p24-k072",
+      "p24-k073"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  orno: {\n    destStopId: '740034475', destStopName: 'Ornö Kyrka brygga',\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ\" (läst 2026-10-29)\n    // P0 2026-10-29: avgångsrutan räknade från Nynäshamns färjeterminal. Ingen av Waxholmsbolagets tabeller för perioden har båt därifrån till Ornö.\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Bilfärja från Dalarö, pendeltåg till Handen + buss 839 + färja.',\n  },\n",
+    "ny": "  orno: {\n    destStopId: '740034475', destStopName: 'Ornö Kyrka brygga',\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ\" (läst 2026-10-29)\n    // P0 2026-10-29: avgångsrutan räknade från Nynäshamns färjeterminal. Ingen av Waxholmsbolagets tabeller för perioden har båt därifrån till Ornö.\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Bilfärja från Dalarö, pendeltåg till Handen + buss 839 + färja.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 7 av 9 turer i 19A och 9 av 13 i 19B har b eller B.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ\", \"Ornö Kyrka\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\" (vid Ornö Kyrka: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    bestallning: 'Många turer till och från Ornö kyrka går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 19',\n  },\n",
+    "rader": [
+      "p24-k074",
+      "p24-k075",
+      "p24-k076"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  ekno: {\n    // 185 min, 3 byten, uppmätt 2026-08-05\n    destStopId: '740034482', destStopName: 'Eknö brygga',\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Buss till Stavsnäs och Waxholmsbåt via Sandhamn. Lång resa. Planera dagen efter båten.',\n  },\n",
+    "ny": "  ekno: {\n    // 185 min, 3 byten, uppmätt 2026-08-05\n    destStopId: '740034482', destStopName: 'Eknö brygga',\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Buss till Stavsnäs och Waxholmsbåt via Sandhamn. Lång resa. Planera dagen efter båten.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1612 (B) i 16B; 8 av 23 turer i 16A har b eller C.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"Eknö\", \"Beställ resan i SL-appen, på\", \"minst 2 timmar innan\", \"minst 1 timme innan avgång\", \"resdag.\" (vid Eknö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)\n    bestallning: 'En del turer till och från Eknö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 16',\n  },\n",
+    "rader": [
+      "p24-k077",
+      "p24-k078",
+      "p24-k079"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  rodloga: {\n    destStopId: '740024879', destStopName: 'Rödlöga brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Yttersta ytterskärgården, direktbåt från Furusund.',\n  },\n",
+    "ny": "  rodloga: {\n    destStopId: '740024879', destStopName: 'Rödlöga brygga',\n    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    note: 'Yttersta ytterskärgården, direktbåt från Furusund.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): i 28B har 2822, 2852 och 2892 (Y, från 2 november) b; 2872 (S, till 1 november) saknar b; inga turer dit har b (rättat efter Kontrollanten, k080).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA\", \"Rödlöga\", \"Beställ resan i SL-appen, på\", \"Går under perioden 1 oktober - 1 november.\", \"Går under perioden 2 november - 12\", \"minst 1 timme innan avgång\" (vid Rödlöga: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)\n    bestallning: 'I Waxholmsbolagets tabell 28 för 2 november till 12 december 2026 har alla turer från Rödlöga anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 28',\n  },\n",
+    "rader": [
+      "p24-k080",
+      "p24-k081",
+      "p24-k082"
+    ]
+  },
+  {
+    "fil": "src/components/thorkel/ThorkelRouteCard.tsx",
+    "gammal": " *  - Klick öppnar SL.se reseplaneraren förifylld\n",
+    "ny": " *  - Klick öppnar operatörens reseplanerare (getReseplanerare i transit-stops.ts).\n *    P0 24 (2026-11-17): länken gick till https://sl.se/sv/reseplaneraren med förifylld\n *    sökning, en adress som i dag visar \"Sidan kunde inte hittas\" (MÄTT i Chromium), och\n *    till SL även för Västtrafiks öar. sl.se tar inte emot den förifyllda sökningen längre.\n",
+    "rader": [
+      "p24-k083"
+    ]
+  },
+  {
+    "fil": "src/components/thorkel/ThorkelRouteCard.tsx",
+    "gammal": "import type { TransitData } from '@/app/api/guide/route'\n",
+    "ny": "import type { TransitData } from '@/app/api/guide/route'\nimport { getReseplanerare } from '@/lib/transit-stops'\n",
+    "rader": [
+      "p24-k083"
+    ]
+  },
+  {
+    "fil": "src/components/thorkel/ThorkelRouteCard.tsx",
+    "gammal": "  const trips = data.trips.slice(0, 3)\n  if (trips.length === 0) return null\n",
+    "ny": "  const trips = data.trips.slice(0, 3)\n  if (trips.length === 0) return null\n  const reseplanerare = getReseplanerare(data.islandSlug)\n",
+    "rader": [
+      "p24-k083"
+    ]
+  },
+  {
+    "fil": "src/components/thorkel/ThorkelRouteCard.tsx",
+    "gammal": "          <TripRow key={i} trip={t} originName={data.originName} destName={data.destName} />\n",
+    "ny": "          <TripRow key={i} trip={t} originName={data.originName} destName={data.destName} reseplanerareUrl={reseplanerare.url} />\n",
+    "rader": [
+      "p24-k083"
+    ]
+  },
+  {
+    "fil": "src/components/thorkel/ThorkelRouteCard.tsx",
+    "gammal": "        <a\n          href={`https://sl.se/sv/reseplaneraren#/sok-resa?Origin.Name=${encodeURIComponent(data.originName)}&Destination.Name=${encodeURIComponent(data.destName)}`}\n          target=\"_blank\" rel=\"noopener noreferrer\"\n          style={{ color: 'var(--sea, #1e5c82)', fontWeight: 700, textDecoration: 'none' }}\n        >\n          Se alla avgångar →\n        </a>\n",
+    "ny": "        <a\n          href={reseplanerare.url}\n          target=\"_blank\" rel=\"noopener noreferrer\"\n          style={{ color: 'var(--sea, #1e5c82)', fontWeight: 700, textDecoration: 'none' }}\n        >\n          Öppna {reseplanerare.namn} →\n        </a>\n",
+    "rader": [
+      "p24-k083",
+      "p24-k009",
+      "p24-k010"
+    ]
+  },
+  {
+    "fil": "src/components/thorkel/ThorkelRouteCard.tsx",
+    "gammal": "function TripRow({ trip, originName, destName }: { trip: TransitData['trips'][number]; originName: string; destName: string }) {\n  const operatorList = [...new Set(trip.legs.map(l => l.operator).filter(Boolean))].join(' · ') || 'Kollektivt'\n  const hasFerry = trip.legs.some(l => l.category.toLowerCase().includes('färja'))\n  const tripUrl = `https://sl.se/sv/reseplaneraren#/sok-resa?Origin.Name=${encodeURIComponent(originName)}&Destination.Name=${encodeURIComponent(destName)}&Date=${trip.startDate}&Time=${trip.startTime}`\n",
+    "ny": "function TripRow({ trip, originName, destName, reseplanerareUrl }: { trip: TransitData['trips'][number]; originName: string; destName: string; reseplanerareUrl: string }) {\n  const operatorList = [...new Set(trip.legs.map(l => l.operator).filter(Boolean))].join(' · ') || 'Kollektivt'\n  const hasFerry = trip.legs.some(l => l.category.toLowerCase().includes('färja'))\n  const tripUrl = reseplanerareUrl\n",
+    "rader": [
+      "p24-k083"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "    note: 'Direkt Styrsöbåt från Saltholmen, ytterst i södra skärgården, sista anhalten.',\n",
+    "ny": "    note: 'Direkt Styrsöbåt från Saltholmen, ytterst i södra skärgården, sista anhalten.',\n    // P0 24 (2026-11-17, Redaktörens tillägg): i tabellen för 281 och 282 har Vrångö anmärkning t på den\n    // sista kvällsturen måndag till fredag och söndag och på nattturerna (MÄTT i pdftotext -layout). Lördag\n    // har den sista kvällsturen ingen anmärkning. Donsö, Styrsö Bratten (281/282) och Brännö Rödsten och\n    // Asperö Norra (283) har ingen anmärkning om föranmälan.\n    // KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014528100000/ — \"Tidtabell linje 281\", \"Vrångö - Saltholmen\" (sidan länkar till pdf:en nedan) (läst 2026-11-17)\n    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — \"Gäller 24 aug – 12 dec 2026\", \"Vrångö–Donsö–Styrsö Bratten–Köpstadsö–Saltholmen–Stenpiren\", \"Vrångö\", \"t Anlöps för påstigning efter föranmälan till båtens mobiltelefon\", \"senast 15 min före avgång.\" (läst 2026-11-17)\n    bestallning: 'Några turer från Vrångö, bland dem den sista på kvällen måndag till fredag och söndag, stannar där för påstigning bara om du har anmält dig i förväg till båtens mobiltelefon, senast 15 minuter före avgång. Numret och anmärkningen för din tur står i Västtrafiks tidtabell för linje 281.',\n    bestallningTabell: 'Västtrafiks tidtabell för linje 281',\n",
+    "rader": [
+      "p24-k084",
+      "p24-k085",
+      "p24-k086"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "  reseplanerare?: Reseplanerare\n}\n",
+    "ny": "  reseplanerare?: Reseplanerare\n  /**\n   * P0 24 (2026-11-17, Kontrollanten): när bryggan i destStopId är avstängd enligt\n   * operatörens tabell. Rutorna visar då bara den här texten och inga båttider, så\n   * att en stängd brygga inte ser ut som om båtar gick dit. Måste ha KÄLLA-rad ovanför värdet.\n   */\n  stangd?: string\n}\n",
+    "rader": [
+      "p24-k087"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "    note: 'Bilfärja från Furusund, Waxholmsbåt eller buss 626 + 634 från Norrtälje.',\n",
+    "ny": "    note: 'Bilfärja från Furusund, Waxholmsbåt eller buss 626 + 634 från Norrtälje.',\n    // P0 24 (2026-11-17, Kontrollanten): rutorna räknade till Bromskär, som i avsnittet 1 oktober till\n    // 12 december av tabell 28 har anmärkning r (avstängd). Ingen annan brygga på Blidö står i tabellen,\n    // och något annat hållplats-id för Blidö är inte uppmätt, så destStopId står kvar och rutorna visar texten.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA\", \"Bromskär (Blidö) r)\", \"Bryggan är avstängd till juni 2027 på grund\", \"av renoveringsarbeten.\" (läst 2026-11-17)\n    stangd: 'Bryggan Bromskär på Blidö är avstängd till juni 2027 på grund av renoveringsarbeten, enligt Waxholmsbolagets tabell 28.',\n",
+    "rader": [
+      "p24-k087"
+    ]
+  },
+  {
+    "fil": "src/components/LastBoatPanel.tsx",
+    "gammal": "  // Dölj om okänd destination eller om vi laddar för första gången\n",
+    "ny": "  // P0 24 (2026-11-17, Kontrollanten): avstängd brygga (stangd i transit-stops.ts) visas\n  // inte som om båtar gick därifrån.\n  const stangd = getIslandTransit(islandSlug)?.stangd ?? null\n  if (stangd) {\n    return (\n      <section aria-labelledby=\"last-boat-title\" style={{\n        background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)', borderRadius: 16,\n        padding: '20px 22px', marginBottom: 28, color: '#fff',\n      }}>\n        <h2 id=\"last-boat-title\" style={{ fontSize: 15, fontWeight: 700, margin: '0 0 8px' }}>\n          Sista båten från {islandName}\n        </h2>\n        <p role=\"note\" style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.5, margin: 0 }}>\n          {stangd}\n        </p>\n      </section>\n    )\n  }\n\n  // Dölj om okänd destination eller om vi laddar för första gången\n",
+    "rader": [
+      "p24-k087"
+    ]
+  },
+  {
+    "fil": "src/components/DepartureWidget.tsx",
+    "gammal": "  // Om servern säger \"okänd destination\" (vi har inte stop-ID för ön ännu)\n",
+    "ny": "  // P0 24 (2026-11-17, Kontrollanten): avstängd brygga (stangd i transit-stops.ts).\n  const stangd = getIslandTransit(islandSlug)?.stangd ?? null\n  if (stangd) {\n    return (\n      <div style={{\n        border: '1px solid var(--border)', borderRadius: 14,\n        padding: '16px 18px', background: 'var(--white)',\n      }}>\n        <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>\n          Båttider till {islandName} visas inte här\n        </div>\n        <div style={{ fontSize: 13.5, color: 'var(--txt2)', lineHeight: 1.55 }}>\n          {stangd}\n        </div>\n      </div>\n    )\n  }\n\n  // Om servern säger \"okänd destination\" (vi har inte stop-ID för ön ännu)\n",
+    "rader": [
+      "p24-k087"
+    ]
+  },
+  {
+    "fil": "src/app/api/guide/route.ts",
+    "gammal": "import { getIslandTransit, ISLAND_TRANSIT } from '@/lib/transit-stops'\n",
+    "ny": "import { getIslandTransit, getReseplanerare, ISLAND_TRANSIT } from '@/lib/transit-stops'\n",
+    "rader": [
+      "p24-k088"
+    ]
+  },
+  {
+    "fil": "src/app/api/guide/route.ts",
+    "gammal": "hänvisa till sl.se eller waxholmsbolaget.se. Beskriv INTE vägen dit ur minnet\n",
+    "ny": "hänvisa till den reseplanerare som verktygsresultatet anger (fältet\nreseplanerare). Beskriv INTE vägen dit ur minnet\n",
+    "rader": [
+      "p24-k088"
+    ]
+  },
+  {
+    "fil": "src/app/api/guide/route.ts",
+    "gammal": "ärligt att du inte har tabelldata för just den ön och föreslå att de söker\nsl.se eller waxholmsbolaget.se. Hitta inte på tider.`\n",
+    "ny": "ärligt att du inte har tabelldata för just den ön och föreslå att de söker\nresan i reseplaneraren hos trafikbolaget i den regionen. Hitta inte på tider.`\n",
+    "rader": [
+      "p24-k088"
+    ]
+  },
+  {
+    "fil": "src/app/api/guide/route.ts",
+    "gammal": "            error: `KUNDE INTE HÄMTA avgångarna (${fel}).`,\n            instruktion:\n              'Säg att tidtabellen inte svarar just nu och hänvisa till sl.se ' +\n              'eller waxholmsbolaget.se. BESKRIV INTE vägen dit, nämn INGEN ' +\n",
+    "ny": "            error: `KUNDE INTE HÄMTA avgångarna (${fel}).`,\n            // P0 24 (2026-11-17): hänvisade alla öar till sl.se, även Västtrafiks öar.\n            reseplanerare: getReseplanerare(slug),\n            instruktion:\n              `Säg att tidtabellen inte svarar just nu och hänvisa till ${getReseplanerare(slug).namn} ` +\n              `(${getReseplanerare(slug).url}). BESKRIV INTE vägen dit, nämn INGEN ` +\n",
+    "rader": [
+      "p24-k088"
+    ]
+  },
+  {
+    "fil": "src/app/api/transit/departures/route.ts",
+    "gammal": "      { error: 'unknown_destination', slug, trips: [] },\n      { status: 200 },\n    )\n  }\n",
+    "ny": "      { error: 'unknown_destination', slug, trips: [] },\n      { status: 200 },\n    )\n  }\n  // P0 24 (2026-11-17, Redaktören): avstängd brygga (stangd i transit-stops.ts) ger inga tider.\n  if (cfg.stangd) {\n    return NextResponse.json({ error: 'stangd', slug, stangd: cfg.stangd, trips: [] }, { status: 200 })\n  }\n",
+    "rader": [
+      "p24-k089"
+    ]
+  },
+  {
+    "fil": "src/app/api/transit/last-departure/route.ts",
+    "gammal": "      { error: 'unknown_destination', slug, outbound: null, return: null },\n      { status: 200 },\n    )\n  }\n",
+    "ny": "      { error: 'unknown_destination', slug, outbound: null, return: null },\n      { status: 200 },\n    )\n  }\n  // P0 24 (2026-11-17, Redaktören): avstängd brygga (stangd i transit-stops.ts) ger inga tider.\n  if (cfg.stangd) {\n    return NextResponse.json({ error: 'stangd', slug, stangd: cfg.stangd, outbound: null, return: null }, { status: 200 })\n  }\n",
+    "rader": [
+      "p24-k089"
+    ]
+  },
+  {
+    "fil": "src/app/utflykt/UtflyktClient.tsx",
+    "gammal": "type DepResp = { error?: string; fel?: string | null; originName?: string; destName?: string; note?: string | null; trips?: Trip[] }\n",
+    "ny": "type DepResp = { error?: string; fel?: string | null; originName?: string; destName?: string; note?: string | null; stangd?: string; trips?: Trip[] }\n",
+    "rader": [
+      "p24-k089"
+    ]
+  },
+  {
+    "fil": "src/app/utflykt/UtflyktClient.tsx",
+    "gammal": "  if (dep.error === 'no_transit') {\n    return <div style={box}>Ingen kollektivtrafik går till {name}. Egen båt eller taxibåt.</div>\n  }\n",
+    "ny": "  if (dep.error === 'no_transit') {\n    return <div style={box}>Ingen kollektivtrafik går till {name}. Egen båt eller taxibåt.</div>\n  }\n  // P0 24 (2026-11-17, Redaktören): avstängd brygga; texten och dess KÄLLA står i transit-stops.ts (stangd).\n  if (dep.error === 'stangd' && dep.stangd) {\n    return <div style={box}>{dep.stangd}</div>\n  }\n",
+    "rader": [
+      "p24-k089"
+    ]
+  },
+  {
+    "fil": "src/app/api/guide/route.ts",
+    "gammal": "    const { trips, fel } = await fetchTripsResult(cfg.originStopId, cfg.destStopId, 4)\n",
+    "ny": "    // P0 24 (2026-11-17, Redaktören): avstängd brygga (stangd i transit-stops.ts). Inga tider och inget\n    // ruttkort; Thorkel återger texten.\n    if (cfg.stangd) {\n      return {\n        result: {\n          error: 'BRYGGAN ÄR AVSTÄNGD.',\n          stangd: cfg.stangd,\n          reseplanerare: getReseplanerare(slug),\n          instruktion:\n            'Återge texten i stangd. Nämn inga avgångstider och beskriv INTE vägen dit ur minnet.',\n        } as ToolResult,\n        planData: null,\n        transitData: null,\n      }\n    }\n    const { trips, fel } = await fetchTripsResult(cfg.originStopId, cfg.destStopId, 4)\n",
+    "rader": [
+      "p24-k089"
+    ]
+  },
+  {
+    "fil": "src/app/api/guide/route.ts",
+    "gammal": "          error: 'INGA AVGÅNGAR ÅTERSTÅR i dag för denna ö (uppslaget lyckades).',\n",
+    "ny": "          error: 'INGA AVGÅNGAR ÅTERSTÅR i dag för denna ö (uppslaget lyckades).',\n          // P0 24 (2026-11-17, Redaktören): systemprompten säger att Thorkel ska hänvisa hit.\n          reseplanerare: getReseplanerare(slug),\n",
+    "rader": [
+      "p24-k090"
+    ]
+  }
+]
