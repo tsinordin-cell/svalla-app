@@ -1,0 +1,46 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-17)
+sb03-k001	uto-0475,uto-0476	OK	OK
+sb03-k002	uto-0480,uto-0481,uto-0482,uto-0483,uto-0484	OK	OK
+sb03-k003	uto-0447,uto-0448,uto-N019	OK	OK
+sb03-k004	uto-0074,uto-0076,uto-N037	OK	OK
+sb03-k005	styrso-0204,styrso-0205,styrso-0206,styrso-0207,styrso-0208,styrso-0209,styrso-0210,styrso-0211,styrso-0212,styrso-N023	OK	OK
+sb03-k006	uto-0551,uto-0552,uto-N031,uto-0545	OK	OK
+sb03-k007	uto-0024,uto-0026,uto-0027,uto-0028,uto-0030,uto-0362,uto-N035	OK	OK
+sb03-k008	storholmen-N009,storholmen-N010,storholmen-N011,storholmen-N012,storholmen-N013	OK	OK
+sb03-k009	uto-0252	OK	OK
+sb03-k010	vaxholm-0011	OK	OK
+sb03-k011	uto-0397,uto-0399,uto-0398,uto-0400,uto-N016	OK	OK
+sb03-k012	styrso-0008,styrso-N001,styrso-N002,styrso-0422,styrso-0423,styrso-0437	OK	OK
+sb03-k013	styrso-0410,styrso-0306	FEL	Toms beslut 2026-11-08 (styrso.tom.md punkt 2): posten donso-hamnkrog är Isbolaget Hotell & Restaurang, och styrso.sql byter namn, text, webbplats, telefon och nål. Databasen har ingen annan Isbolaget-post (SELECT 2026-11-17). Vakten kontrollerar efter UPDATE att Donsö-sidan inte visar Isbolaget två gånger.
+sb03-k014	uto-0176,uto-0177,uto-0178,uto-0179,uto-N004,uto-N033,uto-N034	OK	OK
+sb03-k015	styrso-0245,styrso-0246,styrso-0247,styrso-0248	OK	OK
+sb03-k016	uto-0293,uto-0300,uto-N036	OK	OK
+sb03-k017	styrso-0213,styrso-0214,styrso-0215,styrso-0216,styrso-0217,styrso-0218,styrso-0219,styrso-0220,styrso-0221,styrso-0222,styrso-0223,styrso-0224,styrso-0225,styrso-0226,styrso-0227,styrso-0228,styrso-0229,styrso-0230,styrso-0253,styrso-0418,styrso-0419,styrso-0436,styrso-N033	OK	OK
+sb03-k018		FEL	Toms beslut 2026-11-08 (styrso.tom.md punkt 2): posten donso-hamnkrog är Isbolaget Hotell & Restaurang, och styrso.sql byter namn, text, webbplats, telefon och nål. Databasen har ingen annan Isbolaget-post (SELECT 2026-11-17). Vakten kontrollerar efter UPDATE att Donsö-sidan inte visar Isbolaget två gånger.
+sb03-k019	uto-0335,uto-0336,uto-0337	OK	OK
+sb03-k020	uto-0197	OK	OK
+sb03-k021	styrso-N035,styrso-N036,styrso-N037,styrso-N038,styrso-N039,styrso-N040	OK	OK
+sb03-k022	styrso-0238,styrso-N024,styrso-N025	OK	OK
+sb03-k023	uto-0127,uto-0131,uto-0132,uto-N001	OK	OK
+sb03-k024	uto-0201,uto-0202,uto-0203,uto-0204	OK	OK
+sb03-k025	uto-0528,uto-0529,uto-0530	OK	OK
+sb03-k026	styrso-0177,styrso-0178,styrso-0179	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sb03-k027	uto-0084,uto-N008	OK	OK
+sb03-k028	uto-0010	OK	OK
+sb03-k029		FEL	Toms beslut 2026-11-08 (styrso.tom.md punkt 2): posten donso-hamnkrog är Isbolaget Hotell & Restaurang, och styrso.sql byter namn, text, webbplats, telefon och nål. Databasen har ingen annan Isbolaget-post (SELECT 2026-11-17). Vakten kontrollerar efter UPDATE att Donsö-sidan inte visar Isbolaget två gånger.
+sb03-k030	styrso-0284,styrso-0299,styrso-0309,styrso-0318,styrso-0395,styrso-0409,styrso-0435,styrso-N032	FEL	Styrsö stämmer (MÄTT). RÄTTAS i runda 11: Långskärs radie 2,5 km i samma rad saknar belägg; mät den mot strandlinjen i OSM som för de andra öarna och lägg mätningen i registret.
+sb03-k031	styrso-0027,styrso-0438	OK	OK
+sb03-k032	storholmen-0135,storholmen-0136,storholmen-0138	OK	OK
+sb03-k033	storholmen-0194,storholmen-0195	OK	OK
+sb03-k034	uto-0325,uto-0327,uto-0328,uto-0329,uto-0330,uto-0331,uto-0332	OK	OK
+sb03-k035	storholmen-0101,storholmen-0113,storholmen-0114	OK	OK
+sb03-k036	styrso-0142,styrso-0143,styrso-0139	OK	OK
+sb03-k037	uto-0405	OK	OK
+sb03-k038	uto-0088,uto-N038	OK	OK
+sb03-k039	storholmen-0130,storholmen-0132,storholmen-0171,storholmen-0172,storholmen-0173,storholmen-0174,storholmen-0175,storholmen-0176	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sb03-k040	storholmen-0141,storholmen-0147,storholmen-N001	OK	OK
+sb03-k041	storholmen-0016,storholmen-0017,storholmen-0018,storholmen-0153,storholmen-0210,storholmen-0211,storholmen-0212,storholmen-N006	OK	OK
+sb03-k042	uto-0163,uto-0164,uto-0165,uto-0166,uto-0167,uto-0168,uto-0169,uto-0170,uto-0172,uto-0173,uto-0174,uto-0353,uto-N025	OK	OK
+sb03-k043	uto-0420,uto-0421,uto-0422	OK	OK
+sb03-k044	uto-0044,uto-N039	OK	OK
+sb03-k045	styrso-0165,styrso-0166,styrso-0169,styrso-0170	OK	OK
