@@ -253,10 +253,19 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
               {/* Infinite scroll sentinel */}
               <div ref={sentinelRef} style={{ height: 1 }} />
 
-              {/* End of feed */}
-              {!hasMore && sorted.length > PAGE_SIZE && (
-                <div style={{ textAlign: 'center', padding: '8px 0 4px', fontSize: 12, color: 'var(--txt3)' }}>
-                  Du har sett alla {sorted.length} turer
+              {/* Slutet på flödet. Visas även när listan är kortare än en sida:
+                  utan text såg ett glest vinterflöde ut som om det hängde sig (2026-11-17). */}
+              {!hasMore && (
+                <div style={{
+                  textAlign: 'center', padding: '18px 16px 10px', fontSize: 13, lineHeight: 1.5, color: 'var(--txt3)',
+                  borderTop: '1px solid var(--input-border)', marginTop: 4,
+                }}>
+                  <div>Det här var {sorted.length === 1 ? 'den enda turen' : `alla ${sorted.length} turer`}{boatFilter === 'alla' && sortKey === 'newest' ? ' i flödet just nu.' : ' som matchar filtret.'}</div>
+                  <div style={{ marginTop: 6 }}>
+                    <Link href="/planera/ny" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>Planera nästa tur</Link>
+                    {' · '}
+                    <Link href="/logga" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>Logga en tur</Link>
+                  </div>
                 </div>
               )}
             </div>
