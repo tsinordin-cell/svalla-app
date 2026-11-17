@@ -4324,6 +4324,179 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     }
   ],
+  "kluntarna": [
+    {
+      "url": "https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html",
+      "org": "Länsstyrelsen Norrbotten",
+      "vad": "Det är inte tillåtet att köra snöskoter på öarna; göra upp eld, men inte direkt på klipphällar. Kom ihåg att ta med egen ved!",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kluntarna",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kluntarna\" → Kluntarna | Luleå | Natur- och terrängnamn, SWEREF 99 TM 852359/7280587 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/kluntarna.html",
+      "org": "lulea.se",
+      "vad": "fem stenlagda labyrinter som troligen härstammar från 1300- eller 1400-talet",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.; Högsäsong 19 juni — 16 augusti",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Gästplatser: 20 stycken; Turbåtsangöring",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "junkon": [
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Junk%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Junkön\" → Junkön | Luleå | Natur- och terrängnamn, SWEREF 99 TM 842683/7278326 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html",
+      "org": "lulea.se",
+      "vad": "På Junkön finns ett skärgårdsmuseum, ett mindre antal bofasta och ett levande yrkesfiske.; den över 200 år gamla hattkvarnen",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "smaskar": [
+    {
+      "url": "https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/smaskarens-klippor.html",
+      "org": "Länsstyrelsen Norrbotten",
+      "vad": "tio obebyggda öar och hällar söder och öster om ön Småskär; På vissa öar råder landstigningsförbud under period med öppet vatten. Det är även förbjudet att uppehålla sig inom 200 meter från öarna.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sm%C3%A5sk%C3%A4ren",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Småskären\" → Småskären | Luleå | Natur- och terrängnamn, SWEREF 99 TM 857223/7284103 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html",
+      "org": "lulea.se",
+      "vad": "Med hela 120 fritidshus är Småskär ön som stoltserar med högsta antalet fritidshus i hela Luleå ytterskärgård.; Småskär är ett kommunalt naturreservat",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "rodkallen": [
+    {
+      "url": "https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/rodkallen-soraspen.html",
+      "org": "Länsstyrelsen Norrbotten",
+      "vad": "I vissa delar av reservatet råder landstigningsförbud mellan 1 maj och 31 juli. Det är även förbjudet att uppehålla sig inom 200 meter från öarna. Läs mer i beslutet.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=R%C3%B6dkallen",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Rödkallen\" → Rödkallen | Luleå | Natur- och terrängnamn, SWEREF 99 TM 842626/7263977 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html",
+      "org": "lulea.se",
+      "vad": "Den ståtliga fyren från 1872 … Med sin 21,4 meter höga stålkonstruktion",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Privata hamnar med gästplats … Rödkallen",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "sandskar": [
+    {
+      "url": "https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html",
+      "org": "Länsstyrelsen Norrbotten",
+      "vad": "Storlek: 6600 hektar (66 kvadratkilometer); Bildat år: 1995; På ön har man sett 251 olika fågelarter.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sandsk%C3%A4r",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Sandskär\" → Sandskär | Haparanda | Natur- och terrängnamn, SWEREF 99 TM 903069/7300276 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken",
+      "org": "Sveriges Nationalparker",
+      "vad": "Under sommaren (juli–augusti) går det en turbåt några dagar i veckan till den största ön, Sandskär.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit",
+      "org": "Sveriges Nationalparker",
+      "vad": "på öarna är det skoterförbud. Stugägare får dock köra närmaste väg till huset.",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "maloren": [
+    {
+      "url": "https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html",
+      "org": "Länsstyrelsen Norrbotten",
+      "vad": "från 1800-talet fram till 1967 fanns det lots på ön. Fyren från 1850 ger tillsammans med kyrkan från 1770",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Mal%C3%B6ren",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Malören\" → Malören | Kalix | Natur- och terrängnamn, SWEREF 99 TM 894665/7293978 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
@@ -11555,4 +11728,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 122
+export const OAR_MED_KALLOR = 128

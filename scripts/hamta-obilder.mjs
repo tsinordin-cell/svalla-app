@@ -219,6 +219,10 @@ const HANDPLOCKADE = {
   stendorren: 'Stendörrens naturreservat utsikt över skärgården.jpg',
   // 2026-11-17: Gränsö (2007). Granskad med ögonen: inga människor.
   granso: 'Gränsö - panoramio.jpg',
+  // 2026-11-17: flygfoton 1994 från Riksantikvarieämbetet. Granskade med ögonen: inga människor.
+  smaskar: 'Småskären - KMB - 16000300023835.jpg',
+  sandskar: 'Sandskär - KMB - 16000300023797.jpg',
+  maloren: 'Malören - KMB - 16000300023810.jpg',
 }
 
 /**
