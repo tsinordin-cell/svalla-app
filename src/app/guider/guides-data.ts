@@ -382,24 +382,26 @@ export type GuideMeta = {
 export const GUIDES: GuideMeta[] = [
   {
     slug: "midsommar-skargarden",
-    title: "Midsommar i skärgården 2026 till 15 alternativ",
-    excerpt: "8 destinationer på ostkusten och 7 på västkusten. Kollektivtrafik, vad du gör och var du äter, komplett planeringsguide.",
+    title: "Midsommar 2027 i skärgården: 15 öar, datum och båtar",
+    excerpt: "Midsommar 2027: midsommarafton fredag 25 juni. Femton platser på ost- och västkusten med båtar enligt operatörerna, det arrangörerna publicerat om firandet och var du äter.",
     category: "Säsong",
     emoji: "🌸",
-    readTime: "14 min",
+    readTime: "13 min",
     featured: true,
     fullContent: true,
     faqs: [
-      { q: 'Vad kostar det att fira midsommar på Sandhamn?', // KÄLLA: Strömma/Cinderellabåtarna, från 255 kr enkel resa (verifierat 2026-08-05). Boendespannet är uppskattning (2026-08).
-      a: 'Cinderellabåtarna (Strömma) kostar från 255 kr per enkel resa. Boende på Sandhamn kostar uppskattningsvis 1 500 till 3 000 kr/natt per rum under midsommar. Räkna med att boka minst 3 till 4 månader i förväg för boende.' },
-      // Rättat 2026-10-09: svaret sa att biljetten bokas hos Waxholmsbolaget och att den tar slut veckor i förväg.
-      // Cinderellabåtarna drivs av Strömma och biljetten köps där (se /cinderella-baaten). Påståendet om slutsålt saknade källa.
-      // KÄLLA: stromma.com/sv-se/stockholm/cinderellabatarna/ (hämtad 2026-08-05), samma källa som /cinderella-baaten.
-      { q: 'Behöver man boka biljett till Cinderellabåten på midsommaraftonen?', a: 'Cinderellabåtarna drivs av Strömma, inte av Waxholmsbolaget, och biljetten köps hos Strömma. SL-kort och Waxholmsbolagets kort gäller inte ombord. Hur fullt det brukar vara på midsommaraftonen har vi inte kunnat belägga, så köp biljetten i god tid om du har bestämt dig.' },
-      { q: 'Vilken ö är bäst för midsommar med barn?', a: 'Grinda är det bästa valet för barnfamiljer: kort restid (1h 45min), sandstrand, grunt vatten och ett genuint midsommarfirande med majstång. Alternativt Vaxholm (1h) om barnen tröttnar snabbt på resor.' },
-      { q: 'Hur tidigt ska man boka boende inför midsommar i skärgården?', a: 'Minst 3 till 4 månader i förväg för Sandhamn, Utö och Grinda. Vaxholm och Möja är lättare att boka 4 till 6 veckor i förväg. Dagsturerna kräver bara biljettbokning, inget boende.' },
-      { q: 'Kan man åka på dagstur utan övernattning på midsommar?', a: 'Ja, dagsturen fungerar utmärkt. Fjäderholmarna (25 min), Vaxholm (1h) och Grinda (1h 45min) är perfekta för dagstur. Kom tidigt, båtarna är fulla från lunch.' },
-      { q: 'Är det skillnad på midsommar i Stockholm vs Bohuslän?', a: 'Bohuslän har klippor, räksmörgåsar och västkustkaraktär. Stockholm har de klassiska skärgårdsöarna med majstång och Waxholmsbolaget. Bohuslän är bättre för klippbad; Stockholm för öhoppning och segelbåtsatmosfär.' },
+      // KÄLLA: lag (1989:253) om allmänna helgdagar, riksdagen.se — midsommardagen är "den lördag som infaller under tiden den 20-26 juni" (läst 2026-09-21); datumen räknas fram i src/lib/arsdatum.ts
+      { q: "När är midsommar 2027?", a: "Midsommarafton 2027 är fredag 25 juni, och midsommardagen är lördagen därpå. Midsommardagen är enligt lagen om allmänna helgdagar alltid lördagen mellan 20 och 26 juni, så 2027 infaller helgen så tidigt det går." },
+      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/midsommarkryssning-till-grinda/ — "Fredag 25 juni (Midsommarafton)"; "Nybrokajen, kajplats 9"; "11:00"; "från SEK 1425" (läst 2026-11-17)
+      { q: "Vilka midsommarprogram för 2027 är redan publicerade?", a: "I november 2026 bara ett: Strömmas midsommarkryssning till Grinda fredag 25 juni 2027 från Nybrokajen kajplats 9 klockan 11, med midsommarstång, spelmän och folkdans på ön och pris från 1 425 kronor. Övriga arrangörer publicerar sina program under våren." },
+      // KÄLLA: https://www.destinationvaxholm.se/en/events/traditionsenligt-midsommarfirande-2026 — "The Camp in Vaxholm"; "Vaxholms Hembygdsförening collaboration with Destination Vaxholm"; kl. 16.00 "The maypole is raised." (läst 2026-11-17)
+      { q: "Var firas midsommar i Vaxholm?", a: "På Lägret. 2026 arrangerade Vaxholms Hembygdsförening tillsammans med Destination Vaxholm: stången kläddes klockan 14, kransarna bars från hamnen 15.40 och majstången restes klockan 16 med Vaxholms folkdanslag. Programmet för 2027 läggs ut i Destination Vaxholms kalender." },
+      // KÄLLA: https://www.sandhamn.com/sv/kalender/midsommar — "Midsommarlunch från kl. 11.00"; "565 kr per person. Dryck tillkommer."; "Dans runt midsommarstången kl. 15.00 på Adolfs torg."; "Bordsbokning rekommenderas." (läst 2026-11-17)
+      { q: "Vad kostade midsommar på Sandhamn 2026?", a: "Sandhamn Seglarhotells midsommarlunch kostade 565 kronor per person exklusive dryck, kransbindning med ett glas mousserande 445 kronor, och dansen runt midsommarstången hölls klockan 15 på Adolfs torg. Hotellet rekommenderar bordsbokning." },
+      // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Endast 30 minuters båtresa från city"; "Tidtabell 2027"; "18 juni – 15 augusti:"; "Varje halvtimme 10:30–17:00" (läst 2026-10-20); https://kund.printhuset-sthlm.se/wa/h11.pdf — linje 11 Strömkajen → Vaxholm 55–82 min (läst 2026-09-27)
+      { q: "Kan man fira midsommar i skärgården på en dagstur?", a: "Ja. Strömma går till Fjäderholmarna på 30 minuter och har redan publicerat 2027 års tidtabell: 18 juni till 15 augusti varje halvtimme 10.30 till 17.00. Waxholmsbolagets linje 11 till Vaxholm tar 55 till 82 minuter och SL-biljett gäller." },
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/svenska-hogarna.html — "Ögruppen kan bara nås med egen båt, taxi- eller charterbåt."; tillträdesförbud område C "under tiden 1 maj- 30 juni" (läst 2026-11-17)
+      { q: "Går det reguljär båt till Svenska Högarna?", a: "Nej. Enligt Länsstyrelsen nås ögruppen bara med egen båt, taxibåt eller charterbåt, cirka 35 kilometer öster om Möja. Delar av reservatet har tillträdesförbud över midsommar, bland annat område C 1 maj till 30 juni." },
     ],
   },
   {
