@@ -200,7 +200,8 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   dalaro: {
     destStopId: '740001036', destStopName: 'Dalarö Hotellbryggan',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Buss 839 från Handen pendelstation tar dig till Dalarö.',
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17)
+    note: 'Pendeltåg till Handen, sedan buss 839 från Rudsjöterrassen till Dalarö.',
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 2006, 2022, 2014, 2094 (B) i 20B, 1904, 1926, 1936 (B) i 19B; C på några turer. Tabellerna kallar bryggan Dalarö.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Dalarö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "resdag." (vid Dalarö: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)
