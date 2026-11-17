@@ -1,6 +1,6 @@
 # Lag 3, andra omgången, del B (2026-11-17)
 
-Granskare och skribent. Läsdatum 2026-11-17 för allt. Leverans: ut/lag3-b.edits.json (20 poster), lag3-b.tsv (24 rader, lag3b-N001 till N024), rättelserna i moja.tsv och vaxholm.tsv ("Runda 11"). Källtexter: scratchpad/b01/lag3b/kallor/; skript och mätfiler: lag3b/skript/, lag3b/matt/.
+Granskare och skribent. Läsdatum 2026-11-17 för allt. Leverans: ut/lag3-b.edits.json (26 poster), lag3-b.tsv (28 rader, lag3b-N001 till N028), rättelserna i moja.tsv och vaxholm.tsv ("Runda 11"). Källtexter: scratchpad/b01/lag3b/kallor/; skript och mätfiler: lag3b/skript/, lag3b/matt/.
 MÄTT = renderat med mallar10:s matt10.tsx och mätdatabasen mallar8/data/db-riktig.json, räknat med lag3_10.py. main = origin/main 6c4407d (main har flyttat från 65ec7c3: en commit om Lilla Karlsö). Före = main + mallar-arbetskopia.patch + de tio filerna; efter = före + lag3-b.edits.json, källistan omgenererad.
 
 ## Sidorna (ord main / före / efter, andel av main)
@@ -38,3 +38,8 @@ MÄTT = renderat med mallar10:s matt10.tsx och mätdatabasen mallar8/data/db-rik
 ## Till Redaktören
 1. Möja hantverkare når inte 95 % med egna sidor. Elsäkerhetsverkets register (nivå 1, Kolla elföretaget, sökt på orten Möja i Chromium i dag) har tre elföretag med adress på Möja: Lundahls Installation AB (559289-9891, Långviknäs 252) och Alk,S Elservice HB (916637-1568, Norrsundshage 522), och en enskild firma med personnamn som jag inte tar med. De två bolagen skulle ge ungefär 50 till 60 ord i gruppen Huset, men kortets källrad kan i dag bara säga «egen webbplats», «öns företagarförening» eller «kommunens näringslivsregister», och ingen av dem stämmer. Det kräver en malländring (t.ex. en källnivå för myndighetsregister) som jag inte får göra. Detaljsidorna är sparade i lag3b/kallor/.
 2. Lysekils description hade samma Curman-fel som guiden; rättat här (N005).
+
+## Redaktörens beslut (2026-11-17), genomfört
+- Möja hantverkare (N025 till N027): minsta malländring: Kallniva fick nivån 'elregister' (hantverkare-data.ts) och KALL_TEXT raden «Enligt Elsäkerhetsverkets register» (HantverkarKort.tsx). Nya poster: Lundahls Installation AB (Långviknäs, telefon och e-post ur registret) och Alk,S Elservice Handelsbolag (Norrsundshage), båda med registrets detaljsida som källa och behörighet bekräftad. Enskilda firman med personnamn är utelämnad. MÄTT: 629 → 662 av 734 (90,2 %), brist 36 ord kvar; inga fler belagda företag.
+- Brännö (N028): klockslagen var dansens tid (arrangörens sida, läst i dag), inte en avgångstid. Strukna ändå i description och aktivitetskortet, eftersom KÄLLA-citatet skulle behöva innehålla klockslaget (förtydligande 14). KÄLLA-raderna är lästa i dag utan klockslag. Ösidan 1860 → 2017, aktiviteter 260 → 347. Kvar utanför uppdraget: seasonal-KÄLLA-raden har fortfarande citat med klockslag (läst 2026-09-27).
+- Kontroller igen: 26 poster, 0 fel; källistan --kontroll aktuell (1 923); tsc 0 fel; verify-claims exit 0; vitest 795 gröna; 108 av 108 citat ordagrant; under 95 %: 24 sidor, ingen ny. Kopian borttagen.
