@@ -322,7 +322,7 @@ export default function TripActions({
                 </span>
                 <span style={{ display: 'block', fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
                   {isPrivate
-                    ? 'Bara du ser turen — den visas inte i flödet eller på din profil för andra.'
+                    ? 'Bara du ser turen. Den visas inte i flödet eller på din profil för andra.'
                     : 'Turen visas i flödet och på din profil. Växla för att hålla den privat.'}
                 </span>
               </span>
@@ -387,7 +387,7 @@ export default function TripActions({
                 GPX-export är Pro
               </h3>
               <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 24px', lineHeight: 1.5 }}>
-                Exportera dina turer som GPX-filer med Svalla Pro — kompatibelt med Navionics, Garmin och alla populära sjökortsappar.
+                Exportera dina turer som GPX-filer med Svalla Pro: kompatibelt med Navionics, Garmin och alla populära sjökortsappar.
               </p>
               <button
                 onClick={() => { setPaywall(false); router.push('/pro') }}
@@ -398,7 +398,7 @@ export default function TripActions({
                   fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10,
                 }}
               >
-                Uppgradera — 49 kr/mån
+                Uppgradera: 49 kr/mån
               </button>
               <button
                 onClick={() => setPaywall(false)}
@@ -425,7 +425,7 @@ export default function TripActions({
               Ta bort tur?
             </h3>
             <p style={{ fontSize: 13, color: 'var(--txt3)', textAlign: 'center', margin: '0 0 24px', lineHeight: 1.5 }}>
-              Turen försvinner från flödet och din profil direkt. Den raderas permanent om 30 dagar — kontakta oss innan dess om du ångrar dig.
+              Turen försvinner från flödet och din profil direkt. Den raderas permanent om 30 dagar, kontakta oss innan dess om du ångrar dig.
             </p>
             <button
               onClick={handleDelete}

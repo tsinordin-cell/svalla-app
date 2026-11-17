@@ -22,7 +22,7 @@ function track(n: number, speedKn: number, opts: { acc?: number; raw?: boolean; 
   return pts
 }
 
-describe('computeGpsQuality — allt räknas ur punkterna', () => {
+describe('computeGpsQuality: allt räknas ur punkterna', () => {
   it('tom tur ger nollor, inte NaN', () => {
     const q = computeGpsQuality([])
     expect(q.points).toBe(0)
@@ -82,7 +82,7 @@ describe('computeGpsQuality — allt räknas ur punkterna', () => {
   })
 })
 
-describe('topSpeedKnots — det som sparas som toppfart', () => {
+describe('topSpeedKnots: det som sparas som toppfart', () => {
   it('en ensam spik räknas inte', () => {
     const pts = track(60, 5); pts[30]!.speedKnots = 40
     expect(topSpeedKnots(pts)).toBeLessThan(10)

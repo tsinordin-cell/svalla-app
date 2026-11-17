@@ -55,7 +55,7 @@ export const LUCKOR: Lucka[] = [
     lank: "/o/vaxholm",
     lankText: "Läs mer om Vaxholm",
     kallor: [
-      { namn: "Destination Vaxholm", url: "https://www.destinationvaxholm.se/events/vaxholms-julmarknad-2026", last: "2026-11-13", citat: "Den andra helgen i advent, 5 – 6 december, är det åter dags för Vaxholms traditionsenliga julmarknad. Med brända mandlar, hantverk, glögg och granar sätter vi tillsammans fart på julkänslorna. Tomten kommer, kommer du?\" / \"Rådhustorget Torget Vaxholm" },
+      { namn: "Destination Vaxholm", url: "https://www.destinationvaxholm.se/events/vaxholms-julmarknad-2026", last: "2026-11-13", citat: "Den andra helgen i advent, 5 till 6 december, är det åter dags för Vaxholms traditionsenliga julmarknad. Med brända mandlar, hantverk, glögg och granar sätter vi tillsammans fart på julkänslorna. Tomten kommer, kommer du?\" / \"Rådhustorget Torget Vaxholm" },
       { namn: "Karlskrona Julmarknad (Lions Club Jarramas i samarbete med Blekinge Museum)", url: "https://www.karlskronajulmarknad.se/", last: "2026-11-13", citat: "Karlskrona Julmarknad 5-6 december 2026, kl 10-16\" / \"De äldre miljöerna på Blekinge museum och Bergqvistska gården ger den rätta julstämningen" }
     ],
   },
@@ -67,8 +67,8 @@ export const LUCKOR: Lucka[] = [
     lank: "/guider/julbord-skargarden",
     lankText: "Läs Svallas guide till julbord i skärgården",
     kallor: [
-      { namn: "Utö Värdshus", url: "https://www.utovardshus.se/julbord/", last: "2026-11-13", citat: "Julbord 2026\" / \"27 november – 19 december\" / \"Till varje sittning finns en ordinarie båt som passar tur och retur.\" / \"Den bekväma Waxholmsbåten lägger till vid Gruvbryggan. Turen genom skärgården tar cirka 40 minuter, och därifrån är det några minuters promenad upp till värdshuset\" / \"Båten går från Årsta Brygga direkt till Utö" },
-      { namn: "Sandhamn Seglarhotell", url: "https://www.sandhamn.com/sv/kalender/julbord", last: "2026-11-13", citat: "Julbord 2026: 26 november – 24 december\" / \"Serveras: från kl. 17.00, torsdag–lördag samt julafton\" / \"Ingår: välkomstglögg och kaffebuffé" },
+      { namn: "Utö Värdshus", url: "https://www.utovardshus.se/julbord/", last: "2026-11-13", citat: "Julbord 2026\" / \"27 november: 19 december\" / \"Till varje sittning finns en ordinarie båt som passar tur och retur.\" / \"Den bekväma Waxholmsbåten lägger till vid Gruvbryggan. Turen genom skärgården tar cirka 40 minuter, och därifrån är det några minuters promenad upp till värdshuset\" / \"Båten går från Årsta Brygga direkt till Utö" },
+      { namn: "Sandhamn Seglarhotell", url: "https://www.sandhamn.com/sv/kalender/julbord", last: "2026-11-13", citat: "Julbord 2026: 26 november: 24 december\" / \"Serveras: från kl. 17.00, torsdag till lördag samt julafton\" / \"Ingår: välkomstglögg och kaffebuffé" },
       { namn: "Rökeriet Fjäderholmarna", url: "https://www.rokeriet-fjaderholmarna.se/julbord", last: "2026-11-13", citat: "Julbordet hålls från 20 november till 20 december 2026\" / \"Resan från Strandvägen till Fjäderholmarna tar ca 25 minuter, med stopp vid Nacka Strand.\" / \"Båtbiljetter tur & retur bokas separat via Strömma." }
     ],
   },
@@ -81,7 +81,7 @@ export const LUCKOR: Lucka[] = [
     lankText: "Läs om vinter i skärgården",
     kallor: [
       { namn: "SMHI kunskapsbanken, Olika typer av is till havs", url: "https://www.smhi.se/kunskapsbanken/oceanografi/is-till-havs/olika-typer-av-is-till-havs", last: "2026-11-13", citat: "Saltet i havet gör att is bildas först när vattentemperaturen är under noll grader. I Bottenvikens bräckta vatten är fryspunkten vid något under noll grader, i Skagerack med salthalten ca 30 promille, vid cirka -2 grader. Isens karaktär varierar med vattnets salthalt. I insjöar och längs norrlandskusten bildas hård och glasklar kärnis. I Skagerraks saltare vatten blir isen inte lika hård. Den får istället en grynig och porös, men ändå fast konsistens." },
-      { namn: "SMHI kunskapsbanken, Salt i haven runt Sverige", url: "https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/salt-i-haven-runt-sverige-", last: "2026-11-13", citat: "I Bottenviken är salthalten 3–4 gram salt per kilo havsvatten, i Bottenhavet 5–6 gram per kilo, i Egentliga Östersjön 6–9 gram per kilo och i Västerhavet 15–30 gram per kilo." }
+      { namn: "SMHI kunskapsbanken, Salt i haven runt Sverige", url: "https://www.smhi.se/kunskapsbanken/oceanografi/haven-runt-sverige/salt-i-haven-runt-sverige-", last: "2026-11-13", citat: "I Bottenviken är salthalten 3 till 4 gram salt per kilo havsvatten, i Bottenhavet 5 till 6 gram per kilo, i Egentliga Östersjön 6 till 9 gram per kilo och i Västerhavet 15 till 30 gram per kilo." }
     ],
   },
   {
@@ -143,7 +143,7 @@ export const LUCKOR: Lucka[] = [
     lank: "https://artipelag.se/pa-gang/aktivitet/julmarknad-pa-artipelag/",
     lankText: "Läs om julmarknaden på Artipelag",
     kallor: [
-      { namn: "Artipelag", url: "https://artipelag.se/pa-gang/aktivitet/julmarknad-pa-artipelag/", last: "2026-11-13", citat: "12–13 december 2026, inomhus i Artboxen på Artipelag." },
+      { namn: "Artipelag", url: "https://artipelag.se/pa-gang/aktivitet/julmarknad-pa-artipelag/", last: "2026-11-13", citat: "12 till 13 december 2026, inomhus i Artboxen på Artipelag." },
       { namn: "Artipelag", url: "https://artipelag.se/pa-gang/aktivitet/julmarknad-pa-artipelag/", last: "2026-11-13", citat: "Artboxen fylls med konsthantverk, design och julstämning" },
       { namn: "Skeppsholmsgården", url: "https://skeppsholmsgarden.se/skeppsholmsgardens-julmarknad-12-13-december-2026/", last: "2026-11-13", citat: "Helgen den tredje advent (12-13 december) blir det julmarknad på Skeppsholmsgårdens område. Vår julmarknad har sjö- och hantverkstema." },
       { namn: "Skeppsholmsgården", url: "https://skeppsholmsgarden.se/skeppsholmsgardens-julmarknad-12-13-december-2026/", last: "2026-11-13", citat: "Julmarknaden pågår under lördag och söndag mellan 11 och 17." },
@@ -197,8 +197,8 @@ export const LUCKOR: Lucka[] = [
     lankText: "Läs mer hos Artipelag",
     kallor: [
       { namn: "Artipelag", url: "https://artipelag.se/pa-gang/aktivitet/julmarknad-pa-artipelag/", last: "2026-11-13", citat: "Båda dagarna bjuds det på ett stämningsfullt, traditionellt luciatåg i Artipelags foajé, öppet för alla besökare." },
-      { namn: "Artipelag", url: "https://artipelag.se/pa-gang/aktivitet/julmarknad-pa-artipelag/", last: "2026-11-13", citat: "12–13 december 2026, inomhus i Artboxen på Artipelag." },
-      { namn: "Artipelag", url: "https://artipelag.se/", last: "2026-11-13", citat: "Artipelag är en internationell destination för konst, design, mat och event – vackert belägen på Värmdö i Stockholms skärgård" },
+      { namn: "Artipelag", url: "https://artipelag.se/pa-gang/aktivitet/julmarknad-pa-artipelag/", last: "2026-11-13", citat: "12 till 13 december 2026, inomhus i Artboxen på Artipelag." },
+      { namn: "Artipelag", url: "https://artipelag.se/", last: "2026-11-13", citat: "Artipelag är en internationell destination för konst, design, mat och event: vackert belägen på Värmdö i Stockholms skärgård" },
       { namn: "Artipelag", url: "https://artipelag.se/pa-gang/aktivitet/julmarknad-pa-artipelag/", last: "2026-11-13", citat: "Bland marknadsstånden hittar du konsthantverk, design, säsongens godsaker och personliga julklappar från noggrant utvalda utställare." }
     ],
   },
@@ -326,7 +326,7 @@ export const LUCKOR: Lucka[] = [
     lankText: "Läs mer om risvasar hos Sportfiskarna",
     kallor: [
       { namn: "Sportfiskarna, Så bygger man en risvase!", url: "https://www.sportfiskarna.se/om-oss/aktuellt/nyheter/nyhet/sa-bygger-man-en-risvase/", last: "2026-11-13", citat: "En risvase är en större mängd ris eller buskar som på olika sätt buntas ihop och sänks i ett vatten för att ge fisken en struktur att leka på och som även kan ge fiskens yngel skydd och utgöra en uppväxtmiljö. En risvase kan bestå av gamla julgranar ... Risvasar gynnar exempelvis leken för abborre, gös och mört ... Viktigt att tänka på är även att man behöver tillstånd från markägaren och att man i förväg ska stämma av åtgärden med berörd länsstyrelse och kommun." },
-      { namn: "SVT Nyheter, Julgranar i vattnet för bättre fiskmiljö (2016)", url: "https://www.svt.se/nyheter/inrikes/julgranar-i-vattnet-for-battre-fiskmiljo", last: "2026-11-13", citat: "Att anlägga så kallade ris- eller julgransvassar på botten av en sjö är en gammal tradition som på senare år börjat dammas av på nytt. ... – Man måste ha vattenägarens tillstånd, sen gäller det ju att använda sunt förnuft så att man inte stör båttrafik, badande och liknande, säger John Kärki." }
+      { namn: "SVT Nyheter, Julgranar i vattnet för bättre fiskmiljö (2016)", url: "https://www.svt.se/nyheter/inrikes/julgranar-i-vattnet-for-battre-fiskmiljo", last: "2026-11-13", citat: "Att anlägga så kallade ris- eller julgransvassar på botten av en sjö är en gammal tradition som på senare år börjat dammas av på nytt. ... Man måste ha vattenägarens tillstånd, sen gäller det ju att använda sunt förnuft så att man inte stör båttrafik, badande och liknande, säger John Kärki." }
     ],
   },
   {

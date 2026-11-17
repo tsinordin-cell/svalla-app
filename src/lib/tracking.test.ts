@@ -14,7 +14,7 @@ function pt(recordedAt: string, lat = 59.3): GpsPoint {
   return { lat, lng: 18.1, speedKnots: 5, heading: null, accuracy: 5, recordedAt }
 }
 
-describe('cleanGpsSpeed — fälttestbugg 3: snitt = topp = exakt 30,00', () => {
+describe('cleanGpsSpeed: fälttestbugg 3: snitt = topp = exakt 30,00', () => {
   it('klipper vid taket, inte vid gamla 30 (eller 60)', () => {
     // 60 → 150, fälttest 2026-09-10: bil i 70 mph (61 kn) klipptes till 60
     // och kastades av grinden. Taket ska skilja glitch från fordon.
@@ -26,7 +26,7 @@ describe('cleanGpsSpeed — fälttestbugg 3: snitt = topp = exakt 30,00', () => 
   it('negativ fart golvas till 0', () => {
     expect(cleanGpsSpeed(-3, 5, [])).toBe(0)
   })
-  it('dålig accuracy (>30 m) ger 0 — hellre tomt än fel', () => {
+  it('dålig accuracy (>30 m) ger 0: hellre tomt än fel', () => {
     expect(cleanGpsSpeed(20, 31, [10, 12])).toBe(0)
   })
   it('median av 3 äter en ensam spik', () => {
@@ -38,7 +38,7 @@ describe('cleanGpsSpeed — fälttestbugg 3: snitt = topp = exakt 30,00', () => 
   })
 })
 
-describe('recoveryExtraSeconds — fälttestbugg 1: 19 min blev 18 h 47 min', () => {
+describe('recoveryExtraSeconds: fälttestbugg 1: 19 min blev 18 h 47 min', () => {
   const T0 = Date.parse('2026-08-18T20:25:00Z')
   it('en natt med död telefon ger högst 60 s, inte 18 h', () => {
     const enNattSenare = T0 + 18.75 * 3600 * 1000
@@ -52,7 +52,7 @@ describe('recoveryExtraSeconds — fälttestbugg 1: 19 min blev 18 h 47 min', ()
   })
 })
 
-describe('mergeRecoveredPoints — recovery får inte ge stympat spår', () => {
+describe('mergeRecoveredPoints: recovery får inte ge stympat spår', () => {
   const rows: ServerGpsRow[] = [
     { latitude: 59.31, longitude: 18.11, speed_knots: 4, heading: 90, accuracy: 6, recorded_at: '2026-08-19T10:00:01Z' },
     { latitude: 59.32, longitude: 18.12, speed_knots: null, heading: null, accuracy: null, recorded_at: '2026-08-19T10:00:03Z' },
@@ -78,7 +78,7 @@ describe('mergeRecoveredPoints — recovery får inte ge stympat spår', () => {
 })
 
 // ── Kort "Pauser överlever inte en krasch — snapshoten sparar inte stops" ────
-describe('mergeRecoveredStops — pauser överlever recovery', () => {
+describe('mergeRecoveredStops: pauser överlever recovery', () => {
   const pause: StopEvent = { lat: 59.3, lng: 18.1, type: 'pause', startedAt: '2026-08-19T10:00:00Z', endedAt: '2026-08-19T10:05:00Z', durationSeconds: 300 }
   const autoStop: StopEvent = { lat: 59.31, lng: 18.12, type: 'stop', startedAt: '2026-08-19T10:20:00Z', durationSeconds: 180 }
 
@@ -87,7 +87,7 @@ describe('mergeRecoveredStops — pauser överlever recovery', () => {
     expect(out).toEqual([pause, autoStop])
   })
 
-  it('bara type=pause tas ur snapshoten — gamla auto-stopp där ersätts av omdetekteringen', () => {
+  it('bara type=pause tas ur snapshoten: gamla auto-stopp där ersätts av omdetekteringen', () => {
     const staleStop: StopEvent = { ...autoStop, durationSeconds: 1 }
     const out = mergeRecoveredStops([pause, staleStop], [autoStop])
     expect(out).toEqual([pause, autoStop])
@@ -99,7 +99,7 @@ describe('mergeRecoveredStops — pauser överlever recovery', () => {
   })
 })
 
-describe('impliedSpeedKnots — fart raknas pa matningar, inte pa utjamnade lagen', () => {
+describe('impliedSpeedKnots: fart raknas pa matningar, inte pa utjamnade lagen', () => {
   const degPerM = 1 / 111320
   const t0 = 1_700_000_000_000
 
@@ -110,13 +110,13 @@ describe('impliedSpeedKnots — fart raknas pa matningar, inte pa utjamnade lage
     expect(got).toBeLessThan(7.0)
   })
 
-  it('1 Hz ger INTE 0 — den gamla garden pa 1,8 s nollade varje fart', () => {
+  it('1 Hz ger INTE 0: den gamla garden pa 1,8 s nollade varje fart', () => {
     const v = 25 / 3.6
     expect(impliedSpeedKnots(59.30, 18.10, t0, 59.30 + v * degPerM, 18.10, t0 + 1000))
       .toBeGreaterThan(1)
   })
 
-  it('ett utjamnat lage som slapar efter ger orimlig fart — darfor far det inte anvandas', () => {
+  it('ett utjamnat lage som slapar efter ger orimlig fart: darfor far det inte anvandas', () => {
     // Kalman-gain ~0,044 => slapet ar ~23 sampel. Bat i 6,5 kn, 1 Hz.
     const v = 12 / 3.6
     const lagg = v * 23 * degPerM
@@ -129,7 +129,7 @@ describe('impliedSpeedKnots — fart raknas pa matningar, inte pa utjamnade lage
   })
 })
 
-describe('cleanGpsSpeed — medianfönstret måste matas med RÅA farter', () => {
+describe('cleanGpsSpeed: medianfönstret måste matas med RÅA farter', () => {
   // Uppmätt 2026-09-05: /spara matade fönstret med sina egna rensade utdata.
   // Median av [a, a, x] är a oavsett x, så visningen låste sig så fort två
   // utdata i rad blev lika — vid 12 kn fastnade den på 7,8 kn.
@@ -145,14 +145,14 @@ describe('cleanGpsSpeed — medianfönstret måste matas med RÅA farter', () =>
   })
 })
 
-describe('shouldRejectAsAnomaly — fälttest 2026-09-10 (tur ee7ef62f, MÄTT: 131 punkter på 56 min, luckor 18 + 26 min)', () => {
+describe('shouldRejectAsAnomaly: fälttest 2026-09-10 (tur ee7ef62f, MÄTT: 131 punkter på 56 min, luckor 18 + 26 min)', () => {
   const t0 = Date.parse('2026-09-10T15:11:00.000Z')
   const degPerM = 1 / 111_320
   /** Rak kurs norrut i given fart, 1 Hz, n fixar. */
   const run = (speedKn: number, n: number) =>
     Array.from({ length: n }, (_, i) => ({ lat: 59.3 + i * speedKn * 0.514444 * degPerM, lng: 18.1, ts: t0 + i * 1000 }))
 
-  it('70 mph i bil (61 kn) passerar grinden — det var vad som låste ute allt', () => {
+  it('70 mph i bil (61 kn) passerar grinden: det var vad som låste ute allt', () => {
     const fixes = run(61, 30)
     let prev: { lat: number; lng: number; ts: number } | null = null
     let streak = 0, rejected = 0
@@ -171,7 +171,7 @@ describe('shouldRejectAsAnomaly — fälttest 2026-09-10 (tur ee7ef62f, MÄTT: 1
     expect(g).toEqual({ reject: true, streak: 1, reanchored: false })
   })
 
-  it('efter ANOMALY_REANCHOR_AFTER avvisade i rad accepteras fixen (återförankring) — ingen evig lucka', () => {
+  it('efter ANOMALY_REANCHOR_AFTER avvisade i rad accepteras fixen (återförankring): ingen evig lucka', () => {
     // Referens: gammal punkt. Bilen är 5 km bort och kör vidare i 61 kn.
     const prev = { lat: 59.3, lng: 18.1, ts: t0 }
     let streak = 0

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Boka ribbåtsturer, fisketurer, kajakäventyr och mer i Stockholms skärgård.',
   alternates: { canonical: 'https://svalla.se/upplevelser' },
   openGraph: {
-    title: 'Guidade turer & upplevelser – Svalla',
+    title: 'Guidade turer & upplevelser | Svalla',
     description: 'Boka ribbåtsturer, fisketurer, kajakäventyr och mer i Stockholms skärgård.',
     url: 'https://svalla.se/upplevelser',
   },

@@ -168,7 +168,7 @@ describe('suggestStops', () => {
     expect(fromSandhamn.length).toBeLessThanOrEqual(2)
   })
 
-  it('stoppar med score 0–1', () => {
+  it('stoppar med score 0 till 1', () => {
     const stops = suggestStops(start, end, ['krog', 'bastu'], places)
     stops.forEach(s => {
       expect(s.score).toBeGreaterThanOrEqual(0)

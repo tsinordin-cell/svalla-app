@@ -96,7 +96,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  // Android: same — user picks Instagram from sheet
  if (typeof navigator !== 'undefined' && navigator.canShare?.({ files: [file] })) {
  try {
- await navigator.share({ files: [file], title: `${title} – Svalla` })
+ await navigator.share({ files: [file], title: `${title} | Svalla` })
  setLoading(false)
  return
  } catch (e: unknown) {
@@ -127,9 +127,9 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  const file = new File([blob], filnamn, { type: filtyp })
  try {
  if (typeof navigator !== 'undefined' && navigator.canShare?.({ files: [file] })) {
- await navigator.share({ files: [file], title: `${title} – Svalla`, url, text: `Kolla min tur till ${title} på Svalla! ` })
+ await navigator.share({ files: [file], title: `${title} | Svalla`, url, text: `Kolla min tur till ${title} på Svalla! ` })
  } else if (typeof navigator !== 'undefined' && navigator.share) {
- await navigator.share({ title: `${title} – Svalla`, url, text: `Kolla min tur till ${title} på Svalla! ` })
+ await navigator.share({ title: `${title} | Svalla`, url, text: `Kolla min tur till ${title} på Svalla! ` })
  } else {
  const a = document.createElement('a')
  a.href = URL.createObjectURL(blob)
@@ -263,7 +263,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  fontSize: 13, color: 'var(--txt)', display: 'flex',
  alignItems: 'center', gap: 10, justifyContent: 'space-between',
  }}>
- <span>Turen är privat — länken visar 404 för alla utom dig. Bilden går att dela ändå.</span>
+ <span>Turen är privat, länken visar 404 för alla utom dig. Bilden går att dela ändå.</span>
  <button type="button" onClick={makePublic} style={{
  flexShrink: 0, padding: '6px 12px', borderRadius: 999, cursor: 'pointer',
  background: 'var(--sea-knapp)', color: '#fff', border: 'none',

@@ -23,7 +23,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🏡',
     title: 'Populära öar för stugboende',
-    description: 'Utö, Grinda, Möja och Sandhamn har välkänd stuguthyrning. Boka tidigt — de bästa stugorna går åt till mars för sommarsäsongen.',
+    description: 'Utö, Grinda, Möja och Sandhamn har välkänd stuguthyrning. Boka tidigt. De bästa stugorna går åt till mars för sommarsäsongen.',
     href: '/o/uto/boende',
   },
   {
@@ -35,7 +35,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '👨‍👩‍👧',
     title: 'Stugor för barnfamiljer',
-    description: 'Barnvänliga stugor finns på Grinda, Finnhamn och Möja — lugnt vatten, korta avstånd till bryggor och restauranger med enkla menyer.',
+    description: 'Barnvänliga stugor finns på Grinda, Finnhamn och Möja: lugnt vatten, korta avstånd till bryggor och restauranger med enkla menyer.',
     href: '/o/finnhamn/boende',
   },
   {
@@ -52,7 +52,7 @@ export default function StugorPage() {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       name: 'Hyr stuga i skärgården',
-      description: 'Hyr stuga i Stockholms skärgård — stugor, stugbyar och fritidshus på öar som Sandhamn, Utö och Möja.',
+      description: 'Hyr stuga i Stockholms skärgård: stugor, stugbyar och fritidshus på öar som Sandhamn, Utö och Möja.',
       url: 'https://svalla.se/boende/stugor-stugbyar',
     },
     {
@@ -68,7 +68,7 @@ export default function StugorPage() {
       '@context': 'https://schema.org',
       '@type': 'LodgingBusiness',
       name: 'Hyr stuga i Stockholms skärgård',
-      description: 'Stugor, stugbyar och fritidshus i Stockholms skärgård — på öar som Sandhamn, Utö och Möja.',
+      description: 'Stugor, stugbyar och fritidshus i Stockholms skärgård: på öar som Sandhamn, Utö och Möja.',
       url: 'https://svalla.se/boende/stugor-stugbyar',
       areaServed: {
         '@type': 'Place',
@@ -125,36 +125,36 @@ export default function StugorPage() {
             Vad kostar en stuga i skärgården?
           </h2>
           <p>
-            Priserna varierar stort beroende på ö, standard och säsong. Enkla sjöbodar utan eget bad kostar från 600–900 kr/natt, medan moderna stugor med bastu och brygga kan ligga på 2 000–5 000 kr/natt i högsäsong. Veckouthyrning är vanligast under juli — lördag till lördag — och är ofta billigare per natt än korttidsbokningar.
+            Priserna varierar stort beroende på ö, standard och säsong. Enkla sjöbodar utan eget bad kostar från 600 till 900 kr/natt, medan moderna stugor med bastu och brygga kan ligga på 2 000 till 5 000 kr/natt i högsäsong. Veckouthyrning är vanligast under juli, lördag till lördag, och är ofta billigare per natt än korttidsbokningar.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             När ska man boka?
           </h2>
           <p>
-            De populäraste stugorna på Utö, Grinda, Möja och Sandhamn bokas ut redan i januari–februari för sommarsäsongen. Vill du ha ett specifikt alternativ för midsommar eller juli — boka så fort du vet dina datum. Juni och september är lättare, och priserna är ofta 20–40 % lägre.
+            De populäraste stugorna på Utö, Grinda, Möja och Sandhamn bokas ut redan i januari till februari för sommarsäsongen. Vill du ha ett specifikt alternativ för midsommar eller juli. Boka så fort du vet dina datum. Juni och september är lättare, och priserna är ofta 20 till 40 % lägre.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Öar med bra stugutbud
           </h2>
           <p>
-            <strong>Utö</strong> har ett av de mest varierade utbuden — allt från enkla rum till hela gårdar nära gruvstigarna. <strong>Grinda</strong> passar barnfamiljer med välvårdade stugor nära sandstranden. <strong>Möja</strong> är bra för den som vill ha ett autentiskt skärgårdsboende på en levande ö. <strong>Nåttarö</strong> och <strong>Arholma</strong> passar den som söker lugn och lite mer vildmark.
+            <strong>Utö</strong> har ett av de mest varierade utbuden, allt från enkla rum till hela gårdar nära gruvstigarna. <strong>Grinda</strong> passar barnfamiljer med välvårdade stugor nära sandstranden. <strong>Möja</strong> är bra för den som vill ha ett autentiskt skärgårdsboende på en levande ö. <strong>Nåttarö</strong> och <strong>Arholma</strong> passar den som söker lugn och lite mer vildmark.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '40px 0 8px' }}>
             Sök och boka stuga direkt
           </h2>
           <p style={{ margin: '0 0 14px' }}>
-            Hitta och boka stugor hos de stora plattformarna. Affiliate-samarbeten är på gång — klickar du nu går du direkt till sökningen.
+            Hitta och boka stugor hos de stora plattformarna. Affiliatesamarbeten är på gång, klickar du nu går du direkt till sökningen.
           </p>
           {/* Airbnb: lägg till ?s_af=AFFILIATE_TOKEN | Stugknuten: kontakta dem för partnerkod */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <a href="https://www.airbnb.com/s/Stockholms-sk%C3%A4rg%C3%A5rd/homes" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,92,130,0.06)', border: '1px solid rgba(30,92,130,0.18)', color: '#1e5c82', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Airbnb — Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Airbnb: Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.stugknuten.se/hyra-stuga/stockholms-skargard/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,92,130,0.06)', border: '1px solid rgba(30,92,130,0.18)', color: '#1e5c82', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Stugknuten — Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Stugknuten: Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.booking.com/searchresults.sv.html?ss=Stockholms+sk%C3%A4rg%C3%A5rd" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,92,130,0.06)', border: '1px solid rgba(30,92,130,0.18)', color: '#1e5c82', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Booking.com — Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Booking.com, Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
           </div>
         </>

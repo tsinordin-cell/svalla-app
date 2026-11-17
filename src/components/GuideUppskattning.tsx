@@ -53,7 +53,7 @@ export default function GuideUppskattning({ slug }: { slug: string }) {
             ? 'En prisnivå i den här guiden är uppskattad'
             : `${u.antal} prisnivåer i den här guiden är uppskattade`}
         </strong>{' '}
-        — {u.antal === 1 ? 'den bygger' : 'de bygger'} på{' '}
+       , {u.antal === 1 ? 'den bygger' : 'de bygger'} på{' '}
         {u.vad || 'en översikt över flera aktörer'}, senast gjord {skrivDatum(u.datum)}.{' '}
         {u.antal === 1 ? 'Den är' : 'De är'} alltså inte {u.antal === 1 ? 'hämtad' : 'hämtade'} ur
         någons prislista. Kontrollera hos operatören innan du bokar eller budgeterar.

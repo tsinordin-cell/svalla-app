@@ -5,6 +5,7 @@ import { createClient, getViewer } from '@/lib/supabase'
 import { THORKEL } from '@/lib/thorkel/persona'
 import { THORKEL_COPY } from '@/lib/thorkel/copy'
 import ThorkelAvatar from './ThorkelAvatar'
+import { track } from '@/lib/analytics-events'
 
 /** Tre prickar som pulsera medan Thorkel "tänker" — innan första ordet kommer. */
 function ThinkingDots() {
@@ -115,6 +116,7 @@ export default function ThorkelOverlay({ open, onClose, preselectedQuestion }: P
     setLoading(true)
     setAnswer('') // tom sträng = "han har börjat svara, men inget ord än" → triggar svar-vy
     const sentAt = Date.now()
+    track('thorkel_fraga', { tecken: question.trim().length, sida: 'overlay' })
     try {
       const res = await fetch('/api/guide', {
         method: 'POST',

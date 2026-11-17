@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdstur',
-  description: 'Planera din skärgårdstur i Stockholms skärgård med Svalla. Rutter, hamnar, färjor, boende och väder — allt samlat i ett verktyg.',
+  description: 'Planera din skärgårdstur i Stockholms skärgård med Svalla. Rutter, hamnar, färjor, boende och väder, allt samlat i ett verktyg.',
   keywords: [
     'planera skärgårdstur',
     'skärgårdstur stockholm',
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     'planera båttur',
   ],
   openGraph: {
-    title: 'Planera din skärgårdstur — Svalla',
+    title: 'Planera din skärgårdstur | Svalla',
     description: 'Planera rutter, hamnar, boende och väder i Stockholms skärgård.',
     url: 'https://svalla.se/planera-tur',
   },
@@ -23,7 +23,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '1',
     title: 'Välj tidsperiod',
-    description: 'Dagsutflykt, helg eller vecka. Säsongen påverkar vad som är öppet — vi visar tydligt vilka ställen som är aktiva.',
+    description: 'Dagsutflykt, helg eller vecka. Säsongen påverkar vad som är öppet. Vi visar tydligt vilka ställen som är aktiva.',
     href: '/rutter',
   },
   {
@@ -35,7 +35,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '3',
     title: 'Bygg rutten',
-    description: 'Välj utgångshamn och destinationer — Svalla föreslår stopp baserat på tid, distans och erfarenheter.',
+    description: 'Välj utgångshamn och destinationer | Svalla föreslår stopp baserat på tid, distans och erfarenheter.',
     href: '/rutter',
   },
   {
@@ -53,7 +53,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '6',
     title: 'Dela med sällskapet',
-    description: 'Skicka länk till din rutt — alla ser samma plan och karta.',
+    description: 'Skicka länk till din rutt, alla ser samma plan och karta.',
     href: '/planera',
   },
 ]
@@ -64,7 +64,7 @@ export default function PlaneraTurPage() {
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Planera min tur"
       title="Bygg din skärgårdstur"
-      tagline="Från en dag i sol till en veckoseglats — planera rutter, boende, färjor och väder i ett verktyg."
+      tagline="Från en dag i sol till en veckoseglats. Planera rutter, boende, färjor och väder i ett verktyg."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
@@ -76,15 +76,15 @@ export default function PlaneraTurPage() {
       intro={
         <>
           <p>
-            Att planera en skärgårdstur brukar betyda att öppna fem fönster samtidigt — Waxholmsbolagets tidtabell, Booking.com, SMHI, en Facebook-grupp för tips. Svalla samlar det du behöver i <strong>ett flöde</strong>.
+            Att planera en skärgårdstur brukar betyda att öppna fem fönster samtidigt: Waxholmsbolagets tidtabell, Booking.com, SMHI, en Facebookgrupp för tips. Svalla samlar det du behöver i <strong>ett flöde</strong>.
           </p>
           <p>
-            Ny: <strong>Fråga Thorkel</strong> — vår skärgårdsguide. Berätta vad du vill (familj med barn, romantisk helg, segling från Ingarö) och få ett personligt förslag med restauranger och bokningslänkar på 10 sekunder.
+            Ny: <strong>Fråga Thorkel</strong>, vår skärgårdsguide. Berätta vad du vill (familj med barn, romantisk helg, segling från Ingarö) och få ett personligt förslag med restauranger och bokningslänkar på 10 sekunder.
           </p>
         </>
       }
       itemsTitle="Planeringen i sex steg"
-      itemsDescription="Börja var du vill — alla steg är oberoende."
+      itemsDescription="Börja var du vill, alla steg är oberoende."
       items={ITEMS}
       deeperContent={
         <>
@@ -92,13 +92,13 @@ export default function PlaneraTurPage() {
             Det smarta med Svalla
           </h2>
           <p>
-            Med konto får du <strong>live-data</strong>: aktuella färjetider från Trafiklab, väder från SMHI, och tripplaner som uppdateras om en färja ställs in. Du kan även <strong>följa andra</strong> — om en segelbåtskompis just seglat samma rutt ser du deras stopp och rekommendationer.
+            Med konto får du <strong>livedata</strong>: aktuella färjetider från Trafiklab, väder från SMHI, och tripplaner som uppdateras om en färja ställs in. Du kan även <strong>följa andra</strong>, om en segelbåtskompis just seglat samma rutt ser du deras stopp och rekommendationer.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Utan konto
           </h2>
           <p>
-            Alla utvalda sidor (krogar, hamnar, öar, turer) är fria att läsa utan inloggning. Konto behöver du för att <strong>planera med Thorkel</strong>, <strong>spara</strong>, <strong>logga</strong> och <strong>dela</strong> — det är gratis och tar 30 sekunder.
+            Alla utvalda sidor (krogar, hamnar, öar, turer) är fria att läsa utan inloggning. Konto behöver du för att <strong>planera med Thorkel</strong>, <strong>spara</strong>, <strong>logga</strong> och <strong>dela</strong>, det är gratis och tar 30 sekunder.
           </p>
         </>
       }

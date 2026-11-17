@@ -45,7 +45,7 @@ export default function EmailSignup({
       })
       if (!res.ok) {
         const j = await res.json().catch(() => ({}))
-        setError(j.error || 'Något gick fel — försök igen')
+        setError(j.error || 'Något gick fel: försök igen')
         setStatus('error')
         return
       }
@@ -68,7 +68,7 @@ export default function EmailSignup({
         // Tyst fel — GA4 ej konfigurerat än
       }
     } catch {
-      setError('Nätverksfel — försök igen')
+      setError('Nätverksfel: försök igen')
       setStatus('error')
     }
   }

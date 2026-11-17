@@ -139,8 +139,8 @@ const FACILITY_LABEL: Record<string, string> = {
 const SEASONALITY_LABEL: Record<string, string> = {
   year_round: 'Året runt',
   summer_only: 'Endast sommar',
-  spring_summer: 'Vår–sommar',
-  summer_autumn: 'Sommar–höst',
+  spring_summer: 'Vår till sommar',
+  summer_autumn: 'Sommar till höst',
   weekends_only: 'Endast helger',
 }
 

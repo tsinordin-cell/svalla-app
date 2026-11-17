@@ -122,7 +122,7 @@ export default function GuiderClient() {
             Guider om Sveriges kust
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 14, margin: '0 0 20px' }}>
-            {PUBLICERADE_GUIDER.length} guider – från Stockholms skärgård till Bohuslän, Gotland och Höga Kusten
+            {PUBLICERADE_GUIDER.length} guider: från Stockholms skärgård till Bohuslän, Gotland och Höga Kusten
           </p>
 
           {/* Sökfält */}

@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const season = getSeason(slug)
   if (!season) return {}
   return {
-    title: `Skärgården på ${season.name.toLowerCase()}en – guide & tips ${season.monthsLabel}`,
+    title: `Skärgården på ${season.name.toLowerCase()}en, guide & tips ${season.monthsLabel}`,
     description: `${season.tagline} Vad förändras, vad ska du tänka på och vilka öar är öppna under ${season.monthsLabel}?`,
     keywords: [
       `skärgården ${season.name.toLowerCase()}`,
@@ -68,7 +68,7 @@ export default async function SasongPage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'Article',
     '@id': `https://svalla.se/sasong/${slug}#article`,
-    headline: `Skärgården på ${season.name.toLowerCase()}en – guide & tips`,
+    headline: `Skärgården på ${season.name.toLowerCase()}en, guide & tips`,
     description: season.tagline,
     about: `Skärgårdsupplevelser under ${season.name.toLowerCase()}en`,
     inLanguage: 'sv-SE',
@@ -275,7 +275,7 @@ export default async function SasongPage({ params }: Props) {
               Få {season.name.toLowerCase()}ens bästa tips i inkorgen
             </h3>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', margin: '0 0 20px', lineHeight: 1.55 }}>
-              Säsongsstarter, nya guider och ändrade båtlinjer – när det händer något. Gratis, inga annonser.
+              Säsongsstarter, nya guider och ändrade båtlinjer, när det händer något. Gratis, inga annonser.
             </p>
             <EmailSignup
               variant="footer"

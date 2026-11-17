@@ -126,6 +126,16 @@ export default function SparaPage() {
   const pauseStartRef    = useRef<Date | null>(null)
   const fileRef          = useRef<HTMLInputElement>(null)
   const startTimeRef     = useRef<Date | null>(null)
+  // Planerad rutt (?planned_route_id=) från "Starta turen nu" på /planera/<id>.
+  // Läses från URL:en vid montering: useSearchParams kräver Suspense-gräns
+  // och sidan är redan stor. 2026-11-16: länken tappades tidigare helt i GPS-flödet.
+  const plannedRouteIdRef = useRef<string | null>(null)
+  useEffect(() => {
+    try {
+      const v = new URLSearchParams(window.location.search).get('planned_route_id')
+      plannedRouteIdRef.current = v && /^[0-9a-f-]{36}$/i.test(v) ? v : null
+    } catch { /* ignorera */ }
+  }, [])
   const lastGpsPtRef     = useRef<{ lat: number; lng: number; ts: number } | null>(null)
   // FALTTEST 2026-09-03 (Tom, bil): anomaligrinden och fartberakningen jamforde
   // FORRA punktens UTJAMNADE lage mot NYA punktens RA lage. Kalman-gain ar ~0.044,
@@ -339,7 +349,7 @@ export default function SparaPage() {
       const batch = pending.map(p => toGpsRow(tripId, p.point))
       const { error, rawDropped } = await insertGpsRows(
         rows => supabase.from('gps_points').insert(rows), batch)
-      if (rawDropped) console.warn('[spara] gps_points saknar rådata-kolumnerna — migration 20260906000001 inte körd')
+      if (rawDropped) console.warn('[spara] gps_points saknar rådata-kolumnerna: migration 20260906000001 inte körd')
       if (!error) {
         await clearPoints(pending.map(p => p.key))
         setOfflineBuffered(0)
@@ -495,7 +505,7 @@ export default function SparaPage() {
         let kind: 'denied' | 'timeout' | 'unavailable' | 'other' = 'other'
         if (m.includes('nekad') || m.includes('denied') || m.includes('permission')) {
           kind = 'denied'
-          setGpsError('GPS-åtkomst nekad – tillåt platsdelning i inställningarna.')
+          setGpsError('GPS-åtkomst nekad, tillåt platsdelning i inställningarna.')
         } else if (m.includes('timeout') || m.includes('söker')) {
           kind = 'timeout'
           setGpsError('Söker GPS-signal… Gå ut om du är inomhus.')
@@ -503,7 +513,7 @@ export default function SparaPage() {
           kind = 'unavailable'
           setGpsError('GPS-signal ej tillgänglig.')
         } else {
-          setGpsError(errMsg || 'GPS-fel – prova att ladda om sidan.')
+          setGpsError(errMsg || 'GPS-fel. Prova att ladda om sidan.')
         }
         track('gps_error', { kind, seconds: sekunderSedanStart(), points: pointsRef.current.length })
       },
@@ -797,7 +807,7 @@ export default function SparaPage() {
         if (/mime type|not supported/i.test(raw)) {
           friendly = `Bild ${i + 1} har ett format som inte stöds. Spara om som JPG eller PNG och försök igen.`
         } else if (/payload too large|exceeds the maximum/i.test(raw)) {
-          friendly = `Bild ${i + 1} är för stor — max 10 MB. Komprimera och försök igen.`
+          friendly = `Bild ${i + 1} är för stor, max 10 MB. Komprimera och försök igen.`
         } else if (/jwt|unauthor|policy/i.test(raw)) {
           friendly = `Sessionen verkar ha gått ut. Ladda om sidan och försök igen.`
         }
@@ -822,6 +832,7 @@ export default function SparaPage() {
       userId: user.id, boatType, distanceNM: dist, elapsedSeconds: elapsed,
       avgKnots: avgSpd, maxKnots: maxSpd, uploadedUrls, startedAt, endedAt,
       pinnar, caption, locationName, routePoints, isPrivate,
+      plannedRouteId: plannedRouteIdRef.current,
     })
     const { data: trip, error: tripErr } = tripId
       ? await supabase.from('trips').update(tripFields).eq('id', tripId).select('id').single()
@@ -833,12 +844,17 @@ export default function SparaPage() {
       // radatat till Sentry.
       Sentry.captureException(new Error('[spara] trip-sparning misslyckades: ' + (tripErr?.message ?? 'okänt fel')))
       console.error('[spara] trip-sparning misslyckades', tripErr)
-      setErr('Kunde inte spara turen. Ingenting är förlorat — försök igen.')
+      setErr('Kunde inte spara turen. Ingenting är förlorat, försök igen.')
       setSaving(false); return
     }
 
     const tid = trip.id
     setTripId(tid)
+    // Länka rutten till turen (bara ägarens rutt går att uppdatera, RLS;
+    // trips.planned_route_id ovan gäller alltid och är det ruttsidan läser).
+    if (plannedRouteIdRef.current) {
+      await supabase.from('planned_routes').update({ trip_id: tid }).eq('id', plannedRouteIdRef.current)
+    }
     // 21/8: snapshot och offline-buffert rensas forst EFTER att sparet
     // verifierats pa servern (langre ner) — tidigare rensades de har, sa
     // ett misslyckat batch-skriv gav en "sparad" tur utan spar och utan
@@ -861,7 +877,7 @@ export default function SparaPage() {
       for (let attempt = 0; attempt < 3; attempt++) {
         const { error, rawDropped } = await insertGpsRows(
           rows => supabase.from('gps_points').insert(rows), batch)
-        if (rawDropped) console.warn('[spara] gps_points saknar rådata-kolumnerna — migration 20260906000001 inte körd')
+        if (rawDropped) console.warn('[spara] gps_points saknar rådata-kolumnerna: migration 20260906000001 inte körd')
         if (!error) { batchErr = null; break }
         batchErr = error
         if (attempt < 2) await new Promise(r => setTimeout(r, 1000 * (attempt + 1)))
@@ -881,7 +897,7 @@ export default function SparaPage() {
 
     if (sparFel) {
       Sentry.captureException(new Error('[spara] spåret kunde inte skrivas: ' + sparFel))
-      setErr('Turen sparades men spåret kunde inte laddas upp. Ingenting är förlorat — tryck Spara igen.')
+      setErr('Turen sparades men spåret kunde inte laddas upp. Ingenting är förlorat, tryck Spara igen.')
       setSaving(false); return
     }
 
@@ -1400,7 +1416,7 @@ export default function SparaPage() {
           {(!isOnline || offlineBuffered > 0) && (
             <div
               title={!isOnline
-                ? `${offlineBuffered} GPS-punkter buffrade — synkar när nätverket är tillbaka`
+                ? `${offlineBuffered} GPS-punkter buffrade: synkar när nätverket är tillbaka`
                 : `Synkar ${offlineBuffered} buffrade punkter…`}
               style={{
                 background: !isOnline ? 'rgba(201,110,42,.92)' : 'rgba(30,92,130,.92)',
@@ -1541,7 +1557,7 @@ export default function SparaPage() {
                 <line x1="12" y1="18" x2="12.01" y2="18"/>
               </svg>
               <div style={{ flex: 1 }}>
-                <strong>Lås inte skärmen.</strong> Webb-version pausar GPS när telefonen sover. Lägg Svalla på hemskärmen för bästa stöd.
+                <strong>Lås inte skärmen.</strong> Webbversionen pausar GPS när telefonen sover. Lägg Svalla på hemskärmen för bästa stöd.
               </div>
               <button
                 onClick={dismissWebBanner}
@@ -1573,7 +1589,7 @@ export default function SparaPage() {
                 <line x1="12" y1="8" x2="12" y2="12"/>
                 <line x1="12" y1="16" x2="12.01" y2="16"/>
               </svg>
-              GPS-noggrannhet: {Math.round(currentAccuracy)} m — väntar på bättre signal
+              GPS-noggrannhet: {Math.round(currentAccuracy)} m, väntar på bättre signal
             </div>
           )}
 
@@ -1835,7 +1851,7 @@ export default function SparaPage() {
               background: 'rgba(30,92,130,.06)', borderRadius: 10,
             }}>
               <span style={{ fontSize: 12, color: 'var(--txt2)', fontWeight: 600 }}>
-                ↑ {bearingLabel(bearing)} — rutt från start till slut
+                ↑ {bearingLabel(bearing)}: rutt från start till slut
               </span>
             </div>
           )}
@@ -1936,7 +1952,7 @@ export default function SparaPage() {
           </div>
           {aiErr && (
             <p style={{ margin: '4px 0 0', fontSize: 11, color: 'var(--err, #c0392b)' }}>
-              Kunde inte generera — försök igen
+              Kunde inte generera: försök igen
             </p>
           )}
 
@@ -1948,7 +1964,7 @@ export default function SparaPage() {
                 textTransform: 'uppercase', letterSpacing: '.5px',
                 marginBottom: 8,
               }}>
-                Thorkels förslag — välj en
+                Thorkels förslag: välj en
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {(['Poetisk', 'Rakt på', 'Social'] as const).map((label, i) => {
@@ -2009,7 +2025,7 @@ export default function SparaPage() {
           />
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
             {aiSummary && caption === aiSummary
-              ? <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 700 }}>Thorkel skrev denna — redigera fritt</span>
+              ? <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 700 }}>Thorkel skrev denna: redigera fritt</span>
               : <span />}
             <span style={{ fontSize: 10, color: 'var(--txt3)' }}>{caption.length}/280</span>
           </div>
@@ -2122,7 +2138,7 @@ export default function SparaPage() {
               if (!f || mediaFiles.length >= 3) return
               // Avvisa video tydligt — meddelande beskriver problemet och hur man fixar
               if (f.type.startsWith('video/') || /\.(mov|mp4|m4v|webm|avi)$/i.test(f.name)) {
-                setErr('Videofiler stöds inte ännu — välj en bild från turen istället. iPhones .mov-format kommer i en framtida version.')
+                setErr('Videofiler stöds inte ännu. Välj en bild från turen istället. iPhones .mov-format kommer i en framtida version.')
                 return
               }
               if (!f.type.startsWith('image/')) {
@@ -2184,7 +2200,7 @@ export default function SparaPage() {
             </span>
             <span style={{ display: 'block', fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
               {isPrivate
-                ? 'Bara du ser turen — den visas inte i flödet eller på din profil för andra.'
+                ? 'Bara du ser turen. Den visas inte i flödet eller på din profil för andra.'
                 : 'Turen visas i flödet och på din profil. Växla för att hålla den privat.'}
             </span>
           </span>

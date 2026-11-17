@@ -4,8 +4,8 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
-  title: 'Thorkel – AI-planeraren för skärgården',
-  description: 'Planera din perfekta skärgårdsdag med AI. Thorkel hittar rätt ö, rätt båt och rätt restaurang på sekunder — inklusive Waxholmsbolagets tidtabeller. Ingen båt krävs.',
+  title: 'Thorkel: AI-planeraren för skärgården',
+  description: 'Planera din perfekta skärgårdsdag med AI. Thorkel hittar rätt ö, rätt båt och rätt restaurang på sekunder, inklusive Waxholmsbolagets tidtabeller. Ingen båt krävs.',
   keywords: [
     'ai planerare skärgård',
     'planera skärgårdsdag ai',
@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/ai-guide' },
   openGraph: {
-    title: 'Thorkel – AI-planeraren för skärgården',
+    title: 'Thorkel: AI-planeraren för skärgården',
     description: 'Berätta vad du är sugen på. Thorkel fixar färjor, mat, bad och dolda pärlor. Klar plan på sekunder.',
     url: 'https://svalla.se/ai-guide',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Thorkel – AI-planeraren för skärgården',
+    title: 'Thorkel: AI-planeraren för skärgården',
     description: 'Berätta vad du är sugen på. Thorkel fixar färjor, mat, bad och dolda pärlor. Klar plan på sekunder.',
   },
 }
@@ -40,7 +40,7 @@ const faqSchema = {
       name: 'Vad är Thorkel?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Thorkel är Svallas AI-planerare för svenska skärgårdsresor. Du berättar vad du vill göra — bad, lunch, bastu, vandring — och Thorkel skapar en komplett dagsplan med rätt ö, rätt båt och rätt restaurang. Inga förkunskaper om skärgården krävs.',
+        text: 'Thorkel är Svallas AI-planerare för svenska skärgårdsresor. Du berättar vad du vill göra, bad, lunch, bastu, vandring, och Thorkel skapar en komplett dagsplan med rätt ö, rätt båt och rätt restaurang. Inga förkunskaper om skärgården krävs.',
       },
     },
     {
@@ -48,7 +48,7 @@ const faqSchema = {
       name: 'Behöver man en egen båt för att använda Thorkel?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Absolut inte. Thorkel är byggt för alla — oavsett om du tar Waxholmsbolaget, Cinderellabåten, SL-båt eller har en egen segelbåt. Thorkel hämtar aktuella avgångstider och planerar din resa med kollektivtrafik som standard.',
+        text: 'Absolut inte. Thorkel är byggt för alla: oavsett om du tar Waxholmsbolaget, Cinderellabåten, SL-båt eller har en egen segelbåt. Thorkel hämtar aktuella avgångstider och planerar din resa med kollektivtrafik som standard.',
       },
     },
     {
@@ -56,7 +56,7 @@ const faqSchema = {
       name: 'Hur fungerar Thorkel?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Berätta vad du är sugen på — "vi är 4 vuxna, vill ha bra lunch och ett dopp, helst inte för lång båtresa" — och Thorkel väljer rätt ö, visar nästa avgång med Waxholmsbolaget och föreslår specifika restauranger med öppettider. Hela planen klar på under 30 sekunder.',
+        text: 'Berätta vad du är sugen på: "vi är 4 vuxna, vill ha bra lunch och ett dopp, helst inte för lång båtresa", och Thorkel väljer rätt ö, visar nästa avgång med Waxholmsbolaget och föreslår specifika restauranger med öppettider. Hela planen klar på under 30 sekunder.',
       },
     },
     {
@@ -64,7 +64,7 @@ const faqSchema = {
       name: 'Vilka öar kan Thorkel planera resor till?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Thorkel täcker öar i hela Sverige — Stockholms skärgård (Sandhamn, Grinda, Utö, Vaxholm, Finnhamn med flera), Bohuslän, Göteborgs södra skärgård, Gotland, Öland och Höga Kusten. Svalla är inte bara för stockholmare.',
+        text: 'Thorkel täcker öar i hela Sverige: Stockholms skärgård (Sandhamn, Grinda, Utö, Vaxholm, Finnhamn med flera), Bohuslän, Göteborgs södra skärgård, Gotland, Öland och Höga Kusten. Svalla är inte bara för stockholmare.',
       },
     },
     {
@@ -72,7 +72,7 @@ const faqSchema = {
       name: 'Kostar Thorkel pengar?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Grundfunktionerna är gratis. Du kan planera en komplett dagstur med Thorkel utan att betala något. Svalla följer en freemium-modell — som Strava, fast för skärgårdslivet.',
+        text: 'Grundfunktionerna är gratis. Du kan planera en komplett dagstur med Thorkel utan att betala något. Svalla följer en freemium-modell: som Strava, fast för skärgårdslivet.',
       },
     },
     {
@@ -89,7 +89,7 @@ const faqSchema = {
 const softwareSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'Thorkel – AI-planeraren för skärgården',
+  name: 'Thorkel: AI-planeraren för skärgården',
   applicationCategory: 'TravelApplication',
   operatingSystem: 'Web',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'SEK' },
@@ -141,7 +141,7 @@ export default function AIGuidePage() {
           </h1>
 
           <p style={{ fontSize: 'clamp(16px, 2vw, 20px)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.65, margin: '0 auto 32px', maxWidth: 560 }}>
-            Berätta vad du är sugen på. Thorkel väljer rätt ö, hittar rätt båt och bokar rätt restaurang — på sekunder. Ingen båt krävs. Alltid gratis att börja.
+            Berätta vad du är sugen på. Thorkel väljer rätt ö, hittar rätt båt och bokar rätt restaurang, på sekunder. Ingen båt krävs. Alltid gratis att börja.
           </p>
 
           <Link href="/planera" prefetch={false} style={{
@@ -179,9 +179,9 @@ export default function AIGuidePage() {
             {[
               { from: 'user', text: 'Vi är 4 vuxna, vill ha bad, bra lunch och inte för lång båtresa. Helst idag.' },
               // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
-              { from: 'thorkel', text: 'Perfekt val: Grinda. Waxholmsbåten (linjebåt — ingen båt krävs) från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu — fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20.' },
+              { from: 'thorkel', text: 'Perfekt val: Grinda. Waxholmsbåten (linjebåt: ingen båt krävs) från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu, fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20.' },
               { from: 'user', text: 'Finns det en bastu också?' },
-              { from: 'thorkel', text: 'Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill du att jag lägger till det i planen?' },
+              { from: 'thorkel', text: 'Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14 till 19. Det är 20 min med lokalbåten. Vill du att jag lägger till det i planen?' },
             ].map((msg, i) => (
               <div key={i} style={{ display: 'flex', justifyContent: msg.from === 'user' ? 'flex-end' : 'flex-start', gap: 10, alignItems: 'flex-start' }}>
                 {msg.from === 'thorkel' && (
@@ -240,17 +240,17 @@ export default function AIGuidePage() {
             {
               icon: '🏊',
               title: 'Dolda badplatser',
-              desc: 'Inte bara strandlistan — Thorkel vet vilken klippa som är skyddad mot vinden, var barnfamiljer badar och var seglarna ankar.',
+              desc: 'Inte bara strandlistan: Thorkel vet vilken klippa som är skyddad mot vinden, var barnfamiljer badar och var seglarna ankar.',
             },
             {
               icon: '🗺',
               title: 'Helhetsplan på sekunder',
-              desc: 'Ingen flik-surfing. Thorkel paketerar hela dagen: avgång, aktivitet, lunch, bad, hemfärd — i ett svar.',
+              desc: 'Ingen flik-surfing. Thorkel paketerar hela dagen: avgång, aktivitet, lunch, bad, hemfärd, i ett svar.',
             },
             {
               icon: '👨‍👩‍👧',
               title: 'Anpassad för dig',
-              desc: 'Barnfamilj? Seglare? Budget-resenär? Thorkel anpassar planen efter dina förutsättningar — inga generiska listor.',
+              desc: 'Barnfamilj? Seglare? Budget-resenär? Thorkel anpassar planen efter dina förutsättningar, inga generiska listor.',
             },
             {
               icon: '🧭',
@@ -286,7 +286,7 @@ export default function AIGuidePage() {
               '"Vi är barnfamilj med 2 barn under 10. Vill ha sandstrand, mjukt vatten och en ok krog. Ingen lång båtresa."',
               '"Jag paddlar kajak och söker en ö att övernatta på med naturhamn och bastu. Budget: låg."',
               '"Vi är 6 seglare som ankrar vid Sandhamn. Bästa krogar för kvällen?"',
-              '"Ensam dagstur med tåg från Göteborg — vad kan man se i Bohuslän på en dag?"',
+              '"Ensam dagstur med tåg från Göteborg, vad kan man se i Bohuslän på en dag?"',
               '"Vad ska man göra på Gotland i september utan eget fordon?"',
               // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
               '"Snabbaste vägen till Utö från Södermalm med SL, med hemfärd senast 18:00."',
@@ -351,7 +351,7 @@ export default function AIGuidePage() {
           Redo att prova?
         </h2>
         <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 17, marginBottom: 32, maxWidth: 420, marginInline: 'auto' }}>
-          Thorkel planerar din dag gratis — ingen registrering, ingen app att ladda ner.
+          Thorkel planerar din dag gratis: ingen registrering, ingen app att ladda ner.
         </p>
         <Link href="/planera" prefetch={false} style={{
           display: 'inline-flex', alignItems: 'center', gap: 10,

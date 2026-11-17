@@ -8,7 +8,7 @@ import { REGIONS, hikesForRegion, type Hike } from './hike-data'
 import Icon, { type IconName } from '@/components/Icon'
 
 export const metadata: Metadata = {
-  title: 'Vandring i skärgården — kustleder, öar och tips',
+  title: 'Vandring i skärgården: kustleder, öar och tips',
   description: 'Hitta de bästa vandringarna längs Sveriges kust och skärgård. Topp 10 per region, filtrera på svårighet, transport och bad. Från Stockholms skärgård till Höga kusten.',
   keywords: [
     'vandring skärgård',
@@ -54,7 +54,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Kan man vandra i skärgården utan bil?',
-    a: 'Ja — de flesta välkända vandringsöarna i Stockholms skärgård nås med Waxholmsbolaget eller pendelbåt från Nynäshamn. Räkna med Waxholmsbolagets egen biljett: SL-biljetten gäller bara mellan Strömkajen och Vaxholm med omnejd (44 bryggor), utom 14 september–29 april då SL:s periodbiljetter på 30 dagar eller längre gäller i hela trafiken. Det är en av de stora fördelarna med Stockholms skärgård jämfört med t.ex. Bohuslän och Höga kusten.',
+    a: 'Ja. De flesta välkända vandringsöarna i Stockholms skärgård nås med Waxholmsbolaget eller pendelbåt från Nynäshamn. Räkna med Waxholmsbolagets egen biljett: SL-biljetten gäller bara mellan Strömkajen och Vaxholm med omnejd (44 bryggor), utom 14 september till 29 april då SL:s periodbiljetter på 30 dagar eller längre gäller i hela trafiken. Det är en av de stora fördelarna med Stockholms skärgård jämfört med t.ex. Bohuslän och Höga kusten.',
   },
   {
     q: 'Vilka skärgårdsöar har markerade vandringsleder?',
@@ -62,11 +62,11 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Vilka vandringar passar barn?',
-    a: 'Grinda, Sandhamn och Finnhamn är de mest barnvänliga i Stockholms skärgård — korta leder, tydliga stigar och café i närheten. På Gotland är Lummelunda (grottor) ett givet barn-stopp. I Bohuslän passar Marstrand med Carlstens fästning utmärkt.',
+    a: 'Grinda, Sandhamn och Finnhamn är de mest barnvänliga i Stockholms skärgård: korta leder, tydliga stigar och café i närheten. På Gotland är Lummelunda (grottor) ett givet barnstopp. I Bohuslän passar Marstrand med Carlstens fästning utmärkt.',
   },
   {
     q: 'Kan man ta med hund på skärgårdsvandring?',
-    a: 'Generellt ja, men med viktiga undantag. Hundar är förbjudna i fågelskyddsområden under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter). Naturreservat med strikta regler kan ha hundförbud året runt. Kontrollera alltid lokala föreskrifter. Waxholmsbolaget tillåter hundar ombord.',
+    a: 'Generellt ja, men med viktiga undantag. Hundar är förbjudna i fågelskyddsområden under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti, datumen står på skyltarna och i länsstyrelsens föreskrifter). Naturreservat med strikta regler kan ha hundförbud året runt. Kontrollera alltid lokala föreskrifter. Waxholmsbolaget tillåter hundar ombord.',
   },
   {
     q: 'Vilka vandringar har badplatser längs vägen?',
@@ -74,11 +74,11 @@ const FAQ_ITEMS = [
   },
   {
     q: 'När är bästa tiden att vandra i skärgården?',
-    a: 'Maj–juni och september är de bästa månaderna. Du undviker myggperioden (juli–tidigt augusti), midsommarrusningen och sommarhettan. Höstfärgerna i september och oktober är spektakulära.',
+    a: 'Maj till juni och september är de bästa månaderna. Du undviker myggperioden (juli till tidigt augusti), midsommarrusningen och sommarhettan. Höstfärgerna i september och oktober är spektakulära.',
   },
   {
     q: 'Behöver man boka färja för att vandra i skärgården?',
-    a: 'För Stockholms skärgård behöver du normalt inte boka Waxholmsbolaget. Gotland är undantaget — Destination Gotlands färjor måste bokas, gärna månader i förväg för juli. Kolla alltid aktuella tidtabeller på waxholmsbolaget.se och sl.se.',
+    a: 'För Stockholms skärgård behöver du normalt inte boka Waxholmsbolaget. Gotland är undantaget: Destination Gotlands färjor måste bokas, gärna månader i förväg för juli. Kolla alltid aktuella tidtabeller på waxholmsbolaget.se och sl.se.',
   },
   {
     q: 'Kan man tälta i skärgården?',
@@ -86,20 +86,20 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Finns det vandringsleder nära Stockholm stad?',
-    a: 'Närmast Stockholm är Fjäderholmarna (25 min med båt, kortpromenad), Vaxholm (1 h) och Nacka naturreservat (längs kusten, nås med buss). De mer klassiska vandringsöarna — Finnhamn, Grinda, Utö — ligger 2–3 timmar bort med färja.',
+    a: 'Närmast Stockholm är Fjäderholmarna (25 min med båt, kortpromenad), Vaxholm (1 h) och Nacka naturreservat (längs kusten, nås med buss). De mer klassiska vandringsöarna, Finnhamn, Grinda, Utö, ligger 2 till 3 timmar bort med färja.',
   },
   {
     q: 'Vilka kustleder är bäst i Sverige?',
     // KÄLLA: STF (Signaturled Öland/Mörbylångaleden 84 km) + Länsstyrelsen Gotland (Klintkustleden 30 km). Ölandsleden och Gotlandsleden är cykelleder, inte vandringsleder.
-    a: 'Höga kustenleden (130 km, UNESCO-området Höga kusten), Skåneledens kustdelar (bl.a. Kullaberg), Bohusleden (Göteborg–Strömstad), Sörmlandsleden (delar), Mörbylångaleden på Öland (84 km genom världsarvet) och Klintkustleden på Gotland (30 km) är de mest etablerade. Höga kusten och Kullaberg rankas ofta högst för dramatik.',
+    a: 'Höga kustenleden (130 km, UNESCO-området Höga kusten), Skåneledens kustdelar (bl.a. Kullaberg), Bohusleden (Göteborg till Strömstad), Sörmlandsleden (delar), Mörbylångaleden på Öland (84 km genom världsarvet) och Klintkustleden på Gotland (30 km) är de mest etablerade. Höga kusten och Kullaberg rankas ofta högst för dramatik.',
   },
   {
     q: 'Vad är skillnaden på lätt, medel och krävande vandring?',
-    a: 'Lätt: under 6 km, tydlig bred stig, liten höjdskillnad, passar alla inklusive barn och äldre. Medel: 6–15 km, kan ha ojämn terräng och kortare branter, kräver bekväma skor. Krävande: över 15 km, brantare stigar och klättring, kräver bra skor och erfarenhet.',
+    a: 'Lätt: under 6 km, tydlig bred stig, liten höjdskillnad, passar alla inklusive barn och äldre. Medel: 6 till 15 km, kan ha ojämn terräng och kortare branter, kräver bekväma skor. Krävande: över 15 km, brantare stigar och klättring, kräver bra skor och erfarenhet.',
   },
   {
     q: 'Hur planerar man en dagsvandring i skärgården?',
-    a: 'Börja med att bestämma hur lång restid du accepterar. Räkna med att restid med färja plus vandring tar en hel dag — planera inte för att hinna fler än en ö. Kontrollera sista båttiden hem INNAN du sätter igång. Ta med mer vatten och mat än du tror att du behöver.',
+    a: 'Börja med att bestämma hur lång restid du accepterar. Räkna med att restid med färja plus vandring tar en hel dag. Planera inte för att hinna fler än en ö. Kontrollera sista båttiden hem INNAN du sätter igång. Ta med mer vatten och mat än du tror att du behöver.',
   },
   {
     q: 'Vilka vandringar har restaurang eller café i närheten?',
@@ -110,15 +110,15 @@ const FAQ_ITEMS = [
 const GUIDES = [
   {
     title: 'Vad packar man för en dag i skärgården?',
-    body: 'Skärgårdens grundregel: packa för ett scenario varmare och ett scenario kyligare än vad vädret säger. Havsvindar är opålitliga och halvdagsregn kan uppstå en annars solig dag. Absolut nödvändigt: bekväma vandringsskor eller vandringskängor, vatten (minst 1 liter per person), matsäck, regnkläder och solskydd maj–september. Starkt rekommenderat: extra lager (tunn fleece), myggmedel juli–augusti, plåster och kontanter (kiosker på öar tar inte alltid kort). Med barn: extra snacks, badkläder och plan för toaletter — planera kortare etapper än du tror att du klarar.',
+    body: 'Skärgårdens grundregel: packa för ett scenario varmare och ett scenario kyligare än vad vädret säger. Havsvindar är opålitliga och halvdagsregn kan uppstå en annars solig dag. Absolut nödvändigt: bekväma vandringsskor eller vandringskängor, vatten (minst 1 liter per person), matsäck, regnkläder och solskydd maj till september. Starkt rekommenderat: extra lager (tunn fleece), myggmedel juli till augusti, plåster och kontanter (kiosker på öar tar inte alltid kort). Med barn: extra snacks, badkläder och plan för toaletter. Planera kortare etapper än du tror att du klarar.',
   },
   {
     title: 'När är bästa säsongen?',
-    body: 'Maj–juni är det bästa valet: naturen vaknar, myggorna är ännu inte besvärliga, löven är ljusgröna och de flesta leder är öppna. Juli–augusti: störst utbud av öppna caféer och restauranger men också flest besökare. För mer stillsam upplevelse — välj en liten ö, inte Sandhamn. September är Svallas favoritmånad: höstfärger, nästan inga myggor, behaglig temperatur och dramatiskt ljus. Oktober–april är möjligt men tuffare — en del destinationer stänger helt. Kontrollera tidtabeller noga.',
+    body: 'Maj till juni är det bästa valet: naturen vaknar, myggorna är ännu inte besvärliga, löven är ljusgröna och de flesta leder är öppna. Juli till augusti: störst utbud av öppna caféer och restauranger men också flest besökare. För mer stillsam upplevelse. Välj en liten ö, inte Sandhamn. September är Svallas favoritmånad: höstfärger, nästan inga myggor, behaglig temperatur och dramatiskt ljus. Oktober till april är möjligt men tuffare, en del destinationer stänger helt. Kontrollera tidtabeller noga.',
   },
   {
     title: 'Hur funkar allemansrätten i skärgården?',
-    body: 'Allemansrätten gäller i skärgården som på fastlandet — med viktiga tillägg. Du får röra dig fritt i skog och mark, tälta kortare tid (normalt 1–2 nätter på samma plats) och plocka bär, svamp och blommor som inte är fridlysta. Du får inte tälta, göra upp eld eller beträda naturreservat med strikta tillträdesrestriktioner, eller köra motorbåt för nära land i fågelskyddsområden under häckningstid — perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti. Hundar: i fågelskyddsområden är hundar förbjudna hela eller delar av året. Kontrollera Länsstyrelsens webbplats för regler i specifika reservat.',
+    body: 'Allemansrätten gäller i skärgården som på fastlandet, med viktiga tillägg. Du får röra dig fritt i skog och mark, tälta kortare tid (normalt 1 till 2 nätter på samma plats) och plocka bär, svamp och blommor som inte är fridlysta. Du får inte tälta, göra upp eld eller beträda naturreservat med strikta tillträdesrestriktioner, eller köra motorbåt för nära land i fågelskyddsområden under häckningstid: perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti. Hundar: i fågelskyddsområden är hundar förbjudna hela eller delar av året. Kontrollera Länsstyrelsens webbplats för regler i specifika reservat.',
   },
   {
     title: 'Kan man vandra utan bil?',
@@ -135,35 +135,35 @@ const GUIDES = [
     // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/trysunda.html — "Sommartid går det dagliga passagerarbåtar från Köpmanholmen till Trysunda. Under vintern är turlistan begränsad." (läst 2026-11-09)
     // KÄLLA: https://www.mfulvon.se/ovrigt/angoringsbryggor — "Alla våra turer till Strängöarna, Trysunda och Ulvön utgår från Köpmanholmens färjeläge." (läst 2026-11-09)
     // KÄLLA: https://www.mfulvon.se/ — "RES MED OSS TILL HÖGA KUSTENS SKÄRGÅRD", "Turlista 1 nov - 23 dec 2026" (läst 2026-11-09)
-    body: 'Ja — och för Stockholms skärgård är det faktiskt enklare utan bil. Waxholmsbolaget ansvarar för den kollektiva sjötrafiken i Stockholms skärgård och trafikerar sommartid bryggor från den norra till den södra skärgården. Till Utö tar du pendeltåg till Västerhaninge, buss 846 till Årsta brygga och båt därifrån. Till Nåttarö tar du pendeltåg linje 43 från Stockholm City till Nynäshamn, 59–65 minuter, och båt därifrån, och till Landsort pendeltåg till Nynäshamn, buss 852 till Ankarudden och båt därifrån. Bohuslän: Västtrafik har båtlinjer till södra skärgårdens öar (Vrångö, Styrsö, Donsö). Till Marstrand tar du buss 302/312 från Göteborg. Gotland: Destination Gotland kör färja Nynäshamn–Visby, och enligt turlistan för 9 november 2026 tar överfarten 3 h 15 min eller 3 h 35 min. Höga kusten: SJ/Norrtåg till Härnösand och Kramfors — lokal busstrafik finns men är gles. Till Trysunda går passagerarbåtar från Köpmanholmen dagligen sommartid och med begränsad turlista på vintern, och båten M/F Ulvön, som går från Köpmanholmen till Ulvön, har turlista även för 1 november–23 december 2026.',
+    body: 'Ja, och för Stockholms skärgård är det faktiskt enklare utan bil. Waxholmsbolaget ansvarar för den kollektiva sjötrafiken i Stockholms skärgård och trafikerar sommartid bryggor från den norra till den södra skärgården. Till Utö tar du pendeltåg till Västerhaninge, buss 846 till Årsta brygga och båt därifrån. Till Nåttarö tar du pendeltåg linje 43 från Stockholm City till Nynäshamn, 59 till 65 minuter, och båt därifrån, och till Landsort pendeltåg till Nynäshamn, buss 852 till Ankarudden och båt därifrån. Bohuslän: Västtrafik har båtlinjer till södra skärgårdens öar (Vrångö, Styrsö, Donsö). Till Marstrand tar du buss 302/312 från Göteborg. Gotland: Destination Gotland kör färja Nynäshamn till Visby, och enligt turlistan för 9 november 2026 tar överfarten 3 h 15 min eller 3 h 35 min. Höga kusten: SJ/Norrtåg till Härnösand och Kramfors, lokal busstrafik finns men är gles. Till Trysunda går passagerarbåtar från Köpmanholmen dagligen sommartid och med begränsad turlista på vintern, och båten M/F Ulvön, som går från Köpmanholmen till Ulvön, har turlista även för 1 november till 23 december 2026.',
   },
   {
     title: 'Vilka vandringar passar barn?',
-    body: 'Barn under 10 är generellt lyckligast på öar med: kort vandringsled (max 4–5 km), tydlig badplats längs vägen, café eller kiosk och breda, välmarkerade stigar. Bästa val Stockholm: Grinda (3 km, café, bad), Sandhamn (välmarkerat, café), Finnhamn (STF-stämning, kort). Bästa val Bohuslän: Marstrand (fästning, kort rund), Vrångö (bilfri, badklippor). Undvik med småbarn: Nåttarö (primitiv, ingen service), Arholma (lång restid) och Kullaberg (branter).',
+    body: 'Barn under 10 är generellt lyckligast på öar med: kort vandringsled (max 4 till 5 km), tydlig badplats längs vägen, café eller kiosk och breda, välmarkerade stigar. Bästa val Stockholm: Grinda (3 km, café, bad), Sandhamn (välmarkerat, café), Finnhamn (STF-stämning, kort). Bästa val Bohuslän: Marstrand (fästning, kort rund), Vrångö (bilfri, badklippor). Undvik med småbarn: Nåttarö (primitiv, ingen service), Arholma (lång restid) och Kullaberg (branter).',
   },
   {
     title: 'Behöver man boka färja?',
-    body: 'Stockholms skärgård: Waxholmsbolaget kräver inte bokning — betala ombord med SL-kort, app eller kontant. Under midsommar och den första julihelgen kan båtarna bli fullsatta. Gotland: Destination Gotland kräver ALLTID bokning under sommarsäsongen — boka minst 6–8 veckor i förväg för juli. Bohuslän: Västtrafiks linjer till södra skärgårdens öar kräver inte bokning. Marstrandsfärjan ingår i Västtrafik-biljetten. Höga kusten: Sommarbåtarna till Trysunda och Ulvön körs av lokala aktörer — kontrollera respektive operatör.',
+    body: 'Stockholms skärgård: Waxholmsbolaget kräver inte bokning: betala ombord med SL-kort, app eller kontant. Under midsommar och den första julihelgen kan båtarna bli fullsatta. Gotland: Destination Gotland kräver ALLTID bokning under sommarsäsongen. Boka minst 6 till 8 veckor i förväg för juli. Bohuslän: Västtrafiks linjer till södra skärgårdens öar kräver inte bokning. Marstrandsfärjan ingår i Västtrafikbiljetten. Höga kusten: Sommarbåtarna till Trysunda och Ulvön körs av lokala aktörer. Kontrollera respektive operatör.',
   },
   {
     title: 'Vad ska man tänka på för att inte missa sista båten hem?',
-    body: 'Det händer — och det är inte kul. En grundregel: kolla alltid den sista avgångstiden INNAN du börjar vandra, inte när du börjar bli trött. Tips: sätt ett larm 45 minuter före sista avgång, stå vid bryggan minst 10 minuter tidigt (de går på sekunden), ha en backup-plan (gästhamn, vandrarhem eller tältplats finns på många öar). I juli och augusti kan extra avgångar köras — men räkna inte med det.',
+    body: 'Det händer, och det är inte kul. En grundregel: kolla alltid den sista avgångstiden INNAN du börjar vandra, inte när du börjar bli trött. Tips: sätt ett larm 45 minuter före sista avgång, stå vid bryggan minst 10 minuter tidigt (de går på sekunden), ha en reservplan (gästhamn, vandrarhem eller tältplats finns på många öar). I juli och augusti kan extra avgångar köras, men räkna inte med det.',
   },
 ]
 
 const TOP_10 = [
   // KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark 1984; Länsstyrelsen Västernorrland — Höga Kusten är UNESCO-världsarv (2000), inte "reservat" (läst 2026-09-14)
-  { rank: 1, name: 'Skuleskogen, Höga kusten', region: 'Höga kusten', desc: 'Nationalpark i UNESCO-världsarvet Höga kusten — dramatiska bergssidor och urskogsstämning.', slug: '/aktivitet/vandring/skuleskogen' },
+  { rank: 1, name: 'Skuleskogen, Höga kusten', region: 'Höga kusten', desc: 'Nationalpark i UNESCO-världsarvet Höga kusten, dramatiska bergssidor och urskogsstämning.', slug: '/aktivitet/vandring/skuleskogen' },
   // KÄLLA: Stockholm Archipelago Trail — Ornö-etappen är 34,1 km, Utö-etappen 18,4 km
   // (stockholmarchipelagotrail.com, läst 2026-09-18). Utös egen rundslinga på ~8 km är
   // alltså inte skärgårdens längsta led — den formuleringen togs bort 2026-09-21.
   { rank: 2, name: 'Utö, Stockholms skärgård', region: 'Stockholms skärgård', desc: 'Öns egen rundslinga är ~8 km och passerar gruvor, gammal kvarn, naturreservat och havsklippor. Nås utan bil.', slug: '/aktivitet/vandring/uto' },
-  { rank: 3, name: 'Digerhuvud, Fårö', region: 'Gotland', desc: 'Raukarna är surrealistiska — klippformationer mot öppet hav som ser ut som en annan planet. En halvdag som sitter kvar länge.', slug: '/aktivitet/vandring/digerhuvud-faro' },
+  { rank: 3, name: 'Digerhuvud, Fårö', region: 'Gotland', desc: 'Raukarna är surrealistiska, klippformationer mot öppet hav som ser ut som en annan planet. En halvdag som sitter kvar länge.', slug: '/aktivitet/vandring/digerhuvud-faro' },
   // KÄLLA: Länsstyrelsen Västra Götaland — Kosterhavets nationalpark 2009, Kosteröarna naturreservat (läst 2026-09-14)
   { rank: 4, name: 'Nordkoster, Kosterhavet', region: 'Bohuslän', desc: 'Sveriges första marina nationalpark. Dramatiska klippor och Västerhavet i alla riktningar. Bilfri ö med välmarkerade leder.', slug: '/aktivitet/vandring/nordkoster' },
   { rank: 5, name: 'Kullaberg, Skåne', region: 'Nordvästra Skåne', desc: '70 meter höga klippavsatser, fyrar och sällsynt flora. Naturreservat med Sverige-unik geologi och välskött lednat.', slug: '/aktivitet/vandring/kullaberg' },
   { rank: 6, name: 'Finnhamn, Stockholms skärgård', region: 'Stockholms skärgård', desc: 'Det perfekta skärgårdsintrot: kompakt, vacker, utan bil och med STF-vandrarhem om du vill stanna kvar.', slug: '/aktivitet/vandring/finnhamn' },
-  { rank: 7, name: 'Trollskogen, Öland', region: 'Öland', desc: 'Urskog med gamla vridna träd precis vid havsstranden — en av Sveriges märkligaste och mest fotogeniska naturupplevelser.', slug: '/aktivitet/vandring/trollskogen-oland' },
+  { rank: 7, name: 'Trollskogen, Öland', region: 'Öland', desc: 'Urskog med gamla vridna träd precis vid havsstranden, en av Sveriges märkligaste och mest fotogeniska naturupplevelser.', slug: '/aktivitet/vandring/trollskogen-oland' },
   { rank: 8, name: 'Trysunda, Höga kusten', region: 'Höga kusten', desc: 'Liten fiskehamnsö med Ångermanlandskustens bäst bevarade fiskeläge och kapell från 1600-talet. Kort led men stor känsla. Nås med sommarbåt.', slug: '/aktivitet/vandring/trysunda' },
   { rank: 9, name: 'Grötö / Fjällbacka, Bohuslän', region: 'Bohuslän', desc: 'Bohusläns klipphällar och det dramatiska havsljuset. Tillgängligt med buss, lagom svår vandring för en halv dag.', slug: '/aktivitet/vandring/fjallbacka' },
   { rank: 10, name: 'Hanö, Blekinge', region: 'Blekinge', desc: 'Blekinges utpost i Östersjön: unik engelsk kyrkogård, fågelrika strandängar och råa ankringsplatser. Nås med sommarbåt.', slug: '/aktivitet/vandring/hano' },
@@ -346,7 +346,7 @@ export default function VandringPage() {
               fontSize: 16, lineHeight: 1.6,
               maxWidth: 640, opacity: 0.92, margin: 0,
             }}>
-              Kuststigar, naturreservat, öleder och klippor med havet som sällskap. Hitta rätt vandring för en timme, en dag eller en hel helg — oavsett om du tar färjan eller har bil.
+              Kuststigar, naturreservat, öleder och klippor med havet som sällskap. Hitta rätt vandring för en timme, en dag eller en hel helg, oavsett om du tar färjan eller har bil.
             </p>
           </div>
         </header>
@@ -414,7 +414,7 @@ export default function VandringPage() {
               Var ska jag börja?
             </h2>
             <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 16px' }}>
-              Sex situationer — en rekommendation per situation.
+              Sex situationer, en rekommendation per situation.
             </p>
             <div style={{
               display: 'grid',

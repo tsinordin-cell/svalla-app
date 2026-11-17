@@ -13,7 +13,7 @@ export const metadata: Metadata = {
  'skärgårdscharter',
  ],
  openGraph: {
- title: 'Erbjudanden & paket — Svalla',
+ title: 'Erbjudanden & paket | Svalla',
  description: 'Aktuella erbjudanden för skärgårdsvistelser.',
  url: 'https://svalla.se/erbjudanden',
  },
@@ -24,14 +24,14 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🏨',
  title: 'Boende-paket',
- description: 'Hotellpaket med frukost, spa och färjebiljetter — ofta tillgängliga utanför högsäsong.',
+ description: 'Hotellpaket med frukost, spa och färjebiljetter, ofta tillgängliga utanför högsäsong.',
  href: '/boende',
  meta: 'Lågsäsong',
  },
  {
  icon: 'sailboat',
  title: 'Seglingscharter',
- description: 'Bareboat, skeppare-med-båt eller kurser — veckopaket från maj till september.',
+ description: 'Bareboat, skeppare-med-båt eller kurser, veckopaket från maj till september.',
  href: '/segelrutter',
  },
  {
@@ -43,13 +43,13 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'utensils',
  title: 'Middags-paket',
- description: 'Krogkvällar med färjetransport t.o.r, ibland med övernattning — populärt för födelsedagar.',
+ description: 'Krogkvällar med färjetransport t.o.r, ibland med övernattning, populärt för födelsedagar.',
  href: '/krogar-och-mat',
  },
  {
  icon: '💎',
  title: 'Svalla Pro',
- description: 'Låt Svalla hjälpa dig planera och få tillgång till Pro-features som offline-karta och export.',
+ description: 'Låt Svalla hjälpa dig planera och få tillgång till Profunktioner som offlinekarta och export.',
  href: '/pro',
  },
 ]
@@ -60,7 +60,7 @@ export default function ErbjudandenPage() {
  heroGradient={['#c96e2a', '#d98246']}
  eyebrow="Erbjudanden"
  title="Aktuella paket & erbjudanden"
- tagline="Utvalda paket från skärgårdens operatörer — boende, segelcharter, kurser och guidade turer. Uppdateras löpande."
+ tagline="Utvalda paket från skärgårdens operatörer: boende, segelcharter, kurser och guidade turer. Uppdateras löpande."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7" />
@@ -73,10 +73,10 @@ export default function ErbjudandenPage() {
  intro={
  <>
  <p>
- Skärgårdens operatörer lägger upp säsongspaket, weekend-deals och lågsäsongsrabatter löpande. Här listar vi de erbjudanden operatörerna själva publicerat, med länk till källan. Pris och villkor gäller hos operatören.
+ Skärgårdens operatörer lägger upp säsongspaket, helgerbjudanden och lågsäsongsrabatter löpande. Här listar vi de erbjudanden operatörerna själva publicerat, med länk till källan. Pris och villkor gäller hos operatören.
  </p>
  <p>
- Vi tar ingen kickback — vi länkar direkt till operatörens bokningssida. Priser och villkor gäller som angivet av operatören.
+ Vi tar ingen kickback. Vi länkar direkt till operatörens bokningssida. Priser och villkor gäller som angivet av operatören.
  </p>
  </>
  }
@@ -89,7 +89,7 @@ export default function ErbjudandenPage() {
  Driver du ett ställe?
  </h2>
  <p>
- Om du driver ett hotell, en krog, en seglingsskola eller annan skärgårdsverksamhet kan du <strong>skicka in ditt erbjudande</strong> till redaktionen. Vi är selektiva men gratis — vi prioriterar erbjudanden som faktiskt gör skärgården mer tillgänglig, inte bara dyrare.
+ Om du driver ett hotell, en krog, en seglingsskola eller annan skärgårdsverksamhet kan du <strong>skicka in ditt erbjudande</strong> till redaktionen. Vi är selektiva men gratis. Vi prioriterar erbjudanden som faktiskt gör skärgården mer tillgänglig, inte bara dyrare.
  </p>
  <p>
  Mejla <a href="mailto:partners@svalla.se" style={{ color: 'var(--sea)' }}>partners@svalla.se</a> med kort beskrivning, priser och bokningslänk. Vi återkommer inom en vecka.

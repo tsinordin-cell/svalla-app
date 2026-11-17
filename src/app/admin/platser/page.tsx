@@ -32,7 +32,7 @@ export default async function AdminPlatserPage() {
             Redigera platser
           </h1>
           <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0 }}>
-            {restaurants?.length ?? 0} platser — fyll i kontakt & bokningslänk
+            {restaurants?.length ?? 0} platser, fyll i kontakt & bokningslänk
           </p>
         </div>
         <PlatsAdminClient restaurants={restaurants ?? []} />

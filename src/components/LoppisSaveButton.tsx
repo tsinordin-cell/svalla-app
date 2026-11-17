@@ -79,7 +79,7 @@ export default function LoppisSaveButton({ threadId }: Props) {
       disabled={busy}
       aria-pressed={saved}
       aria-label={saved ? 'Ta bort från sparat' : 'Spara annons'}
-      title={saved ? 'Sparad — tryck för att ta bort' : 'Spara annons'}
+      title={saved ? 'Sparad: tryck för att ta bort' : 'Spara annons'}
       style={{
         width: 38, height: 38, borderRadius: '50%',
         background: saved ? 'rgba(220,38,38,0.12)' : 'rgba(10,123,140,0.10)',

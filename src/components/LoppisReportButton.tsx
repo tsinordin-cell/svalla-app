@@ -160,7 +160,7 @@ export default function LoppisReportButton({ threadId, isLoggedIn }: Props) {
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  placeholder="Kommentar (valfritt) — max 500 tecken"
+                  placeholder="Kommentar (valfritt): max 500 tecken"
                   rows={3}
                   maxLength={500}
                   style={{

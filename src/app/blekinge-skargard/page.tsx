@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
 
 export const metadata: Metadata = {
- title: 'Blekinges skärgård — Logga turer, hitta platser',
+ title: 'Blekinges skärgård: Logga turer, hitta platser',
  description: 'Segling i Blekinges skärgård: Karlskrona gästhamn, Hanö, Hanöbukten. Logga båtturer, ankringsplatser och naturhamnar på Svalla.',
  keywords: [
  'blekinge skärgård',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
  'karlskrona unesco',
  ],
  openGraph: {
- title: 'Blekinges skärgård — Logga turer',
+ title: 'Blekinges skärgård: Logga turer',
  description: 'Logga dina båtturer i Blekinges skärgård med Svalla.',
  url: 'https://svalla.se/blekinge-skargard',
  },
@@ -35,20 +35,20 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'map',
  title: 'Öarna här',
- description: 'Ö-sidor med hamnar, aktiviteter och källor — listan finns längre ner på sidan.',
+ description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
  href: '/blekinge-skargard#oar',
  meta: 'Gratis',
  },
  {
  icon: 'ship',
- title: 'Karlskrona — marinstad',
+ title: 'Karlskrona: marinstad',
  description: 'Världsarvsstad och Östersjöns stolthet. Gästhamnen i Stumholmen är en naturlig mötesplats för seglare.',
  href: '/upptack',
  },
  {
  icon: '🏕️',
  title: 'Hanö och ytterskärgården',
- description: 'Blekinges utpostar mot öppet hav — råa öar med unik fågelrik natur och lugna ankringsplatser.',
+ description: 'Blekinges utpostar mot öppet hav, råa öar med unik fågelrik natur och lugna ankringsplatser.',
  href: '/platser?kategori=naturhamn',
  },
  {
@@ -66,7 +66,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: '📱',
  title: 'Logga dina turer',
- description: 'GPS-spårning, foton och anteckningar — spara minnen från Blekinges skärgård.',
+ description: 'GPS-spårning, foton och anteckningar. Spara minnen från Blekinges skärgård.',
  href: '/logga-in',
  },
 ]
@@ -79,7 +79,7 @@ export default function BlekingeSkargardPage() {
  {
  '@type': 'Question',
  name: 'Är Blekinges skärgård bra för nybörjarseglare?',
- acceptedAnswer: { '@type': 'Answer', text: 'Ja, absolut. Innerskärgården kring Karlskrona har väl märkta farleder och lugna, skyddade vatten — perfekt för att bygga självförtroende. Undvik öppet hav mot Hanö utan seglererfarenhet, men annars är Blekinge mycket nybörjarvänligt.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Ja, absolut. Innerskärgården kring Karlskrona har väl märkta farleder och lugna, skyddade vatten, perfekt för att bygga självförtroende. Undvik öppet hav mot Hanö utan seglererfarenhet, men annars är Blekinge mycket nybörjarvänligt.' },
  },
  {
  '@type': 'Question',
@@ -91,12 +91,12 @@ export default function BlekingeSkargardPage() {
  '@type': 'Question',
  name: 'Finns det en märkt segelled längs ostkusten?',
  // KÄLLA: faktagranskning 2026-08-23 — ingen myndighet eller operatör känner en märkt segelrutt Sthlm–Malmö. ARK56: naturkartan.se/ark56 (läst 2026-08-23)
- acceptedAnswer: { '@type': 'Answer', text: 'Nej — någon officiellt märkt segelrutt Stockholm–Malmö finns inte. Kusten seglas ändå flitigt i väl utprickade farleder, och Blekinge är en naturlig etapp mellan Kalmarsund och Öresund. För paddling, vandring och cykel finns ARK56 — Blekinges länkade kustleder.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Nej, någon officiellt märkt segelrutt Stockholm till Malmö finns inte. Kusten seglas ändå flitigt i väl utprickade farleder, och Blekinge är en naturlig etapp mellan Kalmarsund och Öresund. För paddling, vandring och cykel finns ARK56, Blekinges länkade kustleder.' },
  },
  {
  '@type': 'Question',
  name: 'Vad är speciellt med Karlskronas skärgård jämfört med Stockholm?',
- acceptedAnswer: { '@type': 'Answer', text: 'Stockholms skärgård är spektakulär men väletablerad — Karlskronas är mjukare, grönare och markant lugnare. Inga storstadsinfrastruktur eller överbefolkning, men all charm. Blekinge är perfekt för den seglare som söker äventyr utan att vilja stöta på hundra andra båtar.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Stockholms skärgård är spektakulär men väletablerad: Karlskronas är mjukare, grönare och markant lugnare. Inga storstadsinfrastruktur eller överbefolkning, men all charm. Blekinge är perfekt för den seglare som söker äventyr utan att vilja stöta på hundra andra båtar.' },
  },
  ],
  }
@@ -116,7 +116,7 @@ export default function BlekingeSkargardPage() {
  heroGradient={['#4a3728', '#6b5040']}
  eyebrow="Blekinges skärgård"
  title="Östersjöns gröna kust"
- tagline="Välbevarad och underskattad — Svalla hjälper dig utforska Blekinges skärgård och logga varje tur längs Sveriges sydligaste kust."
+ tagline="Välbevarad och underskattad | Svalla hjälper dig utforska Blekinges skärgård och logga varje tur längs Sveriges sydligaste kust."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -126,10 +126,10 @@ export default function BlekingeSkargardPage() {
  intro={
  <>
  <p>
- Blekinges skärgård är Sveriges bäst bevarade hemlighet. <strong>Frodig vegetation, lugna vatten och Karlskrona som maritimt världsarv</strong> — en region som belönar den seglare som tar sig dit. Från Karlskronas färgglada trähus till Hanös ödsliga naturhamnar ligger några av Östersjöns mest autentiska ankringsplatser bara vänta.
+ Blekinges skärgård är Sveriges bäst bevarade hemlighet. <strong>Frodig vegetation, lugna vatten och Karlskrona som maritimt världsarv</strong>, en region som belönar den seglare som tar sig dit. Från Karlskronas färgglada trähus till Hanös ödsliga naturhamnar ligger några av Östersjöns mest autentiska ankringsplatser bara vänta.
  </p>
  <p>
- Till skillnad från Stockholms arkaipelags väletablerade infrastruktur behåller Blekinge sin skärgårdsromantik — grönare, mjukare och lugnare, men fullt tillräckligt utrustad för moderna seglare. Området är idealt för både nybörjare som vill slippa öppet hav och erfarna seglare som söker atmosfär.
+ Till skillnad från Stockholms arkaipelags väletablerade infrastruktur behåller Blekinge sin skärgårdsromantik: grönare, mjukare och lugnare, men fullt tillräckligt utrustad för moderna seglare. Området är idealt för både nybörjare som vill slippa öppet hav och erfarna seglare som söker atmosfär.
  </p>
  <p>
  Svalla låter dig logga alla turer längs kusten, hitta naturhamnar och krogar på kartan och spara minnen från en skärgård som fortfarande känns oprövad. Planera din tur längs Östersjöleden, kartlägga ankringsplatser och spåra dina vägar genom Blekinges gröna övärldar.
@@ -148,23 +148,23 @@ export default function BlekingeSkargardPage() {
  <RegionOar rubrik="Öar i Blekinge skärgård" etiketter={['Blekinge']} />
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Ta dig dit — kollektivtrafik
+ Ta dig dit: kollektivtrafik
  </h2>
  <p>
- <strong>Till Karlskrona</strong> med tåg: SJ och Öresundståg trafikerar Stockholm–Karlskrona, restid ca 4,5 timmar. Karlskrona C ligger centralt i staden nära gästhamnen.
+ <strong>Till Karlskrona</strong> med tåg: SJ och Öresundståg trafikerar Stockholm till Karlskrona, restid ca 4,5 timmar. Karlskrona C ligger centralt i staden nära gästhamnen.
  </p>
  <p>
- <strong>Lokalt i skärgården</strong>: Blekingetrafiken kör pendelbåtar från Trossö (centrala Karlskrona) till öarna Sturkö, Hasslö och Trummenäs. Till Hanö: Blekingetrafikens båt från Nogersund (Sölvesborgs kommun) sommartid — du behöver alltså ingen egen båt för att besöka Hanö.
+ <strong>Lokalt i skärgården</strong>: Blekingetrafiken kör pendelbåtar från Trossö (centrala Karlskrona) till öarna Sturkö, Hasslö och Trummenäs. Till Hanö: Blekingetrafikens båt från Nogersund (Sölvesborgs kommun) sommartid, du behöver alltså ingen egen båt för att besöka Hanö.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Karlskrona — marinstadens gästhamn
+ Karlskrona: marinstadens gästhamn
  </h2>
  <p>
  <strong>Karlskrona</strong> är en av Europas bäst bevarade marinstäder och UNESCO Världsarv sedan 1998. Staden ligger på en skärgårdsgrupp mitt i sydöstra Sverige och bjuder på något av det vackraste segelmål längs Östersjön. Gästhamnen vid Stumholmen är centralt belägen, välutrustad med både dugger och bryggplatser, och en naturlig mötesplats för seglare från hela världen.
  </p>
  <p>
- Stöta in över Karlskronas mjukt öppnande farleder och ankra vid Stumholmen medan du njuter av utsikten över <strong>Örlogsvarvet</strong> (dagens Marinmuseum), den gotiska <strong>Amiralitetskyrkan</strong> och Stortorgets vita hus och träd. Logga ankomsten med GPS för ett minne för livet. Under juli kan hamnen bli fylld av seglare — boka bryggplats i förväg via Svalla eller direkt med hamnstyrelsen.
+ Stöta in över Karlskronas mjukt öppnande farleder och ankra vid Stumholmen medan du njuter av utsikten över <strong>Örlogsvarvet</strong> (dagens Marinmuseum), den gotiska <strong>Amiralitetskyrkan</strong> och Stortorgets vita hus och träd. Logga ankomsten med GPS för ett minne för livet. Under juli kan hamnen bli fylld av seglare. Boka bryggplats i förväg via Svalla eller direkt med hamnstyrelsen.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -174,27 +174,27 @@ export default function BlekingeSkargardPage() {
  Omkring Karlskrona sprider sig en härlig skärgård med både välkända och dolda pärlor. <strong>Aspö</strong> och <strong>Tjurkö</strong> är två större öar med gästbryggor och idyllisk skärgårdsstämning, perfekta för ett fritidsbesök eller att ankra över natten. <strong>Hästö</strong> väcker ofta intresse för sin populära kafébrygga där du kan få fika och god mat utan att lämna båten.
  </p>
  <p>
- För seglare som föredrar naturhamnar ligger <strong>Senoren</strong> lite inåt och erbjuder lugna ankringsförhållanden omgiven av skog och natur. De inre fahrlederna runt Karlskrona är väl märkta med röda och vita märken, men grundare partier förekommer — Svalla-kartan visar platser och hamnar; djup och grund läser du av på sjökortet.
+ För seglare som föredrar naturhamnar ligger <strong>Senoren</strong> lite inåt och erbjuder lugna ankringsförhållanden omgiven av skog och natur. De inre fahrlederna runt Karlskrona är väl märkta med röda och vita märken, men grundare partier förekommer | Svallakartan visar platser och hamnar; djup och grund läser du av på sjökortet.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Hanö — Blekinges utpost
+ Hanö: Blekinges utpost
  </h3>
  <p>
- <strong>Hanö</strong> ligger cirka 15 kilometer ut i öppet Östersjö-hav och representerar Blekinges radikalaste utpost. Ön är klassificerad som <strong>fågelskyddsområde</strong> och är känd för sin rika fågelliv — säsongsvis ankommer miljontals fåglar på vägen mellan Afrika och norden. På Hanö hittar du också <strong>en unik engelsk kyrkogård från Napoleonkrigen</strong>, den enda av sitt slag i Sverige, en märklig minnesmärke över sjömän från andra länder.
+ <strong>Hanö</strong> ligger cirka 15 kilometer ut i öppet Östersjö-hav och representerar Blekinges radikalaste utpost. Ön är klassificerad som <strong>fågelskyddsområde</strong> och är känd för sin rika fågelliv, säsongsvis ankommer miljontals fåglar på vägen mellan Afrika och norden. På Hanö hittar du också <strong>en unik engelsk kyrkogård från Napoleonkrigen</strong>, den enda av sitt slag i Sverige, en märklig minnesmärke över sjömän från andra länder.
  </p>
  <p>
- Ankring runt Hanö kräver erfaret öga och lokal kunskap — naturhamnen är en av Östersjökustens råaste med exponerad botten och vindkapell. <strong>Endast dagsbesök rekommenderas</strong> vid instabilt väder. Om du seglar ut till Hanö, logga ankomsten i Svalla tillsammans med dina iakttagelser — varje logg bidrar till kunskapen om denna magiska men krävande destination.
+ Ankring runt Hanö kräver erfaret öga och lokal kunskap, naturhamnen är en av Östersjökustens råaste med exponerad botten och vindkapell. <strong>Endast dagsbesök rekommenderas</strong> vid instabilt väder. Om du seglar ut till Hanö, logga ankomsten i Svalla tillsammans med dina iakttagelser, varje logg bidrar till kunskapen om denna magiska men krävande destination.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Ronneby och norra Blekinge
  </h3>
  <p>
- Väster och norr om Karlskrona öppnar sig ytterligare ett klassiska skärgårdslandskap. <strong>Ronneby skärgård</strong> är geologiskt unik för sina <strong>serpentinsklippor</strong> — en rödbrun stenart som skapar dramatiska färgkontraster mot havet och skogarna. Denna område är perfekt för både kajakpaddling och kortare dagsutflykter med större båt, ett annat sätt att logga och utforska skärgårdslivet i Svalla.
+ Väster och norr om Karlskrona öppnar sig ytterligare ett klassiska skärgårdslandskap. <strong>Ronneby skärgård</strong> är geologiskt unik för sina <strong>serpentinsklippor</strong>, en rödbrun stenart som skapar dramatiska färgkontraster mot havet och skogarna. Denna område är perfekt för både kajakpaddling och kortare dagsutflykter med större båt, ett annat sätt att logga och utforska skärgårdslivet i Svalla.
  </p>
  <p>
- Mindre kända platser som <strong>Bräkne-Hoby</strong> och <strong>Tromtö</strong> erbjuder lugnare fahrvatten och en känsla av avskildhet. Längre västerut hittar du <strong>Sölvesborg</strong> med sin egen lilla skärgård — en bra startpunkt om du planerar att segla längs Östersjöleden mot Gotland eller vidare söder ut mot Danmark och Tyskland. Från Sölvesborg är det bara några få sjömil innan du dyker in i det stora äventyret längs den svenska kusten.
+ Mindre kända platser som <strong>Bräkne-Hoby</strong> och <strong>Tromtö</strong> erbjuder lugnare fahrvatten och en känsla av avskildhet. Längre västerut hittar du <strong>Sölvesborg</strong> med sin egen lilla skärgård, en bra startpunkt om du planerar att segla längs Östersjöleden mot Gotland eller vidare söder ut mot Danmark och Tyskland. Från Sölvesborg är det bara några få sjömil innan du dyker in i det stora äventyret längs den svenska kusten.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -202,21 +202,21 @@ export default function BlekingeSkargardPage() {
  </h3>
  <p>
  <strong>Är Blekinge bra för nybörjarseglare?</strong><br />
- Ja, absolut. Innerskärgården kring Karlskrona har väl märkta farleder och lugna, skyddade vatten — perfekt för att bygga självförtroende. Undvik öppet hav mot Hanö utan seglererfarenhet, men annars är Blekinge mycket nybörjarvänligt.
+ Ja, absolut. Innerskärgården kring Karlskrona har väl märkta farleder och lugna, skyddade vatten, perfekt för att bygga självförtroende. Undvik öppet hav mot Hanö utan seglererfarenhet, men annars är Blekinge mycket nybörjarvänligt.
  </p>
  <p>
  <strong>Hur nära är Blekinge till Danmark och Tyskland?</strong><br />
  {/* UPPMÄTT: storcirkelavstånd beräknade 2026-08-16 — Karlskrona–Hammeren 59 nm, Karlskrona–Kap Arkona 115 nm */}
- Bornholms nordspets ligger knappt 60 sjömil sydväst om Karlskrona, och Rügen i Tyskland cirka 115 sjömil bort åt samma håll. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer — många seglare tar sig hit före längre kryss.
+ Bornholms nordspets ligger knappt 60 sjömil sydväst om Karlskrona, och Rügen i Tyskland cirka 115 sjömil bort åt samma håll. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer, många seglare tar sig hit före längre kryss.
  </p>
  <p>
  <strong>Finns det en märkt segelled längs ostkusten?</strong><br />
  {/* KÄLLA: faktagranskning 2026-08-23 — ingen märkt segelrutt Sthlm–Malmö existerar; ARK56 enligt naturkartan.se/ark56 (läst 2026-08-23) */}
- Nej — någon officiellt märkt segelrutt Stockholm–Malmö finns inte. Kusten seglas ändå flitigt i väl utprickade farleder, och Blekinge är en naturlig etapp mellan Kalmarsund och Öresund. För paddling, vandring och cykel finns ARK56 — Blekinges länkade kustleder. Svalla hjälper dig logga varje dag och planera dina etapper.
+ Nej, någon officiellt märkt segelrutt Stockholm till Malmö finns inte. Kusten seglas ändå flitigt i väl utprickade farleder, och Blekinge är en naturlig etapp mellan Kalmarsund och Öresund. För paddling, vandring och cykel finns ARK56, Blekinges länkade kustleder. Svalla hjälper dig logga varje dag och planera dina etapper.
  </p>
  <p>
  <strong>Vad är speciellt med Karlskronas skärgård jämfört med Stockholm?</strong><br />
- Stockholms skärgård är spektakulär men väletablerad — Karlskronas är mjukare, grönare och markant lugnare. Ingen storstadsinfrastruktur eller överbefolkning, men all charm som sitter i just det: öar som fortfarande känns lika utforskade och okända. Det gör Blekinge perfekt för den seglare som söker äventyr utan att vilja stöta på hundra andra båtar i samma hamn.
+ Stockholms skärgård är spektakulär men väletablerad: Karlskronas är mjukare, grönare och markant lugnare. Ingen storstadsinfrastruktur eller överbefolkning, men all charm som sitter i just det: öar som fortfarande känns lika utforskade och okända. Det gör Blekinge perfekt för den seglare som söker äventyr utan att vilja stöta på hundra andra båtar i samma hamn.
  </p>
  </>
  }

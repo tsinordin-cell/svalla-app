@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: 'Topplista',
   description: 'Veckans och alltidens bästa skärgårdsseglare. Se vem som seglat mest nautiska mil på Svalla.',
   openGraph: {
-    title: 'Topplista – Svalla',
+    title: 'Topplista | Svalla',
     description: 'Veckans bästa skärgårdsseglare',
     url: 'https://svalla.se/topplista',
   },
@@ -182,7 +182,7 @@ export default async function ToplistaPage() {
 
         {/* ── Veckans topp: NM ── */}
         <LeaderboardSection
-          title="Veckans topp — Nautiska mil"
+          title="Veckans topp: Nautiska mil"
           subtitle="Senaste 7 dagarna"
           rows={weekTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
           formatValue={v => `${decimal(v)} NM`}
@@ -192,7 +192,7 @@ export default async function ToplistaPage() {
 
         {/* ── Månadens topp: NM ── */}
         <LeaderboardSection
-          title="Månadens topp — Nautiska mil"
+          title="Månadens topp: Nautiska mil"
           subtitle="Senaste 30 dagarna"
           rows={monthTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}${r.magic > 0 ? ` · ${r.magic} magiska` : ''}` }))}
           formatValue={v => `${decimal(v)} NM`}
@@ -202,7 +202,7 @@ export default async function ToplistaPage() {
 
         {/* ── Alltime topp: NM ── */}
         <LeaderboardSection
-          title="Alltime — Nautiska mil"
+          title="Alltime: Nautiska mil"
           subtitle="Totalt seglat"
           rows={allTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
           formatValue={v => `${v.toFixed(0)} NM`}
@@ -212,7 +212,7 @@ export default async function ToplistaPage() {
 
         {/* ── Alltime topp: antal turer ── */}
         <LeaderboardSection
-          title="Alltime — Flest turer"
+          title="Alltime: Flest turer"
           subtitle="Antal loggade turer"
           rows={allTopCount.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.count, secondaryLabel: `${r.nm.toFixed(0)} NM` }))}
           formatValue={v => `${v} turer`}
@@ -223,7 +223,7 @@ export default async function ToplistaPage() {
         {/* ── Magic trips leaderboard ── */}
         {allTopMagic.length > 0 && (
           <LeaderboardSection
-            title="Alltime — Magiska turer"
+            title="Alltime: Magiska turer"
             subtitle="Flest magiska turer"
             rows={allTopMagic.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.magic, secondaryLabel: `${r.nm.toFixed(0)} NM totalt` }))}
             formatValue={v => `×${v} magiska`}
@@ -235,7 +235,7 @@ export default async function ToplistaPage() {
         {/* ── Speed leaderboard ── */}
         {allTopSpeed.length > 0 && (
           <LeaderboardSection
-            title="Alltime — Toppfart"
+            title="Alltime: Toppfart"
             subtitle="Högsta uppmätta hastighet"
             rows={allTopSpeed.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.maxSpeed, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
             formatValue={v => `${decimal(v)} kn`}

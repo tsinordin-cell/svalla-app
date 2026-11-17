@@ -15,7 +15,7 @@ import OarSnabbfilter from './OarSnabbfilter'
 import { sokNyckel } from './oar-sok'
 
 export const metadata: Metadata = {
-  title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer',
+  title: 'Alla öar: Stockholms skärgård, Bohuslän, Gotland & mer',
   description: 'Utforska svenska öar: Sandhamn, Grinda, Utö, Marstrand, Gotland, Ulvön och mer. Guider, restauranger, hamnar och färjetider för hela Sverige.',
   keywords: [
     'alla öar stockholms skärgård',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/oar' },
   openGraph: {
-    title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer',
+    title: 'Alla öar: Stockholms skärgård, Bohuslän, Gotland & mer',
     description: 'Stockholms skärgård, Bohuslän, Gotland, Höga Kusten. Komplett guide.',
     url: 'https://svalla.se/oar',
   },
@@ -45,11 +45,11 @@ const REGION_LABELS: Record<string, string> = {
 
 const REGION_TAGLINES: Record<string, string> = {
   norra: 'Tystare, lugnare, längre ut. Från Arholma till Blidö.',
-  mellersta: 'Det klassiska skärgårdslivet — Sandhamn, Möja, Finnhamn.',
-  södra: 'Söderskärgården — Utö, Nåttarö, Ornö, Landsort.',
-  bohuslan: 'Västkusten — Marstrand, Smögen, Kosterhavet.',
+  mellersta: 'Det klassiska skärgårdslivet: Sandhamn, Möja, Finnhamn.',
+  södra: 'Södra skärgården: Utö, Nåttarö, Ornö, Landsort.',
+  bohuslan: 'Västkusten: Marstrand, Smögen, Kosterhavet.',
   goteborg: 'Brännö, Styrsö, Vrångö och Donsö i söder, Öckerö och Rörö i norr och Vinga, Göteborgs västligaste punkt.',
-  ovriga: 'Höga Kusten, Gotland, Öland och mer — Sverige bortom Stockholmsskärgården.',
+  ovriga: 'Höga Kusten, Gotland, Öland och mer, Sverige bortom Stockholmsskärgården.',
 }
 
 // 2026-10-21: regionlistorna visar alla sidor i regionen (öar, fastlandsorter och
@@ -250,7 +250,7 @@ export default function OarIndexPage() {
                   {c.kort}
                 </div>
                 <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
-                  {c.hero.split(' — ')[0]}
+                  {c.hero.split(/: |, /)[0]}
                 </div>
               </Link>
             ))}
@@ -428,7 +428,7 @@ export default function OarIndexPage() {
               boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
             }}
           >
-            Skapa konto — 30 sekunder →
+            Skapa konto: 30 sekunder →
           </Link>
         </section>
       </div>

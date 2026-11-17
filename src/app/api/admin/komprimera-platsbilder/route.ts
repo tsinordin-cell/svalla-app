@@ -132,7 +132,7 @@ export async function POST(req: NextRequest) {
         .toBuffer()
 
       const vinst = 1 - ny.length / foreBytes
-      if (vinst < 0.1) { rapport.push({ namn, foreBytes, efterBytes: ny.length, status: 'lämnad — vinst under 10 %' }); continue }
+      if (vinst < 0.1) { rapport.push({ namn, foreBytes, efterBytes: ny.length, status: 'lämnad: vinst under 10 %' }); continue }
 
       if (!dry) {
         const { error: upFel } = await admin.storage.from(BUCKET).upload(namn, ny, {

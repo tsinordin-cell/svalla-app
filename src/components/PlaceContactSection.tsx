@@ -184,7 +184,7 @@ export default function PlaceContactSection({
       {hoursHint && website && (
         <ContactRow icon="clock" label="Öppettider" content={
           <span>
-            Tiderna varierar med säsongen –{' '}
+            Tiderna varierar med säsongen{' '}
             <a href={website} target="_blank" rel="noopener noreferrer" style={LINK}>se aktuella tider på deras egen sida</a>
           </span>
         } />

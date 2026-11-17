@@ -32,7 +32,7 @@ function kallsiffror() {
 }
 
 export const metadata: Metadata = {
-  title: { absolute: 'Om Svalla – så bygger vi Sveriges skärgårdsguide' },
+  title: { absolute: 'Om Svalla | så bygger vi Sveriges skärgårdsguide' },
   description: 'Svalla är en digital guide till svenska skärgården, byggd av skärgårdsälskare med stöd av Thorkel, vår AI-skeppare. Läs om hur vi samlar data, verifierar fakta och tänker kring innehållet.',
   alternates: { canonical: 'https://svalla.se/om' },
   openGraph: {
@@ -139,7 +139,7 @@ export default function OmPage() {
               Svalla är en digital plattform för svenska skärgården, från Fjäderholmarna i innerskärgården till Landsort i söder, och vidare till Bohusläns klippkust och västkustens öar.
             </p>
             <p>
-              Vi kombinerar tre saker: en sökbar karta över restauranger, gästhamnar, naturhamnar och bryggor; live tidtabeller och transport-guider till skärgårdens öar; och Thorkel, vår AI-skeppare, som hjälper dig planera turer och svarar på frågor.
+              Vi kombinerar tre saker: en sökbar karta över restauranger, gästhamnar, naturhamnar och bryggor; live tidtabeller och transportguider till skärgårdens öar; och Thorkel, vår AI-skeppare, som hjälper dig planera turer och svarar på frågor.
             </p>
 
             <h2 style={h2Style}>Varför vi byggde det</h2>
@@ -147,7 +147,7 @@ export default function OmPage() {
               Vi tröttnade på att söka i fem olika appar för att hitta en öppen krog en sommarkväll. Google Maps saknar hälften av skärgårdens platser, Tripadvisor har gamla öppettider och sjökorten säger ingenting om mat.
             </p>
             <p>
-              Svalla samlar det som faktiskt spelar roll för den som är ute i skärgården: öppettider, koordinater på rätt ö, transport-länkar och insidertips.
+              Svalla samlar det som faktiskt spelar roll för den som är ute i skärgården: öppettider, koordinater på rätt ö, transportlänkar och insidertips.
             </p>
           </article>
 
@@ -234,7 +234,7 @@ export default function OmPage() {
                 <strong>Färje- och busstider</strong>: live från Trafiklab (ResRobot). Datan kommer direkt från SL, Waxholmsbolaget och deras systerbolag. Vi tar inte ansvar för avvikelser.
               </li>
               <li>
-                <strong>Ö-guider och FAQ</strong>: handskrivna av Svalla-teamet. Vi använder Skärgårdsstiftelsen, Visit Stockholm, vastsverige.com och kommunala turistsidor som källor. Texter granskas innan publicering.
+                <strong>Ö-guider och FAQ</strong>: handskrivna av Svallateamet. Vi använder Skärgårdsstiftelsen, Visit Stockholm, vastsverige.com och kommunala turistsidor som källor. Texter granskas innan publicering.
               </li>
               <li>
                 <strong>Thorkels svar</strong>: genererade av en stor språkmodell (Anthropic Claude). Thorkel hämtar faktadata från Svallas databaser plus live-trafiklab-data. Han kan göra fel, så kontrollera viktiga uppgifter mot officiella källor.

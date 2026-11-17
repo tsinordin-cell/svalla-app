@@ -23,7 +23,7 @@ async function ensureLoppisAuth(id: string) {
     return { err: NextResponse.json({ error: 'Annonsen hittades inte.' }, { status: 404 }) }
   }
   if (thread.category_id !== 'loppis') {
-    return { err: NextResponse.json({ error: 'Endast Loppis-annonser kan sparas.' }, { status: 400 }) }
+    return { err: NextResponse.json({ error: 'Endast loppisannonser kan sparas.' }, { status: 400 }) }
   }
   return { user, supabase, ownerId: thread.user_id as string }
 }

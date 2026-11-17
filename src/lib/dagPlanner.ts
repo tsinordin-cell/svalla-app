@@ -114,7 +114,7 @@ export function isLikelyOpenAt(opening_hours: string | null, seasonality: string
     const lower = opening_hours.toLowerCase()
     // "Endast juni–augusti"
     if (/endast.*(juni|jul|august)/i.test(lower) && (month < 6 || month > 8)) return false
-    if (/(maj|juni)\s*[-–]\s*(sep|aug)/i.test(lower) && (month < 5 || month > 9)) return false
+    if (/(maj|juni)\s*(?:[-–]|till)\s*(sep|aug)/i.test(lower) && (month < 5 || month > 9)) return false
     if (/sommar|sommarsäsong|sommaren/i.test(lower) && (month < 5 || month > 9)) return false
     // "Stängd vinter"
     if (/stängd.*(vinter|jan|feb|mar|apr|nov|dec|okt)/i.test(lower) && (month < 5 || month > 9)) return false

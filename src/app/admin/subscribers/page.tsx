@@ -86,7 +86,7 @@ export default async function AdminSubscribersPage() {
           E-postprenumeranter
         </h1>
         <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 24px' }}>
-          Nyhetsbrevslistan — synka till Resend för utskick.
+          Nyhetsbrevslistan, synka till Resend för utskick.
         </p>
 
         {/* Stats */}

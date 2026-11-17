@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
   title: 'Fika och caféer i skärgården',
-  description: 'Bagerier, caféer och fikaställen i Stockholms skärgård. Sandhamns Bageriet, Möja Bageri och mer — kanelbullar och kaffe med havsutsikt.',
+  description: 'Bagerier, caféer och fikaställen i Stockholms skärgård. Sandhamns Bageriet, Möja Bageri och mer, kanelbullar och kaffe med havsutsikt.',
   keywords: [
     'café skärgård',
     'bageri skärgården',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Fika och caféer i skärgården',
-    description: 'Kanelbullar, kaffe och havsutsikt — de bästa fikaställena i Stockholms skärgård.',
+    description: 'Kanelbullar, kaffe och havsutsikt. De bästa fikaställena i Stockholms skärgård.',
     url: 'https://svalla.se/krogar-och-mat/fika-cafe',
   },
   alternates: { canonical: 'https://svalla.se/krogar-och-mat/fika-cafe' },
@@ -32,26 +32,26 @@ const ITEMS: LandingItem[] = [
     title: 'Sandhamns Bageriet',
     description: 'Bageri mitt i Sandhamns by som bakar färskt varje morgon. Deras kanelbullar och surdegsbröd är välkända i hela yttre skärgården. Kön bildas tidigt på sommarmorgnar.',
     href: '/o/sandhamn',
-    meta: 'Sandhamn · Säsong: maj–sep',
+    meta: 'Sandhamn · Säsong: maj till sep',
   },
   {
     icon: '☕',
     title: 'Möja Bageri',
-    description: 'Litet hantverksbageri på Möja med lokal förankring. Öppet i begränsad utsträckning — check sociala medier för aktuella tider. Värt varje paddeltag.',
+    description: 'Litet hantverksbageri på Möja med lokal förankring. Öppet i begränsad utsträckning, check sociala medier för aktuella tider. Värt varje paddeltag.',
     href: '/o/moja',
     meta: 'Möja · Varierade tider',
   },
   {
     icon: '🏝',
     title: 'Fjäderholmarna',
-    description: 'Närmast Stockholm med café-alternativ i hantverksbyns miljö. Perfekt för en halvdagsutflykt med fika som mål — 25 minuter från Slussen.',
+    description: 'Närmast Stockholm med caféalternativ i hantverksbyns miljö. Perfekt för en halvdagsutflykt med fika som mål, 25 minuter från Slussen.',
     href: '/o/fjaderholmarna',
-    meta: 'Fjäderholmarna · Säsong: maj–sep',
+    meta: 'Fjäderholmarna · Säsong: maj till sep',
   },
   {
     icon: '⚓',
     title: 'Kaféer i Vaxholm',
-    description: 'Vaxholms stadskärna har flera år-runt-öppna kaféer längs strandpromenaden — ett sällsynt inslag i skärgården. Bra för en tidig säsong eller höstutflykt.',
+    description: 'Vaxholms stadskärna har flera år-runt-öppna kaféer längs strandpromenaden, ett sällsynt inslag i skärgården. Bra för en tidig säsong eller höstutflykt.',
     href: '/o/vaxholm',
     meta: 'Vaxholm · Öppet hela året',
   },
@@ -76,14 +76,14 @@ export default function FikaCafePage() {
       intro={
         <>
           <p>
-            En bra fikapaus hör till skärgårdsupplevelsen. Oavsett om du är på väg ut med båten och tar med en bulle, eller sitter kvar på bryggan en timme extra — de riktigt bra fikaställena i skärgården bakar på plats och öppnar tidigt. Utbudet är mer begränsat än på fastlandet, men kvaliteten på de ställen som finns håller ofta hög klass.
+            En bra fikapaus hör till skärgårdsupplevelsen. Oavsett om du är på väg ut med båten och tar med en bulle, eller sitter kvar på bryggan en timme extra. De riktigt bra fikaställena i skärgården bakar på plats och öppnar tidigt. Utbudet är mer begränsat än på fastlandet, men kvaliteten på de ställen som finns håller ofta hög klass.
           </p>
           <div style={{
             background: '#fff8e1', border: '1px solid #f59e0b',
             borderRadius: 10, padding: '12px 16px', marginTop: 16,
             fontSize: 13, color: '#92400e', lineHeight: 1.6,
           }}>
-            <strong>Tips:</strong> Många bagerier i skärgården säljer slut på populära bakverk redan på förmiddagen på helger i juli. Kom dit tidigt — eller beställ dagen innan om det erbjuds.
+            <strong>Tips:</strong> Många bagerier i skärgården säljer slut på populära bakverk redan på förmiddagen på helger i juli. Kom dit tidigt, eller beställ dagen innan om det erbjuds.
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 16 }}>
             {CHIPS.map(chip => (
@@ -107,19 +107,19 @@ export default function FikaCafePage() {
             Den klassiska skärgårdsfrukost
           </h2>
           <p>
-            Många båtfolk har ett fast ritual: hämta nybakat bröd och kaffe på morgonen innan motorn startar. På öar som Sandhamn finns detta inom gångavstånd från gästhamnen. På mer avlägsna öar är den lokala lanthandeln ofta enda alternativet — och kvaliteten på brödet varierar kraftigt.
+            Många båtfolk har ett fast ritual: hämta nybakat bröd och kaffe på morgonen innan motorn startar. På öar som Sandhamn finns detta inom gångavstånd från gästhamnen. På mer avlägsna öar är den lokala lanthandeln ofta enda alternativet, och kvaliteten på brödet varierar kraftigt.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Fika och barn i skärgården
           </h2>
           <p>
-            Skärgårdskaféerna är generellt barnvänliga — det finns sällan trängsel och ofta uteservering med tillräckligt med utrymme. Glass finns på de flesta ställen med öppet kök eller kiosk, och de flesta caféer tar Swish eller kort.
+            Skärgårdskaféerna är generellt barnvänliga. Det finns sällan trängsel och ofta uteservering med tillräckligt med utrymme. Glass finns på de flesta ställen med öppet kök eller kiosk, och de flesta caféer tar Swish eller kort.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Ta med på utflykten
           </h2>
           <p>
-            Många besökare köper med sig bröd och fika för dagen — perfekt om du ska ankra i en naturhamn utan restaurang. Packa ner i väskan på morgonen och ha med ut i kajaken eller på vandringen. Skärgårdsbröd håller sig förvånansvärt bra under en hel dag.
+            Många besökare köper med sig bröd och fika för dagen, perfekt om du ska ankra i en naturhamn utan restaurang. Packa ner i väskan på morgonen och ha med ut i kajaken eller på vandringen. Skärgårdsbröd håller sig förvånansvärt bra under en hel dag.
           </p>
         </>
       }
@@ -132,7 +132,7 @@ export default function FikaCafePage() {
       related={[
         { label: 'Värdshus & restauranger', href: '/krogar-och-mat/vardshus-restauranger' },
         { label: 'Fisk & skaldjur', href: '/krogar-och-mat/fisk-skaldjur' },
-        { label: 'Take-away & kiosker', href: '/krogar-och-mat/take-away-kiosker' },
+        { label: 'Takeaway & kiosker', href: '/krogar-och-mat/take-away-kiosker' },
         { label: 'Boende', href: '/boende' },
         { label: 'Populära öar', href: '/o' },
       ]}

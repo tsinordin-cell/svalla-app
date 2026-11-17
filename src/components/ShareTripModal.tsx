@@ -194,7 +194,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
      fontSize: 13, color: 'var(--txt)', display: 'flex',
      alignItems: 'center', gap: 10, justifyContent: 'space-between',
    }}>
-     <span>Turen är privat — länken visar 404 för alla utom dig.</span>
+     <span>Turen är privat, länken visar 404 för alla utom dig.</span>
      <button type="button" onClick={makePublic} style={{
        flexShrink: 0, padding: '6px 12px', borderRadius: 999, cursor: 'pointer',
        background: 'var(--sea-knapp)', color: '#fff', border: 'none',

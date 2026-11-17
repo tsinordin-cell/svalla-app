@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  const username = decodeURIComponent(rawUsername)
  const title = `${username}s ${year} på Svalla`
  // "Svalla" ingår i frasen → absolute, annars lägger mallen på "– Svalla" igen (titelregeln, undantagen).
- const description = `Se ${username}s seglarsäsong ${year} — turer, distans och höjdpunkter.`
+ const description = `Se ${username}s seglarsäsong ${year}: turer, distans och höjdpunkter.`
  const ogUrl = `/wrapped/${encodeURIComponent(username)}/${year}/opengraph-image`
  return {
  title: { absolute: title },
@@ -294,7 +294,7 @@ export default async function WrappedPage({ params }: Props) {
  </p>
  <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
  <a
- href={`https://wa.me/?text=${encodeURIComponent(`${username}s ${yr} till havs på Svalla — ${trips.length} turer, ${fmtDist(totalDist)} nm ${shareUrl}`)}`}
+ href={`https://wa.me/?text=${encodeURIComponent(`${username}s ${yr} till havs på Svalla | ${trips.length} turer, ${fmtDist(totalDist)} nm ${shareUrl}`)}`}
  target="_blank"
  rel="noopener noreferrer"
  style={{
@@ -310,7 +310,7 @@ export default async function WrappedPage({ params }: Props) {
  WhatsApp
  </a>
  <a
- href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${username}s ${yr} till havs på Svalla — ${trips.length} turer, ${fmtDist(totalDist)} nm `)}&url=${encodeURIComponent(shareUrl)}`}
+ href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${username}s ${yr} till havs på Svalla | ${trips.length} turer, ${fmtDist(totalDist)} nm `)}&url=${encodeURIComponent(shareUrl)}`}
  target="_blank"
  rel="noopener noreferrer"
  style={{

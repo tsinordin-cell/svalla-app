@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
   return {
-    title: `Boende på ${island.name} — hotell, vandrarhem och stugor`,
+    title: `Boende på ${island.name}: hotell, vandrarhem och stugor`,
     description: `Boende på ${island.name}: hotell, värdshus, vandrarhem, stugor och camping som vi har uppgifter om, med länk till bokning.`,
     keywords: [
       `${island.name.toLowerCase()} hotell`,
@@ -195,11 +195,11 @@ export default async function IslandAccommodationPage({ params }: Props) {
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <a href={bookingComUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>
-              <span>Booking.com — {island.name}</span>
+              <span>Booking.com, {island.name}</span>
               <span style={{ opacity: 0.5 }}>↗</span>
             </a>
             <a href={airbnbUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>
-              <span>Airbnb — {island.name}</span>
+              <span>Airbnb, {island.name}</span>
               <span style={{ opacity: 0.5 }}>↗</span>
             </a>
           </div>

@@ -68,7 +68,7 @@ export default function BingoClient({ items }: Props) {
     const count = checked.size
     const total = items.length
     const text = count === 0
-      ? `Jag har precis börjat min Skärgårdsbingo 2026 — 25 utmaningar att bocka av. Hur många kan du klara?`
+      ? `Jag har precis börjat min Skärgårdsbingo 2026 till 25 utmaningar att bocka av. Hur många kan du klara?`
       : count === total
       ? `🎉 Jag har klarat ALLA 25 utmaningar i Skärgårdsbingo 2026! Klarar du det också?`
       : `Jag har bockat av ${count}/${total} utmaningar i Skärgårdsbingo 2026. Hur många klarar du?`
@@ -202,7 +202,7 @@ export default function BingoClient({ items }: Props) {
             BINGO!
           </h2>
           <p style={{ fontSize: 14, opacity: 0.92, margin: 0 }}>
-            Du har klarat alla 25 utmaningar — du är en riktig skärgårdsräv. Dela din bricka!
+            Du har klarat alla 25 utmaningar. Du är en riktig skärgårdsräv. Dela din bricka!
           </p>
         </section>
       )}

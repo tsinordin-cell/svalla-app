@@ -9,9 +9,9 @@ preheader: Tre steg till en dagstur. Resten löser sig därute.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
-# En månad ombord — har du hunnit ut än?
+# En månad ombord, har du hunnit ut än?
 
-Helt okej om inte — kalendrar är fulla och båtar går när de går. Men en sak är värd att skicka vidare:
+Helt okej om inte, kalendrar är fulla och båtar går när de går. Men en sak är värd att skicka vidare:
 
 :::citat
 ### "Det var enklare än jag trodde."
@@ -29,7 +29,7 @@ Vill du testa lätt: [Vaxholm](https://svalla.se/o/vaxholm), en timme från Str�
 :::
 
 :::ruta
-### 2. Kolla turen — och sista båten hem
+### 2. Kolla turen, och sista båten hem
 Välj startpunkt och dag i [dagsplaneraren](https://svalla.se/utflykt) så ser du båttiderna för varje ö. Titta på hemresan innan du bestämmer dig för utresan.
 :::
 

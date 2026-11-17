@@ -163,7 +163,7 @@ export default async function TaDigTillPage({ params }: Props) {
         {/* Steg-för-steg */}
         <section style={{ marginBottom: 40 }}>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--ink)', marginBottom: 20 }}>
-            Steg-för-steg — med kollektivtrafik
+            Steg-för-steg: med kollektivtrafik
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {gt.map((t, i) => (

@@ -5,19 +5,19 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
-  title: 'Alla öar – Stockholms skärgård, Bohuslän, Göteborg, Gotland & mer',
+  title: 'Alla öar: Stockholms skärgård, Bohuslän, Göteborg, Gotland & mer',
   description: 'Utforska svenska öar: Stockholms skärgård, Bohuslän, Göteborg södra skärgård, Gotland, Öland och Höga Kusten. Guider, restauranger och praktisk info.',
 }
 
 const regions = [
   { key: 'norra', label: 'Norra skärgården', desc: 'Vilda och orörda öar längre ut i skärgården', accent: '#0a7b8c' },
-  { key: 'mellersta', label: 'Mellersta skärgården', desc: 'Det klassiska skärgårdslivet — Sandhamn, Möja och öarna däremellan', accent: '#0a7b8c' },
+  { key: 'mellersta', label: 'Mellersta skärgården', desc: 'Det klassiska skärgårdslivet: Sandhamn, Möja och öarna däremellan', accent: '#0a7b8c' },
   // KÄLLA: Länsstyrelsen Stockholm — Utö (1974), Nåttarö (2008), Fjärdlång (1986) är naturreservat, Skärgårdsstiftelsen förvaltar (läst 2026-09-14)
   { key: 'södra', label: 'Södra skärgården', desc: 'Bilfria naturreservat och lugna vikar söder om Stockholm', accent: '#0a7b8c' },
-  { key: 'bohuslan', label: 'Bohuslän', desc: 'Västkustens skärgård — räkor, klippor och Sveriges mest fotograferade fiskelägen', accent: '#a8381e' },
+  { key: 'bohuslan', label: 'Bohuslän', desc: 'Västkustens skärgård: räkor, klippor och Sveriges mest fotograferade fiskelägen', accent: '#a8381e' },
   // Ändrad 2026-10-19: Vinga (Göteborgs kommun) flyttades hit från Bohuslän, och Öckerö och Rörö låg redan här, så rubriken "södra skärgård" stämde inte.
   { key: 'goteborg', label: 'Göteborgs skärgård', desc: 'Brännö, Styrsö, Vrångö och Donsö i söder, Öckerö och Rörö i norr och Vinga, Göteborgs västligaste punkt', accent: '#a8381e' },
-  { key: 'ovriga', label: 'Övriga Sverige', desc: 'Gotland, Öland, Höga Kusten och mer — Sverige bortom Stockholmsskärgården', accent: '#6b4f9e' },
+  { key: 'ovriga', label: 'Övriga Sverige', desc: 'Gotland, Öland, Höga Kusten och mer: Sverige bortom Stockholmsskärgården', accent: '#6b4f9e' },
 ]
 
 export default function OarPage() {
@@ -62,7 +62,7 @@ export default function OarPage() {
       <div className="oar-hero">
         <a href="/" className="back-link">← Tillbaka till Svalla</a>
         <h1>Alla öar</h1>
-        <p>Utforska {ALL_ISLANDS.length} öar — Stockholms skärgård, Bohuslän, Göteborg, Gotland och mer.</p>
+        <p>Utforska {ALL_ISLANDS.length} öar: Stockholms skärgård, Bohuslän, Göteborg, Gotland och mer.</p>
       </div>
 
       <nav className="oar-nav">

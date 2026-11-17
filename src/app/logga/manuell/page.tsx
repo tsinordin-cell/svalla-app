@@ -316,6 +316,7 @@ function ManuellForm() {
         average_speed_knots: 0,
         max_speed_knots:     0,
         route_id:       routeId,
+        planned_route_id: plannedRouteId,
         started_at:     new Date(startedAtLocal).toISOString(),
         ended_at:       new Date(endedAtLocal).toISOString(),
       }).select('id').single()
@@ -350,7 +351,8 @@ function ManuellForm() {
         }
       } catch { /* tyst */ }
 
-      // Länka trip till planerad rutt
+      // Länka rutten till turen (bara egen rutt går att uppdatera, RLS;
+      // trips.planned_route_id ovan gäller alltid och är det ruttsidan läser).
       if (plannedRouteId) {
         await supabase
           .from('planned_routes')
@@ -736,7 +738,7 @@ function ManuellForm() {
 
             {aiErr && (
               <p style={{ margin: '0 0 6px', fontSize: 11, color: 'var(--err, #c0392b)' }}>
-                Kunde inte generera — försök igen
+                Kunde inte generera: försök igen
               </p>
             )}
 
@@ -747,7 +749,7 @@ function ManuellForm() {
                   fontSize: 10, fontWeight: 700, color: 'var(--txt3)',
                   textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: 6,
                 }}>
-                  Thorkels förslag — välj en
+                  Thorkels förslag: välj en
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {(['Poetisk', 'Rakt på', 'Social'] as const).map((label, i) => {
@@ -811,7 +813,7 @@ function ManuellForm() {
             />
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 2 }}>
               {aiSummary && caption === aiSummary
-                ? <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 700 }}>Thorkel skrev denna — redigera fritt</span>
+                ? <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 700 }}>Thorkel skrev denna: redigera fritt</span>
                 : <span />}
               <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{caption.length}/280</span>
             </div>

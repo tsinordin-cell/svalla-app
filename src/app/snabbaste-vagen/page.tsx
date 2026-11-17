@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Snabbaste vägen — rutter för motorbåt & RIB',
-  description: 'Snabbaste vägen till populära destinationer i Stockholms skärgård. För motorbåt, RIB och vattenskoter — med tankställen och farledstips.',
+  title: 'Snabbaste vägen: rutter för motorbåt & RIB',
+  description: 'Snabbaste vägen till populära destinationer i Stockholms skärgård. För motorbåt, RIB och vattenskoter, med tankställen och farledstips.',
   keywords: [
     'snabbaste vägen sandhamn',
     'motorbåt skärgården',
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     'farled stockholm',
   ],
   openGraph: {
-    title: 'Snabbaste vägen — Svalla',
+    title: 'Snabbaste vägen | Svalla',
     description: 'Snabbaste rutter till skärgårdens populära destinationer.',
     url: 'https://svalla.se/snabbaste-vagen',
   },
@@ -26,41 +26,41 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'navigation',
     title: 'Stockholm → Sandhamn',
-    description: 'Via Kanholmsfjärden — ca 45 min med RIB, 1,5 h med förträngare. Tankning i Stavsnäs.',
+    description: 'Via Kanholmsfjärden: ca 45 min med RIB, 1,5 h med förträngare. Tankning i Stavsnäs.',
     href: '/o/sandhamn',
     meta: '~ 45 min',
   },
   {
     icon: 'navigation',
     title: 'Stockholm → Grinda',
-    description: 'Via Vaxholm och Tynningö — 30 min på rätt båt. Populär lunchutflykt.',
+    description: 'Via Vaxholm och Tynningö, 30 min på rätt båt. Populär lunchutflykt.',
     href: '/o/grinda',
     meta: '~ 30 min',
   },
   {
     icon: 'navigation',
     title: 'Stockholm → Utö',
-    description: 'Söderut genom Jungfrufjärden — 50 min med RIB. Tankning i Dalarö.',
+    description: 'Söderut genom Jungfrufjärden, 50 min med RIB. Tankning i Dalarö.',
     href: '/o/uto',
     meta: '~ 50 min',
   },
   {
     icon: 'navigation',
     title: 'Stockholm → Finnhamn',
-    description: 'Nordöstra farleden via Möja — 55 min. Populär helgdestination.',
+    description: 'Nordöstra farleden via Möja, 55 min. Populär helgdestination.',
     href: '/o/finnhamn',
     meta: '~ 55 min',
   },
   {
     icon: 'fuel',
     title: 'Tankställen på vägen',
-    description: 'Alla sjöbensin-mackar längs populära rutter med öppettider och priser.',
+    description: 'Alla sjöbensinmackar längs populära rutter med öppettider och priser.',
     href: '/hamnar-och-bryggor',
   },
   {
     icon: 'warning',
     title: 'Hastighetsbegränsningar',
-    description: 'Var du måste sakta ner — skyltade fartbegränsningar, hamnar, badplatser.',
+    description: 'Var du måste sakta ner: skyltade fartbegränsningar, hamnar, badplatser.',
     href: '/tips?kategori=hastighet',
   },
 ]
@@ -71,7 +71,7 @@ export default function SnabbasteVagenPage() {
       heroGradient={['#c96e2a', '#d98246']}
       eyebrow="Snabbaste vägen"
       title="Kortaste rutten, utan strul"
-      tagline="För motorbåt, RIB och vattenskoter. De populäraste destinationerna från Stockholm — varje tur leder till målöns sida med hamnar och praktisk info."
+      tagline="För motorbåt, RIB och vattenskoter. De populäraste destinationerna från Stockholm, varje tur leder till målöns sida med hamnar och praktisk info."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
@@ -80,10 +80,10 @@ export default function SnabbasteVagenPage() {
       intro={
         <>
           <p>
-            Inte alla skärgårdsturer handlar om att njuta av seglingen — ibland vill du bara <strong>hinna till lunchen på Sandhamn</strong> och hem före barnens läggdags. Snabbaste vägen är för dig med motorbåt, RIB eller vattenskoter.
+            Inte alla skärgårdsturer handlar om att njuta av seglingen: ibland vill du bara <strong>hinna till lunchen på Sandhamn</strong> och hem före barnens läggdags. Snabbaste vägen är för dig med motorbåt, RIB eller vattenskoter.
           </p>
           <p>
-            Rutterna är optimerade för tid — men också för säkerhet: genom <strong>skyddade farleder</strong>, förbi <strong>fartbegränsade zoner</strong>, med <strong>tankställen</strong> markerade. Inget värre än att råka gå ur diesel utanför Sandhamn på söndag kväll.
+            Rutterna är optimerade för tid, men också för säkerhet: genom <strong>skyddade farleder</strong>, förbi <strong>fartbegränsade zoner</strong>, med <strong>tankställen</strong> markerade. Inget värre än att råka gå ur diesel utanför Sandhamn på söndag kväll.
           </p>
         </>
       }
@@ -98,13 +98,13 @@ export default function SnabbasteVagenPage() {
           </h2>
           <p>
             {/* KÄLLA: Transportstyrelsen, Regler för sjötrafiken + Kustbevakningen, Hastighetsövervakning (lästa 2026-08-16). Tidigare stod '7 knop innanför gul boj, 12 knop i många farleder, fullt fritt utanför' — påhittade generella regler. */}
-            Det finns ingen generell fartgräns till sjöss — begränsningarna är lokala beslut från länsstyrelsen och gäller där de är skyltade och står i sjökortet. Nära Stockholm är <strong>7 eller 12 knop</strong> vanligt i farleder, sund och hamnområden. Utanför begränsningsområdena gäller gott sjömanskap, inte fri fart. Vattenskoter är reglerat i Stockholms kommun med specifika tillåtna områden — se <a href="https://www.transportstyrelsen.se" style={{ color: 'var(--sea)' }} target="_blank" rel="noopener noreferrer">Transportstyrelsen</a>.
+            Det finns ingen generell fartgräns till sjöss, begränsningarna är lokala beslut från länsstyrelsen och gäller där de är skyltade och står i sjökortet. Nära Stockholm är <strong>7 eller 12 knop</strong> vanligt i farleder, sund och hamnområden. Utanför begränsningsområdena gäller gott sjömanskap, inte fri fart. Vattenskoter är reglerat i Stockholms kommun med specifika tillåtna områden: se <a href="https://www.transportstyrelsen.se" style={{ color: 'var(--sea)' }} target="_blank" rel="noopener noreferrer">Transportstyrelsen</a>.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Säkerhet vid höga hastigheter
           </h2>
           <p>
-            Bär flytväst alltid, använd döds-mans-grepp, håll uppsikt på korsande trafik. Olyckor i skärgården sker oftast där motorbåtar möter badgäster eller paddlare i grunda vikar — tänk på att du syns men de kanske inte hör dig.
+            Bär flytväst alltid, använd döds-mans-grepp, håll uppsikt på korsande trafik. Olyckor i skärgården sker oftast där motorbåtar möter badgäster eller paddlare i grunda vikar. Tänk på att du syns men de kanske inte hör dig.
           </p>
         </>
       }

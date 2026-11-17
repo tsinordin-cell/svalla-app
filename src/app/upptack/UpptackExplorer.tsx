@@ -884,7 +884,7 @@ export default function UpptackExplorer() {
             type="button"
             className="upx-sheet-handle"
             onClick={cycleSheet}
-            aria-label={`Lista (${sheetState === 'min' ? 'minimerad — visa mer' : sheetState === 'half' ? 'halvskärm — visa mer' : 'helskärm — minimera'})`}
+            aria-label={`Lista (${sheetState === 'min' ? 'minimerad: visa mer' : sheetState === 'half' ? 'halvskärm: visa mer' : 'helskärm: minimera'})`}
           >
             <span className="upx-sheet-grip" aria-hidden />
           </button>
@@ -1003,7 +1003,7 @@ export default function UpptackExplorer() {
             onClick={handleGps}
             disabled={gpsState === 'loading'}
             aria-label={gpsState === 'denied' ? 'GPS-åtkomst nekad' : 'Visa min position'}
-            title={gpsState === 'denied' ? 'GPS nekad — aktivera i webbläsarens inställningar' : 'Visa min position'}
+            title={gpsState === 'denied' ? 'GPS nekad: aktivera i webbläsarens inställningar' : 'Visa min position'}
           >
             {gpsState === 'loading' ? (
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation: 'upxSpin 1s linear infinite' }}>

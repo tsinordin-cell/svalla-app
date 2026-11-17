@@ -129,7 +129,7 @@ export default function PlacePremiumHeader({
             color: '#9a4f14', background: 'rgba(201,110,42,0.14)', borderRadius: 999, padding: '3px 9px',
           }}>Endast medlemmar</span>
           <span style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
-            Klubb- eller föreningshamn. Platserna är för medlemmar — kontakta föreningen innan du lägger till.
+            Klubb- eller föreningshamn. Platserna är för medlemmar, kontakta föreningen innan du lägger till.
           </span>
         </div>
       )}

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: trip.tagline,
     alternates: { canonical: `https://svalla.se/resetips/${slug}` },
     openGraph: {
-      title: `${trip.title} – Svalla`,
+      title: `${trip.title} | Svalla`,
       description: trip.tagline,
       url: `https://svalla.se/resetips/${slug}`,
     },
@@ -171,7 +171,7 @@ export default async function ResetipsDetailPage({ params }: Props) {
           color: 'var(--txt, #1a1a1a)',
           margin: '0 0 20px',
         }}>
-          Rutten — stopp för stopp
+          Rutten: stopp för stopp
         </h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 0, marginBottom: 40 }}>

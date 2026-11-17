@@ -103,7 +103,7 @@ export default function RouteFeedbackButton({ routeId, startName, endName }: Pro
                   { v: 'over-land',     label: 'Rutten går över land eller över en ö' },
                   { v: 'wrong-distance', label: 'Avståndet stämmer inte' },
                   { v: 'wrong-stop',    label: 'Ett föreslaget stopp är fel/stängt' },
-                  { v: 'other',         label: 'Annat — beskriv nedan' },
+                  { v: 'other',         label: 'Annat: beskriv nedan' },
                 ].map(opt => (
                   <label key={opt.v} style={{
                     display: 'flex', alignItems: 'center', gap: 9,
@@ -133,7 +133,7 @@ export default function RouteFeedbackButton({ routeId, startName, endName }: Pro
                 onChange={e => setComment(e.target.value)}
                 rows={3}
                 maxLength={1000}
-                placeholder="T.ex. 'Linjen korsar Lidingö norra spetsen — ska gå via Lidingöleden norr.'"
+                placeholder="T.ex. 'Linjen korsar Lidingö norra spetsen. Ska gå via Lidingöleden norr.'"
                 style={{
                   width: '100%', padding: 12,
                   borderRadius: 10,

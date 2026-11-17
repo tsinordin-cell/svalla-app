@@ -6,7 +6,7 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
- title: 'Bohuslän — Segla västkusten, logga turer',
+ title: 'Bohuslän: Segla västkusten, logga turer',
  description: 'Bohuslän segling: hummerkrogar, Marstrand, Smögen, naturhamnar & gästhamnar. Logga turer med Svalla från Göteborg till norska gränsen.',
  keywords: [
  'bohuslän segla',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
  'bohuslän naturhamnar',
  ],
  openGraph: {
- title: 'Bohuslän — Segla västkusten',
+ title: 'Bohuslän: Segla västkusten',
  description: 'Logga dina båtturer och hitta de bästa platserna längs Bohusläns kust.',
  url: 'https://svalla.se/bohuslan',
  },
@@ -46,26 +46,26 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
  {
  icon: 'map',
- title: 'Öarna — 19 sidor med hamnar',
+ title: 'Öarna: 19 sidor med hamnar',
  description: 'Marstrand, Smögen, Koster, Käringön, Gullholmen, Åstol … varje ö med gästhamn, service och källa. Listan finns längre ner på sidan.',
  href: '/bohuslan#oar',
  },
  {
  icon: '🦞',
  title: 'Hummerkrogar',
- description: 'Säsong i september–oktober. Smögen, Fjällbacka, Grebbestad och Kungshamn är klassiska stoppunkter.',
+ description: 'Säsong i september till oktober. Smögen, Fjällbacka, Grebbestad och Kungshamn är klassiska stoppunkter.',
  href: '/krogar-och-mat',
  },
  {
  icon: 'sailboat',
  title: 'Segelrutter längs kusten',
- description: 'Från Göteborgs skärgård norrut — de klassiska lederna etapp för etapp.',
+ description: 'Från Göteborgs skärgård norrut. De klassiska lederna etapp för etapp.',
  href: '/segelrutter',
  },
  {
  icon: 'anchor',
  title: 'Naturhamnar och allemansrätten',
- description: 'Vad som gäller när du ankrar i en vik eller lånar en brygga — och var du inte får gå i land under häckningstiden.',
+ description: 'Vad som gäller när du ankrar i en vik eller lånar en brygga, och var du inte får gå i land under häckningstiden.',
  href: '/hamnar-och-bryggor#naturhamnar',
  },
  {
@@ -77,7 +77,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'castle',
  title: 'Marstrand & Carlstens fästning',
- description: 'Sommarens seglarmötesplats — Sveriges största gästhamn enligt Turistrådet Västsverige, och fästningen från 1660 ovanför.',
+ description: 'Sommarens seglarmötesplats: Sveriges största gästhamn enligt Turistrådet Västsverige, och fästningen från 1660 ovanför.',
  href: '/o/marstrand',
  },
 ]
@@ -90,7 +90,7 @@ export default function BohuslanPage() {
  {
  '@type': 'Question',
  name: 'Hur seglar man från Stockholm till Bohuslän?',
- acceptedAnswer: { '@type': 'Answer', text: 'Du har två klassiska vägar: Göta kanal eller segling runt Skåne. Göta kanal går genom Sverige och tar 2–3 dagar — ett historiskt äventyr. Segling runt Skåne tar 5–7 dagar men är mer seglarvänligt med stopp längs hela östkusten.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Du har två klassiska vägar: Göta kanal eller segling runt Skåne. Göta kanal går genom Sverige och tar 2 till 3 dagar, ett historiskt äventyr. Segling runt Skåne tar 5 till 7 dagar men är mer seglarvänligt med stopp längs hela östkusten.' },
  },
  {
  '@type': 'Question',
@@ -105,7 +105,7 @@ export default function BohuslanPage() {
  {
  '@type': 'Question',
  name: 'Vilka är de mest kända öarna i Bohuslän?',
- acceptedAnswer: { '@type': 'Answer', text: 'Marstrand och dess fästning är utan tvekan mest kända. Tjörn och Orust är stora och historiska öar. Käringön och Gullholmen är mindre men älskade ankringsplatser. Norrut ligger Kosteröarna — Sveriges första marina nationalpark.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Marstrand och dess fästning är utan tvekan mest kända. Tjörn och Orust är stora och historiska öar. Käringön och Gullholmen är mindre men älskade ankringsplatser. Norrut ligger Kosteröarna, Sveriges första marina nationalpark.' },
  },
  ],
  }
@@ -125,7 +125,7 @@ export default function BohuslanPage() {
  heroGradient={['#2d6a4f', '#3a8a65']}
  eyebrow="Bohuslän"
  title="Västkustens råa skärgård"
- tagline="Granitklippor, hummer och friska västanvindar — Svalla hjälper dig logga varje tur längs Bohusläns unika kust."
+ tagline="Granitklippor, hummer och friska västanvindar | Svalla hjälper dig logga varje tur längs Bohusläns unika kust."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <circle cx="12" cy="12" r="10" />
@@ -136,13 +136,13 @@ export default function BohuslanPage() {
  intro={
  <>
  <p>
- Bohuslän är Skandinaviens mest besökta kustregion — och med god anledning. <strong>Öppen ocean, vass granit och ikoniska fisklägen</strong> ger en seglarmiljö som inte liknar något annat i Sverige. Från Göteborg skärgård i söder till norska gränsen vid Strömstad, stretchas hundra mil av klassisk svensk västkust över ett territorium fyllt av bergsgrund, djupt vatten och världskända ankringsplatser.
+ Bohuslän är Skandinaviens mest besökta kustregion, och med god anledning. <strong>Öppen ocean, vass granit och ikoniska fisklägen</strong> ger en seglarmiljö som inte liknar något annat i Sverige. Från Göteborg skärgård i söder till norska gränsen vid Strömstad, stretchas hundra mil av klassisk svensk västkust över ett territorium fyllt av bergsgrund, djupt vatten och världskända ankringsplatser.
  </p>
  <p>
  Bohuslän är legendariskt bland seglare världen över. Här finns Marstrand med Carlstens fästning, där svenska seglare har mötts sedan 1700-talet. Här ligger Smögen och Fjällbacka med sina traditionella bryggor, och här öppnas världens bästa hummerkrogar varje september. Tidvattnet och vinden är förutsägbara, och naturhamnarna räcker till för både en veckas äventyr och tioåriga återkommande.
  </p>
  <p>
- Med Svalla loggar du dina etapper från Göteborg till norska gränsen, läser ö-sidorna med hamnar och källor, och delar dina turer med andra som seglar samma kust. Svalla visar inga tidvatten- eller djupuppgifter — det gör sjökortet.
+ Med Svalla loggar du dina etapper från Göteborg till norska gränsen, läser ö-sidorna med hamnar och källor, och delar dina turer med andra som seglar samma kust. Svalla visar inga tidvatten- eller djupuppgifter. Det gör sjökortet.
  </p>
  <p>
  Oavsett om du seglar en helg eller en hel månad, är Bohuslän destinationen som aldrig blir gammal.
@@ -159,7 +159,7 @@ export default function BohuslanPage() {
  Öar och hamnar i Bohuslän
  </h2>
  <p>
- {BOHUSLAN_ISLANDS.length} sidor, var och en med hamnar, service och källor. Antalet gästhamnar per ö är det vi hittills lagt in — inte allt som finns.
+ {BOHUSLAN_ISLANDS.length} sidor, var och en med hamnar, service och källor. Antalet gästhamnar per ö är det vi hittills lagt in, inte allt som finns.
  </p>
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 10, margin: '12px 0 28px' }}>
  {BOHUSLAN_ISLANDS.map(o => (
@@ -182,17 +182,17 @@ export default function BohuslanPage() {
  </div>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Ta dig dit — kollektivtrafik
+ Ta dig dit: kollektivtrafik
  </h2>
  <p>
- <strong>Till Marstrand</strong>: Västtrafik buss 302 eller 312 från Göteborgs centralstation till Koön (~1h), sedan Marstrandsfärjan (ingår i Västtrafik-biljetten) till ön. Bil är förbjuden på Marstrandsön.
+ <strong>Till Marstrand</strong>: Västtrafik buss 302 eller 312 från Göteborgs centralstation till Koön (~1h), sedan Marstrandsfärjan (ingår i Västtrafikbiljetten) till ön. Bil är förbjuden på Marstrandsön.
  </p>
  <p>
  <strong>Till Smögen/Kungshamn</strong>: Västtrafik buss 870 eller 871 från Uddevalla. <strong>Till Fjällbacka och Hamburgsund</strong>: Västtrafik buss 875. <strong>Till Grebbestad</strong>: buss 875 eller 878 från Tanumshede. <strong>Till Strömstad</strong>: tåg från Göteborg ca 1,5h (SJ/Västtrafik), sedan lokalbuss till skärgården.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Södra Bohuslän — från Göteborg norrut
+ Södra Bohuslän: från Göteborg norrut
  </h2>
  <p>
  Göteborg är utgångspunkten för många. Från staden seglar du in i ett klassiskt skärgårdslandskap med hundra små öar, klippor och hemliga vikar. Men redan efter några sjömil blir bilden ännu vackrare.
@@ -201,64 +201,64 @@ export default function BohuslanPage() {
  Marstrand och Carlstens fästning
  </h3>
  <p>
- Marstrand är Sveriges seglarvärld i miniatyr. Ön, känd sedan 1600-talet som befäst position, lockar tiotusentals seglare varje sommar. <strong>Carlstens fästning</strong> dominerar öns bergiga västra strand och är idag en populär besöksmål och foto-spot.
+ Marstrand är Sveriges seglarvärld i miniatyr. Ön, känd sedan 1600-talet som befäst position, lockar tiotusentals seglare varje sommar. <strong>Carlstens fästning</strong> dominerar öns bergiga västra strand och är idag en populär besöksmål och fotospot.
  </p>
  <p>
- Juli är Mastrands högsäsong — så högsta säsong att du måste boka gästhamns plats flera veckor i förväg för att få ett ställe. Framboende båtar ligger nästan kant i kant. Detta är ofta Sveriges tätaste seglartrafik. Alternativ: ankar på naturhamnarna runt ön eller använd en av de mindre privata bryggorna.
+ Juli är Mastrands högsäsong, så högsta säsong att du måste boka gästhamns plats flera veckor i förväg för att få ett ställe. Framboende båtar ligger nästan kant i kant. Detta är ofta Sveriges tätaste seglartrafik. Alternativ: ankar på naturhamnarna runt ön eller använd en av de mindre privata bryggorna.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Tjörn och Orust
  </h3>
  <p>
- Här ligger två av västkustens viktigaste öar. Tjörn är känt för sin <strong>varvskultur</strong> — dessa små båtbyggerier är bevarade som museer och minnesmärken över 200 års båttillverkning. Orust är större och har bättre infrastruktur för seglare.
+ Här ligger två av västkustens viktigaste öar. Tjörn är känt för sin <strong>varvskultur</strong>, dessa små båtbyggerier är bevarade som museer och minnesmärken över 200 års båttillverkning. Orust är större och har bättre infrastruktur för seglare.
  </p>
  <p>
- Missa inte <strong>Nordiska Akvarellmuseet</strong> på Tjörn — en institution för västerländsk akvarellkonst och perfekt regndagsbesök när väder inte låter dig segla vidare.
+ Missa inte <strong>Nordiska Akvarellmuseet</strong> på Tjörn, en institution för västerländsk akvarellkonst och perfekt regndagsbesök när väder inte låter dig segla vidare.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '32px 0 12px' }}>
- Norra Bohuslän — Smögen och Fjällbacka
+ Norra Bohuslän: Smögen och Fjällbacka
  </h2>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Smögen och Smögenbryggan
  </h3>
  <p>
- Smögen är Bohusläns mest fotograferade fiskeläge — med god anledning. En smal, långsträckt brygga, <strong>Smögenbryggan</strong>, löper utmed kanten och fylls på sommaren av turister, konsthandlare och restauranger. På ena sidan open ocean, på andra sidan små båtar och hummerlådor.
+ Smögen är Bohusläns mest fotograferade fiskeläge, med god anledning. En smal, långsträckt brygga, <strong>Smögenbryggan</strong>, löper utmed kanten och fylls på sommaren av turister, konsthandlare och restauranger. På ena sidan open ocean, på andra sidan små båtar och hummerlådor.
  </p>
  <p>
- Hummerlådan är det klassiska transportmedlet för levande hummer på västkusten. Du möter den här överallt i september och oktober — både i restaurants och som dekorativ föremål för turistfotografier.
+ Hummerlådan är det klassiska transportmedlet för levande hummer på västkusten. Du möter den här överallt i september och oktober, både i restaurants och som dekorativ föremål för turistfotografier.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Fjällbacka och Ingrid Bergmans ö
  </h3>
  <p>
- Fjällbacka är födelseorten för kriminalförfattaren <strong>Camilla Läckberg</strong>. Hennes böcker har gjort denna lilla stad världskänd bland skandinaviska kriminalläsare. Men Fjällbacka är också känt för något annat — <strong>Ingrid Bergmans ö</strong>, där den svenska filmstjärnan tillbringade somrar.
+ Fjällbacka är födelseorten för kriminalförfattaren <strong>Camilla Läckberg</strong>. Hennes böcker har gjort denna lilla stad världskänd bland skandinaviska kriminalläsare. Men Fjällbacka är också känt för något annat: <strong>Ingrid Bergmans ö</strong>, där den svenska filmstjärnan tillbringade somrar.
  </p>
  <p>
- En kort segeltur från Fjällbacka ligger den lilla privata ön som Bergman älskade. Det är en vacker dag-segling och en vacker anledning att stanna här några dagar.
+ En kort segeltur från Fjällbacka ligger den lilla privata ön som Bergman älskade. Det är en vacker dagssegling och en vacker anledning att stanna här några dagar.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Grebbestad, Hamburgsund och Strömstad
  </h3>
  <p>
- Fortsätt norrut och du kommer till Grebbestad — hemmet för <strong>ostron från västkusten</strong>. Här odlas både musslor och ostron i stora mängder, och restauranger längs stranden serverar färska räkor och ostron direkt från vattnet.
+ Fortsätt norrut och du kommer till Grebbestad: hemmet för <strong>ostron från västkusten</strong>. Här odlas både musslor och ostron i stora mängder, och restauranger längs stranden serverar färska räkor och ostron direkt från vattnet.
  </p>
  <p>
  Hamburgsund och slutligen <strong>Strömstad</strong> vid norska gränsen markerar norddelen av Bohuslän. Strömstad är en välbyggd seglarbas med moderna gästhamnar och många restauranger.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '32px 0 12px' }}>
- Hummersäsongen — september och oktober
+ Hummersäsongen: september och oktober
  </h2>
  <p>
  {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/hummerfiske---regler.html (läst 2026-09-21) */}
- Hummerpremiären infaller första måndagen efter 20 september, klockan 07.00 — 2026 är det 21 september. Fritidsfiskare får fiska till och med 30 november, och restaurangerna längs kusten tar in årets första hummer samma vecka.
+ Hummerpremiären infaller första måndagen efter 20 september, klockan 07.00 till 2026 är det 21 september. Fritidsfiskare får fiska till och med 30 november, och restaurangerna längs kusten tar in årets första hummer samma vecka.
  </p>
  <p>
- De bästa krogarna för hummerupplevelse ligger i <strong>Kungshamn, Smögen, Lysekil och Grebbestad</strong>. Här får du autentisk västkustkvalitet — malen hummar med smör, mänad från källan samma morgon. Mängden gäster är stor — <strong>boka bord i god tid</strong> om du vill sitta någonstans populärt.
+ De bästa krogarna för hummerupplevelse ligger i <strong>Kungshamn, Smögen, Lysekil och Grebbestad</strong>. Här får du autentisk västkustkvalitet: malen hummar med smör, mänad från källan samma morgon. Mängden gäster är stor: <strong>boka bord i god tid</strong> om du vill sitta någonstans populärt.
  </p>
  <p>
- September är även Bohusläns mest stabila väderperiod för segling. Vädret är oftast stadigt med nordväst eller sydväst vind, temperaturen är behaglig (15–20°C i luften, 13–15°C i vattnet), och trycket på gästhamnarna börjar släppa efter semesterkaos.
+ September är även Bohusläns mest stabila väderperiod för segling. Vädret är oftast stadigt med nordväst eller sydväst vind, temperaturen är behaglig (15 till 20°C i luften, 13 till 15°C i vattnet), och trycket på gästhamnarna börjar släppa efter semesterkaos.
  </p>
 
  {/* Sektionen "Tidvatten och navigering" togs bort 2026-09-20 (Toms delegation): 20–40 cm
@@ -281,10 +281,10 @@ export default function BohuslanPage() {
  Du har två klassiska vägar: <strong>Göta kanal</strong> eller <strong>segling runt Skåne</strong>.
  </p>
  <p>
- Göta kanal går genom Sverige från Stockholms skärgård till Göteborg och tar 2–3 dagar om du seglingsschemat är strikt. Det är den klassiska sommarrutten och väl värd varje timme — ett historiskt äventyr genom Sveriges hjärta. Slussarna är älskade av seglare och du möter nya båtar längs vägen.
+ Göta kanal går genom Sverige från Stockholms skärgård till Göteborg och tar 2 till 3 dagar om du seglingsschemat är strikt. Det är den klassiska sommarrutten och väl värd varje timme, ett historiskt äventyr genom Sveriges hjärta. Slussarna är älskade av seglare och du möter nya båtar längs vägen.
  </p>
  <p>
- Segling runt Skåne tar 5–7 dagar beroende på väder och valen du gör längs vägen. Du seglar norrut genom Östersjön, runt Gotland, ner längs östkusten av Skåne och sedan västerut in i Kattegatt. Det är längre men många tycker att det är mer seglarvänligt.
+ Segling runt Skåne tar 5 till 7 dagar beroende på väder och valen du gör längs vägen. Du seglar norrut genom Östersjön, runt Gotland, ner längs östkusten av Skåne och sedan västerut in i Kattegatt. Det är längre men många tycker att det är mer seglarvänligt.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Vad är bästa basporten för att utforska Bohuslän?
@@ -299,7 +299,7 @@ export default function BohuslanPage() {
  Är Bohuslän svårt att navigera med båt?
  </h3>
  <p>
- Ja, det är relativt. Rikliga klippor, grund vatten och ett invecklat ölandskap gör Bohuslän till en navigeringskurs för entusiaster. Många seglare älskar denna komplexitet — det tvingar dig att vara uppmärksam och få bättre sjökortskompetens.
+ Ja, det är relativt. Rikliga klippor, grund vatten och ett invecklat ölandskap gör Bohuslän till en navigeringskurs för entusiaster. Många seglare älskar denna komplexitet. Det tvingar dig att vara uppmärksam och få bättre sjökortskompetens.
  </p>
  <p>
  Håll alltid ett öga på sjökortet. Missa inte grunt vatten genom att titta på djupkort. Vid dåligt väder är det bättre att stanna på en naturhamn och vänta än att försöka navigera genom små sund i dimma eller mörker.
@@ -311,7 +311,7 @@ export default function BohuslanPage() {
  <strong>Marstrand</strong> och dess fästning är utan tvekan mest känd. <strong>Tjörn</strong> och <strong>Orust</strong> är stora och historiska öar. <strong>Käringön</strong> och <strong>Gullholmen</strong> är mindre men älskade ankringsplatser.
  </p>
  <p>
- Norrut ligger <strong>Kosteröarna</strong> — en nationalpark och ett måste för alla seglare. Det är Sveriges första marina nationalpark och är känd för sitt rena vatten och överraskande biodiversitet.
+ Norrut ligger <strong>Kosteröarna</strong>, en nationalpark och ett måste för alla seglare. Det är Sveriges första marina nationalpark och är känd för sitt rena vatten och överraskande biodiversitet.
  </p>
  </>
  }

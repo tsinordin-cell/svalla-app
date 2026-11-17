@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
   title: 'Värdshus och restauranger i skärgården',
-  description: 'Klassiska skärgårdsvärdshus och sommarrestauranger — Sandhamns Värdshus, Utö Värdshus, Grinda Wärdshus och Fjäderholmarnas Krog. Öppettider och bokningslänkar.',
+  description: 'Klassiska skärgårdsvärdshus och sommarrestauranger: Sandhamns Värdshus, Utö Värdshus, Grinda Wärdshus och Fjäderholmarnas Krog. Öppettider och bokningslänkar.',
   keywords: [
     'värdshus skärgård',
     'skärgårdsrestaurang stockholm',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 }
 
 const CHIPS = [
-  'Husmanskost', 'Sjöutsikt', 'Boka bord', 'Säsong maj–sep',
+  'Husmanskost', 'Sjöutsikt', 'Boka bord', 'Säsong maj till sep',
   'Brygga för båt', 'À la carte', 'Klassiker',
 ]
 
@@ -32,28 +32,28 @@ const ITEMS: LandingItem[] = [
     title: 'Sandhamns Värdshus',
     description: 'Ett av skärgårdens mest välkända ställen, mitt i Sandhamns by. Brygga för gästande båtar finns alldeles intill. Bokas tidigt under midsommar och Gotlandsrunt.',
     href: '/o/sandhamn',
-    meta: 'Sandhamn · Säsong: maj–sep',
+    meta: 'Sandhamn · Säsong: maj till sep',
   },
   {
     icon: '🌿',
     title: 'Grinda Wärdshus',
-    description: 'Charmigt värdshus på en bilfri ö med fantastisk sjöutsikt. Serverar husmanskost med lokala råvaror. Mycket populärt — boka bord och brygga i förväg.',
+    description: 'Charmigt värdshus på en bilfri ö med fantastisk sjöutsikt. Serverar husmanskost med lokala råvaror. Mycket populärt. Boka bord och brygga i förväg.',
     href: '/o/grinda',
-    meta: 'Grinda · Säsong: maj–sep',
+    meta: 'Grinda · Säsong: maj till sep',
   },
   {
     icon: '🚴',
     title: 'Utö Värdshus',
-    description: 'Utöns hjärta i mysiga Gruvbyn. Hållbar husmanskost med lokalt fångad fisk. Öppet längre säsong än de flesta — ibland in i oktober.',
+    description: 'Utöns hjärta i mysiga Gruvbyn. Hållbar husmanskost med lokalt fångad fisk. Öppet längre säsong än de flesta, ibland in i oktober.',
     href: '/o/uto',
-    meta: 'Utö · Säsong: maj–okt',
+    meta: 'Utö · Säsong: maj till okt',
   },
   {
     icon: '🍽',
     title: 'Fjäderholmarnas Krog',
-    description: 'Skärgårdens närmaste krog från Stockholm — 25 minuter med Waxholmsbåten. Klassisk meny med räkor, sill och säsongsrätter. Perfekt för en dag- eller kvällsutflykt.',
+    description: 'Skärgårdens närmaste krog från Stockholm, 25 minuter med Waxholmsbåten. Klassisk meny med räkor, sill och säsongsrätter. Perfekt för en dag- eller kvällsutflykt.',
     href: '/o/fjaderholmarna',
-    meta: 'Fjäderholmarna · Säsong: maj–sep',
+    meta: 'Fjäderholmarna · Säsong: maj till sep',
   },
 ]
 
@@ -63,7 +63,7 @@ export default function VardshusRestaurangerPage() {
       heroGradient={['#8b2e12', '#c96e2a']}
       eyebrow="KROGAR & MAT · VÄRDSHUS"
       title="Värdshus och restauranger"
-      tagline="Klassiska skärgårdsvärdshus med sjöutsikt, husmanskost och sommarstämning — från Fjäderholmarna till Sandhamn."
+      tagline="Klassiska skärgårdsvärdshus med sjöutsikt, husmanskost och sommarstämning, från Fjäderholmarna till Sandhamn."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M3 2v7a3 3 0 0 0 6 0V2" />
@@ -74,7 +74,7 @@ export default function VardshusRestaurangerPage() {
       intro={
         <>
           <p>
-            Skärgårdsvärdshuset är en institution — ett ställe där seglar- och båtfolk landar för varm mat, ett glas och sällskap. De klassiska husen har funnits i decennier och håller en standard som kombinerar husmanskost med lokala råvaror, ofta direkt från havet. De flesta håller öppet <strong>maj–september</strong>.
+            Skärgårdsvärdshuset är en institution: ett ställe där seglar- och båtfolk landar för varm mat, ett glas och sällskap. De klassiska husen har funnits i decennier och håller en standard som kombinerar husmanskost med lokala råvaror, ofta direkt från havet. De flesta håller öppet <strong>maj till september</strong>.
           </p>
           <p>
             Vill du äta ute på en lördag i juli? <strong>Boka bord minst en vecka i förväg.</strong> Många krogar tar bokningar via sin hemsida eller Bokadirekt.
@@ -101,13 +101,13 @@ export default function VardshusRestaurangerPage() {
             Tips inför besöket
           </h2>
           <p>
-            <strong>Ring och bekräfta.</strong> Skärgårdskrogar har ofta begränsad personal. Oförutsedda stängningar händer — ring samma dag för att bekräfta att köket är öppet, särskilt i maj och september.
+            <strong>Ring och bekräfta.</strong> Skärgårdskrogar har ofta begränsad personal. Oförutsedda stängningar händer. Ring samma dag för att bekräfta att köket är öppet, särskilt i maj och september.
           </p>
           <p>
             <strong>Planera bryggan.</strong> Populära ställen som Grinda Wärdshus och Sandhamns Värdshus har full brygga från lunch på helgdagar i juli. Ankra i en naturhamn inom gångavstånd om det behövs.
           </p>
           <p>
-            <strong>Fråga om dagsfångst.</strong> Fersk fisk och räkor levereras ofta på morgonen. Fråga personalen vad som kom in samma dag — det är ofta det bästa på menyn.
+            <strong>Fråga om dagsfångst.</strong> Fersk fisk och räkor levereras ofta på morgonen. Fråga personalen vad som kom in samma dag. Det är ofta det bästa på menyn.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '32px 0 12px' }}>
@@ -118,16 +118,16 @@ export default function VardshusRestaurangerPage() {
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <a href="https://www.sandhamns-vardshus.se" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(139,46,18,0.06)', border: '1px solid rgba(139,46,18,0.18)', color: '#8b2e12', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Sandhamns Värdshus — hemsida & bokning</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Sandhamns Värdshus: hemsida & bokning</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.grinda.se" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(139,46,18,0.06)', border: '1px solid rgba(139,46,18,0.18)', color: '#8b2e12', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Grinda Wärdshus — hemsida & bokning</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Grinda Wärdshus: hemsida & bokning</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.utowardshus.se" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(139,46,18,0.06)', border: '1px solid rgba(139,46,18,0.18)', color: '#8b2e12', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Utö Värdshus — hemsida & bokning</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Utö Värdshus: hemsida & bokning</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.fjaderholmarnaskrog.se" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(139,46,18,0.06)', border: '1px solid rgba(139,46,18,0.18)', color: '#8b2e12', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Fjäderholmarnas Krog — hemsida & bokning</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Fjäderholmarnas Krog: hemsida & bokning</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
           </div>
         </>
@@ -141,7 +141,7 @@ export default function VardshusRestaurangerPage() {
       related={[
         { label: 'Fisk & skaldjur', href: '/krogar-och-mat/fisk-skaldjur' },
         { label: 'Fika & café', href: '/krogar-och-mat/fika-cafe' },
-        { label: 'Take-away & kiosker', href: '/krogar-och-mat/take-away-kiosker' },
+        { label: 'Takeaway & kiosker', href: '/krogar-och-mat/take-away-kiosker' },
         { label: 'Boende', href: '/boende' },
         { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
       ]}

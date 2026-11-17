@@ -3,7 +3,7 @@ trigger: newsletter_subscribe + 14 days
 layout: fullt
 subject_options:
   - "Var det Grinda eller Gällnö som crewet gillade? 🤔"
-  - "Tre öar att spara — och stället att spara dem på"
+  - "Tre öar att spara, och stället att spara dem på"
   - "Min skärgård: listan du delar med crewet"
 preheader: Spara öarna du vill åka till och dela listan med crewet inför helgen.
 from: "Team Svalla <hej@mail.svalla.se>"
@@ -11,10 +11,10 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 # Var det Grinda eller Gällnö som var finast?
 
-Det vanligaste problemet i skärgårdsplanering är inte att välja fel ö. Det är att man hade en idé i mars, ett tips från en kollega i maj, en skärmdump någonstans — och i juli är allt borta. Idéer man inte samlar ihop blir aldrig turer.
+Det vanligaste problemet i skärgårdsplanering är inte att välja fel ö. Det är att man hade en idé i mars, ett tips från en kollega i maj, en skärmdump någonstans, och i juli är allt borta. Idéer man inte samlar ihop blir aldrig turer.
 
 :::kort
-### Min skärgård — din privata lista
+### Min skärgård: din privata lista
 Tryck hjärtat på en ö så hamnar den i *Min skärgård*. Dela listan med crewet inför helgen. Inga appar att installera, inga konton för dem att skapa.
 
 [Öppna Min skärgård →](https://svalla.se/min-skargard)
@@ -52,7 +52,7 @@ Järngruvor sedan medeltiden och grusvägar att cykla på. Ålö Storsand, som d
 [Guiden →](https://svalla.se/o/uto)
 :::
 
-Letar du efter något särskilt — barnvänligt, bilfritt, seglingsvänligt — sök bland [alla öar](https://svalla.se/oar) och spara ett par kandidater. Beslut blir lättare när alternativen ligger bredvid varandra.
+Letar du efter något särskilt, barnvänligt, bilfritt, seglingsvänligt, sök bland [alla öar](https://svalla.se/oar) och spara ett par kandidater. Beslut blir lättare när alternativen ligger bredvid varandra.
 
 :::knapp
 [Utforska öarna](https://svalla.se/oar)

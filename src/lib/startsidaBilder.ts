@@ -15,6 +15,7 @@ export const COMMONS_FOR_KORT: Record<string, { slug: string; namn: string }> = 
   grinda: { slug: 'grinda', namn: 'Grinda' },
   sandhamn: { slug: 'sandhamn', namn: 'Sandhamn' },
   uto: { slug: 'uto', namn: 'Utö' },
+  marstrand: { slug: 'marstrand', namn: 'Marstrand' },
   fjaderholmarna: { slug: 'fjaderholmarna', namn: 'Fjäderholmarna' },
   mellersta: { slug: 'moja', namn: 'Möja' },
   norra: { slug: 'arholma', namn: 'Arholma' },

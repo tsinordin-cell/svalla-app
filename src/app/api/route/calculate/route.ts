@@ -333,7 +333,7 @@ export async function POST(req: NextRequest) {
       validated = false
     }
 
-    logger.info('route-calculate', `computed in ${ms} ms — ${finalPath?.length ?? 0} waypoints, quality=${finalQuality}`, {
+    logger.info('route-calculate', `computed in ${ms} ms, ${finalPath?.length ?? 0} waypoints, quality=${finalQuality}`, {
       key,
       ms,
       points: finalPath?.length ?? 0,

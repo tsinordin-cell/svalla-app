@@ -19,6 +19,6 @@ export function cronBehorig(req: Request, secret: string | undefined = process.e
   if (secret) return auth === `Bearer ${secret}`
   const ua = (req.headers.get('user-agent') || '').toLowerCase()
   const ok = ua.includes('vercel-cron')
-  if (ok) console.warn('[cron] CRON_SECRET saknas — anropet släpptes in på User-Agent, som går att förfalska')
+  if (ok) console.warn('[cron] CRON_SECRET saknas: anropet släpptes in på User-Agent, som går att förfalska')
   return ok
 }

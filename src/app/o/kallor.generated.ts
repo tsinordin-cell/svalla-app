@@ -282,8 +282,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf",
       "org": "Länsstyrelsen",
-      "vad": "Andra bra ställen är, Baggensfjärden, Ingarö, Ornö, Utö och Torö, Fritt handredskapsfiske gäller på enskilt vatten i Mälaren och skärgården",
-      "last": "2026-09-27",
+      "vad": "Andra bra ställen är; Baggensfjärden, Ingarö, Ornö, Utö och Torö; Fritt handredskapsfiske gäller på enskilt vatten i Mälaren och skärgården.; Fiske får bedrivas av alla med metspö, spinnspö och liknande redskap med lina med max 10 krokar.; Fiskemetoden får inte vara angeldonsfiske eller kräva användande av båt, exempelvis dragrodd eller trolling.; Trolling, dragrodd och angel får endast bedrivas med fiskerättsägarens tillstånd (exv TDA-kortet, sid 47) eller på allmänt vatten; Tänk på att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap.; I nedanstående vikar är det förbjudet att fiska under perioden 1 april — 15 juni.; Utöfladen (Utös utsida); Ryssundet (mellan Ålö och Utö)",
+      "last": "2026-11-16",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/download/18.6395bf21784b0add951a655/1712068330571/Kartor%20%C3%B6ver%20v%C3%A5rfredningsomr%C3%A5den%20f%C3%B6r%20fisk%20i%20Stockholms%20sk%C3%A4rg%C3%A5rd.pdf",
+      "org": "Länsstyrelsen",
+      "vad": "Fredningsområden 2024 för fisk (vårlekande arter) i Stockholms skärgård.; Fiskeförbud på våren.; I områden med röd text är det fiskeförbud året runt; Ängsholmen",
+      "last": "2026-11-16",
       "myndighet": true
     },
     {
@@ -298,6 +305,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "Länsstyrelsen Stockholm",
       "vad": "skyddat sedan 2008, 2 829 hektar varav land 1 063 hektar, Haninge kommun, Skärgårdsstiftelsen markägare och förvaltare, Natura 2000-områdena SE0110017 Ålö och SE0110118 Rånö Ängsholm; naturtyper \"skärgård, marina miljöer, barrskog, odlingslandskap\", främst hällmarkstallskogar med kalkpåverkad berggrund; \"Storsand på Ålö anses vara en av Stockholms skärgårds finaste sandstränder.\"; Ålö har broförbindelse med Utö",
       "last": "2026-09-30",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/stockholm/djur/fiske.html",
+      "org": "Länsstyrelsen Stockholm",
+      "vad": "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort.; Därför finns det 62 vikar i Stockholms skärgård där fiskeförbud råder under våren. Nio av dessa områden har fiskeförbud året runt.",
+      "last": "2026-11-16",
       "myndighet": true
     },
     {

@@ -11,8 +11,8 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
-  title: 'Hur tar man sig till skärgården? – Transport till alla öar',
-  description: 'Komplett guide till hur du tar dig till skärgårdens öar. Färja, snabbåt, buss och egen båt – med restider, linjer och praktiska tips.',
+  title: 'Hur tar man sig till skärgården? Transport till alla öar',
+  description: 'Komplett guide till hur du tar dig till skärgårdens öar. Färja, snabbåt, buss och egen båt: med restider, linjer och praktiska tips.',
   alternates: { canonical: 'https://svalla.se/ta-dig-till' },
   openGraph: {
     title: 'Transport till skärgårdens öar',

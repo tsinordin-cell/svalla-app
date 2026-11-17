@@ -3,8 +3,8 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
 
 export const metadata: Metadata = {
- title: 'Mälaren — Segla Sveriges tredje största sjö',
- description: 'Utforska Mälaren med Svalla. 8 000+ öar, historiska hamnar, kafébryggor och lugna segelvatten — perfekt för familjer och nybörjare.',
+ title: 'Mälaren: Segla Sveriges tredje största sjö',
+ description: 'Utforska Mälaren med Svalla. 8 000+ öar, historiska hamnar, kafébryggor och lugna segelvatten, perfekt för familjer och nybörjare.',
  keywords: [
  'mälaren segla',
  'mälaren båt',
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
  'gripsholm mariefred',
  ],
  openGraph: {
- title: 'Mälaren — Segla Sveriges tredje största sjö',
- description: 'Logga dina båtturer på Mälaren med Svalla — 8 000+ öar, historiska hamnar och kafébryggor.',
+ title: 'Mälaren: Segla Sveriges tredje största sjö',
+ description: 'Logga dina båtturer på Mälaren med Svalla | 8 000+ öar, historiska hamnar och kafébryggor.',
  url: 'https://svalla.se/malaren',
  },
  alternates: { canonical: 'https://svalla.se/malaren' },
@@ -39,14 +39,14 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🗺️',
  title: 'Öarna här',
- description: 'Ö-sidor med hamnar, aktiviteter och källor — listan finns längre ner på sidan.',
+ description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
  href: '/malaren#oar',
  meta: 'Gratis',
  },
  {
  icon: '⛵',
  title: 'Rutter på Mälaren',
- description: 'Klassiska leder från Stockholm västerut — Drottningholm, Birka, Mariefred och Västerås med etappinfo och djupdata.',
+ description: 'Klassiska leder från Stockholm västerut: Drottningholm, Birka, Mariefred och Västerås med etappinfo och djupdata.',
  href: '/segelrutter',
  },
  {
@@ -58,7 +58,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🏛️',
  title: 'Historiska platser',
- description: 'Birka, Gripsholms slott, Strängnäs domkyrka — Mälaren är omgiven av svensk historia. Logga besöken i Svalla.',
+ description: 'Birka, Gripsholms slott, Strängnäs domkyrka, Mälaren är omgiven av svensk historia. Logga besöken i Svalla.',
  href: '/upptack',
  },
  {
@@ -83,22 +83,22 @@ export default function MalarenPage() {
  {
  '@type': 'Question',
  name: 'Behöver man passera sluss för att segla på Mälaren?',
- acceptedAnswer: { '@type': 'Answer', text: 'Ja, från Östersjösidan passerar fritidsbåtar Hammarbyslussen i Stockholm — det är primärslussen mellan Saltsjön och Mälaren sedan 2016. Kolla aktuella öppettider via Stockholms Hamnar och planera dina passager.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Ja, från Östersjösidan passerar fritidsbåtar Hammarbyslussen i Stockholm. Det är primärslussen mellan Saltsjön och Mälaren sedan 2016. Kolla aktuella öppettider via Stockholms Hamnar och planera dina passager.' },
  },
  {
  '@type': 'Question',
  name: 'Vilka är de bästa kafébryggorpå Mälaren?',
- acceptedAnswer: { '@type': 'Answer', text: 'Mariefred, Kärnbo, Björnö och bryggor längs Ekerö-öarna är kända för sin välkomstkultur och goda fika. Öppettider och service står på respektive bryggas eller kafés egen sida — vi länkar dit där vi har källa.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Mariefred, Kärnbo, Björnö och bryggor längs Ekerööarna är kända för sin välkomstkultur och goda fika. Öppettider och service står på respektive bryggas eller kafés egen sida. Vi länkar dit där vi har källa.' },
  },
  {
  '@type': 'Question',
  name: 'Är Mälaren bra för nybörjarseglare?',
- acceptedAnswer: { '@type': 'Answer', text: 'Perfekt! Det finns inget tidvatten, inga svallvågor och väl märkta farleder överallt. Vinden kan ibland vara oregelbunden vid stora öar, men generellt är Mälaren mycket nybörjarvänlig — många familjer och nybörjare börjar här.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Perfekt! Det finns inget tidvatten, inga svallvågor och väl märkta farleder överallt. Vinden kan ibland vara oregelbunden vid stora öar, men generellt är Mälaren mycket nybörjarvänlig, många familjer och nybörjare börjar här.' },
  },
  {
  '@type': 'Question',
  name: 'Hur långt är Mälaren?',
- acceptedAnswer: { '@type': 'Answer', text: 'Ungefär 12 mil (120 kilometer) från Stockholms inlopp till Köping i väst. En full genomsegling från öst till väst tar 3–5 dagar i lugnt tempo, beroende på vind och hur många stopp du gör.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Ungefär 12 mil (120 kilometer) från Stockholms inlopp till Köping i väst. En full genomsegling från öst till väst tar 3 till 5 dagar i lugnt tempo, beroende på vind och hur många stopp du gör.' },
  },
  ],
  }
@@ -117,7 +117,7 @@ export default function MalarenPage() {
  <CategoryLanding
  heroGradient={['#1a6b5a', '#22a085']}
  eyebrow="Mälaren"
- title="Insjöns lugn — 8 000+ öar"
+ title="Insjöns lugn: 8 000+ öar"
  tagline="Sveriges tredje största sjö med tusen år av historia. Svalla hjälper dig utforska Mälarens kafébryggor, historiska hamnar och dolda ankringsplatser."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -128,13 +128,13 @@ export default function MalarenPage() {
  intro={
  <>
  <p>
- Mälaren sträcker sig 12 mil västerut från Stockholm och är Sveriges tredje största sjö — fylld med <strong>8 000+ öar, vikar och sund</strong> att utforska. Eftersom insjövattnet är lugnt, utan havsdyning eller tidvatten, är Mälaren en av landets bästa segelvatten för familjesegling, kajak och behagliga dagsturer året runt.
+ Mälaren sträcker sig 12 mil västerut från Stockholm och är Sveriges tredje största sjö, fylld med <strong>8 000+ öar, vikar och sund</strong> att utforska. Eftersom insjövattnet är lugnt, utan havsdyning eller tidvatten, är Mälaren en av landets bästa segelvatten för familjesegling, kajak och behagliga dagsturer året runt.
  </p>
  <p>
  Med Svalla loggar du turer från Riddarfjärden ut till Västerås, hittar hundratals kafébryggor på kartan och kan följa andra seglares favoritrutter längs de historiska Mälarstränderna. Markera ankringsplatser, dokumentera vindförhållanden och dela dina upptäckter med communityn.
  </p>
  <p>
- Mälaren är omgiven av svensk historia — från Birka och Drottningholm i öst till Gripsholms slott och Strängnäs domkyrka i väst. Varje besök blir minnen du sparar i Svalla och kan dela med vänner och familj.
+ Mälaren är omgiven av svensk historia, från Birka och Drottningholm i öst till Gripsholms slott och Strängnäs domkyrka i väst. Varje besök blir minnen du sparar i Svalla och kan dela med vänner och familj.
  </p>
  <p>
  Oavsett om du är nybörjare eller erfaren seglare, Mälaren bjuder på något för alla: stilla vatten, vackra öarna, mysiga bryggor och oslagbar närhet till historien.
@@ -150,52 +150,52 @@ export default function MalarenPage() {
  <RegionOar rubrik="Öar i Mälaren" etiketter={['Mälaren']} />
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Östra Mälaren — från Stockholm mot Ekerö
+ Östra Mälaren: från Stockholm mot Ekerö
  </h2>
  <p>
- Många seglares favoriter börjar här — från Riddarfjärden ut genom Drottningholm och runt Mälaröarna. <strong>Drottningholms slott</strong> är ett Unescos världsarv och ett måste att besöka; slottet ligger vackert mellan vattnet och slottsparken, med en kanalbåtsförbindelse för de som vill utforska vidare. De närliggande öarna — <strong>Ekerö, Munsö och Adelsö</strong> — erbjuder gästbryggor, litet varierande terräng och vackra utsikter.
+ Många seglares favoriter börjar här, från Riddarfjärden ut genom Drottningholm och runt Mälaröarna. <strong>Drottningholms slott</strong> är ett Unescos världsarv och ett måste att besöka; slottet ligger vackert mellan vattnet och slottsparken, med en kanalbåtsförbindelse för de som vill utforska vidare. De närliggande öarna: <strong>Ekerö, Munsö och Adelsö</strong>: erbjuder gästbryggor, litet varierande terräng och vackra utsikter.
  </p>
  <p>
- <strong>Björkö</strong> är ett högsta prioritet för alla historieinresserade. Här ligger <strong>Birka</strong>, Sveriges vikingastad och ett världsarv som är över 1000 år gammal. Det är bara en kort segling från Stockholm — perfekt dagstur för den som vill kombinera segling och historia.
+ <strong>Björkö</strong> är ett högsta prioritet för alla historieinresserade. Här ligger <strong>Birka</strong>, Sveriges vikingastad och ett världsarv som är över 1000 år gammal. Det är bara en kort segling från Stockholm, perfekt dagstur för den som vill kombinera segling och historia.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Mellersta Mälaren — lugn och historia
+ Mellersta Mälaren: lugn och historia
  </h3>
  <p>
- Västerut från Stockholm börjar landskapet att förändras. <strong>Strängnäs</strong> är ett klassiskt stopp — det har en vacker domkyrka, välutrustad gästhamn och ett mysigt samhälle att utforska. Det är ungefär 3-4 timmar segling från Stockholm, vilket gör det perfekt för en första längre etapp.
+ Västerut från Stockholm börjar landskapet att förändras. <strong>Strängnäs</strong> är ett klassiskt stopp. Det har en vacker domkyrka, välutrustad gästhamn och ett mysigt samhälle att utforska. Det är ungefär 3-4 timmar segling från Stockholm, vilket gör det perfekt för en första längre etapp.
  </p>
  <p>
- <strong>Mariefred</strong> är Mälarens pärla. Här finns <strong>Gripsholms slott</strong>, där du kan ankra upp helt nära slottsmurarna. Många seglare stannar här över helgen för att utforska både slottet och det charmiga samhället. På sommaren går den historiska ångbåten <strong>SS Mariefred</strong> mellan Stockholm och Mariefred — ett klassiskt sätt att komma tillbaka till Stockholm efter en längre tur. Kafébryggor längs stränderna ger möjlighet till fika och ett byte av sceneri.
+ <strong>Mariefred</strong> är Mälarens pärla. Här finns <strong>Gripsholms slott</strong>, där du kan ankra upp helt nära slottsmurarna. Många seglare stannar här över helgen för att utforska både slottet och det charmiga samhället. På sommaren går den historiska ångbåten <strong>SS Mariefred</strong> mellan Stockholm och Mariefred, ett klassiskt sätt att komma tillbaka till Stockholm efter en längre tur. Kafébryggor längs stränderna ger möjlighet till fika och ett byte av sceneri.
  </p>
  <p>
  <strong>Stallarholmen</strong> är ett mindre men populärt stopp med kafébryggor och ett lugnt insjöbryggeri. Det ligger strategiskt mellan Strängnäs och Mariefred.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Västra Mälaren — mot Västerås och Köping
+ Västra Mälaren: mot Västerås och Köping
  </h3>
  <p>
- Längre västerut öppnas sjön upp och ordet &quot;segling&quot; börjar att betyda än mer. <strong>Västerås</strong> är en større stad med en välutrustad gästhamn, restauranger och sevärdheter som <strong>Aros bryggeri</strong> — perfekt för seglare som vill ha ett större urbant stopp. Västerås har också flera museer och historia väl värd ett besök.
+ Längre västerut öppnas sjön upp och ordet &quot;segling&quot; börjar att betyda än mer. <strong>Västerås</strong> är en større stad med en välutrustad gästhamn, restauranger och sevärdheter som <strong>Aros bryggeri</strong>, perfekt för seglare som vill ha ett större urbant stopp. Västerås har också flera museer och historia väl värd ett besök.
  </p>
  <p>
- Strax väster om Västerås ligger <strong>Ängsö naturreservat</strong> — ett skyddat område med urskog som är tillgängligt med båt. Det är en av Mälarens mest obörjade naturupplevelser. Ängsö är ett måste för den som vill komma bort från tåget helt.
+ Strax väster om Västerås ligger <strong>Ängsö naturreservat</strong>, ett skyddat område med urskog som är tillgängligt med båt. Det är en av Mälarens mest obörjade naturupplevelser. Ängsö är ett måste för den som vill komma bort från tåget helt.
  </p>
  <p>
- <strong>Köping</strong> ligger nästan vid slutet av Mälaren — omkring 12 mil från Stockholm — och många seglare glömmer denna västra del. Det är väl värt en längre tur; det erbjuder samma lugn som resten av Mälaren, men med färre andra båtar och en känsla av att ha nått någonstans särskilt.
+ <strong>Köping</strong> ligger nästan vid slutet av Mälaren, omkring 12 mil från Stockholm, och många seglare glömmer denna västra del. Det är väl värt en längre tur; det erbjuder samma lugn som resten av Mälaren, men med färre andra båtar och en känsla av att ha nått någonstans särskilt.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Praktisk info — att segla Mälaren
+ Praktisk info: att segla Mälaren
  </h3>
  <p>
- Mälaren är generöst med sitt lugna vatten — det finns <strong>inga svallvågor eller tidvatten</strong> att oroa sig för, vilket gör sjön perfekt för nybörjare. Djupet är generellt <strong>10–20 meter</strong>, men det finns grundare partier — håll dig till märkta farleder för att undvika grund.
+ Mälaren är generöst med sitt lugna vatten: det finns <strong>inga svallvågor eller tidvatten</strong> att oroa sig för, vilket gör sjön perfekt för nybörjare. Djupet är generellt <strong>10 till 20 meter</strong>, men det finns grundare partier. Håll dig till märkta farleder för att undvika grund.
  </p>
  <p>
- För dig som kommer från Östersjösidan måste du passera <strong>Hammarbyslussen</strong> i Stockholm — den primära slussen för fritidsbåtar mellan Saltsjön och Mälaren sedan 2016 (cirka 35 000 fritidsbåtar passerar per säsong). Kolla aktuella öppettider via Stockholms Hamnar och planera dina passager. För segelbåt med hög mast kan du behöva räkna med fällning av masten — kontrollera fri höjd vid broar och ledningar längs aktuell rutt.
+ För dig som kommer från Östersjösidan måste du passera <strong>Hammarbyslussen</strong> i Stockholm. Den primära slussen för fritidsbåtar mellan Saltsjön och Mälaren sedan 2016 (cirka 35 000 fritidsbåtar passerar per säsong). Kolla aktuella öppettider via Stockholms Hamnar och planera dina passager. För segelbåt med hög mast kan du behöva räkna med fällning av masten. Kontrollera fri höjd vid broar och ledningar längs aktuell rutt.
  </p>
  <p>
- Seglingssesongen på Mälaren är <strong>maj till oktober</strong> — sommaren erbjuder lugna, varma dagar och långa kvällar för ankring. Vintern är möjlig för de som kan hantera kallare förhållanden, men huvudsäsongen är absolut sommaren.
+ Seglingssesongen på Mälaren är <strong>maj till oktober</strong>: sommaren erbjuder lugna, varma dagar och långa kvällar för ankring. Vintern är möjlig för de som kan hantera kallare förhållanden, men huvudsäsongen är absolut sommaren.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -203,19 +203,19 @@ export default function MalarenPage() {
  </h3>
  <p>
  <strong>Behöver man passera sluss för att segla på Mälaren?</strong><br />
- Ja, om du kommer från österifrån (från Östersjösidan) måste du passera Hammarbyslussen i Stockholm. Slussen har regelbundna öppettider — planera din tur därefter och kontakta slussvakten i god tid innan.
+ Ja, om du kommer från österifrån (från Östersjösidan) måste du passera Hammarbyslussen i Stockholm. Slussen har regelbundna öppettider. Planera din tur därefter och kontakta slussvakten i god tid innan.
  </p>
  <p>
  <strong>Vilka är de bästa kafébryggorpå Mälaren?</strong><br />
- Mariefred, Kärnbo, Björnö och bryggor längs Ekerö-öarna är kända för sin välkomstkultur och goda fika. Öppettider och service står på respektive bryggas eller kafés egen sida — vi länkar dit där vi har källa.
+ Mariefred, Kärnbo, Björnö och bryggor längs Ekerööarna är kända för sin välkomstkultur och goda fika. Öppettider och service står på respektive bryggas eller kafés egen sida. Vi länkar dit där vi har källa.
  </p>
  <p>
  <strong>Är Mälaren bra för nybörjarseglare?</strong><br />
- Perfekt! Det finns inget tidvatten, inga svallvågor och väl märkta farleder överallt. Vinden kan ibland vara oregelbunden vid stora öar, men generellt är Mälaren mycket begynnarfrendlig — många familjer och nybörjare börjar här.
+ Perfekt! Det finns inget tidvatten, inga svallvågor och väl märkta farleder överallt. Vinden kan ibland vara oregelbunden vid stora öar, men generellt är Mälaren mycket begynnarfrendlig, många familjer och nybörjare börjar här.
  </p>
  <p>
  <strong>Hur långt är Mälaren?</strong><br />
- Ungefär 12 mil (120 kilometer) från Stockholms inlopp till Köping i väst. En full genomsegling från öst till väst tar 3–5 dagar i lugnt tempo, beroende på vind och hur många stopp du gör.
+ Ungefär 12 mil (120 kilometer) från Stockholms inlopp till Köping i väst. En full genomsegling från öst till väst tar 3 till 5 dagar i lugnt tempo, beroende på vind och hur många stopp du gör.
  </p>
  </>
  }

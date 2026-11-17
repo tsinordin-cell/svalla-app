@@ -3,6 +3,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
 import { createClient, getViewer } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
+import { track } from '@/lib/analytics-events'
 
 function LoggaChoice() {
   const router = useRouter()
@@ -59,7 +60,7 @@ function LoggaChoice() {
           Hur vill du logga?
         </h1>
         <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', margin: 0, lineHeight: 1.5 }}>
-          Spåra live för full GPS-data, eller snabb-logga en bild
+          Spåra live för full GPS-data, eller snabblogga en bild
         </p>
       </div>
 
@@ -68,7 +69,7 @@ function LoggaChoice() {
 
         {/* GPS tracking – primary */}
         <button
-          onClick={() => router.push(`/spara${suffix}`)}
+          onClick={() => { track('trip_logging_started', {}); router.push(`/spara${suffix}`) }}
           style={{
             width: '100%', borderRadius: 22, padding: '22px 20px',
             background: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))',

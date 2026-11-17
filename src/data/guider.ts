@@ -31,42 +31,42 @@ export const GUIDER: Guide[] = [
   // ── 1. MIDSOMMAR — Redaktionens val ────────────────────────────────────
   {
     slug: 'midsommar-skargarden',
-    title: 'Midsommar i skärgården 2026 — kompletta guiden',
+    title: 'Midsommar i skärgården 2026: kompletta guiden',
     description: 'Sex genomtänkta alternativ för att fira midsommar i Stockholms och Bohusläns skärgård. Hur du tar dig dit, vad du gör och vad du behöver veta.',
     emoji: '🌼',
     kategori: 'sasong',
     lasMinuter: 12,
     editorsChoice: true,
     datePublished: '2026-05-15',
-    body: `Midsommar i skärgården är en av de starkaste svenska traditionerna — och en av de svåraste att boka sent. Den här guiden tar dig genom sex väl etablerade alternativ längs ost- och västkusten. Vi har medvetet hållit oss till destinationer där traditionen lever vidare år efter år, och där du kan vara säker på att hitta något att göra även om du planerar i sista stund.
+    body: `Midsommar i skärgården är en av de starkaste svenska traditionerna, och en av de svåraste att boka sent. Den här guiden tar dig genom sex väl etablerade alternativ längs ost- och västkusten. Vi har medvetet hållit oss till destinationer där traditionen lever vidare år efter år, och där du kan vara säker på att hitta något att göra även om du planerar i sista stund.
 
 ## Tre alternativ på ostkusten
 
-### Möja — den klassiska midsommarön
+### Möja: den klassiska midsommarön
 
-Möja har firat midsommar med stång och lekar utanför Berg sedan långt innan färjorna gick i moderna tider. Det är en folkfest snarare än ett arrangemang — alla som är på ön deltar och alla bidrar.
+Möja har firat midsommar med stång och lekar utanför Berg sedan långt innan färjorna gick i moderna tider. Det är en folkfest snarare än ett arrangemang, alla som är på ön deltar och alla bidrar.
 
-**Hur du tar dig dit:** Waxholmsbolaget från Stavsnäs vinterhamn. Buss 433 eller 434 från Slussen tar dig till Stavsnäs. Räkna med fullbokade båtar på fredag förmiddag — boka i förväg eller åk torsdag kväll.
+**Hur du tar dig dit:** Waxholmsbolaget från Stavsnäs vinterhamn. Buss 433 eller 434 från Slussen tar dig till Stavsnäs. Räkna med fullbokade båtar på fredag förmiddag. Boka i förväg eller åk torsdag kväll.
 
-**Att göra:** Stångresningen brukar börja runt klockan elva på midsommarafton. Lekar och dans följer. På kvällen sprider sig folket över ön — många hittar en bra plats vid vatten, andra söker sig till värdshuset.
+**Att göra:** Stångresningen brukar börja runt klockan elva på midsommarafton. Lekar och dans följer. På kvällen sprider sig folket över ön: många hittar en bra plats vid vatten, andra söker sig till värdshuset.
 
 **Insidertips:** Tag med egen mat. Möja har en handelsbod och ett par serveringar, men de blir extremt belastade under midsommarhelgen. Om du vill äta ute, boka veckor i förväg.
 
-### Sandhamn — segelhamn i midsommarskrud
+### Sandhamn: segelhamn i midsommarskrud
 
 Sandhamn är mer kosmopolitiskt än Möja men har sin egen midsommartradition runt KSSS-hamnen. Många kommer hit med segelbåt, så hamnen är full av båtar och människor.
 
 **Hur du tar dig dit:** Cinderellabåten direkt från Strömkajen är den enklaste vägen. Alternativ är Waxholmsbolaget via Stavsnäs.
 
-**Att göra:** Stångresning på KSSS-tomten. Lekar på sandstranden Trouville. Restaurangerna har specialmeny — Sandhamns Värdshus och Sandhamns Seglarhotell är de mest etablerade.
+**Att göra:** Stångresning på KSSS-tomten. Lekar på sandstranden Trouville. Restaurangerna har specialmeny, Sandhamns Värdshus och Sandhamns Seglarhotell är de mest etablerade.
 
 **Insidertips:** Övernattning i Sandhamn på midsommarafton är dyrt och slut tidigt. Många pendlar dagstur från Stockholm med sista båten hem efter elva.
 
-### Grinda — mellanvägen
+### Grinda: mellanvägen
 
 Grinda passar dig som vill ha midsommartraditionen utan att resa i två timmar. Båtresan dit är cirka två timmar från Strömkajen, och ön är liten nog att man hittar runt på en eftermiddag.
 
-**Hur du tar dig dit:** Waxholmsbåt från Strömkajen — kollar du Waxholmsbolagets sommartidtabell strax före midsommar har du flest direktturer. Kortast är via Boda brygga på Värmdö.
+**Hur du tar dig dit:** Waxholmsbåt från Strömkajen, kollar du Waxholmsbolagets sommartidtabell strax före midsommar har du flest direktturer. Kortast är via Boda brygga på Värmdö.
 
 **Att göra:** Midsommarstången reses på en av öns ängar. Wärdshuset på södra delen av ön är öppet och brukar ha midsommarbuffé.
 
@@ -74,19 +74,19 @@ Grinda passar dig som vill ha midsommartraditionen utan att resa i två timmar. 
 
 ## Tre alternativ på västkusten
 
-### Smögen — bryggdans och hav
+### Smögen: bryggdans och hav
 
-Smögen är västkustens midsommar-ikon. Den långa bryggan med röda sjöbodar fylls med folk, och midsommarstången reses traditionellt i det öppna området nedanför bryggan.
+Smögen är västkustens midsommarikon. Den långa bryggan med röda sjöbodar fylls med folk, och midsommarstången reses traditionellt i det öppna området nedanför bryggan.
 
-**Hur du tar dig dit:** Med bil hela vägen — Smögen ligger på fastlandet (bron från Kungshamn). Från Göteborg är det cirka tre timmar. Kollektivt går buss från Göteborg till Kungshamn och därifrån buss eller taxi över bron.
+**Hur du tar dig dit:** Med bil hela vägen, Smögen ligger på fastlandet (bron från Kungshamn). Från Göteborg är det cirka tre timmar. Kollektivt går buss från Göteborg till Kungshamn och därifrån buss eller taxi över bron.
 
 **Att göra:** Stångresning, dans på bryggan, fiskebodar med räkmackor och inläggningar. Många badar i Sotefjorden trots att vattnet sällan är varmare än fjorton grader på midsommar.
 
 **Insidertips:** Parkering är ett vanligt problem. Ankommer du med bil, kom tidigt på dagen eller parkera i Kungshamn och promenera.
 
-### Marstrand — Carlstens fästning och båtfolk
+### Marstrand: Carlstens fästning och båtfolk
 
-Marstrand kombinerar midsommartradition med det historiska — Carlstens fästning ligger som bakgrundsbild över hela ön. Här firar segelfolk midsommar i mängd eftersom Marstrand är en av Bohusläns största gästhamnar.
+Marstrand kombinerar midsommartradition med det historiska, Carlstens fästning ligger som bakgrundsbild över hela ön. Här firar segelfolk midsommar i mängd eftersom Marstrand är en av Bohusläns största gästhamnar.
 
 **Hur du tar dig dit:** Bilfärja från Koön (Kungälv) tar dig över på några minuter. Kollektivt går buss från Göteborg till Kungälv och vidare till Marstrand. Bilen står på Koön.
 
@@ -94,47 +94,47 @@ Marstrand kombinerar midsommartradition med det historiska — Carlstens fästni
 
 **Insidertips:** Boendet är fullt tidigt. Många besöker som dagstur från Göteborg eller övernattar på fastlandssidan.
 
-### Käringön — bevarade kulturmiljöer
+### Käringön: bevarade kulturmiljöer
 
-Käringön är mindre och lugnare än Smögen och Marstrand men har en lika levande midsommartradition. Ön är ett kulturreservat och utan bilar — vandring och cykel är allt.
+Käringön är mindre och lugnare än Smögen och Marstrand men har en lika levande midsommartradition. Ön är ett kulturreservat och utan bilar, vandring och cykel är allt.
 
 **Hur du tar dig dit:** Passagerarfärja från Hälleviksstrand. Hälleviksstrand når du med bil eller med buss från Göteborg via Stenungsund.
 
 **Att göra:** Stångresning på Skvallergränd, sång och lekar. Käringön Värdshus är öppet under helgen och har sommarmeny.
 
-**Insidertips:** Käringön har begränsat med övernattningsplatser. Om du vill stanna över, boka tidigt — annars planera som dagstur från fastlandet.
+**Insidertips:** Käringön har begränsat med övernattningsplatser. Om du vill stanna över, boka tidigt, annars planera som dagstur från fastlandet.
 
-## Planera i förväg — annars sitter du där
+## Planera i förväg: annars sitter du där
 
 Sista båten hem på midsommardagskvällen är ofta full. Reseplanera båda riktningar i förväg och kolla Waxholmsbolagets eller den lokala operatörens tidtabell veckan innan helgen. Om du tänkt köra bil, kolla parkering vid hamnplats innan du åker.
 
-För restauranger gäller: boka i förväg på de etablerade ställena. Många stänger köket tidigt på midsommarafton och övergår till bar-meny.
+För restauranger gäller: boka i förväg på de etablerade ställena. Många stänger köket tidigt på midsommarafton och övergår till barmeny.
 
-Vill du undvika folkträngseln helt — välj en mindre ö i ytterskärgården med eget medhavt och åk med första båten på morgonen. Du får då både traditionen och en stund för dig själv.`,
+Vill du undvika folkträngseln helt. Välj en mindre ö i ytterskärgården med eget medhavt och åk med första båten på morgonen. Du får då både traditionen och en stund för dig själv.`,
   },
 
   // ── 2. PACKLISTA ──────────────────────────────────────────────────────
   {
     slug: 'packlista-skargarden',
-    title: 'Packlista för skärgården — komplett och kategoriserad',
-    description: 'Vad du faktiskt behöver för en dag eller helg i skärgården. Kläder, mat, säkerhet och prylar — kategoriserat så du inte glömmer något.',
+    title: 'Packlista för skärgården: komplett och kategoriserad',
+    description: 'Vad du faktiskt behöver för en dag eller helg i skärgården. Kläder, mat, säkerhet och prylar, kategoriserat så du inte glömmer något.',
     emoji: '🎒',
     kategori: 'praktisk',
     lasMinuter: 6,
     datePublished: '2026-05-14',
-    body: `En bra dag i skärgården börjar med rätt packning. Skärgårdsvädret växlar snabbt, mobiltäckning är ojämn och affärer är få — så det du inte tar med dig får du klara dig utan. Den här listan är pragmatisk och hand-testad, inte ambitiös.
+    body: `En bra dag i skärgården börjar med rätt packning. Skärgårdsvädret växlar snabbt, mobiltäckning är ojämn och affärer är få, så det du inte tar med dig får du klara dig utan. Den här listan är pragmatisk och handtestad, inte ambitiös.
 
-## Kläder — lager är allt
+## Kläder: lager är allt
 
-Skärgårdsvädret kan gå från sommar till blåst på en timme. Klä dig efter lager-principen.
+Skärgårdsvädret kan gå från sommar till blåst på en timme. Klä dig efter lagerprincipen.
 
 - Vindtålig ytterjacka (helst regntätt yttre)
 - Tunn fleece eller ulltröja som mellanlager
 - T-shirt eller tunn skjorta
-- Långbyxor (inte shorts om du planerar långa promenader — myggor)
-- Mössa eller buff även sommartid — vinden är kall ute på fjärden
+- Långbyxor (inte shorts om du planerar långa promenader: myggor)
+- Mössa eller buff även sommartid: vinden är kall ute på fjärden
 - Tunn handduk om bad är möjligt
-- Två par strumpor — våta fötter dödar humöret
+- Två par strumpor: våta fötter dödar humöret
 - Skor med grepp (släta klippor blir hala när det regnat)
 
 ## Mat och dryck
@@ -146,14 +146,14 @@ Vatten är det viktigaste. Många öar har dricksvatten men inte alla, och prisl
 - Smörgåsar eller annat som tål värme
 - Frukt och nötter som mellanmål
 - Mörk choklad eller liknande för energi
-- Avfallspåse — det du tagit ut tar du med tillbaka
+- Avfallspåse: det du tagit ut tar du med tillbaka
 
 ## Säkerhet
 
 Skärgården är inte vildmark, men det är vatten överallt och hjälp tar tid.
 
 - Mobiltelefon med fullt batteri och powerbank
-- Liten första-hjälpen-kit (plåster, brännskadekräm, allergi-piller)
+- Liten första-hjälpen-kit (plåster, brännskadekräm, allergitabletter)
 - Solskydd faktor minst 30
 - Mygg- och knottmedel särskilt försommar och hög sommar
 - Visselpipa om barn är med
@@ -161,7 +161,7 @@ Skärgården är inte vildmark, men det är vatten överallt och hjälp tar tid.
 
 ## Teknik och prylar
 
-- Karta — papperskarta eller offline-karta på telefon (täckning glipar)
+- Karta: papperskarta eller offlinekarta på telefon (täckning glipar)
 - Kniv eller multitool
 - Liten ficklampa eller pannlampa
 - Plastpåsar för våta kläder
@@ -169,10 +169,10 @@ Skärgården är inte vildmark, men det är vatten överallt och hjälp tar tid.
 
 ## Om barn är med
 
-- Extra ombytespaket — våta barn blir frusna fortare än vuxna
+- Extra ombytespaket: våta barn blir frusna fortare än vuxna
 - Snacks oftare än vuxenmagar tål
 - En aktivitet i ryggsäcken (uppblåsbar boll, lekkort) för väntan
-- Sjösjuke-medel om båtresa är lång
+- Medel mot sjösjuka om båtresa är lång
 
 ## Om du seglar
 
@@ -195,13 +195,13 @@ Toalett. Vatten. Solskydd. Telefon laddad. Vet du var färjan går från? Vet du
   // ── 3. ALLEMANSRÄTTEN PÅ SJÖN ─────────────────────────────────────────
   {
     slug: 'allemansratten-pa-sjon',
-    title: 'Allemansrätten på sjön — vad gäller egentligen?',
-    description: 'Allemansrätten ser annorlunda ut till sjöss än i skogen. Var du får ankra, var du får tälta, regler om eld och avfall — förklarat enkelt.',
+    title: 'Allemansrätten på sjön, vad gäller egentligen?',
+    description: 'Allemansrätten ser annorlunda ut till sjöss än i skogen. Var du får ankra, var du får tälta, regler om eld och avfall, förklarat enkelt.',
     emoji: '⚓',
     kategori: 'praktisk',
     lasMinuter: 7,
     datePublished: '2026-05-13',
-    body: `Allemansrätten är en av Sveriges starkaste vardagsrättigheter — men den är inte en enkel regel. Den är snarare ett ramverk där "inte störa, inte förstöra" är grundprincipen, och resten handlar om sunt förnuft. På sjön gäller särskilda hänsyn eftersom miljön är känsligare och människors hem ligger närmare havet än de gör skogen.
+    body: `Allemansrätten är en av Sveriges starkaste vardagsrättigheter, men den är inte en enkel regel. Den är snarare ett ramverk där "inte störa, inte förstöra" är grundprincipen, och resten handlar om sunt förnuft. På sjön gäller särskilda hänsyn eftersom miljön är känsligare och människors hem ligger närmare havet än de gör skogen.
 
 ## Var får du ankra?
 
@@ -211,16 +211,16 @@ Tumregler:
 - Minst hundra meter från enskilda hus eller bryggor
 - Inte i tydliga farleder eller mellan ledfyrar
 - Inte i avlysta områden (de är märkta i sjökort)
-- Inte över längre tid på samma plats — du är på besök, inte boende
+- Inte över längre tid på samma plats: du är på besök, inte boende
 
 ## Var får du tälta?
 
-Tältning för en eller två nätter är tillåten i naturen — också på en obebodd ö — men inte i direkt anslutning till annans bostad och inte i naturreservat med tältförbud.
+Tältning för en eller två nätter är tillåten i naturen, också på en obebodd ö, men inte i direkt anslutning till annans bostad och inte i naturreservat med tältförbud.
 
 Tre praktiska regler:
 - En till två nätter på samma plats är max utan ägarens tillåtelse
 - Inte synligt från bebyggelse om du kan undvika det
-- Lämna inga spår — du ska kunna gå därifrån och ingen ska se att du varit där
+- Lämna inga spår: du ska kunna gå därifrån och ingen ska se att du varit där
 
 ## Eld och grillning
 
@@ -228,7 +228,7 @@ Tre praktiska regler:
 
 - Kolla aktuell brandriskprognos innan du tänder något
 - Använd alltid medhavd grillplats eller etablerad eldstad
-- Aldrig direkt på klippan — sotet stannar i åratal
+- Aldrig direkt på klippan: sotet stannar i åratal
 - Släck helt, vänta till askan är kall, ta med dig kvarvarande grillkol
 
 Vid eldningsförbud gäller även stormkök och engångsgrill om de har öppen låga.
@@ -239,12 +239,12 @@ Det här är där skärgårdens allemansrätt skiljer sig från skogens mest. Ma
 
 - Toalettavfall på båten ska tömmas i mottagningsstation, inte i havet
 - Inom skyddat skärgårdsområde är direkt urinerande i havet inte heller lämpligt
-- Soppåsar tar du alltid med dig — inga öar har sopstation
-- Toalettpapper bränns eller tas med — det bryts inte ner snabbt i magert skärgårdsklimat
+- Soppåsar tar du alltid med dig: inga öar har sopstation
+- Toalettpapper bränns eller tas med: det bryts inte ner snabbt i magert skärgårdsklimat
 
 ## Motorbuller och fart
 
-I många farleder gäller fartbegränsningar nära stränder. Tio knop är vanlig gräns. Respektera den — vågsvallet sliter på bryggor och stränder, och det stör både djur och människor.
+I många farleder gäller fartbegränsningar nära stränder. Tio knop är vanlig gräns. Respektera den: vågsvallet sliter på bryggor och stränder, och det stör både djur och människor.
 
 Vattenskoter och liknande är förbjudet i många skärgårdsområden. Kolla länsstyrelsens regler för det område du är i.
 
@@ -260,7 +260,7 @@ Reservaten är markerade i sjökort och på Naturvårdsverkets karta. Det är di
 
 ## När du är osäker
 
-Fråga om du ser någon. Skärgårdsbefolkningen är generellt välvillig mot besökare som visar hänsyn. Det som upprör är inte att du är där — det är att du beter dig som om ön var en allmänning utan ägare.
+Fråga om du ser någon. Skärgårdsbefolkningen är generellt välvillig mot besökare som visar hänsyn. Det som upprör är inte att du är där. Det är att du beter dig som om ön var en allmänning utan ägare.
 
 Sammanfattning i en mening: lämna platsen tystare och renare än du fann den.`,
   },
@@ -268,13 +268,13 @@ Sammanfattning i en mening: lämna platsen tystare och renare än du fann den.`,
   // ── 4. WAXHOLMSBOLAGET ────────────────────────────────────────────────
   {
     slug: 'waxholmsbolaget-guide',
-    title: 'Waxholmsbolaget — komplett guide för dig som aldrig åkt',
+    title: 'Waxholmsbolaget: komplett guide för dig som aldrig åkt',
     description: 'Hur Waxholmsbolaget fungerar, var båtarna går från, hur du köper biljett och om SL-kortet duger. Praktisk genomgång för förstagångsresenärer.',
     emoji: '⛴',
     kategori: 'transport',
     lasMinuter: 8,
     datePublished: '2026-05-12',
-    body: `Waxholmsbolaget är ryggraden i Stockholms skärgårdstrafik och har varit det sedan 1869. Linjenätet täcker hela skärgården från Vaxholm i norr till Landsort i söder. För den som inte är van är det dock inte alltid självklart hur det fungerar — det här är genomgången du behöver för att kunna planera en resa.
+    body: `Waxholmsbolaget är ryggraden i Stockholms skärgårdstrafik och har varit det sedan 1869. Linjenätet täcker hela skärgården från Vaxholm i norr till Landsort i söder. För den som inte är van är det dock inte alltid självklart hur det fungerar. Det här är genomgången du behöver för att kunna planera en resa.
 
 ## Var båtarna går från
 
@@ -284,20 +284,20 @@ Det finns inte en avgångshamn utan flera, och vilken du använder beror på var
 
 **Stavsnäs vinterhamn** på Värmdö är knutpunkten för många öar i mellersta skärgården, inte minst Sandhamn och Möja. Buss 433 eller 434 från Slussen tar dig dit på ungefär en timme. Båtarna från Stavsnäs är ofta snabbare till destinationen än de som går hela vägen från Strömkajen.
 
-**Nynäshamn** är södra skärgårdens utgångspunkt — pendeltåg dit tar cirka femtio minuter från Stockholm Central. Härifrån går Waxholmsbolaget till Utö, Ornö, Nåttarö och Landsort.
+**Nynäshamn** är södra skärgårdens utgångspunkt, pendeltåg dit tar cirka femtio minuter från Stockholm Central. Härifrån går Waxholmsbolaget till Utö, Ornö, Nåttarö och Landsort.
 
-**Vaxholm** själv är en knutpunkt — många båtar mellan Stockholm och ytterskärgården gör angörningar här. Du når Vaxholm med buss 670 från Tekniska högskolan eller med Waxholmsbåt från Strömkajen.
+**Vaxholm** själv är en knutpunkt, många båtar mellan Stockholm och ytterskärgården gör angörningar här. Du når Vaxholm med buss 670 från Tekniska högskolan eller med Waxholmsbåt från Strömkajen.
 
-## SL-kortet — gäller det?
+## SL-kortet, gäller det?
 
-Här är förvirringen störst. Svar: alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolaget-biljett 30 april–13 september; under lågsäsong 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. (KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19)
+Här är förvirringen störst. Svar: alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolagets biljett 30 april till 13 september; under lågsäsong 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. (KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19)
 
 Konkret:
-- Pendelbåten 80 från Slussen till Ropsten och Lidingö — SL-kort gäller
-- Pendelbåten 89 mellan Klara mälarstrand och Ekerö — SL-kort gäller
-- Waxholmsbolaget Strömkajen–Vaxholm med omnejd — alla SL-biljetter gäller
-- Waxholmsbolaget längre ut — Waxholmsbolaget-biljett 30 april–13 september; SL-periodbiljett ≥30 dagar gäller 14 september–29 april
-- Linje 17, 18, 19 mot södra skärgården — SL-biljett gäller aldrig
+- Pendelbåten 80 från Slussen till Ropsten och Lidingö: SL-kort gäller
+- Pendelbåten 89 mellan Klara mälarstrand och Ekerö: SL-kort gäller
+- Waxholmsbolaget Strömkajen till Vaxholm med omnejd: alla SL-biljetter gäller
+- Waxholmsbolaget längre ut, Waxholmsbolagets biljett 30 april till 13 september; SL-periodbiljett ≥30 dagar gäller 14 september till 29 april
+- Linje 17, 18, 19 mot södra skärgården: SL-biljett gäller aldrig
 
 Är du osäker, kolla Waxholmsbolagets eller SL:s reseplanerare. De säger tydligt om "SL-kort gäller" för en specifik tur.
 
@@ -311,11 +311,11 @@ Tre alternativ:
 
 **Skärgårdskort eller periodkort.** Om du planerar resa ofta finns dag-, vecko- och säsongskort. För enstaka turer är det inte värt det.
 
-För längre resor (Strömkajen-Sandhamn till exempel) är biljetten betydligt dyrare än SL-pris — räkna med ett par hundralappar enkel resa. Tur och retur ger sällan rabatt jämfört med två enkelresor.
+För längre resor (Strömkajen-Sandhamn till exempel) är biljetten betydligt dyrare än SL-pris. Räkna med ett par hundralappar enkel resa. Tur och retur ger sällan rabatt jämfört med två enkelresor.
 
 ## Cykel och barnvagn
 
-Vanlig cykel följer med utan extra kostnad, i mån av plats — personalen ombord avgör och kan neka när det är fullt. Cykelkärra och lådcykel räknas som gods (120 kr). Barnvagn är gratis när du reser med barn under 7 år. (KÄLLA: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med, läst 2026-09-19: "Att ta med cykeln kostar inget extra", i mån av plats, personalen avgör; cykelkärra/lådcykel 120 kr; barnvagn gratis med barn under 7, annars 65 kr; hund gratis)
+Vanlig cykel följer med utan extra kostnad, i mån av plats, personalen ombord avgör och kan neka när det är fullt. Cykelkärra och lådcykel räknas som gods (120 kr). Barnvagn är gratis när du reser med barn under 7 år. (KÄLLA: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med, läst 2026-09-19: "Att ta med cykeln kostar inget extra", i mån av plats, personalen avgör; cykelkärra/lådcykel 120 kr; barnvagn gratis med barn under 7, annars 65 kr; hund gratis)
 
 Barnvagn går ombord utan extra avgift. Hopfällbara modeller är enklast.
 
@@ -323,21 +323,21 @@ Hundar är välkomna men ska hållas kopplade.
 
 ## Tidtabell och säsong
 
-Trafiken är säsongsbetonad. Sommartrafik (mitten av juni till mitten av augusti) har många avgångar per dag på de stora linjerna. Vinter har glest schema — vissa öar har bara en eller två turer per dag, vissa har enbart vid behov.
+Trafiken är säsongsbetonad. Sommartrafik (mitten av juni till mitten av augusti) har många avgångar per dag på de stora linjerna. Vinter har glest schema: vissa öar har bara en eller två turer per dag, vissa har enbart vid behov.
 
 Kolla alltid tidtabellen för det specifika datum du planerar. Tidtabeller läggs ut säsongsvis.
 
 ## Vilka du faktiskt åker med
 
-Båtar i Waxholmsbolagets flotta varierar från stora passagerarfartyg (Cinderella, Storskär, Norrskär) till mindre snabba färjor. Klassiska ångare som Storskär går vissa rutter på sommaren — om du har en val, ta den ångbåten. Resan blir en upplevelse i sig.
+Båtar i Waxholmsbolagets flotta varierar från stora passagerarfartyg (Cinderella, Storskär, Norrskär) till mindre snabba färjor. Klassiska ångare som Storskär går vissa rutter på sommaren: om du har en val, ta den ångbåten. Resan blir en upplevelse i sig.
 
 ## Praktiska tips
 
 - Kom femton minuter före avgång, särskilt sommartid
-- Lägg bagaget på däck eller i bagagehyllor — inte på säte
-- Det blåser på däck även varma dagar — ha en jacka tillgänglig
+- Lägg bagaget på däck eller i bagagehyllor: inte på säte
+- Det blåser på däck även varma dagar: ha en jacka tillgänglig
 - Köp kaffe ombord, men ta med eget vatten
-- Returbåten kan vara senare än du tror — kolla sista turen INNAN du åker
+- Returbåten kan vara senare än du tror: kolla sista turen INNAN du åker
 
 För aktuella tidtabeller, biljetter och eventuella trafikstörningar, gå till waxholmsbolaget.se eller använd Trafiklabs reseplanerare som även täcker färjorna.`,
   },
@@ -345,7 +345,7 @@ För aktuella tidtabeller, biljetter och eventuella trafikstörningar, gå till 
   // ── 5. SKÄRGÅRD UTAN BÅT ──────────────────────────────────────────────
   {
     slug: 'skargard-utan-bat',
-    title: 'Skärgården utan egen båt — kompletta guiden',
+    title: 'Skärgården utan egen båt: kompletta guiden',
     description: 'Tio konkreta sätt att uppleva skärgården utan att äga eller hyra båt. Rangordnade efter hur lätta de är att nå med kollektivtrafik.',
     emoji: '🚤',
     kategori: 'transport',
@@ -353,45 +353,45 @@ För aktuella tidtabeller, biljetter och eventuella trafikstörningar, gå till 
     datePublished: '2026-05-11',
     body: `Du behöver ingen båt för att uppleva skärgården. De flesta öar utanför Stockholm nås med Waxholmsbolaget, bilfärja eller buss + båtkombination. Den här listan ger dig tio förslag, från lättast att nå (utan bil, en timme från city) till mest äventyrligt (tar en dag, kräver planering).
 
-## Tio förslag — rangordnade efter tillgänglighet
+## Tio förslag: rangordnade efter tillgänglighet
 
-### 1. Fjäderholmarna — närmast och enklast
+### 1. Fjäderholmarna: närmast och enklast
 
 Båt direkt från Strömkajen, restid runt tjugofem minuter. Sommarschemat går halvtimmesvis. Du har restauranger, hantverkshus och en kort vandringsled på själva ön. Perfekt halvdagsutflykt om du är i Stockholm och vill testa skärgårdskänslan utan att ge bort hela dagen.
 
-### 2. Vaxholm — staden mer än ön
+### 2. Vaxholm: staden mer än ön
 
 Du når Vaxholm med buss 670 från Tekniska högskolan eller med Waxholmsbåt från Strömkajen. Vaxholm är en småstad med gränder, kaféer och en fästning. Bra för dig som vill ha kombinerad sightseeing och skärgårdsljus, och som inte vill övernatta ute.
 
-### 3. Grinda — den enkla skärgårdsklassikern
+### 3. Grinda: den enkla skärgårdsklassikern
 
-Direktbåt från Strömkajen tar ungefär två timmar. Snabbare alternativ är buss till Boda och båt därifrån. Grinda har stränder, vandringsleder och Grinda Wärdshus för lunch. Bra dagsutflykt — sista båten hem är ofta runt sju till nio på kvällen beroende på säsong.
+Direktbåt från Strömkajen tar ungefär två timmar. Snabbare alternativ är buss till Boda och båt därifrån. Grinda har stränder, vandringsleder och Grinda Wärdshus för lunch. Bra dagsutflykt, sista båten hem är ofta runt sju till nio på kvällen beroende på säsong.
 
-### 4. Sandhamn — segelhamn och dansstrand
+### 4. Sandhamn: segelhamn och dansstrand
 
 Lättast är Cinderellabåten direkt från Strömkajen (sommartid). Alternativ är Waxholmsbolaget via Stavsnäs. Restid tre till fyra timmar enkel väg. Sandhamn har badstränder (Trouville är mest kända), restauranger och en charm som drar besökare från hela Europa. Bra som dagsutflykt eller övernattning om du kan boka i förväg.
 
-### 5. Utö — historia, bad och cykel
+### 5. Utö: historia, bad och cykel
 
 Pendeltåg till Nynäshamn (cirka femtio minuter), sedan Waxholmsbåt till Utö (ytterligare timme). Hyr cykel på Utö och åk runt på gruvområden, längs stränder och till havsbastun. Utö har vandrarhem och hotell, så övernattning är möjlig.
 
-### 6. Möja — den autentiska upplevelsen
+### 6. Möja: den autentiska upplevelsen
 
-Buss från Slussen till Stavsnäs vinterhamn (cirka en timme), sedan Waxholmsbåt till Möja (cirka en till två timmar). Möja har inte överturism — du möter mer av en levande skärgårdsby. Vandringsleder, bagerier och en handelsbod.
+Buss från Slussen till Stavsnäs vinterhamn (cirka en timme), sedan Waxholmsbåt till Möja (cirka en till två timmar). Möja har inte överturism. Du möter mer av en levande skärgårdsby. Vandringsleder, bagerier och en handelsbod.
 
-### 7. Husarö och Ingmarsö — mellanskärgårdens vandringsöar
+### 7. Husarö och Ingmarsö: mellanskärgårdens vandringsöar
 
 Båda nås från Strömkajen eller Stavsnäs. Husarö är mindre och lugnare; Ingmarsö har vandringsleden Blå Leden mellan ön och Finnhamn. Bra för dig som vill kombinera båt och naturvandring.
 
-### 8. Finnhamn — STF vandrarhem och naturreservat
+### 8. Finnhamn: STF vandrarhem och naturreservat
 
 Båt från Strömkajen, runt tre timmar enkel väg. Finnhamn har vandringsleder, klippbad och STF-vandrarhem i gamla turisthusen från tidigt 1900-tal. Övernatta för att hinna med både kvällsljus och morgonpromenad.
 
-### 9. Landsort (Öja) — sydligaste utposten
+### 9. Landsort (Öja): sydligaste utposten
 
-Pendeltåg till Nynäshamn, buss 858 till Ankarudden, båt till Landsort. Tar minst tre timmar enkel väg från Stockholm. Landsort är en liten ö med fyr, lots-station och rå atmosfär — och relativt få besökare just för att resan är så lång. För dig som vill bort från turist-skärgården helt.
+Pendeltåg till Nynäshamn, buss 858 till Ankarudden, båt till Landsort. Tar minst tre timmar enkel väg från Stockholm. Landsort är en liten ö med fyr, lotsstation och rå atmosfär, och relativt få besökare just för att resan är så lång. För dig som vill bort från turistskärgården helt.
 
-### 10. Arholma — norra skärgårdens ytterspets
+### 10. Arholma: norra skärgårdens ytterspets
 
 Buss 631 från Norrtälje till Simpnäs, båt till Arholma. Räkna med en hel dag bara för att ta sig dit. Arholma är en av Sveriges mest isolerade bebodda öar och har den känslan kvar. Vandring, bad i kallt vatten, sjökrog. Bäst som övernattning eftersom dagstur knappt hinner.
 
@@ -399,47 +399,47 @@ Buss 631 från Norrtälje till Simpnäs, båt till Arholma. Räkna med en hel da
 
 Förutom Waxholmsbolagets linjebåtar finns:
 
-**Cinderellabåtarna** — privata snabbåtar direkt från Strömkajen till Vaxholm, Grinda, Sandhamn och fler destinationer. Snabbare än Waxholmsbolaget men dyrare.
+**Cinderellabåtarna**: privata snabbåtar direkt från Strömkajen till Vaxholm, Grinda, Sandhamn och fler destinationer. Snabbare än Waxholmsbolaget men dyrare.
 
 **Bilfärjor** är gratis och tar bil eller cykel. Stora linjer: Vaxholm-Rindö, Östanå-Ljusterö, Furusund-Yxlan.
 
 **Pendelbåtarna 80 och 89** runt centrala Stockholm täcker Lidingö och Ekerö med SL-kort.
 
-**Lokalbåtar och taxibåtar** trafikerar mindre öar — kolla med Trafiklab eller Värmdö kommun för aktuell trafik.
+**Lokalbåtar och taxibåtar** trafikerar mindre öar. Kolla med Trafiklab eller Värmdö kommun för aktuell trafik.
 
 ## Praktiska tips för båtlöst skärgårdsfolk
 
-- Sista båten hem är det viktiga datumet — kolla den först
+- Sista båten hem är det viktiga datumet: kolla den först
 - Reseplanera fram och tillbaka samtidigt, inte bara dit
 - Cykel är ofta värt att ta med eller hyra på destinationen
-- Vandringsskor istället för sandaler — många öar har klippstigar
+- Vandringsskor istället för sandaler: många öar har klippstigar
 - Boka boende eller övernattning i god tid på populära öar
 
-Vi har också byggt en transit-funktion på Svalla där du kan slå upp aktuella avgångar till de flesta öar i skärgården. Den hämtar tider från Trafiklab.`,
+Vi har också byggt en transitfunktion på Svalla där du kan slå upp aktuella avgångar till de flesta öar i skärgården. Den hämtar tider från Trafiklab.`,
   },
 
   // ── 6. SL-KORT ──────────────────────────────────────────────────────
   {
     slug: 'sl-kort-skargarden',
-    title: 'SL-kort i skärgården — gäller det, och vart?',
+    title: 'SL-kort i skärgården: gäller det, och vart?',
     description: 'Var SL-kortet faktiskt fungerar i skärgården, var det inte gäller och vilka alternativ som finns. Förklarat utan jargong.',
     emoji: '🎫',
     kategori: 'transport',
     lasMinuter: 5,
     datePublished: '2026-05-10',
-    body: `Den vanligaste missuppfattningen om Stockholms skärgård är att SL-kortet räcker hela vägen. Det stämmer för en liten del av trafiken — och inte alls för det mesta. Här är vad du behöver veta innan du planerar.
+    body: `Den vanligaste missuppfattningen om Stockholms skärgård är att SL-kortet räcker hela vägen. Det stämmer för en liten del av trafiken, och inte alls för det mesta. Här är vad du behöver veta innan du planerar.
 
 ## Var SL-kortet GÄLLER
 
 SL-kortet räcker till dessa båtar:
 
-**Pendelbåten 80** — Slussen, Skeppsholmen, Frihamnen, Ropsten, Allmänna Gränd, Nybroplan, Lidingö. Pendlartrafik året runt med tät turtäthet.
+**Pendelbåten 80**: Slussen, Skeppsholmen, Frihamnen, Ropsten, Allmänna Gränd, Nybroplan, Lidingö. Pendlartrafik året runt med tät turtäthet.
 
-**Pendelbåten 89** — Klara Mälarstrand till Ekerö. Mälarens motsvarighet till 80:an.
+**Pendelbåten 89**, Klara Mälarstrand till Ekerö. Mälarens motsvarighet till 80:an.
 
-**Vissa Vaxholmsbåtar** — på korta sträckor i den närmaste skärgården gäller SL-kort. Det beror på linjen och tiden — kolla i reseplaneraren om en specifik tur är SL-giltig.
+**Vissa Vaxholmsbåtar**, på korta sträckor i den närmaste skärgården gäller SL-kort. Det beror på linjen och tiden. Kolla i reseplaneraren om en specifik tur är SL-giltig.
 
-**Bilfärjorna** — Vaxholm-Rindö, Östanå-Ljusterö, Furusund-Yxlan och flera till. Dessa är gratis för fotgängare och cyklister.
+**Bilfärjorna**: Vaxholm-Rindö, Östanå-Ljusterö, Furusund-Yxlan och flera till. Dessa är gratis för fotgängare och cyklister.
 
 Det är allt. Det är inte mycket.
 
@@ -456,7 +456,7 @@ För dessa måste du köpa skärgårdsbiljett, antingen som enkel resa eller med
 
 ## Vad det kostar utan SL-kort
 
-Enkelbiljett ut till skärgården är dyrare än man tror. För Strömkajen-Sandhamn ligger priset typiskt runt två hundralappar enkel väg per vuxen. Kortare turer (Vaxholm) är billigare, runt en hundralapp. Tur och retur är sällan rabatterad — det är nästan alltid två enkelresor.
+Enkelbiljett ut till skärgården är dyrare än man tror. För Strömkajen-Sandhamn ligger priset typiskt runt två hundralappar enkel väg per vuxen. Kortare turer (Vaxholm) är billigare, runt en hundralapp. Tur och retur är sällan rabatterad. Det är nästan alltid två enkelresor.
 
 Periodkort för skärgården finns: dagskort, treveckorskort, säsongskort. För enstaka utflykter är de inte värda det. För dig som planerar veckor i sträck eller pendlar är de billigare.
 
@@ -466,37 +466,37 @@ Periodkort för skärgården finns: dagskort, treveckorskort, säsongskort. För
 
 **Bilfärja + cykel**. Östanå-Ljusterö är gratis, kort och leder dig till en stor ö med mycket att se. Förstärk med en cykel så hinner du runt på en dag.
 
-**Skärgårdskort sommartid**. Om du planerar tre-fyra utflykter inom samma månad är säsongskortet ofta billigare än tre enkla biljetter.
+**Skärgårdskort sommartid**. Om du planerar tre till fyra utflykter inom samma månad är säsongskortet ofta billigare än tre enkla biljetter.
 
 ## Hur du tar reda på vad som gäller
 
 Använd reseplanerarna:
 
 - **SL:s reseplanerare** visar tydligt om hela resan är SL-giltig
-- **Waxholmsbolagets sida** visar tidtabell och biljett-typer för deras båtar
+- **Waxholmsbolagets sida** visar tidtabell och biljettyper för deras båtar
 - **Trafiklabs reseplanerare** kombinerar allt och kan föreslå smartaste väg
 
 Säg du planerar Grinda. SL:s reseplanerare visar dig direkt att den kortaste vägen är buss 434 till Stavsnäs (SL-kort räcker) + Waxholmsbolaget till Grinda (egen biljett). Du sparar både tid och pengar jämfört med direktbåt från Strömkajen.
 
 ## Sammanfattning i en mening
 
-SL-kortet täcker stadens vatten och bilfärjor — för riktig skärgårdstrafik behöver du egen biljett, men du kan ofta kombinera SL-buss med kort skärgårdsbåt och komma fram snabbare.`,
+SL-kortet täcker stadens vatten och bilfärjor: för riktig skärgårdstrafik behöver du egen biljett, men du kan ofta kombinera SL-buss med kort skärgårdsbåt och komma fram snabbare.`,
   },
 
   // ── 7. BADTEMPERATUR ──────────────────────────────────────────────────
   {
     slug: 'badtemperatur-skargard',
-    title: 'Badtemperatur i skärgården — när är det egentligen badbart?',
+    title: 'Badtemperatur i skärgården, när är det egentligen badbart?',
     description: 'När havet blir tillräckligt varmt för bad i Stockholms och Bohusläns skärgård. Månadsvis genomgång och varför det skiljer sig mellan kusterna.',
     emoji: '🌊',
     kategori: 'aktivitet',
     lasMinuter: 5,
     datePublished: '2026-05-09',
-    body: `Det är en av de vanligaste frågorna inför en skärgårdsresa: går det att bada? Svaret beror på var, när och vad du betraktar som "badbart". Här är en pragmatisk genomgång — utan löften, eftersom havsvädret aldrig håller sig till medel.
+    body: `Det är en av de vanligaste frågorna inför en skärgårdsresa: går det att bada? Svaret beror på var, när och vad du betraktar som "badbart". Här är en pragmatisk genomgång: utan löften, eftersom havsvädret aldrig håller sig till medel.
 
 ## Vad räknas som badbart?
 
-Smaken varierar. För många svenskar börjar bad bli rimligt vid sjutton-arton grader. För andra är det ljummet först vid tjugotvå. För vintervana är fjorton grader badbart om solen är stark.
+Smaken varierar. För många svenskar börjar bad bli rimligt vid sjutton till arton grader. För andra är det ljummet först vid tjugotvå. För vintervana är fjorton grader badbart om solen är stark.
 
 Tumregler:
 - Under fjorton grader: chock-bad, kort dopp
@@ -504,21 +504,21 @@ Tumregler:
 - Sjutton till tjugo: trivsamt för de flesta
 - Över tjugo: badtid utan brådska
 
-## Stockholms skärgård — månad för månad
+## Stockholms skärgård: månad för månad
 
 **Maj** ligger vattnet typiskt mellan tio och tretton grader. För få. Snabbdopp möjligt om luften är het.
 
 **Juni** stiger temperaturen. Mitten av juni ligger runt fjorton till sjutton grader. På grunda vikar uppvärmda av sol kan det vara över tjugo redan vid midsommar, men ute på fjärden är det kallare.
 
-**Juli** är den varmaste perioden. Sjutton till tjugotvå grader är vanligt. Innerskärgården (grunda vikar) kan slå tjugofem under långa värmeperioder. Ytterskärgården och Östersjön ligger fyra-fem grader kallare än innerskärgården.
+**Juli** är den varmaste perioden. Sjutton till tjugotvå grader är vanligt. Innerskärgården (grunda vikar) kan slå tjugofem under långa värmeperioder. Ytterskärgården och Östersjön ligger fyra till fem grader kallare än innerskärgården.
 
-**Augusti** håller värmen länge. Första halvan av augusti är ofta varmast hela året — ytan har då hunnit värma sig under hela sommaren. Senare delen sjunker temperaturen.
+**Augusti** håller värmen länge. Första halvan av augusti är ofta varmast hela året, ytan har då hunnit värma sig under hela sommaren. Senare delen sjunker temperaturen.
 
-**September** är överraskande badbart första hälften, runt sjutton-arton grader. Senare faller det snabbt.
+**September** är överraskande badbart första hälften, runt sjutton till arton grader. Senare faller det snabbt.
 
-## Bohusläns kust — kallare än Stockholm
+## Bohusläns kust: kallare än Stockholm
 
-Västkusten har stora skillnader inom samma region. Innerfjordar i Bohuslän kan vara varma — ofta likvärdiga eller varmare än Stockholm. Men ytterskärgården och öppet hav är klart kallare.
+Västkusten har stora skillnader inom samma region. Innerfjordar i Bohuslän kan vara varma, ofta likvärdiga eller varmare än Stockholm. Men ytterskärgården och öppet hav är klart kallare.
 
 Tumregel:
 - Hampedalen i Bohuslän eller en grund vik bakom en ö: kan vara över tjugo i juli
@@ -531,26 +531,26 @@ Atlantens kalla djupvatten cirkulerar in via Skagerrak. Östersjön är ett delv
 
 ## Var hittar du varmast vatten?
 
-- Grunda vikar med vass — solen värmer botten och vattnet
-- Vänd från vind och våg — vågorna blandar varm yta med kallt djupvatten
-- Klippor som värmts av solen kan ge ett dräneringsläge — vatten precis intill värmer fortare
+- Grunda vikar med vass: solen värmer botten och vattnet
+- Vänd från vind och våg: vågorna blandar varm yta med kallt djupvatten
+- Klippor som värmts av solen kan ge ett dräneringsläge: vatten precis intill värmer fortare
 - Stränder med söder- eller sydvästläge får mer sol
 
 ## Var hittar du svalast vatten?
 
 - Djupa fjärdar och öppet hav
 - Norrsluttande klippor i skugga
-- Områden med strömmar (sund mellan öar) — vattnet blandas konstant
+- Områden med strömmar (sund mellan öar): vattnet blandas konstant
 - Mätstationer i ytterskärgården
 
 ## Officiella mätstationer
 
-SMHI driver mätstationer för havsvattentemperatur. Värdena finns på smhi.se under havstemperatur. Tänk på att stationen mäter en specifik plats — ditt favoritbadställe kan ligga fyra grader varmare eller kallare än närmsta stationsvärde.
+SMHI driver mätstationer för havsvattentemperatur. Värdena finns på smhi.se under havstemperatur. Tänk på att stationen mäter en specifik plats, ditt favoritbadställe kan ligga fyra grader varmare eller kallare än närmsta stationsvärde.
 
 ## Praktiska tips
 
-- Solglasögon polariserade visar bottnen — varma grunda områden syns
-- Vinden bestämmer mer än lufttemperaturen — kallvind kyler vattenytan
+- Solglasögon polariserade visar bottnen: varma grunda områden syns
+- Vinden bestämmer mer än lufttemperaturen: kallvind kyler vattenytan
 - Termometer på telefonen är inte vattentät, men en billig poolthermometer är värd att ha med
 - Efter en regnig vecka: temperaturen faller, ge det ett par dagar
 
@@ -562,32 +562,32 @@ Stockholms innerskärgård juli och första hälften av augusti: nästan alltid 
   // ── 8. NATURHAMNAR ────────────────────────────────────────────────────
   {
     slug: 'naturhamnar-guide',
-    title: 'Naturhamnar i skärgården — så hittar du dem och så bär du dig åt',
+    title: 'Naturhamnar i skärgården: så hittar du dem och så bär du dig åt',
     description: 'Vad en naturhamn är, hur du hittar och använder en, och hur du bär dig åt så du inte stör. För dig som seglar eller motorbåtar i skärgården.',
     emoji: '🗺',
     kategori: 'aktivitet',
     lasMinuter: 6,
     datePublished: '2026-05-08',
-    body: `En naturhamn är inte en hamn i konventionell mening. Det är en plats där du som båtfolk kan lägga till, ankra eller fortöja mellan klippor — utan service, utan bryggor, ofta utan andra människor. För den som söker tystnad och autentisk skärgård är de hela poängen.
+    body: `En naturhamn är inte en hamn i konventionell mening. Det är en plats där du som båtfolk kan lägga till, ankra eller fortöja mellan klippor: utan service, utan bryggor, ofta utan andra människor. För den som söker tystnad och autentisk skärgård är de hela poängen.
 
 ## Vad gör en bra naturhamn?
 
 Den ideala naturhamnen har:
-- **Lä från övervägande vind** — i Stockholm betyder oftast skydd mot västlig och sydvästlig vind
-- **Tillräckligt djup** för att lägga till — minst en och en halv meter vid klippor är vanligt
+- **Lä från övervägande vind**: i Stockholm betyder oftast skydd mot västlig och sydvästlig vind
+- **Tillräckligt djup** för att lägga till: minst en och en halv meter vid klippor är vanligt
 - **Klippa som är ren och rätt sluttning** för stenbult eller landgång
-- **Plats att fortöja akteröver** — buske, sten eller dragankare
+- **Plats att fortöja akteröver**: buske, sten eller dragankare
 - **Inget farligt grund i inloppet** som du inte ser i sjökortet
 
 ## Hur du hittar dem
 
-**Sjökort först.** Etablerade naturhamnar är markerade i sjökort med ankare-symbol och ibland med information om bottendjup och bottentyp.
+**Sjökort först.** Etablerade naturhamnar är markerade i sjökort med ankarsymbol och ibland med information om bottendjup och bottentyp.
 
-**Lokala böcker.** Det finns klassiska naturhamn-guider för Stockholm, Bohuslän och Mälaren. De ger djupare information än sjökort om praktiska saker som vindskydd, anlöp och förbehåll.
+**Lokala böcker.** Det finns klassiska naturhamnsguider för Stockholm, Bohuslän och Mälaren. De ger djupare information än sjökort om praktiska saker som vindskydd, anlöp och förbehåll.
 
 **Apps och digitala kartor.** Eniro Sjökort, Navionics och liknande visar etablerade hamnar och har kommentarer från andra båtfolk.
 
-**Be andra båtfolk.** Om du är osäker i en hamn är det oftast OK att gå över och fråga — skärgårdsfolk pratar gärna om sina favoritplatser.
+**Be andra båtfolk.** Om du är osäker i en hamn är det oftast OK att gå över och fråga, skärgårdsfolk pratar gärna om sina favoritplatser.
 
 ## Så bär du dig åt ombord
 
@@ -599,7 +599,7 @@ Naturhamn är inte fri-tag. Etiketten är specifik och uppskattad.
 
 **Fortöja noggrant.** Vinden vänder. Säkra både stäv och akter, och tänk på vad som händer om vinden går från sydväst till nordväst på natten.
 
-**Tystnad efter elva.** Motorer, musik, höga röster — det bär över vatten. Klockan är sällan tio på land, den är åtta i en naturhamn.
+**Tystnad efter elva.** Motorer, musik, höga röster. Det bär över vatten. Klockan är sällan tio på land, den är åtta i en naturhamn.
 
 **Soppåsar med er.** Ingen hamn har sopstation. Tar du med skräp tar du också tillbaka det.
 
@@ -608,9 +608,9 @@ Naturhamn är inte fri-tag. Etiketten är specifik och uppskattad.
 - Direkt utanför enskilda hus eller bryggor
 - I farleder eller i passagerar
 - I avlysta områden under fågelhäckning (april till juli i många reservat)
-- Vid Försvarsmaktens skyddsområden — sjökortet visar dem
+- Vid Försvarsmaktens skyddsområden: sjökortet visar dem
 
-## Klassiska områden — utan att låsa fast specifika hamnar
+## Klassiska områden: utan att låsa fast specifika hamnar
 
 Vissa områden i skärgården är kända för rik tillgång på goda naturhamnar:
 
@@ -618,7 +618,7 @@ Vissa områden i skärgården är kända för rik tillgång på goda naturhamnar
 
 **Sandön och områdena söder om Sandhamn** ger flera naturligt skyddade vikar.
 
-**Ytterskärgården kring Bullerö** — Bullerö själv är naturreservat med stränga regler, men närliggande öar har goda hamnar.
+**Ytterskärgården kring Bullerö**: Bullerö själv är naturreservat med stränga regler, men närliggande öar har goda hamnar.
 
 **Norra delen av Möjafladen** mellan Möja och Furusundsleden.
 
@@ -636,19 +636,19 @@ I Bohuslän är området kring **Hamburgsund**, **Resö** och **Bjuröklubb** v�
 
 ## Sammanfattning
 
-Naturhamnen är skärgårdens hjärta — och dess känsligaste del. Hitta dem genom sjökort och lokala guider, bär dig åt med försiktighet och respekt för andra båtfolk och skärgårdsmiljön, och lämna platsen som du fann den. Då har du en av Sveriges starkaste utomhusupplevelser, gratis och med eget program.`,
+Naturhamnen är skärgårdens hjärta, och dess känsligaste del. Hitta dem genom sjökort och lokala guider, bär dig åt med försiktighet och respekt för andra båtfolk och skärgårdsmiljön, och lämna platsen som du fann den. Då har du en av Sveriges starkaste utomhusupplevelser, gratis och med eget program.`,
   },
 
   // ── 9. SANDHAMN VS GRINDA ─────────────────────────────────────────────
   {
     slug: 'sandhamn-vs-grinda',
-    title: 'Sandhamn vs Grinda — vilken passar dig?',
+    title: 'Sandhamn vs Grinda, vilken passar dig?',
     description: 'En jämförelse mellan två klassiska skärgårdsdestinationer. Restid, atmosfär, mat, övernattning och vem som passar var.',
     emoji: '⚖️',
     kategori: 'region',
     lasMinuter: 5,
     datePublished: '2026-05-07',
-    body: `Sandhamn och Grinda är de två mest populära dagsutflyktsmålen i Stockholms skärgård — och de är inte alls samma sak. Den här jämförelsen är pragmatisk: vilket alternativ passar din typ av dag, inte vilket är "bättre".
+    body: `Sandhamn och Grinda är de två mest populära dagsutflyktsmålen i Stockholms skärgård, och de är inte alls samma sak. Den här jämförelsen är pragmatisk: vilket alternativ passar din typ av dag, inte vilket är "bättre".
 
 ## Snabbjämförelse
 
@@ -657,33 +657,33 @@ Naturhamnen är skärgårdens hjärta — och dess känsligaste del. Hitta dem g
 - Sandhamn: tre till fyra timmar med Cinderellabåten från Strömkajen, två och en halv via buss till Stavsnäs och båt
 
 **Storlek:**
-- Grinda är liten — du går runt på en eftermiddag
-- Sandhamn är medelstor — du kan utforska i flera dagar
+- Grinda är liten: du går runt på en eftermiddag
+- Sandhamn är medelstor: du kan utforska i flera dagar
 
 **Atmosfär:**
 - Grinda har mer av en lugn skärgårdskänsla
 - Sandhamn har segelmiljö och mer kosmopolitiskt liv
 
-## Grinda — för dig som vill ha lugnare dag
+## Grinda: för dig som vill ha lugnare dag
 
 Grinda är en av Skärgårdsstiftelsens öar och har bevarats med viss skydd från kommersialisering. Här hittar du:
 
 - Två badstränder och flera klippbad
 - Vandringsled runt ön (några timmar)
 - Grinda Wärdshus med matservering och bar
-- Sex-sju gästhamnsplatser om du kommer med egen båt
+- Sex till sju gästhamnsplatser om du kommer med egen båt
 - Övernattning på vandrarhem eller stugor
 
 **Bra för:** familjer, par på dagsutflykt, folk som vill bada och promenera, dig som inte vill ha mycket folk.
 
 **Mindre bra för:** dig som söker nattliv, dig som vill ha utbud av restauranger, dig som vill se "skärgårdens scen".
 
-## Sandhamn — för dig som vill ha mer liv
+## Sandhamn: för dig som vill ha mer liv
 
 Sandhamn ligger längre ut än Grinda och är en gammal lotsby med starka seglartraditioner. KSSS (Kungliga Svenska Segel Sällskapet) har sitt klubbhus där och stora kappseglingar avslutas i Sandhamn.
 
 På ön:
-- Trouville — en av Stockholms vackraste sandstränder
+- Trouville: en av Stockholms vackraste sandstränder
 - Flera restauranger och kaféer (Sandhamns Värdshus, Sandhamns Seglarhotell, Café Sandhamn)
 - Gränder med röda bodar och kulturmiljö
 - Vandringsleder mot Värsholm och ytterskärgården
@@ -699,13 +699,13 @@ På ön:
 
 **Med bil:** Båda kräver bil till en av Värmdöhamnarna (Boda för Grinda, Stavsnäs för Sandhamn) följt av båt. Stavsnäs har gott om parkering, Boda är begränsat.
 
-**Med egen båt:** Grinda har gästhamn med få platser — kommer du efter klockan tre eftermiddag på en lördag kan det vara fullt. Sandhamn har KSSS-hamnen som rymmer mycket fler båtar men där platserna kostar mer.
+**Med egen båt:** Grinda har gästhamn med få platser, kommer du efter klockan tre eftermiddag på en lördag kan det vara fullt. Sandhamn har KSSS-hamnen som rymmer mycket fler båtar men där platserna kostar mer.
 
 **Övernattning:** Grinda har vandrarhem och stugor. Sandhamn har hotell, vandrarhem, B&B och privatuthyrning. Båda måste bokas tidigt sommartid.
 
 ## Säsong
 
-Båda är säsongsbetonade. Sommarsäsongen (mitten av juni till mitten av augusti) har full service på båda. På Grinda stänger värdshuset sommarsäsongen — kolla aktuella öppettider innan du åker. Sandhamn har lite längre säsong eftersom flera ställen håller öppet året runt för seglare som ändå är där.
+Båda är säsongsbetonade. Sommarsäsongen (mitten av juni till mitten av augusti) har full service på båda. På Grinda stänger värdshuset sommarsäsongen. Kolla aktuella öppettider innan du åker. Sandhamn har lite längre säsong eftersom flera ställen håller öppet året runt för seglare som ändå är där.
 
 ## Sammanfattning
 
@@ -713,55 +713,55 @@ Vill du ha en lugn dagsutflykt utan stora ansträngningar: **Grinda**.
 
 Vill du ha mer "skärgårdens scen" och är beredd att resa: **Sandhamn**.
 
-Är det första gången du åker ut: **Grinda** — det är enklare att navigera, lägre tröskel, snabbare resa.
+Är det första gången du åker ut: **Grinda**: det är enklare att navigera, lägre tröskel, snabbare resa.
 
-Vill du segla eller är van med skärgården: **Sandhamn** — mer att utforska och en helt annan miljö.
+Vill du segla eller är van med skärgården: **Sandhamn**, mer att utforska och en helt annan miljö.
 
-Eller — och det här är vårt egentliga råd — gör båda. Inte samma dag, utan olika helger. De ger olika känslor av skärgården, och båda hör hemma i en svensk skärgårdsupplevelse.`,
+Eller, och det här är vårt egentliga råd, gör båda. Inte samma dag, utan olika helger. De ger olika känslor av skärgården, och båda hör hemma i en svensk skärgårdsupplevelse.`,
   },
 
   // ── 10. SKÄRGÅRD HÖST ─────────────────────────────────────────────────
   {
     slug: 'skargard-host',
-    title: 'Skärgården på hösten — varför den är bättre än sommaren',
-    description: 'Hösten är skärgårdens kanske bästa säsong — färre folk, mer ljus, ofta vackrare väder. Här är vad du behöver veta för en höstutflykt.',
+    title: 'Skärgården på hösten: varför den är bättre än sommaren',
+    description: 'Hösten är skärgårdens kanske bästa säsong: färre folk, mer ljus, ofta vackrare väder. Här är vad du behöver veta för en höstutflykt.',
     emoji: '🍂',
     kategori: 'sasong',
     lasMinuter: 6,
     datePublished: '2026-05-06',
-    body: `Hösten i skärgården är en av Sveriges bäst bevarade hemligheter. När sommarfolket har åkt hem, restaurangerna fortfarande är öppna och vädret ofta är som vackrast — då blir skärgården till en helt annan plats. Den här guiden förklarar varför och när du ska åka.
+    body: `Hösten i skärgården är en av Sveriges bäst bevarade hemligheter. När sommarfolket har åkt hem, restaurangerna fortfarande är öppna och vädret ofta är som vackrast, då blir skärgården till en helt annan plats. Den här guiden förklarar varför och när du ska åka.
 
 ## Varför hösten ofta är bättre än sommaren
 
 **Färre människor.** Augusti slutar någonstans runt den tjugonde, sedan tunnas det ut snabbt. September är en mellanmånad där populära öar fortfarande har service men inte folkträngsel.
 
-**Tydligare ljus.** Solen står lägre, vilket ger längre skuggor, varmare färger och bättre fotograferingsförhållanden. Klippor som ser bleka ut i juli-solen lyser i septemberljus.
+**Tydligare ljus.** Solen står lägre, vilket ger längre skuggor, varmare färger och bättre fotograferingsförhållanden. Klippor som ser bleka ut i julisolen lyser i septemberljus.
 
 **Stabilare väder ofta.** Det går inte att lova, men många septembrar är vackrare än många julimånader. Mindre åska, mindre regn, ofta perfekt vandringstemperatur.
 
-**Vattnet är fortfarande varmt.** Första halvan av september ligger ytan kvar på sjutton-arton grader i innerskärgården. Att bada är fullt rimligt.
+**Vattnet är fortfarande varmt.** Första halvan av september ligger ytan kvar på sjutton till arton grader i innerskärgården. Att bada är fullt rimligt.
 
 **Restaurangerna är öppna men inte fullbokade.** Du kan dyka in spontant där du varit tvungen att boka två veckor i förväg i juli.
 
-## När exakt — månad för månad
+## När exakt: månad för månad
 
-**September** — bästa månaden. Sommarservice fortfarande aktiv på de stora öarna. Vatten badbart första halvan. Stabilt väder ofta.
+**September**, bästa månaden. Sommarservice fortfarande aktiv på de stora öarna. Vatten badbart första halvan. Stabilt väder ofta.
 
-**Oktober** — övergångsmånad. Många restauranger har stängt eller övergått till helgöppet. Trafiken glesar ut. Lövfärgerna kommer. Bra för stillare promenader och boendet är billigt.
+**Oktober**, övergångsmånad. Många restauranger har stängt eller övergått till helgöppet. Trafiken glesar ut. Lövfärgerna kommer. Bra för stillare promenader och boendet är billigt.
 
-**November** — definitivt lågsäsong. Många turer går bara på begäran eller med begränsade tider. Atmosfär av tomhet och förfall — kan vara magiskt om du är beredd. Sista båt-tider är tidiga.
+**November**, definitivt lågsäsong. Många turer går bara på begäran eller med begränsade tider. Atmosfär av tomhet och förfall. Kan vara magiskt om du är beredd. Sista båttider är tidiga.
 
 ## Vad du faktiskt kan göra
 
 **Vandring och friluftsliv.** Skärgårdens leder är öppna året runt. På de större öarna (Möja, Sandhamn, Utö, Finnhamn) finns markerade leder som passar för dagsturer.
 
-**Bad i kallt vatten.** Vintervana skärgårdsfolk badar långt in på hösten. Klippkust med söder-läge värms av sol till långt in i oktober.
+**Bad i kallt vatten.** Vintervana skärgårdsfolk badar långt in på hösten. Klippkust med söderläge värms av sol till långt in i oktober.
 
 **Svamp.** September är topp för kantareller och stenmurkel. Många skärgårdsöar har skogspartier som ger riklig svamp eftersom få plockar.
 
 **Fotografering.** Skärgården i ljus av septembermorgon eller oktoberhost är fotogenetisk på ett annat sätt än sommarens. Tidig morgon med dimma över vattnet är dödsbra.
 
-**Bastubad och stuga.** Många stugor och hus uthyrning sänker pris i september-oktober. En helg med ved-eldad bastu och hav är en av Sveriges bästa höst-upplevelser.
+**Bastubad och stuga.** Många stugor och hus uthyrning sänker pris i september till oktober. En helg med vedeldad bastu och hav är en av Sveriges bästa höstupplevelser.
 
 ## Vad du behöver tänka på
 
@@ -771,27 +771,27 @@ Eller — och det här är vårt egentliga råd — gör båda. Inte samma dag, 
 
 **Boendet stänger gradvis.** Vissa stugor och vandrarhem stänger redan i mitten av september. Boka i förväg och kontrollera öppettider.
 
-**Restaurangtider varierar.** Det som stod på menyn i juli kanske inte serveras i oktober. Mindre kök, mindre meny — men ofta också mer omsorg.
+**Restaurangtider varierar.** Det som stod på menyn i juli kanske inte serveras i oktober. Mindre kök, mindre meny, men ofta också mer omsorg.
 
 **Mörker kommer fort.** Hösten är då dagslängden minskar mest. Räkna med flera timmar mörker när du planerar tur tillbaka.
 
-## Bra höst-destinationer i Stockholms skärgård
+## Bra höstdestinationer i Stockholms skärgård
 
-- **Möja** — stadsmiljö plus stora skogspartier, perfekt för svampplock
-- **Utö** — bra vandring och vandrarhemmet är öppet hösten igenom
-- **Finnhamn** — STF-vandrarhemmet är öppet länge och stigarna är vackrast på hösten
-- **Vaxholm** — kort dagsutflykt med stadsservice även när skärgården är tom
-- **Sandhamn** — vissa restauranger året runt, plus magiska novemberkvällar
+- **Möja**: stadsmiljö plus stora skogspartier, perfekt för svampplock
+- **Utö**: bra vandring och vandrarhemmet är öppet hösten igenom
+- **Finnhamn**: STF-vandrarhemmet är öppet länge och stigarna är vackrast på hösten
+- **Vaxholm**: kort dagsutflykt med stadsservice även när skärgården är tom
+- **Sandhamn**: vissa restauranger året runt, plus magiska novemberkvällar
 
 ## I Bohuslän
 
-- **Marstrand** — Carlstens fästning har höstprogram, restauranger året om
-- **Smögen** — räkmackor smakar bättre när det blåser
-- **Käringön** — kulturreservatet är vackrast i hösten utan turistmängder
+- **Marstrand**: Carlstens fästning har höstprogram, restauranger året om
+- **Smögen**: räkmackor smakar bättre när det blåser
+- **Käringön**: kulturreservatet är vackrast i hösten utan turistmängder
 
 ## Sammanfattning
 
-Sommaren är skärgårdens charterresa-säsong. Hösten är när den lämnar tillbaka till sin egen rytm. Klä dig varmt, planera båtarna, ta med kaffe — och du har Sveriges kanske finaste utomhus-upplevelse, billigare och lugnare än man trodde gick.`,
+Sommaren är skärgårdens charterresesäsong. Hösten är när den lämnar tillbaka till sin egen rytm. Klä dig varmt, planera båtarna, ta med kaffe, och du har Sveriges kanske finaste utomhus-upplevelse, billigare och lugnare än man trodde gick.`,
   },
 ]
 

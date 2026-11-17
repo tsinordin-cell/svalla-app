@@ -229,7 +229,7 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
           fontSize: 12, color: 'rgba(255,255,255,0.85)',
           margin: '12px 0 0', lineHeight: 1.5, fontWeight: 600,
         }}>
-          ⚠️ Sista avgången är inställd — kolla{' '}
+          ⚠️ Sista avgången är inställd: kolla{' '}
           <a href="https://sl.se/sv/reseplaneraren" target="_blank" rel="noopener noreferrer"
              style={{ color: '#fde68a', textDecoration: 'underline' }}>
             SL.se
@@ -241,7 +241,7 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
           fontSize: 12, color: 'rgba(255,255,255,0.92)',
           margin: '12px 0 0', lineHeight: 1.5, fontWeight: 600,
         }}>
-          🏃 Rör på dig — sista båten går snart.
+          🏃 Rör på dig, sista båten går snart.
         </p>
       )}
 

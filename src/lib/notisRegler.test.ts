@@ -72,7 +72,7 @@ describe('like', () => {
       push: { title: 'Ny gillning', body: 'Anna gillade din tur', url: `/tur/${T}` },
     })
   })
-  it('en notis per tur, även efter gilla–ta bort–gilla', async () => {
+  it('en notis per tur, även efter gilla till ta bort till gilla', async () => {
     const logg: Logg = { finnsRedan: [] }
     expect(await bed({ gillning: H, finnsRedan: true }, 'like', { tripId: T }, logg)).toEqual({ ok: 'hoppa', skal: 'dubblett' })
     expect(logg.finnsRedan[0]![1]).toBe('tur')

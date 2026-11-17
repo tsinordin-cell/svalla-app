@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const supabase = createPublicSupabaseClient()
   const { data, error } = await supabase.from('tours').select('title, usp, start_location, destination, best_for, cover_image').eq('id', id).single()
   kastaVidDatabasfel(error, 'rutter/[id] metadata')
-  if (!data) return { title: { absolute: 'Rutt – Svalla' } }
+  if (!data) return { title: { absolute: 'Rutt | Svalla' } }
   const desc = data.usp ?? `Segelrutt ${data.start_location} → ${data.destination}.`
   const keywords = [
     `segelrutt ${data.start_location?.toLowerCase() ?? ''}`,
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     keywords,
     alternates: { canonical: `https://svalla.se/rutter/${id}` },
     openGraph: {
-      title: `${data.title} – Svalla`,
+      title: `${data.title} | Svalla`,
       description: desc,
       url: `https://svalla.se/rutter/${id}`,
       type: 'website',
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${data.title} – Svalla`,
+      title: `${data.title} | Svalla`,
       description: desc,
       images: data.cover_image ? [data.cover_image] : ['/og-image.jpg'],
     },
@@ -339,7 +339,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
           }}>
             <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--acc)', marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                <Icon name="star" size={14} stroke={2} />Insider-tip
+                <Icon name="star" size={14} stroke={2} />Insidertips
               </span>
             </div>
             <p style={{ fontSize: 13, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>{t.insider_tip}</p>
@@ -348,7 +348,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
 
         {/* Log suggestions */}
         {t.log_suggestions.length > 0 && (
-          <Section title={<><Icon name="edit" size={13} stroke={2} />Tur-logg – tänk på det här</>}>
+          <Section title={<><Icon name="edit" size={13} stroke={2} />Turlogg: tänk på det här</>}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {t.log_suggestions.map((s) => (
                 <div key={s} style={{

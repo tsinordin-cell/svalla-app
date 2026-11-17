@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
 
 export const metadata: Metadata = {
-  title: 'Halland — Västkustens sandstränder och fästningsstäder',
+  title: 'Halland: Västkustens sandstränder och fästningsstäder',
   description: 'Halland: Varbergs fästning, Tylösand, Falkenberg, Båstad och Laholmsbukten. Utforska Hallands långa kust med Svalla.',
   keywords: [
     'halland kust',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     'halland sommar',
   ],
   openGraph: {
-    title: 'Halland — Västkustens sandstränder och fästningsstäder',
+    title: 'Halland: Västkustens sandstränder och fästningsstäder',
     description: 'Logga dina båtturer och hitta de bästa platserna längs Hallands kust.',
     url: 'https://svalla.se/halland',
   },
@@ -34,14 +34,14 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🗺️',
     title: 'Öarna här',
-    description: 'Ö-sidor med hamnar, aktiviteter och källor — listan finns längre ner på sidan.',
+    description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
     href: '/halland#oar',
     meta: 'Gratis',
   },
   {
     icon: '🏰',
     title: 'Varberg och fästningen',
-    description: 'Varbergs medeltida fästning är ett av Sveriges bäst bevarade fästningskomplex. Gästhamnen ligger i fästningens skugga — ett unikt läge.',
+    description: 'Varbergs medeltida fästning är ett av Sveriges bäst bevarade fästningskomplex. Gästhamnen ligger i fästningens skugga, ett unikt läge.',
     href: '/platser',
   },
   {
@@ -88,12 +88,12 @@ export default function HallandPage() {
       {
         '@type': 'Question',
         name: 'Hur är segling längs Hallands kust?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Halland erbjuder relativt öppen kustsegling utmed Kattegatt. Kusten saknar de skyddande öarna som Bohuslän har, men vindförhållandena är stabila och hamnarna är välplacerade med 2–4 timmars segling mellan sig. Sommarvinden från sydväst passar utmärkt för nordgående segling. Var uppmärksam på Kattegattets snabba väderombyte.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Halland erbjuder relativt öppen kustsegling utmed Kattegatt. Kusten saknar de skyddande öarna som Bohuslän har, men vindförhållandena är stabila och hamnarna är välplacerade med 2 till 4 timmars segling mellan sig. Sommarvinden från sydväst passar utmärkt för nordgående segling. Var uppmärksam på Kattegattets snabba väderombyte.' },
       },
       {
         '@type': 'Question',
         name: 'Vad bör man inte missa i Halland?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Varbergs fästning är ett absolut måste — en av Sveriges bäst bevarade fästningar med fantastisk utsikt. Tylösand utanför Halmstad är Sveriges mest kända strandort. Falkenberg gammelstad med sin välbevarade träbyggnadsarkitektur och Tångabergs naturreservat är också högt rekommenderade stopp.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Varbergs fästning är ett absolut måste, en av Sveriges bäst bevarade fästningar med fantastisk utsikt. Tylösand utanför Halmstad är Sveriges mest kända strandort. Falkenberg gammelstad med sin välbevarade träbyggnadsarkitektur och Tångabergs naturreservat är också högt rekommenderade stopp.' },
       },
     ],
   }
@@ -113,7 +113,7 @@ export default function HallandPage() {
         heroGradient={['#0a2818', '#1a5030']}
         eyebrow="Halland"
         title="Västkustens sandstränder och fästningsstäder"
-        tagline="Från Varbergs medeltida fästning till Tylösands sandstränder och Båstads tenniskultur — Svalla hjälper dig logga varje tur längs Hallands unika kust."
+        tagline="Från Varbergs medeltida fästning till Tylösands sandstränder och Båstads tenniskultur | Svalla hjälper dig logga varje tur längs Hallands unika kust."
         heroIcon={
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <circle cx="12" cy="12" r="10" />
@@ -124,16 +124,16 @@ export default function HallandPage() {
         intro={
           <>
             <p>
-              Halland är en av Sveriges mest varierade kustslätt — och en region som alltför ofta förbises till förmån för Bohuslän i norr och Skåne i söder. <strong>Långa sandstränder, en medeltida fästningsstad och levande sommarbyer</strong> ger en kustupplevelse som är annorlunda och genuint vacker. Från Kungsbackafjorden i norr till Båstad och Laholmsbukten i söder sträcker sig nästan 15 mil av kattegattskust.
+              Halland är en av Sveriges mest varierade kustslätt, och en region som alltför ofta förbises till förmån för Bohuslän i norr och Skåne i söder. <strong>Långa sandstränder, en medeltida fästningsstad och levande sommarbyer</strong> ger en kustupplevelse som är annorlunda och genuint vacker. Från Kungsbackafjorden i norr till Båstad och Laholmsbukten i söder sträcker sig nästan 15 mil av kattegattskust.
             </p>
             <p>
-              Varberg dominerar med sin välbevarade 1200-talsfästning som reser sig direkt ur klippan vid havet. Gästhamnen ligger i fästningens omedelbara närhet — ett unikt läge som ger en historisk atmosfär utan motstycke längs svenska kusten. Tylösand utanför Halmstad är känt som Sveriges strand-mekka med surfing, beachvolleyboll och ett aktivt nattliv under sommarmånaderna.
+              Varberg dominerar med sin välbevarade 1200-talsfästning som reser sig direkt ur klippan vid havet. Gästhamnen ligger i fästningens omedelbara närhet, ett unikt läge som ger en historisk atmosfär utan motstycke längs svenska kusten. Tylösand utanför Halmstad är känt som Sveriges strandmekka med surfing, beachvolleyboll och ett aktivt nattliv under sommarmånaderna.
             </p>
             <p>
               Med Svalla loggar du alla etapper längs Kattegatt, hittar gästhamnar, stränder och krogar på kartan och kan följa andra båtfolks turer längs samma välbesökta kust. Halland är ett perfekt mellanstopp på väg norrut mot Bohuslän eller söderut mot Öresund och Danmark.
             </p>
             <p>
-              Kattegatt är ett öppet farvatten med snabbt väderombyte — planera för alternativa hamnar och håll koll på väderprognosen.
+              Kattegatt är ett öppet farvatten med snabbt väderombyte. Planera för alternativa hamnar och håll koll på väderprognosen.
             </p>
           </>
         }
@@ -146,7 +146,7 @@ export default function HallandPage() {
  <RegionOar rubrik="Öar och kust i Halland" etiketter={['Halland']} />
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
-              Varberg — fästningsstaden vid havet
+              Varberg: fästningsstaden vid havet
             </h2>
             <p>
               Varberg är Hallands viktigaste stad för båtfolk. Gästhamnen är välutrustad med god service och ett fantastiskt läge direkt vid fästningen. Staden erbjuder allt från proviantering och utrustningsbutiker till välrenommerade restauranger och det legendariska <strong>Getteröns naturreservat</strong> för fågelskådning.
@@ -155,7 +155,7 @@ export default function HallandPage() {
               Varbergs fästning
             </h3>
             <p>
-              Fästningen är en av Sveriges mest välbevarade medeltida anläggningar. Byggd på 1200-talet och förstärkt under 1600-talet dominerar den havet utanför och syns på långt håll från sjösidan. <strong>Varbergsmannen</strong> — ett av världens bäst bevarade medelåldersmänskliga fynd — visas på fästningens museum.
+              Fästningen är en av Sveriges mest välbevarade medeltida anläggningar. Byggd på 1200-talet och förstärkt under 1600-talet dominerar den havet utanför och syns på långt håll från sjösidan. <strong>Varbergsmannen</strong>, ett av världens bäst bevarade medelåldersmänskliga fynd, visas på fästningens museum.
             </p>
             <p>
               En promenad längs fästningsmurarna i solnedgången med utsikt över Kattegatt är en av Hallands absoluta höjdpunkter.
@@ -165,36 +165,36 @@ export default function HallandPage() {
               Tylösand och Hallands stränder
             </h2>
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-              Tylösand — Sveriges strand-mekka
+              Tylösand: Sveriges strandmekka
             </h3>
             <p>
-              Tylösand utanför Halmstad är en av Sveriges mest kända strandorter — lång vit sandstrand, surfing och ett aktivt sommarliv. <strong>Tylösand Hotel</strong> är ett ikoniskt hotell och restaurang med lång historia. Under juli och tidig augusti är stranden fullpackad, men det finns utrymme för alla längs den långa kusten.
+              Tylösand utanför Halmstad är en av Sveriges mest kända strandorter: lång vit sandstrand, surfing och ett aktivt sommarliv. <strong>Tylösand Hotel</strong> är ett ikoniskt hotell och restaurang med lång historia. Under juli och tidig augusti är stranden fullpackad, men det finns utrymme för alla längs den långa kusten.
             </p>
             <p>
-              Falkenberg söder om Halmstad har en lika vacker strand i <strong>Skrea strand</strong> — med lite lugnare atmosfär och ett genuint fiskeläge i gammelstaden vid Ätrans mynning.
+              Falkenberg söder om Halmstad har en lika vacker strand i <strong>Skrea strand</strong>, med lite lugnare atmosfär och ett genuint fiskeläge i gammelstaden vid Ätrans mynning.
             </p>
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '32px 0 12px' }}>
               Båstad och Laholmsbukten
             </h2>
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-              Båstad — tennis och sommarkultur
+              Båstad: tennis och sommarkultur
             </h3>
             <p>
               Båstad i Hallands södra del är känt för tennis, en livlig sommarscen och välrenommerade restauranger. <strong>Swedish Open</strong> lockar tennisstjärnor och publik varje sommar och ger hela byn en festlig stämning under turnerveckorna i juli.
             </p>
             <p>
-              Båstads marina är välutrustad och centralt belägen — promenadavståndet till stadens restauranger och butiker är kort. Laholmsbukten norr om Båstad erbjuder bra ankringsplatser vid lämpliga vindförhållanden.
+              Båstads marina är välutrustad och centralt belägen, promenadavståndet till stadens restauranger och butiker är kort. Laholmsbukten norr om Båstad erbjuder bra ankringsplatser vid lämpliga vindförhållanden.
             </p>
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '32px 0 12px' }}>
               Segling längs Hallands kust
             </h2>
             <p>
-              Kattegatt utanför Halland är ett öppet hav utan den skyddande skärgård som Bohuslän erbjuder. Sommarvindar från sydväst passar utmärkt för nordgående segling längs kusten. <strong>Hamnarna är placerade med 2–4 timmars segling sinsemellan</strong> — Varberg, Falkenberg och Båstad är de tre viktigaste.
+              Kattegatt utanför Halland är ett öppet hav utan den skyddande skärgård som Bohuslän erbjuder. Sommarvindar från sydväst passar utmärkt för nordgående segling längs kusten. <strong>Hamnarna är placerade med 2 till 4 timmars segling sinsemellan</strong>: Varberg, Falkenberg och Båstad är de tre viktigaste.
             </p>
             <p>
-              Väder kan snabbt förändras i Kattegatt — håll alltid koll på SMHI:s sjöväderprognoser och ha en plan B för närmaste hamn. Vid sydväststormar kan kusten bli otrivsam med lång dyning från Nordsjön.
+              Väder kan snabbt förändras i Kattegatt. Håll alltid koll på SMHI:s sjöväderprognoser och ha en plan B för närmaste hamn. Vid sydväststormar kan kusten bli otrivsam med lång dyning från Nordsjön.
             </p>
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '32px 0 12px' }}>
@@ -216,7 +216,7 @@ export default function HallandPage() {
               Hur är segling längs Hallands kust?
             </h3>
             <p>
-              Relativt öppen kustsegling i Kattegatt. Stabila sommarvindarna från sydväst passar utmärkt. Var uppmärksam på snabba väderomslag — håll alltid koll på sjöväderprognosen.
+              Relativt öppen kustsegling i Kattegatt. Stabila sommarvindarna från sydväst passar utmärkt. Var uppmärksam på snabba väderomslag. Håll alltid koll på sjöväderprognosen.
             </p>
           </>
         }

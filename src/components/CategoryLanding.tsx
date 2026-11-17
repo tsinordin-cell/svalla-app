@@ -412,7 +412,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  <div style={{ minWidth: 200 }}>
  <SvallaLogo height={22} color="#ffffff" />
  <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', margin: '12px 0 0', maxWidth: 280, lineHeight: 1.5 }}>
- Den digitala hamnen för Stockholms skärgård — planera, upptäck och logga dina turer.
+ Den digitala hamnen för Stockholms skärgård. Planera, upptäck och logga dina turer.
  </p>
  </div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 40 }}>

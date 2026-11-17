@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Guider om allemansrätten, packlistan, Waxholmsbolaget, midsommar i skärgården och hur du tar dig ut utan båt.',
   alternates: { canonical: 'https://svalla.se/guider' },
   openGraph: {
-    title: 'Praktiska guider till skärgården – Svalla',
+    title: 'Praktiska guider till skärgården | Svalla',
     description: 'Guider om allemansrätten, packlistan, Waxholmsbolaget, midsommar i skärgården och hur du tar dig ut utan båt.',
     url: 'https://svalla.se/guider',
   },
@@ -18,7 +18,7 @@ export default function GuiderPage() {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Guider till skärgården',
-    description: 'Praktiska guider om skärgårdslivet — transport, aktiviteter, mat och säsong.',
+    description: 'Praktiska guider om skärgårdslivet: transport, aktiviteter, mat och säsong.',
     url: 'https://svalla.se/guider',
     numberOfItems: PUBLICERADE_GUIDER.length,
     itemListElement: PUBLICERADE_GUIDER.map((g, i) => ({

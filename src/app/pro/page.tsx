@@ -24,9 +24,9 @@ const PRO_FEATURES = [
   { icon: 'stats', label: 'Utökad statistik och årssammanfattning' },
   { icon: 'map',   label: 'Offline-kartor i appen' },
   { icon: 'badge', label: 'Pro-märke på din profil' },
-  { icon: 'bell',  label: 'Prioriterade push-notiser' },
+  { icon: 'bell',  label: 'Prioriterade pushnotiser' },
   { icon: 'theme', label: 'Profilbakgrunder och teman' },
-  { icon: 'badge', label: 'Boosta dina Loppis-annonser — visas först i listan' },
+  { icon: 'badge', label: 'Boosta dina loppisannonser: visas först i listan' },
 ]
 
 function ProPageInner() {
@@ -111,7 +111,7 @@ function ProPageInner() {
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <h1 style={{ fontSize: 26, fontWeight: 800, color: 'var(--txt)', margin: '0 0 8px' }}>Svalla Pro kommer</h1>
           <p style={{ fontSize: 15, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>
-            Pro är inte igång än. Allt du kan göra på Svalla i dag är gratis — logga turer, spara öar, planera rutter.
+            Pro är inte igång än. Allt du kan göra på Svalla i dag är gratis: logga turer, spara öar, planera rutter.
           </p>
         </div>
         <div style={{ background: 'var(--white)', borderRadius: 20, padding: '20px 18px', marginBottom: 20, boxShadow: '0 2px 16px rgba(0,45,60,0.08)' }}>
@@ -150,7 +150,7 @@ function ProPageInner() {
           </svg>
         ),
         title: 'Se din årsstatistik',
-        desc: 'Profil → Statistik — alla turer sammanfattade',
+        desc: 'Profil → Statistik: alla turer sammanfattade',
       },
       {
         icon: (
@@ -287,7 +287,7 @@ function ProPageInner() {
               <span style={{ fontSize: 12, fontWeight: 400 }}>49 kr/mån</span>
             </button>
             <button style={planPill('year')} onClick={() => setPlan('year')}>
-              År — spara 30%<br />
+              År: spara 30%<br />
               <span style={{ fontSize: 12, fontWeight: 400 }}>399 kr/år</span>
             </button>
           </div>

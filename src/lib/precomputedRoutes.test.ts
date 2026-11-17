@@ -46,7 +46,7 @@ describe('precomputed-routes', () => {
     expect(by['stromkajen_to_moja']!.distanceKm).toBe(58.7)
   })
 
-  it('kända omvägar > 2,5× fågelvägen — listan ska bara krympa', () => {
+  it('kända omvägar > 2,5× fågelvägen: listan ska bara krympa', () => {
     // 2026-09-13 kväll: Farstavikens inlopp öppnat (farbara-passager.json, Tom),
     // Gustavsberg snappar nu till gästhamnen. Strömkajen–Gustavsberg 56,5 → 22,6.
     // Kvar: Gustavsberg–Grinda 39 km mot 14 fågelvägen — rutten går ut via

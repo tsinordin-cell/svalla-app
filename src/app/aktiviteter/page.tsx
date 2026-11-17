@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Vattenaktiviteter i Sverige — Segling, kajak, fiske och bad',
+  title: 'Vattenaktiviteter i Sverige: Segling, kajak, fiske och bad',
   description: 'Komplett guide till vattenaktiviteter längs hela Svenska kusten. Segling från Bohuslän till Gotland, havskajak, fiske, bad och friluftsliv. Nybörjarvänligt och avancerat.',
   keywords: [
     'vattenaktiviteter sverige',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     'fjällaktiviteter och fritid',
   ],
   openGraph: {
-    title: 'Vattenaktiviteter i Sverige — Segling, kajak, fiske och bad',
+    title: 'Vattenaktiviteter i Sverige: Segling, kajak, fiske och bad',
     description: 'Din guide till segling, paddling, fiske, bad och friluftsliv längs hela Svenska kusten.',
     url: 'https://svalla.se/aktiviteter',
   },
@@ -32,32 +32,33 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'sailboat',
     title: 'Segling',
-    description: 'Från nybörjarkurser i Saltsjön till kappseglingar runt Sandhamn — och charter om du inte har egen båt. Segling är möjligt året runt men maj–september är högsäsongen.',
+    description: 'Från nybörjarkurser i Saltsjön till kappseglingar runt Sandhamn, och charter om du inte har egen båt. Segling är möjligt året runt men maj till september är högsäsongen.',
     href: '/segelrutter',
     meta: 'Hela säsongen',
   },
   {
     icon: 'paddle',
     title: 'Paddling & kajak',
-    description: 'Havskajak i ytterskärgården eller stillsam SUP i en naturhamn — från Bohuslän till Gotland är Sverige Europas bästa paddelrevir. Kurserna är dessutom enkla och billiga.',
+    description: 'Havskajak i ytterskärgården eller stillsam SUP i en naturhamn, från Bohuslän till Gotland är Sverige Europas bästa paddelrevir. Kurserna är dessutom enkla och billiga.',
     href: '/platser?kategori=paddling',
   },
   {
     icon: 'fishing',
     title: 'Fiske',
-    description: 'Gädda i vassbrynen, havsöring längs kusten, strömming från bryggan och torsk i djupare vatten. I saltvatten behöver du inget fiskekort, men fredningsområden, fredningstider och artregler gäller.',
+    // KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort." (läst 2026-11-16)
+    description: 'Gädda i vassbrynen, havsöring längs kusten, strömming från bryggan och torsk i djupare vatten. I havet längs kusten fiskar du fritt med handredskap utan fiskekort, men fredningsområden, fredningstider och artregler gäller.',
     href: '/platser?kategori=fiske',
   },
   {
     icon: 'swim',
     title: 'Bad & simning',
-    description: 'Klassiska klippbad på Bohuslän, barnvänliga sandstränder på Gotland och iskalla morgondopp från bryggan — varje månad och varje kust har sin charm och sin temperatur.',
+    description: 'Klassiska klippbad på Bohuslän, barnvänliga sandstränder på Gotland och iskalla morgondopp från bryggan, varje månad och varje kust har sin charm och sin temperatur.',
     href: '/bastu-och-bad',
   },
   {
     icon: 'walk',
     title: 'Vandring',
-    description: 'Sörmlandsleden, Roslagsleden, Gotlands alvar och kustnära naturreservat — lätta dagsturer eller flera dagar med tält och båt som transportmedel mellan öar.',
+    description: 'Sörmlandsleden, Roslagsleden, Gotlands alvar och kustnära naturreservat, lätta dagsturer eller flera dagar med tält och båt som transportmedel mellan öar.',
     href: '/vandring-och-natur',
   },
   {
@@ -69,13 +70,13 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🤿',
     title: 'Dykning & snorkling',
-    description: 'Vrakdykning i Dalarö och Bålsta, snorkling i Möjas grunda vikar och längs Gotlands östkust — Sverige har över 20 välkända vrak och fantastisk skaldjursfauna.',
+    description: 'Vrakdykning i Dalarö och Bålsta, snorkling i Möjas grunda vikar och längs Gotlands östkust, Sverige har över 20 välkända vrak och fantastisk skaldjursfauna.',
     href: '/platser?kategori=dyk',
   },
   {
     icon: '🧊',
     title: 'Vinteraktiviteter',
-    description: 'Långfärdsskridsko på tjock is, isfiske på allt från skärgårdsvikar till inland, och vedeldade bastur för uppvärmning — skärgården är magisk även i januari och februari.',
+    description: 'Långfärdsskridsko på tjock is, isfiske på allt från skärgårdsvikar till inland, och vedeldade bastur för uppvärmning, skärgården är magisk även i januari och februari.',
     href: '/platser?kategori=vinter',
   },
 ]
@@ -88,23 +89,29 @@ export default function AktiviteterPage() {
       {
         '@type': 'Question',
         name: 'Behöver man fiskekort för fiske i havet?',
-        // KÄLLA: Länsstyrelsen Stockholm (djur/fiske) + Havs- och vattenmyndigheten, lästa 2026-08-23: fritt handredskapsfiske i havet och de fem stora sjöarna; 62 fredningsområden i Sthlms skärgård på våren, 9 året runt
-        acceptedAnswer: { '@type': 'Answer', text: 'Nej. I havet längs kusten — och i de fem stora sjöarna Vänern, Vättern, Mälaren, Hjälmaren och Storsjön — är fiske med handredskap fritt utan fiskekort. Men fredningsområden och fredningstider gäller: bara i Stockholms skärgård är över 60 vikar fiskeförbjudna under våren och nio områden året runt, och vissa arter är skyddade. Kontrollera svenskafiskeregler.se för platsen du fiskar på. I övriga sjöar och vattendrag krävs fiskekort.' },
+        // Rättad 2026-11-16 (P0 23): samma svar som under Vanliga frågor på sidan, med förbehållet om andra redskap än handredskap.
+        // KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort."; "Havet efter kusten"; "Vänern"; "Vättern"; "Mälaren"; "Hjälmaren"; "Storsjön i Jämtland." (läst 2026-11-16)
+        // KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "Därför finns det 62 vikar i Stockholms skärgård där fiskeförbud råder under våren. Nio av dessa områden har fiskeförbud året runt."; "Utöver vårfredningsområdena finns 14 fredningsområden i vissa åmynningar, där fiskeförbud råder på hösten när öringen går upp i vattendragen för att leka."; "I övriga vatten, som mindre sjöar, åar och vattendrag, behöver du däremot tillstånd från fiskerättsägaren."; "Oftast köper du då ett fiskekort som ger dig rätt att fiska i ett visst vatten." (läst 2026-11-16)
+        // KÄLLA: https://www.svenskafiskeregler.se/fritidsfiske/ — "I bilaga till fiskelagen finns detaljerade bestämmelser om vilken omfattning varje svenska medborgare har rätt att fiska inom enskilt vattenområde med andra redskap än handredskap. Det skiljer sig åt mellan olika områden och du bör känna till detta." (läst 2026-11-16)
+        // KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Tänk på att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap."; "Fredade arter: skärkniv, europeisk ål, mal och stormusslor" (läst 2026-11-16)
+        // KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "På svenskafiskeregler.se kan du söka fiskeregler via karta." (läst 2026-11-16)
+        // KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/oring---minimimatt-fredningstid-och-fangstbegransningar.html — "Fredningstiderna varierar längs kusten beroende på område i Östersjön (se svenskafiskeregler.se för detaljerad information)." (läst 2026-11-16)
+        acceptedAnswer: { '@type': 'Answer', text: 'Inte med handredskap. I havet längs kusten och i de fem stora sjöarna Vänern, Vättern, Mälaren, Hjälmaren och Storsjön i Jämtland får du fiska fritt med handredskap utan fiskekort. För andra redskap än handredskap skiljer sig reglerna mellan olika områden, och Länsstyrelsen i Stockholms fiskeguide påpekar att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap. Fredningsområden och fredningstider gäller också: i Stockholms skärgård har 62 vikar fiskeförbud på våren, och nio av dem året runt. Fredningstiderna för öring varierar längs Östersjökusten, och i Stockholms skärgård finns 14 fredningsområden i åmynningar med fiskeförbud på hösten, när öringen går upp i vattendragen för att leka. Vissa arter, som europeisk ål, är fredade. Kontrollera svenskafiskeregler.se för platsen du fiskar på. I övriga sjöar och vattendrag behöver du tillstånd från fiskerättsägaren, oftast ett fiskekort.' },
       },
       {
         '@type': 'Question',
         name: 'Vad är bästa aktiviteten för en barnfamilj vid havet?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Bad och snorkling är lättast — du behöver bara ett par badkläder. Motorbåt är nästa steg. Kajak passar från 4–5 år i double-kajak med vuxen. Gotland är överlag mer familjevänligt — varmaste vattnet, längsta stränderna och många barnaktiviteter.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Bad och snorkling är lättast. Du behöver bara ett par badkläder. Motorbåt är nästa steg. Kajak passar från 4 till 5 år i dubbelkajak med vuxen. Gotland är överlag mer familjevänligt: varmaste vattnet, längsta stränderna och många barnaktiviteter.' },
       },
       {
         '@type': 'Question',
         name: 'Kan man hyra kajak utan tidigare erfarenhet?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Ja, helt säkert. En kajakhyrningsföretag kommer alltid att ge dig 15–30 minuters instruktion. Börja med en kortare tur (2–3 timmar) i ett lugnt område. Använd alltid livväst, även om du är simkunnig.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, helt säkert. En kajakhyrningsföretag kommer alltid att ge dig 15 till 30 minuters instruktion. Börja med en kortare tur (2 till 3 timmar) i ett lugnt område. Använd alltid livväst, även om du är simkunnig.' },
       },
       {
         '@type': 'Question',
         name: 'När är havet varmt nog för simning utan våtdräkt?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Juli–augusti är bästa perioden — då är det ofta 17–19 °C. I Gotland är det ofta 1–2 grader varmare än övriga kusten. En billig våtdräkt kostar 300–500 kronor och öppnar möjligheten att bada tidigare och senare på säsongen.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Juli till augusti är bästa perioden, då är det ofta 17 till 19 °C. I Gotland är det ofta 1 till 2 grader varmare än övriga kusten. En billig våtdräkt kostar 300 till 500 kronor och öppnar möjligheten att bada tidigare och senare på säsongen.' },
       },
     ],
   }
@@ -124,7 +131,7 @@ export default function AktiviteterPage() {
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Aktiviteter"
       title="Gör Svenska kusten och skärgårdarna till ditt äventyr"
-      tagline="Segling, paddling, fiske, bad, vandring och dykning — välj aktivitet efter säsong, nivå och kustkvalitet från Bohuslän till Gotland och in i Stockholms skärgård."
+      tagline="Segling, paddling, fiske, bad, vandring och dykning. Välj aktivitet efter säsong, nivå och kustkvalitet från Bohuslän till Gotland och in i Stockholms skärgård."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M22 8 12 2 2 8l10 6 10-6Z" />
@@ -135,16 +142,20 @@ export default function AktiviteterPage() {
       intro={
         <>
           <p>
-            Sverige har en unik position för vattenaktiviteter. Med nästan 3 200 kilometer kustlinje, tusentals öar och ett klimat som gör alla årstider möjliga — allt från sommar med 20 graders vatten till vintrar med tjock is — finns det något för alla.
+            Sverige har en unik position för vattenaktiviteter. Med nästan 3 200 kilometer kustlinje, tusentals öar och ett klimat som gör alla årstider möjliga, allt från sommar med 20 graders vatten till vintrar med tjock is, finns det något för alla.
           </p>
           <p>
-            Västkusten från Bohuslän erbjuder klassiska klippbad och en bohemisk atmosfär. Gotland är känt för sitt lugna vatten, barnvänliga sandstränder och världsklass för segling. Stockholms skärgård är tätt bebyggd men otroligt tillgänglig — bara 30 minuter från stan ligger du i vild natur.
+            Västkusten från Bohuslän erbjuder klassiska klippbad och en bohemisk atmosfär. Gotland är känt för sitt lugna vatten, barnvänliga sandstränder och världsklass för segling. Stockholms skärgård är tätt bebyggd men otroligt tillgänglig, bara 30 minuter från stan ligger du i vild natur.
           </p>
           <p>
             Här listar vi aktiviteter sorterade efter säsong och nivå. Nybörjarvänligt är tydligt märkt, liksom vilka aktiviteter som kräver licens eller försäkring (seglarbevis, fiskekort). Vi listar också vilka aktiviteter som är mest familjevänliga, billiga att börja med och vilka som kräver fysisk träning.
           </p>
+          {/* Rättad 2026-11-16 (P0 23): meningarna om fiske. Meningen om dykning på fredade vrak är oförändrad i sak och inte granskad här. */}
+          {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "Allemansrätten gäller inte fiske." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort."; "I övriga vatten, som mindre sjöar, åar och vattendrag, behöver du däremot tillstånd från fiskerättsägaren."; "Oftast köper du då ett fiskekort som ger dig rätt att fiska i ett visst vatten." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.svenskafiskeregler.se/fritidsfiske/ — "Den som fiskar med handredskap får fiska fritt på enskilt vatten längs kusterna i havet och i Vänern, Vättern, Mälaren, Hjälmaren och Storsjön i Jämtland."; "I bilaga till fiskelagen finns detaljerade bestämmelser om vilken omfattning varje svenska medborgare har rätt att fiska inom enskilt vattenområde med andra redskap än handredskap. Det skiljer sig åt mellan olika områden och du bör känna till detta." (läst 2026-11-16) */}
           <p>
-            Många aktiviteter är helt gratis — allemansrätten gäller i Sverige och du får bygga läger, plocka bär och bada på de flesta ställen. Det enda som kräver tillstånd är fiske i sötvatten (behövs fiskekort) och dykning på vissa fredade vrak.
+            Många aktiviteter är helt gratis: allemansrätten gäller i Sverige och du får bygga läger, plocka bär och bada på de flesta ställen. Allemansrätten gäller inte fiske. I havet och de fem stora sjöarna är fiske med handredskap fritt utan fiskekort, medan reglerna för andra redskap skiljer sig mellan områden, och i mindre sjöar, åar och vattendrag behöver du tillstånd från fiskerättsägaren, oftast ett fiskekort. Dykning på vissa fredade vrak kräver också tillstånd.
           </p>
         </>
       }
@@ -154,23 +165,23 @@ export default function AktiviteterPage() {
       deeperContent={
         <>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
-            Segling — från kurs till kappseglingsbåt
+            Segling: från kurs till kappseglingsbåt
           </h2>
           <p>
             Segling är sporten som helt förändrar hur du förhåller dig till vattnet. En nybörjarkurs tar bara två helger och kostar mellan 1 500 och 2 500 kronor. Många följer upp med en seglarbevis (RYA/SSS-certifikat) som många chartrar och försäkringsbolag kräver.
           </p>
           <p>
-            <strong>Stockholms skärgård</strong> har flera kursanordnare vid Saltsjön — Stockholms Seglarskola, KSSS (Kungliga Svenska Segel Sällskapet) och privata instruktörer. <strong>Gotland</strong> är känt för långseglatser i lugnt vatten — perfekt för familjer. <strong>Bohuslän</strong> har mer utmanande väder och är populärt bland erfarna seglare.
+            <strong>Stockholms skärgård</strong> har flera kursanordnare vid Saltsjön: Stockholms Seglarskola, KSSS (Kungliga Svenska Segel Sällskapet) och privata instruktörer. <strong>Gotland</strong> är känt för långseglatser i lugnt vatten, perfekt för familjer. <strong>Bohuslän</strong> har mer utmanande väder och är populärt bland erfarna seglare.
           </p>
           <p>
-            Charterbåtar finns överallt — från 6-meterare som passar två personer till 45-fots motorbåtar. En vecka charter kostar mellan 8 000 och 25 000 kronor beroende på båtstorlek och säsong. Många nybörjare börjar med charter innan de köper egen båt.
+            Charterbåtar finns överallt, från 6-meterare som passar två personer till 45-fots motorbåtar. En vecka charter kostar mellan 8 000 och 25 000 kronor beroende på båtstorlek och säsong. Många nybörjare börjar med charter innan de köper egen båt.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Vad kostar en seglarkurs?
           </h3>
           <p>
-            En nybörjarkurs kostar mellan 1 500 och 3 000 kronor och tar två helger. Seglarbevis (RYA) kostar mellan 3 000 och 5 000 kronor. Charter av en 30-fots båt kostar ungefär 12 000–15 000 kronor per vecka under högsäsong.
+            En nybörjarkurs kostar mellan 1 500 och 3 000 kronor och tar två helger. Seglarbevis (RYA) kostar mellan 3 000 och 5 000 kronor. Charter av en 30-fots båt kostar ungefär 12 000 till 15 000 kronor per vecka under högsäsong.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -180,17 +191,17 @@ export default function AktiviteterPage() {
             Havskajak är något helt annat än paddling i sjö. Du färdas långre, möter tidvatten och kan hamna långt från land om vädern skiftar. Men det är också otroligt befriande och kräver bara ett par timmar träning för att komma igång.
           </p>
           <p>
-            <strong>Bohuslän</strong> är legendärt för havskajak — öarna ligger tätt och vattnet är ofta lugnt. Du kan paddla från Strömstad ner till Göta älv. <strong>Stockholms skärgård</strong> erbjuder allt från lätta dagsturer på grynna vikar till utmanande expeditioner i ytterskärgården. <strong>Gotland</strong> har färre öar men varmare vatten och en annan känsla — längre paddlingar mellan större öar.
+            <strong>Bohuslän</strong> är legendärt för havskajak, öarna ligger tätt och vattnet är ofta lugnt. Du kan paddla från Strömstad ner till Göta älv. <strong>Stockholms skärgård</strong> erbjuder allt från lätta dagsturer på grynna vikar till utmanande expeditioner i ytterskärgården. <strong>Gotland</strong> har färre öar men varmare vatten och en annan känsla, längre paddlingar mellan större öar.
           </p>
           <p>
-            En kajak kostar mellan 8 000 och 20 000 kronor. Du kan hyra för 200–400 kronor per dag. En introduktionskurs tar några timmar och kostar mellan 500 och 1 000 kronor — det är värt det.
+            En kajak kostar mellan 8 000 och 20 000 kronor. Du kan hyra för 200 till 400 kronor per dag. En introduktionskurs tar några timmar och kostar mellan 500 och 1 000 kronor. Det är värt det.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Allemansrätten och havskajak
           </h3>
           <p>
-            Du får bygga läger nästan överallt i Sverige, men vissa öar har landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter). Naturreservat kan ha egna regler. Innan du paddlar långt bort bör du kolla dessa restriktioner på länsstyrelsens webbplats eller kontakta naturvårdsverket.
+            Du får bygga läger nästan överallt i Sverige, men vissa öar har landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti, datumen står på skyltarna och i länsstyrelsens föreskrifter). Naturreservat kan ha egna regler. Innan du paddlar långt bort bör du kolla dessa restriktioner på länsstyrelsens webbplats eller kontakta naturvårdsverket.
           </p>
           <p>
             Du bör inte paddla ensam långt från land. Använd alltid livväst, ha en väderstation på telefonen och säg till nära vän var du är på väg.
@@ -199,21 +210,26 @@ export default function AktiviteterPage() {
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Fiske i skärgården och på kusten
           </h2>
+          {/* KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort."; "I övriga vatten, som mindre sjöar, åar och vattendrag, behöver du däremot tillstånd från fiskerättsägaren."; "Oftast köper du då ett fiskekort som ger dig rätt att fiska i ett visst vatten." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.svenskafiskeregler.se/fritidsfiske/ — "I bilaga till fiskelagen finns detaljerade bestämmelser om vilken omfattning varje svenska medborgare har rätt att fiska inom enskilt vattenområde med andra redskap än handredskap. Det skiljer sig åt mellan olika områden och du bör känna till detta." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Tänk på att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap." (läst 2026-11-16) */}
           <p>
-            Fiske är en av de mest tillgängliga aktiviteterna längs kusten. Här är det viktiga att förstå: <strong>i saltvatten (havet) behöver du INGET fiskekort</strong>. Men i sjöar och älvar behöver du alltid ett fiskekort — det kostar omkring 100–200 kronor per dag från allemanswebben.
+            Fiske är en av de mest tillgängliga aktiviteterna längs kusten. Här är det viktiga att förstå: <strong>i havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort</strong>. För andra redskap än handredskap skiljer sig reglerna mellan olika områden, och Länsstyrelsen i Stockholms fiskeguide påpekar att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap. I mindre sjöar, åar och vattendrag behöver du tillstånd från fiskerättsägaren, och oftast köper du då ett fiskekort.
           </p>
           <p>
-            <strong>Havsöring</strong> är en premium-fisk som finns längs hela västkusten och Gotland. Den är fredad och bör släppas tillbaka om du inte har särskild tillåtelse. <strong>Torsk</strong> och <strong>makrill</strong> fiskas från båt i djupare vatten. <strong>Strömming</strong> är gratis och rolig att fiska från brygga eller båt året runt.
+            <strong>Havsöring</strong> är en premiumfisk som finns längs hela västkusten och Gotland. Den är fredad och bör släppas tillbaka om du inte har särskild tillåtelse. <strong>Torsk</strong> och <strong>makrill</strong> fiskas från båt i djupare vatten. <strong>Strömming</strong> är gratis och rolig att fiska från brygga eller båt året runt.
           </p>
+          {/* KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Fiskemetoden får inte vara angeldonsfiske eller kräva användande av båt, exempelvis dragrodd eller trolling."; "Trolling, dragrodd och angel får endast bedrivas med fiskerättsägarens tillstånd (exv TDA-kortet, sid 47) eller på allmänt vatten"; "det krävs fiskekort eller tillstånd för trolling, dragrodd och angel fiske på Mälaren och i skärgården" (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "Det är förbjudet för fritidsfiskare att sälja fångst från havet." (läst 2026-11-16) */}
           <p>
-            Från båt kan du även fiska <strong>gädda, abborre och gös</strong> — för dessa behövs fiskekort även i havet om du säljer eller skänker fisken. Många båtägare filar bara på tekniken eller slänger tillbaka fisken.
+            Från båt kan du även fiska <strong>gädda, abborre och gös</strong>. Enligt Länsstyrelsen i Stockholms fiskeguide omfattar det fria handredskapsfisket inte metoder som kräver båt, som trolling och dragrodd, och i skärgården kräver trolling, dragrodd och angelfiske fiskerättsägarens tillstånd på enskilt vatten. Fångst från havet får du inte sälja som fritidsfiskare. Många båtägare filar bara på tekniken eller slänger tillbaka fisken.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Regler och fredningsperioder
           </h3>
           <p>
-            Havsöring är fredad från 1 oktober till 31 mars i de flesta områden — slapp då. Torsk har ibland fiskförbud sommartid för att ge den tid att föröka sig. Kolla fiskeriverkets hemsida före varje säsong.
+            Havsöring är fredad från 1 oktober till 31 mars i de flesta områden, slapp då. Torsk har ibland fiskförbud sommartid för att ge den tid att föröka sig. Kolla fiskeriverkets hemsida före varje säsong.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -223,33 +239,33 @@ export default function AktiviteterPage() {
             Sveriges stränder är så olika att det är omöjligt att välja en favorit. Här är en guide till de mest kända regioner:
           </p>
           <p>
-            <strong>Bohuslän</strong> är synonymt med klippbad. De glatta granitkullarna är vackra och det finns klippbad överallt från Strömstad till Göta älv. Vattnet är ofta kallast här — räkna med 12–16 grader även i juli.
+            <strong>Bohuslän</strong> är synonymt med klippbad. De glatta granitkullarna är vackra och det finns klippbad överallt från Strömstad till Göta älv. Vattnet är ofta kallast här. Räkna med 12 till 16 grader även i juli.
           </p>
           <p>
-            <strong>Gotland</strong> är känt för vita sandstränder och varmare vatten. Orsa Bad och Tofta strand är perfekta för familjer. Gotlands östra kust är ofta varmast — upp till 18–19 grader i augusti.
+            <strong>Gotland</strong> är känt för vita sandstränder och varmare vatten. Orsa Bad och Tofta strand är perfekta för familjer. Gotlands östra kust är ofta varmast, upp till 18 till 19 grader i augusti.
           </p>
           <p>
             <strong>Stockholms skärgård</strong> har grunda vikar och klippbad tätt inblandade. Några öar är helt fria från turister om man paddlar lite längre. En klassisk dagstur från Stockholm tar två timmar båt till ett lugnt badställe.
           </p>
           <p>
-            <strong>Västra Vänern</strong> och <strong>Västra Götaland</strong> erbjuder också fantastiska badplatser — ofta helt gratis och ofta tomma även i juli.
+            <strong>Västra Vänern</strong> och <strong>Västra Götaland</strong> erbjuder också fantastiska badplatser, ofta helt gratis och ofta tomma även i juli.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Vattentemperaturer året om
           </h3>
           <p>
-            Maj: 10–12 °C | Juni: 14–16 °C | Juli: 16–18 °C | Augusti: 16–19 °C | September: 14–16 °C | Oktober: 10–12 °C. I november–april är vattnet under 10 grader — en våtdräkt är nästan obligatorisk.
+            Maj: 10 till 12 °C | Juni: 14 till 16 °C | Juli: 16 till 18 °C | Augusti: 16 till 19 °C | September: 14 till 16 °C | Oktober: 10 till 12 °C. I november till april är vattnet under 10 grader, en våtdräkt är nästan obligatorisk.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Vandring från båt
           </h2>
           <p>
-            Många av Sveriges bästa vandringsleder ligger på öar eller nås bara från båt. Det öppnar upp helt nya möjligheter för friluftsliv — du kan kombinera segling, paddling eller motorbåt med promenad.
+            Många av Sveriges bästa vandringsleder ligger på öar eller nås bara från båt. Det öppnar upp helt nya möjligheter för friluftsliv. Du kan kombinera segling, paddling eller motorbåt med promenad.
           </p>
           <p>
-            <strong>Sörmlandsleden</strong> (genom Sörmland och öar utanför) är en klassisk multi-day trail — många gör den genom att paddla mellan nattställen. <strong>Roslagsleden</strong> går längs Stockholms skärgård och många avsnitt når du bara från båt. <strong>Stora Alvaret på Öland</strong> är del av UNESCO-världsarvet Södra Ölands odlingslandskap — där kan du vandra på öppen hedbygd. Många kombinerar det med både paddling och bad.
+            <strong>Sörmlandsleden</strong> (genom Sörmland och öar utanför) är en klassisk multi-day trail, många gör den genom att paddla mellan nattställen. <strong>Roslagsleden</strong> går längs Stockholms skärgård och många avsnitt når du bara från båt. <strong>Stora Alvaret på Öland</strong> är del av UNESCO-världsarvet Södra Ölands odlingslandskap. Där kan du vandra på öppen hedbygd. Många kombinerar det med både paddling och bad.
           </p>
           <p>
             <strong>Kosteröarna</strong> har flera utmärkta vandringsleder och ligger nära till hands från Strömstad. Du kan boka en övernattning i stugan eller tälta enligt allemansrätten.
@@ -259,20 +275,20 @@ export default function AktiviteterPage() {
             När är bästa säsongen?
           </h2>
           <p>
-            <strong>Maj–juni</strong> är högsäsong för segling, paddling och första baden — då är vattnet kallt (10–16 °C) men dagarna långa och väder ofta stabilt. <strong>Juli–augusti</strong> har varmast vatten (16–19 °C) och flest evenemang, men också trängsel i populära hamnar och högre priser.
+            <strong>Maj till juni</strong> är högsäsong för segling, paddling och första baden, då är vattnet kallt (10 till 16 °C) men dagarna långa och väder ofta stabilt. <strong>Juli till augusti</strong> har varmast vatten (16 till 19 °C) och flest evenemang, men också trängsel i populära hamnar och högre priser.
           </p>
           <p>
-            <strong>September</strong> ger klart vatten, tystare hamnar och ofta det bästa vädret för en längre expedition. <strong>Oktober–april</strong> är för de som gillar tom skärgård, vedeldade bastur och långfärdsskridsko — men vädret och de mörka dagarna är utmanande.
+            <strong>September</strong> ger klart vatten, tystare hamnar och ofta det bästa vädret för en längre expedition. <strong>Oktober till april</strong> är för de som gillar tom skärgård, vedeldade bastur och långfärdsskridsko, men vädret och de mörka dagarna är utmanande.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Allemansrätten i skärgården
           </h2>
           <p>
-            Allemansrätten gäller men med lokala variationer — vissa öar har landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter) och naturreservat kan ha egna regler. Du får tälta i naturen, men tältet ska stå utom syn- och hörhåll från boningshus — någon fast meteruppgift finns inte, det är terrängen och växtligheten som avgör hur långt bort det blir — och inte stå på samma plats mer än något eller några dygn.
+            Allemansrätten gäller men med lokala variationer, vissa öar har landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti, datumen står på skyltarna och i länsstyrelsens föreskrifter) och naturreservat kan ha egna regler. Du får tälta i naturen, men tältet ska stå utom syn- och hörhåll från boningshus, någon fast meteruppgift finns inte, det är terrängen och växtligheten som avgör hur långt bort det blir, och inte stå på samma plats mer än något eller några dygn.
           </p>
           <p>
-            Många öar längs kusten är naturreservat — dessa är ofta helt avstängda för beträdande under våren för att inte störa fågelkolonierna. Kontrollera alltid innan du paddlar långt bort.
+            Många öar längs kusten är naturreservat, dessa är ofta helt avstängda för beträdande under våren för att inte störa fågelkolonierna. Kontrollera alltid innan du paddlar långt bort.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -282,42 +298,49 @@ export default function AktiviteterPage() {
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Behöver man fiskekort för fiske i havet?
           </h3>
+          {/* Rättad 2026-11-16 (P0 23): samma svar som i faqJsonLd ovan. */}
+          {/* KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort."; "Havet efter kusten"; "Vänern"; "Vättern"; "Mälaren"; "Hjälmaren"; "Storsjön i Jämtland." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "Därför finns det 62 vikar i Stockholms skärgård där fiskeförbud råder under våren. Nio av dessa områden har fiskeförbud året runt."; "Utöver vårfredningsområdena finns 14 fredningsområden i vissa åmynningar, där fiskeförbud råder på hösten när öringen går upp i vattendragen för att leka."; "I övriga vatten, som mindre sjöar, åar och vattendrag, behöver du däremot tillstånd från fiskerättsägaren."; "Oftast köper du då ett fiskekort som ger dig rätt att fiska i ett visst vatten." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.svenskafiskeregler.se/fritidsfiske/ — "I bilaga till fiskelagen finns detaljerade bestämmelser om vilken omfattning varje svenska medborgare har rätt att fiska inom enskilt vattenområde med andra redskap än handredskap. Det skiljer sig åt mellan olika områden och du bör känna till detta." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide%20Stockholms%20l%C3%A4n.pdf — "Tänk på att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap."; "Fredade arter: skärkniv, europeisk ål, mal och stormusslor" (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/fiskeregler-for-fritidsfiske.html — "På svenskafiskeregler.se kan du söka fiskeregler via karta." (läst 2026-11-16) */}
+          {/* KÄLLA: https://www.havochvatten.se/fiske-och-handel/regler-och-lagar/arter-regler-for-fiske-och-rapportering/oring---minimimatt-fredningstid-och-fangstbegransningar.html — "Fredningstiderna varierar längs kusten beroende på område i Östersjön (se svenskafiskeregler.se för detaljerad information)." (läst 2026-11-16) */}
           <p>
-            <strong>Nej.</strong> I saltvatten (havet längs kusten) behöver du inget fiskekort för att fiska. Du kan fiska gratis från brygga, båt eller strand året runt. Dock gäller fredningsperioder och vissa fiskar är skyddade (som havsöring under vissa perioder). I sjöar och älvar behöver du alltid ett fiskekort — kostnad ca 100–200 kronor per dag.
+            <strong>Inte med handredskap.</strong> I havet längs kusten och i de fem stora sjöarna Vänern, Vättern, Mälaren, Hjälmaren och Storsjön i Jämtland får du fiska fritt med handredskap utan fiskekort. För andra redskap än handredskap skiljer sig reglerna mellan olika områden, och Länsstyrelsen i Stockholms fiskeguide påpekar att trolling, dragrodd, angel, kastnät och ismete inte räknas som handredskap. Fredningsområden och fredningstider gäller också: i Stockholms skärgård har 62 vikar fiskeförbud på våren, och nio av dem året runt. Fredningstiderna för öring varierar längs Östersjökusten, och i Stockholms skärgård finns 14 fredningsområden i åmynningar med fiskeförbud på hösten, när öringen går upp i vattendragen för att leka. Vissa arter, som europeisk ål, är fredade. Kontrollera svenskafiskeregler.se för platsen du fiskar på. I övriga sjöar och vattendrag behöver du tillstånd från fiskerättsägaren, oftast ett fiskekort.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Vad är bästa aktiviteten för en barnfamilj?
           </h3>
           <p>
-            <strong>Bad och snorkling</strong> är lättast — du behöver bara ett par badkläder och ett barn kan börja från 2–3 år. <strong>Motorbåt</strong> är nästa steg — många hyra för dagen och åker mellan badplatser. <strong>Kajak</strong> passar från 4–5 år (i double-kajak med vuxen) men kräver övning. <strong>Segling</strong> är fantastisk med barn — en 25-fots husbåt med två barn är lagom utmanande.
+            <strong>Bad och snorkling</strong> är lättast. Du behöver bara ett par badkläder och ett barn kan börja från 2 till 3 år. <strong>Motorbåt</strong> är nästa steg, många hyra för dagen och åker mellan badplatser. <strong>Kajak</strong> passar från 4 till 5 år (i dubbelkajak med vuxen) men kräver övning. <strong>Segling</strong> är fantastisk med barn, en 25-fots husbåt med två barn är lagom utmanande.
           </p>
           <p>
-            Gotland är överlag mer familjevänligt än Stockholms skärgård — varmaste vattnet, längsta stränderna och många barnaktiviteter på land.
+            Gotland är överlag mer familjevänligt än Stockholms skärgård: varmaste vattnet, längsta stränderna och många barnaktiviteter på land.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Kan man hyra kajak utan tidigare erfarenhet?
           </h3>
           <p>
-            <strong>Ja, helt säkert.</strong> En kajakhyrningsföretag kommer alltid att ge dig 15–30 minuter instruktion innan du åker iväg. Du behöver inte kunna något i förväg — bara vilja. Börja med en kortare tur (2–3 timmar) i ett lugnt område. Använd alltid livväst, även om du är simkunnig.
+            <strong>Ja, helt säkert.</strong> En kajakhyrningsföretag kommer alltid att ge dig 15 till 30 minuter instruktion innan du åker iväg. Du behöver inte kunna något i förväg, bara vilja. Börja med en kortare tur (2 till 3 timmar) i ett lugnt område. Använd alltid livväst, även om du är simkunnig.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             När är havet varmt nog för simning utan våtdräkt?
           </h3>
           <p>
-            Det beror på personlig smärtgräns, men de flesta vänjer sig vid att tycka 15–16 °C är okej. Utan vana är 17–18 °C minimum för många. <strong>Juli–augusti</strong> är det enda sättet att bada utan våtdräkt för de flesta — då är det ofta 17–19 °C. I Gotland är det ofta 1–2 grader varmare än övriga kusten.
+            Det beror på personlig smärtgräns, men de flesta vänjer sig vid att tycka 15 till 16 °C är okej. Utan vana är 17 till 18 °C minimum för många. <strong>Juli till augusti</strong> är det enda sättet att bada utan våtdräkt för de flesta, då är det ofta 17 till 19 °C. I Gotland är det ofta 1 till 2 grader varmare än övriga kusten.
           </p>
           <p>
-            En billig våtdräkt kostar 300–500 kronor och öppnar upp möjligheten att bada året runt — även vinterbadare finns där det finns is.
+            En billig våtdräkt kostar 300 till 500 kronor och öppnar upp möjligheten att bada året runt, även vinterbadare finns där det finns is.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Praktiska tips innan du åker
           </h2>
           <p>
-            <strong>1. Kolla vädret.</strong> Använd SMHI eller Windy.com — båda ger en detaljerad 10-dagars prognos med vind, vågor och temperatur.
+            <strong>1. Kolla vädret.</strong> Använd SMHI eller Windy.com: båda ger en detaljerad 10-dagars prognos med vind, vågor och temperatur.
           </p>
           <p>
             <strong>2. Informera någon.</strong> Berätta för en vän eller familjemedlem var du är på väg och när du förväntas vara tillbaka. Låt honom/henne veta när du är framme.
@@ -326,13 +349,13 @@ export default function AktiviteterPage() {
             <strong>3. Använd alltid livväst.</strong> I båt är det lag. I kajak är det överlevnad.
           </p>
           <p>
-            <strong>4. Börja små.</strong> Om du aldrig seglat förr — ta en kurs. Om du aldrig paddlat — hyr kajak i lugnt vatten innan du åker långt. Många olyckor beror på övermod.
+            <strong>4. Börja små.</strong> Om du aldrig seglat förr, ta en kurs. Om du aldrig paddlat, hyr kajak i lugnt vatten innan du åker långt. Många olyckor beror på övermod.
           </p>
           <p>
             <strong>5. Ha en mobil eller VHF med batteri.</strong> Många skärgårdsöar har svag täckning men en VHF radiomottagare kan rädda livet.
           </p>
           <p>
-            <strong>6. Respektera allemansrätten och naturreservaten.</strong> Ta med allt skräp hem, gräv ned toalettavfallet en bra bit in på land — bort från strandlinjen, vattendrag, stigar och hus — och läs på om reglerna innan du paddlar långt bort.
+            <strong>6. Respektera allemansrätten och naturreservaten.</strong> Ta med allt skräp hem, gräv ned toalettavfallet en bra bit in på land, bort från strandlinjen, vattendrag, stigar och hus, och läs på om reglerna innan du paddlar långt bort.
           </p>
         </>
       }

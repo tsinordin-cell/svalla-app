@@ -40,14 +40,14 @@ describe('mejlflöden är avstängda som standard', () => {
 })
 
 describe('tidsfönster', () => {
-  it('månadsbrevet: första tisdagen t.o.m. den 14:e, okt–mars', () => {
+  it('månadsbrevet: första tisdagen t.o.m. den 14:e, okt till mars', () => {
     expect(manadsbrevFonster(new Date('2026-10-05T09:00:00Z'))).toBe(false) // måndag före
     expect(manadsbrevFonster(new Date('2026-10-06T09:00:00Z'))).toBe(true)  // första tisdagen
     expect(manadsbrevFonster(new Date('2026-10-14T09:00:00Z'))).toBe(true)
     expect(manadsbrevFonster(new Date('2026-10-15T09:00:00Z'))).toBe(false)
     expect(manadsbrevFonster(new Date('2026-06-02T09:00:00Z'))).toBe(false) // sommar
   })
-  it('veckans ö: tisdagar april–september', () => {
+  it('veckans ö: tisdagar april till september', () => {
     expect(arVeckansOdag(new Date('2027-05-04T09:00:00Z'))).toBe(true)
     expect(arVeckansOdag(new Date('2027-05-05T09:00:00Z'))).toBe(false)
     expect(arVeckansOdag(new Date('2026-10-06T09:00:00Z'))).toBe(false)

@@ -13,7 +13,7 @@ const ISLAND_SECTIONS = [
     label: 'Innerskärgården',
     color: 'var(--sea)',
     bg: 'rgba(30,92,130,0.07)',
-    description: 'De närmaste öarna — lätta att nå, perfekta för en dag.',
+    description: 'De närmaste öarna: lätta att nå, perfekta för en dag.',
     slugs: ['fjaderholmarna', 'vaxholm', 'grinda', 'finnhamn', 'rindo', 'resaro'],
   },
   {
@@ -21,7 +21,7 @@ const ISLAND_SECTIONS = [
     label: 'Mellersta skärgården',
     color: 'var(--sea)',
     bg: 'rgba(10,123,140,0.07)',
-    description: 'Det klassiska skärgårdslivet — Sandhamn, Möja och öarna däremellan.',
+    description: 'Det klassiska skärgårdslivet: Sandhamn, Möja och öarna däremellan.',
     slugs: [
       'sandhamn', 'moja', 'ljustero', 'gallno', 'ingmarso', 'namdo', 'svartso',
       'runmaro', 'husaro', 'kymmendo', 'bullero', 'vindo', 'ingaro', 'hasselo',
@@ -34,7 +34,7 @@ const ISLAND_SECTIONS = [
     label: 'Södra skärgården',
     color: 'var(--ok)',        // var #2a6e50: 3,2:1 på mörk yta (rester 2026-10-07)
     bg: 'rgba(42,110,80,0.07)',
-    description: 'Vilda klippor, öppet hav och Utö — den dramatiska södra skärgården.',
+    description: 'Vilda klippor, öppet hav och Utö. Den dramatiska södra skärgården.',
     slugs: [
       'uto', 'dalaro', 'orno', 'landsort', 'nattaro', 'asko', 'galo', 'toro',
       'fjardlang', 'smaadalaro', 'morko', 'musko', 'langviksskaret'],
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   description: 'Utforska utvalda skärgårdsrutter för motorbåt, segelbåt, kajak och mer. Hitta rätt rutt för din tur.',
   alternates: { canonical: 'https://svalla.se/rutter' },
   openGraph: {
-    title: 'Rutter – Svalla',
+    title: 'Rutter | Svalla',
     description: 'Utvalda skärgårdsrutter med restauranger, tips och svårighetsgrad.',
     url: 'https://svalla.se/rutter',
   },
@@ -158,11 +158,11 @@ async function FerriesView() {
               Ingen orsak och inget "just nu": orsaken kan vara en saknad nyckel. */}
           {allaFel ? (
             <>
-              <strong style={{ color: 'var(--txt)' }}>Avgångarna kunde inte hämtas.</strong> Vi visar bara tider vi kan hämta från Trafiklab — följ länken till operatören för tidtabell.
+              <strong style={{ color: 'var(--txt)' }}>Avgångarna kunde inte hämtas.</strong> Vi visar bara tider vi kan hämta från Trafiklab. Följ länken till operatören för tidtabell.
             </>
           ) : (
             <>
-              <strong style={{ color: 'var(--txt)' }}>Inga live-avgångar.</strong> Vi visar bara tider vi kan hämta från Trafiklab — följ länken till operatören för tidtabell.
+              <strong style={{ color: 'var(--txt)' }}>Inga live-avgångar.</strong> Vi visar bara tider vi kan hämta från Trafiklab. Följ länken till operatören för tidtabell.
             </>
           )}
         </div>
@@ -212,8 +212,8 @@ async function FerriesView() {
                   <div style={{ fontSize: 12, color: 'var(--txt2)', lineHeight: 1.5, padding: '2px 0' }}>
                     {/* revision 2026-10-02: ett hämtfel får inte se ut som "inga båtar" */}
                     {fel
-                      ? <>Avgångarna kunde inte hämtas — se {operatorWebbplats(r)}.</>
-                      : <>Ingen båtavgång hittad — se operatörens tidtabell.</>}
+                      ? <>Avgångarna kunde inte hämtas, se {operatorWebbplats(r)}.</>
+                      : <>Ingen båtavgång hittad, se operatörens tidtabell.</>}
                   </div>
                 ) : deps.map((d, i) => (
                   <div key={i} style={{
@@ -223,7 +223,7 @@ async function FerriesView() {
                   }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', whiteSpace: 'nowrap' }}>
                       {departureLabel(d.time)}
-                      {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{'\u2013'}{d.arrival}</span>}
+                      {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{' till '}{d.arrival}</span>}
                     </div>
                     <div style={{ fontSize: 11, color: 'var(--txt2)', textAlign: 'right' }}>
                       {d.to}

@@ -1,5 +1,5 @@
 ---
-trigger: första tisdagen i månaden, oktober–mars (bara om manad stämmer)
+trigger: första tisdagen i månaden, oktober till mars (bara om manad stämmer)
 manad: 2026-11
 layout: fullt
 subject_options:
@@ -49,7 +49,7 @@ Hur båtarna går när isen lägger sig, med istabeller, svävare och isvägar, 
 <!-- KÄLLA: https://www.sandhamn.com/sv/kalender/julmarknad — "Lördagen den 28 november välkomnar vi dig till julmarknad på Sandhamn."; "Julmarknad och aktiviteter kl. 11.00–15.00" (läst 2026-11-07) -->
 <!-- KÄLLA: https://www.destinationvaxholm.se/events/vaxholms-julmarknad-2026 — "Den andra helgen i advent, 5 – 6 december, är det åter dags för Vaxholms traditionsenliga julmarknad." (läst 2026-11-07) -->
 - **Marstrand**, helgen 28 och 29 november, inomhus i Strandverket.
-- **Sandhamn**, lördag 28 november klockan 11–15.
+- **Sandhamn**, lördag 28 november klockan 11 till 15.
 - **Vaxholm**, andra advent, 5 och 6 december.
 
 :::knapp

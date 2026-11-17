@@ -8,7 +8,7 @@ const pt: GpsPoint = {
   rawLat: 59.3300456, rawLng: 18.0699877, deviceSpeedKnots: 5.9871,
 }
 
-describe('toGpsRow — rådata skrivs vid sidan av det utjämnade läget', () => {
+describe('toGpsRow: rådata skrivs vid sidan av det utjämnade läget', () => {
   it('lägger rå lat/lng med full precision och enhetsfart avrundad till 2 dec', () => {
     const r = toGpsRow('trip-1', pt)
     expect(r.latitude).toBe(59.3300001)
@@ -52,7 +52,7 @@ describe('isMissingRawColumnError', () => {
   })
 })
 
-describe('insertGpsRows — turen får aldrig gå förlorad för att migrationen saknas', () => {
+describe('insertGpsRows: turen får aldrig gå förlorad för att migrationen saknas', () => {
   const rows: GpsRow[] = [toGpsRow('t', pt)]
 
   it('lyckad skrivning: en insert, rådata kvar', async () => {
@@ -83,7 +83,7 @@ describe('insertGpsRows — turen får aldrig gå förlorad för att migrationen
   })
 })
 
-describe('fetchAllGpsPoints — sidindelning förbi PostgREST-taket på 1 000', () => {
+describe('fetchAllGpsPoints: sidindelning förbi PostgREST-taket på 1 000', () => {
   function fakeClient(total: number, pageSize: number, failAt?: number) {
     const calls: [number, number][] = []
     const client = { from: () => ({ select: () => ({ eq: () => ({ order: () => ({ order: () => ({
@@ -116,7 +116,7 @@ describe('fetchAllGpsPoints — sidindelning förbi PostgREST-taket på 1 000', 
     const { client } = fakeClient(0, 1000)
     expect(await fetchAllGpsPoints(client, 't', '*', 1000)).toEqual([])
   })
-  it('databasfel kastas — inte en tyst stympad lista', async () => {
+  it('databasfel kastas: inte en tyst stympad lista', async () => {
     const { client } = fakeClient(5000, 1000, 2000)
     await expect(fetchAllGpsPoints(client, 't', '*', 1000)).rejects.toThrow('boom')
   })

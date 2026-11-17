@@ -48,7 +48,7 @@ describe('buildGpx', () => {
     expect(gpx).toContain('<ele>5.0</ele>')
   })
 
-  it('fart och kurs som Garmin TrackPointExtension: knop → m/s, grader 0–359', () => {
+  it('fart och kurs som Garmin TrackPointExtension: knop → m/s, grader 0 till 359', () => {
     const t: GpxTrack = { name: 'Fart', points: [
       { lat: 59.3, lng: 18.0, time: '2026-09-11T14:58:19.643Z', speedKnots: 10, heading: 359.6 },
       { lat: 59.3, lng: 18.0, speedKnots: 0, heading: null },

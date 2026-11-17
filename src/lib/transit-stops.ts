@@ -79,7 +79,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "2A STOCKHOLM – HÖGANÄS – VAXHOLM", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-10-31)
     // KÄLLA: https://kund.printhuset-sthlm.se/sl/h670670x.pdf — "Tekniska högskolan", "Västerhamnsplan", "Giltig 17 augusti–12 december 2026" (läst 2026-10-31)
-    note: 'Båt direkt från Strömkajen — eller buss 670 från Tekniska högskolan.',
+    note: 'Båt direkt från Strömkajen, eller buss 670 från Tekniska högskolan.',
   },
   uto: {
     destStopId: '740020695', destStopName: 'Utö Gruvbryggan',
@@ -96,7 +96,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   fjaderholmarna: {
     destStopId: '740034632', destStopName: 'Fjäderholmarna brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Närmaste skärgårdsön — båt direkt från Strömkajen, ca 25 min.',
+    note: 'Närmaste skärgårdsön: båt direkt från Strömkajen, ca 25 min.',
     // P0 2026-11-02 (Kontrollanten, fjaderholmarna-k002/k103): Fjäderholmarna är
     // märkt X i tabell 2, så tiderna i rutorna är reseplanerarens, inte tidtabellens.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "Fjäderholmarna", "X", "Bryggorna trafikeras utan fast avgångstid.", "Sök hela din resa på sl.se för att få tider för både anslutande SL-trafik och skärgårdstrafiken." (läst 2026-11-02)
@@ -144,12 +144,12 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   arholma: {
     destStopId: '740024314', destStopName: 'Arholma brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Yttersta ön i norra skärgården — båt från Simpnäs (buss 631 från Norrtälje).',
+    note: 'Yttersta ön i norra skärgården, båt från Simpnäs (buss 631 från Norrtälje).',
   },
   blido: {
     destStopId: '740001021', destStopName: 'Blidö Bromskär brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Bilfärja från Furusund — Waxholmsbåt eller buss 626 + 634 från Norrtälje.',
+    note: 'Bilfärja från Furusund, Waxholmsbåt eller buss 626 + 634 från Norrtälje.',
   },
   fejan: {
     destStopId: '740018278', destStopName: 'Fejan brygga',
@@ -158,17 +158,17 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   furusund: {
     destStopId: '740025063', destStopName: 'Furusund brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Knutpunkten för norra skärgården — buss 626/634 från Norrtälje.',
+    note: 'Knutpunkten för norra skärgården, buss 626/634 från Norrtälje.',
   },
   norrora: {
     destStopId: '740034551', destStopName: 'Norröra brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Saltkråkan-ön — Waxholmsbåt från Furusund.',
+    note: 'Saltkråkan-ön, Waxholmsbåt från Furusund.',
   },
   rodloga: {
     destStopId: '740024879', destStopName: 'Rödlöga brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Yttersta ytterskärgården — direktbåt från Furusund.',
+    note: 'Yttersta ytterskärgården, direktbåt från Furusund.',
   },
   yxlan: {
     destStopId: '740025023', destStopName: 'Yxlan Vagnsunda brygga',
@@ -184,7 +184,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   ljustero: {
     destStopId: '740020573', destStopName: 'Åsättra (Ljusterö) brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Bilfärja från Östanå — buss 626 + bilfärja Östanå–Ljusterö.',
+    note: 'Bilfärja från Östanå, buss 626 + bilfärja Östanå till Ljusterö.',
   },
   runmaro: {
     destStopId: '740023240', destStopName: 'Långvik (Runmarö) brygga',
@@ -199,7 +199,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   resaro: {
     destStopId: '740034517', destStopName: 'Ytterby (Resarö) brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Bilbro från Vaxholm — buss 670 + 689 från Tekniska högskolan.',
+    note: 'Bilbro från Vaxholm, buss 670 + 689 från Tekniska högskolan.',
   },
 
   // ── Södra skärgården (Nynäshamn) ─────────────────────────────────────
@@ -222,7 +222,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ" (läst 2026-10-29)
     // P0 2026-10-29: avgångsrutan räknade från Nynäshamns färjeterminal. Ingen av Waxholmsbolagets tabeller för perioden har båt därifrån till Ornö.
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
-    note: 'Bilfärja från Dalarö — pendeltåg till Handen + buss 839 + färja.',
+    note: 'Bilfärja från Dalarö, pendeltåg till Handen + buss 839 + färja.',
   },
   kymmendo: {
     destStopId: '740018277', destStopName: 'Kymmendö brygga',
@@ -230,7 +230,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Kymmendö" (läst 2026-10-29)
     // P0 2026-10-29: noten sa "från Dalarö eller Nynäshamn" utan säsong. Från Nynäshamn går båten bara sommartid.
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
-    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
+    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni till 16 augusti).',
     bestallning: 'En del turer till och från Kymmendö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
   },
   // bullero flyttades 2026-11-09 till ISLAND_NO_TRANSIT (P0 22); se kommentaren där.
@@ -257,7 +257,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // 315 min, 2 byten, uppmätt 2026-08-05
     destStopId: '740068074', destStopName: 'Åmyran',
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
-    note: 'Landvägen hela sträckan, buss via Norrtälje. Singö nås över bro — ingen båt behövs.',
+    note: 'Landvägen hela sträckan, buss via Norrtälje. Singö nås över bro, ingen båt behövs.',
   },
   lido: {
     // 160 min, 3 byten, uppmätt 2026-08-05
@@ -269,7 +269,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // 117 min, 2 byten, uppmätt 2026-08-05
     destStopId: '740067876', destStopName: 'Gräddö torg',
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
-    note: 'Buss via Norrtälje. Gräddö ligger på fastlandet — härifrån går båtarna vidare ut i Rådmansöskärgården.',
+    note: 'Buss via Norrtälje. Gräddö ligger på fastlandet, härifrån går båtarna vidare ut i Rådmansöskärgården.',
   },
   vaddo: {
     // 140 min, 2 byten, uppmätt 2026-08-05
@@ -290,7 +290,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Fjärdlång" (läst 2026-10-29)
     // P0 2026-10-29: noten sa "Direkt Waxholmsbåt från Nynäshamn" utan säsong. Den båten går bara sommartid.
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
-    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni–16 augusti).',
+    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni till 16 augusti).',
     bestallning: 'De flesta turer stannar vid Fjärdlång bara om resan har beställts i förväg, och någon tur går bara efter beställning. Beställ minst en eller två timmar före avgång, beroende på tur, och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
   },
   rindo: {
@@ -333,7 +333,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // 185 min, 3 byten, uppmätt 2026-08-05
     destStopId: '740034482', destStopName: 'Eknö brygga',
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
-    note: 'Buss till Stavsnäs och Waxholmsbåt via Sandhamn. Lång resa — planera dagen efter båten.',
+    note: 'Buss till Stavsnäs och Waxholmsbåt via Sandhamn. Lång resa. Planera dagen efter båten.',
   },
 
   // ── Utanför Stockholm, tillagda 2026-08-05 ────────────────────────────
@@ -345,7 +345,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // 23 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
     destStopId: '740024949', destStopName: 'Brännö Rödsten',
     originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
-    note: 'Direkt Styrsöbåt från Saltholmen — spårvagn 11 dit från Göteborg C. Brännö är bilfri.',
+    note: 'Direkt Styrsöbåt från Saltholmen, spårvagn 11 dit från Göteborg C. Brännö är bilfri.',
   },
   styrso: {
     // 14 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
@@ -367,7 +367,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // 35 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
     destStopId: '740001382', destStopName: 'Vrångö',
     originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
-    note: 'Direkt Styrsöbåt från Saltholmen, ytterst i södra skärgården — sista anhalten.',
+    note: 'Direkt Styrsöbåt från Saltholmen, ytterst i södra skärgården, sista anhalten.',
   },
   asperon: {
     // 19 min, 0 byten, uppmätt 2026-08-05 · ren båtresa

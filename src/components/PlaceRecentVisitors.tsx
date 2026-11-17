@@ -55,7 +55,7 @@ export default async function PlaceRecentVisitors({
           Ingen har gjort {placeName} till höjdpunkt på en tur än.
           <br />
           <span style={{ fontSize: 12, color: 'var(--txt3)', opacity: 0.8 }}>
-            Bli första — logga din nästa tur här.
+            Bli första, logga din nästa tur här.
           </span>
         </div>
       </section>

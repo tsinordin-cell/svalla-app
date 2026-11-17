@@ -64,7 +64,7 @@ export default function FollowPrefsButton({
 
  return (
  <>
- <button onClick={() => setOpen(true)} aria-label="Notis-inställningar"
+ <button onClick={() => setOpen(true)} aria-label="Notisinställningar"
  title={customized ? 'Anpassade notiser' : 'Notiser från denna seglare'}
  style={{
  width: 36, height: 36, borderRadius: '50%',
@@ -105,10 +105,10 @@ export default function FollowPrefsButton({
  Notiser från @{followingUsername}
  </h2>
  <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 0 18px' }}>
- Filtrera vilka push-notiser du får när denna seglare loggar en tur.
+ Filtrera vilka pushnotiser du får när denna seglare loggar en tur.
  </p>
 
- <Toggle label="Push-notiser på" sub="Stäng av helt om du vill vara tyst"
+ <Toggle label="Pushnotiser på" sub="Stäng av helt om du vill vara tyst"
  value={notifyAny} onChange={setNotifyAny} />
 
  <Toggle label="Bara magiska turer" sub="Bara (pinnar=3)"

@@ -456,7 +456,8 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 /* -- Resetips / Dagsplaner -- */
 .resetips-section{background:var(--white);padding:100px 40px}
 .resetips-section .section-header{margin-bottom:56px}
-.resetips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.resetips-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:1100px){.resetips-grid{grid-template-columns:1fr 1fr}}
 .resetips-card{border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column;border:1px solid rgba(26,74,94,.07)}
 .resetips-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
 .resetips-card-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;overflow:hidden}
@@ -538,6 +539,12 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 @media(max-width:359px){.dest-card-region,.region-card-label{overflow-wrap:break-word}}
 
 [data-theme="dark"] body { background: var(--sea-dark) !important; }
+/* Tätare startsida (2026-11-16): mindre luft mellan delarna. */
+.resetips-section,.destinations-section,.activities-section,.thorkel-section,.faq-section{padding-top:64px;padding-bottom:64px}
+.section-header{margin-bottom:36px}
+.split-section{min-height:0}
+.split-pane{padding:56px 60px}
+@media(max-width:600px){.resetips-section,.destinations-section,.activities-section,.thorkel-section,.faq-section{padding-top:44px;padding-bottom:44px}.split-pane{padding:36px 20px}}
 `
 
 const LANDING_HTML = `
@@ -867,16 +874,16 @@ const LANDING_HTML = `
   <div class="section-header reveal">
    <div class="section-label">Dagsplaner & Resetips</div>
    <h2 class="section-title">Utvalda turer i skärgården</h2>
-   <p class="section-sub">Kuraterade dagsplaner med allt du behöver — färja, mat, bad och dolda pärlor längs vägen.</p>
+   <p class="section-sub">Kuraterade dagsplaner med allt du behöver: färja, mat, bad och dolda pärlor längs vägen.</p>
   </div>
   <div class="resetips-grid">
    <a href="/resetips/djuro-grinda-dagstur" class="resetips-card reveal reveal-delay-1">
     <div class="resetips-card-img" data-lp-photo="grinda" style="background:linear-gradient(160deg,#0c1e10,#1a4a2a,#2a7a40)">
      <span class="resetips-card-badge">Populär</span>
-     <span class="resetips-card-season">Maj–Sep</span>
+     <span class="resetips-card-season">Maj till sep</span>
     </div>
     <div class="resetips-card-body">
-     <div class="resetips-card-title">Bil, glass och båt — Djurö till Grinda</div>
+     <div class="resetips-card-title">Bil, glass och båt: Djurö till Grinda</div>
      <div class="resetips-card-tagline">Bil till Djurö, båt över till Grinda och lunch på Grinda Wärdshus.</div>
      <div class="resetips-card-meta">
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
@@ -889,15 +896,15 @@ const LANDING_HTML = `
    <a href="/resetips/sandhamn-ytterskargard" class="resetips-card reveal reveal-delay-2">
     <div class="resetips-card-img" data-lp-photo="sandhamn" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
      <span class="resetips-card-badge">Klassiker</span>
-     <span class="resetips-card-season">Maj–Sep</span>
+     <span class="resetips-card-season">Maj till sep</span>
     </div>
     <div class="resetips-card-body">
      <div class="resetips-card-title">Sandhamn med Cinderellabåten</div>
      <!-- KÄLLA: Strömma, Cinderellabåtarna 2026, https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/cinderella/2026/cinderella_stockholm_sandhamn_2026.pdf — 30/4–27/9, Strandvägen 10:00 → Sandhamn 12:30. Länsstyrelsen Stockholm, Utö, https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "I Gruvbyn kan du strosa mellan gamla vackra byggnader"; "långa sandstränder och badvänliga klippor" (lästa 2026-09-21) -->
-     <div class="resetips-card-tagline">Två och en halv timme ut från Strandvägen – sandstränder och KSSS-hamnen full av segelbåtar.</div>
+     <div class="resetips-card-tagline">Två och en halv timme ut från Strandvägen, med sandstränder och KSSS-hamnen full av segelbåtar.</div>
      <div class="resetips-card-meta">
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
-      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Cinderellabåten (linjebåt — ingen egen båt krävs)</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Cinderellabåten (linjebåt, ingen egen båt krävs)</span>
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Lätt</span>
      </div>
      <div class="resetips-card-cta">Läs dagsplanen →</div>
@@ -906,15 +913,32 @@ const LANDING_HTML = `
    <a href="/resetips/uto-cykeldag" class="resetips-card reveal reveal-delay-3">
     <div class="resetips-card-img" data-lp-photo="uto" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
      <span class="resetips-card-badge">Naturupplevelse</span>
-     <span class="resetips-card-season">Maj–Sep</span>
+     <span class="resetips-card-season">Maj till sep</span>
     </div>
     <div class="resetips-card-body">
      <div class="resetips-card-title">Utö på cykel</div>
-     <div class="resetips-card-tagline">Gruvbyns gamla hus, långa sandstränder och badvänliga klippor – med cykeln från Gruvbryggan.</div>
+     <div class="resetips-card-tagline">Gruvbyns gamla hus, långa sandstränder och badvänliga klippor, med cykeln från Gruvbryggan.</div>
      <div class="resetips-card-meta">
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg>Tåg + färja</span>
       <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Medel</span>
+     </div>
+     <div class="resetips-card-cta">Läs dagsplanen →</div>
+    </div>
+   </a>
+   <!-- KÄLLA: dagsplanen marstrand-fastning-och-klippor i src/app/resetips/trips-data.ts (källor lästa 2026-11-16) -->
+   <a href="/resetips/marstrand-fastning-och-klippor" class="resetips-card reveal reveal-delay-4">
+    <div class="resetips-card-img" data-lp-photo="marstrand" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
+     <span class="resetips-card-badge">Västkusten</span>
+     <span class="resetips-card-season">Jun till aug</span>
+    </div>
+    <div class="resetips-card-body">
+     <div class="resetips-card-title">Marstrand: fästning och klippbad</div>
+     <div class="resetips-card-tagline">Buss från Göteborg, två minuter med färjan och en bilfri ö med fästning, vandringsled och bad.</div>
+     <div class="resetips-card-meta">
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Buss + färja</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Lätt</span>
      </div>
      <div class="resetips-card-cta">Läs dagsplanen →</div>
     </div>
@@ -926,62 +950,13 @@ const LANDING_HTML = `
  </div>
 </section>
 
-<section class="guides-section" id="guider">
- <div class="section-inner">
-  <div class="section-header reveal" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
-   <div>
-    <div class="section-label">Populära guider</div>
-    <h2 class="section-title">Expertguider till skärgården</h2>
-   </div>
-   <a href="/blogg" class="btn btn-teal">Alla guider &rarr;</a>
-  </div>
-  <div class="guides-grid">
-   <a href="/blogg/basta-badplatserna" class="guide-card reveal reveal-delay-1">
-    <div class="guide-card-img" data-lp-photo="badplatser" style="background:linear-gradient(160deg,#0a2e3a,#1a6a7e)">
-     <span class="guide-card-cat">Aktiviteter</span>
-    </div>
-    <div class="guide-card-body">
-     <div class="guide-card-title">Badplatser i Stockholms skärgård – sandstränder och klippbad</div>
-     <div class="guide-card-read">Läs guide &rarr;</div>
-    </div>
-   </a>
-   <a href="/blogg/fjaderholmarna-dagstur" class="guide-card reveal reveal-delay-2">
-    <div class="guide-card-img" data-lp-photo="fjaderholmarna" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e)">
-     <span class="guide-card-cat">Öguide</span>
-    </div>
-    <div class="guide-card-body">
-     <div class="guide-card-title">Fjäderholmarna dagstur – båt, mat och vad du gör på ön</div>
-     <div class="guide-card-read">Läs guide &rarr;</div>
-    </div>
-   </a>
-   <a href="/blogg/uto-guide" class="guide-card reveal reveal-delay-3">
-    <div class="guide-card-img" data-lp-photo="uto" style="background:linear-gradient(160deg,#261408,#4a2c14)">
-     <span class="guide-card-cat">Öguide</span>
-    </div>
-    <div class="guide-card-body">
-     <div class="guide-card-title">Utö guide – gruvorna, cykel, bad och båt från Årsta brygga</div>
-     <div class="guide-card-read">Läs guide &rarr;</div>
-    </div>
-   </a>
-   <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="guide-card reveal reveal-delay-4">
-    <div class="guide-card-img" data-lp-photo="kajak" style="background:linear-gradient(160deg,#0c2218,#1a5032)">
-     <span class="guide-card-cat">Aktiviteter</span>
-    </div>
-    <div class="guide-card-body">
-     <div class="guide-card-title">Kajak i Stockholms skärgård – guide för nybörjare</div>
-     <div class="guide-card-read">Läs guide &rarr;</div>
-    </div>
-   </a>
-  </div>
- </div>
-</section>
 
 <section class="destinations-section" id="resmål">
  <div class="section-inner">
  <div class="section-header reveal">
  <div class="section-label">Utforska skärgården</div>
  <h2 class="section-title">Välj din del av skärgården</h2>
- <p class="section-sub">Från Stockholms skärgård till Blekinges kust och Västerhavet — varje region har sin karaktär och sina gömda skatter.</p>
+ <p class="section-sub">Från Stockholms skärgård till Blekinges kust och Västerhavet, varje region har sin karaktär och sina gömda skatter.</p>
  </div>
  <div class="destinations-grid">
  <a href="/o/vaxholm" class="dest-card reveal reveal-delay-1">
@@ -1040,92 +1015,6 @@ const LANDING_HTML = `
  </div>
 </section>
 
-<section class="regions-section" id="sverige">
- <div class="section-inner">
-  <div class="section-header reveal" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
-   <div>
-    <div class="section-label">Utforska hela Sverige</div>
-    <h2 class="section-title">Skärgård från norr till söder</h2>
-    <p class="section-sub">Svalla täcker nu mer än Stockholms skärgård — utforska Västkusten, Gotland, Åland och Öland.</p>
-   </div>
-  </div>
-  <div class="regions-scroll" id="regionsScroll">
-   <a href="/bohuslan" class="region-card reveal reveal-delay-1">
-    <div class="region-card-bg" data-lp-photo="bohuslan" style="background:linear-gradient(160deg,#0a1428,#1a3a5e,#2a6090)"></div>
-    <div class="region-card-overlay"></div>
-    <div class="region-card-content">
-     <div class="region-card-label">Västkusten</div>
-     <div class="region-card-name">Bohuslän</div>
-     <div class="region-card-sub">Smögen · Fjällbacka · Marstrand · Lysekil</div>
-    </div>
-   </a>
-   <a href="/gotland" class="region-card reveal reveal-delay-2">
-    <div class="region-card-bg" data-lp-photo="gotland" style="background:linear-gradient(160deg,#2a1a08,#5a3a18,#8a6030)"></div>
-    <div class="region-card-overlay"></div>
-    <div class="region-card-content">
-     <div class="region-card-label">Östersjön</div>
-     <div class="region-card-name">Gotland</div>
-     <div class="region-card-sub">Visby · Fårö · Lummelunda · gästhamnar</div>
-    </div>
-   </a>
-   <a href="/aland" class="region-card reveal reveal-delay-3">
-    <div class="region-card-bg" data-lp-photo="aland" style="background:linear-gradient(160deg,#081a28,#183a50,#286878)"></div>
-    <div class="region-card-overlay"></div>
-    <div class="region-card-content">
-     <div class="region-card-label">Finland · Östersjön</div>
-     <div class="region-card-name">Åland</div>
-     <div class="region-card-sub">Mariehamn · ytterskärgård · Föglö</div>
-    </div>
-   </a>
-   <a href="/oland" class="region-card reveal reveal-delay-4">
-    <div class="region-card-bg" data-lp-photo="oland" style="background:linear-gradient(160deg,#1a2808,#3a5018,#5a7830)"></div>
-    <div class="region-card-overlay"></div>
-    <div class="region-card-content">
-     <div class="region-card-label">Östersjön</div>
-     <div class="region-card-name">Öland</div>
-     <div class="region-card-sub">Borgholm · Långe Erik · södra Öland</div>
-    </div>
-   </a>
-   <a href="/blekinge-skargard" class="region-card reveal reveal-delay-1">
-    <div class="region-card-bg" data-lp-photo="blekinge" style="background:linear-gradient(160deg,#1a2808,#2e4a1a,#3a6025)"></div>
-    <div class="region-card-overlay"></div>
-    <div class="region-card-content">
-     <div class="region-card-label">Östersjön</div>
-     <div class="region-card-name">Blekinge</div>
-     <div class="region-card-sub">Karlskrona · Hanö · Hanöbukten</div>
-    </div>
-   </a>
-   <a href="/vasterhav" class="region-card reveal reveal-delay-2">
-    <div class="region-card-bg" data-lp-photo="vasterhav" style="background:linear-gradient(160deg,#08182e,#1a3a5a,#2a5a80)"></div>
-    <div class="region-card-overlay"></div>
-    <div class="region-card-content">
-     <div class="region-card-label">Västkusten</div>
-     <div class="region-card-name">Västerhavet</div>
-     <div class="region-card-sub">Kattegatt · Skagerrak · segling</div>
-    </div>
-   </a>
-   <a href="/hoga-kusten" class="region-card reveal reveal-delay-3">
-    <div class="region-card-bg" data-lp-photo="hogakusten" style="background:linear-gradient(160deg,#0a1828,#1a3a58,#2a5a80)"></div>
-    <div class="region-card-overlay"></div>
-    <div class="region-card-content">
-     <div class="region-card-label">Norrlandskusten</div>
-     <div class="region-card-name">Höga Kusten</div>
-     <div class="region-card-sub">Härnösand · Ulvön · Kramfors · Skuleskogen</div>
-    </div>
-   </a>
-   <a href="/halland" class="region-card reveal reveal-delay-4">
-    <div class="region-card-bg" data-lp-photo="halland" style="background:linear-gradient(160deg,#0a2818,#1a5030,#2a7848)"></div>
-    <div class="region-card-overlay"></div>
-    <div class="region-card-content">
-     <div class="region-card-label">Västkusten</div>
-     <div class="region-card-name">Halland</div>
-     <div class="region-card-sub">Varberg · Tylösand · Falkenberg · Båstad</div>
-    </div>
-   </a>
- 
- </div>
- </div>
-</section>
 
 
 
@@ -1134,7 +1023,7 @@ const LANDING_HTML = `
  <div class="section-header reveal">
  <div class="section-label">Se & Göra</div>
  <h2 class="section-title">Skärgårdslivet är mer än mat</h2>
- <p class="section-sub">Från klippbad och kajakpaddling till vandring och fiske — skärgården erbjuder aktiviteter för alla smaker och alla säsonger.</p>
+ <p class="section-sub">Från klippbad och kajakpaddling till vandring och fiske, skärgården erbjuder aktiviteter för alla smaker och alla säsonger.</p>
  </div>
  <div class="activities-grid">
  <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="activity-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
@@ -1161,7 +1050,7 @@ const LANDING_HTML = `
  <a href="/blogg/vandring-orno-uto" class="activity-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
  <svg class="activity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.8 15.04-8.2 17.04Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
  <h3>Vandring & Natur</h3>
- <p>Utö, Möja och Ornö har markerade vandringsleder genom urbergslandskap och gammal skog — korta dagturer och flerdagarsäventyr.</p>
+ <p>Utö, Möja och Ornö har markerade vandringsleder genom urbergslandskap och gammal skog, korta dagsturer och flerdagarsäventyr.</p>
  <div class="activity-tags"><span class="chip">Markerade leder</span><span class="chip">Naturreservat</span><span class="chip">Fågelskådning</span></div>
  <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide &rarr;</div>
  </a>
@@ -1183,22 +1072,6 @@ const LANDING_HTML = `
  </div>
 </section>
 
-<section class="kurser-section" id="kurser">
- <div class="section-inner">
- <div class="section-header reveal">
- <div class="section-label">Kurser</div>
- <h2 class="section-title">Lär dig något nytt på sjön</h2>
- <p class="section-sub">Kurser för nybörjare och vana, kontrollerade mot anordnarna.</p>
- </div>
- <div class="kurser-grid reveal">
- <a href="/segelkurs/stockholms-skargard" class="kurs-ruta"><b>Segelkurser</b><span>Stockholms skärgård</span></a>
- <a href="/segelkurs/goteborg" class="kurs-ruta"><b>Segelkurser</b><span>Göteborg och Bohuslän</span></a>
- <a href="/aktivitet/kajak" class="kurs-ruta"><b>Kajak</b><span>Kurser och turer</span></a>
- <a href="/upplevelser?kategori=guidade" class="kurs-ruta"><b>Guidade turer</b><span>Med skeppare eller guide</span></a>
- <a href="https://sjobris-stockholm.se/?ref=svalla" target="_blank" rel="noopener" class="kurs-ruta kurs-partner"><b>Sjöbris, Dalarö</b><span>Seglarkurser från Dalarö</span></a>
- </div>
- </div>
-</section>
 
 
 
@@ -1207,7 +1080,7 @@ const LANDING_HTML = `
   <div class="reveal">
    <div class="thorkel-label">AI-planeraren</div>
    <h2 class="section-title">Thorkel planerar din perfekta skärgårdsdag</h2>
-   <p class="section-sub">Berätta vad du är sugen på — Thorkel föreslår öar, båtar, krogar och bad utifrån Svallas ösidor. Gratis, men kräver ett konto.</p>
+   <p class="section-sub">Berätta vad du är sugen på: Thorkel föreslår öar, båtar, krogar och bad utifrån Svallas ösidor. Gratis, men kräver ett konto.</p>
    <!-- 2026-09-28: knapparna gick till /planera (båtruttplaneraren, kräver inloggning). Thorkel bor på /guide; dagsplaneraren /utflykt är öppen för alla. -->
    <div style="display:flex;flex-wrap:wrap;gap:10px">
     <a href="/guide" class="btn btn-accent btn-lg">Prata med Thorkel &rarr;</a>
@@ -1222,136 +1095,59 @@ const LANDING_HTML = `
    <div class="thorkel-msg ai">
     <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
     <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-    <div class="thorkel-bubble">Perfekt val: <b>Grinda</b>. Waxholmsbåten (linjebåt — ingen båt krävs) från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu — fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20. Vill du att jag bokar bordet?</div>
+    <!-- KÄLLA: samma som Grinda i guide-content.ts: waxholmsbolaget.se (Strömkajen via Vaxholm), lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html ("fina barnvänliga bad både vid den södra och norra ångbåtsbryggan"). Thorkel bokar inget, han hämtar avgångar via get_transit_to_island. Omskrivet 2026-11-16. -->
+    <div class="thorkel-bubble">Då föreslår jag <b>Grinda</b>. Waxholmsbolagets båt från Strömkajen via Vaxholm tar ungefär en och en halv timme, och ön har trafik året om. På ön ligger Grinda Wärdshus, och det finns bad vid både den södra och den norra ångbåtsbryggan. Vill du se dagens avgångar?</div>
    </div>
    <div class="thorkel-msg user">
     <div class="thorkel-av u">Du</div>
-    <div class="thorkel-bubble">Ja tack! Finns det en bastu också?</div>
+    <div class="thorkel-bubble">Ja tack!</div>
    </div>
    <div class="thorkel-msg ai">
     <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
-    <div class="thorkel-bubble">Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill du att jag lägger till det i planen?</div>
+    <div class="thorkel-bubble">Här är de närmaste avgångarna till Grinda, hämtade från Trafiklab just nu. Kolla gärna när sista båten går hem innan ni åker.</div>
    </div>
   </div>
  </div>
 </section>
 
-<section class="getting-there-section" id="ta-sig-dit">
- <div class="section-inner">
- <div class="section-header reveal">
- <div class="section-label">Ta sig dit</div>
- <h2 class="section-title">Kom ut — ingen båt krävs</h2>
- <p class="section-sub">Med Waxholmsbolaget och SL når du skärgårdens pärlor direkt från Stockholm — ingen egen båt behövs. Välj rätt avgångspunkt beroende på destination.</p>
- </div>
- <div class="ferry-grid">
- <div class="ferry-card reveal reveal-delay-1">
- <div class="ferry-card-op">Waxholmsbolaget</div>
- <h4>Strömkajen, Stockholm</h4>
- <ul class="ferry-routes">
- <li class="ferry-route">Djurgården · Vaxholm · Grinda</li>
- <li class="ferry-route">Finnhamn · Möja · Blidö</li>
- <li class="ferry-route">Sandhamn · Gällnö · Nämdö</li>
- <li class="ferry-route">Utö · Nåttarö (via Dalarö)</li>
- </ul>
- <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.75)">Tidtabeller: waxholmsbolaget.se</div>
- </div>
- <div class="ferry-card reveal reveal-delay-2">
- <div class="ferry-card-op">Pendelbåten</div>
- <h4>Stavsnäs Brygga</h4>
- <ul class="ferry-routes">
- <li class="ferry-route">Sandhamn (30 min)</li>
- <li class="ferry-route">Bullerö · Gällnö · Runmarö</li>
- <li class="ferry-route">Djurö · Ingarö</li>
- <li class="ferry-route">Buss 428 från Slussen</li>
- </ul>
- <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.75)">pendelbaten.se</div>
- </div>
- <div class="ferry-card reveal reveal-delay-3">
- <div class="ferry-card-op">SL + Båt</div>
- <h4>Nynäshamn</h4>
- <ul class="ferry-routes">
- <li class="ferry-route">Utö (1h 45 min)</li>
- <li class="ferry-route">Landsort · Öja</li>
- <li class="ferry-route">Nåttarö · Ornö</li>
- <li class="ferry-route">Pendeltåg J43 från Stockholm</li>
- </ul>
- <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.75)">sl.se · uto.se</div>
- </div>
- </div>
- <div style="text-align:center;margin-top:40px">
- <a href="/resetips" class="btn btn-accent">Se alla dagsplaner &rarr;</a>
- </div>
- </div>
-</section>
 
-<section class="boende-section" id="boende">
- <div class="section-inner">
- <div class="section-header reveal">
- <div class="section-label">Boende</div>
- <h2 class="section-title">Övernatta i skärgården</h2>
- <p class="section-sub">Från lyxvärdshus med havsutsikt till enkla campingplatser och gästhamnar för den som sover ombord.</p>
- </div>
- <div class="boende-grid">
- <div class="boende-card reveal reveal-delay-1">
- <div class="boende-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg></div>
- <h4>Värdshus & Hotell</h4>
- <p>Klassiska skärgårdsvärdshus med mat och rum. Utö Värdshus, Sandhamns Värdshus och Grinda Wärdshus är legenderna.</p>
- </div>
- <div class="boende-card reveal reveal-delay-2">
- <div class="boende-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
- <h4>Stugor & Uthyrning</h4>
- <p>Hyr en stuga på en ö och lev som en lokalbo i en vecka. Finns på de flesta bebodda öar.</p>
- </div>
- <div class="boende-card reveal reveal-delay-3">
- <div class="boende-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M3.5 21 12 5l8.5 16"/><path d="M8.5 21 12 14l3.5 7"/><line x1="2" y1="21" x2="22" y2="21"/></svg></div>
- <h4>Camping & Tält</h4>
- <p>Allemansrätten ger rätten att tälta i naturen. Kommunala campingplatser på bl.a. Utö och Arholma.</p>
- </div>
- <div class="boende-card reveal reveal-delay-4">
- <div class="boende-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><circle cx="12" cy="5" r="2"/><path d="M12 7v13"/><path d="M5 15a7 7 0 0 0 14 0"/><line x1="8" y1="11" x2="16" y2="11"/></svg></div>
- <h4>Gästhamnar</h4>
- <p>Hundratals gästhamnar i skärgården. Svalla visar var du kan angöra, tanka och äta längs vägen.</p>
- </div>
- </div>
- </div>
-</section>
 
 <section class="faq-section" id="faq">
  <div class="section-inner">
   <div class="section-header reveal">
    <div class="section-label">Vanliga frågor</div>
    <h2 class="section-title">Allt du undrar om skärgården</h2>
-   <p class="section-sub">Svar på de vanligaste frågorna — från vilken ö som passar bäst till hur du tar dig dit.</p>
+   <p class="section-sub">Svar på de vanligaste frågorna, från vilken ö som passar bäst till hur du tar dig dit.</p>
   </div>
   <div class="faq-list">
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Vilken ö passar barnfamiljer bäst?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Grinda och Vaxholm är toppalternativen — sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen. Utö i söder har en lång sandstrand och cykelleder som passar hela familjen.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Grinda och Vaxholm är toppalternativen: sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen. Utö i söder har en lång sandstrand och cykelleder som passar hela familjen.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Hur lång tid tar båten till Sandhamn?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Cinderellabåten går från Strandvägen kajplats 14 — inte Strömkajen, som är Waxholmsbolagets kaj — och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april–27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48–59 minuter) och sedan Sandhamnslinjen på 30 minuter. Totalt drygt 1 timme 20 minuter med bra anslutning.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Cinderellabåten går från Strandvägen kajplats 14, inte Strömkajen, som är Waxholmsbolagets kaj, och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april till 27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48 till 59 minuter) och sedan Sandhamnslinjen på 30 minuter. Totalt drygt 1 timme 20 minuter med bra anslutning.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Kan man tälta i skärgården?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Ja — allemansrätten ger rätt att tälta i naturen i upp till 1–2 nätter på samma plats. Håll minst 150 meter avstånd från närmaste bostad och lämna naturen som du fann den. Under torrperioder kan eldningsförbud gälla — kontrollera alltid MSB:s webbplats innan.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Ja, allemansrätten ger rätt att tälta i naturen i upp till 1 till 2 nätter på samma plats. Håll minst 150 meter avstånd från närmaste bostad och lämna naturen som du fann den. Under torrperioder kan eldningsförbud gälla. Kontrollera alltid MSB:s webbplats innan.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Vad är det bästa alternativet till Sandhamn?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Grinda är det populäraste alternativet — kortare båttid (1,5 timmar), lika vacker och utan turisttrycket. Utö i söder är perfekt för de som vill ha mer natur och cykling. Möja är ett dolt alternativ för den som söker äkta skärgårdsstämning utan bryggrestauranger.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Grinda är det populäraste alternativet: kortare båttid (1,5 timmar), lika vacker och utan turisttrycket. Utö i söder är perfekt för de som vill ha mer natur och cykling. Möja är ett dolt alternativ för den som söker äkta skärgårdsstämning utan bryggrestauranger.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Vilken månad är bäst att besöka skärgården?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Juli är peak-säsong med varmast vatten (runt 20°C) men också mest folk. Juni och tidig augusti är lika vackra men lugnare. September–oktober rekommenderas för vandrare — höstfärger, inga köer och öppna krogar. Maj–juni har de längsta dagarna och det klaraste vattnet.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Juli är peak-säsong med varmast vatten (runt 20°C) men också mest folk. Juni och tidig augusti är lika vackra men lugnare. September till oktober rekommenderas för vandrare: höstfärger, inga köer och öppna krogar. Maj till juni har de längsta dagarna och det klaraste vattnet.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Hur mycket kostar en dagstur till Fjäderholmarna?<span class="faq-icon">+</span></button>
     <!-- KÄLLA: operatörernas namn och avgångsplatser verifierade 2026-08-12. Priserna borttagna — Strömmas sida är en JS-app som inte gick att avläsa, och tredjepartssiffror duger inte. Tidigare påstods 175–220 kr ENKEL; tredjepartskällor anger ~185 kr TUR OCH RETUR, så vårt påstående var sannolikt dubbelt för dyrt. Det gamla rådet "ta SL-buss 80 till Lidingö och fika billigare på ön" var nonsens — Fjäderholmarna nås inte via Lidingö. -->
-<div class="faq-a"><div class="faq-a-inner">Två rederier kör: Strömma från Nybrokajen och Fjäderholmslinjen från Slussen — se aktuellt biljettpris hos respektive. Överfarten är skärgårdens kortaste, runt 25 minuter. Vad dagen kostar styrs mest av restaurangvalet: medhavd matsäck gör den billig, lunch på krogen gör den till en riktig utflykt.</div></div>
+<div class="faq-a"><div class="faq-a-inner">Två rederier kör: Strömma från Nybrokajen och Fjäderholmslinjen från Slussen, se aktuellt biljettpris hos respektive. Överfarten är skärgårdens kortaste, runt 25 minuter. Vad dagen kostar styrs mest av restaurangvalet: medhavd matsäck gör den billig, lunch på krogen gör den till en riktig utflykt.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Måste man ha egen båt för att använda Svalla?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Absolut inte. Svalla är byggt för alla — oavsett om du reser med Waxholmsbåten, Cinderellabåten, pendeltåg + färja eller bil. <a href="/utflykt">Dagsplaneraren</a> visar öar som nås med kollektivtrafik från din startpunkt, med restid och båttider för dagen. Ingen båt krävs, någonsin.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Absolut inte. Svalla är byggt för alla: oavsett om du reser med Waxholmsbåten, Cinderellabåten, pendeltåg + färja eller bil. <a href="/utflykt">Dagsplaneraren</a> visar öar som nås med kollektivtrafik från din startpunkt, med restid och båttider för dagen. Ingen båt krävs, någonsin.</div></div>
    </div>
   </div>
  </div>
@@ -1383,70 +1179,21 @@ const LANDING_HTML = `
  </div>
 </div>
 
-<section class="stats-section">
- <div class="section-inner">
- <div class="stats-grid">
- <div class="stat-box reveal"><span class="stat-num" data-stat="places">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda längs Sveriges kuster</div></div>
- <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">__ANTAL_OAR__</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
- <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
- <!-- PRODUKTREGEL: vårt eget pris (gratis att komma igång) — vi är källan. -->
- <div class="stat-box reveal reveal-delay-3"><span class="stat-num">Gratis</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Planera, läsa och logga utan kostnad</div></div>
- </div>
- </div>
-</section>
 
 
-<section class="testimonial-section">
- <div class="section-inner">
- <div class="section-header reveal">
- <div class="section-label">Varför Svalla</div>
- <h2 class="section-title">Det Svalla gör som ingen annan sida</h2>
- </div>
- <!-- Inga omdömen förrän riktiga användare skrivit riktiga (beslut 2026-09-13). -->
- <div class="testimonials">
- <div class="testimonial reveal reveal-delay-1">
- <p class="testimonial-text"><strong>Hela skärgården på en karta.</strong> Öar, hamnar, krogar och bastur från Bohuslän till Stockholms skärgård — med praktisk info per plats, inte bara en nål.</p>
- </div>
- <div class="testimonial reveal reveal-delay-2">
- <p class="testimonial-text"><strong>Turen loggas med GPS.</strong> Distans, fart och rutt sparas automatiskt när du är ute. Dela turen med andra eller håll den privat — du väljer.</p>
- </div>
- <div class="testimonial reveal reveal-delay-3">
- <p class="testimonial-text"><strong>Thorkel planerar stoppen.</strong> Berätta vart du vill och hur länge du har på dig — AI-skepparen föreslår rutt, hamnar och krogar längs vägen.</p>
- </div>
- </div>
- </div>
-</section>
 
-<section class="app-section" id="om">
- <div class="app-inner">
- <div class="section-label" style="text-align:center">Webbapp · Fungerar som en app</div>
- <h2 class="section-title reveal">Svalla i fickan</h2>
- <p class="section-sub reveal">Inga nedladdningar. Öppna svalla.se i din mobil och tryck "Lägg till på hemskärmen". Fungerar offline, har push-notiser och känns som en native app.</p>
- <div class="app-badges reveal">
- <a href="/feed" class="app-badge" style="background:var(--accent-strong)">
- <span class="app-badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg></span>
- <div class="app-badge-text"><span class="small">Prova direkt i webbläsaren</span><span class="big">Öppna Svalla</span></div>
- </a>
- <a href="/kom-igang" class="app-badge">
- <span class="app-badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
- <div class="app-badge-text"><span class="small">Skapa konto gratis</span><span class="big">Kom igång</span></div>
- </a>
- </div>
- <p style="font-size:12px;color:var(--muted);margin-top:16px">iOS: Safari &rarr; Dela &rarr; Lägg till på hemskärmen &nbsp;·&nbsp; Android: Chrome &rarr; &#x22EE; &rarr; Installera app</p>
- </div>
-</section>
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"Vilken ö passar barnfamiljer bäst?","acceptedAnswer":{"@type":"Answer","text":"Grinda och Vaxholm är toppalternativen — sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen."}},
-    {"@type":"Question","name":"Hur lång tid tar båten till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Cinderellabåten går från Strandvägen kajplats 14, inte Strömkajen, och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april-27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, 48–59 min beroende på tid på dygnetuter, och sedan Sandhamnslinjen på 30 minuter."}},
-    {"@type":"Question","name":"Kan man tälta i skärgården?","acceptedAnswer":{"@type":"Answer","text":"Ja — allemansrätten ger rätt att tälta i naturen i upp till 1–2 nätter. Håll minst 150 meter avstånd från närmaste bostad."}},
-    {"@type":"Question","name":"Vad är det bästa alternativet till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Grinda är det populäraste alternativet — kortare båttid, lika vacker och utan turisttrycket. Utö i söder är perfekt för mer natur och cykling."}},
-    {"@type":"Question","name":"Vilken månad är bäst att besöka skärgården?","acceptedAnswer":{"@type":"Answer","text":"Juli är peak-säsong med varmast vatten men mest folk. September–oktober är bäst för vandrare — höstfärger och inga köer."}},
-    {"@type":"Question","name":"Hur mycket kostar en dagstur till Fjäderholmarna?","acceptedAnswer":{"@type":"Answer","text":"Överfarten är skärgårdens kortaste och biljetten bokas hos rederiet — se deras aktuella pris. Vad dagen kostar styrs mest av restaurangvalet: med medhavd matsäck blir det billigt, med lunch på krogen blir det en riktig utflykt."}}
+    {"@type":"Question","name":"Vilken ö passar barnfamiljer bäst?","acceptedAnswer":{"@type":"Answer","text":"Grinda och Vaxholm är toppalternativen: sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen."}},
+    {"@type":"Question","name":"Hur lång tid tar båten till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Cinderellabåten går från Strandvägen kajplats 14, inte Strömkajen, och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april-27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn, 48 till 59 min beroende på tid på dygnetuter, och sedan Sandhamnslinjen på 30 minuter."}},
+    {"@type":"Question","name":"Kan man tälta i skärgården?","acceptedAnswer":{"@type":"Answer","text":"Ja, allemansrätten ger rätt att tälta i naturen i upp till 1 till 2 nätter. Håll minst 150 meter avstånd från närmaste bostad."}},
+    {"@type":"Question","name":"Vad är det bästa alternativet till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Grinda är det populäraste alternativet: kortare båttid, lika vacker och utan turisttrycket. Utö i söder är perfekt för mer natur och cykling."}},
+    {"@type":"Question","name":"Vilken månad är bäst att besöka skärgården?","acceptedAnswer":{"@type":"Answer","text":"Juli är peak-säsong med varmast vatten men mest folk. September till oktober är bäst för vandrare, höstfärger och inga köer."}},
+    {"@type":"Question","name":"Hur mycket kostar en dagstur till Fjäderholmarna?","acceptedAnswer":{"@type":"Answer","text":"Överfarten är skärgårdens kortaste och biljetten bokas hos rederiet, se deras aktuella pris. Vad dagen kostar styrs mest av restaurangvalet: med medhavd matsäck blir det billigt, med lunch på krogen blir det en riktig utflykt."}}
   ]
 }
 </script>
@@ -1510,7 +1257,7 @@ function toggleFaq(btn){
  </div>
  </div>
  <div class="footer-bottom">
- <span>© 2026 Svalla — Alla rättigheter förbehållna</span>
+ <span>© 2026 Svalla | Alla rättigheter förbehållna</span>
  <div class="footer-flags"><svg viewBox="0 0 20 14" width="22" height="15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px"><rect width="20" height="14" fill="#006AA7"/><rect x="6" width="2" height="14" fill="#FECC02"/><rect y="6" width="20" height="2" fill="#FECC02"/></svg></div>
  <div class="footer-social">
  <a href="https://www.instagram.com/svalla.app/" target="_blank" rel="me noopener noreferrer" title="Svalla på Instagram" aria-label="Svalla på Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
@@ -1546,7 +1293,7 @@ function bildkallorHtml(k: Bildkalla[]): string {
     `${esc(b.namn)}: <a href="${esc(b.kalla)}" rel="noopener noreferrer" target="_blank">${esc(b.fotograf)}</a>, ` +
     (b.licensUrl ? `<a href="${esc(b.licensUrl)}" rel="noopener noreferrer license" target="_blank">${esc(b.licens)}</a>` : esc(b.licens))
   ).join(' · ')
-  return `<section aria-label="Bildkällor" style="max-width:1160px;margin:0 auto;padding:28px 24px 36px;font-size:12px;line-height:1.7;color:var(--txt3)"><strong style="font-weight:600">Bildkällor</strong> (Wikimedia Commons) – ${rader}</section>`
+  return `<section aria-label="Bildkällor" style="max-width:1160px;margin:0 auto;padding:28px 24px 36px;font-size:12px;line-height:1.7;color:var(--txt3)"><strong style="font-weight:600">Bildkällor</strong> (Wikimedia Commons): ${rader}</section>`
 }
 
 export default function LandingPageClient({ photoMap, bildkallor = [], antalOar }: { photoMap?: Record<string, string>; bildkallor?: Bildkalla[]; antalOar: number }) {

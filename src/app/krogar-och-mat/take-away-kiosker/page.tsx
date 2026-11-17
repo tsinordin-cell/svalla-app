@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Take-away, kiosker och lanthandlar i skärgården',
-  description: 'Glass, räksmörgåsar, hamburgare och lanthandlar i Stockholms skärgård. Enkelt och gott utan bokning — för barnfamiljen och snabbstoppen i hamnen.',
+  title: 'Takeaway, kiosker och lanthandlar i skärgården',
+  description: 'Glass, räksmörgåsar, hamburgare och lanthandlar i Stockholms skärgård. Enkelt och gott utan bokning, för barnfamiljen och snabbstoppen i hamnen.',
   keywords: [
     'glass skärgård',
     'kiosk skärgård',
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     'hamburgare skärgård',
   ],
   openGraph: {
-    title: 'Take-away, kiosker och lanthandlar i skärgården',
-    description: 'Glass, räksmörgåsar och lanthandlar — enkla stopp utan bokning längs skärgårdsrutten.',
+    title: 'Takeaway, kiosker och lanthandlar i skärgården',
+    description: 'Glass, räksmörgåsar och lanthandlar, enkla stopp utan bokning längs skärgårdsrutten.',
     url: 'https://svalla.se/krogar-och-mat/take-away-kiosker',
   },
   alternates: { canonical: 'https://svalla.se/krogar-och-mat/take-away-kiosker' },
@@ -32,12 +32,12 @@ const ITEMS: LandingItem[] = [
     title: 'Glasskiosker i skärgården',
     description: 'De flesta populära öar har en glasskiosk eller ett ställe som säljer glass under sommarsäsongen. Fjäderholmarna, Sandhamn och Utö har alla glasset lättillgängligt nära gästhamnen.',
     href: '/o/sandhamn',
-    meta: 'Flera öar · Säsong: jun–aug',
+    meta: 'Flera öar · Säsong: jun till aug',
   },
   {
     icon: '🍤',
     title: 'Räksmörgåsar',
-    description: 'Den klassiska svenska räksmörgåsen serveras på många hamnkaféer och kiosker. Sök framförallt i Vaxholm och Fjäderholmarna — där finns bäst utbud av hamnmat i alla prisnivåer.',
+    description: 'Den klassiska svenska räksmörgåsen serveras på många hamnkaféer och kiosker. Sök framförallt i Vaxholm och Fjäderholmarna. Där finns bäst utbud av hamnmat i alla prisnivåer.',
     href: '/o/vaxholm',
     meta: 'Vaxholm & Fjäderholmarna',
   },
@@ -53,7 +53,7 @@ const ITEMS: LandingItem[] = [
     title: 'Hamburgare och enklare mat',
     description: 'På mer trafikerade öar som Sandhamn och Fjäderholmarna finns grillkiosker med hamburgare, korvgrill och enklare mat. Perfekt för barn eller ett snabbt mellanmål.',
     href: '/o/fjaderholmarna',
-    meta: 'Fjäderholmarna · Säsong: maj–sep',
+    meta: 'Fjäderholmarna · Säsong: maj till sep',
   },
 ]
 
@@ -62,8 +62,8 @@ export default function TakeAwayKioskerPage() {
     <CategoryLanding
       heroGradient={['#7a3c0a', '#b8641a']}
       eyebrow="KROGAR & MAT · TAKE-AWAY & KIOSKER"
-      title="Take-away och kiosker"
-      tagline="Glass vid bryggan, räksmörgåsar i hamnen och lanthandeln som räddar middagen — enkelt och gott utan bokning."
+      title="Takeaway och kiosker"
+      tagline="Glass vid bryggan, räksmörgåsar i hamnen och lanthandeln som räddar middagen, enkelt och gott utan bokning."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
@@ -74,7 +74,7 @@ export default function TakeAwayKioskerPage() {
       intro={
         <>
           <p>
-            Inte varje stopp i skärgården behöver vara ett bokat middagsbord. Ibland räcker en glass i solen, en räksmörgås vid kajen eller ett snabbt inköp i lanthandeln. Den här sidan samlar det enkla — ställena utan meny och utan reservationskrav, men med maximal skärgårdsatmosfär.
+            Inte varje stopp i skärgården behöver vara ett bokat middagsbord. Ibland räcker en glass i solen, en räksmörgås vid kajen eller ett snabbt inköp i lanthandeln. Den här sidan samlar det enkla: ställena utan meny och utan reservationskrav, men med maximal skärgårdsatmosfär.
           </p>
           <div style={{
             background: '#fff8e1', border: '1px solid #f59e0b',
@@ -102,25 +102,25 @@ export default function TakeAwayKioskerPage() {
       deeperContent={
         <>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
-            Lanthandeln — livbåten på ön
+            Lanthandeln: livbåten på ön
           </h2>
           <p>
-            På öar med fast befolkning eller hög sommartraffik finns nästan alltid en lanthandel. Den säljer det nödvändigaste och öppnar ofta tidigt på morgonen — men stänger ibland mitt på dagen eller har lunchstängt. Kolla in öppettider på ö-sidorna innan du räknar med att handla.
+            På öar med fast befolkning eller hög sommartraffik finns nästan alltid en lanthandel. Den säljer det nödvändigaste och öppnar ofta tidigt på morgonen, men stänger ibland mitt på dagen eller har lunchstängt. Kolla in öppettider på ö-sidorna innan du räknar med att handla.
           </p>
           <p>
-            De flesta lanthandlar tar kort och Swish. Pant fungerar men hanteras ibland bara på vardagar. Ta med påse — plastpåsar är sällan tillgängliga.
+            De flesta lanthandlar tar kort och Swish. Pant fungerar men hanteras ibland bara på vardagar. Ta med påse, plastpåsar är sällan tillgängliga.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Glass i skärgården
           </h2>
           <p>
-            En glasskiosk med rätt utsikt är omöjlig att gå förbi. Fjäderholmarnas glasskiosk är kanske mest känd, men även Sandhamn och Utö har glass i anslutning till gästhamnar och stränder. Välj kulor före strut på blåsiga bryggor — det brukar det löna sig.
+            En glasskiosk med rätt utsikt är omöjlig att gå förbi. Fjäderholmarnas glasskiosk är kanske mest känd, men även Sandhamn och Utö har glass i anslutning till gästhamnar och stränder. Välj kulor före strut på blåsiga bryggor. Det brukar det löna sig.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
-            Räksmörgåsen — ett eget kapitel
+            Räksmörgåsen: ett eget kapitel
           </h2>
           <p>
-            Räksmörgåsen är lika mycket symbol som mat. Den äts helst sittande vid vattnet, med utsikt och utan brådska. Vaxholm är räksmörgåsens högborg i Stockholms skärgård — flera kaféer och kiosker längs hamnpromenaden serverar den under sommarsäsongen.
+            Räksmörgåsen är lika mycket symbol som mat. Den äts helst sittande vid vattnet, med utsikt och utan brådska. Vaxholm är räksmörgåsens högborg i Stockholms skärgård, flera kaféer och kiosker längs hamnpromenaden serverar den under sommarsäsongen.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '32px 0 12px' }}>
@@ -128,10 +128,10 @@ export default function TakeAwayKioskerPage() {
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <a href="https://www.ica.se/butiker/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(122,60,10,0.06)', border: '1px solid rgba(122,60,10,0.18)', color: '#7a3c0a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>ICA — hitta butiker längs skärgårdsrutten</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>ICA: hitta butiker längs skärgårdsrutten</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
             <a href="https://www.waxholmsbolaget.se" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(122,60,10,0.06)', border: '1px solid rgba(122,60,10,0.18)', color: '#7a3c0a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
-              <span>Waxholmsbolaget — färjetidtabeller för planering</span><span style={{ opacity: 0.55 }}>↗</span>
+              <span>Waxholmsbolaget: färjetidtabeller för planering</span><span style={{ opacity: 0.55 }}>↗</span>
             </a>
           </div>
         </>

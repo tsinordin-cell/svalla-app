@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     const trimTitle = (title ?? '').trim()
     const trimBody  = (postBody ?? '').trim()
     if (trimTitle.length < 5 || trimTitle.length > 200) {
-      return NextResponse.json({ error: 'Ogiltig rubrik (5–200 tecken).' }, { status: 400 })
+      return NextResponse.json({ error: 'Ogiltig rubrik (5 till 200 tecken).' }, { status: 400 })
     }
     // Loppis tillåter kortare body (1 tecken) eftersom strukturerad data
     // ersätter mycket av innehållet. Andra kategorier kräver 10+.
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         error: categoryId === 'loppis'
           ? 'Beskrivning saknas eller är för lång (max 10 000 tecken).'
-          : 'Ogiltig text (10–10 000 tecken).',
+          : 'Ogiltig text (10 till 10 000 tecken).',
       }, { status: 400 })
     }
 

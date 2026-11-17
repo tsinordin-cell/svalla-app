@@ -26,8 +26,8 @@ type Post = {
 const POSTS: Record<string, Post> = {
 
  'basta-restaurangerna-sandhamn': {
- title: 'Restauranger på Sandhamn – lunch, middag, kafé och bar',
- excerpt: 'Var du äter på Sandhamn: Värdshusets pub som är öppen året runt, Seglarhotellet, Dykarbaren, Sands, bageriet, kaféerna och barerna – säsonger, bordsbokning och båten dit.',
+ title: 'Restauranger på Sandhamn: lunch, middag, kafé och bar',
+ excerpt: 'Var du äter på Sandhamn: Värdshusets pub som är öppen året runt, Seglarhotellet, Dykarbaren, Sands, bageriet, kaféerna och barerna: säsonger, bordsbokning och båten dit.',
  category: 'Mat & dryck',
  date: '2026-04-10',
  updatedAt: '2026-09-23',
@@ -37,23 +37,23 @@ const POSTS: Record<string, Post> = {
  faqs: [
   { q: 'Vilken restaurang på Sandhamn är öppen året runt?', a: 'Puben på Sandhamns Värdshus är öppen året runt och serverar lunchmeny, enligt värdshuset. Värdshusets restaurang har öppet varje dag från mitten av juni till mitten av september och annars främst på helger.' },
   { q: 'Behöver man boka bord på Sandhamn?', a: 'Seglarhotellet ber gäster boka bord i Segelsalen i förväg, och Sandhamns Värdshus ber om bordsbokning. Dykarbaren tar bara bokningar för bord inomhus, eftersom uteserveringen inte går att vädersäkra.' },
-  { q: 'När har restaurangerna på Sandhamn säsong?', a: 'Dykarbaren har säsong maj–september, Värdshusets restaurang har öppet varje dag från mitten av juni till mitten av september och Sandhamnsbageriet är säsongsöppet. Värdshusets pub är öppen året runt.' },
+  { q: 'När har restaurangerna på Sandhamn säsong?', a: 'Dykarbaren har säsong maj till september, Värdshusets restaurang har öppet varje dag från mitten av juni till mitten av september och Sandhamnsbageriet är säsongsöppet. Värdshusets pub är öppen året runt.' },
   { q: 'Hur tar man sig till Sandhamn för att äta?', a: 'Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn och därifrån Waxholmsbolagets linje 16 eller Stavsnäs Båttaxis Sandhamnslinje. Under säsong går Cinderella från Strandvägen, och på högsommaren går Waxholmsbåten direkt från Strömkajen.' },
  ],
  content: `
 <!-- KÄLLA (lästa 2026-09-23): https://www.sandhamns-vardshus.se/ ("anno 1672"; Puben "Öppet året runt. Här serveras våra klassiska rätter samt lunchmeny."; Restaurangen "Med en magisk utsikt över hamnen. Öppet varje dag från mitten av juni till mitten på september. Annan tid på året är restaurangen främst öppen helger. Boka gärna bord."; Pentaboden "skaldjurslådor/platåer samt fina sallader", "vid vattnet"; "Boende och frukost i Missionshuset"; info@sandhamns-vardshus.se, 08-571 530 51). https://www.sandhamn.com/sv/restauranger-och-barer/segelsalen (Segelsalen "meny med fokus på säsongens råvaror", "Boka gärna bord i förväg", hovmastare@sandhamn.com; Bistro; Seglarbaren "Bar, dansgolv och DJ"; Orangeriet; Terassen "utsikt över hamnen"; Hamnbaren "under sommaren där vi då erbjuder After sail"; "Julbord med guldkant 26 november–24 december"). https://www.dykarbaren.se/ och /om-oss/ ("Sandhamn 425", "säsong maj – september", "endast bordsbokning inomhus då vår uteservering inte helt går att vädersäkra", "Större sällskap (fler än 8) vänligen mejla", "1921 uppfördes huset", "1982 höll man dykutbildningar på Sandhamn ... växte en café- och barverksamhet fram", uteservering "precis vid strandkanten"; menyer som PDF på /menyer/). https://sandshotell.se/ ("konferens- och weekend-hotell", "33 bäddar", "restaurangen med uteterassen", "terrasser med utsikt över hamninloppet", +46 8 571 530 20). https://www.sandhamnsbageriet.com/ (vetesurdeg, rågsurdeg, frallor, kanelbulle, kardemummabulle, seglarbulle; tårtor "BESTÄLLES MINST TRE VARDAGAR I FÖRVÄG"; beställning per sms). https://www.explorearchipelago.com/sv/sthlm/mellersta-skargarden/sandhamn (Skärgårdsstiftelsen: Café Ankaret "Kafe", Café Strindbergsgården "Sandhamn 109", PUB Alma "PUB", Sandhamns Glassigaste Ställe "Glass", Sandhamns Kiosk AB "Kiosk", Tempo Westerbergs Livs "Affär som även är ombud för Apoteket och Systembolaget"). KSSS gästhamn ligger vid "kajer framför Seglarhotellet" (ksss.se/hamnar/sandhamn). Resvägar: oförändrade från versionen 2026-09-21 (Waxholmsbolaget, SL, Stavsnäs Båttaxi, Strömma). Tidigare version listade "Sandhamns Krog" och "Bryggcafé 7an" som vi inte hittar på någon operatörssida – de är borttagna. -->
 Sandhamn har fler restauranger, kaféer och barer än de flesta öar i Stockholms skärgård. Här är alla ställen att äta och dricka på [Sandhamn](/o/sandhamn) som vi kan belägga, antingen på operatörernas egna sidor eller i Skärgårdsstiftelsens förteckning Upptäck Skärgården. Varje ställe har en egen sida på Svalla med karta. Vi rangordnar dem inte, eftersom ingen har mätt vilket som är bättre.
 
-## Restauranger på Sandhamn – lunch och middag
+## Restauranger på Sandhamn: lunch och middag
 
 ### [Sandhamns Värdshus](/upptack/sandhamn-sandhamns-vardshus)
 Värdshuset, anno 1672 enligt värdshuset självt, har två delar. Puben är öppen året runt och serverar lunchmeny. Restaurangen har utsikt över hamnen och öppet varje dag från mitten av juni till mitten av september, annars främst på helger. På sommaren serverar värdshusets Pentaboden skaldjurslådor och sallader vid vattnet. Bord bokas på info@sandhamns-vardshus.se eller 08-571 530 51.
 
-### [Sandhamn Seglarhotell](/upptack/seglarhotellet-sandhamn) – Segelsalen och Bistro
+### [Sandhamn Seglarhotell](/upptack/seglarhotellet-sandhamn): Segelsalen och Bistro
 Seglarhotellet ligger vid KSSS gästhamn. Matsalen Segelsalen har en meny som hotellet beskriver som fokuserad på säsongens råvaror, och hotellet ber gäster boka bord där i förväg (hovmastare@sandhamn.com). Hotellet har också en Bistro. Från slutet av november till julafton serverar Seglarhotellet julbord.
 
 ### [Dykarbaren](/upptack/dykarbaren)
-Bar och restaurang på Sandhamn 425, i ett hus som uppfördes 1921. Baren växte fram 1982, när huset användes för dykutbildningar. Uteserveringen ligger mitt emot, vid strandkanten. Säsongen är maj–september. Bord bokas bara inomhus, eftersom uteserveringen inte går att vädersäkra, och sällskap på fler än åtta mejlar info@dykarbaren.se. Veckans meny ligger som PDF på dykarbaren.se.
+Bar och restaurang på Sandhamn 425, i ett hus som uppfördes 1921. Baren växte fram 1982, när huset användes för dykutbildningar. Uteserveringen ligger mitt emot, vid strandkanten. Säsongen är maj till september. Bord bokas bara inomhus, eftersom uteserveringen inte går att vädersäkra, och sällskap på fler än åtta mejlar info@dykarbaren.se. Veckans meny ligger som PDF på dykarbaren.se.
 
 ### [Bistro Sands](/upptack/bistro-sands) på Sands Hotell
 Sands Hotell är ett konferens- och weekendhotell med 33 bäddar. Restaurangen har uteterrass, och hotellet har terrasser med utsikt över hamninloppet. Vi hittar inga öppettider för restaurangen på hotellets sida, så ring 08-571 530 20 innan du går dit.
@@ -83,13 +83,13 @@ Efter mitten av september har färre ställen öppet. Värdshusets pub är öppe
 - **Dykarbaren**: bokning bara för bord inomhus, sällskap på fler än åtta mejlar info@dykarbaren.se.
 
 ## Så tar du dig till Sandhamn
-Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara sommartid (2026: 19 juni–16 augusti), och då tar turen mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48–59 min) och därifrån Waxholmsbolagets linje 16 på 40–60 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong (2026: 30 april–27 september). Alla alternativ med restider finns på [Båt till Sandhamn](/o/sandhamn/komma-dit).
+Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara sommartid (2026: 19 juni till 16 augusti), och då tar turen mellan 3 tim 45 min och knappt 5 timmar beroende på avgång och byte i Finnhamn. Året runt går buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48 till 59 min) och därifrån Waxholmsbolagets linje 16 på 40 till 60 min eller Stavsnäs Båttaxis Sandhamnslinje på 30 min. Cinderella från Strandvägen kajplats 14 tar 2 tim 30 min under sin säsong (2026: 30 april till 27 september). Alla alternativ med restider finns på [Båt till Sandhamn](/o/sandhamn/komma-dit).
     `,
 
  },
 
  'kajak-stockholms-skargard-nyborjare': {
- title: 'Kajak i Stockholms skärgård – guide för nybörjare',
+ title: 'Kajak i Stockholms skärgård: guide för nybörjare',
  excerpt: 'Paddla kajak i Stockholms skärgård: var du hyr kajak, vad allemansrätten säger om att gå i land och övernatta, fågel- och sälskyddsområden, tältplatser och utrustning för säker paddling.',
  category: 'Aktiviteter',
  date: '2026-03-28',
@@ -104,10 +104,10 @@ Sandhamn nås med Waxholmsbåten direkt från Strömkajen bara sommartid (2026: 
  ],
  content: `
 <!-- KÄLLA: naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ (granskad 19 juni 2025, läst 2026-09-24): "Du får bada vid stränder, paddla kajak och åka båt"; "Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt, eller som är skyddad för fågelliv eller annat"; "Håll avstånd till häckande fåglar"; "Håll koll på fågel- och sälskyddsområden"; "Ta med dig en påse som du kan samla skräp och matrester i"; toalett: "Använd toalett i land", annars "Gräv en grop för avföring"; "Du som färdas på vatten ska enligt Sjölagen visa hänsyn mot omgivningen". Uthyrning: visitmoja.se (Möja Outdoor "Hyr kajak, roddbåt och SUP"), gallno.se (cykel och kajak sommartid), klintsundetmarina.se ("Kajakuthyrning", läst 2026-09-23), nacka.se Saltsjöbadens friluftsbad ("kajakuthyrning", datafix 2026-09-22). Tältplatser: skargardsstiftelsen.se Gällnö-Karklö (Torsviken "sandstrand och tältplats"), Grinda ("öns tältplats ligger nära norra bryggan", datafix), Finnhamn (tältplats, Skärgårdsstiftelsen). Fågelskyddsområden Libertas och Rövarns holme vid Fjäderholmarna: landstigningsförbud under häckningstid (se island-data fjaderholmarna). Gällnö: förbud att köra motorbåt i Norrviken (lansstyrelsen.se). Tidigare version (borttagen 2026-09-24) angav hyrpris 400–600 kr per dag som uppskattning, blandade vindstyrka 5 med 8 m/s och föreslog rutter utan källa. -->
-Med kajak når du stränder och vikar som båtarna inte angör, och allemansrätten ger dig rätt att paddla, gå i land och bada längs stränderna. Här är det du behöver veta som nybörjare – var du hyr kajak, vad som gäller när du går i land och vad du packar.
+Med kajak når du stränder och vikar som båtarna inte angör, och allemansrätten ger dig rätt att paddla, gå i land och bada längs stränderna. Här är det du behöver veta som nybörjare. Var du hyr kajak, vad som gäller när du går i land och vad du packar.
 
 ## Börja med en guidad tur eller kurs
-Första gången är det tryggast att paddla med någon som kan området – en guidad tur eller en nybörjarkurs hos en kajakuthyrare eller paddelklubb.
+Första gången är det tryggast att paddla med någon som kan området, en guidad tur eller en nybörjarkurs hos en kajakuthyrare eller paddelklubb.
 
 ## Hyra kajak
 - **Möja:** Möja Outdoor hyr ut kajak, roddbåt och SUP och ordnar sälsafari.
@@ -116,7 +116,7 @@ Första gången är det tryggast att paddla med någon som kan området – en g
 - **Saltsjöbaden:** [Saltsjöbadens friluftsbad](/upptack/saltsjobadens-friluftsbad) har kajakuthyrning, cirka 500 meter från Saltsjöbanans station.
 
 ## Allemansrätten på vattnet
-Enligt Naturvårdsverket får du gå i land, bada och tillfälligt förtöja vid en strand som inte hör till någon tomt och inte är skyddad för fågelliv eller annat. Det finns inget bestämt avstånd till hus – det är risken att störa de boende som avgör. Plocka med dig skräp och matrester, och använd toalett i land när det finns.
+Enligt Naturvårdsverket får du gå i land, bada och tillfälligt förtöja vid en strand som inte hör till någon tomt och inte är skyddad för fågelliv eller annat. Det finns inget bestämt avstånd till hus. Det är risken att störa de boende som avgör. Plocka med dig skräp och matrester, och använd toalett i land när det finns.
 
 ## Fåglar och sälar
 Håll avstånd till häckande fåglar och håll koll på skyltar för fågel- och sälskyddsområden, där det kan vara förbjudet att gå i land under delar av året. Ett exempel nära stan: Libertas och Rövarns holme vid [Fjäderholmarna](/o/fjaderholmarna) har landstigningsförbud under häckningstiden.
@@ -127,7 +127,7 @@ Håll avstånd till häckande fåglar och håll koll på skyltar för fågel- oc
 - [Finnhamn](/o/finnhamn): tältplats på Stora Jolpan.
 
 ## Utrustning
-- Flytväst – alltid på.
+- Flytväst, alltid på.
 - Vattentäta packpåsar för kläder, mat och telefon.
 - Sjökort eller sjökortsapp.
 - Extra varma kläder och vatten.
@@ -141,7 +141,7 @@ Håll avstånd till häckande fåglar och håll koll på skyltar för fågel- oc
  },
 
  'dolda-parlor-moja': {
- title: 'Möja – vandring, bad, museum och mat på ön',
+ title: 'Möja: vandring, bad, museum och mat på ön',
  excerpt: 'Vad du gör på Möja i Stockholms mellersta skärgård: naturstigen genom Björndalen, bad enligt allemansrätten, Roland Svensson-museet, kyrkan från 1768, var du äter och hur du tar dig dit.',
  category: 'Öguide',
  date: '2026-03-15',
@@ -150,7 +150,7 @@ Håll avstånd till häckande fåglar och håll koll på skyltar för fågel- oc
  emoji: '',
  tags: ['Möja', 'Stockholms skärgård', 'Vandring', 'Mellersta skärgården'],
  faqs: [
-   { q: 'Hur tar man sig till Möja?', a: 'Enligt Värmdö kommun tar buss 434 från Slussen till Sollenkroka och båt därifrån cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3–4 timmar.' },
+   { q: 'Hur tar man sig till Möja?', a: 'Enligt Värmdö kommun tar buss 434 från Slussen till Sollenkroka och båt därifrån cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3 till 4 timmar.' },
    { q: 'Finns det badplatser på Möja?', a: 'Möja har ingen officiell badplats. Möja turistförening tipsar om naturliga bad från klippor och stränder vid Saltvik, Kyrkviken, Löka, Ramsmora och Långvik, som används enligt allemansrätten.' },
    { q: 'Hur stor är Möja?', a: 'Möja är cirka 6,5 kilometer från norr till söder enligt Möja turistförening. Huvudöarna Möja och Södermöja har omkring 250 bofasta.' },
  ],
@@ -159,32 +159,32 @@ Håll avstånd till häckande fåglar och håll koll på skyltar för fågel- oc
 Möja ligger i Stockholms mellersta skärgård och är cirka 6,5 kilometer från norr till söder. Huvudöarna Möja och Södermöja har omkring 250 bofasta, och på ön finns byar, kyrka, lanthandel och tre naturreservat. Här är vad du kan göra på ön, enligt Möja turistförening och Värmdö kommun. Mer fakta: [Möja på Svalla](/o/moja).
 
 ## Vandra
-Möja turistförening har märkt upp en naturstig mellan byarna Hamn i väster och Ramsmora i öster, 12 kilometer genom Möja-Björndalens naturreservat. Längs vägen passerar du ryssugnar – eldstäder där ryska soldater lagade mat när de brände Möja 1719 – insjöar och urskog. Stockholm Archipelago Trail följer landsvägen från Långvik till Hamn, en lätt etapp som fungerar även med barnvagn.
+Möja turistförening har märkt upp en naturstig mellan byarna Hamn i väster och Ramsmora i öster, 12 kilometer genom Möja-Björndalens naturreservat. Längs vägen passerar du ryssugnar, eldstäder där ryska soldater lagade mat när de brände Möja 1719, insjöar och urskog. Stockholm Archipelago Trail följer landsvägen från Långvik till Hamn, en lätt etapp som fungerar även med barnvagn.
 
 ## Bada
 Möja har ingen officiell badplats. Turistföreningen tipsar om naturliga bad från klippor och stränder vid Saltvik, Kyrkviken, Löka, Ramsmora och Långvik, som används enligt allemansrätten.
 
 ## Museum, kyrka och dansbana
-- **Roland Svensson-museet** vid Ramsmora brygga öppnade 2014. Skärgårdskonstnären Roland Svensson (1910–2003) hade sin ateljé på Tornö, och hans målar- och skrivarhörnor flyttades hit.
+- **Roland Svensson-museet** vid Ramsmora brygga öppnade 2014. Skärgårdskonstnären Roland Svensson (1910 till 2003) hade sin ateljé på Tornö, och hans målar- och skrivarhörnor flyttades hit.
 - **Möja kyrka** uppfördes 1768, och kyrkogården anlades omkring 1755.
 - **Möja dansbana** är enligt turistföreningen skärgårdens äldsta dansbana som fortfarande används, med musik, dans, bio och marknader på sommaren.
 
 ## Ut på vattnet
-Möja Outdoor hyr ut kajak, roddbåt och SUP och ordnar sälsafari. Cykel hyrs på Hamncafét – se [Hyra cykel på Möja och Gällnö](/blogg/cykling-moja-gallno).
+Möja Outdoor hyr ut kajak, roddbåt och SUP och ordnar sälsafari. Cykel hyrs på Hamncafét, se [Hyra cykel på Möja och Gällnö](/blogg/cykling-moja-gallno).
 
 ## Äta och handla
 Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét och det sommaröppna Möja bageri. Coop i Berg har öppet året runt.
 
 ## Övernatta
-STF Möja vandrarhem har öppet april–december. Med egen båt finns gästplatser i [Kyrkviken](/upptack/kyrkviken) nära Berg och i fiskehamnen [Löka](/upptack/loka-gasthamn).
+STF Möja vandrarhem har öppet april till december. Med egen båt finns gästplatser i [Kyrkviken](/upptack/kyrkviken) nära Berg och i fiskehamnen [Löka](/upptack/loka-gasthamn).
 
 ## Ta sig dit
-Buss 434 från Slussen till Sollenkroka och båt därifrån tar cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3–4 timmar. Aktuella avgångar finns hos Waxholmsbolaget.
+Buss 434 från Slussen till Sollenkroka och båt därifrån tar cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3 till 4 timmar. Aktuella avgångar finns hos Waxholmsbolaget.
  `,
  },
 
  'bransle-ankring-skargard': {
-   title: 'Sjömackar i Stockholms skärgård – tanka och ankra',
+   title: 'Sjömackar i Stockholms skärgård: tanka och ankra',
    excerpt: 'Var du tankar båten i Stockholms skärgård: sjömackar från Grisslehamn och Rödlöga i norr till Nynäshamn i söder, Kryssarklubbens råd om säker tankning och vad allemansrätten säger om att ankra.',
    category: 'Praktiskt',
    date: '2026-03-01',
@@ -203,54 +203,54 @@ Buss 434 från Slussen till Sollenkroka och båt därifrån tar cirka 2,5 timmar
 Sjömackar finns i gästhamnar och marinor i hela Stockholms skärgård, från Grisslehamn och Rödlöga i norr till Nynäshamn i söder. Här är de som går att belägga hos Svenska Gästhamnar och verksamheternas egna sidor. Öppettider och säsong varierar, så kolla med macken innan du planerar sista tankningen.
 
 ## Norra skärgården och Roslagen
-- [Grisslehamns marina](/upptack/grisslehamns-marina-och-camping) – diesel och bensin, öppet dygnet runt med kortbetalning.
-- [Gräddö](/upptack/graddo-brygga) – sjömack med bensin och diesel i anslutning till gästhamnen.
-- [Rödlöga](/o/rodloga) – Rödlögaboden har en sjömack med bensin, diesel, fotogen och gasol. Butiken har öppet sommartid.
-- [Furusund](/o/furusund) – Svenska Gästhamnar anger diesel, bensin och gasol i gästhamnen.
-- [Dyvik Marina](/upptack/dyvik-marina) vid Furusundsleden – gästhamn, mack och sjöbutik.
-- [Klintsundet Marina](/upptack/circle-k-klintsundet) på Ljusterö – blyfri 98, RME-fri diesel och alkylatbensin från pump och på dunk, samt gasol.
-- **Linanäs gästhamn** på Ljusterö – enligt Svenska Gästhamnar finns diesel, bensin och gasol.
-- [Ingmarsö](/upptack/ingmarso-gasthamn) – sjömacken är öppen året runt med självservice och kortautomat.
+- [Grisslehamns marina](/upptack/grisslehamns-marina-och-camping): diesel och bensin, öppet dygnet runt med kortbetalning.
+- [Gräddö](/upptack/graddo-brygga), sjömack med bensin och diesel i anslutning till gästhamnen.
+- [Rödlöga](/o/rodloga): Rödlögaboden har en sjömack med bensin, diesel, fotogen och gasol. Butiken har öppet sommartid.
+- [Furusund](/o/furusund): Svenska Gästhamnar anger diesel, bensin och gasol i gästhamnen.
+- [Dyvik Marina](/upptack/dyvik-marina) vid Furusundsleden: gästhamn, mack och sjöbutik.
+- [Klintsundet Marina](/upptack/circle-k-klintsundet) på Ljusterö: blyfri 98, RME-fri diesel och alkylatbensin från pump och på dunk, samt gasol.
+- **Linanäs gästhamn** på Ljusterö: enligt Svenska Gästhamnar finns diesel, bensin och gasol.
+- [Ingmarsö](/upptack/ingmarso-gasthamn), sjömacken är öppen året runt med självservice och kortautomat.
 
 ## Mellersta skärgården
-- [Vaxholm](/upptack/waxholms-gasthamn-och-rent-under-batbotten-tvatt) – diesel, bensin och gasol via Sjömackarna/Gulf.
-- [Fjäderholmarna](/o/fjaderholmarna) – enligt Svenska Gästhamnar finns diesel, bensin och gasol.
-- [Grinda](/upptack/grinda-gasthamn) – sjömacken säljer bensin 98, diesel och gasol.
-- [Möja](/o/moja) – i Långviks inre hamn finns diesel och bensin (OK/Q8).
-- [Husarö](/upptack/husaro-gasthamn-cafe) – drivmedel med kortautomat året runt.
-- [Sandhamn](/o/sandhamn) – enligt Svenska Gästhamnar säljs diesel och bensin på Sandhamns sjöstation.
-- [Nämdö](/upptack/namdo-macken) – sjömack i Solvik.
-- **Stavsnäs** – Stavsnäs Båtvarv & Sjömack i Vinterhamnen, där du kan tanka dygnet runt.
+- [Vaxholm](/upptack/waxholms-gasthamn-och-rent-under-batbotten-tvatt): diesel, bensin och gasol via Sjömackarna/Gulf.
+- [Fjäderholmarna](/o/fjaderholmarna): enligt Svenska Gästhamnar finns diesel, bensin och gasol.
+- [Grinda](/upptack/grinda-gasthamn): sjömacken säljer bensin 98, diesel och gasol.
+- [Möja](/o/moja), i Långviks inre hamn finns diesel och bensin (OK/Q8).
+- [Husarö](/upptack/husaro-gasthamn-cafe), drivmedel med kortautomat året runt.
+- [Sandhamn](/o/sandhamn), enligt Svenska Gästhamnar säljs diesel och bensin på Sandhamns sjöstation.
+- [Nämdö](/upptack/namdo-macken), sjömack i Solvik.
+- **Stavsnäs**: Stavsnäs Båtvarv & Sjömack i Vinterhamnen, där du kan tanka dygnet runt.
 
 ## Södra skärgården
-- [Dalarö](/upptack/marindepan-dalaro) – Marindepån Dalarö har sjömack, och vid Hotellbryggan anger Svenska Gästhamnar diesel, bensin och gasol.
-- [Ornö](/upptack/ornomacken-gasthamn) – Ornö-macken i Kyrkviken, med diesel och bensin.
-- [Utö](/o/uto) – sjömacken ligger i norra hamnen.
-- [Nynäshamn](/upptack/nynashamn-marinbransle) – diesel, bensin och gasol i gästhamnen.
+- [Dalarö](/upptack/marindepan-dalaro): Marindepån Dalarö har sjömack, och vid Hotellbryggan anger Svenska Gästhamnar diesel, bensin och gasol.
+- [Ornö](/upptack/ornomacken-gasthamn): Ornö-macken i Kyrkviken, med diesel och bensin.
+- [Utö](/o/uto), sjömacken ligger i norra hamnen.
+- [Nynäshamn](/upptack/nynashamn-marinbransle): diesel, bensin och gasol i gästhamnen.
 
 ## Tanka säkert
 Svenska Kryssarklubben ger de här råden:
-- Ingen ska vara ombord medan du tankar – tunga bensingaser kan samlas i båtens lågpunkter och antändas.
+- Ingen ska vara ombord medan du tankar, tunga bensingaser kan samlas i båtens lågpunkter och antändas.
 - Stäng av motorn och slå av huvudströmbrytaren. Rök inte.
 - Fyll aldrig lösa utombordartankar inombords, och förvara bara bränsle i godkända kärl.
 - Fyll inte tanken helt. Kallt bränsle expanderar kraftigt under varma sommardagar.
 - Ventilera ut gaserna med motorrumsfläkten efter tankningen.
 
 ## Ankra för natten
-Enligt Naturvårdsverket får du ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt. Det finns ingen fast regel för hur länge, men man brukar följa samma princip som för tältning – något enstaka dygn. I naturreservat som Grinda och Finnhamn får båten inte ligga förankrad vid samma strand längre än två dygn i följd.
+Enligt Naturvårdsverket får du ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt. Det finns ingen fast regel för hur länge, men man brukar följa samma princip som för tältning, något enstaka dygn. I naturreservat som Grinda och Finnhamn får båten inte ligga förankrad vid samma strand längre än två dygn i följd.
 
 Några hamnar i ytterskärgården:
-- [Rödlöga](/o/rodloga) – enligt Rödlögaboden finns en skyddad naturhamn i alla vindar, och sjömacken ligger på ön.
-- [Fejan](/o/fejan) – strax öster om Räfsnäs, med gästhamn där dusch, toalett och bastu ingår i hamnavgiften.
-- [Huvudskär](/o/huvudskar) – naturreservatet tio kilometer sydost om Ornö har gott om naturhamnar.
+- [Rödlöga](/o/rodloga): enligt Rödlögaboden finns en skyddad naturhamn i alla vindar, och sjömacken ligger på ön.
+- [Fejan](/o/fejan): strax öster om Räfsnäs, med gästhamn där dusch, toalett och bastu ingår i hamnavgiften.
+- [Huvudskär](/o/huvudskar), naturreservatet tio kilometer sydost om Ornö har gott om naturhamnar.
 
 Fler platser och regler: [Naturhamnar i Stockholms skärgård](/blogg/naturhamnar-stockholm-skargard) och [Gästhamnar i Stockholms skärgård](/blogg/gasthamnar-guide).
    `,
  },
 
  'sommar-skargard-tips': {
- title: 'Sommar i skärgården – bad, vandring, tält och kajak',
- excerpt: 'Tio saker att göra i Stockholms skärgård på sommaren: sandstrand, en etapp av Stockholm Archipelago Trail, kajak, sälsafari, bastu, fyr och dansbana – och reglerna för tält, eld och hund.',
+ title: 'Sommar i skärgården: bad, vandring, tält och kajak',
+ excerpt: 'Tio saker att göra i Stockholms skärgård på sommaren: sandstrand, en etapp av Stockholm Archipelago Trail, kajak, sälsafari, bastu, fyr och dansbana, och reglerna för tält, eld och hund.',
  category: 'Inspiration',
  date: '2026-02-14',
  updatedAt: '2026-09-24',
@@ -261,7 +261,7 @@ Fler platser och regler: [Naturhamnar i Stockholms skärgård](/blogg/naturhamna
    // KÄLLA: lansstyrelsen.se Grinda, Utö, Gällnö och Nämdöskärgårdens nationalpark; stockholmarchipelagotrail.com etappsidorna – se KÄLLA-kommentaren i content.
    { q: 'Får man tälta i skärgårdens naturreservat?', a: 'Det beror på reservatet. På Grinda bara på tältplatsen nära norra bryggan och på Utö bara på anvisade platser. På Gällnö får tältet stå högst två dygn på samma plats, och på Bullerös tältplats upp till sju dygn.' },
    { q: 'Får man grilla och elda i skärgården?', a: 'Stockholm Archipelago Trail uppmanar dig att respektera eldningsförbud och aldrig elda på klippa. På Utö får du bara elda på iordningställda platser, och i Nämdöskärgårdens nationalpark på anvisade platser eller i grill på ben.' },
-   { q: 'Ska hunden vara kopplad i skärgården?', a: 'Längs Stockholm Archipelago Trail ska hundar vara kopplade mars–september. I Nämdöskärgårdens nationalpark ska hunden alltid vara kopplad, och i naturreservaten på Grinda, Utö och Gällnö gäller koppel.' },
+   { q: 'Ska hunden vara kopplad i skärgården?', a: 'Längs Stockholm Archipelago Trail ska hundar vara kopplade mars till september. I Nämdöskärgårdens nationalpark ska hunden alltid vara kopplad, och i naturreservaten på Grinda, Utö och Gällnö gäller koppel.' },
  ],
  content: `
 <!-- KÄLLA (läst 2026-09-24 om inget annat anges). Bad: varmdo.se Trouville (se /blogg/sandhamn-guide-2026: vit sand, södra sidan, "ca 20 min" promenad från hamnen, toaletter sommartid); skargardsstiftelsen.se/omraden/uto ("Ålö Storsand, som nås med båt eller via vandringsled"); skargardsstiftelsen.se/omraden/gallno-karklo (Torsviken "sandstrand och tältplats"); skargardsstiftelsen.se/omraden/grinda (badplatsen Källviken). Vandring: stockholmarchipelagotrail.com/sv/section/ ("Visar 22 etapper"; "Etapp Sandhamn Lätt 8.1 km"; "Etapp Möja Lätt 13.8 km"); etappsidorna Utö, Ornö, Möja och Sandhamn: "Under sommaren (22 juni – 16 augusti 2026) kan du åka Nordsydlinjen som följer SAT." Kajak och sälsafari: visitmoja.se/aktiviteter-på-möja/ (Möja Outdoor "Hyr kajak, roddbåt och SUP" och sälsafari; se /blogg/dolda-parlor-moja); stockholmarchipelagotrail.com/sv/section/etapp-orno/ ("kan du hyra kajak vid Kajakomaten vid Kyrkviken"); gallno.se (cykel och kajak att hyra sommartid; se /blogg/cykling-moja-gallno). Bastu: lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html ("en varm raststuga och vedeldad bastu som är öppna året om"); sverigesnationalparker.se Nämdöskärgården (via island-data.ts, hämtad 2026-08-19): Bastun på Bullerö "öppen för alla och går inte att boka"; utogasthamn.se/gasthamnen/ ("dusch, bastu och toaletter"). Fyr: skargardsstiftelsen.se och lansstyrelsen.se Grönskär (se /blogg/sandhamn-guide-2026: naturreservat sedan 1965, fyren 26 m hög, byggd 1770 efter ritningar av Carl Fredrik Adelcrantz). Utö: lansstyrelsen.se Utö (väderkvarnen "som uppfördes 1791", trähusen längs Lurgatan); skargardsstiftelsen.se ("Sveriges äldsta bevarade väderkvarn"; "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis"). Gästhamnar: grinda.se/hamn-mack/gasthamn ("gästhamn för 100 båtar", "28 st bokningsbara platser"; se /blogg/grinda-guide-2026); ksss.se/hamnar/sandhamn (ca 150 gästplatser; se /blogg/sandhamn-guide-2026). Dansbana: visitmoja.se ("Möjas dansbana är skärgårdens äldsta ännu i drift"). Cykel på båten: waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med ("Du får ta med en vanlig cykel ombord i mån av plats. Att ta med cykeln kostar inget extra"). Regler: lansstyrelsen.se Grinda ("Tältning är endast tillåten på tältplatsen nära norra bryggan"; förbud att "medföra okopplad hund"); lansstyrelsen.se Utö (tältning endast på anvisade platser, eldning endast på iordningställda platser, hundar kopplade med undantag för Persholmen utanför 1 mars–20 augusti); lansstyrelsen.se Gällnö (hund kopplad, tält högst två dygn på samma plats); lansstyrelsen.se Nämdöskärgårdens nationalpark ("Du får endast elda på anvisade platser eller i grill på ben."; "Din hund ska alltid vara kopplad."; "Du får tälta upp till två dygn på samma plats i nästan hela nationalparken. På Bullerö finns en tältplats där du får tälta upp till sju dygn."; "I nationalparken finns flera fågelskyddsområden ... I dessa råder tidsbegränsat tillträdesförbud."; "Under högsäsongen går turbåt till entrén på Bullerö från Stavsnäs vinterhamn"); stockholmarchipelagotrail.com etappsidorna ("Under mars – september skall hundar alltid vara kopplade."; "Respektera eldningsförbud och elda absolut inte på klippa."); fjaderholmarna (se /blogg/fjaderholmarna-dagstur): Libertas och Rövarns holme fågelskyddsområden med landstigningsförbud under häckningstid. Tidigare version (borttagen 2026-09-24) var en lista med tyckande utan källor: soluppgång "klockan 4:30" (märkt UPPSKATTNING), räkor "inköpta från en fiskebåt", nakenbad i naturhamn, kajak i gryningen som "skärgårdens bäst bevarade hemlighet", grilla på en skär utan eldregler, övernattning i naturhamn utan regler, "Waxholmsbolagets äldre båtar" som ångbåtstur, fyrarna Landsort, Söderarm och Svenska Björn som "möjliga att besöka och ha picknick vid", "ett ställe som inte finns på Google Maps" och stjärnskådning. Inget av det gick att belägga. -->
@@ -311,13 +311,13 @@ Med egen båt: [Grinda gästhamn](/upptack/grinda-gasthamn) har plats för 100 b
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html — "tälta på annat än anvisad plats" är förbjudet; https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — tältning endast på anvisade platser; https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/gallno.html — förbjudet att "tälta mer än två dygn i följd på samma plats"; https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — "Du får tälta upp till två dygn på samma plats i nästan hela nationalparken. På Bullerö finns en tältplats där du får tälta upp till sju dygn." (Länsstyrelsen Stockholm, lästa 2026-09-29) -->
 - **Tält:** på Grinda bara på tältplatsen nära norra bryggan, på Utö bara på anvisade platser. På Gällnö får tältet stå högst två dygn på samma plats. I Nämdöskärgårdens nationalpark gäller två dygn på samma plats, utom på Bullerös tältplats där gränsen är sju dygn.
 - **Eld:** respektera eldningsförbud och elda aldrig på klippa. På Utö får du bara elda på iordningställda platser, och i nationalparken på anvisade platser eller i grill på ben.
-- **Hund:** längs Stockholm Archipelago Trail ska hundar vara kopplade mars–september. I nationalparken alltid, och i naturreservaten på Grinda, Utö och Gällnö gäller koppel. Mer: [Skärgård med hund](/blogg/skargard-med-hund).
+- **Hund:** längs Stockholm Archipelago Trail ska hundar vara kopplade mars till september. I nationalparken alltid, och i naturreservaten på Grinda, Utö och Gällnö gäller koppel. Mer: [Skärgård med hund](/blogg/skargard-med-hund).
 - **Fåglar:** i nationalparken finns fågelskyddsområden med tidsbegränsat tillträdesförbud. Vid Fjäderholmarna är Libertas och Rövarns holme fågelskyddsområden med landstigningsförbud under häckningstiden.
  `,
  },
 
  'fjaderholmarna-dagstur': {
- title: 'Fjäderholmarna dagstur – båt, mat och vad du gör på ön',
+ title: 'Fjäderholmarna dagstur: båt, mat och vad du gör på ön',
  excerpt: 'Dagstur till Fjäderholmarna från Stockholm: vilka båtar som går och hur lång tid det tar, Rökeriet, krogen och bryggeriet, hantverkarna, bad från klipporna och öarnas historia.',
  category: 'Öguide',
  date: '2026-01-30',
@@ -332,12 +332,12 @@ Med egen båt: [Grinda gästhamn](/upptack/grinda-gasthamn) har plats för 100 b
  ],
  content: `
 <!-- KÄLLA: stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ (Strandvägen kajplats 13, ca 30 min, "Some departures also stop at Nacka Strand"). fjaderholmarna.se (båtoperatörer Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen; Fjäderholmarnas Krog, Restaurang Rökeriet och Fjäderholmarnas Bryggeri; hantverkare inom trä, textil, keramik och glas; utställningen "Allmogebåtar"; "Fjäderholmarna har nu säsongsöppet"). fjaderholmarnasbryggeri.se (brewpub, öl direkt från tankarna, huvudproduktion i Bro). fjaderholmarnaskrog.se (Krogen, Hamnbaren och Loftet, bordsbokning online). explorearchipelago.com (klippbad med utsikt över Stockholms inlopp, mindre sandstränder). lidingo.se kulturmiljöunderlag Stora Fjäderholmen ("omnämns i skrift redan 1381", krog "Åtminstone sedan 1699", marinen förvärvade öarna 1918, Försvarsmakten lämnade 1976, "Sedan 1995 ingår Fjäderholmarna i Kungliga nationalstadsparken"). Ögruppen Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme; Libertas och Rövarns holme fågelskyddsområden med landstigningsförbud under häckningstid (naturkartan.se/lidingo.se). Gästhamnen 35 platser med boj (svenskagasthamnar.se, datafix 2026-09-22). Alla källor återges i src/app/o/island-data.ts (fjaderholmarna). Tidigare version (borttagen 2026-09-24) påstod att "Waxholmsbolaget kör" båten från Strandvägen, att det finns ett akvarium och "Båthuset Bar & Grill" och gav pris och turtäthet utan källa. -->
-Fjäderholmarna är de skärgårdsöar som ligger närmast centrala Stockholm – cirka 30 minuter med båt från Strandvägen. På Stora Fjäderholmen finns rökeri, krog, bryggeri och hantverkare, och du badar från klipporna med Stockholms inlopp framför dig. Mer fakta och karta: [Fjäderholmarna på Svalla](/o/fjaderholmarna).
+Fjäderholmarna är de skärgårdsöar som ligger närmast centrala Stockholm, cirka 30 minuter med båt från Strandvägen. På Stora Fjäderholmen finns rökeri, krog, bryggeri och hantverkare, och du badar från klipporna med Stockholms inlopp framför dig. Mer fakta och karta: [Fjäderholmarna på Svalla](/o/fjaderholmarna).
 
 ## Båten dit
 Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13 och tar cirka 30 minuter, och vissa avgångar stannar vid Nacka Strand. Alla restider: [Båt till Fjäderholmarna](/o/fjaderholmarna/komma-dit).
 
-Fjäderholmarna har säsongsöppet under sommarhalvåret – båtar, restauranger och butiker. Utanför säsong är det mesta stängt.
+Fjäderholmarna har säsongsöppet under sommarhalvåret: båtar, restauranger och butiker. Utanför säsong är det mesta stängt.
 
 ## Äta och dricka
 - **Restaurang Rökeriet** röker på plats och säljer både i restaurangen och i delin, med skagenmackor, sallader, rökta räkor och chark.
@@ -359,7 +359,7 @@ Fjäderholmarna nämns i skrift redan 1381, och åtminstone sedan 1699 har det f
  },
 
  'vaxholm-guide': {
- title: 'Vaxholm dagstur – kastellet, staden och båt från Strömkajen',
+ title: 'Vaxholm dagstur: kastellet, staden och båt från Strömkajen',
  excerpt: 'Dagstur till Vaxholm: båt från Strömkajen eller buss 670, Vaxholms kastell och museet, kyrkan, Rindö redutt och Oscar-Fredriksborg, Bogesundslandet och var du äter vid hamnen.',
  category: 'Öguide',
  date: '2026-04-05',
@@ -381,16 +381,16 @@ Vaxholm är en stad i Stockholms skärgård. Du tar dig dit med båt från Strö
 - **Buss:** buss 670 går mellan Tekniska högskolan och Vaxholm. Landförbindelsen finns sedan Pålsundsbron byggdes 1926.
 
 ## Vaxholms kastell
-Kastellet ligger på ön Vaxholmen, ett stenkast från staden, och nås över vattnet. Fästningens historia börjar i början av 1500-talet med ett blockhus byggt av Svante Nilsson Sture, och 1548 beställde Gustav Vasa en kraftigare fästning. Den nuvarande byggnaden uppfördes 1833–1863. Fästningen har slagit tillbaka angrepp två gånger, från danskarna 1612 och från ryssarna 1719.
+Kastellet ligger på ön Vaxholmen, ett stenkast från staden, och nås över vattnet. Fästningens historia börjar i början av 1500-talet med ett blockhus byggt av Svante Nilsson Sture, och 1548 beställde Gustav Vasa en kraftigare fästning. Den nuvarande byggnaden uppfördes 1833 till 1863. Fästningen har slagit tillbaka angrepp två gånger, från danskarna 1612 och från ryssarna 1719.
 
 Museet i kastellet invigdes 1964 och följer skärgårdsförsvarets 500-åriga historia. I kastellet finns också restaurang och konsertlokaler.
 
 ## Fler fästningar
-- **Rindö redutt** (1859–1864) på grannön Rindö byggdes för att komplettera kastellet och går att besöka på egen hand. Rindö nås med gratis bilfärja från Vaxön.
-- **Oscar-Fredriksborg** vid Oxdjupet (1867–1877) är ett bergfort med tunnlar sprängda i berget. Området är öppet för besök.
+- **Rindö redutt** (1859 till 1864) på grannön Rindö byggdes för att komplettera kastellet och går att besöka på egen hand. Rindö nås med gratis bilfärja från Vaxön.
+- **Oscar-Fredriksborg** vid Oxdjupet (1867 till 1877) är ett bergfort med tunnlar sprängda i berget. Området är öppet för besök.
 
 ## Staden
-Vaxholm fick stadsprivilegier 1647 av drottning Kristina. Vaxholms kyrka byggdes 1760–1803; det planerade tornet blev aldrig byggt och ersattes av en klockstapel i trä. Inne i kyrkan står en dopfunt i gotländsk sandsten från slutet av 1300-talet, som ursprungligen stod i Riddarholmskyrkan. I december hålls Vaxholms julmarknad.
+Vaxholm fick stadsprivilegier 1647 av drottning Kristina. Vaxholms kyrka byggdes 1760 till 1803; det planerade tornet blev aldrig byggt och ersattes av en klockstapel i trä. Inne i kyrkan står en dopfunt i gotländsk sandsten från slutet av 1300-talet, som ursprungligen stod i Riddarholmskyrkan. I december hålls Vaxholms julmarknad.
 
 ## Natur: Bogesundslandet
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bogesundslandet.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 2015"; "Storlek: 4341 hektar varav 2 891 hektar land"; "Skyddsform: naturreservat"; "det nät av vandringsleder och ridstigar som finns markerade"; "flera iordningställda badplatser och en rad rastplatser med eldstäder och vindskydd" -->
@@ -407,7 +407,7 @@ Bogesundslandets naturreservat, 4 341 hektar varav 2 891 på land, har markerade
  },
 
  'uto-guide': {
- title: 'Utö guide – gruvorna, cykel, bad och båt från Årsta brygga',
+ title: 'Utö guide: gruvorna, cykel, bad och båt från Årsta brygga',
  excerpt: 'Allt om Utö i Stockholms södra skärgård: Waxholmsbåten från Årsta brygga, gruvorna och väderkvarnen från 1791, cykeluthyrning, bad vid Ålö Storsand och Rävstavik, Utö Värdshus, gästhamnen och reglerna i naturreservatet.',
  category: 'Öguide',
  date: '2026-03-22',
@@ -422,7 +422,7 @@ Bogesundslandets naturreservat, 4 341 hektar varav 2 891 på land, har markerade
    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt."
    // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there."; "It passes through an active military firing range, which is located on both sides of the road."
    // KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand."
-   { q: 'Hur tar man sig till Utö?', a: 'Enligt Länsstyrelsen tar du pendeltåg till Västerhaninge, buss till Årsta brygga och Waxholmsbåt året om till Gruvbryggan på Utö. Bussen är SL:s linje 846 Västerhaninge station–Årsta, med hållplats vid Årsta brygga. Båt går också från Nynäshamn till grannön Ålö, som har broförbindelse till Utö. Vägen från Ålö till Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.' },
+   { q: 'Hur tar man sig till Utö?', a: 'Enligt Länsstyrelsen tar du pendeltåg till Västerhaninge, buss till Årsta brygga och Waxholmsbåt året om till Gruvbryggan på Utö. Bussen är SL:s linje 846 Västerhaninge station till Årsta, med hållplats vid Årsta brygga. Båt går också från Nynäshamn till grannön Ålö, som har broförbindelse till Utö. Vägen från Ålö till Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.' },
    { q: 'Kan man hyra cykel på Utö?', a: 'Ja. Skärgårdsstiftelsen beskriver Utö som en cykel-ö med cykeluthyrning dagsvis, och Utö gästhamn hyr ut cyklar vid hamnen.' },
    // KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (Skärgårdsstiftelsen), läst 2026-11-08 — "Rävstavik och Barnens bad erbjuder långgrunda sandstränder som passar barnfamiljer, medan Ålö Storsand, som nås med båt eller via vandringsled, räknas som en av Stockholms skärgårds mest omtyckta sandstränder."
    // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö."
@@ -442,7 +442,7 @@ Bogesundslandets naturreservat, 4 341 hektar varav 2 891 på land, har markerade
 Vägen mellan Ålö och Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud. Information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00. Verksamheten kan ändras med kort varsel, och på plats gäller informationstavlorna i första hand.
 
 ## Gruvorna och Gruvbyn
-Järnmalm bröts på Utö till och från i omkring 700 år, med början redan på 1100-talet, och gruvdriften upphörde helt 1879. Sommaren 1719 förstörde den ryska flottan gruvorna. I Gruvbyn står trähusen längs Lurgatan och väderkvarnen från 1791 – Sveriges äldsta bevarade, och byggnadsminne sedan 2001 tillsammans med nio gruvarbetarbostäder. Utö kyrka byggdes 1848–1850 av sten från gruvorna, och orgeln från 1745 stod ursprungligen i Holländska reformerta kyrkan i Stockholm.
+Järnmalm bröts på Utö till och från i omkring 700 år, med början redan på 1100-talet, och gruvdriften upphörde helt 1879. Sommaren 1719 förstörde den ryska flottan gruvorna. I Gruvbyn står trähusen längs Lurgatan och väderkvarnen från 1791: Sveriges äldsta bevarade, och byggnadsminne sedan 2001 tillsammans med nio gruvarbetarbostäder. Utö kyrka byggdes 1848 till 1850 av sten från gruvorna, och orgeln från 1745 stod ursprungligen i Holländska reformerta kyrkan i Stockholm.
 
 ## Cykla
 Skärgårdsstiftelsen beskriver Utö som en riktig cykel-ö med milslånga grusvägar, och cyklar hyrs dagsvis vid hamnen.
@@ -473,7 +473,7 @@ Skärgårdsstiftelsen beskriver Utö som en riktig cykel-ö med milslånga grusv
  },
 
  'segling-nyborjare-guide': {
- title: 'Börja segla – så lär du dig segla i skärgården',
+ title: 'Börja segla: så lär du dig segla i skärgården',
  excerpt: 'Så börjar du segla: seglarskola för vuxna, Seglarintyg 1 och 2, vilka krav som gäller för att köra fritidsbåt, de viktigaste väjningsreglerna och hur du hyr en segelbåt i Stockholms skärgård.',
  category: 'Aktiviteter',
  date: '2026-03-18',
@@ -496,13 +496,13 @@ Svenska Seglarförbundets certifierade seglarskolor finns hos klubbar över hela
 ## 2. Vilka krav gäller?
 För en fritidsbåt som är kortare än 12 meter och smalare än 4 meter krävs inget körkort, enligt Transportstyrelsen. Den som framför ett fritidsskepp som är både längre än 12 meter och bredare än 4 meter ska ha skepparexamen, kustskepparexamen eller högre. Vattenskoter kräver alltid förarbevis.
 
-Oavsett storlek är det du som befälhavare som ansvarar för att båten är sjövärdig – rätt utrustad, bemannad och provianterad. Transportstyrelsen rekommenderar att alla som är ute på sjön har grundkunskaper om säkerhet och sjövägsregler.
+Oavsett storlek är det du som befälhavare som ansvarar för att båten är sjövärdig: rätt utrustad, bemannad och provianterad. Transportstyrelsen rekommenderar att alla som är ute på sjön har grundkunskaper om säkerhet och sjövägsregler.
 
 ## 3. Lär dig väjningsreglerna
 Sjövägsreglerna gäller alla båtar. Tre regler du behöver kunna från början:
 - **Motorbåt och segelbåt:** ett maskindrivet fartyg på väg ska hålla undan för ett segelfartyg.
 - **Två segelbåtar:** den som har vinden in från babord håller undan. Har båda vinden från samma sida håller den i lovart undan för den i lä.
-- **Trång farled:** segelfartyg och båtar under 20 meter får inte hindra ett fartyg som bara kan framföras säkert i farleden – i skärgården till exempel färjor och större fartyg. Segelbåtens företräde gäller alltså inte där.
+- **Trång farled:** segelfartyg och båtar under 20 meter får inte hindra ett fartyg som bara kan framföras säkert i farleden, i skärgården till exempel färjor och större fartyg. Segelbåtens företräde gäller alltså inte där.
 
 Segelbåten ska också hålla undan för fartyg som inte är manöverfärdiga, har begränsad manöverförmåga eller fiskar.
 
@@ -518,7 +518,7 @@ När du har gått kurs kan du hyra båt. Kolla uthyrarens villkor för intyg och
  },
 
  'basta-badplatserna': {
- title: 'Badplatser i Stockholms skärgård – sandstränder och klippbad',
+ title: 'Badplatser i Stockholms skärgård: sandstränder och klippbad',
  excerpt: 'Sandstränder, klippbad och havsbad i Stockholms skärgård: Trouville på Sandhamn, Björnö och Ingarö, Vaxholmsöarna och bad du når med Roslagsbanan, Saltsjöbanan eller buss. Fakta från kommunerna och Havs- och vattenmyndigheten.',
  category: 'Aktiviteter',
  date: '2026-04-08',
@@ -530,11 +530,11 @@ När du har gått kurs kan du hyra båt. Kolla uthyrarens villkor för intyg och
    { q: 'Var finns sandstränder i Stockholms skärgård?', a: 'Trouville på Sandhamns södra sida har vit sand. På södra Ingarö finns Stora Sandarna, cirka 200 meter sandstrand, och Lilla Sandarna, och i Björnö naturreservat ligger Torpesand med ungefär 120 meter sandstrand och långgrund sandbotten. Nära Vaxholm har Eriksöbadet och Tenöbadet sandstrand.' },
    { q: 'Får man bada var som helst i skärgården?', a: 'Enligt Naturvårdsverket får du gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt eller är skyddad, till exempel för fågelliv. Det finns inget förbud mot att bada vid en brygga som ligger utanför en tomt, men ägaren får inte hindras från att använda den.' },
    { q: 'Vilka havsbad når man utan bil eller båt?', a: 'Österskärs havsbad (Solbrännan) ligger en kort promenad från Roslagsbanans Österskärs station, och Saltsjöbadens friluftsbad cirka 500 meter från Saltsjöbanans station. Schweizerbadet på Dalarö, Årsta havsbad, Trinntorpsbadet i Tyresö och Stora Sandarna på Ingarö har busshållplats i närheten.' },
-   { q: 'Hur vet jag om badvattnet är bra?', a: 'Havs- och vattenmyndighetens Badplatsen visar provtagning och badvattenkvalitet för badplatser som kommunerna provtar, till exempel EU-baden Eriksöbadet och Tenöbadet. Alla bad provtas inte – Värmdö kommun tar till exempel inga prover vid Trouville på Sandhamn.' },
+   { q: 'Hur vet jag om badvattnet är bra?', a: 'Havs- och vattenmyndighetens Badplatsen visar provtagning och badvattenkvalitet för badplatser som kommunerna provtar, till exempel EU-baden Eriksöbadet och Tenöbadet. Alla bad provtas inte, Värmdö kommun tar till exempel inga prover vid Trouville på Sandhamn.' },
  ],
  content: `
 <!-- KÄLLA (lästa 2026-09-22 om inget annat anges; citat i supabase/datafix/2026-09-22-strander-beskrivningar.sql): Trouville – varmdo.se/upplevaochgora/naturochfriluftsliv/badplatserivarmdo/trouvillesandhamn ("Den långsträckta stranden i Trouville, med sin vita sand, ligger på Sandhamns södra sida", "omkring 20 minuters promenad från hamnen", "Toaletter sommartid", "Ingen provtagning av badvatten utförs av Värmdö kommun"; läst 2026-09-23). Torpesand, Stora och Lilla Sandarna, Grisslinge, Södersved – havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-varmdo-kommun/. Björkviks havsbad – visitvarmdo.com ("a mixture of both rocky waters edge and sandy beaches", Ingaröfjärden; datafix 2026-09-23-texter-omgang2.sql). Eriksöbadet, Tenöbadet, Grönviksbadet, Måldepån, Överbybadet – vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser ("Tenöbadet är ett EU-bad"). Solbrännan – osteraker.se badplatser. Saltsjöbadens friluftsbad – nacka.se/uppleva--gora/friluftsliv-motion/badplatser-och-badvatten/saltsjobaden-fisksatra/. Trinntorpsbadet – tyreso.se badplatser. Schweizerbadet, Årsta havsbad – haninge.se/uppleva-och-gora/idrott-och-friluftsliv/friluft-och-natur/bad/. Nickstabadet, Hamnviken – havochvatten.se Nynäshamns kommun. Backbybadet, Kvarnsand – norrtalje.se/info/kultur-och-fritid/bad/badplatser/. Allemansrätten – naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ ("Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt, eller som är skyddad för fågelliv eller annat", "Det finns inget förbud mot att tillfälligt förtöja eller bada vid en brygga som ligger utanför en tomt"; läst 2026-09-24). Tidigare version (borttagen 2026-09-24) rangordnade "tolv favoriter" utan mätning och påstod bl.a. att Kymmendö är naturreservat och att Stora Sand på Utö ligger inom ett skjutfält som främst är öppet i juli – påståenden utan källa. -->
-Stockholms skärgård har både sandstränder och klippbad, och enligt allemansrätten får du bada vid stränder som inte hör till någon tomt. Här är badplatser där kommunen, Havs- och vattenmyndigheten, Skärgårdsstiftelsen eller Visit Värmdö beskriver vad som finns på plats. Vi rangordnar dem inte – de är sorterade efter hur du tar dig dit. Varje bad har en egen sida på Svalla med karta.
+Stockholms skärgård har både sandstränder och klippbad, och enligt allemansrätten får du bada vid stränder som inte hör till någon tomt. Här är badplatser där kommunen, Havs- och vattenmyndigheten, Skärgårdsstiftelsen eller Visit Värmdö beskriver vad som finns på plats. Vi rangordnar dem inte. De är sorterade efter hur du tar dig dit. Varje bad har en egen sida på Svalla med karta.
 
 ## Sandstränder i skärgården
 
@@ -607,7 +607,7 @@ Havsbad med cirka 190 meter strandlinje i österläge söder om Grisslehamn, med
  },
 
  'vandring-orno-uto': {
- title: 'Vandring på Ornö och Utö – etapper, slingor och båt',
+ title: 'Vandring på Ornö och Utö: etapper, slingor och båt',
  excerpt: 'Vandra på Ornö och Utö: Stockholm Archipelago Trails etapper på 34,1 och 18,4 km, var de börjar, Sundbyslingan, leden vidare till Ålö, bussen på Ornö och båtarna från Dalarö och Årsta brygga.',
  category: 'Aktiviteter',
  date: '2026-02-28',
@@ -627,25 +627,25 @@ Ornö och Utö i Stockholms södra skärgård har var sin etapp av Stockholm Arc
 
 ## Ornö
 
-### Etappen – 34,1 km, medel
+### Etappen: 34,1 km, medel
 Ornö är den längsta etappen på Stockholm Archipelago Trail. Den är märkt som två dagsetapper som båda börjar vid Hässelmara, där bilfärjan från Dalarö lägger till, och slutar i hamnen vid Ornö kyrka:
 - **Norra delen:** från Hässelmara norrut till Skinnardal och vidare via Ornöboda och Söderviken till Ornö kyrka.
 - **Södra delen:** från Hässelmara söderut via utkiksberget, Bodal och gula spåret mot Lättinge via Kråkmora. Därifrån fortsätter du norrut via Mörby gård och Lervassa träsk till Ornö kyrka, eller avslutar vid Lättinge.
 
-Du kan också börja vid Ornöboda, där Waxholmsbåten lägger till mitt emot Kymmendö, vid Lättinge brygga eller vid Ornö kyrka. Går du alla 34 kilometer i ett sträck rekommenderar leden medsols. Med barnvagn eller rullstol rekommenderar leden sträckan Hässelmara–Bodal.
+Du kan också börja vid Ornöboda, där Waxholmsbåten lägger till mitt emot Kymmendö, vid Lättinge brygga eller vid Ornö kyrka. Går du alla 34 kilometer i ett sträck rekommenderar leden medsols. Med barnvagn eller rullstol rekommenderar leden sträckan Hässelmara till Bodal.
 
-### Sundby – drygt 6 km
+### Sundby: drygt 6 km
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sundby.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1965"; "Skyddsform: naturreservat"; reservatet "omfattar södra delen av Ornö" -->
 Från Sundby gård i Sundby naturreservat på södra Ornö går en drygt sex kilometer lång, lättvandrad rundslinga på grusvägar och stigar genom ett odlingslandskap som brukats sedan 1400-talet. Den är till stora delar framkomlig med barnvagn eller rullstol, men inte hela vägen runt. Längs slingan ligger Stenhuset, ruinen efter Sundbys första säteri som brändes av ryssarna 1719, och eklandskapet vid Mane äng.
 
-Naturreservatet Norra skogen på norra Ornö skyddades 2024 och nås bara till fots, cirka 1,5–2 kilometer från parkering eller färjeläget.
+Naturreservatet Norra skogen på norra Ornö skyddades 2024 och nås bara till fots, cirka 1,5 till 2 kilometer från parkering eller färjeläget.
 
 ### Bo, äta och hyra
 - **Boende:** delar du etappen på två dagar pekar leden på Ornö Skärgårdshotell i Brunnsviken vid Lättinge eller Sundby B&B. Ornö Båtvarv längst in i Brunnsviken har små campingstugor, café, bastu och cyklar att hyra.
 - **Kyrkviken:** Ornö Krog, Gittans strandbar, Ornö brödbod & deli och Ornö museum. Kajak hyrs vid Kajakomaten.
 
 ### Ta dig till Ornö
-- **Bilfärja:** Ornö Sjötrafik kör mellan Hotellbryggan på Dalarö och Hässelmara, en överfart på cirka 30 minuter. Fordon ska bokas. Stockholm Archipelago Trail anger att färjan går året om, medan Ornö Sjötrafiks publicerade turlista gällde 27 april–13 september 2026, så kontrollera turlistan.
+- **Bilfärja:** Ornö Sjötrafik kör mellan Hotellbryggan på Dalarö och Hässelmara, en överfart på cirka 30 minuter. Fordon ska bokas. Stockholm Archipelago Trail anger att färjan går året om, medan Ornö Sjötrafiks publicerade turlista gällde 27 april till 13 september 2026, så kontrollera turlistan.
 - **Utan bil:** SL-buss till Dalarö och färjan över. På Ornö går en buss mellan Lättinge, Sundby, Ornö kyrka, Hässelmara och Skinnardal, och SL-kortet gäller.
 - **Waxholmsbåt:** fredag till söndag under mellansäsongen går båt från Dalarö till Ornöboda. På sommaren går Nordsydlinjen till Ornö kyrka.
 
@@ -653,7 +653,7 @@ Alla alternativ: [Båt till Ornö](/o/orno/komma-dit).
 
 ## Utö
 
-### Etappen – 18,4 km, utmanande
+### Etappen: 18,4 km, utmanande
 Leden beskriver underlaget på Utö som allt från grusvägar till skogsstigar och tekniska stigar i klippmiljö. Etappen börjar vid Gruvbryggan, där det finns affärer, värdshus och restauranger, eller vid Spränga brygga, där det inte finns någon service. Går du hela etappen rekommenderar leden motsols.
 
 Kortare turer som går med barnvagn eller rullstol:
@@ -669,17 +669,17 @@ Kortare turer som går med barnvagn eller rullstol:
 En förbindelseled på 4,6 kilometer, klassad som lätt, går från Utö till Ålö. Den följer en grusväg genom Utö skjutfält, ett aktivt militärt skjutfält, och enligt leden ska man hålla sig på grusvägen hela vägen. Vissa tider är det tillträdesförbud på skjutfältet. Information om förbuden finns på Försvarsmaktens webbplats under Skjutfält och förbud eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand. Etappen på Ålö är 13,2 kilometer och klassas som utmanande.
 
 ### Regler på Utö
-Norra delen av Utö är naturreservat, södra delen skjutfält. I reservatet ska hunden vara kopplad (undantag på Persholmen utanför perioden 1 mars–20 augusti), tält får bara stå på anvisade platser och eld bara göras upp på iordningställda platser. Mer om ön: [Utö guide](/blogg/uto-guide).
+Norra delen av Utö är naturreservat, södra delen skjutfält. I reservatet ska hunden vara kopplad (undantag på Persholmen utanför perioden 1 mars till 20 augusti), tält får bara stå på anvisade platser och eld bara göras upp på iordningställda platser. Mer om ön: [Utö guide](/blogg/uto-guide).
 
 ### Ta dig till Utö
-Pendeltåg till Västerhaninge och buss 846 till Årsta brygga, 14–17 minuter. Bussen är anpassad till pendeltågen. Därifrån tar Waxholmsbåten 35–75 minuter till Gruvbryggan enligt höst- och vårtidtabellen. På flera turer ska resan beställas i SL-appen, på Waxholmsbolagets webb eller via kundtjänst minst en timme före avgång. Från Nynäshamn går båt till grannön Ålö, som har broförbindelse till Utö. Alla avgångar: [Båt till Utö](/o/uto/komma-dit).
+Pendeltåg till Västerhaninge och buss 846 till Årsta brygga, 14 till 17 minuter. Bussen är anpassad till pendeltågen. Därifrån tar Waxholmsbåten 35 till 75 minuter till Gruvbryggan enligt höst- och vårtidtabellen. På flera turer ska resan beställas i SL-appen, på Waxholmsbolagets webb eller via kundtjänst minst en timme före avgång. Från Nynäshamn går båt till grannön Ålö, som har broförbindelse till Utö. Alla avgångar: [Båt till Utö](/o/uto/komma-dit).
 <!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there."; "It passes through an active military firing range, which is located on both sides of the road." -->
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
 <!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
 Vägen från Ålö till Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.
 
 ## Kombinera öarna
-Enligt Stockholm Archipelago Trail passar etapperna Ornö, Fjärdlång och Utö ihop, liksom Utö, Ålö, Rånö och Nåttarö. Under mars–september ska hundar vara kopplade längs leden. Fler leder: [Vandring i Stockholms skärgård](/blogg/vandring-skargard-guide).
+Enligt Stockholm Archipelago Trail passar etapperna Ornö, Fjärdlång och Utö ihop, liksom Utö, Ålö, Rånö och Nåttarö. Under mars till september ska hundar vara kopplade längs leden. Fler leder: [Vandring i Stockholms skärgård](/blogg/vandring-skargard-guide).
 <!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The Utö – Ålö Connector is the link between the Stockholm Archipelago Trail sections on Utö and Ålö, following a gravel road and passing through a military firing range." -->
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00" -->
 <!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
@@ -688,7 +688,7 @@ Mellan etapperna Utö och Ålö går förbindelseleden genom Utö skjutfält, d�
  },
 
  'cykling-moja-gallno': {
- title: 'Hyra cykel på Möja och Gällnö – cykla i skärgården',
+ title: 'Hyra cykel på Möja och Gällnö: cykla i skärgården',
  excerpt: 'Var du hyr cykel på Möja och Gällnö, hur lång Möja är, var du badar och äter längs vägen och hur du tar dig dit med båt från Stockholm.',
  category: 'Aktiviteter',
  date: '2026-02-20',
@@ -714,7 +714,7 @@ Hamncafét på Möja, som också säljer glass och bullar, har cykeluthyrning. V
 
 ### Vägen över ön
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/moja-bjorndalen.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1992"; "Skyddsform: naturreservat"; "Möja-Björndalens naturreservat ligger på norra delen av Möja". Reservatet heter Möja-Björndalen hos myndigheten, inte Björndalen; namnet är rättat. KÄLLA: visitmoja.se/vandra (Möja turistförening, öns egen besöksguide), läst 2026-09-24 — naturstig "Mellan Hamn-Ramsmora är det (12km)". Längden står inte hos Länsstyrelsen men hos öns egen förening, vilket räcker för en stiglängd. -->
-Möja är cirka 6,5 kilometer från norr till söder. Landsvägen binder ihop byarna, och Stockholm Archipelago Trail följer den från Långvik till Hamn – en lätt etapp som enligt turistföreningen fungerar även med barnvagn eller rullstol. Den uppmärkta naturstigen mellan Hamn och Ramsmora, 12 kilometer genom Möja-Björndalens naturreservat, är en vandringsled.
+Möja är cirka 6,5 kilometer från norr till söder. Landsvägen binder ihop byarna, och Stockholm Archipelago Trail följer den från Långvik till Hamn, en lätt etapp som enligt turistföreningen fungerar även med barnvagn eller rullstol. Den uppmärkta naturstigen mellan Hamn och Ramsmora, 12 kilometer genom Möja-Björndalens naturreservat, är en vandringsled.
 
 ### Bada längs vägen
 Möja har ingen officiell badplats. Turistföreningen tipsar om naturliga bad från klippor och stränder vid Saltvik, Kyrkviken, Löka, Ramsmora och Långvik, som nyttjas enligt allemansrätten.
@@ -727,7 +727,7 @@ Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét och de
 På Waxholmsbolagets båtar får du ta med en vanlig cykel i mån av plats utan extra kostnad. Personalen avgör om det finns plats, och elcyklar ställs ute på däck. Lådcyklar och tandemcyklar räknas som gods.
 
 ### Ta sig dit
-Buss 434 från Slussen till Sollenkroka och båt därifrån tar enligt Värmdö kommun cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3–4 timmar.
+Buss 434 från Slussen till Sollenkroka och båt därifrån tar enligt Värmdö kommun cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3 till 4 timmar.
 
 ## Cykla på Gällnö
 
@@ -742,17 +742,17 @@ Gällnö är naturreservat med hagmarker, lövskog och ett odlat kulturlandskap.
 En sommaröppen krog, Handelsboden och café. Vandrarhemmet har också stugor.
 
 ### Ta sig dit
-Båten från Strömkajen eller Strandvägen tar 1,5–2 timmar. Både Waxholmsbolaget och Strömma/Cinderella-båtarna trafikerar ön.
+Båten från Strömkajen eller Strandvägen tar 1,5 till 2 timmar. Både Waxholmsbolaget och Strömma/Cinderella-båtarna trafikerar ön.
 
 ## Före cykeldagen
 - **Kolla säsongen:** Gällnös uthyrning och krog och Möja bageri har sommaröppet. Möja turistförening har en öppettidskalender på visitmoja.se.
 - **Möja Outdoor** hyr ut kajak, roddbåt och SUP om du vill ut på vattnet i stället.
-- Fler öar: [Skärgård utan båt – öar du når med kollektivtrafik](/guider/skargard-utan-bat).
+- Fler öar: [Skärgård utan båt, öar du når med kollektivtrafik](/guider/skargard-utan-bat).
  `,
  },
 
  'fiske-skargard-guide': {
- title: 'Fiske i Stockholms skärgård – arter, platser och regler',
+ title: 'Fiske i Stockholms skärgård: arter, platser och regler',
  excerpt: 'Abborre, gädda, gös, havsöring och sik i Stockholms skärgård: när och var de biter enligt Länsstyrelsens fiskeguide, var handredskapsfisket är fritt och vilka mått och fångstgränser som gäller.',
  category: 'Aktiviteter',
  date: '2026-02-10',
@@ -769,27 +769,27 @@ Båten från Strömkajen eller Strandvägen tar 1,5–2 timmar. Både Waxholmsbo
 <!-- KÄLLA: Länsstyrelsen Stockholm, "Stockholms läns Fiskeguide 2023" (lansstyrelsen.se/download/18.1b1d393819324610c374853c/1732515630171/Fiskeguide Stockholms län.pdf, läst 2026-09-24): abborre "Bra fiske hela året med undantag av maj månad då abborren leker", "Bästa fisket är i innerskärgården", "djup mellan 1 och 10 meter", tips "söder om Horsfjärden, Västerfjärden utanför Spillersboda och vid Stora Värtan", "numera har skarv en stor inverkan på bestånden"; gädda "Hela året, bäst vår och höst", "Hela skärgården utom de yttersta delarna", tips "Väddö, Furusund, Ljusterö, Jolpan, Vaxholm, Järnafjärden, Stora Värtan och Västra Muskö"; gös "Bäst fiske på sommaren", "grunda inner fjärdar/vikar", tips "Bergshamraviken till Spillersboda, vattnet runt Vaxholm, Gålö, vattnen runt Mörkö samt Hallsfjärden och Järnafjärden"; havsöring "Från september till maj", "uddar, grynnor och strömsatta sund", "Ofta hugger havsöringen på grunt vatten nära land", utsättningar "Stockholms ström, Kappelskär, Möja, Gålö och Nynäshamn", andra ställen "Singö-Väddökusten, Ljusterö, Kanholmsfjärden, Baggensfjärden, Ingarö, Ornö, Utö och Torö", "Utplanterad öring är fettfeneklippt"; sik "November till maj, bäst i april", "Grunda vikar, sund och flader på 1 till 4 meters djup", "Bottenmete med sk Pater-Noster-tackel", tips "Väddö, Kappelskär, Baggensfjärden, Erstaviken, Kymmendö, Gålö, Fjärdlång, Häringe och Hammersta"; regler "Ryckfiskeförbud gäller i Mälaren, Strömmen och i skärgården", "Ålfiskeförbud gäller för allt fiske i hav och i alla vattendrag", "Trolling, dragrodd och angel får endast bedrivas med fiskerättsägarens tillstånd (exv TDA-kortet) eller på allmänt vatten", "max 3 gäddor eller gös ... per dag. Gäddor <40 cm och >75 cm är fredade". lansstyrelsen.se/stockholm/djur/fiske.html: "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort" (läst 2026-09-24). havochvatten.se gädda i Östersjön: minimimått 40 cm, maximimått 75 cm, "fångstbegränsning för gös och gädda till sammantaget tre fiskar". havochvatten.se öring: "50 centimeter som minimimått i Östersjöns samtliga delområden", "1 icke fenklippt öring per dygn" (läst 2026-09-24). Tidigare version (borttagen 2026-09-24) angav minimimått 45 cm för gädda (fel: 40–75 cm), en säsongstabell och platser utan källa. -->
 Stockholms skärgård har både söt- och saltvattensarter, och med handredskap fiskar du fritt utan fiskekort längs kusten. Här är när och var de vanligaste arterna biter enligt Länsstyrelsen i Stockholms fiskeguide, och vilka regler som gäller.
 
-## Arterna – när och var
+## Arterna: när och var
 
 ### Abborre
-Den vanligaste sportfisken. Bra fiske hela året utom i maj, när abborren leker, och bäst i innerskärgården på 1–10 meters djup på sommaren. Länsstyrelsen tipsar om vattnen söder om Horsfjärden, Västerfjärden utanför Spillersboda och Stora Värtan. Abborrtillgången varierar mycket, och skarven påverkar bestånden.
+Den vanligaste sportfisken. Bra fiske hela året utom i maj, när abborren leker, och bäst i innerskärgården på 1 till 10 meters djup på sommaren. Länsstyrelsen tipsar om vattnen söder om Horsfjärden, Västerfjärden utanför Spillersboda och Stora Värtan. Abborrtillgången varierar mycket, och skarven påverkar bestånden.
 
 ### Gädda
 Hela året, bäst vår och höst, i hela skärgården utom de yttersta delarna. Spinnfiske med betet någon meter ovanför botten fungerar, liksom mete med död fisk. Tips: Väddö, Furusund, Ljusterö, Jolpan, Vaxholm, Järnafjärden, Stora Värtan och västra Muskö.
 
 ### Gös
-Bäst på sommaren, i grunda innerfjärdar och vikar och runt grynnor på försommaren. Tips: sträckan Bergshamraviken–Spillersboda, vattnet runt Vaxholm, Gålö, Mörkö, Hallsfjärden och Järnafjärden.
+Bäst på sommaren, i grunda innerfjärdar och vikar och runt grynnor på försommaren. Tips: sträckan Bergshamraviken till Spillersboda, vattnet runt Vaxholm, Gålö, Mörkö, Hallsfjärden och Järnafjärden.
 
 ### Havsöring
-September till maj, vid uddar, grynnor och strömsatta sund, och ofta på grunt vatten nära land. Havsöring sätts ut vid bland annat Stockholms ström, Kappelskär, Möja, Gålö och Nynäshamn; andra ställen är Singö–Väddökusten, Ljusterö, Kanholmsfjärden, Baggensfjärden, Ingarö, Ornö, Utö och Torö. Utplanterad öring har klippt fettfena.
+September till maj, vid uddar, grynnor och strömsatta sund, och ofta på grunt vatten nära land. Havsöring sätts ut vid bland annat Stockholms ström, Kappelskär, Möja, Gålö och Nynäshamn; andra ställen är Singö till Väddökusten, Ljusterö, Kanholmsfjärden, Baggensfjärden, Ingarö, Ornö, Utö och Torö. Utplanterad öring har klippt fettfena.
 
 ### Sik
-November till maj, bäst i april, på 1–4 meters djup i grunda vikar, sund och flader. Bottenmete med paternostertackel. Tips: Väddö, Kappelskär, Baggensfjärden, Erstaviken, Kymmendö, Gålö, Fjärdlång, Häringe och Hammersta.
+November till maj, bäst i april, på 1 till 4 meters djup i grunda vikar, sund och flader. Bottenmete med paternostertackel. Tips: Väddö, Kappelskär, Baggensfjärden, Erstaviken, Kymmendö, Gålö, Fjärdlång, Häringe och Hammersta.
 
 ## Reglerna
 
 ### Var får du fiska?
-Med handredskap – spö och liknande – fiskar du fritt och utan fiskekort i havet längs kusten. Trolling, dragrodd och angelfiske kräver fiskerättsägarens tillstånd, till exempel T-D-A-kortet, om du inte är på allmänt vatten.
+Med handredskap, spö och liknande, fiskar du fritt och utan fiskekort i havet längs kusten. Trolling, dragrodd och angelfiske kräver fiskerättsägarens tillstånd, till exempel T-D-A-kortet, om du inte är på allmänt vatten.
 
 ### Mått och fångstgränser
 | Art | Regel |
@@ -801,7 +801,7 @@ Med handredskap – spö och liknande – fiskar du fritt och utan fiskekort i h
 ### Förbud
 - Ryckfiske är förbjudet i skärgården.
 - Ålfiske är förbjudet i hav och vattendrag.
-- Fredningsområden och fredningstider varierar längs kusten – kolla kartan på svenskafiskeregler.se innan du fiskar.
+- Fredningsområden och fredningstider varierar längs kusten. Kolla kartan på svenskafiskeregler.se innan du fiskar.
 
 ## Innan du åker
 - **Säkerhet:** flytväst på, oavsett om du fiskar från båt eller kajak.
@@ -811,8 +811,8 @@ Med handredskap – spö och liknande – fiskar du fritt och utan fiskekort i h
  },
 
  'gasthamnar-guide': {
- title: 'Gästhamnar i Stockholms skärgård – platser, service och bokning',
- excerpt: 'Gästhamnar i Stockholms skärgård från Grisslehamn till Nåttarö: antal gästplatser, djup, förtöjning, service och om platsen går att boka – hämtat från hamnarnas egna sidor.',
+ title: 'Gästhamnar i Stockholms skärgård: platser, service och bokning',
+ excerpt: 'Gästhamnar i Stockholms skärgård från Grisslehamn till Nåttarö: antal gästplatser, djup, förtöjning, service och om platsen går att boka, hämtat från hamnarnas egna sidor.',
  category: 'Praktiskt',
  date: '2026-01-25',
  updatedAt: '2026-09-24',
@@ -822,7 +822,7 @@ Med handredskap – spö och liknande – fiskar du fritt och utan fiskekort i h
  faqs: [
    { q: 'Kan man boka gästplats i skärgården?', a: 'Det beror på hamnen. Grinda har 28 bokningsbara platser, Rindö Hamn och Svartsö bokas via Dockspot, medan platserna i Lidö gästhamn och Gästhamn Sandudden på Utö inte kan förbokas. Kontrollera hos respektive hamn.' },
    { q: 'Vilken gästhamn har flest platser?', a: 'Av hamnarna i den här guiden har Utö gästhamn och Nynäshamns gästhamn vardera plats för omkring 300 båtar, och KSSS gästhamn på Sandhamn omkring 150 gästplatser, med ytterligare plats för cirka 200 båtar på Lökholmen.' },
-   { q: 'Vad kostar en natt i gästhamn?', a: 'Hamnavgiften skiljer sig mellan hamnarna och beror oftast på båtens storlek och säsong. Vi anger inga priser utan prislista – aktuell avgift står på varje hamns egen sida.' },
+   { q: 'Vad kostar en natt i gästhamn?', a: 'Hamnavgiften skiljer sig mellan hamnarna och beror oftast på båtens storlek och säsong. Vi anger inga priser utan prislista, aktuell avgift står på varje hamns egen sida.' },
  ],
  content: `
 <!-- KÄLLA: uppgifterna om varje hamn är hämtade från hamnens egen sida eller Svenska Gästhamnars sida för hamnen och finns ordagrant citerade i supabase/datafix/2026-09-22-hamnar-beskrivningar*.sql och 2026-09-23-granskning-namn-lage.sql (lästa 2026-09-22–23): ksss.se/hamnar/sandhamn/ och /lokholmen/, grinda.se/hamn-mack/gasthamn/, finnhamn.se, svenskagasthamnar.se/stockholms-skargard/finnhamn-med-paradisviken-och-soder-langholm/, ingmarsogasthamn.se, svartsolanthandel.se/gasthamn, waxholmshamn.se, rindohamn.se, svenskagasthamnar.se/stockholms-skargard/stockholm-fjaderholmarna/, svenskagasthamnar.se/stockholms-skargard/moja-kyrkviken/ och /moja-loka/, utogasthamn.se, sanduddenuto.se, creapreneur.se/dalaro-information, svenskagasthamnar.se/stockholms-skargard/orno-kyrkviken/, ornobatvarv.se/gasthamn/, nattaro.se/gasthamn/, svenskagasthamnar.se/stockholms-skargard/nynashamn/, grisslehamnsmarina.se/hamnen/, svenskagasthamnar.se/oregrunds-skargard/elmsta-almsta-gasthamn/, arholmanord.se, lidovardshus.com/gsthamnen, graddosjomack.se/gasthamn/, svenskagasthamnar.se/stockholms-skargard/blido/, furusundshamnkrog.se. Tidigare version (borttagen 2026-09-24) påstod att Svalla "besökt och betygsatt" hamnarna, gav stjärnbetyg och ungefärliga priser, sa att Sandhamn bokas via waxholmsbolaget.se och att Landsort är landets sydligaste fyr – inget av det hade källa. -->
@@ -831,7 +831,7 @@ Här är gästhamnarna i Stockholms skärgård där hamnen själv eller Svenska 
 ## Norra skärgården
 
 ### [Grisslehamn Gästhamn](/upptack/grisslehamn-gasthamn)
-77 gästplatser bakom en vågbrytare i västra hamnen, förtöjning vid Y-bom eller boj på 1–5 meters djup. El och vatten på bryggorna, servicehus med wc och dusch, septiktömning och sjömack.
+77 gästplatser bakom en vågbrytare i västra hamnen, förtöjning vid Y-bom eller boj på 1 till 5 meters djup. El och vatten på bryggorna, servicehus med wc och dusch, septiktömning och sjömack.
 
 ### [Elmsta Udde Gästhamn](/upptack/elmsta-udde-gasthamn), Väddö
 Cirka 50 platser där Väddö kanal mynnar ut i Väddöviken, för båtar upp till 25 meter och med cirka 5 meters djup. Dusch, bastu, tvättstuga och latrintömning. Mataffär på gångavstånd i Älmsta.
@@ -840,13 +840,13 @@ Cirka 50 platser där Väddö kanal mynnar ut i Väddöviken, för båtar upp ti
 50 meter brygga med mooringlinor och segelbåtsdjup vid Arholma Nord, med el och toaletter. Restaurang och boende i samma anläggning.
 
 ### [Lidö gästhamn](/upptack/lido-gasthamn)
-Ett 50-tal platser för stävförtöjning med ankare i Båthusviken, 1,7–2,7 meters djup. Platserna kan inte bokas. Eluttag på bryggan, toalett och dusch vid Oasen.
+Ett 50-tal platser för stävförtöjning med ankare i Båthusviken, 1,7 till 2,7 meters djup. Platserna kan inte bokas. Eluttag på bryggan, toalett och dusch vid Oasen.
 
 ### [Gräddö gästhamn](/upptack/graddo-brygga)
-50 platser med bojförtöjning i Gräddöviken, 1,5–6 meters djup. Sjömack och servicehus med toaletter, duschar, bastu och tvättstuga.
+50 platser med bojförtöjning i Gräddöviken, 1,5 till 6 meters djup. Sjömack och servicehus med toaletter, duschar, bastu och tvättstuga.
 
 ### [Blidö Gästhamn](/upptack/blido-gasthamn)
-50 gästplatser i skyddat läge vid restaurang Blidö Brygga, förtöjning vid boj, mooringlina eller långsides på 2–7 meters djup. Toalett, dusch och tvätt.
+50 gästplatser i skyddat läge vid restaurang Blidö Brygga, förtöjning vid boj, mooringlina eller långsides på 2 till 7 meters djup. Toalett, dusch och tvätt.
 
 ### [Furusunds Gästhamn](/upptack/furusunds-gasthamn)
 Gästhamn med hamnkrog i Furusund, för både korta och längre besök.
@@ -866,7 +866,7 @@ Drivs av Svartsö Lanthandel intill butiken och caféet. Den som bokat via Docks
 28 bokningsbara platser, förtöjning på boj eller mooringlina. El, dusch, toalett och tömning av sopor och septiktank. Nära sjökrogen Framfickan, lanthandeln och Wärdshuset.
 
 ### [Möja: Kyrkviken](/upptack/kyrkviken) och [Löka](/upptack/loka-gasthamn)
-Kyrkviken är en fiskehamn på Möjas sydöstra sida med ankarförtöjning på 1,8–2,5 meters djup, nära byn Berg. Löka på östra Möja har sju gästplatser med Y-bom för båtar upp till 2,75 meters bredd.
+Kyrkviken är en fiskehamn på Möjas sydöstra sida med ankarförtöjning på 1,8 till 2,5 meters djup, nära byn Berg. Löka på östra Möja har sju gästplatser med Y-bom för båtar upp till 2,75 meters bredd.
 
 ### [KSSS Gästhamn Sandhamn](/upptack/ksss-gasthamn-sandhamn)
 Omkring 150 gästplatser vid tre pontonbryggor framför Seglarhotellet. Förtöjning med mooringlina, ankring förbjuden, och hamnvakter hjälper till. Passbåt går till [Lökholmen](/upptack/ksss-gasthamn-lokholmen-trollsundet) med plats för cirka 200 båtar, dusch och bastu. Under högsommaren är platserna i Trollsundet, den första delen av Lökholmens gästhamn, i första hand för KSSS medlemmar. Mat på ön: [Restauranger på Sandhamn](/blogg/basta-restaurangerna-sandhamn).
@@ -880,12 +880,12 @@ Mitt i Vaxholm, i skyddad hamn med mat, dryck och bränsle nära.
 13 gästplatser som bokas via Dockspot eller tas vid drop in, cirka 10 minuter från Vaxholm. Dusch, landström och ostmakeri med café i hamnen.
 
 ### [Fjäderholmarnas gästhamn](/upptack/fjaderholmarnas-gasthamn)
-35 gästplatser med bojförtöjning på Stora Fjäderholmen vid inloppet till Stockholm, 1–8 meters djup.
+35 gästplatser med bojförtöjning på Stora Fjäderholmen vid inloppet till Stockholm, 1 till 8 meters djup.
 
 ## Södra skärgården
 
 ### [Dalarö gästhamn (Askfatshamnen)](/upptack/dalaro-turistbyra-och-gasthamn-askfatshamnen)
-Cirka 40 gästplatser med bom och 2–4 meters djup, drivs tillsammans med turistbyrån. Toaletter, duschar, bastu, tvättstuga och wifi.
+Cirka 40 gästplatser med bom och 2 till 4 meters djup, drivs tillsammans med turistbyrån. Toaletter, duschar, bastu, tvättstuga och wifi.
 
 ### [Ornö: Kyrkviken](/upptack/ornomacken-gasthamn) och [Brunnsviken](/upptack/orno-gasthamn-och-stugor)
 Kyrkviken har 35 platser med ankarförtöjning på 4 meters djup vid ångbåtsbryggan, med diesel, bensin och el, och toalett och dusch inom 30 meter. Ornö Båtvarvs gästhamn i Brunnsviken har cirka 20 platser vid boj eller långsides, café och microlivs.
@@ -894,18 +894,18 @@ Kyrkviken har 35 platser med ankarförtöjning på 4 meters djup vid ångbåtsbr
 Plats för cirka 300 fritidsbåtar vid Gruvbryggan, med el, vatten, bastu, dusch, cykeluthyrning och restaurang. [Gästhamn Sandudden](/upptack/gasthamn-sandudden-uto) i Kyrkviken hyr ut platser per dygn, vecka eller säsong, men de kan inte förbokas.
 
 ### [Nåttarö gästhamn](/upptack/nattaro-nya-gasthamn)
-45 platser med el och boj på den nya flytbryggan i Kvarnviken, 3–4 meters djup längst ut. Dagsgäster kan ligga vid gamla ångbåtsbryggan.
+45 platser med el och boj på den nya flytbryggan i Kvarnviken, 3 till 4 meters djup längst ut. Dagsgäster kan ligga vid gamla ångbåtsbryggan.
 
 ### [Nynäshamns gästhamn](/upptack/nynashamns-gasthamn)
 300 gästplatser med bom eller boj, restauranger längs hamnstråket och cirka fem minuters promenad till centrum.
 
 ## Fler hamnar och naturhamnar
-Svallas karta visar alla gästhamnar, bryggor och naturhamnar – [filtrera på hamnar](/upptack). Vill du ankra i en vik i stället: [Naturhamnar i Stockholms skärgård](/blogg/naturhamnar-stockholm-skargard).
+Svallas karta visar alla gästhamnar, bryggor och naturhamnar, [filtrera på hamnar](/upptack). Vill du ankra i en vik i stället: [Naturhamnar i Stockholms skärgård](/blogg/naturhamnar-stockholm-skargard).
  `,
  },
 
  'vinter-skargard': {
- title: 'Skärgården på vintern – båtar, is och vad som är öppet',
+ title: 'Skärgården på vintern: båtar, is och vad som är öppet',
  excerpt: 'Vinter i Stockholms skärgård: Waxholmsbåtar året runt till Sandhamn, Möja och Utö, boenden och butiker med vinteröppet, och vad SMHI och Sjöräddningssällskapet säger om isen.',
  category: 'Inspiration',
  date: '2025-12-15',
@@ -914,18 +914,18 @@ Svallas karta visar alla gästhamnar, bryggor och naturhamnar – [filtrera på 
  emoji: '❄️',
  tags: ['Skärgården på vintern', 'Vinter', 'Issäkerhet', 'Waxholmsbolaget', 'Året runt'],
  faqs: [
-   { q: 'Går Waxholmsbåtarna på vintern?', a: 'Ja. Waxholmsbolaget trafikerar Stockholms skärgård varje dag året runt. Till Sandhamn går båtar året runt från Stavsnäs, till Möja från Boda brygga och till Utö från Årsta brygga. Vissa linjer, som Strömkajen–Sandhamn, går bara sommartid.' },
+   { q: 'Går Waxholmsbåtarna på vintern?', a: 'Ja. Waxholmsbolaget trafikerar Stockholms skärgård varje dag året runt. Till Sandhamn går båtar året runt från Stavsnäs, till Möja från Boda brygga och till Utö från Årsta brygga. Vissa linjer, som Strömkajen till Sandhamn, går bara sommartid.' },
    // KÄLLA: svenskalivraddningssallskapet.se Isvett (PDF juni 2026): "Kärnis ska vara minst 10 cm tjock."; sjoraddning.se/sjosakerhet/issakerhet: "En 20 cm tjock is kan vara mindre hållbar än en is på 5 cm."; smhi.se/vader/vader-till-havs/is-till-havs: "havsis, som innehåller salt, har en annan karaktär och bärighet jämfört med is på sjöar"
    { q: 'Hur tjock ska isen vara för att gå på?', a: 'Svenska Livräddningssällskapet anger att kärnisen ska vara minst 10 centimeter. Sjöräddningssällskapet påpekar att en 20 centimeter tjock is kan hålla sämre än en is på 5 centimeter, beroende på kvalitet och struktur, och SMHI att havsis har en annan bärighet än is på sjöar.' },
    { q: 'Vad har öppet i skärgården på vintern?', a: 'Enligt verksamheterna själva har bland annat STF Svartsö Skärgårdshotell & Vandrarhem öppet året runt, liksom puben på Sandhamns Värdshus, Coop i Berg på Möja och Arholma Handel. Sandhamn Seglarhotell tar emot gäster året runt.' },
  ],
  content: `
 <!-- KÄLLA (lästa 2026-09-24 om inget annat anges): waxholmsbolaget.se/om-oss ("Waxholmsbolaget, Waxholms Ångfartygs AB, grundades 1869. Allt sedan dess har vi trafikerat Stockholms skärgård varenda dag året runt."). waxholmsbolaget.se/reseplanering/resmal/sandhamn ("Ut till Sandhamn går det turer året runt."; "Du kan åka till Sandhamn med båt från Stavsnäs och då tar resan drygt en timme. Under sommaren så kan du också åka till Sandhamn från Strömkajen."; "tabell 15 (endast sommartid)"). waxholmsbolaget.se/reseplanering/resmal/moja ("Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja."). lansstyrelsen.se Utö ("Waxholmsbåt året om till Gruvbryggan", island-data uto). lansstyrelsen.se Grinda ("Norra och södra bryggan trafikeras året om av Waxholmsbolaget och Cinderella."). skargardsstiftelsen.se/omraden/namdo/ ("Reguljär båttrafik går året runt från Stavsnäs med Waxholmsbolaget."; island-data namdo). vaxholmsfastning.se/besoksinfo/ ("med Waxholmsbolaget når du Kastellet året runt"; datafix 2026-09-23-texter-utan-kalla.sql). osteraker.se öar i Österåkers skärgård ("En bilfärja går från Östanå färjeläge året runt."). arholma.nu/resa-hit ("Härifrån går passbåten Monsun till Arholma året runt. Resan tar cirka 15 minuter."). svenskaturistforeningen.se STF Svartsö ("Välkommen ut till lugnet – öppet året runt!"), STF Möja Vandrarhem ("Öppet April - December"). sandhamn.com ("vila, fira, mötas och njuta av skärgården – året runt"; paketet "VINTER I SKÄRGÅRDEN"; "vedeldade bastuflottar vid vattnet"). sandhamns-vardshus.se (Puben "Öppet året runt."; restaurangen "Annan tid på året är restaurangen främst öppen helger."; datafix 2026-09-23-sandhamn-platser.sql). konsummoja.se (Coop i Berg "öppet året runt"; läst 2026-09-14, se cykling-moja-gallno). arholmahandel.se ("åretruntöppen butik"; island-data arholma). tjocko.se ("Sommarrestaurangen har även öppet för pubkvällar under vår, vinter och höst."; datafix 2026-09-23-vardeord-omgang2.sql). caravanclub.se/camping/bjorko-orn/ ("Allmän Camping – Året runt"; restaurang "som har öppet året om men endast på helger under vintersäsongen"; läst 2026-09-21, island-data graddo). lansstyrelsen.se Nämdöskärgårdens nationalpark (Bullerö: "en varm raststuga och vedeldad bastu som är öppna året om"; läst 2026-09-19, island-data bullero). skargardsstiftelsen.se/boka-boende/ (Hammersta, stugan Gröndal "öppet under perioden 22 januari-2 november"). skargardsstiftelsen.se/omraden/ (Björnö "ett uppskattat utflyktsmål året om"; Gålö "kombinera bad, vandring och naturupplevelser året runt"). nacka.se Saltsjöbadens friluftsbad ("separata badhus för herr- och dambad, bastu och vinterbad"; "Saltsjöbanan till station Saltsjöbaden. Därefter promenad ca 500 meter."; datafix 2026-09-22-strander-beskrivningar.sql). vaxholm.se (julmarknad i december; se vaxholm-guide). fjaderholmarna.se (Rökeriet julbord i november–december; "säsongsöppet"; island-data fjaderholmarna). smhi.se/vader/vader-till-havs/is-till-havs ("Kartan är en generell analys och isen kan se helt annorlunda ut lokalt. Gör alltid en egen bedömning av isen där du befinner dig."; "I Sveriges kustvatten och stora insjöar pågår sjöfart året runt. Fartygsrännor kan brytas upp i stort sett överallt. Information om dessa saknas i iskartan."; "havsis, som innehåller salt, har en annan karaktär och bärighet jämfört med is på sjöar"). sjoraddning.se/sjosakerhet/issakerhet ("En 20 cm tjock is kan vara mindre hållbar än en is på 5 cm. Allt beror på vilken kvalité och struktur isen har."). sjoraddning.se/artiklar/ratt-utrustning-pa-isen ("Att använda en skidstav i stället för en ispik är inte att rekommendera"; "Om piken går igenom isen och en svag ström av vatten kommer upp genom hålet, är det ett tecken på att isen är för tunn"; "Isdubbar ska sitta högt upp och utanför kragen på jackan"; "På isdubbarna ska det finnas en visselpipa av plast. Det är viktigt att det inte är en visselpipa med en kula som kan frysa fast."; "I CE-märkta räddningslinor måste linan vara minst 24 meter."; "Lägg telefonen i ett vattentätt mobilfodral"). sjoraddning.se/artiklar/sa-gor-du-om-isen-brister ("Vänd dig åt hållet du kom ifrån"; "Vid behov, ring 112."; "Åla dig istället bort från det svaga området."; "Åla dig istället bort från det svaga området."; "det är viktigt att du inte reser dig upp direkt"; "Grundregeln är att närma dig vaken från samma håll som den nödställde"; "Ta med dig något långt"; "Sträck inte fram handen"). svenskalivraddningssallskapet.se Isvett (PDF juni 2026: "Tala om vart du ska och när du tror du är tillbaka.", "Kärnis ska vara minst 10 cm tjock.", "Känn till isens svaga punkter." – Vindbrunn, Råk, Ränna, Avlopp, Bro, Grund, Utlopp, Vass, Brygga, Udde, Sund, Inlopp; "Ta med dig räddningsutrustning på isen.", "Gå aldrig ut på is om du inte är säker på att den håller.", "Ha alltid sällskap på och vid isen.", "Lägg dig på mage om du kommer ut på svag is.", "vänd dig om och ta dig upp med hjälp av isdubbarna samma väg som du kom"). Tidigare version (borttagen 2026-09-24) påstod att Vaxholms Hotell håller öppet vintertid, att Fjäderholmarna "öppnar för vinter-evenemang och julmarknader" (Fjäderholmarna har säsongsöppet; bara Rökeriet har julbord), att Utö Värdshus har vinterpaket, att isfiske är en levande skärgårdstradition och att iskartan är Länsstyrelsens (den är SMHI:s) – utan källa. Värdeord och tyckande om ljus och tystnad är borttagna. -->
-Waxholmsbåtarna går i skärgården hela vintern, och några boenden, krogar och butiker har öppet året runt. Mycket annat har bara sommaröppet. Här är vad som går att belägga – och vad SMHI, Sjöräddningssällskapet och Svenska Livräddningssällskapet säger om isen.
+Waxholmsbåtarna går i skärgården hela vintern, och några boenden, krogar och butiker har öppet året runt. Mycket annat har bara sommaröppet. Här är vad som går att belägga, och vad SMHI, Sjöräddningssällskapet och Svenska Livräddningssällskapet säger om isen.
 
 ## Båtarna går året runt
 Enligt Waxholmsbolaget har bolaget trafikerat Stockholms skärgård varenda dag året runt sedan det grundades 1869. Exempel på resor som går även på vintern:
-- [Sandhamn](/o/sandhamn): turer året runt från Stavsnäs, 40–60 minuter med linje 16. Båten från Strömkajen går bara på sommaren.
+- [Sandhamn](/o/sandhamn): turer året runt från Stavsnäs, 40 till 60 minuter med linje 16. Båten från Strömkajen går bara på sommaren.
 - [Möja](/o/moja): båtar året runt från Boda brygga på Värmdö. Alla vägar dit: [Båt till Möja](/o/moja/komma-dit).
 - [Utö](/o/uto): Waxholmsbåt året om från Årsta brygga till Gruvbryggan.
 - [Grinda](/o/grinda): norra och södra bryggan trafikeras året om.
@@ -940,7 +940,7 @@ Tidtabellerna skiljer sig mellan sommar och vinter. Sök resan i SL-appen eller 
 Enligt verksamheternas egna sidor:
 - **Sandhamn:** [Sandhamn Seglarhotell](/upptack/seglarhotellet-sandhamn) tar emot gäster året runt och har vinterpaket och vedeldade bastuflottar. Puben på [Sandhamns Värdshus](/upptack/sandhamn-sandhamns-vardshus) har öppet året runt. Restaurangen har främst öppet helger utanför sommaren.
 - [Svartsö](/o/svartso): STF Svartsö Skärgårdshotell & Vandrarhem har öppet året runt.
-- **Möja:** Coop i Berg har öppet året runt. STF Möja Vandrarhem har öppet april–december.
+- **Möja:** Coop i Berg har öppet året runt. STF Möja Vandrarhem har öppet april till december.
 - **Arholma:** Arholma Handel är en åretruntöppen butik.
 - **Tjockö:** [Ökrogen](/upptack/okrogen-tjocko) har pubkvällar under vår, vinter och höst.
 - [Gräddö](/o/graddo): Björkö-Örns camping har öppet året runt, och restaurangen där har öppet helger under vintersäsongen.
@@ -949,22 +949,22 @@ Enligt verksamheternas egna sidor:
 - [Bullerö](/o/bullero) i Nämdöskärgårdens nationalpark: raststugan och den vedeldade bastun är öppna året om.
 - **Björnö och Gålö:** Skärgårdsstiftelsen beskriver båda som utflyktsmål året om.
 
-Jul i skärgården: i december hålls Vaxholms julmarknad, och Rökeriet på Fjäderholmarna har julbord i november–december. I övrigt har Fjäderholmarna säsongsöppet på sommaren.
+Jul i skärgården: i december hålls Vaxholms julmarknad, och Rökeriet på Fjäderholmarna har julbord i november till december. I övrigt har Fjäderholmarna säsongsöppet på sommaren.
 
 ## Vinterbad
 [Saltsjöbadens friluftsbad](/upptack/saltsjobadens-friluftsbad) har separata badhus för dam och herr med bastu och vinterbad, cirka 500 meter från Saltsjöbanans station.
 
 ## Is till havs
-SMHI:s iskarta visar isen på havet, men är en generell analys – isen kan se helt annorlunda ut lokalt, och du ska alltid göra en egen bedömning där du är. I kustvattnen pågår sjöfart året runt, och fartygsrännor kan brytas upp i stort sett överallt utan att synas på iskartan. Havsis innehåller salt och har en annan bärighet än is på sjöar.
+SMHI:s iskarta visar isen på havet, men är en generell analys: isen kan se helt annorlunda ut lokalt, och du ska alltid göra en egen bedömning där du är. I kustvattnen pågår sjöfart året runt, och fartygsrännor kan brytas upp i stort sett överallt utan att synas på iskartan. Havsis innehåller salt och har en annan bärighet än is på sjöar.
 
 ### Tjocklek och svaga punkter
 - **Kärnis minst 10 centimeter,** enligt Svenska Livräddningssällskapet.
-- **Tjock är inte samma sak som stark:** en 20 centimeter tjock is kan enligt Sjöräddningssällskapet hålla sämre än en is på 5 centimeter – det beror på isens kvalitet och struktur.
+- **Tjock är inte samma sak som stark:** en 20 centimeter tjock is kan enligt Sjöräddningssällskapet hålla sämre än en is på 5 centimeter. Det beror på isens kvalitet och struktur.
 - **Svaga punkter:** vid bryggor, broar, uddar, sund, grund, inlopp och utlopp, i vass och vid råkar och rännor.
 
 ### Utrustning
 Sjöräddningssällskapets råd:
-- **Ispik** – inte skidstav. Går piken igenom och vatten kommer upp är isen för tunn.
+- **Ispik**, inte skidstav. Går piken igenom och vatten kommer upp är isen för tunn.
 - **Isdubbar** högt upp utanför jackans krage, med en visselpipa av plast utan kula som kan frysa fast.
 - **Räddningslina** som flyter. En CE-märkt räddningslina är minst 24 meter.
 - **Mobil** i vattentätt fodral, och flytväst eller torrdräkt.
@@ -977,7 +977,7 @@ Svenska Livräddningssällskapets isvett:
 - Lägg dig på mage om du kommer ut på svag is.
 
 ### Om isen brister
-Enligt Sjöräddningssällskapet: vänd dig åt hållet du kom ifrån, där isen höll. Påkalla hjälp – ring 112 vid behov. Ta dig upp med isdubbarna, åla dig bort från det svaga området och res dig inte direkt. Om någon annan går igenom: ring 112, närma dig från samma håll och räck fram något långt, inte handen.
+Enligt Sjöräddningssällskapet: vänd dig åt hållet du kom ifrån, där isen höll. Påkalla hjälp. Ring 112 vid behov. Ta dig upp med isdubbarna, åla dig bort från det svaga området och res dig inte direkt. Om någon annan går igenom: ring 112, närma dig från samma håll och räck fram något långt, inte handen.
 
 ## Läs vidare
 - [Hösten i skärgården](/blogg/host-i-skargarden-2026) och [skärgården i oktober](/blogg/eftersasong-skargard-oktober)
@@ -986,7 +986,7 @@ Enligt Sjöräddningssällskapet: vänd dig åt hållet du kom ifrån, där isen
  },
 
  'barnfamilj-skargard': {
- title: 'Skärgård med barn – flytväst, säkerhet och båtvett',
+ title: 'Skärgård med barn: flytväst, säkerhet och båtvett',
  excerpt: 'Barn i båten och vid vattnet i skärgården: vilken flytväst barn ska ha enligt Transportstyrelsen och Sjöräddningssällskapet, råd för små barn ombord, badvett, båtvett och 112.',
  category: 'Familj',
  date: '2026-01-15',
@@ -1004,7 +1004,7 @@ Enligt Sjöräddningssällskapet: vänd dig åt hållet du kom ifrån, där isen
  ],
  content: `
 <!-- KÄLLA (lästa 2026-09-24): transportstyrelsen.se/sv/sjofart/fritidsbatar/sjosakerhet/pa-sjon/anvand-flytvast/ ("Samtliga ombord ska ha en flytväst i rätt storlek. Var noga med att flytvästen du använder är CE-märkt."; "Barn och vuxna som inte kan simma ska använda räddningsväst."; "Uppblåsbara flytvästar ska bara användas av simkunniga personer."). transportstyrelsen.se/sv/sjofart/fritidsbatar/sjosakerhet/infor-batturen/forbered-dig-infor-din-battur/ ("Ta gärna på dig flytvästen innan du går ut på bryggan och se till att alla på båten har flytväst på sig innan ni ger er av"; "fulladdade mobiltelefon lättåtkomlig i ett vattentätt fodral runt halsen"; "titta på väderleksrapporter både innan och under resan"; "Packa klädombyte och något att äta och dricka i en vattentät väska"; "Meddela någon vart du ska och när du planerar att vara framme"). sjoraddning.se/artiklar/tank-pa-det-har-nar-du-valjer-flytvast ("Barn ska alltid använda en räddningsväst"; "En bra räddningsväst för barn har flytkraften placerad på magen, inte på ryggen"; "En räddningsväst har alltid minst 100 N i flytkraft, oavsett om den är avsedd för barn eller vuxna"; "det viktigare att västen sitter ordentligt och bekvämt på barnet än att enbart gå efter kiloangivelser"; "Så fort västen inte längre passar ordentligt på barnet eller känns för trång är det dags att byta ut den"; "Alla flytvästar har enligt branschstandard en livslängd på tio år"). sjoraddning.se/artiklar/lat-barnen-ta-ansvar-ombord ("Många använder sig av en bilbarnstol eller en vanlig cykelstol. Dessa kan fästas i till exempel båtens pulpit"; "Man ska dock inte ersätta flytvästen med en bärsele"; "ett finmaskigt nät utmed mantågen"; "Spisen är en vanlig orsak till olyckor"; "Med barn ombord blir avvägningarna ännu viktigare. Tuff sjö kan både skrämma och göra färden mer riskfylld. Dessutom blir risken för sjösjuka större."; "Välj hellre kortare rutter och låt barnen leka av sig på stranden"; "112 är det absolut viktigaste numret att lära ut"; "112, lätt att slå"; "Om klipporna är branta är det dessutom svårt att gå i land"; "Innan du monterar på en motor måste barnen lära sig grunderna. Ett bra tips är att börja med åror"; "Låt barnen från tidig ålder få arbetsuppgifter"). svenskalivraddningssallskapet.se/flytvastar/ ("Räddningsvästar är bäst för barn och icke-simkunniga"; "För små barn som leker i eller nära vatten är en räddningsväst ett bra komplement till ständig uppsikt"; "Barn ska alltid använda grenband"; "För barn till sjöss finns modeller med inbyggd livsele"; "rekommenderas inte till barn under 40 kilo"; "låna eller hyra en flytväst billigt i våra depåer"; "Olyckor sker oftast nära land och när vädret är lugnt."; "Bara en av tio som drunknar bär flytväst eller flytplagg."). svenskalivraddningssallskapet.se Badvett och Båtvett (PDF juni 2026): "Ha alltid sällskap med dig när du badar", "Ha hela tiden uppsikt över varandra", "Gå försiktigt på brygga, klippa eller bassängkant", "Hoppa och dyka bara om det är tillräckligt djupt", "Simma längs med strand eller brygga", "Undvik att simma under brygga eller hopptorn"; "Använd alltid flytväst", "Sitt ner i mindre båtar och byt bara plats om du måste", "Om du ramlar i vattnet - stanna vid båten", "vifta långsamt med båda armarna över huvudet och åt sidorna". Tidigare version (borttagen 2026-09-24) påstod att "barn under 12 år bär flytväst när de är på däck" (ingen sådan regel – Transportstyrelsen säger att alla ombord ska ha flytväst), att Fjäderholmarna har akvarium, att Stora Sand på Utö är öppet beroende på skjutfältet, att Dalarö har klapperstensstrand, att "minibåtar och pedalbåtar finns att hyra på de flesta gästhamnar" och att pilkfiske passar från ca 5 år – utan källa. Öar och bad för barnfamiljer finns nu i ett eget inlägg. -->
-Barn kan följa med ut i båten och på badet i skärgården – med rätt flytväst och några vanor. Här är vad Transportstyrelsen, Sjöräddningssällskapet (SSRS) och Svenska Livräddningssällskapet (SLS) råder. Vilka öar och bad som passar barnfamiljer står i [Barnvänliga öar och bad i Stockholms skärgård](/blogg/skargard-barnfamilj-sommar-2026).
+Barn kan följa med ut i båten och på badet i skärgården, med rätt flytväst och några vanor. Här är vad Transportstyrelsen, Sjöräddningssällskapet (SSRS) och Svenska Livräddningssällskapet (SLS) råder. Vilka öar och bad som passar barnfamiljer står i [Barnvänliga öar och bad i Stockholms skärgård](/blogg/skargard-barnfamilj-sommar-2026).
 
 ## Flytvästen
 
@@ -1026,7 +1026,7 @@ Svenska Livräddningssällskapet har depåer där du kan låna eller hyra en fly
 ## Med små barn ombord
 Sjöräddningssällskapets råd:
 - **Barnstol:** vid tilläggning eller i sjögång kan en bilbarnstol eller cykelstol fästas i till exempel pulpiten. Montera den så att den inte lossnar.
-- **Bärsele** för de minsta – men den ersätter inte flytvästen.
+- **Bärsele** för de minsta, men den ersätter inte flytvästen.
 - **Mantågsnät:** på segelbåt skyddar ett finmaskigt nät längs mantågen.
 - **Spisen** är en vanlig orsak till olyckor ombord. Håll uppsikt vid matlagning.
 - **Korta etapper:** välj kortare rutter och låt barnen leka av sig på stranden.
@@ -1055,7 +1055,7 @@ Svenska Livräddningssällskapets badvett:
 - Behöver du hjälp: vifta långsamt med båda armarna över huvudet och åt sidorna.
 
 ## Lär barnen ringa 112
-När barnen kan hantera en telefon råder Sjöräddningssällskapet att lära dem 112 – "112, lätt att slå" – och förklara hur ett sådant samtal går till.
+När barnen kan hantera en telefon råder Sjöräddningssällskapet att lära dem 112: "112, lätt att slå", och förklara hur ett sådant samtal går till.
 
 ## Läs vidare
 - [Barnvänliga öar och bad i Stockholms skärgård](/blogg/skargard-barnfamilj-sommar-2026)
@@ -1065,7 +1065,7 @@ När barnen kan hantera en telefon råder Sjöräddningssällskapet att lära de
  },
 
  'svenska-hoar-sandhamn': {
-   title: 'Svenska Högarna – naturreservat längst ut i skärgården',
+   title: 'Svenska Högarna: naturreservat längst ut i skärgården',
    excerpt: 'Svenska Högarna i Norrtälje kommun är Sveriges största marina naturreservat, cirka 19 nautiska mil öster om Möja. Så når du ögruppen, var du lägger till och vilka regler som gäller.',
    category: 'Öguide',
    date: '2026-03-05',
@@ -1100,7 +1100,7 @@ Svenska Högarna var förr en fiskehamn och är sedan gammalt en fyrplats. På S
 - **Övernattningsbodar:** vid inre hamnen, bokas genom tillsynsmannen.
 
 ## Reglerna i reservatet (urval)
-- **Tillträdesförbud** i tre områden: område A 1 februari–15 augusti, område B 1 april–31 juli och område C 1 maj–30 juni. Områdena finns på kartan i Länsstyrelsens beslut.
+- **Tillträdesförbud** i tre områden: område A 1 februari till 15 augusti, område B 1 april till 31 juli och område C 1 maj till 30 juni. Områdena finns på kartan i Länsstyrelsens beslut.
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Under aktuella perioder får du inte vara i områden med tillträdesförbud (så kallade fågelskyddsområden)"; "Du får ankra eller lägga till med fartyg på samma plats upp till två dygn i följd"; "Du får inte köra motordrivet fartyg snabbare än 5 knop inom 100 meter från land"; "I vissa särskilt känsliga områden är det förbjudet att ankra, köra motordrivet fartyg eller framföra någon typ av fartyg"; "Fiskeförbud råder året om inom vissa områden" -->
 - **Båt:** inom områden som är markerade på kartan är det förbjudet att ankra, köra båt, köra fortare än 5 knop eller fiska. Du får inte förtöja längre än två dygn i följd vid samma strand eller brygga, inte tomgångsköra motorn vid angöringsplatsen och inte tvätta båtskrovet. Du får inte heller släppa ut avloppsvatten eller annat avfall från båten.
 - **Hund:** hunden ska vara kopplad när den tas i land.
@@ -1116,7 +1116,7 @@ Svenska Högarna var förr en fiskehamn och är sedan gammalt en fyrplats. På S
  },
 
  'grilla-naturhamn': {
-   title: 'Grilla i naturhamnen – eldningsregler i skärgården',
+   title: 'Grilla i naturhamnen: eldningsregler i skärgården',
    excerpt: 'Får du grilla i naturhamnen? Allemansrättens regler för eldning, hur du tar reda på om det är eldningsförbud i Stockholms län och vad som gäller i naturreservat som Grinda, Finnhamn och Nåttarö.',
    category: 'Praktiskt',
    date: '2026-02-05',
@@ -1135,7 +1135,7 @@ Allemansrätten ger dig ingen given rätt att elda, enligt Naturvårdsverket. Du
 
 ## Så grillar du enligt allemansrätten
 - **Underlag:** använd en fast grillplats, eller välj grus eller sand. Ett friluftskök är också ett alternativ.
-- **Inte på berghällar:** undvik att elda på berghällar och större stenblock – de kan spricka och skadas permanent. Undvik också mossa, torvmark och jordig skogsmark, och elda inte nära myrstackar eller stubbar.
+- **Inte på berghällar:** undvik att elda på berghällar och större stenblock. De kan spricka och skadas permanent. Undvik också mossa, torvmark och jordig skogsmark, och elda inte nära myrstackar eller stubbar.
 - **Ved:** du får använda pinnar, grenar och kottar som ligger på marken. Du får inte hugga eller såga ner träd eller buskar, eller ta ris, grenar eller näver från levande träd. Omkullfallna träd tillhör markägaren.
 - **Släck:** ha vatten och gärna en spade till hands. Krafsa i askan så att ingen glöd finns kvar, och släck elden om vinden ökar.
 - **Skräp:** ta med skräp och matrester hem.
@@ -1152,12 +1152,12 @@ Här kan du kolla vad som gäller:
 I skyddade områden kan det vara helt förbjudet att elda, eller bara tillåtet på iordningställda eldplatser. Exempel ur Länsstyrelsens föreskrifter:
 
 ### Elda bara på anvisad plats
-- [Grinda](/o/grinda) – grillplatser finns vid södra ångbåtsbryggan och vid tältplatsen.
-- [Finnhamn](/o/finnhamn) – eldplatser finns vid tältplatsen på södra Jolpan, nära vandrarhemmet och på Idholmen.
-- [Nåttarö](/o/nattaro) – reservatet har anvisade eldplatser.
-- [Svenska Högarna](/o/svenska-hogarna) – både öppen eld och grill är bara tillåtna på anvisad plats.
+- [Grinda](/o/grinda), grillplatser finns vid södra ångbåtsbryggan och vid tältplatsen.
+- [Finnhamn](/o/finnhamn): eldplatser finns vid tältplatsen på södra Jolpan, nära vandrarhemmet och på Idholmen.
+- [Nåttarö](/o/nattaro), reservatet har anvisade eldplatser.
+- [Svenska Högarna](/o/svenska-hogarna), både öppen eld och grill är bara tillåtna på anvisad plats.
 <!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
-- [Bullerö](/o/bullero) och Nämdöskärgårdens nationalpark – du får elda på anvisade platser eller i grill på ben, och friluftskök är tillåtet. I servicehuset på Bullerö finns grill och utekök.
+- [Bullerö](/o/bullero) och Nämdöskärgårdens nationalpark. Du får elda på anvisade platser eller i grill på ben, och friluftskök är tillåtet. I servicehuset på Bullerö finns grill och utekök.
 
 ### Öppen eld förbjuden
 - Granholmen söder om Möja, [Huvudskär](/o/huvudskar), Biskopsö och Jungfruskär. På [Fjärdlång](/o/fjardlang) är öppen eld förbjuden; undantaget gäller bara eldplatser för lägerskolans verksamhet på södra Fjärdlång.
@@ -1173,8 +1173,8 @@ Ligger du i gästhamn kan det finnas grillplats. På [Ingmarsö gästhamn](/uppt
  },
 
  'norrtelje-norra-skargard': {
- title: 'Norrtälje skärgård – Arholma, Lidö, Väddö och Singö',
- excerpt: 'Norra skärgården i Norrtälje kommun: båt från Norrtälje hamn och Räfsnäs, Arholma och Lidö, Furusund och Blidö, Väddö kanal, Grisslehamn och Singö – med bad och gästhamnar enligt kommunen.',
+ title: 'Norrtälje skärgård: Arholma, Lidö, Väddö och Singö',
+ excerpt: 'Norra skärgården i Norrtälje kommun: båt från Norrtälje hamn och Räfsnäs, Arholma och Lidö, Furusund och Blidö, Väddö kanal, Grisslehamn och Singö, med bad och gästhamnar enligt kommunen.',
  category: 'Öguide',
  date: '2026-01-20',
  updatedAt: '2026-09-24',
@@ -1190,24 +1190,24 @@ Ligger du i gästhamn kan det finnas grillplats. På [Ingmarsö gästhamn](/uppt
  ],
  content: `
 <!-- KÄLLA (lästa 2026-09-24 om inget annat anges): svenskagasthamnar.se/stockholms-skargard/norrtalje/ ("Vår gästhamn är uppdelad på två platser, dels mitt inne i stadens centrum och dels ute vid Restaurang Havspiren"; "bunkra upp inför utflykterna i skärgården eller turen över till Åland"; Gästplatser "120", Hamndjup "1-4 m"). norrtalje.se/info/visit-norrtalje/skargard/gasthamnar/ (Norrtälje gästhamn, Spillersboda, Furusunds, Lidö, Fejan, Gräddö, Blidö, Grisslehamn och Arholma gästhamn). norrtalje.se/info/visit-norrtalje/ (Norrtälje turistbyrå, "Lilla Torget 1A (Wallinska gårdarna)"). norrtalje.se/info/kultur-och-fritid/bad/badplatser/ ("Norrtälje kommun har 31 badplatser"; "Badplatserna sköts om och underhålls under sommarsäsongen, 15 maj – 15 september."; "Simskola utomhus"). blidosundsbolaget.se/norra-batlinjen/ ("I sommar erbjuder vi dagliga avgångar mellan den 6 juli och 9 augusti"; "M/S Rex"; "09:30 Norrtälje, längst bort på Norrtälje hamnpromenad, vid bron Havslänken", 10:50 Gräddö, 11:05 Lidö, 11:45 ankomst Arholma; "Att åka med Norra båtlinjen till Lidö tar lite drygt en och en halv timme"; Lidö: "Hela varvet runt är 11,9 kilometer medan den kortaste slingan är ungefär tre kilometer", "en badplats bara ett par hundra meter från ångbåtsbryggan", "Lidö batteri", "Ryssugn"). SL buss 631 (h631.pdf, giltig 17 augusti–12 december 2026: Norrtälje busstation … Gräddö torg … Räfsnäs brygga; island-data graddo). Waxholmsbolaget linje 31 (h31.pdf/v31.pdf, "31A RÄFSNÄS – TJOCKÖ – FEJAN", gäller 2 april–18 juni och 17 augusti–12 december 2026; Lidö-anlöpen märkta "b" = "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst ... minst 1 timme innan avgång"; island-data lido). lidovardshus.com ("Säsongen 2026 Vi har nu öppet för grupper, konferenser, fester och bröllop."; "Boende & restaurang öppnar åter till midsommar 2027 den 25 juni"), lidovardshus.com/gsthamnen ("Gästhamnen hittar ni på öns sydvästra sida, i Båthusviken."; "ett 50-tal båtplatser"; "I vår hamn kan man inte boka platser"; datafix). skargardsstiftelsen.se/omraden/fejan/ ("Tack vare reguljär båttrafik från Räfsnäs är ön lätt att nå även utan egen båt, och här väntar restaurang, gästhamn, kajakuthyrning, glamping"; "I slutet av 1800-talet anlades här en karantänstation för fartyg som misstänktes bära smittsamma sjukdomar"). tjocko.se ("Tjockö är en … ö belägen i Norrtälje kommun"; Ökrogen "Sommarrestaurangen har även öppet för pubkvällar under vår, vinter och höst."; datafix). Arholma: lansstyrelsen.se/stockholm/besoksmal/naturreservat/arholma-ido.html (bildat 1965; "Arholma och öarna öster därom samt Idö, Idskär och några mindre öar"; landstigningsförbud på Rödkobben och Nollekobb 1 april–31 juli; hund kopplad), sjofartsverket.se Arholma båk ("byggdes 1768"; "Den är en så kallad känningsbåk och har aldrig haft fyrljus"), norrtalje.se Batteri Arholma ("Anläggningen byggdes för Kalla kriget och stod klar 1968"; "Den visas av säkerhetsskäl endast genom guidade turer"), arholmahandel.se ("åretruntöppen butik"; "livsmedel, nybakat bröd"; "bensin, diesel, gasol"), arholma.nu/resa-hit ("passbåten Monsun till Arholma året runt. Resan tar cirka 15 minuter."; "Gästbryggan i Österhamn har plats för ett 20-tal båtar och gästbryggan i Ahlmansviken för 30."), svenskaturistforeningen.se STF Arholma Bull-August gård och STF Arholma Nord; citaten i island-data (arholma). Furusund och Blidö: trafikverket.se Furusundsleden ("Furusundsleden går mellan Furusund och Yxlan"; "överfartstiden är fyra minuter"; "Resan med vägfärjan är avgiftsfri"), trafikverket.se Blidöleden ("Blidöleden går mellan Yxlan och Blidö"), furusund.se/hamnen/ ("I vår gästhamn finns plats för upp till hundra båtar"), hotellfurusund.se/historia/ ("August Strindberg kom till Furusund sommaren 1899"), svenskagasthamnar.se/stockholms-skargard/blido/ ("Hamn i skyddat läge vid restaurang Blidö Brygga."), havochvatten.se Rådmansholmen Blidö ("Sandstrand samt långgrunt badvatten"; "Dass på badplatsen, Lekutrustning samt grillplats"); citaten i island-data (furusund, blido). Väddö: roslagen.se/en/eagle/vaddo-roslagens-storsta-o/ ("Roslagen's largest island with the Väddö Canal and the Åland Sea"; "Väddö Canal connects Bagghusfjärden in the south with Bay of Väddö in the north, offering a sheltered alternative to the open sea east of Väddö"; "Every year, the canal is travelled by around 22 000 boats."; "From Grisslehamn, Eckerölinjen boats go to Eckerö in Åland."), norrtalje.se Väddö kanal kulturmiljöutredning nr 6 ("Arbetet med att anlägga nuvarande Väddö kanal påbörjades år 1819"; "Kanalen öppnades för trafik 1835, och 1840 invigdes den officiellt av Karl XIV Johan."), grisslehamnsmarina.se/hamnen/ ("Vår gästhamn har 77 gästplatser"; "Hamndjupet hos oss är mellan 1-5 meter."; datafix), norrtalje.se Kvarnsand ("Kvarnsandsbadet är ett havsbad på Väddö östkust, söder om Grisslehamn."; "cirka 190 meter lång strandlinje i österläge"; datafix), SL buss 637 (h637.pdf: Norrtälje via Väddö kyrka, Älmsta och Grisslehamn till Ellan; island-data vaddo). Singö: visitroslagen.se/singo-och-fogdo ("Singö nås med bro från Väddö via Fogdö"; "Busshållplatsen vid Ellan är Storstockholms lokaltrafiks nordligaste."; "cirka 300 bofasta invånare och 3 000 - 4 000 fritidsboende"; "Singö träkyrka som byggdes 1753. Det är en av få bevarade äldre skärgårdskyrkor."; "Backbyn och Tranvik är kulturmiljöer av riksintresse"; "Bron till Singö invigdes år 1955. Dessförinnan gick dagliga turer med Waxholmsbolagets båtar från Strandvägen i Stockholm via Norrtälje, Väddö Kanal, Trästa, Singö med slutdestination Östhammar eller Öregrund."; "Svartklubbens fyr – statligt byggnadsminne"), roslagen.se/en/eagle/singo-and-fogdo-lattillganglig-cultural-environment/ ("easily accessible all year round by bridge"; "Swimming - sandy beach and grass areas at Backbyn"), norrtalje.se Backbyn ("Badplatsen är ett havsbad vid Backby på ön Singös östra sida."; "en sandstrand med gräsytor i en skyddad vik i söderläge"; datafix). Tidigare version (borttagen 2026-09-24) stavade kommunen "Norrtelje", påstod att Singö nås med bilfärja (fel: bro sedan 1955), att Singö kapell är "en av Upplands äldsta träkyrkor", att Herräng har "en av landets bästa lindy hop-festivaler", att Blidö ligger söder om Väddö, att parkeringen vid Räfsnäs "fylls tidigt" och nämnde Söderhamnsholme, Storön och Kallskär och Norrtäljes "restaurangscen" – utan källa. -->
-Norrtälje kommun har den norra delen av Stockholms skärgård – från Furusund och Blidö i söder till Arholma, Väddö och Singö vid Ålands hav. Här är hur du tar dig ut, vad som finns på öarna och var du badar och lägger till, enligt kommunen, Länsstyrelsen, Svenska Gästhamnar och verksamheterna själva.
+Norrtälje kommun har den norra delen av Stockholms skärgård: från Furusund och Blidö i söder till Arholma, Väddö och Singö vid Ålands hav. Här är hur du tar dig ut, vad som finns på öarna och var du badar och lägger till, enligt kommunen, Länsstyrelsen, Svenska Gästhamnar och verksamheterna själva.
 
 ## Norrtälje hamn
-Norrtäljes gästhamn ligger på två platser: i stadens centrum och ute vid Restaurang Havspiren. Enligt Svenska Gästhamnar finns 120 gästplatser på 1–4 meters djup, och hamnen används för att bunkra inför turer i skärgården eller över till Åland. Norrtälje turistbyrå finns på Lilla Torget 1A i Wallinska gårdarna.
+Norrtäljes gästhamn ligger på två platser: i stadens centrum och ute vid Restaurang Havspiren. Enligt Svenska Gästhamnar finns 120 gästplatser på 1 till 4 meters djup, och hamnen används för att bunkra inför turer i skärgården eller över till Åland. Norrtälje turistbyrå finns på Lilla Torget 1A i Wallinska gårdarna.
 
 På sommaren går Blidösundsbolagets Norra båtlinje med M/S Rex från Norrtälje hamn, vid bron Havslänken, via Gräddö till Lidö och Arholma.
 
 ## Räfsnäs, Lidö, Fejan och Tjockö
 SL-buss 631 går från Norrtälje busstation via Gräddö till Räfsnäs brygga på Rådmansö. Därifrån går Waxholmsbolagets linje 31 till [Fejan](/o/fejan) och Tjockö. Turer som lägger till vid Lidö ska beställas minst en timme i förväg.
 
-- [Lidö](/o/lido): med Norra båtlinjen tar resan från Norrtälje drygt en och en halv timme. Stockholm Archipelago Trail går runt ön, 11,9 kilometer, och den kortaste slingan är ungefär tre kilometer. En badplats ligger ett par hundra meter från ångbåtsbryggan, och på ön finns Lidö batteri och en ryssugn. [Lidö gästhamn](/upptack/lido-gasthamn) i Båthusviken har ett 50-tal platser som inte går att boka. [Lidö Värdshus](/upptack/lido-vardshus) har perioder då det bara tar emot grupper – se värdshusets sida för aktuell säsong.
+- [Lidö](/o/lido): med Norra båtlinjen tar resan från Norrtälje drygt en och en halv timme. Stockholm Archipelago Trail går runt ön, 11,9 kilometer, och den kortaste slingan är ungefär tre kilometer. En badplats ligger ett par hundra meter från ångbåtsbryggan, och på ön finns Lidö batteri och en ryssugn. [Lidö gästhamn](/upptack/lido-gasthamn) i Båthusviken har ett 50-tal platser som inte går att boka. [Lidö Värdshus](/upptack/lido-vardshus) har perioder då det bara tar emot grupper, se värdshusets sida för aktuell säsong.
 - Fejan: i slutet av 1800-talet anlades en karantänstation här för fartyg som misstänktes ha smitta ombord. Skärgårdsstiftelsen nämner restaurang, gästhamn, kajakuthyrning och glamping.
 - Tjockö: [Ökrogen](/upptack/okrogen-tjocko) är sommarrestaurang och har pubkvällar under vår, vinter och höst.
 
 ## [Arholma](/o/arholma)
 Passbåten Monsun går året runt från Simpnäs brygga, cirka 15 minuter, och till Simpnäs går SL-bussar.
 
-- **Naturreservatet Arholma-Idö** bildades 1965 och omfattar Arholma, öarna öster om den och Idö. Hunden ska vara kopplad, och på Rödkobben och Nollekobb råder landstigningsförbud 1 april–31 juli.
+- **Naturreservatet Arholma-Idö** bildades 1965 och omfattar Arholma, öarna öster om den och Idö. Hunden ska vara kopplad, och på Rödkobben och Nollekobb råder landstigningsförbud 1 april till 31 juli.
 - **Arholma båk** byggdes 1768. Den är en känningsbåk och har aldrig haft fyrljus.
 - **Batteri Arholma** stod klart 1968 och visas av säkerhetsskäl bara med guide.
 - **Arholma Handel** har öppet året runt, med livsmedel, bröd, bensin, diesel och gasol.
@@ -1222,27 +1222,27 @@ På Blidö ligger [Blidö gästhamn](/upptack/blido-gasthamn) vid restaurang Bli
 ## [Väddö](/o/vaddo) och Grisslehamn
 Väddö är Roslagens största ö. Väddö kanal förbinder Bagghusfjärden i söder med Väddöviken i norr och är ett skyddat alternativ till öppna havet öster om ön. Arbetet med den nuvarande kanalen började 1819, den öppnades för trafik 1835 och invigdes 1840 av Karl XIV Johan. Omkring 22 000 båtar passerar varje år.
 
-Från Grisslehamn på Väddös norra del går Eckerölinjen till Eckerö på Åland. [Grisslehamns gästhamn](/upptack/grisslehamn-gasthamn) har 77 gästplatser på 1–5 meters djup. Söder om Grisslehamn ligger havsbadet [Kvarnsand](/upptack/kvarnsand) med cirka 190 meter strandlinje i österläge. SL-buss 637 går från Norrtälje via Älmsta och Grisslehamn.
+Från Grisslehamn på Väddös norra del går Eckerölinjen till Eckerö på Åland. [Grisslehamns gästhamn](/upptack/grisslehamn-gasthamn) har 77 gästplatser på 1 till 5 meters djup. Söder om Grisslehamn ligger havsbadet [Kvarnsand](/upptack/kvarnsand) med cirka 190 meter strandlinje i österläge. SL-buss 637 går från Norrtälje via Älmsta och Grisslehamn.
 
 ## [Singö](/o/singo)
 Singö nås med bro från Väddö via Fogdö, och bron invigdes 1955. Innan dess gick Waxholmsbolagets båtar från Strandvägen via Norrtälje, Väddö kanal och Singö till Östhammar eller Öregrund. I dag går SL-buss 637 hela vägen till Ellan, SL:s nordligaste hållplats.
 
-- Omkring 300 personer bor på Singö året runt och 3 000–4 000 fritidsboende kommer på sommaren.
+- Omkring 300 personer bor på Singö året runt och 3 000 till 4 000 fritidsboende kommer på sommaren.
 - **Singö kyrka** är en träkyrka från 1753, en av få bevarade äldre skärgårdskyrkor.
 - **Backby och Tranvik** är kulturmiljöer av riksintresse.
 - [Backbybadet](/upptack/backbybadet) har sandstrand och gräsytor i en skyddad vik i söderläge.
 - **Svartklubbens fyr** är statligt byggnadsminne.
 
 ## Bad och gästhamnar
-Norrtälje kommun har 31 badplatser som sköts under sommarsäsongen, 15 maj–15 september, och på sommaren finns simskola utomhus. Kommunens lista över gästhamnar: Norrtälje, Spillersboda, Furusund, Lidö, Fejan, Gräddö, Blidö, Grisslehamn och Arholma.
+Norrtälje kommun har 31 badplatser som sköts under sommarsäsongen, 15 maj till 15 september, och på sommaren finns simskola utomhus. Kommunens lista över gästhamnar: Norrtälje, Spillersboda, Furusund, Lidö, Fejan, Gräddö, Blidö, Grisslehamn och Arholma.
 
 Mer: [Gästhamnar i Stockholms skärgård](/blogg/gasthamnar-guide) och [Badplatser i Stockholms skärgård](/blogg/basta-badplatserna).
  `,
  },
 
  'packlista-bat': {
- title: 'Packlista för båten – bra saker att ha ombord',
- excerpt: 'Bra saker att ha i båten: säkerhetsutrustning, navigation, verktyg, mat och kläder – en checklista för dagsturen och veckan i skärgården.',
+ title: 'Packlista för båten: bra saker att ha ombord',
+ excerpt: 'Bra saker att ha i båten: säkerhetsutrustning, navigation, verktyg, mat och kläder, en checklista för dagsturen och veckan i skärgården.',
  category: 'Praktiskt',
  date: '2026-04-01',
  updatedAt: '2026-09-24',
@@ -1250,7 +1250,7 @@ Mer: [Gästhamnar i Stockholms skärgård](/blogg/gasthamnar-guide) och [Badplat
  emoji: '🎒',
  tags: ['Packlista', 'Utrustning', 'Säkerhet'],
  content: `
-En bra packlista för båt handlar inte om att ta med allt – det handlar om att aldrig glömma det viktiga. En vätska man inte kan fylla på, en kabel som inte finns ombord och ett läge som försämras snabbt.
+En bra packlista för båt handlar inte om att ta med allt. Det handlar om att aldrig glömma det viktiga. En vätska man inte kan fylla på, en kabel som inte finns ombord och ett läge som försämras snabbt.
 
 <!-- RÅD: packlistan är Svallas checklista, inte myndighetskrav (2026-09-24) -->
 ## Säkerhetsutrustning
@@ -1259,7 +1259,7 @@ En bra packlista för båt handlar inte om att ta med allt – det handlar om at
 - Kastkrans med lina
 - Nödbloss
 - Kompass (fungerande, ej bara GPS)
-- Sjökort för området – i app och gärna på papper som reserv
+- Sjökort för området: i app och gärna på papper som reserv
 - VHF-radio
 - Ankare med kedja och lina
 
@@ -1310,7 +1310,7 @@ En bra packlista för båt handlar inte om att ta med allt – det handlar om at
  },
 
  'havsbastu-guide': {
-   title: 'Havsbastu i skärgården – bastur vid hamnar och öar',
+   title: 'Havsbastu i skärgården: bastur vid hamnar och öar',
    excerpt: 'Här finns bastu vid vattnet i Stockholms skärgård: vedeldad bastu på Bullerö, bastu att hyra i Källviken på Grinda, Kryssarklubbens uthamn på Runmarö och gästhamnar med bastu från Furusund till Nynäshamn.',
    category: 'Aktiviteter',
    date: '2026-03-10',
@@ -1340,16 +1340,16 @@ Grinda Wärdshus hyr ut bastun i Källviken per timme för en till fyra personer
 I Svenska Kryssarklubbens uthamn i Norrviken på [Runmarö](/o/runmaro) finns en vedeldad bastu under sommaren. SXK ber besökarna att inte använda sjövatten när de kastar vatten på stenarna. Uthamnen är öppen för alla båtturister. Se [Kryssarklubbens uthamn](/upptack/kryssarklubbens-uthamn).
 
 ## Gästhamnar med bastu
-- [Fejan](/o/fejan) – hamnavgiften inkluderar dusch, toalett och bastu.
-- [Furusund](/o/furusund) – bastu i gästhamnen, som har plats för upp till hundra båtar. Bastuflotte och jacuzzi hyrs via receptionen.
-- [Ingmarsö](/upptack/ingmarso-gasthamn) – bastu mot avgift, bokas via gästhamnen.
-- [Finnhamn](/upptack/finnhamn) – bastu finns bland öns anläggningar.
-- [Sandhamn](/upptack/ksss-gasthamn-sandhamn) – KSSS har duschar, toaletter och bastu i anslutning till hamnen, och på [Lökholmen](/upptack/ksss-gasthamn-lokholmen-trollsundet) finns också bastu.
-- [Utö gästhamn](/upptack/gruvbryggan) – båtplatser med el, vatten, bastu, dusch och toalett. Närmaste brygga är Gruvbryggan.
-- [Nåttarö gästhamn](/upptack/nattaro-nya-gasthamn) i Kvarnviken – toaletter, duschar och bastu.
-- [Dalarö gästhamn](/upptack/dalaro-turistbyra-och-gasthamn-askfatshamnen) i Askfatshamnen – toaletter, duschar, bastu och tvättstuga.
-- **Nynäshamns gästhamn** – enligt Svenska Gästhamnar ingår bastu.
-- **Landsort, Norrhamnen** – enligt Svenska Gästhamnar finns bastu för upp till sex personer. Se [Landsort](/o/landsort).
+- [Fejan](/o/fejan): hamnavgiften inkluderar dusch, toalett och bastu.
+- [Furusund](/o/furusund): bastu i gästhamnen, som har plats för upp till hundra båtar. Bastuflotte och jacuzzi hyrs via receptionen.
+- [Ingmarsö](/upptack/ingmarso-gasthamn): bastu mot avgift, bokas via gästhamnen.
+- [Finnhamn](/upptack/finnhamn), bastu finns bland öns anläggningar.
+- [Sandhamn](/upptack/ksss-gasthamn-sandhamn): KSSS har duschar, toaletter och bastu i anslutning till hamnen, och på [Lökholmen](/upptack/ksss-gasthamn-lokholmen-trollsundet) finns också bastu.
+- [Utö gästhamn](/upptack/gruvbryggan): båtplatser med el, vatten, bastu, dusch och toalett. Närmaste brygga är Gruvbryggan.
+- [Nåttarö gästhamn](/upptack/nattaro-nya-gasthamn) i Kvarnviken: toaletter, duschar och bastu.
+- [Dalarö gästhamn](/upptack/dalaro-turistbyra-och-gasthamn-askfatshamnen) i Askfatshamnen: toaletter, duschar, bastu och tvättstuga.
+- **Nynäshamns gästhamn**, enligt Svenska Gästhamnar ingår bastu.
+- **Landsort, Norrhamnen**, enligt Svenska Gästhamnar finns bastu för upp till sex personer. Se [Landsort](/o/landsort).
 
 ## På fastlandet och i Roslagen
 - [Saltsjöbadens friluftsbad](/upptack/saltsjobadens-friluftsbad) i Nacka har separata badhus för dam och herr, bastu och vinterbad. Från Saltsjöbanans station Saltsjöbaden är det ungefär 500 meter att gå.
@@ -1363,7 +1363,7 @@ I Svenska Kryssarklubbens uthamn i Norrviken på [Runmarö](/o/runmaro) finns en
  },
 
  'segling-klassiska-leder': {
-   title: 'Farleder i Stockholms skärgård – guide för seglare',
+   title: 'Farleder i Stockholms skärgård: guide för seglare',
    excerpt: 'Farlederna in mot Stockholm via Sandhamn, Landsort och Tjärven enligt Sjöfartsverket, hur du läser sjömärkena, vad som gäller för segelbåtar i trång farled och gästhamnar längs lederna.',
    category: 'Segling',
    date: '2026-02-25',
@@ -1373,7 +1373,7 @@ I Svenska Kryssarklubbens uthamn i Norrviken på [Runmarö](/o/runmaro) finns en
    tags: ['Farleder', 'Segling', 'Stockholms skärgård', 'Sjömärken', 'Sjövägsregler'],
    // KÄLLA: sjofartsverket.se lotsområde Stockholm, Riktvärden och restriktioner; sjofartsverket.se Flytande sjömärken; TSFS 2009:44 regel 9 b – se KÄLLA-kommentaren i content.
    faqs: [
-     { q: 'Vilka farleder går in mot Stockholm?', a: 'Sjöfartsverket anger bland annat farlederna Stockholm–Sandhamn, Landsort–Stockholm, Stockholm via Tjärven (den norra farleden), Simpnäs–Stockholm och Möjaleden. Landsortsleden ansluter till Sandhamnsleden i Kanholmsfjärden.' },
+     { q: 'Vilka farleder går in mot Stockholm?', a: 'Sjöfartsverket anger bland annat farlederna Stockholm till Sandhamn, Landsort till Stockholm, Stockholm via Tjärven (den norra farleden), Simpnäs till Stockholm och Möjaleden. Landsortsleden ansluter till Sandhamnsleden i Kanholmsfjärden.' },
      { q: 'Vilken sida ska de röda prickarna vara på?', a: 'Röda märken är babordsmärken och gröna är styrbordsmärken. De sätts ut efter huvudriktningen, som går från sjön in mot hamnarna. På väg in har du alltså röda märken om babord och gröna om styrbord.' },
      { q: 'Har segelbåten företräde i farleden?', a: 'Inte alltid. Enligt sjövägsreglerna får segelfartyg och fartyg under 20 meter inte hindra ett fartyg som bara kan framföras säkert i en trång farled, till exempel en färja eller ett fraktfartyg.' },
    ],
@@ -1383,21 +1383,21 @@ Från havet går flera farleder in mot Stockholm. Där går färjor och fraktfar
 
 ## Farlederna in mot Stockholm
 Sjöfartsverkets lotsområde Stockholm listar bland annat de här farlederna:
-- **Stockholm–Sandhamn** – från Sandhamn och Revengegrundet in till Stockholm, för fartyg med upp till 11 meters djupgående.
-- **Landsort–Stockholm** – upp till 10 meters djupgående.
-- **Stockholm via Tjärven** – den norra farleden, upp till 9 meters djupgående.
-- **Simpnäs–Stockholm** och **Möjaleden** – upp till 7 meters djupgående.
+- **Stockholm till Sandhamn**: från Sandhamn och Revengegrundet in till Stockholm, för fartyg med upp till 11 meters djupgående.
+- **Landsort till Stockholm**, upp till 10 meters djupgående.
+- **Stockholm via Tjärven**: den norra farleden, upp till 9 meters djupgående.
+- **Simpnäs till Stockholm** och **Möjaleden**, upp till 7 meters djupgående.
 
 ### Landsortsleden
 <!-- KÄLLA: Sjöfartsverket, farleder i lotsområde Stockholm: "För farleden genom Ornöström är maximalt djupgående 5,5 m." (se kommentaren överst) -->
-Landsortsleden går från Landsort över Mysingen, Jungfrufjärden och Nämdöfjärden till Kanholmsfjärden, där den ansluter till Sandhamnsleden. Genom Ornöström är största djupgående 5,5 meter. Kring Dalarö finns flera ankarplatser och på flera platser ankringsförbud – båda är utmärkta i sjökortet.
+Landsortsleden går från Landsort över Mysingen, Jungfrufjärden och Nämdöfjärden till Kanholmsfjärden, där den ansluter till Sandhamnsleden. Genom Ornöström är största djupgående 5,5 meter. Kring Dalarö finns flera ankarplatser och på flera platser ankringsförbud, båda är utmärkta i sjökortet.
 
 ### Stockholmsleden går inte mot Sandhamn
 Namnet kan förvirra: Sjöfartsverkets Stockholmsleden går från Södra Björkfjärden till Danviksbron via Hammarbyslussen och korsas av fyra öppningsbara broar. Det är alltså leden från Södertäljehållet, inte leden ut mot Sandhamn.
 
 ## Segelbåt i farleden
 - Ett maskindrivet fartyg på väg ska hålla undan för ett segelfartyg.
-- Men i en trång farled får segelbåtar och fartyg under 20 meter inte hindra ett fartyg som bara kan framföras säkert i farleden – till exempel en färja eller ett fraktfartyg.
+- Men i en trång farled får segelbåtar och fartyg under 20 meter inte hindra ett fartyg som bara kan framföras säkert i farleden, till exempel en färja eller ett fraktfartyg.
 - Tänk också på vägfärjorna. Furusundsleden, till exempel, är enligt Trafikverket färjeleden mellan Furusund och Yxlan, 600 meter lång.
 
 Mer om väjningsreglerna: [Börja segla](/blogg/segling-nyborjare-guide).
@@ -1410,19 +1410,19 @@ Mer om väjningsreglerna: [Börja segla](/blogg/segling-nyborjare-guide).
 - **Kardinalmärken** heter nord, ost, syd eller väst efter var de står i förhållande till grundet, och ska passeras i samma väderstreck som namnet anger.
 
 ## Gästhamnar längs lederna
-- [Sandhamn](/o/sandhamn) – [KSSS gästhamn](/upptack/ksss-gasthamn-sandhamn) har cirka 150 gästplatser. I hamnbassängen nedanför Seglarhotellet förtöjer man med mooringlinor, och ankring är förbjuden. Passbåten går till Lökholmen, med plats för cirka 200 båtar.
-- [Vaxholm](/o/vaxholm) – [gästhamnen](/upptack/waxholms-gasthamn-och-rent-under-batbotten-tvatt) ligger mitt i centrum och har 110 gästplatser vid bom eller mooringlinor.
-- [Furusund](/o/furusund) – plats för 100 båtar, varav 10 bokningsbara, vid boj, y-bom eller mooring. Svenska Gästhamnar anger diesel och bensin.
-- [Dalarö](/o/dalaro) – [gästhamnen](/upptack/dalaro-turistbyra-och-gasthamn-askfatshamnen) ligger i Askfatshamnen på Dalarös sydvästra sida, före Dalarö kanal om du kommer söderifrån.
-- [Utö](/o/uto) – gästhamnen har plats för cirka 300 fritidsbåtar.
-- **Nynäshamn** – 300 gästplatser vid bom eller boj.
+- [Sandhamn](/o/sandhamn), [KSSS gästhamn](/upptack/ksss-gasthamn-sandhamn) har cirka 150 gästplatser. I hamnbassängen nedanför Seglarhotellet förtöjer man med mooringlinor, och ankring är förbjuden. Passbåten går till Lökholmen, med plats för cirka 200 båtar.
+- [Vaxholm](/o/vaxholm), [gästhamnen](/upptack/waxholms-gasthamn-och-rent-under-batbotten-tvatt) ligger mitt i centrum och har 110 gästplatser vid bom eller mooringlinor.
+- [Furusund](/o/furusund): plats för 100 båtar, varav 10 bokningsbara, vid boj, y-bom eller mooring. Svenska Gästhamnar anger diesel och bensin.
+- [Dalarö](/o/dalaro), [gästhamnen](/upptack/dalaro-turistbyra-och-gasthamn-askfatshamnen) ligger i Askfatshamnen på Dalarös sydvästra sida, före Dalarö kanal om du kommer söderifrån.
+- [Utö](/o/uto), gästhamnen har plats för cirka 300 fritidsbåtar.
+- **Nynäshamn**, 300 gästplatser vid bom eller boj.
 
 Fler hamnar: [Gästhamnar i Stockholms skärgård](/blogg/gasthamnar-guide), [Naturhamnar i Stockholms skärgård](/blogg/naturhamnar-stockholm-skargard) och [Sjömackar i skärgården](/blogg/bransle-ankring-skargard).
    `,
  },
 
  'host-i-skargarden-2026': {
-   title: 'Höst i skärgården – öar du når med båt i september och oktober',
+   title: 'Höst i skärgården: öar du når med båt i september och oktober',
    excerpt: 'Skärgården på hösten: öarna med båt året runt (Sandhamn, Grinda, Utö, Vaxholm), var du kan äta och bo efter högsäsongen, bastun och nationalparken på Bullerö och vad som stänger i augusti och september.',
    category: 'Inspiration',
    date: '2026-07-27',
@@ -1441,29 +1441,29 @@ Efter högsäsongen stänger en del av skärgården, men inte allt. Båtarna til
 - [Vaxholm](/o/vaxholm): en stad med liv året runt, och i december hålls Vaxholms julmarknad.
 
 ## Äta och bo efter högsäsongen
-- **Sandhamns Värdshus:** puben är öppen året runt. Restaurangen har öppet främst på helger utanför perioden mitten av juni–mitten av september, och boendet i Missionshuset har frukost.
+- **Sandhamns Värdshus:** puben är öppen året runt. Restaurangen har öppet främst på helger utanför perioden mitten av juni till mitten av september, och boendet i Missionshuset har frukost.
 - **Seglarhotellet på Sandhamn:** julbord från slutet av november till julafton.
-- **Möja:** Coop i Berg har öppet året runt, och STF Möja vandrarhem har öppet april–december.
+- **Möja:** Coop i Berg har öppet året runt, och STF Möja vandrarhem har öppet april till december.
 - **Gällnö:** STF-vandrarhemmet har öppet året runt, men krogen stänger i slutet av augusti.
 
 ## Det som stänger
-- Dykarbaren på Sandhamn har säsong maj–september.
-- Finnhamns Café & Krog har öppet juni–augusti enligt Upptäck Skärgården.
+- Dykarbaren på Sandhamn har säsong maj till september.
+- Finnhamns Café & Krog har öppet juni till augusti enligt Upptäck Skärgården.
 - Fjäderholmarna har säsongsöppet under sommarhalvåret.
-- KSSS servicehus med dusch och toalett i Sandhamns gästhamn är öppna maj–september.
-- På Waxholmsbolagets båtar har vissa fartyg begränsad servering under vintertidtabellen, december–april.
+- KSSS servicehus med dusch och toalett i Sandhamns gästhamn är öppna maj till september.
+- På Waxholmsbolagets båtar har vissa fartyg begränsad servering under vintertidtabellen, december till april.
 
 ## Bullerö och nationalparken
 <!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken". KÄLLA: https://www.lansstyrelsen.se/stockholm/om-oss/om-lansstyrelsen-stockholm/nyheter/nyheter---stockholm/2025-09-05-nu-ar-namdoskargardens-nationalpark-invigd.html (Länsstyrelsen Stockholm, nyhet daterad 2025-09-05), läst 2026-09-29 — nationalparken invigdes den 5 september 2025 -->
-Nämdöskärgårdens nationalpark invigdes 5 september 2025 och är Sveriges första marina nationalpark i Östersjön – 97 procent av ytan är hav. Huvudentrén ligger på Bullerö, där bastun är öppen för alla och inte går att boka. Mer: [Bullerö](/o/bullero).
+Nämdöskärgårdens nationalpark invigdes 5 september 2025 och är Sveriges första marina nationalpark i Östersjön, 97 procent av ytan är hav. Huvudentrén ligger på Bullerö, där bastun är öppen för alla och inte går att boka. Mer: [Bullerö](/o/bullero).
 
 ## Tänk på
-- Hunden får inte springa lös i naturen 1 mars–20 augusti, och i naturreservat och nationalparker ska den ha koppel hela året.
+- Hunden får inte springa lös i naturen 1 mars till 20 augusti, och i naturreservat och nationalparker ska den ha koppel hela året.
 - Färre avgångar på hösten: kolla tidtabellen för både ut- och hemresan.
 - Fler ställen som har öppet: [Öppet i skärgården efter säsong](/blogg/eftersasong-skargard-oktober).
    `,
    faqs: [
-     { q: 'Går skärgårdsbåtarna på hösten?', a: 'Ja, till de större öarna. Waxholmsbolaget går till Sandhamn året runt via Stavsnäs, till Grinda året om och till Utö året om från Årsta brygga. Cinderellabåtarna till Sandhamn har säsong (2026: 30 april–27 september).' },
+     { q: 'Går skärgårdsbåtarna på hösten?', a: 'Ja, till de större öarna. Waxholmsbolaget går till Sandhamn året runt via Stavsnäs, till Grinda året om och till Utö året om från Årsta brygga. Cinderellabåtarna till Sandhamn har säsong (2026: 30 april till 27 september).' },
      { q: 'Vad har öppet på Sandhamn på hösten?', a: 'Sandhamns Värdshus pub är öppen året runt, och restaurangen har främst öppet på helger utanför högsäsongen. Seglarhotellet har julbord från slutet av november till julafton.' },
       // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken"
      { q: 'Kan man bada bastu i skärgården på hösten?', a: 'Ja, på Bullerö i Nämdöskärgårdens nationalpark finns en bastu som är öppen för alla och inte går att boka.' },
@@ -1471,7 +1471,7 @@ Nämdöskärgårdens nationalpark invigdes 5 september 2025 och är Sveriges fö
  },
 
  'dagstur-skargard-fyra-timmar': {
-   title: 'Dagstur till skärgården – sex öar och båtarna dit',
+   title: 'Dagstur till skärgården: sex öar och båtarna dit',
    excerpt: 'Dagstur till skärgården från Stockholm utan egen båt: restid, båtar och vad som finns på Fjäderholmarna, Vaxholm, Grinda, Möja, Utö och Sandhamn, plus biljettreglerna på Waxholmsbåten.',
    category: 'Guide',
    date: '2026-07-27',
@@ -1483,32 +1483,32 @@ Nämdöskärgårdens nationalpark invigdes 5 september 2025 och är Sveriges fö
 <!-- KÄLLA (läst 2026-09-24 om inget annat anges). Fjäderholmarna (se /blogg/fjaderholmarna-dagstur och island-data.ts): stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ ("Avgår från: Strandvägen & Nacka Strand"; "Strandvägen - Kajplatsområde 13"; "Endast 30 minuters båtresa från city"; "ÅTER MAJ 2027"; läst 2026-09-21); Waxholmsbolaget tabell 2 (kund.printhuset-sthlm.se/wa/h2.pdf, gäller 2 april–18 juni och 17 augusti–12 december 2026; Fjäderholmarna angörs på vissa turer, "X = trafikeras utan fast avgångstid"); fjaderholmarna.se (Restaurang Rökeriet, Fjäderholmarnas Krog, Fjäderholmarnas Bryggeri, hantverkare inom trä, textil, keramik och glas; "Fjäderholmarna har nu säsongsöppet"); explorearchipelago.com (klippbad med utsikt över Stockholms inlopp). Vaxholm (se /blogg/vaxholm-guide och island-data.ts): Waxholmsbolaget tabell 11 (kund.printhuset-sthlm.se/wa/h11.pdf) Strömkajen–Vaxholm ca 55–70 min; SL buss 670 Tekniska högskolan–Vaxholm; sfv.se Vaxholms kastell ("På ön Vaxholmen ett stenkast från skärgårdens huvudstad Vaxholm"; museet invigt 1964); datafix Hamnkrogen ("Söderhamnen 10"). Grinda (se /blogg/grinda-guide-2026 och island-data.ts): Waxholmsbolagets reseplanerare, läst 2026-09-19 (linje 14 Strömkajen–Södra Grinda 1 tim 45 min, linje 13 1 tim 50 min); stockholmarchipelagotrail.com/sv/section/etapp-grinda/ ("Du åker till Grinda från Vaxholm och Värmdö året om"); grinda.se Wärdshuset, Framfickan ("endast drop-in") och Lanthandel & café (frukost och enklare luncher); skargardsstiftelsen.se/omraden/grinda (badplatsen Källviken); lansstyrelsen.se Grinda (natur- och kulturstig "cirka 2,5 km", "Stigen startar vid gården Hemviken"). Möja (se /blogg/dolda-parlor-moja och /blogg/cykling-moja-gallno): varmdo.se Möja.pdf ("åka buss 434 från Slussen till Sollenkroka ... restid ca 2,5 timme"; "båt från Strömkajen tar ca 3-4 timmar"); visitmoja.se (Hamncafét "Café med glass och bullar samt cykeluthyrning"; naturstig Hamn–Ramsmora 12 km); konsummoja.se (Coop Berg "öppet året runt"); rolandsvenssonmuseet.se (museet vid Ramsmora ångbåtsbrygga). Utö (se /blogg/uto-guide och island-data.ts): lansstyrelsen.se Utö ("Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan"); SL linje 846 (kund.printhuset-sthlm.se/sl/v846.pdf, giltig 17 augusti–12 december 2026: Västerhaninge station 05.32 → Årsta brygga 05.46, 14.32 → 14.49; "Tidtabellen är anpassad till pendeltåg från Stockholm vid Västerhaninge station."); Waxholmsbolaget tabell 21 (kund.printhuset-sthlm.se/wa/h21.pdf, "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026": Årsta brygga 20.35 → Gruvbryggan 21.10 och 08.25 → 09.40; "b Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00."); utovardshus.se/kontakt/hitta-hit/ ("Båt utgår även från Nynäshamn till grannön Ålö som har broförbindelse till Utö"); skargardsstiftelsen.se/omraden/uto ("Utö är en riktig cykel-ö med möjlighet att hyra dagsvis"; "Sveriges äldsta bevarade väderkvarn"); utovardshus.se (Utö Värdshus i gamla gruvkontoret, à la carte lunch och middag; Seglarbaren "BAREN MITT I HAMNEN"); utogasthamn.se (Hamnboden "kiosk, café och restaurang i samma byggnad"). Sandhamn (se /blogg/sandhamn-guide-2026 och island-data.ts): sandhamn.com/en/hitta-hit ("Take bus 433 from Slussen … Approx. 1 hour by bus"); Waxholmsbolaget tabell 16 (Stavsnäs 10.40 → Sandhamn 11.20, 06.05 → 06.55, 09.45 → 10.45); battaxi.se/sandhamnslinjen-2 ("mellan Stavsnäs och Sandhamn på endast 30 minuter"); Strömma Cinderella 2026 (30/4–27/9, "Strandvägen - kajplats 14" 10:00 → Sandhamn 12:30); Waxholmsbolaget tabell 15 ("GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", Strömkajen 10.00 → Sandhamn 13.45); varmdo.se Trouville (vit sand, "ca 20 min" promenad) och Sandhamnsstigen ca 8 km; Sandhamns Värdshus pub öppen året runt (se /blogg/basta-restaurangerna-sandhamn). Biljetter (läst 2026-09-19): waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor ("Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd"; "SL-biljetter gäller endast på de linjer som går via Vaxholm"; exemplet Strömkajen–Grinda: SL-biljett till Vaxholm plus Waxholmsbolaget-biljett Vaxholm–Grinda; SL-biljett gäller inte linje 17, 18 och 19); sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar (lågsäsong 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken; högsäsong 30 april–13 september krävs Waxholmsbolaget-biljett utanför SL-området); waxholmsbolaget.se/biljetter-och-priser/Enkelbiljetter/enkelbiljett-180-minuter (köps i SL-appen eller ombord). waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med (läst 2026-09-24, se /blogg/cykling-moja-gallno): "Du får ta med en vanlig cykel ombord i mån av plats. Att ta med cykeln kostar inget extra". Tidigare version (borttagen 2026-09-24): påståendet att "SL-kortet gäller inte på Waxholmsbåtarna" (fel – SL-biljett gäller Strömkajen–Vaxholm med omnejd, och SL-periodbiljett 30 dagar+ i hela trafiken 14/9–29/4) och att biljetter köps i en "Waxholmsbolaget-appen" (de säljs i SL-appen och ombord); "avgångar från Strömkajen och Nybrokajen nästan varje timme"; Fjäderholmarna från "Strömkajen, Nybroplan eller Slussen" var 30:e minut på 25 minuter och en "pub"; Vaxholm 55–65 min, "Vaxholm Stadshotells restaurang" och en "snabbfärja" som sparar 20 minuter; Grinda "2–3 avgångar per dag", "cirka 1,5 timme", "yttreskärgårdens", "vandringsstig runt ön (ca 2 km)" och att Wärdshuset är fullt sommarlördagar; Möja via Stavsnäs med "pendeltåg till Hässelby" (Möja nås via Sollenkroka), "ca 2 timmar från Strömkajen", "bilfria", cykelpris "150–200 kr/dag", "cykla runt hela ön (ca 15 km)" och "Möja Krog"; Utö "gruvmuseum" och "havsbastu" utan källa, att Gruvbryggan är beställningsbrygga "på de flesta avgångar" (det gäller flera, inte de flesta, turer), uppgiften om Utö Sjötransporters fraktfärja (inte kontrollerad i denna omgång) och "ca 10 km grusväg" från Ålö (Stockholm Archipelago Trail anger 12 km cykelväg Båtshaket–Gruvbryggan); Sandhamn "snabbgående, ca 40 min"; "Det finns inga taxi-alternativ till havs" (taxibåt finns); värdeord. -->
 Sex öar du når från Stockholm på en dag utan egen båt, med restid enkel väg enligt operatörernas tidtabeller. Till Fjäderholmarna och Vaxholm tar båten en timme eller mindre. Till Grinda, Möja, Utö och Sandhamn är resan längre, och restiden står under varje ö.
 
-## Fjäderholmarna – cirka 30 minuter
+## Fjäderholmarna: cirka 30 minuter
 - **Båt:** Strömmas båt från Strandvägen kajplats 13 eller Nacka Strand, cirka 30 minuter. Den går under sommarhalvåret. Vår och höst lägger Waxholmsbolagets linje 2 till vid Fjäderholmarna på vissa turer, utan fast tid.
 - **På ön:** Rökeriet, Fjäderholmarnas Krog, bryggeriet och hantverkare inom trä, textil, keramik och glas, med säsongsöppet. Bad från klipporna med utsikt över Stockholms inlopp.
 
 Mer: [Fjäderholmarna dagstur](/blogg/fjaderholmarna-dagstur).
 
-## Vaxholm – ungefär en timme
+## Vaxholm: ungefär en timme
 - **Båt och buss:** Waxholmsbolagets båt från Strömkajen tar ungefär en timme. Buss 670 går från Tekniska högskolan.
 - **På ön:** Vaxholms kastell på ön Vaxholmen, ett stenkast från staden, med museum. Hamnkrogen ligger vid Söderhamnen.
 
 Mer: [Vaxholm dagstur](/blogg/vaxholm-guide).
 
-## Grinda – 1 timme 45–50 minuter
+## Grinda: 1 timme 45 till 50 minuter
 - **Båt:** Waxholmsbolagets linje 14 (1 timme 45 minuter) eller linje 13 (1 timme 50 minuter) från Strömkajen. Båtarna går året om.
 - **På ön:** Grinda Wärdshus, hamnkrogen Framfickan (endast drop-in) och lanthandelns café med frukost och enklare luncher. Bad vid Källviken och en natur- och kulturstig på cirka 2,5 kilometer som börjar vid gården Hemviken.
 
 Mer: [Grinda guide](/blogg/grinda-guide-2026).
 
-## Möja – cirka 2,5 timmar
-- **Buss och båt:** buss 434 från Slussen till Sollenkroka och båt därifrån, cirka 2,5 timmar enligt Värmdö kommun. Båt hela vägen från Strömkajen tar cirka 3–4 timmar.
+## Möja: cirka 2,5 timmar
+- **Buss och båt:** buss 434 från Slussen till Sollenkroka och båt därifrån, cirka 2,5 timmar enligt Värmdö kommun. Båt hela vägen från Strömkajen tar cirka 3 till 4 timmar.
 - **På ön:** Hamncafét hyr ut cyklar, Coop i Berg har öppet året runt och Roland Svensson-museet ligger vid Ramsmora brygga. Naturstigen mellan Hamn och Ramsmora är 12 kilometer.
 
 Mer: [Möja](/blogg/dolda-parlor-moja).
 
-## Utö – pendeltåg, buss och båt
-- **Resväg:** pendeltåg till Västerhaninge och buss 846 till Årsta brygga, 14–17 minuter. Bussen är anpassad till pendeltågen. Waxholmsbåten därifrån tar 35–75 minuter till Gruvbryggan enligt höst- och vårtidtabellen, och går året om.
+## Utö: pendeltåg, buss och båt
+- **Resväg:** pendeltåg till Västerhaninge och buss 846 till Årsta brygga, 14 till 17 minuter. Bussen är anpassad till pendeltågen. Waxholmsbåten därifrån tar 35 till 75 minuter till Gruvbryggan enligt höst- och vårtidtabellen, och går året om.
 - **Beställ:** på flera turer ska resan beställas i SL-appen, på Waxholmsbolagets webb eller via kundtjänst minst en timme före avgång, senast klockan 17.
 <!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf (Waxholmsbolaget, tabell 22), läst 2026-11-08 — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"; "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ" -->
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt." -->
@@ -1520,30 +1520,30 @@ Mer: [Möja](/blogg/dolda-parlor-moja).
 
 Mer: [Utö guide](/blogg/uto-guide).
 
-## Sandhamn – via Stavsnäs
-- **Buss och båt:** buss 433 från Slussen till Stavsnäs, ungefär en timme. Därifrån Waxholmsbolagets linje 16 på 40–60 minuter eller Sandhamnslinjen på 30 minuter, året runt.
-- **Direkt från stan:** Cinderella från Strandvägen kajplats 14 tar 2 timmar 30 minuter och gick säsongen 2026 30 april–27 september. Waxholmsbåten från Strömkajen går bara sommartid (2026: 19 juni–16 augusti) och tar minst 3 timmar 45 minuter.
+## Sandhamn: via Stavsnäs
+- **Buss och båt:** buss 433 från Slussen till Stavsnäs, ungefär en timme. Därifrån Waxholmsbolagets linje 16 på 40 till 60 minuter eller Sandhamnslinjen på 30 minuter, året runt.
+- **Direkt från stan:** Cinderella från Strandvägen kajplats 14 tar 2 timmar 30 minuter och gick säsongen 2026 30 april till 27 september. Waxholmsbåten från Strömkajen går bara sommartid (2026: 19 juni till 16 augusti) och tar minst 3 timmar 45 minuter.
 - **På ön:** Trouville, en strand med vit sand cirka 20 minuters promenad från hamnen, och Sandhamnsstigen på cirka 8 kilometer. Sandhamns Värdshus har pub som är öppen året runt.
 
 Mer: [Sandhamn guide](/blogg/sandhamn-guide-2026).
 
 ## Biljetter och cykel
 - **SL-biljett** gäller mellan Strömkajen och Vaxholm med omnejd, på linjer som går via Vaxholm. Till Vaxholm räcker alltså SL-biljetten.
-- **Längre ut** behövs Waxholmsbolaget-biljett 30 april–13 september, till exempel på sträckan Vaxholm–Grinda. 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik.
-- **Köp** Waxholmsbolaget-biljetten i SL-appen eller ombord. Strömma, Cinderella och Sandhamnslinjen har egna biljetter.
+- **Längre ut** behövs Waxholmsbolagets biljett 30 april till 13 september, till exempel på sträckan Vaxholm till Grinda. 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik.
+- **Köp** Waxholmsbolagets biljett i SL-appen eller ombord. Strömma, Cinderella och Sandhamnslinjen har egna biljetter.
 - **Cykel:** en vanlig cykel får följa med ombord på Waxholmsbåten i mån av plats, utan extra kostnad.
 - Alla restider per ö finns under Komma dit, till exempel [Båt till Grinda](/o/grinda/komma-dit) och [Båt till Utö](/o/uto/komma-dit).
    `,
    faqs: [
      // KÄLLA: waxholmsbolaget.se (SL-biljetter mellan 44 bryggor), sl.se (biljetter i Waxholmsbolagets skärgårdsbåtar), Waxholmsbolaget tabell 11 och 21, SL linje 670 och 846 – se KÄLLA-kommentaren i content.
-     { q: 'Gäller SL-kortet på Waxholmsbåten?', a: 'SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd. Längre ut behövs Waxholmsbolaget-biljett 30 april–13 september, medan SL-periodbiljetter på 30 dagar eller mer gäller i hela trafiken 14 september–29 april.' },
+     { q: 'Gäller SL-kortet på Waxholmsbåten?', a: 'SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd. Längre ut behövs Waxholmsbolagets biljett 30 april till 13 september, medan SL-periodbiljetter på 30 dagar eller mer gäller i hela trafiken 14 september till 29 april.' },
      { q: 'Hur lång tid tar båten till Vaxholm?', a: 'Waxholmsbolagets båt från Strömkajen tar ungefär en timme. Buss 670 från Tekniska högskolan är ett alternativ.' },
-     { q: 'Kan man göra dagstur till Utö?', a: 'Ja. Pendeltåg till Västerhaninge, buss 846 till Årsta brygga på 14–17 minuter och Waxholmsbåt till Gruvbryggan på 35–75 minuter. På flera turer ska resan beställas minst en timme före avgång.' },
+     { q: 'Kan man göra dagstur till Utö?', a: 'Ja. Pendeltåg till Västerhaninge, buss 846 till Årsta brygga på 14 till 17 minuter och Waxholmsbåt till Gruvbryggan på 35 till 75 minuter. På flera turer ska resan beställas minst en timme före avgång.' },
    ],
  },
 
  'eftersasong-skargard-oktober': {
-   title: 'Öppet i skärgården efter säsong – mat, båtar, bränsle och boende',
+   title: 'Öppet i skärgården efter säsong: mat, båtar, bränsle och boende',
    excerpt: 'Vad har öppet i Stockholms skärgård i oktober och vintern? Lista med källa: pub och butik som har öppet året runt, båtlinjer som går hela året, sjömackar med automat och vandrarhem som tar emot gäster efter sommaren.',
    category: 'Praktiskt',
    date: '2026-07-27',
@@ -1564,7 +1564,7 @@ Den här listan tar bara med det vi kan belägga: ställen där verksamheten sj�
 - **Sandhamn:** Waxholmsbolaget via Stavsnäs året runt. Stavsnäs Båttaxis Sandhamnslinje har hösttidtabell fram till 20 december.
 - **Grinda:** enligt Länsstyrelsen trafikeras Norra och Södra bryggan året om.
 - **Utö:** Waxholmsbåt året om från Årsta brygga.
-- Under Waxholmsbolagets vintertidtabell, december–april, har vissa fartyg begränsad servering ombord.
+- Under Waxholmsbolagets vintertidtabell, december till april, har vissa fartyg begränsad servering ombord.
 
 ## Bränsle med automat
 - [Husarö](/upptack/husaro-gasthamn-cafe): drivmedel med kortautomat året runt.
@@ -1572,7 +1572,7 @@ Den här listan tar bara med det vi kan belägga: ställen där verksamheten sj�
 
 ## Boende
 - **STF Gällnö vandrarhem:** öppet året runt.
-- **STF Möja vandrarhem:** öppet april–december.
+- **STF Möja vandrarhem:** öppet april till december.
 - **Sandhamns Värdshus:** boende med frukost i Missionshuset.
 
 ## Övrigt
@@ -1583,7 +1583,7 @@ Den här listan tar bara med det vi kan belägga: ställen där verksamheten sj�
    faqs: [
      { q: 'Är Sandhamn öppet i oktober?', a: 'Ja. Båtarna via Stavsnäs går året runt, och Sandhamns Värdshus pub är öppen året runt. Restaurangen har främst öppet på helger utanför högsommaren.' },
      { q: 'Kan man tanka båten i skärgården på hösten?', a: 'Ja, bland annat på Husarö, där drivmedel säljs med kortautomat året runt, och hos Kymendö Service, där det går att tanka dygnet runt året om med kortautomat.' },
-     { q: 'Vilka vandrarhem i skärgården har öppet på vintern?', a: 'STF Gällnö vandrarhem har öppet året runt, och STF Möja vandrarhem har öppet april–december.' },
+     { q: 'Vilka vandrarhem i skärgården har öppet på vintern?', a: 'STF Gällnö vandrarhem har öppet året runt, och STF Möja vandrarhem har öppet april till december.' },
    ],
  },
 
@@ -1604,7 +1604,7 @@ Den här listan tar bara med det vi kan belägga: ställen där verksamheten sj�
    ],
    content: `
 <!-- KÄLLA (lästa 2026-09-24 om inget annat anges): waxholmsbolaget.se/biljetter-och-priser/rabatterat-pris ("Barn som är under 7 år gamla reser utan avgift med annan betalande resenär."). waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med ("Du som reser med barn under 7 år får ta med barnvagn utan kostnad."; "Du ställer barnvagnen på barnvagnsplatserna eller där personalen visar att den ska stå."; "Cykelkärra räknas inte som en barnvagn."). Grinda: lansstyrelsen.se/stockholm/besoksmal/naturreservat/grinda.html ("Grinda har fina barnvänliga bad både vid den södra och norra ångbåtsbryggan."; "Grillplatser finns vid södra ångbåtsbryggan och vid tältplatsen."; "Torrdass finns vid alla badplatser och vid södra ångbåtsbryggan"; "Norra och södra bryggan trafikeras året om av Waxholmsbolaget och Cinderella."; natur- och kulturstig "cirka 2,5 km" från Hemviken; datafix 2026-09-22-hamnar-beskrivningar-block2.sql), skargardsstiftelsen.se/omraden/grinda/ ("barnvänliga badstränder", badplatsen Källviken; lanthandel, café och tältplats sommartid; island-data grinda), Waxholmsbolagets reseplanerare (linje 13 Strömkajen–Södra Grinda 1 tim 50 min, läst 2026-09-19, island-data). Nåttarö: haninge.se/.../platser-att-besoka/nattaro/ ("endast en halvtimmes båtresa från Nynäshamn"; "Det finns gott om barnvänliga, långgrunda sandstränder. Mest känd är Stora sand, men den mer avskilda Skarsand är minst lika vacker."; "Här finns vandrarhem, stugor, restaurang, tältplats och en handelsbod."), lansstyrelsen.se Nåttarö ("Reguljär båttrafik till Nåttarö med Waxholmsbolaget från Nynäshamn."; "Invid ångbåtsbryggan finns en snorkelled som markeras på vattenytan av gula bojor, under ytan befinns skyltar som berättar om livet i vattnet."; "Torrdass finns bland annat vid Östermarsfladen och Storsand. Anpassat torrdass finns nära ångbåtsbryggan."), stockholmarchipelagotrail.com etapp Nåttarö ("grusvägen norrut (1,5 km) förbi Drottninggrottan till Nåttarö Storsand ... där det är långgrunt"; "Vid kajkanten är det en fin badstrand."); citaten i island-data (nattaro). Utö: lansstyrelsen.se Utö ("Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan"), skargardsstiftelsen.se/omraden/uto/ (badplatserna Rävstavik och Barnens bad; Ålö Storsand "nås med båt eller via vandringsled"; "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis"), utovardshus.se/seglarbaren ("Intill Seglarbarens uteservering finns en lekplats"; datafix 2026-09-23-texter-utan-kalla.sql). Tynningö: vaxholm.se badplatser ("Badet Myrholmsmaren ligger vid sjön Stora Maren. Badplatsen sköts av Tynningö Idrottsförening som också anordnar simskola varje sommar."; "Sandstrand", "Bryggor", "Grillplats med fasta bänkar och lösa bord", "Omklädningshytt", "Baja-maja under badsäsong"), Waxholmsbolaget linje 4 angör Norra Tynningö, Strömkajen 07.45 → Norra Tynningö 08.59 (h4.pdf, island-data). Ljusterö: osteraker.se/upplevagora/sevardheter/oariosterakersskargard.html ("Vill du bada finns det ett klippbad med storslagen utsikt över Saxarfjärden, och ett barnbad med sandstrand."; "gå en promenad i naturstigen, där det finns en sagostig för barn"; "En bilfärja går från Östanå färjeläge året runt."). Fjäderholmarna: stromma.com (Strandvägen kajplats 13, ca 30 min), explorearchipelago.com (klippbad, mindre sandstränder), fjaderholmarna.se ("säsongsöppet") – se fjaderholmarna-dagstur. Tenöbadet, Överbybadet, Eriksöbadet, Fridhemsbadet: vaxholm.se badplatser (Tenöbadet: "Sandstrand", "Stora grönytor", "Grillplats", "Omklädningshytt", "Lekplats", "Tenöbadet är ett EU-bad."; Överbybadet: "denna fina familjevänliga badplats som ligger utefter Badviksvägen", "Lekplats"; Eriksö: "sandstränder och klippbad", "Flytbrygga med hopptorn", "Handikappramp för tillgänglighet"; Fridhemsbadet: "Sandstrand (långgrund)"). Solbrännan: osteraker.se badplatser ("När du kliver av vid Österskärs station har du fem minuters promenad"; "Badet består av en lång inbjudande sandstrand med badbrygga."; "Bortanför badplatsen i öster finns en trevlig lekplats och en stor gräsplan."). Grisslinge: havochvatten.se ("ca 300 meter lång sandstrand"; "Vid badplatsen finns lekplats, toalett, omklädningsrum, utedusch, parkeringsplats, kiosk, konditori och restaurang."). Torpesand: havochvatten.se ("Sandstranden är ca 120 meter lång."; "Botten är sandbotten och är långgrund."). Schweizerbadet: haninge.se bad ("Schweizerbadet är känt för att vara väldigt långgrunt."; busshållplats Schweizerparken). Nickstabadet: havochvatten.se ("ca 600 meter lång sandstrand"; "hopptorn och vattenrutschbanor"). Rådmansholmen, Blidö: havochvatten.se, Norrtälje kommun (EU-bad; "Sandstrand samt långgrunt badvatten"; "Dass på badplatsen, Lekutrustning samt grillplats"; island-data blido). Badvattnet: havochvatten.se Badplatsen visar provtagning för bad som kommunerna provtar (se basta-badplatserna). Tidigare version (borttagen 2026-09-24) rangordnade "de 7 bästa öarna" och påstod bl.a. att Fjäderholmarna har "inga farliga bryggor" och är barnvagnsanpassade, att Grindas stig är 2 km och barnvagnsanpassad, att Möja har cyklar med barnstol och lådcykel att hyra vid bryggan, att Utöbåten tar 35–75 min, att Dalarö och Nynäshamn har grunda sandstränder "idealiska för barn" och att pendeltåget till Nynäshamn tar 50 min – utan källa. Råd om flytväst och säkerhet finns nu i ett eget inlägg. -->
-Här är öar och bad i Stockholms skärgård där kommunen, Länsstyrelsen, Skärgårdsstiftelsen eller verksamheten själv beskriver barnvänliga bad, långgrunt vatten, lekplats eller simskola. Vi rangordnar dem inte – de är sorterade efter hur du tar dig dit. Om flytväst, badvett och säkerhet i båten: [Skärgård med barn – flytväst, säkerhet och båtvett](/blogg/barnfamilj-skargard).
+Här är öar och bad i Stockholms skärgård där kommunen, Länsstyrelsen, Skärgårdsstiftelsen eller verksamheten själv beskriver barnvänliga bad, långgrunt vatten, lekplats eller simskola. Vi rangordnar dem inte. De är sorterade efter hur du tar dig dit. Om flytväst, badvett och säkerhet i båten: [Skärgård med barn: flytväst, säkerhet och båtvett](/blogg/barnfamilj-skargard).
 
 ## Resan med barn
 På Waxholmsbolagets båtar reser barn under 7 år utan avgift med en annan betalande resenär. Reser du med barn under 7 år får du också ta med barnvagnen utan kostnad och ställer den på barnvagnsplatserna. En cykelkärra räknas inte som barnvagn.
@@ -1612,7 +1612,7 @@ På Waxholmsbolagets båtar reser barn under 7 år utan avgift med en annan beta
 ## Öar du når med båt
 
 ### [Grinda](/o/grinda)
-Enligt Länsstyrelsen har Grinda barnvänliga bad vid både den södra och den norra ångbåtsbryggan. Vid alla badplatser finns torrdass, och grillplatser finns vid södra bryggan och vid tältplatsen. Skärgårdsstiftelsen nämner också badplatsen Källviken, och lanthandel och café har öppet sommartid. En natur- och kulturstig på cirka 2,5 kilometer börjar vid gården Hemviken. Bryggorna trafikeras året om av Waxholmsbolaget och Cinderella – Waxholmsbolagets linje 13 från Strömkajen tar 1 timme och 50 minuter. Mer: [Grinda guide](/blogg/grinda-guide-2026).
+Enligt Länsstyrelsen har Grinda barnvänliga bad vid både den södra och den norra ångbåtsbryggan. Vid alla badplatser finns torrdass, och grillplatser finns vid södra bryggan och vid tältplatsen. Skärgårdsstiftelsen nämner också badplatsen Källviken, och lanthandel och café har öppet sommartid. En natur- och kulturstig på cirka 2,5 kilometer börjar vid gården Hemviken. Bryggorna trafikeras året om av Waxholmsbolaget och Cinderella, Waxholmsbolagets linje 13 från Strömkajen tar 1 timme och 50 minuter. Mer: [Grinda guide](/blogg/grinda-guide-2026).
 
 ### [Nåttarö](/o/nattaro)
 Haninge kommun beskriver Nåttarö med gott om barnvänliga, långgrunda sandstränder, bland annat Storsand och den mer avskilda Skarsand. Vid kajkanten där båten lägger till finns en badstrand, och till Storsand är det cirka 1,5 kilometer på grusväg norrut. Invid ångbåtsbryggan ligger en snorkelled som är utmärkt med gula bojor och har skyltar under vattnet om livet där. Anpassat torrdass finns nära ångbåtsbryggan och torrdass vid Storsand. På ön finns vandrarhem, stugor, restaurang, tältplats och handelsbod. Waxholmsbolaget går från Nynäshamn, en båtresa på ungefär en halvtimme.
@@ -1625,10 +1625,10 @@ Haninge kommun beskriver Nåttarö med gott om barnvänliga, långgrunda sandstr
 <!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
 Skärgårdsstiftelsen nämner badplatserna [Rävstavik](/upptack/ravstavik) och Barnens bad, och Ålö Storsand på grannön, som du når med båt eller via vandringsled. Leden från Utö till Ålö går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats, och på plats gäller informationstavlorna i första hand. Utö beskrivs som en cykel-ö där cyklar hyrs dagsvis. Vid [Seglarbaren](/upptack/seglarbaren-uto) i hamnen finns en lekplats intill uteserveringen. Dit tar du dig med pendeltåg till Västerhaninge, buss till Årsta brygga och Waxholmsbåt till Gruvbryggan, året om. Mer: [Utö guide](/blogg/uto-guide).
 
-### [Tynningö](/o/tynningo) – Myrholmsmaren
+### [Tynningö](/o/tynningo): Myrholmsmaren
 Badet vid sjön Stora Maren inne på ön sköts av Tynningö Idrottsförening, som har simskola varje sommar. Här finns sandstrand, bryggor, grillplats, omklädningshytt och Baja-maja under badsäsongen. Waxholmsbolagets linje 4 lägger till vid Norra Tynningö.
 
-### [Ljusterö](/o/ljustero) – Linanäs
+### [Ljusterö](/o/ljustero): Linanäs
 Vid Linanäs finns enligt Österåkers kommun ett barnbad med sandstrand och ett klippbad mot Saxarfjärden, och i naturstigen en sagostig för barn. Bilfärjan från Östanå går året runt, och Waxholmsbolaget lägger till vid [Linanäs](/upptack/linanas-gasthamn).
 
 ### [Fjäderholmarna](/o/fjaderholmarna)
@@ -1637,23 +1637,23 @@ Närmast stan: cirka 30 minuter med Strömmas båt från Strandvägen. Här bada
 ## Bad du når med buss, tåg eller bil
 
 ### Vaxholm och Resarö
-- [Tenöbadet](/upptack/tenobadet), Bogesund – sandstrand, stora grönytor, grillplats, omklädningshytt och lekplats. EU-bad.
-- [Överbybadet](/upptack/badviken), Resarö – kommunen kallar det en familjevänlig badplats, med sandstrand, gräsytor och lekplats.
-- [Eriksöbadet](/upptack/eriksobadet), Vaxön – sandstränder och klippbad, flytbrygga med hopptorn och handikappramp. EU-bad.
-- Fridhemsbadet vid Karlsudd på Bogesund – mindre strandbad med långgrund sandstrand.
+- [Tenöbadet](/upptack/tenobadet), Bogesund: sandstrand, stora grönytor, grillplats, omklädningshytt och lekplats. EU-bad.
+- [Överbybadet](/upptack/badviken), Resarö: kommunen kallar det en familjevänlig badplats, med sandstrand, gräsytor och lekplats.
+- [Eriksöbadet](/upptack/eriksobadet), Vaxön: sandstränder och klippbad, flytbrygga med hopptorn och handikappramp. EU-bad.
+- Fridhemsbadet vid Karlsudd på Bogesund, mindre strandbad med långgrund sandstrand.
 
 ### Roslagsbanan och Värmdö
-- [Österskärs havsbad (Solbrännan)](/upptack/solbrannan) – fem minuters promenad från Roslagsbanans Österskärs station. Lång sandstrand med badbrygga, och öster om badet en lekplats och en stor gräsplan.
-- [Grisslinge havsbad](/upptack/grisslinge-havsbad) – cirka 300 meter sandstrand med lekplats, toalett, omklädningsrum, utedusch och kiosk.
+- [Österskärs havsbad (Solbrännan)](/upptack/solbrannan), fem minuters promenad från Roslagsbanans Österskärs station. Lång sandstrand med badbrygga, och öster om badet en lekplats och en stor gräsplan.
+- [Grisslinge havsbad](/upptack/grisslinge-havsbad): cirka 300 meter sandstrand med lekplats, toalett, omklädningsrum, utedusch och kiosk.
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/bjorno.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "den fina sandstranden vid Torpesand med utblick mot Nämdöfjärden". KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-varmdo-kommun/torpesand.html (Havs- och vattenmyndigheten), läst 2026-09-30, "Sandstranden är ca 120 meter lång. Botten är sandbotten och är långgrund. Klippbadet har en handikappanpassad badbrygga." -->
-- [Torpesand](/upptack/torpesand), Björnö naturreservat – cirka 120 meter sandstrand med långgrund sandbotten.
+- [Torpesand](/upptack/torpesand), Björnö naturreservat, cirka 120 meter sandstrand med långgrund sandbotten.
 
 ### Södra skärgården
-- [Schweizerbadet](/upptack/schweizerbadet), Dalarö – Haninge kommun beskriver det som väldigt långgrunt. Närmaste busshållplats heter Schweizerparken.
-- [Nickstabadet](/upptack/nickstabadet), Nynäshamn – cirka 600 meter sandstrand med hopptorn och vattenrutschbanor.
+- [Schweizerbadet](/upptack/schweizerbadet), Dalarö, Haninge kommun beskriver det som väldigt långgrunt. Närmaste busshållplats heter Schweizerparken.
+- [Nickstabadet](/upptack/nickstabadet), Nynäshamn, cirka 600 meter sandstrand med hopptorn och vattenrutschbanor.
 
 ### Norra skärgården
-- Rådmansholmen på [Blidö](/o/blido) – sandstrand och långgrunt badvatten, lekutrustning, grillplats och dass. EU-bad.
+- Rådmansholmen på [Blidö](/o/blido): sandstrand och långgrunt badvatten, lekutrustning, grillplats och dass. EU-bad.
 
 ## Innan ni åker
 - **Badvattnet:** Havs- och vattenmyndighetens Badplatsen visar provsvar för de bad som kommunen provtar.
@@ -1663,7 +1663,7 @@ Närmast stan: cirka 30 minuter med Strömmas båt från Strandvägen. Här bada
  },
 
  'weekend-skargard-stockholm': {
-   title: 'Weekend i skärgården – sju öar med boende och båt dit',
+   title: 'Weekend i skärgården: sju öar med boende och båt dit',
    excerpt: 'Weekend i Stockholms skärgård: båt, boende och vad du gör på Grinda, Sandhamn, Möja, Utö, Gällnö, Ornö och Bullerö, med restider från Stockholm och reglerna för tält i reservaten.',
    category: 'Guide',
    date: '2026-07-28',
@@ -1683,21 +1683,21 @@ Sju öar i Stockholms skärgård där du kan övernatta, med båten dit, boendet
 Mer: [Grinda guide](/blogg/grinda-guide-2026).
 
 ## Sandhamn
-- **Båt:** året runt via Stavsnäs – buss 433 från Slussen, ungefär en timme, och sedan Waxholmsbolagets linje 16 på 40–60 minuter eller Sandhamnslinjen på 30 minuter. Cinderella från Strandvägen tar 2 timmar 30 minuter och gick säsongen 2026 30 april–27 september. [Båt till Sandhamn](/o/sandhamn/komma-dit).
+- **Båt:** året runt via Stavsnäs: buss 433 från Slussen, ungefär en timme, och sedan Waxholmsbolagets linje 16 på 40 till 60 minuter eller Sandhamnslinjen på 30 minuter. Cinderella från Strandvägen tar 2 timmar 30 minuter och gick säsongen 2026 30 april till 27 september. [Båt till Sandhamn](/o/sandhamn/komma-dit).
 - **Bo:** Sandhamn Seglarhotell, Sands Hotell och Sandhamns Värdshus boende i Missionshuset.
 - **Gör:** Trouville, en lång strand med vit sand cirka 20 minuters promenad från hamnen, och Sandhamnsstigen på cirka 8 kilometer runt Sandön. Med egen båt finns KSSS gästhamn med cirka 150 gästplatser.
 
 Mer: [Sandhamn guide](/blogg/sandhamn-guide-2026).
 
 ## Möja
-- **Båt:** buss 434 från Slussen till Sollenkroka och båt därifrån tar cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3–4 timmar. [Båt till Möja](/o/moja/komma-dit).
-- **Bo:** STF Möja vandrarhem i det gamla posthuset har öppet april–december. I Långvik ligger Karlbergs Pensionat.
+- **Båt:** buss 434 från Slussen till Sollenkroka och båt därifrån tar cirka 2,5 timmar. Båt hela vägen från Strömkajen tar cirka 3 till 4 timmar. [Båt till Möja](/o/moja/komma-dit).
+- **Bo:** STF Möja vandrarhem i det gamla posthuset har öppet april till december. I Långvik ligger Karlbergs Pensionat.
 - **Gör:** naturstigen mellan Hamn och Ramsmora, 12 kilometer, och Stockholm Archipelago Trail, 13,8 kilometer på grusväg. Möja Outdoor hyr ut kajak, roddbåt och SUP, och Hamncafét hyr ut cyklar.
 
 Mer: [Möja](/blogg/dolda-parlor-moja).
 
 ## Utö
-- **Båt:** pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan, 35–75 minuter. På flera turer ska resan beställas minst en timme före avgång. [Båt till Utö](/o/uto/komma-dit).
+- **Båt:** pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan, 35 till 75 minuter. På flera turer ska resan beställas minst en timme före avgång. [Båt till Utö](/o/uto/komma-dit).
 - **Bo:** Utö Värdshus har rum i Kvarnvillan (8 dubbelrum) och Stenhotellet (10 rum), hotellstugor och ett vandrarhem.
 <!-- KÄLLA: https://skargardsstiftelsen.se/omraden/uto/ (Skärgårdsstiftelsen), läst 2026-11-08 — "Utö är en riktig cykel-ö med möjlighet att hyra dagsvis"; "Ålö Storsand, som nås med båt eller via vandringsled" -->
 <!-- KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-uto-sv/ (Stockholm Archipelago Trail), läst 2026-11-08 — "Denna 18,4 km långa etapp" -->
@@ -1709,7 +1709,7 @@ Mer: [Möja](/blogg/dolda-parlor-moja).
 Mer: [Utö guide](/blogg/uto-guide).
 
 ## Gällnö
-- **Båt:** Waxholmsbolaget och Strömmas Cinderellabåtar från Strömkajen eller Strandvägen, 1,5–2 timmar. [Båt till Gällnö](/o/gallno/komma-dit).
+- **Båt:** Waxholmsbolaget och Strömmas Cinderellabåtar från Strömkajen eller Strandvägen, 1,5 till 2 timmar. [Båt till Gällnö](/o/gallno/komma-dit).
 - **Bo:** STF Gällnö vandrarhem har stugor nära badviken, gästhamnen och handelsboden. På ön finns också Hotell Frans August, och vid Torsviken har Skärgårdsstiftelsen tältplats och sandstrand. Gällnö är naturreservat: tältet får stå högst två dygn på samma plats, och hunden ska vara kopplad.
 - **Gör:** cykel och kajak hyrs på sommaren. Gällnö krog har sommaröppet.
 
@@ -1735,13 +1735,13 @@ Mer: [Vandring på Ornö och Utö](/blogg/vandring-orno-uto).
    faqs: [
      // KÄLLA: svenskaturistforeningen.se STF Grinda hotell & Sea Lodge, lansstyrelsen.se Grinda och Nämdöskärgårdens nationalpark, Waxholmsbolaget tabell 16, battaxi.se, Strömma Cinderella 2026 – se KÄLLA-kommentaren i content.
      { q: 'Var kan man övernatta på Grinda?', a: 'På STF Grinda Hotell, som har 28 dubbelrum, eller på Grinda Sea Lodge på öns södra sida. Tälta får du bara på tältplatsen nära norra bryggan.' },
-     { q: 'Hur lång tid tar båten till Sandhamn?', a: 'Från Stavsnäs tar Waxholmsbolagets linje 16 40–60 minuter och Sandhamnslinjen 30 minuter, året runt. Cinderella från Strandvägen tar 2 timmar 30 minuter och gick säsongen 2026 30 april–27 september.' },
+     { q: 'Hur lång tid tar båten till Sandhamn?', a: 'Från Stavsnäs tar Waxholmsbolagets linje 16 40 till 60 minuter och Sandhamnslinjen 30 minuter, året runt. Cinderella från Strandvägen tar 2 timmar 30 minuter och gick säsongen 2026 30 april till 27 september.' },
      { q: 'Får man tälta på Bullerö?', a: 'Ja. På tältplatsen på Bullerö får du tälta upp till sju dygn. I nästan hela nationalparken i övrigt får du tälta upp till två dygn på samma plats.' },
    ],
  },
 
  'sandhamn-guide-2026': {
-   title: 'Sandhamn guide – båt dit, Trouville, mat, boende och historia',
+   title: 'Sandhamn guide: båt dit, Trouville, mat, boende och historia',
    excerpt: 'Allt om Sandhamn i Stockholms skärgård: båt från Strömkajen, Strandvägen och Stavsnäs med restider, Trouville och Sandhamnsstigen, restauranger och boende, Grönskärs fyr och öns historia som lotsplats.',
    category: 'Öguide',
    date: '2026-07-28',
@@ -1754,16 +1754,16 @@ Mer: [Vandring på Ornö och Utö](/blogg/vandring-orno-uto).
 [Sandhamn](/o/sandhamn) på Sandön i Värmdö kommun är en gammal lots- och tullplats som blev seglarort, och i dag målgång för havskappseglingen Gotland Runt. Här är det du behöver för ett besök: båtarna dit, stranden, maten och boendet, med källor från operatörerna, kommunen och Stockholms läns museum.
 
 ## Båt till Sandhamn
-- **Året runt via Stavsnäs:** buss 433 eller 434 från Slussen till Stavsnäs vinterhamn och därifrån Waxholmsbolagets linje 16 på 40–60 minuter eller Stavsnäs Båttaxis Sandhamnslinje på 30 minuter.
-- **Cinderella från Strandvägen:** kajplats 14, cirka 2 timmar 30 minuter, under säsongen (2026: 30 april–27 september).
-- **Waxholmsbåten från Strömkajen:** bara sommartid (2026: 19 juni–16 augusti), 3 timmar 45 minuter till knappt 5 timmar beroende på avgång och byte i Finnhamn.
+- **Året runt via Stavsnäs:** buss 433 eller 434 från Slussen till Stavsnäs vinterhamn och därifrån Waxholmsbolagets linje 16 på 40 till 60 minuter eller Stavsnäs Båttaxis Sandhamnslinje på 30 minuter.
+- **Cinderella från Strandvägen:** kajplats 14, cirka 2 timmar 30 minuter, under säsongen (2026: 30 april till 27 september).
+- **Waxholmsbåten från Strömkajen:** bara sommartid (2026: 19 juni till 16 augusti), 3 timmar 45 minuter till knappt 5 timmar beroende på avgång och byte i Finnhamn.
 
 Alla avgångar och restider: [Båt till Sandhamn](/o/sandhamn/komma-dit).
 
 ## Bada och gå
 [Trouville](/upptack/stora-trouvillestranden) är en lång strand med vit sand på öns södra sida, omkring 20 minuters promenad från hamnen, med toaletter sommartid. Kommunen tar inga badvattenprover här.
 
-Sandhamnsstigen är cirka 8 kilometer och går runt hela Sandön, förbi Trouville och genom tallskogen. Det finns kortare slingor på 2,5, 3,5 och 5,5 kilometer, alla med start i byn. Sandön består till stor del av trädklädda sanddyner – i den här delen av landet finns motsvarigheten bara på Gotska Sandön och Fårö.
+Sandhamnsstigen är cirka 8 kilometer och går runt hela Sandön, förbi Trouville och genom tallskogen. Det finns kortare slingor på 2,5, 3,5 och 5,5 kilometer, alla med start i byn. Sandön består till stor del av trädklädda sanddyner, i den här delen av landet finns motsvarigheten bara på Gotska Sandön och Fårö.
 
 ## Äta
 Sandhamns Värdshus har pub som är öppen året runt, och Seglarhotellet, Dykarbaren och Sands Hotell har restauranger. Sandhamnsbageriet har säsongsöppet. Alla ställen, säsonger och bordsbokning: [Restauranger på Sandhamn](/blogg/basta-restaurangerna-sandhamn).
@@ -1786,14 +1786,14 @@ En lotsstation upprättades på Sandhamn i slutet av 1600-talet, och de bofasta 
    `,
    faqs: [
      // KÄLLA: Waxholmsbolagets tidtabell 15A (19 juni–16 augusti 2026), Strömma Cinderella 2026, battaxi.se/sandhamnslinjen-2, Waxholmsbolaget tabell 16 – se KÄLLA-kommentaren i content.
-     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Via Stavsnäs året runt: buss från Slussen till Stavsnäs vinterhamn och sedan Waxholmsbolagets linje 16 på 40–60 minuter eller Sandhamnslinjen på 30 minuter. Cinderella från Strandvägen tar cirka 2 timmar 30 minuter (säsong 2026: 30 april–27 september), och Waxholmsbåten från Strömkajen 3 timmar 45 minuter till knappt 5 timmar (sommartid, 2026: 19 juni–16 augusti).' },
+     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Via Stavsnäs året runt: buss från Slussen till Stavsnäs vinterhamn och sedan Waxholmsbolagets linje 16 på 40 till 60 minuter eller Sandhamnslinjen på 30 minuter. Cinderella från Strandvägen tar cirka 2 timmar 30 minuter (säsong 2026: 30 april till 27 september), och Waxholmsbåten från Strömkajen 3 timmar 45 minuter till knappt 5 timmar (sommartid, 2026: 19 juni till 16 augusti).' },
      { q: 'Finns det strand på Sandhamn?', a: 'Ja. Trouville på öns södra sida är en lång strand med vit sand, omkring 20 minuters promenad från hamnen enligt Värmdö kommun.' },
      { q: 'Kan man övernatta på Sandhamn?', a: 'Ja, på Sandhamn Seglarhotell, Sands Hotell eller i Sandhamns Värdshus boende i Missionshuset. Med egen båt finns KSSS gästhamn med cirka 150 gästplatser.' },
    ],
  },
 
  'boende-skargard-2026': {
-   title: 'Boende i skärgården – vandrarhem, hotell och tältplatser',
+   title: 'Boende i skärgården: vandrarhem, hotell och tältplatser',
    excerpt: 'Övernatta i Stockholms skärgård: STF-vandrarhem på Finnhamn, Möja, Gällnö och Svartsö, värdshus och hotell, Skärgårdsstiftelsens stugor, tältplatser och allemansrättens regler för tält.',
    category: 'Praktiskt',
    date: '2026-07-28',
@@ -1803,10 +1803,10 @@ En lotsstation upprättades på Sandhamn i slutet av 1600-talet, och de bofasta 
    tags: ['Boende i skärgården', 'Vandrarhem', 'STF', 'Tälta', 'Skärgårdsstiftelsen'],
    faqs: [
      // KÄLLA: naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/taltning/ ("Du får tälta något enstaka dygn i naturen"; "Stanna inte för länge, en eller två nätter är en bra tumregel."; "I allmänhet är det inte tillåtet att tälta annat än på särskilt angivna platser."); lansstyrelsen.se Grinda ("Tältning är endast tillåten på tältplatsen nära norra bryggan.")
-     { q: 'Får man tälta var som helst i skärgården?', a: 'Enligt allemansrätten får du tälta något enstaka dygn i naturen, en bra bit från bostadshus – en eller två nätter är enligt Naturvårdsverket en bra tumregel. I naturreservat får du i allmänhet bara tälta på anvisade platser. På Grinda är tältning till exempel bara tillåten på tältplatsen nära norra bryggan.' },
+     { q: 'Får man tälta var som helst i skärgården?', a: 'Enligt allemansrätten får du tälta något enstaka dygn i naturen, en bra bit från bostadshus, en eller två nätter är enligt Naturvårdsverket en bra tumregel. I naturreservat får du i allmänhet bara tälta på anvisade platser. På Grinda är tältning till exempel bara tillåten på tältplatsen nära norra bryggan.' },
      { q: 'Vilka STF-boenden finns i Stockholms skärgård?', a: 'STF listar bland annat Finnhamns Vandrarhem, Möja Vandrarhem, Gällnö Vandrarhem, Svartsö Skärgårdshotell & Vandrarhem, Stora Kalholmen Vandrarhem, Grinda Hotell & Sea Lodge, Siaröfortet, Kastellet Bed and Breakfast i Vaxholm, Bogesund Vandrarhem, Arholma Bull-August gård, Arholma Nord och Lidö Värdshus.' },
      // KÄLLA: skargardsstiftelsen.se/boka-boende/ ("Stugor och lägenheter på Utö är öppna under perioden 1 maj-2 november."; "Stugor och lägenheter på Gålö är öppna under perioden 1 maj-2 november."; Norrötorpet på Fjärdlång "8 maj-20 september"; Huvudskär "15 maj-20 september"; stugan Gröndal på Hammersta "22 januari-2 november")
-     { q: 'Kan man hyra stuga av Skärgårdsstiftelsen?', a: 'Ja. Skärgårdsstiftelsen hyr själv ut stugor och lägenheter på Utö och Gålö (1 maj–2 november), torpet Norrötorpet på Fjärdlång, stugan Gröndal på Hammersta och vandrarhemmet på Huvudskär. Övriga boenden på stiftelsens områden drivs av entreprenörer och bokas direkt hos dem.' },
+     { q: 'Kan man hyra stuga av Skärgårdsstiftelsen?', a: 'Ja. Skärgårdsstiftelsen hyr själv ut stugor och lägenheter på Utö och Gålö (1 maj till 2 november), torpet Norrötorpet på Fjärdlång, stugan Gröndal på Hammersta och vandrarhemmet på Huvudskär. Övriga boenden på stiftelsens områden drivs av entreprenörer och bokas direkt hos dem.' },
    ],
    content: `
 <!-- KÄLLA (lästa 2026-09-24): svenskaturistforeningen.se/boende/ – STF Finnhamns Vandrarhem ("har varit ett landmärke i Stockholms skärgård i över 100 år"; "Förr i tiden var huset en privat sommarbostad för familjen Rönnerström"), STF Möja Vandrarhem ("familjeägt vandrarhem i Stockholms yttre mellanskärgård"; "det gamla posthuset som byggts om till vandrarhem"; "Öppet April - December"), STF Gällnö Vandrarhem ("bara 90 minuters båtfärd från centrala Stockholm"; "mysiga stugor nära badviken, gästhamnen och handelsboden"), STF Svartsö Skärgårdshotell & Vandrarhem ("öppet året runt!"; "Bada i både hav och insjö"), STF Grinda Hotell & Sea Lodge ("Bo på det intilliggande hotellet eller på Grinda Sea Lodge på öns södra sida"; "Hotellet erbjuder 28 moderna dubbelrum och två King Size rum", island-data grinda), STF Stora Kalholmen Vandrarhem ("Hela ön är naturreservat och förutom djuren så finns inga bofasta på ön"), STF Siaröfortet Skärgårdskrog och Pensionat ("ligger på Kyrkogårdsön, mitt i farleden mellan Vaxholm och Furusund"), STF Kastellet Bed and Breakfast ("bo på Vaxholms Kastell"; "belägen på en ö ett stenkast från Vaxholm stad"), STF Bogesund Vandrarhem Vaxholm ("slottsvandrarhem"; "dubbel- eller flerbäddsrum i de gedigna husen runt Bogesunds Slott"), STF Arholma Bull-August gård ("en vacker roslagsgård mitt på ön Arholma"), STF Arholma Nord ("i en egen stilla vik"; "vedeldade bastun"), STF Lidö Värdshus; STF:s söklista (svenskaturistforeningen.se/hitta/?boenden) visar även STF Sjövillan Bed and Breakfast, STF Lillsved Vandrarhem, STF Värmdö Sofielund, STF Fredriksborg Hotell och STF Prinsvillan under "Stockholms skärgård". lidovardshus.com ("Säsongen 2026 Vi har nu öppet för grupper, konferenser, fester och bröllop."; "Boende & restaurang öppnar åter till midsommar 2027 den 25 juni"). utovardshus.se ("80 rum & hotellstugor (200 bäddar)"). sandhamn.com ("Sandhamn Seglarhotell har varit en del av livet på Sandhamn i över ett sekel"; "med restaurang, spa, gym och pool"; "Frukost ingår, och som hotellgäst har du fri tillgång till spa och gym"; "vila, fira, mötas och njuta av skärgården – året runt"). sandhamns-vardshus.se ("Boende och frukost i Missionshuset", datafix 2026-09-23-sandhamn-platser.sql). waxholmshotell.se ("Waxholms Hotell har varit hjärtat i skärgårdens huvudstad sedan 1902"; "finns ingen hiss till våning 3"). hotellfurusund.se ("På vårt fyrstjärniga hotell finns rum för alla sällskap. Många av våra rum har utsikt över vattnet"). nattaro.se/boende/vandrarhemmet/ (fyra hus, 32 bäddar; island-data nattaro). skargardsstiftelsen.se/var-verksamhet/tillganglig-skargard/hotell-stugor-och-vandrarhem/ ("Skärgårdsstiftelsens besöksanläggningar drivs till största del av olika entreprenörer och bokas direkt via respektive anläggning"; områden med boende: Örskär, Arholma, Lidö, Riddersholm, Finnhamn, Stora Kalholmen, Grinda, Gällnö, Rögrund, Gålö, Utö, Rånö, Fjärdlång, Huvudskär, Nåttarö; "Många av boendena nås smidigt med Waxholmsbolagets båtar"). skargardsstiftelsen.se/boka-boende/ (Utö och Gålö "1 maj-2 november", "enkel standard och utedass"; Huvudskär "15 maj-20 september", "totalt nio olika boenden och 47 bäddar. Här saknas el och värme, men vatten finns i gårdspump och utedass. Du tar med egen mat"; Fjärdlång Norrötorpet "8 maj-20 september", "33 kvm", "utan el, med vatten i gårdspump, utedass och bastu vid egen brygga"; Hammersta stugan Gröndal "22 januari-2 november"). skargardsstiftelsen.se/.../oppna-bodar-och-raststugor/ ("Hit är du välkommen att stanna högst två nätter"; "du kanske måste dela boden"; "Vid besök till Myggskärens öppna bodar måste du ta med egen ved till kaminen och det finns inte matlagningsmöjligheter"; öppna bodar i Möjaskärgården (Kulans uddar) och Fjärdlång (Myggskären)). skargardsstiftelsen.se/.../talt-och-lagerplatser/ (lägerplatser "avsedda för friluftsliv och lägerverksamhet så som scouter eller skolor"; "toaletter, sopkärl och ofta tillgång till färskvatten"; Björnö, Gålö, Nåttarö; "Alla lägerplatser ligger i naturreservat"). naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/taltning/ ("Du får tälta något enstaka dygn i naturen"; "Välj en tältplats en bra bit bort från bostadshus"; "en eller två nätter är en bra tumregel"; "Sätt upp tältet på tålig mark, undvik betesmark och jordbruk"; "Om ni är flera personer med flera tält krävs markägarens tillstånd"; "I allmänhet är det inte tillåtet att tälta annat än på särskilt angivna platser."). lansstyrelsen.se Grinda ("Tältning är endast tillåten på tältplatsen nära norra bryggan."), Utö (tältning endast på anvisade platser), Nåttarö (förbud att "tälta mer än två dygn i följd annat än på anvisad plats"). skargardsstiftelsen.se/omraden/gallno-karklo/ (Torsviken "sandstrand och tältplats"); gallno.se (gratis tältplats, se cykling-moja-gallno). haninge.se Nåttarö ("vandrarhem, stugor, restaurang, tältplats och en handelsbod"). Tidigare version (borttagen 2026-09-24) kallade Grinda Wärdshus "Sverigebäst", angav rum-, stug-, gästhamns- och vandrarhemspriser utan prislista, rekommenderade Blocket, Airbnb och Sverigestugor.se, påstod att Vaxholms kastell är "omgjort till vandrarhem" (det är ett STF-anslutet B&B), att STF driver vandrarhem på Utö (STF listar inget boende på Utö), att Utö har "en etablerad campingplats med faciliteter" och att Ornö har camping, och att man kan "paddla till en öde ö och sova ... gratis" – utan källa. -->
@@ -1815,7 +1815,7 @@ I Stockholms skärgård kan du bo på vandrarhem, hotell och värdshus, hyra en 
 ## STF:s vandrarhem och hotell
 Svenska Turistföreningen listar flera boenden i skärgården:
 - [Finnhamn](/o/finnhamn): **STF Finnhamns Vandrarhem.** Det gula huset har varit ett landmärke i skärgården i över 100 år och var tidigare sommarbostad för familjen Rönnerström.
-- [Möja](/o/moja): **STF Möja Vandrarhem.** Familjeägt vandrarhem i det gamla posthuset. Öppet april–december.
+- [Möja](/o/moja): **STF Möja Vandrarhem.** Familjeägt vandrarhem i det gamla posthuset. Öppet april till december.
 - [Gällnö](/o/gallno): **STF Gällnö Vandrarhem.** Stugor nära badviken, gästhamnen och handelsboden, 90 minuter med båt från centrala Stockholm.
 - [Svartsö](/o/svartso): **STF Svartsö Skärgårdshotell & Vandrarhem.** Öppet året runt, med bad i både hav och insjö.
 - [Grinda](/o/grinda): **STF Grinda Hotell & Sea Lodge.** Hotellet ligger intill [Grinda Wärdshus](/upptack/grinda-wardshus) och har 28 dubbelrum. [Grinda Sea Lodge](/upptack/grinda-grinda-sea-lodge) ligger på öns södra sida.
@@ -1823,7 +1823,7 @@ Svenska Turistföreningen listar flera boenden i skärgården:
 - **STF Siaröfortet Skärgårdskrog och Pensionat** på Kyrkogårdsön, i farleden mellan Vaxholm och Furusund.
 - [Vaxholm](/o/vaxholm): **STF Kastellet Bed and Breakfast** i Vaxholms kastell, och **STF Bogesund Vandrarhem** i husen runt Bogesunds slott.
 - [Arholma](/o/arholma): **STF Arholma Bull-August gård,** en roslagsgård mitt på ön, och **STF Arholma Nord** i en egen vik med vedeldad bastu.
-- [Lidö](/o/lido): **STF Lidö Värdshus.** Värdshuset har perioder då det bara tar emot grupper – se Lidö Värdshus egen sida för om boende och restaurang har öppet.
+- [Lidö](/o/lido): **STF Lidö Värdshus.** Värdshuset har perioder då det bara tar emot grupper, se Lidö Värdshus egen sida för om boende och restaurang har öppet.
 
 STF listar också Sjövillan, Lillsved, Värmdö Sofielund, Fredriksborg Hotell och Prinsvillan under Stockholms skärgård.
 
@@ -1837,19 +1837,19 @@ STF listar också Sjövillan, Lillsved, Värmdö Sofielund, Fredriksborg Hotell 
 
 ## Skärgårdsstiftelsens stugor
 De flesta boenden på Skärgårdsstiftelsens områden drivs av entreprenörer och bokas direkt hos dem. Några hyr stiftelsen ut själv:
-- **Utö och Gålö:** stugor och lägenheter med enkel standard och utedass, öppna 1 maj–2 november.
-- **Fjärdlång – Norrötorpet:** torp på 33 kvadratmeter utan el, med gårdspump, utedass och bastu vid egen brygga. Öppet 8 maj–20 september.
-- **Huvudskär:** vandrarhem i Lotshuset och Tullhuset, nio boenden med 47 bäddar. Här finns varken el eller värme, och du tar med egen mat. Öppet 15 maj–20 september.
+- **Utö och Gålö:** stugor och lägenheter med enkel standard och utedass, öppna 1 maj till 2 november.
+- **Fjärdlång: Norrötorpet:** torp på 33 kvadratmeter utan el, med gårdspump, utedass och bastu vid egen brygga. Öppet 8 maj till 20 september.
+- **Huvudskär:** vandrarhem i Lotshuset och Tullhuset, nio boenden med 47 bäddar. Här finns varken el eller värme, och du tar med egen mat. Öppet 15 maj till 20 september.
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/haringe-hammersta.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1990"; "Skyddsform: naturreservat"; "Förvaltare: Skärgårdsstiftelsen". KÄLLA: https://skargardsstiftelsen.se/boka-boende/ (Skärgårdsstiftelsen), läst 2026-09-30, "Stugan Gröndal är öppet under perioden 22 januari-2 november." -->
-- **Hammersta – stugan Gröndal** i Häringe–Hammersta naturreservat, öppen 22 januari–2 november.
+- **Hammersta: stugan Gröndal** i Häringe till Hammersta naturreservat, öppen 22 januari till 2 november.
 
 ### Öppna bodar
-I Möjaskärgården (Kulans uddar) och på Fjärdlång (Myggskären) har Skärgårdsstiftelsen öppna bodar där du får stanna högst två nätter – och kan få dela boden med andra. Till Myggskären tar du med egen ved till kaminen.
+I Möjaskärgården (Kulans uddar) och på Fjärdlång (Myggskären) har Skärgårdsstiftelsen öppna bodar där du får stanna högst två nätter, och kan få dela boden med andra. Till Myggskären tar du med egen ved till kaminen.
 
 ## Tälta
 
 ### Allemansrätten
-Enligt Naturvårdsverket får du tälta något enstaka dygn i naturen, på tålig mark och en bra bit från bostadshus – en eller två nätter är en bra tumregel. Är ni många med flera tält behövs markägarens tillstånd. I naturreservat och nationalparker får du i allmänhet bara tälta på anvisade platser.
+Enligt Naturvårdsverket får du tälta något enstaka dygn i naturen, på tålig mark och en bra bit från bostadshus, en eller två nätter är en bra tumregel. Är ni många med flera tält behövs markägarens tillstånd. I naturreservat och nationalparker får du i allmänhet bara tälta på anvisade platser.
 
 ### Tältplatser på öarna
 - **Grinda:** tältning bara på tältplatsen nära norra bryggan.
@@ -1864,7 +1864,7 @@ Gästhamnar med antal platser och bokning: [Gästhamnar i Stockholms skärgård]
  },
 
  'skargard-med-hund': {
-   title: 'Skärgård med hund – regler, båten och öar att besöka',
+   title: 'Skärgård med hund: regler, båten och öar att besöka',
    excerpt: 'Ta med hunden till Stockholms skärgård: när hunden ska vara kopplad enligt Naturvårdsverket, vad som gäller i naturreservat, hund på Waxholmsbåten, hundbad och öar att besöka.',
    category: 'Guide',
    date: '2026-07-28',
@@ -1874,28 +1874,28 @@ Gästhamnar med antal platser och bokning: [Gästhamnar i Stockholms skärgård]
    tags: ['Skärgård med hund', 'Hund', 'Kopplingstvång', 'Allemansrätten', 'Waxholmsbolaget'],
    content: `
 <!-- KÄLLA (lästa 2026-09-24): naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/hundar-i-naturen/ ("Mellan 1 mars och 20 augusti måste du ha extra uppsikt över din hund i naturen. Under den tiden får hunden inte springa lös. I praktiken innebär det nästan alltid att du behöver ha hunden kopplad."; "Ha alltid koppel på hunden när ni vistas i nationalparker eller naturreservat."; "Ha alltid hunden i koppel nära betande djur"). waxholmsbolaget.se/att-resa-med-oss/vad-du-far-ta-med ("Du får ta med hundar och mindre sällskapsdjur gratis. Ombord på båten finns det skyltar som visar var det finns platser för dig som reser med husdjur. Hundar ska hållas kopplade ombord"). lansstyrelsen.se Gällnö naturreservat (föreskrift: förbjudet att föra lös hund; läst 2026-09-14). Grinda, Finnhamn: naturreservat enligt Skärgårdsstiftelsen/Länsstyrelsen (se DB-texter och island-data). Linanäs gästhamn: "restaurang och café, där även hundar är välkomna" (datafix 2026-09-22). Schweizerbadet: "hundbad finns vid Vadviken" (haninge.se, datafix 2026-09-22). Tidigare version (borttagen 2026-09-24) påstod att hunden får springa fritt på Grinda utanför 1 mars–20 augusti (fel: Grinda är naturreservat där hunden alltid ska vara kopplad), att Ornö nås med vägfärja från Nynäshamn och att Grinda Wärdshus tillåter hundar i uteserveringen – utan källa. -->
-Hunden får följa med på skärgårdsbåten och ut på öarna. I naturreservat ska hunden alltid vara kopplad – och bland annat Grinda, Gällnö, Finnhamn och norra Utö är naturreservat. Här är vad som gäller enligt Naturvårdsverket och Waxholmsbolaget.
+Hunden får följa med på skärgårdsbåten och ut på öarna. I naturreservat ska hunden alltid vara kopplad, och bland annat Grinda, Gällnö, Finnhamn och norra Utö är naturreservat. Här är vad som gäller enligt Naturvårdsverket och Waxholmsbolaget.
 
 ## Reglerna
 
-### Koppel 1 mars–20 augusti – överallt i naturen
+### Koppel 1 mars till 20 augusti: överallt i naturen
 Mellan 1 mars och 20 augusti får hunden inte springa lös i naturen, eftersom vilda djur har ungar. Enligt Naturvårdsverket innebär det i praktiken nästan alltid att hunden ska vara kopplad.
 
-### I naturreservat – alltid koppel
+### I naturreservat: alltid koppel
 I nationalparker och naturreservat ska hunden ha koppel hela året, enligt Naturvårdsverket. Varje reservat har också egna föreskrifter som står på Länsstyrelsens sida för reservatet.
 
-### Nära betande djur – alltid koppel
+### Nära betande djur: alltid koppel
 Nära betande djur ska hunden alltid vara kopplad.
 
 ## Hunden på båten
 På Waxholmsbolagets båtar får du ta med hund gratis. Ombord visar skyltar var platserna för husdjur finns, och hunden ska vara kopplad under resan.
 
 ## Öar och platser
-- [Grinda](/o/grinda) – naturreservat. Här gäller koppel hela året.
-- [Gällnö](/o/gallno) – naturreservat där det enligt föreskrifterna är förbjudet att ha lös hund, med hagmarker och levande jordbruk.
-- [Finnhamn](/o/finnhamn) – naturreservat med gästhamn, vandrarhem och krog.
-- [Linanäs](/upptack/linanas-gasthamn), Ljusterö – restaurangen och caféet vid bryggan välkomnar hundar.
-- **Hundbad i Vadviken, Dalarö** – intill [Schweizerbadet](/upptack/schweizerbadet) finns ett hundbad.
+- [Grinda](/o/grinda), naturreservat. Här gäller koppel hela året.
+- [Gällnö](/o/gallno): naturreservat där det enligt föreskrifterna är förbjudet att ha lös hund, med hagmarker och levande jordbruk.
+- [Finnhamn](/o/finnhamn): naturreservat med gästhamn, vandrarhem och krog.
+- [Linanäs](/upptack/linanas-gasthamn), Ljusterö, restaurangen och caféet vid bryggan välkomnar hundar.
+- **Hundbad i Vadviken, Dalarö**, intill [Schweizerbadet](/upptack/schweizerbadet) finns ett hundbad.
 
 ## Praktiskt
 - Ta med dricksvatten och hundpåsar.
@@ -1909,7 +1909,7 @@ På Waxholmsbolagets båtar får du ta med hund gratis. Ombord visar skyltar var
  },
 
  'vandring-skargard-guide': {
-   title: 'Vandring i Stockholms skärgård – leder och etapper',
+   title: 'Vandring i Stockholms skärgård: leder och etapper',
    excerpt: 'Vandra i Stockholms skärgård: Stockholm Archipelago Trails etapper på Utö, Ålö, Ornö, Fjärdlång, Grinda, Möja och Sandhamn, kortare slingor, Bullerö och reglerna för hund, eld och tält.',
    category: 'Aktiviteter',
    date: '2026-07-28',
@@ -1926,12 +1926,12 @@ Leden är märkt med band och pilar: blått för havet, gult för solen och refl
 
 ## Södra skärgården
 
-### Utö – 18,4 km, utmanande
+### Utö: 18,4 km, utmanande
 Etappen på [Utö](/o/uto) börjar vid Gruvbryggan, där det finns affärer, värdshus och restauranger, eller vid Spränga brygga, där det inte finns någon service. Går du hela etappen rekommenderar leden motsols. Kortare turer som går med barnvagn eller rullstol: grusvägen norrut från Gruvbryggan till Kroka eller Barnens bad, eller österut förbi värdshuset och gruvhålen till Rävstavik.
 
-Båten går året om från Årsta brygga och tar 35–75 minuter till Gruvbryggan enligt Waxholmsbolagets höst- och vårtidtabell. På flera turer ska resan beställas minst en timme före avgång. Alla avgångar: [Båt till Utö](/o/uto/komma-dit).
+Båten går året om från Årsta brygga och tar 35 till 75 minuter till Gruvbryggan enligt Waxholmsbolagets höst- och vårtidtabell. På flera turer ska resan beställas minst en timme före avgång. Alla avgångar: [Båt till Utö](/o/uto/komma-dit).
 
-### Ålö – 13,2 km, utmanande
+### Ålö: 13,2 km, utmanande
 <!-- KÄLLA: https://stockholmarchipelagotrail.com/section/section-alo/ (Stockholm Archipelago Trail), läst 2026-11-08 — "Ålö is a scenic island south of Utö"; "this section should be hiked counterclockwise"; "you need to be able to walk in all terrains and be self-sufficient"; "You can travel to Ålö from Nynäshamn via Rånö and Nåttarö."; "At the dock where the Waxholmsbåten arrives, you will find Båtshaket"; "In the summer, you can eat and rent bikes at Båtshaket." -->
 <!-- KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "Easy"; "The distance is 4.6 km along the gravel road"; "A gravel road takes you through an active military firing range that connects the trail sections on Utö and Ålö." -->
 <!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf (Waxholmsbolaget, tabell 22), läst 2026-11-08 — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"; "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ" -->
@@ -1939,31 +1939,31 @@ Båten går året om från Årsta brygga och tar 35–75 minuter till Gruvbrygga
 <!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
 Ålö ligger söder om Utö. Etappen ska gås motsols, och leden skriver att du behöver kunna gå i alla miljöer och klara dig själv. Från Utö går en förbindelseled på 4,6 kilometer, klassad som lätt, längs en grusväg genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats, och på plats gäller informationstavlorna i första hand. Båt går från Nynäshamn via Nåttarö och Rånö till bryggan vid Båtshaket, där du sommartid kan äta och hyra cykel.
 
-### Ornö – 34,1 km, medel
+### Ornö: 34,1 km, medel
 Ornö är den längsta etappen på hela leden. Den är märkt som två dagsetapper som båda börjar vid Hässelmara, där bilfärjan från Dalarö lägger till, och slutar i hamnen vid Ornö kyrka. SL-bussen går på asfaltsvägen mellan Lättinge, Hässelmara och Skinnardal, och för en övernattning pekar leden på Ornö Skärgårdshotell i Brunnsviken eller Sundby B&B. Mer om ön: [Vandring på Ornö och Utö](/blogg/vandring-orno-uto).
 
 Kortare alternativ: från Sundby gård går en drygt sex kilometer lång, lättvandrad rundslinga på grusvägar och stigar. Den är till stora delar framkomlig med barnvagn eller rullstol, men inte hela vägen runt.
 
 Bilfärjan från Dalarö till Hässelmara tar ungefär 30 minuter. Alla alternativ: [Båt till Ornö](/o/orno/komma-dit).
 
-### Fjärdlång – 11,7 km, medel
+### Fjärdlång: 11,7 km, medel
 Etappen på [Fjärdlång](/o/fjardlang) börjar vid den allmänna bryggan där Waxholmsbåten lägger till, och leden rekommenderar att du går hela etappen motsols. Det finns ingen service på ön. Sommartid, slutet av juni till mitten av augusti, går Nordsydlinjen hit från Utö och Ornö. Under mellansäsongen går turer från Dalarö fredag till söndag.
 
 ## Mellersta skärgården
 
-### Grinda – 9,8 km, medel
+### Grinda: 9,8 km, medel
 På [Grinda](/o/grinda) rekommenderar leden medsols. Norr om Wärdshuset blir stigen smal och teknisk efter campingen. Kortare: Länsstyrelsens natur- och kulturstig är cirka 2,5 kilometer, går runt öns sydöstra del och börjar vid gården Hemviken. Klubbudden är öns högsta punkt, 35 meter.
 
 Waxholmsbolagets båt från Strömkajen tar 1 timme 45 minuter med linje 14 och 1 timme 50 minuter med linje 13. Mer om ön: [Grinda guide](/blogg/grinda-guide-2026).
 
-### Möja – 13,8 km, lätt
+### Möja: 13,8 km, lätt
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/moja-bjorndalen.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1992"; "Skyddsform: naturreservat"; "Möja-Björndalens naturreservat ligger på norra delen av Möja". KÄLLA: visitmoja.se/vandra (Möja turistförening, öns egen besöksguide), läst 2026-09-24 — naturstig "Mellan Hamn-Ramsmora är det (12km)". Längden står inte hos Länsstyrelsen men hos öns egen förening, vilket räcker för en stiglängd. -->
 Etappen på [Möja](/o/moja) går på grusväg runt den östra och södra kusten. Leden rekommenderar ordningen Långvik, Ramsmora, Löka, Berg och sist Hamn. Skärgårdsbåten lägger till i Berg, Löka, Ramsmora och Långvik, så du kan åka mellan byarna. Möja turistförening har också en uppmärkt naturstig på 12 kilometer mellan Hamn och Ramsmora genom Möja-Björndalens naturreservat.
 
-Buss 434 från Slussen till Sollenkroka och båt därifrån tar enligt Värmdö kommun cirka 2,5 timmar, och båt hela vägen från Strömkajen cirka 3–4 timmar. Mer om ön: [Möja](/blogg/dolda-parlor-moja).
+Buss 434 från Slussen till Sollenkroka och båt därifrån tar enligt Värmdö kommun cirka 2,5 timmar, och båt hela vägen från Strömkajen cirka 3 till 4 timmar. Mer om ön: [Möja](/blogg/dolda-parlor-moja).
 
-### Sandhamn – 8,1 km, lätt
-Etappen på [Sandhamn](/o/sandhamn) börjar vid den allmänna bryggan, och leden rekommenderar medsols. Här är leden sparsamt uppmärkt. Värmdö kommuns Sandhamnsstigen, cirka 8 kilometer, går också runt Sandön förbi Trouville. Året runt tar du dig dit via Stavsnäs: Waxholmsbolagets linje 16 på 40–60 minuter eller Sandhamnslinjen på 30 minuter. Mer om ön: [Sandhamn guide](/blogg/sandhamn-guide-2026).
+### Sandhamn: 8,1 km, lätt
+Etappen på [Sandhamn](/o/sandhamn) börjar vid den allmänna bryggan, och leden rekommenderar medsols. Här är leden sparsamt uppmärkt. Värmdö kommuns Sandhamnsstigen, cirka 8 kilometer, går också runt Sandön förbi Trouville. Året runt tar du dig dit via Stavsnäs: Waxholmsbolagets linje 16 på 40 till 60 minuter eller Sandhamnslinjen på 30 minuter. Mer om ön: [Sandhamn guide](/blogg/sandhamn-guide-2026).
 
 <!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
 ### Bullerö i Nämdöskärgårdens nationalpark
@@ -1971,7 +1971,7 @@ Etappen på [Sandhamn](/o/sandhamn) börjar vid den allmänna bryggan, och leden
 [Bullerö](/o/bullero) är entrén till Nämdöskärgårdens nationalpark. Här finns vandringsleder av olika svårighetsgrad, en badstrand och en tältplats, och delar av ön är tillgänglighetsanpassade. Under högsäsong går turbåt från Stavsnäs vinterhamn. Mat och dryck går inte att köpa i nationalparken, men vattenflaskan kan fyllas på Bullerö.
 
 ## Regler längs lederna
-- **Hund:** Stockholm Archipelago Trail anger att hundar ska vara kopplade mars–september. I naturreservaten på Utö och Grinda ska hunden vara kopplad, och i Nämdöskärgårdens nationalpark alltid. Mer: [Skärgård med hund](/blogg/skargard-med-hund).
+- **Hund:** Stockholm Archipelago Trail anger att hundar ska vara kopplade mars till september. I naturreservaten på Utö och Grinda ska hunden vara kopplad, och i Nämdöskärgårdens nationalpark alltid. Mer: [Skärgård med hund](/blogg/skargard-med-hund).
 - **Eld:** respektera eldningsförbud och elda aldrig på klippa. På Utö får du bara elda på iordningställda platser, och i nationalparken på anvisade platser eller i grill på ben.
 - **Tält:** på Grinda bara på tältplatsen nära norra bryggan, på Utö bara på anvisade platser. På Bullerös tältplats får du tälta upp till sju dygn.
 - **Skräp:** ta med det tillbaka till fastlandet.
@@ -1985,7 +1985,7 @@ Etappen på [Sandhamn](/o/sandhamn) börjar vid den allmänna bryggan, och leden
  },
 
  'naturhamnar-stockholm-skargard': {
-   title: 'Naturhamnar i Stockholms skärgård – regler och platser',
+   title: 'Naturhamnar i Stockholms skärgård: regler och platser',
    excerpt: 'Naturhamnar i Stockholms skärgård: vad allemansrätten säger om att ankra, tvådygnsregeln i naturreservaten, Kryssarklubbens bojar och uthamnar samt naturhamnar som Länsstyrelsen pekar ut.',
    category: 'Segling',
    date: '2026-07-28',
@@ -2005,7 +2005,7 @@ En naturhamn är en vik där du ankrar eller förtöjer utanför en gästhamn. E
 
 ## Vad allemansrätten säger
 - Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt och som inte är skyddad för fågelliv eller annat.
-- Det finns ingen regel för hur länge du får ligga för ankar på samma plats. Naturvårdsverket skriver att man brukar följa samma princip som för tältning – något enstaka dygn.
+- Det finns ingen regel för hur länge du får ligga för ankar på samma plats. Naturvårdsverket skriver att man brukar följa samma princip som för tältning, något enstaka dygn.
 - Vill du ligga längre vid någon annans strand behöver du fråga markägaren om lov.
 - Vid fågel- och sälskyddsområden får du inte gå i land under vissa delar av året. Förbuden märks ofta ut med gula eller röd/gula skyltar.
 - Sedan 1 april 2015 är det förbjudet att släppa ut toalettavfall från fritidsbåtar. Saknar båten toalett med avloppstank rekommenderar Naturvårdsverket en hink med tättslutande lock.
@@ -2023,28 +2023,28 @@ Många naturhamnar ligger i naturreservat. På Grinda, Granholmen, Gällnö, Fin
 ## Naturhamnar som nämns av Länsstyrelsen och Skärgårdsstiftelsen
 
 ### Mellersta skärgården
-- [Grinda](/o/grinda) – naturhamn i Hästholmssundet. Gästhamnen ligger i Hemviken.
+- [Grinda](/o/grinda), naturhamn i Hästholmssundet. Gästhamnen ligger i Hemviken.
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/granholmen.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1978, utvidgat 2018"; "Skyddsform: naturreservat"; "Reservatet ligger på nordvästra delen av Granholmen, 2,5 kilometer söder om Möja" -->
-- **Granholmen** – Munkhamnen i Granholmens naturreservat, 2,5 kilometer söder om [Möja](/o/moja).
-- [Gällnö](/o/gallno) – flera naturhamnar runt ön. Torsviken har naturhamn, sandstrand och tältplats. I Norrviken är motorbåt och vattenskoter förbjudna.
-- [Finnhamn](/o/finnhamn) – naturhamnar vid Djupfladen, Söder-Långholm och Korsholm.
-- [Runmarö](/o/runmaro) – SXK:s uthamn i Norrviken.
+- **Granholmen**: Munkhamnen i Granholmens naturreservat, 2,5 kilometer söder om [Möja](/o/moja).
+- [Gällnö](/o/gallno), flera naturhamnar runt ön. Torsviken har naturhamn, sandstrand och tältplats. I Norrviken är motorbåt och vattenskoter förbjudna.
+- [Finnhamn](/o/finnhamn): naturhamnar vid Djupfladen, Söder-Långholm och Korsholm.
+- [Runmarö](/o/runmaro), SXK:s uthamn i Norrviken.
 
 ### Runt Nämdö
-- **Jungfruskär** – naturreservat fyra kilometer söder om Nämdö, som SXK tar upp bland sina besöksmål. Fågelskyddsområdet får inte beträdas 1 februari–15 augusti.
+- **Jungfruskär**: naturreservat fyra kilometer söder om Nämdö, som SXK tar upp bland sina besöksmål. Fågelskyddsområdet får inte beträdas 1 februari till 15 augusti.
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/biskopso.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 1983"; "Skyddsform: naturreservat"; "Biskopsös naturreservat omfattar ett spännande ytterskärgårdsområde med de stora öarna Biskopsön och Kastön". KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/salskyddsomrade-12-158 (Länsstyrelsen Stockholms föreskrifter för Biskopsö, publicerade i Länsstyrelsens guide på Naturkartan), läst 2026-09-30, "under tiden 1 februari-15 augusti beträda eller befara såväl land som vatten inom det område (sälskyddsområde)". Avståndet till Nämdö gick inte att belägga och är struket. -->
-- **Koxviken på Biskopsön** – också ett av SXK:s besöksmål. I Biskopsö naturreservat är sälskyddsområdet kring Själberget stängt för både land och vatten 1 februari till 15 augusti.
+- **Koxviken på Biskopsön**, också ett av SXK:s besöksmål. I Biskopsö naturreservat är sälskyddsområdet kring Själberget stängt för både land och vatten 1 februari till 15 augusti.
 <!-- KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark (Naturvårdsverket, Sveriges Nationalparker), läst 2026-09-29 — "Sveriges första marina nationalpark i Östersjön"; "Bildades 2025"; "Huvudentrén finns på ön Bullerö"; "97 procent av nationalparkens yta är hav"; "Bastun är öppen för alla och går inte att boka". KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Bullerö är nationalparkens entré"; "en varm raststuga och vedeldad bastu som är öppna året om"; "Du får endast elda på anvisade platser eller i grill på ben. Du får också använda friluftskök"; "I nationalparken finns 1 353 öar, kobbar och skär"; "Ta med egen mat och dryck – inget sådant finns att köpa i nationalparken" -->
-- [Bullerö](/o/bullero) och Nämdöskärgårdens nationalpark – enligt Länsstyrelsen finns här gott om naturhamnar.
+- [Bullerö](/o/bullero) och Nämdöskärgårdens nationalpark, enligt Länsstyrelsen finns här gott om naturhamnar.
 
 ### Södra skärgården
-- [Nåttarö](/o/nattaro) – Östermarsfladen i norr, med Skärgårdsstiftelsens bojar.
-- [Fjärdlång](/o/fjardlang) – naturhamnar på flera platser på norra delen av ön. I reservatet får du inte köra fortare än 7 knop inom 100 meter från land.
-- [Huvudskär](/o/huvudskar) – reservatet ligger tio kilometer sydost om Ornö och har gott om naturhamnar. Fladen mellan Ålandsskär och Lökskär blir ibland full med båtar.
+- [Nåttarö](/o/nattaro): Östermarsfladen i norr, med Skärgårdsstiftelsens bojar.
+- [Fjärdlång](/o/fjardlang), naturhamnar på flera platser på norra delen av ön. I reservatet får du inte köra fortare än 7 knop inom 100 meter från land.
+- [Huvudskär](/o/huvudskar), reservatet ligger tio kilometer sydost om Ornö och har gott om naturhamnar. Fladen mellan Ålandsskär och Lökskär blir ibland full med båtar.
 
 ### Ytterskärgården
-- [Rödlöga](/o/rodloga) – enligt Rödlögaboden finns en skyddad naturhamn i alla vindar.
-- [Svenska Högarna](/o/svenska-hogarna) – mellan Skrubban och Ytterhamnen finns SXK:s angöringsbojar, där allmänheten kan förtöja mot betalning. Inom vissa markerade områden är ankring förbjuden.
+- [Rödlöga](/o/rodloga), enligt Rödlögaboden finns en skyddad naturhamn i alla vindar.
+- [Svenska Högarna](/o/svenska-hogarna): mellan Skrubban och Ytterhamnen finns SXK:s angöringsbojar, där allmänheten kan förtöja mot betalning. Inom vissa markerade områden är ankring förbjuden.
 
 ## Mer att läsa
 - [Sjömackar och ankring i skärgården](/blogg/bransle-ankring-skargard)
@@ -2054,7 +2054,7 @@ Många naturhamnar ligger i naturreservat. På Grinda, Granholmen, Gällnö, Fin
  },
 
  'grinda-guide-2026': {
-   title: 'Grinda guide – båt dit, Wärdshuset, gästhamn och bad',
+   title: 'Grinda guide: båt dit, Wärdshuset, gästhamn och bad',
    excerpt: 'Allt om Grinda i Stockholms skärgård: Waxholmsbåten från Strömkajen, Grinda Wärdshus och Framfickan, gästhamnen med 28 bokningsbara platser, bad vid Källviken, natur- och kulturstigen och reglerna i naturreservatet.',
    category: 'Öguide',
    date: '2026-07-28',
@@ -2100,7 +2100,7 @@ En jugendvilla i sten på ön ritades av Ernst Stenhammar och stod klar 1908 åt
  },
 
  'basta-utflykter-skargard-2026': {
-   title: 'Utflykter i Stockholms skärgård – elva öar och restider',
+   title: 'Utflykter i Stockholms skärgård: elva öar och restider',
    excerpt: 'Utflykter i Stockholms skärgård: restid och vad som finns på Fjäderholmarna, Vaxholm, Grinda, Gällnö, Möja, Sandhamn, Utö, Ålö, Ornö, Fjärdlång och Bullerö, plus vilka biljetter som gäller.',
    category: 'Inspiration',
    date: '2026-07-28',
@@ -2114,32 +2114,32 @@ Elva öar i Stockholms skärgård som du når utan egen båt, grupperade efter h
 
 ## Under en timme
 
-### Fjäderholmarna – cirka 30 minuter
+### Fjäderholmarna: cirka 30 minuter
 Strömmas båt från Strandvägen kajplats 13 eller Nacka Strand tar cirka 30 minuter. Den går under sommarhalvåret. Vår och höst lägger Waxholmsbolagets linje 2 till vid Fjäderholmarna på vissa turer, utan fast tid. På Stora Fjäderholmen finns Rökeriet, krog, bryggeri och hantverkare, som har säsongsöppet. [Fjäderholmarna dagstur](/blogg/fjaderholmarna-dagstur).
 
-### Vaxholm – ungefär en timme
+### Vaxholm: ungefär en timme
 Waxholmsbolagets båt från Strömkajen tar ungefär en timme, och buss 670 går från Tekniska högskolan. Vaxholms kastell ligger på ön Vaxholmen mitt i sundet, och museet där invigdes 1964. [Vaxholm dagstur](/blogg/vaxholm-guide).
 
 ## Två timmar eller mindre med båt från stan
 
-### Grinda – 1 timme 45–50 minuter
+### Grinda: 1 timme 45 till 50 minuter
 Waxholmsbolagets båt från Strömkajen, linje 13 eller 14. Grinda är naturreservat sedan 2000. Här finns Grinda Wärdshus, badplatsen Källviken och en natur- och kulturstig på cirka 2,5 kilometer. [Grinda guide](/blogg/grinda-guide-2026).
 
-### Gällnö – 1,5–2 timmar
+### Gällnö: 1,5 till 2 timmar
 Waxholmsbolaget och Strömmas Cinderellabåtar från Strömkajen eller Strandvägen. Gällnö är naturreservat sedan 1978. Vid Torsviken finns sandstrand, tältplats och en jättegryta från inlandsisen, och på sommaren hyrs cykel och kajak ut. [Gällnö på Svalla](/o/gallno).
 
 ## Buss och båt
 
-### Möja – cirka 2,5 timmar
-Buss 434 från Slussen till Sollenkroka och båt därifrån. Båt hela vägen från Strömkajen tar cirka 3–4 timmar. Möja kyrka uppfördes 1768, Roland Svensson-museet vid Ramsmora brygga öppnade 2014, och naturstigen mellan Hamn och Ramsmora är 12 kilometer. [Möja](/blogg/dolda-parlor-moja).
+### Möja: cirka 2,5 timmar
+Buss 434 från Slussen till Sollenkroka och båt därifrån. Båt hela vägen från Strömkajen tar cirka 3 till 4 timmar. Möja kyrka uppfördes 1768, Roland Svensson-museet vid Ramsmora brygga öppnade 2014, och naturstigen mellan Hamn och Ramsmora är 12 kilometer. [Möja](/blogg/dolda-parlor-moja).
 
-### Sandhamn – 30–60 minuter från Stavsnäs
-Buss från Slussen till Stavsnäs vinterhamn, sedan Waxholmsbolagets linje 16 (40–60 minuter) eller Sandhamnslinjen (30 minuter). Cinderella från Strandvägen tar 2 timmar 30 minuter (säsong 2026: 30 april–27 september), och Waxholmsbåten från Strömkajen minst 3 timmar 45 minuter (bara sommartid, 2026: 19 juni–16 augusti). På ön finns stranden Trouville, KSSS som grundades 1830 och, öster om ön, Grönskärs fyr från 1770. [Sandhamn guide](/blogg/sandhamn-guide-2026).
+### Sandhamn: 30 till 60 minuter från Stavsnäs
+Buss från Slussen till Stavsnäs vinterhamn, sedan Waxholmsbolagets linje 16 (40 till 60 minuter) eller Sandhamnslinjen (30 minuter). Cinderella från Strandvägen tar 2 timmar 30 minuter (säsong 2026: 30 april till 27 september), och Waxholmsbåten från Strömkajen minst 3 timmar 45 minuter (bara sommartid, 2026: 19 juni till 16 augusti). På ön finns stranden Trouville, KSSS som grundades 1830 och, öster om ön, Grönskärs fyr från 1770. [Sandhamn guide](/blogg/sandhamn-guide-2026).
 
-### Utö – båt från Årsta brygga
-Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan, 35–75 minuter enligt höst- och vårtidtabellen. I Gruvbyn står väderkvarnen från 1791, och gruvdriften upphörde 1879. Utö är en cykel-ö med cykeluthyrning dagsvis. [Utö guide](/blogg/uto-guide).
+### Utö: båt från Årsta brygga
+Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan, 35 till 75 minuter enligt höst- och vårtidtabellen. I Gruvbyn står väderkvarnen från 1791, och gruvdriften upphörde 1879. Utö är en cykel-ö med cykeluthyrning dagsvis. [Utö guide](/blogg/uto-guide).
 
-### Ålö – båt från Nynäshamn
+### Ålö: båt från Nynäshamn
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-09-29 — "Skyddat sedan: 2008"; "Skyddsform: naturreservat"; "Reservatet omfattar öarna Ålö och Rånö"; "Storsand på Ålö anses vara en av Stockholms skärgårds finaste sandstränder". Sträckan Gruvbryggan till Ålö gick inte att belägga (uppgifterna går isär mellan 12 och 14 km) och är struken. -->
 <!-- KÄLLA: https://stockholmarchipelagotrail.com/section/section-alo/ (Stockholm Archipelago Trail), läst 2026-11-08 — "You can travel to Ålö from Nynäshamn via Rånö and Nåttarö."; "By bike, you can cycle 12 km to Utö Gruvbryggan along the gravel road."; "In the summer, you can eat and rent bikes at Båtshaket." -->
 <!-- KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt."; "Naturreservatet omfattar öarna Ålö och Rånö med omgivande öar och marina miljöer."; "Skyddsform: naturreservat" -->
@@ -2148,7 +2148,7 @@ Pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt år
 <!-- KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand." -->
 Båt går från Nynäshamn via Nåttarö och Rånö till Ålö, som har broförbindelse med Utö. Från Gruvbryggan på Utö kan du cykla dit längs grusvägen, som går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand. Ålö ingår i naturreservatet Ålö-Rånö, och Ålö Storsand nås med båt eller via vandringsled. På sommaren kan du äta och hyra cykel vid Båtshaket.
 
-### Ornö – cirka 30 minuter från Dalarö
+### Ornö: cirka 30 minuter från Dalarö
 SL-buss till Dalarö och bilfärjan till Hässelmara. Ornö är södra skärgårdens största ö. I Kyrkviken finns museum, bibliotek och cykeluthyrning, och från Sundby gård går en drygt sex kilometer lång rundslinga. [Vandring på Ornö och Utö](/blogg/vandring-orno-uto).
 
 ## Sommar- och helgturer
@@ -2162,14 +2162,14 @@ Under högsäsong går turbåt från Stavsnäs vinterhamn till Bullerö, entrén
 
 ## Biljetter på Waxholmsbåten
 - SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd, på de linjer som går via Vaxholm.
-- 30 april–13 september behövs Waxholmsbolaget-biljett utanför det området, till exempel på sträckan Vaxholm–Grinda.
-- 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik.
-- Waxholmsbolaget-biljetter köps i SL-appen eller ombord. Strömma, Cinderella och Sandhamnslinjen har egna biljetter.
+- 30 april till 13 september behövs Waxholmsbolagets biljett utanför det området, till exempel på sträckan Vaxholm till Grinda.
+- 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik.
+- Waxholmsbolagets biljetter köps i SL-appen eller ombord. Strömma, Cinderella och Sandhamnslinjen har egna biljetter.
    `,
    faqs: [
      // KÄLLA: stromma.com Fjäderholmarna, Waxholmsbolaget tabell 2 och 21, Waxholmsbolaget och sl.se om SL-biljetter i skärgårdstrafiken, lansstyrelsen.se Utö – se KÄLLA-kommentaren i content.
      { q: 'Hur lång tid tar båten till Fjäderholmarna?', a: 'Strömmas båt från Strandvägen tar cirka 30 minuter under sommarhalvåret. Vår och höst lägger Waxholmsbolagets linje 2 till vid Fjäderholmarna på vissa turer.' },
-     { q: 'Gäller SL-kortet på Waxholmsbåtarna?', a: 'SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd. 14 september–29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik. Övrig tid behövs Waxholmsbolaget-biljett längre ut.' },
+     { q: 'Gäller SL-kortet på Waxholmsbåtarna?', a: 'SL-biljetter gäller mellan Strömkajen och Vaxholm med omnejd. 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela Waxholmsbolagets trafik. Övrig tid behövs Waxholmsbolagets biljett längre ut.' },
      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Kollektivtrafik: Pendeltåg till Västerhaninge. Buss till Årsta brygga. Waxholmsbåt året om till Gruvbryggan."; "Den största delen av södra Utö har varit militärt skjutfält sedan 1940-talet."; "Tillträdesförbud på Utö skjutfält vissa tider. Info på försvarsmaktens hemsida eller på 010 - 823 30 00"
      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h846.pdf (SL, linje 846), läst 2026-11-08 — "Västerhaninge station–Årsta (–Årsta slott)"; "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026"
      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf (Waxholmsbolaget, tabell 21), läst 2026-11-08 — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"; "21A ÅRSTA – UTÖ"; uppmätt i tabellen: Årsta brygga–Gruvbryggan 35–75 min
@@ -2177,7 +2177,7 @@ Under högsäsong går turbåt från Stavsnäs vinterhamn till Bullerö, entrén
      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/alo-rano.html (Länsstyrelsen Stockholm), läst 2026-11-08 — "Ålö har broförbindelse med Utö medan Rånö nås med reguljär Waxholmsbåt."
      // KÄLLA: https://stockholmarchipelagotrail.com/section/uto-alo-connector-2/ (Stockholm Archipelago Trail), läst 2026-11-08 — "The gravel road can take you all the way south to the ferry quay on Ålö and Båtshaket, or all the way north to Gruvbryggan on Utö and all the services available there."; "It passes through an active military firing range, which is located on both sides of the road."
      // KÄLLA: https://www.forsvarsmakten.se/regler-och-tillstand/skjutfalt-och-forbud/ (Försvarsmakten), läst 2026-11-08 — "Det är alltid informationstavlorna på plats som gäller i första hand."
-     { q: 'Hur tar man sig till Utö utan bil?', a: 'Med pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan, 35–75 minuter enligt höst- och vårtidtabellen. Från Nynäshamn går båt till grannön Ålö, som har bro till Utö. Vägen från Ålö till Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.' },
+     { q: 'Hur tar man sig till Utö utan bil?', a: 'Med pendeltåg till Västerhaninge, buss 846 till Årsta brygga och Waxholmsbåt året om till Gruvbryggan, 35 till 75 minuter enligt höst- och vårtidtabellen. Från Nynäshamn går båt till grannön Ålö, som har bro till Utö. Vägen från Ålö till Gruvbryggan går genom Utö skjutfält, där det vissa tider är tillträdesförbud; information om förbuden finns på Försvarsmaktens webbplats eller på telefon 010-823 30 00, och på plats gäller informationstavlorna i första hand.' },
    ],
  },
 
@@ -2350,7 +2350,7 @@ function renderContent(content: string) {
 // ─── Region crosslinks per post ───────────────────────────────────────────────
 
 const REGION_LINKS: Record<string, { href: string; label: string }[]> = {
- 'basta-restaurangerna-sandhamn': [{ href: '/o/sandhamn', label: 'Sandhamn – ön' }, { href: '/o/sandhamn/komma-dit', label: 'Båt till Sandhamn' }, { href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
+ 'basta-restaurangerna-sandhamn': [{ href: '/o/sandhamn', label: 'Sandhamn: ön' }, { href: '/o/sandhamn/komma-dit', label: 'Båt till Sandhamn' }, { href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
  'kajak-stockholms-skargard-nyborjare': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
  'dolda-parlor-moja': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
  'bransle-ankring-skargard': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/hamnar-och-bryggor', label: 'Hamnar & bryggor' }],
@@ -2358,7 +2358,7 @@ const REGION_LINKS: Record<string, { href: string; label: string }[]> = {
  'fjaderholmarna-dagstur': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
  'vaxholm-guide': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
  'uto-guide': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }],
- 'segling-nyborjare-guide': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/nyborjare-segling', label: 'Börja segla — nybörjarguide' }, { href: '/segelrutter', label: 'Segelrutter' }],
+ 'segling-nyborjare-guide': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/nyborjare-segling', label: 'Börja segla: nybörjarguide' }, { href: '/segelrutter', label: 'Segelrutter' }],
  'basta-badplatserna': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
  'vandring-orno-uto': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
  'cykling-moja-gallno': [{ href: '/stockholms-skargard', label: 'Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
@@ -2606,7 +2606,7 @@ export default async function BloggPostPage({
      Få nya guider som denna i inkorgen
    </h3>
    <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.7, margin: '0 0 22px', maxWidth: 480 }}>
-     Vi skriver om Stockholms skärgård — öppna öar, öppettider och insider-tips du inte hittar på TripAdvisor. Inga annonser. Inga länklistor. Bara skärgård.
+     Vi skriver om Stockholms skärgård: öppna öar, öppettider och insidertips du inte hittar på TripAdvisor. Inga annonser. Inga länklistor. Bara skärgård.
    </p>
    <EmailSignup
      source={`blogg-${slug}-bottom`}
@@ -2624,7 +2624,7 @@ export default async function BloggPostPage({
  <div style={{ marginTop: 32, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
    <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Dela:</span>
    <a
-     href={`https://wa.me/?text=${encodeURIComponent(`${post.title} – svalla.se/blogg/${slug}`)}`}
+     href={`https://wa.me/?text=${encodeURIComponent(`${post.title}, svalla.se/blogg/${slug}`)}`}
      target="_blank" rel="noopener noreferrer"
      style={{
        display: 'inline-flex', alignItems: 'center', gap: 6,

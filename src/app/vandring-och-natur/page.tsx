@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     'sörmlandsleden',
   ],
   openGraph: {
-    title: 'Vandring & natur i Stockholms skärgård — Svalla',
+    title: 'Vandring & natur i Stockholms skärgård | Svalla',
     description: 'Naturreservat och vandringsleder i skärgården.',
     url: 'https://svalla.se/vandring-och-natur',
   },
@@ -24,38 +24,38 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'walk',
     title: 'Roslagsleden',
-    description: '19 etapper mellan Danderyd och Grisslehamn — skärgårdsnära hela vägen. Tält, vandrarhem, buss hem.',
+    description: '19 etapper mellan Danderyd och Grisslehamn, skärgårdsnära hela vägen. Tält, vandrarhem, buss hem.',
     href: '/platser?kategori=roslagsleden',
   },
   {
     icon: 'walk',
     title: 'Sörmlandsleden (skärgårdsdelar)',
     // KÄLLA: Länsstyrelsen Stockholm — Tyresta nationalpark bildad 1993, "ett par mil söder om Stockholms centrum" (läst 2026-09-14). "40 minuter" är ingen myndighetssiffra, borttagen.
-    description: 'Tyresta nationalpark och kuststräckorna söderut — vildmark ett par mil från city.',
+    description: 'Tyresta nationalpark och kuststräckorna söderut, vildmark ett par mil från city.',
     href: '/platser?kategori=sormlandsleden',
   },
   {
     icon: '🏞️',
     title: 'Naturreservat',
-    description: 'Björnö, Finnhamn, Ängsö, Nåttarö, Huvudskär — öar där du får gå nästan var du vill.',
+    description: 'Björnö, Finnhamn, Ängsö, Nåttarö, Huvudskär, öar där du får gå nästan var du vill.',
     href: '/platser?kategori=naturreservat',
   },
   {
     icon: '🐦',
     title: 'Fågelskyddsområden',
-    description: 'Platser med landstigningsförbud 1 apr–15 jul — och hur du respekterar dem från vattnet.',
+    description: 'Platser med landstigningsförbud 1 apr till 15 jul, och hur du respekterar dem från vattnet.',
     href: '/platser?kategori=fagelskydd',
   },
   {
     icon: 'tent',
     title: 'Tältning & vindskydd',
-    description: 'Anvisade tältplatser och vindskydd på öarna — allemansrätt gäller men inte överallt.',
+    description: 'Anvisade tältplatser och vindskydd på öarna, allemansrätt gäller men inte överallt.',
     href: '/platser?kategori=taltning',
   },
   {
     icon: 'binoculars',
     title: 'Utsiktspunkter',
-    description: 'Höjder, fyrar och klippor med bäst sikt — perfekt för soluppgång, solnedgång och vinddygd.',
+    description: 'Höjder, fyrar och klippor med bäst sikt: perfekt för soluppgång, solnedgång och vinddygd.',
     href: '/platser?kategori=utsikt',
   },
 ]
@@ -66,7 +66,7 @@ export default function VandringOchNaturPage() {
       heroGradient={['#2d7d8a', '#1e5c82']}
       eyebrow="Vandring & natur"
       title="Ta skärgården till fots"
-      tagline="Naturreservat, vandringsleder och orörda öar — från lätta dagsturer till fleradagsvandringar med tält."
+      tagline="Naturreservat, vandringsleder och orörda öar, från lätta dagsturer till fleradagsvandringar med tält."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M4 20h16" />
@@ -77,10 +77,10 @@ export default function VandringOchNaturPage() {
       intro={
         <>
           <p>
-            Stockholms skärgård är inte bara vatten — många öar har riktig vildmarkskänsla med hällmarker, barrskog och klippor som stupar rakt ner i havet. <strong>Roslagsleden</strong> tar dig från Danderyds tunnelbana till Grisslehamn på 19 etapper, och <strong>Sörmlandsleden</strong> börjar mitt i Tyresta nationalpark — allt inom buss- eller båtavstånd från Slussen.
+            Stockholms skärgård är inte bara vatten: många öar har riktig vildmarkskänsla med hällmarker, barrskog och klippor som stupar rakt ner i havet. <strong>Roslagsleden</strong> tar dig från Danderyds tunnelbana till Grisslehamn på 19 etapper, och <strong>Sörmlandsleden</strong> börjar mitt i Tyresta nationalpark, allt inom buss- eller båtavstånd från Slussen.
           </p>
           <p>
-            Här listar vi leder, naturreservat och bra stopp-punkter — med tält- och vindskyddstips, vattenpåfyllning och väderindikatorer. Allemansrätten är grunden, men några platser har egna regler du ska känna till.
+            Här listar vi leder, naturreservat och bra stopp: med tält- och vindskyddstips, vattenpåfyllning och väderindikatorer. Allemansrätten är grunden, men några platser har egna regler du ska känna till.
           </p>
         </>
       }
@@ -92,13 +92,13 @@ export default function VandringOchNaturPage() {
             Fågelskyddet under våren
           </h2>
           <p>
-            Under häckningstid — <strong>perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti</strong> — är många öar, kobbar och vikar skyddade för häckande fåglar. Exakta datum står på skyltarna och i länsstyrelsens föreskrifter. Du får inte landstiga, ankra för nära eller paddla in i skyddszonen. Vi har ingen egen karta över fågelskyddsområden — länsstyrelsens kartor och skyltarna på plats gäller.
+            Under häckningstid: <strong>perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti</strong>: är många öar, kobbar och vikar skyddade för häckande fåglar. Exakta datum står på skyltarna och i länsstyrelsens föreskrifter. Du får inte landstiga, ankra för nära eller paddla in i skyddszonen. Vi har ingen egen karta över fågelskyddsområden, länsstyrelsens kartor och skyltarna på plats gäller.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Packa smart för skärgård
           </h2>
           <p>
-            Skärgårdsvädret ändras snabbt. Lager-på-lager, vindtätt ytterplagg, vattentät förvaring för elektronik och <strong>extra dag med mat</strong> om färjan skulle ställas in. Eldningsmöjligheter och drickbart vatten finns sällan där du tror — planera långt innan, och kolla aktuellt eldningsförbud hos länsstyrelsen.
+            Skärgårdsvädret ändras snabbt. Lager-på-lager, vindtätt ytterplagg, vattentät förvaring för elektronik och <strong>extra dag med mat</strong> om färjan skulle ställas in. Eldningsmöjligheter och drickbart vatten finns sällan där du tror. Planera långt innan, och kolla aktuellt eldningsförbud hos länsstyrelsen.
           </p>
         </>
       }

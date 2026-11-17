@@ -7,6 +7,7 @@ import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import ThorkelRouteCard from '@/components/thorkel/ThorkelRouteCard'
 import { THORKEL } from '@/lib/thorkel/persona'
 import { THORKEL_COPY } from '@/lib/thorkel/copy'
+import { track } from '@/lib/analytics-events'
 import type { PlanData, TransitData } from '@/app/api/guide/route'
 
 type Message = {
@@ -81,7 +82,7 @@ function getContextualSuggestions(): string[] {
     'Var äter man bäst i ytterskärgården just nu?',
     'Vilka öar ska man undvika i högsäsong?',
     'Bästa naturhamnar att ankra i utan folk?',
-    'Övernattning på en ö — vad rekommenderar du?',
+    'Övernattning på en ö, vad rekommenderar du?',
     'Bra seglingsrutt för en hel sommardag från Stockholm?',
     'Hur hyr man kajak nära Stockholm?',
     'Brygga med el och dusch nära Sandhamn?',
@@ -100,11 +101,11 @@ function getContextualSuggestions(): string[] {
     'Lugna höstöar utan turister?',
     'Bästa skärgårdstur i september eller oktober?',
     'Var är det fortfarande öppet efter midsommar?',
-    'Kräftskiva i skärgården — var och hur?',
-    'Höstvandring i skärgården — var börjar jag?',
+    'Kräftskiva i skärgården. Var och hur?',
+    'Höstvandring i skärgården. Var börjar jag?',
     'Övernattning när det är lugnt och lite billigare?',
-    'Fiskeäventyr på hösten — vad rekommenderar du?',
-    'Hummerpremären i Bohuslän — när och var?',
+    'Fiskeäventyr på hösten, vad rekommenderar du?',
+    'Hummerpremären i Bohuslän, när och var?',
   ]
   if (isWeekend) return [
     'Vintervandring eller skidtur i skärgården?',
@@ -112,7 +113,7 @@ function getContextualSuggestions(): string[] {
     'Öar att besöka när det är is och snö?',
     'Lugn helgtur för oss två i vinter?',
     'Öppen restaurang i ytterskärgården på vintern?',
-    'Bästa vinterfiske — var börjar jag?',
+    'Bästa vinterfiske. Var börjar jag?',
     'Kan man segla på vintern i skärgården?',
     'Bästa ön att besöka i januari eller februari?',
   ]
@@ -128,11 +129,11 @@ function getContextualSuggestions(): string[] {
   // ingen fråga alls.
   return [
     'Vad passar för en familj med barn under 10 år?',
-    'Romantisk helgtur för oss två — budget?',
+    'Romantisk helgtur för oss två, budget?',
     'Var kan man boka bord i skärgården nu?',
     'Bra seglingsrutt en hel dag från Stockholm?',
     'Var kan man äta bra utan att ha båt?',
-    'Nybörjare — vilken tur börjar jag med?',
+    'Nybörjare, vilken tur börjar jag med?',
     'Bästa stället att bada i ytterskärgården?',
     'Äventyrlig tur med flera stopp och matrestopp?',
     'Hur planerar man sin första skärgårdsresa?',
@@ -217,6 +218,7 @@ function GuideContent() {
     // Add user message + empty assistant slot immediately for streaming display
     setMessages([...apiMessages, { role: 'assistant', content: '' }])
     setLoading(true)
+    track('thorkel_fraga', { tecken: msg.length, sida: 'guide' })
 
     try {
       const res = await fetch('/api/guide', {
@@ -231,7 +233,7 @@ function GuideContent() {
         setIsLoggedIn(false)
         setMessages(prev => {
           const u = [...prev]
-          u[assistantIdx] = { role: 'assistant', content: 'Du behöver logga in för att prata med mig — jag sparar mina bästa tips till mina egna seglare.' }
+          u[assistantIdx] = { role: 'assistant', content: 'Du behöver logga in för att prata med mig. Jag sparar mina bästa tips till mina egna seglare.' }
           return u
         })
         return
@@ -239,7 +241,7 @@ function GuideContent() {
       if (res.status === 429) {
         setMessages(prev => {
           const u = [...prev]
-          u[assistantIdx] = { role: 'assistant', content: 'Tar en paus — vänta en minut så pratar vi vidare.' }
+          u[assistantIdx] = { role: 'assistant', content: 'Tar en paus, vänta en minut så pratar vi vidare.' }
           return u
         })
         return

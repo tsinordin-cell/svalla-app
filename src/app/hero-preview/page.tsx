@@ -10,7 +10,7 @@ const VARIANTS: { id: HeroVariant; name: string; desc: string; emoji: string }[]
  id: 1,
  name: 'Klar sommardag',
  emoji: '☀️',
- desc: 'Klarblå nordisk himmel, friskt solljus, snabba båtar. Nuvarande känslan — energisk och inbjudande.',
+ desc: 'Klarblå nordisk himmel, friskt solljus, snabba båtar. Nuvarande känslan, energisk och inbjudande.',
  },
  {
  id: 2,
@@ -22,7 +22,7 @@ const VARIANTS: { id: HeroVariant; name: string; desc: string; emoji: string }[]
  id: 3,
  name: 'Midnattssol',
  emoji: '🌒',
- desc: 'Djup indigo-lila himmel, låg blek sol precis vid horisonten. Mystisk skärgårdsnatt — unik och dramatisk.',
+ desc: 'Djup indigolila himmel, låg blek sol precis vid horisonten. Mystisk skärgårdsnatt, unik och dramatisk.',
  },
  {
  id: 4,
@@ -89,13 +89,13 @@ export default function HeroPreviewPage() {
  {/* Header */}
  <div style={{ maxWidth: 1200, margin: '0 auto 40px', textAlign: 'center' }}>
  <p style={{ color: 'rgba(120,200,255,0.7)', fontSize: 13, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>
- Hero Animation — Välj tema
+ Hero Animation: Välj tema
  </p>
  <h1 style={{ color: '#fff', fontSize: 'clamp(24px, 4vw, 38px)', fontWeight: 700, margin: '0 0 14px', lineHeight: 1.2 }}>
  5 förslag på skärgårdsanimation
  </h1>
  <p style={{ color: 'rgba(180,220,248,0.65)', fontSize: 15, maxWidth: 520, margin: '0 auto' }}>
- Samma tema — olika ljus och rörelse. Klicka på fullskärm för att se varianten som den faktiskt ser ut på startsidan.
+ Samma tema, olika ljus och rörelse. Klicka på fullskärm för att se varianten som den faktiskt ser ut på startsidan.
  </p>
  </div>
 

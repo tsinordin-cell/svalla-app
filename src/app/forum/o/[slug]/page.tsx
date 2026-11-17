@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // aldrig tillbaka utan att kontrollera hela filen — se CLAUDE.md punkt 1.
     alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: `Forum om ${island.name} – Svalla`,
+      title: `Forum om ${island.name} | Svalla`,
       description,
       url: canonicalUrl,
       type: 'website',
@@ -85,7 +85,7 @@ export default async function IslandForumPage({ params }: Props) {
           </Link>
         </div>
         <h1 style={{ fontSize: 22, fontWeight: 700, margin: '0 0 4px', letterSpacing: '-0.3px' }}>
-          Forum — {island.name}
+          Forum, {island.name}
         </h1>
         <p style={{ fontSize: 14, opacity: 0.85, margin: 0 }}>
           Diskussioner, tips och lokala tjänster
@@ -142,7 +142,7 @@ export default async function IslandForumPage({ params }: Props) {
             {/* Klickbara startfrågor */}
             <div style={{ marginBottom: 20 }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 10 }}>
-                Förslag — klicka för att starta:
+                Förslag: klicka för att starta:
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {[
@@ -150,7 +150,7 @@ export default async function IslandForumPage({ params }: Props) {
                   `Bästa restaurangen på ${island.name} sommaren 2026?`,
                   `Tips för förstagångsbesökare på ${island.name}?`,
                   `Hur tar man sig till ${island.name} snabbast från Stockholm?`,
-                  `Är ${island.name} barnvänlig — vad rekommenderar ni?`,
+                  `Är ${island.name} barnvänlig, vad rekommenderar ni?`,
                 ].map(prompt => (
                   <Link
                     key={prompt}

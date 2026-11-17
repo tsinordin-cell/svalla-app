@@ -59,7 +59,7 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
           <img src="${EMAIL_LOGO_URL}" width="140" height="32" alt="Svalla" class="logo"
             style="display:block;border:0;max-width:140px;height:auto;outline:none;margin-bottom:6px">
           <p style="margin:0;font-size:11px;color:rgba(255,255,255,0.55);letter-spacing:0.5px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
-            Svallanyheter — skärgårdsnyhetsbrevet
+            Svallanyheter: skärgårdsnyhetsbrevet
           </p>
         </td>
       </tr>

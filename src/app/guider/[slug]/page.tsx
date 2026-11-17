@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       keywords: meta.keywords,
       alternates: { canonical: `https://svalla.se/guider/${slug}` },
       openGraph: {
-        title: `${meta.title} – Svalla`,
+        title: `${meta.title} | Svalla`,
         description: meta.description,
         url: `https://svalla.se/guider/${slug}`,
         type: 'website',
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Platshållare utan innehåll indexeras inte (se GUIDER_UTAN_INNEHALL).
     ...(GUIDER_UTAN_INNEHALL.has(slug) ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
-      title: `${guide.title} – Svalla`,
+      title: `${guide.title} | Svalla`,
       description: guide.excerpt,
       url: `https://svalla.se/guider/${slug}`,
       type: 'article',
@@ -90,7 +90,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${guide.title} – Svalla`,
+      title: `${guide.title} | Svalla`,
       description: guide.excerpt,
       images: [`https://svalla.se/guider/${slug}/opengraph-image`],
     },
@@ -357,7 +357,7 @@ export default async function GuidePage({ params }: Props) {
             source={`guide-${slug}-bottom`}
             variant="inline"
             title="Få nya guider som denna i inkorgen"
-            description="Vi skriver om skärgårdsöar, öppettider och insider-tips du inte hittar på TripAdvisor. Gratis."
+            description="Vi skriver om skärgårdsöar, öppettider och insidertips du inte hittar på TripAdvisor. Gratis."
             buttonLabel="Skriv upp mig →"
           />
         </div>

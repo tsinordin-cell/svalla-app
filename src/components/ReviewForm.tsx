@@ -122,7 +122,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
  </h2>
  {avgRating && (
  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
- <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--sea)' }}>{avgRating}</span>
+ <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--sea)' }}>{String(avgRating).replace('.', ',')}</span>
  <div style={{ display: 'flex', gap: 2 }}>
  {[1,2,3,4,5].map(i => (
  <span key={i} style={{ fontSize: 14, color: (avgNum ?? 0) >= i ? '#e8a020' : '#dde8ec' }}> </span>

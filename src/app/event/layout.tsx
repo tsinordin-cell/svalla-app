@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: 'Kommande båt- och skärgårdsevents nära dig. Hitta och anmäl dig till träffar, segeltävlingar och gemensamma utflykter.',
   alternates: { canonical: 'https://svalla.se/event' },
   openGraph: {
-    title: 'Events i skärgården — Svalla',
+    title: 'Events i skärgården | Svalla',
     description: 'Kommande båt- och skärgårdsevents nära dig.',
     url: 'https://svalla.se/event',
     type: 'website',
