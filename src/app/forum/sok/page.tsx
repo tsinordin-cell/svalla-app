@@ -191,8 +191,20 @@ export default function ForumSokPage() {
 
  {/* Startläge */}
  {!loading && !searched && (
- <div style={{ textAlign: 'center', padding: '50px 20px', color: 'var(--txt3)', fontSize: 14 }}>
- Skriv minst 2 tecken för att söka
+ <div style={{
+ padding: '18px 16px',
+ background: 'var(--white)',
+ borderRadius: 18,
+ border: '1px solid rgba(10,123,140,0.08)',
+ }}>
+ <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+ <span aria-hidden style={{ color: 'var(--sea)', flexShrink: 0, marginTop: 2 }}>
+ <Icon name="lightbulb" size={22} />
+ </span>
+ <p style={{ margin: 0, fontSize: 14, lineHeight: 1.55, color: 'var(--txt2)' }}>
+ Sök bland forumets samtal om öar, färjor, hamnar, väder och båtliv. Skriv minst två tecken, till exempel ett önamn eller en fråga om en tur, så dyker matchande trådar upp. Om listan blir kort kan du prova ett kortare ord eller ett annat namn.
+ </p>
+ </div>
  </div>
  )}
  </div>
