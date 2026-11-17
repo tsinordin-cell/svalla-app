@@ -370,11 +370,15 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
           </div>
         )}
 
-        {/* Tre-punkts-meny — egna inlägg: redigera/radera/exportera.
-            Andras inlägg: rapportera. Ej inloggade: ingen knapp.
-            TripActions löser själva synlighetslogiken. */}
+        {/* Tre-punkts-meny. Dela och kopiera syns för alla.
+            Egna turer: redigera, exportera, ta bort. Andras: anmälan sist. */}
         <div onClick={e => e.stopPropagation()} style={{ flexShrink: 0 }}>
-          <TripActions tripId={trip.id} ownerId={trip.user_id} />
+          <TripActions
+            tripId={trip.id}
+            ownerId={trip.user_id}
+            username={trip.users?.username ?? null}
+            locationName={trip.location_name}
+          />
         </div>
 
       </div>
