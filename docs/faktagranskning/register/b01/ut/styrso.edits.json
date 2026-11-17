@@ -330,5 +330,18 @@
       "styrso-0435",
       "styrso-N032"
     ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: http://www.batebacken.se/ — \"Tätt inpå kajkanten, omgivet av det gamla fiskarsamhället hittar du vår lilla skärgårdskrog på Styrsö Tången\"; \"framförallt skaldjur\"; \"kanske vill du ha något hembakat till\"; \"Lokalen har plats för drygt 40 personer\"; \"uteservering med plats för ytterligare cirka 40 personer\" (läst 2026-10-31)\n      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Nere vid färjeläget Styrsö Tången hittar du Båtebackens Caférestaurang med enklare rätter och hembakta bullar\" (läst 2026-10-31)\n      { name: 'Båtebackens caférestaurang', type: 'Caférestaurang', desc: 'Liten skärgårdskrog vid kajkanten i Tången, med skaldjur, enklare rätter och hembakat. Drygt 40 platser inne och lika många ute.', websiteUrl: 'http://www.batebacken.se/' },\n      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Kusthotellet Styrsös restaurang Astri serverar frukost, lunch och middag\" (läst 2026-09-27)\n      { name: 'Astri, Kusthotellet Styrsö', type: 'Restaurang', desc: 'Hotellets restaurang, med frukost, lunch och middag.', websiteUrl: 'https://kusthotelletstyrso.se/' },",
+    "ny": "      // KÄLLA: https://batebacken.se/ — \"Tätt inpå kajkanten, omgivet av det gamla fiskarsamhället hittar du vår lilla skärgårdskrog på Styrsö Tången\", \"som drivs av Börjessons sjötaxi & charterbåtar\", \"framförallt skaldjur\", \"kanske vill du ha något hembakat till\", \"Lokalen har plats för drygt 40 personer\", \"uteservering med plats för ytterligare cirka 40 personer\", \"Snobbrännan\", \"går utanför vårt fönster och bortom farleden ser du bl.a. öarna Brännö och Känsö\" (läst 2026-11-17)\n      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Nere vid färjeläget Styrsö Tången hittar du Båtebackens Caférestaurang med enklare rätter och hembakta bullar\" (läst 2026-10-31)\n      { name: 'Båtebackens caférestaurang', type: 'Caférestaurang', desc: 'Liten skärgårdskrog vid kajkanten i Tången, med skaldjur, enklare rätter och hembakat, som drivs av Börjessons sjötaxi & charterbåtar. Drygt 40 platser inne och lika många ute. Farleden Snobbrännan går utanför fönstret, och bortom den syns Brännö och Känsö.', websiteUrl: 'http://www.batebacken.se/' },\n      // KÄLLA: https://www.goteborg.com/guider/guide-ata-och-fika-i-goteborgs-skargard — \"Kusthotellet Styrsös restaurang Astri serverar frukost, lunch och middag\" (läst 2026-09-27)\n      // KÄLLA: https://kusthotelletstyrso.se/restaurangen/ — \"Astri Bar & Matsal\", \"njut i restaurangen, vid baren eller, när vädret tillåter, ute på vår terrass\", \"Du behöver inte vara hotellgäst för att besöka oss.\", \"Alla är varmt välkomna att njuta av vår frukostbuffé\" (läst 2026-11-17)\n      { name: 'Astri, Kusthotellet Styrsö', type: 'Restaurang', desc: 'Hotellets restaurang och bar, med frukost, lunch och middag. Lunchen går att äta i restaurangen, i baren eller ute på terrassen när vädret tillåter, och frukostbuffén är öppen även för den som inte bor på hotellet.', websiteUrl: 'https://kusthotelletstyrso.se/' },",
+    "rader": [
+      "styrso-N035",
+      "styrso-N036",
+      "styrso-N037",
+      "styrso-N038",
+      "styrso-N039",
+      "styrso-N040"
+    ]
   }
 ]
