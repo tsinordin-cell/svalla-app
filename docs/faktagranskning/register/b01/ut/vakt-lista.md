@@ -146,3 +146,8 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Aspö: noten säger "Skärgårdsbåt", men Trafikverket beskriver Aspöleden som vägfärja.
 - /api/transit/stop-lookup kan fortfarande hämta resor till Bromskär (mätverktyg, ingen sida länkar dit).
 - Nämdö: "Handlarn i Solvik" och databasens "Nämdö Solviks butik och café" kan vara samma butik och räknas två gånger (sm08-k012).
+
+## Från mallarnas runda 10 (2026-11-17)
+- Båtrutan visas nu bara på öar som gåtts igenom mot lokala förbud. 16 nya öar på main (bland annat Stora Karlsö och Utklippan) har den inte, och ska gås igenom innan den slås på.
+- Tärnudden: förbudet står inte i NFS 2014:7. Skötselplanen hänvisar till 09FS 2006:4, som inte gick att hitta på webben.
+- Västerudde strand försvinner från Sandhamns med barn-FAQ först när sandhamn.sql körs. Kontrollera efter UPDATE.
