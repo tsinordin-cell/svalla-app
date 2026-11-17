@@ -80,7 +80,7 @@ export type Island = {
    * Kosterhavet en nationalpark — de ligger under /o/ för att sidmallen passar,
    * men ska inte kallas ö för besökaren (Toms delegation 2026-09-20).
    */
-  slag?: 'ö' | 'ort' | 'nationalpark'
+  slag?: 'ö' | 'ort' | 'nationalpark' | 'naturreservat'
   emoji: string
   tagline: string
   lat?: number   // approx center coordinate
@@ -4800,12 +4800,335 @@ export const ISLANDS: Island[] = [
     related: ['kopparholmarna', 'harstena'],
     tags: ['östergötland', 'norrköping', 'hamn', 'bad'],
   },
+  // ─── HARTSÖ ──────────────────────────────────────────────────
+  {
+    slug: 'hartso',
+    name: 'Hartsö',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    emoji: '🐦',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Hargberget som med sina 40 meter över havet är en av skärgårdens högsta punkter"; "På Hartsö-Enskär ligger en fågelstation som bland annat ringmärker och räknar fåglar som sträcker förbi." (läst 2026-11-17)
+    tagline: 'Naturreservat i Nyköpings skärgård med rundslinga, utsikt från Hargberget och en fågelstation på Enskär.',
+    seoTitle: 'Hartsö: naturreservat i Nyköpings skärgård',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Reservatet nås endast med båt. Sörmlandstrafiken har skärgårdstrafik till Hartsö." (läst 2026-11-17)
+    seoDescription: 'Hartsö nås bara med båt. Så tar du dig dit, var lederna går och vilka regler som gäller i reservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Harts%C3%B6 — Lantmäteriet Min Karta, sökning "Hartsö" → Hartsö | Nyköping | Trakt, SWEREF 99 TM 643882/6511396 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7187,
+    lng: 17.4845,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Skyddsår: 1982. Nytt beslut och skötselplan 2021"; "Areal: 5 535 hektar"; "På Hartsö finns två familjer som bor på ön året runt." (läst 2026-11-17)
+      'Hartsö naturreservat bildades 1982, fick nytt beslut och skötselplan 2021 och är 5 535 hektar. Två familjer bor på Hartsö året runt.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Rundslingan är cirka 3,3 kilometer. Till Hargberget tillkommer 1,2 kilometer enkel väg."; "Hargberget som med sina 40 meter över havet är en av skärgårdens högsta punkter" (läst 2026-11-17)
+      'Rundslingan är cirka 3,3 kilometer. Till Hargberget, som med 40 meter över havet är en av skärgårdens högsta punkter, är det ytterligare 1,2 kilometer enkel väg.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Reservatet nås endast med båt. Sörmlandstrafiken har skärgårdstrafik till Hartsö." (läst 2026-11-17)
+      travel_time: 'Bara med båt, Sörmlandstrafiken har skärgårdstrafik hit',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Areal: 5 535 hektar" (läst 2026-11-17)
+      character: 'Naturreservat med leder och fågelskyddsområden',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "En del områden får man inte besöka 1 april till 31 juli, för andra delar gäller 1 februari till 15 augusti." (läst 2026-11-17)
+      season: 'Fågelskydd i delar av reservatet 1 februari till 15 augusti',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Rundslingan är cirka 3,3 kilometer."; "fågelstation" (läst 2026-11-17)
+      best_for: 'Vandring och fåglar',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Rundslingan är cirka 3,3 kilometer. Till Hargberget tillkommer 1,2 kilometer enkel väg." (läst 2026-11-17)
+      { icon: '🚶', name: 'Rundslingan och Hargberget', desc: 'Rundslingan är cirka 3,3 kilometer. Till Hargberget är det ytterligare 1,2 kilometer enkel väg.' },
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "På Hartsö-Enskär ligger en fågelstation som bland annat ringmärker och räknar fåglar som sträcker förbi." (läst 2026-11-17)
+      { icon: '🐦', name: 'Fågelstationen på Enskär', desc: 'På Hartsö-Enskär finns en fågelstation som bland annat ringmärker och räknar fåglar.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Reservatet nås endast med båt. Sörmlandstrafiken har skärgårdstrafik till Hartsö." (läst 2026-11-17)
+      { method: 'Båt', from: 'Nyköpings skärgård', desc: 'Reservatet nås bara med båt. Sörmlandstrafiken har skärgårdstrafik till Hartsö.', icon: '⛴', url: 'https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "En del områden får man inte besöka 1 april till 31 juli, för andra delar gäller 1 februari till 15 augusti." (läst 2026-11-17)
+      'Vissa områden får du inte besöka 1 april till 31 juli, andra 1 februari till 15 augusti.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "förtöja eller ankra upp båt mer än två dygn i följd vid samma plats, med följande undantag: Detta gäller inte dem som hyr övernattningsstugor inom reservatet och har sina båtar förankrade vid särskilt iordningsställd båtplats." (läst 2026-11-17)
+      'Båten får inte ligga förtöjd eller ankrad mer än två dygn i följd på samma plats. Undantaget gäller den som hyr stuga i reservatet och har båten vid en särskild båtplats.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "medföra hund eller annat husdjur som inte är kopplat eller förvarat i bur"; "framföra maskindrivet fartyg eller ankra inom ett vattenområde sydöst om Hartsö, enligt karta bilaga 4 i beslutet" (läst 2026-11-17)
+      'Hunden ska vara kopplad eller i bur. I ett vattenområde sydost om Hartsö, utmärkt på kartan i reservatsbeslutet, får du inte köra motordriven båt eller ankra.',
+    ],
+    related: ['ringso', 'savo', 'stendorren'],
+    tags: ['sörmland', 'nyköping', 'naturreservat', 'fåglar', 'vandring'],
+  },
+  // ─── RINGSÖ ──────────────────────────────────────────────────
+  {
+    slug: 'ringso',
+    name: 'Ringsö',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    emoji: '🏖',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Ringsö är den största ön i Nyköpings skärgård."; "På södra Ringsö finns sandstränder och möjlighet att bada från klippor." (läst 2026-11-17)
+    tagline: 'Den största ön i Nyköpings skärgård, med sandstränder i söder och restaurerade fiskebodar vid djupsundet.',
+    seoTitle: 'Ringsö: största ön i Nyköpings skärgård',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Ringsö är den största ön i Nyköpings skärgård." (läst 2026-11-17)
+    seoDescription: 'Ringsö är den största ön i Nyköpings skärgård. Så tar du dig dit, var du badar och vad som gäller i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Rings%C3%B6 — Lantmäteriet Min Karta, sökning "Ringsö" → Ringsö | Nyköping | Trakt, SWEREF 99 TM 641390/6512305 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7277,
+    lng: 17.4421,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Ringsö är den största ön i Nyköpings skärgård."; "Reservatet ligger 25 kilometer öster om Nyköping, i skärgården ett par kilometer utanför Studsvik." (läst 2026-11-17)
+      'Ringsö är den största ön i Nyköpings skärgård. Reservatet ligger 25 kilometer öster om Nyköping, ett par kilometer utanför Studsvik.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "På södra Ringsö finns sandstränder och möjlighet att bada från klippor."; "Vid djupsundet ligger Österbodarna, gamla fiskebodar, som har restaurerats"; "Skyddsår: 1980 / Areal: 2044,5 hektar" (läst 2026-11-17)
+      'På södra Ringsö finns sandstränder, och du kan bada från klippor. Vid djupsundet ligger Österbodarna, gamla fiskebodar som har restaurerats. Reservatet bildades 1980 och är 2 044,5 hektar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Till reservatet tar du dig med egen båt. Sörmlandstrafiken har också skärgårdstrafik till Ringsö." (läst 2026-11-17)
+      travel_time: 'Egen båt, och Sörmlandstrafiken har skärgårdstrafik hit',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Ringsö är den största ön i Nyköpings skärgård." (läst 2026-11-17)
+      character: 'Största ön i Nyköpings skärgård, naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "fågelskyddsområde med beträdningsförbud 1 februari till 15 augusti." (läst 2026-11-17)
+      season: 'Fågelskydd i delar av reservatet 1 februari till 15 augusti',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "På södra Ringsö finns sandstränder och möjlighet att bada från klippor." (läst 2026-11-17)
+      best_for: 'Bad och kulturmiljö',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "På södra Ringsö finns sandstränder och möjlighet att bada från klippor." (läst 2026-11-17)
+      { icon: '🏖', name: 'Bad', desc: 'På södra Ringsö finns sandstränder, och du kan bada från klippor.' },
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Vid djupsundet ligger Österbodarna, gamla fiskebodar, som har restaurerats" (läst 2026-11-17)
+      { icon: '🏛', name: 'Österbodarna', desc: 'Gamla fiskebodar vid djupsundet som har restaurerats.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Till reservatet tar du dig med egen båt. Sörmlandstrafiken har också skärgårdstrafik till Ringsö." (läst 2026-11-17)
+      { method: 'Båt', from: 'Nyköpings skärgård', desc: 'Du tar dig dit med egen båt, och Sörmlandstrafiken har skärgårdstrafik till Ringsö.', icon: '⛴', url: 'https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Delar av Ringsö naturreservat är fågelskyddsområde med beträdningsförbud 1 februari till 15 augusti."; "tälta längre tid än två dygn på samma plats" (läst 2026-11-17)
+      'Delar av reservatet är fågelskyddsområde med beträdnadsförbud 1 februari till 15 augusti. Du får inte tälta längre än två dygn på samma plats.',
+    ],
+    related: ['hartso', 'savo', 'stendorren'],
+    tags: ['sörmland', 'nyköping', 'naturreservat', 'bad'],
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "På södra Ringsö finns sandstränder och möjlighet att bada från klippor." (läst 2026-11-17)
+          { name: 'Södra Ringsö', desc: 'Sandstränder, och möjlighet att bada från klippor.', type: 'sandstrand' },
+        ],
+      },
+    },
+  },
+  // ─── SÄVÖ ────────────────────────────────────────────────────
+  {
+    slug: 'savo',
+    name: 'Sävö',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    emoji: '🚶',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sörmlandsleden med orange markering och Sävöleden med blå markering"; "De före detta lotsbostäderna används idag som vandrarhem" (läst 2026-11-17)
+    tagline: 'Naturreservat i Nyköpings skärgård med två leder, ett litet museum och vandrarhem i de gamla lotsbostäderna.',
+    seoTitle: 'Sävö: leder, lotsbostäder och naturreservat',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sävö nås endast med båt." (läst 2026-11-17)
+    seoDescription: 'Sävö nås bara med båt. Så tar du dig dit, var lederna går och vad som gäller i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=S%C3%A4v%C3%B6 — Lantmäteriet Min Karta, sökning "Sävö" → Sävö | Nyköping | Trakt, SWEREF 99 TM 643223/6516933 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7686,
+    lng: 17.4767,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sävö nås endast med båt. … Sörmlandstrafiken har skärgårdstrafik till Sävö."; "Skyddsår: 1987 / Areal: 303,1 hektar" (läst 2026-11-17)
+      'Sävö nås bara med båt, och Sörmlandstrafiken har skärgårdstrafik till ön. Reservatet bildades 1987 och är 303,1 hektar.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "På öns sydöstra spets ligger ett litet museum … De före detta lotsbostäderna används idag som vandrarhem" (läst 2026-11-17)
+      'På öns sydöstra spets finns ett litet museum, och de före detta lotsbostäderna används i dag som vandrarhem.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sävö nås endast med båt. … Sörmlandstrafiken har skärgårdstrafik till Sävö." (läst 2026-11-17)
+      travel_time: 'Bara med båt, Sörmlandstrafiken har skärgårdstrafik hit',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Skyddsår: 1987" (läst 2026-11-17)
+      character: 'Naturreservat med betesmark och lotsmiljö',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Eftersom får och kor går fria på ön" (läst 2026-11-17)
+      season: 'Får och kor går fria på ön',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "De är båda cirka 3 km långa." (läst 2026-11-17)
+      best_for: 'Vandring och övernattning',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sörmlandsleden med orange markering och Sävöleden med blå markering, som delvis överlappar. De är båda cirka 3 km långa." (läst 2026-11-17)
+      { icon: '🚶', name: 'Två leder', desc: 'Sörmlandsleden med orange markering och Sävöleden med blå markering. Båda är cirka 3 kilometer.' },
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "På öns sydöstra spets ligger ett litet museum" (läst 2026-11-17)
+      { icon: '🏛', name: 'Museum', desc: 'Ett litet museum på öns sydöstra spets.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "De före detta lotsbostäderna används idag som vandrarhem"; "Eftersom får och kor går fria på ön är det bäst att använda tältplatserna som ligger innanför staket." (läst 2026-11-17)
+      { name: 'Vandrarhem och tältplatser', type: 'Vandrarhem och tält', desc: 'De före detta lotsbostäderna används i dag som vandrarhem. Får och kor går fria på ön, så tälta helst på tältplatserna innanför staket.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sävö nås endast med båt. … Sörmlandstrafiken har skärgårdstrafik till Sävö." (läst 2026-11-17)
+      { method: 'Båt', from: 'Nyköpings skärgård', desc: 'Sävö nås bara med båt. Sörmlandstrafiken har skärgårdstrafik till ön.', icon: '⛴', url: 'https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "medföra hund … som inte är kopplat eller förvarat i bur"; "göra upp öppen eld på annan än särskilt iordningställd plats som är markerad med skylt" (läst 2026-11-17)
+      'Hunden ska vara kopplad eller i bur, och eld får bara göras på särskilt iordningställd plats som är markerad med skylt.',
+    ],
+    related: ['hartso', 'ringso', 'stendorren'],
+    tags: ['sörmland', 'nyköping', 'naturreservat', 'vandring', 'vandrarhem'],
+  },
+  // ─── STENDÖRREN ──────────────────────────────────────────────
+  {
+    slug: 'stendorren',
+    name: 'Stendörren',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    slag: 'naturreservat',
+    emoji: '🌲',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det är lätt att nå från fastlandet och du kommer ut på de närmaste skärgårdsöarna via flera hängbroar."; "Det finns 20 grillplatser i reservatet." (läst 2026-11-17)
+    tagline: 'Naturreservat vid Nyköpings kust där hängbroar tar dig ut på de närmaste öarna. 20 grillplatser och två parkeringar.',
+    seoTitle: 'Stendörren: hängbroar ut i skärgården',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Skyltat från E4 och väg 219 mellan Nyköping och Trosa." (läst 2026-11-17)
+    seoDescription: 'Stendörren är lätt att nå från fastlandet, och hängbroar tar dig ut på öarna. Så hittar du dit och vad som gäller i reservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stend%C3%B6rren — Lantmäteriet Min Karta, sökning "Stendörren" → Stendörren | Nyköping | Bebyggelse, SWEREF 99 TM 638935/6513976 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7435,
+    lng: 17.4008,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det är lätt att nå från fastlandet och du kommer ut på de närmaste skärgårdsöarna via flera hängbroar."; "Skyddsår: 1972 / Areal: 923 hektar" (läst 2026-11-17)
+      'Stendörrens naturreservat är lätt att nå från fastlandet, och du kommer ut på de närmaste öarna via flera hängbroar. Reservatet bildades 1972 och är 923 hektar.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Skyltat från E4 och väg 219 mellan Nyköping och Trosa. Det finns två parkeringar i reservatet"; "Det finns 20 grillplatser i reservatet." (läst 2026-11-17)
+      'Vägen är skyltad från E4 och väg 219 mellan Nyköping och Trosa, och det finns två parkeringar och 20 grillplatser i reservatet.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Skyltat från E4 och väg 219 mellan Nyköping och Trosa." (läst 2026-11-17)
+      travel_time: 'Bil, skyltat från E4 och väg 219',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "via flera hängbroar" (läst 2026-11-17)
+      character: 'Naturreservat på fastlandet och närmaste öarna',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det är lätt att nå från fastlandet" (läst 2026-11-17)
+      season: 'Nås från fastlandet',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det finns 20 grillplatser i reservatet." (läst 2026-11-17)
+      best_for: 'Dagsutflykt, grill och promenad över hängbroarna',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "du kommer ut på de närmaste skärgårdsöarna via flera hängbroar." (läst 2026-11-17)
+      { icon: '🚶', name: 'Hängbroarna', desc: 'Flera hängbroar tar dig från fastlandet ut på de närmaste öarna.' },
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det finns 20 grillplatser i reservatet." (läst 2026-11-17)
+      { icon: '🔥', name: 'Grillplatser', desc: 'Det finns 20 grillplatser i reservatet.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Skyltat från E4 och väg 219 mellan Nyköping och Trosa. Det finns två parkeringar i reservatet" (läst 2026-11-17)
+      { method: 'Bil', from: 'E4 eller väg 219', desc: 'Vägen är skyltad från E4 och väg 219 mellan Nyköping och Trosa. Det finns två parkeringar i reservatet.', icon: '🚗', url: 'https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Övernattning är förbjudet i området innanför den röda linjen på kartan, förutom i båt."; "Nej, du får inte använda drönare i naturreservatet … Om du vill använda drönare behöver du söka dispens" (läst 2026-11-17)
+      'Övernattning är förbjuden innanför den röda linjen på reservatskartan, utom i båt. Du får inte flyga drönare i reservatet utan dispens.',
+    ],
+    related: ['ringso', 'hartso', 'savo'],
+    tags: ['sörmland', 'nyköping', 'naturreservat', 'dagsutflykt'],
+  },
+  // ─── KRÅMÖ ───────────────────────────────────────────────────
+  {
+    slug: 'kramo',
+    name: 'Kråmö',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    emoji: '🪨',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "På ön Grytan finns flera jättegrytor från senaste istiden."; "Förvaltare: Trosa kommun" (läst 2026-11-17)
+    tagline: 'Naturreservat i Trosa skärgård med jättegrytor på ön Grytan. Fiske bara med handredskap.',
+    seoTitle: 'Kråmö: naturreservat i Trosa skärgård',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Hit kommer du med egen båt eller via båttaxi." (läst 2026-11-17)
+    seoDescription: 'Kråmö nås med egen båt eller båttaxi, och sommartid med båt från Trosa. Här är reglerna i reservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kr%C3%A5m%C3%B6 — Lantmäteriet Min Karta, sökning "Kråmö" → Kråmö | Trosa | Natur- och terrängnamn, SWEREF 99 TM 652647/6525074 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.8384,
+    lng: 17.6450,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Kommun: Trosa"; "Trosa kommun har bildat och förvaltar naturreservatet."; "På ön Grytan finns flera jättegrytor från senaste istiden." (läst 2026-11-17)
+      'Kråmö är ett naturreservat i Trosa kommun, som också förvaltar det. På ön Grytan finns flera jättegrytor från senaste istiden.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Hit kommer du med egen båt eller via båttaxi." (läst 2026-11-17)
+      travel_time: 'Egen båt eller båttaxi',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Förvaltare: Trosa kommun" (läst 2026-11-17)
+      character: 'Naturreservat som Trosa kommun förvaltar',
+      // KÄLLA: https://kramoskargardsby.se/general-6 — "2026 trafikerar vi 11 juni till 2 augusti samt 6 - 9 augusti." (läst 2026-11-17)
+      season: 'Båt från Trosa sommaren 2026 enligt Kråmö skärgårdsby',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "På ön Grytan finns flera jättegrytor från senaste istiden." (läst 2026-11-17)
+      best_for: 'Båtfolk och utflykt till jättegrytorna',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "På ön Grytan finns flera jättegrytor från senaste istiden." (läst 2026-11-17)
+      { icon: '🪨', name: 'Jättegrytorna på Grytan', desc: 'På ön Grytan finns flera jättegrytor från senaste istiden.' },
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Fiska annat än med handredskap." (läst 2026-11-17)
+      { icon: '🎣', name: 'Fiske', desc: 'Fiske är bara tillåtet med handredskap.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Hit kommer du med egen båt eller via båttaxi." (läst 2026-11-17)
+      { method: 'Egen båt eller båttaxi', from: 'Trosa skärgård', desc: 'Du tar dig hit med egen båt eller båttaxi.', icon: '⛵' },
+      // KÄLLA: https://kramoskargardsby.se/general-6 — "Skärgårdstrafik i Trosa 2026"; "2026 trafikerar vi 11 juni till 2 augusti samt 6 - 9 augusti." (läst 2026-11-17)
+      { method: 'Sommarbåt', from: 'Trosa', desc: 'Kråmö skärgårdsby angav att deras båttrafik från Trosa sommaren 2026 skulle gå 11 juni till 2 augusti och 6 till 9 augusti.', icon: '⛴', url: 'https://kramoskargardsby.se/general-6' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Det är förbjudet att utan tillstånd från Trosa kommun: … Förankra båt eller tälta längre tid är två dygn i följd på samma plats." (läst 2026-11-17)
+      'Utan tillstånd från Trosa kommun får du inte ankra eller tälta på samma plats mer än två dygn i följd.',
+    ],
+    related: ['asko', 'stendorren'],
+    tags: ['sörmland', 'trosa', 'naturreservat', 'jättegrytor'],
+  },
+  // ─── FÅGELSKÄR ───────────────────────────────────────────────
+  {
+    slug: 'fagelskar',
+    name: 'Fågelskär',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    emoji: '⛺',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Fågelskär är en ö som ligger cirka tre kilometer utanför Oxelösund."; "en populär tältplats. Här finns soptunnor och utedass." (läst 2026-11-17)
+    tagline: 'Liten reservatsö cirka tre kilometer utanför Oxelösund, med brygga och en populär tältplats.',
+    seoTitle: 'Fågelskär: tältö utanför Oxelösund',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Hit tar du dig med egen båt. Det finns en brygga i östra viken." (läst 2026-11-17)
+    seoDescription: 'Fågelskär ligger cirka tre kilometer utanför Oxelösund. Du tar dig dit med egen båt och kan tälta på de norra uddarna.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=F%C3%A5gelsk%C3%A4r — Lantmäteriet Min Karta, sökning "Fågelskär" → Fågelskär | Oxelösund | Natur- och terrängnamn, SWEREF 99 TM 627149/6504161 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.6590,
+    lng: 17.1917,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Fågelskär är en ö som ligger cirka tre kilometer utanför Oxelösund."; "Skyddsår: 1997 / Areal: 10,8 hektar" (läst 2026-11-17)
+      'Fågelskär ligger cirka tre kilometer utanför Oxelösund. Reservatet bildades 1997 och är 10,8 hektar.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "På de norra uddarna"; "en populär tältplats. Här finns soptunnor och utedass." (läst 2026-11-17)
+      'På de norra uddarna finns en populär tältplats med soptunnor och utedass.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Hit tar du dig med egen båt. Det finns en brygga i östra viken." (läst 2026-11-17)
+      travel_time: 'Egen båt, brygga i östra viken',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Areal: 10,8 hektar" (läst 2026-11-17)
+      character: 'Liten reservatsö',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "tälta längre än två dygn i följd på samma plats" (läst 2026-11-17)
+      season: 'Tältning högst två dygn i följd',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "en populär tältplats" (läst 2026-11-17)
+      best_for: 'Båtfolk och tältning',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "På de norra uddarna"; "en populär tältplats. Här finns soptunnor och utedass." (läst 2026-11-17)
+      { icon: '⛺', name: 'Tältplats', desc: 'På de norra uddarna finns en populär tältplats med soptunnor och utedass.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "en populär tältplats"; "tälta längre än två dygn i följd på samma plats" (läst 2026-11-17)
+      { name: 'Tältning i reservatet', type: 'Tält', desc: 'Tältplats på de norra uddarna. Du får inte tälta längre än två dygn i följd på samma plats.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Hit tar du dig med egen båt. Det finns en brygga i östra viken." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Oxelösund', desc: 'Du tar dig hit med egen båt. Det finns en brygga i östra viken.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "tälta längre än två dygn i följd på samma plats" (läst 2026-11-17)
+      'Du får inte tälta längre än två dygn i följd på samma plats.',
+    ],
+    related: ['stendorren'],
+    tags: ['sörmland', 'oxelösund', 'naturreservat', 'tältning'],
+  },
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',
     name: 'Askö',
-    region: 'södra',
-    regionLabel: 'Södra skärgården',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
     emoji: '🔬',
     // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html — "Askö är länets första marina naturreservat.", "Skyddsår: 2001 och 2007", "Areal: 5 849 hektar, varav land 624 hektar", "Kommun: Trosa", "För den som vill bada finns den populära sandstranden Storsand" (läst 2026-09-27)
     // KÄLLA: https://su.se/stockholms-universitets-ostersjocentrum/infrastruktur/ask%C3%B6laboratoriet — "anlades Askölaboratoriet 1961 av professor Lars Silén" (läst 2026-09-27)

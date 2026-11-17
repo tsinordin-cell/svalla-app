@@ -110,7 +110,7 @@ export function getDagHub(slug: string | null | undefined): DagHub | undefined {
 export type DagIsland = {
   slug: string
   name: string
-  slag: 'ö' | 'ort' | 'nationalpark'
+  slag: 'ö' | 'ort' | 'nationalpark' | 'naturreservat'
   tagline: string
   regionLabel: string
   /** facts.travel_time från ösidan, '' om saknas. */
