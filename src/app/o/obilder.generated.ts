@@ -1032,8 +1032,18 @@ export const OBILDER: Record<string, Obild> = {
     "licens": "CC0",
     "licensUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
     "kalla": "https://commons.wikimedia.org/wiki/File:Stend%C3%B6rrens_naturreservat_utsikt_%C3%B6ver_sk%C3%A4rg%C3%A5rden.jpg"
+  },
+  "granso": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Gr%C3%A4ns%C3%B6_-_panoramio.jpg/1280px-Gr%C3%A4ns%C3%B6_-_panoramio.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2007,
+    "fotograf": "Jan Walldén",
+    "licens": "CC BY 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Gr%C3%A4ns%C3%B6_-_panoramio.jpg"
   }
 }
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = 101
+export const OAR_MED_BILD = 102

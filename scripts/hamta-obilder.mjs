@@ -217,6 +217,8 @@ const HANDPLOCKADE = {
   // 2026-11-17: Ringsö (flygfoto 1997, RAÄ) och Stendörren. Bägge granskade med ögonen: inga människor.
   ringso: 'Ringsö - KMB - 16000700011323.jpg',
   stendorren: 'Stendörrens naturreservat utsikt över skärgården.jpg',
+  // 2026-11-17: Gränsö (2007). Granskad med ögonen: inga människor.
+  granso: 'Gränsö - panoramio.jpg',
 }
 
 /**

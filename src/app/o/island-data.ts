@@ -5123,6 +5123,288 @@ export const ISLANDS: Island[] = [
     related: ['stendorren'],
     tags: ['sörmland', 'oxelösund', 'naturreservat', 'tältning'],
   },
+  // ─── RÅGÖ ────────────────────────────────────────────────────
+  {
+    slug: 'rago',
+    name: 'Rågö',
+    region: 'ovriga',
+    regionLabel: 'Kalmar läns skärgård',
+    emoji: '🚶',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer"; "Gästhamnen ligger i Alviken." (läst 2026-11-17)
+    tagline: 'Reservatsö i Tjust skärgård med två vandringsleder, gästhamn i Alviken och bokningsbar båt från Gränsö kanal.',
+    seoTitle: 'Rågö: båt från Gränsö kanal och vandring',
+    // KÄLLA: https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf — "Bokningsbar Skärgårdstrafik till/från Gränsö kanal (gäller 17 augusti 2026 - 13 juni 2027)" (läst 2026-11-17)
+    seoDescription: 'Rågö nås med bokningsbar båt från Gränsö kanal. Här är lederna, gästhamnen och reglerna i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=R%C3%A5g%C3%B6 — Lantmäteriet Min Karta, sökning "Rågö" → Rågö | Västervik | Natur- och terrängnamn, SWEREF 99 TM 603056/6415211 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.8669,
+    lng: 16.7372,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Beslutsår: 2013"; "Areal: 875 hektar varav 244,3 hektar land"; "Förvaltare: Länsstyrelsen Kalmar län" (läst 2026-11-17)
+      'Rågö naturreservat i Västerviks kommun beslutades 2013 och är 875 hektar, varav 244,3 hektar land. Länsstyrelsen förvaltar reservatet.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer"; "Tillgänglighetsanpassad toalett finns i anslutning till Rågö by och torrdass finns vid gästhamnen i Alviken och vid tältplatsen." (läst 2026-11-17)
+      'Två vandringsleder går på ön: Norra Rågöslingan (blå) på 1 kilometer och Södra Rågöslingan (röd) på 3 kilometer. Tillgänglighetsanpassad toalett finns vid Rågö by, och torrdass finns vid gästhamnen i Alviken och vid tältplatsen.',
+    ],
+    facts: {
+      // KÄLLA: https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf — "Bokningsbar Skärgårdstrafik till/från Gränsö kanal" (läst 2026-11-17)
+      travel_time: 'Bokningsbar båt från Gränsö kanal',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Areal: 875 hektar varav 244,3 hektar land" (läst 2026-11-17)
+      character: 'Naturreservat med by, leder och gästhamn',
+      // KÄLLA: https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf — "gäller 17 augusti 2026 - 13 juni 2027" (läst 2026-11-17)
+      season: 'Tidtabell för båten gäller 17 augusti 2026 till 13 juni 2027',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer" (läst 2026-11-17)
+      best_for: 'Vandring och båtfolk',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer" (läst 2026-11-17)
+      { icon: '🚶', name: 'Två leder', desc: 'Norra Rågöslingan (blå) på 1 kilometer och Södra Rågöslingan (röd) på 3 kilometer.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "torrdass finns vid gästhamnen i Alviken och vid tältplatsen."; "Förtöja eller ankra båt mer än högst två dygn på samma ställe." (läst 2026-11-17)
+      { name: 'Tältplats', type: 'Tält', desc: 'Det finns en tältplats med torrdass.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf — "Bokningsbar Skärgårdstrafik till/från Gränsö kanal (gäller 17 augusti 2026 - 13 juni 2027)"; hållplats "Rågö"; "resa måste bokas måndag-fredag mellan 9.00-16.00 på 0490-91019 senast vardag före avresa" (läst 2026-11-17)
+      { method: 'Skärgårdstrafik', from: 'Gränsö kanal', desc: 'Kalmar länstrafiks bokningsbara båt från Gränsö kanal angör Rågö på de flesta turerna. Tidtabellen gäller 17 augusti 2026 till 13 juni 2027, och resan måste bokas senast vardagen före avresa.', icon: '⛴', url: 'https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf' },
+    ],
+    harbors: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Gästhamnen ligger i Alviken."; "torrdass finns vid gästhamnen i Alviken" (läst 2026-11-17)
+      { name: 'Alviken', desc: 'Gästhamnen ligger i Alviken. Där finns torrdass.' },
+    ],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Vistas eller färdas inom de områden på och kring Flåtarna och Lindholmen som är markerade på bifogad beslutskarta ... under tiden 1 april till och med 10 juli." (läst 2026-11-17)
+      '1 april till och med 10 juli får du inte vistas eller färdas inom de markerade områdena på och kring Flåtarna och Lindholmen. Se reservatskartan och skyltar på plats.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Förtöja eller ankra båt mer än högst två dygn på samma ställe."; "Medföra okopplad hund eller annat lösgående sällskapsdjur." (läst 2026-11-17)
+      'Båt får inte ligga förtöjd eller ankrad mer än två dygn på samma ställe, och hunden ska vara kopplad.',
+    ],
+    related: ['granso'],
+    tags: ['kalmar län', 'västervik', 'tjust', 'naturreservat', 'vandring'],
+  },
+  // ─── GRÄNSÖ ──────────────────────────────────────────────────
+  {
+    slug: 'granso',
+    name: 'Gränsö',
+    region: 'ovriga',
+    regionLabel: 'Kalmar läns skärgård',
+    slag: 'naturreservat',
+    emoji: '🏖',
+    // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Halvön skiljer sig från fastlandet genom den 700 meter långa Gränsö kanal."; "Gränsöleden löper runt hela naturreservatet och är 12 km lång." (läst 2026-11-17)
+    tagline: 'Halvö och naturreservat utanför Västervik med Gränsöleden på 12 kilometer, snorkelled och sandstränder.',
+    seoTitle: 'Gränsö: naturreservat, led och bad vid Västervik',
+    // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "ett naturreservat på 328 hektar cirka 5 kilometer från Västerviks stadskärna" (läst 2026-11-17)
+    seoDescription: 'Gränsö ligger cirka 5 kilometer från Västerviks stadskärna. Gränsöleden, snorkelleden, stränderna och reglerna i reservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gr%C3%A4ns%C3%B6 — Lantmäteriet Min Karta, sökning "Gränsö" → Gränsö | Västervik | Natur- och terrängnamn, SWEREF 99 TM 600919/6402880 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.7566,
+    lng: 16.6959,
+    description: [
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Halvön skiljer sig från fastlandet genom den 700 meter långa Gränsö kanal."; "ett naturreservat på 328 hektar cirka 5 kilometer från Västerviks stadskärna" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/granso.html — "naturreservat på 328 hektar cirka 5 kilometer från Västerviks stadskärna" (läst 2026-11-17)
+      'Gränsö är en halvö som skiljs från fastlandet av den 700 meter långa Gränsö kanal. Naturreservatet är 328 hektar och ligger cirka 5 kilometer från Västerviks stadskärna.',
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsö är ett naturreservat sedan 1995 och ägs och förvaltas av Västerviks kommun. Det ingår i EU:s nätverk av skyddade områden; Natura 2000." (läst 2026-11-17)
+      'Gränsö är naturreservat sedan 1995, ägs och förvaltas av Västerviks kommun och ingår i Natura 2000.',
+    ],
+    facts: {
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "cirka 5 kilometer från Västerviks stadskärna" (läst 2026-11-17)
+      travel_time: 'Cirka 5 kilometer från Västerviks stadskärna',
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsö är egentligen en halvö" (läst 2026-11-17)
+      character: 'Halvö och naturreservat',
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "håll den kopplad året runt" (läst 2026-11-17)
+      season: 'Hunden kopplad året runt',
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsöleden löper runt hela naturreservatet"; "Vid Gränsö udde finns en snorkelled" (läst 2026-11-17)
+      best_for: 'Vandring, snorkling och bad',
+    },
+    activities: [
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsöleden löper runt hela naturreservatet och är 12 km lång." (läst 2026-11-17)
+      { icon: '🚶', name: 'Gränsöleden', desc: 'Leden går runt hela reservatet och är 12 kilometer.' },
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Vid Gränsö udde finns en snorkelled" (läst 2026-11-17)
+      { icon: '🤿', name: 'Snorkelled', desc: 'Vid Gränsö udde finns en snorkelled.' },
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "barnvänliga sandstränder vid Bondbacken, Sandvik och Gränsö slott" (läst 2026-11-17)
+      { icon: '🏖', name: 'Sandstränder', desc: 'Barnvänliga sandstränder vid Bondbacken, Sandvik och Gränsö slott.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Det är tillåtet att tälta i enlighet med allemansrätten i Gränsö naturreservat. Det vill säga att tälta med ett par tält under något enstaka dygn." (läst 2026-11-17)
+      { name: 'Tältning', type: 'Tält', desc: 'Du får tälta enligt allemansrätten, det vill säga med ett par tält under något enstaka dygn.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "cirka 5 kilometer från Västerviks stadskärna"; "Halvön skiljer sig från fastlandet genom den 700 meter långa Gränsö kanal." (läst 2026-11-17)
+      { method: 'Från Västervik', from: 'Västervik', desc: 'Reservatet ligger cirka 5 kilometer från Västerviks stadskärna, på andra sidan Gränsö kanal.', icon: '🚗', url: 'https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Ta gärna med din hund i reservatet och håll den kopplad året runt." (läst 2026-11-17)
+      'Hunden ska vara kopplad året runt.',
+    ],
+    related: ['rago'],
+    tags: ['kalmar län', 'västervik', 'tjust', 'naturreservat', 'bad', 'snorkling'],
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "barnvänliga sandstränder vid Bondbacken, Sandvik och Gränsö slott" (läst 2026-11-17)
+          { name: 'Bondbacken, Sandvik och Gränsö slott', desc: 'Barnvänliga sandstränder.', type: 'sandstrand', child_friendly: true },
+        ],
+      },
+    },
+  },
+  // ─── RUNNÖ ───────────────────────────────────────────────────
+  {
+    slug: 'runno',
+    name: 'Runnö',
+    region: 'ovriga',
+    regionLabel: 'Kalmar läns skärgård',
+    emoji: '🪨',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Över stora delar av Runnö breder plana ytor med sandsten ut sig."; "den största gruppen tomtningar utmed hela Kalmarsund" (läst 2026-11-17)
+    tagline: 'Reservatsö utanför Påskallavik med plana sandstenshällar och den största gruppen tomtningar längs Kalmarsund.',
+    seoTitle: 'Runnö: sandsten och tomtningar vid Påskallavik',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Till Runnö kan man endast ta sig med egen båt. Närmaste samhälle på fastlandet är Påskallavik." (läst 2026-11-17)
+    seoDescription: 'Till Runnö tar du dig bara med egen båt. Här är stigarna, tomtningarna och reglerna i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Runn%C3%B6 — Lantmäteriet Min Karta, sökning "Runnö" → Runnö | Oskarshamn | Natur- och terrängnamn, SWEREF 99 TM 593261/6336501 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.1622,
+    lng: 16.5420,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Till Runnö kan man endast ta sig med egen båt. Närmaste samhälle på fastlandet är Påskallavik."; "Beslutsår: 2007 / Areal: 2385 hektar varav 532 hektar land" (läst 2026-11-17)
+      'Till Runnö tar du dig bara med egen båt. Närmaste samhälle på fastlandet är Påskallavik. Reservatet beslutades 2007 och är 2 385 hektar, varav 532 hektar land.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Över stora delar av Runnö breder plana ytor med sandsten ut sig."; "Här finns till exempel den största gruppen tomtningar utmed hela Kalmarsund." (läst 2026-11-17)
+      'Över stora delar av ön finns plana ytor av sandsten. Här finns den största gruppen tomtningar längs hela Kalmarsund.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Till Runnö kan man endast ta sig med egen båt." (läst 2026-11-17)
+      travel_time: 'Bara med egen båt',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Areal: 2385 hektar varav 532 hektar land" (läst 2026-11-17)
+      character: 'Naturreservat med sandstenshällar och fornlämningar',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "omfattas av tillträdesförbud under tiden 1 april-10 juli" (läst 2026-11-17)
+      season: 'Tillträdesförbud på tre öar 1 april till 10 juli',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Flera promenadstigar går över huvudön" (läst 2026-11-17)
+      best_for: 'Båtfolk, promenader och kulturhistoria',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Flera promenadstigar går över huvudön, genom skogen ner till vattnet." (läst 2026-11-17)
+      { icon: '🚶', name: 'Promenadstigar', desc: 'Flera stigar går över huvudön, genom skogen ner till vattnet.' },
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "den största gruppen tomtningar utmed hela Kalmarsund" (läst 2026-11-17)
+      { icon: '🏛', name: 'Tomtningar', desc: 'Den största gruppen tomtningar längs hela Kalmarsund.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Till Runnö kan man endast ta sig med egen båt. Närmaste samhälle på fastlandet är Påskallavik." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Påskallavik', desc: 'Till Runnö tar du dig bara med egen båt. Närmaste samhälle på fastlandet är Påskallavik.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "färdas eller uppehålla sig på Lång- och Lövgrund samt på Runnö Rödskär eller komma närmare stranden av dessa öar än 100 m"; "omfattas av tillträdesförbud under tiden 1 april-10 juli" (läst 2026-11-17)
+      '1 april till 10 juli får du inte vara på Lövgrund, Långgrund och Runnö Rödskär eller komma närmare än 100 meter från deras stränder.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Göra upp eld."; "Förtöja eller ankra båt mer än ett dygn på samma ställe."; "Tälta mer än ett dygn på samma ställe." (läst 2026-11-17)
+      'Du får inte göra upp eld, och du får inte förtöja, ankra eller tälta mer än ett dygn på samma ställe.',
+    ],
+    related: ['furon', 'misterhult'],
+    tags: ['kalmar län', 'oskarshamn', 'naturreservat', 'fornlämningar'],
+  },
+  // ─── FURÖN ───────────────────────────────────────────────────
+  {
+    slug: 'furon',
+    name: 'Furön',
+    region: 'ovriga',
+    regionLabel: 'Kalmar läns skärgård',
+    emoji: '⚓',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Furön ligger utslängd i havet, 1 mil rakt österut från Oskarshamn."; "Furön hade tidigare en lotsplats. Den var i bruk fram till 1965" (läst 2026-11-17)
+    tagline: 'Gammal lotsö en mil öster om Oskarshamn, med strövstig runt ön och brygga i Västra hamnen.',
+    seoTitle: 'Furön: lotsön utanför Oskarshamn',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Du är välkommen att lägga till med egen båt vid den gamla lotsbryggan i Västra hamnen." (läst 2026-11-17)
+    seoDescription: 'Furön ligger en mil öster om Oskarshamn. Du lägger till med egen båt vid gamla lotsbryggan. Här är reglerna i reservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Fur%C3%B6 — Lantmäteriet Min Karta, sökning "Furö" → Furö | Oskarshamn | Natur- och terrängnamn, SWEREF 99 TM 597723/6350008 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.2826,
+    lng: 16.6211,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Furön ligger utslängd i havet, 1 mil rakt österut från Oskarshamn."; "Furön hade tidigare en lotsplats. Den var i bruk fram till 1965" (läst 2026-11-17)
+      'Furön ligger en mil rakt österut från Oskarshamn. Ön hade en lotsplats som var i bruk fram till 1965.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "En strövstig går runt ön. Respektera de boende – gå inte för nära husen." (läst 2026-11-17)
+      'En strövstig går runt ön. Respektera de boende och gå inte för nära husen.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "lägga till med egen båt vid den gamla lotsbryggan i Västra hamnen" (läst 2026-11-17)
+      travel_time: 'Egen båt till gamla lotsbryggan',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Furön hade tidigare en lotsplats." (läst 2026-11-17)
+      character: 'Gammal lotsö, naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "fågelskyddsområde med tillträdesförbud under tiden 1/4 - 31/7" (läst 2026-11-17)
+      season: 'Fågelskydd på östra delen 1 april till 31 juli',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "En strövstig går runt ön." (läst 2026-11-17)
+      best_for: 'Båtfolk och promenad runt ön',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "En strövstig går runt ön." (läst 2026-11-17)
+      { icon: '🚶', name: 'Strövstigen', desc: 'En strövstig går runt ön.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Du är välkommen att lägga till med egen båt vid den gamla lotsbryggan i Västra hamnen." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Oskarshamn', desc: 'Med egen båt kan du lägga till vid den gamla lotsbryggan i Västra hamnen.', icon: '⛵' },
+    ],
+    harbors: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "lägga till med egen båt vid den gamla lotsbryggan i Västra hamnen" (läst 2026-11-17)
+      { name: 'Västra hamnen', desc: 'Gamla lotsbryggan, där du kan lägga till med egen båt.' },
+    ],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Östra delen av ön är avsatt som fågelskyddsområde med tillträdesförbud under tiden 1/4 - 31/7." (läst 2026-11-17)
+      'Östra delen av ön är fågelskyddsområde med tillträdesförbud 1 april till 31 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Göra upp eld."; "Tälta, ställa upp gömsle eller liknande."; "i vattenområdet i högre hastighet än 5 knop" (läst 2026-11-17)
+      'Du får inte göra upp eld eller tälta. I reservatets vatten får motorbåt inte köra fortare än 5 knop.',
+    ],
+    related: ['runno', 'misterhult'],
+    tags: ['kalmar län', 'oskarshamn', 'naturreservat', 'lotsplats'],
+  },
+  // ─── MISTERHULTS SKÄRGÅRD ────────────────────────────────────
+  {
+    slug: 'misterhult',
+    name: 'Misterhults skärgård',
+    region: 'ovriga',
+    regionLabel: 'Kalmar läns skärgård',
+    slag: 'naturreservat',
+    emoji: '🏝',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "De fyra bebyggda öarna i reservatet"; "Vandringsleder finns på Örö och Strupö." (läst 2026-11-17)
+    tagline: 'Naturreservat i Oskarshamns skärgård med fyra bebyggda öar, leder på Örö och Strupö och hamn i Klintemåla.',
+    seoTitle: 'Misterhults skärgård: Örö, Strupö, Älö, Marsö',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Den mest tillgängliga hamnen finns i Klintemåla." (läst 2026-11-17)
+    seoDescription: 'Misterhults skärgård har fyra bebyggda öar och leder på Örö och Strupö. Den mest tillgängliga hamnen finns i Klintemåla.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Misterhults%20sk%C3%A4rg%C3%A5rd — Lantmäteriet Min Karta, sökning "Misterhults skärgård" → Misterhults skärgårds naturreservat | Oskarshamn | Naturvårdsområde, SWEREF 99 TM 602350/6375385 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.5094,
+    lng: 16.7083,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "De fyra bebyggda öarna i reservatet" (Örö, Strupö, Älö, Marsö); "Vandringsleder finns på Örö och Strupö." (läst 2026-11-17)
+      'I Misterhults skärgårds naturreservat finns fyra bebyggda öar: Örö, Strupö, Älö och Marsö. Vandringsleder finns på Örö och Strupö.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Den mest tillgängliga hamnen finns i Klintemåla." (läst 2026-11-17)
+      'Den mest tillgängliga hamnen finns i Klintemåla.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Den mest tillgängliga hamnen finns i Klintemåla." (läst 2026-11-17)
+      travel_time: 'Hamn i Klintemåla',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "De fyra bebyggda öarna i reservatet" (läst 2026-11-17)
+      character: 'Skärgårdsreservat med fyra bebyggda öar',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Under tiden 1 april till 10 juli" (läst 2026-11-17)
+      season: 'Fågelskydd i markerade områden 1 april till 10 juli',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Vandringsleder finns på Örö och Strupö." (läst 2026-11-17)
+      best_for: 'Båtfolk och vandring',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Vandringsleder finns på Örö och Strupö." (läst 2026-11-17)
+      { icon: '🚶', name: 'Vandring på Örö och Strupö', desc: 'Vandringsleder finns på Örö och Strupö.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Den mest tillgängliga hamnen finns i Klintemåla." (läst 2026-11-17)
+      { method: 'Båt', from: 'Klintemåla', desc: 'Den mest tillgängliga hamnen finns i Klintemåla.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Under tiden 1 april till 10 juli inom områden markerade med röd raster på bifogad beslutskarta ... uppehålla sig på eller färdas på närmare avstånd än 100 meter från öar och skär." (läst 2026-11-17)
+      '1 april till 10 juli får du inte vara på, eller färdas närmare än 100 meter från, öar och skär inom de områden som är markerade på reservatskartan.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Framföra motorbåt eller annan motordriven farkost med högre hastighet än 10 knop utanför allmän farled."; "Släppa ut toalettavfall från fritidsbåt." (läst 2026-11-17)
+      'Utanför allmän farled får motorbåt inte köra fortare än 10 knop, och du får inte släppa ut toalettavfall från fritidsbåt.',
+    ],
+    related: ['furon', 'runno'],
+    tags: ['kalmar län', 'oskarshamn', 'naturreservat', 'skärgård'],
+  },
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',
