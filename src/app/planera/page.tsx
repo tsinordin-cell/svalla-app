@@ -55,7 +55,7 @@ export default async function PlaneraPage() {
   )
 }
 
-export function PlaneraVy({
+function PlaneraVy({
   inloggad,
   myRoutes,
   vader,
