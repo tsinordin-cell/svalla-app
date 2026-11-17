@@ -1,0 +1,7 @@
+kid	sida	fil:rad	struken text
+sm07-s01	/aktivitet/kajak	src/app/aktivitet/kajak/page.tsx:61-63	Kajakhyrning kostar 300 till 500 kr för halvdag (4 h) och 500 till 800 kr för heldag. Guidade turer med instruktör kostar 600 till 1 200 kr per person. Många aktörer erbjuder familjepaket.
+sm07-s02	/o/birka/komma-dit	src/lib/batregler.ts:97; src/app/o/[slug]/komma-dit/page.tsx:130	(båtrutan med allemansrätten och ankring, mall-N040, N041, N023)
+sm07-s03	/o/styrso, /o/styrso/komma-dit, /o/styrso/boende, /o/styrso/med-barn	src/app/o/island-data.ts:6634	(även 9 på sommaren)
+sm07-s04	/o/vaxholm/bad	src/app/o/island-data.ts:804	child_friendly = true → märket Barnvänlig
+sm07-s05	/o/uto, /o/uto/aktiviteter	src/app/o/island-data.ts:541	trolling och dragrodd kräver fiskerättsägarens tillstånd utom på allmänt vatten
+sm07-s06	/o/*	src/components/IslandWeather.tsx:33-37,59,113	{decimal(weather.windSpeed)} m/s

@@ -1,0 +1,51 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-17)
+sm07-k001	mall-N033	OK	OK
+sm07-k002	mall-0212	OK	OK
+sm07-k003	moja-0387	OK	OK
+sm07-k004	utanfor-N016	OK	OK
+sm07-k005	styrso-N034	FEL	Toms beslut 7 (2026-11-08): posten donso-hamnkrog är Isbolaget Hotell & Restaurang, och sluggen står kvar. Telefonnumret beläggs av Isbolagets egen sida.
+sm07-k006	mall-0043	OK	OK
+sm07-k007	husaro-0209	OK	OK
+sm07-k008	fjaderholmarna-0195	OK	OK
+sm07-k009	vaxholm-0011	FEL	RÄTTAS i rättelserundan: Vaxholm räknas som fastlandsort (slag ort), så komma-dit-titeln blir "Bil och buss" fast båtar går dit. Titeln ska följa de färdsätt öns data och operatörerna anger.
+sm07-k010	moja-0451	OK	OK
+sm07-k011	vaxholm-0551	OK	OK
+sm07-k012	vaxholm-0561	OK	OK
+sm07-k013	mall-N026	OK	OK
+sm07-k014	mall-N031	OK	OK
+sm07-k015	sandhamn-0314	OK	OK
+sm07-k016	mall-N025	FEL	RÄTTAS i rättelserundan: "Lokala föreskrifter går före allemansrätten" har bara en källa om skyddade områden, men visas också där föreskriften är ett ankringsförbud vid kablar (Storholmen, Smådalarö, Väddö). Belägg den allmänna meningen eller skriv den så att den stämmer med varje öns föreskrift.
+sm07-k017	sandhamn-N038	OK	OK
+sm07-k018	mall-N027	OK	OK
+sm07-k019	sandhamn-0517	OK	OK
+sm07-k020	mall-0189	OK	OK
+sm07-k021	mall-N032	OK	OK
+sm07-k022	vaxholm-0421	FEL	Inte fel: Kastellet ligger på en egen ö, Vaxholmen (länsmuseet), så Fästningskaféet räknas som nära Vaxholm och inte på Vaxön. Ingen ändring.
+sm07-k023	uto-0371	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sm07-k024	utanfor-N017	FEL	RÄTTAS i rättelserundan: blåstångsbältena ska stå som källan anger dem, inte i de grunda vikarna.
+sm07-k025	utanfor-N014	OK	OK
+sm07-k026	sandhamn-0567	OK	OK
+sm07-k027	fjaderholmarna-0149	OK	OK
+sm07-k028	moja-0524	OK	OK
+sm07-k029	husaro-0060	OK	OK
+sm07-k030	sandhamn-0516	OK	OK
+sm07-k031	vaxholm-N027	OK	OK
+sm07-k032	mall-N030	OK	OK
+sm07-k033	utanfor-N001	OK	OK
+sm07-k034	mall-N029	OK	OK
+sm07-k035	vaxholm-0445	OK	OK
+sm07-k036	uto-0353	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring. RÄTTAS i rättelserundan: trafikuppgiften om Rånö prövas mot operatören.
+sm07-k037	mall-N034	OK	OK
+sm07-k038	utanfor-N011	OK	OK
+sm07-k039	mall-0127	OK	OK
+sm07-k040	uto-0397	FEL	RÄTTAS i rättelserundan: "vid vägen mellan Gruvbyn och Ålö" har ingen källa eller mätning. Belägg eller stryk.
+sm07-k041	mall-N036	OK	OK
+sm07-k042	vaxholm-0021	FEL	RÄTTAS i rättelserundan: Vaxholms platsradie 2 km täcker inte Vaxön (OSM 3,22 km), så kommunens Eriksöbad visas som 2,7 km bort. Mät och sätt platsRadieKm efter strandlinjen, som för de andra öarna.
+sm07-k043	utanfor-N018	OK	OK
+sm07-k044	mall-N035	OK	OK. RÄTTAS i rättelserundan: ankringsförbudet vid Tärnudden ska prövas i föreskriften, inte bara på sverigesnationalparker.se.
+sm07-s01	mall-N018	OK	OK
+sm07-s02	mall-N042	OK	OK
+sm07-s03	styrso-0218	OK	OK
+sm07-s04	vaxholm-0550	OK	OK
+sm07-s05	uto-N003	OK	OK
+sm07-s06	mall-0042	OK	OK
