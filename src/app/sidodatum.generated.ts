@@ -175,7 +175,7 @@ export const SIDODATUM: Record<string, string> = {
   "guide:romantisk-weekend-skargarden": "2026-09-27",
   "guide:runmaro-guide": "2026-09-28",
   "guide:sandhamn-komplett-guide": "2026-09-27",
-  "guide:sandhamn-vaxholm-grinda-host": "2026-09-26",
+  "guide:sandhamn-vaxholm-grinda-host": "2026-11-17",
   "guide:sandhamn-vs-grinda": "2026-09-28",
   "guide:sandstrand-skargarden": "2026-09-27",
   "guide:segeldag-foretag-stockholm": "2026-09-28",
