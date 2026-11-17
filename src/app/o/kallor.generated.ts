@@ -4699,6 +4699,68 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     }
   ],
+  "utklippan": [
+    {
+      "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html",
+      "org": "Länsstyrelsen Blekinge",
+      "vad": "På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna.; Fyren, fyrvaktarsamhället och miljön på Södraskär och Norraskär är statliga byggnadsminnen.; Numera används byggnaderna bland annat av Utklippans fågelstation och Svenska Kryssarklubben.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Utklippan",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Utklippan\" → Utklippan | Karlskrona | Trakt, SWEREF 99 TM 543816/6201041 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "tarno": [
+    {
+      "url": "https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn-skargard/",
+      "org": "blekingetrafiken.se",
+      "vad": "Vid gästhamnen i centrala Karlshamn hittar du skärgårdsterminalen.; Cirka 30 minuter från skärgårdsterminalen i Karlshamn ligger Tärnö.; Du köper din biljett när du går ombord; Det går bra att ta med djur ombord på våra båtar.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.blekingetrafiken.se/reseinformation/skargardstrafik/",
+      "org": "blekingetrafiken.se",
+      "vad": "Från maj till september reser du ut till öar som Tjärö, Tärnö och Kastellet.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html",
+      "org": "Länsstyrelsen Blekinge",
+      "vad": "cykla annat än på befintliga vägar och stigar, och då endast på sätt som inte ger förslitningsskador på markerna, verkar störande på naturen eller på övrigt friluftsliv i området",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=T%C3%A4rn%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Tärnö\" → Tärnö | Karlshamn | Natur- och terrängnamn, SWEREF 99 TM 497780/6219319 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "hastholmen-ytteron": [
+    {
+      "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html",
+      "org": "Länsstyrelsen Blekinge",
+      "vad": "ankra, lägga till eller dra upp båt eller annan vattenfarkost annat än vid tillfällig vistelse (högst två dygn) i området; Förbudet gäller inte befintliga enskilda bryggor eller andra iordningställda båtplatser; ankra båt eller annan vattenfarkost inom områden med Ankringsförbud enligt beslutsbilaga 2a",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=H%C3%A4stholmen",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Hästholmen\" → Hästholmen | Karlskrona | Natur- och terrängnamn, SWEREF 99 TM 546627/6215417 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
@@ -11930,4 +11992,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 138
+export const OAR_MED_KALLOR = 141
