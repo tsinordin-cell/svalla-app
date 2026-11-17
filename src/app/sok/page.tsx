@@ -10,6 +10,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ALL_ISLANDS } from '../o/island-data'
 import { ACTIVITY_LIST } from '../aktivitet/activity-data'
+import { valjOar, aktivitetMatchar, hashtagMatchar } from '@/lib/sok-traff'
+import { utf8TillBas64url } from '@/lib/bas64url'
 
 type ResultType = 'tur' | 'rutt' | 'plats' | 'seglare' | 'hashtag' | 'o' | 'aktivitet'
 type FilterTab = 'alla' | ResultType
@@ -140,11 +142,22 @@ function SokPageInner() {
  async function search(q: string) {
  const searchId = ++latestSearchIdRef.current
  setLoading(true)
+ try {
+ await korSok(q, searchId)
+ } catch {
+ if (searchId !== latestSearchIdRef.current) return
+ setSearched(true)
+ } finally {
+ if (searchId === latestSearchIdRef.current) setLoading(false)
+ }
+ }
+
+ async function korSok(q: string, searchId: number) {
  saveRecent(q.trim())
  setRecentSearches(loadRecent())
- // Sanitera söktermen — strippa PostgREST-specialtecken för att undvika query injection
+ // Sanitera söktermen. Strippa PostgREST-specialtecken för att undvika query injection.
  const safe = q.replace(/[()%_,]/g, '').trim().slice(0, 100)
- if (!safe) { setResults([]); setSearched(true); setLoading(false); return }
+ if (!safe) { setResults([]); setSearched(true); return }
  const pattern = `%${safe}%`
 
  // Hashtag-läge: query börjar med # → sök bara trips som matchar taggen i caption
@@ -208,11 +221,10 @@ function SokPageInner() {
  // Bygg unika hashtag-resultat (fritextläge): räkna upp förekomster av matchande taggar
  const hashtagAgg: Record<string, number> = {}
  if (!isHashtagQuery) {
- const needle = safe.toLowerCase()
  const sources = [...(tripsRes.data ?? []), ...(tripsForHashtagsRes.data ?? [])]
  for (const t of sources) {
  for (const tag of extractHashtags(t.caption)) {
- if (tag.includes(needle) || needle.includes(tag.replace(/^#/, ''))) {
+ if (hashtagMatchar(tag, safe)) {
  hashtagAgg[tag] = (hashtagAgg[tag] ?? 0) + 1
  }
  }
@@ -229,16 +241,9 @@ function SokPageInner() {
  href: `/sok?q=${encodeURIComponent(tag)}`,
  }))
 
- // Lokal-sökning över öar + aktiviteter (statiskt data, ingen DB-fråga behövs)
- const needle = safe.toLowerCase()
- const islandResults: Result[] = isHashtagQuery ? [] : ALL_ISLANDS
- .filter(i =>
- i.name.toLowerCase().includes(needle) ||
- (i.regionLabel ?? '').toLowerCase().includes(needle) ||
- i.tagline.toLowerCase().includes(needle) ||
- i.tags.some(t => t.toLowerCase().includes(needle))
- )
- .slice(0, 10)
+ // Lokal sökning över öar + aktiviteter (statiskt data, ingen DB-fråga).
+ // foldSok gör att "gallno" träffar Gällnö. Exakt namn sorteras först.
+ const islandResults: Result[] = isHashtagQuery ? [] : valjOar(ALL_ISLANDS, safe)
  .map(i => ({
  type: 'o' as const,
  id: i.slug,
@@ -249,11 +254,7 @@ function SokPageInner() {
  }))
 
  const activityResults: Result[] = isHashtagQuery ? [] : ACTIVITY_LIST
- .filter(a =>
- a.name.toLowerCase().includes(needle) ||
- a.shortName.toLowerCase().includes(needle) ||
- a.matchers.some(m => m.includes(needle))
- )
+ .filter(a => aktivitetMatchar(a, safe))
  .map(a => ({
  type: 'aktivitet' as const,
  id: a.slug,
@@ -290,7 +291,9 @@ function SokPageInner() {
  ...(placesRes.data ?? []).map(r => {
  // Föredra Google-foto framför seedade fallback-bilder
  const ref = r.google_photo_refs?.[0]?.reference
- const googleImg = ref ? `/api/places/photo/${Buffer.from(ref, 'utf-8').toString('base64url')}?w=400` : null
+ // Inte Buffer#toString('base64url'): polyfillen i webbläsaren kastar
+ // "Unknown encoding: base64url" och då fastnar hela träfflistan på snurran.
+ const googleImg = ref ? `/api/places/photo/${utf8TillBas64url(ref)}?w=400` : null
  return {
  type: 'plats' as const,
  id: r.id,
@@ -314,7 +317,6 @@ function SokPageInner() {
  if (searchId !== latestSearchIdRef.current) return
  setResults(merged)
  setSearched(true)
- setLoading(false)
  analytics.searchPerformed({
    query: safe,
    results_count: merged.length,
