@@ -4131,6 +4131,100 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     }
   ],
+  "rago": [
+    {
+      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html",
+      "org": "Länsstyrelsen Kalmar län",
+      "vad": "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer; Tillgänglighetsanpassad toalett finns i anslutning till Rågö by och torrdass finns vid gästhamnen i Alviken och vid tältplatsen.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=R%C3%A5g%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Rågö\" → Rågö | Västervik | Natur- och terrängnamn, SWEREF 99 TM 603056/6415211 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf",
+      "org": "kalmarlanstrafik.se",
+      "vad": "Bokningsbar Skärgårdstrafik till/från Gränsö kanal (gäller 17 augusti 2026 - 13 juni 2027); hållplats Rågö; resa måste bokas måndag-fredag mellan 9.00-16.00 på 0490-91019 senast vardag före avresa",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "granso": [
+    {
+      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/granso.html",
+      "org": "Länsstyrelsen Kalmar län",
+      "vad": "naturreservat på 328 hektar cirka 5 kilometer från Västerviks stadskärna",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gr%C3%A4ns%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Gränsö\" → Gränsö | Västervik | Natur- och terrängnamn, SWEREF 99 TM 600919/6402880 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/",
+      "org": "vastervik.se",
+      "vad": "Halvön skiljer sig från fastlandet genom den 700 meter långa Gränsö kanal.; ett naturreservat på 328 hektar cirka 5 kilometer från Västerviks stadskärna",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "runno": [
+    {
+      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html",
+      "org": "Länsstyrelsen Kalmar län",
+      "vad": "färdas eller uppehålla sig på Lång- och Lövgrund samt på Runnö Rödskär eller komma närmare stranden av dessa öar än 100 m; omfattas av tillträdesförbud under tiden 1 april-10 juli",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Runn%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Runnö\" → Runnö | Oskarshamn | Natur- och terrängnamn, SWEREF 99 TM 593261/6336501 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "furon": [
+    {
+      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html",
+      "org": "Länsstyrelsen Kalmar län",
+      "vad": "Furön ligger utslängd i havet, 1 mil rakt österut från Oskarshamn.; Furön hade tidigare en lotsplats. Den var i bruk fram till 1965",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Fur%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Furö\" → Furö | Oskarshamn | Natur- och terrängnamn, SWEREF 99 TM 597723/6350008 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "misterhult": [
+    {
+      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html",
+      "org": "Länsstyrelsen Kalmar län",
+      "vad": "Under tiden 1 april till 10 juli inom områden markerade med röd raster på bifogad beslutskarta ... uppehålla sig på eller färdas på närmare avstånd än 100 meter från öar och skär.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Misterhults%20sk%C3%A4rg%C3%A5rd",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Misterhults skärgård\" → Misterhults skärgårds naturreservat | Oskarshamn | Naturvårdsområde, SWEREF 99 TM 602350/6375385 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
@@ -11362,4 +11456,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 113
+export const OAR_MED_KALLOR = 118
