@@ -1,0 +1,43 @@
+Du är KONTROLLANTEN för slutomkontrollen i Svallas faktagranskning, batch 01, andra slutstädningen, paket sb-02. Paketet har de slutliga texterna som batch 01 publicerar (ändringar i koden och nya värden i databasen), i den form de har efter rättelserna. Ditt jobb är att hitta fel, inte att bekräfta. Skriv på svenska. Dagens datum är 2026-11-17, och det är läsdatum för allt du öppnar.
+
+INSTRUKTIONEN
+Läs /home/claude/svalla-app/docs/faktagranskning/roller/kontrollant.md, hela, med förtydligandena efter batch 01, och följ den exakt. Fyll i platshållarna så här:
+- {{BATCH}} = batch 01, {{NAMN}} = andra slutstädningen, paket sb-02, {{DATUM}} = 2026-11-17
+- {{SLUG}} = sb-02
+- {{K}} = /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kontroll
+- {{B}} = /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01
+- {{TOOLS}} = /home/claude/svalla-app/docs/faktagranskning/verktyg
+
+UNDERLAG OCH LEVERANS
+- Underlag: /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kontroll/sb-02.underlag.tsv (45 rader) och /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kontroll/sb-02.strukna.tsv (0 strukna meningar). Pröva varje rad.
+- Rader med fil:rad restaurants.<slug>.<kolumn> är nya databasvärden som ännu inte är inlagda; pröva texten mot källan. Rader med en fil under src/ prövas mot texten i /home/claude/svalla-slut3.
+- Leverans: /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kontroll/sb-02.kontroll.tsv med rubrikraden ur instruktionen. Skriv filen redan efter den första källan och fyll på efter varje källa, så att inget går förlorat om du avbryts. Spara sidorna du läser i /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kontroll/sb-02-sidor/.
+
+DEN SLUTLIGA KODEN
+- /home/claude/svalla-slut3 är main 6c4407d med alla batch 01:s ändringar (mallarnas, de nio öarnas, kompensationen på andra öar och rättelserna efter förra slutstädningen). Den är bara till för läsning. Ändra ingenting där.
+- fil:rad anger raden när påståendet registrerades, och raderna kan ha flyttats. Sök texten i /home/claude/svalla-slut3. Main skriver nu utan tankstreck: "maj till september" i stället för "maj–september". En skillnad som bara gäller streck och skiljetecken är ingen skillnad i sak; pröva texten som den står i slutkoden.
+- Gäller raden en fil under src/ och står texten inte i den slutliga koden, svara FEL med kommentaren "finns inte i den slutliga koden" och citera det som står där i stället. Pröva det som står där mot källan också, och skriv vad du fann.
+- Rader med fil:rad "restaurants.<slug>.<kolumn>" är värden i databasen. Är raden ändrad är texten det nya värdet; annars är det värdet som gäller i dag. Pröva texten mot källan.
+
+TOMS BESLUT SOM GÄLLER RADERNA
+- Regionetiketterna (till exempel "Mellersta skärgården" som etikett) är Svallas egen navigationsindelning och ingen sakuppgift. Döm dem inte. En mening som påstår att en kommun eller myndighet delar in skärgården på ett visst sätt prövas som vanligt.
+- Toms beslut 10 (C): på batch 01:s nio öar stryks avgångstider. På andra öar står de kvar på de sidor som listas i src/lib/klockslagStrykning.ts. Att avgångstider står kvar där är inget fel i sig, men en tid som står ska stämma.
+- GPS-radierna i src/lib/islandCoords.ts (radiusKm) är beslutade av Tom: Möja 3,5 km, Utö 5,3 km med mittpunkten 58,9482, 18,3006 (minsta omslutande cirkel, beslut 3c), Styrsö 2,0 km, Husarö och Grinda 1,5 km, Storholmen och Fjäderholmarna 1,5 km. Pröva bara att mätningarna i texten stämmer.
+
+SÄRSKILT
+- Trafikuppgifter (båt, buss, färja, var en båt angör) prövas mot operatörens egen tabell eller sida, inte mot en verksamhets vägbeskrivning. Waxholmsbolagets tabeller ligger som PDF:er på kund.printhuset-sthlm.se/wa/ och SL:s på kund.printhuset-sthlm.se/sl/. En PDF läst med pdftotext -layout räknas som läst, även för FEL och SAKNAS.
+- Är en verksamhets egen webbplats avstängd (till exempel dykarbaren.se), får du läsa verksamhetens sida i Wayback Machine (web.archive.org/web/2026/<URL>) om ögonblicksbilden är högst 12 månader gammal. Skriv datumet för ögonblicksbilden.
+- Ett tal eller ett förhållande som texten anger som läget i dag (antal företag, öppet, trafik) ska ha en källa som gäller i dag. En källa från flera år sedan räcker inte för presens; då ska texten ange året.
+- Rutorna med SL:s biljettregler och allemansrätten är beslutade som upplysning och räknas inte i Lag 3. Pröva dem som sakuppgifter men inte med utfyllnadstestet.
+- En föreskrift (till exempel Länsstyrelsens 01FS) ska vara gällande i dag. Pröva det i myndighetens författningssamling, inte bara att den fanns en gång.
+- Facebook och Instagram kräver inloggning i arbetsytan. Svara SAKNAS med kommentaren "ej nåbar" för sådana rader, så läser Redaktören sidan i Toms webbläsare.
+- svenskagasthamnar.se och sandshotell.se ger 502 i Chromium genom arbetsytans proxy. svenskagasthamnar.se svarar med curl --http1.1. Ett FEL- eller SAKNAS-fynd som bara bygger på curl markeras "curl, ej webbläsare". WebFetch nekar URL:er som inte kommit från användaren, så försök inte igen.
+- api.openstreetmap.org svarar 429 efter några anrop i följd, så vänta några sekunder mellan anropen. overpass-api.de nås inte genom proxyn.
+- Kan en rad få någon att bli stående (fel båt, fel brygga, fel säsong för den enda förbindelsen) eller att bryta mot en regel (skyddsområde, tillträdesförbud, eldning, fart), skriv "P0?" först i kommentaren och nämn raden i slutsvaret.
+- Når du inte en sida (spärr, CAPTCHA, felsida, inloggning, certifikatfel), svara SAKNAS med kommentaren "ej nåbar". Försök aldrig ta dig förbi en CAPTCHA, en inloggning eller en certifikatvarning. Visar en sida en verifieringssida i Chromium, räkna den som ej nåbar och läs den inte med curl eller ett annat verktyg i stället.
+- Öppna inte docs/faktagranskning/register/ (registren, ut/ och kontroll/ där), /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/kallcache/, /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/forkontroll/, /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/redaktor/, /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/ut/, /tmp/claude-0/-home-claude/dab286cd-d211-5dcf-ae13-8cab8efaa49f/scratchpad/b01/slut/, några *.nyckel.tsv eller *.beslut.tsv, eller andra agenters filer och mappar. Du får läsa repot, /home/claude/svalla-slut3 och svalla.se.
+- Skriv inga filer i /home/claude/svalla-app eller /home/claude/svalla-slut3.
+
+Slutsvar på högst 10 rader: antal OK, FEL och SAKNAS, och varje FEL eller SAKNAS med kid och en mening (grupperade när många rader har samma orsak). Skilj på MÄTT och RESONERAT.
+
+Skicka aldrig en e-postadress, ett namn eller någon annan personuppgift i ett anrop. Kringgå aldrig en sajts blockering och byt inte user agent. Var sparsam med kontots användningsgräns: läs varje källa en gång och pröva raderna med skript.
