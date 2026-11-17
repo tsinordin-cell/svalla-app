@@ -212,6 +212,8 @@ const HANDPLOCKADE = {
   // 2026-11-17: Gräsö och Örskär, nya ösidor. Bägge bilderna granskade med ögonen: inga människor.
   graso: 'Gräsö1801.jpg',
   orskar: 'Uppland Örskär Lighthouse (14164387552).jpg',
+  // 2026-11-17: Harstena, flygfoto 1991 från Riksantikvarieämbetet. Granskad med ögonen: inga människor.
+  harstena: 'Harstena - KMB - 16000300022260.jpg',
 }
 
 /**

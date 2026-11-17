@@ -3894,6 +3894,140 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     }
   ],
+  "amto": [
+    {
+      "url": "https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html",
+      "org": "Länsstyrelsen Östergötland",
+      "vad": "sammanlagt finns över 9 kilometer välskyltad vandringsled i reservatet; flera grillplatser och rastbord och gott om naturliga badmöjligheter",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%84mt%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Ämtö\" → Ämtö | Valdemarsvik | Trakt, SWEREF 99 TM 610063/6458464 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf",
+      "org": "ostgotatrafiken.se",
+      "vad": "Från Getterö mot Ämtö; Gäller från 1 november 2026 till 13 juni 2027.; Avgångar lördag: Inga avgångar.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik",
+      "org": "ostgotatrafiken.se",
+      "vad": "Beställ senast klockan 18:00 dagen innan; Skärgårdstrafiken är öppen för alla, men i första hand för dig som bor på öarna.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "harstena": [
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Harstena",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Harstena\" → Harstena | Valdemarsvik | Trakt, SWEREF 99 TM 617759/6458610 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf",
+      "org": "ostgotatrafiken.se",
+      "vad": "Från Fyrudden mot Harstena; Gäller från 1 november 2026 till 13 juni 2027.; Avgångar lördag: Inga avgångar.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik",
+      "org": "ostgotatrafiken.se",
+      "vad": "Beställ senast klockan 18:00 dagen innan; Skärgårdstrafiken är öppen för alla, men i första hand för dig som bor på öarna.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/bryggor-som-baten-gar-till",
+      "org": "ostgotatrafiken.se",
+      "vad": "Harstena, postbryggan (Turistbrygga) 3; Harstena södra 68; Harstena, Hundhålet 109",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/",
+      "org": "valdemarsvik.se",
+      "vad": "Harstena består av en arkipelag med ett 70-tal öar. Huvudön är drygt 150 hektar stor.; Harstena ligger nästan 13 km (7 M) nordost om Fyrudden. (publicerad 2022-01-20 )",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "kopparholmarna": [
+    {
+      "url": "https://lansstyrelsen.se/download/18.6ae610001636c9c68e5981/1526553838599/F%C3%B6reskrifter%20om%20bildande%20av%20naturreservatet%20Kopparholmarna%20i%20Norrk%C3%B6pings%20kommun%202012.11.pdf",
+      "org": "Länsstyrelsen",
+      "vad": "C3 \"medföra okopplad hund eller annat lösgående husdjur\"; C6 \"göra upp eld annat än på anvisad plats\"; C2 \"tälta eller förtöja båt längre tid än två dygn i följd på samma plats\"",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kopparholmarnas%20naturreservat",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kopparholmarnas naturreservat\" → Norrköping | Naturvårdsområde, SWEREF 99 TM 613212/6482448 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat",
+      "org": "norrkoping.se",
+      "vad": "Ett drygt tiotal öar ingår i reservatet varav Kopparholmarna är de två största.; Från piren går sommartid turbåtar till Kopparholmarna.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser",
+      "org": "norrkoping.se",
+      "vad": "här tas inte badvattenprov då badplatsen är belägen på en ö vilket medför logistiska hinder",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "arkosund": [
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ark%C3%B6sund",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Arkösund\" → Arkösund | Norrköping | Bebyggelse, SWEREF 99 TM 613239/6485251 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser",
+      "org": "norrkoping.se",
+      "vad": "Tillgång till toaletter i servicebyggnad 400 meter från badet. Affär och restaurang inom gångavstånd.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel",
+      "org": "norrkoping.se",
+      "vad": "Badholmarna ligger strax utanför Arkösund och består av fyra små öar som förbinds med broar.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf",
+      "org": "ostgotatrafiken.se",
+      "vad": "Från Arkösund mot Birkö via Aspöja; Gäller från 17 augusti 2026 till 13 juni 2027.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik",
+      "org": "ostgotatrafiken.se",
+      "vad": "Beställ senast klockan 18:00 dagen innan",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
@@ -11125,4 +11259,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 103
+export const OAR_MED_KALLOR = 107
