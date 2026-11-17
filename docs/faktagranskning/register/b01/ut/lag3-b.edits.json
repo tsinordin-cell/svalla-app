@@ -163,5 +163,54 @@
   "rader": [
    "lag3b-N024"
   ]
+ },
+ {
+  "fil": "src/app/o/hantverkare-data.ts",
+  "gammal": " *   'register'   Kommunens näringslivsregister (UC Selekt) eller motsvarande.\n",
+  "ny": " *   'register'   Kommunens näringslivsregister (UC Selekt) eller motsvarande.\n *   'elregister' Elsäkerhetsverkets register (Kolla elföretaget), en myndighets register. Bara för elföretag,\n *                och bara när registrets egen post anger adressen på ön (Lag 3 b, Redaktörens beslut 2026-11-17).\n",
+  "rader": [
+   "lag3b-N025"
+  ]
+ },
+ {
+  "fil": "src/app/o/hantverkare-data.ts",
+  "gammal": "export type Kallniva = 'egen-sajt' | 'forening' | 'register'\n",
+  "ny": "export type Kallniva = 'egen-sajt' | 'forening' | 'register' | 'elregister'\n",
+  "rader": [
+   "lag3b-N025"
+  ]
+ },
+ {
+  "fil": "src/components/HantverkarKort.tsx",
+  "gammal": "  register: 'Enligt kommunens näringslivsregister',\n",
+  "ny": "  register: 'Enligt kommunens näringslivsregister',\n  elregister: 'Enligt Elsäkerhetsverkets register',\n",
+  "rader": [
+   "lag3b-N025"
+  ]
+ },
+ {
+  "fil": "src/app/o/hantverkare-data.ts",
+  "gammal": "    noteringar: 'Möja Bergs by 118, 130 43 Möja. Reguljära turer mellan Sollenkroka och Möja, mellanliggande öar trafikeras på vägen. Egen taxibåt och charter för upp till 23 passagerare.',\n  },\n",
+  "ny": "    noteringar: 'Möja Bergs by 118, 130 43 Möja. Reguljära turer mellan Sollenkroka och Möja, mellanliggande öar trafikeras på vägen. Egen taxibåt och charter för upp till 23 passagerare.',\n  },\n  {\n    // Lag 3 b 2026-11-17 (Redaktörens beslut): elföretag med adress på Möja i Elsäkerhetsverkets register (nivå 1), sökt på orten Möja.\n    // KÄLLA: https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11957896 — \"Lundahls Installation AB\"; \"Företaget är registrerat hos Elsäkerhetsverket.\"; \"Organisationsnummer: 559289-9891\"; \"lundahlsinstallation@gmail.com\"; \"0766287273\"; \"Långviknäs 252\"; \"13043 Möja\" (läst 2026-11-17)\n    // KÄLLA: https://elsakerhetsverket.se/kolla-elforetaget?query=M%C3%B6ja&searchType=city&sortOrder=az&page=1 — \"Din sökning gav 3 träffar för orten:\"; \"Lundahls Installation AB\" (läst 2026-11-17)\n    slug: 'lundahls-installation',\n    namn: 'Lundahls Installation AB',\n    ort: 'Långviknäs, Möja',\n    bas: 'Långviknäs, Möja',\n    yrken: ['elektriker'],\n    telefon: '0766287273',\n    epost: 'lundahlsinstallation@gmail.com',\n    orgnr: '559289-9891',\n    oar: ['moja'],\n    kalla: { niva: 'elregister', url: 'https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11957896', last: '2026-11-17' },\n    behorighet: 'bekraftad',\n    behorighetKalla: 'https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11957896',\n    verifierad: false,\n  },\n  {\n    // Lag 3 b 2026-11-17 (Redaktörens beslut): elföretag med adress på Möja i Elsäkerhetsverkets register (nivå 1), sökt på orten Möja.\n    // KÄLLA: https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11093378 — \"Alk,S Elservice Handelsbolag\"; \"Företaget är registrerat hos Elsäkerhetsverket.\"; \"Organisationsnummer: 916637-1568\"; \"Möja Norrsundshage 522\"; \"13043 Möja\" (läst 2026-11-17)\n    slug: 'alks-elservice',\n    namn: 'Alk,S Elservice Handelsbolag',\n    ort: 'Norrsundshage, Möja',\n    bas: 'Norrsundshage, Möja',\n    yrken: ['elektriker'],\n    orgnr: '916637-1568',\n    oar: ['moja'],\n    kalla: { niva: 'elregister', url: 'https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11093378', last: '2026-11-17' },\n    behorighet: 'bekraftad',\n    behorighetKalla: 'https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11093378',\n    verifierad: false,\n  },\n",
+  "rader": [
+   "lag3b-N026",
+   "lag3b-N027"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.brannoforeningen.se/kulturevenemang/dans-pa-branno-brygga/ — \"Brännö Brygga är vackert belägen i Brännö Husvik med utblick mot västerhavet och Vinga fyr\", \"Torsdag 25 juni kl 19.30 – 22.00\", \"Torsdag 30 juli kl 19.30 – 22.00\", \"Lördag 8 aug kl 19.30 – 22.00\" (läst 2026-09-27)\n      // KÄLLA: https://www.goteborg.com/platser/branno — \"Vill du uppleva den klassiska dansen på Brännö brygga tar du båten till Husvik på sydvästra sidan\" (läst 2026-09-27). Samma sida har en bildtext som säger \"dans vid Rödstens brygga\" – den motsägs av arrangören, Styrsöbolaget och sidans egen brödtext.\n      // KÄLLA: https://transdev.se/wp-content/uploads/sites/5/2026/03/25-056-Annons-Ockero-Tidning-252x370-3.pdf — \"STENPIREN – BRÄNNÖ HUSVIK\" (läst 2026-09-27)\n      // Rättad 2026-11-17 (Lag 3 b, punkt 4): att ön är känd genom Lasse Dahlquists visa stod bara hos Göteborg & Co (nivå 3), och historia kräver nivå 1. Struket; arrangörens egen uppgift om dansen i stället.\n      // KÄLLA: https://www.brannoforeningen.se/kulturevenemang/dans-pa-branno-brygga/ — \"Vi är beroende av våra funktionärer för att kunna hålla i danserna.\" (läst 2026-11-17)\n      'Dansen på Brännö brygga ordnas av Brännöföreningen, som enligt egen uppgift är beroende av sina funktionärer för att kunna hålla i danserna. Bryggan ligger i Husvik på öns sydvästra sida, med utsikt mot västerhavet och Vinga fyr. Sommaren 2026 var det dans på torsdagar från 25 juni till 30 juli och en avslutning lördag 8 augusti, kl. 19.30 till 22.00 med olika band. Styrsöbolagets M/S Kungsö gick då en kvällstur från Stenpiren i Göteborg till Brännö Husvik.',",
+  "ny": "      // Rättad 2026-11-17 (Lag 3 b, Redaktörens beslut): dansens klockslag strukna; källistan publicerar citaten, och de ska vara utan klockslag (förtydligande 14).\n      // KÄLLA: https://www.brannoforeningen.se/kulturevenemang/dans-pa-branno-brygga/ — \"Brännö Brygga är vackert belägen i Brännö Husvik med utblick mot västerhavet och Vinga fyr\"; \"Torsdag 25 juni\"; \"Torsdag 30 juli\"; \"Lördag 8 aug\"; \"Band: Brännöpojkarna\" (läst 2026-11-17)\n      // KÄLLA: https://www.goteborg.com/platser/branno — \"Vill du uppleva den klassiska dansen på Brännö brygga tar du båten till Husvik på sydvästra sidan\" (läst 2026-09-27). Samma sida har en bildtext som säger \"dans vid Rödstens brygga\" – den motsägs av arrangören, Styrsöbolaget och sidans egen brödtext.\n      // KÄLLA: https://transdev.se/wp-content/uploads/sites/5/2026/03/25-056-Annons-Ockero-Tidning-252x370-3.pdf — \"STENPIREN – BRÄNNÖ HUSVIK\" (läst 2026-09-27)\n      // Rättad 2026-11-17 (Lag 3 b, punkt 4): att ön är känd genom Lasse Dahlquists visa stod bara hos Göteborg & Co (nivå 3), och historia kräver nivå 1. Struket; arrangörens egen uppgift om dansen i stället.\n      // KÄLLA: https://www.brannoforeningen.se/kulturevenemang/dans-pa-branno-brygga/ — \"Vi är beroende av våra funktionärer för att kunna hålla i danserna.\" (läst 2026-11-17)\n      'Dansen på Brännö brygga ordnas av Brännöföreningen, som enligt egen uppgift är beroende av sina funktionärer för att kunna hålla i danserna. Bryggan ligger i Husvik på öns sydvästra sida, med utsikt mot västerhavet och Vinga fyr. Sommaren 2026 var det dans på torsdagar från 25 juni till 30 juli och en avslutning lördag 8 augusti, med olika band. Styrsöbolagets M/S Kungsö gick då en kvällstur från Stenpiren i Göteborg till Brännö Husvik.',",
+  "rader": [
+   "lag3b-N001"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.brannoforeningen.se/kulturevenemang/dans-pa-branno-brygga/ — \"Brännö Brygga är vackert belägen i Brännö Husvik\", \"Brännö Rödsten (gångavstånd cirka 30 minuter till Brännö Brygga)\", \"Le Shack har som vanligt öppet under danserna\" (läst 2026-09-27)\n      // KÄLLA: https://brannoforeningen.se/kulturevenemang/kafe-husvik/ — \"Brännöföreningen har inför säsongen 2026 återigen arrenderat ut kiosk/kaféet i Husvik till Sebastian Pilups som här driver Le Shack\", \"Kaféet ligger i direkt anslutning till färjelägret Brännö Husvik\" (läst 2026-09-27)\n      { icon: '💃', name: 'Dans på Brännö brygga', desc: 'Bryggan ligger i Husvik. Sommartid, med levande band kl. 19.30 till 22.00 till 2026 på torsdagar 25 juni till 30 juli och lördag 8 augusti. Kaféet Le Shack vid färjeläget i Husvik har öppet under danserna. Kommer du med båten till Rödsten är det cirka 30 minuters promenad till bryggan.' },",
+  "ny": "      // Rättad 2026-11-17 (Lag 3 b, Redaktörens beslut): dansens klockslag strukna (förtydligande 14).\n      // KÄLLA: https://www.brannoforeningen.se/kulturevenemang/dans-pa-branno-brygga/ — \"Brännö Brygga är vackert belägen i Brännö Husvik\"; \"Torsdag 25 juni\"; \"Torsdag 30 juli\"; \"Lördag 8 aug\"; \"Brännö Rödsten (gångavstånd cirka 30 minuter till Brännö Brygga)\"; \"Le Shack har som vanligt öppet under danserna\" (läst 2026-11-17)\n      // KÄLLA: https://brannoforeningen.se/kulturevenemang/kafe-husvik/ — \"Brännöföreningen har inför säsongen 2026 återigen arrenderat ut kiosk/kaféet i Husvik till Sebastian Pilups som här driver Le Shack\", \"Kaféet ligger i direkt anslutning till färjelägret Brännö Husvik\" (läst 2026-09-27)\n      { icon: '💃', name: 'Dans på Brännö brygga', desc: 'Bryggan ligger i Husvik. Sommartid dans till levande band, 2026 på torsdagar 25 juni till 30 juli och lördag 8 augusti. Kaféet Le Shack vid färjeläget i Husvik har öppet under danserna. Kommer du med båten till Rödsten är det cirka 30 minuters promenad till bryggan.' },",
+  "rader": [
+   "lag3b-N028"
+  ]
  }
 ]
