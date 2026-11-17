@@ -308,7 +308,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  hasRoute={ruttArAnvandbar(routePoints)}
  hasStats={talFinns}
  />
- <TripActions tripId={trip.id} ownerId={trip.user_id} />
+ <TripActions tripId={trip.id} ownerId={trip.user_id} username={userRow?.username ?? null} locationName={trip.location_name} />
  </div>
 
  {/* Location + pinnar + matched-route overlay at bottom */}

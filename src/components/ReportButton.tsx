@@ -11,17 +11,44 @@ interface Props {
   label?: string
   /** Om true renderas knappen utan ram (för inlining i ⋯-menyer) */
   bare?: boolean
+  /**
+   * Styr dialogen utifrån. Då ritas ingen egen trigger, så en meny kan
+   * öppna samma flöde utan att knappen avmonteras när menyn stängs.
+   */
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
 }
 
-export default function ReportButton({ targetType, targetId, label = 'Anmäl', bare = false }: Props) {
-  const [open, setOpen]     = useState(false)
+export default function ReportButton({
+  targetType, targetId, label = 'Anmäl', bare = false, open: openProp, onOpenChange,
+}: Props) {
+  const [innerOpen, setInnerOpen] = useState(false)
+  const controlled = openProp !== undefined
+  const open = controlled ? openProp : innerOpen
   const [reason, setReason] = useState<ReportReason | ''>('')
   const [note, setNote]     = useState('')
   const [busy, setBusy]     = useState(false)
   const [done, setDone]     = useState<'sent' | 'already' | null>(null)
   const [err, setErr]       = useState<string | null>(null)
+  const [seenOpen, setSeenOpen] = useState(open)
 
-  function openDialog() { setOpen(true); setDone(null); setErr(null); setReason(''); setNote('') }
+  if (open !== seenOpen) {
+    setSeenOpen(open)
+    if (open) {
+      setDone(null)
+      setErr(null)
+      setReason('')
+      setNote('')
+      setBusy(false)
+    }
+  }
+
+  function setOpen(next: boolean) {
+    if (!controlled) setInnerOpen(next)
+    onOpenChange?.(next)
+  }
+
+  function openDialog() { setOpen(true) }
   function closeDialog() { setOpen(false) }
 
   async function submit() {
@@ -44,8 +71,8 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
 
   return (
     <>
-      {/* Trigger */}
-      {bare ? (
+      {/* Trigger. Döljs när dialogen styrs utifrån. */}
+      {!controlled && (bare ? (
         <button
           onClick={openDialog}
           className="press-feedback"
@@ -69,7 +96,7 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
         >
           {label}
         </button>
-      )}
+      ))}
 
       {/* Dialog */}
       {open && createPortal(

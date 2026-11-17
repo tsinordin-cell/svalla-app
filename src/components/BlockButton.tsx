@@ -1,5 +1,7 @@
 'use client'
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
+import { Ban } from '@/components/icons/LucideIcons'
 import Icon from '@/components/Icon'
 
 interface Props {
@@ -8,10 +10,12 @@ interface Props {
   initialBlocked: boolean
   /** Renderas inline (ingen ram) — för inlining i profilmenyer */
   bare?: boolean
+  /** Hel rad i turmenyn: neutral text, samma bekräftelse som annars. */
+  menu?: boolean
 }
 
 export default function BlockButton({
-  targetUserId, targetUsername, initialBlocked, bare = false,
+  targetUserId, targetUsername, initialBlocked, bare = false, menu = false,
 }: Props) {
   const [blocked, setBlocked] = useState(initialBlocked)
   const [confirm, setConfirm] = useState(false)
@@ -46,9 +50,37 @@ export default function BlockButton({
     setBusy(false)
   }
 
+  const namn = targetUsername ? `@${targetUsername}` : 'personen'
+  const radText = blocked ? `Avblockera ${namn}` : `Blockera ${namn}`
+
   return (
     <>
-      {bare ? (
+      {menu ? (
+        <button
+          type="button"
+          onClick={() => blocked ? doUnblock() : setConfirm(true)}
+          disabled={busy}
+          className="press-feedback"
+          aria-label={blocked ? `Avblockera ${targetUsername || 'användaren'}` : `Blockera ${targetUsername || 'användaren'}`}
+          style={{
+            width: '100%', minHeight: 48, padding: '8px 10px', borderRadius: 14, border: 'none',
+            background: 'none', cursor: busy ? 'wait' : 'pointer',
+            display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left',
+            color: 'var(--txt)', opacity: busy ? 0.6 : 1,
+          }}
+        >
+          <span aria-hidden style={{
+            width: 36, height: 36, borderRadius: 12, flexShrink: 0,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'rgba(10,123,140,0.05)', color: 'var(--txt3)',
+          }}>
+            <Ban size={18} />
+          </span>
+          <span style={{ fontSize: 15, fontWeight: 600, flex: 1 }}>
+            {busy ? 'Vänta…' : radText}
+          </span>
+        </button>
+      ) : bare ? (
         <button
           onClick={() => blocked ? doUnblock() : setConfirm(true)}
           disabled={busy}
@@ -83,8 +115,8 @@ export default function BlockButton({
         <div style={{ fontSize: 11, color: 'var(--red)', marginTop: 4 }}>{err}</div>
       )}
 
-      {/* Bekräftelsedialog */}
-      {confirm && (
+      {/* Bekräftelsedialog. Portal så att ett ark med overflow inte klipper den. */}
+      {confirm && typeof document !== 'undefined' && createPortal(
         <div
           style={{
             position: 'fixed', inset: 0, zIndex: 1300,
@@ -140,7 +172,8 @@ export default function BlockButton({
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   )
