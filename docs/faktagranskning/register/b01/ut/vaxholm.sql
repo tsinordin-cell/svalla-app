@@ -15,7 +15,8 @@ update restaurants set description = 'Magasinet i Waxholm är en bistro vid vatt
 
 -- restaurants.vaxholms-fastning-cafe.island (vaxholm-0420)
 -- FÖRE: 'Kastellet'
--- KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/vaxholms-kastell — "På ön Vaxholmen ett stenkast från skärgårdens huvudstad Vaxholm ligger Vaxholms kastell." (läst 2026-10-31)
+-- Rättad 2026-11-16 (omarbete 4f, slut-04 utanför-k067): SFV-citatet «På ön Vaxholmen ett stenkast …» syns inte längre på sfv.se; läget beläggs nu av länsmuseet.
+-- KÄLLA: https://stockholmslansmuseum.se/besoksmal/vaxholms-fastning/ — "Det nuvarande Vaxholms kastell på Vaxholmen utanför Vaxholms samhälle byggdes 1833-1863." (läst 2026-11-16)
 -- KÄLLA: https://www.openstreetmap.org/query?lat=59.4032&lon=18.3584 — "Fort Vaxholms Kastell", "Kustlinje Vaxholmen" (läst 2026-10-31)
 update restaurants set island = 'Vaxholmen' where slug = 'vaxholms-fastning-cafe' and island = 'Kastellet';
 
@@ -115,3 +116,22 @@ update restaurants set formatted_address = 'Kastellet, 185 99 Vaxholm' where slu
 -- FÖRE: null (platsexporten docs/faktagranskning/platser-export-2026-10-29.json; inte prövat med SELECT)
 -- KÄLLA: https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "I Tenöreservatet på Bogesund ligger denna badplats som är en av Vaxholms mest besökta.", "Du når detta bad efter att du kört över Pålsundsbron från Vaxön till Bogesundslandet." (läst 2026-11-10)
 update restaurants set island = 'Bogesundslandet' where slug = 'tenobadet' and island is null;
+
+-- ════════════════════════════════════════════════════════════════════════
+-- OMARBETE 4F, DEL A (Granskaren/Skribenten 2026-11-16)
+-- Inget är kört. Databasen gick inte att läsa: FÖRE-värdena är tagna ur registret
+-- respektive ur den publicerade sidan svalla.se/upptack/… 2026-11-16.
+-- FÖRE-värdet prövas med SELECT av Redaktören innan satsen körs.
+-- ════════════════════════════════════════════════════════════════════════
+
+-- restaurants.vaxholm-waxholms-camping.type — vaxholm-0664 (slut-03 k077, FEL: platsen är en camping, inte ett hotell) och Toms beslut 4: typen camping, som för Utö camping (uto.sql).
+-- KÖR SATSEN FÖRST NÄR KODEN STÖDER TYPEN camping (mallarnas runda 5), som för uto-camping-och-stugor.
+-- KÄLLA: https://waxholmscamping.com/ — "Sommarcamping & stugor"; "Stugor, camping, tält & glamping 1 maj–30 september."; "Vintercamping & stugor (långtid)" (läst 2026-11-16, i Chromium)
+-- FÖRE: 'hotel' (registret, vaxholm-0664). FÖRE-värdet prövas med SELECT av Redaktören.
+update restaurants set type = 'camping', updated_at = now() where slug = 'vaxholm-waxholms-camping' and type = 'hotel';
+
+-- restaurants.magasinet-gustavsberg.core_experience ("Varför hit?" på /upptack/magasinet-gustavsberg) — vaxholm-N027 (slut-05 utanför-1): texten talade om Gustavsbergs hamn, men Magasinet ligger i Vaxholm.
+-- KÄLLA: https://www.magasinetwaxholm.se/ — "Idag består Magasinet i Waxholm sav Bistro, Inredningsbutik, festlokal och yogastudio." (läst 2026-11-16, i Chromium); "Magasinet i Waxholm, Fiskaregatan 1 , 185 32 Vaxholm" (läst 2026-11-16, sidfoten i curl)
+-- FÖRE: 'Gamla magasinslokaler, god mat och Gustavsbergs pittoreska hamn – ett genuint alternativ till turistkrogarna.' (ur den publicerade sidan svalla.se/upptack/magasinet-gustavsberg, rutan Varför hit?, 2026-11-16; inte i registret). FÖRE-värdet prövas med SELECT av Redaktören.
+-- Obs: posten har också taggen 'gustavsberg' (samma sida); den rättas inte här.
+update restaurants set core_experience = 'Bistro, inredningsbutik, festlokal och yogastudio under samma tak på Fiskaregatan 1 i Vaxholm.', updated_at = now() where slug = 'magasinet-gustavsberg' and core_experience = 'Gamla magasinslokaler, god mat och Gustavsbergs pittoreska hamn – ett genuint alternativ till turistkrogarna.';

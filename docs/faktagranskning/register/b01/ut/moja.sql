@@ -62,6 +62,9 @@ update restaurants set name = 'Bastu på Stora Kalholmen' where slug = 'bastuhus
 update restaurants set type = 'restaurant' where slug = 'moja-bageri' and type = 'cafe';
 
 -- restaurants.moja-bageri.description (moja-0619 FEL → RÄTTA; moja-0618 KÄLLA ny)
+-- Omarbete 4f (2026-11-16, sl04-k016): satsen är oförändrad. Kontrollanten läste den publicerade texten (FÖRE), där meningen om 2019 och
+--   "bakats sedan 1951" är otillskrivna. SET-texten tillskriver båda värdshuset ("Enligt värdshuset startade bageriet 1951, och 2019 tog …"),
+--   som förtydligande 19 kräver. Citaten är lästa igen 2026-11-16 (mojavardshusochbageri.se).
 -- Sidan säger att bageriets historia börjar 1951 och att ny bageriutrustning köptes 2019 för att återta bageripositionen, inte att det har bakats där sedan 1951.
 -- Omarbete 4b (mo4014, granskare-skribent.md punkt 19): ägarbytet 2019, renoveringen för en större matsal och utrustningen är verksamheten om sig själv
 --   och står tillskrivna värdshuset. Rummen går bara att boka 18 juni–15 augusti enligt bokningssidan, som inte anger år; raden läses om före publiceringen.
@@ -119,3 +122,15 @@ update restaurants set type = 'hostel' where slug = 'moja-stf-moja-gard' and typ
 -- KÄLLA: https://mojavandrarhem.se/ — "Vandrarhemmet har öppet från april till december", "Vandrarhemmet ligger utmed landsvägen i huvudbyn Berg på södra Möja, och inom promenadavstånd från huset finns den året-runt-öppna matbutiken Coop (300m)." (läst 2026-11-09)
 -- KÄLLA: https://konsummoja.se/ — "Den stora butiken på Möja och som har öppet året runt." (läst 2026-11-09)
 update restaurants set description = 'Möja vandrarhem är ett familjedrivet STF-vandrarhem vid landsvägen i Berg på södra Möja, med rum för två eller fyra personer och självhushåll. Det har öppet april–december och hyr ut cyklar, kajak, SUP, roddbåt och vattenskoter, och via systerföretaget Möja Outdoor går det att ordna transport med båt eller fyrhjuling med släp. Coop Berg, som har öppet året runt, ligger 300 meter bort.' where slug = 'moja-stf-moja-gard' and description = 'Möja vandrarhem är ett familjedrivet STF-vandrarhem vid landsvägen i Berg på södra Möja, med rum för två eller fyra personer och självhushåll. Det har öppet april–december och hyr ut cyklar, och via systerföretaget Möja Outdoor går det att hyra kajak, SUP, roddbåt och vattenskoter. Coop, som har öppet året runt, ligger 300 meter bort.';
+
+-- ===== Omarbete 4f (2026-11-16, Granskaren och Skribenten, del B) =====
+-- restaurants.loka-gasthamn.island (moja-0402, sl01-k111): ingen UPDATE, källan byts från Nominatim till ö-relationen.
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/relation/8346534/full — "Möja", "island" (läst 2026-11-16); uppmätt (punkt i polygon, haversine): punkten 59.4106731, 18.8968738 ligger inuti Möjas strandlinje, 5 m från närmaste strandnod.
+
+-- restaurants.bastuhuset (moja-0570–0576, slut-05 utanför-2): ingen ny UPDATE. Satserna ovan (namn, beskrivning, website null) står kvar.
+-- Bastun ligger på Stora Kalholmen, inte på Möja eller Finnhamn: island står kvar som null (posten listas bara som "i närheten" av Möja genom radien).
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/way/222662304/full — "Stora Kalholmen", "islet" (läst 2026-11-16); uppmätt: nålen 59.4521226, 18.8230902 ligger inuti holmens strandlinje, 13 m från närmaste strandnod.
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/way/247542022/full — "Bastuhuset", "sauna" (läst 2026-11-16); byggnaden har STF Stora Kalholmens sida som website i OpenStreetMap.
+-- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-stora-kalholmen-vandrarhem/ — "Stora Kalholmen är belägen i mellersta skärgården mellan Finnhamn och Möja.", "Bastu finns." (läst 2026-11-16)
+-- finnhamn.se (läst 2026-11-16) har en länk "Boka bastu" men nämner varken Stora Kalholmen eller Bastuhuset. Adressen "Finnhamn" på /upptack/bastuhuset kommer från
+-- Google Places (formatted_address); FÖRE-värdet kan inte läsas härifrån, så ingen sats skrivs. Se rapporten omarbete4f-b.md.

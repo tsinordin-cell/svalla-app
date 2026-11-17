@@ -65,3 +65,15 @@ update restaurants set description = 'Brännö Värdshus är en restaurang på B
 -- branno-husvik-gasthamn.latitude/.longitude — styrso-0410 (SAKNAS, MÄTT): ingen UPDATE. Hamnens egen uppgift (Brännö Båtägare
 -- Förening) säger bara att gästbryggan ligger i Husvik, och OpenStreetMap har ingen gästbrygga där, bara färjeläget och pirer utan namn.
 -- KÄLLA: https://www.brannobatagare.se/hamnar/husvik/ — "Det finns en gästbrygga i Husvik"; "Husvik har en ramp och en truck för lyft upp till 3000 kg." (läst 2026-11-09)
+
+-- ===== Omarbete 4f (2026-11-16, Granskaren och Skribenten, del B) =====
+-- donso-hamnkrog (sl09-k010, sl09-k017; styrso-0306–0314, N027, N028, N034): posten är Isbolaget Hotell & Restaurang (Toms beslut 7). Namn, text, webbplats och nål
+-- byts redan i satserna ovan. Telefonen var Donsö gästhamns nummer (samma nummer visas på /upptack/donso-gasthamn) och byts till Isbolagets.
+-- FÖRE-värdet prövas med SELECT av Redaktören: select slug, phone from restaurants where slug = 'donso-hamnkrog'; (svalla.se visar '+46 31 97 17 32', länken tel:+4631971732).
+-- KÄLLA: https://www.isbolaget.com/ — "031–97 27 00", "Donsö Hamnväg 45" (läst 2026-11-16)
+-- KÄLLA: https://www.isbolaget.com/omoss — "Längst ut på piren i Donsö hamn, mitt i Göteborgs skärgård, ligger Isbolaget" (läst 2026-11-16)
+-- KÄLLA: https://api.openstreetmap.org/api/0.6/node/832457440 — "Isbolaget", "Donsö Hamnväg" (läst 2026-11-16); bara läget: nålen i satsen ovan är nodens läge. Telefonen beläggs av Isbolagets egen sida.
+update restaurants set phone = '031-97 27 00', updated_at = now() where slug = 'donso-hamnkrog' and phone = '+46 31 97 17 32';
+
+-- vrango-gasthamn.description (slut-04 utanför-k038): ingen ny sats. Satsen överst i filen stryker redan "Hamndjupet är 3,5–5 meter." (styrso-0493),
+-- eftersom djup bara beläggs av nivå 1 och enda källan var svenskagasthamnar.se (nivå 3). Kontrollerat 2026-11-16: SET-texten nämner inget djup.

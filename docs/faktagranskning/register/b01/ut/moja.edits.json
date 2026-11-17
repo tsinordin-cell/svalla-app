@@ -1,430 +1,433 @@
 [
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "    slug: 'moja',\n    name: 'Möja',\n    region: 'mellersta',\n    regionLabel: 'Mellersta skärgården',\n    emoji: 'island',\n    // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Kyrkan uppfördes 1768\"; https://konsummoja.se/ — \"Vi har livsmedelsbutikerna Coop Berg och Coop Långvik på Möja\" (läst 2026-09-27)\n    // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Möja värdshus\", \"Möja bageri\"; https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på\" (läst 2026-09-27). Bilfri och äkta skärgård saknade källa: ön har landsvägar, bilar och sommartid PerMobilen.\n    tagline: 'Byar, kyrka och lanthandel i Stockholms mellersta skärgård.',\n    seoTitle: 'Möja 2026 – båt dit, värdshus, bageri och vandring',\n    seoDescription: 'Guide till Möja: båt från Strömkajen, Sollenkroka eller Boda, värdshus och bageri i Berg, cykel, vandring i Björndalen och fem gästhamnar. Hur du tar dig dit och vad som finns på ön.',",
-  "ny": "    slug: 'moja',\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Möja – små byar och fiskehamnar\" (läst 2026-10-29)\n    name: 'Möja',\n    region: 'mellersta',\n    regionLabel: 'Mellersta skärgården',\n    emoji: 'island',\n    // KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-moja/ — \"Möja är en stor ö i Stockholms mellersta skärgård på gränsen till ytterskärgården, i Värmdö Kommun.\" (läst 2026-11-09)\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Möja – små byar och fiskehamnar\" (läst 2026-10-29)\n    // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Bebyggelsen är huvudsakligen lokaliserad i Berg\", \"här ligger även kyrka och kyrkogård\" (läst 2026-11-09)\n    // KÄLLA: https://konsummoja.se/ — \"Vi har livsmedelsbutikerna Coop Berg och Coop Långvik på Möja\" (läst 2026-10-29)\n    tagline: 'Byar, kyrka och lanthandel i Stockholms mellersta skärgård.',\n    // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Möja värdshus\", \"Möja bageri\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\" (läst 2026-10-29)\n    // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"naturstig går över ön till Ramsmora.\" (läst 2026-11-09)\n    seoTitle: 'Möja 2026 – båt dit, värdshus, bageri och vandring',\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"Strömkajen (Stockholm)\", \"Sollenkroka avg.\", \"Boda brygga avg.\" (läst 2026-10-29)\n    // KÄLLA: https://mojavardshusochbageri.se/v%C3%A4rdshuset.php — \"Bergs by 600, Möja\" (läst 2026-10-29)\n    // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på.\" (läst 2026-10-29)\n    // KÄLLA: https://visitmoja.se/vandra/ — \"där det går en vacker naturstig genom naturreservatet Björndalen\" (läst 2026-10-29)\n    // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — \"Långviks inre gästhamn\", \"Ramsmora gästhamn\", \"Löka gästhamn\", \"Kyrkviken\", \"Möjaström\" (läst 2026-10-29)\n    seoDescription: 'Guide till Möja: båt från Strömkajen, Sollenkroka eller Boda, värdshus och bageri i Berg, cykel, vandring i Björndalen och fem gästhamnar. Hur du tar dig dit och vad som finns på ön.',",
-  "rader": [
-   "moja-0001",
-   "moja-0002",
-   "moja-0005",
-   "moja-0006",
-   "moja-0007",
-   "moja-0008",
-   "moja-0012",
-   "moja-0013",
-   "moja-0018",
-   "moja-0392",
-   "moja-0393",
-   "moja-0016"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Huvudöarna Möja och Södermöja har cirka 250 bofasta\"; byarna Berg, Långvik, Ramsmora, Löka och Södermöja\n      'Möja ligger i Stockholms mellersta skärgård. Huvudöarna Möja och Södermöja har omkring 250 bofasta. Ön är avlång i nord-sydlig riktning, och landskapet växlar mellan skog, öppen mark och klippor längs hela sträckan.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Öns skola finns i Berg ... och har ca 25 elever från förskola till klass 9\"\n      'Öns skola ligger i Berg och har ett tjugofemtal elever från förskola till årskurs 9.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Kyrkan uppfördes 1768\" (renoverad på 1880-talet)\n      'Möja kyrka uppfördes 1768 och renoverades på 1880-talet.',\n      // KÄLLA: Waxholmsbolaget linje 14, https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-09-27). Strömkajen → Berg (Möja) utan byte: 3 h 10 min (sö 11.00–14.10) till 4 h 10 min (må–to 14.45–18.55); Sollenkroka → Berg 40–75 min (t.ex. 09.15–09.55, 11.15–12.30).\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja\", \"Vissa turer går också direkt från Strömkajen ut till Möja utan byte\", \"De mest trafikerade bryggorna på Möja är Möjaström och Berg, som båda ligger på öns sydligaste del\" (läst 2026-09-27)\n      // KÄLLA: SL buss 434, https://kund.printhuset-sthlm.se/sl/v433_434.pdf — \"434 Slussen–Vindö\", \"Sollenkroka brygga\" (Slussen 07.48 → Sollenkroka brygga 09.00, måndag–fredag); SL buss 438, https://kund.printhuset-sthlm.se/sl/v438.pdf — \"438 Slussen–Boda\" (Slussen 09.20 → Boda brygga 10.10) (läst 2026-09-27)\n      'Till Möja reser man med båt. Waxholmsbolagets linje 14 går från Strömkajen via Vaxholm, och vissa turer går hela vägen ut utan byte – enligt tidtabellen för vår och höst 2026 tar det mellan drygt tre och drygt fyra timmar till Berg. Snabbare är SL-buss 434 från Slussen till Sollenkroka brygga, drygt en timme, och båten därifrån, 40–75 minuter till Berg. Båtar går också året runt från Boda brygga på Värmdö, dit buss 438 går från Slussen. De mest trafikerade bryggorna är Möjaström och Berg på öns sydligaste del.',",
-  "ny": "      // KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-moja/ — \"Möja är en stor ö i Stockholms mellersta skärgård på gränsen till ytterskärgården, i Värmdö Kommun.\" (läst 2026-11-09)\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — \"Men kvar finns många små och smala åkerlappar som fortfarande är öppen mark.\" (läst 2026-11-09)\n      // KÄLLA: https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__MI__MI0812__MI0812A/OarEjBro01/ — \"Befolkning och bebyggelse på öar utan fastlandsförbindelse med bro, per ö\" (läst 2026-10-29), i tabellen Möja 203 och Södermöja 17 folkbokförda den 31 december 2020\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Möja är cirka 6 km lång och 4 km bred.\", \"En stor del av Möjas inre består av skog och på vissa ställen finns myrmark.\" (läst 2026-10-29)\n      'Möja ligger i Stockholms mellersta skärgård. På huvudöarna Möja och Södermöja var 220 personer folkbokförda den 31 december 2020, enligt SCB. Ön är avlång i nord-sydlig riktning; en stor del av det inre består av skog med myrmark på sina ställen, och många små åkerlappar är fortfarande öppen mark.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Öns skola finns i Berg norr om dansbanan\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Möja skola ligger cirka 1 kilometer från markanvisningsområdet, men\", \"är i dagsläget pausad på grund av för få barn. Barnen på Möja går idag\", \"på Djurö skola, dit de tar sig med skolskjuts via båt och buss.\", \"Dnr: 2023KS/0452 anbud Markanvisning Möja\" (läst 2026-11-09)\n      'Möja skola ligger i Berg, men när kommunen bjöd in till markanvisning för bostäder på ön 2023 var skolan pausad på grund av för få barn. Barnen gick då i Djurö skola och tog sig dit med skolskjuts med båt och buss.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Kyrkan uppfördes 1768 och ersatte ett äldre kapell på samma plats.\" (läst 2026-10-29)\n      'Möja kyrka uppfördes 1768 och ersatte ett äldre kapell på samma plats.',\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gods ombord, förseningar på upp till 30 minuter kan förekomma.\" (läst 2026-10-29). Uppmätt i tabell 14A: Strömkajen → Berg utan byte 3 h 10 min–4 h 10 min, tur 1201 på onsdagar 6 h 20 min; Sollenkroka → Berg 40–75 min.\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja.\", \"Vissa turer går också direkt från Strömkajen ut till Möja utan byte.\", \"De mest trafikerade bryggorna på Möja är Möjaström och Berg, som båda ligger på öns sydligaste del.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v434.pdf — \"Slussen–Överby\", \"Sollenkroka brygga 2)\", \"2) Endast vissa turer.\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\" (läst 2026-11-03); uppmätt 2026-10-29: Slussen → Sollenkroka brygga 71–78 min\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v438.pdf — \"Slussen–Boda\" (läst 2026-10-29)\n      'Till Möja reser man med båt. Waxholmsbolagets linje 14 går från Strömkajen via Vaxholm, och vissa turer går hela vägen ut utan byte – enligt tidtabellen för vår och höst 2026 tar de flesta mellan drygt tre och drygt fyra timmar till Berg, och onsdagarnas tur med gods ombord drygt sex timmar. Snabbare är SL-buss 434 från Slussen till Sollenkroka brygga (bara vissa turer på linjen går dit), drygt en timme, och båten därifrån, 40–75 minuter till Berg. Båtar går också året runt från Boda brygga på Värmdö, dit buss 438 går från Slussen. De mest trafikerade bryggorna är Möjaström och Berg på öns sydligaste del.',",
-  "rader": [
-   "moja-0088",
-   "moja-0090",
-   "moja-0092",
-   "moja-0093",
-   "moja-0095",
-   "moja-0101",
-   "moja-0102",
-   "moja-0103",
-   "moja-0105",
-   "moja-0086",
-   "moja-0091",
-   "moja-N025"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Roland Svensson (1910-2003)\"; https://www.rolandsvenssonmuseet.se/roland-svensson-museet/ — \"målar- och skrivarhörnorna. Dessa har sedan Rolands bortgång 2003 bevarats i hans gamla ateljé på Tornö och allt är nu flyttat till det nybyggda museet vid Ramsmora ångbåtsbrygga, där även en glasad vägg ger ett vidunderligt perspektiv\"; \"Museet öppnade 2014\" (läst 2026-09-19)\n      'Roland Svensson-museet ligger vid Ramsmora brygga. Roland Svensson (1910–2003) skildrade skärgården och dess människor i bild och text, och hans målar- och skrivarhörnor flyttades 2014 från ateljén på Tornö till det nybyggda museet. En glasvägg vetter ut mot det landskap han arbetade med.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — Björndalens naturreservat, Storö-Bockö-Lökaö naturreservat och Granholmens naturreservat\n      'Tre naturreservat ligger i och kring Möja: Björndalens, Storö-Bockö-Lökaö och Granholmens.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"För Möjaborna var fisket den mest betydelsefulla inkomstkällan till långt in på 1980-talet\"",
-  "ny": "      // KÄLLA: https://collection.nationalmuseum.se/en/artists/artist/3475 — \"Roland Svensson (1910 - 2003)\" (läst 2026-11-09)\n      // KÄLLA: https://arken.kb.se/SE-S-HS-Acc2010-65 — \"Svensson, Roland (1910-2003)\" (läst 2026-11-09)\n      // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Hans skildringar av den stockholmska skärgården och dess innevånare\", \"Adress: Ramsmora brygga Möja\" (läst 2026-11-09)\n      // KÄLLA: https://www.rolandsvenssonmuseet.se/roland-svensson-museet/ — \"I museet speglas Rolands obändiga arbetslust ända ned till de konkreta arbetsplatserna i form av målar- och skrivarhörnorna.\", \"Museet öppnade 2014\", \"en glasad vägg ger ett vidunderligt perspektiv ut mot den skärgård, Nassa och Gillöga, som låg Roland varmast om hjärtat.\" (läst 2026-11-09)\n      'Roland Svensson-museet ligger vid Ramsmora brygga. Roland Svensson (1910–2003) skildrade skärgården och dess människor i bild och text, och i museet, som öppnade 2014, finns hans målar- och skrivarhörnor. En glasvägg ger utsikt mot Nassa och Gillöga, den skärgård som enligt museet låg honom varmast om hjärtat.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Björndalens naturreservat\", \"Storö-Bockö-Lökaö naturreservat (utanför karta)\", \"Granholmens naturreservat (utanför karta)\" (läst 2026-10-29)\n      'Tre naturreservat ligger i och kring Möja: Björndalens, Storö-Bockö-Lökaö och Granholmens.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"för Möjaborna var fisket den mest betydelsefulla inkomstkällan till långt in på 1980-talet\" (läst 2026-10-29)",
-  "rader": [
-   "moja-0134",
-   "moja-0136",
-   "moja-0137",
-   "moja-0138",
-   "moja-0139",
-   "moja-0140",
-   "moja-0141",
-   "moja-0131",
-   "moja-0133",
-   "moja-0135"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — \"Ryssugnarna som ryska soldater lagade mat i under sina härjningar i skärgården 1719\" återstår fortfarande (läst 2026-09-30)\n      'När den ryska flottan härjade kusten 1719 brändes all bebyggelse på Möja utom det lilla kapellet i Berg. Spåren finns kvar i landskapet i form av ryssugnar — de eldstäder där de ryska soldaterna lagade mat.',\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — \"Längs Möjas och Södermöjas östra kust har det funnits skyddade hamnvikar som lockat till sig bebyggelse ända sedan medeltiden\"; \"Vid 1800-talets mitt fanns där 74 gårdar\"; \"Det goda fisket var basen för försörjningen\"; jordgubbsodlingen blomstrade \"från sekelskiftet 1900 och en bit in på 1970-talet\"; \"Möja fick fast ångbåtsförbindelse 1906\" (läst 2026-09-30)\n      'De skyddade hamnvikarna längs Möjas och Södermöjas östra kust har lockat bebyggelse sedan medeltiden, och vid 1800-talets mitt fanns 74 gårdar där. Fisket var basen för försörjningen, men från sekelskiftet 1900 och en bit in på 1970-talet var jordgubbsodling en blomstrande näring på ön. Fast ångbåtsförbindelse kom 1906.',",
-  "ny": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — \"de så kallade ryssugnarna som ryska soldater lagade mat i under sina härjningar i skärgården 1719\" (läst 2026-10-29)\n      'När den ryska flottan härjade kusten 1719 brändes all bebyggelse på Möja utom det lilla kapellet i Berg. Spåren finns kvar i landskapet i form av ryssugnar — de eldstäder där de ryska soldaterna lagade mat.',\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — \"Längs Möjas och Södermöjas östra kust har det funnits skyddade hamnvikar som lockat till sig bebyggelse ända sedan medeltiden.\", \"Vid 1800-talets mitt fanns där 74 gårdar.\", \"Det goda fisket var basen för försörjningen.\", \"Det var också där och på öarna norr om Långvik som jordgubbsodlingarna fanns när denna näring var som störst från sekelskiftet 1900 och en bit in på 1970-talet.\", \"Möja fick fast ångbåtsförbindelse 1906\" (läst 2026-10-29)\n      'De skyddade hamnvikarna längs Möjas och Södermöjas östra kust har lockat bebyggelse sedan medeltiden, och vid 1800-talets mitt fanns 74 gårdar där. Fisket var basen för försörjningen, och från sekelskiftet 1900 och en bit in på 1970-talet odlades också jordgubbar – på öarna öster om Möja och norr om Långvik. Fast ångbåtsförbindelse kom 1906.',",
-  "rader": [
-   "moja-0155",
-   "moja-0156",
-   "moja-0161",
-   "moja-0162"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/granholmen.html — \"Skyddat sedan: 1978, utvidgat 2018\"; \"Storlek: 39 hektar varav land 18 hektar\"; Värmdö; Skärgårdsstiftelsen; arter \"blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad\"; naturhamnen Munkhamnen; tältning högst två dygn per plats (läst 2026-09-30)\n      'Granholmens naturreservat är litet: 39 hektar, varav 18 hektar land, skyddat sedan 1978 och utvidgat 2018. Det som gör det värt besväret är floran i de öppna betesmarkerna — blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad. Naturhamnen Munkhamnen ligger i området, och tältning är begränsad till två dygn per plats.',",
-  "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/granholmen.html — \"Skyddat sedan: 1978, utvidgat 2018\", \"Storlek: 39 hektar varav land 18 hektar\", \"Reservatet ligger på nordvästra delen av Granholmen, 2,5 kilometer söder om Möja.\", \"På kulturmarkerna som betats hittar du bland annat blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad.\", \"Munkhamnen är en utmärkt och välbesökt naturhamn.\", \"man får bara tälta två dygn på samma plats\" (läst 2026-10-29)\n      'Granholmens naturreservat är litet: 39 hektar, varav 18 hektar land, skyddat sedan 1978 och utvidgat 2018. Reservatet ligger 2,5 kilometer söder om Möja, och i de betade kulturmarkerna växer bland annat blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad. Naturhamnen Munkhamnen ligger i området, och tältning är begränsad till två dygn per plats.',",
-  "rader": [
-   "moja-0201",
-   "moja-N001"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — klippbad i Långvik, Ramsmora, Löka och Berg; vid Saltvik finns \"både badklippor och sandstrand\"; \"Det finns ett fåtal badplatser... men inga anlagda badplatser\"; gästhamnar i Långvik, Ramsmora, Löka och Kyrkviken; \"Möjaborna är mångsysslare, här finns runt 60 företag\"\n      'Det finns klippbad i Långvik, Ramsmora, Löka och Berg, och vid Saltvik både badklippor och sandstrand — men inga anlagda badplatser. Gästhamnar finns i Långvik, Ramsmora, Löka och Kyrkviken. Kommunen beskriver möjaborna som mångsysslare: på ön finns omkring sextio företag.',\n    ],\n    facts: {\n      // KÄLLA: Waxholmsbolaget linje 14, https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-09-27). Sollenkroka → Berg 40–75 min; Strömkajen → Berg utan byte 3 h 10 min–4 h 10 min. Tidigare källa (Värmdö-foldern 2022: båt drygt 1 timme) ersatt.\n      // Kortad 2026-09-23: faktakortet ska gå att läsa på en blick; hela restiden står i brödtexten och på /komma-dit.\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Möjaborna\", \"är mångsysslare, här finns runt 60 företag\", \"ca 25 elever från förskola till klass 9\" (läst 2026-09-27)\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"Det finns verksamheter på\", \"MÖJA året runt\" (läst 2026-09-27); https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"sommartid dubbleras antalet matställen\" (läst 2026-09-27)\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på\"; https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"På Möja går leden längs landsvägen från Långvik till Hamn\"; https://visitmoja.se/g%C3%A4sthamnar/ — \"Möja är populärt bland båtfolket\" (läst 2026-09-27)\n      travel_time: 'Båt 40–75 min från Sollenkroka · ca 3–4 tim från Strömkajen',\n      character: 'Bofast ö med skola, två Coop och runt 60 företag',\n      season: 'Året runt; flest verksamheter öppna sommartid',\n      best_for: 'Cykel, vandring i Björndalen, båtfolk',",
-  "ny": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Möjlighet till klippbad finns i t.ex. Långvik, Ramsmora, Löka och Berg.\", \"Vid Saltvik finns både badklippor och sandstrand.\", \"men inga anlagda badplatser\", \"På själva Möja finns gästhamnar i Långvik, Ramsmora, Löka och Kyrkviken.\", \"är mångsysslare, här finns runt 60 företag\", \"Copyright 2018 © Värmdö kommun.\" (läst 2026-10-29)\n      'Det finns klippbad i Långvik, Ramsmora, Löka och Berg, och vid Saltvik både badklippor och sandstrand — men inga anlagda badplatser. Gästhamnar finns i Långvik, Ramsmora, Löka och Kyrkviken. I kommunens Möjafolder från 2018 beskrivs möjaborna som mångsysslare med runt 60 företag på ön.',\n    ],\n    facts: {\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gods ombord, förseningar på upp till 30 minuter kan förekomma.\" (läst 2026-10-29). Uppmätt: Sollenkroka → Berg 40–75 min; Strömkajen → Berg utan byte 3 h 10 min–4 h 10 min, tur 1201 på onsdagar 6 h 20 min.\n      // Kortad 2026-09-23: faktakortet ska gå att läsa på en blick; hela restiden står i brödtexten och på /komma-dit.\n      travel_time: 'Båt 40–75 min från Sollenkroka · 3 h 10 min–4 h 10 min från Strömkajen, onsdagarnas tur med gods ombord 6 h 20 min',\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Idag bor runt 200 personer permanent på Möja\", \"här finns runt 60 företag\", \"är i dagsläget pausad på grund av för få barn.\" (läst 2026-11-09)\n      // KÄLLA: https://konsummoja.se/ — \"Vi har livsmedelsbutikerna Coop Berg och Coop Långvik på Möja\" (läst 2026-11-09)\n      character: 'Bofast ö med två Coop och runt 60 företag; runt 200 personer bor här permanent (kommunen 2023)',\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Här finns en matbutik\", \"som är öppen året runt\", \"Waxholmsbolagets båtar lägger till\", \"året om, även när isen ligger.\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ (Möja turistförening, nivå 3) — \"sommartid dubbleras antalet matställen\" (läst 2026-11-09)\n      season: 'Året runt; flest verksamheter öppna sommartid',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på\"; https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"På Möja går leden längs landsvägen från Långvik till Hamn\"; https://visitmoja.se/g%C3%A4sthamnar/ — \"Möja är populärt bland båtfolket\" (läst 2026-09-27)\n      best_for: 'Cykel, vandring i Björndalen, båtfolk',",
-  "rader": [
-   "moja-0218",
-   "moja-0219",
-   "moja-0031",
-   "moja-0036",
-   "moja-0033",
-   "moja-0034",
-   "moja-0035",
-   "moja-0037",
-   "moja-N024"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.svenskakyrkan.se/djuro-moja-namdo/moja-kyrka — \"Möja kyrka är från 1768 och uppfördes av byggmästare Carl Örn\", \"Tornet är från 1885\" (läst 2026-09-19)\n      { icon: '⛪', name: 'Möja kyrka', desc: 'Kyrka från 1768 i Berg, byggd av Carl Örn. Tornet tillkom 1885.' },",
-  "ny": "      // KÄLLA: https://bebyggelseregistret.raa.se/bbr2/anlaggning/visaHelaHistoriken.raa?anlaggningId=21300000005465&historikId=21000000531174 — \"Möja kyrka uppfördes av fortifikationsbyggmästare Carl Öhrn på uppdrag av Möja kapellförsamling.\", \"Nuvarande kyrka, som uppfördes 1768-1769 efter fortifikationsbyggmästaren Carl Örns ritningar\", \"Tornet tillfogades 1839-1840 till långhuset.\", \"som 1885 ersattes av dagens goticerande tornspira\", \"kyrkplatsen är belägen på Kyrkvikens västra sida\", \"Möja kyrka ligger vid en vik på södra delen av Stora Möja.\" (läst 2026-11-09)\n      { icon: '⛪', name: 'Möja kyrka', desc: 'Kyrka från 1768–1769 på Kyrkvikens västra sida på södra Möja, byggd under ledning av fortifikationsbyggmästaren Carl Öhrn (även stavat Örn). Tornet byggdes till 1839–1840 och fick sin nuvarande tornspira 1885.' },",
-  "rader": [
-   "moja-0237",
-   "moja-0236",
-   "moja-0238",
-   "moja-0239"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "    // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ (öppet april–december); mojavardshusochbageri.se. Wikströms Fisk stängde 13 juni 2024 (wikstromsfisk.com) — inget boende där (läst 2026-09-14)\n    accommodation: [\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Öppet April - December\", \"Vandrarhemmet ligger i Berg som är huvudbyn på Möja\", \"två- eller fyrabäddsrum med delad dusch och wc\", \"Vandrarhemmet erbjuder även cyklar för uthyrning\" (läst 2026-09-27)\n      { name: 'STF Möja Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem i Berg med självhushåll, två- och fyrbäddsrum med delad dusch och wc. Hyr ut cyklar. Öppet april–december. Boka i god tid inför sommaren.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/' },\n      { name: 'Möja Värdshus & Bageri', type: 'B&B', desc: 'Värdshus och bageri med B&B-boende under förlängd sommarsäsong.', websiteUrl: 'https://mojavardshusochbageri.se' },\n    ],\n    getting_there: [\n      // KÄLLA: Waxholmsbolaget linje 14, https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Beställ resan i SL-appen\" (läst 2026-09-27). Sollenkroka → Berg 40–75 min; fasta tider i Berg och Långvik, Ramsmora och Möjaström oftast utan fast tid (X).\n      // KÄLLA: SL buss 434, https://kund.printhuset-sthlm.se/sl/v433_434.pdf — \"434 Slussen–Vindö\", \"Sollenkroka brygga\" (läst 2026-09-27)\n      { method: 'Waxholmsbåt', from: 'Sollenkroka', time: '40–75 min', desc: 'Waxholmsbolagets linje 14 från Sollenkroka brygga (buss 434 från Slussen dit, drygt en timme) till Berg och Långvik; Södermöja, Möjaström och Ramsmora angörs ofta utan fast tid. Flera turer måste beställas i SL-appen. Tider gäller vår och höst 2026.', icon: '⛴' },\n      // KÄLLA: Waxholmsbolaget linje 14, https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-09-27). Strömkajen 08.00 → Berg 11.40 (lördag), 11.00 → 14.10 (söndag), 14.45 → 18.55 (måndag, tisdag).\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Vissa turer går också direkt från Strömkajen ut till Möja utan byte\" (läst 2026-09-27)\n      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '3 h 10 min–4 h 10 min', desc: 'Linje 14 via Vaxholm, vissa turer utan byte. Oftast en till tre turer om dagen vår och höst; några byter båt i Boda brygga.', icon: '⛴' },\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja\" (läst 2026-09-27); SL buss 438, https://kund.printhuset-sthlm.se/sl/v438.pdf — \"438 Slussen–Boda\", \"Boda brygga ank\" (läst 2026-09-27)\n      { method: 'Buss + båt', from: 'Slussen via Boda brygga', time: 'ca 50 min buss', desc: 'SL-buss 438 Slussen–Boda brygga på Värmdö, därifrån Waxholmsbåt till Möja. Båtar från Boda går året runt enligt Waxholmsbolaget, men bara vissa turer passar bussen.', icon: '🚌' },",
-  "ny": "    // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Öppet April - December\" (läst 2026-10-29)\n    accommodation: [\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Öppet April - December\", \"Vandrarhemmet ligger i Berg som är huvudbyn på Möja\", \"två- eller fyrabäddsrum med delad dusch och wc\", \"Vandrarhemmet erbjuder även cyklar för uthyrning\" (läst 2026-09-27)\n      { name: 'STF Möja Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem i Berg med självhushåll, två- och fyrbäddsrum med delad dusch och wc. Hyr ut cyklar. Öppet april–december. Boka i god tid inför sommaren.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/' },\n      // KÄLLA: https://mojavardshusochbageri.se/ — \"I samband med nya ägare 2005 utökar man även verksamheten med Bed & Breakfast.\" (läst 2026-11-09)\n      // KÄLLA: https://mojavardshusochbageri.se/v%C3%A4rdshuset.php — \"Bergs by 600, Möja\" (läst 2026-11-09)\n      // KÄLLA: https://mojavardshusochbageri.se/boka-bord.php — \"Det går att boka boende hos oss via Booking.com mellan den 18e juni till den 15e augusti.\", \"Stängt för säsongen alla andra samtliga datum.\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ (Möja turistförening, nivå 3) — \"Sommaröppet anrikt skärgårdsbageri med boende ovanpå, bokas via Värdshuset.\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/boende-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"Bo ovanpå bageriet, boka via Möja värdshus.\" (läst 2026-11-09)\n      { name: 'Möja Värdshus & Bageri', type: 'B&B', desc: 'Värdshus och bageri i Berg med boende ovanpå bageriet. Rummen går att boka 18 juni–15 augusti; övriga datum är boendet stängt.', websiteUrl: 'https://mojavardshusochbageri.se' },\n    ],\n    getting_there: [\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\", \"utan fast avgångstid.\" (läst 2026-10-29). Uppmätt: Sollenkroka → Berg 40–75 min.\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v434.pdf — \"Slussen–Överby\", \"Sollenkroka brygga 2)\", \"2) Endast vissa turer.\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\" (läst 2026-11-03); uppmätt 2026-10-29: Slussen → Sollenkroka brygga 71–78 min\n      { method: 'Waxholmsbåt', from: 'Sollenkroka', time: '40–75 min', desc: 'Waxholmsbolagets linje 14 från Sollenkroka brygga (vissa turer på buss 434 från Slussen går dit, drygt en timme) till Berg och Långvik; Södermöja, Möjaström och Ramsmora angörs ofta utan fast tid. Flera turer måste beställas i förväg, i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00. Tider gäller vår och höst 2026.', icon: '⛴' },\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gods ombord, förseningar på upp till 30 minuter kan förekomma.\" (läst 2026-10-29). Uppmätt: två till fyra turer om dagen från Strömkajen; utan byte 3 h 10 min–4 h 10 min, tur 1201 på onsdagar 6 h 20 min.\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Vissa turer går också direkt från Strömkajen ut till Möja utan byte.\", \"Till Boda kan du resa med båt från Strömkajen eller med buss från Slussen.\" (läst 2026-10-29)\n      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '3 h 10 min–6 h 20 min', desc: 'Linje 14 via Vaxholm, vissa turer utan byte. Två till fyra turer om dagen vår och höst; några byter båt i Boda brygga. De flesta turer utan byte tar 3 h 10 min–4 h 10 min, onsdagarnas tur med gods ombord 6 h 20 min.', icon: '⛴' },\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v438.pdf — \"Slussen–Boda\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\", \"Boda brygga ank\" (läst 2026-10-29), uppmätt Slussen → Boda brygga 49–57 min\n      { method: 'Buss + båt', from: 'Slussen via Boda brygga', time: 'ca 50 min buss', desc: 'SL-buss 438 Slussen–Boda brygga på Värmdö, därifrån Waxholmsbåt till Möja. Båtar från Boda går året runt enligt Waxholmsbolaget, men bara vissa turer passar bussen.', icon: '🚌' },",
-  "rader": [
-   "moja-0285",
-   "moja-0286",
-   "moja-0287",
-   "moja-0288",
-   "moja-0289",
-   "moja-0290",
-   "moja-0295",
-   "moja-0296",
-   "moja-0299",
-   "moja-0303",
-   "moja-0307"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      { name: 'Möjaström gästhamn', desc: 'Ny flytbrygga med platser långsides, öster om macken i Möjaström.', fuel: true, service: ['el', 'vatten'] },",
-  "ny": "      { name: 'Möjaström gästhamn', desc: 'Flytbrygga med platser långsides, öster om macken i Möjaström.', fuel: true, service: ['el', 'vatten'] },",
-  "rader": [
-   "moja-0353"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, Möja bageri\"\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Pizza i en liten mysig sjöbod vid gästhamnen i Kyrkviken.\" (läst 2026-09-27)",
-  "ny": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Hamnbaren\" (läst 2026-10-29)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Pizza i en liten mysig sjöbod vid gästhamnen i Kyrkviken.\" (läst 2026-09-27)",
-  "rader": [
-   "moja-0255"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, Möja bageri\"\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Les Poissonniers de Möja\", \"Skaldjur, Dryck med härlig känsla på ängen i Berg.\" (läst 2026-09-27)",
-  "ny": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Les Poissonniers de Möja\", \"Ett stycke kontinent i skärgården; Fisk, Skaldjur, Dryck med härlig känsla på ängen i Berg.\" (läst 2026-10-29)\n      // KÄLLA: https://mojafisk.se — \"Les Poissonniers de Möja ligger i hjärtat av Berg By, Möja\", \"Vi tar enbart drop in i Bistron\" (läst 2026-10-29)",
-  "rader": [
-   "moja-0260"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, Möja bageri\"\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"På spritbaronens gamla gård drivs ett bohemt och lite galet ställe.\", \"Charmig lada med lokalt hantverk och konst vid Jeppes i Långvik.\" (läst 2026-09-27)",
-  "ny": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Jeppes\", \"Här tipsar vi om de restauranger som finns på ön.\" (läst 2026-10-29)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"På spritbaronens gamla gård drivs ett bohemt och lite galet ställe.\", \"Charmig lada med lokalt hantverk och konst vid Jeppes i Långvik.\" (läst 2026-09-27)",
-  "rader": [
-   "moja-0265"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://konsummoja.se/ — Coop Berg har öppet året runt; Långvik är obemannad automatbutik\n      'Coop i Berg har öppet året runt; butiken i Långvik är en obemannad automatbutik.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/moja-bjorndalen.html — tältning och eldning förbjuden i reservatet; rast-/övernattningsstuga finns",
-  "ny": "      // KÄLLA: https://konsummoja.se/ — \"Den stora butiken på Möja och som har öppet året runt.\", \"Coop Långvik är en obemannad butik.\" (läst 2026-10-29)\n      'Coop i Berg har öppet året runt; butiken i Långvik är en obemannad automatbutik.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/moja-bjorndalen.html — \"I reservatet är det förbjudet att\", \"tälta\", \"göra upp öppen eld\", \"Rast-/övernattningsstuga\" (läst 2026-10-29)",
-  "rader": [
-   "moja-0365",
-   "moja-0366",
-   "moja-0367",
-   "moja-0368",
-   "moja-0369"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — Möja är cykelvänlig med \"fina landsvägar\"; naturstigen till Hamn via Björndalens naturreservat startar vid mellansjön\n      'Ön är cykelvänlig, och naturstigen norrut till Hamn genom Björndalens naturreservat startar vid mellansjön.',\n    ],\n    related: ['sandhamn', 'gallno', 'finnhamn'],\n    tags: ['cykel', 'lantlig', 'vandring', 'gästhamn', 'konstnär'],",
-  "ny": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på.\", \"Naturstigen till Hamn via Björndalens naturreservat startar vid mellansjön.\" (läst 2026-10-29)\n      // KÄLLA: https://visitmoja.se/vandra/ — \"Vandra mellan byarna Hamn i väster och Ramsmora i öst\" (läst 2026-10-29)\n      'Ön är cykelvänlig, och naturstigen till Hamn genom Björndalens naturreservat startar vid mellansjön.',\n    ],\n    related: ['sandhamn', 'gallno', 'finnhamn'],\n    // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på.\" (läst 2026-10-29)\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Möja – små byar och fiskehamnar\" (läst 2026-10-29)\n    // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"naturstig går över ön till Ramsmora.\" (läst 2026-11-09)\n    // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — \"Långviks inre gästhamn\" (läst 2026-10-29)\n    // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Roland Svensson (1910-2003) tillhör de konstnärer som redan under sin livstid fick en plats i svenska folkets hjärtan.\" (läst 2026-10-29)\n    tags: ['cykel', 'lantlig', 'vandring', 'gästhamn', 'konstnär'],",
-  "rader": [
-   "moja-0374",
-   "moja-0025",
-   "moja-0026",
-   "moja-0027",
-   "moja-0028",
-   "moja-0029"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: Waxholmsbolaget linje 14, https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-09-27). Strömkajen → Berg utan byte, tio turer: 190–250 min, median 220. Sollenkroka → Berg 40–75 min, median ca 60. Avgångar från Sollenkroka: måndag–torsdag 6–7, fredag 6, lördag 3, söndag 3–4; flera markerade B/b = beställs i förväg. Sommartabellen (19 juni–16 augusti) är inte publicerad nu och är inte kontrollerad.\n      from_city_min: 220,\n      from_nearest_hub_min: 60,\n      nearest_hub: 'Sollenkroka',\n      operator: 'Waxholmsbolaget',\n      line: 'Linje 14 (Stockholm–Vaxholm–Sollenkroka–Möja); buss 434 Slussen–Sollenkroka, buss 438 Slussen–Boda',\n      frequency: 'Vår och höst 3–7 turer/dag från Sollenkroka, flera beställs i förväg',\n      booking_url: 'https://waxholmsbolaget.se',\n      // KÄLLA: Värmdö kommun — https://www.varmdo.se/varmdohamnar/parkera.4.6e5e3cc318a8d4dc3f6361bf.html (hämtad 2026-08-06)\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Tar du egen bil ut till Sollenkroka tänk på att det sommartid är ont om p-platser.\" (läst 2026-09-27)\n      car_parking: 'Parkering vid Sollenkroka brygga (avfärdshamn för Möja) — Värmdö kommun anger att Parkit Sweden AB sköter parkeringen i Stavsnäs, Sollenkroka och Boda. Sommartid är det ont om platser i Sollenkroka. Vid Stavsnäs vinterhamn finns cirka 1 300 platser, men den hamnen gäller Sandhamn/Nämdö-trafiken, inte Möja.',",
-  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\" (läst 2026-10-29). Uppmätt: Strömkajen → Berg utan byte, tio turer, median 220 min; Sollenkroka → Berg 40–75 min, median 60. Tabellen gäller inte sommarperioden 19 juni–16 augusti 2026.\n      from_city_min: 220,\n      from_nearest_hub_min: 60,\n      nearest_hub: 'Sollenkroka',\n      operator: 'Waxholmsbolaget',\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\", \"M Går under perioderna 8 maj - 18 juni och 17 augusti - 13 september.\" (läst 2026-11-03). Uppmätt i tabell 14A: 2–7 avgångar per dag från Sollenkroka mot Möja (flest på onsdagar; lördagar 2 april–7 maj och 14 september–12 december bara 2, eftersom tur 1461 har anmärkning M).\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v434.pdf — \"Slussen–Överby\", \"Sollenkroka brygga 2)\", \"2) Endast vissa turer.\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\" (läst 2026-11-03)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v438.pdf — \"Slussen–Boda\" (läst 2026-10-29)\n      line: 'Linje 14 (Stockholm–Vaxholm–Sollenkroka–Möja); buss 434 Slussen–Överby, där vissa turer går till Sollenkroka brygga; buss 438 Slussen–Boda',\n      frequency: 'Vår och höst 2–7 turer/dag från Sollenkroka, flera beställs i förväg',\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Du hittar tider genom att använda söktjänsten på startsidan eller titta i tabell 14.\" (läst 2026-10-29)\n      booking_url: 'https://waxholmsbolaget.se',\n      // KÄLLA: https://www.varmdo.se/varmdohamnar/parkera.4.6e5e3cc318a8d4dc3f6361bf.html — \"Parkit Sweden AB ansvarar för drift och hantering av parkeringen i Stavsnäs, Sollenkroka och Boda.\", \"Här finns 400 parkeringsplatser för kort och lång tid.\", \"3 timmar fri parkering med p-skiva, därefter avgift.\", \"Det finns 6 laddplatser för besökare\", \"I Stavsnäs vinterhamn finns cirka 1300 parkeringsplatser.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\" (läst 2026-10-29). Tabell 14 har ingen hållplats i Stavsnäs.\n      car_parking: 'Parkering vid Sollenkroka brygga (avfärdshamn för Möja): 400 platser för kort och lång tid, 3 timmar fri parkering med p-skiva och därefter avgift, och 6 laddplatser. Värmdö kommun anger att Parkit Sweden AB sköter parkeringen i Stavsnäs, Sollenkroka och Boda. Vid Stavsnäs vinterhamn finns cirka 1 300 platser, men Möjabåtarna på linje 14 går inte därifrån.',",
-  "rader": [
-   "moja-0394",
-   "moja-0421",
-   "moja-0425",
-   "moja-0426",
-   "moja-0428",
-   "moja-0429",
-   "moja-0430",
-   "moja-0431"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      kajak: { difficulty: 'lätt', rental: true, notes: 'Möja Outdoor hyr ut kajak, roddbåt och SUP.' },\n      bad: {\n        // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"inga anlagda badplatser\", \"Möjlighet till klippbad\", \"finns i t.ex. Långvik, Ramsmora, Löka och Berg. Vid Saltvik finns både\", \"badklippor och sandstrand\" (läst 2026-09-27)\n        // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"det finns ingen officiell badplats och alla platser nyttjas enl.\" (läst 2026-09-27). Barnvänlighet, djup och vägbeskrivningar saknade källa och är strukna; Coop Långvik är obemannad, så tipset att fråga där var fel.",
-  "ny": "      kajak: { difficulty: 'lätt', rental: true, notes: 'Möja Outdoor hyr ut kajak, roddbåt och SUP.' },\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Vandrarhemmet erbjuder även cyklar för uthyrning.\" (läst 2026-10-29)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Café med glass och bullar samt cykeluthyrning.\" (läst 2026-10-29)\n      cykel: { rental: true, notes: 'STF Möja Vandrarhem och Hamncafét hyr ut cyklar.' },\n      bad: {\n        // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"inga anlagda badplatser\", \"Möjlighet till klippbad\", \"finns i t.ex. Långvik, Ramsmora, Löka och Berg. Vid Saltvik finns både\", \"badklippor och sandstrand\" (läst 2026-09-27)\n        // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Det finns ett fåtal badplatser i den levande skärgårdsmiljön, men inga anlagda badplatser.\", \"Visa hänsyn och respektera allemansrätten.\" (läst 2026-11-09)\n        // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Möjlighet till klippbad finns i t.ex. Långvik, Ramsmora, Löka och Berg.\", \"Vid Saltvik finns både badklippor och sandstrand.\" (läst 2026-10-29)\n        note: 'Det finns inga anlagda badplatser på Möja. Man badar från klippor och stränder enligt allemansrätten, till exempel i Långvik, Ramsmora, Löka och Berg och vid Saltvik, där det också finns sandstrand.',",
-  "rader": [
-   "moja-0452",
-   "moja-N003",
-   "moja-0451",
-   "moja-N002",
-   "moja-0438",
-   "moja-0439"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://visitmoja.se/vandra/ (Stockholm Archipelago Trail-sektionen Långvik–Berg–Hamn med gren till Ulvik, samt Naturstigen Hamn–Ramsmora) (läst 2026-09-30)\n      // KÄLLA: https://stockholmarchipelagotrail.com/section/ (Stockholm Archipelago Trail, ledens egen lista) — \"Section Möja\", \"Easy 13.8 km\". (läst 2026-09-30)\n      vandring: { trails: 1, max_km: 13.8, sat: { km: 13.8, difficulty: 'Lätt' } },\n      fiske: true,\n    },\n    // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — Långviks inre gästhamn \"Faciliteter: vatten, el, wc, dusch.\" (läst 2026-09-27); https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Café med glass och bullar samt cykeluthyrning.\" (läst 2026-09-27); https://konsummoja.se/ — \"Den stora butiken på Möja och som har öppet året runt.\" (läst 2026-09-27). Uttagsautomat nämns inte i någon källa (atm: false är obekräftat).\n    amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },",
-  "ny": "      // KÄLLA: https://www.stockholmarchipelagotrail.com/section/ — \"Section Möja\" (läst 2026-11-09)\n      // KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-moja/ — \"De 13,8 km på grusväg runt den östra och södra kusten\", \"Lätt\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"Stora naturstigen\", \"Lilla naturstigen\" (läst 2026-11-09)\n      // KÄLLA: https://api.openstreetmap.org/api/0.6/relation/19268630/full — \"Möja naturstig Hamn - Ramsmora\" (läst 2026-11-09); uppmätt i OpenStreetMap: 4 857 m. Samma dag uppmätt i kartdata för hela Möja: ingen annan namngiven stig är längre, så SAT-etappen är den längsta leden.\n      vandring: { trails: 3, max_km: 13.8, sat: { km: 13.8, difficulty: 'Lätt' } },\n    },\n    // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — \"Faciliteter: vatten, el, wc, dusch.\" (läst 2026-10-29)\n    // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Café med glass och bullar samt cykeluthyrning.\" (läst 2026-10-29)\n    // KÄLLA: https://konsummoja.se/ — \"Den stora butiken på Möja och som har öppet året runt.\" (läst 2026-10-29)\n    amenities: { toilets: true, shower: true, cafe: true, grocery: true },",
-  "rader": [
-   "moja-0555",
-   "moja-0559",
-   "moja-0564",
-   "moja-0556"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://konsummoja.se/ — \"Coop Långvik är en obemannad butik. För att kunna handla krävs Coops app samt ett svenskt bank-id\", \"använd vårt fria wi-fi, Coop_Free när du handlar\", \"Måndag-Söndag 5.00-22.00\" (läst 2026-09-27); https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"utlämningsställe för\", \"(alkohol), Post och Apotek.\" (läst 2026-09-27)\n      'Coop Långvik är obemannad: du behöver Coop-appen och svenskt bank-id, och butiken har fritt wifi (Coop_Free) eftersom mobiltäckningen varierar. Coop är också ombud för Systembolaget, post och apotek.',",
-  "ny": "      // KÄLLA: https://konsummoja.se/ — \"Coop Långvik är en obemannad butik.\", \"För att kunna handla krävs Coops app samt ett svenskt bank-id\", \"Då mobiltäckningen varierar använd vårt fria wi-fi, Coop_Free när du handlar.\", \"du får ett sms eller mail när din beställning finns att hämta hos oss på Coop Berg eller på Coop Ingmarsö.\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Här finns en matbutik\", \"Dagligvaruhandel som är ombud för apotek, post och Systembolaget\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"I Berg finns restaurang, fiskbod, pizzeria,\", \"som är ombud för Apotek, Post och Systembolaget.\" (läst 2026-11-09)\n      'Coop Långvik är obemannad: du behöver Coop-appen och svenskt bank-id, och butiken har fritt wifi (Coop_Free) eftersom mobiltäckningen varierar. Coop Berg är ombud för Systembolaget, post och apotek.',",
-  "rader": [
-   "moja-0458",
-   "moja-0463"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "    blogLinks: [\n      { slug: 'dolda-parlor-moja', title: 'Möja – vandring, bad, museum och mat på ön' },\n      { slug: 'cykling-moja-gallno', title: 'Hyra cykel på Möja och Gällnö – cykla i skärgården' },",
-  "ny": "    blogLinks: [\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"naturstig går över ön till Ramsmora.\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Möjlighet till klippbad finns i t.ex. Långvik, Ramsmora, Löka och Berg.\" (läst 2026-10-29)\n      // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Adress: Ramsmora brygga Möja\" (läst 2026-10-29)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Du kan äta på restauranger året runt på Möja\" (läst 2026-10-29)\n      { slug: 'dolda-parlor-moja', title: 'Möja – vandring, bad, museum och mat på ön' },\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Vandrarhemmet erbjuder även cyklar för uthyrning.\" (läst 2026-11-03)\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-gallno-vandrarhem/ — \"Cykeluthyrning\", \"Cykel finns att hyra.\" (läst 2026-11-03)\n      { slug: 'cykling-moja-gallno', title: 'Hyra cykel på Möja och Gällnö – cykla i skärgården' },",
-  "rader": [
-   "moja-0382",
-   "moja-0383",
-   "moja-0384",
-   "moja-0385",
-   "moja-0386",
-   "moja-0387"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "    seasonal: {\n      // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — \"det kan vara trångt i juli\", \"det går inte att förboka plats\" (läst 2026-09-27); https://visitmoja.se/boende-p%C3%A5-m%C3%B6ja/ — \"under högsommaren blir det ofta fullbokat tidigt på året. Men vår, sensommar och höst är det ofta lugnt\" (läst 2026-09-27)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"sommartid dubbleras antalet matställen\" (läst 2026-09-27); https://konsummoja.se/ — \"Den stora butiken på Möja och som har öppet året runt.\" (läst 2026-09-27); https://visitmoja.se/ — \"Öppet under juni - augusti!\" (Brunströms bod) (läst 2026-09-27)\n      open: 'Maj–Oktober',\n      peak: 'Juli',\n      best: 'Juni eller augusti',\n      bestReason: 'Gästhamnarna kan vara trånga i juli och boendena fullbokas tidigt inför högsommaren. I juni och augusti har sommarverksamheterna öppet, och vår, sensommar och höst är det ofta lugnt enligt Möja turistförening.',",
-  "ny": "    seasonal: {\n      // KÄLLA: https://konsummoja.se/ — \"Den stora butiken på Möja och som har öppet året runt.\" (läst 2026-11-09)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja.\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Här finns en matbutik\", \"som är öppen året runt\", \"året om, även när isen ligger.\" (läst 2026-11-09)\n      open: 'Hela året',\n      // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ (Möja turistförening, nivå 3) — \"det kan vara trångt i juli\" (läst 2026-11-09)\n      peak: 'Juli',\n      // KÄLLA: https://visitmoja.se/ — \"Brunströms bod i Berg\", \"Öppet under juni - augusti!\", \"Boden drivs sommartid ideellt av Möja Turistförening\" (läst 2026-11-09)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\", \"Berg (Möja)\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/boende-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"under högsommaren blir det ofta fullbokat tidigt på året. Men vår, sensommar och höst är det ofta lugnt\" (läst 2026-11-09)\n      best: 'Juni eller augusti',\n      bestReason: 'Gästhamnarna kan vara trånga i juli, och under högsommaren är boendena ofta fullbokade tidigt på året, medan vår, sensommar och höst ofta är lugna, enligt Möja turistförening. Föreningens Brunströms bod i Berg har öppet juni–augusti, och Waxholmsbolagets sommartabell för linje 14 till Möja gällde 19 juni–16 augusti 2026.',",
-  "rader": [
-   "moja-0076",
-   "moja-0022",
-   "moja-0068",
-   "moja-0070",
-   "moja-0071",
-   "moja-N027"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      warning: 'Utanför sommaren är färre krogar och bodar öppna. Coop Berg har öppet året runt; kolla turistföreningens öppettidskalender före resan.',\n      months: ['off','off','off','off','limited','open','peak','open','open','limited','off','off'],",
-  "ny": "      warning: 'Utanför sommaren är färre krogar och bodar öppna. Coop Berg har öppet året runt; kolla turistföreningens öppettidskalender före resan.',\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Här finns en matbutik\", \"som är öppen året runt\", \"befolkningen ökar till över 2000 sommartid.\", \"bryggor är Berg och Möjaström där Waxholmsbolagets båtar lägger till året om, även när isen ligger.\" (läst 2026-11-09)\n      // KÄLLA: https://mojavandrarhem.se/ — \"Vandrarhemmet har öppet från april till december\" (läst 2026-11-09)\n      // KÄLLA: https://mojaoutdoor.se/ — \"Öppet maj-sep 2027\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/ — \"Brunströms bod i Berg\", \"Öppet under juni - augusti!\" (läst 2026-11-09)\n      // KÄLLA: https://mojavardshusochbageri.se/boka-bord.php — \"Det går att boka boende hos oss via Booking.com mellan den 18e juni till den 15e augusti.\" (läst 2026-11-09)\n      months: ['limited','limited','limited','limited','limited','open','peak','open','limited','limited','limited','limited'],",
-  "rader": [
-   "moja-0056",
-   "moja-0057",
-   "moja-0058",
-   "moja-0059",
-   "moja-0064",
-   "moja-0066",
-   "moja-0067",
-   "moja-0060",
-   "moja-0061",
-   "moja-0063",
-   "moja-0065"
-  ]
- },
- {
-  "fil": "src/lib/transit-stops.ts",
-  "gammal": "    // KÄLLA: Värmdö kommun (varmdo.se — Sollenkroka brygga trafikerar Möja) +\n    // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1\n    // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.\n    note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',",
-  "ny": "    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"Boda brygga avg.\" (läst 2026-10-29). Tabell 14 har ingen hållplats i Stavsnäs.\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja.\" (läst 2026-10-29)\n    note: 'Båtarna till Möja går från Sollenkroka brygga, Boda brygga och Strömkajen – inte från Stavsnäs.',",
-  "rader": [
-   "moja-0083",
-   "moja-0084"
-  ]
- },
- {
-  "fil": "src/app/o/hantverkare-data.ts",
-  "gammal": "    oar: ['moja', 'vaxholm', 'blido', 'yxlan'],\n    kalla: { niva: 'egen-sajt', url: 'https://www.jowael.se', last: '2026-09-22' },",
-  "ny": "    // KÄLLA: https://www.jowael.se/elektriker-skargarden/ — \"Vi arbetar regelbundet på öar som Vaxholm, Värmdö, Möja, Sandhamn, Blidö, Ljusterö, Norrtälje och Östhammar\", \"Elektriker Möja\", \"Vi har en egen servicebåt som gör att vi når även de mer avlägsna öarna i både Stockholms och Roslagens skärgård.\" (läst 2026-11-03)\n    oar: ['moja', 'vaxholm', 'blido', 'yxlan'],\n    kalla: { niva: 'egen-sajt', url: 'https://www.jowael.se', last: '2026-09-22' },",
-  "rader": [
-   "moja-0524"
-  ]
- },
- {
-  "fil": "src/app/o/hantverkare-data.ts",
-  "gammal": "    yrken: ['totalentreprenad', 'snickare', 'sjotransport', 'dykare'],\n    telefon: '0708-406 405',\n    webb: 'http://www.wallnermarin.se',\n    oar: ['moja'],\n    kalla: { niva: 'egen-sajt', url: 'http://www.wallnermarin.se', last: '2026-09-22' },",
-  "ny": "    // KÄLLA: http://www.wallnermarin.se/ — \"Välkommen till Wallner Marin AB på Södermöja i Stockholms skärgård.\" (läst 2026-11-03, över http)\n    // KÄLLA: http://www.wallnermarin.se/hus-och-fastigheter/ — \"Vi har hantverkare inom alla kategorier. Ni beställer jobbet av oss och vi sköter resten.\" (läst 2026-11-03)\n    // KÄLLA: http://www.wallnermarin.se/battaxi-och-sjotransporter/ — \"Svävare, båttaxi och sjötransporter\" (läst 2026-11-03)\n    // KÄLLA: http://www.wallnermarin.se/assistans-bargnings-och-dykeriarbeten/ — \"När det gäller dykning och bärgningsarbeten utför vi enklare insatser själva.\" (läst 2026-11-03)\n    // KÄLLA: http://www.wallnermarin.se/wallner-marin/kontakt/ — \"Vår adress är Södermöja 130, 13043 Möja\", \"ring 0708-406 405\" (läst 2026-11-03)\n    yrken: ['totalentreprenad', 'snickare', 'sjotransport', 'dykare'],\n    telefon: '0708-406 405',\n    webb: 'http://www.wallnermarin.se',\n    oar: ['moja'],\n    kalla: { niva: 'egen-sajt', url: 'http://www.wallnermarin.se', last: '2026-11-03' },",
-  "rader": [
-   "moja-0472",
-   "moja-0473",
-   "moja-0474",
-   "moja-0475",
-   "moja-0476",
-   "moja-0477",
-   "moja-0478",
-   "moja-0479",
-   "moja-0480"
-  ]
- },
- {
-  "fil": "src/app/o/hantverkare-data.ts",
-  "gammal": "    behorighetKalla: 'https://www.elsakerhetsverket.se/kollaelforetaget/foretagsregister/?foretag=11039774&sok=1',",
-  "ny": "    // KÄLLA: https://elsakerhetsverket.se/kolla-elforetaget?query=Jowa%20Elektriska — \"Jowa Elektriska AB\", \"556774-1250\", \"Din sökning gav 1 träffar\" (läst 2026-11-03, i Chromium). Den tidigare direktlänken (foretag=11039774) visar bara sökformuläret.\n    behorighetKalla: 'https://elsakerhetsverket.se/kolla-elforetaget?query=Jowa%20Elektriska',",
-  "rader": [
-   "moja-0522",
-   "vaxholm-0265"
-  ]
- },
- {
-  "fil": "src/app/o/hantverkare-data.ts",
-  "gammal": "    orgnr: '556955-5856',\n    oar: [\n      'blido', 'finnhamn', 'grinda', 'gallno', 'husaro', 'ingmarso',\n      'ljustero', 'yxlan', 'angso',\n    ],",
-  "ny": "    orgnr: '556955-5856',\n    // Möja tillagd 2026-11-07 (Lag 3 på /o/moja/hantverkare): företagets egen sida nämner Möja bland orterna där de genomför projekt.\n    // KÄLLA: https://oct-entreprenad.com/byggfirma-varmdo/ — \"Det gör att vi kan planera och genomföra projekt på ett sätt som är både hållbart och effektivt för området – oavsett om du bor i Nacka, Gustavsberg, Ingarö, Djurö, Storö eller Möja.\" (läst 2026-11-07)\n    oar: [\n      'blido', 'finnhamn', 'grinda', 'gallno', 'husaro', 'ingmarso',\n      'ljustero', 'yxlan', 'angso', 'moja',\n    ],",
-  "rader": [
-   "moja-N015"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"Hyr kajak, roddbåt och SUP\" (Möja Outdoor) (läst 2026-09-27); https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Havet upplevs bäst i kajak\" (läst 2026-09-27). Paddelrutten mot Gällnö och Svartsö och uthyrning vid Berg gick inte att belägga.\n",
-  "ny": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"möjlighet att hyra cykel, kajak eller båttaxi.\" (läst 2026-11-09)\n      // KÄLLA: https://mojaoutdoor.se/ — \"Hos oss på Möja Outdoor kan du hyra kajak, roddbåt, SUP, vattenskoter eller cyklar\" (läst 2026-11-09). Paddelrutten mot Gällnö och Svartsö gick inte att belägga.\n",
-  "rader": [
-   "moja-0553",
-   "moja-0554"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Roland Svensson (1910-2003)\", \"Under sommarsäsong är det öppet varje dag fr o m midsommardagen till början av augusti\", \"Adress: Ramsmora brygga Möja\" (läst 2026-09-27)\n      { icon: '🎨', name: 'Roland Svensson-museet', desc: 'Museum tillägnat skärgårdskonstnären Roland Svensson (1910–2003). Öppnade 2014 vid Ramsmora ångbåtsbrygga — hans målar- och skrivarhörnor från ateljén på Tornö är flyttade in i museet. Öppet dagligen från midsommardagen till början av augusti.' },\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"På Möja går leden längs landsvägen från Långvik till Hamn, en lätt etapp som även fungerar med barnvagn eller rullstol\", \"naturstigarna är uppmärkta med gula band\", \"Mellan Hamn-Ramsmora är det (12km)\" (läst 2026-09-27)\n      { icon: '🚶', name: 'Vandring', desc: 'Stockholm Archipelago Trail följer landsvägen från Långvik till Hamn – lätt, även med barnvagn. Naturstigen Hamn–Ramsmora (12 km) genom Björndalen är märkt med gula band.' },\n",
-  "ny": "      // KÄLLA: https://collection.nationalmuseum.se/en/artists/artist/3475 — \"Roland Svensson (1910 - 2003)\" (läst 2026-11-09)\n      // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Under sommarsäsong är det öppet varje dag fr o m midsommardagen till början av augusti.\", \"Museet är öppet året runt mot bokning\", \"Adress: Ramsmora brygga Möja\" (läst 2026-11-09)\n      // KÄLLA: https://www.rolandsvenssonmuseet.se/roland-svensson-museet/ — \"Museet öppnade 2014\", \"I museet speglas Rolands obändiga arbetslust ända ned till de konkreta arbetsplatserna i form av målar- och skrivarhörnorna.\" (läst 2026-11-09)\n      { icon: '🎨', name: 'Roland Svensson-museet', desc: 'Museum tillägnat skärgårdskonstnären Roland Svensson (1910–2003). Öppnade 2014 vid Ramsmora ångbåtsbrygga, och i museet finns hans målar- och skrivarhörnor. Öppet dagligen från midsommardagen till början av augusti och resten av året mot bokning.' },\n      // KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-moja/ — \"De 13,8 km på grusväg runt den östra och södra kusten\", \"rekommenderar vi att du går från Långvik, till Ramsmora, till Löka, till Berg och slutligen till Hamn.\", \"Lätt\", \"På Möja har du många möjligheter om du har barnvagn\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"På Möja går leden längs landsvägen från Långvik till Hamn\", \"naturstigarna är uppmärkta med gula band\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"naturstig går över ön till Ramsmora.\", \"Naturstigen till Hamn via Björndalens naturreservat startar vid mellansjön.\" (läst 2026-11-09)\n      // KÄLLA: https://api.openstreetmap.org/api/0.6/relation/19268630/full — \"Möja naturstig Hamn - Ramsmora\" (läst 2026-11-09); uppmätt i OpenStreetMap: relationens två vägar är 4 857 m. Turistföreningens 12 km stämmer inte med mätningen.\n      { icon: '🚶', name: 'Vandring', desc: 'Stockholm Archipelago Trail följer landsvägen från Långvik till Hamn – lätt, även med barnvagn. Naturstigen Hamn–Ramsmora (knappt 5 km) genom Björndalen är märkt med gula band och startar i Ramsmora vid Mellansjön.' },\n",
-  "rader": [
-   "moja-0222",
-   "moja-0225",
-   "moja-0227",
-   "moja-0228",
-   "moja-0229",
-   "moja-0230",
-   "moja-0231",
-   "moja-0232",
-   "moja-0234",
-   "moja-0453",
-   "moja-N016",
-   "moja-N017"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"Möjas dansbana är skärgårdens äldsta ännu i drift och varje år ordnas musikspelningar, dans, bio och marknader.\" (läst 2026-09-27). Fiskeaktiviteten (abborre, gädda, havsöring) saknade källa och är ersatt.\n      { icon: '💃', name: 'Möja dansbana', desc: 'Skärgårdens äldsta dansbana som ännu är i drift. Varje år ordnas musik, dans, bio och marknader.' },\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"Hyr kajak, roddbåt och SUP eller följ med på sälsafari och bastu tur på en ö.\" (läst 2026-09-27)\n      { icon: '🛶', name: 'Kajak & SUP', desc: 'Möja Outdoor hyr ut kajak, roddbåt och SUP och ordnar sälsafari och bastutur till en ö.' },\n",
-  "ny": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Dansbanan från 1940-talet med tälttak i plåt och småspröjsade fönster är skärgårdens äldsta\" (läst 2026-11-09)\n      // KÄLLA: https://mojadansbana.se/om-moja-bio/ — \"Bion är en av verksamheterna som drivs året om genom den lokala föreningen Möja Kulturella Ungdomsrörelse, MKU\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"en dansbana från 1940-talet med arrangemang hela året.\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"Möjas dansbana är skärgårdens äldsta ännu i drift och varje år ordnas musikspelningar, dans, bio och marknader.\" (läst 2026-11-09). Fiskeaktiviteten (abborre, gädda, havsöring) saknade källa och är ersatt.\n      { icon: '💃', name: 'Möja dansbana', desc: 'Skärgårdens äldsta dansbana som ännu är i drift. Varje år ordnas musik, dans, bio och marknader.' },\n      // KÄLLA: https://mojaoutdoor.se/ — \"Hos oss på Möja Outdoor kan du hyra kajak, roddbåt, SUP, vattenskoter eller cyklar\", \"Vi åker med egna båtar på sälsafari där vi spanar efter både säl och havsörn, eller så åker vi till en ö utanför Möja och badar bastu.\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"möjlighet att hyra cykel, kajak eller båttaxi.\" (läst 2026-11-09)\n      { icon: '🛶', name: 'Kajak & SUP', desc: 'Möja Outdoor hyr ut kajak, roddbåt och SUP och ordnar sälsafari och bastutur till en ö.' },\n",
-  "rader": [
-   "moja-0242",
-   "moja-0243",
-   "moja-0244",
-   "moja-0245",
-   "moja-0246"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.svenskakyrkan.se/djuro-moja-namdo/moja-kyrka — \"Möja kyrka är från 1768 och uppfördes av byggmästare Carl Örn\"; \"Tornet är från 1885\"; \"Ingången till tornet har dörrar som är från 1924\"; renovering påbörjad 1924; altartavla föreställande Kristus på korset med ram från 1700-talets senare hälft; \"Kyrkogården anlades omkring 1755\"; nuvarande orgel byggd 1982 av Walter Thür\n      'Möja kyrka uppfördes av byggmästaren Carl Örn, och delarna är från olika tider: tornet är från 1885 och dörrarna in i det från 1924, samma år som den renovering påbörjades som gav kyrkan dess nuvarande utseende. Ovanför altaret hänger en tavla med Kristus på korset i en ram från 1700-talets senare hälft. Kyrkogården anlades omkring 1755, och den orgel som står där i dag byggdes 1982 av Walter Thür.',\n",
-  "ny": "      // KÄLLA: https://bebyggelseregistret.raa.se/bbr2/anlaggning/visaHelaHistoriken.raa?anlaggningId=21300000005465&historikId=21000000531174 — \"Nuvarande kyrka, som uppfördes 1768-1769 efter fortifikationsbyggmästaren Carl Örns ritningar, är liggtimrad\", \"Möja kyrka uppfördes av fortifikationsbyggmästare Carl Öhrn på uppdrag av Möja kapellförsamling.\", \"Tornet tillfogades 1839-1840 till långhuset.\", \"I detta sammanhang fick även exteriören inklusive tornet sitt nuvarande utseende\" (läst 2026-11-09)\n      // KÄLLA: https://bebyggelseregistret.raa.se/bbr2/anlaggning/visaHelaHistoriken.raa?anlaggningId=21300000005465&historikId=21000000531174 — \"Interiören präglas av en större restaurering av arkitekt Martin Hedman 1924-1938.\", \"Vid denna tid fick kyrkorummet sin nuvarande karaktär.\", \"1755 anlades kyrkogården på nuvarande plats.\", \"Möja kyrka är skyddad enligt 4 kapitlet kulturminneslagen\" (läst 2026-11-09)\n      // KÄLLA: https://www.svenskakyrkan.se/djuro-moja-namdo/moja-kyrka — \"Ovanför altaret hänger en tavla som föreställer Kristus på korset\", \"Den omfattar tio stämmor fördelade på två manualer och pedal med mekanisk traktur.\" (läst 2026-11-09). Dörrarna från 1924, ramens ålder och orgelns byggår har ingen nivå 1-källa och är strukna.\n      'Möja kyrka uppfördes 1768–1769 i liggtimmer under ledning av fortifikationsbyggmästaren Carl Öhrn (även stavat Örn), och delarna är från olika tider: tornet byggdes till 1839–1840 och fick sin nuvarande tornspira 1885, då också exteriören fick sitt nuvarande utseende. Interiören restaurerades 1924–1938 av arkitekten Martin Hedman, och då fick kyrkorummet sin nuvarande karaktär. Ovanför altaret hänger en tavla med Kristus på korset, och orgeln har tio stämmor på två manualer och pedal. Kyrkogården anlades 1755 på den nuvarande platsen, och kyrkan är skyddad enligt kulturminneslagen.',\n",
-  "rader": [
-   "moja-0164",
-   "moja-0165",
-   "moja-0166",
-   "moja-0167",
-   "moja-0168",
-   "moja-0169",
-   "moja-0170",
-   "moja-0171",
-   "moja-0172",
-   "moja-0173",
-   "moja-N018",
-   "moja-N019",
-   "moja-N020",
-   "moja-N021",
-   "moja-N022"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Sommartid stiger du av i Berg\", \"Vintertid stiger du av i Möja Ström och tar sedan Möjabussen som stannar utanför STF Möja.\" (läst 2026-09-27)\n      'Ska du bo i Berg: sommartid kliver du av i Berg, vintertid i Möja Ström och tar Möjabussen därifrån.',\n",
-  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Berg (Möja)\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst\" (läst 2026-11-09). Uppmätt 2026-11-09 kolumn för kolumn (pdfplumber): Berg har en tid på 51 av 54 turer som angör Möja, och 9 av dem är märkta b (resan måste beställas); fredagsturen 1325 och lördagsturerna 1461 och 1462 angör inte Berg.\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s14.pdf — \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\", \"Berg (Möja)\" (läst 2026-11-09). Uppmätt: Berg angörs på 50 av 53 turer som angör Möja.\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"bryggor är Berg och Möjaström där Waxholmsbolagets båtar lägger till året om, även när isen ligger.\" (läst 2026-11-09)\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Följ landsvägen förbi Konsum till T-korsningen vid Värdshuset, ta höger så ligger vandrarhemmet på vänster sida\", \"Öppet April - December\" (läst 2026-11-09). Avståndet i STF:s vägbeskrivning står inte i texten, eftersom det inte stämmer med Kontrollantens mätning i OpenStreetMap (omkontroll 4; Redaktörens beslut mo4071).\n      'Ska du bo i Berg kliver du av vid Bergs brygga. I Waxholmsbolagets tabell för vår och höst 2026 angör de flesta turerna Berg, en del bara om resan har beställts i förväg, och Berg angörs också i sommartabellen. Enligt kommunen lägger båtarna till i Berg och Möjaström året om, även när isen ligger. Till STF Möja vandrarhem, som har öppet april–december, följer du landsvägen till T-korsningen vid värdshuset och tar höger; vandrarhemmet ligger på vänster sida.',\n",
-  "rader": [
-   "moja-0360",
-   "moja-0361",
-   "moja-0362",
-   "moja-N023",
-   "moja-N026"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"Sommartid daglig transport på landsväg från norr till söder.\" (läst 2026-09-27)\n      'Sommartid kör PerMobilen dagliga turer på landsvägen från norr till söder – hoppa av och på där du vill.',\n",
-  "ny": "      // KÄLLA: https://www.facebook.com/MojaUppOchNer/ (PerMobilens egen Facebooksida, läst av Redaktören i Toms Chrome; senaste inlägget 8 augusti 2026) — \"PerMobilen - Möja Upp & Ner\"; \"Hop on/hop off på Möja. Berg-Långvik-Berg tur och retur\"; \"Vi tackar alla nästan 1 500 passagerare för i år och hoppas att vi ses nästa sommar.\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"Sommartid daglig transport på landsväg från norr till söder.\" (läst 2026-11-09)\n      'Sommartid kör PerMobilen hop on/hop off på Möja, med dagliga turer på landsvägen mellan Berg och Långvik, tur och retur.',\n",
-  "rader": [
-   "moja-0466",
-   "moja-0468",
-   "moja-0469"
-  ]
- },
- {
-  "fil": "src/app/o/island-data.ts",
-  "gammal": "      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/moja-kyrkviken/ — \"Liten fiskehamn på Möjas sydöstra sida med gästbrygga längst in i hamnen\", \"Gästhamnen ligger nära Berg\", \"ankare\", \"Restaurang\", \"500 m\" (läst 2026-09-27)\n      // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — Kyrkviken: \"Konsollbryggor vid östra och västra inloppet samt längst in mot landsvägen, tilläggning med ankare.\", \"Faciliteter: wc, vatten (dunk).\" (läst 2026-09-27)\n",
-  "ny": "      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/moja-kyrkviken/ — \"Liten fiskehamn på Möjas sydöstra sida med gästbrygga längst in i hamnen\", \"Gästhamnen ligger nära Berg\", \"Restaurang\", \"500 m\" (läst 2026-11-09). Läst med curl; Chromium fick 502 från arbetsytans proxy.\n      // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — \"Konsollbryggor vid östra och västra inloppet samt längst in mot landsvägen, tilläggning med ankare.\", \"Faciliteter: wc, vatten (dunk).\" (läst 2026-11-09)\n      // KÄLLA: https://konsummoja.se/ — \"Vi har livsmedelsbutikerna Coop Berg och Coop Långvik på Möja\" (läst 2026-11-09)\n      // KÄLLA: https://mojavardshusochbageri.se/v%C3%A4rdshuset.php — \"skärgårdsrestaurang med fullskaligt bageri\", \"Bergs by 600, Möja\" (läst 2026-11-09)\n",
-  "rader": [
-   "moja-0335",
-   "moja-0336"
-  ]
- },
- {
-  "fil": "src/app/o/hantverkare-data.ts",
-  "gammal": "    namn: 'Möja Snickarna AB',\n",
-  "ny": "    // KÄLLA: https://mojasnickarna.se — \"Vi är Möja Snickarna, en lokalt baserad snickerifirma\" (läst 2026-11-09)\n    namn: 'Möja Snickarna',\n",
-  "rader": [
-   "moja-0488"
-  ]
- },
- {
-  "fil": "src/lib/islandCoords.ts",
-  "gammal": "  { slug: 'moja',              name: 'Möja',              lat: 59.4333, lng: 18.8833, radiusKm: 3.0 },\n",
-  "ny": "  // KÄLLA: https://api.openstreetmap.org/api/0.6/nodes?nodes=441941298,2349235266,441941314,5010012668,2349141872,2334340773,2349139503,2349013583 — \"Berg brygga\"; \"Möjaström\"; \"Södermöja\"; \"Stora Kalholmen\" (läst 2026-11-09)\n  // KÄLLA: https://api.openstreetmap.org/api/0.6/relation/8346534/full — \"Möja\" (läst 2026-11-09)\n  // KÄLLA: https://api.openstreetmap.org/api/0.6/map?bbox=18.8150,59.4480,18.8350,59.4610 — \"Stora Kalholmen\" (läst 2026-11-09)\n  // radiusKm styr GPS-taggningen och höjs från 3,0 till 3,5 km enligt Toms beslut 3 (2026-11-08). Uppmätt 2026-11-09 i OpenStreetMaps API (haversine) från nålen till bryggornas noder (ferry_terminal): Berg 3 036 m, Möjaström 3 293 m och Södermöja 3 331 m, alltså utanför 3,0 km men inom 3,5 km. Stora Kalholmens brygga ligger 4 211 m och holmens närmaste strand 3 889 m från nålen (way 222662304), utanför 3,5 km. Möjas längsta punkt ligger 3 584 m från nålen (relation 8346534), så 33 av 3 343 strandnoder hamnar utanför cirkeln. Platslistan använder radiusKm tills platsRadieKm finns (mallarnas runda 5).\n  { slug: 'moja',              name: 'Möja',              lat: 59.4333, lng: 18.8833, radiusKm: 3.5 },\n",
-  "rader": [
-   "moja-0024"
-  ]
- }
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "    slug: 'moja',\n    name: 'Möja',\n    region: 'mellersta',\n    regionLabel: 'Mellersta skärgården',\n    emoji: 'island',\n    // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Kyrkan uppfördes 1768\"; https://konsummoja.se/ — \"Vi har livsmedelsbutikerna Coop Berg och Coop Långvik på Möja\" (läst 2026-09-27)\n    // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Möja värdshus\", \"Möja bageri\"; https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på\" (läst 2026-09-27). Bilfri och äkta skärgård saknade källa: ön har landsvägar, bilar och sommartid PerMobilen.\n    tagline: 'Byar, kyrka och lanthandel i Stockholms mellersta skärgård.',\n    seoTitle: 'Möja 2026 – båt dit, värdshus, bageri och vandring',\n    seoDescription: 'Guide till Möja: båt från Strömkajen, Sollenkroka eller Boda, värdshus och bageri i Berg, cykel, vandring i Björndalen och fem gästhamnar. Hur du tar dig dit och vad som finns på ön.',",
+    "ny": "    slug: 'moja',\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Möja – små byar och fiskehamnar\" (läst 2026-10-29)\n    name: 'Möja',\n    region: 'mellersta',\n    regionLabel: 'Mellersta skärgården',\n    emoji: 'island',\n    // KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-moja/ — \"Möja är en stor ö i Stockholms mellersta skärgård på gränsen till ytterskärgården, i Värmdö Kommun.\" (läst 2026-11-09)\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Möja – små byar och fiskehamnar\" (läst 2026-10-29)\n    // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Bebyggelsen är huvudsakligen lokaliserad i Berg\", \"här ligger även kyrka och kyrkogård\" (läst 2026-11-09)\n    // KÄLLA: https://konsummoja.se/ — \"Vi har livsmedelsbutikerna Coop Berg och Coop Långvik på Möja\" (läst 2026-10-29)\n    tagline: 'Byar, kyrka och lanthandel i Stockholms mellersta skärgård.',\n    // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Möja värdshus\", \"Möja bageri\" (läst 2026-10-29)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\" (läst 2026-10-29)\n    // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"naturstig går över ön till Ramsmora.\" (läst 2026-11-09)\n    seoTitle: 'Möja 2026 – båt dit, värdshus, bageri och vandring',\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"Strömkajen (Stockholm)\", \"Sollenkroka avg.\", \"Boda brygga avg.\" (läst 2026-10-29)\n    // KÄLLA: https://mojavardshusochbageri.se/v%C3%A4rdshuset.php — \"Bergs by 600, Möja\" (läst 2026-10-29)\n    // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på.\" (läst 2026-10-29)\n    // KÄLLA: https://visitmoja.se/vandra/ — \"där det går en vacker naturstig genom naturreservatet Björndalen\" (läst 2026-10-29)\n    // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — \"Långviks inre gästhamn\", \"Ramsmora gästhamn\", \"Löka gästhamn\", \"Kyrkviken\", \"Möjaström\" (läst 2026-10-29)\n    seoDescription: 'Guide till Möja: båt från Strömkajen, Sollenkroka eller Boda, värdshus och bageri i Berg, cykel, vandring i Björndalen och fem gästhamnar. Hur du tar dig dit och vad som finns på ön.',",
+    "rader": [
+      "moja-0001",
+      "moja-0002",
+      "moja-0005",
+      "moja-0006",
+      "moja-0007",
+      "moja-0008",
+      "moja-0012",
+      "moja-0013",
+      "moja-0018",
+      "moja-0392",
+      "moja-0393",
+      "moja-0016"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Huvudöarna Möja och Södermöja har cirka 250 bofasta\"; byarna Berg, Långvik, Ramsmora, Löka och Södermöja\n      'Möja ligger i Stockholms mellersta skärgård. Huvudöarna Möja och Södermöja har omkring 250 bofasta. Ön är avlång i nord-sydlig riktning, och landskapet växlar mellan skog, öppen mark och klippor längs hela sträckan.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Öns skola finns i Berg ... och har ca 25 elever från förskola till klass 9\"\n      'Öns skola ligger i Berg och har ett tjugofemtal elever från förskola till årskurs 9.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Kyrkan uppfördes 1768\" (renoverad på 1880-talet)\n      'Möja kyrka uppfördes 1768 och renoverades på 1880-talet.',\n      // KÄLLA: Waxholmsbolaget linje 14, https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-09-27). Strömkajen → Berg (Möja) utan byte: 3 h 10 min (sö 11.00–14.10) till 4 h 10 min (må–to 14.45–18.55); Sollenkroka → Berg 40–75 min (t.ex. 09.15–09.55, 11.15–12.30).\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja\", \"Vissa turer går också direkt från Strömkajen ut till Möja utan byte\", \"De mest trafikerade bryggorna på Möja är Möjaström och Berg, som båda ligger på öns sydligaste del\" (läst 2026-09-27)\n      // KÄLLA: SL buss 434, https://kund.printhuset-sthlm.se/sl/v433_434.pdf — \"434 Slussen–Vindö\", \"Sollenkroka brygga\" (Slussen 07.48 → Sollenkroka brygga 09.00, måndag–fredag); SL buss 438, https://kund.printhuset-sthlm.se/sl/v438.pdf — \"438 Slussen–Boda\" (Slussen 09.20 → Boda brygga 10.10) (läst 2026-09-27)\n      'Till Möja reser man med båt. Waxholmsbolagets linje 14 går från Strömkajen via Vaxholm, och vissa turer går hela vägen ut utan byte – enligt tidtabellen för vår och höst 2026 tar det mellan drygt tre och drygt fyra timmar till Berg. Snabbare är SL-buss 434 från Slussen till Sollenkroka brygga, drygt en timme, och båten därifrån, 40–75 minuter till Berg. Båtar går också året runt från Boda brygga på Värmdö, dit buss 438 går från Slussen. De mest trafikerade bryggorna är Möjaström och Berg på öns sydligaste del.',",
+    "ny": "      // KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-moja/ — \"Möja är en stor ö i Stockholms mellersta skärgård på gränsen till ytterskärgården, i Värmdö Kommun.\" (läst 2026-11-09)\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — \"Men kvar finns många små och smala åkerlappar som fortfarande är öppen mark.\" (läst 2026-11-09)\n      // KÄLLA: https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__MI__MI0812__MI0812A/OarEjBro01/ — \"Befolkning och bebyggelse på öar utan fastlandsförbindelse med bro, per ö\" (läst 2026-10-29), i tabellen Möja 203 och Södermöja 17 folkbokförda den 31 december 2020\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Möja är cirka 6 km lång och 4 km bred.\", \"En stor del av Möjas inre består av skog och på vissa ställen finns myrmark.\" (läst 2026-10-29)\n      'Möja ligger i Stockholms mellersta skärgård. På huvudöarna Möja och Södermöja var 220 personer folkbokförda den 31 december 2020, enligt SCB. Ön är avlång i nord-sydlig riktning; en stor del av det inre består av skog med myrmark på sina ställen, och många små åkerlappar är fortfarande öppen mark.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Öns skola finns i Berg norr om dansbanan\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Möja skola ligger cirka 1 kilometer från markanvisningsområdet, men\", \"är i dagsläget pausad på grund av för få barn. Barnen på Möja går idag\", \"på Djurö skola, dit de tar sig med skolskjuts via båt och buss.\", \"Dnr: 2023KS/0452 anbud Markanvisning Möja\" (läst 2026-11-09)\n      'Möja skola ligger i Berg, men när kommunen bjöd in till markanvisning för bostäder på ön 2023 var skolan pausad på grund av för få barn. Barnen gick då i Djurö skola och tog sig dit med skolskjuts med båt och buss.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Kyrkan uppfördes 1768 och ersatte ett äldre kapell på samma plats.\" (läst 2026-10-29)\n      'Möja kyrka uppfördes 1768 och ersatte ett äldre kapell på samma plats.',\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gods ombord, förseningar på upp till 30 minuter kan förekomma.\" (läst 2026-10-29). Uppmätt i tabell 14A: Strömkajen → Berg utan byte 3 h 10 min–4 h 10 min, tur 1201 på onsdagar 6 h 20 min; Sollenkroka → Berg 40–75 min.\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja.\", \"Vissa turer går också direkt från Strömkajen ut till Möja utan byte.\", \"De mest trafikerade bryggorna på Möja är Möjaström och Berg, som båda ligger på öns sydligaste del.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v434.pdf — \"Slussen–Överby\", \"Sollenkroka brygga 2)\", \"2) Endast vissa turer.\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\" (läst 2026-11-03); uppmätt 2026-10-29: Slussen → Sollenkroka brygga 71–78 min\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v438.pdf — \"Slussen–Boda\" (läst 2026-10-29)\n      'Till Möja reser man med båt. Waxholmsbolagets linje 14 går från Strömkajen via Vaxholm, och vissa turer går hela vägen ut utan byte – enligt tidtabellen för vår och höst 2026 tar de flesta mellan drygt tre och drygt fyra timmar till Berg, och onsdagarnas tur med gods ombord drygt sex timmar. Snabbare är SL-buss 434 från Slussen till Sollenkroka brygga (bara vissa turer på linjen går dit), drygt en timme, och båten därifrån, 40–75 minuter till Berg. Båtar går också året runt från Boda brygga på Värmdö, dit buss 438 går från Slussen. De mest trafikerade bryggorna är Möjaström och Berg på öns sydligaste del.',",
+    "rader": [
+      "moja-0088",
+      "moja-0090",
+      "moja-0092",
+      "moja-0093",
+      "moja-0095",
+      "moja-0101",
+      "moja-0102",
+      "moja-0103",
+      "moja-0105",
+      "moja-0086",
+      "moja-0091",
+      "moja-N025"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Roland Svensson (1910-2003)\"; https://www.rolandsvenssonmuseet.se/roland-svensson-museet/ — \"målar- och skrivarhörnorna. Dessa har sedan Rolands bortgång 2003 bevarats i hans gamla ateljé på Tornö och allt är nu flyttat till det nybyggda museet vid Ramsmora ångbåtsbrygga, där även en glasad vägg ger ett vidunderligt perspektiv\"; \"Museet öppnade 2014\" (läst 2026-09-19)\n      'Roland Svensson-museet ligger vid Ramsmora brygga. Roland Svensson (1910–2003) skildrade skärgården och dess människor i bild och text, och hans målar- och skrivarhörnor flyttades 2014 från ateljén på Tornö till det nybyggda museet. En glasvägg vetter ut mot det landskap han arbetade med.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — Björndalens naturreservat, Storö-Bockö-Lökaö naturreservat och Granholmens naturreservat\n      'Tre naturreservat ligger i och kring Möja: Björndalens, Storö-Bockö-Lökaö och Granholmens.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"För Möjaborna var fisket den mest betydelsefulla inkomstkällan till långt in på 1980-talet\"",
+    "ny": "      // KÄLLA: https://collection.nationalmuseum.se/en/artists/artist/3475 — \"Roland Svensson (1910 - 2003)\" (läst 2026-11-09)\n      // KÄLLA: https://arken.kb.se/SE-S-HS-Acc2010-65 — \"Svensson, Roland (1910-2003)\" (läst 2026-11-09)\n      // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Hans skildringar av den stockholmska skärgården och dess innevånare\", \"Adress: Ramsmora brygga Möja\" (läst 2026-11-09)\n      // KÄLLA: https://www.rolandsvenssonmuseet.se/roland-svensson-museet/ — \"I museet speglas Rolands obändiga arbetslust ända ned till de konkreta arbetsplatserna i form av målar- och skrivarhörnorna.\", \"Museet öppnade 2014\", \"en glasad vägg ger ett vidunderligt perspektiv ut mot den skärgård, Nassa och Gillöga, som låg Roland varmast om hjärtat.\" (läst 2026-11-09)\n      'Roland Svensson-museet ligger vid Ramsmora brygga. Roland Svensson (1910–2003) skildrade skärgården och dess människor i bild och text, och i museet, som öppnade 2014, finns hans målar- och skrivarhörnor. En glasvägg ger utsikt mot Nassa och Gillöga, den skärgård som enligt museet låg honom varmast om hjärtat.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Björndalens naturreservat\", \"Storö-Bockö-Lökaö naturreservat (utanför karta)\", \"Granholmens naturreservat (utanför karta)\" (läst 2026-10-29)\n      'Tre naturreservat ligger i och kring Möja: Björndalens, Storö-Bockö-Lökaö och Granholmens.',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"för Möjaborna var fisket den mest betydelsefulla inkomstkällan till långt in på 1980-talet\" (läst 2026-10-29)",
+    "rader": [
+      "moja-0134",
+      "moja-0136",
+      "moja-0137",
+      "moja-0138",
+      "moja-0139",
+      "moja-0140",
+      "moja-0141",
+      "moja-0131",
+      "moja-0133",
+      "moja-0135"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — \"Ryssugnarna som ryska soldater lagade mat i under sina härjningar i skärgården 1719\" återstår fortfarande (läst 2026-09-30)\n      'När den ryska flottan härjade kusten 1719 brändes all bebyggelse på Möja utom det lilla kapellet i Berg. Spåren finns kvar i landskapet i form av ryssugnar — de eldstäder där de ryska soldaterna lagade mat.',\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — \"Längs Möjas och Södermöjas östra kust har det funnits skyddade hamnvikar som lockat till sig bebyggelse ända sedan medeltiden\"; \"Vid 1800-talets mitt fanns där 74 gårdar\"; \"Det goda fisket var basen för försörjningen\"; jordgubbsodlingen blomstrade \"från sekelskiftet 1900 och en bit in på 1970-talet\"; \"Möja fick fast ångbåtsförbindelse 1906\" (läst 2026-09-30)\n      'De skyddade hamnvikarna längs Möjas och Södermöjas östra kust har lockat bebyggelse sedan medeltiden, och vid 1800-talets mitt fanns 74 gårdar där. Fisket var basen för försörjningen, men från sekelskiftet 1900 och en bit in på 1970-talet var jordgubbsodling en blomstrande näring på ön. Fast ångbåtsförbindelse kom 1906.',",
+    "ny": "      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — \"de så kallade ryssugnarna som ryska soldater lagade mat i under sina härjningar i skärgården 1719\" (läst 2026-10-29)\n      'När den ryska flottan härjade kusten 1719 brändes all bebyggelse på Möja utom det lilla kapellet i Berg. Spåren finns kvar i landskapet i form av ryssugnar — de eldstäder där de ryska soldaterna lagade mat.',\n      // KÄLLA: https://stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/ — \"Längs Möjas och Södermöjas östra kust har det funnits skyddade hamnvikar som lockat till sig bebyggelse ända sedan medeltiden.\", \"Vid 1800-talets mitt fanns där 74 gårdar.\", \"Det goda fisket var basen för försörjningen.\", \"Det var också där och på öarna norr om Långvik som jordgubbsodlingarna fanns när denna näring var som störst från sekelskiftet 1900 och en bit in på 1970-talet.\", \"Möja fick fast ångbåtsförbindelse 1906\" (läst 2026-10-29)\n      'De skyddade hamnvikarna längs Möjas och Södermöjas östra kust har lockat bebyggelse sedan medeltiden, och vid 1800-talets mitt fanns 74 gårdar där. Fisket var basen för försörjningen, och från sekelskiftet 1900 och en bit in på 1970-talet odlades också jordgubbar – på öarna öster om Möja och norr om Långvik. Fast ångbåtsförbindelse kom 1906.',",
+    "rader": [
+      "moja-0155",
+      "moja-0156",
+      "moja-0161",
+      "moja-0162"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/granholmen.html — \"Skyddat sedan: 1978, utvidgat 2018\"; \"Storlek: 39 hektar varav land 18 hektar\"; Värmdö; Skärgårdsstiftelsen; arter \"blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad\"; naturhamnen Munkhamnen; tältning högst två dygn per plats (läst 2026-09-30)\n      'Granholmens naturreservat är litet: 39 hektar, varav 18 hektar land, skyddat sedan 1978 och utvidgat 2018. Det som gör det värt besväret är floran i de öppna betesmarkerna — blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad. Naturhamnen Munkhamnen ligger i området, och tältning är begränsad till två dygn per plats.',",
+    "ny": "      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/granholmen.html — \"Skyddat sedan: 1978, utvidgat 2018\", \"Storlek: 39 hektar varav land 18 hektar\", \"Reservatet ligger på nordvästra delen av Granholmen, 2,5 kilometer söder om Möja.\", \"På kulturmarkerna som betats hittar du bland annat blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad.\", \"Munkhamnen är en utmärkt och välbesökt naturhamn.\", \"man får bara tälta två dygn på samma plats\" (läst 2026-10-29)\n      'Granholmens naturreservat är litet: 39 hektar, varav 18 hektar land, skyddat sedan 1978 och utvidgat 2018. Reservatet ligger 2,5 kilometer söder om Möja, och i de betade kulturmarkerna växer bland annat blodnäva, småborre, darrgräs, jungfrulin, vildlin och tvåblad. Naturhamnen Munkhamnen ligger i området, och tältning är begränsad till två dygn per plats.',",
+    "rader": [
+      "moja-0201",
+      "moja-N001"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — klippbad i Långvik, Ramsmora, Löka och Berg; vid Saltvik finns \"både badklippor och sandstrand\"; \"Det finns ett fåtal badplatser... men inga anlagda badplatser\"; gästhamnar i Långvik, Ramsmora, Löka och Kyrkviken; \"Möjaborna är mångsysslare, här finns runt 60 företag\"\n      'Det finns klippbad i Långvik, Ramsmora, Löka och Berg, och vid Saltvik både badklippor och sandstrand — men inga anlagda badplatser. Gästhamnar finns i Långvik, Ramsmora, Löka och Kyrkviken. Kommunen beskriver möjaborna som mångsysslare: på ön finns omkring sextio företag.',\n    ],\n    facts: {\n      // KÄLLA: Waxholmsbolaget linje 14, https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-09-27). Sollenkroka → Berg 40–75 min; Strömkajen → Berg utan byte 3 h 10 min–4 h 10 min. Tidigare källa (Värmdö-foldern 2022: båt drygt 1 timme) ersatt.\n      // Kortad 2026-09-23: faktakortet ska gå att läsa på en blick; hela restiden står i brödtexten och på /komma-dit.\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Möjaborna\", \"är mångsysslare, här finns runt 60 företag\", \"ca 25 elever från förskola till klass 9\" (läst 2026-09-27)\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"Det finns verksamheter på\", \"MÖJA året runt\" (läst 2026-09-27); https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"sommartid dubbleras antalet matställen\" (läst 2026-09-27)\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på\"; https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"På Möja går leden längs landsvägen från Långvik till Hamn\"; https://visitmoja.se/g%C3%A4sthamnar/ — \"Möja är populärt bland båtfolket\" (läst 2026-09-27)\n      travel_time: 'Båt 40–75 min från Sollenkroka · ca 3–4 tim från Strömkajen',\n      character: 'Bofast ö med skola, två Coop och runt 60 företag',\n      season: 'Året runt; flest verksamheter öppna sommartid',\n      best_for: 'Cykel, vandring i Björndalen, båtfolk',",
+    "ny": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Möjlighet till klippbad finns i t.ex. Långvik, Ramsmora, Löka och Berg.\", \"Vid Saltvik finns både badklippor och sandstrand.\", \"men inga anlagda badplatser\", \"På själva Möja finns gästhamnar i Långvik, Ramsmora, Löka och Kyrkviken.\", \"är mångsysslare, här finns runt 60 företag\", \"Copyright 2018 © Värmdö kommun.\" (läst 2026-10-29)\n      'Det finns klippbad i Långvik, Ramsmora, Löka och Berg, och vid Saltvik både badklippor och sandstrand — men inga anlagda badplatser. Gästhamnar finns i Långvik, Ramsmora, Löka och Kyrkviken. I kommunens Möjafolder från 2018 beskrivs möjaborna som mångsysslare med runt 60 företag på ön.',\n    ],\n    facts: {\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gods ombord, förseningar på upp till 30 minuter kan förekomma.\" (läst 2026-10-29). Uppmätt: Sollenkroka → Berg 40–75 min; Strömkajen → Berg utan byte 3 h 10 min–4 h 10 min, tur 1201 på onsdagar 6 h 20 min.\n      // Kortad 2026-09-23: faktakortet ska gå att läsa på en blick; hela restiden står i brödtexten och på /komma-dit.\n      travel_time: 'Båt 40–75 min från Sollenkroka · 3 h 10 min–4 h 10 min från Strömkajen, onsdagarnas tur med gods ombord 6 h 20 min',\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Idag bor runt 200 personer permanent på Möja\", \"här finns runt 60 företag\", \"är i dagsläget pausad på grund av för få barn.\" (läst 2026-11-09)\n      // KÄLLA: https://konsummoja.se/ — \"Vi har livsmedelsbutikerna Coop Berg och Coop Långvik på Möja\" (läst 2026-11-09)\n      character: 'Bofast ö med två Coop och runt 60 företag; runt 200 personer bor här permanent (kommunen 2023)',\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Här finns en matbutik\", \"som är öppen året runt\", \"Waxholmsbolagets båtar lägger till\", \"året om, även när isen ligger.\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ (Möja turistförening, nivå 3) — \"sommartid dubbleras antalet matställen\" (läst 2026-11-09)\n      season: 'Året runt; flest verksamheter öppna sommartid',\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på\"; https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"På Möja går leden längs landsvägen från Långvik till Hamn\"; https://visitmoja.se/g%C3%A4sthamnar/ — \"Möja är populärt bland båtfolket\" (läst 2026-09-27)\n      best_for: 'Cykel, vandring i Björndalen, båtfolk',",
+    "rader": [
+      "moja-0218",
+      "moja-0219",
+      "moja-0031",
+      "moja-0036",
+      "moja-0033",
+      "moja-0034",
+      "moja-0035",
+      "moja-0037",
+      "moja-N024"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.svenskakyrkan.se/djuro-moja-namdo/moja-kyrka — \"Möja kyrka är från 1768 och uppfördes av byggmästare Carl Örn\", \"Tornet är från 1885\" (läst 2026-09-19)\n      { icon: '⛪', name: 'Möja kyrka', desc: 'Kyrka från 1768 i Berg, byggd av Carl Örn. Tornet tillkom 1885.' },",
+    "ny": "      // KÄLLA: https://bebyggelseregistret.raa.se/bbr2/anlaggning/visaHelaHistoriken.raa?anlaggningId=21300000005465&historikId=21000000531174 — \"Möja kyrka uppfördes av fortifikationsbyggmästare Carl Öhrn på uppdrag av Möja kapellförsamling.\", \"Nuvarande kyrka, som uppfördes 1768-1769 efter fortifikationsbyggmästaren Carl Örns ritningar\", \"Tornet tillfogades 1839-1840 till långhuset.\", \"som 1885 ersattes av dagens goticerande tornspira\", \"kyrkplatsen är belägen på Kyrkvikens västra sida\", \"Möja kyrka ligger vid en vik på södra delen av Stora Möja.\" (läst 2026-11-09)\n      { icon: '⛪', name: 'Möja kyrka', desc: 'Kyrka från 1768–1769 på Kyrkvikens västra sida på södra Möja, byggd under ledning av fortifikationsbyggmästaren Carl Öhrn (även stavat Örn). Tornet byggdes till 1839–1840 och fick sin nuvarande tornspira 1885.' },",
+    "rader": [
+      "moja-0237",
+      "moja-0236",
+      "moja-0238",
+      "moja-0239"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "    // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ (öppet april–december); mojavardshusochbageri.se. Wikströms Fisk stängde 13 juni 2024 (wikstromsfisk.com) — inget boende där (läst 2026-09-14)\n    accommodation: [\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Öppet April - December\", \"Vandrarhemmet ligger i Berg som är huvudbyn på Möja\", \"två- eller fyrabäddsrum med delad dusch och wc\", \"Vandrarhemmet erbjuder även cyklar för uthyrning\" (läst 2026-09-27)\n      { name: 'STF Möja Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem i Berg med självhushåll, två- och fyrbäddsrum med delad dusch och wc. Hyr ut cyklar. Öppet april–december. Boka i god tid inför sommaren.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/' },\n      { name: 'Möja Värdshus & Bageri', type: 'B&B', desc: 'Värdshus och bageri med B&B-boende under förlängd sommarsäsong.', websiteUrl: 'https://mojavardshusochbageri.se' },\n    ],\n    getting_there: [\n      // KÄLLA: Waxholmsbolaget linje 14, https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Beställ resan i SL-appen\" (läst 2026-09-27). Sollenkroka → Berg 40–75 min; fasta tider i Berg och Långvik, Ramsmora och Möjaström oftast utan fast tid (X).\n      // KÄLLA: SL buss 434, https://kund.printhuset-sthlm.se/sl/v433_434.pdf — \"434 Slussen–Vindö\", \"Sollenkroka brygga\" (läst 2026-09-27)\n      { method: 'Waxholmsbåt', from: 'Sollenkroka', time: '40–75 min', desc: 'Waxholmsbolagets linje 14 från Sollenkroka brygga (buss 434 från Slussen dit, drygt en timme) till Berg och Långvik; Södermöja, Möjaström och Ramsmora angörs ofta utan fast tid. Flera turer måste beställas i SL-appen. Tider gäller vår och höst 2026.', icon: '⛴' },\n      // KÄLLA: Waxholmsbolaget linje 14, https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-09-27). Strömkajen 08.00 → Berg 11.40 (lördag), 11.00 → 14.10 (söndag), 14.45 → 18.55 (måndag, tisdag).\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Vissa turer går också direkt från Strömkajen ut till Möja utan byte\" (läst 2026-09-27)\n      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '3 h 10 min–4 h 10 min', desc: 'Linje 14 via Vaxholm, vissa turer utan byte. Oftast en till tre turer om dagen vår och höst; några byter båt i Boda brygga.', icon: '⛴' },\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja\" (läst 2026-09-27); SL buss 438, https://kund.printhuset-sthlm.se/sl/v438.pdf — \"438 Slussen–Boda\", \"Boda brygga ank\" (läst 2026-09-27)\n      { method: 'Buss + båt', from: 'Slussen via Boda brygga', time: 'ca 50 min buss', desc: 'SL-buss 438 Slussen–Boda brygga på Värmdö, därifrån Waxholmsbåt till Möja. Båtar från Boda går året runt enligt Waxholmsbolaget, men bara vissa turer passar bussen.', icon: '🚌' },",
+    "ny": "    // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Öppet April - December\" (läst 2026-10-29)\n    accommodation: [\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Öppet April - December\", \"Vandrarhemmet ligger i Berg som är huvudbyn på Möja\", \"två- eller fyrabäddsrum med delad dusch och wc\", \"Vandrarhemmet erbjuder även cyklar för uthyrning\" (läst 2026-09-27)\n      { name: 'STF Möja Vandrarhem', type: 'Vandrarhem', desc: 'STF-vandrarhem i Berg med självhushåll, två- och fyrbäddsrum med delad dusch och wc. Hyr ut cyklar. Öppet april–december. Boka i god tid inför sommaren.', websiteUrl: 'https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/' },\n      // KÄLLA: https://mojavardshusochbageri.se/ — \"I samband med nya ägare 2005 utökar man även verksamheten med Bed & Breakfast.\" (läst 2026-11-09)\n      // KÄLLA: https://mojavardshusochbageri.se/v%C3%A4rdshuset.php — \"Bergs by 600, Möja\" (läst 2026-11-09)\n      // KÄLLA: https://mojavardshusochbageri.se/boka-bord.php — \"Det går att boka boende hos oss via Booking.com mellan den 18e juni till den 15e augusti.\", \"Stängt för säsongen alla andra samtliga datum.\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ (Möja turistförening, nivå 3) — \"Sommaröppet anrikt skärgårdsbageri med boende ovanpå, bokas via Värdshuset.\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/boende-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"Bo ovanpå bageriet, boka via Möja värdshus.\" (läst 2026-11-09)\n      { name: 'Möja Värdshus & Bageri', type: 'B&B', desc: 'Värdshus och bageri i Berg med boende ovanpå bageriet. Rummen går att boka 18 juni–15 augusti; övriga datum är boendet stängt.', websiteUrl: 'https://mojavardshusochbageri.se' },\n    ],\n    getting_there: [\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\", \"utan fast avgångstid.\" (läst 2026-10-29). Uppmätt: Sollenkroka → Berg 40–75 min.\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v434.pdf — \"Slussen–Överby\", \"Sollenkroka brygga 2)\", \"2) Endast vissa turer.\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\" (läst 2026-11-03); uppmätt 2026-10-29: Slussen → Sollenkroka brygga 71–78 min\n      { method: 'Waxholmsbåt', from: 'Sollenkroka', time: '40–75 min', desc: 'Waxholmsbolagets linje 14 från Sollenkroka brygga (vissa turer på buss 434 från Slussen går dit, drygt en timme) till Berg och Långvik; Södermöja, Möjaström och Ramsmora angörs ofta utan fast tid. Flera turer måste beställas i förväg, i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00. Tider gäller vår och höst 2026.', icon: '⛴' },\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gods ombord, förseningar på upp till 30 minuter kan förekomma.\" (läst 2026-10-29). Uppmätt: två till fyra turer om dagen från Strömkajen; utan byte 3 h 10 min–4 h 10 min, tur 1201 på onsdagar 6 h 20 min.\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Vissa turer går också direkt från Strömkajen ut till Möja utan byte.\", \"Till Boda kan du resa med båt från Strömkajen eller med buss från Slussen.\" (läst 2026-10-29)\n      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '3 h 10 min–6 h 20 min', desc: 'Linje 14 via Vaxholm, vissa turer utan byte. Två till fyra turer om dagen vår och höst; några byter båt i Boda brygga. De flesta turer utan byte tar 3 h 10 min–4 h 10 min, onsdagarnas tur med gods ombord 6 h 20 min.', icon: '⛴' },\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v438.pdf — \"Slussen–Boda\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\", \"Boda brygga ank\" (läst 2026-10-29), uppmätt Slussen → Boda brygga 49–57 min\n      { method: 'Buss + båt', from: 'Slussen via Boda brygga', time: 'ca 50 min buss', desc: 'SL-buss 438 Slussen–Boda brygga på Värmdö, därifrån Waxholmsbåt till Möja. Båtar från Boda går året runt enligt Waxholmsbolaget, men bara vissa turer passar bussen.', icon: '🚌' },",
+    "rader": [
+      "moja-0285",
+      "moja-0286",
+      "moja-0287",
+      "moja-0288",
+      "moja-0289",
+      "moja-0290",
+      "moja-0295",
+      "moja-0296",
+      "moja-0299",
+      "moja-0303",
+      "moja-0307"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      { name: 'Möjaström gästhamn', desc: 'Ny flytbrygga med platser långsides, öster om macken i Möjaström.', fuel: true, service: ['el', 'vatten'] },",
+    "ny": "      { name: 'Möjaström gästhamn', desc: 'Flytbrygga med platser långsides, öster om macken i Möjaström.', fuel: true, service: ['el', 'vatten'] },",
+    "rader": [
+      "moja-0353"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, Möja bageri\"\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Pizza i en liten mysig sjöbod vid gästhamnen i Kyrkviken.\" (läst 2026-09-27)",
+    "ny": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Hamnbaren\" (läst 2026-10-29)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Pizza i en liten mysig sjöbod vid gästhamnen i Kyrkviken.\" (läst 2026-09-27)",
+    "rader": [
+      "moja-0255"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, Möja bageri\"\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Les Poissonniers de Möja\", \"Skaldjur, Dryck med härlig känsla på ängen i Berg.\" (läst 2026-09-27)",
+    "ny": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Les Poissonniers de Möja\", \"Ett stycke kontinent i skärgården; Fisk, Skaldjur, Dryck med härlig känsla på ängen i Berg.\" (läst 2026-10-29)\n      // KÄLLA: https://mojafisk.se — \"Les Poissonniers de Möja ligger i hjärtat av Berg By, Möja\", \"Vi tar enbart drop in i Bistron\" (läst 2026-10-29)",
+    "rader": [
+      "moja-0260"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Möja värdshus, Hamnbaren, Les Poissonniers de Möja, Jeppes, Hamncafét, Möja bageri\"\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"På spritbaronens gamla gård drivs ett bohemt och lite galet ställe.\", \"Charmig lada med lokalt hantverk och konst vid Jeppes i Långvik.\" (läst 2026-09-27)",
+    "ny": "      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Jeppes\", \"Här tipsar vi om de restauranger som finns på ön.\" (läst 2026-10-29)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"På spritbaronens gamla gård drivs ett bohemt och lite galet ställe.\", \"Charmig lada med lokalt hantverk och konst vid Jeppes i Långvik.\" (läst 2026-09-27)",
+    "rader": [
+      "moja-0265"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://konsummoja.se/ — Coop Berg har öppet året runt; Långvik är obemannad automatbutik\n      'Coop i Berg har öppet året runt; butiken i Långvik är en obemannad automatbutik.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/moja-bjorndalen.html — tältning och eldning förbjuden i reservatet; rast-/övernattningsstuga finns",
+    "ny": "      // KÄLLA: https://konsummoja.se/ — \"Den stora butiken på Möja och som har öppet året runt.\", \"Coop Långvik är en obemannad butik.\" (läst 2026-10-29)\n      'Coop i Berg har öppet året runt; butiken i Långvik är en obemannad automatbutik.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/moja-bjorndalen.html — \"I reservatet är det förbjudet att\", \"tälta\", \"göra upp öppen eld\", \"Rast-/övernattningsstuga\" (läst 2026-10-29)",
+    "rader": [
+      "moja-0365",
+      "moja-0366",
+      "moja-0367",
+      "moja-0368",
+      "moja-0369"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — Möja är cykelvänlig med \"fina landsvägar\"; naturstigen till Hamn via Björndalens naturreservat startar vid mellansjön\n      'Ön är cykelvänlig, och naturstigen norrut till Hamn genom Björndalens naturreservat startar vid mellansjön.',\n    ],\n    related: ['sandhamn', 'gallno', 'finnhamn'],\n    tags: ['cykel', 'lantlig', 'vandring', 'gästhamn', 'konstnär'],",
+    "ny": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på.\", \"Naturstigen till Hamn via Björndalens naturreservat startar vid mellansjön.\" (läst 2026-10-29)\n      // KÄLLA: https://visitmoja.se/vandra/ — \"Vandra mellan byarna Hamn i väster och Ramsmora i öst\" (läst 2026-10-29)\n      'Ön är cykelvänlig, och naturstigen till Hamn genom Björndalens naturreservat startar vid mellansjön.',\n    ],\n    related: ['sandhamn', 'gallno', 'finnhamn'],\n    // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Med sina fina landsvägar är Möja en utmärkt ö att cykla på.\" (läst 2026-10-29)\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Möja – små byar och fiskehamnar\" (läst 2026-10-29)\n    // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"naturstig går över ön till Ramsmora.\" (läst 2026-11-09)\n    // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — \"Långviks inre gästhamn\" (läst 2026-10-29)\n    // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Roland Svensson (1910-2003) tillhör de konstnärer som redan under sin livstid fick en plats i svenska folkets hjärtan.\" (läst 2026-10-29)\n    tags: ['cykel', 'lantlig', 'vandring', 'gästhamn', 'konstnär'],",
+    "rader": [
+      "moja-0374",
+      "moja-0025",
+      "moja-0026",
+      "moja-0027",
+      "moja-0028",
+      "moja-0029"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: Waxholmsbolaget linje 14, https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-09-27). Strömkajen → Berg utan byte, tio turer: 190–250 min, median 220. Sollenkroka → Berg 40–75 min, median ca 60. Avgångar från Sollenkroka: måndag–torsdag 6–7, fredag 6, lördag 3, söndag 3–4; flera markerade B/b = beställs i förväg. Sommartabellen (19 juni–16 augusti) är inte publicerad nu och är inte kontrollerad.\n      from_city_min: 220,\n      from_nearest_hub_min: 60,\n      nearest_hub: 'Sollenkroka',\n      operator: 'Waxholmsbolaget',\n      line: 'Linje 14 (Stockholm–Vaxholm–Sollenkroka–Möja); buss 434 Slussen–Sollenkroka, buss 438 Slussen–Boda',\n      frequency: 'Vår och höst 3–7 turer/dag från Sollenkroka, flera beställs i förväg',\n      booking_url: 'https://waxholmsbolaget.se',\n      // KÄLLA: Värmdö kommun — https://www.varmdo.se/varmdohamnar/parkera.4.6e5e3cc318a8d4dc3f6361bf.html (hämtad 2026-08-06)\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Tar du egen bil ut till Sollenkroka tänk på att det sommartid är ont om p-platser.\" (läst 2026-09-27)\n      car_parking: 'Parkering vid Sollenkroka brygga (avfärdshamn för Möja) — Värmdö kommun anger att Parkit Sweden AB sköter parkeringen i Stavsnäs, Sollenkroka och Boda. Sommartid är det ont om platser i Sollenkroka. Vid Stavsnäs vinterhamn finns cirka 1 300 platser, men den hamnen gäller Sandhamn/Nämdö-trafiken, inte Möja.',",
+    "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\" (läst 2026-10-29). Uppmätt: Strömkajen → Berg utan byte, tio turer, median 220 min; Sollenkroka → Berg 40–75 min, median 60. Tabellen gäller inte sommarperioden 19 juni–16 augusti 2026.\n      from_city_min: 220,\n      from_nearest_hub_min: 60,\n      nearest_hub: 'Sollenkroka',\n      operator: 'Waxholmsbolaget',\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\", \"M Går under perioderna 8 maj - 18 juni och 17 augusti - 13 september.\" (läst 2026-11-03). Uppmätt i tabell 14A: 2–7 avgångar per dag från Sollenkroka mot Möja (flest på onsdagar; lördagar 2 april–7 maj och 14 september–12 december bara 2, eftersom tur 1461 har anmärkning M).\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v434.pdf — \"Slussen–Överby\", \"Sollenkroka brygga 2)\", \"2) Endast vissa turer.\", \"Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026\" (läst 2026-11-03)\n      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v438.pdf — \"Slussen–Boda\" (läst 2026-10-29)\n      line: 'Linje 14 (Stockholm–Vaxholm–Sollenkroka–Möja); buss 434 Slussen–Överby, där vissa turer går till Sollenkroka brygga; buss 438 Slussen–Boda',\n      frequency: 'Vår och höst 2–7 turer/dag från Sollenkroka, flera beställs i förväg',\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Du hittar tider genom att använda söktjänsten på startsidan eller titta i tabell 14.\" (läst 2026-10-29)\n      booking_url: 'https://waxholmsbolaget.se',\n      // KÄLLA: https://www.varmdo.se/varmdohamnar/parkera.4.6e5e3cc318a8d4dc3f6361bf.html — \"Parkit Sweden AB ansvarar för drift och hantering av parkeringen i Stavsnäs, Sollenkroka och Boda.\", \"Här finns 400 parkeringsplatser för kort och lång tid.\", \"3 timmar fri parkering med p-skiva, därefter avgift.\", \"Det finns 6 laddplatser för besökare\", \"I Stavsnäs vinterhamn finns cirka 1300 parkeringsplatser.\" (läst 2026-10-29)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\" (läst 2026-10-29). Tabell 14 har ingen hållplats i Stavsnäs.\n      car_parking: 'Parkering vid Sollenkroka brygga (avfärdshamn för Möja): 400 platser för kort och lång tid, 3 timmar fri parkering med p-skiva och därefter avgift, och 6 laddplatser. Värmdö kommun anger att Parkit Sweden AB sköter parkeringen i Stavsnäs, Sollenkroka och Boda. Vid Stavsnäs vinterhamn finns cirka 1 300 platser, men Möjabåtarna på linje 14 går inte därifrån.',",
+    "rader": [
+      "moja-0394",
+      "moja-0421",
+      "moja-0425",
+      "moja-0426",
+      "moja-0428",
+      "moja-0429",
+      "moja-0430",
+      "moja-0431"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      kajak: { difficulty: 'lätt', rental: true, notes: 'Möja Outdoor hyr ut kajak, roddbåt och SUP.' },\n      bad: {\n        // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"inga anlagda badplatser\", \"Möjlighet till klippbad\", \"finns i t.ex. Långvik, Ramsmora, Löka och Berg. Vid Saltvik finns både\", \"badklippor och sandstrand\" (läst 2026-09-27)\n        // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"det finns ingen officiell badplats och alla platser nyttjas enl.\" (läst 2026-09-27). Barnvänlighet, djup och vägbeskrivningar saknade källa och är strukna; Coop Långvik är obemannad, så tipset att fråga där var fel.",
+    "ny": "      // Rättad 2026-11-16 (omarbete 4f, sl07-k027): graden 'lätt' saknade källa. Möja Outdoor anger ingen grad och skriver att man från Möja kan paddla ut till yttre skärgården, så graden är okänd och fältet difficulty är borttaget (valfritt i mallarnas patch, där inget värde ger ingen grad på /aktivitet/kajak).\n      // KÄLLA: https://mojaoutdoor.se/ — \"Hos oss på Möja Outdoor kan du hyra kajak, roddbåt, SUP, vattenskoter eller cyklar\", \"att starta långt ut på Möja möjliggör paddling till yttre skärgården.\" (läst 2026-11-16)\n      kajak: { rental: true, notes: 'Möja Outdoor hyr ut kajak, roddbåt och SUP.' },\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Vandrarhemmet erbjuder även cyklar för uthyrning.\" (läst 2026-10-29)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Café med glass och bullar samt cykeluthyrning.\" (läst 2026-10-29)\n      cykel: { rental: true, notes: 'STF Möja Vandrarhem och Hamncafét hyr ut cyklar.' },\n      bad: {\n        // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"inga anlagda badplatser\", \"Möjlighet till klippbad\", \"finns i t.ex. Långvik, Ramsmora, Löka och Berg. Vid Saltvik finns både\", \"badklippor och sandstrand\" (läst 2026-09-27)\n        // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Det finns ett fåtal badplatser i den levande skärgårdsmiljön, men inga anlagda badplatser.\", \"Visa hänsyn och respektera allemansrätten.\" (läst 2026-11-09)\n        // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Möjlighet till klippbad finns i t.ex. Långvik, Ramsmora, Löka och Berg.\", \"Vid Saltvik finns både badklippor och sandstrand.\" (läst 2026-10-29)\n        note: 'Det finns inga anlagda badplatser på Möja. Man badar från klippor och stränder enligt allemansrätten, till exempel i Långvik, Ramsmora, Löka och Berg och vid Saltvik, där det också finns sandstrand.',",
+    "rader": [
+      "moja-0452",
+      "moja-N003",
+      "moja-0451",
+      "moja-N002",
+      "moja-0438",
+      "moja-0439"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://visitmoja.se/vandra/ (Stockholm Archipelago Trail-sektionen Långvik–Berg–Hamn med gren till Ulvik, samt Naturstigen Hamn–Ramsmora) (läst 2026-09-30)\n      // KÄLLA: https://stockholmarchipelagotrail.com/section/ (Stockholm Archipelago Trail, ledens egen lista) — \"Section Möja\", \"Easy 13.8 km\". (läst 2026-09-30)\n      vandring: { trails: 1, max_km: 13.8, sat: { km: 13.8, difficulty: 'Lätt' } },\n      fiske: true,\n    },\n    // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — Långviks inre gästhamn \"Faciliteter: vatten, el, wc, dusch.\" (läst 2026-09-27); https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Café med glass och bullar samt cykeluthyrning.\" (läst 2026-09-27); https://konsummoja.se/ — \"Den stora butiken på Möja och som har öppet året runt.\" (läst 2026-09-27). Uttagsautomat nämns inte i någon källa (atm: false är obekräftat).\n    amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },",
+    "ny": "      // KÄLLA: https://www.stockholmarchipelagotrail.com/section/ — \"Section Möja\" (läst 2026-11-09)\n      // KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-moja/ — \"De 13,8 km på grusväg runt den östra och södra kusten\", \"Lätt\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"Stora naturstigen\", \"Lilla naturstigen\" (läst 2026-11-09)\n      // KÄLLA: https://api.openstreetmap.org/api/0.6/relation/19268630/full — \"Möja naturstig Hamn - Ramsmora\" (läst 2026-11-09); uppmätt i OpenStreetMap: 4 857 m. Samma dag uppmätt i kartdata för hela Möja: ingen annan namngiven stig är längre, så SAT-etappen är den längsta leden.\n      vandring: { trails: 3, max_km: 13.8, sat: { km: 13.8, difficulty: 'Lätt' } },\n    },\n    // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — \"Faciliteter: vatten, el, wc, dusch.\" (läst 2026-10-29)\n    // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Café med glass och bullar samt cykeluthyrning.\" (läst 2026-10-29)\n    // KÄLLA: https://konsummoja.se/ — \"Den stora butiken på Möja och som har öppet året runt.\" (läst 2026-10-29)\n    amenities: { toilets: true, shower: true, cafe: true, grocery: true },",
+    "rader": [
+      "moja-0555",
+      "moja-0559",
+      "moja-0564",
+      "moja-0556"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://konsummoja.se/ — \"Coop Långvik är en obemannad butik. För att kunna handla krävs Coops app samt ett svenskt bank-id\", \"använd vårt fria wi-fi, Coop_Free när du handlar\", \"Måndag-Söndag 5.00-22.00\" (läst 2026-09-27); https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"utlämningsställe för\", \"(alkohol), Post och Apotek.\" (läst 2026-09-27)\n      'Coop Långvik är obemannad: du behöver Coop-appen och svenskt bank-id, och butiken har fritt wifi (Coop_Free) eftersom mobiltäckningen varierar. Coop är också ombud för Systembolaget, post och apotek.',",
+    "ny": "      // KÄLLA: https://konsummoja.se/ — \"Coop Långvik är en obemannad butik.\", \"För att kunna handla krävs Coops app samt ett svenskt bank-id\", \"Då mobiltäckningen varierar använd vårt fria wi-fi, Coop_Free när du handlar.\", \"du får ett sms eller mail när din beställning finns att hämta hos oss på Coop Berg eller på Coop Ingmarsö.\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Här finns en matbutik\", \"Dagligvaruhandel som är ombud för apotek, post och Systembolaget\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"I Berg finns restaurang, fiskbod, pizzeria,\", \"som är ombud för Apotek, Post och Systembolaget.\" (läst 2026-11-09)\n      'Coop Långvik är obemannad: du behöver Coop-appen och svenskt bank-id, och butiken har fritt wifi (Coop_Free) eftersom mobiltäckningen varierar. Coop Berg är ombud för Systembolaget, post och apotek.',",
+    "rader": [
+      "moja-0458",
+      "moja-0463"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "    blogLinks: [\n      { slug: 'dolda-parlor-moja', title: 'Möja – vandring, bad, museum och mat på ön' },\n      { slug: 'cykling-moja-gallno', title: 'Hyra cykel på Möja och Gällnö – cykla i skärgården' },",
+    "ny": "    blogLinks: [\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"naturstig går över ön till Ramsmora.\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Möjlighet till klippbad finns i t.ex. Långvik, Ramsmora, Löka och Berg.\" (läst 2026-10-29)\n      // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Adress: Ramsmora brygga Möja\" (läst 2026-10-29)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"Du kan äta på restauranger året runt på Möja\" (läst 2026-10-29)\n      { slug: 'dolda-parlor-moja', title: 'Möja – vandring, bad, museum och mat på ön' },\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Vandrarhemmet erbjuder även cyklar för uthyrning.\" (läst 2026-11-03)\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-gallno-vandrarhem/ — \"Cykeluthyrning\", \"Cykel finns att hyra.\" (läst 2026-11-03)\n      { slug: 'cykling-moja-gallno', title: 'Hyra cykel på Möja och Gällnö – cykla i skärgården' },",
+    "rader": [
+      "moja-0382",
+      "moja-0383",
+      "moja-0384",
+      "moja-0385",
+      "moja-0386",
+      "moja-0387"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "    seasonal: {\n      // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — \"det kan vara trångt i juli\", \"det går inte att förboka plats\" (läst 2026-09-27); https://visitmoja.se/boende-p%C3%A5-m%C3%B6ja/ — \"under högsommaren blir det ofta fullbokat tidigt på året. Men vår, sensommar och höst är det ofta lugnt\" (läst 2026-09-27)\n      // KÄLLA: https://visitmoja.se/%c3%a4ta-och-handla-p%c3%a5-m%c3%b6ja/ — \"sommartid dubbleras antalet matställen\" (läst 2026-09-27); https://konsummoja.se/ — \"Den stora butiken på Möja och som har öppet året runt.\" (läst 2026-09-27); https://visitmoja.se/ — \"Öppet under juni - augusti!\" (Brunströms bod) (läst 2026-09-27)\n      open: 'Maj–Oktober',\n      peak: 'Juli',\n      best: 'Juni eller augusti',\n      bestReason: 'Gästhamnarna kan vara trånga i juli och boendena fullbokas tidigt inför högsommaren. I juni och augusti har sommarverksamheterna öppet, och vår, sensommar och höst är det ofta lugnt enligt Möja turistförening.',",
+    "ny": "    seasonal: {\n      // KÄLLA: https://konsummoja.se/ — \"Den stora butiken på Möja och som har öppet året runt.\" (läst 2026-11-09)\n      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja.\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Här finns en matbutik\", \"som är öppen året runt\", \"året om, även när isen ligger.\" (läst 2026-11-09)\n      open: 'Hela året',\n      // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ (Möja turistförening, nivå 3) — \"det kan vara trångt i juli\" (läst 2026-11-09)\n      peak: 'Juli',\n      // KÄLLA: https://visitmoja.se/ — \"Brunströms bod i Berg\", \"Öppet under juni - augusti!\", \"Boden drivs sommartid ideellt av Möja Turistförening\" (läst 2026-11-09)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\", \"Berg (Möja)\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/boende-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"under högsommaren blir det ofta fullbokat tidigt på året. Men vår, sensommar och höst är det ofta lugnt\" (läst 2026-11-09)\n      best: 'Juni eller augusti',\n      bestReason: 'Gästhamnarna kan vara trånga i juli, och under högsommaren är boendena ofta fullbokade tidigt på året, medan vår, sensommar och höst ofta är lugna, enligt Möja turistförening. Föreningens Brunströms bod i Berg har öppet juni–augusti, och Waxholmsbolagets sommartabell för linje 14 till Möja gällde 19 juni–16 augusti 2026.',",
+    "rader": [
+      "moja-0076",
+      "moja-0022",
+      "moja-0068",
+      "moja-0070",
+      "moja-0071",
+      "moja-N027"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      warning: 'Utanför sommaren är färre krogar och bodar öppna. Coop Berg har öppet året runt; kolla turistföreningens öppettidskalender före resan.',\n      months: ['off','off','off','off','limited','open','peak','open','open','limited','off','off'],",
+    "ny": "      // Rättad 2026-11-16 (omarbete 4f, sl07-k021): kommunen skriver att krogarna har öppet större delen av året, så varningen säger inte längre att färre krogar är öppna. Turistföreningen (nivå 3) används inte mot kommunen.\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Det finns även ett antal restauranger och krogar på ön som har öppet större delen av året.\" (läst 2026-11-16)\n      warning: 'Utanför sommaren är färre bodar öppna, men enligt Värmdö kommun har ett antal restauranger och krogar på ön öppet större delen av året. Coop Berg har öppet året runt; kolla turistföreningens öppettidskalender före resan.',\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"Här finns en matbutik\", \"som är öppen året runt\", \"befolkningen ökar till över 2000 sommartid.\", \"bryggor är Berg och Möjaström där Waxholmsbolagets båtar lägger till året om, även när isen ligger.\" (läst 2026-11-09)\n      // KÄLLA: https://mojavandrarhem.se/ — \"Vandrarhemmet har öppet från april till december\" (läst 2026-11-09)\n      // KÄLLA: https://mojaoutdoor.se/ — \"Öppet maj-sep 2027\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/ — \"Brunströms bod i Berg\", \"Öppet under juni - augusti!\" (läst 2026-11-09)\n      // KÄLLA: https://mojavardshusochbageri.se/boka-bord.php — \"Det går att boka boende hos oss via Booking.com mellan den 18e juni till den 15e augusti.\" (läst 2026-11-09)\n      months: ['limited','limited','limited','limited','limited','open','peak','open','limited','limited','limited','limited'],",
+    "rader": [
+      "moja-0056",
+      "moja-0057",
+      "moja-0058",
+      "moja-0059",
+      "moja-0060",
+      "moja-0061",
+      "moja-0063",
+      "moja-0064",
+      "moja-0065",
+      "moja-0066",
+      "moja-0067",
+      "moja-0073",
+      "moja-N030"
+    ]
+  },
+  {
+    "fil": "src/lib/transit-stops.ts",
+    "gammal": "    // KÄLLA: Värmdö kommun (varmdo.se — Sollenkroka brygga trafikerar Möja) +\n    // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1\n    // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.\n    note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',",
+    "ny": "    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"Boda brygga avg.\" (läst 2026-10-29). Tabell 14 har ingen hållplats i Stavsnäs.\n    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — \"Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja.\" (läst 2026-10-29)\n    note: 'Båtarna till Möja går från Sollenkroka brygga, Boda brygga och Strömkajen – inte från Stavsnäs.',",
+    "rader": [
+      "moja-0083",
+      "moja-0084"
+    ]
+  },
+  {
+    "fil": "src/app/o/hantverkare-data.ts",
+    "gammal": "    oar: ['moja', 'vaxholm', 'blido', 'yxlan'],\n    kalla: { niva: 'egen-sajt', url: 'https://www.jowael.se', last: '2026-09-22' },",
+    "ny": "    // KÄLLA: https://www.jowael.se/elektriker-skargarden/ — \"Vi arbetar regelbundet på öar som Vaxholm, Värmdö, Möja, Sandhamn, Blidö, Ljusterö, Norrtälje och Östhammar\", \"Elektriker Möja\", \"Vi har en egen servicebåt som gör att vi når även de mer avlägsna öarna i både Stockholms och Roslagens skärgård.\" (läst 2026-11-03)\n    oar: ['moja', 'vaxholm', 'blido', 'yxlan'],\n    kalla: { niva: 'egen-sajt', url: 'https://www.jowael.se', last: '2026-09-22' },",
+    "rader": [
+      "moja-0524"
+    ]
+  },
+  {
+    "fil": "src/app/o/hantverkare-data.ts",
+    "gammal": "    yrken: ['totalentreprenad', 'snickare', 'sjotransport', 'dykare'],\n    telefon: '0708-406 405',\n    webb: 'http://www.wallnermarin.se',\n    oar: ['moja'],\n    kalla: { niva: 'egen-sajt', url: 'http://www.wallnermarin.se', last: '2026-09-22' },",
+    "ny": "    // KÄLLA: http://www.wallnermarin.se/ — \"Välkommen till Wallner Marin AB på Södermöja i Stockholms skärgård.\" (läst 2026-11-03, över http)\n    // KÄLLA: http://www.wallnermarin.se/hus-och-fastigheter/ — \"Vi har hantverkare inom alla kategorier. Ni beställer jobbet av oss och vi sköter resten.\" (läst 2026-11-03)\n    // KÄLLA: http://www.wallnermarin.se/battaxi-och-sjotransporter/ — \"Svävare, båttaxi och sjötransporter\" (läst 2026-11-03)\n    // KÄLLA: http://www.wallnermarin.se/assistans-bargnings-och-dykeriarbeten/ — \"När det gäller dykning och bärgningsarbeten utför vi enklare insatser själva.\" (läst 2026-11-03)\n    // KÄLLA: http://www.wallnermarin.se/wallner-marin/kontakt/ — \"Vår adress är Södermöja 130, 13043 Möja\", \"ring 0708-406 405\" (läst 2026-11-03)\n    yrken: ['totalentreprenad', 'snickare', 'sjotransport', 'dykare'],\n    telefon: '0708-406 405',\n    webb: 'http://www.wallnermarin.se',\n    oar: ['moja'],\n    kalla: { niva: 'egen-sajt', url: 'http://www.wallnermarin.se', last: '2026-11-03' },",
+    "rader": [
+      "moja-0472",
+      "moja-0473",
+      "moja-0474",
+      "moja-0475",
+      "moja-0476",
+      "moja-0477",
+      "moja-0478",
+      "moja-0479",
+      "moja-0480"
+    ]
+  },
+  {
+    "fil": "src/app/o/hantverkare-data.ts",
+    "gammal": "    behorighetKalla: 'https://www.elsakerhetsverket.se/kollaelforetaget/foretagsregister/?foretag=11039774&sok=1',",
+    "ny": "    // KÄLLA: https://elsakerhetsverket.se/kolla-elforetaget?query=Jowa%20Elektriska — \"Jowa Elektriska AB\", \"556774-1250\", \"Din sökning gav 1 träffar\" (läst 2026-11-03, i Chromium). Den tidigare direktlänken (foretag=11039774) visar bara sökformuläret.\n    behorighetKalla: 'https://elsakerhetsverket.se/kolla-elforetaget?query=Jowa%20Elektriska',",
+    "rader": [
+      "moja-0522",
+      "vaxholm-0265"
+    ]
+  },
+  {
+    "fil": "src/app/o/hantverkare-data.ts",
+    "gammal": "    orgnr: '556955-5856',\n    oar: [\n      'blido', 'finnhamn', 'grinda', 'gallno', 'husaro', 'ingmarso',\n      'ljustero', 'yxlan', 'angso',\n    ],",
+    "ny": "    orgnr: '556955-5856',\n    // Möja tillagd 2026-11-07 (Lag 3 på /o/moja/hantverkare): företagets egen sida nämner Möja bland orterna där de genomför projekt.\n    // KÄLLA: https://oct-entreprenad.com/byggfirma-varmdo/ — \"Det gör att vi kan planera och genomföra projekt på ett sätt som är både hållbart och effektivt för området – oavsett om du bor i Nacka, Gustavsberg, Ingarö, Djurö, Storö eller Möja.\" (läst 2026-11-07)\n    oar: [\n      'blido', 'finnhamn', 'grinda', 'gallno', 'husaro', 'ingmarso',\n      'ljustero', 'yxlan', 'angso', 'moja',\n    ],",
+    "rader": [
+      "moja-N015"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"Hyr kajak, roddbåt och SUP\" (Möja Outdoor) (läst 2026-09-27); https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Havet upplevs bäst i kajak\" (läst 2026-09-27). Paddelrutten mot Gällnö och Svartsö och uthyrning vid Berg gick inte att belägga.\n",
+    "ny": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"möjlighet att hyra cykel, kajak eller båttaxi.\" (läst 2026-11-09)\n      // KÄLLA: https://mojaoutdoor.se/ — \"Hos oss på Möja Outdoor kan du hyra kajak, roddbåt, SUP, vattenskoter eller cyklar\" (läst 2026-11-09). Paddelrutten mot Gällnö och Svartsö gick inte att belägga.\n",
+    "rader": [
+      "moja-0553",
+      "moja-0554"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Roland Svensson (1910-2003)\", \"Under sommarsäsong är det öppet varje dag fr o m midsommardagen till början av augusti\", \"Adress: Ramsmora brygga Möja\" (läst 2026-09-27)\n      { icon: '🎨', name: 'Roland Svensson-museet', desc: 'Museum tillägnat skärgårdskonstnären Roland Svensson (1910–2003). Öppnade 2014 vid Ramsmora ångbåtsbrygga — hans målar- och skrivarhörnor från ateljén på Tornö är flyttade in i museet. Öppet dagligen från midsommardagen till början av augusti.' },\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"På Möja går leden längs landsvägen från Långvik till Hamn, en lätt etapp som även fungerar med barnvagn eller rullstol\", \"naturstigarna är uppmärkta med gula band\", \"Mellan Hamn-Ramsmora är det (12km)\" (läst 2026-09-27)\n      { icon: '🚶', name: 'Vandring', desc: 'Stockholm Archipelago Trail följer landsvägen från Långvik till Hamn – lätt, även med barnvagn. Naturstigen Hamn–Ramsmora (12 km) genom Björndalen är märkt med gula band.' },\n",
+    "ny": "      // KÄLLA: https://collection.nationalmuseum.se/en/artists/artist/3475 — \"Roland Svensson (1910 - 2003)\" (läst 2026-11-09)\n      // KÄLLA: https://www.rolandsvenssonmuseet.se/ — \"Under sommarsäsong är det öppet varje dag fr o m midsommardagen till början av augusti.\", \"Museet är öppet året runt mot bokning\", \"Adress: Ramsmora brygga Möja\" (läst 2026-11-09)\n      // KÄLLA: https://www.rolandsvenssonmuseet.se/roland-svensson-museet/ — \"Museet öppnade 2014\", \"I museet speglas Rolands obändiga arbetslust ända ned till de konkreta arbetsplatserna i form av målar- och skrivarhörnorna.\" (läst 2026-11-09)\n      { icon: '🎨', name: 'Roland Svensson-museet', desc: 'Museum tillägnat skärgårdskonstnären Roland Svensson (1910–2003). Öppnade 2014 vid Ramsmora ångbåtsbrygga, och i museet finns hans målar- och skrivarhörnor. Öppet dagligen från midsommardagen till början av augusti och resten av året mot bokning.' },\n      // KÄLLA: https://www.stockholmarchipelagotrail.com/sv/section/etapp-moja/ — \"De 13,8 km på grusväg runt den östra och södra kusten\", \"rekommenderar vi att du går från Långvik, till Ramsmora, till Löka, till Berg och slutligen till Hamn.\", \"Lätt\", \"På Möja har du många möjligheter om du har barnvagn\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"På Möja går leden längs landsvägen från Långvik till Hamn\", \"naturstigarna är uppmärkta med gula band\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"naturstig går över ön till Ramsmora.\", \"Naturstigen till Hamn via Björndalens naturreservat startar vid mellansjön.\" (läst 2026-11-09)\n      // Rättad 2026-11-16 (omarbete 4f, sl08-k030): längden anges som Värmdö kommun anger den, inte efter OpenStreetMap (svag källa, bara geometri).\n      // KÄLLA: https://www.varmdo.se/upplevaochgora/naturochfriluftsliv/sparochleder.4.18c983316e0536cb189a419.html — \"På Möja finns en naturstig som tar dig tvärs över ön, hela sträckan är 12 km, varv sträckan i skogen är cirka 4 km, resterande går på grusvägar genom kulturlandskapet.\" (läst 2026-11-16)\n      { icon: '🚶', name: 'Vandring', desc: 'Stockholm Archipelago Trail följer landsvägen från Långvik till Hamn – lätt, även med barnvagn. Naturstigen tvärs över ön mellan Hamn och Ramsmora går genom Björndalen. Enligt Värmdö kommun är hela sträckan 12 km, varav cirka 4 km i skog och resten på grusvägar genom kulturlandskapet. Stigen är märkt med gula band och startar i Ramsmora vid Mellansjön.' },\n",
+    "rader": [
+      "moja-0222",
+      "moja-0225",
+      "moja-0227",
+      "moja-0228",
+      "moja-0229",
+      "moja-0230",
+      "moja-0231",
+      "moja-0232",
+      "moja-0234",
+      "moja-0453",
+      "moja-N016",
+      "moja-N017",
+      "moja-N031"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"Möjas dansbana är skärgårdens äldsta ännu i drift och varje år ordnas musikspelningar, dans, bio och marknader.\" (läst 2026-09-27). Fiskeaktiviteten (abborre, gädda, havsöring) saknade källa och är ersatt.\n      { icon: '💃', name: 'Möja dansbana', desc: 'Skärgårdens äldsta dansbana som ännu är i drift. Varje år ordnas musik, dans, bio och marknader.' },\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"Hyr kajak, roddbåt och SUP eller följ med på sälsafari och bastu tur på en ö.\" (läst 2026-09-27)\n      { icon: '🛶', name: 'Kajak & SUP', desc: 'Möja Outdoor hyr ut kajak, roddbåt och SUP och ordnar sälsafari och bastutur till en ö.' },\n",
+    "ny": "      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"Dansbanan från 1940-talet med tälttak i plåt och småspröjsade fönster är skärgårdens äldsta\" (läst 2026-11-09)\n      // KÄLLA: https://mojadansbana.se/om-moja-bio/ — \"Bion är en av verksamheterna som drivs året om genom den lokala föreningen Möja Kulturella Ungdomsrörelse, MKU\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"en dansbana från 1940-talet med arrangemang hela året.\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"Möjas dansbana är skärgårdens äldsta ännu i drift och varje år ordnas musikspelningar, dans, bio och marknader.\" (läst 2026-11-09). Fiskeaktiviteten (abborre, gädda, havsöring) saknade källa och är ersatt.\n      { icon: '💃', name: 'Möja dansbana', desc: 'Skärgårdens äldsta dansbana som ännu är i drift. Varje år ordnas musik, dans, bio och marknader.' },\n      // KÄLLA: https://mojaoutdoor.se/ — \"Hos oss på Möja Outdoor kan du hyra kajak, roddbåt, SUP, vattenskoter eller cyklar\", \"Vi åker med egna båtar på sälsafari där vi spanar efter både säl och havsörn, eller så åker vi till en ö utanför Möja och badar bastu.\" (läst 2026-11-09)\n      // KÄLLA: https://www.varmdo.se/download/18.15c854f417f448919aea0f76/1649062023495/Mo%CC%88ja.pdf — \"möjlighet att hyra cykel, kajak eller båttaxi.\" (läst 2026-11-09)\n      { icon: '🛶', name: 'Kajak & SUP', desc: 'Möja Outdoor hyr ut kajak, roddbåt och SUP och ordnar sälsafari och bastutur till en ö.' },\n",
+    "rader": [
+      "moja-0242",
+      "moja-0243",
+      "moja-0244",
+      "moja-0245",
+      "moja-0246"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.svenskakyrkan.se/djuro-moja-namdo/moja-kyrka — \"Möja kyrka är från 1768 och uppfördes av byggmästare Carl Örn\"; \"Tornet är från 1885\"; \"Ingången till tornet har dörrar som är från 1924\"; renovering påbörjad 1924; altartavla föreställande Kristus på korset med ram från 1700-talets senare hälft; \"Kyrkogården anlades omkring 1755\"; nuvarande orgel byggd 1982 av Walter Thür\n      'Möja kyrka uppfördes av byggmästaren Carl Örn, och delarna är från olika tider: tornet är från 1885 och dörrarna in i det från 1924, samma år som den renovering påbörjades som gav kyrkan dess nuvarande utseende. Ovanför altaret hänger en tavla med Kristus på korset i en ram från 1700-talets senare hälft. Kyrkogården anlades omkring 1755, och den orgel som står där i dag byggdes 1982 av Walter Thür.',\n",
+    "ny": "      // KÄLLA: https://bebyggelseregistret.raa.se/bbr2/anlaggning/visaHelaHistoriken.raa?anlaggningId=21300000005465&historikId=21000000531174 — \"Nuvarande kyrka, som uppfördes 1768-1769 efter fortifikationsbyggmästaren Carl Örns ritningar, är liggtimrad\", \"Möja kyrka uppfördes av fortifikationsbyggmästare Carl Öhrn på uppdrag av Möja kapellförsamling.\", \"Tornet tillfogades 1839-1840 till långhuset.\", \"I detta sammanhang fick även exteriören inklusive tornet sitt nuvarande utseende\" (läst 2026-11-09)\n      // KÄLLA: https://bebyggelseregistret.raa.se/bbr2/anlaggning/visaHelaHistoriken.raa?anlaggningId=21300000005465&historikId=21000000531174 — \"Interiören präglas av en större restaurering av arkitekt Martin Hedman 1924-1938.\", \"Vid denna tid fick kyrkorummet sin nuvarande karaktär.\", \"1755 anlades kyrkogården på nuvarande plats.\", \"Möja kyrka är skyddad enligt 4 kapitlet kulturminneslagen\" (läst 2026-11-09)\n      // KÄLLA: https://www.svenskakyrkan.se/djuro-moja-namdo/moja-kyrka — \"Ovanför altaret hänger en tavla som föreställer Kristus på korset\", \"Den omfattar tio stämmor fördelade på två manualer och pedal med mekanisk traktur.\" (läst 2026-11-09). Dörrarna från 1924, ramens ålder och orgelns byggår har ingen nivå 1-källa och är strukna.\n      'Möja kyrka uppfördes 1768–1769 i liggtimmer under ledning av fortifikationsbyggmästaren Carl Öhrn (även stavat Örn), och delarna är från olika tider: tornet byggdes till 1839–1840 och fick sin nuvarande tornspira 1885, då också exteriören fick sitt nuvarande utseende. Interiören restaurerades 1924–1938 av arkitekten Martin Hedman, och då fick kyrkorummet sin nuvarande karaktär. Ovanför altaret hänger en tavla med Kristus på korset, och orgeln har tio stämmor på två manualer och pedal. Kyrkogården anlades 1755 på den nuvarande platsen, och kyrkan är skyddad enligt kulturminneslagen.',\n",
+    "rader": [
+      "moja-0164",
+      "moja-0165",
+      "moja-0166",
+      "moja-0167",
+      "moja-0168",
+      "moja-0169",
+      "moja-0170",
+      "moja-0171",
+      "moja-0172",
+      "moja-0173",
+      "moja-N018",
+      "moja-N019",
+      "moja-N020",
+      "moja-N021",
+      "moja-N022"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Sommartid stiger du av i Berg\", \"Vintertid stiger du av i Möja Ström och tar sedan Möjabussen som stannar utanför STF Möja.\" (läst 2026-09-27)\n      'Ska du bo i Berg: sommartid kliver du av i Berg, vintertid i Möja Ström och tar Möjabussen därifrån.',\n",
+    "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Berg (Möja)\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst\" (läst 2026-11-09). Uppmätt 2026-11-09 kolumn för kolumn (pdfplumber): Berg har en tid på 51 av 54 turer som angör Möja, och 9 av dem är märkta b (resan måste beställas); fredagsturen 1325 och lördagsturerna 1461 och 1462 angör inte Berg.\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s14.pdf — \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\", \"Berg (Möja)\" (läst 2026-11-09). Uppmätt: Berg angörs på 50 av 53 turer som angör Möja.\n      // KÄLLA: https://www.varmdo.se/download/18.4538958818bf5eff9019e85/1701423490127/Inbjudan%20Markanvisning%20Mo%CC%88ja%201.PDF — \"bryggor är Berg och Möjaström där Waxholmsbolagets båtar lägger till året om, även när isen ligger.\" (läst 2026-11-09)\n      // KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-moja-vandrarhem/ — \"Följ landsvägen förbi Konsum till T-korsningen vid Värdshuset, ta höger så ligger vandrarhemmet på vänster sida\", \"Öppet April - December\" (läst 2026-11-09). Avståndet i STF:s vägbeskrivning står inte i texten, eftersom det inte stämmer med Kontrollantens mätning i OpenStreetMap (omkontroll 4; Redaktörens beslut mo4071).\n      'Ska du bo i Berg kliver du av vid Bergs brygga. I Waxholmsbolagets tabell för vår och höst 2026 angör de flesta turerna Berg, en del bara om resan har beställts i förväg, och Berg angörs också i sommartabellen. Enligt kommunen lägger båtarna till i Berg och Möjaström året om, även när isen ligger. Till STF Möja vandrarhem, som har öppet april–december, följer du landsvägen till T-korsningen vid värdshuset och tar höger; vandrarhemmet ligger på vänster sida.',\n",
+    "rader": [
+      "moja-0360",
+      "moja-0361",
+      "moja-0362",
+      "moja-N023",
+      "moja-N026"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ — \"Sommartid daglig transport på landsväg från norr till söder.\" (läst 2026-09-27)\n      'Sommartid kör PerMobilen dagliga turer på landsvägen från norr till söder – hoppa av och på där du vill.',\n",
+    "ny": "      // KÄLLA: https://www.facebook.com/MojaUppOchNer/ (PerMobilens egen Facebooksida, läst av Redaktören i Toms Chrome; senaste inlägget 8 augusti 2026) — \"PerMobilen - Möja Upp & Ner\"; \"Hop on/hop off på Möja. Berg-Långvik-Berg tur och retur\"; \"Vi tackar alla nästan 1 500 passagerare för i år och hoppas att vi ses nästa sommar.\" (läst 2026-11-09)\n      // KÄLLA: https://visitmoja.se/aktiviteter-p%C3%A5-m%C3%B6ja/ (Möja turistförening, nivå 3) — \"Sommartid daglig transport på landsväg från norr till söder.\" (läst 2026-11-09)\n      'Sommartid kör PerMobilen hop on/hop off på Möja, med dagliga turer på landsvägen mellan Berg och Långvik, tur och retur.',\n",
+    "rader": [
+      "moja-0466",
+      "moja-0468",
+      "moja-0469"
+    ]
+  },
+  {
+    "fil": "src/app/o/island-data.ts",
+    "gammal": "      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/moja-kyrkviken/ — \"Liten fiskehamn på Möjas sydöstra sida med gästbrygga längst in i hamnen\", \"Gästhamnen ligger nära Berg\", \"ankare\", \"Restaurang\", \"500 m\" (läst 2026-09-27)\n      // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — Kyrkviken: \"Konsollbryggor vid östra och västra inloppet samt längst in mot landsvägen, tilläggning med ankare.\", \"Faciliteter: wc, vatten (dunk).\" (läst 2026-09-27)\n",
+    "ny": "      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/moja-kyrkviken/ — \"Liten fiskehamn på Möjas sydöstra sida med gästbrygga längst in i hamnen\", \"Gästhamnen ligger nära Berg\", \"Restaurang\", \"500 m\" (läst 2026-11-09). Läst med curl; Chromium fick 502 från arbetsytans proxy.\n      // KÄLLA: https://visitmoja.se/g%C3%A4sthamnar/ — \"Konsollbryggor vid östra och västra inloppet samt längst in mot landsvägen, tilläggning med ankare.\", \"Faciliteter: wc, vatten (dunk).\" (läst 2026-11-09)\n      // KÄLLA: https://konsummoja.se/ — \"Vi har livsmedelsbutikerna Coop Berg och Coop Långvik på Möja\" (läst 2026-11-09)\n      // KÄLLA: https://mojavardshusochbageri.se/v%C3%A4rdshuset.php — \"skärgårdsrestaurang med fullskaligt bageri\", \"Bergs by 600, Möja\" (läst 2026-11-09)\n",
+    "rader": [
+      "moja-0335",
+      "moja-0336"
+    ]
+  },
+  {
+    "fil": "src/app/o/hantverkare-data.ts",
+    "gammal": "    namn: 'Möja Snickarna AB',\n",
+    "ny": "    // KÄLLA: https://mojasnickarna.se — \"Vi är Möja Snickarna, en lokalt baserad snickerifirma\" (läst 2026-11-09)\n    namn: 'Möja Snickarna',\n",
+    "rader": [
+      "moja-0488"
+    ]
+  },
+  {
+    "fil": "src/lib/islandCoords.ts",
+    "gammal": "  { slug: 'moja',              name: 'Möja',              lat: 59.4333, lng: 18.8833, radiusKm: 3.0 },\n",
+    "ny": "  // KÄLLA: https://api.openstreetmap.org/api/0.6/nodes?nodes=441941298,2349235266,441941314,5010012668,2349141872,2334340773,2349139503,2349013583 — \"Berg brygga\"; \"Möjaström\"; \"Södermöja\"; \"Stora Kalholmen\" (läst 2026-11-09)\n  // KÄLLA: https://api.openstreetmap.org/api/0.6/relation/8346534/full — \"Möja\" (läst 2026-11-09)\n  // KÄLLA: https://api.openstreetmap.org/api/0.6/map?bbox=18.8150,59.4480,18.8350,59.4610 — \"Stora Kalholmen\" (läst 2026-11-09)\n  // radiusKm styr GPS-taggningen och höjs från 3,0 till 3,5 km enligt Toms beslut 3 (2026-11-08). Uppmätt 2026-11-09 i OpenStreetMaps API (haversine) från nålen till bryggornas noder (ferry_terminal): Berg 3 036 m, Möjaström 3 293 m och Södermöja 3 331 m, alltså utanför 3,0 km men inom 3,5 km. Stora Kalholmens brygga ligger 4 211 m och holmens närmaste strand 3 889 m från nålen (way 222662304), utanför 3,5 km. Möjas längsta punkt ligger 3 584 m från nålen (relation 8346534), så 33 av 3 343 strandnoder hamnar utanför cirkeln. Platslistan använder radiusKm tills platsRadieKm finns (mallarnas runda 5).\n  { slug: 'moja',              name: 'Möja',              lat: 59.4333, lng: 18.8833, radiusKm: 3.5 },\n",
+    "rader": [
+      "moja-0024"
+    ]
+  }
 ]
