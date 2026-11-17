@@ -32,43 +32,42 @@ export const metadata: Metadata = {
 }
 
 const ITEMS: LandingItem[] = [
- {
- icon: 'sailboat',
- title: 'Segla till Gotland',
- description: 'En av Östersjöns klassiska segelresor. Logga hela passagen med GPS: varje timme, varje vindskift, varje soluppgång.',
- href: '/logga-in',
- meta: 'Klassiker',
- },
- {
- icon: 'castle',
- title: 'Visby innerstad',
- description: 'Världsarv med medeltida ringmur, krogar och uteliv. Gästhamnen ligger direkt nedanför staden.',
- href: '/upptack',
- },
- {
- icon: 'utensils',
- title: 'Krogar & restauranger',
- description: 'Gotland har blommat ut matmässigt, från saffranspannkaka på krogen till mat gjord på gotländska råvaror.',
- href: '/krogar-och-mat',
- },
- {
- icon: '🏕️',
- title: 'Naturhamnar runt ön',
- description: 'Fårösund, Slite, Herrvik, Klintehamn, naturliga ankringsplatser runt hela Gotland med detaljinfo.',
- href: '/platser?kategori=naturhamn',
- },
- {
- icon: 'beach',
- title: 'Fårö',
- description: 'Ingmar Bergmans ö. Avsides natur, raukar och lugna vatten. Nå hit från Fårösund.',
- href: '/upptack',
- },
- {
- icon: '📱',
- title: 'Logga hela säsongen',
- description: 'Resan dit, veckorna på ön, resan hem. Se din totala Gotlandssäsong i ett flöde.',
- href: '/logga-in',
- },
+  {
+    icon: '⚓',
+    title: 'Gotland',
+    description: 'Ösidan om Gotland: så tar du dig dit och vad som finns på ön.',
+    href: '/o/gotland',
+  },
+  {
+    icon: '🌲',
+    title: 'Fårö',
+    description: 'Ösidan om Fårö: så tar du dig dit och vad som finns på ön.',
+    href: '/o/faro',
+  },
+  {
+    icon: '🐦',
+    title: 'Stora Karlsö',
+    description: 'Ösidan om Stora Karlsö: så tar du dig dit och vad som finns på ön.',
+    href: '/o/stora-karlso',
+  },
+  {
+    icon: '🌲',
+    title: 'Gotska Sandön',
+    description: 'Ösidan om Gotska Sandön: så tar du dig dit och vad som finns på ön.',
+    href: '/o/gotska-sandon',
+  },
+  {
+    icon: '⛵',
+    title: 'Segla till Gotland',
+    description: 'Distanser över till Gotland och banan för Gotland Runt, på sidan om segelrutter.',
+    href: '/segelrutter',
+  },
+  {
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
+  },
 ]
 
 export default function GotlandPage() {

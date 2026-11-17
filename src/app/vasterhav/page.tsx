@@ -41,36 +41,36 @@ const ITEMS: LandingItem[] = [
  href: '/vasterhav#oar',
  meta: 'Gratis',
  },
- {
- icon: 'sailboat',
- title: 'Kustsegling & passager',
- description: 'Från Hallandskusten upp till norska gränsen: vindinfo, ströminformation och djupdata för varje etapp.',
- href: '/segelrutter',
- },
- {
- icon: '🦞',
- title: 'Hummerkrogar & fisk',
- description: 'Västkustens sjömat är känd i hela världen. Hitta de bästa krogarna i Lysekil, Fiskebäckskil och Hamburgsund.',
- href: '/krogar-och-mat',
- },
- {
- icon: '🏕️',
- title: 'Ankring & naturhamnar',
- description: 'Västerhavet bjuder på dramatiska klippformationer och skyddade vikar. Hitta dolda ankringsplatser på Svallas karta.',
- href: '/platser?kategori=naturhamn',
- },
- {
- icon: 'map',
- title: 'Logga dina turer',
- description: 'Spåra din färd med GPS, dokumentera väder och vind, och dela turen med seglare som känner Västerhavet.',
- href: '/logga-in',
- },
- {
- icon: 'island',
- title: 'Orust & Tjörn',
- description: 'Två av Skandinaviens mest seglartäta öar: med service, varv och ett rikt seglarliv hela sommaren.',
- href: '/logga-in',
- },
+  {
+    icon: '⛵',
+    title: 'Segelrutter längs Bohuslän',
+    description: 'Distanser och regler för segling längs Bohuslän, samlade på en sida.',
+    href: '/segelrutter',
+  },
+  {
+    icon: '⚓',
+    title: 'Gästhamnar och naturhamnar',
+    description: 'Hamnar längs svenska kusten, bland annat i Bohuslän.',
+    href: '/hamnar-och-bryggor',
+  },
+  {
+    icon: '⚓',
+    title: 'Orust',
+    description: 'Ösidan om Orust: så tar du dig dit och vad som finns på ön.',
+    href: '/o/orust',
+  },
+  {
+    icon: '⛵',
+    title: 'Tjörn',
+    description: 'Ösidan om Tjörn: så tar du dig dit och vad som finns på ön.',
+    href: '/o/tjorn',
+  },
+  {
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
+  },
 ]
 
 export default function VasterhavetPage() {
@@ -142,7 +142,7 @@ export default function VasterhavetPage() {
  deeperContent={
  <>
  {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
- <RegionOar rubrik="Öar längs Västerhavet" etiketter={['Göteborgs södra skärgård', 'Göteborgs norra skärgård', 'Göteborgs skärgård', 'Bohuslän', 'Halland']} />
+ <RegionOar rubrik="Öar längs Västerhavet" etiketter={['Göteborgs södra skärgård', 'Göteborgs norra skärgård', 'Göteborgs skärgård', 'Bohuslän', 'Halland', 'Hallands skärgård']} />
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
  Halland: sandstränder och moderna marinaer

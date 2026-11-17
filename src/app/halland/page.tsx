@@ -39,34 +39,34 @@ const ITEMS: LandingItem[] = [
     meta: 'Gratis',
   },
   {
-    icon: '🏰',
-    title: 'Varberg och fästningen',
-    description: 'Varbergs medeltida fästning är ett av Sveriges bäst bevarade fästningskomplex. Gästhamnen ligger i fästningens skugga, ett unikt läge.',
-    href: '/platser',
+    icon: '🗼',
+    title: 'Nidingen',
+    description: 'Ösidan om Nidingen: så tar du dig dit och vad som finns på ön.',
+    href: '/o/nidingen',
   },
   {
-    icon: '🏖️',
-    title: 'Tylösand och Skrea strand',
-    description: 'Halland har Sveriges finaste sandstränder. Tylösand utanför Halmstad är ett ikoniskt resmål med surf, sol och strandbarer.',
-    href: '/platser',
+    icon: '⚓',
+    title: 'Vendelsö',
+    description: 'Ösidan om Vendelsö: så tar du dig dit och vad som finns på ön.',
+    href: '/o/vendelso',
   },
   {
-    icon: '⛵',
-    title: 'Segelrutter i Kattegatt',
-    description: 'Kattegatt erbjuder öppet hav-segling mellan Bohuslän och Öresund. Halland är en perfekt mellanstopp längs den klassiska sydkustturen.',
-    href: '/segelrutter',
+    icon: '🦭',
+    title: 'Balgö',
+    description: 'Ösidan om Balgö: så tar du dig dit och vad som finns på ön.',
+    href: '/o/balgo',
+  },
+  {
+    icon: '🪨',
+    title: 'Malön',
+    description: 'Ösidan om Malön: så tar du dig dit och vad som finns på ön.',
+    href: '/o/malon',
   },
   {
     icon: '📍',
     title: 'Logga dina turer',
-    description: 'Spåra din färd längs Hallands kust med GPS, lägg till bilder och dela med vänner.',
-    href: '/logga-in',
-  },
-  {
-    icon: '🎾',
-    title: 'Båstad och tennisbyn',
-    description: 'Båstad är känt för tennis och en levande sommarscen. Gästhamnen är välbesökt under sommaren och restaurangerna håller hög klass.',
-    href: '/logga-in',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
   },
 ]
 
@@ -143,7 +143,7 @@ export default function HallandPage() {
         deeperContent={
           <>
  {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
- <RegionOar rubrik="Öar och kust i Halland" etiketter={['Halland']} />
+ <RegionOar rubrik="Öar och kust i Halland" etiketter={['Halland', 'Hallands skärgård']} />
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
               Varberg: fästningsstaden vid havet

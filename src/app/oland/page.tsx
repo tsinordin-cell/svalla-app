@@ -62,10 +62,10 @@ const ITEMS: LandingItem[] = [
     href: '/oland/aventyr',
   },
   {
-    icon: '📱',
-    title: 'Utforska med Svalla',
-    description: 'Hitta de bästa platserna, planera din rutt och logga dina utflykter på Öland med Svallas interaktiva karta.',
-    href: '/logga-in',
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
   },
 ]
 
