@@ -9,6 +9,8 @@ import { track } from '@/lib/analytics-events'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ALL_ISLANDS } from '../o/island-data'
+import { OBILDER } from '../o/obilder.generated'
+import { commonsThumb } from '@/lib/commonsBild'
 import { ACTIVITY_LIST } from '../aktivitet/activity-data'
 import { valjOar, aktivitetMatchar, hashtagMatchar } from '@/lib/sok-traff'
 import { utf8TillBas64url } from '@/lib/bas64url'
@@ -251,6 +253,8 @@ function SokPageInner() {
  // 2026-10-21: typetiketten säger "Ö"; för fastlandsorter och Kosterhavet står det i undertiteln vad posten är
  subtitle: `${i.slag === 'ort' ? 'Ort · ' : i.slag === 'nationalpark' ? 'Nationalpark · ' : i.slag === 'naturreservat' ? 'Naturreservat · ' : ''}${i.regionLabel ?? ''} · ${i.tagline.slice(0, 50)}${i.tagline.length > 50 ? '…' : ''}`,
  href: `/o/${i.slug}`,
+ // Öns Commons-bild som miniatyr (120 px räcker för rutan på 46 px).
+ image: OBILDER[i.slug] ? commonsThumb(OBILDER[i.slug]!.url, 120) : undefined,
  }))
 
  const activityResults: Result[] = isHashtagQuery ? [] : ACTIVITY_LIST
@@ -662,7 +666,7 @@ function ResultRow({ r }: { r: Result }) {
  display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,
  }}>
  {r.image
- ? <Image src={r.image} alt="" width={46} height={46} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+ ? <Image src={r.image} alt="" width={46} height={46} unoptimized={r.image.includes('wikimedia.org')} onError={e => { e.currentTarget.style.visibility = 'hidden' }} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
  : r.type === 'seglare'
  ? <span style={{ fontSize: 18, fontWeight: 600, color: '#fff' }}>{r.title[0]?.toUpperCase()}</span>
  : TYPE_EMOJI[r.type]
