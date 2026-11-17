@@ -359,7 +359,15 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  {(() => {
  const stats = [
  { val: trip.distance >= 0.1 ? trip.distance.toFixed(1).replace('.', ',') : null, unit: 'NM', label: 'Distans' },
- { val: durationSecs > 60 ? formatDuration(durationSecs) : null, unit: '', label: 'Tid' },
+ // Tiden i hela minuter, som på storykortet ("36 min"). "35 min 49 s" fick inte plats i
+ // rutan och bröts på två rader (sett 2026-11-16). Sekunderna står kvar under fartdiagrammet.
+ (() => {
+ if (durationSecs <= 60) return { val: null as string | null, unit: '', label: 'Tid' }
+ const minuter = Math.round(durationSecs / 60)
+ const h = Math.floor(minuter / 60), m = minuter % 60
+ if (h === 0) return { val: String(m), unit: 'min', label: 'Tid' }
+ return m > 0 ? { val: `${h} h ${m}`, unit: 'min', label: 'Tid' } : { val: String(h), unit: 'h', label: 'Tid' }
+ })(),
  { val: trip.average_speed_knots >= 0.1 ? trip.average_speed_knots.toFixed(1).replace('.', ',') : null, unit: 'kn', label: 'Snittfart' },
  { val: trip.max_speed_knots >= 0.1 ? trip.max_speed_knots.toFixed(1).replace('.', ',') : null, unit: 'kn', label: 'Toppfart' },
  ].filter(s => s.val !== null)
@@ -382,7 +390,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  <div style={{
  fontSize: 22, fontWeight: 750, color: '#fff',
  lineHeight: 1, letterSpacing: '-0.02em',
- fontVariantNumeric: 'tabular-nums',
+ fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap',
  display: 'inline-flex', alignItems: 'baseline', gap: 2,
  }}>
  {val}
