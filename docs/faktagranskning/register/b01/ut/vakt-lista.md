@@ -113,3 +113,10 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - /aktiviteter: två uppgifter om havsöringens fredning är fel (page.tsx i main, "fredad och bör släppas tillbaka" och "fredad 1 oktober–31 mars i de flesta områden"; enligt HaV gäller tiden Skagerrak och Kattegatt). Inte P0, eftersom de är strängare än reglerna. Rättas när sidan granskas.
 - aktivitet/activity-data.ts:87: "60 fredningsområden … sju året runt"; Länsstyrelsen anger 62 och nio, kartan 2024 har 11 namn i röd text. Rättas när sidan granskas.
 - Batch 01:s Utö-ändring (uto.edits.json, aktivitetskortet Fiske) bygger på den gamla texten. Vid inläggningen ska P0 23:s text i main stå kvar.
+
+## Från runda 4f (2026-11-17)
+- "kajplats 13" står också i src/app/dagsturer/page.tsx och i ett blogginlägg (samma fel som rättades för Fjäderholmarna).
+- guide-content.ts (runt rad 2185 på 1f02b76) anger 1985 som öppningsår; samma uppgift som rättades på Fjäderholmarna.
+- "Linje 9 sommartid" står för Donsö och Brännö i island-data.ts (getting_there) och i kallor.generated.ts, utanför batchen.
+- FAQ-texten "ring direkt på +46 31 97 17 32" på /upptack/donso-hamnkrog ska följa med telefonnumret när styrso.sql körts. Kontrollera efter UPDATE.
+- Husarö "Hela året": Waxholmsbolagets tabeller gäller bara till 2026-12-12. Mallens slutdatum 31 oktober 2026 i JSON-LD är fel och ska prövas.

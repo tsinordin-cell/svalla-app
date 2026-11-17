@@ -2,6 +2,11 @@
 
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
+
+## 2026-11-17 06:00
+- Runda 4f klar (del A och B). FÖRE-värden prövade med SELECT. Dykarbaren läst i Toms Chrome: webbplatsen är avstängd; Facebook och verksamhetens arkiverade sida stöder uppgifterna. Prövas i slutstädningen.
+- Pågår (2 agenter): mallarnas runda 7 på nya main (ce275b2) med beslut C, och öarnas ändringar på nya main utan tankstreck.
+- Därefter: kompensation enligt beslut C, slutstädning med oberoende Kontrollant, Vakten och publicering.
 ## 2026-11-16 00:35 — arbetet återupptaget efter veckogränsen
 
 - **Kontots veckogräns** stoppade alla fyra agenter på kvällen 10 november.
