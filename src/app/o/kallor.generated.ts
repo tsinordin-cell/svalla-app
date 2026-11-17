@@ -4225,6 +4225,105 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     }
   ],
+  "limon": [
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html",
+      "org": "Länsstyrelsen",
+      "vad": "Limön är en ö i Gävlebukten som på sin högsta punkt reser sig drygt 20 meter över Bottenhavet.; Areal: 205,3 hektar; Skyddsår: 2020; Limöns naturreservat förvaltas av Gävle kommun.; Skyddsområde: naturreservat, Natura 2000",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lim%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Limön\" → Limön | Gävle | Natur- och terrängnamn, SWEREF 99 TM 628243/6733344 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/",
+      "org": "gavle.se",
+      "vad": "Sjövägen, runt fyrar och genom farleder; Gävle Strand 5,5 Nm; Du lägger till din båt mot brygga. Hamnen är skyddad för alla vindar.; Djup 1,7 meter.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "agon": [
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html",
+      "org": "Länsstyrelsen",
+      "vad": "Agön och Kråkön är två stora skärgårdsöar med gamla fiskelägen och ligger 2 landmil sydost om Hudiksvall.; kapellen i Agö och Kråkö hamn, byggda 1660 respektive 1736",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf",
+      "org": "Länsstyrelsen",
+      "vad": "I reservatet finns en av kustens största kolonier med gråsäl.; Delar av naturreservatet ingår i … Natura 2000.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/om-oss/om-lansstyrelsen-i-gavleborgs-lan/lanets-forfattningssamling/forfattningar-2024/forfattningssamling-2024/2024-03-08-21fs-20247.html",
+      "org": "Länsstyrelsen",
+      "vad": "elda, annat än på iordningställda eld- och grillplatser. Eldning får endast ske med utlagd ved; Dessa föreskrifter träder i kraft den 30 mars 2024",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ag%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Agön\" → Agön | Hudiksvall | Natur- och terrängnamn, SWEREF 99 TM 628655/6826232 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "storjungfrun": [
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html",
+      "org": "Länsstyrelsen",
+      "vad": "Storjungfrun är den största av de 500 öarna i Söderhamns kommun.; Storjungfruns naturreservat ägs och förvaltas av Söderhamns kommun.; Areal: 1280 hektar; Skyddsår: 2014",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html",
+      "org": "Länsstyrelsen",
+      "vad": "Storjungfruns fyr byggdes 1839; Den var den sista stenkolseldade fyren som byggdes i Sverige; Det putsade fyrtornet av sten, som fortfarande är i bruk, byggdes 1923.; Statligt byggnadsminne: 1935",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Storjungfrun",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Storjungfrun\" → Storjungfrun | Söderhamn | Natur- och terrängnamn, SWEREF 99 TM 624579/6782504 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.visitsoderhamn.se/sv/storjungfrun",
+      "org": "visitsoderhamn.se",
+      "vad": "Medtag mat och dryck — affär finns inte; Medtag dricksvatten! Vatten till matlagning, disk och städ finns att hämta vid gårdspump/brunn",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "kuggorarna": [
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html",
+      "org": "Länsstyrelsen",
+      "vad": "ett kapell, uppfört åren 1776–1777; I den nordvästra delen finns en labyrint och på öns sydvästra del finns ett gravfält från sen järnålder.; Areal: 51 hektar; Skyddsår: 1996",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kugg%C3%B6rarna",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kuggörarna\" → Kuggörarna | Hudiksvall | Natur- och terrängnamn, SWEREF 99 TM 633051/6843473 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
@@ -11456,4 +11555,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 118
+export const OAR_MED_KALLOR = 122
