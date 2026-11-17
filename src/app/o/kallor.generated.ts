@@ -4591,6 +4591,114 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     }
   ],
+  "djuro-nationalpark": [
+    {
+      "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html",
+      "org": "Länsstyrelsen Västra Götaland",
+      "vad": "förtöja båt längre tid än två dygn i följd vid samma plats; tälta eller sätta upp vindskydd eller liknande anordning; inom det område på gräsmarken mitt på Djurö som har markerats på karta; i övrigt inom nationalparken fler än två nätter i följd på samma plats",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Djur%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Djurö\" → Djurö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 411864/6525690 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/",
+      "org": "Sveriges Nationalparker",
+      "vad": "Djurö skärgård ligger i Vänern och består av ett trettiotal öar och skär.; Ön var bebodd från 1600-talet ända fram till 1969 då den siste fyrvaktaren lämnade ön.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit",
+      "org": "Sveriges Nationalparker",
+      "vad": "Malbergs hamn är nationalparkens huvudentré; Nationalparken östra sidan är grund och är därför inte lämplig att lägga till vid.; Båtfärden till nationalparken är väldigt väderberoende.",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "brommo": [
+    {
+      "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html",
+      "org": "Länsstyrelsen Västra Götaland",
+      "vad": "Brommö ligger utanför Torsö, norr om Mariestad.; På norra ön finns härliga sandstränder.; Öarna har flera stigar och markerade leder som utgår från Brommös färjeläge.; Västra Brommö, grannöarna Hovden, Bockön, Lindökroken och Klypholmen bildar tillsammans Brommö skärgårds naturreservat.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Bromm%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Brommö\" → Brommö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 424077/6520497 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "luro": [
+    {
+      "url": "https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html",
+      "org": "Länsstyrelsen",
+      "vad": "tälta mer än två (2) dygn i sträck på samma plats; förtöja båt eller husbåt mer än två (2) dygn i sträck på samma plats; göra upp öppen eld annat än på av reservatsförvaltaren anvisad och särskilt iordningställd plats; Medhavda grillar och friluftskök får dock användas även på annan plats.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lur%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Lurö\" → Lurön | Säffle | Natur- och terrängnamn, SWEREF 99 TM 398477/6518156 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html",
+      "org": "saffle.se",
+      "vad": "Resan till Lurö startar vid Ekenäs gästhamn, belägen på Värmlandsnäs.; Luröbåten lägger till på västra sidan av Husön vid gården Stenstaka; Därefter går båten vidare till Basteviken, Lurös huvudbrygga.; Luröbåten tar cirka 1 timme.; Tänk på att boka din resa i förväg!",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "kallandso": [
+    {
+      "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html",
+      "org": "Länsstyrelsen Västra Götaland",
+      "vad": "Cirka 15 områden som är särskilt känsliga för störningar är avsatta som fågelskyddsområden.; färdas eller uppehålla sig inom det område som angivits på bifogad karta årligen under tiden 1 april; 31juli.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=K%C3%A5llands%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kållandsö\" → Kållandsö | Lidköping | Natur- och terrängnamn, SWEREF 99 TM 393785/6503936 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://lidkoping.se/download/18.66fe5e7b19e975a9fd9751e/1781522932700/F%C3%96P%20k%C3%A5llands%C3%B6_HELA.pdf",
+      "org": "lidkoping.se",
+      "vad": "Området trafikeras av linje 132 som kör från Lidköping; med sluthållplatserna Spikens fiskeläge och Läckö slott",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "onso": [
+    {
+      "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html",
+      "org": "Länsstyrelsen Västra Götaland",
+      "vad": "med fina naturhamnar och platser för bad och avkoppling; På Onsöns södra del finns också fantastiskt vackra och vidsträckta hagmarker och öppna strandängar.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ons%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Onsö\" → Onsö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 423731/6511151 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
@@ -11822,4 +11930,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 133
+export const OAR_MED_KALLOR = 138
