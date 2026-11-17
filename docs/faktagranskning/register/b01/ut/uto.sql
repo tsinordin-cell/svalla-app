@@ -15,8 +15,11 @@
 -- KÄLLA: https://api.openstreetmap.org/api/0.6/way/36363579/full — "Stora Landsvägen", "gravel" (läst 2026-11-03); uppmätt i OpenStreetMap 2026-11-03: platsens nål (58.9546699, 18.2827434) ligger 16 m från Stora Landsvägen, som går mot Ålö i sydväst.
 -- KÄLLA: https://skargardsstiftelsen.se/app/uploads/2024/07/Uto-Skargardsstiftelsen-20240724.pdf — "Här i Gruvbyn finns turistbyrå, gästhamn" (läst 2026-11-03)
 -- KÄLLA: https://www.utogasthamn.se/ — "Närmsta bryggan till Utö Gästhamn är Gruvbryggan." (läst i webbläsare (Redaktören) 2026-11-02)
+-- Rättad 2026-11-17 (runda 10, sm07-k040): «vid vägen mellan Gruvbyn och Ålö» är struket. Ingen källa säger det, och mätningen ovan (nålen 16 m från Stora Landsvägen) belägger inte att det är vägen mellan Gruvbyn och Ålö. I stället står restaurangens egen beskrivning, tillskriven.
+-- KÄLLA: https://xn--utbykrogen-fcb.se/ — "Utö by Krog — Skärgårdsrestaurang på Utö" (läst 2026-11-17)
+-- KÄLLA: https://xn--utbykrogen-fcb.se/om-oss — "Med Utö Bykrog vill vi skapa en varm och avslappnad mötesplats för både öbor och besökare." (läst 2026-11-17)
 -- FÖRE: 'Utö Bykrog är en sommaröppen restaurang i Edesnäs på Utö, vid vägen mellan Gruvbyn och Ålö. Adressen är Edesnäs Gård 3.'
-update restaurants set description = 'Utö by Krog är en restaurang i Edesnäs på Utö i Haninge kommun, vid vägen mellan Gruvbyn och Ålö. Adressen är Edesnäs Gård 3, och restaurangen tar emot bordsbokningar och förfrågningar om catering.', updated_at = now() where slug = 'uto-bykrog' and description = 'Utö Bykrog är en sommaröppen restaurang i Edesnäs på Utö, vid vägen mellan Gruvbyn och Ålö. Adressen är Edesnäs Gård 3.';
+update restaurants set description = 'Utö by Krog är en skärgårdsrestaurang i Edesnäs på Utö i Haninge kommun. Adressen är Edesnäs Gård 3, och restaurangen tar emot bordsbokningar och förfrågningar om catering. Enligt restaurangen vill den vara en mötesplats för både öbor och besökare.', updated_at = now() where slug = 'uto-bykrog' and description = 'Utö Bykrog är en sommaröppen restaurang i Edesnäs på Utö, vid vägen mellan Gruvbyn och Ålö. Adressen är Edesnäs Gård 3.';
 
 -- uto-bykrog.name — uto-0392 (DELVIS: restaurangens egen webbplats skriver "Utö by Krog"; "Utö Bykrog" står inte där)
 -- KÄLLA: https://xn--utbykrogen-fcb.se/ — "Utö by Krog — Skärgårdsrestaurang på Utö" (läst 2026-11-03)
@@ -35,8 +38,10 @@ update restaurants set description = 'Gruvbryggan är den mest trafikerade av Wa
 
 -- lilla-haket-ninas-bod.description — uto-0405 (OBELAGD: "kafé" bara i OpenStreetMap); namnet och typen: uto.tom.md
 -- KÄLLA: https://nominatim.openstreetmap.org/reverse?lat=58.9698715&lon=18.3247173&format=jsonv2&zoom=18&addressdetails=1&accept-language=sv — ""road":"Bygatan","hamlet":"Gruvbyn","municipality":"Haninge kommun"" (läst 2026-10-29)
+-- Rättad 2026-11-17 (runda 10, sm06-k013): namnet «Lilla Haket & Ninas Bod» står bara i OpenStreetMap, som inte belägger namn, och ingen sida från verksamheten eller en myndighet är hittad (sökt 2026-11-17). Beskrivningen skrivs utan namnet; namnkolumnen ligger hos Tom (uto.tom.md).
+-- KÄLLA: https://skargardsstiftelsen.se/app/uploads/2024/07/Uto-Skargardsstiftelsen-20240724.pdf — "Här i Gruvbyn finns turistbyrå, gästhamn,"; "bensinmack, livsmedel, bageri, cykeluthyrning, restauranger" (läst 2026-11-17)
 -- FÖRE: 'Lilla Haket & Ninas Bod är ett kafé i Gruvbyn på Utö, Haninge kommun.'
-update restaurants set description = 'Lilla Haket & Ninas Bod ligger vid Bygatan i Gruvbyn på Utö, Haninge kommun.', updated_at = now() where slug = 'lilla-haket-ninas-bod' and description = 'Lilla Haket & Ninas Bod är ett kafé i Gruvbyn på Utö, Haninge kommun.';
+update restaurants set description = 'Platsen ligger vid Bygatan i Gruvbyn på Utö, Haninge kommun. I Gruvbyn finns enligt Skärgårdsstiftelsen bland annat gästhamn, turistbyrå, livsmedelsbutik och bageri.', updated_at = now() where slug = 'lilla-haket-ninas-bod' and description = 'Lilla Haket & Ninas Bod är ett kafé i Gruvbyn på Utö, Haninge kommun.';
 
 -- bakgarden-uto.description — uto-0420, uto-0421, uto-0422 (OBELAGD: källan explorearchipelago.com omdirigerar till skargardsstiftelsen.se); namnet: uto.tom.md
 -- KÄLLA: https://nominatim.openstreetmap.org/reverse?lat=58.9699&lon=18.3255&format=jsonv2&zoom=18&addressdetails=1&accept-language=sv — ""hamlet":"Gruvbyn","municipality":"Haninge kommun"" (läst 2026-10-29)
