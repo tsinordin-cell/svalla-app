@@ -1,14 +1,30 @@
 'use client'
-import { useState, useEffect, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
-import { useRouter } from 'next/navigation'
-import { Pencil, MapPin, Trash2, MessageCircle, Flag } from '@/components/icons/LucideIcons'
+import { useState, useEffect, useCallback, useRef, type CSSProperties, type ReactNode, type MouseEvent, type MutableRefObject } from 'react'
+import { createPortal } from 'react-dom'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import { Pencil, MapPin, Trash2, MessageCircle, Flag, Link2 } from '@/components/icons/LucideIcons'
 import { createClient, BOAT_TYPES, getViewer } from '@/lib/supabase'
 import { revalidateTrip } from '@/lib/revalidate-trip'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
+import BlockButton from '@/components/BlockButton'
+import Icon from '@/components/Icon'
 import { IconAnchor, IconMotorboat } from '@/components/icons/SvallaIcons'
 import { isPro, isProEnabled } from '@/lib/pro'
+import { isBlocked } from '@/lib/blocks'
 import { track } from '@/lib/analytics-events'
+
+/** Samma idé som Dela på tursidan: Web Share, och urklipp om det saknas. */
+function delningsPayload(tripId: string, plats: string | null | undefined) {
+  const url = `https://svalla.se/tur/${tripId}`
+  const namn = plats?.trim()
+  return {
+    url,
+    title: namn ? `${namn} | Svalla` : 'Tur på Svalla',
+    text: namn ? `Kolla in turen till ${namn} på Svalla` : 'Kolla in den här turen på Svalla',
+  }
+}
 
 const PINNAR = [
   { value: 1, anchors: 1, label: 'Okej' },
@@ -27,17 +43,30 @@ interface TripData {
 export default function TripActions({
   tripId,
   ownerId,
+  username = null,
+  locationName = null,
 }: {
   tripId: string
   ownerId: string
+  /** För "Visa profil". Utan namn visas ingen länk. */
+  username?: string | null
+  /** Platsnamn, används i delningstexten. */
+  locationName?: string | null
 }) {
   const [userId,    setUserId]    = useState<string | null>(null)
+  const [ready,     setReady]     = useState(false)
   const [isProUser, setIsProUser] = useState<boolean | null>(null)
-  const [menu,      setMenu]      = useState(false)    // ⋯ menu open
+  const [menu,      setMenu]      = useState(false)
   const [editing,   setEditing]   = useState(false)   // edit sheet open
   const [deleting,  setDeleting]  = useState(false)
   const [confirm,   setConfirm]   = useState(false)   // delete confirm
   const [paywall,   setPaywall]   = useState(false)   // GPX paywall sheet
+  const [reportOpen, setReportOpen] = useState(false)
+  const [blocked, setBlocked] = useState(false)
+  const [blockKnown, setBlockKnown] = useState(false)
+  const skipFocusRestore = useRef(false)
+  const pathname = usePathname()
+  const closeMenu = useCallback(() => setMenu(false), [])
 
   // edit fields
   const [caption,  setCaption]  = useState('')
@@ -60,16 +89,65 @@ export default function TripActions({
         const proActive = await isPro(supabase, user.id)
         setIsProUser(proActive)
       }
+      setReady(true)
     })
   }, [])
 
-  // Non-owner: visa bara rapport-knapp
-  if (userId !== null && userId !== ownerId) {
-    return <NonOwnerMenu tripId={tripId} />
+  const isOwner = ready && userId === ownerId
+  const isOther = ready && !!userId && userId !== ownerId
+
+  useEffect(() => {
+    if (!isOther || !userId) return
+    let cancel = false
+    isBlocked(createClient(), userId, ownerId).then(value => {
+      if (!cancel) {
+        setBlocked(value)
+        setBlockKnown(true)
+      }
+    })
+    return () => { cancel = true }
+  }, [isOther, userId, ownerId])
+
+  const profilNamn = username?.trim() || null
+  const plats = locationName?.trim() || null
+  const visaOppnaTur = pathname !== `/tur/${tripId}`
+
+  async function dela() {
+    const payload = delningsPayload(tripId, plats)
+    setMenu(false)
+    track('share_clicked', { surface: 'trip_menu', entity_id: tripId })
+    if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
+      try {
+        await navigator.share({ title: payload.title, text: payload.text, url: payload.url })
+        return
+      } catch (err) {
+        if ((err as Error)?.name === 'AbortError') return
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(payload.url)
+      toast('Länk kopierad')
+    } catch {
+      toast('Kunde inte kopiera', 'error')
+    }
   }
 
-  // Ej inloggad eller ägare — ägaren hanteras nedan
-  if (userId !== ownerId) return null
+  async function kopieraLank() {
+    const payload = delningsPayload(tripId, plats)
+    try {
+      await navigator.clipboard.writeText(payload.url)
+      toast('Länk kopierad!')
+    } catch {
+      toast('Kunde inte kopiera länken.', 'error')
+    }
+    setMenu(false)
+  }
+
+  function oppnaAnmalan() {
+    skipFocusRestore.current = true
+    setMenu(false)
+    setReportOpen(true)
+  }
 
   // ── Load current trip data into edit form ────────────────────────────────────
   async function openEdit() {
@@ -129,11 +207,16 @@ export default function TripActions({
 
   return (
     <>
-      {/* ── ⋯ trigger button ── */}
       <button
+        type="button"
         onClick={() => setMenu(true)}
+        className="press-feedback"
+        aria-label="Fler alternativ"
+        aria-haspopup="dialog"
+        aria-expanded={menu}
+        aria-controls={menu ? 'tur-meny' : undefined}
         style={{
-          width: 36, height: 36, borderRadius: '50%',
+          width: 44, height: 44, borderRadius: '50%',
           background: 'var(--glass-88)',
           backdropFilter: 'blur(8px)',
           WebkitBackdropFilter: 'blur(8px)',
@@ -142,62 +225,116 @@ export default function TripActions({
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           boxShadow: '0 1px 6px rgba(0,20,35,0.15)',
           WebkitTapHighlightColor: 'transparent',
+          flexShrink: 0,
         }}
-        aria-label="Alternativ"
       >
-        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: 'var(--sea)' }}>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden style={{ width: 18, height: 18, color: 'var(--sea)' }}>
           <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
         </svg>
       </button>
 
-      {/* ── Action menu sheet ── */}
       {menu && !editing && !confirm && (
-        <Backdrop onClick={() => setMenu(false)}>
-          <Sheet label="Turalternativ">
-            <Handle />
+        <MenuLayer id="tur-meny" label="Alternativ för turen" onClose={closeMenu} skipFocusRestore={skipFocusRestore}>
+          <Handle />
+          {plats && (
+            <p style={{ margin: '0 8px 8px', textAlign: 'center', fontSize: 13, fontWeight: 700, color: 'var(--txt3)' }}>
+              {plats}
+            </p>
+          )}
+
+          <MenuItem icon={<ShareGlyph />} label="Dela" onClick={() => { void dela() }} />
+          <MenuItem icon={<Link2 size={18} />} label="Kopiera länk" onClick={() => { void kopieraLank() }} />
+          {visaOppnaTur && (
             <MenuItem
-              icon={<Pencil size={19} />}
-              label="Redigera tur"
-              onClick={openEdit}
+              href={`/tur/${tripId}`}
+              icon={<Icon name="arrowRight" size={18} />}
+              label="Öppna tur"
+              onClick={closeMenu}
             />
+          )}
+          {profilNamn && (
             <MenuItem
-              icon={<MapPin size={19} />}
-              label="Exportera GPX"
-              suffix={isProEnabled() && isProUser === false ? (
-                <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 15, height: 15, flexShrink: 0 }}>
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                </svg>
-              ) : undefined}
-              onClick={() => {
-                setMenu(false)
-                if (isProEnabled() && isProUser === false) {
-                  track('paywall_hit', { feature: 'gpx_export' })
-                  setPaywall(true)
-                } else {
-                  window.location.href = `/api/gpx/${tripId}`
-                }
-              }}
+              href={`/u/${encodeURIComponent(profilNamn)}`}
+              icon={<Icon name="user" size={18} />}
+              label="Visa profil"
+              onClick={closeMenu}
             />
-            <div style={{ height: 1, background: 'rgba(10,123,140,0.08)', margin: '4px 0' }} />
-            <MenuItem
-              icon={<Trash2 size={19} />}
-              label="Ta bort tur"
-              danger
-              onClick={() => { setMenu(false); setConfirm(true) }}
-            />
-            <button
-              onClick={() => setMenu(false)}
-              className="press-feedback"
-              style={{
-                width: '100%', marginTop: 10, padding: '13px', borderRadius: 14,
-                background: 'rgba(10,123,140,0.07)', border: 'none',
-                color: 'var(--txt2)', fontSize: 15, fontWeight: 700, cursor: 'pointer',
-              }}
-            >
-              Avbryt
-            </button>
-          </Sheet>
-        </Backdrop>
+          )}
+
+          {isOwner && (
+            <>
+              <MenuItem icon={<Pencil size={18} />} label="Redigera tur" onClick={openEdit} />
+              <MenuItem
+                icon={<MapPin size={18} />}
+                label="Exportera GPX"
+                suffix={isProEnabled() && isProUser === false ? (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden style={{ width: 15, height: 15, flexShrink: 0 }}>
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                ) : undefined}
+                onClick={() => {
+                  setMenu(false)
+                  if (isProEnabled() && isProUser === false) {
+                    track('paywall_hit', { feature: 'gpx_export' })
+                    setPaywall(true)
+                  } else {
+                    window.location.href = `/api/gpx/${tripId}`
+                  }
+                }}
+              />
+              <MenuDivider />
+              <MenuItem
+                icon={<Trash2 size={18} />}
+                label="Ta bort tur"
+                danger
+                onClick={() => { setMenu(false); setConfirm(true) }}
+              />
+            </>
+          )}
+
+          {isOther && (
+            <>
+              <MenuDivider />
+              {blockKnown && (
+                <BlockButton
+                  menu
+                  targetUserId={ownerId}
+                  targetUsername={profilNamn ?? ''}
+                  initialBlocked={blocked}
+                />
+              )}
+              <MenuItem
+                muted
+                icon={<Flag size={18} />}
+                label="Anmäl tur"
+                onClick={oppnaAnmalan}
+              />
+            </>
+          )}
+
+          <button
+            type="button"
+            onClick={closeMenu}
+            className="press-feedback"
+            style={{
+              width: '100%', minHeight: 48, marginTop: 8, padding: '13px', borderRadius: 14,
+              background: 'rgba(10,123,140,0.07)', border: 'none',
+              color: 'var(--txt2)', fontSize: 15, fontWeight: 700, cursor: 'pointer',
+            }}
+          >
+            Avbryt
+          </button>
+        </MenuLayer>
+      )}
+
+      {isOther && (
+        <ReportButton
+          targetType="trip"
+          targetId={tripId}
+          label="Anmäl tur"
+          open={reportOpen}
+          onOpenChange={setReportOpen}
+        />
       )}
 
       {/* ── Edit sheet ── */}
@@ -461,67 +598,106 @@ export default function TripActions({
   )
 }
 
-// ── Non-owner menu (bara rapport-alternativ) ──────────────────────────────────
-
-function NonOwnerMenu({ tripId }: { tripId: string }) {
-  const [menu, setMenu] = useState(false)
-
+function ShareGlyph() {
   return (
-    <>
-      <button
-        onClick={() => setMenu(true)}
-        aria-label="Fler alternativ"
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+    </svg>
+  )
+}
+
+function MenuLayer({
+  id, label, onClose, skipFocusRestore, children,
+}: {
+  id: string
+  label: string
+  onClose: () => void
+  skipFocusRestore: MutableRefObject<boolean>
+  children: ReactNode
+}) {
+  const panelRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const panel = panelRef.current
+    const previously = document.activeElement as HTMLElement | null
+    const items = () =>
+      panel ? [...panel.querySelectorAll<HTMLElement>('button:not([disabled]), a[href]')] : []
+    panel?.focus()
+
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        onClose()
+        return
+      }
+      if (e.key !== 'Tab' || !panel) return
+      const list = items()
+      if (list.length === 0) return
+      const first = list[0]!
+      const last = list[list.length - 1]!
+      const active = document.activeElement
+      if (e.shiftKey && (active === first || !panel.contains(active))) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prevOverflow
+      if (skipFocusRestore.current) {
+        skipFocusRestore.current = false
+        return
+      }
+      previously?.focus?.()
+    }
+  }, [onClose, skipFocusRestore])
+
+  if (typeof document === 'undefined') return null
+  return createPortal(
+    <div onClick={e => e.stopPropagation()}>
+      <div
+        onClick={onClose}
         style={{
-          width: 36, height: 36, borderRadius: '50%',
-          background: 'var(--glass-88)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-          border: '1px solid rgba(255,255,255,0.25)',
-          cursor: 'pointer',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 1px 6px rgba(0,20,35,0.15)',
-          WebkitTapHighlightColor: 'transparent',
+          position: 'fixed', inset: 0, zIndex: 1000,
+          background: 'rgba(0,20,35,0.5)',
+          backdropFilter: 'blur(4px)',
+          WebkitBackdropFilter: 'blur(4px)',
+          display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
         }}
       >
-        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: 'var(--sea)' }}>
-          <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
-        </svg>
-      </button>
-
-      {menu && (
-        <Backdrop onClick={() => setMenu(false)}>
-          <Sheet label="Turens alternativ">
-            <Handle />
-            <div style={{ padding: '0 4px 4px' }}>
-              <div
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 12,
-                  padding: '14px 16px', borderRadius: 14,
-                  cursor: 'pointer',
-                }}
-                onClick={() => setMenu(false)}
-              >
-                <Flag size={20} style={{ color: '#dc2626', flexShrink: 0 }} />
-                <div style={{ flex: 1 }}>
-                  <ReportButton targetType="trip" targetId={tripId} label="Anmäl tur" bare />
-                </div>
-              </div>
-            </div>
-            <button
-              onClick={() => setMenu(false)}
-              className="press-feedback"
-              style={{
-                width: '100%', marginTop: 6, padding: '13px', borderRadius: 14,
-                background: 'rgba(10,123,140,0.07)', border: 'none',
-                color: 'var(--txt2)', fontSize: 15, fontWeight: 700, cursor: 'pointer',
-              }}
-            >
-              Avbryt
-            </button>
-          </Sheet>
-        </Backdrop>
-      )}
-    </>
+        <div
+          ref={panelRef}
+          id={id}
+          role="dialog"
+          aria-modal="true"
+          aria-label={label}
+          tabIndex={-1}
+          onClick={e => e.stopPropagation()}
+          style={{
+            background: 'var(--white)',
+            outline: 'none',
+            borderRadius: '24px 24px 0 0',
+            padding: '14px 12px calc(14px + env(safe-area-inset-bottom, 0px))',
+            width: '100%',
+            maxWidth: 480,
+            boxShadow: '0 -8px 40px rgba(0,20,35,0.18)',
+            maxHeight: '88svh',
+            overflowY: 'auto',
+            boxSizing: 'border-box',
+          }}
+        >
+          {children}
+        </div>
+      </div>
+    </div>,
+    document.body,
   )
 }
 
@@ -570,23 +746,52 @@ function Handle() {
   return <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(10,123,140,0.15)', margin: '0 auto 18px' }} />
 }
 
-function MenuItem({ icon, label, danger, onClick, suffix }: { icon: ReactNode; label: string; danger?: boolean; onClick: () => void; suffix?: ReactNode }) {
-  return (
-    <button
-      onClick={onClick}
-      className="press-feedback"
-      style={{
-        width: '100%', padding: '14px 16px', borderRadius: 14, border: 'none',
-        background: 'none', cursor: 'pointer',
-        display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left',
-        color: danger ? '#dc2626' : 'var(--txt)',
-      }}
-    >
-      <span style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+function MenuDivider() {
+  return <div style={{ height: 1, background: 'rgba(10,123,140,0.10)', margin: '6px 10px' }} />
+}
+
+function MenuItem({
+  icon, label, danger, muted, onClick, href, suffix,
+}: {
+  icon: ReactNode
+  label: string
+  danger?: boolean
+  muted?: boolean
+  onClick: () => void
+  href?: string
+  suffix?: ReactNode
+}) {
+  const style: CSSProperties = {
+    width: '100%', minHeight: 48, padding: '8px 10px', borderRadius: 14, border: 'none',
+    background: 'none', cursor: 'pointer',
+    display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left',
+    textDecoration: 'none', font: 'inherit',
+    color: danger ? '#dc2626' : 'var(--txt)',
+  }
+  const inner = (
+    <>
+      <span aria-hidden style={{
+        width: 36, height: 36, borderRadius: 12, flexShrink: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: danger ? 'rgba(220,38,38,0.08)' : muted ? 'rgba(10,123,140,0.05)' : 'rgba(10,123,140,0.08)',
+        color: danger ? '#dc2626' : muted ? 'var(--txt3)' : 'var(--sea)',
+      }}>
         {icon}
       </span>
-      <span style={{ fontSize: 15, fontWeight: 700, flex: 1 }}>{label}</span>
+      <span style={{ fontSize: 15, fontWeight: muted || danger ? 600 : 700, flex: 1, color: danger ? '#dc2626' : 'var(--txt)' }}>{label}</span>
       {suffix}
+    </>
+  )
+  if (href) {
+    return (
+      <Link href={href} onClick={onClick} className="press-feedback" style={style}>
+        {inner}
+      </Link>
+    )
+  }
+  return (
+    <button type="button" onClick={onClick} className="press-feedback" style={style}>
+      {inner}
     </button>
   )
 }
