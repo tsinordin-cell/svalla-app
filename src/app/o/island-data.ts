@@ -6600,6 +6600,191 @@ export const ISLANDS: Island[] = [
     related: ['utklippan', 'sturko', 'aspo-blekinge'],
     tags: ['blekinge', 'karlskrona', 'naturreservat', 'fåglar'],
   },
+  // ─── GOTLAND (komplettering 2026-11-17) ──────────────────────
+  {
+    slug: 'stora-karlso',
+    name: 'Stora Karlsö',
+    region: 'ovriga',
+    regionLabel: 'Gotland',
+    emoji: '🐦',
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Stora Karlsö ligger 15 km sydväst om Klintehamn och 4,7 km från Lilla Karlsö."; "de stora kolonierna av sillgrissla och tordmule, som båda häckar med tusentals par på ön." (läst 2026-11-17)
+    tagline: 'Ö 15 km sydväst om Klintehamn där sillgrissla och tordmule häckar med tusentals par.',
+    seoTitle: 'Stora Karlsö: båten från Klintehamn och regler',
+    // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/ — "Båten till Stora Karlsö avgår från Klintehamn" (läst 2026-11-17)
+    seoDescription: 'Båten till Stora Karlsö går från Klintehamn. Fågelkolonierna, orkidéerna, den guidade turen och reglerna i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stora%20Karls%C3%B6 — Lantmäteriet Min Karta, sökning "Stora Karlsö" → Stora Karlsö | Gotland | Natur- och terrängnamn, SWEREF 99 TM 679283/6353065 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.2853,
+    lng: 17.9746,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Stora Karlsö ligger 15 km sydväst om Klintehamn och 4,7 km från Lilla Karlsö."; "Skyddsform: Naturreservat och Natura 2000" (läst 2026-11-17)
+      'Stora Karlsö ligger 15 km sydväst om Klintehamn och 4,7 km från Lilla Karlsö. Ön är naturreservat och ingår i Natura 2000.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "de stora kolonierna av sillgrissla och tordmule, som båda häckar med tusentals par på ön."; "I slutet av maj och början av juni bildar tusentals blommande Adam och Eva och S:t Pers nycklar formliga orkidéängar." (läst 2026-11-17)
+      'Sillgrissla och tordmule häckar båda med tusentals par på ön. I slutet av maj och början av juni blommar tusentals Adam och Eva och S:t Pers nycklar.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Öns högsta punkt ligger 51,6 meter över havet på den centrala delen av Roisu haid"; "Ett flertal gravar och åtskilliga andra fynd vittnar om att Stora Karlsö ända sedan stenåldern har nyttjats av människan" (läst 2026-11-17)
+      'Öns högsta punkt ligger 51,6 meter över havet. Gravar och andra fynd visar att människor har använt Stora Karlsö ända sedan stenåldern.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Skyddsår: 1970"; "Areal: 1180 hektar varav 246 hektar land och 934 hektar vatten" (läst 2026-11-17)
+      'Naturreservatet bildades 1970 och är 1180 hektar, varav 246 hektar land.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Karaktär: Fågelberg, alvarmark och stenstränder" (läst 2026-11-17)
+      character: 'Fågelberg, alvarmark och stenstränder',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Från början av maj till augusti/september går regel"; "bunden båttrafik till ön från Klintehamn." (läst 2026-11-17)
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/ — "6 maj"; "29 augusti" (läst 2026-11-17)
+      season: 'Reguljär båt från Klintehamn maj till augusti',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "de stora kolonierna av sillgrissla och tordmule, som båda häckar med tusentals par på ön." (läst 2026-11-17)
+      best_for: 'Fågelskådning och guidad tur',
+    },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "En guidad tur med våra kunniga guider erbjuds till alla våra besökare och ingår i priset för resan." (läst 2026-11-17)
+      { icon: '🧭', name: 'Guidad tur', desc: 'En guidad tur erbjuds alla besökare och ingår i resan.' },
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "de stora kolonierna av sillgrissla och tordmule, som båda häckar med tusentals par på ön." (läst 2026-11-17)
+      { icon: '🐦', name: 'Fågelkolonierna', desc: 'Sillgrissla och tordmule häckar med tusentals par på ön.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/ — "Båten till Stora Karlsö avgår från Klintehamn"; "Turer kan ställas in vid dåligt väder."; "Resenärer skall vara på kaj senast 30 minuter före avgång." (läst 2026-11-17)
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "Om du kommer med egen bil finns gratis parkering nära båten i hamnen i Klintehamn." (läst 2026-11-17)
+      { method: 'Båt', from: 'Klintehamn', desc: 'Båten till Stora Karlsö går från Klintehamn. Var på kajen senast 30 minuter före avgång. Turer kan ställas in vid dåligt väder. Det finns gratis parkering nära båten i hamnen.', icon: '⛴️' },
+      // KÄLLA: https://storakarlso.se/ovriga-resor/egen-bat-till-on/ — "Man får endast lägga till i Norderhamn på den västra sidan av bryggan eftersom den östra sidan används av Karlsöbåten."; "Ta kontakt med tillsynsmannen, när du närmar dig eller kommit iland" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "under tiden 15 mars"; "31 augusti förtöja eller ankra fartyg i Norderhamn"; "Tillsynsman (april" (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Norderhamn', desc: '15 mars till 31 augusti krävs tillstånd från Länsstyrelsen eller tillsynsmannen för att förtöja eller ankra i Norderhamn. Du får bara lägga till på västra sidan av bryggan. Kontakta tillsynsmannen när du närmar dig eller har kommit i land.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "Ön har eget dricksvatten." (läst 2026-11-17)
+      'Ön har eget dricksvatten.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "under tiden 15 mars"; "31 augusti stiga iland på ön utan tillstånd av Länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet."; "landstiga på annan plats än Norderhamn utan tillstånd av länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet" (läst 2026-11-17)
+      '15 mars till 31 augusti behöver du tillstånd från Länsstyrelsen eller reservatets tillsynsman för att gå i land på ön. Året runt krävs tillstånd för att gå i land någon annanstans än i Norderhamn.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Under tiden 1 september"; "14 mars äger allmänheten rätt att vistas på ön efter skriftlig anmälan."; "Besökare skall göra sådan anmälan omedelbart efter ilandstigning vid bryggan i Norderhamn." (läst 2026-11-17)
+      '1 september till 14 mars får alla vistas på ön efter skriftlig anmälan, som görs vid bryggan i Norderhamn direkt när du gått i land.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "under tiden 15 mars"; "15 augusti beträda eller vistas inom de delar av naturreservatet som markerats med röd snedstreckning på kartan" (läst 2026-11-17)
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "Runt hela ön finns ett fågelskyddsområde där det råder tillträdesförbud mellan 15/3 och 15/8, undantaget stranden i Norderhamn och Hien. Fågelskyddsområdet är markerat med gula skyltar." (läst 2026-11-17)
+      '15 mars till 15 augusti får du inte gå in i de delar av reservatet som är markerade med röd snedstreckning på kartan. Enligt Karlsöbolaget går fågelskyddsområdet runt hela ön, utom stranden i Norderhamn och Hien, och det är markerat med gula skyltar.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "föra iland hund, katt eller annat sällskapsdjur"; "göra upp öppen eld"; "tälta"; "plocka eller gräva upp växter eller svampar"; "samla in fossil eller förflytta eller bortföra block eller sten" (läst 2026-11-17)
+      'Du får inte ta med hund, katt eller annat sällskapsdjur i land, göra upp öppen eld, tälta, plocka eller gräva upp växter eller svampar, samla in fossil, eller flytta eller ta med block och sten.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "under tiden 15 mars"; "15 augusti fiska med annat än handredskap eller att fiska från stranden"; "brädsegla, åka vattenskidor eller framföra vattenskoter"; "landa med luftfarkost" (läst 2026-11-17)
+      '15 mars till 15 augusti får du bara fiska med handredskap, och inte från stranden. Du får inte brädsegla, åka vattenskidor, köra vattenskoter eller landa med luftfarkost.',
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "det är inte tillåtet att flyga med drönare över Stora Karlsö under perioden 15 mars till 15 augusti. Förbudet gäller hela ön." (läst 2026-11-17)
+      'Enligt Karlsöbolaget får du inte flyga drönare över ön 15 mars till 15 augusti.',
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "Vill man av någon anledning gå på egen hand får man bara gå på guidestigen och man måste ha med sig en karta." (läst 2026-11-17)
+      'Går du på egen hand får du bara gå på guidestigen, och du måste ha med dig en karta.',
+    ],
+    related: ['lilla-karlso', 'gotland'],
+    tags: ['gotland', 'klintehamn', 'fåglar', 'naturreservat'],
+  },
+  {
+    slug: 'furilden',
+    name: 'Furilden',
+    region: 'ovriga',
+    regionLabel: 'Gotland',
+    emoji: '🦆',
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 km sydost om Rute kyrka."; "Socken: Rute"; "Från fågeltornet har man god utsikt över de fågelrika strandängarna innanför Fitudden." (läst 2026-11-17)
+    tagline: 'Ö i Rute socken på Gotland, med ett naturreservat, en vandringsstig och ett fågeltorn över strandängarna.',
+    seoTitle: 'Furilden på Gotland: naturreservat och fågeltorn',
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från P-platsen innanför Östervik leder en hårdgjord stig till en anpassad grillplats och vidare cirka 800 meter till ett fågeltorn med ramp." (läst 2026-11-17)
+    seoDescription: 'Från parkeringen innanför Östervik leder en hårdgjord stig till ett fågeltorn med ramp. Stigen, fågeltornet och reglerna i Furilden naturreservat.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Furilden — Lantmäteriet Min Karta, sökning "Furilden" → Furilden | Gotland | Natur- och terrängnamn, SWEREF 99 TM 739469/6410632 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.7736,
+    lng: 19.0274,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 km sydost om Rute kyrka." (läst 2026-11-17)
+      'Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 km sydost om Rute kyrka.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Ett utmärkt sätt att bekanta sig med naturreservatet är att gå den 2 kilometer långa vandringsstig som går genom området."; "Tall är det dominerande trädslaget." (läst 2026-11-17)
+      'En 2 kilometer lång vandringsstig går genom reservatet. Tall är det dominerande trädslaget.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från fågeltornet har man god utsikt över de fågelrika strandängarna innanför Fitudden."; "här häckar bland annat grågås, gravand, skedand, storspov" (läst 2026-11-17)
+      'Från fågeltornet har du god utsikt över de fågelrika strandängarna innanför Fitudden. Där häckar bland annat grågås, gravand, skedand och storspov.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Den södra udden av Furilden ingår i reservatet och här finns gammalskog, klappersten och slingrande grusvägar." (läst 2026-11-17)
+      'Den södra udden av Furilden ingår i naturreservatet Slite skärgård. Där finns gammal skog, klappersten och slingrande grusvägar.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Skyddsår: 2009"; "Areal: 131 hektar" (läst 2026-11-17)
+      'Furilden naturreservat bildades 2009 och är 131 hektar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Ön Furilden är starkt präglad av lång beteshävd." (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Tall är det dominerande trädslaget."; "strandängarna innanför Fitudden" (läst 2026-11-17)
+      character: 'Betespräglad ö med tallskog och strandängar',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från fågeltornet har man god utsikt över de fågelrika strandängarna innanför Fitudden." (läst 2026-11-17)
+      best_for: 'Fågelskådning',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från P-platsen innanför Östervik leder en hårdgjord stig till en anpassad grillplats och vidare cirka 800 meter till ett fågeltorn med ramp." (läst 2026-11-17)
+      { icon: '🔭', name: 'Fågeltornet', desc: 'Från parkeringen innanför Östervik leder en hårdgjord stig till ett fågeltorn med ramp.' },
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "gå den 2 kilometer långa vandringsstig som går genom området" (läst 2026-11-17)
+      { icon: '🥾', name: 'Vandringsstigen', desc: 'En 2 kilometer lång vandringsstig genom reservatet.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Det går också ta sig landvägen till södra änden av Furilden där förbindelse till ön finns strax söder om Lergrav." (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från P-platsen innanför Östervik leder en hårdgjord stig till en anpassad grillplats och vidare cirka 800 meter till ett fågeltorn med ramp." (läst 2026-11-17)
+      { method: 'Bil', from: 'Lergrav', desc: 'Du kan ta dig landvägen till södra änden av Furilden, där förbindelsen till ön finns strax söder om Lergrav. Furilden naturreservat ligger på öns nordligaste del. Där leder en hårdgjord stig från parkeringen innanför Östervik till ett fågeltorn med ramp.', icon: '🚗' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "under tiden 15 mars"; "15 juli beträda eller vistas inom den del av reservatet som markerats på reservatskartan" (läst 2026-11-17)
+      'I Furilden naturreservat får du inte gå in i den del som är markerad på reservatskartan 15 mars till 15 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "föra motordrivet fordon annat än på anvisad parkeringsplats,"; "göra upp eld,"; "plocka eller gräva upp växter,"; "bryta kvistar eller på annat sätt skada levande eller dött träd eller buske," (läst 2026-11-17)
+      'I Furilden naturreservat får du bara köra motorfordon till den anvisade parkeringen. Du får inte göra upp eld, plocka eller gräva upp växter, eller bryta kvistar och skada träd eller buskar.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Den södra udden av Furilden ingår i reservatet"; "medföra hund som inte är kopplad eller annat lösgående sällskapsdjur under perioden 1 mars"; "31 oktober" (läst 2026-11-17)
+      'Södra udden av Furilden ligger i naturreservatet Slite skärgård. Där ska hunden vara kopplad 1 mars till 31 oktober.',
+    ],
+    related: ['asunden', 'faro', 'gotland'],
+    tags: ['gotland', 'rute', 'fåglar', 'naturreservat', 'tillgänglighet'],
+  },
+  {
+    slug: 'asunden',
+    name: 'Asunden',
+    region: 'ovriga',
+    regionLabel: 'Gotland',
+    emoji: '🪨',
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Utan vattentransport tar man sig lättast in via Asunden, strax öster om Slite."; "Här finns bland annat ett av Gotlands vackraste raukområden, beläget i den nordöstra delen av ön." (läst 2026-11-17)
+    tagline: 'Ö strax öster om Slite med raukar på den nordöstra delen och fågelrika strandängar.',
+    seoTitle: 'Asunden vid Slite: raukar och regler',
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Ön nås via skyltad grusväg från Vägume." (läst 2026-11-17)
+    seoDescription: 'Asunden nås via skyltad grusväg från Vägume. Raukarna, fågellivet och reglerna i naturreservatet Slite skärgård.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Asunden — Lantmäteriet Min Karta, sökning "Asunden" → Asunden | Gotland | Natur- och terrängnamn, SWEREF 99 TM 729251/6402619 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.7072,
+    lng: 18.8483,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Utan vattentransport tar man sig lättast in via Asunden, strax öster om Slite."; "men ingår nu, sedan 2021, i det större reservatet Slite skärgård." (läst 2026-11-17)
+      'Asunden ligger strax öster om Slite och ingår sedan 2021 i naturreservatet Slite skärgård.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Här finns bland annat ett av Gotlands vackraste raukområden, beläget i den nordöstra delen av ön."; "Många av raukarna är både höga och har fantasieggande former." (läst 2026-11-17)
+      'På öns nordöstra del finns ett raukområde. Många av raukarna är höga och har fantasieggande former.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "en rik flora med bland annat strandkål och luddvedel"; "ett mycket rikt fågelliv på strandängarna på öns nordvästra del." (läst 2026-11-17)
+      'Här växer bland annat strandkål och luddvedel, och på strandängarna på öns nordvästra del finns ett mycket rikt fågelliv.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Här finns bland annat ett av Gotlands vackraste raukområden"; "men ingår nu, sedan 2021, i det större reservatet Slite skärgård." (läst 2026-11-17)
+      character: 'Ö med raukar i naturreservatet Slite skärgård',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Många av raukarna är både höga och har fantasieggande former."; "ett mycket rikt fågelliv på strandängarna på öns nordvästra del." (läst 2026-11-17)
+      best_for: 'Raukar och fågelskådning',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Ön nås via skyltad grusväg från Vägume." (läst 2026-11-17)
+      { method: 'Bil', from: 'Vägume', desc: 'Ön nås via skyltad grusväg från Vägume.', icon: '🚗' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Som besökare är det då bra att tänka på att bara gå på anvisade stigar och vägar, för att värna om fåglarnas bon och ägg." (läst 2026-11-17)
+      'På våren och försommaren är det bra att bara gå på anvisade stigar och vägar, för att värna om fåglarnas bon och ägg.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "borra, hacka, spränga, rista, gräva, måla eller på något sätt skada berg, block, raukar, jord, sten eller bottensediment"; "förflytta eller bortföra block, sten eller fossil exempelvis genom att bygga höga stentorn" (läst 2026-11-17)
+      'Du får inte skada berg, block, raukar eller sten, och inte flytta eller ta med sten eller fossil, till exempel genom att bygga höga stentorn.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "göra upp eld eller använda grill annat än på grillplatser iordningställda av förvaltaren, eller platser där växtlighet eller berggrund inte kan skadas, till exempel i strandgrus nära vattnet" (läst 2026-11-17)
+      'Eld och grill får bara användas på grillplatser som förvaltaren har ordnat, eller där växtlighet och berggrund inte kan skadas, till exempel i strandgrus nära vattnet.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "medföra hund som inte är kopplad eller annat lösgående sällskapsdjur under perioden 1 mars"; "31 oktober" (läst 2026-11-17)
+      '1 mars till 31 oktober ska hunden vara kopplad, och andra sällskapsdjur får inte gå lösa.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "klättra i eller skada boträd eller bobuske, uppehålla sig nära fågelbo, samla in djur eller på annat sätt medvetet skada eller störa fågel"; "under tidsperioden 15 mars till 30 juni beträda Reveln" (läst 2026-11-17)
+      'Du får inte uppehålla dig nära fågelbon, klättra i eller skada boträd och bobuskar, samla in djur eller medvetet störa fågellivet. I samma reservat får du inte gå i land på Reveln 15 mars till 30 juni.',
+    ],
+    related: ['furilden', 'gotland'],
+    tags: ['gotland', 'slite', 'raukar', 'naturreservat'],
+  },
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',

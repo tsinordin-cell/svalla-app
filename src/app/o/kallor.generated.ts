@@ -4761,6 +4761,82 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     }
   ],
+  "stora-karlso": [
+    {
+      "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html",
+      "org": "Länsstyrelsen Gotland",
+      "vad": "under tiden 15 mars; 31 augusti stiga iland på ön utan tillstånd av Länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet.; landstiga på annan plats än Norderhamn utan tillstånd av länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stora%20Karls%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Stora Karlsö\" → Stora Karlsö | Gotland | Natur- och terrängnamn, SWEREF 99 TM 679283/6353065 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/",
+      "org": "storakarlso.se",
+      "vad": "Båten till Stora Karlsö avgår från Klintehamn; Turer kan ställas in vid dåligt väder.; Resenärer skall vara på kaj senast 30 minuter före avgång.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/",
+      "org": "storakarlso.se",
+      "vad": "Runt hela ön finns ett fågelskyddsområde där det råder tillträdesförbud mellan 15/3 och 15/8, undantaget stranden i Norderhamn och Hien. Fågelskyddsområdet är markerat med gula skyltar.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://storakarlso.se/ovriga-resor/egen-bat-till-on/",
+      "org": "storakarlso.se",
+      "vad": "Man får endast lägga till i Norderhamn på den västra sidan av bryggan eftersom den östra sidan används av Karlsöbåten.; Ta kontakt med tillsynsmannen, när du närmar dig eller kommit iland",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "furilden": [
+    {
+      "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html",
+      "org": "Länsstyrelsen Gotland",
+      "vad": "Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 km sydost om Rute kyrka.; Socken: Rute; Från fågeltornet har man god utsikt över de fågelrika strandängarna innanför Fitudden.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html",
+      "org": "Länsstyrelsen Gotland",
+      "vad": "Den södra udden av Furilden ingår i reservatet; medföra hund som inte är kopplad eller annat lösgående sällskapsdjur under perioden 1 mars; 31 oktober",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Furilden",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Furilden\" → Furilden | Gotland | Natur- och terrängnamn, SWEREF 99 TM 739469/6410632 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "asunden": [
+    {
+      "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html",
+      "org": "Länsstyrelsen Gotland",
+      "vad": "borra, hacka, spränga, rista, gräva, måla eller på något sätt skada berg, block, raukar, jord, sten eller bottensediment; förflytta eller bortföra block, sten eller fossil exempelvis genom att bygga höga stentorn",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Asunden",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Asunden\" → Asunden | Gotland | Natur- och terrängnamn, SWEREF 99 TM 729251/6402619 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
@@ -11992,4 +12068,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 141
+export const OAR_MED_KALLOR = 144
