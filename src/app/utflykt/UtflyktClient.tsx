@@ -394,7 +394,7 @@ function IslandCard({ island, iso, open, onToggle }: { island: DagIsland; iso: s
 }
 
 type Trip = { durationMin: number; startTime: string; endTime: string; changes: number; cancelled?: boolean }
-type DepResp = { error?: string; fel?: string | null; originName?: string; destName?: string; note?: string | null; trips?: Trip[] }
+type DepResp = { error?: string; fel?: string | null; originName?: string; destName?: string; note?: string | null; stangd?: string; trips?: Trip[] }
 type LastResp = { error?: string; originName?: string; destName?: string; outbound?: Trip | null; return?: Trip | null }
 
 function Battider({ slug, name, iso }: { slug: string; name: string; iso: string | null }) {
@@ -433,6 +433,10 @@ function Battider({ slug, name, iso }: { slug: string; name: string; iso: string
   }
   if (dep.error === 'no_transit') {
     return <div style={box}>Ingen kollektivtrafik går till {name}. Egen båt eller taxibåt.</div>
+  }
+  // P0 24 (2026-11-17, Redaktören): avstängd brygga; texten och dess KÄLLA står i transit-stops.ts (stangd).
+  if (dep.error === 'stangd' && dep.stangd) {
+    return <div style={box}>{dep.stangd}</div>
   }
   if (dep.fel) {
     return <div style={box}>Trafiklab svarade inte just nu, försök igen om en stund. <Link href={`/o/${slug}/komma-dit`} style={{ color: '#9be59c', fontWeight: 700 }}>Så tar du dig till {name} →</Link></div>

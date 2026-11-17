@@ -4,7 +4,8 @@
  *
  * Hämtar via /api/transit/departures?dest=<slug> och visar nästa 3 resor
  * från fastlandet med byten + ankomsttid. Klickar man på en resa öppnas
- * SL.se reseplaneraren i ny flik (vi kan inte sälja biljett själva).
+ * operatörens reseplanerare i ny flik (getReseplanerare i transit-stops.ts;
+ * till 2026-11-17 alltid SL:s, även på Västtrafiks öar).
  *
  * Designprinciper:
  *  - Mörk container (var(--sea)) för att sticka ut från resten av ösidan
@@ -18,6 +19,7 @@
  */
 import { useEffect, useState } from 'react'
 import { vagDitText } from '@/lib/ingen-trafik'
+import { getIslandTransit, getReseplanerare } from '@/lib/transit-stops'
 
 interface TripLeg {
   category: string
@@ -93,6 +95,28 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
     const id = setInterval(load, 60_000)
     return () => { cancelled = true; clearInterval(id) }
   }, [islandSlug])
+
+  // P0 24 (2026-11-17): se bestallningTabell och getReseplanerare i transit-stops.ts.
+  const reseplanerare = getReseplanerare(islandSlug)
+  const bestallningTabell = getIslandTransit(islandSlug)?.bestallningTabell ?? null
+
+  // P0 24 (2026-11-17, Kontrollanten): avstängd brygga (stangd i transit-stops.ts).
+  const stangd = getIslandTransit(islandSlug)?.stangd ?? null
+  if (stangd) {
+    return (
+      <div style={{
+        border: '1px solid var(--border)', borderRadius: 14,
+        padding: '16px 18px', background: 'var(--white)',
+      }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>
+          Båttider till {islandName} visas inte här
+        </div>
+        <div style={{ fontSize: 13.5, color: 'var(--txt2)', lineHeight: 1.55 }}>
+          {stangd}
+        </div>
+      </div>
+    )
+  }
 
   // Om servern säger "okänd destination" (vi har inte stop-ID för ön ännu)
   // → rendera ingenting alls. Inget behov att visa "tidtabell saknas" på
@@ -179,20 +203,20 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
       {!loading && error && (
         <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0 }}>
           Tidtabellinfo ej tillgänglig just nu: prova{' '}
-          <a href="https://sl.se/sv/reseplaneraren" target="_blank" rel="noopener noreferrer"
+          <a href={reseplanerare.url} target="_blank" rel="noopener noreferrer"
              style={{ color: '#ffd28a', textDecoration: 'underline' }}>
-            sl.se
+            {reseplanerare.namn}
           </a>.
         </p>
       )}
 
       {!loading && !error && data && data.trips.length === 0 && (
         <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0 }}>
-          Inga avgångar hittade just nu. Försök igen senare eller{' '}
-          <a href="https://sl.se/sv/reseplaneraren"
+          Inga avgångar hittade just nu. Försök igen senare eller öppna{' '}
+          <a href={reseplanerare.url}
              target="_blank" rel="noopener noreferrer"
              style={{ color: '#ffd28a', textDecoration: 'underline' }}>
-            öppna SL-reseplaneraren
+            {reseplanerare.namn}
           </a>.
         </p>
       )}
@@ -203,9 +227,25 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
             display: 'flex', flexDirection: 'column', gap: 10,
           }}>
             {data.trips.slice(0, 3).map((t, i) => (
-              <TripRow key={i} trip={t} originName={data.originName} destName={data.destName} />
+              <TripRow key={i} trip={t} originName={data.originName} destName={data.destName} reseplanerareUrl={reseplanerare.url} />
             ))}
           </div>
+
+          {/* P0 24 (2026-11-17, Kontrollanten MÄTT på /o/moja): rutan visade en resa 14:45 till
+              Möjaström med ankomst 18:49. Den genomgående turen 1441 (onsdag och torsdag) har Xb vid
+              Möjaström i Waxholmsbolagets tabell 14: ingen fast tid, och resan måste beställas.
+              ResRobot säger inte vilka turer som kräver beställning, så på öar med bestallningTabell
+              står det direkt under tiderna. KÄLLA-raderna står vid värdet i transit-stops.ts. */}
+          {bestallningTabell && (
+            <p role="note" style={{
+              fontSize: 12.5, color: '#fff', fontWeight: 700,
+              margin: '10px 0 0', lineHeight: 1.5,
+              background: 'rgba(0,0,0,0.30)', border: '1px solid rgba(255,210,138,0.55)',
+              borderRadius: 8, padding: '8px 10px',
+            }}>
+              Någon av turerna ovan kan vara en tur som bara går eller stannar vid bryggan om resan har beställts i förväg. Se turens anmärkning i {bestallningTabell}.
+            </p>
+          )}
 
           {data.note && (
             <p style={{
@@ -247,14 +287,14 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
               Från {data.originName} · Källa: Trafiklab
             </span>
             <a
-              href="https://sl.se/sv/reseplaneraren"
+              href={reseplanerare.url}
               target="_blank" rel="noopener noreferrer"
               style={{
                 fontSize: 12, fontWeight: 700, color: '#ffd28a',
                 textDecoration: 'none',
               }}
             >
-              Se alla avgångar →
+              Öppna {reseplanerare.namn} →
             </a>
           </div>
         </>
@@ -263,10 +303,10 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
   )
 }
 
-function TripRow({ trip, originName, destName }: { trip: TripSummary; originName: string; destName: string }) {
+function TripRow({ trip, originName, destName, reseplanerareUrl }: { trip: TripSummary; originName: string; destName: string; reseplanerareUrl: string }) {
   const operatorList = [...new Set(trip.legs.map(l => l.operator).filter(Boolean))].join(' · ') || 'Kollektivt'
   const hasFerry = trip.legs.some(l => l.category.toLowerCase().includes('färja'))
-  const tripUrl = `https://sl.se/sv/reseplaneraren`
+  const tripUrl = reseplanerareUrl
   const dur = formatDuration(trip.durationMin)
 
   // Realtidsstatus — visa inställd, försenad eller exakt tidpunkt

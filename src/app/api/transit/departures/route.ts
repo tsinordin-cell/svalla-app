@@ -53,6 +53,10 @@ export async function GET(req: NextRequest) {
       { status: 200 },
     )
   }
+  // P0 24 (2026-11-17, Redaktören): avstängd brygga (stangd i transit-stops.ts) ger inga tider.
+  if (cfg.stangd) {
+    return NextResponse.json({ error: 'stangd', slug, stangd: cfg.stangd, trips: [] }, { status: 200 })
+  }
 
   // fel skickas med (2026-09-28): tom lista + fel är "vi vet inte", tom lista
   // utan fel är "inga resor". Klienten ska inte visa det förra som det senare.
