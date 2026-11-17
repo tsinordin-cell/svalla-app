@@ -1,0 +1,9 @@
+kid	sida	fil:rad	struken text
+sm01-s01	/o/fjaderholmarna/med-barn	src/app/o/island-data.ts:1630	renoverade och öppnade öarna för allmänheten igen 1985
+sm01-s02	/o/fjaderholmarna	src/app/o/island-data.ts:1549	Försvarsmaktens markundersökningar sedan 2018 visar att Stora Fjäderholmen är förorenad av tungmetaller och PAH
+sm01-s03	/o/fjaderholmarna	src/app/o/island-data.ts:1549	vissa ytor ska saneras
+sm01-s04	/o/uto	src/app/o/island-data.ts:604	I Gruvbyn står Sveriges äldsta bevarade väderkvarn.
+sm01-s05	ej synlig	src/app/o/island-data.ts:405	amenities.atm = false → det finns ingen bankomat på ön
+sm01-s06	/aktivitet/kajak	src/app/aktivitet/kajak/page.tsx:43-50	Priset ligger på 300 till 500 kr för halvdag och 500 till 800 kr för heldag. … Utö har störst utbud med ca 50 kajaker.
+sm01-s07	— (datafält; syns inte på ösidorna i renderingen 2026-10-29)	src/app/o/island-data.ts:628	dog_friendly = true → hunden får följa med på ön
+sm01-s08	/o/uto	src/app/o/island-data.ts:473	och här står också Sveriges äldsta bevarade väderkvarn

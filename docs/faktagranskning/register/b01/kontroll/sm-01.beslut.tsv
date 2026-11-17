@@ -1,0 +1,51 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-17)
+sm01-k001	uto-0178	OK	OK
+sm01-k002	vaxholm-0356	FEL	Registret inaktuellt: talen räknas av koden (IslandKallor) ur källistan, och Kontrollanten mätte slutkodens värden. Trafikbolagen räknas inte som myndighet. Ingen ändring.
+sm01-k003	husaro-N012	OK	OK
+sm01-k004	husaro-0203	FEL	Registret inaktuellt: talen räknas av koden (IslandKallor) ur källistan, och Kontrollanten mätte slutkodens värden. Trafikbolagen räknas inte som myndighet. Ingen ändring.
+sm01-k005	vaxholm-0368	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k006	vaxholm-0355	FEL	Registret inaktuellt: talen räknas av koden (IslandKallor) ur källistan, och Kontrollanten mätte slutkodens värden. Trafikbolagen räknas inte som myndighet. Ingen ändring.
+sm01-k007	vaxholm-0365	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k008	vaxholm-0382	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k009	uto-0006	OK	OK
+sm01-k010	vaxholm-0408	OK	OK
+sm01-k011	uto-N038	OK	OK
+sm01-k012	mall-N015	OK	OK
+sm01-k013	husaro-N010	OK	OK
+sm01-k014	uto-0330	OK	OK
+sm01-k015	sandhamn-0011	OK	OK
+sm01-k016	storholmen-0154	FEL	Registret inaktuellt: talen räknas av koden (IslandKallor) ur källistan, och Kontrollanten mätte slutkodens värden. Trafikbolagen räknas inte som myndighet. Ingen ändring.
+sm01-k017	vaxholm-0369	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k018	vaxholm-0367	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k019	vaxholm-0376	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k020	uto-0345	FEL	Registret inaktuellt: talen räknas av koden (IslandKallor) ur källistan, och Kontrollanten mätte slutkodens värden. Trafikbolagen räknas inte som myndighet. Ingen ändring.
+sm01-k021	vaxholm-0364	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k022	husaro-N009	OK	OK
+sm01-k023	vaxholm-0370	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k024	vaxholm-0377	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k025	uto-0383	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k026	vaxholm-0384	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k027	uto-N034	OK	OK
+sm01-k028	uto-0331	OK	OK
+sm01-k029	uto-N033	OK	OK
+sm01-k030	vaxholm-0366	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k031	husaro-N015	OK	OK
+sm01-k032	uto-0332	OK	OK
+sm01-k033	husaro-N014	OK	OK
+sm01-k034	vaxholm-0375	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k035	vaxholm-0379	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k036	husaro-0181	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k037	uto-0065	FEL	Inte fel i sak: avgångsrutan räknar resor från SL:s hållplats 740000001, som heter Stockholm Centralstation; första steget i resan kan vara en övergång till Stockholm City. Etiketten följer hållplatsens namn. Vakten kontrollerar namnet mekaniskt (står på listan).
+sm01-k038	husaro-N011	OK	OK
+sm01-k039	uto-0352	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k040	vaxholm-0360	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-k041	husaro-0069	OK	OK
+sm01-k042	vaxholm-0374	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden mot källan och fann den stödd (MÄTT). Ingen ändring.
+sm01-s01	fjaderholmarna-0321	OK	OK
+sm01-s02	fjaderholmarna-0163	OK	OK
+sm01-s03	fjaderholmarna-0164	OK	OK
+sm01-s04	uto-0044	OK	OK
+sm01-s05	sandhamn-0570	OK	OK
+sm01-s06	mall-N017	OK	OK
+sm01-s07	uto-0485	OK	OK
+sm01-s08	uto-0088	OK	OK
