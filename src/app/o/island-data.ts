@@ -5405,6 +5405,229 @@ export const ISLANDS: Island[] = [
     related: ['furon', 'runno'],
     tags: ['kalmar län', 'oskarshamn', 'naturreservat', 'skärgård'],
   },
+  // ─── LIMÖN ───────────────────────────────────────────────────
+  {
+    slug: 'limon',
+    name: 'Limön',
+    region: 'ovriga',
+    regionLabel: 'Gävleborgs skärgård',
+    emoji: '🏖',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Limön är en ö i Gävlebukten som på sin högsta punkt reser sig drygt 20 meter över Bottenhavet."; "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats" (läst 2026-11-17)
+    tagline: 'Reservatsö i Gävlebukten med tre badplatser, café och en hamn som är skyddad för alla vindar.',
+    seoTitle: 'Limön: ön i Gävlebukten',
+    // KÄLLA: https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/ — "Gävle Strand 5,5 Nm"; "Hamnen är skyddad för alla vindar." (läst 2026-11-17)
+    seoDescription: 'Limön ligger 5,5 nautiska mil sjövägen från Gävle Strand. Här är hamnen, badplatserna och reglerna i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lim%C3%B6n — Lantmäteriet Min Karta, sökning "Limön" → Limön | Gävle | Natur- och terrängnamn, SWEREF 99 TM 628243/6733344 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 60.7151,
+    lng: 17.3504,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Limön är en ö i Gävlebukten som på sin högsta punkt reser sig drygt 20 meter över Bottenhavet."; "Areal: 205,3 hektar"; "Skyddsår: 2020"; "Limöns naturreservat förvaltas av Gävle kommun."; "Skyddsområde: naturreservat, Natura 2000" (läst 2026-11-17)
+      'Limön är en ö i Gävlebukten som på sin högsta punkt reser sig drygt 20 meter över Bottenhavet. Naturreservatet är 205,3 hektar, skyddades 2020, ingår i Natura 2000 och förvaltas av Gävle kommun.',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats"; "Badplatsen Tärnviken"; "Badplatsen Scoutviken"; "Vid Limö café har du tillgång till dricksvatten och torrdass" (läst 2026-11-17)
+      'Det finns tre badplatser: Kalkudden bredvid Limöbåtens angöringsplats, Tärnviken och Scoutviken. Vid Limö café finns dricksvatten och torrdass.',
+    ],
+    facts: {
+      // KÄLLA: https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/ — "Sjövägen, runt fyrar och genom farleder"; "Gävle Strand 5,5 Nm" (läst 2026-11-17)
+      travel_time: '5,5 nautiska mil sjövägen från Gävle Strand',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Skyddsområde: naturreservat, Natura 2000" (läst 2026-11-17)
+      character: 'Naturreservat i Gävlebukten',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden"; "Badplatsen Tärnviken"; "Badplatsen Scoutviken" (läst 2026-11-17)
+      season: 'Tre badplatser',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats" (läst 2026-11-17)
+      best_for: 'Bad och båtfolk',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats"; "Badplatsen Tärnviken"; "Badplatsen Scoutviken" (läst 2026-11-17)
+      { icon: '🏊', name: 'Bad', desc: 'Tre badplatser: Kalkudden bredvid Limöbåtens angöringsplats, Tärnviken och Scoutviken.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/ — "Sjövägen, runt fyrar och genom farleder"; "Gävle Strand 5,5 Nm"; "Du lägger till din båt mot brygga. Hamnen är skyddad för alla vindar."; "Djup 1,7 meter." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Gävle Strand', desc: 'Sjövägen, runt fyrar och genom farleder, är det 5,5 nautiska mil från Gävle Strand. Du lägger till mot brygga i en hamn som är skyddad för alla vindar. Hamndjupet är 1,7 meter.', icon: '⛵', url: 'https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/' },
+    ],
+    harbors: [
+      // KÄLLA: https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/ — "Du lägger till din båt mot brygga. Hamnen är skyddad för alla vindar."; "Djup 1,7 meter." (läst 2026-11-17)
+      { name: 'Limö hamn', desc: 'Tilläggning mot brygga i en hamn som är skyddad för alla vindar. Djup 1,7 meter.' },
+    ],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "medföra hund som inte är kopplad"; "cykla."; "ta ved eller göra upp eld annat än på anvisad eldningsplats. Endast egen medhavd ved eller ved från kommunens iordningställda vedförråd får användas" (läst 2026-11-17)
+      'Hunden ska vara kopplad, och du får inte cykla. Eld får bara göras på anvisad eldningsplats, med egen ved eller ved från kommunens vedförråd.',
+    ],
+    related: ['storjungfrun'],
+    tags: ['gävleborg', 'gävle', 'naturreservat', 'bad'],
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats" (läst 2026-11-17)
+          { name: 'Kalkudden', desc: 'Bredvid Limöbåtens angöringsplats.', type: 'badvik' },
+          // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Tärnviken"; "Badplatsen Scoutviken" (läst 2026-11-17)
+          { name: 'Tärnviken och Scoutviken', desc: 'Två badplatser till på ön.', type: 'badvik' },
+        ],
+      },
+    },
+  },
+  // ─── AGÖN OCH KRÅKÖN ─────────────────────────────────────────
+  {
+    slug: 'agon',
+    name: 'Agön och Kråkön',
+    region: 'ovriga',
+    regionLabel: 'Gävleborgs skärgård',
+    emoji: '🦭',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "Agön och Kråkön är två stora skärgårdsöar med gamla fiskelägen och ligger 2 landmil sydost om Hudiksvall." (läst 2026-11-17)
+    // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf — "I reservatet finns en av kustens största kolonier med gråsäl." (läst 2026-11-17)
+    tagline: 'Två stora skärgårdsöar med gamla fiskelägen sydost om Hudiksvall, med kapell från 1600-talet och en av kustens största gråsälkolonier.',
+    seoTitle: 'Agön och Kråkön: fiskelägen och gråsäl',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "ligger 2 landmil sydost om Hudiksvall"; "du kan ta dig hit med egen båt eller genom att beställa båt som avgår från fastlandet" (läst 2026-11-17)
+    seoDescription: 'Agön och Kråkön ligger 2 landmil sydost om Hudiksvall. Så tar du dig dit, vad som finns och vilka regler som gäller sedan 2024.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ag%C3%B6n — Lantmäteriet Min Karta, sökning "Agön" → Agön | Hudiksvall | Natur- och terrängnamn, SWEREF 99 TM 628655/6826232 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 61.5481,
+    lng: 17.4209,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "Agön och Kråkön är två stora skärgårdsöar med gamla fiskelägen och ligger 2 landmil sydost om Hudiksvall."; "kapellen i Agö och Kråkö hamn, byggda 1660 respektive 1736" (läst 2026-11-17)
+      'Agön och Kråkön är två stora skärgårdsöar med gamla fiskelägen, 2 landmil sydost om Hudiksvall. Kapellen i Agö och Kråkö hamn byggdes 1660 respektive 1736.',
+      // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf — "I reservatet finns en av kustens största kolonier med gråsäl."; "Delar av naturreservatet ingår i … Natura 2000." (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "Skyddsår: 2004"; "Areal: 4 540 hektar" (läst 2026-11-17)
+      'I reservatet finns en av kustens största kolonier med gråsäl. Reservatet skyddades 2004 och är 4 540 hektar. Delar av det ingår i Natura 2000.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "du kan ta dig hit med egen båt eller genom att beställa båt som avgår från fastlandet" (läst 2026-11-17)
+      travel_time: 'Egen båt eller beställd båt från fastlandet',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "två stora skärgårdsöar med gamla fiskelägen" (läst 2026-11-17)
+      character: 'Skärgårdsöar med gamla fiskelägen',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/om-oss/om-lansstyrelsen-i-gavleborgs-lan/lanets-forfattningssamling/forfattningar-2024/forfattningssamling-2024/2024-03-08-21fs-20247.html — "under tiden 1/2 – 31/8 vistas inom område som anges på bilaga 1" (läst 2026-11-17)
+      season: 'Sälskyddsområdet stängt 1 februari till 31 augusti',
+      // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf — "I reservatet finns en av kustens största kolonier med gråsäl." (läst 2026-11-17)
+      best_for: 'Båtfolk, kulturmiljö och säl',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "kapellen i Agö och Kråkö hamn, byggda 1660 respektive 1736" (läst 2026-11-17)
+      { icon: '🏛', name: 'Kapellen', desc: 'Kapellen i Agö och Kråkö hamn byggdes 1660 respektive 1736.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/om-oss/om-lansstyrelsen-i-gavleborgs-lan/lanets-forfattningssamling/forfattningar-2024/forfattningssamling-2024/2024-03-08-21fs-20247.html — "tälta, annat än inom naturhamnarna (föreskriftsområde B3)" (läst 2026-11-17)
+      { name: 'Tältning i naturhamnarna', type: 'Tält', desc: 'Du får bara tälta inom naturhamnarna.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "du kan ta dig hit med egen båt eller genom att beställa båt som avgår från fastlandet" (läst 2026-11-17)
+      { method: 'Båt', from: 'Hudiksvall', desc: 'Du tar dig hit med egen båt eller genom att beställa båt som avgår från fastlandet.', icon: '⛴', url: 'https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/om-oss/om-lansstyrelsen-i-gavleborgs-lan/lanets-forfattningssamling/forfattningar-2024/forfattningssamling-2024/2024-03-08-21fs-20247.html — "elda, annat än på iordningställda eld- och grillplatser. Eldning får endast ske med utlagd ved"; "Dessa föreskrifter träder i kraft den 30 mars 2024" (läst 2026-11-17)
+      'Du får bara elda på iordningställda eld- och grillplatser, och bara med utlagd ved. Reglerna gäller sedan 30 mars 2024.',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/om-oss/om-lansstyrelsen-i-gavleborgs-lan/lanets-forfattningssamling/forfattningar-2024/forfattningssamling-2024/2024-03-08-21fs-20247.html — "under tiden 1/2 – 31/8 vistas inom område som anges på bilaga 1" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf — "Tihällans område för sälskydd" (läst 2026-11-17)
+      'Inom sälskyddsområdet vid Tihällan får du inte vistas 1 februari till 31 augusti.',
+    ],
+    related: ['kuggorarna', 'storjungfrun'],
+    tags: ['gävleborg', 'hudiksvall', 'naturreservat', 'säl', 'fiskeläge'],
+  },
+  // ─── STORJUNGFRUN ────────────────────────────────────────────
+  {
+    slug: 'storjungfrun',
+    name: 'Storjungfrun',
+    region: 'ovriga',
+    regionLabel: 'Gävleborgs skärgård',
+    emoji: '🗼',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Storjungfrun är den största av de 500 öarna i Söderhamns kommun." (läst 2026-11-17)
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html — "Storjungfruns fyr byggdes 1839"; "Statligt byggnadsminne: 1935" (läst 2026-11-17)
+    tagline: 'Den största av Söderhamns 500 öar, med en fyrplats som är statligt byggnadsminne och stugor att hyra vid fyren.',
+    seoTitle: 'Storjungfrun: fyrön utanför Söderhamn',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Intill fyren finns fyra uthyrningsstugor"; "Transport till ön bokas i samband med stugbokningen." (läst 2026-11-17)
+    seoDescription: 'Storjungfrun är Söderhamns största ö. Fyra stugor vid fyren, och transporten bokas med stugan. Här är fakta om fyrplatsen.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Storjungfrun — Lantmäteriet Min Karta, sökning "Storjungfrun" → Storjungfrun | Söderhamn | Natur- och terrängnamn, SWEREF 99 TM 624579/6782504 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 61.1572,
+    lng: 17.3151,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Storjungfrun är den största av de 500 öarna i Söderhamns kommun."; "Storjungfruns naturreservat ägs och förvaltas av Söderhamns kommun."; "Areal: 1280 hektar"; "Skyddsår: 2014" (läst 2026-11-17)
+      'Storjungfrun är den största av de 500 öarna i Söderhamns kommun. Naturreservatet ägs och förvaltas av kommunen, är 1 280 hektar och skyddades 2014.',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html — "Storjungfruns fyr byggdes 1839"; "Den var den sista stenkolseldade fyren som byggdes i Sverige"; "Det putsade fyrtornet av sten, som fortfarande är i bruk, byggdes 1923."; "Statligt byggnadsminne: 1935" (läst 2026-11-17)
+      'Den första fyren byggdes 1839 och var den sista stenkolseldade fyren som byggdes i Sverige. Dagens fyrtorn i sten är från 1923. Fyrplatsen är statligt byggnadsminne sedan 1935.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Transport till ön bokas i samband med stugbokningen." (läst 2026-11-17)
+      travel_time: 'Transport bokas tillsammans med stuga',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Storjungfrun är den största av de 500 öarna i Söderhamns kommun." (läst 2026-11-17)
+      character: 'Största ön i Söderhamns kommun, naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html — "Statligt byggnadsminne: 1935" (läst 2026-11-17)
+      season: 'Fyrplatsen är statligt byggnadsminne sedan 1935',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Intill fyren finns fyra uthyrningsstugor" (läst 2026-11-17)
+      best_for: 'Övernattning vid fyren',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html — "Storjungfruns fyr byggdes 1839"; "Det putsade fyrtornet av sten, som fortfarande är i bruk, byggdes 1923." (läst 2026-11-17)
+      { icon: '🗼', name: 'Fyrplatsen', desc: 'Den första fyren byggdes 1839. Dagens fyrtorn i sten är från 1923.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Intill fyren finns fyra uthyrningsstugor"; "Transport till ön bokas i samband med stugbokningen." (läst 2026-11-17)
+      { name: 'Stugor vid fyren', type: 'Stuga', desc: 'Intill fyren finns fyra uthyrningsstugor. Transport till ön bokas tillsammans med stugan.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Transport till ön bokas i samband med stugbokningen." (läst 2026-11-17)
+      { method: 'Båt', from: 'Söderhamn', desc: 'Transport till ön bokas tillsammans med stugan.', icon: '⛴', url: 'https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.visitsoderhamn.se/sv/storjungfrun — "Medtag mat och dryck – affär finns inte"; "Medtag dricksvatten! Vatten till matlagning, disk och städ finns att hämta vid gårdspump/brunn" (läst 2026-11-17)
+      'Det finns ingen affär på ön, så ta med mat och dryck. Ta också med dricksvatten, eftersom vattnet vid gårdspumpen är till matlagning, disk och städ.',
+    ],
+    related: ['limon', 'agon'],
+    tags: ['gävleborg', 'söderhamn', 'naturreservat', 'fyr'],
+  },
+  // ─── KUGGÖRARNA ──────────────────────────────────────────────
+  {
+    slug: 'kuggorarna',
+    name: 'Kuggörarna',
+    region: 'ovriga',
+    regionLabel: 'Gävleborgs skärgård',
+    emoji: '🏛',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "består av en ö, förbunden med Hornslandet med en cirka 150 meter lång vägbank"; "ett kapell, uppfört åren 1776–1777" (läst 2026-11-17)
+    tagline: 'Ö vid Hornslandet som du når via en vägbank, med kapell från 1770-talet, labyrint och gravfält.',
+    seoTitle: 'Kuggörarna: fiskeläge vid Hornslandet',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "Ö vid nordöstra Hornslandet, 23 kilometer ost sydost om Hudiksvall." (läst 2026-11-17)
+    seoDescription: 'Kuggörarna ligger 23 kilometer ostsydost om Hudiksvall och nås via en vägbank från Hornslandet. Kapell, labyrint och regler.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kugg%C3%B6rarna — Lantmäteriet Min Karta, sökning "Kuggörarna" → Kuggörarna | Hudiksvall | Natur- och terrängnamn, SWEREF 99 TM 633051/6843473 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 61.7013,
+    lng: 17.5161,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "består av en ö, förbunden med Hornslandet med en cirka 150 meter lång vägbank"; "Ö vid nordöstra Hornslandet, 23 kilometer ost sydost om Hudiksvall." (läst 2026-11-17)
+      'Kuggörarna är en ö som förbinds med Hornslandet av en cirka 150 meter lång vägbank, 23 kilometer ostsydost om Hudiksvall.',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "ett kapell, uppfört åren 1776–1777"; "I den nordvästra delen finns en labyrint och på öns sydvästra del finns ett gravfält från sen järnålder."; "Areal: 51 hektar"; "Skyddsår: 1996" (läst 2026-11-17)
+      'Kapellet uppfördes 1776 till 1777. I nordvästra delen finns en labyrint och på sydvästra delen ett gravfält från sen järnålder. Reservatet är 51 hektar och skyddades 1996.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "förbunden med Hornslandet med en cirka 150 meter lång vägbank" (läst 2026-11-17)
+      travel_time: 'Bil via vägbank från Hornslandet',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "ett kapell, uppfört åren 1776–1777" (läst 2026-11-17)
+      character: 'Ö med fiskeläge, kapell och fornlämningar',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "Parkering"; "Torrdass" (läst 2026-11-17)
+      season: 'Parkering och torrdass',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "en labyrint"; "ett gravfält från sen järnålder" (läst 2026-11-17)
+      best_for: 'Kulturhistoria och dagsutflykt',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "ett kapell, uppfört åren 1776–1777" (läst 2026-11-17)
+      { icon: '🏛', name: 'Kapellet', desc: 'Kapellet uppfördes 1776 till 1777.' },
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "I den nordvästra delen finns en labyrint och på öns sydvästra del finns ett gravfält från sen järnålder." (läst 2026-11-17)
+      { icon: '🪨', name: 'Labyrint och gravfält', desc: 'En labyrint i nordväst och ett gravfält från sen järnålder i sydväst.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "förbunden med Hornslandet med en cirka 150 meter lång vägbank"; "Parkering" (läst 2026-11-17)
+      { method: 'Bil', from: 'Hudiksvall', desc: 'Ön förbinds med Hornslandet av en cirka 150 meter lång vägbank. Det finns parkering.', icon: '🚗', url: 'https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "tälta, elda eller ta ved, gäller ej drivved" (läst 2026-11-17)
+      'Du får inte tälta, elda eller ta ved. Förbudet mot att ta ved gäller inte drivved.',
+    ],
+    related: ['agon'],
+    tags: ['gävleborg', 'hudiksvall', 'naturreservat', 'kulturmiljö'],
+  },
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',
