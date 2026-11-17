@@ -13,6 +13,9 @@ const PROTECTED_ROUTES = [
 
 // Routes som har en publik version för utloggade besökare —
 // de redirectar till den publika sidan istället för /logga-in.
+/** Sätts när en webbläsare haft en inloggad session; styr om /logga-in öppnar inloggning eller registrering. Ingen personuppgift. */
+const HAR_KONTO_KAKA = 'svalla_har_konto'
+
 const PUBLIC_FALLBACK: Record<string, string> = {
   '/rutter': '/oar',
 }
@@ -255,8 +258,18 @@ export async function middleware(request: NextRequest) {
     }
     url.pathname = '/logga-in'
     url.searchParams.set('returnTo', pathname)
-    url.searchParams.set('mode', 'ny')
+    // mode=ny visar "Skapa konto" först. Rätt för en ny besökare, fel för en
+    // webbläsare som redan haft ett konto inloggat: när sessionen gått ut
+    // möttes den av "Välj ett alias" (sett 2026-11-17). Kakan HAR_KONTO sätts
+    // nedan vid varje autentiserat anrop och lever ett år.
+    if (!request.cookies.get(HAR_KONTO_KAKA)) url.searchParams.set('mode', 'ny')
     return NextResponse.redirect(url)
+  }
+
+  if (!request.cookies.get(HAR_KONTO_KAKA)) {
+    supabaseResponse.cookies.set(HAR_KONTO_KAKA, '1', {
+      maxAge: 60 * 60 * 24 * 365, path: '/', sameSite: 'lax', secure: true,
+    })
   }
 
   // Returnera supabaseResponse — inte NextResponse.next() — så att
