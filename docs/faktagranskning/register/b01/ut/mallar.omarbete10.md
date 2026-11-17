@@ -12,6 +12,7 @@ MÄTT = renderat med mallar10/skript/matt10.tsx (kopia av matt8.tsx) och mätdat
 - **sm08-k006 (mall-0128).** `aktivitetsUndertitel` (mallRegler.ts) räknar på, på och nära, nära. MÄTT: Utö "5 aktiviteter och upplevelser på Utö och en till på och nära ön.", Dalarö likaså; inga andra av 144 ändras.
 - **sm08-k011 (mall-0047).** `arBatben` (ny src/lib/batben.ts, test): catCode 8 eller cls 256, kategorin som reserv; DepartureWidget får catCode/cls. MÄTT i dagens svar för de 49 öarna: Länstrafik buss 239 ben, Länstrafik färja 113, tunnelbana 89, tåg 19, "Färjetrafik - övrigt" 2 (Eknö, Stavsnäs båttaxi); bara den sista byter, nu "· båt".
 - **sm08-k016 (mall-0239, N048).** Delsholmen Entreprenad: `oar: []` (posten står kvar, visas inte). KÄLLA https://delsholmen.se/ — "Delsholmen Entreprenad AB din lokala hantverkare i stavsudda området" (alla undersidor samma text). Källrutan: "Namn, yrken och kontaktuppgifter kommer från företagens egna webbplatser och, för elföretag, Elsäkerhetsverkets register." MÄTT: Möja 12 → 11 företag.
+- **Redaktörens tillägg: Hellström Marin och Anderssons Båtvarv (mall-N048).** Borttagna från Möja. Anderssons egen sida nämner inte Möja, bara Norra Stavsudda (startsidan, Kontakt, Hitta hit, Service och Vinter_26_27 lästa i dag med curl; KÄLLA http://anderssonsbatvarv.se/Kontakt.htm — "130 42 STAVSUDDA"); `oar: []`. hhmarin.se gick inte att läsa i dag (certifikatfel i curl, 502 i Chromium, inte kringgått), och Redaktörens Chrome-läsning 2026-11-03 nämner inte Möja; ingen myndighet anger läget; `oar: ['runmaro']` (Runmarö inte prövad). MÄTT: Möja 11 → 9 företag; Lag 3 Möja hantverkare 606/734 (82,6 %, brist 92).
 - **sm07-k009 (mall-N045).** Titeln tar bara bort ett båtfärdsätt som går från orten själv (`franOrten`, nu i kommaDitTitlar.ts, test). MÄTT: Vaxholm och Lysekil "Bil och buss" → "Båt och resväg" (tabell 11 och Lysekils kommun lästa i dag); Hamburgsund, Grebbestad oförändrade.
 - **sm07-k042 (mall-N050).** islandCoords.ts: Vaxholm `platsRadieKm: 3.3`. MÄTT i OSM relation 4121363: längsta avstånd nål–strandlinje 3,220 km (513 noder). Eriksöbadet "nära" → "på"; inga andra platser byter läge. radiusKm står kvar (Toms beslut 3).
 - **sm04-k004 (mall-N046).** Logiken: med barn-sidan jämför databasens bad med öns lista med `utanDubbletter`, så "Stora Trouvillestranden" faller bort. Datan: Västerudde strand försvinner först när sandhamn.sql (sandhamn-0517, typ nature) är körd. MÄTT: "Trouville, Fläskberget, Västerudde strand"; med SQL:en "Trouville, Fläskberget".
@@ -19,25 +20,26 @@ MÄTT = renderat med mallar10/skript/matt10.tsx (kopia av matt8.tsx) och mätdat
 - **sm05-k001 (moja-0572).** Inget i mallen: platsRadie läser Möjas radie, som är 3,5 km efter Möjas edits (moja-0024). Det som är fel är registertexten i moja.tsv; till öarnas Skribent. MÄTT: Bastuhuset 4,0 km, räckvidd 3,5 + 2 = 5,5 km.
 
 ## Lag 3 (main 65ec7c3 mot ihop, 1 296 sidor, utan upplysningstexten ovan)
-Under 95 %: 35 sidor (batch 01: 0). Före runda 10 med samma räkning 23; bara mallarnas kopia 58 (batch 01: 6, öarnas poster lyfter alla). Ö brist (nu/main):
+Under 95 %: 36 sidor (batch 01: 1, Möja hantverkare efter Redaktörens tillägg). Före runda 10 med samma räkning 23; bara mallarnas kopia 58 (batch 01: 6, öarnas poster lyfter alla). Ö brist (nu/main):
 - Komma dit (20; SL-rutan eller båtrutan räknas inte): Storskär 71 (143/225), Furusund 70 (172/254), Djurö 95 (247/360), Dalarö 69 (180/262), Norrpada 55 (154/219), Singö 69 (196/278), Gräddö 68 (205/287), Ingarö 70 (213/297), Mörkö 68 (209/291), Gålö 68 (210/292), Muskö 68 (217/299), Torö 67 (232/314), Huvudskär 65 (228/308), Vindö 66 (252/334), Yttre Gården 68 (275/361), Adelsö 59 (240/314), Långskär 27 (178/215), Smådalarö 38 (263/316), Väddö 17 (274/306), Blå Jungfrun 14 (290/319).
 - Med barn (12; urvalet i sm05-k003): Klädesholmen 52 (256/324), Huvudskär 38 (234/286), Öland 37 (341/397), Öckerö 33 (362/415), Tynningö 35 (442/502), Ingarö 19 (353/391), Bullerö 17 (205/233), Blå Jungfrun 11 (377/408), Grebbestad 9 (280/304), Ingmarsö 4 (265/283), Dyrön 4 (445/472), Lysekil 1 (276/291).
+- Hantverkare (1; Redaktörens beslut): Möja 92 (606/734).
 - Bad (2; rundorna 1–9, nya öar på main): Brommö 12 (222/246), Hallands Väderö 10 (234/256). Aktiviteter (1): Agön och Kråkön 4 (125/135).
-Batch 01, lägsta andel per ö (ihop): Möja hantverkare 698/734 (95,1 %), Husarö bad 97,4 %, Utö restauranger 98,9 %, övriga ≥ 101 %. Storholmen komma dit 304/300 utan 300 ord upplysning.
+Batch 01, lägsta andel per ö (ihop): Möja hantverkare 606/734 (82,6 %), Husarö bad 97,4 %, Utö restauranger 98,9 %, övriga ≥ 101 %. Storholmen komma dit 304/300 utan 300 ord upplysning.
 
 ## Till öarnas Skribent
-1. Lag 3-listan ovan (35 sidor); kompensera med uppgifter som bara gäller ön.
+1. Lag 3-listan ovan (36 sidor); kompensera med uppgifter som bara gäller ön.
 2. moja.tsv moja-0572: "inom radien 3 km + 2 km" ska vara 3,5 km + 2 km (5,5 km), som Möjas radie efter moja-0024.
 3. vaxholm.tsv vaxholm-0021: platslistan använder nu platsRadieKm 3,3 km (radiusKm 2,0 för GPS). Tenöbadet (Bogesundslandet, 1,66 km) saknar ö-fält i databasen och räknas som på Vaxholm; ö-fältet i vaxholm.sql om ni vill ha den nära.
 4. Sandhamn: Västerudde strand står kvar i med barn-FAQ:n tills sandhamn.sql (sandhamn-0517) är körd.
 
 ## Till Redaktören
 1. Main har 43 nya öar. Båtrutan hade visats på 16 av dem utan genomgång av lokala förbud (bl.a. Stora Karlsö, Utklippan, Djurö nationalpark). Den visas nu bara på genomgångna öar (`batrutaGranskad`, mall-N044); 34 → 18 öar. De 16 behöver genomgång.
-2. Hellström Marin och Anderssons Båtvarv står på Möja på samma grund som Delsholmen (moja-0500, 0536 OBELAGD, beslut 6). Metabeskrivningen säger "11 företag som själva uppger att de arbetar på ön".
+2. Hellström Marin och Anderssons Båtvarv: borttagna från Möja enligt ditt beslut (se punkten ovan). Hellströms Runmarö-listning är inte prövad.
 3. 09FS 2006:4 (Tärnudden) gick inte att läsa; Länsstyrelsen Gotland kan behöva frågas om den gäller.
 4. Lysekils titel blir "Båt och resväg" (färjan från Fiskebäckskil går till Lysekil). Bekräfta.
 
 ## Kontroller (2026-11-17)
-/home/claude/svalla-mallar10: `npx tsc --noEmit -p .` 0 fel · `node scripts/verify-claims.mjs` exit 0 (2 kända i baslinjen) · `generera-kallor.mjs --kontroll` exit 0, 144 öar, 1 795 källor · `generera-uppskattningar.mjs --kontroll` exit 0 · `npx vitest run src/lib` 78 filer, 795 test gröna (nytt: batben.test.ts; tillägg i batregler-, mallRegler- och kommaDitTitlar-testerna) · eslint på ändrade filer: bara felet som finns på main (✓ i hamnar/page.tsx).
+/home/claude/svalla-mallar10: `npx tsc --noEmit -p .` 0 fel · `node scripts/verify-claims.mjs` exit 0 (2 kända i baslinjen) · `generera-kallor.mjs --kontroll` exit 0, 144 öar, 1 795 källor · `generera-uppskattningar.mjs --kontroll` exit 0 · `npx vitest run src/lib` 78 filer, 795 test gröna, också efter Redaktörens tillägg (nytt: batben.test.ts; tillägg i batregler-, mallRegler- och kommaDitTitlar-testerna) · eslint på ändrade filer: bara felet som finns på main (✓ i hamnar/page.tsx).
 Ihop (kopia i scratchpad/b01/mallar10/ihop med patchen och de tio edits.json, 285 poster, 0 fel; källistan 1 915 källor): tsc 0 fel · verify-claims exit 0 · generera-kallor --kontroll exit 0 · uppskattningar exit 0 · vitest 78 filer, 795 test gröna. Kopian borttagen.
 kontrollera_register.py (mallar): inga formfel, 303 rader. Nya citat sökta ordagrant i de sparade sidorna (NFS 2014:7, skötselplanen, delsholmen.se, Lysekils kommun, tabell 11): alla står. Inga tankstreck i tillagd publicerad text (sökt i diffen mot före).

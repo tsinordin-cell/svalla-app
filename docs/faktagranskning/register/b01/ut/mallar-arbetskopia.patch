@@ -2308,10 +2308,23 @@ index 9b4b578..7a297ad 100644
    },
  ]
 diff --git a/src/app/o/hantverkare-data.ts b/src/app/o/hantverkare-data.ts
-index 99d99a9..721efe8 100644
+index 99d99a9..ad0ad66 100644
 --- a/src/app/o/hantverkare-data.ts
 +++ b/src/app/o/hantverkare-data.ts
-@@ -375,7 +375,10 @@ export const HANTVERKARE: Hantverkare[] = [
+@@ -356,7 +356,11 @@ export const HANTVERKARE: Hantverkare[] = [
+     webb: 'https://hhmarin.se',
+     orgnr: '556711-6982',
+     // Sandhamn borttagen 2026-10-20: hhmarin.se gick inte att läsa vid granskningen, så att de arbetar på Sandhamn kunde inte bekräftas.
+-    oar: ['moja', 'runmaro'],
++    // Inte längre på Möja (Redaktörens beslut 2026-11-17, mallarnas runda 10; moja-0500): Möja nämns inte på företagets sida
++    // (Redaktörens läsning i Toms Chrome 2026-11-03, kontroll/oar-omk2-sidor/www.hhmarin.se.chrome-2026-11-03.txt), och
++    // 2026-11-17 gick sidan inte att läsa härifrån (certifikatfel i curl, 502 i Chromium). Ingen myndighet anger läget.
++    // Runmarö står kvar; den listningen är inte prövad i den här rundan.
++    oar: ['runmaro'],
+     kalla: { niva: 'egen-sajt', url: 'https://hhmarin.se', last: '2026-09-22' },
+     verifierad: false,
+     noteringar:
+@@ -375,7 +379,10 @@ export const HANTVERKARE: Hantverkare[] = [
      telefon: '073-999 09 74',
      epost: 'micke@delsholmen.se',
      webb: 'https://delsholmen.se',
@@ -2323,6 +2336,18 @@ index 99d99a9..721efe8 100644
      kalla: { niva: 'egen-sajt', url: 'https://delsholmen.se', last: '2026-09-22' },
      verifierad: false,
      noteringar:
+@@ -427,7 +434,10 @@ export const HANTVERKARE: Hantverkare[] = [
+     yrken: ['batmekaniker'],
+     telefon: '08-571 650 83',
+     webb: 'http://anderssonsbatvarv.se',
+-    oar: ['moja'],
++    // Inte längre på Möja (Redaktörens beslut 2026-11-17, mallarnas runda 10; moja-0536): startsidan, Kontakt, Hitta hit,
++    // Service och Vinter_26_27 nämner inte Möja, bara Norra Stavsudda. Posten står kvar men visas på ingen ösida.
++    // KÄLLA: http://anderssonsbatvarv.se/Kontakt.htm — "130 42 STAVSUDDA" (läst 2026-11-17)
++    oar: [],
+     kalla: { niva: 'egen-sajt', url: 'http://anderssonsbatvarv.se/Kontakt.htm', last: '2026-09-22',
+       reservation: 'Webbplatsen bär kvar text om att hålla avstånd på grund av smittspridning, och verkar inte ha uppdaterats sedan 2020 eller 2021.' },
+     verifierad: false,
 diff --git a/src/app/o/island-data.ts b/src/app/o/island-data.ts
 index a16184e..f1f2d5e 100644
 --- a/src/app/o/island-data.ts
