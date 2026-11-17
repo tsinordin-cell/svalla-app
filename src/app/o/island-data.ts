@@ -4441,12 +4441,11 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "bada från klippor och härlig sandstrand" (läst 2026-11-17)
       // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html — "Skyddsår: 1982" (läst 2026-11-17)
       character: 'Stor ö med badstränder och naturreservat',
-      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "Vecka 25–33 Två färjor trafikerar leden alla dagar" (sidan uppdaterad 7 maj 2026, läst 2026-11-17)
-      season: 'Två färjor alla dagar vecka 25 till 33 enligt Trafikverkets sommarupplägg',
       // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Gräsöbadet arrenderas av Östhammars kommun" (läst 2026-11-17)
       // KÄLLA: https://grasobadenscamping.se/ — "Vi har ca 400 platser för husvagn, husbil eller tält" (läst 2026-11-17)
-      best_for: 'Bad, naturreservat och camping',
+      best_for: 'Bad och camping',
     },
+    facts_provenance: { travel_time: 'matt', character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Gräsöbadet arrenderas av Östhammars kommun"; "bada från klippor och härlig sandstrand"; "Därefter ligger badet cirka 1 km norrut på Gräsö" (läst 2026-11-17)
       { icon: '🏖', name: 'Gräsöbadet', desc: 'Badet ligger cirka en kilometer norr om färjeläget och har klippor och sandstrand. Östhammars kommun arrenderar badet.' },
@@ -4517,8 +4516,6 @@ export const ISLANDS: Island[] = [
       'På ön växer arton av landets orkidéarter. Vid Bodalsträsket kan du höra gölgrodorna spela i maj och juni, och de bästa baden finns på klipporna i öster.',
     ],
     facts: {
-      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "nås med båt från Örskärssund" (läst 2026-11-17)
-      travel_time: 'Båt från Örskärssund på norra Gräsö',
       // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Skyddstyp: Naturreservat, Natura 2000" (läst 2026-11-17)
       character: 'Fyrö och naturreservat',
       // KÄLLA: https://www.orskarsfyr.se/dagsturer/ — "DAGSTURERNA har slutat gå för denna säsong! Välkomna åter till Maj 2027" (läst 2026-11-17)
@@ -4527,6 +4524,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Här växer arton av landets orkidéarter."; "Bästa baden finns på klipporna i öster" (läst 2026-11-17)
       best_for: 'Fyrbesök, vandring, orkidéer och klippbad',
     },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.orskarsfyr.se/dagsturer/ — "Fyren går att besöka under dagsturen." (läst 2026-11-17)
       // KÄLLA: https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/ — "Den är 36,5 meter hög"; "Fyren är unik eftersom den helt saknar trappor" (läst 2026-11-17)
@@ -4597,15 +4595,12 @@ export const ISLANDS: Island[] = [
       'I reservatet finns över 9 kilometer skyltad vandringsled, flera grillplatser och rastbord och gott om naturliga badmöjligheter.',
     ],
     facts: {
-      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Från Getterö mot Ämtö" (läst 2026-11-17)
-      travel_time: 'Skärgårdstrafiken linje 776 från Getterö',
       // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Skyddsår: 1975" (läst 2026-11-17)
       character: 'Naturreservat med vandringsleder och betesmarker',
-      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Gäller från 1 november 2026 till 13 juni 2027." (läst 2026-11-17)
-      season: 'Tidtabell för linje 776 gäller 1 november 2026 till 13 juni 2027',
       // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "välskyltad vandringsled"; "Fisket är fritt om du använder handredskap." (läst 2026-11-17)
       best_for: 'Vandring, bad och fiske',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "sammanlagt finns över 9 kilometer välskyltad vandringsled i reservatet" (läst 2026-11-17)
       { icon: '🚶', name: 'Vandring', desc: 'Över 9 kilometer skyltad vandringsled i reservatet.' },
@@ -4657,15 +4652,12 @@ export const ISLANDS: Island[] = [
       'Valdemarsviks kommun skrev 2022 att byn på Harstena fortfarande är oskiftad. Det gamla trankokeriet finns kvar och är skyddat som byggnadsminne.',
     ],
     facts: {
-      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Från Fyrudden mot Harstena" (läst 2026-11-17)
-      travel_time: 'Skärgårdstrafiken linje 776 från Fyrudden',
       // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "en arkipelag med ett 70-tal öar" (läst 2026-11-17)
       character: 'Ögrupp med en gammal by',
-      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Gäller från 1 november 2026 till 13 juni 2027." (läst 2026-11-17)
-      season: 'Tidtabell för linje 776 gäller 1 november 2026 till 13 juni 2027',
       // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "Det gamla trankokeriet finns kvar på Harstena och är skyddat som byggnadsminne." (läst 2026-11-17)
-      best_for: 'Kulturmiljö och skärgårdsby',
+      best_for: 'Kulturhistoria och skärgårdsby',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "Det gamla trankokeriet finns kvar på Harstena och är skyddat som byggnadsminne." (läst 2026-11-17)
       { icon: '🏛', name: 'Trankokeriet', desc: 'Det gamla trankokeriet finns kvar och är skyddat som byggnadsminne.' },
@@ -4709,15 +4701,14 @@ export const ISLANDS: Island[] = [
       'På den östra ön finns ett torrdass och en natur- och vrakutställning. På den västra ön finns ett vindskydd med eldstad.',
     ],
     facts: {
-      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
-      travel_time: 'Turbåt från piren i Arkösund sommartid',
       // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Ett drygt tiotal öar ingår i reservatet" (läst 2026-11-17)
       character: 'Naturreservat med ett drygt tiotal öar',
       // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
-      season: 'Turbåtar sommartid, kommunen anger inga datum',
+      season: 'Turbåtar sommartid',
       // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "här tas inte badvattenprov då badplatsen är belägen på en ö" (läst 2026-11-17)
-      best_for: 'Bad, utflykt och vindskydd',
+      best_for: 'Dagsutflykt och bad',
     },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "På östra ön finns ett torrdass, samt en natur- och vrakutställning." (läst 2026-11-17)
       { icon: '🏛', name: 'Natur- och vrakutställning', desc: 'På den östra ön finns en natur- och vrakutställning och ett torrdass.' },
@@ -4767,15 +4758,12 @@ export const ISLANDS: Island[] = [
       'Kommunen har hand om tre badplatser i Arkösund: Badholmarna, Nordanskog och Sköldvik. Badholmarna ligger strax utanför orten och är fyra små öar som förbinds med broar.',
     ],
     facts: {
-      // KÄLLA: https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel — "Ta buss 440 till hållplats Arkösunds hamn." (läst 2026-11-17)
-      travel_time: 'Buss 440 till hållplatsen Arkösunds hamn',
       // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja" (läst 2026-11-17)
       character: 'Ort där skärgårdstrafiken utgår',
-      // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Gäller från 17 augusti 2026 till 13 juni 2027." (läst 2026-11-17)
-      season: 'Tidtabell för linje 781 gäller 17 augusti 2026 till 13 juni 2027',
       // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Badholmarna (Arkösund)", "Nordanskog (Arkösund)", "Sköldvik (Arkösund)" (läst 2026-11-17)
-      best_for: 'Bad och båt ut i skärgården',
+      best_for: 'Startpunkt för båt ut i skärgården',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel — "Badholmarna ligger strax utanför Arkösund och består av fyra små öar som förbinds med broar." (läst 2026-11-17)
       // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Tillgång till toaletter i servicebyggnad 400 meter från badet. Affär och restaurang inom gångavstånd." (läst 2026-11-17)
@@ -4822,15 +4810,12 @@ export const ISLANDS: Island[] = [
       'Rundslingan är cirka 3,3 kilometer. Till Hargberget, som med 40 meter över havet är en av skärgårdens högsta punkter, är det ytterligare 1,2 kilometer enkel väg.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Reservatet nås endast med båt. Sörmlandstrafiken har skärgårdstrafik till Hartsö." (läst 2026-11-17)
-      travel_time: 'Bara med båt, Sörmlandstrafiken har skärgårdstrafik hit',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Areal: 5 535 hektar" (läst 2026-11-17)
       character: 'Naturreservat med leder och fågelskyddsområden',
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "En del områden får man inte besöka 1 april till 31 juli, för andra delar gäller 1 februari till 15 augusti." (läst 2026-11-17)
-      season: 'Fågelskydd i delar av reservatet 1 februari till 15 augusti',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Rundslingan är cirka 3,3 kilometer."; "fågelstation" (läst 2026-11-17)
-      best_for: 'Vandring och fåglar',
+      best_for: 'Vandrare och fågelskådare',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Rundslingan är cirka 3,3 kilometer. Till Hargberget tillkommer 1,2 kilometer enkel väg." (läst 2026-11-17)
       { icon: '🚶', name: 'Rundslingan och Hargberget', desc: 'Rundslingan är cirka 3,3 kilometer. Till Hargberget är det ytterligare 1,2 kilometer enkel väg.' },
@@ -4877,15 +4862,12 @@ export const ISLANDS: Island[] = [
       'På södra Ringsö finns sandstränder, och du kan bada från klippor. Vid djupsundet ligger Österbodarna, gamla fiskebodar som har restaurerats. Reservatet bildades 1980 och är 2 044,5 hektar.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Till reservatet tar du dig med egen båt. Sörmlandstrafiken har också skärgårdstrafik till Ringsö." (läst 2026-11-17)
-      travel_time: 'Egen båt, och Sörmlandstrafiken har skärgårdstrafik hit',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Ringsö är den största ön i Nyköpings skärgård." (läst 2026-11-17)
       character: 'Största ön i Nyköpings skärgård, naturreservat',
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "fågelskyddsområde med beträdningsförbud 1 februari till 15 augusti." (läst 2026-11-17)
-      season: 'Fågelskydd i delar av reservatet 1 februari till 15 augusti',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "På södra Ringsö finns sandstränder och möjlighet att bada från klippor." (läst 2026-11-17)
-      best_for: 'Bad och kulturmiljö',
+      best_for: 'Bad och gamla fiskebodar',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "På södra Ringsö finns sandstränder och möjlighet att bada från klippor." (läst 2026-11-17)
       { icon: '🏖', name: 'Bad', desc: 'På södra Ringsö finns sandstränder, och du kan bada från klippor.' },
@@ -4936,15 +4918,12 @@ export const ISLANDS: Island[] = [
       'På öns sydöstra spets finns ett litet museum, och de före detta lotsbostäderna används i dag som vandrarhem.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sävö nås endast med båt. … Sörmlandstrafiken har skärgårdstrafik till Sävö." (läst 2026-11-17)
-      travel_time: 'Bara med båt, Sörmlandstrafiken har skärgårdstrafik hit',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Skyddsår: 1987" (läst 2026-11-17)
       character: 'Naturreservat med betesmark och lotsmiljö',
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Eftersom får och kor går fria på ön" (läst 2026-11-17)
-      season: 'Får och kor går fria på ön',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "De är båda cirka 3 km långa." (läst 2026-11-17)
-      best_for: 'Vandring och övernattning',
+      best_for: 'Vandring och vandrarhem',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sörmlandsleden med orange markering och Sävöleden med blå markering, som delvis överlappar. De är båda cirka 3 km långa." (läst 2026-11-17)
       { icon: '🚶', name: 'Två leder', desc: 'Sörmlandsleden med orange markering och Sävöleden med blå markering. Båda är cirka 3 kilometer.' },
@@ -4991,15 +4970,12 @@ export const ISLANDS: Island[] = [
       'Vägen är skyltad från E4 och väg 219 mellan Nyköping och Trosa, och det finns två parkeringar och 20 grillplatser i reservatet.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Skyltat från E4 och väg 219 mellan Nyköping och Trosa." (läst 2026-11-17)
-      travel_time: 'Bil, skyltat från E4 och väg 219',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "via flera hängbroar" (läst 2026-11-17)
       character: 'Naturreservat på fastlandet och närmaste öarna',
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det är lätt att nå från fastlandet" (läst 2026-11-17)
-      season: 'Nås från fastlandet',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det finns 20 grillplatser i reservatet." (läst 2026-11-17)
       best_for: 'Dagsutflykt, grill och promenad över hängbroarna',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "du kommer ut på de närmaste skärgårdsöarna via flera hängbroar." (läst 2026-11-17)
       { icon: '🚶', name: 'Hängbroarna', desc: 'Flera hängbroar tar dig från fastlandet ut på de närmaste öarna.' },
@@ -5040,15 +5016,14 @@ export const ISLANDS: Island[] = [
       'Kråmö är ett naturreservat i Trosa kommun, som också förvaltar det. På ön Grytan finns flera jättegrytor från senaste istiden.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Hit kommer du med egen båt eller via båttaxi." (läst 2026-11-17)
-      travel_time: 'Egen båt eller båttaxi',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Förvaltare: Trosa kommun" (läst 2026-11-17)
       character: 'Naturreservat som Trosa kommun förvaltar',
       // KÄLLA: https://kramoskargardsby.se/general-6 — "2026 trafikerar vi 11 juni till 2 augusti samt 6 - 9 augusti." (läst 2026-11-17)
-      season: 'Båt från Trosa sommaren 2026 enligt Kråmö skärgårdsby',
+      season: 'Båt från Trosa sommaren 2026',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "På ön Grytan finns flera jättegrytor från senaste istiden." (läst 2026-11-17)
       best_for: 'Båtfolk och utflykt till jättegrytorna',
     },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "På ön Grytan finns flera jättegrytor från senaste istiden." (läst 2026-11-17)
       { icon: '🪨', name: 'Jättegrytorna på Grytan', desc: 'På ön Grytan finns flera jättegrytor från senaste istiden.' },
@@ -5093,15 +5068,12 @@ export const ISLANDS: Island[] = [
       'På de norra uddarna finns en populär tältplats med soptunnor och utedass.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Hit tar du dig med egen båt. Det finns en brygga i östra viken." (läst 2026-11-17)
-      travel_time: 'Egen båt, brygga i östra viken',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Areal: 10,8 hektar" (läst 2026-11-17)
       character: 'Liten reservatsö',
-      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "tälta längre än två dygn i följd på samma plats" (läst 2026-11-17)
-      season: 'Tältning högst två dygn i följd',
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "en populär tältplats" (läst 2026-11-17)
-      best_for: 'Båtfolk och tältning',
+      best_for: 'Båtfolk som vill tälta',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "På de norra uddarna"; "en populär tältplats. Här finns soptunnor och utedass." (läst 2026-11-17)
       { icon: '⛺', name: 'Tältplats', desc: 'På de norra uddarna finns en populär tältplats med soptunnor och utedass.' },
@@ -5145,15 +5117,12 @@ export const ISLANDS: Island[] = [
       'Två vandringsleder går på ön: Norra Rågöslingan (blå) på 1 kilometer och Södra Rågöslingan (röd) på 3 kilometer. Tillgänglighetsanpassad toalett finns vid Rågö by, och torrdass finns vid gästhamnen i Alviken och vid tältplatsen.',
     ],
     facts: {
-      // KÄLLA: https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf — "Bokningsbar Skärgårdstrafik till/från Gränsö kanal" (läst 2026-11-17)
-      travel_time: 'Bokningsbar båt från Gränsö kanal',
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Areal: 875 hektar varav 244,3 hektar land" (läst 2026-11-17)
       character: 'Naturreservat med by, leder och gästhamn',
-      // KÄLLA: https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf — "gäller 17 augusti 2026 - 13 juni 2027" (läst 2026-11-17)
-      season: 'Tidtabell för båten gäller 17 augusti 2026 till 13 juni 2027',
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer" (läst 2026-11-17)
       best_for: 'Vandring och båtfolk',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer" (läst 2026-11-17)
       { icon: '🚶', name: 'Två leder', desc: 'Norra Rågöslingan (blå) på 1 kilometer och Södra Rågöslingan (röd) på 3 kilometer.' },
@@ -5204,15 +5173,12 @@ export const ISLANDS: Island[] = [
       'Gränsö är naturreservat sedan 1995, ägs och förvaltas av Västerviks kommun och ingår i Natura 2000.',
     ],
     facts: {
-      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "cirka 5 kilometer från Västerviks stadskärna" (läst 2026-11-17)
-      travel_time: 'Cirka 5 kilometer från Västerviks stadskärna',
       // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsö är egentligen en halvö" (läst 2026-11-17)
       character: 'Halvö och naturreservat',
-      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "håll den kopplad året runt" (läst 2026-11-17)
-      season: 'Hunden kopplad året runt',
       // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsöleden löper runt hela naturreservatet"; "Vid Gränsö udde finns en snorkelled" (läst 2026-11-17)
       best_for: 'Vandring, snorkling och bad',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsöleden löper runt hela naturreservatet och är 12 km lång." (läst 2026-11-17)
       { icon: '🚶', name: 'Gränsöleden', desc: 'Leden går runt hela reservatet och är 12 kilometer.' },
@@ -5268,15 +5234,12 @@ export const ISLANDS: Island[] = [
       'Över stora delar av ön finns plana ytor av sandsten. Här finns den största gruppen tomtningar längs hela Kalmarsund.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Till Runnö kan man endast ta sig med egen båt." (läst 2026-11-17)
-      travel_time: 'Bara med egen båt',
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Areal: 2385 hektar varav 532 hektar land" (läst 2026-11-17)
       character: 'Naturreservat med sandstenshällar och fornlämningar',
-      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "omfattas av tillträdesförbud under tiden 1 april-10 juli" (läst 2026-11-17)
-      season: 'Tillträdesförbud på tre öar 1 april till 10 juli',
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Flera promenadstigar går över huvudön" (läst 2026-11-17)
       best_for: 'Båtfolk, promenader och kulturhistoria',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Flera promenadstigar går över huvudön, genom skogen ner till vattnet." (läst 2026-11-17)
       { icon: '🚶', name: 'Promenadstigar', desc: 'Flera stigar går över huvudön, genom skogen ner till vattnet.' },
@@ -5321,15 +5284,12 @@ export const ISLANDS: Island[] = [
       'En strövstig går runt ön. Respektera de boende och gå inte för nära husen.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "lägga till med egen båt vid den gamla lotsbryggan i Västra hamnen" (läst 2026-11-17)
-      travel_time: 'Egen båt till gamla lotsbryggan',
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Furön hade tidigare en lotsplats." (läst 2026-11-17)
       character: 'Gammal lotsö, naturreservat',
-      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "fågelskyddsområde med tillträdesförbud under tiden 1/4 - 31/7" (läst 2026-11-17)
-      season: 'Fågelskydd på östra delen 1 april till 31 juli',
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "En strövstig går runt ön." (läst 2026-11-17)
       best_for: 'Båtfolk och promenad runt ön',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "En strövstig går runt ön." (läst 2026-11-17)
       { icon: '🚶', name: 'Strövstigen', desc: 'En strövstig går runt ön.' },
@@ -5376,15 +5336,12 @@ export const ISLANDS: Island[] = [
       'Den mest tillgängliga hamnen finns i Klintemåla.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Den mest tillgängliga hamnen finns i Klintemåla." (läst 2026-11-17)
-      travel_time: 'Hamn i Klintemåla',
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "De fyra bebyggda öarna i reservatet" (läst 2026-11-17)
       character: 'Skärgårdsreservat med fyra bebyggda öar',
-      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Under tiden 1 april till 10 juli" (läst 2026-11-17)
-      season: 'Fågelskydd i markerade områden 1 april till 10 juli',
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Vandringsleder finns på Örö och Strupö." (läst 2026-11-17)
       best_for: 'Båtfolk och vandring',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Vandringsleder finns på Örö och Strupö." (läst 2026-11-17)
       { icon: '🚶', name: 'Vandring på Örö och Strupö', desc: 'Vandringsleder finns på Örö och Strupö.' },
@@ -5427,15 +5384,12 @@ export const ISLANDS: Island[] = [
       'Det finns tre badplatser: Kalkudden bredvid Limöbåtens angöringsplats, Tärnviken och Scoutviken. Vid Limö café finns dricksvatten och torrdass.',
     ],
     facts: {
-      // KÄLLA: https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/ — "Sjövägen, runt fyrar och genom farleder"; "Gävle Strand 5,5 Nm" (läst 2026-11-17)
-      travel_time: '5,5 nautiska mil sjövägen från Gävle Strand',
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Skyddsområde: naturreservat, Natura 2000" (läst 2026-11-17)
       character: 'Naturreservat i Gävlebukten',
-      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden"; "Badplatsen Tärnviken"; "Badplatsen Scoutviken" (läst 2026-11-17)
-      season: 'Tre badplatser',
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats" (läst 2026-11-17)
       best_for: 'Bad och båtfolk',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats"; "Badplatsen Tärnviken"; "Badplatsen Scoutviken" (läst 2026-11-17)
       { icon: '🏊', name: 'Bad', desc: 'Tre badplatser: Kalkudden bredvid Limöbåtens angöringsplats, Tärnviken och Scoutviken.' },
@@ -5491,15 +5445,12 @@ export const ISLANDS: Island[] = [
       'I reservatet finns en av kustens största kolonier med gråsäl. Reservatet skyddades 2004 och är 4 540 hektar. Delar av det ingår i Natura 2000.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "du kan ta dig hit med egen båt eller genom att beställa båt som avgår från fastlandet" (läst 2026-11-17)
-      travel_time: 'Egen båt eller beställd båt från fastlandet',
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "två stora skärgårdsöar med gamla fiskelägen" (läst 2026-11-17)
       character: 'Skärgårdsöar med gamla fiskelägen',
-      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/om-oss/om-lansstyrelsen-i-gavleborgs-lan/lanets-forfattningssamling/forfattningar-2024/forfattningssamling-2024/2024-03-08-21fs-20247.html — "under tiden 1/2 – 31/8 vistas inom område som anges på bilaga 1" (läst 2026-11-17)
-      season: 'Sälskyddsområdet stängt 1 februari till 31 augusti',
       // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf — "I reservatet finns en av kustens största kolonier med gråsäl." (läst 2026-11-17)
       best_for: 'Båtfolk, kulturmiljö och säl',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "kapellen i Agö och Kråkö hamn, byggda 1660 respektive 1736" (läst 2026-11-17)
       { icon: '🏛', name: 'Kapellen', desc: 'Kapellen i Agö och Kråkö hamn byggdes 1660 respektive 1736.' },
@@ -5547,15 +5498,12 @@ export const ISLANDS: Island[] = [
       'Den första fyren byggdes 1839 och var den sista stenkolseldade fyren som byggdes i Sverige. Dagens fyrtorn i sten är från 1923. Fyrplatsen är statligt byggnadsminne sedan 1935.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Transport till ön bokas i samband med stugbokningen." (läst 2026-11-17)
-      travel_time: 'Transport bokas tillsammans med stuga',
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Storjungfrun är den största av de 500 öarna i Söderhamns kommun." (läst 2026-11-17)
       character: 'Största ön i Söderhamns kommun, naturreservat',
-      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html — "Statligt byggnadsminne: 1935" (läst 2026-11-17)
-      season: 'Fyrplatsen är statligt byggnadsminne sedan 1935',
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Intill fyren finns fyra uthyrningsstugor" (läst 2026-11-17)
       best_for: 'Övernattning vid fyren',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html — "Storjungfruns fyr byggdes 1839"; "Det putsade fyrtornet av sten, som fortfarande är i bruk, byggdes 1923." (läst 2026-11-17)
       { icon: '🗼', name: 'Fyrplatsen', desc: 'Den första fyren byggdes 1839. Dagens fyrtorn i sten är från 1923.' },
@@ -5599,15 +5547,12 @@ export const ISLANDS: Island[] = [
       'Kapellet uppfördes 1776 till 1777. I nordvästra delen finns en labyrint och på sydvästra delen ett gravfält från sen järnålder. Reservatet är 51 hektar och skyddades 1996.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "förbunden med Hornslandet med en cirka 150 meter lång vägbank" (läst 2026-11-17)
-      travel_time: 'Bil via vägbank från Hornslandet',
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "ett kapell, uppfört åren 1776–1777" (läst 2026-11-17)
       character: 'Ö med fiskeläge, kapell och fornlämningar',
-      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "Parkering"; "Torrdass" (läst 2026-11-17)
-      season: 'Parkering och torrdass',
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "en labyrint"; "ett gravfält från sen järnålder" (läst 2026-11-17)
       best_for: 'Kulturhistoria och dagsutflykt',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "ett kapell, uppfört åren 1776–1777" (läst 2026-11-17)
       { icon: '🏛', name: 'Kapellet', desc: 'Kapellet uppfördes 1776 till 1777.' },
@@ -5651,15 +5596,14 @@ export const ISLANDS: Island[] = [
       'Reservatet nås sommartid med båt och vintertid med skidor eller skoter.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Reservatet kan nås sommartid med båt och vintertid med skidor eller skoter." (läst 2026-11-17)
-      travel_time: 'Båt sommartid, skidor eller skoter vintertid',
       // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Skyddsform: Naturreservat, Natura 2000" (läst 2026-11-17)
       character: 'Naturreservat med stenlabyrinter',
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
-      season: 'Turbåt enligt turlistan 2026, högsäsong 19 juni till 16 augusti',
+      season: 'Turbåt 2026, högsäsong 19 juni till 16 augusti',
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/kluntarna.html — "fem stenlagda labyrinter" (läst 2026-11-17)
-      best_for: 'Kulturhistoria och båtfolk',
+      best_for: 'Labyrinterna och kulturhistoria',
     },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/kluntarna.html — "fem stenlagda labyrinter som troligen härstammar från 1300- eller 1400-talet" (läst 2026-11-17)
       { icon: '🪨', name: 'Stenlabyrinterna', desc: 'Fem stenlabyrinter, troligen från 1300- eller 1400-talet.' },
@@ -5701,15 +5645,14 @@ export const ISLANDS: Island[] = [
       'På Junkön finns ett skärgårdsmuseum, ett mindre antal bofasta och ett levande yrkesfiske. På ön står en över 200 år gammal hattkvarn.',
     ],
     facts: {
-      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Turbåtarna avgår från Södra hamnplan och angör … Junkön." (läst 2026-11-17)
-      travel_time: 'Turbåt från Södra hamnplan sommartid',
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "ett levande yrkesfiske" (läst 2026-11-17)
       character: 'Ö med bofasta och yrkesfiske',
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
-      season: 'Turbåt enligt turlistan 2026',
+      season: 'Turbåt sommaren 2026',
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "ett skärgårdsmuseum" (läst 2026-11-17)
-      best_for: 'Kulturhistoria',
+      best_for: 'Skärgårdsmuseum och hattkvarnen',
     },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "ett skärgårdsmuseum"; "den över 200 år gamla hattkvarnen" (läst 2026-11-17)
       { icon: '🏛', name: 'Skärgårdsmuseum och hattkvarn', desc: 'Ett skärgårdsmuseum och en över 200 år gammal hattkvarn.' },
@@ -5748,15 +5691,14 @@ export const ISLANDS: Island[] = [
       'Med 120 fritidshus är Småskär den ö i Luleå ytterskärgård som har flest fritidshus. Småskär är ett kommunalt naturreservat.',
     ],
     facts: {
-      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "angör … Småskär" (läst 2026-11-17)
-      travel_time: 'Turbåt från Södra hamnplan sommartid',
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Småskär är ett kommunalt naturreservat" (läst 2026-11-17)
       character: 'Fritidshusö och kommunalt naturreservat',
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
-      season: 'Turbåt enligt turlistan 2026',
+      season: 'Turbåt sommaren 2026',
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "ingår i ett fågelskyddsområde" (läst 2026-11-17)
       best_for: 'Båtfolk och fågelskådning',
     },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
     activities: [],
     accommodation: [],
     getting_there: [
@@ -5796,15 +5738,12 @@ export const ISLANDS: Island[] = [
       'Den västra och den östra delen av Rödkallen ingår i naturreservatet Rödkallen-Söräspen.',
     ],
     facts: {
-      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html — "Privata hamnar med gästplats … Rödkallen" (läst 2026-11-17)
-      travel_time: 'Egen båt, privat gästhamn',
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872" (läst 2026-11-17)
       character: 'Fyrö i ytterskärgården',
-      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/rodkallen-soraspen.html — "I vissa delar av reservatet råder landstigningsförbud mellan 1 maj och 31 juli." (läst 2026-11-17)
-      season: 'Landstigningsförbud i delar av reservatet 1 maj till 31 juli',
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872" (läst 2026-11-17)
       best_for: 'Fyrbesök och båtfolk',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872 … Med sin 21,4 meter höga stålkonstruktion" (läst 2026-11-17)
       { icon: '🗼', name: 'Fyren', desc: 'Fyr från 1872 med en 21,4 meter hög stålkonstruktion.' },
@@ -5850,15 +5789,12 @@ export const ISLANDS: Island[] = [
       'Det finns ingen el på Sandskär.',
     ],
     facts: {
-      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit — "Från Haparanda hamn i Nikkala går turbåtar till Sandskär." (läst 2026-11-17)
-      travel_time: 'Turbåt från Haparanda hamn i Nikkala',
       // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Bildat år: 1995" (läst 2026-11-17)
       character: 'Nationalpark',
-      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Vissa öar inom nationalparken får inte angöras eller beträdas från 1 maj till 31 juli varje år." (läst 2026-11-17)
-      season: 'Vissa öar stängda 1 maj till 31 juli',
       // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "På ön har man sett 251 olika fågelarter." (läst 2026-11-17)
       best_for: 'Fågelskådning och vildmark',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "På ön har man sett 251 olika fågelarter." (läst 2026-11-17)
       { icon: '🐦', name: 'Fågelskådning', desc: 'På Sandskär har man sett 251 olika fågelarter.' },
@@ -5901,15 +5837,12 @@ export const ISLANDS: Island[] = [
       'Fyren är från 1850 och kyrkan från 1770. Från 1800-talet fram till 1967 fanns det lots på ön.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "En brygga finns i viken på södra sidan av ön." (läst 2026-11-17)
-      travel_time: 'Egen båt, brygga på södra sidan',
       // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Naturreservatet bildat år: 1997" (läst 2026-11-17)
       character: 'Fyrö och naturreservat',
-      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Det är inte tillåtet att köra snöskoter på öarna." (läst 2026-11-17)
-      season: 'Skoterförbud på öarna',
       // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Fyren från 1850 ger tillsammans med kyrkan från 1770" (läst 2026-11-17)
-      best_for: 'Fyr och kulturmiljö',
+      best_for: 'Fyren, kyrkan och lotshistoria',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Fyren från 1850 ger tillsammans med kyrkan från 1770" (läst 2026-11-17)
       { icon: '🗼', name: 'Fyren och kyrkan', desc: 'Fyr från 1850 och kyrka från 1770.' },
@@ -5952,15 +5885,14 @@ export const ISLANDS: Island[] = [
       'Skären runt ön är den enda platsen i Kattegatt där alla tre alkorna sillgrissla, tobisgrissla och tordmule häckar.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På sommaren går de från Torekov och Båstad till Sandhamn på ön" (läst 2026-11-17)
-      travel_time: 'Turbåt från Torekov och Båstad på sommaren',
       // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "Skyddstyp: Naturreservat och Natura 2000" (läst 2026-11-17)
       character: 'Naturreservat och Natura 2000',
       // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "övrig tid på året måste du beställa båttur" (läst 2026-11-17)
-      season: 'Sommar med turbåt, annars beställd båttur',
+      season: 'Turbåt sommartid, annars beställd båttur',
       // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På den cirka 3 km långa ön finns flera vandringsleder att välja på."; "Runt ön ses ofta knubbsälar" (läst 2026-11-17)
-      best_for: 'Vandring och sälar',
+      best_for: 'Vandring och sälskådning',
     },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På den cirka 3 km långa ön finns flera vandringsleder att välja på." (läst 2026-11-17)
       { icon: '🥾', name: 'Vandringsleder', desc: 'Flera vandringsleder på den cirka 3 kilometer långa ön.' },
@@ -6016,15 +5948,14 @@ export const ISLANDS: Island[] = [
       'Naturreservatet är skyddat sedan 1980 och är 725 hektar, varav ön är 13,5 hektar. Det ingår i Natura 2000.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Nidingen nås endast med båt." (läst 2026-11-17)
-      travel_time: 'Bara med båt',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "1834 byggdes två sexkantiga fyrtorn, dessa är idag byggnadsminnen." (läst 2026-11-17)
       character: 'Fyrö och naturreservat',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Sommartid går båtturer till Nidingen." (läst 2026-11-17)
       season: 'Båtturer sommartid',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "1834 byggdes två sexkantiga fyrtorn"; "På ön finns sedan drygt 30 år tillbaka en fågelstation." (läst 2026-11-17)
-      best_for: 'Fyrar och fåglar',
+      best_for: 'Fyrhistoria och fågelskådning',
     },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "1834 byggdes två sexkantiga fyrtorn, dessa är idag byggnadsminnen." (läst 2026-11-17)
       { icon: '🗼', name: 'Fyrtornen', desc: 'Två sexkantiga fyrtorn från 1834, i dag byggnadsminnen.' },
@@ -6070,15 +6001,12 @@ export const ISLANDS: Island[] = [
       'Reservatet är skyddat sedan 2002, utvidgades 2015 och är 1582 hektar, varav 262 hektar land.',
     ],
     facts: {
-      // KÄLLA: https://www.fjordexpress.se/?lang=sv — "Stenudden (Åsa) ⇄ Vendelsö"; "Gottskär ⇄ Vendelsö"; "Bua ⇄ Vendelsö" (läst 2026-11-17)
-      travel_time: 'Fjordexpress eller egen båt',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I naturreservatet Vendelsöarna i Varbergs kommun ingår Vendelsö och sex mindre öar." (läst 2026-11-17)
       character: 'Naturreservat med sju öar',
-      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Det är tillåtet att tälta i reservatet men inte mer än två dygn." (läst 2026-11-17)
-      season: 'Tältning högst två dygn',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "alla sex öarna har fina sandstränder!"; "klipplandskap med strandgrottor" (läst 2026-11-17)
-      best_for: 'Stränder och klippor',
+      best_for: 'Bad, kajak och strandgrottor',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Missa inte att besöka södra Vendelsö, här finns ett fantastiskt klipplandskap med strandgrottor" (läst 2026-11-17)
       { icon: '🪨', name: 'Strandgrottorna', desc: 'Klipplandskap med strandgrottor på södra Vendelsö.' },
@@ -6128,15 +6056,12 @@ export const ISLANDS: Island[] = [
       'Reservatet är skyddat sedan 1950 och är 2200 hektar, varav 250 hektar land.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Du behöver ha tillgång till egen båt för att ta dig till reservatet." (läst 2026-11-17)
-      travel_time: 'Bara med egen båt',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Skyddat sedan: 1950" (läst 2026-11-17)
       character: 'Naturreservat sedan 1950',
-      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "råder tillträdesförbud i delar av reservatet under tiden 1 april till 31 juli" (läst 2026-11-17)
-      season: 'Tillträdesförbud i delar 1 april till 31 juli',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "I Balgöfjorden finns ett bestånd av knubbsäl" (läst 2026-11-17)
-      best_for: 'Sälar och natur',
+      best_for: 'Båtfolk och sälskådning',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [],
     accommodation: [],
     getting_there: [
@@ -6179,15 +6104,12 @@ export const ISLANDS: Island[] = [
       'Reservatet är skyddat sedan 1965, är 107 hektar och förvaltas av Onsala sockens skifteslag.',
     ],
     facts: {
-      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Området nås endast med båt" (läst 2026-11-17)
-      travel_time: 'Bara med båt',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "en karg, flack ö som består av gräshedar och stora klapperstensfält" (läst 2026-11-17)
       character: 'Karg och flack ö',
-      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Skyddat sedan: 1965" (läst 2026-11-17)
-      season: 'Naturreservat sedan 1965',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "I nordöst finns ett stort bronsåldersröse som kallas Malöros." (läst 2026-11-17)
-      best_for: 'Natur och fornlämningar',
+      best_for: 'Båtfolk och fornlämningar',
     },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
     activities: [
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "I nordöst finns ett stort bronsåldersröse som kallas Malöros." (läst 2026-11-17)
       { icon: '🪨', name: 'Malöros', desc: 'Ett stort röse från bronsåldern i nordöst.' },

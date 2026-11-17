@@ -4437,16 +4437,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html",
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
       "org": "lulea.se",
-      "vad": "Privata hamnar med gästplats … Rödkallen",
+      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.",
       "last": "2026-11-17",
       "myndighet": false
     },
     {
-      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html",
       "org": "lulea.se",
-      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.",
+      "vad": "Privata hamnar med gästplats … Rödkallen",
       "last": "2026-11-17",
       "myndighet": false
     }
