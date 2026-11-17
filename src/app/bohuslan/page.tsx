@@ -46,20 +46,25 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
  {
  icon: 'map',
- title: 'Öarna: 19 sidor med hamnar',
- description: 'Marstrand, Smögen, Koster, Käringön, Gullholmen, Åstol … varje ö med gästhamn, service och källa. Listan finns längre ner på sidan.',
+ title: 'Öarna i Bohuslän',
+ description: 'Marstrand, Smögen, Koster, Käringön, Gullholmen, Åstol och fler. Listan finns längre ner på sidan.',
  href: '/bohuslan#oar',
  },
   {
     icon: '🏰',
     title: 'Marstrand',
-    description: 'Ösidan om Marstrand: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar Carlsten som statligt byggnadsminne på Marstrand — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
+    // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar sillhandelns centrum på 1500-talet — https://www.vastsverige.com/en/kungalv/products/marstrand/ ; att Match Cup Sweden avgörs första veckan i juli — https://www.vastsverige.com/kungalv/marstrand/ (läst 2026-09-16)
+    description: 'Carlstens fästning, den gamla sillstaden och matchracing i juli.',
     href: '/o/marstrand',
   },
   {
     icon: '🦞',
     title: 'Smögen',
-    description: 'Ösidan om Smögen: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ — "Sveriges mest besökta brygga" (läst 2026-09-27)
+    // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Landets näst största fiskauktion ligger på Smögen." (läst 2026-09-27)
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Med en vit blixt var tolfte sekund gör sig Bohusläns äldsta fyr påmind." (läst 2026-09-27)
+    description: 'Sveriges mest besökta brygga, landets näst största fiskauktion och Bohusläns äldsta fyr på Hållö utanför.',
     href: '/o/smogen',
   },
   {

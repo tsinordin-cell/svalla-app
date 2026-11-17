@@ -35,26 +35,31 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🗺️',
     title: 'Öarna här',
-    description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
+    description: 'Alla öar i regionen med hamnar, aktiviteter och källor. Listan finns längre ner på sidan.',
     href: '/hoga-kusten#oar',
     meta: 'Gratis',
   },
   {
     icon: '🦅',
     title: 'Ulvön',
-    description: 'Ösidan om Ulvön: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.hogakusten.com/sv/stader-platser/ulvon — "Det var en gång i tiden Norrlands största fiskeläge" (läst 2026-09-27)
+    // KÄLLA: https://smakasverige.jordbruksverket.se/produkter/produktarkiv/surstromming.413.html — "Fyra faktorer anses ha gjort Ulvön och Ulvöhamn till surströmmingens centrum i Sverige" (läst 2026-09-27)
+    // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/stormyran-pa-ulvon.html — "Naturreservat, Natura 2000, Världsarv" (läst 2026-09-27)
+    description: 'Norrlands en gång största fiskeläge och surströmmingens centrum, i världsarvet Höga kusten.',
     href: '/o/ulvon',
   },
   {
     icon: '⚓',
     title: 'Trysunda',
-    description: 'Ösidan om Trysunda: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/trysunda.html — "Vid hamnen ligger ett idylliskt fiskeläge som är det bäst bevarade längs hela Ångermanlandskusten"; https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22cdc/1732538244407/Trysunda.pdf — "I fiskeläget finns också ett litet kapell, från 1654"; https://www.hogakusten.com/en/trysunda-vandrarhem-skargardscafe — "a peaceful, car-free environment" (läst 2026-09-27)
+    description: 'Ångermanlandskustens bäst bevarade fiskeläge, i ett naturreservat med kapell från 1654.',
     href: '/o/trysunda',
   },
   {
     icon: '🌲',
     title: 'Hemsön',
-    description: 'Ösidan om Hemsön: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://se.hemsofastning.se/naturupplevelse/ — "Hemsön ligger i världsarvet Höga kusten." (läst 2026-09-27); https://se.hemsofastning.se/guidade-turer/ — "går man sedan ner 40 meter ner i urberget" (läst 2026-09-27)
+    description: 'Ö i världsarvet Höga kusten, med en fästning 40 meter ner i berget.',
     href: '/o/hemson',
   },
   {

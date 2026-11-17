@@ -4439,7 +4439,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf — "Bottenhavets största ö är Gräsö."; tabell 5.1 "Gräsö Östhammar 705 636 -69"; "vid utgången av 2020" (läst 2026-11-17)
       'Gräsö i Östhammars kommun är Bottenhavets största ö. Vid utgången av 2020 var 636 personer folkbokförda på ön.',
       // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "Gräsöleden går mellan Öregrund och Gräsö"; "Färjeledens längd är 1000 meter och överfartstiden är fem minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-11-17)
-      'Du kommer hit med Trafikverkets vägfärja Gräsöleden från Öregrund. Överfarten är 1000 meter, tar fem minuter och är avgiftsfri.',
+      'Du kommer hit med Trafikverkets vägfärja Gräsöleden från Öregrund. Överfarten är 1 000 meter, tar fem minuter och är avgiftsfri.',
       // KÄLLA: https://www.orskarsfyr.se/hitta-hit.html — "På Gräsö kör du mot Örskärssund, 22 km till vägs ände." (läst 2026-11-17)
       // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "Örskär ligger norr om Gräsö och nås med båt från Örskärssund." (läst 2026-11-17)
       'På Gräsö är det 22 kilometer till vägs ände vid Örskärssund. Därifrån går båten till Örskär.',
@@ -4473,7 +4473,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_811_260817_261212.pdf — "811 Uppsala - Alunda - Gimo - Östhammar - Öregrund"; "17 augusti - 12 december 2026"; ändhållplats "Öregrund färjeläget" (läst 2026-11-17)
       { method: 'Buss', from: 'Uppsala', desc: 'UL:s buss 811 går från Uppsala via Alunda, Gimo och Östhammar till Öregrund färjeläget. Tidtabellen gäller 17 augusti till 12 december 2026.', icon: '🚌', url: 'https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_811_260817_261212.pdf' },
       // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "Gräsöleden går mellan Öregrund och Gräsö"; "Färjeledens längd är 1000 meter och överfartstiden är fem minuter. Resan med vägfärjan är avgiftsfri."; "Vecka 25–33 Två färjor trafikerar leden alla dagar"; "Med vår app Trafikinfo Färjerederiet får du tillgång till tidtabeller och trafikinformation. Du kan även kalla på färjan direkt i appen." (läst 2026-11-17)
-      { method: 'Vägfärja', from: 'Öregrund', time: '5 min', desc: 'Trafikverkets vägfärja Gräsöleden går mellan Öregrund och Gräsö. Överfarten är 1000 meter och avgiftsfri. Enligt Trafikverkets sommarupplägg trafikerar två färjor leden alla dagar vecka 25 till 33. Tidtabellen finns i appen Trafikinfo Färjerederiet, där du också kan kalla på färjan.', icon: '⛴', url: 'https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/' },
+      { method: 'Vägfärja', from: 'Öregrund', time: '5 min', desc: 'Trafikverkets vägfärja Gräsöleden går mellan Öregrund och Gräsö. Överfarten är 1 000 meter och avgiftsfri. Enligt Trafikverkets sommarupplägg trafikerar två färjor leden alla dagar vecka 25 till 33. Tidtabellen finns i appen Trafikinfo Färjerederiet, där du också kan kalla på färjan.', icon: '⛴', url: 'https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/' },
       // KÄLLA: https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf — "854 Öregrund - Norra Gräsö"; "Helgfri måndag - fredag"; "A Turen körs endast skoldagar"; "U … Turen måste förbeställas på tel. 018-617 57 02 senast 3 tim. före avresa" (läst 2026-11-17)
       { method: 'Buss på ön', from: 'Öregrund', desc: 'UL:s buss 854 går helgfria vardagar mellan Öregrund och Örskärssund på norra Gräsö. Alla turer körs antingen bara skoldagar eller måste förbeställas per telefon senast tre timmar före avresa. Tidtabellen gäller 17 augusti till 12 december 2026.', icon: '🚌', url: 'https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf' },
     ],
@@ -5157,7 +5157,7 @@ export const ISLANDS: Island[] = [
     ],
     getting_there: [
       // KÄLLA: https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf — "Bokningsbar Skärgårdstrafik till/från Gränsö kanal (gäller 17 augusti 2026 - 13 juni 2027)"; hållplats "Rågö"; "resa måste bokas måndag-fredag mellan 9.00-16.00 på 0490-91019 senast vardag före avresa" (läst 2026-11-17)
-      { method: 'Skärgårdstrafik', from: 'Gränsö kanal', desc: 'Kalmar länstrafiks bokningsbara båt från Gränsö kanal angör Rågö på de flesta turerna. Tidtabellen gäller 17 augusti 2026 till 13 juni 2027, och resan måste bokas senast vardagen före avresa.', icon: '⛴', url: 'https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf' },
+      { method: 'Skärgårdstrafik', from: 'Gränsö kanal', desc: 'Kalmar länstrafiks bokningsbara båt från Gränsö kanal lägger till vid Rågö på de flesta turerna. Tidtabellen gäller 17 augusti 2026 till 13 juni 2027, och resan måste bokas senast vardagen före avresa.', icon: '⛴', url: 'https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf' },
     ],
     harbors: [
       // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Gästhamnen ligger i Alviken."; "torrdass finns vid gästhamnen i Alviken" (läst 2026-11-17)
@@ -5491,7 +5491,7 @@ export const ISLANDS: Island[] = [
     ],
     getting_there: [
       // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "du kan ta dig hit med egen båt eller genom att beställa båt som avgår från fastlandet" (läst 2026-11-17)
-      { method: 'Båt', from: 'Hudiksvall', desc: 'Du tar dig hit med egen båt eller genom att beställa båt som avgår från fastlandet.', icon: '⛴', url: 'https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html' },
+      { method: 'Båt', from: 'Hudiksvall', desc: 'Du tar dig hit med egen båt, eller beställer en båt från fastlandet.', icon: '⛴', url: 'https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html' },
     ],
     harbors: [],
     restaurants: [],
@@ -5551,7 +5551,7 @@ export const ISLANDS: Island[] = [
     restaurants: [],
     tips: [
       // KÄLLA: https://www.visitsoderhamn.se/sv/storjungfrun — "Medtag mat och dryck – affär finns inte"; "Medtag dricksvatten! Vatten till matlagning, disk och städ finns att hämta vid gårdspump/brunn" (läst 2026-11-17)
-      'Det finns ingen affär på ön, så ta med mat och dryck. Ta också med dricksvatten, eftersom vattnet vid gårdspumpen är till matlagning, disk och städ.',
+      'Det finns ingen affär på ön, så ta med mat och dryck. Ta också med dricksvatten, eftersom vattnet vid gårdspumpen är till för matlagning, disk och städning.',
     ],
     related: ['limon', 'agon'],
     tags: ['gävleborg', 'söderhamn', 'naturreservat', 'fyr'],
@@ -5613,11 +5613,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norrbottens skärgård',
     emoji: '🪨',
     // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Missa inte att besöka någon av öns fem stenlabyrinter."; "'Kluntgubben', en klippa med ett ansikte i profil" (läst 2026-11-17)
-    tagline: 'Reservatsö i Luleå skärgård med fem stenlabyrinter, klippan Kluntgubben och gästhamn med turbåtsangöring.',
+    tagline: 'Reservatsö i Luleå skärgård med fem stenlabyrinter, klippan Kluntgubben och gästhamn där turbåten lägger till.',
     seoTitle: 'Kluntarna: labyrinter i Luleå skärgård',
     // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
     // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Reservatet kan nås sommartid med båt och vintertid med skidor eller skoter." (läst 2026-11-17)
-    seoDescription: 'Fem stenlabyrinter och klippan Kluntgubben, en klippa med ett ansikte i profil. Sommartid kommer du till Kluntarna med båt.',
+    seoDescription: 'Fem stenlabyrinter och Kluntgubben, en klippa med ett ansikte i profil. Sommartid kommer du till Kluntarna med båt.',
     // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kluntarna — Lantmäteriet Min Karta, sökning "Kluntarna" → Kluntarna | Luleå | Natur- och terrängnamn, SWEREF 99 TM 852359/7280587 omräknat till WGS 84 (läst 2026-11-17)
     lat: 65.4557,
     lng: 22.6166,
@@ -5648,7 +5648,7 @@ export const ISLANDS: Island[] = [
     ],
     harbors: [
       // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html — "Gästplatser: 20 stycken"; "Turbåtsangöring" (läst 2026-11-17)
-      { name: 'Kluntarnas gästhamn', desc: '20 gästplatser och turbåtsangöring.', spots: 20 },
+      { name: 'Kluntarnas gästhamn', desc: '20 gästplatser. Turbåten lägger till här.', spots: 20 },
     ],
     restaurants: [],
     tips: [
@@ -5958,7 +5958,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "framföra cyklar, mountainbikes (terränggående cyklar) eller liknande"; "ankra i Sandhamnsbukten"; "dra upp båtar på sandstränderna" (läst 2026-11-17)
       'Du får inte cykla på ön, ankra i Sandhamnsbukten eller dra upp båtar på sandstränderna.',
       // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "vara i sälskyddsområdet (gäller hela året)"; "vara i fågelskyddsområdena mellan 1 april och 15 juli."; "Det är tillåtet att ankra längs kusten, med undantag för Sandhamn och i områden som har tillträdesförbud" (läst 2026-11-17)
-      'Du får inte vara i sälskyddsområdet under någon del av året, och inte i fågelskyddsområdena 1 april till 15 juli. I områden med tillträdesförbud får du inte heller ankra. Se Länsstyrelsens karta.',
+      'Sälskyddsområdet får du aldrig gå in i, och fågelskyddsområdena inte 1 april till 15 juli. I områden med tillträdesförbud får du inte heller ankra. Se Länsstyrelsens karta.',
     ],
     related: ['ven'],
     tags: ['skåne', 'båstad', 'torekov', 'sälar', 'naturreservat'],
@@ -6040,7 +6040,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Öarna når man med egen båt och alla sex öarna har fina sandstränder!" (läst 2026-11-17)
       'De sex mindre öarna runt Vendelsö har alla sandstränder och nås med egen båt.',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Areal: 1582 hektar varav 262 hektar är landareal"; "Skyddat sedan: 2002, utvidgat 2015" (läst 2026-11-17)
-      'Reservatet är skyddat sedan 2002, utvidgades 2015 och är 1582 hektar, varav 262 hektar land.',
+      'Reservatet är skyddat sedan 2002, utvidgades 2015 och är 1 582 hektar, varav 262 hektar land.',
     ],
     facts: {
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I naturreservatet Vendelsöarna i Varbergs kommun ingår Vendelsö och sex mindre öar." (läst 2026-11-17)
@@ -6058,7 +6058,7 @@ export const ISLANDS: Island[] = [
     accommodation: [],
     getting_there: [
       // KÄLLA: https://www.fjordexpress.se/?lang=sv — "Stenudden (Åsa) ⇄ Vendelsö"; "Gottskär ⇄ Vendelsö"; "Bua ⇄ Vendelsö" (läst 2026-11-17)
-      { method: 'Båt', from: 'Bua, Åsa och Gottskär', desc: 'Fjordexpress har rutter till Vendelsö från Bua, Stenudden i Åsa och Gottskär. Se på fjordexpress.se vilka turer som är schemalagda innan du åker.', icon: '⛴️' },
+      { method: 'Båt', from: 'Bua, Åsa och Gottskär', desc: 'Fjordexpress har rutter till Vendelsö från Bua, Stenudden i Åsa och Gottskär. Kolla på fjordexpress.se vilka turer som går innan du åker.', icon: '⛴️' },
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "På Vendelsö finns brygga för gästande båtar. Gästande båtar ska lägga till på yttersidan av bryggan" (läst 2026-11-17)
       { method: 'Egen båt', from: 'Varbergs kommun', desc: 'På Vendelsö finns en brygga för gästande båtar. Lägg till på bryggans yttersida.', icon: '⛵' },
     ],
@@ -6096,7 +6096,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "I Balgöfjorden finns ett bestånd av knubbsäl"; "Även gråsäl förekommer i området."; "Hallands viktigaste lokal för strandpadda" (läst 2026-11-17)
       'I Balgöfjorden finns knubbsäl, och även gråsäl förekommer i området. Balgö är Hallands viktigaste lokal för strandpadda.',
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Areal: 2200 hektar varav 250 hektar land"; "Skyddat sedan: 1950" (läst 2026-11-17)
-      'Reservatet är skyddat sedan 1950 och är 2200 hektar, varav 250 hektar land.',
+      'Reservatet är skyddat sedan 1950 och är 2 200 hektar, varav 250 hektar land.',
     ],
     facts: {
       // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Skyddat sedan: 1950" (läst 2026-11-17)
@@ -6219,7 +6219,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit — "Det finns ingen reguljär båttrafik till Djurö nationalpark men det finns flera aktörer som kör taxibåt till parken."; "Från Lidköping"; "Från Mariestad"; "Från Gullspång"; "Från Säffle" (läst 2026-11-17)
       { method: 'Taxibåt', from: 'Lidköping, Mariestad, Gullspång eller Säffle', desc: 'Det finns ingen reguljär båttrafik. Taxibåt kan beställas från aktörer i Lidköping, Mariestad, Gullspång och Säffle.', icon: '🚤' },
       // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit — "Malbergs hamn är nationalparkens huvudentré"; "Nationalparken östra sidan är grund och är därför inte lämplig att lägga till vid."; "Båtfärden till nationalparken är väldigt väderberoende." (läst 2026-11-17)
-      { method: 'Egen båt', from: 'Vänern', desc: 'Malbergs hamn är nationalparkens huvudentré. Den östra sidan är grund och passar inte att lägga till vid. Båtfärden är mycket väderberoende.', icon: '⛵' },
+      { method: 'Egen båt', from: 'Vänern', desc: 'Malbergs hamn är nationalparkens huvudentré. Den östra sidan är grund, så där kan du inte lägga till. Båtfärden är mycket väderberoende.', icon: '⛵' },
     ],
     harbors: [],
     restaurants: [],
@@ -6523,7 +6523,7 @@ export const ISLANDS: Island[] = [
     restaurants: [],
     tips: [
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Naturreservatet Utklippan utgörs av ögruppen Utklipporna med omgivande havsområde."; "medföra hund, katt eller annat rovdjur som inte är kopplat" (läst 2026-11-17)
-      'Naturreservatet omfattar ögruppen och havet runt den. Hundar, katter och andra rovdjur ska vara kopplade.',
+      'Naturreservatet omfattar ögruppen och havet runt den. Hundar och katter ska vara kopplade.',
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "göra upp eld eller använda grillar, spritkök eller motsvarande annat än på anvisad grillplats"; "tälta annat än på anvisad plats, och i högst 2 dygn" (läst 2026-11-17)
       'Du får bara göra upp eld eller använda grill, spritkök eller motsvarande på anvisad grillplats. Du får bara tälta på anvisad plats, och högst två dygn.',
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "under längre än tre dygn i följd ligga med båt invid brygga, kaj eller annan plats, med undantag för nödsituationer vid exempelvis dåligt väder" (läst 2026-11-17)
@@ -6623,7 +6623,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "På sommaren är det full aktivitet med häckande trutar, måsar och tärnor. Under vintern samlas mängder med sjöfågel i vikarna." (läst 2026-11-17)
       'På sommaren häckar trutar, måsar och tärnor, och på vintern samlas mängder med sjöfågel i vikarna.',
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "1975, reviderat/ändrat 2025"; "1152 hektar, varav 392 hektar land" (läst 2026-11-17)
-      'Naturreservatet bildades 1975, ändrades 2025 och är 1152 hektar, varav 392 hektar land.',
+      'Naturreservatet bildades 1975, ändrades 2025 och är 1 152 hektar, varav 392 hektar land.',
     ],
     facts: {
       // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Naturreservatet Hästholmen-Ytterön är en kulturhistoriskt värdefull skärgårdsmiljö." (läst 2026-11-17)
@@ -6672,13 +6672,13 @@ export const ISLANDS: Island[] = [
     lng: 17.9746,
     description: [
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Stora Karlsö ligger 15 km sydväst om Klintehamn och 4,7 km från Lilla Karlsö."; "Skyddsform: Naturreservat och Natura 2000" (läst 2026-11-17)
-      'Stora Karlsö ligger 15 km sydväst om Klintehamn och 4,7 km från Lilla Karlsö. Ön är naturreservat och ingår i Natura 2000.',
+      'Stora Karlsö ligger 15 kilometer sydväst om Klintehamn och 4,7 kilometer från Lilla Karlsö. Ön är naturreservat och ingår i Natura 2000.',
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "de stora kolonierna av sillgrissla och tordmule, som båda häckar med tusentals par på ön."; "I slutet av maj och början av juni bildar tusentals blommande Adam och Eva och S:t Pers nycklar formliga orkidéängar." (läst 2026-11-17)
       'Sillgrissla och tordmule häckar båda med tusentals par på ön. I slutet av maj och början av juni blommar tusentals Adam och Eva och S:t Pers nycklar.',
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Öns högsta punkt ligger 51,6 meter över havet på den centrala delen av Roisu haid"; "Ett flertal gravar och åtskilliga andra fynd vittnar om att Stora Karlsö ända sedan stenåldern har nyttjats av människan" (läst 2026-11-17)
       'Öns högsta punkt ligger 51,6 meter över havet. Gravar och andra fynd visar att människor har använt Stora Karlsö ända sedan stenåldern.',
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Skyddsår: 1970"; "Areal: 1180 hektar varav 246 hektar land och 934 hektar vatten" (läst 2026-11-17)
-      'Naturreservatet bildades 1970 och är 1180 hektar, varav 246 hektar land.',
+      'Naturreservatet bildades 1970 och är 1 180 hektar, varav 246 hektar land.',
     ],
     facts: {
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Karaktär: Fågelberg, alvarmark och stenstränder" (läst 2026-11-17)
@@ -6746,7 +6746,7 @@ export const ISLANDS: Island[] = [
     lng: 19.0274,
     description: [
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 km sydost om Rute kyrka." (läst 2026-11-17)
-      'Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 km sydost om Rute kyrka.',
+      'Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 kilometer sydost om Rute kyrka.',
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Ett utmärkt sätt att bekanta sig med naturreservatet är att gå den 2 kilometer långa vandringsstig som går genom området."; "Tall är det dominerande trädslaget." (läst 2026-11-17)
       'En 2 kilometer lång vandringsstig går genom reservatet. Tall är det dominerande trädslaget.',
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från fågeltornet har man god utsikt över de fågelrika strandängarna innanför Fitudden."; "här häckar bland annat grågås, gravand, skedand, storspov" (läst 2026-11-17)

@@ -35,20 +35,23 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'map',
  title: 'Öarna här',
- description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
+ description: 'Alla öar i regionen med hamnar, aktiviteter och källor. Listan finns längre ner på sidan.',
  href: '/blekinge-skargard#oar',
  meta: 'Gratis',
  },
   {
     icon: '🐦',
     title: 'Hanö',
-    description: 'Ösidan om Hanö: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "När du besöker naturreservatet Hanö", "I norr finns strandsporren Bönsäcken", "Idag finns en av Sveriges största avenbokskogar på Hanös södra delar" (läst 2026-10-20)
+    // KÄLLA: https://solvesborg.se/uppleva-och-gora/turism-att-besoka-solvesborg/sevardheter/hano.html — "På ön finns den engelska kyrkogården, ett minne från Napoleonkrigets dagar (1810-1812)" (läst 2026-10-20)
+    description: 'Naturreservat med engelsk kyrkogård från Napoleonkrigens tid, Bönsäcken och avenbokskog.',
     href: '/o/hano',
   },
   {
     icon: '🗼',
     title: 'Utklippan',
-    description: 'Ösidan om Utklippan: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklippan är Sveriges sydöstligaste ögrupp och ett populärt besöksmål för båtfolk."; "På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna." (läst 2026-11-17)
+    description: 'Sveriges sydöstligaste ögrupp, med Utklippans fyr på Södraskär och en gästhamn för båtfolk.',
     href: '/o/utklippan',
   },
   {

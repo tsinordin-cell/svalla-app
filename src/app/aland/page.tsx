@@ -34,7 +34,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'map',
     title: 'Alla öar på Svalla',
-    description: 'Ösidor längs hela svenska kusten med hur du tar dig dit och vad som finns på ön.',
+    description: 'Alla öar vi har sidor om, längs hela svenska kusten.',
     href: '/oar',
   },
   {

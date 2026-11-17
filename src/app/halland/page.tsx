@@ -34,32 +34,36 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🗺️',
     title: 'Öarna här',
-    description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
+    description: 'Alla öar i regionen med hamnar, aktiviteter och källor. Listan finns längre ner på sidan.',
     href: '/halland#oar',
     meta: 'Gratis',
   },
   {
     icon: '🗼',
     title: 'Nidingen',
-    description: 'Ösidan om Nidingen: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Efter freden vid Brömsebro, år 1645, kom Nidingen under svensk administration och blev därmed Sveriges första fyrplats." (läst 2026-11-17)
+    description: 'Fyrön i Kungsbacka kommun som blev Sveriges första fyrplats efter freden vid Brömsebro 1645.',
     href: '/o/nidingen',
   },
   {
     icon: '⚓',
     title: 'Vendelsö',
-    description: 'Ösidan om Vendelsö: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I naturreservatet Vendelsöarna i Varbergs kommun ingår Vendelsö och sex mindre öar."; "klipplandskap med strandgrottor" (läst 2026-11-17)
+    description: 'Ö i Varbergs kommun med strandgrottor på södra delen och sex mindre öar med sandstränder runt omkring.',
     href: '/o/vendelso',
   },
   {
     icon: '🦭',
     title: 'Balgö',
-    description: 'Ösidan om Balgö: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Hallands viktigaste lokal för strandpadda"; "Kommun: Varberg" (läst 2026-11-17)
+    description: 'Naturreservat i Varbergs kommun och Hallands viktigaste lokal för strandpadda.',
     href: '/o/balgo',
   },
   {
     icon: '🪨',
     title: 'Malön',
-    description: 'Ösidan om Malön: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Malön i Kungsbacka kommun är en karg, flack ö som består av gräshedar och stora klapperstensfält." (läst 2026-11-17)
+    description: 'Karg och flack ö i Kungsbacka kommun med gräshedar, klapperstensfält och ett röse från bronsåldern.',
     href: '/o/malon',
   },
   {

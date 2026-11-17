@@ -37,7 +37,7 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'map',
  title: 'Öarna här',
- description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
+ description: 'Alla öar i regionen med hamnar, aktiviteter och källor. Listan finns längre ner på sidan.',
  href: '/vasterhav#oar',
  meta: 'Gratis',
  },
@@ -56,13 +56,15 @@ const ITEMS: LandingItem[] = [
   {
     icon: '⚓',
     title: 'Orust',
-    description: 'Ösidan om Orust: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: Orust kommun, Kommunfakta — västkustens största ö — https://www.orust.se/kommun-och-politik/kommunfakta (läst 2026-09-16)
+    description: 'Västkustens största ö.',
     href: '/o/orust',
   },
   {
     icon: '⛵',
     title: 'Tjörn',
-    description: 'Ösidan om Tjörn: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.akvarellmuseet.org/om/historia — "16 juni invigdes Nordiska Akvarellmuseet" ; https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "idag kommer 40 procent av alla svenska sillkonserver från Klädesholmen" ; https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/pilane-gravfalt/ — "Det har ungefär 80 synliga gravar från järnåldern" ; https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/natur-och-gronomraden/utsiktsplatser — "Den 15 juni 1960 invigdes Tjörnbroleden – en fast förbindelse mellan Stenungsund på fastlandet och Almön på Tjörn" (läst 2026-09-27)
+    description: 'Akvarellmuseum, sillhistoria och järnåldersgravar, broförbunden ö i Bohuslän.',
     href: '/o/tjorn',
   },
   {
