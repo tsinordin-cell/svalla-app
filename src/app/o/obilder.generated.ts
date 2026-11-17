@@ -1042,8 +1042,38 @@ export const OBILDER: Record<string, Obild> = {
     "licens": "CC BY 3.0",
     "licensUrl": "https://creativecommons.org/licenses/by/3.0",
     "kalla": "https://commons.wikimedia.org/wiki/File:Gr%C3%A4ns%C3%B6_-_panoramio.jpg"
+  },
+  "smaskar": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Sm%C3%A5sk%C3%A4ren_-_KMB_-_16000300023835.jpg",
+    "bredd": 1200,
+    "hojd": 765,
+    "ar": 1994,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Sm%C3%A5sk%C3%A4ren_-_KMB_-_16000300023835.jpg"
+  },
+  "sandskar": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Sandsk%C3%A4r_-_KMB_-_16000300023797.jpg",
+    "bredd": 1200,
+    "hojd": 767,
+    "ar": 1994,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Sandsk%C3%A4r_-_KMB_-_16000300023797.jpg"
+  },
+  "maloren": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Mal%C3%B6ren_-_KMB_-_16000300023810.jpg",
+    "bredd": 1200,
+    "hojd": 759,
+    "ar": 1994,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Mal%C3%B6ren_-_KMB_-_16000300023810.jpg"
   }
 }
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = 102
+export const OAR_MED_BILD = 105

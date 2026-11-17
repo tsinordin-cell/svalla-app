@@ -5628,6 +5628,306 @@ export const ISLANDS: Island[] = [
     related: ['agon'],
     tags: ['gävleborg', 'hudiksvall', 'naturreservat', 'kulturmiljö'],
   },
+  // ─── KLUNTARNA ───────────────────────────────────────────────
+  {
+    slug: 'kluntarna',
+    name: 'Kluntarna',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🪨',
+    // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Missa inte att besöka någon av öns fem stenlabyrinter."; "'Kluntgubben', en klippa med ett ansikte i profil" (läst 2026-11-17)
+    tagline: 'Reservatsö i Luleå skärgård med fem stenlabyrinter, klippan Kluntgubben och gästhamn med turbåtsangöring.',
+    seoTitle: 'Kluntarna: labyrinter i Luleå skärgård',
+    // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Reservatet kan nås sommartid med båt och vintertid med skidor eller skoter." (läst 2026-11-17)
+    seoDescription: 'Kluntarna nås sommartid med båt och vintertid över isen. Här är labyrinterna, gästhamnen och reglerna i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kluntarna — Lantmäteriet Min Karta, sökning "Kluntarna" → Kluntarna | Luleå | Natur- och terrängnamn, SWEREF 99 TM 852359/7280587 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.4557,
+    lng: 22.6166,
+    description: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/kluntarna.html — "fem stenlagda labyrinter som troligen härstammar från 1300- eller 1400-talet" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "'Kluntgubben', en klippa med ett ansikte i profil"; "Bildat år: 1997"; "Skyddsform: Naturreservat, Natura 2000" (läst 2026-11-17)
+      'På Kluntarna finns fem stenlabyrinter, som troligen är från 1300- eller 1400-talet, och Kluntgubben, en klippa med ett ansikte i profil. Ön är naturreservat sedan 1997 och ingår i Natura 2000.',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Reservatet kan nås sommartid med båt och vintertid med skidor eller skoter." (läst 2026-11-17)
+      'Reservatet nås sommartid med båt och vintertid med skidor eller skoter.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Reservatet kan nås sommartid med båt och vintertid med skidor eller skoter." (läst 2026-11-17)
+      travel_time: 'Båt sommartid, skidor eller skoter vintertid',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Skyddsform: Naturreservat, Natura 2000" (läst 2026-11-17)
+      character: 'Naturreservat med stenlabyrinter',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
+      season: 'Turbåt enligt turlistan 2026, högsäsong 19 juni till 16 augusti',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/kluntarna.html — "fem stenlagda labyrinter" (läst 2026-11-17)
+      best_for: 'Kulturhistoria och båtfolk',
+    },
+    activities: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/kluntarna.html — "fem stenlagda labyrinter som troligen härstammar från 1300- eller 1400-talet" (läst 2026-11-17)
+      { icon: '🪨', name: 'Stenlabyrinterna', desc: 'Fem stenlabyrinter, troligen från 1300- eller 1400-talet.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön."; "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Södra hamnplan, Luleå', desc: 'Enligt turlistan för 2026 (högsäsong 19 juni till 16 augusti) angjorde Luleå kommuns turbåtar från Södra hamnplan bland annat Kluntarna.', icon: '⛴', url: 'https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html' },
+    ],
+    harbors: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html — "Gästplatser: 20 stycken"; "Turbåtsangöring" (läst 2026-11-17)
+      { name: 'Kluntarnas gästhamn', desc: '20 gästplatser och turbåtsangöring.', spots: 20 },
+    ],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Det är inte tillåtet att köra snöskoter på öarna"; "göra upp eld, men inte direkt på klipphällar. Kom ihåg att ta med egen ved!" (läst 2026-11-17)
+      'Du får inte köra snöskoter på öarna. Du får göra upp eld, men inte direkt på klipphällar. Ta med egen ved.',
+    ],
+    related: ['junkon', 'smaskar', 'rodkallen'],
+    tags: ['norrbotten', 'luleå', 'naturreservat', 'labyrinter'],
+  },
+  // ─── JUNKÖN ──────────────────────────────────────────────────
+  {
+    slug: 'junkon',
+    name: 'Junkön',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🐟',
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "På Junkön finns ett skärgårdsmuseum, ett mindre antal bofasta och ett levande yrkesfiske." (läst 2026-11-17)
+    tagline: 'Ö i Luleå skärgård med skärgårdsmuseum, en över 200 år gammal hattkvarn och levande yrkesfiske.',
+    seoTitle: 'Junkön: skärgårdsmuseum i Luleå skärgård',
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "På Junkön finns ett skärgårdsmuseum" (läst 2026-11-17)
+    seoDescription: 'Junkön har skärgårdsmuseum, hattkvarn och yrkesfiske. Så tar du dig dit med turbåt, och vad som gäller på skjutfältet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Junk%C3%B6n — Lantmäteriet Min Karta, sökning "Junkön" → Junkön | Luleå | Natur- och terrängnamn, SWEREF 99 TM 842683/7278326 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.4459,
+    lng: 22.4038,
+    description: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "På Junkön finns ett skärgårdsmuseum, ett mindre antal bofasta och ett levande yrkesfiske."; "den över 200 år gamla hattkvarnen" (läst 2026-11-17)
+      'På Junkön finns ett skärgårdsmuseum, ett mindre antal bofasta och ett levande yrkesfiske. På ön står en över 200 år gammal hattkvarn.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Turbåtarna avgår från Södra hamnplan och angör … Junkön." (läst 2026-11-17)
+      travel_time: 'Turbåt från Södra hamnplan sommartid',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "ett levande yrkesfiske" (läst 2026-11-17)
+      character: 'Ö med bofasta och yrkesfiske',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
+      season: 'Turbåt enligt turlistan 2026',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "ett skärgårdsmuseum" (läst 2026-11-17)
+      best_for: 'Kulturhistoria',
+    },
+    activities: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "ett skärgårdsmuseum"; "den över 200 år gamla hattkvarnen" (läst 2026-11-17)
+      { icon: '🏛', name: 'Skärgårdsmuseum och hattkvarn', desc: 'Ett skärgårdsmuseum och en över 200 år gammal hattkvarn.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön." (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Södra hamnplan, Luleå', desc: 'Enligt turlistan för 2026 angjorde Luleå kommuns turbåtar Junkön.', icon: '⛴', url: 'https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "Stora delar av Junkön är militärt skjutfält med tillträdesförbud." (läst 2026-11-17)
+      'Stora delar av Junkön är militärt skjutfält med tillträdesförbud.',
+    ],
+    related: ['kluntarna', 'rodkallen'],
+    tags: ['norrbotten', 'luleå', 'museum', 'fiske'],
+  },
+  // ─── SMÅSKÄR ─────────────────────────────────────────────────
+  {
+    slug: 'smaskar',
+    name: 'Småskär',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🏝',
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Med hela 120 fritidshus är Småskär ön som stoltserar med högsta antalet fritidshus i hela Luleå ytterskärgård."; "Småskär är ett kommunalt naturreservat" (läst 2026-11-17)
+    tagline: 'Ön med flest fritidshus i Luleå ytterskärgård, kommunalt naturreservat och turbåtsangöring.',
+    seoTitle: 'Småskär: naturreservat i Luleå skärgård',
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Med hela 120 fritidshus" (läst 2026-11-17)
+    seoDescription: 'Småskär har 120 fritidshus och är kommunalt naturreservat. Så tar du dig dit och vilka regler som gäller runt ön.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sm%C3%A5sk%C3%A4ren — Lantmäteriet Min Karta, sökning "Småskären" → Småskären | Luleå | Natur- och terrängnamn, SWEREF 99 TM 857223/7284103 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.4816,
+    lng: 22.7298,
+    description: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Med hela 120 fritidshus är Småskär ön som stoltserar med högsta antalet fritidshus i hela Luleå ytterskärgård."; "Småskär är ett kommunalt naturreservat" (läst 2026-11-17)
+      'Med 120 fritidshus är Småskär den ö i Luleå ytterskärgård som har flest fritidshus. Småskär är ett kommunalt naturreservat.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "angör … Småskär" (läst 2026-11-17)
+      travel_time: 'Turbåt från Södra hamnplan sommartid',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Småskär är ett kommunalt naturreservat" (läst 2026-11-17)
+      character: 'Fritidshusö och kommunalt naturreservat',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
+      season: 'Turbåt enligt turlistan 2026',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "ingår i ett fågelskyddsområde" (läst 2026-11-17)
+      best_for: 'Båtfolk och fågelskådning',
+    },
+    activities: [],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön." (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Södra hamnplan, Luleå', desc: 'Enligt turlistan för 2026 angjorde Luleå kommuns turbåtar Småskär.', icon: '⛴', url: 'https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Småskär och Finnskär ingår i ett fågelskyddsområde där jakt på sjöfågel och änder är förbjuden." (läst 2026-11-17)
+      'Småskär och Finnskär ingår i ett fågelskyddsområde där jakt på sjöfågel och änder är förbjuden.',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/smaskarens-klippor.html — "tio obebyggda öar och hällar söder och öster om ön Småskär"; "På vissa öar råder landstigningsförbud under period med öppet vatten. Det är även förbjudet att uppehålla sig inom 200 meter från öarna." (läst 2026-11-17)
+      'Naturreservatet Småskärens klippor består av tio obebyggda öar och hällar söder och öster om Småskär. På vissa av öarna råder landstigningsförbud under perioden med öppet vatten, och det är förbjudet att uppehålla sig inom 200 meter från öarna. Detaljerna finns i reservatsbeslutet.',
+    ],
+    related: ['kluntarna', 'junkon'],
+    tags: ['norrbotten', 'luleå', 'naturreservat', 'fågelskydd'],
+  },
+  // ─── RÖDKALLEN ───────────────────────────────────────────────
+  {
+    slug: 'rodkallen',
+    name: 'Rödkallen',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🗼',
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872"; "Med sin 21,4 meter höga stålkonstruktion" (läst 2026-11-17)
+    tagline: 'Fyrö i Luleå ytterskärgård med fyr från 1872 och privat gästhamn. Delar av ön är naturreservat.',
+    seoTitle: 'Rödkallen: fyrön i Luleå skärgård',
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872" (läst 2026-11-17)
+    seoDescription: 'Rödkallens fyr är från 1872. Här är fakta om gästhamnen, reservatet och landstigningsförbudet på sommaren.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=R%C3%B6dkallen — Lantmäteriet Min Karta, sökning "Rödkallen" → Rödkallen | Luleå | Natur- och terrängnamn, SWEREF 99 TM 842626/7263977 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.3183,
+    lng: 22.3665,
+    description: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872 … Med sin 21,4 meter höga stålkonstruktion" (läst 2026-11-17)
+      'Fyren på Rödkallen är från 1872 och har en 21,4 meter hög stålkonstruktion.',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/rodkallen-soraspen.html — "Det är de västra och östra delarna av Rödkallen som ingår i naturreservatet" (läst 2026-11-17)
+      'Den västra och den östra delen av Rödkallen ingår i naturreservatet Rödkallen-Söräspen.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html — "Privata hamnar med gästplats … Rödkallen" (läst 2026-11-17)
+      travel_time: 'Egen båt, privat gästhamn',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872" (läst 2026-11-17)
+      character: 'Fyrö i ytterskärgården',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/rodkallen-soraspen.html — "I vissa delar av reservatet råder landstigningsförbud mellan 1 maj och 31 juli." (läst 2026-11-17)
+      season: 'Landstigningsförbud i delar av reservatet 1 maj till 31 juli',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872" (läst 2026-11-17)
+      best_for: 'Fyrbesök och båtfolk',
+    },
+    activities: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872 … Med sin 21,4 meter höga stålkonstruktion" (läst 2026-11-17)
+      { icon: '🗼', name: 'Fyren', desc: 'Fyr från 1872 med en 21,4 meter hög stålkonstruktion.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön." (läst 2026-11-17)
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html — "Privata hamnar med gästplats … Rödkallen" (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Luleå', desc: 'Kommunens turbåtar angör inte Rödkallen. Ön fanns inte med bland angöringarna 2026, som var Klubbviken, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön. Gästhamnen på Rödkallen är privat.', icon: '⛵' },
+    ],
+    harbors: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html — "Privata hamnar med gästplats … Rödkallen" (läst 2026-11-17)
+      { name: 'Rödkallens gästhamn', desc: 'Privat gästhamn.' },
+    ],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/rodkallen-soraspen.html — "I vissa delar av reservatet råder landstigningsförbud mellan 1 maj och 31 juli. Det är även förbjudet att uppehålla sig inom 200 meter från öarna. Läs mer i beslutet." (läst 2026-11-17)
+      'I vissa delar av reservatet råder landstigningsförbud 1 maj till 31 juli. Det är även förbjudet att uppehålla sig inom 200 meter från öarna. Detaljerna finns i reservatsbeslutet.',
+    ],
+    related: ['junkon', 'kluntarna'],
+    tags: ['norrbotten', 'luleå', 'fyr', 'naturreservat'],
+  },
+  // ─── HAPARANDA SANDSKÄR ──────────────────────────────────────
+  {
+    slug: 'sandskar',
+    name: 'Haparanda Sandskär',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🐦',
+    // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Bildat år: 1995"; "På ön har man sett 251 olika fågelarter." (läst 2026-11-17)
+    // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken — "Under sommaren (juli–augusti) går det en turbåt några dagar i veckan till den största ön, Sandskär." (läst 2026-11-17)
+    tagline: 'Största ön i Haparanda skärgårds nationalpark, där 251 fågelarter har setts. Turbåt från Nikkala.',
+    seoTitle: 'Haparanda Sandskär: nationalpark i Bottenviken',
+    // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit — "Från Haparanda hamn i Nikkala går turbåtar till Sandskär." (läst 2026-11-17)
+    seoDescription: 'Till Haparanda Sandskär går turbåtar från Nikkala. Här är fakta om nationalparken, fåglarna och reglerna.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sandsk%C3%A4r — Lantmäteriet Min Karta, sökning "Sandskär" → Sandskär | Haparanda | Natur- och terrängnamn, SWEREF 99 TM 903069/7300276 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.5716,
+    lng: 23.7570,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Storlek: 6600 hektar (66 kvadratkilometer)"; "Bildat år: 1995"; "På ön har man sett 251 olika fågelarter." (läst 2026-11-17)
+      'Haparanda skärgårds nationalpark bildades 1995 och är 6 600 hektar. På Sandskär har man sett 251 olika fågelarter.',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken — "Det finns ingen el på Sandskär." (läst 2026-11-17)
+      'Det finns ingen el på Sandskär.',
+    ],
+    facts: {
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit — "Från Haparanda hamn i Nikkala går turbåtar till Sandskär." (läst 2026-11-17)
+      travel_time: 'Turbåt från Haparanda hamn i Nikkala',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Bildat år: 1995" (läst 2026-11-17)
+      character: 'Nationalpark',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Vissa öar inom nationalparken får inte angöras eller beträdas från 1 maj till 31 juli varje år." (läst 2026-11-17)
+      season: 'Vissa öar stängda 1 maj till 31 juli',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "På ön har man sett 251 olika fågelarter." (läst 2026-11-17)
+      best_for: 'Fågelskådning och vildmark',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "På ön har man sett 251 olika fågelarter." (läst 2026-11-17)
+      { icon: '🐦', name: 'Fågelskådning', desc: 'På Sandskär har man sett 251 olika fågelarter.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit — "Från Haparanda hamn i Nikkala går turbåtar till Sandskär." (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Haparanda hamn, Nikkala', desc: 'Från Haparanda hamn i Nikkala går turbåtar till Sandskär.', icon: '⛴', url: 'https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Vissa öar inom nationalparken får inte angöras eller beträdas från 1 maj till 31 juli varje år." (läst 2026-11-17)
+      'Vissa öar i nationalparken får inte angöras eller beträdas 1 maj till 31 juli varje år.',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit — "på öarna är det skoterförbud. Stugägare får dock köra närmaste väg till huset." (läst 2026-11-17)
+      'På öarna är det skoterförbud. Stugägare får köra närmaste väg till huset.',
+    ],
+    related: ['maloren'],
+    tags: ['norrbotten', 'haparanda', 'nationalpark', 'fåglar'],
+  },
+  // ─── MALÖREN ─────────────────────────────────────────────────
+  {
+    slug: 'maloren',
+    name: 'Malören',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🗼',
+    // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Fyren från 1850 ger tillsammans med kyrkan från 1770"; "Kommun: Kalix" (läst 2026-11-17)
+    tagline: 'Fyrö i Kalix skärgård med fyr från 1850, kyrka från 1770 och lotsplats som var bemannad till 1967.',
+    seoTitle: 'Malören: fyrön i Kalix skärgård',
+    // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "cirka 1 mil sydväst om Haparanda Sandskär"; "En brygga finns i viken på södra sidan av ön." (läst 2026-11-17)
+    seoDescription: 'Malören ligger cirka 1 mil sydväst om Haparanda Sandskär. Fyren, kyrkan, bryggan och reglerna i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Mal%C3%B6ren — Lantmäteriet Min Karta, sökning "Malören" → Malören | Kalix | Natur- och terrängnamn, SWEREF 99 TM 894665/7293978 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.5260,
+    lng: 23.5584,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Kommun: Kalix"; "cirka 1 mil sydväst om Haparanda Sandskär"; "Naturreservatet bildat år: 1997" (läst 2026-11-17)
+      'Malören ligger i Kalix kommun, cirka 1 mil sydväst om Haparanda Sandskär. Ön är naturreservat sedan 1997.',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "från 1800-talet fram till 1967 fanns det lots på ön. Fyren från 1850 ger tillsammans med kyrkan från 1770" (läst 2026-11-17)
+      'Fyren är från 1850 och kyrkan från 1770. Från 1800-talet fram till 1967 fanns det lots på ön.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "En brygga finns i viken på södra sidan av ön." (läst 2026-11-17)
+      travel_time: 'Egen båt, brygga på södra sidan',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Naturreservatet bildat år: 1997" (läst 2026-11-17)
+      character: 'Fyrö och naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Det är inte tillåtet att köra snöskoter på öarna." (läst 2026-11-17)
+      season: 'Skoterförbud på öarna',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Fyren från 1850 ger tillsammans med kyrkan från 1770" (läst 2026-11-17)
+      best_for: 'Fyr och kulturmiljö',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Fyren från 1850 ger tillsammans med kyrkan från 1770" (läst 2026-11-17)
+      { icon: '🗼', name: 'Fyren och kyrkan', desc: 'Fyr från 1850 och kyrka från 1770.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "En brygga finns i viken på södra sidan av ön." (läst 2026-11-17)
+      { method: 'Båt', from: 'Kalix skärgård', desc: 'En brygga finns i viken på södra sidan av ön.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Det är inte tillåtet att köra snöskoter på öarna." (läst 2026-11-17)
+      'Du får inte köra snöskoter på öarna.',
+    ],
+    related: ['sandskar'],
+    tags: ['norrbotten', 'kalix', 'fyr', 'naturreservat'],
+  },
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',
