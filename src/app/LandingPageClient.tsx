@@ -149,11 +149,20 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,66px);font-weight:900;line-height:1.06;color:var(--white);margin-bottom:14px;letter-spacing:-.02em;text-shadow:0 2px 24px rgba(5,15,30,.6);}
 .hero-title em{font-style:italic;background:linear-gradient(135deg,var(--accent),#f4b06a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:none;}
 .hero-sub{font-size:clamp(14px,1.8vw,16px);font-weight:300;color:rgba(255,255,255,.72);max-width:600px;margin:8px auto 18px;line-height:1.6;text-shadow:0 1px 10px rgba(5,15,30,.55);}
-.hero-search{display:flex;max-width:480px;margin:0 auto 14px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.35);border-radius:50px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.25);}
-.hero-search input{flex:1;border:none;outline:none;padding:16px 22px;font-size:15px;font-family:'Inter',sans-serif;color:#1c2b2e;background:transparent;}
-.hero-search input::placeholder{color:rgba(15,30,45,.55)}
+/* Fast vit yta med mörk kant. Det genomskinliga fältet (78 % vitt, vit kant) försvann mot vinterisen och platshållaren låg på 3,8:1. Text #1c2b2e är 14,6:1 på vitt, platshållare #3e5160 är 8,2:1. Fokusringen är vit + marin så den syns både på is och på blått vatten. */
+.hero-search{display:flex;align-items:center;max-width:480px;width:100%;margin:0 auto 14px;background:#ffffff;border:1.5px solid #1a3348;border-radius:50px;overflow:hidden;box-shadow:0 2px 6px rgba(8,20,36,.18),0 14px 32px rgba(8,20,36,.28);}
+.hero-search:focus-within{border-color:#0d2440;box-shadow:0 2px 6px rgba(8,20,36,.18),0 14px 32px rgba(8,20,36,.28),0 0 0 2px #ffffff,0 0 0 5px #0d2440;}
+.hero-search input{flex:1;min-width:0;border:none;outline:none;padding:16px 22px;font-size:15px;font-family:'Inter',sans-serif;color:#1c2b2e;background:transparent;caret-color:#1c2b2e;-webkit-appearance:none;appearance:none;}
+.hero-search input::placeholder{color:#3e5160;opacity:1;}
+.hero-search input::-webkit-search-decoration,.hero-search input::-webkit-search-cancel-button,.hero-search input::-webkit-search-results-button,.hero-search input::-webkit-search-results-decoration{-webkit-appearance:none;appearance:none;display:none;}
+.hero-search input:focus{outline:none;box-shadow:none;}
 .hero-search button{margin:6px 6px 6px 0;padding:12px 28px;border-radius:50px;background:var(--accent-strong);color:var(--white);border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:.2s;white-space:nowrap;}
 .hero-search button:hover{background:#9e4c14}
+.hero-search button:focus{outline:none;}
+/* Mörkt läge (20 till 06, auto) sätter färg på alla input med !important. Utan det här blev hjältsöket ljusblå text och en blek platshållare på den ljusa isen. */
+[data-theme="dark"] .hero-search{background:#ffffff !important;border-color:#1a3348 !important;}
+[data-theme="dark"] .hero-search input{background:transparent !important;color:#1c2b2e !important;-webkit-text-fill-color:#1c2b2e;border-color:transparent !important;}
+[data-theme="dark"] .hero-search input::placeholder{color:#3e5160 !important;-webkit-text-fill-color:#3e5160;opacity:1 !important;}
 .hero-search-hint{font-size:12.5px;color:rgba(255,255,255,.5);margin-bottom:24px}
 .hero-search-hint span{color:rgba(255,255,255,.75);text-decoration:underline;cursor:pointer;margin:0 6px}
 .hero-scroll{display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.45);font-size:11px;letter-spacing:.1em;text-transform:uppercase;animation:float 3s ease-in-out infinite;}
@@ -830,8 +839,8 @@ const LANDING_HTML = `
  </p>
  </div>
  <div class="hero-bottom">
- <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href='/sok'+(q?'?q='+encodeURIComponent(q):'')">
- <input type="text" placeholder="Sök ö, krog eller hamn..." id="heroSearchInput"/>
+ <form class="hero-search" role="search" action="/sok" method="get" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href='/sok'+(q?'?q='+encodeURIComponent(q):'')">
+ <input type="search" name="q" enterkeyhint="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Sök ö, krog eller hamn" placeholder="Sök ö, krog eller hamn…" id="heroSearchInput"/>
  <button type="submit">Sök</button>
  </form>
  <div style="text-align:center;margin-bottom:12px;display:flex;flex-direction:column;align-items:center;gap:10px">
@@ -1390,13 +1399,6 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  // Fallback: om JS laddar långsamt, visa allt efter 1.5s
  const fallback = setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 1500)
 
- // Sök-fokus
- const searchInput = document.querySelector('.hero-search input') as HTMLInputElement
- const onFocus = () => { const el = searchInput?.closest('.hero-search') as HTMLElement; if (el) el.style.boxShadow = '0 8px 50px rgba(232,146,74,.35)' }
- const onBlur = () => { const el = searchInput?.closest('.hero-search') as HTMLElement; if (el) el.style.boxShadow = '0 8px 40px rgba(0,0,0,.3)' }
- searchInput?.addEventListener('focus', onFocus)
- searchInput?.addEventListener('blur', onBlur)
-
  // ── Applicera Google-foton på alla data-lp-photo-element ──────────────────
  // Scripts inuti dangerouslySetInnerHTML körs INTE vid client-side navigation
  // (browsers kör aldrig scripts injektade via innerHTML). Logiken lever
@@ -1504,8 +1506,6 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  document.removeEventListener('pointerover', onLinkHover)
  observer.disconnect()
  bildObserver?.disconnect()
- searchInput?.removeEventListener('focus', onFocus)
- searchInput?.removeEventListener('blur', onBlur)
  hamburger?.removeEventListener('click', openMobDrawer)
  mobOverlay?.removeEventListener('click', closeMobDrawer)
  mobClose?.removeEventListener('click', closeMobDrawer)
