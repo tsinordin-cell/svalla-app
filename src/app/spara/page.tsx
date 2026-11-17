@@ -393,7 +393,7 @@ export default function SparaPage() {
         boatType,
         phase: phase as 'tracking' | 'paused',
         startedAt: startTimeRef.current?.toISOString() ?? new Date().toISOString(),
-        elapsed,
+        elapsed: elapsedRef.current,
         tripId,
         // Pauser kan inte omdetekteras ur punkterna — de måste följa med
         // snapshoten, annars är de borta efter en krasch (kort 19/8).
@@ -404,7 +404,11 @@ export default function SparaPage() {
       syncOfflineRef.current()
     }, 30_000)
     return () => { if (heartbeatRef.current) clearInterval(heartbeatRef.current) }
-  }, [phase, tripId, boatType, elapsed])
+    // elapsed får INTE stå här: det ändras varje sekund, och då revs intervallet och
+    // sattes om varje sekund så att 30-sekundersslaget aldrig hann gå. Sett 2026-11-15:
+    // 0 punkter på servern efter 11 minuters spårning och "Synkar 654…" i vyn.
+    // Tiden läses ur elapsedRef när slaget går.
+  }, [phase, tripId, boatType])
 
   // ── GPS tracking ───────────────────────────────────────────────────────────
   // startTracking auto-detects Capacitor (native background GPS) vs web browser.
