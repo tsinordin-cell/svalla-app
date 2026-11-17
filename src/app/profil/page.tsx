@@ -16,10 +16,10 @@ import EmptyState from '@/components/EmptyState'
 import { isProEnabled } from '@/lib/pro'
 import FollowListButton from '@/components/FollowListSheet'
 import ProfileForumSubscriptions from '@/components/ProfileForumSubscriptions'
-import { Camera, Pencil, Flame, Eye, Globe, Lock, Award, Sparkles, FolderOpen, MessageCircle, BarChart2, Trophy, LogOut, Home, Sun, Moon, SunMoon } from '@/components/icons/LucideIcons'
+import { Camera, Pencil, Flame, Eye, Globe, Lock, Award, Sparkles, FolderOpen, MessageCircle, BarChart2, Trophy, Home, Sun, Moon, SunMoon } from '@/components/icons/LucideIcons'
 import { IconAnchor, IconCompass, IconSailboat } from '@/components/icons/SvallaIcons'
-import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
+import LogoutConfirm from '@/components/LogoutConfirm'
 
 // ── Settings ─────────────────────────────────────────────────────────────────
 function SettingsSection() {
@@ -394,38 +394,12 @@ export default function ProfilPage() {
         <EditSheet user={user} onClose={() => setEditing(false)} onSaved={updated => { setUser(updated); setEditing(false) }} />
       )}
 
-      {signOutOpen && (
-        <>
-          <div onClick={() => !signingOut && setSignOutOpen(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,20,35,0.55)', zIndex: 950, backdropFilter: 'blur(3px)' }} />
-          <div role="dialog" aria-modal="true" aria-labelledby="logout-title" style={{
-            position: 'fixed', left: '50%', top: '50%', transform: 'translate(-50%, -50%)',
-            zIndex: 960, width: 'min(360px, calc(100vw - 32px))',
-            background: 'var(--white)', borderRadius: 22, padding: '22px 22px 16px',
-            boxShadow: '0 20px 60px rgba(0,30,60,0.35)',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-              <div style={{ width: 44, height: 44, borderRadius: 14, background: 'rgba(220,38,38,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><LogOut size={20} style={{ color: '#dc2626' }} /></div>
-              <div>
-                <h2 id="logout-title" style={{ fontSize: 16, fontWeight: 600, color: 'var(--txt)', margin: 0 }}>Logga ut?</h2>
-                <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '2px 0 0' }}>Du behöver logga in igen nästa gång.</p>
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
-              <button onClick={() => setSignOutOpen(false)} disabled={signingOut} style={{
-                flex: 1, padding: '12px', borderRadius: 14,
-                border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)',
-                fontSize: 14, fontWeight: 600, color: 'var(--txt2)', cursor: signingOut ? 'not-allowed' : 'pointer',
-              }}>Avbryt</button>
-              <button onClick={performSignOut} disabled={signingOut} style={{
-                flex: 1.4, padding: '12px', borderRadius: 14, border: 'none',
-                background: signingOut ? '#cf6b6b' : 'linear-gradient(135deg, #dc2626, #b91c1c)',
-                color: '#fff', fontSize: 14, fontWeight: 600, cursor: signingOut ? 'not-allowed' : 'pointer',
-                boxShadow: '0 4px 14px rgba(220,38,38,0.35)',
-              }}>{signingOut ? 'Loggar ut…' : 'Logga ut'}</button>
-            </div>
-          </div>
-        </>
-      )}
+      <LogoutConfirm
+        open={signOutOpen}
+        busy={signingOut}
+        onCancel={() => { if (!signingOut) setSignOutOpen(false) }}
+        onConfirm={performSignOut}
+      />
 
       {/* ── Sticky header ── */}
       <header style={{
@@ -688,7 +662,7 @@ export default function ProfilPage() {
                           background: 'var(--green)',
                         }} />
                       )}
-                      <span aria-hidden><Icon name={emojiToIcon(a.emoji)} size={20} /></span>
+                      <span aria-hidden><Icon name={a.icon} size={20} /></span>
                       <span style={{
                         fontSize: 9, fontWeight: 600,
                         color: unlocked ? 'var(--txt)' : 'var(--txt3)',
@@ -733,7 +707,7 @@ export default function ProfilPage() {
                 const next = lockedAch[0]!
                 return (
                   <div style={{ marginTop: 10, padding: '10px 12px', background: 'rgba(201,110,42,0.07)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{filter: 'grayscale(0.3)', opacity: 0.8}} aria-hidden><Icon name={emojiToIcon(next.emoji)} size={20} /></span>
+                    <span style={{filter: 'grayscale(0.3)', opacity: 0.8}} aria-hidden><Icon name={next.icon} size={20} /></span>
                     <div>
                       <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--acc)', marginBottom: 2 }}>Nästa: {next.label}</div>
                       <div style={{ fontSize: 11, color: 'var(--txt3)', lineHeight: 1.4 }}>{next.desc}</div>

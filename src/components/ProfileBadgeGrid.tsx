@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { ACHIEVEMENTS } from '@/lib/achievements'
-import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
 
 const LOCKED_DEFAULT = 4
@@ -41,7 +40,7 @@ export default function ProfileBadgeGrid({ unlockedIds }: { unlockedIds: string[
                   background: 'var(--green)',
                 }} />
               )}
-              <span aria-hidden><Icon name={emojiToIcon(a.emoji)} size={20} /></span>
+              <span aria-hidden><Icon name={a.icon} size={20} /></span>
               <span style={{
                 fontSize: 9, fontWeight: 600,
                 color: unlocked ? 'var(--txt)' : 'var(--txt3)',
@@ -82,7 +81,7 @@ export default function ProfileBadgeGrid({ unlockedIds }: { unlockedIds: string[
 
       {next && (
         <div style={{ marginTop: 10, padding: '10px 12px', background: 'rgba(201,110,42,0.07)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{filter: 'grayscale(0.3)', opacity: 0.8}} aria-hidden><Icon name={emojiToIcon(next.emoji)} size={20} /></span>
+          <span style={{filter: 'grayscale(0.3)', opacity: 0.8}} aria-hidden><Icon name={next.icon} size={20} /></span>
           <div>
             <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--acc)', marginBottom: 2 }}>Nästa: {next.label}</div>
             <div style={{ fontSize: 11, color: 'var(--txt3)', lineHeight: 1.4 }}>{next.desc}</div>

@@ -29,6 +29,9 @@
   --varning-bg:      rgba(138,90,16,0.10);
   --fara:            #b03a2e;
   --fara-bg:         rgba(176,58,46,0.10);
+  /* Solid utfyllnad för destruktiva knappar. Vit text ger 6,0:1.
+     Samma nyans i båda temana: mörkt läge ska inte byta till en ljus laxrosa. */
+  --fara-knapp:      #b03a2e;
   --sasong-topp:     #086878;
   --sasong-topp-bg:  rgba(8,104,120,0.10);
   /* ── Thorkel-palette — skeppare från Möja ── */
@@ -1262,6 +1265,128 @@ img {
   }
   /* Dölj mobil-versionen på desktop — visas i right panel istället */
   .feed-suggested-mobile { display: none; }
+}
+
+/* Planera: samma innehållsbredd som rubrikblocket i heron.
+   Mörka överstyrningar lämnar de ljusa inline-stilarna orörda. */
+.planera-innehall {
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+}
+[data-theme="dark"] .planera-ny-rutt {
+  background: linear-gradient(135deg, #0fa0b4, #0a7b8c) !important;
+  color: #fff !important;
+  box-shadow: 0 3px 10px rgba(10, 123, 140, 0.28) !important;
+}
+[data-theme="dark"] .planera-yta {
+  background: var(--surface) !important;
+  border-color: var(--hairline-strong) !important;
+}
+[data-theme="dark"] .planera-sekundar {
+  color: var(--txt2) !important;
+}
+[data-theme="dark"] .planera-ikon {
+  background: var(--teal-10) !important;
+  color: var(--sea) !important;
+}
+[data-theme="dark"] .planera-chip {
+  background: var(--teal-12) !important;
+  color: var(--sea) !important;
+}
+[data-theme="dark"] .planera-inre {
+  background: var(--surface-2) !important;
+}
+
+/* Utloggningsdialog. Radie 24 som ark i TripActions. */
+.logout-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  background: rgba(7, 15, 24, 0.46);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+[data-theme="dark"] .logout-backdrop {
+  background: rgba(0, 0, 0, 0.62);
+}
+.logout-dialog {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 960;
+  width: min(400px, calc(100vw - 40px));
+  box-sizing: border-box;
+  background: var(--surface);
+  color: var(--txt);
+  border: 1px solid var(--hairline);
+  border-radius: 24px;
+  padding: 24px 24px 22px;
+  box-shadow: var(--shadow-lifted);
+}
+.logout-dialog-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.logout-dialog-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fara-bg);
+  color: var(--fara);
+}
+.logout-dialog h2 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--txt);
+  margin: 0;
+  line-height: 1.25;
+}
+.logout-dialog p {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--txt2);
+  margin: 6px 0 0;
+}
+.logout-dialog-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+.logout-dialog-actions button {
+  flex: 1;
+  min-height: 46px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.logout-dialog-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.logout-dialog-actions button:focus-visible {
+  outline: 2px solid var(--sea);
+  outline-offset: 2px;
+}
+.logout-btn-secondary {
+  background: var(--bg);
+  border: 1px solid var(--hairline-strong);
+  color: var(--txt);
+}
+.logout-btn-danger {
+  background: var(--fara-knapp);
+  border: 1px solid transparent;
+  color: #fff;
+  box-shadow: none;
 }
 
 /* ── Motion preference ── */
