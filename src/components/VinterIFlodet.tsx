@@ -57,8 +57,10 @@ export default function VinterIFlodet({ manad = new Date().getMonth() + 1 }: { m
             style={{
               display: 'flex', alignItems: 'center', gap: 12,
               padding: '12px 14px', borderRadius: 14,
-              background: 'var(--card, #fff)',
-              border: '1px solid rgba(10,123,140,0.12)',
+              // --surface-1 är vit i ljust läge och #0f1e2c i mörkt; --card fanns inte
+              // och föll tillbaka på vitt, så korten blev vita med ljus text i mörkt läge (17 nov).
+              background: 'var(--surface-1)',
+              border: '1px solid var(--input-border)',
               textDecoration: 'none', color: 'inherit',
             }}
           >
