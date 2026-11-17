@@ -9941,8 +9941,8 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [
-      // KÄLLA: https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso — "Turlista Lilla Karlsö 2026", "Avgång kl. 09.00 från", "Återresa och ankomst till Djupvik senast kl. 13.30", "Pris 890 kr / person (minst 4 betalande) - max 6 personer.", "Förbokning och betalning krävs minst 4 dagar i förväg", "Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland" (läst 2026-09-27)
-      { method: 'Båt med guidad rundvandring från Djupvik', from: 'Djupvik (Eksta, Gotland)', time: '09.00 till 13.30', desc: 'Gotland Sea Guides kör i samarbete med Naturskyddsföreningen Gotland 15 juni till 15 augusti 2026, vid lämpligt väder. Avgång 09.00, tillbaka i Djupvik senast 13.30. Högst sex personer per tur; pris 2026 890 kr per person med minst fyra betalande. Förbokning och betalning minst fyra dagar i förväg.', icon: '⛴', url: 'https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso' },
+      // KÄLLA: https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso — "Turlista Lilla Karlsö 2026", "Avgång kl. 09.00 från", "Återresa och ankomst till Djupvik senast kl. 13.30", "max 6 personer.", "Förbokning och betalning krävs minst 4 dagar i förväg", "Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland" (läst 2026-09-27)
+      { method: 'Båt med guidad rundvandring från Djupvik', from: 'Djupvik (Eksta, Gotland)', time: '09.00 till 13.30', desc: 'Gotland Sea Guides kör i samarbete med Naturskyddsföreningen Gotland 15 juni till 15 augusti 2026, vid lämpligt väder. Avgång 09.00, tillbaka i Djupvik senast 13.30. Högst sex personer per tur. Förbokning och betalning minst fyra dagar i förväg.', icon: '⛴', url: 'https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso' },
       // KÄLLA: https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso — "Under säsongen har vi regelbunden båttrafik till och från ön", "kontakta oss i god tid innan ankomst" (läst 2026-09-27); https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html — "landstiga på annan plats än vid bryggan på öns östra sida" (läst 2026-09-27)
       { method: 'Egen båt', from: 'Valfri hamn', desc: 'Välkommen med egen båt, men kontakta tillsynsmannen i god tid, plats vid bryggan kan inte garanteras utan förbokning. Landstigning bara vid bryggan på östra sidan; 1 mars till 31 augusti krävs tillstånd för att vistas på ön.', icon: '⛵' },
     ],
@@ -9966,8 +9966,9 @@ export const ISLANDS: Island[] = [
       'Ta med kikare: flera havsörnar ses i området och pilgrimsfalk jagar över havet.',
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html — "under tiden 1/2–31/8 beträda eller vistas inom de delar av naturreservatet som omfattas av fågelskydd", "föra iland hund, katt eller annat sällskapsdjur" (läst 2026-09-27)
       'Fågelskyddsområdena får inte beträdas 1 februari till 31 augusti och hundar får inte tas i land, lämna hunden hemma.',
-      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/ — "Båten till Stora Karlsö avgår från Klintehamn och båtresan tar ungefär 35 minuter", "I priset ingår båtresa t/r samt guidad tur på ön" (läst 2026-09-27)
-      'Grannön Stora Karlsö nås med egen båt från Klintehamn (ca 35 min) med guidad tur i priset: räkna med en egen dag, eftersom Lilla Karlsö-turen går från Djupvik och är tillbaka först 13.30.',
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/ — "Båten till Stora Karlsö avgår från Klintehamn" (läst 2026-11-17)
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "En guidad tur med våra kunniga guider erbjuds till alla våra besökare och ingår i priset för resan." (läst 2026-11-17)
+      'Grannön Stora Karlsö nås med båt från Klintehamn, och en guidad tur ingår i resan. Räkna med en egen dag för den, eftersom Lilla Karlsö-turen går från Djupvik och är tillbaka först 13.30.',
     ],
     related: ['gotland', 'faro', 'oland'],
     tags: ['fågelliv', 'naturreservat', 'gotland', 'dagsutflykt', 'guidad tur', 'fotografi'],
