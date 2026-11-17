@@ -1,0 +1,51 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-17)
+sm06-k001	vaxholm-0281	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sm06-k002	moja-N015	OK	OK
+sm06-k003	utanfor-N012	OK	OK
+sm06-k004	utanfor-N009	OK	OK
+sm06-k005	mall-N020	OK	OK
+sm06-k006	grinda-0080	OK	OK
+sm06-k007	vaxholm-N024	OK	OK
+sm06-k008	fjaderholmarna-0016	OK	OK
+sm06-k009	mall-0185	OK	OK
+sm06-k010	storholmen-0185	OK	OK
+sm06-k011	vaxholm-0664	OK	OK
+sm06-k012	fjaderholmarna-0060	OK	OK. RÄTTAS i rättelserundan: tillskriv sidan som den publiceras ("De Kungliga Slotten"), inte Kungl. Djurgårdens förvaltning.
+sm06-k013	uto-0401	SAKNAS	RÄTTAS i rättelserundan: namnet "Lilla Haket & Ninas Bod" står bara i OpenStreetMap, som inte belägger namn. Belägg med verksamheten eller myndigheten, eller skriv utan namnet.
+sm06-k014	vaxholm-0077	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring. Målhållplatsen 740098250 är gruppen VAXHOLM; Vakten kontrollerar hållplats-ID mekaniskt.
+sm06-k015	vaxholm-0134	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sm06-k016	grinda-0611	OK	OK
+sm06-k017	utanfor-N013	OK	OK
+sm06-k018	grinda-0299	OK	OK
+sm06-k019	utanfor-N004	OK	OK
+sm06-k020	utanfor-N003	OK	OK
+sm06-k021	grinda-0159	OK	OK
+sm06-k022	styrso-0038	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sm06-k023	utanfor-N005	OK	OK
+sm06-k024	husaro-N019	FEL	RÄTTAS i rättelserundan (Lag 3, andra omgången): meningen är sann men klarar inte utfyllnadstestet; den räknas inte i Lag 3, och sidan kompenseras med uppgifter som bara gäller den platsen. Finnhamnsmeningarna i Husarös hamnpost. Bryggans typ rättas under sm04-k016.
+sm06-k025	moja-0484	OK	OK
+sm06-k026	husaro-0217	OK	OK
+sm06-k027	vaxholm-0008	OK	OK
+sm06-k028	moja-0491	OK	OK
+sm06-k029	moja-0353	OK	OK
+sm06-k030	utanfor-N008	OK	OK
+sm06-k031	styrso-N033	FEL	RÄTTAS i rättelserundan (Lag 3, andra omgången): meningen är sann men klarar inte utfyllnadstestet; den räknas inte i Lag 3, och sidan kompenseras med uppgifter som bara gäller den platsen.
+sm06-k032	uto-N039	FEL	Registerradens KÄLLA är ofullständig, men slutkodens KÄLLA-rader belägger texten (Länsstyrelsen). Ingen ändring i texten; registret följer slutkoden.
+sm06-k033	uto-0188	OK	OK
+sm06-k034	sandhamn-0078	OK	OK
+sm06-k035	grinda-0436	OK	OK
+sm06-k036	mall-N028	OK	OK
+sm06-k037	utanfor-N002	FEL	RÄTTAS i rättelserundan: Arboretum Lassas Hagar uttalar sig om byhamnen och inte om sig självt, så källan är inte tillåten för badmeningen på Svartlöga. Belägg med tillåten källa eller stryk, och kompensera.
+sm06-k038	styrso-0099	OK	OK
+sm06-k039	uto-0357	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sm06-k040	sandhamn-N023	SAKNAS	OK efter Redaktörens läsning i Toms Chrome 2026-11-17 av verksamhetens egen sida i Wayback Machine: https://web.archive.org/web/20260722235328/https://www.dykarbaren.se/ ("säsong maj – september", "Vi erbjuder endast bordsbokning inomhus då vår uteservering inte helt går att vädersäkra") och https://web.archive.org/web/20260509040134/https://www.dykarbaren.se/om-oss/ ("den legendariska baren och matplatserna", "en mysig uteservering"). Facebooksidan (senaste inlägg 17 september 2026) säger "Tillfälligt stängt".
+sm06-k041	husaro-0206	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sm06-k042	sandhamn-N044	OK	OK
+sm06-k043	styrso-0192	FEL	Registerradens KÄLLA är ofullständig, men slutkodens KÄLLA-rad belägger texten (hotellets egen sida, nivå 2). Ingen ändring i texten.
+sm06-k044	sandhamn-0420	OK	OK
+sm06-k045	storholmen-0169	OK	OK
+sm06-k046	sandhamn-0181	OK	OK
+sm06-k047	uto-N041	OK	OK
+sm06-k048	mall-N021	OK	OK
+sm06-s01	vaxholm-0504	OK	OK
+sm06-s02	sandhamn-0180	OK	OK
