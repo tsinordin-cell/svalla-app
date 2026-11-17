@@ -1,0 +1,12 @@
+kid	sida	fil:rad	struken text
+sr01-s01	/o/moja/hantverkare	src/app/o/hantverkare-data.ts:378-381	oar: ['moja'] → Delsholmen Entreprenad (och Hellström Marin, Anderssons Båtvarv) listas bland företagen med verksamhet på Möja
+sr01-s02	/o/fjaderholmarna	src/app/o/island-data.ts:1547	Under andra världskriget använde marinen holmarna som ammunitionsdepå
+sr01-s03	/o/branno	src/app/o/island-data.ts (lag3-b.edits.json)	Ön är känd genom Lasse Dahlquists visa om dansen på Brännö brygga, och dansen finns kvar.
+sr01-s04	/o/fjaderholmarna, /o/fjaderholmarna/aktiviteter	src/app/o/island-data.ts:1580	Natursköna promenadstråk runt Stora Fjäderholmen
+sr01-s05	/o/husaro/hamnar, /o/husaro	src/app/o/island-data.ts (harbors[0], husaro.edits.json post 18)	I Vandrarhemsviken, även kallad Båthusviken, finns ett tjugotal platser med el och vatten och toatömning nedanför vandrarhemmet
+sr01-s06	/o/husaro/hamnar, /o/husaro	src/app/o/island-data.ts (harbors[0], husaro.edits.json post 18)	Hamnavgiften i Paradisviken och Vandrarhemsviken betalas i Ragnars kiosk, lanthandeln eller vandrarhemmet
+sr01-s07	/guider (Fjäderholmarna)	src/app/guider/[slug]/guide-content.ts (lag3-b.edits.json)	marinen hade ammunitionsdepå här, och 1940 infördes landstigningsförbud. Bergrum och luftvärnskanoner finns kvar
+sr01-s08	/guider (Lysekil)	src/app/guider/[slug]/guide-content.ts (lag3-b.edits.json)	Enligt Västsverige köpte Calla Curman området och donerade det, och hon har blivit känd som Stångehuvuds räddare.
+sr01-s09	/o/husaro/hamnar, /o/husaro	src/app/o/island-data.ts (harbors[0], husaro.edits.json post 18)	Söder Långholm är en flytbrygga med sopmaja och mulltoa, bara för stäv- och akterförtöjning
+sr01-s10	/o/*/komma-dit (16 öar)	src/lib/batregler.ts:130-138; src/app/o/[slug]/komma-dit/page.tsx:131-132	(båtrutan med allemansrätten och ankring, mall-N040, N041, N023)
+sr01-s11	/o/lysekil	src/app/o/bohuslan-data.ts (lag3-b.edits.json)	Marken köptes och donerades av Calla Curman och ägs i dag av Kungliga Vetenskapsakademien

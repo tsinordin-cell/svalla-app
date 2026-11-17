@@ -1,0 +1,46 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-17)
+sr01-k001	fjaderholmarna-N026	OK	OK
+sr01-k002	utanfor-R002	FEL	RÄTTAS i runda 11: Dalarö: texten säger att vraken "tidigare hade dykförbud". Länsstyrelsens föreskrifter (01FS 2023:15 om Anna Maria och 2023 års föreskrift om Jutholmen) förbjuder dykning i dag, med undantag genom tillstånd. Skriv det som föreskrifterna säger, med Länsstyrelsen som källa. Inte P0 i dag: texten är batchens och inte publicerad (main säger att tillstånd behövs), men rättas före publicering.
+sr01-k003	mall-N047	OK	OK
+sr01-k004	mall-N045	OK	OK
+sr01-k005	vaxholm-0408	OK	OK
+sr01-k006	lag3a-0001	OK	OK
+sr01-k007	lag3a-0007	OK	OK
+sr01-k008	lag3a-N003	FEL	RÄTTAS i runda 11: Furusund: "med bil kör man via Norrtälje" saknar källa; parkeringen stöds av hotellfurusund.se/hotellet, som ska stå i KÄLLA-raden.
+sr01-k009	lag3b-N028	OK	OK
+sr01-k010	fjaderholmarna-N027	OK	OK
+sr01-k011	lag3a-N013	OK	OK
+sr01-k012	fjaderholmarna-N028	OK	OK
+sr01-k013	lag3b-N025	OK	OK
+sr01-k014	lag3a-N006	OK	OK
+sr01-k015	vaxholm-0354	OK	OK
+sr01-k016	lag3b-N029	FEL	RÄTTAS i runda 11: Möja: kommunens folder är från 2018; texten ska ange året och inte stå i presens.
+sr01-k017	lag3a-0002	OK	OK
+sr01-k018	lag3a-0006	FEL	RÄTTAS i runda 11: Singö: "med bil över broarna via Fogdö" saknar källa (Trafikverket eller kommunen), annars stryk.
+sr01-k019	utanfor-N020	OK	OK
+sr01-k020	lag3a-0003	OK	OK
+sr01-k021	lag3a-0015	OK	OK
+sr01-k022	lag3b-N007	OK	OK
+sr01-k023	grinda-0090	OK	OK
+sr01-k024	mall-0239	OK	OK
+sr01-k025	lag3a-N004	FEL	RÄTTAS i runda 11: som k018.
+sr01-k026	utanfor-N019	OK	OK
+sr01-k027	lag3b-N019	OK	OK
+sr01-k028	lag3a-0011	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring.
+sr01-k029	lag3a-0004	FEL	RÄTTAS i runda 11: som k008.
+sr01-k030	lag3b-N032	FEL	Registret inaktuellt: Kontrollanten prövade texten i slutkoden och fann den stödd. Ingen ändring. Klockslaget står bara i en KÄLLA-kommentar.
+sr01-k031	utanfor-N023	FEL	RÄTTAS i runda 11: Stångehuvud: Länsstyrelsen skriver "huvudsyftet"; skriv graden som källan.
+sr01-k032	lag3a-0005	OK	OK
+sr01-k033	lag3b-N008	OK	OK
+sr01-k034	lag3a-0010	OK	OK
+sr01-s01	mall-N048	SAKNAS	OK: strykningen av Hellström Marin från Möja står sig utan källa, eftersom ingen källa placerar företaget på Möja (Redaktörens läsning 2026-11-03 nämnde inte Möja).
+sr01-s02	fjaderholmarna-0157	OK	OK
+sr01-s03	lag3b-N001	OK	OK
+sr01-s04	fjaderholmarna-0183	OK	OK
+sr01-s05	husaro-N020	OK	OK
+sr01-s06	husaro-N021	OK	OK
+sr01-s07	lag3b-N006	OK	OK
+sr01-s08	lag3b-N004	OK	OK
+sr01-s09	husaro-N022	OK	OK
+sr01-s10	mall-N044	OK	OK
+sr01-s11	lag3b-N005	OK	OK
