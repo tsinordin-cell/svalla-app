@@ -145,3 +145,4 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Blidö: avgångsrutans mål är "Blidö Bromskär brygga" (740001021). P0 24 visar att bryggan är avstängd och inga tider. SL-buss 634 trafikerar ön i dag; rutan kan peka på en busshållplats med belagt ID i stället.
 - Aspö: noten säger "Skärgårdsbåt", men Trafikverket beskriver Aspöleden som vägfärja.
 - /api/transit/stop-lookup kan fortfarande hämta resor till Bromskär (mätverktyg, ingen sida länkar dit).
+- Nämdö: "Handlarn i Solvik" och databasens "Nämdö Solviks butik och café" kan vara samma butik och räknas två gånger (sm08-k012).

@@ -1,0 +1,18 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-17)
+sm08-k001	mall-0053	FEL	Inte P0: texten säger att ingen kollektivtrafik går, vilket inte kan stranda någon. Batchens slutkod tar bort storholmen ur ISLAND_NO_TRANSIT, så felet rättas när batchen publiceras. Tillskrivningen till P0-grenen i registret är fel; registret följer slutkoden.
+sm08-k002	mall-0095	OK	OK
+sm08-k003	mall-N012	OK	OK
+sm08-k004	mall-0055	FEL	Registret inaktuellt: rubriken skriver bryggans namn i slutkoden. Ingen ändring.
+sm08-k005	mall-0056	OK	OK
+sm08-k006	mall-0128	FEL	RÄTTAS i rättelserundan: på Utö räknas "Bad & stränder" som en aktivitet nära ön, medan sidan rubricerar den "på och nära". Räkningen och rubriken ska följa samma lägesregel.
+sm08-k007	mall-0135	OK	OK
+sm08-k008	mall-0058	OK	OK
+sm08-k009	mall-N019	OK	OK
+sm08-k010	mall-0083	OK	OK
+sm08-k011	mall-0047	FEL	RÄTTAS i rättelserundan: kategorin "Färjetrafik - övrigt" (Stavsnäs båttaxi) ska ge "· båt" när benet är en båt. Mät alla kategorier i dagens svar.
+sm08-k012	mall-0136	OK	OK
+sm08-k013	mall-0219	OK	OK
+sm08-k014	mall-0226	OK	OK
+sm08-k015	mall-N016	OK	OK
+sm08-k016	mall-0239	FEL	RÄTTAS i rättelserundan: hantverkarlistan säger att uppgifterna kommer från företagens egna webbplatser, men Delsholmen Entreprenad står på Möja efter ett register, och företagets sida nämner bara Stavsuddaområdet. Belägg läget eller ta bort posten från Möja, och rätta källhänvisningen.
+sm08-k017	mall-0046	OK	OK
