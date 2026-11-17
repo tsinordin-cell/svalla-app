@@ -1,0 +1,26 @@
+[
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – BROMSKÄR / RÖDLÖGA\", \"Bromskär (Blidö)\" (läst 2026-09-27)\n      { method: 'Waxholmsbåt', from: 'Furusund', time: '', desc: 'Linje 28 från Furusund angör Bromskär på Blidö.', icon: '⛴' },",
+  "ny": "      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h634.pdf — \"Norrtälje–Blidö\", \"Giltig 17 augusti–12 december 2026\", \"Norrtälje busstation\", \"Furusunds färjeläge\", \"Norrsund (Blidö färjeläge)\", \"Stämmarsund\", \"Bromskärs brygga\" (läst 2026-11-17)\n      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA\", \"Bromskär (Blidö)\", \"Bryggan är avstängd till juni 2027 på grund av renoveringsarbeten.\" (läst 2026-11-17)\n      { method: 'Buss', from: 'Norrtälje busstation', time: '', desc: 'SL-buss 634 från Norrtälje busstation har hållplatser bland annat vid Furusunds färjeläge, Norrsund (Blidö färjeläge), Stämmarsund och Bromskärs brygga. Bryggan Bromskär på Blidö, som ligger på Waxholmsbolagets linje 28 från Furusund, är enligt tabell 28 avstängd till juni 2027 på grund av renoveringsarbeten.', icon: '🚌' },",
+  "rader": [
+   "p25-k001",
+   "p25-k002",
+   "p25-k003",
+   "p25-s001",
+   "p25-s002",
+   "p25-s004"
+  ]
+ },
+ {
+  "fil": "src/app/guider/[slug]/guide-content.ts",
+  "gammal": "<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – BROMSKÄR / RÖDLÖGA\" (läst 2026-09-27) -->\n<ul style=\"font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px\">\n<li><strong>Linje 26</strong> Stockholm (Strömkajen), Vaxholm, Norrsund på Blidö, Norröra, Söderöra, Svartlöga, Rödlöga.</li>\n<li><strong>Linje 28</strong> från Furusund via bland annat Östernäs och Söderöra till Svartlöga, Bromskär och Rödlöga.</li>",
+  "ny": "<!-- KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA\", \"Svartlöga\", \"Bromskär (Blidö)\", \"Bryggan är avstängd till juni 2027 på grund av renoveringsarbeten.\" (läst 2026-11-17) -->\n<ul style=\"font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px\">\n<li><strong>Linje 26</strong> Stockholm (Strömkajen), Vaxholm, Norrsund på Blidö, Norröra, Söderöra, Svartlöga, Rödlöga.</li>\n<li><strong>Linje 28</strong> från Furusund via bland annat Östernäs och Söderöra till Svartlöga och Rödlöga. Bryggan Bromskär på Blidö finns också i tabellen, men enligt tabell 28 är den avstängd till juni 2027 på grund av renoveringsarbeten.</li>",
+  "rader": [
+   "p25-k004",
+   "p25-k005",
+   "p25-s003",
+   "p25-s005"
+  ]
+ }
+]

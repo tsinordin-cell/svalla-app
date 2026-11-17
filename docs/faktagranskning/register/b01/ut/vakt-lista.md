@@ -140,3 +140,8 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 ## Från kompensationen utanför batchen (2026-11-17)
 - Dalarö: öns description och ett tips säger fortfarande att dykaren behöver tillstånd före varje dyk. Enligt Haninge kommun söker dykarrangören tillstånd att förtöja vid bojen. Rättas när Dalarö granskas (kortet "Vrakdykning" är rättat i batchen).
 - Nåttarö: "länets första snorkelled" stöds av Haninge kommun (nivå 1). Mallarnas runda 8 kallade det fel, men det var fel. Kortet är skrivet om efter Länsstyrelsen. Tagline, description och did_you_know står kvar och är inte fel.
+
+## Från P0 24 och P0 25 (2026-11-17)
+- Blidö: avgångsrutans mål är "Blidö Bromskär brygga" (740001021). P0 24 visar att bryggan är avstängd och inga tider. SL-buss 634 trafikerar ön i dag; rutan kan peka på en busshållplats med belagt ID i stället.
+- Aspö: noten säger "Skärgårdsbåt", men Trafikverket beskriver Aspöleden som vägfärja.
+- /api/transit/stop-lookup kan fortfarande hämta resor till Bromskär (mätverktyg, ingen sida länkar dit).
