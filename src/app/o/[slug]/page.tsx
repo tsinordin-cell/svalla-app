@@ -407,7 +407,7 @@ export default async function IslandPage({ params }: Props) {
  { label: 'Karaktär', value: island.facts.character, icon: 'leaf' as const, pk: 'character' },
  { label: 'Säsong', value: island.facts.season, icon: 'sun' as const, pk: 'season' },
  { label: 'Perfekt för', value: island.facts.best_for, icon: 'star' as const, pk: 'best_for' },
- ]).map(f => { const prov = island.facts_provenance?.[f.pk]; return (
+ ]).filter(f => f.value).map(f => { const prov = island.facts_provenance?.[f.pk]; return (
  <div key={f.label} style={{
  background: 'rgba(255,255,255,0.12)',
  borderRadius: 12,

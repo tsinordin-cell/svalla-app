@@ -4437,16 +4437,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html",
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
       "org": "lulea.se",
-      "vad": "Privata hamnar med gästplats … Rödkallen",
+      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.",
       "last": "2026-11-17",
       "myndighet": false
     },
     {
-      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html",
       "org": "lulea.se",
-      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.",
+      "vad": "Privata hamnar med gästplats … Rödkallen",
       "last": "2026-11-17",
       "myndighet": false
     }
@@ -4493,6 +4493,100 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Mal%C3%B6ren",
       "org": "minkarta.lantmateriet.se",
       "vad": "Lantmäteriet Min Karta, sökning \"Malören\" → Malören | Kalix | Natur- och terrängnamn, SWEREF 99 TM 894665/7293978 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "hallands-vadero": [
+    {
+      "url": "https://www.lansstyrelsen.se/download/18.1e9f682716e44cbf6f5cb7d/1618590550398/folder_Hallands%20V%C3%A4der%C3%B6_NR_BushLife_tgh.pdf",
+      "org": "Länsstyrelsen",
+      "vad": "Skären runt ön är den enda plats i Kattegatt där de tre alkorna sillgrissla, tobisgrissla och tordmule häckar.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html",
+      "org": "Länsstyrelsen Skåne",
+      "vad": "vara i sälskyddsområdet (gäller hela året); vara i fågelskyddsområdena mellan 1 april och 15 juli.; Det är tillåtet att ankra längs kusten, med undantag för Sandhamn och i områden som har tillträdesförbud",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Hallands%20V%C3%A4der%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Hallands Väderö\" → Hallands Väderö | Båstad | Natur- och terrängnamn, SWEREF 99 TM 350297/6257682 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "nidingen": [
+    {
+      "url": "https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html",
+      "org": "Länsstyrelsen Halland",
+      "vad": "under tiden den 1 april till den 15 juli årligen landa med båt eller vistas på Nidingen eller inom det omgivande vattenområdet intill ett avstånd av 100 meter från stranden med undantag av öns sydvästra del och intilliggande vattenområde",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Nidingen",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Nidingen\" → Nidingen | Kungsbacka | Natur- och terrängnamn, SWEREF 99 TM 313373/6355451 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "vendelso": [
+    {
+      "url": "https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html",
+      "org": "Länsstyrelsen Halland",
+      "vad": "under tiden 1 april; 31 juli årligen färdas eller uppehålla sig i vattenområdet i Älmö sund och på stränderna kring Älmö sund samt landstiga på del av Knarrskär eller befara vattenområdet inom 100 meter från ön, enligt markeringar på beslutskartan",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vendels%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Vendelsö\" → Vendelsö | Varberg | Natur- och terrängnamn, SWEREF 99 TM 326187/6354678 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.fjordexpress.se/?lang=sv",
+      "org": "fjordexpress.se",
+      "vad": "Stenudden (Åsa) ⇄ Vendelsö; Gottskär ⇄ Vendelsö; Bua ⇄ Vendelsö",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "balgo": [
+    {
+      "url": "https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html",
+      "org": "Länsstyrelsen Halland",
+      "vad": "I Balgöfjorden finns ett bestånd av knubbsäl; Även gråsäl förekommer i området.; Hallands viktigaste lokal för strandpadda",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Balg%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Balgö\" → Balgö | Varberg | Natur- och terrängnamn, SWEREF 99 TM 328824/6339216 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "malon": [
+    {
+      "url": "https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html",
+      "org": "Länsstyrelsen Halland",
+      "vad": "Malön i Kungsbacka kommun är en karg, flack ö som består av gräshedar och stora klapperstensfält.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Mal%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Malön\" → Malön | Kungsbacka | Natur- och terrängnamn, SWEREF 99 TM 317061/6359586 omräknat till WGS 84",
       "last": "2026-11-17",
       "myndighet": true
     }
@@ -11728,4 +11822,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 128
+export const OAR_MED_KALLOR = 133
