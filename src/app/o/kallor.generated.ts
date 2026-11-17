@@ -3694,6 +3694,157 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     }
   ],
+  "graso": [
+    {
+      "url": "https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html",
+      "org": "Länsstyrelsen Uppsala län",
+      "vad": "föreskrift 4 \"Medföra hund som inte är kopplad\"; 5 \"Göra upp eld annat än på särskilt anvisade platser\"; 6 \"Tälta eller förtöja båt utanför anvisade platser mer än ett dygn i följd\"",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-ostra-skargard.html",
+      "org": "Länsstyrelsen Uppsala län",
+      "vad": "medföra ej kopplad hund under tiden 1 mars - 20 augusti; ett flertal djurskyddsområden med landstigningsförbud",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gr%C3%A4s%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Gräsö\" → Gräsö | Östhammar | Trakt, SWEREF 99 TM 694391/6694384 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf",
+      "org": "scb.se",
+      "vad": "Bottenhavets största ö är Gräsö.; tabell 5.1 Gräsö Östhammar 705 636 -69; vid utgången av 2020",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/",
+      "org": "Trafikverket",
+      "vad": "Gräsöleden går mellan Öregrund och Gräsö; Färjeledens längd är 1000 meter och överfartstiden är fem minuter. Resan med vägfärjan är avgiftsfri.; Vecka 25–33 Två färjor trafikerar leden alla dagar; Med vår app Trafikinfo Färjerederiet får du tillgång till tidtabeller och trafikinformation. Du kan även kalla på färjan direkt i appen.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://grasobadenscamping.se/",
+      "org": "grasobadenscamping.se",
+      "vad": "Vi har ca 400 platser för husvagn, husbil eller tält; Vi har stängt för säsongen och öppnar åter i slutet av april -27.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.orskarsfyr.se/hitta-hit.html",
+      "org": "orskarsfyr.se",
+      "vad": "På Gräsö kör du mot Örskärssund, 22 km till vägs ände.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/",
+      "org": "osthammar.se",
+      "vad": "Kattskär ingår i Gräsö gårds naturreservat; Här finns en eldstad med vedförråd … Det är inte tillåtet att elda på andra platser i reservatet.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_811_260817_261212.pdf",
+      "org": "ul.se",
+      "vad": "811 Uppsala - Alunda - Gimo - Östhammar - Öregrund; 17 augusti - 12 december 2026; ändhållplats Öregrund färjeläget",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf",
+      "org": "ul.se",
+      "vad": "854 Öregrund - Norra Gräsö; Helgfri måndag - fredag; A Turen körs endast skoldagar; U … Turen måste förbeställas på tel. 018-617 57 02 senast 3 tim. före avresa",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.upplandsstiftelsen.se/orskar/",
+      "org": "upplandsstiftelsen.se",
+      "vad": "Örskär ligger norr om Gräsö och nås med båt från Örskärssund.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "orskar": [
+    {
+      "url": "https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html",
+      "org": "Länsstyrelsen Uppsala län",
+      "vad": "föreskrift 5 \"Utan markägares tillstånd tälta mer än två dygn\"; 6 \"förtöja eller förankra båt vid samma strand för längre tid än två dygn\"",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96rsk%C3%A4r",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Örskär\" → Örskär | Östhammar | Natur- och terrängnamn, SWEREF 99 TM 686419/6714367 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/",
+      "org": "sjofartsverket.se",
+      "vad": "den nuvarande fyren som tändes 1740 … Den är 36,5 meter hög och ritades av den kände arkitekten Carl Hårleman. Fyren är unik eftersom den helt saknar trappor; Fyren automatiserades 1978 och avbemannades året därpå.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.orskarsfyr.se/dagsturer/",
+      "org": "orskarsfyr.se",
+      "vad": "DAGSTURERNA har slutat gå för denna säsong! Välkomna åter till Maj 2027",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.orskarsfyr.se/l-genheter-stugor/",
+      "org": "orskarsfyr.se",
+      "vad": "På fyrplatsen finns fyra boenden att hyra under perioden 6/5-26/9; fasta vistelser på två till sju dagar",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.orskarsfyr.se/hitta-hit.html",
+      "org": "orskarsfyr.se",
+      "vad": "På Gräsö kör du mot Örskärssund, 22 km till vägs ände.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.orskarsfyr.se/restaurang-och-kiosk.html",
+      "org": "orskarsfyr.se",
+      "vad": "Restaurangen ligger i den gamla fyrmästarbostaden; STÄNGT för säsongen. Öppnar igen i maj 2027.; För att äta oss hos måste man alltid boka.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf",
+      "org": "ul.se",
+      "vad": "Helgfri måndag - fredag",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.upplandsstiftelsen.se/orskar/",
+      "org": "upplandsstiftelsen.se",
+      "vad": "du kan åka med någon av de fasta båtturer som körs av Örskärs fyr … I andra hand går det att boka båttransport med Tommy Mattson som kör turer i mån av tid",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.upplandsstiftelsen.se/orskar-english/",
+      "org": "upplandsstiftelsen.se",
+      "vad": "Nature and Culture Trail, 2.5 km; All destinations: … about 8 km; The trails are marked with blue and yellow ribbons around the trees.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
@@ -10876,4 +11027,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 101
+export const OAR_MED_KALLOR = 103
