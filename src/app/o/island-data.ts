@@ -6128,6 +6128,302 @@ export const ISLANDS: Island[] = [
     related: ['nidingen', 'vendelso'],
     tags: ['halland', 'kungsbacka', 'fornlämningar', 'naturreservat'],
   },
+  // ─── VÄNERN ──────────────────────────────────────────────────
+  {
+    slug: 'djuro-nationalpark',
+    name: 'Djurö nationalpark',
+    region: 'ovriga',
+    regionLabel: 'Vänern',
+    emoji: '🦌',
+    // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "Djurö skärgård ligger i Vänern och består av ett trettiotal öar och skär."; "Ön var bebodd från 1600-talet ända fram till 1969 då den siste fyrvaktaren lämnade ön." (läst 2026-11-17)
+    tagline: 'Nationalpark i Vänern med ett trettiotal öar och skär, där huvudön var bebodd fram till 1969.',
+    seoTitle: 'Djurö nationalpark i Vänern: båt, leder och regler',
+    // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit — "Du kan ta dig till Djurö nationalpark med egen båt eller taxibåt."; "Det finns ingen reguljär båttrafik till Djurö nationalpark" (läst 2026-11-17)
+    seoDescription: 'Till Djurö nationalpark tar du dig med egen båt eller taxibåt. Hamnen, vandringslederna, stugorna och reglerna i nationalparken.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Djur%C3%B6 — Lantmäteriet Min Karta, sökning "Djurö" → Djurö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 411864/6525690 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.8620,
+    lng: 13.4720,
+    description: [
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "Djurö skärgård ligger i Vänern och består av ett trettiotal öar och skär. Huvudön Djurö ligger längst norrut i nationalparken." (läst 2026-11-17)
+      'Djurö nationalpark ligger i Vänern och består av ett trettiotal öar och skär. Huvudön Djurö ligger längst norrut i nationalparken.',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "På huvudön kan du vandra längs slingrande stigar, se den gamla fyren"; "Ön var bebodd från 1600-talet ända fram till 1969 då den siste fyrvaktaren lämnade ön." (läst 2026-11-17)
+      'På huvudön finns stigar och den gamla fyren. Ön var bebodd från 1600-talet fram till 1969, då den siste fyrvaktaren lämnade ön.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "En mindre stam dovhjort finns kvar sedan den tiden." (läst 2026-11-17)
+      'En mindre stam dovhjort finns kvar.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "Bildat: 1991"; "Areal: cirka 2 358 hektar"; "Kommun: Mariestad" (läst 2026-11-17)
+      'Nationalparken bildades 1991, är cirka 2 358 hektar och ligger i Mariestads kommun.',
+    ],
+    facts: {
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "består av ett trettiotal öar och skär" (läst 2026-11-17)
+      character: 'Nationalpark med ett trettiotal öar och skär',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "passar bra för fågelskådning"; "ett välkänt och populärt utflyksmål för båtlivet i Vänern" (läst 2026-11-17)
+      best_for: 'Båtfolk, vandring och fågelskådning',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "Malbergshamn är öarnas bästa hamn och härifrån utgår tre vandringsleder som tar besökaren runt på huvudön." (läst 2026-11-17)
+      { icon: '🥾', name: 'Tre vandringsleder', desc: 'Från Malbergs hamn utgår tre vandringsleder runt huvudön.' },
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "se den gamla fyren" (läst 2026-11-17)
+      { icon: '🗼', name: 'Den gamla fyren', desc: 'Fyren står på huvudön Djurö.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "Husen som hyrs ut heter Djuröstugan och Fyrvaktarstugan. Dessa hyrs ut dygnsvis eller veckovis." (läst 2026-11-17)
+      { name: 'Djuröstugan och Fyrvaktarstugan', type: 'Stuga', desc: 'Två hus i nationalparken hyrs ut dygnsvis eller veckovis.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit — "Det finns ingen reguljär båttrafik till Djurö nationalpark men det finns flera aktörer som kör taxibåt till parken."; "Från Lidköping"; "Från Mariestad"; "Från Gullspång"; "Från Säffle" (läst 2026-11-17)
+      { method: 'Taxibåt', from: 'Lidköping, Mariestad, Gullspång eller Säffle', desc: 'Det finns ingen reguljär båttrafik. Taxibåt kan beställas från aktörer i Lidköping, Mariestad, Gullspång och Säffle.', icon: '🚤' },
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit — "Malbergs hamn är nationalparkens huvudentré"; "Nationalparken östra sidan är grund och är därför inte lämplig att lägga till vid."; "Båtfärden till nationalparken är väldigt väderberoende." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Vänern', desc: 'Malbergs hamn är nationalparkens huvudentré. Den östra sidan är grund och passar inte att lägga till vid. Båtfärden är mycket väderberoende.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "Här samt på Tribergs ö, Långön och Dunderkarlarna finns toaletter, sopmajor och eldstäder." (läst 2026-11-17)
+      'Vid Malbergs hamn och på Tribergs ö, Långön och Dunderkarlarna finns toaletter, sopmajor och eldstäder.',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit — "På öst- och sydsidan finns fågelskyddsområden. Där är det tillträdesförbud från den 1 april till den 31 juli." (läst 2026-11-17)
+      'I fågelskyddsområdena på östra och södra sidan är det tillträdesförbud 1 april till 31 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "framföra motorbåt eller annan motordriven farkost med högre hastighet än 7 knop närmare stranden än 100 meter"; "framföra vattenskoter" (läst 2026-11-17)
+      'Närmare stranden än 100 meter får du inte köra motorbåt fortare än 7 knop. Vattenskoter är förbjuden.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "förtöja båt längre tid än två dygn i följd vid samma plats"; "tälta eller sätta upp vindskydd eller liknande anordning"; "inom det område på gräsmarken mitt på Djurö som har markerats på karta"; "i övrigt inom nationalparken fler än två nätter i följd på samma plats" (läst 2026-11-17)
+      'Du får inte förtöja båt längre än två dygn i följd på samma plats eller tälta fler än två nätter i följd på samma plats. Du får inte tälta inom det markerade området på gräsmarken mitt på Djurö.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "elda, förutom på anvisad plats. Användning av grill och friluftskök är dock tillåten"; "medföra okopplad hund eller annat husdjur som inte är kopplat"; "fiska, förutom med handredskap. Trollingfiske är förbjudet." (läst 2026-11-17)
+      'Du får bara elda på anvisad plats, men grill och friluftskök är tillåtna. Hunden ska vara kopplad. Du får bara fiska med handredskap, och trollingfiske är förbjudet.',
+    ],
+    related: ['brommo', 'luro', 'kallandso'],
+    tags: ['vänern', 'mariestad', 'nationalpark', 'fyr'],
+  },
+  {
+    slug: 'brommo',
+    name: 'Brommö',
+    region: 'ovriga',
+    regionLabel: 'Vänern',
+    emoji: '🏖️',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Brommö ligger utanför Torsö, norr om Mariestad."; "På norra ön finns härliga sandstränder."; "Öarna har flera stigar och markerade leder som utgår från Brommös färjeläge."; "Västra Brommö, grannöarna Hovden, Bockön, Lindökroken och Klypholmen bildar tillsammans Brommö skärgårds naturreservat." (läst 2026-11-17)
+    tagline: 'Ö utanför Torsö norr om Mariestad, med sandstränder och leder. Västra Brommö ingår i ett naturreservat.',
+    seoTitle: 'Brommö i Vänern: färja, stränder och regler',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Du tar dig dit via Torsö och en mindre färja till Brommö eller med egen båt. Parkera bilen i Laxhall, färjan tar endast cyklister och gående." (läst 2026-11-17)
+    seoDescription: 'Till Brommö tar du dig med en mindre färja via Torsö eller med egen båt. Stränderna, lederna och reglerna i Brommö skärgårds naturreservat.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Bromm%C3%B6 — Lantmäteriet Min Karta, sökning "Brommö" → Brommö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 424077/6520497 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.8177,
+    lng: 13.6854,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Brommö ligger utanför Torsö, norr om Mariestad."; "Kommun: Mariestad" (läst 2026-11-17)
+      'Brommö ligger utanför Torsö, norr om Mariestad, i Mariestads kommun.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Västra Brommö, grannöarna Hovden, Bockön, Lindökroken och Klypholmen bildar tillsammans Brommö skärgårds naturreservat." (läst 2026-11-17)
+      'Västra Brommö, Hovden, Bockön, Lindökroken och Klypholmen bildar tillsammans Brommö skärgårds naturreservat.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "På norra ön finns härliga sandstränder."; "Mellan Brommö och grannön Hovden finns en grund, sandig passage som gör det möjligt att vada mellan öarna." (läst 2026-11-17)
+      'På norra ön finns sandstränder, och mellan Brommö och Hovden kan du vada över en grund, sandig passage.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Bildat: 1987"; "Areal: cirka 950 hektar" (läst 2026-11-17)
+      'Naturreservatet bildades 1987 och är cirka 950 hektar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Västra Brommö, grannöarna Hovden, Bockön, Lindökroken och Klypholmen bildar tillsammans Brommö skärgårds naturreservat." (läst 2026-11-17)
+      character: 'Ö som delvis ingår i naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Du kan hyra en cykel och ta dig runt."; "flera stigar och markerade leder" (läst 2026-11-17)
+      best_for: 'Bad, cykel och vandring',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Öarna har flera stigar och markerade leder som utgår från Brommös färjeläge." (läst 2026-11-17)
+      { icon: '🥾', name: 'Leder från färjeläget', desc: 'Flera stigar och markerade leder utgår från färjeläget.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Du kan hyra en cykel och ta dig runt." (läst 2026-11-17)
+      { icon: '🚲', name: 'Cykel', desc: 'Du kan hyra en cykel och ta dig runt.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "På norra ön finns härliga sandstränder." (läst 2026-11-17)
+      { icon: '🏖️', name: 'Sandstränder', desc: 'Sandstränder på norra ön.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Du tar dig dit via Torsö och en mindre färja till Brommö eller med egen båt. Parkera bilen i Laxhall, färjan tar endast cyklister och gående." (läst 2026-11-17)
+      { method: 'Färja', from: 'Torsö', desc: 'Du tar dig dit via Torsö och en mindre färja till Brommö. Parkera bilen i Laxhall, eftersom färjan bara tar cyklister och gående.', icon: '⛴️' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Östsidan av Lindökroken har en fin naturhamn med toaletter och sopstation." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Vänern', desc: 'Östsidan av Lindökroken har en naturhamn med toaletter och sopstation.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Toaletter, eld- och rastplatser finns på flera ställen." (läst 2026-11-17)
+      'Toaletter, eldplatser och rastplatser finns på flera ställen.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Det finns fem fågelskyddsområden med tillträdesförbud"; "titta på skyltarna vad som gäller i området"; "färdas eller uppehålla sig inom de områden som angivits på bifogad karta under tiden 1 april-31 juli" (läst 2026-11-17)
+      'Det finns fem fågelskyddsområden. 1 april till 31 juli får du varken färdas eller uppehålla dig inom de områden som är markerade på kartan i reservatsbeslutet. Titta på skyltarna på plats.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "elda på annat än av naturvårdsförvaltaren iordningställda eldstäder"; "förtöja båt mer än två dygn i följd på samma plats"; "tälta mer än två dygn i följd på samma plats"; "medföra okopplad hund på land" (läst 2026-11-17)
+      'Du får bara elda på de eldstäder som förvaltaren har iordningställt. Du får inte förtöja båt eller tälta mer än två dygn i följd på samma plats. Hunden ska vara kopplad på land.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "På sydvästra delen av Hovden får du varken plocka eller kasta sten." (läst 2026-11-17)
+      'På sydvästra Hovden får du inte plocka eller kasta sten.',
+    ],
+    related: ['onso', 'djuro-nationalpark'],
+    tags: ['vänern', 'mariestad', 'stränder', 'naturreservat'],
+  },
+  {
+    slug: 'luro',
+    name: 'Lurö',
+    region: 'ovriga',
+    regionLabel: 'Vänern',
+    emoji: '🗼',
+    // KÄLLA: https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html — "spännande platser som klosterruinen, Stånguddens fyr" (läst 2026-11-17)
+    tagline: 'Ö i Lurö skärgård mitt i Vänern, med vandringsleder, klosterruinen och Stånguddens fyr.',
+    seoTitle: 'Lurö i Vänern: båten från Ekenäs och regler',
+    // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "På sommaren går turbåtar från Ekenäs till ön" (läst 2026-11-17)
+    seoDescription: 'På sommaren går turbåtar från Ekenäs till Lurö. Vandringslederna, sevärdheterna och reglerna i Lurö skärgårds naturreservat.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lur%C3%B6 — Lantmäteriet Min Karta, sökning "Lurö" → Lurön | Säffle | Natur- och terrängnamn, SWEREF 99 TM 398477/6518156 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7914,
+    lng: 13.2434,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "Lurö skärgård ligger i Värmlands län, Säffle kommun, mitt i Vänern rakt söder om Värmlandsnä och cirka 30 kilometer söder om Säffle." (läst 2026-11-17)
+      'Lurö skärgård ligger i Säffle kommun, mitt i Vänern, cirka 30 kilometer söder om Säffle.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "På Lurö (som endast i vissa delar ingår i naturreservatet) finns gott om vandringsleder och sevärdheter." (läst 2026-11-17)
+      // KÄLLA: https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html — "spännande platser som klosterruinen, Stånguddens fyr" (läst 2026-11-17)
+      'På Lurö finns gott om vandringsleder och sevärdheter, bland annat klosterruinen och Stånguddens fyr. Bara vissa delar av Lurö ingår i naturreservatet.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "Längre norrut i skärgården, på ön Vithall, finns ett gammalt skärgårdstorp bevarat och står öppet som museum" (läst 2026-11-17)
+      'På ön Vithall, längre norrut i skärgården, finns ett gammalt skärgårdstorp som står öppet som museum.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "Bildat: 1967"; "Storlek: cirka 15 000 hektar varav 800 hektar land fördelat på cirka 250 öar" (läst 2026-11-17)
+      'Lurö skärgårds naturreservat bildades 1967 och är cirka 15 000 hektar, varav 800 hektar land fördelat på cirka 250 öar.',
+    ],
+    facts: {
+      // KÄLLA: https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html — "Luröbåten tar cirka 1 timme." (läst 2026-11-17)
+      travel_time: 'Luröbåten från Ekenäs cirka 1 timme',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "Lurö (som endast i vissa delar ingår i naturreservatet)" (läst 2026-11-17)
+      character: 'Ö som delvis ingår i naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "På sommaren går turbåtar från Ekenäs till ön" (läst 2026-11-17)
+      season: 'Turbåt från Ekenäs sommartid',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "finns gott om vandringsleder och sevärdheter" (läst 2026-11-17)
+      best_for: 'Vandring, klosterruinen och fyren',
+    },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "finns gott om vandringsleder och sevärdheter" (läst 2026-11-17)
+      { icon: '🥾', name: 'Vandringsleder', desc: 'På Lurö finns gott om vandringsleder.' },
+      // KÄLLA: https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html — "spännande platser som klosterruinen, Stånguddens fyr" (läst 2026-11-17)
+      { icon: '🏛️', name: 'Klosterruinen och Stånguddens fyr', desc: 'Två av sevärdheterna på ön.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "Området nås sommartid endast med båt."; "På sommaren går turbåtar från Ekenäs till ön" (läst 2026-11-17)
+      // KÄLLA: https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html — "Resan till Lurö startar vid Ekenäs gästhamn, belägen på Värmlandsnäs."; "Luröbåten lägger till på västra sidan av Husön vid gården Stenstaka"; "Därefter går båten vidare till Basteviken, Lurös huvudbrygga."; "Luröbåten tar cirka 1 timme."; "Tänk på att boka din resa i förväg!" (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Ekenäs på Värmlandsnäs', desc: 'Sommartid når du området bara med båt. Enligt Säffle kommun startar Luröbåten vid Ekenäs gästhamn, lägger till vid Stenstaka på Husön och går vidare till Basteviken, som är Lurös huvudbrygga. Turen tar cirka en timme. Boka resan i förväg.', icon: '⛴️' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "bryggan vid Stenstaka (toalett, gästhamn, restaurang, vandrarhem och sopstation)" (läst 2026-11-17)
+      'Vid bryggan vid Stenstaka finns toalett, gästhamn och sopstation.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "under tiden 1 april-31 juli landstiga eller varaktigt vistas i närliggande vattenområde på öar och delområden som är utpekade som fågelskyddsområden. Det förbjudna vattenområdet sträcker sig i normalfallet 100 m ut från ön." (läst 2026-11-17)
+      '1 april till 31 juli får du inte gå i land på öar och delområden som är fågelskyddsområden, och inte heller uppehålla dig varaktigt i vattnet runt dem. Det förbjudna vattenområdet sträcker sig normalt 100 meter ut från ön.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "på land medföra ej kopplad hund eller annat lösgående husdjur"; "På Sunnervassen, Ärnön, Gunnarsholmen och Vithall betas markerna återigen av nötdjur och får. Tänk på att inte ta med hund på öarna där det finns betesdjur." (läst 2026-11-17)
+      'Hunden ska vara kopplad på land. Länsstyrelsen ber dig också att inte ta med hund till öarna med betesdjur: Sunnervassen, Ärnön, Gunnarsholmen och Vithall.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "tälta mer än två (2) dygn i sträck på samma plats"; "förtöja båt eller husbåt mer än två (2) dygn i sträck på samma plats"; "göra upp öppen eld annat än på av reservatsförvaltaren anvisad och särskilt iordningställd plats"; "Medhavda grillar och friluftskök får dock användas även på annan plats." (läst 2026-11-17)
+      'I reservatet får du inte tälta eller förtöja mer än två dygn i sträck på samma plats. Öppen eld får bara göras på anvisad plats, men egen grill och friluftskök är tillåtna.',
+    ],
+    related: ['djuro-nationalpark', 'kallandso'],
+    tags: ['vänern', 'säffle', 'fyr', 'naturreservat'],
+  },
+  {
+    slug: 'kallandso',
+    name: 'Kållandsö',
+    region: 'ovriga',
+    regionLabel: 'Vänern',
+    emoji: '🚲',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Alldeles intill Läckö slott ligger naturum Vänerskärgården."; "Det finns också flera fina cykelvägar på Kållandsö." (läst 2026-11-17)
+    tagline: 'Ö i Lidköpings kommun med naturum Vänerskärgården intill Läckö slott, cykelvägar och kajak att hyra.',
+    seoTitle: 'Kållandsö: buss, naturum, kajak och regler',
+    // KÄLLA: https://lidkoping.se/download/18.66fe5e7b19e975a9fd9751e/1781522932700/F%C3%96P%20k%C3%A5llands%C3%B6_HELA.pdf — "Området trafikeras av linje 132 som kör från Lidköping"; "med sluthållplatserna Spikens fiskeläge och Läckö slott" (läst 2026-11-17)
+    seoDescription: 'Buss 132 går från Lidköping till Läckö slott och Spikens fiskeläge. Naturum, cykelvägar, kajak och reglerna i Kållands skärgårdar.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=K%C3%A5llands%C3%B6 — Lantmäteriet Min Karta, sökning "Kållandsö" → Kållandsö | Lidköping | Natur- och terrängnamn, SWEREF 99 TM 393785/6503936 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.6626,
+    lng: 13.1690,
+    description: [
+      // KÄLLA: https://lidkoping.se/download/18.66fe5e7b19e975a9fd9751e/1781522932700/F%C3%96P%20k%C3%A5llands%C3%B6_HELA.pdf — "blev Kållandsö en enda sammanhållen ö" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Kommun: Lidköping"; "Skärgården sträcker sig väster- och norrut från Kållandsö" (läst 2026-11-17)
+      'Kållandsö är en ö i Lidköpings kommun. Väster och norr om ön ligger Kållands skärgårdar.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Alldeles intill Läckö slott ligger naturum Vänerskärgården."; "Fiskehamnen i Spiken, en av Europas största insjöfiskehamnar" (läst 2026-11-17)
+      'Intill Läckö slott ligger naturum Vänerskärgården. Fiskehamnen i Spiken är en av Europas största insjöfiskehamnar.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Det finns också flera fina cykelvägar på Kållandsö."; "möjlighet att hyra kajak vid Läckö och Naven" (läst 2026-11-17)
+      'På Kållandsö finns flera cykelvägar, och du kan hyra kajak vid Läckö och Naven.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Det finns också flera fina cykelvägar på Kållandsö."; "Skärgården sträcker sig väster- och norrut från Kållandsö" (läst 2026-11-17)
+      character: 'Ö med cykelvägar, intill Kållands skärgårdar',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "möjlighet att hyra kajak vid Läckö och Naven"; "naturum Vänerskärgården" (läst 2026-11-17)
+      best_for: 'Cykling, kajak och naturum',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Alldeles intill Läckö slott ligger naturum Vänerskärgården. Här finns utställningar och information om innanhavet Vänern" (läst 2026-11-17)
+      { icon: '🏛️', name: 'Naturum Vänerskärgården', desc: 'Utställningar och information om Vänern, intill Läckö slott.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "möjlighet att hyra kajak vid Läckö och Naven" (läst 2026-11-17)
+      { icon: '🛶', name: 'Kajak', desc: 'Du kan hyra kajak vid Läckö och Naven.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Från Roparudden, vid Läckö slott, utgår en tre kilometer lång led." (läst 2026-11-17)
+      { icon: '🥾', name: 'Leden från Roparudden', desc: 'Från Roparudden vid Läckö slott utgår en tre kilometer lång led.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://lidkoping.se/download/18.66fe5e7b19e975a9fd9751e/1781522932700/F%C3%96P%20k%C3%A5llands%C3%B6_HELA.pdf — "Området trafikeras av linje 132 som kör från Lidköping"; "med sluthållplatserna Spikens fiskeläge och Läckö slott" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Du kan även resa med närtrafik när inte bussen går." (läst 2026-11-17)
+      { method: 'Buss', from: 'Lidköping', desc: 'Buss 132 går från Lidköping till Läckö slott och Spikens fiskeläge. När bussen inte går finns närtrafik.', icon: '🚌' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Parkeringsplats finns vid Läckö slott, vid fiskehamnen Spiken" (läst 2026-11-17)
+      { method: 'Bil', from: 'Läckö slott eller Spiken', desc: 'Parkering finns bland annat vid Läckö slott och vid fiskehamnen Spiken.', icon: '🚗' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Cirka 15 områden som är särskilt känsliga för störningar är avsatta som fågelskyddsområden."; "färdas eller uppehålla sig inom det område som angivits på bifogad karta årligen under tiden 1 april"; "31juli." (läst 2026-11-17)
+      'I Kållands skärgårdar är cirka 15 områden fågelskyddsområden. Inom de områden som är markerade på kartan får du varken färdas eller uppehålla dig 1 april till 31 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "framföra motorbåt med högre hastighet än 7 knop inom farlederna Flakesjön - Klitt, Klitt - Naven och Klitt - Järna" (läst 2026-11-17)
+      'I farlederna Flakesjön till Klitt, Klitt till Naven och Klitt till Järna får du inte köra motorbåt fortare än 7 knop.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "förtöja båt mer än två dygn i följd på samma plats"; "tälta på samma plats mer än två dygn i följd"; "medföra okopplad hund på land" (läst 2026-11-17)
+      'I Kållands skärgårdar får du inte förtöja eller tälta mer än två dygn i följd på samma plats. Hunden ska vara kopplad på land.',
+    ],
+    related: ['luro', 'djuro-nationalpark'],
+    tags: ['vänern', 'lidköping', 'cykel', 'kajak'],
+  },
+  {
+    slug: 'onso',
+    name: 'Onsö',
+    region: 'ovriga',
+    regionLabel: 'Vänern',
+    emoji: '🌳',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Onsö ligger i Vänern, strax väster om Dillö."; "med fina naturhamnar och platser för bad och avkoppling" (läst 2026-11-17)
+    tagline: 'Naturreservat i Vänern strax väster om Dillö, med naturhamnar, badplatser och hagmarker.',
+    seoTitle: 'Onsö i Vänern: naturhamnar och regler',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Du kan bara komma hit med egen båt." (läst 2026-11-17)
+    seoDescription: 'Till Onsö kommer du bara med egen båt. Naturhamnarna, hamnen på Dillö och reglerna i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ons%C3%B6 — Lantmäteriet Min Karta, sökning "Onsö" → Onsö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 423731/6511151 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7337,
+    lng: 13.6826,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Onsö ligger i Vänern, strax väster om Dillö."; "Kommun: Mariestad" (läst 2026-11-17)
+      'Onsö ligger i Vänern, strax väster om Dillö, i Mariestads kommun.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "med fina naturhamnar och platser för bad och avkoppling"; "På Onsöns södra del finns också fantastiskt vackra och vidsträckta hagmarker och öppna strandängar." (läst 2026-11-17)
+      'Ön har naturhamnar och platser för bad. På södra Onsö finns hagmarker och öppna strandängar.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Bildat: 2005"; "Areal: cirka 813 hektar" (läst 2026-11-17)
+      'Naturreservatet bildades 2005 och är cirka 813 hektar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "med fina naturhamnar och platser för bad och avkoppling"; "hagmarker och öppna strandängar" (läst 2026-11-17)
+      character: 'Naturreservat med naturhamnar och hagmarker',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "värdefullt utflyktsområde för båtburna besökare"; "lägga i kajaker eller en mindre båt" (läst 2026-11-17)
+      best_for: 'Båtfolk och kajak',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Du kan bara komma hit med egen båt."; "I reservatet ingår också en liten hamn på Dillö där besökarna kan lägga i kajaker eller en mindre båt." (läst 2026-11-17)
+      { method: 'Egen båt eller kajak', from: 'Vänern eller hamnen på Dillö', desc: 'Du kan bara komma hit med egen båt. I reservatet ingår en liten hamn på Dillö, där du kan sjösätta kajak eller en mindre båt.', icon: '🛶' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Ha hund okopplad under tiden 1 mars"; "30 september." (läst 2026-11-17)
+      'Hunden ska vara kopplad 1 mars till 30 september.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Under tiden 1 april till 31 juli vistas inom det område kring Yttre Armholmarna som markerats med tillträdesförbud" (läst 2026-11-17)
+      '1 april till 31 juli får du inte vistas inom det markerade området kring Yttre Armholmarna.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Förtöja båt eller annan farkost mer än två nätter i sträck på samma plats."; "Elda annat än i medhavda grillar, gasol- och spritkök eller liknande." (läst 2026-11-17)
+      'Du får inte förtöja mer än två nätter i sträck på samma plats. Du får bara elda i medhavd grill, gasolkök, spritkök eller liknande.',
+    ],
+    related: ['brommo', 'djuro-nationalpark'],
+    tags: ['vänern', 'mariestad', 'naturreservat'],
+  },
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',
