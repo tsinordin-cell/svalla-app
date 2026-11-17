@@ -4575,6 +4575,231 @@ export const ISLANDS: Island[] = [
       },
     },
   },
+  // ─── ÄMTÖ ────────────────────────────────────────────────────
+  {
+    slug: 'amto',
+    name: 'Ämtö',
+    region: 'ovriga',
+    regionLabel: 'Östergötlands skärgård',
+    emoji: '🌲',
+    // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Ämtö är en av de största öarna i Gryts skärgård."; "sammanlagt finns över 9 kilometer välskyltad vandringsled i reservatet" (läst 2026-11-17)
+    tagline: 'En av de största öarna i Gryts skärgård. Naturreservat med över 9 kilometer skyltad vandringsled, grillplatser och fritt fiske med handredskap.',
+    seoTitle: 'Ämtö: naturreservat i Gryts skärgård',
+    // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Ämtö är en av de största öarna i Gryts skärgård." (läst 2026-11-17)
+    seoDescription: 'Ämtö är en av de största öarna i Gryts skärgård. Så tar du dig dit med skärgårdstrafiken, och vad du kan göra i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%84mt%C3%B6 — Lantmäteriet Min Karta, sökning "Ämtö" → Ämtö | Valdemarsvik | Trakt, SWEREF 99 TM 610063/6458464 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.2535,
+    lng: 16.8754,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Ämtö är en av de största öarna i Gryts skärgård."; "Storlek: 457,5 hektar"; "Skyddsår: 1975"; "Markägare: Valdemarsviks kommun" (läst 2026-11-17)
+      'Ämtö är en av de största öarna i Gryts skärgård. Ämtö naturreservat bildades 1975 och är 457,5 hektar. Valdemarsviks kommun äger marken i reservatet.',
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "sammanlagt finns över 9 kilometer välskyltad vandringsled i reservatet"; "flera grillplatser och rastbord och gott om naturliga badmöjligheter" (läst 2026-11-17)
+      'I reservatet finns över 9 kilometer skyltad vandringsled, flera grillplatser och rastbord och gott om naturliga badmöjligheter.',
+    ],
+    facts: {
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Från Getterö mot Ämtö" (läst 2026-11-17)
+      travel_time: 'Skärgårdstrafiken linje 776 från Getterö',
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Skyddsår: 1975" (läst 2026-11-17)
+      character: 'Naturreservat med vandringsleder och betesmarker',
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Gäller från 1 november 2026 till 13 juni 2027." (läst 2026-11-17)
+      season: 'Tidtabell för linje 776 gäller 1 november 2026 till 13 juni 2027',
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "välskyltad vandringsled"; "Fisket är fritt om du använder handredskap." (läst 2026-11-17)
+      best_for: 'Vandring, bad och fiske',
+    },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "sammanlagt finns över 9 kilometer välskyltad vandringsled i reservatet" (läst 2026-11-17)
+      { icon: '🚶', name: 'Vandring', desc: 'Över 9 kilometer skyltad vandringsled i reservatet.' },
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "flera grillplatser och rastbord och gott om naturliga badmöjligheter" (läst 2026-11-17)
+      { icon: '🔥', name: 'Grillplatser och bad', desc: 'Flera grillplatser och rastbord och gott om naturliga badmöjligheter.' },
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Fisket är fritt om du använder handredskap." (läst 2026-11-17)
+      { icon: '🎣', name: 'Fiske', desc: 'Fisket är fritt med handredskap.' },
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Idag betas återigen stora delar av ön"; "Betet pågår under maj till oktober." (läst 2026-11-17)
+      { icon: '🌾', name: 'Betesmarker', desc: 'Stora delar av ön betas från maj till oktober.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Från Getterö mot Ämtö"; "Gäller från 1 november 2026 till 13 juni 2027."; "Avgångar lördag: Inga avgångar." (läst 2026-11-17)
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik — "Beställ senast klockan 18:00 dagen innan"; "Skärgårdstrafiken är öppen för alla, men i första hand för dig som bor på öarna." (läst 2026-11-17)
+      { method: 'Skärgårdstrafik', from: 'Getterö', desc: 'Östgötatrafikens linje 776 går från Getterö till Ämtö. Tidtabellen gäller 1 november 2026 till 13 juni 2027, och på lördagar går inga turer. Resan bokas senast klockan 18.00 dagen innan. Skärgårdstrafiken är öppen för alla, men i första hand för dem som bor på öarna.', icon: '⛴', url: 'https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik' },
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Långholmsvikens hamnbrygga (Ämtö stugby, brygga 2) trafikeras av Skärgårdstrafiken." (läst 2026-11-17)
+      { method: 'Brygga', from: 'Långholmsviken', desc: 'Skärgårdstrafiken går till Långholmsvikens hamnbrygga (Ämtö stugby, brygga 2), som är reservatets huvudentré.', icon: '⚓' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik — "Beställ senast klockan 18:00 dagen innan" (läst 2026-11-17)
+      'Boka båten senast klockan 18.00 dagen innan.',
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Samtliga regler för reservatet finner du i beslutet." (läst 2026-11-17)
+      'Reglerna för reservatet står i Länsstyrelsens beslut, som du hittar på reservatets sida.',
+    ],
+    related: ['harstena'],
+    tags: ['östergötland', 'gryt', 'valdemarsvik', 'naturreservat', 'vandring'],
+  },
+  // ─── HARSTENA ────────────────────────────────────────────────
+  {
+    slug: 'harstena',
+    name: 'Harstena',
+    region: 'ovriga',
+    regionLabel: 'Östergötlands skärgård',
+    emoji: '🐟',
+    // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "en arkipelag med ett 70-tal öar"; "Det gamla trankokeriet finns kvar på Harstena och är skyddat som byggnadsminne." (publicerad 2022-01-20, läst 2026-11-17)
+    tagline: 'Ett 70-tal öar i Gryts skärgård, med en gammal by och ett trankokeri som är byggnadsminne.',
+    seoTitle: 'Harstena: båt från Fyrudden och byn på ön',
+    // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "Harstena ligger nästan 13 km (7 M) nordost om Fyrudden." (läst 2026-11-17)
+    seoDescription: 'Harstena ligger nästan 13 kilometer nordost om Fyrudden. Så tar du dig dit med skärgårdstrafiken, och vad som finns på ön.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Harstena — Lantmäteriet Min Karta, sökning "Harstena" → Harstena | Valdemarsvik | Trakt, SWEREF 99 TM 617759/6458610 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.2528,
+    lng: 17.0066,
+    description: [
+      // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "Harstena består av en arkipelag med ett 70-tal öar. Huvudön är drygt 150 hektar stor."; "Harstena ligger nästan 13 km (7 M) nordost om Fyrudden." (publicerad 2022-01-20, läst 2026-11-17)
+      'Harstena är en arkipelag med ett 70-tal öar. Huvudön är drygt 150 hektar. Harstena ligger nästan 13 kilometer nordost om Fyrudden.',
+      // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "På Harstena är byn fortfarande oskiftad med bevarad karaktär."; "Det gamla trankokeriet finns kvar på Harstena och är skyddat som byggnadsminne." (publicerad 2022-01-20, läst 2026-11-17)
+      'Valdemarsviks kommun skrev 2022 att byn på Harstena fortfarande är oskiftad. Det gamla trankokeriet finns kvar och är skyddat som byggnadsminne.',
+    ],
+    facts: {
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Från Fyrudden mot Harstena" (läst 2026-11-17)
+      travel_time: 'Skärgårdstrafiken linje 776 från Fyrudden',
+      // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "en arkipelag med ett 70-tal öar" (läst 2026-11-17)
+      character: 'Ögrupp med en gammal by',
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Gäller från 1 november 2026 till 13 juni 2027." (läst 2026-11-17)
+      season: 'Tidtabell för linje 776 gäller 1 november 2026 till 13 juni 2027',
+      // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "Det gamla trankokeriet finns kvar på Harstena och är skyddat som byggnadsminne." (läst 2026-11-17)
+      best_for: 'Kulturmiljö och skärgårdsby',
+    },
+    activities: [
+      // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "Det gamla trankokeriet finns kvar på Harstena och är skyddat som byggnadsminne." (läst 2026-11-17)
+      { icon: '🏛', name: 'Trankokeriet', desc: 'Det gamla trankokeriet finns kvar och är skyddat som byggnadsminne.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Från Fyrudden mot Harstena"; "Gäller från 1 november 2026 till 13 juni 2027."; "Avgångar lördag: Inga avgångar." (läst 2026-11-17)
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik — "Beställ senast klockan 18:00 dagen innan"; "Skärgårdstrafiken är öppen för alla, men i första hand för dig som bor på öarna." (läst 2026-11-17)
+      { method: 'Skärgårdstrafik', from: 'Fyrudden', desc: 'Östgötatrafikens linje 776 går från Fyrudden till Harstena. Tidtabellen gäller 1 november 2026 till 13 juni 2027, och på lördagar går inga turer. Resan bokas senast klockan 18.00 dagen innan. Skärgårdstrafiken är öppen för alla, men i första hand för dem som bor på öarna.', icon: '⛴', url: 'https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik' },
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/bryggor-som-baten-gar-till — "Harstena, postbryggan (Turistbrygga) 3"; "Harstena södra 68"; "Harstena, Hundhålet 109" (läst 2026-11-17)
+      { method: 'Bryggor', from: 'Harstena', desc: 'På Harstena kan du beställa resa till tre bryggor: postbryggan (turistbryggan), Harstena södra och Hundhålet.', icon: '⚓', url: 'https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/bryggor-som-baten-gar-till' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik — "Beställ senast klockan 18:00 dagen innan" (läst 2026-11-17)
+      'Boka båten senast klockan 18.00 dagen innan. Enligt tidtabellen som gäller till 13 juni 2027 går inga turer på lördagar.',
+    ],
+    related: ['amto'],
+    tags: ['östergötland', 'gryt', 'valdemarsvik', 'kulturmiljö', 'fiskeläge'],
+  },
+  // ─── KOPPARHOLMARNA ──────────────────────────────────────────
+  {
+    slug: 'kopparholmarna',
+    name: 'Kopparholmarna',
+    region: 'ovriga',
+    regionLabel: 'Östergötlands skärgård',
+    emoji: '🏖',
+    // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Ett drygt tiotal öar ingår i reservatet varav Kopparholmarna är de två största."; "Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
+    tagline: 'Naturreservat utanför Arkösund med vindskydd, bad och en natur- och vrakutställning. Sommartid går turbåtar från piren.',
+    seoTitle: 'Kopparholmarna: naturreservat vid Arkösund',
+    // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Åk länsväg 209 österut till Arkösund. Parkering finns vid affären. Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
+    seoDescription: 'Kopparholmarna är ett naturreservat med vindskydd och bad. Sommartid går turbåtar från piren i Arkösund. Här är reglerna i reservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kopparholmarnas%20naturreservat — Lantmäteriet Min Karta, sökning "Kopparholmarnas naturreservat" → Norrköping | Naturvårdsområde, SWEREF 99 TM 613212/6482448 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.4680,
+    lng: 16.9409,
+    description: [
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Ett drygt tiotal öar ingår i reservatet varav Kopparholmarna är de två största." (läst 2026-11-17)
+      'Ett drygt tiotal öar ingår i Kopparholmarnas naturreservat, och Kopparholmarna är de två största.',
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "På östra ön finns ett torrdass, samt en natur- och vrakutställning. Ett vindskydd med eldstad ligger på den västra ön." (läst 2026-11-17)
+      'På den östra ön finns ett torrdass och en natur- och vrakutställning. På den västra ön finns ett vindskydd med eldstad.',
+    ],
+    facts: {
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
+      travel_time: 'Turbåt från piren i Arkösund sommartid',
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Ett drygt tiotal öar ingår i reservatet" (läst 2026-11-17)
+      character: 'Naturreservat med ett drygt tiotal öar',
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
+      season: 'Turbåtar sommartid, kommunen anger inga datum',
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "här tas inte badvattenprov då badplatsen är belägen på en ö" (läst 2026-11-17)
+      best_for: 'Bad, utflykt och vindskydd',
+    },
+    activities: [
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "På östra ön finns ett torrdass, samt en natur- och vrakutställning." (läst 2026-11-17)
+      { icon: '🏛', name: 'Natur- och vrakutställning', desc: 'På den östra ön finns en natur- och vrakutställning och ett torrdass.' },
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Ett vindskydd med eldstad ligger på den västra ön." (läst 2026-11-17)
+      { icon: '🔥', name: 'Vindskydd', desc: 'På den västra ön finns ett vindskydd med eldstad.' },
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "här tas inte badvattenprov då badplatsen är belägen på en ö vilket medför logistiska hinder" (läst 2026-11-17)
+      { icon: '🏊', name: 'Bad', desc: 'Kommunen tar inga badvattenprover här, eftersom badplatsen ligger på en ö.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Åk länsväg 209 österut till Arkösund. Parkering finns vid affären. Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Arkösund', desc: 'Sommartid går turbåtar från piren i Arkösund till Kopparholmarna. Kommunen anger inga datum.', icon: '⛴', url: 'https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://lansstyrelsen.se/download/18.6ae610001636c9c68e5981/1526553838599/F%C3%B6reskrifter%20om%20bildande%20av%20naturreservatet%20Kopparholmarna%20i%20Norrk%C3%B6pings%20kommun%202012.11.pdf — C3 "medföra okopplad hund eller annat lösgående husdjur"; C6 "göra upp eld annat än på anvisad plats"; C2 "tälta eller förtöja båt längre tid än två dygn i följd på samma plats" (läst 2026-11-17)
+      'I reservatet ska hunden vara kopplad och eld får bara göras på anvisad plats. Du får inte tälta eller förtöja båt längre än två dygn i följd på samma plats.',
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Du får inte ha med hund på de kommunala badplatserna." (läst 2026-11-17)
+      'På kommunens badplats på Kopparholmarna får du inte ha med hund.',
+    ],
+    related: ['arkosund', 'harstena'],
+    tags: ['östergötland', 'norrköping', 'naturreservat', 'bad'],
+  },
+  // ─── ARKÖSUND ────────────────────────────────────────────────
+  {
+    slug: 'arkosund',
+    name: 'Arkösund',
+    region: 'ovriga',
+    regionLabel: 'Östergötlands skärgård',
+    slag: 'ort',
+    emoji: '⚓',
+    // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja" (läst 2026-11-17)
+    // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Badholmarna (Arkösund)", "Nordanskog (Arkösund)", "Sköldvik (Arkösund)" (läst 2026-11-17)
+    tagline: 'Ort i Norrköpings kommun där skärgårdstrafiken mot Aspöja och Birkö utgår. Tre kommunala badplatser, bland dem Badholmarna.',
+    seoTitle: 'Arkösund: båt till skärgården och bad',
+    // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja" (läst 2026-11-17)
+    seoDescription: 'Från Arkösund går skärgårdstrafiken mot Aspöja och Birkö. Här är badplatserna, bussen och vad som gäller för hundar.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ark%C3%B6sund — Lantmäteriet Min Karta, sökning "Arkösund" → Arkösund | Norrköping | Bebyggelse, SWEREF 99 TM 613239/6485251 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.4931,
+    lng: 16.9427,
+    description: [
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja"; "Gäller från 17 augusti 2026 till 13 juni 2027." (läst 2026-11-17)
+      'Från Arkösund går Östgötatrafikens skärgårdslinje 781 mot Birkö via Aspöja. Tidtabellen gäller 17 augusti 2026 till 13 juni 2027.',
+      // KÄLLA: https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel — "Badholmarna ligger strax utanför Arkösund och består av fyra små öar som förbinds med broar." (läst 2026-11-17)
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Badholmarna (Arkösund)", "Nordanskog (Arkösund)", "Sköldvik (Arkösund)" (läst 2026-11-17)
+      'Kommunen har hand om tre badplatser i Arkösund: Badholmarna, Nordanskog och Sköldvik. Badholmarna ligger strax utanför orten och är fyra små öar som förbinds med broar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel — "Ta buss 440 till hållplats Arkösunds hamn." (läst 2026-11-17)
+      travel_time: 'Buss 440 till hållplatsen Arkösunds hamn',
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja" (läst 2026-11-17)
+      character: 'Ort där skärgårdstrafiken utgår',
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Gäller från 17 augusti 2026 till 13 juni 2027." (läst 2026-11-17)
+      season: 'Tidtabell för linje 781 gäller 17 augusti 2026 till 13 juni 2027',
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Badholmarna (Arkösund)", "Nordanskog (Arkösund)", "Sköldvik (Arkösund)" (läst 2026-11-17)
+      best_for: 'Bad och båt ut i skärgården',
+    },
+    activities: [
+      // KÄLLA: https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel — "Badholmarna ligger strax utanför Arkösund och består av fyra små öar som förbinds med broar." (läst 2026-11-17)
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Tillgång till toaletter i servicebyggnad 400 meter från badet. Affär och restaurang inom gångavstånd." (läst 2026-11-17)
+      { icon: '🏖', name: 'Badholmarna', desc: 'Fyra små öar som förbinds med broar, strax utanför Arkösund. Toaletter finns i en servicebyggnad 400 meter från badet, och affär och restaurang ligger inom gångavstånd.' },
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Nordanskog (Arkösund)", "Sköldvik (Arkösund)" (läst 2026-11-17)
+      { icon: '🏊', name: 'Nordanskog och Sköldvik', desc: 'Två av kommunens badplatser i Arkösund.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel — "Ta buss 440 till hållplats Arkösunds hamn." (publicerad 2026-07-02, läst 2026-11-17)
+      { method: 'Buss', from: 'Norrköping', desc: 'Kommunen tipsade sommaren 2026 om buss 440 till hållplatsen Arkösunds hamn. Kontrollera aktuell tidtabell hos Östgötatrafiken.', icon: '🚌', url: 'https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel' },
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja"; "Gäller från 17 augusti 2026 till 13 juni 2027." (läst 2026-11-17)
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik — "Beställ senast klockan 18:00 dagen innan" (läst 2026-11-17)
+      { method: 'Skärgårdstrafik', from: 'Arkösund', desc: 'Östgötatrafikens linje 781 går från Arkösund mot Birkö via Aspöja. Tidtabellen gäller 17 augusti 2026 till 13 juni 2027. Resan bokas senast klockan 18.00 dagen innan.', icon: '⛴', url: 'https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/tidtabeller-for-skargardstrafik' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Du får inte ha med hund på de kommunala badplatserna." (läst 2026-11-17)
+      'Hundar får inte vara med på kommunens badplatser.',
+    ],
+    related: ['kopparholmarna', 'harstena'],
+    tags: ['östergötland', 'norrköping', 'hamn', 'bad'],
+  },
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',

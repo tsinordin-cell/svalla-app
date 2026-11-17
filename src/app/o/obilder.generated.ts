@@ -1002,8 +1002,18 @@ export const OBILDER: Record<string, Obild> = {
     "licens": "CC BY 2.0",
     "licensUrl": "https://creativecommons.org/licenses/by/2.0",
     "kalla": "https://commons.wikimedia.org/wiki/File:Uppland_%C3%96rsk%C3%A4r_Lighthouse_(14164387552).jpg"
+  },
+  "harstena": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Harstena_-_KMB_-_16000300022260.jpg",
+    "bredd": 1200,
+    "hojd": 805,
+    "ar": 1991,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Harstena_-_KMB_-_16000300022260.jpg"
   }
 }
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = 98
+export const OAR_MED_BILD = 99
