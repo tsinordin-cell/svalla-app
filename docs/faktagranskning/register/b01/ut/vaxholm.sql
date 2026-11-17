@@ -135,3 +135,7 @@ update restaurants set type = 'camping', updated_at = now() where slug = 'vaxhol
 -- FÖRE: 'Gamla magasinslokaler, god mat och Gustavsbergs pittoreska hamn – ett genuint alternativ till turistkrogarna.' (ur den publicerade sidan svalla.se/upptack/magasinet-gustavsberg, rutan Varför hit?, 2026-11-16; inte i registret). FÖRE-värdet prövas med SELECT av Redaktören.
 -- Obs: posten har också taggen 'gustavsberg' (samma sida); den rättas inte här.
 update restaurants set core_experience = 'Bistro, inredningsbutik, festlokal och yogastudio under samma tak på Fiskaregatan 1 i Vaxholm.', updated_at = now() where slug = 'magasinet-gustavsberg' and core_experience = 'Gamla magasinslokaler, god mat och Gustavsbergs pittoreska hamn – ett genuint alternativ till turistkrogarna.';
+
+-- Redaktören 2026-11-17: FÖRE-värdena i del A är prövade med SELECT (type 'hotel', core_experience som i WHERE, description som i WHERE; 1 rad var).
+-- magasinet-gustavsberg.tags: taggen 'gustavsberg' är fel ort (Magasinet ligger på Fiskaregatan 1 i Vaxholm, se KÄLLA ovan). FÖRE: {gustavsberg,hamn,industrikänsla,kväll} (SELECT 2026-11-17).
+update restaurants set tags = array_remove(tags, 'gustavsberg'), updated_at = now() where slug = 'magasinet-gustavsberg' and 'gustavsberg' = any(tags);

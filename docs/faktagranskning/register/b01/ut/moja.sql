@@ -134,3 +134,7 @@ update restaurants set description = 'Möja vandrarhem är ett familjedrivet STF
 -- KÄLLA: https://www.svenskaturistforeningen.se/boende/stf-stora-kalholmen-vandrarhem/ — "Stora Kalholmen är belägen i mellersta skärgården mellan Finnhamn och Möja.", "Bastu finns." (läst 2026-11-16)
 -- finnhamn.se (läst 2026-11-16) har en länk "Boka bastu" men nämner varken Stora Kalholmen eller Bastuhuset. Adressen "Finnhamn" på /upptack/bastuhuset kommer från
 -- Google Places (formatted_address); FÖRE-värdet kan inte läsas härifrån, så ingen sats skrivs. Se rapporten omarbete4f-b.md.
+
+-- Redaktören 2026-11-17: FÖRE-värdet för bastuhuset.formatted_address är prövat med SELECT: '184 99 Finnhamn' (Google Places, 1 rad).
+-- Bastun ligger på Stora Kalholmen enligt mätningen och källorna ovan, inte på Finnhamn. Den felaktiga adressen tas bort; ingen ny adress skrivs, eftersom ingen källa anger någon.
+update restaurants set formatted_address = null, updated_at = now() where slug = 'bastuhuset' and formatted_address = '184 99 Finnhamn';

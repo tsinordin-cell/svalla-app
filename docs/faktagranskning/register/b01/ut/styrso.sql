@@ -73,7 +73,8 @@ update restaurants set description = 'Brännö Värdshus är en restaurang på B
 -- KÄLLA: https://www.isbolaget.com/ — "031–97 27 00", "Donsö Hamnväg 45" (läst 2026-11-16)
 -- KÄLLA: https://www.isbolaget.com/omoss — "Längst ut på piren i Donsö hamn, mitt i Göteborgs skärgård, ligger Isbolaget" (läst 2026-11-16)
 -- KÄLLA: https://api.openstreetmap.org/api/0.6/node/832457440 — "Isbolaget", "Donsö Hamnväg" (läst 2026-11-16); bara läget: nålen i satsen ovan är nodens läge. Telefonen beläggs av Isbolagets egen sida.
-update restaurants set phone = '031-97 27 00', updated_at = now() where slug = 'donso-hamnkrog' and phone = '+46 31 97 17 32';
+-- Redaktören 2026-11-17: FÖRE-värdet prövat med SELECT ('+46 31 97 17 32', 1 rad). Numret skrivs i samma form som övriga rader i tabellen (+46), utan tankstreck.
+update restaurants set phone = '+46 31 97 27 00', updated_at = now() where slug = 'donso-hamnkrog' and phone = '+46 31 97 17 32';
 
 -- vrango-gasthamn.description (slut-04 utanför-k038): ingen ny sats. Satsen överst i filen stryker redan "Hamndjupet är 3,5–5 meter." (styrso-0493),
 -- eftersom djup bara beläggs av nivå 1 och enda källan var svenskagasthamnar.se (nivå 3). Kontrollerat 2026-11-16: SET-texten nämner inget djup.
