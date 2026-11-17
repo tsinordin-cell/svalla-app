@@ -6424,6 +6424,182 @@ export const ISLANDS: Island[] = [
     related: ['brommo', 'djuro-nationalpark'],
     tags: ['vänern', 'mariestad', 'naturreservat'],
   },
+  // ─── BLEKINGE (komplettering 2026-11-17) ─────────────────────
+  {
+    slug: 'utklippan',
+    name: 'Utklippan',
+    region: 'ovriga',
+    regionLabel: 'Blekinge',
+    emoji: '🗼',
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklippan är Sveriges sydöstligaste ögrupp och ett populärt besöksmål för båtfolk."; "På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna." (läst 2026-11-17)
+    tagline: 'Sveriges sydöstligaste ögrupp, med Utklippans fyr på Södraskär och en gästhamn för båtfolk.',
+    seoTitle: 'Utklippan: Sveriges sydöstligaste ögrupp',
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Öarna nås med egen båt."; "Öarna har gästhamn och på Södraskär finns bland annat en fågelstation." (läst 2026-11-17)
+    seoDescription: 'Utklippan nås med egen båt. Gästhamnen, fyren, sälarna och reglerna i naturreservatet utanför Karlskrona.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Utklippan — Lantmäteriet Min Karta, sökning "Utklippan" → Utklippan | Karlskrona | Trakt, SWEREF 99 TM 543816/6201041 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 55.9527,
+    lng: 15.7017,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklippan är Sveriges sydöstligaste ögrupp och ett populärt besöksmål för båtfolk."; "ligger ungefär åtta kilometer syd-sydväst om Utlängan"; "Kommun: Karlskrona" (läst 2026-11-17)
+      'Utklippan är Sveriges sydöstligaste ögrupp och ligger i Karlskrona kommun, ungefär åtta kilometer sydsydväst om Utlängan.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklipporna består av de nästan kala öarna, Norraskär, Södraskär och Degerhuvudet samt flera mindre skär." (läst 2026-11-17)
+      'Ögruppen består av de nästan kala öarna Norraskär, Södraskär och Degerhuvudet samt flera mindre skär.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna."; "Fyren, fyrvaktarsamhället och miljön på Södraskär och Norraskär är statliga byggnadsminnen."; "Numera används byggnaderna bland annat av Utklippans fågelstation och Svenska Kryssarklubben." (läst 2026-11-17)
+      'På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna. Fyren, fyrvaktarsamhället och miljön på Södraskär och Norraskär är statliga byggnadsminnen. I dag används byggnaderna bland annat av Utklippans fågelstation och Svenska Kryssarklubben.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Gråsäl ses ofta vila på Degerhuvudet och klipporna där omkring, och ibland även knubbsäl."; "På öarna rastar stora mängder flyttfåglar under vår och höst." (läst 2026-11-17)
+      'Gråsäl ses ofta vila på Degerhuvudet och klipporna där omkring, och ibland även knubbsäl. På öarna rastar stora mängder flyttfåglar under vår och höst.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Bildat 1988, utvidgat 2011 och 2018"; "5 168 hektar, varav 12 hektar land" (läst 2026-11-17)
+      'Naturreservatet bildades 1988, utvidgades 2011 och 2018 och är 5 168 hektar, varav 12 hektar land.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklippan är Sveriges sydöstligaste ögrupp" (läst 2026-11-17)
+      character: 'Sveriges sydöstligaste ögrupp, naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "ett populärt besöksmål för båtfolk"; "På öarna rastar stora mängder flyttfåglar under vår och höst." (läst 2026-11-17)
+      best_for: 'Båtfolk och fågelskådning',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna." (läst 2026-11-17)
+      { icon: '🗼', name: 'Utklippans fyr', desc: 'Fyren står på Södraskär.' },
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Gråsäl ses ofta vila på Degerhuvudet och klipporna där omkring, och ibland även knubbsäl." (läst 2026-11-17)
+      { icon: '🦭', name: 'Sälar', desc: 'Gråsäl ses ofta vila på Degerhuvudet.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Öarna nås med egen båt."; "I gästhamnen finns en informationspaviljong, uppförd 2015." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Karlskrona skärgård', desc: 'Öarna nås med egen båt. Öarna har en gästhamn, och där finns en informationspaviljong från 2015.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Naturreservatet Utklippan utgörs av ögruppen Utklipporna med omgivande havsområde."; "medföra hund, katt eller annat rovdjur som inte är kopplat" (läst 2026-11-17)
+      'Naturreservatet omfattar ögruppen och havet runt den. Hundar, katter och andra rovdjur ska vara kopplade.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "göra upp eld eller använda grillar, spritkök eller motsvarande annat än på anvisad grillplats"; "tälta annat än på anvisad plats, och i högst 2 dygn" (läst 2026-11-17)
+      'Du får bara göra upp eld eller använda grill, spritkök eller motsvarande på anvisad grillplats. Du får bara tälta på anvisad plats, och högst två dygn.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "under längre än tre dygn i följd ligga med båt invid brygga, kaj eller annan plats, med undantag för nödsituationer vid exempelvis dåligt väder" (läst 2026-11-17)
+      'Du får inte ligga med båt vid brygga, kaj eller annan plats längre än tre dygn i följd, utom i nödsituationer som dåligt väder.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "tomgångsköra motor eller använda motordrivet laddningsaggregat"; "bedriva vattenlek med motordriven farkost." (läst 2026-11-17)
+      'Du får inte tomgångsköra motor, använda motordrivet laddningsaggregat eller bedriva vattenlek med motordriven farkost.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Inom naturreservatet finns fågelskyddsområden som är viktiga att respektera" (läst 2026-11-17)
+      'Inom reservatet finns fågelskyddsområden som är viktiga att respektera.',
+    ],
+    related: ['aspo-blekinge', 'sturko', 'hano'],
+    tags: ['blekinge', 'karlskrona', 'fyr', 'sälar', 'naturreservat'],
+  },
+  {
+    slug: 'tarno',
+    name: 'Tärnö',
+    region: 'ovriga',
+    regionLabel: 'Blekinge',
+    emoji: '⛵',
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Tärnö är belägen i det yttersta havsbandet och är den största av öarna i Hällaryds skärgård."; "Från Tärnös högsta punkt, Drakaberget, kan man se mer än halva Blekinges kust." (läst 2026-11-17)
+    tagline: 'Den största ön i Hällaryds skärgård utanför Karlshamn. Från Drakaberget ser du mer än halva Blekinges kust.',
+    seoTitle: 'Tärnö: båten från Karlshamn, leder och regler',
+    // KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn-skargard/ — "Cirka 30 minuter från skärgårdsterminalen i Karlshamn ligger Tärnö." (läst 2026-11-17)
+    seoDescription: 'Tärnö ligger cirka 30 minuter med båt från skärgårdsterminalen i Karlshamn. Lederna, stranden, fyren och reglerna i naturreservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=T%C3%A4rn%C3%B6 — Lantmäteriet Min Karta, sökning "Tärnö" → Tärnö | Karlshamn | Natur- och terrängnamn, SWEREF 99 TM 497780/6219319 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 56.1189,
+    lng: 14.9643,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Tärnö är belägen i det yttersta havsbandet och är den största av öarna i Hällaryds skärgård."; "ön är inte större än att du kan vandra runt den på några timmar"; "Kommun: Karlshamn" (läst 2026-11-17)
+      'Tärnö ligger i Karlshamns kommun och är den största av öarna i Hällaryds skärgård. Du kan vandra runt ön på några timmar.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Från Tärnös högsta punkt, Drakaberget, kan man se mer än halva Blekinges kust."; "På Ifberget finns Sveriges äldsta träfyr som ännu är i drift" (läst 2026-11-17)
+      'Från Drakaberget, öns högsta punkt, kan du se mer än halva Blekinges kust. På Ifberget finns Sveriges äldsta träfyr som ännu är i drift.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "På 1600-talet fann man en silverskatt på Tärnö."; "Delar av skatten förvaras idag på Historiska museet i Stockholm." (läst 2026-11-17)
+      'På 1600-talet hittade man en silverskatt på Tärnö. Delar av den finns i dag på Historiska museet i Stockholm.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "I naturreservatet på de två öarna Tärnö och Yttre Ekö"; "1980 och 1988, ändring och utvidgning 2021"; "112,8 hektar" (läst 2026-11-17)
+      'Naturreservatet ligger på de två öarna Tärnö och Yttre Ekö. Det skyddades 1980 och 1988, ändrades och utvidgades 2021 och är 112,8 hektar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn-skargard/ — "Cirka 30 minuter från skärgårdsterminalen i Karlshamn ligger Tärnö." (läst 2026-11-17)
+      travel_time: 'Cirka 30 minuter med båt från Karlshamn',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "den största av öarna i Hällaryds skärgård" (läst 2026-11-17)
+      character: 'Största ön i Hällaryds skärgård',
+      // KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ — "Från maj till september reser du ut till öar som Tjärö, Tärnö och Kastellet." (läst 2026-11-17)
+      season: 'Båt maj till september',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Runt ön finns vandringsleder, grillplatser och rastplatser." (läst 2026-11-17)
+      best_for: 'Dagstur, vandring och utsikt',
+    },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Runt ön finns vandringsleder, grillplatser och rastplatser." (läst 2026-11-17)
+      { icon: '🥾', name: 'Vandringsleder', desc: 'Runt ön finns vandringsleder, grillplatser och rastplatser.' },
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "I Sandvik på Tärnös södra sida finns en vik med sandstrand där det går att bada, men botten har ett stort inslag av sten och det kan vara svårt att ta sig ut." (läst 2026-11-17)
+      { icon: '🏖️', name: 'Sandvik', desc: 'I Sandvik på södra Tärnö finns en vik med sandstrand där det går att bada. Botten har mycket sten, och det kan vara svårt att ta sig ut.' },
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "På Ifberget finns Sveriges äldsta träfyr som ännu är i drift" (läst 2026-11-17)
+      { icon: '🗼', name: 'Träfyren på Ifberget', desc: 'Sveriges äldsta träfyr som ännu är i drift.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Tärnö nås sommartid med båt enligt tidtabell. Det går en passagerarfärja från både Karlshamn och Matvik." (läst 2026-11-17)
+      // KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn-skargard/ — "Vid gästhamnen i centrala Karlshamn hittar du skärgårdsterminalen."; "Cirka 30 minuter från skärgårdsterminalen i Karlshamn ligger Tärnö."; "Du köper din biljett när du går ombord"; "Det går bra att ta med djur ombord på våra båtar." (läst 2026-11-17)
+      { method: 'Passagerarfärja', from: 'Karlshamn eller Matvik', desc: 'Tärnö nås sommartid med båt enligt tidtabell, och det går passagerarfärja från både Karlshamn och Matvik. Från skärgårdsterminalen vid gästhamnen i centrala Karlshamn tar resan cirka 30 minuter. Biljetten köper du ombord, och det går bra att ta med djur.', icon: '⛴️' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "tälta eller på annat sätt slå läger mer än 2 dygn"; "göra upp eld eller använda grillar, annat än på särskilt iordningställda grillplatser" (läst 2026-11-17)
+      'I reservatet får du inte tälta mer än två dygn, och du får bara göra upp eld eller grilla på särskilt iordningställda grillplatser.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "cykla annat än på befintliga vägar och stigar, och då endast på sätt som inte ger förslitningsskador på markerna, verkar störande på naturen eller på övrigt friluftsliv i området" (läst 2026-11-17)
+      'Du får bara cykla på befintliga vägar och stigar, och bara så att du inte sliter på marken eller stör naturen eller andra besökare.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "tomgångsköra motor (mer än 1 minut)" (läst 2026-11-17)
+      'Du får inte tomgångsköra motor mer än en minut.',
+    ],
+    related: ['tjaro', 'hano'],
+    tags: ['blekinge', 'karlshamn', 'fyr', 'naturreservat'],
+  },
+  {
+    slug: 'hastholmen-ytteron',
+    name: 'Hästholmen och Ytterön',
+    region: 'ovriga',
+    regionLabel: 'Blekinge',
+    emoji: '🐄',
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Naturreservatet Hästholmen-Ytterön är en kulturhistoriskt värdefull skärgårdsmiljö."; "Öarna består mest av flacka hällmarker, enbuskhedar och strandängar." (läst 2026-11-17)
+    tagline: 'Kulturhistoriskt värdefull skärgårdsmiljö i Karlskrona kommun, med hällmarker, enbuskhedar och strandängar.',
+    seoTitle: 'Hästholmen och Ytterön: kabelfärja och regler',
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Du tar av från E22 mot Torhamn i Jämjö, följ skyltningen mot Yttre Park. Där går en kabelfärja." (läst 2026-11-17)
+    seoDescription: 'Så tar du dig till naturreservatet Hästholmen och Ytterön med bil och kabelfärja. Strandängarna, fågellivet och reglerna i reservatet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=H%C3%A4stholmen — Lantmäteriet Min Karta, sökning "Hästholmen" → Hästholmen | Karlskrona | Natur- och terrängnamn, SWEREF 99 TM 546627/6215417 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 56.0816,
+    lng: 15.7492,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Naturreservatet Hästholmen-Ytterön är en kulturhistoriskt värdefull skärgårdsmiljö."; "Kommun: Karlskrona" (läst 2026-11-17)
+      'Naturreservatet Hästholmen och Ytterön i Karlskrona kommun är en kulturhistoriskt värdefull skärgårdsmiljö.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Öarna består mest av flacka hällmarker, enbuskhedar och strandängar."; "Norr om Hästholmens by breder ett stort strandängsområde ut sig." (läst 2026-11-17)
+      'Öarna består mest av flacka hällmarker, enbuskhedar och strandängar. Norr om Hästholmens by finns ett stort strandängsområde.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "På sommaren är det full aktivitet med häckande trutar, måsar och tärnor. Under vintern samlas mängder med sjöfågel i vikarna." (läst 2026-11-17)
+      'På sommaren häckar trutar, måsar och tärnor, och på vintern samlas mängder med sjöfågel i vikarna.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "1975, reviderat/ändrat 2025"; "1152 hektar, varav 392 hektar land" (läst 2026-11-17)
+      'Naturreservatet bildades 1975, ändrades 2025 och är 1152 hektar, varav 392 hektar land.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Naturreservatet Hästholmen-Ytterön är en kulturhistoriskt värdefull skärgårdsmiljö." (läst 2026-11-17)
+      character: 'Kulturhistoriskt värdefull skärgårdsmiljö',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Öarna består mest av flacka hällmarker, enbuskhedar och strandängar."; "Under vintern samlas mängder med sjöfågel i vikarna." (läst 2026-11-17)
+      best_for: 'Promenader och fågelskådning',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Du tar av från E22 mot Torhamn i Jämjö, följ skyltningen mot Yttre Park. Där går en kabelfärja." (läst 2026-11-17)
+      { method: 'Bil och kabelfärja', from: 'Jämjö', desc: 'Ta av från E22 mot Torhamn i Jämjö och följ skyltningen mot Yttre Park. Enligt Länsstyrelsen går det en kabelfärja därifrån.', icon: '🚗' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "medföra okopplad hund inom reservatet, annat än vid vallning av boskap och jakt samt vid eftersök på skadat djur" (läst 2026-11-17)
+      'Hunden ska vara kopplad i reservatet, utom vid vallning av boskap, jakt och eftersök på skadat djur.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "tälta eller på annat sätt slå läger mer än två dygn"; "göra upp eld eller använda grillar, annat än på särskilt iordningställd grillplats" (läst 2026-11-17)
+      'Du får inte tälta mer än två dygn, och du får bara göra upp eld eller grilla på särskilt iordningställd grillplats.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "ankra, lägga till eller dra upp båt eller annan vattenfarkost annat än vid tillfällig vistelse (högst två dygn) i området"; "Förbudet gäller inte befintliga enskilda bryggor eller andra iordningställda båtplatser"; "ankra båt eller annan vattenfarkost inom områden med Ankringsförbud enligt beslutsbilaga 2a" (läst 2026-11-17)
+      'Du får ankra, lägga till eller dra upp båt eller annan vattenfarkost bara vid tillfällig vistelse, högst två dygn. Det gäller inte befintliga enskilda bryggor eller andra iordningställda båtplatser. I vissa områden får du inte ankra alls, enligt kartan i reservatsbeslutet.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "tomgångsköra motor (mer än en minut)" (läst 2026-11-17)
+      'Du får inte tomgångsköra motor mer än en minut.',
+    ],
+    related: ['utklippan', 'sturko', 'aspo-blekinge'],
+    tags: ['blekinge', 'karlskrona', 'naturreservat', 'fåglar'],
+  },
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',
