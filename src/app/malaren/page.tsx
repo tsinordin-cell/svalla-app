@@ -43,36 +43,24 @@ const ITEMS: LandingItem[] = [
  href: '/malaren#oar',
  meta: 'Gratis',
  },
- {
- icon: '⛵',
- title: 'Rutter på Mälaren',
- description: 'Klassiska leder från Stockholm västerut: Drottningholm, Birka, Mariefred och Västerås med etappinfo och djupdata.',
- href: '/segelrutter',
- },
- {
- icon: '☕',
- title: 'Kafébryggor & restauranger',
- description: 'Mälaren är känt för sina charmiga bryggkaféer. Hitta de bästa fikastoppen längs kusten med Svallas karta.',
- href: '/krogar-och-mat',
- },
- {
- icon: '🏛️',
- title: 'Historiska platser',
- description: 'Birka, Gripsholms slott, Strängnäs domkyrka, Mälaren är omgiven av svensk historia. Logga besöken i Svalla.',
- href: '/upptack',
- },
- {
- icon: '🌅',
- title: 'Solnedgångsankring',
- description: 'Mälarens lugna vatten och långa sommarkvällar gör det till en av Sveriges bästa sjöar för ankring och övernattning.',
- href: '/platser?kategori=naturhamn',
- },
- {
- icon: '📍',
- title: 'Logga dina turer',
- description: 'Spåra din tur med GPS, dokumentera vindförhållanden och dela med Svallas community av Mälarsseglare.',
- href: '/logga-in',
- },
+  {
+    icon: '🏰',
+    title: 'Birka',
+    description: 'Ösidan om Birka: så tar du dig dit och vad som finns på ön.',
+    href: '/o/birka',
+  },
+  {
+    icon: '⛪',
+    title: 'Adelsö',
+    description: 'Ösidan om Adelsö: så tar du dig dit och vad som finns på ön.',
+    href: '/o/adelsjo',
+  },
+  {
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
+  },
 ]
 
 export default function MalarenPage() {

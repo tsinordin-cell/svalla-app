@@ -40,35 +40,28 @@ const ITEMS: LandingItem[] = [
     meta: 'Gratis',
   },
   {
-    icon: '⛵',
-    title: 'Segelrutter längs kusten',
-    description: 'Klassiska leder från Härnösand norrut: etapper med vindinfo, djupdata och ankringstips.',
-    href: '/segelrutter',
+    icon: '🦅',
+    title: 'Ulvön',
+    description: 'Ösidan om Ulvön: så tar du dig dit och vad som finns på ön.',
+    href: '/o/ulvon',
   },
   {
-    icon: '🏕️',
-    title: 'Naturhamnar & ankring',
-    description: 'Höga Kustens granitklippor skapar unika ankringsplatser, från djupa fjordar till skyddade vikar med SUP-lugnt vatten.',
-    href: '/platser?kategori=naturhamn',
+    icon: '⚓',
+    title: 'Trysunda',
+    description: 'Ösidan om Trysunda: så tar du dig dit och vad som finns på ön.',
+    href: '/o/trysunda',
   },
   {
     icon: '🌲',
-    // KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14)
-    title: 'Skuleskogens nationalpark',
-    description: 'Världsarvet till havs, kombinera vandring i urskogen med ankring utanför klipporna. En upplevelse utanför det vanliga.',
-    href: '/vandring-och-natur',
+    title: 'Hemsön',
+    description: 'Ösidan om Hemsön: så tar du dig dit och vad som finns på ön.',
+    href: '/o/hemson',
   },
   {
     icon: '📍',
     title: 'Logga dina turer',
-    description: 'Spåra din färd längs Norrlandskusten med GPS, lägg till bilder och dela med vänner.',
-    href: '/logga-in',
-  },
-  {
-    icon: '🦅',
-    title: 'Ulvön: Höga Kustens pärla',
-    description: 'Ulvön är centrum för surströmmingstraditionen och en av Norrlandskustens vackraste öar. Logga din tur hit.',
-    href: '/logga-in',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
   },
 ]
 
