@@ -2215,6 +2215,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://kund.printhuset-sthlm.se/sl/h634.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "Norrtälje–Blidö, Giltig 17 augusti–12 december 2026, Norrtälje busstation, Furusunds färjeläge, Norrsund (Blidö färjeläge), Stämmarsund, Bromskärs brygga",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/",
       "org": "Trafikverket",
       "vad": "Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård, Resan med vägfärjan är avgiftsfri ;  — Blidö, Rådmansholmen är ett EU-bad ; Blidö kyrka invigd 1859 enligt RAÄ:s bebyggelseregister (se description)",
@@ -2231,15 +2238,36 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h24.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "24A STOCKHOLM — VAXHOLM — BLIDÖSUNDET, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, Stämmarsund (Blidö) ;  — 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, Norrsund (Blidö)",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, 24A STOCKHOLM — VAXHOLM — BLIDÖSUNDET, Stämmarsund (Blidö), Norrsund (Blidö)",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/s24.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026, 24A STOCKHOLM — VAXHOLM — BLIDÖSUNDET, Stämmarsund (Blidö), Norrsund (Blidö)",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, Strömkajen (Stockholm), Norrsund (Blidö), Svartlöga, Rödlöga",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/s26.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026, 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, Norrsund (Blidö), Svartlöga, Rödlöga",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — BROMSKÄR / RÖDLÖGA, Bromskär (Blidö)",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026, 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — RÖDLÖGA, Bromskär (Blidö), Bryggan är avstängd till juni 2027 på grund av renoveringsarbeten.",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -2282,6 +2310,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "tovejansson.com",
       "vad": "She also makes lengthy visits to her grandparents, who live on the Swedish island of Blidö",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -2390,28 +2425,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora",
       "org": "Waxholmsbolaget",
       "vad": "ligger i den vackra Svartlögafjärden, precis utanför Furusund; Saltkråkan är framför allt inspelat på Norröra. Där ligger till exempel det bostadshus som i tv-serien kallades Snickargården, det hus som farbror Melker först hyrde och sedan köpte; Från Norröra kan du även enkelt ta dig över till Söderöra — båtturen tar bara 10 minuter … Framför allt vinterscenerna spelades in på ön",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, Går under perioderna 8 maj - 18 juni och 17, Går under perioden 17 augusti - 30 augusti. Måndag–torsdag går turerna 2601 (8 maj–18 juni) och 2611 (17–30 augusti), fredag 2621 och 2623, lördag 08.45 → Norröra 12.15, söndag 10.00 → 13.10",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/s26.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "två avgångar om dagen från Strömkajen 19 juni–16 augusti;  — vår och höst lördag 08.45, söndag 10.00, fredag 08.45 och (till 13 september) 16.30, måndag–torsdag bara 8 maj–18 juni och 17–30 augusti .  skriver \"det går ofta två turer om dagen\", vilket bara stämmer med sommartabellen.",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026, två turer om dagen;  — GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026;  — Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "FURUSUND — ÖSTERNÄS — SÖDERÖRA — BROMSKÄR / RÖDLÖGA, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 30 SEPTEMBER 2026, Beställ resan i SL-appen; Furusund 07.50 → Köpmanholm 07.52 → Norröra 08.30, 10.05 → 10.45b .  — 17 AUGUSTI 2026 — 12 DECEMBER 2026, samma tider Furusund–Norröra",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -2447,6 +2482,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "norrora.se",
       "vad": "Hundar ska vara kopplade vilket gäller alla öar utan vägförbindelse",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -3310,29 +3352,29 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/rodloga",
       "org": "Waxholmsbolaget",
-      "vad": "Under våren, sommaren och hösten kan du åka ut till Rödlöga från Strömkajen utan byten. Resan tar fyra timmar.; Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Rödlöga.; Heldagsutflykt till Rödlöga",
-      "last": "2026-09-27",
+      "vad": "Under våren, sommaren och hösten kan du åka ut till Rödlöga från Strömkajen utan byten., Resan tar fyra timmar., Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Rödlöga.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, Strömkajen (Stockholm), Norrsund (Blidö), Svartlöga, Rödlöga",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/s26.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026; 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA — måndag–torsdag tur 2601 Strömkajen 09.00, Rödlöga 13.00; tur 2602 Rödlöga 15.00, Strömkajen 19.00",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
-      "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026 — tur 2621 Strömkajen 08.45, Rödlöga 13.00 (mån–tors); tur 2671 söndag Strömkajen 10.00, Rödlöga 14.00",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 30 SEPTEMBER 2026; 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — BROMSKÄR / RÖDLÖGA — lördag tur 2851 och söndag tur 2871: Furusund 10.05, Rödlöga 12.20",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026, 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — RÖDLÖGA, Furusund, Rödlöga; restiden Furusund till Rödlöga, 2 h 15 min, är uppmätt i 28A",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -3389,6 +3431,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "rodlogaboden.se",
       "vad": "Här kan du njuta av en kopp kaffe eller the, saft och läsk, hembakade pajer och kakor, en god smörgås - eller kanske en hamburgare som du grillar själv!",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -4028,6 +4077,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://kund.printhuset-sthlm.se/sl/h632.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "Norrtälje–Yxlan, Giltig 17 augusti–12 december 2026, Köpmanholm, Vagnsunda",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/",
       "org": "Trafikverket",
       "vad": "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård. Färjeledens längd är 600 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri. ;  — Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård. Färjeledens längd är 530 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri. ;  — Parking on Yxlan can be tricky and even hazardous. You can not park in the small housing communities. ;  — Giltig 17 augusti–12 december 2026, Norrtälje busstation 09.14 14.36 16.43 18.44, Vagnsunda 10.29 16.00 18.00 19.59b, Fortsätter efter Köpmanholms skola endast om resenärer . Restid Norrtälje–Vagnsunda 1 h 15 min (09.14 → 10.29) till 1 h 24 min (14.36 → 16.00).  — Strömkajen (Stockholm) 08.45, Vagnsunda (Yxlan) 11.01, Kolsvik (Yxlan) 13.02, utan fast avgångstid, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026",
@@ -4038,7 +4094,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://kund.printhuset-sthlm.se/wa/h24.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, Strömkajen (Stockholm) 08.45, Vagnsunda (Yxlan) 11.01 11.21 11.01, Kolsvik (Yxlan) 13.02 13.45, utan fast avgångstid, Går under perioden 2 april - 18 juni. . Utåt (24A) har Vagnsunda fast tid och övriga Yxlanbryggor X; hemåt (24B) har Kolsvik fast tid och Vagnsunda X. Yxlö och Köpmanholm finns bara på söndagsturerna märkta I (2 april–18 juni). Strömkajen 08.45 → Vagnsunda 11.01 = 2 h 16 min.",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/s24.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026, 24A STOCKHOLM — VAXHOLM — BLIDÖSUNDET, Stämmarsund (Blidö), Norrsund (Blidö)",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026, 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — RÖDLÖGA, Furusund, Köpmanholm (Yxlan)",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -4060,6 +4130,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "stockholmarchipelagotrail.com",
       "vad": "offering a 24 km hike close to the sea, The lake Träsket, the lighthouse and Stortallen, an old pine tree are all worth a visit in their own right., it follows the local printed tourist map, Plan your hike based on when you can catch the bus back from the furthest southern point you reach.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -4929,14 +5006,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 30 SEPTEMBER 2026; Furusund 07.50 10.05 10.05 10.05; Gräskö 08.15 10.30b 10.30b 10.30b; GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026 — Furusund 07.50/10.05, Gräskö 08.15/10.30 = 25 min; Gräskö finns även i höst-/vintertabellen 1 oktober–12 december",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h27.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026; Strömkajen (Stockholm) 08.45 08.45 08.45; Gräskö 12.05 12.20 12.05 — Strömkajen 08.45, Gräskö 12.05 resp. 12.20 = 3 h 20–35 min",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, 27A STOCKHOLM — VAXHOLM — NORRSUND — ARHOLMA, Strömkajen (Stockholm), Gräskö; restiden Strömkajen till Gräskö, 3 h 00 till 3 h 35 min, är uppmätt i 27A",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/s27.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026, 27A STOCKHOLM — VAXHOLM — NORRSUND — ARHOLMA / NORRTÄLJE, Gräskö",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -4944,6 +5028,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "roslagen.se",
       "vad": "",
       "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -7402,24 +7493,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, Strömkajen (Stockholm), Norrsund (Blidö), Svartlöga, Rödlöga; vid Svartlöga har 10 av 12 stopp i h26 anmärkning b",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
       "url": "https://kund.printhuset-sthlm.se/wa/s26.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026; 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA; Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00. — tur 2601 måndag–torsdag Strömkajen 09.00, Svartlöga 12.40b; tur 2602 Svartlöga 15.15, Strömkajen 19.00",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026; 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — RÖDLÖGA — onsdag tur 2819 Furusund 14.10, Svartlöga 14.55; fredag, lördag och söndag Furusund 10.05, Svartlöga 11.50; lördag retur tur 2852 Svartlöga 13.10, Furusund 15.00",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
-      "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026 — tur 2621 måndag–torsdag Strömkajen 08.45, Svartlöga 12.40b; lördag tur 2651 08.45–12.40b, retur tur 2652 Svartlöga 14.15, Strömkajen 18.15",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -7469,6 +7560,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "stockholmslansmuseum.se",
       "vad": "Svartlöga var en av få skärgårdsöar som klarade sig från ryssarnas härjningar 1719. Grunden runt ön är förrädiska och enligt traditionen skrämde öns säljägare bort inkräktarna med sina bössor.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],

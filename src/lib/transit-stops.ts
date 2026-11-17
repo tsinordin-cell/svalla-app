@@ -223,7 +223,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   blido: {
     destStopId: '740001021', destStopName: 'Blidö Bromskär brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Bilfärja från Furusund, Waxholmsbåt eller buss 626 + 634 från Norrtälje.',
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h634.pdf — "Norrtälje–Blidö", "Giltig 17 augusti–12 december 2026", "Norrtälje busstation" (läst 2026-11-17)
+    // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård.", "Resan med vägfärjan är avgiftsfri." (läst 2026-11-17)
+    // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/ — "Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård.", "Resan med vägfärjan är avgiftsfri." (läst 2026-11-17)
+    note: 'Buss 634 från Norrtälje busstation, eller bil med Trafikverkets avgiftsfria vägfärjor från Furusund via Yxlan.',
     // P0 24 (2026-11-17, Kontrollanten): rutorna räknade till Bromskär, som i avsnittet 1 oktober till
     // 12 december av tabell 28 har anmärkning r (avstängd). Ingen annan brygga på Blidö står i tabellen,
     // och något annat hållplats-id för Blidö är inte uppmätt, så destStopId står kvar och rutorna visar texten.
