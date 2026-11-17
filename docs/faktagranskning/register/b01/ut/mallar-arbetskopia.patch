@@ -1179,10 +1179,10 @@ index eada894..63a107e 100644
                <a href="mailto:info@svalla.se" style={{ fontSize: 14.5, color: 'var(--acc-d)', fontWeight: 600 }}>
                  info@svalla.se
 diff --git a/src/app/o/[slug]/komma-dit/page.tsx b/src/app/o/[slug]/komma-dit/page.tsx
-index 29fe4df..afa96d1 100644
+index 29fe4df..c61fe4b 100644
 --- a/src/app/o/[slug]/komma-dit/page.tsx
 +++ b/src/app/o/[slug]/komma-dit/page.tsx
-@@ -5,7 +5,10 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
+@@ -5,7 +5,11 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
  import IslandSubPageHeader from '@/components/IslandSubPageHeader'
  import Icon from '@/components/Icon'
  import { emojiToIcon } from '@/lib/iconMap'
@@ -1191,10 +1191,11 @@ index 29fe4df..afa96d1 100644
 +import { nasUtanBat } from '@/components/HantverkarKort'
 +import { fardsattFran, klockslagsregler, arOrt } from '@/lib/mallRegler'
 +import { stryksKlockslag } from '@/lib/klockslagStrykning'
++import { LOKALA_BATREGLER, BATRUTA_DOLD } from '@/lib/batregler'
  
  type Props = { params: Promise<{ slug: string }> }
  
-@@ -35,21 +38,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -35,21 +39,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
    // ALLA öar, även Bohuslän och Göteborg (Käringön: båt från Tuvesvik).
    // Uppmätt i Search Console 2026-09-23 (6 400 visningar). Nu byggs den av
    // öns egna färdsätt och operatör.
@@ -1229,7 +1230,7 @@ index 29fe4df..afa96d1 100644
      description: beskrivning,
      keywords: [
        `hur tar man sig till ${island.name.toLowerCase()}`,
-@@ -62,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
+@@ -62,7 +74,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
        `how to get to ${island.name.toLowerCase()} sweden`,
      ],
      openGraph: {
@@ -1238,7 +1239,7 @@ index 29fe4df..afa96d1 100644
        // Tidigare lovade delningstexten "avgångstider, priser" och buss för alla
        // öar. Sidorna har inga priser. Nu samma text som metabeskrivningen.
        description: beskrivning,
-@@ -80,8 +91,49 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -80,8 +92,54 @@ export default async function IslandKommaDitPage({ params }: Props) {
    // Påståenden som bara är sanna för vissa öar ska inte stå på alla 103.
    // "Ingen egen båt krävs" var hårdkodat även för öar utan reguljärtrafik, och
    // Waxholmsbolagets biljettregler visades på Bohusläns öar (2026-09-21).
@@ -1275,6 +1276,11 @@ index 29fe4df..afa96d1 100644
 +  // öar som bolaget inte trafikerar (runda 8). Öar utan allmän trafik har alltid fått dem (mall-0174 omarbete).
 +  const egenBatFard = !kollektivt || (!usesWaxholmsbolaget && island.getting_there.some(t => egenBat.test(t.method)
 +    || (/egen båt/i.test(t.desc) && !/ingen egen båt|utan egen båt/i.test(t.desc))))
++  // Båtrutan och lokala förbud (mallarnas runda 9, 2026-11-17; src/lib/batregler.ts): har myndigheten föreskrivit förbud
++  // för ankring, förtöjning, tillträde eller fart börjar rutan med dem; anger bara en verksamhet ett förbud (Birka) visas
++  // rutan inte, så att den allmänna regeln inte står bredvid öns eget kort om förbudet (mall-N042).
++  const batruta = egenBatFard && !BATRUTA_DOLD.has(slug)
++  const lokalaBatregler = batruta ? LOKALA_BATREGLER[slug] ?? [] : []
 +  // Restiden och tiderna i mallens texter utan klockslag ur datan (undertitel, FAQ; mall-0166 omarbete 4).
 +  const restid = utanKlockslag(island.facts.travel_time ?? '')
 +  const tider = island.getting_there.filter(t => t.time && !harKlockslag(t.time))
@@ -1289,7 +1295,7 @@ index 29fe4df..afa96d1 100644
    const lankFor = (method: string, desc: string, url?: string) => {
      if (url) return url
      const tm = island.transport_meta
-@@ -101,8 +153,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -101,8 +159,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
          acceptedAnswer: {
            '@type': 'Answer',
            text: island.getting_there.length > 0
@@ -1301,7 +1307,7 @@ index 29fe4df..afa96d1 100644
          },
        },
        {
-@@ -111,16 +164,19 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -111,16 +170,19 @@ export default async function IslandKommaDitPage({ params }: Props) {
          acceptedAnswer: {
            '@type': 'Answer',
            text: kollektivt
@@ -1325,7 +1331,7 @@ index 29fe4df..afa96d1 100644
          },
        },
      ],
-@@ -133,7 +189,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -133,7 +195,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
        <IslandSubPageHeader
          island={island}
          tab="komma-dit"
@@ -1334,7 +1340,7 @@ index 29fe4df..afa96d1 100644
        />
  
        <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
-@@ -165,10 +221,12 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -165,10 +227,12 @@ export default async function IslandKommaDitPage({ params }: Props) {
                  </a>
                )}
              </div>
@@ -1348,7 +1354,7 @@ index 29fe4df..afa96d1 100644
            </div>
          )}
  
-@@ -179,7 +237,8 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -179,7 +243,8 @@ export default async function IslandKommaDitPage({ params }: Props) {
                Hur tar man sig till {island.name}?
              </h2>
              <div style={{ display: 'grid', gap: 12 }}>
@@ -1358,7 +1364,7 @@ index 29fe4df..afa96d1 100644
                  <div key={i} style={{
                    background: 'var(--white)', borderRadius: 14, padding: '18px 20px',
                    boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
-@@ -198,16 +257,21 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -198,16 +263,21 @@ export default async function IslandKommaDitPage({ params }: Props) {
                          </span>
                        )}
                      </div>
@@ -1384,7 +1390,7 @@ index 29fe4df..afa96d1 100644
                        </a>
                      ) : null}
                    </div>
-@@ -225,7 +289,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -225,7 +295,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
              marginBottom: 28,
            }}>
              <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
@@ -1393,16 +1399,16 @@ index 29fe4df..afa96d1 100644
                <a href="https://waxholmsbolaget.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>
                  Waxholmsbolagets tidtabell
                </a>{' '}
-@@ -235,7 +299,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -235,7 +305,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
          )}
  
          {/* Praktisk info — visas bara när det finns något som gäller den här ön */}
 -        {(stockholm || island.transport_meta?.car_parking) && (
-+        {(usesWaxholmsbolaget || slTrafik || parkering || egenBatFard) && (
++        {(usesWaxholmsbolaget || slTrafik || parkering || batruta) && (
          <div style={{
            background: 'linear-gradient(135deg, rgba(10,123,140,0.06) 0%, rgba(26,74,107,0.04) 100%)',
            borderRadius: 16, padding: '22px 20px',
-@@ -246,16 +310,35 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -246,16 +316,45 @@ export default async function IslandKommaDitPage({ params }: Props) {
              Praktiska tips
            </h3>
            <ul style={{ margin: 0, padding: '0 0 0 18px', fontSize: 14, color: 'var(--txt2)', lineHeight: 1.9 }}>
@@ -1435,17 +1441,27 @@ index 29fe4df..afa96d1 100644
 +            {/* Öar som nås med egen båt eller kajak. Ersätter Waxholmsbolagets regler, som visades på Yttre Gården fast bolaget
 +                inte går dit (2026-11-02, mall-0174 omarbete). Sedan runda 8 också där egen båt är ett av färdsätten (egenBatFard),
 +                med reglerna för att ligga för ankar och om skyddade områden (mall-N022, N023; 2026-11-17). */}
-+            {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — "Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt", "Det finns inte heller någon regel för hur länge du får ligga för ankar på samma plats. Man brukar använda sig av samma princip som för tältning, och det är något enstaka dygn.", "Om du har tänkt att ligga för ankar eller förtöja en längre tid vid någon annans strand behöver du fråga markägaren om lov." (läst 2026-11-17) */}
++            {/* Lokala föreskrifter först, och att de går före allemansrätten (mall-N025 till N039; runda 9, 2026-11-17). Varje ös
++                föreskrifter har sin KÄLLA-rad i src/lib/batregler.ts. */}
++            {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/skyddade-omraden/ — "Allemansrätten gäller även i skyddade områden, men den kan vara begränsad eller i vissa fall utökad.", "Som besökare eller markägare är du skyldig att följa reglerna." (läst 2026-11-17) */}
++            {lokalaBatregler.length > 0 && (<>
++              <li>Lokala föreskrifter går före allemansrätten, och du är skyldig att följa dem. {lokalaBatregler[0]}</li>
++              {lokalaBatregler.slice(1).map(r => <li key={r}>{r}</li>)}
++            </>)}
++            {/* Allemansrätten med Naturvårdsverkets eget förbehåll (strand som inte är skyddad) och att den som åker båt ska känna
++                till föreskrifterna för vattnet (mall-N040; runda 9; tiden för ankring mall-N041). Citatet var kapat före "eller som är skyddad". */}
++            {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — "Du får gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte tillhör någon tomt, eller som är skyddad för fågelliv eller annat.", "Åker du båt ska du visa gott sjömanskap och känna till regler och föreskrifter som gäller för de vatten du färdas i." (läst 2026-11-17) */}
++            {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — "Det finns inte heller någon regel för hur länge du får ligga för ankar på samma plats. Man brukar använda sig av samma princip som för tältning, och det är något enstaka dygn.", "Om du har tänkt att ligga för ankar eller förtöja en längre tid vid någon annans strand behöver du fråga markägaren om lov." (läst 2026-11-17) */}
 +            {/* KÄLLA: https://www.naturvardsverket.se/amnesomraden/allemansratten/sa-gor-vi-allemansratt/pa-vatten/ — "I nationalparker, naturreservat och i andra skyddade områden gäller särskilda regler. Reglerna kan begränsa allemansrätten.", "I nationalparker och naturreservat kan det till exempel finnas särskilda regler om att elda, tälta eller förtöja en båt. Vid fågel- eller sälskyddsområden får du inte stiga iland under en viss tid av året. Det kan även vara förbjudet att vistas på vattnet inom ett visst avstånd från stranden. Förbuden märks ofta ut med gula eller röd/gula skyltar." (läst 2026-11-17) */}
-+            {egenBatFard && (<>
-+              <li>Med egen båt eller kajak får du enligt allemansrätten gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte hör till någon tomt.</li>
-+              <li>Det finns ingen regel för hur länge du får ligga för ankar på samma plats; brukligt är något enstaka dygn, som för tältning. Vill du ligga för ankar eller förtöja längre vid någon annans strand behöver du fråga markägaren om lov.</li>
++            {batruta && (<>
++              <li>Med egen båt eller kajak får du enligt allemansrätten gå i land, bada, ankra och tillfälligt förtöja vid en strand som inte hör till någon tomt och inte är skyddad för fågelliv eller annat, så länge inga lokala föreskrifter säger något annat. Den som åker båt ska känna till de regler och föreskrifter som gäller för vattnet.</li>
++              <li>Allemansrätten har ingen regel för hur länge du får ligga för ankar på samma plats; brukligt är något enstaka dygn, som för tältning. Vill du ligga för ankar eller förtöja längre vid någon annans strand behöver du fråga markägaren om lov.</li>
 +              <li>I nationalparker, naturreservat och andra skyddade områden gäller särskilda regler som kan begränsa allemansrätten, till exempel om att förtöja en båt. Vid fågel- och sälskyddsområden får du inte gå i land under en viss tid av året, och det kan vara förbjudet att vara på vattnet inom ett visst avstånd från stranden. Förbuden märks ofta ut med gula eller röd/gula skyltar.</li>
 +            </>)}
            </ul>
          </div>
          )}
-@@ -274,11 +357,15 @@ export default async function IslandKommaDitPage({ params }: Props) {
+@@ -274,11 +373,15 @@ export default async function IslandKommaDitPage({ params }: Props) {
                Planera resan till {island.name} med Thorkel
              </div>
              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>
@@ -10284,6 +10300,153 @@ index 0000000..a77daf7
 +export function grannoarIData(island: object): string[] {
 +  return [...new Set([...JSON.stringify(island).matchAll(/grannön ([A-ZÅÄÖ][\p{L}-]+)/gu)].map(m => m[1]!))]
 +}
+diff --git a/src/lib/batregler.test.ts b/src/lib/batregler.test.ts
+new file mode 100644
+index 0000000..a1d2323
+--- /dev/null
++++ b/src/lib/batregler.test.ts
+@@ -0,0 +1,33 @@
++import { describe, expect, it } from 'vitest'
++import { ALL_ISLANDS } from '@/app/o/island-data'
++import { BATRUTA_DOLD, GRANSKADE_UTAN_FORBUD, LOKALA_BATREGLER } from './batregler'
++
++// Båtrutan på komma-dit och lokala förbud (mallarnas runda 9, 2026-11-17).
++describe('batregler', () => {
++  const slugs = new Set(ALL_ISLANDS.map(i => i.slug))
++  const lokala = Object.keys(LOKALA_BATREGLER)
++
++  it('gäller bara öar som finns', () => {
++    for (const s of [...lokala, ...BATRUTA_DOLD, ...GRANSKADE_UTAN_FORBUD]) expect(slugs.has(s), s).toBe(true)
++  })
++
++  it('placerar varje ö i högst en grupp', () => {
++    const alla = [...lokala, ...BATRUTA_DOLD, ...GRANSKADE_UTAN_FORBUD]
++    expect(new Set(alla).size).toBe(alla.length)
++  })
++
++  it('Birka visar inte rutan (förbudet har bara källa på nivå 2)', () => {
++    expect(BATRUTA_DOLD.has('birka')).toBe(true)
++  })
++
++  it('har texter utan tankstreck och klockslag, med punkt på slutet', () => {
++    for (const [s, regler] of Object.entries(LOKALA_BATREGLER)) {
++      expect(regler.length, s).toBeGreaterThan(0)
++      for (const r of regler) {
++        expect(r, s).not.toMatch(/[–—]/)
++        expect(r, s).not.toMatch(/\b\d{1,2}[.:]\d{2}\b/)
++        expect(r, s).toMatch(/\.$/)
++      }
++    }
++  })
++})
+diff --git a/src/lib/batregler.ts b/src/lib/batregler.ts
+new file mode 100644
+index 0000000..f806a45
+--- /dev/null
++++ b/src/lib/batregler.ts
+@@ -0,0 +1,102 @@
++// Lokala föreskrifter för båt på öar där komma-dit visar allemansrättens regler för båt (egenBatFard i
++// src/app/o/[slug]/komma-dit/page.tsx). Mallarnas runda 9, 2026-11-17 (mall-N025 till N042).
++//
++// Regeln: varje ö där rutan visas är genomgången i öns egen data (island-data.ts: kort, hamnar, tips, KÄLLA-rader) och hos
++// myndigheten för området (Länsstyrelsens sida för reservatet eller nationalparken, nationalparksföreskrifterna,
++// Länsstyrelsen i Stockholms läns föreskrifter om ankringsförbud) efter förbud eller begränsningar för ankring, förtöjning,
++// tillträde eller fart.
++//   1. Lokalt förbud som myndigheten (nivå 1) anger: rutan börjar med förbudet och säger att det går före allemansrätten
++//      (LOKALA_BATREGLER).
++//   2. Lokalt förbud som bara en verksamhet (nivå 2) eller aggregator anger: rutan visas inte (BATRUTA_DOLD). Förbudet kan
++//      inte skrivas utan nivå 1, och den allmänna regeln ska inte stå ensam bredvid öns eget kort om förbudet.
++//   3. Inget lokalt förbud hittat: rutan visas med förbehållet att lokala föreskrifter går före (GRANSKADE_UTAN_FORBUD).
++// Sjötrafikföreskrifternas fartbegränsningar i Stockholms län (01FS 2001:138) är inte genomsökta; omtrycket hittades inte.
++// Texterna är utan tankstreck och klockslag. En URL per KÄLLA-rad.
++
++// Nämdöskärgårdens nationalpark (Bullerö, Ormskär och huvuddelen av Långviksskär).
++// KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — "Du får ankra eller lägga till med fartyg på samma plats upp till två dygn i följd.", "Du får inte köra motordrivet fartyg snabbare än 5 knop inom 100 meter från land.", "I vissa särskilt känsliga områden är det förbjudet att ankra, köra motordrivet fartyg eller framföra någon typ av fartyg (båt, kajak, SUP-bräda och liknande).", "Under aktuella perioder får du inte vara i områden med tillträdesförbud (så kallade fågelskyddsområden)." (läst 2026-11-17)
++const NAMDO = [
++  'I nationalparken får du ankra eller lägga till på samma plats högst två dygn i följd, och du får inte köra motordriven båt fortare än 5 knop inom 100 meter från land.',
++  'I vissa särskilt känsliga områden i nationalparken är det förbjudet att ankra, att köra motordriven båt eller att färdas med någon typ av farkost, även kajak och SUP-bräda.',
++  'Under de aktuella perioderna får du inte vara i nationalparkens fågelskyddsområden, som har tillträdesförbud.',
++]
++
++// Länsstyrelsen i Stockholms läns föreskrifter om ankringsförbud (Storholmen, Smådalarö, Väddö).
++// KÄLLA: https://www.lansstyrelsen.se/download/18.4e0415ee166afb59324b782/1541414119836/01FS%202001%20074%20L%C3%A4nsstyrelsens%20i%20Stockholms%20l%C3%A4n%20f%C3%B6reskrifter%20om%20ankringsf%C3%B6rbud%20inom%20Stockholms%20l%C3%A4n.pdf — "Ankringsförbud skall gälla inom de områden och i övrigt i enlighet vad som anges nedan i punkterna 1–208.", "skall sådana vara uppsatta på lämpliga platser vid stränderna i anslutning till den anordning som ankringsförbudet avser att skydda.", "Den som bryter mot ett ankringsförbud kan dömas" (01FS 2001:74) (läst 2026-11-17)
++// KÄLLA: https://lansstyrelsen.se/download/18.2c30d6f167c5e8e7c015aaf/1547824511573/01FS%202019%20001%20F%C3%B6rteckning%20%C3%B6ver%20f%C3%B6reskrifter%20och%20allm%C3%A4nna%20r%C3%A5d%20utf%C3%A4rdade%20av%20L%C3%A4nsstyrelsen%20i%20Stockholms%20l%C3%A4n%20och%20som%20g%C3%A4ller%20den%2031%20december%202018.pdf — "Föreskrifter om ankringsförbud", "Ändrad p. 180", "Ändrad, p. 92" (01FS 2001:74 gällde 31 december 2018; punkterna 3, 7, 83 och 128 inte ändrade) (läst 2026-11-17)
++const SKYLTAR = 'Förbudsområdet ska vara utmärkt med skyltar vid stranden.'
++
++export const LOKALA_BATREGLER: Record<string, string[]> = {
++  // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html — "för längre tid än två dygn i följd förankra båt vid samma strand", "Öarna Skåren, Gråskär och del av Isskären är fågelskyddsområden med beträdnadsförbud 1 april–15 juli. Asenskallen har beträdnadsförbud 1 april–31 juli.", "På södra udden och halvön Kyrkogårdsskär ligger ett militärt skjutfält.", "Det är förbjudet att beträda området." (läst 2026-11-17)
++  asko: [
++    'I Askö naturreservat får du inte ligga förankrad vid samma strand mer än två dygn i följd.',
++    'Skåren, Gråskär och en del av Isskären är fågelskyddsområden med beträdnadsförbud 1 april till 15 juli, och Asenskallen har beträdnadsförbud 1 april till 31 juli.',
++    'Södra udden och halvön Kyrkogårdsskär är militärt skjutfält, och det är förbjudet att beträda området.',
++  ],
++  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — "Bullerö är nationalparkens entré" (läst 2026-11-17)
++  bullero: ['Bullerö ligger i Nämdöskärgårdens nationalpark.', ...NAMDO],
++  // KÄLLA: https://geodata.naturvardsverket.se/handlingar/rest/dokument/1031975 — "Lagunerna är talrika kring de större öarna Koskären, Brunskär, Ormskär, Braka, Söderö och Långviksskär i den sydvästra delen av nationalparken" (Skötselplan för Nämdöskärgårdens nationalpark och Långviksskärs naturreservat, rapport 7202, november 2025) (läst 2026-11-17)
++  ormsko: ['Ormskär ligger i Nämdöskärgårdens nationalpark.', ...NAMDO],
++  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/langviksskar.html — "När Nämdöskärgårdens nationalpark bildades år 2025 övergick huvuddelen av det som tidigare var Långviksskärs naturreservat till att bli nationalpark, men en mindre del kvarstår som reservat.", "ankra eller förtöja farkost vid brygga,", "ankra eller förtöja farkost på samma plats mer än två dygn i följd" (läst 2026-11-17)
++  langviksskaret: [
++    'Huvuddelen av Långviksskär blev nationalpark 2025, och en mindre del är kvar som naturreservat. I reservatsdelen är det förbjudet att ankra eller förtöja vid brygga och att ankra eller förtöja på samma plats mer än två dygn i följd.',
++    ...NAMDO,
++  ],
++  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/svenska-hogarna.html — "under tiden 1 februari – 15 augusti beträda eller färdas eller uppehålla sig inom område A med tillträdesförbud", "under tiden 1 april – 31 juli beträda eller färdas eller uppehålla sig inom område B med tillträdesförbud", "under tiden 1 maj- 30 juni beträda eller färdas eller uppehålla sig inom område C med tillträdesförbud" (läst 2026-11-17)
++  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/svenska-hogarna.html — "framföra båt, fartyg eller annan vattenfarkost inom område som angivits på karta, bilaga 1C i beslutet,", "framföra båt, fartyg eller annan vattenfarkost med högre hastighet än 5 knop inom område som angivits på karta, bilaga 1C i beslutet,", "ankra båt eller fartyg inom område som angivits på karta, bilaga 1C i beslutet," (läst 2026-11-17)
++  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/svenska-hogarna.html — "förtöja båt eller fartyg på allemansrättslig grund längre än två dygn i följd vid samma strand eller brygga.", "landstiga med större sällskap än 10 personer. Landstigning med större sällskap får dock ske efter samråd med förvaltaren om villkoren för detta," (läst 2026-11-17)
++  'svenska-hogarna': [
++    'Svenska Högarnas naturreservat har tillträdesförbud i områden som anges på beslutskartan: område A 1 februari till 15 augusti, område B 1 april till 31 juli och område C 1 maj till 30 juni. Där får du varken beträda området, färdas eller uppehålla dig.',
++    'På kartan i bilaga 1C till reservatsbeslutet anges vattenområden där det är förbjudet att framföra båt, att köra fortare än 5 knop och att ankra.',
++    'Du får inte förtöja på allemansrättslig grund längre än två dygn i följd vid samma strand eller brygga, och ett sällskap större än tio personer får landstiga bara efter samråd med förvaltaren.',
++  ],
++  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/huvudskar.html — "200 öar i Huvudskärs naturreservat", "för längre tid än två dygn i följd förankra båt vid samma strand" (läst 2026-11-17)
++  huvudskar: ['I Huvudskärs naturreservat får du inte ligga förankrad vid samma strand mer än två dygn i följd.'],
++  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/norrpada.html — "för längre tid än två dygn i följd förtöja båt vid samma plats" (läst 2026-11-17)
++  norrpada: ['I Norrpada naturreservat får du inte förtöja båten vid samma plats mer än två dygn i följd.'],
++  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/langskar.html — "förankra båt vid samma plats mer än två dygn", "framföra motordriven farkost snabbare än 7 knop med undantag för utpekat område (se karta i föreskrifterna).", "Under tiden 1 februari–15 augusti beträda utpekat fågelskyddsområde (se karta i föreskrifterna)" (läst 2026-11-17)
++  langskar: [
++    'I Långskärs naturreservat får du inte ligga förankrad på samma plats mer än två dygn, och motordriven båt får inte köras fortare än 7 knop utom i ett utpekat område.',
++    'Det utpekade fågelskyddsområdet får inte beträdas 1 februari till 15 augusti. Kartan finns i föreskrifterna.',
++  ],
++  // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html — "under tiden 1/3–31/8 vistas på ön utan tillstånd av länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet.", "Under tiden 1/9–28/2 äger allmänheten rätt att vistas på ön efter skriftlig anmälan. Besökare skall därvid göra sådan anmälan omedelbart efter ilandstigning vid bryggan på öns östra sida.", "landstiga på annan plats än vid bryggan på öns östra sida utan tillstånd av länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet", "under tiden 1/2–31/8 beträda eller vistas inom de delar av naturreservatet som omfattas av fågelskydd" (läst 2026-11-17)
++  'lilla-karlso': [
++    'Du får bara landstiga vid bryggan på öns östra sida, om du inte har tillstånd av Länsstyrelsen eller reservatets tillsynsman.',
++    '1 mars till 31 augusti får du inte vistas på ön utan sådant tillstånd. 1 september till 28 februari får du vistas där efter skriftlig anmälan, som görs direkt efter landstigningen vid bryggan.',
++    'De delar av reservatet som omfattas av fågelskydd får inte beträdas 1 februari till 31 augusti.',
++  ],
++  // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon/besok-parken/hitta-hit — "Det finns ingen hamn så du får ankra utanför på en läsida. Observera att det finns ett sälskyddsområde vid Säludden i nordost. Det är ankringsförbud vid Tärnudden." (läst 2026-11-17)
++  // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/nationalparker/gotska-sandons-nationalpark.html — "beträda eller färdas inom sälskyddsområdet vid Säludden, enligt karta i bilaga 1, förutom inom anvisat område för gömsle och spång,", "framföra vattenskoter, förutom för transport till och från land kortast möjliga sträcka från nationalparksgränsen," (läst 2026-11-17)
++  'gotska-sandon': [
++    'Det är ankringsförbud vid Tärnudden. Det finns ingen hamn, så du ankrar utanför på en läsida.',
++    'I sälskyddsområdet vid Säludden i nordost får du varken beträda området eller färdas, utom i det anvisade området vid gömslet och spången.',
++    'Vattenskoter får bara köras kortaste vägen mellan nationalparksgränsen och land.',
++  ],
++  // KÄLLA: https://www.naturvardsverket.se/4ac67d/globalassets/nfs/2014/nfs-2014-8.pdf — "om Blå Jungfruns nationalpark", "3 § Inom nationalparken är det förbjudet att", "framföra motorbåt, vattenskoter eller annan motordriven farkost med högre hastighet än åtta (8) knop," (NFS 2014:8) (läst 2026-11-17)
++  'bla-jungfrun': ['I Blå Jungfruns nationalpark får motorbåt, vattenskoter eller annan motordriven farkost inte köras fortare än 8 knop.'],
++  // KÄLLA: https://www.lansstyrelsen.se/download/18.4e0415ee166afb59324b782/1541414119836/01FS%202001%20074%20L%C3%A4nsstyrelsens%20i%20Stockholms%20l%C3%A4n%20f%C3%B6reskrifter%20om%20ankringsf%C3%B6rbud%20inom%20Stockholms%20l%C3%A4n.pdf — "83. Förbudsområde: Vid kabel i Stora Värtan mellan Lidingö och Storholmen." (läst 2026-11-17)
++  storholmen: [
++    'Länsstyrelsen har föreskrivit ankringsförbud vid kabeln i Stora Värtan mellan Lidingö och Storholmen (01FS 2001:74, punkt 83).',
++    SKYLTAR,
++  ],
++  // KÄLLA: https://www.lansstyrelsen.se/download/18.4e0415ee166afb59324b782/1541414119836/01FS%202001%20074%20L%C3%A4nsstyrelsens%20i%20Stockholms%20l%C3%A4n%20f%C3%B6reskrifter%20om%20ankringsf%C3%B6rbud%20inom%20Stockholms%20l%C3%A4n.pdf — "128. Förbudsområde: Vid kabel i sundet mellan fastlandet och Edesön i Dalarö inom ett område av 100 meter på ömse sidor om kabeln.", "fastlandet (Smådalarö)" (läst 2026-11-17)
++  smaadalaro: [
++    'Länsstyrelsen har föreskrivit ankringsförbud inom 100 meter på ömse sidor om kabeln i sundet mellan Smådalarö och Edesön (01FS 2001:74, punkt 128).',
++    SKYLTAR,
++  ],
++  // KÄLLA: https://www.lansstyrelsen.se/download/18.4e0415ee166afb59324b782/1541414119836/01FS%202001%20074%20L%C3%A4nsstyrelsens%20i%20Stockholms%20l%C3%A4n%20f%C3%B6reskrifter%20om%20ankringsf%C3%B6rbud%20inom%20Stockholms%20l%C3%A4n.pdf — "7. Förbudsområde: Vid kabel i Väddö kanal vid norra ändan av Storfjärden inom ett område av 100 meter på ömse sidor om kabeln.", "3. Förbudsområde: Vid kabel i Ornefjärden mellan Grisslehamn och Byholma inom ett område av 150 meter på ömse sidor om kabeln." (läst 2026-11-17)
++  vaddo: [
++    'Länsstyrelsen har föreskrivit ankringsförbud inom 100 meter på ömse sidor om kabeln i Väddö kanal vid norra ändan av Storfjärden, och inom 150 meter på ömse sidor om kabeln i Ornefjärden mellan Grisslehamn och Byholma (01FS 2001:74, punkterna 7 och 3).',
++    SKYLTAR,
++  ],
++}
++
++// Birka: öns eget kort anger ankringsförbud i viken och inom 50 meter från strandkanten, med källa
++// https://www.birkavikingastaden.se/hitta-pa-birka/gasthamnen/ (nivå 2). Länsstyrelsens sida om Björkö naturreservat (läst
++// 2026-11-17) har inga föreskrifter om ankring, och Björkö finns inte bland Ekerö kommuns punkter i 01FS 2001:74.
++export const BATRUTA_DOLD = new Set<string>(['birka'])
++
++// Genomgångna utan lokalt förbud för ankring, förtöjning, tillträde eller fart (2026-11-17): Länsstyrelsens sidor för
++// Storskärs, Trysundas och Hanös naturreservat har inga sådana föreskrifter; för Yttre Gården finns inget reservat i
++// Nynäshamns kommun i Naturvårdsregistret och ingen punkt i 01FS 2001:74.
++export const GRANSKADE_UTAN_FORBUD = new Set<string>(['storskar', 'trysunda', 'hano', 'yttre-garden'])
 diff --git a/src/lib/islandCoords.ts b/src/lib/islandCoords.ts
 index f4765e8..fdaa57a 100644
 --- a/src/lib/islandCoords.ts

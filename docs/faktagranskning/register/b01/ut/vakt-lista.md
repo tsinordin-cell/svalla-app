@@ -132,3 +132,7 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 ## Från mallarnas runda 8 (2026-11-17)
 - PublicFooter, Nav och PlaneraNyClient (tillbaka-steget) länkar till /planera, som kräver inloggning. Ingen text där påstår något annat; pröva flödet utloggad i förhandsversionen.
 - Platskortens beskrivningar ingick inte i Lag 3-mätningen med riktiga namn (bara namn, ö, typ, läge). Mät om i förhandsversionen mot den riktiga databasen.
+
+## Från mallarnas runda 9 (2026-11-17)
+- Båtrutan bygger på Länsstyrelsens föreskrift 01FS 2001:74 (ankring vid kablar) för Storholmen, Smådalarö och Väddö. Skribenten kunde bara bekräfta att den gällde 31 december 2018. Slutkontrollen ska pröva att föreskriften gäller i dag, annars stryks hänvisningen.
+- Fartgränserna i sjötrafikföreskrifterna (01FS 2001:138) är inte genomsökta.
