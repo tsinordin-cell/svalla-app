@@ -1244,8 +1244,8 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://www.fjaderholmarnaskrog.se/",
       "org": "fjaderholmarnaskrog.se",
-      "vad": "Hamnbaren, Loftet, FESTVÅNING MAGASINET, FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027, NU SERVERA JULBORD MELLAN 20/11 - 22/12",
-      "last": "2026-10-20",
+      "vad": "Hamnbaren, Loftet, FESTVÅNING MAGASINET, FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027, VÅRT JULBORD SERVERAS MELLAN 20/11 - 20/12",
+      "last": "2026-11-17",
       "myndighet": false
     },
     {

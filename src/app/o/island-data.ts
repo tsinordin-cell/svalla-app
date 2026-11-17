@@ -1562,9 +1562,9 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://fjaderholmarnasbryggeri.se/fjaderholmarnas-bryggeri-at-sea — "offering a wide variety of our beers served directly from the Brite Beer Tanks", "You can also grab a bite from our pub menu", "We offer Beer Flights", "We only accept drop-ins" (läst 2026-09-27)
       // KÄLLA: https://fjaderholmarnasbryggeri.se/about — "in 2014 we were finally ready for take-off and opened our own brewpub at Fjäderholmarna", "we opened our bigger production brewery in Bro" (läst 2026-09-27)
       'Fjäderholmarnas Bryggeri öppnade sin brewpub på ön 2014. Där serveras ölen direkt från tankarna, med pubmeny och ölprovningar med fyra till fem av bryggeriets egna öl. Man tar bara emot drop-in, utom för sällskap på tio eller fler. Den större produktionen ligger sedan 2020 i Bro norr om Stockholm.',
-      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — "Hamnbaren", "Loftet", "FESTVÅNING MAGASINET", "FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027", "NU SERVERA JULBORD MELLAN 20/11 - 22/12" (läst 2026-09-27)
+      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — "Hamnbaren", "Loftet", "FESTVÅNING MAGASINET", "FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027", "VÅRT JULBORD SERVERAS MELLAN 20/11 - 20/12" (läst 2026-09-27)
       // KÄLLA: https://www.fjaderholmarna.se/ — "Förboka bord för att säkra plats!" (läst 2026-09-27)
-      'Fjäderholmarnas Krog är uppdelad på Krogen, Hamnbaren och Loftet, med festvåningen Magasinet intill. Kungl. Djurgårdens förvaltning råder besökare att förboka bord. Krogen öppnar för sommaren igen 1 maj 2027 och serverar julbord 20 november till 22 december.',
+      'Fjäderholmarnas Krog är uppdelad på Krogen, Hamnbaren och Loftet, med festvåningen Magasinet intill. Kungl. Djurgårdens förvaltning råder besökare att förboka bord. Krogen öppnar för sommaren igen 1 maj 2027 och serverar julbord 20 november till 20 december.',
       // KÄLLA: https://www.fjaderholmarna.se/ — "(9) Allmogebåtar" (läst 2026-09-27)
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Du som är intresserad av sjöfart och båtbygge bör titta in hos Föreningen Allmogebåtar." (läst 2026-09-27)
       'Föreningen Allmogebåtar har en utställning på ön om de traditionella skärgårdsbåtarna och hur de byggdes.',
@@ -1683,7 +1683,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.fjaderholmarna.se/ — "Fjäderholmarna har nu säsongsöppet till och med 13 september." (läst 2026-09-27)
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "18 juni – 15 augusti:", "Varje halvtimme 10:30–17:00" (läst 2026-10-19)
       // KÄLLA: https://www.rokeriet-fjaderholmarna.se/ — "Julbordet serveras från 20 november till 20 december 2026."; "1 Maj-13 Sep" (läst 2026-10-20)
-      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — "FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027."; "NU SERVERA JULBORD MELLAN 20/11 - 22/12" (läst 2026-10-20)
+      // KÄLLA: https://www.fjaderholmarnaskrog.se/ — "FÖR KOMMANDE SOMMAREN ÖPPNAR VI UPP DEN 1 MAJ 2027."; "VÅRT JULBORD SERVERAS MELLAN 20/11 - 20/12" (läst 2026-11-17)
       // Rättad 2026-10-20: oktober är stängd, november och december har julbord ('limited').
       // KÄLLA: https://fjaderholmarnasbryggeri.se/fjaderholmarnas-bryggeri-at-sea — "The brewpub opens on 1 May and closes for the season on 13 September." (läst 2026-09-27)
       open: 'Maj till September',
